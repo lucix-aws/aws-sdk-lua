@@ -2,6 +2,7 @@ local M = {}
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         ResourceTagKey = {
             type = "string",
@@ -21,6 +22,7 @@ M.UnlockDelayUnit = {
 
 M.UnlockDelay = {
     type = "structure",
+    id = "UnlockDelay",
     members = {
         UnlockDelayValue = {
             type = "integer",
@@ -39,6 +41,7 @@ M.UnlockDelay = {
 
 M.LockConfiguration = {
     type = "structure",
+    id = "LockConfiguration",
     members = {
         UnlockDelay = setmetatable({ traits = {
             required = true,
@@ -58,6 +61,7 @@ M.RetentionPeriodUnit = {
 
 M.RetentionPeriod = {
     type = "structure",
+    id = "RetentionPeriod",
     members = {
         RetentionPeriodValue = {
             type = "integer",
@@ -76,6 +80,7 @@ M.RetentionPeriod = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -94,6 +99,7 @@ M.Tag = {
 
 M.CreateRuleInput = {
     type = "structure",
+    id = "CreateRuleInput",
     members = {
         RetentionPeriod = setmetatable({ traits = {
             required = true,
@@ -136,6 +142,7 @@ M.RuleStatus = {
 
 M.CreateRuleOutput = {
     type = "structure",
+    id = "CreateRuleOutput",
     members = {
         Identifier = {
             type = "string",
@@ -174,6 +181,7 @@ M.CreateRuleOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -188,6 +196,7 @@ M.ServiceQuotaExceededExceptionReason = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -206,6 +215,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -223,6 +233,7 @@ M.ConflictExceptionReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -236,6 +247,7 @@ M.ConflictException = {
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         Identifier = {
             type = "string",
@@ -249,6 +261,7 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
 }
 
 M.ResourceNotFoundExceptionReason = {
@@ -257,6 +270,7 @@ M.ResourceNotFoundExceptionReason = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -270,6 +284,7 @@ M.ResourceNotFoundException = {
 
 M.GetRuleInput = {
     type = "structure",
+    id = "GetRuleInput",
     members = {
         Identifier = {
             type = "string",
@@ -283,6 +298,7 @@ M.GetRuleInput = {
 
 M.GetRuleOutput = {
     type = "structure",
+    id = "GetRuleOutput",
     members = {
         Identifier = {
             type = "string",
@@ -320,6 +336,7 @@ M.GetRuleOutput = {
 
 M.ListRulesInput = {
     type = "structure",
+    id = "ListRulesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -349,6 +366,7 @@ M.ListRulesInput = {
 
 M.RuleSummary = {
     type = "structure",
+    id = "RuleSummary",
     members = {
         Identifier = {
             type = "string",
@@ -368,6 +386,7 @@ M.RuleSummary = {
 
 M.ListRulesOutput = {
     type = "structure",
+    id = "ListRulesOutput",
     members = {
         Rules = {
             type = "list",
@@ -381,6 +400,7 @@ M.ListRulesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -394,6 +414,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -404,6 +425,7 @@ M.ListTagsForResourceOutput = {
 
 M.LockRuleInput = {
     type = "structure",
+    id = "LockRuleInput",
     members = {
         Identifier = {
             type = "string",
@@ -420,6 +442,7 @@ M.LockRuleInput = {
 
 M.LockRuleOutput = {
     type = "structure",
+    id = "LockRuleOutput",
     members = {
         Identifier = {
             type = "string",
@@ -454,6 +477,7 @@ M.LockRuleOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -474,10 +498,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UnlockRuleInput = {
     type = "structure",
+    id = "UnlockRuleInput",
     members = {
         Identifier = {
             type = "string",
@@ -491,6 +517,7 @@ M.UnlockRuleInput = {
 
 M.UnlockRuleOutput = {
     type = "structure",
+    id = "UnlockRuleOutput",
     members = {
         Identifier = {
             type = "string",
@@ -528,6 +555,7 @@ M.UnlockRuleOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -549,10 +577,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateRuleInput = {
     type = "structure",
+    id = "UpdateRuleInput",
     members = {
         Identifier = {
             type = "string",
@@ -581,6 +611,7 @@ M.UpdateRuleInput = {
 
 M.UpdateRuleOutput = {
     type = "structure",
+    id = "UpdateRuleOutput",
     members = {
         Identifier = {
             type = "string",

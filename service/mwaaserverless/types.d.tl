@@ -698,13 +698,13 @@ local record ValidationException
     FieldList: {ValidationExceptionField}
 end
 
-local type RunType = "ON_DEMAND" | "SCHEDULED"
-
-local type TaskInstanceStatus = "QUEUED" | "FAILED" | "SCHEDULED" | "RUNNING" | "SUCCESS" | "UP_FOR_RESCHEDULE" | "UP_FOR_RETRY" | "UPSTREAM_FAILED" | "REMOVED" | "RESTARTING" | "DEFERRED" | "NONE" | "CANCELLED" | "TIMEOUT"
+local type WorkflowRunStatus = "STARTING" | "QUEUED" | "RUNNING" | "SUCCESS" | "FAILED" | "TIMEOUT" | "STOPPING" | "STOPPED"
 
 local type WorkflowStatus = "READY" | "DELETING"
 
-local type WorkflowRunStatus = "STARTING" | "QUEUED" | "RUNNING" | "SUCCESS" | "FAILED" | "TIMEOUT" | "STOPPING" | "STOPPED"
+local type TaskInstanceStatus = "QUEUED" | "FAILED" | "SCHEDULED" | "RUNNING" | "SUCCESS" | "UP_FOR_RESCHEDULE" | "UP_FOR_RETRY" | "UPSTREAM_FAILED" | "REMOVED" | "RESTARTING" | "DEFERRED" | "NONE" | "CANCELLED" | "TIMEOUT"
+
+local type RunType = "ON_DEMAND" | "SCHEDULED"
 
 local type EngineVersion = 1
 

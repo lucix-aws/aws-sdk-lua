@@ -839,13 +839,13 @@ end
 local record ThrottlingException
 end
 
-local type VoteValue = "YES" | "NO"
-
-local type Framework = "HYPERLEDGER_FABRIC" | "ETHEREUM"
-
 local type MemberStatus = "CREATING" | "AVAILABLE" | "CREATE_FAILED" | "UPDATING" | "DELETING" | "DELETED" | "INACCESSIBLE_ENCRYPTION_KEY"
 
 local type NetworkStatus = "CREATING" | "AVAILABLE" | "CREATE_FAILED" | "DELETING" | "DELETED"
+
+local type Framework = "HYPERLEDGER_FABRIC" | "ETHEREUM"
+
+local type VoteValue = "YES" | "NO"
 
 local type AccessorNetworkType = "ETHEREUM_GOERLI" | "ETHEREUM_MAINNET" | "ETHEREUM_MAINNET_AND_GOERLI" | "POLYGON_MAINNET" | "POLYGON_MUMBAI"
 

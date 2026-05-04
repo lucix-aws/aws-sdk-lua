@@ -2,6 +2,7 @@ local M = {}
 
 M.AlreadyStreamedException = {
     type = "structure",
+    id = "AlreadyStreamedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AlreadyStreamedException = {
 
 M.BulkPublishInput = {
     type = "structure",
+    id = "BulkPublishInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -28,6 +30,7 @@ M.BulkPublishInput = {
 
 M.BulkPublishOutput = {
     type = "structure",
+    id = "BulkPublishOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -37,6 +40,7 @@ M.BulkPublishOutput = {
 
 M.DuplicateRequestException = {
     type = "structure",
+    id = "DuplicateRequestException",
     error = "client",
     members = {
         message = {
@@ -50,6 +54,7 @@ M.DuplicateRequestException = {
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         message = {
@@ -63,6 +68,7 @@ M.InternalErrorException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -76,6 +82,7 @@ M.InvalidParameterException = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         message = {
@@ -89,6 +96,7 @@ M.NotAuthorizedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -102,6 +110,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -129,6 +138,7 @@ M.DeleteDatasetInput = {
 
 M.Dataset = {
     type = "structure",
+    id = "Dataset",
     members = {
         IdentityId = {
             type = "string",
@@ -156,6 +166,7 @@ M.Dataset = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
     members = {
         Dataset = M.Dataset,
     },
@@ -163,6 +174,7 @@ M.DeleteDatasetOutput = {
 
 M.ResourceConflictException = {
     type = "structure",
+    id = "ResourceConflictException",
     error = "client",
     members = {
         message = {
@@ -176,6 +188,7 @@ M.ResourceConflictException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -189,6 +202,7 @@ M.TooManyRequestsException = {
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -216,6 +230,7 @@ M.DescribeDatasetInput = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         Dataset = M.Dataset,
     },
@@ -223,6 +238,7 @@ M.DescribeDatasetOutput = {
 
 M.DescribeIdentityPoolUsageInput = {
     type = "structure",
+    id = "DescribeIdentityPoolUsageInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -236,6 +252,7 @@ M.DescribeIdentityPoolUsageInput = {
 
 M.IdentityPoolUsage = {
     type = "structure",
+    id = "IdentityPoolUsage",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -254,6 +271,7 @@ M.IdentityPoolUsage = {
 
 M.DescribeIdentityPoolUsageOutput = {
     type = "structure",
+    id = "DescribeIdentityPoolUsageOutput",
     members = {
         IdentityPoolUsage = M.IdentityPoolUsage,
     },
@@ -261,6 +279,7 @@ M.DescribeIdentityPoolUsageOutput = {
 
 M.DescribeIdentityUsageInput = {
     type = "structure",
+    id = "DescribeIdentityUsageInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -281,6 +300,7 @@ M.DescribeIdentityUsageInput = {
 
 M.IdentityUsage = {
     type = "structure",
+    id = "IdentityUsage",
     members = {
         IdentityId = {
             type = "string",
@@ -305,6 +325,7 @@ M.IdentityUsage = {
 
 M.DescribeIdentityUsageOutput = {
     type = "structure",
+    id = "DescribeIdentityUsageOutput",
     members = {
         IdentityUsage = M.IdentityUsage,
     },
@@ -312,6 +333,7 @@ M.DescribeIdentityUsageOutput = {
 
 M.GetBulkPublishDetailsInput = {
     type = "structure",
+    id = "GetBulkPublishDetailsInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -332,6 +354,7 @@ M.BulkPublishStatus = {
 
 M.GetBulkPublishDetailsOutput = {
     type = "structure",
+    id = "GetBulkPublishDetailsOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -353,6 +376,7 @@ M.GetBulkPublishDetailsOutput = {
 
 M.GetCognitoEventsInput = {
     type = "structure",
+    id = "GetCognitoEventsInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -366,6 +390,7 @@ M.GetCognitoEventsInput = {
 
 M.GetCognitoEventsOutput = {
     type = "structure",
+    id = "GetCognitoEventsOutput",
     members = {
         Events = {
             type = "map",
@@ -377,6 +402,7 @@ M.GetCognitoEventsOutput = {
 
 M.GetIdentityPoolConfigurationInput = {
     type = "structure",
+    id = "GetIdentityPoolConfigurationInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -395,6 +421,7 @@ M.StreamingStatus = {
 
 M.CognitoStreams = {
     type = "structure",
+    id = "CognitoStreams",
     members = {
         StreamName = {
             type = "string",
@@ -410,6 +437,7 @@ M.CognitoStreams = {
 
 M.PushSync = {
     type = "structure",
+    id = "PushSync",
     members = {
         ApplicationArns = {
             type = "list",
@@ -423,6 +451,7 @@ M.PushSync = {
 
 M.GetIdentityPoolConfigurationOutput = {
     type = "structure",
+    id = "GetIdentityPoolConfigurationOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -434,6 +463,7 @@ M.GetIdentityPoolConfigurationOutput = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -466,6 +496,7 @@ M.ListDatasetsInput = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         Datasets = {
             type = "list",
@@ -485,6 +516,7 @@ M.ListDatasetsOutput = {
 
 M.ListIdentityPoolUsageInput = {
     type = "structure",
+    id = "ListIdentityPoolUsageInput",
     members = {
         NextToken = {
             type = "string",
@@ -503,6 +535,7 @@ M.ListIdentityPoolUsageInput = {
 
 M.ListIdentityPoolUsageOutput = {
     type = "structure",
+    id = "ListIdentityPoolUsageOutput",
     members = {
         IdentityPoolUsages = {
             type = "list",
@@ -528,6 +561,7 @@ M.ListIdentityPoolUsageOutput = {
 
 M.ListRecordsInput = {
     type = "structure",
+    id = "ListRecordsInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -579,6 +613,7 @@ M.ListRecordsInput = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         Key = {
             type = "string",
@@ -603,6 +638,7 @@ M.Record = {
 
 M.ListRecordsOutput = {
     type = "structure",
+    id = "ListRecordsOutput",
     members = {
         Records = {
             type = "list",
@@ -647,6 +683,7 @@ M.ListRecordsOutput = {
 
 M.InvalidConfigurationException = {
     type = "structure",
+    id = "InvalidConfigurationException",
     error = "client",
     members = {
         message = {
@@ -667,6 +704,7 @@ M.Platform = {
 
 M.RegisterDeviceInput = {
     type = "structure",
+    id = "RegisterDeviceInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -699,6 +737,7 @@ M.RegisterDeviceInput = {
 
 M.RegisterDeviceOutput = {
     type = "structure",
+    id = "RegisterDeviceOutput",
     members = {
         DeviceId = {
             type = "string",
@@ -708,6 +747,7 @@ M.RegisterDeviceOutput = {
 
 M.SetCognitoEventsInput = {
     type = "structure",
+    id = "SetCognitoEventsInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -729,10 +769,12 @@ M.SetCognitoEventsInput = {
 
 M.SetCognitoEventsOutput = {
     type = "structure",
+    id = "SetCognitoEventsOutput",
 }
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -746,6 +788,7 @@ M.ConcurrentModificationException = {
 
 M.SetIdentityPoolConfigurationInput = {
     type = "structure",
+    id = "SetIdentityPoolConfigurationInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -761,6 +804,7 @@ M.SetIdentityPoolConfigurationInput = {
 
 M.SetIdentityPoolConfigurationOutput = {
     type = "structure",
+    id = "SetIdentityPoolConfigurationOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -772,6 +816,7 @@ M.SetIdentityPoolConfigurationOutput = {
 
 M.SubscribeToDatasetInput = {
     type = "structure",
+    id = "SubscribeToDatasetInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -806,10 +851,12 @@ M.SubscribeToDatasetInput = {
 
 M.SubscribeToDatasetOutput = {
     type = "structure",
+    id = "SubscribeToDatasetOutput",
 }
 
 M.UnsubscribeFromDatasetInput = {
     type = "structure",
+    id = "UnsubscribeFromDatasetInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -844,10 +891,12 @@ M.UnsubscribeFromDatasetInput = {
 
 M.UnsubscribeFromDatasetOutput = {
     type = "structure",
+    id = "UnsubscribeFromDatasetOutput",
 }
 
 M.InvalidLambdaFunctionOutputException = {
     type = "structure",
+    id = "InvalidLambdaFunctionOutputException",
     error = "client",
     members = {
         message = {
@@ -861,6 +910,7 @@ M.InvalidLambdaFunctionOutputException = {
 
 M.LambdaThrottledException = {
     type = "structure",
+    id = "LambdaThrottledException",
     error = "client",
     members = {
         message = {
@@ -874,6 +924,7 @@ M.LambdaThrottledException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -892,6 +943,7 @@ M.Operation = {
 
 M.RecordPatch = {
     type = "structure",
+    id = "RecordPatch",
     members = {
         Op = {
             type = "string",
@@ -922,6 +974,7 @@ M.RecordPatch = {
 
 M.UpdateRecordsInput = {
     type = "structure",
+    id = "UpdateRecordsInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -968,6 +1021,7 @@ M.UpdateRecordsInput = {
 
 M.UpdateRecordsOutput = {
     type = "structure",
+    id = "UpdateRecordsOutput",
     members = {
         Records = {
             type = "list",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.CancelSolNetworkOperationInput = {
     type = "structure",
+    id = "CancelSolNetworkOperationInput",
     members = {
         nsLcmOpOccId = {
             type = "string",
@@ -28,10 +30,12 @@ M.CancelSolNetworkOperationInput = {
 
 M.CancelSolNetworkOperationOutput = {
     type = "structure",
+    id = "CancelSolNetworkOperationOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -45,6 +49,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -58,6 +63,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -71,6 +77,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -84,6 +91,7 @@ M.ValidationException = {
 
 M.CreateSolFunctionPackageInput = {
     type = "structure",
+    id = "CreateSolFunctionPackageInput",
     members = {
         tags = {
             type = "map",
@@ -111,6 +119,7 @@ M.UsageState = {
 
 M.CreateSolFunctionPackageOutput = {
     type = "structure",
+    id = "CreateSolFunctionPackageOutput",
     members = {
         id = {
             type = "string",
@@ -152,6 +161,7 @@ M.CreateSolFunctionPackageOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -165,6 +175,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateSolNetworkInstanceInput = {
     type = "structure",
+    id = "CreateSolNetworkInstanceInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -191,6 +202,7 @@ M.CreateSolNetworkInstanceInput = {
 
 M.CreateSolNetworkInstanceOutput = {
     type = "structure",
+    id = "CreateSolNetworkInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -226,6 +238,7 @@ M.CreateSolNetworkInstanceOutput = {
 
 M.CreateSolNetworkPackageInput = {
     type = "structure",
+    id = "CreateSolNetworkPackageInput",
     members = {
         tags = {
             type = "map",
@@ -253,6 +266,7 @@ M.NsdUsageState = {
 
 M.CreateSolNetworkPackageOutput = {
     type = "structure",
+    id = "CreateSolNetworkPackageOutput",
     members = {
         id = {
             type = "string",
@@ -294,6 +308,7 @@ M.CreateSolNetworkPackageOutput = {
 
 M.DeleteSolFunctionPackageInput = {
     type = "structure",
+    id = "DeleteSolFunctionPackageInput",
     members = {
         vnfPkgId = {
             type = "string",
@@ -307,10 +322,12 @@ M.DeleteSolFunctionPackageInput = {
 
 M.DeleteSolFunctionPackageOutput = {
     type = "structure",
+    id = "DeleteSolFunctionPackageOutput",
 }
 
 M.DeleteSolNetworkInstanceInput = {
     type = "structure",
+    id = "DeleteSolNetworkInstanceInput",
     members = {
         nsInstanceId = {
             type = "string",
@@ -324,10 +341,12 @@ M.DeleteSolNetworkInstanceInput = {
 
 M.DeleteSolNetworkInstanceOutput = {
     type = "structure",
+    id = "DeleteSolNetworkInstanceOutput",
 }
 
 M.DeleteSolNetworkPackageInput = {
     type = "structure",
+    id = "DeleteSolNetworkPackageInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -341,6 +360,7 @@ M.DeleteSolNetworkPackageInput = {
 
 M.DeleteSolNetworkPackageOutput = {
     type = "structure",
+    id = "DeleteSolNetworkPackageOutput",
 }
 
 M.DescriptorContentType = {
@@ -349,6 +369,7 @@ M.DescriptorContentType = {
 
 M.ErrorInfo = {
     type = "structure",
+    id = "ErrorInfo",
     members = {
         cause = {
             type = "string",
@@ -361,6 +382,7 @@ M.ErrorInfo = {
 
 M.ToscaOverride = {
     type = "structure",
+    id = "ToscaOverride",
     members = {
         name = {
             type = "string",
@@ -373,6 +395,7 @@ M.ToscaOverride = {
 
 M.FunctionArtifactMeta = {
     type = "structure",
+    id = "FunctionArtifactMeta",
     members = {
         overrides = {
             type = "list",
@@ -383,6 +406,7 @@ M.FunctionArtifactMeta = {
 
 M.GetSolFunctionInstanceInput = {
     type = "structure",
+    id = "GetSolFunctionInstanceInput",
     members = {
         vnfInstanceId = {
             type = "string",
@@ -396,6 +420,7 @@ M.GetSolFunctionInstanceInput = {
 
 M.GetSolVnfcResourceInfoMetadata = {
     type = "structure",
+    id = "GetSolVnfcResourceInfoMetadata",
     members = {
         nodeGroup = {
             type = "string",
@@ -411,6 +436,7 @@ M.GetSolVnfcResourceInfoMetadata = {
 
 M.GetSolVnfcResourceInfo = {
     type = "structure",
+    id = "GetSolVnfcResourceInfo",
     members = {
         metadata = M.GetSolVnfcResourceInfoMetadata,
     },
@@ -423,6 +449,7 @@ M.VnfOperationalState = {
 
 M.GetSolVnfInfo = {
     type = "structure",
+    id = "GetSolVnfInfo",
     members = {
         vnfState = {
             type = "string",
@@ -441,6 +468,7 @@ M.VnfInstantiationState = {
 
 M.GetSolFunctionInstanceMetadata = {
     type = "structure",
+    id = "GetSolFunctionInstanceMetadata",
     members = {
         createdAt = {
             type = "timestamp",
@@ -461,6 +489,7 @@ M.GetSolFunctionInstanceMetadata = {
 
 M.GetSolFunctionInstanceOutput = {
     type = "structure",
+    id = "GetSolFunctionInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -521,6 +550,7 @@ M.GetSolFunctionInstanceOutput = {
 
 M.GetSolFunctionPackageInput = {
     type = "structure",
+    id = "GetSolFunctionPackageInput",
     members = {
         vnfPkgId = {
             type = "string",
@@ -534,6 +564,7 @@ M.GetSolFunctionPackageInput = {
 
 M.GetSolFunctionPackageMetadata = {
     type = "structure",
+    id = "GetSolFunctionPackageMetadata",
     members = {
         vnfd = M.FunctionArtifactMeta,
         createdAt = {
@@ -555,6 +586,7 @@ M.GetSolFunctionPackageMetadata = {
 
 M.GetSolFunctionPackageOutput = {
     type = "structure",
+    id = "GetSolFunctionPackageOutput",
     members = {
         id = {
             type = "string",
@@ -613,6 +645,7 @@ M.PackageContentType = {
 
 M.GetSolFunctionPackageContentInput = {
     type = "structure",
+    id = "GetSolFunctionPackageContentInput",
     members = {
         vnfPkgId = {
             type = "string",
@@ -633,6 +666,7 @@ M.GetSolFunctionPackageContentInput = {
 
 M.GetSolFunctionPackageContentOutput = {
     type = "structure",
+    id = "GetSolFunctionPackageContentOutput",
     members = {
         contentType = {
             type = "string",
@@ -651,6 +685,7 @@ M.GetSolFunctionPackageContentOutput = {
 
 M.GetSolFunctionPackageDescriptorInput = {
     type = "structure",
+    id = "GetSolFunctionPackageDescriptorInput",
     members = {
         vnfPkgId = {
             type = "string",
@@ -671,6 +706,7 @@ M.GetSolFunctionPackageDescriptorInput = {
 
 M.GetSolFunctionPackageDescriptorOutput = {
     type = "structure",
+    id = "GetSolFunctionPackageDescriptorOutput",
     members = {
         contentType = {
             type = "string",
@@ -689,6 +725,7 @@ M.GetSolFunctionPackageDescriptorOutput = {
 
 M.GetSolInstantiatedVnfInfo = {
     type = "structure",
+    id = "GetSolInstantiatedVnfInfo",
     members = {
         vnfState = {
             type = "string",
@@ -698,6 +735,7 @@ M.GetSolInstantiatedVnfInfo = {
 
 M.GetSolNetworkInstanceInput = {
     type = "structure",
+    id = "GetSolNetworkInstanceInput",
     members = {
         nsInstanceId = {
             type = "string",
@@ -711,6 +749,7 @@ M.GetSolNetworkInstanceInput = {
 
 M.LcmOperationInfo = {
     type = "structure",
+    id = "LcmOperationInfo",
     members = {
         nsLcmOpOccId = {
             type = "string",
@@ -723,6 +762,7 @@ M.LcmOperationInfo = {
 
 M.GetSolNetworkInstanceMetadata = {
     type = "structure",
+    id = "GetSolNetworkInstanceMetadata",
     members = {
         createdAt = {
             type = "timestamp",
@@ -757,6 +797,7 @@ M.NsState = {
 
 M.GetSolNetworkInstanceOutput = {
     type = "structure",
+    id = "GetSolNetworkInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -811,6 +852,7 @@ M.GetSolNetworkInstanceOutput = {
 
 M.GetSolNetworkOperationInput = {
     type = "structure",
+    id = "GetSolNetworkOperationInput",
     members = {
         nsLcmOpOccId = {
             type = "string",
@@ -824,6 +866,7 @@ M.GetSolNetworkOperationInput = {
 
 M.ProblemDetails = {
     type = "structure",
+    id = "ProblemDetails",
     members = {
         detail = {
             type = "string",
@@ -845,6 +888,7 @@ M.LcmOperationType = {
 
 M.InstantiateMetadata = {
     type = "structure",
+    id = "InstantiateMetadata",
     members = {
         nsdInfoId = {
             type = "string",
@@ -860,6 +904,7 @@ M.InstantiateMetadata = {
 
 M.ModifyVnfInfoMetadata = {
     type = "structure",
+    id = "ModifyVnfInfoMetadata",
     members = {
         vnfInstanceId = {
             type = "string",
@@ -878,6 +923,7 @@ M.ModifyVnfInfoMetadata = {
 
 M.UpdateNsMetadata = {
     type = "structure",
+    id = "UpdateNsMetadata",
     members = {
         nsdInfoId = {
             type = "string",
@@ -893,6 +939,7 @@ M.UpdateNsMetadata = {
 
 M.GetSolNetworkOperationMetadata = {
     type = "structure",
+    id = "GetSolNetworkOperationMetadata",
     members = {
         updateNsMetadata = M.UpdateNsMetadata,
         modifyVnfInfoMetadata = M.ModifyVnfInfoMetadata,
@@ -934,6 +981,7 @@ M.TaskStatus = {
 
 M.GetSolNetworkOperationTaskDetails = {
     type = "structure",
+    id = "GetSolNetworkOperationTaskDetails",
     members = {
         taskName = {
             type = "string",
@@ -969,6 +1017,7 @@ M.UpdateSolNetworkType = {
 
 M.GetSolNetworkOperationOutput = {
     type = "structure",
+    id = "GetSolNetworkOperationOutput",
     members = {
         id = {
             type = "string",
@@ -1007,6 +1056,7 @@ M.GetSolNetworkOperationOutput = {
 
 M.GetSolNetworkPackageInput = {
     type = "structure",
+    id = "GetSolNetworkPackageInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -1020,6 +1070,7 @@ M.GetSolNetworkPackageInput = {
 
 M.NetworkArtifactMeta = {
     type = "structure",
+    id = "NetworkArtifactMeta",
     members = {
         overrides = {
             type = "list",
@@ -1030,6 +1081,7 @@ M.NetworkArtifactMeta = {
 
 M.GetSolNetworkPackageMetadata = {
     type = "structure",
+    id = "GetSolNetworkPackageMetadata",
     members = {
         nsd = M.NetworkArtifactMeta,
         createdAt = {
@@ -1051,6 +1103,7 @@ M.GetSolNetworkPackageMetadata = {
 
 M.GetSolNetworkPackageOutput = {
     type = "structure",
+    id = "GetSolNetworkPackageOutput",
     members = {
         id = {
             type = "string",
@@ -1120,6 +1173,7 @@ M.GetSolNetworkPackageOutput = {
 
 M.GetSolNetworkPackageContentInput = {
     type = "structure",
+    id = "GetSolNetworkPackageContentInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -1140,6 +1194,7 @@ M.GetSolNetworkPackageContentInput = {
 
 M.GetSolNetworkPackageContentOutput = {
     type = "structure",
+    id = "GetSolNetworkPackageContentOutput",
     members = {
         contentType = {
             type = "string",
@@ -1158,6 +1213,7 @@ M.GetSolNetworkPackageContentOutput = {
 
 M.GetSolNetworkPackageDescriptorInput = {
     type = "structure",
+    id = "GetSolNetworkPackageDescriptorInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -1171,6 +1227,7 @@ M.GetSolNetworkPackageDescriptorInput = {
 
 M.GetSolNetworkPackageDescriptorOutput = {
     type = "structure",
+    id = "GetSolNetworkPackageDescriptorOutput",
     members = {
         contentType = {
             type = "string",
@@ -1189,6 +1246,7 @@ M.GetSolNetworkPackageDescriptorOutput = {
 
 M.InstantiateSolNetworkInstanceInput = {
     type = "structure",
+    id = "InstantiateSolNetworkInstanceInput",
     members = {
         nsInstanceId = {
             type = "string",
@@ -1216,6 +1274,7 @@ M.InstantiateSolNetworkInstanceInput = {
 
 M.InstantiateSolNetworkInstanceOutput = {
     type = "structure",
+    id = "InstantiateSolNetworkInstanceOutput",
     members = {
         nsLcmOpOccId = {
             type = "string",
@@ -1233,6 +1292,7 @@ M.InstantiateSolNetworkInstanceOutput = {
 
 M.ListSolFunctionInstanceMetadata = {
     type = "structure",
+    id = "ListSolFunctionInstanceMetadata",
     members = {
         createdAt = {
             type = "timestamp",
@@ -1253,6 +1313,7 @@ M.ListSolFunctionInstanceMetadata = {
 
 M.ListSolFunctionInstanceInfo = {
     type = "structure",
+    id = "ListSolFunctionInstanceInfo",
     members = {
         id = {
             type = "string",
@@ -1296,6 +1357,7 @@ M.ListSolFunctionInstanceInfo = {
 
 M.ListSolFunctionInstancesInput = {
     type = "structure",
+    id = "ListSolFunctionInstancesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1314,6 +1376,7 @@ M.ListSolFunctionInstancesInput = {
 
 M.ListSolFunctionInstancesOutput = {
     type = "structure",
+    id = "ListSolFunctionInstancesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1327,6 +1390,7 @@ M.ListSolFunctionInstancesOutput = {
 
 M.ListSolFunctionPackageMetadata = {
     type = "structure",
+    id = "ListSolFunctionPackageMetadata",
     members = {
         createdAt = {
             type = "timestamp",
@@ -1347,6 +1411,7 @@ M.ListSolFunctionPackageMetadata = {
 
 M.ListSolFunctionPackageInfo = {
     type = "structure",
+    id = "ListSolFunctionPackageInfo",
     members = {
         id = {
             type = "string",
@@ -1396,6 +1461,7 @@ M.ListSolFunctionPackageInfo = {
 
 M.ListSolFunctionPackagesInput = {
     type = "structure",
+    id = "ListSolFunctionPackagesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1414,6 +1480,7 @@ M.ListSolFunctionPackagesInput = {
 
 M.ListSolFunctionPackagesOutput = {
     type = "structure",
+    id = "ListSolFunctionPackagesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1430,6 +1497,7 @@ M.ListSolFunctionPackagesOutput = {
 
 M.ListSolNetworkInstanceMetadata = {
     type = "structure",
+    id = "ListSolNetworkInstanceMetadata",
     members = {
         createdAt = {
             type = "timestamp",
@@ -1450,6 +1518,7 @@ M.ListSolNetworkInstanceMetadata = {
 
 M.ListSolNetworkInstanceInfo = {
     type = "structure",
+    id = "ListSolNetworkInstanceInfo",
     members = {
         id = {
             type = "string",
@@ -1501,6 +1570,7 @@ M.ListSolNetworkInstanceInfo = {
 
 M.ListSolNetworkInstancesInput = {
     type = "structure",
+    id = "ListSolNetworkInstancesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1519,6 +1589,7 @@ M.ListSolNetworkInstancesInput = {
 
 M.ListSolNetworkInstancesOutput = {
     type = "structure",
+    id = "ListSolNetworkInstancesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1532,6 +1603,7 @@ M.ListSolNetworkInstancesOutput = {
 
 M.ListSolNetworkOperationsInput = {
     type = "structure",
+    id = "ListSolNetworkOperationsInput",
     members = {
         nsInstanceId = {
             type = "string",
@@ -1556,6 +1628,7 @@ M.ListSolNetworkOperationsInput = {
 
 M.ListSolNetworkOperationsMetadata = {
     type = "structure",
+    id = "ListSolNetworkOperationsMetadata",
     members = {
         nsdInfoId = {
             type = "string",
@@ -1582,6 +1655,7 @@ M.ListSolNetworkOperationsMetadata = {
 
 M.ListSolNetworkOperationsInfo = {
     type = "structure",
+    id = "ListSolNetworkOperationsInfo",
     members = {
         id = {
             type = "string",
@@ -1623,6 +1697,7 @@ M.ListSolNetworkOperationsInfo = {
 
 M.ListSolNetworkOperationsOutput = {
     type = "structure",
+    id = "ListSolNetworkOperationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1636,6 +1711,7 @@ M.ListSolNetworkOperationsOutput = {
 
 M.ListSolNetworkPackageMetadata = {
     type = "structure",
+    id = "ListSolNetworkPackageMetadata",
     members = {
         createdAt = {
             type = "timestamp",
@@ -1656,6 +1732,7 @@ M.ListSolNetworkPackageMetadata = {
 
 M.ListSolNetworkPackageInfo = {
     type = "structure",
+    id = "ListSolNetworkPackageInfo",
     members = {
         id = {
             type = "string",
@@ -1714,6 +1791,7 @@ M.ListSolNetworkPackageInfo = {
 
 M.ListSolNetworkPackagesInput = {
     type = "structure",
+    id = "ListSolNetworkPackagesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1732,6 +1810,7 @@ M.ListSolNetworkPackagesInput = {
 
 M.ListSolNetworkPackagesOutput = {
     type = "structure",
+    id = "ListSolNetworkPackagesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1748,6 +1827,7 @@ M.ListSolNetworkPackagesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1761,6 +1841,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1775,6 +1856,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutSolFunctionPackageContentInput = {
     type = "structure",
+    id = "PutSolFunctionPackageContentInput",
     members = {
         vnfPkgId = {
             type = "string",
@@ -1801,6 +1883,7 @@ M.PutSolFunctionPackageContentInput = {
 
 M.PutSolFunctionPackageContentMetadata = {
     type = "structure",
+    id = "PutSolFunctionPackageContentMetadata",
     members = {
         vnfd = M.FunctionArtifactMeta,
     },
@@ -1808,6 +1891,7 @@ M.PutSolFunctionPackageContentMetadata = {
 
 M.PutSolFunctionPackageContentOutput = {
     type = "structure",
+    id = "PutSolFunctionPackageContentOutput",
     members = {
         id = {
             type = "string",
@@ -1847,6 +1931,7 @@ M.PutSolFunctionPackageContentOutput = {
 
 M.PutSolNetworkPackageContentInput = {
     type = "structure",
+    id = "PutSolNetworkPackageContentInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -1873,6 +1958,7 @@ M.PutSolNetworkPackageContentInput = {
 
 M.PutSolNetworkPackageContentMetadata = {
     type = "structure",
+    id = "PutSolNetworkPackageContentMetadata",
     members = {
         nsd = M.NetworkArtifactMeta,
     },
@@ -1880,6 +1966,7 @@ M.PutSolNetworkPackageContentMetadata = {
 
 M.PutSolNetworkPackageContentOutput = {
     type = "structure",
+    id = "PutSolNetworkPackageContentOutput",
     members = {
         id = {
             type = "string",
@@ -1926,6 +2013,7 @@ M.PutSolNetworkPackageContentOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1947,10 +2035,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TerminateSolNetworkInstanceInput = {
     type = "structure",
+    id = "TerminateSolNetworkInstanceInput",
     members = {
         nsInstanceId = {
             type = "string",
@@ -1969,6 +2059,7 @@ M.TerminateSolNetworkInstanceInput = {
 
 M.TerminateSolNetworkInstanceOutput = {
     type = "structure",
+    id = "TerminateSolNetworkInstanceOutput",
     members = {
         nsLcmOpOccId = {
             type = "string",
@@ -1983,6 +2074,7 @@ M.TerminateSolNetworkInstanceOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2004,10 +2096,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateSolFunctionPackageInput = {
     type = "structure",
+    id = "UpdateSolFunctionPackageInput",
     members = {
         vnfPkgId = {
             type = "string",
@@ -2027,6 +2121,7 @@ M.UpdateSolFunctionPackageInput = {
 
 M.UpdateSolFunctionPackageOutput = {
     type = "structure",
+    id = "UpdateSolFunctionPackageOutput",
     members = {
         operationalState = {
             type = "string",
@@ -2039,6 +2134,7 @@ M.UpdateSolFunctionPackageOutput = {
 
 M.UpdateSolNetworkModify = {
     type = "structure",
+    id = "UpdateSolNetworkModify",
     members = {
         vnfInstanceId = {
             type = "string",
@@ -2057,6 +2153,7 @@ M.UpdateSolNetworkModify = {
 
 M.UpdateSolNetworkServiceData = {
     type = "structure",
+    id = "UpdateSolNetworkServiceData",
     members = {
         nsdInfoId = {
             type = "string",
@@ -2072,6 +2169,7 @@ M.UpdateSolNetworkServiceData = {
 
 M.UpdateSolNetworkInstanceInput = {
     type = "structure",
+    id = "UpdateSolNetworkInstanceInput",
     members = {
         nsInstanceId = {
             type = "string",
@@ -2098,6 +2196,7 @@ M.UpdateSolNetworkInstanceInput = {
 
 M.UpdateSolNetworkInstanceOutput = {
     type = "structure",
+    id = "UpdateSolNetworkInstanceOutput",
     members = {
         nsLcmOpOccId = {
             type = "string",
@@ -2112,6 +2211,7 @@ M.UpdateSolNetworkInstanceOutput = {
 
 M.UpdateSolNetworkPackageInput = {
     type = "structure",
+    id = "UpdateSolNetworkPackageInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -2131,6 +2231,7 @@ M.UpdateSolNetworkPackageInput = {
 
 M.UpdateSolNetworkPackageOutput = {
     type = "structure",
+    id = "UpdateSolNetworkPackageOutput",
     members = {
         nsdOperationalState = {
             type = "string",
@@ -2143,6 +2244,7 @@ M.UpdateSolNetworkPackageOutput = {
 
 M.ValidateSolFunctionPackageContentInput = {
     type = "structure",
+    id = "ValidateSolFunctionPackageContentInput",
     members = {
         vnfPkgId = {
             type = "string",
@@ -2169,6 +2271,7 @@ M.ValidateSolFunctionPackageContentInput = {
 
 M.ValidateSolFunctionPackageContentMetadata = {
     type = "structure",
+    id = "ValidateSolFunctionPackageContentMetadata",
     members = {
         vnfd = M.FunctionArtifactMeta,
     },
@@ -2176,6 +2279,7 @@ M.ValidateSolFunctionPackageContentMetadata = {
 
 M.ValidateSolFunctionPackageContentOutput = {
     type = "structure",
+    id = "ValidateSolFunctionPackageContentOutput",
     members = {
         id = {
             type = "string",
@@ -2215,6 +2319,7 @@ M.ValidateSolFunctionPackageContentOutput = {
 
 M.ValidateSolNetworkPackageContentInput = {
     type = "structure",
+    id = "ValidateSolNetworkPackageContentInput",
     members = {
         nsdInfoId = {
             type = "string",
@@ -2241,6 +2346,7 @@ M.ValidateSolNetworkPackageContentInput = {
 
 M.ValidateSolNetworkPackageContentMetadata = {
     type = "structure",
+    id = "ValidateSolNetworkPackageContentMetadata",
     members = {
         nsd = M.NetworkArtifactMeta,
     },
@@ -2248,6 +2354,7 @@ M.ValidateSolNetworkPackageContentMetadata = {
 
 M.ValidateSolNetworkPackageContentOutput = {
     type = "structure",
+    id = "ValidateSolNetworkPackageContentOutput",
     members = {
         id = {
             type = "string",

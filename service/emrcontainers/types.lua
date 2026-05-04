@@ -11,6 +11,7 @@ M.CertificateProviderType = {
 
 M.TLSCertificateConfiguration = {
     type = "structure",
+    id = "TLSCertificateConfiguration",
     members = {
         certificateProviderType = {
             type = "string",
@@ -26,6 +27,7 @@ M.TLSCertificateConfiguration = {
 
 M.InTransitEncryptionConfiguration = {
     type = "structure",
+    id = "InTransitEncryptionConfiguration",
     members = {
         tlsCertificateConfiguration = M.TLSCertificateConfiguration,
     },
@@ -33,6 +35,7 @@ M.InTransitEncryptionConfiguration = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         inTransitEncryptionConfiguration = M.InTransitEncryptionConfiguration,
     },
@@ -40,6 +43,7 @@ M.EncryptionConfiguration = {
 
 M.SecureNamespaceInfo = {
     type = "structure",
+    id = "SecureNamespaceInfo",
     members = {
         clusterId = {
             type = "string",
@@ -52,6 +56,7 @@ M.SecureNamespaceInfo = {
 
 M.LakeFormationConfiguration = {
     type = "structure",
+    id = "LakeFormationConfiguration",
     members = {
         authorizedSessionTagValue = {
             type = "string",
@@ -65,6 +70,7 @@ M.LakeFormationConfiguration = {
 
 M.AuthorizationConfiguration = {
     type = "structure",
+    id = "AuthorizationConfiguration",
     members = {
         lakeFormationConfiguration = M.LakeFormationConfiguration,
         encryptionConfiguration = M.EncryptionConfiguration,
@@ -73,6 +79,7 @@ M.AuthorizationConfiguration = {
 
 M.CancelJobRunInput = {
     type = "structure",
+    id = "CancelJobRunInput",
     members = {
         id = {
             type = "string",
@@ -93,6 +100,7 @@ M.CancelJobRunInput = {
 
 M.CancelJobRunOutput = {
     type = "structure",
+    id = "CancelJobRunOutput",
     members = {
         id = {
             type = "string",
@@ -105,6 +113,7 @@ M.CancelJobRunOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -115,6 +124,7 @@ M.InternalServerException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -125,6 +135,7 @@ M.ValidationException = {
 
 M.ParametricCloudWatchMonitoringConfiguration = {
     type = "structure",
+    id = "ParametricCloudWatchMonitoringConfiguration",
     members = {
         logGroupName = {
             type = "string",
@@ -137,6 +148,7 @@ M.ParametricCloudWatchMonitoringConfiguration = {
 
 M.ParametricS3MonitoringConfiguration = {
     type = "structure",
+    id = "ParametricS3MonitoringConfiguration",
     members = {
         logUri = {
             type = "string",
@@ -146,6 +158,7 @@ M.ParametricS3MonitoringConfiguration = {
 
 M.ParametricMonitoringConfiguration = {
     type = "structure",
+    id = "ParametricMonitoringConfiguration",
     members = {
         persistentAppUI = {
             type = "string",
@@ -157,6 +170,7 @@ M.ParametricMonitoringConfiguration = {
 
 M.SparkSqlJobDriver = {
     type = "structure",
+    id = "SparkSqlJobDriver",
     members = {
         entryPoint = {
             type = "string",
@@ -169,6 +183,7 @@ M.SparkSqlJobDriver = {
 
 M.SparkSubmitJobDriver = {
     type = "structure",
+    id = "SparkSubmitJobDriver",
     members = {
         entryPoint = {
             type = "string",
@@ -188,6 +203,7 @@ M.SparkSubmitJobDriver = {
 
 M.JobDriver = {
     type = "structure",
+    id = "JobDriver",
     members = {
         sparkSubmitJobDriver = M.SparkSubmitJobDriver,
         sparkSqlJobDriver = M.SparkSqlJobDriver,
@@ -201,6 +217,7 @@ M.TemplateParameterDataType = {
 
 M.TemplateParameterConfiguration = {
     type = "structure",
+    id = "TemplateParameterConfiguration",
     members = {
         type = {
             type = "string",
@@ -213,6 +230,7 @@ M.TemplateParameterConfiguration = {
 
 M.CreateJobTemplateOutput = {
     type = "structure",
+    id = "CreateJobTemplateOutput",
     members = {
         id = {
             type = "string",
@@ -234,6 +252,7 @@ M.CreateJobTemplateOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -244,6 +263,7 @@ M.ResourceNotFoundException = {
 
 M.CloudWatchMonitoringConfiguration = {
     type = "structure",
+    id = "CloudWatchMonitoringConfiguration",
     members = {
         logGroupName = {
             type = "string",
@@ -259,6 +279,7 @@ M.CloudWatchMonitoringConfiguration = {
 
 M.ContainerLogRotationConfiguration = {
     type = "structure",
+    id = "ContainerLogRotationConfiguration",
     members = {
         rotationSize = {
             type = "string",
@@ -277,6 +298,7 @@ M.ContainerLogRotationConfiguration = {
 
 M.ManagedLogs = {
     type = "structure",
+    id = "ManagedLogs",
     members = {
         allowAWSToRetainLogs = {
             type = "string",
@@ -294,6 +316,7 @@ M.PersistentAppUI = {
 
 M.S3MonitoringConfiguration = {
     type = "structure",
+    id = "S3MonitoringConfiguration",
     members = {
         logUri = {
             type = "string",
@@ -306,6 +329,7 @@ M.S3MonitoringConfiguration = {
 
 M.MonitoringConfiguration = {
     type = "structure",
+    id = "MonitoringConfiguration",
     members = {
         managedLogs = M.ManagedLogs,
         persistentAppUI = {
@@ -319,6 +343,7 @@ M.MonitoringConfiguration = {
 
 M.CreateManagedEndpointOutput = {
     type = "structure",
+    id = "CreateManagedEndpointOutput",
     members = {
         id = {
             type = "string",
@@ -337,6 +362,7 @@ M.CreateManagedEndpointOutput = {
 
 M.EksInfo = {
     type = "structure",
+    id = "EksInfo",
     members = {
         namespace = {
             type = "string",
@@ -349,6 +375,7 @@ M.EksInfo = {
 
 M.ContainerInfo = {
     type = "union",
+    id = "ContainerInfo",
     members = {
         eksInfo = M.EksInfo,
     },
@@ -360,6 +387,7 @@ M.ContainerProviderType = {
 
 M.ContainerProvider = {
     type = "structure",
+    id = "ContainerProvider",
     members = {
         type = {
             type = "string",
@@ -379,6 +407,7 @@ M.ContainerProvider = {
 
 M.SecurityConfigurationData = {
     type = "structure",
+    id = "SecurityConfigurationData",
     members = {
         authorizationConfiguration = M.AuthorizationConfiguration,
     },
@@ -386,6 +415,7 @@ M.SecurityConfigurationData = {
 
 M.CreateSecurityConfigurationInput = {
     type = "structure",
+    id = "CreateSecurityConfigurationInput",
     members = {
         clientToken = {
             type = "string",
@@ -414,6 +444,7 @@ M.CreateSecurityConfigurationInput = {
 
 M.CreateSecurityConfigurationOutput = {
     type = "structure",
+    id = "CreateSecurityConfigurationOutput",
     members = {
         id = {
             type = "string",
@@ -429,6 +460,7 @@ M.CreateSecurityConfigurationOutput = {
 
 M.CreateVirtualClusterInput = {
     type = "structure",
+    id = "CreateVirtualClusterInput",
     members = {
         name = {
             type = "string",
@@ -459,6 +491,7 @@ M.CreateVirtualClusterInput = {
 
 M.CreateVirtualClusterOutput = {
     type = "structure",
+    id = "CreateVirtualClusterOutput",
     members = {
         id = {
             type = "string",
@@ -474,6 +507,7 @@ M.CreateVirtualClusterOutput = {
 
 M.EKSRequestThrottledException = {
     type = "structure",
+    id = "EKSRequestThrottledException",
     error = "client",
     members = {
         message = {
@@ -484,6 +518,7 @@ M.EKSRequestThrottledException = {
 
 M.DeleteJobTemplateInput = {
     type = "structure",
+    id = "DeleteJobTemplateInput",
     members = {
         id = {
             type = "string",
@@ -497,6 +532,7 @@ M.DeleteJobTemplateInput = {
 
 M.DeleteJobTemplateOutput = {
     type = "structure",
+    id = "DeleteJobTemplateOutput",
     members = {
         id = {
             type = "string",
@@ -506,6 +542,7 @@ M.DeleteJobTemplateOutput = {
 
 M.DeleteManagedEndpointInput = {
     type = "structure",
+    id = "DeleteManagedEndpointInput",
     members = {
         id = {
             type = "string",
@@ -526,6 +563,7 @@ M.DeleteManagedEndpointInput = {
 
 M.DeleteManagedEndpointOutput = {
     type = "structure",
+    id = "DeleteManagedEndpointOutput",
     members = {
         id = {
             type = "string",
@@ -538,6 +576,7 @@ M.DeleteManagedEndpointOutput = {
 
 M.DeleteVirtualClusterInput = {
     type = "structure",
+    id = "DeleteVirtualClusterInput",
     members = {
         id = {
             type = "string",
@@ -551,6 +590,7 @@ M.DeleteVirtualClusterInput = {
 
 M.DeleteVirtualClusterOutput = {
     type = "structure",
+    id = "DeleteVirtualClusterOutput",
     members = {
         id = {
             type = "string",
@@ -560,6 +600,7 @@ M.DeleteVirtualClusterOutput = {
 
 M.DescribeJobRunInput = {
     type = "structure",
+    id = "DescribeJobRunInput",
     members = {
         id = {
             type = "string",
@@ -587,6 +628,7 @@ M.FailureReason = {
 
 M.RetryPolicyConfiguration = {
     type = "structure",
+    id = "RetryPolicyConfiguration",
     members = {
         maxAttempts = {
             type = "integer",
@@ -599,6 +641,7 @@ M.RetryPolicyConfiguration = {
 
 M.RetryPolicyExecution = {
     type = "structure",
+    id = "RetryPolicyExecution",
     members = {
         currentAttemptCount = {
             type = "integer",
@@ -621,6 +664,7 @@ M.JobRunState = {
 
 M.DescribeJobTemplateInput = {
     type = "structure",
+    id = "DescribeJobTemplateInput",
     members = {
         id = {
             type = "string",
@@ -634,6 +678,7 @@ M.DescribeJobTemplateInput = {
 
 M.DescribeManagedEndpointInput = {
     type = "structure",
+    id = "DescribeManagedEndpointInput",
     members = {
         id = {
             type = "string",
@@ -654,6 +699,7 @@ M.DescribeManagedEndpointInput = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         certificateArn = {
             type = "string",
@@ -674,6 +720,7 @@ M.EndpointState = {
 
 M.DescribeSecurityConfigurationInput = {
     type = "structure",
+    id = "DescribeSecurityConfigurationInput",
     members = {
         id = {
             type = "string",
@@ -687,6 +734,7 @@ M.DescribeSecurityConfigurationInput = {
 
 M.SecurityConfiguration = {
     type = "structure",
+    id = "SecurityConfiguration",
     members = {
         id = {
             type = "string",
@@ -717,6 +765,7 @@ M.SecurityConfiguration = {
 
 M.DescribeSecurityConfigurationOutput = {
     type = "structure",
+    id = "DescribeSecurityConfigurationOutput",
     members = {
         securityConfiguration = M.SecurityConfiguration,
     },
@@ -724,6 +773,7 @@ M.DescribeSecurityConfigurationOutput = {
 
 M.DescribeVirtualClusterInput = {
     type = "structure",
+    id = "DescribeVirtualClusterInput",
     members = {
         id = {
             type = "string",
@@ -744,6 +794,7 @@ M.VirtualClusterState = {
 
 M.VirtualCluster = {
     type = "structure",
+    id = "VirtualCluster",
     members = {
         id = {
             type = "string",
@@ -777,6 +828,7 @@ M.VirtualCluster = {
 
 M.DescribeVirtualClusterOutput = {
     type = "structure",
+    id = "DescribeVirtualClusterOutput",
     members = {
         virtualCluster = M.VirtualCluster,
     },
@@ -784,6 +836,7 @@ M.DescribeVirtualClusterOutput = {
 
 M.GetManagedEndpointSessionCredentialsInput = {
     type = "structure",
+    id = "GetManagedEndpointSessionCredentialsInput",
     members = {
         endpointIdentifier = {
             type = "string",
@@ -828,6 +881,7 @@ M.GetManagedEndpointSessionCredentialsInput = {
 
 M.Credentials = {
     type = "union",
+    id = "Credentials",
     members = {
         token = {
             type = "string",
@@ -837,6 +891,7 @@ M.Credentials = {
 
 M.GetManagedEndpointSessionCredentialsOutput = {
     type = "structure",
+    id = "GetManagedEndpointSessionCredentialsOutput",
     members = {
         id = {
             type = "string",
@@ -853,6 +908,7 @@ M.GetManagedEndpointSessionCredentialsOutput = {
 
 M.RequestThrottledException = {
     type = "structure",
+    id = "RequestThrottledException",
     error = "client",
     members = {
         message = {
@@ -863,6 +919,7 @@ M.RequestThrottledException = {
 
 M.ListJobRunsInput = {
     type = "structure",
+    id = "ListJobRunsInput",
     members = {
         virtualClusterId = {
             type = "string",
@@ -915,6 +972,7 @@ M.ListJobRunsInput = {
 
 M.ListJobTemplatesInput = {
     type = "structure",
+    id = "ListJobTemplatesInput",
     members = {
         createdAfter = {
             type = "timestamp",
@@ -947,6 +1005,7 @@ M.ListJobTemplatesInput = {
 
 M.ListManagedEndpointsInput = {
     type = "structure",
+    id = "ListManagedEndpointsInput",
     members = {
         virtualClusterId = {
             type = "string",
@@ -1000,6 +1059,7 @@ M.ListManagedEndpointsInput = {
 
 M.ListSecurityConfigurationsInput = {
     type = "structure",
+    id = "ListSecurityConfigurationsInput",
     members = {
         createdAfter = {
             type = "timestamp",
@@ -1032,6 +1092,7 @@ M.ListSecurityConfigurationsInput = {
 
 M.ListSecurityConfigurationsOutput = {
     type = "structure",
+    id = "ListSecurityConfigurationsOutput",
     members = {
         securityConfigurations = {
             type = "list",
@@ -1045,6 +1106,7 @@ M.ListSecurityConfigurationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1058,6 +1120,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1069,6 +1132,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVirtualClustersInput = {
     type = "structure",
+    id = "ListVirtualClustersInput",
     members = {
         containerProviderId = {
             type = "string",
@@ -1126,6 +1190,7 @@ M.ListVirtualClustersInput = {
 
 M.ListVirtualClustersOutput = {
     type = "structure",
+    id = "ListVirtualClustersOutput",
     members = {
         virtualClusters = {
             type = "list",
@@ -1139,6 +1204,7 @@ M.ListVirtualClustersOutput = {
 
 M.StartJobRunOutput = {
     type = "structure",
+    id = "StartJobRunOutput",
     members = {
         id = {
             type = "string",
@@ -1157,6 +1223,7 @@ M.StartJobRunOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1178,10 +1245,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1203,10 +1272,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.Configuration = {
     type = "structure",
+    id = "Configuration",
     members = {
         classification = {
             type = "string",
@@ -1228,6 +1299,7 @@ M.Configuration = {
 
 M.ConfigurationOverrides = {
     type = "structure",
+    id = "ConfigurationOverrides",
     members = {
         applicationConfiguration = {
             type = "list",
@@ -1239,6 +1311,7 @@ M.ConfigurationOverrides = {
 
 M.ParametricConfigurationOverrides = {
     type = "structure",
+    id = "ParametricConfigurationOverrides",
     members = {
         applicationConfiguration = {
             type = "list",
@@ -1250,6 +1323,7 @@ M.ParametricConfigurationOverrides = {
 
 M.CreateManagedEndpointInput = {
     type = "structure",
+    id = "CreateManagedEndpointInput",
     members = {
         name = {
             type = "string",
@@ -1303,6 +1377,7 @@ M.CreateManagedEndpointInput = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         id = {
             type = "string",
@@ -1365,6 +1440,7 @@ M.Endpoint = {
 
 M.JobRun = {
     type = "structure",
+    id = "JobRun",
     members = {
         id = {
             type = "string",
@@ -1425,6 +1501,7 @@ M.JobRun = {
 
 M.JobTemplateData = {
     type = "structure",
+    id = "JobTemplateData",
     members = {
         executionRoleArn = {
             type = "string",
@@ -1457,6 +1534,7 @@ M.JobTemplateData = {
 
 M.StartJobRunInput = {
     type = "structure",
+    id = "StartJobRunInput",
     members = {
         name = {
             type = "string",
@@ -1502,6 +1580,7 @@ M.StartJobRunInput = {
 
 M.CreateJobTemplateInput = {
     type = "structure",
+    id = "CreateJobTemplateInput",
     members = {
         name = {
             type = "string",
@@ -1532,6 +1611,7 @@ M.CreateJobTemplateInput = {
 
 M.DescribeJobRunOutput = {
     type = "structure",
+    id = "DescribeJobRunOutput",
     members = {
         jobRun = M.JobRun,
     },
@@ -1539,6 +1619,7 @@ M.DescribeJobRunOutput = {
 
 M.DescribeManagedEndpointOutput = {
     type = "structure",
+    id = "DescribeManagedEndpointOutput",
     members = {
         endpoint = M.Endpoint,
     },
@@ -1546,6 +1627,7 @@ M.DescribeManagedEndpointOutput = {
 
 M.JobTemplate = {
     type = "structure",
+    id = "JobTemplate",
     members = {
         name = {
             type = "string",
@@ -1584,6 +1666,7 @@ M.JobTemplate = {
 
 M.DescribeJobTemplateOutput = {
     type = "structure",
+    id = "DescribeJobTemplateOutput",
     members = {
         jobTemplate = M.JobTemplate,
     },
@@ -1591,6 +1674,7 @@ M.DescribeJobTemplateOutput = {
 
 M.ListJobRunsOutput = {
     type = "structure",
+    id = "ListJobRunsOutput",
     members = {
         jobRuns = {
             type = "list",
@@ -1604,6 +1688,7 @@ M.ListJobRunsOutput = {
 
 M.ListManagedEndpointsOutput = {
     type = "structure",
+    id = "ListManagedEndpointsOutput",
     members = {
         endpoints = {
             type = "list",
@@ -1617,6 +1702,7 @@ M.ListManagedEndpointsOutput = {
 
 M.ListJobTemplatesOutput = {
     type = "structure",
+    id = "ListJobTemplatesOutput",
     members = {
         templates = {
             type = "list",

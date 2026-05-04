@@ -2000,15 +2000,15 @@ local record WAFUnavailableEntityException
     Message: string
 end
 
-local type ResourceType = "APPLICATION_LOAD_BALANCER" | "API_GATEWAY" | "APPSYNC" | "COGNITO_USER_POOL" | "APP_RUNNER_SERVICE" | "VERIFIED_ACCESS_INSTANCE" | "AMPLIFY"
+local type Platform = "IOS" | "ANDROID"
+
+local type LogScope = "CUSTOMER" | "SECURITY_LAKE" | "CLOUDWATCH_TELEMETRY_RULE_MANAGED"
 
 local type Scope = "CLOUDFRONT" | "REGIONAL"
 
 local type LogType = "WAF_LOGS"
 
-local type LogScope = "CUSTOMER" | "SECURITY_LAKE" | "CLOUDWATCH_TELEMETRY_RULE_MANAGED"
-
-local type Platform = "IOS" | "ANDROID"
+local type ResourceType = "APPLICATION_LOAD_BALANCER" | "API_GATEWAY" | "APPSYNC" | "COGNITO_USER_POOL" | "APP_RUNNER_SERVICE" | "VERIFIED_ACCESS_INSTANCE" | "AMPLIFY"
 
 local type IPAddressVersion = "IPV4" | "IPV6"
 

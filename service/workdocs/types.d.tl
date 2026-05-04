@@ -1714,13 +1714,17 @@ local record UnauthorizedResourceAccessException
     Message: string
 end
 
-local type UserSortType = "USER_NAME" | "FULL_NAME" | "STORAGE_LIMIT" | "USER_STATUS" | "STORAGE_USED"
+local type ResourceStateType = "ACTIVE" | "RESTORING" | "RECYCLING" | "RECYCLED"
+
+local type SubscriptionType = "ALL"
+
+local type UserType = "USER" | "ADMIN" | "POWERUSER" | "MINIMALUSER" | "WORKSPACESUSER"
+
+local type FolderContentType = "ALL" | "DOCUMENT" | "FOLDER"
 
 local type ResourceSortType = "DATE" | "NAME"
 
-local type SubscriptionProtocolType = "HTTPS" | "SQS"
-
-local type LocaleType = "en" | "fr" | "ko" | "de" | "es" | "ja" | "ru" | "zh_CN" | "zh_TW" | "pt_BR" | "default"
+local type UserSortType = "USER_NAME" | "FULL_NAME" | "STORAGE_LIMIT" | "USER_STATUS" | "STORAGE_USED"
 
 local type UserFilterType = "ALL" | "ACTIVE_PENDING"
 
@@ -1728,21 +1732,17 @@ local type PrincipalType = "USER" | "GROUP" | "INVITE" | "ANONYMOUS" | "ORGANIZA
 
 local type ResourceCollectionType = "SHARED_WITH_ME"
 
-local type ResourceStateType = "ACTIVE" | "RESTORING" | "RECYCLING" | "RECYCLED"
-
-local type SubscriptionType = "ALL"
-
 local type OrderType = "ASCENDING" | "DESCENDING"
-
-local type FolderContentType = "ALL" | "DOCUMENT" | "FOLDER"
-
-local type DocumentVersionStatus = "ACTIVE"
 
 local type CommentVisibilityType = "PUBLIC" | "PRIVATE"
 
-local type UserType = "USER" | "ADMIN" | "POWERUSER" | "MINIMALUSER" | "WORKSPACESUSER"
+local type SubscriptionProtocolType = "HTTPS" | "SQS"
+
+local type LocaleType = "en" | "fr" | "ko" | "de" | "es" | "ja" | "ru" | "zh_CN" | "zh_TW" | "pt_BR" | "default"
 
 local type BooleanEnumType = "TRUE" | "FALSE"
+
+local type DocumentVersionStatus = "ACTIVE"
 
 local record M
     AbortDocumentVersionUploadInput: AbortDocumentVersionUploadInput

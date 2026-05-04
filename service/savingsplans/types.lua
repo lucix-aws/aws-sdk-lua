@@ -2,6 +2,7 @@ local M = {}
 
 M.CreateSavingsPlanInput = {
     type = "structure",
+    id = "CreateSavingsPlanInput",
     members = {
         savingsPlanOfferingId = {
             type = "string",
@@ -37,6 +38,7 @@ M.CreateSavingsPlanInput = {
 
 M.CreateSavingsPlanOutput = {
     type = "structure",
+    id = "CreateSavingsPlanOutput",
     members = {
         savingsPlanId = {
             type = "string",
@@ -46,6 +48,7 @@ M.CreateSavingsPlanOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -59,6 +62,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -72,6 +76,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -85,6 +90,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -98,6 +104,7 @@ M.ValidationException = {
 
 M.DeleteQueuedSavingsPlanInput = {
     type = "structure",
+    id = "DeleteQueuedSavingsPlanInput",
     members = {
         savingsPlanId = {
             type = "string",
@@ -110,6 +117,7 @@ M.DeleteQueuedSavingsPlanInput = {
 
 M.DeleteQueuedSavingsPlanOutput = {
     type = "structure",
+    id = "DeleteQueuedSavingsPlanOutput",
 }
 
 M.SavingsPlanRateFilterName = {
@@ -125,6 +133,7 @@ M.SavingsPlanRateFilterName = {
 
 M.SavingsPlanRateFilter = {
     type = "structure",
+    id = "SavingsPlanRateFilter",
     members = {
         name = {
             type = "string",
@@ -138,6 +147,7 @@ M.SavingsPlanRateFilter = {
 
 M.DescribeSavingsPlanRatesInput = {
     type = "structure",
+    id = "DescribeSavingsPlanRatesInput",
     members = {
         savingsPlanId = {
             type = "string",
@@ -191,6 +201,7 @@ M.SavingsPlanRatePropertyKey = {
 
 M.SavingsPlanRateProperty = {
     type = "structure",
+    id = "SavingsPlanRateProperty",
     members = {
         name = {
             type = "string",
@@ -241,6 +252,7 @@ M.SavingsPlanRateUnit = {
 
 M.SavingsPlanRate = {
     type = "structure",
+    id = "SavingsPlanRate",
     members = {
         rate = {
             type = "string",
@@ -272,6 +284,7 @@ M.SavingsPlanRate = {
 
 M.DescribeSavingsPlanRatesOutput = {
     type = "structure",
+    id = "DescribeSavingsPlanRatesOutput",
     members = {
         savingsPlanId = {
             type = "string",
@@ -301,6 +314,7 @@ M.SavingsPlansFilterName = {
 
 M.SavingsPlanFilter = {
     type = "structure",
+    id = "SavingsPlanFilter",
     members = {
         name = {
             type = "string",
@@ -325,6 +339,7 @@ M.SavingsPlanState = {
 
 M.DescribeSavingsPlansInput = {
     type = "structure",
+    id = "DescribeSavingsPlansInput",
     members = {
         savingsPlanArns = {
             type = "list",
@@ -366,6 +381,7 @@ M.SavingsPlanType = {
 
 M.SavingsPlan = {
     type = "structure",
+    id = "SavingsPlan",
     members = {
         offeringId = {
             type = "string",
@@ -435,6 +451,7 @@ M.SavingsPlan = {
 
 M.DescribeSavingsPlansOutput = {
     type = "structure",
+    id = "DescribeSavingsPlansOutput",
     members = {
         savingsPlans = {
             type = "list",
@@ -457,6 +474,7 @@ M.SavingsPlanRateFilterAttribute = {
 
 M.SavingsPlanOfferingRateFilterElement = {
     type = "structure",
+    id = "SavingsPlanOfferingRateFilterElement",
     members = {
         name = {
             type = "string",
@@ -470,6 +488,7 @@ M.SavingsPlanOfferingRateFilterElement = {
 
 M.DescribeSavingsPlansOfferingRatesInput = {
     type = "structure",
+    id = "DescribeSavingsPlansOfferingRatesInput",
     members = {
         savingsPlanOfferingIds = {
             type = "list",
@@ -517,6 +536,7 @@ M.DescribeSavingsPlansOfferingRatesInput = {
 
 M.SavingsPlanOfferingRateProperty = {
     type = "structure",
+    id = "SavingsPlanOfferingRateProperty",
     members = {
         name = {
             type = "string",
@@ -529,6 +549,7 @@ M.SavingsPlanOfferingRateProperty = {
 
 M.ParentSavingsPlanOffering = {
     type = "structure",
+    id = "ParentSavingsPlanOffering",
     members = {
         offeringId = {
             type = "string",
@@ -556,6 +577,7 @@ M.ParentSavingsPlanOffering = {
 
 M.SavingsPlanOfferingRate = {
     type = "structure",
+    id = "SavingsPlanOfferingRate",
     members = {
         savingsPlanOffering = M.ParentSavingsPlanOffering,
         rate = {
@@ -585,6 +607,7 @@ M.SavingsPlanOfferingRate = {
 
 M.DescribeSavingsPlansOfferingRatesOutput = {
     type = "structure",
+    id = "DescribeSavingsPlansOfferingRatesOutput",
     members = {
         searchResults = {
             type = "list",
@@ -603,6 +626,7 @@ M.SavingsPlanOfferingFilterAttribute = {
 
 M.SavingsPlanOfferingFilterElement = {
     type = "structure",
+    id = "SavingsPlanOfferingFilterElement",
     members = {
         name = {
             type = "string",
@@ -616,6 +640,7 @@ M.SavingsPlanOfferingFilterElement = {
 
 M.DescribeSavingsPlansOfferingsInput = {
     type = "structure",
+    id = "DescribeSavingsPlansOfferingsInput",
     members = {
         offeringIds = {
             type = "list",
@@ -679,6 +704,7 @@ M.SavingsPlanOfferingPropertyKey = {
 
 M.SavingsPlanOfferingProperty = {
     type = "structure",
+    id = "SavingsPlanOfferingProperty",
     members = {
         name = {
             type = "string",
@@ -691,6 +717,7 @@ M.SavingsPlanOfferingProperty = {
 
 M.SavingsPlanOffering = {
     type = "structure",
+    id = "SavingsPlanOffering",
     members = {
         offeringId = {
             type = "string",
@@ -735,6 +762,7 @@ M.SavingsPlanOffering = {
 
 M.DescribeSavingsPlansOfferingsOutput = {
     type = "structure",
+    id = "DescribeSavingsPlansOfferingsOutput",
     members = {
         searchResults = {
             type = "list",
@@ -748,6 +776,7 @@ M.DescribeSavingsPlansOfferingsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -760,6 +789,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -771,6 +801,7 @@ M.ListTagsForResourceOutput = {
 
 M.ReturnSavingsPlanInput = {
     type = "structure",
+    id = "ReturnSavingsPlanInput",
     members = {
         savingsPlanId = {
             type = "string",
@@ -789,6 +820,7 @@ M.ReturnSavingsPlanInput = {
 
 M.ReturnSavingsPlanOutput = {
     type = "structure",
+    id = "ReturnSavingsPlanOutput",
     members = {
         savingsPlanId = {
             type = "string",
@@ -798,6 +830,7 @@ M.ReturnSavingsPlanOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -818,10 +851,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -841,6 +876,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptGrantInput = {
     type = "structure",
+    id = "AcceptGrantInput",
     members = {
         GrantArn = {
             type = "string",
@@ -26,6 +27,7 @@ M.GrantStatus = {
 
 M.AcceptGrantOutput = {
     type = "structure",
+    id = "AcceptGrantOutput",
     members = {
         GrantArn = {
             type = "string",
@@ -41,6 +43,7 @@ M.AcceptGrantOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -51,6 +54,7 @@ M.AccessDeniedException = {
 
 M.AuthorizationException = {
     type = "structure",
+    id = "AuthorizationException",
     error = "client",
     members = {
         Message = {
@@ -61,6 +65,7 @@ M.AuthorizationException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         Message = {
@@ -71,6 +76,7 @@ M.InvalidParameterValueException = {
 
 M.RateLimitExceededException = {
     type = "structure",
+    id = "RateLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -81,6 +87,7 @@ M.RateLimitExceededException = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -91,6 +98,7 @@ M.ResourceLimitExceededException = {
 
 M.ServerInternalException = {
     type = "structure",
+    id = "ServerInternalException",
     error = "server",
     members = {
         Message = {
@@ -101,6 +109,7 @@ M.ServerInternalException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -126,6 +135,7 @@ M.AllowedOperation = {
 
 M.MatchingRuleStatement = {
     type = "structure",
+    id = "MatchingRuleStatement",
     members = {
         KeyToMatch = {
             type = "string",
@@ -151,6 +161,7 @@ M.MatchingRuleStatement = {
 
 M.ScriptRuleStatement = {
     type = "structure",
+    id = "ScriptRuleStatement",
     members = {
         KeyToMatch = {
             type = "string",
@@ -169,6 +180,7 @@ M.ScriptRuleStatement = {
 
 M.AndRuleStatement = {
     type = "structure",
+    id = "AndRuleStatement",
     members = {
         MatchingRuleStatements = {
             type = "list",
@@ -183,6 +195,7 @@ M.AndRuleStatement = {
 
 M.Asset = {
     type = "structure",
+    id = "Asset",
     members = {
         AssetArn = {
             type = "string",
@@ -195,6 +208,7 @@ M.Asset = {
 
 M.AutomatedDiscoveryInformation = {
     type = "structure",
+    id = "AutomatedDiscoveryInformation",
     members = {
         LastRunTime = {
             type = "timestamp",
@@ -204,6 +218,7 @@ M.AutomatedDiscoveryInformation = {
 
 M.CheckInLicenseInput = {
     type = "structure",
+    id = "CheckInLicenseInput",
     members = {
         LicenseConsumptionToken = {
             type = "string",
@@ -219,10 +234,12 @@ M.CheckInLicenseInput = {
 
 M.CheckInLicenseOutput = {
     type = "structure",
+    id = "CheckInLicenseOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -233,6 +250,7 @@ M.ConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -243,6 +261,7 @@ M.ResourceNotFoundException = {
 
 M.Metadata = {
     type = "structure",
+    id = "Metadata",
     members = {
         Name = {
             type = "string",
@@ -289,6 +308,7 @@ M.EntitlementDataUnit = {
 
 M.EntitlementData = {
     type = "structure",
+    id = "EntitlementData",
     members = {
         Name = {
             type = "string",
@@ -310,6 +330,7 @@ M.EntitlementData = {
 
 M.CheckoutBorrowLicenseInput = {
     type = "structure",
+    id = "CheckoutBorrowLicenseInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -348,6 +369,7 @@ M.CheckoutBorrowLicenseInput = {
 
 M.CheckoutBorrowLicenseOutput = {
     type = "structure",
+    id = "CheckoutBorrowLicenseOutput",
     members = {
         LicenseArn = {
             type = "string",
@@ -380,6 +402,7 @@ M.CheckoutBorrowLicenseOutput = {
 
 M.EntitlementNotAllowedException = {
     type = "structure",
+    id = "EntitlementNotAllowedException",
     error = "client",
     members = {
         Message = {
@@ -390,6 +413,7 @@ M.EntitlementNotAllowedException = {
 
 M.NoEntitlementsAllowedException = {
     type = "structure",
+    id = "NoEntitlementsAllowedException",
     error = "client",
     members = {
         Message = {
@@ -400,6 +424,7 @@ M.NoEntitlementsAllowedException = {
 
 M.RedirectException = {
     type = "structure",
+    id = "RedirectException",
     error = "client",
     members = {
         Location = {
@@ -416,6 +441,7 @@ M.RedirectException = {
 
 M.UnsupportedDigitalSignatureMethodException = {
     type = "structure",
+    id = "UnsupportedDigitalSignatureMethodException",
     error = "client",
     members = {
         Message = {
@@ -431,6 +457,7 @@ M.CheckoutType = {
 
 M.CheckoutLicenseInput = {
     type = "structure",
+    id = "CheckoutLicenseInput",
     members = {
         ProductSKU = {
             type = "string",
@@ -474,6 +501,7 @@ M.CheckoutLicenseInput = {
 
 M.CheckoutLicenseOutput = {
     type = "structure",
+    id = "CheckoutLicenseOutput",
     members = {
         CheckoutType = {
             type = "string",
@@ -505,6 +533,7 @@ M.CheckoutLicenseOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -517,6 +546,7 @@ M.Tag = {
 
 M.CreateGrantInput = {
     type = "structure",
+    id = "CreateGrantInput",
     members = {
         ClientToken = {
             type = "string",
@@ -565,6 +595,7 @@ M.CreateGrantInput = {
 
 M.CreateGrantOutput = {
     type = "structure",
+    id = "CreateGrantOutput",
     members = {
         GrantArn = {
             type = "string",
@@ -580,6 +611,7 @@ M.CreateGrantOutput = {
 
 M.Options = {
     type = "structure",
+    id = "Options",
     members = {
         ActivationOverrideBehavior = {
             type = "string",
@@ -589,6 +621,7 @@ M.Options = {
 
 M.CreateGrantVersionInput = {
     type = "structure",
+    id = "CreateGrantVersionInput",
     members = {
         ClientToken = {
             type = "string",
@@ -624,6 +657,7 @@ M.CreateGrantVersionInput = {
 
 M.CreateGrantVersionOutput = {
     type = "structure",
+    id = "CreateGrantVersionOutput",
     members = {
         GrantArn = {
             type = "string",
@@ -639,6 +673,7 @@ M.CreateGrantVersionOutput = {
 
 M.BorrowConfiguration = {
     type = "structure",
+    id = "BorrowConfiguration",
     members = {
         AllowEarlyCheckIn = {
             type = "boolean",
@@ -657,6 +692,7 @@ M.BorrowConfiguration = {
 
 M.ProvisionalConfiguration = {
     type = "structure",
+    id = "ProvisionalConfiguration",
     members = {
         MaxTimeToLiveInMinutes = {
             type = "integer",
@@ -675,6 +711,7 @@ M.RenewType = {
 
 M.ConsumptionConfiguration = {
     type = "structure",
+    id = "ConsumptionConfiguration",
     members = {
         RenewType = {
             type = "string",
@@ -716,6 +753,7 @@ M.EntitlementUnit = {
 
 M.Entitlement = {
     type = "structure",
+    id = "Entitlement",
     members = {
         Name = {
             type = "string",
@@ -746,6 +784,7 @@ M.Entitlement = {
 
 M.Issuer = {
     type = "structure",
+    id = "Issuer",
     members = {
         Name = {
             type = "string",
@@ -761,6 +800,7 @@ M.Issuer = {
 
 M.DatetimeRange = {
     type = "structure",
+    id = "DatetimeRange",
     members = {
         Begin = {
             type = "string",
@@ -776,6 +816,7 @@ M.DatetimeRange = {
 
 M.CreateLicenseInput = {
     type = "structure",
+    id = "CreateLicenseInput",
     members = {
         LicenseName = {
             type = "string",
@@ -852,6 +893,7 @@ M.LicenseStatus = {
 
 M.CreateLicenseOutput = {
     type = "structure",
+    id = "CreateLicenseOutput",
     members = {
         LicenseArn = {
             type = "string",
@@ -867,6 +909,7 @@ M.CreateLicenseOutput = {
 
 M.LicenseAssetGroupConfiguration = {
     type = "structure",
+    id = "LicenseAssetGroupConfiguration",
     members = {
         UsageDimension = {
             type = "string",
@@ -876,6 +919,7 @@ M.LicenseAssetGroupConfiguration = {
 
 M.LicenseAssetGroupProperty = {
     type = "structure",
+    id = "LicenseAssetGroupProperty",
     members = {
         Key = {
             type = "string",
@@ -894,6 +938,7 @@ M.LicenseAssetGroupProperty = {
 
 M.CreateLicenseAssetGroupInput = {
     type = "structure",
+    id = "CreateLicenseAssetGroupInput",
     members = {
         Name = {
             type = "string",
@@ -937,6 +982,7 @@ M.CreateLicenseAssetGroupInput = {
 
 M.CreateLicenseAssetGroupOutput = {
     type = "structure",
+    id = "CreateLicenseAssetGroupOutput",
     members = {
         LicenseAssetGroupArn = {
             type = "string",
@@ -955,6 +1001,7 @@ M.CreateLicenseAssetGroupOutput = {
 
 M.OrRuleStatement = {
     type = "structure",
+    id = "OrRuleStatement",
     members = {
         MatchingRuleStatements = {
             type = "list",
@@ -969,6 +1016,7 @@ M.OrRuleStatement = {
 
 M.InstanceRuleStatement = {
     type = "structure",
+    id = "InstanceRuleStatement",
     members = {
         AndRuleStatement = M.AndRuleStatement,
         OrRuleStatement = M.OrRuleStatement,
@@ -979,6 +1027,7 @@ M.InstanceRuleStatement = {
 
 M.LicenseConfigurationRuleStatement = {
     type = "structure",
+    id = "LicenseConfigurationRuleStatement",
     members = {
         AndRuleStatement = M.AndRuleStatement,
         OrRuleStatement = M.OrRuleStatement,
@@ -988,6 +1037,7 @@ M.LicenseConfigurationRuleStatement = {
 
 M.LicenseRuleStatement = {
     type = "structure",
+    id = "LicenseRuleStatement",
     members = {
         AndRuleStatement = M.AndRuleStatement,
         OrRuleStatement = M.OrRuleStatement,
@@ -997,6 +1047,7 @@ M.LicenseRuleStatement = {
 
 M.RuleStatement = {
     type = "structure",
+    id = "RuleStatement",
     members = {
         LicenseConfigurationRuleStatement = M.LicenseConfigurationRuleStatement,
         LicenseRuleStatement = M.LicenseRuleStatement,
@@ -1006,6 +1057,7 @@ M.RuleStatement = {
 
 M.LicenseAssetRule = {
     type = "structure",
+    id = "LicenseAssetRule",
     members = {
         RuleStatement = setmetatable({ traits = {
             required = true,
@@ -1015,6 +1067,7 @@ M.LicenseAssetRule = {
 
 M.CreateLicenseAssetRulesetInput = {
     type = "structure",
+    id = "CreateLicenseAssetRulesetInput",
     members = {
         Name = {
             type = "string",
@@ -1047,6 +1100,7 @@ M.CreateLicenseAssetRulesetInput = {
 
 M.CreateLicenseAssetRulesetOutput = {
     type = "structure",
+    id = "CreateLicenseAssetRulesetOutput",
     members = {
         LicenseAssetRulesetArn = {
             type = "string",
@@ -1066,6 +1120,7 @@ M.LicenseCountingType = {
 
 M.ProductInformationFilter = {
     type = "structure",
+    id = "ProductInformationFilter",
     members = {
         ProductInformationFilterName = {
             type = "string",
@@ -1088,6 +1143,7 @@ M.ProductInformationFilter = {
 
 M.ProductInformation = {
     type = "structure",
+    id = "ProductInformation",
     members = {
         ResourceType = {
             type = "string",
@@ -1107,6 +1163,7 @@ M.ProductInformation = {
 
 M.CreateLicenseConfigurationInput = {
     type = "structure",
+    id = "CreateLicenseConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -1152,6 +1209,7 @@ M.CreateLicenseConfigurationInput = {
 
 M.CreateLicenseConfigurationOutput = {
     type = "structure",
+    id = "CreateLicenseConfigurationOutput",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -1165,6 +1223,7 @@ M.ProductCodeType = {
 
 M.ProductCodeListItem = {
     type = "structure",
+    id = "ProductCodeListItem",
     members = {
         ProductCodeId = {
             type = "string",
@@ -1183,6 +1242,7 @@ M.ProductCodeListItem = {
 
 M.LicenseConversionContext = {
     type = "structure",
+    id = "LicenseConversionContext",
     members = {
         UsageOperation = {
             type = "string",
@@ -1196,6 +1256,7 @@ M.LicenseConversionContext = {
 
 M.CreateLicenseConversionTaskForResourceInput = {
     type = "structure",
+    id = "CreateLicenseConversionTaskForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1214,6 +1275,7 @@ M.CreateLicenseConversionTaskForResourceInput = {
 
 M.CreateLicenseConversionTaskForResourceOutput = {
     type = "structure",
+    id = "CreateLicenseConversionTaskForResourceOutput",
     members = {
         LicenseConversionTaskId = {
             type = "string",
@@ -1223,6 +1285,7 @@ M.CreateLicenseConversionTaskForResourceOutput = {
 
 M.ReportContext = {
     type = "structure",
+    id = "ReportContext",
     members = {
         licenseConfigurationArns = {
             type = "list",
@@ -1253,6 +1316,7 @@ M.ReportFrequencyType = {
 
 M.ReportFrequency = {
     type = "structure",
+    id = "ReportFrequency",
     members = {
         value = {
             type = "integer",
@@ -1271,6 +1335,7 @@ M.ReportType = {
 
 M.CreateLicenseManagerReportGeneratorInput = {
     type = "structure",
+    id = "CreateLicenseManagerReportGeneratorInput",
     members = {
         ReportGeneratorName = {
             type = "string",
@@ -1309,6 +1374,7 @@ M.CreateLicenseManagerReportGeneratorInput = {
 
 M.CreateLicenseManagerReportGeneratorOutput = {
     type = "structure",
+    id = "CreateLicenseManagerReportGeneratorOutput",
     members = {
         LicenseManagerReportGeneratorArn = {
             type = "string",
@@ -1318,6 +1384,7 @@ M.CreateLicenseManagerReportGeneratorOutput = {
 
 M.CreateLicenseVersionInput = {
     type = "structure",
+    id = "CreateLicenseVersionInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -1383,6 +1450,7 @@ M.CreateLicenseVersionInput = {
 
 M.CreateLicenseVersionOutput = {
     type = "structure",
+    id = "CreateLicenseVersionOutput",
     members = {
         LicenseArn = {
             type = "string",
@@ -1398,6 +1466,7 @@ M.CreateLicenseVersionOutput = {
 
 M.CreateTokenInput = {
     type = "structure",
+    id = "CreateTokenInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -1431,6 +1500,7 @@ M.TokenType = {
 
 M.CreateTokenOutput = {
     type = "structure",
+    id = "CreateTokenOutput",
     members = {
         TokenId = {
             type = "string",
@@ -1446,6 +1516,7 @@ M.CreateTokenOutput = {
 
 M.DeleteGrantInput = {
     type = "structure",
+    id = "DeleteGrantInput",
     members = {
         GrantArn = {
             type = "string",
@@ -1467,6 +1538,7 @@ M.DeleteGrantInput = {
 
 M.DeleteGrantOutput = {
     type = "structure",
+    id = "DeleteGrantOutput",
     members = {
         GrantArn = {
             type = "string",
@@ -1482,6 +1554,7 @@ M.DeleteGrantOutput = {
 
 M.DeleteLicenseInput = {
     type = "structure",
+    id = "DeleteLicenseInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -1505,6 +1578,7 @@ M.LicenseDeletionStatus = {
 
 M.DeleteLicenseOutput = {
     type = "structure",
+    id = "DeleteLicenseOutput",
     members = {
         Status = {
             type = "string",
@@ -1517,6 +1591,7 @@ M.DeleteLicenseOutput = {
 
 M.DeleteLicenseAssetGroupInput = {
     type = "structure",
+    id = "DeleteLicenseAssetGroupInput",
     members = {
         LicenseAssetGroupArn = {
             type = "string",
@@ -1535,6 +1610,7 @@ M.LicenseAssetGroupStatus = {
 
 M.DeleteLicenseAssetGroupOutput = {
     type = "structure",
+    id = "DeleteLicenseAssetGroupOutput",
     members = {
         Status = {
             type = "string",
@@ -1547,6 +1623,7 @@ M.DeleteLicenseAssetGroupOutput = {
 
 M.DeleteLicenseAssetRulesetInput = {
     type = "structure",
+    id = "DeleteLicenseAssetRulesetInput",
     members = {
         LicenseAssetRulesetArn = {
             type = "string",
@@ -1559,10 +1636,12 @@ M.DeleteLicenseAssetRulesetInput = {
 
 M.DeleteLicenseAssetRulesetOutput = {
     type = "structure",
+    id = "DeleteLicenseAssetRulesetOutput",
 }
 
 M.DeleteLicenseConfigurationInput = {
     type = "structure",
+    id = "DeleteLicenseConfigurationInput",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -1575,10 +1654,12 @@ M.DeleteLicenseConfigurationInput = {
 
 M.DeleteLicenseConfigurationOutput = {
     type = "structure",
+    id = "DeleteLicenseConfigurationOutput",
 }
 
 M.DeleteLicenseManagerReportGeneratorInput = {
     type = "structure",
+    id = "DeleteLicenseManagerReportGeneratorInput",
     members = {
         LicenseManagerReportGeneratorArn = {
             type = "string",
@@ -1591,10 +1672,12 @@ M.DeleteLicenseManagerReportGeneratorInput = {
 
 M.DeleteLicenseManagerReportGeneratorOutput = {
     type = "structure",
+    id = "DeleteLicenseManagerReportGeneratorOutput",
 }
 
 M.DeleteTokenInput = {
     type = "structure",
+    id = "DeleteTokenInput",
     members = {
         TokenId = {
             type = "string",
@@ -1607,10 +1690,12 @@ M.DeleteTokenInput = {
 
 M.DeleteTokenOutput = {
     type = "structure",
+    id = "DeleteTokenOutput",
 }
 
 M.ExtendLicenseConsumptionInput = {
     type = "structure",
+    id = "ExtendLicenseConsumptionInput",
     members = {
         LicenseConsumptionToken = {
             type = "string",
@@ -1629,6 +1714,7 @@ M.ExtendLicenseConsumptionInput = {
 
 M.ExtendLicenseConsumptionOutput = {
     type = "structure",
+    id = "ExtendLicenseConsumptionOutput",
     members = {
         LicenseConsumptionToken = {
             type = "string",
@@ -1641,6 +1727,7 @@ M.ExtendLicenseConsumptionOutput = {
 
 M.GetAccessTokenInput = {
     type = "structure",
+    id = "GetAccessTokenInput",
     members = {
         Token = {
             type = "string",
@@ -1657,6 +1744,7 @@ M.GetAccessTokenInput = {
 
 M.GetAccessTokenOutput = {
     type = "structure",
+    id = "GetAccessTokenOutput",
     members = {
         AccessToken = {
             type = "string",
@@ -1666,6 +1754,7 @@ M.GetAccessTokenOutput = {
 
 M.GetGrantInput = {
     type = "structure",
+    id = "GetGrantInput",
     members = {
         GrantArn = {
             type = "string",
@@ -1681,6 +1770,7 @@ M.GetGrantInput = {
 
 M.Grant = {
     type = "structure",
+    id = "Grant",
     members = {
         GrantArn = {
             type = "string",
@@ -1746,6 +1836,7 @@ M.Grant = {
 
 M.GetGrantOutput = {
     type = "structure",
+    id = "GetGrantOutput",
     members = {
         Grant = M.Grant,
     },
@@ -1753,6 +1844,7 @@ M.GetGrantOutput = {
 
 M.GetLicenseInput = {
     type = "structure",
+    id = "GetLicenseInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -1768,6 +1860,7 @@ M.GetLicenseInput = {
 
 M.IssuerDetails = {
     type = "structure",
+    id = "IssuerDetails",
     members = {
         Name = {
             type = "string",
@@ -1783,6 +1876,7 @@ M.IssuerDetails = {
 
 M.License = {
     type = "structure",
+    id = "License",
     members = {
         LicenseArn = {
             type = "string",
@@ -1827,6 +1921,7 @@ M.License = {
 
 M.GetLicenseOutput = {
     type = "structure",
+    id = "GetLicenseOutput",
     members = {
         License = M.License,
     },
@@ -1834,6 +1929,7 @@ M.GetLicenseOutput = {
 
 M.GetLicenseAssetGroupInput = {
     type = "structure",
+    id = "GetLicenseAssetGroupInput",
     members = {
         LicenseAssetGroupArn = {
             type = "string",
@@ -1846,6 +1942,7 @@ M.GetLicenseAssetGroupInput = {
 
 M.LicenseAssetGroup = {
     type = "structure",
+    id = "LicenseAssetGroup",
     members = {
         Name = {
             type = "string",
@@ -1897,6 +1994,7 @@ M.LicenseAssetGroup = {
 
 M.GetLicenseAssetGroupOutput = {
     type = "structure",
+    id = "GetLicenseAssetGroupOutput",
     members = {
         LicenseAssetGroup = setmetatable({ traits = {
             required = true,
@@ -1906,6 +2004,7 @@ M.GetLicenseAssetGroupOutput = {
 
 M.GetLicenseAssetRulesetInput = {
     type = "structure",
+    id = "GetLicenseAssetRulesetInput",
     members = {
         LicenseAssetRulesetArn = {
             type = "string",
@@ -1918,6 +2017,7 @@ M.GetLicenseAssetRulesetInput = {
 
 M.LicenseAssetRuleset = {
     type = "structure",
+    id = "LicenseAssetRuleset",
     members = {
         Name = {
             type = "string",
@@ -1946,6 +2046,7 @@ M.LicenseAssetRuleset = {
 
 M.GetLicenseAssetRulesetOutput = {
     type = "structure",
+    id = "GetLicenseAssetRulesetOutput",
     members = {
         LicenseAssetRuleset = setmetatable({ traits = {
             required = true,
@@ -1955,6 +2056,7 @@ M.GetLicenseAssetRulesetOutput = {
 
 M.GetLicenseConfigurationInput = {
     type = "structure",
+    id = "GetLicenseConfigurationInput",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -1975,6 +2077,7 @@ M.ResourceType = {
 
 M.ConsumedLicenseSummary = {
     type = "structure",
+    id = "ConsumedLicenseSummary",
     members = {
         ResourceType = {
             type = "string",
@@ -1987,6 +2090,7 @@ M.ConsumedLicenseSummary = {
 
 M.ManagedResourceSummary = {
     type = "structure",
+    id = "ManagedResourceSummary",
     members = {
         ResourceType = {
             type = "string",
@@ -1999,6 +2103,7 @@ M.ManagedResourceSummary = {
 
 M.GetLicenseConfigurationOutput = {
     type = "structure",
+    id = "GetLicenseConfigurationOutput",
     members = {
         LicenseConfigurationId = {
             type = "string",
@@ -2062,6 +2167,7 @@ M.GetLicenseConfigurationOutput = {
 
 M.GetLicenseConversionTaskInput = {
     type = "structure",
+    id = "GetLicenseConversionTaskInput",
     members = {
         LicenseConversionTaskId = {
             type = "string",
@@ -2080,6 +2186,7 @@ M.LicenseConversionTaskStatus = {
 
 M.GetLicenseConversionTaskOutput = {
     type = "structure",
+    id = "GetLicenseConversionTaskOutput",
     members = {
         LicenseConversionTaskId = {
             type = "string",
@@ -2109,6 +2216,7 @@ M.GetLicenseConversionTaskOutput = {
 
 M.GetLicenseManagerReportGeneratorInput = {
     type = "structure",
+    id = "GetLicenseManagerReportGeneratorInput",
     members = {
         LicenseManagerReportGeneratorArn = {
             type = "string",
@@ -2121,6 +2229,7 @@ M.GetLicenseManagerReportGeneratorInput = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucket = {
             type = "string",
@@ -2133,6 +2242,7 @@ M.S3Location = {
 
 M.ReportGenerator = {
     type = "structure",
+    id = "ReportGenerator",
     members = {
         ReportGeneratorName = {
             type = "string",
@@ -2174,6 +2284,7 @@ M.ReportGenerator = {
 
 M.GetLicenseManagerReportGeneratorOutput = {
     type = "structure",
+    id = "GetLicenseManagerReportGeneratorOutput",
     members = {
         ReportGenerator = M.ReportGenerator,
     },
@@ -2181,6 +2292,7 @@ M.GetLicenseManagerReportGeneratorOutput = {
 
 M.GetLicenseUsageInput = {
     type = "structure",
+    id = "GetLicenseUsageInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -2193,6 +2305,7 @@ M.GetLicenseUsageInput = {
 
 M.EntitlementUsage = {
     type = "structure",
+    id = "EntitlementUsage",
     members = {
         Name = {
             type = "string",
@@ -2220,6 +2333,7 @@ M.EntitlementUsage = {
 
 M.LicenseUsage = {
     type = "structure",
+    id = "LicenseUsage",
     members = {
         EntitlementUsages = {
             type = "list",
@@ -2230,6 +2344,7 @@ M.LicenseUsage = {
 
 M.GetLicenseUsageOutput = {
     type = "structure",
+    id = "GetLicenseUsageOutput",
     members = {
         LicenseUsage = M.LicenseUsage,
     },
@@ -2237,10 +2352,12 @@ M.GetLicenseUsageOutput = {
 
 M.GetServiceSettingsInput = {
     type = "structure",
+    id = "GetServiceSettingsInput",
 }
 
 M.OrganizationConfiguration = {
     type = "structure",
+    id = "OrganizationConfiguration",
     members = {
         EnableIntegration = {
             type = "boolean",
@@ -2254,6 +2371,7 @@ M.OrganizationConfiguration = {
 
 M.CrossAccountDiscoveryServiceStatus = {
     type = "structure",
+    id = "CrossAccountDiscoveryServiceStatus",
     members = {
         Message = {
             type = "string",
@@ -2263,6 +2381,7 @@ M.CrossAccountDiscoveryServiceStatus = {
 
 M.RegionStatus = {
     type = "structure",
+    id = "RegionStatus",
     members = {
         Status = {
             type = "string",
@@ -2272,6 +2391,7 @@ M.RegionStatus = {
 
 M.CrossRegionDiscoveryStatus = {
     type = "structure",
+    id = "CrossRegionDiscoveryStatus",
     members = {
         Message = {
             type = "map",
@@ -2283,6 +2403,7 @@ M.CrossRegionDiscoveryStatus = {
 
 M.ServiceStatus = {
     type = "structure",
+    id = "ServiceStatus",
     members = {
         CrossAccountDiscovery = M.CrossAccountDiscoveryServiceStatus,
         CrossRegionDiscovery = M.CrossRegionDiscoveryStatus,
@@ -2291,6 +2412,7 @@ M.ServiceStatus = {
 
 M.GetServiceSettingsOutput = {
     type = "structure",
+    id = "GetServiceSettingsOutput",
     members = {
         S3BucketArn = {
             type = "string",
@@ -2318,6 +2440,7 @@ M.GetServiceSettingsOutput = {
 
 M.ListAssetsForLicenseAssetGroupInput = {
     type = "structure",
+    id = "ListAssetsForLicenseAssetGroupInput",
     members = {
         LicenseAssetGroupArn = {
             type = "string",
@@ -2342,6 +2465,7 @@ M.ListAssetsForLicenseAssetGroupInput = {
 
 M.ListAssetsForLicenseAssetGroupOutput = {
     type = "structure",
+    id = "ListAssetsForLicenseAssetGroupOutput",
     members = {
         Assets = {
             type = "list",
@@ -2355,6 +2479,7 @@ M.ListAssetsForLicenseAssetGroupOutput = {
 
 M.FilterLimitExceededException = {
     type = "structure",
+    id = "FilterLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -2365,6 +2490,7 @@ M.FilterLimitExceededException = {
 
 M.ListAssociationsForLicenseConfigurationInput = {
     type = "structure",
+    id = "ListAssociationsForLicenseConfigurationInput",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -2383,6 +2509,7 @@ M.ListAssociationsForLicenseConfigurationInput = {
 
 M.LicenseConfigurationAssociation = {
     type = "structure",
+    id = "LicenseConfigurationAssociation",
     members = {
         ResourceArn = {
             type = "string",
@@ -2404,6 +2531,7 @@ M.LicenseConfigurationAssociation = {
 
 M.ListAssociationsForLicenseConfigurationOutput = {
     type = "structure",
+    id = "ListAssociationsForLicenseConfigurationOutput",
     members = {
         LicenseConfigurationAssociations = {
             type = "list",
@@ -2417,6 +2545,7 @@ M.ListAssociationsForLicenseConfigurationOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -2430,6 +2559,7 @@ M.Filter = {
 
 M.ListDistributedGrantsInput = {
     type = "structure",
+    id = "ListDistributedGrantsInput",
     members = {
         GrantArns = {
             type = "list",
@@ -2450,6 +2580,7 @@ M.ListDistributedGrantsInput = {
 
 M.ListDistributedGrantsOutput = {
     type = "structure",
+    id = "ListDistributedGrantsOutput",
     members = {
         Grants = {
             type = "list",
@@ -2463,6 +2594,7 @@ M.ListDistributedGrantsOutput = {
 
 M.ListFailuresForLicenseConfigurationOperationsInput = {
     type = "structure",
+    id = "ListFailuresForLicenseConfigurationOperationsInput",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -2481,6 +2613,7 @@ M.ListFailuresForLicenseConfigurationOperationsInput = {
 
 M.LicenseOperationFailure = {
     type = "structure",
+    id = "LicenseOperationFailure",
     members = {
         ResourceArn = {
             type = "string",
@@ -2512,6 +2645,7 @@ M.LicenseOperationFailure = {
 
 M.ListFailuresForLicenseConfigurationOperationsOutput = {
     type = "structure",
+    id = "ListFailuresForLicenseConfigurationOperationsOutput",
     members = {
         LicenseOperationFailureList = {
             type = "list",
@@ -2525,6 +2659,7 @@ M.ListFailuresForLicenseConfigurationOperationsOutput = {
 
 M.ListLicenseAssetGroupsInput = {
     type = "structure",
+    id = "ListLicenseAssetGroupsInput",
     members = {
         Filters = {
             type = "list",
@@ -2541,6 +2676,7 @@ M.ListLicenseAssetGroupsInput = {
 
 M.ListLicenseAssetGroupsOutput = {
     type = "structure",
+    id = "ListLicenseAssetGroupsOutput",
     members = {
         LicenseAssetGroups = {
             type = "list",
@@ -2554,6 +2690,7 @@ M.ListLicenseAssetGroupsOutput = {
 
 M.ListLicenseAssetRulesetsInput = {
     type = "structure",
+    id = "ListLicenseAssetRulesetsInput",
     members = {
         Filters = {
             type = "list",
@@ -2576,6 +2713,7 @@ M.ListLicenseAssetRulesetsInput = {
 
 M.ListLicenseAssetRulesetsOutput = {
     type = "structure",
+    id = "ListLicenseAssetRulesetsOutput",
     members = {
         LicenseAssetRulesets = {
             type = "list",
@@ -2589,6 +2727,7 @@ M.ListLicenseAssetRulesetsOutput = {
 
 M.ListLicenseConfigurationsInput = {
     type = "structure",
+    id = "ListLicenseConfigurationsInput",
     members = {
         LicenseConfigurationArns = {
             type = "list",
@@ -2609,6 +2748,7 @@ M.ListLicenseConfigurationsInput = {
 
 M.LicenseConfiguration = {
     type = "structure",
+    id = "LicenseConfiguration",
     members = {
         LicenseConfigurationId = {
             type = "string",
@@ -2668,6 +2808,7 @@ M.LicenseConfiguration = {
 
 M.ListLicenseConfigurationsOutput = {
     type = "structure",
+    id = "ListLicenseConfigurationsOutput",
     members = {
         LicenseConfigurations = {
             type = "list",
@@ -2681,6 +2822,7 @@ M.ListLicenseConfigurationsOutput = {
 
 M.ListLicenseConfigurationsForOrganizationInput = {
     type = "structure",
+    id = "ListLicenseConfigurationsForOrganizationInput",
     members = {
         LicenseConfigurationArns = {
             type = "list",
@@ -2701,6 +2843,7 @@ M.ListLicenseConfigurationsForOrganizationInput = {
 
 M.ListLicenseConfigurationsForOrganizationOutput = {
     type = "structure",
+    id = "ListLicenseConfigurationsForOrganizationOutput",
     members = {
         LicenseConfigurations = {
             type = "list",
@@ -2714,6 +2857,7 @@ M.ListLicenseConfigurationsForOrganizationOutput = {
 
 M.ListLicenseConversionTasksInput = {
     type = "structure",
+    id = "ListLicenseConversionTasksInput",
     members = {
         NextToken = {
             type = "string",
@@ -2730,6 +2874,7 @@ M.ListLicenseConversionTasksInput = {
 
 M.LicenseConversionTask = {
     type = "structure",
+    id = "LicenseConversionTask",
     members = {
         LicenseConversionTaskId = {
             type = "string",
@@ -2759,6 +2904,7 @@ M.LicenseConversionTask = {
 
 M.ListLicenseConversionTasksOutput = {
     type = "structure",
+    id = "ListLicenseConversionTasksOutput",
     members = {
         LicenseConversionTasks = {
             type = "list",
@@ -2772,6 +2918,7 @@ M.ListLicenseConversionTasksOutput = {
 
 M.ListLicenseManagerReportGeneratorsInput = {
     type = "structure",
+    id = "ListLicenseManagerReportGeneratorsInput",
     members = {
         Filters = {
             type = "list",
@@ -2788,6 +2935,7 @@ M.ListLicenseManagerReportGeneratorsInput = {
 
 M.ListLicenseManagerReportGeneratorsOutput = {
     type = "structure",
+    id = "ListLicenseManagerReportGeneratorsOutput",
     members = {
         ReportGenerators = {
             type = "list",
@@ -2801,6 +2949,7 @@ M.ListLicenseManagerReportGeneratorsOutput = {
 
 M.ListLicensesInput = {
     type = "structure",
+    id = "ListLicensesInput",
     members = {
         LicenseArns = {
             type = "list",
@@ -2821,6 +2970,7 @@ M.ListLicensesInput = {
 
 M.ListLicensesOutput = {
     type = "structure",
+    id = "ListLicensesOutput",
     members = {
         Licenses = {
             type = "list",
@@ -2834,6 +2984,7 @@ M.ListLicensesOutput = {
 
 M.ListLicenseSpecificationsForResourceInput = {
     type = "structure",
+    id = "ListLicenseSpecificationsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2852,6 +3003,7 @@ M.ListLicenseSpecificationsForResourceInput = {
 
 M.LicenseSpecification = {
     type = "structure",
+    id = "LicenseSpecification",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -2867,6 +3019,7 @@ M.LicenseSpecification = {
 
 M.ListLicenseSpecificationsForResourceOutput = {
     type = "structure",
+    id = "ListLicenseSpecificationsForResourceOutput",
     members = {
         LicenseSpecifications = {
             type = "list",
@@ -2880,6 +3033,7 @@ M.ListLicenseSpecificationsForResourceOutput = {
 
 M.ListLicenseVersionsInput = {
     type = "structure",
+    id = "ListLicenseVersionsInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -2898,6 +3052,7 @@ M.ListLicenseVersionsInput = {
 
 M.ListLicenseVersionsOutput = {
     type = "structure",
+    id = "ListLicenseVersionsOutput",
     members = {
         Licenses = {
             type = "list",
@@ -2911,6 +3066,7 @@ M.ListLicenseVersionsOutput = {
 
 M.ListReceivedGrantsInput = {
     type = "structure",
+    id = "ListReceivedGrantsInput",
     members = {
         GrantArns = {
             type = "list",
@@ -2931,6 +3087,7 @@ M.ListReceivedGrantsInput = {
 
 M.ListReceivedGrantsOutput = {
     type = "structure",
+    id = "ListReceivedGrantsOutput",
     members = {
         Grants = {
             type = "list",
@@ -2944,6 +3101,7 @@ M.ListReceivedGrantsOutput = {
 
 M.ListReceivedGrantsForOrganizationInput = {
     type = "structure",
+    id = "ListReceivedGrantsForOrganizationInput",
     members = {
         LicenseArn = {
             type = "string",
@@ -2966,6 +3124,7 @@ M.ListReceivedGrantsForOrganizationInput = {
 
 M.ListReceivedGrantsForOrganizationOutput = {
     type = "structure",
+    id = "ListReceivedGrantsForOrganizationOutput",
     members = {
         Grants = {
             type = "list",
@@ -2979,6 +3138,7 @@ M.ListReceivedGrantsForOrganizationOutput = {
 
 M.ListReceivedLicensesInput = {
     type = "structure",
+    id = "ListReceivedLicensesInput",
     members = {
         LicenseArns = {
             type = "list",
@@ -3010,6 +3170,7 @@ M.ReceivedStatus = {
 
 M.ReceivedMetadata = {
     type = "structure",
+    id = "ReceivedMetadata",
     members = {
         ReceivedStatus = {
             type = "string",
@@ -3026,6 +3187,7 @@ M.ReceivedMetadata = {
 
 M.GrantedLicense = {
     type = "structure",
+    id = "GrantedLicense",
     members = {
         LicenseArn = {
             type = "string",
@@ -3071,6 +3233,7 @@ M.GrantedLicense = {
 
 M.ListReceivedLicensesOutput = {
     type = "structure",
+    id = "ListReceivedLicensesOutput",
     members = {
         Licenses = {
             type = "list",
@@ -3084,6 +3247,7 @@ M.ListReceivedLicensesOutput = {
 
 M.ListReceivedLicensesForOrganizationInput = {
     type = "structure",
+    id = "ListReceivedLicensesForOrganizationInput",
     members = {
         Filters = {
             type = "list",
@@ -3100,6 +3264,7 @@ M.ListReceivedLicensesForOrganizationInput = {
 
 M.ListReceivedLicensesForOrganizationOutput = {
     type = "structure",
+    id = "ListReceivedLicensesForOrganizationOutput",
     members = {
         Licenses = {
             type = "list",
@@ -3113,6 +3278,7 @@ M.ListReceivedLicensesForOrganizationOutput = {
 
 M.FailedDependencyException = {
     type = "structure",
+    id = "FailedDependencyException",
     error = "client",
     members = {
         Message = {
@@ -3133,6 +3299,7 @@ M.InventoryFilterCondition = {
 
 M.InventoryFilter = {
     type = "structure",
+    id = "InventoryFilter",
     members = {
         Name = {
             type = "string",
@@ -3154,6 +3321,7 @@ M.InventoryFilter = {
 
 M.ListResourceInventoryInput = {
     type = "structure",
+    id = "ListResourceInventoryInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3170,6 +3338,7 @@ M.ListResourceInventoryInput = {
 
 M.ResourceInventory = {
     type = "structure",
+    id = "ResourceInventory",
     members = {
         ResourceId = {
             type = "string",
@@ -3213,6 +3382,7 @@ M.ResourceInventory = {
 
 M.ListResourceInventoryOutput = {
     type = "structure",
+    id = "ListResourceInventoryOutput",
     members = {
         ResourceInventoryList = {
             type = "list",
@@ -3226,6 +3396,7 @@ M.ListResourceInventoryOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3238,6 +3409,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3248,6 +3420,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTokensInput = {
     type = "structure",
+    id = "ListTokensInput",
     members = {
         TokenIds = {
             type = "list",
@@ -3268,6 +3441,7 @@ M.ListTokensInput = {
 
 M.TokenData = {
     type = "structure",
+    id = "TokenData",
     members = {
         TokenId = {
             type = "string",
@@ -3297,6 +3471,7 @@ M.TokenData = {
 
 M.ListTokensOutput = {
     type = "structure",
+    id = "ListTokensOutput",
     members = {
         Tokens = {
             type = "list",
@@ -3310,6 +3485,7 @@ M.ListTokensOutput = {
 
 M.ListUsageForLicenseConfigurationInput = {
     type = "structure",
+    id = "ListUsageForLicenseConfigurationInput",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -3332,6 +3508,7 @@ M.ListUsageForLicenseConfigurationInput = {
 
 M.LicenseConfigurationUsage = {
     type = "structure",
+    id = "LicenseConfigurationUsage",
     members = {
         ResourceArn = {
             type = "string",
@@ -3356,6 +3533,7 @@ M.LicenseConfigurationUsage = {
 
 M.ListUsageForLicenseConfigurationOutput = {
     type = "structure",
+    id = "ListUsageForLicenseConfigurationOutput",
     members = {
         LicenseConfigurationUsageList = {
             type = "list",
@@ -3369,6 +3547,7 @@ M.ListUsageForLicenseConfigurationOutput = {
 
 M.RejectGrantInput = {
     type = "structure",
+    id = "RejectGrantInput",
     members = {
         GrantArn = {
             type = "string",
@@ -3381,6 +3560,7 @@ M.RejectGrantInput = {
 
 M.RejectGrantOutput = {
     type = "structure",
+    id = "RejectGrantOutput",
     members = {
         GrantArn = {
             type = "string",
@@ -3396,6 +3576,7 @@ M.RejectGrantOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3415,10 +3596,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3438,10 +3621,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateLicenseAssetGroupInput = {
     type = "structure",
+    id = "UpdateLicenseAssetGroupInput",
     members = {
         Name = {
             type = "string",
@@ -3484,6 +3669,7 @@ M.UpdateLicenseAssetGroupInput = {
 
 M.UpdateLicenseAssetGroupOutput = {
     type = "structure",
+    id = "UpdateLicenseAssetGroupOutput",
     members = {
         LicenseAssetGroupArn = {
             type = "string",
@@ -3502,6 +3688,7 @@ M.UpdateLicenseAssetGroupOutput = {
 
 M.UpdateLicenseAssetRulesetInput = {
     type = "structure",
+    id = "UpdateLicenseAssetRulesetInput",
     members = {
         Name = {
             type = "string",
@@ -3533,6 +3720,7 @@ M.UpdateLicenseAssetRulesetInput = {
 
 M.UpdateLicenseAssetRulesetOutput = {
     type = "structure",
+    id = "UpdateLicenseAssetRulesetOutput",
     members = {
         LicenseAssetRulesetArn = {
             type = "string",
@@ -3550,6 +3738,7 @@ M.LicenseConfigurationStatus = {
 
 M.UpdateLicenseConfigurationInput = {
     type = "structure",
+    id = "UpdateLicenseConfigurationInput",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -3591,10 +3780,12 @@ M.UpdateLicenseConfigurationInput = {
 
 M.UpdateLicenseConfigurationOutput = {
     type = "structure",
+    id = "UpdateLicenseConfigurationOutput",
 }
 
 M.UpdateLicenseManagerReportGeneratorInput = {
     type = "structure",
+    id = "UpdateLicenseManagerReportGeneratorInput",
     members = {
         LicenseManagerReportGeneratorArn = {
             type = "string",
@@ -3635,10 +3826,12 @@ M.UpdateLicenseManagerReportGeneratorInput = {
 
 M.UpdateLicenseManagerReportGeneratorOutput = {
     type = "structure",
+    id = "UpdateLicenseManagerReportGeneratorOutput",
 }
 
 M.InvalidResourceStateException = {
     type = "structure",
+    id = "InvalidResourceStateException",
     error = "client",
     members = {
         Message = {
@@ -3649,6 +3842,7 @@ M.InvalidResourceStateException = {
 
 M.LicenseUsageException = {
     type = "structure",
+    id = "LicenseUsageException",
     error = "client",
     members = {
         Message = {
@@ -3659,6 +3853,7 @@ M.LicenseUsageException = {
 
 M.UpdateLicenseSpecificationsForResourceInput = {
     type = "structure",
+    id = "UpdateLicenseSpecificationsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3679,10 +3874,12 @@ M.UpdateLicenseSpecificationsForResourceInput = {
 
 M.UpdateLicenseSpecificationsForResourceOutput = {
     type = "structure",
+    id = "UpdateLicenseSpecificationsForResourceOutput",
 }
 
 M.UpdateServiceSettingsInput = {
     type = "structure",
+    id = "UpdateServiceSettingsInput",
     members = {
         S3BucketArn = {
             type = "string",
@@ -3703,6 +3900,7 @@ M.UpdateServiceSettingsInput = {
 
 M.UpdateServiceSettingsOutput = {
     type = "structure",
+    id = "UpdateServiceSettingsOutput",
 }
 
 return M

@@ -2,6 +2,7 @@ local M = {}
 
 M.AssociateCustomDomainInput = {
     type = "structure",
+    id = "AssociateCustomDomainInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -29,6 +30,7 @@ M.CertificateValidationRecordStatus = {
 
 M.CertificateValidationRecord = {
     type = "structure",
+    id = "CertificateValidationRecord",
     members = {
         Name = {
             type = "string",
@@ -57,6 +59,7 @@ M.CustomDomainAssociationStatus = {
 
 M.CustomDomain = {
     type = "structure",
+    id = "CustomDomain",
     members = {
         DomainName = {
             type = "string",
@@ -85,6 +88,7 @@ M.CustomDomain = {
 
 M.VpcDNSTarget = {
     type = "structure",
+    id = "VpcDNSTarget",
     members = {
         VpcIngressConnectionArn = {
             type = "string",
@@ -100,6 +104,7 @@ M.VpcDNSTarget = {
 
 M.AssociateCustomDomainOutput = {
     type = "structure",
+    id = "AssociateCustomDomainOutput",
     members = {
         DNSTarget = {
             type = "string",
@@ -128,6 +133,7 @@ M.AssociateCustomDomainOutput = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         Message = {
@@ -138,6 +144,7 @@ M.InternalServiceErrorException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -148,6 +155,7 @@ M.InvalidRequestException = {
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         Message = {
@@ -158,6 +166,7 @@ M.InvalidStateException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -170,6 +179,7 @@ M.Tag = {
 
 M.CreateAutoScalingConfigurationInput = {
     type = "structure",
+    id = "CreateAutoScalingConfigurationInput",
     members = {
         AutoScalingConfigurationName = {
             type = "string",
@@ -200,6 +210,7 @@ M.AutoScalingConfigurationStatus = {
 
 M.AutoScalingConfiguration = {
     type = "structure",
+    id = "AutoScalingConfiguration",
     members = {
         AutoScalingConfigurationArn = {
             type = "string",
@@ -242,6 +253,7 @@ M.AutoScalingConfiguration = {
 
 M.CreateAutoScalingConfigurationOutput = {
     type = "structure",
+    id = "CreateAutoScalingConfigurationOutput",
     members = {
         AutoScalingConfiguration = setmetatable({ traits = {
             required = true,
@@ -251,6 +263,7 @@ M.CreateAutoScalingConfigurationOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -266,6 +279,7 @@ M.ProviderType = {
 
 M.CreateConnectionInput = {
     type = "structure",
+    id = "CreateConnectionInput",
     members = {
         ConnectionName = {
             type = "string",
@@ -295,6 +309,7 @@ M.ConnectionStatus = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         ConnectionName = {
             type = "string",
@@ -316,6 +331,7 @@ M.Connection = {
 
 M.CreateConnectionOutput = {
     type = "structure",
+    id = "CreateConnectionOutput",
     members = {
         Connection = setmetatable({ traits = {
             required = true,
@@ -329,6 +345,7 @@ M.TracingVendor = {
 
 M.TraceConfiguration = {
     type = "structure",
+    id = "TraceConfiguration",
     members = {
         Vendor = {
             type = "string",
@@ -341,6 +358,7 @@ M.TraceConfiguration = {
 
 M.CreateObservabilityConfigurationInput = {
     type = "structure",
+    id = "CreateObservabilityConfigurationInput",
     members = {
         ObservabilityConfigurationName = {
             type = "string",
@@ -363,6 +381,7 @@ M.ObservabilityConfigurationStatus = {
 
 M.ObservabilityConfiguration = {
     type = "structure",
+    id = "ObservabilityConfiguration",
     members = {
         ObservabilityConfigurationArn = {
             type = "string",
@@ -397,6 +416,7 @@ M.ObservabilityConfiguration = {
 
 M.CreateObservabilityConfigurationOutput = {
     type = "structure",
+    id = "CreateObservabilityConfigurationOutput",
     members = {
         ObservabilityConfiguration = setmetatable({ traits = {
             required = true,
@@ -406,6 +426,7 @@ M.CreateObservabilityConfigurationOutput = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         KmsKey = {
             type = "string",
@@ -423,6 +444,7 @@ M.HealthCheckProtocol = {
 
 M.HealthCheckConfiguration = {
     type = "structure",
+    id = "HealthCheckConfiguration",
     members = {
         Protocol = {
             type = "string",
@@ -447,6 +469,7 @@ M.HealthCheckConfiguration = {
 
 M.InstanceConfiguration = {
     type = "structure",
+    id = "InstanceConfiguration",
     members = {
         Cpu = {
             type = "string",
@@ -467,6 +490,7 @@ M.EgressType = {
 
 M.EgressConfiguration = {
     type = "structure",
+    id = "EgressConfiguration",
     members = {
         EgressType = {
             type = "string",
@@ -479,6 +503,7 @@ M.EgressConfiguration = {
 
 M.IngressConfiguration = {
     type = "structure",
+    id = "IngressConfiguration",
     members = {
         IsPubliclyAccessible = {
             type = "boolean",
@@ -496,6 +521,7 @@ M.IpAddressType = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         EgressConfiguration = M.EgressConfiguration,
         IngressConfiguration = M.IngressConfiguration,
@@ -507,6 +533,7 @@ M.NetworkConfiguration = {
 
 M.ServiceObservabilityConfiguration = {
     type = "structure",
+    id = "ServiceObservabilityConfiguration",
     members = {
         ObservabilityEnabled = {
             type = "boolean",
@@ -523,6 +550,7 @@ M.ServiceObservabilityConfiguration = {
 
 M.AuthenticationConfiguration = {
     type = "structure",
+    id = "AuthenticationConfiguration",
     members = {
         ConnectionArn = {
             type = "string",
@@ -551,6 +579,7 @@ M.Runtime = {
 
 M.CodeConfigurationValues = {
     type = "structure",
+    id = "CodeConfigurationValues",
     members = {
         Runtime = {
             type = "string",
@@ -587,6 +616,7 @@ M.ConfigurationSource = {
 
 M.CodeConfiguration = {
     type = "structure",
+    id = "CodeConfiguration",
     members = {
         ConfigurationSource = {
             type = "string",
@@ -604,6 +634,7 @@ M.SourceCodeVersionType = {
 
 M.SourceCodeVersion = {
     type = "structure",
+    id = "SourceCodeVersion",
     members = {
         Type = {
             type = "string",
@@ -622,6 +653,7 @@ M.SourceCodeVersion = {
 
 M.CodeRepository = {
     type = "structure",
+    id = "CodeRepository",
     members = {
         RepositoryUrl = {
             type = "string",
@@ -641,6 +673,7 @@ M.CodeRepository = {
 
 M.ImageConfiguration = {
     type = "structure",
+    id = "ImageConfiguration",
     members = {
         RuntimeEnvironmentVariables = {
             type = "map",
@@ -668,6 +701,7 @@ M.ImageRepositoryType = {
 
 M.ImageRepository = {
     type = "structure",
+    id = "ImageRepository",
     members = {
         ImageIdentifier = {
             type = "string",
@@ -687,6 +721,7 @@ M.ImageRepository = {
 
 M.SourceConfiguration = {
     type = "structure",
+    id = "SourceConfiguration",
     members = {
         CodeRepository = M.CodeRepository,
         ImageRepository = M.ImageRepository,
@@ -699,6 +734,7 @@ M.SourceConfiguration = {
 
 M.CreateServiceInput = {
     type = "structure",
+    id = "CreateServiceInput",
     members = {
         ServiceName = {
             type = "string",
@@ -726,6 +762,7 @@ M.CreateServiceInput = {
 
 M.AutoScalingConfigurationSummary = {
     type = "structure",
+    id = "AutoScalingConfigurationSummary",
     members = {
         AutoScalingConfigurationArn = {
             type = "string",
@@ -765,6 +802,7 @@ M.ServiceStatus = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         ServiceName = {
             type = "string",
@@ -828,6 +866,7 @@ M.Service = {
 
 M.CreateServiceOutput = {
     type = "structure",
+    id = "CreateServiceOutput",
     members = {
         Service = setmetatable({ traits = {
             required = true,
@@ -843,6 +882,7 @@ M.CreateServiceOutput = {
 
 M.CreateVpcConnectorInput = {
     type = "structure",
+    id = "CreateVpcConnectorInput",
     members = {
         VpcConnectorName = {
             type = "string",
@@ -875,6 +915,7 @@ M.VpcConnectorStatus = {
 
 M.VpcConnector = {
     type = "structure",
+    id = "VpcConnector",
     members = {
         VpcConnectorName = {
             type = "string",
@@ -910,6 +951,7 @@ M.VpcConnector = {
 
 M.CreateVpcConnectorOutput = {
     type = "structure",
+    id = "CreateVpcConnectorOutput",
     members = {
         VpcConnector = setmetatable({ traits = {
             required = true,
@@ -919,6 +961,7 @@ M.CreateVpcConnectorOutput = {
 
 M.IngressVpcConfiguration = {
     type = "structure",
+    id = "IngressVpcConfiguration",
     members = {
         VpcId = {
             type = "string",
@@ -931,6 +974,7 @@ M.IngressVpcConfiguration = {
 
 M.CreateVpcIngressConnectionInput = {
     type = "structure",
+    id = "CreateVpcIngressConnectionInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -967,6 +1011,7 @@ M.VpcIngressConnectionStatus = {
 
 M.VpcIngressConnection = {
     type = "structure",
+    id = "VpcIngressConnection",
     members = {
         VpcIngressConnectionArn = {
             type = "string",
@@ -998,6 +1043,7 @@ M.VpcIngressConnection = {
 
 M.CreateVpcIngressConnectionOutput = {
     type = "structure",
+    id = "CreateVpcIngressConnectionOutput",
     members = {
         VpcIngressConnection = setmetatable({ traits = {
             required = true,
@@ -1007,6 +1053,7 @@ M.CreateVpcIngressConnectionOutput = {
 
 M.DeleteAutoScalingConfigurationInput = {
     type = "structure",
+    id = "DeleteAutoScalingConfigurationInput",
     members = {
         AutoScalingConfigurationArn = {
             type = "string",
@@ -1025,6 +1072,7 @@ M.DeleteAutoScalingConfigurationInput = {
 
 M.DeleteAutoScalingConfigurationOutput = {
     type = "structure",
+    id = "DeleteAutoScalingConfigurationOutput",
     members = {
         AutoScalingConfiguration = setmetatable({ traits = {
             required = true,
@@ -1034,6 +1082,7 @@ M.DeleteAutoScalingConfigurationOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1044,6 +1093,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -1056,6 +1106,7 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
     members = {
         Connection = M.Connection,
     },
@@ -1063,6 +1114,7 @@ M.DeleteConnectionOutput = {
 
 M.DeleteObservabilityConfigurationInput = {
     type = "structure",
+    id = "DeleteObservabilityConfigurationInput",
     members = {
         ObservabilityConfigurationArn = {
             type = "string",
@@ -1075,6 +1127,7 @@ M.DeleteObservabilityConfigurationInput = {
 
 M.DeleteObservabilityConfigurationOutput = {
     type = "structure",
+    id = "DeleteObservabilityConfigurationOutput",
     members = {
         ObservabilityConfiguration = setmetatable({ traits = {
             required = true,
@@ -1084,6 +1137,7 @@ M.DeleteObservabilityConfigurationOutput = {
 
 M.DeleteServiceInput = {
     type = "structure",
+    id = "DeleteServiceInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1096,6 +1150,7 @@ M.DeleteServiceInput = {
 
 M.DeleteServiceOutput = {
     type = "structure",
+    id = "DeleteServiceOutput",
     members = {
         Service = setmetatable({ traits = {
             required = true,
@@ -1111,6 +1166,7 @@ M.DeleteServiceOutput = {
 
 M.DeleteVpcConnectorInput = {
     type = "structure",
+    id = "DeleteVpcConnectorInput",
     members = {
         VpcConnectorArn = {
             type = "string",
@@ -1123,6 +1179,7 @@ M.DeleteVpcConnectorInput = {
 
 M.DeleteVpcConnectorOutput = {
     type = "structure",
+    id = "DeleteVpcConnectorOutput",
     members = {
         VpcConnector = setmetatable({ traits = {
             required = true,
@@ -1132,6 +1189,7 @@ M.DeleteVpcConnectorOutput = {
 
 M.DeleteVpcIngressConnectionInput = {
     type = "structure",
+    id = "DeleteVpcIngressConnectionInput",
     members = {
         VpcIngressConnectionArn = {
             type = "string",
@@ -1144,6 +1202,7 @@ M.DeleteVpcIngressConnectionInput = {
 
 M.DeleteVpcIngressConnectionOutput = {
     type = "structure",
+    id = "DeleteVpcIngressConnectionOutput",
     members = {
         VpcIngressConnection = setmetatable({ traits = {
             required = true,
@@ -1153,6 +1212,7 @@ M.DeleteVpcIngressConnectionOutput = {
 
 M.DescribeAutoScalingConfigurationInput = {
     type = "structure",
+    id = "DescribeAutoScalingConfigurationInput",
     members = {
         AutoScalingConfigurationArn = {
             type = "string",
@@ -1165,6 +1225,7 @@ M.DescribeAutoScalingConfigurationInput = {
 
 M.DescribeAutoScalingConfigurationOutput = {
     type = "structure",
+    id = "DescribeAutoScalingConfigurationOutput",
     members = {
         AutoScalingConfiguration = setmetatable({ traits = {
             required = true,
@@ -1174,6 +1235,7 @@ M.DescribeAutoScalingConfigurationOutput = {
 
 M.DescribeCustomDomainsInput = {
     type = "structure",
+    id = "DescribeCustomDomainsInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1192,6 +1254,7 @@ M.DescribeCustomDomainsInput = {
 
 M.DescribeCustomDomainsOutput = {
     type = "structure",
+    id = "DescribeCustomDomainsOutput",
     members = {
         DNSTarget = {
             type = "string",
@@ -1227,6 +1290,7 @@ M.DescribeCustomDomainsOutput = {
 
 M.DescribeObservabilityConfigurationInput = {
     type = "structure",
+    id = "DescribeObservabilityConfigurationInput",
     members = {
         ObservabilityConfigurationArn = {
             type = "string",
@@ -1239,6 +1303,7 @@ M.DescribeObservabilityConfigurationInput = {
 
 M.DescribeObservabilityConfigurationOutput = {
     type = "structure",
+    id = "DescribeObservabilityConfigurationOutput",
     members = {
         ObservabilityConfiguration = setmetatable({ traits = {
             required = true,
@@ -1248,6 +1313,7 @@ M.DescribeObservabilityConfigurationOutput = {
 
 M.DescribeServiceInput = {
     type = "structure",
+    id = "DescribeServiceInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1260,6 +1326,7 @@ M.DescribeServiceInput = {
 
 M.DescribeServiceOutput = {
     type = "structure",
+    id = "DescribeServiceOutput",
     members = {
         Service = setmetatable({ traits = {
             required = true,
@@ -1269,6 +1336,7 @@ M.DescribeServiceOutput = {
 
 M.DescribeVpcConnectorInput = {
     type = "structure",
+    id = "DescribeVpcConnectorInput",
     members = {
         VpcConnectorArn = {
             type = "string",
@@ -1281,6 +1349,7 @@ M.DescribeVpcConnectorInput = {
 
 M.DescribeVpcConnectorOutput = {
     type = "structure",
+    id = "DescribeVpcConnectorOutput",
     members = {
         VpcConnector = setmetatable({ traits = {
             required = true,
@@ -1290,6 +1359,7 @@ M.DescribeVpcConnectorOutput = {
 
 M.DescribeVpcIngressConnectionInput = {
     type = "structure",
+    id = "DescribeVpcIngressConnectionInput",
     members = {
         VpcIngressConnectionArn = {
             type = "string",
@@ -1302,6 +1372,7 @@ M.DescribeVpcIngressConnectionInput = {
 
 M.DescribeVpcIngressConnectionOutput = {
     type = "structure",
+    id = "DescribeVpcIngressConnectionOutput",
     members = {
         VpcIngressConnection = setmetatable({ traits = {
             required = true,
@@ -1311,6 +1382,7 @@ M.DescribeVpcIngressConnectionOutput = {
 
 M.DisassociateCustomDomainInput = {
     type = "structure",
+    id = "DisassociateCustomDomainInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1329,6 +1401,7 @@ M.DisassociateCustomDomainInput = {
 
 M.DisassociateCustomDomainOutput = {
     type = "structure",
+    id = "DisassociateCustomDomainOutput",
     members = {
         DNSTarget = {
             type = "string",
@@ -1357,6 +1430,7 @@ M.DisassociateCustomDomainOutput = {
 
 M.ListAutoScalingConfigurationsInput = {
     type = "structure",
+    id = "ListAutoScalingConfigurationsInput",
     members = {
         AutoScalingConfigurationName = {
             type = "string",
@@ -1378,6 +1452,7 @@ M.ListAutoScalingConfigurationsInput = {
 
 M.ListAutoScalingConfigurationsOutput = {
     type = "structure",
+    id = "ListAutoScalingConfigurationsOutput",
     members = {
         AutoScalingConfigurationSummaryList = {
             type = "list",
@@ -1394,6 +1469,7 @@ M.ListAutoScalingConfigurationsOutput = {
 
 M.ListConnectionsInput = {
     type = "structure",
+    id = "ListConnectionsInput",
     members = {
         ConnectionName = {
             type = "string",
@@ -1409,6 +1485,7 @@ M.ListConnectionsInput = {
 
 M.ConnectionSummary = {
     type = "structure",
+    id = "ConnectionSummary",
     members = {
         ConnectionName = {
             type = "string",
@@ -1430,6 +1507,7 @@ M.ConnectionSummary = {
 
 M.ListConnectionsOutput = {
     type = "structure",
+    id = "ListConnectionsOutput",
     members = {
         ConnectionSummaryList = {
             type = "list",
@@ -1446,6 +1524,7 @@ M.ListConnectionsOutput = {
 
 M.ListObservabilityConfigurationsInput = {
     type = "structure",
+    id = "ListObservabilityConfigurationsInput",
     members = {
         ObservabilityConfigurationName = {
             type = "string",
@@ -1467,6 +1546,7 @@ M.ListObservabilityConfigurationsInput = {
 
 M.ObservabilityConfigurationSummary = {
     type = "structure",
+    id = "ObservabilityConfigurationSummary",
     members = {
         ObservabilityConfigurationArn = {
             type = "string",
@@ -1485,6 +1565,7 @@ M.ObservabilityConfigurationSummary = {
 
 M.ListObservabilityConfigurationsOutput = {
     type = "structure",
+    id = "ListObservabilityConfigurationsOutput",
     members = {
         ObservabilityConfigurationSummaryList = {
             type = "list",
@@ -1501,6 +1582,7 @@ M.ListObservabilityConfigurationsOutput = {
 
 M.ListOperationsInput = {
     type = "structure",
+    id = "ListOperationsInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1538,6 +1620,7 @@ M.OperationType = {
 
 M.OperationSummary = {
     type = "structure",
+    id = "OperationSummary",
     members = {
         Id = {
             type = "string",
@@ -1565,6 +1648,7 @@ M.OperationSummary = {
 
 M.ListOperationsOutput = {
     type = "structure",
+    id = "ListOperationsOutput",
     members = {
         OperationSummaryList = {
             type = "list",
@@ -1578,6 +1662,7 @@ M.ListOperationsOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1590,6 +1675,7 @@ M.ListServicesInput = {
 
 M.ServiceSummary = {
     type = "structure",
+    id = "ServiceSummary",
     members = {
         ServiceName = {
             type = "string",
@@ -1617,6 +1703,7 @@ M.ServiceSummary = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         ServiceSummaryList = {
             type = "list",
@@ -1633,6 +1720,7 @@ M.ListServicesOutput = {
 
 M.ListServicesForAutoScalingConfigurationInput = {
     type = "structure",
+    id = "ListServicesForAutoScalingConfigurationInput",
     members = {
         AutoScalingConfigurationArn = {
             type = "string",
@@ -1651,6 +1739,7 @@ M.ListServicesForAutoScalingConfigurationInput = {
 
 M.ListServicesForAutoScalingConfigurationOutput = {
     type = "structure",
+    id = "ListServicesForAutoScalingConfigurationOutput",
     members = {
         ServiceArnList = {
             type = "list",
@@ -1667,6 +1756,7 @@ M.ListServicesForAutoScalingConfigurationOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1679,6 +1769,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1689,6 +1780,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVpcConnectorsInput = {
     type = "structure",
+    id = "ListVpcConnectorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1701,6 +1793,7 @@ M.ListVpcConnectorsInput = {
 
 M.ListVpcConnectorsOutput = {
     type = "structure",
+    id = "ListVpcConnectorsOutput",
     members = {
         VpcConnectors = {
             type = "list",
@@ -1717,6 +1810,7 @@ M.ListVpcConnectorsOutput = {
 
 M.ListVpcIngressConnectionsFilter = {
     type = "structure",
+    id = "ListVpcIngressConnectionsFilter",
     members = {
         ServiceArn = {
             type = "string",
@@ -1729,6 +1823,7 @@ M.ListVpcIngressConnectionsFilter = {
 
 M.ListVpcIngressConnectionsInput = {
     type = "structure",
+    id = "ListVpcIngressConnectionsInput",
     members = {
         Filter = M.ListVpcIngressConnectionsFilter,
         MaxResults = {
@@ -1742,6 +1837,7 @@ M.ListVpcIngressConnectionsInput = {
 
 M.VpcIngressConnectionSummary = {
     type = "structure",
+    id = "VpcIngressConnectionSummary",
     members = {
         VpcIngressConnectionArn = {
             type = "string",
@@ -1754,6 +1850,7 @@ M.VpcIngressConnectionSummary = {
 
 M.ListVpcIngressConnectionsOutput = {
     type = "structure",
+    id = "ListVpcIngressConnectionsOutput",
     members = {
         VpcIngressConnectionSummaryList = {
             type = "list",
@@ -1770,6 +1867,7 @@ M.ListVpcIngressConnectionsOutput = {
 
 M.PauseServiceInput = {
     type = "structure",
+    id = "PauseServiceInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1782,6 +1880,7 @@ M.PauseServiceInput = {
 
 M.PauseServiceOutput = {
     type = "structure",
+    id = "PauseServiceOutput",
     members = {
         Service = setmetatable({ traits = {
             required = true,
@@ -1794,6 +1893,7 @@ M.PauseServiceOutput = {
 
 M.ResumeServiceInput = {
     type = "structure",
+    id = "ResumeServiceInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1806,6 +1906,7 @@ M.ResumeServiceInput = {
 
 M.ResumeServiceOutput = {
     type = "structure",
+    id = "ResumeServiceOutput",
     members = {
         Service = setmetatable({ traits = {
             required = true,
@@ -1818,6 +1919,7 @@ M.ResumeServiceOutput = {
 
 M.StartDeploymentInput = {
     type = "structure",
+    id = "StartDeploymentInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1830,6 +1932,7 @@ M.StartDeploymentInput = {
 
 M.StartDeploymentOutput = {
     type = "structure",
+    id = "StartDeploymentOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1842,6 +1945,7 @@ M.StartDeploymentOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1861,10 +1965,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1884,10 +1990,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDefaultAutoScalingConfigurationInput = {
     type = "structure",
+    id = "UpdateDefaultAutoScalingConfigurationInput",
     members = {
         AutoScalingConfigurationArn = {
             type = "string",
@@ -1900,6 +2008,7 @@ M.UpdateDefaultAutoScalingConfigurationInput = {
 
 M.UpdateDefaultAutoScalingConfigurationOutput = {
     type = "structure",
+    id = "UpdateDefaultAutoScalingConfigurationOutput",
     members = {
         AutoScalingConfiguration = setmetatable({ traits = {
             required = true,
@@ -1909,6 +2018,7 @@ M.UpdateDefaultAutoScalingConfigurationOutput = {
 
 M.UpdateServiceInput = {
     type = "structure",
+    id = "UpdateServiceInput",
     members = {
         ServiceArn = {
             type = "string",
@@ -1929,6 +2039,7 @@ M.UpdateServiceInput = {
 
 M.UpdateServiceOutput = {
     type = "structure",
+    id = "UpdateServiceOutput",
     members = {
         Service = setmetatable({ traits = {
             required = true,
@@ -1944,6 +2055,7 @@ M.UpdateServiceOutput = {
 
 M.UpdateVpcIngressConnectionInput = {
     type = "structure",
+    id = "UpdateVpcIngressConnectionInput",
     members = {
         VpcIngressConnectionArn = {
             type = "string",
@@ -1959,6 +2071,7 @@ M.UpdateVpcIngressConnectionInput = {
 
 M.UpdateVpcIngressConnectionOutput = {
     type = "structure",
+    id = "UpdateVpcIngressConnectionOutput",
     members = {
         VpcIngressConnection = setmetatable({ traits = {
             required = true,

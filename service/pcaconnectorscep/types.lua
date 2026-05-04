@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -28,6 +30,7 @@ M.BadRequestException = {
 
 M.Challenge = {
     type = "structure",
+    id = "Challenge",
     members = {
         Arn = {
             type = "string",
@@ -49,6 +52,7 @@ M.Challenge = {
 
 M.ChallengeMetadata = {
     type = "structure",
+    id = "ChallengeMetadata",
     members = {
         Arn = {
             type = "string",
@@ -67,6 +71,7 @@ M.ChallengeMetadata = {
 
 M.ChallengeMetadataSummary = {
     type = "structure",
+    id = "ChallengeMetadataSummary",
     members = {
         Arn = {
             type = "string",
@@ -85,6 +90,7 @@ M.ChallengeMetadataSummary = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -110,6 +116,7 @@ M.ConflictException = {
 
 M.CreateChallengeInput = {
     type = "structure",
+    id = "CreateChallengeInput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -133,6 +140,7 @@ M.CreateChallengeInput = {
 
 M.CreateChallengeOutput = {
     type = "structure",
+    id = "CreateChallengeOutput",
     members = {
         Challenge = M.Challenge,
     },
@@ -140,6 +148,7 @@ M.CreateChallengeOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -153,6 +162,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -178,6 +188,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -209,6 +220,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -232,6 +244,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -248,6 +261,7 @@ M.ValidationException = {
 
 M.DeleteChallengeInput = {
     type = "structure",
+    id = "DeleteChallengeInput",
     members = {
         ChallengeArn = {
             type = "string",
@@ -261,10 +275,12 @@ M.DeleteChallengeInput = {
 
 M.DeleteChallengeOutput = {
     type = "structure",
+    id = "DeleteChallengeOutput",
 }
 
 M.GetChallengeMetadataInput = {
     type = "structure",
+    id = "GetChallengeMetadataInput",
     members = {
         ChallengeArn = {
             type = "string",
@@ -278,6 +294,7 @@ M.GetChallengeMetadataInput = {
 
 M.GetChallengeMetadataOutput = {
     type = "structure",
+    id = "GetChallengeMetadataOutput",
     members = {
         ChallengeMetadata = M.ChallengeMetadata,
     },
@@ -285,6 +302,7 @@ M.GetChallengeMetadataOutput = {
 
 M.GetChallengePasswordInput = {
     type = "structure",
+    id = "GetChallengePasswordInput",
     members = {
         ChallengeArn = {
             type = "string",
@@ -298,6 +316,7 @@ M.GetChallengePasswordInput = {
 
 M.GetChallengePasswordOutput = {
     type = "structure",
+    id = "GetChallengePasswordOutput",
     members = {
         Password = {
             type = "string",
@@ -307,6 +326,7 @@ M.GetChallengePasswordOutput = {
 
 M.ListChallengeMetadataInput = {
     type = "structure",
+    id = "ListChallengeMetadataInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -332,6 +352,7 @@ M.ListChallengeMetadataInput = {
 
 M.ListChallengeMetadataOutput = {
     type = "structure",
+    id = "ListChallengeMetadataOutput",
     members = {
         Challenges = {
             type = "list",
@@ -345,6 +366,7 @@ M.ListChallengeMetadataOutput = {
 
 M.IntuneConfiguration = {
     type = "structure",
+    id = "IntuneConfiguration",
     members = {
         AzureApplicationId = {
             type = "string",
@@ -363,6 +385,7 @@ M.IntuneConfiguration = {
 
 M.MobileDeviceManagement = {
     type = "union",
+    id = "MobileDeviceManagement",
     members = {
         Intune = M.IntuneConfiguration,
     },
@@ -370,6 +393,7 @@ M.MobileDeviceManagement = {
 
 M.OpenIdConfiguration = {
     type = "structure",
+    id = "OpenIdConfiguration",
     members = {
         Issuer = {
             type = "string",
@@ -406,6 +430,7 @@ M.ConnectorType = {
 
 M.Connector = {
     type = "structure",
+    id = "Connector",
     members = {
         Arn = {
             type = "string",
@@ -438,6 +463,7 @@ M.Connector = {
 
 M.ConnectorSummary = {
     type = "structure",
+    id = "ConnectorSummary",
     members = {
         Arn = {
             type = "string",
@@ -470,6 +496,7 @@ M.ConnectorSummary = {
 
 M.CreateConnectorInput = {
     type = "structure",
+    id = "CreateConnectorInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -497,6 +524,7 @@ M.CreateConnectorInput = {
 
 M.CreateConnectorOutput = {
     type = "structure",
+    id = "CreateConnectorOutput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -506,6 +534,7 @@ M.CreateConnectorOutput = {
 
 M.DeleteConnectorInput = {
     type = "structure",
+    id = "DeleteConnectorInput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -519,10 +548,12 @@ M.DeleteConnectorInput = {
 
 M.DeleteConnectorOutput = {
     type = "structure",
+    id = "DeleteConnectorOutput",
 }
 
 M.GetConnectorInput = {
     type = "structure",
+    id = "GetConnectorInput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -536,6 +567,7 @@ M.GetConnectorInput = {
 
 M.GetConnectorOutput = {
     type = "structure",
+    id = "GetConnectorOutput",
     members = {
         Connector = M.Connector,
     },
@@ -543,6 +575,7 @@ M.GetConnectorOutput = {
 
 M.ListConnectorsInput = {
     type = "structure",
+    id = "ListConnectorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -561,6 +594,7 @@ M.ListConnectorsInput = {
 
 M.ListConnectorsOutput = {
     type = "structure",
+    id = "ListConnectorsOutput",
     members = {
         Connectors = {
             type = "list",
@@ -574,6 +608,7 @@ M.ListConnectorsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -587,6 +622,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -598,6 +634,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -619,10 +656,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -644,6 +683,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

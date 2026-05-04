@@ -2305,29 +2305,29 @@ local record ThrottlingException
     RetryAfterSeconds: string
 end
 
-local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
+local type EndpointType = "PUBLIC" | "VPC" | "VPC_ENDPOINT"
 
-local type AgreementStatusType = "ACTIVE" | "INACTIVE"
-
-local type CustomStepStatus = "SUCCESS" | "FAILURE"
+local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
 
 local type ProfileType = "LOCAL" | "PARTNER"
 
-local type HomeDirectoryType = "PATH" | "LOGICAL"
+local type IpAddressType = "IPV4" | "DUALSTACK"
 
 local type IdentityProviderType = "SERVICE_MANAGED" | "API_GATEWAY" | "AWS_DIRECTORY_SERVICE" | "AWS_LAMBDA"
 
 local type PreserveFilenameType = "ENABLED" | "DISABLED"
 
-local type IpAddressType = "IPV4" | "DUALSTACK"
+local type CustomStepStatus = "SUCCESS" | "FAILURE"
+
+local type HomeDirectoryType = "PATH" | "LOGICAL"
 
 local type CertificateUsageType = "SIGNING" | "ENCRYPTION" | "TLS"
 
+local type AgreementStatusType = "ACTIVE" | "INACTIVE"
+
+local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
+
 local type Domain = "S3" | "EFS"
-
-local type EndpointType = "PUBLIC" | "VPC" | "VPC_ENDPOINT"
-
-local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
 
 local type ConnectorsIpAddressType = "IPV4" | "DUALSTACK"
 

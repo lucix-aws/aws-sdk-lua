@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptChannelHandshakeInput = {
     type = "structure",
+    id = "AcceptChannelHandshakeInput",
     members = {
         catalog = {
             type = "string",
@@ -28,6 +29,7 @@ M.HandshakeStatus = {
 
 M.AcceptChannelHandshakeDetail = {
     type = "structure",
+    id = "AcceptChannelHandshakeDetail",
     members = {
         id = {
             type = "string",
@@ -43,6 +45,7 @@ M.AcceptChannelHandshakeDetail = {
 
 M.AcceptChannelHandshakeOutput = {
     type = "structure",
+    id = "AcceptChannelHandshakeOutput",
     members = {
         channelHandshakeDetail = M.AcceptChannelHandshakeDetail,
     },
@@ -50,6 +53,7 @@ M.AcceptChannelHandshakeOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -66,6 +70,7 @@ M.AccessDeniedException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -79,6 +84,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -98,6 +104,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -117,6 +124,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -146,6 +154,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -175,6 +184,7 @@ M.AssociationType = {
 
 M.CancelChannelHandshakeInput = {
     type = "structure",
+    id = "CancelChannelHandshakeInput",
     members = {
         catalog = {
             type = "string",
@@ -193,6 +203,7 @@ M.CancelChannelHandshakeInput = {
 
 M.CancelChannelHandshakeDetail = {
     type = "structure",
+    id = "CancelChannelHandshakeDetail",
     members = {
         id = {
             type = "string",
@@ -208,6 +219,7 @@ M.CancelChannelHandshakeDetail = {
 
 M.CancelChannelHandshakeOutput = {
     type = "structure",
+    id = "CancelChannelHandshakeOutput",
     members = {
         channelHandshakeDetail = M.CancelChannelHandshakeDetail,
     },
@@ -215,6 +227,7 @@ M.CancelChannelHandshakeOutput = {
 
 M.RevokeServicePeriodPayload = {
     type = "structure",
+    id = "RevokeServicePeriodPayload",
     members = {
         programManagementAccountIdentifier = {
             type = "string",
@@ -235,6 +248,7 @@ M.ServicePeriodType = {
 
 M.StartServicePeriodPayload = {
     type = "structure",
+    id = "StartServicePeriodPayload",
     members = {
         programManagementAccountIdentifier = {
             type = "string",
@@ -265,6 +279,7 @@ M.StartServicePeriodPayload = {
 
 M.ChannelHandshakePayload = {
     type = "union",
+    id = "ChannelHandshakePayload",
     members = {
         startServicePeriodPayload = M.StartServicePeriodPayload,
         revokeServicePeriodPayload = M.RevokeServicePeriodPayload,
@@ -273,6 +288,7 @@ M.ChannelHandshakePayload = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -304,6 +320,7 @@ M.HandshakeType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -322,6 +339,7 @@ M.Tag = {
 
 M.CreateChannelHandshakeInput = {
     type = "structure",
+    id = "CreateChannelHandshakeInput",
     members = {
         handshakeType = {
             type = "string",
@@ -357,6 +375,7 @@ M.CreateChannelHandshakeInput = {
 
 M.CreateChannelHandshakeDetail = {
     type = "structure",
+    id = "CreateChannelHandshakeDetail",
     members = {
         id = {
             type = "string",
@@ -369,6 +388,7 @@ M.CreateChannelHandshakeDetail = {
 
 M.CreateChannelHandshakeOutput = {
     type = "structure",
+    id = "CreateChannelHandshakeOutput",
     members = {
         channelHandshakeDetail = M.CreateChannelHandshakeDetail,
     },
@@ -376,6 +396,7 @@ M.CreateChannelHandshakeOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -413,6 +434,7 @@ M.Program = {
 
 M.ProgramManagementAccountTypeFilters = {
     type = "structure",
+    id = "ProgramManagementAccountTypeFilters",
     members = {
         programs = {
             type = "list",
@@ -423,6 +445,7 @@ M.ProgramManagementAccountTypeFilters = {
 
 M.RevokeServicePeriodTypeFilters = {
     type = "structure",
+    id = "RevokeServicePeriodTypeFilters",
     members = {
         servicePeriodTypes = {
             type = "list",
@@ -433,6 +456,7 @@ M.RevokeServicePeriodTypeFilters = {
 
 M.StartServicePeriodTypeFilters = {
     type = "structure",
+    id = "StartServicePeriodTypeFilters",
     members = {
         servicePeriodTypes = {
             type = "list",
@@ -443,6 +467,7 @@ M.StartServicePeriodTypeFilters = {
 
 M.ListChannelHandshakesTypeFilters = {
     type = "union",
+    id = "ListChannelHandshakesTypeFilters",
     members = {
         startServicePeriodTypeFilters = M.StartServicePeriodTypeFilters,
         revokeServicePeriodTypeFilters = M.RevokeServicePeriodTypeFilters,
@@ -461,6 +486,7 @@ M.SortOrder = {
 
 M.ProgramManagementAccountTypeSort = {
     type = "structure",
+    id = "ProgramManagementAccountTypeSort",
     members = {
         sortOrder = {
             type = "string",
@@ -483,6 +509,7 @@ M.RevokeServicePeriodTypeSortName = {
 
 M.RevokeServicePeriodTypeSort = {
     type = "structure",
+    id = "RevokeServicePeriodTypeSort",
     members = {
         sortOrder = {
             type = "string",
@@ -505,6 +532,7 @@ M.StartServicePeriodTypeSortName = {
 
 M.StartServicePeriodTypeSort = {
     type = "structure",
+    id = "StartServicePeriodTypeSort",
     members = {
         sortOrder = {
             type = "string",
@@ -523,6 +551,7 @@ M.StartServicePeriodTypeSort = {
 
 M.ListChannelHandshakesTypeSort = {
     type = "union",
+    id = "ListChannelHandshakesTypeSort",
     members = {
         startServicePeriodTypeSort = M.StartServicePeriodTypeSort,
         revokeServicePeriodTypeSort = M.RevokeServicePeriodTypeSort,
@@ -537,6 +566,7 @@ M.ParticipantType = {
 
 M.ListChannelHandshakesInput = {
     type = "structure",
+    id = "ListChannelHandshakesInput",
     members = {
         handshakeType = {
             type = "string",
@@ -580,6 +610,7 @@ M.ListChannelHandshakesInput = {
 
 M.ProgramManagementAccountHandshakeDetail = {
     type = "structure",
+    id = "ProgramManagementAccountHandshakeDetail",
     members = {
         program = {
             type = "string",
@@ -589,6 +620,7 @@ M.ProgramManagementAccountHandshakeDetail = {
 
 M.RevokeServicePeriodHandshakeDetail = {
     type = "structure",
+    id = "RevokeServicePeriodHandshakeDetail",
     members = {
         note = {
             type = "string",
@@ -616,6 +648,7 @@ M.RevokeServicePeriodHandshakeDetail = {
 
 M.StartServicePeriodHandshakeDetail = {
     type = "structure",
+    id = "StartServicePeriodHandshakeDetail",
     members = {
         note = {
             type = "string",
@@ -643,6 +676,7 @@ M.StartServicePeriodHandshakeDetail = {
 
 M.HandshakeDetail = {
     type = "union",
+    id = "HandshakeDetail",
     members = {
         startServicePeriodHandshakeDetail = M.StartServicePeriodHandshakeDetail,
         revokeServicePeriodHandshakeDetail = M.RevokeServicePeriodHandshakeDetail,
@@ -652,6 +686,7 @@ M.HandshakeDetail = {
 
 M.ChannelHandshakeSummary = {
     type = "structure",
+    id = "ChannelHandshakeSummary",
     members = {
         id = {
             type = "string",
@@ -701,6 +736,7 @@ M.ChannelHandshakeSummary = {
 
 M.ListChannelHandshakesOutput = {
     type = "structure",
+    id = "ListChannelHandshakesOutput",
     members = {
         items = {
             type = "list",
@@ -714,6 +750,7 @@ M.ListChannelHandshakesOutput = {
 
 M.RejectChannelHandshakeInput = {
     type = "structure",
+    id = "RejectChannelHandshakeInput",
     members = {
         catalog = {
             type = "string",
@@ -732,6 +769,7 @@ M.RejectChannelHandshakeInput = {
 
 M.RejectChannelHandshakeDetail = {
     type = "structure",
+    id = "RejectChannelHandshakeDetail",
     members = {
         id = {
             type = "string",
@@ -747,6 +785,7 @@ M.RejectChannelHandshakeDetail = {
 
 M.RejectChannelHandshakeOutput = {
     type = "structure",
+    id = "RejectChannelHandshakeOutput",
     members = {
         channelHandshakeDetail = M.RejectChannelHandshakeDetail,
     },
@@ -759,6 +798,7 @@ M.Coverage = {
 
 M.CreateProgramManagementAccountInput = {
     type = "structure",
+    id = "CreateProgramManagementAccountInput",
     members = {
         catalog = {
             type = "string",
@@ -799,6 +839,7 @@ M.CreateProgramManagementAccountInput = {
 
 M.CreateProgramManagementAccountDetail = {
     type = "structure",
+    id = "CreateProgramManagementAccountDetail",
     members = {
         id = {
             type = "string",
@@ -811,6 +852,7 @@ M.CreateProgramManagementAccountDetail = {
 
 M.CreateProgramManagementAccountOutput = {
     type = "structure",
+    id = "CreateProgramManagementAccountOutput",
     members = {
         programManagementAccountDetail = M.CreateProgramManagementAccountDetail,
     },
@@ -823,6 +865,7 @@ M.Provider = {
 
 M.PartnerLedSupport = {
     type = "structure",
+    id = "PartnerLedSupport",
     members = {
         coverage = {
             type = "string",
@@ -844,6 +887,7 @@ M.PartnerLedSupport = {
 
 M.ResoldEnterprise = {
     type = "structure",
+    id = "ResoldEnterprise",
     members = {
         coverage = {
             type = "string",
@@ -865,6 +909,7 @@ M.ResoldEnterprise = {
 
 M.ResoldUnifiedOperations = {
     type = "structure",
+    id = "ResoldUnifiedOperations",
     members = {
         coverage = {
             type = "string",
@@ -886,6 +931,7 @@ M.ResoldUnifiedOperations = {
 
 M.SupportPlan = {
     type = "union",
+    id = "SupportPlan",
     members = {
         resoldEnterprise = M.ResoldEnterprise,
         partnerLedSupport = M.PartnerLedSupport,
@@ -907,6 +953,7 @@ M.Sector = {
 
 M.CreateRelationshipInput = {
     type = "structure",
+    id = "CreateRelationshipInput",
     members = {
         catalog = {
             type = "string",
@@ -963,6 +1010,7 @@ M.CreateRelationshipInput = {
 
 M.CreateRelationshipDetail = {
     type = "structure",
+    id = "CreateRelationshipDetail",
     members = {
         arn = {
             type = "string",
@@ -975,6 +1023,7 @@ M.CreateRelationshipDetail = {
 
 M.CreateRelationshipOutput = {
     type = "structure",
+    id = "CreateRelationshipOutput",
     members = {
         relationshipDetail = M.CreateRelationshipDetail,
     },
@@ -982,6 +1031,7 @@ M.CreateRelationshipOutput = {
 
 M.DeleteProgramManagementAccountInput = {
     type = "structure",
+    id = "DeleteProgramManagementAccountInput",
     members = {
         catalog = {
             type = "string",
@@ -1006,10 +1056,12 @@ M.DeleteProgramManagementAccountInput = {
 
 M.DeleteProgramManagementAccountOutput = {
     type = "structure",
+    id = "DeleteProgramManagementAccountOutput",
 }
 
 M.DeleteRelationshipInput = {
     type = "structure",
+    id = "DeleteRelationshipInput",
     members = {
         catalog = {
             type = "string",
@@ -1040,10 +1092,12 @@ M.DeleteRelationshipInput = {
 
 M.DeleteRelationshipOutput = {
     type = "structure",
+    id = "DeleteRelationshipOutput",
 }
 
 M.GetRelationshipInput = {
     type = "structure",
+    id = "GetRelationshipInput",
     members = {
         catalog = {
             type = "string",
@@ -1068,6 +1122,7 @@ M.GetRelationshipInput = {
 
 M.RelationshipDetail = {
     type = "structure",
+    id = "RelationshipDetail",
     members = {
         arn = {
             type = "string",
@@ -1122,6 +1177,7 @@ M.RelationshipDetail = {
 
 M.GetRelationshipOutput = {
     type = "structure",
+    id = "GetRelationshipOutput",
     members = {
         relationshipDetail = M.RelationshipDetail,
     },
@@ -1133,6 +1189,7 @@ M.ListProgramManagementAccountsSortName = {
 
 M.ListProgramManagementAccountsSortBase = {
     type = "structure",
+    id = "ListProgramManagementAccountsSortBase",
     members = {
         sortOrder = {
             type = "string",
@@ -1157,6 +1214,7 @@ M.ProgramManagementAccountStatus = {
 
 M.ListProgramManagementAccountsInput = {
     type = "structure",
+    id = "ListProgramManagementAccountsInput",
     members = {
         catalog = {
             type = "string",
@@ -1195,6 +1253,7 @@ M.ListProgramManagementAccountsInput = {
 
 M.ProgramManagementAccountSummary = {
     type = "structure",
+    id = "ProgramManagementAccountSummary",
     members = {
         id = {
             type = "string",
@@ -1243,6 +1302,7 @@ M.ProgramManagementAccountSummary = {
 
 M.ListProgramManagementAccountsOutput = {
     type = "structure",
+    id = "ListProgramManagementAccountsOutput",
     members = {
         items = {
             type = "list",
@@ -1260,6 +1320,7 @@ M.ListRelationshipsSortName = {
 
 M.ListRelationshipsSortBase = {
     type = "structure",
+    id = "ListRelationshipsSortBase",
     members = {
         sortOrder = {
             type = "string",
@@ -1278,6 +1339,7 @@ M.ListRelationshipsSortBase = {
 
 M.ListRelationshipsInput = {
     type = "structure",
+    id = "ListRelationshipsInput",
     members = {
         catalog = {
             type = "string",
@@ -1316,6 +1378,7 @@ M.ListRelationshipsInput = {
 
 M.RelationshipSummary = {
     type = "structure",
+    id = "RelationshipSummary",
     members = {
         arn = {
             type = "string",
@@ -1367,6 +1430,7 @@ M.RelationshipSummary = {
 
 M.ListRelationshipsOutput = {
     type = "structure",
+    id = "ListRelationshipsOutput",
     members = {
         items = {
             type = "list",
@@ -1380,6 +1444,7 @@ M.ListRelationshipsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1392,6 +1457,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1402,6 +1468,7 @@ M.ListTagsForResourceOutput = {
 
 M.UpdateProgramManagementAccountInput = {
     type = "structure",
+    id = "UpdateProgramManagementAccountInput",
     members = {
         catalog = {
             type = "string",
@@ -1426,6 +1493,7 @@ M.UpdateProgramManagementAccountInput = {
 
 M.UpdateProgramManagementAccountDetail = {
     type = "structure",
+    id = "UpdateProgramManagementAccountDetail",
     members = {
         id = {
             type = "string",
@@ -1444,6 +1512,7 @@ M.UpdateProgramManagementAccountDetail = {
 
 M.UpdateProgramManagementAccountOutput = {
     type = "structure",
+    id = "UpdateProgramManagementAccountOutput",
     members = {
         programManagementAccountDetail = M.UpdateProgramManagementAccountDetail,
     },
@@ -1451,6 +1520,7 @@ M.UpdateProgramManagementAccountOutput = {
 
 M.UpdateRelationshipInput = {
     type = "structure",
+    id = "UpdateRelationshipInput",
     members = {
         catalog = {
             type = "string",
@@ -1482,6 +1552,7 @@ M.UpdateRelationshipInput = {
 
 M.UpdateRelationshipDetail = {
     type = "structure",
+    id = "UpdateRelationshipDetail",
     members = {
         arn = {
             type = "string",
@@ -1500,6 +1571,7 @@ M.UpdateRelationshipDetail = {
 
 M.UpdateRelationshipOutput = {
     type = "structure",
+    id = "UpdateRelationshipOutput",
     members = {
         relationshipDetail = M.UpdateRelationshipDetail,
     },
@@ -1507,6 +1579,7 @@ M.UpdateRelationshipOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1526,10 +1599,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1549,6 +1624,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

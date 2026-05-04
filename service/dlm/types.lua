@@ -2,6 +2,7 @@ local M = {}
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         Encrypted = {
             type = "boolean",
@@ -24,6 +25,7 @@ M.RetentionIntervalUnitValues = {
 
 M.CrossRegionCopyRetainRule = {
     type = "structure",
+    id = "CrossRegionCopyRetainRule",
     members = {
         Interval = {
             type = "integer",
@@ -36,6 +38,7 @@ M.CrossRegionCopyRetainRule = {
 
 M.CrossRegionCopyAction = {
     type = "structure",
+    id = "CrossRegionCopyAction",
     members = {
         Target = {
             type = "string",
@@ -52,6 +55,7 @@ M.CrossRegionCopyAction = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         Name = {
             type = "string",
@@ -71,6 +75,7 @@ M.Action = {
 
 M.RetentionArchiveTier = {
     type = "structure",
+    id = "RetentionArchiveTier",
     members = {
         Count = {
             type = "integer",
@@ -86,6 +91,7 @@ M.RetentionArchiveTier = {
 
 M.ArchiveRetainRule = {
     type = "structure",
+    id = "ArchiveRetainRule",
     members = {
         RetentionArchiveTier = setmetatable({ traits = {
             required = true,
@@ -95,6 +101,7 @@ M.ArchiveRetainRule = {
 
 M.ArchiveRule = {
     type = "structure",
+    id = "ArchiveRule",
     members = {
         RetainRule = setmetatable({ traits = {
             required = true,
@@ -104,6 +111,7 @@ M.ArchiveRule = {
 
 M.CrossRegionCopyTarget = {
     type = "structure",
+    id = "CrossRegionCopyTarget",
     members = {
         TargetRegion = {
             type = "string",
@@ -118,6 +126,7 @@ M.DefaultPolicyTypeValues = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -136,6 +145,7 @@ M.Tag = {
 
 M.Exclusions = {
     type = "structure",
+    id = "Exclusions",
     members = {
         ExcludeBootVolumes = {
             type = "boolean",
@@ -157,6 +167,7 @@ M.EventTypeValues = {
 
 M.EventParameters = {
     type = "structure",
+    id = "EventParameters",
     members = {
         EventType = {
             type = "string",
@@ -186,6 +197,7 @@ M.EventSourceValues = {
 
 M.EventSource = {
     type = "structure",
+    id = "EventSource",
     members = {
         Type = {
             type = "string",
@@ -199,6 +211,7 @@ M.EventSource = {
 
 M.Parameters = {
     type = "structure",
+    id = "Parameters",
     members = {
         ExcludeBootVolume = {
             type = "boolean",
@@ -256,6 +269,7 @@ M.StageValues = {
 
 M.Script = {
     type = "structure",
+    id = "Script",
     members = {
         Stages = {
             type = "list",
@@ -284,6 +298,7 @@ M.Script = {
 
 M.CreateRule = {
     type = "structure",
+    id = "CreateRule",
     members = {
         Location = {
             type = "string",
@@ -310,6 +325,7 @@ M.CreateRule = {
 
 M.CrossRegionCopyDeprecateRule = {
     type = "structure",
+    id = "CrossRegionCopyDeprecateRule",
     members = {
         Interval = {
             type = "integer",
@@ -322,6 +338,7 @@ M.CrossRegionCopyDeprecateRule = {
 
 M.CrossRegionCopyRule = {
     type = "structure",
+    id = "CrossRegionCopyRule",
     members = {
         TargetRegion = {
             type = "string",
@@ -348,6 +365,7 @@ M.CrossRegionCopyRule = {
 
 M.DeprecateRule = {
     type = "structure",
+    id = "DeprecateRule",
     members = {
         Count = {
             type = "integer",
@@ -363,6 +381,7 @@ M.DeprecateRule = {
 
 M.FastRestoreRule = {
     type = "structure",
+    id = "FastRestoreRule",
     members = {
         Count = {
             type = "integer",
@@ -386,6 +405,7 @@ M.FastRestoreRule = {
 
 M.RetainRule = {
     type = "structure",
+    id = "RetainRule",
     members = {
         Count = {
             type = "integer",
@@ -401,6 +421,7 @@ M.RetainRule = {
 
 M.ShareRule = {
     type = "structure",
+    id = "ShareRule",
     members = {
         TargetAccounts = {
             type = "list",
@@ -420,6 +441,7 @@ M.ShareRule = {
 
 M.Schedule = {
     type = "structure",
+    id = "Schedule",
     members = {
         Name = {
             type = "string",
@@ -453,6 +475,7 @@ M.Schedule = {
 
 M.PolicyDetails = {
     type = "structure",
+    id = "PolicyDetails",
     members = {
         PolicyType = {
             type = "string",
@@ -512,6 +535,7 @@ M.SettablePolicyStateValues = {
 
 M.CreateLifecyclePolicyInput = {
     type = "structure",
+    id = "CreateLifecyclePolicyInput",
     members = {
         ExecutionRoleArn = {
             type = "string",
@@ -562,6 +586,7 @@ M.CreateLifecyclePolicyInput = {
 
 M.CreateLifecyclePolicyOutput = {
     type = "structure",
+    id = "CreateLifecyclePolicyOutput",
     members = {
         PolicyId = {
             type = "string",
@@ -571,6 +596,7 @@ M.CreateLifecyclePolicyOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -584,6 +610,7 @@ M.InternalServerException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -605,6 +632,7 @@ M.InvalidRequestException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -627,6 +655,7 @@ M.DefaultPoliciesTypeValues = {
 
 M.DeleteLifecyclePolicyInput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -640,10 +669,12 @@ M.DeleteLifecyclePolicyInput = {
 
 M.DeleteLifecyclePolicyOutput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -670,6 +701,7 @@ M.GettablePolicyStateValues = {
 
 M.GetLifecyclePoliciesInput = {
     type = "structure",
+    id = "GetLifecyclePoliciesInput",
     members = {
         PolicyIds = {
             type = "list",
@@ -716,6 +748,7 @@ M.GetLifecyclePoliciesInput = {
 
 M.LifecyclePolicySummary = {
     type = "structure",
+    id = "LifecyclePolicySummary",
     members = {
         PolicyId = {
             type = "string",
@@ -742,6 +775,7 @@ M.LifecyclePolicySummary = {
 
 M.GetLifecyclePoliciesOutput = {
     type = "structure",
+    id = "GetLifecyclePoliciesOutput",
     members = {
         Policies = {
             type = "list",
@@ -752,6 +786,7 @@ M.GetLifecyclePoliciesOutput = {
 
 M.GetLifecyclePolicyInput = {
     type = "structure",
+    id = "GetLifecyclePolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -765,6 +800,7 @@ M.GetLifecyclePolicyInput = {
 
 M.LifecyclePolicy = {
     type = "structure",
+    id = "LifecyclePolicy",
     members = {
         PolicyId = {
             type = "string",
@@ -810,6 +846,7 @@ M.LifecyclePolicy = {
 
 M.GetLifecyclePolicyOutput = {
     type = "structure",
+    id = "GetLifecyclePolicyOutput",
     members = {
         Policy = M.LifecyclePolicy,
     },
@@ -817,6 +854,7 @@ M.GetLifecyclePolicyOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -830,6 +868,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -841,6 +880,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -862,10 +902,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -887,10 +929,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateLifecyclePolicyInput = {
     type = "structure",
+    id = "UpdateLifecyclePolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -931,6 +975,7 @@ M.UpdateLifecyclePolicyInput = {
 
 M.UpdateLifecyclePolicyOutput = {
     type = "structure",
+    id = "UpdateLifecyclePolicyOutput",
 }
 
 return M

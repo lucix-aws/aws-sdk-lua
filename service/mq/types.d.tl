@@ -824,19 +824,19 @@ local record NotFoundException
     Message: string
 end
 
-local type DataReplicationMode = "NONE" | "CRDR"
-
-local type DeploymentMode = "SINGLE_INSTANCE" | "ACTIVE_STANDBY_MULTI_AZ" | "CLUSTER_MULTI_AZ"
-
-local type EngineType = "ACTIVEMQ" | "RABBITMQ"
-
-local type AuthenticationStrategy = "SIMPLE" | "LDAP" | "CONFIG_MANAGED"
-
-local type BrokerState = "CREATION_IN_PROGRESS" | "CREATION_FAILED" | "DELETION_IN_PROGRESS" | "RUNNING" | "REBOOT_IN_PROGRESS" | "CRITICAL_ACTION_REQUIRED" | "REPLICA"
-
 local type PromoteMode = "SWITCHOVER" | "FAILOVER"
 
 local type BrokerStorageType = "EBS" | "EFS"
+
+local type DataReplicationMode = "NONE" | "CRDR"
+
+local type BrokerState = "CREATION_IN_PROGRESS" | "CREATION_FAILED" | "DELETION_IN_PROGRESS" | "RUNNING" | "REBOOT_IN_PROGRESS" | "CRITICAL_ACTION_REQUIRED" | "REPLICA"
+
+local type DeploymentMode = "SINGLE_INSTANCE" | "ACTIVE_STANDBY_MULTI_AZ" | "CLUSTER_MULTI_AZ"
+
+local type AuthenticationStrategy = "SIMPLE" | "LDAP" | "CONFIG_MANAGED"
+
+local type EngineType = "ACTIVEMQ" | "RABBITMQ"
 
 local record M
     CreateBrokerInput: CreateBrokerInput

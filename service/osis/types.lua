@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.BufferOptions = {
     type = "structure",
+    id = "BufferOptions",
     members = {
         PersistentBufferEnabled = {
             type = "boolean",
@@ -24,6 +26,7 @@ M.BufferOptions = {
 
 M.EncryptionAtRestOptions = {
     type = "structure",
+    id = "EncryptionAtRestOptions",
     members = {
         KmsKeyArn = {
             type = "string",
@@ -36,6 +39,7 @@ M.EncryptionAtRestOptions = {
 
 M.CloudWatchLogDestination = {
     type = "structure",
+    id = "CloudWatchLogDestination",
     members = {
         LogGroup = {
             type = "string",
@@ -48,6 +52,7 @@ M.CloudWatchLogDestination = {
 
 M.LogPublishingOptions = {
     type = "structure",
+    id = "LogPublishingOptions",
     members = {
         IsLoggingEnabled = {
             type = "boolean",
@@ -58,6 +63,7 @@ M.LogPublishingOptions = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -76,6 +82,7 @@ M.Tag = {
 
 M.VpcAttachmentOptions = {
     type = "structure",
+    id = "VpcAttachmentOptions",
     members = {
         AttachToVpc = {
             type = "boolean",
@@ -96,6 +103,7 @@ M.VpcEndpointManagement = {
 
 M.VpcOptions = {
     type = "structure",
+    id = "VpcOptions",
     members = {
         SubnetIds = {
             type = "list",
@@ -117,6 +125,7 @@ M.VpcOptions = {
 
 M.CreatePipelineInput = {
     type = "structure",
+    id = "CreatePipelineInput",
     members = {
         PipelineName = {
             type = "string",
@@ -158,6 +167,7 @@ M.CreatePipelineInput = {
 
 M.PipelineDestination = {
     type = "structure",
+    id = "PipelineDestination",
     members = {
         ServiceName = {
             type = "string",
@@ -174,6 +184,7 @@ M.VpcEndpointServiceName = {
 
 M.ServiceVpcEndpoint = {
     type = "structure",
+    id = "ServiceVpcEndpoint",
     members = {
         ServiceName = {
             type = "string",
@@ -199,6 +210,7 @@ M.PipelineStatus = {
 
 M.PipelineStatusReason = {
     type = "structure",
+    id = "PipelineStatusReason",
     members = {
         Description = {
             type = "string",
@@ -208,6 +220,7 @@ M.PipelineStatusReason = {
 
 M.VpcEndpoint = {
     type = "structure",
+    id = "VpcEndpoint",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -221,6 +234,7 @@ M.VpcEndpoint = {
 
 M.Pipeline = {
     type = "structure",
+    id = "Pipeline",
     members = {
         PipelineName = {
             type = "string",
@@ -287,6 +301,7 @@ M.Pipeline = {
 
 M.CreatePipelineOutput = {
     type = "structure",
+    id = "CreatePipelineOutput",
     members = {
         Pipeline = M.Pipeline,
     },
@@ -294,6 +309,7 @@ M.CreatePipelineOutput = {
 
 M.DisabledOperationException = {
     type = "structure",
+    id = "DisabledOperationException",
     error = "client",
     members = {
         message = {
@@ -304,6 +320,7 @@ M.DisabledOperationException = {
 
 M.InternalException = {
     type = "structure",
+    id = "InternalException",
     error = "server",
     members = {
         message = {
@@ -314,6 +331,7 @@ M.InternalException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -324,6 +342,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -334,6 +353,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -344,6 +364,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -354,6 +375,7 @@ M.ValidationException = {
 
 M.PipelineEndpointVpcOptions = {
     type = "structure",
+    id = "PipelineEndpointVpcOptions",
     members = {
         SubnetIds = {
             type = "list",
@@ -368,6 +390,7 @@ M.PipelineEndpointVpcOptions = {
 
 M.CreatePipelineEndpointInput = {
     type = "structure",
+    id = "CreatePipelineEndpointInput",
     members = {
         PipelineArn = {
             type = "string",
@@ -392,6 +415,7 @@ M.PipelineEndpointStatus = {
 
 M.CreatePipelineEndpointOutput = {
     type = "structure",
+    id = "CreatePipelineEndpointOutput",
     members = {
         PipelineArn = {
             type = "string",
@@ -410,6 +434,7 @@ M.CreatePipelineEndpointOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -420,6 +445,7 @@ M.ConflictException = {
 
 M.DeletePipelineInput = {
     type = "structure",
+    id = "DeletePipelineInput",
     members = {
         PipelineName = {
             type = "string",
@@ -433,10 +459,12 @@ M.DeletePipelineInput = {
 
 M.DeletePipelineOutput = {
     type = "structure",
+    id = "DeletePipelineOutput",
 }
 
 M.DeletePipelineEndpointInput = {
     type = "structure",
+    id = "DeletePipelineEndpointInput",
     members = {
         EndpointId = {
             type = "string",
@@ -450,10 +478,12 @@ M.DeletePipelineEndpointInput = {
 
 M.DeletePipelineEndpointOutput = {
     type = "structure",
+    id = "DeletePipelineEndpointOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -467,10 +497,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.GetPipelineInput = {
     type = "structure",
+    id = "GetPipelineInput",
     members = {
         PipelineName = {
             type = "string",
@@ -484,6 +516,7 @@ M.GetPipelineInput = {
 
 M.GetPipelineOutput = {
     type = "structure",
+    id = "GetPipelineOutput",
     members = {
         Pipeline = M.Pipeline,
     },
@@ -491,6 +524,7 @@ M.GetPipelineOutput = {
 
 M.GetPipelineBlueprintInput = {
     type = "structure",
+    id = "GetPipelineBlueprintInput",
     members = {
         BlueprintName = {
             type = "string",
@@ -510,6 +544,7 @@ M.GetPipelineBlueprintInput = {
 
 M.PipelineBlueprint = {
     type = "structure",
+    id = "PipelineBlueprint",
     members = {
         BlueprintName = {
             type = "string",
@@ -534,6 +569,7 @@ M.PipelineBlueprint = {
 
 M.GetPipelineBlueprintOutput = {
     type = "structure",
+    id = "GetPipelineBlueprintOutput",
     members = {
         Blueprint = M.PipelineBlueprint,
         Format = {
@@ -544,6 +580,7 @@ M.GetPipelineBlueprintOutput = {
 
 M.GetPipelineChangeProgressInput = {
     type = "structure",
+    id = "GetPipelineChangeProgressInput",
     members = {
         PipelineName = {
             type = "string",
@@ -564,6 +601,7 @@ M.ChangeProgressStageStatuses = {
 
 M.ChangeProgressStage = {
     type = "structure",
+    id = "ChangeProgressStage",
     members = {
         Name = {
             type = "string",
@@ -589,6 +627,7 @@ M.ChangeProgressStatuses = {
 
 M.ChangeProgressStatus = {
     type = "structure",
+    id = "ChangeProgressStatus",
     members = {
         StartTime = {
             type = "timestamp",
@@ -611,6 +650,7 @@ M.ChangeProgressStatus = {
 
 M.GetPipelineChangeProgressOutput = {
     type = "structure",
+    id = "GetPipelineChangeProgressOutput",
     members = {
         ChangeProgressStatuses = {
             type = "list",
@@ -621,6 +661,7 @@ M.GetPipelineChangeProgressOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -634,6 +675,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -646,6 +688,7 @@ M.GetResourcePolicyOutput = {
 
 M.InvalidPaginationTokenException = {
     type = "structure",
+    id = "InvalidPaginationTokenException",
     error = "client",
     members = {
         message = {
@@ -656,10 +699,12 @@ M.InvalidPaginationTokenException = {
 
 M.ListPipelineBlueprintsInput = {
     type = "structure",
+    id = "ListPipelineBlueprintsInput",
 }
 
 M.PipelineBlueprintSummary = {
     type = "structure",
+    id = "PipelineBlueprintSummary",
     members = {
         BlueprintName = {
             type = "string",
@@ -681,6 +726,7 @@ M.PipelineBlueprintSummary = {
 
 M.ListPipelineBlueprintsOutput = {
     type = "structure",
+    id = "ListPipelineBlueprintsOutput",
     members = {
         Blueprints = {
             type = "list",
@@ -691,6 +737,7 @@ M.ListPipelineBlueprintsOutput = {
 
 M.ListPipelineEndpointConnectionsInput = {
     type = "structure",
+    id = "ListPipelineEndpointConnectionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -709,6 +756,7 @@ M.ListPipelineEndpointConnectionsInput = {
 
 M.PipelineEndpointConnection = {
     type = "structure",
+    id = "PipelineEndpointConnection",
     members = {
         PipelineArn = {
             type = "string",
@@ -727,6 +775,7 @@ M.PipelineEndpointConnection = {
 
 M.ListPipelineEndpointConnectionsOutput = {
     type = "structure",
+    id = "ListPipelineEndpointConnectionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -740,6 +789,7 @@ M.ListPipelineEndpointConnectionsOutput = {
 
 M.ListPipelineEndpointsInput = {
     type = "structure",
+    id = "ListPipelineEndpointsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -758,6 +808,7 @@ M.ListPipelineEndpointsInput = {
 
 M.PipelineEndpoint = {
     type = "structure",
+    id = "PipelineEndpoint",
     members = {
         PipelineArn = {
             type = "string",
@@ -780,6 +831,7 @@ M.PipelineEndpoint = {
 
 M.ListPipelineEndpointsOutput = {
     type = "structure",
+    id = "ListPipelineEndpointsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -793,6 +845,7 @@ M.ListPipelineEndpointsOutput = {
 
 M.ListPipelinesInput = {
     type = "structure",
+    id = "ListPipelinesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -811,6 +864,7 @@ M.ListPipelinesInput = {
 
 M.PipelineSummary = {
     type = "structure",
+    id = "PipelineSummary",
     members = {
         Status = {
             type = "string",
@@ -847,6 +901,7 @@ M.PipelineSummary = {
 
 M.ListPipelinesOutput = {
     type = "structure",
+    id = "ListPipelinesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -860,6 +915,7 @@ M.ListPipelinesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -873,6 +929,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -883,6 +940,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -902,6 +960,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -914,6 +973,7 @@ M.PutResourcePolicyOutput = {
 
 M.RevokePipelineEndpointConnectionsInput = {
     type = "structure",
+    id = "RevokePipelineEndpointConnectionsInput",
     members = {
         PipelineArn = {
             type = "string",
@@ -933,6 +993,7 @@ M.RevokePipelineEndpointConnectionsInput = {
 
 M.RevokePipelineEndpointConnectionsOutput = {
     type = "structure",
+    id = "RevokePipelineEndpointConnectionsOutput",
     members = {
         PipelineArn = {
             type = "string",
@@ -942,6 +1003,7 @@ M.RevokePipelineEndpointConnectionsOutput = {
 
 M.StartPipelineInput = {
     type = "structure",
+    id = "StartPipelineInput",
     members = {
         PipelineName = {
             type = "string",
@@ -955,6 +1017,7 @@ M.StartPipelineInput = {
 
 M.StartPipelineOutput = {
     type = "structure",
+    id = "StartPipelineOutput",
     members = {
         Pipeline = M.Pipeline,
     },
@@ -962,6 +1025,7 @@ M.StartPipelineOutput = {
 
 M.StopPipelineInput = {
     type = "structure",
+    id = "StopPipelineInput",
     members = {
         PipelineName = {
             type = "string",
@@ -975,6 +1039,7 @@ M.StopPipelineInput = {
 
 M.StopPipelineOutput = {
     type = "structure",
+    id = "StopPipelineOutput",
     members = {
         Pipeline = M.Pipeline,
     },
@@ -982,6 +1047,7 @@ M.StopPipelineOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -1002,10 +1068,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -1026,10 +1094,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdatePipelineInput = {
     type = "structure",
+    id = "UpdatePipelineInput",
     members = {
         PipelineName = {
             type = "string",
@@ -1058,6 +1128,7 @@ M.UpdatePipelineInput = {
 
 M.UpdatePipelineOutput = {
     type = "structure",
+    id = "UpdatePipelineOutput",
     members = {
         Pipeline = M.Pipeline,
     },
@@ -1065,6 +1136,7 @@ M.UpdatePipelineOutput = {
 
 M.ValidatePipelineInput = {
     type = "structure",
+    id = "ValidatePipelineInput",
     members = {
         PipelineConfigurationBody = {
             type = "string",
@@ -1077,6 +1149,7 @@ M.ValidatePipelineInput = {
 
 M.ValidationMessage = {
     type = "structure",
+    id = "ValidationMessage",
     members = {
         Message = {
             type = "string",
@@ -1086,6 +1159,7 @@ M.ValidationMessage = {
 
 M.ValidatePipelineOutput = {
     type = "structure",
+    id = "ValidatePipelineOutput",
     members = {
         isValid = {
             type = "boolean",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.AppliedStatus = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -32,6 +34,7 @@ M.AutoshiftExecutionStatus = {
 
 M.ListAutoshiftsInput = {
     type = "structure",
+    id = "ListAutoshiftsInput",
     members = {
         nextToken = {
             type = "string",
@@ -56,6 +59,7 @@ M.ListAutoshiftsInput = {
 
 M.AutoshiftSummary = {
     type = "structure",
+    id = "AutoshiftSummary",
     members = {
         awayFrom = {
             type = "string",
@@ -83,6 +87,7 @@ M.AutoshiftSummary = {
 
 M.ListAutoshiftsOutput = {
     type = "structure",
+    id = "ListAutoshiftsOutput",
     members = {
         items = {
             type = "list",
@@ -96,6 +101,7 @@ M.ListAutoshiftsOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -124,6 +130,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -148,6 +155,7 @@ M.AutoshiftAppliedStatus = {
 
 M.AutoshiftInResource = {
     type = "structure",
+    id = "AutoshiftInResource",
     members = {
         appliedStatus = {
             type = "string",
@@ -172,6 +180,7 @@ M.AutoshiftInResource = {
 
 M.GetAutoshiftObserverNotificationStatusInput = {
     type = "structure",
+    id = "GetAutoshiftObserverNotificationStatusInput",
 }
 
 M.AutoshiftObserverNotificationStatus = {
@@ -181,6 +190,7 @@ M.AutoshiftObserverNotificationStatus = {
 
 M.GetAutoshiftObserverNotificationStatusOutput = {
     type = "structure",
+    id = "GetAutoshiftObserverNotificationStatusOutput",
     members = {
         status = {
             type = "string",
@@ -193,6 +203,7 @@ M.GetAutoshiftObserverNotificationStatusOutput = {
 
 M.UpdateAutoshiftObserverNotificationStatusInput = {
     type = "structure",
+    id = "UpdateAutoshiftObserverNotificationStatusInput",
     members = {
         status = {
             type = "string",
@@ -205,6 +216,7 @@ M.UpdateAutoshiftObserverNotificationStatusInput = {
 
 M.UpdateAutoshiftObserverNotificationStatusOutput = {
     type = "structure",
+    id = "UpdateAutoshiftObserverNotificationStatusOutput",
     members = {
         status = {
             type = "string",
@@ -221,6 +233,7 @@ M.ControlConditionType = {
 
 M.ControlCondition = {
     type = "structure",
+    id = "ControlCondition",
     members = {
         type = {
             type = "string",
@@ -239,6 +252,7 @@ M.ControlCondition = {
 
 M.CancelPracticeRunInput = {
     type = "structure",
+    id = "CancelPracticeRunInput",
     members = {
         zonalShiftId = {
             type = "string",
@@ -258,6 +272,7 @@ M.ZonalShiftStatus = {
 
 M.CancelPracticeRunOutput = {
     type = "structure",
+    id = "CancelPracticeRunOutput",
     members = {
         zonalShiftId = {
             type = "string",
@@ -321,6 +336,7 @@ M.ConflictExceptionReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -343,6 +359,7 @@ M.ConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -356,6 +373,7 @@ M.ResourceNotFoundException = {
 
 M.CancelZonalShiftInput = {
     type = "structure",
+    id = "CancelZonalShiftInput",
     members = {
         zonalShiftId = {
             type = "string",
@@ -369,6 +387,7 @@ M.CancelZonalShiftInput = {
 
 M.CancelZonalShiftOutput = {
     type = "structure",
+    id = "CancelZonalShiftOutput",
     members = {
         zonalShiftId = {
             type = "string",
@@ -417,6 +436,7 @@ M.CancelZonalShiftOutput = {
 
 M.CreatePracticeRunConfigurationInput = {
     type = "structure",
+    id = "CreatePracticeRunConfigurationInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -452,6 +472,7 @@ M.CreatePracticeRunConfigurationInput = {
 
 M.PracticeRunConfiguration = {
     type = "structure",
+    id = "PracticeRunConfiguration",
     members = {
         blockingAlarms = {
             type = "list",
@@ -489,6 +510,7 @@ M.ZonalAutoshiftStatus = {
 
 M.CreatePracticeRunConfigurationOutput = {
     type = "structure",
+    id = "CreatePracticeRunConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -516,6 +538,7 @@ M.CreatePracticeRunConfigurationOutput = {
 
 M.DeletePracticeRunConfigurationInput = {
     type = "structure",
+    id = "DeletePracticeRunConfigurationInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -529,6 +552,7 @@ M.DeletePracticeRunConfigurationInput = {
 
 M.DeletePracticeRunConfigurationOutput = {
     type = "structure",
+    id = "DeletePracticeRunConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -553,6 +577,7 @@ M.DeletePracticeRunConfigurationOutput = {
 
 M.GetManagedResourceInput = {
     type = "structure",
+    id = "GetManagedResourceInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -581,6 +606,7 @@ M.ShiftType = {
 
 M.ZonalShiftInResource = {
     type = "structure",
+    id = "ZonalShiftInResource",
     members = {
         appliedStatus = {
             type = "string",
@@ -635,6 +661,7 @@ M.ZonalShiftInResource = {
 
 M.GetManagedResourceOutput = {
     type = "structure",
+    id = "GetManagedResourceOutput",
     members = {
         arn = {
             type = "string",
@@ -670,6 +697,7 @@ M.GetManagedResourceOutput = {
 
 M.ListManagedResourcesInput = {
     type = "structure",
+    id = "ListManagedResourcesInput",
     members = {
         nextToken = {
             type = "string",
@@ -688,6 +716,7 @@ M.ListManagedResourcesInput = {
 
 M.ManagedResourceSummary = {
     type = "structure",
+    id = "ManagedResourceSummary",
     members = {
         arn = {
             type = "string",
@@ -726,6 +755,7 @@ M.ManagedResourceSummary = {
 
 M.ListManagedResourcesOutput = {
     type = "structure",
+    id = "ListManagedResourcesOutput",
     members = {
         items = {
             type = "list",
@@ -742,6 +772,7 @@ M.ListManagedResourcesOutput = {
 
 M.ListZonalShiftsInput = {
     type = "structure",
+    id = "ListZonalShiftsInput",
     members = {
         nextToken = {
             type = "string",
@@ -772,6 +803,7 @@ M.ListZonalShiftsInput = {
 
 M.ZonalShiftSummary = {
     type = "structure",
+    id = "ZonalShiftSummary",
     members = {
         zonalShiftId = {
             type = "string",
@@ -826,6 +858,7 @@ M.ZonalShiftSummary = {
 
 M.ListZonalShiftsOutput = {
     type = "structure",
+    id = "ListZonalShiftsOutput",
     members = {
         items = {
             type = "list",
@@ -839,6 +872,7 @@ M.ListZonalShiftsOutput = {
 
 M.UpdateZonalAutoshiftConfigurationInput = {
     type = "structure",
+    id = "UpdateZonalAutoshiftConfigurationInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -858,6 +892,7 @@ M.UpdateZonalAutoshiftConfigurationInput = {
 
 M.UpdateZonalAutoshiftConfigurationOutput = {
     type = "structure",
+    id = "UpdateZonalAutoshiftConfigurationOutput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -876,6 +911,7 @@ M.UpdateZonalAutoshiftConfigurationOutput = {
 
 M.UpdatePracticeRunConfigurationInput = {
     type = "structure",
+    id = "UpdatePracticeRunConfigurationInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -909,6 +945,7 @@ M.UpdatePracticeRunConfigurationInput = {
 
 M.UpdatePracticeRunConfigurationOutput = {
     type = "structure",
+    id = "UpdatePracticeRunConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -936,6 +973,7 @@ M.UpdatePracticeRunConfigurationOutput = {
 
 M.UpdateZonalShiftInput = {
     type = "structure",
+    id = "UpdateZonalShiftInput",
     members = {
         zonalShiftId = {
             type = "string",
@@ -955,6 +993,7 @@ M.UpdateZonalShiftInput = {
 
 M.UpdateZonalShiftOutput = {
     type = "structure",
+    id = "UpdateZonalShiftOutput",
     members = {
         zonalShiftId = {
             type = "string",
@@ -1003,6 +1042,7 @@ M.UpdateZonalShiftOutput = {
 
 M.StartPracticeRunInput = {
     type = "structure",
+    id = "StartPracticeRunInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -1027,6 +1067,7 @@ M.StartPracticeRunInput = {
 
 M.StartPracticeRunOutput = {
     type = "structure",
+    id = "StartPracticeRunOutput",
     members = {
         zonalShiftId = {
             type = "string",
@@ -1075,6 +1116,7 @@ M.StartPracticeRunOutput = {
 
 M.StartZonalShiftInput = {
     type = "structure",
+    id = "StartZonalShiftInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -1105,6 +1147,7 @@ M.StartZonalShiftInput = {
 
 M.StartZonalShiftOutput = {
     type = "structure",
+    id = "StartZonalShiftOutput",
     members = {
         zonalShiftId = {
             type = "string",

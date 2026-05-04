@@ -8,6 +8,7 @@ M.AdditionalArtifact = {
 
 M.DeleteReportDefinitionInput = {
     type = "structure",
+    id = "DeleteReportDefinitionInput",
     members = {
         ReportName = {
             type = "string",
@@ -20,6 +21,7 @@ M.DeleteReportDefinitionInput = {
 
 M.DeleteReportDefinitionOutput = {
     type = "structure",
+    id = "DeleteReportDefinitionOutput",
     members = {
         ResponseMessage = {
             type = "string",
@@ -29,6 +31,7 @@ M.DeleteReportDefinitionOutput = {
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         Message = {
@@ -39,6 +42,7 @@ M.InternalErrorException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -49,6 +53,7 @@ M.ValidationException = {
 
 M.DescribeReportDefinitionsInput = {
     type = "structure",
+    id = "DescribeReportDefinitionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -84,6 +89,7 @@ M.LastStatus = {
 
 M.ReportStatus = {
     type = "structure",
+    id = "ReportStatus",
     members = {
         lastDelivery = {
             type = "string",
@@ -138,6 +144,7 @@ M.TimeUnit = {
 
 M.ReportDefinition = {
     type = "structure",
+    id = "ReportDefinition",
     members = {
         ReportName = {
             type = "string",
@@ -207,6 +214,7 @@ M.ReportDefinition = {
 
 M.DescribeReportDefinitionsOutput = {
     type = "structure",
+    id = "DescribeReportDefinitionsOutput",
     members = {
         ReportDefinitions = {
             type = "list",
@@ -220,6 +228,7 @@ M.DescribeReportDefinitionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ReportName = {
             type = "string",
@@ -232,6 +241,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -250,6 +260,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -260,6 +271,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -270,6 +282,7 @@ M.ResourceNotFoundException = {
 
 M.ModifyReportDefinitionInput = {
     type = "structure",
+    id = "ModifyReportDefinitionInput",
     members = {
         ReportName = {
             type = "string",
@@ -285,10 +298,12 @@ M.ModifyReportDefinitionInput = {
 
 M.ModifyReportDefinitionOutput = {
     type = "structure",
+    id = "ModifyReportDefinitionOutput",
 }
 
 M.DuplicateReportNameException = {
     type = "structure",
+    id = "DuplicateReportNameException",
     error = "client",
     members = {
         Message = {
@@ -299,6 +314,7 @@ M.DuplicateReportNameException = {
 
 M.PutReportDefinitionInput = {
     type = "structure",
+    id = "PutReportDefinitionInput",
     members = {
         ReportDefinition = setmetatable({ traits = {
             required = true,
@@ -312,10 +328,12 @@ M.PutReportDefinitionInput = {
 
 M.PutReportDefinitionOutput = {
     type = "structure",
+    id = "PutReportDefinitionOutput",
 }
 
 M.ReportLimitReachedException = {
     type = "structure",
+    id = "ReportLimitReachedException",
     error = "client",
     members = {
         Message = {
@@ -326,6 +344,7 @@ M.ReportLimitReachedException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ReportName = {
             type = "string",
@@ -345,10 +364,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ReportName = {
             type = "string",
@@ -368,6 +389,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

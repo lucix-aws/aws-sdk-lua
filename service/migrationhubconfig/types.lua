@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -16,6 +17,7 @@ M.TargetType = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         Type = {
             type = "string",
@@ -31,6 +33,7 @@ M.Target = {
 
 M.CreateHomeRegionControlInput = {
     type = "structure",
+    id = "CreateHomeRegionControlInput",
     members = {
         HomeRegion = {
             type = "string",
@@ -52,6 +55,7 @@ M.CreateHomeRegionControlInput = {
 
 M.HomeRegionControl = {
     type = "structure",
+    id = "HomeRegionControl",
     members = {
         ControlId = {
             type = "string",
@@ -68,6 +72,7 @@ M.HomeRegionControl = {
 
 M.CreateHomeRegionControlOutput = {
     type = "structure",
+    id = "CreateHomeRegionControlOutput",
     members = {
         HomeRegionControl = M.HomeRegionControl,
     },
@@ -75,6 +80,7 @@ M.CreateHomeRegionControlOutput = {
 
 M.DryRunOperation = {
     type = "structure",
+    id = "DryRunOperation",
     error = "client",
     members = {
         Message = {
@@ -85,6 +91,7 @@ M.DryRunOperation = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -95,6 +102,7 @@ M.InternalServerError = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         Message = {
@@ -105,6 +113,7 @@ M.InvalidInputException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -115,6 +124,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -135,6 +145,7 @@ M.ThrottlingException = {
 
 M.DeleteHomeRegionControlInput = {
     type = "structure",
+    id = "DeleteHomeRegionControlInput",
     members = {
         ControlId = {
             type = "string",
@@ -147,10 +158,12 @@ M.DeleteHomeRegionControlInput = {
 
 M.DeleteHomeRegionControlOutput = {
     type = "structure",
+    id = "DeleteHomeRegionControlOutput",
 }
 
 M.DescribeHomeRegionControlsInput = {
     type = "structure",
+    id = "DescribeHomeRegionControlsInput",
     members = {
         ControlId = {
             type = "string",
@@ -170,6 +183,7 @@ M.DescribeHomeRegionControlsInput = {
 
 M.DescribeHomeRegionControlsOutput = {
     type = "structure",
+    id = "DescribeHomeRegionControlsOutput",
     members = {
         HomeRegionControls = {
             type = "list",
@@ -183,10 +197,12 @@ M.DescribeHomeRegionControlsOutput = {
 
 M.GetHomeRegionInput = {
     type = "structure",
+    id = "GetHomeRegionInput",
 }
 
 M.GetHomeRegionOutput = {
     type = "structure",
+    id = "GetHomeRegionOutput",
     members = {
         HomeRegion = {
             type = "string",

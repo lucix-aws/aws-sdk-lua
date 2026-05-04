@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ActivateSubscriptionInput = {
     type = "structure",
+    id = "ActivateSubscriptionInput",
     members = {
         domainId = {
             type = "string",
@@ -38,6 +40,7 @@ M.SubscriptionStatus = {
 
 M.SubscriptionDescription = {
     type = "structure",
+    id = "SubscriptionDescription",
     members = {
         domainId = {
             type = "string",
@@ -86,6 +89,7 @@ M.SubscriptionDescription = {
 
 M.ActivateSubscriptionOutput = {
     type = "structure",
+    id = "ActivateSubscriptionOutput",
     members = {
         subscription = M.SubscriptionDescription,
     },
@@ -93,6 +97,7 @@ M.ActivateSubscriptionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -103,6 +108,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -113,6 +119,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -129,6 +136,7 @@ M.PostStreamArtifactGenerationStatus = {
 
 M.ArtifactDetails = {
     type = "structure",
+    id = "ArtifactDetails",
     members = {
         outputLocation = {
             type = "string",
@@ -144,6 +152,7 @@ M.ArtifactDetails = {
 
 M.ClinicalNoteGenerationResult = {
     type = "structure",
+    id = "ClinicalNoteGenerationResult",
     members = {
         noteResult = M.ArtifactDetails,
         transcriptResult = M.ArtifactDetails,
@@ -153,6 +162,7 @@ M.ClinicalNoteGenerationResult = {
 
 M.TemplateSectionInstruction = {
     type = "structure",
+    id = "TemplateSectionInstruction",
     members = {
         sectionHeader = {
             type = "string",
@@ -180,6 +190,7 @@ M.CustomTemplateBase = {
 
 M.CustomTemplate = {
     type = "structure",
+    id = "CustomTemplate",
     members = {
         templateType = {
             type = "string",
@@ -209,6 +220,7 @@ M.ManagedNoteTemplate = {
 
 M.ManagedTemplate = {
     type = "structure",
+    id = "ManagedTemplate",
     members = {
         templateType = {
             type = "string",
@@ -221,6 +233,7 @@ M.ManagedTemplate = {
 
 M.NoteTemplateSettings = {
     type = "union",
+    id = "NoteTemplateSettings",
     members = {
         managedTemplate = M.ManagedTemplate,
         customTemplate = M.CustomTemplate,
@@ -229,6 +242,7 @@ M.NoteTemplateSettings = {
 
 M.ClinicalNoteGenerationSettings = {
     type = "structure",
+    id = "ClinicalNoteGenerationSettings",
     members = {
         noteTemplateSettings = setmetatable({ traits = {
             required = true,
@@ -238,6 +252,7 @@ M.ClinicalNoteGenerationSettings = {
 
 M.CustomTemplateResponse = {
     type = "structure",
+    id = "CustomTemplateResponse",
     members = {
         templateType = {
             type = "string",
@@ -247,6 +262,7 @@ M.CustomTemplateResponse = {
 
 M.ManagedTemplateResponse = {
     type = "structure",
+    id = "ManagedTemplateResponse",
     members = {
         templateType = {
             type = "string",
@@ -256,6 +272,7 @@ M.ManagedTemplateResponse = {
 
 M.NoteTemplateSettingsResponse = {
     type = "union",
+    id = "NoteTemplateSettingsResponse",
     members = {
         managedTemplate = M.ManagedTemplateResponse,
         customTemplate = M.CustomTemplateResponse,
@@ -264,6 +281,7 @@ M.NoteTemplateSettingsResponse = {
 
 M.ClinicalNoteGenerationSettingsResponse = {
     type = "structure",
+    id = "ClinicalNoteGenerationSettingsResponse",
     members = {
         noteTemplateSettings = M.NoteTemplateSettingsResponse,
     },
@@ -271,6 +289,7 @@ M.ClinicalNoteGenerationSettingsResponse = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -281,6 +300,7 @@ M.ConflictException = {
 
 M.CreateWebAppConfiguration = {
     type = "structure",
+    id = "CreateWebAppConfiguration",
     members = {
         ehrRole = {
             type = "string",
@@ -305,6 +325,7 @@ M.CreateWebAppConfiguration = {
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         name = {
             type = "string",
@@ -331,6 +352,7 @@ M.EncryptionType = {
 
 M.EncryptionContext = {
     type = "structure",
+    id = "EncryptionContext",
     members = {
         encryptionType = {
             type = "string",
@@ -352,6 +374,7 @@ M.DomainStatus = {
 
 M.WebAppConfiguration = {
     type = "structure",
+    id = "WebAppConfiguration",
     members = {
         ehrRole = {
             type = "string",
@@ -376,6 +399,7 @@ M.WebAppConfiguration = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         domainId = {
             type = "string",
@@ -420,6 +444,7 @@ M.CreateDomainOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -430,6 +455,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateSubscriptionInput = {
     type = "structure",
+    id = "CreateSubscriptionInput",
     members = {
         domainId = {
             type = "string",
@@ -443,6 +469,7 @@ M.CreateSubscriptionInput = {
 
 M.CreateSubscriptionOutput = {
     type = "structure",
+    id = "CreateSubscriptionOutput",
     members = {
         domainId = {
             type = "string",
@@ -491,6 +518,7 @@ M.CreateSubscriptionOutput = {
 
 M.DeactivateSubscriptionInput = {
     type = "structure",
+    id = "DeactivateSubscriptionInput",
     members = {
         domainId = {
             type = "string",
@@ -511,6 +539,7 @@ M.DeactivateSubscriptionInput = {
 
 M.DeactivateSubscriptionOutput = {
     type = "structure",
+    id = "DeactivateSubscriptionOutput",
     members = {
         subscription = M.SubscriptionDescription,
     },
@@ -518,6 +547,7 @@ M.DeactivateSubscriptionOutput = {
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         domainId = {
             type = "string",
@@ -531,6 +561,7 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
     members = {
         domainId = {
             type = "string",
@@ -555,6 +586,7 @@ M.DeleteDomainOutput = {
 
 M.GetDomainInput = {
     type = "structure",
+    id = "GetDomainInput",
     members = {
         domainId = {
             type = "string",
@@ -568,6 +600,7 @@ M.GetDomainInput = {
 
 M.GetDomainOutput = {
     type = "structure",
+    id = "GetDomainOutput",
     members = {
         domainId = {
             type = "string",
@@ -617,6 +650,7 @@ M.GetDomainOutput = {
 
 M.GetMedicalScribeListeningSessionInput = {
     type = "structure",
+    id = "GetMedicalScribeListeningSessionInput",
     members = {
         sessionId = {
             type = "string",
@@ -649,6 +683,7 @@ M.MedicalScribeParticipantRole = {
 
 M.MedicalScribeChannelDefinition = {
     type = "structure",
+    id = "MedicalScribeChannelDefinition",
     members = {
         channelId = {
             type = "integer",
@@ -676,6 +711,7 @@ M.MedicalScribeMediaEncoding = {
 
 M.MedicalScribePostStreamActionsResult = {
     type = "structure",
+    id = "MedicalScribePostStreamActionsResult",
     members = {
         clinicalNoteGenerationResult = M.ClinicalNoteGenerationResult,
     },
@@ -683,6 +719,7 @@ M.MedicalScribePostStreamActionsResult = {
 
 M.MedicalScribePostStreamActionSettingsResponse = {
     type = "structure",
+    id = "MedicalScribePostStreamActionSettingsResponse",
     members = {
         outputS3Uri = {
             type = "string",
@@ -705,6 +742,7 @@ M.MedicalScribeStreamStatus = {
 
 M.MedicalScribeListeningSessionDetails = {
     type = "structure",
+    id = "MedicalScribeListeningSessionDetails",
     members = {
         sessionId = {
             type = "string",
@@ -747,6 +785,7 @@ M.MedicalScribeListeningSessionDetails = {
 
 M.GetMedicalScribeListeningSessionOutput = {
     type = "structure",
+    id = "GetMedicalScribeListeningSessionOutput",
     members = {
         medicalScribeListeningSessionDetails = M.MedicalScribeListeningSessionDetails,
     },
@@ -754,6 +793,7 @@ M.GetMedicalScribeListeningSessionOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -764,6 +804,7 @@ M.ThrottlingException = {
 
 M.GetPatientInsightsJobInput = {
     type = "structure",
+    id = "GetPatientInsightsJobInput",
     members = {
         domainId = {
             type = "string",
@@ -784,6 +825,7 @@ M.GetPatientInsightsJobInput = {
 
 M.PatientInsightsEncounterContext = {
     type = "structure",
+    id = "PatientInsightsEncounterContext",
     members = {
         encounterReason = {
             type = "string",
@@ -796,6 +838,7 @@ M.PatientInsightsEncounterContext = {
 
 M.FHIRServer = {
     type = "structure",
+    id = "FHIRServer",
     members = {
         fhirEndpoint = {
             type = "string",
@@ -811,6 +854,7 @@ M.FHIRServer = {
 
 M.S3Source = {
     type = "structure",
+    id = "S3Source",
     members = {
         uri = {
             type = "string",
@@ -823,6 +867,7 @@ M.S3Source = {
 
 M.InputDataConfig = {
     type = "structure",
+    id = "InputDataConfig",
     members = {
         fhirServer = M.FHIRServer,
         s3Sources = {
@@ -838,6 +883,7 @@ M.InsightsType = {
 
 M.InsightsContext = {
     type = "structure",
+    id = "InsightsContext",
     members = {
         insightsType = {
             type = "string",
@@ -850,6 +896,7 @@ M.InsightsContext = {
 
 M.InsightsOutput = {
     type = "structure",
+    id = "InsightsOutput",
     members = {
         uri = {
             type = "string",
@@ -869,6 +916,7 @@ M.JobStatus = {
 
 M.OutputDataConfig = {
     type = "structure",
+    id = "OutputDataConfig",
     members = {
         s3OutputPath = {
             type = "string",
@@ -887,6 +935,7 @@ M.Pronouns = {
 
 M.PatientInsightsPatientContext = {
     type = "structure",
+    id = "PatientInsightsPatientContext",
     members = {
         patientId = {
             type = "string",
@@ -913,6 +962,7 @@ M.Specialty = {
 
 M.UserContext = {
     type = "structure",
+    id = "UserContext",
     members = {
         role = {
             type = "string",
@@ -934,6 +984,7 @@ M.UserContext = {
 
 M.GetPatientInsightsJobOutput = {
     type = "structure",
+    id = "GetPatientInsightsJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -992,6 +1043,7 @@ M.GetPatientInsightsJobOutput = {
 
 M.GetSubscriptionInput = {
     type = "structure",
+    id = "GetSubscriptionInput",
     members = {
         domainId = {
             type = "string",
@@ -1012,6 +1064,7 @@ M.GetSubscriptionInput = {
 
 M.GetSubscriptionOutput = {
     type = "structure",
+    id = "GetSubscriptionOutput",
     members = {
         subscription = M.SubscriptionDescription,
     },
@@ -1019,6 +1072,7 @@ M.GetSubscriptionOutput = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         status = {
             type = "string",
@@ -1043,6 +1097,7 @@ M.ListDomainsInput = {
 
 M.DomainSummary = {
     type = "structure",
+    id = "DomainSummary",
     members = {
         domainId = {
             type = "string",
@@ -1079,6 +1134,7 @@ M.DomainSummary = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         domains = {
             type = "list",
@@ -1095,6 +1151,7 @@ M.ListDomainsOutput = {
 
 M.ListSubscriptionsInput = {
     type = "structure",
+    id = "ListSubscriptionsInput",
     members = {
         domainId = {
             type = "string",
@@ -1120,6 +1177,7 @@ M.ListSubscriptionsInput = {
 
 M.ListSubscriptionsOutput = {
     type = "structure",
+    id = "ListSubscriptionsOutput",
     members = {
         subscriptions = {
             type = "list",
@@ -1136,6 +1194,7 @@ M.ListSubscriptionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1149,6 +1208,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1160,6 +1220,7 @@ M.ListTagsForResourceOutput = {
 
 M.MedicalScribeAudioEvent = {
     type = "structure",
+    id = "MedicalScribeAudioEvent",
     members = {
         audioChunk = {
             type = "blob",
@@ -1172,6 +1233,7 @@ M.MedicalScribeAudioEvent = {
 
 M.EncounterContext = {
     type = "structure",
+    id = "EncounterContext",
     members = {
         unstructuredContext = {
             type = "string",
@@ -1181,6 +1243,7 @@ M.EncounterContext = {
 
 M.MedicalScribePostStreamActionSettings = {
     type = "structure",
+    id = "MedicalScribePostStreamActionSettings",
     members = {
         outputS3Uri = {
             type = "string",
@@ -1196,6 +1259,7 @@ M.MedicalScribePostStreamActionSettings = {
 
 M.MedicalScribeConfigurationEvent = {
     type = "structure",
+    id = "MedicalScribeConfigurationEvent",
     members = {
         postStreamActionSettings = setmetatable({ traits = {
             required = true,
@@ -1214,6 +1278,7 @@ M.MedicalScribeSessionControlEventType = {
 
 M.MedicalScribeSessionControlEvent = {
     type = "structure",
+    id = "MedicalScribeSessionControlEvent",
     members = {
         type = {
             type = "string",
@@ -1223,6 +1288,7 @@ M.MedicalScribeSessionControlEvent = {
 
 M.MedicalScribeInputStream = {
     type = "union",
+    id = "MedicalScribeInputStream",
     members = {
         audioEvent = M.MedicalScribeAudioEvent,
         sessionControlEvent = M.MedicalScribeSessionControlEvent,
@@ -1232,6 +1298,7 @@ M.MedicalScribeInputStream = {
 
 M.StartMedicalScribeListeningSessionInput = {
     type = "structure",
+    id = "StartMedicalScribeListeningSessionInput",
     members = {
         sessionId = {
             type = "string",
@@ -1283,6 +1350,7 @@ M.StartMedicalScribeListeningSessionInput = {
 
 M.MedicalScribeTranscriptSegment = {
     type = "structure",
+    id = "MedicalScribeTranscriptSegment",
     members = {
         segmentId = {
             type = "string",
@@ -1307,6 +1375,7 @@ M.MedicalScribeTranscriptSegment = {
 
 M.MedicalScribeTranscriptEvent = {
     type = "structure",
+    id = "MedicalScribeTranscriptEvent",
     members = {
         transcriptSegment = M.MedicalScribeTranscriptSegment,
     },
@@ -1314,6 +1383,7 @@ M.MedicalScribeTranscriptEvent = {
 
 M.MedicalScribeOutputStream = {
     type = "union",
+    id = "MedicalScribeOutputStream",
     members = {
         transcriptEvent = M.MedicalScribeTranscriptEvent,
         internalFailureException = M.InternalServerException,
@@ -1323,6 +1393,7 @@ M.MedicalScribeOutputStream = {
 
 M.StartMedicalScribeListeningSessionOutput = {
     type = "structure",
+    id = "StartMedicalScribeListeningSessionOutput",
     members = {
         sessionId = {
             type = "string",
@@ -1374,6 +1445,7 @@ M.StartMedicalScribeListeningSessionOutput = {
 
 M.StartPatientInsightsJobInput = {
     type = "structure",
+    id = "StartPatientInsightsJobInput",
     members = {
         domainId = {
             type = "string",
@@ -1411,6 +1483,7 @@ M.StartPatientInsightsJobInput = {
 
 M.StartPatientInsightsJobOutput = {
     type = "structure",
+    id = "StartPatientInsightsJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -1435,6 +1508,7 @@ M.StartPatientInsightsJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1456,10 +1530,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1481,6 +1557,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

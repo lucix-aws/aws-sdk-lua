@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AddTagsToStreamInput = {
     type = "structure",
+    id = "AddTagsToStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -35,10 +37,12 @@ M.AddTagsToStreamInput = {
 
 M.AddTagsToStreamOutput = {
     type = "structure",
+    id = "AddTagsToStreamOutput",
 }
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         message = {
@@ -49,6 +53,7 @@ M.InvalidArgumentException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -59,6 +64,7 @@ M.LimitExceededException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -69,6 +75,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -79,6 +86,7 @@ M.ResourceNotFoundException = {
 
 M.HashKeyRange = {
     type = "structure",
+    id = "HashKeyRange",
     members = {
         StartingHashKey = {
             type = "string",
@@ -97,6 +105,7 @@ M.HashKeyRange = {
 
 M.ChildShard = {
     type = "structure",
+    id = "ChildShard",
     members = {
         ShardId = {
             type = "string",
@@ -125,6 +134,7 @@ M.ConsumerStatus = {
 
 M.Consumer = {
     type = "structure",
+    id = "Consumer",
     members = {
         ConsumerName = {
             type = "string",
@@ -155,6 +165,7 @@ M.Consumer = {
 
 M.ConsumerDescription = {
     type = "structure",
+    id = "ConsumerDescription",
     members = {
         ConsumerName = {
             type = "string",
@@ -196,6 +207,7 @@ M.StreamMode = {
 
 M.StreamModeDetails = {
     type = "structure",
+    id = "StreamModeDetails",
     members = {
         StreamMode = {
             type = "string",
@@ -208,6 +220,7 @@ M.StreamModeDetails = {
 
 M.CreateStreamInput = {
     type = "structure",
+    id = "CreateStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -235,10 +248,12 @@ M.CreateStreamInput = {
 
 M.CreateStreamOutput = {
     type = "structure",
+    id = "CreateStreamOutput",
 }
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -249,6 +264,7 @@ M.ValidationException = {
 
 M.DecreaseStreamRetentionPeriodInput = {
     type = "structure",
+    id = "DecreaseStreamRetentionPeriodInput",
     members = {
         StreamName = {
             type = "string",
@@ -270,10 +286,12 @@ M.DecreaseStreamRetentionPeriodInput = {
 
 M.DecreaseStreamRetentionPeriodOutput = {
     type = "structure",
+    id = "DecreaseStreamRetentionPeriodOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -289,10 +307,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteStreamInput = {
     type = "structure",
+    id = "DeleteStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -311,10 +331,12 @@ M.DeleteStreamInput = {
 
 M.DeleteStreamOutput = {
     type = "structure",
+    id = "DeleteStreamOutput",
 }
 
 M.DeregisterStreamConsumerInput = {
     type = "structure",
+    id = "DeregisterStreamConsumerInput",
     members = {
         StreamARN = {
             type = "string",
@@ -333,10 +355,12 @@ M.DeregisterStreamConsumerInput = {
 
 M.DeregisterStreamConsumerOutput = {
     type = "structure",
+    id = "DeregisterStreamConsumerOutput",
 }
 
 M.DescribeAccountSettingsInput = {
     type = "structure",
+    id = "DescribeAccountSettingsInput",
 }
 
 M.MinimumThroughputBillingCommitmentOutputStatus = {
@@ -347,6 +371,7 @@ M.MinimumThroughputBillingCommitmentOutputStatus = {
 
 M.MinimumThroughputBillingCommitmentOutput = {
     type = "structure",
+    id = "MinimumThroughputBillingCommitmentOutput",
     members = {
         Status = {
             type = "string",
@@ -368,6 +393,7 @@ M.MinimumThroughputBillingCommitmentOutput = {
 
 M.DescribeAccountSettingsOutput = {
     type = "structure",
+    id = "DescribeAccountSettingsOutput",
     members = {
         MinimumThroughputBillingCommitment = M.MinimumThroughputBillingCommitmentOutput,
     },
@@ -375,10 +401,12 @@ M.DescribeAccountSettingsOutput = {
 
 M.DescribeLimitsInput = {
     type = "structure",
+    id = "DescribeLimitsInput",
 }
 
 M.DescribeLimitsOutput = {
     type = "structure",
+    id = "DescribeLimitsOutput",
     members = {
         ShardLimit = {
             type = "integer",
@@ -409,6 +437,7 @@ M.DescribeLimitsOutput = {
 
 M.DescribeStreamInput = {
     type = "structure",
+    id = "DescribeStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -446,6 +475,7 @@ M.MetricsName = {
 
 M.EnhancedMetrics = {
     type = "structure",
+    id = "EnhancedMetrics",
     members = {
         ShardLevelMetrics = {
             type = "list",
@@ -456,6 +486,7 @@ M.EnhancedMetrics = {
 
 M.SequenceNumberRange = {
     type = "structure",
+    id = "SequenceNumberRange",
     members = {
         StartingSequenceNumber = {
             type = "string",
@@ -471,6 +502,7 @@ M.SequenceNumberRange = {
 
 M.Shard = {
     type = "structure",
+    id = "Shard",
     members = {
         ShardId = {
             type = "string",
@@ -502,6 +534,7 @@ M.StreamStatus = {
 
 M.StreamDescription = {
     type = "structure",
+    id = "StreamDescription",
     members = {
         StreamName = {
             type = "string",
@@ -565,6 +598,7 @@ M.StreamDescription = {
 
 M.DescribeStreamOutput = {
     type = "structure",
+    id = "DescribeStreamOutput",
     members = {
         StreamDescription = setmetatable({ traits = {
             required = true,
@@ -574,6 +608,7 @@ M.DescribeStreamOutput = {
 
 M.DescribeStreamConsumerInput = {
     type = "structure",
+    id = "DescribeStreamConsumerInput",
     members = {
         StreamARN = {
             type = "string",
@@ -592,6 +627,7 @@ M.DescribeStreamConsumerInput = {
 
 M.DescribeStreamConsumerOutput = {
     type = "structure",
+    id = "DescribeStreamConsumerOutput",
     members = {
         ConsumerDescription = setmetatable({ traits = {
             required = true,
@@ -601,6 +637,7 @@ M.DescribeStreamConsumerOutput = {
 
 M.DescribeStreamSummaryInput = {
     type = "structure",
+    id = "DescribeStreamSummaryInput",
     members = {
         StreamName = {
             type = "string",
@@ -616,6 +653,7 @@ M.DescribeStreamSummaryInput = {
 
 M.WarmThroughputObject = {
     type = "structure",
+    id = "WarmThroughputObject",
     members = {
         TargetMiBps = {
             type = "integer",
@@ -628,6 +666,7 @@ M.WarmThroughputObject = {
 
 M.StreamDescriptionSummary = {
     type = "structure",
+    id = "StreamDescriptionSummary",
     members = {
         StreamName = {
             type = "string",
@@ -694,6 +733,7 @@ M.StreamDescriptionSummary = {
 
 M.DescribeStreamSummaryOutput = {
     type = "structure",
+    id = "DescribeStreamSummaryOutput",
     members = {
         StreamDescriptionSummary = setmetatable({ traits = {
             required = true,
@@ -703,6 +743,7 @@ M.DescribeStreamSummaryOutput = {
 
 M.DisableEnhancedMonitoringInput = {
     type = "structure",
+    id = "DisableEnhancedMonitoringInput",
     members = {
         StreamName = {
             type = "string",
@@ -725,6 +766,7 @@ M.DisableEnhancedMonitoringInput = {
 
 M.DisableEnhancedMonitoringOutput = {
     type = "structure",
+    id = "DisableEnhancedMonitoringOutput",
     members = {
         StreamName = {
             type = "string",
@@ -745,6 +787,7 @@ M.DisableEnhancedMonitoringOutput = {
 
 M.EnableEnhancedMonitoringInput = {
     type = "structure",
+    id = "EnableEnhancedMonitoringInput",
     members = {
         StreamName = {
             type = "string",
@@ -767,6 +810,7 @@ M.EnableEnhancedMonitoringInput = {
 
 M.EnableEnhancedMonitoringOutput = {
     type = "structure",
+    id = "EnableEnhancedMonitoringOutput",
     members = {
         StreamName = {
             type = "string",
@@ -787,6 +831,7 @@ M.EnableEnhancedMonitoringOutput = {
 
 M.ExpiredIteratorException = {
     type = "structure",
+    id = "ExpiredIteratorException",
     error = "client",
     members = {
         message = {
@@ -797,6 +842,7 @@ M.ExpiredIteratorException = {
 
 M.ExpiredNextTokenException = {
     type = "structure",
+    id = "ExpiredNextTokenException",
     error = "client",
     members = {
         message = {
@@ -807,6 +853,7 @@ M.ExpiredNextTokenException = {
 
 M.GetRecordsInput = {
     type = "structure",
+    id = "GetRecordsInput",
     members = {
         ShardIterator = {
             type = "string",
@@ -828,6 +875,7 @@ M.GetRecordsInput = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         SequenceNumber = {
             type = "string",
@@ -858,6 +906,7 @@ M.Record = {
 
 M.GetRecordsOutput = {
     type = "structure",
+    id = "GetRecordsOutput",
     members = {
         Records = {
             type = "list",
@@ -881,6 +930,7 @@ M.GetRecordsOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -891,6 +941,7 @@ M.InternalFailureException = {
 
 M.KMSAccessDeniedException = {
     type = "structure",
+    id = "KMSAccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -901,6 +952,7 @@ M.KMSAccessDeniedException = {
 
 M.KMSDisabledException = {
     type = "structure",
+    id = "KMSDisabledException",
     error = "client",
     members = {
         message = {
@@ -911,6 +963,7 @@ M.KMSDisabledException = {
 
 M.KMSInvalidStateException = {
     type = "structure",
+    id = "KMSInvalidStateException",
     error = "client",
     members = {
         message = {
@@ -921,6 +974,7 @@ M.KMSInvalidStateException = {
 
 M.KMSNotFoundException = {
     type = "structure",
+    id = "KMSNotFoundException",
     error = "client",
     members = {
         message = {
@@ -931,6 +985,7 @@ M.KMSNotFoundException = {
 
 M.KMSOptInRequired = {
     type = "structure",
+    id = "KMSOptInRequired",
     error = "client",
     members = {
         message = {
@@ -941,6 +996,7 @@ M.KMSOptInRequired = {
 
 M.KMSThrottlingException = {
     type = "structure",
+    id = "KMSThrottlingException",
     error = "client",
     members = {
         message = {
@@ -951,6 +1007,7 @@ M.KMSThrottlingException = {
 
 M.ProvisionedThroughputExceededException = {
     type = "structure",
+    id = "ProvisionedThroughputExceededException",
     error = "client",
     members = {
         message = {
@@ -961,6 +1018,7 @@ M.ProvisionedThroughputExceededException = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -976,6 +1034,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -996,6 +1055,7 @@ M.ShardIteratorType = {
 
 M.GetShardIteratorInput = {
     type = "structure",
+    id = "GetShardIteratorInput",
     members = {
         StreamName = {
             type = "string",
@@ -1029,6 +1089,7 @@ M.GetShardIteratorInput = {
 
 M.GetShardIteratorOutput = {
     type = "structure",
+    id = "GetShardIteratorOutput",
     members = {
         ShardIterator = {
             type = "string",
@@ -1038,6 +1099,7 @@ M.GetShardIteratorOutput = {
 
 M.IncreaseStreamRetentionPeriodInput = {
     type = "structure",
+    id = "IncreaseStreamRetentionPeriodInput",
     members = {
         StreamName = {
             type = "string",
@@ -1059,6 +1121,7 @@ M.IncreaseStreamRetentionPeriodInput = {
 
 M.IncreaseStreamRetentionPeriodOutput = {
     type = "structure",
+    id = "IncreaseStreamRetentionPeriodOutput",
 }
 
 M.ShardFilterType = {
@@ -1072,6 +1135,7 @@ M.ShardFilterType = {
 
 M.ShardFilter = {
     type = "structure",
+    id = "ShardFilter",
     members = {
         Type = {
             type = "string",
@@ -1090,6 +1154,7 @@ M.ShardFilter = {
 
 M.ListShardsInput = {
     type = "structure",
+    id = "ListShardsInput",
     members = {
         StreamName = {
             type = "string",
@@ -1118,6 +1183,7 @@ M.ListShardsInput = {
 
 M.ListShardsOutput = {
     type = "structure",
+    id = "ListShardsOutput",
     members = {
         Shards = {
             type = "list",
@@ -1131,6 +1197,7 @@ M.ListShardsOutput = {
 
 M.ListStreamConsumersInput = {
     type = "structure",
+    id = "ListStreamConsumersInput",
     members = {
         StreamARN = {
             type = "string",
@@ -1155,6 +1222,7 @@ M.ListStreamConsumersInput = {
 
 M.ListStreamConsumersOutput = {
     type = "structure",
+    id = "ListStreamConsumersOutput",
     members = {
         Consumers = {
             type = "list",
@@ -1168,6 +1236,7 @@ M.ListStreamConsumersOutput = {
 
 M.ListStreamsInput = {
     type = "structure",
+    id = "ListStreamsInput",
     members = {
         Limit = {
             type = "integer",
@@ -1183,6 +1252,7 @@ M.ListStreamsInput = {
 
 M.StreamSummary = {
     type = "structure",
+    id = "StreamSummary",
     members = {
         StreamName = {
             type = "string",
@@ -1211,6 +1281,7 @@ M.StreamSummary = {
 
 M.ListStreamsOutput = {
     type = "structure",
+    id = "ListStreamsOutput",
     members = {
         StreamNames = {
             type = "list",
@@ -1237,6 +1308,7 @@ M.ListStreamsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1252,6 +1324,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1267,6 +1340,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1277,6 +1351,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTagsForStreamInput = {
     type = "structure",
+    id = "ListTagsForStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -1298,6 +1373,7 @@ M.ListTagsForStreamInput = {
 
 M.ListTagsForStreamOutput = {
     type = "structure",
+    id = "ListTagsForStreamOutput",
     members = {
         Tags = {
             type = "list",
@@ -1317,6 +1393,7 @@ M.ListTagsForStreamOutput = {
 
 M.MergeShardsInput = {
     type = "structure",
+    id = "MergeShardsInput",
     members = {
         StreamName = {
             type = "string",
@@ -1344,10 +1421,12 @@ M.MergeShardsInput = {
 
 M.MergeShardsOutput = {
     type = "structure",
+    id = "MergeShardsOutput",
 }
 
 M.PutRecordInput = {
     type = "structure",
+    id = "PutRecordInput",
     members = {
         StreamName = {
             type = "string",
@@ -1381,6 +1460,7 @@ M.PutRecordInput = {
 
 M.PutRecordOutput = {
     type = "structure",
+    id = "PutRecordOutput",
     members = {
         ShardId = {
             type = "string",
@@ -1402,6 +1482,7 @@ M.PutRecordOutput = {
 
 M.PutRecordsRequestEntry = {
     type = "structure",
+    id = "PutRecordsRequestEntry",
     members = {
         Data = {
             type = "blob",
@@ -1423,6 +1504,7 @@ M.PutRecordsRequestEntry = {
 
 M.PutRecordsInput = {
     type = "structure",
+    id = "PutRecordsInput",
     members = {
         Records = {
             type = "list",
@@ -1445,6 +1527,7 @@ M.PutRecordsInput = {
 
 M.PutRecordsResultEntry = {
     type = "structure",
+    id = "PutRecordsResultEntry",
     members = {
         SequenceNumber = {
             type = "string",
@@ -1463,6 +1546,7 @@ M.PutRecordsResultEntry = {
 
 M.PutRecordsOutput = {
     type = "structure",
+    id = "PutRecordsOutput",
     members = {
         FailedRecordCount = {
             type = "integer",
@@ -1482,6 +1566,7 @@ M.PutRecordsOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1503,10 +1588,12 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
 }
 
 M.RegisterStreamConsumerInput = {
     type = "structure",
+    id = "RegisterStreamConsumerInput",
     members = {
         StreamARN = {
             type = "string",
@@ -1533,6 +1620,7 @@ M.RegisterStreamConsumerInput = {
 
 M.RegisterStreamConsumerOutput = {
     type = "structure",
+    id = "RegisterStreamConsumerOutput",
     members = {
         Consumer = setmetatable({ traits = {
             required = true,
@@ -1542,6 +1630,7 @@ M.RegisterStreamConsumerOutput = {
 
 M.RemoveTagsFromStreamInput = {
     type = "structure",
+    id = "RemoveTagsFromStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -1564,10 +1653,12 @@ M.RemoveTagsFromStreamInput = {
 
 M.RemoveTagsFromStreamOutput = {
     type = "structure",
+    id = "RemoveTagsFromStreamOutput",
 }
 
 M.SplitShardInput = {
     type = "structure",
+    id = "SplitShardInput",
     members = {
         StreamName = {
             type = "string",
@@ -1595,10 +1686,12 @@ M.SplitShardInput = {
 
 M.SplitShardOutput = {
     type = "structure",
+    id = "SplitShardOutput",
 }
 
 M.StartStreamEncryptionInput = {
     type = "structure",
+    id = "StartStreamEncryptionInput",
     members = {
         StreamName = {
             type = "string",
@@ -1626,10 +1719,12 @@ M.StartStreamEncryptionInput = {
 
 M.StartStreamEncryptionOutput = {
     type = "structure",
+    id = "StartStreamEncryptionOutput",
 }
 
 M.StopStreamEncryptionInput = {
     type = "structure",
+    id = "StopStreamEncryptionInput",
     members = {
         StreamName = {
             type = "string",
@@ -1657,10 +1752,12 @@ M.StopStreamEncryptionInput = {
 
 M.StopStreamEncryptionOutput = {
     type = "structure",
+    id = "StopStreamEncryptionOutput",
 }
 
 M.StartingPosition = {
     type = "structure",
+    id = "StartingPosition",
     members = {
         Type = {
             type = "string",
@@ -1679,6 +1776,7 @@ M.StartingPosition = {
 
 M.SubscribeToShardInput = {
     type = "structure",
+    id = "SubscribeToShardInput",
     members = {
         ConsumerARN = {
             type = "string",
@@ -1703,6 +1801,7 @@ M.SubscribeToShardInput = {
 
 M.SubscribeToShardEvent = {
     type = "structure",
+    id = "SubscribeToShardEvent",
     members = {
         Records = {
             type = "list",
@@ -1732,6 +1831,7 @@ M.SubscribeToShardEvent = {
 
 M.SubscribeToShardEventStream = {
     type = "union",
+    id = "SubscribeToShardEventStream",
     members = {
         SubscribeToShardEvent = M.SubscribeToShardEvent,
         ResourceNotFoundException = M.ResourceNotFoundException,
@@ -1748,6 +1848,7 @@ M.SubscribeToShardEventStream = {
 
 M.SubscribeToShardOutput = {
     type = "structure",
+    id = "SubscribeToShardOutput",
     members = {
         EventStream = setmetatable({ traits = {
             required = true,
@@ -1757,6 +1858,7 @@ M.SubscribeToShardOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         Tags = {
             type = "map",
@@ -1780,10 +1882,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         TagKeys = {
             type = "list",
@@ -1806,6 +1910,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.MinimumThroughputBillingCommitmentInputStatus = {
@@ -1815,6 +1920,7 @@ M.MinimumThroughputBillingCommitmentInputStatus = {
 
 M.MinimumThroughputBillingCommitmentInput = {
     type = "structure",
+    id = "MinimumThroughputBillingCommitmentInput",
     members = {
         Status = {
             type = "string",
@@ -1827,6 +1933,7 @@ M.MinimumThroughputBillingCommitmentInput = {
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         MinimumThroughputBillingCommitment = setmetatable({ traits = {
             required = true,
@@ -1836,6 +1943,7 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
     members = {
         MinimumThroughputBillingCommitment = M.MinimumThroughputBillingCommitmentOutput,
     },
@@ -1843,6 +1951,7 @@ M.UpdateAccountSettingsOutput = {
 
 M.UpdateMaxRecordSizeInput = {
     type = "structure",
+    id = "UpdateMaxRecordSizeInput",
     members = {
         StreamARN = {
             type = "string",
@@ -1861,6 +1970,7 @@ M.UpdateMaxRecordSizeInput = {
 
 M.UpdateMaxRecordSizeOutput = {
     type = "structure",
+    id = "UpdateMaxRecordSizeOutput",
 }
 
 M.ScalingType = {
@@ -1869,6 +1979,7 @@ M.ScalingType = {
 
 M.UpdateShardCountInput = {
     type = "structure",
+    id = "UpdateShardCountInput",
     members = {
         StreamName = {
             type = "string",
@@ -1896,6 +2007,7 @@ M.UpdateShardCountInput = {
 
 M.UpdateShardCountOutput = {
     type = "structure",
+    id = "UpdateShardCountOutput",
     members = {
         StreamName = {
             type = "string",
@@ -1914,6 +2026,7 @@ M.UpdateShardCountOutput = {
 
 M.UpdateStreamModeInput = {
     type = "structure",
+    id = "UpdateStreamModeInput",
     members = {
         StreamARN = {
             type = "string",
@@ -1935,10 +2048,12 @@ M.UpdateStreamModeInput = {
 
 M.UpdateStreamModeOutput = {
     type = "structure",
+    id = "UpdateStreamModeOutput",
 }
 
 M.UpdateStreamWarmThroughputInput = {
     type = "structure",
+    id = "UpdateStreamWarmThroughputInput",
     members = {
         StreamARN = {
             type = "string",
@@ -1960,6 +2075,7 @@ M.UpdateStreamWarmThroughputInput = {
 
 M.UpdateStreamWarmThroughputOutput = {
     type = "structure",
+    id = "UpdateStreamWarmThroughputOutput",
     members = {
         StreamARN = {
             type = "string",

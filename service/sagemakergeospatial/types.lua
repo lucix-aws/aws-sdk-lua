@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -53,6 +54,7 @@ M.AlgorithmNameResampling = {
 
 M.MultiPolygonGeometryInput = {
     type = "structure",
+    id = "MultiPolygonGeometryInput",
     members = {
         Coordinates = {
             type = "list",
@@ -66,6 +68,7 @@ M.MultiPolygonGeometryInput = {
 
 M.PolygonGeometryInput = {
     type = "structure",
+    id = "PolygonGeometryInput",
     members = {
         Coordinates = {
             type = "list",
@@ -79,6 +82,7 @@ M.PolygonGeometryInput = {
 
 M.AreaOfInterestGeometry = {
     type = "union",
+    id = "AreaOfInterestGeometry",
     members = {
         PolygonGeometry = M.PolygonGeometryInput,
         MultiPolygonGeometry = M.MultiPolygonGeometryInput,
@@ -87,6 +91,7 @@ M.AreaOfInterestGeometry = {
 
 M.AreaOfInterest = {
     type = "union",
+    id = "AreaOfInterest",
     members = {
         AreaOfInterestGeometry = M.AreaOfInterestGeometry,
     },
@@ -94,6 +99,7 @@ M.AreaOfInterest = {
 
 M.AssetValue = {
     type = "structure",
+    id = "AssetValue",
     members = {
         Href = {
             type = "string",
@@ -111,6 +117,7 @@ M.OutputType = {
 
 M.Operation = {
     type = "structure",
+    id = "Operation",
     members = {
         Name = {
             type = "string",
@@ -132,6 +139,7 @@ M.Operation = {
 
 M.CustomIndicesInput = {
     type = "structure",
+    id = "CustomIndicesInput",
     members = {
         Operations = {
             type = "list",
@@ -142,6 +150,7 @@ M.CustomIndicesInput = {
 
 M.BandMathConfigInput = {
     type = "structure",
+    id = "BandMathConfigInput",
     members = {
         PredefinedIndices = {
             type = "list",
@@ -153,10 +162,12 @@ M.BandMathConfigInput = {
 
 M.CloudMaskingConfigInput = {
     type = "structure",
+    id = "CloudMaskingConfigInput",
 }
 
 M.CloudRemovalConfigInput = {
     type = "structure",
+    id = "CloudRemovalConfigInput",
     members = {
         AlgorithmName = {
             type = "string",
@@ -179,6 +190,7 @@ M.ComparisonOperator = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -195,6 +207,7 @@ M.ConflictException = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -225,6 +238,7 @@ M.DataCollectionType = {
 
 M.RasterDataCollectionMetadata = {
     type = "structure",
+    id = "RasterDataCollectionMetadata",
     members = {
         Name = {
             type = "string",
@@ -270,6 +284,7 @@ M.RasterDataCollectionMetadata = {
 
 M.DeleteEarthObservationJobInput = {
     type = "structure",
+    id = "DeleteEarthObservationJobInput",
     members = {
         Arn = {
             type = "string",
@@ -283,10 +298,12 @@ M.DeleteEarthObservationJobInput = {
 
 M.DeleteEarthObservationJobOutput = {
     type = "structure",
+    id = "DeleteEarthObservationJobOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -303,6 +320,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -319,6 +337,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -335,6 +354,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -351,6 +371,7 @@ M.ValidationException = {
 
 M.DeleteVectorEnrichmentJobInput = {
     type = "structure",
+    id = "DeleteVectorEnrichmentJobInput",
     members = {
         Arn = {
             type = "string",
@@ -364,10 +385,12 @@ M.DeleteVectorEnrichmentJobInput = {
 
 M.DeleteVectorEnrichmentJobOutput = {
     type = "structure",
+    id = "DeleteVectorEnrichmentJobOutput",
 }
 
 M.ExportS3DataInput = {
     type = "structure",
+    id = "ExportS3DataInput",
     members = {
         S3Uri = {
             type = "string",
@@ -383,6 +406,7 @@ M.ExportS3DataInput = {
 
 M.OutputConfigInput = {
     type = "structure",
+    id = "OutputConfigInput",
     members = {
         S3Data = setmetatable({ traits = {
             required = true,
@@ -392,6 +416,7 @@ M.OutputConfigInput = {
 
 M.ExportEarthObservationJobInput = {
     type = "structure",
+    id = "ExportEarthObservationJobInput",
     members = {
         Arn = {
             type = "string",
@@ -428,6 +453,7 @@ M.EarthObservationJobExportStatus = {
 
 M.ExportEarthObservationJobOutput = {
     type = "structure",
+    id = "ExportEarthObservationJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -465,6 +491,7 @@ M.ExportEarthObservationJobOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -481,6 +508,7 @@ M.ServiceQuotaExceededException = {
 
 M.GetEarthObservationJobInput = {
     type = "structure",
+    id = "GetEarthObservationJobInput",
     members = {
         Arn = {
             type = "string",
@@ -499,6 +527,7 @@ M.EarthObservationJobErrorType = {
 
 M.EarthObservationJobErrorDetails = {
     type = "structure",
+    id = "EarthObservationJobErrorDetails",
     members = {
         Type = {
             type = "string",
@@ -516,6 +545,7 @@ M.ExportErrorType = {
 
 M.ExportErrorDetailsOutput = {
     type = "structure",
+    id = "ExportErrorDetailsOutput",
     members = {
         Type = {
             type = "string",
@@ -528,6 +558,7 @@ M.ExportErrorDetailsOutput = {
 
 M.ExportErrorDetails = {
     type = "structure",
+    id = "ExportErrorDetails",
     members = {
         ExportResults = M.ExportErrorDetailsOutput,
         ExportSourceImages = M.ExportErrorDetailsOutput,
@@ -540,6 +571,7 @@ M.LogicalOperator = {
 
 M.EoCloudCoverInput = {
     type = "structure",
+    id = "EoCloudCoverInput",
     members = {
         LowerBound = {
             type = "float",
@@ -558,6 +590,7 @@ M.EoCloudCoverInput = {
 
 M.LandsatCloudCoverLandInput = {
     type = "structure",
+    id = "LandsatCloudCoverLandInput",
     members = {
         LowerBound = {
             type = "float",
@@ -576,6 +609,7 @@ M.LandsatCloudCoverLandInput = {
 
 M.PlatformInput = {
     type = "structure",
+    id = "PlatformInput",
     members = {
         Value = {
             type = "string",
@@ -591,6 +625,7 @@ M.PlatformInput = {
 
 M.ViewOffNadirInput = {
     type = "structure",
+    id = "ViewOffNadirInput",
     members = {
         LowerBound = {
             type = "float",
@@ -609,6 +644,7 @@ M.ViewOffNadirInput = {
 
 M.ViewSunAzimuthInput = {
     type = "structure",
+    id = "ViewSunAzimuthInput",
     members = {
         LowerBound = {
             type = "float",
@@ -627,6 +663,7 @@ M.ViewSunAzimuthInput = {
 
 M.ViewSunElevationInput = {
     type = "structure",
+    id = "ViewSunElevationInput",
     members = {
         LowerBound = {
             type = "float",
@@ -645,6 +682,7 @@ M.ViewSunElevationInput = {
 
 M.Property = {
     type = "union",
+    id = "Property",
     members = {
         EoCloudCover = M.EoCloudCoverInput,
         ViewOffNadir = M.ViewOffNadirInput,
@@ -657,6 +695,7 @@ M.Property = {
 
 M.PropertyFilter = {
     type = "structure",
+    id = "PropertyFilter",
     members = {
         Property = setmetatable({ traits = {
             required = true,
@@ -666,6 +705,7 @@ M.PropertyFilter = {
 
 M.PropertyFilters = {
     type = "structure",
+    id = "PropertyFilters",
     members = {
         Properties = {
             type = "list",
@@ -679,6 +719,7 @@ M.PropertyFilters = {
 
 M.TimeRangeFilterOutput = {
     type = "structure",
+    id = "TimeRangeFilterOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -699,6 +740,7 @@ M.TimeRangeFilterOutput = {
 
 M.RasterDataCollectionQueryOutput = {
     type = "structure",
+    id = "RasterDataCollectionQueryOutput",
     members = {
         RasterDataCollectionArn = {
             type = "string",
@@ -722,6 +764,7 @@ M.RasterDataCollectionQueryOutput = {
 
 M.InputConfigOutput = {
     type = "structure",
+    id = "InputConfigOutput",
     members = {
         PreviousEarthObservationJobArn = {
             type = "string",
@@ -732,6 +775,7 @@ M.InputConfigOutput = {
 
 M.GeoMosaicConfigInput = {
     type = "structure",
+    id = "GeoMosaicConfigInput",
     members = {
         AlgorithmName = {
             type = "string",
@@ -745,6 +789,7 @@ M.GeoMosaicConfigInput = {
 
 M.LandCoverSegmentationConfigInput = {
     type = "structure",
+    id = "LandCoverSegmentationConfigInput",
 }
 
 M.Unit = {
@@ -753,6 +798,7 @@ M.Unit = {
 
 M.UserDefined = {
     type = "structure",
+    id = "UserDefined",
     members = {
         Value = {
             type = "float",
@@ -771,6 +817,7 @@ M.UserDefined = {
 
 M.OutputResolutionResamplingInput = {
     type = "structure",
+    id = "OutputResolutionResamplingInput",
     members = {
         UserDefined = setmetatable({ traits = {
             required = true,
@@ -780,6 +827,7 @@ M.OutputResolutionResamplingInput = {
 
 M.ResamplingConfigInput = {
     type = "structure",
+    id = "ResamplingConfigInput",
     members = {
         OutputResolution = setmetatable({ traits = {
             required = true,
@@ -802,6 +850,7 @@ M.PredefinedResolution = {
 
 M.OutputResolutionStackInput = {
     type = "structure",
+    id = "OutputResolutionStackInput",
     members = {
         Predefined = {
             type = "string",
@@ -812,6 +861,7 @@ M.OutputResolutionStackInput = {
 
 M.StackConfigInput = {
     type = "structure",
+    id = "StackConfigInput",
     members = {
         OutputResolution = M.OutputResolutionStackInput,
         TargetBands = {
@@ -834,6 +884,7 @@ M.TemporalStatistics = {
 
 M.TemporalStatisticsConfigInput = {
     type = "structure",
+    id = "TemporalStatisticsConfigInput",
     members = {
         GroupBy = {
             type = "string",
@@ -863,6 +914,7 @@ M.ZonalStatistics = {
 
 M.ZonalStatisticsConfigInput = {
     type = "structure",
+    id = "ZonalStatisticsConfigInput",
     members = {
         ZoneS3Path = {
             type = "string",
@@ -889,6 +941,7 @@ M.ZonalStatisticsConfigInput = {
 
 M.JobConfigInput = {
     type = "union",
+    id = "JobConfigInput",
     members = {
         BandMathConfig = M.BandMathConfigInput,
         ResamplingConfig = M.ResamplingConfigInput,
@@ -904,6 +957,7 @@ M.JobConfigInput = {
 
 M.OutputBand = {
     type = "structure",
+    id = "OutputBand",
     members = {
         BandName = {
             type = "string",
@@ -933,6 +987,7 @@ M.EarthObservationJobStatus = {
 
 M.GetEarthObservationJobOutput = {
     type = "structure",
+    id = "GetEarthObservationJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -1001,6 +1056,7 @@ M.TargetOptions = {
 
 M.GetTileInput = {
     type = "structure",
+    id = "GetTileInput",
     members = {
         x = {
             type = "integer",
@@ -1086,6 +1142,7 @@ M.GetTileInput = {
 
 M.GetTileOutput = {
     type = "structure",
+    id = "GetTileOutput",
     members = {
         BinaryFile = {
             type = "blob",
@@ -1105,6 +1162,7 @@ M.SortOrder = {
 
 M.ListEarthObservationJobsInput = {
     type = "structure",
+    id = "ListEarthObservationJobsInput",
     members = {
         StatusEquals = {
             type = "string",
@@ -1126,6 +1184,7 @@ M.ListEarthObservationJobsInput = {
 
 M.ListEarthObservationJobOutputConfig = {
     type = "structure",
+    id = "ListEarthObservationJobOutputConfig",
     members = {
         Arn = {
             type = "string",
@@ -1174,6 +1233,7 @@ M.ListEarthObservationJobOutputConfig = {
 
 M.ListEarthObservationJobsOutput = {
     type = "structure",
+    id = "ListEarthObservationJobsOutput",
     members = {
         EarthObservationJobSummaries = {
             type = "list",
@@ -1190,6 +1250,7 @@ M.ListEarthObservationJobsOutput = {
 
 M.TimeRangeFilterInput = {
     type = "structure",
+    id = "TimeRangeFilterInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1208,6 +1269,7 @@ M.TimeRangeFilterInput = {
 
 M.RasterDataCollectionQueryInput = {
     type = "structure",
+    id = "RasterDataCollectionQueryInput",
     members = {
         RasterDataCollectionArn = {
             type = "string",
@@ -1225,6 +1287,7 @@ M.RasterDataCollectionQueryInput = {
 
 M.InputConfigInput = {
     type = "structure",
+    id = "InputConfigInput",
     members = {
         PreviousEarthObservationJobArn = {
             type = "string",
@@ -1235,6 +1298,7 @@ M.InputConfigInput = {
 
 M.StartEarthObservationJobInput = {
     type = "structure",
+    id = "StartEarthObservationJobInput",
     members = {
         Name = {
             type = "string",
@@ -1273,6 +1337,7 @@ M.StartEarthObservationJobInput = {
 
 M.StartEarthObservationJobOutput = {
     type = "structure",
+    id = "StartEarthObservationJobOutput",
     members = {
         Name = {
             type = "string",
@@ -1328,6 +1393,7 @@ M.StartEarthObservationJobOutput = {
 
 M.StopEarthObservationJobInput = {
     type = "structure",
+    id = "StopEarthObservationJobInput",
     members = {
         Arn = {
             type = "string",
@@ -1340,10 +1406,12 @@ M.StopEarthObservationJobInput = {
 
 M.StopEarthObservationJobOutput = {
     type = "structure",
+    id = "StopEarthObservationJobOutput",
 }
 
 M.VectorEnrichmentJobS3Data = {
     type = "structure",
+    id = "VectorEnrichmentJobS3Data",
     members = {
         S3Uri = {
             type = "string",
@@ -1359,6 +1427,7 @@ M.VectorEnrichmentJobS3Data = {
 
 M.ExportVectorEnrichmentJobOutputConfig = {
     type = "structure",
+    id = "ExportVectorEnrichmentJobOutputConfig",
     members = {
         S3Data = setmetatable({ traits = {
             required = true,
@@ -1368,6 +1437,7 @@ M.ExportVectorEnrichmentJobOutputConfig = {
 
 M.ExportVectorEnrichmentJobInput = {
     type = "structure",
+    id = "ExportVectorEnrichmentJobInput",
     members = {
         Arn = {
             type = "string",
@@ -1401,6 +1471,7 @@ M.VectorEnrichmentJobExportStatus = {
 
 M.ExportVectorEnrichmentJobOutput = {
     type = "structure",
+    id = "ExportVectorEnrichmentJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -1435,6 +1506,7 @@ M.ExportVectorEnrichmentJobOutput = {
 
 M.Geometry = {
     type = "structure",
+    id = "Geometry",
     members = {
         Type = {
             type = "string",
@@ -1454,6 +1526,7 @@ M.Geometry = {
 
 M.GetRasterDataCollectionInput = {
     type = "structure",
+    id = "GetRasterDataCollectionInput",
     members = {
         Arn = {
             type = "string",
@@ -1467,6 +1540,7 @@ M.GetRasterDataCollectionInput = {
 
 M.GetRasterDataCollectionOutput = {
     type = "structure",
+    id = "GetRasterDataCollectionOutput",
     members = {
         Name = {
             type = "string",
@@ -1522,6 +1596,7 @@ M.GetRasterDataCollectionOutput = {
 
 M.GetVectorEnrichmentJobInput = {
     type = "structure",
+    id = "GetVectorEnrichmentJobInput",
     members = {
         Arn = {
             type = "string",
@@ -1540,6 +1615,7 @@ M.VectorEnrichmentJobErrorType = {
 
 M.VectorEnrichmentJobErrorDetails = {
     type = "structure",
+    id = "VectorEnrichmentJobErrorDetails",
     members = {
         ErrorType = {
             type = "string",
@@ -1557,6 +1633,7 @@ M.VectorEnrichmentJobExportErrorType = {
 
 M.VectorEnrichmentJobExportErrorDetails = {
     type = "structure",
+    id = "VectorEnrichmentJobExportErrorDetails",
     members = {
         Type = {
             type = "string",
@@ -1569,6 +1646,7 @@ M.VectorEnrichmentJobExportErrorDetails = {
 
 M.VectorEnrichmentJobDataSourceConfigInput = {
     type = "union",
+    id = "VectorEnrichmentJobDataSourceConfigInput",
     members = {
         S3Data = M.VectorEnrichmentJobS3Data,
     },
@@ -1580,6 +1658,7 @@ M.VectorEnrichmentJobDocumentType = {
 
 M.VectorEnrichmentJobInputConfig = {
     type = "structure",
+    id = "VectorEnrichmentJobInputConfig",
     members = {
         DocumentType = {
             type = "string",
@@ -1595,6 +1674,7 @@ M.VectorEnrichmentJobInputConfig = {
 
 M.MapMatchingConfig = {
     type = "structure",
+    id = "MapMatchingConfig",
     members = {
         IdAttributeName = {
             type = "string",
@@ -1625,6 +1705,7 @@ M.MapMatchingConfig = {
 
 M.ReverseGeocodingConfig = {
     type = "structure",
+    id = "ReverseGeocodingConfig",
     members = {
         YAttributeName = {
             type = "string",
@@ -1643,6 +1724,7 @@ M.ReverseGeocodingConfig = {
 
 M.VectorEnrichmentJobConfig = {
     type = "union",
+    id = "VectorEnrichmentJobConfig",
     members = {
         ReverseGeocodingConfig = M.ReverseGeocodingConfig,
         MapMatchingConfig = M.MapMatchingConfig,
@@ -1667,6 +1749,7 @@ M.VectorEnrichmentJobType = {
 
 M.GetVectorEnrichmentJobOutput = {
     type = "structure",
+    id = "GetVectorEnrichmentJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -1735,6 +1818,7 @@ M.GetVectorEnrichmentJobOutput = {
 
 M.Properties = {
     type = "structure",
+    id = "Properties",
     members = {
         EoCloudCover = {
             type = "float",
@@ -1759,6 +1843,7 @@ M.Properties = {
 
 M.ItemSource = {
     type = "structure",
+    id = "ItemSource",
     members = {
         Id = {
             type = "string",
@@ -1786,6 +1871,7 @@ M.ItemSource = {
 
 M.ListRasterDataCollectionsInput = {
     type = "structure",
+    id = "ListRasterDataCollectionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1804,6 +1890,7 @@ M.ListRasterDataCollectionsInput = {
 
 M.ListRasterDataCollectionsOutput = {
     type = "structure",
+    id = "ListRasterDataCollectionsOutput",
     members = {
         RasterDataCollectionSummaries = {
             type = "list",
@@ -1820,6 +1907,7 @@ M.ListRasterDataCollectionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1833,6 +1921,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1844,6 +1933,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVectorEnrichmentJobOutputConfig = {
     type = "structure",
+    id = "ListVectorEnrichmentJobOutputConfig",
     members = {
         Arn = {
             type = "string",
@@ -1892,6 +1982,7 @@ M.ListVectorEnrichmentJobOutputConfig = {
 
 M.ListVectorEnrichmentJobsInput = {
     type = "structure",
+    id = "ListVectorEnrichmentJobsInput",
     members = {
         StatusEquals = {
             type = "string",
@@ -1913,6 +2004,7 @@ M.ListVectorEnrichmentJobsInput = {
 
 M.ListVectorEnrichmentJobsOutput = {
     type = "structure",
+    id = "ListVectorEnrichmentJobsOutput",
     members = {
         VectorEnrichmentJobSummaries = {
             type = "list",
@@ -1929,6 +2021,7 @@ M.ListVectorEnrichmentJobsOutput = {
 
 M.RasterDataCollectionQueryWithBandFilterInput = {
     type = "structure",
+    id = "RasterDataCollectionQueryWithBandFilterInput",
     members = {
         TimeRangeFilter = setmetatable({ traits = {
             required = true,
@@ -1944,6 +2037,7 @@ M.RasterDataCollectionQueryWithBandFilterInput = {
 
 M.SearchRasterDataCollectionInput = {
     type = "structure",
+    id = "SearchRasterDataCollectionInput",
     members = {
         Arn = {
             type = "string",
@@ -1962,6 +2056,7 @@ M.SearchRasterDataCollectionInput = {
 
 M.SearchRasterDataCollectionOutput = {
     type = "structure",
+    id = "SearchRasterDataCollectionOutput",
     members = {
         ApproximateResultCount = {
             type = "integer",
@@ -1981,6 +2076,7 @@ M.SearchRasterDataCollectionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2002,10 +2098,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2027,10 +2125,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.StartVectorEnrichmentJobInput = {
     type = "structure",
+    id = "StartVectorEnrichmentJobInput",
     members = {
         Name = {
             type = "string",
@@ -2069,6 +2169,7 @@ M.StartVectorEnrichmentJobInput = {
 
 M.StartVectorEnrichmentJobOutput = {
     type = "structure",
+    id = "StartVectorEnrichmentJobOutput",
     members = {
         Name = {
             type = "string",
@@ -2132,6 +2233,7 @@ M.StartVectorEnrichmentJobOutput = {
 
 M.StopVectorEnrichmentJobInput = {
     type = "structure",
+    id = "StopVectorEnrichmentJobInput",
     members = {
         Arn = {
             type = "string",
@@ -2144,6 +2246,7 @@ M.StopVectorEnrichmentJobInput = {
 
 M.StopVectorEnrichmentJobOutput = {
     type = "structure",
+    id = "StopVectorEnrichmentJobOutput",
 }
 
 return M

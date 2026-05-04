@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedFault = {
     type = "structure",
+    id = "AccessDeniedFault",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedFault = {
 
 M.AccountQuota = {
     type = "structure",
+    id = "AccountQuota",
     members = {
         AccountQuotaName = {
             type = "string",
@@ -33,6 +35,7 @@ M.AccountQuota = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -48,6 +51,7 @@ M.Tag = {
 
 M.AddTagsToResourceInput = {
     type = "structure",
+    id = "AddTagsToResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -67,10 +71,12 @@ M.AddTagsToResourceInput = {
 
 M.AddTagsToResourceOutput = {
     type = "structure",
+    id = "AddTagsToResourceOutput",
 }
 
 M.InvalidResourceStateFault = {
     type = "structure",
+    id = "InvalidResourceStateFault",
     error = "client",
     members = {
         message = {
@@ -81,6 +87,7 @@ M.InvalidResourceStateFault = {
 
 M.ResourceNotFoundFault = {
     type = "structure",
+    id = "ResourceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -91,6 +98,7 @@ M.ResourceNotFoundFault = {
 
 M.ApplyPendingMaintenanceActionInput = {
     type = "structure",
+    id = "ApplyPendingMaintenanceActionInput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -115,6 +123,7 @@ M.ApplyPendingMaintenanceActionInput = {
 
 M.PendingMaintenanceAction = {
     type = "structure",
+    id = "PendingMaintenanceAction",
     members = {
         Action = {
             type = "string",
@@ -139,6 +148,7 @@ M.PendingMaintenanceAction = {
 
 M.ResourcePendingMaintenanceActions = {
     type = "structure",
+    id = "ResourcePendingMaintenanceActions",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -152,6 +162,7 @@ M.ResourcePendingMaintenanceActions = {
 
 M.ApplyPendingMaintenanceActionOutput = {
     type = "structure",
+    id = "ApplyPendingMaintenanceActionOutput",
     members = {
         ResourcePendingMaintenanceActions = M.ResourcePendingMaintenanceActions,
     },
@@ -159,6 +170,7 @@ M.ApplyPendingMaintenanceActionOutput = {
 
 M.RecommendationSettings = {
     type = "structure",
+    id = "RecommendationSettings",
     members = {
         InstanceSizingType = {
             type = "string",
@@ -177,6 +189,7 @@ M.RecommendationSettings = {
 
 M.StartRecommendationsRequestEntry = {
     type = "structure",
+    id = "StartRecommendationsRequestEntry",
     members = {
         DatabaseId = {
             type = "string",
@@ -192,6 +205,7 @@ M.StartRecommendationsRequestEntry = {
 
 M.BatchStartRecommendationsInput = {
     type = "structure",
+    id = "BatchStartRecommendationsInput",
     members = {
         Data = {
             type = "list",
@@ -202,6 +216,7 @@ M.BatchStartRecommendationsInput = {
 
 M.BatchStartRecommendationsErrorEntry = {
     type = "structure",
+    id = "BatchStartRecommendationsErrorEntry",
     members = {
         DatabaseId = {
             type = "string",
@@ -217,6 +232,7 @@ M.BatchStartRecommendationsErrorEntry = {
 
 M.BatchStartRecommendationsOutput = {
     type = "structure",
+    id = "BatchStartRecommendationsOutput",
     members = {
         ErrorEntries = {
             type = "list",
@@ -227,6 +243,7 @@ M.BatchStartRecommendationsOutput = {
 
 M.CancelMetadataModelConversionInput = {
     type = "structure",
+    id = "CancelMetadataModelConversionInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -245,6 +262,7 @@ M.CancelMetadataModelConversionInput = {
 
 M.DefaultErrorDetails = {
     type = "structure",
+    id = "DefaultErrorDetails",
     members = {
         Message = {
             type = "string",
@@ -254,6 +272,7 @@ M.DefaultErrorDetails = {
 
 M.ErrorDetails = {
     type = "union",
+    id = "ErrorDetails",
     members = {
         defaultErrorDetails = M.DefaultErrorDetails,
     },
@@ -261,6 +280,7 @@ M.ErrorDetails = {
 
 M.ExportSqlDetails = {
     type = "structure",
+    id = "ExportSqlDetails",
     members = {
         S3ObjectKey = {
             type = "string",
@@ -273,6 +293,7 @@ M.ExportSqlDetails = {
 
 M.ProcessedObject = {
     type = "structure",
+    id = "ProcessedObject",
     members = {
         Name = {
             type = "string",
@@ -288,6 +309,7 @@ M.ProcessedObject = {
 
 M.Progress = {
     type = "structure",
+    id = "Progress",
     members = {
         ProgressPercent = {
             type = "double",
@@ -307,6 +329,7 @@ M.Progress = {
 
 M.SchemaConversionRequest = {
     type = "structure",
+    id = "SchemaConversionRequest",
     members = {
         Status = {
             type = "string",
@@ -325,6 +348,7 @@ M.SchemaConversionRequest = {
 
 M.CancelMetadataModelConversionOutput = {
     type = "structure",
+    id = "CancelMetadataModelConversionOutput",
     members = {
         Request = M.SchemaConversionRequest,
     },
@@ -332,6 +356,7 @@ M.CancelMetadataModelConversionOutput = {
 
 M.CancelMetadataModelCreationInput = {
     type = "structure",
+    id = "CancelMetadataModelCreationInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -350,6 +375,7 @@ M.CancelMetadataModelCreationInput = {
 
 M.CancelMetadataModelCreationOutput = {
     type = "structure",
+    id = "CancelMetadataModelCreationOutput",
     members = {
         Request = M.SchemaConversionRequest,
     },
@@ -357,6 +383,7 @@ M.CancelMetadataModelCreationOutput = {
 
 M.CancelReplicationTaskAssessmentRunInput = {
     type = "structure",
+    id = "CancelReplicationTaskAssessmentRunInput",
     members = {
         ReplicationTaskAssessmentRunArn = {
             type = "string",
@@ -369,6 +396,7 @@ M.CancelReplicationTaskAssessmentRunInput = {
 
 M.ReplicationTaskAssessmentRunProgress = {
     type = "structure",
+    id = "ReplicationTaskAssessmentRunProgress",
     members = {
         IndividualAssessmentCount = {
             type = "integer",
@@ -387,6 +415,7 @@ M.ReplicationTaskAssessmentRunProgress = {
 
 M.ReplicationTaskAssessmentRunResultStatistic = {
     type = "structure",
+    id = "ReplicationTaskAssessmentRunResultStatistic",
     members = {
         Passed = {
             type = "integer",
@@ -429,6 +458,7 @@ M.ReplicationTaskAssessmentRunResultStatistic = {
 
 M.ReplicationTaskAssessmentRun = {
     type = "structure",
+    id = "ReplicationTaskAssessmentRun",
     members = {
         ReplicationTaskAssessmentRunArn = {
             type = "string",
@@ -476,6 +506,7 @@ M.ReplicationTaskAssessmentRun = {
 
 M.CancelReplicationTaskAssessmentRunOutput = {
     type = "structure",
+    id = "CancelReplicationTaskAssessmentRunOutput",
     members = {
         ReplicationTaskAssessmentRun = M.ReplicationTaskAssessmentRun,
     },
@@ -489,6 +520,7 @@ M.MigrationTypeValue = {
 
 M.SourceDataSetting = {
     type = "structure",
+    id = "SourceDataSetting",
     members = {
         CDCStartPosition = {
             type = "string",
@@ -519,6 +551,7 @@ M.TablePreparationMode = {
 
 M.TargetDataSetting = {
     type = "structure",
+    id = "TargetDataSetting",
     members = {
         TablePreparationMode = {
             type = "string",
@@ -528,6 +561,7 @@ M.TargetDataSetting = {
 
 M.CreateDataMigrationInput = {
     type = "structure",
+    id = "CreateDataMigrationInput",
     members = {
         DataMigrationName = {
             type = "string",
@@ -576,6 +610,7 @@ M.CreateDataMigrationInput = {
 
 M.DataMigrationSettings = {
     type = "structure",
+    id = "DataMigrationSettings",
     members = {
         NumberOfJobs = {
             type = "integer",
@@ -591,6 +626,7 @@ M.DataMigrationSettings = {
 
 M.DataMigrationStatistics = {
     type = "structure",
+    id = "DataMigrationStatistics",
     members = {
         TablesLoaded = {
             type = "integer",
@@ -651,6 +687,7 @@ M.DataMigrationStatistics = {
 
 M.DataMigration = {
     type = "structure",
+    id = "DataMigration",
     members = {
         DataMigrationName = {
             type = "string",
@@ -717,6 +754,7 @@ M.DataMigration = {
 
 M.CreateDataMigrationOutput = {
     type = "structure",
+    id = "CreateDataMigrationOutput",
     members = {
         DataMigration = M.DataMigration,
     },
@@ -724,6 +762,7 @@ M.CreateDataMigrationOutput = {
 
 M.FailedDependencyFault = {
     type = "structure",
+    id = "FailedDependencyFault",
     error = "client",
     members = {
         message = {
@@ -734,6 +773,7 @@ M.FailedDependencyFault = {
 
 M.InvalidOperationFault = {
     type = "structure",
+    id = "InvalidOperationFault",
     error = "client",
     members = {
         message = {
@@ -744,6 +784,7 @@ M.InvalidOperationFault = {
 
 M.ResourceAlreadyExistsFault = {
     type = "structure",
+    id = "ResourceAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -757,6 +798,7 @@ M.ResourceAlreadyExistsFault = {
 
 M.ResourceQuotaExceededFault = {
     type = "structure",
+    id = "ResourceQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -774,6 +816,7 @@ M.DmsSslModeValue = {
 
 M.DocDbDataProviderSettings = {
     type = "structure",
+    id = "DocDbDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -795,6 +838,7 @@ M.DocDbDataProviderSettings = {
 
 M.IbmDb2LuwDataProviderSettings = {
     type = "structure",
+    id = "IbmDb2LuwDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -828,6 +872,7 @@ M.IbmDb2LuwDataProviderSettings = {
 
 M.IbmDb2zOsDataProviderSettings = {
     type = "structure",
+    id = "IbmDb2zOsDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -855,6 +900,7 @@ M.IbmDb2zOsDataProviderSettings = {
 
 M.MariaDbDataProviderSettings = {
     type = "structure",
+    id = "MariaDbDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -879,6 +925,7 @@ M.MariaDbDataProviderSettings = {
 
 M.MicrosoftSqlServerDataProviderSettings = {
     type = "structure",
+    id = "MicrosoftSqlServerDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -917,6 +964,7 @@ M.AuthTypeValue = {
 
 M.MongoDbDataProviderSettings = {
     type = "structure",
+    id = "MongoDbDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -947,6 +995,7 @@ M.MongoDbDataProviderSettings = {
 
 M.MySqlDataProviderSettings = {
     type = "structure",
+    id = "MySqlDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -971,6 +1020,7 @@ M.MySqlDataProviderSettings = {
 
 M.OracleDataProviderSettings = {
     type = "structure",
+    id = "OracleDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -1013,6 +1063,7 @@ M.OracleDataProviderSettings = {
 
 M.PostgreSqlDataProviderSettings = {
     type = "structure",
+    id = "PostgreSqlDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -1040,6 +1091,7 @@ M.PostgreSqlDataProviderSettings = {
 
 M.RedshiftDataProviderSettings = {
     type = "structure",
+    id = "RedshiftDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -1061,6 +1113,7 @@ M.RedshiftDataProviderSettings = {
 
 M.SybaseAseDataProviderSettings = {
     type = "structure",
+    id = "SybaseAseDataProviderSettings",
     members = {
         ServerName = {
             type = "string",
@@ -1085,6 +1138,7 @@ M.SybaseAseDataProviderSettings = {
 
 M.DataProviderSettings = {
     type = "union",
+    id = "DataProviderSettings",
     members = {
         RedshiftSettings = M.RedshiftDataProviderSettings,
         PostgreSqlSettings = M.PostgreSqlDataProviderSettings,
@@ -1102,6 +1156,7 @@ M.DataProviderSettings = {
 
 M.CreateDataProviderInput = {
     type = "structure",
+    id = "CreateDataProviderInput",
     members = {
         DataProviderName = {
             type = "string",
@@ -1130,6 +1185,7 @@ M.CreateDataProviderInput = {
 
 M.DataProvider = {
     type = "structure",
+    id = "DataProvider",
     members = {
         DataProviderName = {
             type = "string",
@@ -1158,6 +1214,7 @@ M.DataProvider = {
 
 M.CreateDataProviderOutput = {
     type = "structure",
+    id = "CreateDataProviderOutput",
     members = {
         DataProvider = M.DataProvider,
     },
@@ -1165,6 +1222,7 @@ M.CreateDataProviderOutput = {
 
 M.DmsTransferSettings = {
     type = "structure",
+    id = "DmsTransferSettings",
     members = {
         ServiceAccessRoleArn = {
             type = "string",
@@ -1182,6 +1240,7 @@ M.NestingLevelValue = {
 
 M.DocDbSettings = {
     type = "structure",
+    id = "DocDbSettings",
     members = {
         Username = {
             type = "string",
@@ -1227,6 +1286,7 @@ M.DocDbSettings = {
 
 M.DynamoDbSettings = {
     type = "structure",
+    id = "DynamoDbSettings",
     members = {
         ServiceAccessRoleArn = {
             type = "string",
@@ -1239,6 +1299,7 @@ M.DynamoDbSettings = {
 
 M.ElasticsearchSettings = {
     type = "structure",
+    id = "ElasticsearchSettings",
     members = {
         ServiceAccessRoleArn = {
             type = "string",
@@ -1276,6 +1337,7 @@ M.TargetDbType = {
 
 M.GcpMySQLSettings = {
     type = "structure",
+    id = "GcpMySQLSettings",
     members = {
         AfterConnectScript = {
             type = "string",
@@ -1324,6 +1386,7 @@ M.GcpMySQLSettings = {
 
 M.IBMDb2Settings = {
     type = "structure",
+    id = "IBMDb2Settings",
     members = {
         DatabaseName = {
             type = "string",
@@ -1394,6 +1457,7 @@ M.KafkaSslEndpointIdentificationAlgorithm = {
 
 M.KafkaSettings = {
     type = "structure",
+    id = "KafkaSettings",
     members = {
         Broker = {
             type = "string",
@@ -1463,6 +1527,7 @@ M.KafkaSettings = {
 
 M.KinesisSettings = {
     type = "structure",
+    id = "KinesisSettings",
     members = {
         StreamArn = {
             type = "string",
@@ -1520,6 +1585,7 @@ M.TlogAccessMode = {
 
 M.MicrosoftSQLServerSettings = {
     type = "structure",
+    id = "MicrosoftSQLServerSettings",
     members = {
         Port = {
             type = "integer",
@@ -1580,6 +1646,7 @@ M.MicrosoftSQLServerSettings = {
 
 M.MongoDbSettings = {
     type = "structure",
+    id = "MongoDbSettings",
     members = {
         Username = {
             type = "string",
@@ -1639,6 +1706,7 @@ M.MySQLAuthenticationMethod = {
 
 M.MySQLSettings = {
     type = "structure",
+    id = "MySQLSettings",
     members = {
         AfterConnectScript = {
             type = "string",
@@ -1696,6 +1764,7 @@ M.MySQLSettings = {
 
 M.NeptuneSettings = {
     type = "structure",
+    id = "NeptuneSettings",
     members = {
         ServiceAccessRoleArn = {
             type = "string",
@@ -1740,6 +1809,7 @@ M.CharLengthSemantics = {
 
 M.OracleSettings = {
     type = "structure",
+    id = "OracleSettings",
     members = {
         AddSupplementalLogging = {
             type = "boolean",
@@ -1901,6 +1971,7 @@ M.PluginNameValue = {
 
 M.PostgreSQLSettings = {
     type = "structure",
+    id = "PostgreSQLSettings",
     members = {
         AfterConnectScript = {
             type = "string",
@@ -1999,6 +2070,7 @@ M.SslSecurityProtocolValue = {
 
 M.RedisSettings = {
     type = "structure",
+    id = "RedisSettings",
     members = {
         ServerName = {
             type = "string",
@@ -2038,6 +2110,7 @@ M.EncryptionModeValue = {
 
 M.RedshiftSettings = {
     type = "structure",
+    id = "RedshiftSettings",
     members = {
         AcceptAnyDate = {
             type = "boolean",
@@ -2184,6 +2257,7 @@ M.ParquetVersionValue = {
 
 M.S3Settings = {
     type = "structure",
+    id = "S3Settings",
     members = {
         ServiceAccessRoleArn = {
             type = "string",
@@ -2313,6 +2387,7 @@ M.S3Settings = {
 
 M.SybaseSettings = {
     type = "structure",
+    id = "SybaseSettings",
     members = {
         DatabaseName = {
             type = "string",
@@ -2340,6 +2415,7 @@ M.SybaseSettings = {
 
 M.TimestreamSettings = {
     type = "structure",
+    id = "TimestreamSettings",
     members = {
         DatabaseName = {
             type = "string",
@@ -2370,6 +2446,7 @@ M.TimestreamSettings = {
 
 M.CreateEndpointInput = {
     type = "structure",
+    id = "CreateEndpointInput",
     members = {
         EndpointIdentifier = {
             type = "string",
@@ -2453,6 +2530,7 @@ M.CreateEndpointInput = {
 
 M.LakehouseSettings = {
     type = "structure",
+    id = "LakehouseSettings",
     members = {
         Arn = {
             type = "string",
@@ -2465,6 +2543,7 @@ M.LakehouseSettings = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         EndpointIdentifier = {
             type = "string",
@@ -2545,6 +2624,7 @@ M.Endpoint = {
 
 M.CreateEndpointOutput = {
     type = "structure",
+    id = "CreateEndpointOutput",
     members = {
         Endpoint = M.Endpoint,
     },
@@ -2552,6 +2632,7 @@ M.CreateEndpointOutput = {
 
 M.KMSKeyNotAccessibleFault = {
     type = "structure",
+    id = "KMSKeyNotAccessibleFault",
     error = "client",
     members = {
         message = {
@@ -2562,6 +2643,7 @@ M.KMSKeyNotAccessibleFault = {
 
 M.S3AccessDeniedFault = {
     type = "structure",
+    id = "S3AccessDeniedFault",
     error = "client",
     members = {
         message = {
@@ -2572,6 +2654,7 @@ M.S3AccessDeniedFault = {
 
 M.CreateEventSubscriptionInput = {
     type = "structure",
+    id = "CreateEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -2608,6 +2691,7 @@ M.CreateEventSubscriptionInput = {
 
 M.EventSubscription = {
     type = "structure",
+    id = "EventSubscription",
     members = {
         CustomerAwsId = {
             type = "string",
@@ -2646,6 +2730,7 @@ M.EventSubscription = {
 
 M.CreateEventSubscriptionOutput = {
     type = "structure",
+    id = "CreateEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -2653,6 +2738,7 @@ M.CreateEventSubscriptionOutput = {
 
 M.KMSAccessDeniedFault = {
     type = "structure",
+    id = "KMSAccessDeniedFault",
     error = "client",
     members = {
         message = {
@@ -2663,6 +2749,7 @@ M.KMSAccessDeniedFault = {
 
 M.KMSDisabledFault = {
     type = "structure",
+    id = "KMSDisabledFault",
     error = "client",
     members = {
         message = {
@@ -2673,6 +2760,7 @@ M.KMSDisabledFault = {
 
 M.KMSInvalidStateFault = {
     type = "structure",
+    id = "KMSInvalidStateFault",
     error = "client",
     members = {
         message = {
@@ -2683,6 +2771,7 @@ M.KMSInvalidStateFault = {
 
 M.KMSNotFoundFault = {
     type = "structure",
+    id = "KMSNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2693,6 +2782,7 @@ M.KMSNotFoundFault = {
 
 M.KMSThrottlingFault = {
     type = "structure",
+    id = "KMSThrottlingFault",
     error = "client",
     members = {
         message = {
@@ -2703,6 +2793,7 @@ M.KMSThrottlingFault = {
 
 M.SNSInvalidTopicFault = {
     type = "structure",
+    id = "SNSInvalidTopicFault",
     error = "client",
     members = {
         message = {
@@ -2713,6 +2804,7 @@ M.SNSInvalidTopicFault = {
 
 M.SNSNoAuthorizationFault = {
     type = "structure",
+    id = "SNSNoAuthorizationFault",
     error = "client",
     members = {
         message = {
@@ -2723,6 +2815,7 @@ M.SNSNoAuthorizationFault = {
 
 M.CreateFleetAdvisorCollectorInput = {
     type = "structure",
+    id = "CreateFleetAdvisorCollectorInput",
     members = {
         CollectorName = {
             type = "string",
@@ -2750,6 +2843,7 @@ M.CreateFleetAdvisorCollectorInput = {
 
 M.CreateFleetAdvisorCollectorOutput = {
     type = "structure",
+    id = "CreateFleetAdvisorCollectorOutput",
     members = {
         CollectorReferencedId = {
             type = "string",
@@ -2771,6 +2865,7 @@ M.CreateFleetAdvisorCollectorOutput = {
 
 M.S3ResourceNotFoundFault = {
     type = "structure",
+    id = "S3ResourceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2781,6 +2876,7 @@ M.S3ResourceNotFoundFault = {
 
 M.CreateInstanceProfileInput = {
     type = "structure",
+    id = "CreateInstanceProfileInput",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -2816,6 +2912,7 @@ M.CreateInstanceProfileInput = {
 
 M.InstanceProfile = {
     type = "structure",
+    id = "InstanceProfile",
     members = {
         InstanceProfileArn = {
             type = "string",
@@ -2856,6 +2953,7 @@ M.InstanceProfile = {
 
 M.CreateInstanceProfileOutput = {
     type = "structure",
+    id = "CreateInstanceProfileOutput",
     members = {
         InstanceProfile = M.InstanceProfile,
     },
@@ -2863,6 +2961,7 @@ M.CreateInstanceProfileOutput = {
 
 M.SCApplicationAttributes = {
     type = "structure",
+    id = "SCApplicationAttributes",
     members = {
         S3BucketPath = {
             type = "string",
@@ -2875,6 +2974,7 @@ M.SCApplicationAttributes = {
 
 M.DataProviderDescriptorDefinition = {
     type = "structure",
+    id = "DataProviderDescriptorDefinition",
     members = {
         DataProviderIdentifier = {
             type = "string",
@@ -2893,6 +2993,7 @@ M.DataProviderDescriptorDefinition = {
 
 M.CreateMigrationProjectInput = {
     type = "structure",
+    id = "CreateMigrationProjectInput",
     members = {
         MigrationProjectName = {
             type = "string",
@@ -2933,6 +3034,7 @@ M.CreateMigrationProjectInput = {
 
 M.DataProviderDescriptor = {
     type = "structure",
+    id = "DataProviderDescriptor",
     members = {
         SecretsManagerSecretId = {
             type = "string",
@@ -2951,6 +3053,7 @@ M.DataProviderDescriptor = {
 
 M.MigrationProject = {
     type = "structure",
+    id = "MigrationProject",
     members = {
         MigrationProjectName = {
             type = "string",
@@ -2990,6 +3093,7 @@ M.MigrationProject = {
 
 M.CreateMigrationProjectOutput = {
     type = "structure",
+    id = "CreateMigrationProjectOutput",
     members = {
         MigrationProject = M.MigrationProject,
     },
@@ -2997,6 +3101,7 @@ M.CreateMigrationProjectOutput = {
 
 M.ComputeConfig = {
     type = "structure",
+    id = "ComputeConfig",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -3031,6 +3136,7 @@ M.ComputeConfig = {
 
 M.CreateReplicationConfigInput = {
     type = "structure",
+    id = "CreateReplicationConfigInput",
     members = {
         ReplicationConfigIdentifier = {
             type = "string",
@@ -3083,6 +3189,7 @@ M.CreateReplicationConfigInput = {
 
 M.ReplicationConfig = {
     type = "structure",
+    id = "ReplicationConfig",
     members = {
         ReplicationConfigIdentifier = {
             type = "string",
@@ -3123,6 +3230,7 @@ M.ReplicationConfig = {
 
 M.CreateReplicationConfigOutput = {
     type = "structure",
+    id = "CreateReplicationConfigOutput",
     members = {
         ReplicationConfig = M.ReplicationConfig,
     },
@@ -3130,6 +3238,7 @@ M.CreateReplicationConfigOutput = {
 
 M.InvalidSubnet = {
     type = "structure",
+    id = "InvalidSubnet",
     error = "client",
     members = {
         message = {
@@ -3140,6 +3249,7 @@ M.InvalidSubnet = {
 
 M.ReplicationSubnetGroupDoesNotCoverEnoughAZs = {
     type = "structure",
+    id = "ReplicationSubnetGroupDoesNotCoverEnoughAZs",
     error = "client",
     members = {
         message = {
@@ -3150,6 +3260,7 @@ M.ReplicationSubnetGroupDoesNotCoverEnoughAZs = {
 
 M.KerberosAuthenticationSettings = {
     type = "structure",
+    id = "KerberosAuthenticationSettings",
     members = {
         KeyCacheSecretId = {
             type = "string",
@@ -3165,6 +3276,7 @@ M.KerberosAuthenticationSettings = {
 
 M.CreateReplicationInstanceInput = {
     type = "structure",
+    id = "CreateReplicationInstanceInput",
     members = {
         ReplicationInstanceIdentifier = {
             type = "string",
@@ -3228,6 +3340,7 @@ M.CreateReplicationInstanceInput = {
 
 M.ReplicationPendingModifiedValues = {
     type = "structure",
+    id = "ReplicationPendingModifiedValues",
     members = {
         ReplicationInstanceClass = {
             type = "string",
@@ -3249,6 +3362,7 @@ M.ReplicationPendingModifiedValues = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         Name = {
             type = "string",
@@ -3258,6 +3372,7 @@ M.AvailabilityZone = {
 
 M.Subnet = {
     type = "structure",
+    id = "Subnet",
     members = {
         SubnetIdentifier = {
             type = "string",
@@ -3271,6 +3386,7 @@ M.Subnet = {
 
 M.ReplicationSubnetGroup = {
     type = "structure",
+    id = "ReplicationSubnetGroup",
     members = {
         ReplicationSubnetGroupIdentifier = {
             type = "string",
@@ -3300,6 +3416,7 @@ M.ReplicationSubnetGroup = {
 
 M.VpcSecurityGroupMembership = {
     type = "structure",
+    id = "VpcSecurityGroupMembership",
     members = {
         VpcSecurityGroupId = {
             type = "string",
@@ -3312,6 +3429,7 @@ M.VpcSecurityGroupMembership = {
 
 M.ReplicationInstance = {
     type = "structure",
+    id = "ReplicationInstance",
     members = {
         ReplicationInstanceIdentifier = {
             type = "string",
@@ -3406,6 +3524,7 @@ M.ReplicationInstance = {
 
 M.CreateReplicationInstanceOutput = {
     type = "structure",
+    id = "CreateReplicationInstanceOutput",
     members = {
         ReplicationInstance = M.ReplicationInstance,
     },
@@ -3413,6 +3532,7 @@ M.CreateReplicationInstanceOutput = {
 
 M.InsufficientResourceCapacityFault = {
     type = "structure",
+    id = "InsufficientResourceCapacityFault",
     error = "client",
     members = {
         message = {
@@ -3423,6 +3543,7 @@ M.InsufficientResourceCapacityFault = {
 
 M.StorageQuotaExceededFault = {
     type = "structure",
+    id = "StorageQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3433,6 +3554,7 @@ M.StorageQuotaExceededFault = {
 
 M.CreateReplicationSubnetGroupInput = {
     type = "structure",
+    id = "CreateReplicationSubnetGroupInput",
     members = {
         ReplicationSubnetGroupIdentifier = {
             type = "string",
@@ -3462,6 +3584,7 @@ M.CreateReplicationSubnetGroupInput = {
 
 M.CreateReplicationSubnetGroupOutput = {
     type = "structure",
+    id = "CreateReplicationSubnetGroupOutput",
     members = {
         ReplicationSubnetGroup = M.ReplicationSubnetGroup,
     },
@@ -3469,6 +3592,7 @@ M.CreateReplicationSubnetGroupOutput = {
 
 M.CreateReplicationTaskInput = {
     type = "structure",
+    id = "CreateReplicationTaskInput",
     members = {
         ReplicationTaskIdentifier = {
             type = "string",
@@ -3533,6 +3657,7 @@ M.CreateReplicationTaskInput = {
 
 M.ReplicationTaskStats = {
     type = "structure",
+    id = "ReplicationTaskStats",
     members = {
         FullLoadProgressPercent = {
             type = "integer",
@@ -3590,6 +3715,7 @@ M.ReplicationTaskStats = {
 
 M.ReplicationTask = {
     type = "structure",
+    id = "ReplicationTask",
     members = {
         ReplicationTaskIdentifier = {
             type = "string",
@@ -3651,6 +3777,7 @@ M.ReplicationTask = {
 
 M.CreateReplicationTaskOutput = {
     type = "structure",
+    id = "CreateReplicationTaskOutput",
     members = {
         ReplicationTask = M.ReplicationTask,
     },
@@ -3658,6 +3785,7 @@ M.CreateReplicationTaskOutput = {
 
 M.DeleteCertificateInput = {
     type = "structure",
+    id = "DeleteCertificateInput",
     members = {
         CertificateArn = {
             type = "string",
@@ -3670,6 +3798,7 @@ M.DeleteCertificateInput = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         CertificateIdentifier = {
             type = "string",
@@ -3709,6 +3838,7 @@ M.Certificate = {
 
 M.DeleteCertificateOutput = {
     type = "structure",
+    id = "DeleteCertificateOutput",
     members = {
         Certificate = M.Certificate,
     },
@@ -3716,6 +3846,7 @@ M.DeleteCertificateOutput = {
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -3734,6 +3865,7 @@ M.DeleteConnectionInput = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -3758,6 +3890,7 @@ M.Connection = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
     members = {
         Connection = M.Connection,
     },
@@ -3765,6 +3898,7 @@ M.DeleteConnectionOutput = {
 
 M.DeleteDataMigrationInput = {
     type = "structure",
+    id = "DeleteDataMigrationInput",
     members = {
         DataMigrationIdentifier = {
             type = "string",
@@ -3777,6 +3911,7 @@ M.DeleteDataMigrationInput = {
 
 M.DeleteDataMigrationOutput = {
     type = "structure",
+    id = "DeleteDataMigrationOutput",
     members = {
         DataMigration = M.DataMigration,
     },
@@ -3784,6 +3919,7 @@ M.DeleteDataMigrationOutput = {
 
 M.DeleteDataProviderInput = {
     type = "structure",
+    id = "DeleteDataProviderInput",
     members = {
         DataProviderIdentifier = {
             type = "string",
@@ -3796,6 +3932,7 @@ M.DeleteDataProviderInput = {
 
 M.DeleteDataProviderOutput = {
     type = "structure",
+    id = "DeleteDataProviderOutput",
     members = {
         DataProvider = M.DataProvider,
     },
@@ -3803,6 +3940,7 @@ M.DeleteDataProviderOutput = {
 
 M.DeleteEndpointInput = {
     type = "structure",
+    id = "DeleteEndpointInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -3815,6 +3953,7 @@ M.DeleteEndpointInput = {
 
 M.DeleteEndpointOutput = {
     type = "structure",
+    id = "DeleteEndpointOutput",
     members = {
         Endpoint = M.Endpoint,
     },
@@ -3822,6 +3961,7 @@ M.DeleteEndpointOutput = {
 
 M.DeleteEventSubscriptionInput = {
     type = "structure",
+    id = "DeleteEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -3834,6 +3974,7 @@ M.DeleteEventSubscriptionInput = {
 
 M.DeleteEventSubscriptionOutput = {
     type = "structure",
+    id = "DeleteEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -3841,6 +3982,7 @@ M.DeleteEventSubscriptionOutput = {
 
 M.CollectorNotFoundFault = {
     type = "structure",
+    id = "CollectorNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3851,6 +3993,7 @@ M.CollectorNotFoundFault = {
 
 M.DeleteFleetAdvisorCollectorInput = {
     type = "structure",
+    id = "DeleteFleetAdvisorCollectorInput",
     members = {
         CollectorReferencedId = {
             type = "string",
@@ -3863,10 +4006,12 @@ M.DeleteFleetAdvisorCollectorInput = {
 
 M.DeleteFleetAdvisorCollectorOutput = {
     type = "structure",
+    id = "DeleteFleetAdvisorCollectorOutput",
 }
 
 M.DeleteFleetAdvisorDatabasesInput = {
     type = "structure",
+    id = "DeleteFleetAdvisorDatabasesInput",
     members = {
         DatabaseIds = {
             type = "list",
@@ -3880,6 +4025,7 @@ M.DeleteFleetAdvisorDatabasesInput = {
 
 M.DeleteFleetAdvisorDatabasesOutput = {
     type = "structure",
+    id = "DeleteFleetAdvisorDatabasesOutput",
     members = {
         DatabaseIds = {
             type = "list",
@@ -3890,6 +4036,7 @@ M.DeleteFleetAdvisorDatabasesOutput = {
 
 M.DeleteInstanceProfileInput = {
     type = "structure",
+    id = "DeleteInstanceProfileInput",
     members = {
         InstanceProfileIdentifier = {
             type = "string",
@@ -3902,6 +4049,7 @@ M.DeleteInstanceProfileInput = {
 
 M.DeleteInstanceProfileOutput = {
     type = "structure",
+    id = "DeleteInstanceProfileOutput",
     members = {
         InstanceProfile = M.InstanceProfile,
     },
@@ -3909,6 +4057,7 @@ M.DeleteInstanceProfileOutput = {
 
 M.DeleteMigrationProjectInput = {
     type = "structure",
+    id = "DeleteMigrationProjectInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -3921,6 +4070,7 @@ M.DeleteMigrationProjectInput = {
 
 M.DeleteMigrationProjectOutput = {
     type = "structure",
+    id = "DeleteMigrationProjectOutput",
     members = {
         MigrationProject = M.MigrationProject,
     },
@@ -3928,6 +4078,7 @@ M.DeleteMigrationProjectOutput = {
 
 M.DeleteReplicationConfigInput = {
     type = "structure",
+    id = "DeleteReplicationConfigInput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -3940,6 +4091,7 @@ M.DeleteReplicationConfigInput = {
 
 M.DeleteReplicationConfigOutput = {
     type = "structure",
+    id = "DeleteReplicationConfigOutput",
     members = {
         ReplicationConfig = M.ReplicationConfig,
     },
@@ -3947,6 +4099,7 @@ M.DeleteReplicationConfigOutput = {
 
 M.DeleteReplicationInstanceInput = {
     type = "structure",
+    id = "DeleteReplicationInstanceInput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -3959,6 +4112,7 @@ M.DeleteReplicationInstanceInput = {
 
 M.DeleteReplicationInstanceOutput = {
     type = "structure",
+    id = "DeleteReplicationInstanceOutput",
     members = {
         ReplicationInstance = M.ReplicationInstance,
     },
@@ -3966,6 +4120,7 @@ M.DeleteReplicationInstanceOutput = {
 
 M.DeleteReplicationSubnetGroupInput = {
     type = "structure",
+    id = "DeleteReplicationSubnetGroupInput",
     members = {
         ReplicationSubnetGroupIdentifier = {
             type = "string",
@@ -3978,10 +4133,12 @@ M.DeleteReplicationSubnetGroupInput = {
 
 M.DeleteReplicationSubnetGroupOutput = {
     type = "structure",
+    id = "DeleteReplicationSubnetGroupOutput",
 }
 
 M.DeleteReplicationTaskInput = {
     type = "structure",
+    id = "DeleteReplicationTaskInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -3994,6 +4151,7 @@ M.DeleteReplicationTaskInput = {
 
 M.DeleteReplicationTaskOutput = {
     type = "structure",
+    id = "DeleteReplicationTaskOutput",
     members = {
         ReplicationTask = M.ReplicationTask,
     },
@@ -4001,6 +4159,7 @@ M.DeleteReplicationTaskOutput = {
 
 M.DeleteReplicationTaskAssessmentRunInput = {
     type = "structure",
+    id = "DeleteReplicationTaskAssessmentRunInput",
     members = {
         ReplicationTaskAssessmentRunArn = {
             type = "string",
@@ -4013,6 +4172,7 @@ M.DeleteReplicationTaskAssessmentRunInput = {
 
 M.DeleteReplicationTaskAssessmentRunOutput = {
     type = "structure",
+    id = "DeleteReplicationTaskAssessmentRunOutput",
     members = {
         ReplicationTaskAssessmentRun = M.ReplicationTaskAssessmentRun,
     },
@@ -4020,10 +4180,12 @@ M.DeleteReplicationTaskAssessmentRunOutput = {
 
 M.DescribeAccountAttributesInput = {
     type = "structure",
+    id = "DescribeAccountAttributesInput",
 }
 
 M.DescribeAccountAttributesOutput = {
     type = "structure",
+    id = "DescribeAccountAttributesOutput",
     members = {
         AccountQuotas = {
             type = "list",
@@ -4037,6 +4199,7 @@ M.DescribeAccountAttributesOutput = {
 
 M.DescribeApplicableIndividualAssessmentsInput = {
     type = "structure",
+    id = "DescribeApplicableIndividualAssessmentsInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -4067,6 +4230,7 @@ M.DescribeApplicableIndividualAssessmentsInput = {
 
 M.DescribeApplicableIndividualAssessmentsOutput = {
     type = "structure",
+    id = "DescribeApplicableIndividualAssessmentsOutput",
     members = {
         IndividualAssessmentNames = {
             type = "list",
@@ -4080,6 +4244,7 @@ M.DescribeApplicableIndividualAssessmentsOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -4099,6 +4264,7 @@ M.Filter = {
 
 M.DescribeCertificatesInput = {
     type = "structure",
+    id = "DescribeCertificatesInput",
     members = {
         Filters = {
             type = "list",
@@ -4115,6 +4281,7 @@ M.DescribeCertificatesInput = {
 
 M.DescribeCertificatesOutput = {
     type = "structure",
+    id = "DescribeCertificatesOutput",
     members = {
         Marker = {
             type = "string",
@@ -4128,6 +4295,7 @@ M.DescribeCertificatesOutput = {
 
 M.DescribeConnectionsInput = {
     type = "structure",
+    id = "DescribeConnectionsInput",
     members = {
         Filters = {
             type = "list",
@@ -4144,6 +4312,7 @@ M.DescribeConnectionsInput = {
 
 M.DescribeConnectionsOutput = {
     type = "structure",
+    id = "DescribeConnectionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4157,6 +4326,7 @@ M.DescribeConnectionsOutput = {
 
 M.DescribeConversionConfigurationInput = {
     type = "structure",
+    id = "DescribeConversionConfigurationInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -4169,6 +4339,7 @@ M.DescribeConversionConfigurationInput = {
 
 M.DescribeConversionConfigurationOutput = {
     type = "structure",
+    id = "DescribeConversionConfigurationOutput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -4181,6 +4352,7 @@ M.DescribeConversionConfigurationOutput = {
 
 M.DescribeDataMigrationsInput = {
     type = "structure",
+    id = "DescribeDataMigrationsInput",
     members = {
         Filters = {
             type = "list",
@@ -4203,6 +4375,7 @@ M.DescribeDataMigrationsInput = {
 
 M.DescribeDataMigrationsOutput = {
     type = "structure",
+    id = "DescribeDataMigrationsOutput",
     members = {
         DataMigrations = {
             type = "list",
@@ -4216,6 +4389,7 @@ M.DescribeDataMigrationsOutput = {
 
 M.DescribeDataProvidersInput = {
     type = "structure",
+    id = "DescribeDataProvidersInput",
     members = {
         Filters = {
             type = "list",
@@ -4232,6 +4406,7 @@ M.DescribeDataProvidersInput = {
 
 M.DescribeDataProvidersOutput = {
     type = "structure",
+    id = "DescribeDataProvidersOutput",
     members = {
         Marker = {
             type = "string",
@@ -4245,6 +4420,7 @@ M.DescribeDataProvidersOutput = {
 
 M.DescribeEndpointsInput = {
     type = "structure",
+    id = "DescribeEndpointsInput",
     members = {
         Filters = {
             type = "list",
@@ -4261,6 +4437,7 @@ M.DescribeEndpointsInput = {
 
 M.DescribeEndpointsOutput = {
     type = "structure",
+    id = "DescribeEndpointsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4274,6 +4451,7 @@ M.DescribeEndpointsOutput = {
 
 M.DescribeEndpointSettingsInput = {
     type = "structure",
+    id = "DescribeEndpointSettingsInput",
     members = {
         EngineName = {
             type = "string",
@@ -4299,6 +4477,7 @@ M.EndpointSettingTypeValue = {
 
 M.EndpointSetting = {
     type = "structure",
+    id = "EndpointSetting",
     members = {
         Name = {
             type = "string",
@@ -4333,6 +4512,7 @@ M.EndpointSetting = {
 
 M.DescribeEndpointSettingsOutput = {
     type = "structure",
+    id = "DescribeEndpointSettingsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4346,6 +4526,7 @@ M.DescribeEndpointSettingsOutput = {
 
 M.DescribeEndpointTypesInput = {
     type = "structure",
+    id = "DescribeEndpointTypesInput",
     members = {
         Filters = {
             type = "list",
@@ -4362,6 +4543,7 @@ M.DescribeEndpointTypesInput = {
 
 M.SupportedEndpointType = {
     type = "structure",
+    id = "SupportedEndpointType",
     members = {
         EngineName = {
             type = "string",
@@ -4386,6 +4568,7 @@ M.SupportedEndpointType = {
 
 M.DescribeEndpointTypesOutput = {
     type = "structure",
+    id = "DescribeEndpointTypesOutput",
     members = {
         Marker = {
             type = "string",
@@ -4399,6 +4582,7 @@ M.DescribeEndpointTypesOutput = {
 
 M.DescribeEngineVersionsInput = {
     type = "structure",
+    id = "DescribeEngineVersionsInput",
     members = {
         MaxRecords = {
             type = "integer",
@@ -4416,6 +4600,7 @@ M.ReleaseStatusValues = {
 
 M.EngineVersion = {
     type = "structure",
+    id = "EngineVersion",
     members = {
         Version = {
             type = "string",
@@ -4447,6 +4632,7 @@ M.EngineVersion = {
 
 M.DescribeEngineVersionsOutput = {
     type = "structure",
+    id = "DescribeEngineVersionsOutput",
     members = {
         EngineVersions = {
             type = "list",
@@ -4460,6 +4646,7 @@ M.DescribeEngineVersionsOutput = {
 
 M.DescribeEventCategoriesInput = {
     type = "structure",
+    id = "DescribeEventCategoriesInput",
     members = {
         SourceType = {
             type = "string",
@@ -4473,6 +4660,7 @@ M.DescribeEventCategoriesInput = {
 
 M.EventCategoryGroup = {
     type = "structure",
+    id = "EventCategoryGroup",
     members = {
         SourceType = {
             type = "string",
@@ -4486,6 +4674,7 @@ M.EventCategoryGroup = {
 
 M.DescribeEventCategoriesOutput = {
     type = "structure",
+    id = "DescribeEventCategoriesOutput",
     members = {
         EventCategoryGroupList = {
             type = "list",
@@ -4500,6 +4689,7 @@ M.SourceType = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -4535,6 +4725,7 @@ M.DescribeEventsInput = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -4557,6 +4748,7 @@ M.Event = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4570,6 +4762,7 @@ M.DescribeEventsOutput = {
 
 M.DescribeEventSubscriptionsInput = {
     type = "structure",
+    id = "DescribeEventSubscriptionsInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -4589,6 +4782,7 @@ M.DescribeEventSubscriptionsInput = {
 
 M.DescribeEventSubscriptionsOutput = {
     type = "structure",
+    id = "DescribeEventSubscriptionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4602,6 +4796,7 @@ M.DescribeEventSubscriptionsOutput = {
 
 M.DescribeExtensionPackAssociationsInput = {
     type = "structure",
+    id = "DescribeExtensionPackAssociationsInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -4624,6 +4819,7 @@ M.DescribeExtensionPackAssociationsInput = {
 
 M.DescribeExtensionPackAssociationsOutput = {
     type = "structure",
+    id = "DescribeExtensionPackAssociationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4637,6 +4833,7 @@ M.DescribeExtensionPackAssociationsOutput = {
 
 M.DescribeFleetAdvisorCollectorsInput = {
     type = "structure",
+    id = "DescribeFleetAdvisorCollectorsInput",
     members = {
         Filters = {
             type = "list",
@@ -4658,6 +4855,7 @@ M.CollectorStatus = {
 
 M.CollectorHealthCheck = {
     type = "structure",
+    id = "CollectorHealthCheck",
     members = {
         CollectorStatus = {
             type = "string",
@@ -4676,6 +4874,7 @@ M.CollectorHealthCheck = {
 
 M.InventoryData = {
     type = "structure",
+    id = "InventoryData",
     members = {
         NumberOfDatabases = {
             type = "integer",
@@ -4694,6 +4893,7 @@ M.VersionStatus = {
 
 M.CollectorResponse = {
     type = "structure",
+    id = "CollectorResponse",
     members = {
         CollectorReferencedId = {
             type = "string",
@@ -4735,6 +4935,7 @@ M.CollectorResponse = {
 
 M.DescribeFleetAdvisorCollectorsOutput = {
     type = "structure",
+    id = "DescribeFleetAdvisorCollectorsOutput",
     members = {
         Collectors = {
             type = "list",
@@ -4748,6 +4949,7 @@ M.DescribeFleetAdvisorCollectorsOutput = {
 
 M.DescribeFleetAdvisorDatabasesInput = {
     type = "structure",
+    id = "DescribeFleetAdvisorDatabasesInput",
     members = {
         Filters = {
             type = "list",
@@ -4764,6 +4966,7 @@ M.DescribeFleetAdvisorDatabasesInput = {
 
 M.CollectorShortInfoResponse = {
     type = "structure",
+    id = "CollectorShortInfoResponse",
     members = {
         CollectorReferencedId = {
             type = "string",
@@ -4776,6 +4979,7 @@ M.CollectorShortInfoResponse = {
 
 M.ServerShortInfoResponse = {
     type = "structure",
+    id = "ServerShortInfoResponse",
     members = {
         ServerId = {
             type = "string",
@@ -4791,6 +4995,7 @@ M.ServerShortInfoResponse = {
 
 M.DatabaseInstanceSoftwareDetailsResponse = {
     type = "structure",
+    id = "DatabaseInstanceSoftwareDetailsResponse",
     members = {
         Engine = {
             type = "string",
@@ -4818,6 +5023,7 @@ M.DatabaseInstanceSoftwareDetailsResponse = {
 
 M.DatabaseResponse = {
     type = "structure",
+    id = "DatabaseResponse",
     members = {
         DatabaseId = {
             type = "string",
@@ -4842,6 +5048,7 @@ M.DatabaseResponse = {
 
 M.DescribeFleetAdvisorDatabasesOutput = {
     type = "structure",
+    id = "DescribeFleetAdvisorDatabasesOutput",
     members = {
         Databases = {
             type = "list",
@@ -4855,6 +5062,7 @@ M.DescribeFleetAdvisorDatabasesOutput = {
 
 M.DescribeFleetAdvisorLsaAnalysisInput = {
     type = "structure",
+    id = "DescribeFleetAdvisorLsaAnalysisInput",
     members = {
         MaxRecords = {
             type = "integer",
@@ -4867,6 +5075,7 @@ M.DescribeFleetAdvisorLsaAnalysisInput = {
 
 M.FleetAdvisorLsaAnalysisResponse = {
     type = "structure",
+    id = "FleetAdvisorLsaAnalysisResponse",
     members = {
         LsaAnalysisId = {
             type = "string",
@@ -4879,6 +5088,7 @@ M.FleetAdvisorLsaAnalysisResponse = {
 
 M.DescribeFleetAdvisorLsaAnalysisOutput = {
     type = "structure",
+    id = "DescribeFleetAdvisorLsaAnalysisOutput",
     members = {
         Analysis = {
             type = "list",
@@ -4892,6 +5102,7 @@ M.DescribeFleetAdvisorLsaAnalysisOutput = {
 
 M.DescribeFleetAdvisorSchemaObjectSummaryInput = {
     type = "structure",
+    id = "DescribeFleetAdvisorSchemaObjectSummaryInput",
     members = {
         Filters = {
             type = "list",
@@ -4908,6 +5119,7 @@ M.DescribeFleetAdvisorSchemaObjectSummaryInput = {
 
 M.FleetAdvisorSchemaObjectResponse = {
     type = "structure",
+    id = "FleetAdvisorSchemaObjectResponse",
     members = {
         SchemaId = {
             type = "string",
@@ -4929,6 +5141,7 @@ M.FleetAdvisorSchemaObjectResponse = {
 
 M.DescribeFleetAdvisorSchemaObjectSummaryOutput = {
     type = "structure",
+    id = "DescribeFleetAdvisorSchemaObjectSummaryOutput",
     members = {
         FleetAdvisorSchemaObjects = {
             type = "list",
@@ -4942,6 +5155,7 @@ M.DescribeFleetAdvisorSchemaObjectSummaryOutput = {
 
 M.DescribeFleetAdvisorSchemasInput = {
     type = "structure",
+    id = "DescribeFleetAdvisorSchemasInput",
     members = {
         Filters = {
             type = "list",
@@ -4958,6 +5172,7 @@ M.DescribeFleetAdvisorSchemasInput = {
 
 M.DatabaseShortInfoResponse = {
     type = "structure",
+    id = "DatabaseShortInfoResponse",
     members = {
         DatabaseId = {
             type = "string",
@@ -4976,6 +5191,7 @@ M.DatabaseShortInfoResponse = {
 
 M.SchemaShortInfoResponse = {
     type = "structure",
+    id = "SchemaShortInfoResponse",
     members = {
         SchemaId = {
             type = "string",
@@ -4997,6 +5213,7 @@ M.SchemaShortInfoResponse = {
 
 M.SchemaResponse = {
     type = "structure",
+    id = "SchemaResponse",
     members = {
         CodeLineCount = {
             type = "long",
@@ -5024,6 +5241,7 @@ M.SchemaResponse = {
 
 M.DescribeFleetAdvisorSchemasOutput = {
     type = "structure",
+    id = "DescribeFleetAdvisorSchemasOutput",
     members = {
         FleetAdvisorSchemas = {
             type = "list",
@@ -5037,6 +5255,7 @@ M.DescribeFleetAdvisorSchemasOutput = {
 
 M.DescribeInstanceProfilesInput = {
     type = "structure",
+    id = "DescribeInstanceProfilesInput",
     members = {
         Filters = {
             type = "list",
@@ -5053,6 +5272,7 @@ M.DescribeInstanceProfilesInput = {
 
 M.DescribeInstanceProfilesOutput = {
     type = "structure",
+    id = "DescribeInstanceProfilesOutput",
     members = {
         Marker = {
             type = "string",
@@ -5071,6 +5291,7 @@ M.OriginTypeValue = {
 
 M.DescribeMetadataModelInput = {
     type = "structure",
+    id = "DescribeMetadataModelInput",
     members = {
         SelectionRules = {
             type = "string",
@@ -5095,6 +5316,7 @@ M.DescribeMetadataModelInput = {
 
 M.MetadataModelReference = {
     type = "structure",
+    id = "MetadataModelReference",
     members = {
         MetadataModelName = {
             type = "string",
@@ -5107,6 +5329,7 @@ M.MetadataModelReference = {
 
 M.DescribeMetadataModelOutput = {
     type = "structure",
+    id = "DescribeMetadataModelOutput",
     members = {
         MetadataModelName = {
             type = "string",
@@ -5126,6 +5349,7 @@ M.DescribeMetadataModelOutput = {
 
 M.DescribeMetadataModelAssessmentsInput = {
     type = "structure",
+    id = "DescribeMetadataModelAssessmentsInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -5148,6 +5372,7 @@ M.DescribeMetadataModelAssessmentsInput = {
 
 M.DescribeMetadataModelAssessmentsOutput = {
     type = "structure",
+    id = "DescribeMetadataModelAssessmentsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5161,6 +5386,7 @@ M.DescribeMetadataModelAssessmentsOutput = {
 
 M.DescribeMetadataModelChildrenInput = {
     type = "structure",
+    id = "DescribeMetadataModelChildrenInput",
     members = {
         SelectionRules = {
             type = "string",
@@ -5191,6 +5417,7 @@ M.DescribeMetadataModelChildrenInput = {
 
 M.DescribeMetadataModelChildrenOutput = {
     type = "structure",
+    id = "DescribeMetadataModelChildrenOutput",
     members = {
         Marker = {
             type = "string",
@@ -5204,6 +5431,7 @@ M.DescribeMetadataModelChildrenOutput = {
 
 M.DescribeMetadataModelConversionsInput = {
     type = "structure",
+    id = "DescribeMetadataModelConversionsInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -5226,6 +5454,7 @@ M.DescribeMetadataModelConversionsInput = {
 
 M.DescribeMetadataModelConversionsOutput = {
     type = "structure",
+    id = "DescribeMetadataModelConversionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5239,6 +5468,7 @@ M.DescribeMetadataModelConversionsOutput = {
 
 M.DescribeMetadataModelCreationsInput = {
     type = "structure",
+    id = "DescribeMetadataModelCreationsInput",
     members = {
         Filters = {
             type = "list",
@@ -5261,6 +5491,7 @@ M.DescribeMetadataModelCreationsInput = {
 
 M.DescribeMetadataModelCreationsOutput = {
     type = "structure",
+    id = "DescribeMetadataModelCreationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5274,6 +5505,7 @@ M.DescribeMetadataModelCreationsOutput = {
 
 M.DescribeMetadataModelExportsAsScriptInput = {
     type = "structure",
+    id = "DescribeMetadataModelExportsAsScriptInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -5296,6 +5528,7 @@ M.DescribeMetadataModelExportsAsScriptInput = {
 
 M.DescribeMetadataModelExportsAsScriptOutput = {
     type = "structure",
+    id = "DescribeMetadataModelExportsAsScriptOutput",
     members = {
         Marker = {
             type = "string",
@@ -5309,6 +5542,7 @@ M.DescribeMetadataModelExportsAsScriptOutput = {
 
 M.DescribeMetadataModelExportsToTargetInput = {
     type = "structure",
+    id = "DescribeMetadataModelExportsToTargetInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -5331,6 +5565,7 @@ M.DescribeMetadataModelExportsToTargetInput = {
 
 M.DescribeMetadataModelExportsToTargetOutput = {
     type = "structure",
+    id = "DescribeMetadataModelExportsToTargetOutput",
     members = {
         Marker = {
             type = "string",
@@ -5344,6 +5579,7 @@ M.DescribeMetadataModelExportsToTargetOutput = {
 
 M.DescribeMetadataModelImportsInput = {
     type = "structure",
+    id = "DescribeMetadataModelImportsInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -5366,6 +5602,7 @@ M.DescribeMetadataModelImportsInput = {
 
 M.DescribeMetadataModelImportsOutput = {
     type = "structure",
+    id = "DescribeMetadataModelImportsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5379,6 +5616,7 @@ M.DescribeMetadataModelImportsOutput = {
 
 M.DescribeMigrationProjectsInput = {
     type = "structure",
+    id = "DescribeMigrationProjectsInput",
     members = {
         Filters = {
             type = "list",
@@ -5395,6 +5633,7 @@ M.DescribeMigrationProjectsInput = {
 
 M.DescribeMigrationProjectsOutput = {
     type = "structure",
+    id = "DescribeMigrationProjectsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5408,6 +5647,7 @@ M.DescribeMigrationProjectsOutput = {
 
 M.DescribeOrderableReplicationInstancesInput = {
     type = "structure",
+    id = "DescribeOrderableReplicationInstancesInput",
     members = {
         MaxRecords = {
             type = "integer",
@@ -5420,6 +5660,7 @@ M.DescribeOrderableReplicationInstancesInput = {
 
 M.OrderableReplicationInstance = {
     type = "structure",
+    id = "OrderableReplicationInstance",
     members = {
         EngineVersion = {
             type = "string",
@@ -5466,6 +5707,7 @@ M.OrderableReplicationInstance = {
 
 M.DescribeOrderableReplicationInstancesOutput = {
     type = "structure",
+    id = "DescribeOrderableReplicationInstancesOutput",
     members = {
         OrderableReplicationInstances = {
             type = "list",
@@ -5479,6 +5721,7 @@ M.DescribeOrderableReplicationInstancesOutput = {
 
 M.DescribePendingMaintenanceActionsInput = {
     type = "structure",
+    id = "DescribePendingMaintenanceActionsInput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -5498,6 +5741,7 @@ M.DescribePendingMaintenanceActionsInput = {
 
 M.DescribePendingMaintenanceActionsOutput = {
     type = "structure",
+    id = "DescribePendingMaintenanceActionsOutput",
     members = {
         PendingMaintenanceActions = {
             type = "list",
@@ -5511,6 +5755,7 @@ M.DescribePendingMaintenanceActionsOutput = {
 
 M.DescribeRecommendationLimitationsInput = {
     type = "structure",
+    id = "DescribeRecommendationLimitationsInput",
     members = {
         Filters = {
             type = "list",
@@ -5527,6 +5772,7 @@ M.DescribeRecommendationLimitationsInput = {
 
 M.Limitation = {
     type = "structure",
+    id = "Limitation",
     members = {
         DatabaseId = {
             type = "string",
@@ -5551,6 +5797,7 @@ M.Limitation = {
 
 M.DescribeRecommendationLimitationsOutput = {
     type = "structure",
+    id = "DescribeRecommendationLimitationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5564,6 +5811,7 @@ M.DescribeRecommendationLimitationsOutput = {
 
 M.DescribeRecommendationsInput = {
     type = "structure",
+    id = "DescribeRecommendationsInput",
     members = {
         Filters = {
             type = "list",
@@ -5580,6 +5828,7 @@ M.DescribeRecommendationsInput = {
 
 M.RdsRequirements = {
     type = "structure",
+    id = "RdsRequirements",
     members = {
         EngineEdition = {
             type = "string",
@@ -5607,6 +5856,7 @@ M.RdsRequirements = {
 
 M.RdsConfiguration = {
     type = "structure",
+    id = "RdsConfiguration",
     members = {
         EngineEdition = {
             type = "string",
@@ -5640,6 +5890,7 @@ M.RdsConfiguration = {
 
 M.RdsRecommendation = {
     type = "structure",
+    id = "RdsRecommendation",
     members = {
         RequirementsToTarget = M.RdsRequirements,
         TargetConfiguration = M.RdsConfiguration,
@@ -5648,6 +5899,7 @@ M.RdsRecommendation = {
 
 M.RecommendationData = {
     type = "structure",
+    id = "RecommendationData",
     members = {
         RdsEngine = M.RdsRecommendation,
     },
@@ -5655,6 +5907,7 @@ M.RecommendationData = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         DatabaseId = {
             type = "string",
@@ -5678,6 +5931,7 @@ M.Recommendation = {
 
 M.DescribeRecommendationsOutput = {
     type = "structure",
+    id = "DescribeRecommendationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5691,6 +5945,7 @@ M.DescribeRecommendationsOutput = {
 
 M.DescribeRefreshSchemasStatusInput = {
     type = "structure",
+    id = "DescribeRefreshSchemasStatusInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -5709,6 +5964,7 @@ M.RefreshSchemasStatusTypeValue = {
 
 M.RefreshSchemasStatus = {
     type = "structure",
+    id = "RefreshSchemasStatus",
     members = {
         EndpointArn = {
             type = "string",
@@ -5730,6 +5986,7 @@ M.RefreshSchemasStatus = {
 
 M.DescribeRefreshSchemasStatusOutput = {
     type = "structure",
+    id = "DescribeRefreshSchemasStatusOutput",
     members = {
         RefreshSchemasStatus = M.RefreshSchemasStatus,
     },
@@ -5737,6 +5994,7 @@ M.DescribeRefreshSchemasStatusOutput = {
 
 M.DescribeReplicationConfigsInput = {
     type = "structure",
+    id = "DescribeReplicationConfigsInput",
     members = {
         Filters = {
             type = "list",
@@ -5753,6 +6011,7 @@ M.DescribeReplicationConfigsInput = {
 
 M.DescribeReplicationConfigsOutput = {
     type = "structure",
+    id = "DescribeReplicationConfigsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5766,6 +6025,7 @@ M.DescribeReplicationConfigsOutput = {
 
 M.DescribeReplicationInstancesInput = {
     type = "structure",
+    id = "DescribeReplicationInstancesInput",
     members = {
         Filters = {
             type = "list",
@@ -5782,6 +6042,7 @@ M.DescribeReplicationInstancesInput = {
 
 M.DescribeReplicationInstancesOutput = {
     type = "structure",
+    id = "DescribeReplicationInstancesOutput",
     members = {
         Marker = {
             type = "string",
@@ -5795,6 +6056,7 @@ M.DescribeReplicationInstancesOutput = {
 
 M.DescribeReplicationInstanceTaskLogsInput = {
     type = "structure",
+    id = "DescribeReplicationInstanceTaskLogsInput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -5813,6 +6075,7 @@ M.DescribeReplicationInstanceTaskLogsInput = {
 
 M.ReplicationInstanceTaskLog = {
     type = "structure",
+    id = "ReplicationInstanceTaskLog",
     members = {
         ReplicationTaskName = {
             type = "string",
@@ -5831,6 +6094,7 @@ M.ReplicationInstanceTaskLog = {
 
 M.DescribeReplicationInstanceTaskLogsOutput = {
     type = "structure",
+    id = "DescribeReplicationInstanceTaskLogsOutput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -5847,6 +6111,7 @@ M.DescribeReplicationInstanceTaskLogsOutput = {
 
 M.DescribeReplicationsInput = {
     type = "structure",
+    id = "DescribeReplicationsInput",
     members = {
         Filters = {
             type = "list",
@@ -5863,6 +6128,7 @@ M.DescribeReplicationsInput = {
 
 M.PremigrationAssessmentStatus = {
     type = "structure",
+    id = "PremigrationAssessmentStatus",
     members = {
         PremigrationAssessmentRunArn = {
             type = "string",
@@ -5901,6 +6167,7 @@ M.PremigrationAssessmentStatus = {
 
 M.ProvisionData = {
     type = "structure",
+    id = "ProvisionData",
     members = {
         ProvisionState = {
             type = "string",
@@ -5931,6 +6198,7 @@ M.ProvisionData = {
 
 M.ReplicationStats = {
     type = "structure",
+    id = "ReplicationStats",
     members = {
         FullLoadProgressPercent = {
             type = "integer",
@@ -5988,6 +6256,7 @@ M.ReplicationStats = {
 
 M.Replication = {
     type = "structure",
+    id = "Replication",
     members = {
         ReplicationConfigIdentifier = {
             type = "string",
@@ -6055,6 +6324,7 @@ M.Replication = {
 
 M.DescribeReplicationsOutput = {
     type = "structure",
+    id = "DescribeReplicationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6068,6 +6338,7 @@ M.DescribeReplicationsOutput = {
 
 M.DescribeReplicationSubnetGroupsInput = {
     type = "structure",
+    id = "DescribeReplicationSubnetGroupsInput",
     members = {
         Filters = {
             type = "list",
@@ -6084,6 +6355,7 @@ M.DescribeReplicationSubnetGroupsInput = {
 
 M.DescribeReplicationSubnetGroupsOutput = {
     type = "structure",
+    id = "DescribeReplicationSubnetGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6097,6 +6369,7 @@ M.DescribeReplicationSubnetGroupsOutput = {
 
 M.DescribeReplicationTableStatisticsInput = {
     type = "structure",
+    id = "DescribeReplicationTableStatisticsInput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -6119,6 +6392,7 @@ M.DescribeReplicationTableStatisticsInput = {
 
 M.TableStatistics = {
     type = "structure",
+    id = "TableStatistics",
     members = {
         SchemaName = {
             type = "string",
@@ -6239,6 +6513,7 @@ M.TableStatistics = {
 
 M.DescribeReplicationTableStatisticsOutput = {
     type = "structure",
+    id = "DescribeReplicationTableStatisticsOutput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -6255,6 +6530,7 @@ M.DescribeReplicationTableStatisticsOutput = {
 
 M.DescribeReplicationTaskAssessmentResultsInput = {
     type = "structure",
+    id = "DescribeReplicationTaskAssessmentResultsInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -6270,6 +6546,7 @@ M.DescribeReplicationTaskAssessmentResultsInput = {
 
 M.ReplicationTaskAssessmentResult = {
     type = "structure",
+    id = "ReplicationTaskAssessmentResult",
     members = {
         ReplicationTaskIdentifier = {
             type = "string",
@@ -6297,6 +6574,7 @@ M.ReplicationTaskAssessmentResult = {
 
 M.DescribeReplicationTaskAssessmentResultsOutput = {
     type = "structure",
+    id = "DescribeReplicationTaskAssessmentResultsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6313,6 +6591,7 @@ M.DescribeReplicationTaskAssessmentResultsOutput = {
 
 M.DescribeReplicationTaskAssessmentRunsInput = {
     type = "structure",
+    id = "DescribeReplicationTaskAssessmentRunsInput",
     members = {
         Filters = {
             type = "list",
@@ -6329,6 +6608,7 @@ M.DescribeReplicationTaskAssessmentRunsInput = {
 
 M.DescribeReplicationTaskAssessmentRunsOutput = {
     type = "structure",
+    id = "DescribeReplicationTaskAssessmentRunsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6342,6 +6622,7 @@ M.DescribeReplicationTaskAssessmentRunsOutput = {
 
 M.DescribeReplicationTaskIndividualAssessmentsInput = {
     type = "structure",
+    id = "DescribeReplicationTaskIndividualAssessmentsInput",
     members = {
         Filters = {
             type = "list",
@@ -6358,6 +6639,7 @@ M.DescribeReplicationTaskIndividualAssessmentsInput = {
 
 M.ReplicationTaskIndividualAssessment = {
     type = "structure",
+    id = "ReplicationTaskIndividualAssessment",
     members = {
         ReplicationTaskIndividualAssessmentArn = {
             type = "string",
@@ -6379,6 +6661,7 @@ M.ReplicationTaskIndividualAssessment = {
 
 M.DescribeReplicationTaskIndividualAssessmentsOutput = {
     type = "structure",
+    id = "DescribeReplicationTaskIndividualAssessmentsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6392,6 +6675,7 @@ M.DescribeReplicationTaskIndividualAssessmentsOutput = {
 
 M.DescribeReplicationTasksInput = {
     type = "structure",
+    id = "DescribeReplicationTasksInput",
     members = {
         Filters = {
             type = "list",
@@ -6411,6 +6695,7 @@ M.DescribeReplicationTasksInput = {
 
 M.DescribeReplicationTasksOutput = {
     type = "structure",
+    id = "DescribeReplicationTasksOutput",
     members = {
         Marker = {
             type = "string",
@@ -6424,6 +6709,7 @@ M.DescribeReplicationTasksOutput = {
 
 M.DescribeSchemasInput = {
     type = "structure",
+    id = "DescribeSchemasInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -6442,6 +6728,7 @@ M.DescribeSchemasInput = {
 
 M.DescribeSchemasOutput = {
     type = "structure",
+    id = "DescribeSchemasOutput",
     members = {
         Marker = {
             type = "string",
@@ -6455,6 +6742,7 @@ M.DescribeSchemasOutput = {
 
 M.DescribeTableStatisticsInput = {
     type = "structure",
+    id = "DescribeTableStatisticsInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -6477,6 +6765,7 @@ M.DescribeTableStatisticsInput = {
 
 M.DescribeTableStatisticsOutput = {
     type = "structure",
+    id = "DescribeTableStatisticsOutput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -6498,6 +6787,7 @@ M.AssessmentReportType = {
 
 M.ExportMetadataModelAssessmentInput = {
     type = "structure",
+    id = "ExportMetadataModelAssessmentInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -6523,6 +6813,7 @@ M.ExportMetadataModelAssessmentInput = {
 
 M.ExportMetadataModelAssessmentResultEntry = {
     type = "structure",
+    id = "ExportMetadataModelAssessmentResultEntry",
     members = {
         S3ObjectKey = {
             type = "string",
@@ -6535,6 +6826,7 @@ M.ExportMetadataModelAssessmentResultEntry = {
 
 M.ExportMetadataModelAssessmentOutput = {
     type = "structure",
+    id = "ExportMetadataModelAssessmentOutput",
     members = {
         PdfReport = M.ExportMetadataModelAssessmentResultEntry,
         CsvReport = M.ExportMetadataModelAssessmentResultEntry,
@@ -6543,6 +6835,7 @@ M.ExportMetadataModelAssessmentOutput = {
 
 M.GetTargetSelectionRulesInput = {
     type = "structure",
+    id = "GetTargetSelectionRulesInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -6561,6 +6854,7 @@ M.GetTargetSelectionRulesInput = {
 
 M.GetTargetSelectionRulesOutput = {
     type = "structure",
+    id = "GetTargetSelectionRulesOutput",
     members = {
         TargetSelectionRules = {
             type = "string",
@@ -6570,6 +6864,7 @@ M.GetTargetSelectionRulesOutput = {
 
 M.ImportCertificateInput = {
     type = "structure",
+    id = "ImportCertificateInput",
     members = {
         CertificateIdentifier = {
             type = "string",
@@ -6595,6 +6890,7 @@ M.ImportCertificateInput = {
 
 M.ImportCertificateOutput = {
     type = "structure",
+    id = "ImportCertificateOutput",
     members = {
         Certificate = M.Certificate,
     },
@@ -6602,6 +6898,7 @@ M.ImportCertificateOutput = {
 
 M.InvalidCertificateFault = {
     type = "structure",
+    id = "InvalidCertificateFault",
     error = "client",
     members = {
         message = {
@@ -6612,6 +6909,7 @@ M.InvalidCertificateFault = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6625,6 +6923,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -6635,6 +6934,7 @@ M.ListTagsForResourceOutput = {
 
 M.ModifyConversionConfigurationInput = {
     type = "structure",
+    id = "ModifyConversionConfigurationInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -6653,6 +6953,7 @@ M.ModifyConversionConfigurationInput = {
 
 M.ModifyConversionConfigurationOutput = {
     type = "structure",
+    id = "ModifyConversionConfigurationOutput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -6662,6 +6963,7 @@ M.ModifyConversionConfigurationOutput = {
 
 M.ModifyDataMigrationInput = {
     type = "structure",
+    id = "ModifyDataMigrationInput",
     members = {
         DataMigrationIdentifier = {
             type = "string",
@@ -6700,6 +7002,7 @@ M.ModifyDataMigrationInput = {
 
 M.ModifyDataMigrationOutput = {
     type = "structure",
+    id = "ModifyDataMigrationOutput",
     members = {
         DataMigration = M.DataMigration,
     },
@@ -6707,6 +7010,7 @@ M.ModifyDataMigrationOutput = {
 
 M.ModifyDataProviderInput = {
     type = "structure",
+    id = "ModifyDataProviderInput",
     members = {
         DataProviderIdentifier = {
             type = "string",
@@ -6735,6 +7039,7 @@ M.ModifyDataProviderInput = {
 
 M.ModifyDataProviderOutput = {
     type = "structure",
+    id = "ModifyDataProviderOutput",
     members = {
         DataProvider = M.DataProvider,
     },
@@ -6742,6 +7047,7 @@ M.ModifyDataProviderOutput = {
 
 M.ModifyEndpointInput = {
     type = "structure",
+    id = "ModifyEndpointInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -6815,6 +7121,7 @@ M.ModifyEndpointInput = {
 
 M.ModifyEndpointOutput = {
     type = "structure",
+    id = "ModifyEndpointOutput",
     members = {
         Endpoint = M.Endpoint,
     },
@@ -6822,6 +7129,7 @@ M.ModifyEndpointOutput = {
 
 M.ModifyEventSubscriptionInput = {
     type = "structure",
+    id = "ModifyEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -6847,6 +7155,7 @@ M.ModifyEventSubscriptionInput = {
 
 M.ModifyEventSubscriptionOutput = {
     type = "structure",
+    id = "ModifyEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -6854,6 +7163,7 @@ M.ModifyEventSubscriptionOutput = {
 
 M.ModifyInstanceProfileInput = {
     type = "structure",
+    id = "ModifyInstanceProfileInput",
     members = {
         InstanceProfileIdentifier = {
             type = "string",
@@ -6891,6 +7201,7 @@ M.ModifyInstanceProfileInput = {
 
 M.ModifyInstanceProfileOutput = {
     type = "structure",
+    id = "ModifyInstanceProfileOutput",
     members = {
         InstanceProfile = M.InstanceProfile,
     },
@@ -6898,6 +7209,7 @@ M.ModifyInstanceProfileOutput = {
 
 M.ModifyMigrationProjectInput = {
     type = "structure",
+    id = "ModifyMigrationProjectInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -6931,6 +7243,7 @@ M.ModifyMigrationProjectInput = {
 
 M.ModifyMigrationProjectOutput = {
     type = "structure",
+    id = "ModifyMigrationProjectOutput",
     members = {
         MigrationProject = M.MigrationProject,
     },
@@ -6938,6 +7251,7 @@ M.ModifyMigrationProjectOutput = {
 
 M.ModifyReplicationConfigInput = {
     type = "structure",
+    id = "ModifyReplicationConfigInput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -6972,6 +7286,7 @@ M.ModifyReplicationConfigInput = {
 
 M.ModifyReplicationConfigOutput = {
     type = "structure",
+    id = "ModifyReplicationConfigOutput",
     members = {
         ReplicationConfig = M.ReplicationConfig,
     },
@@ -6979,6 +7294,7 @@ M.ModifyReplicationConfigOutput = {
 
 M.ModifyReplicationInstanceInput = {
     type = "structure",
+    id = "ModifyReplicationInstanceInput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -7032,6 +7348,7 @@ M.ModifyReplicationInstanceInput = {
 
 M.ModifyReplicationInstanceOutput = {
     type = "structure",
+    id = "ModifyReplicationInstanceOutput",
     members = {
         ReplicationInstance = M.ReplicationInstance,
     },
@@ -7039,6 +7356,7 @@ M.ModifyReplicationInstanceOutput = {
 
 M.UpgradeDependencyFailureFault = {
     type = "structure",
+    id = "UpgradeDependencyFailureFault",
     error = "client",
     members = {
         message = {
@@ -7049,6 +7367,7 @@ M.UpgradeDependencyFailureFault = {
 
 M.ModifyReplicationSubnetGroupInput = {
     type = "structure",
+    id = "ModifyReplicationSubnetGroupInput",
     members = {
         ReplicationSubnetGroupIdentifier = {
             type = "string",
@@ -7071,6 +7390,7 @@ M.ModifyReplicationSubnetGroupInput = {
 
 M.ModifyReplicationSubnetGroupOutput = {
     type = "structure",
+    id = "ModifyReplicationSubnetGroupOutput",
     members = {
         ReplicationSubnetGroup = M.ReplicationSubnetGroup,
     },
@@ -7078,6 +7398,7 @@ M.ModifyReplicationSubnetGroupOutput = {
 
 M.SubnetAlreadyInUse = {
     type = "structure",
+    id = "SubnetAlreadyInUse",
     error = "client",
     members = {
         message = {
@@ -7088,6 +7409,7 @@ M.SubnetAlreadyInUse = {
 
 M.ModifyReplicationTaskInput = {
     type = "structure",
+    id = "ModifyReplicationTaskInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7124,6 +7446,7 @@ M.ModifyReplicationTaskInput = {
 
 M.ModifyReplicationTaskOutput = {
     type = "structure",
+    id = "ModifyReplicationTaskOutput",
     members = {
         ReplicationTask = M.ReplicationTask,
     },
@@ -7131,6 +7454,7 @@ M.ModifyReplicationTaskOutput = {
 
 M.MoveReplicationTaskInput = {
     type = "structure",
+    id = "MoveReplicationTaskInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7149,6 +7473,7 @@ M.MoveReplicationTaskInput = {
 
 M.MoveReplicationTaskOutput = {
     type = "structure",
+    id = "MoveReplicationTaskOutput",
     members = {
         ReplicationTask = M.ReplicationTask,
     },
@@ -7156,6 +7481,7 @@ M.MoveReplicationTaskOutput = {
 
 M.RebootReplicationInstanceInput = {
     type = "structure",
+    id = "RebootReplicationInstanceInput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -7174,6 +7500,7 @@ M.RebootReplicationInstanceInput = {
 
 M.RebootReplicationInstanceOutput = {
     type = "structure",
+    id = "RebootReplicationInstanceOutput",
     members = {
         ReplicationInstance = M.ReplicationInstance,
     },
@@ -7181,6 +7508,7 @@ M.RebootReplicationInstanceOutput = {
 
 M.RefreshSchemasInput = {
     type = "structure",
+    id = "RefreshSchemasInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -7199,6 +7527,7 @@ M.RefreshSchemasInput = {
 
 M.RefreshSchemasOutput = {
     type = "structure",
+    id = "RefreshSchemasOutput",
     members = {
         RefreshSchemasStatus = M.RefreshSchemasStatus,
     },
@@ -7211,6 +7540,7 @@ M.ReloadOptionValue = {
 
 M.TableToReload = {
     type = "structure",
+    id = "TableToReload",
     members = {
         SchemaName = {
             type = "string",
@@ -7229,6 +7559,7 @@ M.TableToReload = {
 
 M.ReloadReplicationTablesInput = {
     type = "structure",
+    id = "ReloadReplicationTablesInput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -7251,6 +7582,7 @@ M.ReloadReplicationTablesInput = {
 
 M.ReloadReplicationTablesOutput = {
     type = "structure",
+    id = "ReloadReplicationTablesOutput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -7260,6 +7592,7 @@ M.ReloadReplicationTablesOutput = {
 
 M.ReloadTablesInput = {
     type = "structure",
+    id = "ReloadTablesInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7282,6 +7615,7 @@ M.ReloadTablesInput = {
 
 M.ReloadTablesOutput = {
     type = "structure",
+    id = "ReloadTablesOutput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7291,6 +7625,7 @@ M.ReloadTablesOutput = {
 
 M.RemoveTagsFromResourceInput = {
     type = "structure",
+    id = "RemoveTagsFromResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7310,14 +7645,17 @@ M.RemoveTagsFromResourceInput = {
 
 M.RemoveTagsFromResourceOutput = {
     type = "structure",
+    id = "RemoveTagsFromResourceOutput",
 }
 
 M.RunFleetAdvisorLsaAnalysisInput = {
     type = "structure",
+    id = "RunFleetAdvisorLsaAnalysisInput",
 }
 
 M.RunFleetAdvisorLsaAnalysisOutput = {
     type = "structure",
+    id = "RunFleetAdvisorLsaAnalysisOutput",
     members = {
         LsaAnalysisId = {
             type = "string",
@@ -7336,6 +7674,7 @@ M.StartReplicationMigrationTypeValue = {
 
 M.StartDataMigrationInput = {
     type = "structure",
+    id = "StartDataMigrationInput",
     members = {
         DataMigrationIdentifier = {
             type = "string",
@@ -7354,6 +7693,7 @@ M.StartDataMigrationInput = {
 
 M.StartDataMigrationOutput = {
     type = "structure",
+    id = "StartDataMigrationOutput",
     members = {
         DataMigration = M.DataMigration,
     },
@@ -7361,6 +7701,7 @@ M.StartDataMigrationOutput = {
 
 M.StartExtensionPackAssociationInput = {
     type = "structure",
+    id = "StartExtensionPackAssociationInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -7373,6 +7714,7 @@ M.StartExtensionPackAssociationInput = {
 
 M.StartExtensionPackAssociationOutput = {
     type = "structure",
+    id = "StartExtensionPackAssociationOutput",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -7382,6 +7724,7 @@ M.StartExtensionPackAssociationOutput = {
 
 M.StartMetadataModelAssessmentInput = {
     type = "structure",
+    id = "StartMetadataModelAssessmentInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -7400,6 +7743,7 @@ M.StartMetadataModelAssessmentInput = {
 
 M.StartMetadataModelAssessmentOutput = {
     type = "structure",
+    id = "StartMetadataModelAssessmentOutput",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -7409,6 +7753,7 @@ M.StartMetadataModelAssessmentOutput = {
 
 M.StartMetadataModelConversionInput = {
     type = "structure",
+    id = "StartMetadataModelConversionInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -7427,6 +7772,7 @@ M.StartMetadataModelConversionInput = {
 
 M.StartMetadataModelConversionOutput = {
     type = "structure",
+    id = "StartMetadataModelConversionOutput",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -7436,6 +7782,7 @@ M.StartMetadataModelConversionOutput = {
 
 M.StatementProperties = {
     type = "structure",
+    id = "StatementProperties",
     members = {
         Definition = {
             type = "string",
@@ -7448,6 +7795,7 @@ M.StatementProperties = {
 
 M.MetadataModelProperties = {
     type = "union",
+    id = "MetadataModelProperties",
     members = {
         StatementProperties = M.StatementProperties,
     },
@@ -7455,6 +7803,7 @@ M.MetadataModelProperties = {
 
 M.StartMetadataModelCreationInput = {
     type = "structure",
+    id = "StartMetadataModelCreationInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -7482,6 +7831,7 @@ M.StartMetadataModelCreationInput = {
 
 M.StartMetadataModelCreationOutput = {
     type = "structure",
+    id = "StartMetadataModelCreationOutput",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -7491,6 +7841,7 @@ M.StartMetadataModelCreationOutput = {
 
 M.StartMetadataModelExportAsScriptInput = {
     type = "structure",
+    id = "StartMetadataModelExportAsScriptInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -7518,6 +7869,7 @@ M.StartMetadataModelExportAsScriptInput = {
 
 M.StartMetadataModelExportAsScriptOutput = {
     type = "structure",
+    id = "StartMetadataModelExportAsScriptOutput",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -7527,6 +7879,7 @@ M.StartMetadataModelExportAsScriptOutput = {
 
 M.StartMetadataModelExportToTargetInput = {
     type = "structure",
+    id = "StartMetadataModelExportToTargetInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -7548,6 +7901,7 @@ M.StartMetadataModelExportToTargetInput = {
 
 M.StartMetadataModelExportToTargetOutput = {
     type = "structure",
+    id = "StartMetadataModelExportToTargetOutput",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -7557,6 +7911,7 @@ M.StartMetadataModelExportToTargetOutput = {
 
 M.StartMetadataModelImportInput = {
     type = "structure",
+    id = "StartMetadataModelImportInput",
     members = {
         MigrationProjectIdentifier = {
             type = "string",
@@ -7587,6 +7942,7 @@ M.StartMetadataModelImportInput = {
 
 M.StartMetadataModelImportOutput = {
     type = "structure",
+    id = "StartMetadataModelImportOutput",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -7596,6 +7952,7 @@ M.StartMetadataModelImportOutput = {
 
 M.StartRecommendationsInput = {
     type = "structure",
+    id = "StartRecommendationsInput",
     members = {
         DatabaseId = {
             type = "string",
@@ -7611,10 +7968,12 @@ M.StartRecommendationsInput = {
 
 M.StartRecommendationsOutput = {
     type = "structure",
+    id = "StartRecommendationsOutput",
 }
 
 M.StartReplicationInput = {
     type = "structure",
+    id = "StartReplicationInput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -7645,6 +8004,7 @@ M.StartReplicationInput = {
 
 M.StartReplicationOutput = {
     type = "structure",
+    id = "StartReplicationOutput",
     members = {
         Replication = M.Replication,
     },
@@ -7658,6 +8018,7 @@ M.StartReplicationTaskTypeValue = {
 
 M.StartReplicationTaskInput = {
     type = "structure",
+    id = "StartReplicationTaskInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7685,6 +8046,7 @@ M.StartReplicationTaskInput = {
 
 M.StartReplicationTaskOutput = {
     type = "structure",
+    id = "StartReplicationTaskOutput",
     members = {
         ReplicationTask = M.ReplicationTask,
     },
@@ -7692,6 +8054,7 @@ M.StartReplicationTaskOutput = {
 
 M.StartReplicationTaskAssessmentInput = {
     type = "structure",
+    id = "StartReplicationTaskAssessmentInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7704,6 +8067,7 @@ M.StartReplicationTaskAssessmentInput = {
 
 M.StartReplicationTaskAssessmentOutput = {
     type = "structure",
+    id = "StartReplicationTaskAssessmentOutput",
     members = {
         ReplicationTask = M.ReplicationTask,
     },
@@ -7711,6 +8075,7 @@ M.StartReplicationTaskAssessmentOutput = {
 
 M.KMSFault = {
     type = "structure",
+    id = "KMSFault",
     error = "client",
     members = {
         message = {
@@ -7721,6 +8086,7 @@ M.KMSFault = {
 
 M.StartReplicationTaskAssessmentRunInput = {
     type = "structure",
+    id = "StartReplicationTaskAssessmentRunInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7772,6 +8138,7 @@ M.StartReplicationTaskAssessmentRunInput = {
 
 M.StartReplicationTaskAssessmentRunOutput = {
     type = "structure",
+    id = "StartReplicationTaskAssessmentRunOutput",
     members = {
         ReplicationTaskAssessmentRun = M.ReplicationTaskAssessmentRun,
     },
@@ -7779,6 +8146,7 @@ M.StartReplicationTaskAssessmentRunOutput = {
 
 M.StopDataMigrationInput = {
     type = "structure",
+    id = "StopDataMigrationInput",
     members = {
         DataMigrationIdentifier = {
             type = "string",
@@ -7791,6 +8159,7 @@ M.StopDataMigrationInput = {
 
 M.StopDataMigrationOutput = {
     type = "structure",
+    id = "StopDataMigrationOutput",
     members = {
         DataMigration = M.DataMigration,
     },
@@ -7798,6 +8167,7 @@ M.StopDataMigrationOutput = {
 
 M.StopReplicationInput = {
     type = "structure",
+    id = "StopReplicationInput",
     members = {
         ReplicationConfigArn = {
             type = "string",
@@ -7810,6 +8180,7 @@ M.StopReplicationInput = {
 
 M.StopReplicationOutput = {
     type = "structure",
+    id = "StopReplicationOutput",
     members = {
         Replication = M.Replication,
     },
@@ -7817,6 +8188,7 @@ M.StopReplicationOutput = {
 
 M.StopReplicationTaskInput = {
     type = "structure",
+    id = "StopReplicationTaskInput",
     members = {
         ReplicationTaskArn = {
             type = "string",
@@ -7829,6 +8201,7 @@ M.StopReplicationTaskInput = {
 
 M.StopReplicationTaskOutput = {
     type = "structure",
+    id = "StopReplicationTaskOutput",
     members = {
         ReplicationTask = M.ReplicationTask,
     },
@@ -7836,6 +8209,7 @@ M.StopReplicationTaskOutput = {
 
 M.TestConnectionInput = {
     type = "structure",
+    id = "TestConnectionInput",
     members = {
         ReplicationInstanceArn = {
             type = "string",
@@ -7854,6 +8228,7 @@ M.TestConnectionInput = {
 
 M.TestConnectionOutput = {
     type = "structure",
+    id = "TestConnectionOutput",
     members = {
         Connection = M.Connection,
     },
@@ -7861,6 +8236,7 @@ M.TestConnectionOutput = {
 
 M.UpdateSubscriptionsToEventBridgeInput = {
     type = "structure",
+    id = "UpdateSubscriptionsToEventBridgeInput",
     members = {
         ForceMove = {
             type = "boolean",
@@ -7870,6 +8246,7 @@ M.UpdateSubscriptionsToEventBridgeInput = {
 
 M.UpdateSubscriptionsToEventBridgeOutput = {
     type = "structure",
+    id = "UpdateSubscriptionsToEventBridgeOutput",
     members = {
         Result = {
             type = "string",

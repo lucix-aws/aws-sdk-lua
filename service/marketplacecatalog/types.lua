@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AmiProductEntityIdFilter = {
     type = "structure",
+    id = "AmiProductEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -22,6 +24,7 @@ M.AmiProductEntityIdFilter = {
 
 M.AmiProductLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "AmiProductLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -34,6 +37,7 @@ M.AmiProductLastModifiedDateFilterDateRange = {
 
 M.AmiProductLastModifiedDateFilter = {
     type = "structure",
+    id = "AmiProductLastModifiedDateFilter",
     members = {
         DateRange = M.AmiProductLastModifiedDateFilterDateRange,
     },
@@ -41,6 +45,7 @@ M.AmiProductLastModifiedDateFilter = {
 
 M.AmiProductTitleFilter = {
     type = "structure",
+    id = "AmiProductTitleFilter",
     members = {
         ValueList = {
             type = "list",
@@ -61,6 +66,7 @@ M.AmiProductVisibilityString = {
 
 M.AmiProductVisibilityFilter = {
     type = "structure",
+    id = "AmiProductVisibilityFilter",
     members = {
         ValueList = {
             type = "list",
@@ -71,6 +77,7 @@ M.AmiProductVisibilityFilter = {
 
 M.AmiProductFilters = {
     type = "structure",
+    id = "AmiProductFilters",
     members = {
         EntityId = M.AmiProductEntityIdFilter,
         LastModifiedDate = M.AmiProductLastModifiedDateFilter,
@@ -93,6 +100,7 @@ M.SortOrder = {
 
 M.AmiProductSort = {
     type = "structure",
+    id = "AmiProductSort",
     members = {
         SortBy = {
             type = "string",
@@ -105,6 +113,7 @@ M.AmiProductSort = {
 
 M.AmiProductSummary = {
     type = "structure",
+    id = "AmiProductSummary",
     members = {
         ProductTitle = {
             type = "string",
@@ -117,6 +126,7 @@ M.AmiProductSummary = {
 
 M.EntityRequest = {
     type = "structure",
+    id = "EntityRequest",
     members = {
         Catalog = {
             type = "string",
@@ -135,6 +145,7 @@ M.EntityRequest = {
 
 M.BatchDescribeEntitiesInput = {
     type = "structure",
+    id = "BatchDescribeEntitiesInput",
     members = {
         EntityRequestList = {
             type = "list",
@@ -148,6 +159,7 @@ M.BatchDescribeEntitiesInput = {
 
 M.EntityDetail = {
     type = "structure",
+    id = "EntityDetail",
     members = {
         EntityType = {
             type = "string",
@@ -169,6 +181,7 @@ M.EntityDetail = {
 
 M.BatchDescribeErrorDetail = {
     type = "structure",
+    id = "BatchDescribeErrorDetail",
     members = {
         ErrorCode = {
             type = "string",
@@ -181,6 +194,7 @@ M.BatchDescribeErrorDetail = {
 
 M.BatchDescribeEntitiesOutput = {
     type = "structure",
+    id = "BatchDescribeEntitiesOutput",
     members = {
         EntityDetails = {
             type = "map",
@@ -197,6 +211,7 @@ M.BatchDescribeEntitiesOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -207,6 +222,7 @@ M.InternalServiceException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -217,6 +233,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -227,6 +244,7 @@ M.ValidationException = {
 
 M.CancelChangeSetInput = {
     type = "structure",
+    id = "CancelChangeSetInput",
     members = {
         Catalog = {
             type = "string",
@@ -247,6 +265,7 @@ M.CancelChangeSetInput = {
 
 M.CancelChangeSetOutput = {
     type = "structure",
+    id = "CancelChangeSetOutput",
     members = {
         ChangeSetId = {
             type = "string",
@@ -259,6 +278,7 @@ M.CancelChangeSetOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -269,6 +289,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -279,6 +300,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -292,10 +314,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DescribeChangeSetInput = {
     type = "structure",
+    id = "DescribeChangeSetInput",
     members = {
         Catalog = {
             type = "string",
@@ -316,6 +340,7 @@ M.DescribeChangeSetInput = {
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         Type = {
             type = "string",
@@ -331,6 +356,7 @@ M.Entity = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         ErrorCode = {
             type = "string",
@@ -343,6 +369,7 @@ M.ErrorDetail = {
 
 M.ChangeSummary = {
     type = "structure",
+    id = "ChangeSummary",
     members = {
         ChangeType = {
             type = "string",
@@ -384,6 +411,7 @@ M.ChangeStatus = {
 
 M.DescribeChangeSetOutput = {
     type = "structure",
+    id = "DescribeChangeSetOutput",
     members = {
         ChangeSetId = {
             type = "string",
@@ -421,6 +449,7 @@ M.DescribeChangeSetOutput = {
 
 M.DescribeEntityInput = {
     type = "structure",
+    id = "DescribeEntityInput",
     members = {
         Catalog = {
             type = "string",
@@ -441,6 +470,7 @@ M.DescribeEntityInput = {
 
 M.DescribeEntityOutput = {
     type = "structure",
+    id = "DescribeEntityOutput",
     members = {
         EntityType = {
             type = "string",
@@ -465,6 +495,7 @@ M.DescribeEntityOutput = {
 
 M.ResourceNotSupportedException = {
     type = "structure",
+    id = "ResourceNotSupportedException",
     error = "client",
     members = {
         Message = {
@@ -475,6 +506,7 @@ M.ResourceNotSupportedException = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -488,6 +520,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -497,6 +530,7 @@ M.GetResourcePolicyOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -510,6 +544,7 @@ M.Filter = {
 
 M.Sort = {
     type = "structure",
+    id = "Sort",
     members = {
         SortBy = {
             type = "string",
@@ -522,6 +557,7 @@ M.Sort = {
 
 M.ListChangeSetsInput = {
     type = "structure",
+    id = "ListChangeSetsInput",
     members = {
         Catalog = {
             type = "string",
@@ -545,6 +581,7 @@ M.ListChangeSetsInput = {
 
 M.ChangeSetSummaryListItem = {
     type = "structure",
+    id = "ChangeSetSummaryListItem",
     members = {
         ChangeSetId = {
             type = "string",
@@ -576,6 +613,7 @@ M.ChangeSetSummaryListItem = {
 
 M.ListChangeSetsOutput = {
     type = "structure",
+    id = "ListChangeSetsOutput",
     members = {
         ChangeSetSummaryList = {
             type = "list",
@@ -589,6 +627,7 @@ M.ListChangeSetsOutput = {
 
 M.ContainerProductEntityIdFilter = {
     type = "structure",
+    id = "ContainerProductEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -599,6 +638,7 @@ M.ContainerProductEntityIdFilter = {
 
 M.ContainerProductLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "ContainerProductLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -611,6 +651,7 @@ M.ContainerProductLastModifiedDateFilterDateRange = {
 
 M.ContainerProductLastModifiedDateFilter = {
     type = "structure",
+    id = "ContainerProductLastModifiedDateFilter",
     members = {
         DateRange = M.ContainerProductLastModifiedDateFilterDateRange,
     },
@@ -618,6 +659,7 @@ M.ContainerProductLastModifiedDateFilter = {
 
 M.ContainerProductTitleFilter = {
     type = "structure",
+    id = "ContainerProductTitleFilter",
     members = {
         ValueList = {
             type = "list",
@@ -638,6 +680,7 @@ M.ContainerProductVisibilityString = {
 
 M.ContainerProductVisibilityFilter = {
     type = "structure",
+    id = "ContainerProductVisibilityFilter",
     members = {
         ValueList = {
             type = "list",
@@ -648,6 +691,7 @@ M.ContainerProductVisibilityFilter = {
 
 M.ContainerProductFilters = {
     type = "structure",
+    id = "ContainerProductFilters",
     members = {
         EntityId = M.ContainerProductEntityIdFilter,
         LastModifiedDate = M.ContainerProductLastModifiedDateFilter,
@@ -658,6 +702,7 @@ M.ContainerProductFilters = {
 
 M.DataProductEntityIdFilter = {
     type = "structure",
+    id = "DataProductEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -668,6 +713,7 @@ M.DataProductEntityIdFilter = {
 
 M.DataProductLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "DataProductLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -680,6 +726,7 @@ M.DataProductLastModifiedDateFilterDateRange = {
 
 M.DataProductLastModifiedDateFilter = {
     type = "structure",
+    id = "DataProductLastModifiedDateFilter",
     members = {
         DateRange = M.DataProductLastModifiedDateFilterDateRange,
     },
@@ -687,6 +734,7 @@ M.DataProductLastModifiedDateFilter = {
 
 M.DataProductTitleFilter = {
     type = "structure",
+    id = "DataProductTitleFilter",
     members = {
         ValueList = {
             type = "list",
@@ -708,6 +756,7 @@ M.DataProductVisibilityString = {
 
 M.DataProductVisibilityFilter = {
     type = "structure",
+    id = "DataProductVisibilityFilter",
     members = {
         ValueList = {
             type = "list",
@@ -718,6 +767,7 @@ M.DataProductVisibilityFilter = {
 
 M.DataProductFilters = {
     type = "structure",
+    id = "DataProductFilters",
     members = {
         EntityId = M.DataProductEntityIdFilter,
         ProductTitle = M.DataProductTitleFilter,
@@ -728,6 +778,7 @@ M.DataProductFilters = {
 
 M.MachineLearningProductEntityIdFilter = {
     type = "structure",
+    id = "MachineLearningProductEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -738,6 +789,7 @@ M.MachineLearningProductEntityIdFilter = {
 
 M.MachineLearningProductLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "MachineLearningProductLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -750,6 +802,7 @@ M.MachineLearningProductLastModifiedDateFilterDateRange = {
 
 M.MachineLearningProductLastModifiedDateFilter = {
     type = "structure",
+    id = "MachineLearningProductLastModifiedDateFilter",
     members = {
         DateRange = M.MachineLearningProductLastModifiedDateFilterDateRange,
     },
@@ -757,6 +810,7 @@ M.MachineLearningProductLastModifiedDateFilter = {
 
 M.MachineLearningProductTitleFilter = {
     type = "structure",
+    id = "MachineLearningProductTitleFilter",
     members = {
         ValueList = {
             type = "list",
@@ -777,6 +831,7 @@ M.MachineLearningProductVisibilityString = {
 
 M.MachineLearningProductVisibilityFilter = {
     type = "structure",
+    id = "MachineLearningProductVisibilityFilter",
     members = {
         ValueList = {
             type = "list",
@@ -787,6 +842,7 @@ M.MachineLearningProductVisibilityFilter = {
 
 M.MachineLearningProductFilters = {
     type = "structure",
+    id = "MachineLearningProductFilters",
     members = {
         EntityId = M.MachineLearningProductEntityIdFilter,
         LastModifiedDate = M.MachineLearningProductLastModifiedDateFilter,
@@ -797,6 +853,7 @@ M.MachineLearningProductFilters = {
 
 M.OfferAvailabilityEndDateFilterDateRange = {
     type = "structure",
+    id = "OfferAvailabilityEndDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -809,6 +866,7 @@ M.OfferAvailabilityEndDateFilterDateRange = {
 
 M.OfferAvailabilityEndDateFilter = {
     type = "structure",
+    id = "OfferAvailabilityEndDateFilter",
     members = {
         DateRange = M.OfferAvailabilityEndDateFilterDateRange,
     },
@@ -816,6 +874,7 @@ M.OfferAvailabilityEndDateFilter = {
 
 M.OfferBuyerAccountsFilter = {
     type = "structure",
+    id = "OfferBuyerAccountsFilter",
     members = {
         WildCardValue = {
             type = "string",
@@ -825,6 +884,7 @@ M.OfferBuyerAccountsFilter = {
 
 M.OfferEntityIdFilter = {
     type = "structure",
+    id = "OfferEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -835,6 +895,7 @@ M.OfferEntityIdFilter = {
 
 M.OfferLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "OfferLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -847,6 +908,7 @@ M.OfferLastModifiedDateFilterDateRange = {
 
 M.OfferLastModifiedDateFilter = {
     type = "structure",
+    id = "OfferLastModifiedDateFilter",
     members = {
         DateRange = M.OfferLastModifiedDateFilterDateRange,
     },
@@ -854,6 +916,7 @@ M.OfferLastModifiedDateFilter = {
 
 M.OfferNameFilter = {
     type = "structure",
+    id = "OfferNameFilter",
     members = {
         ValueList = {
             type = "list",
@@ -867,6 +930,7 @@ M.OfferNameFilter = {
 
 M.OfferSetIdFilter = {
     type = "structure",
+    id = "OfferSetIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -877,6 +941,7 @@ M.OfferSetIdFilter = {
 
 M.OfferProductIdFilter = {
     type = "structure",
+    id = "OfferProductIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -887,6 +952,7 @@ M.OfferProductIdFilter = {
 
 M.OfferReleaseDateFilterDateRange = {
     type = "structure",
+    id = "OfferReleaseDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -899,6 +965,7 @@ M.OfferReleaseDateFilterDateRange = {
 
 M.OfferReleaseDateFilter = {
     type = "structure",
+    id = "OfferReleaseDateFilter",
     members = {
         DateRange = M.OfferReleaseDateFilterDateRange,
     },
@@ -906,6 +973,7 @@ M.OfferReleaseDateFilter = {
 
 M.OfferResaleAuthorizationIdFilter = {
     type = "structure",
+    id = "OfferResaleAuthorizationIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -921,6 +989,7 @@ M.OfferStateString = {
 
 M.OfferStateFilter = {
     type = "structure",
+    id = "OfferStateFilter",
     members = {
         ValueList = {
             type = "list",
@@ -938,6 +1007,7 @@ M.OfferTargetingString = {
 
 M.OfferTargetingFilter = {
     type = "structure",
+    id = "OfferTargetingFilter",
     members = {
         ValueList = {
             type = "list",
@@ -948,6 +1018,7 @@ M.OfferTargetingFilter = {
 
 M.OfferFilters = {
     type = "structure",
+    id = "OfferFilters",
     members = {
         EntityId = M.OfferEntityIdFilter,
         Name = M.OfferNameFilter,
@@ -965,6 +1036,7 @@ M.OfferFilters = {
 
 M.OfferSetAssociatedOfferIdsFilter = {
     type = "structure",
+    id = "OfferSetAssociatedOfferIdsFilter",
     members = {
         ValueList = {
             type = "list",
@@ -975,6 +1047,7 @@ M.OfferSetAssociatedOfferIdsFilter = {
 
 M.OfferSetEntityIdFilter = {
     type = "structure",
+    id = "OfferSetEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -985,6 +1058,7 @@ M.OfferSetEntityIdFilter = {
 
 M.OfferSetLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "OfferSetLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -997,6 +1071,7 @@ M.OfferSetLastModifiedDateFilterDateRange = {
 
 M.OfferSetLastModifiedDateFilter = {
     type = "structure",
+    id = "OfferSetLastModifiedDateFilter",
     members = {
         DateRange = M.OfferSetLastModifiedDateFilterDateRange,
     },
@@ -1004,6 +1079,7 @@ M.OfferSetLastModifiedDateFilter = {
 
 M.OfferSetNameFilter = {
     type = "structure",
+    id = "OfferSetNameFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1014,6 +1090,7 @@ M.OfferSetNameFilter = {
 
 M.OfferSetReleaseDateFilterDateRange = {
     type = "structure",
+    id = "OfferSetReleaseDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -1026,6 +1103,7 @@ M.OfferSetReleaseDateFilterDateRange = {
 
 M.OfferSetReleaseDateFilter = {
     type = "structure",
+    id = "OfferSetReleaseDateFilter",
     members = {
         DateRange = M.OfferSetReleaseDateFilterDateRange,
     },
@@ -1033,6 +1111,7 @@ M.OfferSetReleaseDateFilter = {
 
 M.OfferSetSolutionIdFilter = {
     type = "structure",
+    id = "OfferSetSolutionIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1048,6 +1127,7 @@ M.OfferSetStateString = {
 
 M.OfferSetStateFilter = {
     type = "structure",
+    id = "OfferSetStateFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1058,6 +1138,7 @@ M.OfferSetStateFilter = {
 
 M.OfferSetFilters = {
     type = "structure",
+    id = "OfferSetFilters",
     members = {
         EntityId = M.OfferSetEntityIdFilter,
         Name = M.OfferSetNameFilter,
@@ -1071,6 +1152,7 @@ M.OfferSetFilters = {
 
 M.ResaleAuthorizationAvailabilityEndDateFilterDateRange = {
     type = "structure",
+    id = "ResaleAuthorizationAvailabilityEndDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -1083,6 +1165,7 @@ M.ResaleAuthorizationAvailabilityEndDateFilterDateRange = {
 
 M.ResaleAuthorizationAvailabilityEndDateFilter = {
     type = "structure",
+    id = "ResaleAuthorizationAvailabilityEndDateFilter",
     members = {
         DateRange = M.ResaleAuthorizationAvailabilityEndDateFilterDateRange,
         ValueList = {
@@ -1094,6 +1177,7 @@ M.ResaleAuthorizationAvailabilityEndDateFilter = {
 
 M.ResaleAuthorizationCreatedDateFilterDateRange = {
     type = "structure",
+    id = "ResaleAuthorizationCreatedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -1106,6 +1190,7 @@ M.ResaleAuthorizationCreatedDateFilterDateRange = {
 
 M.ResaleAuthorizationCreatedDateFilter = {
     type = "structure",
+    id = "ResaleAuthorizationCreatedDateFilter",
     members = {
         DateRange = M.ResaleAuthorizationCreatedDateFilterDateRange,
         ValueList = {
@@ -1117,6 +1202,7 @@ M.ResaleAuthorizationCreatedDateFilter = {
 
 M.ResaleAuthorizationEntityIdFilter = {
     type = "structure",
+    id = "ResaleAuthorizationEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1127,6 +1213,7 @@ M.ResaleAuthorizationEntityIdFilter = {
 
 M.ResaleAuthorizationLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "ResaleAuthorizationLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -1139,6 +1226,7 @@ M.ResaleAuthorizationLastModifiedDateFilterDateRange = {
 
 M.ResaleAuthorizationLastModifiedDateFilter = {
     type = "structure",
+    id = "ResaleAuthorizationLastModifiedDateFilter",
     members = {
         DateRange = M.ResaleAuthorizationLastModifiedDateFilterDateRange,
     },
@@ -1146,6 +1234,7 @@ M.ResaleAuthorizationLastModifiedDateFilter = {
 
 M.ResaleAuthorizationManufacturerAccountIdFilter = {
     type = "structure",
+    id = "ResaleAuthorizationManufacturerAccountIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1159,6 +1248,7 @@ M.ResaleAuthorizationManufacturerAccountIdFilter = {
 
 M.ResaleAuthorizationManufacturerLegalNameFilter = {
     type = "structure",
+    id = "ResaleAuthorizationManufacturerLegalNameFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1172,6 +1262,7 @@ M.ResaleAuthorizationManufacturerLegalNameFilter = {
 
 M.ResaleAuthorizationNameFilter = {
     type = "structure",
+    id = "ResaleAuthorizationNameFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1185,6 +1276,7 @@ M.ResaleAuthorizationNameFilter = {
 
 M.ResaleAuthorizationOfferExtendedStatusFilter = {
     type = "structure",
+    id = "ResaleAuthorizationOfferExtendedStatusFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1195,6 +1287,7 @@ M.ResaleAuthorizationOfferExtendedStatusFilter = {
 
 M.ResaleAuthorizationProductIdFilter = {
     type = "structure",
+    id = "ResaleAuthorizationProductIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1208,6 +1301,7 @@ M.ResaleAuthorizationProductIdFilter = {
 
 M.ResaleAuthorizationProductNameFilter = {
     type = "structure",
+    id = "ResaleAuthorizationProductNameFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1221,6 +1315,7 @@ M.ResaleAuthorizationProductNameFilter = {
 
 M.ResaleAuthorizationResellerAccountIDFilter = {
     type = "structure",
+    id = "ResaleAuthorizationResellerAccountIDFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1234,6 +1329,7 @@ M.ResaleAuthorizationResellerAccountIDFilter = {
 
 M.ResaleAuthorizationResellerLegalNameFilter = {
     type = "structure",
+    id = "ResaleAuthorizationResellerLegalNameFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1253,6 +1349,7 @@ M.ResaleAuthorizationStatusString = {
 
 M.ResaleAuthorizationStatusFilter = {
     type = "structure",
+    id = "ResaleAuthorizationStatusFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1263,6 +1360,7 @@ M.ResaleAuthorizationStatusFilter = {
 
 M.ResaleAuthorizationFilters = {
     type = "structure",
+    id = "ResaleAuthorizationFilters",
     members = {
         EntityId = M.ResaleAuthorizationEntityIdFilter,
         Name = M.ResaleAuthorizationNameFilter,
@@ -1282,6 +1380,7 @@ M.ResaleAuthorizationFilters = {
 
 M.SaaSProductEntityIdFilter = {
     type = "structure",
+    id = "SaaSProductEntityIdFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1292,6 +1391,7 @@ M.SaaSProductEntityIdFilter = {
 
 M.SaaSProductLastModifiedDateFilterDateRange = {
     type = "structure",
+    id = "SaaSProductLastModifiedDateFilterDateRange",
     members = {
         AfterValue = {
             type = "string",
@@ -1304,6 +1404,7 @@ M.SaaSProductLastModifiedDateFilterDateRange = {
 
 M.SaaSProductLastModifiedDateFilter = {
     type = "structure",
+    id = "SaaSProductLastModifiedDateFilter",
     members = {
         DateRange = M.SaaSProductLastModifiedDateFilterDateRange,
     },
@@ -1311,6 +1412,7 @@ M.SaaSProductLastModifiedDateFilter = {
 
 M.SaaSProductTitleFilter = {
     type = "structure",
+    id = "SaaSProductTitleFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1331,6 +1433,7 @@ M.SaaSProductVisibilityString = {
 
 M.SaaSProductVisibilityFilter = {
     type = "structure",
+    id = "SaaSProductVisibilityFilter",
     members = {
         ValueList = {
             type = "list",
@@ -1341,6 +1444,7 @@ M.SaaSProductVisibilityFilter = {
 
 M.SaaSProductFilters = {
     type = "structure",
+    id = "SaaSProductFilters",
     members = {
         EntityId = M.SaaSProductEntityIdFilter,
         ProductTitle = M.SaaSProductTitleFilter,
@@ -1351,6 +1455,7 @@ M.SaaSProductFilters = {
 
 M.EntityTypeFilters = {
     type = "union",
+    id = "EntityTypeFilters",
     members = {
         DataProductFilters = M.DataProductFilters,
         SaaSProductFilters = M.SaaSProductFilters,
@@ -1373,6 +1478,7 @@ M.ContainerProductSortBy = {
 
 M.ContainerProductSort = {
     type = "structure",
+    id = "ContainerProductSort",
     members = {
         SortBy = {
             type = "string",
@@ -1392,6 +1498,7 @@ M.DataProductSortBy = {
 
 M.DataProductSort = {
     type = "structure",
+    id = "DataProductSort",
     members = {
         SortBy = {
             type = "string",
@@ -1411,6 +1518,7 @@ M.MachineLearningProductSortBy = {
 
 M.MachineLearningProductSort = {
     type = "structure",
+    id = "MachineLearningProductSort",
     members = {
         SortBy = {
             type = "string",
@@ -1432,6 +1540,7 @@ M.OfferSetSortBy = {
 
 M.OfferSetSort = {
     type = "structure",
+    id = "OfferSetSort",
     members = {
         SortBy = {
             type = "string",
@@ -1458,6 +1567,7 @@ M.OfferSortBy = {
 
 M.OfferSort = {
     type = "structure",
+    id = "OfferSort",
     members = {
         SortBy = {
             type = "string",
@@ -1486,6 +1596,7 @@ M.ResaleAuthorizationSortBy = {
 
 M.ResaleAuthorizationSort = {
     type = "structure",
+    id = "ResaleAuthorizationSort",
     members = {
         SortBy = {
             type = "string",
@@ -1506,6 +1617,7 @@ M.SaaSProductSortBy = {
 
 M.SaaSProductSort = {
     type = "structure",
+    id = "SaaSProductSort",
     members = {
         SortBy = {
             type = "string",
@@ -1518,6 +1630,7 @@ M.SaaSProductSort = {
 
 M.EntityTypeSort = {
     type = "union",
+    id = "EntityTypeSort",
     members = {
         DataProductSort = M.DataProductSort,
         SaaSProductSort = M.SaaSProductSort,
@@ -1537,6 +1650,7 @@ M.OwnershipType = {
 
 M.ListEntitiesInput = {
     type = "structure",
+    id = "ListEntitiesInput",
     members = {
         Catalog = {
             type = "string",
@@ -1571,6 +1685,7 @@ M.ListEntitiesInput = {
 
 M.ContainerProductSummary = {
     type = "structure",
+    id = "ContainerProductSummary",
     members = {
         ProductTitle = {
             type = "string",
@@ -1583,6 +1698,7 @@ M.ContainerProductSummary = {
 
 M.DataProductSummary = {
     type = "structure",
+    id = "DataProductSummary",
     members = {
         ProductTitle = {
             type = "string",
@@ -1595,6 +1711,7 @@ M.DataProductSummary = {
 
 M.MachineLearningProductSummary = {
     type = "structure",
+    id = "MachineLearningProductSummary",
     members = {
         ProductTitle = {
             type = "string",
@@ -1607,6 +1724,7 @@ M.MachineLearningProductSummary = {
 
 M.OfferSetSummary = {
     type = "structure",
+    id = "OfferSetSummary",
     members = {
         Name = {
             type = "string",
@@ -1629,6 +1747,7 @@ M.OfferSetSummary = {
 
 M.OfferSummary = {
     type = "structure",
+    id = "OfferSummary",
     members = {
         Name = {
             type = "string",
@@ -1664,6 +1783,7 @@ M.OfferSummary = {
 
 M.ResaleAuthorizationSummary = {
     type = "structure",
+    id = "ResaleAuthorizationSummary",
     members = {
         Name = {
             type = "string",
@@ -1703,6 +1823,7 @@ M.ResaleAuthorizationSummary = {
 
 M.SaaSProductSummary = {
     type = "structure",
+    id = "SaaSProductSummary",
     members = {
         ProductTitle = {
             type = "string",
@@ -1715,6 +1836,7 @@ M.SaaSProductSummary = {
 
 M.EntitySummary = {
     type = "structure",
+    id = "EntitySummary",
     members = {
         Name = {
             type = "string",
@@ -1747,6 +1869,7 @@ M.EntitySummary = {
 
 M.ListEntitiesOutput = {
     type = "structure",
+    id = "ListEntitiesOutput",
     members = {
         EntitySummaryList = {
             type = "list",
@@ -1760,6 +1883,7 @@ M.ListEntitiesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1772,6 +1896,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1790,6 +1915,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1803,6 +1929,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1821,10 +1948,12 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
 }
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -1835,6 +1964,7 @@ M.ServiceQuotaExceededException = {
 
 M.Change = {
     type = "structure",
+    id = "Change",
     members = {
         ChangeType = {
             type = "string",
@@ -1863,6 +1993,7 @@ M.Change = {
 
 M.StartChangeSetInput = {
     type = "structure",
+    id = "StartChangeSetInput",
     members = {
         Catalog = {
             type = "string",
@@ -1898,6 +2029,7 @@ M.StartChangeSetInput = {
 
 M.StartChangeSetOutput = {
     type = "structure",
+    id = "StartChangeSetOutput",
     members = {
         ChangeSetId = {
             type = "string",
@@ -1910,6 +2042,7 @@ M.StartChangeSetOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1929,10 +2062,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1952,6 +2087,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

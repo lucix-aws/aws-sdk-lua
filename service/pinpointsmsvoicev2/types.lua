@@ -7,6 +7,7 @@ M.AccessDeniedExceptionReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -25,6 +26,7 @@ M.AccountAttributeName = {
 
 M.AccountAttribute = {
     type = "structure",
+    id = "AccountAttribute",
     members = {
         Name = {
             type = "string",
@@ -54,6 +56,7 @@ M.AccountLimitName = {
 
 M.AccountLimit = {
     type = "structure",
+    id = "AccountLimit",
     members = {
         Name = {
             type = "string",
@@ -80,6 +83,7 @@ M.AccountLimit = {
 
 M.AssociateOriginationIdentityInput = {
     type = "structure",
+    id = "AssociateOriginationIdentityInput",
     members = {
         PoolId = {
             type = "string",
@@ -107,6 +111,7 @@ M.AssociateOriginationIdentityInput = {
 
 M.AssociateOriginationIdentityOutput = {
     type = "structure",
+    id = "AssociateOriginationIdentityOutput",
     members = {
         PoolArn = {
             type = "string",
@@ -194,6 +199,7 @@ M.ResourceType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -213,6 +219,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -226,6 +233,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -272,6 +280,7 @@ M.ServiceQuotaExceededExceptionReason = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -285,6 +294,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -295,6 +305,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -359,6 +370,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -376,6 +388,7 @@ M.ValidationException = {
 
 M.AssociateProtectConfigurationInput = {
     type = "structure",
+    id = "AssociateProtectConfigurationInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -394,6 +407,7 @@ M.AssociateProtectConfigurationInput = {
 
 M.AssociateProtectConfigurationOutput = {
     type = "structure",
+    id = "AssociateProtectConfigurationOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -435,6 +449,7 @@ M.AttachmentUploadErrorReason = {
 
 M.CarrierLookupInput = {
     type = "structure",
+    id = "CarrierLookupInput",
     members = {
         PhoneNumber = {
             type = "string",
@@ -454,6 +469,7 @@ M.PhoneNumberType = {
 
 M.CarrierLookupOutput = {
     type = "structure",
+    id = "CarrierLookupOutput",
     members = {
         E164PhoneNumber = {
             type = "string",
@@ -496,6 +512,7 @@ M.CarrierStatus = {
 
 M.CarrierStatusInformation = {
     type = "structure",
+    id = "CarrierStatusInformation",
     members = {
         CarrierName = {
             type = "string",
@@ -514,6 +531,7 @@ M.CarrierStatusInformation = {
 
 M.CloudWatchLogsDestination = {
     type = "structure",
+    id = "CloudWatchLogsDestination",
     members = {
         IamRoleArn = {
             type = "string",
@@ -541,6 +559,7 @@ M.ConfigurationSetFilterName = {
 
 M.ConfigurationSetFilter = {
     type = "structure",
+    id = "ConfigurationSetFilter",
     members = {
         Name = {
             type = "string",
@@ -565,6 +584,7 @@ M.MessageType = {
 
 M.KinesisFirehoseDestination = {
     type = "structure",
+    id = "KinesisFirehoseDestination",
     members = {
         IamRoleArn = {
             type = "string",
@@ -629,6 +649,7 @@ M.EventType = {
 
 M.SnsDestination = {
     type = "structure",
+    id = "SnsDestination",
     members = {
         TopicArn = {
             type = "string",
@@ -641,6 +662,7 @@ M.SnsDestination = {
 
 M.EventDestination = {
     type = "structure",
+    id = "EventDestination",
     members = {
         EventDestinationName = {
             type = "string",
@@ -669,6 +691,7 @@ M.EventDestination = {
 
 M.ConfigurationSetInformation = {
     type = "structure",
+    id = "ConfigurationSetInformation",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -724,6 +747,7 @@ M.CountryLaunchStatusFilterName = {
 
 M.CountryLaunchStatusFilter = {
     type = "structure",
+    id = "CountryLaunchStatusFilter",
     members = {
         Name = {
             type = "string",
@@ -743,6 +767,7 @@ M.CountryLaunchStatusFilter = {
 
 M.CountryLaunchStatusInformation = {
     type = "structure",
+    id = "CountryLaunchStatusInformation",
     members = {
         IsoCountryCode = {
             type = "string",
@@ -777,6 +802,7 @@ M.CountryLaunchStatusInformation = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -795,6 +821,7 @@ M.Tag = {
 
 M.CreateConfigurationSetInput = {
     type = "structure",
+    id = "CreateConfigurationSetInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -817,6 +844,7 @@ M.CreateConfigurationSetInput = {
 
 M.CreateConfigurationSetOutput = {
     type = "structure",
+    id = "CreateConfigurationSetOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -836,6 +864,7 @@ M.CreateConfigurationSetOutput = {
 
 M.CreateEventDestinationInput = {
     type = "structure",
+    id = "CreateEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -870,6 +899,7 @@ M.CreateEventDestinationInput = {
 
 M.CreateEventDestinationOutput = {
     type = "structure",
+    id = "CreateEventDestinationOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -894,6 +924,7 @@ M.NotifyConfigurationUseCase = {
 
 M.CreateNotifyConfigurationInput = {
     type = "structure",
+    id = "CreateNotifyConfigurationInput",
     members = {
         DisplayName = {
             type = "string",
@@ -961,6 +992,7 @@ M.TierUpgradeStatus = {
 
 M.CreateNotifyConfigurationOutput = {
     type = "structure",
+    id = "CreateNotifyConfigurationOutput",
     members = {
         NotifyConfigurationArn = {
             type = "string",
@@ -1046,6 +1078,7 @@ M.CreateNotifyConfigurationOutput = {
 
 M.CreateOptOutListInput = {
     type = "structure",
+    id = "CreateOptOutListInput",
     members = {
         OptOutListName = {
             type = "string",
@@ -1068,6 +1101,7 @@ M.CreateOptOutListInput = {
 
 M.CreateOptOutListOutput = {
     type = "structure",
+    id = "CreateOptOutListOutput",
     members = {
         OptOutListArn = {
             type = "string",
@@ -1087,6 +1121,7 @@ M.CreateOptOutListOutput = {
 
 M.CreatePoolInput = {
     type = "structure",
+    id = "CreatePoolInput",
     members = {
         OriginationIdentity = {
             type = "string",
@@ -1127,6 +1162,7 @@ M.PoolStatus = {
 
 M.CreatePoolOutput = {
     type = "structure",
+    id = "CreatePoolOutput",
     members = {
         PoolArn = {
             type = "string",
@@ -1185,6 +1221,7 @@ M.CreatePoolOutput = {
 
 M.CreateProtectConfigurationInput = {
     type = "structure",
+    id = "CreateProtectConfigurationInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1204,6 +1241,7 @@ M.CreateProtectConfigurationInput = {
 
 M.CreateProtectConfigurationOutput = {
     type = "structure",
+    id = "CreateProtectConfigurationOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -1246,6 +1284,7 @@ M.CreateProtectConfigurationOutput = {
 
 M.CreateRcsAgentInput = {
     type = "structure",
+    id = "CreateRcsAgentInput",
     members = {
         DeletionProtectionEnabled = {
             type = "boolean",
@@ -1277,6 +1316,7 @@ M.RcsAgentStatus = {
 
 M.CreateRcsAgentOutput = {
     type = "structure",
+    id = "CreateRcsAgentOutput",
     members = {
         RcsAgentArn = {
             type = "string",
@@ -1341,6 +1381,7 @@ M.CreateRcsAgentOutput = {
 
 M.CreateRegistrationInput = {
     type = "structure",
+    id = "CreateRegistrationInput",
     members = {
         RegistrationType = {
             type = "string",
@@ -1376,6 +1417,7 @@ M.RegistrationStatus = {
 
 M.CreateRegistrationOutput = {
     type = "structure",
+    id = "CreateRegistrationOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -1427,6 +1469,7 @@ M.CreateRegistrationOutput = {
 
 M.CreateRegistrationAssociationInput = {
     type = "structure",
+    id = "CreateRegistrationAssociationInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -1445,6 +1488,7 @@ M.CreateRegistrationAssociationInput = {
 
 M.CreateRegistrationAssociationOutput = {
     type = "structure",
+    id = "CreateRegistrationAssociationOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -1493,6 +1537,7 @@ M.CreateRegistrationAssociationOutput = {
 
 M.CreateRegistrationAttachmentInput = {
     type = "structure",
+    id = "CreateRegistrationAttachmentInput",
     members = {
         AttachmentBody = {
             type = "blob",
@@ -1515,6 +1560,7 @@ M.CreateRegistrationAttachmentInput = {
 
 M.CreateRegistrationAttachmentOutput = {
     type = "structure",
+    id = "CreateRegistrationAttachmentOutput",
     members = {
         RegistrationAttachmentArn = {
             type = "string",
@@ -1549,6 +1595,7 @@ M.CreateRegistrationAttachmentOutput = {
 
 M.CreateRegistrationVersionInput = {
     type = "structure",
+    id = "CreateRegistrationVersionInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -1575,6 +1622,7 @@ M.RegistrationVersionStatus = {
 
 M.RegistrationVersionStatusHistory = {
     type = "structure",
+    id = "RegistrationVersionStatusHistory",
     members = {
         DraftTimestamp = {
             type = "timestamp",
@@ -1614,6 +1662,7 @@ M.RegistrationVersionStatusHistory = {
 
 M.CreateRegistrationVersionOutput = {
     type = "structure",
+    id = "CreateRegistrationVersionOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -1647,6 +1696,7 @@ M.CreateRegistrationVersionOutput = {
 
 M.CreateVerifiedDestinationNumberInput = {
     type = "structure",
+    id = "CreateVerifiedDestinationNumberInput",
     members = {
         DestinationPhoneNumber = {
             type = "string",
@@ -1678,6 +1728,7 @@ M.VerificationStatus = {
 
 M.CreateVerifiedDestinationNumberOutput = {
     type = "structure",
+    id = "CreateVerifiedDestinationNumberOutput",
     members = {
         VerifiedDestinationNumberArn = {
             type = "string",
@@ -1721,10 +1772,12 @@ M.CreateVerifiedDestinationNumberOutput = {
 
 M.DeleteAccountDefaultProtectConfigurationInput = {
     type = "structure",
+    id = "DeleteAccountDefaultProtectConfigurationInput",
 }
 
 M.DeleteAccountDefaultProtectConfigurationOutput = {
     type = "structure",
+    id = "DeleteAccountDefaultProtectConfigurationOutput",
     members = {
         DefaultProtectConfigurationArn = {
             type = "string",
@@ -1743,6 +1796,7 @@ M.DeleteAccountDefaultProtectConfigurationOutput = {
 
 M.DeleteConfigurationSetInput = {
     type = "structure",
+    id = "DeleteConfigurationSetInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -1755,6 +1809,7 @@ M.DeleteConfigurationSetInput = {
 
 M.DeleteConfigurationSetOutput = {
     type = "structure",
+    id = "DeleteConfigurationSetOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -1783,6 +1838,7 @@ M.DeleteConfigurationSetOutput = {
 
 M.DeleteDefaultMessageTypeInput = {
     type = "structure",
+    id = "DeleteDefaultMessageTypeInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -1795,6 +1851,7 @@ M.DeleteDefaultMessageTypeInput = {
 
 M.DeleteDefaultMessageTypeOutput = {
     type = "structure",
+    id = "DeleteDefaultMessageTypeOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -1810,6 +1867,7 @@ M.DeleteDefaultMessageTypeOutput = {
 
 M.DeleteDefaultSenderIdInput = {
     type = "structure",
+    id = "DeleteDefaultSenderIdInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -1822,6 +1880,7 @@ M.DeleteDefaultSenderIdInput = {
 
 M.DeleteDefaultSenderIdOutput = {
     type = "structure",
+    id = "DeleteDefaultSenderIdOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -1837,6 +1896,7 @@ M.DeleteDefaultSenderIdOutput = {
 
 M.DeleteEventDestinationInput = {
     type = "structure",
+    id = "DeleteEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -1855,6 +1915,7 @@ M.DeleteEventDestinationInput = {
 
 M.DeleteEventDestinationOutput = {
     type = "structure",
+    id = "DeleteEventDestinationOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -1868,6 +1929,7 @@ M.DeleteEventDestinationOutput = {
 
 M.DeleteKeywordInput = {
     type = "structure",
+    id = "DeleteKeywordInput",
     members = {
         OriginationIdentity = {
             type = "string",
@@ -1892,6 +1954,7 @@ M.KeywordAction = {
 
 M.DeleteKeywordOutput = {
     type = "structure",
+    id = "DeleteKeywordOutput",
     members = {
         OriginationIdentityArn = {
             type = "string",
@@ -1913,10 +1976,12 @@ M.DeleteKeywordOutput = {
 
 M.DeleteMediaMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "DeleteMediaMessageSpendLimitOverrideInput",
 }
 
 M.DeleteMediaMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "DeleteMediaMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -1926,6 +1991,7 @@ M.DeleteMediaMessageSpendLimitOverrideOutput = {
 
 M.DeleteNotifyConfigurationInput = {
     type = "structure",
+    id = "DeleteNotifyConfigurationInput",
     members = {
         NotifyConfigurationId = {
             type = "string",
@@ -1938,6 +2004,7 @@ M.DeleteNotifyConfigurationInput = {
 
 M.DeleteNotifyConfigurationOutput = {
     type = "structure",
+    id = "DeleteNotifyConfigurationOutput",
     members = {
         NotifyConfigurationArn = {
             type = "string",
@@ -2019,10 +2086,12 @@ M.DeleteNotifyConfigurationOutput = {
 
 M.DeleteNotifyMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "DeleteNotifyMessageSpendLimitOverrideInput",
 }
 
 M.DeleteNotifyMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "DeleteNotifyMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -2032,6 +2101,7 @@ M.DeleteNotifyMessageSpendLimitOverrideOutput = {
 
 M.DeleteOptedOutNumberInput = {
     type = "structure",
+    id = "DeleteOptedOutNumberInput",
     members = {
         OptOutListName = {
             type = "string",
@@ -2050,6 +2120,7 @@ M.DeleteOptedOutNumberInput = {
 
 M.DeleteOptedOutNumberOutput = {
     type = "structure",
+    id = "DeleteOptedOutNumberOutput",
     members = {
         OptOutListArn = {
             type = "string",
@@ -2074,6 +2145,7 @@ M.DeleteOptedOutNumberOutput = {
 
 M.DeleteOptOutListInput = {
     type = "structure",
+    id = "DeleteOptOutListInput",
     members = {
         OptOutListName = {
             type = "string",
@@ -2086,6 +2158,7 @@ M.DeleteOptOutListInput = {
 
 M.DeleteOptOutListOutput = {
     type = "structure",
+    id = "DeleteOptOutListOutput",
     members = {
         OptOutListArn = {
             type = "string",
@@ -2101,6 +2174,7 @@ M.DeleteOptOutListOutput = {
 
 M.DeletePoolInput = {
     type = "structure",
+    id = "DeletePoolInput",
     members = {
         PoolId = {
             type = "string",
@@ -2113,6 +2187,7 @@ M.DeletePoolInput = {
 
 M.DeletePoolOutput = {
     type = "structure",
+    id = "DeletePoolOutput",
     members = {
         PoolArn = {
             type = "string",
@@ -2161,6 +2236,7 @@ M.DeletePoolOutput = {
 
 M.DeleteProtectConfigurationInput = {
     type = "structure",
+    id = "DeleteProtectConfigurationInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -2173,6 +2249,7 @@ M.DeleteProtectConfigurationInput = {
 
 M.DeleteProtectConfigurationOutput = {
     type = "structure",
+    id = "DeleteProtectConfigurationOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -2211,6 +2288,7 @@ M.DeleteProtectConfigurationOutput = {
 
 M.DeleteProtectConfigurationRuleSetNumberOverrideInput = {
     type = "structure",
+    id = "DeleteProtectConfigurationRuleSetNumberOverrideInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -2234,6 +2312,7 @@ M.ProtectConfigurationRuleOverrideAction = {
 
 M.DeleteProtectConfigurationRuleSetNumberOverrideOutput = {
     type = "structure",
+    id = "DeleteProtectConfigurationRuleSetNumberOverrideOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -2276,6 +2355,7 @@ M.DeleteProtectConfigurationRuleSetNumberOverrideOutput = {
 
 M.DeleteRcsAgentInput = {
     type = "structure",
+    id = "DeleteRcsAgentInput",
     members = {
         RcsAgentId = {
             type = "string",
@@ -2288,6 +2368,7 @@ M.DeleteRcsAgentInput = {
 
 M.DeleteRcsAgentOutput = {
     type = "structure",
+    id = "DeleteRcsAgentOutput",
     members = {
         RcsAgentArn = {
             type = "string",
@@ -2348,6 +2429,7 @@ M.DeleteRcsAgentOutput = {
 
 M.DeleteRegistrationInput = {
     type = "structure",
+    id = "DeleteRegistrationInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -2360,6 +2442,7 @@ M.DeleteRegistrationInput = {
 
 M.DeleteRegistrationOutput = {
     type = "structure",
+    id = "DeleteRegistrationOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -2413,6 +2496,7 @@ M.DeleteRegistrationOutput = {
 
 M.DeleteRegistrationAttachmentInput = {
     type = "structure",
+    id = "DeleteRegistrationAttachmentInput",
     members = {
         RegistrationAttachmentId = {
             type = "string",
@@ -2425,6 +2509,7 @@ M.DeleteRegistrationAttachmentInput = {
 
 M.DeleteRegistrationAttachmentOutput = {
     type = "structure",
+    id = "DeleteRegistrationAttachmentOutput",
     members = {
         RegistrationAttachmentArn = {
             type = "string",
@@ -2458,6 +2543,7 @@ M.DeleteRegistrationAttachmentOutput = {
 
 M.DeleteRegistrationFieldValueInput = {
     type = "structure",
+    id = "DeleteRegistrationFieldValueInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -2476,6 +2562,7 @@ M.DeleteRegistrationFieldValueInput = {
 
 M.DeleteRegistrationFieldValueOutput = {
     type = "structure",
+    id = "DeleteRegistrationFieldValueOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -2516,6 +2603,7 @@ M.DeleteRegistrationFieldValueOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2528,6 +2616,7 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2543,10 +2632,12 @@ M.DeleteResourcePolicyOutput = {
 
 M.DeleteTextMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "DeleteTextMessageSpendLimitOverrideInput",
 }
 
 M.DeleteTextMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "DeleteTextMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -2556,6 +2647,7 @@ M.DeleteTextMessageSpendLimitOverrideOutput = {
 
 M.DeleteVerifiedDestinationNumberInput = {
     type = "structure",
+    id = "DeleteVerifiedDestinationNumberInput",
     members = {
         VerifiedDestinationNumberId = {
             type = "string",
@@ -2568,6 +2660,7 @@ M.DeleteVerifiedDestinationNumberInput = {
 
 M.DeleteVerifiedDestinationNumberOutput = {
     type = "structure",
+    id = "DeleteVerifiedDestinationNumberOutput",
     members = {
         VerifiedDestinationNumberArn = {
             type = "string",
@@ -2598,10 +2691,12 @@ M.DeleteVerifiedDestinationNumberOutput = {
 
 M.DeleteVoiceMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "DeleteVoiceMessageSpendLimitOverrideInput",
 }
 
 M.DeleteVoiceMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "DeleteVoiceMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -2611,6 +2706,7 @@ M.DeleteVoiceMessageSpendLimitOverrideOutput = {
 
 M.DescribeAccountAttributesInput = {
     type = "structure",
+    id = "DescribeAccountAttributesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2623,6 +2719,7 @@ M.DescribeAccountAttributesInput = {
 
 M.DescribeAccountAttributesOutput = {
     type = "structure",
+    id = "DescribeAccountAttributesOutput",
     members = {
         AccountAttributes = {
             type = "list",
@@ -2636,6 +2733,7 @@ M.DescribeAccountAttributesOutput = {
 
 M.DescribeAccountLimitsInput = {
     type = "structure",
+    id = "DescribeAccountLimitsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2648,6 +2746,7 @@ M.DescribeAccountLimitsInput = {
 
 M.DescribeAccountLimitsOutput = {
     type = "structure",
+    id = "DescribeAccountLimitsOutput",
     members = {
         AccountLimits = {
             type = "list",
@@ -2661,6 +2760,7 @@ M.DescribeAccountLimitsOutput = {
 
 M.DescribeConfigurationSetsInput = {
     type = "structure",
+    id = "DescribeConfigurationSetsInput",
     members = {
         ConfigurationSetNames = {
             type = "list",
@@ -2681,6 +2781,7 @@ M.DescribeConfigurationSetsInput = {
 
 M.DescribeConfigurationSetsOutput = {
     type = "structure",
+    id = "DescribeConfigurationSetsOutput",
     members = {
         ConfigurationSets = {
             type = "list",
@@ -2698,6 +2799,7 @@ M.KeywordFilterName = {
 
 M.KeywordFilter = {
     type = "structure",
+    id = "KeywordFilter",
     members = {
         Name = {
             type = "string",
@@ -2717,6 +2819,7 @@ M.KeywordFilter = {
 
 M.DescribeKeywordsInput = {
     type = "structure",
+    id = "DescribeKeywordsInput",
     members = {
         OriginationIdentity = {
             type = "string",
@@ -2743,6 +2846,7 @@ M.DescribeKeywordsInput = {
 
 M.KeywordInformation = {
     type = "structure",
+    id = "KeywordInformation",
     members = {
         Keyword = {
             type = "string",
@@ -2767,6 +2871,7 @@ M.KeywordInformation = {
 
 M.DescribeKeywordsOutput = {
     type = "structure",
+    id = "DescribeKeywordsOutput",
     members = {
         OriginationIdentityArn = {
             type = "string",
@@ -2798,6 +2903,7 @@ M.NotifyConfigurationFilterName = {
 
 M.NotifyConfigurationFilter = {
     type = "structure",
+    id = "NotifyConfigurationFilter",
     members = {
         Name = {
             type = "string",
@@ -2817,6 +2923,7 @@ M.NotifyConfigurationFilter = {
 
 M.DescribeNotifyConfigurationsInput = {
     type = "structure",
+    id = "DescribeNotifyConfigurationsInput",
     members = {
         NotifyConfigurationIds = {
             type = "list",
@@ -2837,6 +2944,7 @@ M.DescribeNotifyConfigurationsInput = {
 
 M.NotifyConfigurationInformation = {
     type = "structure",
+    id = "NotifyConfigurationInformation",
     members = {
         NotifyConfigurationArn = {
             type = "string",
@@ -2918,6 +3026,7 @@ M.NotifyConfigurationInformation = {
 
 M.DescribeNotifyConfigurationsOutput = {
     type = "structure",
+    id = "DescribeNotifyConfigurationsOutput",
     members = {
         NotifyConfigurations = {
             type = "list",
@@ -2940,6 +3049,7 @@ M.NotifyTemplateFilterName = {
 
 M.NotifyTemplateFilter = {
     type = "structure",
+    id = "NotifyTemplateFilter",
     members = {
         Name = {
             type = "string",
@@ -2959,6 +3069,7 @@ M.NotifyTemplateFilter = {
 
 M.DescribeNotifyTemplatesInput = {
     type = "structure",
+    id = "DescribeNotifyTemplatesInput",
     members = {
         TemplateIds = {
             type = "list",
@@ -3061,6 +3172,7 @@ M.TemplateVariableType = {
 
 M.TemplateVariableMetadata = {
     type = "structure",
+    id = "TemplateVariableMetadata",
     members = {
         Type = {
             type = "string",
@@ -3104,6 +3216,7 @@ M.TemplateVariableMetadata = {
 
 M.NotifyTemplateInformation = {
     type = "structure",
+    id = "NotifyTemplateInformation",
     members = {
         TemplateId = {
             type = "string",
@@ -3167,6 +3280,7 @@ M.NotifyTemplateInformation = {
 
 M.DescribeNotifyTemplatesOutput = {
     type = "structure",
+    id = "DescribeNotifyTemplatesOutput",
     members = {
         NotifyTemplates = {
             type = "list",
@@ -3184,6 +3298,7 @@ M.OptedOutFilterName = {
 
 M.OptedOutFilter = {
     type = "structure",
+    id = "OptedOutFilter",
     members = {
         Name = {
             type = "string",
@@ -3203,6 +3318,7 @@ M.OptedOutFilter = {
 
 M.DescribeOptedOutNumbersInput = {
     type = "structure",
+    id = "DescribeOptedOutNumbersInput",
     members = {
         OptOutListName = {
             type = "string",
@@ -3229,6 +3345,7 @@ M.DescribeOptedOutNumbersInput = {
 
 M.OptedOutNumberInformation = {
     type = "structure",
+    id = "OptedOutNumberInformation",
     members = {
         OptedOutNumber = {
             type = "string",
@@ -3254,6 +3371,7 @@ M.OptedOutNumberInformation = {
 
 M.DescribeOptedOutNumbersOutput = {
     type = "structure",
+    id = "DescribeOptedOutNumbersOutput",
     members = {
         OptOutListArn = {
             type = "string",
@@ -3278,6 +3396,7 @@ M.Owner = {
 
 M.DescribeOptOutListsInput = {
     type = "structure",
+    id = "DescribeOptOutListsInput",
     members = {
         OptOutListNames = {
             type = "list",
@@ -3297,6 +3416,7 @@ M.DescribeOptOutListsInput = {
 
 M.OptOutListInformation = {
     type = "structure",
+    id = "OptOutListInformation",
     members = {
         OptOutListArn = {
             type = "string",
@@ -3321,6 +3441,7 @@ M.OptOutListInformation = {
 
 M.DescribeOptOutListsOutput = {
     type = "structure",
+    id = "DescribeOptOutListsOutput",
     members = {
         OptOutLists = {
             type = "list",
@@ -3347,6 +3468,7 @@ M.PhoneNumberFilterName = {
 
 M.PhoneNumberFilter = {
     type = "structure",
+    id = "PhoneNumberFilter",
     members = {
         Name = {
             type = "string",
@@ -3366,6 +3488,7 @@ M.PhoneNumberFilter = {
 
 M.DescribePhoneNumbersInput = {
     type = "structure",
+    id = "DescribePhoneNumbersInput",
     members = {
         PhoneNumberIds = {
             type = "list",
@@ -3405,6 +3528,7 @@ M.NumberStatus = {
 
 M.PhoneNumberInformation = {
     type = "structure",
+    id = "PhoneNumberInformation",
     members = {
         PhoneNumberArn = {
             type = "string",
@@ -3514,6 +3638,7 @@ M.PhoneNumberInformation = {
 
 M.DescribePhoneNumbersOutput = {
     type = "structure",
+    id = "DescribePhoneNumbersOutput",
     members = {
         PhoneNumbers = {
             type = "list",
@@ -3538,6 +3663,7 @@ M.PoolFilterName = {
 
 M.PoolFilter = {
     type = "structure",
+    id = "PoolFilter",
     members = {
         Name = {
             type = "string",
@@ -3557,6 +3683,7 @@ M.PoolFilter = {
 
 M.DescribePoolsInput = {
     type = "structure",
+    id = "DescribePoolsInput",
     members = {
         PoolIds = {
             type = "list",
@@ -3580,6 +3707,7 @@ M.DescribePoolsInput = {
 
 M.PoolInformation = {
     type = "structure",
+    id = "PoolInformation",
     members = {
         PoolArn = {
             type = "string",
@@ -3656,6 +3784,7 @@ M.PoolInformation = {
 
 M.DescribePoolsOutput = {
     type = "structure",
+    id = "DescribePoolsOutput",
     members = {
         Pools = {
             type = "list",
@@ -3674,6 +3803,7 @@ M.ProtectConfigurationFilterName = {
 
 M.ProtectConfigurationFilter = {
     type = "structure",
+    id = "ProtectConfigurationFilter",
     members = {
         Name = {
             type = "string",
@@ -3693,6 +3823,7 @@ M.ProtectConfigurationFilter = {
 
 M.DescribeProtectConfigurationsInput = {
     type = "structure",
+    id = "DescribeProtectConfigurationsInput",
     members = {
         ProtectConfigurationIds = {
             type = "list",
@@ -3713,6 +3844,7 @@ M.DescribeProtectConfigurationsInput = {
 
 M.ProtectConfigurationInformation = {
     type = "structure",
+    id = "ProtectConfigurationInformation",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -3751,6 +3883,7 @@ M.ProtectConfigurationInformation = {
 
 M.DescribeProtectConfigurationsOutput = {
     type = "structure",
+    id = "DescribeProtectConfigurationsOutput",
     members = {
         ProtectConfigurations = {
             type = "list",
@@ -3764,6 +3897,7 @@ M.DescribeProtectConfigurationsOutput = {
 
 M.DescribeRcsAgentCountryLaunchStatusInput = {
     type = "structure",
+    id = "DescribeRcsAgentCountryLaunchStatusInput",
     members = {
         RcsAgentId = {
             type = "string",
@@ -3790,6 +3924,7 @@ M.DescribeRcsAgentCountryLaunchStatusInput = {
 
 M.DescribeRcsAgentCountryLaunchStatusOutput = {
     type = "structure",
+    id = "DescribeRcsAgentCountryLaunchStatusOutput",
     members = {
         RcsAgentId = {
             type = "string",
@@ -3824,6 +3959,7 @@ M.RcsAgentFilterName = {
 
 M.RcsAgentFilter = {
     type = "structure",
+    id = "RcsAgentFilter",
     members = {
         Name = {
             type = "string",
@@ -3843,6 +3979,7 @@ M.RcsAgentFilter = {
 
 M.DescribeRcsAgentsInput = {
     type = "structure",
+    id = "DescribeRcsAgentsInput",
     members = {
         RcsAgentIds = {
             type = "list",
@@ -3872,6 +4009,7 @@ M.TestingAgentStatus = {
 
 M.TestingAgentInformation = {
     type = "structure",
+    id = "TestingAgentInformation",
     members = {
         Status = {
             type = "string",
@@ -3893,6 +4031,7 @@ M.TestingAgentInformation = {
 
 M.RcsAgentInformation = {
     type = "structure",
+    id = "RcsAgentInformation",
     members = {
         RcsAgentArn = {
             type = "string",
@@ -3957,6 +4096,7 @@ M.RcsAgentInformation = {
 
 M.DescribeRcsAgentsOutput = {
     type = "structure",
+    id = "DescribeRcsAgentsOutput",
     members = {
         RcsAgents = {
             type = "list",
@@ -3974,6 +4114,7 @@ M.RegistrationAttachmentFilterName = {
 
 M.RegistrationAttachmentFilter = {
     type = "structure",
+    id = "RegistrationAttachmentFilter",
     members = {
         Name = {
             type = "string",
@@ -3993,6 +4134,7 @@ M.RegistrationAttachmentFilter = {
 
 M.DescribeRegistrationAttachmentsInput = {
     type = "structure",
+    id = "DescribeRegistrationAttachmentsInput",
     members = {
         RegistrationAttachmentIds = {
             type = "list",
@@ -4013,6 +4155,7 @@ M.DescribeRegistrationAttachmentsInput = {
 
 M.RegistrationAttachmentsInformation = {
     type = "structure",
+    id = "RegistrationAttachmentsInformation",
     members = {
         RegistrationAttachmentArn = {
             type = "string",
@@ -4049,6 +4192,7 @@ M.RegistrationAttachmentsInformation = {
 
 M.DescribeRegistrationAttachmentsOutput = {
     type = "structure",
+    id = "DescribeRegistrationAttachmentsOutput",
     members = {
         RegistrationAttachments = {
             type = "list",
@@ -4065,6 +4209,7 @@ M.DescribeRegistrationAttachmentsOutput = {
 
 M.DescribeRegistrationFieldDefinitionsInput = {
     type = "structure",
+    id = "DescribeRegistrationFieldDefinitionsInput",
     members = {
         RegistrationType = {
             type = "string",
@@ -4090,6 +4235,7 @@ M.DescribeRegistrationFieldDefinitionsInput = {
 
 M.SelectOptionDescription = {
     type = "structure",
+    id = "SelectOptionDescription",
     members = {
         Option = {
             type = "string",
@@ -4108,6 +4254,7 @@ M.SelectOptionDescription = {
 
 M.RegistrationFieldDisplayHints = {
     type = "structure",
+    id = "RegistrationFieldDisplayHints",
     members = {
         Title = {
             type = "string",
@@ -4157,6 +4304,7 @@ M.FieldType = {
 
 M.SelectValidation = {
     type = "structure",
+    id = "SelectValidation",
     members = {
         MinChoices = {
             type = "integer",
@@ -4182,6 +4330,7 @@ M.SelectValidation = {
 
 M.TextValidation = {
     type = "structure",
+    id = "TextValidation",
     members = {
         MinLength = {
             type = "integer",
@@ -4206,6 +4355,7 @@ M.TextValidation = {
 
 M.RegistrationFieldDefinition = {
     type = "structure",
+    id = "RegistrationFieldDefinition",
     members = {
         SectionPath = {
             type = "string",
@@ -4241,6 +4391,7 @@ M.RegistrationFieldDefinition = {
 
 M.DescribeRegistrationFieldDefinitionsOutput = {
     type = "structure",
+    id = "DescribeRegistrationFieldDefinitionsOutput",
     members = {
         RegistrationType = {
             type = "string",
@@ -4263,6 +4414,7 @@ M.DescribeRegistrationFieldDefinitionsOutput = {
 
 M.DescribeRegistrationFieldValuesInput = {
     type = "structure",
+    id = "DescribeRegistrationFieldValuesInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -4291,6 +4443,7 @@ M.DescribeRegistrationFieldValuesInput = {
 
 M.RegistrationFieldValueInformation = {
     type = "structure",
+    id = "RegistrationFieldValueInformation",
     members = {
         FieldPath = {
             type = "string",
@@ -4319,6 +4472,7 @@ M.RegistrationFieldValueInformation = {
 
 M.DescribeRegistrationFieldValuesOutput = {
     type = "structure",
+    id = "DescribeRegistrationFieldValuesOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -4358,6 +4512,7 @@ M.RegistrationFilterName = {
 
 M.RegistrationFilter = {
     type = "structure",
+    id = "RegistrationFilter",
     members = {
         Name = {
             type = "string",
@@ -4377,6 +4532,7 @@ M.RegistrationFilter = {
 
 M.DescribeRegistrationsInput = {
     type = "structure",
+    id = "DescribeRegistrationsInput",
     members = {
         RegistrationIds = {
             type = "list",
@@ -4397,6 +4553,7 @@ M.DescribeRegistrationsInput = {
 
 M.RegistrationInformation = {
     type = "structure",
+    id = "RegistrationInformation",
     members = {
         RegistrationArn = {
             type = "string",
@@ -4450,6 +4607,7 @@ M.RegistrationInformation = {
 
 M.DescribeRegistrationsOutput = {
     type = "structure",
+    id = "DescribeRegistrationsOutput",
     members = {
         Registrations = {
             type = "list",
@@ -4466,6 +4624,7 @@ M.DescribeRegistrationsOutput = {
 
 M.DescribeRegistrationSectionDefinitionsInput = {
     type = "structure",
+    id = "DescribeRegistrationSectionDefinitionsInput",
     members = {
         RegistrationType = {
             type = "string",
@@ -4488,6 +4647,7 @@ M.DescribeRegistrationSectionDefinitionsInput = {
 
 M.RegistrationSectionDisplayHints = {
     type = "structure",
+    id = "RegistrationSectionDisplayHints",
     members = {
         Title = {
             type = "string",
@@ -4515,6 +4675,7 @@ M.RegistrationSectionDisplayHints = {
 
 M.RegistrationSectionDefinition = {
     type = "structure",
+    id = "RegistrationSectionDefinition",
     members = {
         SectionPath = {
             type = "string",
@@ -4530,6 +4691,7 @@ M.RegistrationSectionDefinition = {
 
 M.DescribeRegistrationSectionDefinitionsOutput = {
     type = "structure",
+    id = "DescribeRegistrationSectionDefinitionsOutput",
     members = {
         RegistrationType = {
             type = "string",
@@ -4557,6 +4719,7 @@ M.RegistrationTypeFilterName = {
 
 M.RegistrationTypeFilter = {
     type = "structure",
+    id = "RegistrationTypeFilter",
     members = {
         Name = {
             type = "string",
@@ -4576,6 +4739,7 @@ M.RegistrationTypeFilter = {
 
 M.DescribeRegistrationTypeDefinitionsInput = {
     type = "structure",
+    id = "DescribeRegistrationTypeDefinitionsInput",
     members = {
         RegistrationTypes = {
             type = "list",
@@ -4596,6 +4760,7 @@ M.DescribeRegistrationTypeDefinitionsInput = {
 
 M.RegistrationTypeDisplayHints = {
     type = "structure",
+    id = "RegistrationTypeDisplayHints",
     members = {
         Title = {
             type = "string",
@@ -4632,6 +4797,7 @@ M.RegistrationDisassociationBehavior = {
 
 M.SupportedAssociation = {
     type = "structure",
+    id = "SupportedAssociation",
     members = {
         ResourceType = {
             type = "string",
@@ -4659,6 +4825,7 @@ M.SupportedAssociation = {
 
 M.RegistrationTypeDefinition = {
     type = "structure",
+    id = "RegistrationTypeDefinition",
     members = {
         RegistrationType = {
             type = "string",
@@ -4678,6 +4845,7 @@ M.RegistrationTypeDefinition = {
 
 M.DescribeRegistrationTypeDefinitionsOutput = {
     type = "structure",
+    id = "DescribeRegistrationTypeDefinitionsOutput",
     members = {
         RegistrationTypeDefinitions = {
             type = "list",
@@ -4698,6 +4866,7 @@ M.RegistrationVersionFilterName = {
 
 M.RegistrationVersionFilter = {
     type = "structure",
+    id = "RegistrationVersionFilter",
     members = {
         Name = {
             type = "string",
@@ -4717,6 +4886,7 @@ M.RegistrationVersionFilter = {
 
 M.DescribeRegistrationVersionsInput = {
     type = "structure",
+    id = "DescribeRegistrationVersionsInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -4743,6 +4913,7 @@ M.DescribeRegistrationVersionsInput = {
 
 M.RegistrationDeniedReasonInformation = {
     type = "structure",
+    id = "RegistrationDeniedReasonInformation",
     members = {
         Reason = {
             type = "string",
@@ -4770,6 +4941,7 @@ M.RegistrationDeniedReasonInformation = {
 
 M.RegistrationVersionInformation = {
     type = "structure",
+    id = "RegistrationVersionInformation",
     members = {
         VersionNumber = {
             type = "long",
@@ -4798,6 +4970,7 @@ M.RegistrationVersionInformation = {
 
 M.DescribeRegistrationVersionsOutput = {
     type = "structure",
+    id = "DescribeRegistrationVersionsOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -4834,6 +5007,7 @@ M.SenderIdFilterName = {
 
 M.SenderIdFilter = {
     type = "structure",
+    id = "SenderIdFilter",
     members = {
         Name = {
             type = "string",
@@ -4853,6 +5027,7 @@ M.SenderIdFilter = {
 
 M.SenderIdAndCountry = {
     type = "structure",
+    id = "SenderIdAndCountry",
     members = {
         SenderId = {
             type = "string",
@@ -4871,6 +5046,7 @@ M.SenderIdAndCountry = {
 
 M.DescribeSenderIdsInput = {
     type = "structure",
+    id = "DescribeSenderIdsInput",
     members = {
         SenderIds = {
             type = "list",
@@ -4894,6 +5070,7 @@ M.DescribeSenderIdsInput = {
 
 M.SenderIdInformation = {
     type = "structure",
+    id = "SenderIdInformation",
     members = {
         SenderIdArn = {
             type = "string",
@@ -4948,6 +5125,7 @@ M.SenderIdInformation = {
 
 M.DescribeSenderIdsOutput = {
     type = "structure",
+    id = "DescribeSenderIdsOutput",
     members = {
         SenderIds = {
             type = "list",
@@ -4961,6 +5139,7 @@ M.DescribeSenderIdsOutput = {
 
 M.DescribeSpendLimitsInput = {
     type = "structure",
+    id = "DescribeSpendLimitsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4980,6 +5159,7 @@ M.SpendLimitName = {
 
 M.SpendLimit = {
     type = "structure",
+    id = "SpendLimit",
     members = {
         Name = {
             type = "string",
@@ -5013,6 +5193,7 @@ M.SpendLimit = {
 
 M.DescribeSpendLimitsOutput = {
     type = "structure",
+    id = "DescribeSpendLimitsOutput",
     members = {
         SpendLimits = {
             type = "list",
@@ -5031,6 +5212,7 @@ M.VerifiedDestinationNumberFilterName = {
 
 M.VerifiedDestinationNumberFilter = {
     type = "structure",
+    id = "VerifiedDestinationNumberFilter",
     members = {
         Name = {
             type = "string",
@@ -5050,6 +5232,7 @@ M.VerifiedDestinationNumberFilter = {
 
 M.DescribeVerifiedDestinationNumbersInput = {
     type = "structure",
+    id = "DescribeVerifiedDestinationNumbersInput",
     members = {
         VerifiedDestinationNumberIds = {
             type = "list",
@@ -5074,6 +5257,7 @@ M.DescribeVerifiedDestinationNumbersInput = {
 
 M.VerifiedDestinationNumberInformation = {
     type = "structure",
+    id = "VerifiedDestinationNumberInformation",
     members = {
         VerifiedDestinationNumberArn = {
             type = "string",
@@ -5113,6 +5297,7 @@ M.VerifiedDestinationNumberInformation = {
 
 M.DescribeVerifiedDestinationNumbersOutput = {
     type = "structure",
+    id = "DescribeVerifiedDestinationNumbersOutput",
     members = {
         VerifiedDestinationNumbers = {
             type = "list",
@@ -5134,6 +5319,7 @@ M.DestinationCountryParameterKey = {
 
 M.DisassociateOriginationIdentityInput = {
     type = "structure",
+    id = "DisassociateOriginationIdentityInput",
     members = {
         PoolId = {
             type = "string",
@@ -5161,6 +5347,7 @@ M.DisassociateOriginationIdentityInput = {
 
 M.DisassociateOriginationIdentityOutput = {
     type = "structure",
+    id = "DisassociateOriginationIdentityOutput",
     members = {
         PoolArn = {
             type = "string",
@@ -5182,6 +5369,7 @@ M.DisassociateOriginationIdentityOutput = {
 
 M.DisassociateProtectConfigurationInput = {
     type = "structure",
+    id = "DisassociateProtectConfigurationInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -5200,6 +5388,7 @@ M.DisassociateProtectConfigurationInput = {
 
 M.DisassociateProtectConfigurationOutput = {
     type = "structure",
+    id = "DisassociateProtectConfigurationOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -5230,6 +5419,7 @@ M.DisassociateProtectConfigurationOutput = {
 
 M.DiscardRegistrationVersionInput = {
     type = "structure",
+    id = "DiscardRegistrationVersionInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -5242,6 +5432,7 @@ M.DiscardRegistrationVersionInput = {
 
 M.DiscardRegistrationVersionOutput = {
     type = "structure",
+    id = "DiscardRegistrationVersionOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -5275,6 +5466,7 @@ M.DiscardRegistrationVersionOutput = {
 
 M.GetProtectConfigurationCountryRuleSetInput = {
     type = "structure",
+    id = "GetProtectConfigurationCountryRuleSetInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -5300,6 +5492,7 @@ M.ProtectStatus = {
 
 M.ProtectConfigurationCountryRuleSetInformation = {
     type = "structure",
+    id = "ProtectConfigurationCountryRuleSetInformation",
     members = {
         ProtectStatus = {
             type = "string",
@@ -5312,6 +5505,7 @@ M.ProtectConfigurationCountryRuleSetInformation = {
 
 M.GetProtectConfigurationCountryRuleSetOutput = {
     type = "structure",
+    id = "GetProtectConfigurationCountryRuleSetOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -5344,6 +5538,7 @@ M.GetProtectConfigurationCountryRuleSetOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5356,6 +5551,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5387,6 +5583,7 @@ M.LanguageCode = {
 
 M.ListNotifyCountriesInput = {
     type = "structure",
+    id = "ListNotifyCountriesInput",
     members = {
         Channels = {
             type = "list",
@@ -5410,6 +5607,7 @@ M.ListNotifyCountriesInput = {
 
 M.NotifyCountryInformation = {
     type = "structure",
+    id = "NotifyCountryInformation",
     members = {
         IsoCountryCode = {
             type = "string",
@@ -5456,6 +5654,7 @@ M.NotifyCountryInformation = {
 
 M.ListNotifyCountriesOutput = {
     type = "structure",
+    id = "ListNotifyCountriesOutput",
     members = {
         NotifyCountries = {
             type = "list",
@@ -5474,6 +5673,7 @@ M.PoolOriginationIdentitiesFilterName = {
 
 M.PoolOriginationIdentitiesFilter = {
     type = "structure",
+    id = "PoolOriginationIdentitiesFilter",
     members = {
         Name = {
             type = "string",
@@ -5493,6 +5693,7 @@ M.PoolOriginationIdentitiesFilter = {
 
 M.ListPoolOriginationIdentitiesInput = {
     type = "structure",
+    id = "ListPoolOriginationIdentitiesInput",
     members = {
         PoolId = {
             type = "string",
@@ -5515,6 +5716,7 @@ M.ListPoolOriginationIdentitiesInput = {
 
 M.OriginationIdentityMetadata = {
     type = "structure",
+    id = "OriginationIdentityMetadata",
     members = {
         OriginationIdentityArn = {
             type = "string",
@@ -5549,6 +5751,7 @@ M.OriginationIdentityMetadata = {
 
 M.ListPoolOriginationIdentitiesOutput = {
     type = "structure",
+    id = "ListPoolOriginationIdentitiesOutput",
     members = {
         PoolArn = {
             type = "string",
@@ -5578,6 +5781,7 @@ M.ProtectConfigurationRuleSetNumberOverrideFilterName = {
 
 M.ProtectConfigurationRuleSetNumberOverrideFilterItem = {
     type = "structure",
+    id = "ProtectConfigurationRuleSetNumberOverrideFilterItem",
     members = {
         Name = {
             type = "string",
@@ -5597,6 +5801,7 @@ M.ProtectConfigurationRuleSetNumberOverrideFilterItem = {
 
 M.ListProtectConfigurationRuleSetNumberOverridesInput = {
     type = "structure",
+    id = "ListProtectConfigurationRuleSetNumberOverridesInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -5619,6 +5824,7 @@ M.ListProtectConfigurationRuleSetNumberOverridesInput = {
 
 M.ProtectConfigurationRuleSetNumberOverride = {
     type = "structure",
+    id = "ProtectConfigurationRuleSetNumberOverride",
     members = {
         DestinationPhoneNumber = {
             type = "string",
@@ -5649,6 +5855,7 @@ M.ProtectConfigurationRuleSetNumberOverride = {
 
 M.ListProtectConfigurationRuleSetNumberOverridesOutput = {
     type = "structure",
+    id = "ListProtectConfigurationRuleSetNumberOverridesOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -5679,6 +5886,7 @@ M.RegistrationAssociationFilterName = {
 
 M.RegistrationAssociationFilter = {
     type = "structure",
+    id = "RegistrationAssociationFilter",
     members = {
         Name = {
             type = "string",
@@ -5698,6 +5906,7 @@ M.RegistrationAssociationFilter = {
 
 M.ListRegistrationAssociationsInput = {
     type = "structure",
+    id = "ListRegistrationAssociationsInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -5720,6 +5929,7 @@ M.ListRegistrationAssociationsInput = {
 
 M.RegistrationAssociationMetadata = {
     type = "structure",
+    id = "RegistrationAssociationMetadata",
     members = {
         ResourceArn = {
             type = "string",
@@ -5750,6 +5960,7 @@ M.RegistrationAssociationMetadata = {
 
 M.ListRegistrationAssociationsOutput = {
     type = "structure",
+    id = "ListRegistrationAssociationsOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -5784,6 +5995,7 @@ M.ListRegistrationAssociationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5796,6 +6008,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5814,6 +6027,7 @@ M.MessageFeedbackStatus = {
 
 M.PutKeywordInput = {
     type = "structure",
+    id = "PutKeywordInput",
     members = {
         OriginationIdentity = {
             type = "string",
@@ -5841,6 +6055,7 @@ M.PutKeywordInput = {
 
 M.PutKeywordOutput = {
     type = "structure",
+    id = "PutKeywordOutput",
     members = {
         OriginationIdentityArn = {
             type = "string",
@@ -5862,6 +6077,7 @@ M.PutKeywordOutput = {
 
 M.PutMessageFeedbackInput = {
     type = "structure",
+    id = "PutMessageFeedbackInput",
     members = {
         MessageId = {
             type = "string",
@@ -5880,6 +6096,7 @@ M.PutMessageFeedbackInput = {
 
 M.PutMessageFeedbackOutput = {
     type = "structure",
+    id = "PutMessageFeedbackOutput",
     members = {
         MessageId = {
             type = "string",
@@ -5898,6 +6115,7 @@ M.PutMessageFeedbackOutput = {
 
 M.PutOptedOutNumberInput = {
     type = "structure",
+    id = "PutOptedOutNumberInput",
     members = {
         OptOutListName = {
             type = "string",
@@ -5916,6 +6134,7 @@ M.PutOptedOutNumberInput = {
 
 M.PutOptedOutNumberOutput = {
     type = "structure",
+    id = "PutOptedOutNumberOutput",
     members = {
         OptOutListArn = {
             type = "string",
@@ -5940,6 +6159,7 @@ M.PutOptedOutNumberOutput = {
 
 M.PutProtectConfigurationRuleSetNumberOverrideInput = {
     type = "structure",
+    id = "PutProtectConfigurationRuleSetNumberOverrideInput",
     members = {
         ClientToken = {
             type = "string",
@@ -5973,6 +6193,7 @@ M.PutProtectConfigurationRuleSetNumberOverrideInput = {
 
 M.PutProtectConfigurationRuleSetNumberOverrideOutput = {
     type = "structure",
+    id = "PutProtectConfigurationRuleSetNumberOverrideOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -6015,6 +6236,7 @@ M.PutProtectConfigurationRuleSetNumberOverrideOutput = {
 
 M.PutRegistrationFieldValueInput = {
     type = "structure",
+    id = "PutRegistrationFieldValueInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -6043,6 +6265,7 @@ M.PutRegistrationFieldValueInput = {
 
 M.PutRegistrationFieldValueOutput = {
     type = "structure",
+    id = "PutRegistrationFieldValueOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -6083,6 +6306,7 @@ M.PutRegistrationFieldValueOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6101,6 +6325,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6116,6 +6341,7 @@ M.PutResourcePolicyOutput = {
 
 M.ReleasePhoneNumberInput = {
     type = "structure",
+    id = "ReleasePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -6128,6 +6354,7 @@ M.ReleasePhoneNumberInput = {
 
 M.ReleasePhoneNumberOutput = {
     type = "structure",
+    id = "ReleasePhoneNumberOutput",
     members = {
         PhoneNumberArn = {
             type = "string",
@@ -6189,6 +6416,7 @@ M.ReleasePhoneNumberOutput = {
 
 M.ReleaseSenderIdInput = {
     type = "structure",
+    id = "ReleaseSenderIdInput",
     members = {
         SenderId = {
             type = "string",
@@ -6207,6 +6435,7 @@ M.ReleaseSenderIdInput = {
 
 M.ReleaseSenderIdOutput = {
     type = "structure",
+    id = "ReleaseSenderIdOutput",
     members = {
         SenderIdArn = {
             type = "string",
@@ -6261,6 +6490,7 @@ M.RequestableNumberType = {
 
 M.RequestPhoneNumberInput = {
     type = "structure",
+    id = "RequestPhoneNumberInput",
     members = {
         IsoCountryCode = {
             type = "string",
@@ -6317,6 +6547,7 @@ M.RequestPhoneNumberInput = {
 
 M.RequestPhoneNumberOutput = {
     type = "structure",
+    id = "RequestPhoneNumberOutput",
     members = {
         PhoneNumberArn = {
             type = "string",
@@ -6397,6 +6628,7 @@ M.RequestPhoneNumberOutput = {
 
 M.RequestSenderIdInput = {
     type = "structure",
+    id = "RequestSenderIdInput",
     members = {
         SenderId = {
             type = "string",
@@ -6432,6 +6664,7 @@ M.RequestSenderIdInput = {
 
 M.RequestSenderIdOutput = {
     type = "structure",
+    id = "RequestSenderIdOutput",
     members = {
         SenderIdArn = {
             type = "string",
@@ -6492,6 +6725,7 @@ M.VerificationChannel = {
 
 M.SendDestinationNumberVerificationCodeInput = {
     type = "structure",
+    id = "SendDestinationNumberVerificationCodeInput",
     members = {
         VerifiedDestinationNumberId = {
             type = "string",
@@ -6529,6 +6763,7 @@ M.SendDestinationNumberVerificationCodeInput = {
 
 M.SendDestinationNumberVerificationCodeOutput = {
     type = "structure",
+    id = "SendDestinationNumberVerificationCodeOutput",
     members = {
         MessageId = {
             type = "string",
@@ -6541,6 +6776,7 @@ M.SendDestinationNumberVerificationCodeOutput = {
 
 M.SendMediaMessageInput = {
     type = "structure",
+    id = "SendMediaMessageInput",
     members = {
         DestinationPhoneNumber = {
             type = "string",
@@ -6592,6 +6828,7 @@ M.SendMediaMessageInput = {
 
 M.SendMediaMessageOutput = {
     type = "structure",
+    id = "SendMediaMessageOutput",
     members = {
         MessageId = {
             type = "string",
@@ -6601,6 +6838,7 @@ M.SendMediaMessageOutput = {
 
 M.SendNotifyTextMessageInput = {
     type = "structure",
+    id = "SendNotifyTextMessageInput",
     members = {
         NotifyConfigurationId = {
             type = "string",
@@ -6650,6 +6888,7 @@ M.SendNotifyTextMessageInput = {
 
 M.SendNotifyTextMessageOutput = {
     type = "structure",
+    id = "SendNotifyTextMessageOutput",
     members = {
         MessageId = {
             type = "string",
@@ -6665,6 +6904,7 @@ M.SendNotifyTextMessageOutput = {
 
 M.SendNotifyVoiceMessageInput = {
     type = "structure",
+    id = "SendNotifyVoiceMessageInput",
     members = {
         NotifyConfigurationId = {
             type = "string",
@@ -6717,6 +6957,7 @@ M.SendNotifyVoiceMessageInput = {
 
 M.SendNotifyVoiceMessageOutput = {
     type = "structure",
+    id = "SendNotifyVoiceMessageOutput",
     members = {
         MessageId = {
             type = "string",
@@ -6732,6 +6973,7 @@ M.SendNotifyVoiceMessageOutput = {
 
 M.SendTextMessageInput = {
     type = "structure",
+    id = "SendTextMessageInput",
     members = {
         DestinationPhoneNumber = {
             type = "string",
@@ -6787,6 +7029,7 @@ M.SendTextMessageInput = {
 
 M.SendTextMessageOutput = {
     type = "structure",
+    id = "SendTextMessageOutput",
     members = {
         MessageId = {
             type = "string",
@@ -6801,6 +7044,7 @@ M.VoiceMessageBodyTextType = {
 
 M.SendVoiceMessageInput = {
     type = "structure",
+    id = "SendVoiceMessageInput",
     members = {
         DestinationPhoneNumber = {
             type = "string",
@@ -6854,6 +7098,7 @@ M.SendVoiceMessageInput = {
 
 M.SendVoiceMessageOutput = {
     type = "structure",
+    id = "SendVoiceMessageOutput",
     members = {
         MessageId = {
             type = "string",
@@ -6863,6 +7108,7 @@ M.SendVoiceMessageOutput = {
 
 M.SetAccountDefaultProtectConfigurationInput = {
     type = "structure",
+    id = "SetAccountDefaultProtectConfigurationInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -6875,6 +7121,7 @@ M.SetAccountDefaultProtectConfigurationInput = {
 
 M.SetAccountDefaultProtectConfigurationOutput = {
     type = "structure",
+    id = "SetAccountDefaultProtectConfigurationOutput",
     members = {
         DefaultProtectConfigurationArn = {
             type = "string",
@@ -6893,6 +7140,7 @@ M.SetAccountDefaultProtectConfigurationOutput = {
 
 M.SetDefaultMessageFeedbackEnabledInput = {
     type = "structure",
+    id = "SetDefaultMessageFeedbackEnabledInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -6911,6 +7159,7 @@ M.SetDefaultMessageFeedbackEnabledInput = {
 
 M.SetDefaultMessageFeedbackEnabledOutput = {
     type = "structure",
+    id = "SetDefaultMessageFeedbackEnabledOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -6926,6 +7175,7 @@ M.SetDefaultMessageFeedbackEnabledOutput = {
 
 M.SetDefaultMessageTypeInput = {
     type = "structure",
+    id = "SetDefaultMessageTypeInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -6944,6 +7194,7 @@ M.SetDefaultMessageTypeInput = {
 
 M.SetDefaultMessageTypeOutput = {
     type = "structure",
+    id = "SetDefaultMessageTypeOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -6959,6 +7210,7 @@ M.SetDefaultMessageTypeOutput = {
 
 M.SetDefaultSenderIdInput = {
     type = "structure",
+    id = "SetDefaultSenderIdInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -6977,6 +7229,7 @@ M.SetDefaultSenderIdInput = {
 
 M.SetDefaultSenderIdOutput = {
     type = "structure",
+    id = "SetDefaultSenderIdOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -6992,6 +7245,7 @@ M.SetDefaultSenderIdOutput = {
 
 M.SetMediaMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "SetMediaMessageSpendLimitOverrideInput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7004,6 +7258,7 @@ M.SetMediaMessageSpendLimitOverrideInput = {
 
 M.SetMediaMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "SetMediaMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7013,6 +7268,7 @@ M.SetMediaMessageSpendLimitOverrideOutput = {
 
 M.SetNotifyMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "SetNotifyMessageSpendLimitOverrideInput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7025,6 +7281,7 @@ M.SetNotifyMessageSpendLimitOverrideInput = {
 
 M.SetNotifyMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "SetNotifyMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7034,6 +7291,7 @@ M.SetNotifyMessageSpendLimitOverrideOutput = {
 
 M.SetTextMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "SetTextMessageSpendLimitOverrideInput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7046,6 +7304,7 @@ M.SetTextMessageSpendLimitOverrideInput = {
 
 M.SetTextMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "SetTextMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7055,6 +7314,7 @@ M.SetTextMessageSpendLimitOverrideOutput = {
 
 M.SetVoiceMessageSpendLimitOverrideInput = {
     type = "structure",
+    id = "SetVoiceMessageSpendLimitOverrideInput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7067,6 +7327,7 @@ M.SetVoiceMessageSpendLimitOverrideInput = {
 
 M.SetVoiceMessageSpendLimitOverrideOutput = {
     type = "structure",
+    id = "SetVoiceMessageSpendLimitOverrideOutput",
     members = {
         MonthlyLimit = {
             type = "long",
@@ -7076,6 +7337,7 @@ M.SetVoiceMessageSpendLimitOverrideOutput = {
 
 M.SubmitRegistrationVersionInput = {
     type = "structure",
+    id = "SubmitRegistrationVersionInput",
     members = {
         RegistrationId = {
             type = "string",
@@ -7094,6 +7356,7 @@ M.SubmitRegistrationVersionInput = {
 
 M.SubmitRegistrationVersionOutput = {
     type = "structure",
+    id = "SubmitRegistrationVersionOutput",
     members = {
         RegistrationArn = {
             type = "string",
@@ -7134,6 +7397,7 @@ M.SubmitRegistrationVersionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7153,10 +7417,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7176,10 +7442,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateEventDestinationInput = {
     type = "structure",
+    id = "UpdateEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -7208,6 +7476,7 @@ M.UpdateEventDestinationInput = {
 
 M.UpdateEventDestinationOutput = {
     type = "structure",
+    id = "UpdateEventDestinationOutput",
     members = {
         ConfigurationSetArn = {
             type = "string",
@@ -7221,6 +7490,7 @@ M.UpdateEventDestinationOutput = {
 
 M.UpdateNotifyConfigurationInput = {
     type = "structure",
+    id = "UpdateNotifyConfigurationInput",
     members = {
         NotifyConfigurationId = {
             type = "string",
@@ -7250,6 +7520,7 @@ M.UpdateNotifyConfigurationInput = {
 
 M.UpdateNotifyConfigurationOutput = {
     type = "structure",
+    id = "UpdateNotifyConfigurationOutput",
     members = {
         NotifyConfigurationArn = {
             type = "string",
@@ -7331,6 +7602,7 @@ M.UpdateNotifyConfigurationOutput = {
 
 M.UpdatePhoneNumberInput = {
     type = "structure",
+    id = "UpdatePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -7364,6 +7636,7 @@ M.UpdatePhoneNumberInput = {
 
 M.UpdatePhoneNumberOutput = {
     type = "structure",
+    id = "UpdatePhoneNumberOutput",
     members = {
         PhoneNumberArn = {
             type = "string",
@@ -7437,6 +7710,7 @@ M.UpdatePhoneNumberOutput = {
 
 M.UpdatePoolInput = {
     type = "structure",
+    id = "UpdatePoolInput",
     members = {
         PoolId = {
             type = "string",
@@ -7470,6 +7744,7 @@ M.UpdatePoolInput = {
 
 M.UpdatePoolOutput = {
     type = "structure",
+    id = "UpdatePoolOutput",
     members = {
         PoolArn = {
             type = "string",
@@ -7524,6 +7799,7 @@ M.UpdatePoolOutput = {
 
 M.UpdateProtectConfigurationInput = {
     type = "structure",
+    id = "UpdateProtectConfigurationInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -7539,6 +7815,7 @@ M.UpdateProtectConfigurationInput = {
 
 M.UpdateProtectConfigurationOutput = {
     type = "structure",
+    id = "UpdateProtectConfigurationOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -7577,6 +7854,7 @@ M.UpdateProtectConfigurationOutput = {
 
 M.UpdateProtectConfigurationCountryRuleSetInput = {
     type = "structure",
+    id = "UpdateProtectConfigurationCountryRuleSetInput",
     members = {
         ProtectConfigurationId = {
             type = "string",
@@ -7603,6 +7881,7 @@ M.UpdateProtectConfigurationCountryRuleSetInput = {
 
 M.UpdateProtectConfigurationCountryRuleSetOutput = {
     type = "structure",
+    id = "UpdateProtectConfigurationCountryRuleSetOutput",
     members = {
         ProtectConfigurationArn = {
             type = "string",
@@ -7635,6 +7914,7 @@ M.UpdateProtectConfigurationCountryRuleSetOutput = {
 
 M.UpdateRcsAgentInput = {
     type = "structure",
+    id = "UpdateRcsAgentInput",
     members = {
         RcsAgentId = {
             type = "string",
@@ -7665,6 +7945,7 @@ M.UpdateRcsAgentInput = {
 
 M.UpdateRcsAgentOutput = {
     type = "structure",
+    id = "UpdateRcsAgentOutput",
     members = {
         RcsAgentArn = {
             type = "string",
@@ -7725,6 +8006,7 @@ M.UpdateRcsAgentOutput = {
 
 M.UpdateSenderIdInput = {
     type = "structure",
+    id = "UpdateSenderIdInput",
     members = {
         SenderId = {
             type = "string",
@@ -7746,6 +8028,7 @@ M.UpdateSenderIdInput = {
 
 M.UpdateSenderIdOutput = {
     type = "structure",
+    id = "UpdateSenderIdOutput",
     members = {
         SenderIdArn = {
             type = "string",
@@ -7800,6 +8083,7 @@ M.UpdateSenderIdOutput = {
 
 M.VerifyDestinationNumberInput = {
     type = "structure",
+    id = "VerifyDestinationNumberInput",
     members = {
         VerifiedDestinationNumberId = {
             type = "string",
@@ -7818,6 +8102,7 @@ M.VerifyDestinationNumberInput = {
 
 M.VerifyDestinationNumberOutput = {
     type = "structure",
+    id = "VerifyDestinationNumberOutput",
     members = {
         VerifiedDestinationNumberArn = {
             type = "string",

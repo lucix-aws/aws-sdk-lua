@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -24,6 +25,7 @@ M.ActionType = {
 
 M.AdditionalSearchKey = {
     type = "structure",
+    id = "AdditionalSearchKey",
     members = {
         KeyName = {
             type = "string",
@@ -43,6 +45,7 @@ M.AdditionalSearchKey = {
 
 M.AddProfileKeyInput = {
     type = "structure",
+    id = "AddProfileKeyInput",
     members = {
         ProfileId = {
             type = "string",
@@ -75,6 +78,7 @@ M.AddProfileKeyInput = {
 
 M.AddProfileKeyOutput = {
     type = "structure",
+    id = "AddProfileKeyOutput",
     members = {
         KeyName = {
             type = "string",
@@ -88,6 +92,7 @@ M.AddProfileKeyOutput = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -98,6 +103,7 @@ M.BadRequestException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -108,6 +114,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -118,6 +125,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -128,6 +136,7 @@ M.ThrottlingException = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         Address1 = {
             type = "string",
@@ -172,6 +181,7 @@ M.StringDimensionType = {
 
 M.ProfileDimension = {
     type = "structure",
+    id = "ProfileDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -193,6 +203,7 @@ M.ProfileDimension = {
 
 M.AddressDimension = {
     type = "structure",
+    id = "AddressDimension",
     members = {
         City = setmetatable({ traits = {
             json_name = "City",
@@ -217,6 +228,7 @@ M.AddressDimension = {
 
 M.Batch = {
     type = "structure",
+    id = "Batch",
     members = {
         StartTime = {
             type = "timestamp",
@@ -243,6 +255,7 @@ M.SourceConnectorType = {
 
 M.IncrementalPullConfig = {
     type = "structure",
+    id = "IncrementalPullConfig",
     members = {
         DatetimeTypeFieldName = {
             type = "string",
@@ -252,6 +265,7 @@ M.IncrementalPullConfig = {
 
 M.MarketoSourceProperties = {
     type = "structure",
+    id = "MarketoSourceProperties",
     members = {
         Object = {
             type = "string",
@@ -264,6 +278,7 @@ M.MarketoSourceProperties = {
 
 M.S3SourceProperties = {
     type = "structure",
+    id = "S3SourceProperties",
     members = {
         BucketName = {
             type = "string",
@@ -279,6 +294,7 @@ M.S3SourceProperties = {
 
 M.SalesforceSourceProperties = {
     type = "structure",
+    id = "SalesforceSourceProperties",
     members = {
         Object = {
             type = "string",
@@ -303,6 +319,7 @@ M.SalesforceSourceProperties = {
 
 M.ServiceNowSourceProperties = {
     type = "structure",
+    id = "ServiceNowSourceProperties",
     members = {
         Object = {
             type = "string",
@@ -315,6 +332,7 @@ M.ServiceNowSourceProperties = {
 
 M.ZendeskSourceProperties = {
     type = "structure",
+    id = "ZendeskSourceProperties",
     members = {
         Object = {
             type = "string",
@@ -327,6 +345,7 @@ M.ZendeskSourceProperties = {
 
 M.SourceConnectorProperties = {
     type = "structure",
+    id = "SourceConnectorProperties",
     members = {
         Marketo = M.MarketoSourceProperties,
         S3 = M.S3SourceProperties,
@@ -338,6 +357,7 @@ M.SourceConnectorProperties = {
 
 M.SourceFlowConfig = {
     type = "structure",
+    id = "SourceFlowConfig",
     members = {
         ConnectorProfileName = {
             type = "string",
@@ -464,6 +484,7 @@ M.ZendeskConnectorOperator = {
 
 M.ConnectorOperator = {
     type = "structure",
+    id = "ConnectorOperator",
     members = {
         Marketo = {
             type = "string",
@@ -512,6 +533,7 @@ M.TaskType = {
 
 M.Task = {
     type = "structure",
+    id = "Task",
     members = {
         ConnectorOperator = M.ConnectorOperator,
         DestinationField = {
@@ -545,6 +567,7 @@ M.DataPullMode = {
 
 M.ScheduledTriggerProperties = {
     type = "structure",
+    id = "ScheduledTriggerProperties",
     members = {
         ScheduleExpression = {
             type = "string",
@@ -578,6 +601,7 @@ M.ScheduledTriggerProperties = {
 
 M.TriggerProperties = {
     type = "structure",
+    id = "TriggerProperties",
     members = {
         Scheduled = M.ScheduledTriggerProperties,
     },
@@ -591,6 +615,7 @@ M.TriggerType = {
 
 M.TriggerConfig = {
     type = "structure",
+    id = "TriggerConfig",
     members = {
         TriggerType = {
             type = "string",
@@ -604,6 +629,7 @@ M.TriggerConfig = {
 
 M.FlowDefinition = {
     type = "structure",
+    id = "FlowDefinition",
     members = {
         Description = {
             type = "string",
@@ -638,6 +664,7 @@ M.FlowDefinition = {
 
 M.AppflowIntegration = {
     type = "structure",
+    id = "AppflowIntegration",
     members = {
         FlowDefinition = setmetatable({ traits = {
             required = true,
@@ -651,6 +678,7 @@ M.AppflowIntegration = {
 
 M.AppflowIntegrationWorkflowAttributes = {
     type = "structure",
+    id = "AppflowIntegrationWorkflowAttributes",
     members = {
         SourceConnectorType = {
             type = "string",
@@ -672,6 +700,7 @@ M.AppflowIntegrationWorkflowAttributes = {
 
 M.AppflowIntegrationWorkflowMetrics = {
     type = "structure",
+    id = "AppflowIntegrationWorkflowMetrics",
     members = {
         RecordsProcessed = {
             type = "long",
@@ -709,6 +738,7 @@ M.Status = {
 
 M.AppflowIntegrationWorkflowStep = {
     type = "structure",
+    id = "AppflowIntegrationWorkflowStep",
     members = {
         FlowName = {
             type = "string",
@@ -764,6 +794,7 @@ M.AppflowIntegrationWorkflowStep = {
 
 M.AttributeItem = {
     type = "structure",
+    id = "AttributeItem",
     members = {
         Name = {
             type = "string",
@@ -776,6 +807,7 @@ M.AttributeItem = {
 
 M.AttributeDetails = {
     type = "structure",
+    id = "AttributeDetails",
     members = {
         Attributes = {
             type = "list",
@@ -813,6 +845,7 @@ M.AttributeDimensionType = {
 
 M.AttributeDimension = {
     type = "structure",
+    id = "AttributeDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -852,6 +885,7 @@ M.FilterDimensionType = {
 
 M.FilterAttributeDimension = {
     type = "structure",
+    id = "FilterAttributeDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -876,6 +910,7 @@ M.AttributeMatchingModel = {
 
 M.AttributeTypesSelector = {
     type = "structure",
+    id = "AttributeTypesSelector",
     members = {
         AttributeMatchingModel = {
             type = "string",
@@ -900,6 +935,7 @@ M.AttributeTypesSelector = {
 
 M.AttributeValueItem = {
     type = "structure",
+    id = "AttributeValueItem",
     members = {
         Value = {
             type = "string",
@@ -914,6 +950,7 @@ M.ConflictResolvingModel = {
 
 M.ConflictResolution = {
     type = "structure",
+    id = "ConflictResolution",
     members = {
         ConflictResolvingModel = {
             type = "string",
@@ -929,6 +966,7 @@ M.ConflictResolution = {
 
 M.Consolidation = {
     type = "structure",
+    id = "Consolidation",
     members = {
         MatchingAttributesList = {
             type = "list",
@@ -942,6 +980,7 @@ M.Consolidation = {
 
 M.AutoMerging = {
     type = "structure",
+    id = "AutoMerging",
     members = {
         Enabled = {
             type = "boolean",
@@ -963,6 +1002,7 @@ M.RangeUnit = {
 
 M.RangeOverride = {
     type = "structure",
+    id = "RangeOverride",
     members = {
         Start = {
             type = "integer",
@@ -988,6 +1028,7 @@ M.RangeOverride = {
 
 M.ConditionOverrides = {
     type = "structure",
+    id = "ConditionOverrides",
     members = {
         Range = M.RangeOverride,
     },
@@ -995,6 +1036,7 @@ M.ConditionOverrides = {
 
 M.BatchGetCalculatedAttributeForProfileInput = {
     type = "structure",
+    id = "BatchGetCalculatedAttributeForProfileInput",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -1023,6 +1065,7 @@ M.BatchGetCalculatedAttributeForProfileInput = {
 
 M.CalculatedAttributeValue = {
     type = "structure",
+    id = "CalculatedAttributeValue",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -1047,6 +1090,7 @@ M.CalculatedAttributeValue = {
 
 M.BatchGetCalculatedAttributeForProfileError = {
     type = "structure",
+    id = "BatchGetCalculatedAttributeForProfileError",
     members = {
         Code = {
             type = "string",
@@ -1071,6 +1115,7 @@ M.BatchGetCalculatedAttributeForProfileError = {
 
 M.BatchGetCalculatedAttributeForProfileOutput = {
     type = "structure",
+    id = "BatchGetCalculatedAttributeForProfileOutput",
     members = {
         Errors = {
             type = "list",
@@ -1086,6 +1131,7 @@ M.BatchGetCalculatedAttributeForProfileOutput = {
 
 M.BatchGetProfileInput = {
     type = "structure",
+    id = "BatchGetProfileInput",
     members = {
         DomainName = {
             type = "string",
@@ -1106,6 +1152,7 @@ M.BatchGetProfileInput = {
 
 M.BatchGetProfileError = {
     type = "structure",
+    id = "BatchGetProfileError",
     members = {
         Code = {
             type = "string",
@@ -1140,6 +1187,7 @@ M.ContactType = {
 
 M.ContactPreference = {
     type = "structure",
+    id = "ContactPreference",
     members = {
         KeyName = {
             type = "string",
@@ -1158,6 +1206,7 @@ M.ContactPreference = {
 
 M.EngagementPreferences = {
     type = "structure",
+    id = "EngagementPreferences",
     members = {
         Phone = {
             type = "list",
@@ -1172,6 +1221,7 @@ M.EngagementPreferences = {
 
 M.FoundByKeyValue = {
     type = "structure",
+    id = "FoundByKeyValue",
     members = {
         KeyName = {
             type = "string",
@@ -1202,6 +1252,7 @@ M.ProfileType = {
 
 M.Profile = {
     type = "structure",
+    id = "Profile",
     members = {
         ProfileId = {
             type = "string",
@@ -1282,6 +1333,7 @@ M.Profile = {
 
 M.BatchGetProfileOutput = {
     type = "structure",
+    id = "BatchGetProfileOutput",
     members = {
         Errors = {
             type = "list",
@@ -1303,6 +1355,7 @@ M.ReadinessStatus = {
 
 M.ListCalculatedAttributeDefinitionItem = {
     type = "structure",
+    id = "ListCalculatedAttributeDefinitionItem",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -1335,6 +1388,7 @@ M.ListCalculatedAttributeDefinitionItem = {
 
 M.CalculatedAttributeDimension = {
     type = "structure",
+    id = "CalculatedAttributeDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -1359,6 +1413,7 @@ M.CalculatedAttributeDimension = {
 
 M.ListCalculatedAttributeForProfileItem = {
     type = "structure",
+    id = "ListCalculatedAttributeForProfileItem",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -1380,6 +1435,7 @@ M.ListCalculatedAttributeForProfileItem = {
 
 M.CatalogItem = {
     type = "structure",
+    id = "CatalogItem",
     members = {
         Id = {
             type = "string",
@@ -1449,6 +1505,7 @@ M.Unit = {
 
 M.ValueRange = {
     type = "structure",
+    id = "ValueRange",
     members = {
         Start = {
             type = "integer",
@@ -1467,6 +1524,7 @@ M.ValueRange = {
 
 M.Range = {
     type = "structure",
+    id = "Range",
     members = {
         Value = {
             type = "integer",
@@ -1499,6 +1557,7 @@ M.Operator = {
 
 M.Threshold = {
     type = "structure",
+    id = "Threshold",
     members = {
         Value = {
             type = "string",
@@ -1517,6 +1576,7 @@ M.Threshold = {
 
 M.Conditions = {
     type = "structure",
+    id = "Conditions",
     members = {
         Range = M.Range,
         ObjectCount = {
@@ -1533,6 +1593,7 @@ M.ContentType = {
 
 M.FilterDimension = {
     type = "structure",
+    id = "FilterDimension",
     members = {
         Attributes = {
             type = "map",
@@ -1553,6 +1614,7 @@ M.Type = {
 
 M.FilterGroup = {
     type = "structure",
+    id = "FilterGroup",
     members = {
         Type = {
             type = "string",
@@ -1578,6 +1640,7 @@ M.Include = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Include = {
             type = "string",
@@ -1608,6 +1671,7 @@ M.Statistic = {
 
 M.CreateCalculatedAttributeDefinitionInput = {
     type = "structure",
+    id = "CreateCalculatedAttributeDefinitionInput",
     members = {
         DomainName = {
             type = "string",
@@ -1653,6 +1717,7 @@ M.CreateCalculatedAttributeDefinitionInput = {
 
 M.Readiness = {
     type = "structure",
+    id = "Readiness",
     members = {
         ProgressPercentage = {
             type = "integer",
@@ -1665,6 +1730,7 @@ M.Readiness = {
 
 M.CreateCalculatedAttributeDefinitionOutput = {
     type = "structure",
+    id = "CreateCalculatedAttributeDefinitionOutput",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -1704,6 +1770,7 @@ M.CreateCalculatedAttributeDefinitionOutput = {
 
 M.DataStoreRequest = {
     type = "structure",
+    id = "DataStoreRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -1713,6 +1780,7 @@ M.DataStoreRequest = {
 
 M.S3ExportingConfig = {
     type = "structure",
+    id = "S3ExportingConfig",
     members = {
         S3BucketName = {
             type = "string",
@@ -1728,6 +1796,7 @@ M.S3ExportingConfig = {
 
 M.ExportingConfig = {
     type = "structure",
+    id = "ExportingConfig",
     members = {
         S3Exporting = M.S3ExportingConfig,
     },
@@ -1745,6 +1814,7 @@ M.JobScheduleDayOfTheWeek = {
 
 M.JobSchedule = {
     type = "structure",
+    id = "JobSchedule",
     members = {
         DayOfTheWeek = {
             type = "string",
@@ -1763,6 +1833,7 @@ M.JobSchedule = {
 
 M.MatchingRequest = {
     type = "structure",
+    id = "MatchingRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -1778,6 +1849,7 @@ M.MatchingRequest = {
 
 M.MatchingRule = {
     type = "structure",
+    id = "MatchingRule",
     members = {
         Rule = {
             type = "list",
@@ -1791,6 +1863,7 @@ M.MatchingRule = {
 
 M.RuleBasedMatchingRequest = {
     type = "structure",
+    id = "RuleBasedMatchingRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -1816,6 +1889,7 @@ M.RuleBasedMatchingRequest = {
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1849,6 +1923,7 @@ M.CreateDomainInput = {
 
 M.DataStoreResponse = {
     type = "structure",
+    id = "DataStoreResponse",
     members = {
         Enabled = {
             type = "boolean",
@@ -1859,6 +1934,7 @@ M.DataStoreResponse = {
 
 M.MatchingResponse = {
     type = "structure",
+    id = "MatchingResponse",
     members = {
         Enabled = {
             type = "boolean",
@@ -1877,6 +1953,7 @@ M.RuleBasedMatchingStatus = {
 
 M.RuleBasedMatchingResponse = {
     type = "structure",
+    id = "RuleBasedMatchingResponse",
     members = {
         Enabled = {
             type = "boolean",
@@ -1902,6 +1979,7 @@ M.RuleBasedMatchingResponse = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         DomainName = {
             type = "string",
@@ -1950,6 +2028,7 @@ M.LayoutType = {
 
 M.CreateDomainLayoutInput = {
     type = "structure",
+    id = "CreateDomainLayoutInput",
     members = {
         DomainName = {
             type = "string",
@@ -2005,6 +2084,7 @@ M.CreateDomainLayoutInput = {
 
 M.CreateDomainLayoutOutput = {
     type = "structure",
+    id = "CreateDomainLayoutOutput",
     members = {
         LayoutDefinitionName = {
             type = "string",
@@ -2067,6 +2147,7 @@ M.CreateDomainLayoutOutput = {
 
 M.CreateEventStreamInput = {
     type = "structure",
+    id = "CreateEventStreamInput",
     members = {
         DomainName = {
             type = "string",
@@ -2098,6 +2179,7 @@ M.CreateEventStreamInput = {
 
 M.CreateEventStreamOutput = {
     type = "structure",
+    id = "CreateEventStreamOutput",
     members = {
         EventStreamArn = {
             type = "string",
@@ -2115,6 +2197,7 @@ M.CreateEventStreamOutput = {
 
 M.ObjectAttribute = {
     type = "structure",
+    id = "ObjectAttribute",
     members = {
         Source = {
             type = "string",
@@ -2140,6 +2223,7 @@ M.ObjectAttribute = {
 
 M.EventTriggerDimension = {
     type = "structure",
+    id = "EventTriggerDimension",
     members = {
         ObjectAttributes = {
             type = "list",
@@ -2159,6 +2243,7 @@ M.EventTriggerLogicalOperator = {
 
 M.EventTriggerCondition = {
     type = "structure",
+    id = "EventTriggerCondition",
     members = {
         EventTriggerDimensions = {
             type = "list",
@@ -2185,6 +2270,7 @@ M.PeriodUnit = {
 
 M.Period = {
     type = "structure",
+    id = "Period",
     members = {
         Unit = {
             type = "string",
@@ -2212,6 +2298,7 @@ M.Period = {
 
 M.EventTriggerLimits = {
     type = "structure",
+    id = "EventTriggerLimits",
     members = {
         EventExpiration = {
             type = "long",
@@ -2225,6 +2312,7 @@ M.EventTriggerLimits = {
 
 M.CreateEventTriggerInput = {
     type = "structure",
+    id = "CreateEventTriggerInput",
     members = {
         DomainName = {
             type = "string",
@@ -2270,6 +2358,7 @@ M.CreateEventTriggerInput = {
 
 M.CreateEventTriggerOutput = {
     type = "structure",
+    id = "CreateEventTriggerOutput",
     members = {
         EventTriggerName = {
             type = "string",
@@ -2304,6 +2393,7 @@ M.CreateEventTriggerOutput = {
 
 M.IntegrationConfig = {
     type = "structure",
+    id = "IntegrationConfig",
     members = {
         AppflowIntegration = M.AppflowIntegration,
     },
@@ -2315,6 +2405,7 @@ M.WorkflowType = {
 
 M.CreateIntegrationWorkflowInput = {
     type = "structure",
+    id = "CreateIntegrationWorkflowInput",
     members = {
         DomainName = {
             type = "string",
@@ -2354,6 +2445,7 @@ M.CreateIntegrationWorkflowInput = {
 
 M.CreateIntegrationWorkflowOutput = {
     type = "structure",
+    id = "CreateIntegrationWorkflowOutput",
     members = {
         WorkflowId = {
             type = "string",
@@ -2372,6 +2464,7 @@ M.CreateIntegrationWorkflowOutput = {
 
 M.CreateProfileInput = {
     type = "structure",
+    id = "CreateProfileInput",
     members = {
         DomainName = {
             type = "string",
@@ -2452,6 +2545,7 @@ M.CreateProfileInput = {
 
 M.CreateProfileOutput = {
     type = "structure",
+    id = "CreateProfileOutput",
     members = {
         ProfileId = {
             type = "string",
@@ -2464,6 +2558,7 @@ M.CreateProfileOutput = {
 
 M.EventParameters = {
     type = "structure",
+    id = "EventParameters",
     members = {
         EventType = {
             type = "string",
@@ -2482,6 +2577,7 @@ M.EventParameters = {
 
 M.EventsConfig = {
     type = "structure",
+    id = "EventsConfig",
     members = {
         EventParametersList = {
             type = "list",
@@ -2495,6 +2591,7 @@ M.EventsConfig = {
 
 M.InferenceConfig = {
     type = "structure",
+    id = "InferenceConfig",
     members = {
         MinProvisionedTPS = {
             type = "integer",
@@ -2504,6 +2601,7 @@ M.InferenceConfig = {
 
 M.RecommenderConfig = {
     type = "structure",
+    id = "RecommenderConfig",
     members = {
         EventsConfig = M.EventsConfig,
         TrainingFrequency = {
@@ -2529,6 +2627,7 @@ M.RecommenderRecipeName = {
 
 M.CreateRecommenderInput = {
     type = "structure",
+    id = "CreateRecommenderInput",
     members = {
         DomainName = {
             type = "string",
@@ -2567,6 +2666,7 @@ M.CreateRecommenderInput = {
 
 M.CreateRecommenderOutput = {
     type = "structure",
+    id = "CreateRecommenderOutput",
     members = {
         RecommenderArn = {
             type = "string",
@@ -2584,6 +2684,7 @@ M.CreateRecommenderOutput = {
 
 M.CreateRecommenderFilterInput = {
     type = "structure",
+    id = "CreateRecommenderFilterInput",
     members = {
         DomainName = {
             type = "string",
@@ -2621,6 +2722,7 @@ M.CreateRecommenderFilterInput = {
 
 M.CreateRecommenderFilterOutput = {
     type = "structure",
+    id = "CreateRecommenderFilterOutput",
     members = {
         RecommenderFilterArn = {
             type = "string",
@@ -2643,6 +2745,7 @@ M.FeatureType = {
 
 M.RecommenderSchemaField = {
     type = "structure",
+    id = "RecommenderSchemaField",
     members = {
         TargetFieldName = {
             type = "string",
@@ -2661,6 +2764,7 @@ M.RecommenderSchemaField = {
 
 M.CreateRecommenderSchemaInput = {
     type = "structure",
+    id = "CreateRecommenderSchemaInput",
     members = {
         DomainName = {
             type = "string",
@@ -2699,6 +2803,7 @@ M.RecommenderSchemaStatus = {
 
 M.CreateRecommenderSchemaOutput = {
     type = "structure",
+    id = "CreateRecommenderSchemaOutput",
     members = {
         RecommenderSchemaArn = {
             type = "string",
@@ -2742,6 +2847,7 @@ M.CreateRecommenderSchemaOutput = {
 
 M.ExtraLengthValueProfileDimension = {
     type = "structure",
+    id = "ExtraLengthValueProfileDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -2771,6 +2877,7 @@ M.DateDimensionType = {
 
 M.DateDimension = {
     type = "structure",
+    id = "DateDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -2797,6 +2904,7 @@ M.ProfileTypeDimensionType = {
 
 M.ProfileTypeDimension = {
     type = "structure",
+    id = "ProfileTypeDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -2818,6 +2926,7 @@ M.ProfileTypeDimension = {
 
 M.ProfileAttributes = {
     type = "structure",
+    id = "ProfileAttributes",
     members = {
         AccountNumber = setmetatable({ traits = {
             json_name = "AccountNumber",
@@ -2895,6 +3004,7 @@ M.ProfileAttributes = {
 
 M.Dimension = {
     type = "union",
+    id = "Dimension",
     members = {
         ProfileAttributes = setmetatable({ traits = {
             json_name = "ProfileAttributes",
@@ -2912,6 +3022,7 @@ M.Dimension = {
 
 M.SourceSegment = {
     type = "structure",
+    id = "SourceSegment",
     members = {
         SegmentDefinitionName = {
             type = "string",
@@ -2930,6 +3041,7 @@ M.IncludeOptions = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         Dimensions = {
             type = "list",
@@ -2964,6 +3076,7 @@ M.Group = {
 
 M.SegmentGroup = {
     type = "structure",
+    id = "SegmentGroup",
     members = {
         Groups = {
             type = "list",
@@ -3000,6 +3113,7 @@ M.SortAttributeType = {
 
 M.SortAttribute = {
     type = "structure",
+    id = "SortAttribute",
     members = {
         Name = {
             type = "string",
@@ -3033,6 +3147,7 @@ M.SortAttribute = {
 
 M.SegmentSort = {
     type = "structure",
+    id = "SegmentSort",
     members = {
         Attributes = {
             type = "list",
@@ -3047,6 +3162,7 @@ M.SegmentSort = {
 
 M.CreateSegmentDefinitionInput = {
     type = "structure",
+    id = "CreateSegmentDefinitionInput",
     members = {
         DomainName = {
             type = "string",
@@ -3086,6 +3202,7 @@ M.CreateSegmentDefinitionInput = {
 
 M.CreateSegmentDefinitionOutput = {
     type = "structure",
+    id = "CreateSegmentDefinitionOutput",
     members = {
         SegmentDefinitionName = {
             type = "string",
@@ -3131,6 +3248,7 @@ M.CreateSegmentDefinitionOutput = {
 
 M.SegmentGroupStructure = {
     type = "structure",
+    id = "SegmentGroupStructure",
     members = {
         Groups = {
             type = "list",
@@ -3144,6 +3262,7 @@ M.SegmentGroupStructure = {
 
 M.CreateSegmentEstimateInput = {
     type = "structure",
+    id = "CreateSegmentEstimateInput",
     members = {
         DomainName = {
             type = "string",
@@ -3161,6 +3280,7 @@ M.CreateSegmentEstimateInput = {
 
 M.CreateSegmentEstimateOutput = {
     type = "structure",
+    id = "CreateSegmentEstimateOutput",
     members = {
         DomainName = {
             type = "string",
@@ -3186,6 +3306,7 @@ M.DataFormat = {
 
 M.CreateSegmentSnapshotInput = {
     type = "structure",
+    id = "CreateSegmentSnapshotInput",
     members = {
         DomainName = {
             type = "string",
@@ -3221,6 +3342,7 @@ M.CreateSegmentSnapshotInput = {
 
 M.CreateSegmentSnapshotOutput = {
     type = "structure",
+    id = "CreateSegmentSnapshotOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -3241,6 +3363,7 @@ M.FieldContentType = {
 
 M.ObjectTypeField = {
     type = "structure",
+    id = "ObjectTypeField",
     members = {
         Source = {
             type = "string",
@@ -3256,6 +3379,7 @@ M.ObjectTypeField = {
 
 M.CreateUploadJobInput = {
     type = "structure",
+    id = "CreateUploadJobInput",
     members = {
         DomainName = {
             type = "string",
@@ -3292,6 +3416,7 @@ M.CreateUploadJobInput = {
 
 M.CreateUploadJobOutput = {
     type = "structure",
+    id = "CreateUploadJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -3305,6 +3430,7 @@ M.CreateUploadJobOutput = {
 
 M.DeleteCalculatedAttributeDefinitionInput = {
     type = "structure",
+    id = "DeleteCalculatedAttributeDefinitionInput",
     members = {
         DomainName = {
             type = "string",
@@ -3325,10 +3451,12 @@ M.DeleteCalculatedAttributeDefinitionInput = {
 
 M.DeleteCalculatedAttributeDefinitionOutput = {
     type = "structure",
+    id = "DeleteCalculatedAttributeDefinitionOutput",
 }
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -3342,6 +3470,7 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
     members = {
         Message = {
             type = "string",
@@ -3354,6 +3483,7 @@ M.DeleteDomainOutput = {
 
 M.DeleteDomainLayoutInput = {
     type = "structure",
+    id = "DeleteDomainLayoutInput",
     members = {
         DomainName = {
             type = "string",
@@ -3374,6 +3504,7 @@ M.DeleteDomainLayoutInput = {
 
 M.DeleteDomainLayoutOutput = {
     type = "structure",
+    id = "DeleteDomainLayoutOutput",
     members = {
         Message = {
             type = "string",
@@ -3386,6 +3517,7 @@ M.DeleteDomainLayoutOutput = {
 
 M.DeleteDomainObjectTypeInput = {
     type = "structure",
+    id = "DeleteDomainObjectTypeInput",
     members = {
         DomainName = {
             type = "string",
@@ -3406,10 +3538,12 @@ M.DeleteDomainObjectTypeInput = {
 
 M.DeleteDomainObjectTypeOutput = {
     type = "structure",
+    id = "DeleteDomainObjectTypeOutput",
 }
 
 M.DeleteEventStreamInput = {
     type = "structure",
+    id = "DeleteEventStreamInput",
     members = {
         DomainName = {
             type = "string",
@@ -3430,10 +3564,12 @@ M.DeleteEventStreamInput = {
 
 M.DeleteEventStreamOutput = {
     type = "structure",
+    id = "DeleteEventStreamOutput",
 }
 
 M.DeleteEventTriggerInput = {
     type = "structure",
+    id = "DeleteEventTriggerInput",
     members = {
         DomainName = {
             type = "string",
@@ -3454,6 +3590,7 @@ M.DeleteEventTriggerInput = {
 
 M.DeleteEventTriggerOutput = {
     type = "structure",
+    id = "DeleteEventTriggerOutput",
     members = {
         Message = {
             type = "string",
@@ -3466,6 +3603,7 @@ M.DeleteEventTriggerOutput = {
 
 M.DeleteIntegrationInput = {
     type = "structure",
+    id = "DeleteIntegrationInput",
     members = {
         DomainName = {
             type = "string",
@@ -3485,6 +3623,7 @@ M.DeleteIntegrationInput = {
 
 M.DeleteIntegrationOutput = {
     type = "structure",
+    id = "DeleteIntegrationOutput",
     members = {
         Message = {
             type = "string",
@@ -3497,6 +3636,7 @@ M.DeleteIntegrationOutput = {
 
 M.DeleteProfileInput = {
     type = "structure",
+    id = "DeleteProfileInput",
     members = {
         ProfileId = {
             type = "string",
@@ -3516,6 +3656,7 @@ M.DeleteProfileInput = {
 
 M.DeleteProfileOutput = {
     type = "structure",
+    id = "DeleteProfileOutput",
     members = {
         Message = {
             type = "string",
@@ -3525,6 +3666,7 @@ M.DeleteProfileOutput = {
 
 M.DeleteProfileKeyInput = {
     type = "structure",
+    id = "DeleteProfileKeyInput",
     members = {
         ProfileId = {
             type = "string",
@@ -3557,6 +3699,7 @@ M.DeleteProfileKeyInput = {
 
 M.DeleteProfileKeyOutput = {
     type = "structure",
+    id = "DeleteProfileKeyOutput",
     members = {
         Message = {
             type = "string",
@@ -3566,6 +3709,7 @@ M.DeleteProfileKeyOutput = {
 
 M.DeleteProfileObjectInput = {
     type = "structure",
+    id = "DeleteProfileObjectInput",
     members = {
         ProfileId = {
             type = "string",
@@ -3597,6 +3741,7 @@ M.DeleteProfileObjectInput = {
 
 M.DeleteProfileObjectOutput = {
     type = "structure",
+    id = "DeleteProfileObjectOutput",
     members = {
         Message = {
             type = "string",
@@ -3606,6 +3751,7 @@ M.DeleteProfileObjectOutput = {
 
 M.DeleteProfileObjectTypeInput = {
     type = "structure",
+    id = "DeleteProfileObjectTypeInput",
     members = {
         DomainName = {
             type = "string",
@@ -3626,6 +3772,7 @@ M.DeleteProfileObjectTypeInput = {
 
 M.DeleteProfileObjectTypeOutput = {
     type = "structure",
+    id = "DeleteProfileObjectTypeOutput",
     members = {
         Message = {
             type = "string",
@@ -3638,6 +3785,7 @@ M.DeleteProfileObjectTypeOutput = {
 
 M.DeleteRecommenderInput = {
     type = "structure",
+    id = "DeleteRecommenderInput",
     members = {
         DomainName = {
             type = "string",
@@ -3658,10 +3806,12 @@ M.DeleteRecommenderInput = {
 
 M.DeleteRecommenderOutput = {
     type = "structure",
+    id = "DeleteRecommenderOutput",
 }
 
 M.DeleteRecommenderFilterInput = {
     type = "structure",
+    id = "DeleteRecommenderFilterInput",
     members = {
         DomainName = {
             type = "string",
@@ -3682,6 +3832,7 @@ M.DeleteRecommenderFilterInput = {
 
 M.DeleteRecommenderFilterOutput = {
     type = "structure",
+    id = "DeleteRecommenderFilterOutput",
     members = {
         Message = {
             type = "string",
@@ -3694,6 +3845,7 @@ M.DeleteRecommenderFilterOutput = {
 
 M.DeleteRecommenderSchemaInput = {
     type = "structure",
+    id = "DeleteRecommenderSchemaInput",
     members = {
         DomainName = {
             type = "string",
@@ -3714,10 +3866,12 @@ M.DeleteRecommenderSchemaInput = {
 
 M.DeleteRecommenderSchemaOutput = {
     type = "structure",
+    id = "DeleteRecommenderSchemaOutput",
 }
 
 M.DeleteSegmentDefinitionInput = {
     type = "structure",
+    id = "DeleteSegmentDefinitionInput",
     members = {
         DomainName = {
             type = "string",
@@ -3738,6 +3892,7 @@ M.DeleteSegmentDefinitionInput = {
 
 M.DeleteSegmentDefinitionOutput = {
     type = "structure",
+    id = "DeleteSegmentDefinitionOutput",
     members = {
         Message = {
             type = "string",
@@ -3750,6 +3905,7 @@ M.DeleteSegmentDefinitionOutput = {
 
 M.DeleteWorkflowInput = {
     type = "structure",
+    id = "DeleteWorkflowInput",
     members = {
         DomainName = {
             type = "string",
@@ -3770,10 +3926,12 @@ M.DeleteWorkflowInput = {
 
 M.DeleteWorkflowOutput = {
     type = "structure",
+    id = "DeleteWorkflowOutput",
 }
 
 M.DetectProfileObjectTypeInput = {
     type = "structure",
+    id = "DetectProfileObjectTypeInput",
     members = {
         Objects = {
             type = "list",
@@ -3817,6 +3975,7 @@ M.StandardIdentifier = {
 
 M.ObjectTypeKey = {
     type = "structure",
+    id = "ObjectTypeKey",
     members = {
         StandardIdentifiers = {
             type = "list",
@@ -3831,6 +3990,7 @@ M.ObjectTypeKey = {
 
 M.DetectedProfileObjectType = {
     type = "structure",
+    id = "DetectedProfileObjectType",
     members = {
         SourceLastUpdatedTimestampFormat = {
             type = "string",
@@ -3850,6 +4010,7 @@ M.DetectedProfileObjectType = {
 
 M.DetectProfileObjectTypeOutput = {
     type = "structure",
+    id = "DetectProfileObjectTypeOutput",
     members = {
         DetectedProfileObjectTypes = {
             type = "list",
@@ -3860,6 +4021,7 @@ M.DetectProfileObjectTypeOutput = {
 
 M.GetAutoMergingPreviewInput = {
     type = "structure",
+    id = "GetAutoMergingPreviewInput",
     members = {
         DomainName = {
             type = "string",
@@ -3882,6 +4044,7 @@ M.GetAutoMergingPreviewInput = {
 
 M.GetAutoMergingPreviewOutput = {
     type = "structure",
+    id = "GetAutoMergingPreviewOutput",
     members = {
         DomainName = {
             type = "string",
@@ -3912,6 +4075,7 @@ M.GetAutoMergingPreviewOutput = {
 
 M.GetCalculatedAttributeDefinitionInput = {
     type = "structure",
+    id = "GetCalculatedAttributeDefinitionInput",
     members = {
         DomainName = {
             type = "string",
@@ -3932,6 +4096,7 @@ M.GetCalculatedAttributeDefinitionInput = {
 
 M.GetCalculatedAttributeDefinitionOutput = {
     type = "structure",
+    id = "GetCalculatedAttributeDefinitionOutput",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -3971,6 +4136,7 @@ M.GetCalculatedAttributeDefinitionOutput = {
 
 M.GetCalculatedAttributeForProfileInput = {
     type = "structure",
+    id = "GetCalculatedAttributeForProfileInput",
     members = {
         DomainName = {
             type = "string",
@@ -3998,6 +4164,7 @@ M.GetCalculatedAttributeForProfileInput = {
 
 M.GetCalculatedAttributeForProfileOutput = {
     type = "structure",
+    id = "GetCalculatedAttributeForProfileOutput",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -4019,6 +4186,7 @@ M.GetCalculatedAttributeForProfileOutput = {
 
 M.GetDomainInput = {
     type = "structure",
+    id = "GetDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -4032,6 +4200,7 @@ M.GetDomainInput = {
 
 M.DomainStats = {
     type = "structure",
+    id = "DomainStats",
     members = {
         ProfileCount = {
             type = "long",
@@ -4062,6 +4231,7 @@ M.DomainStats = {
 
 M.GetDomainOutput = {
     type = "structure",
+    id = "GetDomainOutput",
     members = {
         DomainName = {
             type = "string",
@@ -4104,6 +4274,7 @@ M.GetDomainOutput = {
 
 M.GetDomainLayoutInput = {
     type = "structure",
+    id = "GetDomainLayoutInput",
     members = {
         DomainName = {
             type = "string",
@@ -4124,6 +4295,7 @@ M.GetDomainLayoutInput = {
 
 M.GetDomainLayoutOutput = {
     type = "structure",
+    id = "GetDomainLayoutOutput",
     members = {
         LayoutDefinitionName = {
             type = "string",
@@ -4189,6 +4361,7 @@ M.GetDomainLayoutOutput = {
 
 M.GetDomainObjectTypeInput = {
     type = "structure",
+    id = "GetDomainObjectTypeInput",
     members = {
         DomainName = {
             type = "string",
@@ -4209,6 +4382,7 @@ M.GetDomainObjectTypeInput = {
 
 M.DomainObjectTypeField = {
     type = "structure",
+    id = "DomainObjectTypeField",
     members = {
         Source = {
             type = "string",
@@ -4233,6 +4407,7 @@ M.DomainObjectTypeField = {
 
 M.GetDomainObjectTypeOutput = {
     type = "structure",
+    id = "GetDomainObjectTypeOutput",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -4267,6 +4442,7 @@ M.GetDomainObjectTypeOutput = {
 
 M.GetEventStreamInput = {
     type = "structure",
+    id = "GetEventStreamInput",
     members = {
         DomainName = {
             type = "string",
@@ -4292,6 +4468,7 @@ M.EventStreamDestinationStatus = {
 
 M.EventStreamDestinationDetails = {
     type = "structure",
+    id = "EventStreamDestinationDetails",
     members = {
         Uri = {
             type = "string",
@@ -4321,6 +4498,7 @@ M.EventStreamState = {
 
 M.GetEventStreamOutput = {
     type = "structure",
+    id = "GetEventStreamOutput",
     members = {
         DomainName = {
             type = "string",
@@ -4362,6 +4540,7 @@ M.GetEventStreamOutput = {
 
 M.GetEventTriggerInput = {
     type = "structure",
+    id = "GetEventTriggerInput",
     members = {
         DomainName = {
             type = "string",
@@ -4382,6 +4561,7 @@ M.GetEventTriggerInput = {
 
 M.GetEventTriggerOutput = {
     type = "structure",
+    id = "GetEventTriggerOutput",
     members = {
         EventTriggerName = {
             type = "string",
@@ -4416,6 +4596,7 @@ M.GetEventTriggerOutput = {
 
 M.GetIdentityResolutionJobInput = {
     type = "structure",
+    id = "GetIdentityResolutionJobInput",
     members = {
         DomainName = {
             type = "string",
@@ -4436,6 +4617,7 @@ M.GetIdentityResolutionJobInput = {
 
 M.S3ExportingLocation = {
     type = "structure",
+    id = "S3ExportingLocation",
     members = {
         S3BucketName = {
             type = "string",
@@ -4448,6 +4630,7 @@ M.S3ExportingLocation = {
 
 M.ExportingLocation = {
     type = "structure",
+    id = "ExportingLocation",
     members = {
         S3Exporting = M.S3ExportingLocation,
     },
@@ -4455,6 +4638,7 @@ M.ExportingLocation = {
 
 M.JobStats = {
     type = "structure",
+    id = "JobStats",
     members = {
         NumberOfProfilesReviewed = {
             type = "long",
@@ -4489,6 +4673,7 @@ M.IdentityResolutionJobStatus = {
 
 M.GetIdentityResolutionJobOutput = {
     type = "structure",
+    id = "GetIdentityResolutionJobOutput",
     members = {
         DomainName = {
             type = "string",
@@ -4522,6 +4707,7 @@ M.GetIdentityResolutionJobOutput = {
 
 M.GetIntegrationInput = {
     type = "structure",
+    id = "GetIntegrationInput",
     members = {
         DomainName = {
             type = "string",
@@ -4546,6 +4732,7 @@ M.Scope = {
 
 M.GetIntegrationOutput = {
     type = "structure",
+    id = "GetIntegrationOutput",
     members = {
         DomainName = {
             type = "string",
@@ -4605,6 +4792,7 @@ M.GetIntegrationOutput = {
 
 M.GetMatchesInput = {
     type = "structure",
+    id = "GetMatchesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4630,6 +4818,7 @@ M.GetMatchesInput = {
 
 M.MatchItem = {
     type = "structure",
+    id = "MatchItem",
     members = {
         MatchId = {
             type = "string",
@@ -4646,6 +4835,7 @@ M.MatchItem = {
 
 M.GetMatchesOutput = {
     type = "structure",
+    id = "GetMatchesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4665,6 +4855,7 @@ M.GetMatchesOutput = {
 
 M.GetObjectTypeAttributeStatisticsInput = {
     type = "structure",
+    id = "GetObjectTypeAttributeStatisticsInput",
     members = {
         DomainName = {
             type = "string",
@@ -4692,6 +4883,7 @@ M.GetObjectTypeAttributeStatisticsInput = {
 
 M.GetObjectTypeAttributeStatisticsPercentiles = {
     type = "structure",
+    id = "GetObjectTypeAttributeStatisticsPercentiles",
     members = {
         P5 = {
             type = "double",
@@ -4728,6 +4920,7 @@ M.GetObjectTypeAttributeStatisticsPercentiles = {
 
 M.GetObjectTypeAttributeStatisticsStats = {
     type = "structure",
+    id = "GetObjectTypeAttributeStatisticsStats",
     members = {
         Maximum = {
             type = "double",
@@ -4761,6 +4954,7 @@ M.GetObjectTypeAttributeStatisticsStats = {
 
 M.GetObjectTypeAttributeStatisticsOutput = {
     type = "structure",
+    id = "GetObjectTypeAttributeStatisticsOutput",
     members = {
         Statistics = setmetatable({ traits = {
             required = true,
@@ -4776,6 +4970,7 @@ M.GetObjectTypeAttributeStatisticsOutput = {
 
 M.GetProfileHistoryRecordInput = {
     type = "structure",
+    id = "GetProfileHistoryRecordInput",
     members = {
         DomainName = {
             type = "string",
@@ -4803,6 +4998,7 @@ M.GetProfileHistoryRecordInput = {
 
 M.GetProfileHistoryRecordOutput = {
     type = "structure",
+    id = "GetProfileHistoryRecordOutput",
     members = {
         Id = {
             type = "string",
@@ -4845,6 +5041,7 @@ M.GetProfileHistoryRecordOutput = {
 
 M.GetProfileObjectTypeInput = {
     type = "structure",
+    id = "GetProfileObjectTypeInput",
     members = {
         DomainName = {
             type = "string",
@@ -4865,6 +5062,7 @@ M.GetProfileObjectTypeInput = {
 
 M.GetProfileObjectTypeOutput = {
     type = "structure",
+    id = "GetProfileObjectTypeOutput",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -4931,6 +5129,7 @@ M.GetProfileObjectTypeOutput = {
 
 M.GetProfileObjectTypeTemplateInput = {
     type = "structure",
+    id = "GetProfileObjectTypeTemplateInput",
     members = {
         TemplateId = {
             type = "string",
@@ -4944,6 +5143,7 @@ M.GetProfileObjectTypeTemplateInput = {
 
 M.GetProfileObjectTypeTemplateOutput = {
     type = "structure",
+    id = "GetProfileObjectTypeTemplateOutput",
     members = {
         TemplateId = {
             type = "string",
@@ -4978,6 +5178,7 @@ M.GetProfileObjectTypeTemplateOutput = {
 
 M.MetadataConfig = {
     type = "structure",
+    id = "MetadataConfig",
     members = {
         MetadataColumns = {
             type = "list",
@@ -4988,6 +5189,7 @@ M.MetadataConfig = {
 
 M.RecommenderFilter = {
     type = "structure",
+    id = "RecommenderFilter",
     members = {
         Name = {
             type = "string",
@@ -5002,6 +5204,7 @@ M.RecommenderFilter = {
 
 M.RecommenderPromotionalFilter = {
     type = "structure",
+    id = "RecommenderPromotionalFilter",
     members = {
         Name = {
             type = "string",
@@ -5022,6 +5225,7 @@ M.RecommenderPromotionalFilter = {
 
 M.GetProfileRecommendationsInput = {
     type = "structure",
+    id = "GetProfileRecommendationsInput",
     members = {
         DomainName = {
             type = "string",
@@ -5069,6 +5273,7 @@ M.GetProfileRecommendationsInput = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         CatalogItem = M.CatalogItem,
         Score = {
@@ -5079,6 +5284,7 @@ M.Recommendation = {
 
 M.GetProfileRecommendationsOutput = {
     type = "structure",
+    id = "GetProfileRecommendationsOutput",
     members = {
         Recommendations = {
             type = "list",
@@ -5089,6 +5295,7 @@ M.GetProfileRecommendationsOutput = {
 
 M.GetRecommenderInput = {
     type = "structure",
+    id = "GetRecommenderInput",
     members = {
         DomainName = {
             type = "string",
@@ -5126,6 +5333,7 @@ M.RecommenderStatus = {
 
 M.RecommenderUpdate = {
     type = "structure",
+    id = "RecommenderUpdate",
     members = {
         RecommenderConfig = M.RecommenderConfig,
         Status = {
@@ -5161,6 +5369,7 @@ M.TrainingMetricName = {
 
 M.TrainingMetrics = {
     type = "structure",
+    id = "TrainingMetrics",
     members = {
         Time = {
             type = "timestamp",
@@ -5175,6 +5384,7 @@ M.TrainingMetrics = {
 
 M.GetRecommenderOutput = {
     type = "structure",
+    id = "GetRecommenderOutput",
     members = {
         RecommenderName = {
             type = "string",
@@ -5222,6 +5432,7 @@ M.GetRecommenderOutput = {
 
 M.GetRecommenderFilterInput = {
     type = "structure",
+    id = "GetRecommenderFilterInput",
     members = {
         DomainName = {
             type = "string",
@@ -5250,6 +5461,7 @@ M.RecommenderFilterStatus = {
 
 M.GetRecommenderFilterOutput = {
     type = "structure",
+    id = "GetRecommenderFilterOutput",
     members = {
         RecommenderFilterName = {
             type = "string",
@@ -5297,6 +5509,7 @@ M.GetRecommenderFilterOutput = {
 
 M.GetRecommenderSchemaInput = {
     type = "structure",
+    id = "GetRecommenderSchemaInput",
     members = {
         DomainName = {
             type = "string",
@@ -5317,6 +5530,7 @@ M.GetRecommenderSchemaInput = {
 
 M.GetRecommenderSchemaOutput = {
     type = "structure",
+    id = "GetRecommenderSchemaOutput",
     members = {
         RecommenderSchemaName = {
             type = "string",
@@ -5349,6 +5563,7 @@ M.GetRecommenderSchemaOutput = {
 
 M.GetSegmentDefinitionInput = {
     type = "structure",
+    id = "GetSegmentDefinitionInput",
     members = {
         DomainName = {
             type = "string",
@@ -5374,6 +5589,7 @@ M.SegmentType = {
 
 M.GetSegmentDefinitionOutput = {
     type = "structure",
+    id = "GetSegmentDefinitionOutput",
     members = {
         SegmentDefinitionName = {
             type = "string",
@@ -5437,6 +5653,7 @@ M.GetSegmentDefinitionOutput = {
 
 M.GetSegmentEstimateInput = {
     type = "structure",
+    id = "GetSegmentEstimateInput",
     members = {
         DomainName = {
             type = "string",
@@ -5463,6 +5680,7 @@ M.EstimateStatus = {
 
 M.GetSegmentEstimateOutput = {
     type = "structure",
+    id = "GetSegmentEstimateOutput",
     members = {
         DomainName = {
             type = "string",
@@ -5491,6 +5709,7 @@ M.GetSegmentEstimateOutput = {
 
 M.GetSegmentMembershipInput = {
     type = "structure",
+    id = "GetSegmentMembershipInput",
     members = {
         DomainName = {
             type = "string",
@@ -5519,6 +5738,7 @@ M.GetSegmentMembershipInput = {
 
 M.ProfileQueryFailures = {
     type = "structure",
+    id = "ProfileQueryFailures",
     members = {
         ProfileId = {
             type = "string",
@@ -5550,6 +5770,7 @@ M.QueryResult = {
 
 M.ProfileQueryResult = {
     type = "structure",
+    id = "ProfileQueryResult",
     members = {
         ProfileId = {
             type = "string",
@@ -5573,6 +5794,7 @@ M.ProfileQueryResult = {
 
 M.GetSegmentMembershipOutput = {
     type = "structure",
+    id = "GetSegmentMembershipOutput",
     members = {
         SegmentDefinitionName = {
             type = "string",
@@ -5605,6 +5827,7 @@ M.GetSegmentMembershipOutput = {
 
 M.GetSegmentSnapshotInput = {
     type = "structure",
+    id = "GetSegmentSnapshotInput",
     members = {
         DomainName = {
             type = "string",
@@ -5638,6 +5861,7 @@ M.SegmentSnapshotStatus = {
 
 M.GetSegmentSnapshotOutput = {
     type = "structure",
+    id = "GetSegmentSnapshotOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -5679,6 +5903,7 @@ M.MatchType = {
 
 M.GetSimilarProfilesInput = {
     type = "structure",
+    id = "GetSimilarProfilesInput",
     members = {
         NextToken = {
             type = "string",
@@ -5722,6 +5947,7 @@ M.GetSimilarProfilesInput = {
 
 M.GetSimilarProfilesOutput = {
     type = "structure",
+    id = "GetSimilarProfilesOutput",
     members = {
         ProfileIds = {
             type = "list",
@@ -5747,6 +5973,7 @@ M.GetSimilarProfilesOutput = {
 
 M.GetUploadJobInput = {
     type = "structure",
+    id = "GetUploadJobInput",
     members = {
         DomainName = {
             type = "string",
@@ -5767,6 +5994,7 @@ M.GetUploadJobInput = {
 
 M.ResultsSummary = {
     type = "structure",
+    id = "ResultsSummary",
     members = {
         UpdatedRecords = {
             type = "long",
@@ -5805,6 +6033,7 @@ M.StatusReason = {
 
 M.GetUploadJobOutput = {
     type = "structure",
+    id = "GetUploadJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -5870,6 +6099,7 @@ M.GetUploadJobOutput = {
 
 M.GetUploadJobPathInput = {
     type = "structure",
+    id = "GetUploadJobPathInput",
     members = {
         DomainName = {
             type = "string",
@@ -5890,6 +6120,7 @@ M.GetUploadJobPathInput = {
 
 M.GetUploadJobPathOutput = {
     type = "structure",
+    id = "GetUploadJobPathOutput",
     members = {
         Url = {
             type = "string",
@@ -5915,6 +6146,7 @@ M.GetUploadJobPathOutput = {
 
 M.GetWorkflowInput = {
     type = "structure",
+    id = "GetWorkflowInput",
     members = {
         DomainName = {
             type = "string",
@@ -5935,6 +6167,7 @@ M.GetWorkflowInput = {
 
 M.WorkflowAttributes = {
     type = "structure",
+    id = "WorkflowAttributes",
     members = {
         AppflowIntegration = M.AppflowIntegrationWorkflowAttributes,
     },
@@ -5942,6 +6175,7 @@ M.WorkflowAttributes = {
 
 M.WorkflowMetrics = {
     type = "structure",
+    id = "WorkflowMetrics",
     members = {
         AppflowIntegration = M.AppflowIntegrationWorkflowMetrics,
     },
@@ -5949,6 +6183,7 @@ M.WorkflowMetrics = {
 
 M.GetWorkflowOutput = {
     type = "structure",
+    id = "GetWorkflowOutput",
     members = {
         WorkflowId = {
             type = "string",
@@ -5975,6 +6210,7 @@ M.GetWorkflowOutput = {
 
 M.GetWorkflowStepsInput = {
     type = "structure",
+    id = "GetWorkflowStepsInput",
     members = {
         DomainName = {
             type = "string",
@@ -6007,6 +6243,7 @@ M.GetWorkflowStepsInput = {
 
 M.WorkflowStepItem = {
     type = "structure",
+    id = "WorkflowStepItem",
     members = {
         AppflowIntegration = M.AppflowIntegrationWorkflowStep,
     },
@@ -6014,6 +6251,7 @@ M.WorkflowStepItem = {
 
 M.GetWorkflowStepsOutput = {
     type = "structure",
+    id = "GetWorkflowStepsOutput",
     members = {
         WorkflowId = {
             type = "string",
@@ -6033,6 +6271,7 @@ M.GetWorkflowStepsOutput = {
 
 M.ListAccountIntegrationsInput = {
     type = "structure",
+    id = "ListAccountIntegrationsInput",
     members = {
         Uri = {
             type = "string",
@@ -6063,6 +6302,7 @@ M.ListAccountIntegrationsInput = {
 
 M.ListIntegrationItem = {
     type = "structure",
+    id = "ListIntegrationItem",
     members = {
         DomainName = {
             type = "string",
@@ -6122,6 +6362,7 @@ M.ListIntegrationItem = {
 
 M.ListAccountIntegrationsOutput = {
     type = "structure",
+    id = "ListAccountIntegrationsOutput",
     members = {
         Items = {
             type = "list",
@@ -6135,6 +6376,7 @@ M.ListAccountIntegrationsOutput = {
 
 M.ListCalculatedAttributeDefinitionsInput = {
     type = "structure",
+    id = "ListCalculatedAttributeDefinitionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -6160,6 +6402,7 @@ M.ListCalculatedAttributeDefinitionsInput = {
 
 M.ListCalculatedAttributeDefinitionsOutput = {
     type = "structure",
+    id = "ListCalculatedAttributeDefinitionsOutput",
     members = {
         Items = {
             type = "list",
@@ -6173,6 +6416,7 @@ M.ListCalculatedAttributeDefinitionsOutput = {
 
 M.ListCalculatedAttributesForProfileInput = {
     type = "structure",
+    id = "ListCalculatedAttributesForProfileInput",
     members = {
         NextToken = {
             type = "string",
@@ -6205,6 +6449,7 @@ M.ListCalculatedAttributesForProfileInput = {
 
 M.ListCalculatedAttributesForProfileOutput = {
     type = "structure",
+    id = "ListCalculatedAttributesForProfileOutput",
     members = {
         Items = {
             type = "list",
@@ -6218,6 +6463,7 @@ M.ListCalculatedAttributesForProfileOutput = {
 
 M.ListDomainLayoutsInput = {
     type = "structure",
+    id = "ListDomainLayoutsInput",
     members = {
         DomainName = {
             type = "string",
@@ -6243,6 +6489,7 @@ M.ListDomainLayoutsInput = {
 
 M.LayoutItem = {
     type = "structure",
+    id = "LayoutItem",
     members = {
         LayoutDefinitionName = {
             type = "string",
@@ -6296,6 +6543,7 @@ M.LayoutItem = {
 
 M.ListDomainLayoutsOutput = {
     type = "structure",
+    id = "ListDomainLayoutsOutput",
     members = {
         Items = {
             type = "list",
@@ -6309,6 +6557,7 @@ M.ListDomainLayoutsOutput = {
 
 M.ListDomainObjectTypesInput = {
     type = "structure",
+    id = "ListDomainObjectTypesInput",
     members = {
         DomainName = {
             type = "string",
@@ -6334,6 +6583,7 @@ M.ListDomainObjectTypesInput = {
 
 M.DomainObjectTypesListItem = {
     type = "structure",
+    id = "DomainObjectTypesListItem",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -6360,6 +6610,7 @@ M.DomainObjectTypesListItem = {
 
 M.ListDomainObjectTypesOutput = {
     type = "structure",
+    id = "ListDomainObjectTypesOutput",
     members = {
         Items = {
             type = "list",
@@ -6373,6 +6624,7 @@ M.ListDomainObjectTypesOutput = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         NextToken = {
             type = "string",
@@ -6391,6 +6643,7 @@ M.ListDomainsInput = {
 
 M.ListDomainItem = {
     type = "structure",
+    id = "ListDomainItem",
     members = {
         DomainName = {
             type = "string",
@@ -6420,6 +6673,7 @@ M.ListDomainItem = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         Items = {
             type = "list",
@@ -6433,6 +6687,7 @@ M.ListDomainsOutput = {
 
 M.ListEventStreamsInput = {
     type = "structure",
+    id = "ListEventStreamsInput",
     members = {
         DomainName = {
             type = "string",
@@ -6458,6 +6713,7 @@ M.ListEventStreamsInput = {
 
 M.DestinationSummary = {
     type = "structure",
+    id = "DestinationSummary",
     members = {
         Uri = {
             type = "string",
@@ -6479,6 +6735,7 @@ M.DestinationSummary = {
 
 M.EventStreamSummary = {
     type = "structure",
+    id = "EventStreamSummary",
     members = {
         DomainName = {
             type = "string",
@@ -6518,6 +6775,7 @@ M.EventStreamSummary = {
 
 M.ListEventStreamsOutput = {
     type = "structure",
+    id = "ListEventStreamsOutput",
     members = {
         Items = {
             type = "list",
@@ -6531,6 +6789,7 @@ M.ListEventStreamsOutput = {
 
 M.ListEventTriggersInput = {
     type = "structure",
+    id = "ListEventTriggersInput",
     members = {
         DomainName = {
             type = "string",
@@ -6556,6 +6815,7 @@ M.ListEventTriggersInput = {
 
 M.EventTriggerSummaryItem = {
     type = "structure",
+    id = "EventTriggerSummaryItem",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -6582,6 +6842,7 @@ M.EventTriggerSummaryItem = {
 
 M.ListEventTriggersOutput = {
     type = "structure",
+    id = "ListEventTriggersOutput",
     members = {
         Items = {
             type = "list",
@@ -6595,6 +6856,7 @@ M.ListEventTriggersOutput = {
 
 M.ListIdentityResolutionJobsInput = {
     type = "structure",
+    id = "ListIdentityResolutionJobsInput",
     members = {
         DomainName = {
             type = "string",
@@ -6620,6 +6882,7 @@ M.ListIdentityResolutionJobsInput = {
 
 M.IdentityResolutionJob = {
     type = "structure",
+    id = "IdentityResolutionJob",
     members = {
         DomainName = {
             type = "string",
@@ -6646,6 +6909,7 @@ M.IdentityResolutionJob = {
 
 M.ListIdentityResolutionJobsOutput = {
     type = "structure",
+    id = "ListIdentityResolutionJobsOutput",
     members = {
         IdentityResolutionJobsList = {
             type = "list",
@@ -6659,6 +6923,7 @@ M.ListIdentityResolutionJobsOutput = {
 
 M.ListIntegrationsInput = {
     type = "structure",
+    id = "ListIntegrationsInput",
     members = {
         DomainName = {
             type = "string",
@@ -6690,6 +6955,7 @@ M.ListIntegrationsInput = {
 
 M.ListIntegrationsOutput = {
     type = "structure",
+    id = "ListIntegrationsOutput",
     members = {
         Items = {
             type = "list",
@@ -6703,6 +6969,7 @@ M.ListIntegrationsOutput = {
 
 M.ListObjectTypeAttributesInput = {
     type = "structure",
+    id = "ListObjectTypeAttributesInput",
     members = {
         NextToken = {
             type = "string",
@@ -6735,6 +7002,7 @@ M.ListObjectTypeAttributesInput = {
 
 M.ListObjectTypeAttributeItem = {
     type = "structure",
+    id = "ListObjectTypeAttributeItem",
     members = {
         AttributeName = {
             type = "string",
@@ -6753,6 +7021,7 @@ M.ListObjectTypeAttributeItem = {
 
 M.ListObjectTypeAttributesOutput = {
     type = "structure",
+    id = "ListObjectTypeAttributesOutput",
     members = {
         Items = {
             type = "list",
@@ -6766,6 +7035,7 @@ M.ListObjectTypeAttributesOutput = {
 
 M.ListObjectTypeAttributeValuesInput = {
     type = "structure",
+    id = "ListObjectTypeAttributeValuesInput",
     members = {
         NextToken = {
             type = "string",
@@ -6805,6 +7075,7 @@ M.ListObjectTypeAttributeValuesInput = {
 
 M.ListObjectTypeAttributeValuesItem = {
     type = "structure",
+    id = "ListObjectTypeAttributeValuesItem",
     members = {
         Value = {
             type = "string",
@@ -6823,6 +7094,7 @@ M.ListObjectTypeAttributeValuesItem = {
 
 M.ListObjectTypeAttributeValuesOutput = {
     type = "structure",
+    id = "ListObjectTypeAttributeValuesOutput",
     members = {
         Items = {
             type = "list",
@@ -6836,6 +7108,7 @@ M.ListObjectTypeAttributeValuesOutput = {
 
 M.ListProfileAttributeValuesInput = {
     type = "structure",
+    id = "ListProfileAttributeValuesInput",
     members = {
         DomainName = {
             type = "string",
@@ -6856,6 +7129,7 @@ M.ListProfileAttributeValuesInput = {
 
 M.ListProfileAttributeValuesOutput = {
     type = "structure",
+    id = "ListProfileAttributeValuesOutput",
     members = {
         DomainName = {
             type = "string",
@@ -6879,6 +7153,7 @@ M.ListProfileAttributeValuesOutput = {
 
 M.ListProfileHistoryRecordsInput = {
     type = "structure",
+    id = "ListProfileHistoryRecordsInput",
     members = {
         DomainName = {
             type = "string",
@@ -6919,6 +7194,7 @@ M.ListProfileHistoryRecordsInput = {
 
 M.ProfileHistoryRecord = {
     type = "structure",
+    id = "ProfileHistoryRecord",
     members = {
         Id = {
             type = "string",
@@ -6958,6 +7234,7 @@ M.ProfileHistoryRecord = {
 
 M.ListProfileHistoryRecordsOutput = {
     type = "structure",
+    id = "ListProfileHistoryRecordsOutput",
     members = {
         ProfileHistoryRecords = {
             type = "list",
@@ -6971,6 +7248,7 @@ M.ListProfileHistoryRecordsOutput = {
 
 M.ObjectFilter = {
     type = "structure",
+    id = "ObjectFilter",
     members = {
         KeyName = {
             type = "string",
@@ -6990,6 +7268,7 @@ M.ObjectFilter = {
 
 M.ListProfileObjectsInput = {
     type = "structure",
+    id = "ListProfileObjectsInput",
     members = {
         NextToken = {
             type = "string",
@@ -7028,6 +7307,7 @@ M.ListProfileObjectsInput = {
 
 M.ListProfileObjectsItem = {
     type = "structure",
+    id = "ListProfileObjectsItem",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -7043,6 +7323,7 @@ M.ListProfileObjectsItem = {
 
 M.ListProfileObjectsOutput = {
     type = "structure",
+    id = "ListProfileObjectsOutput",
     members = {
         Items = {
             type = "list",
@@ -7056,6 +7337,7 @@ M.ListProfileObjectsOutput = {
 
 M.ListProfileObjectTypesInput = {
     type = "structure",
+    id = "ListProfileObjectTypesInput",
     members = {
         DomainName = {
             type = "string",
@@ -7081,6 +7363,7 @@ M.ListProfileObjectTypesInput = {
 
 M.ListProfileObjectTypeItem = {
     type = "structure",
+    id = "ListProfileObjectTypeItem",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -7119,6 +7402,7 @@ M.ListProfileObjectTypeItem = {
 
 M.ListProfileObjectTypesOutput = {
     type = "structure",
+    id = "ListProfileObjectTypesOutput",
     members = {
         Items = {
             type = "list",
@@ -7132,6 +7416,7 @@ M.ListProfileObjectTypesOutput = {
 
 M.ListProfileObjectTypeTemplatesInput = {
     type = "structure",
+    id = "ListProfileObjectTypeTemplatesInput",
     members = {
         NextToken = {
             type = "string",
@@ -7150,6 +7435,7 @@ M.ListProfileObjectTypeTemplatesInput = {
 
 M.ListProfileObjectTypeTemplateItem = {
     type = "structure",
+    id = "ListProfileObjectTypeTemplateItem",
     members = {
         TemplateId = {
             type = "string",
@@ -7165,6 +7451,7 @@ M.ListProfileObjectTypeTemplateItem = {
 
 M.ListProfileObjectTypeTemplatesOutput = {
     type = "structure",
+    id = "ListProfileObjectTypeTemplatesOutput",
     members = {
         Items = {
             type = "list",
@@ -7178,6 +7465,7 @@ M.ListProfileObjectTypeTemplatesOutput = {
 
 M.ListRecommenderFiltersInput = {
     type = "structure",
+    id = "ListRecommenderFiltersInput",
     members = {
         DomainName = {
             type = "string",
@@ -7203,6 +7491,7 @@ M.ListRecommenderFiltersInput = {
 
 M.RecommenderFilterSummary = {
     type = "structure",
+    id = "RecommenderFilterSummary",
     members = {
         RecommenderFilterName = {
             type = "string",
@@ -7235,6 +7524,7 @@ M.RecommenderFilterSummary = {
 
 M.ListRecommenderFiltersOutput = {
     type = "structure",
+    id = "ListRecommenderFiltersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -7248,6 +7538,7 @@ M.ListRecommenderFiltersOutput = {
 
 M.ListRecommenderRecipesInput = {
     type = "structure",
+    id = "ListRecommenderRecipesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -7266,6 +7557,7 @@ M.ListRecommenderRecipesInput = {
 
 M.RecommenderRecipe = {
     type = "structure",
+    id = "RecommenderRecipe",
     members = {
         name = {
             type = "string",
@@ -7278,6 +7570,7 @@ M.RecommenderRecipe = {
 
 M.ListRecommenderRecipesOutput = {
     type = "structure",
+    id = "ListRecommenderRecipesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -7291,6 +7584,7 @@ M.ListRecommenderRecipesOutput = {
 
 M.ListRecommendersInput = {
     type = "structure",
+    id = "ListRecommendersInput",
     members = {
         DomainName = {
             type = "string",
@@ -7316,6 +7610,7 @@ M.ListRecommendersInput = {
 
 M.RecommenderSummary = {
     type = "structure",
+    id = "RecommenderSummary",
     members = {
         RecommenderName = {
             type = "string",
@@ -7353,6 +7648,7 @@ M.RecommenderSummary = {
 
 M.ListRecommendersOutput = {
     type = "structure",
+    id = "ListRecommendersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -7366,6 +7662,7 @@ M.ListRecommendersOutput = {
 
 M.ListRecommenderSchemasInput = {
     type = "structure",
+    id = "ListRecommenderSchemasInput",
     members = {
         DomainName = {
             type = "string",
@@ -7391,6 +7688,7 @@ M.ListRecommenderSchemasInput = {
 
 M.RecommenderSchemaSummary = {
     type = "structure",
+    id = "RecommenderSchemaSummary",
     members = {
         RecommenderSchemaName = {
             type = "string",
@@ -7423,6 +7721,7 @@ M.RecommenderSchemaSummary = {
 
 M.ListRecommenderSchemasOutput = {
     type = "structure",
+    id = "ListRecommenderSchemasOutput",
     members = {
         NextToken = {
             type = "string",
@@ -7436,6 +7735,7 @@ M.ListRecommenderSchemasOutput = {
 
 M.ListRuleBasedMatchesInput = {
     type = "structure",
+    id = "ListRuleBasedMatchesInput",
     members = {
         NextToken = {
             type = "string",
@@ -7461,6 +7761,7 @@ M.ListRuleBasedMatchesInput = {
 
 M.ListRuleBasedMatchesOutput = {
     type = "structure",
+    id = "ListRuleBasedMatchesOutput",
     members = {
         MatchIds = {
             type = "list",
@@ -7474,6 +7775,7 @@ M.ListRuleBasedMatchesOutput = {
 
 M.ListSegmentDefinitionsInput = {
     type = "structure",
+    id = "ListSegmentDefinitionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -7499,6 +7801,7 @@ M.ListSegmentDefinitionsInput = {
 
 M.SegmentDefinitionItem = {
     type = "structure",
+    id = "SegmentDefinitionItem",
     members = {
         SegmentDefinitionName = {
             type = "string",
@@ -7549,6 +7852,7 @@ M.SegmentDefinitionItem = {
 
 M.ListSegmentDefinitionsOutput = {
     type = "structure",
+    id = "ListSegmentDefinitionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -7568,6 +7872,7 @@ M.ListSegmentDefinitionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -7581,6 +7886,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -7592,6 +7898,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListUploadJobsInput = {
     type = "structure",
+    id = "ListUploadJobsInput",
     members = {
         DomainName = {
             type = "string",
@@ -7617,6 +7924,7 @@ M.ListUploadJobsInput = {
 
 M.UploadJobItem = {
     type = "structure",
+    id = "UploadJobItem",
     members = {
         JobId = {
             type = "string",
@@ -7665,6 +7973,7 @@ M.UploadJobItem = {
 
 M.ListUploadJobsOutput = {
     type = "structure",
+    id = "ListUploadJobsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -7684,6 +7993,7 @@ M.ListUploadJobsOutput = {
 
 M.ListWorkflowsInput = {
     type = "structure",
+    id = "ListWorkflowsInput",
     members = {
         DomainName = {
             type = "string",
@@ -7721,6 +8031,7 @@ M.ListWorkflowsInput = {
 
 M.ListWorkflowsItem = {
     type = "structure",
+    id = "ListWorkflowsItem",
     members = {
         WorkflowType = {
             type = "string",
@@ -7763,6 +8074,7 @@ M.ListWorkflowsItem = {
 
 M.ListWorkflowsOutput = {
     type = "structure",
+    id = "ListWorkflowsOutput",
     members = {
         Items = {
             type = "list",
@@ -7776,6 +8088,7 @@ M.ListWorkflowsOutput = {
 
 M.FieldSourceProfileIds = {
     type = "structure",
+    id = "FieldSourceProfileIds",
     members = {
         AccountNumber = {
             type = "string",
@@ -7853,6 +8166,7 @@ M.FieldSourceProfileIds = {
 
 M.MergeProfilesInput = {
     type = "structure",
+    id = "MergeProfilesInput",
     members = {
         DomainName = {
             type = "string",
@@ -7880,6 +8194,7 @@ M.MergeProfilesInput = {
 
 M.MergeProfilesOutput = {
     type = "structure",
+    id = "MergeProfilesOutput",
     members = {
         Message = {
             type = "string",
@@ -7889,6 +8204,7 @@ M.MergeProfilesOutput = {
 
 M.PutDomainObjectTypeInput = {
     type = "structure",
+    id = "PutDomainObjectTypeInput",
     members = {
         DomainName = {
             type = "string",
@@ -7928,6 +8244,7 @@ M.PutDomainObjectTypeInput = {
 
 M.PutDomainObjectTypeOutput = {
     type = "structure",
+    id = "PutDomainObjectTypeOutput",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -7959,6 +8276,7 @@ M.PutDomainObjectTypeOutput = {
 
 M.PutIntegrationInput = {
     type = "structure",
+    id = "PutIntegrationInput",
     members = {
         DomainName = {
             type = "string",
@@ -7999,6 +8317,7 @@ M.PutIntegrationInput = {
 
 M.PutIntegrationOutput = {
     type = "structure",
+    id = "PutIntegrationOutput",
     members = {
         DomainName = {
             type = "string",
@@ -8058,6 +8377,7 @@ M.PutIntegrationOutput = {
 
 M.PutProfileObjectInput = {
     type = "structure",
+    id = "PutProfileObjectInput",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -8083,6 +8403,7 @@ M.PutProfileObjectInput = {
 
 M.PutProfileObjectOutput = {
     type = "structure",
+    id = "PutProfileObjectOutput",
     members = {
         ProfileObjectUniqueKey = {
             type = "string",
@@ -8092,6 +8413,7 @@ M.PutProfileObjectOutput = {
 
 M.PutProfileObjectTypeInput = {
     type = "structure",
+    id = "PutProfileObjectTypeInput",
     members = {
         DomainName = {
             type = "string",
@@ -8157,6 +8479,7 @@ M.PutProfileObjectTypeInput = {
 
 M.PutProfileObjectTypeOutput = {
     type = "structure",
+    id = "PutProfileObjectTypeOutput",
     members = {
         ObjectTypeName = {
             type = "string",
@@ -8228,6 +8551,7 @@ M.logicalOperator = {
 
 M.SearchProfilesInput = {
     type = "structure",
+    id = "SearchProfilesInput",
     members = {
         NextToken = {
             type = "string",
@@ -8273,6 +8597,7 @@ M.SearchProfilesInput = {
 
 M.SearchProfilesOutput = {
     type = "structure",
+    id = "SearchProfilesOutput",
     members = {
         Items = {
             type = "list",
@@ -8286,6 +8611,7 @@ M.SearchProfilesOutput = {
 
 M.StartRecommenderInput = {
     type = "structure",
+    id = "StartRecommenderInput",
     members = {
         DomainName = {
             type = "string",
@@ -8306,10 +8632,12 @@ M.StartRecommenderInput = {
 
 M.StartRecommenderOutput = {
     type = "structure",
+    id = "StartRecommenderOutput",
 }
 
 M.StartUploadJobInput = {
     type = "structure",
+    id = "StartUploadJobInput",
     members = {
         DomainName = {
             type = "string",
@@ -8330,10 +8658,12 @@ M.StartUploadJobInput = {
 
 M.StartUploadJobOutput = {
     type = "structure",
+    id = "StartUploadJobOutput",
 }
 
 M.StopRecommenderInput = {
     type = "structure",
+    id = "StopRecommenderInput",
     members = {
         DomainName = {
             type = "string",
@@ -8354,10 +8684,12 @@ M.StopRecommenderInput = {
 
 M.StopRecommenderOutput = {
     type = "structure",
+    id = "StopRecommenderOutput",
 }
 
 M.StopUploadJobInput = {
     type = "structure",
+    id = "StopUploadJobInput",
     members = {
         DomainName = {
             type = "string",
@@ -8378,10 +8710,12 @@ M.StopUploadJobInput = {
 
 M.StopUploadJobOutput = {
     type = "structure",
+    id = "StopUploadJobOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8403,10 +8737,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8428,10 +8764,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCalculatedAttributeDefinitionInput = {
     type = "structure",
+    id = "UpdateCalculatedAttributeDefinitionInput",
     members = {
         DomainName = {
             type = "string",
@@ -8459,6 +8797,7 @@ M.UpdateCalculatedAttributeDefinitionInput = {
 
 M.UpdateCalculatedAttributeDefinitionOutput = {
     type = "structure",
+    id = "UpdateCalculatedAttributeDefinitionOutput",
     members = {
         CalculatedAttributeName = {
             type = "string",
@@ -8497,6 +8836,7 @@ M.UpdateCalculatedAttributeDefinitionOutput = {
 
 M.UpdateDomainInput = {
     type = "structure",
+    id = "UpdateDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -8527,6 +8867,7 @@ M.UpdateDomainInput = {
 
 M.UpdateDomainOutput = {
     type = "structure",
+    id = "UpdateDomainOutput",
     members = {
         DomainName = {
             type = "string",
@@ -8568,6 +8909,7 @@ M.UpdateDomainOutput = {
 
 M.UpdateDomainLayoutInput = {
     type = "structure",
+    id = "UpdateDomainLayoutInput",
     members = {
         DomainName = {
             type = "string",
@@ -8606,6 +8948,7 @@ M.UpdateDomainLayoutInput = {
 
 M.UpdateDomainLayoutOutput = {
     type = "structure",
+    id = "UpdateDomainLayoutOutput",
     members = {
         LayoutDefinitionName = {
             type = "string",
@@ -8647,6 +8990,7 @@ M.UpdateDomainLayoutOutput = {
 
 M.UpdateEventTriggerInput = {
     type = "structure",
+    id = "UpdateEventTriggerInput",
     members = {
         DomainName = {
             type = "string",
@@ -8681,6 +9025,7 @@ M.UpdateEventTriggerInput = {
 
 M.UpdateEventTriggerOutput = {
     type = "structure",
+    id = "UpdateEventTriggerOutput",
     members = {
         EventTriggerName = {
             type = "string",
@@ -8715,6 +9060,7 @@ M.UpdateEventTriggerOutput = {
 
 M.UpdateAddress = {
     type = "structure",
+    id = "UpdateAddress",
     members = {
         Address1 = {
             type = "string",
@@ -8751,6 +9097,7 @@ M.UpdateAddress = {
 
 M.UpdateProfileInput = {
     type = "structure",
+    id = "UpdateProfileInput",
     members = {
         DomainName = {
             type = "string",
@@ -8837,6 +9184,7 @@ M.UpdateProfileInput = {
 
 M.UpdateProfileOutput = {
     type = "structure",
+    id = "UpdateProfileOutput",
     members = {
         ProfileId = {
             type = "string",
@@ -8849,6 +9197,7 @@ M.UpdateProfileOutput = {
 
 M.UpdateRecommenderInput = {
     type = "structure",
+    id = "UpdateRecommenderInput",
     members = {
         DomainName = {
             type = "string",
@@ -8873,6 +9222,7 @@ M.UpdateRecommenderInput = {
 
 M.UpdateRecommenderOutput = {
     type = "structure",
+    id = "UpdateRecommenderOutput",
     members = {
         RecommenderName = {
             type = "string",

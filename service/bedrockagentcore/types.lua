@@ -2,6 +2,7 @@ local M = {}
 
 M.AgentCardDefinition = {
     type = "structure",
+    id = "AgentCardDefinition",
     members = {
         schemaVersion = {
             type = "string",
@@ -14,6 +15,7 @@ M.AgentCardDefinition = {
 
 M.A2aDescriptor = {
     type = "structure",
+    id = "A2aDescriptor",
     members = {
         agentCard = setmetatable({ traits = {
             required = true,
@@ -23,6 +25,7 @@ M.A2aDescriptor = {
 
 M.PerVariantOnlineEvaluationConfig = {
     type = "structure",
+    id = "PerVariantOnlineEvaluationConfig",
     members = {
         name = {
             type = "string",
@@ -41,6 +44,7 @@ M.PerVariantOnlineEvaluationConfig = {
 
 M.ABTestEvaluationConfig = {
     type = "union",
+    id = "ABTestEvaluationConfig",
     members = {
         onlineEvaluationConfigArn = {
             type = "string",
@@ -61,6 +65,7 @@ M.ABTestExecutionStatus = {
 
 M.ControlStats = {
     type = "structure",
+    id = "ControlStats",
     members = {
         variantName = {
             type = "string",
@@ -85,6 +90,7 @@ M.ControlStats = {
 
 M.ConfidenceInterval = {
     type = "structure",
+    id = "ConfidenceInterval",
     members = {
         lower = {
             type = "double",
@@ -97,6 +103,7 @@ M.ConfidenceInterval = {
 
 M.VariantResult = {
     type = "structure",
+    id = "VariantResult",
     members = {
         variantName = {
             type = "string",
@@ -137,6 +144,7 @@ M.VariantResult = {
 
 M.EvaluatorMetric = {
     type = "structure",
+    id = "EvaluatorMetric",
     members = {
         evaluatorArn = {
             type = "string",
@@ -159,6 +167,7 @@ M.EvaluatorMetric = {
 
 M.ABTestResults = {
     type = "structure",
+    id = "ABTestResults",
     members = {
         analysisTimestamp = {
             type = "timestamp",
@@ -186,6 +195,7 @@ M.ABTestStatus = {
 
 M.ABTestSummary = {
     type = "structure",
+    id = "ABTestSummary",
     members = {
         abTestId = {
             type = "string",
@@ -240,6 +250,7 @@ M.ABTestSummary = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -250,6 +261,7 @@ M.AccessDeniedException = {
 
 M.ActorSummary = {
     type = "structure",
+    id = "ActorSummary",
     members = {
         actorId = {
             type = "string",
@@ -262,6 +274,7 @@ M.ActorSummary = {
 
 M.GetAgentCardInput = {
     type = "structure",
+    id = "GetAgentCardInput",
     members = {
         runtimeSessionId = {
             type = "string",
@@ -288,6 +301,7 @@ M.GetAgentCardInput = {
 
 M.GetAgentCardOutput = {
     type = "structure",
+    id = "GetAgentCardOutput",
     members = {
         runtimeSessionId = {
             type = "string",
@@ -313,6 +327,7 @@ M.GetAgentCardOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -323,6 +338,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -333,6 +349,7 @@ M.ResourceNotFoundException = {
 
 M.RuntimeClientError = {
     type = "structure",
+    id = "RuntimeClientError",
     error = "client",
     members = {
         message = {
@@ -343,6 +360,7 @@ M.RuntimeClientError = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -353,6 +371,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -363,6 +382,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -389,6 +409,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -412,6 +433,7 @@ M.ValidationException = {
 
 M.InvokeAgentRuntimeInput = {
     type = "structure",
+    id = "InvokeAgentRuntimeInput",
     members = {
         contentType = {
             type = "string",
@@ -505,6 +527,7 @@ M.InvokeAgentRuntimeInput = {
 
 M.InvokeAgentRuntimeOutput = {
     type = "structure",
+    id = "InvokeAgentRuntimeOutput",
     members = {
         runtimeSessionId = {
             type = "string",
@@ -573,6 +596,7 @@ M.InvokeAgentRuntimeOutput = {
 
 M.InvokeAgentRuntimeCommandRequestBody = {
     type = "structure",
+    id = "InvokeAgentRuntimeCommandRequestBody",
     members = {
         command = {
             type = "string",
@@ -588,6 +612,7 @@ M.InvokeAgentRuntimeCommandRequestBody = {
 
 M.InvokeAgentRuntimeCommandInput = {
     type = "structure",
+    id = "InvokeAgentRuntimeCommandInput",
     members = {
         contentType = {
             type = "string",
@@ -660,6 +685,7 @@ M.InvokeAgentRuntimeCommandInput = {
 
 M.ContentDeltaEvent = {
     type = "structure",
+    id = "ContentDeltaEvent",
     members = {
         stdout = {
             type = "string",
@@ -672,6 +698,7 @@ M.ContentDeltaEvent = {
 
 M.ContentStartEvent = {
     type = "structure",
+    id = "ContentStartEvent",
 }
 
 M.CommandExecutionStatus = {
@@ -681,6 +708,7 @@ M.CommandExecutionStatus = {
 
 M.ContentStopEvent = {
     type = "structure",
+    id = "ContentStopEvent",
     members = {
         exitCode = {
             type = "integer",
@@ -699,6 +727,7 @@ M.ContentStopEvent = {
 
 M.ResponseChunk = {
     type = "structure",
+    id = "ResponseChunk",
     members = {
         contentStart = M.ContentStartEvent,
         contentDelta = M.ContentDeltaEvent,
@@ -708,6 +737,7 @@ M.ResponseChunk = {
 
 M.InvokeAgentRuntimeCommandStreamOutput = {
     type = "union",
+    id = "InvokeAgentRuntimeCommandStreamOutput",
     members = {
         chunk = M.ResponseChunk,
         accessDeniedException = M.AccessDeniedException,
@@ -722,6 +752,7 @@ M.InvokeAgentRuntimeCommandStreamOutput = {
 
 M.InvokeAgentRuntimeCommandOutput = {
     type = "structure",
+    id = "InvokeAgentRuntimeCommandOutput",
     members = {
         runtimeSessionId = {
             type = "string",
@@ -775,6 +806,7 @@ M.InvokeAgentRuntimeCommandOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -785,6 +817,7 @@ M.ConflictException = {
 
 M.StopRuntimeSessionInput = {
     type = "structure",
+    id = "StopRuntimeSessionInput",
     members = {
         runtimeSessionId = {
             type = "string",
@@ -817,6 +850,7 @@ M.StopRuntimeSessionInput = {
 
 M.StopRuntimeSessionOutput = {
     type = "structure",
+    id = "StopRuntimeSessionOutput",
     members = {
         runtimeSessionId = {
             type = "string",
@@ -835,6 +869,7 @@ M.StopRuntimeSessionOutput = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -845,6 +880,7 @@ M.UnauthorizedException = {
 
 M.SkillDefinition = {
     type = "structure",
+    id = "SkillDefinition",
     members = {
         schemaVersion = {
             type = "string",
@@ -857,6 +893,7 @@ M.SkillDefinition = {
 
 M.SkillMdDefinition = {
     type = "structure",
+    id = "SkillMdDefinition",
     members = {
         inlineContent = {
             type = "string",
@@ -866,6 +903,7 @@ M.SkillMdDefinition = {
 
 M.AgentSkillsDescriptor = {
     type = "structure",
+    id = "AgentSkillsDescriptor",
     members = {
         skillMd = setmetatable({ traits = {
             required = true,
@@ -887,6 +925,7 @@ M.CloudWatchLogsFilterOperator = {
 
 M.FilterValue = {
     type = "union",
+    id = "FilterValue",
     members = {
         stringValue = {
             type = "string",
@@ -902,6 +941,7 @@ M.FilterValue = {
 
 M.CloudWatchLogsFilter = {
     type = "structure",
+    id = "CloudWatchLogsFilter",
     members = {
         key = {
             type = "string",
@@ -923,6 +963,7 @@ M.CloudWatchLogsFilter = {
 
 M.CloudWatchLogsRule = {
     type = "structure",
+    id = "CloudWatchLogsRule",
     members = {
         filters = {
             type = "list",
@@ -933,6 +974,7 @@ M.CloudWatchLogsRule = {
 
 M.CloudWatchLogsTraceConfig = {
     type = "structure",
+    id = "CloudWatchLogsTraceConfig",
     members = {
         logGroupArns = {
             type = "list",
@@ -968,6 +1010,7 @@ M.CloudWatchLogsTraceConfig = {
 
 M.AgentTracesConfig = {
     type = "union",
+    id = "AgentTracesConfig",
     members = {
         sessionSpans = {
             type = "list",
@@ -979,6 +1022,7 @@ M.AgentTracesConfig = {
 
 M.SaveBrowserSessionProfileInput = {
     type = "structure",
+    id = "SaveBrowserSessionProfileInput",
     members = {
         traceId = {
             type = "string",
@@ -1022,6 +1066,7 @@ M.SaveBrowserSessionProfileInput = {
 
 M.SaveBrowserSessionProfileOutput = {
     type = "structure",
+    id = "SaveBrowserSessionProfileOutput",
     members = {
         profileIdentifier = {
             type = "string",
@@ -1053,6 +1098,7 @@ M.SaveBrowserSessionProfileOutput = {
 
 M.GetBrowserSessionInput = {
     type = "structure",
+    id = "GetBrowserSessionInput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1073,6 +1119,7 @@ M.GetBrowserSessionInput = {
 
 M.SecretsManagerLocation = {
     type = "structure",
+    id = "SecretsManagerLocation",
     members = {
         secretArn = {
             type = "string",
@@ -1085,6 +1132,7 @@ M.SecretsManagerLocation = {
 
 M.CertificateLocation = {
     type = "union",
+    id = "CertificateLocation",
     members = {
         secretsManager = M.SecretsManagerLocation,
     },
@@ -1092,6 +1140,7 @@ M.CertificateLocation = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         location = setmetatable({ traits = {
             required = true,
@@ -1101,6 +1150,7 @@ M.Certificate = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucket = {
             type = "string",
@@ -1122,6 +1172,7 @@ M.S3Location = {
 
 M.ResourceLocation = {
     type = "union",
+    id = "ResourceLocation",
     members = {
         s3 = M.S3Location,
     },
@@ -1134,6 +1185,7 @@ M.BrowserEnterprisePolicyType = {
 
 M.BrowserEnterprisePolicy = {
     type = "structure",
+    id = "BrowserEnterprisePolicy",
     members = {
         location = setmetatable({ traits = {
             required = true,
@@ -1146,6 +1198,7 @@ M.BrowserEnterprisePolicy = {
 
 M.BrowserExtension = {
     type = "structure",
+    id = "BrowserExtension",
     members = {
         location = setmetatable({ traits = {
             required = true,
@@ -1155,6 +1208,7 @@ M.BrowserExtension = {
 
 M.BrowserProfileConfiguration = {
     type = "structure",
+    id = "BrowserProfileConfiguration",
     members = {
         profileIdentifier = {
             type = "string",
@@ -1167,6 +1221,7 @@ M.BrowserProfileConfiguration = {
 
 M.ProxyBypass = {
     type = "structure",
+    id = "ProxyBypass",
     members = {
         domainPatterns = {
             type = "list",
@@ -1177,6 +1232,7 @@ M.ProxyBypass = {
 
 M.BasicAuth = {
     type = "structure",
+    id = "BasicAuth",
     members = {
         secretArn = {
             type = "string",
@@ -1189,6 +1245,7 @@ M.BasicAuth = {
 
 M.ProxyCredentials = {
     type = "union",
+    id = "ProxyCredentials",
     members = {
         basicAuth = M.BasicAuth,
     },
@@ -1196,6 +1253,7 @@ M.ProxyCredentials = {
 
 M.ExternalProxy = {
     type = "structure",
+    id = "ExternalProxy",
     members = {
         server = {
             type = "string",
@@ -1219,6 +1277,7 @@ M.ExternalProxy = {
 
 M.Proxy = {
     type = "union",
+    id = "Proxy",
     members = {
         externalProxy = M.ExternalProxy,
     },
@@ -1226,6 +1285,7 @@ M.Proxy = {
 
 M.ProxyConfiguration = {
     type = "structure",
+    id = "ProxyConfiguration",
     members = {
         proxies = {
             type = "list",
@@ -1250,6 +1310,7 @@ M.AutomationStreamStatus = {
 
 M.AutomationStream = {
     type = "structure",
+    id = "AutomationStream",
     members = {
         streamEndpoint = {
             type = "string",
@@ -1268,6 +1329,7 @@ M.AutomationStream = {
 
 M.LiveViewStream = {
     type = "structure",
+    id = "LiveViewStream",
     members = {
         streamEndpoint = {
             type = "string",
@@ -1277,6 +1339,7 @@ M.LiveViewStream = {
 
 M.BrowserSessionStream = {
     type = "structure",
+    id = "BrowserSessionStream",
     members = {
         automationStream = setmetatable({ traits = {
             required = true,
@@ -1287,6 +1350,7 @@ M.BrowserSessionStream = {
 
 M.ViewPort = {
     type = "structure",
+    id = "ViewPort",
     members = {
         width = {
             type = "integer",
@@ -1305,6 +1369,7 @@ M.ViewPort = {
 
 M.GetBrowserSessionOutput = {
     type = "structure",
+    id = "GetBrowserSessionOutput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1364,6 +1429,7 @@ M.GetBrowserSessionOutput = {
 
 M.KeyPressArguments = {
     type = "structure",
+    id = "KeyPressArguments",
     members = {
         key = {
             type = "string",
@@ -1379,6 +1445,7 @@ M.KeyPressArguments = {
 
 M.KeyShortcutArguments = {
     type = "structure",
+    id = "KeyShortcutArguments",
     members = {
         keys = {
             type = "list",
@@ -1392,6 +1459,7 @@ M.KeyShortcutArguments = {
 
 M.KeyTypeArguments = {
     type = "structure",
+    id = "KeyTypeArguments",
     members = {
         text = {
             type = "string",
@@ -1410,6 +1478,7 @@ M.MouseButton = {
 
 M.MouseClickArguments = {
     type = "structure",
+    id = "MouseClickArguments",
     members = {
         x = {
             type = "integer",
@@ -1434,6 +1503,7 @@ M.MouseClickArguments = {
 
 M.MouseDragArguments = {
     type = "structure",
+    id = "MouseDragArguments",
     members = {
         endX = {
             type = "integer",
@@ -1467,6 +1537,7 @@ M.MouseDragArguments = {
 
 M.MouseMoveArguments = {
     type = "structure",
+    id = "MouseMoveArguments",
     members = {
         x = {
             type = "integer",
@@ -1485,6 +1556,7 @@ M.MouseMoveArguments = {
 
 M.MouseScrollArguments = {
     type = "structure",
+    id = "MouseScrollArguments",
     members = {
         x = {
             type = "integer",
@@ -1513,6 +1585,7 @@ M.ScreenshotFormat = {
 
 M.ScreenshotArguments = {
     type = "structure",
+    id = "ScreenshotArguments",
     members = {
         format = {
             type = "string",
@@ -1522,6 +1595,7 @@ M.ScreenshotArguments = {
 
 M.BrowserAction = {
     type = "union",
+    id = "BrowserAction",
     members = {
         mouseClick = M.MouseClickArguments,
         mouseMove = M.MouseMoveArguments,
@@ -1536,6 +1610,7 @@ M.BrowserAction = {
 
 M.InvokeBrowserInput = {
     type = "structure",
+    id = "InvokeBrowserInput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1564,6 +1639,7 @@ M.BrowserActionStatus = {
 
 M.KeyPressResult = {
     type = "structure",
+    id = "KeyPressResult",
     members = {
         status = {
             type = "string",
@@ -1579,6 +1655,7 @@ M.KeyPressResult = {
 
 M.KeyShortcutResult = {
     type = "structure",
+    id = "KeyShortcutResult",
     members = {
         status = {
             type = "string",
@@ -1594,6 +1671,7 @@ M.KeyShortcutResult = {
 
 M.KeyTypeResult = {
     type = "structure",
+    id = "KeyTypeResult",
     members = {
         status = {
             type = "string",
@@ -1609,6 +1687,7 @@ M.KeyTypeResult = {
 
 M.MouseClickResult = {
     type = "structure",
+    id = "MouseClickResult",
     members = {
         status = {
             type = "string",
@@ -1624,6 +1703,7 @@ M.MouseClickResult = {
 
 M.MouseDragResult = {
     type = "structure",
+    id = "MouseDragResult",
     members = {
         status = {
             type = "string",
@@ -1639,6 +1719,7 @@ M.MouseDragResult = {
 
 M.MouseMoveResult = {
     type = "structure",
+    id = "MouseMoveResult",
     members = {
         status = {
             type = "string",
@@ -1654,6 +1735,7 @@ M.MouseMoveResult = {
 
 M.MouseScrollResult = {
     type = "structure",
+    id = "MouseScrollResult",
     members = {
         status = {
             type = "string",
@@ -1669,6 +1751,7 @@ M.MouseScrollResult = {
 
 M.ScreenshotResult = {
     type = "structure",
+    id = "ScreenshotResult",
     members = {
         status = {
             type = "string",
@@ -1687,6 +1770,7 @@ M.ScreenshotResult = {
 
 M.BrowserActionResult = {
     type = "union",
+    id = "BrowserActionResult",
     members = {
         mouseClick = M.MouseClickResult,
         mouseMove = M.MouseMoveResult,
@@ -1701,6 +1785,7 @@ M.BrowserActionResult = {
 
 M.InvokeBrowserOutput = {
     type = "structure",
+    id = "InvokeBrowserOutput",
     members = {
         result = setmetatable({ traits = {
             required = true,
@@ -1717,6 +1802,7 @@ M.InvokeBrowserOutput = {
 
 M.ListBrowserSessionsInput = {
     type = "structure",
+    id = "ListBrowserSessionsInput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1739,6 +1825,7 @@ M.ListBrowserSessionsInput = {
 
 M.BrowserSessionSummary = {
     type = "structure",
+    id = "BrowserSessionSummary",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1779,6 +1866,7 @@ M.BrowserSessionSummary = {
 
 M.ListBrowserSessionsOutput = {
     type = "structure",
+    id = "ListBrowserSessionsOutput",
     members = {
         items = {
             type = "list",
@@ -1795,6 +1883,7 @@ M.ListBrowserSessionsOutput = {
 
 M.StartBrowserSessionInput = {
     type = "structure",
+    id = "StartBrowserSessionInput",
     members = {
         traceId = {
             type = "string",
@@ -1850,6 +1939,7 @@ M.StartBrowserSessionInput = {
 
 M.StartBrowserSessionOutput = {
     type = "structure",
+    id = "StartBrowserSessionOutput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1876,6 +1966,7 @@ M.StartBrowserSessionOutput = {
 
 M.StopBrowserSessionInput = {
     type = "structure",
+    id = "StopBrowserSessionInput",
     members = {
         traceId = {
             type = "string",
@@ -1914,6 +2005,7 @@ M.StopBrowserSessionInput = {
 
 M.StopBrowserSessionOutput = {
     type = "structure",
+    id = "StopBrowserSessionOutput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1939,6 +2031,7 @@ M.StopBrowserSessionOutput = {
 
 M.AutomationStreamUpdate = {
     type = "structure",
+    id = "AutomationStreamUpdate",
     members = {
         streamStatus = {
             type = "string",
@@ -1948,6 +2041,7 @@ M.AutomationStreamUpdate = {
 
 M.StreamUpdate = {
     type = "union",
+    id = "StreamUpdate",
     members = {
         automationStreamUpdate = M.AutomationStreamUpdate,
     },
@@ -1955,6 +2049,7 @@ M.StreamUpdate = {
 
 M.UpdateBrowserStreamInput = {
     type = "structure",
+    id = "UpdateBrowserStreamInput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -1984,6 +2079,7 @@ M.UpdateBrowserStreamInput = {
 
 M.UpdateBrowserStreamOutput = {
     type = "structure",
+    id = "UpdateBrowserStreamOutput",
     members = {
         browserIdentifier = {
             type = "string",
@@ -2012,6 +2108,7 @@ M.UpdateBrowserStreamOutput = {
 
 M.GetCodeInterpreterSessionInput = {
     type = "structure",
+    id = "GetCodeInterpreterSessionInput",
     members = {
         codeInterpreterIdentifier = {
             type = "string",
@@ -2037,6 +2134,7 @@ M.CodeInterpreterSessionStatus = {
 
 M.GetCodeInterpreterSessionOutput = {
     type = "structure",
+    id = "GetCodeInterpreterSessionOutput",
     members = {
         codeInterpreterIdentifier = {
             type = "string",
@@ -2075,6 +2173,7 @@ M.GetCodeInterpreterSessionOutput = {
 
 M.ListCodeInterpreterSessionsInput = {
     type = "structure",
+    id = "ListCodeInterpreterSessionsInput",
     members = {
         codeInterpreterIdentifier = {
             type = "string",
@@ -2097,6 +2196,7 @@ M.ListCodeInterpreterSessionsInput = {
 
 M.CodeInterpreterSessionSummary = {
     type = "structure",
+    id = "CodeInterpreterSessionSummary",
     members = {
         codeInterpreterIdentifier = {
             type = "string",
@@ -2137,6 +2237,7 @@ M.CodeInterpreterSessionSummary = {
 
 M.ListCodeInterpreterSessionsOutput = {
     type = "structure",
+    id = "ListCodeInterpreterSessionsOutput",
     members = {
         items = {
             type = "list",
@@ -2153,6 +2254,7 @@ M.ListCodeInterpreterSessionsOutput = {
 
 M.StartCodeInterpreterSessionInput = {
     type = "structure",
+    id = "StartCodeInterpreterSessionInput",
     members = {
         traceId = {
             type = "string",
@@ -2197,6 +2299,7 @@ M.StartCodeInterpreterSessionInput = {
 
 M.StartCodeInterpreterSessionOutput = {
     type = "structure",
+    id = "StartCodeInterpreterSessionOutput",
     members = {
         codeInterpreterIdentifier = {
             type = "string",
@@ -2222,6 +2325,7 @@ M.StartCodeInterpreterSessionOutput = {
 
 M.StopCodeInterpreterSessionInput = {
     type = "structure",
+    id = "StopCodeInterpreterSessionInput",
     members = {
         traceId = {
             type = "string",
@@ -2260,6 +2364,7 @@ M.StopCodeInterpreterSessionInput = {
 
 M.StopCodeInterpreterSessionOutput = {
     type = "structure",
+    id = "StopCodeInterpreterSessionOutput",
     members = {
         codeInterpreterIdentifier = {
             type = "string",
@@ -2285,6 +2390,7 @@ M.StopCodeInterpreterSessionOutput = {
 
 M.UserIdentifier = {
     type = "union",
+    id = "UserIdentifier",
     members = {
         userToken = {
             type = "string",
@@ -2297,6 +2403,7 @@ M.UserIdentifier = {
 
 M.CompleteResourceTokenAuthInput = {
     type = "structure",
+    id = "CompleteResourceTokenAuthInput",
     members = {
         userIdentifier = setmetatable({ traits = {
             required = true,
@@ -2312,10 +2419,12 @@ M.CompleteResourceTokenAuthInput = {
 
 M.CompleteResourceTokenAuthOutput = {
     type = "structure",
+    id = "CompleteResourceTokenAuthOutput",
 }
 
 M.GatewayFilter = {
     type = "structure",
+    id = "GatewayFilter",
     members = {
         targetPaths = {
             type = "list",
@@ -2326,6 +2435,7 @@ M.GatewayFilter = {
 
 M.ConfigurationBundleRef = {
     type = "structure",
+    id = "ConfigurationBundleRef",
     members = {
         bundleArn = {
             type = "string",
@@ -2344,6 +2454,7 @@ M.ConfigurationBundleRef = {
 
 M.TargetRef = {
     type = "structure",
+    id = "TargetRef",
     members = {
         name = {
             type = "string",
@@ -2356,6 +2467,7 @@ M.TargetRef = {
 
 M.VariantConfiguration = {
     type = "structure",
+    id = "VariantConfiguration",
     members = {
         configurationBundle = M.ConfigurationBundleRef,
         target = M.TargetRef,
@@ -2364,6 +2476,7 @@ M.VariantConfiguration = {
 
 M.Variant = {
     type = "structure",
+    id = "Variant",
     members = {
         name = {
             type = "string",
@@ -2385,6 +2498,7 @@ M.Variant = {
 
 M.CreateABTestInput = {
     type = "structure",
+    id = "CreateABTestInput",
     members = {
         name = {
             type = "string",
@@ -2432,6 +2546,7 @@ M.CreateABTestInput = {
 
 M.CreateABTestOutput = {
     type = "structure",
+    id = "CreateABTestOutput",
     members = {
         abTestId = {
             type = "string",
@@ -2471,6 +2586,7 @@ M.CreateABTestOutput = {
 
 M.DeleteABTestInput = {
     type = "structure",
+    id = "DeleteABTestInput",
     members = {
         abTestId = {
             type = "string",
@@ -2484,6 +2600,7 @@ M.DeleteABTestInput = {
 
 M.DeleteABTestOutput = {
     type = "structure",
+    id = "DeleteABTestOutput",
     members = {
         abTestId = {
             type = "string",
@@ -2508,6 +2625,7 @@ M.DeleteABTestOutput = {
 
 M.DeleteBatchEvaluationInput = {
     type = "structure",
+    id = "DeleteBatchEvaluationInput",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -2532,6 +2650,7 @@ M.BatchEvaluationStatus = {
 
 M.DeleteBatchEvaluationOutput = {
     type = "structure",
+    id = "DeleteBatchEvaluationOutput",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -2556,6 +2675,7 @@ M.DeleteBatchEvaluationOutput = {
 
 M.DeleteRecommendationInput = {
     type = "structure",
+    id = "DeleteRecommendationInput",
     members = {
         recommendationId = {
             type = "string",
@@ -2577,6 +2697,7 @@ M.RecommendationStatus = {
 
 M.DeleteRecommendationOutput = {
     type = "structure",
+    id = "DeleteRecommendationOutput",
     members = {
         recommendationId = {
             type = "string",
@@ -2595,6 +2716,7 @@ M.DeleteRecommendationOutput = {
 
 M.DuplicateIdException = {
     type = "structure",
+    id = "DuplicateIdException",
     error = "client",
     members = {
         message = {
@@ -2605,6 +2727,7 @@ M.DuplicateIdException = {
 
 M.EvaluationInput = {
     type = "union",
+    id = "EvaluationInput",
     members = {
         sessionSpans = {
             type = "list",
@@ -2615,6 +2738,7 @@ M.EvaluationInput = {
 
 M.EvaluationContent = {
     type = "union",
+    id = "EvaluationContent",
     members = {
         text = {
             type = "string",
@@ -2624,6 +2748,7 @@ M.EvaluationContent = {
 
 M.SpanContext = {
     type = "structure",
+    id = "SpanContext",
     members = {
         sessionId = {
             type = "string",
@@ -2642,6 +2767,7 @@ M.SpanContext = {
 
 M.Context = {
     type = "union",
+    id = "Context",
     members = {
         spanContext = M.SpanContext,
     },
@@ -2649,6 +2775,7 @@ M.Context = {
 
 M.EvaluationExpectedTrajectory = {
     type = "structure",
+    id = "EvaluationExpectedTrajectory",
     members = {
         toolNames = {
             type = "list",
@@ -2659,6 +2786,7 @@ M.EvaluationExpectedTrajectory = {
 
 M.EvaluationReferenceInput = {
     type = "structure",
+    id = "EvaluationReferenceInput",
     members = {
         context = setmetatable({ traits = {
             required = true,
@@ -2674,6 +2802,7 @@ M.EvaluationReferenceInput = {
 
 M.EvaluationTarget = {
     type = "union",
+    id = "EvaluationTarget",
     members = {
         spanIds = {
             type = "list",
@@ -2688,6 +2817,7 @@ M.EvaluationTarget = {
 
 M.EvaluateInput = {
     type = "structure",
+    id = "EvaluateInput",
     members = {
         evaluatorId = {
             type = "string",
@@ -2709,6 +2839,7 @@ M.EvaluateInput = {
 
 M.TokenUsage = {
     type = "structure",
+    id = "TokenUsage",
     members = {
         inputTokens = {
             type = "integer",
@@ -2724,6 +2855,7 @@ M.TokenUsage = {
 
 M.EvaluationResultContent = {
     type = "structure",
+    id = "EvaluationResultContent",
     members = {
         evaluatorArn = {
             type = "string",
@@ -2771,6 +2903,7 @@ M.EvaluationResultContent = {
 
 M.EvaluateOutput = {
     type = "structure",
+    id = "EvaluateOutput",
     members = {
         evaluationResults = {
             type = "list",
@@ -2784,6 +2917,7 @@ M.EvaluateOutput = {
 
 M.GetABTestInput = {
     type = "structure",
+    id = "GetABTestInput",
     members = {
         abTestId = {
             type = "string",
@@ -2797,6 +2931,7 @@ M.GetABTestInput = {
 
 M.GetABTestOutput = {
     type = "structure",
+    id = "GetABTestOutput",
     members = {
         abTestId = {
             type = "string",
@@ -2885,6 +3020,7 @@ M.GetABTestOutput = {
 
 M.GetBatchEvaluationInput = {
     type = "structure",
+    id = "GetBatchEvaluationInput",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -2898,6 +3034,7 @@ M.GetBatchEvaluationInput = {
 
 M.SessionFilterConfig = {
     type = "structure",
+    id = "SessionFilterConfig",
     members = {
         startTime = {
             type = "timestamp",
@@ -2916,6 +3053,7 @@ M.SessionFilterConfig = {
 
 M.CloudWatchFilterConfig = {
     type = "structure",
+    id = "CloudWatchFilterConfig",
     members = {
         sessionIds = {
             type = "list",
@@ -2927,6 +3065,7 @@ M.CloudWatchFilterConfig = {
 
 M.CloudWatchLogsSource = {
     type = "structure",
+    id = "CloudWatchLogsSource",
     members = {
         serviceNames = {
             type = "list",
@@ -2948,6 +3087,7 @@ M.CloudWatchLogsSource = {
 
 M.DataSourceConfig = {
     type = "union",
+    id = "DataSourceConfig",
     members = {
         cloudWatchLogs = M.CloudWatchLogsSource,
     },
@@ -2955,6 +3095,7 @@ M.DataSourceConfig = {
 
 M.EvaluatorStatistics = {
     type = "structure",
+    id = "EvaluatorStatistics",
     members = {
         averageScore = {
             type = "double",
@@ -2964,6 +3105,7 @@ M.EvaluatorStatistics = {
 
 M.EvaluatorSummary = {
     type = "structure",
+    id = "EvaluatorSummary",
     members = {
         evaluatorId = {
             type = "string",
@@ -2980,6 +3122,7 @@ M.EvaluatorSummary = {
 
 M.EvaluationJobResults = {
     type = "structure",
+    id = "EvaluationJobResults",
     members = {
         numberOfSessionsCompleted = {
             type = "integer",
@@ -3005,6 +3148,7 @@ M.EvaluationJobResults = {
 
 M.Evaluator = {
     type = "structure",
+    id = "Evaluator",
     members = {
         evaluatorId = {
             type = "string",
@@ -3017,6 +3161,7 @@ M.Evaluator = {
 
 M.CloudWatchOutputConfig = {
     type = "structure",
+    id = "CloudWatchOutputConfig",
     members = {
         logGroupName = {
             type = "string",
@@ -3035,6 +3180,7 @@ M.CloudWatchOutputConfig = {
 
 M.OutputConfig = {
     type = "union",
+    id = "OutputConfig",
     members = {
         cloudWatchConfig = M.CloudWatchOutputConfig,
     },
@@ -3042,6 +3188,7 @@ M.OutputConfig = {
 
 M.GetBatchEvaluationOutput = {
     type = "structure",
+    id = "GetBatchEvaluationOutput",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -3099,6 +3246,7 @@ M.GetBatchEvaluationOutput = {
 
 M.GetRecommendationInput = {
     type = "structure",
+    id = "GetRecommendationInput",
     members = {
         recommendationId = {
             type = "string",
@@ -3112,6 +3260,7 @@ M.GetRecommendationInput = {
 
 M.RecommendationEvaluatorReference = {
     type = "structure",
+    id = "RecommendationEvaluatorReference",
     members = {
         evaluatorArn = {
             type = "string",
@@ -3124,6 +3273,7 @@ M.RecommendationEvaluatorReference = {
 
 M.RecommendationEvaluationConfig = {
     type = "structure",
+    id = "RecommendationEvaluationConfig",
     members = {
         evaluators = {
             type = "list",
@@ -3137,6 +3287,7 @@ M.RecommendationEvaluationConfig = {
 
 M.SystemPromptConfigurationBundle = {
     type = "structure",
+    id = "SystemPromptConfigurationBundle",
     members = {
         bundleArn = {
             type = "string",
@@ -3161,6 +3312,7 @@ M.SystemPromptConfigurationBundle = {
 
 M.SystemPromptConfig = {
     type = "union",
+    id = "SystemPromptConfig",
     members = {
         text = {
             type = "string",
@@ -3171,6 +3323,7 @@ M.SystemPromptConfig = {
 
 M.SystemPromptRecommendationConfig = {
     type = "structure",
+    id = "SystemPromptRecommendationConfig",
     members = {
         systemPrompt = setmetatable({ traits = {
             required = true,
@@ -3186,6 +3339,7 @@ M.SystemPromptRecommendationConfig = {
 
 M.ConfigurationBundleToolEntry = {
     type = "structure",
+    id = "ConfigurationBundleToolEntry",
     members = {
         toolName = {
             type = "string",
@@ -3204,6 +3358,7 @@ M.ConfigurationBundleToolEntry = {
 
 M.ToolDescriptionConfigurationBundle = {
     type = "structure",
+    id = "ToolDescriptionConfigurationBundle",
     members = {
         bundleArn = {
             type = "string",
@@ -3229,6 +3384,7 @@ M.ToolDescriptionConfigurationBundle = {
 
 M.ToolDescriptionConfig = {
     type = "union",
+    id = "ToolDescriptionConfig",
     members = {
         text = {
             type = "string",
@@ -3238,6 +3394,7 @@ M.ToolDescriptionConfig = {
 
 M.ToolDescriptionInput = {
     type = "structure",
+    id = "ToolDescriptionInput",
     members = {
         toolName = {
             type = "string",
@@ -3253,6 +3410,7 @@ M.ToolDescriptionInput = {
 
 M.ToolDescriptionTextInput = {
     type = "structure",
+    id = "ToolDescriptionTextInput",
     members = {
         tools = {
             type = "list",
@@ -3266,6 +3424,7 @@ M.ToolDescriptionTextInput = {
 
 M.ToolDescriptionSource = {
     type = "union",
+    id = "ToolDescriptionSource",
     members = {
         toolDescriptionText = M.ToolDescriptionTextInput,
         configurationBundle = M.ToolDescriptionConfigurationBundle,
@@ -3274,6 +3433,7 @@ M.ToolDescriptionSource = {
 
 M.ToolDescriptionRecommendationConfig = {
     type = "structure",
+    id = "ToolDescriptionRecommendationConfig",
     members = {
         toolDescription = setmetatable({ traits = {
             required = true,
@@ -3286,6 +3446,7 @@ M.ToolDescriptionRecommendationConfig = {
 
 M.RecommendationConfig = {
     type = "union",
+    id = "RecommendationConfig",
     members = {
         systemPromptRecommendationConfig = M.SystemPromptRecommendationConfig,
         toolDescriptionRecommendationConfig = M.ToolDescriptionRecommendationConfig,
@@ -3294,6 +3455,7 @@ M.RecommendationConfig = {
 
 M.RecommendationResultConfigurationBundle = {
     type = "structure",
+    id = "RecommendationResultConfigurationBundle",
     members = {
         bundleArn = {
             type = "string",
@@ -3312,6 +3474,7 @@ M.RecommendationResultConfigurationBundle = {
 
 M.SystemPromptRecommendationResult = {
     type = "structure",
+    id = "SystemPromptRecommendationResult",
     members = {
         recommendedSystemPrompt = {
             type = "string",
@@ -3328,6 +3491,7 @@ M.SystemPromptRecommendationResult = {
 
 M.ToolDescriptionOutput = {
     type = "structure",
+    id = "ToolDescriptionOutput",
     members = {
         toolName = {
             type = "string",
@@ -3343,6 +3507,7 @@ M.ToolDescriptionOutput = {
 
 M.ToolDescriptionRecommendationResult = {
     type = "structure",
+    id = "ToolDescriptionRecommendationResult",
     members = {
         tools = {
             type = "list",
@@ -3360,6 +3525,7 @@ M.ToolDescriptionRecommendationResult = {
 
 M.RecommendationResult = {
     type = "union",
+    id = "RecommendationResult",
     members = {
         systemPromptRecommendationResult = M.SystemPromptRecommendationResult,
         toolDescriptionRecommendationResult = M.ToolDescriptionRecommendationResult,
@@ -3373,6 +3539,7 @@ M.RecommendationType = {
 
 M.GetRecommendationOutput = {
     type = "structure",
+    id = "GetRecommendationOutput",
     members = {
         recommendationId = {
             type = "string",
@@ -3430,6 +3597,7 @@ M.GetRecommendationOutput = {
 
 M.ListABTestsInput = {
     type = "structure",
+    id = "ListABTestsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3448,6 +3616,7 @@ M.ListABTestsInput = {
 
 M.ListABTestsOutput = {
     type = "structure",
+    id = "ListABTestsOutput",
     members = {
         abTests = {
             type = "list",
@@ -3464,6 +3633,7 @@ M.ListABTestsOutput = {
 
 M.ListBatchEvaluationsInput = {
     type = "structure",
+    id = "ListBatchEvaluationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3482,6 +3652,7 @@ M.ListBatchEvaluationsInput = {
 
 M.BatchEvaluationSummary = {
     type = "structure",
+    id = "BatchEvaluationSummary",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -3537,6 +3708,7 @@ M.BatchEvaluationSummary = {
 
 M.ListBatchEvaluationsOutput = {
     type = "structure",
+    id = "ListBatchEvaluationsOutput",
     members = {
         batchEvaluations = {
             type = "list",
@@ -3553,6 +3725,7 @@ M.ListBatchEvaluationsOutput = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3577,6 +3750,7 @@ M.ListRecommendationsInput = {
 
 M.RecommendationSummary = {
     type = "structure",
+    id = "RecommendationSummary",
     members = {
         recommendationId = {
             type = "string",
@@ -3630,6 +3804,7 @@ M.RecommendationSummary = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         recommendationSummaries = {
             type = "list",
@@ -3646,6 +3821,7 @@ M.ListRecommendationsOutput = {
 
 M.GroundTruthTurnInput = {
     type = "union",
+    id = "GroundTruthTurnInput",
     members = {
         prompt = {
             type = "string",
@@ -3655,6 +3831,7 @@ M.GroundTruthTurnInput = {
 
 M.GroundTruthTurn = {
     type = "structure",
+    id = "GroundTruthTurn",
     members = {
         input = M.GroundTruthTurnInput,
         expectedResponse = M.EvaluationContent,
@@ -3663,6 +3840,7 @@ M.GroundTruthTurn = {
 
 M.InlineGroundTruth = {
     type = "structure",
+    id = "InlineGroundTruth",
     members = {
         assertions = {
             type = "list",
@@ -3678,6 +3856,7 @@ M.InlineGroundTruth = {
 
 M.GroundTruthSource = {
     type = "union",
+    id = "GroundTruthSource",
     members = {
         inline = M.InlineGroundTruth,
     },
@@ -3685,6 +3864,7 @@ M.GroundTruthSource = {
 
 M.SessionMetadataShape = {
     type = "structure",
+    id = "SessionMetadataShape",
     members = {
         sessionId = {
             type = "string",
@@ -3706,6 +3886,7 @@ M.SessionMetadataShape = {
 
 M.EvaluationMetadata = {
     type = "union",
+    id = "EvaluationMetadata",
     members = {
         sessionMetadata = {
             type = "list",
@@ -3716,6 +3897,7 @@ M.EvaluationMetadata = {
 
 M.StartBatchEvaluationInput = {
     type = "structure",
+    id = "StartBatchEvaluationInput",
     members = {
         batchEvaluationName = {
             type = "string",
@@ -3745,6 +3927,7 @@ M.StartBatchEvaluationInput = {
 
 M.StartBatchEvaluationOutput = {
     type = "structure",
+    id = "StartBatchEvaluationOutput",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -3790,6 +3973,7 @@ M.StartBatchEvaluationOutput = {
 
 M.StartRecommendationInput = {
     type = "structure",
+    id = "StartRecommendationInput",
     members = {
         name = {
             type = "string",
@@ -3820,6 +4004,7 @@ M.StartRecommendationInput = {
 
 M.StartRecommendationOutput = {
     type = "structure",
+    id = "StartRecommendationOutput",
     members = {
         recommendationId = {
             type = "string",
@@ -3876,6 +4061,7 @@ M.StartRecommendationOutput = {
 
 M.StopBatchEvaluationInput = {
     type = "structure",
+    id = "StopBatchEvaluationInput",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -3889,6 +4075,7 @@ M.StopBatchEvaluationInput = {
 
 M.StopBatchEvaluationOutput = {
     type = "structure",
+    id = "StopBatchEvaluationOutput",
     members = {
         batchEvaluationId = {
             type = "string",
@@ -3916,6 +4103,7 @@ M.StopBatchEvaluationOutput = {
 
 M.UpdateABTestInput = {
     type = "structure",
+    id = "UpdateABTestInput",
     members = {
         abTestId = {
             type = "string",
@@ -3953,6 +4141,7 @@ M.UpdateABTestInput = {
 
 M.UpdateABTestOutput = {
     type = "structure",
+    id = "UpdateABTestOutput",
     members = {
         abTestId = {
             type = "string",
@@ -3989,6 +4178,7 @@ M.UpdateABTestOutput = {
 
 M.GetResourceApiKeyInput = {
     type = "structure",
+    id = "GetResourceApiKeyInput",
     members = {
         workloadIdentityToken = {
             type = "string",
@@ -4007,6 +4197,7 @@ M.GetResourceApiKeyInput = {
 
 M.GetResourceApiKeyOutput = {
     type = "structure",
+    id = "GetResourceApiKeyOutput",
     members = {
         apiKey = {
             type = "string",
@@ -4025,6 +4216,7 @@ M.Oauth2FlowType = {
 
 M.GetResourceOauth2TokenInput = {
     type = "structure",
+    id = "GetResourceOauth2TokenInput",
     members = {
         workloadIdentityToken = {
             type = "string",
@@ -4086,6 +4278,7 @@ M.SessionStatus = {
 
 M.GetResourceOauth2TokenOutput = {
     type = "structure",
+    id = "GetResourceOauth2TokenOutput",
     members = {
         authorizationUrl = {
             type = "string",
@@ -4104,6 +4297,7 @@ M.GetResourceOauth2TokenOutput = {
 
 M.GetWorkloadAccessTokenInput = {
     type = "structure",
+    id = "GetWorkloadAccessTokenInput",
     members = {
         workloadName = {
             type = "string",
@@ -4116,6 +4310,7 @@ M.GetWorkloadAccessTokenInput = {
 
 M.GetWorkloadAccessTokenOutput = {
     type = "structure",
+    id = "GetWorkloadAccessTokenOutput",
     members = {
         workloadAccessToken = {
             type = "string",
@@ -4128,6 +4323,7 @@ M.GetWorkloadAccessTokenOutput = {
 
 M.GetWorkloadAccessTokenForJWTInput = {
     type = "structure",
+    id = "GetWorkloadAccessTokenForJWTInput",
     members = {
         workloadName = {
             type = "string",
@@ -4146,6 +4342,7 @@ M.GetWorkloadAccessTokenForJWTInput = {
 
 M.GetWorkloadAccessTokenForJWTOutput = {
     type = "structure",
+    id = "GetWorkloadAccessTokenForJWTOutput",
     members = {
         workloadAccessToken = {
             type = "string",
@@ -4158,6 +4355,7 @@ M.GetWorkloadAccessTokenForJWTOutput = {
 
 M.GetWorkloadAccessTokenForUserIdInput = {
     type = "structure",
+    id = "GetWorkloadAccessTokenForUserIdInput",
     members = {
         workloadName = {
             type = "string",
@@ -4176,6 +4374,7 @@ M.GetWorkloadAccessTokenForUserIdInput = {
 
 M.GetWorkloadAccessTokenForUserIdOutput = {
     type = "structure",
+    id = "GetWorkloadAccessTokenForUserIdOutput",
     members = {
         workloadAccessToken = {
             type = "string",
@@ -4188,6 +4387,7 @@ M.GetWorkloadAccessTokenForUserIdOutput = {
 
 M.InputContentBlock = {
     type = "structure",
+    id = "InputContentBlock",
     members = {
         path = {
             type = "string",
@@ -4218,6 +4418,7 @@ M.LanguageRuntime = {
 
 M.ToolArguments = {
     type = "structure",
+    id = "ToolArguments",
     members = {
         code = {
             type = "string",
@@ -4268,6 +4469,7 @@ M.ToolName = {
 
 M.InvokeCodeInterpreterInput = {
     type = "structure",
+    id = "InvokeCodeInterpreterInput",
     members = {
         codeInterpreterIdentifier = {
             type = "string",
@@ -4311,6 +4513,7 @@ M.ResourceContentType = {
 
 M.ResourceContent = {
     type = "structure",
+    id = "ResourceContent",
     members = {
         type = {
             type = "string",
@@ -4342,6 +4545,7 @@ M.ContentBlockType = {
 
 M.ContentBlock = {
     type = "structure",
+    id = "ContentBlock",
     members = {
         type = {
             type = "string",
@@ -4384,6 +4588,7 @@ M.TaskStatus = {
 
 M.ToolResultStructuredContent = {
     type = "structure",
+    id = "ToolResultStructuredContent",
     members = {
         taskId = {
             type = "string",
@@ -4408,6 +4613,7 @@ M.ToolResultStructuredContent = {
 
 M.CodeInterpreterResult = {
     type = "structure",
+    id = "CodeInterpreterResult",
     members = {
         content = {
             type = "list",
@@ -4425,6 +4631,7 @@ M.CodeInterpreterResult = {
 
 M.CodeInterpreterStreamOutput = {
     type = "union",
+    id = "CodeInterpreterStreamOutput",
     members = {
         result = M.CodeInterpreterResult,
         accessDeniedException = M.AccessDeniedException,
@@ -4439,6 +4646,7 @@ M.CodeInterpreterStreamOutput = {
 
 M.InvokeCodeInterpreterOutput = {
     type = "structure",
+    id = "InvokeCodeInterpreterOutput",
     members = {
         sessionId = {
             type = "string",
@@ -4455,6 +4663,7 @@ M.InvokeCodeInterpreterOutput = {
 
 M.HarnessReasoningTextBlock = {
     type = "structure",
+    id = "HarnessReasoningTextBlock",
     members = {
         text = {
             type = "string",
@@ -4470,6 +4679,7 @@ M.HarnessReasoningTextBlock = {
 
 M.HarnessReasoningContentBlock = {
     type = "union",
+    id = "HarnessReasoningContentBlock",
     members = {
         reasoningText = M.HarnessReasoningTextBlock,
         redactedContent = {
@@ -4480,6 +4690,7 @@ M.HarnessReasoningContentBlock = {
 
 M.HarnessToolResultContentBlock = {
     type = "union",
+    id = "HarnessToolResultContentBlock",
     members = {
         text = {
             type = "string",
@@ -4503,6 +4714,7 @@ M.HarnessToolUseType = {
 
 M.HarnessToolResultBlock = {
     type = "structure",
+    id = "HarnessToolResultBlock",
     members = {
         toolUseId = {
             type = "string",
@@ -4528,6 +4740,7 @@ M.HarnessToolResultBlock = {
 
 M.HarnessToolUseBlock = {
     type = "structure",
+    id = "HarnessToolUseBlock",
     members = {
         name = {
             type = "string",
@@ -4558,6 +4771,7 @@ M.HarnessToolUseBlock = {
 
 M.HarnessContentBlock = {
     type = "union",
+    id = "HarnessContentBlock",
     members = {
         text = {
             type = "string",
@@ -4575,6 +4789,7 @@ M.HarnessConversationRole = {
 
 M.HarnessMessage = {
     type = "structure",
+    id = "HarnessMessage",
     members = {
         role = {
             type = "string",
@@ -4594,6 +4809,7 @@ M.HarnessMessage = {
 
 M.HarnessBedrockModelConfig = {
     type = "structure",
+    id = "HarnessBedrockModelConfig",
     members = {
         modelId = {
             type = "string",
@@ -4615,6 +4831,7 @@ M.HarnessBedrockModelConfig = {
 
 M.HarnessGeminiModelConfig = {
     type = "structure",
+    id = "HarnessGeminiModelConfig",
     members = {
         modelId = {
             type = "string",
@@ -4645,6 +4862,7 @@ M.HarnessGeminiModelConfig = {
 
 M.HarnessOpenAiModelConfig = {
     type = "structure",
+    id = "HarnessOpenAiModelConfig",
     members = {
         modelId = {
             type = "string",
@@ -4672,6 +4890,7 @@ M.HarnessOpenAiModelConfig = {
 
 M.HarnessModelConfiguration = {
     type = "union",
+    id = "HarnessModelConfiguration",
     members = {
         bedrockModelConfig = M.HarnessBedrockModelConfig,
         openAiModelConfig = M.HarnessOpenAiModelConfig,
@@ -4681,6 +4900,7 @@ M.HarnessModelConfiguration = {
 
 M.HarnessSkill = {
     type = "union",
+    id = "HarnessSkill",
     members = {
         path = {
             type = "string",
@@ -4690,6 +4910,7 @@ M.HarnessSkill = {
 
 M.HarnessSystemContentBlock = {
     type = "union",
+    id = "HarnessSystemContentBlock",
     members = {
         text = {
             type = "string",
@@ -4699,6 +4920,7 @@ M.HarnessSystemContentBlock = {
 
 M.HarnessAgentCoreBrowserConfig = {
     type = "structure",
+    id = "HarnessAgentCoreBrowserConfig",
     members = {
         browserArn = {
             type = "string",
@@ -4708,6 +4930,7 @@ M.HarnessAgentCoreBrowserConfig = {
 
 M.HarnessAgentCoreCodeInterpreterConfig = {
     type = "structure",
+    id = "HarnessAgentCoreCodeInterpreterConfig",
     members = {
         codeInterpreterArn = {
             type = "string",
@@ -4717,6 +4940,7 @@ M.HarnessAgentCoreCodeInterpreterConfig = {
 
 M.Unit = {
     type = "structure",
+    id = "Unit",
 }
 
 M.OAuthGrantType = {
@@ -4726,6 +4950,7 @@ M.OAuthGrantType = {
 
 M.OAuthCredentialProvider = {
     type = "structure",
+    id = "OAuthCredentialProvider",
     members = {
         providerArn = {
             type = "string",
@@ -4759,6 +4984,7 @@ M.OAuthCredentialProvider = {
 
 M.HarnessGatewayOutboundAuth = {
     type = "union",
+    id = "HarnessGatewayOutboundAuth",
     members = {
         awsIam = M.Unit,
         none = M.Unit,
@@ -4768,6 +4994,7 @@ M.HarnessGatewayOutboundAuth = {
 
 M.HarnessAgentCoreGatewayConfig = {
     type = "structure",
+    id = "HarnessAgentCoreGatewayConfig",
     members = {
         gatewayArn = {
             type = "string",
@@ -4781,6 +5008,7 @@ M.HarnessAgentCoreGatewayConfig = {
 
 M.HarnessInlineFunctionConfig = {
     type = "structure",
+    id = "HarnessInlineFunctionConfig",
     members = {
         description = {
             type = "string",
@@ -4799,6 +5027,7 @@ M.HarnessInlineFunctionConfig = {
 
 M.HarnessRemoteMcpConfig = {
     type = "structure",
+    id = "HarnessRemoteMcpConfig",
     members = {
         url = {
             type = "string",
@@ -4816,6 +5045,7 @@ M.HarnessRemoteMcpConfig = {
 
 M.HarnessToolConfiguration = {
     type = "union",
+    id = "HarnessToolConfiguration",
     members = {
         remoteMcp = M.HarnessRemoteMcpConfig,
         agentCoreBrowser = M.HarnessAgentCoreBrowserConfig,
@@ -4835,6 +5065,7 @@ M.HarnessToolType = {
 
 M.HarnessTool = {
     type = "structure",
+    id = "HarnessTool",
     members = {
         type = {
             type = "string",
@@ -4851,6 +5082,7 @@ M.HarnessTool = {
 
 M.InvokeHarnessInput = {
     type = "structure",
+    id = "InvokeHarnessInput",
     members = {
         harnessArn = {
             type = "string",
@@ -4907,6 +5139,7 @@ M.InvokeHarnessInput = {
 
 M.HarnessReasoningContentBlockDelta = {
     type = "union",
+    id = "HarnessReasoningContentBlockDelta",
     members = {
         text = {
             type = "string",
@@ -4922,6 +5155,7 @@ M.HarnessReasoningContentBlockDelta = {
 
 M.HarnessToolResultBlockDelta = {
     type = "union",
+    id = "HarnessToolResultBlockDelta",
     members = {
         text = {
             type = "string",
@@ -4934,6 +5168,7 @@ M.HarnessToolResultBlockDelta = {
 
 M.HarnessToolUseBlockDelta = {
     type = "structure",
+    id = "HarnessToolUseBlockDelta",
     members = {
         input = {
             type = "string",
@@ -4946,6 +5181,7 @@ M.HarnessToolUseBlockDelta = {
 
 M.HarnessContentBlockDelta = {
     type = "union",
+    id = "HarnessContentBlockDelta",
     members = {
         text = {
             type = "string",
@@ -4961,6 +5197,7 @@ M.HarnessContentBlockDelta = {
 
 M.HarnessContentBlockDeltaEvent = {
     type = "structure",
+    id = "HarnessContentBlockDeltaEvent",
     members = {
         contentBlockIndex = {
             type = "integer",
@@ -4976,6 +5213,7 @@ M.HarnessContentBlockDeltaEvent = {
 
 M.HarnessToolResultBlockStart = {
     type = "structure",
+    id = "HarnessToolResultBlockStart",
     members = {
         toolUseId = {
             type = "string",
@@ -4991,6 +5229,7 @@ M.HarnessToolResultBlockStart = {
 
 M.HarnessToolUseBlockStart = {
     type = "structure",
+    id = "HarnessToolUseBlockStart",
     members = {
         toolUseId = {
             type = "string",
@@ -5015,6 +5254,7 @@ M.HarnessToolUseBlockStart = {
 
 M.HarnessContentBlockStart = {
     type = "union",
+    id = "HarnessContentBlockStart",
     members = {
         toolUse = M.HarnessToolUseBlockStart,
         toolResult = M.HarnessToolResultBlockStart,
@@ -5023,6 +5263,7 @@ M.HarnessContentBlockStart = {
 
 M.HarnessContentBlockStartEvent = {
     type = "structure",
+    id = "HarnessContentBlockStartEvent",
     members = {
         contentBlockIndex = {
             type = "integer",
@@ -5038,6 +5279,7 @@ M.HarnessContentBlockStartEvent = {
 
 M.HarnessContentBlockStopEvent = {
     type = "structure",
+    id = "HarnessContentBlockStopEvent",
     members = {
         contentBlockIndex = {
             type = "integer",
@@ -5050,6 +5292,7 @@ M.HarnessContentBlockStopEvent = {
 
 M.HarnessMessageStartEvent = {
     type = "structure",
+    id = "HarnessMessageStartEvent",
     members = {
         role = {
             type = "string",
@@ -5079,6 +5322,7 @@ M.HarnessStopReason = {
 
 M.HarnessMessageStopEvent = {
     type = "structure",
+    id = "HarnessMessageStopEvent",
     members = {
         stopReason = {
             type = "string",
@@ -5091,6 +5335,7 @@ M.HarnessMessageStopEvent = {
 
 M.HarnessStreamMetrics = {
     type = "structure",
+    id = "HarnessStreamMetrics",
     members = {
         latencyMs = {
             type = "long",
@@ -5103,6 +5348,7 @@ M.HarnessStreamMetrics = {
 
 M.HarnessTokenUsage = {
     type = "structure",
+    id = "HarnessTokenUsage",
     members = {
         inputTokens = {
             type = "integer",
@@ -5133,6 +5379,7 @@ M.HarnessTokenUsage = {
 
 M.HarnessMetadataEvent = {
     type = "structure",
+    id = "HarnessMetadataEvent",
     members = {
         usage = setmetatable({ traits = {
             required = true,
@@ -5145,6 +5392,7 @@ M.HarnessMetadataEvent = {
 
 M.InvokeHarnessStreamOutput = {
     type = "union",
+    id = "InvokeHarnessStreamOutput",
     members = {
         messageStart = M.HarnessMessageStartEvent,
         contentBlockStart = M.HarnessContentBlockStartEvent,
@@ -5160,6 +5408,7 @@ M.InvokeHarnessStreamOutput = {
 
 M.InvokeHarnessOutput = {
     type = "structure",
+    id = "InvokeHarnessOutput",
     members = {
         stream = setmetatable({ traits = {
             http_payload = true,
@@ -5170,6 +5419,7 @@ M.InvokeHarnessOutput = {
 
 M.MemoryContent = {
     type = "union",
+    id = "MemoryContent",
     members = {
         text = {
             type = "string",
@@ -5179,6 +5429,7 @@ M.MemoryContent = {
 
 M.MemoryRecordMetadataValue = {
     type = "union",
+    id = "MemoryRecordMetadataValue",
     members = {
         stringValue = {
             type = "string",
@@ -5198,6 +5449,7 @@ M.MemoryRecordMetadataValue = {
 
 M.MemoryRecordCreateInput = {
     type = "structure",
+    id = "MemoryRecordCreateInput",
     members = {
         requestIdentifier = {
             type = "string",
@@ -5234,6 +5486,7 @@ M.MemoryRecordCreateInput = {
 
 M.BatchCreateMemoryRecordsInput = {
     type = "structure",
+    id = "BatchCreateMemoryRecordsInput",
     members = {
         memoryId = {
             type = "string",
@@ -5265,6 +5518,7 @@ M.MemoryRecordStatus = {
 
 M.MemoryRecordOutput = {
     type = "structure",
+    id = "MemoryRecordOutput",
     members = {
         memoryRecordId = {
             type = "string",
@@ -5292,6 +5546,7 @@ M.MemoryRecordOutput = {
 
 M.BatchCreateMemoryRecordsOutput = {
     type = "structure",
+    id = "BatchCreateMemoryRecordsOutput",
     members = {
         successfulRecords = {
             type = "list",
@@ -5312,6 +5567,7 @@ M.BatchCreateMemoryRecordsOutput = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         message = {
@@ -5325,6 +5581,7 @@ M.ServiceException = {
 
 M.ThrottledException = {
     type = "structure",
+    id = "ThrottledException",
     error = "client",
     members = {
         message = {
@@ -5338,6 +5595,7 @@ M.ThrottledException = {
 
 M.MemoryRecordDeleteInput = {
     type = "structure",
+    id = "MemoryRecordDeleteInput",
     members = {
         memoryRecordId = {
             type = "string",
@@ -5350,6 +5608,7 @@ M.MemoryRecordDeleteInput = {
 
 M.BatchDeleteMemoryRecordsInput = {
     type = "structure",
+    id = "BatchDeleteMemoryRecordsInput",
     members = {
         memoryId = {
             type = "string",
@@ -5370,6 +5629,7 @@ M.BatchDeleteMemoryRecordsInput = {
 
 M.BatchDeleteMemoryRecordsOutput = {
     type = "structure",
+    id = "BatchDeleteMemoryRecordsOutput",
     members = {
         successfulRecords = {
             type = "list",
@@ -5390,6 +5650,7 @@ M.BatchDeleteMemoryRecordsOutput = {
 
 M.MemoryRecordUpdateInput = {
     type = "structure",
+    id = "MemoryRecordUpdateInput",
     members = {
         memoryRecordId = {
             type = "string",
@@ -5421,6 +5682,7 @@ M.MemoryRecordUpdateInput = {
 
 M.BatchUpdateMemoryRecordsInput = {
     type = "structure",
+    id = "BatchUpdateMemoryRecordsInput",
     members = {
         memoryId = {
             type = "string",
@@ -5441,6 +5703,7 @@ M.BatchUpdateMemoryRecordsInput = {
 
 M.BatchUpdateMemoryRecordsOutput = {
     type = "structure",
+    id = "BatchUpdateMemoryRecordsOutput",
     members = {
         successfulRecords = {
             type = "list",
@@ -5461,6 +5724,7 @@ M.BatchUpdateMemoryRecordsOutput = {
 
 M.Branch = {
     type = "structure",
+    id = "Branch",
     members = {
         rootEventId = {
             type = "string",
@@ -5476,6 +5740,7 @@ M.Branch = {
 
 M.MetadataValue = {
     type = "union",
+    id = "MetadataValue",
     members = {
         stringValue = {
             type = "string",
@@ -5485,6 +5750,7 @@ M.MetadataValue = {
 
 M.Content = {
     type = "union",
+    id = "Content",
     members = {
         text = {
             type = "string",
@@ -5501,6 +5767,7 @@ M.Role = {
 
 M.Conversational = {
     type = "structure",
+    id = "Conversational",
     members = {
         content = setmetatable({ traits = {
             required = true,
@@ -5516,6 +5783,7 @@ M.Conversational = {
 
 M.PayloadType = {
     type = "union",
+    id = "PayloadType",
     members = {
         conversational = M.Conversational,
         blob = {
@@ -5526,6 +5794,7 @@ M.PayloadType = {
 
 M.CreateEventInput = {
     type = "structure",
+    id = "CreateEventInput",
     members = {
         memoryId = {
             type = "string",
@@ -5573,6 +5842,7 @@ M.CreateEventInput = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         memoryId = {
             type = "string",
@@ -5622,6 +5892,7 @@ M.Event = {
 
 M.CreateEventOutput = {
     type = "structure",
+    id = "CreateEventOutput",
     members = {
         event = setmetatable({ traits = {
             required = true,
@@ -5631,6 +5902,7 @@ M.CreateEventOutput = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -5644,6 +5916,7 @@ M.InvalidInputException = {
 
 M.RetryableConflictException = {
     type = "structure",
+    id = "RetryableConflictException",
     error = "client",
     members = {
         message = {
@@ -5657,6 +5930,7 @@ M.RetryableConflictException = {
 
 M.DeleteEventInput = {
     type = "structure",
+    id = "DeleteEventInput",
     members = {
         memoryId = {
             type = "string",
@@ -5691,6 +5965,7 @@ M.DeleteEventInput = {
 
 M.DeleteEventOutput = {
     type = "structure",
+    id = "DeleteEventOutput",
     members = {
         eventId = {
             type = "string",
@@ -5703,6 +5978,7 @@ M.DeleteEventOutput = {
 
 M.DeleteMemoryRecordInput = {
     type = "structure",
+    id = "DeleteMemoryRecordInput",
     members = {
         memoryId = {
             type = "string",
@@ -5723,6 +5999,7 @@ M.DeleteMemoryRecordInput = {
 
 M.DeleteMemoryRecordOutput = {
     type = "structure",
+    id = "DeleteMemoryRecordOutput",
     members = {
         memoryRecordId = {
             type = "string",
@@ -5735,6 +6012,7 @@ M.DeleteMemoryRecordOutput = {
 
 M.GetEventInput = {
     type = "structure",
+    id = "GetEventInput",
     members = {
         memoryId = {
             type = "string",
@@ -5769,6 +6047,7 @@ M.GetEventInput = {
 
 M.GetEventOutput = {
     type = "structure",
+    id = "GetEventOutput",
     members = {
         event = setmetatable({ traits = {
             required = true,
@@ -5778,6 +6057,7 @@ M.GetEventOutput = {
 
 M.GetMemoryRecordInput = {
     type = "structure",
+    id = "GetMemoryRecordInput",
     members = {
         memoryId = {
             type = "string",
@@ -5798,6 +6078,7 @@ M.GetMemoryRecordInput = {
 
 M.MemoryRecord = {
     type = "structure",
+    id = "MemoryRecord",
     members = {
         memoryRecordId = {
             type = "string",
@@ -5837,6 +6118,7 @@ M.MemoryRecord = {
 
 M.GetMemoryRecordOutput = {
     type = "structure",
+    id = "GetMemoryRecordOutput",
     members = {
         memoryRecord = setmetatable({ traits = {
             required = true,
@@ -5846,6 +6128,7 @@ M.GetMemoryRecordOutput = {
 
 M.ListActorsInput = {
     type = "structure",
+    id = "ListActorsInput",
     members = {
         memoryId = {
             type = "string",
@@ -5868,6 +6151,7 @@ M.ListActorsInput = {
 
 M.ListActorsOutput = {
     type = "structure",
+    id = "ListActorsOutput",
     members = {
         actorSummaries = {
             type = "list",
@@ -5884,6 +6168,7 @@ M.ListActorsOutput = {
 
 M.BranchFilter = {
     type = "structure",
+    id = "BranchFilter",
     members = {
         name = {
             type = "string",
@@ -5902,6 +6187,7 @@ M.BranchFilter = {
 
 M.LeftExpression = {
     type = "union",
+    id = "LeftExpression",
     members = {
         metadataKey = {
             type = "string",
@@ -5917,6 +6203,7 @@ M.OperatorType = {
 
 M.RightExpression = {
     type = "union",
+    id = "RightExpression",
     members = {
         metadataValue = M.MetadataValue,
     },
@@ -5924,6 +6211,7 @@ M.RightExpression = {
 
 M.EventMetadataFilterExpression = {
     type = "structure",
+    id = "EventMetadataFilterExpression",
     members = {
         left = setmetatable({ traits = {
             required = true,
@@ -5940,6 +6228,7 @@ M.EventMetadataFilterExpression = {
 
 M.FilterInput = {
     type = "structure",
+    id = "FilterInput",
     members = {
         branch = M.BranchFilter,
         eventMetadata = {
@@ -5951,6 +6240,7 @@ M.FilterInput = {
 
 M.ListEventsInput = {
     type = "structure",
+    id = "ListEventsInput",
     members = {
         memoryId = {
             type = "string",
@@ -5994,6 +6284,7 @@ M.ListEventsInput = {
 
 M.ListEventsOutput = {
     type = "structure",
+    id = "ListEventsOutput",
     members = {
         events = {
             type = "list",
@@ -6014,6 +6305,7 @@ M.ExtractionJobStatus = {
 
 M.ExtractionJobFilterInput = {
     type = "structure",
+    id = "ExtractionJobFilterInput",
     members = {
         strategyId = {
             type = "string",
@@ -6032,6 +6324,7 @@ M.ExtractionJobFilterInput = {
 
 M.ListMemoryExtractionJobsInput = {
     type = "structure",
+    id = "ListMemoryExtractionJobsInput",
     members = {
         memoryId = {
             type = "string",
@@ -6055,6 +6348,7 @@ M.ListMemoryExtractionJobsInput = {
 
 M.MessageMetadata = {
     type = "structure",
+    id = "MessageMetadata",
     members = {
         eventId = {
             type = "string",
@@ -6073,6 +6367,7 @@ M.MessageMetadata = {
 
 M.ExtractionJobMessages = {
     type = "union",
+    id = "ExtractionJobMessages",
     members = {
         messagesList = {
             type = "list",
@@ -6083,6 +6378,7 @@ M.ExtractionJobMessages = {
 
 M.ExtractionJobMetadata = {
     type = "structure",
+    id = "ExtractionJobMetadata",
     members = {
         jobID = {
             type = "string",
@@ -6113,6 +6409,7 @@ M.ExtractionJobMetadata = {
 
 M.ListMemoryExtractionJobsOutput = {
     type = "structure",
+    id = "ListMemoryExtractionJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -6129,6 +6426,7 @@ M.ListMemoryExtractionJobsOutput = {
 
 M.MemoryRecordLeftExpression = {
     type = "union",
+    id = "MemoryRecordLeftExpression",
     members = {
         metadataKey = {
             type = "string",
@@ -6151,6 +6449,7 @@ M.MemoryRecordOperatorType = {
 
 M.MemoryRecordRightExpression = {
     type = "union",
+    id = "MemoryRecordRightExpression",
     members = {
         metadataValue = M.MemoryRecordMetadataValue,
     },
@@ -6158,6 +6457,7 @@ M.MemoryRecordRightExpression = {
 
 M.MemoryMetadataFilterExpression = {
     type = "structure",
+    id = "MemoryMetadataFilterExpression",
     members = {
         left = setmetatable({ traits = {
             required = true,
@@ -6174,6 +6474,7 @@ M.MemoryMetadataFilterExpression = {
 
 M.ListMemoryRecordsInput = {
     type = "structure",
+    id = "ListMemoryRecordsInput",
     members = {
         memoryId = {
             type = "string",
@@ -6209,6 +6510,7 @@ M.ListMemoryRecordsInput = {
 
 M.MemoryRecordSummary = {
     type = "structure",
+    id = "MemoryRecordSummary",
     members = {
         memoryRecordId = {
             type = "string",
@@ -6251,6 +6553,7 @@ M.MemoryRecordSummary = {
 
 M.ListMemoryRecordsOutput = {
     type = "structure",
+    id = "ListMemoryRecordsOutput",
     members = {
         memoryRecordSummaries = {
             type = "list",
@@ -6271,6 +6574,7 @@ M.EventFilterCondition = {
 
 M.SessionFilter = {
     type = "structure",
+    id = "SessionFilter",
     members = {
         eventFilter = {
             type = "string",
@@ -6280,6 +6584,7 @@ M.SessionFilter = {
 
 M.ListSessionsInput = {
     type = "structure",
+    id = "ListSessionsInput",
     members = {
         memoryId = {
             type = "string",
@@ -6310,6 +6615,7 @@ M.ListSessionsInput = {
 
 M.SessionSummary = {
     type = "structure",
+    id = "SessionSummary",
     members = {
         sessionId = {
             type = "string",
@@ -6334,6 +6640,7 @@ M.SessionSummary = {
 
 M.ListSessionsOutput = {
     type = "structure",
+    id = "ListSessionsOutput",
     members = {
         sessionSummaries = {
             type = "list",
@@ -6350,6 +6657,7 @@ M.ListSessionsOutput = {
 
 M.SearchCriteria = {
     type = "structure",
+    id = "SearchCriteria",
     members = {
         searchQuery = {
             type = "string",
@@ -6375,6 +6683,7 @@ M.SearchCriteria = {
 
 M.RetrieveMemoryRecordsInput = {
     type = "structure",
+    id = "RetrieveMemoryRecordsInput",
     members = {
         memoryId = {
             type = "string",
@@ -6406,6 +6715,7 @@ M.RetrieveMemoryRecordsInput = {
 
 M.RetrieveMemoryRecordsOutput = {
     type = "structure",
+    id = "RetrieveMemoryRecordsOutput",
     members = {
         memoryRecordSummaries = {
             type = "list",
@@ -6422,6 +6732,7 @@ M.RetrieveMemoryRecordsOutput = {
 
 M.ExtractionJob = {
     type = "structure",
+    id = "ExtractionJob",
     members = {
         jobId = {
             type = "string",
@@ -6434,6 +6745,7 @@ M.ExtractionJob = {
 
 M.StartMemoryExtractionJobInput = {
     type = "structure",
+    id = "StartMemoryExtractionJobInput",
     members = {
         memoryId = {
             type = "string",
@@ -6456,6 +6768,7 @@ M.StartMemoryExtractionJobInput = {
 
 M.StartMemoryExtractionJobOutput = {
     type = "structure",
+    id = "StartMemoryExtractionJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -6468,6 +6781,7 @@ M.StartMemoryExtractionJobOutput = {
 
 M.SearchRegistryRecordsInput = {
     type = "structure",
+    id = "SearchRegistryRecordsInput",
     members = {
         searchQuery = {
             type = "string",
@@ -6496,6 +6810,7 @@ M.SearchRegistryRecordsInput = {
 
 M.CustomDescriptor = {
     type = "structure",
+    id = "CustomDescriptor",
     members = {
         inlineContent = {
             type = "string",
@@ -6505,6 +6820,7 @@ M.CustomDescriptor = {
 
 M.ServerDefinition = {
     type = "structure",
+    id = "ServerDefinition",
     members = {
         schemaVersion = {
             type = "string",
@@ -6517,6 +6833,7 @@ M.ServerDefinition = {
 
 M.ToolsDefinition = {
     type = "structure",
+    id = "ToolsDefinition",
     members = {
         protocolVersion = {
             type = "string",
@@ -6529,6 +6846,7 @@ M.ToolsDefinition = {
 
 M.McpDescriptor = {
     type = "structure",
+    id = "McpDescriptor",
     members = {
         server = setmetatable({ traits = {
             required = true,
@@ -6541,6 +6859,7 @@ M.McpDescriptor = {
 
 M.Descriptors = {
     type = "structure",
+    id = "Descriptors",
     members = {
         mcp = M.McpDescriptor,
         a2a = M.A2aDescriptor,
@@ -6566,6 +6885,7 @@ M.RegistryRecordStatus = {
 
 M.RegistryRecordSummary = {
     type = "structure",
+    id = "RegistryRecordSummary",
     members = {
         registryArn = {
             type = "string",
@@ -6634,6 +6954,7 @@ M.RegistryRecordSummary = {
 
 M.SearchRegistryRecordsOutput = {
     type = "structure",
+    id = "SearchRegistryRecordsOutput",
     members = {
         registryRecords = {
             type = "list",

@@ -2,6 +2,7 @@ local M = {}
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -20,6 +21,7 @@ M.Tag = {
 
 M.AddTagsToResourceInput = {
     type = "structure",
+    id = "AddTagsToResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -39,6 +41,7 @@ M.AddTagsToResourceInput = {
 
 M.AddTagsToResourceOutput = {
     type = "structure",
+    id = "AddTagsToResourceOutput",
     members = {
         Status = {
             type = "string",
@@ -51,6 +54,7 @@ M.AddTagsToResourceOutput = {
 
 M.CloudHsmInternalException = {
     type = "structure",
+    id = "CloudHsmInternalException",
     error = "server",
     members = {
         message = {
@@ -67,6 +71,7 @@ M.CloudHsmInternalException = {
 
 M.CloudHsmServiceException = {
     type = "structure",
+    id = "CloudHsmServiceException",
     error = "client",
     members = {
         message = {
@@ -83,6 +88,7 @@ M.CloudHsmServiceException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -104,6 +110,7 @@ M.ClientVersion = {
 
 M.CreateHapgInput = {
     type = "structure",
+    id = "CreateHapgInput",
     members = {
         Label = {
             type = "string",
@@ -116,6 +123,7 @@ M.CreateHapgInput = {
 
 M.CreateHapgOutput = {
     type = "structure",
+    id = "CreateHapgOutput",
     members = {
         HapgArn = {
             type = "string",
@@ -129,6 +137,10 @@ M.SubscriptionType = {
 
 M.CreateHsmInput = {
     type = "structure",
+    id = "CreateHsmInput",
+    traits = {
+        xml_name = "CreateHsmRequest",
+    },
     members = {
         SubnetId = {
             type = "string",
@@ -187,6 +199,7 @@ M.CreateHsmInput = {
 
 M.CreateHsmOutput = {
     type = "structure",
+    id = "CreateHsmOutput",
     members = {
         HsmArn = {
             type = "string",
@@ -196,6 +209,7 @@ M.CreateHsmOutput = {
 
 M.CreateLunaClientInput = {
     type = "structure",
+    id = "CreateLunaClientInput",
     members = {
         Label = {
             type = "string",
@@ -211,6 +225,7 @@ M.CreateLunaClientInput = {
 
 M.CreateLunaClientOutput = {
     type = "structure",
+    id = "CreateLunaClientOutput",
     members = {
         ClientArn = {
             type = "string",
@@ -220,6 +235,7 @@ M.CreateLunaClientOutput = {
 
 M.DeleteHapgInput = {
     type = "structure",
+    id = "DeleteHapgInput",
     members = {
         HapgArn = {
             type = "string",
@@ -232,6 +248,7 @@ M.DeleteHapgInput = {
 
 M.DeleteHapgOutput = {
     type = "structure",
+    id = "DeleteHapgOutput",
     members = {
         Status = {
             type = "string",
@@ -244,6 +261,10 @@ M.DeleteHapgOutput = {
 
 M.DeleteHsmInput = {
     type = "structure",
+    id = "DeleteHsmInput",
+    traits = {
+        xml_name = "DeleteHsmRequest",
+    },
     members = {
         HsmArn = {
             type = "string",
@@ -257,6 +278,7 @@ M.DeleteHsmInput = {
 
 M.DeleteHsmOutput = {
     type = "structure",
+    id = "DeleteHsmOutput",
     members = {
         Status = {
             type = "string",
@@ -269,6 +291,7 @@ M.DeleteHsmOutput = {
 
 M.DeleteLunaClientInput = {
     type = "structure",
+    id = "DeleteLunaClientInput",
     members = {
         ClientArn = {
             type = "string",
@@ -281,6 +304,7 @@ M.DeleteLunaClientInput = {
 
 M.DeleteLunaClientOutput = {
     type = "structure",
+    id = "DeleteLunaClientOutput",
     members = {
         Status = {
             type = "string",
@@ -293,6 +317,7 @@ M.DeleteLunaClientOutput = {
 
 M.DescribeHapgInput = {
     type = "structure",
+    id = "DescribeHapgInput",
     members = {
         HapgArn = {
             type = "string",
@@ -311,6 +336,7 @@ M.CloudHsmObjectState = {
 
 M.DescribeHapgOutput = {
     type = "structure",
+    id = "DescribeHapgOutput",
     members = {
         HapgArn = {
             type = "string",
@@ -348,6 +374,7 @@ M.DescribeHapgOutput = {
 
 M.DescribeHsmInput = {
     type = "structure",
+    id = "DescribeHsmInput",
     members = {
         HsmArn = {
             type = "string",
@@ -370,6 +397,7 @@ M.HsmStatus = {
 
 M.DescribeHsmOutput = {
     type = "structure",
+    id = "DescribeHsmOutput",
     members = {
         HsmArn = {
             type = "string",
@@ -440,6 +468,7 @@ M.DescribeHsmOutput = {
 
 M.DescribeLunaClientInput = {
     type = "structure",
+    id = "DescribeLunaClientInput",
     members = {
         ClientArn = {
             type = "string",
@@ -452,6 +481,7 @@ M.DescribeLunaClientInput = {
 
 M.DescribeLunaClientOutput = {
     type = "structure",
+    id = "DescribeLunaClientOutput",
     members = {
         ClientArn = {
             type = "string",
@@ -473,6 +503,7 @@ M.DescribeLunaClientOutput = {
 
 M.GetConfigInput = {
     type = "structure",
+    id = "GetConfigInput",
     members = {
         ClientArn = {
             type = "string",
@@ -498,6 +529,7 @@ M.GetConfigInput = {
 
 M.GetConfigOutput = {
     type = "structure",
+    id = "GetConfigOutput",
     members = {
         ConfigType = {
             type = "string",
@@ -513,10 +545,12 @@ M.GetConfigOutput = {
 
 M.ListAvailableZonesInput = {
     type = "structure",
+    id = "ListAvailableZonesInput",
 }
 
 M.ListAvailableZonesOutput = {
     type = "structure",
+    id = "ListAvailableZonesOutput",
     members = {
         AZList = {
             type = "list",
@@ -527,6 +561,7 @@ M.ListAvailableZonesOutput = {
 
 M.ListHapgsInput = {
     type = "structure",
+    id = "ListHapgsInput",
     members = {
         NextToken = {
             type = "string",
@@ -536,6 +571,7 @@ M.ListHapgsInput = {
 
 M.ListHapgsOutput = {
     type = "structure",
+    id = "ListHapgsOutput",
     members = {
         HapgList = {
             type = "list",
@@ -552,6 +588,7 @@ M.ListHapgsOutput = {
 
 M.ListHsmsInput = {
     type = "structure",
+    id = "ListHsmsInput",
     members = {
         NextToken = {
             type = "string",
@@ -561,6 +598,7 @@ M.ListHsmsInput = {
 
 M.ListHsmsOutput = {
     type = "structure",
+    id = "ListHsmsOutput",
     members = {
         HsmList = {
             type = "list",
@@ -574,6 +612,7 @@ M.ListHsmsOutput = {
 
 M.ListLunaClientsInput = {
     type = "structure",
+    id = "ListLunaClientsInput",
     members = {
         NextToken = {
             type = "string",
@@ -583,6 +622,7 @@ M.ListLunaClientsInput = {
 
 M.ListLunaClientsOutput = {
     type = "structure",
+    id = "ListLunaClientsOutput",
     members = {
         ClientList = {
             type = "list",
@@ -599,6 +639,7 @@ M.ListLunaClientsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -611,6 +652,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -624,6 +666,7 @@ M.ListTagsForResourceOutput = {
 
 M.ModifyHapgInput = {
     type = "structure",
+    id = "ModifyHapgInput",
     members = {
         HapgArn = {
             type = "string",
@@ -643,6 +686,7 @@ M.ModifyHapgInput = {
 
 M.ModifyHapgOutput = {
     type = "structure",
+    id = "ModifyHapgOutput",
     members = {
         HapgArn = {
             type = "string",
@@ -652,6 +696,10 @@ M.ModifyHapgOutput = {
 
 M.ModifyHsmInput = {
     type = "structure",
+    id = "ModifyHsmInput",
+    traits = {
+        xml_name = "ModifyHsmRequest",
+    },
     members = {
         HsmArn = {
             type = "string",
@@ -695,6 +743,7 @@ M.ModifyHsmInput = {
 
 M.ModifyHsmOutput = {
     type = "structure",
+    id = "ModifyHsmOutput",
     members = {
         HsmArn = {
             type = "string",
@@ -704,6 +753,7 @@ M.ModifyHsmOutput = {
 
 M.ModifyLunaClientInput = {
     type = "structure",
+    id = "ModifyLunaClientInput",
     members = {
         ClientArn = {
             type = "string",
@@ -722,6 +772,7 @@ M.ModifyLunaClientInput = {
 
 M.ModifyLunaClientOutput = {
     type = "structure",
+    id = "ModifyLunaClientOutput",
     members = {
         ClientArn = {
             type = "string",
@@ -731,6 +782,7 @@ M.ModifyLunaClientOutput = {
 
 M.RemoveTagsFromResourceInput = {
     type = "structure",
+    id = "RemoveTagsFromResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -750,6 +802,7 @@ M.RemoveTagsFromResourceInput = {
 
 M.RemoveTagsFromResourceOutput = {
     type = "structure",
+    id = "RemoveTagsFromResourceOutput",
     members = {
         Status = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AbortDocumentVersionUploadInput = {
     type = "structure",
+    id = "AbortDocumentVersionUploadInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -28,10 +29,12 @@ M.AbortDocumentVersionUploadInput = {
 
 M.AbortDocumentVersionUploadOutput = {
     type = "structure",
+    id = "AbortDocumentVersionUploadOutput",
 }
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -42,6 +45,7 @@ M.ConcurrentModificationException = {
 
 M.EntityNotExistsException = {
     type = "structure",
+    id = "EntityNotExistsException",
     error = "client",
     members = {
         Message = {
@@ -56,6 +60,7 @@ M.EntityNotExistsException = {
 
 M.FailedDependencyException = {
     type = "structure",
+    id = "FailedDependencyException",
     error = "client",
     members = {
         Message = {
@@ -66,6 +71,7 @@ M.FailedDependencyException = {
 
 M.ProhibitedStateException = {
     type = "structure",
+    id = "ProhibitedStateException",
     error = "client",
     members = {
         Message = {
@@ -76,6 +82,7 @@ M.ProhibitedStateException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -86,6 +93,7 @@ M.ServiceUnavailableException = {
 
 M.UnauthorizedOperationException = {
     type = "structure",
+    id = "UnauthorizedOperationException",
     error = "client",
     members = {
         Message = {
@@ -99,6 +107,7 @@ M.UnauthorizedOperationException = {
 
 M.UnauthorizedResourceAccessException = {
     type = "structure",
+    id = "UnauthorizedResourceAccessException",
     error = "client",
     members = {
         Message = {
@@ -109,6 +118,7 @@ M.UnauthorizedResourceAccessException = {
 
 M.ActivateUserInput = {
     type = "structure",
+    id = "ActivateUserInput",
     members = {
         UserId = {
             type = "string",
@@ -153,6 +163,7 @@ M.StorageType = {
 
 M.StorageRuleType = {
     type = "structure",
+    id = "StorageRuleType",
     members = {
         StorageAllocatedInBytes = {
             type = "long",
@@ -165,6 +176,7 @@ M.StorageRuleType = {
 
 M.UserStorageMetadata = {
     type = "structure",
+    id = "UserStorageMetadata",
     members = {
         StorageUtilizedInBytes = {
             type = "long",
@@ -183,6 +195,7 @@ M.UserType = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Id = {
             type = "string",
@@ -232,6 +245,7 @@ M.User = {
 
 M.ActivateUserOutput = {
     type = "structure",
+    id = "ActivateUserOutput",
     members = {
         User = M.User,
     },
@@ -245,6 +259,7 @@ M.CommentStatusType = {
 
 M.CommentMetadata = {
     type = "structure",
+    id = "CommentMetadata",
     members = {
         CommentId = {
             type = "string",
@@ -267,6 +282,7 @@ M.CommentMetadata = {
 
 M.UserMetadata = {
     type = "structure",
+    id = "UserMetadata",
     members = {
         Id = {
             type = "string",
@@ -293,6 +309,7 @@ M.ResourceType = {
 
 M.ResourceMetadata = {
     type = "structure",
+    id = "ResourceMetadata",
     members = {
         Type = {
             type = "string",
@@ -318,6 +335,7 @@ M.ResourceMetadata = {
 
 M.GroupMetadata = {
     type = "structure",
+    id = "GroupMetadata",
     members = {
         Id = {
             type = "string",
@@ -330,6 +348,7 @@ M.GroupMetadata = {
 
 M.Participants = {
     type = "structure",
+    id = "Participants",
     members = {
         Users = {
             type = "list",
@@ -380,6 +399,7 @@ M.ActivityType = {
 
 M.Activity = {
     type = "structure",
+    id = "Activity",
     members = {
         Type = {
             type = "string",
@@ -410,6 +430,7 @@ M.AdditionalResponseFieldType = {
 
 M.NotificationOptions = {
     type = "structure",
+    id = "NotificationOptions",
     members = {
         SendEmail = {
             type = "boolean",
@@ -440,6 +461,7 @@ M.PrincipalType = {
 
 M.SharePrincipal = {
     type = "structure",
+    id = "SharePrincipal",
     members = {
         Id = {
             type = "string",
@@ -464,6 +486,7 @@ M.SharePrincipal = {
 
 M.AddResourcePermissionsInput = {
     type = "structure",
+    id = "AddResourcePermissionsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -496,6 +519,7 @@ M.ShareStatusType = {
 
 M.ShareResult = {
     type = "structure",
+    id = "ShareResult",
     members = {
         PrincipalId = {
             type = "string",
@@ -520,6 +544,7 @@ M.ShareResult = {
 
 M.AddResourcePermissionsOutput = {
     type = "structure",
+    id = "AddResourcePermissionsOutput",
     members = {
         ShareResults = {
             type = "list",
@@ -535,6 +560,7 @@ M.CommentVisibilityType = {
 
 M.CreateCommentInput = {
     type = "structure",
+    id = "CreateCommentInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -582,6 +608,7 @@ M.CreateCommentInput = {
 
 M.Comment = {
     type = "structure",
+    id = "Comment",
     members = {
         CommentId = {
             type = "string",
@@ -616,6 +643,7 @@ M.Comment = {
 
 M.CreateCommentOutput = {
     type = "structure",
+    id = "CreateCommentOutput",
     members = {
         Comment = M.Comment,
     },
@@ -623,6 +651,7 @@ M.CreateCommentOutput = {
 
 M.DocumentLockedForCommentsException = {
     type = "structure",
+    id = "DocumentLockedForCommentsException",
     error = "client",
     members = {
         Message = {
@@ -633,6 +662,7 @@ M.DocumentLockedForCommentsException = {
 
 M.InvalidCommentOperationException = {
     type = "structure",
+    id = "InvalidCommentOperationException",
     error = "client",
     members = {
         Message = {
@@ -643,6 +673,7 @@ M.InvalidCommentOperationException = {
 
 M.CreateCustomMetadataInput = {
     type = "structure",
+    id = "CreateCustomMetadataInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -676,10 +707,12 @@ M.CreateCustomMetadataInput = {
 
 M.CreateCustomMetadataOutput = {
     type = "structure",
+    id = "CreateCustomMetadataOutput",
 }
 
 M.CustomMetadataLimitExceededException = {
     type = "structure",
+    id = "CustomMetadataLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -690,6 +723,7 @@ M.CustomMetadataLimitExceededException = {
 
 M.ConflictingOperationException = {
     type = "structure",
+    id = "ConflictingOperationException",
     error = "client",
     members = {
         Message = {
@@ -700,6 +734,7 @@ M.ConflictingOperationException = {
 
 M.CreateFolderInput = {
     type = "structure",
+    id = "CreateFolderInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -728,6 +763,7 @@ M.ResourceStateType = {
 
 M.FolderMetadata = {
     type = "structure",
+    id = "FolderMetadata",
     members = {
         Id = {
             type = "string",
@@ -768,6 +804,7 @@ M.FolderMetadata = {
 
 M.CreateFolderOutput = {
     type = "structure",
+    id = "CreateFolderOutput",
     members = {
         Metadata = M.FolderMetadata,
     },
@@ -775,6 +812,7 @@ M.CreateFolderOutput = {
 
 M.EntityAlreadyExistsException = {
     type = "structure",
+    id = "EntityAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -785,6 +823,7 @@ M.EntityAlreadyExistsException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -795,6 +834,7 @@ M.LimitExceededException = {
 
 M.CreateLabelsInput = {
     type = "structure",
+    id = "CreateLabelsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -821,10 +861,12 @@ M.CreateLabelsInput = {
 
 M.CreateLabelsOutput = {
     type = "structure",
+    id = "CreateLabelsOutput",
 }
 
 M.TooManyLabelsException = {
     type = "structure",
+    id = "TooManyLabelsException",
     error = "client",
     members = {
         Message = {
@@ -844,6 +886,7 @@ M.SubscriptionType = {
 
 M.CreateNotificationSubscriptionInput = {
     type = "structure",
+    id = "CreateNotificationSubscriptionInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -875,6 +918,7 @@ M.CreateNotificationSubscriptionInput = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         SubscriptionId = {
             type = "string",
@@ -890,6 +934,7 @@ M.Subscription = {
 
 M.CreateNotificationSubscriptionOutput = {
     type = "structure",
+    id = "CreateNotificationSubscriptionOutput",
     members = {
         Subscription = M.Subscription,
     },
@@ -897,6 +942,7 @@ M.CreateNotificationSubscriptionOutput = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -907,6 +953,7 @@ M.InvalidArgumentException = {
 
 M.TooManySubscriptionsException = {
     type = "structure",
+    id = "TooManySubscriptionsException",
     error = "client",
     members = {
         Message = {
@@ -917,6 +964,7 @@ M.TooManySubscriptionsException = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -963,6 +1011,7 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         User = M.User,
     },
@@ -970,6 +1019,7 @@ M.CreateUserOutput = {
 
 M.DeactivateUserInput = {
     type = "structure",
+    id = "DeactivateUserInput",
     members = {
         UserId = {
             type = "string",
@@ -989,10 +1039,12 @@ M.DeactivateUserInput = {
 
 M.DeactivateUserOutput = {
     type = "structure",
+    id = "DeactivateUserOutput",
 }
 
 M.DeleteCommentInput = {
     type = "structure",
+    id = "DeleteCommentInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1026,10 +1078,12 @@ M.DeleteCommentInput = {
 
 M.DeleteCommentOutput = {
     type = "structure",
+    id = "DeleteCommentOutput",
 }
 
 M.DeleteCustomMetadataInput = {
     type = "structure",
+    id = "DeleteCustomMetadataInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1069,10 +1123,12 @@ M.DeleteCustomMetadataInput = {
 
 M.DeleteCustomMetadataOutput = {
     type = "structure",
+    id = "DeleteCustomMetadataOutput",
 }
 
 M.DeleteDocumentInput = {
     type = "structure",
+    id = "DeleteDocumentInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1092,10 +1148,12 @@ M.DeleteDocumentInput = {
 
 M.DeleteDocumentOutput = {
     type = "structure",
+    id = "DeleteDocumentOutput",
 }
 
 M.DeleteDocumentVersionInput = {
     type = "structure",
+    id = "DeleteDocumentVersionInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1130,10 +1188,12 @@ M.DeleteDocumentVersionInput = {
 
 M.DeleteDocumentVersionOutput = {
     type = "structure",
+    id = "DeleteDocumentVersionOutput",
 }
 
 M.InvalidOperationException = {
     type = "structure",
+    id = "InvalidOperationException",
     error = "client",
     members = {
         Message = {
@@ -1144,6 +1204,7 @@ M.InvalidOperationException = {
 
 M.DeleteFolderInput = {
     type = "structure",
+    id = "DeleteFolderInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1163,10 +1224,12 @@ M.DeleteFolderInput = {
 
 M.DeleteFolderOutput = {
     type = "structure",
+    id = "DeleteFolderOutput",
 }
 
 M.DeleteFolderContentsInput = {
     type = "structure",
+    id = "DeleteFolderContentsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1186,10 +1249,12 @@ M.DeleteFolderContentsInput = {
 
 M.DeleteFolderContentsOutput = {
     type = "structure",
+    id = "DeleteFolderContentsOutput",
 }
 
 M.DeleteLabelsInput = {
     type = "structure",
+    id = "DeleteLabelsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1223,10 +1288,12 @@ M.DeleteLabelsInput = {
 
 M.DeleteLabelsOutput = {
     type = "structure",
+    id = "DeleteLabelsOutput",
 }
 
 M.DeleteNotificationSubscriptionInput = {
     type = "structure",
+    id = "DeleteNotificationSubscriptionInput",
     members = {
         SubscriptionId = {
             type = "string",
@@ -1247,10 +1314,12 @@ M.DeleteNotificationSubscriptionInput = {
 
 M.DeleteNotificationSubscriptionOutput = {
     type = "structure",
+    id = "DeleteNotificationSubscriptionOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1270,10 +1339,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DescribeActivitiesInput = {
     type = "structure",
+    id = "DescribeActivitiesInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1341,6 +1412,7 @@ M.DescribeActivitiesInput = {
 
 M.DescribeActivitiesOutput = {
     type = "structure",
+    id = "DescribeActivitiesOutput",
     members = {
         UserActivities = {
             type = "list",
@@ -1354,6 +1426,7 @@ M.DescribeActivitiesOutput = {
 
 M.DescribeCommentsInput = {
     type = "structure",
+    id = "DescribeCommentsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1392,6 +1465,7 @@ M.DescribeCommentsInput = {
 
 M.DescribeCommentsOutput = {
     type = "structure",
+    id = "DescribeCommentsOutput",
     members = {
         Comments = {
             type = "list",
@@ -1405,6 +1479,7 @@ M.DescribeCommentsOutput = {
 
 M.DescribeDocumentVersionsInput = {
     type = "structure",
+    id = "DescribeDocumentVersionsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1464,6 +1539,7 @@ M.DocumentThumbnailType = {
 
 M.DocumentVersionMetadata = {
     type = "structure",
+    id = "DocumentVersionMetadata",
     members = {
         Id = {
             type = "string",
@@ -1513,6 +1589,7 @@ M.DocumentVersionMetadata = {
 
 M.DescribeDocumentVersionsOutput = {
     type = "structure",
+    id = "DescribeDocumentVersionsOutput",
     members = {
         DocumentVersions = {
             type = "list",
@@ -1526,6 +1603,7 @@ M.DescribeDocumentVersionsOutput = {
 
 M.InvalidPasswordException = {
     type = "structure",
+    id = "InvalidPasswordException",
     error = "client",
     members = {
         Message = {
@@ -1552,6 +1630,7 @@ M.FolderContentType = {
 
 M.DescribeFolderContentsInput = {
     type = "structure",
+    id = "DescribeFolderContentsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1607,6 +1686,7 @@ M.DescribeFolderContentsInput = {
 
 M.DocumentMetadata = {
     type = "structure",
+    id = "DocumentMetadata",
     members = {
         Id = {
             type = "string",
@@ -1636,6 +1716,7 @@ M.DocumentMetadata = {
 
 M.DescribeFolderContentsOutput = {
     type = "structure",
+    id = "DescribeFolderContentsOutput",
     members = {
         Folders = {
             type = "list",
@@ -1653,6 +1734,7 @@ M.DescribeFolderContentsOutput = {
 
 M.DescribeGroupsInput = {
     type = "structure",
+    id = "DescribeGroupsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1690,6 +1772,7 @@ M.DescribeGroupsInput = {
 
 M.DescribeGroupsOutput = {
     type = "structure",
+    id = "DescribeGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -1703,6 +1786,7 @@ M.DescribeGroupsOutput = {
 
 M.DescribeNotificationSubscriptionsInput = {
     type = "structure",
+    id = "DescribeNotificationSubscriptionsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1728,6 +1812,7 @@ M.DescribeNotificationSubscriptionsInput = {
 
 M.DescribeNotificationSubscriptionsOutput = {
     type = "structure",
+    id = "DescribeNotificationSubscriptionsOutput",
     members = {
         Subscriptions = {
             type = "list",
@@ -1741,6 +1826,7 @@ M.DescribeNotificationSubscriptionsOutput = {
 
 M.DescribeResourcePermissionsInput = {
     type = "structure",
+    id = "DescribeResourcePermissionsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1783,6 +1869,7 @@ M.RolePermissionType = {
 
 M.PermissionInfo = {
     type = "structure",
+    id = "PermissionInfo",
     members = {
         Role = {
             type = "string",
@@ -1795,6 +1882,7 @@ M.PermissionInfo = {
 
 M.Principal = {
     type = "structure",
+    id = "Principal",
     members = {
         Id = {
             type = "string",
@@ -1811,6 +1899,7 @@ M.Principal = {
 
 M.DescribeResourcePermissionsOutput = {
     type = "structure",
+    id = "DescribeResourcePermissionsOutput",
     members = {
         Principals = {
             type = "list",
@@ -1824,6 +1913,7 @@ M.DescribeResourcePermissionsOutput = {
 
 M.DescribeRootFoldersInput = {
     type = "structure",
+    id = "DescribeRootFoldersInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1849,6 +1939,7 @@ M.DescribeRootFoldersInput = {
 
 M.DescribeRootFoldersOutput = {
     type = "structure",
+    id = "DescribeRootFoldersOutput",
     members = {
         Folders = {
             type = "list",
@@ -1875,6 +1966,7 @@ M.UserSortType = {
 
 M.DescribeUsersInput = {
     type = "structure",
+    id = "DescribeUsersInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1941,6 +2033,7 @@ M.DescribeUsersInput = {
 
 M.DescribeUsersOutput = {
     type = "structure",
+    id = "DescribeUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -1957,6 +2050,7 @@ M.DescribeUsersOutput = {
 
 M.RequestedEntityTooLargeException = {
     type = "structure",
+    id = "RequestedEntityTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -1967,6 +2061,7 @@ M.RequestedEntityTooLargeException = {
 
 M.GetCurrentUserInput = {
     type = "structure",
+    id = "GetCurrentUserInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -1980,6 +2075,7 @@ M.GetCurrentUserInput = {
 
 M.GetCurrentUserOutput = {
     type = "structure",
+    id = "GetCurrentUserOutput",
     members = {
         User = M.User,
     },
@@ -1987,6 +2083,7 @@ M.GetCurrentUserOutput = {
 
 M.GetDocumentInput = {
     type = "structure",
+    id = "GetDocumentInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2013,6 +2110,7 @@ M.GetDocumentInput = {
 
 M.GetDocumentOutput = {
     type = "structure",
+    id = "GetDocumentOutput",
     members = {
         Metadata = M.DocumentMetadata,
         CustomMetadata = {
@@ -2025,6 +2123,7 @@ M.GetDocumentOutput = {
 
 M.GetDocumentPathInput = {
     type = "structure",
+    id = "GetDocumentPathInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2062,6 +2161,7 @@ M.GetDocumentPathInput = {
 
 M.ResourcePathComponent = {
     type = "structure",
+    id = "ResourcePathComponent",
     members = {
         Id = {
             type = "string",
@@ -2074,6 +2174,7 @@ M.ResourcePathComponent = {
 
 M.ResourcePath = {
     type = "structure",
+    id = "ResourcePath",
     members = {
         Components = {
             type = "list",
@@ -2084,6 +2185,7 @@ M.ResourcePath = {
 
 M.GetDocumentPathOutput = {
     type = "structure",
+    id = "GetDocumentPathOutput",
     members = {
         Path = M.ResourcePath,
     },
@@ -2091,6 +2193,7 @@ M.GetDocumentPathOutput = {
 
 M.GetDocumentVersionInput = {
     type = "structure",
+    id = "GetDocumentVersionInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2130,6 +2233,7 @@ M.GetDocumentVersionInput = {
 
 M.GetDocumentVersionOutput = {
     type = "structure",
+    id = "GetDocumentVersionOutput",
     members = {
         Metadata = M.DocumentVersionMetadata,
         CustomMetadata = {
@@ -2142,6 +2246,7 @@ M.GetDocumentVersionOutput = {
 
 M.GetFolderInput = {
     type = "structure",
+    id = "GetFolderInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2168,6 +2273,7 @@ M.GetFolderInput = {
 
 M.GetFolderOutput = {
     type = "structure",
+    id = "GetFolderOutput",
     members = {
         Metadata = M.FolderMetadata,
         CustomMetadata = {
@@ -2180,6 +2286,7 @@ M.GetFolderOutput = {
 
 M.GetFolderPathInput = {
     type = "structure",
+    id = "GetFolderPathInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2217,6 +2324,7 @@ M.GetFolderPathInput = {
 
 M.GetFolderPathOutput = {
     type = "structure",
+    id = "GetFolderPathOutput",
     members = {
         Path = M.ResourcePath,
     },
@@ -2228,6 +2336,7 @@ M.ResourceCollectionType = {
 
 M.GetResourcesInput = {
     type = "structure",
+    id = "GetResourcesInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2264,6 +2373,7 @@ M.GetResourcesInput = {
 
 M.GetResourcesOutput = {
     type = "structure",
+    id = "GetResourcesOutput",
     members = {
         Folders = {
             type = "list",
@@ -2281,6 +2391,7 @@ M.GetResourcesOutput = {
 
 M.DraftUploadOutOfSyncException = {
     type = "structure",
+    id = "DraftUploadOutOfSyncException",
     error = "client",
     members = {
         Message = {
@@ -2291,6 +2402,7 @@ M.DraftUploadOutOfSyncException = {
 
 M.InitiateDocumentVersionUploadInput = {
     type = "structure",
+    id = "InitiateDocumentVersionUploadInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2324,6 +2436,7 @@ M.InitiateDocumentVersionUploadInput = {
 
 M.UploadMetadata = {
     type = "structure",
+    id = "UploadMetadata",
     members = {
         UploadUrl = {
             type = "string",
@@ -2338,6 +2451,7 @@ M.UploadMetadata = {
 
 M.InitiateDocumentVersionUploadOutput = {
     type = "structure",
+    id = "InitiateDocumentVersionUploadOutput",
     members = {
         Metadata = M.DocumentMetadata,
         UploadMetadata = M.UploadMetadata,
@@ -2346,6 +2460,7 @@ M.InitiateDocumentVersionUploadOutput = {
 
 M.ResourceAlreadyCheckedOutException = {
     type = "structure",
+    id = "ResourceAlreadyCheckedOutException",
     error = "client",
     members = {
         Message = {
@@ -2356,6 +2471,7 @@ M.ResourceAlreadyCheckedOutException = {
 
 M.StorageLimitExceededException = {
     type = "structure",
+    id = "StorageLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -2366,6 +2482,7 @@ M.StorageLimitExceededException = {
 
 M.StorageLimitWillExceedException = {
     type = "structure",
+    id = "StorageLimitWillExceedException",
     error = "client",
     members = {
         Message = {
@@ -2376,6 +2493,7 @@ M.StorageLimitWillExceedException = {
 
 M.RemoveAllResourcePermissionsInput = {
     type = "structure",
+    id = "RemoveAllResourcePermissionsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2395,10 +2513,12 @@ M.RemoveAllResourcePermissionsInput = {
 
 M.RemoveAllResourcePermissionsOutput = {
     type = "structure",
+    id = "RemoveAllResourcePermissionsOutput",
 }
 
 M.RemoveResourcePermissionInput = {
     type = "structure",
+    id = "RemoveResourcePermissionInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2431,10 +2551,12 @@ M.RemoveResourcePermissionInput = {
 
 M.RemoveResourcePermissionOutput = {
     type = "structure",
+    id = "RemoveResourcePermissionOutput",
 }
 
 M.RestoreDocumentVersionsInput = {
     type = "structure",
+    id = "RestoreDocumentVersionsInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2454,6 +2576,7 @@ M.RestoreDocumentVersionsInput = {
 
 M.RestoreDocumentVersionsOutput = {
     type = "structure",
+    id = "RestoreDocumentVersionsOutput",
 }
 
 M.ContentCategoryType = {
@@ -2470,6 +2593,7 @@ M.ContentCategoryType = {
 
 M.DateRangeType = {
     type = "structure",
+    id = "DateRangeType",
     members = {
         StartValue = {
             type = "timestamp",
@@ -2489,6 +2613,7 @@ M.PrincipalRoleType = {
 
 M.SearchPrincipalType = {
     type = "structure",
+    id = "SearchPrincipalType",
     members = {
         Id = {
             type = "string",
@@ -2517,6 +2642,7 @@ M.SearchCollectionType = {
 
 M.LongRangeType = {
     type = "structure",
+    id = "LongRangeType",
     members = {
         StartValue = {
             type = "long",
@@ -2563,6 +2689,7 @@ M.LanguageCodeType = {
 
 M.Filters = {
     type = "structure",
+    id = "Filters",
     members = {
         TextLocales = {
             type = "list",
@@ -2613,6 +2740,7 @@ M.SortOrder = {
 
 M.SearchSortResult = {
     type = "structure",
+    id = "SearchSortResult",
     members = {
         Field = {
             type = "string",
@@ -2630,6 +2758,7 @@ M.SearchQueryScopeType = {
 
 M.SearchResourcesInput = {
     type = "structure",
+    id = "SearchResourcesInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2674,6 +2803,7 @@ M.ResponseItemType = {
 
 M.ResponseItem = {
     type = "structure",
+    id = "ResponseItem",
     members = {
         ResourceType = {
             type = "string",
@@ -2690,6 +2820,7 @@ M.ResponseItem = {
 
 M.SearchResourcesOutput = {
     type = "structure",
+    id = "SearchResourcesOutput",
     members = {
         Items = {
             type = "list",
@@ -2703,6 +2834,7 @@ M.SearchResourcesOutput = {
 
 M.UpdateDocumentInput = {
     type = "structure",
+    id = "UpdateDocumentInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2731,6 +2863,7 @@ M.UpdateDocumentInput = {
 
 M.UpdateDocumentOutput = {
     type = "structure",
+    id = "UpdateDocumentOutput",
 }
 
 M.DocumentVersionStatus = {
@@ -2739,6 +2872,7 @@ M.DocumentVersionStatus = {
 
 M.UpdateDocumentVersionInput = {
     type = "structure",
+    id = "UpdateDocumentVersionInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2768,10 +2902,12 @@ M.UpdateDocumentVersionInput = {
 
 M.UpdateDocumentVersionOutput = {
     type = "structure",
+    id = "UpdateDocumentVersionOutput",
 }
 
 M.UpdateFolderInput = {
     type = "structure",
+    id = "UpdateFolderInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2800,10 +2936,12 @@ M.UpdateFolderInput = {
 
 M.UpdateFolderOutput = {
     type = "structure",
+    id = "UpdateFolderOutput",
 }
 
 M.DeactivatingLastSystemUserException = {
     type = "structure",
+    id = "DeactivatingLastSystemUserException",
     error = "client",
     members = {
         Message = {
@@ -2817,6 +2955,7 @@ M.DeactivatingLastSystemUserException = {
 
 M.IllegalUserStateException = {
     type = "structure",
+    id = "IllegalUserStateException",
     error = "client",
     members = {
         Message = {
@@ -2832,6 +2971,7 @@ M.BooleanEnumType = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         AuthenticationToken = {
             type = "string",
@@ -2870,6 +3010,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
     members = {
         User = M.User,
     },

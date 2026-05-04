@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.AggregationType = {
 
 M.AggregationConfig = {
     type = "structure",
+    id = "AggregationConfig",
     members = {
         aggregationType = {
             type = "string",
@@ -33,6 +35,7 @@ M.AmplitudeConnectorOperator = {
 
 M.AmplitudeConnectorProfileCredentials = {
     type = "structure",
+    id = "AmplitudeConnectorProfileCredentials",
     members = {
         apiKey = {
             type = "string",
@@ -51,14 +54,17 @@ M.AmplitudeConnectorProfileCredentials = {
 
 M.AmplitudeConnectorProfileProperties = {
     type = "structure",
+    id = "AmplitudeConnectorProfileProperties",
 }
 
 M.AmplitudeMetadata = {
     type = "structure",
+    id = "AmplitudeMetadata",
 }
 
 M.AmplitudeSourceProperties = {
     type = "structure",
+    id = "AmplitudeSourceProperties",
     members = {
         object = {
             type = "string",
@@ -71,6 +77,7 @@ M.AmplitudeSourceProperties = {
 
 M.ApiKeyCredentials = {
     type = "structure",
+    id = "ApiKeyCredentials",
     members = {
         apiKey = {
             type = "string",
@@ -86,6 +93,7 @@ M.ApiKeyCredentials = {
 
 M.AuthParameter = {
     type = "structure",
+    id = "AuthParameter",
     members = {
         key = {
             type = "string",
@@ -117,6 +125,7 @@ M.AuthParameter = {
 
 M.CustomAuthConfig = {
     type = "structure",
+    id = "CustomAuthConfig",
     members = {
         customAuthenticationType = {
             type = "string",
@@ -135,6 +144,7 @@ M.OAuth2CustomPropType = {
 
 M.OAuth2CustomParameter = {
     type = "structure",
+    id = "OAuth2CustomParameter",
     members = {
         key = {
             type = "string",
@@ -175,6 +185,7 @@ M.OAuth2GrantType = {
 
 M.OAuth2Defaults = {
     type = "structure",
+    id = "OAuth2Defaults",
     members = {
         oauthScopes = {
             type = "list",
@@ -201,6 +212,7 @@ M.OAuth2Defaults = {
 
 M.AuthenticationConfig = {
     type = "structure",
+    id = "AuthenticationConfig",
     members = {
         isBasicAuthSupported = {
             type = "boolean",
@@ -243,6 +255,7 @@ M.AuthenticationType = {
 
 M.BasicAuthCredentials = {
     type = "structure",
+    id = "BasicAuthCredentials",
     members = {
         username = {
             type = "string",
@@ -261,6 +274,7 @@ M.BasicAuthCredentials = {
 
 M.CancelFlowExecutionsInput = {
     type = "structure",
+    id = "CancelFlowExecutionsInput",
     members = {
         flowName = {
             type = "string",
@@ -277,6 +291,7 @@ M.CancelFlowExecutionsInput = {
 
 M.CancelFlowExecutionsOutput = {
     type = "structure",
+    id = "CancelFlowExecutionsOutput",
     members = {
         invalidExecutions = {
             type = "list",
@@ -287,6 +302,7 @@ M.CancelFlowExecutionsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -297,6 +313,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -307,6 +324,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -317,6 +335,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -331,6 +350,7 @@ M.CatalogType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -346,6 +366,7 @@ M.ConnectionMode = {
 
 M.ConnectorAuthenticationException = {
     type = "structure",
+    id = "ConnectorAuthenticationException",
     error = "client",
     members = {
         message = {
@@ -356,22 +377,27 @@ M.ConnectorAuthenticationException = {
 
 M.CustomerProfilesMetadata = {
     type = "structure",
+    id = "CustomerProfilesMetadata",
 }
 
 M.DatadogMetadata = {
     type = "structure",
+    id = "DatadogMetadata",
 }
 
 M.DynatraceMetadata = {
     type = "structure",
+    id = "DynatraceMetadata",
 }
 
 M.EventBridgeMetadata = {
     type = "structure",
+    id = "EventBridgeMetadata",
 }
 
 M.GoogleAnalyticsMetadata = {
     type = "structure",
+    id = "GoogleAnalyticsMetadata",
     members = {
         oAuthScopes = {
             type = "list",
@@ -382,6 +408,7 @@ M.GoogleAnalyticsMetadata = {
 
 M.HoneycodeMetadata = {
     type = "structure",
+    id = "HoneycodeMetadata",
     members = {
         oAuthScopes = {
             type = "list",
@@ -392,22 +419,27 @@ M.HoneycodeMetadata = {
 
 M.InforNexusMetadata = {
     type = "structure",
+    id = "InforNexusMetadata",
 }
 
 M.MarketoMetadata = {
     type = "structure",
+    id = "MarketoMetadata",
 }
 
 M.PardotMetadata = {
     type = "structure",
+    id = "PardotMetadata",
 }
 
 M.RedshiftMetadata = {
     type = "structure",
+    id = "RedshiftMetadata",
 }
 
 M.S3Metadata = {
     type = "structure",
+    id = "S3Metadata",
 }
 
 M.SalesforceDataTransferApi = {
@@ -418,6 +450,7 @@ M.SalesforceDataTransferApi = {
 
 M.SalesforceMetadata = {
     type = "structure",
+    id = "SalesforceMetadata",
     members = {
         oAuthScopes = {
             type = "list",
@@ -436,18 +469,22 @@ M.SalesforceMetadata = {
 
 M.SAPODataMetadata = {
     type = "structure",
+    id = "SAPODataMetadata",
 }
 
 M.ServiceNowMetadata = {
     type = "structure",
+    id = "ServiceNowMetadata",
 }
 
 M.SingularMetadata = {
     type = "structure",
+    id = "SingularMetadata",
 }
 
 M.SlackMetadata = {
     type = "structure",
+    id = "SlackMetadata",
     members = {
         oAuthScopes = {
             type = "list",
@@ -458,6 +495,7 @@ M.SlackMetadata = {
 
 M.SnowflakeMetadata = {
     type = "structure",
+    id = "SnowflakeMetadata",
     members = {
         supportedRegions = {
             type = "list",
@@ -468,18 +506,22 @@ M.SnowflakeMetadata = {
 
 M.TrendmicroMetadata = {
     type = "structure",
+    id = "TrendmicroMetadata",
 }
 
 M.UpsolverMetadata = {
     type = "structure",
+    id = "UpsolverMetadata",
 }
 
 M.VeevaMetadata = {
     type = "structure",
+    id = "VeevaMetadata",
 }
 
 M.ZendeskMetadata = {
     type = "structure",
+    id = "ZendeskMetadata",
     members = {
         oAuthScopes = {
             type = "list",
@@ -490,6 +532,7 @@ M.ZendeskMetadata = {
 
 M.ConnectorMetadata = {
     type = "structure",
+    id = "ConnectorMetadata",
     members = {
         Amplitude = M.AmplitudeMetadata,
         Datadog = M.DatadogMetadata,
@@ -518,6 +561,7 @@ M.ConnectorMetadata = {
 
 M.LambdaConnectorProvisioningConfig = {
     type = "structure",
+    id = "LambdaConnectorProvisioningConfig",
     members = {
         lambdaArn = {
             type = "string",
@@ -530,6 +574,7 @@ M.LambdaConnectorProvisioningConfig = {
 
 M.ConnectorProvisioningConfig = {
     type = "structure",
+    id = "ConnectorProvisioningConfig",
     members = {
         lambda = M.LambdaConnectorProvisioningConfig,
     },
@@ -541,6 +586,7 @@ M.ConnectorProvisioningType = {
 
 M.ConnectorRuntimeSetting = {
     type = "structure",
+    id = "ConnectorRuntimeSetting",
     members = {
         key = {
             type = "string",
@@ -605,6 +651,7 @@ M.DataTransferApiType = {
 
 M.DataTransferApi = {
     type = "structure",
+    id = "DataTransferApi",
     members = {
         Name = {
             type = "string",
@@ -668,6 +715,7 @@ M.WriteOperationType = {
 
 M.ConnectorConfiguration = {
     type = "structure",
+    id = "ConnectorConfiguration",
     members = {
         canUseAsSource = {
             type = "boolean",
@@ -774,6 +822,7 @@ M.ConnectorConfiguration = {
 
 M.ConnectorDetail = {
     type = "structure",
+    id = "ConnectorDetail",
     members = {
         connectorDescription = {
             type = "string",
@@ -818,6 +867,7 @@ M.ConnectorDetail = {
 
 M.ConnectorEntity = {
     type = "structure",
+    id = "ConnectorEntity",
     members = {
         name = {
             type = "string",
@@ -839,6 +889,7 @@ M.ConnectorEntity = {
 
 M.DestinationFieldProperties = {
     type = "structure",
+    id = "DestinationFieldProperties",
     members = {
         isCreatable = {
             type = "boolean",
@@ -879,6 +930,7 @@ M.DestinationFieldProperties = {
 
 M.SourceFieldProperties = {
     type = "structure",
+    id = "SourceFieldProperties",
     members = {
         isRetrievable = {
             type = "boolean",
@@ -903,6 +955,7 @@ M.SourceFieldProperties = {
 
 M.Range = {
     type = "structure",
+    id = "Range",
     members = {
         maximum = {
             type = "double",
@@ -945,6 +998,7 @@ M.Operator = {
 
 M.FieldTypeDetails = {
     type = "structure",
+    id = "FieldTypeDetails",
     members = {
         fieldType = {
             type = "string",
@@ -976,6 +1030,7 @@ M.FieldTypeDetails = {
 
 M.SupportedFieldTypeDetails = {
     type = "structure",
+    id = "SupportedFieldTypeDetails",
     members = {
         v1 = setmetatable({ traits = {
             required = true,
@@ -985,6 +1040,7 @@ M.SupportedFieldTypeDetails = {
 
 M.ConnectorEntityField = {
     type = "structure",
+    id = "ConnectorEntityField",
     members = {
         identifier = {
             type = "string",
@@ -1029,6 +1085,7 @@ M.ConnectorEntityField = {
 
 M.ConnectorOAuthRequest = {
     type = "structure",
+    id = "ConnectorOAuthRequest",
     members = {
         authCode = {
             type = "string",
@@ -1328,6 +1385,7 @@ M.ZendeskConnectorOperator = {
 
 M.ConnectorOperator = {
     type = "structure",
+    id = "ConnectorOperator",
     members = {
         Amplitude = {
             type = "string",
@@ -1385,6 +1443,7 @@ M.ConnectorOperator = {
 
 M.OAuth2Properties = {
     type = "structure",
+    id = "OAuth2Properties",
     members = {
         tokenUrl = {
             type = "string",
@@ -1408,6 +1467,7 @@ M.OAuth2Properties = {
 
 M.CustomConnectorProfileProperties = {
     type = "structure",
+    id = "CustomConnectorProfileProperties",
     members = {
         profileProperties = {
             type = "map",
@@ -1420,6 +1480,7 @@ M.CustomConnectorProfileProperties = {
 
 M.DatadogConnectorProfileProperties = {
     type = "structure",
+    id = "DatadogConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1432,6 +1493,7 @@ M.DatadogConnectorProfileProperties = {
 
 M.DynatraceConnectorProfileProperties = {
     type = "structure",
+    id = "DynatraceConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1444,14 +1506,17 @@ M.DynatraceConnectorProfileProperties = {
 
 M.GoogleAnalyticsConnectorProfileProperties = {
     type = "structure",
+    id = "GoogleAnalyticsConnectorProfileProperties",
 }
 
 M.HoneycodeConnectorProfileProperties = {
     type = "structure",
+    id = "HoneycodeConnectorProfileProperties",
 }
 
 M.InforNexusConnectorProfileProperties = {
     type = "structure",
+    id = "InforNexusConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1464,6 +1529,7 @@ M.InforNexusConnectorProfileProperties = {
 
 M.MarketoConnectorProfileProperties = {
     type = "structure",
+    id = "MarketoConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1476,6 +1542,7 @@ M.MarketoConnectorProfileProperties = {
 
 M.PardotConnectorProfileProperties = {
     type = "structure",
+    id = "PardotConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1494,6 +1561,7 @@ M.PardotConnectorProfileProperties = {
 
 M.RedshiftConnectorProfileProperties = {
     type = "structure",
+    id = "RedshiftConnectorProfileProperties",
     members = {
         databaseUrl = {
             type = "string",
@@ -1536,6 +1604,7 @@ M.RedshiftConnectorProfileProperties = {
 
 M.SalesforceConnectorProfileProperties = {
     type = "structure",
+    id = "SalesforceConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1557,6 +1626,7 @@ M.SalesforceConnectorProfileProperties = {
 
 M.OAuthProperties = {
     type = "structure",
+    id = "OAuthProperties",
     members = {
         tokenUrl = {
             type = "string",
@@ -1582,6 +1652,7 @@ M.OAuthProperties = {
 
 M.SAPODataConnectorProfileProperties = {
     type = "structure",
+    id = "SAPODataConnectorProfileProperties",
     members = {
         applicationHostUrl = {
             type = "string",
@@ -1625,6 +1696,7 @@ M.SAPODataConnectorProfileProperties = {
 
 M.ServiceNowConnectorProfileProperties = {
     type = "structure",
+    id = "ServiceNowConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1637,10 +1709,12 @@ M.ServiceNowConnectorProfileProperties = {
 
 M.SingularConnectorProfileProperties = {
     type = "structure",
+    id = "SingularConnectorProfileProperties",
 }
 
 M.SlackConnectorProfileProperties = {
     type = "structure",
+    id = "SlackConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1653,6 +1727,7 @@ M.SlackConnectorProfileProperties = {
 
 M.SnowflakeConnectorProfileProperties = {
     type = "structure",
+    id = "SnowflakeConnectorProfileProperties",
     members = {
         warehouse = {
             type = "string",
@@ -1689,10 +1764,12 @@ M.SnowflakeConnectorProfileProperties = {
 
 M.TrendmicroConnectorProfileProperties = {
     type = "structure",
+    id = "TrendmicroConnectorProfileProperties",
 }
 
 M.VeevaConnectorProfileProperties = {
     type = "structure",
+    id = "VeevaConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1705,6 +1782,7 @@ M.VeevaConnectorProfileProperties = {
 
 M.ZendeskConnectorProfileProperties = {
     type = "structure",
+    id = "ZendeskConnectorProfileProperties",
     members = {
         instanceUrl = {
             type = "string",
@@ -1717,6 +1795,7 @@ M.ZendeskConnectorProfileProperties = {
 
 M.ConnectorProfileProperties = {
     type = "structure",
+    id = "ConnectorProfileProperties",
     members = {
         Amplitude = M.AmplitudeConnectorProfileProperties,
         Datadog = M.DatadogConnectorProfileProperties,
@@ -1756,6 +1835,7 @@ M.PrivateConnectionProvisioningStatus = {
 
 M.PrivateConnectionProvisioningState = {
     type = "structure",
+    id = "PrivateConnectionProvisioningState",
     members = {
         status = {
             type = "string",
@@ -1771,6 +1851,7 @@ M.PrivateConnectionProvisioningState = {
 
 M.ConnectorProfile = {
     type = "structure",
+    id = "ConnectorProfile",
     members = {
         connectorProfileArn = {
             type = "string",
@@ -1803,6 +1884,7 @@ M.ConnectorProfile = {
 
 M.CustomAuthCredentials = {
     type = "structure",
+    id = "CustomAuthCredentials",
     members = {
         customAuthenticationType = {
             type = "string",
@@ -1820,6 +1902,7 @@ M.CustomAuthCredentials = {
 
 M.OAuth2Credentials = {
     type = "structure",
+    id = "OAuth2Credentials",
     members = {
         clientId = {
             type = "string",
@@ -1839,6 +1922,7 @@ M.OAuth2Credentials = {
 
 M.CustomConnectorProfileCredentials = {
     type = "structure",
+    id = "CustomConnectorProfileCredentials",
     members = {
         authenticationType = {
             type = "string",
@@ -1855,6 +1939,7 @@ M.CustomConnectorProfileCredentials = {
 
 M.DatadogConnectorProfileCredentials = {
     type = "structure",
+    id = "DatadogConnectorProfileCredentials",
     members = {
         apiKey = {
             type = "string",
@@ -1873,6 +1958,7 @@ M.DatadogConnectorProfileCredentials = {
 
 M.DynatraceConnectorProfileCredentials = {
     type = "structure",
+    id = "DynatraceConnectorProfileCredentials",
     members = {
         apiToken = {
             type = "string",
@@ -1885,6 +1971,7 @@ M.DynatraceConnectorProfileCredentials = {
 
 M.GoogleAnalyticsConnectorProfileCredentials = {
     type = "structure",
+    id = "GoogleAnalyticsConnectorProfileCredentials",
     members = {
         clientId = {
             type = "string",
@@ -1910,6 +1997,7 @@ M.GoogleAnalyticsConnectorProfileCredentials = {
 
 M.HoneycodeConnectorProfileCredentials = {
     type = "structure",
+    id = "HoneycodeConnectorProfileCredentials",
     members = {
         accessToken = {
             type = "string",
@@ -1923,6 +2011,7 @@ M.HoneycodeConnectorProfileCredentials = {
 
 M.InforNexusConnectorProfileCredentials = {
     type = "structure",
+    id = "InforNexusConnectorProfileCredentials",
     members = {
         accessKeyId = {
             type = "string",
@@ -1953,6 +2042,7 @@ M.InforNexusConnectorProfileCredentials = {
 
 M.MarketoConnectorProfileCredentials = {
     type = "structure",
+    id = "MarketoConnectorProfileCredentials",
     members = {
         clientId = {
             type = "string",
@@ -1975,6 +2065,7 @@ M.MarketoConnectorProfileCredentials = {
 
 M.PardotConnectorProfileCredentials = {
     type = "structure",
+    id = "PardotConnectorProfileCredentials",
     members = {
         accessToken = {
             type = "string",
@@ -1991,6 +2082,7 @@ M.PardotConnectorProfileCredentials = {
 
 M.RedshiftConnectorProfileCredentials = {
     type = "structure",
+    id = "RedshiftConnectorProfileCredentials",
     members = {
         username = {
             type = "string",
@@ -2003,6 +2095,7 @@ M.RedshiftConnectorProfileCredentials = {
 
 M.SalesforceConnectorProfileCredentials = {
     type = "structure",
+    id = "SalesforceConnectorProfileCredentials",
     members = {
         accessToken = {
             type = "string",
@@ -2025,6 +2118,7 @@ M.SalesforceConnectorProfileCredentials = {
 
 M.OAuthCredentials = {
     type = "structure",
+    id = "OAuthCredentials",
     members = {
         clientId = {
             type = "string",
@@ -2050,6 +2144,7 @@ M.OAuthCredentials = {
 
 M.SAPODataConnectorProfileCredentials = {
     type = "structure",
+    id = "SAPODataConnectorProfileCredentials",
     members = {
         basicAuthCredentials = M.BasicAuthCredentials,
         oAuthCredentials = M.OAuthCredentials,
@@ -2058,6 +2153,7 @@ M.SAPODataConnectorProfileCredentials = {
 
 M.ServiceNowConnectorProfileCredentials = {
     type = "structure",
+    id = "ServiceNowConnectorProfileCredentials",
     members = {
         username = {
             type = "string",
@@ -2071,6 +2167,7 @@ M.ServiceNowConnectorProfileCredentials = {
 
 M.SingularConnectorProfileCredentials = {
     type = "structure",
+    id = "SingularConnectorProfileCredentials",
     members = {
         apiKey = {
             type = "string",
@@ -2083,6 +2180,7 @@ M.SingularConnectorProfileCredentials = {
 
 M.SlackConnectorProfileCredentials = {
     type = "structure",
+    id = "SlackConnectorProfileCredentials",
     members = {
         clientId = {
             type = "string",
@@ -2105,6 +2203,7 @@ M.SlackConnectorProfileCredentials = {
 
 M.SnowflakeConnectorProfileCredentials = {
     type = "structure",
+    id = "SnowflakeConnectorProfileCredentials",
     members = {
         username = {
             type = "string",
@@ -2123,6 +2222,7 @@ M.SnowflakeConnectorProfileCredentials = {
 
 M.TrendmicroConnectorProfileCredentials = {
     type = "structure",
+    id = "TrendmicroConnectorProfileCredentials",
     members = {
         apiSecretKey = {
             type = "string",
@@ -2135,6 +2235,7 @@ M.TrendmicroConnectorProfileCredentials = {
 
 M.VeevaConnectorProfileCredentials = {
     type = "structure",
+    id = "VeevaConnectorProfileCredentials",
     members = {
         username = {
             type = "string",
@@ -2153,6 +2254,7 @@ M.VeevaConnectorProfileCredentials = {
 
 M.ZendeskConnectorProfileCredentials = {
     type = "structure",
+    id = "ZendeskConnectorProfileCredentials",
     members = {
         clientId = {
             type = "string",
@@ -2175,6 +2277,7 @@ M.ZendeskConnectorProfileCredentials = {
 
 M.ConnectorProfileCredentials = {
     type = "structure",
+    id = "ConnectorProfileCredentials",
     members = {
         Amplitude = M.AmplitudeConnectorProfileCredentials,
         Datadog = M.DatadogConnectorProfileCredentials,
@@ -2200,6 +2303,7 @@ M.ConnectorProfileCredentials = {
 
 M.ConnectorProfileConfig = {
     type = "structure",
+    id = "ConnectorProfileConfig",
     members = {
         connectorProfileProperties = setmetatable({ traits = {
             required = true,
@@ -2210,6 +2314,7 @@ M.ConnectorProfileConfig = {
 
 M.ConnectorServerException = {
     type = "structure",
+    id = "ConnectorServerException",
     error = "client",
     members = {
         message = {
@@ -2220,6 +2325,7 @@ M.ConnectorServerException = {
 
 M.CreateConnectorProfileInput = {
     type = "structure",
+    id = "CreateConnectorProfileInput",
     members = {
         connectorProfileName = {
             type = "string",
@@ -2259,6 +2365,7 @@ M.CreateConnectorProfileInput = {
 
 M.CreateConnectorProfileOutput = {
     type = "structure",
+    id = "CreateConnectorProfileOutput",
     members = {
         connectorProfileArn = {
             type = "string",
@@ -2268,6 +2375,7 @@ M.CreateConnectorProfileOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -2278,6 +2386,7 @@ M.ServiceQuotaExceededException = {
 
 M.ErrorHandlingConfig = {
     type = "structure",
+    id = "ErrorHandlingConfig",
     members = {
         failOnFirstDestinationError = {
             type = "boolean",
@@ -2296,6 +2405,7 @@ M.ErrorHandlingConfig = {
 
 M.CustomConnectorDestinationProperties = {
     type = "structure",
+    id = "CustomConnectorDestinationProperties",
     members = {
         entityName = {
             type = "string",
@@ -2321,6 +2431,7 @@ M.CustomConnectorDestinationProperties = {
 
 M.CustomerProfilesDestinationProperties = {
     type = "structure",
+    id = "CustomerProfilesDestinationProperties",
     members = {
         domainName = {
             type = "string",
@@ -2336,6 +2447,7 @@ M.CustomerProfilesDestinationProperties = {
 
 M.EventBridgeDestinationProperties = {
     type = "structure",
+    id = "EventBridgeDestinationProperties",
     members = {
         object = {
             type = "string",
@@ -2349,6 +2461,7 @@ M.EventBridgeDestinationProperties = {
 
 M.HoneycodeDestinationProperties = {
     type = "structure",
+    id = "HoneycodeDestinationProperties",
     members = {
         object = {
             type = "string",
@@ -2362,10 +2475,12 @@ M.HoneycodeDestinationProperties = {
 
 M.LookoutMetricsDestinationProperties = {
     type = "structure",
+    id = "LookoutMetricsDestinationProperties",
 }
 
 M.MarketoDestinationProperties = {
     type = "structure",
+    id = "MarketoDestinationProperties",
     members = {
         object = {
             type = "string",
@@ -2379,6 +2494,7 @@ M.MarketoDestinationProperties = {
 
 M.RedshiftDestinationProperties = {
     type = "structure",
+    id = "RedshiftDestinationProperties",
     members = {
         object = {
             type = "string",
@@ -2426,6 +2542,7 @@ M.PrefixType = {
 
 M.PrefixConfig = {
     type = "structure",
+    id = "PrefixConfig",
     members = {
         prefixType = {
             type = "string",
@@ -2442,6 +2559,7 @@ M.PrefixConfig = {
 
 M.S3OutputFormatConfig = {
     type = "structure",
+    id = "S3OutputFormatConfig",
     members = {
         fileType = {
             type = "string",
@@ -2456,6 +2574,7 @@ M.S3OutputFormatConfig = {
 
 M.S3DestinationProperties = {
     type = "structure",
+    id = "S3DestinationProperties",
     members = {
         bucketName = {
             type = "string",
@@ -2472,6 +2591,7 @@ M.S3DestinationProperties = {
 
 M.SalesforceDestinationProperties = {
     type = "structure",
+    id = "SalesforceDestinationProperties",
     members = {
         object = {
             type = "string",
@@ -2495,6 +2615,7 @@ M.SalesforceDestinationProperties = {
 
 M.SuccessResponseHandlingConfig = {
     type = "structure",
+    id = "SuccessResponseHandlingConfig",
     members = {
         bucketPrefix = {
             type = "string",
@@ -2507,6 +2628,7 @@ M.SuccessResponseHandlingConfig = {
 
 M.SAPODataDestinationProperties = {
     type = "structure",
+    id = "SAPODataDestinationProperties",
     members = {
         objectPath = {
             type = "string",
@@ -2528,6 +2650,7 @@ M.SAPODataDestinationProperties = {
 
 M.SnowflakeDestinationProperties = {
     type = "structure",
+    id = "SnowflakeDestinationProperties",
     members = {
         object = {
             type = "string",
@@ -2550,6 +2673,7 @@ M.SnowflakeDestinationProperties = {
 
 M.UpsolverS3OutputFormatConfig = {
     type = "structure",
+    id = "UpsolverS3OutputFormatConfig",
     members = {
         fileType = {
             type = "string",
@@ -2563,6 +2687,7 @@ M.UpsolverS3OutputFormatConfig = {
 
 M.UpsolverDestinationProperties = {
     type = "structure",
+    id = "UpsolverDestinationProperties",
     members = {
         bucketName = {
             type = "string",
@@ -2581,6 +2706,7 @@ M.UpsolverDestinationProperties = {
 
 M.ZendeskDestinationProperties = {
     type = "structure",
+    id = "ZendeskDestinationProperties",
     members = {
         object = {
             type = "string",
@@ -2601,6 +2727,7 @@ M.ZendeskDestinationProperties = {
 
 M.DestinationConnectorProperties = {
     type = "structure",
+    id = "DestinationConnectorProperties",
     members = {
         Redshift = M.RedshiftDestinationProperties,
         S3 = M.S3DestinationProperties,
@@ -2620,6 +2747,7 @@ M.DestinationConnectorProperties = {
 
 M.DestinationFlowConfig = {
     type = "structure",
+    id = "DestinationFlowConfig",
     members = {
         connectorType = {
             type = "string",
@@ -2641,6 +2769,7 @@ M.DestinationFlowConfig = {
 
 M.GlueDataCatalogConfig = {
     type = "structure",
+    id = "GlueDataCatalogConfig",
     members = {
         roleArn = {
             type = "string",
@@ -2665,6 +2794,7 @@ M.GlueDataCatalogConfig = {
 
 M.MetadataCatalogConfig = {
     type = "structure",
+    id = "MetadataCatalogConfig",
     members = {
         glueDataCatalog = M.GlueDataCatalogConfig,
     },
@@ -2672,6 +2802,7 @@ M.MetadataCatalogConfig = {
 
 M.IncrementalPullConfig = {
     type = "structure",
+    id = "IncrementalPullConfig",
     members = {
         datetimeTypeFieldName = {
             type = "string",
@@ -2681,6 +2812,7 @@ M.IncrementalPullConfig = {
 
 M.CustomConnectorSourceProperties = {
     type = "structure",
+    id = "CustomConnectorSourceProperties",
     members = {
         entityName = {
             type = "string",
@@ -2699,6 +2831,7 @@ M.CustomConnectorSourceProperties = {
 
 M.DatadogSourceProperties = {
     type = "structure",
+    id = "DatadogSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2711,6 +2844,7 @@ M.DatadogSourceProperties = {
 
 M.DynatraceSourceProperties = {
     type = "structure",
+    id = "DynatraceSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2723,6 +2857,7 @@ M.DynatraceSourceProperties = {
 
 M.GoogleAnalyticsSourceProperties = {
     type = "structure",
+    id = "GoogleAnalyticsSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2735,6 +2870,7 @@ M.GoogleAnalyticsSourceProperties = {
 
 M.InforNexusSourceProperties = {
     type = "structure",
+    id = "InforNexusSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2747,6 +2883,7 @@ M.InforNexusSourceProperties = {
 
 M.MarketoSourceProperties = {
     type = "structure",
+    id = "MarketoSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2759,6 +2896,7 @@ M.MarketoSourceProperties = {
 
 M.PardotSourceProperties = {
     type = "structure",
+    id = "PardotSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2776,6 +2914,7 @@ M.S3InputFileType = {
 
 M.S3InputFormatConfig = {
     type = "structure",
+    id = "S3InputFormatConfig",
     members = {
         s3InputFileType = {
             type = "string",
@@ -2785,6 +2924,7 @@ M.S3InputFormatConfig = {
 
 M.S3SourceProperties = {
     type = "structure",
+    id = "S3SourceProperties",
     members = {
         bucketName = {
             type = "string",
@@ -2801,6 +2941,7 @@ M.S3SourceProperties = {
 
 M.SalesforceSourceProperties = {
     type = "structure",
+    id = "SalesforceSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2828,6 +2969,7 @@ M.SalesforceSourceProperties = {
 
 M.SAPODataPaginationConfig = {
     type = "structure",
+    id = "SAPODataPaginationConfig",
     members = {
         maxPageSize = {
             type = "integer",
@@ -2840,6 +2982,7 @@ M.SAPODataPaginationConfig = {
 
 M.SAPODataParallelismConfig = {
     type = "structure",
+    id = "SAPODataParallelismConfig",
     members = {
         maxParallelism = {
             type = "integer",
@@ -2852,6 +2995,7 @@ M.SAPODataParallelismConfig = {
 
 M.SAPODataSourceProperties = {
     type = "structure",
+    id = "SAPODataSourceProperties",
     members = {
         objectPath = {
             type = "string",
@@ -2863,6 +3007,7 @@ M.SAPODataSourceProperties = {
 
 M.ServiceNowSourceProperties = {
     type = "structure",
+    id = "ServiceNowSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2875,6 +3020,7 @@ M.ServiceNowSourceProperties = {
 
 M.SingularSourceProperties = {
     type = "structure",
+    id = "SingularSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2887,6 +3033,7 @@ M.SingularSourceProperties = {
 
 M.SlackSourceProperties = {
     type = "structure",
+    id = "SlackSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2899,6 +3046,7 @@ M.SlackSourceProperties = {
 
 M.TrendmicroSourceProperties = {
     type = "structure",
+    id = "TrendmicroSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2911,6 +3059,7 @@ M.TrendmicroSourceProperties = {
 
 M.VeevaSourceProperties = {
     type = "structure",
+    id = "VeevaSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2944,6 +3093,7 @@ M.VeevaSourceProperties = {
 
 M.ZendeskSourceProperties = {
     type = "structure",
+    id = "ZendeskSourceProperties",
     members = {
         object = {
             type = "string",
@@ -2956,6 +3106,7 @@ M.ZendeskSourceProperties = {
 
 M.SourceConnectorProperties = {
     type = "structure",
+    id = "SourceConnectorProperties",
     members = {
         Amplitude = M.AmplitudeSourceProperties,
         Datadog = M.DatadogSourceProperties,
@@ -2979,6 +3130,7 @@ M.SourceConnectorProperties = {
 
 M.SourceFlowConfig = {
     type = "structure",
+    id = "SourceFlowConfig",
     members = {
         connectorType = {
             type = "string",
@@ -3034,6 +3186,7 @@ M.TaskType = {
 
 M.Task = {
     type = "structure",
+    id = "Task",
     members = {
         sourceFields = {
             type = "list",
@@ -3067,6 +3220,7 @@ M.DataPullMode = {
 
 M.ScheduledTriggerProperties = {
     type = "structure",
+    id = "ScheduledTriggerProperties",
     members = {
         scheduleExpression = {
             type = "string",
@@ -3103,6 +3257,7 @@ M.ScheduledTriggerProperties = {
 
 M.TriggerProperties = {
     type = "structure",
+    id = "TriggerProperties",
     members = {
         Scheduled = M.ScheduledTriggerProperties,
     },
@@ -3110,6 +3265,7 @@ M.TriggerProperties = {
 
 M.TriggerConfig = {
     type = "structure",
+    id = "TriggerConfig",
     members = {
         triggerType = {
             type = "string",
@@ -3123,6 +3279,7 @@ M.TriggerConfig = {
 
 M.CreateFlowInput = {
     type = "structure",
+    id = "CreateFlowInput",
     members = {
         flowName = {
             type = "string",
@@ -3182,6 +3339,7 @@ M.FlowStatus = {
 
 M.CreateFlowOutput = {
     type = "structure",
+    id = "CreateFlowOutput",
     members = {
         flowArn = {
             type = "string",
@@ -3194,6 +3352,7 @@ M.CreateFlowOutput = {
 
 M.DeleteConnectorProfileInput = {
     type = "structure",
+    id = "DeleteConnectorProfileInput",
     members = {
         connectorProfileName = {
             type = "string",
@@ -3212,10 +3371,12 @@ M.DeleteConnectorProfileInput = {
 
 M.DeleteConnectorProfileOutput = {
     type = "structure",
+    id = "DeleteConnectorProfileOutput",
 }
 
 M.DeleteFlowInput = {
     type = "structure",
+    id = "DeleteFlowInput",
     members = {
         flowName = {
             type = "string",
@@ -3234,10 +3395,12 @@ M.DeleteFlowInput = {
 
 M.DeleteFlowOutput = {
     type = "structure",
+    id = "DeleteFlowOutput",
 }
 
 M.DescribeConnectorInput = {
     type = "structure",
+    id = "DescribeConnectorInput",
     members = {
         connectorType = {
             type = "string",
@@ -3253,6 +3416,7 @@ M.DescribeConnectorInput = {
 
 M.DescribeConnectorOutput = {
     type = "structure",
+    id = "DescribeConnectorOutput",
     members = {
         connectorConfiguration = M.ConnectorConfiguration,
     },
@@ -3260,6 +3424,7 @@ M.DescribeConnectorOutput = {
 
 M.DescribeConnectorEntityInput = {
     type = "structure",
+    id = "DescribeConnectorEntityInput",
     members = {
         connectorEntityName = {
             type = "string",
@@ -3281,6 +3446,7 @@ M.DescribeConnectorEntityInput = {
 
 M.DescribeConnectorEntityOutput = {
     type = "structure",
+    id = "DescribeConnectorEntityOutput",
     members = {
         connectorEntityFields = {
             type = "list",
@@ -3294,6 +3460,7 @@ M.DescribeConnectorEntityOutput = {
 
 M.DescribeConnectorProfilesInput = {
     type = "structure",
+    id = "DescribeConnectorProfilesInput",
     members = {
         connectorProfileNames = {
             type = "list",
@@ -3316,6 +3483,7 @@ M.DescribeConnectorProfilesInput = {
 
 M.DescribeConnectorProfilesOutput = {
     type = "structure",
+    id = "DescribeConnectorProfilesOutput",
     members = {
         connectorProfileDetails = {
             type = "list",
@@ -3329,6 +3497,7 @@ M.DescribeConnectorProfilesOutput = {
 
 M.DescribeConnectorsInput = {
     type = "structure",
+    id = "DescribeConnectorsInput",
     members = {
         connectorTypes = {
             type = "list",
@@ -3345,6 +3514,7 @@ M.DescribeConnectorsInput = {
 
 M.DescribeConnectorsOutput = {
     type = "structure",
+    id = "DescribeConnectorsOutput",
     members = {
         connectorConfigurations = {
             type = "map",
@@ -3363,6 +3533,7 @@ M.DescribeConnectorsOutput = {
 
 M.DescribeFlowInput = {
     type = "structure",
+    id = "DescribeFlowInput",
     members = {
         flowName = {
             type = "string",
@@ -3383,6 +3554,7 @@ M.ExecutionStatus = {
 
 M.ExecutionDetails = {
     type = "structure",
+    id = "ExecutionDetails",
     members = {
         mostRecentExecutionMessage = {
             type = "string",
@@ -3398,6 +3570,7 @@ M.ExecutionDetails = {
 
 M.RegistrationOutput = {
     type = "structure",
+    id = "RegistrationOutput",
     members = {
         message = {
             type = "string",
@@ -3413,6 +3586,7 @@ M.RegistrationOutput = {
 
 M.MetadataCatalogDetail = {
     type = "structure",
+    id = "MetadataCatalogDetail",
     members = {
         catalogType = {
             type = "string",
@@ -3427,6 +3601,7 @@ M.MetadataCatalogDetail = {
 
 M.DescribeFlowOutput = {
     type = "structure",
+    id = "DescribeFlowOutput",
     members = {
         flowArn = {
             type = "string",
@@ -3487,6 +3662,7 @@ M.DescribeFlowOutput = {
 
 M.DescribeFlowExecutionRecordsInput = {
     type = "structure",
+    id = "DescribeFlowExecutionRecordsInput",
     members = {
         flowName = {
             type = "string",
@@ -3505,6 +3681,7 @@ M.DescribeFlowExecutionRecordsInput = {
 
 M.ErrorInfo = {
     type = "structure",
+    id = "ErrorInfo",
     members = {
         putFailuresCount = {
             type = "long",
@@ -3517,6 +3694,7 @@ M.ErrorInfo = {
 
 M.ExecutionResult = {
     type = "structure",
+    id = "ExecutionResult",
     members = {
         errorInfo = M.ErrorInfo,
         bytesProcessed = {
@@ -3539,6 +3717,7 @@ M.ExecutionResult = {
 
 M.ExecutionRecord = {
     type = "structure",
+    id = "ExecutionRecord",
     members = {
         executionId = {
             type = "string",
@@ -3568,6 +3747,7 @@ M.ExecutionRecord = {
 
 M.DescribeFlowExecutionRecordsOutput = {
     type = "structure",
+    id = "DescribeFlowExecutionRecordsOutput",
     members = {
         flowExecutions = {
             type = "list",
@@ -3581,6 +3761,7 @@ M.DescribeFlowExecutionRecordsOutput = {
 
 M.FlowDefinition = {
     type = "structure",
+    id = "FlowDefinition",
     members = {
         flowArn = {
             type = "string",
@@ -3632,6 +3813,7 @@ M.FlowDefinition = {
 
 M.ListConnectorEntitiesInput = {
     type = "structure",
+    id = "ListConnectorEntitiesInput",
     members = {
         connectorProfileName = {
             type = "string",
@@ -3656,6 +3838,7 @@ M.ListConnectorEntitiesInput = {
 
 M.ListConnectorEntitiesOutput = {
     type = "structure",
+    id = "ListConnectorEntitiesOutput",
     members = {
         connectorEntityMap = {
             type = "map",
@@ -3673,6 +3856,7 @@ M.ListConnectorEntitiesOutput = {
 
 M.ListConnectorsInput = {
     type = "structure",
+    id = "ListConnectorsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3685,6 +3869,7 @@ M.ListConnectorsInput = {
 
 M.ListConnectorsOutput = {
     type = "structure",
+    id = "ListConnectorsOutput",
     members = {
         connectors = {
             type = "list",
@@ -3698,6 +3883,7 @@ M.ListConnectorsOutput = {
 
 M.ListFlowsInput = {
     type = "structure",
+    id = "ListFlowsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3710,6 +3896,7 @@ M.ListFlowsInput = {
 
 M.ListFlowsOutput = {
     type = "structure",
+    id = "ListFlowsOutput",
     members = {
         flows = {
             type = "list",
@@ -3723,6 +3910,7 @@ M.ListFlowsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3736,6 +3924,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3747,6 +3936,7 @@ M.ListTagsForResourceOutput = {
 
 M.RegisterConnectorInput = {
     type = "structure",
+    id = "RegisterConnectorInput",
     members = {
         connectorLabel = {
             type = "string",
@@ -3769,6 +3959,7 @@ M.RegisterConnectorInput = {
 
 M.RegisterConnectorOutput = {
     type = "structure",
+    id = "RegisterConnectorOutput",
     members = {
         connectorArn = {
             type = "string",
@@ -3778,6 +3969,7 @@ M.RegisterConnectorOutput = {
 
 M.ResetConnectorMetadataCacheInput = {
     type = "structure",
+    id = "ResetConnectorMetadataCacheInput",
     members = {
         connectorProfileName = {
             type = "string",
@@ -3799,10 +3991,12 @@ M.ResetConnectorMetadataCacheInput = {
 
 M.ResetConnectorMetadataCacheOutput = {
     type = "structure",
+    id = "ResetConnectorMetadataCacheOutput",
 }
 
 M.StartFlowInput = {
     type = "structure",
+    id = "StartFlowInput",
     members = {
         flowName = {
             type = "string",
@@ -3821,6 +4015,7 @@ M.StartFlowInput = {
 
 M.StartFlowOutput = {
     type = "structure",
+    id = "StartFlowOutput",
     members = {
         flowArn = {
             type = "string",
@@ -3836,6 +4031,7 @@ M.StartFlowOutput = {
 
 M.StopFlowInput = {
     type = "structure",
+    id = "StopFlowInput",
     members = {
         flowName = {
             type = "string",
@@ -3848,6 +4044,7 @@ M.StopFlowInput = {
 
 M.StopFlowOutput = {
     type = "structure",
+    id = "StopFlowOutput",
     members = {
         flowArn = {
             type = "string",
@@ -3860,6 +4057,7 @@ M.StopFlowOutput = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         message = {
@@ -3870,6 +4068,7 @@ M.UnsupportedOperationException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3891,10 +4090,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UnregisterConnectorInput = {
     type = "structure",
+    id = "UnregisterConnectorInput",
     members = {
         connectorLabel = {
             type = "string",
@@ -3913,10 +4114,12 @@ M.UnregisterConnectorInput = {
 
 M.UnregisterConnectorOutput = {
     type = "structure",
+    id = "UnregisterConnectorOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3938,10 +4141,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConnectorProfileInput = {
     type = "structure",
+    id = "UpdateConnectorProfileInput",
     members = {
         connectorProfileName = {
             type = "string",
@@ -3969,6 +4174,7 @@ M.UpdateConnectorProfileInput = {
 
 M.UpdateConnectorProfileOutput = {
     type = "structure",
+    id = "UpdateConnectorProfileOutput",
     members = {
         connectorProfileArn = {
             type = "string",
@@ -3978,6 +4184,7 @@ M.UpdateConnectorProfileOutput = {
 
 M.UpdateConnectorRegistrationInput = {
     type = "structure",
+    id = "UpdateConnectorRegistrationInput",
     members = {
         connectorLabel = {
             type = "string",
@@ -4000,6 +4207,7 @@ M.UpdateConnectorRegistrationInput = {
 
 M.UpdateConnectorRegistrationOutput = {
     type = "structure",
+    id = "UpdateConnectorRegistrationOutput",
     members = {
         connectorArn = {
             type = "string",
@@ -4009,6 +4217,7 @@ M.UpdateConnectorRegistrationOutput = {
 
 M.UpdateFlowInput = {
     type = "structure",
+    id = "UpdateFlowInput",
     members = {
         flowName = {
             type = "string",
@@ -4051,6 +4260,7 @@ M.UpdateFlowInput = {
 
 M.UpdateFlowOutput = {
     type = "structure",
+    id = "UpdateFlowOutput",
     members = {
         flowStatus = {
             type = "string",

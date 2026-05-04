@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -19,6 +20,7 @@ M.BatchLoadDataFormat = {
 
 M.BatchLoadProgressReport = {
     type = "structure",
+    id = "BatchLoadProgressReport",
     members = {
         RecordsProcessed = {
             type = "long",
@@ -70,6 +72,7 @@ M.BatchLoadStatus = {
 
 M.BatchLoadTask = {
     type = "structure",
+    id = "BatchLoadTask",
     members = {
         TaskId = {
             type = "string",
@@ -97,6 +100,7 @@ M.BatchLoadTask = {
 
 M.DimensionMapping = {
     type = "structure",
+    id = "DimensionMapping",
     members = {
         SourceColumn = {
             type = "string",
@@ -126,6 +130,7 @@ M.ScalarMeasureValueType = {
 
 M.MultiMeasureAttributeMapping = {
     type = "structure",
+    id = "MultiMeasureAttributeMapping",
     members = {
         SourceColumn = {
             type = "string",
@@ -144,6 +149,7 @@ M.MultiMeasureAttributeMapping = {
 
 M.MixedMeasureMapping = {
     type = "structure",
+    id = "MixedMeasureMapping",
     members = {
         MeasureName = {
             type = "string",
@@ -169,6 +175,7 @@ M.MixedMeasureMapping = {
 
 M.MultiMeasureMappings = {
     type = "structure",
+    id = "MultiMeasureMappings",
     members = {
         TargetMultiMeasureName = {
             type = "string",
@@ -192,6 +199,7 @@ M.TimeUnit = {
 
 M.DataModel = {
     type = "structure",
+    id = "DataModel",
     members = {
         TimeColumn = {
             type = "string",
@@ -219,6 +227,7 @@ M.DataModel = {
 
 M.DataModelS3Configuration = {
     type = "structure",
+    id = "DataModelS3Configuration",
     members = {
         BucketName = {
             type = "string",
@@ -231,6 +240,7 @@ M.DataModelS3Configuration = {
 
 M.DataModelConfiguration = {
     type = "structure",
+    id = "DataModelConfiguration",
     members = {
         DataModel = M.DataModel,
         DataModelS3Configuration = M.DataModelS3Configuration,
@@ -239,6 +249,7 @@ M.DataModelConfiguration = {
 
 M.CsvConfiguration = {
     type = "structure",
+    id = "CsvConfiguration",
     members = {
         ColumnSeparator = {
             type = "string",
@@ -260,6 +271,7 @@ M.CsvConfiguration = {
 
 M.DataSourceS3Configuration = {
     type = "structure",
+    id = "DataSourceS3Configuration",
     members = {
         BucketName = {
             type = "string",
@@ -275,6 +287,7 @@ M.DataSourceS3Configuration = {
 
 M.DataSourceConfiguration = {
     type = "structure",
+    id = "DataSourceConfiguration",
     members = {
         DataSourceS3Configuration = setmetatable({ traits = {
             required = true,
@@ -296,6 +309,7 @@ M.S3EncryptionOption = {
 
 M.ReportS3Configuration = {
     type = "structure",
+    id = "ReportS3Configuration",
     members = {
         BucketName = {
             type = "string",
@@ -317,6 +331,7 @@ M.ReportS3Configuration = {
 
 M.ReportConfiguration = {
     type = "structure",
+    id = "ReportConfiguration",
     members = {
         ReportS3Configuration = M.ReportS3Configuration,
     },
@@ -324,6 +339,7 @@ M.ReportConfiguration = {
 
 M.BatchLoadTaskDescription = {
     type = "structure",
+    id = "BatchLoadTaskDescription",
     members = {
         TaskId = {
             type = "string",
@@ -364,6 +380,7 @@ M.BatchLoadTaskDescription = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -377,6 +394,7 @@ M.ConflictException = {
 
 M.CreateBatchLoadTaskInput = {
     type = "structure",
+    id = "CreateBatchLoadTaskInput",
     members = {
         ClientToken = {
             type = "string",
@@ -414,6 +432,7 @@ M.CreateBatchLoadTaskInput = {
 
 M.CreateBatchLoadTaskOutput = {
     type = "structure",
+    id = "CreateBatchLoadTaskOutput",
     members = {
         TaskId = {
             type = "string",
@@ -426,6 +445,7 @@ M.CreateBatchLoadTaskOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -439,6 +459,7 @@ M.InternalServerException = {
 
 M.InvalidEndpointException = {
     type = "structure",
+    id = "InvalidEndpointException",
     error = "client",
     members = {
         Message = {
@@ -449,6 +470,7 @@ M.InvalidEndpointException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -459,6 +481,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -469,6 +492,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -482,6 +506,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -495,6 +520,7 @@ M.ValidationException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -513,6 +539,7 @@ M.Tag = {
 
 M.CreateDatabaseInput = {
     type = "structure",
+    id = "CreateDatabaseInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -532,6 +559,7 @@ M.CreateDatabaseInput = {
 
 M.Database = {
     type = "structure",
+    id = "Database",
     members = {
         Arn = {
             type = "string",
@@ -559,6 +587,7 @@ M.Database = {
 
 M.CreateDatabaseOutput = {
     type = "structure",
+    id = "CreateDatabaseOutput",
     members = {
         Database = M.Database,
     },
@@ -566,6 +595,7 @@ M.CreateDatabaseOutput = {
 
 M.S3Configuration = {
     type = "structure",
+    id = "S3Configuration",
     members = {
         BucketName = {
             type = "string",
@@ -584,6 +614,7 @@ M.S3Configuration = {
 
 M.MagneticStoreRejectedDataLocation = {
     type = "structure",
+    id = "MagneticStoreRejectedDataLocation",
     members = {
         S3Configuration = M.S3Configuration,
     },
@@ -591,6 +622,7 @@ M.MagneticStoreRejectedDataLocation = {
 
 M.MagneticStoreWriteProperties = {
     type = "structure",
+    id = "MagneticStoreWriteProperties",
     members = {
         EnableMagneticStoreWrites = {
             type = "boolean",
@@ -604,6 +636,7 @@ M.MagneticStoreWriteProperties = {
 
 M.RetentionProperties = {
     type = "structure",
+    id = "RetentionProperties",
     members = {
         MemoryStoreRetentionPeriodInHours = {
             type = "long",
@@ -632,6 +665,7 @@ M.PartitionKeyType = {
 
 M.PartitionKey = {
     type = "structure",
+    id = "PartitionKey",
     members = {
         Type = {
             type = "string",
@@ -650,6 +684,7 @@ M.PartitionKey = {
 
 M.Schema = {
     type = "structure",
+    id = "Schema",
     members = {
         CompositePartitionKey = {
             type = "list",
@@ -660,6 +695,7 @@ M.Schema = {
 
 M.CreateTableInput = {
     type = "structure",
+    id = "CreateTableInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -691,6 +727,7 @@ M.TableStatus = {
 
 M.Table = {
     type = "structure",
+    id = "Table",
     members = {
         Arn = {
             type = "string",
@@ -718,6 +755,7 @@ M.Table = {
 
 M.CreateTableOutput = {
     type = "structure",
+    id = "CreateTableOutput",
     members = {
         Table = M.Table,
     },
@@ -725,6 +763,7 @@ M.CreateTableOutput = {
 
 M.DeleteDatabaseInput = {
     type = "structure",
+    id = "DeleteDatabaseInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -737,10 +776,12 @@ M.DeleteDatabaseInput = {
 
 M.DeleteDatabaseOutput = {
     type = "structure",
+    id = "DeleteDatabaseOutput",
 }
 
 M.DeleteTableInput = {
     type = "structure",
+    id = "DeleteTableInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -759,10 +800,12 @@ M.DeleteTableInput = {
 
 M.DeleteTableOutput = {
     type = "structure",
+    id = "DeleteTableOutput",
 }
 
 M.DescribeBatchLoadTaskInput = {
     type = "structure",
+    id = "DescribeBatchLoadTaskInput",
     members = {
         TaskId = {
             type = "string",
@@ -775,6 +818,7 @@ M.DescribeBatchLoadTaskInput = {
 
 M.DescribeBatchLoadTaskOutput = {
     type = "structure",
+    id = "DescribeBatchLoadTaskOutput",
     members = {
         BatchLoadTaskDescription = setmetatable({ traits = {
             required = true,
@@ -784,6 +828,7 @@ M.DescribeBatchLoadTaskOutput = {
 
 M.DescribeDatabaseInput = {
     type = "structure",
+    id = "DescribeDatabaseInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -796,6 +841,7 @@ M.DescribeDatabaseInput = {
 
 M.DescribeDatabaseOutput = {
     type = "structure",
+    id = "DescribeDatabaseOutput",
     members = {
         Database = M.Database,
     },
@@ -803,10 +849,12 @@ M.DescribeDatabaseOutput = {
 
 M.DescribeEndpointsInput = {
     type = "structure",
+    id = "DescribeEndpointsInput",
 }
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -826,6 +874,7 @@ M.Endpoint = {
 
 M.DescribeEndpointsOutput = {
     type = "structure",
+    id = "DescribeEndpointsOutput",
     members = {
         Endpoints = {
             type = "list",
@@ -839,6 +888,7 @@ M.DescribeEndpointsOutput = {
 
 M.DescribeTableInput = {
     type = "structure",
+    id = "DescribeTableInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -857,6 +907,7 @@ M.DescribeTableInput = {
 
 M.DescribeTableOutput = {
     type = "structure",
+    id = "DescribeTableOutput",
     members = {
         Table = M.Table,
     },
@@ -868,6 +919,7 @@ M.DimensionValueType = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         Name = {
             type = "string",
@@ -889,6 +941,7 @@ M.Dimension = {
 
 M.ListBatchLoadTasksInput = {
     type = "structure",
+    id = "ListBatchLoadTasksInput",
     members = {
         NextToken = {
             type = "string",
@@ -904,6 +957,7 @@ M.ListBatchLoadTasksInput = {
 
 M.ListBatchLoadTasksOutput = {
     type = "structure",
+    id = "ListBatchLoadTasksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -917,6 +971,7 @@ M.ListBatchLoadTasksOutput = {
 
 M.ListDatabasesInput = {
     type = "structure",
+    id = "ListDatabasesInput",
     members = {
         NextToken = {
             type = "string",
@@ -929,6 +984,7 @@ M.ListDatabasesInput = {
 
 M.ListDatabasesOutput = {
     type = "structure",
+    id = "ListDatabasesOutput",
     members = {
         Databases = {
             type = "list",
@@ -942,6 +998,7 @@ M.ListDatabasesOutput = {
 
 M.ListTablesInput = {
     type = "structure",
+    id = "ListTablesInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -957,6 +1014,7 @@ M.ListTablesInput = {
 
 M.ListTablesOutput = {
     type = "structure",
+    id = "ListTablesOutput",
     members = {
         Tables = {
             type = "list",
@@ -970,6 +1028,7 @@ M.ListTablesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -982,6 +1041,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -992,6 +1052,7 @@ M.ListTagsForResourceOutput = {
 
 M.MeasureValue = {
     type = "structure",
+    id = "MeasureValue",
     members = {
         Name = {
             type = "string",
@@ -1016,6 +1077,7 @@ M.MeasureValue = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         Dimensions = {
             type = "list",
@@ -1051,6 +1113,7 @@ M.Record = {
 
 M.RecordsIngested = {
     type = "structure",
+    id = "RecordsIngested",
     members = {
         Total = {
             type = "integer",
@@ -1075,6 +1138,7 @@ M.RecordsIngested = {
 
 M.RejectedRecord = {
     type = "structure",
+    id = "RejectedRecord",
     members = {
         RecordIndex = {
             type = "integer",
@@ -1096,6 +1160,7 @@ M.RejectedRecord = {
 
 M.RejectedRecordsException = {
     type = "structure",
+    id = "RejectedRecordsException",
     error = "client",
     members = {
         Message = {
@@ -1110,6 +1175,7 @@ M.RejectedRecordsException = {
 
 M.ResumeBatchLoadTaskInput = {
     type = "structure",
+    id = "ResumeBatchLoadTaskInput",
     members = {
         TaskId = {
             type = "string",
@@ -1122,10 +1188,12 @@ M.ResumeBatchLoadTaskInput = {
 
 M.ResumeBatchLoadTaskOutput = {
     type = "structure",
+    id = "ResumeBatchLoadTaskOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1145,10 +1213,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1168,10 +1238,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDatabaseInput = {
     type = "structure",
+    id = "UpdateDatabaseInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -1190,6 +1262,7 @@ M.UpdateDatabaseInput = {
 
 M.UpdateDatabaseOutput = {
     type = "structure",
+    id = "UpdateDatabaseOutput",
     members = {
         Database = M.Database,
     },
@@ -1197,6 +1270,7 @@ M.UpdateDatabaseOutput = {
 
 M.UpdateTableInput = {
     type = "structure",
+    id = "UpdateTableInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -1218,6 +1292,7 @@ M.UpdateTableInput = {
 
 M.UpdateTableOutput = {
     type = "structure",
+    id = "UpdateTableOutput",
     members = {
         Table = M.Table,
     },
@@ -1225,6 +1300,7 @@ M.UpdateTableOutput = {
 
 M.WriteRecordsInput = {
     type = "structure",
+    id = "WriteRecordsInput",
     members = {
         DatabaseName = {
             type = "string",
@@ -1251,6 +1327,7 @@ M.WriteRecordsInput = {
 
 M.WriteRecordsOutput = {
     type = "structure",
+    id = "WriteRecordsOutput",
     members = {
         RecordsIngested = M.RecordsIngested,
     },

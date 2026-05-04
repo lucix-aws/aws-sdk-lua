@@ -2,6 +2,7 @@ local M = {}
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         actionId = {
             type = "string",
@@ -20,6 +21,7 @@ M.Action = {
 
 M.ActionInteraction = {
     type = "structure",
+    id = "ActionInteraction",
     members = {
         actionId = {
             type = "string",
@@ -69,6 +71,7 @@ M.ActionInteraction = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -79,6 +82,7 @@ M.InvalidInputException = {
 
 M.PutActionInteractionsInput = {
     type = "structure",
+    id = "PutActionInteractionsInput",
     members = {
         trackingId = {
             type = "string",
@@ -98,10 +102,12 @@ M.PutActionInteractionsInput = {
 
 M.PutActionInteractionsOutput = {
     type = "structure",
+    id = "PutActionInteractionsOutput",
 }
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -112,6 +118,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -122,6 +129,7 @@ M.ResourceNotFoundException = {
 
 M.PutActionsInput = {
     type = "structure",
+    id = "PutActionsInput",
     members = {
         datasetArn = {
             type = "string",
@@ -141,10 +149,12 @@ M.PutActionsInput = {
 
 M.PutActionsOutput = {
     type = "structure",
+    id = "PutActionsOutput",
 }
 
 M.MetricAttribution = {
     type = "structure",
+    id = "MetricAttribution",
     members = {
         eventAttributionSource = {
             type = "string",
@@ -157,6 +167,7 @@ M.MetricAttribution = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         eventId = {
             type = "string",
@@ -198,6 +209,7 @@ M.Event = {
 
 M.PutEventsInput = {
     type = "structure",
+    id = "PutEventsInput",
     members = {
         trackingId = {
             type = "string",
@@ -226,10 +238,12 @@ M.PutEventsInput = {
 
 M.PutEventsOutput = {
     type = "structure",
+    id = "PutEventsOutput",
 }
 
 M.Item = {
     type = "structure",
+    id = "Item",
     members = {
         itemId = {
             type = "string",
@@ -248,6 +262,7 @@ M.Item = {
 
 M.PutItemsInput = {
     type = "structure",
+    id = "PutItemsInput",
     members = {
         datasetArn = {
             type = "string",
@@ -267,10 +282,12 @@ M.PutItemsInput = {
 
 M.PutItemsOutput = {
     type = "structure",
+    id = "PutItemsOutput",
 }
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         userId = {
             type = "string",
@@ -289,6 +306,7 @@ M.User = {
 
 M.PutUsersInput = {
     type = "structure",
+    id = "PutUsersInput",
     members = {
         datasetArn = {
             type = "string",
@@ -308,6 +326,7 @@ M.PutUsersInput = {
 
 M.PutUsersOutput = {
     type = "structure",
+    id = "PutUsersOutput",
 }
 
 return M

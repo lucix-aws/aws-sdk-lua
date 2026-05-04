@@ -2,6 +2,7 @@ local M = {}
 
 M.OutputLocationRef = {
     type = "structure",
+    id = "OutputLocationRef",
     members = {
         DestinationRefId = {
             type = "string",
@@ -14,6 +15,7 @@ M.OutputLocationRef = {
 
 M.AdditionalDestinations = {
     type = "structure",
+    id = "AdditionalDestinations",
     members = {
         Destination = setmetatable({ traits = {
             json_name = "destination",
@@ -24,6 +26,7 @@ M.AdditionalDestinations = {
 
 M.InputChannelLevel = {
     type = "structure",
+    id = "InputChannelLevel",
     members = {
         Gain = {
             type = "integer",
@@ -44,6 +47,7 @@ M.InputChannelLevel = {
 
 M.AudioChannelMapping = {
     type = "structure",
+    id = "AudioChannelMapping",
     members = {
         InputChannelLevels = {
             type = "list",
@@ -86,6 +90,7 @@ M.AudioNormalizationAlgorithmControl = {
 
 M.AudioNormalizationSettings = {
     type = "structure",
+    id = "AudioNormalizationSettings",
     members = {
         Algorithm = {
             type = "string",
@@ -127,6 +132,7 @@ M.NielsenWatermarksCbetStepaside = {
 
 M.NielsenCBET = {
     type = "structure",
+    id = "NielsenCBET",
     members = {
         CbetCheckDigitString = {
             type = "string",
@@ -172,6 +178,7 @@ M.NielsenWatermarkTimezones = {
 
 M.NielsenNaesIiNw = {
     type = "structure",
+    id = "NielsenNaesIiNw",
     members = {
         CheckDigitString = {
             type = "string",
@@ -198,6 +205,7 @@ M.NielsenNaesIiNw = {
 
 M.NielsenWatermarksSettings = {
     type = "structure",
+    id = "NielsenWatermarksSettings",
     members = {
         NielsenCbetSettings = setmetatable({ traits = {
             json_name = "nielsenCbetSettings",
@@ -216,6 +224,7 @@ M.NielsenWatermarksSettings = {
 
 M.AudioWatermarkSettings = {
     type = "structure",
+    id = "AudioWatermarkSettings",
     members = {
         NielsenWatermarksSettings = setmetatable({ traits = {
             json_name = "nielsenWatermarksSettings",
@@ -266,6 +275,7 @@ M.AacVbrQuality = {
 
 M.AacSettings = {
     type = "structure",
+    id = "AacSettings",
     members = {
         Bitrate = {
             type = "double",
@@ -364,6 +374,7 @@ M.Ac3MetadataControl = {
 
 M.Ac3Settings = {
     type = "structure",
+    id = "Ac3Settings",
     members = {
         Bitrate = {
             type = "double",
@@ -442,6 +453,7 @@ M.Eac3AtmosDrcRf = {
 
 M.Eac3AtmosSettings = {
     type = "structure",
+    id = "Eac3AtmosSettings",
     members = {
         Bitrate = {
             type = "double",
@@ -576,6 +588,7 @@ M.Eac3SurroundMode = {
 
 M.Eac3Settings = {
     type = "structure",
+    id = "Eac3Settings",
     members = {
         AttenuationControl = {
             type = "string",
@@ -707,6 +720,7 @@ M.Mp2CodingMode = {
 
 M.Mp2Settings = {
     type = "structure",
+    id = "Mp2Settings",
     members = {
         Bitrate = {
             type = "double",
@@ -731,6 +745,7 @@ M.Mp2Settings = {
 
 M.PassThroughSettings = {
     type = "structure",
+    id = "PassThroughSettings",
 }
 
 M.WavCodingMode = {
@@ -742,6 +757,7 @@ M.WavCodingMode = {
 
 M.WavSettings = {
     type = "structure",
+    id = "WavSettings",
     members = {
         BitDepth = {
             type = "double",
@@ -766,6 +782,7 @@ M.WavSettings = {
 
 M.AudioCodecSettings = {
     type = "structure",
+    id = "AudioCodecSettings",
     members = {
         AacSettings = setmetatable({ traits = {
             json_name = "aacSettings",
@@ -808,6 +825,7 @@ M.AudioDescriptionLanguageCodeControl = {
 
 M.RemixSettings = {
     type = "structure",
+    id = "RemixSettings",
     members = {
         ChannelMappings = {
             type = "list",
@@ -834,6 +852,7 @@ M.RemixSettings = {
 
 M.AudioDescription = {
     type = "structure",
+    id = "AudioDescription",
     members = {
         AudioNormalizationSettings = setmetatable({ traits = {
             json_name = "audioNormalizationSettings",
@@ -909,6 +928,7 @@ M.AudioDescription = {
 
 M.AudioHlsRenditionSelection = {
     type = "structure",
+    id = "AudioHlsRenditionSelection",
     members = {
         GroupId = {
             type = "string",
@@ -934,6 +954,7 @@ M.AudioLanguageSelectionPolicy = {
 
 M.AudioLanguageSelection = {
     type = "structure",
+    id = "AudioLanguageSelection",
     members = {
         LanguageCode = {
             type = "string",
@@ -953,6 +974,7 @@ M.AudioLanguageSelection = {
 
 M.AudioPidSelection = {
     type = "structure",
+    id = "AudioPidSelection",
     members = {
         Pid = {
             type = "integer",
@@ -978,6 +1000,7 @@ M.DolbyEProgramSelection = {
 
 M.AudioDolbyEDecode = {
     type = "structure",
+    id = "AudioDolbyEDecode",
     members = {
         ProgramSelection = {
             type = "string",
@@ -991,6 +1014,7 @@ M.AudioDolbyEDecode = {
 
 M.AudioTrack = {
     type = "structure",
+    id = "AudioTrack",
     members = {
         Track = {
             type = "integer",
@@ -1004,6 +1028,7 @@ M.AudioTrack = {
 
 M.AudioTrackSelection = {
     type = "structure",
+    id = "AudioTrackSelection",
     members = {
         Tracks = {
             type = "list",
@@ -1021,6 +1046,7 @@ M.AudioTrackSelection = {
 
 M.AudioSelectorSettings = {
     type = "structure",
+    id = "AudioSelectorSettings",
     members = {
         AudioHlsRenditionSelection = setmetatable({ traits = {
             json_name = "audioHlsRenditionSelection",
@@ -1039,6 +1065,7 @@ M.AudioSelectorSettings = {
 
 M.AudioSelector = {
     type = "structure",
+    id = "AudioSelector",
     members = {
         Name = {
             type = "string",
@@ -1055,6 +1082,7 @@ M.AudioSelector = {
 
 M.BatchFailedResultModel = {
     type = "structure",
+    id = "BatchFailedResultModel",
     members = {
         Arn = {
             type = "string",
@@ -1085,6 +1113,7 @@ M.BatchFailedResultModel = {
 
 M.BatchSuccessfulResultModel = {
     type = "structure",
+    id = "BatchSuccessfulResultModel",
     members = {
         Arn = {
             type = "string",
@@ -1130,6 +1159,7 @@ M.DashRoleCaption = {
 
 M.AribDestinationSettings = {
     type = "structure",
+    id = "AribDestinationSettings",
 }
 
 M.BurnInAlignment = {
@@ -1146,6 +1176,7 @@ M.BurnInBackgroundColor = {
 
 M.InputLocation = {
     type = "structure",
+    id = "InputLocation",
     members = {
         PasswordParam = {
             type = "string",
@@ -1206,6 +1237,7 @@ M.BurnInTeletextGridControl = {
 
 M.BurnInDestinationSettings = {
     type = "structure",
+    id = "BurnInDestinationSettings",
     members = {
         Alignment = {
             type = "string",
@@ -1364,6 +1396,7 @@ M.DvbSubDestinationTeletextGridControl = {
 
 M.DvbSubDestinationSettings = {
     type = "structure",
+    id = "DvbSubDestinationSettings",
     members = {
         Alignment = {
             type = "string",
@@ -1485,6 +1518,7 @@ M.EbuTtDDestinationStyleControl = {
 
 M.EbuTtDDestinationSettings = {
     type = "structure",
+    id = "EbuTtDDestinationSettings",
     members = {
         CopyrightHolder = {
             type = "string",
@@ -1527,30 +1561,37 @@ M.EbuTtDDestinationSettings = {
 
 M.EmbeddedDestinationSettings = {
     type = "structure",
+    id = "EmbeddedDestinationSettings",
 }
 
 M.EmbeddedPlusScte20DestinationSettings = {
     type = "structure",
+    id = "EmbeddedPlusScte20DestinationSettings",
 }
 
 M.RtmpCaptionInfoDestinationSettings = {
     type = "structure",
+    id = "RtmpCaptionInfoDestinationSettings",
 }
 
 M.Scte20PlusEmbeddedDestinationSettings = {
     type = "structure",
+    id = "Scte20PlusEmbeddedDestinationSettings",
 }
 
 M.Scte27DestinationSettings = {
     type = "structure",
+    id = "Scte27DestinationSettings",
 }
 
 M.SmpteTtDestinationSettings = {
     type = "structure",
+    id = "SmpteTtDestinationSettings",
 }
 
 M.TeletextDestinationSettings = {
     type = "structure",
+    id = "TeletextDestinationSettings",
 }
 
 M.TtmlDestinationStyleControl = {
@@ -1560,6 +1601,7 @@ M.TtmlDestinationStyleControl = {
 
 M.TtmlDestinationSettings = {
     type = "structure",
+    id = "TtmlDestinationSettings",
     members = {
         StyleControl = {
             type = "string",
@@ -1577,6 +1619,7 @@ M.WebvttDestinationStyleControl = {
 
 M.WebvttDestinationSettings = {
     type = "structure",
+    id = "WebvttDestinationSettings",
     members = {
         StyleControl = {
             type = "string",
@@ -1589,6 +1632,7 @@ M.WebvttDestinationSettings = {
 
 M.CaptionDestinationSettings = {
     type = "structure",
+    id = "CaptionDestinationSettings",
     members = {
         AribDestinationSettings = setmetatable({ traits = {
             json_name = "aribDestinationSettings",
@@ -1634,6 +1678,7 @@ M.CaptionDestinationSettings = {
 
 M.CaptionDescription = {
     type = "structure",
+    id = "CaptionDescription",
     members = {
         Accessibility = {
             type = "string",
@@ -1688,6 +1733,7 @@ M.CaptionDescription = {
 
 M.CaptionLanguageMapping = {
     type = "structure",
+    id = "CaptionLanguageMapping",
     members = {
         CaptionChannel = {
             type = "integer",
@@ -1715,6 +1761,7 @@ M.CaptionLanguageMapping = {
 
 M.AncillarySourceSettings = {
     type = "structure",
+    id = "AncillarySourceSettings",
     members = {
         SourceAncillaryChannelNumber = {
             type = "integer",
@@ -1727,6 +1774,7 @@ M.AncillarySourceSettings = {
 
 M.AribSourceSettings = {
     type = "structure",
+    id = "AribSourceSettings",
 }
 
 M.DvbSubOcrLanguage = {
@@ -1740,6 +1788,7 @@ M.DvbSubOcrLanguage = {
 
 M.DvbSubSourceSettings = {
     type = "structure",
+    id = "DvbSubSourceSettings",
     members = {
         OcrLanguage = {
             type = "string",
@@ -1768,6 +1817,7 @@ M.EmbeddedScte20Detection = {
 
 M.EmbeddedSourceSettings = {
     type = "structure",
+    id = "EmbeddedSourceSettings",
     members = {
         Convert608To708 = {
             type = "string",
@@ -1803,6 +1853,7 @@ M.Scte20Convert608To708 = {
 
 M.Scte20SourceSettings = {
     type = "structure",
+    id = "Scte20SourceSettings",
     members = {
         Convert608To708 = {
             type = "string",
@@ -1830,6 +1881,7 @@ M.Scte27OcrLanguage = {
 
 M.Scte27SourceSettings = {
     type = "structure",
+    id = "Scte27SourceSettings",
     members = {
         OcrLanguage = {
             type = "string",
@@ -1848,6 +1900,7 @@ M.Scte27SourceSettings = {
 
 M.CaptionRectangle = {
     type = "structure",
+    id = "CaptionRectangle",
     members = {
         Height = {
             type = "double",
@@ -1882,6 +1935,7 @@ M.CaptionRectangle = {
 
 M.TeletextSourceSettings = {
     type = "structure",
+    id = "TeletextSourceSettings",
     members = {
         OutputRectangle = setmetatable({ traits = {
             json_name = "outputRectangle",
@@ -1897,6 +1951,7 @@ M.TeletextSourceSettings = {
 
 M.CaptionSelectorSettings = {
     type = "structure",
+    id = "CaptionSelectorSettings",
     members = {
         AncillarySourceSettings = setmetatable({ traits = {
             json_name = "ancillarySourceSettings",
@@ -1924,6 +1979,7 @@ M.CaptionSelectorSettings = {
 
 M.CaptionSelector = {
     type = "structure",
+    id = "CaptionSelector",
     members = {
         LanguageCode = {
             type = "string",
@@ -1951,6 +2007,7 @@ M.ChannelAlertState = {
 
 M.ChannelAlert = {
     type = "structure",
+    id = "ChannelAlert",
     members = {
         AlertType = {
             type = "string",
@@ -2001,6 +2058,7 @@ M.ChannelAlert = {
 
 M.ChannelEgressEndpoint = {
     type = "structure",
+    id = "ChannelEgressEndpoint",
     members = {
         SourceIp = {
             type = "string",
@@ -2013,6 +2071,7 @@ M.ChannelEgressEndpoint = {
 
 M.ChannelEngineVersionResponse = {
     type = "structure",
+    id = "ChannelEngineVersionResponse",
     members = {
         ExpirationDate = {
             type = "timestamp",
@@ -2037,6 +2096,7 @@ M.ChannelPipelineIdToRestart = {
 
 M.DescribeAnywhereSettings = {
     type = "structure",
+    id = "DescribeAnywhereSettings",
     members = {
         ChannelPlacementGroupId = {
             type = "string",
@@ -2062,6 +2122,7 @@ M.CdiInputResolution = {
 
 M.CdiInputSpecification = {
     type = "structure",
+    id = "CdiInputSpecification",
     members = {
         Resolution = {
             type = "string",
@@ -2084,6 +2145,7 @@ M.MediaConnectRouterOutputEncryptionType = {
 
 M.MediaConnectRouterOutputDestinationSettings = {
     type = "structure",
+    id = "MediaConnectRouterOutputDestinationSettings",
     members = {
         EncryptionType = {
             type = "string",
@@ -2102,6 +2164,7 @@ M.MediaConnectRouterOutputDestinationSettings = {
 
 M.MediaPackageOutputDestinationSettings = {
     type = "structure",
+    id = "MediaPackageOutputDestinationSettings",
     members = {
         ChannelId = {
             type = "string",
@@ -2138,6 +2201,7 @@ M.MediaPackageOutputDestinationSettings = {
 
 M.MultiplexProgramChannelDestinationSettings = {
     type = "structure",
+    id = "MultiplexProgramChannelDestinationSettings",
     members = {
         MultiplexId = {
             type = "string",
@@ -2156,6 +2220,7 @@ M.MultiplexProgramChannelDestinationSettings = {
 
 M.OutputDestinationSettings = {
     type = "structure",
+    id = "OutputDestinationSettings",
     members = {
         PasswordParam = {
             type = "string",
@@ -2191,6 +2256,7 @@ M.ConnectionMode = {
 
 M.SrtOutputDestinationSettings = {
     type = "structure",
+    id = "SrtOutputDestinationSettings",
     members = {
         EncryptionPassphraseSecretArn = {
             type = "string",
@@ -2227,6 +2293,7 @@ M.SrtOutputDestinationSettings = {
 
 M.OutputDestination = {
     type = "structure",
+    id = "OutputDestination",
     members = {
         Id = {
             type = "string",
@@ -2277,6 +2344,7 @@ M.OutputDestination = {
 
 M.DescribeInferenceSettings = {
     type = "structure",
+    id = "DescribeInferenceSettings",
     members = {
         FeedArn = {
             type = "string",
@@ -2289,6 +2357,7 @@ M.DescribeInferenceSettings = {
 
 M.AudioSilenceFailoverSettings = {
     type = "structure",
+    id = "AudioSilenceFailoverSettings",
     members = {
         AudioSelectorName = {
             type = "string",
@@ -2308,6 +2377,7 @@ M.AudioSilenceFailoverSettings = {
 
 M.InputLossFailoverSettings = {
     type = "structure",
+    id = "InputLossFailoverSettings",
     members = {
         InputLossThresholdMsec = {
             type = "integer",
@@ -2320,6 +2390,7 @@ M.InputLossFailoverSettings = {
 
 M.VideoBlackFailoverSettings = {
     type = "structure",
+    id = "VideoBlackFailoverSettings",
     members = {
         BlackDetectThreshold = {
             type = "double",
@@ -2338,6 +2409,7 @@ M.VideoBlackFailoverSettings = {
 
 M.FailoverConditionSettings = {
     type = "structure",
+    id = "FailoverConditionSettings",
     members = {
         AudioSilenceSettings = setmetatable({ traits = {
             json_name = "audioSilenceSettings",
@@ -2353,6 +2425,7 @@ M.FailoverConditionSettings = {
 
 M.FailoverCondition = {
     type = "structure",
+    id = "FailoverCondition",
     members = {
         FailoverConditionSettings = setmetatable({ traits = {
             json_name = "failoverConditionSettings",
@@ -2367,6 +2440,7 @@ M.InputPreference = {
 
 M.AutomaticInputFailoverSettings = {
     type = "structure",
+    id = "AutomaticInputFailoverSettings",
     members = {
         ErrorClearTimeMsec = {
             type = "integer",
@@ -2420,6 +2494,7 @@ M.HlsScte35SourceType = {
 
 M.HlsInputSettings = {
     type = "structure",
+    id = "HlsInputSettings",
     members = {
         Bandwidth = {
             type = "integer",
@@ -2456,6 +2531,7 @@ M.HlsInputSettings = {
 
 M.MulticastInputSettings = {
     type = "structure",
+    id = "MulticastInputSettings",
     members = {
         SourceIpAddress = {
             type = "string",
@@ -2473,6 +2549,7 @@ M.NetworkInputServerValidation = {
 
 M.NetworkInputSettings = {
     type = "structure",
+    id = "NetworkInputSettings",
     members = {
         HlsInputSettings = setmetatable({ traits = {
             json_name = "hlsInputSettings",
@@ -2509,6 +2586,7 @@ M.VideoSelectorColorSpace = {
 
 M.Hdr10Settings = {
     type = "structure",
+    id = "Hdr10Settings",
     members = {
         MaxCll = {
             type = "integer",
@@ -2527,6 +2605,7 @@ M.Hdr10Settings = {
 
 M.VideoSelectorColorSpaceSettings = {
     type = "structure",
+    id = "VideoSelectorColorSpaceSettings",
     members = {
         Hdr10Settings = setmetatable({ traits = {
             json_name = "hdr10Settings",
@@ -2541,6 +2620,7 @@ M.VideoSelectorColorSpaceUsage = {
 
 M.VideoSelectorPid = {
     type = "structure",
+    id = "VideoSelectorPid",
     members = {
         Pid = {
             type = "integer",
@@ -2553,6 +2633,7 @@ M.VideoSelectorPid = {
 
 M.VideoSelectorProgramId = {
     type = "structure",
+    id = "VideoSelectorProgramId",
     members = {
         ProgramId = {
             type = "integer",
@@ -2565,6 +2646,7 @@ M.VideoSelectorProgramId = {
 
 M.VideoSelectorSettings = {
     type = "structure",
+    id = "VideoSelectorSettings",
     members = {
         VideoSelectorPid = setmetatable({ traits = {
             json_name = "videoSelectorPid",
@@ -2577,6 +2659,7 @@ M.VideoSelectorSettings = {
 
 M.VideoSelector = {
     type = "structure",
+    id = "VideoSelector",
     members = {
         ColorSpace = {
             type = "string",
@@ -2601,6 +2684,7 @@ M.VideoSelector = {
 
 M.InputSettings = {
     type = "structure",
+    id = "InputSettings",
     members = {
         AudioSelectors = {
             type = "list",
@@ -2669,6 +2753,7 @@ M.InputSettings = {
 
 M.InputAttachment = {
     type = "structure",
+    id = "InputAttachment",
     members = {
         AutomaticInputFailoverSettings = setmetatable({ traits = {
             json_name = "automaticInputFailoverSettings",
@@ -2718,6 +2803,7 @@ M.InputResolution = {
 
 M.InputSpecification = {
     type = "structure",
+    id = "InputSpecification",
     members = {
         Codec = {
             type = "string",
@@ -2747,6 +2833,7 @@ M.LinkedChannelType = {
 
 M.DescribeFollowerChannelSettings = {
     type = "structure",
+    id = "DescribeFollowerChannelSettings",
     members = {
         LinkedChannelType = {
             type = "string",
@@ -2765,6 +2852,7 @@ M.DescribeFollowerChannelSettings = {
 
 M.DescribePrimaryChannelSettings = {
     type = "structure",
+    id = "DescribePrimaryChannelSettings",
     members = {
         FollowingChannelArns = {
             type = "list",
@@ -2784,6 +2872,7 @@ M.DescribePrimaryChannelSettings = {
 
 M.DescribeLinkedChannelSettings = {
     type = "structure",
+    id = "DescribeLinkedChannelSettings",
     members = {
         FollowerChannelSettings = setmetatable({ traits = {
             json_name = "followerChannelSettings",
@@ -2814,6 +2903,7 @@ M.MaintenanceDay = {
 
 M.MaintenanceStatus = {
     type = "structure",
+    id = "MaintenanceStatus",
     members = {
         MaintenanceDay = {
             type = "string",
@@ -2858,6 +2948,7 @@ M.ChannelState = {
 
 M.VpcOutputSettingsDescription = {
     type = "structure",
+    id = "VpcOutputSettingsDescription",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -2892,6 +2983,7 @@ M.VpcOutputSettingsDescription = {
 
 M.ChannelSummary = {
     type = "structure",
+    id = "ChannelSummary",
     members = {
         Arn = {
             type = "string",
@@ -3013,6 +3105,7 @@ M.ChannelSummary = {
 
 M.CloudWatchAlarmTemplateGroupSummary = {
     type = "structure",
+    id = "CloudWatchAlarmTemplateGroupSummary",
     members = {
         Arn = {
             type = "string",
@@ -3110,6 +3203,7 @@ M.CloudWatchAlarmTemplateTreatMissingData = {
 
 M.CloudWatchAlarmTemplateSummary = {
     type = "structure",
+    id = "CloudWatchAlarmTemplateSummary",
     members = {
         Arn = {
             type = "string",
@@ -3240,6 +3334,7 @@ M.ClusterAlertState = {
 
 M.ClusterAlert = {
     type = "structure",
+    id = "ClusterAlert",
     members = {
         AlertType = {
             type = "string",
@@ -3296,6 +3391,7 @@ M.ClusterAlert = {
 
 M.CmafIngestCaptionLanguageMapping = {
     type = "structure",
+    id = "CmafIngestCaptionLanguageMapping",
     members = {
         CaptionChannel = {
             type = "integer",
@@ -3323,6 +3419,7 @@ M.ColorSpace = {
 
 M.ColorCorrection = {
     type = "structure",
+    id = "ColorCorrection",
     members = {
         InputColorSpace = {
             type = "string",
@@ -3360,6 +3457,7 @@ M.ChannelPlacementGroupState = {
 
 M.DescribeChannelPlacementGroupSummary = {
     type = "structure",
+    id = "DescribeChannelPlacementGroupSummary",
     members = {
         Arn = {
             type = "string",
@@ -3414,6 +3512,7 @@ M.ClusterType = {
 
 M.InterfaceMapping = {
     type = "structure",
+    id = "InterfaceMapping",
     members = {
         LogicalInterfaceName = {
             type = "string",
@@ -3432,6 +3531,7 @@ M.InterfaceMapping = {
 
 M.ClusterNetworkSettings = {
     type = "structure",
+    id = "ClusterNetworkSettings",
     members = {
         DefaultRoute = {
             type = "string",
@@ -3460,6 +3560,7 @@ M.ClusterState = {
 
 M.DescribeClusterSummary = {
     type = "structure",
+    id = "DescribeClusterSummary",
     members = {
         Arn = {
             type = "string",
@@ -3512,6 +3613,7 @@ M.DescribeClusterSummary = {
 
 M.IpPool = {
     type = "structure",
+    id = "IpPool",
     members = {
         Cidr = {
             type = "string",
@@ -3524,6 +3626,7 @@ M.IpPool = {
 
 M.Route = {
     type = "structure",
+    id = "Route",
     members = {
         Cidr = {
             type = "string",
@@ -3554,6 +3657,7 @@ M.NetworkState = {
 
 M.DescribeNetworkSummary = {
     type = "structure",
+    id = "DescribeNetworkSummary",
     members = {
         Arn = {
             type = "string",
@@ -3615,6 +3719,7 @@ M.NetworkInterfaceMode = {
 
 M.NodeInterfaceMapping = {
     type = "structure",
+    id = "NodeInterfaceMapping",
     members = {
         LogicalInterfaceName = {
             type = "string",
@@ -3651,6 +3756,7 @@ M.NodeRole = {
 
 M.SdiSourceMapping = {
     type = "structure",
+    id = "SdiSourceMapping",
     members = {
         CardNumber = {
             type = "integer",
@@ -3690,6 +3796,7 @@ M.NodeState = {
 
 M.DescribeNodeSummary = {
     type = "structure",
+    id = "DescribeNodeSummary",
     members = {
         Arn = {
             type = "string",
@@ -3771,6 +3878,7 @@ M.DescribeNodeSummary = {
 
 M.EventBridgeRuleTemplateGroupSummary = {
     type = "structure",
+    id = "EventBridgeRuleTemplateGroupSummary",
     members = {
         Arn = {
             type = "string",
@@ -3850,6 +3958,7 @@ M.EventBridgeRuleTemplateEventType = {
 
 M.EventBridgeRuleTemplateSummary = {
     type = "structure",
+    id = "EventBridgeRuleTemplateSummary",
     members = {
         Arn = {
             type = "string",
@@ -3927,6 +4036,7 @@ M.EventBridgeRuleTemplateSummary = {
 
 M.EventBridgeRuleTemplateTarget = {
     type = "structure",
+    id = "EventBridgeRuleTemplateTarget",
     members = {
         Arn = {
             type = "string",
@@ -3946,6 +4056,7 @@ M.HlsAdMarkers = {
 
 M.InputDestinationRoute = {
     type = "structure",
+    id = "InputDestinationRoute",
     members = {
         Cidr = {
             type = "string",
@@ -3964,6 +4075,7 @@ M.InputDestinationRoute = {
 
 M.InputDestinationVpc = {
     type = "structure",
+    id = "InputDestinationVpc",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -3982,6 +4094,7 @@ M.InputDestinationVpc = {
 
 M.InputDestination = {
     type = "structure",
+    id = "InputDestination",
     members = {
         Ip = {
             type = "string",
@@ -4027,6 +4140,7 @@ M.InputClass = {
 
 M.InputDeviceSettings = {
     type = "structure",
+    id = "InputDeviceSettings",
     members = {
         Id = {
             type = "string",
@@ -4049,6 +4163,7 @@ M.InputSourceType = {
 
 M.MediaConnectFlow = {
     type = "structure",
+    id = "MediaConnectFlow",
     members = {
         FlowArn = {
             type = "string",
@@ -4061,6 +4176,7 @@ M.MediaConnectFlow = {
 
 M.MulticastSource = {
     type = "structure",
+    id = "MulticastSource",
     members = {
         SourceIp = {
             type = "string",
@@ -4080,6 +4196,7 @@ M.MulticastSource = {
 
 M.MulticastSettings = {
     type = "structure",
+    id = "MulticastSettings",
     members = {
         Sources = {
             type = "list",
@@ -4093,6 +4210,7 @@ M.MulticastSettings = {
 
 M.RouterDestination = {
     type = "structure",
+    id = "RouterDestination",
     members = {
         AvailabilityZoneName = {
             type = "string",
@@ -4116,6 +4234,7 @@ M.RouterEncryptionType = {
 
 M.RouterInputSettings = {
     type = "structure",
+    id = "RouterInputSettings",
     members = {
         Destinations = {
             type = "list",
@@ -4141,6 +4260,7 @@ M.RouterInputSettings = {
 
 M.InputSdpLocation = {
     type = "structure",
+    id = "InputSdpLocation",
     members = {
         MediaIndex = {
             type = "integer",
@@ -4159,6 +4279,7 @@ M.InputSdpLocation = {
 
 M.Smpte2110ReceiverGroupSdpSettings = {
     type = "structure",
+    id = "Smpte2110ReceiverGroupSdpSettings",
     members = {
         AncillarySdps = {
             type = "list",
@@ -4182,6 +4303,7 @@ M.Smpte2110ReceiverGroupSdpSettings = {
 
 M.Smpte2110ReceiverGroup = {
     type = "structure",
+    id = "Smpte2110ReceiverGroup",
     members = {
         SdpSettings = setmetatable({ traits = {
             json_name = "sdpSettings",
@@ -4191,6 +4313,7 @@ M.Smpte2110ReceiverGroup = {
 
 M.Smpte2110ReceiverGroupSettings = {
     type = "structure",
+    id = "Smpte2110ReceiverGroupSettings",
     members = {
         Smpte2110ReceiverGroups = {
             type = "list",
@@ -4204,6 +4327,7 @@ M.Smpte2110ReceiverGroupSettings = {
 
 M.InputSource = {
     type = "structure",
+    id = "InputSource",
     members = {
         PasswordParam = {
             type = "string",
@@ -4234,6 +4358,7 @@ M.Algorithm = {
 
 M.SrtCallerDecryption = {
     type = "structure",
+    id = "SrtCallerDecryption",
     members = {
         Algorithm = {
             type = "string",
@@ -4252,6 +4377,7 @@ M.SrtCallerDecryption = {
 
 M.SrtCallerSource = {
     type = "structure",
+    id = "SrtCallerSource",
     members = {
         Decryption = setmetatable({ traits = {
             json_name = "decryption",
@@ -4285,6 +4411,7 @@ M.SrtCallerSource = {
 
 M.SrtListenerDecryption = {
     type = "structure",
+    id = "SrtListenerDecryption",
     members = {
         Algorithm = {
             type = "string",
@@ -4305,6 +4432,7 @@ M.SrtListenerDecryption = {
 
 M.SrtListenerSettings = {
     type = "structure",
+    id = "SrtListenerSettings",
     members = {
         Decryption = setmetatable({ traits = {
             json_name = "decryption",
@@ -4326,6 +4454,7 @@ M.SrtListenerSettings = {
 
 M.SrtSettings = {
     type = "structure",
+    id = "SrtSettings",
     members = {
         SrtCallerSources = {
             type = "list",
@@ -4369,6 +4498,7 @@ M.InputType = {
 
 M.Input = {
     type = "structure",
+    id = "Input",
     members = {
         Arn = {
             type = "string",
@@ -4505,6 +4635,7 @@ M.Input = {
 
 M.InputRequestDestinationRoute = {
     type = "structure",
+    id = "InputRequestDestinationRoute",
     members = {
         Cidr = {
             type = "string",
@@ -4523,6 +4654,7 @@ M.InputRequestDestinationRoute = {
 
 M.InputDestinationRequest = {
     type = "structure",
+    id = "InputDestinationRequest",
     members = {
         StreamName = {
             type = "string",
@@ -4565,6 +4697,7 @@ M.InputDeviceConfigurableAudioChannelPairProfile = {
 
 M.InputDeviceConfigurableAudioChannelPairConfig = {
     type = "structure",
+    id = "InputDeviceConfigurableAudioChannelPairConfig",
     members = {
         Id = {
             type = "integer",
@@ -4583,6 +4716,7 @@ M.InputDeviceConfigurableAudioChannelPairConfig = {
 
 M.InputDeviceRequest = {
     type = "structure",
+    id = "InputDeviceRequest",
     members = {
         Id = {
             type = "string",
@@ -4632,6 +4766,7 @@ M.InputDeviceScanType = {
 
 M.InputDeviceHdSettings = {
     type = "structure",
+    id = "InputDeviceHdSettings",
     members = {
         ActiveInput = {
             type = "string",
@@ -4697,6 +4832,7 @@ M.InputDeviceIpScheme = {
 
 M.InputDeviceNetworkSettings = {
     type = "structure",
+    id = "InputDeviceNetworkSettings",
     members = {
         DnsAddresses = {
             type = "list",
@@ -4756,6 +4892,7 @@ M.InputDeviceUhdAudioChannelPairProfile = {
 
 M.InputDeviceUhdAudioChannelPairConfig = {
     type = "structure",
+    id = "InputDeviceUhdAudioChannelPairConfig",
     members = {
         Id = {
             type = "integer",
@@ -4779,6 +4916,7 @@ M.InputDeviceCodec = {
 
 M.InputDeviceMediaConnectSettings = {
     type = "structure",
+    id = "InputDeviceMediaConnectSettings",
     members = {
         FlowArn = {
             type = "string",
@@ -4809,6 +4947,7 @@ M.InputDeviceMediaConnectSettings = {
 
 M.InputDeviceUhdSettings = {
     type = "structure",
+    id = "InputDeviceUhdSettings",
     members = {
         ActiveInput = {
             type = "string",
@@ -4891,6 +5030,7 @@ M.InputDeviceUhdSettings = {
 
 M.InputDeviceSummary = {
     type = "structure",
+    id = "InputDeviceSummary",
     members = {
         Arn = {
             type = "string",
@@ -4994,6 +5134,7 @@ M.InputSecurityGroupState = {
 
 M.InputWhitelistRule = {
     type = "structure",
+    id = "InputWhitelistRule",
     members = {
         Cidr = {
             type = "string",
@@ -5006,6 +5147,7 @@ M.InputWhitelistRule = {
 
 M.InputSecurityGroup = {
     type = "structure",
+    id = "InputSecurityGroup",
     members = {
         Arn = {
             type = "string",
@@ -5059,6 +5201,7 @@ M.InputSecurityGroup = {
 
 M.InputSourceRequest = {
     type = "structure",
+    id = "InputSourceRequest",
     members = {
         PasswordParam = {
             type = "string",
@@ -5083,6 +5226,7 @@ M.InputSourceRequest = {
 
 M.InputWhitelistRuleCidr = {
     type = "structure",
+    id = "InputWhitelistRuleCidr",
     members = {
         Cidr = {
             type = "string",
@@ -5095,6 +5239,7 @@ M.InputWhitelistRuleCidr = {
 
 M.InterfaceMappingCreateRequest = {
     type = "structure",
+    id = "InterfaceMappingCreateRequest",
     members = {
         LogicalInterfaceName = {
             type = "string",
@@ -5113,6 +5258,7 @@ M.InterfaceMappingCreateRequest = {
 
 M.InterfaceMappingUpdateRequest = {
     type = "structure",
+    id = "InterfaceMappingUpdateRequest",
     members = {
         LogicalInterfaceName = {
             type = "string",
@@ -5131,6 +5277,7 @@ M.InterfaceMappingUpdateRequest = {
 
 M.IpPoolCreateRequest = {
     type = "structure",
+    id = "IpPoolCreateRequest",
     members = {
         Cidr = {
             type = "string",
@@ -5143,6 +5290,7 @@ M.IpPoolCreateRequest = {
 
 M.IpPoolUpdateRequest = {
     type = "structure",
+    id = "IpPoolUpdateRequest",
     members = {
         Cidr = {
             type = "string",
@@ -5155,6 +5303,7 @@ M.IpPoolUpdateRequest = {
 
 M.MediaConnectFlowRequest = {
     type = "structure",
+    id = "MediaConnectFlowRequest",
     members = {
         FlowArn = {
             type = "string",
@@ -5167,6 +5316,7 @@ M.MediaConnectFlowRequest = {
 
 M.MediaPackageAdditionalDestinations = {
     type = "structure",
+    id = "MediaPackageAdditionalDestinations",
     members = {
         Destination = setmetatable({ traits = {
             json_name = "destination",
@@ -5177,6 +5327,7 @@ M.MediaPackageAdditionalDestinations = {
 
 M.MediaResourceNeighbor = {
     type = "structure",
+    id = "MediaResourceNeighbor",
     members = {
         Arn = {
             type = "string",
@@ -5196,6 +5347,7 @@ M.MediaResourceNeighbor = {
 
 M.MulticastSourceCreateRequest = {
     type = "structure",
+    id = "MulticastSourceCreateRequest",
     members = {
         SourceIp = {
             type = "string",
@@ -5215,6 +5367,7 @@ M.MulticastSourceCreateRequest = {
 
 M.MulticastSourceUpdateRequest = {
     type = "structure",
+    id = "MulticastSourceUpdateRequest",
     members = {
         SourceIp = {
             type = "string",
@@ -5239,6 +5392,7 @@ M.MultiplexAlertState = {
 
 M.MultiplexAlert = {
     type = "structure",
+    id = "MultiplexAlert",
     members = {
         AlertType = {
             type = "string",
@@ -5289,6 +5443,7 @@ M.MultiplexAlert = {
 
 M.MultiplexMediaConnectOutputDestinationSettings = {
     type = "structure",
+    id = "MultiplexMediaConnectOutputDestinationSettings",
     members = {
         EntitlementArn = {
             type = "string",
@@ -5301,6 +5456,7 @@ M.MultiplexMediaConnectOutputDestinationSettings = {
 
 M.MultiplexOutputDestination = {
     type = "structure",
+    id = "MultiplexOutputDestination",
     members = {
         MediaConnectSettings = setmetatable({ traits = {
             json_name = "mediaConnectSettings",
@@ -5310,6 +5466,7 @@ M.MultiplexOutputDestination = {
 
 M.MultiplexProgramPipelineDetail = {
     type = "structure",
+    id = "MultiplexProgramPipelineDetail",
     members = {
         ActiveChannelPipeline = {
             type = "string",
@@ -5328,6 +5485,7 @@ M.MultiplexProgramPipelineDetail = {
 
 M.MultiplexProgramSummary = {
     type = "structure",
+    id = "MultiplexProgramSummary",
     members = {
         ChannelId = {
             type = "string",
@@ -5346,6 +5504,7 @@ M.MultiplexProgramSummary = {
 
 M.MultiplexSettingsSummary = {
     type = "structure",
+    id = "MultiplexSettingsSummary",
     members = {
         TransportStreamBitrate = {
             type = "integer",
@@ -5370,6 +5529,7 @@ M.MultiplexState = {
 
 M.MultiplexSummary = {
     type = "structure",
+    id = "MultiplexSummary",
     members = {
         Arn = {
             type = "string",
@@ -5430,6 +5590,7 @@ M.MultiplexSummary = {
 
 M.NodeInterfaceMappingCreateRequest = {
     type = "structure",
+    id = "NodeInterfaceMappingCreateRequest",
     members = {
         LogicalInterfaceName = {
             type = "string",
@@ -5509,6 +5670,7 @@ M.ReservationVideoQuality = {
 
 M.ReservationResourceSpecification = {
     type = "structure",
+    id = "ReservationResourceSpecification",
     members = {
         ChannelClass = {
             type = "string",
@@ -5563,6 +5725,7 @@ M.ReservationResourceSpecification = {
 
 M.Offering = {
     type = "structure",
+    id = "Offering",
     members = {
         Arn = {
             type = "string",
@@ -5667,6 +5830,7 @@ M.M2tsCcDescriptor = {
 
 M.DvbNitSettings = {
     type = "structure",
+    id = "DvbNitSettings",
     members = {
         NetworkId = {
             type = "integer",
@@ -5700,6 +5864,7 @@ M.DvbSdtOutputSdt = {
 
 M.DvbSdtSettings = {
     type = "structure",
+    id = "DvbSdtSettings",
     members = {
         OutputSdt = {
             type = "string",
@@ -5730,6 +5895,7 @@ M.DvbSdtSettings = {
 
 M.DvbTdtSettings = {
     type = "structure",
+    id = "DvbTdtSettings",
     members = {
         RepInterval = {
             type = "integer",
@@ -5806,6 +5972,7 @@ M.M2tsTimedMetadataBehavior = {
 
 M.M2tsSettings = {
     type = "structure",
+    id = "M2tsSettings",
     members = {
         AbsentInputAudioBehavior = {
             type = "string",
@@ -6091,10 +6258,12 @@ M.M2tsSettings = {
 
 M.RawSettings = {
     type = "structure",
+    id = "RawSettings",
 }
 
 M.ArchiveContainerSettings = {
     type = "structure",
+    id = "ArchiveContainerSettings",
     members = {
         M2tsSettings = setmetatable({ traits = {
             json_name = "m2tsSettings",
@@ -6107,6 +6276,7 @@ M.ArchiveContainerSettings = {
 
 M.ArchiveOutputSettings = {
     type = "structure",
+    id = "ArchiveOutputSettings",
     members = {
         ContainerSettings = setmetatable({ traits = {
             json_name = "containerSettings",
@@ -6129,6 +6299,7 @@ M.ArchiveOutputSettings = {
 
 M.CmafIngestOutputSettings = {
     type = "structure",
+    id = "CmafIngestOutputSettings",
     members = {
         NameModifier = {
             type = "string",
@@ -6141,6 +6312,7 @@ M.CmafIngestOutputSettings = {
 
 M.FrameCaptureOutputSettings = {
     type = "structure",
+    id = "FrameCaptureOutputSettings",
     members = {
         NameModifier = {
             type = "string",
@@ -6170,6 +6342,7 @@ M.AudioOnlyHlsSegmentType = {
 
 M.AudioOnlyHlsSettings = {
     type = "structure",
+    id = "AudioOnlyHlsSettings",
     members = {
         AudioGroupId = {
             type = "string",
@@ -6207,6 +6380,7 @@ M.Fmp4TimedMetadataBehavior = {
 
 M.Fmp4HlsSettings = {
     type = "structure",
+    id = "Fmp4HlsSettings",
     members = {
         AudioRenditionSets = {
             type = "string",
@@ -6231,6 +6405,7 @@ M.Fmp4HlsSettings = {
 
 M.FrameCaptureHlsSettings = {
     type = "structure",
+    id = "FrameCaptureHlsSettings",
 }
 
 M.M3u8KlvBehavior = {
@@ -6260,6 +6435,7 @@ M.M3u8TimedMetadataBehavior = {
 
 M.M3u8Settings = {
     type = "structure",
+    id = "M3u8Settings",
     members = {
         AudioFramesPerPes = {
             type = "integer",
@@ -6380,6 +6556,7 @@ M.M3u8Settings = {
 
 M.StandardHlsSettings = {
     type = "structure",
+    id = "StandardHlsSettings",
     members = {
         AudioRenditionSets = {
             type = "string",
@@ -6396,6 +6573,7 @@ M.StandardHlsSettings = {
 
 M.HlsSettings = {
     type = "structure",
+    id = "HlsSettings",
     members = {
         AudioOnlyHlsSettings = setmetatable({ traits = {
             json_name = "audioOnlyHlsSettings",
@@ -6414,6 +6592,7 @@ M.HlsSettings = {
 
 M.HlsOutputSettings = {
     type = "structure",
+    id = "HlsOutputSettings",
     members = {
         H265PackagingType = {
             type = "string",
@@ -6442,6 +6621,7 @@ M.HlsOutputSettings = {
 
 M.MediaConnectRouterOutputConnectionMap = {
     type = "structure",
+    id = "MediaConnectRouterOutputConnectionMap",
     members = {
         Pipeline0 = {
             type = "string",
@@ -6460,6 +6640,7 @@ M.MediaConnectRouterOutputConnectionMap = {
 
 M.MediaConnectRouterContainerSettings = {
     type = "structure",
+    id = "MediaConnectRouterContainerSettings",
     members = {
         M2tsSettings = setmetatable({ traits = {
             json_name = "m2tsSettings",
@@ -6469,6 +6650,7 @@ M.MediaConnectRouterContainerSettings = {
 
 M.MediaConnectRouterOutputSettings = {
     type = "structure",
+    id = "MediaConnectRouterOutputSettings",
     members = {
         ConnectedRouterInputs = setmetatable({ traits = {
             json_name = "connectedRouterInputs",
@@ -6498,6 +6680,7 @@ M.HlsDefault = {
 
 M.MediaPackageV2DestinationSettings = {
     type = "structure",
+    id = "MediaPackageV2DestinationSettings",
     members = {
         AudioGroupId = {
             type = "string",
@@ -6528,6 +6711,7 @@ M.MediaPackageV2DestinationSettings = {
 
 M.MediaPackageOutputSettings = {
     type = "structure",
+    id = "MediaPackageOutputSettings",
     members = {
         MediaPackageV2DestinationSettings = setmetatable({ traits = {
             json_name = "mediaPackageV2DestinationSettings",
@@ -6542,6 +6726,7 @@ M.MsSmoothH265PackagingType = {
 
 M.MsSmoothOutputSettings = {
     type = "structure",
+    id = "MsSmoothOutputSettings",
     members = {
         H265PackagingType = {
             type = "string",
@@ -6560,6 +6745,7 @@ M.MsSmoothOutputSettings = {
 
 M.MultiplexM2tsSettings = {
     type = "structure",
+    id = "MultiplexM2tsSettings",
     members = {
         AbsentInputAudioBehavior = {
             type = "string",
@@ -6650,6 +6836,7 @@ M.MultiplexM2tsSettings = {
 
 M.MultiplexContainerSettings = {
     type = "structure",
+    id = "MultiplexContainerSettings",
     members = {
         MultiplexM2tsSettings = setmetatable({ traits = {
             json_name = "multiplexM2tsSettings",
@@ -6659,6 +6846,7 @@ M.MultiplexContainerSettings = {
 
 M.MultiplexOutputSettings = {
     type = "structure",
+    id = "MultiplexOutputSettings",
     members = {
         Destination = setmetatable({ traits = {
             json_name = "destination",
@@ -6677,6 +6865,7 @@ M.RtmpOutputCertificateMode = {
 
 M.RtmpOutputSettings = {
     type = "structure",
+    id = "RtmpOutputSettings",
     members = {
         CertificateMode = {
             type = "string",
@@ -6705,6 +6894,7 @@ M.RtmpOutputSettings = {
 
 M.UdpContainerSettings = {
     type = "structure",
+    id = "UdpContainerSettings",
     members = {
         M2tsSettings = setmetatable({ traits = {
             json_name = "m2tsSettings",
@@ -6720,6 +6910,7 @@ M.SrtEncryptionType = {
 
 M.SrtOutputSettings = {
     type = "structure",
+    id = "SrtOutputSettings",
     members = {
         BufferMsec = {
             type = "integer",
@@ -6757,6 +6948,7 @@ M.FecOutputIncludeFec = {
 
 M.FecOutputSettings = {
     type = "structure",
+    id = "FecOutputSettings",
     members = {
         ColumnDepth = {
             type = "integer",
@@ -6781,6 +6973,7 @@ M.FecOutputSettings = {
 
 M.UdpOutputSettings = {
     type = "structure",
+    id = "UdpOutputSettings",
     members = {
         BufferMsec = {
             type = "integer",
@@ -6804,6 +6997,7 @@ M.UdpOutputSettings = {
 
 M.OutputSettings = {
     type = "structure",
+    id = "OutputSettings",
     members = {
         ArchiveOutputSettings = setmetatable({ traits = {
             json_name = "archiveOutputSettings",
@@ -6843,6 +7037,7 @@ M.OutputSettings = {
 
 M.Output = {
     type = "structure",
+    id = "Output",
     members = {
         AudioDescriptionNames = {
             type = "list",
@@ -6886,6 +7081,7 @@ M.S3CannedAcl = {
 
 M.ArchiveS3Settings = {
     type = "structure",
+    id = "ArchiveS3Settings",
     members = {
         CannedAcl = {
             type = "string",
@@ -6898,6 +7094,7 @@ M.ArchiveS3Settings = {
 
 M.ArchiveCdnSettings = {
     type = "structure",
+    id = "ArchiveCdnSettings",
     members = {
         ArchiveS3Settings = setmetatable({ traits = {
             json_name = "archiveS3Settings",
@@ -6907,6 +7104,7 @@ M.ArchiveCdnSettings = {
 
 M.ArchiveGroupSettings = {
     type = "structure",
+    id = "ArchiveGroupSettings",
     members = {
         ArchiveCdnSettings = setmetatable({ traits = {
             json_name = "archiveCdnSettings",
@@ -6962,6 +7160,7 @@ M.CmafTimedMetadataPassthrough = {
 
 M.CmafIngestGroupSettings = {
     type = "structure",
+    id = "CmafIngestGroupSettings",
     members = {
         Destination = setmetatable({ traits = {
             json_name = "destination",
@@ -7070,6 +7269,7 @@ M.CmafIngestGroupSettings = {
 
 M.FrameCaptureS3Settings = {
     type = "structure",
+    id = "FrameCaptureS3Settings",
     members = {
         CannedAcl = {
             type = "string",
@@ -7082,6 +7282,7 @@ M.FrameCaptureS3Settings = {
 
 M.FrameCaptureCdnSettings = {
     type = "structure",
+    id = "FrameCaptureCdnSettings",
     members = {
         FrameCaptureS3Settings = setmetatable({ traits = {
             json_name = "frameCaptureS3Settings",
@@ -7091,6 +7292,7 @@ M.FrameCaptureCdnSettings = {
 
 M.FrameCaptureGroupSettings = {
     type = "structure",
+    id = "FrameCaptureGroupSettings",
     members = {
         Destination = setmetatable({ traits = {
             json_name = "destination",
@@ -7140,6 +7342,7 @@ M.HlsAkamaiHttpTransferMode = {
 
 M.HlsAkamaiSettings = {
     type = "structure",
+    id = "HlsAkamaiSettings",
     members = {
         ConnectionRetryInterval = {
             type = "integer",
@@ -7188,6 +7391,7 @@ M.HlsAkamaiSettings = {
 
 M.HlsBasicPutSettings = {
     type = "structure",
+    id = "HlsBasicPutSettings",
     members = {
         ConnectionRetryInterval = {
             type = "integer",
@@ -7222,6 +7426,7 @@ M.HlsMediaStoreStorageClass = {
 
 M.HlsMediaStoreSettings = {
     type = "structure",
+    id = "HlsMediaStoreSettings",
     members = {
         ConnectionRetryInterval = {
             type = "integer",
@@ -7258,6 +7463,7 @@ M.HlsMediaStoreSettings = {
 
 M.HlsS3Settings = {
     type = "structure",
+    id = "HlsS3Settings",
     members = {
         CannedAcl = {
             type = "string",
@@ -7275,6 +7481,7 @@ M.HlsWebdavHttpTransferMode = {
 
 M.HlsWebdavSettings = {
     type = "structure",
+    id = "HlsWebdavSettings",
     members = {
         ConnectionRetryInterval = {
             type = "integer",
@@ -7311,6 +7518,7 @@ M.HlsWebdavSettings = {
 
 M.HlsCdnSettings = {
     type = "structure",
+    id = "HlsCdnSettings",
     members = {
         HlsAkamaiSettings = setmetatable({ traits = {
             json_name = "hlsAkamaiSettings",
@@ -7362,6 +7570,7 @@ M.HlsIvSource = {
 
 M.StaticKeySettings = {
     type = "structure",
+    id = "StaticKeySettings",
     members = {
         KeyProviderServer = setmetatable({ traits = {
             json_name = "keyProviderServer",
@@ -7378,6 +7587,7 @@ M.StaticKeySettings = {
 
 M.KeyProviderSettings = {
     type = "structure",
+    id = "KeyProviderSettings",
     members = {
         StaticKeySettings = setmetatable({ traits = {
             json_name = "staticKeySettings",
@@ -7444,6 +7654,7 @@ M.HlsTsFileMode = {
 
 M.HlsGroupSettings = {
     type = "structure",
+    id = "HlsGroupSettings",
     members = {
         AdMarkers = {
             type = "list",
@@ -7702,6 +7913,7 @@ M.HlsGroupSettings = {
 
 M.MediaConnectRouterGroupSettings = {
     type = "structure",
+    id = "MediaConnectRouterGroupSettings",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -7715,6 +7927,7 @@ M.MediaConnectRouterGroupSettings = {
 
 M.MediaPackageV2GroupSettings = {
     type = "structure",
+    id = "MediaPackageV2GroupSettings",
     members = {
         CaptionLanguageMappings = {
             type = "list",
@@ -7789,6 +8002,7 @@ M.MediaPackageV2GroupSettings = {
 
 M.MediaPackageGroupSettings = {
     type = "structure",
+    id = "MediaPackageGroupSettings",
     members = {
         Destination = setmetatable({ traits = {
             json_name = "destination",
@@ -7849,6 +8063,7 @@ M.SmoothGroupTimestampOffsetMode = {
 
 M.MsSmoothGroupSettings = {
     type = "structure",
+    id = "MsSmoothGroupSettings",
     members = {
         AcquisitionPointId = {
             type = "string",
@@ -7967,6 +8182,7 @@ M.MsSmoothGroupSettings = {
 
 M.MultiplexGroupSettings = {
     type = "structure",
+    id = "MultiplexGroupSettings",
 }
 
 M.RtmpAdMarkers = {
@@ -8002,6 +8218,7 @@ M.InputLossActionForRtmpOut = {
 
 M.RtmpGroupSettings = {
     type = "structure",
+    id = "RtmpGroupSettings",
     members = {
         AdMarkers = {
             type = "list",
@@ -8063,6 +8280,7 @@ M.InputLossActionForUdpOut = {
 
 M.SrtGroupSettings = {
     type = "structure",
+    id = "SrtGroupSettings",
     members = {
         InputLossAction = {
             type = "string",
@@ -8081,6 +8299,7 @@ M.UdpTimedMetadataId3Frame = {
 
 M.UdpGroupSettings = {
     type = "structure",
+    id = "UdpGroupSettings",
     members = {
         InputLossAction = {
             type = "string",
@@ -8105,6 +8324,7 @@ M.UdpGroupSettings = {
 
 M.OutputGroupSettings = {
     type = "structure",
+    id = "OutputGroupSettings",
     members = {
         ArchiveGroupSettings = setmetatable({ traits = {
             json_name = "archiveGroupSettings",
@@ -8144,6 +8364,7 @@ M.OutputGroupSettings = {
 
 M.OutputGroup = {
     type = "structure",
+    id = "OutputGroup",
     members = {
         Name = {
             type = "string",
@@ -8168,6 +8389,7 @@ M.OutputGroup = {
 
 M.PipelineDetail = {
     type = "structure",
+    id = "PipelineDetail",
     members = {
         ActiveInputAttachmentName = {
             type = "string",
@@ -8212,6 +8434,7 @@ M.PipelineId = {
 
 M.PipelinePauseStateSettings = {
     type = "structure",
+    id = "PipelinePauseStateSettings",
     members = {
         PipelineId = {
             type = "string",
@@ -8231,6 +8454,7 @@ M.ReservationAutomaticRenewal = {
 
 M.RenewalSettings = {
     type = "structure",
+    id = "RenewalSettings",
     members = {
         AutomaticRenewal = {
             type = "string",
@@ -8256,6 +8480,7 @@ M.ReservationState = {
 
 M.Reservation = {
     type = "structure",
+    id = "Reservation",
     members = {
         Arn = {
             type = "string",
@@ -8372,6 +8597,7 @@ M.Reservation = {
 
 M.RouteCreateRequest = {
     type = "structure",
+    id = "RouteCreateRequest",
     members = {
         Cidr = {
             type = "string",
@@ -8390,6 +8616,7 @@ M.RouteCreateRequest = {
 
 M.RouterDestinationSettings = {
     type = "structure",
+    id = "RouterDestinationSettings",
     members = {
         AvailabilityZoneName = {
             type = "string",
@@ -8403,6 +8630,7 @@ M.RouterDestinationSettings = {
 
 M.RouteUpdateRequest = {
     type = "structure",
+    id = "RouteUpdateRequest",
     members = {
         Cidr = {
             type = "string",
@@ -8421,6 +8649,7 @@ M.RouteUpdateRequest = {
 
 M.HlsId3SegmentTaggingScheduleActionSettings = {
     type = "structure",
+    id = "HlsId3SegmentTaggingScheduleActionSettings",
     members = {
         Tag = {
             type = "string",
@@ -8439,6 +8668,7 @@ M.HlsId3SegmentTaggingScheduleActionSettings = {
 
 M.HlsTimedMetadataScheduleActionSettings = {
     type = "structure",
+    id = "HlsTimedMetadataScheduleActionSettings",
     members = {
         Id3 = {
             type = "string",
@@ -8452,6 +8682,7 @@ M.HlsTimedMetadataScheduleActionSettings = {
 
 M.Id3SegmentTaggingScheduleActionSettings = {
     type = "structure",
+    id = "Id3SegmentTaggingScheduleActionSettings",
     members = {
         Id3 = {
             type = "string",
@@ -8475,6 +8706,7 @@ M.InputTimecodeSource = {
 
 M.StartTimecode = {
     type = "structure",
+    id = "StartTimecode",
     members = {
         Timecode = {
             type = "string",
@@ -8492,6 +8724,7 @@ M.LastFrameClippingBehavior = {
 
 M.StopTimecode = {
     type = "structure",
+    id = "StopTimecode",
     members = {
         LastFrameClippingBehavior = {
             type = "string",
@@ -8510,6 +8743,7 @@ M.StopTimecode = {
 
 M.InputClippingSettings = {
     type = "structure",
+    id = "InputClippingSettings",
     members = {
         InputTimecodeSource = {
             type = "string",
@@ -8529,6 +8763,7 @@ M.InputClippingSettings = {
 
 M.InputPrepareScheduleActionSettings = {
     type = "structure",
+    id = "InputPrepareScheduleActionSettings",
     members = {
         InputAttachmentNameReference = {
             type = "string",
@@ -8551,6 +8786,7 @@ M.InputPrepareScheduleActionSettings = {
 
 M.InputSwitchScheduleActionSettings = {
     type = "structure",
+    id = "InputSwitchScheduleActionSettings",
     members = {
         InputAttachmentNameReference = {
             type = "string",
@@ -8574,6 +8810,7 @@ M.InputSwitchScheduleActionSettings = {
 
 M.MotionGraphicsActivateScheduleActionSettings = {
     type = "structure",
+    id = "MotionGraphicsActivateScheduleActionSettings",
     members = {
         Duration = {
             type = "long",
@@ -8604,10 +8841,12 @@ M.MotionGraphicsActivateScheduleActionSettings = {
 
 M.MotionGraphicsDeactivateScheduleActionSettings = {
     type = "structure",
+    id = "MotionGraphicsDeactivateScheduleActionSettings",
 }
 
 M.PauseStateScheduleActionSettings = {
     type = "structure",
+    id = "PauseStateScheduleActionSettings",
     members = {
         Pipelines = {
             type = "list",
@@ -8626,6 +8865,7 @@ M.Scte35InputMode = {
 
 M.Scte35InputScheduleActionSettings = {
     type = "structure",
+    id = "Scte35InputScheduleActionSettings",
     members = {
         InputAttachmentNameReference = {
             type = "string",
@@ -8645,6 +8885,7 @@ M.Scte35InputScheduleActionSettings = {
 
 M.Scte35ReturnToNetworkScheduleActionSettings = {
     type = "structure",
+    id = "Scte35ReturnToNetworkScheduleActionSettings",
     members = {
         SpliceEventId = {
             type = "long",
@@ -8658,6 +8899,7 @@ M.Scte35ReturnToNetworkScheduleActionSettings = {
 
 M.Scte35SpliceInsertScheduleActionSettings = {
     type = "structure",
+    id = "Scte35SpliceInsertScheduleActionSettings",
     members = {
         Duration = {
             type = "long",
@@ -8699,6 +8941,7 @@ M.Scte35WebDeliveryAllowedFlag = {
 
 M.Scte35DeliveryRestrictions = {
     type = "structure",
+    id = "Scte35DeliveryRestrictions",
     members = {
         ArchiveAllowedFlag = {
             type = "string",
@@ -8738,6 +8981,7 @@ M.Scte35SegmentationCancelIndicator = {
 
 M.Scte35SegmentationDescriptor = {
     type = "structure",
+    id = "Scte35SegmentationDescriptor",
     members = {
         DeliveryRestrictions = setmetatable({ traits = {
             json_name = "deliveryRestrictions",
@@ -8809,6 +9053,7 @@ M.Scte35SegmentationDescriptor = {
 
 M.Scte35DescriptorSettings = {
     type = "structure",
+    id = "Scte35DescriptorSettings",
     members = {
         SegmentationDescriptorScte35DescriptorSettings = setmetatable({ traits = {
             json_name = "segmentationDescriptorScte35DescriptorSettings",
@@ -8819,6 +9064,7 @@ M.Scte35DescriptorSettings = {
 
 M.Scte35Descriptor = {
     type = "structure",
+    id = "Scte35Descriptor",
     members = {
         Scte35DescriptorSettings = setmetatable({ traits = {
             json_name = "scte35DescriptorSettings",
@@ -8829,6 +9075,7 @@ M.Scte35Descriptor = {
 
 M.Scte35TimeSignalScheduleActionSettings = {
     type = "structure",
+    id = "Scte35TimeSignalScheduleActionSettings",
     members = {
         Scte35Descriptors = {
             type = "list",
@@ -8843,6 +9090,7 @@ M.Scte35TimeSignalScheduleActionSettings = {
 
 M.StaticImageActivateScheduleActionSettings = {
     type = "structure",
+    id = "StaticImageActivateScheduleActionSettings",
     members = {
         Duration = {
             type = "integer",
@@ -8907,6 +9155,7 @@ M.StaticImageActivateScheduleActionSettings = {
 
 M.StaticImageDeactivateScheduleActionSettings = {
     type = "structure",
+    id = "StaticImageDeactivateScheduleActionSettings",
     members = {
         FadeOut = {
             type = "integer",
@@ -8925,6 +9174,7 @@ M.StaticImageDeactivateScheduleActionSettings = {
 
 M.StaticImageOutputActivateScheduleActionSettings = {
     type = "structure",
+    id = "StaticImageOutputActivateScheduleActionSettings",
     members = {
         Duration = {
             type = "integer",
@@ -8997,6 +9247,7 @@ M.StaticImageOutputActivateScheduleActionSettings = {
 
 M.StaticImageOutputDeactivateScheduleActionSettings = {
     type = "structure",
+    id = "StaticImageOutputDeactivateScheduleActionSettings",
     members = {
         FadeOut = {
             type = "integer",
@@ -9023,6 +9274,7 @@ M.StaticImageOutputDeactivateScheduleActionSettings = {
 
 M.TimedMetadataScheduleActionSettings = {
     type = "structure",
+    id = "TimedMetadataScheduleActionSettings",
     members = {
         Id3 = {
             type = "string",
@@ -9036,6 +9288,7 @@ M.TimedMetadataScheduleActionSettings = {
 
 M.ScheduleActionSettings = {
     type = "structure",
+    id = "ScheduleActionSettings",
     members = {
         HlsId3SegmentTaggingSettings = setmetatable({ traits = {
             json_name = "hlsId3SegmentTaggingSettings",
@@ -9093,6 +9346,7 @@ M.ScheduleActionSettings = {
 
 M.FixedModeScheduleActionStartSettings = {
     type = "structure",
+    id = "FixedModeScheduleActionStartSettings",
     members = {
         Time = {
             type = "string",
@@ -9111,6 +9365,7 @@ M.FollowPoint = {
 
 M.FollowModeScheduleActionStartSettings = {
     type = "structure",
+    id = "FollowModeScheduleActionStartSettings",
     members = {
         FollowPoint = {
             type = "string",
@@ -9131,10 +9386,12 @@ M.FollowModeScheduleActionStartSettings = {
 
 M.ImmediateModeScheduleActionStartSettings = {
     type = "structure",
+    id = "ImmediateModeScheduleActionStartSettings",
 }
 
 M.ScheduleActionStartSettings = {
     type = "structure",
+    id = "ScheduleActionStartSettings",
     members = {
         FixedModeScheduleActionStartSettings = setmetatable({ traits = {
             json_name = "fixedModeScheduleActionStartSettings",
@@ -9150,6 +9407,7 @@ M.ScheduleActionStartSettings = {
 
 M.ScheduleAction = {
     type = "structure",
+    id = "ScheduleAction",
     members = {
         ActionName = {
             type = "string",
@@ -9187,6 +9445,7 @@ M.SdiSourceType = {
 
 M.SdiSourceSummary = {
     type = "structure",
+    id = "SdiSourceSummary",
     members = {
         Arn = {
             type = "string",
@@ -9261,6 +9520,7 @@ M.SignalMapStatus = {
 
 M.SignalMapSummary = {
     type = "structure",
+    id = "SignalMapSummary",
     members = {
         Arn = {
             type = "string",
@@ -9331,6 +9591,7 @@ M.SignalMapSummary = {
 
 M.SrtCallerDecryptionRequest = {
     type = "structure",
+    id = "SrtCallerDecryptionRequest",
     members = {
         Algorithm = {
             type = "string",
@@ -9349,6 +9610,7 @@ M.SrtCallerDecryptionRequest = {
 
 M.SrtCallerSourceRequest = {
     type = "structure",
+    id = "SrtCallerSourceRequest",
     members = {
         Decryption = setmetatable({ traits = {
             json_name = "decryption",
@@ -9387,6 +9649,7 @@ M.ThumbnailType = {
 
 M.Thumbnail = {
     type = "structure",
+    id = "Thumbnail",
     members = {
         Body = {
             type = "string",
@@ -9418,6 +9681,7 @@ M.Thumbnail = {
 
 M.ThumbnailDetail = {
     type = "structure",
+    id = "ThumbnailDetail",
     members = {
         PipelineId = {
             type = "string",
@@ -9442,6 +9706,7 @@ M.InputDeviceTransferType = {
 
 M.TransferringInputDeviceSummary = {
     type = "structure",
+    id = "TransferringInputDeviceSummary",
     members = {
         Id = {
             type = "string",
@@ -9472,6 +9737,7 @@ M.TransferringInputDeviceSummary = {
 
 M.ValidationError = {
     type = "structure",
+    id = "ValidationError",
     members = {
         ElementPath = {
             type = "string",
@@ -9501,22 +9767,27 @@ M.Av1BitDepth = {
 
 M.ColorSpacePassthroughSettings = {
     type = "structure",
+    id = "ColorSpacePassthroughSettings",
 }
 
 M.Hlg2020Settings = {
     type = "structure",
+    id = "Hlg2020Settings",
 }
 
 M.Rec601Settings = {
     type = "structure",
+    id = "Rec601Settings",
 }
 
 M.Rec709Settings = {
     type = "structure",
+    id = "Rec709Settings",
 }
 
 M.Av1ColorSpaceSettings = {
     type = "structure",
+    id = "Av1ColorSpaceSettings",
     members = {
         ColorSpacePassthroughSettings = setmetatable({ traits = {
             json_name = "colorSpacePassthroughSettings",
@@ -9620,6 +9891,7 @@ M.TimecodeBurninPosition = {
 
 M.TimecodeBurninSettings = {
     type = "structure",
+    id = "TimecodeBurninSettings",
     members = {
         FontSize = {
             type = "string",
@@ -9651,6 +9923,7 @@ M.Av1TimecodeInsertionBehavior = {
 
 M.Av1Settings = {
     type = "structure",
+    id = "Av1Settings",
     members = {
         AfdSignaling = {
             type = "string",
@@ -9802,6 +10075,7 @@ M.FrameCaptureIntervalUnit = {
 
 M.FrameCaptureSettings = {
     type = "structure",
+    id = "FrameCaptureSettings",
     members = {
         CaptureInterval = {
             type = "integer",
@@ -9838,6 +10112,7 @@ M.H264ColorMetadata = {
 
 M.H264ColorSpaceSettings = {
     type = "structure",
+    id = "H264ColorSpaceSettings",
     members = {
         ColorSpacePassthroughSettings = setmetatable({ traits = {
             json_name = "colorSpacePassthroughSettings",
@@ -9873,6 +10148,7 @@ M.BandwidthReductionFilterStrength = {
 
 M.BandwidthReductionFilterSettings = {
     type = "structure",
+    id = "BandwidthReductionFilterSettings",
     members = {
         PostFilterSharpening = {
             type = "string",
@@ -9917,6 +10193,7 @@ M.TemporalFilterStrength = {
 
 M.TemporalFilterSettings = {
     type = "structure",
+    id = "TemporalFilterSettings",
     members = {
         PostFilterSharpening = {
             type = "string",
@@ -9935,6 +10212,7 @@ M.TemporalFilterSettings = {
 
 M.H264FilterSettings = {
     type = "structure",
+    id = "H264FilterSettings",
     members = {
         TemporalFilterSettings = setmetatable({ traits = {
             json_name = "temporalFilterSettings",
@@ -10059,6 +10337,7 @@ M.H264TimecodeInsertionBehavior = {
 
 M.H264Settings = {
     type = "structure",
+    id = "H264Settings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -10340,10 +10619,12 @@ M.H265ColorMetadata = {
 
 M.DolbyVision81Settings = {
     type = "structure",
+    id = "DolbyVision81Settings",
 }
 
 M.H265ColorSpaceSettings = {
     type = "structure",
+    id = "H265ColorSpaceSettings",
     members = {
         ColorSpacePassthroughSettings = setmetatable({ traits = {
             json_name = "colorSpacePassthroughSettings",
@@ -10373,6 +10654,7 @@ M.H265Deblocking = {
 
 M.H265FilterSettings = {
     type = "structure",
+    id = "H265FilterSettings",
     members = {
         TemporalFilterSettings = setmetatable({ traits = {
             json_name = "temporalFilterSettings",
@@ -10479,6 +10761,7 @@ M.H265TreeblockSize = {
 
 M.H265Settings = {
     type = "structure",
+    id = "H265Settings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -10753,6 +11036,7 @@ M.Mpeg2DisplayRatio = {
 
 M.Mpeg2FilterSettings = {
     type = "structure",
+    id = "Mpeg2FilterSettings",
     members = {
         TemporalFilterSettings = setmetatable({ traits = {
             json_name = "temporalFilterSettings",
@@ -10782,6 +11066,7 @@ M.Mpeg2TimecodeInsertionBehavior = {
 
 M.Mpeg2Settings = {
     type = "structure",
+    id = "Mpeg2Settings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -10886,6 +11171,7 @@ M.Mpeg2Settings = {
 
 M.VideoCodecSettings = {
     type = "structure",
+    id = "VideoCodecSettings",
     members = {
         FrameCaptureSettings = setmetatable({ traits = {
             json_name = "frameCaptureSettings",
@@ -10919,6 +11205,7 @@ M.VideoDescriptionScalingBehavior = {
 
 M.VideoDescription = {
     type = "structure",
+    id = "VideoDescription",
     members = {
         CodecSettings = setmetatable({ traits = {
             json_name = "codecSettings",
@@ -10969,6 +11256,7 @@ M.AcceptHeader = {
 
 M.AcceptInputDeviceTransferInput = {
     type = "structure",
+    id = "AcceptInputDeviceTransferInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -10982,10 +11270,12 @@ M.AcceptInputDeviceTransferInput = {
 
 M.AcceptInputDeviceTransferOutput = {
     type = "structure",
+    id = "AcceptInputDeviceTransferOutput",
 }
 
 M.BadGatewayException = {
     type = "structure",
+    id = "BadGatewayException",
     error = "server",
     members = {
         Message = {
@@ -10999,6 +11289,7 @@ M.BadGatewayException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -11012,6 +11303,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -11025,6 +11317,7 @@ M.ConflictException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Message = {
@@ -11038,6 +11331,7 @@ M.ForbiddenException = {
 
 M.GatewayTimeoutException = {
     type = "structure",
+    id = "GatewayTimeoutException",
     error = "server",
     members = {
         Message = {
@@ -11051,6 +11345,7 @@ M.GatewayTimeoutException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -11064,6 +11359,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -11077,6 +11373,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -11090,6 +11387,7 @@ M.TooManyRequestsException = {
 
 M.UnprocessableEntityException = {
     type = "structure",
+    id = "UnprocessableEntityException",
     error = "client",
     members = {
         Message = {
@@ -11110,6 +11408,7 @@ M.UnprocessableEntityException = {
 
 M.AccountConfiguration = {
     type = "structure",
+    id = "AccountConfiguration",
     members = {
         KmsKeyId = {
             type = "string",
@@ -11122,6 +11421,7 @@ M.AccountConfiguration = {
 
 M.AnywhereSettings = {
     type = "structure",
+    id = "AnywhereSettings",
     members = {
         ChannelPlacementGroupId = {
             type = "string",
@@ -11145,6 +11445,7 @@ M.AvailBlankingState = {
 
 M.AvailBlanking = {
     type = "structure",
+    id = "AvailBlanking",
     members = {
         AvailBlankingImage = setmetatable({ traits = {
             json_name = "availBlankingImage",
@@ -11160,6 +11461,7 @@ M.AvailBlanking = {
 
 M.Esam = {
     type = "structure",
+    id = "Esam",
     members = {
         AcquisitionPointId = {
             type = "string",
@@ -11214,6 +11516,7 @@ M.Scte35SpliceInsertWebDeliveryAllowedBehavior = {
 
 M.Scte35SpliceInsert = {
     type = "structure",
+    id = "Scte35SpliceInsert",
     members = {
         AdAvailOffset = {
             type = "integer",
@@ -11248,6 +11551,7 @@ M.Scte35AposWebDeliveryAllowedBehavior = {
 
 M.Scte35TimeSignalApos = {
     type = "structure",
+    id = "Scte35TimeSignalApos",
     members = {
         AdAvailOffset = {
             type = "integer",
@@ -11272,6 +11576,7 @@ M.Scte35TimeSignalApos = {
 
 M.AvailSettings = {
     type = "structure",
+    id = "AvailSettings",
     members = {
         Esam = setmetatable({ traits = {
             json_name = "esam",
@@ -11292,6 +11597,7 @@ M.Scte35SegmentationScope = {
 
 M.AvailConfiguration = {
     type = "structure",
+    id = "AvailConfiguration",
     members = {
         AvailSettings = setmetatable({ traits = {
             json_name = "availSettings",
@@ -11307,6 +11613,7 @@ M.AvailConfiguration = {
 
 M.BatchDeleteInput = {
     type = "structure",
+    id = "BatchDeleteInput",
     members = {
         ChannelIds = {
             type = "list",
@@ -11341,6 +11648,7 @@ M.BatchDeleteInput = {
 
 M.BatchDeleteOutput = {
     type = "structure",
+    id = "BatchDeleteOutput",
     members = {
         Failed = {
             type = "list",
@@ -11361,6 +11669,7 @@ M.BatchDeleteOutput = {
 
 M.BatchScheduleActionCreateRequest = {
     type = "structure",
+    id = "BatchScheduleActionCreateRequest",
     members = {
         ScheduleActions = {
             type = "list",
@@ -11375,6 +11684,7 @@ M.BatchScheduleActionCreateRequest = {
 
 M.BatchScheduleActionCreateResult = {
     type = "structure",
+    id = "BatchScheduleActionCreateResult",
     members = {
         ScheduleActions = {
             type = "list",
@@ -11389,6 +11699,7 @@ M.BatchScheduleActionCreateResult = {
 
 M.BatchScheduleActionDeleteRequest = {
     type = "structure",
+    id = "BatchScheduleActionDeleteRequest",
     members = {
         ActionNames = {
             type = "list",
@@ -11403,6 +11714,7 @@ M.BatchScheduleActionDeleteRequest = {
 
 M.BatchScheduleActionDeleteResult = {
     type = "structure",
+    id = "BatchScheduleActionDeleteResult",
     members = {
         ScheduleActions = {
             type = "list",
@@ -11417,6 +11729,7 @@ M.BatchScheduleActionDeleteResult = {
 
 M.BatchStartInput = {
     type = "structure",
+    id = "BatchStartInput",
     members = {
         ChannelIds = {
             type = "list",
@@ -11437,6 +11750,7 @@ M.BatchStartInput = {
 
 M.BatchStartOutput = {
     type = "structure",
+    id = "BatchStartOutput",
     members = {
         Failed = {
             type = "list",
@@ -11457,6 +11771,7 @@ M.BatchStartOutput = {
 
 M.BatchStopInput = {
     type = "structure",
+    id = "BatchStopInput",
     members = {
         ChannelIds = {
             type = "list",
@@ -11477,6 +11792,7 @@ M.BatchStopInput = {
 
 M.BatchStopOutput = {
     type = "structure",
+    id = "BatchStopOutput",
     members = {
         Failed = {
             type = "list",
@@ -11497,6 +11813,7 @@ M.BatchStopOutput = {
 
 M.BatchUpdateScheduleInput = {
     type = "structure",
+    id = "BatchUpdateScheduleInput",
     members = {
         ChannelId = {
             type = "string",
@@ -11516,6 +11833,7 @@ M.BatchUpdateScheduleInput = {
 
 M.BatchUpdateScheduleOutput = {
     type = "structure",
+    id = "BatchUpdateScheduleOutput",
     members = {
         Creates = setmetatable({ traits = {
             json_name = "creates",
@@ -11538,6 +11856,7 @@ M.BlackoutSlateState = {
 
 M.BlackoutSlate = {
     type = "structure",
+    id = "BlackoutSlate",
     members = {
         BlackoutSlateImage = setmetatable({ traits = {
             json_name = "blackoutSlateImage",
@@ -11568,6 +11887,7 @@ M.BlackoutSlate = {
 
 M.CancelInputDeviceTransferInput = {
     type = "structure",
+    id = "CancelInputDeviceTransferInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -11581,10 +11901,12 @@ M.CancelInputDeviceTransferInput = {
 
 M.CancelInputDeviceTransferOutput = {
     type = "structure",
+    id = "CancelInputDeviceTransferOutput",
 }
 
 M.ColorCorrectionSettings = {
     type = "structure",
+    id = "ColorCorrectionSettings",
     members = {
         GlobalColorCorrections = {
             type = "list",
@@ -11609,6 +11931,7 @@ M.FeatureActivationsOutputStaticImageOverlayScheduleActions = {
 
 M.FeatureActivations = {
     type = "structure",
+    id = "FeatureActivations",
     members = {
         InputPrepareScheduleActions = {
             type = "string",
@@ -11637,6 +11960,7 @@ M.InputLossImageType = {
 
 M.InputLossBehavior = {
     type = "structure",
+    id = "InputLossBehavior",
     members = {
         BlackFrameMsec = {
             type = "integer",
@@ -11676,6 +12000,7 @@ M.GlobalConfigurationOutputLockingMode = {
 
 M.DisabledLockingSettings = {
     type = "structure",
+    id = "DisabledLockingSettings",
     members = {
         CustomEpoch = {
             type = "string",
@@ -11688,6 +12013,7 @@ M.DisabledLockingSettings = {
 
 M.EpochLockingSettings = {
     type = "structure",
+    id = "EpochLockingSettings",
     members = {
         CustomEpoch = {
             type = "string",
@@ -11711,6 +12037,7 @@ M.PipelineLockingMethod = {
 
 M.PipelineLockingSettings = {
     type = "structure",
+    id = "PipelineLockingSettings",
     members = {
         PipelineLockingMethod = {
             type = "string",
@@ -11729,6 +12056,7 @@ M.PipelineLockingSettings = {
 
 M.OutputLockingSettings = {
     type = "structure",
+    id = "OutputLockingSettings",
     members = {
         EpochLockingSettings = setmetatable({ traits = {
             json_name = "epochLockingSettings",
@@ -11754,6 +12082,7 @@ M.GlobalConfigurationLowFramerateInputs = {
 
 M.GlobalConfiguration = {
     type = "structure",
+    id = "GlobalConfiguration",
     members = {
         InitialAudioGain = {
             type = "integer",
@@ -11801,10 +12130,12 @@ M.MotionGraphicsInsertion = {
 
 M.HtmlMotionGraphicsSettings = {
     type = "structure",
+    id = "HtmlMotionGraphicsSettings",
 }
 
 M.MotionGraphicsSettings = {
     type = "structure",
+    id = "MotionGraphicsSettings",
     members = {
         HtmlMotionGraphicsSettings = setmetatable({ traits = {
             json_name = "htmlMotionGraphicsSettings",
@@ -11814,6 +12145,7 @@ M.MotionGraphicsSettings = {
 
 M.MotionGraphicsConfiguration = {
     type = "structure",
+    id = "MotionGraphicsConfiguration",
     members = {
         MotionGraphicsInsertion = {
             type = "string",
@@ -11835,6 +12167,7 @@ M.NielsenPcmToId3TaggingState = {
 
 M.NielsenConfiguration = {
     type = "structure",
+    id = "NielsenConfiguration",
     members = {
         DistributorId = {
             type = "string",
@@ -11858,6 +12191,7 @@ M.ThumbnailState = {
 
 M.ThumbnailConfiguration = {
     type = "structure",
+    id = "ThumbnailConfiguration",
     members = {
         State = {
             type = "string",
@@ -11877,6 +12211,7 @@ M.TimecodeConfigSource = {
 
 M.TimecodeConfig = {
     type = "structure",
+    id = "TimecodeConfig",
     members = {
         Source = {
             type = "string",
@@ -11896,6 +12231,7 @@ M.TimecodeConfig = {
 
 M.EncoderSettings = {
     type = "structure",
+    id = "EncoderSettings",
     members = {
         AudioDescriptions = {
             type = "list",
@@ -11964,6 +12300,7 @@ M.EncoderSettings = {
 
 M.Channel = {
     type = "structure",
+    id = "Channel",
     members = {
         Arn = {
             type = "string",
@@ -12088,6 +12425,7 @@ M.Channel = {
 
 M.ChannelEngineVersionRequest = {
     type = "structure",
+    id = "ChannelEngineVersionRequest",
     members = {
         Version = {
             type = "string",
@@ -12100,6 +12438,7 @@ M.ChannelEngineVersionRequest = {
 
 M.ClaimDeviceInput = {
     type = "structure",
+    id = "ClaimDeviceInput",
     members = {
         Id = {
             type = "string",
@@ -12112,10 +12451,12 @@ M.ClaimDeviceInput = {
 
 M.ClaimDeviceOutput = {
     type = "structure",
+    id = "ClaimDeviceOutput",
 }
 
 M.ClusterNetworkSettingsCreateRequest = {
     type = "structure",
+    id = "ClusterNetworkSettingsCreateRequest",
     members = {
         DefaultRoute = {
             type = "string",
@@ -12135,6 +12476,7 @@ M.ClusterNetworkSettingsCreateRequest = {
 
 M.ClusterNetworkSettingsUpdateRequest = {
     type = "structure",
+    id = "ClusterNetworkSettingsUpdateRequest",
     members = {
         DefaultRoute = {
             type = "string",
@@ -12158,6 +12500,7 @@ M.ContentType = {
 
 M.InferenceSettings = {
     type = "structure",
+    id = "InferenceSettings",
     members = {
         FeedArn = {
             type = "string",
@@ -12170,6 +12513,7 @@ M.InferenceSettings = {
 
 M.FollowerChannelSettings = {
     type = "structure",
+    id = "FollowerChannelSettings",
     members = {
         LinkedChannelType = {
             type = "string",
@@ -12188,6 +12532,7 @@ M.FollowerChannelSettings = {
 
 M.PrimaryChannelSettings = {
     type = "structure",
+    id = "PrimaryChannelSettings",
     members = {
         LinkedChannelType = {
             type = "string",
@@ -12200,6 +12545,7 @@ M.PrimaryChannelSettings = {
 
 M.LinkedChannelSettings = {
     type = "structure",
+    id = "LinkedChannelSettings",
     members = {
         FollowerChannelSettings = setmetatable({ traits = {
             json_name = "followerChannelSettings",
@@ -12212,6 +12558,7 @@ M.LinkedChannelSettings = {
 
 M.MaintenanceCreateSettings = {
     type = "structure",
+    id = "MaintenanceCreateSettings",
     members = {
         MaintenanceDay = {
             type = "string",
@@ -12230,6 +12577,7 @@ M.MaintenanceCreateSettings = {
 
 M.VpcOutputSettings = {
     type = "structure",
+    id = "VpcOutputSettings",
     members = {
         PublicAddressAllocationIds = {
             type = "list",
@@ -12258,6 +12606,7 @@ M.VpcOutputSettings = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         CdiInputSpecification = setmetatable({ traits = {
             json_name = "cdiInputSpecification",
@@ -12363,6 +12712,7 @@ M.CreateChannelInput = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         Channel = setmetatable({ traits = {
             json_name = "channel",
@@ -12372,6 +12722,7 @@ M.CreateChannelOutput = {
 
 M.CreateChannelPlacementGroupInput = {
     type = "structure",
+    id = "CreateChannelPlacementGroupInput",
     members = {
         ClusterId = {
             type = "string",
@@ -12413,6 +12764,7 @@ M.CreateChannelPlacementGroupInput = {
 
 M.CreateChannelPlacementGroupOutput = {
     type = "structure",
+    id = "CreateChannelPlacementGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -12463,6 +12815,7 @@ M.CreateChannelPlacementGroupOutput = {
 
 M.CreateCloudWatchAlarmTemplateInput = {
     type = "structure",
+    id = "CreateCloudWatchAlarmTemplateInput",
     members = {
         ComparisonOperator = {
             type = "string",
@@ -12566,6 +12919,7 @@ M.CreateCloudWatchAlarmTemplateInput = {
 
 M.CreateCloudWatchAlarmTemplateOutput = {
     type = "structure",
+    id = "CreateCloudWatchAlarmTemplateOutput",
     members = {
         Arn = {
             type = "string",
@@ -12678,6 +13032,7 @@ M.CreateCloudWatchAlarmTemplateOutput = {
 
 M.CreateCloudWatchAlarmTemplateGroupInput = {
     type = "structure",
+    id = "CreateCloudWatchAlarmTemplateGroupInput",
     members = {
         Description = {
             type = "string",
@@ -12712,6 +13067,7 @@ M.CreateCloudWatchAlarmTemplateGroupInput = {
 
 M.CreateCloudWatchAlarmTemplateGroupOutput = {
     type = "structure",
+    id = "CreateCloudWatchAlarmTemplateGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -12764,6 +13120,7 @@ M.CreateCloudWatchAlarmTemplateGroupOutput = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         ClusterType = {
             type = "string",
@@ -12806,6 +13163,7 @@ M.CreateClusterInput = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         Arn = {
             type = "string",
@@ -12858,6 +13216,7 @@ M.CreateClusterOutput = {
 
 M.CreateEventBridgeRuleTemplateInput = {
     type = "structure",
+    id = "CreateEventBridgeRuleTemplateInput",
     members = {
         Description = {
             type = "string",
@@ -12913,6 +13272,7 @@ M.CreateEventBridgeRuleTemplateInput = {
 
 M.CreateEventBridgeRuleTemplateOutput = {
     type = "structure",
+    id = "CreateEventBridgeRuleTemplateOutput",
     members = {
         Arn = {
             type = "string",
@@ -12984,6 +13344,7 @@ M.CreateEventBridgeRuleTemplateOutput = {
 
 M.CreateEventBridgeRuleTemplateGroupInput = {
     type = "structure",
+    id = "CreateEventBridgeRuleTemplateGroupInput",
     members = {
         Description = {
             type = "string",
@@ -13018,6 +13379,7 @@ M.CreateEventBridgeRuleTemplateGroupInput = {
 
 M.CreateEventBridgeRuleTemplateGroupOutput = {
     type = "structure",
+    id = "CreateEventBridgeRuleTemplateGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -13070,6 +13432,7 @@ M.CreateEventBridgeRuleTemplateGroupOutput = {
 
 M.MulticastSettingsCreateRequest = {
     type = "structure",
+    id = "MulticastSettingsCreateRequest",
     members = {
         Sources = {
             type = "list",
@@ -13083,6 +13446,7 @@ M.MulticastSettingsCreateRequest = {
 
 M.RouterSettings = {
     type = "structure",
+    id = "RouterSettings",
     members = {
         Destinations = {
             type = "list",
@@ -13108,6 +13472,7 @@ M.RouterSettings = {
 
 M.SrtListenerDecryptionRequest = {
     type = "structure",
+    id = "SrtListenerDecryptionRequest",
     members = {
         Algorithm = {
             type = "string",
@@ -13128,6 +13493,7 @@ M.SrtListenerDecryptionRequest = {
 
 M.SrtListenerSettingsRequest = {
     type = "structure",
+    id = "SrtListenerSettingsRequest",
     members = {
         Decryption = setmetatable({ traits = {
             json_name = "decryption",
@@ -13151,6 +13517,7 @@ M.SrtListenerSettingsRequest = {
 
 M.SrtSettingsRequest = {
     type = "structure",
+    id = "SrtSettingsRequest",
     members = {
         SrtCallerSources = {
             type = "list",
@@ -13167,6 +13534,7 @@ M.SrtSettingsRequest = {
 
 M.InputVpcRequest = {
     type = "structure",
+    id = "InputVpcRequest",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -13188,6 +13556,7 @@ M.InputVpcRequest = {
 
 M.CreateInputInput = {
     type = "structure",
+    id = "CreateInputInput",
     members = {
         Destinations = {
             type = "list",
@@ -13290,6 +13659,7 @@ M.CreateInputInput = {
 
 M.CreateInputOutput = {
     type = "structure",
+    id = "CreateInputOutput",
     members = {
         Input = setmetatable({ traits = {
             json_name = "input",
@@ -13299,6 +13669,7 @@ M.CreateInputOutput = {
 
 M.CreateInputSecurityGroupInput = {
     type = "structure",
+    id = "CreateInputSecurityGroupInput",
     members = {
         Tags = {
             type = "map",
@@ -13320,6 +13691,7 @@ M.CreateInputSecurityGroupInput = {
 
 M.CreateInputSecurityGroupOutput = {
     type = "structure",
+    id = "CreateInputSecurityGroupOutput",
     members = {
         SecurityGroup = setmetatable({ traits = {
             json_name = "securityGroup",
@@ -13329,6 +13701,7 @@ M.CreateInputSecurityGroupOutput = {
 
 M.MultiplexSettings = {
     type = "structure",
+    id = "MultiplexSettings",
     members = {
         MaximumVideoBufferDelayMilliseconds = {
             type = "integer",
@@ -13361,6 +13734,7 @@ M.MultiplexSettings = {
 
 M.CreateMultiplexInput = {
     type = "structure",
+    id = "CreateMultiplexInput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -13402,6 +13776,7 @@ M.CreateMultiplexInput = {
 
 M.Multiplex = {
     type = "structure",
+    id = "Multiplex",
     members = {
         Arn = {
             type = "string",
@@ -13469,6 +13844,7 @@ M.Multiplex = {
 
 M.CreateMultiplexOutput = {
     type = "structure",
+    id = "CreateMultiplexOutput",
     members = {
         Multiplex = setmetatable({ traits = {
             json_name = "multiplex",
@@ -13484,6 +13860,7 @@ M.PreferredChannelPipeline = {
 
 M.MultiplexProgramServiceDescriptor = {
     type = "structure",
+    id = "MultiplexProgramServiceDescriptor",
     members = {
         ProviderName = {
             type = "string",
@@ -13504,6 +13881,7 @@ M.MultiplexProgramServiceDescriptor = {
 
 M.MultiplexStatmuxVideoSettings = {
     type = "structure",
+    id = "MultiplexStatmuxVideoSettings",
     members = {
         MaximumBitrate = {
             type = "integer",
@@ -13528,6 +13906,7 @@ M.MultiplexStatmuxVideoSettings = {
 
 M.MultiplexVideoSettings = {
     type = "structure",
+    id = "MultiplexVideoSettings",
     members = {
         ConstantBitrate = {
             type = "integer",
@@ -13543,6 +13922,7 @@ M.MultiplexVideoSettings = {
 
 M.MultiplexProgramSettings = {
     type = "structure",
+    id = "MultiplexProgramSettings",
     members = {
         PreferredChannelPipeline = {
             type = "string",
@@ -13568,6 +13948,7 @@ M.MultiplexProgramSettings = {
 
 M.CreateMultiplexProgramInput = {
     type = "structure",
+    id = "CreateMultiplexProgramInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -13600,6 +13981,7 @@ M.CreateMultiplexProgramInput = {
 
 M.MultiplexProgramPacketIdentifiersMap = {
     type = "structure",
+    id = "MultiplexProgramPacketIdentifiersMap",
     members = {
         AudioPids = {
             type = "list",
@@ -13713,6 +14095,7 @@ M.MultiplexProgramPacketIdentifiersMap = {
 
 M.MultiplexProgram = {
     type = "structure",
+    id = "MultiplexProgram",
     members = {
         ChannelId = {
             type = "string",
@@ -13744,6 +14127,7 @@ M.MultiplexProgram = {
 
 M.CreateMultiplexProgramOutput = {
     type = "structure",
+    id = "CreateMultiplexProgramOutput",
     members = {
         MultiplexProgram = setmetatable({ traits = {
             json_name = "multiplexProgram",
@@ -13753,6 +14137,7 @@ M.CreateMultiplexProgramOutput = {
 
 M.CreateNetworkInput = {
     type = "structure",
+    id = "CreateNetworkInput",
     members = {
         IpPools = {
             type = "list",
@@ -13794,6 +14179,7 @@ M.CreateNetworkInput = {
 
 M.CreateNetworkOutput = {
     type = "structure",
+    id = "CreateNetworkOutput",
     members = {
         Arn = {
             type = "string",
@@ -13845,6 +14231,7 @@ M.CreateNetworkOutput = {
 
 M.CreateNodeInput = {
     type = "structure",
+    id = "CreateNodeInput",
     members = {
         ClusterId = {
             type = "string",
@@ -13892,6 +14279,7 @@ M.CreateNodeInput = {
 
 M.CreateNodeOutput = {
     type = "structure",
+    id = "CreateNodeOutput",
     members = {
         Arn = {
             type = "string",
@@ -13967,6 +14355,7 @@ M.CreateNodeOutput = {
 
 M.CreateNodeRegistrationScriptInput = {
     type = "structure",
+    id = "CreateNodeRegistrationScriptInput",
     members = {
         ClusterId = {
             type = "string",
@@ -14012,6 +14401,7 @@ M.CreateNodeRegistrationScriptInput = {
 
 M.CreateNodeRegistrationScriptOutput = {
     type = "structure",
+    id = "CreateNodeRegistrationScriptOutput",
     members = {
         NodeRegistrationScript = {
             type = "string",
@@ -14024,6 +14414,7 @@ M.CreateNodeRegistrationScriptOutput = {
 
 M.CreatePartnerInputInput = {
     type = "structure",
+    id = "CreatePartnerInputInput",
     members = {
         InputId = {
             type = "string",
@@ -14052,6 +14443,7 @@ M.CreatePartnerInputInput = {
 
 M.CreatePartnerInputOutput = {
     type = "structure",
+    id = "CreatePartnerInputOutput",
     members = {
         Input = setmetatable({ traits = {
             json_name = "input",
@@ -14061,6 +14453,7 @@ M.CreatePartnerInputOutput = {
 
 M.CreateSdiSourceInput = {
     type = "structure",
+    id = "CreateSdiSourceInput",
     members = {
         Mode = {
             type = "string",
@@ -14100,6 +14493,7 @@ M.CreateSdiSourceInput = {
 
 M.SdiSource = {
     type = "structure",
+    id = "SdiSource",
     members = {
         Arn = {
             type = "string",
@@ -14149,6 +14543,7 @@ M.SdiSource = {
 
 M.CreateSdiSourceOutput = {
     type = "structure",
+    id = "CreateSdiSourceOutput",
     members = {
         SdiSource = setmetatable({ traits = {
             json_name = "sdiSource",
@@ -14158,6 +14553,7 @@ M.CreateSdiSourceOutput = {
 
 M.CreateSignalMapInput = {
     type = "structure",
+    id = "CreateSignalMapInput",
     members = {
         CloudWatchAlarmTemplateGroupIdentifiers = {
             type = "list",
@@ -14213,6 +14609,7 @@ M.CreateSignalMapInput = {
 
 M.MediaResource = {
     type = "structure",
+    id = "MediaResource",
     members = {
         Destinations = {
             type = "list",
@@ -14239,6 +14636,7 @@ M.MediaResource = {
 
 M.SuccessfulMonitorDeployment = {
     type = "structure",
+    id = "SuccessfulMonitorDeployment",
     members = {
         DetailsUri = {
             type = "string",
@@ -14259,6 +14657,7 @@ M.SuccessfulMonitorDeployment = {
 
 M.MonitorDeployment = {
     type = "structure",
+    id = "MonitorDeployment",
     members = {
         DetailsUri = {
             type = "string",
@@ -14284,6 +14683,7 @@ M.MonitorDeployment = {
 
 M.CreateSignalMapOutput = {
     type = "structure",
+    id = "CreateSignalMapOutput",
     members = {
         Arn = {
             type = "string",
@@ -14403,6 +14803,7 @@ M.CreateSignalMapOutput = {
 
 M.CreateTagsInput = {
     type = "structure",
+    id = "CreateTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -14424,10 +14825,12 @@ M.CreateTagsInput = {
 
 M.CreateTagsOutput = {
     type = "structure",
+    id = "CreateTagsOutput",
 }
 
 M.DeleteChannelInput = {
     type = "structure",
+    id = "DeleteChannelInput",
     members = {
         ChannelId = {
             type = "string",
@@ -14441,6 +14844,7 @@ M.DeleteChannelInput = {
 
 M.DeleteChannelOutput = {
     type = "structure",
+    id = "DeleteChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -14565,6 +14969,7 @@ M.DeleteChannelOutput = {
 
 M.DeleteChannelPlacementGroupInput = {
     type = "structure",
+    id = "DeleteChannelPlacementGroupInput",
     members = {
         ChannelPlacementGroupId = {
             type = "string",
@@ -14585,6 +14990,7 @@ M.DeleteChannelPlacementGroupInput = {
 
 M.DeleteChannelPlacementGroupOutput = {
     type = "structure",
+    id = "DeleteChannelPlacementGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -14635,6 +15041,7 @@ M.DeleteChannelPlacementGroupOutput = {
 
 M.DeleteCloudWatchAlarmTemplateInput = {
     type = "structure",
+    id = "DeleteCloudWatchAlarmTemplateInput",
     members = {
         Identifier = {
             type = "string",
@@ -14648,10 +15055,12 @@ M.DeleteCloudWatchAlarmTemplateInput = {
 
 M.DeleteCloudWatchAlarmTemplateOutput = {
     type = "structure",
+    id = "DeleteCloudWatchAlarmTemplateOutput",
 }
 
 M.DeleteCloudWatchAlarmTemplateGroupInput = {
     type = "structure",
+    id = "DeleteCloudWatchAlarmTemplateGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -14665,10 +15074,12 @@ M.DeleteCloudWatchAlarmTemplateGroupInput = {
 
 M.DeleteCloudWatchAlarmTemplateGroupOutput = {
     type = "structure",
+    id = "DeleteCloudWatchAlarmTemplateGroupOutput",
 }
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -14682,6 +15093,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         Arn = {
             type = "string",
@@ -14734,6 +15146,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteEventBridgeRuleTemplateInput = {
     type = "structure",
+    id = "DeleteEventBridgeRuleTemplateInput",
     members = {
         Identifier = {
             type = "string",
@@ -14747,10 +15160,12 @@ M.DeleteEventBridgeRuleTemplateInput = {
 
 M.DeleteEventBridgeRuleTemplateOutput = {
     type = "structure",
+    id = "DeleteEventBridgeRuleTemplateOutput",
 }
 
 M.DeleteEventBridgeRuleTemplateGroupInput = {
     type = "structure",
+    id = "DeleteEventBridgeRuleTemplateGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -14764,10 +15179,12 @@ M.DeleteEventBridgeRuleTemplateGroupInput = {
 
 M.DeleteEventBridgeRuleTemplateGroupOutput = {
     type = "structure",
+    id = "DeleteEventBridgeRuleTemplateGroupOutput",
 }
 
 M.DeleteInputInput = {
     type = "structure",
+    id = "DeleteInputInput",
     members = {
         InputId = {
             type = "string",
@@ -14781,10 +15198,12 @@ M.DeleteInputInput = {
 
 M.DeleteInputOutput = {
     type = "structure",
+    id = "DeleteInputOutput",
 }
 
 M.DeleteInputSecurityGroupInput = {
     type = "structure",
+    id = "DeleteInputSecurityGroupInput",
     members = {
         InputSecurityGroupId = {
             type = "string",
@@ -14798,10 +15217,12 @@ M.DeleteInputSecurityGroupInput = {
 
 M.DeleteInputSecurityGroupOutput = {
     type = "structure",
+    id = "DeleteInputSecurityGroupOutput",
 }
 
 M.DeleteMultiplexInput = {
     type = "structure",
+    id = "DeleteMultiplexInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -14815,6 +15236,7 @@ M.DeleteMultiplexInput = {
 
 M.DeleteMultiplexOutput = {
     type = "structure",
+    id = "DeleteMultiplexOutput",
     members = {
         Arn = {
             type = "string",
@@ -14882,6 +15304,7 @@ M.DeleteMultiplexOutput = {
 
 M.DeleteMultiplexProgramInput = {
     type = "structure",
+    id = "DeleteMultiplexProgramInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -14902,6 +15325,7 @@ M.DeleteMultiplexProgramInput = {
 
 M.DeleteMultiplexProgramOutput = {
     type = "structure",
+    id = "DeleteMultiplexProgramOutput",
     members = {
         ChannelId = {
             type = "string",
@@ -14933,6 +15357,7 @@ M.DeleteMultiplexProgramOutput = {
 
 M.DeleteNetworkInput = {
     type = "structure",
+    id = "DeleteNetworkInput",
     members = {
         NetworkId = {
             type = "string",
@@ -14946,6 +15371,7 @@ M.DeleteNetworkInput = {
 
 M.DeleteNetworkOutput = {
     type = "structure",
+    id = "DeleteNetworkOutput",
     members = {
         Arn = {
             type = "string",
@@ -14997,6 +15423,7 @@ M.DeleteNetworkOutput = {
 
 M.DeleteNodeInput = {
     type = "structure",
+    id = "DeleteNodeInput",
     members = {
         ClusterId = {
             type = "string",
@@ -15017,6 +15444,7 @@ M.DeleteNodeInput = {
 
 M.DeleteNodeOutput = {
     type = "structure",
+    id = "DeleteNodeOutput",
     members = {
         Arn = {
             type = "string",
@@ -15092,6 +15520,7 @@ M.DeleteNodeOutput = {
 
 M.DeleteReservationInput = {
     type = "structure",
+    id = "DeleteReservationInput",
     members = {
         ReservationId = {
             type = "string",
@@ -15105,6 +15534,7 @@ M.DeleteReservationInput = {
 
 M.DeleteReservationOutput = {
     type = "structure",
+    id = "DeleteReservationOutput",
     members = {
         Arn = {
             type = "string",
@@ -15221,6 +15651,7 @@ M.DeleteReservationOutput = {
 
 M.DeleteScheduleInput = {
     type = "structure",
+    id = "DeleteScheduleInput",
     members = {
         ChannelId = {
             type = "string",
@@ -15234,10 +15665,12 @@ M.DeleteScheduleInput = {
 
 M.DeleteScheduleOutput = {
     type = "structure",
+    id = "DeleteScheduleOutput",
 }
 
 M.DeleteSdiSourceInput = {
     type = "structure",
+    id = "DeleteSdiSourceInput",
     members = {
         SdiSourceId = {
             type = "string",
@@ -15251,6 +15684,7 @@ M.DeleteSdiSourceInput = {
 
 M.DeleteSdiSourceOutput = {
     type = "structure",
+    id = "DeleteSdiSourceOutput",
     members = {
         SdiSource = setmetatable({ traits = {
             json_name = "sdiSource",
@@ -15260,6 +15694,7 @@ M.DeleteSdiSourceOutput = {
 
 M.DeleteSignalMapInput = {
     type = "structure",
+    id = "DeleteSignalMapInput",
     members = {
         Identifier = {
             type = "string",
@@ -15273,10 +15708,12 @@ M.DeleteSignalMapInput = {
 
 M.DeleteSignalMapOutput = {
     type = "structure",
+    id = "DeleteSignalMapOutput",
 }
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -15298,14 +15735,17 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.DescribeAccountConfigurationInput = {
     type = "structure",
+    id = "DescribeAccountConfigurationInput",
 }
 
 M.DescribeAccountConfigurationOutput = {
     type = "structure",
+    id = "DescribeAccountConfigurationOutput",
     members = {
         AccountConfiguration = setmetatable({ traits = {
             json_name = "accountConfiguration",
@@ -15315,6 +15755,7 @@ M.DescribeAccountConfigurationOutput = {
 
 M.DescribeChannelInput = {
     type = "structure",
+    id = "DescribeChannelInput",
     members = {
         ChannelId = {
             type = "string",
@@ -15328,6 +15769,7 @@ M.DescribeChannelInput = {
 
 M.DescribeChannelOutput = {
     type = "structure",
+    id = "DescribeChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -15452,6 +15894,7 @@ M.DescribeChannelOutput = {
 
 M.DescribeChannelPlacementGroupInput = {
     type = "structure",
+    id = "DescribeChannelPlacementGroupInput",
     members = {
         ChannelPlacementGroupId = {
             type = "string",
@@ -15472,6 +15915,7 @@ M.DescribeChannelPlacementGroupInput = {
 
 M.DescribeChannelPlacementGroupOutput = {
     type = "structure",
+    id = "DescribeChannelPlacementGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -15522,6 +15966,7 @@ M.DescribeChannelPlacementGroupOutput = {
 
 M.DescribeClusterInput = {
     type = "structure",
+    id = "DescribeClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -15535,6 +15980,7 @@ M.DescribeClusterInput = {
 
 M.DescribeClusterOutput = {
     type = "structure",
+    id = "DescribeClusterOutput",
     members = {
         Arn = {
             type = "string",
@@ -15587,6 +16033,7 @@ M.DescribeClusterOutput = {
 
 M.DescribeInputInput = {
     type = "structure",
+    id = "DescribeInputInput",
     members = {
         InputId = {
             type = "string",
@@ -15600,6 +16047,7 @@ M.DescribeInputInput = {
 
 M.DescribeInputOutput = {
     type = "structure",
+    id = "DescribeInputOutput",
     members = {
         Arn = {
             type = "string",
@@ -15736,6 +16184,7 @@ M.DescribeInputOutput = {
 
 M.DescribeInputDeviceInput = {
     type = "structure",
+    id = "DescribeInputDeviceInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -15749,6 +16198,7 @@ M.DescribeInputDeviceInput = {
 
 M.DescribeInputDeviceOutput = {
     type = "structure",
+    id = "DescribeInputDeviceOutput",
     members = {
         Arn = {
             type = "string",
@@ -15845,6 +16295,7 @@ M.DescribeInputDeviceOutput = {
 
 M.DescribeInputDeviceThumbnailInput = {
     type = "structure",
+    id = "DescribeInputDeviceThumbnailInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -15865,6 +16316,7 @@ M.DescribeInputDeviceThumbnailInput = {
 
 M.DescribeInputDeviceThumbnailOutput = {
     type = "structure",
+    id = "DescribeInputDeviceThumbnailOutput",
     members = {
         Body = {
             type = "blob",
@@ -15903,6 +16355,7 @@ M.DescribeInputDeviceThumbnailOutput = {
 
 M.DescribeInputSecurityGroupInput = {
     type = "structure",
+    id = "DescribeInputSecurityGroupInput",
     members = {
         InputSecurityGroupId = {
             type = "string",
@@ -15916,6 +16369,7 @@ M.DescribeInputSecurityGroupInput = {
 
 M.DescribeInputSecurityGroupOutput = {
     type = "structure",
+    id = "DescribeInputSecurityGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -15969,6 +16423,7 @@ M.DescribeInputSecurityGroupOutput = {
 
 M.DescribeMultiplexInput = {
     type = "structure",
+    id = "DescribeMultiplexInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -15982,6 +16437,7 @@ M.DescribeMultiplexInput = {
 
 M.DescribeMultiplexOutput = {
     type = "structure",
+    id = "DescribeMultiplexOutput",
     members = {
         Arn = {
             type = "string",
@@ -16049,6 +16505,7 @@ M.DescribeMultiplexOutput = {
 
 M.DescribeMultiplexProgramInput = {
     type = "structure",
+    id = "DescribeMultiplexProgramInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -16069,6 +16526,7 @@ M.DescribeMultiplexProgramInput = {
 
 M.DescribeMultiplexProgramOutput = {
     type = "structure",
+    id = "DescribeMultiplexProgramOutput",
     members = {
         ChannelId = {
             type = "string",
@@ -16100,6 +16558,7 @@ M.DescribeMultiplexProgramOutput = {
 
 M.DescribeNetworkInput = {
     type = "structure",
+    id = "DescribeNetworkInput",
     members = {
         NetworkId = {
             type = "string",
@@ -16113,6 +16572,7 @@ M.DescribeNetworkInput = {
 
 M.DescribeNetworkOutput = {
     type = "structure",
+    id = "DescribeNetworkOutput",
     members = {
         Arn = {
             type = "string",
@@ -16164,6 +16624,7 @@ M.DescribeNetworkOutput = {
 
 M.DescribeNodeInput = {
     type = "structure",
+    id = "DescribeNodeInput",
     members = {
         ClusterId = {
             type = "string",
@@ -16184,6 +16645,7 @@ M.DescribeNodeInput = {
 
 M.DescribeNodeOutput = {
     type = "structure",
+    id = "DescribeNodeOutput",
     members = {
         Arn = {
             type = "string",
@@ -16259,6 +16721,7 @@ M.DescribeNodeOutput = {
 
 M.DescribeOfferingInput = {
     type = "structure",
+    id = "DescribeOfferingInput",
     members = {
         OfferingId = {
             type = "string",
@@ -16272,6 +16735,7 @@ M.DescribeOfferingInput = {
 
 M.DescribeOfferingOutput = {
     type = "structure",
+    id = "DescribeOfferingOutput",
     members = {
         Arn = {
             type = "string",
@@ -16341,6 +16805,7 @@ M.DescribeOfferingOutput = {
 
 M.DescribeReservationInput = {
     type = "structure",
+    id = "DescribeReservationInput",
     members = {
         ReservationId = {
             type = "string",
@@ -16354,6 +16819,7 @@ M.DescribeReservationInput = {
 
 M.DescribeReservationOutput = {
     type = "structure",
+    id = "DescribeReservationOutput",
     members = {
         Arn = {
             type = "string",
@@ -16470,6 +16936,7 @@ M.DescribeReservationOutput = {
 
 M.DescribeScheduleInput = {
     type = "structure",
+    id = "DescribeScheduleInput",
     members = {
         ChannelId = {
             type = "string",
@@ -16495,6 +16962,7 @@ M.DescribeScheduleInput = {
 
 M.DescribeScheduleOutput = {
     type = "structure",
+    id = "DescribeScheduleOutput",
     members = {
         NextToken = {
             type = "string",
@@ -16514,6 +16982,7 @@ M.DescribeScheduleOutput = {
 
 M.DescribeSdiSourceInput = {
     type = "structure",
+    id = "DescribeSdiSourceInput",
     members = {
         SdiSourceId = {
             type = "string",
@@ -16527,6 +16996,7 @@ M.DescribeSdiSourceInput = {
 
 M.DescribeSdiSourceOutput = {
     type = "structure",
+    id = "DescribeSdiSourceOutput",
     members = {
         SdiSource = setmetatable({ traits = {
             json_name = "sdiSource",
@@ -16536,6 +17006,7 @@ M.DescribeSdiSourceOutput = {
 
 M.DescribeThumbnailsInput = {
     type = "structure",
+    id = "DescribeThumbnailsInput",
     members = {
         ChannelId = {
             type = "string",
@@ -16563,6 +17034,7 @@ M.DescribeThumbnailsInput = {
 
 M.DescribeThumbnailsOutput = {
     type = "structure",
+    id = "DescribeThumbnailsOutput",
     members = {
         ThumbnailDetails = {
             type = "list",
@@ -16576,6 +17048,7 @@ M.DescribeThumbnailsOutput = {
 
 M.GetCloudWatchAlarmTemplateInput = {
     type = "structure",
+    id = "GetCloudWatchAlarmTemplateInput",
     members = {
         Identifier = {
             type = "string",
@@ -16589,6 +17062,7 @@ M.GetCloudWatchAlarmTemplateInput = {
 
 M.GetCloudWatchAlarmTemplateOutput = {
     type = "structure",
+    id = "GetCloudWatchAlarmTemplateOutput",
     members = {
         Arn = {
             type = "string",
@@ -16701,6 +17175,7 @@ M.GetCloudWatchAlarmTemplateOutput = {
 
 M.GetCloudWatchAlarmTemplateGroupInput = {
     type = "structure",
+    id = "GetCloudWatchAlarmTemplateGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -16714,6 +17189,7 @@ M.GetCloudWatchAlarmTemplateGroupInput = {
 
 M.GetCloudWatchAlarmTemplateGroupOutput = {
     type = "structure",
+    id = "GetCloudWatchAlarmTemplateGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -16766,6 +17242,7 @@ M.GetCloudWatchAlarmTemplateGroupOutput = {
 
 M.GetEventBridgeRuleTemplateInput = {
     type = "structure",
+    id = "GetEventBridgeRuleTemplateInput",
     members = {
         Identifier = {
             type = "string",
@@ -16779,6 +17256,7 @@ M.GetEventBridgeRuleTemplateInput = {
 
 M.GetEventBridgeRuleTemplateOutput = {
     type = "structure",
+    id = "GetEventBridgeRuleTemplateOutput",
     members = {
         Arn = {
             type = "string",
@@ -16850,6 +17328,7 @@ M.GetEventBridgeRuleTemplateOutput = {
 
 M.GetEventBridgeRuleTemplateGroupInput = {
     type = "structure",
+    id = "GetEventBridgeRuleTemplateGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -16863,6 +17342,7 @@ M.GetEventBridgeRuleTemplateGroupInput = {
 
 M.GetEventBridgeRuleTemplateGroupOutput = {
     type = "structure",
+    id = "GetEventBridgeRuleTemplateGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -16915,6 +17395,7 @@ M.GetEventBridgeRuleTemplateGroupOutput = {
 
 M.GetSignalMapInput = {
     type = "structure",
+    id = "GetSignalMapInput",
     members = {
         Identifier = {
             type = "string",
@@ -16928,6 +17409,7 @@ M.GetSignalMapInput = {
 
 M.GetSignalMapOutput = {
     type = "structure",
+    id = "GetSignalMapOutput",
     members = {
         Arn = {
             type = "string",
@@ -17047,6 +17529,7 @@ M.GetSignalMapOutput = {
 
 M.InputDeviceMediaConnectConfigurableSettings = {
     type = "structure",
+    id = "InputDeviceMediaConnectConfigurableSettings",
     members = {
         FlowArn = {
             type = "string",
@@ -17077,6 +17560,7 @@ M.InputDeviceMediaConnectConfigurableSettings = {
 
 M.InputDeviceConfigurableSettings = {
     type = "structure",
+    id = "InputDeviceConfigurableSettings",
     members = {
         ConfiguredInput = {
             type = "string",
@@ -17123,6 +17607,7 @@ M.InputDeviceConfigurableSettings = {
 
 M.ListAlertsInput = {
     type = "structure",
+    id = "ListAlertsInput",
     members = {
         ChannelId = {
             type = "string",
@@ -17154,6 +17639,7 @@ M.ListAlertsInput = {
 
 M.ListAlertsOutput = {
     type = "structure",
+    id = "ListAlertsOutput",
     members = {
         Alerts = {
             type = "list",
@@ -17173,6 +17659,7 @@ M.ListAlertsOutput = {
 
 M.ListChannelPlacementGroupsInput = {
     type = "structure",
+    id = "ListChannelPlacementGroupsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -17198,6 +17685,7 @@ M.ListChannelPlacementGroupsInput = {
 
 M.ListChannelPlacementGroupsOutput = {
     type = "structure",
+    id = "ListChannelPlacementGroupsOutput",
     members = {
         ChannelPlacementGroups = {
             type = "list",
@@ -17217,6 +17705,7 @@ M.ListChannelPlacementGroupsOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17235,6 +17724,7 @@ M.ListChannelsInput = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         Channels = {
             type = "list",
@@ -17254,6 +17744,7 @@ M.ListChannelsOutput = {
 
 M.ListCloudWatchAlarmTemplateGroupsInput = {
     type = "structure",
+    id = "ListCloudWatchAlarmTemplateGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17284,6 +17775,7 @@ M.ListCloudWatchAlarmTemplateGroupsInput = {
 
 M.ListCloudWatchAlarmTemplateGroupsOutput = {
     type = "structure",
+    id = "ListCloudWatchAlarmTemplateGroupsOutput",
     members = {
         CloudWatchAlarmTemplateGroups = {
             type = "list",
@@ -17303,6 +17795,7 @@ M.ListCloudWatchAlarmTemplateGroupsOutput = {
 
 M.ListCloudWatchAlarmTemplatesInput = {
     type = "structure",
+    id = "ListCloudWatchAlarmTemplatesInput",
     members = {
         GroupIdentifier = {
             type = "string",
@@ -17339,6 +17832,7 @@ M.ListCloudWatchAlarmTemplatesInput = {
 
 M.ListCloudWatchAlarmTemplatesOutput = {
     type = "structure",
+    id = "ListCloudWatchAlarmTemplatesOutput",
     members = {
         CloudWatchAlarmTemplates = {
             type = "list",
@@ -17358,6 +17852,7 @@ M.ListCloudWatchAlarmTemplatesOutput = {
 
 M.ListClusterAlertsInput = {
     type = "structure",
+    id = "ListClusterAlertsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -17389,6 +17884,7 @@ M.ListClusterAlertsInput = {
 
 M.ListClusterAlertsOutput = {
     type = "structure",
+    id = "ListClusterAlertsOutput",
     members = {
         Alerts = {
             type = "list",
@@ -17408,6 +17904,7 @@ M.ListClusterAlertsOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17426,6 +17923,7 @@ M.ListClustersInput = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         Clusters = {
             type = "list",
@@ -17445,6 +17943,7 @@ M.ListClustersOutput = {
 
 M.ListEventBridgeRuleTemplateGroupsInput = {
     type = "structure",
+    id = "ListEventBridgeRuleTemplateGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17469,6 +17968,7 @@ M.ListEventBridgeRuleTemplateGroupsInput = {
 
 M.ListEventBridgeRuleTemplateGroupsOutput = {
     type = "structure",
+    id = "ListEventBridgeRuleTemplateGroupsOutput",
     members = {
         EventBridgeRuleTemplateGroups = {
             type = "list",
@@ -17488,6 +17988,7 @@ M.ListEventBridgeRuleTemplateGroupsOutput = {
 
 M.ListEventBridgeRuleTemplatesInput = {
     type = "structure",
+    id = "ListEventBridgeRuleTemplatesInput",
     members = {
         GroupIdentifier = {
             type = "string",
@@ -17518,6 +18019,7 @@ M.ListEventBridgeRuleTemplatesInput = {
 
 M.ListEventBridgeRuleTemplatesOutput = {
     type = "structure",
+    id = "ListEventBridgeRuleTemplatesOutput",
     members = {
         EventBridgeRuleTemplates = {
             type = "list",
@@ -17537,6 +18039,7 @@ M.ListEventBridgeRuleTemplatesOutput = {
 
 M.ListInputDevicesInput = {
     type = "structure",
+    id = "ListInputDevicesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17555,6 +18058,7 @@ M.ListInputDevicesInput = {
 
 M.ListInputDevicesOutput = {
     type = "structure",
+    id = "ListInputDevicesOutput",
     members = {
         InputDevices = {
             type = "list",
@@ -17574,6 +18078,7 @@ M.ListInputDevicesOutput = {
 
 M.ListInputDeviceTransfersInput = {
     type = "structure",
+    id = "ListInputDeviceTransfersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17599,6 +18104,7 @@ M.ListInputDeviceTransfersInput = {
 
 M.ListInputDeviceTransfersOutput = {
     type = "structure",
+    id = "ListInputDeviceTransfersOutput",
     members = {
         InputDeviceTransfers = {
             type = "list",
@@ -17618,6 +18124,7 @@ M.ListInputDeviceTransfersOutput = {
 
 M.ListInputsInput = {
     type = "structure",
+    id = "ListInputsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17636,6 +18143,7 @@ M.ListInputsInput = {
 
 M.ListInputsOutput = {
     type = "structure",
+    id = "ListInputsOutput",
     members = {
         Inputs = {
             type = "list",
@@ -17655,6 +18163,7 @@ M.ListInputsOutput = {
 
 M.ListInputSecurityGroupsInput = {
     type = "structure",
+    id = "ListInputSecurityGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17673,6 +18182,7 @@ M.ListInputSecurityGroupsInput = {
 
 M.ListInputSecurityGroupsOutput = {
     type = "structure",
+    id = "ListInputSecurityGroupsOutput",
     members = {
         InputSecurityGroups = {
             type = "list",
@@ -17692,6 +18202,7 @@ M.ListInputSecurityGroupsOutput = {
 
 M.ListMultiplexAlertsInput = {
     type = "structure",
+    id = "ListMultiplexAlertsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17723,6 +18234,7 @@ M.ListMultiplexAlertsInput = {
 
 M.ListMultiplexAlertsOutput = {
     type = "structure",
+    id = "ListMultiplexAlertsOutput",
     members = {
         Alerts = {
             type = "list",
@@ -17742,6 +18254,7 @@ M.ListMultiplexAlertsOutput = {
 
 M.ListMultiplexesInput = {
     type = "structure",
+    id = "ListMultiplexesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17760,6 +18273,7 @@ M.ListMultiplexesInput = {
 
 M.ListMultiplexesOutput = {
     type = "structure",
+    id = "ListMultiplexesOutput",
     members = {
         Multiplexes = {
             type = "list",
@@ -17779,6 +18293,7 @@ M.ListMultiplexesOutput = {
 
 M.ListMultiplexProgramsInput = {
     type = "structure",
+    id = "ListMultiplexProgramsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17804,6 +18319,7 @@ M.ListMultiplexProgramsInput = {
 
 M.ListMultiplexProgramsOutput = {
     type = "structure",
+    id = "ListMultiplexProgramsOutput",
     members = {
         MultiplexPrograms = {
             type = "list",
@@ -17823,6 +18339,7 @@ M.ListMultiplexProgramsOutput = {
 
 M.ListNetworksInput = {
     type = "structure",
+    id = "ListNetworksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17841,6 +18358,7 @@ M.ListNetworksInput = {
 
 M.ListNetworksOutput = {
     type = "structure",
+    id = "ListNetworksOutput",
     members = {
         Networks = {
             type = "list",
@@ -17860,6 +18378,7 @@ M.ListNetworksOutput = {
 
 M.ListNodesInput = {
     type = "structure",
+    id = "ListNodesInput",
     members = {
         ClusterId = {
             type = "string",
@@ -17885,6 +18404,7 @@ M.ListNodesInput = {
 
 M.ListNodesOutput = {
     type = "structure",
+    id = "ListNodesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -17904,6 +18424,7 @@ M.ListNodesOutput = {
 
 M.ListOfferingsInput = {
     type = "structure",
+    id = "ListOfferingsInput",
     members = {
         ChannelClass = {
             type = "string",
@@ -17982,6 +18503,7 @@ M.ListOfferingsInput = {
 
 M.ListOfferingsOutput = {
     type = "structure",
+    id = "ListOfferingsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18001,6 +18523,7 @@ M.ListOfferingsOutput = {
 
 M.ListReservationsInput = {
     type = "structure",
+    id = "ListReservationsInput",
     members = {
         ChannelClass = {
             type = "string",
@@ -18067,6 +18590,7 @@ M.ListReservationsInput = {
 
 M.ListReservationsOutput = {
     type = "structure",
+    id = "ListReservationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18086,6 +18610,7 @@ M.ListReservationsOutput = {
 
 M.ListSdiSourcesInput = {
     type = "structure",
+    id = "ListSdiSourcesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -18104,6 +18629,7 @@ M.ListSdiSourcesInput = {
 
 M.ListSdiSourcesOutput = {
     type = "structure",
+    id = "ListSdiSourcesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18123,6 +18649,7 @@ M.ListSdiSourcesOutput = {
 
 M.ListSignalMapsInput = {
     type = "structure",
+    id = "ListSignalMapsInput",
     members = {
         CloudWatchAlarmTemplateGroupIdentifier = {
             type = "string",
@@ -18153,6 +18680,7 @@ M.ListSignalMapsInput = {
 
 M.ListSignalMapsOutput = {
     type = "structure",
+    id = "ListSignalMapsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18172,6 +18700,7 @@ M.ListSignalMapsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -18185,6 +18714,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -18199,10 +18729,12 @@ M.ListTagsForResourceOutput = {
 
 M.ListVersionsInput = {
     type = "structure",
+    id = "ListVersionsInput",
 }
 
 M.ListVersionsOutput = {
     type = "structure",
+    id = "ListVersionsOutput",
     members = {
         Versions = {
             type = "list",
@@ -18216,6 +18748,7 @@ M.ListVersionsOutput = {
 
 M.MaintenanceUpdateSettings = {
     type = "structure",
+    id = "MaintenanceUpdateSettings",
     members = {
         MaintenanceDay = {
             type = "string",
@@ -18240,6 +18773,7 @@ M.MaintenanceUpdateSettings = {
 
 M.PurchaseOfferingInput = {
     type = "structure",
+    id = "PurchaseOfferingInput",
     members = {
         Count = {
             type = "integer",
@@ -18290,6 +18824,7 @@ M.PurchaseOfferingInput = {
 
 M.PurchaseOfferingOutput = {
     type = "structure",
+    id = "PurchaseOfferingOutput",
     members = {
         Reservation = setmetatable({ traits = {
             json_name = "reservation",
@@ -18304,6 +18839,7 @@ M.RebootInputDeviceForce = {
 
 M.RebootInputDeviceInput = {
     type = "structure",
+    id = "RebootInputDeviceInput",
     members = {
         Force = {
             type = "string",
@@ -18323,10 +18859,12 @@ M.RebootInputDeviceInput = {
 
 M.RebootInputDeviceOutput = {
     type = "structure",
+    id = "RebootInputDeviceOutput",
 }
 
 M.RejectInputDeviceTransferInput = {
     type = "structure",
+    id = "RejectInputDeviceTransferInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -18340,10 +18878,12 @@ M.RejectInputDeviceTransferInput = {
 
 M.RejectInputDeviceTransferOutput = {
     type = "structure",
+    id = "RejectInputDeviceTransferOutput",
 }
 
 M.RestartChannelPipelinesInput = {
     type = "structure",
+    id = "RestartChannelPipelinesInput",
     members = {
         ChannelId = {
             type = "string",
@@ -18364,6 +18904,7 @@ M.RestartChannelPipelinesInput = {
 
 M.RestartChannelPipelinesOutput = {
     type = "structure",
+    id = "RestartChannelPipelinesOutput",
     members = {
         Arn = {
             type = "string",
@@ -18494,6 +19035,7 @@ M.RestartChannelPipelinesOutput = {
 
 M.StartChannelInput = {
     type = "structure",
+    id = "StartChannelInput",
     members = {
         ChannelId = {
             type = "string",
@@ -18507,6 +19049,7 @@ M.StartChannelInput = {
 
 M.StartChannelOutput = {
     type = "structure",
+    id = "StartChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -18631,6 +19174,7 @@ M.StartChannelOutput = {
 
 M.StartDeleteMonitorDeploymentInput = {
     type = "structure",
+    id = "StartDeleteMonitorDeploymentInput",
     members = {
         Identifier = {
             type = "string",
@@ -18644,6 +19188,7 @@ M.StartDeleteMonitorDeploymentInput = {
 
 M.StartDeleteMonitorDeploymentOutput = {
     type = "structure",
+    id = "StartDeleteMonitorDeploymentOutput",
     members = {
         Arn = {
             type = "string",
@@ -18763,6 +19308,7 @@ M.StartDeleteMonitorDeploymentOutput = {
 
 M.StartInputDeviceInput = {
     type = "structure",
+    id = "StartInputDeviceInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -18776,10 +19322,12 @@ M.StartInputDeviceInput = {
 
 M.StartInputDeviceOutput = {
     type = "structure",
+    id = "StartInputDeviceOutput",
 }
 
 M.StartInputDeviceMaintenanceWindowInput = {
     type = "structure",
+    id = "StartInputDeviceMaintenanceWindowInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -18793,10 +19341,12 @@ M.StartInputDeviceMaintenanceWindowInput = {
 
 M.StartInputDeviceMaintenanceWindowOutput = {
     type = "structure",
+    id = "StartInputDeviceMaintenanceWindowOutput",
 }
 
 M.StartMonitorDeploymentInput = {
     type = "structure",
+    id = "StartMonitorDeploymentInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -18816,6 +19366,7 @@ M.StartMonitorDeploymentInput = {
 
 M.StartMonitorDeploymentOutput = {
     type = "structure",
+    id = "StartMonitorDeploymentOutput",
     members = {
         Arn = {
             type = "string",
@@ -18935,6 +19486,7 @@ M.StartMonitorDeploymentOutput = {
 
 M.StartMultiplexInput = {
     type = "structure",
+    id = "StartMultiplexInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -18948,6 +19500,7 @@ M.StartMultiplexInput = {
 
 M.StartMultiplexOutput = {
     type = "structure",
+    id = "StartMultiplexOutput",
     members = {
         Arn = {
             type = "string",
@@ -19015,6 +19568,7 @@ M.StartMultiplexOutput = {
 
 M.StartUpdateSignalMapInput = {
     type = "structure",
+    id = "StartUpdateSignalMapInput",
     members = {
         CloudWatchAlarmTemplateGroupIdentifiers = {
             type = "list",
@@ -19066,6 +19620,7 @@ M.StartUpdateSignalMapInput = {
 
 M.StartUpdateSignalMapOutput = {
     type = "structure",
+    id = "StartUpdateSignalMapOutput",
     members = {
         Arn = {
             type = "string",
@@ -19185,6 +19740,7 @@ M.StartUpdateSignalMapOutput = {
 
 M.StopChannelInput = {
     type = "structure",
+    id = "StopChannelInput",
     members = {
         ChannelId = {
             type = "string",
@@ -19198,6 +19754,7 @@ M.StopChannelInput = {
 
 M.StopChannelOutput = {
     type = "structure",
+    id = "StopChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -19322,6 +19879,7 @@ M.StopChannelOutput = {
 
 M.StopInputDeviceInput = {
     type = "structure",
+    id = "StopInputDeviceInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -19335,10 +19893,12 @@ M.StopInputDeviceInput = {
 
 M.StopInputDeviceOutput = {
     type = "structure",
+    id = "StopInputDeviceOutput",
 }
 
 M.StopMultiplexInput = {
     type = "structure",
+    id = "StopMultiplexInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -19352,6 +19912,7 @@ M.StopMultiplexInput = {
 
 M.StopMultiplexOutput = {
     type = "structure",
+    id = "StopMultiplexOutput",
     members = {
         Arn = {
             type = "string",
@@ -19419,6 +19980,7 @@ M.StopMultiplexOutput = {
 
 M.TransferInputDeviceInput = {
     type = "structure",
+    id = "TransferInputDeviceInput",
     members = {
         InputDeviceId = {
             type = "string",
@@ -19450,10 +20012,12 @@ M.TransferInputDeviceInput = {
 
 M.TransferInputDeviceOutput = {
     type = "structure",
+    id = "TransferInputDeviceOutput",
 }
 
 M.UpdateAccountConfigurationInput = {
     type = "structure",
+    id = "UpdateAccountConfigurationInput",
     members = {
         AccountConfiguration = setmetatable({ traits = {
             json_name = "accountConfiguration",
@@ -19463,6 +20027,7 @@ M.UpdateAccountConfigurationInput = {
 
 M.UpdateAccountConfigurationOutput = {
     type = "structure",
+    id = "UpdateAccountConfigurationOutput",
     members = {
         AccountConfiguration = setmetatable({ traits = {
             json_name = "accountConfiguration",
@@ -19472,6 +20037,7 @@ M.UpdateAccountConfigurationOutput = {
 
 M.SpecialRouterSettings = {
     type = "structure",
+    id = "SpecialRouterSettings",
     members = {
         RouterArn = {
             type = "string",
@@ -19484,6 +20050,7 @@ M.SpecialRouterSettings = {
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         CdiInputSpecification = setmetatable({ traits = {
             json_name = "cdiInputSpecification",
@@ -19569,6 +20136,7 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
     members = {
         Channel = setmetatable({ traits = {
             json_name = "channel",
@@ -19578,6 +20146,7 @@ M.UpdateChannelOutput = {
 
 M.UpdateChannelClassInput = {
     type = "structure",
+    id = "UpdateChannelClassInput",
     members = {
         ChannelClass = {
             type = "string",
@@ -19605,6 +20174,7 @@ M.UpdateChannelClassInput = {
 
 M.UpdateChannelClassOutput = {
     type = "structure",
+    id = "UpdateChannelClassOutput",
     members = {
         Channel = setmetatable({ traits = {
             json_name = "channel",
@@ -19614,6 +20184,7 @@ M.UpdateChannelClassOutput = {
 
 M.UpdateChannelPlacementGroupInput = {
     type = "structure",
+    id = "UpdateChannelPlacementGroupInput",
     members = {
         ChannelPlacementGroupId = {
             type = "string",
@@ -19647,6 +20218,7 @@ M.UpdateChannelPlacementGroupInput = {
 
 M.UpdateChannelPlacementGroupOutput = {
     type = "structure",
+    id = "UpdateChannelPlacementGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -19697,6 +20269,7 @@ M.UpdateChannelPlacementGroupOutput = {
 
 M.UpdateCloudWatchAlarmTemplateInput = {
     type = "structure",
+    id = "UpdateCloudWatchAlarmTemplateInput",
     members = {
         ComparisonOperator = {
             type = "string",
@@ -19782,6 +20355,7 @@ M.UpdateCloudWatchAlarmTemplateInput = {
 
 M.UpdateCloudWatchAlarmTemplateOutput = {
     type = "structure",
+    id = "UpdateCloudWatchAlarmTemplateOutput",
     members = {
         Arn = {
             type = "string",
@@ -19894,6 +20468,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
 
 M.UpdateCloudWatchAlarmTemplateGroupInput = {
     type = "structure",
+    id = "UpdateCloudWatchAlarmTemplateGroupInput",
     members = {
         Description = {
             type = "string",
@@ -19913,6 +20488,7 @@ M.UpdateCloudWatchAlarmTemplateGroupInput = {
 
 M.UpdateCloudWatchAlarmTemplateGroupOutput = {
     type = "structure",
+    id = "UpdateCloudWatchAlarmTemplateGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -19965,6 +20541,7 @@ M.UpdateCloudWatchAlarmTemplateGroupOutput = {
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -19987,6 +20564,7 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
     members = {
         Arn = {
             type = "string",
@@ -20033,6 +20611,7 @@ M.UpdateClusterOutput = {
 
 M.UpdateEventBridgeRuleTemplateInput = {
     type = "structure",
+    id = "UpdateEventBridgeRuleTemplateInput",
     members = {
         Description = {
             type = "string",
@@ -20077,6 +20656,7 @@ M.UpdateEventBridgeRuleTemplateInput = {
 
 M.UpdateEventBridgeRuleTemplateOutput = {
     type = "structure",
+    id = "UpdateEventBridgeRuleTemplateOutput",
     members = {
         Arn = {
             type = "string",
@@ -20148,6 +20728,7 @@ M.UpdateEventBridgeRuleTemplateOutput = {
 
 M.UpdateEventBridgeRuleTemplateGroupInput = {
     type = "structure",
+    id = "UpdateEventBridgeRuleTemplateGroupInput",
     members = {
         Description = {
             type = "string",
@@ -20167,6 +20748,7 @@ M.UpdateEventBridgeRuleTemplateGroupInput = {
 
 M.UpdateEventBridgeRuleTemplateGroupOutput = {
     type = "structure",
+    id = "UpdateEventBridgeRuleTemplateGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -20219,6 +20801,7 @@ M.UpdateEventBridgeRuleTemplateGroupOutput = {
 
 M.MulticastSettingsUpdateRequest = {
     type = "structure",
+    id = "MulticastSettingsUpdateRequest",
     members = {
         Sources = {
             type = "list",
@@ -20232,6 +20815,7 @@ M.MulticastSettingsUpdateRequest = {
 
 M.UpdateInputInput = {
     type = "structure",
+    id = "UpdateInputInput",
     members = {
         Destinations = {
             type = "list",
@@ -20311,6 +20895,7 @@ M.UpdateInputInput = {
 
 M.UpdateInputOutput = {
     type = "structure",
+    id = "UpdateInputOutput",
     members = {
         Input = setmetatable({ traits = {
             json_name = "input",
@@ -20320,6 +20905,7 @@ M.UpdateInputOutput = {
 
 M.UpdateInputDeviceInput = {
     type = "structure",
+    id = "UpdateInputDeviceInput",
     members = {
         HdDeviceSettings = setmetatable({ traits = {
             json_name = "hdDeviceSettings",
@@ -20351,6 +20937,7 @@ M.UpdateInputDeviceInput = {
 
 M.UpdateInputDeviceOutput = {
     type = "structure",
+    id = "UpdateInputDeviceOutput",
     members = {
         Arn = {
             type = "string",
@@ -20447,6 +21034,7 @@ M.UpdateInputDeviceOutput = {
 
 M.UpdateInputSecurityGroupInput = {
     type = "structure",
+    id = "UpdateInputSecurityGroupInput",
     members = {
         InputSecurityGroupId = {
             type = "string",
@@ -20475,6 +21063,7 @@ M.UpdateInputSecurityGroupInput = {
 
 M.UpdateInputSecurityGroupOutput = {
     type = "structure",
+    id = "UpdateInputSecurityGroupOutput",
     members = {
         SecurityGroup = setmetatable({ traits = {
             json_name = "securityGroup",
@@ -20484,6 +21073,7 @@ M.UpdateInputSecurityGroupOutput = {
 
 M.UpdateMultiplexInput = {
     type = "structure",
+    id = "UpdateMultiplexInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -20514,6 +21104,7 @@ M.UpdateMultiplexInput = {
 
 M.UpdateMultiplexOutput = {
     type = "structure",
+    id = "UpdateMultiplexOutput",
     members = {
         Multiplex = setmetatable({ traits = {
             json_name = "multiplex",
@@ -20523,6 +21114,7 @@ M.UpdateMultiplexOutput = {
 
 M.UpdateMultiplexProgramInput = {
     type = "structure",
+    id = "UpdateMultiplexProgramInput",
     members = {
         MultiplexId = {
             type = "string",
@@ -20546,6 +21138,7 @@ M.UpdateMultiplexProgramInput = {
 
 M.UpdateMultiplexProgramOutput = {
     type = "structure",
+    id = "UpdateMultiplexProgramOutput",
     members = {
         MultiplexProgram = setmetatable({ traits = {
             json_name = "multiplexProgram",
@@ -20555,6 +21148,7 @@ M.UpdateMultiplexProgramOutput = {
 
 M.UpdateNetworkInput = {
     type = "structure",
+    id = "UpdateNetworkInput",
     members = {
         IpPools = {
             type = "list",
@@ -20588,6 +21182,7 @@ M.UpdateNetworkInput = {
 
 M.UpdateNetworkOutput = {
     type = "structure",
+    id = "UpdateNetworkOutput",
     members = {
         Arn = {
             type = "string",
@@ -20639,6 +21234,7 @@ M.UpdateNetworkOutput = {
 
 M.SdiSourceMappingUpdateRequest = {
     type = "structure",
+    id = "SdiSourceMappingUpdateRequest",
     members = {
         CardNumber = {
             type = "integer",
@@ -20663,6 +21259,7 @@ M.SdiSourceMappingUpdateRequest = {
 
 M.UpdateNodeInput = {
     type = "structure",
+    id = "UpdateNodeInput",
     members = {
         ClusterId = {
             type = "string",
@@ -20702,6 +21299,7 @@ M.UpdateNodeInput = {
 
 M.UpdateNodeOutput = {
     type = "structure",
+    id = "UpdateNodeOutput",
     members = {
         Arn = {
             type = "string",
@@ -20782,6 +21380,7 @@ M.UpdateNodeStateShape = {
 
 M.UpdateNodeStateInput = {
     type = "structure",
+    id = "UpdateNodeStateInput",
     members = {
         ClusterId = {
             type = "string",
@@ -20808,6 +21407,7 @@ M.UpdateNodeStateInput = {
 
 M.UpdateNodeStateOutput = {
     type = "structure",
+    id = "UpdateNodeStateOutput",
     members = {
         Arn = {
             type = "string",
@@ -20883,6 +21483,7 @@ M.UpdateNodeStateOutput = {
 
 M.UpdateReservationInput = {
     type = "structure",
+    id = "UpdateReservationInput",
     members = {
         Name = {
             type = "string",
@@ -20905,6 +21506,7 @@ M.UpdateReservationInput = {
 
 M.UpdateReservationOutput = {
     type = "structure",
+    id = "UpdateReservationOutput",
     members = {
         Reservation = setmetatable({ traits = {
             json_name = "reservation",
@@ -20914,6 +21516,7 @@ M.UpdateReservationOutput = {
 
 M.UpdateSdiSourceInput = {
     type = "structure",
+    id = "UpdateSdiSourceInput",
     members = {
         Mode = {
             type = "string",
@@ -20945,6 +21548,7 @@ M.UpdateSdiSourceInput = {
 
 M.UpdateSdiSourceOutput = {
     type = "structure",
+    id = "UpdateSdiSourceOutput",
     members = {
         SdiSource = setmetatable({ traits = {
             json_name = "sdiSource",

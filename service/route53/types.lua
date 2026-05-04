@@ -21,6 +21,7 @@ M.AccountLimitType = {
 
 M.AccountLimit = {
     type = "structure",
+    id = "AccountLimit",
     members = {
         Type = {
             type = "string",
@@ -39,6 +40,7 @@ M.AccountLimit = {
 
 M.ActivateKeySigningKeyInput = {
     type = "structure",
+    id = "ActivateKeySigningKeyInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -64,6 +66,7 @@ M.ChangeStatus = {
 
 M.ChangeInfo = {
     type = "structure",
+    id = "ChangeInfo",
     members = {
         Id = {
             type = "string",
@@ -91,6 +94,7 @@ M.ChangeInfo = {
 
 M.ActivateKeySigningKeyOutput = {
     type = "structure",
+    id = "ActivateKeySigningKeyOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -100,6 +104,7 @@ M.ActivateKeySigningKeyOutput = {
 
 M.ConcurrentModification = {
     type = "structure",
+    id = "ConcurrentModification",
     error = "client",
     members = {
         message = {
@@ -110,6 +115,7 @@ M.ConcurrentModification = {
 
 M.InvalidInput = {
     type = "structure",
+    id = "InvalidInput",
     error = "client",
     members = {
         message = {
@@ -120,6 +126,7 @@ M.InvalidInput = {
 
 M.InvalidKeySigningKeyStatus = {
     type = "structure",
+    id = "InvalidKeySigningKeyStatus",
     error = "client",
     members = {
         message = {
@@ -130,6 +137,7 @@ M.InvalidKeySigningKeyStatus = {
 
 M.InvalidKMSArn = {
     type = "structure",
+    id = "InvalidKMSArn",
     error = "client",
     members = {
         message = {
@@ -140,6 +148,7 @@ M.InvalidKMSArn = {
 
 M.InvalidSigningStatus = {
     type = "structure",
+    id = "InvalidSigningStatus",
     error = "client",
     members = {
         message = {
@@ -150,6 +159,7 @@ M.InvalidSigningStatus = {
 
 M.NoSuchKeySigningKey = {
     type = "structure",
+    id = "NoSuchKeySigningKey",
     error = "client",
     members = {
         message = {
@@ -209,6 +219,7 @@ M.CloudWatchRegion = {
 
 M.AlarmIdentifier = {
     type = "structure",
+    id = "AlarmIdentifier",
     members = {
         Region = {
             type = "string",
@@ -227,6 +238,7 @@ M.AlarmIdentifier = {
 
 M.AliasTarget = {
     type = "structure",
+    id = "AliasTarget",
     members = {
         HostedZoneId = {
             type = "string",
@@ -301,6 +313,7 @@ M.VPCRegion = {
 
 M.VPC = {
     type = "structure",
+    id = "VPC",
     members = {
         VPCRegion = {
             type = "string",
@@ -313,6 +326,7 @@ M.VPC = {
 
 M.AssociateVPCWithHostedZoneInput = {
     type = "structure",
+    id = "AssociateVPCWithHostedZoneInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -332,6 +346,7 @@ M.AssociateVPCWithHostedZoneInput = {
 
 M.AssociateVPCWithHostedZoneOutput = {
     type = "structure",
+    id = "AssociateVPCWithHostedZoneOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -341,6 +356,7 @@ M.AssociateVPCWithHostedZoneOutput = {
 
 M.ConflictingDomainExists = {
     type = "structure",
+    id = "ConflictingDomainExists",
     error = "client",
     members = {
         message = {
@@ -351,6 +367,7 @@ M.ConflictingDomainExists = {
 
 M.InvalidVPCId = {
     type = "structure",
+    id = "InvalidVPCId",
     error = "client",
     members = {
         message = {
@@ -361,6 +378,7 @@ M.InvalidVPCId = {
 
 M.LimitsExceeded = {
     type = "structure",
+    id = "LimitsExceeded",
     error = "client",
     members = {
         message = {
@@ -371,6 +389,7 @@ M.LimitsExceeded = {
 
 M.NoSuchHostedZone = {
     type = "structure",
+    id = "NoSuchHostedZone",
     error = "client",
     members = {
         message = {
@@ -381,6 +400,7 @@ M.NoSuchHostedZone = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         message = {
@@ -391,6 +411,7 @@ M.NotAuthorizedException = {
 
 M.PriorRequestNotComplete = {
     type = "structure",
+    id = "PriorRequestNotComplete",
     error = "client",
     members = {
         message = {
@@ -401,6 +422,7 @@ M.PriorRequestNotComplete = {
 
 M.PublicZoneVPCAssociation = {
     type = "structure",
+    id = "PublicZoneVPCAssociation",
     error = "client",
     members = {
         message = {
@@ -416,6 +438,7 @@ M.CidrCollectionChangeAction = {
 
 M.CidrCollectionChange = {
     type = "structure",
+    id = "CidrCollectionChange",
     members = {
         LocationName = {
             type = "string",
@@ -441,6 +464,7 @@ M.CidrCollectionChange = {
 
 M.ChangeCidrCollectionInput = {
     type = "structure",
+    id = "ChangeCidrCollectionInput",
     members = {
         Id = {
             type = "string",
@@ -464,6 +488,7 @@ M.ChangeCidrCollectionInput = {
 
 M.ChangeCidrCollectionOutput = {
     type = "structure",
+    id = "ChangeCidrCollectionOutput",
     members = {
         Id = {
             type = "string",
@@ -476,6 +501,7 @@ M.ChangeCidrCollectionOutput = {
 
 M.CidrBlockInUseException = {
     type = "structure",
+    id = "CidrBlockInUseException",
     error = "client",
     members = {
         Message = {
@@ -486,6 +512,7 @@ M.CidrBlockInUseException = {
 
 M.CidrCollectionVersionMismatchException = {
     type = "structure",
+    id = "CidrCollectionVersionMismatchException",
     error = "client",
     members = {
         Message = {
@@ -496,6 +523,7 @@ M.CidrCollectionVersionMismatchException = {
 
 M.NoSuchCidrCollectionException = {
     type = "structure",
+    id = "NoSuchCidrCollectionException",
     error = "client",
     members = {
         Message = {
@@ -512,6 +540,7 @@ M.ChangeAction = {
 
 M.CidrRoutingConfig = {
     type = "structure",
+    id = "CidrRoutingConfig",
     members = {
         CollectionId = {
             type = "string",
@@ -535,6 +564,7 @@ M.ResourceRecordSetFailover = {
 
 M.GeoLocation = {
     type = "structure",
+    id = "GeoLocation",
     members = {
         ContinentCode = {
             type = "string",
@@ -550,6 +580,7 @@ M.GeoLocation = {
 
 M.Coordinates = {
     type = "structure",
+    id = "Coordinates",
     members = {
         Latitude = {
             type = "string",
@@ -568,6 +599,7 @@ M.Coordinates = {
 
 M.GeoProximityLocation = {
     type = "structure",
+    id = "GeoProximityLocation",
     members = {
         AWSRegion = {
             type = "string",
@@ -626,6 +658,7 @@ M.ResourceRecordSetRegion = {
 
 M.ResourceRecord = {
     type = "structure",
+    id = "ResourceRecord",
     members = {
         Value = {
             type = "string",
@@ -658,6 +691,7 @@ M.RRType = {
 
 M.ResourceRecordSet = {
     type = "structure",
+    id = "ResourceRecordSet",
     members = {
         Name = {
             type = "string",
@@ -708,6 +742,7 @@ M.ResourceRecordSet = {
 
 M.Change = {
     type = "structure",
+    id = "Change",
     members = {
         Action = {
             type = "string",
@@ -723,6 +758,7 @@ M.Change = {
 
 M.ChangeBatch = {
     type = "structure",
+    id = "ChangeBatch",
     members = {
         Comment = {
             type = "string",
@@ -739,6 +775,7 @@ M.ChangeBatch = {
 
 M.ChangeResourceRecordSetsInput = {
     type = "structure",
+    id = "ChangeResourceRecordSetsInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -755,6 +792,7 @@ M.ChangeResourceRecordSetsInput = {
 
 M.ChangeResourceRecordSetsOutput = {
     type = "structure",
+    id = "ChangeResourceRecordSetsOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -764,6 +802,7 @@ M.ChangeResourceRecordSetsOutput = {
 
 M.InvalidChangeBatch = {
     type = "structure",
+    id = "InvalidChangeBatch",
     error = "client",
     members = {
         messages = {
@@ -778,6 +817,7 @@ M.InvalidChangeBatch = {
 
 M.NoSuchHealthCheck = {
     type = "structure",
+    id = "NoSuchHealthCheck",
     error = "client",
     members = {
         message = {
@@ -788,6 +828,7 @@ M.NoSuchHealthCheck = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -805,6 +846,7 @@ M.TagResourceType = {
 
 M.ChangeTagsForResourceInput = {
     type = "structure",
+    id = "ChangeTagsForResourceInput",
     members = {
         ResourceType = {
             type = "string",
@@ -833,10 +875,12 @@ M.ChangeTagsForResourceInput = {
 
 M.ChangeTagsForResourceOutput = {
     type = "structure",
+    id = "ChangeTagsForResourceOutput",
 }
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -847,6 +891,7 @@ M.ThrottlingException = {
 
 M.CidrCollectionAlreadyExistsException = {
     type = "structure",
+    id = "CidrCollectionAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -857,6 +902,7 @@ M.CidrCollectionAlreadyExistsException = {
 
 M.CreateCidrCollectionInput = {
     type = "structure",
+    id = "CreateCidrCollectionInput",
     members = {
         Name = {
             type = "string",
@@ -875,6 +921,7 @@ M.CreateCidrCollectionInput = {
 
 M.CidrCollection = {
     type = "structure",
+    id = "CidrCollection",
     members = {
         Arn = {
             type = "string",
@@ -893,6 +940,7 @@ M.CidrCollection = {
 
 M.CreateCidrCollectionOutput = {
     type = "structure",
+    id = "CreateCidrCollectionOutput",
     members = {
         Collection = M.CidrCollection,
         Location = {
@@ -934,6 +982,7 @@ M.HealthCheckType = {
 
 M.HealthCheckConfig = {
     type = "structure",
+    id = "HealthCheckConfig",
     members = {
         IPAddress = {
             type = "string",
@@ -997,6 +1046,7 @@ M.HealthCheckConfig = {
 
 M.CreateHealthCheckInput = {
     type = "structure",
+    id = "CreateHealthCheckInput",
     members = {
         CallerReference = {
             type = "string",
@@ -1019,6 +1069,7 @@ M.ComparisonOperator = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         Name = {
             type = "string",
@@ -1045,6 +1096,7 @@ M.Statistic = {
 
 M.CloudWatchAlarmConfiguration = {
     type = "structure",
+    id = "CloudWatchAlarmConfiguration",
     members = {
         EvaluationPeriods = {
             type = "integer",
@@ -1097,6 +1149,7 @@ M.CloudWatchAlarmConfiguration = {
 
 M.LinkedService = {
     type = "structure",
+    id = "LinkedService",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -1109,6 +1162,7 @@ M.LinkedService = {
 
 M.HealthCheck = {
     type = "structure",
+    id = "HealthCheck",
     members = {
         Id = {
             type = "string",
@@ -1138,6 +1192,7 @@ M.HealthCheck = {
 
 M.CreateHealthCheckOutput = {
     type = "structure",
+    id = "CreateHealthCheckOutput",
     members = {
         HealthCheck = setmetatable({ traits = {
             required = true,
@@ -1154,6 +1209,7 @@ M.CreateHealthCheckOutput = {
 
 M.HealthCheckAlreadyExists = {
     type = "structure",
+    id = "HealthCheckAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -1164,6 +1220,7 @@ M.HealthCheckAlreadyExists = {
 
 M.TooManyHealthChecks = {
     type = "structure",
+    id = "TooManyHealthChecks",
     error = "client",
     members = {
         message = {
@@ -1174,6 +1231,7 @@ M.TooManyHealthChecks = {
 
 M.HostedZoneConfig = {
     type = "structure",
+    id = "HostedZoneConfig",
     members = {
         Comment = {
             type = "string",
@@ -1189,6 +1247,7 @@ M.HostedZoneConfig = {
 
 M.CreateHostedZoneInput = {
     type = "structure",
+    id = "CreateHostedZoneInput",
     members = {
         Name = {
             type = "string",
@@ -1212,6 +1271,7 @@ M.CreateHostedZoneInput = {
 
 M.DelegationSet = {
     type = "structure",
+    id = "DelegationSet",
     members = {
         Id = {
             type = "string",
@@ -1231,6 +1291,7 @@ M.DelegationSet = {
 
 M.HostedZoneFailureReasons = {
     type = "structure",
+    id = "HostedZoneFailureReasons",
     members = {
         AcceleratedRecovery = {
             type = "string",
@@ -1240,6 +1301,7 @@ M.HostedZoneFailureReasons = {
 
 M.HostedZoneFeatures = {
     type = "structure",
+    id = "HostedZoneFeatures",
     members = {
         AcceleratedRecoveryStatus = {
             type = "string",
@@ -1250,6 +1312,7 @@ M.HostedZoneFeatures = {
 
 M.HostedZone = {
     type = "structure",
+    id = "HostedZone",
     members = {
         Id = {
             type = "string",
@@ -1280,6 +1343,7 @@ M.HostedZone = {
 
 M.CreateHostedZoneOutput = {
     type = "structure",
+    id = "CreateHostedZoneOutput",
     members = {
         HostedZone = setmetatable({ traits = {
             required = true,
@@ -1303,6 +1367,7 @@ M.CreateHostedZoneOutput = {
 
 M.DelegationSetNotAvailable = {
     type = "structure",
+    id = "DelegationSetNotAvailable",
     error = "client",
     members = {
         message = {
@@ -1313,6 +1378,7 @@ M.DelegationSetNotAvailable = {
 
 M.DelegationSetNotReusable = {
     type = "structure",
+    id = "DelegationSetNotReusable",
     error = "client",
     members = {
         message = {
@@ -1323,6 +1389,7 @@ M.DelegationSetNotReusable = {
 
 M.HostedZoneAlreadyExists = {
     type = "structure",
+    id = "HostedZoneAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -1333,6 +1400,7 @@ M.HostedZoneAlreadyExists = {
 
 M.InvalidDomainName = {
     type = "structure",
+    id = "InvalidDomainName",
     error = "client",
     members = {
         message = {
@@ -1343,6 +1411,7 @@ M.InvalidDomainName = {
 
 M.NoSuchDelegationSet = {
     type = "structure",
+    id = "NoSuchDelegationSet",
     error = "client",
     members = {
         message = {
@@ -1353,6 +1422,7 @@ M.NoSuchDelegationSet = {
 
 M.TooManyHostedZones = {
     type = "structure",
+    id = "TooManyHostedZones",
     error = "client",
     members = {
         message = {
@@ -1363,6 +1433,7 @@ M.TooManyHostedZones = {
 
 M.CreateKeySigningKeyInput = {
     type = "structure",
+    id = "CreateKeySigningKeyInput",
     members = {
         CallerReference = {
             type = "string",
@@ -1399,6 +1470,7 @@ M.CreateKeySigningKeyInput = {
 
 M.KeySigningKey = {
     type = "structure",
+    id = "KeySigningKey",
     members = {
         Name = {
             type = "string",
@@ -1465,6 +1537,7 @@ M.KeySigningKey = {
 
 M.CreateKeySigningKeyOutput = {
     type = "structure",
+    id = "CreateKeySigningKeyOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -1484,6 +1557,7 @@ M.CreateKeySigningKeyOutput = {
 
 M.InvalidArgument = {
     type = "structure",
+    id = "InvalidArgument",
     error = "client",
     members = {
         message = {
@@ -1494,6 +1568,7 @@ M.InvalidArgument = {
 
 M.InvalidKeySigningKeyName = {
     type = "structure",
+    id = "InvalidKeySigningKeyName",
     error = "client",
     members = {
         message = {
@@ -1504,6 +1579,7 @@ M.InvalidKeySigningKeyName = {
 
 M.KeySigningKeyAlreadyExists = {
     type = "structure",
+    id = "KeySigningKeyAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -1514,6 +1590,7 @@ M.KeySigningKeyAlreadyExists = {
 
 M.TooManyKeySigningKeys = {
     type = "structure",
+    id = "TooManyKeySigningKeys",
     error = "client",
     members = {
         message = {
@@ -1524,6 +1601,7 @@ M.TooManyKeySigningKeys = {
 
 M.CreateQueryLoggingConfigInput = {
     type = "structure",
+    id = "CreateQueryLoggingConfigInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -1542,6 +1620,7 @@ M.CreateQueryLoggingConfigInput = {
 
 M.QueryLoggingConfig = {
     type = "structure",
+    id = "QueryLoggingConfig",
     members = {
         Id = {
             type = "string",
@@ -1566,6 +1645,7 @@ M.QueryLoggingConfig = {
 
 M.CreateQueryLoggingConfigOutput = {
     type = "structure",
+    id = "CreateQueryLoggingConfigOutput",
     members = {
         QueryLoggingConfig = setmetatable({ traits = {
             required = true,
@@ -1582,6 +1662,7 @@ M.CreateQueryLoggingConfigOutput = {
 
 M.InsufficientCloudWatchLogsResourcePolicy = {
     type = "structure",
+    id = "InsufficientCloudWatchLogsResourcePolicy",
     error = "client",
     members = {
         message = {
@@ -1592,6 +1673,7 @@ M.InsufficientCloudWatchLogsResourcePolicy = {
 
 M.NoSuchCloudWatchLogsLogGroup = {
     type = "structure",
+    id = "NoSuchCloudWatchLogsLogGroup",
     error = "client",
     members = {
         message = {
@@ -1602,6 +1684,7 @@ M.NoSuchCloudWatchLogsLogGroup = {
 
 M.QueryLoggingConfigAlreadyExists = {
     type = "structure",
+    id = "QueryLoggingConfigAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -1612,6 +1695,7 @@ M.QueryLoggingConfigAlreadyExists = {
 
 M.CreateReusableDelegationSetInput = {
     type = "structure",
+    id = "CreateReusableDelegationSetInput",
     members = {
         CallerReference = {
             type = "string",
@@ -1627,6 +1711,7 @@ M.CreateReusableDelegationSetInput = {
 
 M.CreateReusableDelegationSetOutput = {
     type = "structure",
+    id = "CreateReusableDelegationSetOutput",
     members = {
         DelegationSet = setmetatable({ traits = {
             required = true,
@@ -1643,6 +1728,7 @@ M.CreateReusableDelegationSetOutput = {
 
 M.DelegationSetAlreadyCreated = {
     type = "structure",
+    id = "DelegationSetAlreadyCreated",
     error = "client",
     members = {
         message = {
@@ -1653,6 +1739,7 @@ M.DelegationSetAlreadyCreated = {
 
 M.DelegationSetAlreadyReusable = {
     type = "structure",
+    id = "DelegationSetAlreadyReusable",
     error = "client",
     members = {
         message = {
@@ -1663,6 +1750,7 @@ M.DelegationSetAlreadyReusable = {
 
 M.HostedZoneNotFound = {
     type = "structure",
+    id = "HostedZoneNotFound",
     error = "client",
     members = {
         message = {
@@ -1673,6 +1761,7 @@ M.HostedZoneNotFound = {
 
 M.CreateTrafficPolicyInput = {
     type = "structure",
+    id = "CreateTrafficPolicyInput",
     members = {
         Name = {
             type = "string",
@@ -1694,6 +1783,7 @@ M.CreateTrafficPolicyInput = {
 
 M.TrafficPolicy = {
     type = "structure",
+    id = "TrafficPolicy",
     members = {
         Id = {
             type = "string",
@@ -1733,6 +1823,7 @@ M.TrafficPolicy = {
 
 M.CreateTrafficPolicyOutput = {
     type = "structure",
+    id = "CreateTrafficPolicyOutput",
     members = {
         TrafficPolicy = setmetatable({ traits = {
             required = true,
@@ -1749,6 +1840,7 @@ M.CreateTrafficPolicyOutput = {
 
 M.InvalidTrafficPolicyDocument = {
     type = "structure",
+    id = "InvalidTrafficPolicyDocument",
     error = "client",
     members = {
         message = {
@@ -1759,6 +1851,7 @@ M.InvalidTrafficPolicyDocument = {
 
 M.TooManyTrafficPolicies = {
     type = "structure",
+    id = "TooManyTrafficPolicies",
     error = "client",
     members = {
         message = {
@@ -1769,6 +1862,7 @@ M.TooManyTrafficPolicies = {
 
 M.TrafficPolicyAlreadyExists = {
     type = "structure",
+    id = "TrafficPolicyAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -1779,6 +1873,7 @@ M.TrafficPolicyAlreadyExists = {
 
 M.CreateTrafficPolicyInstanceInput = {
     type = "structure",
+    id = "CreateTrafficPolicyInstanceInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -1815,6 +1910,7 @@ M.CreateTrafficPolicyInstanceInput = {
 
 M.TrafficPolicyInstance = {
     type = "structure",
+    id = "TrafficPolicyInstance",
     members = {
         Id = {
             type = "string",
@@ -1875,6 +1971,7 @@ M.TrafficPolicyInstance = {
 
 M.CreateTrafficPolicyInstanceOutput = {
     type = "structure",
+    id = "CreateTrafficPolicyInstanceOutput",
     members = {
         TrafficPolicyInstance = setmetatable({ traits = {
             required = true,
@@ -1891,6 +1988,7 @@ M.CreateTrafficPolicyInstanceOutput = {
 
 M.NoSuchTrafficPolicy = {
     type = "structure",
+    id = "NoSuchTrafficPolicy",
     error = "client",
     members = {
         message = {
@@ -1901,6 +1999,7 @@ M.NoSuchTrafficPolicy = {
 
 M.TooManyTrafficPolicyInstances = {
     type = "structure",
+    id = "TooManyTrafficPolicyInstances",
     error = "client",
     members = {
         message = {
@@ -1911,6 +2010,7 @@ M.TooManyTrafficPolicyInstances = {
 
 M.TrafficPolicyInstanceAlreadyExists = {
     type = "structure",
+    id = "TrafficPolicyInstanceAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -1921,6 +2021,7 @@ M.TrafficPolicyInstanceAlreadyExists = {
 
 M.CreateTrafficPolicyVersionInput = {
     type = "structure",
+    id = "CreateTrafficPolicyVersionInput",
     members = {
         Id = {
             type = "string",
@@ -1943,6 +2044,7 @@ M.CreateTrafficPolicyVersionInput = {
 
 M.CreateTrafficPolicyVersionOutput = {
     type = "structure",
+    id = "CreateTrafficPolicyVersionOutput",
     members = {
         TrafficPolicy = setmetatable({ traits = {
             required = true,
@@ -1959,6 +2061,7 @@ M.CreateTrafficPolicyVersionOutput = {
 
 M.TooManyTrafficPolicyVersionsForCurrentPolicy = {
     type = "structure",
+    id = "TooManyTrafficPolicyVersionsForCurrentPolicy",
     error = "client",
     members = {
         message = {
@@ -1969,6 +2072,7 @@ M.TooManyTrafficPolicyVersionsForCurrentPolicy = {
 
 M.CreateVPCAssociationAuthorizationInput = {
     type = "structure",
+    id = "CreateVPCAssociationAuthorizationInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -1985,6 +2089,7 @@ M.CreateVPCAssociationAuthorizationInput = {
 
 M.CreateVPCAssociationAuthorizationOutput = {
     type = "structure",
+    id = "CreateVPCAssociationAuthorizationOutput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2000,6 +2105,7 @@ M.CreateVPCAssociationAuthorizationOutput = {
 
 M.TooManyVPCAssociationAuthorizations = {
     type = "structure",
+    id = "TooManyVPCAssociationAuthorizations",
     error = "client",
     members = {
         message = {
@@ -2010,6 +2116,7 @@ M.TooManyVPCAssociationAuthorizations = {
 
 M.DeactivateKeySigningKeyInput = {
     type = "structure",
+    id = "DeactivateKeySigningKeyInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2030,6 +2137,7 @@ M.DeactivateKeySigningKeyInput = {
 
 M.DeactivateKeySigningKeyOutput = {
     type = "structure",
+    id = "DeactivateKeySigningKeyOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -2039,6 +2147,7 @@ M.DeactivateKeySigningKeyOutput = {
 
 M.KeySigningKeyInParentDSRecord = {
     type = "structure",
+    id = "KeySigningKeyInParentDSRecord",
     error = "client",
     members = {
         message = {
@@ -2049,6 +2158,7 @@ M.KeySigningKeyInParentDSRecord = {
 
 M.KeySigningKeyInUse = {
     type = "structure",
+    id = "KeySigningKeyInUse",
     error = "client",
     members = {
         message = {
@@ -2059,6 +2169,7 @@ M.KeySigningKeyInUse = {
 
 M.CidrCollectionInUseException = {
     type = "structure",
+    id = "CidrCollectionInUseException",
     error = "client",
     members = {
         Message = {
@@ -2069,6 +2180,7 @@ M.CidrCollectionInUseException = {
 
 M.DeleteCidrCollectionInput = {
     type = "structure",
+    id = "DeleteCidrCollectionInput",
     members = {
         Id = {
             type = "string",
@@ -2082,10 +2194,12 @@ M.DeleteCidrCollectionInput = {
 
 M.DeleteCidrCollectionOutput = {
     type = "structure",
+    id = "DeleteCidrCollectionOutput",
 }
 
 M.DeleteHealthCheckInput = {
     type = "structure",
+    id = "DeleteHealthCheckInput",
     members = {
         HealthCheckId = {
             type = "string",
@@ -2099,10 +2213,12 @@ M.DeleteHealthCheckInput = {
 
 M.DeleteHealthCheckOutput = {
     type = "structure",
+    id = "DeleteHealthCheckOutput",
 }
 
 M.HealthCheckInUse = {
     type = "structure",
+    id = "HealthCheckInUse",
     error = "client",
     members = {
         message = {
@@ -2113,6 +2229,7 @@ M.HealthCheckInUse = {
 
 M.DeleteHostedZoneInput = {
     type = "structure",
+    id = "DeleteHostedZoneInput",
     members = {
         Id = {
             type = "string",
@@ -2126,6 +2243,7 @@ M.DeleteHostedZoneInput = {
 
 M.DeleteHostedZoneOutput = {
     type = "structure",
+    id = "DeleteHostedZoneOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -2135,6 +2253,7 @@ M.DeleteHostedZoneOutput = {
 
 M.HostedZoneNotEmpty = {
     type = "structure",
+    id = "HostedZoneNotEmpty",
     error = "client",
     members = {
         message = {
@@ -2145,6 +2264,7 @@ M.HostedZoneNotEmpty = {
 
 M.DeleteKeySigningKeyInput = {
     type = "structure",
+    id = "DeleteKeySigningKeyInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2165,6 +2285,7 @@ M.DeleteKeySigningKeyInput = {
 
 M.DeleteKeySigningKeyOutput = {
     type = "structure",
+    id = "DeleteKeySigningKeyOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -2174,6 +2295,7 @@ M.DeleteKeySigningKeyOutput = {
 
 M.DeleteQueryLoggingConfigInput = {
     type = "structure",
+    id = "DeleteQueryLoggingConfigInput",
     members = {
         Id = {
             type = "string",
@@ -2187,10 +2309,12 @@ M.DeleteQueryLoggingConfigInput = {
 
 M.DeleteQueryLoggingConfigOutput = {
     type = "structure",
+    id = "DeleteQueryLoggingConfigOutput",
 }
 
 M.NoSuchQueryLoggingConfig = {
     type = "structure",
+    id = "NoSuchQueryLoggingConfig",
     error = "client",
     members = {
         message = {
@@ -2201,6 +2325,7 @@ M.NoSuchQueryLoggingConfig = {
 
 M.DelegationSetInUse = {
     type = "structure",
+    id = "DelegationSetInUse",
     error = "client",
     members = {
         message = {
@@ -2211,6 +2336,7 @@ M.DelegationSetInUse = {
 
 M.DeleteReusableDelegationSetInput = {
     type = "structure",
+    id = "DeleteReusableDelegationSetInput",
     members = {
         Id = {
             type = "string",
@@ -2224,10 +2350,12 @@ M.DeleteReusableDelegationSetInput = {
 
 M.DeleteReusableDelegationSetOutput = {
     type = "structure",
+    id = "DeleteReusableDelegationSetOutput",
 }
 
 M.DeleteTrafficPolicyInput = {
     type = "structure",
+    id = "DeleteTrafficPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -2248,10 +2376,12 @@ M.DeleteTrafficPolicyInput = {
 
 M.DeleteTrafficPolicyOutput = {
     type = "structure",
+    id = "DeleteTrafficPolicyOutput",
 }
 
 M.TrafficPolicyInUse = {
     type = "structure",
+    id = "TrafficPolicyInUse",
     error = "client",
     members = {
         message = {
@@ -2262,6 +2392,7 @@ M.TrafficPolicyInUse = {
 
 M.DeleteTrafficPolicyInstanceInput = {
     type = "structure",
+    id = "DeleteTrafficPolicyInstanceInput",
     members = {
         Id = {
             type = "string",
@@ -2275,10 +2406,12 @@ M.DeleteTrafficPolicyInstanceInput = {
 
 M.DeleteTrafficPolicyInstanceOutput = {
     type = "structure",
+    id = "DeleteTrafficPolicyInstanceOutput",
 }
 
 M.NoSuchTrafficPolicyInstance = {
     type = "structure",
+    id = "NoSuchTrafficPolicyInstance",
     error = "client",
     members = {
         message = {
@@ -2289,6 +2422,7 @@ M.NoSuchTrafficPolicyInstance = {
 
 M.DeleteVPCAssociationAuthorizationInput = {
     type = "structure",
+    id = "DeleteVPCAssociationAuthorizationInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2305,10 +2439,12 @@ M.DeleteVPCAssociationAuthorizationInput = {
 
 M.DeleteVPCAssociationAuthorizationOutput = {
     type = "structure",
+    id = "DeleteVPCAssociationAuthorizationOutput",
 }
 
 M.VPCAssociationAuthorizationNotFound = {
     type = "structure",
+    id = "VPCAssociationAuthorizationNotFound",
     error = "client",
     members = {
         message = {
@@ -2319,6 +2455,7 @@ M.VPCAssociationAuthorizationNotFound = {
 
 M.DisableHostedZoneDNSSECInput = {
     type = "structure",
+    id = "DisableHostedZoneDNSSECInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2332,6 +2469,7 @@ M.DisableHostedZoneDNSSECInput = {
 
 M.DisableHostedZoneDNSSECOutput = {
     type = "structure",
+    id = "DisableHostedZoneDNSSECOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -2341,6 +2479,7 @@ M.DisableHostedZoneDNSSECOutput = {
 
 M.DNSSECNotFound = {
     type = "structure",
+    id = "DNSSECNotFound",
     error = "client",
     members = {
         message = {
@@ -2351,6 +2490,7 @@ M.DNSSECNotFound = {
 
 M.DisassociateVPCFromHostedZoneInput = {
     type = "structure",
+    id = "DisassociateVPCFromHostedZoneInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2370,6 +2510,7 @@ M.DisassociateVPCFromHostedZoneInput = {
 
 M.DisassociateVPCFromHostedZoneOutput = {
     type = "structure",
+    id = "DisassociateVPCFromHostedZoneOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -2379,6 +2520,7 @@ M.DisassociateVPCFromHostedZoneOutput = {
 
 M.LastVPCAssociation = {
     type = "structure",
+    id = "LastVPCAssociation",
     error = "client",
     members = {
         message = {
@@ -2389,6 +2531,7 @@ M.LastVPCAssociation = {
 
 M.VPCAssociationNotFound = {
     type = "structure",
+    id = "VPCAssociationNotFound",
     error = "client",
     members = {
         message = {
@@ -2399,6 +2542,7 @@ M.VPCAssociationNotFound = {
 
 M.EnableHostedZoneDNSSECInput = {
     type = "structure",
+    id = "EnableHostedZoneDNSSECInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2412,6 +2556,7 @@ M.EnableHostedZoneDNSSECInput = {
 
 M.EnableHostedZoneDNSSECOutput = {
     type = "structure",
+    id = "EnableHostedZoneDNSSECOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -2421,6 +2566,7 @@ M.EnableHostedZoneDNSSECOutput = {
 
 M.HostedZonePartiallyDelegated = {
     type = "structure",
+    id = "HostedZonePartiallyDelegated",
     error = "client",
     members = {
         message = {
@@ -2431,6 +2577,7 @@ M.HostedZonePartiallyDelegated = {
 
 M.KeySigningKeyWithActiveStatusNotFound = {
     type = "structure",
+    id = "KeySigningKeyWithActiveStatusNotFound",
     error = "client",
     members = {
         message = {
@@ -2441,6 +2588,7 @@ M.KeySigningKeyWithActiveStatusNotFound = {
 
 M.GetAccountLimitInput = {
     type = "structure",
+    id = "GetAccountLimitInput",
     members = {
         Type = {
             type = "string",
@@ -2454,6 +2602,7 @@ M.GetAccountLimitInput = {
 
 M.GetAccountLimitOutput = {
     type = "structure",
+    id = "GetAccountLimitOutput",
     members = {
         Limit = setmetatable({ traits = {
             required = true,
@@ -2470,6 +2619,7 @@ M.GetAccountLimitOutput = {
 
 M.GetChangeInput = {
     type = "structure",
+    id = "GetChangeInput",
     members = {
         Id = {
             type = "string",
@@ -2483,6 +2633,7 @@ M.GetChangeInput = {
 
 M.GetChangeOutput = {
     type = "structure",
+    id = "GetChangeOutput",
     members = {
         ChangeInfo = setmetatable({ traits = {
             required = true,
@@ -2492,6 +2643,7 @@ M.GetChangeOutput = {
 
 M.NoSuchChange = {
     type = "structure",
+    id = "NoSuchChange",
     error = "client",
     members = {
         message = {
@@ -2502,10 +2654,12 @@ M.NoSuchChange = {
 
 M.GetCheckerIpRangesInput = {
     type = "structure",
+    id = "GetCheckerIpRangesInput",
 }
 
 M.GetCheckerIpRangesOutput = {
     type = "structure",
+    id = "GetCheckerIpRangesOutput",
     members = {
         CheckerIpRanges = {
             type = "list",
@@ -2519,6 +2673,7 @@ M.GetCheckerIpRangesOutput = {
 
 M.GetDNSSECInput = {
     type = "structure",
+    id = "GetDNSSECInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -2532,6 +2687,7 @@ M.GetDNSSECInput = {
 
 M.DNSSECStatus = {
     type = "structure",
+    id = "DNSSECStatus",
     members = {
         ServeSignature = {
             type = "string",
@@ -2544,6 +2700,7 @@ M.DNSSECStatus = {
 
 M.GetDNSSECOutput = {
     type = "structure",
+    id = "GetDNSSECOutput",
     members = {
         Status = setmetatable({ traits = {
             required = true,
@@ -2560,6 +2717,7 @@ M.GetDNSSECOutput = {
 
 M.GetGeoLocationInput = {
     type = "structure",
+    id = "GetGeoLocationInput",
     members = {
         ContinentCode = {
             type = "string",
@@ -2584,6 +2742,7 @@ M.GetGeoLocationInput = {
 
 M.GeoLocationDetails = {
     type = "structure",
+    id = "GeoLocationDetails",
     members = {
         ContinentCode = {
             type = "string",
@@ -2608,6 +2767,7 @@ M.GeoLocationDetails = {
 
 M.GetGeoLocationOutput = {
     type = "structure",
+    id = "GetGeoLocationOutput",
     members = {
         GeoLocationDetails = setmetatable({ traits = {
             required = true,
@@ -2617,6 +2777,7 @@ M.GetGeoLocationOutput = {
 
 M.NoSuchGeoLocation = {
     type = "structure",
+    id = "NoSuchGeoLocation",
     error = "client",
     members = {
         message = {
@@ -2627,6 +2788,7 @@ M.NoSuchGeoLocation = {
 
 M.GetHealthCheckInput = {
     type = "structure",
+    id = "GetHealthCheckInput",
     members = {
         HealthCheckId = {
             type = "string",
@@ -2640,6 +2802,7 @@ M.GetHealthCheckInput = {
 
 M.GetHealthCheckOutput = {
     type = "structure",
+    id = "GetHealthCheckOutput",
     members = {
         HealthCheck = setmetatable({ traits = {
             required = true,
@@ -2649,6 +2812,7 @@ M.GetHealthCheckOutput = {
 
 M.IncompatibleVersion = {
     type = "structure",
+    id = "IncompatibleVersion",
     error = "client",
     members = {
         message = {
@@ -2659,10 +2823,12 @@ M.IncompatibleVersion = {
 
 M.GetHealthCheckCountInput = {
     type = "structure",
+    id = "GetHealthCheckCountInput",
 }
 
 M.GetHealthCheckCountOutput = {
     type = "structure",
+    id = "GetHealthCheckCountOutput",
     members = {
         HealthCheckCount = {
             type = "long",
@@ -2675,6 +2841,7 @@ M.GetHealthCheckCountOutput = {
 
 M.GetHealthCheckLastFailureReasonInput = {
     type = "structure",
+    id = "GetHealthCheckLastFailureReasonInput",
     members = {
         HealthCheckId = {
             type = "string",
@@ -2688,6 +2855,7 @@ M.GetHealthCheckLastFailureReasonInput = {
 
 M.StatusReport = {
     type = "structure",
+    id = "StatusReport",
     members = {
         Status = {
             type = "string",
@@ -2700,6 +2868,7 @@ M.StatusReport = {
 
 M.HealthCheckObservation = {
     type = "structure",
+    id = "HealthCheckObservation",
     members = {
         Region = {
             type = "string",
@@ -2713,6 +2882,7 @@ M.HealthCheckObservation = {
 
 M.GetHealthCheckLastFailureReasonOutput = {
     type = "structure",
+    id = "GetHealthCheckLastFailureReasonOutput",
     members = {
         HealthCheckObservations = {
             type = "list",
@@ -2726,6 +2896,7 @@ M.GetHealthCheckLastFailureReasonOutput = {
 
 M.GetHealthCheckStatusInput = {
     type = "structure",
+    id = "GetHealthCheckStatusInput",
     members = {
         HealthCheckId = {
             type = "string",
@@ -2739,6 +2910,7 @@ M.GetHealthCheckStatusInput = {
 
 M.GetHealthCheckStatusOutput = {
     type = "structure",
+    id = "GetHealthCheckStatusOutput",
     members = {
         HealthCheckObservations = {
             type = "list",
@@ -2752,6 +2924,7 @@ M.GetHealthCheckStatusOutput = {
 
 M.GetHostedZoneInput = {
     type = "structure",
+    id = "GetHostedZoneInput",
     members = {
         Id = {
             type = "string",
@@ -2765,6 +2938,7 @@ M.GetHostedZoneInput = {
 
 M.GetHostedZoneOutput = {
     type = "structure",
+    id = "GetHostedZoneOutput",
     members = {
         HostedZone = setmetatable({ traits = {
             required = true,
@@ -2779,10 +2953,12 @@ M.GetHostedZoneOutput = {
 
 M.GetHostedZoneCountInput = {
     type = "structure",
+    id = "GetHostedZoneCountInput",
 }
 
 M.GetHostedZoneCountOutput = {
     type = "structure",
+    id = "GetHostedZoneCountOutput",
     members = {
         HostedZoneCount = {
             type = "long",
@@ -2800,6 +2976,7 @@ M.HostedZoneLimitType = {
 
 M.GetHostedZoneLimitInput = {
     type = "structure",
+    id = "GetHostedZoneLimitInput",
     members = {
         Type = {
             type = "string",
@@ -2820,6 +2997,7 @@ M.GetHostedZoneLimitInput = {
 
 M.HostedZoneLimit = {
     type = "structure",
+    id = "HostedZoneLimit",
     members = {
         Type = {
             type = "string",
@@ -2838,6 +3016,7 @@ M.HostedZoneLimit = {
 
 M.GetHostedZoneLimitOutput = {
     type = "structure",
+    id = "GetHostedZoneLimitOutput",
     members = {
         Limit = setmetatable({ traits = {
             required = true,
@@ -2854,6 +3033,7 @@ M.GetHostedZoneLimitOutput = {
 
 M.HostedZoneNotPrivate = {
     type = "structure",
+    id = "HostedZoneNotPrivate",
     error = "client",
     members = {
         message = {
@@ -2864,6 +3044,7 @@ M.HostedZoneNotPrivate = {
 
 M.GetQueryLoggingConfigInput = {
     type = "structure",
+    id = "GetQueryLoggingConfigInput",
     members = {
         Id = {
             type = "string",
@@ -2877,6 +3058,7 @@ M.GetQueryLoggingConfigInput = {
 
 M.GetQueryLoggingConfigOutput = {
     type = "structure",
+    id = "GetQueryLoggingConfigOutput",
     members = {
         QueryLoggingConfig = setmetatable({ traits = {
             required = true,
@@ -2886,6 +3068,7 @@ M.GetQueryLoggingConfigOutput = {
 
 M.GetReusableDelegationSetInput = {
     type = "structure",
+    id = "GetReusableDelegationSetInput",
     members = {
         Id = {
             type = "string",
@@ -2899,6 +3082,7 @@ M.GetReusableDelegationSetInput = {
 
 M.GetReusableDelegationSetOutput = {
     type = "structure",
+    id = "GetReusableDelegationSetOutput",
     members = {
         DelegationSet = setmetatable({ traits = {
             required = true,
@@ -2912,6 +3096,7 @@ M.ReusableDelegationSetLimitType = {
 
 M.GetReusableDelegationSetLimitInput = {
     type = "structure",
+    id = "GetReusableDelegationSetLimitInput",
     members = {
         Type = {
             type = "string",
@@ -2932,6 +3117,7 @@ M.GetReusableDelegationSetLimitInput = {
 
 M.ReusableDelegationSetLimit = {
     type = "structure",
+    id = "ReusableDelegationSetLimit",
     members = {
         Type = {
             type = "string",
@@ -2950,6 +3136,7 @@ M.ReusableDelegationSetLimit = {
 
 M.GetReusableDelegationSetLimitOutput = {
     type = "structure",
+    id = "GetReusableDelegationSetLimitOutput",
     members = {
         Limit = setmetatable({ traits = {
             required = true,
@@ -2966,6 +3153,7 @@ M.GetReusableDelegationSetLimitOutput = {
 
 M.GetTrafficPolicyInput = {
     type = "structure",
+    id = "GetTrafficPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -2986,6 +3174,7 @@ M.GetTrafficPolicyInput = {
 
 M.GetTrafficPolicyOutput = {
     type = "structure",
+    id = "GetTrafficPolicyOutput",
     members = {
         TrafficPolicy = setmetatable({ traits = {
             required = true,
@@ -2995,6 +3184,7 @@ M.GetTrafficPolicyOutput = {
 
 M.GetTrafficPolicyInstanceInput = {
     type = "structure",
+    id = "GetTrafficPolicyInstanceInput",
     members = {
         Id = {
             type = "string",
@@ -3008,6 +3198,7 @@ M.GetTrafficPolicyInstanceInput = {
 
 M.GetTrafficPolicyInstanceOutput = {
     type = "structure",
+    id = "GetTrafficPolicyInstanceOutput",
     members = {
         TrafficPolicyInstance = setmetatable({ traits = {
             required = true,
@@ -3017,10 +3208,12 @@ M.GetTrafficPolicyInstanceOutput = {
 
 M.GetTrafficPolicyInstanceCountInput = {
     type = "structure",
+    id = "GetTrafficPolicyInstanceCountInput",
 }
 
 M.GetTrafficPolicyInstanceCountOutput = {
     type = "structure",
+    id = "GetTrafficPolicyInstanceCountOutput",
     members = {
         TrafficPolicyInstanceCount = {
             type = "integer",
@@ -3033,6 +3226,7 @@ M.GetTrafficPolicyInstanceCountOutput = {
 
 M.ListCidrBlocksInput = {
     type = "structure",
+    id = "ListCidrBlocksInput",
     members = {
         CollectionId = {
             type = "string",
@@ -3064,6 +3258,7 @@ M.ListCidrBlocksInput = {
 
 M.CidrBlockSummary = {
     type = "structure",
+    id = "CidrBlockSummary",
     members = {
         CidrBlock = {
             type = "string",
@@ -3076,6 +3271,7 @@ M.CidrBlockSummary = {
 
 M.ListCidrBlocksOutput = {
     type = "structure",
+    id = "ListCidrBlocksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3089,6 +3285,7 @@ M.ListCidrBlocksOutput = {
 
 M.NoSuchCidrLocationException = {
     type = "structure",
+    id = "NoSuchCidrLocationException",
     error = "client",
     members = {
         Message = {
@@ -3099,6 +3296,7 @@ M.NoSuchCidrLocationException = {
 
 M.ListCidrCollectionsInput = {
     type = "structure",
+    id = "ListCidrCollectionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3117,6 +3315,7 @@ M.ListCidrCollectionsInput = {
 
 M.CollectionSummary = {
     type = "structure",
+    id = "CollectionSummary",
     members = {
         Arn = {
             type = "string",
@@ -3135,6 +3334,7 @@ M.CollectionSummary = {
 
 M.ListCidrCollectionsOutput = {
     type = "structure",
+    id = "ListCidrCollectionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3148,6 +3348,7 @@ M.ListCidrCollectionsOutput = {
 
 M.ListCidrLocationsInput = {
     type = "structure",
+    id = "ListCidrLocationsInput",
     members = {
         CollectionId = {
             type = "string",
@@ -3173,6 +3374,7 @@ M.ListCidrLocationsInput = {
 
 M.LocationSummary = {
     type = "structure",
+    id = "LocationSummary",
     members = {
         LocationName = {
             type = "string",
@@ -3182,6 +3384,7 @@ M.LocationSummary = {
 
 M.ListCidrLocationsOutput = {
     type = "structure",
+    id = "ListCidrLocationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3195,6 +3398,7 @@ M.ListCidrLocationsOutput = {
 
 M.ListGeoLocationsInput = {
     type = "structure",
+    id = "ListGeoLocationsInput",
     members = {
         StartContinentCode = {
             type = "string",
@@ -3225,6 +3429,7 @@ M.ListGeoLocationsInput = {
 
 M.ListGeoLocationsOutput = {
     type = "structure",
+    id = "ListGeoLocationsOutput",
     members = {
         GeoLocationDetailsList = {
             type = "list",
@@ -3260,6 +3465,7 @@ M.ListGeoLocationsOutput = {
 
 M.ListHealthChecksInput = {
     type = "structure",
+    id = "ListHealthChecksInput",
     members = {
         Marker = {
             type = "string",
@@ -3278,6 +3484,7 @@ M.ListHealthChecksInput = {
 
 M.ListHealthChecksOutput = {
     type = "structure",
+    id = "ListHealthChecksOutput",
     members = {
         HealthChecks = {
             type = "list",
@@ -3317,6 +3524,7 @@ M.HostedZoneType = {
 
 M.ListHostedZonesInput = {
     type = "structure",
+    id = "ListHostedZonesInput",
     members = {
         Marker = {
             type = "string",
@@ -3347,6 +3555,7 @@ M.ListHostedZonesInput = {
 
 M.ListHostedZonesOutput = {
     type = "structure",
+    id = "ListHostedZonesOutput",
     members = {
         HostedZones = {
             type = "list",
@@ -3382,6 +3591,7 @@ M.ListHostedZonesOutput = {
 
 M.ListHostedZonesByNameInput = {
     type = "structure",
+    id = "ListHostedZonesByNameInput",
     members = {
         DNSName = {
             type = "string",
@@ -3406,6 +3616,7 @@ M.ListHostedZonesByNameInput = {
 
 M.ListHostedZonesByNameOutput = {
     type = "structure",
+    id = "ListHostedZonesByNameOutput",
     members = {
         HostedZones = {
             type = "list",
@@ -3444,6 +3655,7 @@ M.ListHostedZonesByNameOutput = {
 
 M.InvalidPaginationToken = {
     type = "structure",
+    id = "InvalidPaginationToken",
     error = "client",
     members = {
         message = {
@@ -3454,6 +3666,7 @@ M.InvalidPaginationToken = {
 
 M.ListHostedZonesByVPCInput = {
     type = "structure",
+    id = "ListHostedZonesByVPCInput",
     members = {
         VPCId = {
             type = "string",
@@ -3486,6 +3699,7 @@ M.ListHostedZonesByVPCInput = {
 
 M.HostedZoneOwner = {
     type = "structure",
+    id = "HostedZoneOwner",
     members = {
         OwningAccount = {
             type = "string",
@@ -3498,6 +3712,7 @@ M.HostedZoneOwner = {
 
 M.HostedZoneSummary = {
     type = "structure",
+    id = "HostedZoneSummary",
     members = {
         HostedZoneId = {
             type = "string",
@@ -3519,6 +3734,7 @@ M.HostedZoneSummary = {
 
 M.ListHostedZonesByVPCOutput = {
     type = "structure",
+    id = "ListHostedZonesByVPCOutput",
     members = {
         HostedZoneSummaries = {
             type = "list",
@@ -3541,6 +3757,7 @@ M.ListHostedZonesByVPCOutput = {
 
 M.ListQueryLoggingConfigsInput = {
     type = "structure",
+    id = "ListQueryLoggingConfigsInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -3565,6 +3782,7 @@ M.ListQueryLoggingConfigsInput = {
 
 M.ListQueryLoggingConfigsOutput = {
     type = "structure",
+    id = "ListQueryLoggingConfigsOutput",
     members = {
         QueryLoggingConfigs = {
             type = "list",
@@ -3581,6 +3799,7 @@ M.ListQueryLoggingConfigsOutput = {
 
 M.ListResourceRecordSetsInput = {
     type = "structure",
+    id = "ListResourceRecordSetsInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -3618,6 +3837,7 @@ M.ListResourceRecordSetsInput = {
 
 M.ListResourceRecordSetsOutput = {
     type = "structure",
+    id = "ListResourceRecordSetsOutput",
     members = {
         ResourceRecordSets = {
             type = "list",
@@ -3653,6 +3873,7 @@ M.ListResourceRecordSetsOutput = {
 
 M.ListReusableDelegationSetsInput = {
     type = "structure",
+    id = "ListReusableDelegationSetsInput",
     members = {
         Marker = {
             type = "string",
@@ -3671,6 +3892,7 @@ M.ListReusableDelegationSetsInput = {
 
 M.ListReusableDelegationSetsOutput = {
     type = "structure",
+    id = "ListReusableDelegationSetsOutput",
     members = {
         DelegationSets = {
             type = "list",
@@ -3706,6 +3928,7 @@ M.ListReusableDelegationSetsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceType = {
             type = "string",
@@ -3726,6 +3949,7 @@ M.ListTagsForResourceInput = {
 
 M.ResourceTagSet = {
     type = "structure",
+    id = "ResourceTagSet",
     members = {
         ResourceType = {
             type = "string",
@@ -3742,6 +3966,7 @@ M.ResourceTagSet = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceTagSet = setmetatable({ traits = {
             required = true,
@@ -3751,6 +3976,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTagsForResourcesInput = {
     type = "structure",
+    id = "ListTagsForResourcesInput",
     members = {
         ResourceType = {
             type = "string",
@@ -3771,6 +3997,7 @@ M.ListTagsForResourcesInput = {
 
 M.ListTagsForResourcesOutput = {
     type = "structure",
+    id = "ListTagsForResourcesOutput",
     members = {
         ResourceTagSets = {
             type = "list",
@@ -3784,6 +4011,7 @@ M.ListTagsForResourcesOutput = {
 
 M.ListTrafficPoliciesInput = {
     type = "structure",
+    id = "ListTrafficPoliciesInput",
     members = {
         TrafficPolicyIdMarker = {
             type = "string",
@@ -3802,6 +4030,7 @@ M.ListTrafficPoliciesInput = {
 
 M.TrafficPolicySummary = {
     type = "structure",
+    id = "TrafficPolicySummary",
     members = {
         Id = {
             type = "string",
@@ -3838,6 +4067,7 @@ M.TrafficPolicySummary = {
 
 M.ListTrafficPoliciesOutput = {
     type = "structure",
+    id = "ListTrafficPoliciesOutput",
     members = {
         TrafficPolicySummaries = {
             type = "list",
@@ -3870,6 +4100,7 @@ M.ListTrafficPoliciesOutput = {
 
 M.ListTrafficPolicyInstancesInput = {
     type = "structure",
+    id = "ListTrafficPolicyInstancesInput",
     members = {
         HostedZoneIdMarker = {
             type = "string",
@@ -3900,6 +4131,7 @@ M.ListTrafficPolicyInstancesInput = {
 
 M.ListTrafficPolicyInstancesOutput = {
     type = "structure",
+    id = "ListTrafficPolicyInstancesOutput",
     members = {
         TrafficPolicyInstances = {
             type = "list",
@@ -3935,6 +4167,7 @@ M.ListTrafficPolicyInstancesOutput = {
 
 M.ListTrafficPolicyInstancesByHostedZoneInput = {
     type = "structure",
+    id = "ListTrafficPolicyInstancesByHostedZoneInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -3966,6 +4199,7 @@ M.ListTrafficPolicyInstancesByHostedZoneInput = {
 
 M.ListTrafficPolicyInstancesByHostedZoneOutput = {
     type = "structure",
+    id = "ListTrafficPolicyInstancesByHostedZoneOutput",
     members = {
         TrafficPolicyInstances = {
             type = "list",
@@ -3998,6 +4232,7 @@ M.ListTrafficPolicyInstancesByHostedZoneOutput = {
 
 M.ListTrafficPolicyInstancesByPolicyInput = {
     type = "structure",
+    id = "ListTrafficPolicyInstancesByPolicyInput",
     members = {
         TrafficPolicyId = {
             type = "string",
@@ -4042,6 +4277,7 @@ M.ListTrafficPolicyInstancesByPolicyInput = {
 
 M.ListTrafficPolicyInstancesByPolicyOutput = {
     type = "structure",
+    id = "ListTrafficPolicyInstancesByPolicyOutput",
     members = {
         TrafficPolicyInstances = {
             type = "list",
@@ -4077,6 +4313,7 @@ M.ListTrafficPolicyInstancesByPolicyOutput = {
 
 M.ListTrafficPolicyVersionsInput = {
     type = "structure",
+    id = "ListTrafficPolicyVersionsInput",
     members = {
         Id = {
             type = "string",
@@ -4102,6 +4339,7 @@ M.ListTrafficPolicyVersionsInput = {
 
 M.ListTrafficPolicyVersionsOutput = {
     type = "structure",
+    id = "ListTrafficPolicyVersionsOutput",
     members = {
         TrafficPolicies = {
             type = "list",
@@ -4134,6 +4372,7 @@ M.ListTrafficPolicyVersionsOutput = {
 
 M.ListVPCAssociationAuthorizationsInput = {
     type = "structure",
+    id = "ListVPCAssociationAuthorizationsInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -4159,6 +4398,7 @@ M.ListVPCAssociationAuthorizationsInput = {
 
 M.ListVPCAssociationAuthorizationsOutput = {
     type = "structure",
+    id = "ListVPCAssociationAuthorizationsOutput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -4181,6 +4421,7 @@ M.ListVPCAssociationAuthorizationsOutput = {
 
 M.TestDNSAnswerInput = {
     type = "structure",
+    id = "TestDNSAnswerInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -4226,6 +4467,7 @@ M.TestDNSAnswerInput = {
 
 M.TestDNSAnswerOutput = {
     type = "structure",
+    id = "TestDNSAnswerOutput",
     members = {
         Nameserver = {
             type = "string",
@@ -4269,6 +4511,7 @@ M.TestDNSAnswerOutput = {
 
 M.HealthCheckVersionMismatch = {
     type = "structure",
+    id = "HealthCheckVersionMismatch",
     error = "client",
     members = {
         message = {
@@ -4286,6 +4529,7 @@ M.ResettableElementName = {
 
 M.UpdateHealthCheckInput = {
     type = "structure",
+    id = "UpdateHealthCheckInput",
     members = {
         HealthCheckId = {
             type = "string",
@@ -4348,6 +4592,7 @@ M.UpdateHealthCheckInput = {
 
 M.UpdateHealthCheckOutput = {
     type = "structure",
+    id = "UpdateHealthCheckOutput",
     members = {
         HealthCheck = setmetatable({ traits = {
             required = true,
@@ -4357,6 +4602,7 @@ M.UpdateHealthCheckOutput = {
 
 M.UpdateHostedZoneCommentInput = {
     type = "structure",
+    id = "UpdateHostedZoneCommentInput",
     members = {
         Id = {
             type = "string",
@@ -4373,6 +4619,7 @@ M.UpdateHostedZoneCommentInput = {
 
 M.UpdateHostedZoneCommentOutput = {
     type = "structure",
+    id = "UpdateHostedZoneCommentOutput",
     members = {
         HostedZone = setmetatable({ traits = {
             required = true,
@@ -4382,6 +4629,7 @@ M.UpdateHostedZoneCommentOutput = {
 
 M.UpdateHostedZoneFeaturesInput = {
     type = "structure",
+    id = "UpdateHostedZoneFeaturesInput",
     members = {
         HostedZoneId = {
             type = "string",
@@ -4398,10 +4646,12 @@ M.UpdateHostedZoneFeaturesInput = {
 
 M.UpdateHostedZoneFeaturesOutput = {
     type = "structure",
+    id = "UpdateHostedZoneFeaturesOutput",
 }
 
 M.UpdateTrafficPolicyCommentInput = {
     type = "structure",
+    id = "UpdateTrafficPolicyCommentInput",
     members = {
         Id = {
             type = "string",
@@ -4428,6 +4678,7 @@ M.UpdateTrafficPolicyCommentInput = {
 
 M.UpdateTrafficPolicyCommentOutput = {
     type = "structure",
+    id = "UpdateTrafficPolicyCommentOutput",
     members = {
         TrafficPolicy = setmetatable({ traits = {
             required = true,
@@ -4437,6 +4688,7 @@ M.UpdateTrafficPolicyCommentOutput = {
 
 M.ConflictingTypes = {
     type = "structure",
+    id = "ConflictingTypes",
     error = "client",
     members = {
         message = {
@@ -4447,6 +4699,7 @@ M.ConflictingTypes = {
 
 M.UpdateTrafficPolicyInstanceInput = {
     type = "structure",
+    id = "UpdateTrafficPolicyInstanceInput",
     members = {
         Id = {
             type = "string",
@@ -4478,6 +4731,7 @@ M.UpdateTrafficPolicyInstanceInput = {
 
 M.UpdateTrafficPolicyInstanceOutput = {
     type = "structure",
+    id = "UpdateTrafficPolicyInstanceOutput",
     members = {
         TrafficPolicyInstance = setmetatable({ traits = {
             required = true,

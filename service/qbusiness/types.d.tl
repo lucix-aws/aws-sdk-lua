@@ -3488,21 +3488,15 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
-local type ResponseScope = "ENTERPRISE_CONTENT_ONLY" | "EXTENDED_KNOWLEDGE_ENABLED"
+local type DataSourceStatus = "PENDING_CREATION" | "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
 
-local type PluginType = "SERVICE_NOW" | "SALESFORCE" | "JIRA" | "ZENDESK" | "CUSTOM" | "QUICKSIGHT" | "SERVICENOW_NOW_PLATFORM" | "JIRA_CLOUD" | "SALESFORCE_CRM" | "ZENDESK_SUITE" | "ATLASSIAN_CONFLUENCE" | "GOOGLE_CALENDAR" | "MICROSOFT_TEAMS" | "MICROSOFT_EXCHANGE" | "PAGERDUTY_ADVANCE" | "SMARTSHEET" | "ASANA"
-
-local type PluginState = "ENABLED" | "DISABLED"
-
-local type RetrieverStatus = "CREATING" | "ACTIVE" | "FAILED"
+local type OutputFormat = "RAW" | "EXTRACTED"
 
 local type DataSourceSyncJobStatus = "FAILED" | "SUCCEEDED" | "SYNCING" | "INCOMPLETE" | "STOPPING" | "ABORTED" | "SYNCING_INDEXING"
 
 local type ApplicationStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
 
-local type ChatMode = "RETRIEVAL_MODE" | "CREATOR_MODE" | "PLUGIN_MODE"
-
-local type DataSourceStatus = "PENDING_CREATION" | "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
+local type PluginType = "SERVICE_NOW" | "SALESFORCE" | "JIRA" | "ZENDESK" | "CUSTOM" | "QUICKSIGHT" | "SERVICENOW_NOW_PLATFORM" | "JIRA_CLOUD" | "SALESFORCE_CRM" | "ZENDESK_SUITE" | "ATLASSIAN_CONFLUENCE" | "GOOGLE_CALENDAR" | "MICROSOFT_TEAMS" | "MICROSOFT_EXCHANGE" | "PAGERDUTY_ADVANCE" | "SMARTSHEET" | "ASANA"
 
 local type IndexStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
 
@@ -3510,13 +3504,19 @@ local type RetrieverType = "NATIVE_INDEX" | "KENDRA_INDEX"
 
 local type PluginBuildStatus = "READY" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
 
-local type IndexType = "ENTERPRISE" | "STARTER"
-
 local type IdentityType = "AWS_IAM_IDP_SAML" | "AWS_IAM_IDP_OIDC" | "AWS_IAM_IDC" | "AWS_QUICKSIGHT_IDP" | "ANONYMOUS"
+
+local type ChatMode = "RETRIEVAL_MODE" | "CREATOR_MODE" | "PLUGIN_MODE"
 
 local type SubscriptionType = "Q_LITE" | "Q_BUSINESS"
 
-local type OutputFormat = "RAW" | "EXTRACTED"
+local type ResponseScope = "ENTERPRISE_CONTENT_ONLY" | "EXTENDED_KNOWLEDGE_ENABLED"
+
+local type IndexType = "ENTERPRISE" | "STARTER"
+
+local type RetrieverStatus = "CREATING" | "ACTIVE" | "FAILED"
+
+local type PluginState = "ENABLED" | "DISABLED"
 
 local type WebExperienceSamplePromptsControlMode = "ENABLED" | "DISABLED"
 

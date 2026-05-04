@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.InternalServerExceptionReason = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -51,6 +53,7 @@ M.OutputFormat = {
 
 M.ScanSbomInput = {
     type = "structure",
+    id = "ScanSbomInput",
     members = {
         sbom = {
             type = "document",
@@ -66,6 +69,7 @@ M.ScanSbomInput = {
 
 M.ScanSbomOutput = {
     type = "structure",
+    id = "ScanSbomOutput",
     members = {
         sbom = {
             type = "document",
@@ -75,6 +79,7 @@ M.ScanSbomOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -94,6 +99,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -120,6 +126,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {

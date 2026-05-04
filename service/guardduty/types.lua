@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptAdministratorInvitationInput = {
     type = "structure",
+    id = "AcceptAdministratorInvitationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -29,10 +30,12 @@ M.AcceptAdministratorInvitationInput = {
 
 M.AcceptAdministratorInvitationOutput = {
     type = "structure",
+    id = "AcceptAdministratorInvitationOutput",
 }
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -52,6 +55,7 @@ M.BadRequestException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -71,6 +75,7 @@ M.InternalServerErrorException = {
 
 M.AcceptInvitationInput = {
     type = "structure",
+    id = "AcceptInvitationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -98,10 +103,12 @@ M.AcceptInvitationInput = {
 
 M.AcceptInvitationOutput = {
     type = "structure",
+    id = "AcceptInvitationOutput",
 }
 
 M.AccessControlList = {
     type = "structure",
+    id = "AccessControlList",
     members = {
         AllowsPublicReadAccess = {
             type = "boolean",
@@ -120,6 +127,7 @@ M.AccessControlList = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -139,6 +147,7 @@ M.AccessDeniedException = {
 
 M.AccessKey = {
     type = "structure",
+    id = "AccessKey",
     members = {
         PrincipalId = {
             type = "string",
@@ -163,6 +172,7 @@ M.AccessKey = {
 
 M.AccessKeyDetails = {
     type = "structure",
+    id = "AccessKeyDetails",
     members = {
         AccessKeyId = {
             type = "string",
@@ -193,6 +203,7 @@ M.AccessKeyDetails = {
 
 M.Account = {
     type = "structure",
+    id = "Account",
     members = {
         Uid = {
             type = "string",
@@ -212,6 +223,7 @@ M.Account = {
 
 M.AccountDetail = {
     type = "structure",
+    id = "AccountDetail",
     members = {
         AccountId = {
             type = "string",
@@ -232,6 +244,7 @@ M.AccountDetail = {
 
 M.DataSourceFreeTrial = {
     type = "structure",
+    id = "DataSourceFreeTrial",
     members = {
         FreeTrialDaysRemaining = {
             type = "integer",
@@ -244,6 +257,7 @@ M.DataSourceFreeTrial = {
 
 M.KubernetesDataSourceFreeTrial = {
     type = "structure",
+    id = "KubernetesDataSourceFreeTrial",
     members = {
         AuditLogs = setmetatable({ traits = {
             json_name = "auditLogs",
@@ -253,6 +267,7 @@ M.KubernetesDataSourceFreeTrial = {
 
 M.MalwareProtectionDataSourceFreeTrial = {
     type = "structure",
+    id = "MalwareProtectionDataSourceFreeTrial",
     members = {
         ScanEc2InstanceWithFindings = setmetatable({ traits = {
             json_name = "scanEc2InstanceWithFindings",
@@ -262,6 +277,7 @@ M.MalwareProtectionDataSourceFreeTrial = {
 
 M.DataSourcesFreeTrial = {
     type = "structure",
+    id = "DataSourcesFreeTrial",
     members = {
         CloudTrail = setmetatable({ traits = {
             json_name = "cloudTrail",
@@ -300,6 +316,7 @@ M.FreeTrialFeatureResult = {
 
 M.FreeTrialFeatureConfigurationResult = {
     type = "structure",
+    id = "FreeTrialFeatureConfigurationResult",
     members = {
         Name = {
             type = "string",
@@ -318,6 +335,7 @@ M.FreeTrialFeatureConfigurationResult = {
 
 M.AccountFreeTrialInfo = {
     type = "structure",
+    id = "AccountFreeTrialInfo",
     members = {
         AccountId = {
             type = "string",
@@ -340,6 +358,7 @@ M.AccountFreeTrialInfo = {
 
 M.BlockPublicAccess = {
     type = "structure",
+    id = "BlockPublicAccess",
     members = {
         IgnorePublicAcls = {
             type = "boolean",
@@ -370,6 +389,7 @@ M.BlockPublicAccess = {
 
 M.AccountLevelPermissions = {
     type = "structure",
+    id = "AccountLevelPermissions",
     members = {
         BlockPublicAccess = setmetatable({ traits = {
             json_name = "blockPublicAccess",
@@ -379,6 +399,7 @@ M.AccountLevelPermissions = {
 
 M.AccountStatistics = {
     type = "structure",
+    id = "AccountStatistics",
     members = {
         AccountId = {
             type = "string",
@@ -403,6 +424,7 @@ M.AccountStatistics = {
 
 M.DomainDetails = {
     type = "structure",
+    id = "DomainDetails",
     members = {
         Domain = {
             type = "string",
@@ -415,6 +437,7 @@ M.DomainDetails = {
 
 M.RemoteAccountDetails = {
     type = "structure",
+    id = "RemoteAccountDetails",
     members = {
         AccountId = {
             type = "string",
@@ -433,6 +456,7 @@ M.RemoteAccountDetails = {
 
 M.City = {
     type = "structure",
+    id = "City",
     members = {
         CityName = {
             type = "string",
@@ -445,6 +469,7 @@ M.City = {
 
 M.Country = {
     type = "structure",
+    id = "Country",
     members = {
         CountryCode = {
             type = "string",
@@ -463,6 +488,7 @@ M.Country = {
 
 M.GeoLocation = {
     type = "structure",
+    id = "GeoLocation",
     members = {
         Lat = {
             type = "double",
@@ -481,6 +507,7 @@ M.GeoLocation = {
 
 M.Organization = {
     type = "structure",
+    id = "Organization",
     members = {
         Asn = {
             type = "string",
@@ -511,6 +538,7 @@ M.Organization = {
 
 M.RemoteIpDetails = {
     type = "structure",
+    id = "RemoteIpDetails",
     members = {
         City = setmetatable({ traits = {
             json_name = "city",
@@ -541,6 +569,7 @@ M.RemoteIpDetails = {
 
 M.AwsApiCallAction = {
     type = "structure",
+    id = "AwsApiCallAction",
     members = {
         Api = {
             type = "string",
@@ -594,6 +623,7 @@ M.AwsApiCallAction = {
 
 M.DnsRequestAction = {
     type = "structure",
+    id = "DnsRequestAction",
     members = {
         Domain = {
             type = "string",
@@ -630,6 +660,7 @@ M.DnsRequestAction = {
 
 M.KubernetesApiCallAction = {
     type = "structure",
+    id = "KubernetesApiCallAction",
     members = {
         RequestUri = {
             type = "string",
@@ -700,6 +731,7 @@ M.KubernetesApiCallAction = {
 
 M.KubernetesPermissionCheckedDetails = {
     type = "structure",
+    id = "KubernetesPermissionCheckedDetails",
     members = {
         Verb = {
             type = "string",
@@ -730,6 +762,7 @@ M.KubernetesPermissionCheckedDetails = {
 
 M.KubernetesRoleBindingDetails = {
     type = "structure",
+    id = "KubernetesRoleBindingDetails",
     members = {
         Kind = {
             type = "string",
@@ -766,6 +799,7 @@ M.KubernetesRoleBindingDetails = {
 
 M.KubernetesRoleDetails = {
     type = "structure",
+    id = "KubernetesRoleDetails",
     members = {
         Kind = {
             type = "string",
@@ -790,6 +824,7 @@ M.KubernetesRoleDetails = {
 
 M.LocalIpDetails = {
     type = "structure",
+    id = "LocalIpDetails",
     members = {
         IpAddressV4 = {
             type = "string",
@@ -808,6 +843,7 @@ M.LocalIpDetails = {
 
 M.LocalPortDetails = {
     type = "structure",
+    id = "LocalPortDetails",
     members = {
         Port = {
             type = "integer",
@@ -826,6 +862,7 @@ M.LocalPortDetails = {
 
 M.RemotePortDetails = {
     type = "structure",
+    id = "RemotePortDetails",
     members = {
         Port = {
             type = "integer",
@@ -844,6 +881,7 @@ M.RemotePortDetails = {
 
 M.NetworkConnectionAction = {
     type = "structure",
+    id = "NetworkConnectionAction",
     members = {
         Blocked = {
             type = "boolean",
@@ -886,6 +924,7 @@ M.NetworkConnectionAction = {
 
 M.PortProbeDetail = {
     type = "structure",
+    id = "PortProbeDetail",
     members = {
         LocalPortDetails = setmetatable({ traits = {
             json_name = "localPortDetails",
@@ -901,6 +940,7 @@ M.PortProbeDetail = {
 
 M.PortProbeAction = {
     type = "structure",
+    id = "PortProbeAction",
     members = {
         Blocked = {
             type = "boolean",
@@ -920,6 +960,7 @@ M.PortProbeAction = {
 
 M.LoginAttribute = {
     type = "structure",
+    id = "LoginAttribute",
     members = {
         User = {
             type = "string",
@@ -950,6 +991,7 @@ M.LoginAttribute = {
 
 M.RdsLoginAttemptAction = {
     type = "structure",
+    id = "RdsLoginAttemptAction",
     members = {
         RemoteIpDetails = setmetatable({ traits = {
             json_name = "remoteIpDetails",
@@ -963,6 +1005,7 @@ M.RdsLoginAttemptAction = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         ActionType = {
             type = "string",
@@ -1002,6 +1045,7 @@ M.Action = {
 
 M.ActorProcess = {
     type = "structure",
+    id = "ActorProcess",
     members = {
         Name = {
             type = "string",
@@ -1033,6 +1077,7 @@ M.MfaStatus = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         Uid = {
             type = "string",
@@ -1063,6 +1108,7 @@ M.Session = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Name = {
             type = "string",
@@ -1099,6 +1145,7 @@ M.User = {
 
 M.Actor = {
     type = "structure",
+    id = "Actor",
     members = {
         Id = {
             type = "string",
@@ -1121,6 +1168,7 @@ M.Actor = {
 
 M.AdditionalInfo = {
     type = "structure",
+    id = "AdditionalInfo",
     members = {
         VersionId = {
             type = "string",
@@ -1139,6 +1187,7 @@ M.AdditionalInfo = {
 
 M.AddonDetails = {
     type = "structure",
+    id = "AddonDetails",
     members = {
         AddonVersion = {
             type = "string",
@@ -1162,6 +1211,7 @@ M.AdminStatus = {
 
 M.AdminAccount = {
     type = "structure",
+    id = "AdminAccount",
     members = {
         AdminAccountId = {
             type = "string",
@@ -1180,6 +1230,7 @@ M.AdminAccount = {
 
 M.Administrator = {
     type = "structure",
+    id = "Administrator",
     members = {
         AccountId = {
             type = "string",
@@ -1210,6 +1261,7 @@ M.Administrator = {
 
 M.AgentDetails = {
     type = "structure",
+    id = "AgentDetails",
     members = {
         Version = {
             type = "string",
@@ -1222,6 +1274,7 @@ M.AgentDetails = {
 
 M.Observations = {
     type = "structure",
+    id = "Observations",
     members = {
         Text = {
             type = "list",
@@ -1246,6 +1299,7 @@ M.ProfileType = {
 
 M.AnomalyObject = {
     type = "structure",
+    id = "AnomalyObject",
     members = {
         ProfileType = {
             type = "string",
@@ -1267,6 +1321,7 @@ M.AnomalyObject = {
 
 M.AnomalyUnusual = {
     type = "structure",
+    id = "AnomalyUnusual",
     members = {
         Behavior = {
             type = "map",
@@ -1281,6 +1336,7 @@ M.AnomalyUnusual = {
 
 M.Anomaly = {
     type = "structure",
+    id = "Anomaly",
     members = {
         Profiles = {
             type = "map",
@@ -1298,6 +1354,7 @@ M.Anomaly = {
 
 M.ArchiveFindingsInput = {
     type = "structure",
+    id = "ArchiveFindingsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -1319,6 +1376,7 @@ M.ArchiveFindingsInput = {
 
 M.ArchiveFindingsOutput = {
     type = "structure",
+    id = "ArchiveFindingsOutput",
 }
 
 M.AutoEnableMembers = {
@@ -1329,6 +1387,7 @@ M.AutoEnableMembers = {
 
 M.AutonomousSystem = {
     type = "structure",
+    id = "AutonomousSystem",
     members = {
         Name = {
             type = "string",
@@ -1349,6 +1408,7 @@ M.AutonomousSystem = {
 
 M.AutoscalingAutoScalingGroup = {
     type = "structure",
+    id = "AutoscalingAutoScalingGroup",
     members = {
         Ec2InstanceUids = {
             type = "list",
@@ -1362,6 +1422,7 @@ M.AutoscalingAutoScalingGroup = {
 
 M.BucketPolicy = {
     type = "structure",
+    id = "BucketPolicy",
     members = {
         AllowsPublicReadAccess = {
             type = "boolean",
@@ -1380,6 +1441,7 @@ M.BucketPolicy = {
 
 M.BucketLevelPermissions = {
     type = "structure",
+    id = "BucketLevelPermissions",
     members = {
         AccessControlList = setmetatable({ traits = {
             json_name = "accessControlList",
@@ -1395,6 +1457,7 @@ M.BucketLevelPermissions = {
 
 M.CloudformationStack = {
     type = "structure",
+    id = "CloudformationStack",
     members = {
         Ec2InstanceUids = {
             type = "list",
@@ -1413,6 +1476,7 @@ M.DataSourceStatus = {
 
 M.CloudTrailConfigurationResult = {
     type = "structure",
+    id = "CloudTrailConfigurationResult",
     members = {
         Status = {
             type = "string",
@@ -1435,6 +1499,7 @@ M.ClusterStatus = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         Eq = {
             type = "list",
@@ -1531,6 +1596,7 @@ M.Condition = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -1550,6 +1616,7 @@ M.ConflictException = {
 
 M.SecurityContext = {
     type = "structure",
+    id = "SecurityContext",
     members = {
         Privileged = {
             type = "boolean",
@@ -1568,6 +1635,7 @@ M.SecurityContext = {
 
 M.VolumeMount = {
     type = "structure",
+    id = "VolumeMount",
     members = {
         Name = {
             type = "string",
@@ -1586,6 +1654,7 @@ M.VolumeMount = {
 
 M.Container = {
     type = "structure",
+    id = "Container",
     members = {
         ContainerRuntime = {
             type = "string",
@@ -1632,6 +1701,7 @@ M.Container = {
 
 M.ContainerFindingResource = {
     type = "structure",
+    id = "ContainerFindingResource",
     members = {
         Image = {
             type = "string",
@@ -1651,6 +1721,7 @@ M.ContainerFindingResource = {
 
 M.ContainerInstanceDetails = {
     type = "structure",
+    id = "ContainerInstanceDetails",
     members = {
         CoveredContainerInstances = {
             type = "long",
@@ -1686,6 +1757,7 @@ M.ManagementType = {
 
 M.CoverageEc2InstanceDetails = {
     type = "structure",
+    id = "CoverageEc2InstanceDetails",
     members = {
         InstanceId = {
             type = "string",
@@ -1719,6 +1791,7 @@ M.CoverageEc2InstanceDetails = {
 
 M.FargateDetails = {
     type = "structure",
+    id = "FargateDetails",
     members = {
         Issues = {
             type = "list",
@@ -1738,6 +1811,7 @@ M.FargateDetails = {
 
 M.CoverageEcsClusterDetails = {
     type = "structure",
+    id = "CoverageEcsClusterDetails",
     members = {
         ClusterName = {
             type = "string",
@@ -1756,6 +1830,7 @@ M.CoverageEcsClusterDetails = {
 
 M.CoverageEksClusterDetails = {
     type = "structure",
+    id = "CoverageEksClusterDetails",
     members = {
         ClusterName = {
             type = "string",
@@ -1789,6 +1864,7 @@ M.CoverageEksClusterDetails = {
 
 M.CoverageFilterCondition = {
     type = "structure",
+    id = "CoverageFilterCondition",
     members = {
         Equals = {
             type = "list",
@@ -1823,6 +1899,7 @@ M.CoverageFilterCriterionKey = {
 
 M.CoverageFilterCriterion = {
     type = "structure",
+    id = "CoverageFilterCriterion",
     members = {
         CriterionKey = {
             type = "string",
@@ -1838,6 +1915,7 @@ M.CoverageFilterCriterion = {
 
 M.CoverageFilterCriteria = {
     type = "structure",
+    id = "CoverageFilterCriteria",
     members = {
         FilterCriterion = {
             type = "list",
@@ -1851,6 +1929,7 @@ M.CoverageFilterCriteria = {
 
 M.CoverageResourceDetails = {
     type = "structure",
+    id = "CoverageResourceDetails",
     members = {
         EksClusterDetails = setmetatable({ traits = {
             json_name = "eksClusterDetails",
@@ -1872,6 +1951,7 @@ M.CoverageResourceDetails = {
 
 M.CoverageResource = {
     type = "structure",
+    id = "CoverageResource",
     members = {
         ResourceId = {
             type = "string",
@@ -1934,6 +2014,7 @@ M.OrderBy = {
 
 M.CoverageSortCriteria = {
     type = "structure",
+    id = "CoverageSortCriteria",
     members = {
         AttributeName = {
             type = "string",
@@ -1952,6 +2033,7 @@ M.CoverageSortCriteria = {
 
 M.CoverageStatistics = {
     type = "structure",
+    id = "CoverageStatistics",
     members = {
         CountByResourceType = {
             type = "map",
@@ -1979,6 +2061,7 @@ M.CoverageStatisticsType = {
 
 M.KubernetesAuditLogsConfiguration = {
     type = "structure",
+    id = "KubernetesAuditLogsConfiguration",
     members = {
         Enable = {
             type = "boolean",
@@ -1992,6 +2075,7 @@ M.KubernetesAuditLogsConfiguration = {
 
 M.KubernetesConfiguration = {
     type = "structure",
+    id = "KubernetesConfiguration",
     members = {
         AuditLogs = setmetatable({ traits = {
             json_name = "auditLogs",
@@ -2002,6 +2086,7 @@ M.KubernetesConfiguration = {
 
 M.ScanEc2InstanceWithFindings = {
     type = "structure",
+    id = "ScanEc2InstanceWithFindings",
     members = {
         EbsVolumes = {
             type = "boolean",
@@ -2014,6 +2099,7 @@ M.ScanEc2InstanceWithFindings = {
 
 M.MalwareProtectionConfiguration = {
     type = "structure",
+    id = "MalwareProtectionConfiguration",
     members = {
         ScanEc2InstanceWithFindings = setmetatable({ traits = {
             json_name = "scanEc2InstanceWithFindings",
@@ -2023,6 +2109,7 @@ M.MalwareProtectionConfiguration = {
 
 M.S3LogsConfiguration = {
     type = "structure",
+    id = "S3LogsConfiguration",
     members = {
         Enable = {
             type = "boolean",
@@ -2036,6 +2123,7 @@ M.S3LogsConfiguration = {
 
 M.DataSourceConfigurations = {
     type = "structure",
+    id = "DataSourceConfigurations",
     members = {
         S3Logs = setmetatable({ traits = {
             json_name = "s3Logs",
@@ -2062,6 +2150,7 @@ M.FeatureStatus = {
 
 M.DetectorAdditionalConfiguration = {
     type = "structure",
+    id = "DetectorAdditionalConfiguration",
     members = {
         Name = {
             type = "string",
@@ -2090,6 +2179,7 @@ M.DetectorFeature = {
 
 M.DetectorFeatureConfiguration = {
     type = "structure",
+    id = "DetectorFeatureConfiguration",
     members = {
         Name = {
             type = "string",
@@ -2121,6 +2211,7 @@ M.FindingPublishingFrequency = {
 
 M.CreateDetectorInput = {
     type = "structure",
+    id = "CreateDetectorInput",
     members = {
         Enable = {
             type = "boolean",
@@ -2165,6 +2256,7 @@ M.CreateDetectorInput = {
 
 M.EbsVolumesResult = {
     type = "structure",
+    id = "EbsVolumesResult",
     members = {
         Status = {
             type = "string",
@@ -2183,6 +2275,7 @@ M.EbsVolumesResult = {
 
 M.ScanEc2InstanceWithFindingsResult = {
     type = "structure",
+    id = "ScanEc2InstanceWithFindingsResult",
     members = {
         EbsVolumes = setmetatable({ traits = {
             json_name = "ebsVolumes",
@@ -2192,6 +2285,7 @@ M.ScanEc2InstanceWithFindingsResult = {
 
 M.MalwareProtectionConfigurationResult = {
     type = "structure",
+    id = "MalwareProtectionConfigurationResult",
     members = {
         ScanEc2InstanceWithFindings = setmetatable({ traits = {
             json_name = "scanEc2InstanceWithFindings",
@@ -2207,6 +2301,7 @@ M.MalwareProtectionConfigurationResult = {
 
 M.UnprocessedDataSourcesResult = {
     type = "structure",
+    id = "UnprocessedDataSourcesResult",
     members = {
         MalwareProtection = setmetatable({ traits = {
             json_name = "malwareProtection",
@@ -2216,6 +2311,7 @@ M.UnprocessedDataSourcesResult = {
 
 M.CreateDetectorOutput = {
     type = "structure",
+    id = "CreateDetectorOutput",
     members = {
         DetectorId = {
             type = "string",
@@ -2236,6 +2332,7 @@ M.FilterAction = {
 
 M.FindingCriteria = {
     type = "structure",
+    id = "FindingCriteria",
     members = {
         Criterion = {
             type = "map",
@@ -2250,6 +2347,7 @@ M.FindingCriteria = {
 
 M.CreateFilterInput = {
     type = "structure",
+    id = "CreateFilterInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2307,6 +2405,7 @@ M.CreateFilterInput = {
 
 M.CreateFilterOutput = {
     type = "structure",
+    id = "CreateFilterOutput",
     members = {
         Name = {
             type = "string",
@@ -2329,6 +2428,7 @@ M.IpSetFormat = {
 
 M.CreateIPSetInput = {
     type = "structure",
+    id = "CreateIPSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2391,6 +2491,7 @@ M.CreateIPSetInput = {
 
 M.CreateIPSetOutput = {
     type = "structure",
+    id = "CreateIPSetOutput",
     members = {
         IpSetId = {
             type = "string",
@@ -2409,6 +2510,7 @@ M.MalwareProtectionPlanTaggingActionStatus = {
 
 M.MalwareProtectionPlanTaggingAction = {
     type = "structure",
+    id = "MalwareProtectionPlanTaggingAction",
     members = {
         Status = {
             type = "string",
@@ -2421,6 +2523,7 @@ M.MalwareProtectionPlanTaggingAction = {
 
 M.MalwareProtectionPlanActions = {
     type = "structure",
+    id = "MalwareProtectionPlanActions",
     members = {
         Tagging = setmetatable({ traits = {
             json_name = "tagging",
@@ -2430,6 +2533,7 @@ M.MalwareProtectionPlanActions = {
 
 M.CreateS3BucketResource = {
     type = "structure",
+    id = "CreateS3BucketResource",
     members = {
         BucketName = {
             type = "string",
@@ -2449,6 +2553,7 @@ M.CreateS3BucketResource = {
 
 M.CreateProtectedResource = {
     type = "structure",
+    id = "CreateProtectedResource",
     members = {
         S3Bucket = setmetatable({ traits = {
             json_name = "s3Bucket",
@@ -2458,6 +2563,7 @@ M.CreateProtectedResource = {
 
 M.CreateMalwareProtectionPlanInput = {
     type = "structure",
+    id = "CreateMalwareProtectionPlanInput",
     members = {
         ClientToken = {
             type = "string",
@@ -2493,6 +2599,7 @@ M.CreateMalwareProtectionPlanInput = {
 
 M.CreateMalwareProtectionPlanOutput = {
     type = "structure",
+    id = "CreateMalwareProtectionPlanOutput",
     members = {
         MalwareProtectionPlanId = {
             type = "string",
@@ -2505,6 +2612,7 @@ M.CreateMalwareProtectionPlanOutput = {
 
 M.CreateMembersInput = {
     type = "structure",
+    id = "CreateMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2526,6 +2634,7 @@ M.CreateMembersInput = {
 
 M.UnprocessedAccount = {
     type = "structure",
+    id = "UnprocessedAccount",
     members = {
         AccountId = {
             type = "string",
@@ -2546,6 +2655,7 @@ M.UnprocessedAccount = {
 
 M.CreateMembersOutput = {
     type = "structure",
+    id = "CreateMembersOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -2560,6 +2670,7 @@ M.CreateMembersOutput = {
 
 M.DestinationProperties = {
     type = "structure",
+    id = "DestinationProperties",
     members = {
         DestinationArn = {
             type = "string",
@@ -2582,6 +2693,7 @@ M.DestinationType = {
 
 M.CreatePublishingDestinationInput = {
     type = "structure",
+    id = "CreatePublishingDestinationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2621,6 +2733,7 @@ M.CreatePublishingDestinationInput = {
 
 M.CreatePublishingDestinationOutput = {
     type = "structure",
+    id = "CreatePublishingDestinationOutput",
     members = {
         DestinationId = {
             type = "string",
@@ -2634,6 +2747,7 @@ M.CreatePublishingDestinationOutput = {
 
 M.CreateSampleFindingsInput = {
     type = "structure",
+    id = "CreateSampleFindingsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2654,6 +2768,7 @@ M.CreateSampleFindingsInput = {
 
 M.CreateSampleFindingsOutput = {
     type = "structure",
+    id = "CreateSampleFindingsOutput",
 }
 
 M.ThreatEntitySetFormat = {
@@ -2667,6 +2782,7 @@ M.ThreatEntitySetFormat = {
 
 M.CreateThreatEntitySetInput = {
     type = "structure",
+    id = "CreateThreatEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2729,6 +2845,7 @@ M.CreateThreatEntitySetInput = {
 
 M.CreateThreatEntitySetOutput = {
     type = "structure",
+    id = "CreateThreatEntitySetOutput",
     members = {
         ThreatEntitySetId = {
             type = "string",
@@ -2751,6 +2868,7 @@ M.ThreatIntelSetFormat = {
 
 M.CreateThreatIntelSetInput = {
     type = "structure",
+    id = "CreateThreatIntelSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2813,6 +2931,7 @@ M.CreateThreatIntelSetInput = {
 
 M.CreateThreatIntelSetOutput = {
     type = "structure",
+    id = "CreateThreatIntelSetOutput",
     members = {
         ThreatIntelSetId = {
             type = "string",
@@ -2835,6 +2954,7 @@ M.TrustedEntitySetFormat = {
 
 M.CreateTrustedEntitySetInput = {
     type = "structure",
+    id = "CreateTrustedEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -2897,6 +3017,7 @@ M.CreateTrustedEntitySetInput = {
 
 M.CreateTrustedEntitySetOutput = {
     type = "structure",
+    id = "CreateTrustedEntitySetOutput",
     members = {
         TrustedEntitySetId = {
             type = "string",
@@ -2929,6 +3050,7 @@ M.DataSource = {
 
 M.DNSLogsConfigurationResult = {
     type = "structure",
+    id = "DNSLogsConfigurationResult",
     members = {
         Status = {
             type = "string",
@@ -2942,6 +3064,7 @@ M.DNSLogsConfigurationResult = {
 
 M.FlowLogsConfigurationResult = {
     type = "structure",
+    id = "FlowLogsConfigurationResult",
     members = {
         Status = {
             type = "string",
@@ -2955,6 +3078,7 @@ M.FlowLogsConfigurationResult = {
 
 M.KubernetesAuditLogsConfigurationResult = {
     type = "structure",
+    id = "KubernetesAuditLogsConfigurationResult",
     members = {
         Status = {
             type = "string",
@@ -2968,6 +3092,7 @@ M.KubernetesAuditLogsConfigurationResult = {
 
 M.KubernetesConfigurationResult = {
     type = "structure",
+    id = "KubernetesConfigurationResult",
     members = {
         AuditLogs = setmetatable({ traits = {
             json_name = "auditLogs",
@@ -2978,6 +3103,7 @@ M.KubernetesConfigurationResult = {
 
 M.S3LogsConfigurationResult = {
     type = "structure",
+    id = "S3LogsConfigurationResult",
     members = {
         Status = {
             type = "string",
@@ -2991,6 +3117,7 @@ M.S3LogsConfigurationResult = {
 
 M.DataSourceConfigurationsResult = {
     type = "structure",
+    id = "DataSourceConfigurationsResult",
     members = {
         CloudTrail = setmetatable({ traits = {
             json_name = "cloudTrail",
@@ -3019,6 +3146,7 @@ M.DataSourceConfigurationsResult = {
 
 M.DateStatistics = {
     type = "structure",
+    id = "DateStatistics",
     members = {
         Date = {
             type = "timestamp",
@@ -3049,6 +3177,7 @@ M.DateStatistics = {
 
 M.DeclineInvitationsInput = {
     type = "structure",
+    id = "DeclineInvitationsInput",
     members = {
         AccountIds = {
             type = "list",
@@ -3063,6 +3192,7 @@ M.DeclineInvitationsInput = {
 
 M.DeclineInvitationsOutput = {
     type = "structure",
+    id = "DeclineInvitationsOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -3077,6 +3207,7 @@ M.DeclineInvitationsOutput = {
 
 M.DefaultServerSideEncryption = {
     type = "structure",
+    id = "DefaultServerSideEncryption",
     members = {
         EncryptionType = {
             type = "string",
@@ -3095,6 +3226,7 @@ M.DefaultServerSideEncryption = {
 
 M.DeleteDetectorInput = {
     type = "structure",
+    id = "DeleteDetectorInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3108,10 +3240,12 @@ M.DeleteDetectorInput = {
 
 M.DeleteDetectorOutput = {
     type = "structure",
+    id = "DeleteDetectorOutput",
 }
 
 M.DeleteFilterInput = {
     type = "structure",
+    id = "DeleteFilterInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3132,10 +3266,12 @@ M.DeleteFilterInput = {
 
 M.DeleteFilterOutput = {
     type = "structure",
+    id = "DeleteFilterOutput",
 }
 
 M.DeleteInvitationsInput = {
     type = "structure",
+    id = "DeleteInvitationsInput",
     members = {
         AccountIds = {
             type = "list",
@@ -3150,6 +3286,7 @@ M.DeleteInvitationsInput = {
 
 M.DeleteInvitationsOutput = {
     type = "structure",
+    id = "DeleteInvitationsOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -3164,6 +3301,7 @@ M.DeleteInvitationsOutput = {
 
 M.DeleteIPSetInput = {
     type = "structure",
+    id = "DeleteIPSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3184,10 +3322,12 @@ M.DeleteIPSetInput = {
 
 M.DeleteIPSetOutput = {
     type = "structure",
+    id = "DeleteIPSetOutput",
 }
 
 M.DeleteMalwareProtectionPlanInput = {
     type = "structure",
+    id = "DeleteMalwareProtectionPlanInput",
     members = {
         MalwareProtectionPlanId = {
             type = "string",
@@ -3201,10 +3341,12 @@ M.DeleteMalwareProtectionPlanInput = {
 
 M.DeleteMalwareProtectionPlanOutput = {
     type = "structure",
+    id = "DeleteMalwareProtectionPlanOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -3224,6 +3366,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteMembersInput = {
     type = "structure",
+    id = "DeleteMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3245,6 +3388,7 @@ M.DeleteMembersInput = {
 
 M.DeleteMembersOutput = {
     type = "structure",
+    id = "DeleteMembersOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -3259,6 +3403,7 @@ M.DeleteMembersOutput = {
 
 M.DeletePublishingDestinationInput = {
     type = "structure",
+    id = "DeletePublishingDestinationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3279,10 +3424,12 @@ M.DeletePublishingDestinationInput = {
 
 M.DeletePublishingDestinationOutput = {
     type = "structure",
+    id = "DeletePublishingDestinationOutput",
 }
 
 M.DeleteThreatEntitySetInput = {
     type = "structure",
+    id = "DeleteThreatEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3303,10 +3450,12 @@ M.DeleteThreatEntitySetInput = {
 
 M.DeleteThreatEntitySetOutput = {
     type = "structure",
+    id = "DeleteThreatEntitySetOutput",
 }
 
 M.DeleteThreatIntelSetInput = {
     type = "structure",
+    id = "DeleteThreatIntelSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3327,10 +3476,12 @@ M.DeleteThreatIntelSetInput = {
 
 M.DeleteThreatIntelSetOutput = {
     type = "structure",
+    id = "DeleteThreatIntelSetOutput",
 }
 
 M.DeleteTrustedEntitySetInput = {
     type = "structure",
+    id = "DeleteTrustedEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3351,10 +3502,12 @@ M.DeleteTrustedEntitySetInput = {
 
 M.DeleteTrustedEntitySetOutput = {
     type = "structure",
+    id = "DeleteTrustedEntitySetOutput",
 }
 
 M.FilterCondition = {
     type = "structure",
+    id = "FilterCondition",
     members = {
         EqualsValue = {
             type = "string",
@@ -3379,6 +3532,7 @@ M.FilterCondition = {
 
 M.FilterCriterion = {
     type = "structure",
+    id = "FilterCriterion",
     members = {
         CriterionKey = {
             type = "string",
@@ -3394,6 +3548,7 @@ M.FilterCriterion = {
 
 M.FilterCriteria = {
     type = "structure",
+    id = "FilterCriteria",
     members = {
         FilterCriterion = {
             type = "list",
@@ -3407,6 +3562,7 @@ M.FilterCriteria = {
 
 M.SortCriteria = {
     type = "structure",
+    id = "SortCriteria",
     members = {
         AttributeName = {
             type = "string",
@@ -3425,6 +3581,7 @@ M.SortCriteria = {
 
 M.DescribeMalwareScansInput = {
     type = "structure",
+    id = "DescribeMalwareScansInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3456,6 +3613,7 @@ M.DescribeMalwareScansInput = {
 
 M.VolumeDetail = {
     type = "structure",
+    id = "VolumeDetail",
     members = {
         VolumeArn = {
             type = "string",
@@ -3504,6 +3662,7 @@ M.VolumeDetail = {
 
 M.ResourceDetails = {
     type = "structure",
+    id = "ResourceDetails",
     members = {
         InstanceArn = {
             type = "string",
@@ -3521,6 +3680,7 @@ M.ScanResult = {
 
 M.ScanResultDetails = {
     type = "structure",
+    id = "ScanResultDetails",
     members = {
         ScanResult = {
             type = "string",
@@ -3550,6 +3710,7 @@ M.TriggerType = {
 
 M.TriggerDetails = {
     type = "structure",
+    id = "TriggerDetails",
     members = {
         GuardDutyFindingId = {
             type = "string",
@@ -3574,6 +3735,7 @@ M.TriggerDetails = {
 
 M.Scan = {
     type = "structure",
+    id = "Scan",
     members = {
         DetectorId = {
             type = "string",
@@ -3662,6 +3824,7 @@ M.Scan = {
 
 M.DescribeMalwareScansOutput = {
     type = "structure",
+    id = "DescribeMalwareScansOutput",
     members = {
         Scans = {
             type = "list",
@@ -3682,6 +3845,7 @@ M.DescribeMalwareScansOutput = {
 
 M.DescribeOrganizationConfigurationInput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3707,6 +3871,7 @@ M.DescribeOrganizationConfigurationInput = {
 
 M.OrganizationKubernetesAuditLogsConfigurationResult = {
     type = "structure",
+    id = "OrganizationKubernetesAuditLogsConfigurationResult",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -3720,6 +3885,7 @@ M.OrganizationKubernetesAuditLogsConfigurationResult = {
 
 M.OrganizationKubernetesConfigurationResult = {
     type = "structure",
+    id = "OrganizationKubernetesConfigurationResult",
     members = {
         AuditLogs = setmetatable({ traits = {
             json_name = "auditLogs",
@@ -3730,6 +3896,7 @@ M.OrganizationKubernetesConfigurationResult = {
 
 M.OrganizationEbsVolumesResult = {
     type = "structure",
+    id = "OrganizationEbsVolumesResult",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -3742,6 +3909,7 @@ M.OrganizationEbsVolumesResult = {
 
 M.OrganizationScanEc2InstanceWithFindingsResult = {
     type = "structure",
+    id = "OrganizationScanEc2InstanceWithFindingsResult",
     members = {
         EbsVolumes = setmetatable({ traits = {
             json_name = "ebsVolumes",
@@ -3751,6 +3919,7 @@ M.OrganizationScanEc2InstanceWithFindingsResult = {
 
 M.OrganizationMalwareProtectionConfigurationResult = {
     type = "structure",
+    id = "OrganizationMalwareProtectionConfigurationResult",
     members = {
         ScanEc2InstanceWithFindings = setmetatable({ traits = {
             json_name = "scanEc2InstanceWithFindings",
@@ -3760,6 +3929,7 @@ M.OrganizationMalwareProtectionConfigurationResult = {
 
 M.OrganizationS3LogsConfigurationResult = {
     type = "structure",
+    id = "OrganizationS3LogsConfigurationResult",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -3773,6 +3943,7 @@ M.OrganizationS3LogsConfigurationResult = {
 
 M.OrganizationDataSourceConfigurationsResult = {
     type = "structure",
+    id = "OrganizationDataSourceConfigurationsResult",
     members = {
         S3Logs = setmetatable({ traits = {
             json_name = "s3Logs",
@@ -3801,6 +3972,7 @@ M.OrgFeatureAdditionalConfiguration = {
 
 M.OrganizationAdditionalConfigurationResult = {
     type = "structure",
+    id = "OrganizationAdditionalConfigurationResult",
     members = {
         Name = {
             type = "string",
@@ -3829,6 +4001,7 @@ M.OrgFeature = {
 
 M.OrganizationFeatureConfigurationResult = {
     type = "structure",
+    id = "OrganizationFeatureConfigurationResult",
     members = {
         Name = {
             type = "string",
@@ -3854,6 +4027,7 @@ M.OrganizationFeatureConfigurationResult = {
 
 M.DescribeOrganizationConfigurationOutput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationOutput",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -3895,6 +4069,7 @@ M.DescribeOrganizationConfigurationOutput = {
 
 M.DescribePublishingDestinationInput = {
     type = "structure",
+    id = "DescribePublishingDestinationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -3922,6 +4097,7 @@ M.PublishingStatus = {
 
 M.DescribePublishingDestinationOutput = {
     type = "structure",
+    id = "DescribePublishingDestinationOutput",
     members = {
         DestinationId = {
             type = "string",
@@ -3968,6 +4144,7 @@ M.DescribePublishingDestinationOutput = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         DestinationId = {
             type = "string",
@@ -4000,6 +4177,7 @@ M.NetworkDirection = {
 
 M.NetworkConnection = {
     type = "structure",
+    id = "NetworkConnection",
     members = {
         Direction = {
             type = "string",
@@ -4013,6 +4191,7 @@ M.NetworkConnection = {
 
 M.NetworkGeoLocation = {
     type = "structure",
+    id = "NetworkGeoLocation",
     members = {
         City = {
             type = "string",
@@ -4047,6 +4226,7 @@ M.NetworkGeoLocation = {
 
 M.NetworkEndpoint = {
     type = "structure",
+    id = "NetworkEndpoint",
     members = {
         Id = {
             type = "string",
@@ -4087,6 +4267,7 @@ M.NetworkEndpoint = {
 
 M.Ec2Image = {
     type = "structure",
+    id = "Ec2Image",
     members = {
         Ec2InstanceUids = {
             type = "list",
@@ -4100,6 +4281,7 @@ M.Ec2Image = {
 
 M.IamInstanceProfile = {
     type = "structure",
+    id = "IamInstanceProfile",
     members = {
         Arn = {
             type = "string",
@@ -4118,6 +4300,7 @@ M.IamInstanceProfile = {
 
 M.ProductCode = {
     type = "structure",
+    id = "ProductCode",
     members = {
         Code = {
             type = "string",
@@ -4136,6 +4319,7 @@ M.ProductCode = {
 
 M.Ec2Instance = {
     type = "structure",
+    id = "Ec2Instance",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -4193,6 +4377,7 @@ M.Ec2Instance = {
 
 M.Ec2LaunchTemplate = {
     type = "structure",
+    id = "Ec2LaunchTemplate",
     members = {
         Ec2InstanceUids = {
             type = "list",
@@ -4212,6 +4397,7 @@ M.Ec2LaunchTemplate = {
 
 M.PrivateIpAddressDetails = {
     type = "structure",
+    id = "PrivateIpAddressDetails",
     members = {
         PrivateDnsName = {
             type = "string",
@@ -4230,6 +4416,7 @@ M.PrivateIpAddressDetails = {
 
 M.SecurityGroup = {
     type = "structure",
+    id = "SecurityGroup",
     members = {
         GroupId = {
             type = "string",
@@ -4248,6 +4435,7 @@ M.SecurityGroup = {
 
 M.Ec2NetworkInterface = {
     type = "structure",
+    id = "Ec2NetworkInterface",
     members = {
         Ipv6Addresses = {
             type = "list",
@@ -4293,6 +4481,7 @@ M.Ec2NetworkInterface = {
 
 M.Ec2Vpc = {
     type = "structure",
+    id = "Ec2Vpc",
     members = {
         Ec2InstanceUids = {
             type = "list",
@@ -4314,6 +4503,7 @@ M.EcsClusterStatus = {
 
 M.EcsCluster = {
     type = "structure",
+    id = "EcsCluster",
     members = {
         Status = {
             type = "string",
@@ -4338,6 +4528,7 @@ M.EcsLaunchType = {
 
 M.EcsTask = {
     type = "structure",
+    id = "EcsTask",
     members = {
         CreatedAt = {
             type = "timestamp",
@@ -4369,6 +4560,7 @@ M.EcsTask = {
 
 M.EksCluster = {
     type = "structure",
+    id = "EksCluster",
     members = {
         Arn = {
             type = "string",
@@ -4406,6 +4598,7 @@ M.EksCluster = {
 
 M.IamInstanceProfileV2 = {
     type = "structure",
+    id = "IamInstanceProfileV2",
     members = {
         Ec2InstanceUids = {
             type = "list",
@@ -4430,6 +4623,7 @@ M.KubernetesResourcesTypes = {
 
 M.KubernetesWorkload = {
     type = "structure",
+    id = "KubernetesWorkload",
     members = {
         ContainerUids = {
             type = "list",
@@ -4470,6 +4664,7 @@ M.PublicBucketRestrictBehavior = {
 
 M.PublicAccessConfiguration = {
     type = "structure",
+    id = "PublicAccessConfiguration",
     members = {
         PublicAclAccess = {
             type = "string",
@@ -4500,6 +4695,7 @@ M.PublicAccessConfiguration = {
 
 M.S3Bucket = {
     type = "structure",
+    id = "S3Bucket",
     members = {
         OwnerId = {
             type = "string",
@@ -4561,6 +4757,7 @@ M.S3Bucket = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         ETag = {
             type = "string",
@@ -4585,6 +4782,7 @@ M.S3Object = {
 
 M.ResourceData = {
     type = "structure",
+    id = "ResourceData",
     members = {
         S3Bucket = setmetatable({ traits = {
             json_name = "s3Bucket",
@@ -4658,6 +4856,7 @@ M.FindingResourceType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -4676,6 +4875,7 @@ M.Tag = {
 
 M.ResourceV2 = {
     type = "structure",
+    id = "ResourceV2",
     members = {
         Uid = {
             type = "string",
@@ -4756,6 +4956,7 @@ M.IndicatorType = {
 
 M.Indicator = {
     type = "structure",
+    id = "Indicator",
     members = {
         Key = {
             type = "string",
@@ -4792,6 +4993,7 @@ M.SignalType = {
 
 M.Signal = {
     type = "structure",
+    id = "Signal",
     members = {
         Uid = {
             type = "string",
@@ -4894,6 +5096,7 @@ M.Signal = {
 
 M.Sequence = {
     type = "structure",
+    id = "Sequence",
     members = {
         Uid = {
             type = "string",
@@ -4957,6 +5160,7 @@ M.Sequence = {
 
 M.Detection = {
     type = "structure",
+    id = "Detection",
     members = {
         Anomaly = setmetatable({ traits = {
             json_name = "anomaly",
@@ -4974,6 +5178,7 @@ M.DetectionSource = {
 
 M.DetectorAdditionalConfigurationResult = {
     type = "structure",
+    id = "DetectorAdditionalConfigurationResult",
     members = {
         Name = {
             type = "string",
@@ -5011,6 +5216,7 @@ M.DetectorFeatureResult = {
 
 M.DetectorFeatureConfigurationResult = {
     type = "structure",
+    id = "DetectorFeatureConfigurationResult",
     members = {
         Name = {
             type = "string",
@@ -5047,6 +5253,7 @@ M.DetectorStatus = {
 
 M.DisableOrganizationAdminAccountInput = {
     type = "structure",
+    id = "DisableOrganizationAdminAccountInput",
     members = {
         AdminAccountId = {
             type = "string",
@@ -5060,10 +5267,12 @@ M.DisableOrganizationAdminAccountInput = {
 
 M.DisableOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "DisableOrganizationAdminAccountOutput",
 }
 
 M.DisassociateFromAdministratorAccountInput = {
     type = "structure",
+    id = "DisassociateFromAdministratorAccountInput",
     members = {
         DetectorId = {
             type = "string",
@@ -5077,10 +5286,12 @@ M.DisassociateFromAdministratorAccountInput = {
 
 M.DisassociateFromAdministratorAccountOutput = {
     type = "structure",
+    id = "DisassociateFromAdministratorAccountOutput",
 }
 
 M.DisassociateFromMasterAccountInput = {
     type = "structure",
+    id = "DisassociateFromMasterAccountInput",
     members = {
         DetectorId = {
             type = "string",
@@ -5094,10 +5305,12 @@ M.DisassociateFromMasterAccountInput = {
 
 M.DisassociateFromMasterAccountOutput = {
     type = "structure",
+    id = "DisassociateFromMasterAccountOutput",
 }
 
 M.DisassociateMembersInput = {
     type = "structure",
+    id = "DisassociateMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -5119,6 +5332,7 @@ M.DisassociateMembersInput = {
 
 M.DisassociateMembersOutput = {
     type = "structure",
+    id = "DisassociateMembersOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -5133,6 +5347,7 @@ M.DisassociateMembersOutput = {
 
 M.EbsSnapshot = {
     type = "structure",
+    id = "EbsSnapshot",
     members = {
         DeviceName = {
             type = "string",
@@ -5145,6 +5360,7 @@ M.EbsSnapshot = {
 
 M.EbsSnapshotDetails = {
     type = "structure",
+    id = "EbsSnapshotDetails",
     members = {
         SnapshotArn = {
             type = "string",
@@ -5162,6 +5378,7 @@ M.EbsSnapshotPreservation = {
 
 M.EbsVolumeDetails = {
     type = "structure",
+    id = "EbsVolumeDetails",
     members = {
         ScannedVolumeDetails = {
             type = "list",
@@ -5182,6 +5399,7 @@ M.EbsVolumeDetails = {
 
 M.HighestSeverityThreatDetails = {
     type = "structure",
+    id = "HighestSeverityThreatDetails",
     members = {
         Severity = {
             type = "string",
@@ -5206,6 +5424,7 @@ M.HighestSeverityThreatDetails = {
 
 M.ScannedItemCount = {
     type = "structure",
+    id = "ScannedItemCount",
     members = {
         TotalGb = {
             type = "integer",
@@ -5230,6 +5449,7 @@ M.ScannedItemCount = {
 
 M.ScanFilePath = {
     type = "structure",
+    id = "ScanFilePath",
     members = {
         FilePath = {
             type = "string",
@@ -5260,6 +5480,7 @@ M.ScanFilePath = {
 
 M.ScanThreatName = {
     type = "structure",
+    id = "ScanThreatName",
     members = {
         Name = {
             type = "string",
@@ -5291,6 +5512,7 @@ M.ScanThreatName = {
 
 M.ThreatDetectedByName = {
     type = "structure",
+    id = "ThreatDetectedByName",
     members = {
         ItemCount = {
             type = "integer",
@@ -5322,6 +5544,7 @@ M.ThreatDetectedByName = {
 
 M.ThreatsDetectedItemCount = {
     type = "structure",
+    id = "ThreatsDetectedItemCount",
     members = {
         Files = {
             type = "integer",
@@ -5334,6 +5557,7 @@ M.ThreatsDetectedItemCount = {
 
 M.ScanDetections = {
     type = "structure",
+    id = "ScanDetections",
     members = {
         ScannedItemCount = setmetatable({ traits = {
             json_name = "scannedItemCount",
@@ -5352,6 +5576,7 @@ M.ScanDetections = {
 
 M.EbsVolumeScanDetails = {
     type = "structure",
+    id = "EbsVolumeScanDetails",
     members = {
         ScanId = {
             type = "string",
@@ -5398,6 +5623,7 @@ M.EbsVolumeScanDetails = {
 
 M.Ec2ImageDetails = {
     type = "structure",
+    id = "Ec2ImageDetails",
     members = {
         ImageArn = {
             type = "string",
@@ -5410,6 +5636,7 @@ M.Ec2ImageDetails = {
 
 M.HostPath = {
     type = "structure",
+    id = "HostPath",
     members = {
         Path = {
             type = "string",
@@ -5422,6 +5649,7 @@ M.HostPath = {
 
 M.Volume = {
     type = "structure",
+    id = "Volume",
     members = {
         Name = {
             type = "string",
@@ -5437,6 +5665,7 @@ M.Volume = {
 
 M.EcsTaskDetails = {
     type = "structure",
+    id = "EcsTaskDetails",
     members = {
         Arn = {
             type = "string",
@@ -5512,6 +5741,7 @@ M.EcsTaskDetails = {
 
 M.EcsClusterDetails = {
     type = "structure",
+    id = "EcsClusterDetails",
     members = {
         Name = {
             type = "string",
@@ -5564,6 +5794,7 @@ M.EcsClusterDetails = {
 
 M.EksClusterDetails = {
     type = "structure",
+    id = "EksClusterDetails",
     members = {
         Name = {
             type = "string",
@@ -5607,6 +5838,7 @@ M.EksClusterDetails = {
 
 M.EnableOrganizationAdminAccountInput = {
     type = "structure",
+    id = "EnableOrganizationAdminAccountInput",
     members = {
         AdminAccountId = {
             type = "string",
@@ -5620,10 +5852,12 @@ M.EnableOrganizationAdminAccountInput = {
 
 M.EnableOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "EnableOrganizationAdminAccountOutput",
 }
 
 M.ThreatIntelligenceDetail = {
     type = "structure",
+    id = "ThreatIntelligenceDetail",
     members = {
         ThreatListName = {
             type = "string",
@@ -5649,6 +5883,7 @@ M.ThreatIntelligenceDetail = {
 
 M.Evidence = {
     type = "structure",
+    id = "Evidence",
     members = {
         ThreatIntelligenceDetails = {
             type = "list",
@@ -5667,6 +5902,7 @@ M.Feedback = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         Ipv6Addresses = {
             type = "list",
@@ -5736,6 +5972,7 @@ M.NetworkInterface = {
 
 M.InstanceDetails = {
     type = "structure",
+    id = "InstanceDetails",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -5820,6 +6057,7 @@ M.InstanceDetails = {
 
 M.ImpersonatedUser = {
     type = "structure",
+    id = "ImpersonatedUser",
     members = {
         Username = {
             type = "string",
@@ -5839,6 +6077,7 @@ M.ImpersonatedUser = {
 
 M.KubernetesUserDetails = {
     type = "structure",
+    id = "KubernetesUserDetails",
     members = {
         Username = {
             type = "string",
@@ -5874,6 +6113,7 @@ M.KubernetesUserDetails = {
 
 M.KubernetesWorkloadDetails = {
     type = "structure",
+    id = "KubernetesWorkloadDetails",
     members = {
         Name = {
             type = "string",
@@ -5942,6 +6182,7 @@ M.KubernetesWorkloadDetails = {
 
 M.KubernetesDetails = {
     type = "structure",
+    id = "KubernetesDetails",
     members = {
         KubernetesUserDetails = setmetatable({ traits = {
             json_name = "kubernetesUserDetails",
@@ -5954,6 +6195,7 @@ M.KubernetesDetails = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         SubnetIds = {
             type = "list",
@@ -5980,6 +6222,7 @@ M.VpcConfig = {
 
 M.LambdaDetails = {
     type = "structure",
+    id = "LambdaDetails",
     members = {
         FunctionArn = {
             type = "string",
@@ -6038,6 +6281,7 @@ M.LambdaDetails = {
 
 M.RdsDbInstanceDetails = {
     type = "structure",
+    id = "RdsDbInstanceDetails",
     members = {
         DbInstanceIdentifier = {
             type = "string",
@@ -6087,6 +6331,7 @@ M.RdsDbInstanceDetails = {
 
 M.RdsDbUserDetails = {
     type = "structure",
+    id = "RdsDbUserDetails",
     members = {
         User = {
             type = "string",
@@ -6123,6 +6368,7 @@ M.RdsDbUserDetails = {
 
 M.RdsLimitlessDbDetails = {
     type = "structure",
+    id = "RdsLimitlessDbDetails",
     members = {
         DbShardGroupIdentifier = {
             type = "string",
@@ -6172,6 +6418,7 @@ M.RdsLimitlessDbDetails = {
 
 M.RecoveryPointDetails = {
     type = "structure",
+    id = "RecoveryPointDetails",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -6190,6 +6437,7 @@ M.RecoveryPointDetails = {
 
 M.Owner = {
     type = "structure",
+    id = "Owner",
     members = {
         Id = {
             type = "string",
@@ -6202,6 +6450,7 @@ M.Owner = {
 
 M.PermissionConfiguration = {
     type = "structure",
+    id = "PermissionConfiguration",
     members = {
         BucketLevelPermissions = setmetatable({ traits = {
             json_name = "bucketLevelPermissions",
@@ -6214,6 +6463,7 @@ M.PermissionConfiguration = {
 
 M.PublicAccess = {
     type = "structure",
+    id = "PublicAccess",
     members = {
         PermissionConfiguration = setmetatable({ traits = {
             json_name = "permissionConfiguration",
@@ -6229,6 +6479,7 @@ M.PublicAccess = {
 
 M.S3ObjectDetail = {
     type = "structure",
+    id = "S3ObjectDetail",
     members = {
         ObjectArn = {
             type = "string",
@@ -6265,6 +6516,7 @@ M.S3ObjectDetail = {
 
 M.S3BucketDetail = {
     type = "structure",
+    id = "S3BucketDetail",
     members = {
         Arn = {
             type = "string",
@@ -6318,6 +6570,7 @@ M.S3BucketDetail = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         AccessKeyDetails = setmetatable({ traits = {
             json_name = "accessKeyDetails",
@@ -6379,6 +6632,7 @@ M.Resource = {
 
 M.ServiceAdditionalInfo = {
     type = "structure",
+    id = "ServiceAdditionalInfo",
     members = {
         Value = {
             type = "string",
@@ -6402,6 +6656,7 @@ M.ScanCategory = {
 
 M.IncrementalScanDetails = {
     type = "structure",
+    id = "IncrementalScanDetails",
     members = {
         BaselineResourceArn = {
             type = "string",
@@ -6415,6 +6670,7 @@ M.IncrementalScanDetails = {
 
 M.MalwareProtectionFindingsScanConfiguration = {
     type = "structure",
+    id = "MalwareProtectionFindingsScanConfiguration",
     members = {
         TriggerType = {
             type = "string",
@@ -6436,6 +6692,7 @@ M.MalwareProtectionScanType = {
 
 M.ItemDetails = {
     type = "structure",
+    id = "ItemDetails",
     members = {
         ResourceArn = {
             type = "string",
@@ -6463,6 +6720,7 @@ M.ItemDetails = {
 
 M.ItemPath = {
     type = "structure",
+    id = "ItemPath",
     members = {
         NestedItemPath = {
             type = "string",
@@ -6481,6 +6739,7 @@ M.ItemPath = {
 
 M.Threat = {
     type = "structure",
+    id = "Threat",
     members = {
         Name = {
             type = "string",
@@ -6525,6 +6784,7 @@ M.Threat = {
 
 M.MalwareScanDetails = {
     type = "structure",
+    id = "MalwareScanDetails",
     members = {
         Threats = {
             type = "list",
@@ -6565,6 +6825,7 @@ M.MalwareScanDetails = {
 
 M.LineageObject = {
     type = "structure",
+    id = "LineageObject",
     members = {
         StartTime = {
             type = "timestamp",
@@ -6625,6 +6886,7 @@ M.LineageObject = {
 
 M.ProcessDetails = {
     type = "structure",
+    id = "ProcessDetails",
     members = {
         Name = {
             type = "string",
@@ -6710,6 +6972,7 @@ M.ProcessDetails = {
 
 M.RuntimeContext = {
     type = "structure",
+    id = "RuntimeContext",
     members = {
         ModifyingProcess = setmetatable({ traits = {
             json_name = "modifyingProcess",
@@ -6862,6 +7125,7 @@ M.RuntimeContext = {
 
 M.RuntimeDetails = {
     type = "structure",
+    id = "RuntimeDetails",
     members = {
         Process = setmetatable({ traits = {
             json_name = "process",
@@ -6874,6 +7138,7 @@ M.RuntimeDetails = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         Action = setmetatable({ traits = {
             json_name = "action",
@@ -6955,6 +7220,7 @@ M.Service = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         AccountId = {
             type = "string",
@@ -7061,6 +7327,7 @@ M.Finding = {
 
 M.FindingTypeStatistics = {
     type = "structure",
+    id = "FindingTypeStatistics",
     members = {
         FindingType = {
             type = "string",
@@ -7085,6 +7352,7 @@ M.FindingTypeStatistics = {
 
 M.ResourceStatistics = {
     type = "structure",
+    id = "ResourceStatistics",
     members = {
         AccountId = {
             type = "string",
@@ -7121,6 +7389,7 @@ M.ResourceStatistics = {
 
 M.SeverityStatistics = {
     type = "structure",
+    id = "SeverityStatistics",
     members = {
         LastGeneratedAt = {
             type = "timestamp",
@@ -7145,6 +7414,7 @@ M.SeverityStatistics = {
 
 M.FindingStatistics = {
     type = "structure",
+    id = "FindingStatistics",
     members = {
         CountBySeverity = {
             type = "map",
@@ -7198,6 +7468,7 @@ M.FindingStatisticType = {
 
 M.GetAdministratorAccountInput = {
     type = "structure",
+    id = "GetAdministratorAccountInput",
     members = {
         DetectorId = {
             type = "string",
@@ -7211,6 +7482,7 @@ M.GetAdministratorAccountInput = {
 
 M.GetAdministratorAccountOutput = {
     type = "structure",
+    id = "GetAdministratorAccountOutput",
     members = {
         Administrator = setmetatable({ traits = {
             json_name = "administrator",
@@ -7221,6 +7493,7 @@ M.GetAdministratorAccountOutput = {
 
 M.GetCoverageStatisticsInput = {
     type = "structure",
+    id = "GetCoverageStatisticsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -7245,6 +7518,7 @@ M.GetCoverageStatisticsInput = {
 
 M.GetCoverageStatisticsOutput = {
     type = "structure",
+    id = "GetCoverageStatisticsOutput",
     members = {
         CoverageStatistics = setmetatable({ traits = {
             json_name = "coverageStatistics",
@@ -7254,6 +7528,7 @@ M.GetCoverageStatisticsOutput = {
 
 M.GetDetectorInput = {
     type = "structure",
+    id = "GetDetectorInput",
     members = {
         DetectorId = {
             type = "string",
@@ -7267,6 +7542,7 @@ M.GetDetectorInput = {
 
 M.GetDetectorOutput = {
     type = "structure",
+    id = "GetDetectorOutput",
     members = {
         CreatedAt = {
             type = "string",
@@ -7323,6 +7599,7 @@ M.GetDetectorOutput = {
 
 M.GetFilterInput = {
     type = "structure",
+    id = "GetFilterInput",
     members = {
         DetectorId = {
             type = "string",
@@ -7343,6 +7620,7 @@ M.GetFilterInput = {
 
 M.GetFilterOutput = {
     type = "structure",
+    id = "GetFilterOutput",
     members = {
         Name = {
             type = "string",
@@ -7387,6 +7665,7 @@ M.GetFilterOutput = {
 
 M.GetFindingsInput = {
     type = "structure",
+    id = "GetFindingsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -7411,6 +7690,7 @@ M.GetFindingsInput = {
 
 M.GetFindingsOutput = {
     type = "structure",
+    id = "GetFindingsOutput",
     members = {
         Findings = {
             type = "list",
@@ -7433,6 +7713,7 @@ M.GroupByType = {
 
 M.GetFindingsStatisticsInput = {
     type = "structure",
+    id = "GetFindingsStatisticsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -7474,6 +7755,7 @@ M.GetFindingsStatisticsInput = {
 
 M.GetFindingsStatisticsOutput = {
     type = "structure",
+    id = "GetFindingsStatisticsOutput",
     members = {
         FindingStatistics = setmetatable({ traits = {
             json_name = "findingStatistics",
@@ -7490,10 +7772,12 @@ M.GetFindingsStatisticsOutput = {
 
 M.GetInvitationsCountInput = {
     type = "structure",
+    id = "GetInvitationsCountInput",
 }
 
 M.GetInvitationsCountOutput = {
     type = "structure",
+    id = "GetInvitationsCountOutput",
     members = {
         InvitationsCount = {
             type = "integer",
@@ -7506,6 +7790,7 @@ M.GetInvitationsCountOutput = {
 
 M.GetIPSetInput = {
     type = "structure",
+    id = "GetIPSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -7536,6 +7821,7 @@ M.IpSetStatus = {
 
 M.GetIPSetOutput = {
     type = "structure",
+    id = "GetIPSetOutput",
     members = {
         Name = {
             type = "string",
@@ -7584,6 +7870,7 @@ M.GetIPSetOutput = {
 
 M.GetMalwareProtectionPlanInput = {
     type = "structure",
+    id = "GetMalwareProtectionPlanInput",
     members = {
         MalwareProtectionPlanId = {
             type = "string",
@@ -7603,6 +7890,7 @@ M.MalwareProtectionPlanStatus = {
 
 M.MalwareProtectionPlanStatusReason = {
     type = "structure",
+    id = "MalwareProtectionPlanStatusReason",
     members = {
         Code = {
             type = "string",
@@ -7621,6 +7909,7 @@ M.MalwareProtectionPlanStatusReason = {
 
 M.GetMalwareProtectionPlanOutput = {
     type = "structure",
+    id = "GetMalwareProtectionPlanOutput",
     members = {
         Arn = {
             type = "string",
@@ -7672,6 +7961,7 @@ M.GetMalwareProtectionPlanOutput = {
 
 M.GetMalwareScanInput = {
     type = "structure",
+    id = "GetMalwareScanInput",
     members = {
         ScanId = {
             type = "string",
@@ -7696,6 +7986,7 @@ M.MalwareProtectionResourceType = {
 
 M.ScanConfigurationRecoveryPoint = {
     type = "structure",
+    id = "ScanConfigurationRecoveryPoint",
     members = {
         BackupVaultName = {
             type = "string",
@@ -7708,6 +7999,7 @@ M.ScanConfigurationRecoveryPoint = {
 
 M.ScanConfiguration = {
     type = "structure",
+    id = "ScanConfiguration",
     members = {
         Role = {
             type = "string",
@@ -7729,6 +8021,7 @@ M.ScanConfiguration = {
 
 M.ScannedResourceDetails = {
     type = "structure",
+    id = "ScannedResourceDetails",
     members = {
         EbsVolume = setmetatable({ traits = {
             json_name = "ebsVolume",
@@ -7769,6 +8062,7 @@ M.ScanStatusReason = {
 
 M.ScannedResource = {
     type = "structure",
+    id = "ScannedResource",
     members = {
         ScannedResourceArn = {
             type = "string",
@@ -7807,6 +8101,7 @@ M.ScanResultStatus = {
 
 M.ScanResultThreat = {
     type = "structure",
+    id = "ScanResultThreat",
     members = {
         Name = {
             type = "string",
@@ -7844,6 +8139,7 @@ M.ScanResultThreat = {
 
 M.GetMalwareScanResultDetails = {
     type = "structure",
+    id = "GetMalwareScanResultDetails",
     members = {
         ScanResultStatus = {
             type = "string",
@@ -7899,6 +8195,7 @@ M.GetMalwareScanResultDetails = {
 
 M.GetMalwareScanOutput = {
     type = "structure",
+    id = "GetMalwareScanOutput",
     members = {
         ScanId = {
             type = "string",
@@ -8002,6 +8299,7 @@ M.GetMalwareScanOutput = {
 
 M.GetMalwareScanSettingsInput = {
     type = "structure",
+    id = "GetMalwareScanSettingsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8019,6 +8317,7 @@ M.ScanCriterionKey = {
 
 M.ScanConditionPair = {
     type = "structure",
+    id = "ScanConditionPair",
     members = {
         Key = {
             type = "string",
@@ -8038,6 +8337,7 @@ M.ScanConditionPair = {
 
 M.ScanCondition = {
     type = "structure",
+    id = "ScanCondition",
     members = {
         MapEquals = {
             type = "list",
@@ -8052,6 +8352,7 @@ M.ScanCondition = {
 
 M.ScanResourceCriteria = {
     type = "structure",
+    id = "ScanResourceCriteria",
     members = {
         Include = {
             type = "map",
@@ -8074,6 +8375,7 @@ M.ScanResourceCriteria = {
 
 M.GetMalwareScanSettingsOutput = {
     type = "structure",
+    id = "GetMalwareScanSettingsOutput",
     members = {
         ScanResourceCriteria = setmetatable({ traits = {
             json_name = "scanResourceCriteria",
@@ -8089,6 +8391,7 @@ M.GetMalwareScanSettingsOutput = {
 
 M.GetMasterAccountInput = {
     type = "structure",
+    id = "GetMasterAccountInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8102,6 +8405,7 @@ M.GetMasterAccountInput = {
 
 M.Master = {
     type = "structure",
+    id = "Master",
     members = {
         AccountId = {
             type = "string",
@@ -8132,6 +8436,7 @@ M.Master = {
 
 M.GetMasterAccountOutput = {
     type = "structure",
+    id = "GetMasterAccountOutput",
     members = {
         Master = setmetatable({ traits = {
             json_name = "master",
@@ -8142,6 +8447,7 @@ M.GetMasterAccountOutput = {
 
 M.GetMemberDetectorsInput = {
     type = "structure",
+    id = "GetMemberDetectorsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8163,6 +8469,7 @@ M.GetMemberDetectorsInput = {
 
 M.MemberAdditionalConfigurationResult = {
     type = "structure",
+    id = "MemberAdditionalConfigurationResult",
     members = {
         Name = {
             type = "string",
@@ -8187,6 +8494,7 @@ M.MemberAdditionalConfigurationResult = {
 
 M.MemberFeaturesConfigurationResult = {
     type = "structure",
+    id = "MemberFeaturesConfigurationResult",
     members = {
         Name = {
             type = "string",
@@ -8218,6 +8526,7 @@ M.MemberFeaturesConfigurationResult = {
 
 M.MemberDataSourceConfiguration = {
     type = "structure",
+    id = "MemberDataSourceConfiguration",
     members = {
         AccountId = {
             type = "string",
@@ -8242,6 +8551,7 @@ M.MemberDataSourceConfiguration = {
 
 M.GetMemberDetectorsOutput = {
     type = "structure",
+    id = "GetMemberDetectorsOutput",
     members = {
         MemberDataSourceConfigurations = {
             type = "list",
@@ -8264,6 +8574,7 @@ M.GetMemberDetectorsOutput = {
 
 M.GetMembersInput = {
     type = "structure",
+    id = "GetMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8285,6 +8596,7 @@ M.GetMembersInput = {
 
 M.Member = {
     type = "structure",
+    id = "Member",
     members = {
         AccountId = {
             type = "string",
@@ -8344,6 +8656,7 @@ M.Member = {
 
 M.GetMembersOutput = {
     type = "structure",
+    id = "GetMembersOutput",
     members = {
         Members = {
             type = "list",
@@ -8366,10 +8679,12 @@ M.GetMembersOutput = {
 
 M.GetOrganizationStatisticsInput = {
     type = "structure",
+    id = "GetOrganizationStatisticsInput",
 }
 
 M.OrganizationFeatureStatisticsAdditionalConfiguration = {
     type = "structure",
+    id = "OrganizationFeatureStatisticsAdditionalConfiguration",
     members = {
         Name = {
             type = "string",
@@ -8388,6 +8703,7 @@ M.OrganizationFeatureStatisticsAdditionalConfiguration = {
 
 M.OrganizationFeatureStatistics = {
     type = "structure",
+    id = "OrganizationFeatureStatistics",
     members = {
         Name = {
             type = "string",
@@ -8413,6 +8729,7 @@ M.OrganizationFeatureStatistics = {
 
 M.OrganizationStatistics = {
     type = "structure",
+    id = "OrganizationStatistics",
     members = {
         TotalAccountsCount = {
             type = "integer",
@@ -8450,6 +8767,7 @@ M.OrganizationStatistics = {
 
 M.OrganizationDetails = {
     type = "structure",
+    id = "OrganizationDetails",
     members = {
         UpdatedAt = {
             type = "timestamp",
@@ -8465,6 +8783,7 @@ M.OrganizationDetails = {
 
 M.GetOrganizationStatisticsOutput = {
     type = "structure",
+    id = "GetOrganizationStatisticsOutput",
     members = {
         OrganizationDetails = setmetatable({ traits = {
             json_name = "organizationDetails",
@@ -8474,6 +8793,7 @@ M.GetOrganizationStatisticsOutput = {
 
 M.GetRemainingFreeTrialDaysInput = {
     type = "structure",
+    id = "GetRemainingFreeTrialDaysInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8495,6 +8815,7 @@ M.GetRemainingFreeTrialDaysInput = {
 
 M.GetRemainingFreeTrialDaysOutput = {
     type = "structure",
+    id = "GetRemainingFreeTrialDaysOutput",
     members = {
         Accounts = {
             type = "list",
@@ -8515,6 +8836,7 @@ M.GetRemainingFreeTrialDaysOutput = {
 
 M.GetThreatEntitySetInput = {
     type = "structure",
+    id = "GetThreatEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8545,6 +8867,7 @@ M.ThreatEntitySetStatus = {
 
 M.GetThreatEntitySetOutput = {
     type = "structure",
+    id = "GetThreatEntitySetOutput",
     members = {
         Name = {
             type = "string",
@@ -8611,6 +8934,7 @@ M.GetThreatEntitySetOutput = {
 
 M.GetThreatIntelSetInput = {
     type = "structure",
+    id = "GetThreatIntelSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8641,6 +8965,7 @@ M.ThreatIntelSetStatus = {
 
 M.GetThreatIntelSetOutput = {
     type = "structure",
+    id = "GetThreatIntelSetOutput",
     members = {
         Name = {
             type = "string",
@@ -8689,6 +9014,7 @@ M.GetThreatIntelSetOutput = {
 
 M.GetTrustedEntitySetInput = {
     type = "structure",
+    id = "GetTrustedEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8719,6 +9045,7 @@ M.TrustedEntitySetStatus = {
 
 M.GetTrustedEntitySetOutput = {
     type = "structure",
+    id = "GetTrustedEntitySetOutput",
     members = {
         Name = {
             type = "string",
@@ -8801,6 +9128,7 @@ M.UsageFeature = {
 
 M.UsageCriteria = {
     type = "structure",
+    id = "UsageCriteria",
     members = {
         AccountIds = {
             type = "list",
@@ -8844,6 +9172,7 @@ M.UsageStatisticType = {
 
 M.GetUsageStatisticsInput = {
     type = "structure",
+    id = "GetUsageStatisticsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -8886,6 +9215,7 @@ M.GetUsageStatisticsInput = {
 
 M.Total = {
     type = "structure",
+    id = "Total",
     members = {
         Amount = {
             type = "string",
@@ -8904,6 +9234,7 @@ M.Total = {
 
 M.UsageAccountResult = {
     type = "structure",
+    id = "UsageAccountResult",
     members = {
         AccountId = {
             type = "string",
@@ -8919,6 +9250,7 @@ M.UsageAccountResult = {
 
 M.UsageDataSourceResult = {
     type = "structure",
+    id = "UsageDataSourceResult",
     members = {
         DataSource = {
             type = "string",
@@ -8934,6 +9266,7 @@ M.UsageDataSourceResult = {
 
 M.UsageFeatureResult = {
     type = "structure",
+    id = "UsageFeatureResult",
     members = {
         Feature = {
             type = "string",
@@ -8949,6 +9282,7 @@ M.UsageFeatureResult = {
 
 M.UsageResourceResult = {
     type = "structure",
+    id = "UsageResourceResult",
     members = {
         Resource = {
             type = "string",
@@ -8964,6 +9298,7 @@ M.UsageResourceResult = {
 
 M.UsageTopAccountResult = {
     type = "structure",
+    id = "UsageTopAccountResult",
     members = {
         AccountId = {
             type = "string",
@@ -8979,6 +9314,7 @@ M.UsageTopAccountResult = {
 
 M.UsageTopAccountsResult = {
     type = "structure",
+    id = "UsageTopAccountsResult",
     members = {
         Feature = {
             type = "string",
@@ -8998,6 +9334,7 @@ M.UsageTopAccountsResult = {
 
 M.UsageStatistics = {
     type = "structure",
+    id = "UsageStatistics",
     members = {
         SumByAccount = {
             type = "list",
@@ -9046,6 +9383,7 @@ M.UsageStatistics = {
 
 M.GetUsageStatisticsOutput = {
     type = "structure",
+    id = "GetUsageStatisticsOutput",
     members = {
         UsageStatistics = setmetatable({ traits = {
             json_name = "usageStatistics",
@@ -9061,6 +9399,7 @@ M.GetUsageStatisticsOutput = {
 
 M.InviteMembersInput = {
     type = "structure",
+    id = "InviteMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9094,6 +9433,7 @@ M.InviteMembersInput = {
 
 M.InviteMembersOutput = {
     type = "structure",
+    id = "InviteMembersOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -9108,6 +9448,7 @@ M.InviteMembersOutput = {
 
 M.ListCoverageInput = {
     type = "structure",
+    id = "ListCoverageInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9139,6 +9480,7 @@ M.ListCoverageInput = {
 
 M.ListCoverageOutput = {
     type = "structure",
+    id = "ListCoverageOutput",
     members = {
         Resources = {
             type = "list",
@@ -9159,6 +9501,7 @@ M.ListCoverageOutput = {
 
 M.ListDetectorsInput = {
     type = "structure",
+    id = "ListDetectorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -9177,6 +9520,7 @@ M.ListDetectorsInput = {
 
 M.ListDetectorsOutput = {
     type = "structure",
+    id = "ListDetectorsOutput",
     members = {
         DetectorIds = {
             type = "list",
@@ -9197,6 +9541,7 @@ M.ListDetectorsOutput = {
 
 M.ListFiltersInput = {
     type = "structure",
+    id = "ListFiltersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9222,6 +9567,7 @@ M.ListFiltersInput = {
 
 M.ListFiltersOutput = {
     type = "structure",
+    id = "ListFiltersOutput",
     members = {
         FilterNames = {
             type = "list",
@@ -9242,6 +9588,7 @@ M.ListFiltersOutput = {
 
 M.ListFindingsInput = {
     type = "structure",
+    id = "ListFindingsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9273,6 +9620,7 @@ M.ListFindingsInput = {
 
 M.ListFindingsOutput = {
     type = "structure",
+    id = "ListFindingsOutput",
     members = {
         FindingIds = {
             type = "list",
@@ -9293,6 +9641,7 @@ M.ListFindingsOutput = {
 
 M.ListInvitationsInput = {
     type = "structure",
+    id = "ListInvitationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -9311,6 +9660,7 @@ M.ListInvitationsInput = {
 
 M.Invitation = {
     type = "structure",
+    id = "Invitation",
     members = {
         AccountId = {
             type = "string",
@@ -9341,6 +9691,7 @@ M.Invitation = {
 
 M.ListInvitationsOutput = {
     type = "structure",
+    id = "ListInvitationsOutput",
     members = {
         Invitations = {
             type = "list",
@@ -9360,6 +9711,7 @@ M.ListInvitationsOutput = {
 
 M.ListIPSetsInput = {
     type = "structure",
+    id = "ListIPSetsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9385,6 +9737,7 @@ M.ListIPSetsInput = {
 
 M.ListIPSetsOutput = {
     type = "structure",
+    id = "ListIPSetsOutput",
     members = {
         IpSetIds = {
             type = "list",
@@ -9405,6 +9758,7 @@ M.ListIPSetsOutput = {
 
 M.ListMalwareProtectionPlansInput = {
     type = "structure",
+    id = "ListMalwareProtectionPlansInput",
     members = {
         NextToken = {
             type = "string",
@@ -9417,6 +9771,7 @@ M.ListMalwareProtectionPlansInput = {
 
 M.MalwareProtectionPlanSummary = {
     type = "structure",
+    id = "MalwareProtectionPlanSummary",
     members = {
         MalwareProtectionPlanId = {
             type = "string",
@@ -9429,6 +9784,7 @@ M.MalwareProtectionPlanSummary = {
 
 M.ListMalwareProtectionPlansOutput = {
     type = "structure",
+    id = "ListMalwareProtectionPlansOutput",
     members = {
         MalwareProtectionPlans = {
             type = "list",
@@ -9459,6 +9815,7 @@ M.ListMalwareScansCriterionKey = {
 
 M.ListMalwareScansFilterCriterion = {
     type = "structure",
+    id = "ListMalwareScansFilterCriterion",
     members = {
         ListMalwareScansCriterionKey = {
             type = "string",
@@ -9474,6 +9831,7 @@ M.ListMalwareScansFilterCriterion = {
 
 M.ListMalwareScansFilterCriteria = {
     type = "structure",
+    id = "ListMalwareScansFilterCriteria",
     members = {
         ListMalwareScansFilterCriterion = {
             type = "list",
@@ -9487,6 +9845,7 @@ M.ListMalwareScansFilterCriteria = {
 
 M.ListMalwareScansInput = {
     type = "structure",
+    id = "ListMalwareScansInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -9511,6 +9870,7 @@ M.ListMalwareScansInput = {
 
 M.MalwareScan = {
     type = "structure",
+    id = "MalwareScan",
     members = {
         ResourceArn = {
             type = "string",
@@ -9565,6 +9925,7 @@ M.MalwareScan = {
 
 M.ListMalwareScansOutput = {
     type = "structure",
+    id = "ListMalwareScansOutput",
     members = {
         Scans = {
             type = "list",
@@ -9585,6 +9946,7 @@ M.ListMalwareScansOutput = {
 
 M.ListMembersInput = {
     type = "structure",
+    id = "ListMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9616,6 +9978,7 @@ M.ListMembersInput = {
 
 M.ListMembersOutput = {
     type = "structure",
+    id = "ListMembersOutput",
     members = {
         Members = {
             type = "list",
@@ -9635,6 +9998,7 @@ M.ListMembersOutput = {
 
 M.ListOrganizationAdminAccountsInput = {
     type = "structure",
+    id = "ListOrganizationAdminAccountsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -9653,6 +10017,7 @@ M.ListOrganizationAdminAccountsInput = {
 
 M.ListOrganizationAdminAccountsOutput = {
     type = "structure",
+    id = "ListOrganizationAdminAccountsOutput",
     members = {
         AdminAccounts = {
             type = "list",
@@ -9672,6 +10037,7 @@ M.ListOrganizationAdminAccountsOutput = {
 
 M.ListPublishingDestinationsInput = {
     type = "structure",
+    id = "ListPublishingDestinationsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9697,6 +10063,7 @@ M.ListPublishingDestinationsInput = {
 
 M.ListPublishingDestinationsOutput = {
     type = "structure",
+    id = "ListPublishingDestinationsOutput",
     members = {
         Destinations = {
             type = "list",
@@ -9717,6 +10084,7 @@ M.ListPublishingDestinationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9730,6 +10098,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -9744,6 +10113,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListThreatEntitySetsInput = {
     type = "structure",
+    id = "ListThreatEntitySetsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9769,6 +10139,7 @@ M.ListThreatEntitySetsInput = {
 
 M.ListThreatEntitySetsOutput = {
     type = "structure",
+    id = "ListThreatEntitySetsOutput",
     members = {
         ThreatEntitySetIds = {
             type = "list",
@@ -9789,6 +10160,7 @@ M.ListThreatEntitySetsOutput = {
 
 M.ListThreatIntelSetsInput = {
     type = "structure",
+    id = "ListThreatIntelSetsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9814,6 +10186,7 @@ M.ListThreatIntelSetsInput = {
 
 M.ListThreatIntelSetsOutput = {
     type = "structure",
+    id = "ListThreatIntelSetsOutput",
     members = {
         ThreatIntelSetIds = {
             type = "list",
@@ -9834,6 +10207,7 @@ M.ListThreatIntelSetsOutput = {
 
 M.ListTrustedEntitySetsInput = {
     type = "structure",
+    id = "ListTrustedEntitySetsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -9859,6 +10233,7 @@ M.ListTrustedEntitySetsInput = {
 
 M.ListTrustedEntitySetsOutput = {
     type = "structure",
+    id = "ListTrustedEntitySetsOutput",
     members = {
         TrustedEntitySetIds = {
             type = "list",
@@ -9879,6 +10254,7 @@ M.ListTrustedEntitySetsOutput = {
 
 M.S3ObjectForSendObjectMalwareScan = {
     type = "structure",
+    id = "S3ObjectForSendObjectMalwareScan",
     members = {
         Bucket = {
             type = "string",
@@ -9903,6 +10279,7 @@ M.S3ObjectForSendObjectMalwareScan = {
 
 M.SendObjectMalwareScanInput = {
     type = "structure",
+    id = "SendObjectMalwareScanInput",
     members = {
         S3Object = setmetatable({ traits = {
             json_name = "s3Object",
@@ -9912,10 +10289,12 @@ M.SendObjectMalwareScanInput = {
 
 M.SendObjectMalwareScanOutput = {
     type = "structure",
+    id = "SendObjectMalwareScanOutput",
 }
 
 M.RecoveryPoint = {
     type = "structure",
+    id = "RecoveryPoint",
     members = {
         BackupVaultName = {
             type = "string",
@@ -9929,6 +10308,7 @@ M.RecoveryPoint = {
 
 M.StartMalwareScanConfiguration = {
     type = "structure",
+    id = "StartMalwareScanConfiguration",
     members = {
         Role = {
             type = "string",
@@ -9948,6 +10328,7 @@ M.StartMalwareScanConfiguration = {
 
 M.StartMalwareScanInput = {
     type = "structure",
+    id = "StartMalwareScanInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9971,6 +10352,7 @@ M.StartMalwareScanInput = {
 
 M.StartMalwareScanOutput = {
     type = "structure",
+    id = "StartMalwareScanOutput",
     members = {
         ScanId = {
             type = "string",
@@ -9983,6 +10365,7 @@ M.StartMalwareScanOutput = {
 
 M.StartMonitoringMembersInput = {
     type = "structure",
+    id = "StartMonitoringMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10004,6 +10387,7 @@ M.StartMonitoringMembersInput = {
 
 M.StartMonitoringMembersOutput = {
     type = "structure",
+    id = "StartMonitoringMembersOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -10018,6 +10402,7 @@ M.StartMonitoringMembersOutput = {
 
 M.StopMonitoringMembersInput = {
     type = "structure",
+    id = "StopMonitoringMembersInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10039,6 +10424,7 @@ M.StopMonitoringMembersInput = {
 
 M.StopMonitoringMembersOutput = {
     type = "structure",
+    id = "StopMonitoringMembersOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -10053,6 +10439,7 @@ M.StopMonitoringMembersOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -10075,10 +10462,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UnarchiveFindingsInput = {
     type = "structure",
+    id = "UnarchiveFindingsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10100,10 +10489,12 @@ M.UnarchiveFindingsInput = {
 
 M.UnarchiveFindingsOutput = {
     type = "structure",
+    id = "UnarchiveFindingsOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -10125,10 +10516,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDetectorInput = {
     type = "structure",
+    id = "UpdateDetectorInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10164,10 +10557,12 @@ M.UpdateDetectorInput = {
 
 M.UpdateDetectorOutput = {
     type = "structure",
+    id = "UpdateDetectorOutput",
 }
 
 M.UpdateFilterInput = {
     type = "structure",
+    id = "UpdateFilterInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10209,6 +10604,7 @@ M.UpdateFilterInput = {
 
 M.UpdateFilterOutput = {
     type = "structure",
+    id = "UpdateFilterOutput",
     members = {
         Name = {
             type = "string",
@@ -10222,6 +10618,7 @@ M.UpdateFilterOutput = {
 
 M.UpdateFindingsFeedbackInput = {
     type = "structure",
+    id = "UpdateFindingsFeedbackInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10256,10 +10653,12 @@ M.UpdateFindingsFeedbackInput = {
 
 M.UpdateFindingsFeedbackOutput = {
     type = "structure",
+    id = "UpdateFindingsFeedbackOutput",
 }
 
 M.UpdateIPSetInput = {
     type = "structure",
+    id = "UpdateIPSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10304,10 +10703,12 @@ M.UpdateIPSetInput = {
 
 M.UpdateIPSetOutput = {
     type = "structure",
+    id = "UpdateIPSetOutput",
 }
 
 M.UpdateS3BucketResource = {
     type = "structure",
+    id = "UpdateS3BucketResource",
     members = {
         ObjectPrefixes = {
             type = "list",
@@ -10321,6 +10722,7 @@ M.UpdateS3BucketResource = {
 
 M.UpdateProtectedResource = {
     type = "structure",
+    id = "UpdateProtectedResource",
     members = {
         S3Bucket = setmetatable({ traits = {
             json_name = "s3Bucket",
@@ -10330,6 +10732,7 @@ M.UpdateProtectedResource = {
 
 M.UpdateMalwareProtectionPlanInput = {
     type = "structure",
+    id = "UpdateMalwareProtectionPlanInput",
     members = {
         MalwareProtectionPlanId = {
             type = "string",
@@ -10355,10 +10758,12 @@ M.UpdateMalwareProtectionPlanInput = {
 
 M.UpdateMalwareProtectionPlanOutput = {
     type = "structure",
+    id = "UpdateMalwareProtectionPlanOutput",
 }
 
 M.UpdateMalwareScanSettingsInput = {
     type = "structure",
+    id = "UpdateMalwareScanSettingsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10381,10 +10786,12 @@ M.UpdateMalwareScanSettingsInput = {
 
 M.UpdateMalwareScanSettingsOutput = {
     type = "structure",
+    id = "UpdateMalwareScanSettingsOutput",
 }
 
 M.MemberAdditionalConfiguration = {
     type = "structure",
+    id = "MemberAdditionalConfiguration",
     members = {
         Name = {
             type = "string",
@@ -10403,6 +10810,7 @@ M.MemberAdditionalConfiguration = {
 
 M.MemberFeaturesConfiguration = {
     type = "structure",
+    id = "MemberFeaturesConfiguration",
     members = {
         Name = {
             type = "string",
@@ -10428,6 +10836,7 @@ M.MemberFeaturesConfiguration = {
 
 M.UpdateMemberDetectorsInput = {
     type = "structure",
+    id = "UpdateMemberDetectorsInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10459,6 +10868,7 @@ M.UpdateMemberDetectorsInput = {
 
 M.UpdateMemberDetectorsOutput = {
     type = "structure",
+    id = "UpdateMemberDetectorsOutput",
     members = {
         UnprocessedAccounts = {
             type = "list",
@@ -10473,6 +10883,7 @@ M.UpdateMemberDetectorsOutput = {
 
 M.OrganizationKubernetesAuditLogsConfiguration = {
     type = "structure",
+    id = "OrganizationKubernetesAuditLogsConfiguration",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -10486,6 +10897,7 @@ M.OrganizationKubernetesAuditLogsConfiguration = {
 
 M.OrganizationKubernetesConfiguration = {
     type = "structure",
+    id = "OrganizationKubernetesConfiguration",
     members = {
         AuditLogs = setmetatable({ traits = {
             json_name = "auditLogs",
@@ -10496,6 +10908,7 @@ M.OrganizationKubernetesConfiguration = {
 
 M.OrganizationEbsVolumes = {
     type = "structure",
+    id = "OrganizationEbsVolumes",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -10508,6 +10921,7 @@ M.OrganizationEbsVolumes = {
 
 M.OrganizationScanEc2InstanceWithFindings = {
     type = "structure",
+    id = "OrganizationScanEc2InstanceWithFindings",
     members = {
         EbsVolumes = setmetatable({ traits = {
             json_name = "ebsVolumes",
@@ -10517,6 +10931,7 @@ M.OrganizationScanEc2InstanceWithFindings = {
 
 M.OrganizationMalwareProtectionConfiguration = {
     type = "structure",
+    id = "OrganizationMalwareProtectionConfiguration",
     members = {
         ScanEc2InstanceWithFindings = setmetatable({ traits = {
             json_name = "scanEc2InstanceWithFindings",
@@ -10526,6 +10941,7 @@ M.OrganizationMalwareProtectionConfiguration = {
 
 M.OrganizationS3LogsConfiguration = {
     type = "structure",
+    id = "OrganizationS3LogsConfiguration",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -10539,6 +10955,7 @@ M.OrganizationS3LogsConfiguration = {
 
 M.OrganizationDataSourceConfigurations = {
     type = "structure",
+    id = "OrganizationDataSourceConfigurations",
     members = {
         S3Logs = setmetatable({ traits = {
             json_name = "s3Logs",
@@ -10554,6 +10971,7 @@ M.OrganizationDataSourceConfigurations = {
 
 M.OrganizationAdditionalConfiguration = {
     type = "structure",
+    id = "OrganizationAdditionalConfiguration",
     members = {
         Name = {
             type = "string",
@@ -10572,6 +10990,7 @@ M.OrganizationAdditionalConfiguration = {
 
 M.OrganizationFeatureConfiguration = {
     type = "structure",
+    id = "OrganizationFeatureConfiguration",
     members = {
         Name = {
             type = "string",
@@ -10597,6 +11016,7 @@ M.OrganizationFeatureConfiguration = {
 
 M.UpdateOrganizationConfigurationInput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10632,10 +11052,12 @@ M.UpdateOrganizationConfigurationInput = {
 
 M.UpdateOrganizationConfigurationOutput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationOutput",
 }
 
 M.UpdatePublishingDestinationInput = {
     type = "structure",
+    id = "UpdatePublishingDestinationInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10659,10 +11081,12 @@ M.UpdatePublishingDestinationInput = {
 
 M.UpdatePublishingDestinationOutput = {
     type = "structure",
+    id = "UpdatePublishingDestinationOutput",
 }
 
 M.UpdateThreatEntitySetInput = {
     type = "structure",
+    id = "UpdateThreatEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10707,10 +11131,12 @@ M.UpdateThreatEntitySetInput = {
 
 M.UpdateThreatEntitySetOutput = {
     type = "structure",
+    id = "UpdateThreatEntitySetOutput",
 }
 
 M.UpdateThreatIntelSetInput = {
     type = "structure",
+    id = "UpdateThreatIntelSetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10755,10 +11181,12 @@ M.UpdateThreatIntelSetInput = {
 
 M.UpdateThreatIntelSetOutput = {
     type = "structure",
+    id = "UpdateThreatIntelSetOutput",
 }
 
 M.UpdateTrustedEntitySetInput = {
     type = "structure",
+    id = "UpdateTrustedEntitySetInput",
     members = {
         DetectorId = {
             type = "string",
@@ -10803,6 +11231,7 @@ M.UpdateTrustedEntitySetInput = {
 
 M.UpdateTrustedEntitySetOutput = {
     type = "structure",
+    id = "UpdateTrustedEntitySetOutput",
 }
 
 return M

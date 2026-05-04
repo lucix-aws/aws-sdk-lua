@@ -2,6 +2,7 @@ local M = {}
 
 M.ByolPricingTerm = {
     type = "structure",
+    id = "ByolPricingTerm",
     members = {
         type = {
             type = "string",
@@ -11,6 +12,7 @@ M.ByolPricingTerm = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         dimensionKey = {
             type = "string",
@@ -30,6 +32,7 @@ M.Dimension = {
 
 M.ConfigurableUpfrontPricingTermConfiguration = {
     type = "structure",
+    id = "ConfigurableUpfrontPricingTermConfiguration",
     members = {
         selectorValue = {
             type = "string",
@@ -49,6 +52,7 @@ M.ConfigurableUpfrontPricingTermConfiguration = {
 
 M.Constraints = {
     type = "structure",
+    id = "Constraints",
     members = {
         multipleDimensionSelection = {
             type = "string",
@@ -61,6 +65,7 @@ M.Constraints = {
 
 M.RateCardItem = {
     type = "structure",
+    id = "RateCardItem",
     members = {
         dimensionKey = {
             type = "string",
@@ -73,6 +78,7 @@ M.RateCardItem = {
 
 M.Selector = {
     type = "structure",
+    id = "Selector",
     members = {
         type = {
             type = "string",
@@ -85,6 +91,7 @@ M.Selector = {
 
 M.ConfigurableUpfrontRateCardItem = {
     type = "structure",
+    id = "ConfigurableUpfrontRateCardItem",
     members = {
         selector = M.Selector,
         constraints = M.Constraints,
@@ -97,6 +104,7 @@ M.ConfigurableUpfrontRateCardItem = {
 
 M.ConfigurableUpfrontPricingTerm = {
     type = "structure",
+    id = "ConfigurableUpfrontPricingTerm",
     members = {
         type = {
             type = "string",
@@ -114,6 +122,7 @@ M.ConfigurableUpfrontPricingTerm = {
 
 M.GrantItem = {
     type = "structure",
+    id = "GrantItem",
     members = {
         dimensionKey = {
             type = "string",
@@ -129,6 +138,7 @@ M.GrantItem = {
 
 M.FixedUpfrontPricingTerm = {
     type = "structure",
+    id = "FixedUpfrontPricingTerm",
     members = {
         type = {
             type = "string",
@@ -151,6 +161,7 @@ M.FixedUpfrontPricingTerm = {
 
 M.FreeTrialPricingTerm = {
     type = "structure",
+    id = "FreeTrialPricingTerm",
     members = {
         type = {
             type = "string",
@@ -167,6 +178,7 @@ M.FreeTrialPricingTerm = {
 
 M.DocumentItem = {
     type = "structure",
+    id = "DocumentItem",
     members = {
         type = {
             type = "string",
@@ -182,6 +194,7 @@ M.DocumentItem = {
 
 M.LegalTerm = {
     type = "structure",
+    id = "LegalTerm",
     members = {
         type = {
             type = "string",
@@ -195,6 +208,7 @@ M.LegalTerm = {
 
 M.ScheduleItem = {
     type = "structure",
+    id = "ScheduleItem",
     members = {
         chargeDate = {
             type = "timestamp",
@@ -207,6 +221,7 @@ M.ScheduleItem = {
 
 M.PaymentScheduleTerm = {
     type = "structure",
+    id = "PaymentScheduleTerm",
     members = {
         type = {
             type = "string",
@@ -223,6 +238,7 @@ M.PaymentScheduleTerm = {
 
 M.RecurringPaymentTerm = {
     type = "structure",
+    id = "RecurringPaymentTerm",
     members = {
         type = {
             type = "string",
@@ -241,6 +257,7 @@ M.RecurringPaymentTerm = {
 
 M.RenewalTermConfiguration = {
     type = "structure",
+    id = "RenewalTermConfiguration",
     members = {
         enableAutoRenew = {
             type = "boolean",
@@ -253,6 +270,7 @@ M.RenewalTermConfiguration = {
 
 M.RenewalTerm = {
     type = "structure",
+    id = "RenewalTerm",
     members = {
         type = {
             type = "string",
@@ -263,6 +281,7 @@ M.RenewalTerm = {
 
 M.SupportTerm = {
     type = "structure",
+    id = "SupportTerm",
     members = {
         type = {
             type = "string",
@@ -275,6 +294,7 @@ M.SupportTerm = {
 
 M.UsageBasedRateCardItem = {
     type = "structure",
+    id = "UsageBasedRateCardItem",
     members = {
         rateCard = {
             type = "list",
@@ -285,6 +305,7 @@ M.UsageBasedRateCardItem = {
 
 M.UsageBasedPricingTerm = {
     type = "structure",
+    id = "UsageBasedPricingTerm",
     members = {
         type = {
             type = "string",
@@ -301,6 +322,7 @@ M.UsageBasedPricingTerm = {
 
 M.ValidityTerm = {
     type = "structure",
+    id = "ValidityTerm",
     members = {
         type = {
             type = "string",
@@ -324,6 +346,7 @@ M.PaymentRequestApprovalStrategy = {
 
 M.VariablePaymentTermConfiguration = {
     type = "structure",
+    id = "VariablePaymentTermConfiguration",
     members = {
         paymentRequestApprovalStrategy = {
             type = "string",
@@ -339,6 +362,7 @@ M.VariablePaymentTermConfiguration = {
 
 M.VariablePaymentTerm = {
     type = "structure",
+    id = "VariablePaymentTerm",
     members = {
         type = {
             type = "string",
@@ -355,6 +379,7 @@ M.VariablePaymentTerm = {
 
 M.AcceptedTerm = {
     type = "union",
+    id = "AcceptedTerm",
     members = {
         legalTerm = M.LegalTerm,
         supportTerm = M.SupportTerm,
@@ -373,6 +398,7 @@ M.AcceptedTerm = {
 
 M.Acceptor = {
     type = "structure",
+    id = "Acceptor",
     members = {
         accountId = {
             type = "string",
@@ -382,6 +408,7 @@ M.Acceptor = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         requestId = {
@@ -414,6 +441,7 @@ M.AgreementCancellationRequestStatus = {
 
 M.AgreementCancellationRequestSummary = {
     type = "structure",
+    id = "AgreementCancellationRequestSummary",
     members = {
         agreementCancellationRequestId = {
             type = "string",
@@ -444,6 +472,7 @@ M.AgreementCancellationRequestSummary = {
 
 M.InvoiceBillingPeriod = {
     type = "structure",
+    id = "InvoiceBillingPeriod",
     members = {
         month = {
             type = "integer",
@@ -467,6 +496,7 @@ M.InvoiceType = {
 
 M.InvoicingEntity = {
     type = "structure",
+    id = "InvoicingEntity",
     members = {
         legalName = {
             type = "string",
@@ -479,6 +509,7 @@ M.InvoicingEntity = {
 
 M.PricingCurrencyAmount = {
     type = "structure",
+    id = "PricingCurrencyAmount",
     members = {
         amount = {
             type = "string",
@@ -494,6 +525,7 @@ M.PricingCurrencyAmount = {
 
 M.AgreementInvoiceLineItemGroupSummary = {
     type = "structure",
+    id = "AgreementInvoiceLineItemGroupSummary",
     members = {
         agreementId = {
             type = "string",
@@ -527,6 +559,7 @@ M.AgreementStatus = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         id = {
             type = "string",
@@ -539,6 +572,7 @@ M.Resource = {
 
 M.ProposalSummary = {
     type = "structure",
+    id = "ProposalSummary",
     members = {
         resources = {
             type = "list",
@@ -555,6 +589,7 @@ M.ProposalSummary = {
 
 M.Proposer = {
     type = "structure",
+    id = "Proposer",
     members = {
         accountId = {
             type = "string",
@@ -564,6 +599,7 @@ M.Proposer = {
 
 M.AgreementViewSummary = {
     type = "structure",
+    id = "AgreementViewSummary",
     members = {
         agreementId = {
             type = "string",
@@ -601,6 +637,7 @@ M.BillingAdjustmentReasonCode = {
 
 M.BatchCreateBillingAdjustmentRequestEntry = {
     type = "structure",
+    id = "BatchCreateBillingAdjustmentRequestEntry",
     members = {
         agreementId = {
             type = "string",
@@ -646,6 +683,7 @@ M.BatchCreateBillingAdjustmentRequestEntry = {
 
 M.BatchCreateBillingAdjustmentRequestInput = {
     type = "structure",
+    id = "BatchCreateBillingAdjustmentRequestInput",
     members = {
         billingAdjustmentRequestEntries = {
             type = "list",
@@ -666,6 +704,7 @@ M.BillingAdjustmentErrorCode = {
 
 M.BatchCreateBillingAdjustmentError = {
     type = "structure",
+    id = "BatchCreateBillingAdjustmentError",
     members = {
         code = {
             type = "string",
@@ -690,6 +729,7 @@ M.BatchCreateBillingAdjustmentError = {
 
 M.BatchCreateBillingAdjustmentItem = {
     type = "structure",
+    id = "BatchCreateBillingAdjustmentItem",
     members = {
         billingAdjustmentRequestId = {
             type = "string",
@@ -708,6 +748,7 @@ M.BatchCreateBillingAdjustmentItem = {
 
 M.BatchCreateBillingAdjustmentRequestOutput = {
     type = "structure",
+    id = "BatchCreateBillingAdjustmentRequestOutput",
     members = {
         items = {
             type = "list",
@@ -734,6 +775,7 @@ M.ResourceType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         requestId = {
@@ -753,6 +795,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         requestId = {
@@ -766,6 +809,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         requestId = {
@@ -779,6 +823,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -824,6 +869,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         requestId = {
@@ -844,6 +890,7 @@ M.ValidationException = {
 
 M.CancelAgreementCancellationRequestInput = {
     type = "structure",
+    id = "CancelAgreementCancellationRequestInput",
     members = {
         agreementId = {
             type = "string",
@@ -868,6 +915,7 @@ M.CancelAgreementCancellationRequestInput = {
 
 M.CancelAgreementCancellationRequestOutput = {
     type = "structure",
+    id = "CancelAgreementCancellationRequestOutput",
     members = {
         agreementCancellationRequestId = {
             type = "string",
@@ -898,6 +946,7 @@ M.CancelAgreementCancellationRequestOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         requestId = {
@@ -917,6 +966,7 @@ M.ResourceNotFoundException = {
 
 M.CancelAgreementPaymentRequestInput = {
     type = "structure",
+    id = "CancelAgreementPaymentRequestInput",
     members = {
         paymentRequestId = {
             type = "string",
@@ -944,6 +994,7 @@ M.PaymentRequestStatus = {
 
 M.CancelAgreementPaymentRequestOutput = {
     type = "structure",
+    id = "CancelAgreementPaymentRequestOutput",
     members = {
         paymentRequestId = {
             type = "string",
@@ -977,6 +1028,7 @@ M.CancelAgreementPaymentRequestOutput = {
 
 M.DescribeAgreementInput = {
     type = "structure",
+    id = "DescribeAgreementInput",
     members = {
         agreementId = {
             type = "string",
@@ -989,6 +1041,7 @@ M.DescribeAgreementInput = {
 
 M.EstimatedCharges = {
     type = "structure",
+    id = "EstimatedCharges",
     members = {
         currencyCode = {
             type = "string",
@@ -1001,6 +1054,7 @@ M.EstimatedCharges = {
 
 M.DescribeAgreementOutput = {
     type = "structure",
+    id = "DescribeAgreementOutput",
     members = {
         agreementId = {
             type = "string",
@@ -1029,6 +1083,7 @@ M.DescribeAgreementOutput = {
 
 M.GetAgreementCancellationRequestInput = {
     type = "structure",
+    id = "GetAgreementCancellationRequestInput",
     members = {
         agreementCancellationRequestId = {
             type = "string",
@@ -1047,6 +1102,7 @@ M.GetAgreementCancellationRequestInput = {
 
 M.GetAgreementCancellationRequestOutput = {
     type = "structure",
+    id = "GetAgreementCancellationRequestOutput",
     members = {
         agreementCancellationRequestId = {
             type = "string",
@@ -1077,6 +1133,7 @@ M.GetAgreementCancellationRequestOutput = {
 
 M.GetAgreementPaymentRequestInput = {
     type = "structure",
+    id = "GetAgreementPaymentRequestInput",
     members = {
         paymentRequestId = {
             type = "string",
@@ -1095,6 +1152,7 @@ M.GetAgreementPaymentRequestInput = {
 
 M.GetAgreementPaymentRequestOutput = {
     type = "structure",
+    id = "GetAgreementPaymentRequestOutput",
     members = {
         paymentRequestId = {
             type = "string",
@@ -1134,6 +1192,7 @@ M.GetAgreementPaymentRequestOutput = {
 
 M.GetAgreementTermsInput = {
     type = "structure",
+    id = "GetAgreementTermsInput",
     members = {
         agreementId = {
             type = "string",
@@ -1152,6 +1211,7 @@ M.GetAgreementTermsInput = {
 
 M.GetAgreementTermsOutput = {
     type = "structure",
+    id = "GetAgreementTermsOutput",
     members = {
         acceptedTerms = {
             type = "list",
@@ -1165,6 +1225,7 @@ M.GetAgreementTermsOutput = {
 
 M.GetBillingAdjustmentRequestInput = {
     type = "structure",
+    id = "GetBillingAdjustmentRequestInput",
     members = {
         agreementId = {
             type = "string",
@@ -1189,6 +1250,7 @@ M.BillingAdjustmentStatus = {
 
 M.GetBillingAdjustmentRequestOutput = {
     type = "structure",
+    id = "GetBillingAdjustmentRequestOutput",
     members = {
         billingAdjustmentRequestId = {
             type = "string",
@@ -1255,6 +1317,7 @@ M.GetBillingAdjustmentRequestOutput = {
 
 M.ListAgreementCancellationRequestsInput = {
     type = "structure",
+    id = "ListAgreementCancellationRequestsInput",
     members = {
         partyType = {
             type = "string",
@@ -1285,6 +1348,7 @@ M.ListAgreementCancellationRequestsInput = {
 
 M.ListAgreementCancellationRequestsOutput = {
     type = "structure",
+    id = "ListAgreementCancellationRequestsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1302,6 +1366,7 @@ M.LineItemGroupBy = {
 
 M.ListAgreementInvoiceLineItemsInput = {
     type = "structure",
+    id = "ListAgreementInvoiceLineItemsInput",
     members = {
         agreementId = {
             type = "string",
@@ -1339,6 +1404,7 @@ M.ListAgreementInvoiceLineItemsInput = {
 
 M.ListAgreementInvoiceLineItemsOutput = {
     type = "structure",
+    id = "ListAgreementInvoiceLineItemsOutput",
     members = {
         agreementInvoiceLineItemGroupSummaries = {
             type = "list",
@@ -1352,6 +1418,7 @@ M.ListAgreementInvoiceLineItemsOutput = {
 
 M.ListAgreementPaymentRequestsInput = {
     type = "structure",
+    id = "ListAgreementPaymentRequestsInput",
     members = {
         partyType = {
             type = "string",
@@ -1382,6 +1449,7 @@ M.ListAgreementPaymentRequestsInput = {
 
 M.PaymentRequestSummary = {
     type = "structure",
+    id = "PaymentRequestSummary",
     members = {
         paymentRequestId = {
             type = "string",
@@ -1415,6 +1483,7 @@ M.PaymentRequestSummary = {
 
 M.ListAgreementPaymentRequestsOutput = {
     type = "structure",
+    id = "ListAgreementPaymentRequestsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1431,6 +1500,7 @@ M.ListAgreementPaymentRequestsOutput = {
 
 M.ListBillingAdjustmentRequestsInput = {
     type = "structure",
+    id = "ListBillingAdjustmentRequestsInput",
     members = {
         agreementId = {
             type = "string",
@@ -1461,6 +1531,7 @@ M.ListBillingAdjustmentRequestsInput = {
 
 M.BillingAdjustmentSummary = {
     type = "structure",
+    id = "BillingAdjustmentSummary",
     members = {
         billingAdjustmentRequestId = {
             type = "string",
@@ -1527,6 +1598,7 @@ M.BillingAdjustmentSummary = {
 
 M.ListBillingAdjustmentRequestsOutput = {
     type = "structure",
+    id = "ListBillingAdjustmentRequestsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1543,6 +1615,7 @@ M.ListBillingAdjustmentRequestsOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         name = {
             type = "string",
@@ -1561,6 +1634,7 @@ M.SortOrder = {
 
 M.Sort = {
     type = "structure",
+    id = "Sort",
     members = {
         sortBy = {
             type = "string",
@@ -1573,6 +1647,7 @@ M.Sort = {
 
 M.SearchAgreementsInput = {
     type = "structure",
+    id = "SearchAgreementsInput",
     members = {
         catalog = {
             type = "string",
@@ -1593,6 +1668,7 @@ M.SearchAgreementsInput = {
 
 M.SearchAgreementsOutput = {
     type = "structure",
+    id = "SearchAgreementsOutput",
     members = {
         agreementViewSummaries = {
             type = "list",
@@ -1606,6 +1682,7 @@ M.SearchAgreementsOutput = {
 
 M.SendAgreementCancellationRequestInput = {
     type = "structure",
+    id = "SendAgreementCancellationRequestInput",
     members = {
         agreementId = {
             type = "string",
@@ -1633,6 +1710,7 @@ M.SendAgreementCancellationRequestInput = {
 
 M.SendAgreementCancellationRequestOutput = {
     type = "structure",
+    id = "SendAgreementCancellationRequestOutput",
     members = {
         agreementId = {
             type = "string",
@@ -1660,6 +1738,7 @@ M.SendAgreementCancellationRequestOutput = {
 
 M.SendAgreementPaymentRequestInput = {
     type = "structure",
+    id = "SendAgreementPaymentRequestInput",
     members = {
         clientToken = {
             type = "string",
@@ -1699,6 +1778,7 @@ M.SendAgreementPaymentRequestInput = {
 
 M.SendAgreementPaymentRequestOutput = {
     type = "structure",
+    id = "SendAgreementPaymentRequestOutput",
     members = {
         paymentRequestId = {
             type = "string",

@@ -6,6 +6,7 @@ M.AccessAssociationSourceType = {
 
 M.AccessLogSettings = {
     type = "structure",
+    id = "AccessLogSettings",
     members = {
         format = {
             type = "string",
@@ -18,6 +19,7 @@ M.AccessLogSettings = {
 
 M.ThrottleSettings = {
     type = "structure",
+    id = "ThrottleSettings",
     members = {
         burstLimit = {
             type = "integer",
@@ -36,6 +38,7 @@ M.ThrottleSettings = {
 
 M.ApiKey = {
     type = "structure",
+    id = "ApiKey",
     members = {
         id = {
             type = "string",
@@ -87,6 +90,7 @@ M.ApiKeySourceType = {
 
 M.ApiStage = {
     type = "structure",
+    id = "ApiStage",
     members = {
         apiId = {
             type = "string",
@@ -117,6 +121,7 @@ M.AuthorizerType = {
 
 M.Authorizer = {
     type = "structure",
+    id = "Authorizer",
     members = {
         id = {
             type = "string",
@@ -154,6 +159,7 @@ M.Authorizer = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -164,6 +170,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -174,6 +181,7 @@ M.ConflictException = {
 
 M.StageKey = {
     type = "structure",
+    id = "StageKey",
     members = {
         restApiId = {
             type = "string",
@@ -186,6 +194,7 @@ M.StageKey = {
 
 M.CreateApiKeyInput = {
     type = "structure",
+    id = "CreateApiKeyInput",
     members = {
         name = {
             type = "string",
@@ -225,6 +234,7 @@ M.CreateApiKeyInput = {
 
 M.CreateApiKeyOutput = {
     type = "structure",
+    id = "CreateApiKeyOutput",
     members = {
         id = {
             type = "string",
@@ -267,6 +277,7 @@ M.CreateApiKeyOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         retryAfterSeconds = {
@@ -283,6 +294,7 @@ M.LimitExceededException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -293,6 +305,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         retryAfterSeconds = {
@@ -309,6 +322,7 @@ M.TooManyRequestsException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -319,6 +333,7 @@ M.UnauthorizedException = {
 
 M.CreateAuthorizerInput = {
     type = "structure",
+    id = "CreateAuthorizerInput",
     members = {
         restApiId = {
             type = "string",
@@ -366,6 +381,7 @@ M.CreateAuthorizerInput = {
 
 M.CreateAuthorizerOutput = {
     type = "structure",
+    id = "CreateAuthorizerOutput",
     members = {
         id = {
             type = "string",
@@ -403,6 +419,7 @@ M.CreateAuthorizerOutput = {
 
 M.CreateBasePathMappingInput = {
     type = "structure",
+    id = "CreateBasePathMappingInput",
     members = {
         domainName = {
             type = "string",
@@ -434,6 +451,7 @@ M.CreateBasePathMappingInput = {
 
 M.CreateBasePathMappingOutput = {
     type = "structure",
+    id = "CreateBasePathMappingOutput",
     members = {
         basePath = {
             type = "string",
@@ -460,6 +478,7 @@ M.CacheClusterSize = {
 
 M.DeploymentCanarySettings = {
     type = "structure",
+    id = "DeploymentCanarySettings",
     members = {
         percentTraffic = {
             type = "double",
@@ -483,6 +502,7 @@ M.DeploymentCanarySettings = {
 
 M.CreateDeploymentInput = {
     type = "structure",
+    id = "CreateDeploymentInput",
     members = {
         restApiId = {
             type = "string",
@@ -520,6 +540,7 @@ M.CreateDeploymentInput = {
 
 M.MethodSnapshot = {
     type = "structure",
+    id = "MethodSnapshot",
     members = {
         authorizationType = {
             type = "string",
@@ -535,6 +556,7 @@ M.MethodSnapshot = {
 
 M.CreateDeploymentOutput = {
     type = "structure",
+    id = "CreateDeploymentOutput",
     members = {
         id = {
             type = "string",
@@ -555,6 +577,7 @@ M.CreateDeploymentOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         retryAfterSeconds = {
@@ -586,6 +609,7 @@ M.DocumentationPartType = {
 
 M.DocumentationPartLocation = {
     type = "structure",
+    id = "DocumentationPartLocation",
     members = {
         type = {
             type = "string",
@@ -610,6 +634,7 @@ M.DocumentationPartLocation = {
 
 M.CreateDocumentationPartInput = {
     type = "structure",
+    id = "CreateDocumentationPartInput",
     members = {
         restApiId = {
             type = "string",
@@ -632,6 +657,7 @@ M.CreateDocumentationPartInput = {
 
 M.CreateDocumentationPartOutput = {
     type = "structure",
+    id = "CreateDocumentationPartOutput",
     members = {
         id = {
             type = "string",
@@ -645,6 +671,7 @@ M.CreateDocumentationPartOutput = {
 
 M.CreateDocumentationVersionInput = {
     type = "structure",
+    id = "CreateDocumentationVersionInput",
     members = {
         restApiId = {
             type = "string",
@@ -670,6 +697,7 @@ M.CreateDocumentationVersionInput = {
 
 M.CreateDocumentationVersionOutput = {
     type = "structure",
+    id = "CreateDocumentationVersionOutput",
     members = {
         version = {
             type = "string",
@@ -701,6 +729,7 @@ M.EndpointType = {
 
 M.EndpointConfiguration = {
     type = "structure",
+    id = "EndpointConfiguration",
     members = {
         types = {
             type = "list",
@@ -718,6 +747,7 @@ M.EndpointConfiguration = {
 
 M.MutualTlsAuthenticationInput = {
     type = "structure",
+    id = "MutualTlsAuthenticationInput",
     members = {
         truststoreUri = {
             type = "string",
@@ -751,6 +781,7 @@ M.SecurityPolicy = {
 
 M.CreateDomainNameInput = {
     type = "structure",
+    id = "CreateDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -815,6 +846,7 @@ M.DomainNameStatus = {
 
 M.MutualTlsAuthentication = {
     type = "structure",
+    id = "MutualTlsAuthentication",
     members = {
         truststoreUri = {
             type = "string",
@@ -831,6 +863,7 @@ M.MutualTlsAuthentication = {
 
 M.CreateDomainNameOutput = {
     type = "structure",
+    id = "CreateDomainNameOutput",
     members = {
         domainName = {
             type = "string",
@@ -904,6 +937,7 @@ M.CreateDomainNameOutput = {
 
 M.CreateDomainNameAccessAssociationInput = {
     type = "structure",
+    id = "CreateDomainNameAccessAssociationInput",
     members = {
         domainNameArn = {
             type = "string",
@@ -933,6 +967,7 @@ M.CreateDomainNameAccessAssociationInput = {
 
 M.CreateDomainNameAccessAssociationOutput = {
     type = "structure",
+    id = "CreateDomainNameAccessAssociationOutput",
     members = {
         domainNameAccessAssociationArn = {
             type = "string",
@@ -956,6 +991,7 @@ M.CreateDomainNameAccessAssociationOutput = {
 
 M.CreateModelInput = {
     type = "structure",
+    id = "CreateModelInput",
     members = {
         restApiId = {
             type = "string",
@@ -987,6 +1023,7 @@ M.CreateModelInput = {
 
 M.CreateModelOutput = {
     type = "structure",
+    id = "CreateModelOutput",
     members = {
         id = {
             type = "string",
@@ -1008,6 +1045,7 @@ M.CreateModelOutput = {
 
 M.CreateRequestValidatorInput = {
     type = "structure",
+    id = "CreateRequestValidatorInput",
     members = {
         restApiId = {
             type = "string",
@@ -1036,6 +1074,7 @@ M.CreateRequestValidatorInput = {
 
 M.CreateRequestValidatorOutput = {
     type = "structure",
+    id = "CreateRequestValidatorOutput",
     members = {
         id = {
             type = "string",
@@ -1060,6 +1099,7 @@ M.CreateRequestValidatorOutput = {
 
 M.CreateResourceInput = {
     type = "structure",
+    id = "CreateResourceInput",
     members = {
         restApiId = {
             type = "string",
@@ -1096,6 +1136,7 @@ M.ContentHandlingStrategy = {
 
 M.IntegrationResponse = {
     type = "structure",
+    id = "IntegrationResponse",
     members = {
         statusCode = {
             type = "string",
@@ -1126,6 +1167,7 @@ M.ResponseTransferMode = {
 
 M.TlsConfig = {
     type = "structure",
+    id = "TlsConfig",
     members = {
         insecureSkipVerification = {
             type = "boolean",
@@ -1146,6 +1188,7 @@ M.IntegrationType = {
 
 M.Integration = {
     type = "structure",
+    id = "Integration",
     members = {
         type = {
             type = "string",
@@ -1211,6 +1254,7 @@ M.Integration = {
 
 M.MethodResponse = {
     type = "structure",
+    id = "MethodResponse",
     members = {
         statusCode = {
             type = "string",
@@ -1230,6 +1274,7 @@ M.MethodResponse = {
 
 M.Method = {
     type = "structure",
+    id = "Method",
     members = {
         httpMethod = {
             type = "string",
@@ -1274,6 +1319,7 @@ M.Method = {
 
 M.CreateResourceOutput = {
     type = "structure",
+    id = "CreateResourceOutput",
     members = {
         id = {
             type = "string",
@@ -1297,6 +1343,7 @@ M.CreateResourceOutput = {
 
 M.CreateRestApiInput = {
     type = "structure",
+    id = "CreateRestApiInput",
     members = {
         name = {
             type = "string",
@@ -1349,6 +1396,7 @@ M.CreateRestApiInput = {
 
 M.CreateRestApiOutput = {
     type = "structure",
+    id = "CreateRestApiOutput",
     members = {
         id = {
             type = "string",
@@ -1414,6 +1462,7 @@ M.CreateRestApiOutput = {
 
 M.CanarySettings = {
     type = "structure",
+    id = "CanarySettings",
     members = {
         percentTraffic = {
             type = "double",
@@ -1440,6 +1489,7 @@ M.CanarySettings = {
 
 M.CreateStageInput = {
     type = "structure",
+    id = "CreateStageInput",
     members = {
         restApiId = {
             type = "string",
@@ -1511,6 +1561,7 @@ M.UnauthorizedCacheControlHeaderStrategy = {
 
 M.MethodSetting = {
     type = "structure",
+    id = "MethodSetting",
     members = {
         metricsEnabled = {
             type = "boolean",
@@ -1571,6 +1622,7 @@ M.MethodSetting = {
 
 M.CreateStageOutput = {
     type = "structure",
+    id = "CreateStageOutput",
     members = {
         deploymentId = {
             type = "string",
@@ -1642,6 +1694,7 @@ M.QuotaPeriodType = {
 
 M.QuotaSettings = {
     type = "structure",
+    id = "QuotaSettings",
     members = {
         limit = {
             type = "integer",
@@ -1663,6 +1716,7 @@ M.QuotaSettings = {
 
 M.CreateUsagePlanInput = {
     type = "structure",
+    id = "CreateUsagePlanInput",
     members = {
         name = {
             type = "string",
@@ -1689,6 +1743,7 @@ M.CreateUsagePlanInput = {
 
 M.CreateUsagePlanOutput = {
     type = "structure",
+    id = "CreateUsagePlanOutput",
     members = {
         id = {
             type = "string",
@@ -1718,6 +1773,7 @@ M.CreateUsagePlanOutput = {
 
 M.CreateUsagePlanKeyInput = {
     type = "structure",
+    id = "CreateUsagePlanKeyInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -1743,6 +1799,7 @@ M.CreateUsagePlanKeyInput = {
 
 M.CreateUsagePlanKeyOutput = {
     type = "structure",
+    id = "CreateUsagePlanKeyOutput",
     members = {
         id = {
             type = "string",
@@ -1761,6 +1818,7 @@ M.CreateUsagePlanKeyOutput = {
 
 M.CreateVpcLinkInput = {
     type = "structure",
+    id = "CreateVpcLinkInput",
     members = {
         name = {
             type = "string",
@@ -1795,6 +1853,7 @@ M.VpcLinkStatus = {
 
 M.CreateVpcLinkOutput = {
     type = "structure",
+    id = "CreateVpcLinkOutput",
     members = {
         id = {
             type = "string",
@@ -1825,6 +1884,7 @@ M.CreateVpcLinkOutput = {
 
 M.DeleteApiKeyInput = {
     type = "structure",
+    id = "DeleteApiKeyInput",
     members = {
         apiKey = {
             type = "string",
@@ -1838,10 +1898,12 @@ M.DeleteApiKeyInput = {
 
 M.DeleteApiKeyOutput = {
     type = "structure",
+    id = "DeleteApiKeyOutput",
 }
 
 M.DeleteAuthorizerInput = {
     type = "structure",
+    id = "DeleteAuthorizerInput",
     members = {
         restApiId = {
             type = "string",
@@ -1862,10 +1924,12 @@ M.DeleteAuthorizerInput = {
 
 M.DeleteAuthorizerOutput = {
     type = "structure",
+    id = "DeleteAuthorizerOutput",
 }
 
 M.DeleteBasePathMappingInput = {
     type = "structure",
+    id = "DeleteBasePathMappingInput",
     members = {
         domainName = {
             type = "string",
@@ -1892,10 +1956,12 @@ M.DeleteBasePathMappingInput = {
 
 M.DeleteBasePathMappingOutput = {
     type = "structure",
+    id = "DeleteBasePathMappingOutput",
 }
 
 M.DeleteClientCertificateInput = {
     type = "structure",
+    id = "DeleteClientCertificateInput",
     members = {
         clientCertificateId = {
             type = "string",
@@ -1909,10 +1975,12 @@ M.DeleteClientCertificateInput = {
 
 M.DeleteClientCertificateOutput = {
     type = "structure",
+    id = "DeleteClientCertificateOutput",
 }
 
 M.DeleteDeploymentInput = {
     type = "structure",
+    id = "DeleteDeploymentInput",
     members = {
         restApiId = {
             type = "string",
@@ -1933,10 +2001,12 @@ M.DeleteDeploymentInput = {
 
 M.DeleteDeploymentOutput = {
     type = "structure",
+    id = "DeleteDeploymentOutput",
 }
 
 M.DeleteDocumentationPartInput = {
     type = "structure",
+    id = "DeleteDocumentationPartInput",
     members = {
         restApiId = {
             type = "string",
@@ -1957,10 +2027,12 @@ M.DeleteDocumentationPartInput = {
 
 M.DeleteDocumentationPartOutput = {
     type = "structure",
+    id = "DeleteDocumentationPartOutput",
 }
 
 M.DeleteDocumentationVersionInput = {
     type = "structure",
+    id = "DeleteDocumentationVersionInput",
     members = {
         restApiId = {
             type = "string",
@@ -1981,10 +2053,12 @@ M.DeleteDocumentationVersionInput = {
 
 M.DeleteDocumentationVersionOutput = {
     type = "structure",
+    id = "DeleteDocumentationVersionOutput",
 }
 
 M.DeleteDomainNameInput = {
     type = "structure",
+    id = "DeleteDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -2004,10 +2078,12 @@ M.DeleteDomainNameInput = {
 
 M.DeleteDomainNameOutput = {
     type = "structure",
+    id = "DeleteDomainNameOutput",
 }
 
 M.DeleteDomainNameAccessAssociationInput = {
     type = "structure",
+    id = "DeleteDomainNameAccessAssociationInput",
     members = {
         domainNameAccessAssociationArn = {
             type = "string",
@@ -2021,6 +2097,7 @@ M.DeleteDomainNameAccessAssociationInput = {
 
 M.DeleteDomainNameAccessAssociationOutput = {
     type = "structure",
+    id = "DeleteDomainNameAccessAssociationOutput",
 }
 
 M.GatewayResponseType = {
@@ -2049,6 +2126,7 @@ M.GatewayResponseType = {
 
 M.DeleteGatewayResponseInput = {
     type = "structure",
+    id = "DeleteGatewayResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -2069,10 +2147,12 @@ M.DeleteGatewayResponseInput = {
 
 M.DeleteGatewayResponseOutput = {
     type = "structure",
+    id = "DeleteGatewayResponseOutput",
 }
 
 M.DeleteIntegrationInput = {
     type = "structure",
+    id = "DeleteIntegrationInput",
     members = {
         restApiId = {
             type = "string",
@@ -2100,10 +2180,12 @@ M.DeleteIntegrationInput = {
 
 M.DeleteIntegrationOutput = {
     type = "structure",
+    id = "DeleteIntegrationOutput",
 }
 
 M.DeleteIntegrationResponseInput = {
     type = "structure",
+    id = "DeleteIntegrationResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -2138,10 +2220,12 @@ M.DeleteIntegrationResponseInput = {
 
 M.DeleteIntegrationResponseOutput = {
     type = "structure",
+    id = "DeleteIntegrationResponseOutput",
 }
 
 M.DeleteMethodInput = {
     type = "structure",
+    id = "DeleteMethodInput",
     members = {
         restApiId = {
             type = "string",
@@ -2169,10 +2253,12 @@ M.DeleteMethodInput = {
 
 M.DeleteMethodOutput = {
     type = "structure",
+    id = "DeleteMethodOutput",
 }
 
 M.DeleteMethodResponseInput = {
     type = "structure",
+    id = "DeleteMethodResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -2207,10 +2293,12 @@ M.DeleteMethodResponseInput = {
 
 M.DeleteMethodResponseOutput = {
     type = "structure",
+    id = "DeleteMethodResponseOutput",
 }
 
 M.DeleteModelInput = {
     type = "structure",
+    id = "DeleteModelInput",
     members = {
         restApiId = {
             type = "string",
@@ -2231,10 +2319,12 @@ M.DeleteModelInput = {
 
 M.DeleteModelOutput = {
     type = "structure",
+    id = "DeleteModelOutput",
 }
 
 M.DeleteRequestValidatorInput = {
     type = "structure",
+    id = "DeleteRequestValidatorInput",
     members = {
         restApiId = {
             type = "string",
@@ -2255,10 +2345,12 @@ M.DeleteRequestValidatorInput = {
 
 M.DeleteRequestValidatorOutput = {
     type = "structure",
+    id = "DeleteRequestValidatorOutput",
 }
 
 M.DeleteResourceInput = {
     type = "structure",
+    id = "DeleteResourceInput",
     members = {
         restApiId = {
             type = "string",
@@ -2279,10 +2371,12 @@ M.DeleteResourceInput = {
 
 M.DeleteResourceOutput = {
     type = "structure",
+    id = "DeleteResourceOutput",
 }
 
 M.DeleteRestApiInput = {
     type = "structure",
+    id = "DeleteRestApiInput",
     members = {
         restApiId = {
             type = "string",
@@ -2296,10 +2390,12 @@ M.DeleteRestApiInput = {
 
 M.DeleteRestApiOutput = {
     type = "structure",
+    id = "DeleteRestApiOutput",
 }
 
 M.DeleteStageInput = {
     type = "structure",
+    id = "DeleteStageInput",
     members = {
         restApiId = {
             type = "string",
@@ -2320,10 +2416,12 @@ M.DeleteStageInput = {
 
 M.DeleteStageOutput = {
     type = "structure",
+    id = "DeleteStageOutput",
 }
 
 M.DeleteUsagePlanInput = {
     type = "structure",
+    id = "DeleteUsagePlanInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -2337,10 +2435,12 @@ M.DeleteUsagePlanInput = {
 
 M.DeleteUsagePlanOutput = {
     type = "structure",
+    id = "DeleteUsagePlanOutput",
 }
 
 M.DeleteUsagePlanKeyInput = {
     type = "structure",
+    id = "DeleteUsagePlanKeyInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -2361,10 +2461,12 @@ M.DeleteUsagePlanKeyInput = {
 
 M.DeleteUsagePlanKeyOutput = {
     type = "structure",
+    id = "DeleteUsagePlanKeyOutput",
 }
 
 M.DeleteVpcLinkInput = {
     type = "structure",
+    id = "DeleteVpcLinkInput",
     members = {
         vpcLinkId = {
             type = "string",
@@ -2378,10 +2480,12 @@ M.DeleteVpcLinkInput = {
 
 M.DeleteVpcLinkOutput = {
     type = "structure",
+    id = "DeleteVpcLinkOutput",
 }
 
 M.FlushStageAuthorizersCacheInput = {
     type = "structure",
+    id = "FlushStageAuthorizersCacheInput",
     members = {
         restApiId = {
             type = "string",
@@ -2402,10 +2506,12 @@ M.FlushStageAuthorizersCacheInput = {
 
 M.FlushStageAuthorizersCacheOutput = {
     type = "structure",
+    id = "FlushStageAuthorizersCacheOutput",
 }
 
 M.FlushStageCacheInput = {
     type = "structure",
+    id = "FlushStageCacheInput",
     members = {
         restApiId = {
             type = "string",
@@ -2426,10 +2532,12 @@ M.FlushStageCacheInput = {
 
 M.FlushStageCacheOutput = {
     type = "structure",
+    id = "FlushStageCacheOutput",
 }
 
 M.GenerateClientCertificateInput = {
     type = "structure",
+    id = "GenerateClientCertificateInput",
     members = {
         description = {
             type = "string",
@@ -2444,6 +2552,7 @@ M.GenerateClientCertificateInput = {
 
 M.GenerateClientCertificateOutput = {
     type = "structure",
+    id = "GenerateClientCertificateOutput",
     members = {
         clientCertificateId = {
             type = "string",
@@ -2470,10 +2579,12 @@ M.GenerateClientCertificateOutput = {
 
 M.GetAccountInput = {
     type = "structure",
+    id = "GetAccountInput",
 }
 
 M.GetAccountOutput = {
     type = "structure",
+    id = "GetAccountOutput",
     members = {
         cloudwatchRoleArn = {
             type = "string",
@@ -2491,6 +2602,7 @@ M.GetAccountOutput = {
 
 M.GetApiKeyInput = {
     type = "structure",
+    id = "GetApiKeyInput",
     members = {
         apiKey = {
             type = "string",
@@ -2510,6 +2622,7 @@ M.GetApiKeyInput = {
 
 M.GetApiKeyOutput = {
     type = "structure",
+    id = "GetApiKeyOutput",
     members = {
         id = {
             type = "string",
@@ -2552,6 +2665,7 @@ M.GetApiKeyOutput = {
 
 M.GetApiKeysInput = {
     type = "structure",
+    id = "GetApiKeysInput",
     members = {
         position = {
             type = "string",
@@ -2588,6 +2702,7 @@ M.GetApiKeysInput = {
 
 M.GetApiKeysOutput = {
     type = "structure",
+    id = "GetApiKeysOutput",
     members = {
         warnings = {
             type = "list",
@@ -2611,6 +2726,7 @@ M.GetApiKeysOutput = {
 
 M.GetAuthorizerInput = {
     type = "structure",
+    id = "GetAuthorizerInput",
     members = {
         restApiId = {
             type = "string",
@@ -2631,6 +2747,7 @@ M.GetAuthorizerInput = {
 
 M.GetAuthorizerOutput = {
     type = "structure",
+    id = "GetAuthorizerOutput",
     members = {
         id = {
             type = "string",
@@ -2668,6 +2785,7 @@ M.GetAuthorizerOutput = {
 
 M.GetAuthorizersInput = {
     type = "structure",
+    id = "GetAuthorizersInput",
     members = {
         restApiId = {
             type = "string",
@@ -2693,6 +2811,7 @@ M.GetAuthorizersInput = {
 
 M.GetAuthorizersOutput = {
     type = "structure",
+    id = "GetAuthorizersOutput",
     members = {
         items = {
             type = "list",
@@ -2712,6 +2831,7 @@ M.GetAuthorizersOutput = {
 
 M.GetBasePathMappingInput = {
     type = "structure",
+    id = "GetBasePathMappingInput",
     members = {
         domainName = {
             type = "string",
@@ -2738,6 +2858,7 @@ M.GetBasePathMappingInput = {
 
 M.GetBasePathMappingOutput = {
     type = "structure",
+    id = "GetBasePathMappingOutput",
     members = {
         basePath = {
             type = "string",
@@ -2753,6 +2874,7 @@ M.GetBasePathMappingOutput = {
 
 M.GetBasePathMappingsInput = {
     type = "structure",
+    id = "GetBasePathMappingsInput",
     members = {
         domainName = {
             type = "string",
@@ -2784,6 +2906,7 @@ M.GetBasePathMappingsInput = {
 
 M.BasePathMapping = {
     type = "structure",
+    id = "BasePathMapping",
     members = {
         basePath = {
             type = "string",
@@ -2799,6 +2922,7 @@ M.BasePathMapping = {
 
 M.GetBasePathMappingsOutput = {
     type = "structure",
+    id = "GetBasePathMappingsOutput",
     members = {
         items = {
             type = "list",
@@ -2818,6 +2942,7 @@ M.GetBasePathMappingsOutput = {
 
 M.GetClientCertificateInput = {
     type = "structure",
+    id = "GetClientCertificateInput",
     members = {
         clientCertificateId = {
             type = "string",
@@ -2831,6 +2956,7 @@ M.GetClientCertificateInput = {
 
 M.GetClientCertificateOutput = {
     type = "structure",
+    id = "GetClientCertificateOutput",
     members = {
         clientCertificateId = {
             type = "string",
@@ -2857,6 +2983,7 @@ M.GetClientCertificateOutput = {
 
 M.GetClientCertificatesInput = {
     type = "structure",
+    id = "GetClientCertificatesInput",
     members = {
         position = {
             type = "string",
@@ -2875,6 +3002,7 @@ M.GetClientCertificatesInput = {
 
 M.ClientCertificate = {
     type = "structure",
+    id = "ClientCertificate",
     members = {
         clientCertificateId = {
             type = "string",
@@ -2901,6 +3029,7 @@ M.ClientCertificate = {
 
 M.GetClientCertificatesOutput = {
     type = "structure",
+    id = "GetClientCertificatesOutput",
     members = {
         items = {
             type = "list",
@@ -2920,6 +3049,7 @@ M.GetClientCertificatesOutput = {
 
 M.GetDeploymentInput = {
     type = "structure",
+    id = "GetDeploymentInput",
     members = {
         restApiId = {
             type = "string",
@@ -2947,6 +3077,7 @@ M.GetDeploymentInput = {
 
 M.GetDeploymentOutput = {
     type = "structure",
+    id = "GetDeploymentOutput",
     members = {
         id = {
             type = "string",
@@ -2967,6 +3098,7 @@ M.GetDeploymentOutput = {
 
 M.GetDeploymentsInput = {
     type = "structure",
+    id = "GetDeploymentsInput",
     members = {
         restApiId = {
             type = "string",
@@ -2992,6 +3124,7 @@ M.GetDeploymentsInput = {
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         id = {
             type = "string",
@@ -3012,6 +3145,7 @@ M.Deployment = {
 
 M.GetDeploymentsOutput = {
     type = "structure",
+    id = "GetDeploymentsOutput",
     members = {
         items = {
             type = "list",
@@ -3031,6 +3165,7 @@ M.GetDeploymentsOutput = {
 
 M.GetDocumentationPartInput = {
     type = "structure",
+    id = "GetDocumentationPartInput",
     members = {
         restApiId = {
             type = "string",
@@ -3051,6 +3186,7 @@ M.GetDocumentationPartInput = {
 
 M.GetDocumentationPartOutput = {
     type = "structure",
+    id = "GetDocumentationPartOutput",
     members = {
         id = {
             type = "string",
@@ -3069,6 +3205,7 @@ M.LocationStatusType = {
 
 M.GetDocumentationPartsInput = {
     type = "structure",
+    id = "GetDocumentationPartsInput",
     members = {
         restApiId = {
             type = "string",
@@ -3118,6 +3255,7 @@ M.GetDocumentationPartsInput = {
 
 M.DocumentationPart = {
     type = "structure",
+    id = "DocumentationPart",
     members = {
         id = {
             type = "string",
@@ -3131,6 +3269,7 @@ M.DocumentationPart = {
 
 M.GetDocumentationPartsOutput = {
     type = "structure",
+    id = "GetDocumentationPartsOutput",
     members = {
         items = {
             type = "list",
@@ -3150,6 +3289,7 @@ M.GetDocumentationPartsOutput = {
 
 M.GetDocumentationVersionInput = {
     type = "structure",
+    id = "GetDocumentationVersionInput",
     members = {
         restApiId = {
             type = "string",
@@ -3170,6 +3310,7 @@ M.GetDocumentationVersionInput = {
 
 M.GetDocumentationVersionOutput = {
     type = "structure",
+    id = "GetDocumentationVersionOutput",
     members = {
         version = {
             type = "string",
@@ -3185,6 +3326,7 @@ M.GetDocumentationVersionOutput = {
 
 M.GetDocumentationVersionsInput = {
     type = "structure",
+    id = "GetDocumentationVersionsInput",
     members = {
         restApiId = {
             type = "string",
@@ -3210,6 +3352,7 @@ M.GetDocumentationVersionsInput = {
 
 M.DocumentationVersion = {
     type = "structure",
+    id = "DocumentationVersion",
     members = {
         version = {
             type = "string",
@@ -3225,6 +3368,7 @@ M.DocumentationVersion = {
 
 M.GetDocumentationVersionsOutput = {
     type = "structure",
+    id = "GetDocumentationVersionsOutput",
     members = {
         items = {
             type = "list",
@@ -3244,6 +3388,7 @@ M.GetDocumentationVersionsOutput = {
 
 M.GetDomainNameInput = {
     type = "structure",
+    id = "GetDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -3263,6 +3408,7 @@ M.GetDomainNameInput = {
 
 M.GetDomainNameOutput = {
     type = "structure",
+    id = "GetDomainNameOutput",
     members = {
         domainName = {
             type = "string",
@@ -3341,6 +3487,7 @@ M.ResourceOwner = {
 
 M.GetDomainNameAccessAssociationsInput = {
     type = "structure",
+    id = "GetDomainNameAccessAssociationsInput",
     members = {
         position = {
             type = "string",
@@ -3365,6 +3512,7 @@ M.GetDomainNameAccessAssociationsInput = {
 
 M.DomainNameAccessAssociation = {
     type = "structure",
+    id = "DomainNameAccessAssociation",
     members = {
         domainNameAccessAssociationArn = {
             type = "string",
@@ -3388,6 +3536,7 @@ M.DomainNameAccessAssociation = {
 
 M.GetDomainNameAccessAssociationsOutput = {
     type = "structure",
+    id = "GetDomainNameAccessAssociationsOutput",
     members = {
         items = {
             type = "list",
@@ -3407,6 +3556,7 @@ M.GetDomainNameAccessAssociationsOutput = {
 
 M.GetDomainNamesInput = {
     type = "structure",
+    id = "GetDomainNamesInput",
     members = {
         position = {
             type = "string",
@@ -3431,6 +3581,7 @@ M.GetDomainNamesInput = {
 
 M.DomainName = {
     type = "structure",
+    id = "DomainName",
     members = {
         domainName = {
             type = "string",
@@ -3504,6 +3655,7 @@ M.DomainName = {
 
 M.GetDomainNamesOutput = {
     type = "structure",
+    id = "GetDomainNamesOutput",
     members = {
         items = {
             type = "list",
@@ -3523,6 +3675,7 @@ M.GetDomainNamesOutput = {
 
 M.GetExportInput = {
     type = "structure",
+    id = "GetExportInput",
     members = {
         restApiId = {
             type = "string",
@@ -3564,6 +3717,7 @@ M.GetExportInput = {
 
 M.GetExportOutput = {
     type = "structure",
+    id = "GetExportOutput",
     members = {
         contentType = {
             type = "string",
@@ -3588,6 +3742,7 @@ M.GetExportOutput = {
 
 M.GetGatewayResponseInput = {
     type = "structure",
+    id = "GetGatewayResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -3608,6 +3763,7 @@ M.GetGatewayResponseInput = {
 
 M.GetGatewayResponseOutput = {
     type = "structure",
+    id = "GetGatewayResponseOutput",
     members = {
         responseType = {
             type = "string",
@@ -3636,6 +3792,7 @@ M.GetGatewayResponseOutput = {
 
 M.GetGatewayResponsesInput = {
     type = "structure",
+    id = "GetGatewayResponsesInput",
     members = {
         restApiId = {
             type = "string",
@@ -3661,6 +3818,7 @@ M.GetGatewayResponsesInput = {
 
 M.GatewayResponse = {
     type = "structure",
+    id = "GatewayResponse",
     members = {
         responseType = {
             type = "string",
@@ -3689,6 +3847,7 @@ M.GatewayResponse = {
 
 M.GetGatewayResponsesOutput = {
     type = "structure",
+    id = "GetGatewayResponsesOutput",
     members = {
         items = {
             type = "list",
@@ -3708,6 +3867,7 @@ M.GetGatewayResponsesOutput = {
 
 M.GetIntegrationInput = {
     type = "structure",
+    id = "GetIntegrationInput",
     members = {
         restApiId = {
             type = "string",
@@ -3735,6 +3895,7 @@ M.GetIntegrationInput = {
 
 M.GetIntegrationOutput = {
     type = "structure",
+    id = "GetIntegrationOutput",
     members = {
         type = {
             type = "string",
@@ -3800,6 +3961,7 @@ M.GetIntegrationOutput = {
 
 M.GetIntegrationResponseInput = {
     type = "structure",
+    id = "GetIntegrationResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -3834,6 +3996,7 @@ M.GetIntegrationResponseInput = {
 
 M.GetIntegrationResponseOutput = {
     type = "structure",
+    id = "GetIntegrationResponseOutput",
     members = {
         statusCode = {
             type = "string",
@@ -3859,6 +4022,7 @@ M.GetIntegrationResponseOutput = {
 
 M.GetMethodInput = {
     type = "structure",
+    id = "GetMethodInput",
     members = {
         restApiId = {
             type = "string",
@@ -3886,6 +4050,7 @@ M.GetMethodInput = {
 
 M.GetMethodOutput = {
     type = "structure",
+    id = "GetMethodOutput",
     members = {
         httpMethod = {
             type = "string",
@@ -3930,6 +4095,7 @@ M.GetMethodOutput = {
 
 M.GetMethodResponseInput = {
     type = "structure",
+    id = "GetMethodResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -3964,6 +4130,7 @@ M.GetMethodResponseInput = {
 
 M.GetMethodResponseOutput = {
     type = "structure",
+    id = "GetMethodResponseOutput",
     members = {
         statusCode = {
             type = "string",
@@ -3983,6 +4150,7 @@ M.GetMethodResponseOutput = {
 
 M.GetModelInput = {
     type = "structure",
+    id = "GetModelInput",
     members = {
         restApiId = {
             type = "string",
@@ -4010,6 +4178,7 @@ M.GetModelInput = {
 
 M.GetModelOutput = {
     type = "structure",
+    id = "GetModelOutput",
     members = {
         id = {
             type = "string",
@@ -4031,6 +4200,7 @@ M.GetModelOutput = {
 
 M.GetModelsInput = {
     type = "structure",
+    id = "GetModelsInput",
     members = {
         restApiId = {
             type = "string",
@@ -4056,6 +4226,7 @@ M.GetModelsInput = {
 
 M.Model = {
     type = "structure",
+    id = "Model",
     members = {
         id = {
             type = "string",
@@ -4077,6 +4248,7 @@ M.Model = {
 
 M.GetModelsOutput = {
     type = "structure",
+    id = "GetModelsOutput",
     members = {
         items = {
             type = "list",
@@ -4096,6 +4268,7 @@ M.GetModelsOutput = {
 
 M.GetModelTemplateInput = {
     type = "structure",
+    id = "GetModelTemplateInput",
     members = {
         restApiId = {
             type = "string",
@@ -4116,6 +4289,7 @@ M.GetModelTemplateInput = {
 
 M.GetModelTemplateOutput = {
     type = "structure",
+    id = "GetModelTemplateOutput",
     members = {
         value = {
             type = "string",
@@ -4125,6 +4299,7 @@ M.GetModelTemplateOutput = {
 
 M.GetRequestValidatorInput = {
     type = "structure",
+    id = "GetRequestValidatorInput",
     members = {
         restApiId = {
             type = "string",
@@ -4145,6 +4320,7 @@ M.GetRequestValidatorInput = {
 
 M.GetRequestValidatorOutput = {
     type = "structure",
+    id = "GetRequestValidatorOutput",
     members = {
         id = {
             type = "string",
@@ -4169,6 +4345,7 @@ M.GetRequestValidatorOutput = {
 
 M.GetRequestValidatorsInput = {
     type = "structure",
+    id = "GetRequestValidatorsInput",
     members = {
         restApiId = {
             type = "string",
@@ -4194,6 +4371,7 @@ M.GetRequestValidatorsInput = {
 
 M.RequestValidator = {
     type = "structure",
+    id = "RequestValidator",
     members = {
         id = {
             type = "string",
@@ -4218,6 +4396,7 @@ M.RequestValidator = {
 
 M.GetRequestValidatorsOutput = {
     type = "structure",
+    id = "GetRequestValidatorsOutput",
     members = {
         items = {
             type = "list",
@@ -4237,6 +4416,7 @@ M.GetRequestValidatorsOutput = {
 
 M.GetResourceInput = {
     type = "structure",
+    id = "GetResourceInput",
     members = {
         restApiId = {
             type = "string",
@@ -4264,6 +4444,7 @@ M.GetResourceInput = {
 
 M.GetResourceOutput = {
     type = "structure",
+    id = "GetResourceOutput",
     members = {
         id = {
             type = "string",
@@ -4287,6 +4468,7 @@ M.GetResourceOutput = {
 
 M.GetResourcesInput = {
     type = "structure",
+    id = "GetResourcesInput",
     members = {
         restApiId = {
             type = "string",
@@ -4319,6 +4501,7 @@ M.GetResourcesInput = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         id = {
             type = "string",
@@ -4342,6 +4525,7 @@ M.Resource = {
 
 M.GetResourcesOutput = {
     type = "structure",
+    id = "GetResourcesOutput",
     members = {
         items = {
             type = "list",
@@ -4361,6 +4545,7 @@ M.GetResourcesOutput = {
 
 M.GetRestApiInput = {
     type = "structure",
+    id = "GetRestApiInput",
     members = {
         restApiId = {
             type = "string",
@@ -4374,6 +4559,7 @@ M.GetRestApiInput = {
 
 M.GetRestApiOutput = {
     type = "structure",
+    id = "GetRestApiOutput",
     members = {
         id = {
             type = "string",
@@ -4439,6 +4625,7 @@ M.GetRestApiOutput = {
 
 M.GetRestApisInput = {
     type = "structure",
+    id = "GetRestApisInput",
     members = {
         position = {
             type = "string",
@@ -4457,6 +4644,7 @@ M.GetRestApisInput = {
 
 M.RestApi = {
     type = "structure",
+    id = "RestApi",
     members = {
         id = {
             type = "string",
@@ -4522,6 +4710,7 @@ M.RestApi = {
 
 M.GetRestApisOutput = {
     type = "structure",
+    id = "GetRestApisOutput",
     members = {
         items = {
             type = "list",
@@ -4541,6 +4730,7 @@ M.GetRestApisOutput = {
 
 M.GetSdkInput = {
     type = "structure",
+    id = "GetSdkInput",
     members = {
         restApiId = {
             type = "string",
@@ -4576,6 +4766,7 @@ M.GetSdkInput = {
 
 M.GetSdkOutput = {
     type = "structure",
+    id = "GetSdkOutput",
     members = {
         contentType = {
             type = "string",
@@ -4600,6 +4791,7 @@ M.GetSdkOutput = {
 
 M.GetSdkTypeInput = {
     type = "structure",
+    id = "GetSdkTypeInput",
     members = {
         id = {
             type = "string",
@@ -4613,6 +4805,7 @@ M.GetSdkTypeInput = {
 
 M.SdkConfigurationProperty = {
     type = "structure",
+    id = "SdkConfigurationProperty",
     members = {
         name = {
             type = "string",
@@ -4637,6 +4830,7 @@ M.SdkConfigurationProperty = {
 
 M.GetSdkTypeOutput = {
     type = "structure",
+    id = "GetSdkTypeOutput",
     members = {
         id = {
             type = "string",
@@ -4656,6 +4850,7 @@ M.GetSdkTypeOutput = {
 
 M.GetSdkTypesInput = {
     type = "structure",
+    id = "GetSdkTypesInput",
     members = {
         position = {
             type = "string",
@@ -4674,6 +4869,7 @@ M.GetSdkTypesInput = {
 
 M.SdkType = {
     type = "structure",
+    id = "SdkType",
     members = {
         id = {
             type = "string",
@@ -4693,6 +4889,7 @@ M.SdkType = {
 
 M.GetSdkTypesOutput = {
     type = "structure",
+    id = "GetSdkTypesOutput",
     members = {
         items = {
             type = "list",
@@ -4706,6 +4903,7 @@ M.GetSdkTypesOutput = {
 
 M.GetStageInput = {
     type = "structure",
+    id = "GetStageInput",
     members = {
         restApiId = {
             type = "string",
@@ -4726,6 +4924,7 @@ M.GetStageInput = {
 
 M.GetStageOutput = {
     type = "structure",
+    id = "GetStageOutput",
     members = {
         deploymentId = {
             type = "string",
@@ -4791,6 +4990,7 @@ M.GetStageOutput = {
 
 M.GetStagesInput = {
     type = "structure",
+    id = "GetStagesInput",
     members = {
         restApiId = {
             type = "string",
@@ -4810,6 +5010,7 @@ M.GetStagesInput = {
 
 M.Stage = {
     type = "structure",
+    id = "Stage",
     members = {
         deploymentId = {
             type = "string",
@@ -4875,6 +5076,7 @@ M.Stage = {
 
 M.GetStagesOutput = {
     type = "structure",
+    id = "GetStagesOutput",
     members = {
         item = {
             type = "list",
@@ -4885,6 +5087,7 @@ M.GetStagesOutput = {
 
 M.GetTagsInput = {
     type = "structure",
+    id = "GetTagsInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4910,6 +5113,7 @@ M.GetTagsInput = {
 
 M.GetTagsOutput = {
     type = "structure",
+    id = "GetTagsOutput",
     members = {
         tags = {
             type = "map",
@@ -4921,6 +5125,7 @@ M.GetTagsOutput = {
 
 M.GetUsageInput = {
     type = "structure",
+    id = "GetUsageInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -4966,6 +5171,7 @@ M.GetUsageInput = {
 
 M.GetUsageOutput = {
     type = "structure",
+    id = "GetUsageOutput",
     members = {
         usagePlanId = {
             type = "string",
@@ -4995,6 +5201,7 @@ M.GetUsageOutput = {
 
 M.GetUsagePlanInput = {
     type = "structure",
+    id = "GetUsagePlanInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -5008,6 +5215,7 @@ M.GetUsagePlanInput = {
 
 M.GetUsagePlanOutput = {
     type = "structure",
+    id = "GetUsagePlanOutput",
     members = {
         id = {
             type = "string",
@@ -5037,6 +5245,7 @@ M.GetUsagePlanOutput = {
 
 M.GetUsagePlanKeyInput = {
     type = "structure",
+    id = "GetUsagePlanKeyInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -5057,6 +5266,7 @@ M.GetUsagePlanKeyInput = {
 
 M.GetUsagePlanKeyOutput = {
     type = "structure",
+    id = "GetUsagePlanKeyOutput",
     members = {
         id = {
             type = "string",
@@ -5075,6 +5285,7 @@ M.GetUsagePlanKeyOutput = {
 
 M.GetUsagePlanKeysInput = {
     type = "structure",
+    id = "GetUsagePlanKeysInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -5106,6 +5317,7 @@ M.GetUsagePlanKeysInput = {
 
 M.UsagePlanKey = {
     type = "structure",
+    id = "UsagePlanKey",
     members = {
         id = {
             type = "string",
@@ -5124,6 +5336,7 @@ M.UsagePlanKey = {
 
 M.GetUsagePlanKeysOutput = {
     type = "structure",
+    id = "GetUsagePlanKeysOutput",
     members = {
         items = {
             type = "list",
@@ -5143,6 +5356,7 @@ M.GetUsagePlanKeysOutput = {
 
 M.GetUsagePlansInput = {
     type = "structure",
+    id = "GetUsagePlansInput",
     members = {
         position = {
             type = "string",
@@ -5167,6 +5381,7 @@ M.GetUsagePlansInput = {
 
 M.UsagePlan = {
     type = "structure",
+    id = "UsagePlan",
     members = {
         id = {
             type = "string",
@@ -5196,6 +5411,7 @@ M.UsagePlan = {
 
 M.GetUsagePlansOutput = {
     type = "structure",
+    id = "GetUsagePlansOutput",
     members = {
         items = {
             type = "list",
@@ -5215,6 +5431,7 @@ M.GetUsagePlansOutput = {
 
 M.GetVpcLinkInput = {
     type = "structure",
+    id = "GetVpcLinkInput",
     members = {
         vpcLinkId = {
             type = "string",
@@ -5228,6 +5445,7 @@ M.GetVpcLinkInput = {
 
 M.GetVpcLinkOutput = {
     type = "structure",
+    id = "GetVpcLinkOutput",
     members = {
         id = {
             type = "string",
@@ -5258,6 +5476,7 @@ M.GetVpcLinkOutput = {
 
 M.GetVpcLinksInput = {
     type = "structure",
+    id = "GetVpcLinksInput",
     members = {
         position = {
             type = "string",
@@ -5276,6 +5495,7 @@ M.GetVpcLinksInput = {
 
 M.VpcLink = {
     type = "structure",
+    id = "VpcLink",
     members = {
         id = {
             type = "string",
@@ -5306,6 +5526,7 @@ M.VpcLink = {
 
 M.GetVpcLinksOutput = {
     type = "structure",
+    id = "GetVpcLinksOutput",
     members = {
         items = {
             type = "list",
@@ -5325,6 +5546,7 @@ M.GetVpcLinksOutput = {
 
 M.ImportApiKeysInput = {
     type = "structure",
+    id = "ImportApiKeysInput",
     members = {
         body = {
             type = "blob",
@@ -5352,6 +5574,7 @@ M.ImportApiKeysInput = {
 
 M.ImportApiKeysOutput = {
     type = "structure",
+    id = "ImportApiKeysOutput",
     members = {
         ids = {
             type = "list",
@@ -5371,6 +5594,7 @@ M.PutMode = {
 
 M.ImportDocumentationPartsInput = {
     type = "structure",
+    id = "ImportDocumentationPartsInput",
     members = {
         restApiId = {
             type = "string",
@@ -5404,6 +5628,7 @@ M.ImportDocumentationPartsInput = {
 
 M.ImportDocumentationPartsOutput = {
     type = "structure",
+    id = "ImportDocumentationPartsOutput",
     members = {
         ids = {
             type = "list",
@@ -5418,6 +5643,7 @@ M.ImportDocumentationPartsOutput = {
 
 M.ImportRestApiInput = {
     type = "structure",
+    id = "ImportRestApiInput",
     members = {
         failOnWarnings = {
             type = "boolean",
@@ -5446,6 +5672,7 @@ M.ImportRestApiInput = {
 
 M.ImportRestApiOutput = {
     type = "structure",
+    id = "ImportRestApiOutput",
     members = {
         id = {
             type = "string",
@@ -5511,6 +5738,7 @@ M.ImportRestApiOutput = {
 
 M.PutGatewayResponseInput = {
     type = "structure",
+    id = "PutGatewayResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -5544,6 +5772,7 @@ M.PutGatewayResponseInput = {
 
 M.PutGatewayResponseOutput = {
     type = "structure",
+    id = "PutGatewayResponseOutput",
     members = {
         responseType = {
             type = "string",
@@ -5572,6 +5801,7 @@ M.PutGatewayResponseOutput = {
 
 M.PutIntegrationInput = {
     type = "structure",
+    id = "PutIntegrationInput",
     members = {
         restApiId = {
             type = "string",
@@ -5657,6 +5887,7 @@ M.PutIntegrationInput = {
 
 M.PutIntegrationOutput = {
     type = "structure",
+    id = "PutIntegrationOutput",
     members = {
         type = {
             type = "string",
@@ -5722,6 +5953,7 @@ M.PutIntegrationOutput = {
 
 M.PutIntegrationResponseInput = {
     type = "structure",
+    id = "PutIntegrationResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -5772,6 +6004,7 @@ M.PutIntegrationResponseInput = {
 
 M.PutIntegrationResponseOutput = {
     type = "structure",
+    id = "PutIntegrationResponseOutput",
     members = {
         statusCode = {
             type = "string",
@@ -5797,6 +6030,7 @@ M.PutIntegrationResponseOutput = {
 
 M.PutMethodInput = {
     type = "structure",
+    id = "PutMethodInput",
     members = {
         restApiId = {
             type = "string",
@@ -5859,6 +6093,7 @@ M.PutMethodInput = {
 
 M.PutMethodOutput = {
     type = "structure",
+    id = "PutMethodOutput",
     members = {
         httpMethod = {
             type = "string",
@@ -5903,6 +6138,7 @@ M.PutMethodOutput = {
 
 M.PutMethodResponseInput = {
     type = "structure",
+    id = "PutMethodResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -5947,6 +6183,7 @@ M.PutMethodResponseInput = {
 
 M.PutMethodResponseOutput = {
     type = "structure",
+    id = "PutMethodResponseOutput",
     members = {
         statusCode = {
             type = "string",
@@ -5966,6 +6203,7 @@ M.PutMethodResponseOutput = {
 
 M.PutRestApiInput = {
     type = "structure",
+    id = "PutRestApiInput",
     members = {
         restApiId = {
             type = "string",
@@ -6007,6 +6245,7 @@ M.PutRestApiInput = {
 
 M.PutRestApiOutput = {
     type = "structure",
+    id = "PutRestApiOutput",
     members = {
         id = {
             type = "string",
@@ -6072,6 +6311,7 @@ M.PutRestApiOutput = {
 
 M.RejectDomainNameAccessAssociationInput = {
     type = "structure",
+    id = "RejectDomainNameAccessAssociationInput",
     members = {
         domainNameAccessAssociationArn = {
             type = "string",
@@ -6092,10 +6332,12 @@ M.RejectDomainNameAccessAssociationInput = {
 
 M.RejectDomainNameAccessAssociationOutput = {
     type = "structure",
+    id = "RejectDomainNameAccessAssociationOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6117,10 +6359,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TestInvokeAuthorizerInput = {
     type = "structure",
+    id = "TestInvokeAuthorizerInput",
     members = {
         restApiId = {
             type = "string",
@@ -6167,6 +6411,7 @@ M.TestInvokeAuthorizerInput = {
 
 M.TestInvokeAuthorizerOutput = {
     type = "structure",
+    id = "TestInvokeAuthorizerOutput",
     members = {
         clientStatus = {
             type = "integer",
@@ -6204,6 +6449,7 @@ M.TestInvokeAuthorizerOutput = {
 
 M.TestInvokeMethodInput = {
     type = "structure",
+    id = "TestInvokeMethodInput",
     members = {
         restApiId = {
             type = "string",
@@ -6255,6 +6501,7 @@ M.TestInvokeMethodInput = {
 
 M.TestInvokeMethodOutput = {
     type = "structure",
+    id = "TestInvokeMethodOutput",
     members = {
         status = {
             type = "integer",
@@ -6289,6 +6536,7 @@ M.TestInvokeMethodOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6310,6 +6558,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.Op = {
@@ -6323,6 +6572,7 @@ M.Op = {
 
 M.PatchOperation = {
     type = "structure",
+    id = "PatchOperation",
     members = {
         op = {
             type = "string",
@@ -6341,6 +6591,7 @@ M.PatchOperation = {
 
 M.UpdateAccountInput = {
     type = "structure",
+    id = "UpdateAccountInput",
     members = {
         patchOperations = {
             type = "list",
@@ -6351,6 +6602,7 @@ M.UpdateAccountInput = {
 
 M.UpdateAccountOutput = {
     type = "structure",
+    id = "UpdateAccountOutput",
     members = {
         cloudwatchRoleArn = {
             type = "string",
@@ -6368,6 +6620,7 @@ M.UpdateAccountOutput = {
 
 M.UpdateApiKeyInput = {
     type = "structure",
+    id = "UpdateApiKeyInput",
     members = {
         apiKey = {
             type = "string",
@@ -6385,6 +6638,7 @@ M.UpdateApiKeyInput = {
 
 M.UpdateApiKeyOutput = {
     type = "structure",
+    id = "UpdateApiKeyOutput",
     members = {
         id = {
             type = "string",
@@ -6427,6 +6681,7 @@ M.UpdateApiKeyOutput = {
 
 M.UpdateAuthorizerInput = {
     type = "structure",
+    id = "UpdateAuthorizerInput",
     members = {
         restApiId = {
             type = "string",
@@ -6451,6 +6706,7 @@ M.UpdateAuthorizerInput = {
 
 M.UpdateAuthorizerOutput = {
     type = "structure",
+    id = "UpdateAuthorizerOutput",
     members = {
         id = {
             type = "string",
@@ -6488,6 +6744,7 @@ M.UpdateAuthorizerOutput = {
 
 M.UpdateBasePathMappingInput = {
     type = "structure",
+    id = "UpdateBasePathMappingInput",
     members = {
         domainName = {
             type = "string",
@@ -6518,6 +6775,7 @@ M.UpdateBasePathMappingInput = {
 
 M.UpdateBasePathMappingOutput = {
     type = "structure",
+    id = "UpdateBasePathMappingOutput",
     members = {
         basePath = {
             type = "string",
@@ -6533,6 +6791,7 @@ M.UpdateBasePathMappingOutput = {
 
 M.UpdateClientCertificateInput = {
     type = "structure",
+    id = "UpdateClientCertificateInput",
     members = {
         clientCertificateId = {
             type = "string",
@@ -6550,6 +6809,7 @@ M.UpdateClientCertificateInput = {
 
 M.UpdateClientCertificateOutput = {
     type = "structure",
+    id = "UpdateClientCertificateOutput",
     members = {
         clientCertificateId = {
             type = "string",
@@ -6576,6 +6836,7 @@ M.UpdateClientCertificateOutput = {
 
 M.UpdateDeploymentInput = {
     type = "structure",
+    id = "UpdateDeploymentInput",
     members = {
         restApiId = {
             type = "string",
@@ -6600,6 +6861,7 @@ M.UpdateDeploymentInput = {
 
 M.UpdateDeploymentOutput = {
     type = "structure",
+    id = "UpdateDeploymentOutput",
     members = {
         id = {
             type = "string",
@@ -6620,6 +6882,7 @@ M.UpdateDeploymentOutput = {
 
 M.UpdateDocumentationPartInput = {
     type = "structure",
+    id = "UpdateDocumentationPartInput",
     members = {
         restApiId = {
             type = "string",
@@ -6644,6 +6907,7 @@ M.UpdateDocumentationPartInput = {
 
 M.UpdateDocumentationPartOutput = {
     type = "structure",
+    id = "UpdateDocumentationPartOutput",
     members = {
         id = {
             type = "string",
@@ -6657,6 +6921,7 @@ M.UpdateDocumentationPartOutput = {
 
 M.UpdateDocumentationVersionInput = {
     type = "structure",
+    id = "UpdateDocumentationVersionInput",
     members = {
         restApiId = {
             type = "string",
@@ -6681,6 +6946,7 @@ M.UpdateDocumentationVersionInput = {
 
 M.UpdateDocumentationVersionOutput = {
     type = "structure",
+    id = "UpdateDocumentationVersionOutput",
     members = {
         version = {
             type = "string",
@@ -6696,6 +6962,7 @@ M.UpdateDocumentationVersionOutput = {
 
 M.UpdateDomainNameInput = {
     type = "structure",
+    id = "UpdateDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -6719,6 +6986,7 @@ M.UpdateDomainNameInput = {
 
 M.UpdateDomainNameOutput = {
     type = "structure",
+    id = "UpdateDomainNameOutput",
     members = {
         domainName = {
             type = "string",
@@ -6792,6 +7060,7 @@ M.UpdateDomainNameOutput = {
 
 M.UpdateGatewayResponseInput = {
     type = "structure",
+    id = "UpdateGatewayResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -6816,6 +7085,7 @@ M.UpdateGatewayResponseInput = {
 
 M.UpdateGatewayResponseOutput = {
     type = "structure",
+    id = "UpdateGatewayResponseOutput",
     members = {
         responseType = {
             type = "string",
@@ -6844,6 +7114,7 @@ M.UpdateGatewayResponseOutput = {
 
 M.UpdateIntegrationInput = {
     type = "structure",
+    id = "UpdateIntegrationInput",
     members = {
         restApiId = {
             type = "string",
@@ -6875,6 +7146,7 @@ M.UpdateIntegrationInput = {
 
 M.UpdateIntegrationOutput = {
     type = "structure",
+    id = "UpdateIntegrationOutput",
     members = {
         type = {
             type = "string",
@@ -6940,6 +7212,7 @@ M.UpdateIntegrationOutput = {
 
 M.UpdateIntegrationResponseInput = {
     type = "structure",
+    id = "UpdateIntegrationResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -6978,6 +7251,7 @@ M.UpdateIntegrationResponseInput = {
 
 M.UpdateIntegrationResponseOutput = {
     type = "structure",
+    id = "UpdateIntegrationResponseOutput",
     members = {
         statusCode = {
             type = "string",
@@ -7003,6 +7277,7 @@ M.UpdateIntegrationResponseOutput = {
 
 M.UpdateMethodInput = {
     type = "structure",
+    id = "UpdateMethodInput",
     members = {
         restApiId = {
             type = "string",
@@ -7034,6 +7309,7 @@ M.UpdateMethodInput = {
 
 M.UpdateMethodOutput = {
     type = "structure",
+    id = "UpdateMethodOutput",
     members = {
         httpMethod = {
             type = "string",
@@ -7078,6 +7354,7 @@ M.UpdateMethodOutput = {
 
 M.UpdateMethodResponseInput = {
     type = "structure",
+    id = "UpdateMethodResponseInput",
     members = {
         restApiId = {
             type = "string",
@@ -7116,6 +7393,7 @@ M.UpdateMethodResponseInput = {
 
 M.UpdateMethodResponseOutput = {
     type = "structure",
+    id = "UpdateMethodResponseOutput",
     members = {
         statusCode = {
             type = "string",
@@ -7135,6 +7413,7 @@ M.UpdateMethodResponseOutput = {
 
 M.UpdateModelInput = {
     type = "structure",
+    id = "UpdateModelInput",
     members = {
         restApiId = {
             type = "string",
@@ -7159,6 +7438,7 @@ M.UpdateModelInput = {
 
 M.UpdateModelOutput = {
     type = "structure",
+    id = "UpdateModelOutput",
     members = {
         id = {
             type = "string",
@@ -7180,6 +7460,7 @@ M.UpdateModelOutput = {
 
 M.UpdateRequestValidatorInput = {
     type = "structure",
+    id = "UpdateRequestValidatorInput",
     members = {
         restApiId = {
             type = "string",
@@ -7204,6 +7485,7 @@ M.UpdateRequestValidatorInput = {
 
 M.UpdateRequestValidatorOutput = {
     type = "structure",
+    id = "UpdateRequestValidatorOutput",
     members = {
         id = {
             type = "string",
@@ -7228,6 +7510,7 @@ M.UpdateRequestValidatorOutput = {
 
 M.UpdateResourceInput = {
     type = "structure",
+    id = "UpdateResourceInput",
     members = {
         restApiId = {
             type = "string",
@@ -7252,6 +7535,7 @@ M.UpdateResourceInput = {
 
 M.UpdateResourceOutput = {
     type = "structure",
+    id = "UpdateResourceOutput",
     members = {
         id = {
             type = "string",
@@ -7275,6 +7559,7 @@ M.UpdateResourceOutput = {
 
 M.UpdateRestApiInput = {
     type = "structure",
+    id = "UpdateRestApiInput",
     members = {
         restApiId = {
             type = "string",
@@ -7292,6 +7577,7 @@ M.UpdateRestApiInput = {
 
 M.UpdateRestApiOutput = {
     type = "structure",
+    id = "UpdateRestApiOutput",
     members = {
         id = {
             type = "string",
@@ -7357,6 +7643,7 @@ M.UpdateRestApiOutput = {
 
 M.UpdateStageInput = {
     type = "structure",
+    id = "UpdateStageInput",
     members = {
         restApiId = {
             type = "string",
@@ -7381,6 +7668,7 @@ M.UpdateStageInput = {
 
 M.UpdateStageOutput = {
     type = "structure",
+    id = "UpdateStageOutput",
     members = {
         deploymentId = {
             type = "string",
@@ -7446,6 +7734,7 @@ M.UpdateStageOutput = {
 
 M.UpdateUsageInput = {
     type = "structure",
+    id = "UpdateUsageInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -7470,6 +7759,7 @@ M.UpdateUsageInput = {
 
 M.UpdateUsageOutput = {
     type = "structure",
+    id = "UpdateUsageOutput",
     members = {
         usagePlanId = {
             type = "string",
@@ -7499,6 +7789,7 @@ M.UpdateUsageOutput = {
 
 M.UpdateUsagePlanInput = {
     type = "structure",
+    id = "UpdateUsagePlanInput",
     members = {
         usagePlanId = {
             type = "string",
@@ -7516,6 +7807,7 @@ M.UpdateUsagePlanInput = {
 
 M.UpdateUsagePlanOutput = {
     type = "structure",
+    id = "UpdateUsagePlanOutput",
     members = {
         id = {
             type = "string",
@@ -7545,6 +7837,7 @@ M.UpdateUsagePlanOutput = {
 
 M.UpdateVpcLinkInput = {
     type = "structure",
+    id = "UpdateVpcLinkInput",
     members = {
         vpcLinkId = {
             type = "string",
@@ -7562,6 +7855,7 @@ M.UpdateVpcLinkInput = {
 
 M.UpdateVpcLinkOutput = {
     type = "structure",
+    id = "UpdateVpcLinkOutput",
     members = {
         id = {
             type = "string",

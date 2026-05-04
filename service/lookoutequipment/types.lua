@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -23,6 +24,7 @@ M.AutoPromotionResult = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -36,6 +38,7 @@ M.ConflictException = {
 
 M.DatasetSchema = {
     type = "structure",
+    id = "DatasetSchema",
     members = {
         InlineDataSchema = {
             type = "string",
@@ -48,6 +51,7 @@ M.DatasetSchema = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -66,6 +70,7 @@ M.Tag = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         DatasetName = {
             type = "string",
@@ -100,6 +105,7 @@ M.DatasetStatus = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         DatasetName = {
             type = "string",
@@ -115,6 +121,7 @@ M.CreateDatasetOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -128,6 +135,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -141,6 +149,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -154,6 +163,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -167,6 +177,7 @@ M.ValidationException = {
 
 M.InferenceInputNameConfiguration = {
     type = "structure",
+    id = "InferenceInputNameConfiguration",
     members = {
         TimestampFormat = {
             type = "string",
@@ -179,6 +190,7 @@ M.InferenceInputNameConfiguration = {
 
 M.InferenceS3InputConfiguration = {
     type = "structure",
+    id = "InferenceS3InputConfiguration",
     members = {
         Bucket = {
             type = "string",
@@ -194,6 +206,7 @@ M.InferenceS3InputConfiguration = {
 
 M.InferenceInputConfiguration = {
     type = "structure",
+    id = "InferenceInputConfiguration",
     members = {
         S3InputConfiguration = M.InferenceS3InputConfiguration,
         InputTimeZoneOffset = {
@@ -205,6 +218,7 @@ M.InferenceInputConfiguration = {
 
 M.InferenceS3OutputConfiguration = {
     type = "structure",
+    id = "InferenceS3OutputConfiguration",
     members = {
         Bucket = {
             type = "string",
@@ -220,6 +234,7 @@ M.InferenceS3OutputConfiguration = {
 
 M.InferenceOutputConfiguration = {
     type = "structure",
+    id = "InferenceOutputConfiguration",
     members = {
         S3OutputConfiguration = setmetatable({ traits = {
             required = true,
@@ -240,6 +255,7 @@ M.DataUploadFrequency = {
 
 M.CreateInferenceSchedulerInput = {
     type = "structure",
+    id = "CreateInferenceSchedulerInput",
     members = {
         ModelName = {
             type = "string",
@@ -306,6 +322,7 @@ M.InferenceSchedulerStatus = {
 
 M.CreateInferenceSchedulerOutput = {
     type = "structure",
+    id = "CreateInferenceSchedulerOutput",
     members = {
         InferenceSchedulerArn = {
             type = "string",
@@ -324,6 +341,7 @@ M.CreateInferenceSchedulerOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -343,6 +361,7 @@ M.LabelRating = {
 
 M.CreateLabelInput = {
     type = "structure",
+    id = "CreateLabelInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -389,6 +408,7 @@ M.CreateLabelInput = {
 
 M.CreateLabelOutput = {
     type = "structure",
+    id = "CreateLabelOutput",
     members = {
         LabelId = {
             type = "string",
@@ -398,6 +418,7 @@ M.CreateLabelOutput = {
 
 M.CreateLabelGroupInput = {
     type = "structure",
+    id = "CreateLabelGroupInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -425,6 +446,7 @@ M.CreateLabelGroupInput = {
 
 M.CreateLabelGroupOutput = {
     type = "structure",
+    id = "CreateLabelGroupOutput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -451,6 +473,7 @@ M.TargetSamplingRate = {
 
 M.DataPreProcessingConfiguration = {
     type = "structure",
+    id = "DataPreProcessingConfiguration",
     members = {
         TargetSamplingRate = {
             type = "string",
@@ -460,6 +483,7 @@ M.DataPreProcessingConfiguration = {
 
 M.LabelsS3InputConfiguration = {
     type = "structure",
+    id = "LabelsS3InputConfiguration",
     members = {
         Bucket = {
             type = "string",
@@ -475,6 +499,7 @@ M.LabelsS3InputConfiguration = {
 
 M.LabelsInputConfiguration = {
     type = "structure",
+    id = "LabelsInputConfiguration",
     members = {
         S3InputConfiguration = M.LabelsS3InputConfiguration,
         LabelGroupName = {
@@ -485,6 +510,7 @@ M.LabelsInputConfiguration = {
 
 M.ModelDiagnosticsS3OutputConfiguration = {
     type = "structure",
+    id = "ModelDiagnosticsS3OutputConfiguration",
     members = {
         Bucket = {
             type = "string",
@@ -500,6 +526,7 @@ M.ModelDiagnosticsS3OutputConfiguration = {
 
 M.ModelDiagnosticsOutputConfiguration = {
     type = "structure",
+    id = "ModelDiagnosticsOutputConfiguration",
     members = {
         S3OutputConfiguration = setmetatable({ traits = {
             required = true,
@@ -512,6 +539,7 @@ M.ModelDiagnosticsOutputConfiguration = {
 
 M.CreateModelInput = {
     type = "structure",
+    id = "CreateModelInput",
     members = {
         ModelName = {
             type = "string",
@@ -573,6 +601,7 @@ M.ModelStatus = {
 
 M.CreateModelOutput = {
     type = "structure",
+    id = "CreateModelOutput",
     members = {
         ModelArn = {
             type = "string",
@@ -590,6 +619,7 @@ M.ModelPromoteMode = {
 
 M.CreateRetrainingSchedulerInput = {
     type = "structure",
+    id = "CreateRetrainingSchedulerInput",
     members = {
         ModelName = {
             type = "string",
@@ -634,6 +664,7 @@ M.RetrainingSchedulerStatus = {
 
 M.CreateRetrainingSchedulerOutput = {
     type = "structure",
+    id = "CreateRetrainingSchedulerOutput",
     members = {
         ModelName = {
             type = "string",
@@ -649,6 +680,7 @@ M.CreateRetrainingSchedulerOutput = {
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         DatasetName = {
             type = "string",
@@ -661,10 +693,12 @@ M.DeleteDatasetInput = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
 }
 
 M.DeleteInferenceSchedulerInput = {
     type = "structure",
+    id = "DeleteInferenceSchedulerInput",
     members = {
         InferenceSchedulerName = {
             type = "string",
@@ -677,10 +711,12 @@ M.DeleteInferenceSchedulerInput = {
 
 M.DeleteInferenceSchedulerOutput = {
     type = "structure",
+    id = "DeleteInferenceSchedulerOutput",
 }
 
 M.DeleteLabelInput = {
     type = "structure",
+    id = "DeleteLabelInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -699,10 +735,12 @@ M.DeleteLabelInput = {
 
 M.DeleteLabelOutput = {
     type = "structure",
+    id = "DeleteLabelOutput",
 }
 
 M.DeleteLabelGroupInput = {
     type = "structure",
+    id = "DeleteLabelGroupInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -715,10 +753,12 @@ M.DeleteLabelGroupInput = {
 
 M.DeleteLabelGroupOutput = {
     type = "structure",
+    id = "DeleteLabelGroupOutput",
 }
 
 M.DeleteModelInput = {
     type = "structure",
+    id = "DeleteModelInput",
     members = {
         ModelName = {
             type = "string",
@@ -731,10 +771,12 @@ M.DeleteModelInput = {
 
 M.DeleteModelOutput = {
     type = "structure",
+    id = "DeleteModelOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -747,10 +789,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteRetrainingSchedulerInput = {
     type = "structure",
+    id = "DeleteRetrainingSchedulerInput",
     members = {
         ModelName = {
             type = "string",
@@ -763,10 +807,12 @@ M.DeleteRetrainingSchedulerInput = {
 
 M.DeleteRetrainingSchedulerOutput = {
     type = "structure",
+    id = "DeleteRetrainingSchedulerOutput",
 }
 
 M.DescribeDataIngestionJobInput = {
     type = "structure",
+    id = "DescribeDataIngestionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -779,6 +825,7 @@ M.DescribeDataIngestionJobInput = {
 
 M.DuplicateTimestamps = {
     type = "structure",
+    id = "DuplicateTimestamps",
     members = {
         TotalNumberOfDuplicateTimestamps = {
             type = "integer",
@@ -791,6 +838,7 @@ M.DuplicateTimestamps = {
 
 M.MissingCompleteSensorData = {
     type = "structure",
+    id = "MissingCompleteSensorData",
     members = {
         AffectedSensorCount = {
             type = "integer",
@@ -803,6 +851,7 @@ M.MissingCompleteSensorData = {
 
 M.SensorsWithShortDateRange = {
     type = "structure",
+    id = "SensorsWithShortDateRange",
     members = {
         AffectedSensorCount = {
             type = "integer",
@@ -815,6 +864,7 @@ M.SensorsWithShortDateRange = {
 
 M.InsufficientSensorData = {
     type = "structure",
+    id = "InsufficientSensorData",
     members = {
         MissingCompleteSensorData = setmetatable({ traits = {
             required = true,
@@ -827,6 +877,7 @@ M.InsufficientSensorData = {
 
 M.InvalidSensorData = {
     type = "structure",
+    id = "InvalidSensorData",
     members = {
         AffectedSensorCount = {
             type = "integer",
@@ -845,6 +896,7 @@ M.InvalidSensorData = {
 
 M.MissingSensorData = {
     type = "structure",
+    id = "MissingSensorData",
     members = {
         AffectedSensorCount = {
             type = "integer",
@@ -863,6 +915,7 @@ M.MissingSensorData = {
 
 M.UnsupportedTimestamps = {
     type = "structure",
+    id = "UnsupportedTimestamps",
     members = {
         TotalNumberOfUnsupportedTimestamps = {
             type = "integer",
@@ -875,6 +928,7 @@ M.UnsupportedTimestamps = {
 
 M.DataQualitySummary = {
     type = "structure",
+    id = "DataQualitySummary",
     members = {
         InsufficientSensorData = setmetatable({ traits = {
             required = true,
@@ -896,6 +950,7 @@ M.DataQualitySummary = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         Bucket = {
             type = "string",
@@ -914,6 +969,7 @@ M.S3Object = {
 
 M.IngestedFilesSummary = {
     type = "structure",
+    id = "IngestedFilesSummary",
     members = {
         TotalNumberOfFiles = {
             type = "integer",
@@ -936,6 +992,7 @@ M.IngestedFilesSummary = {
 
 M.IngestionS3InputConfiguration = {
     type = "structure",
+    id = "IngestionS3InputConfiguration",
     members = {
         Bucket = {
             type = "string",
@@ -954,6 +1011,7 @@ M.IngestionS3InputConfiguration = {
 
 M.IngestionInputConfiguration = {
     type = "structure",
+    id = "IngestionInputConfiguration",
     members = {
         S3InputConfiguration = setmetatable({ traits = {
             required = true,
@@ -970,6 +1028,7 @@ M.IngestionJobStatus = {
 
 M.DescribeDataIngestionJobOutput = {
     type = "structure",
+    id = "DescribeDataIngestionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1012,6 +1071,7 @@ M.DescribeDataIngestionJobOutput = {
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         DatasetName = {
             type = "string",
@@ -1024,6 +1084,7 @@ M.DescribeDatasetInput = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         DatasetName = {
             type = "string",
@@ -1069,6 +1130,7 @@ M.DescribeDatasetOutput = {
 
 M.DescribeInferenceSchedulerInput = {
     type = "structure",
+    id = "DescribeInferenceSchedulerInput",
     members = {
         InferenceSchedulerName = {
             type = "string",
@@ -1086,6 +1148,7 @@ M.LatestInferenceResult = {
 
 M.DescribeInferenceSchedulerOutput = {
     type = "structure",
+    id = "DescribeInferenceSchedulerOutput",
     members = {
         ModelArn = {
             type = "string",
@@ -1130,6 +1193,7 @@ M.DescribeInferenceSchedulerOutput = {
 
 M.DescribeLabelInput = {
     type = "structure",
+    id = "DescribeLabelInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -1148,6 +1212,7 @@ M.DescribeLabelInput = {
 
 M.DescribeLabelOutput = {
     type = "structure",
+    id = "DescribeLabelOutput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -1184,6 +1249,7 @@ M.DescribeLabelOutput = {
 
 M.DescribeLabelGroupInput = {
     type = "structure",
+    id = "DescribeLabelGroupInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -1196,6 +1262,7 @@ M.DescribeLabelGroupInput = {
 
 M.DescribeLabelGroupOutput = {
     type = "structure",
+    id = "DescribeLabelGroupOutput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -1218,6 +1285,7 @@ M.DescribeLabelGroupOutput = {
 
 M.DescribeModelInput = {
     type = "structure",
+    id = "DescribeModelInput",
     members = {
         ModelName = {
             type = "string",
@@ -1238,6 +1306,7 @@ M.ModelVersionStatus = {
 
 M.DescribeModelOutput = {
     type = "structure",
+    id = "DescribeModelOutput",
     members = {
         ModelName = {
             type = "string",
@@ -1373,6 +1442,7 @@ M.DescribeModelOutput = {
 
 M.DescribeModelVersionInput = {
     type = "structure",
+    id = "DescribeModelVersionInput",
     members = {
         ModelName = {
             type = "string",
@@ -1397,6 +1467,7 @@ M.ModelVersionSourceType = {
 
 M.DescribeModelVersionOutput = {
     type = "structure",
+    id = "DescribeModelVersionOutput",
     members = {
         ModelName = {
             type = "string",
@@ -1500,6 +1571,7 @@ M.DescribeModelVersionOutput = {
 
 M.DescribeResourcePolicyInput = {
     type = "structure",
+    id = "DescribeResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1512,6 +1584,7 @@ M.DescribeResourcePolicyInput = {
 
 M.DescribeResourcePolicyOutput = {
     type = "structure",
+    id = "DescribeResourcePolicyOutput",
     members = {
         PolicyRevisionId = {
             type = "string",
@@ -1530,6 +1603,7 @@ M.DescribeResourcePolicyOutput = {
 
 M.DescribeRetrainingSchedulerInput = {
     type = "structure",
+    id = "DescribeRetrainingSchedulerInput",
     members = {
         ModelName = {
             type = "string",
@@ -1542,6 +1616,7 @@ M.DescribeRetrainingSchedulerInput = {
 
 M.DescribeRetrainingSchedulerOutput = {
     type = "structure",
+    id = "DescribeRetrainingSchedulerOutput",
     members = {
         ModelName = {
             type = "string",
@@ -1575,6 +1650,7 @@ M.DescribeRetrainingSchedulerOutput = {
 
 M.ImportDatasetInput = {
     type = "structure",
+    id = "ImportDatasetInput",
     members = {
         SourceDatasetArn = {
             type = "string",
@@ -1604,6 +1680,7 @@ M.ImportDatasetInput = {
 
 M.ImportDatasetOutput = {
     type = "structure",
+    id = "ImportDatasetOutput",
     members = {
         DatasetName = {
             type = "string",
@@ -1628,6 +1705,7 @@ M.InferenceDataImportStrategy = {
 
 M.ImportModelVersionInput = {
     type = "structure",
+    id = "ImportModelVersionInput",
     members = {
         SourceModelVersionArn = {
             type = "string",
@@ -1670,6 +1748,7 @@ M.ImportModelVersionInput = {
 
 M.ImportModelVersionOutput = {
     type = "structure",
+    id = "ImportModelVersionOutput",
     members = {
         ModelName = {
             type = "string",
@@ -1691,6 +1770,7 @@ M.ImportModelVersionOutput = {
 
 M.ListDataIngestionJobsInput = {
     type = "structure",
+    id = "ListDataIngestionJobsInput",
     members = {
         DatasetName = {
             type = "string",
@@ -1709,6 +1789,7 @@ M.ListDataIngestionJobsInput = {
 
 M.DataIngestionJobSummary = {
     type = "structure",
+    id = "DataIngestionJobSummary",
     members = {
         JobId = {
             type = "string",
@@ -1728,6 +1809,7 @@ M.DataIngestionJobSummary = {
 
 M.ListDataIngestionJobsOutput = {
     type = "structure",
+    id = "ListDataIngestionJobsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1741,6 +1823,7 @@ M.ListDataIngestionJobsOutput = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1756,6 +1839,7 @@ M.ListDatasetsInput = {
 
 M.DatasetSummary = {
     type = "structure",
+    id = "DatasetSummary",
     members = {
         DatasetName = {
             type = "string",
@@ -1774,6 +1858,7 @@ M.DatasetSummary = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1787,6 +1872,7 @@ M.ListDatasetsOutput = {
 
 M.ListInferenceEventsInput = {
     type = "structure",
+    id = "ListInferenceEventsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1817,6 +1903,7 @@ M.ListInferenceEventsInput = {
 
 M.InferenceEventSummary = {
     type = "structure",
+    id = "InferenceEventSummary",
     members = {
         InferenceSchedulerArn = {
             type = "string",
@@ -1841,6 +1928,7 @@ M.InferenceEventSummary = {
 
 M.ListInferenceEventsOutput = {
     type = "structure",
+    id = "ListInferenceEventsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1860,6 +1948,7 @@ M.InferenceExecutionStatus = {
 
 M.ListInferenceExecutionsInput = {
     type = "structure",
+    id = "ListInferenceExecutionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1887,6 +1976,7 @@ M.ListInferenceExecutionsInput = {
 
 M.InferenceExecutionSummary = {
     type = "structure",
+    id = "InferenceExecutionSummary",
     members = {
         ModelName = {
             type = "string",
@@ -1929,6 +2019,7 @@ M.InferenceExecutionSummary = {
 
 M.ListInferenceExecutionsOutput = {
     type = "structure",
+    id = "ListInferenceExecutionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1942,6 +2033,7 @@ M.ListInferenceExecutionsOutput = {
 
 M.ListInferenceSchedulersInput = {
     type = "structure",
+    id = "ListInferenceSchedulersInput",
     members = {
         NextToken = {
             type = "string",
@@ -1963,6 +2055,7 @@ M.ListInferenceSchedulersInput = {
 
 M.InferenceSchedulerSummary = {
     type = "structure",
+    id = "InferenceSchedulerSummary",
     members = {
         ModelName = {
             type = "string",
@@ -1993,6 +2086,7 @@ M.InferenceSchedulerSummary = {
 
 M.ListInferenceSchedulersOutput = {
     type = "structure",
+    id = "ListInferenceSchedulersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2006,6 +2100,7 @@ M.ListInferenceSchedulersOutput = {
 
 M.ListLabelGroupsInput = {
     type = "structure",
+    id = "ListLabelGroupsInput",
     members = {
         LabelGroupNameBeginsWith = {
             type = "string",
@@ -2021,6 +2116,7 @@ M.ListLabelGroupsInput = {
 
 M.LabelGroupSummary = {
     type = "structure",
+    id = "LabelGroupSummary",
     members = {
         LabelGroupName = {
             type = "string",
@@ -2039,6 +2135,7 @@ M.LabelGroupSummary = {
 
 M.ListLabelGroupsOutput = {
     type = "structure",
+    id = "ListLabelGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2052,6 +2149,7 @@ M.ListLabelGroupsOutput = {
 
 M.ListLabelsInput = {
     type = "structure",
+    id = "ListLabelsInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -2082,6 +2180,7 @@ M.ListLabelsInput = {
 
 M.LabelSummary = {
     type = "structure",
+    id = "LabelSummary",
     members = {
         LabelGroupName = {
             type = "string",
@@ -2115,6 +2214,7 @@ M.LabelSummary = {
 
 M.ListLabelsOutput = {
     type = "structure",
+    id = "ListLabelsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2128,6 +2228,7 @@ M.ListLabelsOutput = {
 
 M.ListModelsInput = {
     type = "structure",
+    id = "ListModelsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2149,6 +2250,7 @@ M.ListModelsInput = {
 
 M.ModelSummary = {
     type = "structure",
+    id = "ModelSummary",
     members = {
         ModelName = {
             type = "string",
@@ -2198,6 +2300,7 @@ M.ModelSummary = {
 
 M.ListModelsOutput = {
     type = "structure",
+    id = "ListModelsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2211,6 +2314,7 @@ M.ListModelsOutput = {
 
 M.ListModelVersionsInput = {
     type = "structure",
+    id = "ListModelVersionsInput",
     members = {
         ModelName = {
             type = "string",
@@ -2247,6 +2351,7 @@ M.ListModelVersionsInput = {
 
 M.ModelVersionSummary = {
     type = "structure",
+    id = "ModelVersionSummary",
     members = {
         ModelName = {
             type = "string",
@@ -2277,6 +2382,7 @@ M.ModelVersionSummary = {
 
 M.ListModelVersionsOutput = {
     type = "structure",
+    id = "ListModelVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2290,6 +2396,7 @@ M.ListModelVersionsOutput = {
 
 M.ListRetrainingSchedulersInput = {
     type = "structure",
+    id = "ListRetrainingSchedulersInput",
     members = {
         ModelNameBeginsWith = {
             type = "string",
@@ -2308,6 +2415,7 @@ M.ListRetrainingSchedulersInput = {
 
 M.RetrainingSchedulerSummary = {
     type = "structure",
+    id = "RetrainingSchedulerSummary",
     members = {
         ModelName = {
             type = "string",
@@ -2332,6 +2440,7 @@ M.RetrainingSchedulerSummary = {
 
 M.ListRetrainingSchedulersOutput = {
     type = "structure",
+    id = "ListRetrainingSchedulersOutput",
     members = {
         RetrainingSchedulerSummaries = {
             type = "list",
@@ -2345,6 +2454,7 @@ M.ListRetrainingSchedulersOutput = {
 
 M.ListSensorStatisticsInput = {
     type = "structure",
+    id = "ListSensorStatisticsInput",
     members = {
         DatasetName = {
             type = "string",
@@ -2371,6 +2481,7 @@ M.StatisticalIssueStatus = {
 
 M.CategoricalValues = {
     type = "structure",
+    id = "CategoricalValues",
     members = {
         Status = {
             type = "string",
@@ -2386,6 +2497,7 @@ M.CategoricalValues = {
 
 M.CountPercent = {
     type = "structure",
+    id = "CountPercent",
     members = {
         Count = {
             type = "integer",
@@ -2405,6 +2517,7 @@ M.CountPercent = {
 
 M.LargeTimestampGaps = {
     type = "structure",
+    id = "LargeTimestampGaps",
     members = {
         Status = {
             type = "string",
@@ -2429,6 +2542,7 @@ M.Monotonicity = {
 
 M.MonotonicValues = {
     type = "structure",
+    id = "MonotonicValues",
     members = {
         Status = {
             type = "string",
@@ -2444,6 +2558,7 @@ M.MonotonicValues = {
 
 M.MultipleOperatingModes = {
     type = "structure",
+    id = "MultipleOperatingModes",
     members = {
         Status = {
             type = "string",
@@ -2456,6 +2571,7 @@ M.MultipleOperatingModes = {
 
 M.SensorStatisticsSummary = {
     type = "structure",
+    id = "SensorStatisticsSummary",
     members = {
         ComponentName = {
             type = "string",
@@ -2488,6 +2604,7 @@ M.SensorStatisticsSummary = {
 
 M.ListSensorStatisticsOutput = {
     type = "structure",
+    id = "ListSensorStatisticsOutput",
     members = {
         SensorStatisticsSummaries = {
             type = "list",
@@ -2501,6 +2618,7 @@ M.ListSensorStatisticsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2513,6 +2631,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2523,6 +2642,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2551,6 +2671,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2563,6 +2684,7 @@ M.PutResourcePolicyOutput = {
 
 M.StartDataIngestionJobInput = {
     type = "structure",
+    id = "StartDataIngestionJobInput",
     members = {
         DatasetName = {
             type = "string",
@@ -2591,6 +2713,7 @@ M.StartDataIngestionJobInput = {
 
 M.StartDataIngestionJobOutput = {
     type = "structure",
+    id = "StartDataIngestionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -2603,6 +2726,7 @@ M.StartDataIngestionJobOutput = {
 
 M.StartInferenceSchedulerInput = {
     type = "structure",
+    id = "StartInferenceSchedulerInput",
     members = {
         InferenceSchedulerName = {
             type = "string",
@@ -2615,6 +2739,7 @@ M.StartInferenceSchedulerInput = {
 
 M.StartInferenceSchedulerOutput = {
     type = "structure",
+    id = "StartInferenceSchedulerOutput",
     members = {
         ModelArn = {
             type = "string",
@@ -2636,6 +2761,7 @@ M.StartInferenceSchedulerOutput = {
 
 M.StartRetrainingSchedulerInput = {
     type = "structure",
+    id = "StartRetrainingSchedulerInput",
     members = {
         ModelName = {
             type = "string",
@@ -2648,6 +2774,7 @@ M.StartRetrainingSchedulerInput = {
 
 M.StartRetrainingSchedulerOutput = {
     type = "structure",
+    id = "StartRetrainingSchedulerOutput",
     members = {
         ModelName = {
             type = "string",
@@ -2663,6 +2790,7 @@ M.StartRetrainingSchedulerOutput = {
 
 M.StopInferenceSchedulerInput = {
     type = "structure",
+    id = "StopInferenceSchedulerInput",
     members = {
         InferenceSchedulerName = {
             type = "string",
@@ -2675,6 +2803,7 @@ M.StopInferenceSchedulerInput = {
 
 M.StopInferenceSchedulerOutput = {
     type = "structure",
+    id = "StopInferenceSchedulerOutput",
     members = {
         ModelArn = {
             type = "string",
@@ -2696,6 +2825,7 @@ M.StopInferenceSchedulerOutput = {
 
 M.StopRetrainingSchedulerInput = {
     type = "structure",
+    id = "StopRetrainingSchedulerInput",
     members = {
         ModelName = {
             type = "string",
@@ -2708,6 +2838,7 @@ M.StopRetrainingSchedulerInput = {
 
 M.StopRetrainingSchedulerOutput = {
     type = "structure",
+    id = "StopRetrainingSchedulerOutput",
     members = {
         ModelName = {
             type = "string",
@@ -2723,6 +2854,7 @@ M.StopRetrainingSchedulerOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2742,10 +2874,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2765,10 +2899,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateActiveModelVersionInput = {
     type = "structure",
+    id = "UpdateActiveModelVersionInput",
     members = {
         ModelName = {
             type = "string",
@@ -2787,6 +2923,7 @@ M.UpdateActiveModelVersionInput = {
 
 M.UpdateActiveModelVersionOutput = {
     type = "structure",
+    id = "UpdateActiveModelVersionOutput",
     members = {
         ModelName = {
             type = "string",
@@ -2811,6 +2948,7 @@ M.UpdateActiveModelVersionOutput = {
 
 M.UpdateInferenceSchedulerInput = {
     type = "structure",
+    id = "UpdateInferenceSchedulerInput",
     members = {
         InferenceSchedulerName = {
             type = "string",
@@ -2834,10 +2972,12 @@ M.UpdateInferenceSchedulerInput = {
 
 M.UpdateInferenceSchedulerOutput = {
     type = "structure",
+    id = "UpdateInferenceSchedulerOutput",
 }
 
 M.UpdateLabelGroupInput = {
     type = "structure",
+    id = "UpdateLabelGroupInput",
     members = {
         LabelGroupName = {
             type = "string",
@@ -2854,10 +2994,12 @@ M.UpdateLabelGroupInput = {
 
 M.UpdateLabelGroupOutput = {
     type = "structure",
+    id = "UpdateLabelGroupOutput",
 }
 
 M.UpdateModelInput = {
     type = "structure",
+    id = "UpdateModelInput",
     members = {
         ModelName = {
             type = "string",
@@ -2875,10 +3017,12 @@ M.UpdateModelInput = {
 
 M.UpdateModelOutput = {
     type = "structure",
+    id = "UpdateModelOutput",
 }
 
 M.UpdateRetrainingSchedulerInput = {
     type = "structure",
+    id = "UpdateRetrainingSchedulerInput",
     members = {
         ModelName = {
             type = "string",
@@ -2903,6 +3047,7 @@ M.UpdateRetrainingSchedulerInput = {
 
 M.UpdateRetrainingSchedulerOutput = {
     type = "structure",
+    id = "UpdateRetrainingSchedulerOutput",
 }
 
 return M

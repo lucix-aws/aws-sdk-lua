@@ -2,6 +2,7 @@ local M = {}
 
 M.Attachment = {
     type = "structure",
+    id = "Attachment",
     members = {
         fileName = {
             type = "string",
@@ -14,6 +15,7 @@ M.Attachment = {
 
 M.AddAttachmentsToSetInput = {
     type = "structure",
+    id = "AddAttachmentsToSetInput",
     members = {
         attachmentSetId = {
             type = "string",
@@ -30,6 +32,7 @@ M.AddAttachmentsToSetInput = {
 
 M.AddAttachmentsToSetOutput = {
     type = "structure",
+    id = "AddAttachmentsToSetOutput",
     members = {
         attachmentSetId = {
             type = "string",
@@ -42,6 +45,7 @@ M.AddAttachmentsToSetOutput = {
 
 M.AttachmentLimitExceeded = {
     type = "structure",
+    id = "AttachmentLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -52,6 +56,7 @@ M.AttachmentLimitExceeded = {
 
 M.AttachmentSetExpired = {
     type = "structure",
+    id = "AttachmentSetExpired",
     error = "client",
     members = {
         message = {
@@ -62,6 +67,7 @@ M.AttachmentSetExpired = {
 
 M.AttachmentSetIdNotFound = {
     type = "structure",
+    id = "AttachmentSetIdNotFound",
     error = "client",
     members = {
         message = {
@@ -72,6 +78,7 @@ M.AttachmentSetIdNotFound = {
 
 M.AttachmentSetSizeLimitExceeded = {
     type = "structure",
+    id = "AttachmentSetSizeLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -82,6 +89,7 @@ M.AttachmentSetSizeLimitExceeded = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         message = {
@@ -92,6 +100,7 @@ M.InternalServerError = {
 
 M.AddCommunicationToCaseInput = {
     type = "structure",
+    id = "AddCommunicationToCaseInput",
     members = {
         caseId = {
             type = "string",
@@ -114,6 +123,7 @@ M.AddCommunicationToCaseInput = {
 
 M.AddCommunicationToCaseOutput = {
     type = "structure",
+    id = "AddCommunicationToCaseOutput",
     members = {
         result = {
             type = "boolean",
@@ -126,6 +136,7 @@ M.AddCommunicationToCaseOutput = {
 
 M.CaseIdNotFound = {
     type = "structure",
+    id = "CaseIdNotFound",
     error = "client",
     members = {
         message = {
@@ -136,6 +147,7 @@ M.CaseIdNotFound = {
 
 M.AttachmentDetails = {
     type = "structure",
+    id = "AttachmentDetails",
     members = {
         attachmentId = {
             type = "string",
@@ -148,6 +160,7 @@ M.AttachmentDetails = {
 
 M.AttachmentIdNotFound = {
     type = "structure",
+    id = "AttachmentIdNotFound",
     error = "client",
     members = {
         message = {
@@ -158,6 +171,7 @@ M.AttachmentIdNotFound = {
 
 M.CaseCreationLimitExceeded = {
     type = "structure",
+    id = "CaseCreationLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -168,6 +182,7 @@ M.CaseCreationLimitExceeded = {
 
 M.CreateCaseInput = {
     type = "structure",
+    id = "CreateCaseInput",
     members = {
         subject = {
             type = "string",
@@ -208,6 +223,7 @@ M.CreateCaseInput = {
 
 M.CreateCaseOutput = {
     type = "structure",
+    id = "CreateCaseOutput",
     members = {
         caseId = {
             type = "string",
@@ -217,6 +233,7 @@ M.CreateCaseOutput = {
 
 M.DescribeAttachmentInput = {
     type = "structure",
+    id = "DescribeAttachmentInput",
     members = {
         attachmentId = {
             type = "string",
@@ -229,6 +246,7 @@ M.DescribeAttachmentInput = {
 
 M.DescribeAttachmentLimitExceeded = {
     type = "structure",
+    id = "DescribeAttachmentLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -239,6 +257,7 @@ M.DescribeAttachmentLimitExceeded = {
 
 M.DescribeAttachmentOutput = {
     type = "structure",
+    id = "DescribeAttachmentOutput",
     members = {
         attachment = M.Attachment,
     },
@@ -246,6 +265,7 @@ M.DescribeAttachmentOutput = {
 
 M.DescribeCasesInput = {
     type = "structure",
+    id = "DescribeCasesInput",
     members = {
         caseIdList = {
             type = "list",
@@ -283,6 +303,7 @@ M.DescribeCasesInput = {
 
 M.Communication = {
     type = "structure",
+    id = "Communication",
     members = {
         caseId = {
             type = "string",
@@ -305,6 +326,7 @@ M.Communication = {
 
 M.RecentCaseCommunications = {
     type = "structure",
+    id = "RecentCaseCommunications",
     members = {
         communications = {
             type = "list",
@@ -318,6 +340,7 @@ M.RecentCaseCommunications = {
 
 M.CaseDetails = {
     type = "structure",
+    id = "CaseDetails",
     members = {
         caseId = {
             type = "string",
@@ -359,6 +382,7 @@ M.CaseDetails = {
 
 M.DescribeCasesOutput = {
     type = "structure",
+    id = "DescribeCasesOutput",
     members = {
         cases = {
             type = "list",
@@ -372,6 +396,7 @@ M.DescribeCasesOutput = {
 
 M.DescribeCommunicationsInput = {
     type = "structure",
+    id = "DescribeCommunicationsInput",
     members = {
         caseId = {
             type = "string",
@@ -396,6 +421,7 @@ M.DescribeCommunicationsInput = {
 
 M.DescribeCommunicationsOutput = {
     type = "structure",
+    id = "DescribeCommunicationsOutput",
     members = {
         communications = {
             type = "list",
@@ -409,6 +435,7 @@ M.DescribeCommunicationsOutput = {
 
 M.DescribeCreateCaseOptionsInput = {
     type = "structure",
+    id = "DescribeCreateCaseOptionsInput",
     members = {
         issueType = {
             type = "string",
@@ -439,6 +466,7 @@ M.DescribeCreateCaseOptionsInput = {
 
 M.DateInterval = {
     type = "structure",
+    id = "DateInterval",
     members = {
         startDateTime = {
             type = "string",
@@ -451,6 +479,7 @@ M.DateInterval = {
 
 M.SupportedHour = {
     type = "structure",
+    id = "SupportedHour",
     members = {
         startTime = {
             type = "string",
@@ -463,6 +492,7 @@ M.SupportedHour = {
 
 M.CommunicationTypeOptions = {
     type = "structure",
+    id = "CommunicationTypeOptions",
     members = {
         type = {
             type = "string",
@@ -480,6 +510,7 @@ M.CommunicationTypeOptions = {
 
 M.DescribeCreateCaseOptionsOutput = {
     type = "structure",
+    id = "DescribeCreateCaseOptionsOutput",
     members = {
         languageAvailability = {
             type = "string",
@@ -493,6 +524,7 @@ M.DescribeCreateCaseOptionsOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -503,6 +535,7 @@ M.ThrottlingException = {
 
 M.DescribeServicesInput = {
     type = "structure",
+    id = "DescribeServicesInput",
     members = {
         serviceCodeList = {
             type = "list",
@@ -516,6 +549,7 @@ M.DescribeServicesInput = {
 
 M.Category = {
     type = "structure",
+    id = "Category",
     members = {
         code = {
             type = "string",
@@ -528,6 +562,7 @@ M.Category = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         code = {
             type = "string",
@@ -544,6 +579,7 @@ M.Service = {
 
 M.DescribeServicesOutput = {
     type = "structure",
+    id = "DescribeServicesOutput",
     members = {
         services = {
             type = "list",
@@ -554,6 +590,7 @@ M.DescribeServicesOutput = {
 
 M.DescribeSeverityLevelsInput = {
     type = "structure",
+    id = "DescribeSeverityLevelsInput",
     members = {
         language = {
             type = "string",
@@ -563,6 +600,7 @@ M.DescribeSeverityLevelsInput = {
 
 M.SeverityLevel = {
     type = "structure",
+    id = "SeverityLevel",
     members = {
         code = {
             type = "string",
@@ -575,6 +613,7 @@ M.SeverityLevel = {
 
 M.DescribeSeverityLevelsOutput = {
     type = "structure",
+    id = "DescribeSeverityLevelsOutput",
     members = {
         severityLevels = {
             type = "list",
@@ -585,6 +624,7 @@ M.DescribeSeverityLevelsOutput = {
 
 M.DescribeSupportedLanguagesInput = {
     type = "structure",
+    id = "DescribeSupportedLanguagesInput",
     members = {
         issueType = {
             type = "string",
@@ -609,6 +649,7 @@ M.DescribeSupportedLanguagesInput = {
 
 M.SupportedLanguage = {
     type = "structure",
+    id = "SupportedLanguage",
     members = {
         code = {
             type = "string",
@@ -624,6 +665,7 @@ M.SupportedLanguage = {
 
 M.DescribeSupportedLanguagesOutput = {
     type = "structure",
+    id = "DescribeSupportedLanguagesOutput",
     members = {
         supportedLanguages = {
             type = "list",
@@ -634,6 +676,7 @@ M.DescribeSupportedLanguagesOutput = {
 
 M.DescribeTrustedAdvisorCheckRefreshStatusesInput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorCheckRefreshStatusesInput",
     members = {
         checkIds = {
             type = "list",
@@ -647,6 +690,7 @@ M.DescribeTrustedAdvisorCheckRefreshStatusesInput = {
 
 M.TrustedAdvisorCheckRefreshStatus = {
     type = "structure",
+    id = "TrustedAdvisorCheckRefreshStatus",
     members = {
         checkId = {
             type = "string",
@@ -672,6 +716,7 @@ M.TrustedAdvisorCheckRefreshStatus = {
 
 M.DescribeTrustedAdvisorCheckRefreshStatusesOutput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorCheckRefreshStatusesOutput",
     members = {
         statuses = {
             type = "list",
@@ -685,6 +730,7 @@ M.DescribeTrustedAdvisorCheckRefreshStatusesOutput = {
 
 M.DescribeTrustedAdvisorCheckResultInput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorCheckResultInput",
     members = {
         checkId = {
             type = "string",
@@ -700,6 +746,7 @@ M.DescribeTrustedAdvisorCheckResultInput = {
 
 M.TrustedAdvisorCostOptimizingSummary = {
     type = "structure",
+    id = "TrustedAdvisorCostOptimizingSummary",
     members = {
         estimatedMonthlySavings = {
             type = "double",
@@ -720,6 +767,7 @@ M.TrustedAdvisorCostOptimizingSummary = {
 
 M.TrustedAdvisorCategorySpecificSummary = {
     type = "structure",
+    id = "TrustedAdvisorCategorySpecificSummary",
     members = {
         costOptimizing = M.TrustedAdvisorCostOptimizingSummary,
     },
@@ -727,6 +775,7 @@ M.TrustedAdvisorCategorySpecificSummary = {
 
 M.TrustedAdvisorResourceDetail = {
     type = "structure",
+    id = "TrustedAdvisorResourceDetail",
     members = {
         status = {
             type = "string",
@@ -761,6 +810,7 @@ M.TrustedAdvisorResourceDetail = {
 
 M.TrustedAdvisorResourcesSummary = {
     type = "structure",
+    id = "TrustedAdvisorResourcesSummary",
     members = {
         resourcesProcessed = {
             type = "long",
@@ -795,6 +845,7 @@ M.TrustedAdvisorResourcesSummary = {
 
 M.TrustedAdvisorCheckResult = {
     type = "structure",
+    id = "TrustedAdvisorCheckResult",
     members = {
         checkId = {
             type = "string",
@@ -832,6 +883,7 @@ M.TrustedAdvisorCheckResult = {
 
 M.DescribeTrustedAdvisorCheckResultOutput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorCheckResultOutput",
     members = {
         result = M.TrustedAdvisorCheckResult,
     },
@@ -839,6 +891,7 @@ M.DescribeTrustedAdvisorCheckResultOutput = {
 
 M.DescribeTrustedAdvisorChecksInput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorChecksInput",
     members = {
         language = {
             type = "string",
@@ -851,6 +904,7 @@ M.DescribeTrustedAdvisorChecksInput = {
 
 M.TrustedAdvisorCheckDescription = {
     type = "structure",
+    id = "TrustedAdvisorCheckDescription",
     members = {
         id = {
             type = "string",
@@ -888,6 +942,7 @@ M.TrustedAdvisorCheckDescription = {
 
 M.DescribeTrustedAdvisorChecksOutput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorChecksOutput",
     members = {
         checks = {
             type = "list",
@@ -901,6 +956,7 @@ M.DescribeTrustedAdvisorChecksOutput = {
 
 M.DescribeTrustedAdvisorCheckSummariesInput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorCheckSummariesInput",
     members = {
         checkIds = {
             type = "list",
@@ -914,6 +970,7 @@ M.DescribeTrustedAdvisorCheckSummariesInput = {
 
 M.TrustedAdvisorCheckSummary = {
     type = "structure",
+    id = "TrustedAdvisorCheckSummary",
     members = {
         checkId = {
             type = "string",
@@ -950,6 +1007,7 @@ M.TrustedAdvisorCheckSummary = {
 
 M.DescribeTrustedAdvisorCheckSummariesOutput = {
     type = "structure",
+    id = "DescribeTrustedAdvisorCheckSummariesOutput",
     members = {
         summaries = {
             type = "list",
@@ -963,6 +1021,7 @@ M.DescribeTrustedAdvisorCheckSummariesOutput = {
 
 M.RefreshTrustedAdvisorCheckInput = {
     type = "structure",
+    id = "RefreshTrustedAdvisorCheckInput",
     members = {
         checkId = {
             type = "string",
@@ -975,6 +1034,7 @@ M.RefreshTrustedAdvisorCheckInput = {
 
 M.RefreshTrustedAdvisorCheckOutput = {
     type = "structure",
+    id = "RefreshTrustedAdvisorCheckOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -984,6 +1044,7 @@ M.RefreshTrustedAdvisorCheckOutput = {
 
 M.ResolveCaseInput = {
     type = "structure",
+    id = "ResolveCaseInput",
     members = {
         caseId = {
             type = "string",
@@ -993,6 +1054,7 @@ M.ResolveCaseInput = {
 
 M.ResolveCaseOutput = {
     type = "structure",
+    id = "ResolveCaseOutput",
     members = {
         initialCaseStatus = {
             type = "string",

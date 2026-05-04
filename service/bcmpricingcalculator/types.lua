@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AddReservedInstanceAction = {
     type = "structure",
+    id = "AddReservedInstanceAction",
     members = {
         reservedInstancesOfferingId = {
             type = "string",
@@ -27,6 +29,7 @@ M.AddReservedInstanceAction = {
 
 M.AddSavingsPlanAction = {
     type = "structure",
+    id = "AddSavingsPlanAction",
     members = {
         savingsPlanOfferingId = {
             type = "string",
@@ -39,6 +42,7 @@ M.AddSavingsPlanAction = {
 
 M.DataUnavailableException = {
     type = "structure",
+    id = "DataUnavailableException",
     error = "client",
     members = {
         message = {
@@ -52,6 +56,7 @@ M.DataUnavailableException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -71,6 +76,7 @@ M.InternalServerException = {
 
 M.ListBillEstimateCommitmentsInput = {
     type = "structure",
+    id = "ListBillEstimateCommitmentsInput",
     members = {
         billEstimateId = {
             type = "string",
@@ -93,6 +99,7 @@ M.CurrencyCode = {
 
 M.CostAmount = {
     type = "structure",
+    id = "CostAmount",
     members = {
         amount = {
             type = "double",
@@ -110,6 +117,7 @@ M.PurchaseAgreementType = {
 
 M.BillEstimateCommitmentSummary = {
     type = "structure",
+    id = "BillEstimateCommitmentSummary",
     members = {
         id = {
             type = "string",
@@ -139,6 +147,7 @@ M.BillEstimateCommitmentSummary = {
 
 M.ListBillEstimateCommitmentsOutput = {
     type = "structure",
+    id = "ListBillEstimateCommitmentsOutput",
     members = {
         items = {
             type = "list",
@@ -152,6 +161,7 @@ M.ListBillEstimateCommitmentsOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -177,6 +187,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -202,6 +213,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -229,6 +241,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -249,6 +262,7 @@ M.ValidationException = {
 
 M.CostDifference = {
     type = "structure",
+    id = "CostDifference",
     members = {
         historicalCost = M.CostAmount,
         estimatedCost = M.CostAmount,
@@ -257,6 +271,7 @@ M.CostDifference = {
 
 M.BillEstimateCostSummary = {
     type = "structure",
+    id = "BillEstimateCostSummary",
     members = {
         totalCostDifference = M.CostDifference,
         serviceCostDifferences = {
@@ -269,6 +284,7 @@ M.BillEstimateCostSummary = {
 
 M.ListBillEstimateInputCommitmentModificationsInput = {
     type = "structure",
+    id = "ListBillEstimateInputCommitmentModificationsInput",
     members = {
         billEstimateId = {
             type = "string",
@@ -287,6 +303,7 @@ M.ListBillEstimateInputCommitmentModificationsInput = {
 
 M.NegateReservedInstanceAction = {
     type = "structure",
+    id = "NegateReservedInstanceAction",
     members = {
         reservedInstancesId = {
             type = "string",
@@ -296,6 +313,7 @@ M.NegateReservedInstanceAction = {
 
 M.NegateSavingsPlanAction = {
     type = "structure",
+    id = "NegateSavingsPlanAction",
     members = {
         savingsPlanId = {
             type = "string",
@@ -305,6 +323,7 @@ M.NegateSavingsPlanAction = {
 
 M.BillScenarioCommitmentModificationAction = {
     type = "union",
+    id = "BillScenarioCommitmentModificationAction",
     members = {
         addReservedInstanceAction = M.AddReservedInstanceAction,
         addSavingsPlanAction = M.AddSavingsPlanAction,
@@ -315,6 +334,7 @@ M.BillScenarioCommitmentModificationAction = {
 
 M.BillEstimateInputCommitmentModificationSummary = {
     type = "structure",
+    id = "BillEstimateInputCommitmentModificationSummary",
     members = {
         id = {
             type = "string",
@@ -331,6 +351,7 @@ M.BillEstimateInputCommitmentModificationSummary = {
 
 M.ListBillEstimateInputCommitmentModificationsOutput = {
     type = "structure",
+    id = "ListBillEstimateInputCommitmentModificationsOutput",
     members = {
         items = {
             type = "list",
@@ -364,6 +385,7 @@ M.ListUsageFilterName = {
 
 M.ListUsageFilter = {
     type = "structure",
+    id = "ListUsageFilter",
     members = {
         name = {
             type = "string",
@@ -386,6 +408,7 @@ M.ListUsageFilter = {
 
 M.ListBillEstimateInputUsageModificationsInput = {
     type = "structure",
+    id = "ListBillEstimateInputUsageModificationsInput",
     members = {
         billEstimateId = {
             type = "string",
@@ -408,6 +431,7 @@ M.ListBillEstimateInputUsageModificationsInput = {
 
 M.BillInterval = {
     type = "structure",
+    id = "BillInterval",
     members = {
         start = {
             type = "timestamp",
@@ -420,6 +444,7 @@ M.BillInterval = {
 
 M.ExpressionFilter = {
     type = "structure",
+    id = "ExpressionFilter",
     members = {
         key = {
             type = "string",
@@ -437,6 +462,7 @@ M.ExpressionFilter = {
 
 M.UsageQuantity = {
     type = "structure",
+    id = "UsageQuantity",
     members = {
         startHour = {
             type = "timestamp",
@@ -461,6 +487,7 @@ M.ListBillEstimateLineItemsFilterName = {
 
 M.ListBillEstimateLineItemsFilter = {
     type = "structure",
+    id = "ListBillEstimateLineItemsFilter",
     members = {
         name = {
             type = "string",
@@ -483,6 +510,7 @@ M.ListBillEstimateLineItemsFilter = {
 
 M.ListBillEstimateLineItemsInput = {
     type = "structure",
+    id = "ListBillEstimateLineItemsInput",
     members = {
         billEstimateId = {
             type = "string",
@@ -505,6 +533,7 @@ M.ListBillEstimateLineItemsInput = {
 
 M.UsageQuantityResult = {
     type = "structure",
+    id = "UsageQuantityResult",
     members = {
         amount = {
             type = "double",
@@ -517,6 +546,7 @@ M.UsageQuantityResult = {
 
 M.BillEstimateLineItemSummary = {
     type = "structure",
+    id = "BillEstimateLineItemSummary",
     members = {
         serviceCode = {
             type = "string",
@@ -570,6 +600,7 @@ M.BillEstimateLineItemSummary = {
 
 M.ListBillEstimateLineItemsOutput = {
     type = "structure",
+    id = "ListBillEstimateLineItemsOutput",
     members = {
         items = {
             type = "list",
@@ -589,6 +620,7 @@ M.BillEstimateStatus = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -614,6 +646,7 @@ M.ConflictException = {
 
 M.CreateBillEstimateInput = {
     type = "structure",
+    id = "CreateBillEstimateInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -650,6 +683,7 @@ M.GroupSharingPreferenceEnum = {
 
 M.CreateBillEstimateOutput = {
     type = "structure",
+    id = "CreateBillEstimateOutput",
     members = {
         id = {
             type = "string",
@@ -688,6 +722,7 @@ M.CreateBillEstimateOutput = {
 
 M.DeleteBillEstimateInput = {
     type = "structure",
+    id = "DeleteBillEstimateInput",
     members = {
         identifier = {
             type = "string",
@@ -700,10 +735,12 @@ M.DeleteBillEstimateInput = {
 
 M.DeleteBillEstimateOutput = {
     type = "structure",
+    id = "DeleteBillEstimateOutput",
 }
 
 M.GetBillEstimateInput = {
     type = "structure",
+    id = "GetBillEstimateInput",
     members = {
         identifier = {
             type = "string",
@@ -716,6 +753,7 @@ M.GetBillEstimateInput = {
 
 M.GetBillEstimateOutput = {
     type = "structure",
+    id = "GetBillEstimateOutput",
     members = {
         id = {
             type = "string",
@@ -754,6 +792,7 @@ M.GetBillEstimateOutput = {
 
 M.FilterTimestamp = {
     type = "structure",
+    id = "FilterTimestamp",
     members = {
         afterTimestamp = {
             type = "timestamp",
@@ -771,6 +810,7 @@ M.ListBillEstimatesFilterName = {
 
 M.ListBillEstimatesFilter = {
     type = "structure",
+    id = "ListBillEstimatesFilter",
     members = {
         name = {
             type = "string",
@@ -793,6 +833,7 @@ M.ListBillEstimatesFilter = {
 
 M.ListBillEstimatesInput = {
     type = "structure",
+    id = "ListBillEstimatesInput",
     members = {
         filters = {
             type = "list",
@@ -811,6 +852,7 @@ M.ListBillEstimatesInput = {
 
 M.BillEstimateSummary = {
     type = "structure",
+    id = "BillEstimateSummary",
     members = {
         id = {
             type = "string",
@@ -836,6 +878,7 @@ M.BillEstimateSummary = {
 
 M.ListBillEstimatesOutput = {
     type = "structure",
+    id = "ListBillEstimatesOutput",
     members = {
         items = {
             type = "list",
@@ -849,6 +892,7 @@ M.ListBillEstimatesOutput = {
 
 M.UpdateBillEstimateInput = {
     type = "structure",
+    id = "UpdateBillEstimateInput",
     members = {
         identifier = {
             type = "string",
@@ -867,6 +911,7 @@ M.UpdateBillEstimateInput = {
 
 M.UpdateBillEstimateOutput = {
     type = "structure",
+    id = "UpdateBillEstimateOutput",
     members = {
         id = {
             type = "string",
@@ -905,6 +950,7 @@ M.UpdateBillEstimateOutput = {
 
 M.BatchCreateBillScenarioCommitmentModificationEntry = {
     type = "structure",
+    id = "BatchCreateBillScenarioCommitmentModificationEntry",
     members = {
         key = {
             type = "string",
@@ -929,6 +975,7 @@ M.BatchCreateBillScenarioCommitmentModificationEntry = {
 
 M.BatchCreateBillScenarioCommitmentModificationInput = {
     type = "structure",
+    id = "BatchCreateBillScenarioCommitmentModificationInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -961,6 +1008,7 @@ M.BatchCreateBillScenarioCommitmentModificationErrorCode = {
 
 M.BatchCreateBillScenarioCommitmentModificationError = {
     type = "structure",
+    id = "BatchCreateBillScenarioCommitmentModificationError",
     members = {
         key = {
             type = "string",
@@ -976,6 +1024,7 @@ M.BatchCreateBillScenarioCommitmentModificationError = {
 
 M.BatchCreateBillScenarioCommitmentModificationItem = {
     type = "structure",
+    id = "BatchCreateBillScenarioCommitmentModificationItem",
     members = {
         key = {
             type = "string",
@@ -995,6 +1044,7 @@ M.BatchCreateBillScenarioCommitmentModificationItem = {
 
 M.BatchCreateBillScenarioCommitmentModificationOutput = {
     type = "structure",
+    id = "BatchCreateBillScenarioCommitmentModificationOutput",
     members = {
         items = {
             type = "list",
@@ -1009,6 +1059,7 @@ M.BatchCreateBillScenarioCommitmentModificationOutput = {
 
 M.BatchDeleteBillScenarioCommitmentModificationInput = {
     type = "structure",
+    id = "BatchDeleteBillScenarioCommitmentModificationInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -1034,6 +1085,7 @@ M.BatchDeleteBillScenarioCommitmentModificationErrorCode = {
 
 M.BatchDeleteBillScenarioCommitmentModificationError = {
     type = "structure",
+    id = "BatchDeleteBillScenarioCommitmentModificationError",
     members = {
         id = {
             type = "string",
@@ -1049,6 +1101,7 @@ M.BatchDeleteBillScenarioCommitmentModificationError = {
 
 M.BatchDeleteBillScenarioCommitmentModificationOutput = {
     type = "structure",
+    id = "BatchDeleteBillScenarioCommitmentModificationOutput",
     members = {
         errors = {
             type = "list",
@@ -1059,6 +1112,7 @@ M.BatchDeleteBillScenarioCommitmentModificationOutput = {
 
 M.BatchUpdateBillScenarioCommitmentModificationEntry = {
     type = "structure",
+    id = "BatchUpdateBillScenarioCommitmentModificationEntry",
     members = {
         id = {
             type = "string",
@@ -1074,6 +1128,7 @@ M.BatchUpdateBillScenarioCommitmentModificationEntry = {
 
 M.BatchUpdateBillScenarioCommitmentModificationInput = {
     type = "structure",
+    id = "BatchUpdateBillScenarioCommitmentModificationInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -1100,6 +1155,7 @@ M.BatchUpdateBillScenarioCommitmentModificationErrorCode = {
 
 M.BatchUpdateBillScenarioCommitmentModificationError = {
     type = "structure",
+    id = "BatchUpdateBillScenarioCommitmentModificationError",
     members = {
         id = {
             type = "string",
@@ -1115,6 +1171,7 @@ M.BatchUpdateBillScenarioCommitmentModificationError = {
 
 M.BillScenarioCommitmentModificationItem = {
     type = "structure",
+    id = "BillScenarioCommitmentModificationItem",
     members = {
         id = {
             type = "string",
@@ -1131,6 +1188,7 @@ M.BillScenarioCommitmentModificationItem = {
 
 M.BatchUpdateBillScenarioCommitmentModificationOutput = {
     type = "structure",
+    id = "BatchUpdateBillScenarioCommitmentModificationOutput",
     members = {
         items = {
             type = "list",
@@ -1145,6 +1203,7 @@ M.BatchUpdateBillScenarioCommitmentModificationOutput = {
 
 M.ListBillScenarioCommitmentModificationsInput = {
     type = "structure",
+    id = "ListBillScenarioCommitmentModificationsInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -1163,6 +1222,7 @@ M.ListBillScenarioCommitmentModificationsInput = {
 
 M.ListBillScenarioCommitmentModificationsOutput = {
     type = "structure",
+    id = "ListBillScenarioCommitmentModificationsOutput",
     members = {
         items = {
             type = "list",
@@ -1183,6 +1243,7 @@ M.BillScenarioStatus = {
 
 M.UsageAmount = {
     type = "structure",
+    id = "UsageAmount",
     members = {
         startHour = {
             type = "timestamp",
@@ -1208,6 +1269,7 @@ M.BatchCreateBillScenarioUsageModificationErrorCode = {
 
 M.BatchCreateBillScenarioUsageModificationError = {
     type = "structure",
+    id = "BatchCreateBillScenarioUsageModificationError",
     members = {
         key = {
             type = "string",
@@ -1223,6 +1285,7 @@ M.BatchCreateBillScenarioUsageModificationError = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1254,6 +1317,7 @@ M.ServiceQuotaExceededException = {
 
 M.BatchDeleteBillScenarioUsageModificationInput = {
     type = "structure",
+    id = "BatchDeleteBillScenarioUsageModificationInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -1279,6 +1343,7 @@ M.BatchDeleteBillScenarioUsageModificationErrorCode = {
 
 M.BatchDeleteBillScenarioUsageModificationError = {
     type = "structure",
+    id = "BatchDeleteBillScenarioUsageModificationError",
     members = {
         id = {
             type = "string",
@@ -1294,6 +1359,7 @@ M.BatchDeleteBillScenarioUsageModificationError = {
 
 M.BatchDeleteBillScenarioUsageModificationOutput = {
     type = "structure",
+    id = "BatchDeleteBillScenarioUsageModificationOutput",
     members = {
         errors = {
             type = "list",
@@ -1304,6 +1370,7 @@ M.BatchDeleteBillScenarioUsageModificationOutput = {
 
 M.BatchUpdateBillScenarioUsageModificationEntry = {
     type = "structure",
+    id = "BatchUpdateBillScenarioUsageModificationEntry",
     members = {
         id = {
             type = "string",
@@ -1323,6 +1390,7 @@ M.BatchUpdateBillScenarioUsageModificationEntry = {
 
 M.BatchUpdateBillScenarioUsageModificationInput = {
     type = "structure",
+    id = "BatchUpdateBillScenarioUsageModificationInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -1349,6 +1417,7 @@ M.BatchUpdateBillScenarioUsageModificationErrorCode = {
 
 M.BatchUpdateBillScenarioUsageModificationError = {
     type = "structure",
+    id = "BatchUpdateBillScenarioUsageModificationError",
     members = {
         id = {
             type = "string",
@@ -1364,6 +1433,7 @@ M.BatchUpdateBillScenarioUsageModificationError = {
 
 M.ListBillScenarioUsageModificationsInput = {
     type = "structure",
+    id = "ListBillScenarioUsageModificationsInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -1386,6 +1456,7 @@ M.ListBillScenarioUsageModificationsInput = {
 
 M.CreateBillScenarioInput = {
     type = "structure",
+    id = "CreateBillScenarioInput",
     members = {
         name = {
             type = "string",
@@ -1416,6 +1487,7 @@ M.CreateBillScenarioInput = {
 
 M.CreateBillScenarioOutput = {
     type = "structure",
+    id = "CreateBillScenarioOutput",
     members = {
         id = {
             type = "string",
@@ -1450,6 +1522,7 @@ M.CreateBillScenarioOutput = {
 
 M.DeleteBillScenarioInput = {
     type = "structure",
+    id = "DeleteBillScenarioInput",
     members = {
         identifier = {
             type = "string",
@@ -1462,10 +1535,12 @@ M.DeleteBillScenarioInput = {
 
 M.DeleteBillScenarioOutput = {
     type = "structure",
+    id = "DeleteBillScenarioOutput",
 }
 
 M.GetBillScenarioInput = {
     type = "structure",
+    id = "GetBillScenarioInput",
     members = {
         identifier = {
             type = "string",
@@ -1478,6 +1553,7 @@ M.GetBillScenarioInput = {
 
 M.GetBillScenarioOutput = {
     type = "structure",
+    id = "GetBillScenarioOutput",
     members = {
         id = {
             type = "string",
@@ -1519,6 +1595,7 @@ M.ListBillScenariosFilterName = {
 
 M.ListBillScenariosFilter = {
     type = "structure",
+    id = "ListBillScenariosFilter",
     members = {
         name = {
             type = "string",
@@ -1541,6 +1618,7 @@ M.ListBillScenariosFilter = {
 
 M.ListBillScenariosInput = {
     type = "structure",
+    id = "ListBillScenariosInput",
     members = {
         filters = {
             type = "list",
@@ -1559,6 +1637,7 @@ M.ListBillScenariosInput = {
 
 M.BillScenarioSummary = {
     type = "structure",
+    id = "BillScenarioSummary",
     members = {
         id = {
             type = "string",
@@ -1593,6 +1672,7 @@ M.BillScenarioSummary = {
 
 M.ListBillScenariosOutput = {
     type = "structure",
+    id = "ListBillScenariosOutput",
     members = {
         items = {
             type = "list",
@@ -1606,6 +1686,7 @@ M.ListBillScenariosOutput = {
 
 M.UpdateBillScenarioInput = {
     type = "structure",
+    id = "UpdateBillScenarioInput",
     members = {
         identifier = {
             type = "string",
@@ -1630,6 +1711,7 @@ M.UpdateBillScenarioInput = {
 
 M.UpdateBillScenarioOutput = {
     type = "structure",
+    id = "UpdateBillScenarioOutput",
     members = {
         id = {
             type = "string",
@@ -1664,6 +1746,7 @@ M.UpdateBillScenarioOutput = {
 
 M.GetPreferencesInput = {
     type = "structure",
+    id = "GetPreferencesInput",
 }
 
 M.RateType = {
@@ -1674,6 +1757,7 @@ M.RateType = {
 
 M.GetPreferencesOutput = {
     type = "structure",
+    id = "GetPreferencesOutput",
     members = {
         managementAccountRateTypeSelections = {
             type = "list",
@@ -1692,6 +1776,7 @@ M.GetPreferencesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1704,6 +1789,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1715,6 +1801,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1735,10 +1822,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1758,10 +1847,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdatePreferencesInput = {
     type = "structure",
+    id = "UpdatePreferencesInput",
     members = {
         managementAccountRateTypeSelections = {
             type = "list",
@@ -1780,6 +1871,7 @@ M.UpdatePreferencesInput = {
 
 M.UpdatePreferencesOutput = {
     type = "structure",
+    id = "UpdatePreferencesOutput",
     members = {
         managementAccountRateTypeSelections = {
             type = "list",
@@ -1804,6 +1896,7 @@ M.WorkloadEstimateRateType = {
 
 M.CreateWorkloadEstimateInput = {
     type = "structure",
+    id = "CreateWorkloadEstimateInput",
     members = {
         name = {
             type = "string",
@@ -1838,6 +1931,7 @@ M.WorkloadEstimateStatus = {
 
 M.CreateWorkloadEstimateOutput = {
     type = "structure",
+    id = "CreateWorkloadEstimateOutput",
     members = {
         id = {
             type = "string",
@@ -1877,6 +1971,7 @@ M.CreateWorkloadEstimateOutput = {
 
 M.DeleteWorkloadEstimateInput = {
     type = "structure",
+    id = "DeleteWorkloadEstimateInput",
     members = {
         identifier = {
             type = "string",
@@ -1889,10 +1984,12 @@ M.DeleteWorkloadEstimateInput = {
 
 M.DeleteWorkloadEstimateOutput = {
     type = "structure",
+    id = "DeleteWorkloadEstimateOutput",
 }
 
 M.GetWorkloadEstimateInput = {
     type = "structure",
+    id = "GetWorkloadEstimateInput",
     members = {
         identifier = {
             type = "string",
@@ -1905,6 +2002,7 @@ M.GetWorkloadEstimateInput = {
 
 M.GetWorkloadEstimateOutput = {
     type = "structure",
+    id = "GetWorkloadEstimateOutput",
     members = {
         id = {
             type = "string",
@@ -1949,6 +2047,7 @@ M.ListWorkloadEstimatesFilterName = {
 
 M.ListWorkloadEstimatesFilter = {
     type = "structure",
+    id = "ListWorkloadEstimatesFilter",
     members = {
         name = {
             type = "string",
@@ -1971,6 +2070,7 @@ M.ListWorkloadEstimatesFilter = {
 
 M.ListWorkloadEstimatesInput = {
     type = "structure",
+    id = "ListWorkloadEstimatesInput",
     members = {
         createdAtFilter = M.FilterTimestamp,
         expiresAtFilter = M.FilterTimestamp,
@@ -1989,6 +2089,7 @@ M.ListWorkloadEstimatesInput = {
 
 M.WorkloadEstimateSummary = {
     type = "structure",
+    id = "WorkloadEstimateSummary",
     members = {
         id = {
             type = "string",
@@ -2028,6 +2129,7 @@ M.WorkloadEstimateSummary = {
 
 M.ListWorkloadEstimatesOutput = {
     type = "structure",
+    id = "ListWorkloadEstimatesOutput",
     members = {
         items = {
             type = "list",
@@ -2041,6 +2143,7 @@ M.ListWorkloadEstimatesOutput = {
 
 M.UpdateWorkloadEstimateInput = {
     type = "structure",
+    id = "UpdateWorkloadEstimateInput",
     members = {
         identifier = {
             type = "string",
@@ -2059,6 +2162,7 @@ M.UpdateWorkloadEstimateInput = {
 
 M.UpdateWorkloadEstimateOutput = {
     type = "structure",
+    id = "UpdateWorkloadEstimateOutput",
     members = {
         id = {
             type = "string",
@@ -2105,6 +2209,7 @@ M.BatchCreateWorkloadEstimateUsageCode = {
 
 M.BatchCreateWorkloadEstimateUsageError = {
     type = "structure",
+    id = "BatchCreateWorkloadEstimateUsageError",
     members = {
         key = {
             type = "string",
@@ -2120,6 +2225,7 @@ M.BatchCreateWorkloadEstimateUsageError = {
 
 M.WorkloadEstimateUsageQuantity = {
     type = "structure",
+    id = "WorkloadEstimateUsageQuantity",
     members = {
         unit = {
             type = "string",
@@ -2138,6 +2244,7 @@ M.WorkloadEstimateCostStatus = {
 
 M.BatchDeleteWorkloadEstimateUsageInput = {
     type = "structure",
+    id = "BatchDeleteWorkloadEstimateUsageInput",
     members = {
         workloadEstimateId = {
             type = "string",
@@ -2164,6 +2271,7 @@ M.WorkloadEstimateUpdateUsageErrorCode = {
 
 M.BatchDeleteWorkloadEstimateUsageError = {
     type = "structure",
+    id = "BatchDeleteWorkloadEstimateUsageError",
     members = {
         id = {
             type = "string",
@@ -2179,6 +2287,7 @@ M.BatchDeleteWorkloadEstimateUsageError = {
 
 M.BatchDeleteWorkloadEstimateUsageOutput = {
     type = "structure",
+    id = "BatchDeleteWorkloadEstimateUsageOutput",
     members = {
         errors = {
             type = "list",
@@ -2189,6 +2298,7 @@ M.BatchDeleteWorkloadEstimateUsageOutput = {
 
 M.BatchUpdateWorkloadEstimateUsageEntry = {
     type = "structure",
+    id = "BatchUpdateWorkloadEstimateUsageEntry",
     members = {
         id = {
             type = "string",
@@ -2207,6 +2317,7 @@ M.BatchUpdateWorkloadEstimateUsageEntry = {
 
 M.BatchUpdateWorkloadEstimateUsageInput = {
     type = "structure",
+    id = "BatchUpdateWorkloadEstimateUsageInput",
     members = {
         workloadEstimateId = {
             type = "string",
@@ -2226,6 +2337,7 @@ M.BatchUpdateWorkloadEstimateUsageInput = {
 
 M.BatchUpdateWorkloadEstimateUsageError = {
     type = "structure",
+    id = "BatchUpdateWorkloadEstimateUsageError",
     members = {
         id = {
             type = "string",
@@ -2241,6 +2353,7 @@ M.BatchUpdateWorkloadEstimateUsageError = {
 
 M.ListWorkloadEstimateUsageInput = {
     type = "structure",
+    id = "ListWorkloadEstimateUsageInput",
     members = {
         workloadEstimateId = {
             type = "string",
@@ -2263,6 +2376,7 @@ M.ListWorkloadEstimateUsageInput = {
 
 M.Expression = {
     type = "structure",
+    id = "Expression",
     members = {
         and = {
             type = "list",
@@ -2281,6 +2395,7 @@ M.Expression = {
 
 M.HistoricalUsageEntity = {
     type = "structure",
+    id = "HistoricalUsageEntity",
     members = {
         serviceCode = {
             type = "string",
@@ -2320,6 +2435,7 @@ M.HistoricalUsageEntity = {
 
 M.BatchCreateBillScenarioUsageModificationEntry = {
     type = "structure",
+    id = "BatchCreateBillScenarioUsageModificationEntry",
     members = {
         serviceCode = {
             type = "string",
@@ -2367,6 +2483,7 @@ M.BatchCreateBillScenarioUsageModificationEntry = {
 
 M.BatchCreateBillScenarioUsageModificationItem = {
     type = "structure",
+    id = "BatchCreateBillScenarioUsageModificationItem",
     members = {
         serviceCode = {
             type = "string",
@@ -2414,6 +2531,7 @@ M.BatchCreateBillScenarioUsageModificationItem = {
 
 M.BatchCreateWorkloadEstimateUsageEntry = {
     type = "structure",
+    id = "BatchCreateWorkloadEstimateUsageEntry",
     members = {
         serviceCode = {
             type = "string",
@@ -2460,6 +2578,7 @@ M.BatchCreateWorkloadEstimateUsageEntry = {
 
 M.BatchCreateWorkloadEstimateUsageItem = {
     type = "structure",
+    id = "BatchCreateWorkloadEstimateUsageItem",
     members = {
         serviceCode = {
             type = "string",
@@ -2510,6 +2629,7 @@ M.BatchCreateWorkloadEstimateUsageItem = {
 
 M.BillEstimateInputUsageModificationSummary = {
     type = "structure",
+    id = "BillEstimateInputUsageModificationSummary",
     members = {
         serviceCode = {
             type = "string",
@@ -2554,6 +2674,7 @@ M.BillEstimateInputUsageModificationSummary = {
 
 M.BillScenarioUsageModificationItem = {
     type = "structure",
+    id = "BillScenarioUsageModificationItem",
     members = {
         serviceCode = {
             type = "string",
@@ -2598,6 +2719,7 @@ M.BillScenarioUsageModificationItem = {
 
 M.WorkloadEstimateUsageItem = {
     type = "structure",
+    id = "WorkloadEstimateUsageItem",
     members = {
         serviceCode = {
             type = "string",
@@ -2645,6 +2767,7 @@ M.WorkloadEstimateUsageItem = {
 
 M.BatchCreateBillScenarioUsageModificationInput = {
     type = "structure",
+    id = "BatchCreateBillScenarioUsageModificationInput",
     members = {
         billScenarioId = {
             type = "string",
@@ -2671,6 +2794,7 @@ M.BatchCreateBillScenarioUsageModificationInput = {
 
 M.BatchCreateBillScenarioUsageModificationOutput = {
     type = "structure",
+    id = "BatchCreateBillScenarioUsageModificationOutput",
     members = {
         items = {
             type = "list",
@@ -2685,6 +2809,7 @@ M.BatchCreateBillScenarioUsageModificationOutput = {
 
 M.BatchCreateWorkloadEstimateUsageInput = {
     type = "structure",
+    id = "BatchCreateWorkloadEstimateUsageInput",
     members = {
         workloadEstimateId = {
             type = "string",
@@ -2711,6 +2836,7 @@ M.BatchCreateWorkloadEstimateUsageInput = {
 
 M.BatchCreateWorkloadEstimateUsageOutput = {
     type = "structure",
+    id = "BatchCreateWorkloadEstimateUsageOutput",
     members = {
         items = {
             type = "list",
@@ -2725,6 +2851,7 @@ M.BatchCreateWorkloadEstimateUsageOutput = {
 
 M.BatchUpdateBillScenarioUsageModificationOutput = {
     type = "structure",
+    id = "BatchUpdateBillScenarioUsageModificationOutput",
     members = {
         items = {
             type = "list",
@@ -2739,6 +2866,7 @@ M.BatchUpdateBillScenarioUsageModificationOutput = {
 
 M.BatchUpdateWorkloadEstimateUsageOutput = {
     type = "structure",
+    id = "BatchUpdateWorkloadEstimateUsageOutput",
     members = {
         items = {
             type = "list",
@@ -2753,6 +2881,7 @@ M.BatchUpdateWorkloadEstimateUsageOutput = {
 
 M.ListBillEstimateInputUsageModificationsOutput = {
     type = "structure",
+    id = "ListBillEstimateInputUsageModificationsOutput",
     members = {
         items = {
             type = "list",
@@ -2766,6 +2895,7 @@ M.ListBillEstimateInputUsageModificationsOutput = {
 
 M.ListBillScenarioUsageModificationsOutput = {
     type = "structure",
+    id = "ListBillScenarioUsageModificationsOutput",
     members = {
         items = {
             type = "list",
@@ -2779,6 +2909,7 @@ M.ListBillScenarioUsageModificationsOutput = {
 
 M.ListWorkloadEstimateUsageOutput = {
     type = "structure",
+    id = "ListWorkloadEstimateUsageOutput",
     members = {
         items = {
             type = "list",

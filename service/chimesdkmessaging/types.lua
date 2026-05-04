@@ -13,6 +13,7 @@ M.ChannelMembershipType = {
 
 M.AppInstanceUserMembershipSummary = {
     type = "structure",
+    id = "AppInstanceUserMembershipSummary",
     members = {
         Type = {
             type = "string",
@@ -28,6 +29,7 @@ M.AppInstanceUserMembershipSummary = {
 
 M.AssociateChannelFlowInput = {
     type = "structure",
+    id = "AssociateChannelFlowInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -54,6 +56,7 @@ M.AssociateChannelFlowInput = {
 
 M.AssociateChannelFlowOutput = {
     type = "structure",
+    id = "AssociateChannelFlowOutput",
 }
 
 M.ErrorCode = {
@@ -76,6 +79,7 @@ M.ErrorCode = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Code = {
@@ -89,6 +93,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Code = {
@@ -102,6 +107,7 @@ M.ConflictException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Code = {
@@ -115,6 +121,7 @@ M.ForbiddenException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Code = {
@@ -128,6 +135,7 @@ M.NotFoundException = {
 
 M.ServiceFailureException = {
     type = "structure",
+    id = "ServiceFailureException",
     error = "server",
     members = {
         Code = {
@@ -141,6 +149,7 @@ M.ServiceFailureException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Code = {
@@ -154,6 +163,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottledClientException = {
     type = "structure",
+    id = "ThrottledClientException",
     error = "client",
     members = {
         Code = {
@@ -167,6 +177,7 @@ M.ThrottledClientException = {
 
 M.UnauthorizedClientException = {
     type = "structure",
+    id = "UnauthorizedClientException",
     error = "client",
     members = {
         Code = {
@@ -180,6 +191,7 @@ M.UnauthorizedClientException = {
 
 M.Identity = {
     type = "structure",
+    id = "Identity",
     members = {
         Arn = {
             type = "string",
@@ -192,6 +204,7 @@ M.Identity = {
 
 M.BatchChannelMemberships = {
     type = "structure",
+    id = "BatchChannelMemberships",
     members = {
         InvitedBy = M.Identity,
         Type = {
@@ -212,6 +225,7 @@ M.BatchChannelMemberships = {
 
 M.BatchCreateChannelMembershipInput = {
     type = "structure",
+    id = "BatchCreateChannelMembershipInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -245,6 +259,7 @@ M.BatchCreateChannelMembershipInput = {
 
 M.BatchCreateChannelMembershipError = {
     type = "structure",
+    id = "BatchCreateChannelMembershipError",
     members = {
         MemberArn = {
             type = "string",
@@ -260,6 +275,7 @@ M.BatchCreateChannelMembershipError = {
 
 M.BatchCreateChannelMembershipOutput = {
     type = "structure",
+    id = "BatchCreateChannelMembershipOutput",
     members = {
         BatchChannelMemberships = M.BatchChannelMemberships,
         Errors = {
@@ -271,6 +287,7 @@ M.BatchCreateChannelMembershipOutput = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         Code = {
@@ -284,6 +301,7 @@ M.ResourceLimitExceededException = {
 
 M.ElasticChannelConfiguration = {
     type = "structure",
+    id = "ElasticChannelConfiguration",
     members = {
         MaximumSubChannels = {
             type = "integer",
@@ -313,6 +331,7 @@ M.ExpirationCriterion = {
 
 M.ExpirationSettings = {
     type = "structure",
+    id = "ExpirationSettings",
     members = {
         ExpirationDays = {
             type = "integer",
@@ -341,6 +360,7 @@ M.ChannelPrivacy = {
 
 M.Channel = {
     type = "structure",
+    id = "Channel",
     members = {
         Name = {
             type = "string",
@@ -377,6 +397,7 @@ M.Channel = {
 
 M.ChannelAssociatedWithFlowSummary = {
     type = "structure",
+    id = "ChannelAssociatedWithFlowSummary",
     members = {
         Name = {
             type = "string",
@@ -398,6 +419,7 @@ M.ChannelAssociatedWithFlowSummary = {
 
 M.ChannelBan = {
     type = "structure",
+    id = "ChannelBan",
     members = {
         Member = M.Identity,
         ChannelArn = {
@@ -412,6 +434,7 @@ M.ChannelBan = {
 
 M.ChannelBanSummary = {
     type = "structure",
+    id = "ChannelBanSummary",
     members = {
         Member = M.Identity,
     },
@@ -423,6 +446,7 @@ M.InvocationType = {
 
 M.LambdaConfiguration = {
     type = "structure",
+    id = "LambdaConfiguration",
     members = {
         ResourceArn = {
             type = "string",
@@ -441,6 +465,7 @@ M.LambdaConfiguration = {
 
 M.ProcessorConfiguration = {
     type = "structure",
+    id = "ProcessorConfiguration",
     members = {
         Lambda = setmetatable({ traits = {
             required = true,
@@ -455,6 +480,7 @@ M.FallbackAction = {
 
 M.Processor = {
     type = "structure",
+    id = "Processor",
     members = {
         Name = {
             type = "string",
@@ -482,6 +508,7 @@ M.Processor = {
 
 M.ChannelFlow = {
     type = "structure",
+    id = "ChannelFlow",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -504,6 +531,7 @@ M.ChannelFlow = {
 
 M.MessageAttributeValue = {
     type = "structure",
+    id = "MessageAttributeValue",
     members = {
         StringValues = {
             type = "list",
@@ -519,6 +547,7 @@ M.PushNotificationType = {
 
 M.PushNotificationConfiguration = {
     type = "structure",
+    id = "PushNotificationConfiguration",
     members = {
         Title = {
             type = "string",
@@ -534,6 +563,7 @@ M.PushNotificationConfiguration = {
 
 M.ChannelMessageCallback = {
     type = "structure",
+    id = "ChannelMessageCallback",
     members = {
         MessageId = {
             type = "string",
@@ -564,6 +594,7 @@ M.ChannelMessageCallback = {
 
 M.ChannelFlowCallbackInput = {
     type = "structure",
+    id = "ChannelFlowCallbackInput",
     members = {
         CallbackId = {
             type = "string",
@@ -593,6 +624,7 @@ M.ChannelFlowCallbackInput = {
 
 M.ChannelFlowCallbackOutput = {
     type = "structure",
+    id = "ChannelFlowCallbackOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -605,6 +637,7 @@ M.ChannelFlowCallbackOutput = {
 
 M.ChannelFlowSummary = {
     type = "structure",
+    id = "ChannelFlowSummary",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -621,6 +654,7 @@ M.ChannelFlowSummary = {
 
 M.ChannelMembership = {
     type = "structure",
+    id = "ChannelMembership",
     members = {
         InvitedBy = M.Identity,
         Type = {
@@ -644,6 +678,7 @@ M.ChannelMembership = {
 
 M.ChannelSummary = {
     type = "structure",
+    id = "ChannelSummary",
     members = {
         Name = {
             type = "string",
@@ -668,6 +703,7 @@ M.ChannelSummary = {
 
 M.ChannelMembershipForAppInstanceUserSummary = {
     type = "structure",
+    id = "ChannelMembershipForAppInstanceUserSummary",
     members = {
         ChannelSummary = M.ChannelSummary,
         AppInstanceUserMembershipSummary = M.AppInstanceUserMembershipSummary,
@@ -676,6 +712,7 @@ M.ChannelMembershipForAppInstanceUserSummary = {
 
 M.PushNotificationPreferences = {
     type = "structure",
+    id = "PushNotificationPreferences",
     members = {
         AllowNotifications = {
             type = "string",
@@ -691,6 +728,7 @@ M.PushNotificationPreferences = {
 
 M.ChannelMembershipPreferences = {
     type = "structure",
+    id = "ChannelMembershipPreferences",
     members = {
         PushNotifications = M.PushNotificationPreferences,
     },
@@ -698,6 +736,7 @@ M.ChannelMembershipPreferences = {
 
 M.ChannelMembershipSummary = {
     type = "structure",
+    id = "ChannelMembershipSummary",
     members = {
         Member = M.Identity,
     },
@@ -717,6 +756,7 @@ M.ChannelMessageStatus = {
 
 M.ChannelMessageStatusStructure = {
     type = "structure",
+    id = "ChannelMessageStatusStructure",
     members = {
         Value = {
             type = "string",
@@ -729,6 +769,7 @@ M.ChannelMessageStatusStructure = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         MemberArn = {
             type = "string",
@@ -743,6 +784,7 @@ M.ChannelMessageType = {
 
 M.ChannelMessage = {
     type = "structure",
+    id = "ChannelMessage",
     members = {
         ChannelArn = {
             type = "string",
@@ -799,6 +841,7 @@ M.ChannelMessage = {
 
 M.ChannelMessageSummary = {
     type = "structure",
+    id = "ChannelMessageSummary",
     members = {
         MessageId = {
             type = "string",
@@ -846,6 +889,7 @@ M.ChannelMessageSummary = {
 
 M.ChannelModeratedByAppInstanceUserSummary = {
     type = "structure",
+    id = "ChannelModeratedByAppInstanceUserSummary",
     members = {
         ChannelSummary = M.ChannelSummary,
     },
@@ -853,6 +897,7 @@ M.ChannelModeratedByAppInstanceUserSummary = {
 
 M.ChannelModerator = {
     type = "structure",
+    id = "ChannelModerator",
     members = {
         Moderator = M.Identity,
         ChannelArn = {
@@ -867,6 +912,7 @@ M.ChannelModerator = {
 
 M.ChannelModeratorSummary = {
     type = "structure",
+    id = "ChannelModeratorSummary",
     members = {
         Moderator = M.Identity,
     },
@@ -874,6 +920,7 @@ M.ChannelModeratorSummary = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -892,6 +939,7 @@ M.Tag = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -950,6 +998,7 @@ M.CreateChannelInput = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -959,6 +1008,7 @@ M.CreateChannelOutput = {
 
 M.CreateChannelBanInput = {
     type = "structure",
+    id = "CreateChannelBanInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -985,6 +1035,7 @@ M.CreateChannelBanInput = {
 
 M.CreateChannelBanOutput = {
     type = "structure",
+    id = "CreateChannelBanOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -995,6 +1046,7 @@ M.CreateChannelBanOutput = {
 
 M.CreateChannelFlowInput = {
     type = "structure",
+    id = "CreateChannelFlowInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1031,6 +1083,7 @@ M.CreateChannelFlowInput = {
 
 M.CreateChannelFlowOutput = {
     type = "structure",
+    id = "CreateChannelFlowOutput",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -1040,6 +1093,7 @@ M.CreateChannelFlowOutput = {
 
 M.CreateChannelMembershipInput = {
     type = "structure",
+    id = "CreateChannelMembershipInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1075,6 +1129,7 @@ M.CreateChannelMembershipInput = {
 
 M.CreateChannelMembershipOutput = {
     type = "structure",
+    id = "CreateChannelMembershipOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1088,6 +1143,7 @@ M.CreateChannelMembershipOutput = {
 
 M.CreateChannelModeratorInput = {
     type = "structure",
+    id = "CreateChannelModeratorInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1114,6 +1170,7 @@ M.CreateChannelModeratorInput = {
 
 M.CreateChannelModeratorOutput = {
     type = "structure",
+    id = "CreateChannelModeratorOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1124,6 +1181,7 @@ M.CreateChannelModeratorOutput = {
 
 M.DeleteChannelInput = {
     type = "structure",
+    id = "DeleteChannelInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1144,10 +1202,12 @@ M.DeleteChannelInput = {
 
 M.DeleteChannelOutput = {
     type = "structure",
+    id = "DeleteChannelOutput",
 }
 
 M.DeleteChannelBanInput = {
     type = "structure",
+    id = "DeleteChannelBanInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1175,10 +1235,12 @@ M.DeleteChannelBanInput = {
 
 M.DeleteChannelBanOutput = {
     type = "structure",
+    id = "DeleteChannelBanOutput",
 }
 
 M.DeleteChannelFlowInput = {
     type = "structure",
+    id = "DeleteChannelFlowInput",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -1192,10 +1254,12 @@ M.DeleteChannelFlowInput = {
 
 M.DeleteChannelFlowOutput = {
     type = "structure",
+    id = "DeleteChannelFlowOutput",
 }
 
 M.DeleteChannelMembershipInput = {
     type = "structure",
+    id = "DeleteChannelMembershipInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1229,10 +1293,12 @@ M.DeleteChannelMembershipInput = {
 
 M.DeleteChannelMembershipOutput = {
     type = "structure",
+    id = "DeleteChannelMembershipOutput",
 }
 
 M.DeleteChannelMessageInput = {
     type = "structure",
+    id = "DeleteChannelMessageInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1266,10 +1332,12 @@ M.DeleteChannelMessageInput = {
 
 M.DeleteChannelMessageOutput = {
     type = "structure",
+    id = "DeleteChannelMessageOutput",
 }
 
 M.DeleteChannelModeratorInput = {
     type = "structure",
+    id = "DeleteChannelModeratorInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1297,10 +1365,12 @@ M.DeleteChannelModeratorInput = {
 
 M.DeleteChannelModeratorOutput = {
     type = "structure",
+    id = "DeleteChannelModeratorOutput",
 }
 
 M.DeleteMessagingStreamingConfigurationsInput = {
     type = "structure",
+    id = "DeleteMessagingStreamingConfigurationsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1314,10 +1384,12 @@ M.DeleteMessagingStreamingConfigurationsInput = {
 
 M.DeleteMessagingStreamingConfigurationsOutput = {
     type = "structure",
+    id = "DeleteMessagingStreamingConfigurationsOutput",
 }
 
 M.DescribeChannelInput = {
     type = "structure",
+    id = "DescribeChannelInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1338,6 +1410,7 @@ M.DescribeChannelInput = {
 
 M.DescribeChannelOutput = {
     type = "structure",
+    id = "DescribeChannelOutput",
     members = {
         Channel = M.Channel,
     },
@@ -1345,6 +1418,7 @@ M.DescribeChannelOutput = {
 
 M.DescribeChannelBanInput = {
     type = "structure",
+    id = "DescribeChannelBanInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1372,6 +1446,7 @@ M.DescribeChannelBanInput = {
 
 M.DescribeChannelBanOutput = {
     type = "structure",
+    id = "DescribeChannelBanOutput",
     members = {
         ChannelBan = M.ChannelBan,
     },
@@ -1379,6 +1454,7 @@ M.DescribeChannelBanOutput = {
 
 M.DescribeChannelFlowInput = {
     type = "structure",
+    id = "DescribeChannelFlowInput",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -1392,6 +1468,7 @@ M.DescribeChannelFlowInput = {
 
 M.DescribeChannelFlowOutput = {
     type = "structure",
+    id = "DescribeChannelFlowOutput",
     members = {
         ChannelFlow = M.ChannelFlow,
     },
@@ -1399,6 +1476,7 @@ M.DescribeChannelFlowOutput = {
 
 M.DescribeChannelMembershipInput = {
     type = "structure",
+    id = "DescribeChannelMembershipInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1432,6 +1510,7 @@ M.DescribeChannelMembershipInput = {
 
 M.DescribeChannelMembershipOutput = {
     type = "structure",
+    id = "DescribeChannelMembershipOutput",
     members = {
         ChannelMembership = M.ChannelMembership,
     },
@@ -1439,6 +1518,7 @@ M.DescribeChannelMembershipOutput = {
 
 M.DescribeChannelMembershipForAppInstanceUserInput = {
     type = "structure",
+    id = "DescribeChannelMembershipForAppInstanceUserInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1466,6 +1546,7 @@ M.DescribeChannelMembershipForAppInstanceUserInput = {
 
 M.DescribeChannelMembershipForAppInstanceUserOutput = {
     type = "structure",
+    id = "DescribeChannelMembershipForAppInstanceUserOutput",
     members = {
         ChannelMembership = M.ChannelMembershipForAppInstanceUserSummary,
     },
@@ -1473,6 +1554,7 @@ M.DescribeChannelMembershipForAppInstanceUserOutput = {
 
 M.DescribeChannelModeratedByAppInstanceUserInput = {
     type = "structure",
+    id = "DescribeChannelModeratedByAppInstanceUserInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1500,6 +1582,7 @@ M.DescribeChannelModeratedByAppInstanceUserInput = {
 
 M.DescribeChannelModeratedByAppInstanceUserOutput = {
     type = "structure",
+    id = "DescribeChannelModeratedByAppInstanceUserOutput",
     members = {
         Channel = M.ChannelModeratedByAppInstanceUserSummary,
     },
@@ -1507,6 +1590,7 @@ M.DescribeChannelModeratedByAppInstanceUserOutput = {
 
 M.DescribeChannelModeratorInput = {
     type = "structure",
+    id = "DescribeChannelModeratorInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1534,6 +1618,7 @@ M.DescribeChannelModeratorInput = {
 
 M.DescribeChannelModeratorOutput = {
     type = "structure",
+    id = "DescribeChannelModeratorOutput",
     members = {
         ChannelModerator = M.ChannelModerator,
     },
@@ -1541,6 +1626,7 @@ M.DescribeChannelModeratorOutput = {
 
 M.DisassociateChannelFlowInput = {
     type = "structure",
+    id = "DisassociateChannelFlowInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1568,10 +1654,12 @@ M.DisassociateChannelFlowInput = {
 
 M.DisassociateChannelFlowOutput = {
     type = "structure",
+    id = "DisassociateChannelFlowOutput",
 }
 
 M.GetChannelMembershipPreferencesInput = {
     type = "structure",
+    id = "GetChannelMembershipPreferencesInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1599,6 +1687,7 @@ M.GetChannelMembershipPreferencesInput = {
 
 M.GetChannelMembershipPreferencesOutput = {
     type = "structure",
+    id = "GetChannelMembershipPreferencesOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1610,6 +1699,7 @@ M.GetChannelMembershipPreferencesOutput = {
 
 M.GetChannelMessageInput = {
     type = "structure",
+    id = "GetChannelMessageInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1643,6 +1733,7 @@ M.GetChannelMessageInput = {
 
 M.GetChannelMessageOutput = {
     type = "structure",
+    id = "GetChannelMessageOutput",
     members = {
         ChannelMessage = M.ChannelMessage,
     },
@@ -1650,6 +1741,7 @@ M.GetChannelMessageOutput = {
 
 M.GetChannelMessageStatusInput = {
     type = "structure",
+    id = "GetChannelMessageStatusInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1683,6 +1775,7 @@ M.GetChannelMessageStatusInput = {
 
 M.GetChannelMessageStatusOutput = {
     type = "structure",
+    id = "GetChannelMessageStatusOutput",
     members = {
         Status = M.ChannelMessageStatusStructure,
     },
@@ -1695,6 +1788,7 @@ M.NetworkType = {
 
 M.GetMessagingSessionEndpointInput = {
     type = "structure",
+    id = "GetMessagingSessionEndpointInput",
     members = {
         NetworkType = {
             type = "string",
@@ -1707,6 +1801,7 @@ M.GetMessagingSessionEndpointInput = {
 
 M.MessagingSessionEndpoint = {
     type = "structure",
+    id = "MessagingSessionEndpoint",
     members = {
         Url = {
             type = "string",
@@ -1716,6 +1811,7 @@ M.MessagingSessionEndpoint = {
 
 M.GetMessagingSessionEndpointOutput = {
     type = "structure",
+    id = "GetMessagingSessionEndpointOutput",
     members = {
         Endpoint = M.MessagingSessionEndpoint,
     },
@@ -1723,6 +1819,7 @@ M.GetMessagingSessionEndpointOutput = {
 
 M.GetMessagingStreamingConfigurationsInput = {
     type = "structure",
+    id = "GetMessagingStreamingConfigurationsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1741,6 +1838,7 @@ M.MessagingDataType = {
 
 M.StreamingConfiguration = {
     type = "structure",
+    id = "StreamingConfiguration",
     members = {
         DataType = {
             type = "string",
@@ -1759,6 +1857,7 @@ M.StreamingConfiguration = {
 
 M.GetMessagingStreamingConfigurationsOutput = {
     type = "structure",
+    id = "GetMessagingStreamingConfigurationsOutput",
     members = {
         StreamingConfigurations = {
             type = "list",
@@ -1769,6 +1868,7 @@ M.GetMessagingStreamingConfigurationsOutput = {
 
 M.ListChannelBansInput = {
     type = "structure",
+    id = "ListChannelBansInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1801,6 +1901,7 @@ M.ListChannelBansInput = {
 
 M.ListChannelBansOutput = {
     type = "structure",
+    id = "ListChannelBansOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1817,6 +1918,7 @@ M.ListChannelBansOutput = {
 
 M.ListChannelFlowsInput = {
     type = "structure",
+    id = "ListChannelFlowsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1842,6 +1944,7 @@ M.ListChannelFlowsInput = {
 
 M.ListChannelFlowsOutput = {
     type = "structure",
+    id = "ListChannelFlowsOutput",
     members = {
         ChannelFlows = {
             type = "list",
@@ -1855,6 +1958,7 @@ M.ListChannelFlowsOutput = {
 
 M.ListChannelMembershipsInput = {
     type = "structure",
+    id = "ListChannelMembershipsInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1899,6 +2003,7 @@ M.ListChannelMembershipsInput = {
 
 M.ListChannelMembershipsOutput = {
     type = "structure",
+    id = "ListChannelMembershipsOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1915,6 +2020,7 @@ M.ListChannelMembershipsOutput = {
 
 M.ListChannelMembershipsForAppInstanceUserInput = {
     type = "structure",
+    id = "ListChannelMembershipsForAppInstanceUserInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1946,6 +2052,7 @@ M.ListChannelMembershipsForAppInstanceUserInput = {
 
 M.ListChannelMembershipsForAppInstanceUserOutput = {
     type = "structure",
+    id = "ListChannelMembershipsForAppInstanceUserOutput",
     members = {
         ChannelMemberships = {
             type = "list",
@@ -1964,6 +2071,7 @@ M.SortOrder = {
 
 M.ListChannelMessagesInput = {
     type = "structure",
+    id = "ListChannelMessagesInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2020,6 +2128,7 @@ M.ListChannelMessagesInput = {
 
 M.ListChannelMessagesOutput = {
     type = "structure",
+    id = "ListChannelMessagesOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2039,6 +2148,7 @@ M.ListChannelMessagesOutput = {
 
 M.ListChannelModeratorsInput = {
     type = "structure",
+    id = "ListChannelModeratorsInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2071,6 +2181,7 @@ M.ListChannelModeratorsInput = {
 
 M.ListChannelModeratorsOutput = {
     type = "structure",
+    id = "ListChannelModeratorsOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2087,6 +2198,7 @@ M.ListChannelModeratorsOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -2125,6 +2237,7 @@ M.ListChannelsInput = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         Channels = {
             type = "list",
@@ -2138,6 +2251,7 @@ M.ListChannelsOutput = {
 
 M.ListChannelsAssociatedWithChannelFlowInput = {
     type = "structure",
+    id = "ListChannelsAssociatedWithChannelFlowInput",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -2163,6 +2277,7 @@ M.ListChannelsAssociatedWithChannelFlowInput = {
 
 M.ListChannelsAssociatedWithChannelFlowOutput = {
     type = "structure",
+    id = "ListChannelsAssociatedWithChannelFlowOutput",
     members = {
         Channels = {
             type = "list",
@@ -2176,6 +2291,7 @@ M.ListChannelsAssociatedWithChannelFlowOutput = {
 
 M.ListChannelsModeratedByAppInstanceUserInput = {
     type = "structure",
+    id = "ListChannelsModeratedByAppInstanceUserInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -2207,6 +2323,7 @@ M.ListChannelsModeratedByAppInstanceUserInput = {
 
 M.ListChannelsModeratedByAppInstanceUserOutput = {
     type = "structure",
+    id = "ListChannelsModeratedByAppInstanceUserOutput",
     members = {
         Channels = {
             type = "list",
@@ -2220,6 +2337,7 @@ M.ListChannelsModeratedByAppInstanceUserOutput = {
 
 M.ListSubChannelsInput = {
     type = "structure",
+    id = "ListSubChannelsInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2252,6 +2370,7 @@ M.ListSubChannelsInput = {
 
 M.SubChannelSummary = {
     type = "structure",
+    id = "SubChannelSummary",
     members = {
         SubChannelId = {
             type = "string",
@@ -2264,6 +2383,7 @@ M.SubChannelSummary = {
 
 M.ListSubChannelsOutput = {
     type = "structure",
+    id = "ListSubChannelsOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2280,6 +2400,7 @@ M.ListSubChannelsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2293,6 +2414,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2303,6 +2425,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutChannelExpirationSettingsInput = {
     type = "structure",
+    id = "PutChannelExpirationSettingsInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2323,6 +2446,7 @@ M.PutChannelExpirationSettingsInput = {
 
 M.PutChannelExpirationSettingsOutput = {
     type = "structure",
+    id = "PutChannelExpirationSettingsOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2333,6 +2457,7 @@ M.PutChannelExpirationSettingsOutput = {
 
 M.PutChannelMembershipPreferencesInput = {
     type = "structure",
+    id = "PutChannelMembershipPreferencesInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2363,6 +2488,7 @@ M.PutChannelMembershipPreferencesInput = {
 
 M.PutChannelMembershipPreferencesOutput = {
     type = "structure",
+    id = "PutChannelMembershipPreferencesOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2374,6 +2500,7 @@ M.PutChannelMembershipPreferencesOutput = {
 
 M.PutMessagingStreamingConfigurationsInput = {
     type = "structure",
+    id = "PutMessagingStreamingConfigurationsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -2394,6 +2521,7 @@ M.PutMessagingStreamingConfigurationsInput = {
 
 M.PutMessagingStreamingConfigurationsOutput = {
     type = "structure",
+    id = "PutMessagingStreamingConfigurationsOutput",
     members = {
         StreamingConfigurations = {
             type = "list",
@@ -2404,6 +2532,7 @@ M.PutMessagingStreamingConfigurationsOutput = {
 
 M.RedactChannelMessageInput = {
     type = "structure",
+    id = "RedactChannelMessageInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2434,6 +2563,7 @@ M.RedactChannelMessageInput = {
 
 M.RedactChannelMessageOutput = {
     type = "structure",
+    id = "RedactChannelMessageOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2458,6 +2588,7 @@ M.SearchFieldOperator = {
 
 M.SearchField = {
     type = "structure",
+    id = "SearchField",
     members = {
         Key = {
             type = "string",
@@ -2483,6 +2614,7 @@ M.SearchField = {
 
 M.SearchChannelsInput = {
     type = "structure",
+    id = "SearchChannelsInput",
     members = {
         ChimeBearer = {
             type = "string",
@@ -2514,6 +2646,7 @@ M.SearchChannelsInput = {
 
 M.SearchChannelsOutput = {
     type = "structure",
+    id = "SearchChannelsOutput",
     members = {
         Channels = {
             type = "list",
@@ -2527,6 +2660,7 @@ M.SearchChannelsOutput = {
 
 M.SendChannelMessageInput = {
     type = "structure",
+    id = "SendChannelMessageInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2591,6 +2725,7 @@ M.SendChannelMessageInput = {
 
 M.SendChannelMessageOutput = {
     type = "structure",
+    id = "SendChannelMessageOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2607,6 +2742,7 @@ M.SendChannelMessageOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2626,10 +2762,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2649,10 +2787,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2682,6 +2822,7 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2691,6 +2832,7 @@ M.UpdateChannelOutput = {
 
 M.UpdateChannelFlowInput = {
     type = "structure",
+    id = "UpdateChannelFlowInput",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -2717,6 +2859,7 @@ M.UpdateChannelFlowInput = {
 
 M.UpdateChannelFlowOutput = {
     type = "structure",
+    id = "UpdateChannelFlowOutput",
     members = {
         ChannelFlowArn = {
             type = "string",
@@ -2726,6 +2869,7 @@ M.UpdateChannelFlowOutput = {
 
 M.UpdateChannelMessageInput = {
     type = "structure",
+    id = "UpdateChannelMessageInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2768,6 +2912,7 @@ M.UpdateChannelMessageInput = {
 
 M.UpdateChannelMessageOutput = {
     type = "structure",
+    id = "UpdateChannelMessageOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2784,6 +2929,7 @@ M.UpdateChannelMessageOutput = {
 
 M.UpdateChannelReadMarkerInput = {
     type = "structure",
+    id = "UpdateChannelReadMarkerInput",
     members = {
         ChannelArn = {
             type = "string",
@@ -2804,6 +2950,7 @@ M.UpdateChannelReadMarkerInput = {
 
 M.UpdateChannelReadMarkerOutput = {
     type = "structure",
+    id = "UpdateChannelReadMarkerOutput",
     members = {
         ChannelArn = {
             type = "string",

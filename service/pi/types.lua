@@ -6,6 +6,7 @@ M.AcceptLanguage = {
 
 M.PerformanceInsightsMetric = {
     type = "structure",
+    id = "PerformanceInsightsMetric",
     members = {
         Metric = {
             type = "string",
@@ -31,6 +32,7 @@ M.PerformanceInsightsMetric = {
 
 M.Data = {
     type = "structure",
+    id = "Data",
     members = {
         PerformanceInsightsMetric = M.PerformanceInsightsMetric,
     },
@@ -43,6 +45,7 @@ M.ContextType = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         RecommendationId = {
             type = "string",
@@ -72,6 +75,7 @@ M.AnalysisStatus = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -90,6 +94,7 @@ M.Tag = {
 
 M.AnalysisReportSummary = {
     type = "structure",
+    id = "AnalysisReportSummary",
     members = {
         AnalysisReportId = {
             type = "string",
@@ -121,6 +126,7 @@ M.FineGrainedAction = {
 
 M.CreatePerformanceAnalysisReportInput = {
     type = "structure",
+    id = "CreatePerformanceAnalysisReportInput",
     members = {
         ServiceType = {
             type = "string",
@@ -155,6 +161,7 @@ M.CreatePerformanceAnalysisReportInput = {
 
 M.CreatePerformanceAnalysisReportOutput = {
     type = "structure",
+    id = "CreatePerformanceAnalysisReportOutput",
     members = {
         AnalysisReportId = {
             type = "string",
@@ -164,6 +171,7 @@ M.CreatePerformanceAnalysisReportOutput = {
 
 M.InternalServiceError = {
     type = "structure",
+    id = "InternalServiceError",
     error = "server",
     members = {
         Message = {
@@ -174,6 +182,7 @@ M.InternalServiceError = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -184,6 +193,7 @@ M.InvalidArgumentException = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         Message = {
@@ -194,6 +204,7 @@ M.NotAuthorizedException = {
 
 M.DataPoint = {
     type = "structure",
+    id = "DataPoint",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -212,6 +223,7 @@ M.DataPoint = {
 
 M.DeletePerformanceAnalysisReportInput = {
     type = "structure",
+    id = "DeletePerformanceAnalysisReportInput",
     members = {
         ServiceType = {
             type = "string",
@@ -236,10 +248,12 @@ M.DeletePerformanceAnalysisReportInput = {
 
 M.DeletePerformanceAnalysisReportOutput = {
     type = "structure",
+    id = "DeletePerformanceAnalysisReportOutput",
 }
 
 M.DimensionGroup = {
     type = "structure",
+    id = "DimensionGroup",
     members = {
         Group = {
             type = "string",
@@ -259,6 +273,7 @@ M.DimensionGroup = {
 
 M.DescribeDimensionKeysInput = {
     type = "structure",
+    id = "DescribeDimensionKeysInput",
     members = {
         ServiceType = {
             type = "string",
@@ -317,6 +332,7 @@ M.DescribeDimensionKeysInput = {
 
 M.DimensionKeyDescription = {
     type = "structure",
+    id = "DimensionKeyDescription",
     members = {
         Dimensions = {
             type = "map",
@@ -340,6 +356,7 @@ M.DimensionKeyDescription = {
 
 M.ResponsePartitionKey = {
     type = "structure",
+    id = "ResponsePartitionKey",
     members = {
         Dimensions = {
             type = "map",
@@ -354,6 +371,7 @@ M.ResponsePartitionKey = {
 
 M.DescribeDimensionKeysOutput = {
     type = "structure",
+    id = "DescribeDimensionKeysOutput",
     members = {
         AlignedStartTime = {
             type = "timestamp",
@@ -383,6 +401,7 @@ M.DetailStatus = {
 
 M.DimensionDetail = {
     type = "structure",
+    id = "DimensionDetail",
     members = {
         Identifier = {
             type = "string",
@@ -392,6 +411,7 @@ M.DimensionDetail = {
 
 M.DimensionGroupDetail = {
     type = "structure",
+    id = "DimensionGroupDetail",
     members = {
         Group = {
             type = "string",
@@ -405,6 +425,7 @@ M.DimensionGroupDetail = {
 
 M.DimensionKeyDetail = {
     type = "structure",
+    id = "DimensionKeyDetail",
     members = {
         Value = {
             type = "string",
@@ -429,6 +450,7 @@ M.FeatureStatus = {
 
 M.FeatureMetadata = {
     type = "structure",
+    id = "FeatureMetadata",
     members = {
         Status = {
             type = "string",
@@ -438,6 +460,7 @@ M.FeatureMetadata = {
 
 M.GetDimensionKeyDetailsInput = {
     type = "structure",
+    id = "GetDimensionKeyDetailsInput",
     members = {
         ServiceType = {
             type = "string",
@@ -472,6 +495,7 @@ M.GetDimensionKeyDetailsInput = {
 
 M.GetDimensionKeyDetailsOutput = {
     type = "structure",
+    id = "GetDimensionKeyDetailsOutput",
     members = {
         Dimensions = {
             type = "list",
@@ -487,6 +511,7 @@ M.TextFormat = {
 
 M.GetPerformanceAnalysisReportInput = {
     type = "structure",
+    id = "GetPerformanceAnalysisReportInput",
     members = {
         ServiceType = {
             type = "string",
@@ -517,6 +542,7 @@ M.GetPerformanceAnalysisReportInput = {
 
 M.GetResourceMetadataInput = {
     type = "structure",
+    id = "GetResourceMetadataInput",
     members = {
         ServiceType = {
             type = "string",
@@ -535,6 +561,7 @@ M.GetResourceMetadataInput = {
 
 M.GetResourceMetadataOutput = {
     type = "structure",
+    id = "GetResourceMetadataOutput",
     members = {
         Identifier = {
             type = "string",
@@ -549,6 +576,7 @@ M.GetResourceMetadataOutput = {
 
 M.MetricQuery = {
     type = "structure",
+    id = "MetricQuery",
     members = {
         Metric = {
             type = "string",
@@ -572,6 +600,7 @@ M.PeriodAlignment = {
 
 M.GetResourceMetricsInput = {
     type = "structure",
+    id = "GetResourceMetricsInput",
     members = {
         ServiceType = {
             type = "string",
@@ -621,6 +650,7 @@ M.GetResourceMetricsInput = {
 
 M.ResponseResourceMetricKey = {
     type = "structure",
+    id = "ResponseResourceMetricKey",
     members = {
         Metric = {
             type = "string",
@@ -638,6 +668,7 @@ M.ResponseResourceMetricKey = {
 
 M.MetricKeyDataPoints = {
     type = "structure",
+    id = "MetricKeyDataPoints",
     members = {
         Key = M.ResponseResourceMetricKey,
         DataPoints = {
@@ -649,6 +680,7 @@ M.MetricKeyDataPoints = {
 
 M.GetResourceMetricsOutput = {
     type = "structure",
+    id = "GetResourceMetricsOutput",
     members = {
         AlignedStartTime = {
             type = "timestamp",
@@ -671,6 +703,7 @@ M.GetResourceMetricsOutput = {
 
 M.ListAvailableResourceDimensionsInput = {
     type = "structure",
+    id = "ListAvailableResourceDimensionsInput",
     members = {
         ServiceType = {
             type = "string",
@@ -706,6 +739,7 @@ M.ListAvailableResourceDimensionsInput = {
 
 M.MetricDimensionGroups = {
     type = "structure",
+    id = "MetricDimensionGroups",
     members = {
         Metric = {
             type = "string",
@@ -719,6 +753,7 @@ M.MetricDimensionGroups = {
 
 M.ListAvailableResourceDimensionsOutput = {
     type = "structure",
+    id = "ListAvailableResourceDimensionsOutput",
     members = {
         MetricDimensions = {
             type = "list",
@@ -732,6 +767,7 @@ M.ListAvailableResourceDimensionsOutput = {
 
 M.ListAvailableResourceMetricsInput = {
     type = "structure",
+    id = "ListAvailableResourceMetricsInput",
     members = {
         ServiceType = {
             type = "string",
@@ -763,6 +799,7 @@ M.ListAvailableResourceMetricsInput = {
 
 M.ResponseResourceMetric = {
     type = "structure",
+    id = "ResponseResourceMetric",
     members = {
         Metric = {
             type = "string",
@@ -778,6 +815,7 @@ M.ResponseResourceMetric = {
 
 M.ListAvailableResourceMetricsOutput = {
     type = "structure",
+    id = "ListAvailableResourceMetricsOutput",
     members = {
         Metrics = {
             type = "list",
@@ -791,6 +829,7 @@ M.ListAvailableResourceMetricsOutput = {
 
 M.ListPerformanceAnalysisReportsInput = {
     type = "structure",
+    id = "ListPerformanceAnalysisReportsInput",
     members = {
         ServiceType = {
             type = "string",
@@ -818,6 +857,7 @@ M.ListPerformanceAnalysisReportsInput = {
 
 M.ListPerformanceAnalysisReportsOutput = {
     type = "structure",
+    id = "ListPerformanceAnalysisReportsOutput",
     members = {
         AnalysisReports = {
             type = "list",
@@ -831,6 +871,7 @@ M.ListPerformanceAnalysisReportsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ServiceType = {
             type = "string",
@@ -849,6 +890,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -859,6 +901,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ServiceType = {
             type = "string",
@@ -884,10 +927,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ServiceType = {
             type = "string",
@@ -913,10 +958,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.Insight = {
     type = "structure",
+    id = "Insight",
     members = {
         InsightId = {
             type = "string",
@@ -963,6 +1010,7 @@ M.Insight = {
 
 M.AnalysisReport = {
     type = "structure",
+    id = "AnalysisReport",
     members = {
         AnalysisReportId = {
             type = "string",
@@ -997,6 +1045,7 @@ M.AnalysisReport = {
 
 M.GetPerformanceAnalysisReportOutput = {
     type = "structure",
+    id = "GetPerformanceAnalysisReportOutput",
     members = {
         AnalysisReport = M.AnalysisReport,
     },

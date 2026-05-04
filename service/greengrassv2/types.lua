@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AssociateClientDeviceWithCoreDeviceEntry = {
     type = "structure",
+    id = "AssociateClientDeviceWithCoreDeviceEntry",
     members = {
         thingName = {
             type = "string",
@@ -27,6 +29,7 @@ M.AssociateClientDeviceWithCoreDeviceEntry = {
 
 M.AssociateClientDeviceWithCoreDeviceErrorEntry = {
     type = "structure",
+    id = "AssociateClientDeviceWithCoreDeviceErrorEntry",
     members = {
         thingName = {
             type = "string",
@@ -42,6 +45,7 @@ M.AssociateClientDeviceWithCoreDeviceErrorEntry = {
 
 M.AssociatedClientDevice = {
     type = "structure",
+    id = "AssociatedClientDevice",
     members = {
         thingName = {
             type = "string",
@@ -54,6 +58,7 @@ M.AssociatedClientDevice = {
 
 M.AssociateServiceRoleToAccountInput = {
     type = "structure",
+    id = "AssociateServiceRoleToAccountInput",
     members = {
         roleArn = {
             type = "string",
@@ -67,6 +72,7 @@ M.AssociateServiceRoleToAccountInput = {
 
 M.AssociateServiceRoleToAccountOutput = {
     type = "structure",
+    id = "AssociateServiceRoleToAccountOutput",
     members = {
         associatedAt = {
             type = "string",
@@ -79,6 +85,7 @@ M.AssociateServiceRoleToAccountOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -99,6 +106,7 @@ M.InternalServerException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -124,6 +132,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -144,6 +153,7 @@ M.ValidationException = {
 
 M.BatchAssociateClientDeviceWithCoreDeviceInput = {
     type = "structure",
+    id = "BatchAssociateClientDeviceWithCoreDeviceInput",
     members = {
         entries = {
             type = "list",
@@ -161,6 +171,7 @@ M.BatchAssociateClientDeviceWithCoreDeviceInput = {
 
 M.BatchAssociateClientDeviceWithCoreDeviceOutput = {
     type = "structure",
+    id = "BatchAssociateClientDeviceWithCoreDeviceOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -171,6 +182,7 @@ M.BatchAssociateClientDeviceWithCoreDeviceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -196,6 +208,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -222,6 +235,7 @@ M.ThrottlingException = {
 
 M.DisassociateClientDeviceFromCoreDeviceEntry = {
     type = "structure",
+    id = "DisassociateClientDeviceFromCoreDeviceEntry",
     members = {
         thingName = {
             type = "string",
@@ -234,6 +248,7 @@ M.DisassociateClientDeviceFromCoreDeviceEntry = {
 
 M.BatchDisassociateClientDeviceFromCoreDeviceInput = {
     type = "structure",
+    id = "BatchDisassociateClientDeviceFromCoreDeviceInput",
     members = {
         entries = {
             type = "list",
@@ -251,6 +266,7 @@ M.BatchDisassociateClientDeviceFromCoreDeviceInput = {
 
 M.DisassociateClientDeviceFromCoreDeviceErrorEntry = {
     type = "structure",
+    id = "DisassociateClientDeviceFromCoreDeviceErrorEntry",
     members = {
         thingName = {
             type = "string",
@@ -266,6 +282,7 @@ M.DisassociateClientDeviceFromCoreDeviceErrorEntry = {
 
 M.BatchDisassociateClientDeviceFromCoreDeviceOutput = {
     type = "structure",
+    id = "BatchDisassociateClientDeviceFromCoreDeviceOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -276,6 +293,7 @@ M.BatchDisassociateClientDeviceFromCoreDeviceOutput = {
 
 M.CancelDeploymentInput = {
     type = "structure",
+    id = "CancelDeploymentInput",
     members = {
         deploymentId = {
             type = "string",
@@ -289,6 +307,7 @@ M.CancelDeploymentInput = {
 
 M.CancelDeploymentOutput = {
     type = "structure",
+    id = "CancelDeploymentOutput",
     members = {
         message = {
             type = "string",
@@ -298,6 +317,7 @@ M.CancelDeploymentOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -337,6 +357,7 @@ M.VendorGuidance = {
 
 M.CloudComponentStatus = {
     type = "structure",
+    id = "CloudComponentStatus",
     members = {
         componentState = {
             type = "string",
@@ -360,6 +381,7 @@ M.CloudComponentStatus = {
 
 M.ComponentPlatform = {
     type = "structure",
+    id = "ComponentPlatform",
     members = {
         name = {
             type = "string",
@@ -374,6 +396,7 @@ M.ComponentPlatform = {
 
 M.ComponentLatestVersion = {
     type = "structure",
+    id = "ComponentLatestVersion",
     members = {
         arn = {
             type = "string",
@@ -399,6 +422,7 @@ M.ComponentLatestVersion = {
 
 M.Component = {
     type = "structure",
+    id = "Component",
     members = {
         arn = {
             type = "string",
@@ -412,6 +436,7 @@ M.Component = {
 
 M.ComponentCandidate = {
     type = "structure",
+    id = "ComponentCandidate",
     members = {
         componentName = {
             type = "string",
@@ -429,6 +454,7 @@ M.ComponentCandidate = {
 
 M.ComponentConfigurationUpdate = {
     type = "structure",
+    id = "ComponentConfigurationUpdate",
     members = {
         merge = {
             type = "string",
@@ -447,6 +473,7 @@ M.ComponentDependencyType = {
 
 M.ComponentDependencyRequirement = {
     type = "structure",
+    id = "ComponentDependencyRequirement",
     members = {
         versionRequirement = {
             type = "string",
@@ -459,6 +486,7 @@ M.ComponentDependencyRequirement = {
 
 M.SystemResourceLimits = {
     type = "structure",
+    id = "SystemResourceLimits",
     members = {
         memory = {
             type = "long",
@@ -477,6 +505,7 @@ M.SystemResourceLimits = {
 
 M.ComponentRunWith = {
     type = "structure",
+    id = "ComponentRunWith",
     members = {
         posixUser = {
             type = "string",
@@ -490,6 +519,7 @@ M.ComponentRunWith = {
 
 M.ComponentDeploymentSpecification = {
     type = "structure",
+    id = "ComponentDeploymentSpecification",
     members = {
         componentVersion = {
             type = "string",
@@ -504,6 +534,7 @@ M.ComponentDeploymentSpecification = {
 
 M.ComponentVersionListItem = {
     type = "structure",
+    id = "ComponentVersionListItem",
     members = {
         componentName = {
             type = "string",
@@ -524,6 +555,7 @@ M.ComponentVisibilityScope = {
 
 M.ConnectivityInfo = {
     type = "structure",
+    id = "ConnectivityInfo",
     members = {
         id = {
             type = "string",
@@ -560,6 +592,7 @@ M.CoreDeviceStatus = {
 
 M.CoreDevice = {
     type = "structure",
+    id = "CoreDevice",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -589,6 +622,7 @@ M.LambdaEventSourceType = {
 
 M.LambdaEventSource = {
     type = "structure",
+    id = "LambdaEventSource",
     members = {
         topic = {
             type = "string",
@@ -617,6 +651,7 @@ M.LambdaFilesystemPermission = {
 
 M.LambdaDeviceMount = {
     type = "structure",
+    id = "LambdaDeviceMount",
     members = {
         path = {
             type = "string",
@@ -638,6 +673,7 @@ M.LambdaDeviceMount = {
 
 M.LambdaVolumeMount = {
     type = "structure",
+    id = "LambdaVolumeMount",
     members = {
         sourcePath = {
             type = "string",
@@ -665,6 +701,7 @@ M.LambdaVolumeMount = {
 
 M.LambdaContainerParams = {
     type = "structure",
+    id = "LambdaContainerParams",
     members = {
         memorySizeInKB = {
             type = "integer",
@@ -696,6 +733,7 @@ M.LambdaIsolationMode = {
 
 M.LambdaLinuxProcessParams = {
     type = "structure",
+    id = "LambdaLinuxProcessParams",
     members = {
         isolationMode = {
             type = "string",
@@ -706,6 +744,7 @@ M.LambdaLinuxProcessParams = {
 
 M.LambdaExecutionParameters = {
     type = "structure",
+    id = "LambdaExecutionParameters",
     members = {
         eventSources = {
             type = "list",
@@ -765,6 +804,7 @@ M.LambdaExecutionParameters = {
 
 M.LambdaFunctionRecipeSource = {
     type = "structure",
+    id = "LambdaFunctionRecipeSource",
     members = {
         lambdaArn = {
             type = "string",
@@ -793,6 +833,7 @@ M.LambdaFunctionRecipeSource = {
 
 M.CreateComponentVersionInput = {
     type = "structure",
+    id = "CreateComponentVersionInput",
     members = {
         inlineRecipe = {
             type = "blob",
@@ -814,6 +855,7 @@ M.CreateComponentVersionInput = {
 
 M.CreateComponentVersionOutput = {
     type = "structure",
+    id = "CreateComponentVersionOutput",
     members = {
         arn = {
             type = "string",
@@ -844,6 +886,7 @@ M.CreateComponentVersionOutput = {
 
 M.RequestAlreadyInProgressException = {
     type = "structure",
+    id = "RequestAlreadyInProgressException",
     error = "client",
     members = {
         message = {
@@ -857,6 +900,7 @@ M.RequestAlreadyInProgressException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -893,6 +937,7 @@ M.DeploymentComponentUpdatePolicyAction = {
 
 M.DeploymentComponentUpdatePolicy = {
     type = "structure",
+    id = "DeploymentComponentUpdatePolicy",
     members = {
         timeoutInSeconds = {
             type = "integer",
@@ -908,6 +953,7 @@ M.DeploymentComponentUpdatePolicy = {
 
 M.DeploymentConfigurationValidationPolicy = {
     type = "structure",
+    id = "DeploymentConfigurationValidationPolicy",
     members = {
         timeoutInSeconds = {
             type = "integer",
@@ -925,6 +971,7 @@ M.DeploymentFailureHandlingPolicy = {
 
 M.DeploymentPolicies = {
     type = "structure",
+    id = "DeploymentPolicies",
     members = {
         failureHandlingPolicy = {
             type = "string",
@@ -947,6 +994,7 @@ M.IoTJobExecutionFailureType = {
 
 M.IoTJobAbortCriteria = {
     type = "structure",
+    id = "IoTJobAbortCriteria",
     members = {
         failureType = {
             type = "string",
@@ -978,6 +1026,7 @@ M.IoTJobAbortCriteria = {
 
 M.IoTJobAbortConfig = {
     type = "structure",
+    id = "IoTJobAbortConfig",
     members = {
         criteriaList = {
             type = "list",
@@ -991,6 +1040,7 @@ M.IoTJobAbortConfig = {
 
 M.IoTJobRateIncreaseCriteria = {
     type = "structure",
+    id = "IoTJobRateIncreaseCriteria",
     members = {
         numberOfNotifiedThings = {
             type = "integer",
@@ -1003,6 +1053,7 @@ M.IoTJobRateIncreaseCriteria = {
 
 M.IoTJobExponentialRolloutRate = {
     type = "structure",
+    id = "IoTJobExponentialRolloutRate",
     members = {
         baseRatePerMinute = {
             type = "integer",
@@ -1024,6 +1075,7 @@ M.IoTJobExponentialRolloutRate = {
 
 M.IoTJobExecutionsRolloutConfig = {
     type = "structure",
+    id = "IoTJobExecutionsRolloutConfig",
     members = {
         exponentialRate = M.IoTJobExponentialRolloutRate,
         maximumPerMinute = {
@@ -1034,6 +1086,7 @@ M.IoTJobExecutionsRolloutConfig = {
 
 M.IoTJobTimeoutConfig = {
     type = "structure",
+    id = "IoTJobTimeoutConfig",
     members = {
         inProgressTimeoutInMinutes = {
             type = "long",
@@ -1046,6 +1099,7 @@ M.IoTJobTimeoutConfig = {
 
 M.DeploymentIoTJobConfiguration = {
     type = "structure",
+    id = "DeploymentIoTJobConfiguration",
     members = {
         jobExecutionsRolloutConfig = M.IoTJobExecutionsRolloutConfig,
         abortConfig = M.IoTJobAbortConfig,
@@ -1055,6 +1109,7 @@ M.DeploymentIoTJobConfiguration = {
 
 M.CreateDeploymentInput = {
     type = "structure",
+    id = "CreateDeploymentInput",
     members = {
         targetArn = {
             type = "string",
@@ -1091,6 +1146,7 @@ M.CreateDeploymentInput = {
 
 M.CreateDeploymentOutput = {
     type = "structure",
+    id = "CreateDeploymentOutput",
     members = {
         deploymentId = {
             type = "string",
@@ -1106,6 +1162,7 @@ M.CreateDeploymentOutput = {
 
 M.DeleteComponentInput = {
     type = "structure",
+    id = "DeleteComponentInput",
     members = {
         arn = {
             type = "string",
@@ -1119,10 +1176,12 @@ M.DeleteComponentInput = {
 
 M.DeleteComponentOutput = {
     type = "structure",
+    id = "DeleteComponentOutput",
 }
 
 M.DeleteCoreDeviceInput = {
     type = "structure",
+    id = "DeleteCoreDeviceInput",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -1136,10 +1195,12 @@ M.DeleteCoreDeviceInput = {
 
 M.DeleteCoreDeviceOutput = {
     type = "structure",
+    id = "DeleteCoreDeviceOutput",
 }
 
 M.DeleteDeploymentInput = {
     type = "structure",
+    id = "DeleteDeploymentInput",
     members = {
         deploymentId = {
             type = "string",
@@ -1153,6 +1214,7 @@ M.DeleteDeploymentInput = {
 
 M.DeleteDeploymentOutput = {
     type = "structure",
+    id = "DeleteDeploymentOutput",
 }
 
 M.DeploymentStatus = {
@@ -1165,6 +1227,7 @@ M.DeploymentStatus = {
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         targetArn = {
             type = "string",
@@ -1203,6 +1266,7 @@ M.DeploymentHistoryFilter = {
 
 M.DescribeComponentInput = {
     type = "structure",
+    id = "DescribeComponentInput",
     members = {
         arn = {
             type = "string",
@@ -1216,6 +1280,7 @@ M.DescribeComponentInput = {
 
 M.DescribeComponentOutput = {
     type = "structure",
+    id = "DescribeComponentOutput",
     members = {
         arn = {
             type = "string",
@@ -1250,10 +1315,12 @@ M.DescribeComponentOutput = {
 
 M.DisassociateServiceRoleFromAccountInput = {
     type = "structure",
+    id = "DisassociateServiceRoleFromAccountInput",
 }
 
 M.DisassociateServiceRoleFromAccountOutput = {
     type = "structure",
+    id = "DisassociateServiceRoleFromAccountOutput",
     members = {
         disassociatedAt = {
             type = "string",
@@ -1277,6 +1344,7 @@ M.EffectiveDeploymentExecutionStatus = {
 
 M.EffectiveDeploymentStatusDetails = {
     type = "structure",
+    id = "EffectiveDeploymentStatusDetails",
     members = {
         errorStack = {
             type = "list",
@@ -1291,6 +1359,7 @@ M.EffectiveDeploymentStatusDetails = {
 
 M.EffectiveDeployment = {
     type = "structure",
+    id = "EffectiveDeployment",
     members = {
         deploymentId = {
             type = "string",
@@ -1351,6 +1420,7 @@ M.RecipeOutputFormat = {
 
 M.GetComponentInput = {
     type = "structure",
+    id = "GetComponentInput",
     members = {
         recipeOutputFormat = {
             type = "string",
@@ -1370,6 +1440,7 @@ M.GetComponentInput = {
 
 M.GetComponentOutput = {
     type = "structure",
+    id = "GetComponentOutput",
     members = {
         recipeOutputFormat = {
             type = "string",
@@ -1403,6 +1474,7 @@ M.S3EndpointType = {
 
 M.GetComponentVersionArtifactInput = {
     type = "structure",
+    id = "GetComponentVersionArtifactInput",
     members = {
         arn = {
             type = "string",
@@ -1435,6 +1507,7 @@ M.GetComponentVersionArtifactInput = {
 
 M.GetComponentVersionArtifactOutput = {
     type = "structure",
+    id = "GetComponentVersionArtifactOutput",
     members = {
         preSignedUrl = {
             type = "string",
@@ -1447,6 +1520,7 @@ M.GetComponentVersionArtifactOutput = {
 
 M.GetConnectivityInfoInput = {
     type = "structure",
+    id = "GetConnectivityInfoInput",
     members = {
         thingName = {
             type = "string",
@@ -1460,6 +1534,7 @@ M.GetConnectivityInfoInput = {
 
 M.GetConnectivityInfoOutput = {
     type = "structure",
+    id = "GetConnectivityInfoOutput",
     members = {
         connectivityInfo = {
             type = "list",
@@ -1479,6 +1554,7 @@ M.GetConnectivityInfoOutput = {
 
 M.GetCoreDeviceInput = {
     type = "structure",
+    id = "GetCoreDeviceInput",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -1492,6 +1568,7 @@ M.GetCoreDeviceInput = {
 
 M.GetCoreDeviceOutput = {
     type = "structure",
+    id = "GetCoreDeviceOutput",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -1524,6 +1601,7 @@ M.GetCoreDeviceOutput = {
 
 M.GetDeploymentInput = {
     type = "structure",
+    id = "GetDeploymentInput",
     members = {
         deploymentId = {
             type = "string",
@@ -1537,6 +1615,7 @@ M.GetDeploymentInput = {
 
 M.GetDeploymentOutput = {
     type = "structure",
+    id = "GetDeploymentOutput",
     members = {
         targetArn = {
             type = "string",
@@ -1588,10 +1667,12 @@ M.GetDeploymentOutput = {
 
 M.GetServiceRoleForAccountInput = {
     type = "structure",
+    id = "GetServiceRoleForAccountInput",
 }
 
 M.GetServiceRoleForAccountOutput = {
     type = "structure",
+    id = "GetServiceRoleForAccountOutput",
     members = {
         associatedAt = {
             type = "string",
@@ -1610,6 +1691,7 @@ M.GetServiceRoleForAccountOutput = {
 
 M.ListClientDevicesAssociatedWithCoreDeviceInput = {
     type = "structure",
+    id = "ListClientDevicesAssociatedWithCoreDeviceInput",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -1635,6 +1717,7 @@ M.ListClientDevicesAssociatedWithCoreDeviceInput = {
 
 M.ListClientDevicesAssociatedWithCoreDeviceOutput = {
     type = "structure",
+    id = "ListClientDevicesAssociatedWithCoreDeviceOutput",
     members = {
         associatedClientDevices = {
             type = "list",
@@ -1648,6 +1731,7 @@ M.ListClientDevicesAssociatedWithCoreDeviceOutput = {
 
 M.ListComponentsInput = {
     type = "structure",
+    id = "ListComponentsInput",
     members = {
         scope = {
             type = "string",
@@ -1672,6 +1756,7 @@ M.ListComponentsInput = {
 
 M.ListComponentsOutput = {
     type = "structure",
+    id = "ListComponentsOutput",
     members = {
         components = {
             type = "list",
@@ -1685,6 +1770,7 @@ M.ListComponentsOutput = {
 
 M.ListComponentVersionsInput = {
     type = "structure",
+    id = "ListComponentVersionsInput",
     members = {
         arn = {
             type = "string",
@@ -1710,6 +1796,7 @@ M.ListComponentVersionsInput = {
 
 M.ListComponentVersionsOutput = {
     type = "structure",
+    id = "ListComponentVersionsOutput",
     members = {
         componentVersions = {
             type = "list",
@@ -1723,6 +1810,7 @@ M.ListComponentVersionsOutput = {
 
 M.ListCoreDevicesInput = {
     type = "structure",
+    id = "ListCoreDevicesInput",
     members = {
         thingGroupArn = {
             type = "string",
@@ -1759,6 +1847,7 @@ M.ListCoreDevicesInput = {
 
 M.ListCoreDevicesOutput = {
     type = "structure",
+    id = "ListCoreDevicesOutput",
     members = {
         coreDevices = {
             type = "list",
@@ -1772,6 +1861,7 @@ M.ListCoreDevicesOutput = {
 
 M.ListDeploymentsInput = {
     type = "structure",
+    id = "ListDeploymentsInput",
     members = {
         targetArn = {
             type = "string",
@@ -1808,6 +1898,7 @@ M.ListDeploymentsInput = {
 
 M.ListDeploymentsOutput = {
     type = "structure",
+    id = "ListDeploymentsOutput",
     members = {
         deployments = {
             type = "list",
@@ -1821,6 +1912,7 @@ M.ListDeploymentsOutput = {
 
 M.ListEffectiveDeploymentsInput = {
     type = "structure",
+    id = "ListEffectiveDeploymentsInput",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -1846,6 +1938,7 @@ M.ListEffectiveDeploymentsInput = {
 
 M.ListEffectiveDeploymentsOutput = {
     type = "structure",
+    id = "ListEffectiveDeploymentsOutput",
     members = {
         effectiveDeployments = {
             type = "list",
@@ -1864,6 +1957,7 @@ M.InstalledComponentTopologyFilter = {
 
 M.ListInstalledComponentsInput = {
     type = "structure",
+    id = "ListInstalledComponentsInput",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -1906,6 +2000,7 @@ M.InstalledComponentLifecycleState = {
 
 M.InstalledComponent = {
     type = "structure",
+    id = "InstalledComponent",
     members = {
         componentName = {
             type = "string",
@@ -1943,6 +2038,7 @@ M.InstalledComponent = {
 
 M.ListInstalledComponentsOutput = {
     type = "structure",
+    id = "ListInstalledComponentsOutput",
     members = {
         installedComponents = {
             type = "list",
@@ -1956,6 +2052,7 @@ M.ListInstalledComponentsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1969,6 +2066,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1980,6 +2078,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResolveComponentCandidatesInput = {
     type = "structure",
+    id = "ResolveComponentCandidatesInput",
     members = {
         platform = M.ComponentPlatform,
         componentCandidates = {
@@ -1991,6 +2090,7 @@ M.ResolveComponentCandidatesInput = {
 
 M.ResolvedComponentVersion = {
     type = "structure",
+    id = "ResolvedComponentVersion",
     members = {
         arn = {
             type = "string",
@@ -2015,6 +2115,7 @@ M.ResolvedComponentVersion = {
 
 M.ResolveComponentCandidatesOutput = {
     type = "structure",
+    id = "ResolveComponentCandidatesOutput",
     members = {
         resolvedComponentVersions = {
             type = "list",
@@ -2025,6 +2126,7 @@ M.ResolveComponentCandidatesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2046,10 +2148,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2071,10 +2175,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConnectivityInfoInput = {
     type = "structure",
+    id = "UpdateConnectivityInfoInput",
     members = {
         thingName = {
             type = "string",
@@ -2097,6 +2203,7 @@ M.UpdateConnectivityInfoInput = {
 
 M.UpdateConnectivityInfoOutput = {
     type = "structure",
+    id = "UpdateConnectivityInfoOutput",
     members = {
         version = {
             type = "string",

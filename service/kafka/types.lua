@@ -2,6 +2,7 @@ local M = {}
 
 M.ProvisionedThroughput = {
     type = "structure",
+    id = "ProvisionedThroughput",
     members = {
         Enabled = {
             type = "boolean",
@@ -20,6 +21,7 @@ M.ProvisionedThroughput = {
 
 M.BrokerEBSVolumeInfo = {
     type = "structure",
+    id = "BrokerEBSVolumeInfo",
     members = {
         KafkaBrokerNodeId = {
             type = "string",
@@ -53,6 +55,7 @@ M.VpcConnectionState = {
 
 M.ClientVpcConnection = {
     type = "structure",
+    id = "ClientVpcConnection",
     members = {
         Authentication = {
             type = "string",
@@ -105,6 +108,7 @@ M.NetworkType = {
 
 M.PublicAccess = {
     type = "structure",
+    id = "PublicAccess",
     members = {
         Type = {
             type = "string",
@@ -117,6 +121,7 @@ M.PublicAccess = {
 
 M.VpcConnectivityIam = {
     type = "structure",
+    id = "VpcConnectivityIam",
     members = {
         Enabled = {
             type = "boolean",
@@ -129,6 +134,7 @@ M.VpcConnectivityIam = {
 
 M.VpcConnectivityScram = {
     type = "structure",
+    id = "VpcConnectivityScram",
     members = {
         Enabled = {
             type = "boolean",
@@ -141,6 +147,7 @@ M.VpcConnectivityScram = {
 
 M.VpcConnectivitySasl = {
     type = "structure",
+    id = "VpcConnectivitySasl",
     members = {
         Scram = setmetatable({ traits = {
             json_name = "scram",
@@ -153,6 +160,7 @@ M.VpcConnectivitySasl = {
 
 M.VpcConnectivityTls = {
     type = "structure",
+    id = "VpcConnectivityTls",
     members = {
         Enabled = {
             type = "boolean",
@@ -165,6 +173,7 @@ M.VpcConnectivityTls = {
 
 M.VpcConnectivityClientAuthentication = {
     type = "structure",
+    id = "VpcConnectivityClientAuthentication",
     members = {
         Sasl = setmetatable({ traits = {
             json_name = "sasl",
@@ -177,6 +186,7 @@ M.VpcConnectivityClientAuthentication = {
 
 M.VpcConnectivity = {
     type = "structure",
+    id = "VpcConnectivity",
     members = {
         ClientAuthentication = setmetatable({ traits = {
             json_name = "clientAuthentication",
@@ -186,6 +196,7 @@ M.VpcConnectivity = {
 
 M.ConnectivityInfo = {
     type = "structure",
+    id = "ConnectivityInfo",
     members = {
         PublicAccess = setmetatable({ traits = {
             json_name = "publicAccess",
@@ -204,6 +215,7 @@ M.ConnectivityInfo = {
 
 M.EBSStorageInfo = {
     type = "structure",
+    id = "EBSStorageInfo",
     members = {
         ProvisionedThroughput = setmetatable({ traits = {
             json_name = "provisionedThroughput",
@@ -219,6 +231,7 @@ M.EBSStorageInfo = {
 
 M.StorageInfo = {
     type = "structure",
+    id = "StorageInfo",
     members = {
         EbsStorageInfo = setmetatable({ traits = {
             json_name = "ebsStorageInfo",
@@ -228,6 +241,7 @@ M.StorageInfo = {
 
 M.BrokerNodeGroupInfo = {
     type = "structure",
+    id = "BrokerNodeGroupInfo",
     members = {
         BrokerAZDistribution = {
             type = "string",
@@ -275,6 +289,7 @@ M.BrokerNodeGroupInfo = {
 
 M.Iam = {
     type = "structure",
+    id = "Iam",
     members = {
         Enabled = {
             type = "boolean",
@@ -287,6 +302,7 @@ M.Iam = {
 
 M.Scram = {
     type = "structure",
+    id = "Scram",
     members = {
         Enabled = {
             type = "boolean",
@@ -299,6 +315,7 @@ M.Scram = {
 
 M.Sasl = {
     type = "structure",
+    id = "Sasl",
     members = {
         Scram = setmetatable({ traits = {
             json_name = "scram",
@@ -311,6 +328,7 @@ M.Sasl = {
 
 M.Tls = {
     type = "structure",
+    id = "Tls",
     members = {
         CertificateAuthorityArnList = {
             type = "list",
@@ -330,6 +348,7 @@ M.Tls = {
 
 M.Unauthenticated = {
     type = "structure",
+    id = "Unauthenticated",
     members = {
         Enabled = {
             type = "boolean",
@@ -342,6 +361,7 @@ M.Unauthenticated = {
 
 M.ClientAuthentication = {
     type = "structure",
+    id = "ClientAuthentication",
     members = {
         Sasl = setmetatable({ traits = {
             json_name = "sasl",
@@ -357,6 +377,7 @@ M.ClientAuthentication = {
 
 M.BrokerSoftwareInfo = {
     type = "structure",
+    id = "BrokerSoftwareInfo",
     members = {
         ConfigurationArn = {
             type = "string",
@@ -387,6 +408,7 @@ M.CustomerActionStatus = {
 
 M.EncryptionAtRest = {
     type = "structure",
+    id = "EncryptionAtRest",
     members = {
         DataVolumeKMSKeyId = {
             type = "string",
@@ -406,6 +428,7 @@ M.ClientBroker = {
 
 M.EncryptionInTransit = {
     type = "structure",
+    id = "EncryptionInTransit",
     members = {
         ClientBroker = {
             type = "string",
@@ -424,6 +447,7 @@ M.EncryptionInTransit = {
 
 M.EncryptionInfo = {
     type = "structure",
+    id = "EncryptionInfo",
     members = {
         EncryptionAtRest = setmetatable({ traits = {
             json_name = "encryptionAtRest",
@@ -443,6 +467,7 @@ M.EnhancedMonitoring = {
 
 M.CloudWatchLogs = {
     type = "structure",
+    id = "CloudWatchLogs",
     members = {
         Enabled = {
             type = "boolean",
@@ -462,6 +487,7 @@ M.CloudWatchLogs = {
 
 M.Firehose = {
     type = "structure",
+    id = "Firehose",
     members = {
         DeliveryStream = {
             type = "string",
@@ -481,6 +507,7 @@ M.Firehose = {
 
 M.S3 = {
     type = "structure",
+    id = "S3",
     members = {
         Bucket = {
             type = "string",
@@ -506,6 +533,7 @@ M.S3 = {
 
 M.BrokerLogs = {
     type = "structure",
+    id = "BrokerLogs",
     members = {
         CloudWatchLogs = setmetatable({ traits = {
             json_name = "cloudWatchLogs",
@@ -521,6 +549,7 @@ M.BrokerLogs = {
 
 M.LoggingInfo = {
     type = "structure",
+    id = "LoggingInfo",
     members = {
         BrokerLogs = setmetatable({ traits = {
             json_name = "brokerLogs",
@@ -531,6 +560,7 @@ M.LoggingInfo = {
 
 M.JmxExporterInfo = {
     type = "structure",
+    id = "JmxExporterInfo",
     members = {
         EnabledInBroker = {
             type = "boolean",
@@ -544,6 +574,7 @@ M.JmxExporterInfo = {
 
 M.NodeExporterInfo = {
     type = "structure",
+    id = "NodeExporterInfo",
     members = {
         EnabledInBroker = {
             type = "boolean",
@@ -557,6 +588,7 @@ M.NodeExporterInfo = {
 
 M.PrometheusInfo = {
     type = "structure",
+    id = "PrometheusInfo",
     members = {
         JmxExporter = setmetatable({ traits = {
             json_name = "jmxExporter",
@@ -569,6 +601,7 @@ M.PrometheusInfo = {
 
 M.OpenMonitoringInfo = {
     type = "structure",
+    id = "OpenMonitoringInfo",
     members = {
         Prometheus = setmetatable({ traits = {
             json_name = "prometheus",
@@ -584,6 +617,7 @@ M.RebalancingStatus = {
 
 M.Rebalancing = {
     type = "structure",
+    id = "Rebalancing",
     members = {
         Status = {
             type = "string",
@@ -601,6 +635,7 @@ M.StorageMode = {
 
 M.Provisioned = {
     type = "structure",
+    id = "Provisioned",
     members = {
         BrokerNodeGroupInfo = setmetatable({ traits = {
             json_name = "brokerNodeGroupInfo",
@@ -666,6 +701,7 @@ M.Provisioned = {
 
 M.ServerlessSasl = {
     type = "structure",
+    id = "ServerlessSasl",
     members = {
         Iam = setmetatable({ traits = {
             json_name = "iam",
@@ -675,6 +711,7 @@ M.ServerlessSasl = {
 
 M.ServerlessClientAuthentication = {
     type = "structure",
+    id = "ServerlessClientAuthentication",
     members = {
         Sasl = setmetatable({ traits = {
             json_name = "sasl",
@@ -684,6 +721,7 @@ M.ServerlessClientAuthentication = {
 
 M.ServerlessConnectivityInfo = {
     type = "structure",
+    id = "ServerlessConnectivityInfo",
     members = {
         NetworkType = {
             type = "string",
@@ -696,6 +734,7 @@ M.ServerlessConnectivityInfo = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         SubnetIds = {
             type = "list",
@@ -717,6 +756,7 @@ M.VpcConfig = {
 
 M.Serverless = {
     type = "structure",
+    id = "Serverless",
     members = {
         VpcConfigs = {
             type = "list",
@@ -748,6 +788,7 @@ M.ClusterState = {
 
 M.StateInfo = {
     type = "structure",
+    id = "StateInfo",
     members = {
         Code = {
             type = "string",
@@ -766,6 +807,7 @@ M.StateInfo = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         ActiveOperationArn = {
             type = "string",
@@ -832,6 +874,7 @@ M.Cluster = {
 
 M.JmxExporter = {
     type = "structure",
+    id = "JmxExporter",
     members = {
         EnabledInBroker = {
             type = "boolean",
@@ -845,6 +888,7 @@ M.JmxExporter = {
 
 M.NodeExporter = {
     type = "structure",
+    id = "NodeExporter",
     members = {
         EnabledInBroker = {
             type = "boolean",
@@ -858,6 +902,7 @@ M.NodeExporter = {
 
 M.Prometheus = {
     type = "structure",
+    id = "Prometheus",
     members = {
         JmxExporter = setmetatable({ traits = {
             json_name = "jmxExporter",
@@ -870,6 +915,7 @@ M.Prometheus = {
 
 M.OpenMonitoring = {
     type = "structure",
+    id = "OpenMonitoring",
     members = {
         Prometheus = setmetatable({ traits = {
             json_name = "prometheus",
@@ -880,6 +926,7 @@ M.OpenMonitoring = {
 
 M.ClusterInfo = {
     type = "structure",
+    id = "ClusterInfo",
     members = {
         ActiveOperationArn = {
             type = "string",
@@ -991,6 +1038,7 @@ M.ClusterInfo = {
 
 M.ErrorInfo = {
     type = "structure",
+    id = "ErrorInfo",
     members = {
         ErrorCode = {
             type = "string",
@@ -1009,6 +1057,7 @@ M.ErrorInfo = {
 
 M.ClusterOperationStepInfo = {
     type = "structure",
+    id = "ClusterOperationStepInfo",
     members = {
         StepStatus = {
             type = "string",
@@ -1021,6 +1070,7 @@ M.ClusterOperationStepInfo = {
 
 M.ClusterOperationStep = {
     type = "structure",
+    id = "ClusterOperationStep",
     members = {
         StepInfo = setmetatable({ traits = {
             json_name = "stepInfo",
@@ -1036,6 +1086,7 @@ M.ClusterOperationStep = {
 
 M.BrokerCountUpdateInfo = {
     type = "structure",
+    id = "BrokerCountUpdateInfo",
     members = {
         CreatedBrokerIds = {
             type = "list",
@@ -1056,6 +1107,7 @@ M.BrokerCountUpdateInfo = {
 
 M.ConfigurationInfo = {
     type = "structure",
+    id = "ConfigurationInfo",
     members = {
         Arn = {
             type = "string",
@@ -1076,6 +1128,7 @@ M.ConfigurationInfo = {
 
 M.ZookeeperAccess = {
     type = "structure",
+    id = "ZookeeperAccess",
     members = {
         Enabled = {
             type = "boolean",
@@ -1088,6 +1141,7 @@ M.ZookeeperAccess = {
 
 M.MutableClusterInfo = {
     type = "structure",
+    id = "MutableClusterInfo",
     members = {
         BrokerEBSVolumeInfo = {
             type = "list",
@@ -1163,6 +1217,7 @@ M.UserIdentityType = {
 
 M.UserIdentity = {
     type = "structure",
+    id = "UserIdentity",
     members = {
         Type = {
             type = "string",
@@ -1181,6 +1236,7 @@ M.UserIdentity = {
 
 M.VpcConnectionInfo = {
     type = "structure",
+    id = "VpcConnectionInfo",
     members = {
         VpcConnectionArn = {
             type = "string",
@@ -1209,6 +1265,7 @@ M.VpcConnectionInfo = {
 
 M.ClusterOperationInfo = {
     type = "structure",
+    id = "ClusterOperationInfo",
     members = {
         ClientRequestId = {
             type = "string",
@@ -1278,6 +1335,7 @@ M.ClusterOperationInfo = {
 
 M.ClusterOperationV2Summary = {
     type = "structure",
+    id = "ClusterOperationV2Summary",
     members = {
         ClusterArn = {
             type = "string",
@@ -1328,6 +1386,7 @@ M.ClusterOperationV2Summary = {
 
 M.CompatibleKafkaVersion = {
     type = "structure",
+    id = "CompatibleKafkaVersion",
     members = {
         SourceVersion = {
             type = "string",
@@ -1347,6 +1406,7 @@ M.CompatibleKafkaVersion = {
 
 M.ConfigurationRevision = {
     type = "structure",
+    id = "ConfigurationRevision",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -1380,6 +1440,7 @@ M.ConfigurationState = {
 
 M.Configuration = {
     type = "structure",
+    id = "Configuration",
     members = {
         Arn = {
             type = "string",
@@ -1434,6 +1495,7 @@ M.Configuration = {
 
 M.AmazonMskCluster = {
     type = "structure",
+    id = "AmazonMskCluster",
     members = {
         MskClusterArn = {
             type = "string",
@@ -1447,6 +1509,7 @@ M.AmazonMskCluster = {
 
 M.ApacheKafkaCluster = {
     type = "structure",
+    id = "ApacheKafkaCluster",
     members = {
         ApacheKafkaClusterId = {
             type = "string",
@@ -1472,6 +1535,7 @@ M.KafkaClusterSaslScramMechanism = {
 
 M.KafkaClusterSaslScramAuthentication = {
     type = "structure",
+    id = "KafkaClusterSaslScramAuthentication",
     members = {
         Mechanism = {
             type = "string",
@@ -1492,6 +1556,7 @@ M.KafkaClusterSaslScramAuthentication = {
 
 M.KafkaClusterClientAuthentication = {
     type = "structure",
+    id = "KafkaClusterClientAuthentication",
     members = {
         SaslScram = setmetatable({ traits = {
             json_name = "saslScram",
@@ -1506,6 +1571,7 @@ M.KafkaClusterEncryptionInTransitType = {
 
 M.KafkaClusterEncryptionInTransit = {
     type = "structure",
+    id = "KafkaClusterEncryptionInTransit",
     members = {
         EncryptionType = {
             type = "string",
@@ -1525,6 +1591,7 @@ M.KafkaClusterEncryptionInTransit = {
 
 M.KafkaClusterClientVpcConfig = {
     type = "structure",
+    id = "KafkaClusterClientVpcConfig",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -1546,6 +1613,7 @@ M.KafkaClusterClientVpcConfig = {
 
 M.KafkaCluster = {
     type = "structure",
+    id = "KafkaCluster",
     members = {
         AmazonMskCluster = setmetatable({ traits = {
             json_name = "amazonMskCluster",
@@ -1567,6 +1635,7 @@ M.KafkaCluster = {
 
 M.KafkaClusterDescription = {
     type = "structure",
+    id = "KafkaClusterDescription",
     members = {
         AmazonMskCluster = setmetatable({ traits = {
             json_name = "amazonMskCluster",
@@ -1594,6 +1663,7 @@ M.KafkaClusterDescription = {
 
 M.KafkaClusterSummary = {
     type = "structure",
+    id = "KafkaClusterSummary",
     members = {
         AmazonMskCluster = setmetatable({ traits = {
             json_name = "amazonMskCluster",
@@ -1617,6 +1687,7 @@ M.KafkaVersionStatus = {
 
 M.KafkaVersion = {
     type = "structure",
+    id = "KafkaVersion",
     members = {
         Version = {
             type = "string",
@@ -1635,6 +1706,7 @@ M.KafkaVersion = {
 
 M.BrokerNodeInfo = {
     type = "structure",
+    id = "BrokerNodeInfo",
     members = {
         AttachedENIId = {
             type = "string",
@@ -1675,6 +1747,7 @@ M.BrokerNodeInfo = {
 
 M.ControllerNodeInfo = {
     type = "structure",
+    id = "ControllerNodeInfo",
     members = {
         Endpoints = {
             type = "list",
@@ -1692,6 +1765,7 @@ M.NodeType = {
 
 M.ZookeeperNodeInfo = {
     type = "structure",
+    id = "ZookeeperNodeInfo",
     members = {
         AttachedENIId = {
             type = "string",
@@ -1729,6 +1803,7 @@ M.ZookeeperNodeInfo = {
 
 M.NodeInfo = {
     type = "structure",
+    id = "NodeInfo",
     members = {
         AddedToClusterTime = {
             type = "string",
@@ -1773,6 +1848,7 @@ M.ConsumerGroupOffsetSyncMode = {
 
 M.ConsumerGroupReplication = {
     type = "structure",
+    id = "ConsumerGroupReplication",
     members = {
         ConsumerGroupsToExclude = {
             type = "list",
@@ -1825,6 +1901,7 @@ M.ReplicationStartingPositionType = {
 
 M.ReplicationStartingPosition = {
     type = "structure",
+    id = "ReplicationStartingPosition",
     members = {
         Type = {
             type = "string",
@@ -1842,6 +1919,7 @@ M.ReplicationTopicNameConfigurationType = {
 
 M.ReplicationTopicNameConfiguration = {
     type = "structure",
+    id = "ReplicationTopicNameConfiguration",
     members = {
         Type = {
             type = "string",
@@ -1854,6 +1932,7 @@ M.ReplicationTopicNameConfiguration = {
 
 M.TopicReplication = {
     type = "structure",
+    id = "TopicReplication",
     members = {
         CopyAccessControlListsForTopics = {
             type = "boolean",
@@ -1899,6 +1978,7 @@ M.TopicReplication = {
 
 M.ReplicationInfo = {
     type = "structure",
+    id = "ReplicationInfo",
     members = {
         ConsumerGroupReplication = setmetatable({ traits = {
             json_name = "consumerGroupReplication",
@@ -1944,6 +2024,7 @@ M.ReplicationInfo = {
 
 M.ReplicationInfoDescription = {
     type = "structure",
+    id = "ReplicationInfoDescription",
     members = {
         ConsumerGroupReplication = setmetatable({ traits = {
             json_name = "consumerGroupReplication",
@@ -1974,6 +2055,7 @@ M.ReplicationInfoDescription = {
 
 M.ReplicationInfoSummary = {
     type = "structure",
+    id = "ReplicationInfoSummary",
     members = {
         SourceKafkaClusterAlias = {
             type = "string",
@@ -2000,6 +2082,7 @@ M.ReplicatorState = {
 
 M.ReplicatorSummary = {
     type = "structure",
+    id = "ReplicatorSummary",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -2063,6 +2146,7 @@ M.ReplicatorSummary = {
 
 M.TopicInfo = {
     type = "structure",
+    id = "TopicInfo",
     members = {
         TopicArn = {
             type = "string",
@@ -2099,6 +2183,7 @@ M.TopicInfo = {
 
 M.TopicPartitionInfo = {
     type = "structure",
+    id = "TopicPartitionInfo",
     members = {
         Partition = {
             type = "integer",
@@ -2131,6 +2216,7 @@ M.TopicPartitionInfo = {
 
 M.UnprocessedScramSecret = {
     type = "structure",
+    id = "UnprocessedScramSecret",
     members = {
         ErrorCode = {
             type = "string",
@@ -2155,6 +2241,7 @@ M.UnprocessedScramSecret = {
 
 M.VpcConnection = {
     type = "structure",
+    id = "VpcConnection",
     members = {
         VpcConnectionArn = {
             type = "string",
@@ -2200,6 +2287,7 @@ M.VpcConnection = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2219,6 +2307,7 @@ M.BadRequestException = {
 
 M.BatchAssociateScramSecretInput = {
     type = "structure",
+    id = "BatchAssociateScramSecretInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -2240,6 +2329,7 @@ M.BatchAssociateScramSecretInput = {
 
 M.BatchAssociateScramSecretOutput = {
     type = "structure",
+    id = "BatchAssociateScramSecretOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -2259,6 +2349,7 @@ M.BatchAssociateScramSecretOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2278,6 +2369,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         InvalidParameter = {
@@ -2297,6 +2389,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2316,6 +2409,7 @@ M.NotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         InvalidParameter = {
@@ -2335,6 +2429,7 @@ M.ServiceUnavailableException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2354,6 +2449,7 @@ M.TooManyRequestsException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2373,6 +2469,7 @@ M.UnauthorizedException = {
 
 M.BatchDisassociateScramSecretInput = {
     type = "structure",
+    id = "BatchDisassociateScramSecretInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -2394,6 +2491,7 @@ M.BatchDisassociateScramSecretInput = {
 
 M.BatchDisassociateScramSecretOutput = {
     type = "structure",
+    id = "BatchDisassociateScramSecretOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -2413,6 +2511,7 @@ M.BatchDisassociateScramSecretOutput = {
 
 M.ClusterConnectivityException = {
     type = "structure",
+    id = "ClusterConnectivityException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2432,6 +2531,7 @@ M.ClusterConnectivityException = {
 
 M.ClusterOperationV2Provisioned = {
     type = "structure",
+    id = "ClusterOperationV2Provisioned",
     members = {
         OperationSteps = {
             type = "list",
@@ -2454,6 +2554,7 @@ M.ClusterOperationV2Provisioned = {
 
 M.VpcConnectionInfoServerless = {
     type = "structure",
+    id = "VpcConnectionInfoServerless",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -2482,6 +2583,7 @@ M.VpcConnectionInfoServerless = {
 
 M.ClusterOperationV2Serverless = {
     type = "structure",
+    id = "ClusterOperationV2Serverless",
     members = {
         SourceClusterInfo = setmetatable({ traits = {
             json_name = "sourceClusterInfo",
@@ -2497,6 +2599,7 @@ M.ClusterOperationV2Serverless = {
 
 M.ClusterOperationV2 = {
     type = "structure",
+    id = "ClusterOperationV2",
     members = {
         ClusterArn = {
             type = "string",
@@ -2556,6 +2659,7 @@ M.ClusterOperationV2 = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2575,6 +2679,7 @@ M.ConflictException = {
 
 M.ConsumerGroupReplicationUpdate = {
     type = "structure",
+    id = "ConsumerGroupReplicationUpdate",
     members = {
         ConsumerGroupsToExclude = {
             type = "list",
@@ -2611,6 +2716,7 @@ M.ConsumerGroupReplicationUpdate = {
 
 M.ControllerMovedException = {
     type = "structure",
+    id = "ControllerMovedException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -2630,6 +2736,7 @@ M.ControllerMovedException = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         BrokerNodeGroupInfo = setmetatable({ traits = {
             json_name = "brokerNodeGroupInfo",
@@ -2699,6 +2806,7 @@ M.CreateClusterInput = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -2723,6 +2831,7 @@ M.CreateClusterOutput = {
 
 M.ProvisionedRequest = {
     type = "structure",
+    id = "ProvisionedRequest",
     members = {
         BrokerNodeGroupInfo = setmetatable({ traits = {
             json_name = "brokerNodeGroupInfo",
@@ -2777,6 +2886,7 @@ M.ProvisionedRequest = {
 
 M.ServerlessRequest = {
     type = "structure",
+    id = "ServerlessRequest",
     members = {
         VpcConfigs = {
             type = "list",
@@ -2794,6 +2904,7 @@ M.ServerlessRequest = {
 
 M.CreateClusterV2Input = {
     type = "structure",
+    id = "CreateClusterV2Input",
     members = {
         ClusterName = {
             type = "string",
@@ -2821,6 +2932,7 @@ M.CreateClusterV2Input = {
 
 M.CreateClusterV2Output = {
     type = "structure",
+    id = "CreateClusterV2Output",
     members = {
         ClusterArn = {
             type = "string",
@@ -2851,6 +2963,7 @@ M.CreateClusterV2Output = {
 
 M.CreateConfigurationInput = {
     type = "structure",
+    id = "CreateConfigurationInput",
     members = {
         Description = {
             type = "string",
@@ -2884,6 +2997,7 @@ M.CreateConfigurationInput = {
 
 M.CreateConfigurationOutput = {
     type = "structure",
+    id = "CreateConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -2918,6 +3032,7 @@ M.CreateConfigurationOutput = {
 
 M.ReplicatorCloudWatchLogs = {
     type = "structure",
+    id = "ReplicatorCloudWatchLogs",
     members = {
         Enabled = {
             type = "boolean",
@@ -2937,6 +3052,7 @@ M.ReplicatorCloudWatchLogs = {
 
 M.ReplicatorFirehose = {
     type = "structure",
+    id = "ReplicatorFirehose",
     members = {
         Enabled = {
             type = "boolean",
@@ -2956,6 +3072,7 @@ M.ReplicatorFirehose = {
 
 M.ReplicatorS3 = {
     type = "structure",
+    id = "ReplicatorS3",
     members = {
         Enabled = {
             type = "boolean",
@@ -2981,6 +3098,7 @@ M.ReplicatorS3 = {
 
 M.ReplicatorLogDelivery = {
     type = "structure",
+    id = "ReplicatorLogDelivery",
     members = {
         CloudWatchLogs = setmetatable({ traits = {
             json_name = "cloudWatchLogs",
@@ -2996,6 +3114,7 @@ M.ReplicatorLogDelivery = {
 
 M.LogDelivery = {
     type = "structure",
+    id = "LogDelivery",
     members = {
         ReplicatorLogDelivery = setmetatable({ traits = {
             json_name = "replicatorLogDelivery",
@@ -3005,6 +3124,7 @@ M.LogDelivery = {
 
 M.CreateReplicatorInput = {
     type = "structure",
+    id = "CreateReplicatorInput",
     members = {
         Description = {
             type = "string",
@@ -3058,6 +3178,7 @@ M.CreateReplicatorInput = {
 
 M.CreateReplicatorOutput = {
     type = "structure",
+    id = "CreateReplicatorOutput",
     members = {
         ReplicatorArn = {
             type = "string",
@@ -3082,6 +3203,7 @@ M.CreateReplicatorOutput = {
 
 M.CreateTopicInput = {
     type = "structure",
+    id = "CreateTopicInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -3129,6 +3251,7 @@ M.TopicState = {
 
 M.CreateTopicOutput = {
     type = "structure",
+    id = "CreateTopicOutput",
     members = {
         TopicArn = {
             type = "string",
@@ -3153,6 +3276,7 @@ M.CreateTopicOutput = {
 
 M.GroupSubscribedToTopicException = {
     type = "structure",
+    id = "GroupSubscribedToTopicException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -3172,6 +3296,7 @@ M.GroupSubscribedToTopicException = {
 
 M.KafkaRequestException = {
     type = "structure",
+    id = "KafkaRequestException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -3191,6 +3316,7 @@ M.KafkaRequestException = {
 
 M.KafkaTimeoutException = {
     type = "structure",
+    id = "KafkaTimeoutException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -3210,6 +3336,7 @@ M.KafkaTimeoutException = {
 
 M.NotControllerException = {
     type = "structure",
+    id = "NotControllerException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -3229,6 +3356,7 @@ M.NotControllerException = {
 
 M.ReassignmentInProgressException = {
     type = "structure",
+    id = "ReassignmentInProgressException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -3248,6 +3376,7 @@ M.ReassignmentInProgressException = {
 
 M.TopicExistsException = {
     type = "structure",
+    id = "TopicExistsException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -3267,6 +3396,7 @@ M.TopicExistsException = {
 
 M.UnknownTopicOrPartitionException = {
     type = "structure",
+    id = "UnknownTopicOrPartitionException",
     error = "client",
     members = {
         InvalidParameter = {
@@ -3286,6 +3416,7 @@ M.UnknownTopicOrPartitionException = {
 
 M.CreateVpcConnectionInput = {
     type = "structure",
+    id = "CreateVpcConnectionInput",
     members = {
         TargetClusterArn = {
             type = "string",
@@ -3337,6 +3468,7 @@ M.CreateVpcConnectionInput = {
 
 M.CreateVpcConnectionOutput = {
     type = "structure",
+    id = "CreateVpcConnectionOutput",
     members = {
         VpcConnectionArn = {
             type = "string",
@@ -3396,6 +3528,7 @@ M.CreateVpcConnectionOutput = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -3415,6 +3548,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -3433,6 +3567,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteClusterPolicyInput = {
     type = "structure",
+    id = "DeleteClusterPolicyInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -3446,10 +3581,12 @@ M.DeleteClusterPolicyInput = {
 
 M.DeleteClusterPolicyOutput = {
     type = "structure",
+    id = "DeleteClusterPolicyOutput",
 }
 
 M.DeleteConfigurationInput = {
     type = "structure",
+    id = "DeleteConfigurationInput",
     members = {
         Arn = {
             type = "string",
@@ -3463,6 +3600,7 @@ M.DeleteConfigurationInput = {
 
 M.DeleteConfigurationOutput = {
     type = "structure",
+    id = "DeleteConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -3481,6 +3619,7 @@ M.DeleteConfigurationOutput = {
 
 M.DeleteReplicatorInput = {
     type = "structure",
+    id = "DeleteReplicatorInput",
     members = {
         CurrentVersion = {
             type = "string",
@@ -3500,6 +3639,7 @@ M.DeleteReplicatorInput = {
 
 M.DeleteReplicatorOutput = {
     type = "structure",
+    id = "DeleteReplicatorOutput",
     members = {
         ReplicatorArn = {
             type = "string",
@@ -3518,6 +3658,7 @@ M.DeleteReplicatorOutput = {
 
 M.DeleteTopicInput = {
     type = "structure",
+    id = "DeleteTopicInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -3538,6 +3679,7 @@ M.DeleteTopicInput = {
 
 M.DeleteTopicOutput = {
     type = "structure",
+    id = "DeleteTopicOutput",
     members = {
         TopicArn = {
             type = "string",
@@ -3562,6 +3704,7 @@ M.DeleteTopicOutput = {
 
 M.DeleteVpcConnectionInput = {
     type = "structure",
+    id = "DeleteVpcConnectionInput",
     members = {
         Arn = {
             type = "string",
@@ -3575,6 +3718,7 @@ M.DeleteVpcConnectionInput = {
 
 M.DeleteVpcConnectionOutput = {
     type = "structure",
+    id = "DeleteVpcConnectionOutput",
     members = {
         VpcConnectionArn = {
             type = "string",
@@ -3593,6 +3737,7 @@ M.DeleteVpcConnectionOutput = {
 
 M.DescribeClusterInput = {
     type = "structure",
+    id = "DescribeClusterInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -3606,6 +3751,7 @@ M.DescribeClusterInput = {
 
 M.DescribeClusterOutput = {
     type = "structure",
+    id = "DescribeClusterOutput",
     members = {
         ClusterInfo = setmetatable({ traits = {
             json_name = "clusterInfo",
@@ -3615,6 +3761,7 @@ M.DescribeClusterOutput = {
 
 M.DescribeClusterOperationInput = {
     type = "structure",
+    id = "DescribeClusterOperationInput",
     members = {
         ClusterOperationArn = {
             type = "string",
@@ -3628,6 +3775,7 @@ M.DescribeClusterOperationInput = {
 
 M.DescribeClusterOperationOutput = {
     type = "structure",
+    id = "DescribeClusterOperationOutput",
     members = {
         ClusterOperationInfo = setmetatable({ traits = {
             json_name = "clusterOperationInfo",
@@ -3637,6 +3785,7 @@ M.DescribeClusterOperationOutput = {
 
 M.DescribeClusterOperationV2Input = {
     type = "structure",
+    id = "DescribeClusterOperationV2Input",
     members = {
         ClusterOperationArn = {
             type = "string",
@@ -3650,6 +3799,7 @@ M.DescribeClusterOperationV2Input = {
 
 M.DescribeClusterOperationV2Output = {
     type = "structure",
+    id = "DescribeClusterOperationV2Output",
     members = {
         ClusterOperationInfo = setmetatable({ traits = {
             json_name = "clusterOperationInfo",
@@ -3659,6 +3809,7 @@ M.DescribeClusterOperationV2Output = {
 
 M.DescribeClusterV2Input = {
     type = "structure",
+    id = "DescribeClusterV2Input",
     members = {
         ClusterArn = {
             type = "string",
@@ -3672,6 +3823,7 @@ M.DescribeClusterV2Input = {
 
 M.DescribeClusterV2Output = {
     type = "structure",
+    id = "DescribeClusterV2Output",
     members = {
         ClusterInfo = setmetatable({ traits = {
             json_name = "clusterInfo",
@@ -3681,6 +3833,7 @@ M.DescribeClusterV2Output = {
 
 M.DescribeConfigurationInput = {
     type = "structure",
+    id = "DescribeConfigurationInput",
     members = {
         Arn = {
             type = "string",
@@ -3694,6 +3847,7 @@ M.DescribeConfigurationInput = {
 
 M.DescribeConfigurationOutput = {
     type = "structure",
+    id = "DescribeConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -3741,6 +3895,7 @@ M.DescribeConfigurationOutput = {
 
 M.DescribeConfigurationRevisionInput = {
     type = "structure",
+    id = "DescribeConfigurationRevisionInput",
     members = {
         Arn = {
             type = "string",
@@ -3761,6 +3916,7 @@ M.DescribeConfigurationRevisionInput = {
 
 M.DescribeConfigurationRevisionOutput = {
     type = "structure",
+    id = "DescribeConfigurationRevisionOutput",
     members = {
         Arn = {
             type = "string",
@@ -3798,6 +3954,7 @@ M.DescribeConfigurationRevisionOutput = {
 
 M.DescribeReplicatorInput = {
     type = "structure",
+    id = "DescribeReplicatorInput",
     members = {
         ReplicatorArn = {
             type = "string",
@@ -3811,6 +3968,7 @@ M.DescribeReplicatorInput = {
 
 M.ReplicationStateInfo = {
     type = "structure",
+    id = "ReplicationStateInfo",
     members = {
         Code = {
             type = "string",
@@ -3829,6 +3987,7 @@ M.ReplicationStateInfo = {
 
 M.DescribeReplicatorOutput = {
     type = "structure",
+    id = "DescribeReplicatorOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -3918,6 +4077,7 @@ M.DescribeReplicatorOutput = {
 
 M.DescribeTopicInput = {
     type = "structure",
+    id = "DescribeTopicInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -3938,6 +4098,7 @@ M.DescribeTopicInput = {
 
 M.DescribeTopicOutput = {
     type = "structure",
+    id = "DescribeTopicOutput",
     members = {
         TopicArn = {
             type = "string",
@@ -3980,6 +4141,7 @@ M.DescribeTopicOutput = {
 
 M.DescribeTopicPartitionsInput = {
     type = "structure",
+    id = "DescribeTopicPartitionsInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4012,6 +4174,7 @@ M.DescribeTopicPartitionsInput = {
 
 M.DescribeTopicPartitionsOutput = {
     type = "structure",
+    id = "DescribeTopicPartitionsOutput",
     members = {
         Partitions = {
             type = "list",
@@ -4031,6 +4194,7 @@ M.DescribeTopicPartitionsOutput = {
 
 M.DescribeVpcConnectionInput = {
     type = "structure",
+    id = "DescribeVpcConnectionInput",
     members = {
         Arn = {
             type = "string",
@@ -4044,6 +4208,7 @@ M.DescribeVpcConnectionInput = {
 
 M.DescribeVpcConnectionOutput = {
     type = "structure",
+    id = "DescribeVpcConnectionOutput",
     members = {
         VpcConnectionArn = {
             type = "string",
@@ -4109,6 +4274,7 @@ M.DescribeVpcConnectionOutput = {
 
 M.GetBootstrapBrokersInput = {
     type = "structure",
+    id = "GetBootstrapBrokersInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4122,6 +4288,7 @@ M.GetBootstrapBrokersInput = {
 
 M.GetBootstrapBrokersOutput = {
     type = "structure",
+    id = "GetBootstrapBrokersOutput",
     members = {
         BootstrapBrokerString = {
             type = "string",
@@ -4212,6 +4379,7 @@ M.GetBootstrapBrokersOutput = {
 
 M.GetClusterPolicyInput = {
     type = "structure",
+    id = "GetClusterPolicyInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4225,6 +4393,7 @@ M.GetClusterPolicyInput = {
 
 M.GetClusterPolicyOutput = {
     type = "structure",
+    id = "GetClusterPolicyOutput",
     members = {
         CurrentVersion = {
             type = "string",
@@ -4243,6 +4412,7 @@ M.GetClusterPolicyOutput = {
 
 M.GetCompatibleKafkaVersionsInput = {
     type = "structure",
+    id = "GetCompatibleKafkaVersionsInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4255,6 +4425,7 @@ M.GetCompatibleKafkaVersionsInput = {
 
 M.GetCompatibleKafkaVersionsOutput = {
     type = "structure",
+    id = "GetCompatibleKafkaVersionsOutput",
     members = {
         CompatibleKafkaVersions = {
             type = "list",
@@ -4268,6 +4439,7 @@ M.GetCompatibleKafkaVersionsOutput = {
 
 M.ListClientVpcConnectionsInput = {
     type = "structure",
+    id = "ListClientVpcConnectionsInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4293,6 +4465,7 @@ M.ListClientVpcConnectionsInput = {
 
 M.ListClientVpcConnectionsOutput = {
     type = "structure",
+    id = "ListClientVpcConnectionsOutput",
     members = {
         ClientVpcConnections = {
             type = "list",
@@ -4312,6 +4485,7 @@ M.ListClientVpcConnectionsOutput = {
 
 M.ListClusterOperationsInput = {
     type = "structure",
+    id = "ListClusterOperationsInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4337,6 +4511,7 @@ M.ListClusterOperationsInput = {
 
 M.ListClusterOperationsOutput = {
     type = "structure",
+    id = "ListClusterOperationsOutput",
     members = {
         ClusterOperationInfoList = {
             type = "list",
@@ -4356,6 +4531,7 @@ M.ListClusterOperationsOutput = {
 
 M.ListClusterOperationsV2Input = {
     type = "structure",
+    id = "ListClusterOperationsV2Input",
     members = {
         ClusterArn = {
             type = "string",
@@ -4381,6 +4557,7 @@ M.ListClusterOperationsV2Input = {
 
 M.ListClusterOperationsV2Output = {
     type = "structure",
+    id = "ListClusterOperationsV2Output",
     members = {
         ClusterOperationInfoList = {
             type = "list",
@@ -4400,6 +4577,7 @@ M.ListClusterOperationsV2Output = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         ClusterNameFilter = {
             type = "string",
@@ -4424,6 +4602,7 @@ M.ListClustersInput = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         ClusterInfoList = {
             type = "list",
@@ -4443,6 +4622,7 @@ M.ListClustersOutput = {
 
 M.ListClustersV2Input = {
     type = "structure",
+    id = "ListClustersV2Input",
     members = {
         ClusterNameFilter = {
             type = "string",
@@ -4473,6 +4653,7 @@ M.ListClustersV2Input = {
 
 M.ListClustersV2Output = {
     type = "structure",
+    id = "ListClustersV2Output",
     members = {
         ClusterInfoList = {
             type = "list",
@@ -4492,6 +4673,7 @@ M.ListClustersV2Output = {
 
 M.ListConfigurationRevisionsInput = {
     type = "structure",
+    id = "ListConfigurationRevisionsInput",
     members = {
         Arn = {
             type = "string",
@@ -4517,6 +4699,7 @@ M.ListConfigurationRevisionsInput = {
 
 M.ListConfigurationRevisionsOutput = {
     type = "structure",
+    id = "ListConfigurationRevisionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4536,6 +4719,7 @@ M.ListConfigurationRevisionsOutput = {
 
 M.ListConfigurationsInput = {
     type = "structure",
+    id = "ListConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4554,6 +4738,7 @@ M.ListConfigurationsInput = {
 
 M.ListConfigurationsOutput = {
     type = "structure",
+    id = "ListConfigurationsOutput",
     members = {
         Configurations = {
             type = "list",
@@ -4573,6 +4758,7 @@ M.ListConfigurationsOutput = {
 
 M.ListKafkaVersionsInput = {
     type = "structure",
+    id = "ListKafkaVersionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4591,6 +4777,7 @@ M.ListKafkaVersionsInput = {
 
 M.ListKafkaVersionsOutput = {
     type = "structure",
+    id = "ListKafkaVersionsOutput",
     members = {
         KafkaVersions = {
             type = "list",
@@ -4610,6 +4797,7 @@ M.ListKafkaVersionsOutput = {
 
 M.ListNodesInput = {
     type = "structure",
+    id = "ListNodesInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4635,6 +4823,7 @@ M.ListNodesInput = {
 
 M.ListNodesOutput = {
     type = "structure",
+    id = "ListNodesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4654,6 +4843,7 @@ M.ListNodesOutput = {
 
 M.ListReplicatorsInput = {
     type = "structure",
+    id = "ListReplicatorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4678,6 +4868,7 @@ M.ListReplicatorsInput = {
 
 M.ListReplicatorsOutput = {
     type = "structure",
+    id = "ListReplicatorsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4697,6 +4888,7 @@ M.ListReplicatorsOutput = {
 
 M.ListScramSecretsInput = {
     type = "structure",
+    id = "ListScramSecretsInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4722,6 +4914,7 @@ M.ListScramSecretsInput = {
 
 M.ListScramSecretsOutput = {
     type = "structure",
+    id = "ListScramSecretsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4741,6 +4934,7 @@ M.ListScramSecretsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4754,6 +4948,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -4768,6 +4963,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTopicsInput = {
     type = "structure",
+    id = "ListTopicsInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4799,6 +4995,7 @@ M.ListTopicsInput = {
 
 M.ListTopicsOutput = {
     type = "structure",
+    id = "ListTopicsOutput",
     members = {
         Topics = {
             type = "list",
@@ -4818,6 +5015,7 @@ M.ListTopicsOutput = {
 
 M.ListVpcConnectionsInput = {
     type = "structure",
+    id = "ListVpcConnectionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4836,6 +5034,7 @@ M.ListVpcConnectionsInput = {
 
 M.ListVpcConnectionsOutput = {
     type = "structure",
+    id = "ListVpcConnectionsOutput",
     members = {
         VpcConnections = {
             type = "list",
@@ -4855,6 +5054,7 @@ M.ListVpcConnectionsOutput = {
 
 M.PutClusterPolicyInput = {
     type = "structure",
+    id = "PutClusterPolicyInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4881,6 +5081,7 @@ M.PutClusterPolicyInput = {
 
 M.PutClusterPolicyOutput = {
     type = "structure",
+    id = "PutClusterPolicyOutput",
     members = {
         CurrentVersion = {
             type = "string",
@@ -4893,6 +5094,7 @@ M.PutClusterPolicyOutput = {
 
 M.RebootBrokerInput = {
     type = "structure",
+    id = "RebootBrokerInput",
     members = {
         BrokerIds = {
             type = "list",
@@ -4914,6 +5116,7 @@ M.RebootBrokerInput = {
 
 M.RebootBrokerOutput = {
     type = "structure",
+    id = "RebootBrokerOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4932,6 +5135,7 @@ M.RebootBrokerOutput = {
 
 M.RejectClientVpcConnectionInput = {
     type = "structure",
+    id = "RejectClientVpcConnectionInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -4952,10 +5156,12 @@ M.RejectClientVpcConnectionInput = {
 
 M.RejectClientVpcConnectionOutput = {
     type = "structure",
+    id = "RejectClientVpcConnectionOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4978,10 +5184,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5003,10 +5211,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateBrokerCountInput = {
     type = "structure",
+    id = "UpdateBrokerCountInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5034,6 +5244,7 @@ M.UpdateBrokerCountInput = {
 
 M.UpdateBrokerCountOutput = {
     type = "structure",
+    id = "UpdateBrokerCountOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5052,6 +5263,7 @@ M.UpdateBrokerCountOutput = {
 
 M.UpdateBrokerStorageInput = {
     type = "structure",
+    id = "UpdateBrokerStorageInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5080,6 +5292,7 @@ M.UpdateBrokerStorageInput = {
 
 M.UpdateBrokerStorageOutput = {
     type = "structure",
+    id = "UpdateBrokerStorageOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5098,6 +5311,7 @@ M.UpdateBrokerStorageOutput = {
 
 M.UpdateBrokerTypeInput = {
     type = "structure",
+    id = "UpdateBrokerTypeInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5125,6 +5339,7 @@ M.UpdateBrokerTypeInput = {
 
 M.UpdateBrokerTypeOutput = {
     type = "structure",
+    id = "UpdateBrokerTypeOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5143,6 +5358,7 @@ M.UpdateBrokerTypeOutput = {
 
 M.UpdateClusterConfigurationInput = {
     type = "structure",
+    id = "UpdateClusterConfigurationInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5167,6 +5383,7 @@ M.UpdateClusterConfigurationInput = {
 
 M.UpdateClusterConfigurationOutput = {
     type = "structure",
+    id = "UpdateClusterConfigurationOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5185,6 +5402,7 @@ M.UpdateClusterConfigurationOutput = {
 
 M.UpdateClusterKafkaVersionInput = {
     type = "structure",
+    id = "UpdateClusterKafkaVersionInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5215,6 +5433,7 @@ M.UpdateClusterKafkaVersionInput = {
 
 M.UpdateClusterKafkaVersionOutput = {
     type = "structure",
+    id = "UpdateClusterKafkaVersionOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5233,6 +5452,7 @@ M.UpdateClusterKafkaVersionOutput = {
 
 M.UpdateConfigurationInput = {
     type = "structure",
+    id = "UpdateConfigurationInput",
     members = {
         Arn = {
             type = "string",
@@ -5259,6 +5479,7 @@ M.UpdateConfigurationInput = {
 
 M.UpdateConfigurationOutput = {
     type = "structure",
+    id = "UpdateConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -5274,6 +5495,7 @@ M.UpdateConfigurationOutput = {
 
 M.UpdateConnectivityInput = {
     type = "structure",
+    id = "UpdateConnectivityInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5300,6 +5522,7 @@ M.UpdateConnectivityInput = {
 
 M.UpdateConnectivityOutput = {
     type = "structure",
+    id = "UpdateConnectivityOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5318,6 +5541,7 @@ M.UpdateConnectivityOutput = {
 
 M.UpdateMonitoringInput = {
     type = "structure",
+    id = "UpdateMonitoringInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5350,6 +5574,7 @@ M.UpdateMonitoringInput = {
 
 M.UpdateMonitoringOutput = {
     type = "structure",
+    id = "UpdateMonitoringOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5368,6 +5593,7 @@ M.UpdateMonitoringOutput = {
 
 M.UpdateRebalancingInput = {
     type = "structure",
+    id = "UpdateRebalancingInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5392,6 +5618,7 @@ M.UpdateRebalancingInput = {
 
 M.UpdateRebalancingOutput = {
     type = "structure",
+    id = "UpdateRebalancingOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5410,6 +5637,7 @@ M.UpdateRebalancingOutput = {
 
 M.TopicReplicationUpdate = {
     type = "structure",
+    id = "TopicReplicationUpdate",
     members = {
         CopyAccessControlListsForTopics = {
             type = "boolean",
@@ -5453,6 +5681,7 @@ M.TopicReplicationUpdate = {
 
 M.UpdateReplicationInfoInput = {
     type = "structure",
+    id = "UpdateReplicationInfoInput",
     members = {
         ConsumerGroupReplication = setmetatable({ traits = {
             json_name = "consumerGroupReplication",
@@ -5506,6 +5735,7 @@ M.UpdateReplicationInfoInput = {
 
 M.UpdateReplicationInfoOutput = {
     type = "structure",
+    id = "UpdateReplicationInfoOutput",
     members = {
         ReplicatorArn = {
             type = "string",
@@ -5524,6 +5754,7 @@ M.UpdateReplicationInfoOutput = {
 
 M.UpdateSecurityInput = {
     type = "structure",
+    id = "UpdateSecurityInput",
     members = {
         ClientAuthentication = setmetatable({ traits = {
             json_name = "clientAuthentication",
@@ -5550,6 +5781,7 @@ M.UpdateSecurityInput = {
 
 M.UpdateSecurityOutput = {
     type = "structure",
+    id = "UpdateSecurityOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5568,6 +5800,7 @@ M.UpdateSecurityOutput = {
 
 M.UpdateStorageInput = {
     type = "structure",
+    id = "UpdateStorageInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5603,6 +5836,7 @@ M.UpdateStorageInput = {
 
 M.UpdateStorageOutput = {
     type = "structure",
+    id = "UpdateStorageOutput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5621,6 +5855,7 @@ M.UpdateStorageOutput = {
 
 M.UpdateTopicInput = {
     type = "structure",
+    id = "UpdateTopicInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -5653,6 +5888,7 @@ M.UpdateTopicInput = {
 
 M.UpdateTopicOutput = {
     type = "structure",
+    id = "UpdateTopicOutput",
     members = {
         TopicArn = {
             type = "string",

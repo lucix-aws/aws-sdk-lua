@@ -2,6 +2,7 @@ local M = {}
 
 M.Cors = {
     type = "structure",
+    id = "Cors",
     members = {
         AllowCredentials = {
             type = "boolean",
@@ -58,6 +59,7 @@ M.ProtocolType = {
 
 M.Api = {
     type = "structure",
+    id = "Api",
     members = {
         ApiEndpoint = {
             type = "string",
@@ -171,6 +173,7 @@ M.Api = {
 
 M.ApiMapping = {
     type = "structure",
+    id = "ApiMapping",
     members = {
         ApiId = {
             type = "string",
@@ -208,6 +211,7 @@ M.AuthorizerType = {
 
 M.JWTConfiguration = {
     type = "structure",
+    id = "JWTConfiguration",
     members = {
         Audience = {
             type = "list",
@@ -227,6 +231,7 @@ M.JWTConfiguration = {
 
 M.Authorizer = {
     type = "structure",
+    id = "Authorizer",
     members = {
         AuthorizerCredentialsArn = {
             type = "string",
@@ -304,6 +309,7 @@ M.DeploymentStatus = {
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         AutoDeployed = {
             type = "boolean",
@@ -364,6 +370,7 @@ M.SecurityPolicy = {
 
 M.DomainNameConfiguration = {
     type = "structure",
+    id = "DomainNameConfiguration",
     members = {
         ApiGatewayDomainName = {
             type = "string",
@@ -437,6 +444,7 @@ M.DomainNameConfiguration = {
 
 M.MutualTlsAuthentication = {
     type = "structure",
+    id = "MutualTlsAuthentication",
     members = {
         TruststoreUri = {
             type = "string",
@@ -468,6 +476,7 @@ M.RoutingMode = {
 
 M.DomainName = {
     type = "structure",
+    id = "DomainName",
     members = {
         ApiMappingSelectionExpression = {
             type = "string",
@@ -541,6 +550,7 @@ M.PassthroughBehavior = {
 
 M.TlsConfig = {
     type = "structure",
+    id = "TlsConfig",
     members = {
         ServerNameToVerify = {
             type = "string",
@@ -553,6 +563,7 @@ M.TlsConfig = {
 
 M.Integration = {
     type = "structure",
+    id = "Integration",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -682,6 +693,7 @@ M.Integration = {
 
 M.IntegrationResponse = {
     type = "structure",
+    id = "IntegrationResponse",
     members = {
         ContentHandlingStrategy = {
             type = "string",
@@ -729,6 +741,7 @@ M.IntegrationResponse = {
 
 M.Model = {
     type = "structure",
+    id = "Model",
     members = {
         ContentType = {
             type = "string",
@@ -766,6 +779,7 @@ M.Model = {
 
 M.PortalProductSummary = {
     type = "structure",
+    id = "PortalProductSummary",
     members = {
         Description = {
             type = "string",
@@ -816,6 +830,7 @@ M.PortalProductSummary = {
 
 M.CognitoConfig = {
     type = "structure",
+    id = "CognitoConfig",
     members = {
         AppClientId = {
             type = "string",
@@ -843,10 +858,12 @@ M.CognitoConfig = {
 
 M.None = {
     type = "structure",
+    id = "None",
 }
 
 M.Authorization = {
     type = "structure",
+    id = "Authorization",
     members = {
         CognitoConfig = setmetatable({ traits = {
             json_name = "cognitoConfig",
@@ -859,6 +876,7 @@ M.Authorization = {
 
 M.EndpointConfigurationResponse = {
     type = "structure",
+    id = "EndpointConfigurationResponse",
     members = {
         CertificateArn = {
             type = "string",
@@ -891,6 +909,7 @@ M.EndpointConfigurationResponse = {
 
 M.CustomColors = {
     type = "structure",
+    id = "CustomColors",
     members = {
         AccentColor = {
             type = "string",
@@ -939,6 +958,7 @@ M.CustomColors = {
 
 M.PortalTheme = {
     type = "structure",
+    id = "PortalTheme",
     members = {
         CustomColors = setmetatable({ traits = {
             json_name = "customColors",
@@ -956,6 +976,7 @@ M.PortalTheme = {
 
 M.PortalContent = {
     type = "structure",
+    id = "PortalContent",
     members = {
         Description = {
             type = "string",
@@ -985,6 +1006,7 @@ M.PreviewStatus = {
 
 M.StatusException = {
     type = "structure",
+    id = "StatusException",
     members = {
         Exception = {
             type = "string",
@@ -1003,6 +1025,7 @@ M.StatusException = {
 
 M.Preview = {
     type = "structure",
+    id = "Preview",
     members = {
         PreviewStatus = {
             type = "string",
@@ -1034,6 +1057,7 @@ M.PublishStatus = {
 
 M.PortalSummary = {
     type = "structure",
+    id = "PortalSummary",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -1121,6 +1145,7 @@ M.PortalSummary = {
 
 M.ProductPageSummaryNoBody = {
     type = "structure",
+    id = "ProductPageSummaryNoBody",
     members = {
         LastModified = {
             type = "timestamp",
@@ -1156,6 +1181,7 @@ M.ProductPageSummaryNoBody = {
 
 M.IdentifierParts = {
     type = "structure",
+    id = "IdentifierParts",
     members = {
         Method = {
             type = "string",
@@ -1190,6 +1216,7 @@ M.IdentifierParts = {
 
 M.RestEndpointIdentifier = {
     type = "structure",
+    id = "RestEndpointIdentifier",
     members = {
         IdentifierParts = setmetatable({ traits = {
             json_name = "identifierParts",
@@ -1210,6 +1237,7 @@ M.TryItState = {
 
 M.ProductRestEndpointPageSummaryNoBody = {
     type = "structure",
+    id = "ProductRestEndpointPageSummaryNoBody",
     members = {
         Endpoint = {
             type = "string",
@@ -1279,6 +1307,7 @@ M.AuthorizationType = {
 
 M.ParameterConstraints = {
     type = "structure",
+    id = "ParameterConstraints",
     members = {
         Required = {
             type = "boolean",
@@ -1291,6 +1320,7 @@ M.ParameterConstraints = {
 
 M.Route = {
     type = "structure",
+    id = "Route",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -1381,6 +1411,7 @@ M.Route = {
 
 M.RouteResponse = {
     type = "structure",
+    id = "RouteResponse",
     members = {
         ModelSelectionExpression = {
             type = "string",
@@ -1422,6 +1453,7 @@ M.RouteResponse = {
 
 M.RoutingRuleActionInvokeApi = {
     type = "structure",
+    id = "RoutingRuleActionInvokeApi",
     members = {
         ApiId = {
             type = "string",
@@ -1448,6 +1480,7 @@ M.RoutingRuleActionInvokeApi = {
 
 M.RoutingRuleAction = {
     type = "structure",
+    id = "RoutingRuleAction",
     members = {
         InvokeApi = setmetatable({ traits = {
             json_name = "invokeApi",
@@ -1458,6 +1491,7 @@ M.RoutingRuleAction = {
 
 M.RoutingRuleMatchBasePaths = {
     type = "structure",
+    id = "RoutingRuleMatchBasePaths",
     members = {
         AnyOf = {
             type = "list",
@@ -1472,6 +1506,7 @@ M.RoutingRuleMatchBasePaths = {
 
 M.RoutingRuleMatchHeaderValue = {
     type = "structure",
+    id = "RoutingRuleMatchHeaderValue",
     members = {
         Header = {
             type = "string",
@@ -1492,6 +1527,7 @@ M.RoutingRuleMatchHeaderValue = {
 
 M.RoutingRuleMatchHeaders = {
     type = "structure",
+    id = "RoutingRuleMatchHeaders",
     members = {
         AnyOf = {
             type = "list",
@@ -1506,6 +1542,7 @@ M.RoutingRuleMatchHeaders = {
 
 M.RoutingRuleCondition = {
     type = "structure",
+    id = "RoutingRuleCondition",
     members = {
         MatchBasePaths = setmetatable({ traits = {
             json_name = "matchBasePaths",
@@ -1518,6 +1555,7 @@ M.RoutingRuleCondition = {
 
 M.RoutingRule = {
     type = "structure",
+    id = "RoutingRule",
     members = {
         Actions = {
             type = "list",
@@ -1556,6 +1594,7 @@ M.RoutingRule = {
 
 M.Section = {
     type = "structure",
+    id = "Section",
     members = {
         ProductRestEndpointPageArns = {
             type = "list",
@@ -1577,6 +1616,7 @@ M.Section = {
 
 M.AccessLogSettings = {
     type = "structure",
+    id = "AccessLogSettings",
     members = {
         DestinationArn = {
             type = "string",
@@ -1601,6 +1641,7 @@ M.LoggingLevel = {
 
 M.RouteSettings = {
     type = "structure",
+    id = "RouteSettings",
     members = {
         DataTraceEnabled = {
             type = "boolean",
@@ -1637,6 +1678,7 @@ M.RouteSettings = {
 
 M.Stage = {
     type = "structure",
+    id = "Stage",
     members = {
         AccessLogSettings = setmetatable({ traits = {
             json_name = "accessLogSettings",
@@ -1742,6 +1784,7 @@ M.VpcLinkVersion = {
 
 M.VpcLink = {
     type = "structure",
+    id = "VpcLink",
     members = {
         CreatedDate = {
             type = "timestamp",
@@ -1811,6 +1854,7 @@ M.VpcLink = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -1824,6 +1868,7 @@ M.AccessDeniedException = {
 
 M.ACMManaged = {
     type = "structure",
+    id = "ACMManaged",
     members = {
         CertificateArn = {
             type = "string",
@@ -1844,6 +1889,7 @@ M.ACMManaged = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -1857,6 +1903,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -1870,6 +1917,7 @@ M.ConflictException = {
 
 M.CreateApiInput = {
     type = "structure",
+    id = "CreateApiInput",
     members = {
         ApiKeySelectionExpression = {
             type = "string",
@@ -1961,6 +2009,7 @@ M.CreateApiInput = {
 
 M.CreateApiOutput = {
     type = "structure",
+    id = "CreateApiOutput",
     members = {
         ApiEndpoint = {
             type = "string",
@@ -2071,6 +2120,7 @@ M.CreateApiOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2090,6 +2140,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         LimitType = {
@@ -2109,6 +2160,7 @@ M.TooManyRequestsException = {
 
 M.CreateApiMappingInput = {
     type = "structure",
+    id = "CreateApiMappingInput",
     members = {
         ApiId = {
             type = "string",
@@ -2142,6 +2194,7 @@ M.CreateApiMappingInput = {
 
 M.CreateApiMappingOutput = {
     type = "structure",
+    id = "CreateApiMappingOutput",
     members = {
         ApiId = {
             type = "string",
@@ -2172,6 +2225,7 @@ M.CreateApiMappingOutput = {
 
 M.CreateAuthorizerInput = {
     type = "structure",
+    id = "CreateAuthorizerInput",
     members = {
         ApiId = {
             type = "string",
@@ -2246,6 +2300,7 @@ M.CreateAuthorizerInput = {
 
 M.CreateAuthorizerOutput = {
     type = "structure",
+    id = "CreateAuthorizerOutput",
     members = {
         AuthorizerCredentialsArn = {
             type = "string",
@@ -2316,6 +2371,7 @@ M.CreateAuthorizerOutput = {
 
 M.CreateDeploymentInput = {
     type = "structure",
+    id = "CreateDeploymentInput",
     members = {
         ApiId = {
             type = "string",
@@ -2341,6 +2397,7 @@ M.CreateDeploymentInput = {
 
 M.CreateDeploymentOutput = {
     type = "structure",
+    id = "CreateDeploymentOutput",
     members = {
         AutoDeployed = {
             type = "boolean",
@@ -2384,6 +2441,7 @@ M.CreateDeploymentOutput = {
 
 M.MutualTlsAuthenticationInput = {
     type = "structure",
+    id = "MutualTlsAuthenticationInput",
     members = {
         TruststoreUri = {
             type = "string",
@@ -2402,6 +2460,7 @@ M.MutualTlsAuthenticationInput = {
 
 M.CreateDomainNameInput = {
     type = "structure",
+    id = "CreateDomainNameInput",
     members = {
         DomainName = {
             type = "string",
@@ -2439,6 +2498,7 @@ M.CreateDomainNameInput = {
 
 M.CreateDomainNameOutput = {
     type = "structure",
+    id = "CreateDomainNameOutput",
     members = {
         ApiMappingSelectionExpression = {
             type = "string",
@@ -2487,6 +2547,7 @@ M.CreateDomainNameOutput = {
 
 M.TlsConfigInput = {
     type = "structure",
+    id = "TlsConfigInput",
     members = {
         ServerNameToVerify = {
             type = "string",
@@ -2499,6 +2560,7 @@ M.TlsConfigInput = {
 
 M.CreateIntegrationInput = {
     type = "structure",
+    id = "CreateIntegrationInput",
     members = {
         ApiId = {
             type = "string",
@@ -2618,6 +2680,7 @@ M.CreateIntegrationInput = {
 
 M.CreateIntegrationOutput = {
     type = "structure",
+    id = "CreateIntegrationOutput",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -2747,6 +2810,7 @@ M.CreateIntegrationOutput = {
 
 M.CreateIntegrationResponseInput = {
     type = "structure",
+    id = "CreateIntegrationResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -2802,6 +2866,7 @@ M.CreateIntegrationResponseInput = {
 
 M.CreateIntegrationResponseOutput = {
     type = "structure",
+    id = "CreateIntegrationResponseOutput",
     members = {
         ContentHandlingStrategy = {
             type = "string",
@@ -2848,6 +2913,7 @@ M.CreateIntegrationResponseOutput = {
 
 M.CreateModelInput = {
     type = "structure",
+    id = "CreateModelInput",
     members = {
         ApiId = {
             type = "string",
@@ -2887,6 +2953,7 @@ M.CreateModelInput = {
 
 M.CreateModelOutput = {
     type = "structure",
+    id = "CreateModelOutput",
     members = {
         ContentType = {
             type = "string",
@@ -2923,6 +2990,7 @@ M.CreateModelOutput = {
 
 M.EndpointConfigurationRequest = {
     type = "structure",
+    id = "EndpointConfigurationRequest",
     members = {
         AcmManaged = setmetatable({ traits = {
             json_name = "acmManaged",
@@ -2935,6 +3003,7 @@ M.EndpointConfigurationRequest = {
 
 M.CreatePortalInput = {
     type = "structure",
+    id = "CreatePortalInput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -2980,6 +3049,7 @@ M.CreatePortalInput = {
 
 M.CreatePortalOutput = {
     type = "structure",
+    id = "CreatePortalOutput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -3057,6 +3127,7 @@ M.CreatePortalOutput = {
 
 M.CreatePortalProductInput = {
     type = "structure",
+    id = "CreatePortalProductInput",
     members = {
         Description = {
             type = "string",
@@ -3084,6 +3155,7 @@ M.CreatePortalProductInput = {
 
 M.DisplayOrder = {
     type = "structure",
+    id = "DisplayOrder",
     members = {
         Contents = {
             type = "list",
@@ -3110,6 +3182,7 @@ M.DisplayOrder = {
 
 M.CreatePortalProductOutput = {
     type = "structure",
+    id = "CreatePortalProductOutput",
     members = {
         Description = {
             type = "string",
@@ -3158,6 +3231,7 @@ M.CreatePortalProductOutput = {
 
 M.DisplayContent = {
     type = "structure",
+    id = "DisplayContent",
     members = {
         Body = {
             type = "string",
@@ -3178,6 +3252,7 @@ M.DisplayContent = {
 
 M.CreateProductPageInput = {
     type = "structure",
+    id = "CreateProductPageInput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -3195,6 +3270,7 @@ M.CreateProductPageInput = {
 
 M.CreateProductPageOutput = {
     type = "structure",
+    id = "CreateProductPageOutput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -3223,6 +3299,7 @@ M.CreateProductPageOutput = {
 
 M.DisplayContentOverrides = {
     type = "structure",
+    id = "DisplayContentOverrides",
     members = {
         Body = {
             type = "string",
@@ -3247,6 +3324,7 @@ M.DisplayContentOverrides = {
 
 M.EndpointDisplayContent = {
     type = "structure",
+    id = "EndpointDisplayContent",
     members = {
         None = setmetatable({ traits = {
             json_name = "none",
@@ -3259,6 +3337,7 @@ M.EndpointDisplayContent = {
 
 M.CreateProductRestEndpointPageInput = {
     type = "structure",
+    id = "CreateProductRestEndpointPageInput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -3285,6 +3364,7 @@ M.CreateProductRestEndpointPageInput = {
 
 M.EndpointDisplayContentResponse = {
     type = "structure",
+    id = "EndpointDisplayContentResponse",
     members = {
         Body = {
             type = "string",
@@ -3310,6 +3390,7 @@ M.EndpointDisplayContentResponse = {
 
 M.CreateProductRestEndpointPageOutput = {
     type = "structure",
+    id = "CreateProductRestEndpointPageOutput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -3356,6 +3437,7 @@ M.CreateProductRestEndpointPageOutput = {
 
 M.CreateRouteInput = {
     type = "structure",
+    id = "CreateRouteInput",
     members = {
         ApiId = {
             type = "string",
@@ -3441,6 +3523,7 @@ M.CreateRouteInput = {
 
 M.CreateRouteOutput = {
     type = "structure",
+    id = "CreateRouteOutput",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -3530,6 +3613,7 @@ M.CreateRouteOutput = {
 
 M.CreateRouteResponseInput = {
     type = "structure",
+    id = "CreateRouteResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -3579,6 +3663,7 @@ M.CreateRouteResponseInput = {
 
 M.CreateRouteResponseOutput = {
     type = "structure",
+    id = "CreateRouteResponseOutput",
     members = {
         ModelSelectionExpression = {
             type = "string",
@@ -3619,6 +3704,7 @@ M.CreateRouteResponseOutput = {
 
 M.CreateRoutingRuleInput = {
     type = "structure",
+    id = "CreateRoutingRuleInput",
     members = {
         Actions = {
             type = "list",
@@ -3661,6 +3747,7 @@ M.CreateRoutingRuleInput = {
 
 M.CreateRoutingRuleOutput = {
     type = "structure",
+    id = "CreateRoutingRuleOutput",
     members = {
         Actions = {
             type = "list",
@@ -3699,6 +3786,7 @@ M.CreateRoutingRuleOutput = {
 
 M.CreateStageInput = {
     type = "structure",
+    id = "CreateStageInput",
     members = {
         AccessLogSettings = setmetatable({ traits = {
             json_name = "accessLogSettings",
@@ -3773,6 +3861,7 @@ M.CreateStageInput = {
 
 M.CreateStageOutput = {
     type = "structure",
+    id = "CreateStageOutput",
     members = {
         AccessLogSettings = setmetatable({ traits = {
             json_name = "accessLogSettings",
@@ -3865,6 +3954,7 @@ M.CreateStageOutput = {
 
 M.CreateVpcLinkInput = {
     type = "structure",
+    id = "CreateVpcLinkInput",
     members = {
         Name = {
             type = "string",
@@ -3901,6 +3991,7 @@ M.CreateVpcLinkInput = {
 
 M.CreateVpcLinkOutput = {
     type = "structure",
+    id = "CreateVpcLinkOutput",
     members = {
         CreatedDate = {
             type = "timestamp",
@@ -3966,6 +4057,7 @@ M.CreateVpcLinkOutput = {
 
 M.DeleteAccessLogSettingsInput = {
     type = "structure",
+    id = "DeleteAccessLogSettingsInput",
     members = {
         ApiId = {
             type = "string",
@@ -3986,10 +4078,12 @@ M.DeleteAccessLogSettingsInput = {
 
 M.DeleteAccessLogSettingsOutput = {
     type = "structure",
+    id = "DeleteAccessLogSettingsOutput",
 }
 
 M.DeleteApiInput = {
     type = "structure",
+    id = "DeleteApiInput",
     members = {
         ApiId = {
             type = "string",
@@ -4003,10 +4097,12 @@ M.DeleteApiInput = {
 
 M.DeleteApiOutput = {
     type = "structure",
+    id = "DeleteApiOutput",
 }
 
 M.DeleteApiMappingInput = {
     type = "structure",
+    id = "DeleteApiMappingInput",
     members = {
         ApiMappingId = {
             type = "string",
@@ -4027,10 +4123,12 @@ M.DeleteApiMappingInput = {
 
 M.DeleteApiMappingOutput = {
     type = "structure",
+    id = "DeleteApiMappingOutput",
 }
 
 M.DeleteAuthorizerInput = {
     type = "structure",
+    id = "DeleteAuthorizerInput",
     members = {
         ApiId = {
             type = "string",
@@ -4051,10 +4149,12 @@ M.DeleteAuthorizerInput = {
 
 M.DeleteAuthorizerOutput = {
     type = "structure",
+    id = "DeleteAuthorizerOutput",
 }
 
 M.DeleteCorsConfigurationInput = {
     type = "structure",
+    id = "DeleteCorsConfigurationInput",
     members = {
         ApiId = {
             type = "string",
@@ -4068,10 +4168,12 @@ M.DeleteCorsConfigurationInput = {
 
 M.DeleteCorsConfigurationOutput = {
     type = "structure",
+    id = "DeleteCorsConfigurationOutput",
 }
 
 M.DeleteDeploymentInput = {
     type = "structure",
+    id = "DeleteDeploymentInput",
     members = {
         ApiId = {
             type = "string",
@@ -4092,10 +4194,12 @@ M.DeleteDeploymentInput = {
 
 M.DeleteDeploymentOutput = {
     type = "structure",
+    id = "DeleteDeploymentOutput",
 }
 
 M.DeleteDomainNameInput = {
     type = "structure",
+    id = "DeleteDomainNameInput",
     members = {
         DomainName = {
             type = "string",
@@ -4109,10 +4213,12 @@ M.DeleteDomainNameInput = {
 
 M.DeleteDomainNameOutput = {
     type = "structure",
+    id = "DeleteDomainNameOutput",
 }
 
 M.DeleteIntegrationInput = {
     type = "structure",
+    id = "DeleteIntegrationInput",
     members = {
         ApiId = {
             type = "string",
@@ -4133,10 +4239,12 @@ M.DeleteIntegrationInput = {
 
 M.DeleteIntegrationOutput = {
     type = "structure",
+    id = "DeleteIntegrationOutput",
 }
 
 M.DeleteIntegrationResponseInput = {
     type = "structure",
+    id = "DeleteIntegrationResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -4164,10 +4272,12 @@ M.DeleteIntegrationResponseInput = {
 
 M.DeleteIntegrationResponseOutput = {
     type = "structure",
+    id = "DeleteIntegrationResponseOutput",
 }
 
 M.DeleteModelInput = {
     type = "structure",
+    id = "DeleteModelInput",
     members = {
         ApiId = {
             type = "string",
@@ -4188,10 +4298,12 @@ M.DeleteModelInput = {
 
 M.DeleteModelOutput = {
     type = "structure",
+    id = "DeleteModelOutput",
 }
 
 M.DeletePortalInput = {
     type = "structure",
+    id = "DeletePortalInput",
     members = {
         PortalId = {
             type = "string",
@@ -4205,10 +4317,12 @@ M.DeletePortalInput = {
 
 M.DeletePortalOutput = {
     type = "structure",
+    id = "DeletePortalOutput",
 }
 
 M.DeletePortalProductInput = {
     type = "structure",
+    id = "DeletePortalProductInput",
     members = {
         PortalProductId = {
             type = "string",
@@ -4222,10 +4336,12 @@ M.DeletePortalProductInput = {
 
 M.DeletePortalProductOutput = {
     type = "structure",
+    id = "DeletePortalProductOutput",
 }
 
 M.DeletePortalProductSharingPolicyInput = {
     type = "structure",
+    id = "DeletePortalProductSharingPolicyInput",
     members = {
         PortalProductId = {
             type = "string",
@@ -4239,10 +4355,12 @@ M.DeletePortalProductSharingPolicyInput = {
 
 M.DeletePortalProductSharingPolicyOutput = {
     type = "structure",
+    id = "DeletePortalProductSharingPolicyOutput",
 }
 
 M.DeleteProductPageInput = {
     type = "structure",
+    id = "DeleteProductPageInput",
     members = {
         PortalProductId = {
             type = "string",
@@ -4263,10 +4381,12 @@ M.DeleteProductPageInput = {
 
 M.DeleteProductPageOutput = {
     type = "structure",
+    id = "DeleteProductPageOutput",
 }
 
 M.DeleteProductRestEndpointPageInput = {
     type = "structure",
+    id = "DeleteProductRestEndpointPageInput",
     members = {
         PortalProductId = {
             type = "string",
@@ -4287,10 +4407,12 @@ M.DeleteProductRestEndpointPageInput = {
 
 M.DeleteProductRestEndpointPageOutput = {
     type = "structure",
+    id = "DeleteProductRestEndpointPageOutput",
 }
 
 M.DeleteRouteInput = {
     type = "structure",
+    id = "DeleteRouteInput",
     members = {
         ApiId = {
             type = "string",
@@ -4311,10 +4433,12 @@ M.DeleteRouteInput = {
 
 M.DeleteRouteOutput = {
     type = "structure",
+    id = "DeleteRouteOutput",
 }
 
 M.DeleteRouteRequestParameterInput = {
     type = "structure",
+    id = "DeleteRouteRequestParameterInput",
     members = {
         ApiId = {
             type = "string",
@@ -4342,10 +4466,12 @@ M.DeleteRouteRequestParameterInput = {
 
 M.DeleteRouteRequestParameterOutput = {
     type = "structure",
+    id = "DeleteRouteRequestParameterOutput",
 }
 
 M.DeleteRouteResponseInput = {
     type = "structure",
+    id = "DeleteRouteResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -4373,10 +4499,12 @@ M.DeleteRouteResponseInput = {
 
 M.DeleteRouteResponseOutput = {
     type = "structure",
+    id = "DeleteRouteResponseOutput",
 }
 
 M.DeleteRouteSettingsInput = {
     type = "structure",
+    id = "DeleteRouteSettingsInput",
     members = {
         ApiId = {
             type = "string",
@@ -4404,10 +4532,12 @@ M.DeleteRouteSettingsInput = {
 
 M.DeleteRouteSettingsOutput = {
     type = "structure",
+    id = "DeleteRouteSettingsOutput",
 }
 
 M.DeleteRoutingRuleInput = {
     type = "structure",
+    id = "DeleteRoutingRuleInput",
     members = {
         DomainName = {
             type = "string",
@@ -4434,10 +4564,12 @@ M.DeleteRoutingRuleInput = {
 
 M.DeleteRoutingRuleOutput = {
     type = "structure",
+    id = "DeleteRoutingRuleOutput",
 }
 
 M.DeleteStageInput = {
     type = "structure",
+    id = "DeleteStageInput",
     members = {
         ApiId = {
             type = "string",
@@ -4458,10 +4590,12 @@ M.DeleteStageInput = {
 
 M.DeleteStageOutput = {
     type = "structure",
+    id = "DeleteStageOutput",
 }
 
 M.DeleteVpcLinkInput = {
     type = "structure",
+    id = "DeleteVpcLinkInput",
     members = {
         VpcLinkId = {
             type = "string",
@@ -4475,10 +4609,12 @@ M.DeleteVpcLinkInput = {
 
 M.DeleteVpcLinkOutput = {
     type = "structure",
+    id = "DeleteVpcLinkOutput",
 }
 
 M.DisablePortalInput = {
     type = "structure",
+    id = "DisablePortalInput",
     members = {
         PortalId = {
             type = "string",
@@ -4492,10 +4628,12 @@ M.DisablePortalInput = {
 
 M.DisablePortalOutput = {
     type = "structure",
+    id = "DisablePortalOutput",
 }
 
 M.ExportApiInput = {
     type = "structure",
+    id = "ExportApiInput",
     members = {
         ApiId = {
             type = "string",
@@ -4541,6 +4679,7 @@ M.ExportApiInput = {
 
 M.ExportApiOutput = {
     type = "structure",
+    id = "ExportApiOutput",
     members = {
         body = {
             type = "blob",
@@ -4553,6 +4692,7 @@ M.ExportApiOutput = {
 
 M.GetApiInput = {
     type = "structure",
+    id = "GetApiInput",
     members = {
         ApiId = {
             type = "string",
@@ -4566,6 +4706,7 @@ M.GetApiInput = {
 
 M.GetApiOutput = {
     type = "structure",
+    id = "GetApiOutput",
     members = {
         ApiEndpoint = {
             type = "string",
@@ -4676,6 +4817,7 @@ M.GetApiOutput = {
 
 M.GetApiMappingInput = {
     type = "structure",
+    id = "GetApiMappingInput",
     members = {
         ApiMappingId = {
             type = "string",
@@ -4696,6 +4838,7 @@ M.GetApiMappingInput = {
 
 M.GetApiMappingOutput = {
     type = "structure",
+    id = "GetApiMappingOutput",
     members = {
         ApiId = {
             type = "string",
@@ -4726,6 +4869,7 @@ M.GetApiMappingOutput = {
 
 M.GetApiMappingsInput = {
     type = "structure",
+    id = "GetApiMappingsInput",
     members = {
         DomainName = {
             type = "string",
@@ -4751,6 +4895,7 @@ M.GetApiMappingsInput = {
 
 M.GetApiMappingsOutput = {
     type = "structure",
+    id = "GetApiMappingsOutput",
     members = {
         Items = {
             type = "list",
@@ -4770,6 +4915,7 @@ M.GetApiMappingsOutput = {
 
 M.GetApisInput = {
     type = "structure",
+    id = "GetApisInput",
     members = {
         MaxResults = {
             type = "string",
@@ -4788,6 +4934,7 @@ M.GetApisInput = {
 
 M.GetApisOutput = {
     type = "structure",
+    id = "GetApisOutput",
     members = {
         Items = {
             type = "list",
@@ -4807,6 +4954,7 @@ M.GetApisOutput = {
 
 M.GetAuthorizerInput = {
     type = "structure",
+    id = "GetAuthorizerInput",
     members = {
         ApiId = {
             type = "string",
@@ -4827,6 +4975,7 @@ M.GetAuthorizerInput = {
 
 M.GetAuthorizerOutput = {
     type = "structure",
+    id = "GetAuthorizerOutput",
     members = {
         AuthorizerCredentialsArn = {
             type = "string",
@@ -4897,6 +5046,7 @@ M.GetAuthorizerOutput = {
 
 M.GetAuthorizersInput = {
     type = "structure",
+    id = "GetAuthorizersInput",
     members = {
         ApiId = {
             type = "string",
@@ -4922,6 +5072,7 @@ M.GetAuthorizersInput = {
 
 M.GetAuthorizersOutput = {
     type = "structure",
+    id = "GetAuthorizersOutput",
     members = {
         Items = {
             type = "list",
@@ -4941,6 +5092,7 @@ M.GetAuthorizersOutput = {
 
 M.GetDeploymentInput = {
     type = "structure",
+    id = "GetDeploymentInput",
     members = {
         ApiId = {
             type = "string",
@@ -4961,6 +5113,7 @@ M.GetDeploymentInput = {
 
 M.GetDeploymentOutput = {
     type = "structure",
+    id = "GetDeploymentOutput",
     members = {
         AutoDeployed = {
             type = "boolean",
@@ -5004,6 +5157,7 @@ M.GetDeploymentOutput = {
 
 M.GetDeploymentsInput = {
     type = "structure",
+    id = "GetDeploymentsInput",
     members = {
         ApiId = {
             type = "string",
@@ -5029,6 +5183,7 @@ M.GetDeploymentsInput = {
 
 M.GetDeploymentsOutput = {
     type = "structure",
+    id = "GetDeploymentsOutput",
     members = {
         Items = {
             type = "list",
@@ -5048,6 +5203,7 @@ M.GetDeploymentsOutput = {
 
 M.GetDomainNameInput = {
     type = "structure",
+    id = "GetDomainNameInput",
     members = {
         DomainName = {
             type = "string",
@@ -5061,6 +5217,7 @@ M.GetDomainNameInput = {
 
 M.GetDomainNameOutput = {
     type = "structure",
+    id = "GetDomainNameOutput",
     members = {
         ApiMappingSelectionExpression = {
             type = "string",
@@ -5109,6 +5266,7 @@ M.GetDomainNameOutput = {
 
 M.GetDomainNamesInput = {
     type = "structure",
+    id = "GetDomainNamesInput",
     members = {
         MaxResults = {
             type = "string",
@@ -5127,6 +5285,7 @@ M.GetDomainNamesInput = {
 
 M.GetDomainNamesOutput = {
     type = "structure",
+    id = "GetDomainNamesOutput",
     members = {
         Items = {
             type = "list",
@@ -5146,6 +5305,7 @@ M.GetDomainNamesOutput = {
 
 M.GetIntegrationInput = {
     type = "structure",
+    id = "GetIntegrationInput",
     members = {
         ApiId = {
             type = "string",
@@ -5166,6 +5326,7 @@ M.GetIntegrationInput = {
 
 M.GetIntegrationOutput = {
     type = "structure",
+    id = "GetIntegrationOutput",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -5295,6 +5456,7 @@ M.GetIntegrationOutput = {
 
 M.GetIntegrationResponseInput = {
     type = "structure",
+    id = "GetIntegrationResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -5322,6 +5484,7 @@ M.GetIntegrationResponseInput = {
 
 M.GetIntegrationResponseOutput = {
     type = "structure",
+    id = "GetIntegrationResponseOutput",
     members = {
         ContentHandlingStrategy = {
             type = "string",
@@ -5368,6 +5531,7 @@ M.GetIntegrationResponseOutput = {
 
 M.GetIntegrationResponsesInput = {
     type = "structure",
+    id = "GetIntegrationResponsesInput",
     members = {
         ApiId = {
             type = "string",
@@ -5400,6 +5564,7 @@ M.GetIntegrationResponsesInput = {
 
 M.GetIntegrationResponsesOutput = {
     type = "structure",
+    id = "GetIntegrationResponsesOutput",
     members = {
         Items = {
             type = "list",
@@ -5419,6 +5584,7 @@ M.GetIntegrationResponsesOutput = {
 
 M.GetIntegrationsInput = {
     type = "structure",
+    id = "GetIntegrationsInput",
     members = {
         ApiId = {
             type = "string",
@@ -5444,6 +5610,7 @@ M.GetIntegrationsInput = {
 
 M.GetIntegrationsOutput = {
     type = "structure",
+    id = "GetIntegrationsOutput",
     members = {
         Items = {
             type = "list",
@@ -5463,6 +5630,7 @@ M.GetIntegrationsOutput = {
 
 M.GetModelInput = {
     type = "structure",
+    id = "GetModelInput",
     members = {
         ApiId = {
             type = "string",
@@ -5483,6 +5651,7 @@ M.GetModelInput = {
 
 M.GetModelOutput = {
     type = "structure",
+    id = "GetModelOutput",
     members = {
         ContentType = {
             type = "string",
@@ -5519,6 +5688,7 @@ M.GetModelOutput = {
 
 M.GetModelsInput = {
     type = "structure",
+    id = "GetModelsInput",
     members = {
         ApiId = {
             type = "string",
@@ -5544,6 +5714,7 @@ M.GetModelsInput = {
 
 M.GetModelsOutput = {
     type = "structure",
+    id = "GetModelsOutput",
     members = {
         Items = {
             type = "list",
@@ -5563,6 +5734,7 @@ M.GetModelsOutput = {
 
 M.GetModelTemplateInput = {
     type = "structure",
+    id = "GetModelTemplateInput",
     members = {
         ApiId = {
             type = "string",
@@ -5583,6 +5755,7 @@ M.GetModelTemplateInput = {
 
 M.GetModelTemplateOutput = {
     type = "structure",
+    id = "GetModelTemplateOutput",
     members = {
         Value = {
             type = "string",
@@ -5595,6 +5768,7 @@ M.GetModelTemplateOutput = {
 
 M.GetPortalInput = {
     type = "structure",
+    id = "GetPortalInput",
     members = {
         PortalId = {
             type = "string",
@@ -5608,6 +5782,7 @@ M.GetPortalInput = {
 
 M.GetPortalOutput = {
     type = "structure",
+    id = "GetPortalOutput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -5688,6 +5863,7 @@ M.GetPortalOutput = {
 
 M.GetPortalProductInput = {
     type = "structure",
+    id = "GetPortalProductInput",
     members = {
         PortalProductId = {
             type = "string",
@@ -5707,6 +5883,7 @@ M.GetPortalProductInput = {
 
 M.GetPortalProductOutput = {
     type = "structure",
+    id = "GetPortalProductOutput",
     members = {
         Description = {
             type = "string",
@@ -5755,6 +5932,7 @@ M.GetPortalProductOutput = {
 
 M.GetPortalProductSharingPolicyInput = {
     type = "structure",
+    id = "GetPortalProductSharingPolicyInput",
     members = {
         PortalProductId = {
             type = "string",
@@ -5768,6 +5946,7 @@ M.GetPortalProductSharingPolicyInput = {
 
 M.GetPortalProductSharingPolicyOutput = {
     type = "structure",
+    id = "GetPortalProductSharingPolicyOutput",
     members = {
         PolicyDocument = {
             type = "string",
@@ -5786,6 +5965,7 @@ M.GetPortalProductSharingPolicyOutput = {
 
 M.GetProductPageInput = {
     type = "structure",
+    id = "GetProductPageInput",
     members = {
         PortalProductId = {
             type = "string",
@@ -5812,6 +5992,7 @@ M.GetProductPageInput = {
 
 M.GetProductPageOutput = {
     type = "structure",
+    id = "GetProductPageOutput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -5840,6 +6021,7 @@ M.GetProductPageOutput = {
 
 M.GetProductRestEndpointPageInput = {
     type = "structure",
+    id = "GetProductRestEndpointPageInput",
     members = {
         IncludeRawDisplayContent = {
             type = "string",
@@ -5872,6 +6054,7 @@ M.GetProductRestEndpointPageInput = {
 
 M.GetProductRestEndpointPageOutput = {
     type = "structure",
+    id = "GetProductRestEndpointPageOutput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -5924,6 +6107,7 @@ M.GetProductRestEndpointPageOutput = {
 
 M.GetRouteInput = {
     type = "structure",
+    id = "GetRouteInput",
     members = {
         ApiId = {
             type = "string",
@@ -5944,6 +6128,7 @@ M.GetRouteInput = {
 
 M.GetRouteOutput = {
     type = "structure",
+    id = "GetRouteOutput",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -6033,6 +6218,7 @@ M.GetRouteOutput = {
 
 M.GetRouteResponseInput = {
     type = "structure",
+    id = "GetRouteResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -6060,6 +6246,7 @@ M.GetRouteResponseInput = {
 
 M.GetRouteResponseOutput = {
     type = "structure",
+    id = "GetRouteResponseOutput",
     members = {
         ModelSelectionExpression = {
             type = "string",
@@ -6100,6 +6287,7 @@ M.GetRouteResponseOutput = {
 
 M.GetRouteResponsesInput = {
     type = "structure",
+    id = "GetRouteResponsesInput",
     members = {
         ApiId = {
             type = "string",
@@ -6132,6 +6320,7 @@ M.GetRouteResponsesInput = {
 
 M.GetRouteResponsesOutput = {
     type = "structure",
+    id = "GetRouteResponsesOutput",
     members = {
         Items = {
             type = "list",
@@ -6151,6 +6340,7 @@ M.GetRouteResponsesOutput = {
 
 M.GetRoutesInput = {
     type = "structure",
+    id = "GetRoutesInput",
     members = {
         ApiId = {
             type = "string",
@@ -6176,6 +6366,7 @@ M.GetRoutesInput = {
 
 M.GetRoutesOutput = {
     type = "structure",
+    id = "GetRoutesOutput",
     members = {
         Items = {
             type = "list",
@@ -6195,6 +6386,7 @@ M.GetRoutesOutput = {
 
 M.GetRoutingRuleInput = {
     type = "structure",
+    id = "GetRoutingRuleInput",
     members = {
         DomainName = {
             type = "string",
@@ -6221,6 +6413,7 @@ M.GetRoutingRuleInput = {
 
 M.GetRoutingRuleOutput = {
     type = "structure",
+    id = "GetRoutingRuleOutput",
     members = {
         Actions = {
             type = "list",
@@ -6259,6 +6452,7 @@ M.GetRoutingRuleOutput = {
 
 M.GetStageInput = {
     type = "structure",
+    id = "GetStageInput",
     members = {
         ApiId = {
             type = "string",
@@ -6279,6 +6473,7 @@ M.GetStageInput = {
 
 M.GetStageOutput = {
     type = "structure",
+    id = "GetStageOutput",
     members = {
         AccessLogSettings = setmetatable({ traits = {
             json_name = "accessLogSettings",
@@ -6371,6 +6566,7 @@ M.GetStageOutput = {
 
 M.GetStagesInput = {
     type = "structure",
+    id = "GetStagesInput",
     members = {
         ApiId = {
             type = "string",
@@ -6396,6 +6592,7 @@ M.GetStagesInput = {
 
 M.GetStagesOutput = {
     type = "structure",
+    id = "GetStagesOutput",
     members = {
         Items = {
             type = "list",
@@ -6415,6 +6612,7 @@ M.GetStagesOutput = {
 
 M.GetTagsInput = {
     type = "structure",
+    id = "GetTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6428,6 +6626,7 @@ M.GetTagsInput = {
 
 M.GetTagsOutput = {
     type = "structure",
+    id = "GetTagsOutput",
     members = {
         Tags = {
             type = "map",
@@ -6442,6 +6641,7 @@ M.GetTagsOutput = {
 
 M.GetVpcLinkInput = {
     type = "structure",
+    id = "GetVpcLinkInput",
     members = {
         VpcLinkId = {
             type = "string",
@@ -6455,6 +6655,7 @@ M.GetVpcLinkInput = {
 
 M.GetVpcLinkOutput = {
     type = "structure",
+    id = "GetVpcLinkOutput",
     members = {
         CreatedDate = {
             type = "timestamp",
@@ -6520,6 +6721,7 @@ M.GetVpcLinkOutput = {
 
 M.GetVpcLinksInput = {
     type = "structure",
+    id = "GetVpcLinksInput",
     members = {
         MaxResults = {
             type = "string",
@@ -6538,6 +6740,7 @@ M.GetVpcLinksInput = {
 
 M.GetVpcLinksOutput = {
     type = "structure",
+    id = "GetVpcLinksOutput",
     members = {
         Items = {
             type = "list",
@@ -6557,6 +6760,7 @@ M.GetVpcLinksOutput = {
 
 M.ImportApiInput = {
     type = "structure",
+    id = "ImportApiInput",
     members = {
         Basepath = {
             type = "string",
@@ -6582,6 +6786,7 @@ M.ImportApiInput = {
 
 M.ImportApiOutput = {
     type = "structure",
+    id = "ImportApiOutput",
     members = {
         ApiEndpoint = {
             type = "string",
@@ -6692,6 +6897,7 @@ M.ImportApiOutput = {
 
 M.ListPortalProductsInput = {
     type = "structure",
+    id = "ListPortalProductsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -6716,6 +6922,7 @@ M.ListPortalProductsInput = {
 
 M.ListPortalProductsOutput = {
     type = "structure",
+    id = "ListPortalProductsOutput",
     members = {
         Items = {
             type = "list",
@@ -6735,6 +6942,7 @@ M.ListPortalProductsOutput = {
 
 M.ListPortalsInput = {
     type = "structure",
+    id = "ListPortalsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -6753,6 +6961,7 @@ M.ListPortalsInput = {
 
 M.ListPortalsOutput = {
     type = "structure",
+    id = "ListPortalsOutput",
     members = {
         Items = {
             type = "list",
@@ -6772,6 +6981,7 @@ M.ListPortalsOutput = {
 
 M.ListProductPagesInput = {
     type = "structure",
+    id = "ListProductPagesInput",
     members = {
         MaxResults = {
             type = "string",
@@ -6803,6 +7013,7 @@ M.ListProductPagesInput = {
 
 M.ListProductPagesOutput = {
     type = "structure",
+    id = "ListProductPagesOutput",
     members = {
         Items = {
             type = "list",
@@ -6822,6 +7033,7 @@ M.ListProductPagesOutput = {
 
 M.ListProductRestEndpointPagesInput = {
     type = "structure",
+    id = "ListProductRestEndpointPagesInput",
     members = {
         MaxResults = {
             type = "string",
@@ -6853,6 +7065,7 @@ M.ListProductRestEndpointPagesInput = {
 
 M.ListProductRestEndpointPagesOutput = {
     type = "structure",
+    id = "ListProductRestEndpointPagesOutput",
     members = {
         Items = {
             type = "list",
@@ -6872,6 +7085,7 @@ M.ListProductRestEndpointPagesOutput = {
 
 M.ListRoutingRulesInput = {
     type = "structure",
+    id = "ListRoutingRulesInput",
     members = {
         DomainName = {
             type = "string",
@@ -6903,6 +7117,7 @@ M.ListRoutingRulesInput = {
 
 M.ListRoutingRulesOutput = {
     type = "structure",
+    id = "ListRoutingRulesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -6922,6 +7137,7 @@ M.ListRoutingRulesOutput = {
 
 M.PreviewPortalInput = {
     type = "structure",
+    id = "PreviewPortalInput",
     members = {
         PortalId = {
             type = "string",
@@ -6935,10 +7151,12 @@ M.PreviewPortalInput = {
 
 M.PreviewPortalOutput = {
     type = "structure",
+    id = "PreviewPortalOutput",
 }
 
 M.PublishPortalInput = {
     type = "structure",
+    id = "PublishPortalInput",
     members = {
         Description = {
             type = "string",
@@ -6958,10 +7176,12 @@ M.PublishPortalInput = {
 
 M.PublishPortalOutput = {
     type = "structure",
+    id = "PublishPortalOutput",
 }
 
 M.PutPortalProductSharingPolicyInput = {
     type = "structure",
+    id = "PutPortalProductSharingPolicyInput",
     members = {
         PolicyDocument = {
             type = "string",
@@ -6982,10 +7202,12 @@ M.PutPortalProductSharingPolicyInput = {
 
 M.PutPortalProductSharingPolicyOutput = {
     type = "structure",
+    id = "PutPortalProductSharingPolicyOutput",
 }
 
 M.PutRoutingRuleInput = {
     type = "structure",
+    id = "PutRoutingRuleInput",
     members = {
         Actions = {
             type = "list",
@@ -7035,6 +7257,7 @@ M.PutRoutingRuleInput = {
 
 M.PutRoutingRuleOutput = {
     type = "structure",
+    id = "PutRoutingRuleOutput",
     members = {
         Actions = {
             type = "list",
@@ -7073,6 +7296,7 @@ M.PutRoutingRuleOutput = {
 
 M.ReimportApiInput = {
     type = "structure",
+    id = "ReimportApiInput",
     members = {
         ApiId = {
             type = "string",
@@ -7105,6 +7329,7 @@ M.ReimportApiInput = {
 
 M.ReimportApiOutput = {
     type = "structure",
+    id = "ReimportApiOutput",
     members = {
         ApiEndpoint = {
             type = "string",
@@ -7215,6 +7440,7 @@ M.ReimportApiOutput = {
 
 M.ResetAuthorizersCacheInput = {
     type = "structure",
+    id = "ResetAuthorizersCacheInput",
     members = {
         ApiId = {
             type = "string",
@@ -7235,10 +7461,12 @@ M.ResetAuthorizersCacheInput = {
 
 M.ResetAuthorizersCacheOutput = {
     type = "structure",
+    id = "ResetAuthorizersCacheOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7260,10 +7488,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7285,10 +7515,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApiInput = {
     type = "structure",
+    id = "UpdateApiInput",
     members = {
         ApiId = {
             type = "string",
@@ -7371,6 +7603,7 @@ M.UpdateApiInput = {
 
 M.UpdateApiOutput = {
     type = "structure",
+    id = "UpdateApiOutput",
     members = {
         ApiEndpoint = {
             type = "string",
@@ -7481,6 +7714,7 @@ M.UpdateApiOutput = {
 
 M.UpdateApiMappingInput = {
     type = "structure",
+    id = "UpdateApiMappingInput",
     members = {
         ApiId = {
             type = "string",
@@ -7520,6 +7754,7 @@ M.UpdateApiMappingInput = {
 
 M.UpdateApiMappingOutput = {
     type = "structure",
+    id = "UpdateApiMappingOutput",
     members = {
         ApiId = {
             type = "string",
@@ -7550,6 +7785,7 @@ M.UpdateApiMappingOutput = {
 
 M.UpdateAuthorizerInput = {
     type = "structure",
+    id = "UpdateAuthorizerInput",
     members = {
         ApiId = {
             type = "string",
@@ -7628,6 +7864,7 @@ M.UpdateAuthorizerInput = {
 
 M.UpdateAuthorizerOutput = {
     type = "structure",
+    id = "UpdateAuthorizerOutput",
     members = {
         AuthorizerCredentialsArn = {
             type = "string",
@@ -7698,6 +7935,7 @@ M.UpdateAuthorizerOutput = {
 
 M.UpdateDeploymentInput = {
     type = "structure",
+    id = "UpdateDeploymentInput",
     members = {
         ApiId = {
             type = "string",
@@ -7724,6 +7962,7 @@ M.UpdateDeploymentInput = {
 
 M.UpdateDeploymentOutput = {
     type = "structure",
+    id = "UpdateDeploymentOutput",
     members = {
         AutoDeployed = {
             type = "boolean",
@@ -7767,6 +8006,7 @@ M.UpdateDeploymentOutput = {
 
 M.UpdateDomainNameInput = {
     type = "structure",
+    id = "UpdateDomainNameInput",
     members = {
         DomainName = {
             type = "string",
@@ -7796,6 +8036,7 @@ M.UpdateDomainNameInput = {
 
 M.UpdateDomainNameOutput = {
     type = "structure",
+    id = "UpdateDomainNameOutput",
     members = {
         ApiMappingSelectionExpression = {
             type = "string",
@@ -7844,6 +8085,7 @@ M.UpdateDomainNameOutput = {
 
 M.UpdateIntegrationInput = {
     type = "structure",
+    id = "UpdateIntegrationInput",
     members = {
         ApiId = {
             type = "string",
@@ -7969,6 +8211,7 @@ M.UpdateIntegrationInput = {
 
 M.UpdateIntegrationOutput = {
     type = "structure",
+    id = "UpdateIntegrationOutput",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -8098,6 +8341,7 @@ M.UpdateIntegrationOutput = {
 
 M.UpdateIntegrationResponseInput = {
     type = "structure",
+    id = "UpdateIntegrationResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -8159,6 +8403,7 @@ M.UpdateIntegrationResponseInput = {
 
 M.UpdateIntegrationResponseOutput = {
     type = "structure",
+    id = "UpdateIntegrationResponseOutput",
     members = {
         ContentHandlingStrategy = {
             type = "string",
@@ -8205,6 +8450,7 @@ M.UpdateIntegrationResponseOutput = {
 
 M.UpdateModelInput = {
     type = "structure",
+    id = "UpdateModelInput",
     members = {
         ApiId = {
             type = "string",
@@ -8249,6 +8495,7 @@ M.UpdateModelInput = {
 
 M.UpdateModelOutput = {
     type = "structure",
+    id = "UpdateModelOutput",
     members = {
         ContentType = {
             type = "string",
@@ -8285,6 +8532,7 @@ M.UpdateModelOutput = {
 
 M.UpdatePortalInput = {
     type = "structure",
+    id = "UpdatePortalInput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -8326,6 +8574,7 @@ M.UpdatePortalInput = {
 
 M.UpdatePortalOutput = {
     type = "structure",
+    id = "UpdatePortalOutput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -8406,6 +8655,7 @@ M.UpdatePortalOutput = {
 
 M.UpdatePortalProductInput = {
     type = "structure",
+    id = "UpdatePortalProductInput",
     members = {
         Description = {
             type = "string",
@@ -8434,6 +8684,7 @@ M.UpdatePortalProductInput = {
 
 M.UpdatePortalProductOutput = {
     type = "structure",
+    id = "UpdatePortalProductOutput",
     members = {
         Description = {
             type = "string",
@@ -8482,6 +8733,7 @@ M.UpdatePortalProductOutput = {
 
 M.UpdateProductPageInput = {
     type = "structure",
+    id = "UpdateProductPageInput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -8505,6 +8757,7 @@ M.UpdateProductPageInput = {
 
 M.UpdateProductPageOutput = {
     type = "structure",
+    id = "UpdateProductPageOutput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -8533,6 +8786,7 @@ M.UpdateProductPageOutput = {
 
 M.UpdateProductRestEndpointPageInput = {
     type = "structure",
+    id = "UpdateProductRestEndpointPageInput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -8562,6 +8816,7 @@ M.UpdateProductRestEndpointPageInput = {
 
 M.UpdateProductRestEndpointPageOutput = {
     type = "structure",
+    id = "UpdateProductRestEndpointPageOutput",
     members = {
         DisplayContent = setmetatable({ traits = {
             json_name = "displayContent",
@@ -8608,6 +8863,7 @@ M.UpdateProductRestEndpointPageOutput = {
 
 M.UpdateRouteInput = {
     type = "structure",
+    id = "UpdateRouteInput",
     members = {
         ApiId = {
             type = "string",
@@ -8699,6 +8955,7 @@ M.UpdateRouteInput = {
 
 M.UpdateRouteOutput = {
     type = "structure",
+    id = "UpdateRouteOutput",
     members = {
         ApiGatewayManaged = {
             type = "boolean",
@@ -8788,6 +9045,7 @@ M.UpdateRouteOutput = {
 
 M.UpdateRouteResponseInput = {
     type = "structure",
+    id = "UpdateRouteResponseInput",
     members = {
         ApiId = {
             type = "string",
@@ -8843,6 +9101,7 @@ M.UpdateRouteResponseInput = {
 
 M.UpdateRouteResponseOutput = {
     type = "structure",
+    id = "UpdateRouteResponseOutput",
     members = {
         ModelSelectionExpression = {
             type = "string",
@@ -8883,6 +9142,7 @@ M.UpdateRouteResponseOutput = {
 
 M.UpdateStageInput = {
     type = "structure",
+    id = "UpdateStageInput",
     members = {
         AccessLogSettings = setmetatable({ traits = {
             json_name = "accessLogSettings",
@@ -8949,6 +9209,7 @@ M.UpdateStageInput = {
 
 M.UpdateStageOutput = {
     type = "structure",
+    id = "UpdateStageOutput",
     members = {
         AccessLogSettings = setmetatable({ traits = {
             json_name = "accessLogSettings",
@@ -9041,6 +9302,7 @@ M.UpdateStageOutput = {
 
 M.UpdateVpcLinkInput = {
     type = "structure",
+    id = "UpdateVpcLinkInput",
     members = {
         Name = {
             type = "string",
@@ -9060,6 +9322,7 @@ M.UpdateVpcLinkInput = {
 
 M.UpdateVpcLinkOutput = {
     type = "structure",
+    id = "UpdateVpcLinkOutput",
     members = {
         CreatedDate = {
             type = "timestamp",

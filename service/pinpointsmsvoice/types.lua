@@ -2,6 +2,7 @@ local M = {}
 
 M.AlreadyExistsException = {
     type = "structure",
+    id = "AlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AlreadyExistsException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.BadRequestException = {
 
 M.CallInstructionsMessageType = {
     type = "structure",
+    id = "CallInstructionsMessageType",
     members = {
         Text = {
             type = "string",
@@ -31,6 +34,7 @@ M.CallInstructionsMessageType = {
 
 M.CloudWatchLogsDestination = {
     type = "structure",
+    id = "CloudWatchLogsDestination",
     members = {
         IamRoleArn = {
             type = "string",
@@ -43,6 +47,7 @@ M.CloudWatchLogsDestination = {
 
 M.CreateConfigurationSetInput = {
     type = "structure",
+    id = "CreateConfigurationSetInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -52,10 +57,12 @@ M.CreateConfigurationSetInput = {
 
 M.CreateConfigurationSetOutput = {
     type = "structure",
+    id = "CreateConfigurationSetOutput",
 }
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         Message = {
@@ -66,6 +73,7 @@ M.InternalServiceErrorException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -76,6 +84,7 @@ M.LimitExceededException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -86,6 +95,7 @@ M.TooManyRequestsException = {
 
 M.KinesisFirehoseDestination = {
     type = "structure",
+    id = "KinesisFirehoseDestination",
     members = {
         DeliveryStreamArn = {
             type = "string",
@@ -108,6 +118,7 @@ M.EventType = {
 
 M.SnsDestination = {
     type = "structure",
+    id = "SnsDestination",
     members = {
         TopicArn = {
             type = "string",
@@ -117,6 +128,7 @@ M.SnsDestination = {
 
 M.EventDestinationDefinition = {
     type = "structure",
+    id = "EventDestinationDefinition",
     members = {
         CloudWatchLogsDestination = M.CloudWatchLogsDestination,
         Enabled = {
@@ -133,6 +145,7 @@ M.EventDestinationDefinition = {
 
 M.CreateConfigurationSetEventDestinationInput = {
     type = "structure",
+    id = "CreateConfigurationSetEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -150,10 +163,12 @@ M.CreateConfigurationSetEventDestinationInput = {
 
 M.CreateConfigurationSetEventDestinationOutput = {
     type = "structure",
+    id = "CreateConfigurationSetEventDestinationOutput",
 }
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -164,6 +179,7 @@ M.NotFoundException = {
 
 M.DeleteConfigurationSetInput = {
     type = "structure",
+    id = "DeleteConfigurationSetInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -177,10 +193,12 @@ M.DeleteConfigurationSetInput = {
 
 M.DeleteConfigurationSetOutput = {
     type = "structure",
+    id = "DeleteConfigurationSetOutput",
 }
 
 M.DeleteConfigurationSetEventDestinationInput = {
     type = "structure",
+    id = "DeleteConfigurationSetEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -201,10 +219,12 @@ M.DeleteConfigurationSetEventDestinationInput = {
 
 M.DeleteConfigurationSetEventDestinationOutput = {
     type = "structure",
+    id = "DeleteConfigurationSetEventDestinationOutput",
 }
 
 M.EventDestination = {
     type = "structure",
+    id = "EventDestination",
     members = {
         CloudWatchLogsDestination = M.CloudWatchLogsDestination,
         Enabled = {
@@ -224,6 +244,7 @@ M.EventDestination = {
 
 M.GetConfigurationSetEventDestinationsInput = {
     type = "structure",
+    id = "GetConfigurationSetEventDestinationsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -237,6 +258,7 @@ M.GetConfigurationSetEventDestinationsInput = {
 
 M.GetConfigurationSetEventDestinationsOutput = {
     type = "structure",
+    id = "GetConfigurationSetEventDestinationsOutput",
     members = {
         EventDestinations = {
             type = "list",
@@ -247,6 +269,7 @@ M.GetConfigurationSetEventDestinationsOutput = {
 
 M.ListConfigurationSetsInput = {
     type = "structure",
+    id = "ListConfigurationSetsInput",
     members = {
         NextToken = {
             type = "string",
@@ -265,6 +288,7 @@ M.ListConfigurationSetsInput = {
 
 M.ListConfigurationSetsOutput = {
     type = "structure",
+    id = "ListConfigurationSetsOutput",
     members = {
         ConfigurationSets = {
             type = "list",
@@ -278,6 +302,7 @@ M.ListConfigurationSetsOutput = {
 
 M.PlainTextMessageType = {
     type = "structure",
+    id = "PlainTextMessageType",
     members = {
         LanguageCode = {
             type = "string",
@@ -293,6 +318,7 @@ M.PlainTextMessageType = {
 
 M.SSMLMessageType = {
     type = "structure",
+    id = "SSMLMessageType",
     members = {
         LanguageCode = {
             type = "string",
@@ -308,6 +334,7 @@ M.SSMLMessageType = {
 
 M.VoiceMessageContent = {
     type = "structure",
+    id = "VoiceMessageContent",
     members = {
         CallInstructionsMessage = M.CallInstructionsMessageType,
         PlainTextMessage = M.PlainTextMessageType,
@@ -317,6 +344,7 @@ M.VoiceMessageContent = {
 
 M.SendVoiceMessageInput = {
     type = "structure",
+    id = "SendVoiceMessageInput",
     members = {
         CallerId = {
             type = "string",
@@ -336,6 +364,7 @@ M.SendVoiceMessageInput = {
 
 M.SendVoiceMessageOutput = {
     type = "structure",
+    id = "SendVoiceMessageOutput",
     members = {
         MessageId = {
             type = "string",
@@ -345,6 +374,7 @@ M.SendVoiceMessageOutput = {
 
 M.UpdateConfigurationSetEventDestinationInput = {
     type = "structure",
+    id = "UpdateConfigurationSetEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -366,6 +396,7 @@ M.UpdateConfigurationSetEventDestinationInput = {
 
 M.UpdateConfigurationSetEventDestinationOutput = {
     type = "structure",
+    id = "UpdateConfigurationSetEventDestinationOutput",
 }
 
 return M

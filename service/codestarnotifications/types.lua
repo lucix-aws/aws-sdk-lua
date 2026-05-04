@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.ConcurrentModificationException = {
 
 M.ConfigurationException = {
     type = "structure",
+    id = "ConfigurationException",
     error = "client",
     members = {
         Message = {
@@ -42,6 +45,7 @@ M.NotificationRuleStatus = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         TargetType = {
             type = "string",
@@ -54,6 +58,7 @@ M.Target = {
 
 M.CreateNotificationRuleInput = {
     type = "structure",
+    id = "CreateNotificationRuleInput",
     members = {
         Name = {
             type = "string",
@@ -106,6 +111,7 @@ M.CreateNotificationRuleInput = {
 
 M.CreateNotificationRuleOutput = {
     type = "structure",
+    id = "CreateNotificationRuleOutput",
     members = {
         Arn = {
             type = "string",
@@ -115,6 +121,7 @@ M.CreateNotificationRuleOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -125,6 +132,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -135,6 +143,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -145,6 +154,7 @@ M.ValidationException = {
 
 M.DeleteNotificationRuleInput = {
     type = "structure",
+    id = "DeleteNotificationRuleInput",
     members = {
         Arn = {
             type = "string",
@@ -157,6 +167,7 @@ M.DeleteNotificationRuleInput = {
 
 M.DeleteNotificationRuleOutput = {
     type = "structure",
+    id = "DeleteNotificationRuleOutput",
     members = {
         Arn = {
             type = "string",
@@ -166,6 +177,7 @@ M.DeleteNotificationRuleOutput = {
 
 M.DeleteTargetInput = {
     type = "structure",
+    id = "DeleteTargetInput",
     members = {
         TargetAddress = {
             type = "string",
@@ -184,10 +196,12 @@ M.DeleteTargetInput = {
 
 M.DeleteTargetOutput = {
     type = "structure",
+    id = "DeleteTargetOutput",
 }
 
 M.DescribeNotificationRuleInput = {
     type = "structure",
+    id = "DescribeNotificationRuleInput",
     members = {
         Arn = {
             type = "string",
@@ -200,6 +214,7 @@ M.DescribeNotificationRuleInput = {
 
 M.EventTypeSummary = {
     type = "structure",
+    id = "EventTypeSummary",
     members = {
         EventTypeId = {
             type = "string",
@@ -226,6 +241,7 @@ M.TargetStatus = {
 
 M.TargetSummary = {
     type = "structure",
+    id = "TargetSummary",
     members = {
         TargetAddress = {
             type = "string",
@@ -241,6 +257,7 @@ M.TargetSummary = {
 
 M.DescribeNotificationRuleOutput = {
     type = "structure",
+    id = "DescribeNotificationRuleOutput",
     members = {
         Arn = {
             type = "string",
@@ -287,6 +304,7 @@ M.DescribeNotificationRuleOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -297,6 +315,7 @@ M.ResourceNotFoundException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -312,6 +331,7 @@ M.ListEventTypesFilterName = {
 
 M.ListEventTypesFilter = {
     type = "structure",
+    id = "ListEventTypesFilter",
     members = {
         Name = {
             type = "string",
@@ -330,6 +350,7 @@ M.ListEventTypesFilter = {
 
 M.ListEventTypesInput = {
     type = "structure",
+    id = "ListEventTypesInput",
     members = {
         Filters = {
             type = "list",
@@ -346,6 +367,7 @@ M.ListEventTypesInput = {
 
 M.ListEventTypesOutput = {
     type = "structure",
+    id = "ListEventTypesOutput",
     members = {
         EventTypes = {
             type = "list",
@@ -366,6 +388,7 @@ M.ListNotificationRulesFilterName = {
 
 M.ListNotificationRulesFilter = {
     type = "structure",
+    id = "ListNotificationRulesFilter",
     members = {
         Name = {
             type = "string",
@@ -384,6 +407,7 @@ M.ListNotificationRulesFilter = {
 
 M.ListNotificationRulesInput = {
     type = "structure",
+    id = "ListNotificationRulesInput",
     members = {
         Filters = {
             type = "list",
@@ -400,6 +424,7 @@ M.ListNotificationRulesInput = {
 
 M.NotificationRuleSummary = {
     type = "structure",
+    id = "NotificationRuleSummary",
     members = {
         Id = {
             type = "string",
@@ -412,6 +437,7 @@ M.NotificationRuleSummary = {
 
 M.ListNotificationRulesOutput = {
     type = "structure",
+    id = "ListNotificationRulesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -425,6 +451,7 @@ M.ListNotificationRulesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -437,6 +464,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -454,6 +482,7 @@ M.ListTargetsFilterName = {
 
 M.ListTargetsFilter = {
     type = "structure",
+    id = "ListTargetsFilter",
     members = {
         Name = {
             type = "string",
@@ -472,6 +501,7 @@ M.ListTargetsFilter = {
 
 M.ListTargetsInput = {
     type = "structure",
+    id = "ListTargetsInput",
     members = {
         Filters = {
             type = "list",
@@ -488,6 +518,7 @@ M.ListTargetsInput = {
 
 M.ListTargetsOutput = {
     type = "structure",
+    id = "ListTargetsOutput",
     members = {
         Targets = {
             type = "list",
@@ -501,6 +532,7 @@ M.ListTargetsOutput = {
 
 M.SubscribeInput = {
     type = "structure",
+    id = "SubscribeInput",
     members = {
         Arn = {
             type = "string",
@@ -519,6 +551,7 @@ M.SubscribeInput = {
 
 M.SubscribeOutput = {
     type = "structure",
+    id = "SubscribeOutput",
     members = {
         Arn = {
             type = "string",
@@ -528,6 +561,7 @@ M.SubscribeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -548,6 +582,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -559,6 +594,7 @@ M.TagResourceOutput = {
 
 M.UnsubscribeInput = {
     type = "structure",
+    id = "UnsubscribeInput",
     members = {
         Arn = {
             type = "string",
@@ -577,6 +613,7 @@ M.UnsubscribeInput = {
 
 M.UnsubscribeOutput = {
     type = "structure",
+    id = "UnsubscribeOutput",
     members = {
         Arn = {
             type = "string",
@@ -589,6 +626,7 @@ M.UnsubscribeOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -610,10 +648,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateNotificationRuleInput = {
     type = "structure",
+    id = "UpdateNotificationRuleInput",
     members = {
         Arn = {
             type = "string",
@@ -643,6 +683,7 @@ M.UpdateNotificationRuleInput = {
 
 M.UpdateNotificationRuleOutput = {
     type = "structure",
+    id = "UpdateNotificationRuleOutput",
 }
 
 return M

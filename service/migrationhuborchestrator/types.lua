@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -28,6 +30,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -39,6 +42,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -52,6 +56,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -65,6 +70,7 @@ M.ValidationException = {
 
 M.StepInput = {
     type = "union",
+    id = "StepInput",
     members = {
         integerValue = {
             type = "integer",
@@ -86,6 +92,7 @@ M.StepInput = {
 
 M.CreateWorkflowInput = {
     type = "structure",
+    id = "CreateWorkflowInput",
     members = {
         name = {
             type = "string",
@@ -144,6 +151,7 @@ M.MigrationWorkflowStatusEnum = {
 
 M.CreateWorkflowOutput = {
     type = "structure",
+    id = "CreateWorkflowOutput",
     members = {
         id = {
             type = "string",
@@ -188,6 +196,7 @@ M.CreateWorkflowOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -201,6 +210,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -214,6 +224,7 @@ M.ThrottlingException = {
 
 M.DeleteWorkflowInput = {
     type = "structure",
+    id = "DeleteWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -227,6 +238,7 @@ M.DeleteWorkflowInput = {
 
 M.DeleteWorkflowOutput = {
     type = "structure",
+    id = "DeleteWorkflowOutput",
     members = {
         id = {
             type = "string",
@@ -242,6 +254,7 @@ M.DeleteWorkflowOutput = {
 
 M.GetWorkflowInput = {
     type = "structure",
+    id = "GetWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -255,6 +268,7 @@ M.GetWorkflowInput = {
 
 M.Tool = {
     type = "structure",
+    id = "Tool",
     members = {
         name = {
             type = "string",
@@ -267,6 +281,7 @@ M.Tool = {
 
 M.GetWorkflowOutput = {
     type = "structure",
+    id = "GetWorkflowOutput",
     members = {
         id = {
             type = "string",
@@ -338,6 +353,7 @@ M.GetWorkflowOutput = {
 
 M.ListWorkflowsInput = {
     type = "structure",
+    id = "ListWorkflowsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -381,6 +397,7 @@ M.ListWorkflowsInput = {
 
 M.MigrationWorkflowSummary = {
     type = "structure",
+    id = "MigrationWorkflowSummary",
     members = {
         id = {
             type = "string",
@@ -417,6 +434,7 @@ M.MigrationWorkflowSummary = {
 
 M.ListWorkflowsOutput = {
     type = "structure",
+    id = "ListWorkflowsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -433,6 +451,7 @@ M.ListWorkflowsOutput = {
 
 M.StartWorkflowInput = {
     type = "structure",
+    id = "StartWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -446,6 +465,7 @@ M.StartWorkflowInput = {
 
 M.StartWorkflowOutput = {
     type = "structure",
+    id = "StartWorkflowOutput",
     members = {
         id = {
             type = "string",
@@ -467,6 +487,7 @@ M.StartWorkflowOutput = {
 
 M.StopWorkflowInput = {
     type = "structure",
+    id = "StopWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -480,6 +501,7 @@ M.StopWorkflowInput = {
 
 M.StopWorkflowOutput = {
     type = "structure",
+    id = "StopWorkflowOutput",
     members = {
         id = {
             type = "string",
@@ -501,6 +523,7 @@ M.StopWorkflowOutput = {
 
 M.UpdateWorkflowInput = {
     type = "structure",
+    id = "UpdateWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -529,6 +552,7 @@ M.UpdateWorkflowInput = {
 
 M.UpdateWorkflowOutput = {
     type = "structure",
+    id = "UpdateWorkflowOutput",
     members = {
         id = {
             type = "string",
@@ -576,6 +600,7 @@ M.UpdateWorkflowOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -589,6 +614,7 @@ M.ConflictException = {
 
 M.TemplateSource = {
     type = "union",
+    id = "TemplateSource",
     members = {
         workflowId = {
             type = "string",
@@ -598,6 +624,7 @@ M.TemplateSource = {
 
 M.CreateTemplateInput = {
     type = "structure",
+    id = "CreateTemplateInput",
     members = {
         templateName = {
             type = "string",
@@ -627,6 +654,7 @@ M.CreateTemplateInput = {
 
 M.CreateTemplateOutput = {
     type = "structure",
+    id = "CreateTemplateOutput",
     members = {
         templateId = {
             type = "string",
@@ -644,6 +672,7 @@ M.CreateTemplateOutput = {
 
 M.DeleteTemplateInput = {
     type = "structure",
+    id = "DeleteTemplateInput",
     members = {
         id = {
             type = "string",
@@ -657,10 +686,12 @@ M.DeleteTemplateInput = {
 
 M.DeleteTemplateOutput = {
     type = "structure",
+    id = "DeleteTemplateOutput",
 }
 
 M.GetTemplateInput = {
     type = "structure",
+    id = "GetTemplateInput",
     members = {
         id = {
             type = "string",
@@ -681,6 +712,7 @@ M.DataType = {
 
 M.TemplateInput = {
     type = "structure",
+    id = "TemplateInput",
     members = {
         inputName = {
             type = "string",
@@ -704,6 +736,7 @@ M.TemplateStatus = {
 
 M.GetTemplateOutput = {
     type = "structure",
+    id = "GetTemplateOutput",
     members = {
         id = {
             type = "string",
@@ -750,6 +783,7 @@ M.GetTemplateOutput = {
 
 M.ListTemplatesInput = {
     type = "structure",
+    id = "ListTemplatesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -775,6 +809,7 @@ M.ListTemplatesInput = {
 
 M.TemplateSummary = {
     type = "structure",
+    id = "TemplateSummary",
     members = {
         id = {
             type = "string",
@@ -793,6 +828,7 @@ M.TemplateSummary = {
 
 M.ListTemplatesOutput = {
     type = "structure",
+    id = "ListTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -809,6 +845,7 @@ M.ListTemplatesOutput = {
 
 M.UpdateTemplateInput = {
     type = "structure",
+    id = "UpdateTemplateInput",
     members = {
         id = {
             type = "string",
@@ -834,6 +871,7 @@ M.UpdateTemplateInput = {
 
 M.UpdateTemplateOutput = {
     type = "structure",
+    id = "UpdateTemplateOutput",
     members = {
         templateId = {
             type = "string",
@@ -851,6 +889,7 @@ M.UpdateTemplateOutput = {
 
 M.ListPluginsInput = {
     type = "structure",
+    id = "ListPluginsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -875,6 +914,7 @@ M.PluginHealth = {
 
 M.PluginSummary = {
     type = "structure",
+    id = "PluginSummary",
     members = {
         pluginId = {
             type = "string",
@@ -899,6 +939,7 @@ M.PluginSummary = {
 
 M.ListPluginsOutput = {
     type = "structure",
+    id = "ListPluginsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -912,6 +953,7 @@ M.ListPluginsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -933,10 +975,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.GetTemplateStepInput = {
     type = "structure",
+    id = "GetTemplateStepInput",
     members = {
         id = {
             type = "string",
@@ -964,6 +1008,7 @@ M.GetTemplateStepInput = {
 
 M.StepOutput = {
     type = "structure",
+    id = "StepOutput",
     members = {
         name = {
             type = "string",
@@ -984,6 +1029,7 @@ M.StepActionType = {
 
 M.PlatformCommand = {
     type = "structure",
+    id = "PlatformCommand",
     members = {
         linux = {
             type = "string",
@@ -1001,6 +1047,7 @@ M.RunEnvironment = {
 
 M.PlatformScriptKey = {
     type = "structure",
+    id = "PlatformScriptKey",
     members = {
         linux = {
             type = "string",
@@ -1019,6 +1066,7 @@ M.TargetType = {
 
 M.StepAutomationConfiguration = {
     type = "structure",
+    id = "StepAutomationConfiguration",
     members = {
         scriptLocationS3Bucket = {
             type = "string",
@@ -1036,6 +1084,7 @@ M.StepAutomationConfiguration = {
 
 M.GetTemplateStepOutput = {
     type = "structure",
+    id = "GetTemplateStepOutput",
     members = {
         id = {
             type = "string",
@@ -1076,6 +1125,7 @@ M.GetTemplateStepOutput = {
 
 M.ListTemplateStepsInput = {
     type = "structure",
+    id = "ListTemplateStepsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1114,6 +1164,7 @@ M.Owner = {
 
 M.TemplateStepSummary = {
     type = "structure",
+    id = "TemplateStepSummary",
     members = {
         id = {
             type = "string",
@@ -1149,6 +1200,7 @@ M.TemplateStepSummary = {
 
 M.ListTemplateStepsOutput = {
     type = "structure",
+    id = "ListTemplateStepsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1162,6 +1214,7 @@ M.ListTemplateStepsOutput = {
 
 M.GetTemplateStepGroupInput = {
     type = "structure",
+    id = "GetTemplateStepGroupInput",
     members = {
         templateId = {
             type = "string",
@@ -1193,6 +1246,7 @@ M.StepGroupStatus = {
 
 M.GetTemplateStepGroupOutput = {
     type = "structure",
+    id = "GetTemplateStepGroupOutput",
     members = {
         templateId = {
             type = "string",
@@ -1232,6 +1286,7 @@ M.GetTemplateStepGroupOutput = {
 
 M.ListTemplateStepGroupsInput = {
     type = "structure",
+    id = "ListTemplateStepGroupsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1258,6 +1313,7 @@ M.ListTemplateStepGroupsInput = {
 
 M.TemplateStepGroupSummary = {
     type = "structure",
+    id = "TemplateStepGroupSummary",
     members = {
         id = {
             type = "string",
@@ -1278,6 +1334,7 @@ M.TemplateStepGroupSummary = {
 
 M.ListTemplateStepGroupsOutput = {
     type = "structure",
+    id = "ListTemplateStepGroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1294,6 +1351,7 @@ M.ListTemplateStepGroupsOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1315,10 +1373,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.WorkflowStepOutputUnion = {
     type = "union",
+    id = "WorkflowStepOutputUnion",
     members = {
         integerValue = {
             type = "integer",
@@ -1335,6 +1395,7 @@ M.WorkflowStepOutputUnion = {
 
 M.WorkflowStepOutput = {
     type = "structure",
+    id = "WorkflowStepOutput",
     members = {
         name = {
             type = "string",
@@ -1351,6 +1412,7 @@ M.WorkflowStepOutput = {
 
 M.WorkflowStepAutomationConfiguration = {
     type = "structure",
+    id = "WorkflowStepAutomationConfiguration",
     members = {
         scriptLocationS3Bucket = {
             type = "string",
@@ -1368,6 +1430,7 @@ M.WorkflowStepAutomationConfiguration = {
 
 M.CreateWorkflowStepInput = {
     type = "structure",
+    id = "CreateWorkflowStepInput",
     members = {
         name = {
             type = "string",
@@ -1418,6 +1481,7 @@ M.CreateWorkflowStepInput = {
 
 M.CreateWorkflowStepOutput = {
     type = "structure",
+    id = "CreateWorkflowStepOutput",
     members = {
         id = {
             type = "string",
@@ -1436,6 +1500,7 @@ M.CreateWorkflowStepOutput = {
 
 M.DeleteWorkflowStepInput = {
     type = "structure",
+    id = "DeleteWorkflowStepInput",
     members = {
         id = {
             type = "string",
@@ -1463,10 +1528,12 @@ M.DeleteWorkflowStepInput = {
 
 M.DeleteWorkflowStepOutput = {
     type = "structure",
+    id = "DeleteWorkflowStepOutput",
 }
 
 M.GetWorkflowStepInput = {
     type = "structure",
+    id = "GetWorkflowStepInput",
     members = {
         workflowId = {
             type = "string",
@@ -1505,6 +1572,7 @@ M.StepStatus = {
 
 M.GetWorkflowStepOutput = {
     type = "structure",
+    id = "GetWorkflowStepOutput",
     members = {
         name = {
             type = "string",
@@ -1576,6 +1644,7 @@ M.GetWorkflowStepOutput = {
 
 M.ListWorkflowStepsInput = {
     type = "structure",
+    id = "ListWorkflowStepsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1609,6 +1678,7 @@ M.ListWorkflowStepsInput = {
 
 M.WorkflowStepSummary = {
     type = "structure",
+    id = "WorkflowStepSummary",
     members = {
         stepId = {
             type = "string",
@@ -1656,6 +1726,7 @@ M.WorkflowStepSummary = {
 
 M.ListWorkflowStepsOutput = {
     type = "structure",
+    id = "ListWorkflowStepsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1672,6 +1743,7 @@ M.ListWorkflowStepsOutput = {
 
 M.RetryWorkflowStepInput = {
     type = "structure",
+    id = "RetryWorkflowStepInput",
     members = {
         workflowId = {
             type = "string",
@@ -1699,6 +1771,7 @@ M.RetryWorkflowStepInput = {
 
 M.RetryWorkflowStepOutput = {
     type = "structure",
+    id = "RetryWorkflowStepOutput",
     members = {
         stepGroupId = {
             type = "string",
@@ -1717,6 +1790,7 @@ M.RetryWorkflowStepOutput = {
 
 M.UpdateWorkflowStepInput = {
     type = "structure",
+    id = "UpdateWorkflowStepInput",
     members = {
         id = {
             type = "string",
@@ -1771,6 +1845,7 @@ M.UpdateWorkflowStepInput = {
 
 M.UpdateWorkflowStepOutput = {
     type = "structure",
+    id = "UpdateWorkflowStepOutput",
     members = {
         id = {
             type = "string",
@@ -1789,6 +1864,7 @@ M.UpdateWorkflowStepOutput = {
 
 M.CreateWorkflowStepGroupInput = {
     type = "structure",
+    id = "CreateWorkflowStepGroupInput",
     members = {
         workflowId = {
             type = "string",
@@ -1818,6 +1894,7 @@ M.CreateWorkflowStepGroupInput = {
 
 M.CreateWorkflowStepGroupOutput = {
     type = "structure",
+    id = "CreateWorkflowStepGroupOutput",
     members = {
         workflowId = {
             type = "string",
@@ -1851,6 +1928,7 @@ M.CreateWorkflowStepGroupOutput = {
 
 M.DeleteWorkflowStepGroupInput = {
     type = "structure",
+    id = "DeleteWorkflowStepGroupInput",
     members = {
         workflowId = {
             type = "string",
@@ -1871,10 +1949,12 @@ M.DeleteWorkflowStepGroupInput = {
 
 M.DeleteWorkflowStepGroupOutput = {
     type = "structure",
+    id = "DeleteWorkflowStepGroupOutput",
 }
 
 M.GetWorkflowStepGroupInput = {
     type = "structure",
+    id = "GetWorkflowStepGroupInput",
     members = {
         id = {
             type = "string",
@@ -1895,6 +1975,7 @@ M.GetWorkflowStepGroupInput = {
 
 M.GetWorkflowStepGroupOutput = {
     type = "structure",
+    id = "GetWorkflowStepGroupOutput",
     members = {
         id = {
             type = "string",
@@ -1940,6 +2021,7 @@ M.GetWorkflowStepGroupOutput = {
 
 M.ListWorkflowStepGroupsInput = {
     type = "structure",
+    id = "ListWorkflowStepGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1966,6 +2048,7 @@ M.ListWorkflowStepGroupsInput = {
 
 M.WorkflowStepGroupSummary = {
     type = "structure",
+    id = "WorkflowStepGroupSummary",
     members = {
         id = {
             type = "string",
@@ -1992,6 +2075,7 @@ M.WorkflowStepGroupSummary = {
 
 M.ListWorkflowStepGroupsOutput = {
     type = "structure",
+    id = "ListWorkflowStepGroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2008,6 +2092,7 @@ M.ListWorkflowStepGroupsOutput = {
 
 M.UpdateWorkflowStepGroupInput = {
     type = "structure",
+    id = "UpdateWorkflowStepGroupInput",
     members = {
         workflowId = {
             type = "string",
@@ -2042,6 +2127,7 @@ M.UpdateWorkflowStepGroupInput = {
 
 M.UpdateWorkflowStepGroupOutput = {
     type = "structure",
+    id = "UpdateWorkflowStepGroupOutput",
     members = {
         workflowId = {
             type = "string",

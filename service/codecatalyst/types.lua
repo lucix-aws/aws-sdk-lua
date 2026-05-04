@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -28,6 +30,7 @@ M.ConflictException = {
 
 M.CreateAccessTokenInput = {
     type = "structure",
+    id = "CreateAccessTokenInput",
     members = {
         name = {
             type = "string",
@@ -46,6 +49,7 @@ M.CreateAccessTokenInput = {
 
 M.CreateAccessTokenOutput = {
     type = "structure",
+    id = "CreateAccessTokenOutput",
     members = {
         secret = {
             type = "string",
@@ -77,6 +81,7 @@ M.CreateAccessTokenOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -90,6 +95,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -103,6 +109,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -116,6 +123,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -129,6 +137,7 @@ M.ValidationException = {
 
 M.DeleteAccessTokenInput = {
     type = "structure",
+    id = "DeleteAccessTokenInput",
     members = {
         id = {
             type = "string",
@@ -142,10 +151,12 @@ M.DeleteAccessTokenInput = {
 
 M.DeleteAccessTokenOutput = {
     type = "structure",
+    id = "DeleteAccessTokenOutput",
 }
 
 M.ListAccessTokensInput = {
     type = "structure",
+    id = "ListAccessTokensInput",
     members = {
         maxResults = {
             type = "integer",
@@ -158,6 +169,7 @@ M.ListAccessTokensInput = {
 
 M.AccessTokenSummary = {
     type = "structure",
+    id = "AccessTokenSummary",
     members = {
         id = {
             type = "string",
@@ -182,6 +194,7 @@ M.AccessTokenSummary = {
 
 M.ListAccessTokensOutput = {
     type = "structure",
+    id = "ListAccessTokensOutput",
     members = {
         items = {
             type = "list",
@@ -198,6 +211,7 @@ M.ListAccessTokensOutput = {
 
 M.GetUserDetailsInput = {
     type = "structure",
+    id = "GetUserDetailsInput",
     members = {
         id = {
             type = "string",
@@ -216,6 +230,7 @@ M.GetUserDetailsInput = {
 
 M.EmailAddress = {
     type = "structure",
+    id = "EmailAddress",
     members = {
         email = {
             type = "string",
@@ -228,6 +243,7 @@ M.EmailAddress = {
 
 M.GetUserDetailsOutput = {
     type = "structure",
+    id = "GetUserDetailsOutput",
     members = {
         userId = {
             type = "string",
@@ -247,6 +263,7 @@ M.GetUserDetailsOutput = {
 
 M.DeleteSpaceInput = {
     type = "structure",
+    id = "DeleteSpaceInput",
     members = {
         name = {
             type = "string",
@@ -260,6 +277,7 @@ M.DeleteSpaceInput = {
 
 M.DeleteSpaceOutput = {
     type = "structure",
+    id = "DeleteSpaceOutput",
     members = {
         name = {
             type = "string",
@@ -275,6 +293,7 @@ M.DeleteSpaceOutput = {
 
 M.ListEventLogsInput = {
     type = "structure",
+    id = "ListEventLogsInput",
     members = {
         spaceName = {
             type = "string",
@@ -316,6 +335,7 @@ M.OperationType = {
 
 M.ProjectInformation = {
     type = "structure",
+    id = "ProjectInformation",
     members = {
         name = {
             type = "string",
@@ -328,6 +348,7 @@ M.ProjectInformation = {
 
 M.EventPayload = {
     type = "structure",
+    id = "EventPayload",
     members = {
         contentType = {
             type = "string",
@@ -346,6 +367,7 @@ M.UserType = {
 
 M.UserIdentity = {
     type = "structure",
+    id = "UserIdentity",
     members = {
         userType = {
             type = "string",
@@ -370,6 +392,7 @@ M.UserIdentity = {
 
 M.EventLogEntry = {
     type = "structure",
+    id = "EventLogEntry",
     members = {
         id = {
             type = "string",
@@ -437,6 +460,7 @@ M.EventLogEntry = {
 
 M.ListEventLogsOutput = {
     type = "structure",
+    id = "ListEventLogsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -453,6 +477,7 @@ M.ListEventLogsOutput = {
 
 M.GetSpaceInput = {
     type = "structure",
+    id = "GetSpaceInput",
     members = {
         name = {
             type = "string",
@@ -466,6 +491,7 @@ M.GetSpaceInput = {
 
 M.GetSpaceOutput = {
     type = "structure",
+    id = "GetSpaceOutput",
     members = {
         name = {
             type = "string",
@@ -490,6 +516,7 @@ M.GetSpaceOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         key = {
             type = "string",
@@ -512,6 +539,7 @@ M.Filter = {
 
 M.ListDevEnvironmentsInput = {
     type = "structure",
+    id = "ListDevEnvironmentsInput",
     members = {
         spaceName = {
             type = "string",
@@ -538,6 +566,7 @@ M.ListDevEnvironmentsInput = {
 
 M.Ide = {
     type = "structure",
+    id = "Ide",
     members = {
         runtime = {
             type = "string",
@@ -557,6 +586,7 @@ M.InstanceType = {
 
 M.PersistentStorage = {
     type = "structure",
+    id = "PersistentStorage",
     members = {
         sizeInGiB = {
             type = "integer",
@@ -569,6 +599,7 @@ M.PersistentStorage = {
 
 M.DevEnvironmentRepositorySummary = {
     type = "structure",
+    id = "DevEnvironmentRepositorySummary",
     members = {
         repositoryName = {
             type = "string",
@@ -595,6 +626,7 @@ M.DevEnvironmentStatus = {
 
 M.DevEnvironmentSummary = {
     type = "structure",
+    id = "DevEnvironmentSummary",
     members = {
         spaceName = {
             type = "string",
@@ -668,6 +700,7 @@ M.DevEnvironmentSummary = {
 
 M.ListDevEnvironmentsOutput = {
     type = "structure",
+    id = "ListDevEnvironmentsOutput",
     members = {
         items = {
             type = "list",
@@ -684,6 +717,7 @@ M.ListDevEnvironmentsOutput = {
 
 M.ListSpacesInput = {
     type = "structure",
+    id = "ListSpacesInput",
     members = {
         nextToken = {
             type = "string",
@@ -693,6 +727,7 @@ M.ListSpacesInput = {
 
 M.SpaceSummary = {
     type = "structure",
+    id = "SpaceSummary",
     members = {
         name = {
             type = "string",
@@ -717,6 +752,7 @@ M.SpaceSummary = {
 
 M.ListSpacesOutput = {
     type = "structure",
+    id = "ListSpacesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -730,6 +766,7 @@ M.ListSpacesOutput = {
 
 M.CreateProjectInput = {
     type = "structure",
+    id = "CreateProjectInput",
     members = {
         spaceName = {
             type = "string",
@@ -752,6 +789,7 @@ M.CreateProjectInput = {
 
 M.CreateProjectOutput = {
     type = "structure",
+    id = "CreateProjectOutput",
     members = {
         spaceName = {
             type = "string",
@@ -773,6 +811,7 @@ M.CreateProjectOutput = {
 
 M.DeleteProjectInput = {
     type = "structure",
+    id = "DeleteProjectInput",
     members = {
         spaceName = {
             type = "string",
@@ -793,6 +832,7 @@ M.DeleteProjectInput = {
 
 M.DeleteProjectOutput = {
     type = "structure",
+    id = "DeleteProjectOutput",
     members = {
         spaceName = {
             type = "string",
@@ -814,6 +854,7 @@ M.DeleteProjectOutput = {
 
 M.IdeConfiguration = {
     type = "structure",
+    id = "IdeConfiguration",
     members = {
         runtime = {
             type = "string",
@@ -826,6 +867,7 @@ M.IdeConfiguration = {
 
 M.PersistentStorageConfiguration = {
     type = "structure",
+    id = "PersistentStorageConfiguration",
     members = {
         sizeInGiB = {
             type = "integer",
@@ -838,6 +880,7 @@ M.PersistentStorageConfiguration = {
 
 M.RepositoryInput = {
     type = "structure",
+    id = "RepositoryInput",
     members = {
         repositoryName = {
             type = "string",
@@ -853,6 +896,7 @@ M.RepositoryInput = {
 
 M.CreateDevEnvironmentInput = {
     type = "structure",
+    id = "CreateDevEnvironmentInput",
     members = {
         spaceName = {
             type = "string",
@@ -905,6 +949,7 @@ M.CreateDevEnvironmentInput = {
 
 M.CreateDevEnvironmentOutput = {
     type = "structure",
+    id = "CreateDevEnvironmentOutput",
     members = {
         spaceName = {
             type = "string",
@@ -932,6 +977,7 @@ M.CreateDevEnvironmentOutput = {
 
 M.DeleteDevEnvironmentInput = {
     type = "structure",
+    id = "DeleteDevEnvironmentInput",
     members = {
         spaceName = {
             type = "string",
@@ -959,6 +1005,7 @@ M.DeleteDevEnvironmentInput = {
 
 M.DeleteDevEnvironmentOutput = {
     type = "structure",
+    id = "DeleteDevEnvironmentOutput",
     members = {
         spaceName = {
             type = "string",
@@ -983,6 +1030,7 @@ M.DeleteDevEnvironmentOutput = {
 
 M.GetDevEnvironmentInput = {
     type = "structure",
+    id = "GetDevEnvironmentInput",
     members = {
         spaceName = {
             type = "string",
@@ -1010,6 +1058,7 @@ M.GetDevEnvironmentInput = {
 
 M.GetDevEnvironmentOutput = {
     type = "structure",
+    id = "GetDevEnvironmentOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1089,6 +1138,7 @@ M.GetDevEnvironmentOutput = {
 
 M.ListDevEnvironmentSessionsInput = {
     type = "structure",
+    id = "ListDevEnvironmentSessionsInput",
     members = {
         spaceName = {
             type = "string",
@@ -1122,6 +1172,7 @@ M.ListDevEnvironmentSessionsInput = {
 
 M.DevEnvironmentSessionSummary = {
     type = "structure",
+    id = "DevEnvironmentSessionSummary",
     members = {
         spaceName = {
             type = "string",
@@ -1159,6 +1210,7 @@ M.DevEnvironmentSessionSummary = {
 
 M.ListDevEnvironmentSessionsOutput = {
     type = "structure",
+    id = "ListDevEnvironmentSessionsOutput",
     members = {
         items = {
             type = "list",
@@ -1175,6 +1227,7 @@ M.ListDevEnvironmentSessionsOutput = {
 
 M.StartDevEnvironmentInput = {
     type = "structure",
+    id = "StartDevEnvironmentInput",
     members = {
         spaceName = {
             type = "string",
@@ -1215,6 +1268,7 @@ M.StartDevEnvironmentInput = {
 
 M.StartDevEnvironmentOutput = {
     type = "structure",
+    id = "StartDevEnvironmentOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1245,6 +1299,7 @@ M.StartDevEnvironmentOutput = {
 
 M.ExecuteCommandSessionConfiguration = {
     type = "structure",
+    id = "ExecuteCommandSessionConfiguration",
     members = {
         command = {
             type = "string",
@@ -1266,6 +1321,7 @@ M.DevEnvironmentSessionType = {
 
 M.DevEnvironmentSessionConfiguration = {
     type = "structure",
+    id = "DevEnvironmentSessionConfiguration",
     members = {
         sessionType = {
             type = "string",
@@ -1279,6 +1335,7 @@ M.DevEnvironmentSessionConfiguration = {
 
 M.StartDevEnvironmentSessionInput = {
     type = "structure",
+    id = "StartDevEnvironmentSessionInput",
     members = {
         spaceName = {
             type = "string",
@@ -1309,6 +1366,7 @@ M.StartDevEnvironmentSessionInput = {
 
 M.DevEnvironmentAccessDetails = {
     type = "structure",
+    id = "DevEnvironmentAccessDetails",
     members = {
         streamUrl = {
             type = "string",
@@ -1327,6 +1385,7 @@ M.DevEnvironmentAccessDetails = {
 
 M.StartDevEnvironmentSessionOutput = {
     type = "structure",
+    id = "StartDevEnvironmentSessionOutput",
     members = {
         accessDetails = setmetatable({ traits = {
             required = true,
@@ -1357,6 +1416,7 @@ M.StartDevEnvironmentSessionOutput = {
 
 M.StopDevEnvironmentInput = {
     type = "structure",
+    id = "StopDevEnvironmentInput",
     members = {
         spaceName = {
             type = "string",
@@ -1384,6 +1444,7 @@ M.StopDevEnvironmentInput = {
 
 M.StopDevEnvironmentOutput = {
     type = "structure",
+    id = "StopDevEnvironmentOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1414,6 +1475,7 @@ M.StopDevEnvironmentOutput = {
 
 M.StopDevEnvironmentSessionInput = {
     type = "structure",
+    id = "StopDevEnvironmentSessionInput",
     members = {
         spaceName = {
             type = "string",
@@ -1448,6 +1510,7 @@ M.StopDevEnvironmentSessionInput = {
 
 M.StopDevEnvironmentSessionOutput = {
     type = "structure",
+    id = "StopDevEnvironmentSessionOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1478,6 +1541,7 @@ M.StopDevEnvironmentSessionOutput = {
 
 M.UpdateDevEnvironmentInput = {
     type = "structure",
+    id = "UpdateDevEnvironmentInput",
     members = {
         spaceName = {
             type = "string",
@@ -1524,6 +1588,7 @@ M.UpdateDevEnvironmentInput = {
 
 M.UpdateDevEnvironmentOutput = {
     type = "structure",
+    id = "UpdateDevEnvironmentOutput",
     members = {
         id = {
             type = "string",
@@ -1567,6 +1632,7 @@ M.UpdateDevEnvironmentOutput = {
 
 M.GetProjectInput = {
     type = "structure",
+    id = "GetProjectInput",
     members = {
         spaceName = {
             type = "string",
@@ -1587,6 +1653,7 @@ M.GetProjectInput = {
 
 M.GetProjectOutput = {
     type = "structure",
+    id = "GetProjectOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1622,6 +1689,7 @@ M.FilterKey = {
 
 M.ProjectListFilter = {
     type = "structure",
+    id = "ProjectListFilter",
     members = {
         key = {
             type = "string",
@@ -1644,6 +1712,7 @@ M.ProjectListFilter = {
 
 M.ListProjectsInput = {
     type = "structure",
+    id = "ListProjectsInput",
     members = {
         spaceName = {
             type = "string",
@@ -1667,6 +1736,7 @@ M.ListProjectsInput = {
 
 M.ProjectSummary = {
     type = "structure",
+    id = "ProjectSummary",
     members = {
         name = {
             type = "string",
@@ -1685,6 +1755,7 @@ M.ProjectSummary = {
 
 M.ListProjectsOutput = {
     type = "structure",
+    id = "ListProjectsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1698,6 +1769,7 @@ M.ListProjectsOutput = {
 
 M.CreateSourceRepositoryInput = {
     type = "structure",
+    id = "CreateSourceRepositoryInput",
     members = {
         spaceName = {
             type = "string",
@@ -1728,6 +1800,7 @@ M.CreateSourceRepositoryInput = {
 
 M.CreateSourceRepositoryOutput = {
     type = "structure",
+    id = "CreateSourceRepositoryOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1755,6 +1828,7 @@ M.CreateSourceRepositoryOutput = {
 
 M.DeleteSourceRepositoryInput = {
     type = "structure",
+    id = "DeleteSourceRepositoryInput",
     members = {
         spaceName = {
             type = "string",
@@ -1782,6 +1856,7 @@ M.DeleteSourceRepositoryInput = {
 
 M.DeleteSourceRepositoryOutput = {
     type = "structure",
+    id = "DeleteSourceRepositoryOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1806,6 +1881,7 @@ M.DeleteSourceRepositoryOutput = {
 
 M.GetSourceRepositoryInput = {
     type = "structure",
+    id = "GetSourceRepositoryInput",
     members = {
         spaceName = {
             type = "string",
@@ -1833,6 +1909,7 @@ M.GetSourceRepositoryInput = {
 
 M.GetSourceRepositoryOutput = {
     type = "structure",
+    id = "GetSourceRepositoryOutput",
     members = {
         spaceName = {
             type = "string",
@@ -1874,6 +1951,7 @@ M.GetSourceRepositoryOutput = {
 
 M.GetSourceRepositoryCloneUrlsInput = {
     type = "structure",
+    id = "GetSourceRepositoryCloneUrlsInput",
     members = {
         spaceName = {
             type = "string",
@@ -1901,6 +1979,7 @@ M.GetSourceRepositoryCloneUrlsInput = {
 
 M.GetSourceRepositoryCloneUrlsOutput = {
     type = "structure",
+    id = "GetSourceRepositoryCloneUrlsOutput",
     members = {
         https = {
             type = "string",
@@ -1913,6 +1992,7 @@ M.GetSourceRepositoryCloneUrlsOutput = {
 
 M.ListSourceRepositoriesInput = {
     type = "structure",
+    id = "ListSourceRepositoriesInput",
     members = {
         spaceName = {
             type = "string",
@@ -1939,6 +2019,7 @@ M.ListSourceRepositoriesInput = {
 
 M.ListSourceRepositoriesItem = {
     type = "structure",
+    id = "ListSourceRepositoriesItem",
     members = {
         id = {
             type = "string",
@@ -1974,6 +2055,7 @@ M.ListSourceRepositoriesItem = {
 
 M.ListSourceRepositoriesOutput = {
     type = "structure",
+    id = "ListSourceRepositoriesOutput",
     members = {
         items = {
             type = "list",
@@ -1987,6 +2069,7 @@ M.ListSourceRepositoriesOutput = {
 
 M.CreateSourceRepositoryBranchInput = {
     type = "structure",
+    id = "CreateSourceRepositoryBranchInput",
     members = {
         spaceName = {
             type = "string",
@@ -2024,6 +2107,7 @@ M.CreateSourceRepositoryBranchInput = {
 
 M.CreateSourceRepositoryBranchOutput = {
     type = "structure",
+    id = "CreateSourceRepositoryBranchOutput",
     members = {
         ref = {
             type = "string",
@@ -2045,6 +2129,7 @@ M.CreateSourceRepositoryBranchOutput = {
 
 M.ListSourceRepositoryBranchesInput = {
     type = "structure",
+    id = "ListSourceRepositoryBranchesInput",
     members = {
         spaceName = {
             type = "string",
@@ -2078,6 +2163,7 @@ M.ListSourceRepositoryBranchesInput = {
 
 M.ListSourceRepositoryBranchesItem = {
     type = "structure",
+    id = "ListSourceRepositoryBranchesItem",
     members = {
         ref = {
             type = "string",
@@ -2099,6 +2185,7 @@ M.ListSourceRepositoryBranchesItem = {
 
 M.ListSourceRepositoryBranchesOutput = {
     type = "structure",
+    id = "ListSourceRepositoryBranchesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2115,6 +2202,7 @@ M.ListSourceRepositoryBranchesOutput = {
 
 M.UpdateProjectInput = {
     type = "structure",
+    id = "UpdateProjectInput",
     members = {
         spaceName = {
             type = "string",
@@ -2138,6 +2226,7 @@ M.UpdateProjectInput = {
 
 M.UpdateProjectOutput = {
     type = "structure",
+    id = "UpdateProjectOutput",
     members = {
         spaceName = {
             type = "string",
@@ -2156,6 +2245,7 @@ M.UpdateProjectOutput = {
 
 M.GetWorkflowInput = {
     type = "structure",
+    id = "GetWorkflowInput",
     members = {
         spaceName = {
             type = "string",
@@ -2183,6 +2273,7 @@ M.GetWorkflowInput = {
 
 M.WorkflowDefinition = {
     type = "structure",
+    id = "WorkflowDefinition",
     members = {
         path = {
             type = "string",
@@ -2206,6 +2297,7 @@ M.WorkflowStatus = {
 
 M.GetWorkflowOutput = {
     type = "structure",
+    id = "GetWorkflowOutput",
     members = {
         spaceName = {
             type = "string",
@@ -2271,10 +2363,12 @@ M.GetWorkflowOutput = {
 
 M.WorkflowSortCriteria = {
     type = "structure",
+    id = "WorkflowSortCriteria",
 }
 
 M.ListWorkflowsInput = {
     type = "structure",
+    id = "ListWorkflowsInput",
     members = {
         spaceName = {
             type = "string",
@@ -2311,6 +2405,7 @@ M.ListWorkflowsInput = {
 
 M.WorkflowDefinitionSummary = {
     type = "structure",
+    id = "WorkflowDefinitionSummary",
     members = {
         path = {
             type = "string",
@@ -2323,6 +2418,7 @@ M.WorkflowDefinitionSummary = {
 
 M.WorkflowSummary = {
     type = "structure",
+    id = "WorkflowSummary",
     members = {
         id = {
             type = "string",
@@ -2382,6 +2478,7 @@ M.WorkflowSummary = {
 
 M.ListWorkflowsOutput = {
     type = "structure",
+    id = "ListWorkflowsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2395,6 +2492,7 @@ M.ListWorkflowsOutput = {
 
 M.GetWorkflowRunInput = {
     type = "structure",
+    id = "GetWorkflowRunInput",
     members = {
         spaceName = {
             type = "string",
@@ -2436,10 +2534,12 @@ M.WorkflowRunStatus = {
 
 M.WorkflowRunStatusReason = {
     type = "structure",
+    id = "WorkflowRunStatusReason",
 }
 
 M.GetWorkflowRunOutput = {
     type = "structure",
+    id = "GetWorkflowRunOutput",
     members = {
         spaceName = {
             type = "string",
@@ -2500,10 +2600,12 @@ M.GetWorkflowRunOutput = {
 
 M.WorkflowRunSortCriteria = {
     type = "structure",
+    id = "WorkflowRunSortCriteria",
 }
 
 M.ListWorkflowRunsInput = {
     type = "structure",
+    id = "ListWorkflowRunsInput",
     members = {
         spaceName = {
             type = "string",
@@ -2546,6 +2648,7 @@ M.ListWorkflowRunsInput = {
 
 M.WorkflowRunSummary = {
     type = "structure",
+    id = "WorkflowRunSummary",
     members = {
         id = {
             type = "string",
@@ -2600,6 +2703,7 @@ M.WorkflowRunSummary = {
 
 M.ListWorkflowRunsOutput = {
     type = "structure",
+    id = "ListWorkflowRunsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2613,6 +2717,7 @@ M.ListWorkflowRunsOutput = {
 
 M.StartWorkflowRunInput = {
     type = "structure",
+    id = "StartWorkflowRunInput",
     members = {
         spaceName = {
             type = "string",
@@ -2646,6 +2751,7 @@ M.StartWorkflowRunInput = {
 
 M.StartWorkflowRunOutput = {
     type = "structure",
+    id = "StartWorkflowRunOutput",
     members = {
         spaceName = {
             type = "string",
@@ -2676,6 +2782,7 @@ M.StartWorkflowRunOutput = {
 
 M.GetSubscriptionInput = {
     type = "structure",
+    id = "GetSubscriptionInput",
     members = {
         spaceName = {
             type = "string",
@@ -2689,6 +2796,7 @@ M.GetSubscriptionInput = {
 
 M.GetSubscriptionOutput = {
     type = "structure",
+    id = "GetSubscriptionOutput",
     members = {
         subscriptionType = {
             type = "string",
@@ -2710,6 +2818,7 @@ M.GetSubscriptionOutput = {
 
 M.UpdateSpaceInput = {
     type = "structure",
+    id = "UpdateSpaceInput",
     members = {
         name = {
             type = "string",
@@ -2726,6 +2835,7 @@ M.UpdateSpaceInput = {
 
 M.UpdateSpaceOutput = {
     type = "structure",
+    id = "UpdateSpaceOutput",
     members = {
         name = {
             type = "string",
@@ -2741,10 +2851,12 @@ M.UpdateSpaceOutput = {
 
 M.VerifySessionInput = {
     type = "structure",
+    id = "VerifySessionInput",
 }
 
 M.VerifySessionOutput = {
     type = "structure",
+    id = "VerifySessionOutput",
     members = {
         identity = {
             type = "string",

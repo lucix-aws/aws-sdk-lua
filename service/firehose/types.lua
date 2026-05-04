@@ -2,6 +2,7 @@ local M = {}
 
 M.AmazonOpenSearchServerlessBufferingHints = {
     type = "structure",
+    id = "AmazonOpenSearchServerlessBufferingHints",
     members = {
         IntervalInSeconds = {
             type = "integer",
@@ -14,6 +15,7 @@ M.AmazonOpenSearchServerlessBufferingHints = {
 
 M.CloudWatchLoggingOptions = {
     type = "structure",
+    id = "CloudWatchLoggingOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -43,6 +45,7 @@ M.ProcessorParameterName = {
 
 M.ProcessorParameter = {
     type = "structure",
+    id = "ProcessorParameter",
     members = {
         ParameterName = {
             type = "string",
@@ -70,6 +73,7 @@ M.ProcessorType = {
 
 M.Processor = {
     type = "structure",
+    id = "Processor",
     members = {
         Type = {
             type = "string",
@@ -86,6 +90,7 @@ M.Processor = {
 
 M.ProcessingConfiguration = {
     type = "structure",
+    id = "ProcessingConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -99,6 +104,7 @@ M.ProcessingConfiguration = {
 
 M.AmazonOpenSearchServerlessRetryOptions = {
     type = "structure",
+    id = "AmazonOpenSearchServerlessRetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -113,6 +119,7 @@ M.AmazonOpenSearchServerlessS3BackupMode = {
 
 M.BufferingHints = {
     type = "structure",
+    id = "BufferingHints",
     members = {
         SizeInMBs = {
             type = "integer",
@@ -133,6 +140,7 @@ M.CompressionFormat = {
 
 M.KMSEncryptionConfig = {
     type = "structure",
+    id = "KMSEncryptionConfig",
     members = {
         AWSKMSKeyARN = {
             type = "string",
@@ -149,6 +157,7 @@ M.NoEncryptionConfig = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         NoEncryptionConfig = {
             type = "string",
@@ -159,6 +168,7 @@ M.EncryptionConfiguration = {
 
 M.S3DestinationConfiguration = {
     type = "structure",
+    id = "S3DestinationConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -189,6 +199,7 @@ M.S3DestinationConfiguration = {
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         SubnetIds = {
             type = "list",
@@ -215,6 +226,7 @@ M.VpcConfiguration = {
 
 M.AmazonOpenSearchServerlessDestinationConfiguration = {
     type = "structure",
+    id = "AmazonOpenSearchServerlessDestinationConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -247,6 +259,7 @@ M.AmazonOpenSearchServerlessDestinationConfiguration = {
 
 M.S3DestinationDescription = {
     type = "structure",
+    id = "S3DestinationDescription",
     members = {
         RoleARN = {
             type = "string",
@@ -284,6 +297,7 @@ M.S3DestinationDescription = {
 
 M.VpcConfigurationDescription = {
     type = "structure",
+    id = "VpcConfigurationDescription",
     members = {
         SubnetIds = {
             type = "list",
@@ -316,6 +330,7 @@ M.VpcConfigurationDescription = {
 
 M.AmazonOpenSearchServerlessDestinationDescription = {
     type = "structure",
+    id = "AmazonOpenSearchServerlessDestinationDescription",
     members = {
         RoleARN = {
             type = "string",
@@ -340,6 +355,7 @@ M.AmazonOpenSearchServerlessDestinationDescription = {
 
 M.S3DestinationUpdate = {
     type = "structure",
+    id = "S3DestinationUpdate",
     members = {
         RoleARN = {
             type = "string",
@@ -364,6 +380,7 @@ M.S3DestinationUpdate = {
 
 M.AmazonOpenSearchServerlessDestinationUpdate = {
     type = "structure",
+    id = "AmazonOpenSearchServerlessDestinationUpdate",
     members = {
         RoleARN = {
             type = "string",
@@ -384,6 +401,7 @@ M.AmazonOpenSearchServerlessDestinationUpdate = {
 
 M.AmazonopensearchserviceBufferingHints = {
     type = "structure",
+    id = "AmazonopensearchserviceBufferingHints",
     members = {
         IntervalInSeconds = {
             type = "integer",
@@ -401,6 +419,7 @@ M.DefaultDocumentIdFormat = {
 
 M.DocumentIdOptions = {
     type = "structure",
+    id = "DocumentIdOptions",
     members = {
         DefaultDocumentIdFormat = {
             type = "string",
@@ -421,6 +440,7 @@ M.AmazonopensearchserviceIndexRotationPeriod = {
 
 M.AmazonopensearchserviceRetryOptions = {
     type = "structure",
+    id = "AmazonopensearchserviceRetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -435,6 +455,7 @@ M.AmazonopensearchserviceS3BackupMode = {
 
 M.AmazonopensearchserviceDestinationConfiguration = {
     type = "structure",
+    id = "AmazonopensearchserviceDestinationConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -477,6 +498,7 @@ M.AmazonopensearchserviceDestinationConfiguration = {
 
 M.AmazonopensearchserviceDestinationDescription = {
     type = "structure",
+    id = "AmazonopensearchserviceDestinationDescription",
     members = {
         RoleARN = {
             type = "string",
@@ -511,6 +533,7 @@ M.AmazonopensearchserviceDestinationDescription = {
 
 M.AmazonopensearchserviceDestinationUpdate = {
     type = "structure",
+    id = "AmazonopensearchserviceDestinationUpdate",
     members = {
         RoleARN = {
             type = "string",
@@ -546,6 +569,7 @@ M.Connectivity = {
 
 M.AuthenticationConfiguration = {
     type = "structure",
+    id = "AuthenticationConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -564,6 +588,7 @@ M.AuthenticationConfiguration = {
 
 M.CatalogConfiguration = {
     type = "structure",
+    id = "CatalogConfiguration",
     members = {
         CatalogARN = {
             type = "string",
@@ -576,6 +601,7 @@ M.CatalogConfiguration = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -591,6 +617,7 @@ M.ContentEncoding = {
 
 M.CopyCommand = {
     type = "structure",
+    id = "CopyCommand",
     members = {
         DataTableName = {
             type = "string",
@@ -609,6 +636,7 @@ M.CopyCommand = {
 
 M.DatabaseColumnList = {
     type = "structure",
+    id = "DatabaseColumnList",
     members = {
         Include = {
             type = "list",
@@ -623,6 +651,7 @@ M.DatabaseColumnList = {
 
 M.DatabaseList = {
     type = "structure",
+    id = "DatabaseList",
     members = {
         Include = {
             type = "list",
@@ -637,6 +666,7 @@ M.DatabaseList = {
 
 M.SecretsManagerConfiguration = {
     type = "structure",
+    id = "SecretsManagerConfiguration",
     members = {
         SecretARN = {
             type = "string",
@@ -655,6 +685,7 @@ M.SecretsManagerConfiguration = {
 
 M.DatabaseSourceAuthenticationConfiguration = {
     type = "structure",
+    id = "DatabaseSourceAuthenticationConfiguration",
     members = {
         SecretsManagerConfiguration = setmetatable({ traits = {
             required = true,
@@ -664,6 +695,7 @@ M.DatabaseSourceAuthenticationConfiguration = {
 
 M.DatabaseSourceVPCConfiguration = {
     type = "structure",
+    id = "DatabaseSourceVPCConfiguration",
     members = {
         VpcEndpointServiceName = {
             type = "string",
@@ -681,6 +713,7 @@ M.SSLMode = {
 
 M.DatabaseTableList = {
     type = "structure",
+    id = "DatabaseTableList",
     members = {
         Include = {
             type = "list",
@@ -700,6 +733,7 @@ M.DatabaseType = {
 
 M.DatabaseSourceConfiguration = {
     type = "structure",
+    id = "DatabaseSourceConfiguration",
     members = {
         Type = {
             type = "string",
@@ -755,6 +789,7 @@ M.KeyType = {
 
 M.DeliveryStreamEncryptionConfigurationInput = {
     type = "structure",
+    id = "DeliveryStreamEncryptionConfigurationInput",
     members = {
         KeyARN = {
             type = "string",
@@ -777,6 +812,7 @@ M.DeliveryStreamType = {
 
 M.DirectPutSourceConfiguration = {
     type = "structure",
+    id = "DirectPutSourceConfiguration",
     members = {
         ThroughputHintInMBs = {
             type = "integer",
@@ -789,6 +825,7 @@ M.DirectPutSourceConfiguration = {
 
 M.ElasticsearchBufferingHints = {
     type = "structure",
+    id = "ElasticsearchBufferingHints",
     members = {
         IntervalInSeconds = {
             type = "integer",
@@ -809,6 +846,7 @@ M.ElasticsearchIndexRotationPeriod = {
 
 M.ElasticsearchRetryOptions = {
     type = "structure",
+    id = "ElasticsearchRetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -823,6 +861,7 @@ M.ElasticsearchS3BackupMode = {
 
 M.ElasticsearchDestinationConfiguration = {
     type = "structure",
+    id = "ElasticsearchDestinationConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -865,6 +904,7 @@ M.ElasticsearchDestinationConfiguration = {
 
 M.HiveJsonSerDe = {
     type = "structure",
+    id = "HiveJsonSerDe",
     members = {
         TimestampFormats = {
             type = "list",
@@ -875,6 +915,7 @@ M.HiveJsonSerDe = {
 
 M.OpenXJsonSerDe = {
     type = "structure",
+    id = "OpenXJsonSerDe",
     members = {
         ConvertDotsInJsonKeysToUnderscores = {
             type = "boolean",
@@ -892,6 +933,7 @@ M.OpenXJsonSerDe = {
 
 M.Deserializer = {
     type = "structure",
+    id = "Deserializer",
     members = {
         OpenXJsonSerDe = M.OpenXJsonSerDe,
         HiveJsonSerDe = M.HiveJsonSerDe,
@@ -900,6 +942,7 @@ M.Deserializer = {
 
 M.InputFormatConfiguration = {
     type = "structure",
+    id = "InputFormatConfiguration",
     members = {
         Deserializer = M.Deserializer,
     },
@@ -918,6 +961,7 @@ M.OrcFormatVersion = {
 
 M.OrcSerDe = {
     type = "structure",
+    id = "OrcSerDe",
     members = {
         StripeSizeBytes = {
             type = "integer",
@@ -966,6 +1010,7 @@ M.ParquetWriterVersion = {
 
 M.ParquetSerDe = {
     type = "structure",
+    id = "ParquetSerDe",
     members = {
         BlockSizeBytes = {
             type = "integer",
@@ -990,6 +1035,7 @@ M.ParquetSerDe = {
 
 M.Serializer = {
     type = "structure",
+    id = "Serializer",
     members = {
         ParquetSerDe = M.ParquetSerDe,
         OrcSerDe = M.OrcSerDe,
@@ -998,6 +1044,7 @@ M.Serializer = {
 
 M.OutputFormatConfiguration = {
     type = "structure",
+    id = "OutputFormatConfiguration",
     members = {
         Serializer = M.Serializer,
     },
@@ -1005,6 +1052,7 @@ M.OutputFormatConfiguration = {
 
 M.SchemaConfiguration = {
     type = "structure",
+    id = "SchemaConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -1029,6 +1077,7 @@ M.SchemaConfiguration = {
 
 M.DataFormatConversionConfiguration = {
     type = "structure",
+    id = "DataFormatConversionConfiguration",
     members = {
         SchemaConfiguration = M.SchemaConfiguration,
         InputFormatConfiguration = M.InputFormatConfiguration,
@@ -1041,6 +1090,7 @@ M.DataFormatConversionConfiguration = {
 
 M.RetryOptions = {
     type = "structure",
+    id = "RetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -1050,6 +1100,7 @@ M.RetryOptions = {
 
 M.DynamicPartitioningConfiguration = {
     type = "structure",
+    id = "DynamicPartitioningConfiguration",
     members = {
         RetryOptions = M.RetryOptions,
         Enabled = {
@@ -1065,6 +1116,7 @@ M.S3BackupMode = {
 
 M.ExtendedS3DestinationConfiguration = {
     type = "structure",
+    id = "ExtendedS3DestinationConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -1108,6 +1160,7 @@ M.ExtendedS3DestinationConfiguration = {
 
 M.HttpEndpointBufferingHints = {
     type = "structure",
+    id = "HttpEndpointBufferingHints",
     members = {
         SizeInMBs = {
             type = "integer",
@@ -1120,6 +1173,7 @@ M.HttpEndpointBufferingHints = {
 
 M.HttpEndpointConfiguration = {
     type = "structure",
+    id = "HttpEndpointConfiguration",
     members = {
         Url = {
             type = "string",
@@ -1138,6 +1192,7 @@ M.HttpEndpointConfiguration = {
 
 M.HttpEndpointCommonAttribute = {
     type = "structure",
+    id = "HttpEndpointCommonAttribute",
     members = {
         AttributeName = {
             type = "string",
@@ -1156,6 +1211,7 @@ M.HttpEndpointCommonAttribute = {
 
 M.HttpEndpointRequestConfiguration = {
     type = "structure",
+    id = "HttpEndpointRequestConfiguration",
     members = {
         ContentEncoding = {
             type = "string",
@@ -1169,6 +1225,7 @@ M.HttpEndpointRequestConfiguration = {
 
 M.HttpEndpointRetryOptions = {
     type = "structure",
+    id = "HttpEndpointRetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -1183,6 +1240,7 @@ M.HttpEndpointS3BackupMode = {
 
 M.HttpEndpointDestinationConfiguration = {
     type = "structure",
+    id = "HttpEndpointDestinationConfiguration",
     members = {
         EndpointConfiguration = setmetatable({ traits = {
             required = true,
@@ -1207,6 +1265,7 @@ M.HttpEndpointDestinationConfiguration = {
 
 M.PartitionField = {
     type = "structure",
+    id = "PartitionField",
     members = {
         SourceName = {
             type = "string",
@@ -1219,6 +1278,7 @@ M.PartitionField = {
 
 M.PartitionSpec = {
     type = "structure",
+    id = "PartitionSpec",
     members = {
         Identity = {
             type = "list",
@@ -1229,6 +1289,7 @@ M.PartitionSpec = {
 
 M.DestinationTableConfiguration = {
     type = "structure",
+    id = "DestinationTableConfiguration",
     members = {
         DestinationTableName = {
             type = "string",
@@ -1260,6 +1321,7 @@ M.IcebergS3BackupMode = {
 
 M.SchemaEvolutionConfiguration = {
     type = "structure",
+    id = "SchemaEvolutionConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -1272,6 +1334,7 @@ M.SchemaEvolutionConfiguration = {
 
 M.TableCreationConfiguration = {
     type = "structure",
+    id = "TableCreationConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -1284,6 +1347,7 @@ M.TableCreationConfiguration = {
 
 M.IcebergDestinationConfiguration = {
     type = "structure",
+    id = "IcebergDestinationConfiguration",
     members = {
         DestinationTableConfigurationList = {
             type = "list",
@@ -1318,6 +1382,7 @@ M.IcebergDestinationConfiguration = {
 
 M.KinesisStreamSourceConfiguration = {
     type = "structure",
+    id = "KinesisStreamSourceConfiguration",
     members = {
         KinesisStreamARN = {
             type = "string",
@@ -1336,6 +1401,7 @@ M.KinesisStreamSourceConfiguration = {
 
 M.MSKSourceConfiguration = {
     type = "structure",
+    id = "MSKSourceConfiguration",
     members = {
         MSKClusterARN = {
             type = "string",
@@ -1360,6 +1426,7 @@ M.MSKSourceConfiguration = {
 
 M.RedshiftRetryOptions = {
     type = "structure",
+    id = "RedshiftRetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -1374,6 +1441,7 @@ M.RedshiftS3BackupMode = {
 
 M.RedshiftDestinationConfiguration = {
     type = "structure",
+    id = "RedshiftDestinationConfiguration",
     members = {
         RoleARN = {
             type = "string",
@@ -1412,6 +1480,7 @@ M.RedshiftDestinationConfiguration = {
 
 M.SnowflakeBufferingHints = {
     type = "structure",
+    id = "SnowflakeBufferingHints",
     members = {
         SizeInMBs = {
             type = "integer",
@@ -1430,6 +1499,7 @@ M.SnowflakeDataLoadingOption = {
 
 M.SnowflakeRetryOptions = {
     type = "structure",
+    id = "SnowflakeRetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -1444,6 +1514,7 @@ M.SnowflakeS3BackupMode = {
 
 M.SnowflakeRoleConfiguration = {
     type = "structure",
+    id = "SnowflakeRoleConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -1456,6 +1527,7 @@ M.SnowflakeRoleConfiguration = {
 
 M.SnowflakeVpcConfiguration = {
     type = "structure",
+    id = "SnowflakeVpcConfiguration",
     members = {
         PrivateLinkVpceId = {
             type = "string",
@@ -1468,6 +1540,7 @@ M.SnowflakeVpcConfiguration = {
 
 M.SnowflakeDestinationConfiguration = {
     type = "structure",
+    id = "SnowflakeDestinationConfiguration",
     members = {
         AccountUrl = {
             type = "string",
@@ -1535,6 +1608,7 @@ M.SnowflakeDestinationConfiguration = {
 
 M.SplunkBufferingHints = {
     type = "structure",
+    id = "SplunkBufferingHints",
     members = {
         IntervalInSeconds = {
             type = "integer",
@@ -1552,6 +1626,7 @@ M.HECEndpointType = {
 
 M.SplunkRetryOptions = {
     type = "structure",
+    id = "SplunkRetryOptions",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -1566,6 +1641,7 @@ M.SplunkS3BackupMode = {
 
 M.SplunkDestinationConfiguration = {
     type = "structure",
+    id = "SplunkDestinationConfiguration",
     members = {
         HECEndpoint = {
             type = "string",
@@ -1601,6 +1677,7 @@ M.SplunkDestinationConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1616,6 +1693,7 @@ M.Tag = {
 
 M.CreateDeliveryStreamInput = {
     type = "structure",
+    id = "CreateDeliveryStreamInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -1650,6 +1728,7 @@ M.CreateDeliveryStreamInput = {
 
 M.CreateDeliveryStreamOutput = {
     type = "structure",
+    id = "CreateDeliveryStreamOutput",
     members = {
         DeliveryStreamARN = {
             type = "string",
@@ -1659,6 +1738,7 @@ M.CreateDeliveryStreamOutput = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         message = {
@@ -1669,6 +1749,7 @@ M.InvalidArgumentException = {
 
 M.InvalidKMSResourceException = {
     type = "structure",
+    id = "InvalidKMSResourceException",
     error = "client",
     members = {
         code = {
@@ -1682,6 +1763,7 @@ M.InvalidKMSResourceException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1692,6 +1774,7 @@ M.LimitExceededException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -1722,6 +1805,7 @@ M.DeliveryStreamFailureType = {
 
 M.FailureDescription = {
     type = "structure",
+    id = "FailureDescription",
     members = {
         Type = {
             type = "string",
@@ -1751,6 +1835,7 @@ M.SnapshotStatus = {
 
 M.DatabaseSnapshotInfo = {
     type = "structure",
+    id = "DatabaseSnapshotInfo",
     members = {
         Id = {
             type = "string",
@@ -1788,6 +1873,7 @@ M.DatabaseSnapshotInfo = {
 
 M.DatabaseSourceDescription = {
     type = "structure",
+    id = "DatabaseSourceDescription",
     members = {
         Type = {
             type = "string",
@@ -1822,6 +1908,7 @@ M.DatabaseSourceDescription = {
 
 M.DeleteDeliveryStreamInput = {
     type = "structure",
+    id = "DeleteDeliveryStreamInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -1837,10 +1924,12 @@ M.DeleteDeliveryStreamInput = {
 
 M.DeleteDeliveryStreamOutput = {
     type = "structure",
+    id = "DeleteDeliveryStreamOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1860,6 +1949,7 @@ M.DeliveryStreamEncryptionStatus = {
 
 M.DeliveryStreamEncryptionConfiguration = {
     type = "structure",
+    id = "DeliveryStreamEncryptionConfiguration",
     members = {
         KeyARN = {
             type = "string",
@@ -1884,6 +1974,7 @@ M.DeliveryStreamStatus = {
 
 M.ElasticsearchDestinationDescription = {
     type = "structure",
+    id = "ElasticsearchDestinationDescription",
     members = {
         RoleARN = {
             type = "string",
@@ -1918,6 +2009,7 @@ M.ElasticsearchDestinationDescription = {
 
 M.ExtendedS3DestinationDescription = {
     type = "structure",
+    id = "ExtendedS3DestinationDescription",
     members = {
         RoleARN = {
             type = "string",
@@ -1968,6 +2060,7 @@ M.ExtendedS3DestinationDescription = {
 
 M.HttpEndpointDescription = {
     type = "structure",
+    id = "HttpEndpointDescription",
     members = {
         Url = {
             type = "string",
@@ -1980,6 +2073,7 @@ M.HttpEndpointDescription = {
 
 M.HttpEndpointDestinationDescription = {
     type = "structure",
+    id = "HttpEndpointDestinationDescription",
     members = {
         EndpointConfiguration = M.HttpEndpointDescription,
         BufferingHints = M.HttpEndpointBufferingHints,
@@ -2000,6 +2094,7 @@ M.HttpEndpointDestinationDescription = {
 
 M.IcebergDestinationDescription = {
     type = "structure",
+    id = "IcebergDestinationDescription",
     members = {
         DestinationTableConfigurationList = {
             type = "list",
@@ -2027,6 +2122,7 @@ M.IcebergDestinationDescription = {
 
 M.RedshiftDestinationDescription = {
     type = "structure",
+    id = "RedshiftDestinationDescription",
     members = {
         RoleARN = {
             type = "string",
@@ -2062,6 +2158,7 @@ M.RedshiftDestinationDescription = {
 
 M.SnowflakeDestinationDescription = {
     type = "structure",
+    id = "SnowflakeDestinationDescription",
     members = {
         AccountUrl = {
             type = "string",
@@ -2106,6 +2203,7 @@ M.SnowflakeDestinationDescription = {
 
 M.SplunkDestinationDescription = {
     type = "structure",
+    id = "SplunkDestinationDescription",
     members = {
         HECEndpoint = {
             type = "string",
@@ -2133,6 +2231,7 @@ M.SplunkDestinationDescription = {
 
 M.DestinationDescription = {
     type = "structure",
+    id = "DestinationDescription",
     members = {
         DestinationId = {
             type = "string",
@@ -2155,6 +2254,7 @@ M.DestinationDescription = {
 
 M.DirectPutSourceDescription = {
     type = "structure",
+    id = "DirectPutSourceDescription",
     members = {
         ThroughputHintInMBs = {
             type = "integer",
@@ -2164,6 +2264,7 @@ M.DirectPutSourceDescription = {
 
 M.KinesisStreamSourceDescription = {
     type = "structure",
+    id = "KinesisStreamSourceDescription",
     members = {
         KinesisStreamARN = {
             type = "string",
@@ -2179,6 +2280,7 @@ M.KinesisStreamSourceDescription = {
 
 M.MSKSourceDescription = {
     type = "structure",
+    id = "MSKSourceDescription",
     members = {
         MSKClusterARN = {
             type = "string",
@@ -2198,6 +2300,7 @@ M.MSKSourceDescription = {
 
 M.SourceDescription = {
     type = "structure",
+    id = "SourceDescription",
     members = {
         DirectPutSourceDescription = M.DirectPutSourceDescription,
         KinesisStreamSourceDescription = M.KinesisStreamSourceDescription,
@@ -2208,6 +2311,7 @@ M.SourceDescription = {
 
 M.DeliveryStreamDescription = {
     type = "structure",
+    id = "DeliveryStreamDescription",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2266,6 +2370,7 @@ M.DeliveryStreamDescription = {
 
 M.DescribeDeliveryStreamInput = {
     type = "structure",
+    id = "DescribeDeliveryStreamInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2284,6 +2389,7 @@ M.DescribeDeliveryStreamInput = {
 
 M.DescribeDeliveryStreamOutput = {
     type = "structure",
+    id = "DescribeDeliveryStreamOutput",
     members = {
         DeliveryStreamDescription = setmetatable({ traits = {
             required = true,
@@ -2293,6 +2399,7 @@ M.DescribeDeliveryStreamOutput = {
 
 M.ElasticsearchDestinationUpdate = {
     type = "structure",
+    id = "ElasticsearchDestinationUpdate",
     members = {
         RoleARN = {
             type = "string",
@@ -2323,6 +2430,7 @@ M.ElasticsearchDestinationUpdate = {
 
 M.ExtendedS3DestinationUpdate = {
     type = "structure",
+    id = "ExtendedS3DestinationUpdate",
     members = {
         RoleARN = {
             type = "string",
@@ -2360,6 +2468,7 @@ M.ExtendedS3DestinationUpdate = {
 
 M.ListDeliveryStreamsInput = {
     type = "structure",
+    id = "ListDeliveryStreamsInput",
     members = {
         Limit = {
             type = "integer",
@@ -2375,6 +2484,7 @@ M.ListDeliveryStreamsInput = {
 
 M.ListDeliveryStreamsOutput = {
     type = "structure",
+    id = "ListDeliveryStreamsOutput",
     members = {
         DeliveryStreamNames = {
             type = "list",
@@ -2394,6 +2504,7 @@ M.ListDeliveryStreamsOutput = {
 
 M.ListTagsForDeliveryStreamInput = {
     type = "structure",
+    id = "ListTagsForDeliveryStreamInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2412,6 +2523,7 @@ M.ListTagsForDeliveryStreamInput = {
 
 M.ListTagsForDeliveryStreamOutput = {
     type = "structure",
+    id = "ListTagsForDeliveryStreamOutput",
     members = {
         Tags = {
             type = "list",
@@ -2431,6 +2543,7 @@ M.ListTagsForDeliveryStreamOutput = {
 
 M.InvalidSourceException = {
     type = "structure",
+    id = "InvalidSourceException",
     error = "client",
     members = {
         code = {
@@ -2444,6 +2557,7 @@ M.InvalidSourceException = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         Data = {
             type = "blob",
@@ -2456,6 +2570,7 @@ M.Record = {
 
 M.PutRecordInput = {
     type = "structure",
+    id = "PutRecordInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2471,6 +2586,7 @@ M.PutRecordInput = {
 
 M.PutRecordOutput = {
     type = "structure",
+    id = "PutRecordOutput",
     members = {
         RecordId = {
             type = "string",
@@ -2486,6 +2602,7 @@ M.PutRecordOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -2496,6 +2613,7 @@ M.ServiceUnavailableException = {
 
 M.PutRecordBatchInput = {
     type = "structure",
+    id = "PutRecordBatchInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2515,6 +2633,7 @@ M.PutRecordBatchInput = {
 
 M.PutRecordBatchResponseEntry = {
     type = "structure",
+    id = "PutRecordBatchResponseEntry",
     members = {
         RecordId = {
             type = "string",
@@ -2530,6 +2649,7 @@ M.PutRecordBatchResponseEntry = {
 
 M.PutRecordBatchOutput = {
     type = "structure",
+    id = "PutRecordBatchOutput",
     members = {
         FailedPutCount = {
             type = "integer",
@@ -2552,6 +2672,7 @@ M.PutRecordBatchOutput = {
 
 M.StartDeliveryStreamEncryptionInput = {
     type = "structure",
+    id = "StartDeliveryStreamEncryptionInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2565,10 +2686,12 @@ M.StartDeliveryStreamEncryptionInput = {
 
 M.StartDeliveryStreamEncryptionOutput = {
     type = "structure",
+    id = "StartDeliveryStreamEncryptionOutput",
 }
 
 M.StopDeliveryStreamEncryptionInput = {
     type = "structure",
+    id = "StopDeliveryStreamEncryptionInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2581,10 +2704,12 @@ M.StopDeliveryStreamEncryptionInput = {
 
 M.StopDeliveryStreamEncryptionOutput = {
     type = "structure",
+    id = "StopDeliveryStreamEncryptionOutput",
 }
 
 M.TagDeliveryStreamInput = {
     type = "structure",
+    id = "TagDeliveryStreamInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2604,10 +2729,12 @@ M.TagDeliveryStreamInput = {
 
 M.TagDeliveryStreamOutput = {
     type = "structure",
+    id = "TagDeliveryStreamOutput",
 }
 
 M.UntagDeliveryStreamInput = {
     type = "structure",
+    id = "UntagDeliveryStreamInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2627,10 +2754,12 @@ M.UntagDeliveryStreamInput = {
 
 M.UntagDeliveryStreamOutput = {
     type = "structure",
+    id = "UntagDeliveryStreamOutput",
 }
 
 M.HttpEndpointDestinationUpdate = {
     type = "structure",
+    id = "HttpEndpointDestinationUpdate",
     members = {
         EndpointConfiguration = M.HttpEndpointConfiguration,
         BufferingHints = M.HttpEndpointBufferingHints,
@@ -2651,6 +2780,7 @@ M.HttpEndpointDestinationUpdate = {
 
 M.IcebergDestinationUpdate = {
     type = "structure",
+    id = "IcebergDestinationUpdate",
     members = {
         DestinationTableConfigurationList = {
             type = "list",
@@ -2678,6 +2808,7 @@ M.IcebergDestinationUpdate = {
 
 M.RedshiftDestinationUpdate = {
     type = "structure",
+    id = "RedshiftDestinationUpdate",
     members = {
         RoleARN = {
             type = "string",
@@ -2706,6 +2837,7 @@ M.RedshiftDestinationUpdate = {
 
 M.SnowflakeDestinationUpdate = {
     type = "structure",
+    id = "SnowflakeDestinationUpdate",
     members = {
         AccountUrl = {
             type = "string",
@@ -2755,6 +2887,7 @@ M.SnowflakeDestinationUpdate = {
 
 M.SplunkDestinationUpdate = {
     type = "structure",
+    id = "SplunkDestinationUpdate",
     members = {
         HECEndpoint = {
             type = "string",
@@ -2782,6 +2915,7 @@ M.SplunkDestinationUpdate = {
 
 M.UpdateDestinationInput = {
     type = "structure",
+    id = "UpdateDestinationInput",
     members = {
         DeliveryStreamName = {
             type = "string",
@@ -2816,6 +2950,7 @@ M.UpdateDestinationInput = {
 
 M.UpdateDestinationOutput = {
     type = "structure",
+    id = "UpdateDestinationOutput",
 }
 
 return M

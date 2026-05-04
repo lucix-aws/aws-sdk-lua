@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -32,6 +33,7 @@ M.SrcCodeOrDbAnalysisStatus = {
 
 M.AnalysisStatusUnion = {
     type = "union",
+    id = "AnalysisStatusUnion",
     members = {
         runtimeAnalysisStatus = {
             type = "string",
@@ -51,6 +53,7 @@ M.AnalysisType = {
 
 M.AnalyzableServerSummary = {
     type = "structure",
+    id = "AnalyzableServerSummary",
     members = {
         hostname = {
             type = "string",
@@ -89,6 +92,7 @@ M.SourceCodeAnalyzerName = {
 
 M.AnalyzerNameUnion = {
     type = "union",
+    id = "AnalyzerNameUnion",
     members = {
         binaryAnalyzerName = {
             type = "string",
@@ -104,6 +108,7 @@ M.AnalyzerNameUnion = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         s3Bucket = {
             type = "string",
@@ -122,6 +127,7 @@ M.AntipatternReportStatus = {
 
 M.AntipatternReportResult = {
     type = "structure",
+    id = "AntipatternReportResult",
     members = {
         analyzerName = M.AnalyzerNameUnion,
         antiPatternReportS3Object = M.S3Object,
@@ -142,6 +148,7 @@ M.Severity = {
 
 M.AntipatternSeveritySummary = {
     type = "structure",
+    id = "AntipatternSeveritySummary",
     members = {
         severity = {
             type = "string",
@@ -198,6 +205,7 @@ M.AppUnitErrorCategory = {
 
 M.AppUnitError = {
     type = "structure",
+    id = "AppUnitError",
     members = {
         appUnitErrorCategory = {
             type = "string",
@@ -207,6 +215,7 @@ M.AppUnitError = {
 
 M.DatabaseConfigDetail = {
     type = "structure",
+    id = "DatabaseConfigDetail",
     members = {
         secretName = {
             type = "string",
@@ -261,6 +270,7 @@ M.TransformationToolName = {
 
 M.TransformationTool = {
     type = "structure",
+    id = "TransformationTool",
     members = {
         name = {
             type = "string",
@@ -276,6 +286,7 @@ M.TransformationTool = {
 
 M.RecommendationSet = {
     type = "structure",
+    id = "RecommendationSet",
     members = {
         transformationTool = M.TransformationTool,
         targetDestination = {
@@ -295,6 +306,7 @@ M.ResourceSubType = {
 
 M.Result = {
     type = "structure",
+    id = "Result",
     members = {
         analysisType = {
             type = "string",
@@ -312,6 +324,7 @@ M.Result = {
 
 M.SourceCodeRepository = {
     type = "structure",
+    id = "SourceCodeRepository",
     members = {
         repository = {
             type = "string",
@@ -330,6 +343,7 @@ M.SourceCodeRepository = {
 
 M.ApplicationComponentDetail = {
     type = "structure",
+    id = "ApplicationComponentDetail",
     members = {
         id = {
             type = "string",
@@ -400,6 +414,7 @@ M.ApplicationComponentDetail = {
 
 M.ApplicationComponentStatusSummary = {
     type = "structure",
+    id = "ApplicationComponentStatusSummary",
     members = {
         srcCodeOrDbAnalysisStatus = {
             type = "string",
@@ -419,6 +434,7 @@ M.StrategyRecommendation = {
 
 M.ApplicationComponentStrategy = {
     type = "structure",
+    id = "ApplicationComponentStrategy",
     members = {
         recommendation = M.RecommendationSet,
         status = {
@@ -432,6 +448,7 @@ M.ApplicationComponentStrategy = {
 
 M.ApplicationComponentSummary = {
     type = "structure",
+    id = "ApplicationComponentSummary",
     members = {
         appType = {
             type = "string",
@@ -456,6 +473,7 @@ M.AwsManagedTargetDestination = {
 
 M.AwsManagedResources = {
     type = "structure",
+    id = "AwsManagedResources",
     members = {
         targetDestination = {
             type = "list",
@@ -478,6 +496,7 @@ M.NoPreferenceTargetDestination = {
 
 M.NoManagementPreference = {
     type = "structure",
+    id = "NoManagementPreference",
     members = {
         targetDestination = {
             type = "list",
@@ -498,6 +517,7 @@ M.SelfManageTargetDestination = {
 
 M.SelfManageResources = {
     type = "structure",
+    id = "SelfManageResources",
     members = {
         targetDestination = {
             type = "list",
@@ -511,6 +531,7 @@ M.SelfManageResources = {
 
 M.ManagementPreference = {
     type = "union",
+    id = "ManagementPreference",
     members = {
         awsManagedResources = M.AwsManagedResources,
         selfManageResources = M.SelfManageResources,
@@ -520,6 +541,7 @@ M.ManagementPreference = {
 
 M.ApplicationPreferences = {
     type = "structure",
+    id = "ApplicationPreferences",
     members = {
         managementPreference = M.ManagementPreference,
     },
@@ -540,6 +562,7 @@ M.AssessmentStatus = {
 
 M.StrategySummary = {
     type = "structure",
+    id = "StrategySummary",
     members = {
         strategy = {
             type = "string",
@@ -562,6 +585,7 @@ M.RunTimeAssessmentStatus = {
 
 M.ServerStatusSummary = {
     type = "structure",
+    id = "ServerStatusSummary",
     members = {
         runTimeAssessmentStatus = {
             type = "string",
@@ -582,6 +606,7 @@ M.ServerOsType = {
 
 M.ServerSummary = {
     type = "structure",
+    id = "ServerSummary",
     members = {
         ServerOsType = {
             type = "string",
@@ -594,6 +619,7 @@ M.ServerSummary = {
 
 M.AssessmentSummary = {
     type = "structure",
+    id = "AssessmentSummary",
     members = {
         listServerStrategySummary = {
             type = "list",
@@ -645,6 +671,7 @@ M.Condition = {
 
 M.AssessmentTarget = {
     type = "structure",
+    id = "AssessmentTarget",
     members = {
         condition = {
             type = "string",
@@ -670,6 +697,7 @@ M.AssessmentTarget = {
 
 M.AssociatedApplication = {
     type = "structure",
+    id = "AssociatedApplication",
     members = {
         name = {
             type = "string",
@@ -688,6 +716,7 @@ M.AuthType = {
 
 M.GetApplicationComponentDetailsInput = {
     type = "structure",
+    id = "GetApplicationComponentDetailsInput",
     members = {
         applicationComponentId = {
             type = "string",
@@ -701,6 +730,7 @@ M.GetApplicationComponentDetailsInput = {
 
 M.GetApplicationComponentDetailsOutput = {
     type = "structure",
+    id = "GetApplicationComponentDetailsOutput",
     members = {
         applicationComponentDetail = M.ApplicationComponentDetail,
         associatedApplications = {
@@ -719,6 +749,7 @@ M.GetApplicationComponentDetailsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -729,6 +760,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -739,6 +771,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -749,6 +782,7 @@ M.ThrottlingException = {
 
 M.GetApplicationComponentStrategiesInput = {
     type = "structure",
+    id = "GetApplicationComponentStrategiesInput",
     members = {
         applicationComponentId = {
             type = "string",
@@ -762,6 +796,7 @@ M.GetApplicationComponentStrategiesInput = {
 
 M.GetApplicationComponentStrategiesOutput = {
     type = "structure",
+    id = "GetApplicationComponentStrategiesOutput",
     members = {
         applicationComponentStrategies = {
             type = "list",
@@ -772,6 +807,7 @@ M.GetApplicationComponentStrategiesOutput = {
 
 M.GetAssessmentInput = {
     type = "structure",
+    id = "GetAssessmentInput",
     members = {
         id = {
             type = "string",
@@ -785,6 +821,7 @@ M.GetAssessmentInput = {
 
 M.DataCollectionDetails = {
     type = "structure",
+    id = "DataCollectionDetails",
     members = {
         status = {
             type = "string",
@@ -815,6 +852,7 @@ M.DataCollectionDetails = {
 
 M.GetAssessmentOutput = {
     type = "structure",
+    id = "GetAssessmentOutput",
     members = {
         id = {
             type = "string",
@@ -829,6 +867,7 @@ M.GetAssessmentOutput = {
 
 M.GetImportFileTaskInput = {
     type = "structure",
+    id = "GetImportFileTaskInput",
     members = {
         id = {
             type = "string",
@@ -853,6 +892,7 @@ M.ImportFileTaskStatus = {
 
 M.GetImportFileTaskOutput = {
     type = "structure",
+    id = "GetImportFileTaskOutput",
     members = {
         id = {
             type = "string",
@@ -892,6 +932,7 @@ M.GetImportFileTaskOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -902,6 +943,7 @@ M.ValidationException = {
 
 M.DependencyException = {
     type = "structure",
+    id = "DependencyException",
     error = "server",
     members = {
         message = {
@@ -912,10 +954,12 @@ M.DependencyException = {
 
 M.GetLatestAssessmentIdInput = {
     type = "structure",
+    id = "GetLatestAssessmentIdInput",
 }
 
 M.GetLatestAssessmentIdOutput = {
     type = "structure",
+    id = "GetLatestAssessmentIdOutput",
     members = {
         id = {
             type = "string",
@@ -925,6 +969,7 @@ M.GetLatestAssessmentIdOutput = {
 
 M.GetPortfolioPreferencesInput = {
     type = "structure",
+    id = "GetPortfolioPreferencesInput",
 }
 
 M.DatabaseManagementPreference = {
@@ -948,6 +993,7 @@ M.HeterogeneousTargetDatabaseEngine = {
 
 M.Heterogeneous = {
     type = "structure",
+    id = "Heterogeneous",
     members = {
         targetDatabaseEngine = {
             type = "list",
@@ -965,6 +1011,7 @@ M.HomogeneousTargetDatabaseEngine = {
 
 M.Homogeneous = {
     type = "structure",
+    id = "Homogeneous",
     members = {
         targetDatabaseEngine = {
             type = "list",
@@ -988,6 +1035,7 @@ M.TargetDatabaseEngine = {
 
 M.NoDatabaseMigrationPreference = {
     type = "structure",
+    id = "NoDatabaseMigrationPreference",
     members = {
         targetDatabaseEngine = {
             type = "list",
@@ -1001,6 +1049,7 @@ M.NoDatabaseMigrationPreference = {
 
 M.DatabaseMigrationPreference = {
     type = "union",
+    id = "DatabaseMigrationPreference",
     members = {
         heterogeneous = M.Heterogeneous,
         homogeneous = M.Homogeneous,
@@ -1010,6 +1059,7 @@ M.DatabaseMigrationPreference = {
 
 M.DatabasePreferences = {
     type = "structure",
+    id = "DatabasePreferences",
     members = {
         databaseManagementPreference = {
             type = "string",
@@ -1020,6 +1070,7 @@ M.DatabasePreferences = {
 
 M.BusinessGoals = {
     type = "structure",
+    id = "BusinessGoals",
     members = {
         speedOfMigration = {
             type = "integer",
@@ -1038,6 +1089,7 @@ M.BusinessGoals = {
 
 M.PrioritizeBusinessGoals = {
     type = "structure",
+    id = "PrioritizeBusinessGoals",
     members = {
         businessGoals = M.BusinessGoals,
     },
@@ -1045,6 +1097,7 @@ M.PrioritizeBusinessGoals = {
 
 M.GetPortfolioPreferencesOutput = {
     type = "structure",
+    id = "GetPortfolioPreferencesOutput",
     members = {
         prioritizeBusinessGoals = M.PrioritizeBusinessGoals,
         applicationPreferences = M.ApplicationPreferences,
@@ -1057,10 +1110,12 @@ M.GetPortfolioPreferencesOutput = {
 
 M.GetPortfolioSummaryInput = {
     type = "structure",
+    id = "GetPortfolioSummaryInput",
 }
 
 M.GetPortfolioSummaryOutput = {
     type = "structure",
+    id = "GetPortfolioSummaryOutput",
     members = {
         assessmentSummary = M.AssessmentSummary,
     },
@@ -1068,6 +1123,7 @@ M.GetPortfolioSummaryOutput = {
 
 M.GetRecommendationReportDetailsInput = {
     type = "structure",
+    id = "GetRecommendationReportDetailsInput",
     members = {
         id = {
             type = "string",
@@ -1087,6 +1143,7 @@ M.RecommendationReportStatus = {
 
 M.RecommendationReportDetails = {
     type = "structure",
+    id = "RecommendationReportDetails",
     members = {
         status = {
             type = "string",
@@ -1112,6 +1169,7 @@ M.RecommendationReportDetails = {
 
 M.GetRecommendationReportDetailsOutput = {
     type = "structure",
+    id = "GetRecommendationReportDetailsOutput",
     members = {
         id = {
             type = "string",
@@ -1122,6 +1180,7 @@ M.GetRecommendationReportDetailsOutput = {
 
 M.GetServerDetailsInput = {
     type = "structure",
+    id = "GetServerDetailsInput",
     members = {
         serverId = {
             type = "string",
@@ -1155,6 +1214,7 @@ M.ServerErrorCategory = {
 
 M.ServerError = {
     type = "structure",
+    id = "ServerError",
     members = {
         serverErrorCategory = {
             type = "string",
@@ -1164,6 +1224,7 @@ M.ServerError = {
 
 M.NetworkInfo = {
     type = "structure",
+    id = "NetworkInfo",
     members = {
         interfaceName = {
             type = "string",
@@ -1199,6 +1260,7 @@ M.OSType = {
 
 M.OSInfo = {
     type = "structure",
+    id = "OSInfo",
     members = {
         type = {
             type = "string",
@@ -1211,6 +1273,7 @@ M.OSInfo = {
 
 M.SystemInfo = {
     type = "structure",
+    id = "SystemInfo",
     members = {
         osInfo = M.OSInfo,
         fileSystemType = {
@@ -1228,6 +1291,7 @@ M.SystemInfo = {
 
 M.ServerDetail = {
     type = "structure",
+    id = "ServerDetail",
     members = {
         id = {
             type = "string",
@@ -1270,6 +1334,7 @@ M.ServerDetail = {
 
 M.GetServerDetailsOutput = {
     type = "structure",
+    id = "GetServerDetailsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1284,6 +1349,7 @@ M.GetServerDetailsOutput = {
 
 M.GetServerStrategiesInput = {
     type = "structure",
+    id = "GetServerStrategiesInput",
     members = {
         serverId = {
             type = "string",
@@ -1297,6 +1363,7 @@ M.GetServerStrategiesInput = {
 
 M.ServerStrategy = {
     type = "structure",
+    id = "ServerStrategy",
     members = {
         recommendation = M.RecommendationSet,
         status = {
@@ -1313,6 +1380,7 @@ M.ServerStrategy = {
 
 M.GetServerStrategiesOutput = {
     type = "structure",
+    id = "GetServerStrategiesOutput",
     members = {
         serverStrategies = {
             type = "list",
@@ -1328,6 +1396,7 @@ M.SortOrder = {
 
 M.ListAnalyzableServersInput = {
     type = "structure",
+    id = "ListAnalyzableServersInput",
     members = {
         sort = {
             type = "string",
@@ -1343,6 +1412,7 @@ M.ListAnalyzableServersInput = {
 
 M.ListAnalyzableServersOutput = {
     type = "structure",
+    id = "ListAnalyzableServersOutput",
     members = {
         analyzableServers = {
             type = "list",
@@ -1361,6 +1431,7 @@ M.GroupName = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         name = {
             type = "string",
@@ -1373,6 +1444,7 @@ M.Group = {
 
 M.ListApplicationComponentsInput = {
     type = "structure",
+    id = "ListApplicationComponentsInput",
     members = {
         applicationComponentCriteria = {
             type = "string",
@@ -1398,6 +1470,7 @@ M.ListApplicationComponentsInput = {
 
 M.ListApplicationComponentsOutput = {
     type = "structure",
+    id = "ListApplicationComponentsOutput",
     members = {
         applicationComponentInfos = {
             type = "list",
@@ -1411,6 +1484,7 @@ M.ListApplicationComponentsOutput = {
 
 M.ServiceLinkedRoleLockClientException = {
     type = "structure",
+    id = "ServiceLinkedRoleLockClientException",
     error = "client",
     members = {
         message = {
@@ -1421,6 +1495,7 @@ M.ServiceLinkedRoleLockClientException = {
 
 M.ListCollectorsInput = {
     type = "structure",
+    id = "ListCollectorsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1444,6 +1519,7 @@ M.CollectorHealth = {
 
 M.IPAddressBasedRemoteInfo = {
     type = "structure",
+    id = "IPAddressBasedRemoteInfo",
     members = {
         ipAddressConfigurationTimeStamp = {
             type = "string",
@@ -1463,6 +1539,7 @@ M.PipelineType = {
 
 M.PipelineInfo = {
     type = "structure",
+    id = "PipelineInfo",
     members = {
         pipelineType = {
             type = "string",
@@ -1475,6 +1552,7 @@ M.PipelineInfo = {
 
 M.RemoteSourceCodeAnalysisServerInfo = {
     type = "structure",
+    id = "RemoteSourceCodeAnalysisServerInfo",
     members = {
         remoteSourceCodeAnalysisServerConfigurationTimestamp = {
             type = "string",
@@ -1484,6 +1562,7 @@ M.RemoteSourceCodeAnalysisServerInfo = {
 
 M.VcenterBasedRemoteInfo = {
     type = "structure",
+    id = "VcenterBasedRemoteInfo",
     members = {
         vcenterConfigurationTimeStamp = {
             type = "string",
@@ -1502,6 +1581,7 @@ M.VersionControlType = {
 
 M.VersionControlInfo = {
     type = "structure",
+    id = "VersionControlInfo",
     members = {
         versionControlType = {
             type = "string",
@@ -1514,6 +1594,7 @@ M.VersionControlInfo = {
 
 M.ConfigurationSummary = {
     type = "structure",
+    id = "ConfigurationSummary",
     members = {
         vcenterBasedRemoteInfoList = {
             type = "list",
@@ -1537,6 +1618,7 @@ M.ConfigurationSummary = {
 
 M.Collector = {
     type = "structure",
+    id = "Collector",
     members = {
         collectorId = {
             type = "string",
@@ -1565,6 +1647,7 @@ M.Collector = {
 
 M.ListCollectorsOutput = {
     type = "structure",
+    id = "ListCollectorsOutput",
     members = {
         Collectors = {
             type = "list",
@@ -1578,6 +1661,7 @@ M.ListCollectorsOutput = {
 
 M.ListImportFileTaskInput = {
     type = "structure",
+    id = "ListImportFileTaskInput",
     members = {
         nextToken = {
             type = "string",
@@ -1596,6 +1680,7 @@ M.ListImportFileTaskInput = {
 
 M.ImportFileTaskInformation = {
     type = "structure",
+    id = "ImportFileTaskInformation",
     members = {
         id = {
             type = "string",
@@ -1635,6 +1720,7 @@ M.ImportFileTaskInformation = {
 
 M.ListImportFileTaskOutput = {
     type = "structure",
+    id = "ListImportFileTaskOutput",
     members = {
         taskInfos = {
             type = "list",
@@ -1658,6 +1744,7 @@ M.ServerCriteria = {
 
 M.ListServersInput = {
     type = "structure",
+    id = "ListServersInput",
     members = {
         serverCriteria = {
             type = "string",
@@ -1683,6 +1770,7 @@ M.ListServersInput = {
 
 M.ListServersOutput = {
     type = "structure",
+    id = "ListServersOutput",
     members = {
         serverInfos = {
             type = "list",
@@ -1696,6 +1784,7 @@ M.ListServersOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -1709,6 +1798,7 @@ M.ConflictException = {
 
 M.PutPortfolioPreferencesInput = {
     type = "structure",
+    id = "PutPortfolioPreferencesInput",
     members = {
         prioritizeBusinessGoals = M.PrioritizeBusinessGoals,
         applicationPreferences = M.ApplicationPreferences,
@@ -1721,10 +1811,12 @@ M.PutPortfolioPreferencesInput = {
 
 M.PutPortfolioPreferencesOutput = {
     type = "structure",
+    id = "PutPortfolioPreferencesOutput",
 }
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1738,6 +1830,7 @@ M.ServiceQuotaExceededException = {
 
 M.StartAssessmentInput = {
     type = "structure",
+    id = "StartAssessmentInput",
     members = {
         s3bucketForAnalysisData = {
             type = "string",
@@ -1757,6 +1850,7 @@ M.StartAssessmentInput = {
 
 M.StartAssessmentOutput = {
     type = "structure",
+    id = "StartAssessmentOutput",
     members = {
         assessmentId = {
             type = "string",
@@ -1773,6 +1867,7 @@ M.DataSourceType = {
 
 M.StartImportFileTaskInput = {
     type = "structure",
+    id = "StartImportFileTaskInput",
     members = {
         name = {
             type = "string",
@@ -1807,6 +1902,7 @@ M.StartImportFileTaskInput = {
 
 M.StartImportFileTaskOutput = {
     type = "structure",
+    id = "StartImportFileTaskOutput",
     members = {
         id = {
             type = "string",
@@ -1821,6 +1917,7 @@ M.OutputFormat = {
 
 M.StartRecommendationReportGenerationInput = {
     type = "structure",
+    id = "StartRecommendationReportGenerationInput",
     members = {
         outputFormat = {
             type = "string",
@@ -1834,6 +1931,7 @@ M.StartRecommendationReportGenerationInput = {
 
 M.StartRecommendationReportGenerationOutput = {
     type = "structure",
+    id = "StartRecommendationReportGenerationOutput",
     members = {
         id = {
             type = "string",
@@ -1843,6 +1941,7 @@ M.StartRecommendationReportGenerationOutput = {
 
 M.StopAssessmentInput = {
     type = "structure",
+    id = "StopAssessmentInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1855,6 +1954,7 @@ M.StopAssessmentInput = {
 
 M.StopAssessmentOutput = {
     type = "structure",
+    id = "StopAssessmentOutput",
 }
 
 M.VersionControl = {
@@ -1865,6 +1965,7 @@ M.VersionControl = {
 
 M.SourceCode = {
     type = "structure",
+    id = "SourceCode",
     members = {
         versionControl = {
             type = "string",
@@ -1883,6 +1984,7 @@ M.SourceCode = {
 
 M.StrategyOption = {
     type = "structure",
+    id = "StrategyOption",
     members = {
         strategy = {
             type = "string",
@@ -1901,6 +2003,7 @@ M.StrategyOption = {
 
 M.UpdateApplicationComponentConfigInput = {
     type = "structure",
+    id = "UpdateApplicationComponentConfigInput",
     members = {
         applicationComponentId = {
             type = "string",
@@ -1930,10 +2033,12 @@ M.UpdateApplicationComponentConfigInput = {
 
 M.UpdateApplicationComponentConfigOutput = {
     type = "structure",
+    id = "UpdateApplicationComponentConfigOutput",
 }
 
 M.UpdateServerConfigInput = {
     type = "structure",
+    id = "UpdateServerConfigInput",
     members = {
         serverId = {
             type = "string",
@@ -1947,6 +2052,7 @@ M.UpdateServerConfigInput = {
 
 M.UpdateServerConfigOutput = {
     type = "structure",
+    id = "UpdateServerConfigOutput",
 }
 
 return M

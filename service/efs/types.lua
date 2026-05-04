@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessPointAlreadyExists = {
     type = "structure",
+    id = "AccessPointAlreadyExists",
     error = "client",
     members = {
         ErrorCode = {
@@ -33,6 +34,7 @@ M.LifeCycleState = {
 
 M.PosixUser = {
     type = "structure",
+    id = "PosixUser",
     members = {
         Uid = {
             type = "long",
@@ -55,6 +57,7 @@ M.PosixUser = {
 
 M.CreationInfo = {
     type = "structure",
+    id = "CreationInfo",
     members = {
         OwnerUid = {
             type = "long",
@@ -79,6 +82,7 @@ M.CreationInfo = {
 
 M.RootDirectory = {
     type = "structure",
+    id = "RootDirectory",
     members = {
         Path = {
             type = "string",
@@ -89,6 +93,7 @@ M.RootDirectory = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -107,6 +112,7 @@ M.Tag = {
 
 M.AccessPointDescription = {
     type = "structure",
+    id = "AccessPointDescription",
     members = {
         ClientToken = {
             type = "string",
@@ -140,6 +146,7 @@ M.AccessPointDescription = {
 
 M.AccessPointLimitExceeded = {
     type = "structure",
+    id = "AccessPointLimitExceeded",
     error = "client",
     members = {
         ErrorCode = {
@@ -156,6 +163,7 @@ M.AccessPointLimitExceeded = {
 
 M.AccessPointNotFound = {
     type = "structure",
+    id = "AccessPointNotFound",
     error = "client",
     members = {
         ErrorCode = {
@@ -172,6 +180,7 @@ M.AccessPointNotFound = {
 
 M.AvailabilityZonesMismatch = {
     type = "structure",
+    id = "AvailabilityZonesMismatch",
     error = "client",
     members = {
         ErrorCode = {
@@ -192,6 +201,7 @@ M.Status = {
 
 M.BackupPolicy = {
     type = "structure",
+    id = "BackupPolicy",
     members = {
         Status = {
             type = "string",
@@ -204,6 +214,7 @@ M.BackupPolicy = {
 
 M.BadRequest = {
     type = "structure",
+    id = "BadRequest",
     error = "client",
     members = {
         ErrorCode = {
@@ -220,6 +231,7 @@ M.BadRequest = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         ErrorCode = {
@@ -233,6 +245,7 @@ M.ConflictException = {
 
 M.CreateAccessPointInput = {
     type = "structure",
+    id = "CreateAccessPointInput",
     members = {
         ClientToken = {
             type = "string",
@@ -258,6 +271,7 @@ M.CreateAccessPointInput = {
 
 M.CreateAccessPointOutput = {
     type = "structure",
+    id = "CreateAccessPointOutput",
     members = {
         ClientToken = {
             type = "string",
@@ -291,6 +305,7 @@ M.CreateAccessPointOutput = {
 
 M.FileSystemNotFound = {
     type = "structure",
+    id = "FileSystemNotFound",
     error = "client",
     members = {
         ErrorCode = {
@@ -307,6 +322,7 @@ M.FileSystemNotFound = {
 
 M.IncorrectFileSystemLifeCycleState = {
     type = "structure",
+    id = "IncorrectFileSystemLifeCycleState",
     error = "client",
     members = {
         ErrorCode = {
@@ -323,6 +339,7 @@ M.IncorrectFileSystemLifeCycleState = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         ErrorCode = {
@@ -339,6 +356,7 @@ M.InternalServerError = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         ErrorCode = {
@@ -363,6 +381,7 @@ M.ThroughputMode = {
 
 M.CreateFileSystemInput = {
     type = "structure",
+    id = "CreateFileSystemInput",
     members = {
         CreationToken = {
             type = "string",
@@ -407,6 +426,7 @@ M.ReplicationOverwriteProtection = {
 
 M.FileSystemProtectionDescription = {
     type = "structure",
+    id = "FileSystemProtectionDescription",
     members = {
         ReplicationOverwriteProtection = {
             type = "string",
@@ -416,6 +436,7 @@ M.FileSystemProtectionDescription = {
 
 M.FileSystemSize = {
     type = "structure",
+    id = "FileSystemSize",
     members = {
         Value = {
             type = "long",
@@ -441,6 +462,7 @@ M.FileSystemSize = {
 
 M.CreateFileSystemOutput = {
     type = "structure",
+    id = "CreateFileSystemOutput",
     members = {
         OwnerId = {
             type = "string",
@@ -525,6 +547,7 @@ M.CreateFileSystemOutput = {
 
 M.FileSystemAlreadyExists = {
     type = "structure",
+    id = "FileSystemAlreadyExists",
     error = "client",
     members = {
         ErrorCode = {
@@ -547,6 +570,7 @@ M.FileSystemAlreadyExists = {
 
 M.FileSystemLimitExceeded = {
     type = "structure",
+    id = "FileSystemLimitExceeded",
     error = "client",
     members = {
         ErrorCode = {
@@ -563,6 +587,7 @@ M.FileSystemLimitExceeded = {
 
 M.InsufficientThroughputCapacity = {
     type = "structure",
+    id = "InsufficientThroughputCapacity",
     error = "server",
     members = {
         ErrorCode = {
@@ -579,6 +604,7 @@ M.InsufficientThroughputCapacity = {
 
 M.ThroughputLimitExceeded = {
     type = "structure",
+    id = "ThroughputLimitExceeded",
     error = "client",
     members = {
         ErrorCode = {
@@ -595,6 +621,7 @@ M.ThroughputLimitExceeded = {
 
 M.UnsupportedAvailabilityZone = {
     type = "structure",
+    id = "UnsupportedAvailabilityZone",
     error = "client",
     members = {
         ErrorCode = {
@@ -617,6 +644,7 @@ M.IpAddressType = {
 
 M.CreateMountTargetInput = {
     type = "structure",
+    id = "CreateMountTargetInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -648,6 +676,7 @@ M.CreateMountTargetInput = {
 
 M.CreateMountTargetOutput = {
     type = "structure",
+    id = "CreateMountTargetOutput",
     members = {
         OwnerId = {
             type = "string",
@@ -699,6 +728,7 @@ M.CreateMountTargetOutput = {
 
 M.IpAddressInUse = {
     type = "structure",
+    id = "IpAddressInUse",
     error = "client",
     members = {
         ErrorCode = {
@@ -715,6 +745,7 @@ M.IpAddressInUse = {
 
 M.MountTargetConflict = {
     type = "structure",
+    id = "MountTargetConflict",
     error = "client",
     members = {
         ErrorCode = {
@@ -731,6 +762,7 @@ M.MountTargetConflict = {
 
 M.NetworkInterfaceLimitExceeded = {
     type = "structure",
+    id = "NetworkInterfaceLimitExceeded",
     error = "client",
     members = {
         ErrorCode = {
@@ -747,6 +779,7 @@ M.NetworkInterfaceLimitExceeded = {
 
 M.NoFreeAddressesInSubnet = {
     type = "structure",
+    id = "NoFreeAddressesInSubnet",
     error = "client",
     members = {
         ErrorCode = {
@@ -763,6 +796,7 @@ M.NoFreeAddressesInSubnet = {
 
 M.SecurityGroupLimitExceeded = {
     type = "structure",
+    id = "SecurityGroupLimitExceeded",
     error = "client",
     members = {
         ErrorCode = {
@@ -779,6 +813,7 @@ M.SecurityGroupLimitExceeded = {
 
 M.SecurityGroupNotFound = {
     type = "structure",
+    id = "SecurityGroupNotFound",
     error = "client",
     members = {
         ErrorCode = {
@@ -795,6 +830,7 @@ M.SecurityGroupNotFound = {
 
 M.SubnetNotFound = {
     type = "structure",
+    id = "SubnetNotFound",
     error = "client",
     members = {
         ErrorCode = {
@@ -811,6 +847,7 @@ M.SubnetNotFound = {
 
 M.DestinationToCreate = {
     type = "structure",
+    id = "DestinationToCreate",
     members = {
         Region = {
             type = "string",
@@ -832,6 +869,7 @@ M.DestinationToCreate = {
 
 M.CreateReplicationConfigurationInput = {
     type = "structure",
+    id = "CreateReplicationConfigurationInput",
     members = {
         SourceFileSystemId = {
             type = "string",
@@ -861,6 +899,7 @@ M.ReplicationStatus = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         Status = {
             type = "string",
@@ -897,6 +936,7 @@ M.Destination = {
 
 M.CreateReplicationConfigurationOutput = {
     type = "structure",
+    id = "CreateReplicationConfigurationOutput",
     members = {
         SourceFileSystemId = {
             type = "string",
@@ -943,6 +983,7 @@ M.CreateReplicationConfigurationOutput = {
 
 M.ReplicationNotFound = {
     type = "structure",
+    id = "ReplicationNotFound",
     error = "client",
     members = {
         ErrorCode = {
@@ -956,6 +997,7 @@ M.ReplicationNotFound = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         ErrorCode = {
@@ -972,6 +1014,7 @@ M.ValidationException = {
 
 M.CreateTagsInput = {
     type = "structure",
+    id = "CreateTagsInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -992,10 +1035,12 @@ M.CreateTagsInput = {
 
 M.CreateTagsOutput = {
     type = "structure",
+    id = "CreateTagsOutput",
 }
 
 M.DeleteAccessPointInput = {
     type = "structure",
+    id = "DeleteAccessPointInput",
     members = {
         AccessPointId = {
             type = "string",
@@ -1009,10 +1054,12 @@ M.DeleteAccessPointInput = {
 
 M.DeleteAccessPointOutput = {
     type = "structure",
+    id = "DeleteAccessPointOutput",
 }
 
 M.DeleteFileSystemInput = {
     type = "structure",
+    id = "DeleteFileSystemInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1026,10 +1073,12 @@ M.DeleteFileSystemInput = {
 
 M.DeleteFileSystemOutput = {
     type = "structure",
+    id = "DeleteFileSystemOutput",
 }
 
 M.FileSystemInUse = {
     type = "structure",
+    id = "FileSystemInUse",
     error = "client",
     members = {
         ErrorCode = {
@@ -1046,6 +1095,7 @@ M.FileSystemInUse = {
 
 M.DeleteFileSystemPolicyInput = {
     type = "structure",
+    id = "DeleteFileSystemPolicyInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1059,10 +1109,12 @@ M.DeleteFileSystemPolicyInput = {
 
 M.DeleteFileSystemPolicyOutput = {
     type = "structure",
+    id = "DeleteFileSystemPolicyOutput",
 }
 
 M.DeleteMountTargetInput = {
     type = "structure",
+    id = "DeleteMountTargetInput",
     members = {
         MountTargetId = {
             type = "string",
@@ -1076,10 +1128,12 @@ M.DeleteMountTargetInput = {
 
 M.DeleteMountTargetOutput = {
     type = "structure",
+    id = "DeleteMountTargetOutput",
 }
 
 M.DependencyTimeout = {
     type = "structure",
+    id = "DependencyTimeout",
     error = "server",
     members = {
         ErrorCode = {
@@ -1096,6 +1150,7 @@ M.DependencyTimeout = {
 
 M.MountTargetNotFound = {
     type = "structure",
+    id = "MountTargetNotFound",
     error = "client",
     members = {
         ErrorCode = {
@@ -1117,6 +1172,7 @@ M.DeletionMode = {
 
 M.DeleteReplicationConfigurationInput = {
     type = "structure",
+    id = "DeleteReplicationConfigurationInput",
     members = {
         SourceFileSystemId = {
             type = "string",
@@ -1136,10 +1192,12 @@ M.DeleteReplicationConfigurationInput = {
 
 M.DeleteReplicationConfigurationOutput = {
     type = "structure",
+    id = "DeleteReplicationConfigurationOutput",
 }
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1160,10 +1218,12 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.DescribeAccessPointsInput = {
     type = "structure",
+    id = "DescribeAccessPointsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1194,6 +1254,7 @@ M.DescribeAccessPointsInput = {
 
 M.DescribeAccessPointsOutput = {
     type = "structure",
+    id = "DescribeAccessPointsOutput",
     members = {
         AccessPoints = {
             type = "list",
@@ -1207,6 +1268,7 @@ M.DescribeAccessPointsOutput = {
 
 M.DescribeAccountPreferencesInput = {
     type = "structure",
+    id = "DescribeAccountPreferencesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1229,6 +1291,7 @@ M.Resource = {
 
 M.ResourceIdPreference = {
     type = "structure",
+    id = "ResourceIdPreference",
     members = {
         ResourceIdType = {
             type = "string",
@@ -1242,6 +1305,7 @@ M.ResourceIdPreference = {
 
 M.DescribeAccountPreferencesOutput = {
     type = "structure",
+    id = "DescribeAccountPreferencesOutput",
     members = {
         ResourceIdPreference = M.ResourceIdPreference,
         NextToken = {
@@ -1252,6 +1316,7 @@ M.DescribeAccountPreferencesOutput = {
 
 M.DescribeBackupPolicyInput = {
     type = "structure",
+    id = "DescribeBackupPolicyInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1265,6 +1330,7 @@ M.DescribeBackupPolicyInput = {
 
 M.DescribeBackupPolicyOutput = {
     type = "structure",
+    id = "DescribeBackupPolicyOutput",
     members = {
         BackupPolicy = M.BackupPolicy,
     },
@@ -1272,6 +1338,7 @@ M.DescribeBackupPolicyOutput = {
 
 M.PolicyNotFound = {
     type = "structure",
+    id = "PolicyNotFound",
     error = "client",
     members = {
         ErrorCode = {
@@ -1285,6 +1352,7 @@ M.PolicyNotFound = {
 
 M.DescribeFileSystemPolicyInput = {
     type = "structure",
+    id = "DescribeFileSystemPolicyInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1298,6 +1366,7 @@ M.DescribeFileSystemPolicyInput = {
 
 M.DescribeFileSystemPolicyOutput = {
     type = "structure",
+    id = "DescribeFileSystemPolicyOutput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1310,6 +1379,7 @@ M.DescribeFileSystemPolicyOutput = {
 
 M.DescribeFileSystemsInput = {
     type = "structure",
+    id = "DescribeFileSystemsInput",
     members = {
         MaxItems = {
             type = "integer",
@@ -1340,6 +1410,7 @@ M.DescribeFileSystemsInput = {
 
 M.FileSystemDescription = {
     type = "structure",
+    id = "FileSystemDescription",
     members = {
         OwnerId = {
             type = "string",
@@ -1424,6 +1495,7 @@ M.FileSystemDescription = {
 
 M.DescribeFileSystemsOutput = {
     type = "structure",
+    id = "DescribeFileSystemsOutput",
     members = {
         Marker = {
             type = "string",
@@ -1440,6 +1512,7 @@ M.DescribeFileSystemsOutput = {
 
 M.DescribeLifecycleConfigurationInput = {
     type = "structure",
+    id = "DescribeLifecycleConfigurationInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1481,6 +1554,7 @@ M.TransitionToPrimaryStorageClassRules = {
 
 M.LifecyclePolicy = {
     type = "structure",
+    id = "LifecyclePolicy",
     members = {
         TransitionToIA = {
             type = "string",
@@ -1496,6 +1570,7 @@ M.LifecyclePolicy = {
 
 M.DescribeLifecycleConfigurationOutput = {
     type = "structure",
+    id = "DescribeLifecycleConfigurationOutput",
     members = {
         LifecyclePolicies = {
             type = "list",
@@ -1506,6 +1581,7 @@ M.DescribeLifecycleConfigurationOutput = {
 
 M.DescribeMountTargetsInput = {
     type = "structure",
+    id = "DescribeMountTargetsInput",
     members = {
         MaxItems = {
             type = "integer",
@@ -1542,6 +1618,7 @@ M.DescribeMountTargetsInput = {
 
 M.MountTargetDescription = {
     type = "structure",
+    id = "MountTargetDescription",
     members = {
         OwnerId = {
             type = "string",
@@ -1593,6 +1670,7 @@ M.MountTargetDescription = {
 
 M.DescribeMountTargetsOutput = {
     type = "structure",
+    id = "DescribeMountTargetsOutput",
     members = {
         Marker = {
             type = "string",
@@ -1609,6 +1687,7 @@ M.DescribeMountTargetsOutput = {
 
 M.DescribeMountTargetSecurityGroupsInput = {
     type = "structure",
+    id = "DescribeMountTargetSecurityGroupsInput",
     members = {
         MountTargetId = {
             type = "string",
@@ -1622,6 +1701,7 @@ M.DescribeMountTargetSecurityGroupsInput = {
 
 M.DescribeMountTargetSecurityGroupsOutput = {
     type = "structure",
+    id = "DescribeMountTargetSecurityGroupsOutput",
     members = {
         SecurityGroups = {
             type = "list",
@@ -1635,6 +1715,7 @@ M.DescribeMountTargetSecurityGroupsOutput = {
 
 M.IncorrectMountTargetState = {
     type = "structure",
+    id = "IncorrectMountTargetState",
     error = "client",
     members = {
         ErrorCode = {
@@ -1651,6 +1732,7 @@ M.IncorrectMountTargetState = {
 
 M.DescribeReplicationConfigurationsInput = {
     type = "structure",
+    id = "DescribeReplicationConfigurationsInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1675,6 +1757,7 @@ M.DescribeReplicationConfigurationsInput = {
 
 M.ReplicationConfigurationDescription = {
     type = "structure",
+    id = "ReplicationConfigurationDescription",
     members = {
         SourceFileSystemId = {
             type = "string",
@@ -1721,6 +1804,7 @@ M.ReplicationConfigurationDescription = {
 
 M.DescribeReplicationConfigurationsOutput = {
     type = "structure",
+    id = "DescribeReplicationConfigurationsOutput",
     members = {
         Replications = {
             type = "list",
@@ -1734,6 +1818,7 @@ M.DescribeReplicationConfigurationsOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         MaxItems = {
             type = "integer",
@@ -1759,6 +1844,7 @@ M.DescribeTagsInput = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         Marker = {
             type = "string",
@@ -1778,6 +1864,7 @@ M.DescribeTagsOutput = {
 
 M.InvalidPolicyException = {
     type = "structure",
+    id = "InvalidPolicyException",
     error = "client",
     members = {
         ErrorCode = {
@@ -1791,6 +1878,7 @@ M.InvalidPolicyException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1816,6 +1904,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1829,6 +1918,7 @@ M.ListTagsForResourceOutput = {
 
 M.ModifyMountTargetSecurityGroupsInput = {
     type = "structure",
+    id = "ModifyMountTargetSecurityGroupsInput",
     members = {
         MountTargetId = {
             type = "string",
@@ -1846,10 +1936,12 @@ M.ModifyMountTargetSecurityGroupsInput = {
 
 M.ModifyMountTargetSecurityGroupsOutput = {
     type = "structure",
+    id = "ModifyMountTargetSecurityGroupsOutput",
 }
 
 M.PutAccountPreferencesInput = {
     type = "structure",
+    id = "PutAccountPreferencesInput",
     members = {
         ResourceIdType = {
             type = "string",
@@ -1862,6 +1954,7 @@ M.PutAccountPreferencesInput = {
 
 M.PutAccountPreferencesOutput = {
     type = "structure",
+    id = "PutAccountPreferencesOutput",
     members = {
         ResourceIdPreference = M.ResourceIdPreference,
     },
@@ -1869,6 +1962,7 @@ M.PutAccountPreferencesOutput = {
 
 M.PutBackupPolicyInput = {
     type = "structure",
+    id = "PutBackupPolicyInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1885,6 +1979,7 @@ M.PutBackupPolicyInput = {
 
 M.PutBackupPolicyOutput = {
     type = "structure",
+    id = "PutBackupPolicyOutput",
     members = {
         BackupPolicy = M.BackupPolicy,
     },
@@ -1892,6 +1987,7 @@ M.PutBackupPolicyOutput = {
 
 M.PutFileSystemPolicyInput = {
     type = "structure",
+    id = "PutFileSystemPolicyInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1917,6 +2013,7 @@ M.PutFileSystemPolicyInput = {
 
 M.PutFileSystemPolicyOutput = {
     type = "structure",
+    id = "PutFileSystemPolicyOutput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1929,6 +2026,7 @@ M.PutFileSystemPolicyOutput = {
 
 M.PutLifecycleConfigurationInput = {
     type = "structure",
+    id = "PutLifecycleConfigurationInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1949,6 +2047,7 @@ M.PutLifecycleConfigurationInput = {
 
 M.PutLifecycleConfigurationOutput = {
     type = "structure",
+    id = "PutLifecycleConfigurationOutput",
     members = {
         LifecyclePolicies = {
             type = "list",
@@ -1959,6 +2058,7 @@ M.PutLifecycleConfigurationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1979,10 +2079,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2004,10 +2106,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.TooManyRequests = {
     type = "structure",
+    id = "TooManyRequests",
     error = "client",
     members = {
         ErrorCode = {
@@ -2024,6 +2128,7 @@ M.TooManyRequests = {
 
 M.UpdateFileSystemInput = {
     type = "structure",
+    id = "UpdateFileSystemInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -2043,6 +2148,7 @@ M.UpdateFileSystemInput = {
 
 M.UpdateFileSystemOutput = {
     type = "structure",
+    id = "UpdateFileSystemOutput",
     members = {
         OwnerId = {
             type = "string",
@@ -2127,6 +2233,7 @@ M.UpdateFileSystemOutput = {
 
 M.ReplicationAlreadyExists = {
     type = "structure",
+    id = "ReplicationAlreadyExists",
     error = "client",
     members = {
         ErrorCode = {
@@ -2140,6 +2247,7 @@ M.ReplicationAlreadyExists = {
 
 M.UpdateFileSystemProtectionInput = {
     type = "structure",
+    id = "UpdateFileSystemProtectionInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -2156,6 +2264,7 @@ M.UpdateFileSystemProtectionInput = {
 
 M.UpdateFileSystemProtectionOutput = {
     type = "structure",
+    id = "UpdateFileSystemProtectionOutput",
     members = {
         ReplicationOverwriteProtection = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.CertificateValidationException = {
     type = "structure",
+    id = "CertificateValidationException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.CertificateValidationException = {
 
 M.CommandParameterValue = {
     type = "structure",
+    id = "CommandParameterValue",
     members = {
         S = {
             type = "string",
@@ -39,6 +41,7 @@ M.CommandParameterValue = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -52,6 +55,7 @@ M.ConflictException = {
 
 M.DescribeJobExecutionInput = {
     type = "structure",
+    id = "DescribeJobExecutionInput",
     members = {
         jobId = {
             type = "string",
@@ -95,6 +99,7 @@ M.JobExecutionStatus = {
 
 M.JobExecution = {
     type = "structure",
+    id = "JobExecution",
     members = {
         jobId = {
             type = "string",
@@ -145,6 +150,7 @@ M.JobExecution = {
 
 M.DescribeJobExecutionOutput = {
     type = "structure",
+    id = "DescribeJobExecutionOutput",
     members = {
         execution = M.JobExecution,
     },
@@ -152,6 +158,7 @@ M.DescribeJobExecutionOutput = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -162,6 +169,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -172,6 +180,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -182,6 +191,7 @@ M.ServiceUnavailableException = {
 
 M.TerminalStateException = {
     type = "structure",
+    id = "TerminalStateException",
     error = "client",
     members = {
         message = {
@@ -192,6 +202,7 @@ M.TerminalStateException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -205,6 +216,7 @@ M.ThrottlingException = {
 
 M.GetPendingJobExecutionsInput = {
     type = "structure",
+    id = "GetPendingJobExecutionsInput",
     members = {
         thingName = {
             type = "string",
@@ -218,6 +230,7 @@ M.GetPendingJobExecutionsInput = {
 
 M.JobExecutionSummary = {
     type = "structure",
+    id = "JobExecutionSummary",
     members = {
         jobId = {
             type = "string",
@@ -251,6 +264,7 @@ M.JobExecutionSummary = {
 
 M.GetPendingJobExecutionsOutput = {
     type = "structure",
+    id = "GetPendingJobExecutionsOutput",
     members = {
         inProgressJobs = {
             type = "list",
@@ -265,6 +279,7 @@ M.GetPendingJobExecutionsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -275,6 +290,7 @@ M.InternalServerException = {
 
 M.InvalidStateTransitionException = {
     type = "structure",
+    id = "InvalidStateTransitionException",
     error = "client",
     members = {
         message = {
@@ -285,6 +301,7 @@ M.InvalidStateTransitionException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -295,6 +312,7 @@ M.ServiceQuotaExceededException = {
 
 M.StartCommandExecutionInput = {
     type = "structure",
+    id = "StartCommandExecutionInput",
     members = {
         targetArn = {
             type = "string",
@@ -327,6 +345,7 @@ M.StartCommandExecutionInput = {
 
 M.StartCommandExecutionOutput = {
     type = "structure",
+    id = "StartCommandExecutionOutput",
     members = {
         executionId = {
             type = "string",
@@ -336,6 +355,7 @@ M.StartCommandExecutionOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -346,6 +366,7 @@ M.ValidationException = {
 
 M.StartNextPendingJobExecutionInput = {
     type = "structure",
+    id = "StartNextPendingJobExecutionInput",
     members = {
         thingName = {
             type = "string",
@@ -367,6 +388,7 @@ M.StartNextPendingJobExecutionInput = {
 
 M.StartNextPendingJobExecutionOutput = {
     type = "structure",
+    id = "StartNextPendingJobExecutionOutput",
     members = {
         execution = M.JobExecution,
     },
@@ -374,6 +396,7 @@ M.StartNextPendingJobExecutionOutput = {
 
 M.UpdateJobExecutionInput = {
     type = "structure",
+    id = "UpdateJobExecutionInput",
     members = {
         jobId = {
             type = "string",
@@ -420,6 +443,7 @@ M.UpdateJobExecutionInput = {
 
 M.JobExecutionState = {
     type = "structure",
+    id = "JobExecutionState",
     members = {
         status = {
             type = "string",
@@ -440,6 +464,7 @@ M.JobExecutionState = {
 
 M.UpdateJobExecutionOutput = {
     type = "structure",
+    id = "UpdateJobExecutionOutput",
     members = {
         executionState = M.JobExecutionState,
         jobDocument = {

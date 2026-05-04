@@ -10,6 +10,7 @@ M.AccountRoleStatus = {
 
 M.AccountScope = {
     type = "structure",
+    id = "AccountScope",
     members = {
         Accounts = {
             type = "list",
@@ -32,6 +33,7 @@ M.AccountScope = {
 
 M.ActionTarget = {
     type = "structure",
+    id = "ActionTarget",
     members = {
         ResourceId = {
             type = "string",
@@ -51,6 +53,7 @@ M.OrganizationStatus = {
 
 M.AdminAccountSummary = {
     type = "structure",
+    id = "AdminAccountSummary",
     members = {
         AdminAccount = {
             type = "string",
@@ -69,6 +72,7 @@ M.AdminAccountSummary = {
 
 M.OrganizationalUnitScope = {
     type = "structure",
+    id = "OrganizationalUnitScope",
     members = {
         OrganizationalUnits = {
             type = "list",
@@ -105,6 +109,7 @@ M.SecurityServiceType = {
 
 M.PolicyTypeScope = {
     type = "structure",
+    id = "PolicyTypeScope",
     members = {
         PolicyTypes = {
             type = "list",
@@ -121,6 +126,7 @@ M.PolicyTypeScope = {
 
 M.RegionScope = {
     type = "structure",
+    id = "RegionScope",
     members = {
         Regions = {
             type = "list",
@@ -137,6 +143,7 @@ M.RegionScope = {
 
 M.AdminScope = {
     type = "structure",
+    id = "AdminScope",
     members = {
         AccountScope = M.AccountScope,
         OrganizationalUnitScope = M.OrganizationalUnitScope,
@@ -147,6 +154,7 @@ M.AdminScope = {
 
 M.App = {
     type = "structure",
+    id = "App",
     members = {
         AppName = {
             type = "string",
@@ -171,6 +179,7 @@ M.App = {
 
 M.AppsListData = {
     type = "structure",
+    id = "AppsListData",
     members = {
         ListId = {
             type = "string",
@@ -207,6 +216,7 @@ M.AppsListData = {
 
 M.AppsListDataSummary = {
     type = "structure",
+    id = "AppsListDataSummary",
     members = {
         ListArn = {
             type = "string",
@@ -226,6 +236,7 @@ M.AppsListDataSummary = {
 
 M.AssociateAdminAccountInput = {
     type = "structure",
+    id = "AssociateAdminAccountInput",
     members = {
         AdminAccount = {
             type = "string",
@@ -238,10 +249,12 @@ M.AssociateAdminAccountInput = {
 
 M.AssociateAdminAccountOutput = {
     type = "structure",
+    id = "AssociateAdminAccountOutput",
 }
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "client",
     members = {
         Message = {
@@ -252,6 +265,7 @@ M.InternalErrorException = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         Message = {
@@ -262,6 +276,7 @@ M.InvalidInputException = {
 
 M.InvalidOperationException = {
     type = "structure",
+    id = "InvalidOperationException",
     error = "client",
     members = {
         Message = {
@@ -272,6 +287,7 @@ M.InvalidOperationException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -282,6 +298,7 @@ M.LimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -297,6 +314,7 @@ M.ThirdPartyFirewall = {
 
 M.AssociateThirdPartyFirewallInput = {
     type = "structure",
+    id = "AssociateThirdPartyFirewallInput",
     members = {
         ThirdPartyFirewall = {
             type = "string",
@@ -317,6 +335,7 @@ M.ThirdPartyFirewallAssociationStatus = {
 
 M.AssociateThirdPartyFirewallOutput = {
     type = "structure",
+    id = "AssociateThirdPartyFirewallOutput",
     members = {
         ThirdPartyFirewallStatus = {
             type = "string",
@@ -326,6 +345,7 @@ M.AssociateThirdPartyFirewallOutput = {
 
 M.AwsEc2NetworkInterfaceViolation = {
     type = "structure",
+    id = "AwsEc2NetworkInterfaceViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -339,6 +359,7 @@ M.AwsEc2NetworkInterfaceViolation = {
 
 M.AwsEc2InstanceViolation = {
     type = "structure",
+    id = "AwsEc2InstanceViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -352,6 +373,7 @@ M.AwsEc2InstanceViolation = {
 
 M.BatchAssociateResourceInput = {
     type = "structure",
+    id = "BatchAssociateResourceInput",
     members = {
         ResourceSetIdentifier = {
             type = "string",
@@ -380,6 +402,7 @@ M.FailedItemReason = {
 
 M.FailedItem = {
     type = "structure",
+    id = "FailedItem",
     members = {
         URI = {
             type = "string",
@@ -392,6 +415,7 @@ M.FailedItem = {
 
 M.BatchAssociateResourceOutput = {
     type = "structure",
+    id = "BatchAssociateResourceOutput",
     members = {
         ResourceSetIdentifier = {
             type = "string",
@@ -411,6 +435,7 @@ M.BatchAssociateResourceOutput = {
 
 M.BatchDisassociateResourceInput = {
     type = "structure",
+    id = "BatchDisassociateResourceInput",
     members = {
         ResourceSetIdentifier = {
             type = "string",
@@ -430,6 +455,7 @@ M.BatchDisassociateResourceInput = {
 
 M.BatchDisassociateResourceOutput = {
     type = "structure",
+    id = "BatchDisassociateResourceOutput",
     members = {
         ResourceSetIdentifier = {
             type = "string",
@@ -449,6 +475,7 @@ M.BatchDisassociateResourceOutput = {
 
 M.DeleteAppsListInput = {
     type = "structure",
+    id = "DeleteAppsListInput",
     members = {
         ListId = {
             type = "string",
@@ -461,18 +488,22 @@ M.DeleteAppsListInput = {
 
 M.DeleteAppsListOutput = {
     type = "structure",
+    id = "DeleteAppsListOutput",
 }
 
 M.DeleteNotificationChannelInput = {
     type = "structure",
+    id = "DeleteNotificationChannelInput",
 }
 
 M.DeleteNotificationChannelOutput = {
     type = "structure",
+    id = "DeleteNotificationChannelOutput",
 }
 
 M.DeletePolicyInput = {
     type = "structure",
+    id = "DeletePolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -491,10 +522,12 @@ M.DeletePolicyInput = {
 
 M.DeletePolicyOutput = {
     type = "structure",
+    id = "DeletePolicyOutput",
 }
 
 M.DeleteProtocolsListInput = {
     type = "structure",
+    id = "DeleteProtocolsListInput",
     members = {
         ListId = {
             type = "string",
@@ -507,10 +540,12 @@ M.DeleteProtocolsListInput = {
 
 M.DeleteProtocolsListOutput = {
     type = "structure",
+    id = "DeleteProtocolsListOutput",
 }
 
 M.DeleteResourceSetInput = {
     type = "structure",
+    id = "DeleteResourceSetInput",
     members = {
         Identifier = {
             type = "string",
@@ -523,18 +558,22 @@ M.DeleteResourceSetInput = {
 
 M.DeleteResourceSetOutput = {
     type = "structure",
+    id = "DeleteResourceSetOutput",
 }
 
 M.DisassociateAdminAccountInput = {
     type = "structure",
+    id = "DisassociateAdminAccountInput",
 }
 
 M.DisassociateAdminAccountOutput = {
     type = "structure",
+    id = "DisassociateAdminAccountOutput",
 }
 
 M.DisassociateThirdPartyFirewallInput = {
     type = "structure",
+    id = "DisassociateThirdPartyFirewallInput",
     members = {
         ThirdPartyFirewall = {
             type = "string",
@@ -547,6 +586,7 @@ M.DisassociateThirdPartyFirewallInput = {
 
 M.DisassociateThirdPartyFirewallOutput = {
     type = "structure",
+    id = "DisassociateThirdPartyFirewallOutput",
     members = {
         ThirdPartyFirewallStatus = {
             type = "string",
@@ -556,10 +596,12 @@ M.DisassociateThirdPartyFirewallOutput = {
 
 M.GetAdminAccountInput = {
     type = "structure",
+    id = "GetAdminAccountInput",
 }
 
 M.GetAdminAccountOutput = {
     type = "structure",
+    id = "GetAdminAccountOutput",
     members = {
         AdminAccount = {
             type = "string",
@@ -572,6 +614,7 @@ M.GetAdminAccountOutput = {
 
 M.GetAdminScopeInput = {
     type = "structure",
+    id = "GetAdminScopeInput",
     members = {
         AdminAccount = {
             type = "string",
@@ -584,6 +627,7 @@ M.GetAdminScopeInput = {
 
 M.GetAdminScopeOutput = {
     type = "structure",
+    id = "GetAdminScopeOutput",
     members = {
         AdminScope = M.AdminScope,
         Status = {
@@ -594,6 +638,7 @@ M.GetAdminScopeOutput = {
 
 M.GetAppsListInput = {
     type = "structure",
+    id = "GetAppsListInput",
     members = {
         ListId = {
             type = "string",
@@ -612,6 +657,7 @@ M.GetAppsListInput = {
 
 M.GetAppsListOutput = {
     type = "structure",
+    id = "GetAppsListOutput",
     members = {
         AppsList = M.AppsListData,
         AppsListArn = {
@@ -622,6 +668,7 @@ M.GetAppsListOutput = {
 
 M.GetComplianceDetailInput = {
     type = "structure",
+    id = "GetComplianceDetailInput",
     members = {
         PolicyId = {
             type = "string",
@@ -680,6 +727,7 @@ M.ViolationReason = {
 
 M.ComplianceViolator = {
     type = "structure",
+    id = "ComplianceViolator",
     members = {
         ResourceId = {
             type = "string",
@@ -700,6 +748,7 @@ M.ComplianceViolator = {
 
 M.PolicyComplianceDetail = {
     type = "structure",
+    id = "PolicyComplianceDetail",
     members = {
         PolicyOwner = {
             type = "string",
@@ -733,6 +782,7 @@ M.PolicyComplianceDetail = {
 
 M.GetComplianceDetailOutput = {
     type = "structure",
+    id = "GetComplianceDetailOutput",
     members = {
         PolicyComplianceDetail = M.PolicyComplianceDetail,
     },
@@ -740,10 +790,12 @@ M.GetComplianceDetailOutput = {
 
 M.GetNotificationChannelInput = {
     type = "structure",
+    id = "GetNotificationChannelInput",
 }
 
 M.GetNotificationChannelOutput = {
     type = "structure",
+    id = "GetNotificationChannelOutput",
     members = {
         SnsTopicArn = {
             type = "string",
@@ -756,6 +808,7 @@ M.GetNotificationChannelOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -783,6 +836,7 @@ M.ResourceTagLogicalOperator = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         Key = {
             type = "string",
@@ -798,6 +852,7 @@ M.ResourceTag = {
 
 M.NetworkAclIcmpTypeCode = {
     type = "structure",
+    id = "NetworkAclIcmpTypeCode",
     members = {
         Code = {
             type = "integer",
@@ -810,6 +865,7 @@ M.NetworkAclIcmpTypeCode = {
 
 M.NetworkAclPortRange = {
     type = "structure",
+    id = "NetworkAclPortRange",
     members = {
         From = {
             type = "integer",
@@ -827,6 +883,7 @@ M.NetworkAclRuleAction = {
 
 M.NetworkAclEntry = {
     type = "structure",
+    id = "NetworkAclEntry",
     members = {
         IcmpTypeCode = M.NetworkAclIcmpTypeCode,
         Protocol = {
@@ -859,6 +916,7 @@ M.NetworkAclEntry = {
 
 M.NetworkAclEntrySet = {
     type = "structure",
+    id = "NetworkAclEntrySet",
     members = {
         FirstEntries = {
             type = "list",
@@ -885,6 +943,7 @@ M.NetworkAclEntrySet = {
 
 M.NetworkAclCommonPolicy = {
     type = "structure",
+    id = "NetworkAclCommonPolicy",
     members = {
         NetworkAclEntrySet = setmetatable({ traits = {
             required = true,
@@ -899,6 +958,7 @@ M.FirewallDeploymentModel = {
 
 M.NetworkFirewallPolicy = {
     type = "structure",
+    id = "NetworkFirewallPolicy",
     members = {
         FirewallDeploymentModel = {
             type = "string",
@@ -908,6 +968,7 @@ M.NetworkFirewallPolicy = {
 
 M.ThirdPartyFirewallPolicy = {
     type = "structure",
+    id = "ThirdPartyFirewallPolicy",
     members = {
         FirewallDeploymentModel = {
             type = "string",
@@ -917,6 +978,7 @@ M.ThirdPartyFirewallPolicy = {
 
 M.PolicyOption = {
     type = "structure",
+    id = "PolicyOption",
     members = {
         NetworkFirewallPolicy = M.NetworkFirewallPolicy,
         ThirdPartyFirewallPolicy = M.ThirdPartyFirewallPolicy,
@@ -926,6 +988,7 @@ M.PolicyOption = {
 
 M.SecurityServicePolicyData = {
     type = "structure",
+    id = "SecurityServicePolicyData",
     members = {
         Type = {
             type = "string",
@@ -942,6 +1005,7 @@ M.SecurityServicePolicyData = {
 
 M.Policy = {
     type = "structure",
+    id = "Policy",
     members = {
         PolicyId = {
             type = "string",
@@ -1020,6 +1084,7 @@ M.Policy = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         Policy = M.Policy,
         PolicyArn = {
@@ -1030,6 +1095,7 @@ M.GetPolicyOutput = {
 
 M.InvalidTypeException = {
     type = "structure",
+    id = "InvalidTypeException",
     error = "client",
     members = {
         Message = {
@@ -1040,6 +1106,7 @@ M.InvalidTypeException = {
 
 M.GetProtectionStatusInput = {
     type = "structure",
+    id = "GetProtectionStatusInput",
     members = {
         PolicyId = {
             type = "string",
@@ -1067,6 +1134,7 @@ M.GetProtectionStatusInput = {
 
 M.GetProtectionStatusOutput = {
     type = "structure",
+    id = "GetProtectionStatusOutput",
     members = {
         AdminAccountId = {
             type = "string",
@@ -1085,6 +1153,7 @@ M.GetProtectionStatusOutput = {
 
 M.GetProtocolsListInput = {
     type = "structure",
+    id = "GetProtocolsListInput",
     members = {
         ListId = {
             type = "string",
@@ -1103,6 +1172,7 @@ M.GetProtocolsListInput = {
 
 M.ProtocolsListData = {
     type = "structure",
+    id = "ProtocolsListData",
     members = {
         ListId = {
             type = "string",
@@ -1139,6 +1209,7 @@ M.ProtocolsListData = {
 
 M.GetProtocolsListOutput = {
     type = "structure",
+    id = "GetProtocolsListOutput",
     members = {
         ProtocolsList = M.ProtocolsListData,
         ProtocolsListArn = {
@@ -1149,6 +1220,7 @@ M.GetProtocolsListOutput = {
 
 M.GetResourceSetInput = {
     type = "structure",
+    id = "GetResourceSetInput",
     members = {
         Identifier = {
             type = "string",
@@ -1166,6 +1238,7 @@ M.ResourceSetStatus = {
 
 M.ResourceSet = {
     type = "structure",
+    id = "ResourceSet",
     members = {
         Id = {
             type = "string",
@@ -1200,6 +1273,7 @@ M.ResourceSet = {
 
 M.GetResourceSetOutput = {
     type = "structure",
+    id = "GetResourceSetOutput",
     members = {
         ResourceSet = setmetatable({ traits = {
             required = true,
@@ -1215,6 +1289,7 @@ M.GetResourceSetOutput = {
 
 M.GetThirdPartyFirewallAssociationStatusInput = {
     type = "structure",
+    id = "GetThirdPartyFirewallAssociationStatusInput",
     members = {
         ThirdPartyFirewall = {
             type = "string",
@@ -1233,6 +1308,7 @@ M.MarketplaceSubscriptionOnboardingStatus = {
 
 M.GetThirdPartyFirewallAssociationStatusOutput = {
     type = "structure",
+    id = "GetThirdPartyFirewallAssociationStatusOutput",
     members = {
         ThirdPartyFirewallStatus = {
             type = "string",
@@ -1245,6 +1321,7 @@ M.GetThirdPartyFirewallAssociationStatusOutput = {
 
 M.GetViolationDetailsInput = {
     type = "structure",
+    id = "GetViolationDetailsInput",
     members = {
         PolicyId = {
             type = "string",
@@ -1275,6 +1352,7 @@ M.GetViolationDetailsInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1293,6 +1371,7 @@ M.Tag = {
 
 M.PartialMatch = {
     type = "structure",
+    id = "PartialMatch",
     members = {
         Reference = {
             type = "string",
@@ -1311,6 +1390,7 @@ M.RemediationActionType = {
 
 M.SecurityGroupRuleDescription = {
     type = "structure",
+    id = "SecurityGroupRuleDescription",
     members = {
         IPV4Range = {
             type = "string",
@@ -1335,6 +1415,7 @@ M.SecurityGroupRuleDescription = {
 
 M.SecurityGroupRemediationAction = {
     type = "structure",
+    id = "SecurityGroupRemediationAction",
     members = {
         RemediationActionType = {
             type = "string",
@@ -1354,6 +1435,7 @@ M.SecurityGroupRemediationAction = {
 
 M.AwsVPCSecurityGroupViolation = {
     type = "structure",
+    id = "AwsVPCSecurityGroupViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1374,6 +1456,7 @@ M.AwsVPCSecurityGroupViolation = {
 
 M.DnsDuplicateRuleGroupViolation = {
     type = "structure",
+    id = "DnsDuplicateRuleGroupViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1386,6 +1469,7 @@ M.DnsDuplicateRuleGroupViolation = {
 
 M.DnsRuleGroupLimitExceededViolation = {
     type = "structure",
+    id = "DnsRuleGroupLimitExceededViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1404,6 +1488,7 @@ M.DnsRuleGroupLimitExceededViolation = {
 
 M.DnsRuleGroupPriorityConflictViolation = {
     type = "structure",
+    id = "DnsRuleGroupPriorityConflictViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1429,6 +1514,7 @@ M.DnsRuleGroupPriorityConflictViolation = {
 
 M.FirewallSubnetIsOutOfScopeViolation = {
     type = "structure",
+    id = "FirewallSubnetIsOutOfScopeViolation",
     members = {
         FirewallSubnetId = {
             type = "string",
@@ -1450,6 +1536,7 @@ M.FirewallSubnetIsOutOfScopeViolation = {
 
 M.FirewallSubnetMissingVPCEndpointViolation = {
     type = "structure",
+    id = "FirewallSubnetMissingVPCEndpointViolation",
     members = {
         FirewallSubnetId = {
             type = "string",
@@ -1474,6 +1561,7 @@ M.EntryType = {
 
 M.EntryDescription = {
     type = "structure",
+    id = "EntryDescription",
     members = {
         EntryDetail = M.NetworkAclEntry,
         EntryRuleNumber = {
@@ -1496,6 +1584,7 @@ M.EntryViolationReason = {
 
 M.EntryViolation = {
     type = "structure",
+    id = "EntryViolation",
     members = {
         ExpectedEntry = M.EntryDescription,
         ExpectedEvaluationOrder = {
@@ -1518,6 +1607,7 @@ M.EntryViolation = {
 
 M.InvalidNetworkAclEntriesViolation = {
     type = "structure",
+    id = "InvalidNetworkAclEntriesViolation",
     members = {
         Vpc = {
             type = "string",
@@ -1559,6 +1649,7 @@ M.TargetType = {
 
 M.Route = {
     type = "structure",
+    id = "Route",
     members = {
         DestinationType = {
             type = "string",
@@ -1577,6 +1668,7 @@ M.Route = {
 
 M.NetworkFirewallBlackHoleRouteDetectedViolation = {
     type = "structure",
+    id = "NetworkFirewallBlackHoleRouteDetectedViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1596,6 +1688,7 @@ M.NetworkFirewallBlackHoleRouteDetectedViolation = {
 
 M.ExpectedRoute = {
     type = "structure",
+    id = "ExpectedRoute",
     members = {
         IpV4Cidr = {
             type = "string",
@@ -1622,6 +1715,7 @@ M.ExpectedRoute = {
 
 M.NetworkFirewallInternetTrafficNotInspectedViolation = {
     type = "structure",
+    id = "NetworkFirewallInternetTrafficNotInspectedViolation",
     members = {
         SubnetId = {
             type = "string",
@@ -1681,6 +1775,7 @@ M.NetworkFirewallInternetTrafficNotInspectedViolation = {
 
 M.NetworkFirewallInvalidRouteConfigurationViolation = {
     type = "structure",
+    id = "NetworkFirewallInvalidRouteConfigurationViolation",
     members = {
         AffectedSubnets = {
             type = "list",
@@ -1741,6 +1836,7 @@ M.NetworkFirewallInvalidRouteConfigurationViolation = {
 
 M.NetworkFirewallMissingExpectedRoutesViolation = {
     type = "structure",
+    id = "NetworkFirewallMissingExpectedRoutesViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1757,6 +1853,7 @@ M.NetworkFirewallMissingExpectedRoutesViolation = {
 
 M.NetworkFirewallMissingExpectedRTViolation = {
     type = "structure",
+    id = "NetworkFirewallMissingExpectedRTViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1778,6 +1875,7 @@ M.NetworkFirewallMissingExpectedRTViolation = {
 
 M.NetworkFirewallMissingFirewallViolation = {
     type = "structure",
+    id = "NetworkFirewallMissingFirewallViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1796,6 +1894,7 @@ M.NetworkFirewallMissingFirewallViolation = {
 
 M.NetworkFirewallMissingSubnetViolation = {
     type = "structure",
+    id = "NetworkFirewallMissingSubnetViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1826,6 +1925,7 @@ M.StreamExceptionPolicy = {
 
 M.StatefulEngineOptions = {
     type = "structure",
+    id = "StatefulEngineOptions",
     members = {
         RuleOrder = {
             type = "string",
@@ -1842,6 +1942,7 @@ M.NetworkFirewallOverrideAction = {
 
 M.NetworkFirewallStatefulRuleGroupOverride = {
     type = "structure",
+    id = "NetworkFirewallStatefulRuleGroupOverride",
     members = {
         Action = {
             type = "string",
@@ -1851,6 +1952,7 @@ M.NetworkFirewallStatefulRuleGroupOverride = {
 
 M.StatefulRuleGroup = {
     type = "structure",
+    id = "StatefulRuleGroup",
     members = {
         RuleGroupName = {
             type = "string",
@@ -1867,6 +1969,7 @@ M.StatefulRuleGroup = {
 
 M.StatelessRuleGroup = {
     type = "structure",
+    id = "StatelessRuleGroup",
     members = {
         RuleGroupName = {
             type = "string",
@@ -1882,6 +1985,7 @@ M.StatelessRuleGroup = {
 
 M.NetworkFirewallPolicyDescription = {
     type = "structure",
+    id = "NetworkFirewallPolicyDescription",
     members = {
         StatelessRuleGroups = {
             type = "list",
@@ -1913,6 +2017,7 @@ M.NetworkFirewallPolicyDescription = {
 
 M.NetworkFirewallPolicyModifiedViolation = {
     type = "structure",
+    id = "NetworkFirewallPolicyModifiedViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -1924,6 +2029,7 @@ M.NetworkFirewallPolicyModifiedViolation = {
 
 M.NetworkFirewallUnexpectedFirewallRoutesViolation = {
     type = "structure",
+    id = "NetworkFirewallUnexpectedFirewallRoutesViolation",
     members = {
         FirewallSubnetId = {
             type = "string",
@@ -1946,6 +2052,7 @@ M.NetworkFirewallUnexpectedFirewallRoutesViolation = {
 
 M.NetworkFirewallUnexpectedGatewayRoutesViolation = {
     type = "structure",
+    id = "NetworkFirewallUnexpectedGatewayRoutesViolation",
     members = {
         GatewayId = {
             type = "string",
@@ -1965,6 +2072,7 @@ M.NetworkFirewallUnexpectedGatewayRoutesViolation = {
 
 M.CreateNetworkAclAction = {
     type = "structure",
+    id = "CreateNetworkAclAction",
     members = {
         Description = {
             type = "string",
@@ -1981,6 +2089,7 @@ M.CreateNetworkAclAction = {
 
 M.CreateNetworkAclEntriesAction = {
     type = "structure",
+    id = "CreateNetworkAclEntriesAction",
     members = {
         Description = {
             type = "string",
@@ -2001,6 +2110,7 @@ M.CreateNetworkAclEntriesAction = {
 
 M.DeleteNetworkAclEntriesAction = {
     type = "structure",
+    id = "DeleteNetworkAclEntriesAction",
     members = {
         Description = {
             type = "string",
@@ -2021,6 +2131,7 @@ M.DeleteNetworkAclEntriesAction = {
 
 M.EC2AssociateRouteTableAction = {
     type = "structure",
+    id = "EC2AssociateRouteTableAction",
     members = {
         Description = {
             type = "string",
@@ -2035,6 +2146,7 @@ M.EC2AssociateRouteTableAction = {
 
 M.EC2CopyRouteTableAction = {
     type = "structure",
+    id = "EC2CopyRouteTableAction",
     members = {
         Description = {
             type = "string",
@@ -2050,6 +2162,7 @@ M.EC2CopyRouteTableAction = {
 
 M.EC2CreateRouteAction = {
     type = "structure",
+    id = "EC2CreateRouteAction",
     members = {
         Description = {
             type = "string",
@@ -2073,6 +2186,7 @@ M.EC2CreateRouteAction = {
 
 M.EC2CreateRouteTableAction = {
     type = "structure",
+    id = "EC2CreateRouteTableAction",
     members = {
         Description = {
             type = "string",
@@ -2085,6 +2199,7 @@ M.EC2CreateRouteTableAction = {
 
 M.EC2DeleteRouteAction = {
     type = "structure",
+    id = "EC2DeleteRouteAction",
     members = {
         Description = {
             type = "string",
@@ -2106,6 +2221,7 @@ M.EC2DeleteRouteAction = {
 
 M.EC2ReplaceRouteAction = {
     type = "structure",
+    id = "EC2ReplaceRouteAction",
     members = {
         Description = {
             type = "string",
@@ -2128,6 +2244,7 @@ M.EC2ReplaceRouteAction = {
 
 M.EC2ReplaceRouteTableAssociationAction = {
     type = "structure",
+    id = "EC2ReplaceRouteTableAssociationAction",
     members = {
         Description = {
             type = "string",
@@ -2143,6 +2260,7 @@ M.EC2ReplaceRouteTableAssociationAction = {
 
 M.FMSPolicyUpdateFirewallCreationConfigAction = {
     type = "structure",
+    id = "FMSPolicyUpdateFirewallCreationConfigAction",
     members = {
         Description = {
             type = "string",
@@ -2155,6 +2273,7 @@ M.FMSPolicyUpdateFirewallCreationConfigAction = {
 
 M.ReplaceNetworkAclAssociationAction = {
     type = "structure",
+    id = "ReplaceNetworkAclAssociationAction",
     members = {
         Description = {
             type = "string",
@@ -2172,6 +2291,7 @@ M.ReplaceNetworkAclAssociationAction = {
 
 M.RemediationAction = {
     type = "structure",
+    id = "RemediationAction",
     members = {
         Description = {
             type = "string",
@@ -2193,6 +2313,7 @@ M.RemediationAction = {
 
 M.RemediationActionWithOrder = {
     type = "structure",
+    id = "RemediationActionWithOrder",
     members = {
         RemediationAction = M.RemediationAction,
         Order = {
@@ -2206,6 +2327,7 @@ M.RemediationActionWithOrder = {
 
 M.PossibleRemediationAction = {
     type = "structure",
+    id = "PossibleRemediationAction",
     members = {
         Description = {
             type = "string",
@@ -2228,6 +2350,7 @@ M.PossibleRemediationAction = {
 
 M.PossibleRemediationActions = {
     type = "structure",
+    id = "PossibleRemediationActions",
     members = {
         Description = {
             type = "string",
@@ -2241,6 +2364,7 @@ M.PossibleRemediationActions = {
 
 M.RouteHasOutOfScopeEndpointViolation = {
     type = "structure",
+    id = "RouteHasOutOfScopeEndpointViolation",
     members = {
         SubnetId = {
             type = "string",
@@ -2286,6 +2410,7 @@ M.RouteHasOutOfScopeEndpointViolation = {
 
 M.ThirdPartyFirewallMissingExpectedRouteTableViolation = {
     type = "structure",
+    id = "ThirdPartyFirewallMissingExpectedRouteTableViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -2307,6 +2432,7 @@ M.ThirdPartyFirewallMissingExpectedRouteTableViolation = {
 
 M.ThirdPartyFirewallMissingFirewallViolation = {
     type = "structure",
+    id = "ThirdPartyFirewallMissingFirewallViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -2325,6 +2451,7 @@ M.ThirdPartyFirewallMissingFirewallViolation = {
 
 M.ThirdPartyFirewallMissingSubnetViolation = {
     type = "structure",
+    id = "ThirdPartyFirewallMissingSubnetViolation",
     members = {
         ViolationTarget = {
             type = "string",
@@ -2343,6 +2470,7 @@ M.ThirdPartyFirewallMissingSubnetViolation = {
 
 M.WebACLHasIncompatibleConfigurationViolation = {
     type = "structure",
+    id = "WebACLHasIncompatibleConfigurationViolation",
     members = {
         WebACLArn = {
             type = "string",
@@ -2355,6 +2483,7 @@ M.WebACLHasIncompatibleConfigurationViolation = {
 
 M.WebACLHasOutOfScopeResourcesViolation = {
     type = "structure",
+    id = "WebACLHasOutOfScopeResourcesViolation",
     members = {
         WebACLArn = {
             type = "string",
@@ -2368,6 +2497,7 @@ M.WebACLHasOutOfScopeResourcesViolation = {
 
 M.ResourceViolation = {
     type = "structure",
+    id = "ResourceViolation",
     members = {
         AwsVPCSecurityGroupViolation = M.AwsVPCSecurityGroupViolation,
         AwsEc2NetworkInterfaceViolation = M.AwsEc2NetworkInterfaceViolation,
@@ -2400,6 +2530,7 @@ M.ResourceViolation = {
 
 M.ViolationDetail = {
     type = "structure",
+    id = "ViolationDetail",
     members = {
         PolicyId = {
             type = "string",
@@ -2444,6 +2575,7 @@ M.ViolationDetail = {
 
 M.GetViolationDetailsOutput = {
     type = "structure",
+    id = "GetViolationDetailsOutput",
     members = {
         ViolationDetail = M.ViolationDetail,
     },
@@ -2451,6 +2583,7 @@ M.GetViolationDetailsOutput = {
 
 M.ListAdminAccountsForOrganizationInput = {
     type = "structure",
+    id = "ListAdminAccountsForOrganizationInput",
     members = {
         NextToken = {
             type = "string",
@@ -2463,6 +2596,7 @@ M.ListAdminAccountsForOrganizationInput = {
 
 M.ListAdminAccountsForOrganizationOutput = {
     type = "structure",
+    id = "ListAdminAccountsForOrganizationOutput",
     members = {
         AdminAccounts = {
             type = "list",
@@ -2476,6 +2610,7 @@ M.ListAdminAccountsForOrganizationOutput = {
 
 M.ListAdminsManagingAccountInput = {
     type = "structure",
+    id = "ListAdminsManagingAccountInput",
     members = {
         NextToken = {
             type = "string",
@@ -2488,6 +2623,7 @@ M.ListAdminsManagingAccountInput = {
 
 M.ListAdminsManagingAccountOutput = {
     type = "structure",
+    id = "ListAdminsManagingAccountOutput",
     members = {
         AdminAccounts = {
             type = "list",
@@ -2501,6 +2637,7 @@ M.ListAdminsManagingAccountOutput = {
 
 M.ListAppsListsInput = {
     type = "structure",
+    id = "ListAppsListsInput",
     members = {
         DefaultLists = {
             type = "boolean",
@@ -2522,6 +2659,7 @@ M.ListAppsListsInput = {
 
 M.ListAppsListsOutput = {
     type = "structure",
+    id = "ListAppsListsOutput",
     members = {
         AppsLists = {
             type = "list",
@@ -2535,6 +2673,7 @@ M.ListAppsListsOutput = {
 
 M.ListComplianceStatusInput = {
     type = "structure",
+    id = "ListComplianceStatusInput",
     members = {
         PolicyId = {
             type = "string",
@@ -2558,6 +2697,7 @@ M.PolicyComplianceStatusType = {
 
 M.EvaluationResult = {
     type = "structure",
+    id = "EvaluationResult",
     members = {
         ComplianceStatus = {
             type = "string",
@@ -2579,6 +2719,7 @@ M.EvaluationResult = {
 
 M.PolicyComplianceStatus = {
     type = "structure",
+    id = "PolicyComplianceStatus",
     members = {
         PolicyOwner = {
             type = "string",
@@ -2609,6 +2750,7 @@ M.PolicyComplianceStatus = {
 
 M.ListComplianceStatusOutput = {
     type = "structure",
+    id = "ListComplianceStatusOutput",
     members = {
         PolicyComplianceStatusList = {
             type = "list",
@@ -2622,6 +2764,7 @@ M.ListComplianceStatusOutput = {
 
 M.ListDiscoveredResourcesInput = {
     type = "structure",
+    id = "ListDiscoveredResourcesInput",
     members = {
         MemberAccountIds = {
             type = "list",
@@ -2647,6 +2790,7 @@ M.ListDiscoveredResourcesInput = {
 
 M.DiscoveredResource = {
     type = "structure",
+    id = "DiscoveredResource",
     members = {
         URI = {
             type = "string",
@@ -2665,6 +2809,7 @@ M.DiscoveredResource = {
 
 M.ListDiscoveredResourcesOutput = {
     type = "structure",
+    id = "ListDiscoveredResourcesOutput",
     members = {
         Items = {
             type = "list",
@@ -2678,6 +2823,7 @@ M.ListDiscoveredResourcesOutput = {
 
 M.ListMemberAccountsInput = {
     type = "structure",
+    id = "ListMemberAccountsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2690,6 +2836,7 @@ M.ListMemberAccountsInput = {
 
 M.ListMemberAccountsOutput = {
     type = "structure",
+    id = "ListMemberAccountsOutput",
     members = {
         MemberAccounts = {
             type = "list",
@@ -2703,6 +2850,7 @@ M.ListMemberAccountsOutput = {
 
 M.ListPoliciesInput = {
     type = "structure",
+    id = "ListPoliciesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2715,6 +2863,7 @@ M.ListPoliciesInput = {
 
 M.PolicySummary = {
     type = "structure",
+    id = "PolicySummary",
     members = {
         PolicyArn = {
             type = "string",
@@ -2751,6 +2900,7 @@ M.PolicySummary = {
 
 M.ListPoliciesOutput = {
     type = "structure",
+    id = "ListPoliciesOutput",
     members = {
         PolicyList = {
             type = "list",
@@ -2764,6 +2914,7 @@ M.ListPoliciesOutput = {
 
 M.ListProtocolsListsInput = {
     type = "structure",
+    id = "ListProtocolsListsInput",
     members = {
         DefaultLists = {
             type = "boolean",
@@ -2785,6 +2936,7 @@ M.ListProtocolsListsInput = {
 
 M.ProtocolsListDataSummary = {
     type = "structure",
+    id = "ProtocolsListDataSummary",
     members = {
         ListArn = {
             type = "string",
@@ -2804,6 +2956,7 @@ M.ProtocolsListDataSummary = {
 
 M.ListProtocolsListsOutput = {
     type = "structure",
+    id = "ListProtocolsListsOutput",
     members = {
         ProtocolsLists = {
             type = "list",
@@ -2817,6 +2970,7 @@ M.ListProtocolsListsOutput = {
 
 M.ListResourceSetResourcesInput = {
     type = "structure",
+    id = "ListResourceSetResourcesInput",
     members = {
         Identifier = {
             type = "string",
@@ -2835,6 +2989,7 @@ M.ListResourceSetResourcesInput = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         URI = {
             type = "string",
@@ -2850,6 +3005,7 @@ M.Resource = {
 
 M.ListResourceSetResourcesOutput = {
     type = "structure",
+    id = "ListResourceSetResourcesOutput",
     members = {
         Items = {
             type = "list",
@@ -2866,6 +3022,7 @@ M.ListResourceSetResourcesOutput = {
 
 M.ListResourceSetsInput = {
     type = "structure",
+    id = "ListResourceSetsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2878,6 +3035,7 @@ M.ListResourceSetsInput = {
 
 M.ResourceSetSummary = {
     type = "structure",
+    id = "ResourceSetSummary",
     members = {
         Id = {
             type = "string",
@@ -2899,6 +3057,7 @@ M.ResourceSetSummary = {
 
 M.ListResourceSetsOutput = {
     type = "structure",
+    id = "ListResourceSetsOutput",
     members = {
         ResourceSets = {
             type = "list",
@@ -2912,6 +3071,7 @@ M.ListResourceSetsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2924,6 +3084,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -2934,6 +3095,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListThirdPartyFirewallFirewallPoliciesInput = {
     type = "structure",
+    id = "ListThirdPartyFirewallFirewallPoliciesInput",
     members = {
         ThirdPartyFirewall = {
             type = "string",
@@ -2955,6 +3117,7 @@ M.ListThirdPartyFirewallFirewallPoliciesInput = {
 
 M.ThirdPartyFirewallFirewallPolicy = {
     type = "structure",
+    id = "ThirdPartyFirewallFirewallPolicy",
     members = {
         FirewallPolicyId = {
             type = "string",
@@ -2967,6 +3130,7 @@ M.ThirdPartyFirewallFirewallPolicy = {
 
 M.ListThirdPartyFirewallFirewallPoliciesOutput = {
     type = "structure",
+    id = "ListThirdPartyFirewallFirewallPoliciesOutput",
     members = {
         ThirdPartyFirewallFirewallPolicies = {
             type = "list",
@@ -2980,6 +3144,7 @@ M.ListThirdPartyFirewallFirewallPoliciesOutput = {
 
 M.PutAdminAccountInput = {
     type = "structure",
+    id = "PutAdminAccountInput",
     members = {
         AdminAccount = {
             type = "string",
@@ -2993,10 +3158,12 @@ M.PutAdminAccountInput = {
 
 M.PutAdminAccountOutput = {
     type = "structure",
+    id = "PutAdminAccountOutput",
 }
 
 M.PutAppsListInput = {
     type = "structure",
+    id = "PutAppsListInput",
     members = {
         AppsList = setmetatable({ traits = {
             required = true,
@@ -3010,6 +3177,7 @@ M.PutAppsListInput = {
 
 M.PutAppsListOutput = {
     type = "structure",
+    id = "PutAppsListOutput",
     members = {
         AppsList = M.AppsListData,
         AppsListArn = {
@@ -3020,6 +3188,7 @@ M.PutAppsListOutput = {
 
 M.PutNotificationChannelInput = {
     type = "structure",
+    id = "PutNotificationChannelInput",
     members = {
         SnsTopicArn = {
             type = "string",
@@ -3038,10 +3207,12 @@ M.PutNotificationChannelInput = {
 
 M.PutNotificationChannelOutput = {
     type = "structure",
+    id = "PutNotificationChannelOutput",
 }
 
 M.PutPolicyInput = {
     type = "structure",
+    id = "PutPolicyInput",
     members = {
         Policy = setmetatable({ traits = {
             required = true,
@@ -3055,6 +3226,7 @@ M.PutPolicyInput = {
 
 M.PutPolicyOutput = {
     type = "structure",
+    id = "PutPolicyOutput",
     members = {
         Policy = M.Policy,
         PolicyArn = {
@@ -3065,6 +3237,7 @@ M.PutPolicyOutput = {
 
 M.PutProtocolsListInput = {
     type = "structure",
+    id = "PutProtocolsListInput",
     members = {
         ProtocolsList = setmetatable({ traits = {
             required = true,
@@ -3078,6 +3251,7 @@ M.PutProtocolsListInput = {
 
 M.PutProtocolsListOutput = {
     type = "structure",
+    id = "PutProtocolsListOutput",
     members = {
         ProtocolsList = M.ProtocolsListData,
         ProtocolsListArn = {
@@ -3088,6 +3262,7 @@ M.PutProtocolsListOutput = {
 
 M.PutResourceSetInput = {
     type = "structure",
+    id = "PutResourceSetInput",
     members = {
         ResourceSet = setmetatable({ traits = {
             required = true,
@@ -3101,6 +3276,7 @@ M.PutResourceSetInput = {
 
 M.PutResourceSetOutput = {
     type = "structure",
+    id = "PutResourceSetOutput",
     members = {
         ResourceSet = setmetatable({ traits = {
             required = true,
@@ -3116,6 +3292,7 @@ M.PutResourceSetOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3135,10 +3312,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3158,6 +3337,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

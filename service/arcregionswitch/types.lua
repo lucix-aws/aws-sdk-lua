@@ -27,6 +27,7 @@ M.ExecutionMode = {
 
 M.AbbreviatedExecution = {
     type = "structure",
+    id = "AbbreviatedExecution",
     members = {
         planArn = {
             type = "string",
@@ -98,6 +99,7 @@ M.RecoveryApproach = {
 
 M.AbbreviatedPlan = {
     type = "structure",
+    id = "AbbreviatedPlan",
     members = {
         arn = {
             type = "string",
@@ -156,6 +158,7 @@ M.AbbreviatedPlan = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -184,6 +187,7 @@ M.Approval = {
 
 M.ApprovePlanExecutionStepInput = {
     type = "structure",
+    id = "ApprovePlanExecutionStepInput",
     members = {
         planArn = {
             type = "string",
@@ -217,10 +221,12 @@ M.ApprovePlanExecutionStepInput = {
 
 M.ApprovePlanExecutionStepOutput = {
     type = "structure",
+    id = "ApprovePlanExecutionStepOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -234,6 +240,7 @@ M.ResourceNotFoundException = {
 
 M.CancelPlanExecutionInput = {
     type = "structure",
+    id = "CancelPlanExecutionInput",
     members = {
         planArn = {
             type = "string",
@@ -255,10 +262,12 @@ M.CancelPlanExecutionInput = {
 
 M.CancelPlanExecutionOutput = {
     type = "structure",
+    id = "CancelPlanExecutionOutput",
 }
 
 M.GetPlanEvaluationStatusInput = {
     type = "structure",
+    id = "GetPlanEvaluationStatusInput",
     members = {
         planArn = {
             type = "string",
@@ -289,6 +298,7 @@ M.ResourceWarningStatus = {
 
 M.MinimalWorkflow = {
     type = "structure",
+    id = "MinimalWorkflow",
     members = {
         action = {
             type = "string",
@@ -301,6 +311,7 @@ M.MinimalWorkflow = {
 
 M.ResourceWarning = {
     type = "structure",
+    id = "ResourceWarning",
     members = {
         workflow = M.MinimalWorkflow,
         version = {
@@ -338,6 +349,7 @@ M.ResourceWarning = {
 
 M.GetPlanEvaluationStatusOutput = {
     type = "structure",
+    id = "GetPlanEvaluationStatusOutput",
     members = {
         planArn = {
             type = "string",
@@ -369,6 +381,7 @@ M.GetPlanEvaluationStatusOutput = {
 
 M.GetPlanExecutionInput = {
     type = "structure",
+    id = "GetPlanExecutionInput",
     members = {
         planArn = {
             type = "string",
@@ -402,6 +415,7 @@ M.FailedReportErrorCode = {
 
 M.FailedReportOutput = {
     type = "structure",
+    id = "FailedReportOutput",
     members = {
         errorCode = {
             type = "string",
@@ -414,6 +428,7 @@ M.FailedReportOutput = {
 
 M.S3ReportOutput = {
     type = "structure",
+    id = "S3ReportOutput",
     members = {
         s3ObjectKey = {
             type = "string",
@@ -423,6 +438,7 @@ M.S3ReportOutput = {
 
 M.ReportOutput = {
     type = "union",
+    id = "ReportOutput",
     members = {
         s3ReportOutput = M.S3ReportOutput,
         failedReportOutput = M.FailedReportOutput,
@@ -431,6 +447,7 @@ M.ReportOutput = {
 
 M.GeneratedReport = {
     type = "structure",
+    id = "GeneratedReport",
     members = {
         reportGenerationTime = {
             type = "timestamp",
@@ -441,6 +458,7 @@ M.GeneratedReport = {
 
 M.AssociatedAlarm = {
     type = "structure",
+    id = "AssociatedAlarm",
     members = {
         crossAccountRole = {
             type = "string",
@@ -465,6 +483,7 @@ M.AssociatedAlarm = {
 
 M.S3ReportOutputConfiguration = {
     type = "structure",
+    id = "S3ReportOutputConfiguration",
     members = {
         bucketPath = {
             type = "string",
@@ -477,6 +496,7 @@ M.S3ReportOutputConfiguration = {
 
 M.ReportOutputConfiguration = {
     type = "union",
+    id = "ReportOutputConfiguration",
     members = {
         s3Configuration = M.S3ReportOutputConfiguration,
     },
@@ -484,6 +504,7 @@ M.ReportOutputConfiguration = {
 
 M.ReportConfiguration = {
     type = "structure",
+    id = "ReportConfiguration",
     members = {
         reportOutput = {
             type = "list",
@@ -500,6 +521,7 @@ M.WorkflowTargetAction = {
 
 M.TriggerCondition = {
     type = "structure",
+    id = "TriggerCondition",
     members = {
         associatedAlarmName = {
             type = "string",
@@ -518,6 +540,7 @@ M.TriggerCondition = {
 
 M.Trigger = {
     type = "structure",
+    id = "Trigger",
     members = {
         description = {
             type = "string",
@@ -557,6 +580,7 @@ M.RoutingControlStateChange = {
 
 M.ArcRoutingControlState = {
     type = "structure",
+    id = "ArcRoutingControlState",
     members = {
         routingControlArn = {
             type = "string",
@@ -575,6 +599,7 @@ M.ArcRoutingControlState = {
 
 M.ArcRoutingControlConfiguration = {
     type = "structure",
+    id = "ArcRoutingControlConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -601,6 +626,7 @@ M.ArcRoutingControlConfiguration = {
 
 M.Lambdas = {
     type = "structure",
+    id = "Lambdas",
     members = {
         crossAccountRole = {
             type = "string",
@@ -627,6 +653,7 @@ M.LambdaUngracefulBehavior = {
 
 M.LambdaUngraceful = {
     type = "structure",
+    id = "LambdaUngraceful",
     members = {
         behavior = {
             type = "string",
@@ -639,6 +666,7 @@ M.LambdaUngraceful = {
 
 M.CustomActionLambdaConfiguration = {
     type = "structure",
+    id = "CustomActionLambdaConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -680,6 +708,7 @@ M.DocumentDbUngracefulBehavior = {
 
 M.DocumentDbUngraceful = {
     type = "structure",
+    id = "DocumentDbUngraceful",
     members = {
         ungraceful = {
             type = "string",
@@ -689,6 +718,7 @@ M.DocumentDbUngraceful = {
 
 M.DocumentDbConfiguration = {
     type = "structure",
+    id = "DocumentDbConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -728,6 +758,7 @@ M.DocumentDbConfiguration = {
 
 M.Asg = {
     type = "structure",
+    id = "Asg",
     members = {
         crossAccountRole = {
             type = "string",
@@ -748,6 +779,7 @@ M.Ec2AsgCapacityMonitoringApproach = {
 
 M.Ec2Ungraceful = {
     type = "structure",
+    id = "Ec2Ungraceful",
     members = {
         minimumSuccessPercentage = {
             type = "integer",
@@ -760,6 +792,7 @@ M.Ec2Ungraceful = {
 
 M.Ec2AsgCapacityIncreaseConfiguration = {
     type = "structure",
+    id = "Ec2AsgCapacityIncreaseConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -797,6 +830,7 @@ M.EcsCapacityMonitoringApproach = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         crossAccountRole = {
             type = "string",
@@ -815,6 +849,7 @@ M.Service = {
 
 M.EcsUngraceful = {
     type = "structure",
+    id = "EcsUngraceful",
     members = {
         minimumSuccessPercentage = {
             type = "integer",
@@ -827,6 +862,7 @@ M.EcsUngraceful = {
 
 M.EcsCapacityIncreaseConfiguration = {
     type = "structure",
+    id = "EcsCapacityIncreaseConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -863,6 +899,7 @@ M.EksCapacityMonitoringApproach = {
 
 M.EksCluster = {
     type = "structure",
+    id = "EksCluster",
     members = {
         crossAccountRole = {
             type = "string",
@@ -881,6 +918,7 @@ M.EksCluster = {
 
 M.KubernetesResourceType = {
     type = "structure",
+    id = "KubernetesResourceType",
     members = {
         apiVersion = {
             type = "string",
@@ -899,6 +937,7 @@ M.KubernetesResourceType = {
 
 M.KubernetesScalingResource = {
     type = "structure",
+    id = "KubernetesScalingResource",
     members = {
         namespace = {
             type = "string",
@@ -920,6 +959,7 @@ M.KubernetesScalingResource = {
 
 M.EksResourceScalingUngraceful = {
     type = "structure",
+    id = "EksResourceScalingUngraceful",
     members = {
         minimumSuccessPercentage = {
             type = "integer",
@@ -932,6 +972,7 @@ M.EksResourceScalingUngraceful = {
 
 M.EksResourceScalingConfiguration = {
     type = "structure",
+    id = "EksResourceScalingConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -968,6 +1009,7 @@ M.EksResourceScalingConfiguration = {
 
 M.ExecutionApprovalConfiguration = {
     type = "structure",
+    id = "ExecutionApprovalConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -995,6 +1037,7 @@ M.GlobalAuroraUngracefulBehavior = {
 
 M.GlobalAuroraUngraceful = {
     type = "structure",
+    id = "GlobalAuroraUngraceful",
     members = {
         ungraceful = {
             type = "string",
@@ -1004,6 +1047,7 @@ M.GlobalAuroraUngraceful = {
 
 M.GlobalAuroraConfiguration = {
     type = "structure",
+    id = "GlobalAuroraConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -1043,6 +1087,7 @@ M.GlobalAuroraConfiguration = {
 
 M.RdsCreateCrossRegionReplicaConfiguration = {
     type = "structure",
+    id = "RdsCreateCrossRegionReplicaConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -1069,6 +1114,7 @@ M.RdsCreateCrossRegionReplicaConfiguration = {
 
 M.RdsPromoteReadReplicaConfiguration = {
     type = "structure",
+    id = "RdsPromoteReadReplicaConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -1095,6 +1141,7 @@ M.RdsPromoteReadReplicaConfiguration = {
 
 M.RegionSwitchPlanConfiguration = {
     type = "structure",
+    id = "RegionSwitchPlanConfiguration",
     members = {
         crossAccountRole = {
             type = "string",
@@ -1113,6 +1160,7 @@ M.RegionSwitchPlanConfiguration = {
 
 M.Route53ResourceRecordSet = {
     type = "structure",
+    id = "Route53ResourceRecordSet",
     members = {
         recordSetIdentifier = {
             type = "string",
@@ -1125,6 +1173,7 @@ M.Route53ResourceRecordSet = {
 
 M.Route53HealthCheckConfiguration = {
     type = "structure",
+    id = "Route53HealthCheckConfiguration",
     members = {
         timeoutMinutes = {
             type = "integer",
@@ -1185,6 +1234,7 @@ M.StepStatus = {
 
 M.StepState = {
     type = "structure",
+    id = "StepState",
     members = {
         name = {
             type = "string",
@@ -1206,6 +1256,7 @@ M.StepState = {
 
 M.GetPlanInRegionInput = {
     type = "structure",
+    id = "GetPlanInRegionInput",
     members = {
         arn = {
             type = "string",
@@ -1218,6 +1269,7 @@ M.GetPlanInRegionInput = {
 
 M.ListPlanExecutionEventsInput = {
     type = "structure",
+    id = "ListPlanExecutionEventsInput",
     members = {
         planArn = {
             type = "string",
@@ -1277,6 +1329,7 @@ M.ExecutionEventType = {
 
 M.ExecutionEvent = {
     type = "structure",
+    id = "ExecutionEvent",
     members = {
         timestamp = {
             type = "timestamp",
@@ -1314,6 +1367,7 @@ M.ExecutionEvent = {
 
 M.ListPlanExecutionEventsOutput = {
     type = "structure",
+    id = "ListPlanExecutionEventsOutput",
     members = {
         items = {
             type = "list",
@@ -1327,6 +1381,7 @@ M.ListPlanExecutionEventsOutput = {
 
 M.ListPlanExecutionsInput = {
     type = "structure",
+    id = "ListPlanExecutionsInput",
     members = {
         planArn = {
             type = "string",
@@ -1351,6 +1406,7 @@ M.ListPlanExecutionsInput = {
 
 M.ListPlanExecutionsOutput = {
     type = "structure",
+    id = "ListPlanExecutionsOutput",
     members = {
         items = {
             type = "list",
@@ -1364,6 +1420,7 @@ M.ListPlanExecutionsOutput = {
 
 M.ListPlansInRegionInput = {
     type = "structure",
+    id = "ListPlansInRegionInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1376,6 +1433,7 @@ M.ListPlansInRegionInput = {
 
 M.ListPlansInRegionOutput = {
     type = "structure",
+    id = "ListPlansInRegionOutput",
     members = {
         plans = {
             type = "list",
@@ -1389,6 +1447,7 @@ M.ListPlansInRegionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -1402,6 +1461,7 @@ M.InternalServerException = {
 
 M.ListRoute53HealthChecksInput = {
     type = "structure",
+    id = "ListRoute53HealthChecksInput",
     members = {
         arn = {
             type = "string",
@@ -1432,6 +1492,7 @@ M.Route53HealthCheckStatus = {
 
 M.Route53HealthCheck = {
     type = "structure",
+    id = "Route53HealthCheck",
     members = {
         hostedZoneId = {
             type = "string",
@@ -1462,6 +1523,7 @@ M.Route53HealthCheck = {
 
 M.ListRoute53HealthChecksOutput = {
     type = "structure",
+    id = "ListRoute53HealthChecksOutput",
     members = {
         healthChecks = {
             type = "list",
@@ -1475,6 +1537,7 @@ M.ListRoute53HealthChecksOutput = {
 
 M.IllegalArgumentException = {
     type = "structure",
+    id = "IllegalArgumentException",
     error = "client",
     members = {
         message = {
@@ -1488,6 +1551,7 @@ M.IllegalArgumentException = {
 
 M.ListRoute53HealthChecksInRegionInput = {
     type = "structure",
+    id = "ListRoute53HealthChecksInRegionInput",
     members = {
         arn = {
             type = "string",
@@ -1512,6 +1576,7 @@ M.ListRoute53HealthChecksInRegionInput = {
 
 M.ListRoute53HealthChecksInRegionOutput = {
     type = "structure",
+    id = "ListRoute53HealthChecksInRegionOutput",
     members = {
         healthChecks = {
             type = "list",
@@ -1525,6 +1590,7 @@ M.ListRoute53HealthChecksInRegionOutput = {
 
 M.DeletePlanInput = {
     type = "structure",
+    id = "DeletePlanInput",
     members = {
         arn = {
             type = "string",
@@ -1537,10 +1603,12 @@ M.DeletePlanInput = {
 
 M.DeletePlanOutput = {
     type = "structure",
+    id = "DeletePlanOutput",
 }
 
 M.IllegalStateException = {
     type = "structure",
+    id = "IllegalStateException",
     error = "client",
     members = {
         message = {
@@ -1554,6 +1622,7 @@ M.IllegalStateException = {
 
 M.GetPlanInput = {
     type = "structure",
+    id = "GetPlanInput",
     members = {
         arn = {
             type = "string",
@@ -1566,6 +1635,7 @@ M.GetPlanInput = {
 
 M.ListPlansInput = {
     type = "structure",
+    id = "ListPlansInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1578,6 +1648,7 @@ M.ListPlansInput = {
 
 M.ListPlansOutput = {
     type = "structure",
+    id = "ListPlansOutput",
     members = {
         plans = {
             type = "list",
@@ -1591,6 +1662,7 @@ M.ListPlansOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1603,6 +1675,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         resourceTags = {
             type = "map",
@@ -1614,6 +1687,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1634,10 +1708,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1657,10 +1733,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.StartPlanExecutionInput = {
     type = "structure",
+    id = "StartPlanExecutionInput",
     members = {
         planArn = {
             type = "string",
@@ -1700,6 +1778,7 @@ M.StartPlanExecutionInput = {
 
 M.StartPlanExecutionOutput = {
     type = "structure",
+    id = "StartPlanExecutionOutput",
     members = {
         executionId = {
             type = "string",
@@ -1728,6 +1807,7 @@ M.UpdatePlanExecutionAction = {
 
 M.UpdatePlanExecutionInput = {
     type = "structure",
+    id = "UpdatePlanExecutionInput",
     members = {
         planArn = {
             type = "string",
@@ -1755,6 +1835,7 @@ M.UpdatePlanExecutionInput = {
 
 M.UpdatePlanExecutionOutput = {
     type = "structure",
+    id = "UpdatePlanExecutionOutput",
 }
 
 M.UpdatePlanExecutionStepAction = {
@@ -1764,6 +1845,7 @@ M.UpdatePlanExecutionStepAction = {
 
 M.UpdatePlanExecutionStepInput = {
     type = "structure",
+    id = "UpdatePlanExecutionStepInput",
     members = {
         planArn = {
             type = "string",
@@ -1800,10 +1882,12 @@ M.UpdatePlanExecutionStepInput = {
 
 M.UpdatePlanExecutionStepOutput = {
     type = "structure",
+    id = "UpdatePlanExecutionStepOutput",
 }
 
 M.ExecutionBlockConfiguration = {
     type = "union",
+    id = "ExecutionBlockConfiguration",
     members = {
         customActionLambdaConfig = M.CustomActionLambdaConfiguration,
         ec2AsgCapacityIncreaseConfig = M.Ec2AsgCapacityIncreaseConfiguration,
@@ -1823,6 +1907,7 @@ M.ExecutionBlockConfiguration = {
 
 M.ParallelExecutionBlockConfiguration = {
     type = "structure",
+    id = "ParallelExecutionBlockConfiguration",
     members = {
         steps = {
             type = "list",
@@ -1836,6 +1921,7 @@ M.ParallelExecutionBlockConfiguration = {
 
 M.Step = {
     type = "structure",
+    id = "Step",
     members = {
         name = {
             type = "string",
@@ -1860,6 +1946,7 @@ M.Step = {
 
 M.Workflow = {
     type = "structure",
+    id = "Workflow",
     members = {
         steps = {
             type = "list",
@@ -1882,6 +1969,7 @@ M.Workflow = {
 
 M.CreatePlanInput = {
     type = "structure",
+    id = "CreatePlanInput",
     members = {
         description = {
             type = "string",
@@ -1944,6 +2032,7 @@ M.CreatePlanInput = {
 
 M.Plan = {
     type = "structure",
+    id = "Plan",
     members = {
         arn = {
             type = "string",
@@ -2019,6 +2108,7 @@ M.Plan = {
 
 M.UpdatePlanInput = {
     type = "structure",
+    id = "UpdatePlanInput",
     members = {
         arn = {
             type = "string",
@@ -2060,6 +2150,7 @@ M.UpdatePlanInput = {
 
 M.CreatePlanOutput = {
     type = "structure",
+    id = "CreatePlanOutput",
     members = {
         plan = M.Plan,
     },
@@ -2067,6 +2158,7 @@ M.CreatePlanOutput = {
 
 M.GetPlanExecutionOutput = {
     type = "structure",
+    id = "GetPlanExecutionOutput",
     members = {
         planArn = {
             type = "string",
@@ -2145,6 +2237,7 @@ M.GetPlanExecutionOutput = {
 
 M.GetPlanInRegionOutput = {
     type = "structure",
+    id = "GetPlanInRegionOutput",
     members = {
         plan = M.Plan,
     },
@@ -2152,6 +2245,7 @@ M.GetPlanInRegionOutput = {
 
 M.GetPlanOutput = {
     type = "structure",
+    id = "GetPlanOutput",
     members = {
         plan = M.Plan,
     },
@@ -2159,6 +2253,7 @@ M.GetPlanOutput = {
 
 M.UpdatePlanOutput = {
     type = "structure",
+    id = "UpdatePlanOutput",
     members = {
         plan = M.Plan,
     },

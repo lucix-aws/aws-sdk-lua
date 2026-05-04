@@ -1028,9 +1028,13 @@ local record InvalidRequestException
     Message: string
 end
 
-local type OnClusterAppUIType = "SparkHistoryServer" | "YarnTimelineService" | "TezUI" | "ApplicationMaster" | "JobHistoryServer" | "ResourceManager"
+local type StepCancellationOption = "SEND_INTERRUPT" | "TERMINATE_PROCESS"
+
+local type PersistentAppUIType = "SHS" | "TEZ" | "YTS"
 
 local type RepoUpgradeOnBoot = "SECURITY" | "NONE"
+
+local type AuthMode = "SSO" | "IAM"
 
 local type ProfilerType = "SHS" | "TEZUI" | "YTS"
 
@@ -1038,19 +1042,15 @@ local type InstanceFleetType = "MASTER" | "CORE" | "TASK"
 
 local type NotebookExecutionStatus = "START_PENDING" | "STARTING" | "RUNNING" | "FINISHING" | "FINISHED" | "FAILING" | "FAILED" | "STOP_PENDING" | "STOPPING" | "STOPPED"
 
-local type OutputNotebookFormat = "HTML"
-
-local type AuthMode = "SSO" | "IAM"
-
-local type PersistentAppUIType = "SHS" | "TEZ" | "YTS"
-
-local type StepCancellationOption = "SEND_INTERRUPT" | "TERMINATE_PROCESS"
+local type OnClusterAppUIType = "SparkHistoryServer" | "YarnTimelineService" | "TezUI" | "ApplicationMaster" | "JobHistoryServer" | "ResourceManager"
 
 local type IdcUserAssignment = "REQUIRED" | "OPTIONAL"
 
 local type IdentityType = "USER" | "GROUP"
 
 local type ScaleDownBehavior = "TERMINATE_AT_INSTANCE_HOUR" | "TERMINATE_AT_TASK_COMPLETION"
+
+local type OutputNotebookFormat = "HTML"
 
 local record M
     AddInstanceFleetInput: AddInstanceFleetInput

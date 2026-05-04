@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -31,6 +32,7 @@ M.ContourDensity = {
 
 M.GetGlyphsInput = {
     type = "structure",
+    id = "GetGlyphsInput",
     members = {
         FontStack = {
             type = "string",
@@ -51,6 +53,7 @@ M.GetGlyphsInput = {
 
 M.GetGlyphsOutput = {
     type = "structure",
+    id = "GetGlyphsOutput",
     members = {
         Blob = {
             type = "blob",
@@ -92,6 +95,7 @@ M.Variant = {
 
 M.GetSpritesInput = {
     type = "structure",
+    id = "GetSpritesInput",
     members = {
         FileName = {
             type = "string",
@@ -126,6 +130,7 @@ M.GetSpritesInput = {
 
 M.GetSpritesOutput = {
     type = "structure",
+    id = "GetSpritesOutput",
     members = {
         Blob = {
             type = "blob",
@@ -178,6 +183,7 @@ M.StaticMapStyle = {
 
 M.GetStaticMapInput = {
     type = "structure",
+    id = "GetStaticMapInput",
     members = {
         BoundingBox = {
             type = "string",
@@ -309,6 +315,7 @@ M.GetStaticMapInput = {
 
 M.GetStaticMapOutput = {
     type = "structure",
+    id = "GetStaticMapOutput",
     members = {
         Blob = {
             type = "blob",
@@ -346,6 +353,7 @@ M.GetStaticMapOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -360,6 +368,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -374,6 +383,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -403,6 +413,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -447,6 +458,7 @@ M.TravelMode = {
 
 M.GetStyleDescriptorInput = {
     type = "structure",
+    id = "GetStyleDescriptorInput",
     members = {
         Style = {
             type = "string",
@@ -509,6 +521,7 @@ M.GetStyleDescriptorInput = {
 
 M.GetStyleDescriptorOutput = {
     type = "structure",
+    id = "GetStyleDescriptorOutput",
     members = {
         Blob = {
             type = "blob",
@@ -546,6 +559,7 @@ M.TileAdditionalFeature = {
 
 M.GetTileInput = {
     type = "structure",
+    id = "GetTileInput",
     members = {
         AdditionalFeatures = {
             type = "list",
@@ -593,6 +607,7 @@ M.GetTileInput = {
 
 M.GetTileOutput = {
     type = "structure",
+    id = "GetTileOutput",
     members = {
         Blob = {
             type = "blob",
@@ -630,6 +645,7 @@ M.GetTileOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {

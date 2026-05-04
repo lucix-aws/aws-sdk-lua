@@ -1442,21 +1442,21 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type UsefulnessRating = "USEFUL" | "NOT_USEFUL"
-
-local type CaseStatus = "Submitted" | "Acknowledged" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities" | "Ready to Close" | "Closed"
-
-local type ClosureCode = "Investigation Completed" | "Not Resolved" | "False Positive" | "Duplicate"
-
-local type EngagementType = "Security Incident" | "Investigation"
-
-local type CustomerType = "Standalone" | "Organization"
-
-local type ResolverType = "AWS" | "Self"
-
 local type MembershipStatus = "Active" | "Cancelled" | "Terminated"
 
 local type PendingAction = "Customer" | "None"
+
+local type ResolverType = "AWS" | "Self"
+
+local type EngagementType = "Security Incident" | "Investigation"
+
+local type ClosureCode = "Investigation Completed" | "Not Resolved" | "False Positive" | "Duplicate"
+
+local type CustomerType = "Standalone" | "Organization"
+
+local type UsefulnessRating = "USEFUL" | "NOT_USEFUL"
+
+local type CaseStatus = "Submitted" | "Acknowledged" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities" | "Ready to Close" | "Closed"
 
 local type SelfManagedCaseStatus = "Submitted" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities"
 

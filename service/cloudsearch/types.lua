@@ -2,6 +2,7 @@ local M = {}
 
 M.BaseException = {
     type = "structure",
+    id = "BaseException",
     error = "client",
     members = {
         Code = {
@@ -15,6 +16,7 @@ M.BaseException = {
 
 M.BuildSuggestersInput = {
     type = "structure",
+    id = "BuildSuggestersInput",
     members = {
         DomainName = {
             type = "string",
@@ -27,6 +29,7 @@ M.BuildSuggestersInput = {
 
 M.BuildSuggestersOutput = {
     type = "structure",
+    id = "BuildSuggestersOutput",
     members = {
         FieldNames = {
             type = "list",
@@ -37,6 +40,7 @@ M.BuildSuggestersOutput = {
 
 M.InternalException = {
     type = "structure",
+    id = "InternalException",
     error = "server",
     members = {
         Code = {
@@ -50,6 +54,7 @@ M.InternalException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Code = {
@@ -63,6 +68,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Code = {
@@ -76,6 +82,7 @@ M.ValidationException = {
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -88,6 +95,7 @@ M.CreateDomainInput = {
 
 M.ServiceEndpoint = {
     type = "structure",
+    id = "ServiceEndpoint",
     members = {
         Endpoint = {
             type = "string",
@@ -97,6 +105,7 @@ M.ServiceEndpoint = {
 
 M.Limits = {
     type = "structure",
+    id = "Limits",
     members = {
         MaximumReplicationCount = {
             type = "integer",
@@ -115,6 +124,7 @@ M.Limits = {
 
 M.DomainStatus = {
     type = "structure",
+    id = "DomainStatus",
     members = {
         DomainId = {
             type = "string",
@@ -163,6 +173,7 @@ M.DomainStatus = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         DomainStatus = M.DomainStatus,
     },
@@ -170,6 +181,7 @@ M.CreateDomainOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Code = {
@@ -183,6 +195,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Code = {
@@ -203,6 +216,7 @@ M.AlgorithmicStemming = {
 
 M.AnalysisOptions = {
     type = "structure",
+    id = "AnalysisOptions",
     members = {
         Synonyms = {
             type = "string",
@@ -262,6 +276,7 @@ M.AnalysisSchemeLanguage = {
 
 M.AnalysisScheme = {
     type = "structure",
+    id = "AnalysisScheme",
     members = {
         AnalysisSchemeName = {
             type = "string",
@@ -281,6 +296,7 @@ M.AnalysisScheme = {
 
 M.DefineAnalysisSchemeInput = {
     type = "structure",
+    id = "DefineAnalysisSchemeInput",
     members = {
         DomainName = {
             type = "string",
@@ -303,6 +319,7 @@ M.OptionState = {
 
 M.OptionStatus = {
     type = "structure",
+    id = "OptionStatus",
     members = {
         CreationDate = {
             type = "timestamp",
@@ -336,6 +353,7 @@ M.OptionStatus = {
 
 M.AnalysisSchemeStatus = {
     type = "structure",
+    id = "AnalysisSchemeStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -348,6 +366,7 @@ M.AnalysisSchemeStatus = {
 
 M.DefineAnalysisSchemeOutput = {
     type = "structure",
+    id = "DefineAnalysisSchemeOutput",
     members = {
         AnalysisScheme = setmetatable({ traits = {
             required = true,
@@ -357,6 +376,7 @@ M.DefineAnalysisSchemeOutput = {
 
 M.InvalidTypeException = {
     type = "structure",
+    id = "InvalidTypeException",
     error = "client",
     members = {
         Code = {
@@ -370,6 +390,7 @@ M.InvalidTypeException = {
 
 M.Expression = {
     type = "structure",
+    id = "Expression",
     members = {
         ExpressionName = {
             type = "string",
@@ -388,6 +409,7 @@ M.Expression = {
 
 M.DefineExpressionInput = {
     type = "structure",
+    id = "DefineExpressionInput",
     members = {
         DomainName = {
             type = "string",
@@ -403,6 +425,7 @@ M.DefineExpressionInput = {
 
 M.ExpressionStatus = {
     type = "structure",
+    id = "ExpressionStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -415,6 +438,7 @@ M.ExpressionStatus = {
 
 M.DefineExpressionOutput = {
     type = "structure",
+    id = "DefineExpressionOutput",
     members = {
         Expression = setmetatable({ traits = {
             required = true,
@@ -424,6 +448,7 @@ M.DefineExpressionOutput = {
 
 M.DateArrayOptions = {
     type = "structure",
+    id = "DateArrayOptions",
     members = {
         DefaultValue = {
             type = "string",
@@ -445,6 +470,7 @@ M.DateArrayOptions = {
 
 M.DateOptions = {
     type = "structure",
+    id = "DateOptions",
     members = {
         DefaultValue = {
             type = "string",
@@ -469,6 +495,7 @@ M.DateOptions = {
 
 M.DoubleArrayOptions = {
     type = "structure",
+    id = "DoubleArrayOptions",
     members = {
         DefaultValue = {
             type = "double",
@@ -490,6 +517,7 @@ M.DoubleArrayOptions = {
 
 M.DoubleOptions = {
     type = "structure",
+    id = "DoubleOptions",
     members = {
         DefaultValue = {
             type = "double",
@@ -528,6 +556,7 @@ M.IndexFieldType = {
 
 M.IntArrayOptions = {
     type = "structure",
+    id = "IntArrayOptions",
     members = {
         DefaultValue = {
             type = "long",
@@ -549,6 +578,7 @@ M.IntArrayOptions = {
 
 M.IntOptions = {
     type = "structure",
+    id = "IntOptions",
     members = {
         DefaultValue = {
             type = "long",
@@ -573,6 +603,7 @@ M.IntOptions = {
 
 M.LatLonOptions = {
     type = "structure",
+    id = "LatLonOptions",
     members = {
         DefaultValue = {
             type = "string",
@@ -597,6 +628,7 @@ M.LatLonOptions = {
 
 M.LiteralArrayOptions = {
     type = "structure",
+    id = "LiteralArrayOptions",
     members = {
         DefaultValue = {
             type = "string",
@@ -618,6 +650,7 @@ M.LiteralArrayOptions = {
 
 M.LiteralOptions = {
     type = "structure",
+    id = "LiteralOptions",
     members = {
         DefaultValue = {
             type = "string",
@@ -642,6 +675,7 @@ M.LiteralOptions = {
 
 M.TextArrayOptions = {
     type = "structure",
+    id = "TextArrayOptions",
     members = {
         DefaultValue = {
             type = "string",
@@ -663,6 +697,7 @@ M.TextArrayOptions = {
 
 M.TextOptions = {
     type = "structure",
+    id = "TextOptions",
     members = {
         DefaultValue = {
             type = "string",
@@ -687,6 +722,7 @@ M.TextOptions = {
 
 M.IndexField = {
     type = "structure",
+    id = "IndexField",
     members = {
         IndexFieldName = {
             type = "string",
@@ -716,6 +752,7 @@ M.IndexField = {
 
 M.DefineIndexFieldInput = {
     type = "structure",
+    id = "DefineIndexFieldInput",
     members = {
         DomainName = {
             type = "string",
@@ -731,6 +768,7 @@ M.DefineIndexFieldInput = {
 
 M.IndexFieldStatus = {
     type = "structure",
+    id = "IndexFieldStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -743,6 +781,7 @@ M.IndexFieldStatus = {
 
 M.DefineIndexFieldOutput = {
     type = "structure",
+    id = "DefineIndexFieldOutput",
     members = {
         IndexField = setmetatable({ traits = {
             required = true,
@@ -758,6 +797,7 @@ M.SuggesterFuzzyMatching = {
 
 M.DocumentSuggesterOptions = {
     type = "structure",
+    id = "DocumentSuggesterOptions",
     members = {
         SourceField = {
             type = "string",
@@ -776,6 +816,7 @@ M.DocumentSuggesterOptions = {
 
 M.Suggester = {
     type = "structure",
+    id = "Suggester",
     members = {
         SuggesterName = {
             type = "string",
@@ -791,6 +832,7 @@ M.Suggester = {
 
 M.DefineSuggesterInput = {
     type = "structure",
+    id = "DefineSuggesterInput",
     members = {
         DomainName = {
             type = "string",
@@ -806,6 +848,7 @@ M.DefineSuggesterInput = {
 
 M.SuggesterStatus = {
     type = "structure",
+    id = "SuggesterStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -818,6 +861,7 @@ M.SuggesterStatus = {
 
 M.DefineSuggesterOutput = {
     type = "structure",
+    id = "DefineSuggesterOutput",
     members = {
         Suggester = setmetatable({ traits = {
             required = true,
@@ -827,6 +871,7 @@ M.DefineSuggesterOutput = {
 
 M.DeleteAnalysisSchemeInput = {
     type = "structure",
+    id = "DeleteAnalysisSchemeInput",
     members = {
         DomainName = {
             type = "string",
@@ -845,6 +890,7 @@ M.DeleteAnalysisSchemeInput = {
 
 M.DeleteAnalysisSchemeOutput = {
     type = "structure",
+    id = "DeleteAnalysisSchemeOutput",
     members = {
         AnalysisScheme = setmetatable({ traits = {
             required = true,
@@ -854,6 +900,7 @@ M.DeleteAnalysisSchemeOutput = {
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -866,6 +913,7 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
     members = {
         DomainStatus = M.DomainStatus,
     },
@@ -873,6 +921,7 @@ M.DeleteDomainOutput = {
 
 M.DeleteExpressionInput = {
     type = "structure",
+    id = "DeleteExpressionInput",
     members = {
         DomainName = {
             type = "string",
@@ -891,6 +940,7 @@ M.DeleteExpressionInput = {
 
 M.DeleteExpressionOutput = {
     type = "structure",
+    id = "DeleteExpressionOutput",
     members = {
         Expression = setmetatable({ traits = {
             required = true,
@@ -900,6 +950,7 @@ M.DeleteExpressionOutput = {
 
 M.DeleteIndexFieldInput = {
     type = "structure",
+    id = "DeleteIndexFieldInput",
     members = {
         DomainName = {
             type = "string",
@@ -918,6 +969,7 @@ M.DeleteIndexFieldInput = {
 
 M.DeleteIndexFieldOutput = {
     type = "structure",
+    id = "DeleteIndexFieldOutput",
     members = {
         IndexField = setmetatable({ traits = {
             required = true,
@@ -927,6 +979,7 @@ M.DeleteIndexFieldOutput = {
 
 M.DeleteSuggesterInput = {
     type = "structure",
+    id = "DeleteSuggesterInput",
     members = {
         DomainName = {
             type = "string",
@@ -945,6 +998,7 @@ M.DeleteSuggesterInput = {
 
 M.DeleteSuggesterOutput = {
     type = "structure",
+    id = "DeleteSuggesterOutput",
     members = {
         Suggester = setmetatable({ traits = {
             required = true,
@@ -954,6 +1008,7 @@ M.DeleteSuggesterOutput = {
 
 M.DescribeAnalysisSchemesInput = {
     type = "structure",
+    id = "DescribeAnalysisSchemesInput",
     members = {
         DomainName = {
             type = "string",
@@ -973,6 +1028,7 @@ M.DescribeAnalysisSchemesInput = {
 
 M.DescribeAnalysisSchemesOutput = {
     type = "structure",
+    id = "DescribeAnalysisSchemesOutput",
     members = {
         AnalysisSchemes = {
             type = "list",
@@ -986,6 +1042,7 @@ M.DescribeAnalysisSchemesOutput = {
 
 M.DescribeAvailabilityOptionsInput = {
     type = "structure",
+    id = "DescribeAvailabilityOptionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1001,6 +1058,7 @@ M.DescribeAvailabilityOptionsInput = {
 
 M.AvailabilityOptionsStatus = {
     type = "structure",
+    id = "AvailabilityOptionsStatus",
     members = {
         Options = {
             type = "boolean",
@@ -1017,6 +1075,7 @@ M.AvailabilityOptionsStatus = {
 
 M.DescribeAvailabilityOptionsOutput = {
     type = "structure",
+    id = "DescribeAvailabilityOptionsOutput",
     members = {
         AvailabilityOptions = M.AvailabilityOptionsStatus,
     },
@@ -1024,6 +1083,7 @@ M.DescribeAvailabilityOptionsOutput = {
 
 M.DisabledOperationException = {
     type = "structure",
+    id = "DisabledOperationException",
     error = "client",
     members = {
         Code = {
@@ -1037,6 +1097,7 @@ M.DisabledOperationException = {
 
 M.DescribeDomainEndpointOptionsInput = {
     type = "structure",
+    id = "DescribeDomainEndpointOptionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1057,6 +1118,7 @@ M.TLSSecurityPolicy = {
 
 M.DomainEndpointOptions = {
     type = "structure",
+    id = "DomainEndpointOptions",
     members = {
         EnforceHTTPS = {
             type = "boolean",
@@ -1069,6 +1131,7 @@ M.DomainEndpointOptions = {
 
 M.DomainEndpointOptionsStatus = {
     type = "structure",
+    id = "DomainEndpointOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1081,6 +1144,7 @@ M.DomainEndpointOptionsStatus = {
 
 M.DescribeDomainEndpointOptionsOutput = {
     type = "structure",
+    id = "DescribeDomainEndpointOptionsOutput",
     members = {
         DomainEndpointOptions = M.DomainEndpointOptionsStatus,
     },
@@ -1088,6 +1152,7 @@ M.DescribeDomainEndpointOptionsOutput = {
 
 M.DescribeDomainsInput = {
     type = "structure",
+    id = "DescribeDomainsInput",
     members = {
         DomainNames = {
             type = "list",
@@ -1098,6 +1163,7 @@ M.DescribeDomainsInput = {
 
 M.DescribeDomainsOutput = {
     type = "structure",
+    id = "DescribeDomainsOutput",
     members = {
         DomainStatusList = {
             type = "list",
@@ -1111,6 +1177,7 @@ M.DescribeDomainsOutput = {
 
 M.DescribeExpressionsInput = {
     type = "structure",
+    id = "DescribeExpressionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1130,6 +1197,7 @@ M.DescribeExpressionsInput = {
 
 M.DescribeExpressionsOutput = {
     type = "structure",
+    id = "DescribeExpressionsOutput",
     members = {
         Expressions = {
             type = "list",
@@ -1143,6 +1211,7 @@ M.DescribeExpressionsOutput = {
 
 M.DescribeIndexFieldsInput = {
     type = "structure",
+    id = "DescribeIndexFieldsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1162,6 +1231,7 @@ M.DescribeIndexFieldsInput = {
 
 M.DescribeIndexFieldsOutput = {
     type = "structure",
+    id = "DescribeIndexFieldsOutput",
     members = {
         IndexFields = {
             type = "list",
@@ -1175,6 +1245,7 @@ M.DescribeIndexFieldsOutput = {
 
 M.DescribeScalingParametersInput = {
     type = "structure",
+    id = "DescribeScalingParametersInput",
     members = {
         DomainName = {
             type = "string",
@@ -1207,6 +1278,7 @@ M.PartitionInstanceType = {
 
 M.ScalingParameters = {
     type = "structure",
+    id = "ScalingParameters",
     members = {
         DesiredInstanceType = {
             type = "string",
@@ -1228,6 +1300,7 @@ M.ScalingParameters = {
 
 M.ScalingParametersStatus = {
     type = "structure",
+    id = "ScalingParametersStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1240,6 +1313,7 @@ M.ScalingParametersStatus = {
 
 M.DescribeScalingParametersOutput = {
     type = "structure",
+    id = "DescribeScalingParametersOutput",
     members = {
         ScalingParameters = setmetatable({ traits = {
             required = true,
@@ -1249,6 +1323,7 @@ M.DescribeScalingParametersOutput = {
 
 M.DescribeServiceAccessPoliciesInput = {
     type = "structure",
+    id = "DescribeServiceAccessPoliciesInput",
     members = {
         DomainName = {
             type = "string",
@@ -1264,6 +1339,7 @@ M.DescribeServiceAccessPoliciesInput = {
 
 M.AccessPoliciesStatus = {
     type = "structure",
+    id = "AccessPoliciesStatus",
     members = {
         Options = {
             type = "string",
@@ -1279,6 +1355,7 @@ M.AccessPoliciesStatus = {
 
 M.DescribeServiceAccessPoliciesOutput = {
     type = "structure",
+    id = "DescribeServiceAccessPoliciesOutput",
     members = {
         AccessPolicies = setmetatable({ traits = {
             required = true,
@@ -1288,6 +1365,7 @@ M.DescribeServiceAccessPoliciesOutput = {
 
 M.DescribeSuggestersInput = {
     type = "structure",
+    id = "DescribeSuggestersInput",
     members = {
         DomainName = {
             type = "string",
@@ -1307,6 +1385,7 @@ M.DescribeSuggestersInput = {
 
 M.DescribeSuggestersOutput = {
     type = "structure",
+    id = "DescribeSuggestersOutput",
     members = {
         Suggesters = {
             type = "list",
@@ -1320,6 +1399,7 @@ M.DescribeSuggestersOutput = {
 
 M.IndexDocumentsInput = {
     type = "structure",
+    id = "IndexDocumentsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1332,6 +1412,7 @@ M.IndexDocumentsInput = {
 
 M.IndexDocumentsOutput = {
     type = "structure",
+    id = "IndexDocumentsOutput",
     members = {
         FieldNames = {
             type = "list",
@@ -1342,10 +1423,12 @@ M.IndexDocumentsOutput = {
 
 M.ListDomainNamesInput = {
     type = "structure",
+    id = "ListDomainNamesInput",
 }
 
 M.ListDomainNamesOutput = {
     type = "structure",
+    id = "ListDomainNamesOutput",
     members = {
         DomainNames = {
             type = "map",
@@ -1357,6 +1440,7 @@ M.ListDomainNamesOutput = {
 
 M.UpdateAvailabilityOptionsInput = {
     type = "structure",
+    id = "UpdateAvailabilityOptionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1375,6 +1459,7 @@ M.UpdateAvailabilityOptionsInput = {
 
 M.UpdateAvailabilityOptionsOutput = {
     type = "structure",
+    id = "UpdateAvailabilityOptionsOutput",
     members = {
         AvailabilityOptions = M.AvailabilityOptionsStatus,
     },
@@ -1382,6 +1467,7 @@ M.UpdateAvailabilityOptionsOutput = {
 
 M.UpdateDomainEndpointOptionsInput = {
     type = "structure",
+    id = "UpdateDomainEndpointOptionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1397,6 +1483,7 @@ M.UpdateDomainEndpointOptionsInput = {
 
 M.UpdateDomainEndpointOptionsOutput = {
     type = "structure",
+    id = "UpdateDomainEndpointOptionsOutput",
     members = {
         DomainEndpointOptions = M.DomainEndpointOptionsStatus,
     },
@@ -1404,6 +1491,7 @@ M.UpdateDomainEndpointOptionsOutput = {
 
 M.UpdateScalingParametersInput = {
     type = "structure",
+    id = "UpdateScalingParametersInput",
     members = {
         DomainName = {
             type = "string",
@@ -1419,6 +1507,7 @@ M.UpdateScalingParametersInput = {
 
 M.UpdateScalingParametersOutput = {
     type = "structure",
+    id = "UpdateScalingParametersOutput",
     members = {
         ScalingParameters = setmetatable({ traits = {
             required = true,
@@ -1428,6 +1517,7 @@ M.UpdateScalingParametersOutput = {
 
 M.UpdateServiceAccessPoliciesInput = {
     type = "structure",
+    id = "UpdateServiceAccessPoliciesInput",
     members = {
         DomainName = {
             type = "string",
@@ -1446,6 +1536,7 @@ M.UpdateServiceAccessPoliciesInput = {
 
 M.UpdateServiceAccessPoliciesOutput = {
     type = "structure",
+    id = "UpdateServiceAccessPoliciesOutput",
     members = {
         AccessPolicies = setmetatable({ traits = {
             required = true,

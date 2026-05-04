@@ -2,6 +2,7 @@ local M = {}
 
 M.AddPermissionInput = {
     type = "structure",
+    id = "AddPermissionInput",
     members = {
         TopicArn = {
             type = "string",
@@ -34,10 +35,12 @@ M.AddPermissionInput = {
 
 M.AddPermissionOutput = {
     type = "structure",
+    id = "AddPermissionOutput",
 }
 
 M.AuthorizationErrorException = {
     type = "structure",
+    id = "AuthorizationErrorException",
     error = "client",
     members = {
         message = {
@@ -48,6 +51,7 @@ M.AuthorizationErrorException = {
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         message = {
@@ -58,6 +62,7 @@ M.InternalErrorException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -68,6 +73,7 @@ M.InvalidParameterException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -78,6 +84,7 @@ M.NotFoundException = {
 
 M.CheckIfPhoneNumberIsOptedOutInput = {
     type = "structure",
+    id = "CheckIfPhoneNumberIsOptedOutInput",
     members = {
         phoneNumber = {
             type = "string",
@@ -90,6 +97,7 @@ M.CheckIfPhoneNumberIsOptedOutInput = {
 
 M.CheckIfPhoneNumberIsOptedOutOutput = {
     type = "structure",
+    id = "CheckIfPhoneNumberIsOptedOutOutput",
     members = {
         isOptedOut = {
             type = "boolean",
@@ -102,6 +110,7 @@ M.CheckIfPhoneNumberIsOptedOutOutput = {
 
 M.ThrottledException = {
     type = "structure",
+    id = "ThrottledException",
     error = "client",
     members = {
         message = {
@@ -112,6 +121,7 @@ M.ThrottledException = {
 
 M.ConfirmSubscriptionInput = {
     type = "structure",
+    id = "ConfirmSubscriptionInput",
     members = {
         TopicArn = {
             type = "string",
@@ -133,6 +143,7 @@ M.ConfirmSubscriptionInput = {
 
 M.ConfirmSubscriptionOutput = {
     type = "structure",
+    id = "ConfirmSubscriptionOutput",
     members = {
         SubscriptionArn = {
             type = "string",
@@ -142,6 +153,7 @@ M.ConfirmSubscriptionOutput = {
 
 M.FilterPolicyLimitExceededException = {
     type = "structure",
+    id = "FilterPolicyLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -152,6 +164,7 @@ M.FilterPolicyLimitExceededException = {
 
 M.ReplayLimitExceededException = {
     type = "structure",
+    id = "ReplayLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -162,6 +175,7 @@ M.ReplayLimitExceededException = {
 
 M.SubscriptionLimitExceededException = {
     type = "structure",
+    id = "SubscriptionLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -172,6 +186,7 @@ M.SubscriptionLimitExceededException = {
 
 M.CreatePlatformApplicationInput = {
     type = "structure",
+    id = "CreatePlatformApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -198,6 +213,7 @@ M.CreatePlatformApplicationInput = {
 
 M.CreatePlatformApplicationOutput = {
     type = "structure",
+    id = "CreatePlatformApplicationOutput",
     members = {
         PlatformApplicationArn = {
             type = "string",
@@ -207,6 +223,7 @@ M.CreatePlatformApplicationOutput = {
 
 M.CreatePlatformEndpointInput = {
     type = "structure",
+    id = "CreatePlatformEndpointInput",
     members = {
         PlatformApplicationArn = {
             type = "string",
@@ -233,6 +250,7 @@ M.CreatePlatformEndpointInput = {
 
 M.CreatePlatformEndpointOutput = {
     type = "structure",
+    id = "CreatePlatformEndpointOutput",
     members = {
         EndpointArn = {
             type = "string",
@@ -258,6 +276,7 @@ M.LanguageCodeString = {
 
 M.CreateSMSSandboxPhoneNumberInput = {
     type = "structure",
+    id = "CreateSMSSandboxPhoneNumberInput",
     members = {
         PhoneNumber = {
             type = "string",
@@ -273,10 +292,12 @@ M.CreateSMSSandboxPhoneNumberInput = {
 
 M.CreateSMSSandboxPhoneNumberOutput = {
     type = "structure",
+    id = "CreateSMSSandboxPhoneNumberOutput",
 }
 
 M.OptedOutException = {
     type = "structure",
+    id = "OptedOutException",
     error = "client",
     members = {
         message = {
@@ -287,6 +308,7 @@ M.OptedOutException = {
 
 M.UserErrorException = {
     type = "structure",
+    id = "UserErrorException",
     error = "client",
     members = {
         message = {
@@ -297,6 +319,7 @@ M.UserErrorException = {
 
 M.ConcurrentAccessException = {
     type = "structure",
+    id = "ConcurrentAccessException",
     error = "client",
     members = {
         message = {
@@ -307,6 +330,7 @@ M.ConcurrentAccessException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -325,6 +349,7 @@ M.Tag = {
 
 M.CreateTopicInput = {
     type = "structure",
+    id = "CreateTopicInput",
     members = {
         Name = {
             type = "string",
@@ -349,6 +374,7 @@ M.CreateTopicInput = {
 
 M.CreateTopicOutput = {
     type = "structure",
+    id = "CreateTopicOutput",
     members = {
         TopicArn = {
             type = "string",
@@ -358,6 +384,7 @@ M.CreateTopicOutput = {
 
 M.InvalidSecurityException = {
     type = "structure",
+    id = "InvalidSecurityException",
     error = "client",
     members = {
         message = {
@@ -368,6 +395,7 @@ M.InvalidSecurityException = {
 
 M.StaleTagException = {
     type = "structure",
+    id = "StaleTagException",
     error = "client",
     members = {
         message = {
@@ -378,6 +406,7 @@ M.StaleTagException = {
 
 M.TagLimitExceededException = {
     type = "structure",
+    id = "TagLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -388,6 +417,7 @@ M.TagLimitExceededException = {
 
 M.TagPolicyException = {
     type = "structure",
+    id = "TagPolicyException",
     error = "client",
     members = {
         message = {
@@ -398,6 +428,7 @@ M.TagPolicyException = {
 
 M.TopicLimitExceededException = {
     type = "structure",
+    id = "TopicLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -408,6 +439,7 @@ M.TopicLimitExceededException = {
 
 M.DeleteEndpointInput = {
     type = "structure",
+    id = "DeleteEndpointInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -420,10 +452,12 @@ M.DeleteEndpointInput = {
 
 M.DeleteEndpointOutput = {
     type = "structure",
+    id = "DeleteEndpointOutput",
 }
 
 M.DeletePlatformApplicationInput = {
     type = "structure",
+    id = "DeletePlatformApplicationInput",
     members = {
         PlatformApplicationArn = {
             type = "string",
@@ -436,10 +470,12 @@ M.DeletePlatformApplicationInput = {
 
 M.DeletePlatformApplicationOutput = {
     type = "structure",
+    id = "DeletePlatformApplicationOutput",
 }
 
 M.DeleteSMSSandboxPhoneNumberInput = {
     type = "structure",
+    id = "DeleteSMSSandboxPhoneNumberInput",
     members = {
         PhoneNumber = {
             type = "string",
@@ -452,10 +488,12 @@ M.DeleteSMSSandboxPhoneNumberInput = {
 
 M.DeleteSMSSandboxPhoneNumberOutput = {
     type = "structure",
+    id = "DeleteSMSSandboxPhoneNumberOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -466,6 +504,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteTopicInput = {
     type = "structure",
+    id = "DeleteTopicInput",
     members = {
         TopicArn = {
             type = "string",
@@ -478,10 +517,12 @@ M.DeleteTopicInput = {
 
 M.DeleteTopicOutput = {
     type = "structure",
+    id = "DeleteTopicOutput",
 }
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         message = {
@@ -492,6 +533,7 @@ M.InvalidStateException = {
 
 M.GetDataProtectionPolicyInput = {
     type = "structure",
+    id = "GetDataProtectionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -504,6 +546,7 @@ M.GetDataProtectionPolicyInput = {
 
 M.GetDataProtectionPolicyOutput = {
     type = "structure",
+    id = "GetDataProtectionPolicyOutput",
     members = {
         DataProtectionPolicy = {
             type = "string",
@@ -513,6 +556,7 @@ M.GetDataProtectionPolicyOutput = {
 
 M.GetEndpointAttributesInput = {
     type = "structure",
+    id = "GetEndpointAttributesInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -525,6 +569,7 @@ M.GetEndpointAttributesInput = {
 
 M.GetEndpointAttributesOutput = {
     type = "structure",
+    id = "GetEndpointAttributesOutput",
     members = {
         Attributes = {
             type = "map",
@@ -536,6 +581,7 @@ M.GetEndpointAttributesOutput = {
 
 M.GetPlatformApplicationAttributesInput = {
     type = "structure",
+    id = "GetPlatformApplicationAttributesInput",
     members = {
         PlatformApplicationArn = {
             type = "string",
@@ -548,6 +594,7 @@ M.GetPlatformApplicationAttributesInput = {
 
 M.GetPlatformApplicationAttributesOutput = {
     type = "structure",
+    id = "GetPlatformApplicationAttributesOutput",
     members = {
         Attributes = {
             type = "map",
@@ -559,6 +606,7 @@ M.GetPlatformApplicationAttributesOutput = {
 
 M.GetSMSAttributesInput = {
     type = "structure",
+    id = "GetSMSAttributesInput",
     members = {
         attributes = {
             type = "list",
@@ -569,6 +617,7 @@ M.GetSMSAttributesInput = {
 
 M.GetSMSAttributesOutput = {
     type = "structure",
+    id = "GetSMSAttributesOutput",
     members = {
         attributes = {
             type = "map",
@@ -580,10 +629,12 @@ M.GetSMSAttributesOutput = {
 
 M.GetSMSSandboxAccountStatusInput = {
     type = "structure",
+    id = "GetSMSSandboxAccountStatusInput",
 }
 
 M.GetSMSSandboxAccountStatusOutput = {
     type = "structure",
+    id = "GetSMSSandboxAccountStatusOutput",
     members = {
         IsInSandbox = {
             type = "boolean",
@@ -597,6 +648,7 @@ M.GetSMSSandboxAccountStatusOutput = {
 
 M.GetSubscriptionAttributesInput = {
     type = "structure",
+    id = "GetSubscriptionAttributesInput",
     members = {
         SubscriptionArn = {
             type = "string",
@@ -609,6 +661,7 @@ M.GetSubscriptionAttributesInput = {
 
 M.GetSubscriptionAttributesOutput = {
     type = "structure",
+    id = "GetSubscriptionAttributesOutput",
     members = {
         Attributes = {
             type = "map",
@@ -620,6 +673,7 @@ M.GetSubscriptionAttributesOutput = {
 
 M.GetTopicAttributesInput = {
     type = "structure",
+    id = "GetTopicAttributesInput",
     members = {
         TopicArn = {
             type = "string",
@@ -632,6 +686,7 @@ M.GetTopicAttributesInput = {
 
 M.GetTopicAttributesOutput = {
     type = "structure",
+    id = "GetTopicAttributesOutput",
     members = {
         Attributes = {
             type = "map",
@@ -643,6 +698,7 @@ M.GetTopicAttributesOutput = {
 
 M.ListEndpointsByPlatformApplicationInput = {
     type = "structure",
+    id = "ListEndpointsByPlatformApplicationInput",
     members = {
         PlatformApplicationArn = {
             type = "string",
@@ -658,6 +714,7 @@ M.ListEndpointsByPlatformApplicationInput = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         EndpointArn = {
             type = "string",
@@ -672,6 +729,7 @@ M.Endpoint = {
 
 M.ListEndpointsByPlatformApplicationOutput = {
     type = "structure",
+    id = "ListEndpointsByPlatformApplicationOutput",
     members = {
         Endpoints = {
             type = "list",
@@ -685,6 +743,7 @@ M.ListEndpointsByPlatformApplicationOutput = {
 
 M.ListOriginationNumbersInput = {
     type = "structure",
+    id = "ListOriginationNumbersInput",
     members = {
         NextToken = {
             type = "string",
@@ -709,6 +768,7 @@ M.RouteType = {
 
 M.PhoneNumberInformation = {
     type = "structure",
+    id = "PhoneNumberInformation",
     members = {
         CreatedAt = {
             type = "timestamp",
@@ -734,6 +794,7 @@ M.PhoneNumberInformation = {
 
 M.ListOriginationNumbersOutput = {
     type = "structure",
+    id = "ListOriginationNumbersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -747,6 +808,7 @@ M.ListOriginationNumbersOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -760,6 +822,7 @@ M.ValidationException = {
 
 M.ListPhoneNumbersOptedOutInput = {
     type = "structure",
+    id = "ListPhoneNumbersOptedOutInput",
     members = {
         nextToken = {
             type = "string",
@@ -769,6 +832,7 @@ M.ListPhoneNumbersOptedOutInput = {
 
 M.ListPhoneNumbersOptedOutOutput = {
     type = "structure",
+    id = "ListPhoneNumbersOptedOutOutput",
     members = {
         phoneNumbers = {
             type = "list",
@@ -782,6 +846,7 @@ M.ListPhoneNumbersOptedOutOutput = {
 
 M.ListPlatformApplicationsInput = {
     type = "structure",
+    id = "ListPlatformApplicationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -791,6 +856,7 @@ M.ListPlatformApplicationsInput = {
 
 M.PlatformApplication = {
     type = "structure",
+    id = "PlatformApplication",
     members = {
         PlatformApplicationArn = {
             type = "string",
@@ -805,6 +871,7 @@ M.PlatformApplication = {
 
 M.ListPlatformApplicationsOutput = {
     type = "structure",
+    id = "ListPlatformApplicationsOutput",
     members = {
         PlatformApplications = {
             type = "list",
@@ -818,6 +885,7 @@ M.ListPlatformApplicationsOutput = {
 
 M.ListSMSSandboxPhoneNumbersInput = {
     type = "structure",
+    id = "ListSMSSandboxPhoneNumbersInput",
     members = {
         NextToken = {
             type = "string",
@@ -835,6 +903,7 @@ M.SMSSandboxPhoneNumberVerificationStatus = {
 
 M.SMSSandboxPhoneNumber = {
     type = "structure",
+    id = "SMSSandboxPhoneNumber",
     members = {
         PhoneNumber = {
             type = "string",
@@ -847,6 +916,7 @@ M.SMSSandboxPhoneNumber = {
 
 M.ListSMSSandboxPhoneNumbersOutput = {
     type = "structure",
+    id = "ListSMSSandboxPhoneNumbersOutput",
     members = {
         PhoneNumbers = {
             type = "list",
@@ -863,6 +933,7 @@ M.ListSMSSandboxPhoneNumbersOutput = {
 
 M.ListSubscriptionsInput = {
     type = "structure",
+    id = "ListSubscriptionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -872,6 +943,7 @@ M.ListSubscriptionsInput = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         SubscriptionArn = {
             type = "string",
@@ -893,6 +965,7 @@ M.Subscription = {
 
 M.ListSubscriptionsOutput = {
     type = "structure",
+    id = "ListSubscriptionsOutput",
     members = {
         Subscriptions = {
             type = "list",
@@ -906,6 +979,7 @@ M.ListSubscriptionsOutput = {
 
 M.ListSubscriptionsByTopicInput = {
     type = "structure",
+    id = "ListSubscriptionsByTopicInput",
     members = {
         TopicArn = {
             type = "string",
@@ -921,6 +995,7 @@ M.ListSubscriptionsByTopicInput = {
 
 M.ListSubscriptionsByTopicOutput = {
     type = "structure",
+    id = "ListSubscriptionsByTopicOutput",
     members = {
         Subscriptions = {
             type = "list",
@@ -934,6 +1009,7 @@ M.ListSubscriptionsByTopicOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -946,6 +1022,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -956,6 +1033,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTopicsInput = {
     type = "structure",
+    id = "ListTopicsInput",
     members = {
         NextToken = {
             type = "string",
@@ -965,6 +1043,7 @@ M.ListTopicsInput = {
 
 M.Topic = {
     type = "structure",
+    id = "Topic",
     members = {
         TopicArn = {
             type = "string",
@@ -974,6 +1053,7 @@ M.Topic = {
 
 M.ListTopicsOutput = {
     type = "structure",
+    id = "ListTopicsOutput",
     members = {
         Topics = {
             type = "list",
@@ -987,6 +1067,7 @@ M.ListTopicsOutput = {
 
 M.OptInPhoneNumberInput = {
     type = "structure",
+    id = "OptInPhoneNumberInput",
     members = {
         phoneNumber = {
             type = "string",
@@ -999,10 +1080,12 @@ M.OptInPhoneNumberInput = {
 
 M.OptInPhoneNumberOutput = {
     type = "structure",
+    id = "OptInPhoneNumberOutput",
 }
 
 M.EndpointDisabledException = {
     type = "structure",
+    id = "EndpointDisabledException",
     error = "client",
     members = {
         message = {
@@ -1013,6 +1096,7 @@ M.EndpointDisabledException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -1023,6 +1107,7 @@ M.InvalidParameterValueException = {
 
 M.KMSAccessDeniedException = {
     type = "structure",
+    id = "KMSAccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -1033,6 +1118,7 @@ M.KMSAccessDeniedException = {
 
 M.KMSDisabledException = {
     type = "structure",
+    id = "KMSDisabledException",
     error = "client",
     members = {
         message = {
@@ -1043,6 +1129,7 @@ M.KMSDisabledException = {
 
 M.KMSInvalidStateException = {
     type = "structure",
+    id = "KMSInvalidStateException",
     error = "client",
     members = {
         message = {
@@ -1053,6 +1140,7 @@ M.KMSInvalidStateException = {
 
 M.KMSNotFoundException = {
     type = "structure",
+    id = "KMSNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1063,6 +1151,7 @@ M.KMSNotFoundException = {
 
 M.KMSOptInRequired = {
     type = "structure",
+    id = "KMSOptInRequired",
     error = "client",
     members = {
         message = {
@@ -1073,6 +1162,7 @@ M.KMSOptInRequired = {
 
 M.KMSThrottlingException = {
     type = "structure",
+    id = "KMSThrottlingException",
     error = "client",
     members = {
         message = {
@@ -1083,6 +1173,7 @@ M.KMSThrottlingException = {
 
 M.PlatformApplicationDisabledException = {
     type = "structure",
+    id = "PlatformApplicationDisabledException",
     error = "client",
     members = {
         message = {
@@ -1093,6 +1184,7 @@ M.PlatformApplicationDisabledException = {
 
 M.MessageAttributeValue = {
     type = "structure",
+    id = "MessageAttributeValue",
     members = {
         DataType = {
             type = "string",
@@ -1111,6 +1203,7 @@ M.MessageAttributeValue = {
 
 M.PublishInput = {
     type = "structure",
+    id = "PublishInput",
     members = {
         TopicArn = {
             type = "string",
@@ -1135,7 +1228,9 @@ M.PublishInput = {
         },
         MessageAttributes = {
             type = "map",
-            key = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
             value = M.MessageAttributeValue,
         },
         MessageDeduplicationId = {
@@ -1149,6 +1244,7 @@ M.PublishInput = {
 
 M.PublishOutput = {
     type = "structure",
+    id = "PublishOutput",
     members = {
         MessageId = {
             type = "string",
@@ -1161,6 +1257,7 @@ M.PublishOutput = {
 
 M.BatchEntryIdsNotDistinctException = {
     type = "structure",
+    id = "BatchEntryIdsNotDistinctException",
     error = "client",
     members = {
         message = {
@@ -1171,6 +1268,7 @@ M.BatchEntryIdsNotDistinctException = {
 
 M.BatchRequestTooLongException = {
     type = "structure",
+    id = "BatchRequestTooLongException",
     error = "client",
     members = {
         message = {
@@ -1181,6 +1279,7 @@ M.BatchRequestTooLongException = {
 
 M.EmptyBatchRequestException = {
     type = "structure",
+    id = "EmptyBatchRequestException",
     error = "client",
     members = {
         message = {
@@ -1191,6 +1290,7 @@ M.EmptyBatchRequestException = {
 
 M.InvalidBatchEntryIdException = {
     type = "structure",
+    id = "InvalidBatchEntryIdException",
     error = "client",
     members = {
         message = {
@@ -1201,6 +1301,7 @@ M.InvalidBatchEntryIdException = {
 
 M.PublishBatchRequestEntry = {
     type = "structure",
+    id = "PublishBatchRequestEntry",
     members = {
         Id = {
             type = "string",
@@ -1222,7 +1323,9 @@ M.PublishBatchRequestEntry = {
         },
         MessageAttributes = {
             type = "map",
-            key = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
             value = M.MessageAttributeValue,
         },
         MessageDeduplicationId = {
@@ -1236,6 +1339,7 @@ M.PublishBatchRequestEntry = {
 
 M.PublishBatchInput = {
     type = "structure",
+    id = "PublishBatchInput",
     members = {
         TopicArn = {
             type = "string",
@@ -1255,6 +1359,7 @@ M.PublishBatchInput = {
 
 M.BatchResultErrorEntry = {
     type = "structure",
+    id = "BatchResultErrorEntry",
     members = {
         Id = {
             type = "string",
@@ -1283,6 +1388,7 @@ M.BatchResultErrorEntry = {
 
 M.PublishBatchResultEntry = {
     type = "structure",
+    id = "PublishBatchResultEntry",
     members = {
         Id = {
             type = "string",
@@ -1298,6 +1404,7 @@ M.PublishBatchResultEntry = {
 
 M.PublishBatchOutput = {
     type = "structure",
+    id = "PublishBatchOutput",
     members = {
         Successful = {
             type = "list",
@@ -1312,6 +1419,7 @@ M.PublishBatchOutput = {
 
 M.TooManyEntriesInBatchRequestException = {
     type = "structure",
+    id = "TooManyEntriesInBatchRequestException",
     error = "client",
     members = {
         message = {
@@ -1322,6 +1430,7 @@ M.TooManyEntriesInBatchRequestException = {
 
 M.PutDataProtectionPolicyInput = {
     type = "structure",
+    id = "PutDataProtectionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1340,10 +1449,12 @@ M.PutDataProtectionPolicyInput = {
 
 M.PutDataProtectionPolicyOutput = {
     type = "structure",
+    id = "PutDataProtectionPolicyOutput",
 }
 
 M.RemovePermissionInput = {
     type = "structure",
+    id = "RemovePermissionInput",
     members = {
         TopicArn = {
             type = "string",
@@ -1362,10 +1473,12 @@ M.RemovePermissionInput = {
 
 M.RemovePermissionOutput = {
     type = "structure",
+    id = "RemovePermissionOutput",
 }
 
 M.SetEndpointAttributesInput = {
     type = "structure",
+    id = "SetEndpointAttributesInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -1386,10 +1499,12 @@ M.SetEndpointAttributesInput = {
 
 M.SetEndpointAttributesOutput = {
     type = "structure",
+    id = "SetEndpointAttributesOutput",
 }
 
 M.SetPlatformApplicationAttributesInput = {
     type = "structure",
+    id = "SetPlatformApplicationAttributesInput",
     members = {
         PlatformApplicationArn = {
             type = "string",
@@ -1410,10 +1525,12 @@ M.SetPlatformApplicationAttributesInput = {
 
 M.SetPlatformApplicationAttributesOutput = {
     type = "structure",
+    id = "SetPlatformApplicationAttributesOutput",
 }
 
 M.SetSMSAttributesInput = {
     type = "structure",
+    id = "SetSMSAttributesInput",
     members = {
         attributes = {
             type = "map",
@@ -1428,10 +1545,12 @@ M.SetSMSAttributesInput = {
 
 M.SetSMSAttributesOutput = {
     type = "structure",
+    id = "SetSMSAttributesOutput",
 }
 
 M.SetSubscriptionAttributesInput = {
     type = "structure",
+    id = "SetSubscriptionAttributesInput",
     members = {
         SubscriptionArn = {
             type = "string",
@@ -1453,10 +1572,12 @@ M.SetSubscriptionAttributesInput = {
 
 M.SetSubscriptionAttributesOutput = {
     type = "structure",
+    id = "SetSubscriptionAttributesOutput",
 }
 
 M.SetTopicAttributesInput = {
     type = "structure",
+    id = "SetTopicAttributesInput",
     members = {
         TopicArn = {
             type = "string",
@@ -1478,10 +1599,12 @@ M.SetTopicAttributesInput = {
 
 M.SetTopicAttributesOutput = {
     type = "structure",
+    id = "SetTopicAttributesOutput",
 }
 
 M.SubscribeInput = {
     type = "structure",
+    id = "SubscribeInput",
     members = {
         TopicArn = {
             type = "string",
@@ -1514,6 +1637,7 @@ M.SubscribeInput = {
 
 M.SubscribeOutput = {
     type = "structure",
+    id = "SubscribeOutput",
     members = {
         SubscriptionArn = {
             type = "string",
@@ -1523,6 +1647,7 @@ M.SubscribeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1542,10 +1667,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UnsubscribeInput = {
     type = "structure",
+    id = "UnsubscribeInput",
     members = {
         SubscriptionArn = {
             type = "string",
@@ -1558,10 +1685,12 @@ M.UnsubscribeInput = {
 
 M.UnsubscribeOutput = {
     type = "structure",
+    id = "UnsubscribeOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1581,10 +1710,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.VerificationException = {
     type = "structure",
+    id = "VerificationException",
     error = "client",
     members = {
         Message = {
@@ -1604,6 +1735,7 @@ M.VerificationException = {
 
 M.VerifySMSSandboxPhoneNumberInput = {
     type = "structure",
+    id = "VerifySMSSandboxPhoneNumberInput",
     members = {
         PhoneNumber = {
             type = "string",
@@ -1622,6 +1754,7 @@ M.VerifySMSSandboxPhoneNumberInput = {
 
 M.VerifySMSSandboxPhoneNumberOutput = {
     type = "structure",
+    id = "VerifySMSSandboxPhoneNumberOutput",
 }
 
 return M

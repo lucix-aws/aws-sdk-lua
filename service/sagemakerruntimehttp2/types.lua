@@ -2,6 +2,7 @@ local M = {}
 
 M.InputValidationError = {
     type = "structure",
+    id = "InputValidationError",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.InputValidationError = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -28,6 +30,7 @@ M.InternalServerError = {
 
 M.InternalStreamFailure = {
     type = "structure",
+    id = "InternalStreamFailure",
     error = "server",
     members = {
         Message = {
@@ -38,6 +41,7 @@ M.InternalStreamFailure = {
 
 M.RequestPayloadPart = {
     type = "structure",
+    id = "RequestPayloadPart",
     members = {
         Bytes = {
             type = "blob",
@@ -56,6 +60,7 @@ M.RequestPayloadPart = {
 
 M.RequestStreamEvent = {
     type = "union",
+    id = "RequestStreamEvent",
     members = {
         PayloadPart = M.RequestPayloadPart,
     },
@@ -63,6 +68,7 @@ M.RequestStreamEvent = {
 
 M.InvokeEndpointWithBidirectionalStreamInput = {
     type = "structure",
+    id = "InvokeEndpointWithBidirectionalStreamInput",
     members = {
         EndpointName = {
             type = "string",
@@ -98,6 +104,7 @@ M.InvokeEndpointWithBidirectionalStreamInput = {
 
 M.ModelStreamError = {
     type = "structure",
+    id = "ModelStreamError",
     error = "client",
     members = {
         Message = {
@@ -111,6 +118,7 @@ M.ModelStreamError = {
 
 M.ResponsePayloadPart = {
     type = "structure",
+    id = "ResponsePayloadPart",
     members = {
         Bytes = {
             type = "blob",
@@ -129,6 +137,7 @@ M.ResponsePayloadPart = {
 
 M.ResponseStreamEvent = {
     type = "union",
+    id = "ResponseStreamEvent",
     members = {
         PayloadPart = M.ResponsePayloadPart,
         ModelStreamError = M.ModelStreamError,
@@ -138,6 +147,7 @@ M.ResponseStreamEvent = {
 
 M.InvokeEndpointWithBidirectionalStreamOutput = {
     type = "structure",
+    id = "InvokeEndpointWithBidirectionalStreamOutput",
     members = {
         Body = setmetatable({ traits = {
             http_payload = true,
@@ -154,6 +164,7 @@ M.InvokeEndpointWithBidirectionalStreamOutput = {
 
 M.ModelError = {
     type = "structure",
+    id = "ModelError",
     error = "client",
     members = {
         Message = {
@@ -176,6 +187,7 @@ M.ModelError = {
 
 M.ServiceUnavailableError = {
     type = "structure",
+    id = "ServiceUnavailableError",
     error = "server",
     members = {
         Message = {

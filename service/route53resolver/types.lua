@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -23,6 +24,7 @@ M.MutationProtectionStatus = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -41,6 +43,7 @@ M.Tag = {
 
 M.AssociateFirewallRuleGroupInput = {
     type = "structure",
+    id = "AssociateFirewallRuleGroupInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -91,6 +94,7 @@ M.FirewallRuleGroupAssociationStatus = {
 
 M.FirewallRuleGroupAssociation = {
     type = "structure",
+    id = "FirewallRuleGroupAssociation",
     members = {
         Id = {
             type = "string",
@@ -136,6 +140,7 @@ M.FirewallRuleGroupAssociation = {
 
 M.AssociateFirewallRuleGroupOutput = {
     type = "structure",
+    id = "AssociateFirewallRuleGroupOutput",
     members = {
         FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
@@ -143,6 +148,7 @@ M.AssociateFirewallRuleGroupOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -153,6 +159,7 @@ M.ConflictException = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "client",
     members = {
         Message = {
@@ -163,6 +170,7 @@ M.InternalServiceErrorException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -176,6 +184,7 @@ M.LimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -189,6 +198,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -199,6 +209,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -209,6 +220,7 @@ M.ValidationException = {
 
 M.IpAddressUpdate = {
     type = "structure",
+    id = "IpAddressUpdate",
     members = {
         IpId = {
             type = "string",
@@ -227,6 +239,7 @@ M.IpAddressUpdate = {
 
 M.AssociateResolverEndpointIpAddressInput = {
     type = "structure",
+    id = "AssociateResolverEndpointIpAddressInput",
     members = {
         ResolverEndpointId = {
             type = "string",
@@ -269,6 +282,7 @@ M.ResolverEndpointStatus = {
 
 M.ResolverEndpoint = {
     type = "structure",
+    id = "ResolverEndpoint",
     members = {
         Id = {
             type = "string",
@@ -331,6 +345,7 @@ M.ResolverEndpoint = {
 
 M.AssociateResolverEndpointIpAddressOutput = {
     type = "structure",
+    id = "AssociateResolverEndpointIpAddressOutput",
     members = {
         ResolverEndpoint = M.ResolverEndpoint,
     },
@@ -338,6 +353,7 @@ M.AssociateResolverEndpointIpAddressOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -354,6 +370,7 @@ M.InvalidParameterException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -364,6 +381,7 @@ M.InvalidRequestException = {
 
 M.ResourceExistsException = {
     type = "structure",
+    id = "ResourceExistsException",
     error = "client",
     members = {
         Message = {
@@ -377,6 +395,7 @@ M.ResourceExistsException = {
 
 M.AssociateResolverQueryLogConfigInput = {
     type = "structure",
+    id = "AssociateResolverQueryLogConfigInput",
     members = {
         ResolverQueryLogConfigId = {
             type = "string",
@@ -410,6 +429,7 @@ M.ResolverQueryLogConfigAssociationStatus = {
 
 M.ResolverQueryLogConfigAssociation = {
     type = "structure",
+    id = "ResolverQueryLogConfigAssociation",
     members = {
         Id = {
             type = "string",
@@ -437,6 +457,7 @@ M.ResolverQueryLogConfigAssociation = {
 
 M.AssociateResolverQueryLogConfigOutput = {
     type = "structure",
+    id = "AssociateResolverQueryLogConfigOutput",
     members = {
         ResolverQueryLogConfigAssociation = M.ResolverQueryLogConfigAssociation,
     },
@@ -444,6 +465,7 @@ M.AssociateResolverQueryLogConfigOutput = {
 
 M.AssociateResolverRuleInput = {
     type = "structure",
+    id = "AssociateResolverRuleInput",
     members = {
         ResolverRuleId = {
             type = "string",
@@ -473,6 +495,7 @@ M.ResolverRuleAssociationStatus = {
 
 M.ResolverRuleAssociation = {
     type = "structure",
+    id = "ResolverRuleAssociation",
     members = {
         Id = {
             type = "string",
@@ -497,6 +520,7 @@ M.ResolverRuleAssociation = {
 
 M.AssociateResolverRuleOutput = {
     type = "structure",
+    id = "AssociateResolverRuleOutput",
     members = {
         ResolverRuleAssociation = M.ResolverRuleAssociation,
     },
@@ -504,6 +528,7 @@ M.AssociateResolverRuleOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -539,6 +564,7 @@ M.ConfidenceThreshold = {
 
 M.CreateFirewallDomainListInput = {
     type = "structure",
+    id = "CreateFirewallDomainListInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -570,6 +596,7 @@ M.FirewallDomainListStatus = {
 
 M.FirewallDomainList = {
     type = "structure",
+    id = "FirewallDomainList",
     members = {
         Id = {
             type = "string",
@@ -606,6 +633,7 @@ M.FirewallDomainList = {
 
 M.CreateFirewallDomainListOutput = {
     type = "structure",
+    id = "CreateFirewallDomainListOutput",
     members = {
         FirewallDomainList = M.FirewallDomainList,
     },
@@ -624,6 +652,7 @@ M.FirewallDomainRedirectionAction = {
 
 M.CreateFirewallRuleInput = {
     type = "structure",
+    id = "CreateFirewallRuleInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -688,6 +717,7 @@ M.CreateFirewallRuleInput = {
 
 M.FirewallRule = {
     type = "structure",
+    id = "FirewallRule",
     members = {
         FirewallRuleGroupId = {
             type = "string",
@@ -745,6 +775,7 @@ M.FirewallRule = {
 
 M.CreateFirewallRuleOutput = {
     type = "structure",
+    id = "CreateFirewallRuleOutput",
     members = {
         FirewallRule = M.FirewallRule,
     },
@@ -752,6 +783,7 @@ M.CreateFirewallRuleOutput = {
 
 M.CreateFirewallRuleGroupInput = {
     type = "structure",
+    id = "CreateFirewallRuleGroupInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -787,6 +819,7 @@ M.FirewallRuleGroupStatus = {
 
 M.FirewallRuleGroup = {
     type = "structure",
+    id = "FirewallRuleGroup",
     members = {
         Id = {
             type = "string",
@@ -826,6 +859,7 @@ M.FirewallRuleGroup = {
 
 M.CreateFirewallRuleGroupOutput = {
     type = "structure",
+    id = "CreateFirewallRuleGroupOutput",
     members = {
         FirewallRuleGroup = M.FirewallRuleGroup,
     },
@@ -833,6 +867,7 @@ M.CreateFirewallRuleGroupOutput = {
 
 M.CreateOutpostResolverInput = {
     type = "structure",
+    id = "CreateOutpostResolverInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -880,6 +915,7 @@ M.OutpostResolverStatus = {
 
 M.OutpostResolver = {
     type = "structure",
+    id = "OutpostResolver",
     members = {
         Arn = {
             type = "string",
@@ -919,6 +955,7 @@ M.OutpostResolver = {
 
 M.CreateOutpostResolverOutput = {
     type = "structure",
+    id = "CreateOutpostResolverOutput",
     members = {
         OutpostResolver = M.OutpostResolver,
     },
@@ -926,6 +963,7 @@ M.CreateOutpostResolverOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -936,6 +974,7 @@ M.ServiceQuotaExceededException = {
 
 M.IpAddressRequest = {
     type = "structure",
+    id = "IpAddressRequest",
     members = {
         SubnetId = {
             type = "string",
@@ -954,6 +993,7 @@ M.IpAddressRequest = {
 
 M.CreateResolverEndpointInput = {
     type = "structure",
+    id = "CreateResolverEndpointInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -1012,6 +1052,7 @@ M.CreateResolverEndpointInput = {
 
 M.CreateResolverEndpointOutput = {
     type = "structure",
+    id = "CreateResolverEndpointOutput",
     members = {
         ResolverEndpoint = M.ResolverEndpoint,
     },
@@ -1019,6 +1060,7 @@ M.CreateResolverEndpointOutput = {
 
 M.CreateResolverQueryLogConfigInput = {
     type = "structure",
+    id = "CreateResolverQueryLogConfigInput",
     members = {
         Name = {
             type = "string",
@@ -1055,6 +1097,7 @@ M.ResolverQueryLogConfigStatus = {
 
 M.ResolverQueryLogConfig = {
     type = "structure",
+    id = "ResolverQueryLogConfig",
     members = {
         Id = {
             type = "string",
@@ -1094,6 +1137,7 @@ M.ResolverQueryLogConfig = {
 
 M.CreateResolverQueryLogConfigOutput = {
     type = "structure",
+    id = "CreateResolverQueryLogConfigOutput",
     members = {
         ResolverQueryLogConfig = M.ResolverQueryLogConfig,
     },
@@ -1108,6 +1152,7 @@ M.RuleTypeOption = {
 
 M.TargetAddress = {
     type = "structure",
+    id = "TargetAddress",
     members = {
         Ip = {
             type = "string",
@@ -1129,6 +1174,7 @@ M.TargetAddress = {
 
 M.CreateResolverRuleInput = {
     type = "structure",
+    id = "CreateResolverRuleInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -1174,6 +1220,7 @@ M.ResolverRuleStatus = {
 
 M.ResolverRule = {
     type = "structure",
+    id = "ResolverRule",
     members = {
         Id = {
             type = "string",
@@ -1226,6 +1273,7 @@ M.ResolverRule = {
 
 M.CreateResolverRuleOutput = {
     type = "structure",
+    id = "CreateResolverRuleOutput",
     members = {
         ResolverRule = M.ResolverRule,
     },
@@ -1233,6 +1281,7 @@ M.CreateResolverRuleOutput = {
 
 M.DeleteFirewallDomainListInput = {
     type = "structure",
+    id = "DeleteFirewallDomainListInput",
     members = {
         FirewallDomainListId = {
             type = "string",
@@ -1245,6 +1294,7 @@ M.DeleteFirewallDomainListInput = {
 
 M.DeleteFirewallDomainListOutput = {
     type = "structure",
+    id = "DeleteFirewallDomainListOutput",
     members = {
         FirewallDomainList = M.FirewallDomainList,
     },
@@ -1252,6 +1302,7 @@ M.DeleteFirewallDomainListOutput = {
 
 M.DeleteFirewallRuleInput = {
     type = "structure",
+    id = "DeleteFirewallRuleInput",
     members = {
         FirewallRuleGroupId = {
             type = "string",
@@ -1273,6 +1324,7 @@ M.DeleteFirewallRuleInput = {
 
 M.DeleteFirewallRuleOutput = {
     type = "structure",
+    id = "DeleteFirewallRuleOutput",
     members = {
         FirewallRule = M.FirewallRule,
     },
@@ -1280,6 +1332,7 @@ M.DeleteFirewallRuleOutput = {
 
 M.DeleteFirewallRuleGroupInput = {
     type = "structure",
+    id = "DeleteFirewallRuleGroupInput",
     members = {
         FirewallRuleGroupId = {
             type = "string",
@@ -1292,6 +1345,7 @@ M.DeleteFirewallRuleGroupInput = {
 
 M.DeleteFirewallRuleGroupOutput = {
     type = "structure",
+    id = "DeleteFirewallRuleGroupOutput",
     members = {
         FirewallRuleGroup = M.FirewallRuleGroup,
     },
@@ -1299,6 +1353,7 @@ M.DeleteFirewallRuleGroupOutput = {
 
 M.DeleteOutpostResolverInput = {
     type = "structure",
+    id = "DeleteOutpostResolverInput",
     members = {
         Id = {
             type = "string",
@@ -1311,6 +1366,7 @@ M.DeleteOutpostResolverInput = {
 
 M.DeleteOutpostResolverOutput = {
     type = "structure",
+    id = "DeleteOutpostResolverOutput",
     members = {
         OutpostResolver = M.OutpostResolver,
     },
@@ -1318,6 +1374,7 @@ M.DeleteOutpostResolverOutput = {
 
 M.DeleteResolverEndpointInput = {
     type = "structure",
+    id = "DeleteResolverEndpointInput",
     members = {
         ResolverEndpointId = {
             type = "string",
@@ -1330,6 +1387,7 @@ M.DeleteResolverEndpointInput = {
 
 M.DeleteResolverEndpointOutput = {
     type = "structure",
+    id = "DeleteResolverEndpointOutput",
     members = {
         ResolverEndpoint = M.ResolverEndpoint,
     },
@@ -1337,6 +1395,7 @@ M.DeleteResolverEndpointOutput = {
 
 M.DeleteResolverQueryLogConfigInput = {
     type = "structure",
+    id = "DeleteResolverQueryLogConfigInput",
     members = {
         ResolverQueryLogConfigId = {
             type = "string",
@@ -1349,6 +1408,7 @@ M.DeleteResolverQueryLogConfigInput = {
 
 M.DeleteResolverQueryLogConfigOutput = {
     type = "structure",
+    id = "DeleteResolverQueryLogConfigOutput",
     members = {
         ResolverQueryLogConfig = M.ResolverQueryLogConfig,
     },
@@ -1356,6 +1416,7 @@ M.DeleteResolverQueryLogConfigOutput = {
 
 M.DeleteResolverRuleInput = {
     type = "structure",
+    id = "DeleteResolverRuleInput",
     members = {
         ResolverRuleId = {
             type = "string",
@@ -1368,6 +1429,7 @@ M.DeleteResolverRuleInput = {
 
 M.DeleteResolverRuleOutput = {
     type = "structure",
+    id = "DeleteResolverRuleOutput",
     members = {
         ResolverRule = M.ResolverRule,
     },
@@ -1375,6 +1437,7 @@ M.DeleteResolverRuleOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -1388,6 +1451,7 @@ M.ResourceInUseException = {
 
 M.DisassociateFirewallRuleGroupInput = {
     type = "structure",
+    id = "DisassociateFirewallRuleGroupInput",
     members = {
         FirewallRuleGroupAssociationId = {
             type = "string",
@@ -1400,6 +1464,7 @@ M.DisassociateFirewallRuleGroupInput = {
 
 M.DisassociateFirewallRuleGroupOutput = {
     type = "structure",
+    id = "DisassociateFirewallRuleGroupOutput",
     members = {
         FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
@@ -1407,6 +1472,7 @@ M.DisassociateFirewallRuleGroupOutput = {
 
 M.DisassociateResolverEndpointIpAddressInput = {
     type = "structure",
+    id = "DisassociateResolverEndpointIpAddressInput",
     members = {
         ResolverEndpointId = {
             type = "string",
@@ -1422,6 +1488,7 @@ M.DisassociateResolverEndpointIpAddressInput = {
 
 M.DisassociateResolverEndpointIpAddressOutput = {
     type = "structure",
+    id = "DisassociateResolverEndpointIpAddressOutput",
     members = {
         ResolverEndpoint = M.ResolverEndpoint,
     },
@@ -1429,6 +1496,7 @@ M.DisassociateResolverEndpointIpAddressOutput = {
 
 M.DisassociateResolverQueryLogConfigInput = {
     type = "structure",
+    id = "DisassociateResolverQueryLogConfigInput",
     members = {
         ResolverQueryLogConfigId = {
             type = "string",
@@ -1447,6 +1515,7 @@ M.DisassociateResolverQueryLogConfigInput = {
 
 M.DisassociateResolverQueryLogConfigOutput = {
     type = "structure",
+    id = "DisassociateResolverQueryLogConfigOutput",
     members = {
         ResolverQueryLogConfigAssociation = M.ResolverQueryLogConfigAssociation,
     },
@@ -1454,6 +1523,7 @@ M.DisassociateResolverQueryLogConfigOutput = {
 
 M.DisassociateResolverRuleInput = {
     type = "structure",
+    id = "DisassociateResolverRuleInput",
     members = {
         VPCId = {
             type = "string",
@@ -1472,6 +1542,7 @@ M.DisassociateResolverRuleInput = {
 
 M.DisassociateResolverRuleOutput = {
     type = "structure",
+    id = "DisassociateResolverRuleOutput",
     members = {
         ResolverRuleAssociation = M.ResolverRuleAssociation,
     },
@@ -1479,6 +1550,7 @@ M.DisassociateResolverRuleOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -1498,6 +1570,7 @@ M.FirewallFailOpenStatus = {
 
 M.FirewallConfig = {
     type = "structure",
+    id = "FirewallConfig",
     members = {
         Id = {
             type = "string",
@@ -1520,6 +1593,7 @@ M.FirewallDomainImportOperation = {
 
 M.FirewallDomainListMetadata = {
     type = "structure",
+    id = "FirewallDomainListMetadata",
     members = {
         Id = {
             type = "string",
@@ -1547,6 +1621,7 @@ M.FirewallDomainUpdateOperation = {
 
 M.FirewallRuleGroupMetadata = {
     type = "structure",
+    id = "FirewallRuleGroupMetadata",
     members = {
         Id = {
             type = "string",
@@ -1571,6 +1646,7 @@ M.FirewallRuleGroupMetadata = {
 
 M.GetFirewallConfigInput = {
     type = "structure",
+    id = "GetFirewallConfigInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1583,6 +1659,7 @@ M.GetFirewallConfigInput = {
 
 M.GetFirewallConfigOutput = {
     type = "structure",
+    id = "GetFirewallConfigOutput",
     members = {
         FirewallConfig = M.FirewallConfig,
     },
@@ -1590,6 +1667,7 @@ M.GetFirewallConfigOutput = {
 
 M.GetFirewallDomainListInput = {
     type = "structure",
+    id = "GetFirewallDomainListInput",
     members = {
         FirewallDomainListId = {
             type = "string",
@@ -1602,6 +1680,7 @@ M.GetFirewallDomainListInput = {
 
 M.GetFirewallDomainListOutput = {
     type = "structure",
+    id = "GetFirewallDomainListOutput",
     members = {
         FirewallDomainList = M.FirewallDomainList,
     },
@@ -1609,6 +1688,7 @@ M.GetFirewallDomainListOutput = {
 
 M.GetFirewallRuleGroupInput = {
     type = "structure",
+    id = "GetFirewallRuleGroupInput",
     members = {
         FirewallRuleGroupId = {
             type = "string",
@@ -1621,6 +1701,7 @@ M.GetFirewallRuleGroupInput = {
 
 M.GetFirewallRuleGroupOutput = {
     type = "structure",
+    id = "GetFirewallRuleGroupOutput",
     members = {
         FirewallRuleGroup = M.FirewallRuleGroup,
     },
@@ -1628,6 +1709,7 @@ M.GetFirewallRuleGroupOutput = {
 
 M.GetFirewallRuleGroupAssociationInput = {
     type = "structure",
+    id = "GetFirewallRuleGroupAssociationInput",
     members = {
         FirewallRuleGroupAssociationId = {
             type = "string",
@@ -1640,6 +1722,7 @@ M.GetFirewallRuleGroupAssociationInput = {
 
 M.GetFirewallRuleGroupAssociationOutput = {
     type = "structure",
+    id = "GetFirewallRuleGroupAssociationOutput",
     members = {
         FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
@@ -1647,6 +1730,7 @@ M.GetFirewallRuleGroupAssociationOutput = {
 
 M.GetFirewallRuleGroupPolicyInput = {
     type = "structure",
+    id = "GetFirewallRuleGroupPolicyInput",
     members = {
         Arn = {
             type = "string",
@@ -1659,6 +1743,7 @@ M.GetFirewallRuleGroupPolicyInput = {
 
 M.GetFirewallRuleGroupPolicyOutput = {
     type = "structure",
+    id = "GetFirewallRuleGroupPolicyOutput",
     members = {
         FirewallRuleGroupPolicy = {
             type = "string",
@@ -1668,6 +1753,7 @@ M.GetFirewallRuleGroupPolicyOutput = {
 
 M.GetOutpostResolverInput = {
     type = "structure",
+    id = "GetOutpostResolverInput",
     members = {
         Id = {
             type = "string",
@@ -1680,6 +1766,7 @@ M.GetOutpostResolverInput = {
 
 M.GetOutpostResolverOutput = {
     type = "structure",
+    id = "GetOutpostResolverOutput",
     members = {
         OutpostResolver = M.OutpostResolver,
     },
@@ -1687,6 +1774,7 @@ M.GetOutpostResolverOutput = {
 
 M.GetResolverConfigInput = {
     type = "structure",
+    id = "GetResolverConfigInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1708,6 +1796,7 @@ M.ResolverAutodefinedReverseStatus = {
 
 M.ResolverConfig = {
     type = "structure",
+    id = "ResolverConfig",
     members = {
         Id = {
             type = "string",
@@ -1726,6 +1815,7 @@ M.ResolverConfig = {
 
 M.GetResolverConfigOutput = {
     type = "structure",
+    id = "GetResolverConfigOutput",
     members = {
         ResolverConfig = M.ResolverConfig,
     },
@@ -1733,6 +1823,7 @@ M.GetResolverConfigOutput = {
 
 M.GetResolverDnssecConfigInput = {
     type = "structure",
+    id = "GetResolverDnssecConfigInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1754,6 +1845,7 @@ M.ResolverDNSSECValidationStatus = {
 
 M.ResolverDnssecConfig = {
     type = "structure",
+    id = "ResolverDnssecConfig",
     members = {
         Id = {
             type = "string",
@@ -1772,6 +1864,7 @@ M.ResolverDnssecConfig = {
 
 M.GetResolverDnssecConfigOutput = {
     type = "structure",
+    id = "GetResolverDnssecConfigOutput",
     members = {
         ResolverDNSSECConfig = M.ResolverDnssecConfig,
     },
@@ -1779,6 +1872,7 @@ M.GetResolverDnssecConfigOutput = {
 
 M.GetResolverEndpointInput = {
     type = "structure",
+    id = "GetResolverEndpointInput",
     members = {
         ResolverEndpointId = {
             type = "string",
@@ -1791,6 +1885,7 @@ M.GetResolverEndpointInput = {
 
 M.GetResolverEndpointOutput = {
     type = "structure",
+    id = "GetResolverEndpointOutput",
     members = {
         ResolverEndpoint = M.ResolverEndpoint,
     },
@@ -1798,6 +1893,7 @@ M.GetResolverEndpointOutput = {
 
 M.GetResolverQueryLogConfigInput = {
     type = "structure",
+    id = "GetResolverQueryLogConfigInput",
     members = {
         ResolverQueryLogConfigId = {
             type = "string",
@@ -1810,6 +1906,7 @@ M.GetResolverQueryLogConfigInput = {
 
 M.GetResolverQueryLogConfigOutput = {
     type = "structure",
+    id = "GetResolverQueryLogConfigOutput",
     members = {
         ResolverQueryLogConfig = M.ResolverQueryLogConfig,
     },
@@ -1817,6 +1914,7 @@ M.GetResolverQueryLogConfigOutput = {
 
 M.GetResolverQueryLogConfigAssociationInput = {
     type = "structure",
+    id = "GetResolverQueryLogConfigAssociationInput",
     members = {
         ResolverQueryLogConfigAssociationId = {
             type = "string",
@@ -1829,6 +1927,7 @@ M.GetResolverQueryLogConfigAssociationInput = {
 
 M.GetResolverQueryLogConfigAssociationOutput = {
     type = "structure",
+    id = "GetResolverQueryLogConfigAssociationOutput",
     members = {
         ResolverQueryLogConfigAssociation = M.ResolverQueryLogConfigAssociation,
     },
@@ -1836,6 +1935,7 @@ M.GetResolverQueryLogConfigAssociationOutput = {
 
 M.GetResolverQueryLogConfigPolicyInput = {
     type = "structure",
+    id = "GetResolverQueryLogConfigPolicyInput",
     members = {
         Arn = {
             type = "string",
@@ -1848,6 +1948,7 @@ M.GetResolverQueryLogConfigPolicyInput = {
 
 M.GetResolverQueryLogConfigPolicyOutput = {
     type = "structure",
+    id = "GetResolverQueryLogConfigPolicyOutput",
     members = {
         ResolverQueryLogConfigPolicy = {
             type = "string",
@@ -1857,6 +1958,7 @@ M.GetResolverQueryLogConfigPolicyOutput = {
 
 M.UnknownResourceException = {
     type = "structure",
+    id = "UnknownResourceException",
     error = "client",
     members = {
         Message = {
@@ -1867,6 +1969,7 @@ M.UnknownResourceException = {
 
 M.GetResolverRuleInput = {
     type = "structure",
+    id = "GetResolverRuleInput",
     members = {
         ResolverRuleId = {
             type = "string",
@@ -1879,6 +1982,7 @@ M.GetResolverRuleInput = {
 
 M.GetResolverRuleOutput = {
     type = "structure",
+    id = "GetResolverRuleOutput",
     members = {
         ResolverRule = M.ResolverRule,
     },
@@ -1886,6 +1990,7 @@ M.GetResolverRuleOutput = {
 
 M.GetResolverRuleAssociationInput = {
     type = "structure",
+    id = "GetResolverRuleAssociationInput",
     members = {
         ResolverRuleAssociationId = {
             type = "string",
@@ -1898,6 +2003,7 @@ M.GetResolverRuleAssociationInput = {
 
 M.GetResolverRuleAssociationOutput = {
     type = "structure",
+    id = "GetResolverRuleAssociationOutput",
     members = {
         ResolverRuleAssociation = M.ResolverRuleAssociation,
     },
@@ -1905,6 +2011,7 @@ M.GetResolverRuleAssociationOutput = {
 
 M.GetResolverRulePolicyInput = {
     type = "structure",
+    id = "GetResolverRulePolicyInput",
     members = {
         Arn = {
             type = "string",
@@ -1917,6 +2024,7 @@ M.GetResolverRulePolicyInput = {
 
 M.GetResolverRulePolicyOutput = {
     type = "structure",
+    id = "GetResolverRulePolicyOutput",
     members = {
         ResolverRulePolicy = {
             type = "string",
@@ -1926,6 +2034,7 @@ M.GetResolverRulePolicyOutput = {
 
 M.ImportFirewallDomainsInput = {
     type = "structure",
+    id = "ImportFirewallDomainsInput",
     members = {
         FirewallDomainListId = {
             type = "string",
@@ -1950,6 +2059,7 @@ M.ImportFirewallDomainsInput = {
 
 M.ImportFirewallDomainsOutput = {
     type = "structure",
+    id = "ImportFirewallDomainsOutput",
     members = {
         Id = {
             type = "string",
@@ -1968,6 +2078,7 @@ M.ImportFirewallDomainsOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -1978,6 +2089,7 @@ M.InvalidNextTokenException = {
 
 M.InvalidPolicyDocument = {
     type = "structure",
+    id = "InvalidPolicyDocument",
     error = "client",
     members = {
         Message = {
@@ -1988,6 +2100,7 @@ M.InvalidPolicyDocument = {
 
 M.InvalidTagException = {
     type = "structure",
+    id = "InvalidTagException",
     error = "client",
     members = {
         Message = {
@@ -2014,6 +2127,7 @@ M.IpAddressStatus = {
 
 M.IpAddressResponse = {
     type = "structure",
+    id = "IpAddressResponse",
     members = {
         IpId = {
             type = "string",
@@ -2044,6 +2158,7 @@ M.IpAddressResponse = {
 
 M.ListFirewallConfigsInput = {
     type = "structure",
+    id = "ListFirewallConfigsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2056,6 +2171,7 @@ M.ListFirewallConfigsInput = {
 
 M.ListFirewallConfigsOutput = {
     type = "structure",
+    id = "ListFirewallConfigsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2069,6 +2185,7 @@ M.ListFirewallConfigsOutput = {
 
 M.ListFirewallDomainListsInput = {
     type = "structure",
+    id = "ListFirewallDomainListsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2081,6 +2198,7 @@ M.ListFirewallDomainListsInput = {
 
 M.ListFirewallDomainListsOutput = {
     type = "structure",
+    id = "ListFirewallDomainListsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2094,6 +2212,7 @@ M.ListFirewallDomainListsOutput = {
 
 M.ListFirewallDomainsInput = {
     type = "structure",
+    id = "ListFirewallDomainsInput",
     members = {
         FirewallDomainListId = {
             type = "string",
@@ -2112,6 +2231,7 @@ M.ListFirewallDomainsInput = {
 
 M.ListFirewallDomainsOutput = {
     type = "structure",
+    id = "ListFirewallDomainsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2125,6 +2245,7 @@ M.ListFirewallDomainsOutput = {
 
 M.ListFirewallRuleGroupAssociationsInput = {
     type = "structure",
+    id = "ListFirewallRuleGroupAssociationsInput",
     members = {
         FirewallRuleGroupId = {
             type = "string",
@@ -2149,6 +2270,7 @@ M.ListFirewallRuleGroupAssociationsInput = {
 
 M.ListFirewallRuleGroupAssociationsOutput = {
     type = "structure",
+    id = "ListFirewallRuleGroupAssociationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2162,6 +2284,7 @@ M.ListFirewallRuleGroupAssociationsOutput = {
 
 M.ListFirewallRuleGroupsInput = {
     type = "structure",
+    id = "ListFirewallRuleGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2174,6 +2297,7 @@ M.ListFirewallRuleGroupsInput = {
 
 M.ListFirewallRuleGroupsOutput = {
     type = "structure",
+    id = "ListFirewallRuleGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2187,6 +2311,7 @@ M.ListFirewallRuleGroupsOutput = {
 
 M.ListFirewallRulesInput = {
     type = "structure",
+    id = "ListFirewallRulesInput",
     members = {
         FirewallRuleGroupId = {
             type = "string",
@@ -2211,6 +2336,7 @@ M.ListFirewallRulesInput = {
 
 M.ListFirewallRulesOutput = {
     type = "structure",
+    id = "ListFirewallRulesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2224,6 +2350,7 @@ M.ListFirewallRulesOutput = {
 
 M.ListOutpostResolversInput = {
     type = "structure",
+    id = "ListOutpostResolversInput",
     members = {
         OutpostArn = {
             type = "string",
@@ -2239,6 +2366,7 @@ M.ListOutpostResolversInput = {
 
 M.ListOutpostResolversOutput = {
     type = "structure",
+    id = "ListOutpostResolversOutput",
     members = {
         OutpostResolvers = {
             type = "list",
@@ -2252,6 +2380,7 @@ M.ListOutpostResolversOutput = {
 
 M.ListResolverConfigsInput = {
     type = "structure",
+    id = "ListResolverConfigsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2264,6 +2393,7 @@ M.ListResolverConfigsInput = {
 
 M.ListResolverConfigsOutput = {
     type = "structure",
+    id = "ListResolverConfigsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2277,6 +2407,7 @@ M.ListResolverConfigsOutput = {
 
 M.ListResolverDnssecConfigsInput = {
     type = "structure",
+    id = "ListResolverDnssecConfigsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2293,6 +2424,7 @@ M.ListResolverDnssecConfigsInput = {
 
 M.ListResolverDnssecConfigsOutput = {
     type = "structure",
+    id = "ListResolverDnssecConfigsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2306,6 +2438,7 @@ M.ListResolverDnssecConfigsOutput = {
 
 M.ListResolverEndpointIpAddressesInput = {
     type = "structure",
+    id = "ListResolverEndpointIpAddressesInput",
     members = {
         ResolverEndpointId = {
             type = "string",
@@ -2324,6 +2457,7 @@ M.ListResolverEndpointIpAddressesInput = {
 
 M.ListResolverEndpointIpAddressesOutput = {
     type = "structure",
+    id = "ListResolverEndpointIpAddressesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2340,6 +2474,7 @@ M.ListResolverEndpointIpAddressesOutput = {
 
 M.ListResolverEndpointsInput = {
     type = "structure",
+    id = "ListResolverEndpointsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2356,6 +2491,7 @@ M.ListResolverEndpointsInput = {
 
 M.ListResolverEndpointsOutput = {
     type = "structure",
+    id = "ListResolverEndpointsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2377,6 +2513,7 @@ M.SortOrder = {
 
 M.ListResolverQueryLogConfigAssociationsInput = {
     type = "structure",
+    id = "ListResolverQueryLogConfigAssociationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2399,6 +2536,7 @@ M.ListResolverQueryLogConfigAssociationsInput = {
 
 M.ListResolverQueryLogConfigAssociationsOutput = {
     type = "structure",
+    id = "ListResolverQueryLogConfigAssociationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2424,6 +2562,7 @@ M.ListResolverQueryLogConfigAssociationsOutput = {
 
 M.ListResolverQueryLogConfigsInput = {
     type = "structure",
+    id = "ListResolverQueryLogConfigsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2446,6 +2585,7 @@ M.ListResolverQueryLogConfigsInput = {
 
 M.ListResolverQueryLogConfigsOutput = {
     type = "structure",
+    id = "ListResolverQueryLogConfigsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2471,6 +2611,7 @@ M.ListResolverQueryLogConfigsOutput = {
 
 M.ListResolverRuleAssociationsInput = {
     type = "structure",
+    id = "ListResolverRuleAssociationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2487,6 +2628,7 @@ M.ListResolverRuleAssociationsInput = {
 
 M.ListResolverRuleAssociationsOutput = {
     type = "structure",
+    id = "ListResolverRuleAssociationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2503,6 +2645,7 @@ M.ListResolverRuleAssociationsOutput = {
 
 M.ListResolverRulesInput = {
     type = "structure",
+    id = "ListResolverRulesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2519,6 +2662,7 @@ M.ListResolverRulesInput = {
 
 M.ListResolverRulesOutput = {
     type = "structure",
+    id = "ListResolverRulesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2535,6 +2679,7 @@ M.ListResolverRulesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2553,6 +2698,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2566,6 +2712,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutFirewallRuleGroupPolicyInput = {
     type = "structure",
+    id = "PutFirewallRuleGroupPolicyInput",
     members = {
         Arn = {
             type = "string",
@@ -2584,6 +2731,7 @@ M.PutFirewallRuleGroupPolicyInput = {
 
 M.PutFirewallRuleGroupPolicyOutput = {
     type = "structure",
+    id = "PutFirewallRuleGroupPolicyOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -2596,6 +2744,7 @@ M.PutFirewallRuleGroupPolicyOutput = {
 
 M.PutResolverQueryLogConfigPolicyInput = {
     type = "structure",
+    id = "PutResolverQueryLogConfigPolicyInput",
     members = {
         Arn = {
             type = "string",
@@ -2614,6 +2763,7 @@ M.PutResolverQueryLogConfigPolicyInput = {
 
 M.PutResolverQueryLogConfigPolicyOutput = {
     type = "structure",
+    id = "PutResolverQueryLogConfigPolicyOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -2626,6 +2776,7 @@ M.PutResolverQueryLogConfigPolicyOutput = {
 
 M.PutResolverRulePolicyInput = {
     type = "structure",
+    id = "PutResolverRulePolicyInput",
     members = {
         Arn = {
             type = "string",
@@ -2644,6 +2795,7 @@ M.PutResolverRulePolicyInput = {
 
 M.PutResolverRulePolicyOutput = {
     type = "structure",
+    id = "PutResolverRulePolicyOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -2656,6 +2808,7 @@ M.PutResolverRulePolicyOutput = {
 
 M.ResolverRuleConfig = {
     type = "structure",
+    id = "ResolverRuleConfig",
     members = {
         Name = {
             type = "string",
@@ -2672,6 +2825,7 @@ M.ResolverRuleConfig = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2691,10 +2845,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2714,10 +2870,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateFirewallConfigInput = {
     type = "structure",
+    id = "UpdateFirewallConfigInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2736,6 +2894,7 @@ M.UpdateFirewallConfigInput = {
 
 M.UpdateFirewallConfigOutput = {
     type = "structure",
+    id = "UpdateFirewallConfigOutput",
     members = {
         FirewallConfig = M.FirewallConfig,
     },
@@ -2743,6 +2902,7 @@ M.UpdateFirewallConfigOutput = {
 
 M.UpdateFirewallDomainsInput = {
     type = "structure",
+    id = "UpdateFirewallDomainsInput",
     members = {
         FirewallDomainListId = {
             type = "string",
@@ -2768,6 +2928,7 @@ M.UpdateFirewallDomainsInput = {
 
 M.UpdateFirewallDomainsOutput = {
     type = "structure",
+    id = "UpdateFirewallDomainsOutput",
     members = {
         Id = {
             type = "string",
@@ -2786,6 +2947,7 @@ M.UpdateFirewallDomainsOutput = {
 
 M.UpdateFirewallRuleInput = {
     type = "structure",
+    id = "UpdateFirewallRuleInput",
     members = {
         FirewallRuleGroupId = {
             type = "string",
@@ -2837,6 +2999,7 @@ M.UpdateFirewallRuleInput = {
 
 M.UpdateFirewallRuleOutput = {
     type = "structure",
+    id = "UpdateFirewallRuleOutput",
     members = {
         FirewallRule = M.FirewallRule,
     },
@@ -2844,6 +3007,7 @@ M.UpdateFirewallRuleOutput = {
 
 M.UpdateFirewallRuleGroupAssociationInput = {
     type = "structure",
+    id = "UpdateFirewallRuleGroupAssociationInput",
     members = {
         FirewallRuleGroupAssociationId = {
             type = "string",
@@ -2865,6 +3029,7 @@ M.UpdateFirewallRuleGroupAssociationInput = {
 
 M.UpdateFirewallRuleGroupAssociationOutput = {
     type = "structure",
+    id = "UpdateFirewallRuleGroupAssociationOutput",
     members = {
         FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
@@ -2872,6 +3037,7 @@ M.UpdateFirewallRuleGroupAssociationOutput = {
 
 M.UpdateOutpostResolverInput = {
     type = "structure",
+    id = "UpdateOutpostResolverInput",
     members = {
         Id = {
             type = "string",
@@ -2893,6 +3059,7 @@ M.UpdateOutpostResolverInput = {
 
 M.UpdateOutpostResolverOutput = {
     type = "structure",
+    id = "UpdateOutpostResolverOutput",
     members = {
         OutpostResolver = M.OutpostResolver,
     },
@@ -2900,6 +3067,7 @@ M.UpdateOutpostResolverOutput = {
 
 M.UpdateResolverConfigInput = {
     type = "structure",
+    id = "UpdateResolverConfigInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2918,6 +3086,7 @@ M.UpdateResolverConfigInput = {
 
 M.UpdateResolverConfigOutput = {
     type = "structure",
+    id = "UpdateResolverConfigOutput",
     members = {
         ResolverConfig = M.ResolverConfig,
     },
@@ -2931,6 +3100,7 @@ M.Validation = {
 
 M.UpdateResolverDnssecConfigInput = {
     type = "structure",
+    id = "UpdateResolverDnssecConfigInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2949,6 +3119,7 @@ M.UpdateResolverDnssecConfigInput = {
 
 M.UpdateResolverDnssecConfigOutput = {
     type = "structure",
+    id = "UpdateResolverDnssecConfigOutput",
     members = {
         ResolverDNSSECConfig = M.ResolverDnssecConfig,
     },
@@ -2956,6 +3127,7 @@ M.UpdateResolverDnssecConfigOutput = {
 
 M.UpdateIpAddress = {
     type = "structure",
+    id = "UpdateIpAddress",
     members = {
         IpId = {
             type = "string",
@@ -2974,6 +3146,7 @@ M.UpdateIpAddress = {
 
 M.UpdateResolverEndpointInput = {
     type = "structure",
+    id = "UpdateResolverEndpointInput",
     members = {
         ResolverEndpointId = {
             type = "string",
@@ -3006,6 +3179,7 @@ M.UpdateResolverEndpointInput = {
 
 M.UpdateResolverEndpointOutput = {
     type = "structure",
+    id = "UpdateResolverEndpointOutput",
     members = {
         ResolverEndpoint = M.ResolverEndpoint,
     },
@@ -3013,6 +3187,7 @@ M.UpdateResolverEndpointOutput = {
 
 M.UpdateResolverRuleInput = {
     type = "structure",
+    id = "UpdateResolverRuleInput",
     members = {
         ResolverRuleId = {
             type = "string",
@@ -3028,6 +3203,7 @@ M.UpdateResolverRuleInput = {
 
 M.UpdateResolverRuleOutput = {
     type = "structure",
+    id = "UpdateResolverRuleOutput",
     members = {
         ResolverRule = M.ResolverRule,
     },

@@ -2,6 +2,7 @@ local M = {}
 
 M.PredictedAction = {
     type = "structure",
+    id = "PredictedAction",
     members = {
         actionId = {
             type = "string",
@@ -14,6 +15,7 @@ M.PredictedAction = {
 
 M.GetActionRecommendationsInput = {
     type = "structure",
+    id = "GetActionRecommendationsInput",
     members = {
         campaignArn = {
             type = "string",
@@ -40,6 +42,7 @@ M.GetActionRecommendationsInput = {
 
 M.GetActionRecommendationsOutput = {
     type = "structure",
+    id = "GetActionRecommendationsOutput",
     members = {
         actionList = {
             type = "list",
@@ -53,6 +56,7 @@ M.GetActionRecommendationsOutput = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -63,6 +67,7 @@ M.InvalidInputException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -73,6 +78,7 @@ M.ResourceNotFoundException = {
 
 M.GetPersonalizedRankingInput = {
     type = "structure",
+    id = "GetPersonalizedRankingInput",
     members = {
         campaignArn = {
             type = "string",
@@ -116,6 +122,7 @@ M.GetPersonalizedRankingInput = {
 
 M.PredictedItem = {
     type = "structure",
+    id = "PredictedItem",
     members = {
         itemId = {
             type = "string",
@@ -140,6 +147,7 @@ M.PredictedItem = {
 
 M.GetPersonalizedRankingOutput = {
     type = "structure",
+    id = "GetPersonalizedRankingOutput",
     members = {
         personalizedRanking = {
             type = "list",
@@ -153,6 +161,7 @@ M.GetPersonalizedRankingOutput = {
 
 M.Promotion = {
     type = "structure",
+    id = "Promotion",
     members = {
         name = {
             type = "string",
@@ -173,6 +182,7 @@ M.Promotion = {
 
 M.GetRecommendationsInput = {
     type = "structure",
+    id = "GetRecommendationsInput",
     members = {
         campaignArn = {
             type = "string",
@@ -219,6 +229,7 @@ M.GetRecommendationsInput = {
 
 M.GetRecommendationsOutput = {
     type = "structure",
+    id = "GetRecommendationsOutput",
     members = {
         itemList = {
             type = "list",

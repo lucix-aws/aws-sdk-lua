@@ -2,6 +2,7 @@ local M = {}
 
 M.Access = {
     type = "structure",
+    id = "Access",
     members = {
         actions = {
             type = "list",
@@ -22,6 +23,7 @@ M.Access = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -35,6 +37,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -60,6 +63,7 @@ M.ConflictException = {
 
 M.Criterion = {
     type = "structure",
+    id = "Criterion",
     members = {
         eq = {
             type = "list",
@@ -81,6 +85,7 @@ M.Criterion = {
 
 M.CreateArchiveRuleInput = {
     type = "structure",
+    id = "CreateArchiveRuleInput",
     members = {
         analyzerName = {
             type = "string",
@@ -114,10 +119,12 @@ M.CreateArchiveRuleInput = {
 
 M.CreateArchiveRuleOutput = {
     type = "structure",
+    id = "CreateArchiveRuleOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -137,6 +144,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -162,6 +170,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -187,6 +196,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -206,6 +216,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -232,6 +243,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -255,6 +267,7 @@ M.ValidationException = {
 
 M.DeleteArchiveRuleInput = {
     type = "structure",
+    id = "DeleteArchiveRuleInput",
     members = {
         analyzerName = {
             type = "string",
@@ -282,10 +295,12 @@ M.DeleteArchiveRuleInput = {
 
 M.DeleteArchiveRuleOutput = {
     type = "structure",
+    id = "DeleteArchiveRuleOutput",
 }
 
 M.GetArchiveRuleInput = {
     type = "structure",
+    id = "GetArchiveRuleInput",
     members = {
         analyzerName = {
             type = "string",
@@ -306,6 +321,7 @@ M.GetArchiveRuleInput = {
 
 M.ArchiveRuleSummary = {
     type = "structure",
+    id = "ArchiveRuleSummary",
     members = {
         ruleName = {
             type = "string",
@@ -340,6 +356,7 @@ M.ArchiveRuleSummary = {
 
 M.GetArchiveRuleOutput = {
     type = "structure",
+    id = "GetArchiveRuleOutput",
     members = {
         archiveRule = setmetatable({ traits = {
             required = true,
@@ -349,6 +366,7 @@ M.GetArchiveRuleOutput = {
 
 M.ListArchiveRulesInput = {
     type = "structure",
+    id = "ListArchiveRulesInput",
     members = {
         analyzerName = {
             type = "string",
@@ -374,6 +392,7 @@ M.ListArchiveRulesInput = {
 
 M.ListArchiveRulesOutput = {
     type = "structure",
+    id = "ListArchiveRulesOutput",
     members = {
         archiveRules = {
             type = "list",
@@ -390,6 +409,7 @@ M.ListArchiveRulesOutput = {
 
 M.UpdateArchiveRuleInput = {
     type = "structure",
+    id = "UpdateArchiveRuleInput",
     members = {
         analyzerName = {
             type = "string",
@@ -424,10 +444,12 @@ M.UpdateArchiveRuleInput = {
 
 M.UpdateArchiveRuleOutput = {
     type = "structure",
+    id = "UpdateArchiveRuleOutput",
 }
 
 M.InlineArchiveRule = {
     type = "structure",
+    id = "InlineArchiveRule",
     members = {
         ruleName = {
             type = "string",
@@ -468,6 +490,7 @@ M.ResourceType = {
 
 M.InternalAccessAnalysisRuleCriteria = {
     type = "structure",
+    id = "InternalAccessAnalysisRuleCriteria",
     members = {
         accountIds = {
             type = "list",
@@ -486,6 +509,7 @@ M.InternalAccessAnalysisRuleCriteria = {
 
 M.InternalAccessAnalysisRule = {
     type = "structure",
+    id = "InternalAccessAnalysisRule",
     members = {
         inclusions = {
             type = "list",
@@ -496,6 +520,7 @@ M.InternalAccessAnalysisRule = {
 
 M.InternalAccessConfiguration = {
     type = "structure",
+    id = "InternalAccessConfiguration",
     members = {
         analysisRule = M.InternalAccessAnalysisRule,
     },
@@ -503,6 +528,7 @@ M.InternalAccessConfiguration = {
 
 M.AnalysisRuleCriteria = {
     type = "structure",
+    id = "AnalysisRuleCriteria",
     members = {
         accountIds = {
             type = "list",
@@ -517,6 +543,7 @@ M.AnalysisRuleCriteria = {
 
 M.AnalysisRule = {
     type = "structure",
+    id = "AnalysisRule",
     members = {
         exclusions = {
             type = "list",
@@ -527,6 +554,7 @@ M.AnalysisRule = {
 
 M.UnusedAccessConfiguration = {
     type = "structure",
+    id = "UnusedAccessConfiguration",
     members = {
         unusedAccessAge = {
             type = "integer",
@@ -537,6 +565,7 @@ M.UnusedAccessConfiguration = {
 
 M.AnalyzerConfiguration = {
     type = "union",
+    id = "AnalyzerConfiguration",
     members = {
         unusedAccess = M.UnusedAccessConfiguration,
         internalAccess = M.InternalAccessConfiguration,
@@ -554,6 +583,7 @@ M.Type = {
 
 M.CreateAnalyzerInput = {
     type = "structure",
+    id = "CreateAnalyzerInput",
     members = {
         analyzerName = {
             type = "string",
@@ -588,6 +618,7 @@ M.CreateAnalyzerInput = {
 
 M.CreateAnalyzerOutput = {
     type = "structure",
+    id = "CreateAnalyzerOutput",
     members = {
         arn = {
             type = "string",
@@ -597,6 +628,7 @@ M.CreateAnalyzerOutput = {
 
 M.DeleteAnalyzerInput = {
     type = "structure",
+    id = "DeleteAnalyzerInput",
     members = {
         analyzerName = {
             type = "string",
@@ -617,10 +649,12 @@ M.DeleteAnalyzerInput = {
 
 M.DeleteAnalyzerOutput = {
     type = "structure",
+    id = "DeleteAnalyzerOutput",
 }
 
 M.GetAnalyzerInput = {
     type = "structure",
+    id = "GetAnalyzerInput",
     members = {
         analyzerName = {
             type = "string",
@@ -648,6 +682,7 @@ M.ReasonCode = {
 
 M.StatusReason = {
     type = "structure",
+    id = "StatusReason",
     members = {
         code = {
             type = "string",
@@ -660,6 +695,7 @@ M.StatusReason = {
 
 M.AnalyzerSummary = {
     type = "structure",
+    id = "AnalyzerSummary",
     members = {
         arn = {
             type = "string",
@@ -713,6 +749,7 @@ M.AnalyzerSummary = {
 
 M.GetAnalyzerOutput = {
     type = "structure",
+    id = "GetAnalyzerOutput",
     members = {
         analyzer = setmetatable({ traits = {
             required = true,
@@ -722,6 +759,7 @@ M.GetAnalyzerOutput = {
 
 M.ListAnalyzersInput = {
     type = "structure",
+    id = "ListAnalyzersInput",
     members = {
         nextToken = {
             type = "string",
@@ -746,6 +784,7 @@ M.ListAnalyzersInput = {
 
 M.ListAnalyzersOutput = {
     type = "structure",
+    id = "ListAnalyzersOutput",
     members = {
         analyzers = {
             type = "list",
@@ -762,6 +801,7 @@ M.ListAnalyzersOutput = {
 
 M.UpdateAnalyzerInput = {
     type = "structure",
+    id = "UpdateAnalyzerInput",
     members = {
         analyzerName = {
             type = "string",
@@ -776,6 +816,7 @@ M.UpdateAnalyzerInput = {
 
 M.UpdateAnalyzerOutput = {
     type = "structure",
+    id = "UpdateAnalyzerOutput",
     members = {
         configuration = M.AnalyzerConfiguration,
     },
@@ -783,6 +824,7 @@ M.UpdateAnalyzerOutput = {
 
 M.ApplyArchiveRuleInput = {
     type = "structure",
+    id = "ApplyArchiveRuleInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -807,10 +849,12 @@ M.ApplyArchiveRuleInput = {
 
 M.ApplyArchiveRuleOutput = {
     type = "structure",
+    id = "ApplyArchiveRuleOutput",
 }
 
 M.CancelPolicyGenerationInput = {
     type = "structure",
+    id = "CancelPolicyGenerationInput",
     members = {
         jobId = {
             type = "string",
@@ -824,6 +868,7 @@ M.CancelPolicyGenerationInput = {
 
 M.CancelPolicyGenerationOutput = {
     type = "structure",
+    id = "CancelPolicyGenerationOutput",
 }
 
 M.AccessCheckPolicyType = {
@@ -833,6 +878,7 @@ M.AccessCheckPolicyType = {
 
 M.CheckAccessNotGrantedInput = {
     type = "structure",
+    id = "CheckAccessNotGrantedInput",
     members = {
         policyDocument = {
             type = "string",
@@ -858,6 +904,7 @@ M.CheckAccessNotGrantedInput = {
 
 M.ReasonSummary = {
     type = "structure",
+    id = "ReasonSummary",
     members = {
         description = {
             type = "string",
@@ -878,6 +925,7 @@ M.CheckAccessNotGrantedResult = {
 
 M.CheckAccessNotGrantedOutput = {
     type = "structure",
+    id = "CheckAccessNotGrantedOutput",
     members = {
         result = {
             type = "string",
@@ -894,6 +942,7 @@ M.CheckAccessNotGrantedOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -907,6 +956,7 @@ M.InvalidParameterException = {
 
 M.UnprocessableEntityException = {
     type = "structure",
+    id = "UnprocessableEntityException",
     error = "client",
     members = {
         message = {
@@ -920,6 +970,7 @@ M.UnprocessableEntityException = {
 
 M.CheckNoNewAccessInput = {
     type = "structure",
+    id = "CheckNoNewAccessInput",
     members = {
         newPolicyDocument = {
             type = "string",
@@ -949,6 +1000,7 @@ M.CheckNoNewAccessResult = {
 
 M.CheckNoNewAccessOutput = {
     type = "structure",
+    id = "CheckNoNewAccessOutput",
     members = {
         result = {
             type = "string",
@@ -994,6 +1046,7 @@ M.AccessCheckResourceType = {
 
 M.CheckNoPublicAccessInput = {
     type = "structure",
+    id = "CheckNoPublicAccessInput",
     members = {
         policyDocument = {
             type = "string",
@@ -1017,6 +1070,7 @@ M.CheckNoPublicAccessResult = {
 
 M.CheckNoPublicAccessOutput = {
     type = "structure",
+    id = "CheckNoPublicAccessOutput",
     members = {
         result = {
             type = "string",
@@ -1033,6 +1087,7 @@ M.CheckNoPublicAccessOutput = {
 
 M.DynamodbStreamConfiguration = {
     type = "structure",
+    id = "DynamodbStreamConfiguration",
     members = {
         streamPolicy = {
             type = "string",
@@ -1042,6 +1097,7 @@ M.DynamodbStreamConfiguration = {
 
 M.DynamodbTableConfiguration = {
     type = "structure",
+    id = "DynamodbTableConfiguration",
     members = {
         tablePolicy = {
             type = "string",
@@ -1051,6 +1107,7 @@ M.DynamodbTableConfiguration = {
 
 M.EbsSnapshotConfiguration = {
     type = "structure",
+    id = "EbsSnapshotConfiguration",
     members = {
         userIds = {
             type = "list",
@@ -1068,6 +1125,7 @@ M.EbsSnapshotConfiguration = {
 
 M.EcrRepositoryConfiguration = {
     type = "structure",
+    id = "EcrRepositoryConfiguration",
     members = {
         repositoryPolicy = {
             type = "string",
@@ -1077,6 +1135,7 @@ M.EcrRepositoryConfiguration = {
 
 M.EfsFileSystemConfiguration = {
     type = "structure",
+    id = "EfsFileSystemConfiguration",
     members = {
         fileSystemPolicy = {
             type = "string",
@@ -1086,6 +1145,7 @@ M.EfsFileSystemConfiguration = {
 
 M.IamRoleConfiguration = {
     type = "structure",
+    id = "IamRoleConfiguration",
     members = {
         trustPolicy = {
             type = "string",
@@ -1095,6 +1155,7 @@ M.IamRoleConfiguration = {
 
 M.KmsGrantConstraints = {
     type = "structure",
+    id = "KmsGrantConstraints",
     members = {
         encryptionContextEquals = {
             type = "map",
@@ -1128,6 +1189,7 @@ M.KmsGrantOperation = {
 
 M.KmsGrantConfiguration = {
     type = "structure",
+    id = "KmsGrantConfiguration",
     members = {
         operations = {
             type = "list",
@@ -1157,6 +1219,7 @@ M.KmsGrantConfiguration = {
 
 M.KmsKeyConfiguration = {
     type = "structure",
+    id = "KmsKeyConfiguration",
     members = {
         keyPolicies = {
             type = "map",
@@ -1172,6 +1235,7 @@ M.KmsKeyConfiguration = {
 
 M.RdsDbClusterSnapshotAttributeValue = {
     type = "union",
+    id = "RdsDbClusterSnapshotAttributeValue",
     members = {
         accountIds = {
             type = "list",
@@ -1182,6 +1246,7 @@ M.RdsDbClusterSnapshotAttributeValue = {
 
 M.RdsDbClusterSnapshotConfiguration = {
     type = "structure",
+    id = "RdsDbClusterSnapshotConfiguration",
     members = {
         attributes = {
             type = "map",
@@ -1196,6 +1261,7 @@ M.RdsDbClusterSnapshotConfiguration = {
 
 M.RdsDbSnapshotAttributeValue = {
     type = "union",
+    id = "RdsDbSnapshotAttributeValue",
     members = {
         accountIds = {
             type = "list",
@@ -1206,6 +1272,7 @@ M.RdsDbSnapshotAttributeValue = {
 
 M.RdsDbSnapshotConfiguration = {
     type = "structure",
+    id = "RdsDbSnapshotConfiguration",
     members = {
         attributes = {
             type = "map",
@@ -1220,10 +1287,12 @@ M.RdsDbSnapshotConfiguration = {
 
 M.InternetConfiguration = {
     type = "structure",
+    id = "InternetConfiguration",
 }
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         vpcId = {
             type = "string",
@@ -1236,6 +1305,7 @@ M.VpcConfiguration = {
 
 M.NetworkOriginConfiguration = {
     type = "union",
+    id = "NetworkOriginConfiguration",
     members = {
         vpcConfiguration = M.VpcConfiguration,
         internetConfiguration = M.InternetConfiguration,
@@ -1244,6 +1314,7 @@ M.NetworkOriginConfiguration = {
 
 M.S3PublicAccessBlockConfiguration = {
     type = "structure",
+    id = "S3PublicAccessBlockConfiguration",
     members = {
         ignorePublicAcls = {
             type = "boolean",
@@ -1262,6 +1333,7 @@ M.S3PublicAccessBlockConfiguration = {
 
 M.S3AccessPointConfiguration = {
     type = "structure",
+    id = "S3AccessPointConfiguration",
     members = {
         accessPointPolicy = {
             type = "string",
@@ -1273,6 +1345,7 @@ M.S3AccessPointConfiguration = {
 
 M.AclGrantee = {
     type = "union",
+    id = "AclGrantee",
     members = {
         id = {
             type = "string",
@@ -1293,6 +1366,7 @@ M.AclPermission = {
 
 M.S3BucketAclGrantConfiguration = {
     type = "structure",
+    id = "S3BucketAclGrantConfiguration",
     members = {
         permission = {
             type = "string",
@@ -1308,6 +1382,7 @@ M.S3BucketAclGrantConfiguration = {
 
 M.S3BucketConfiguration = {
     type = "structure",
+    id = "S3BucketConfiguration",
     members = {
         bucketPolicy = {
             type = "string",
@@ -1327,6 +1402,7 @@ M.S3BucketConfiguration = {
 
 M.S3ExpressDirectoryAccessPointConfiguration = {
     type = "structure",
+    id = "S3ExpressDirectoryAccessPointConfiguration",
     members = {
         accessPointPolicy = {
             type = "string",
@@ -1337,6 +1413,7 @@ M.S3ExpressDirectoryAccessPointConfiguration = {
 
 M.S3ExpressDirectoryBucketConfiguration = {
     type = "structure",
+    id = "S3ExpressDirectoryBucketConfiguration",
     members = {
         bucketPolicy = {
             type = "string",
@@ -1351,6 +1428,7 @@ M.S3ExpressDirectoryBucketConfiguration = {
 
 M.SecretsManagerSecretConfiguration = {
     type = "structure",
+    id = "SecretsManagerSecretConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -1363,6 +1441,7 @@ M.SecretsManagerSecretConfiguration = {
 
 M.SnsTopicConfiguration = {
     type = "structure",
+    id = "SnsTopicConfiguration",
     members = {
         topicPolicy = {
             type = "string",
@@ -1372,6 +1451,7 @@ M.SnsTopicConfiguration = {
 
 M.SqsQueueConfiguration = {
     type = "structure",
+    id = "SqsQueueConfiguration",
     members = {
         queuePolicy = {
             type = "string",
@@ -1381,6 +1461,7 @@ M.SqsQueueConfiguration = {
 
 M.Configuration = {
     type = "union",
+    id = "Configuration",
     members = {
         ebsSnapshot = M.EbsSnapshotConfiguration,
         ecrRepository = M.EcrRepositoryConfiguration,
@@ -1401,6 +1482,7 @@ M.Configuration = {
 
 M.CreateAccessPreviewInput = {
     type = "structure",
+    id = "CreateAccessPreviewInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -1427,6 +1509,7 @@ M.CreateAccessPreviewInput = {
 
 M.CreateAccessPreviewOutput = {
     type = "structure",
+    id = "CreateAccessPreviewOutput",
     members = {
         id = {
             type = "string",
@@ -1439,6 +1522,7 @@ M.CreateAccessPreviewOutput = {
 
 M.GenerateFindingRecommendationInput = {
     type = "structure",
+    id = "GenerateFindingRecommendationInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -1459,10 +1543,12 @@ M.GenerateFindingRecommendationInput = {
 
 M.GenerateFindingRecommendationOutput = {
     type = "structure",
+    id = "GenerateFindingRecommendationOutput",
 }
 
 M.GetAccessPreviewInput = {
     type = "structure",
+    id = "GetAccessPreviewInput",
     members = {
         accessPreviewId = {
             type = "string",
@@ -1494,6 +1580,7 @@ M.AccessPreviewStatusReasonCode = {
 
 M.AccessPreviewStatusReason = {
     type = "structure",
+    id = "AccessPreviewStatusReason",
     members = {
         code = {
             type = "string",
@@ -1506,6 +1593,7 @@ M.AccessPreviewStatusReason = {
 
 M.AccessPreview = {
     type = "structure",
+    id = "AccessPreview",
     members = {
         id = {
             type = "string",
@@ -1546,6 +1634,7 @@ M.AccessPreview = {
 
 M.GetAccessPreviewOutput = {
     type = "structure",
+    id = "GetAccessPreviewOutput",
     members = {
         accessPreview = setmetatable({ traits = {
             required = true,
@@ -1555,6 +1644,7 @@ M.GetAccessPreviewOutput = {
 
 M.GetAnalyzedResourceInput = {
     type = "structure",
+    id = "GetAnalyzedResourceInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -1581,6 +1671,7 @@ M.FindingStatus = {
 
 M.AnalyzedResource = {
     type = "structure",
+    id = "AnalyzedResource",
     members = {
         resourceArn = {
             type = "string",
@@ -1646,6 +1737,7 @@ M.AnalyzedResource = {
 
 M.GetAnalyzedResourceOutput = {
     type = "structure",
+    id = "GetAnalyzedResourceOutput",
     members = {
         resource = M.AnalyzedResource,
     },
@@ -1653,6 +1745,7 @@ M.GetAnalyzedResourceOutput = {
 
 M.GetFindingInput = {
     type = "structure",
+    id = "GetFindingInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -1680,6 +1773,7 @@ M.ResourceControlPolicyRestriction = {
 
 M.FindingSourceDetail = {
     type = "structure",
+    id = "FindingSourceDetail",
     members = {
         accessPointArn = {
             type = "string",
@@ -1699,6 +1793,7 @@ M.FindingSourceType = {
 
 M.FindingSource = {
     type = "structure",
+    id = "FindingSource",
     members = {
         type = {
             type = "string",
@@ -1712,6 +1807,7 @@ M.FindingSource = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         id = {
             type = "string",
@@ -1796,6 +1892,7 @@ M.Finding = {
 
 M.GetFindingOutput = {
     type = "structure",
+    id = "GetFindingOutput",
     members = {
         finding = M.Finding,
     },
@@ -1803,6 +1900,7 @@ M.GetFindingOutput = {
 
 M.GetFindingRecommendationInput = {
     type = "structure",
+    id = "GetFindingRecommendationInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -1835,6 +1933,7 @@ M.GetFindingRecommendationInput = {
 
 M.RecommendationError = {
     type = "structure",
+    id = "RecommendationError",
     members = {
         code = {
             type = "string",
@@ -1862,6 +1961,7 @@ M.RecommendedRemediationAction = {
 
 M.UnusedPermissionsRecommendedStep = {
     type = "structure",
+    id = "UnusedPermissionsRecommendedStep",
     members = {
         policyUpdatedAt = {
             type = "timestamp",
@@ -1886,6 +1986,7 @@ M.UnusedPermissionsRecommendedStep = {
 
 M.RecommendedStep = {
     type = "union",
+    id = "RecommendedStep",
     members = {
         unusedPermissionsRecommendedStep = M.UnusedPermissionsRecommendedStep,
     },
@@ -1899,6 +2000,7 @@ M.Status = {
 
 M.GetFindingRecommendationOutput = {
     type = "structure",
+    id = "GetFindingRecommendationOutput",
     members = {
         startedAt = {
             type = "timestamp",
@@ -1944,6 +2046,7 @@ M.GetFindingRecommendationOutput = {
 
 M.GetFindingsStatisticsInput = {
     type = "structure",
+    id = "GetFindingsStatisticsInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -1956,6 +2059,7 @@ M.GetFindingsStatisticsInput = {
 
 M.ResourceTypeDetails = {
     type = "structure",
+    id = "ResourceTypeDetails",
     members = {
         totalActivePublic = {
             type = "integer",
@@ -1971,6 +2075,7 @@ M.ResourceTypeDetails = {
 
 M.ExternalAccessFindingsStatistics = {
     type = "structure",
+    id = "ExternalAccessFindingsStatistics",
     members = {
         resourceTypeStatistics = {
             type = "map",
@@ -1991,6 +2096,7 @@ M.ExternalAccessFindingsStatistics = {
 
 M.InternalAccessResourceTypeDetails = {
     type = "structure",
+    id = "InternalAccessResourceTypeDetails",
     members = {
         totalActiveFindings = {
             type = "integer",
@@ -2006,6 +2112,7 @@ M.InternalAccessResourceTypeDetails = {
 
 M.InternalAccessFindingsStatistics = {
     type = "structure",
+    id = "InternalAccessFindingsStatistics",
     members = {
         resourceTypeStatistics = {
             type = "map",
@@ -2026,6 +2133,7 @@ M.InternalAccessFindingsStatistics = {
 
 M.FindingAggregationAccountDetails = {
     type = "structure",
+    id = "FindingAggregationAccountDetails",
     members = {
         account = {
             type = "string",
@@ -2043,6 +2151,7 @@ M.FindingAggregationAccountDetails = {
 
 M.UnusedAccessTypeStatistics = {
     type = "structure",
+    id = "UnusedAccessTypeStatistics",
     members = {
         unusedAccessType = {
             type = "string",
@@ -2055,6 +2164,7 @@ M.UnusedAccessTypeStatistics = {
 
 M.UnusedAccessFindingsStatistics = {
     type = "structure",
+    id = "UnusedAccessFindingsStatistics",
     members = {
         unusedAccessTypeStatistics = {
             type = "list",
@@ -2078,6 +2188,7 @@ M.UnusedAccessFindingsStatistics = {
 
 M.FindingsStatistics = {
     type = "union",
+    id = "FindingsStatistics",
     members = {
         externalAccessFindingsStatistics = M.ExternalAccessFindingsStatistics,
         internalAccessFindingsStatistics = M.InternalAccessFindingsStatistics,
@@ -2087,6 +2198,7 @@ M.FindingsStatistics = {
 
 M.GetFindingsStatisticsOutput = {
     type = "structure",
+    id = "GetFindingsStatisticsOutput",
     members = {
         findingsStatistics = {
             type = "list",
@@ -2103,6 +2215,7 @@ M.GetFindingsStatisticsOutput = {
 
 M.GetFindingV2Input = {
     type = "structure",
+    id = "GetFindingV2Input",
     members = {
         analyzerArn = {
             type = "string",
@@ -2135,6 +2248,7 @@ M.GetFindingV2Input = {
 
 M.ExternalAccessDetails = {
     type = "structure",
+    id = "ExternalAccessDetails",
     members = {
         action = {
             type = "list",
@@ -2185,6 +2299,7 @@ M.ServiceControlPolicyRestriction = {
 
 M.InternalAccessDetails = {
     type = "structure",
+    id = "InternalAccessDetails",
     members = {
         action = {
             type = "list",
@@ -2224,6 +2339,7 @@ M.InternalAccessDetails = {
 
 M.UnusedIamRoleDetails = {
     type = "structure",
+    id = "UnusedIamRoleDetails",
     members = {
         lastAccessed = {
             type = "timestamp",
@@ -2236,6 +2352,7 @@ M.UnusedIamRoleDetails = {
 
 M.UnusedIamUserAccessKeyDetails = {
     type = "structure",
+    id = "UnusedIamUserAccessKeyDetails",
     members = {
         accessKeyId = {
             type = "string",
@@ -2254,6 +2371,7 @@ M.UnusedIamUserAccessKeyDetails = {
 
 M.UnusedIamUserPasswordDetails = {
     type = "structure",
+    id = "UnusedIamUserPasswordDetails",
     members = {
         lastAccessed = {
             type = "timestamp",
@@ -2266,6 +2384,7 @@ M.UnusedIamUserPasswordDetails = {
 
 M.UnusedAction = {
     type = "structure",
+    id = "UnusedAction",
     members = {
         action = {
             type = "string",
@@ -2284,6 +2403,7 @@ M.UnusedAction = {
 
 M.UnusedPermissionDetails = {
     type = "structure",
+    id = "UnusedPermissionDetails",
     members = {
         actions = {
             type = "list",
@@ -2306,6 +2426,7 @@ M.UnusedPermissionDetails = {
 
 M.FindingDetails = {
     type = "union",
+    id = "FindingDetails",
     members = {
         internalAccessDetails = M.InternalAccessDetails,
         externalAccessDetails = M.ExternalAccessDetails,
@@ -2327,6 +2448,7 @@ M.FindingType = {
 
 M.GetFindingV2Output = {
     type = "structure",
+    id = "GetFindingV2Output",
     members = {
         analyzedAt = {
             type = "timestamp",
@@ -2397,6 +2519,7 @@ M.GetFindingV2Output = {
 
 M.GetGeneratedPolicyInput = {
     type = "structure",
+    id = "GetGeneratedPolicyInput",
     members = {
         jobId = {
             type = "string",
@@ -2422,6 +2545,7 @@ M.GetGeneratedPolicyInput = {
 
 M.GeneratedPolicy = {
     type = "structure",
+    id = "GeneratedPolicy",
     members = {
         policy = {
             type = "string",
@@ -2434,6 +2558,7 @@ M.GeneratedPolicy = {
 
 M.TrailProperties = {
     type = "structure",
+    id = "TrailProperties",
     members = {
         cloudTrailArn = {
             type = "string",
@@ -2453,6 +2578,7 @@ M.TrailProperties = {
 
 M.CloudTrailProperties = {
     type = "structure",
+    id = "CloudTrailProperties",
     members = {
         trailProperties = {
             type = "list",
@@ -2480,6 +2606,7 @@ M.CloudTrailProperties = {
 
 M.GeneratedPolicyProperties = {
     type = "structure",
+    id = "GeneratedPolicyProperties",
     members = {
         isComplete = {
             type = "boolean",
@@ -2496,6 +2623,7 @@ M.GeneratedPolicyProperties = {
 
 M.GeneratedPolicyResult = {
     type = "structure",
+    id = "GeneratedPolicyResult",
     members = {
         properties = setmetatable({ traits = {
             required = true,
@@ -2516,6 +2644,7 @@ M.JobErrorCode = {
 
 M.JobError = {
     type = "structure",
+    id = "JobError",
     members = {
         code = {
             type = "string",
@@ -2541,6 +2670,7 @@ M.JobStatus = {
 
 M.JobDetails = {
     type = "structure",
+    id = "JobDetails",
     members = {
         jobId = {
             type = "string",
@@ -2573,6 +2703,7 @@ M.JobDetails = {
 
 M.GetGeneratedPolicyOutput = {
     type = "structure",
+    id = "GetGeneratedPolicyOutput",
     members = {
         jobDetails = setmetatable({ traits = {
             required = true,
@@ -2585,6 +2716,7 @@ M.GetGeneratedPolicyOutput = {
 
 M.ListAccessPreviewFindingsInput = {
     type = "structure",
+    id = "ListAccessPreviewFindingsInput",
     members = {
         accessPreviewId = {
             type = "string",
@@ -2621,6 +2753,7 @@ M.FindingChangeType = {
 
 M.AccessPreviewFinding = {
     type = "structure",
+    id = "AccessPreviewFinding",
     members = {
         id = {
             type = "string",
@@ -2700,6 +2833,7 @@ M.AccessPreviewFinding = {
 
 M.ListAccessPreviewFindingsOutput = {
     type = "structure",
+    id = "ListAccessPreviewFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -2716,6 +2850,7 @@ M.ListAccessPreviewFindingsOutput = {
 
 M.ListAccessPreviewsInput = {
     type = "structure",
+    id = "ListAccessPreviewsInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -2741,6 +2876,7 @@ M.ListAccessPreviewsInput = {
 
 M.AccessPreviewSummary = {
     type = "structure",
+    id = "AccessPreviewSummary",
     members = {
         id = {
             type = "string",
@@ -2773,6 +2909,7 @@ M.AccessPreviewSummary = {
 
 M.ListAccessPreviewsOutput = {
     type = "structure",
+    id = "ListAccessPreviewsOutput",
     members = {
         accessPreviews = {
             type = "list",
@@ -2789,6 +2926,7 @@ M.ListAccessPreviewsOutput = {
 
 M.ListAnalyzedResourcesInput = {
     type = "structure",
+    id = "ListAnalyzedResourcesInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -2810,6 +2948,7 @@ M.ListAnalyzedResourcesInput = {
 
 M.AnalyzedResourceSummary = {
     type = "structure",
+    id = "AnalyzedResourceSummary",
     members = {
         resourceArn = {
             type = "string",
@@ -2834,6 +2973,7 @@ M.AnalyzedResourceSummary = {
 
 M.ListAnalyzedResourcesOutput = {
     type = "structure",
+    id = "ListAnalyzedResourcesOutput",
     members = {
         analyzedResources = {
             type = "list",
@@ -2855,6 +2995,7 @@ M.OrderBy = {
 
 M.SortCriteria = {
     type = "structure",
+    id = "SortCriteria",
     members = {
         attributeName = {
             type = "string",
@@ -2867,6 +3008,7 @@ M.SortCriteria = {
 
 M.ListFindingsInput = {
     type = "structure",
+    id = "ListFindingsInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -2891,6 +3033,7 @@ M.ListFindingsInput = {
 
 M.FindingSummary = {
     type = "structure",
+    id = "FindingSummary",
     members = {
         id = {
             type = "string",
@@ -2975,6 +3118,7 @@ M.FindingSummary = {
 
 M.ListFindingsOutput = {
     type = "structure",
+    id = "ListFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -2991,6 +3135,7 @@ M.ListFindingsOutput = {
 
 M.ListFindingsV2Input = {
     type = "structure",
+    id = "ListFindingsV2Input",
     members = {
         analyzerArn = {
             type = "string",
@@ -3015,6 +3160,7 @@ M.ListFindingsV2Input = {
 
 M.FindingSummaryV2 = {
     type = "structure",
+    id = "FindingSummaryV2",
     members = {
         analyzedAt = {
             type = "timestamp",
@@ -3075,6 +3221,7 @@ M.FindingSummaryV2 = {
 
 M.ListFindingsV2Output = {
     type = "structure",
+    id = "ListFindingsV2Output",
     members = {
         findings = {
             type = "list",
@@ -3091,6 +3238,7 @@ M.ListFindingsV2Output = {
 
 M.ListPolicyGenerationsInput = {
     type = "structure",
+    id = "ListPolicyGenerationsInput",
     members = {
         principalArn = {
             type = "string",
@@ -3115,6 +3263,7 @@ M.ListPolicyGenerationsInput = {
 
 M.PolicyGeneration = {
     type = "structure",
+    id = "PolicyGeneration",
     members = {
         jobId = {
             type = "string",
@@ -3152,6 +3301,7 @@ M.PolicyGeneration = {
 
 M.ListPolicyGenerationsOutput = {
     type = "structure",
+    id = "ListPolicyGenerationsOutput",
     members = {
         policyGenerations = {
             type = "list",
@@ -3168,6 +3318,7 @@ M.ListPolicyGenerationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3181,6 +3332,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3192,6 +3344,7 @@ M.ListTagsForResourceOutput = {
 
 M.Trail = {
     type = "structure",
+    id = "Trail",
     members = {
         cloudTrailArn = {
             type = "string",
@@ -3211,6 +3364,7 @@ M.Trail = {
 
 M.CloudTrailDetails = {
     type = "structure",
+    id = "CloudTrailDetails",
     members = {
         trails = {
             type = "list",
@@ -3243,6 +3397,7 @@ M.CloudTrailDetails = {
 
 M.PolicyGenerationDetails = {
     type = "structure",
+    id = "PolicyGenerationDetails",
     members = {
         principalArn = {
             type = "string",
@@ -3255,6 +3410,7 @@ M.PolicyGenerationDetails = {
 
 M.StartPolicyGenerationInput = {
     type = "structure",
+    id = "StartPolicyGenerationInput",
     members = {
         policyGenerationDetails = setmetatable({ traits = {
             required = true,
@@ -3271,6 +3427,7 @@ M.StartPolicyGenerationInput = {
 
 M.StartPolicyGenerationOutput = {
     type = "structure",
+    id = "StartPolicyGenerationOutput",
     members = {
         jobId = {
             type = "string",
@@ -3283,6 +3440,7 @@ M.StartPolicyGenerationOutput = {
 
 M.StartResourceScanInput = {
     type = "structure",
+    id = "StartResourceScanInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -3304,10 +3462,12 @@ M.StartResourceScanInput = {
 
 M.StartResourceScanOutput = {
     type = "structure",
+    id = "StartResourceScanOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3329,10 +3489,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3354,6 +3516,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.FindingStatusUpdate = {
@@ -3363,6 +3526,7 @@ M.FindingStatusUpdate = {
 
 M.UpdateFindingsInput = {
     type = "structure",
+    id = "UpdateFindingsInput",
     members = {
         analyzerArn = {
             type = "string",
@@ -3394,6 +3558,7 @@ M.UpdateFindingsInput = {
 
 M.UpdateFindingsOutput = {
     type = "structure",
+    id = "UpdateFindingsOutput",
 }
 
 M.Locale = {
@@ -3427,6 +3592,7 @@ M.ValidatePolicyResourceType = {
 
 M.ValidatePolicyInput = {
     type = "structure",
+    id = "ValidatePolicyInput",
     members = {
         locale = {
             type = "string",
@@ -3470,6 +3636,7 @@ M.ValidatePolicyFindingType = {
 
 M.Substring = {
     type = "structure",
+    id = "Substring",
     members = {
         start = {
             type = "integer",
@@ -3488,6 +3655,7 @@ M.Substring = {
 
 M.PathElement = {
     type = "union",
+    id = "PathElement",
     members = {
         index = {
             type = "integer",
@@ -3504,6 +3672,7 @@ M.PathElement = {
 
 M.Position = {
     type = "structure",
+    id = "Position",
     members = {
         line = {
             type = "integer",
@@ -3528,6 +3697,7 @@ M.Position = {
 
 M.Span = {
     type = "structure",
+    id = "Span",
     members = {
         start = setmetatable({ traits = {
             required = true,
@@ -3540,6 +3710,7 @@ M.Span = {
 
 M.Location = {
     type = "structure",
+    id = "Location",
     members = {
         path = {
             type = "list",
@@ -3556,6 +3727,7 @@ M.Location = {
 
 M.ValidatePolicyFinding = {
     type = "structure",
+    id = "ValidatePolicyFinding",
     members = {
         findingDetails = {
             type = "string",
@@ -3593,6 +3765,7 @@ M.ValidatePolicyFinding = {
 
 M.ValidatePolicyOutput = {
     type = "structure",
+    id = "ValidatePolicyOutput",
     members = {
         findings = {
             type = "list",

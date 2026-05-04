@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AccessDetails = {
     type = "structure",
+    id = "AccessDetails",
     members = {
         Description = {
             type = "string",
@@ -24,6 +26,7 @@ M.AccessDetails = {
 
 M.Amendment = {
     type = "structure",
+    id = "Amendment",
     members = {
         FieldPath = {
             type = "string",
@@ -42,6 +45,7 @@ M.Amendment = {
 
 M.AmendBenefitApplicationInput = {
     type = "structure",
+    id = "AmendBenefitApplicationInput",
     members = {
         Catalog = {
             type = "string",
@@ -85,10 +89,12 @@ M.AmendBenefitApplicationInput = {
 
 M.AmendBenefitApplicationOutput = {
     type = "structure",
+    id = "AmendBenefitApplicationOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -102,6 +108,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -115,6 +122,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -128,6 +136,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -154,6 +163,7 @@ M.ValidationExceptionErrorCode = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -183,6 +193,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -206,6 +217,7 @@ M.ValidationException = {
 
 M.AssociateBenefitApplicationResourceInput = {
     type = "structure",
+    id = "AssociateBenefitApplicationResourceInput",
     members = {
         Catalog = {
             type = "string",
@@ -230,6 +242,7 @@ M.AssociateBenefitApplicationResourceInput = {
 
 M.AssociateBenefitApplicationResourceOutput = {
     type = "structure",
+    id = "AssociateBenefitApplicationResourceOutput",
     members = {
         Id = {
             type = "string",
@@ -250,6 +263,7 @@ M.ResourceType = {
 
 M.AssociatedResource = {
     type = "structure",
+    id = "AssociatedResource",
     members = {
         ResourceType = {
             type = "string",
@@ -277,6 +291,7 @@ M.FulfillmentType = {
 
 M.BenefitAllocationSummary = {
     type = "structure",
+    id = "BenefitAllocationSummary",
     members = {
         Id = {
             type = "string",
@@ -336,6 +351,7 @@ M.BenefitApplicationStatus = {
 
 M.BenefitApplicationSummary = {
     type = "structure",
+    id = "BenefitApplicationSummary",
     members = {
         Catalog = {
             type = "string",
@@ -397,6 +413,7 @@ M.BenefitStatus = {
 
 M.BenefitSummary = {
     type = "structure",
+    id = "BenefitSummary",
     members = {
         Id = {
             type = "string",
@@ -429,6 +446,7 @@ M.BenefitSummary = {
 
 M.CancelBenefitApplicationInput = {
     type = "structure",
+    id = "CancelBenefitApplicationInput",
     members = {
         Catalog = {
             type = "string",
@@ -456,6 +474,7 @@ M.CancelBenefitApplicationInput = {
 
 M.CancelBenefitApplicationOutput = {
     type = "structure",
+    id = "CancelBenefitApplicationOutput",
 }
 
 M.CurrencyCode = {
@@ -558,6 +577,7 @@ M.CurrencyCode = {
 
 M.MonetaryValue = {
     type = "structure",
+    id = "MonetaryValue",
     members = {
         Amount = {
             type = "string",
@@ -576,6 +596,7 @@ M.MonetaryValue = {
 
 M.IssuanceDetail = {
     type = "structure",
+    id = "IssuanceDetail",
     members = {
         IssuanceId = {
             type = "string",
@@ -592,6 +613,7 @@ M.IssuanceDetail = {
 
 M.ConsumableDetails = {
     type = "structure",
+    id = "ConsumableDetails",
     members = {
         AllocatedAmount = M.MonetaryValue,
         RemainingAmount = M.MonetaryValue,
@@ -602,6 +624,7 @@ M.ConsumableDetails = {
 
 M.Contact = {
     type = "structure",
+    id = "Contact",
     members = {
         Email = {
             type = "string",
@@ -623,6 +646,7 @@ M.Contact = {
 
 M.FileInput = {
     type = "structure",
+    id = "FileInput",
     members = {
         FileURI = {
             type = "string",
@@ -638,6 +662,7 @@ M.FileInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -656,6 +681,7 @@ M.Tag = {
 
 M.CreateBenefitApplicationInput = {
     type = "structure",
+    id = "CreateBenefitApplicationInput",
     members = {
         Catalog = {
             type = "string",
@@ -709,6 +735,7 @@ M.CreateBenefitApplicationInput = {
 
 M.CreateBenefitApplicationOutput = {
     type = "structure",
+    id = "CreateBenefitApplicationOutput",
     members = {
         Id = {
             type = "string",
@@ -724,6 +751,7 @@ M.CreateBenefitApplicationOutput = {
 
 M.CreditCode = {
     type = "structure",
+    id = "CreditCode",
     members = {
         AwsAccountId = {
             type = "string",
@@ -765,6 +793,7 @@ M.CreditCode = {
 
 M.CreditDetails = {
     type = "structure",
+    id = "CreditDetails",
     members = {
         AllocatedAmount = setmetatable({ traits = {
             required = true,
@@ -784,6 +813,7 @@ M.CreditDetails = {
 
 M.DisassociateBenefitApplicationResourceInput = {
     type = "structure",
+    id = "DisassociateBenefitApplicationResourceInput",
     members = {
         Catalog = {
             type = "string",
@@ -808,6 +838,7 @@ M.DisassociateBenefitApplicationResourceInput = {
 
 M.DisassociateBenefitApplicationResourceOutput = {
     type = "structure",
+    id = "DisassociateBenefitApplicationResourceOutput",
     members = {
         Id = {
             type = "string",
@@ -823,6 +854,7 @@ M.DisassociateBenefitApplicationResourceOutput = {
 
 M.DisbursementDetails = {
     type = "structure",
+    id = "DisbursementDetails",
     members = {
         DisbursedAmount = M.MonetaryValue,
         IssuanceDetails = M.IssuanceDetail,
@@ -843,6 +875,7 @@ M.FileType = {
 
 M.FileDetail = {
     type = "structure",
+    id = "FileDetail",
     members = {
         FileURI = {
             type = "string",
@@ -879,6 +912,7 @@ M.FileDetail = {
 
 M.FulfillmentDetails = {
     type = "union",
+    id = "FulfillmentDetails",
     members = {
         DisbursementDetails = M.DisbursementDetails,
         ConsumableDetails = M.ConsumableDetails,
@@ -889,6 +923,7 @@ M.FulfillmentDetails = {
 
 M.GetBenefitInput = {
     type = "structure",
+    id = "GetBenefitInput",
     members = {
         Catalog = {
             type = "string",
@@ -907,6 +942,7 @@ M.GetBenefitInput = {
 
 M.GetBenefitOutput = {
     type = "structure",
+    id = "GetBenefitOutput",
     members = {
         Id = {
             type = "string",
@@ -942,6 +978,7 @@ M.GetBenefitOutput = {
 
 M.GetBenefitAllocationInput = {
     type = "structure",
+    id = "GetBenefitAllocationInput",
     members = {
         Catalog = {
             type = "string",
@@ -960,6 +997,7 @@ M.GetBenefitAllocationInput = {
 
 M.GetBenefitAllocationOutput = {
     type = "structure",
+    id = "GetBenefitAllocationOutput",
     members = {
         Id = {
             type = "string",
@@ -1025,6 +1063,7 @@ M.GetBenefitAllocationOutput = {
 
 M.GetBenefitApplicationInput = {
     type = "structure",
+    id = "GetBenefitApplicationInput",
     members = {
         Catalog = {
             type = "string",
@@ -1043,6 +1082,7 @@ M.GetBenefitApplicationInput = {
 
 M.GetBenefitApplicationOutput = {
     type = "structure",
+    id = "GetBenefitApplicationOutput",
     members = {
         Id = {
             type = "string",
@@ -1121,6 +1161,7 @@ M.GetBenefitApplicationOutput = {
 
 M.ListBenefitAllocationsInput = {
     type = "structure",
+    id = "ListBenefitAllocationsInput",
     members = {
         Catalog = {
             type = "string",
@@ -1155,6 +1196,7 @@ M.ListBenefitAllocationsInput = {
 
 M.ListBenefitAllocationsOutput = {
     type = "structure",
+    id = "ListBenefitAllocationsOutput",
     members = {
         BenefitAllocationSummaries = {
             type = "list",
@@ -1168,6 +1210,7 @@ M.ListBenefitAllocationsOutput = {
 
 M.ListBenefitApplicationsInput = {
     type = "structure",
+    id = "ListBenefitApplicationsInput",
     members = {
         Catalog = {
             type = "string",
@@ -1214,6 +1257,7 @@ M.ListBenefitApplicationsInput = {
 
 M.ListBenefitApplicationsOutput = {
     type = "structure",
+    id = "ListBenefitApplicationsOutput",
     members = {
         BenefitApplicationSummaries = {
             type = "list",
@@ -1227,6 +1271,7 @@ M.ListBenefitApplicationsOutput = {
 
 M.ListBenefitsInput = {
     type = "structure",
+    id = "ListBenefitsInput",
     members = {
         Catalog = {
             type = "string",
@@ -1257,6 +1302,7 @@ M.ListBenefitsInput = {
 
 M.ListBenefitsOutput = {
     type = "structure",
+    id = "ListBenefitsOutput",
     members = {
         BenefitSummaries = {
             type = "list",
@@ -1270,6 +1316,7 @@ M.ListBenefitsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1282,6 +1329,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1292,6 +1340,7 @@ M.ListTagsForResourceOutput = {
 
 M.RecallBenefitApplicationInput = {
     type = "structure",
+    id = "RecallBenefitApplicationInput",
     members = {
         Catalog = {
             type = "string",
@@ -1319,10 +1368,12 @@ M.RecallBenefitApplicationInput = {
 
 M.RecallBenefitApplicationOutput = {
     type = "structure",
+    id = "RecallBenefitApplicationOutput",
 }
 
 M.SubmitBenefitApplicationInput = {
     type = "structure",
+    id = "SubmitBenefitApplicationInput",
     members = {
         Catalog = {
             type = "string",
@@ -1341,10 +1392,12 @@ M.SubmitBenefitApplicationInput = {
 
 M.SubmitBenefitApplicationOutput = {
     type = "structure",
+    id = "SubmitBenefitApplicationOutput",
 }
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -1376,6 +1429,7 @@ M.ServiceQuotaExceededException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1395,10 +1449,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1418,10 +1474,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateBenefitApplicationInput = {
     type = "structure",
+    id = "UpdateBenefitApplicationInput",
     members = {
         Catalog = {
             type = "string",
@@ -1469,6 +1527,7 @@ M.UpdateBenefitApplicationInput = {
 
 M.UpdateBenefitApplicationOutput = {
     type = "structure",
+    id = "UpdateBenefitApplicationOutput",
     members = {
         Id = {
             type = "string",

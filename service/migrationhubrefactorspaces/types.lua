@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -20,6 +21,7 @@ M.ApiGatewayEndpointType = {
 
 M.ApiGatewayProxyConfig = {
     type = "structure",
+    id = "ApiGatewayProxyConfig",
     members = {
         ProxyUrl = {
             type = "string",
@@ -47,6 +49,7 @@ M.ApiGatewayProxyConfig = {
 
 M.ApiGatewayProxyInput = {
     type = "structure",
+    id = "ApiGatewayProxyInput",
     members = {
         EndpointType = {
             type = "string",
@@ -59,6 +62,7 @@ M.ApiGatewayProxyInput = {
 
 M.ApiGatewayProxySummary = {
     type = "structure",
+    id = "ApiGatewayProxySummary",
     members = {
         ProxyUrl = {
             type = "string",
@@ -131,6 +135,7 @@ M.ErrorResourceType = {
 
 M.ErrorResponse = {
     type = "structure",
+    id = "ErrorResponse",
     members = {
         Code = {
             type = "string",
@@ -161,6 +166,7 @@ M.ProxyType = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         Name = {
             type = "string",
@@ -207,6 +213,7 @@ M.ApplicationSummary = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -232,6 +239,7 @@ M.ConflictException = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -275,6 +283,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         Name = {
             type = "string",
@@ -320,6 +329,7 @@ M.CreateApplicationOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -333,6 +343,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -358,6 +369,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -392,6 +404,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -418,6 +431,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -436,6 +450,7 @@ M.NetworkFabricType = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         Name = {
             type = "string",
@@ -475,6 +490,7 @@ M.EnvironmentState = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         Name = {
             type = "string",
@@ -518,6 +534,7 @@ M.RouteActivationState = {
 
 M.DefaultRouteInput = {
     type = "structure",
+    id = "DefaultRouteInput",
     members = {
         ActivationState = {
             type = "string",
@@ -542,6 +559,7 @@ M.HttpMethod = {
 
 M.UriPathRouteInput = {
     type = "structure",
+    id = "UriPathRouteInput",
     members = {
         SourcePath = {
             type = "string",
@@ -570,6 +588,7 @@ M.UriPathRouteInput = {
 
 M.CreateRouteInput = {
     type = "structure",
+    id = "CreateRouteInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -624,6 +643,7 @@ M.RouteState = {
 
 M.CreateRouteOutput = {
     type = "structure",
+    id = "CreateRouteOutput",
     members = {
         RouteId = {
             type = "string",
@@ -671,6 +691,7 @@ M.ServiceEndpointType = {
 
 M.LambdaEndpointInput = {
     type = "structure",
+    id = "LambdaEndpointInput",
     members = {
         Arn = {
             type = "string",
@@ -683,6 +704,7 @@ M.LambdaEndpointInput = {
 
 M.UrlEndpointInput = {
     type = "structure",
+    id = "UrlEndpointInput",
     members = {
         Url = {
             type = "string",
@@ -698,6 +720,7 @@ M.UrlEndpointInput = {
 
 M.CreateServiceInput = {
     type = "structure",
+    id = "CreateServiceInput",
     members = {
         Name = {
             type = "string",
@@ -756,6 +779,7 @@ M.ServiceState = {
 
 M.CreateServiceOutput = {
     type = "structure",
+    id = "CreateServiceOutput",
     members = {
         ServiceId = {
             type = "string",
@@ -808,6 +832,7 @@ M.CreateServiceOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -828,6 +853,7 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
     members = {
         Name = {
             type = "string",
@@ -852,6 +878,7 @@ M.DeleteApplicationOutput = {
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -865,6 +892,7 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
     members = {
         Name = {
             type = "string",
@@ -886,6 +914,7 @@ M.DeleteEnvironmentOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         Identifier = {
             type = "string",
@@ -899,10 +928,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteRouteInput = {
     type = "structure",
+    id = "DeleteRouteInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -930,6 +961,7 @@ M.DeleteRouteInput = {
 
 M.DeleteRouteOutput = {
     type = "structure",
+    id = "DeleteRouteOutput",
     members = {
         RouteId = {
             type = "string",
@@ -954,6 +986,7 @@ M.DeleteRouteOutput = {
 
 M.DeleteServiceInput = {
     type = "structure",
+    id = "DeleteServiceInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -981,6 +1014,7 @@ M.DeleteServiceInput = {
 
 M.DeleteServiceOutput = {
     type = "structure",
+    id = "DeleteServiceOutput",
     members = {
         ServiceId = {
             type = "string",
@@ -1008,6 +1042,7 @@ M.DeleteServiceOutput = {
 
 M.EnvironmentSummary = {
     type = "structure",
+    id = "EnvironmentSummary",
     members = {
         Name = {
             type = "string",
@@ -1050,6 +1085,7 @@ M.EnvironmentSummary = {
 
 M.EnvironmentVpc = {
     type = "structure",
+    id = "EnvironmentVpc",
     members = {
         EnvironmentId = {
             type = "string",
@@ -1078,6 +1114,7 @@ M.EnvironmentVpc = {
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1098,6 +1135,7 @@ M.GetApplicationInput = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         Name = {
             type = "string",
@@ -1144,6 +1182,7 @@ M.GetApplicationOutput = {
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1157,6 +1196,7 @@ M.GetEnvironmentInput = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         Name = {
             type = "string",
@@ -1199,6 +1239,7 @@ M.GetEnvironmentOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         Identifier = {
             type = "string",
@@ -1212,6 +1253,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -1221,6 +1263,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetRouteInput = {
     type = "structure",
+    id = "GetRouteInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1248,6 +1291,7 @@ M.GetRouteInput = {
 
 M.GetRouteOutput = {
     type = "structure",
+    id = "GetRouteOutput",
     members = {
         RouteId = {
             type = "string",
@@ -1311,6 +1355,7 @@ M.GetRouteOutput = {
 
 M.GetServiceInput = {
     type = "structure",
+    id = "GetServiceInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1338,6 +1383,7 @@ M.GetServiceInput = {
 
 M.LambdaEndpointConfig = {
     type = "structure",
+    id = "LambdaEndpointConfig",
     members = {
         Arn = {
             type = "string",
@@ -1347,6 +1393,7 @@ M.LambdaEndpointConfig = {
 
 M.UrlEndpointConfig = {
     type = "structure",
+    id = "UrlEndpointConfig",
     members = {
         Url = {
             type = "string",
@@ -1359,6 +1406,7 @@ M.UrlEndpointConfig = {
 
 M.GetServiceOutput = {
     type = "structure",
+    id = "GetServiceOutput",
     members = {
         ServiceId = {
             type = "string",
@@ -1412,6 +1460,7 @@ M.GetServiceOutput = {
 
 M.InvalidResourcePolicyException = {
     type = "structure",
+    id = "InvalidResourcePolicyException",
     error = "client",
     members = {
         Message = {
@@ -1425,6 +1474,7 @@ M.InvalidResourcePolicyException = {
 
 M.LambdaEndpointSummary = {
     type = "structure",
+    id = "LambdaEndpointSummary",
     members = {
         Arn = {
             type = "string",
@@ -1434,6 +1484,7 @@ M.LambdaEndpointSummary = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1459,6 +1510,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         ApplicationSummaryList = {
             type = "list",
@@ -1472,6 +1524,7 @@ M.ListApplicationsOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1490,6 +1543,7 @@ M.ListEnvironmentsInput = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         EnvironmentSummaryList = {
             type = "list",
@@ -1503,6 +1557,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListEnvironmentVpcsInput = {
     type = "structure",
+    id = "ListEnvironmentVpcsInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1528,6 +1583,7 @@ M.ListEnvironmentVpcsInput = {
 
 M.ListEnvironmentVpcsOutput = {
     type = "structure",
+    id = "ListEnvironmentVpcsOutput",
     members = {
         EnvironmentVpcList = {
             type = "list",
@@ -1541,6 +1597,7 @@ M.ListEnvironmentVpcsOutput = {
 
 M.ListRoutesInput = {
     type = "structure",
+    id = "ListRoutesInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1573,6 +1630,7 @@ M.ListRoutesInput = {
 
 M.RouteSummary = {
     type = "structure",
+    id = "RouteSummary",
     members = {
         RouteId = {
             type = "string",
@@ -1636,6 +1694,7 @@ M.RouteSummary = {
 
 M.ListRoutesOutput = {
     type = "structure",
+    id = "ListRoutesOutput",
     members = {
         RouteSummaryList = {
             type = "list",
@@ -1649,6 +1708,7 @@ M.ListRoutesOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1681,6 +1741,7 @@ M.ListServicesInput = {
 
 M.UrlEndpointSummary = {
     type = "structure",
+    id = "UrlEndpointSummary",
     members = {
         Url = {
             type = "string",
@@ -1693,6 +1754,7 @@ M.UrlEndpointSummary = {
 
 M.ServiceSummary = {
     type = "structure",
+    id = "ServiceSummary",
     members = {
         ServiceId = {
             type = "string",
@@ -1746,6 +1808,7 @@ M.ServiceSummary = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         ServiceSummaryList = {
             type = "list",
@@ -1759,6 +1822,7 @@ M.ListServicesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1772,6 +1836,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1783,6 +1848,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1801,10 +1867,12 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1826,10 +1894,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1851,10 +1921,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateRouteInput = {
     type = "structure",
+    id = "UpdateRouteInput",
     members = {
         EnvironmentIdentifier = {
             type = "string",
@@ -1888,6 +1960,7 @@ M.UpdateRouteInput = {
 
 M.UpdateRouteOutput = {
     type = "structure",
+    id = "UpdateRouteOutput",
     members = {
         RouteId = {
             type = "string",

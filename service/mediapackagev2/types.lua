@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +23,7 @@ M.AdMarkerHls = {
 
 M.CancelHarvestJobInput = {
     type = "structure",
+    id = "CancelHarvestJobInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -62,6 +64,7 @@ M.CancelHarvestJobInput = {
 
 M.CancelHarvestJobOutput = {
     type = "structure",
+    id = "CancelHarvestJobOutput",
 }
 
 M.ConflictExceptionType = {
@@ -73,6 +76,7 @@ M.ConflictExceptionType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -86,6 +90,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -103,6 +108,7 @@ M.ResourceTypeNotFound = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +122,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -229,6 +236,7 @@ M.ValidationExceptionType = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -242,6 +250,7 @@ M.ValidationException = {
 
 M.CdnAuthConfiguration = {
     type = "structure",
+    id = "CdnAuthConfiguration",
     members = {
         CdnIdentifierSecretArns = {
             type = "list",
@@ -261,6 +270,7 @@ M.CdnAuthConfiguration = {
 
 M.ChannelGroupListConfiguration = {
     type = "structure",
+    id = "ChannelGroupListConfiguration",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -294,6 +304,7 @@ M.ChannelGroupListConfiguration = {
 
 M.DeleteChannelPolicyInput = {
     type = "structure",
+    id = "DeleteChannelPolicyInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -314,10 +325,12 @@ M.DeleteChannelPolicyInput = {
 
 M.DeleteChannelPolicyOutput = {
     type = "structure",
+    id = "DeleteChannelPolicyOutput",
 }
 
 M.GetChannelPolicyInput = {
     type = "structure",
+    id = "GetChannelPolicyInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -338,6 +351,7 @@ M.GetChannelPolicyInput = {
 
 M.GetChannelPolicyOutput = {
     type = "structure",
+    id = "GetChannelPolicyOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -362,6 +376,7 @@ M.GetChannelPolicyOutput = {
 
 M.PutChannelPolicyInput = {
     type = "structure",
+    id = "PutChannelPolicyInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -388,10 +403,12 @@ M.PutChannelPolicyInput = {
 
 M.PutChannelPolicyOutput = {
     type = "structure",
+    id = "PutChannelPolicyOutput",
 }
 
 M.InputSwitchConfiguration = {
     type = "structure",
+    id = "InputSwitchConfiguration",
     members = {
         MQCSInputSwitching = {
             type = "boolean",
@@ -409,6 +426,7 @@ M.InputType = {
 
 M.OutputHeaderConfiguration = {
     type = "structure",
+    id = "OutputHeaderConfiguration",
     members = {
         PublishMQCS = {
             type = "boolean",
@@ -418,6 +436,7 @@ M.OutputHeaderConfiguration = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -460,6 +479,7 @@ M.CreateChannelInput = {
 
 M.IngestEndpoint = {
     type = "structure",
+    id = "IngestEndpoint",
     members = {
         Id = {
             type = "string",
@@ -472,6 +492,7 @@ M.IngestEndpoint = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -528,6 +549,7 @@ M.CreateChannelOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -538,6 +560,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteChannelInput = {
     type = "structure",
+    id = "DeleteChannelInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -558,10 +581,12 @@ M.DeleteChannelInput = {
 
 M.DeleteChannelOutput = {
     type = "structure",
+    id = "DeleteChannelOutput",
 }
 
 M.GetChannelInput = {
     type = "structure",
+    id = "GetChannelInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -582,6 +607,7 @@ M.GetChannelInput = {
 
 M.GetChannelOutput = {
     type = "structure",
+    id = "GetChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -641,6 +667,7 @@ M.GetChannelOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -667,6 +694,7 @@ M.ListChannelsInput = {
 
 M.ChannelListConfiguration = {
     type = "structure",
+    id = "ChannelListConfiguration",
     members = {
         Arn = {
             type = "string",
@@ -709,6 +737,7 @@ M.ChannelListConfiguration = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         Items = {
             type = "list",
@@ -728,6 +757,7 @@ M.ContainerType = {
 
 M.DashBaseUrl = {
     type = "structure",
+    id = "DashBaseUrl",
     members = {
         Url = {
             type = "string",
@@ -759,6 +789,7 @@ M.DashDrmSignaling = {
 
 M.DashDvbMetricsReporting = {
     type = "structure",
+    id = "DashDvbMetricsReporting",
     members = {
         ReportingUrl = {
             type = "string",
@@ -774,6 +805,7 @@ M.DashDvbMetricsReporting = {
 
 M.DashDvbFontDownload = {
     type = "structure",
+    id = "DashDvbFontDownload",
     members = {
         Url = {
             type = "string",
@@ -789,6 +821,7 @@ M.DashDvbFontDownload = {
 
 M.DashDvbSettings = {
     type = "structure",
+    id = "DashDvbSettings",
     members = {
         FontDownload = M.DashDvbFontDownload,
         ErrorMetrics = {
@@ -800,6 +833,7 @@ M.DashDvbSettings = {
 
 M.FilterConfiguration = {
     type = "structure",
+    id = "FilterConfiguration",
     members = {
         ManifestFilter = {
             type = "string",
@@ -836,6 +870,7 @@ M.DashProfile = {
 
 M.DashProgramInformation = {
     type = "structure",
+    id = "DashProgramInformation",
     members = {
         Title = {
             type = "string",
@@ -862,6 +897,7 @@ M.ScteInManifests = {
 
 M.ScteDash = {
     type = "structure",
+    id = "ScteDash",
     members = {
         AdMarkerDash = {
             type = "string",
@@ -883,6 +919,7 @@ M.DashTtmlProfile = {
 
 M.DashTtmlConfiguration = {
     type = "structure",
+    id = "DashTtmlConfiguration",
     members = {
         TtmlProfile = {
             type = "string",
@@ -895,6 +932,7 @@ M.DashTtmlConfiguration = {
 
 M.DashSubtitleConfiguration = {
     type = "structure",
+    id = "DashSubtitleConfiguration",
     members = {
         TtmlConfiguration = M.DashTtmlConfiguration,
     },
@@ -914,6 +952,7 @@ M.DashUtcTimingMode = {
 
 M.DashUtcTiming = {
     type = "structure",
+    id = "DashUtcTiming",
     members = {
         TimingMode = {
             type = "string",
@@ -926,6 +965,7 @@ M.DashUtcTiming = {
 
 M.CreateDashManifestConfiguration = {
     type = "structure",
+    id = "CreateDashManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -987,6 +1027,7 @@ M.EndpointErrorCondition = {
 
 M.ForceEndpointErrorConfiguration = {
     type = "structure",
+    id = "ForceEndpointErrorConfiguration",
     members = {
         EndpointErrorConditions = {
             type = "list",
@@ -997,6 +1038,7 @@ M.ForceEndpointErrorConfiguration = {
 
 M.ScteHls = {
     type = "structure",
+    id = "ScteHls",
     members = {
         AdMarkerHls = {
             type = "string",
@@ -1009,6 +1051,7 @@ M.ScteHls = {
 
 M.StartTag = {
     type = "structure",
+    id = "StartTag",
     members = {
         TimeOffset = {
             type = "float",
@@ -1024,6 +1067,7 @@ M.StartTag = {
 
 M.CreateHlsManifestConfiguration = {
     type = "structure",
+    id = "CreateHlsManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1054,6 +1098,7 @@ M.CreateHlsManifestConfiguration = {
 
 M.CreateLowLatencyHlsManifestConfiguration = {
     type = "structure",
+    id = "CreateLowLatencyHlsManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1089,6 +1134,7 @@ M.MssManifestLayout = {
 
 M.CreateMssManifestConfiguration = {
     type = "structure",
+    id = "CreateMssManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1122,6 +1168,7 @@ M.TsEncryptionMethod = {
 
 M.EncryptionMethod = {
     type = "structure",
+    id = "EncryptionMethod",
     members = {
         TsEncryptionMethod = {
             type = "string",
@@ -1166,6 +1213,7 @@ M.PresetSpeke20Video = {
 
 M.EncryptionContractConfiguration = {
     type = "structure",
+    id = "EncryptionContractConfiguration",
     members = {
         PresetSpeke20Audio = {
             type = "string",
@@ -1184,6 +1232,7 @@ M.EncryptionContractConfiguration = {
 
 M.SpekeKeyProvider = {
     type = "structure",
+    id = "SpekeKeyProvider",
     members = {
         EncryptionContractConfiguration = setmetatable({ traits = {
             required = true,
@@ -1221,6 +1270,7 @@ M.SpekeKeyProvider = {
 
 M.Encryption = {
     type = "structure",
+    id = "Encryption",
     members = {
         ConstantInitializationVector = {
             type = "string",
@@ -1276,6 +1326,7 @@ M.ScteInSegments = {
 
 M.Scte = {
     type = "structure",
+    id = "Scte",
     members = {
         ScteFilter = {
             type = "list",
@@ -1293,6 +1344,7 @@ M.Scte = {
 
 M.Segment = {
     type = "structure",
+    id = "Segment",
     members = {
         SegmentDurationSeconds = {
             type = "integer",
@@ -1321,6 +1373,7 @@ M.UriSeparator = {
 
 M.CreateOriginEndpointInput = {
     type = "structure",
+    id = "CreateOriginEndpointInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -1392,6 +1445,7 @@ M.CreateOriginEndpointInput = {
 
 M.GetDashManifestConfiguration = {
     type = "structure",
+    id = "GetDashManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1452,6 +1506,7 @@ M.GetDashManifestConfiguration = {
 
 M.GetHlsManifestConfiguration = {
     type = "structure",
+    id = "GetHlsManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1488,6 +1543,7 @@ M.GetHlsManifestConfiguration = {
 
 M.GetLowLatencyHlsManifestConfiguration = {
     type = "structure",
+    id = "GetLowLatencyHlsManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1524,6 +1580,7 @@ M.GetLowLatencyHlsManifestConfiguration = {
 
 M.GetMssManifestConfiguration = {
     type = "structure",
+    id = "GetMssManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1549,6 +1606,7 @@ M.GetMssManifestConfiguration = {
 
 M.CreateOriginEndpointOutput = {
     type = "structure",
+    id = "CreateOriginEndpointOutput",
     members = {
         Arn = {
             type = "string",
@@ -1634,6 +1692,7 @@ M.CreateOriginEndpointOutput = {
 
 M.DeleteOriginEndpointInput = {
     type = "structure",
+    id = "DeleteOriginEndpointInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -1661,10 +1720,12 @@ M.DeleteOriginEndpointInput = {
 
 M.DeleteOriginEndpointOutput = {
     type = "structure",
+    id = "DeleteOriginEndpointOutput",
 }
 
 M.GetOriginEndpointInput = {
     type = "structure",
+    id = "GetOriginEndpointInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -1692,6 +1753,7 @@ M.GetOriginEndpointInput = {
 
 M.GetOriginEndpointOutput = {
     type = "structure",
+    id = "GetOriginEndpointOutput",
     members = {
         Arn = {
             type = "string",
@@ -1780,6 +1842,7 @@ M.GetOriginEndpointOutput = {
 
 M.ListOriginEndpointsInput = {
     type = "structure",
+    id = "ListOriginEndpointsInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -1813,6 +1876,7 @@ M.ListOriginEndpointsInput = {
 
 M.ListDashManifestConfiguration = {
     type = "structure",
+    id = "ListDashManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1828,6 +1892,7 @@ M.ListDashManifestConfiguration = {
 
 M.ListHlsManifestConfiguration = {
     type = "structure",
+    id = "ListHlsManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1846,6 +1911,7 @@ M.ListHlsManifestConfiguration = {
 
 M.ListLowLatencyHlsManifestConfiguration = {
     type = "structure",
+    id = "ListLowLatencyHlsManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1864,6 +1930,7 @@ M.ListLowLatencyHlsManifestConfiguration = {
 
 M.ListMssManifestConfiguration = {
     type = "structure",
+    id = "ListMssManifestConfiguration",
     members = {
         ManifestName = {
             type = "string",
@@ -1879,6 +1946,7 @@ M.ListMssManifestConfiguration = {
 
 M.OriginEndpointListConfiguration = {
     type = "structure",
+    id = "OriginEndpointListConfiguration",
     members = {
         Arn = {
             type = "string",
@@ -1944,6 +2012,7 @@ M.OriginEndpointListConfiguration = {
 
 M.ListOriginEndpointsOutput = {
     type = "structure",
+    id = "ListOriginEndpointsOutput",
     members = {
         Items = {
             type = "list",
@@ -1957,6 +2026,7 @@ M.ListOriginEndpointsOutput = {
 
 M.DeleteOriginEndpointPolicyInput = {
     type = "structure",
+    id = "DeleteOriginEndpointPolicyInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -1984,10 +2054,12 @@ M.DeleteOriginEndpointPolicyInput = {
 
 M.DeleteOriginEndpointPolicyOutput = {
     type = "structure",
+    id = "DeleteOriginEndpointPolicyOutput",
 }
 
 M.GetOriginEndpointPolicyInput = {
     type = "structure",
+    id = "GetOriginEndpointPolicyInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2015,6 +2087,7 @@ M.GetOriginEndpointPolicyInput = {
 
 M.GetOriginEndpointPolicyOutput = {
     type = "structure",
+    id = "GetOriginEndpointPolicyOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2046,6 +2119,7 @@ M.GetOriginEndpointPolicyOutput = {
 
 M.PutOriginEndpointPolicyInput = {
     type = "structure",
+    id = "PutOriginEndpointPolicyInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2080,10 +2154,12 @@ M.PutOriginEndpointPolicyInput = {
 
 M.PutOriginEndpointPolicyOutput = {
     type = "structure",
+    id = "PutOriginEndpointPolicyOutput",
 }
 
 M.ResetOriginEndpointStateInput = {
     type = "structure",
+    id = "ResetOriginEndpointStateInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2111,6 +2187,7 @@ M.ResetOriginEndpointStateInput = {
 
 M.ResetOriginEndpointStateOutput = {
     type = "structure",
+    id = "ResetOriginEndpointStateOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2147,6 +2224,7 @@ M.ResetOriginEndpointStateOutput = {
 
 M.UpdateOriginEndpointInput = {
     type = "structure",
+    id = "UpdateOriginEndpointInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2213,6 +2291,7 @@ M.UpdateOriginEndpointInput = {
 
 M.UpdateOriginEndpointOutput = {
     type = "structure",
+    id = "UpdateOriginEndpointOutput",
     members = {
         Arn = {
             type = "string",
@@ -2301,6 +2380,7 @@ M.UpdateOriginEndpointOutput = {
 
 M.ResetChannelStateInput = {
     type = "structure",
+    id = "ResetChannelStateInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2321,6 +2401,7 @@ M.ResetChannelStateInput = {
 
 M.ResetChannelStateOutput = {
     type = "structure",
+    id = "ResetChannelStateOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2351,6 +2432,7 @@ M.ResetChannelStateOutput = {
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2382,6 +2464,7 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -2441,6 +2524,7 @@ M.UpdateChannelOutput = {
 
 M.CreateChannelGroupInput = {
     type = "structure",
+    id = "CreateChannelGroupInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2471,6 +2555,7 @@ M.CreateChannelGroupInput = {
 
 M.CreateChannelGroupOutput = {
     type = "structure",
+    id = "CreateChannelGroupOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2518,6 +2603,7 @@ M.CreateChannelGroupOutput = {
 
 M.DeleteChannelGroupInput = {
     type = "structure",
+    id = "DeleteChannelGroupInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2531,10 +2617,12 @@ M.DeleteChannelGroupInput = {
 
 M.DeleteChannelGroupOutput = {
     type = "structure",
+    id = "DeleteChannelGroupOutput",
 }
 
 M.GetChannelGroupInput = {
     type = "structure",
+    id = "GetChannelGroupInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2548,6 +2636,7 @@ M.GetChannelGroupInput = {
 
 M.GetChannelGroupOutput = {
     type = "structure",
+    id = "GetChannelGroupOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2598,6 +2687,7 @@ M.GetChannelGroupOutput = {
 
 M.S3DestinationConfig = {
     type = "structure",
+    id = "S3DestinationConfig",
     members = {
         BucketName = {
             type = "string",
@@ -2616,6 +2706,7 @@ M.S3DestinationConfig = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         S3Destination = setmetatable({ traits = {
             required = true,
@@ -2625,6 +2716,7 @@ M.Destination = {
 
 M.HarvestedDashManifest = {
     type = "structure",
+    id = "HarvestedDashManifest",
     members = {
         ManifestName = {
             type = "string",
@@ -2637,6 +2729,7 @@ M.HarvestedDashManifest = {
 
 M.HarvestedHlsManifest = {
     type = "structure",
+    id = "HarvestedHlsManifest",
     members = {
         ManifestName = {
             type = "string",
@@ -2649,6 +2742,7 @@ M.HarvestedHlsManifest = {
 
 M.HarvestedLowLatencyHlsManifest = {
     type = "structure",
+    id = "HarvestedLowLatencyHlsManifest",
     members = {
         ManifestName = {
             type = "string",
@@ -2661,6 +2755,7 @@ M.HarvestedLowLatencyHlsManifest = {
 
 M.HarvestedManifests = {
     type = "structure",
+    id = "HarvestedManifests",
     members = {
         HlsManifests = {
             type = "list",
@@ -2679,6 +2774,7 @@ M.HarvestedManifests = {
 
 M.HarvesterScheduleConfiguration = {
     type = "structure",
+    id = "HarvesterScheduleConfiguration",
     members = {
         StartTime = {
             type = "timestamp",
@@ -2697,6 +2793,7 @@ M.HarvesterScheduleConfiguration = {
 
 M.CreateHarvestJobInput = {
     type = "structure",
+    id = "CreateHarvestJobInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2759,6 +2856,7 @@ M.HarvestJobStatus = {
 
 M.CreateHarvestJobOutput = {
     type = "structure",
+    id = "CreateHarvestJobOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2836,6 +2934,7 @@ M.CreateHarvestJobOutput = {
 
 M.GetHarvestJobInput = {
     type = "structure",
+    id = "GetHarvestJobInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2870,6 +2969,7 @@ M.GetHarvestJobInput = {
 
 M.GetHarvestJobOutput = {
     type = "structure",
+    id = "GetHarvestJobOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2947,6 +3047,7 @@ M.GetHarvestJobOutput = {
 
 M.ListHarvestJobsInput = {
     type = "structure",
+    id = "ListHarvestJobsInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -2991,6 +3092,7 @@ M.ListHarvestJobsInput = {
 
 M.HarvestJob = {
     type = "structure",
+    id = "HarvestJob",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -3063,6 +3165,7 @@ M.HarvestJob = {
 
 M.ListHarvestJobsOutput = {
     type = "structure",
+    id = "ListHarvestJobsOutput",
     members = {
         Items = {
             type = "list",
@@ -3076,6 +3179,7 @@ M.ListHarvestJobsOutput = {
 
 M.ListChannelGroupsInput = {
     type = "structure",
+    id = "ListChannelGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3095,6 +3199,7 @@ M.ListChannelGroupsInput = {
 
 M.ListChannelGroupsOutput = {
     type = "structure",
+    id = "ListChannelGroupsOutput",
     members = {
         Items = {
             type = "list",
@@ -3108,6 +3213,7 @@ M.ListChannelGroupsOutput = {
 
 M.UpdateChannelGroupInput = {
     type = "structure",
+    id = "UpdateChannelGroupInput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -3130,6 +3236,7 @@ M.UpdateChannelGroupInput = {
 
 M.UpdateChannelGroupOutput = {
     type = "structure",
+    id = "UpdateChannelGroupOutput",
     members = {
         ChannelGroupName = {
             type = "string",
@@ -3180,6 +3287,7 @@ M.UpdateChannelGroupOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3193,6 +3301,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -3207,6 +3316,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3229,10 +3339,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3254,6 +3366,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

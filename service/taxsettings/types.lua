@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         addressLine1 = {
             type = "string",
@@ -63,6 +65,7 @@ M.AddressRoleType = {
 
 M.Jurisdiction = {
     type = "structure",
+    id = "Jurisdiction",
     members = {
         stateOrRegion = {
             type = "string",
@@ -78,6 +81,7 @@ M.Jurisdiction = {
 
 M.AccountMetaData = {
     type = "structure",
+    id = "AccountMetaData",
     members = {
         accountName = {
             type = "string",
@@ -99,6 +103,7 @@ M.AccountMetaData = {
 
 M.TaxInheritanceDetails = {
     type = "structure",
+    id = "TaxInheritanceDetails",
     members = {
         parentEntityId = {
             type = "string",
@@ -111,6 +116,7 @@ M.TaxInheritanceDetails = {
 
 M.BrazilAdditionalInfo = {
     type = "structure",
+    id = "BrazilAdditionalInfo",
     members = {
         ccmCode = {
             type = "string",
@@ -123,6 +129,7 @@ M.BrazilAdditionalInfo = {
 
 M.CanadaAdditionalInfo = {
     type = "structure",
+    id = "CanadaAdditionalInfo",
     members = {
         provincialSalesTaxId = {
             type = "string",
@@ -141,6 +148,7 @@ M.CanadaAdditionalInfo = {
 
 M.EgyptAdditionalInfo = {
     type = "structure",
+    id = "EgyptAdditionalInfo",
     members = {
         uniqueIdentificationNumber = {
             type = "string",
@@ -153,6 +161,7 @@ M.EgyptAdditionalInfo = {
 
 M.EstoniaAdditionalInfo = {
     type = "structure",
+    id = "EstoniaAdditionalInfo",
     members = {
         registryCommercialCode = {
             type = "string",
@@ -171,6 +180,7 @@ M.PersonType = {
 
 M.GeorgiaAdditionalInfo = {
     type = "structure",
+    id = "GeorgiaAdditionalInfo",
     members = {
         personType = {
             type = "string",
@@ -183,6 +193,7 @@ M.GeorgiaAdditionalInfo = {
 
 M.GreeceAdditionalInfo = {
     type = "structure",
+    id = "GreeceAdditionalInfo",
     members = {
         contractingAuthorityCode = {
             type = "string",
@@ -192,6 +203,7 @@ M.GreeceAdditionalInfo = {
 
 M.IndiaAdditionalInfo = {
     type = "structure",
+    id = "IndiaAdditionalInfo",
     members = {
         pan = {
             type = "string",
@@ -208,6 +220,7 @@ M.IndonesiaTaxRegistrationNumberType = {
 
 M.IndonesiaAdditionalInfo = {
     type = "structure",
+    id = "IndonesiaAdditionalInfo",
     members = {
         taxRegistrationNumberType = {
             type = "string",
@@ -233,6 +246,7 @@ M.IsraelDealerType = {
 
 M.IsraelAdditionalInfo = {
     type = "structure",
+    id = "IsraelAdditionalInfo",
     members = {
         dealerType = {
             type = "string",
@@ -251,6 +265,7 @@ M.IsraelAdditionalInfo = {
 
 M.ItalyAdditionalInfo = {
     type = "structure",
+    id = "ItalyAdditionalInfo",
     members = {
         sdiAccountId = {
             type = "string",
@@ -269,6 +284,7 @@ M.ItalyAdditionalInfo = {
 
 M.KenyaAdditionalInfo = {
     type = "structure",
+    id = "KenyaAdditionalInfo",
     members = {
         personType = {
             type = "string",
@@ -288,6 +304,7 @@ M.MalaysiaServiceTaxCode = {
 
 M.MalaysiaAdditionalInfo = {
     type = "structure",
+    id = "MalaysiaAdditionalInfo",
     members = {
         serviceTaxCodes = {
             type = "list",
@@ -307,6 +324,7 @@ M.MalaysiaAdditionalInfo = {
 
 M.PolandAdditionalInfo = {
     type = "structure",
+    id = "PolandAdditionalInfo",
     members = {
         individualRegistrationNumber = {
             type = "string",
@@ -324,6 +342,7 @@ M.TaxRegistrationNumberType = {
 
 M.RomaniaAdditionalInfo = {
     type = "structure",
+    id = "RomaniaAdditionalInfo",
     members = {
         taxRegistrationNumberType = {
             type = "string",
@@ -342,6 +361,7 @@ M.SaudiArabiaTaxRegistrationNumberType = {
 
 M.SaudiArabiaAdditionalInfo = {
     type = "structure",
+    id = "SaudiArabiaAdditionalInfo",
     members = {
         taxRegistrationNumberType = {
             type = "string",
@@ -351,6 +371,7 @@ M.SaudiArabiaAdditionalInfo = {
 
 M.SouthKoreaAdditionalInfo = {
     type = "structure",
+    id = "SouthKoreaAdditionalInfo",
     members = {
         businessRepresentativeName = {
             type = "string",
@@ -380,6 +401,7 @@ M.RegistrationType = {
 
 M.SpainAdditionalInfo = {
     type = "structure",
+    id = "SpainAdditionalInfo",
     members = {
         registrationType = {
             type = "string",
@@ -401,6 +423,7 @@ M.Industries = {
 
 M.TurkeyAdditionalInfo = {
     type = "structure",
+    id = "TurkeyAdditionalInfo",
     members = {
         taxOffice = {
             type = "string",
@@ -424,6 +447,7 @@ M.UkraineTrnType = {
 
 M.UkraineAdditionalInfo = {
     type = "structure",
+    id = "UkraineAdditionalInfo",
     members = {
         ukraineTrnType = {
             type = "string",
@@ -441,6 +465,7 @@ M.UzbekistanTaxRegistrationNumberType = {
 
 M.UzbekistanAdditionalInfo = {
     type = "structure",
+    id = "UzbekistanAdditionalInfo",
     members = {
         taxRegistrationNumberType = {
             type = "string",
@@ -453,6 +478,7 @@ M.UzbekistanAdditionalInfo = {
 
 M.VietnamAdditionalInfo = {
     type = "structure",
+    id = "VietnamAdditionalInfo",
     members = {
         enterpriseIdentificationNumber = {
             type = "string",
@@ -471,6 +497,7 @@ M.VietnamAdditionalInfo = {
 
 M.AdditionalInfoResponse = {
     type = "structure",
+    id = "AdditionalInfoResponse",
     members = {
         malaysiaAdditionalInfo = M.MalaysiaAdditionalInfo,
         israelAdditionalInfo = M.IsraelAdditionalInfo,
@@ -521,6 +548,7 @@ M.TaxRegistrationStatus = {
 
 M.TaxDocumentMetadata = {
     type = "structure",
+    id = "TaxDocumentMetadata",
     members = {
         taxDocumentAccessToken = {
             type = "string",
@@ -539,6 +567,7 @@ M.TaxDocumentMetadata = {
 
 M.TaxRegistrationWithJurisdiction = {
     type = "structure",
+    id = "TaxRegistrationWithJurisdiction",
     members = {
         registrationId = {
             type = "string",
@@ -583,6 +612,7 @@ M.TaxRegistrationWithJurisdiction = {
 
 M.AccountDetails = {
     type = "structure",
+    id = "AccountDetails",
     members = {
         accountId = {
             type = "string",
@@ -595,6 +625,7 @@ M.AccountDetails = {
 
 M.AdditionalInfoRequest = {
     type = "structure",
+    id = "AdditionalInfoRequest",
     members = {
         malaysiaAdditionalInfo = M.MalaysiaAdditionalInfo,
         israelAdditionalInfo = M.IsraelAdditionalInfo,
@@ -620,6 +651,7 @@ M.AdditionalInfoRequest = {
 
 M.AttachmentUploadException = {
     type = "structure",
+    id = "AttachmentUploadException",
     error = "client",
     members = {
         message = {
@@ -633,6 +665,7 @@ M.AttachmentUploadException = {
 
 M.Authority = {
     type = "structure",
+    id = "Authority",
     members = {
         country = {
             type = "string",
@@ -648,6 +681,7 @@ M.Authority = {
 
 M.BatchDeleteTaxRegistrationInput = {
     type = "structure",
+    id = "BatchDeleteTaxRegistrationInput",
     members = {
         accountIds = {
             type = "list",
@@ -661,6 +695,7 @@ M.BatchDeleteTaxRegistrationInput = {
 
 M.BatchDeleteTaxRegistrationError = {
     type = "structure",
+    id = "BatchDeleteTaxRegistrationError",
     members = {
         accountId = {
             type = "string",
@@ -682,6 +717,7 @@ M.BatchDeleteTaxRegistrationError = {
 
 M.BatchDeleteTaxRegistrationOutput = {
     type = "structure",
+    id = "BatchDeleteTaxRegistrationOutput",
     members = {
         errors = {
             type = "list",
@@ -695,6 +731,7 @@ M.BatchDeleteTaxRegistrationOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -714,6 +751,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -741,6 +779,7 @@ M.ValidationExceptionErrorCode = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -753,6 +792,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -776,6 +816,7 @@ M.ValidationException = {
 
 M.BatchGetTaxExemptionsInput = {
     type = "structure",
+    id = "BatchGetTaxExemptionsInput",
     members = {
         accountIds = {
             type = "list",
@@ -796,6 +837,7 @@ M.EntityExemptionAccountStatus = {
 
 M.TaxExemptionType = {
     type = "structure",
+    id = "TaxExemptionType",
     members = {
         displayName = {
             type = "string",
@@ -812,6 +854,7 @@ M.TaxExemptionType = {
 
 M.TaxExemption = {
     type = "structure",
+    id = "TaxExemption",
     members = {
         authority = setmetatable({ traits = {
             required = true,
@@ -836,6 +879,7 @@ M.TaxExemption = {
 
 M.TaxExemptionDetails = {
     type = "structure",
+    id = "TaxExemptionDetails",
     members = {
         taxExemptions = {
             type = "list",
@@ -855,6 +899,7 @@ M.TaxExemptionDetails = {
 
 M.BatchGetTaxExemptionsOutput = {
     type = "structure",
+    id = "BatchGetTaxExemptionsOutput",
     members = {
         taxExemptionDetailsMap = {
             type = "map",
@@ -870,6 +915,7 @@ M.BatchGetTaxExemptionsOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -889,6 +935,7 @@ M.ResourceNotFoundException = {
 
 M.TaxRegistrationDocFile = {
     type = "structure",
+    id = "TaxRegistrationDocFile",
     members = {
         fileName = {
             type = "string",
@@ -907,6 +954,7 @@ M.TaxRegistrationDocFile = {
 
 M.SourceS3Location = {
     type = "structure",
+    id = "SourceS3Location",
     members = {
         bucket = {
             type = "string",
@@ -925,6 +973,7 @@ M.SourceS3Location = {
 
 M.TaxRegistrationDocument = {
     type = "structure",
+    id = "TaxRegistrationDocument",
     members = {
         s3Location = M.SourceS3Location,
         file = M.TaxRegistrationDocFile,
@@ -933,6 +982,7 @@ M.TaxRegistrationDocument = {
 
 M.VerificationDetails = {
     type = "structure",
+    id = "VerificationDetails",
     members = {
         dateOfBirth = {
             type = "string",
@@ -946,6 +996,7 @@ M.VerificationDetails = {
 
 M.TaxRegistrationEntry = {
     type = "structure",
+    id = "TaxRegistrationEntry",
     members = {
         registrationId = {
             type = "string",
@@ -976,6 +1027,7 @@ M.TaxRegistrationEntry = {
 
 M.BatchPutTaxRegistrationInput = {
     type = "structure",
+    id = "BatchPutTaxRegistrationInput",
     members = {
         accountIds = {
             type = "list",
@@ -992,6 +1044,7 @@ M.BatchPutTaxRegistrationInput = {
 
 M.BatchPutTaxRegistrationError = {
     type = "structure",
+    id = "BatchPutTaxRegistrationError",
     members = {
         accountId = {
             type = "string",
@@ -1013,6 +1066,7 @@ M.BatchPutTaxRegistrationError = {
 
 M.BatchPutTaxRegistrationOutput = {
     type = "structure",
+    id = "BatchPutTaxRegistrationOutput",
     members = {
         status = {
             type = "string",
@@ -1029,6 +1083,7 @@ M.BatchPutTaxRegistrationOutput = {
 
 M.CaseCreationLimitExceededException = {
     type = "structure",
+    id = "CaseCreationLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1042,6 +1097,7 @@ M.CaseCreationLimitExceededException = {
 
 M.DeleteSupplementalTaxRegistrationInput = {
     type = "structure",
+    id = "DeleteSupplementalTaxRegistrationInput",
     members = {
         authorityId = {
             type = "string",
@@ -1054,10 +1110,12 @@ M.DeleteSupplementalTaxRegistrationInput = {
 
 M.DeleteSupplementalTaxRegistrationOutput = {
     type = "structure",
+    id = "DeleteSupplementalTaxRegistrationOutput",
 }
 
 M.DeleteTaxRegistrationInput = {
     type = "structure",
+    id = "DeleteTaxRegistrationInput",
     members = {
         accountId = {
             type = "string",
@@ -1067,10 +1125,12 @@ M.DeleteTaxRegistrationInput = {
 
 M.DeleteTaxRegistrationOutput = {
     type = "structure",
+    id = "DeleteTaxRegistrationOutput",
 }
 
 M.DestinationS3Location = {
     type = "structure",
+    id = "DestinationS3Location",
     members = {
         bucket = {
             type = "string",
@@ -1086,6 +1146,7 @@ M.DestinationS3Location = {
 
 M.ExemptionCertificate = {
     type = "structure",
+    id = "ExemptionCertificate",
     members = {
         documentName = {
             type = "string",
@@ -1104,10 +1165,12 @@ M.ExemptionCertificate = {
 
 M.GetTaxExemptionTypesInput = {
     type = "structure",
+    id = "GetTaxExemptionTypesInput",
 }
 
 M.GetTaxExemptionTypesOutput = {
     type = "structure",
+    id = "GetTaxExemptionTypesOutput",
     members = {
         taxExemptionTypes = {
             type = "list",
@@ -1118,6 +1181,7 @@ M.GetTaxExemptionTypesOutput = {
 
 M.GetTaxInheritanceInput = {
     type = "structure",
+    id = "GetTaxInheritanceInput",
 }
 
 M.HeritageStatus = {
@@ -1127,6 +1191,7 @@ M.HeritageStatus = {
 
 M.GetTaxInheritanceOutput = {
     type = "structure",
+    id = "GetTaxInheritanceOutput",
     members = {
         heritageStatus = {
             type = "string",
@@ -1136,6 +1201,7 @@ M.GetTaxInheritanceOutput = {
 
 M.GetTaxRegistrationInput = {
     type = "structure",
+    id = "GetTaxRegistrationInput",
     members = {
         accountId = {
             type = "string",
@@ -1145,6 +1211,7 @@ M.GetTaxRegistrationInput = {
 
 M.TaxRegistration = {
     type = "structure",
+    id = "TaxRegistration",
     members = {
         registrationId = {
             type = "string",
@@ -1189,6 +1256,7 @@ M.TaxRegistration = {
 
 M.GetTaxRegistrationOutput = {
     type = "structure",
+    id = "GetTaxRegistrationOutput",
     members = {
         taxRegistration = M.TaxRegistration,
     },
@@ -1196,6 +1264,7 @@ M.GetTaxRegistrationOutput = {
 
 M.GetTaxRegistrationDocumentInput = {
     type = "structure",
+    id = "GetTaxRegistrationDocumentInput",
     members = {
         destinationS3Location = M.DestinationS3Location,
         taxDocumentMetadata = setmetatable({ traits = {
@@ -1206,6 +1275,7 @@ M.GetTaxRegistrationDocumentInput = {
 
 M.GetTaxRegistrationDocumentOutput = {
     type = "structure",
+    id = "GetTaxRegistrationDocumentOutput",
     members = {
         destinationFilePath = {
             type = "string",
@@ -1218,6 +1288,7 @@ M.GetTaxRegistrationDocumentOutput = {
 
 M.ListSupplementalTaxRegistrationsInput = {
     type = "structure",
+    id = "ListSupplementalTaxRegistrationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1234,6 +1305,7 @@ M.SupplementalTaxRegistrationType = {
 
 M.SupplementalTaxRegistration = {
     type = "structure",
+    id = "SupplementalTaxRegistration",
     members = {
         registrationId = {
             type = "string",
@@ -1273,6 +1345,7 @@ M.SupplementalTaxRegistration = {
 
 M.ListSupplementalTaxRegistrationsOutput = {
     type = "structure",
+    id = "ListSupplementalTaxRegistrationsOutput",
     members = {
         taxRegistrations = {
             type = "list",
@@ -1289,6 +1362,7 @@ M.ListSupplementalTaxRegistrationsOutput = {
 
 M.ListTaxExemptionsInput = {
     type = "structure",
+    id = "ListTaxExemptionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1301,6 +1375,7 @@ M.ListTaxExemptionsInput = {
 
 M.ListTaxExemptionsOutput = {
     type = "structure",
+    id = "ListTaxExemptionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1315,6 +1390,7 @@ M.ListTaxExemptionsOutput = {
 
 M.ListTaxRegistrationsInput = {
     type = "structure",
+    id = "ListTaxRegistrationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1327,6 +1403,7 @@ M.ListTaxRegistrationsInput = {
 
 M.ListTaxRegistrationsOutput = {
     type = "structure",
+    id = "ListTaxRegistrationsOutput",
     members = {
         accountDetails = {
             type = "list",
@@ -1343,6 +1420,7 @@ M.ListTaxRegistrationsOutput = {
 
 M.SupplementalTaxRegistrationEntry = {
     type = "structure",
+    id = "SupplementalTaxRegistrationEntry",
     members = {
         registrationId = {
             type = "string",
@@ -1370,6 +1448,7 @@ M.SupplementalTaxRegistrationEntry = {
 
 M.PutSupplementalTaxRegistrationInput = {
     type = "structure",
+    id = "PutSupplementalTaxRegistrationInput",
     members = {
         taxRegistrationEntry = setmetatable({ traits = {
             required = true,
@@ -1379,6 +1458,7 @@ M.PutSupplementalTaxRegistrationInput = {
 
 M.PutSupplementalTaxRegistrationOutput = {
     type = "structure",
+    id = "PutSupplementalTaxRegistrationOutput",
     members = {
         authorityId = {
             type = "string",
@@ -1397,6 +1477,7 @@ M.PutSupplementalTaxRegistrationOutput = {
 
 M.PutTaxExemptionInput = {
     type = "structure",
+    id = "PutTaxExemptionInput",
     members = {
         accountIds = {
             type = "list",
@@ -1422,6 +1503,7 @@ M.PutTaxExemptionInput = {
 
 M.PutTaxExemptionOutput = {
     type = "structure",
+    id = "PutTaxExemptionOutput",
     members = {
         caseId = {
             type = "string",
@@ -1431,6 +1513,7 @@ M.PutTaxExemptionOutput = {
 
 M.PutTaxInheritanceInput = {
     type = "structure",
+    id = "PutTaxInheritanceInput",
     members = {
         heritageStatus = {
             type = "string",
@@ -1440,10 +1523,12 @@ M.PutTaxInheritanceInput = {
 
 M.PutTaxInheritanceOutput = {
     type = "structure",
+    id = "PutTaxInheritanceOutput",
 }
 
 M.PutTaxRegistrationInput = {
     type = "structure",
+    id = "PutTaxRegistrationInput",
     members = {
         accountId = {
             type = "string",
@@ -1456,6 +1541,7 @@ M.PutTaxRegistrationInput = {
 
 M.PutTaxRegistrationOutput = {
     type = "structure",
+    id = "PutTaxRegistrationOutput",
     members = {
         status = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptSharedDirectoryInput = {
     type = "structure",
+    id = "AcceptSharedDirectoryInput",
     members = {
         SharedDirectoryId = {
             type = "string",
@@ -31,6 +32,7 @@ M.ShareStatus = {
 
 M.SharedDirectory = {
     type = "structure",
+    id = "SharedDirectory",
     members = {
         OwnerAccountId = {
             type = "string",
@@ -64,6 +66,7 @@ M.SharedDirectory = {
 
 M.AcceptSharedDirectoryOutput = {
     type = "structure",
+    id = "AcceptSharedDirectoryOutput",
     members = {
         SharedDirectory = M.SharedDirectory,
     },
@@ -71,6 +74,7 @@ M.AcceptSharedDirectoryOutput = {
 
 M.ClientException = {
     type = "structure",
+    id = "ClientException",
     error = "client",
     members = {
         Message = {
@@ -84,6 +88,7 @@ M.ClientException = {
 
 M.DirectoryAlreadySharedException = {
     type = "structure",
+    id = "DirectoryAlreadySharedException",
     error = "client",
     members = {
         Message = {
@@ -97,6 +102,7 @@ M.DirectoryAlreadySharedException = {
 
 M.EntityDoesNotExistException = {
     type = "structure",
+    id = "EntityDoesNotExistException",
     error = "client",
     members = {
         Message = {
@@ -110,6 +116,7 @@ M.EntityDoesNotExistException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -123,6 +130,7 @@ M.InvalidParameterException = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         Message = {
@@ -136,6 +144,7 @@ M.ServiceException = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -149,6 +158,7 @@ M.AccessDeniedException = {
 
 M.ADAssessmentLimitExceededException = {
     type = "structure",
+    id = "ADAssessmentLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -162,6 +172,7 @@ M.ADAssessmentLimitExceededException = {
 
 M.IpRoute = {
     type = "structure",
+    id = "IpRoute",
     members = {
         CidrIp = {
             type = "string",
@@ -177,6 +188,7 @@ M.IpRoute = {
 
 M.AddIpRoutesInput = {
     type = "structure",
+    id = "AddIpRoutesInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -202,10 +214,12 @@ M.AddIpRoutesInput = {
 
 M.AddIpRoutesOutput = {
     type = "structure",
+    id = "AddIpRoutesOutput",
 }
 
 M.DirectoryUnavailableException = {
     type = "structure",
+    id = "DirectoryUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -219,6 +233,7 @@ M.DirectoryUnavailableException = {
 
 M.EntityAlreadyExistsException = {
     type = "structure",
+    id = "EntityAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -232,6 +247,7 @@ M.EntityAlreadyExistsException = {
 
 M.IpRouteLimitExceededException = {
     type = "structure",
+    id = "IpRouteLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -245,6 +261,7 @@ M.IpRouteLimitExceededException = {
 
 M.DirectoryVpcSettings = {
     type = "structure",
+    id = "DirectoryVpcSettings",
     members = {
         VpcId = {
             type = "string",
@@ -264,6 +281,7 @@ M.DirectoryVpcSettings = {
 
 M.AddRegionInput = {
     type = "structure",
+    id = "AddRegionInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -285,10 +303,12 @@ M.AddRegionInput = {
 
 M.AddRegionOutput = {
     type = "structure",
+    id = "AddRegionOutput",
 }
 
 M.DirectoryAlreadyInRegionException = {
     type = "structure",
+    id = "DirectoryAlreadyInRegionException",
     error = "client",
     members = {
         Message = {
@@ -302,6 +322,7 @@ M.DirectoryAlreadyInRegionException = {
 
 M.DirectoryDoesNotExistException = {
     type = "structure",
+    id = "DirectoryDoesNotExistException",
     error = "client",
     members = {
         Message = {
@@ -315,6 +336,7 @@ M.DirectoryDoesNotExistException = {
 
 M.RegionLimitExceededException = {
     type = "structure",
+    id = "RegionLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -328,6 +350,7 @@ M.RegionLimitExceededException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -341,6 +364,7 @@ M.UnsupportedOperationException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -359,6 +383,7 @@ M.Tag = {
 
 M.AddTagsToResourceInput = {
     type = "structure",
+    id = "AddTagsToResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -378,10 +403,12 @@ M.AddTagsToResourceInput = {
 
 M.AddTagsToResourceOutput = {
     type = "structure",
+    id = "AddTagsToResourceOutput",
 }
 
 M.TagLimitExceededException = {
     type = "structure",
+    id = "TagLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -395,6 +422,7 @@ M.TagLimitExceededException = {
 
 M.Assessment = {
     type = "structure",
+    id = "Assessment",
     members = {
         AssessmentId = {
             type = "string",
@@ -450,6 +478,7 @@ M.Assessment = {
 
 M.AssessmentConfiguration = {
     type = "structure",
+    id = "AssessmentConfiguration",
     members = {
         CustomerDnsIps = {
             type = "list",
@@ -483,6 +512,7 @@ M.AssessmentConfiguration = {
 
 M.AssessmentValidation = {
     type = "structure",
+    id = "AssessmentValidation",
     members = {
         Category = {
             type = "string",
@@ -510,6 +540,7 @@ M.AssessmentValidation = {
 
 M.AssessmentReport = {
     type = "structure",
+    id = "AssessmentReport",
     members = {
         DomainControllerIp = {
             type = "string",
@@ -523,6 +554,7 @@ M.AssessmentReport = {
 
 M.AssessmentSummary = {
     type = "structure",
+    id = "AssessmentSummary",
     members = {
         AssessmentId = {
             type = "string",
@@ -554,6 +586,7 @@ M.AssessmentSummary = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         Name = {
             type = "string",
@@ -566,6 +599,7 @@ M.Attribute = {
 
 M.AuthenticationFailedException = {
     type = "structure",
+    id = "AuthenticationFailedException",
     error = "client",
     members = {
         Message = {
@@ -588,6 +622,7 @@ M.CaEnrollmentPolicyStatus = {
 
 M.CancelSchemaExtensionInput = {
     type = "structure",
+    id = "CancelSchemaExtensionInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -606,10 +641,12 @@ M.CancelSchemaExtensionInput = {
 
 M.CancelSchemaExtensionOutput = {
     type = "structure",
+    id = "CancelSchemaExtensionOutput",
 }
 
 M.ClientCertAuthSettings = {
     type = "structure",
+    id = "ClientCertAuthSettings",
     members = {
         OCSPUrl = {
             type = "string",
@@ -633,6 +670,7 @@ M.CertificateType = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         CertificateId = {
             type = "string",
@@ -661,6 +699,7 @@ M.Certificate = {
 
 M.CertificateAlreadyExistsException = {
     type = "structure",
+    id = "CertificateAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -674,6 +713,7 @@ M.CertificateAlreadyExistsException = {
 
 M.CertificateDoesNotExistException = {
     type = "structure",
+    id = "CertificateDoesNotExistException",
     error = "client",
     members = {
         Message = {
@@ -687,6 +727,7 @@ M.CertificateDoesNotExistException = {
 
 M.CertificateInfo = {
     type = "structure",
+    id = "CertificateInfo",
     members = {
         CertificateId = {
             type = "string",
@@ -708,6 +749,7 @@ M.CertificateInfo = {
 
 M.CertificateInUseException = {
     type = "structure",
+    id = "CertificateInUseException",
     error = "client",
     members = {
         Message = {
@@ -721,6 +763,7 @@ M.CertificateInUseException = {
 
 M.CertificateLimitExceededException = {
     type = "structure",
+    id = "CertificateLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -744,6 +787,7 @@ M.ClientAuthenticationType = {
 
 M.ClientAuthenticationSettingInfo = {
     type = "structure",
+    id = "ClientAuthenticationSettingInfo",
     members = {
         Type = {
             type = "string",
@@ -759,6 +803,7 @@ M.ClientAuthenticationSettingInfo = {
 
 M.Computer = {
     type = "structure",
+    id = "Computer",
     members = {
         ComputerId = {
             type = "string",
@@ -779,6 +824,7 @@ M.ReplicationScope = {
 
 M.ConditionalForwarder = {
     type = "structure",
+    id = "ConditionalForwarder",
     members = {
         RemoteDomainName = {
             type = "string",
@@ -799,6 +845,7 @@ M.ConditionalForwarder = {
 
 M.DirectoryConnectSettings = {
     type = "structure",
+    id = "DirectoryConnectSettings",
     members = {
         VpcId = {
             type = "string",
@@ -846,6 +893,7 @@ M.DirectorySize = {
 
 M.ConnectDirectoryInput = {
     type = "structure",
+    id = "ConnectDirectoryInput",
     members = {
         Name = {
             type = "string",
@@ -886,6 +934,7 @@ M.ConnectDirectoryInput = {
 
 M.ConnectDirectoryOutput = {
     type = "structure",
+    id = "ConnectDirectoryOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -895,6 +944,7 @@ M.ConnectDirectoryOutput = {
 
 M.DirectoryLimitExceededException = {
     type = "structure",
+    id = "DirectoryLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -908,6 +958,7 @@ M.DirectoryLimitExceededException = {
 
 M.CreateAliasInput = {
     type = "structure",
+    id = "CreateAliasInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -926,6 +977,7 @@ M.CreateAliasInput = {
 
 M.CreateAliasOutput = {
     type = "structure",
+    id = "CreateAliasOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -938,6 +990,7 @@ M.CreateAliasOutput = {
 
 M.CreateComputerInput = {
     type = "structure",
+    id = "CreateComputerInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -969,6 +1022,7 @@ M.CreateComputerInput = {
 
 M.CreateComputerOutput = {
     type = "structure",
+    id = "CreateComputerOutput",
     members = {
         Computer = M.Computer,
     },
@@ -976,6 +1030,7 @@ M.CreateComputerOutput = {
 
 M.CreateConditionalForwarderInput = {
     type = "structure",
+    id = "CreateConditionalForwarderInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1005,10 +1060,12 @@ M.CreateConditionalForwarderInput = {
 
 M.CreateConditionalForwarderOutput = {
     type = "structure",
+    id = "CreateConditionalForwarderOutput",
 }
 
 M.CreateDirectoryInput = {
     type = "structure",
+    id = "CreateDirectoryInput",
     members = {
         Name = {
             type = "string",
@@ -1047,6 +1104,7 @@ M.CreateDirectoryInput = {
 
 M.CreateDirectoryOutput = {
     type = "structure",
+    id = "CreateDirectoryOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1056,6 +1114,7 @@ M.CreateDirectoryOutput = {
 
 M.CreateHybridADInput = {
     type = "structure",
+    id = "CreateHybridADInput",
     members = {
         SecretArn = {
             type = "string",
@@ -1078,6 +1137,7 @@ M.CreateHybridADInput = {
 
 M.CreateHybridADOutput = {
     type = "structure",
+    id = "CreateHybridADOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1087,6 +1147,7 @@ M.CreateHybridADOutput = {
 
 M.CreateLogSubscriptionInput = {
     type = "structure",
+    id = "CreateLogSubscriptionInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1105,10 +1166,12 @@ M.CreateLogSubscriptionInput = {
 
 M.CreateLogSubscriptionOutput = {
     type = "structure",
+    id = "CreateLogSubscriptionOutput",
 }
 
 M.InsufficientPermissionsException = {
     type = "structure",
+    id = "InsufficientPermissionsException",
     error = "client",
     members = {
         Message = {
@@ -1128,6 +1191,7 @@ M.DirectoryEdition = {
 
 M.CreateMicrosoftADInput = {
     type = "structure",
+    id = "CreateMicrosoftADInput",
     members = {
         Name = {
             type = "string",
@@ -1165,6 +1229,7 @@ M.CreateMicrosoftADInput = {
 
 M.CreateMicrosoftADOutput = {
     type = "structure",
+    id = "CreateMicrosoftADOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1174,6 +1239,7 @@ M.CreateMicrosoftADOutput = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1189,6 +1255,7 @@ M.CreateSnapshotInput = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -1198,6 +1265,7 @@ M.CreateSnapshotOutput = {
 
 M.SnapshotLimitExceededException = {
     type = "structure",
+    id = "SnapshotLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1227,6 +1295,7 @@ M.TrustType = {
 
 M.CreateTrustInput = {
     type = "structure",
+    id = "CreateTrustInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1271,6 +1340,7 @@ M.CreateTrustInput = {
 
 M.CreateTrustOutput = {
     type = "structure",
+    id = "CreateTrustOutput",
     members = {
         TrustId = {
             type = "string",
@@ -1288,6 +1358,7 @@ M.DataAccessStatus = {
 
 M.DeleteADAssessmentInput = {
     type = "structure",
+    id = "DeleteADAssessmentInput",
     members = {
         AssessmentId = {
             type = "string",
@@ -1300,6 +1371,7 @@ M.DeleteADAssessmentInput = {
 
 M.DeleteADAssessmentOutput = {
     type = "structure",
+    id = "DeleteADAssessmentOutput",
     members = {
         AssessmentId = {
             type = "string",
@@ -1309,6 +1381,7 @@ M.DeleteADAssessmentOutput = {
 
 M.DeleteConditionalForwarderInput = {
     type = "structure",
+    id = "DeleteConditionalForwarderInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1327,10 +1400,12 @@ M.DeleteConditionalForwarderInput = {
 
 M.DeleteConditionalForwarderOutput = {
     type = "structure",
+    id = "DeleteConditionalForwarderOutput",
 }
 
 M.DeleteDirectoryInput = {
     type = "structure",
+    id = "DeleteDirectoryInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1343,6 +1418,7 @@ M.DeleteDirectoryInput = {
 
 M.DeleteDirectoryOutput = {
     type = "structure",
+    id = "DeleteDirectoryOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1352,6 +1428,7 @@ M.DeleteDirectoryOutput = {
 
 M.DeleteLogSubscriptionInput = {
     type = "structure",
+    id = "DeleteLogSubscriptionInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1364,10 +1441,12 @@ M.DeleteLogSubscriptionInput = {
 
 M.DeleteLogSubscriptionOutput = {
     type = "structure",
+    id = "DeleteLogSubscriptionOutput",
 }
 
 M.DeleteSnapshotInput = {
     type = "structure",
+    id = "DeleteSnapshotInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -1380,6 +1459,7 @@ M.DeleteSnapshotInput = {
 
 M.DeleteSnapshotOutput = {
     type = "structure",
+    id = "DeleteSnapshotOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -1389,6 +1469,7 @@ M.DeleteSnapshotOutput = {
 
 M.DeleteTrustInput = {
     type = "structure",
+    id = "DeleteTrustInput",
     members = {
         TrustId = {
             type = "string",
@@ -1407,6 +1488,7 @@ M.DeleteTrustInput = {
 
 M.DeleteTrustOutput = {
     type = "structure",
+    id = "DeleteTrustOutput",
     members = {
         TrustId = {
             type = "string",
@@ -1416,6 +1498,7 @@ M.DeleteTrustOutput = {
 
 M.DeregisterCertificateInput = {
     type = "structure",
+    id = "DeregisterCertificateInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1434,10 +1517,12 @@ M.DeregisterCertificateInput = {
 
 M.DeregisterCertificateOutput = {
     type = "structure",
+    id = "DeregisterCertificateOutput",
 }
 
 M.DeregisterEventTopicInput = {
     type = "structure",
+    id = "DeregisterEventTopicInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1456,10 +1541,12 @@ M.DeregisterEventTopicInput = {
 
 M.DeregisterEventTopicOutput = {
     type = "structure",
+    id = "DeregisterEventTopicOutput",
 }
 
 M.DescribeADAssessmentInput = {
     type = "structure",
+    id = "DescribeADAssessmentInput",
     members = {
         AssessmentId = {
             type = "string",
@@ -1472,6 +1559,7 @@ M.DescribeADAssessmentInput = {
 
 M.DescribeADAssessmentOutput = {
     type = "structure",
+    id = "DescribeADAssessmentOutput",
     members = {
         Assessment = M.Assessment,
         AssessmentReports = {
@@ -1483,6 +1571,7 @@ M.DescribeADAssessmentOutput = {
 
 M.DescribeCAEnrollmentPolicyInput = {
     type = "structure",
+    id = "DescribeCAEnrollmentPolicyInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1495,6 +1584,7 @@ M.DescribeCAEnrollmentPolicyInput = {
 
 M.DescribeCAEnrollmentPolicyOutput = {
     type = "structure",
+    id = "DescribeCAEnrollmentPolicyOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1516,6 +1606,7 @@ M.DescribeCAEnrollmentPolicyOutput = {
 
 M.DescribeCertificateInput = {
     type = "structure",
+    id = "DescribeCertificateInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1534,6 +1625,7 @@ M.DescribeCertificateInput = {
 
 M.DescribeCertificateOutput = {
     type = "structure",
+    id = "DescribeCertificateOutput",
     members = {
         Certificate = M.Certificate,
     },
@@ -1541,6 +1633,7 @@ M.DescribeCertificateOutput = {
 
 M.DescribeClientAuthenticationSettingsInput = {
     type = "structure",
+    id = "DescribeClientAuthenticationSettingsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1562,6 +1655,7 @@ M.DescribeClientAuthenticationSettingsInput = {
 
 M.DescribeClientAuthenticationSettingsOutput = {
     type = "structure",
+    id = "DescribeClientAuthenticationSettingsOutput",
     members = {
         ClientAuthenticationSettingsInfo = {
             type = "list",
@@ -1575,6 +1669,7 @@ M.DescribeClientAuthenticationSettingsOutput = {
 
 M.DescribeConditionalForwardersInput = {
     type = "structure",
+    id = "DescribeConditionalForwardersInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1591,6 +1686,7 @@ M.DescribeConditionalForwardersInput = {
 
 M.DescribeConditionalForwardersOutput = {
     type = "structure",
+    id = "DescribeConditionalForwardersOutput",
     members = {
         ConditionalForwarders = {
             type = "list",
@@ -1601,6 +1697,7 @@ M.DescribeConditionalForwardersOutput = {
 
 M.DescribeDirectoriesInput = {
     type = "structure",
+    id = "DescribeDirectoriesInput",
     members = {
         DirectoryIds = {
             type = "list",
@@ -1617,6 +1714,7 @@ M.DescribeDirectoriesInput = {
 
 M.DirectoryConnectSettingsDescription = {
     type = "structure",
+    id = "DirectoryConnectSettingsDescription",
     members = {
         VpcId = {
             type = "string",
@@ -1648,6 +1746,7 @@ M.DirectoryConnectSettingsDescription = {
 
 M.HybridSettingsDescription = {
     type = "structure",
+    id = "HybridSettingsDescription",
     members = {
         SelfManagedDnsIpAddrs = {
             type = "list",
@@ -1674,6 +1773,7 @@ M.RadiusAuthenticationProtocol = {
 
 M.RadiusSettings = {
     type = "structure",
+    id = "RadiusSettings",
     members = {
         RadiusServers = {
             type = "list",
@@ -1721,6 +1821,7 @@ M.RadiusStatus = {
 
 M.DirectoryVpcSettingsDescription = {
     type = "structure",
+    id = "DirectoryVpcSettingsDescription",
     members = {
         VpcId = {
             type = "string",
@@ -1741,6 +1842,7 @@ M.DirectoryVpcSettingsDescription = {
 
 M.OwnerDirectoryDescription = {
     type = "structure",
+    id = "OwnerDirectoryDescription",
     members = {
         DirectoryId = {
             type = "string",
@@ -1769,6 +1871,7 @@ M.OwnerDirectoryDescription = {
 
 M.RegionsInfo = {
     type = "structure",
+    id = "RegionsInfo",
     members = {
         PrimaryRegion = {
             type = "string",
@@ -1804,6 +1907,7 @@ M.DirectoryType = {
 
 M.DirectoryDescription = {
     type = "structure",
+    id = "DirectoryDescription",
     members = {
         DirectoryId = {
             type = "string",
@@ -1890,6 +1994,7 @@ M.DirectoryDescription = {
 
 M.DescribeDirectoriesOutput = {
     type = "structure",
+    id = "DescribeDirectoriesOutput",
     members = {
         DirectoryDescriptions = {
             type = "list",
@@ -1903,6 +2008,7 @@ M.DescribeDirectoriesOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -1916,6 +2022,7 @@ M.InvalidNextTokenException = {
 
 M.DescribeDirectoryDataAccessInput = {
     type = "structure",
+    id = "DescribeDirectoryDataAccessInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1928,6 +2035,7 @@ M.DescribeDirectoryDataAccessInput = {
 
 M.DescribeDirectoryDataAccessOutput = {
     type = "structure",
+    id = "DescribeDirectoryDataAccessOutput",
     members = {
         DataAccessStatus = {
             type = "string",
@@ -1937,6 +2045,7 @@ M.DescribeDirectoryDataAccessOutput = {
 
 M.DescribeDomainControllersInput = {
     type = "structure",
+    id = "DescribeDomainControllersInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1970,6 +2079,7 @@ M.DomainControllerStatus = {
 
 M.DomainController = {
     type = "structure",
+    id = "DomainController",
     members = {
         DirectoryId = {
             type = "string",
@@ -2009,6 +2119,7 @@ M.DomainController = {
 
 M.DescribeDomainControllersOutput = {
     type = "structure",
+    id = "DescribeDomainControllersOutput",
     members = {
         DomainControllers = {
             type = "list",
@@ -2022,6 +2133,7 @@ M.DescribeDomainControllersOutput = {
 
 M.DescribeEventTopicsInput = {
     type = "structure",
+    id = "DescribeEventTopicsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2042,6 +2154,7 @@ M.TopicStatus = {
 
 M.EventTopic = {
     type = "structure",
+    id = "EventTopic",
     members = {
         DirectoryId = {
             type = "string",
@@ -2063,6 +2176,7 @@ M.EventTopic = {
 
 M.DescribeEventTopicsOutput = {
     type = "structure",
+    id = "DescribeEventTopicsOutput",
     members = {
         EventTopics = {
             type = "list",
@@ -2078,6 +2192,7 @@ M.HybridUpdateType = {
 
 M.DescribeHybridADUpdateInput = {
     type = "structure",
+    id = "DescribeHybridADUpdateInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2096,6 +2211,7 @@ M.DescribeHybridADUpdateInput = {
 
 M.HybridUpdateValue = {
     type = "structure",
+    id = "HybridUpdateValue",
     members = {
         InstanceIds = {
             type = "list",
@@ -2116,6 +2232,7 @@ M.UpdateStatus = {
 
 M.HybridUpdateInfoEntry = {
     type = "structure",
+    id = "HybridUpdateInfoEntry",
     members = {
         Status = {
             type = "string",
@@ -2142,6 +2259,7 @@ M.HybridUpdateInfoEntry = {
 
 M.HybridUpdateActivities = {
     type = "structure",
+    id = "HybridUpdateActivities",
     members = {
         SelfManagedInstances = {
             type = "list",
@@ -2156,6 +2274,7 @@ M.HybridUpdateActivities = {
 
 M.DescribeHybridADUpdateOutput = {
     type = "structure",
+    id = "DescribeHybridADUpdateOutput",
     members = {
         UpdateActivities = M.HybridUpdateActivities,
         NextToken = {
@@ -2170,6 +2289,7 @@ M.LDAPSType = {
 
 M.DescribeLDAPSSettingsInput = {
     type = "structure",
+    id = "DescribeLDAPSSettingsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2198,6 +2318,7 @@ M.LDAPSStatus = {
 
 M.LDAPSSettingInfo = {
     type = "structure",
+    id = "LDAPSSettingInfo",
     members = {
         LDAPSStatus = {
             type = "string",
@@ -2213,6 +2334,7 @@ M.LDAPSSettingInfo = {
 
 M.DescribeLDAPSSettingsOutput = {
     type = "structure",
+    id = "DescribeLDAPSSettingsOutput",
     members = {
         LDAPSSettingsInfo = {
             type = "list",
@@ -2226,6 +2348,7 @@ M.DescribeLDAPSSettingsOutput = {
 
 M.DescribeRegionsInput = {
     type = "structure",
+    id = "DescribeRegionsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2249,6 +2372,7 @@ M.RegionType = {
 
 M.RegionDescription = {
     type = "structure",
+    id = "RegionDescription",
     members = {
         DirectoryId = {
             type = "string",
@@ -2280,6 +2404,7 @@ M.RegionDescription = {
 
 M.DescribeRegionsOutput = {
     type = "structure",
+    id = "DescribeRegionsOutput",
     members = {
         RegionsDescription = {
             type = "list",
@@ -2301,6 +2426,7 @@ M.DirectoryConfigurationStatus = {
 
 M.DescribeSettingsInput = {
     type = "structure",
+    id = "DescribeSettingsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2319,6 +2445,7 @@ M.DescribeSettingsInput = {
 
 M.SettingEntry = {
     type = "structure",
+    id = "SettingEntry",
     members = {
         Type = {
             type = "string",
@@ -2360,6 +2487,7 @@ M.SettingEntry = {
 
 M.DescribeSettingsOutput = {
     type = "structure",
+    id = "DescribeSettingsOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2376,6 +2504,7 @@ M.DescribeSettingsOutput = {
 
 M.DescribeSharedDirectoriesInput = {
     type = "structure",
+    id = "DescribeSharedDirectoriesInput",
     members = {
         OwnerDirectoryId = {
             type = "string",
@@ -2398,6 +2527,7 @@ M.DescribeSharedDirectoriesInput = {
 
 M.DescribeSharedDirectoriesOutput = {
     type = "structure",
+    id = "DescribeSharedDirectoriesOutput",
     members = {
         SharedDirectories = {
             type = "list",
@@ -2411,6 +2541,7 @@ M.DescribeSharedDirectoriesOutput = {
 
 M.DescribeSnapshotsInput = {
     type = "structure",
+    id = "DescribeSnapshotsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2441,6 +2572,7 @@ M.SnapshotType = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         DirectoryId = {
             type = "string",
@@ -2465,6 +2597,7 @@ M.Snapshot = {
 
 M.DescribeSnapshotsOutput = {
     type = "structure",
+    id = "DescribeSnapshotsOutput",
     members = {
         Snapshots = {
             type = "list",
@@ -2478,6 +2611,7 @@ M.DescribeSnapshotsOutput = {
 
 M.DescribeTrustsInput = {
     type = "structure",
+    id = "DescribeTrustsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2511,6 +2645,7 @@ M.TrustState = {
 
 M.Trust = {
     type = "structure",
+    id = "Trust",
     members = {
         DirectoryId = {
             type = "string",
@@ -2550,6 +2685,7 @@ M.Trust = {
 
 M.DescribeTrustsOutput = {
     type = "structure",
+    id = "DescribeTrustsOutput",
     members = {
         Trusts = {
             type = "list",
@@ -2569,6 +2705,7 @@ M.UpdateType = {
 
 M.DescribeUpdateDirectoryInput = {
     type = "structure",
+    id = "DescribeUpdateDirectoryInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2593,6 +2730,7 @@ M.DescribeUpdateDirectoryInput = {
 
 M.OSUpdateSettings = {
     type = "structure",
+    id = "OSUpdateSettings",
     members = {
         OSVersion = {
             type = "string",
@@ -2602,6 +2740,7 @@ M.OSUpdateSettings = {
 
 M.UpdateValue = {
     type = "structure",
+    id = "UpdateValue",
     members = {
         OSUpdateSettings = M.OSUpdateSettings,
     },
@@ -2609,6 +2748,7 @@ M.UpdateValue = {
 
 M.UpdateInfoEntry = {
     type = "structure",
+    id = "UpdateInfoEntry",
     members = {
         Region = {
             type = "string",
@@ -2635,6 +2775,7 @@ M.UpdateInfoEntry = {
 
 M.DescribeUpdateDirectoryOutput = {
     type = "structure",
+    id = "DescribeUpdateDirectoryOutput",
     members = {
         UpdateActivities = {
             type = "list",
@@ -2648,6 +2789,7 @@ M.DescribeUpdateDirectoryOutput = {
 
 M.DirectoryInDesiredStateException = {
     type = "structure",
+    id = "DirectoryInDesiredStateException",
     error = "client",
     members = {
         Message = {
@@ -2661,6 +2803,7 @@ M.DirectoryInDesiredStateException = {
 
 M.DirectoryLimits = {
     type = "structure",
+    id = "DirectoryLimits",
     members = {
         CloudOnlyDirectoriesLimit = {
             type = "integer",
@@ -2703,6 +2846,7 @@ M.DirectoryLimits = {
 
 M.DirectoryNotSharedException = {
     type = "structure",
+    id = "DirectoryNotSharedException",
     error = "client",
     members = {
         Message = {
@@ -2716,6 +2860,7 @@ M.DirectoryNotSharedException = {
 
 M.DisableAlreadyInProgressException = {
     type = "structure",
+    id = "DisableAlreadyInProgressException",
     error = "client",
     members = {
         Message = {
@@ -2729,6 +2874,7 @@ M.DisableAlreadyInProgressException = {
 
 M.DisableCAEnrollmentPolicyInput = {
     type = "structure",
+    id = "DisableCAEnrollmentPolicyInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2741,10 +2887,12 @@ M.DisableCAEnrollmentPolicyInput = {
 
 M.DisableCAEnrollmentPolicyOutput = {
     type = "structure",
+    id = "DisableCAEnrollmentPolicyOutput",
 }
 
 M.DisableClientAuthenticationInput = {
     type = "structure",
+    id = "DisableClientAuthenticationInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2763,10 +2911,12 @@ M.DisableClientAuthenticationInput = {
 
 M.DisableClientAuthenticationOutput = {
     type = "structure",
+    id = "DisableClientAuthenticationOutput",
 }
 
 M.InvalidClientAuthStatusException = {
     type = "structure",
+    id = "InvalidClientAuthStatusException",
     error = "client",
     members = {
         Message = {
@@ -2780,6 +2930,7 @@ M.InvalidClientAuthStatusException = {
 
 M.DisableDirectoryDataAccessInput = {
     type = "structure",
+    id = "DisableDirectoryDataAccessInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2792,10 +2943,12 @@ M.DisableDirectoryDataAccessInput = {
 
 M.DisableDirectoryDataAccessOutput = {
     type = "structure",
+    id = "DisableDirectoryDataAccessOutput",
 }
 
 M.DisableLDAPSInput = {
     type = "structure",
+    id = "DisableLDAPSInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2814,10 +2967,12 @@ M.DisableLDAPSInput = {
 
 M.DisableLDAPSOutput = {
     type = "structure",
+    id = "DisableLDAPSOutput",
 }
 
 M.InvalidLDAPSStatusException = {
     type = "structure",
+    id = "InvalidLDAPSStatusException",
     error = "client",
     members = {
         Message = {
@@ -2831,6 +2986,7 @@ M.InvalidLDAPSStatusException = {
 
 M.DisableRadiusInput = {
     type = "structure",
+    id = "DisableRadiusInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2843,10 +2999,12 @@ M.DisableRadiusInput = {
 
 M.DisableRadiusOutput = {
     type = "structure",
+    id = "DisableRadiusOutput",
 }
 
 M.DisableSsoInput = {
     type = "structure",
+    id = "DisableSsoInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2865,10 +3023,12 @@ M.DisableSsoInput = {
 
 M.DisableSsoOutput = {
     type = "structure",
+    id = "DisableSsoOutput",
 }
 
 M.EnableAlreadyInProgressException = {
     type = "structure",
+    id = "EnableAlreadyInProgressException",
     error = "client",
     members = {
         Message = {
@@ -2882,6 +3042,7 @@ M.EnableAlreadyInProgressException = {
 
 M.EnableCAEnrollmentPolicyInput = {
     type = "structure",
+    id = "EnableCAEnrollmentPolicyInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2900,10 +3061,12 @@ M.EnableCAEnrollmentPolicyInput = {
 
 M.EnableCAEnrollmentPolicyOutput = {
     type = "structure",
+    id = "EnableCAEnrollmentPolicyOutput",
 }
 
 M.EnableClientAuthenticationInput = {
     type = "structure",
+    id = "EnableClientAuthenticationInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2922,10 +3085,12 @@ M.EnableClientAuthenticationInput = {
 
 M.EnableClientAuthenticationOutput = {
     type = "structure",
+    id = "EnableClientAuthenticationOutput",
 }
 
 M.NoAvailableCertificateException = {
     type = "structure",
+    id = "NoAvailableCertificateException",
     error = "client",
     members = {
         Message = {
@@ -2939,6 +3104,7 @@ M.NoAvailableCertificateException = {
 
 M.EnableDirectoryDataAccessInput = {
     type = "structure",
+    id = "EnableDirectoryDataAccessInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2951,10 +3117,12 @@ M.EnableDirectoryDataAccessInput = {
 
 M.EnableDirectoryDataAccessOutput = {
     type = "structure",
+    id = "EnableDirectoryDataAccessOutput",
 }
 
 M.EnableLDAPSInput = {
     type = "structure",
+    id = "EnableLDAPSInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2973,10 +3141,12 @@ M.EnableLDAPSInput = {
 
 M.EnableLDAPSOutput = {
     type = "structure",
+    id = "EnableLDAPSOutput",
 }
 
 M.EnableRadiusInput = {
     type = "structure",
+    id = "EnableRadiusInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2992,10 +3162,12 @@ M.EnableRadiusInput = {
 
 M.EnableRadiusOutput = {
     type = "structure",
+    id = "EnableRadiusOutput",
 }
 
 M.EnableSsoInput = {
     type = "structure",
+    id = "EnableSsoInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3014,14 +3186,17 @@ M.EnableSsoInput = {
 
 M.EnableSsoOutput = {
     type = "structure",
+    id = "EnableSsoOutput",
 }
 
 M.GetDirectoryLimitsInput = {
     type = "structure",
+    id = "GetDirectoryLimitsInput",
 }
 
 M.GetDirectoryLimitsOutput = {
     type = "structure",
+    id = "GetDirectoryLimitsOutput",
     members = {
         DirectoryLimits = M.DirectoryLimits,
     },
@@ -3029,6 +3204,7 @@ M.GetDirectoryLimitsOutput = {
 
 M.GetSnapshotLimitsInput = {
     type = "structure",
+    id = "GetSnapshotLimitsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3041,6 +3217,7 @@ M.GetSnapshotLimitsInput = {
 
 M.SnapshotLimits = {
     type = "structure",
+    id = "SnapshotLimits",
     members = {
         ManualSnapshotsLimit = {
             type = "integer",
@@ -3059,6 +3236,7 @@ M.SnapshotLimits = {
 
 M.GetSnapshotLimitsOutput = {
     type = "structure",
+    id = "GetSnapshotLimitsOutput",
     members = {
         SnapshotLimits = M.SnapshotLimits,
     },
@@ -3066,6 +3244,7 @@ M.GetSnapshotLimitsOutput = {
 
 M.ListADAssessmentsInput = {
     type = "structure",
+    id = "ListADAssessmentsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3081,6 +3260,7 @@ M.ListADAssessmentsInput = {
 
 M.ListADAssessmentsOutput = {
     type = "structure",
+    id = "ListADAssessmentsOutput",
     members = {
         Assessments = {
             type = "list",
@@ -3094,6 +3274,7 @@ M.ListADAssessmentsOutput = {
 
 M.ListCertificatesInput = {
     type = "structure",
+    id = "ListCertificatesInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3112,6 +3293,7 @@ M.ListCertificatesInput = {
 
 M.ListCertificatesOutput = {
     type = "structure",
+    id = "ListCertificatesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3125,6 +3307,7 @@ M.ListCertificatesOutput = {
 
 M.ListIpRoutesInput = {
     type = "structure",
+    id = "ListIpRoutesInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3152,6 +3335,7 @@ M.IpRouteStatusMsg = {
 
 M.IpRouteInfo = {
     type = "structure",
+    id = "IpRouteInfo",
     members = {
         DirectoryId = {
             type = "string",
@@ -3179,6 +3363,7 @@ M.IpRouteInfo = {
 
 M.ListIpRoutesOutput = {
     type = "structure",
+    id = "ListIpRoutesOutput",
     members = {
         IpRoutesInfo = {
             type = "list",
@@ -3192,6 +3377,7 @@ M.ListIpRoutesOutput = {
 
 M.ListLogSubscriptionsInput = {
     type = "structure",
+    id = "ListLogSubscriptionsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3207,6 +3393,7 @@ M.ListLogSubscriptionsInput = {
 
 M.LogSubscription = {
     type = "structure",
+    id = "LogSubscription",
     members = {
         DirectoryId = {
             type = "string",
@@ -3222,6 +3409,7 @@ M.LogSubscription = {
 
 M.ListLogSubscriptionsOutput = {
     type = "structure",
+    id = "ListLogSubscriptionsOutput",
     members = {
         LogSubscriptions = {
             type = "list",
@@ -3235,6 +3423,7 @@ M.ListLogSubscriptionsOutput = {
 
 M.ListSchemaExtensionsInput = {
     type = "structure",
+    id = "ListSchemaExtensionsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3265,6 +3454,7 @@ M.SchemaExtensionStatus = {
 
 M.SchemaExtensionInfo = {
     type = "structure",
+    id = "SchemaExtensionInfo",
     members = {
         DirectoryId = {
             type = "string",
@@ -3292,6 +3482,7 @@ M.SchemaExtensionInfo = {
 
 M.ListSchemaExtensionsOutput = {
     type = "structure",
+    id = "ListSchemaExtensionsOutput",
     members = {
         SchemaExtensionsInfo = {
             type = "list",
@@ -3305,6 +3496,7 @@ M.ListSchemaExtensionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -3323,6 +3515,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3336,6 +3529,7 @@ M.ListTagsForResourceOutput = {
 
 M.InvalidCertificateException = {
     type = "structure",
+    id = "InvalidCertificateException",
     error = "client",
     members = {
         Message = {
@@ -3349,6 +3543,7 @@ M.InvalidCertificateException = {
 
 M.RegisterCertificateInput = {
     type = "structure",
+    id = "RegisterCertificateInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3371,6 +3566,7 @@ M.RegisterCertificateInput = {
 
 M.RegisterCertificateOutput = {
     type = "structure",
+    id = "RegisterCertificateOutput",
     members = {
         CertificateId = {
             type = "string",
@@ -3380,6 +3576,7 @@ M.RegisterCertificateOutput = {
 
 M.RegisterEventTopicInput = {
     type = "structure",
+    id = "RegisterEventTopicInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3398,10 +3595,12 @@ M.RegisterEventTopicInput = {
 
 M.RegisterEventTopicOutput = {
     type = "structure",
+    id = "RegisterEventTopicOutput",
 }
 
 M.RejectSharedDirectoryInput = {
     type = "structure",
+    id = "RejectSharedDirectoryInput",
     members = {
         SharedDirectoryId = {
             type = "string",
@@ -3414,6 +3613,7 @@ M.RejectSharedDirectoryInput = {
 
 M.RejectSharedDirectoryOutput = {
     type = "structure",
+    id = "RejectSharedDirectoryOutput",
     members = {
         SharedDirectoryId = {
             type = "string",
@@ -3423,6 +3623,7 @@ M.RejectSharedDirectoryOutput = {
 
 M.RemoveIpRoutesInput = {
     type = "structure",
+    id = "RemoveIpRoutesInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3446,10 +3647,12 @@ M.RemoveIpRoutesInput = {
 
 M.RemoveIpRoutesOutput = {
     type = "structure",
+    id = "RemoveIpRoutesOutput",
 }
 
 M.RemoveRegionInput = {
     type = "structure",
+    id = "RemoveRegionInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3462,10 +3665,12 @@ M.RemoveRegionInput = {
 
 M.RemoveRegionOutput = {
     type = "structure",
+    id = "RemoveRegionOutput",
 }
 
 M.RemoveTagsFromResourceInput = {
     type = "structure",
+    id = "RemoveTagsFromResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -3485,10 +3690,12 @@ M.RemoveTagsFromResourceInput = {
 
 M.RemoveTagsFromResourceOutput = {
     type = "structure",
+    id = "RemoveTagsFromResourceOutput",
 }
 
 M.InvalidPasswordException = {
     type = "structure",
+    id = "InvalidPasswordException",
     error = "client",
     members = {
         Message = {
@@ -3502,6 +3709,7 @@ M.InvalidPasswordException = {
 
 M.ResetUserPasswordInput = {
     type = "structure",
+    id = "ResetUserPasswordInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3526,10 +3734,12 @@ M.ResetUserPasswordInput = {
 
 M.ResetUserPasswordOutput = {
     type = "structure",
+    id = "ResetUserPasswordOutput",
 }
 
 M.UserDoesNotExistException = {
     type = "structure",
+    id = "UserDoesNotExistException",
     error = "client",
     members = {
         Message = {
@@ -3543,6 +3753,7 @@ M.UserDoesNotExistException = {
 
 M.RestoreFromSnapshotInput = {
     type = "structure",
+    id = "RestoreFromSnapshotInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -3555,10 +3766,12 @@ M.RestoreFromSnapshotInput = {
 
 M.RestoreFromSnapshotOutput = {
     type = "structure",
+    id = "RestoreFromSnapshotOutput",
 }
 
 M.InvalidTargetException = {
     type = "structure",
+    id = "InvalidTargetException",
     error = "client",
     members = {
         Message = {
@@ -3572,6 +3785,7 @@ M.InvalidTargetException = {
 
 M.OrganizationsException = {
     type = "structure",
+    id = "OrganizationsException",
     error = "client",
     members = {
         Message = {
@@ -3589,6 +3803,7 @@ M.TargetType = {
 
 M.ShareTarget = {
     type = "structure",
+    id = "ShareTarget",
     members = {
         Id = {
             type = "string",
@@ -3607,6 +3822,7 @@ M.ShareTarget = {
 
 M.ShareDirectoryInput = {
     type = "structure",
+    id = "ShareDirectoryInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3631,6 +3847,7 @@ M.ShareDirectoryInput = {
 
 M.ShareDirectoryOutput = {
     type = "structure",
+    id = "ShareDirectoryOutput",
     members = {
         SharedDirectoryId = {
             type = "string",
@@ -3640,6 +3857,7 @@ M.ShareDirectoryOutput = {
 
 M.ShareLimitExceededException = {
     type = "structure",
+    id = "ShareLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -3653,6 +3871,7 @@ M.ShareLimitExceededException = {
 
 M.StartADAssessmentInput = {
     type = "structure",
+    id = "StartADAssessmentInput",
     members = {
         AssessmentConfiguration = M.AssessmentConfiguration,
         DirectoryId = {
@@ -3663,6 +3882,7 @@ M.StartADAssessmentInput = {
 
 M.StartADAssessmentOutput = {
     type = "structure",
+    id = "StartADAssessmentOutput",
     members = {
         AssessmentId = {
             type = "string",
@@ -3672,6 +3892,7 @@ M.StartADAssessmentOutput = {
 
 M.StartSchemaExtensionInput = {
     type = "structure",
+    id = "StartSchemaExtensionInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3703,6 +3924,7 @@ M.StartSchemaExtensionInput = {
 
 M.StartSchemaExtensionOutput = {
     type = "structure",
+    id = "StartSchemaExtensionOutput",
     members = {
         SchemaExtensionId = {
             type = "string",
@@ -3712,6 +3934,7 @@ M.StartSchemaExtensionOutput = {
 
 M.UnshareTarget = {
     type = "structure",
+    id = "UnshareTarget",
     members = {
         Id = {
             type = "string",
@@ -3730,6 +3953,7 @@ M.UnshareTarget = {
 
 M.UnshareDirectoryInput = {
     type = "structure",
+    id = "UnshareDirectoryInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3745,6 +3969,7 @@ M.UnshareDirectoryInput = {
 
 M.UnshareDirectoryOutput = {
     type = "structure",
+    id = "UnshareDirectoryOutput",
     members = {
         SharedDirectoryId = {
             type = "string",
@@ -3754,6 +3979,7 @@ M.UnshareDirectoryOutput = {
 
 M.UpdateConditionalForwarderInput = {
     type = "structure",
+    id = "UpdateConditionalForwarderInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3783,10 +4009,12 @@ M.UpdateConditionalForwarderInput = {
 
 M.UpdateConditionalForwarderOutput = {
     type = "structure",
+    id = "UpdateConditionalForwarderOutput",
 }
 
 M.DirectorySizeUpdateSettings = {
     type = "structure",
+    id = "DirectorySizeUpdateSettings",
     members = {
         DirectorySize = {
             type = "string",
@@ -3796,6 +4024,7 @@ M.DirectorySizeUpdateSettings = {
 
 M.NetworkUpdateSettings = {
     type = "structure",
+    id = "NetworkUpdateSettings",
     members = {
         NetworkType = {
             type = "string",
@@ -3809,6 +4038,7 @@ M.NetworkUpdateSettings = {
 
 M.UpdateDirectorySetupInput = {
     type = "structure",
+    id = "UpdateDirectorySetupInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3836,10 +4066,12 @@ M.UpdateDirectorySetupInput = {
 
 M.UpdateDirectorySetupOutput = {
     type = "structure",
+    id = "UpdateDirectorySetupOutput",
 }
 
 M.HybridAdministratorAccountUpdate = {
     type = "structure",
+    id = "HybridAdministratorAccountUpdate",
     members = {
         SecretArn = {
             type = "string",
@@ -3852,6 +4084,7 @@ M.HybridAdministratorAccountUpdate = {
 
 M.HybridCustomerInstancesSettings = {
     type = "structure",
+    id = "HybridCustomerInstancesSettings",
     members = {
         CustomerDnsIps = {
             type = "list",
@@ -3872,6 +4105,7 @@ M.HybridCustomerInstancesSettings = {
 
 M.UpdateHybridADInput = {
     type = "structure",
+    id = "UpdateHybridADInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3886,6 +4120,7 @@ M.UpdateHybridADInput = {
 
 M.UpdateHybridADOutput = {
     type = "structure",
+    id = "UpdateHybridADOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3898,6 +4133,7 @@ M.UpdateHybridADOutput = {
 
 M.DomainControllerLimitExceededException = {
     type = "structure",
+    id = "DomainControllerLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -3911,6 +4147,7 @@ M.DomainControllerLimitExceededException = {
 
 M.UpdateNumberOfDomainControllersInput = {
     type = "structure",
+    id = "UpdateNumberOfDomainControllersInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3929,10 +4166,12 @@ M.UpdateNumberOfDomainControllersInput = {
 
 M.UpdateNumberOfDomainControllersOutput = {
     type = "structure",
+    id = "UpdateNumberOfDomainControllersOutput",
 }
 
 M.UpdateRadiusInput = {
     type = "structure",
+    id = "UpdateRadiusInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3948,10 +4187,12 @@ M.UpdateRadiusInput = {
 
 M.UpdateRadiusOutput = {
     type = "structure",
+    id = "UpdateRadiusOutput",
 }
 
 M.IncompatibleSettingsException = {
     type = "structure",
+    id = "IncompatibleSettingsException",
     error = "client",
     members = {
         Message = {
@@ -3965,6 +4206,7 @@ M.IncompatibleSettingsException = {
 
 M.UnsupportedSettingsException = {
     type = "structure",
+    id = "UnsupportedSettingsException",
     error = "client",
     members = {
         Message = {
@@ -3978,6 +4220,7 @@ M.UnsupportedSettingsException = {
 
 M.Setting = {
     type = "structure",
+    id = "Setting",
     members = {
         Name = {
             type = "string",
@@ -3996,6 +4239,7 @@ M.Setting = {
 
 M.UpdateSettingsInput = {
     type = "structure",
+    id = "UpdateSettingsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -4015,6 +4259,7 @@ M.UpdateSettingsInput = {
 
 M.UpdateSettingsOutput = {
     type = "structure",
+    id = "UpdateSettingsOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -4024,6 +4269,7 @@ M.UpdateSettingsOutput = {
 
 M.UpdateTrustInput = {
     type = "structure",
+    id = "UpdateTrustInput",
     members = {
         TrustId = {
             type = "string",
@@ -4039,6 +4285,7 @@ M.UpdateTrustInput = {
 
 M.UpdateTrustOutput = {
     type = "structure",
+    id = "UpdateTrustOutput",
     members = {
         RequestId = {
             type = "string",
@@ -4051,6 +4298,7 @@ M.UpdateTrustOutput = {
 
 M.VerifyTrustInput = {
     type = "structure",
+    id = "VerifyTrustInput",
     members = {
         TrustId = {
             type = "string",
@@ -4063,6 +4311,7 @@ M.VerifyTrustInput = {
 
 M.VerifyTrustOutput = {
     type = "structure",
+    id = "VerifyTrustOutput",
     members = {
         TrustId = {
             type = "string",

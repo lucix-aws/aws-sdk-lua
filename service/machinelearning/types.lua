@@ -9,6 +9,7 @@ M.TaggableResourceType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -21,6 +22,7 @@ M.Tag = {
 
 M.AddTagsInput = {
     type = "structure",
+    id = "AddTagsInput",
     members = {
         Tags = {
             type = "list",
@@ -46,6 +48,7 @@ M.AddTagsInput = {
 
 M.AddTagsOutput = {
     type = "structure",
+    id = "AddTagsOutput",
     members = {
         ResourceId = {
             type = "string",
@@ -58,6 +61,7 @@ M.AddTagsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -74,6 +78,7 @@ M.InternalServerException = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -90,6 +95,7 @@ M.InvalidInputException = {
 
 M.InvalidTagException = {
     type = "structure",
+    id = "InvalidTagException",
     error = "client",
     members = {
         message = {
@@ -100,6 +106,7 @@ M.InvalidTagException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -116,6 +123,7 @@ M.ResourceNotFoundException = {
 
 M.TagLimitExceededException = {
     type = "structure",
+    id = "TagLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -130,6 +138,7 @@ M.Algorithm = {
 
 M.CreateBatchPredictionInput = {
     type = "structure",
+    id = "CreateBatchPredictionInput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -163,6 +172,7 @@ M.CreateBatchPredictionInput = {
 
 M.CreateBatchPredictionOutput = {
     type = "structure",
+    id = "CreateBatchPredictionOutput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -172,6 +182,7 @@ M.CreateBatchPredictionOutput = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         message = {
@@ -188,6 +199,7 @@ M.IdempotentParameterMismatchException = {
 
 M.RDSDatabaseCredentials = {
     type = "structure",
+    id = "RDSDatabaseCredentials",
     members = {
         Username = {
             type = "string",
@@ -206,6 +218,7 @@ M.RDSDatabaseCredentials = {
 
 M.RDSDatabase = {
     type = "structure",
+    id = "RDSDatabase",
     members = {
         InstanceIdentifier = {
             type = "string",
@@ -224,6 +237,7 @@ M.RDSDatabase = {
 
 M.RDSDataSpec = {
     type = "structure",
+    id = "RDSDataSpec",
     members = {
         DatabaseInformation = setmetatable({ traits = {
             required = true,
@@ -282,6 +296,7 @@ M.RDSDataSpec = {
 
 M.CreateDataSourceFromRDSInput = {
     type = "structure",
+    id = "CreateDataSourceFromRDSInput",
     members = {
         DataSourceId = {
             type = "string",
@@ -312,6 +327,7 @@ M.CreateDataSourceFromRDSInput = {
 
 M.CreateDataSourceFromRDSOutput = {
     type = "structure",
+    id = "CreateDataSourceFromRDSOutput",
     members = {
         DataSourceId = {
             type = "string",
@@ -321,6 +337,7 @@ M.CreateDataSourceFromRDSOutput = {
 
 M.RedshiftDatabaseCredentials = {
     type = "structure",
+    id = "RedshiftDatabaseCredentials",
     members = {
         Username = {
             type = "string",
@@ -339,6 +356,7 @@ M.RedshiftDatabaseCredentials = {
 
 M.RedshiftDatabase = {
     type = "structure",
+    id = "RedshiftDatabase",
     members = {
         DatabaseName = {
             type = "string",
@@ -357,6 +375,7 @@ M.RedshiftDatabase = {
 
 M.RedshiftDataSpec = {
     type = "structure",
+    id = "RedshiftDataSpec",
     members = {
         DatabaseInformation = setmetatable({ traits = {
             required = true,
@@ -390,6 +409,7 @@ M.RedshiftDataSpec = {
 
 M.CreateDataSourceFromRedshiftInput = {
     type = "structure",
+    id = "CreateDataSourceFromRedshiftInput",
     members = {
         DataSourceId = {
             type = "string",
@@ -420,6 +440,7 @@ M.CreateDataSourceFromRedshiftInput = {
 
 M.CreateDataSourceFromRedshiftOutput = {
     type = "structure",
+    id = "CreateDataSourceFromRedshiftOutput",
     members = {
         DataSourceId = {
             type = "string",
@@ -429,6 +450,7 @@ M.CreateDataSourceFromRedshiftOutput = {
 
 M.S3DataSpec = {
     type = "structure",
+    id = "S3DataSpec",
     members = {
         DataLocationS3 = {
             type = "string",
@@ -450,6 +472,7 @@ M.S3DataSpec = {
 
 M.CreateDataSourceFromS3Input = {
     type = "structure",
+    id = "CreateDataSourceFromS3Input",
     members = {
         DataSourceId = {
             type = "string",
@@ -474,6 +497,7 @@ M.CreateDataSourceFromS3Input = {
 
 M.CreateDataSourceFromS3Output = {
     type = "structure",
+    id = "CreateDataSourceFromS3Output",
     members = {
         DataSourceId = {
             type = "string",
@@ -483,6 +507,7 @@ M.CreateDataSourceFromS3Output = {
 
 M.CreateEvaluationInput = {
     type = "structure",
+    id = "CreateEvaluationInput",
     members = {
         EvaluationId = {
             type = "string",
@@ -510,6 +535,7 @@ M.CreateEvaluationInput = {
 
 M.CreateEvaluationOutput = {
     type = "structure",
+    id = "CreateEvaluationOutput",
     members = {
         EvaluationId = {
             type = "string",
@@ -525,6 +551,7 @@ M.MLModelType = {
 
 M.CreateMLModelInput = {
     type = "structure",
+    id = "CreateMLModelInput",
     members = {
         MLModelId = {
             type = "string",
@@ -563,6 +590,7 @@ M.CreateMLModelInput = {
 
 M.CreateMLModelOutput = {
     type = "structure",
+    id = "CreateMLModelOutput",
     members = {
         MLModelId = {
             type = "string",
@@ -572,6 +600,7 @@ M.CreateMLModelOutput = {
 
 M.CreateRealtimeEndpointInput = {
     type = "structure",
+    id = "CreateRealtimeEndpointInput",
     members = {
         MLModelId = {
             type = "string",
@@ -591,6 +620,7 @@ M.RealtimeEndpointStatus = {
 
 M.RealtimeEndpointInfo = {
     type = "structure",
+    id = "RealtimeEndpointInfo",
     members = {
         PeakRequestsPerSecond = {
             type = "integer",
@@ -612,6 +642,7 @@ M.RealtimeEndpointInfo = {
 
 M.CreateRealtimeEndpointOutput = {
     type = "structure",
+    id = "CreateRealtimeEndpointOutput",
     members = {
         MLModelId = {
             type = "string",
@@ -622,6 +653,7 @@ M.CreateRealtimeEndpointOutput = {
 
 M.DeleteBatchPredictionInput = {
     type = "structure",
+    id = "DeleteBatchPredictionInput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -634,6 +666,7 @@ M.DeleteBatchPredictionInput = {
 
 M.DeleteBatchPredictionOutput = {
     type = "structure",
+    id = "DeleteBatchPredictionOutput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -643,6 +676,7 @@ M.DeleteBatchPredictionOutput = {
 
 M.DeleteDataSourceInput = {
     type = "structure",
+    id = "DeleteDataSourceInput",
     members = {
         DataSourceId = {
             type = "string",
@@ -655,6 +689,7 @@ M.DeleteDataSourceInput = {
 
 M.DeleteDataSourceOutput = {
     type = "structure",
+    id = "DeleteDataSourceOutput",
     members = {
         DataSourceId = {
             type = "string",
@@ -664,6 +699,7 @@ M.DeleteDataSourceOutput = {
 
 M.DeleteEvaluationInput = {
     type = "structure",
+    id = "DeleteEvaluationInput",
     members = {
         EvaluationId = {
             type = "string",
@@ -676,6 +712,7 @@ M.DeleteEvaluationInput = {
 
 M.DeleteEvaluationOutput = {
     type = "structure",
+    id = "DeleteEvaluationOutput",
     members = {
         EvaluationId = {
             type = "string",
@@ -685,6 +722,7 @@ M.DeleteEvaluationOutput = {
 
 M.DeleteMLModelInput = {
     type = "structure",
+    id = "DeleteMLModelInput",
     members = {
         MLModelId = {
             type = "string",
@@ -697,6 +735,7 @@ M.DeleteMLModelInput = {
 
 M.DeleteMLModelOutput = {
     type = "structure",
+    id = "DeleteMLModelOutput",
     members = {
         MLModelId = {
             type = "string",
@@ -706,6 +745,7 @@ M.DeleteMLModelOutput = {
 
 M.DeleteRealtimeEndpointInput = {
     type = "structure",
+    id = "DeleteRealtimeEndpointInput",
     members = {
         MLModelId = {
             type = "string",
@@ -718,6 +758,7 @@ M.DeleteRealtimeEndpointInput = {
 
 M.DeleteRealtimeEndpointOutput = {
     type = "structure",
+    id = "DeleteRealtimeEndpointOutput",
     members = {
         MLModelId = {
             type = "string",
@@ -728,6 +769,7 @@ M.DeleteRealtimeEndpointOutput = {
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         TagKeys = {
             type = "list",
@@ -753,6 +795,7 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
     members = {
         ResourceId = {
             type = "string",
@@ -781,6 +824,7 @@ M.SortOrder = {
 
 M.DescribeBatchPredictionsInput = {
     type = "structure",
+    id = "DescribeBatchPredictionsInput",
     members = {
         FilterVariable = {
             type = "string",
@@ -828,6 +872,7 @@ M.EntityStatus = {
 
 M.BatchPrediction = {
     type = "structure",
+    id = "BatchPrediction",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -882,6 +927,7 @@ M.BatchPrediction = {
 
 M.DescribeBatchPredictionsOutput = {
     type = "structure",
+    id = "DescribeBatchPredictionsOutput",
     members = {
         Results = {
             type = "list",
@@ -904,6 +950,7 @@ M.DataSourceFilterVariable = {
 
 M.DescribeDataSourcesInput = {
     type = "structure",
+    id = "DescribeDataSourcesInput",
     members = {
         FilterVariable = {
             type = "string",
@@ -943,6 +990,7 @@ M.DescribeDataSourcesInput = {
 
 M.RDSMetadata = {
     type = "structure",
+    id = "RDSMetadata",
     members = {
         Database = M.RDSDatabase,
         DatabaseUserName = {
@@ -965,6 +1013,7 @@ M.RDSMetadata = {
 
 M.RedshiftMetadata = {
     type = "structure",
+    id = "RedshiftMetadata",
     members = {
         RedshiftDatabase = M.RedshiftDatabase,
         DatabaseUserName = {
@@ -978,6 +1027,7 @@ M.RedshiftMetadata = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         DataSourceId = {
             type = "string",
@@ -1037,6 +1087,7 @@ M.DataSource = {
 
 M.DescribeDataSourcesOutput = {
     type = "structure",
+    id = "DescribeDataSourcesOutput",
     members = {
         Results = {
             type = "list",
@@ -1061,6 +1112,7 @@ M.EvaluationFilterVariable = {
 
 M.DescribeEvaluationsInput = {
     type = "structure",
+    id = "DescribeEvaluationsInput",
     members = {
         FilterVariable = {
             type = "string",
@@ -1100,6 +1152,7 @@ M.DescribeEvaluationsInput = {
 
 M.PerformanceMetrics = {
     type = "structure",
+    id = "PerformanceMetrics",
     members = {
         Properties = {
             type = "map",
@@ -1111,6 +1164,7 @@ M.PerformanceMetrics = {
 
 M.Evaluation = {
     type = "structure",
+    id = "Evaluation",
     members = {
         EvaluationId = {
             type = "string",
@@ -1157,6 +1211,7 @@ M.Evaluation = {
 
 M.DescribeEvaluationsOutput = {
     type = "structure",
+    id = "DescribeEvaluationsOutput",
     members = {
         Results = {
             type = "list",
@@ -1183,6 +1238,7 @@ M.MLModelFilterVariable = {
 
 M.DescribeMLModelsInput = {
     type = "structure",
+    id = "DescribeMLModelsInput",
     members = {
         FilterVariable = {
             type = "string",
@@ -1222,6 +1278,7 @@ M.DescribeMLModelsInput = {
 
 M.MLModel = {
     type = "structure",
+    id = "MLModel",
     members = {
         MLModelId = {
             type = "string",
@@ -1285,6 +1342,7 @@ M.MLModel = {
 
 M.DescribeMLModelsOutput = {
     type = "structure",
+    id = "DescribeMLModelsOutput",
     members = {
         Results = {
             type = "list",
@@ -1298,6 +1356,7 @@ M.DescribeMLModelsOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1316,6 +1375,7 @@ M.DescribeTagsInput = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         ResourceId = {
             type = "string",
@@ -1332,6 +1392,7 @@ M.DescribeTagsOutput = {
 
 M.GetBatchPredictionInput = {
     type = "structure",
+    id = "GetBatchPredictionInput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -1344,6 +1405,7 @@ M.GetBatchPredictionInput = {
 
 M.GetBatchPredictionOutput = {
     type = "structure",
+    id = "GetBatchPredictionOutput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -1401,6 +1463,7 @@ M.GetBatchPredictionOutput = {
 
 M.GetDataSourceInput = {
     type = "structure",
+    id = "GetDataSourceInput",
     members = {
         DataSourceId = {
             type = "string",
@@ -1419,6 +1482,7 @@ M.GetDataSourceInput = {
 
 M.GetDataSourceOutput = {
     type = "structure",
+    id = "GetDataSourceOutput",
     members = {
         DataSourceId = {
             type = "string",
@@ -1484,6 +1548,7 @@ M.GetDataSourceOutput = {
 
 M.GetEvaluationInput = {
     type = "structure",
+    id = "GetEvaluationInput",
     members = {
         EvaluationId = {
             type = "string",
@@ -1496,6 +1561,7 @@ M.GetEvaluationInput = {
 
 M.GetEvaluationOutput = {
     type = "structure",
+    id = "GetEvaluationOutput",
     members = {
         EvaluationId = {
             type = "string",
@@ -1545,6 +1611,7 @@ M.GetEvaluationOutput = {
 
 M.GetMLModelInput = {
     type = "structure",
+    id = "GetMLModelInput",
     members = {
         MLModelId = {
             type = "string",
@@ -1563,6 +1630,7 @@ M.GetMLModelInput = {
 
 M.GetMLModelOutput = {
     type = "structure",
+    id = "GetMLModelOutput",
     members = {
         MLModelId = {
             type = "string",
@@ -1632,6 +1700,7 @@ M.GetMLModelOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1648,6 +1717,7 @@ M.LimitExceededException = {
 
 M.PredictInput = {
     type = "structure",
+    id = "PredictInput",
     members = {
         MLModelId = {
             type = "string",
@@ -1674,6 +1744,7 @@ M.PredictInput = {
 
 M.PredictorNotMountedException = {
     type = "structure",
+    id = "PredictorNotMountedException",
     error = "client",
     members = {
         message = {
@@ -1689,6 +1760,7 @@ M.DetailsAttributes = {
 
 M.Prediction = {
     type = "structure",
+    id = "Prediction",
     members = {
         predictedLabel = {
             type = "string",
@@ -1711,6 +1783,7 @@ M.Prediction = {
 
 M.PredictOutput = {
     type = "structure",
+    id = "PredictOutput",
     members = {
         Prediction = M.Prediction,
     },
@@ -1718,6 +1791,7 @@ M.PredictOutput = {
 
 M.UpdateBatchPredictionInput = {
     type = "structure",
+    id = "UpdateBatchPredictionInput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -1736,6 +1810,7 @@ M.UpdateBatchPredictionInput = {
 
 M.UpdateBatchPredictionOutput = {
     type = "structure",
+    id = "UpdateBatchPredictionOutput",
     members = {
         BatchPredictionId = {
             type = "string",
@@ -1745,6 +1820,7 @@ M.UpdateBatchPredictionOutput = {
 
 M.UpdateDataSourceInput = {
     type = "structure",
+    id = "UpdateDataSourceInput",
     members = {
         DataSourceId = {
             type = "string",
@@ -1763,6 +1839,7 @@ M.UpdateDataSourceInput = {
 
 M.UpdateDataSourceOutput = {
     type = "structure",
+    id = "UpdateDataSourceOutput",
     members = {
         DataSourceId = {
             type = "string",
@@ -1772,6 +1849,7 @@ M.UpdateDataSourceOutput = {
 
 M.UpdateEvaluationInput = {
     type = "structure",
+    id = "UpdateEvaluationInput",
     members = {
         EvaluationId = {
             type = "string",
@@ -1790,6 +1868,7 @@ M.UpdateEvaluationInput = {
 
 M.UpdateEvaluationOutput = {
     type = "structure",
+    id = "UpdateEvaluationOutput",
     members = {
         EvaluationId = {
             type = "string",
@@ -1799,6 +1878,7 @@ M.UpdateEvaluationOutput = {
 
 M.UpdateMLModelInput = {
     type = "structure",
+    id = "UpdateMLModelInput",
     members = {
         MLModelId = {
             type = "string",
@@ -1817,6 +1897,7 @@ M.UpdateMLModelInput = {
 
 M.UpdateMLModelOutput = {
     type = "structure",
+    id = "UpdateMLModelOutput",
     members = {
         MLModelId = {
             type = "string",

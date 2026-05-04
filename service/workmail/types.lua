@@ -7,6 +7,7 @@ M.AccessControlRuleEffect = {
 
 M.AccessControlRule = {
     type = "structure",
+    id = "AccessControlRule",
     members = {
         Name = {
             type = "string",
@@ -65,6 +66,7 @@ M.AccessEffect = {
 
 M.AssociateDelegateToResourceInput = {
     type = "structure",
+    id = "AssociateDelegateToResourceInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -89,10 +91,12 @@ M.AssociateDelegateToResourceInput = {
 
 M.AssociateDelegateToResourceOutput = {
     type = "structure",
+    id = "AssociateDelegateToResourceOutput",
 }
 
 M.EntityNotFoundException = {
     type = "structure",
+    id = "EntityNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -103,6 +107,7 @@ M.EntityNotFoundException = {
 
 M.EntityStateException = {
     type = "structure",
+    id = "EntityStateException",
     error = "client",
     members = {
         Message = {
@@ -113,6 +118,7 @@ M.EntityStateException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -123,6 +129,7 @@ M.InvalidParameterException = {
 
 M.OrganizationNotFoundException = {
     type = "structure",
+    id = "OrganizationNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -133,6 +140,7 @@ M.OrganizationNotFoundException = {
 
 M.OrganizationStateException = {
     type = "structure",
+    id = "OrganizationStateException",
     error = "client",
     members = {
         Message = {
@@ -143,6 +151,7 @@ M.OrganizationStateException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -153,6 +162,7 @@ M.UnsupportedOperationException = {
 
 M.AssociateMemberToGroupInput = {
     type = "structure",
+    id = "AssociateMemberToGroupInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -177,10 +187,12 @@ M.AssociateMemberToGroupInput = {
 
 M.AssociateMemberToGroupOutput = {
     type = "structure",
+    id = "AssociateMemberToGroupOutput",
 }
 
 M.DirectoryServiceAuthenticationFailedException = {
     type = "structure",
+    id = "DirectoryServiceAuthenticationFailedException",
     error = "client",
     members = {
         Message = {
@@ -191,6 +203,7 @@ M.DirectoryServiceAuthenticationFailedException = {
 
 M.DirectoryUnavailableException = {
     type = "structure",
+    id = "DirectoryUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -201,6 +214,7 @@ M.DirectoryUnavailableException = {
 
 M.AssumeImpersonationRoleInput = {
     type = "structure",
+    id = "AssumeImpersonationRoleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -219,6 +233,7 @@ M.AssumeImpersonationRoleInput = {
 
 M.AssumeImpersonationRoleOutput = {
     type = "structure",
+    id = "AssumeImpersonationRoleOutput",
     members = {
         Token = {
             type = "string",
@@ -231,6 +246,7 @@ M.AssumeImpersonationRoleOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -241,6 +257,7 @@ M.ResourceNotFoundException = {
 
 M.RedactedEwsAvailabilityProvider = {
     type = "structure",
+    id = "RedactedEwsAvailabilityProvider",
     members = {
         EwsEndpoint = {
             type = "string",
@@ -253,6 +270,7 @@ M.RedactedEwsAvailabilityProvider = {
 
 M.LambdaAvailabilityProvider = {
     type = "structure",
+    id = "LambdaAvailabilityProvider",
     members = {
         LambdaArn = {
             type = "string",
@@ -270,6 +288,7 @@ M.AvailabilityProviderType = {
 
 M.AvailabilityConfiguration = {
     type = "structure",
+    id = "AvailabilityConfiguration",
     members = {
         DomainName = {
             type = "string",
@@ -290,6 +309,7 @@ M.AvailabilityConfiguration = {
 
 M.BookingOptions = {
     type = "structure",
+    id = "BookingOptions",
     members = {
         AutoAcceptRequests = {
             type = "boolean",
@@ -314,6 +334,7 @@ M.BookingOptions = {
 
 M.CancelMailboxExportJobInput = {
     type = "structure",
+    id = "CancelMailboxExportJobInput",
     members = {
         ClientToken = {
             type = "string",
@@ -339,10 +360,12 @@ M.CancelMailboxExportJobInput = {
 
 M.CancelMailboxExportJobOutput = {
     type = "structure",
+    id = "CancelMailboxExportJobOutput",
 }
 
 M.CreateAliasInput = {
     type = "structure",
+    id = "CreateAliasInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -367,10 +390,12 @@ M.CreateAliasInput = {
 
 M.CreateAliasOutput = {
     type = "structure",
+    id = "CreateAliasOutput",
 }
 
 M.EmailAddressInUseException = {
     type = "structure",
+    id = "EmailAddressInUseException",
     error = "client",
     members = {
         Message = {
@@ -381,6 +406,7 @@ M.EmailAddressInUseException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -391,6 +417,7 @@ M.LimitExceededException = {
 
 M.MailDomainNotFoundException = {
     type = "structure",
+    id = "MailDomainNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -401,6 +428,7 @@ M.MailDomainNotFoundException = {
 
 M.MailDomainStateException = {
     type = "structure",
+    id = "MailDomainStateException",
     error = "client",
     members = {
         Message = {
@@ -411,6 +439,7 @@ M.MailDomainStateException = {
 
 M.EwsAvailabilityProvider = {
     type = "structure",
+    id = "EwsAvailabilityProvider",
     members = {
         EwsEndpoint = {
             type = "string",
@@ -435,6 +464,7 @@ M.EwsAvailabilityProvider = {
 
 M.CreateAvailabilityConfigurationInput = {
     type = "structure",
+    id = "CreateAvailabilityConfigurationInput",
     members = {
         ClientToken = {
             type = "string",
@@ -461,10 +491,12 @@ M.CreateAvailabilityConfigurationInput = {
 
 M.CreateAvailabilityConfigurationOutput = {
     type = "structure",
+    id = "CreateAvailabilityConfigurationOutput",
 }
 
 M.NameAvailabilityException = {
     type = "structure",
+    id = "NameAvailabilityException",
     error = "client",
     members = {
         Message = {
@@ -475,6 +507,7 @@ M.NameAvailabilityException = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -499,6 +532,7 @@ M.CreateGroupInput = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         GroupId = {
             type = "string",
@@ -508,6 +542,7 @@ M.CreateGroupOutput = {
 
 M.ReservedNameException = {
     type = "structure",
+    id = "ReservedNameException",
     error = "client",
     members = {
         Message = {
@@ -518,6 +553,7 @@ M.ReservedNameException = {
 
 M.CreateIdentityCenterApplicationInput = {
     type = "structure",
+    id = "CreateIdentityCenterApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -542,6 +578,7 @@ M.CreateIdentityCenterApplicationInput = {
 
 M.CreateIdentityCenterApplicationOutput = {
     type = "structure",
+    id = "CreateIdentityCenterApplicationOutput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -551,6 +588,7 @@ M.CreateIdentityCenterApplicationOutput = {
 
 M.ImpersonationRule = {
     type = "structure",
+    id = "ImpersonationRule",
     members = {
         ImpersonationRuleId = {
             type = "string",
@@ -588,6 +626,7 @@ M.ImpersonationRoleType = {
 
 M.CreateImpersonationRoleInput = {
     type = "structure",
+    id = "CreateImpersonationRoleInput",
     members = {
         ClientToken = {
             type = "string",
@@ -628,6 +667,7 @@ M.CreateImpersonationRoleInput = {
 
 M.CreateImpersonationRoleOutput = {
     type = "structure",
+    id = "CreateImpersonationRoleOutput",
     members = {
         ImpersonationRoleId = {
             type = "string",
@@ -642,6 +682,7 @@ M.MobileDeviceAccessRuleEffect = {
 
 M.CreateMobileDeviceAccessRuleInput = {
     type = "structure",
+    id = "CreateMobileDeviceAccessRuleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -707,6 +748,7 @@ M.CreateMobileDeviceAccessRuleInput = {
 
 M.CreateMobileDeviceAccessRuleOutput = {
     type = "structure",
+    id = "CreateMobileDeviceAccessRuleOutput",
     members = {
         MobileDeviceAccessRuleId = {
             type = "string",
@@ -716,6 +758,7 @@ M.CreateMobileDeviceAccessRuleOutput = {
 
 M.Domain = {
     type = "structure",
+    id = "Domain",
     members = {
         DomainName = {
             type = "string",
@@ -731,6 +774,7 @@ M.Domain = {
 
 M.CreateOrganizationInput = {
     type = "structure",
+    id = "CreateOrganizationInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -765,6 +809,7 @@ M.CreateOrganizationInput = {
 
 M.CreateOrganizationOutput = {
     type = "structure",
+    id = "CreateOrganizationOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -774,6 +819,7 @@ M.CreateOrganizationOutput = {
 
 M.DirectoryInUseException = {
     type = "structure",
+    id = "DirectoryInUseException",
     error = "client",
     members = {
         Message = {
@@ -789,6 +835,7 @@ M.ResourceType = {
 
 M.CreateResourceInput = {
     type = "structure",
+    id = "CreateResourceInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -822,6 +869,7 @@ M.CreateResourceInput = {
 
 M.CreateResourceOutput = {
     type = "structure",
+    id = "CreateResourceOutput",
     members = {
         ResourceId = {
             type = "string",
@@ -838,6 +886,7 @@ M.UserRole = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -883,6 +932,7 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         UserId = {
             type = "string",
@@ -892,6 +942,7 @@ M.CreateUserOutput = {
 
 M.InvalidPasswordException = {
     type = "structure",
+    id = "InvalidPasswordException",
     error = "client",
     members = {
         Message = {
@@ -907,6 +958,7 @@ M.MemberType = {
 
 M.Delegate = {
     type = "structure",
+    id = "Delegate",
     members = {
         Id = {
             type = "string",
@@ -925,6 +977,7 @@ M.Delegate = {
 
 M.DeleteAccessControlRuleInput = {
     type = "structure",
+    id = "DeleteAccessControlRuleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -943,10 +996,12 @@ M.DeleteAccessControlRuleInput = {
 
 M.DeleteAccessControlRuleOutput = {
     type = "structure",
+    id = "DeleteAccessControlRuleOutput",
 }
 
 M.DeleteAliasInput = {
     type = "structure",
+    id = "DeleteAliasInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -971,10 +1026,12 @@ M.DeleteAliasInput = {
 
 M.DeleteAliasOutput = {
     type = "structure",
+    id = "DeleteAliasOutput",
 }
 
 M.DeleteAvailabilityConfigurationInput = {
     type = "structure",
+    id = "DeleteAvailabilityConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -993,10 +1050,12 @@ M.DeleteAvailabilityConfigurationInput = {
 
 M.DeleteAvailabilityConfigurationOutput = {
     type = "structure",
+    id = "DeleteAvailabilityConfigurationOutput",
 }
 
 M.DeleteEmailMonitoringConfigurationInput = {
     type = "structure",
+    id = "DeleteEmailMonitoringConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1009,10 +1068,12 @@ M.DeleteEmailMonitoringConfigurationInput = {
 
 M.DeleteEmailMonitoringConfigurationOutput = {
     type = "structure",
+    id = "DeleteEmailMonitoringConfigurationOutput",
 }
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1031,10 +1092,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DeleteIdentityCenterApplicationInput = {
     type = "structure",
+    id = "DeleteIdentityCenterApplicationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1047,10 +1110,12 @@ M.DeleteIdentityCenterApplicationInput = {
 
 M.DeleteIdentityCenterApplicationOutput = {
     type = "structure",
+    id = "DeleteIdentityCenterApplicationOutput",
 }
 
 M.DeleteIdentityProviderConfigurationInput = {
     type = "structure",
+    id = "DeleteIdentityProviderConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1063,10 +1128,12 @@ M.DeleteIdentityProviderConfigurationInput = {
 
 M.DeleteIdentityProviderConfigurationOutput = {
     type = "structure",
+    id = "DeleteIdentityProviderConfigurationOutput",
 }
 
 M.DeleteImpersonationRoleInput = {
     type = "structure",
+    id = "DeleteImpersonationRoleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1085,10 +1152,12 @@ M.DeleteImpersonationRoleInput = {
 
 M.DeleteImpersonationRoleOutput = {
     type = "structure",
+    id = "DeleteImpersonationRoleOutput",
 }
 
 M.DeleteMailboxPermissionsInput = {
     type = "structure",
+    id = "DeleteMailboxPermissionsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1113,10 +1182,12 @@ M.DeleteMailboxPermissionsInput = {
 
 M.DeleteMailboxPermissionsOutput = {
     type = "structure",
+    id = "DeleteMailboxPermissionsOutput",
 }
 
 M.DeleteMobileDeviceAccessOverrideInput = {
     type = "structure",
+    id = "DeleteMobileDeviceAccessOverrideInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1141,10 +1212,12 @@ M.DeleteMobileDeviceAccessOverrideInput = {
 
 M.DeleteMobileDeviceAccessOverrideOutput = {
     type = "structure",
+    id = "DeleteMobileDeviceAccessOverrideOutput",
 }
 
 M.DeleteMobileDeviceAccessRuleInput = {
     type = "structure",
+    id = "DeleteMobileDeviceAccessRuleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1163,10 +1236,12 @@ M.DeleteMobileDeviceAccessRuleInput = {
 
 M.DeleteMobileDeviceAccessRuleOutput = {
     type = "structure",
+    id = "DeleteMobileDeviceAccessRuleOutput",
 }
 
 M.DeleteOrganizationInput = {
     type = "structure",
+    id = "DeleteOrganizationInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1204,6 +1279,7 @@ M.DeleteOrganizationInput = {
 
 M.DeleteOrganizationOutput = {
     type = "structure",
+    id = "DeleteOrganizationOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1216,6 +1292,7 @@ M.DeleteOrganizationOutput = {
 
 M.DeletePersonalAccessTokenInput = {
     type = "structure",
+    id = "DeletePersonalAccessTokenInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1234,10 +1311,12 @@ M.DeletePersonalAccessTokenInput = {
 
 M.DeletePersonalAccessTokenOutput = {
     type = "structure",
+    id = "DeletePersonalAccessTokenOutput",
 }
 
 M.DeleteResourceInput = {
     type = "structure",
+    id = "DeleteResourceInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1256,10 +1335,12 @@ M.DeleteResourceInput = {
 
 M.DeleteResourceOutput = {
     type = "structure",
+    id = "DeleteResourceOutput",
 }
 
 M.DeleteRetentionPolicyInput = {
     type = "structure",
+    id = "DeleteRetentionPolicyInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1278,10 +1359,12 @@ M.DeleteRetentionPolicyInput = {
 
 M.DeleteRetentionPolicyOutput = {
     type = "structure",
+    id = "DeleteRetentionPolicyOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1300,10 +1383,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DeregisterFromWorkMailInput = {
     type = "structure",
+    id = "DeregisterFromWorkMailInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1322,10 +1407,12 @@ M.DeregisterFromWorkMailInput = {
 
 M.DeregisterFromWorkMailOutput = {
     type = "structure",
+    id = "DeregisterFromWorkMailOutput",
 }
 
 M.DeregisterMailDomainInput = {
     type = "structure",
+    id = "DeregisterMailDomainInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1344,10 +1431,12 @@ M.DeregisterMailDomainInput = {
 
 M.DeregisterMailDomainOutput = {
     type = "structure",
+    id = "DeregisterMailDomainOutput",
 }
 
 M.InvalidCustomSesConfigurationException = {
     type = "structure",
+    id = "InvalidCustomSesConfigurationException",
     error = "client",
     members = {
         Message = {
@@ -1358,6 +1447,7 @@ M.InvalidCustomSesConfigurationException = {
 
 M.MailDomainInUseException = {
     type = "structure",
+    id = "MailDomainInUseException",
     error = "client",
     members = {
         Message = {
@@ -1368,6 +1458,7 @@ M.MailDomainInUseException = {
 
 M.DescribeEmailMonitoringConfigurationInput = {
     type = "structure",
+    id = "DescribeEmailMonitoringConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1380,6 +1471,7 @@ M.DescribeEmailMonitoringConfigurationInput = {
 
 M.DescribeEmailMonitoringConfigurationOutput = {
     type = "structure",
+    id = "DescribeEmailMonitoringConfigurationOutput",
     members = {
         RoleArn = {
             type = "string",
@@ -1392,6 +1484,7 @@ M.DescribeEmailMonitoringConfigurationOutput = {
 
 M.DescribeEntityInput = {
     type = "structure",
+    id = "DescribeEntityInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1416,6 +1509,7 @@ M.EntityType = {
 
 M.DescribeEntityOutput = {
     type = "structure",
+    id = "DescribeEntityOutput",
     members = {
         EntityId = {
             type = "string",
@@ -1431,6 +1525,7 @@ M.DescribeEntityOutput = {
 
 M.DescribeGroupInput = {
     type = "structure",
+    id = "DescribeGroupInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1455,6 +1550,7 @@ M.EntityState = {
 
 M.DescribeGroupOutput = {
     type = "structure",
+    id = "DescribeGroupOutput",
     members = {
         GroupId = {
             type = "string",
@@ -1485,6 +1581,7 @@ M.DescribeGroupOutput = {
 
 M.DescribeIdentityProviderConfigurationInput = {
     type = "structure",
+    id = "DescribeIdentityProviderConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1502,6 +1599,7 @@ M.IdentityProviderAuthenticationMode = {
 
 M.IdentityCenterConfiguration = {
     type = "structure",
+    id = "IdentityCenterConfiguration",
     members = {
         InstanceArn = {
             type = "string",
@@ -1525,6 +1623,7 @@ M.PersonalAccessTokenConfigurationStatus = {
 
 M.PersonalAccessTokenConfiguration = {
     type = "structure",
+    id = "PersonalAccessTokenConfiguration",
     members = {
         Status = {
             type = "string",
@@ -1540,6 +1639,7 @@ M.PersonalAccessTokenConfiguration = {
 
 M.DescribeIdentityProviderConfigurationOutput = {
     type = "structure",
+    id = "DescribeIdentityProviderConfigurationOutput",
     members = {
         AuthenticationMode = {
             type = "string",
@@ -1551,6 +1651,7 @@ M.DescribeIdentityProviderConfigurationOutput = {
 
 M.DescribeInboundDmarcSettingsInput = {
     type = "structure",
+    id = "DescribeInboundDmarcSettingsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1563,6 +1664,7 @@ M.DescribeInboundDmarcSettingsInput = {
 
 M.DescribeInboundDmarcSettingsOutput = {
     type = "structure",
+    id = "DescribeInboundDmarcSettingsOutput",
     members = {
         Enforced = {
             type = "boolean",
@@ -1575,6 +1677,7 @@ M.DescribeInboundDmarcSettingsOutput = {
 
 M.DescribeMailboxExportJobInput = {
     type = "structure",
+    id = "DescribeMailboxExportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1600,6 +1703,7 @@ M.MailboxExportJobState = {
 
 M.DescribeMailboxExportJobOutput = {
     type = "structure",
+    id = "DescribeMailboxExportJobOutput",
     members = {
         EntityId = {
             type = "string",
@@ -1645,6 +1749,7 @@ M.DescribeMailboxExportJobOutput = {
 
 M.DescribeOrganizationInput = {
     type = "structure",
+    id = "DescribeOrganizationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1657,6 +1762,7 @@ M.DescribeOrganizationInput = {
 
 M.DescribeOrganizationOutput = {
     type = "structure",
+    id = "DescribeOrganizationOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1699,6 +1805,7 @@ M.DescribeOrganizationOutput = {
 
 M.DescribeResourceInput = {
     type = "structure",
+    id = "DescribeResourceInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1717,6 +1824,7 @@ M.DescribeResourceInput = {
 
 M.DescribeResourceOutput = {
     type = "structure",
+    id = "DescribeResourceOutput",
     members = {
         ResourceId = {
             type = "string",
@@ -1754,6 +1862,7 @@ M.DescribeResourceOutput = {
 
 M.DescribeUserInput = {
     type = "structure",
+    id = "DescribeUserInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1772,6 +1881,7 @@ M.DescribeUserInput = {
 
 M.DescribeUserOutput = {
     type = "structure",
+    id = "DescribeUserOutput",
     members = {
         UserId = {
             type = "string",
@@ -1856,6 +1966,7 @@ M.DescribeUserOutput = {
 
 M.DisassociateDelegateFromResourceInput = {
     type = "structure",
+    id = "DisassociateDelegateFromResourceInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1880,10 +1991,12 @@ M.DisassociateDelegateFromResourceInput = {
 
 M.DisassociateDelegateFromResourceOutput = {
     type = "structure",
+    id = "DisassociateDelegateFromResourceOutput",
 }
 
 M.DisassociateMemberFromGroupInput = {
     type = "structure",
+    id = "DisassociateMemberFromGroupInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1908,10 +2021,12 @@ M.DisassociateMemberFromGroupInput = {
 
 M.DisassociateMemberFromGroupOutput = {
     type = "structure",
+    id = "DisassociateMemberFromGroupOutput",
 }
 
 M.DnsRecord = {
     type = "structure",
+    id = "DnsRecord",
     members = {
         Type = {
             type = "string",
@@ -1933,6 +2048,7 @@ M.DnsRecordVerificationStatus = {
 
 M.EntityAlreadyRegisteredException = {
     type = "structure",
+    id = "EntityAlreadyRegisteredException",
     error = "client",
     members = {
         Message = {
@@ -1957,6 +2073,7 @@ M.FolderName = {
 
 M.FolderConfiguration = {
     type = "structure",
+    id = "FolderConfiguration",
     members = {
         Name = {
             type = "string",
@@ -1978,6 +2095,7 @@ M.FolderConfiguration = {
 
 M.GetAccessControlEffectInput = {
     type = "structure",
+    id = "GetAccessControlEffectInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2008,6 +2126,7 @@ M.GetAccessControlEffectInput = {
 
 M.GetAccessControlEffectOutput = {
     type = "structure",
+    id = "GetAccessControlEffectOutput",
     members = {
         Effect = {
             type = "string",
@@ -2021,6 +2140,7 @@ M.GetAccessControlEffectOutput = {
 
 M.GetDefaultRetentionPolicyInput = {
     type = "structure",
+    id = "GetDefaultRetentionPolicyInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2033,6 +2153,7 @@ M.GetDefaultRetentionPolicyInput = {
 
 M.GetDefaultRetentionPolicyOutput = {
     type = "structure",
+    id = "GetDefaultRetentionPolicyOutput",
     members = {
         Id = {
             type = "string",
@@ -2052,6 +2173,7 @@ M.GetDefaultRetentionPolicyOutput = {
 
 M.GetImpersonationRoleInput = {
     type = "structure",
+    id = "GetImpersonationRoleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2070,6 +2192,7 @@ M.GetImpersonationRoleInput = {
 
 M.GetImpersonationRoleOutput = {
     type = "structure",
+    id = "GetImpersonationRoleOutput",
     members = {
         ImpersonationRoleId = {
             type = "string",
@@ -2098,6 +2221,7 @@ M.GetImpersonationRoleOutput = {
 
 M.GetImpersonationRoleEffectInput = {
     type = "structure",
+    id = "GetImpersonationRoleEffectInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2122,6 +2246,7 @@ M.GetImpersonationRoleEffectInput = {
 
 M.ImpersonationMatchedRule = {
     type = "structure",
+    id = "ImpersonationMatchedRule",
     members = {
         ImpersonationRuleId = {
             type = "string",
@@ -2134,6 +2259,7 @@ M.ImpersonationMatchedRule = {
 
 M.GetImpersonationRoleEffectOutput = {
     type = "structure",
+    id = "GetImpersonationRoleEffectOutput",
     members = {
         Type = {
             type = "string",
@@ -2150,6 +2276,7 @@ M.GetImpersonationRoleEffectOutput = {
 
 M.GetMailboxDetailsInput = {
     type = "structure",
+    id = "GetMailboxDetailsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2168,6 +2295,7 @@ M.GetMailboxDetailsInput = {
 
 M.GetMailboxDetailsOutput = {
     type = "structure",
+    id = "GetMailboxDetailsOutput",
     members = {
         MailboxQuota = {
             type = "integer",
@@ -2183,6 +2311,7 @@ M.GetMailboxDetailsOutput = {
 
 M.GetMailDomainInput = {
     type = "structure",
+    id = "GetMailDomainInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2201,6 +2330,7 @@ M.GetMailDomainInput = {
 
 M.GetMailDomainOutput = {
     type = "structure",
+    id = "GetMailDomainOutput",
     members = {
         Records = {
             type = "list",
@@ -2229,6 +2359,7 @@ M.GetMailDomainOutput = {
 
 M.GetMobileDeviceAccessEffectInput = {
     type = "structure",
+    id = "GetMobileDeviceAccessEffectInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2253,6 +2384,7 @@ M.GetMobileDeviceAccessEffectInput = {
 
 M.MobileDeviceAccessMatchedRule = {
     type = "structure",
+    id = "MobileDeviceAccessMatchedRule",
     members = {
         MobileDeviceAccessRuleId = {
             type = "string",
@@ -2265,6 +2397,7 @@ M.MobileDeviceAccessMatchedRule = {
 
 M.GetMobileDeviceAccessEffectOutput = {
     type = "structure",
+    id = "GetMobileDeviceAccessEffectOutput",
     members = {
         Effect = {
             type = "string",
@@ -2278,6 +2411,7 @@ M.GetMobileDeviceAccessEffectOutput = {
 
 M.GetMobileDeviceAccessOverrideInput = {
     type = "structure",
+    id = "GetMobileDeviceAccessOverrideInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2302,6 +2436,7 @@ M.GetMobileDeviceAccessOverrideInput = {
 
 M.GetMobileDeviceAccessOverrideOutput = {
     type = "structure",
+    id = "GetMobileDeviceAccessOverrideOutput",
     members = {
         UserId = {
             type = "string",
@@ -2326,6 +2461,7 @@ M.GetMobileDeviceAccessOverrideOutput = {
 
 M.GetPersonalAccessTokenMetadataInput = {
     type = "structure",
+    id = "GetPersonalAccessTokenMetadataInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2344,6 +2480,7 @@ M.GetPersonalAccessTokenMetadataInput = {
 
 M.GetPersonalAccessTokenMetadataOutput = {
     type = "structure",
+    id = "GetPersonalAccessTokenMetadataOutput",
     members = {
         PersonalAccessTokenId = {
             type = "string",
@@ -2372,6 +2509,7 @@ M.GetPersonalAccessTokenMetadataOutput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         Id = {
             type = "string",
@@ -2396,6 +2534,7 @@ M.Group = {
 
 M.GroupIdentifier = {
     type = "structure",
+    id = "GroupIdentifier",
     members = {
         GroupId = {
             type = "string",
@@ -2408,6 +2547,7 @@ M.GroupIdentifier = {
 
 M.ImpersonationRole = {
     type = "structure",
+    id = "ImpersonationRole",
     members = {
         ImpersonationRoleId = {
             type = "string",
@@ -2429,6 +2569,7 @@ M.ImpersonationRole = {
 
 M.InvalidConfigurationException = {
     type = "structure",
+    id = "InvalidConfigurationException",
     error = "client",
     members = {
         Message = {
@@ -2439,6 +2580,7 @@ M.InvalidConfigurationException = {
 
 M.MailboxExportJob = {
     type = "structure",
+    id = "MailboxExportJob",
     members = {
         JobId = {
             type = "string",
@@ -2475,6 +2617,7 @@ M.MailboxExportJob = {
 
 M.ListAccessControlRulesInput = {
     type = "structure",
+    id = "ListAccessControlRulesInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2487,6 +2630,7 @@ M.ListAccessControlRulesInput = {
 
 M.ListAccessControlRulesOutput = {
     type = "structure",
+    id = "ListAccessControlRulesOutput",
     members = {
         Rules = {
             type = "list",
@@ -2497,6 +2641,7 @@ M.ListAccessControlRulesOutput = {
 
 M.ListAliasesInput = {
     type = "structure",
+    id = "ListAliasesInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2521,6 +2666,7 @@ M.ListAliasesInput = {
 
 M.ListAliasesOutput = {
     type = "structure",
+    id = "ListAliasesOutput",
     members = {
         Aliases = {
             type = "list",
@@ -2534,6 +2680,7 @@ M.ListAliasesOutput = {
 
 M.ListAvailabilityConfigurationsInput = {
     type = "structure",
+    id = "ListAvailabilityConfigurationsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2552,6 +2699,7 @@ M.ListAvailabilityConfigurationsInput = {
 
 M.ListAvailabilityConfigurationsOutput = {
     type = "structure",
+    id = "ListAvailabilityConfigurationsOutput",
     members = {
         AvailabilityConfigurations = {
             type = "list",
@@ -2565,6 +2713,7 @@ M.ListAvailabilityConfigurationsOutput = {
 
 M.ListGroupMembersInput = {
     type = "structure",
+    id = "ListGroupMembersInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2589,6 +2738,7 @@ M.ListGroupMembersInput = {
 
 M.Member = {
     type = "structure",
+    id = "Member",
     members = {
         Id = {
             type = "string",
@@ -2613,6 +2763,7 @@ M.Member = {
 
 M.ListGroupMembersOutput = {
     type = "structure",
+    id = "ListGroupMembersOutput",
     members = {
         Members = {
             type = "list",
@@ -2626,6 +2777,7 @@ M.ListGroupMembersOutput = {
 
 M.ListGroupsFilters = {
     type = "structure",
+    id = "ListGroupsFilters",
     members = {
         NamePrefix = {
             type = "string",
@@ -2641,6 +2793,7 @@ M.ListGroupsFilters = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2660,6 +2813,7 @@ M.ListGroupsInput = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -2673,6 +2827,7 @@ M.ListGroupsOutput = {
 
 M.ListGroupsForEntityFilters = {
     type = "structure",
+    id = "ListGroupsForEntityFilters",
     members = {
         GroupNamePrefix = {
             type = "string",
@@ -2682,6 +2837,7 @@ M.ListGroupsForEntityFilters = {
 
 M.ListGroupsForEntityInput = {
     type = "structure",
+    id = "ListGroupsForEntityInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2707,6 +2863,7 @@ M.ListGroupsForEntityInput = {
 
 M.ListGroupsForEntityOutput = {
     type = "structure",
+    id = "ListGroupsForEntityOutput",
     members = {
         Groups = {
             type = "list",
@@ -2720,6 +2877,7 @@ M.ListGroupsForEntityOutput = {
 
 M.ListImpersonationRolesInput = {
     type = "structure",
+    id = "ListImpersonationRolesInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2738,6 +2896,7 @@ M.ListImpersonationRolesInput = {
 
 M.ListImpersonationRolesOutput = {
     type = "structure",
+    id = "ListImpersonationRolesOutput",
     members = {
         Roles = {
             type = "list",
@@ -2751,6 +2910,7 @@ M.ListImpersonationRolesOutput = {
 
 M.ListMailboxExportJobsInput = {
     type = "structure",
+    id = "ListMailboxExportJobsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2769,6 +2929,7 @@ M.ListMailboxExportJobsInput = {
 
 M.ListMailboxExportJobsOutput = {
     type = "structure",
+    id = "ListMailboxExportJobsOutput",
     members = {
         Jobs = {
             type = "list",
@@ -2782,6 +2943,7 @@ M.ListMailboxExportJobsOutput = {
 
 M.ListMailboxPermissionsInput = {
     type = "structure",
+    id = "ListMailboxPermissionsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2812,6 +2974,7 @@ M.PermissionType = {
 
 M.Permission = {
     type = "structure",
+    id = "Permission",
     members = {
         GranteeId = {
             type = "string",
@@ -2837,6 +3000,7 @@ M.Permission = {
 
 M.ListMailboxPermissionsOutput = {
     type = "structure",
+    id = "ListMailboxPermissionsOutput",
     members = {
         Permissions = {
             type = "list",
@@ -2850,6 +3014,7 @@ M.ListMailboxPermissionsOutput = {
 
 M.ListMailDomainsInput = {
     type = "structure",
+    id = "ListMailDomainsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2868,6 +3033,7 @@ M.ListMailDomainsInput = {
 
 M.MailDomainSummary = {
     type = "structure",
+    id = "MailDomainSummary",
     members = {
         DomainName = {
             type = "string",
@@ -2883,6 +3049,7 @@ M.MailDomainSummary = {
 
 M.ListMailDomainsOutput = {
     type = "structure",
+    id = "ListMailDomainsOutput",
     members = {
         MailDomains = {
             type = "list",
@@ -2896,6 +3063,7 @@ M.ListMailDomainsOutput = {
 
 M.ListMobileDeviceAccessOverridesInput = {
     type = "structure",
+    id = "ListMobileDeviceAccessOverridesInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2920,6 +3088,7 @@ M.ListMobileDeviceAccessOverridesInput = {
 
 M.MobileDeviceAccessOverride = {
     type = "structure",
+    id = "MobileDeviceAccessOverride",
     members = {
         UserId = {
             type = "string",
@@ -2944,6 +3113,7 @@ M.MobileDeviceAccessOverride = {
 
 M.ListMobileDeviceAccessOverridesOutput = {
     type = "structure",
+    id = "ListMobileDeviceAccessOverridesOutput",
     members = {
         Overrides = {
             type = "list",
@@ -2957,6 +3127,7 @@ M.ListMobileDeviceAccessOverridesOutput = {
 
 M.ListMobileDeviceAccessRulesInput = {
     type = "structure",
+    id = "ListMobileDeviceAccessRulesInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2969,6 +3140,7 @@ M.ListMobileDeviceAccessRulesInput = {
 
 M.MobileDeviceAccessRule = {
     type = "structure",
+    id = "MobileDeviceAccessRule",
     members = {
         MobileDeviceAccessRuleId = {
             type = "string",
@@ -3025,6 +3197,7 @@ M.MobileDeviceAccessRule = {
 
 M.ListMobileDeviceAccessRulesOutput = {
     type = "structure",
+    id = "ListMobileDeviceAccessRulesOutput",
     members = {
         Rules = {
             type = "list",
@@ -3035,6 +3208,7 @@ M.ListMobileDeviceAccessRulesOutput = {
 
 M.ListOrganizationsInput = {
     type = "structure",
+    id = "ListOrganizationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3047,6 +3221,7 @@ M.ListOrganizationsInput = {
 
 M.OrganizationSummary = {
     type = "structure",
+    id = "OrganizationSummary",
     members = {
         OrganizationId = {
             type = "string",
@@ -3068,6 +3243,7 @@ M.OrganizationSummary = {
 
 M.ListOrganizationsOutput = {
     type = "structure",
+    id = "ListOrganizationsOutput",
     members = {
         OrganizationSummaries = {
             type = "list",
@@ -3081,6 +3257,7 @@ M.ListOrganizationsOutput = {
 
 M.ListPersonalAccessTokensInput = {
     type = "structure",
+    id = "ListPersonalAccessTokensInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3102,6 +3279,7 @@ M.ListPersonalAccessTokensInput = {
 
 M.PersonalAccessTokenSummary = {
     type = "structure",
+    id = "PersonalAccessTokenSummary",
     members = {
         PersonalAccessTokenId = {
             type = "string",
@@ -3130,6 +3308,7 @@ M.PersonalAccessTokenSummary = {
 
 M.ListPersonalAccessTokensOutput = {
     type = "structure",
+    id = "ListPersonalAccessTokensOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3143,6 +3322,7 @@ M.ListPersonalAccessTokensOutput = {
 
 M.ListResourceDelegatesInput = {
     type = "structure",
+    id = "ListResourceDelegatesInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3167,6 +3347,7 @@ M.ListResourceDelegatesInput = {
 
 M.ListResourceDelegatesOutput = {
     type = "structure",
+    id = "ListResourceDelegatesOutput",
     members = {
         Delegates = {
             type = "list",
@@ -3180,6 +3361,7 @@ M.ListResourceDelegatesOutput = {
 
 M.ListResourcesFilters = {
     type = "structure",
+    id = "ListResourcesFilters",
     members = {
         NamePrefix = {
             type = "string",
@@ -3195,6 +3377,7 @@ M.ListResourcesFilters = {
 
 M.ListResourcesInput = {
     type = "structure",
+    id = "ListResourcesInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3214,6 +3397,7 @@ M.ListResourcesInput = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         Id = {
             type = "string",
@@ -3244,6 +3428,7 @@ M.Resource = {
 
 M.ListResourcesOutput = {
     type = "structure",
+    id = "ListResourcesOutput",
     members = {
         Resources = {
             type = "list",
@@ -3257,6 +3442,7 @@ M.ListResourcesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3269,6 +3455,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -3287,6 +3474,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3297,6 +3485,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListUsersFilters = {
     type = "structure",
+    id = "ListUsersFilters",
     members = {
         UsernamePrefix = {
             type = "string",
@@ -3318,6 +3507,7 @@ M.ListUsersFilters = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3337,6 +3527,7 @@ M.ListUsersInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Id = {
             type = "string",
@@ -3373,6 +3564,7 @@ M.User = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -3386,6 +3578,7 @@ M.ListUsersOutput = {
 
 M.PutAccessControlRuleInput = {
     type = "structure",
+    id = "PutAccessControlRuleInput",
     members = {
         Name = {
             type = "string",
@@ -3448,10 +3641,12 @@ M.PutAccessControlRuleInput = {
 
 M.PutAccessControlRuleOutput = {
     type = "structure",
+    id = "PutAccessControlRuleOutput",
 }
 
 M.PutEmailMonitoringConfigurationInput = {
     type = "structure",
+    id = "PutEmailMonitoringConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3473,10 +3668,12 @@ M.PutEmailMonitoringConfigurationInput = {
 
 M.PutEmailMonitoringConfigurationOutput = {
     type = "structure",
+    id = "PutEmailMonitoringConfigurationOutput",
 }
 
 M.PutIdentityProviderConfigurationInput = {
     type = "structure",
+    id = "PutIdentityProviderConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3501,10 +3698,12 @@ M.PutIdentityProviderConfigurationInput = {
 
 M.PutIdentityProviderConfigurationOutput = {
     type = "structure",
+    id = "PutIdentityProviderConfigurationOutput",
 }
 
 M.PutInboundDmarcSettingsInput = {
     type = "structure",
+    id = "PutInboundDmarcSettingsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3523,10 +3722,12 @@ M.PutInboundDmarcSettingsInput = {
 
 M.PutInboundDmarcSettingsOutput = {
     type = "structure",
+    id = "PutInboundDmarcSettingsOutput",
 }
 
 M.PutMailboxPermissionsInput = {
     type = "structure",
+    id = "PutMailboxPermissionsInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3558,10 +3759,12 @@ M.PutMailboxPermissionsInput = {
 
 M.PutMailboxPermissionsOutput = {
     type = "structure",
+    id = "PutMailboxPermissionsOutput",
 }
 
 M.PutMobileDeviceAccessOverrideInput = {
     type = "structure",
+    id = "PutMobileDeviceAccessOverrideInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3595,10 +3798,12 @@ M.PutMobileDeviceAccessOverrideInput = {
 
 M.PutMobileDeviceAccessOverrideOutput = {
     type = "structure",
+    id = "PutMobileDeviceAccessOverrideOutput",
 }
 
 M.PutRetentionPolicyInput = {
     type = "structure",
+    id = "PutRetentionPolicyInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3630,10 +3835,12 @@ M.PutRetentionPolicyInput = {
 
 M.PutRetentionPolicyOutput = {
     type = "structure",
+    id = "PutRetentionPolicyOutput",
 }
 
 M.RegisterMailDomainInput = {
     type = "structure",
+    id = "RegisterMailDomainInput",
     members = {
         ClientToken = {
             type = "string",
@@ -3658,10 +3865,12 @@ M.RegisterMailDomainInput = {
 
 M.RegisterMailDomainOutput = {
     type = "structure",
+    id = "RegisterMailDomainOutput",
 }
 
 M.RegisterToWorkMailInput = {
     type = "structure",
+    id = "RegisterToWorkMailInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3686,10 +3895,12 @@ M.RegisterToWorkMailInput = {
 
 M.RegisterToWorkMailOutput = {
     type = "structure",
+    id = "RegisterToWorkMailOutput",
 }
 
 M.ResetPasswordInput = {
     type = "structure",
+    id = "ResetPasswordInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3714,10 +3925,12 @@ M.ResetPasswordInput = {
 
 M.ResetPasswordOutput = {
     type = "structure",
+    id = "ResetPasswordOutput",
 }
 
 M.StartMailboxExportJobInput = {
     type = "structure",
+    id = "StartMailboxExportJobInput",
     members = {
         ClientToken = {
             type = "string",
@@ -3770,6 +3983,7 @@ M.StartMailboxExportJobInput = {
 
 M.StartMailboxExportJobOutput = {
     type = "structure",
+    id = "StartMailboxExportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -3779,6 +3993,7 @@ M.StartMailboxExportJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3798,10 +4013,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -3812,6 +4029,7 @@ M.TooManyTagsException = {
 
 M.TestAvailabilityConfigurationInput = {
     type = "structure",
+    id = "TestAvailabilityConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3829,6 +4047,7 @@ M.TestAvailabilityConfigurationInput = {
 
 M.TestAvailabilityConfigurationOutput = {
     type = "structure",
+    id = "TestAvailabilityConfigurationOutput",
     members = {
         TestPassed = {
             type = "boolean",
@@ -3844,6 +4063,7 @@ M.TestAvailabilityConfigurationOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3863,10 +4083,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAvailabilityConfigurationInput = {
     type = "structure",
+    id = "UpdateAvailabilityConfigurationInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3887,10 +4109,12 @@ M.UpdateAvailabilityConfigurationInput = {
 
 M.UpdateAvailabilityConfigurationOutput = {
     type = "structure",
+    id = "UpdateAvailabilityConfigurationOutput",
 }
 
 M.UpdateDefaultMailDomainInput = {
     type = "structure",
+    id = "UpdateDefaultMailDomainInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3909,10 +4133,12 @@ M.UpdateDefaultMailDomainInput = {
 
 M.UpdateDefaultMailDomainOutput = {
     type = "structure",
+    id = "UpdateDefaultMailDomainOutput",
 }
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3934,10 +4160,12 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
 }
 
 M.UpdateImpersonationRoleInput = {
     type = "structure",
+    id = "UpdateImpersonationRoleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -3978,10 +4206,12 @@ M.UpdateImpersonationRoleInput = {
 
 M.UpdateImpersonationRoleOutput = {
     type = "structure",
+    id = "UpdateImpersonationRoleOutput",
 }
 
 M.UpdateMailboxQuotaInput = {
     type = "structure",
+    id = "UpdateMailboxQuotaInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -4006,10 +4236,12 @@ M.UpdateMailboxQuotaInput = {
 
 M.UpdateMailboxQuotaOutput = {
     type = "structure",
+    id = "UpdateMailboxQuotaOutput",
 }
 
 M.UpdateMobileDeviceAccessRuleInput = {
     type = "structure",
+    id = "UpdateMobileDeviceAccessRuleInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -4075,10 +4307,12 @@ M.UpdateMobileDeviceAccessRuleInput = {
 
 M.UpdateMobileDeviceAccessRuleOutput = {
     type = "structure",
+    id = "UpdateMobileDeviceAccessRuleOutput",
 }
 
 M.UpdatePrimaryEmailAddressInput = {
     type = "structure",
+    id = "UpdatePrimaryEmailAddressInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -4103,10 +4337,12 @@ M.UpdatePrimaryEmailAddressInput = {
 
 M.UpdatePrimaryEmailAddressOutput = {
     type = "structure",
+    id = "UpdatePrimaryEmailAddressOutput",
 }
 
 M.UpdateResourceInput = {
     type = "structure",
+    id = "UpdateResourceInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -4138,10 +4374,12 @@ M.UpdateResourceInput = {
 
 M.UpdateResourceOutput = {
     type = "structure",
+    id = "UpdateResourceOutput",
 }
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         OrganizationId = {
             type = "string",
@@ -4208,6 +4446,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
 }
 
 return M

@@ -1256,7 +1256,9 @@ local record ValidationException
     reason: string
 end
 
-local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
+local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
+
+local type QueryLanguage = "OPEN_CYPHER"
 
 local type Format = "CSV" | "OPEN_CYPHER" | "PARQUET" | "NTRIPLES"
 
@@ -1264,25 +1266,23 @@ local type ParquetType = "COLUMNAR"
 
 local type ExportTaskStatus = "INITIALIZING" | "EXPORTING" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
 
-local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
+local type BlankNodeHandling = "convertToIri"
 
 local type QueryStateInput = "ALL" | "RUNNING" | "WAITING" | "CANCELLING"
 
-local type BlankNodeHandling = "convertToIri"
-
-local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
-
-local type QueryLanguage = "OPEN_CYPHER"
-
-local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
-
-local type ExportFormat = "PARQUET" | "CSV"
+local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
 
 local type ExplainMode = "STATIC" | "DETAILS"
 
-local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
+local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
 
 local type GraphSummaryMode = "BASIC" | "DETAILED"
+
+local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
+
+local type ExportFormat = "PARQUET" | "CSV"
+
+local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
 
 local type PrivateGraphEndpointStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
 

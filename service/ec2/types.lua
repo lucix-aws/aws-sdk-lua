@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceleratorCount = {
     type = "structure",
+    id = "AcceleratorCount",
     members = {
         Min = {
             type = "integer",
@@ -20,6 +21,7 @@ M.AcceleratorCount = {
 
 M.AcceleratorCountRequest = {
     type = "structure",
+    id = "AcceleratorCountRequest",
     members = {
         Min = {
             type = "integer",
@@ -62,6 +64,7 @@ M.AcceleratorName = {
 
 M.AcceleratorTotalMemoryMiB = {
     type = "structure",
+    id = "AcceleratorTotalMemoryMiB",
     members = {
         Min = {
             type = "integer",
@@ -80,6 +83,7 @@ M.AcceleratorTotalMemoryMiB = {
 
 M.AcceleratorTotalMemoryMiBRequest = {
     type = "structure",
+    id = "AcceleratorTotalMemoryMiBRequest",
     members = {
         Min = {
             type = "integer",
@@ -209,6 +213,7 @@ M.ResourceType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -227,6 +232,7 @@ M.Tag = {
 
 M.TagSpecification = {
     type = "structure",
+    id = "TagSpecification",
     members = {
         ResourceType = {
             type = "string",
@@ -246,6 +252,7 @@ M.TagSpecification = {
 
 M.AcceptAddressTransferInput = {
     type = "structure",
+    id = "AcceptAddressTransferInput",
     members = {
         Address = {
             type = "string",
@@ -274,6 +281,7 @@ M.AddressTransferStatus = {
 
 M.AddressTransfer = {
     type = "structure",
+    id = "AddressTransfer",
     members = {
         PublicIp = {
             type = "string",
@@ -316,6 +324,7 @@ M.AddressTransfer = {
 
 M.AcceptAddressTransferOutput = {
     type = "structure",
+    id = "AcceptAddressTransferOutput",
     members = {
         AddressTransfer = setmetatable({ traits = {
             xml_name = "addressTransfer",
@@ -325,6 +334,7 @@ M.AcceptAddressTransferOutput = {
 
 M.AcceptCapacityReservationBillingOwnershipInput = {
     type = "structure",
+    id = "AcceptCapacityReservationBillingOwnershipInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -340,6 +350,7 @@ M.AcceptCapacityReservationBillingOwnershipInput = {
 
 M.AcceptCapacityReservationBillingOwnershipOutput = {
     type = "structure",
+    id = "AcceptCapacityReservationBillingOwnershipOutput",
     members = {
         Return = {
             type = "boolean",
@@ -352,6 +363,7 @@ M.AcceptCapacityReservationBillingOwnershipOutput = {
 
 M.TargetConfigurationRequest = {
     type = "structure",
+    id = "TargetConfigurationRequest",
     members = {
         InstanceCount = {
             type = "integer",
@@ -367,6 +379,7 @@ M.TargetConfigurationRequest = {
 
 M.AcceptReservedInstancesExchangeQuoteInput = {
     type = "structure",
+    id = "AcceptReservedInstancesExchangeQuoteInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -391,6 +404,7 @@ M.AcceptReservedInstancesExchangeQuoteInput = {
 
 M.AcceptReservedInstancesExchangeQuoteOutput = {
     type = "structure",
+    id = "AcceptReservedInstancesExchangeQuoteOutput",
     members = {
         ExchangeId = {
             type = "string",
@@ -403,6 +417,7 @@ M.AcceptReservedInstancesExchangeQuoteOutput = {
 
 M.AcceptTransitGatewayClientVpnAttachmentInput = {
     type = "structure",
+    id = "AcceptTransitGatewayClientVpnAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -427,6 +442,7 @@ M.TransitGatewayAttachmentStatusType = {
 
 M.TransitGatewayClientVpnAttachment = {
     type = "structure",
+    id = "TransitGatewayClientVpnAttachment",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -469,6 +485,7 @@ M.TransitGatewayClientVpnAttachment = {
 
 M.AcceptTransitGatewayClientVpnAttachmentOutput = {
     type = "structure",
+    id = "AcceptTransitGatewayClientVpnAttachmentOutput",
     members = {
         TransitGatewayClientVpnAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayClientVpnAttachment",
@@ -478,6 +495,7 @@ M.AcceptTransitGatewayClientVpnAttachmentOutput = {
 
 M.AcceptTransitGatewayMulticastDomainAssociationsInput = {
     type = "structure",
+    id = "AcceptTransitGatewayMulticastDomainAssociationsInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -519,6 +537,7 @@ M.TransitGatewayMulitcastDomainAssociationState = {
 
 M.SubnetAssociation = {
     type = "structure",
+    id = "SubnetAssociation",
     members = {
         SubnetId = {
             type = "string",
@@ -537,6 +556,7 @@ M.SubnetAssociation = {
 
 M.TransitGatewayMulticastDomainAssociations = {
     type = "structure",
+    id = "TransitGatewayMulticastDomainAssociations",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -580,6 +600,7 @@ M.TransitGatewayMulticastDomainAssociations = {
 
 M.AcceptTransitGatewayMulticastDomainAssociationsOutput = {
     type = "structure",
+    id = "AcceptTransitGatewayMulticastDomainAssociationsOutput",
     members = {
         Associations = setmetatable({ traits = {
             xml_name = "associations",
@@ -589,6 +610,7 @@ M.AcceptTransitGatewayMulticastDomainAssociationsOutput = {
 
 M.AcceptTransitGatewayPeeringAttachmentInput = {
     type = "structure",
+    id = "AcceptTransitGatewayPeeringAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -604,6 +626,7 @@ M.AcceptTransitGatewayPeeringAttachmentInput = {
 
 M.PeeringTgwInfo = {
     type = "structure",
+    id = "PeeringTgwInfo",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -639,6 +662,7 @@ M.DynamicRoutingValue = {
 
 M.TransitGatewayPeeringAttachmentOptions = {
     type = "structure",
+    id = "TransitGatewayPeeringAttachmentOptions",
     members = {
         DynamicRouting = {
             type = "string",
@@ -667,6 +691,7 @@ M.TransitGatewayAttachmentState = {
 
 M.PeeringAttachmentStatus = {
     type = "structure",
+    id = "PeeringAttachmentStatus",
     members = {
         Code = {
             type = "string",
@@ -685,6 +710,7 @@ M.PeeringAttachmentStatus = {
 
 M.TransitGatewayPeeringAttachment = {
     type = "structure",
+    id = "TransitGatewayPeeringAttachment",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -734,6 +760,7 @@ M.TransitGatewayPeeringAttachment = {
 
 M.AcceptTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
+    id = "AcceptTransitGatewayPeeringAttachmentOutput",
     members = {
         TransitGatewayPeeringAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayPeeringAttachment",
@@ -743,6 +770,7 @@ M.AcceptTransitGatewayPeeringAttachmentOutput = {
 
 M.AcceptTransitGatewayVpcAttachmentInput = {
     type = "structure",
+    id = "AcceptTransitGatewayVpcAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -778,6 +806,7 @@ M.SecurityGroupReferencingSupportValue = {
 
 M.TransitGatewayVpcAttachmentOptions = {
     type = "structure",
+    id = "TransitGatewayVpcAttachmentOptions",
     members = {
         DnsSupport = {
             type = "string",
@@ -808,6 +837,7 @@ M.TransitGatewayVpcAttachmentOptions = {
 
 M.TransitGatewayVpcAttachment = {
     type = "structure",
+    id = "TransitGatewayVpcAttachment",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -867,6 +897,7 @@ M.TransitGatewayVpcAttachment = {
 
 M.AcceptTransitGatewayVpcAttachmentOutput = {
     type = "structure",
+    id = "AcceptTransitGatewayVpcAttachmentOutput",
     members = {
         TransitGatewayVpcAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayVpcAttachment",
@@ -876,6 +907,7 @@ M.AcceptTransitGatewayVpcAttachmentOutput = {
 
 M.AcceptVpcEndpointConnectionsInput = {
     type = "structure",
+    id = "AcceptVpcEndpointConnectionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -899,6 +931,7 @@ M.AcceptVpcEndpointConnectionsInput = {
 
 M.UnsuccessfulItemError = {
     type = "structure",
+    id = "UnsuccessfulItemError",
     members = {
         Code = {
             type = "string",
@@ -917,6 +950,7 @@ M.UnsuccessfulItemError = {
 
 M.UnsuccessfulItem = {
     type = "structure",
+    id = "UnsuccessfulItem",
     members = {
         Error = setmetatable({ traits = {
             xml_name = "error",
@@ -932,6 +966,7 @@ M.UnsuccessfulItem = {
 
 M.AcceptVpcEndpointConnectionsOutput = {
     type = "structure",
+    id = "AcceptVpcEndpointConnectionsOutput",
     members = {
         Unsuccessful = {
             type = "list",
@@ -945,6 +980,7 @@ M.AcceptVpcEndpointConnectionsOutput = {
 
 M.AcceptVpcPeeringConnectionInput = {
     type = "structure",
+    id = "AcceptVpcPeeringConnectionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -964,6 +1000,7 @@ M.AcceptVpcPeeringConnectionInput = {
 
 M.CidrBlock = {
     type = "structure",
+    id = "CidrBlock",
     members = {
         CidrBlock = {
             type = "string",
@@ -976,6 +1013,7 @@ M.CidrBlock = {
 
 M.Ipv6CidrBlock = {
     type = "structure",
+    id = "Ipv6CidrBlock",
     members = {
         Ipv6CidrBlock = {
             type = "string",
@@ -988,6 +1026,7 @@ M.Ipv6CidrBlock = {
 
 M.VpcPeeringConnectionOptionsDescription = {
     type = "structure",
+    id = "VpcPeeringConnectionOptionsDescription",
     members = {
         AllowDnsResolutionFromRemoteVpc = {
             type = "boolean",
@@ -1012,6 +1051,7 @@ M.VpcPeeringConnectionOptionsDescription = {
 
 M.VpcPeeringConnectionVpcInfo = {
     type = "structure",
+    id = "VpcPeeringConnectionVpcInfo",
     members = {
         CidrBlock = {
             type = "string",
@@ -1071,6 +1111,7 @@ M.VpcPeeringConnectionStateReasonCode = {
 
 M.VpcPeeringConnectionStateReason = {
     type = "structure",
+    id = "VpcPeeringConnectionStateReason",
     members = {
         Code = {
             type = "string",
@@ -1089,6 +1130,7 @@ M.VpcPeeringConnectionStateReason = {
 
 M.VpcPeeringConnection = {
     type = "structure",
+    id = "VpcPeeringConnection",
     members = {
         AccepterVpcInfo = setmetatable({ traits = {
             xml_name = "accepterVpcInfo",
@@ -1123,6 +1165,7 @@ M.VpcPeeringConnection = {
 
 M.AcceptVpcPeeringConnectionOutput = {
     type = "structure",
+    id = "AcceptVpcPeeringConnectionOutput",
     members = {
         VpcPeeringConnection = setmetatable({ traits = {
             xml_name = "vpcPeeringConnection",
@@ -1132,6 +1175,7 @@ M.AcceptVpcPeeringConnectionOutput = {
 
 M.PortRange = {
     type = "structure",
+    id = "PortRange",
     members = {
         From = {
             type = "integer",
@@ -1150,6 +1194,7 @@ M.PortRange = {
 
 M.AnalysisAclRule = {
     type = "structure",
+    id = "AnalysisAclRule",
     members = {
         Cidr = {
             type = "string",
@@ -1189,6 +1234,7 @@ M.AnalysisAclRule = {
 
 M.AnalysisComponent = {
     type = "structure",
+    id = "AnalysisComponent",
     members = {
         Id = {
             type = "string",
@@ -1213,6 +1259,7 @@ M.AnalysisComponent = {
 
 M.RuleOption = {
     type = "structure",
+    id = "RuleOption",
     members = {
         Keyword = {
             type = "string",
@@ -1232,6 +1279,7 @@ M.RuleOption = {
 
 M.RuleGroupRuleOptionsPair = {
     type = "structure",
+    id = "RuleGroupRuleOptionsPair",
     members = {
         RuleGroupArn = {
             type = "string",
@@ -1251,6 +1299,7 @@ M.RuleGroupRuleOptionsPair = {
 
 M.RuleGroupTypePair = {
     type = "structure",
+    id = "RuleGroupTypePair",
     members = {
         RuleGroupArn = {
             type = "string",
@@ -1269,6 +1318,7 @@ M.RuleGroupTypePair = {
 
 M.AdditionalDetail = {
     type = "structure",
+    id = "AdditionalDetail",
     members = {
         AdditionalDetailType = {
             type = "string",
@@ -1321,6 +1371,7 @@ M.AdditionalDetail = {
 
 M.AnalysisLoadBalancerListener = {
     type = "structure",
+    id = "AnalysisLoadBalancerListener",
     members = {
         LoadBalancerPort = {
             type = "integer",
@@ -1339,6 +1390,7 @@ M.AnalysisLoadBalancerListener = {
 
 M.FirewallStatefulRule = {
     type = "structure",
+    id = "FirewallStatefulRule",
     members = {
         RuleGroupArn = {
             type = "string",
@@ -1397,6 +1449,7 @@ M.FirewallStatefulRule = {
 
 M.FirewallStatelessRule = {
     type = "structure",
+    id = "FirewallStatelessRule",
     members = {
         RuleGroupArn = {
             type = "string",
@@ -1456,6 +1509,7 @@ M.FirewallStatelessRule = {
 
 M.AnalysisLoadBalancerTarget = {
     type = "structure",
+    id = "AnalysisLoadBalancerTarget",
     members = {
         Address = {
             type = "string",
@@ -1489,6 +1543,7 @@ M.AnalysisLoadBalancerTarget = {
 
 M.AnalysisRouteTableRoute = {
     type = "structure",
+    id = "AnalysisRouteTableRoute",
     members = {
         DestinationCidr = {
             type = "string",
@@ -1579,6 +1634,7 @@ M.AnalysisRouteTableRoute = {
 
 M.AnalysisSecurityGroupRule = {
     type = "structure",
+    id = "AnalysisSecurityGroupRule",
     members = {
         Cidr = {
             type = "string",
@@ -1618,6 +1674,7 @@ M.AnalysisSecurityGroupRule = {
 
 M.TransitGatewayRouteTableRoute = {
     type = "structure",
+    id = "TransitGatewayRouteTableRoute",
     members = {
         DestinationCidr = {
             type = "string",
@@ -1666,6 +1723,7 @@ M.TransitGatewayRouteTableRoute = {
 
 M.Explanation = {
     type = "structure",
+    id = "Explanation",
     members = {
         Acl = setmetatable({ traits = {
             xml_name = "acl",
@@ -1902,6 +1960,7 @@ M.Explanation = {
 
 M.AnalysisPacketHeader = {
     type = "structure",
+    id = "AnalysisPacketHeader",
     members = {
         DestinationAddresses = {
             type = "list",
@@ -1942,6 +2001,7 @@ M.AnalysisPacketHeader = {
 
 M.PathComponent = {
     type = "structure",
+    id = "PathComponent",
     members = {
         SequenceNumber = {
             type = "integer",
@@ -2022,6 +2082,7 @@ M.PathComponent = {
 
 M.AccessScopeAnalysisFinding = {
     type = "structure",
+    id = "AccessScopeAnalysisFinding",
     members = {
         NetworkInsightsAccessScopeAnalysisId = {
             type = "string",
@@ -2058,6 +2119,7 @@ M.Protocol = {
 
 M.PacketHeaderStatement = {
     type = "structure",
+    id = "PacketHeaderStatement",
     members = {
         SourceAddresses = {
             type = "list",
@@ -2113,6 +2175,7 @@ M.PacketHeaderStatement = {
 
 M.ResourceStatement = {
     type = "structure",
+    id = "ResourceStatement",
     members = {
         Resources = {
             type = "list",
@@ -2133,6 +2196,7 @@ M.ResourceStatement = {
 
 M.PathStatement = {
     type = "structure",
+    id = "PathStatement",
     members = {
         PacketHeaderStatement = setmetatable({ traits = {
             xml_name = "packetHeaderStatement",
@@ -2145,6 +2209,7 @@ M.PathStatement = {
 
 M.ThroughResourcesStatement = {
     type = "structure",
+    id = "ThroughResourcesStatement",
     members = {
         ResourceStatement = setmetatable({ traits = {
             xml_name = "resourceStatement",
@@ -2154,6 +2219,7 @@ M.ThroughResourcesStatement = {
 
 M.AccessScopePath = {
     type = "structure",
+    id = "AccessScopePath",
     members = {
         Source = setmetatable({ traits = {
             xml_name = "source",
@@ -2173,6 +2239,7 @@ M.AccessScopePath = {
 
 M.PacketHeaderStatementRequest = {
     type = "structure",
+    id = "PacketHeaderStatementRequest",
     members = {
         SourceAddresses = {
             type = "list",
@@ -2228,6 +2295,7 @@ M.PacketHeaderStatementRequest = {
 
 M.ResourceStatementRequest = {
     type = "structure",
+    id = "ResourceStatementRequest",
     members = {
         Resources = {
             type = "list",
@@ -2248,6 +2316,7 @@ M.ResourceStatementRequest = {
 
 M.PathStatementRequest = {
     type = "structure",
+    id = "PathStatementRequest",
     members = {
         PacketHeaderStatement = M.PacketHeaderStatementRequest,
         ResourceStatement = M.ResourceStatementRequest,
@@ -2256,6 +2325,7 @@ M.PathStatementRequest = {
 
 M.ThroughResourcesStatementRequest = {
     type = "structure",
+    id = "ThroughResourcesStatementRequest",
     members = {
         ResourceStatement = M.ResourceStatementRequest,
     },
@@ -2263,6 +2333,7 @@ M.ThroughResourcesStatementRequest = {
 
 M.AccessScopePathRequest = {
     type = "structure",
+    id = "AccessScopePathRequest",
     members = {
         Source = M.PathStatementRequest,
         Destination = M.PathStatementRequest,
@@ -2278,6 +2349,7 @@ M.AccessScopePathRequest = {
 
 M.AccountAttributeValue = {
     type = "structure",
+    id = "AccountAttributeValue",
     members = {
         AttributeValue = {
             type = "string",
@@ -2290,6 +2362,7 @@ M.AccountAttributeValue = {
 
 M.AccountAttribute = {
     type = "structure",
+    id = "AccountAttribute",
     members = {
         AttributeName = {
             type = "string",
@@ -2319,6 +2392,7 @@ M.InstanceHealthStatus = {
 
 M.ActiveInstance = {
     type = "structure",
+    id = "ActiveInstance",
     members = {
         InstanceId = {
             type = "string",
@@ -2355,6 +2429,7 @@ M.VpnTunnelProvisioningStatus = {
 
 M.ActiveVpnTunnelStatus = {
     type = "structure",
+    id = "ActiveVpnTunnelStatus",
     members = {
         Phase1EncryptionAlgorithm = {
             type = "string",
@@ -2431,6 +2506,7 @@ M.PrincipalType = {
 
 M.AddedPrincipal = {
     type = "structure",
+    id = "AddedPrincipal",
     members = {
         PrincipalType = {
             type = "string",
@@ -2461,6 +2537,7 @@ M.AddedPrincipal = {
 
 M.AddIpamOperatingRegion = {
     type = "structure",
+    id = "AddIpamOperatingRegion",
     members = {
         RegionName = {
             type = "string",
@@ -2470,6 +2547,7 @@ M.AddIpamOperatingRegion = {
 
 M.AddIpamOrganizationalUnitExclusion = {
     type = "structure",
+    id = "AddIpamOrganizationalUnitExclusion",
     members = {
         OrganizationsEntityPath = {
             type = "string",
@@ -2479,6 +2557,7 @@ M.AddIpamOrganizationalUnitExclusion = {
 
 M.AddPrefixListEntry = {
     type = "structure",
+    id = "AddPrefixListEntry",
     members = {
         Cidr = {
             type = "string",
@@ -2506,6 +2585,7 @@ M.ServiceManaged = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         AllocationId = {
             type = "string",
@@ -2609,6 +2689,7 @@ M.Address = {
 
 M.PtrUpdateStatus = {
     type = "structure",
+    id = "PtrUpdateStatus",
     members = {
         Value = {
             type = "string",
@@ -2633,6 +2714,7 @@ M.PtrUpdateStatus = {
 
 M.AddressAttribute = {
     type = "structure",
+    id = "AddressAttribute",
     members = {
         PublicIp = {
             type = "string",
@@ -2669,6 +2751,7 @@ M.AddressFamily = {
 
 M.AdvertiseByoipCidrInput = {
     type = "structure",
+    id = "AdvertiseByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -2699,6 +2782,7 @@ M.AsnAssociationState = {
 
 M.AsnAssociation = {
     type = "structure",
+    id = "AsnAssociation",
     members = {
         Asn = {
             type = "string",
@@ -2742,6 +2826,7 @@ M.ByoipCidrState = {
 
 M.ByoipCidr = {
     type = "structure",
+    id = "ByoipCidr",
     members = {
         Cidr = {
             type = "string",
@@ -2791,6 +2876,7 @@ M.ByoipCidr = {
 
 M.AdvertiseByoipCidrOutput = {
     type = "structure",
+    id = "AdvertiseByoipCidrOutput",
     members = {
         ByoipCidr = setmetatable({ traits = {
             xml_name = "byoipCidr",
@@ -2805,6 +2891,7 @@ M.Affinity = {
 
 M.AllocateAddressInput = {
     type = "structure",
+    id = "AllocateAddressInput",
     members = {
         Domain = {
             type = "string",
@@ -2842,6 +2929,7 @@ M.AllocateAddressInput = {
 
 M.AllocateAddressOutput = {
     type = "structure",
+    id = "AllocateAddressOutput",
     members = {
         AllocationId = {
             type = "string",
@@ -2911,6 +2999,7 @@ M.HostRecovery = {
 
 M.AllocateHostsInput = {
     type = "structure",
+    id = "AllocateHostsInput",
     members = {
         InstanceFamily = {
             type = "string",
@@ -2976,6 +3065,7 @@ M.AllocateHostsInput = {
 
 M.AllocateHostsOutput = {
     type = "structure",
+    id = "AllocateHostsOutput",
     members = {
         HostIds = {
             type = "list",
@@ -2989,6 +3079,7 @@ M.AllocateHostsOutput = {
 
 M.AllocateIpamPoolCidrInput = {
     type = "structure",
+    id = "AllocateIpamPoolCidrInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -3046,6 +3137,7 @@ M.IpamPoolAllocationResourceType = {
 
 M.IpamPoolAllocation = {
     type = "structure",
+    id = "IpamPoolAllocation",
     members = {
         Cidr = {
             type = "string",
@@ -3094,6 +3186,7 @@ M.IpamPoolAllocation = {
 
 M.AllocateIpamPoolCidrOutput = {
     type = "structure",
+    id = "AllocateIpamPoolCidrOutput",
     members = {
         IpamPoolAllocation = setmetatable({ traits = {
             xml_name = "ipamPoolAllocation",
@@ -3134,6 +3227,7 @@ M.AllowedImagesSettingsEnabledState = {
 
 M.AllowedPrincipal = {
     type = "structure",
+    id = "AllowedPrincipal",
     members = {
         PrincipalType = {
             type = "string",
@@ -3176,6 +3270,7 @@ M.AllowsMultipleInstanceTypes = {
 
 M.AlternatePathHint = {
     type = "structure",
+    id = "AlternatePathHint",
     members = {
         ComponentId = {
             type = "string",
@@ -3194,6 +3289,7 @@ M.AlternatePathHint = {
 
 M.ApplySecurityGroupsToClientVpnTargetNetworkInput = {
     type = "structure",
+    id = "ApplySecurityGroupsToClientVpnTargetNetworkInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -3223,6 +3319,7 @@ M.ApplySecurityGroupsToClientVpnTargetNetworkInput = {
 
 M.ApplySecurityGroupsToClientVpnTargetNetworkOutput = {
     type = "structure",
+    id = "ApplySecurityGroupsToClientVpnTargetNetworkOutput",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -3236,6 +3333,7 @@ M.ApplySecurityGroupsToClientVpnTargetNetworkOutput = {
 
 M.AssignIpv6AddressesInput = {
     type = "structure",
+    id = "AssignIpv6AddressesInput",
     members = {
         Ipv6PrefixCount = {
             type = "integer",
@@ -3272,6 +3370,7 @@ M.AssignIpv6AddressesInput = {
 
 M.AssignIpv6AddressesOutput = {
     type = "structure",
+    id = "AssignIpv6AddressesOutput",
     members = {
         AssignedIpv6Addresses = {
             type = "list",
@@ -3298,6 +3397,7 @@ M.AssignIpv6AddressesOutput = {
 
 M.AssignPrivateIpAddressesInput = {
     type = "structure",
+    id = "AssignPrivateIpAddressesInput",
     members = {
         Ipv4Prefixes = {
             type = "list",
@@ -3340,6 +3440,7 @@ M.AssignPrivateIpAddressesInput = {
 
 M.Ipv4PrefixSpecification = {
     type = "structure",
+    id = "Ipv4PrefixSpecification",
     members = {
         Ipv4Prefix = {
             type = "string",
@@ -3352,6 +3453,7 @@ M.Ipv4PrefixSpecification = {
 
 M.AssignedPrivateIpAddress = {
     type = "structure",
+    id = "AssignedPrivateIpAddress",
     members = {
         PrivateIpAddress = {
             type = "string",
@@ -3364,6 +3466,7 @@ M.AssignedPrivateIpAddress = {
 
 M.AssignPrivateIpAddressesOutput = {
     type = "structure",
+    id = "AssignPrivateIpAddressesOutput",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -3390,6 +3493,7 @@ M.AssignPrivateIpAddressesOutput = {
 
 M.AssignPrivateNatGatewayAddressInput = {
     type = "structure",
+    id = "AssignPrivateNatGatewayAddressInput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -3424,6 +3528,7 @@ M.NatGatewayAddressStatus = {
 
 M.NatGatewayAddress = {
     type = "structure",
+    id = "NatGatewayAddress",
     members = {
         AllocationId = {
             type = "string",
@@ -3490,6 +3595,7 @@ M.NatGatewayAddress = {
 
 M.AssignPrivateNatGatewayAddressOutput = {
     type = "structure",
+    id = "AssignPrivateNatGatewayAddressOutput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -3509,6 +3615,7 @@ M.AssignPrivateNatGatewayAddressOutput = {
 
 M.AssociateAddressInput = {
     type = "structure",
+    id = "AssociateAddressInput",
     members = {
         AllocationId = {
             type = "string",
@@ -3548,6 +3655,7 @@ M.AssociateAddressInput = {
 
 M.AssociateAddressOutput = {
     type = "structure",
+    id = "AssociateAddressOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -3560,6 +3668,7 @@ M.AssociateAddressOutput = {
 
 M.AssociateCapacityReservationBillingOwnerInput = {
     type = "structure",
+    id = "AssociateCapacityReservationBillingOwnerInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -3581,6 +3690,7 @@ M.AssociateCapacityReservationBillingOwnerInput = {
 
 M.AssociateCapacityReservationBillingOwnerOutput = {
     type = "structure",
+    id = "AssociateCapacityReservationBillingOwnerOutput",
     members = {
         Return = {
             type = "boolean",
@@ -3593,6 +3703,7 @@ M.AssociateCapacityReservationBillingOwnerOutput = {
 
 M.AssociateClientVpnTargetNetworkInput = {
     type = "structure",
+    id = "AssociateClientVpnTargetNetworkInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -3631,6 +3742,7 @@ M.AssociationStatusCode = {
 
 M.AssociationStatus = {
     type = "structure",
+    id = "AssociationStatus",
     members = {
         Code = {
             type = "string",
@@ -3649,6 +3761,7 @@ M.AssociationStatus = {
 
 M.AssociateClientVpnTargetNetworkOutput = {
     type = "structure",
+    id = "AssociateClientVpnTargetNetworkOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -3664,6 +3777,7 @@ M.AssociateClientVpnTargetNetworkOutput = {
 
 M.AssociateDhcpOptionsInput = {
     type = "structure",
+    id = "AssociateDhcpOptionsInput",
     members = {
         DhcpOptionsId = {
             type = "string",
@@ -3688,10 +3802,12 @@ M.AssociateDhcpOptionsInput = {
 
 M.AssociateDhcpOptionsOutput = {
     type = "structure",
+    id = "AssociateDhcpOptionsOutput",
 }
 
 M.AssociateEnclaveCertificateIamRoleInput = {
     type = "structure",
+    id = "AssociateEnclaveCertificateIamRoleInput",
     members = {
         CertificateArn = {
             type = "string",
@@ -3713,6 +3829,7 @@ M.AssociateEnclaveCertificateIamRoleInput = {
 
 M.AssociateEnclaveCertificateIamRoleOutput = {
     type = "structure",
+    id = "AssociateEnclaveCertificateIamRoleOutput",
     members = {
         CertificateS3BucketName = {
             type = "string",
@@ -3737,6 +3854,7 @@ M.AssociateEnclaveCertificateIamRoleOutput = {
 
 M.IamInstanceProfileSpecification = {
     type = "structure",
+    id = "IamInstanceProfileSpecification",
     members = {
         Arn = {
             type = "string",
@@ -3755,6 +3873,7 @@ M.IamInstanceProfileSpecification = {
 
 M.AssociateIamInstanceProfileInput = {
     type = "structure",
+    id = "AssociateIamInstanceProfileInput",
     members = {
         IamInstanceProfile = setmetatable({ traits = {
             required = true,
@@ -3770,6 +3889,7 @@ M.AssociateIamInstanceProfileInput = {
 
 M.IamInstanceProfile = {
     type = "structure",
+    id = "IamInstanceProfile",
     members = {
         Arn = {
             type = "string",
@@ -3795,6 +3915,7 @@ M.IamInstanceProfileAssociationState = {
 
 M.IamInstanceProfileAssociation = {
     type = "structure",
+    id = "IamInstanceProfileAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -3828,6 +3949,7 @@ M.IamInstanceProfileAssociation = {
 
 M.AssociateIamInstanceProfileOutput = {
     type = "structure",
+    id = "AssociateIamInstanceProfileOutput",
     members = {
         IamInstanceProfileAssociation = setmetatable({ traits = {
             xml_name = "iamInstanceProfileAssociation",
@@ -3837,6 +3959,7 @@ M.AssociateIamInstanceProfileOutput = {
 
 M.InstanceEventWindowAssociationRequest = {
     type = "structure",
+    id = "InstanceEventWindowAssociationRequest",
     members = {
         InstanceIds = {
             type = "list",
@@ -3864,6 +3987,7 @@ M.InstanceEventWindowAssociationRequest = {
 
 M.AssociateInstanceEventWindowInput = {
     type = "structure",
+    id = "AssociateInstanceEventWindowInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -3882,6 +4006,7 @@ M.AssociateInstanceEventWindowInput = {
 
 M.InstanceEventWindowAssociationTarget = {
     type = "structure",
+    id = "InstanceEventWindowAssociationTarget",
     members = {
         InstanceIds = {
             type = "list",
@@ -3926,6 +4051,7 @@ M.WeekDay = {
 
 M.InstanceEventWindowTimeRange = {
     type = "structure",
+    id = "InstanceEventWindowTimeRange",
     members = {
         StartWeekDay = {
             type = "string",
@@ -3956,6 +4082,7 @@ M.InstanceEventWindowTimeRange = {
 
 M.InstanceEventWindow = {
     type = "structure",
+    id = "InstanceEventWindow",
     members = {
         InstanceEventWindowId = {
             type = "string",
@@ -4003,6 +4130,7 @@ M.InstanceEventWindow = {
 
 M.AssociateInstanceEventWindowOutput = {
     type = "structure",
+    id = "AssociateInstanceEventWindowOutput",
     members = {
         InstanceEventWindow = setmetatable({ traits = {
             xml_name = "instanceEventWindow",
@@ -4012,6 +4140,7 @@ M.AssociateInstanceEventWindowOutput = {
 
 M.AssociateIpamByoasnInput = {
     type = "structure",
+    id = "AssociateIpamByoasnInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -4033,6 +4162,7 @@ M.AssociateIpamByoasnInput = {
 
 M.AssociateIpamByoasnOutput = {
     type = "structure",
+    id = "AssociateIpamByoasnOutput",
     members = {
         AsnAssociation = setmetatable({ traits = {
             xml_name = "asnAssociation",
@@ -4042,6 +4172,7 @@ M.AssociateIpamByoasnOutput = {
 
 M.AssociateIpamResourceDiscoveryInput = {
     type = "structure",
+    id = "AssociateIpamResourceDiscoveryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -4093,6 +4224,7 @@ M.IpamResourceDiscoveryAssociationState = {
 
 M.IpamResourceDiscoveryAssociation = {
     type = "structure",
+    id = "IpamResourceDiscoveryAssociation",
     members = {
         OwnerId = {
             type = "string",
@@ -4166,6 +4298,7 @@ M.IpamResourceDiscoveryAssociation = {
 
 M.AssociateIpamResourceDiscoveryOutput = {
     type = "structure",
+    id = "AssociateIpamResourceDiscoveryOutput",
     members = {
         IpamResourceDiscoveryAssociation = setmetatable({ traits = {
             xml_name = "ipamResourceDiscoveryAssociation",
@@ -4175,6 +4308,7 @@ M.AssociateIpamResourceDiscoveryOutput = {
 
 M.AssociateNatGatewayAddressInput = {
     type = "structure",
+    id = "AssociateNatGatewayAddressInput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -4211,6 +4345,7 @@ M.AssociateNatGatewayAddressInput = {
 
 M.AssociateNatGatewayAddressOutput = {
     type = "structure",
+    id = "AssociateNatGatewayAddressOutput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -4230,6 +4365,7 @@ M.AssociateNatGatewayAddressOutput = {
 
 M.AssociateRouteServerInput = {
     type = "structure",
+    id = "AssociateRouteServerInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -4257,6 +4393,7 @@ M.RouteServerAssociationState = {
 
 M.RouteServerAssociation = {
     type = "structure",
+    id = "RouteServerAssociation",
     members = {
         RouteServerId = {
             type = "string",
@@ -4281,6 +4418,7 @@ M.RouteServerAssociation = {
 
 M.AssociateRouteServerOutput = {
     type = "structure",
+    id = "AssociateRouteServerOutput",
     members = {
         RouteServerAssociation = setmetatable({ traits = {
             xml_name = "routeServerAssociation",
@@ -4290,6 +4428,7 @@ M.AssociateRouteServerOutput = {
 
 M.AssociateRouteTableInput = {
     type = "structure",
+    id = "AssociateRouteTableInput",
     members = {
         GatewayId = {
             type = "string",
@@ -4329,6 +4468,7 @@ M.RouteTableAssociationStateCode = {
 
 M.RouteTableAssociationState = {
     type = "structure",
+    id = "RouteTableAssociationState",
     members = {
         State = {
             type = "string",
@@ -4347,6 +4487,7 @@ M.RouteTableAssociationState = {
 
 M.AssociateRouteTableOutput = {
     type = "structure",
+    id = "AssociateRouteTableOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -4362,6 +4503,7 @@ M.AssociateRouteTableOutput = {
 
 M.AssociateSecurityGroupVpcInput = {
     type = "structure",
+    id = "AssociateSecurityGroupVpcInput",
     members = {
         GroupId = {
             type = "string",
@@ -4392,6 +4534,7 @@ M.SecurityGroupVpcAssociationState = {
 
 M.AssociateSecurityGroupVpcOutput = {
     type = "structure",
+    id = "AssociateSecurityGroupVpcOutput",
     members = {
         State = {
             type = "string",
@@ -4404,6 +4547,7 @@ M.AssociateSecurityGroupVpcOutput = {
 
 M.AssociateSubnetCidrBlockInput = {
     type = "structure",
+    id = "AssociateSubnetCidrBlockInput",
     members = {
         Ipv6IpamPoolId = {
             type = "string",
@@ -4449,6 +4593,7 @@ M.SubnetCidrBlockStateCode = {
 
 M.SubnetCidrBlockState = {
     type = "structure",
+    id = "SubnetCidrBlockState",
     members = {
         State = {
             type = "string",
@@ -4467,6 +4612,7 @@ M.SubnetCidrBlockState = {
 
 M.SubnetIpv6CidrBlockAssociation = {
     type = "structure",
+    id = "SubnetIpv6CidrBlockAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -4500,6 +4646,7 @@ M.SubnetIpv6CidrBlockAssociation = {
 
 M.AssociateSubnetCidrBlockOutput = {
     type = "structure",
+    id = "AssociateSubnetCidrBlockOutput",
     members = {
         Ipv6CidrBlockAssociation = setmetatable({ traits = {
             xml_name = "ipv6CidrBlockAssociation",
@@ -4515,6 +4662,7 @@ M.AssociateSubnetCidrBlockOutput = {
 
 M.AssociateTransitGatewayMulticastDomainInput = {
     type = "structure",
+    id = "AssociateTransitGatewayMulticastDomainInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -4543,6 +4691,7 @@ M.AssociateTransitGatewayMulticastDomainInput = {
 
 M.AssociateTransitGatewayMulticastDomainOutput = {
     type = "structure",
+    id = "AssociateTransitGatewayMulticastDomainOutput",
     members = {
         Associations = setmetatable({ traits = {
             xml_name = "associations",
@@ -4552,6 +4701,7 @@ M.AssociateTransitGatewayMulticastDomainOutput = {
 
 M.AssociateTransitGatewayPolicyTableInput = {
     type = "structure",
+    id = "AssociateTransitGatewayPolicyTableInput",
     members = {
         TransitGatewayPolicyTableId = {
             type = "string",
@@ -4580,6 +4730,7 @@ M.TransitGatewayAssociationState = {
 
 M.TransitGatewayPolicyTableAssociation = {
     type = "structure",
+    id = "TransitGatewayPolicyTableAssociation",
     members = {
         TransitGatewayPolicyTableId = {
             type = "string",
@@ -4616,6 +4767,7 @@ M.TransitGatewayPolicyTableAssociation = {
 
 M.AssociateTransitGatewayPolicyTableOutput = {
     type = "structure",
+    id = "AssociateTransitGatewayPolicyTableOutput",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -4625,6 +4777,7 @@ M.AssociateTransitGatewayPolicyTableOutput = {
 
 M.AssociateTransitGatewayRouteTableInput = {
     type = "structure",
+    id = "AssociateTransitGatewayRouteTableInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -4646,6 +4799,7 @@ M.AssociateTransitGatewayRouteTableInput = {
 
 M.TransitGatewayAssociation = {
     type = "structure",
+    id = "TransitGatewayAssociation",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -4682,6 +4836,7 @@ M.TransitGatewayAssociation = {
 
 M.AssociateTransitGatewayRouteTableOutput = {
     type = "structure",
+    id = "AssociateTransitGatewayRouteTableOutput",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -4691,6 +4846,7 @@ M.AssociateTransitGatewayRouteTableOutput = {
 
 M.AssociateTrunkInterfaceInput = {
     type = "structure",
+    id = "AssociateTrunkInterfaceInput",
     members = {
         BranchInterfaceId = {
             type = "string",
@@ -4729,6 +4885,7 @@ M.InterfaceProtocolType = {
 
 M.TrunkInterfaceAssociation = {
     type = "structure",
+    id = "TrunkInterfaceAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -4778,6 +4935,7 @@ M.TrunkInterfaceAssociation = {
 
 M.AssociateTrunkInterfaceOutput = {
     type = "structure",
+    id = "AssociateTrunkInterfaceOutput",
     members = {
         InterfaceAssociation = setmetatable({ traits = {
             xml_name = "interfaceAssociation",
@@ -4793,6 +4951,7 @@ M.AssociateTrunkInterfaceOutput = {
 
 M.AssociateVpcCidrBlockInput = {
     type = "structure",
+    id = "AssociateVpcCidrBlockInput",
     members = {
         CidrBlock = {
             type = "string",
@@ -4845,6 +5004,7 @@ M.VpcCidrBlockStateCode = {
 
 M.VpcCidrBlockState = {
     type = "structure",
+    id = "VpcCidrBlockState",
     members = {
         State = {
             type = "string",
@@ -4863,6 +5023,7 @@ M.VpcCidrBlockState = {
 
 M.VpcCidrBlockAssociation = {
     type = "structure",
+    id = "VpcCidrBlockAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -4884,6 +5045,7 @@ M.VpcCidrBlockAssociation = {
 
 M.VpcIpv6CidrBlockAssociation = {
     type = "structure",
+    id = "VpcIpv6CidrBlockAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -4929,6 +5091,7 @@ M.VpcIpv6CidrBlockAssociation = {
 
 M.AssociateVpcCidrBlockOutput = {
     type = "structure",
+    id = "AssociateVpcCidrBlockOutput",
     members = {
         Ipv6CidrBlockAssociation = setmetatable({ traits = {
             xml_name = "ipv6CidrBlockAssociation",
@@ -4947,6 +5110,7 @@ M.AssociateVpcCidrBlockOutput = {
 
 M.AttachClassicLinkVpcInput = {
     type = "structure",
+    id = "AttachClassicLinkVpcInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -4981,6 +5145,7 @@ M.AttachClassicLinkVpcInput = {
 
 M.AttachClassicLinkVpcOutput = {
     type = "structure",
+    id = "AttachClassicLinkVpcOutput",
     members = {
         Return = {
             type = "boolean",
@@ -4993,6 +5158,7 @@ M.AttachClassicLinkVpcOutput = {
 
 M.AttachInternetGatewayInput = {
     type = "structure",
+    id = "AttachInternetGatewayInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -5019,10 +5185,12 @@ M.AttachInternetGatewayInput = {
 
 M.AttachInternetGatewayOutput = {
     type = "structure",
+    id = "AttachInternetGatewayOutput",
 }
 
 M.EnaSrdUdpSpecification = {
     type = "structure",
+    id = "EnaSrdUdpSpecification",
     members = {
         EnaSrdUdpEnabled = {
             type = "boolean",
@@ -5032,6 +5200,7 @@ M.EnaSrdUdpSpecification = {
 
 M.EnaSrdSpecification = {
     type = "structure",
+    id = "EnaSrdSpecification",
     members = {
         EnaSrdEnabled = {
             type = "boolean",
@@ -5042,6 +5211,7 @@ M.EnaSrdSpecification = {
 
 M.AttachNetworkInterfaceInput = {
     type = "structure",
+    id = "AttachNetworkInterfaceInput",
     members = {
         NetworkCardIndex = {
             type = "integer",
@@ -5082,6 +5252,7 @@ M.AttachNetworkInterfaceInput = {
 
 M.AttachNetworkInterfaceOutput = {
     type = "structure",
+    id = "AttachNetworkInterfaceOutput",
     members = {
         AttachmentId = {
             type = "string",
@@ -5100,6 +5271,7 @@ M.AttachNetworkInterfaceOutput = {
 
 M.AttachVerifiedAccessTrustProviderInput = {
     type = "structure",
+    id = "AttachVerifiedAccessTrustProviderInput",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -5127,6 +5299,7 @@ M.AttachVerifiedAccessTrustProviderInput = {
 
 M.VerifiedAccessInstanceCustomSubDomain = {
     type = "structure",
+    id = "VerifiedAccessInstanceCustomSubDomain",
     members = {
         SubDomain = {
             type = "string",
@@ -5162,6 +5335,7 @@ M.UserTrustProviderType = {
 
 M.VerifiedAccessTrustProviderCondensed = {
     type = "structure",
+    id = "VerifiedAccessTrustProviderCondensed",
     members = {
         VerifiedAccessTrustProviderId = {
             type = "string",
@@ -5198,6 +5372,7 @@ M.VerifiedAccessTrustProviderCondensed = {
 
 M.VerifiedAccessInstance = {
     type = "structure",
+    id = "VerifiedAccessInstance",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -5251,6 +5426,7 @@ M.VerifiedAccessInstance = {
 
 M.DeviceOptions = {
     type = "structure",
+    id = "DeviceOptions",
     members = {
         TenantId = {
             type = "string",
@@ -5269,6 +5445,7 @@ M.DeviceOptions = {
 
 M.NativeApplicationOidcOptions = {
     type = "structure",
+    id = "NativeApplicationOidcOptions",
     members = {
         PublicSigningKeyEndpoint = {
             type = "string",
@@ -5317,6 +5494,7 @@ M.NativeApplicationOidcOptions = {
 
 M.OidcOptions = {
     type = "structure",
+    id = "OidcOptions",
     members = {
         Issuer = {
             type = "string",
@@ -5365,6 +5543,7 @@ M.OidcOptions = {
 
 M.VerifiedAccessSseSpecificationResponse = {
     type = "structure",
+    id = "VerifiedAccessSseSpecificationResponse",
     members = {
         CustomerManagedKeyEnabled = {
             type = "boolean",
@@ -5383,6 +5562,7 @@ M.VerifiedAccessSseSpecificationResponse = {
 
 M.VerifiedAccessTrustProvider = {
     type = "structure",
+    id = "VerifiedAccessTrustProvider",
     members = {
         VerifiedAccessTrustProviderId = {
             type = "string",
@@ -5456,6 +5636,7 @@ M.VerifiedAccessTrustProvider = {
 
 M.AttachVerifiedAccessTrustProviderOutput = {
     type = "structure",
+    id = "AttachVerifiedAccessTrustProviderOutput",
     members = {
         VerifiedAccessTrustProvider = setmetatable({ traits = {
             xml_name = "verifiedAccessTrustProvider",
@@ -5468,6 +5649,7 @@ M.AttachVerifiedAccessTrustProviderOutput = {
 
 M.AttachVolumeInput = {
     type = "structure",
+    id = "AttachVolumeInput",
     members = {
         Device = {
             type = "string",
@@ -5509,6 +5691,7 @@ M.VolumeAttachmentState = {
 
 M.AttachVolumeOutput = {
     type = "structure",
+    id = "AttachVolumeOutput",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -5569,6 +5752,7 @@ M.AttachVolumeOutput = {
 
 M.AttachVpnGatewayInput = {
     type = "structure",
+    id = "AttachVpnGatewayInput",
     members = {
         VpcId = {
             type = "string",
@@ -5600,6 +5784,7 @@ M.AttachmentStatus = {
 
 M.VpcAttachment = {
     type = "structure",
+    id = "VpcAttachment",
     members = {
         VpcId = {
             type = "string",
@@ -5618,6 +5803,7 @@ M.VpcAttachment = {
 
 M.AttachVpnGatewayOutput = {
     type = "structure",
+    id = "AttachVpnGatewayOutput",
     members = {
         VpcAttachment = setmetatable({ traits = {
             xml_name = "attachment",
@@ -5627,6 +5813,7 @@ M.AttachVpnGatewayOutput = {
 
 M.AuthorizeClientVpnIngressInput = {
     type = "structure",
+    id = "AuthorizeClientVpnIngressInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -5670,6 +5857,7 @@ M.ClientVpnAuthorizationRuleStatusCode = {
 
 M.ClientVpnAuthorizationRuleStatus = {
     type = "structure",
+    id = "ClientVpnAuthorizationRuleStatus",
     members = {
         Code = {
             type = "string",
@@ -5688,6 +5876,7 @@ M.ClientVpnAuthorizationRuleStatus = {
 
 M.AuthorizeClientVpnIngressOutput = {
     type = "structure",
+    id = "AuthorizeClientVpnIngressOutput",
     members = {
         Status = setmetatable({ traits = {
             xml_name = "status",
@@ -5697,6 +5886,7 @@ M.AuthorizeClientVpnIngressOutput = {
 
 M.IpRange = {
     type = "structure",
+    id = "IpRange",
     members = {
         Description = {
             type = "string",
@@ -5715,6 +5905,7 @@ M.IpRange = {
 
 M.Ipv6Range = {
     type = "structure",
+    id = "Ipv6Range",
     members = {
         Description = {
             type = "string",
@@ -5733,6 +5924,7 @@ M.Ipv6Range = {
 
 M.PrefixListId = {
     type = "structure",
+    id = "PrefixListId",
     members = {
         Description = {
             type = "string",
@@ -5751,6 +5943,7 @@ M.PrefixListId = {
 
 M.UserIdGroupPair = {
     type = "structure",
+    id = "UserIdGroupPair",
     members = {
         Description = {
             type = "string",
@@ -5799,6 +5992,7 @@ M.UserIdGroupPair = {
 
 M.IpPermission = {
     type = "structure",
+    id = "IpPermission",
     members = {
         IpProtocol = {
             type = "string",
@@ -5851,6 +6045,7 @@ M.IpPermission = {
 
 M.AuthorizeSecurityGroupEgressInput = {
     type = "structure",
+    id = "AuthorizeSecurityGroupEgressInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -5920,6 +6115,7 @@ M.AuthorizeSecurityGroupEgressInput = {
 
 M.ReferencedSecurityGroup = {
     type = "structure",
+    id = "ReferencedSecurityGroup",
     members = {
         GroupId = {
             type = "string",
@@ -5956,6 +6152,7 @@ M.ReferencedSecurityGroup = {
 
 M.SecurityGroupRule = {
     type = "structure",
+    id = "SecurityGroupRule",
     members = {
         SecurityGroupRuleId = {
             type = "string",
@@ -6044,6 +6241,7 @@ M.SecurityGroupRule = {
 
 M.AuthorizeSecurityGroupEgressOutput = {
     type = "structure",
+    id = "AuthorizeSecurityGroupEgressOutput",
     members = {
         Return = {
             type = "boolean",
@@ -6063,6 +6261,7 @@ M.AuthorizeSecurityGroupEgressOutput = {
 
 M.AuthorizeSecurityGroupIngressInput = {
     type = "structure",
+    id = "AuthorizeSecurityGroupIngressInput",
     members = {
         CidrIp = {
             type = "string",
@@ -6110,6 +6309,7 @@ M.AuthorizeSecurityGroupIngressInput = {
 
 M.AuthorizeSecurityGroupIngressOutput = {
     type = "structure",
+    id = "AuthorizeSecurityGroupIngressOutput",
     members = {
         Return = {
             type = "boolean",
@@ -6129,6 +6329,7 @@ M.AuthorizeSecurityGroupIngressOutput = {
 
 M.S3Storage = {
     type = "structure",
+    id = "S3Storage",
     members = {
         AWSAccessKeyId = {
             type = "string",
@@ -6162,6 +6363,7 @@ M.S3Storage = {
 
 M.Storage = {
     type = "structure",
+    id = "Storage",
     members = {
         S3 = setmetatable({ traits = {
             xml_name = "S3",
@@ -6171,6 +6373,7 @@ M.Storage = {
 
 M.BundleInstanceInput = {
     type = "structure",
+    id = "BundleInstanceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6192,6 +6395,7 @@ M.BundleInstanceInput = {
 
 M.BundleTaskError = {
     type = "structure",
+    id = "BundleTaskError",
     members = {
         Code = {
             type = "string",
@@ -6220,6 +6424,7 @@ M.BundleTaskState = {
 
 M.BundleTask = {
     type = "structure",
+    id = "BundleTask",
     members = {
         InstanceId = {
             type = "string",
@@ -6268,6 +6473,7 @@ M.BundleTask = {
 
 M.BundleInstanceOutput = {
     type = "structure",
+    id = "BundleInstanceOutput",
     members = {
         BundleTask = setmetatable({ traits = {
             xml_name = "bundleInstanceTask",
@@ -6277,6 +6483,7 @@ M.BundleInstanceOutput = {
 
 M.CancelBundleTaskInput = {
     type = "structure",
+    id = "CancelBundleTaskInput",
     members = {
         BundleId = {
             type = "string",
@@ -6295,6 +6502,7 @@ M.CancelBundleTaskInput = {
 
 M.CancelBundleTaskOutput = {
     type = "structure",
+    id = "CancelBundleTaskOutput",
     members = {
         BundleTask = setmetatable({ traits = {
             xml_name = "bundleInstanceTask",
@@ -6304,6 +6512,7 @@ M.CancelBundleTaskOutput = {
 
 M.CancelCapacityReservationInput = {
     type = "structure",
+    id = "CancelCapacityReservationInput",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -6319,6 +6528,7 @@ M.CancelCapacityReservationInput = {
 
 M.CancelCapacityReservationOutput = {
     type = "structure",
+    id = "CancelCapacityReservationOutput",
     members = {
         Return = {
             type = "boolean",
@@ -6331,6 +6541,7 @@ M.CancelCapacityReservationOutput = {
 
 M.CancelCapacityReservationFleetsInput = {
     type = "structure",
+    id = "CancelCapacityReservationFleetsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -6348,6 +6559,7 @@ M.CancelCapacityReservationFleetsInput = {
 
 M.CancelCapacityReservationFleetError = {
     type = "structure",
+    id = "CancelCapacityReservationFleetError",
     members = {
         Code = {
             type = "string",
@@ -6366,6 +6578,7 @@ M.CancelCapacityReservationFleetError = {
 
 M.FailedCapacityReservationFleetCancellationResult = {
     type = "structure",
+    id = "FailedCapacityReservationFleetCancellationResult",
     members = {
         CapacityReservationFleetId = {
             type = "string",
@@ -6393,6 +6606,7 @@ M.CapacityReservationFleetState = {
 
 M.CapacityReservationFleetCancellationState = {
     type = "structure",
+    id = "CapacityReservationFleetCancellationState",
     members = {
         CurrentFleetState = {
             type = "string",
@@ -6417,6 +6631,7 @@ M.CapacityReservationFleetCancellationState = {
 
 M.CancelCapacityReservationFleetsOutput = {
     type = "structure",
+    id = "CancelCapacityReservationFleetsOutput",
     members = {
         SuccessfulFleetCancellations = {
             type = "list",
@@ -6437,6 +6652,7 @@ M.CancelCapacityReservationFleetsOutput = {
 
 M.CancelConversionTaskInput = {
     type = "structure",
+    id = "CancelConversionTaskInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -6462,10 +6678,12 @@ M.CancelConversionTaskInput = {
 
 M.CancelConversionTaskOutput = {
     type = "structure",
+    id = "CancelConversionTaskOutput",
 }
 
 M.CancelDeclarativePoliciesReportInput = {
     type = "structure",
+    id = "CancelDeclarativePoliciesReportInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -6481,6 +6699,7 @@ M.CancelDeclarativePoliciesReportInput = {
 
 M.CancelDeclarativePoliciesReportOutput = {
     type = "structure",
+    id = "CancelDeclarativePoliciesReportOutput",
     members = {
         Return = {
             type = "boolean",
@@ -6493,6 +6712,7 @@ M.CancelDeclarativePoliciesReportOutput = {
 
 M.CancelExportTaskInput = {
     type = "structure",
+    id = "CancelExportTaskInput",
     members = {
         ExportTaskId = {
             type = "string",
@@ -6506,10 +6726,12 @@ M.CancelExportTaskInput = {
 
 M.CancelExportTaskOutput = {
     type = "structure",
+    id = "CancelExportTaskOutput",
 }
 
 M.CancelImageLaunchPermissionInput = {
     type = "structure",
+    id = "CancelImageLaunchPermissionInput",
     members = {
         ImageId = {
             type = "string",
@@ -6525,6 +6747,7 @@ M.CancelImageLaunchPermissionInput = {
 
 M.CancelImageLaunchPermissionOutput = {
     type = "structure",
+    id = "CancelImageLaunchPermissionOutput",
     members = {
         Return = {
             type = "boolean",
@@ -6537,6 +6760,7 @@ M.CancelImageLaunchPermissionOutput = {
 
 M.CancelImportTaskInput = {
     type = "structure",
+    id = "CancelImportTaskInput",
     members = {
         CancelReason = {
             type = "string",
@@ -6552,6 +6776,7 @@ M.CancelImportTaskInput = {
 
 M.CancelImportTaskOutput = {
     type = "structure",
+    id = "CancelImportTaskOutput",
     members = {
         ImportTaskId = {
             type = "string",
@@ -6576,6 +6801,7 @@ M.CancelImportTaskOutput = {
 
 M.CancelReservedInstancesListingInput = {
     type = "structure",
+    id = "CancelReservedInstancesListingInput",
     members = {
         ReservedInstancesListingId = {
             type = "string",
@@ -6596,6 +6822,7 @@ M.ListingState = {
 
 M.InstanceCount = {
     type = "structure",
+    id = "InstanceCount",
     members = {
         InstanceCount = {
             type = "integer",
@@ -6618,6 +6845,7 @@ M.CurrencyCodeValues = {
 
 M.PriceSchedule = {
     type = "structure",
+    id = "PriceSchedule",
     members = {
         Active = {
             type = "boolean",
@@ -6655,6 +6883,7 @@ M.ListingStatus = {
 
 M.ReservedInstancesListing = {
     type = "structure",
+    id = "ReservedInstancesListing",
     members = {
         ClientToken = {
             type = "string",
@@ -6724,6 +6953,7 @@ M.ReservedInstancesListing = {
 
 M.CancelReservedInstancesListingOutput = {
     type = "structure",
+    id = "CancelReservedInstancesListingOutput",
     members = {
         ReservedInstancesListings = {
             type = "list",
@@ -6737,6 +6967,7 @@ M.CancelReservedInstancesListingOutput = {
 
 M.CancelSpotFleetRequestsInput = {
     type = "structure",
+    id = "CancelSpotFleetRequestsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -6774,6 +7005,7 @@ M.BatchState = {
 
 M.CancelSpotFleetRequestsSuccessItem = {
     type = "structure",
+    id = "CancelSpotFleetRequestsSuccessItem",
     members = {
         CurrentSpotFleetRequestState = {
             type = "string",
@@ -6805,6 +7037,7 @@ M.CancelBatchErrorCode = {
 
 M.CancelSpotFleetRequestsError = {
     type = "structure",
+    id = "CancelSpotFleetRequestsError",
     members = {
         Code = {
             type = "string",
@@ -6823,6 +7056,7 @@ M.CancelSpotFleetRequestsError = {
 
 M.CancelSpotFleetRequestsErrorItem = {
     type = "structure",
+    id = "CancelSpotFleetRequestsErrorItem",
     members = {
         Error = setmetatable({ traits = {
             xml_name = "error",
@@ -6838,6 +7072,7 @@ M.CancelSpotFleetRequestsErrorItem = {
 
 M.CancelSpotFleetRequestsOutput = {
     type = "structure",
+    id = "CancelSpotFleetRequestsOutput",
     members = {
         SuccessfulFleetRequests = {
             type = "list",
@@ -6858,6 +7093,7 @@ M.CancelSpotFleetRequestsOutput = {
 
 M.CancelSpotInstanceRequestsInput = {
     type = "structure",
+    id = "CancelSpotInstanceRequestsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -6886,6 +7122,7 @@ M.CancelSpotInstanceRequestState = {
 
 M.CancelledSpotInstanceRequest = {
     type = "structure",
+    id = "CancelledSpotInstanceRequest",
     members = {
         SpotInstanceRequestId = {
             type = "string",
@@ -6904,6 +7141,7 @@ M.CancelledSpotInstanceRequest = {
 
 M.CancelSpotInstanceRequestsOutput = {
     type = "structure",
+    id = "CancelSpotInstanceRequestsOutput",
     members = {
         CancelledSpotInstanceRequests = {
             type = "list",
@@ -6917,6 +7155,7 @@ M.CancelSpotInstanceRequestsOutput = {
 
 M.ConfirmProductInstanceInput = {
     type = "structure",
+    id = "ConfirmProductInstanceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6941,6 +7180,7 @@ M.ConfirmProductInstanceInput = {
 
 M.ConfirmProductInstanceOutput = {
     type = "structure",
+    id = "ConfirmProductInstanceOutput",
     members = {
         Return = {
             type = "boolean",
@@ -6959,6 +7199,7 @@ M.ConfirmProductInstanceOutput = {
 
 M.CopyFpgaImageInput = {
     type = "structure",
+    id = "CopyFpgaImageInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -6989,6 +7230,7 @@ M.CopyFpgaImageInput = {
 
 M.CopyFpgaImageOutput = {
     type = "structure",
+    id = "CopyFpgaImageOutput",
     members = {
         FpgaImageId = {
             type = "string",
@@ -7001,6 +7243,7 @@ M.CopyFpgaImageOutput = {
 
 M.CopyImageInput = {
     type = "structure",
+    id = "CopyImageInput",
     members = {
         ClientToken = {
             type = "string",
@@ -7074,6 +7317,7 @@ M.CopyImageInput = {
 
 M.CopyImageOutput = {
     type = "structure",
+    id = "CopyImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -7086,6 +7330,7 @@ M.CopyImageOutput = {
 
 M.CopySnapshotInput = {
     type = "structure",
+    id = "CopySnapshotInput",
     members = {
         Description = {
             type = "string",
@@ -7153,6 +7398,7 @@ M.CopySnapshotInput = {
 
 M.CopySnapshotOutput = {
     type = "structure",
+    id = "CopySnapshotOutput",
     members = {
         Tags = {
             type = "list",
@@ -7182,6 +7428,7 @@ M.VolumeType = {
 
 M.CopyVolumesInput = {
     type = "structure",
+    id = "CopyVolumesInput",
     members = {
         SourceVolumeId = {
             type = "string",
@@ -7225,6 +7472,7 @@ M.CopyVolumesInput = {
 
 M.VolumeAttachment = {
     type = "structure",
+    id = "VolumeAttachment",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -7285,6 +7533,7 @@ M.VolumeAttachment = {
 
 M.OperatorResponse = {
     type = "structure",
+    id = "OperatorResponse",
     members = {
         Managed = {
             type = "boolean",
@@ -7324,6 +7573,7 @@ M.VolumeState = {
 
 M.Volume = {
     type = "structure",
+    id = "Volume",
     members = {
         AvailabilityZoneId = {
             type = "string",
@@ -7455,6 +7705,7 @@ M.Volume = {
 
 M.CopyVolumesOutput = {
     type = "structure",
+    id = "CopyVolumesOutput",
     members = {
         Volumes = {
             type = "list",
@@ -7477,6 +7728,7 @@ M.Schedule = {
 
 M.CreateCapacityManagerDataExportInput = {
     type = "structure",
+    id = "CreateCapacityManagerDataExportInput",
     members = {
         S3BucketName = {
             type = "string",
@@ -7520,6 +7772,7 @@ M.CreateCapacityManagerDataExportInput = {
 
 M.CreateCapacityManagerDataExportOutput = {
     type = "structure",
+    id = "CreateCapacityManagerDataExportOutput",
     members = {
         CapacityManagerDataExportId = {
             type = "string",
@@ -7573,6 +7826,7 @@ M.CapacityReservationTenancy = {
 
 M.CreateCapacityReservationInput = {
     type = "structure",
+    id = "CreateCapacityReservationInput",
     members = {
         ClientToken = {
             type = "string",
@@ -7646,6 +7900,7 @@ M.CreateCapacityReservationInput = {
 
 M.CapacityAllocationMetadataEntry = {
     type = "structure",
+    id = "CapacityAllocationMetadataEntry",
     members = {
         Key = {
             type = "string",
@@ -7664,6 +7919,7 @@ M.CapacityAllocationMetadataEntry = {
 
 M.CapacityAllocation = {
     type = "structure",
+    id = "CapacityAllocation",
     members = {
         AllocationType = {
             type = "string",
@@ -7689,6 +7945,7 @@ M.CapacityAllocation = {
 
 M.CapacityReservationCommitmentInfo = {
     type = "structure",
+    id = "CapacityReservationCommitmentInfo",
     members = {
         CommittedInstanceCount = {
             type = "integer",
@@ -7720,6 +7977,7 @@ M.InterruptibleCapacityReservationAllocationStatus = {
 
 M.InterruptibleCapacityAllocation = {
     type = "structure",
+    id = "InterruptibleCapacityAllocation",
     members = {
         InstanceCount = {
             type = "integer",
@@ -7756,6 +8014,7 @@ M.InterruptibleCapacityAllocation = {
 
 M.InterruptionInfo = {
     type = "structure",
+    id = "InterruptionInfo",
     members = {
         SourceCapacityReservationId = {
             type = "string",
@@ -7794,6 +8053,7 @@ M.CapacityReservationState = {
 
 M.CapacityReservation = {
     type = "structure",
+    id = "CapacityReservation",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -7979,6 +8239,7 @@ M.CapacityReservation = {
 
 M.CreateCapacityReservationOutput = {
     type = "structure",
+    id = "CreateCapacityReservationOutput",
     members = {
         CapacityReservation = setmetatable({ traits = {
             xml_name = "capacityReservation",
@@ -7988,6 +8249,7 @@ M.CreateCapacityReservationOutput = {
 
 M.CreateCapacityReservationBySplittingInput = {
     type = "structure",
+    id = "CreateCapacityReservationBySplittingInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -8022,6 +8284,7 @@ M.CreateCapacityReservationBySplittingInput = {
 
 M.CreateCapacityReservationBySplittingOutput = {
     type = "structure",
+    id = "CreateCapacityReservationBySplittingOutput",
     members = {
         SourceCapacityReservation = setmetatable({ traits = {
             xml_name = "sourceCapacityReservation",
@@ -9259,6 +9522,7 @@ M.InstanceType = {
 
 M.ReservationFleetInstanceSpecification = {
     type = "structure",
+    id = "ReservationFleetInstanceSpecification",
     members = {
         InstanceType = {
             type = "string",
@@ -9290,6 +9554,7 @@ M.FleetCapacityReservationTenancy = {
 
 M.CreateCapacityReservationFleetInput = {
     type = "structure",
+    id = "CreateCapacityReservationFleetInput",
     members = {
         AllocationStrategy = {
             type = "string",
@@ -9338,6 +9603,7 @@ M.CreateCapacityReservationFleetInput = {
 
 M.FleetCapacityReservation = {
     type = "structure",
+    id = "FleetCapacityReservation",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -9410,6 +9676,7 @@ M.FleetCapacityReservation = {
 
 M.CreateCapacityReservationFleetOutput = {
     type = "structure",
+    id = "CreateCapacityReservationFleetOutput",
     members = {
         CapacityReservationFleetId = {
             type = "string",
@@ -9484,6 +9751,7 @@ M.CreateCapacityReservationFleetOutput = {
 
 M.CreateCarrierGatewayInput = {
     type = "structure",
+    id = "CreateCarrierGatewayInput",
     members = {
         VpcId = {
             type = "string",
@@ -9519,6 +9787,7 @@ M.CarrierGatewayState = {
 
 M.CarrierGateway = {
     type = "structure",
+    id = "CarrierGateway",
     members = {
         CarrierGatewayId = {
             type = "string",
@@ -9556,6 +9825,7 @@ M.CarrierGateway = {
 
 M.CreateCarrierGatewayOutput = {
     type = "structure",
+    id = "CreateCarrierGatewayOutput",
     members = {
         CarrierGateway = setmetatable({ traits = {
             xml_name = "carrierGateway",
@@ -9565,6 +9835,7 @@ M.CreateCarrierGatewayOutput = {
 
 M.DirectoryServiceAuthenticationRequest = {
     type = "structure",
+    id = "DirectoryServiceAuthenticationRequest",
     members = {
         DirectoryId = {
             type = "string",
@@ -9574,6 +9845,7 @@ M.DirectoryServiceAuthenticationRequest = {
 
 M.FederatedAuthenticationRequest = {
     type = "structure",
+    id = "FederatedAuthenticationRequest",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -9586,6 +9858,7 @@ M.FederatedAuthenticationRequest = {
 
 M.CertificateAuthenticationRequest = {
     type = "structure",
+    id = "CertificateAuthenticationRequest",
     members = {
         ClientRootCertificateChainArn = {
             type = "string",
@@ -9601,6 +9874,7 @@ M.ClientVpnAuthenticationType = {
 
 M.ClientVpnAuthenticationRequest = {
     type = "structure",
+    id = "ClientVpnAuthenticationRequest",
     members = {
         Type = {
             type = "string",
@@ -9613,6 +9887,7 @@ M.ClientVpnAuthenticationRequest = {
 
 M.ClientConnectOptions = {
     type = "structure",
+    id = "ClientConnectOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -9625,6 +9900,7 @@ M.ClientConnectOptions = {
 
 M.ClientLoginBannerOptions = {
     type = "structure",
+    id = "ClientLoginBannerOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -9637,6 +9913,7 @@ M.ClientLoginBannerOptions = {
 
 M.ClientRouteEnforcementOptions = {
     type = "structure",
+    id = "ClientRouteEnforcementOptions",
     members = {
         Enforced = {
             type = "boolean",
@@ -9646,6 +9923,7 @@ M.ClientRouteEnforcementOptions = {
 
 M.ConnectionLogOptions = {
     type = "structure",
+    id = "ConnectionLogOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -9678,6 +9956,7 @@ M.TrafficIpAddressType = {
 
 M.TransitGatewayConfigurationInputStructure = {
     type = "structure",
+    id = "TransitGatewayConfigurationInputStructure",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -9706,6 +9985,7 @@ M.TransportProtocol = {
 
 M.CreateClientVpnEndpointInput = {
     type = "structure",
+    id = "CreateClientVpnEndpointInput",
     members = {
         ClientCidrBlock = {
             type = "string",
@@ -9801,6 +10081,7 @@ M.ClientVpnEndpointStatusCode = {
 
 M.ClientVpnEndpointStatus = {
     type = "structure",
+    id = "ClientVpnEndpointStatus",
     members = {
         Code = {
             type = "string",
@@ -9819,6 +10100,7 @@ M.ClientVpnEndpointStatus = {
 
 M.CreateClientVpnEndpointOutput = {
     type = "structure",
+    id = "CreateClientVpnEndpointOutput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -9840,6 +10122,7 @@ M.CreateClientVpnEndpointOutput = {
 
 M.CreateClientVpnRouteInput = {
     type = "structure",
+    id = "CreateClientVpnRouteInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -9880,6 +10163,7 @@ M.ClientVpnRouteStatusCode = {
 
 M.ClientVpnRouteStatus = {
     type = "structure",
+    id = "ClientVpnRouteStatus",
     members = {
         Code = {
             type = "string",
@@ -9898,6 +10182,7 @@ M.ClientVpnRouteStatus = {
 
 M.CreateClientVpnRouteOutput = {
     type = "structure",
+    id = "CreateClientVpnRouteOutput",
     members = {
         Status = setmetatable({ traits = {
             xml_name = "status",
@@ -9907,6 +10192,7 @@ M.CreateClientVpnRouteOutput = {
 
 M.CreateCoipCidrInput = {
     type = "structure",
+    id = "CreateCoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -9928,6 +10214,7 @@ M.CreateCoipCidrInput = {
 
 M.CoipCidr = {
     type = "structure",
+    id = "CoipCidr",
     members = {
         Cidr = {
             type = "string",
@@ -9952,6 +10239,7 @@ M.CoipCidr = {
 
 M.CreateCoipCidrOutput = {
     type = "structure",
+    id = "CreateCoipCidrOutput",
     members = {
         CoipCidr = setmetatable({ traits = {
             xml_name = "coipCidr",
@@ -9961,6 +10249,7 @@ M.CreateCoipCidrOutput = {
 
 M.CreateCoipPoolInput = {
     type = "structure",
+    id = "CreateCoipPoolInput",
     members = {
         LocalGatewayRouteTableId = {
             type = "string",
@@ -9983,6 +10272,7 @@ M.CreateCoipPoolInput = {
 
 M.CoipPool = {
     type = "structure",
+    id = "CoipPool",
     members = {
         PoolId = {
             type = "string",
@@ -10021,6 +10311,7 @@ M.CoipPool = {
 
 M.CreateCoipPoolOutput = {
     type = "structure",
+    id = "CreateCoipPoolOutput",
     members = {
         CoipPool = setmetatable({ traits = {
             xml_name = "coipPool",
@@ -10034,6 +10325,7 @@ M.GatewayType = {
 
 M.CreateCustomerGatewayInput = {
     type = "structure",
+    id = "CreateCustomerGatewayInput",
     members = {
         BgpAsn = {
             type = "integer",
@@ -10077,6 +10369,7 @@ M.CreateCustomerGatewayInput = {
 
 M.CustomerGateway = {
     type = "structure",
+    id = "CustomerGateway",
     members = {
         CertificateArn = {
             type = "string",
@@ -10138,6 +10431,7 @@ M.CustomerGateway = {
 
 M.CreateCustomerGatewayOutput = {
     type = "structure",
+    id = "CreateCustomerGatewayOutput",
     members = {
         CustomerGateway = setmetatable({ traits = {
             xml_name = "customerGateway",
@@ -10147,6 +10441,7 @@ M.CreateCustomerGatewayOutput = {
 
 M.CreateDefaultSubnetInput = {
     type = "structure",
+    id = "CreateDefaultSubnetInput",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -10171,6 +10466,7 @@ M.BlockPublicAccessMode = {
 
 M.BlockPublicAccessStates = {
     type = "structure",
+    id = "BlockPublicAccessStates",
     members = {
         InternetGatewayBlockMode = {
             type = "string",
@@ -10188,6 +10484,7 @@ M.HostnameType = {
 
 M.PrivateDnsNameOptionsOnLaunch = {
     type = "structure",
+    id = "PrivateDnsNameOptionsOnLaunch",
     members = {
         HostnameType = {
             type = "string",
@@ -10220,6 +10517,7 @@ M.SubnetState = {
 
 M.Subnet = {
     type = "structure",
+    id = "Subnet",
     members = {
         AvailabilityZoneId = {
             type = "string",
@@ -10360,6 +10658,7 @@ M.Subnet = {
 
 M.CreateDefaultSubnetOutput = {
     type = "structure",
+    id = "CreateDefaultSubnetOutput",
     members = {
         Subnet = setmetatable({ traits = {
             xml_name = "subnet",
@@ -10369,6 +10668,7 @@ M.CreateDefaultSubnetOutput = {
 
 M.CreateDefaultVpcInput = {
     type = "structure",
+    id = "CreateDefaultVpcInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -10390,6 +10690,7 @@ M.VpcEncryptionControlExclusionState = {
 
 M.VpcEncryptionControlExclusion = {
     type = "structure",
+    id = "VpcEncryptionControlExclusion",
     members = {
         State = {
             type = "string",
@@ -10408,6 +10709,7 @@ M.VpcEncryptionControlExclusion = {
 
 M.VpcEncryptionControlExclusions = {
     type = "structure",
+    id = "VpcEncryptionControlExclusions",
     members = {
         InternetGateway = setmetatable({ traits = {
             xml_name = "internetGateway",
@@ -10450,6 +10752,7 @@ M.VpcEncryptionControlState = {
 
 M.VpcEncryptionControl = {
     type = "structure",
+    id = "VpcEncryptionControl",
     members = {
         VpcId = {
             type = "string",
@@ -10507,6 +10810,7 @@ M.VpcState = {
 
 M.Vpc = {
     type = "structure",
+    id = "Vpc",
     members = {
         OwnerId = {
             type = "string",
@@ -10582,6 +10886,7 @@ M.Vpc = {
 
 M.CreateDefaultVpcOutput = {
     type = "structure",
+    id = "CreateDefaultVpcOutput",
     members = {
         Vpc = setmetatable({ traits = {
             xml_name = "vpc",
@@ -10591,6 +10896,7 @@ M.CreateDefaultVpcOutput = {
 
 M.CreateDelegateMacVolumeOwnershipTaskInput = {
     type = "structure",
+    id = "CreateDelegateMacVolumeOwnershipTaskInput",
     members = {
         ClientToken = {
             type = "string",
@@ -10630,6 +10936,7 @@ M.MacSystemIntegrityProtectionSettingStatus = {
 
 M.MacSystemIntegrityProtectionConfiguration = {
     type = "structure",
+    id = "MacSystemIntegrityProtectionConfiguration",
     members = {
         AppleInternal = {
             type = "string",
@@ -10696,6 +11003,7 @@ M.MacModificationTaskType = {
 
 M.MacModificationTask = {
     type = "structure",
+    id = "MacModificationTask",
     members = {
         InstanceId = {
             type = "string",
@@ -10742,6 +11050,7 @@ M.MacModificationTask = {
 
 M.CreateDelegateMacVolumeOwnershipTaskOutput = {
     type = "structure",
+    id = "CreateDelegateMacVolumeOwnershipTaskOutput",
     members = {
         MacModificationTask = setmetatable({ traits = {
             xml_name = "macModificationTask",
@@ -10751,6 +11060,7 @@ M.CreateDelegateMacVolumeOwnershipTaskOutput = {
 
 M.NewDhcpConfiguration = {
     type = "structure",
+    id = "NewDhcpConfiguration",
     members = {
         Key = {
             type = "string",
@@ -10770,6 +11080,7 @@ M.NewDhcpConfiguration = {
 
 M.CreateDhcpOptionsInput = {
     type = "structure",
+    id = "CreateDhcpOptionsInput",
     members = {
         DhcpConfigurations = {
             type = "list",
@@ -10797,6 +11108,7 @@ M.CreateDhcpOptionsInput = {
 
 M.AttributeValue = {
     type = "structure",
+    id = "AttributeValue",
     members = {
         Value = {
             type = "string",
@@ -10809,6 +11121,7 @@ M.AttributeValue = {
 
 M.DhcpConfiguration = {
     type = "structure",
+    id = "DhcpConfiguration",
     members = {
         Key = {
             type = "string",
@@ -10828,6 +11141,7 @@ M.DhcpConfiguration = {
 
 M.DhcpOptions = {
     type = "structure",
+    id = "DhcpOptions",
     members = {
         OwnerId = {
             type = "string",
@@ -10860,6 +11174,7 @@ M.DhcpOptions = {
 
 M.CreateDhcpOptionsOutput = {
     type = "structure",
+    id = "CreateDhcpOptionsOutput",
     members = {
         DhcpOptions = setmetatable({ traits = {
             xml_name = "dhcpOptions",
@@ -10869,6 +11184,7 @@ M.CreateDhcpOptionsOutput = {
 
 M.CreateEgressOnlyInternetGatewayInput = {
     type = "structure",
+    id = "CreateEgressOnlyInternetGatewayInput",
     members = {
         ClientToken = {
             type = "string",
@@ -10894,6 +11210,7 @@ M.CreateEgressOnlyInternetGatewayInput = {
 
 M.InternetGatewayAttachment = {
     type = "structure",
+    id = "InternetGatewayAttachment",
     members = {
         State = {
             type = "string",
@@ -10912,6 +11229,7 @@ M.InternetGatewayAttachment = {
 
 M.EgressOnlyInternetGateway = {
     type = "structure",
+    id = "EgressOnlyInternetGateway",
     members = {
         Attachments = {
             type = "list",
@@ -10938,6 +11256,7 @@ M.EgressOnlyInternetGateway = {
 
 M.CreateEgressOnlyInternetGatewayOutput = {
     type = "structure",
+    id = "CreateEgressOnlyInternetGatewayOutput",
     members = {
         ClientToken = {
             type = "string",
@@ -10958,6 +11277,7 @@ M.FleetExcessCapacityTerminationPolicy = {
 
 M.FleetLaunchTemplateSpecificationRequest = {
     type = "structure",
+    id = "FleetLaunchTemplateSpecificationRequest",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -10973,6 +11293,7 @@ M.FleetLaunchTemplateSpecificationRequest = {
 
 M.FleetEbsBlockDeviceRequest = {
     type = "structure",
+    id = "FleetEbsBlockDeviceRequest",
     members = {
         Encrypted = {
             type = "boolean",
@@ -11003,6 +11324,7 @@ M.FleetEbsBlockDeviceRequest = {
 
 M.FleetBlockDeviceMappingRequest = {
     type = "structure",
+    id = "FleetBlockDeviceMappingRequest",
     members = {
         DeviceName = {
             type = "string",
@@ -11025,6 +11347,7 @@ M.BareMetal = {
 
 M.BaselineEbsBandwidthMbpsRequest = {
     type = "structure",
+    id = "BaselineEbsBandwidthMbpsRequest",
     members = {
         Min = {
             type = "integer",
@@ -11037,6 +11360,7 @@ M.BaselineEbsBandwidthMbpsRequest = {
 
 M.PerformanceFactorReferenceRequest = {
     type = "structure",
+    id = "PerformanceFactorReferenceRequest",
     members = {
         InstanceFamily = {
             type = "string",
@@ -11046,6 +11370,7 @@ M.PerformanceFactorReferenceRequest = {
 
 M.CpuPerformanceFactorRequest = {
     type = "structure",
+    id = "CpuPerformanceFactorRequest",
     members = {
         References = {
             type = "list",
@@ -11059,6 +11384,7 @@ M.CpuPerformanceFactorRequest = {
 
 M.BaselinePerformanceFactorsRequest = {
     type = "structure",
+    id = "BaselinePerformanceFactorsRequest",
     members = {
         Cpu = M.CpuPerformanceFactorRequest,
     },
@@ -11095,6 +11421,7 @@ M.LocalStorageType = {
 
 M.MemoryGiBPerVCpuRequest = {
     type = "structure",
+    id = "MemoryGiBPerVCpuRequest",
     members = {
         Min = {
             type = "double",
@@ -11107,6 +11434,7 @@ M.MemoryGiBPerVCpuRequest = {
 
 M.MemoryMiBRequest = {
     type = "structure",
+    id = "MemoryMiBRequest",
     members = {
         Min = {
             type = "integer",
@@ -11122,6 +11450,7 @@ M.MemoryMiBRequest = {
 
 M.NetworkBandwidthGbpsRequest = {
     type = "structure",
+    id = "NetworkBandwidthGbpsRequest",
     members = {
         Min = {
             type = "double",
@@ -11134,6 +11463,7 @@ M.NetworkBandwidthGbpsRequest = {
 
 M.NetworkInterfaceCountRequest = {
     type = "structure",
+    id = "NetworkInterfaceCountRequest",
     members = {
         Min = {
             type = "integer",
@@ -11146,6 +11476,7 @@ M.NetworkInterfaceCountRequest = {
 
 M.TotalLocalStorageGBRequest = {
     type = "structure",
+    id = "TotalLocalStorageGBRequest",
     members = {
         Min = {
             type = "double",
@@ -11158,6 +11489,7 @@ M.TotalLocalStorageGBRequest = {
 
 M.VCpuCountRangeRequest = {
     type = "structure",
+    id = "VCpuCountRangeRequest",
     members = {
         Min = {
             type = "integer",
@@ -11173,6 +11505,7 @@ M.VCpuCountRangeRequest = {
 
 M.InstanceRequirementsRequest = {
     type = "structure",
+    id = "InstanceRequirementsRequest",
     members = {
         VCpuCount = setmetatable({ traits = {
             required = true,
@@ -11273,6 +11606,7 @@ M.InstanceRequirementsRequest = {
 
 M.Placement = {
     type = "structure",
+    id = "Placement",
     members = {
         AvailabilityZoneId = {
             type = "string",
@@ -11339,6 +11673,7 @@ M.Placement = {
 
 M.FleetLaunchTemplateOverridesRequest = {
     type = "structure",
+    id = "FleetLaunchTemplateOverridesRequest",
     members = {
         InstanceType = {
             type = "string",
@@ -11378,6 +11713,7 @@ M.FleetLaunchTemplateOverridesRequest = {
 
 M.FleetLaunchTemplateConfigRequest = {
     type = "structure",
+    id = "FleetLaunchTemplateConfigRequest",
     members = {
         LaunchTemplateSpecification = M.FleetLaunchTemplateSpecificationRequest,
         Overrides = {
@@ -11398,6 +11734,7 @@ M.FleetCapacityReservationUsageStrategy = {
 
 M.CapacityReservationOptionsRequest = {
     type = "structure",
+    id = "CapacityReservationOptionsRequest",
     members = {
         UsageStrategy = {
             type = "string",
@@ -11407,6 +11744,7 @@ M.CapacityReservationOptionsRequest = {
 
 M.OnDemandOptionsRequest = {
     type = "structure",
+    id = "OnDemandOptionsRequest",
     members = {
         AllocationStrategy = {
             type = "string",
@@ -11433,6 +11771,7 @@ M.FleetReservationType = {
 
 M.ReservedCapacityOptionsRequest = {
     type = "structure",
+    id = "ReservedCapacityOptionsRequest",
     members = {
         ReservationTypes = {
             type = "list",
@@ -11465,6 +11804,7 @@ M.FleetReplacementStrategy = {
 
 M.FleetSpotCapacityRebalanceRequest = {
     type = "structure",
+    id = "FleetSpotCapacityRebalanceRequest",
     members = {
         ReplacementStrategy = {
             type = "string",
@@ -11477,6 +11817,7 @@ M.FleetSpotCapacityRebalanceRequest = {
 
 M.FleetSpotMaintenanceStrategiesRequest = {
     type = "structure",
+    id = "FleetSpotMaintenanceStrategiesRequest",
     members = {
         CapacityRebalance = M.FleetSpotCapacityRebalanceRequest,
     },
@@ -11484,6 +11825,7 @@ M.FleetSpotMaintenanceStrategiesRequest = {
 
 M.SpotOptionsRequest = {
     type = "structure",
+    id = "SpotOptionsRequest",
     members = {
         AllocationStrategy = {
             type = "string",
@@ -11525,6 +11867,7 @@ M.TargetCapacityUnitType = {
 
 M.TargetCapacitySpecificationRequest = {
     type = "structure",
+    id = "TargetCapacitySpecificationRequest",
     members = {
         TotalTargetCapacity = {
             type = "integer",
@@ -11555,6 +11898,7 @@ M.FleetType = {
 
 M.CreateFleetInput = {
     type = "structure",
+    id = "CreateFleetInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -11611,6 +11955,7 @@ M.CreateFleetInput = {
 
 M.FleetLaunchTemplateSpecification = {
     type = "structure",
+    id = "FleetLaunchTemplateSpecification",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -11635,6 +11980,7 @@ M.FleetLaunchTemplateSpecification = {
 
 M.EbsBlockDeviceResponse = {
     type = "structure",
+    id = "EbsBlockDeviceResponse",
     members = {
         Encrypted = {
             type = "boolean",
@@ -11689,6 +12035,7 @@ M.EbsBlockDeviceResponse = {
 
 M.BlockDeviceMappingResponse = {
     type = "structure",
+    id = "BlockDeviceMappingResponse",
     members = {
         DeviceName = {
             type = "string",
@@ -11716,6 +12063,7 @@ M.BlockDeviceMappingResponse = {
 
 M.BaselineEbsBandwidthMbps = {
     type = "structure",
+    id = "BaselineEbsBandwidthMbps",
     members = {
         Min = {
             type = "integer",
@@ -11734,6 +12082,7 @@ M.BaselineEbsBandwidthMbps = {
 
 M.PerformanceFactorReference = {
     type = "structure",
+    id = "PerformanceFactorReference",
     members = {
         InstanceFamily = {
             type = "string",
@@ -11746,6 +12095,7 @@ M.PerformanceFactorReference = {
 
 M.CpuPerformanceFactor = {
     type = "structure",
+    id = "CpuPerformanceFactor",
     members = {
         References = {
             type = "list",
@@ -11759,6 +12109,7 @@ M.CpuPerformanceFactor = {
 
 M.BaselinePerformanceFactors = {
     type = "structure",
+    id = "BaselinePerformanceFactors",
     members = {
         Cpu = setmetatable({ traits = {
             xml_name = "cpu",
@@ -11768,6 +12119,7 @@ M.BaselinePerformanceFactors = {
 
 M.MemoryGiBPerVCpu = {
     type = "structure",
+    id = "MemoryGiBPerVCpu",
     members = {
         Min = {
             type = "double",
@@ -11786,6 +12138,7 @@ M.MemoryGiBPerVCpu = {
 
 M.MemoryMiB = {
     type = "structure",
+    id = "MemoryMiB",
     members = {
         Min = {
             type = "integer",
@@ -11804,6 +12157,7 @@ M.MemoryMiB = {
 
 M.NetworkBandwidthGbps = {
     type = "structure",
+    id = "NetworkBandwidthGbps",
     members = {
         Min = {
             type = "double",
@@ -11822,6 +12176,7 @@ M.NetworkBandwidthGbps = {
 
 M.NetworkInterfaceCount = {
     type = "structure",
+    id = "NetworkInterfaceCount",
     members = {
         Min = {
             type = "integer",
@@ -11840,6 +12195,7 @@ M.NetworkInterfaceCount = {
 
 M.TotalLocalStorageGB = {
     type = "structure",
+    id = "TotalLocalStorageGB",
     members = {
         Min = {
             type = "double",
@@ -11858,6 +12214,7 @@ M.TotalLocalStorageGB = {
 
 M.VCpuCountRange = {
     type = "structure",
+    id = "VCpuCountRange",
     members = {
         Min = {
             type = "integer",
@@ -11876,6 +12233,7 @@ M.VCpuCountRange = {
 
 M.InstanceRequirements = {
     type = "structure",
+    id = "InstanceRequirements",
     members = {
         VCpuCount = setmetatable({ traits = {
             xml_name = "vCpuCount",
@@ -12016,6 +12374,7 @@ M.InstanceRequirements = {
 
 M.PlacementResponse = {
     type = "structure",
+    id = "PlacementResponse",
     members = {
         GroupName = {
             type = "string",
@@ -12028,6 +12387,7 @@ M.PlacementResponse = {
 
 M.FleetLaunchTemplateOverrides = {
     type = "structure",
+    id = "FleetLaunchTemplateOverrides",
     members = {
         InstanceType = {
             type = "string",
@@ -12095,6 +12455,7 @@ M.FleetLaunchTemplateOverrides = {
 
 M.LaunchTemplateAndOverridesResponse = {
     type = "structure",
+    id = "LaunchTemplateAndOverridesResponse",
     members = {
         LaunchTemplateSpecification = setmetatable({ traits = {
             xml_name = "launchTemplateSpecification",
@@ -12113,6 +12474,7 @@ M.InstanceLifecycle = {
 
 M.CreateFleetError = {
     type = "structure",
+    id = "CreateFleetError",
     members = {
         LaunchTemplateAndOverrides = setmetatable({ traits = {
             xml_name = "launchTemplateAndOverrides",
@@ -12144,6 +12506,7 @@ M.PlatformValues = {
 
 M.CreateFleetInstance = {
     type = "structure",
+    id = "CreateFleetInstance",
     members = {
         LaunchTemplateAndOverrides = setmetatable({ traits = {
             xml_name = "launchTemplateAndOverrides",
@@ -12178,6 +12541,7 @@ M.CreateFleetInstance = {
 
 M.CreateFleetOutput = {
     type = "structure",
+    id = "CreateFleetOutput",
     members = {
         FleetId = {
             type = "string",
@@ -12209,6 +12573,7 @@ M.DestinationFileFormat = {
 
 M.DestinationOptionsRequest = {
     type = "structure",
+    id = "DestinationOptionsRequest",
     members = {
         FileFormat = {
             type = "string",
@@ -12245,6 +12610,7 @@ M.TrafficType = {
 
 M.CreateFlowLogsInput = {
     type = "structure",
+    id = "CreateFlowLogsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -12303,6 +12669,7 @@ M.CreateFlowLogsInput = {
 
 M.CreateFlowLogsOutput = {
     type = "structure",
+    id = "CreateFlowLogsOutput",
     members = {
         ClientToken = {
             type = "string",
@@ -12329,6 +12696,7 @@ M.CreateFlowLogsOutput = {
 
 M.StorageLocation = {
     type = "structure",
+    id = "StorageLocation",
     members = {
         Bucket = {
             type = "string",
@@ -12341,6 +12709,7 @@ M.StorageLocation = {
 
 M.CreateFpgaImageInput = {
     type = "structure",
+    id = "CreateFpgaImageInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -12370,6 +12739,7 @@ M.CreateFpgaImageInput = {
 
 M.CreateFpgaImageOutput = {
     type = "structure",
+    id = "CreateFpgaImageOutput",
     members = {
         FpgaImageId = {
             type = "string",
@@ -12388,6 +12758,7 @@ M.CreateFpgaImageOutput = {
 
 M.EbsBlockDevice = {
     type = "structure",
+    id = "EbsBlockDevice",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -12463,6 +12834,7 @@ M.EbsBlockDevice = {
 
 M.BlockDeviceMapping = {
     type = "structure",
+    id = "BlockDeviceMapping",
     members = {
         Ebs = setmetatable({ traits = {
             xml_name = "ebs",
@@ -12495,6 +12867,7 @@ M.SnapshotLocationEnum = {
 
 M.CreateImageInput = {
     type = "structure",
+    id = "CreateImageInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -12550,6 +12923,7 @@ M.CreateImageInput = {
 
 M.CreateImageOutput = {
     type = "structure",
+    id = "CreateImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -12562,6 +12936,7 @@ M.CreateImageOutput = {
 
 M.ImageUsageResourceTypeOptionRequest = {
     type = "structure",
+    id = "ImageUsageResourceTypeOptionRequest",
     members = {
         OptionName = {
             type = "string",
@@ -12578,6 +12953,7 @@ M.ImageUsageResourceTypeOptionRequest = {
 
 M.ImageUsageResourceTypeRequest = {
     type = "structure",
+    id = "ImageUsageResourceTypeRequest",
     members = {
         ResourceType = {
             type = "string",
@@ -12594,6 +12970,7 @@ M.ImageUsageResourceTypeRequest = {
 
 M.CreateImageUsageReportInput = {
     type = "structure",
+    id = "CreateImageUsageReportInput",
     members = {
         ImageId = {
             type = "string",
@@ -12637,6 +13014,7 @@ M.CreateImageUsageReportInput = {
 
 M.CreateImageUsageReportOutput = {
     type = "structure",
+    id = "CreateImageUsageReportOutput",
     members = {
         ReportId = {
             type = "string",
@@ -12655,6 +13033,7 @@ M.IpAddressType = {
 
 M.CreateInstanceConnectEndpointInput = {
     type = "structure",
+    id = "CreateInstanceConnectEndpointInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -12696,6 +13075,7 @@ M.CreateInstanceConnectEndpointInput = {
 
 M.InstanceConnectEndpointDnsNames = {
     type = "structure",
+    id = "InstanceConnectEndpointDnsNames",
     members = {
         DnsName = {
             type = "string",
@@ -12714,6 +13094,7 @@ M.InstanceConnectEndpointDnsNames = {
 
 M.InstanceConnectEndpointPublicDnsNames = {
     type = "structure",
+    id = "InstanceConnectEndpointPublicDnsNames",
     members = {
         Ipv4 = setmetatable({ traits = {
             xml_name = "ipv4",
@@ -12738,6 +13119,7 @@ M.Ec2InstanceConnectEndpointState = {
 
 M.Ec2InstanceConnectEndpoint = {
     type = "structure",
+    id = "Ec2InstanceConnectEndpoint",
     members = {
         OwnerId = {
             type = "string",
@@ -12852,6 +13234,7 @@ M.Ec2InstanceConnectEndpoint = {
 
 M.CreateInstanceConnectEndpointOutput = {
     type = "structure",
+    id = "CreateInstanceConnectEndpointOutput",
     members = {
         InstanceConnectEndpoint = setmetatable({ traits = {
             xml_name = "instanceConnectEndpoint",
@@ -12867,6 +13250,7 @@ M.CreateInstanceConnectEndpointOutput = {
 
 M.InstanceEventWindowTimeRangeRequest = {
     type = "structure",
+    id = "InstanceEventWindowTimeRangeRequest",
     members = {
         StartWeekDay = {
             type = "string",
@@ -12885,6 +13269,7 @@ M.InstanceEventWindowTimeRangeRequest = {
 
 M.CreateInstanceEventWindowInput = {
     type = "structure",
+    id = "CreateInstanceEventWindowInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -12914,6 +13299,7 @@ M.CreateInstanceEventWindowInput = {
 
 M.CreateInstanceEventWindowOutput = {
     type = "structure",
+    id = "CreateInstanceEventWindowOutput",
     members = {
         InstanceEventWindow = setmetatable({ traits = {
             xml_name = "instanceEventWindow",
@@ -12933,6 +13319,7 @@ M.DiskImageFormat = {
 
 M.ExportToS3TaskSpecification = {
     type = "structure",
+    id = "ExportToS3TaskSpecification",
     members = {
         DiskImageFormat = {
             type = "string",
@@ -12969,6 +13356,7 @@ M.ExportEnvironment = {
 
 M.CreateInstanceExportTaskInput = {
     type = "structure",
+    id = "CreateInstanceExportTaskInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -13006,6 +13394,7 @@ M.CreateInstanceExportTaskInput = {
 
 M.ExportToS3Task = {
     type = "structure",
+    id = "ExportToS3Task",
     members = {
         ContainerFormat = {
             type = "string",
@@ -13036,6 +13425,7 @@ M.ExportToS3Task = {
 
 M.InstanceExportDetails = {
     type = "structure",
+    id = "InstanceExportDetails",
     members = {
         InstanceId = {
             type = "string",
@@ -13061,6 +13451,7 @@ M.ExportTaskState = {
 
 M.ExportTask = {
     type = "structure",
+    id = "ExportTask",
     members = {
         Description = {
             type = "string",
@@ -13104,6 +13495,7 @@ M.ExportTask = {
 
 M.CreateInstanceExportTaskOutput = {
     type = "structure",
+    id = "CreateInstanceExportTaskOutput",
     members = {
         ExportTask = setmetatable({ traits = {
             xml_name = "exportTask",
@@ -13113,6 +13505,7 @@ M.CreateInstanceExportTaskOutput = {
 
 M.CreateInternetGatewayInput = {
     type = "structure",
+    id = "CreateInternetGatewayInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -13132,6 +13525,7 @@ M.CreateInternetGatewayInput = {
 
 M.InternetGateway = {
     type = "structure",
+    id = "InternetGateway",
     members = {
         Attachments = {
             type = "list",
@@ -13164,6 +13558,7 @@ M.InternetGateway = {
 
 M.CreateInternetGatewayOutput = {
     type = "structure",
+    id = "CreateInternetGatewayOutput",
     members = {
         InternetGateway = setmetatable({ traits = {
             xml_name = "internetGateway",
@@ -13173,6 +13568,7 @@ M.CreateInternetGatewayOutput = {
 
 M.CreateInterruptibleCapacityReservationAllocationInput = {
     type = "structure",
+    id = "CreateInterruptibleCapacityReservationAllocationInput",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -13207,6 +13603,7 @@ M.CreateInterruptibleCapacityReservationAllocationInput = {
 
 M.CreateInterruptibleCapacityReservationAllocationOutput = {
     type = "structure",
+    id = "CreateInterruptibleCapacityReservationAllocationOutput",
     members = {
         SourceCapacityReservationId = {
             type = "string",
@@ -13247,6 +13644,7 @@ M.IpamTier = {
 
 M.CreateIpamInput = {
     type = "structure",
+    id = "CreateIpamInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -13288,6 +13686,7 @@ M.CreateIpamInput = {
 
 M.IpamOperatingRegion = {
     type = "structure",
+    id = "IpamOperatingRegion",
     members = {
         RegionName = {
             type = "string",
@@ -13315,6 +13714,7 @@ M.IpamState = {
 
 M.Ipam = {
     type = "structure",
+    id = "Ipam",
     members = {
         OwnerId = {
             type = "string",
@@ -13431,6 +13831,7 @@ M.Ipam = {
 
 M.CreateIpamOutput = {
     type = "structure",
+    id = "CreateIpamOutput",
     members = {
         Ipam = setmetatable({ traits = {
             xml_name = "ipam",
@@ -13440,6 +13841,7 @@ M.CreateIpamOutput = {
 
 M.CreateIpamExternalResourceVerificationTokenInput = {
     type = "structure",
+    id = "CreateIpamExternalResourceVerificationTokenInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -13482,6 +13884,7 @@ M.TokenState = {
 
 M.IpamExternalResourceVerificationToken = {
     type = "structure",
+    id = "IpamExternalResourceVerificationToken",
     members = {
         IpamExternalResourceVerificationTokenId = {
             type = "string",
@@ -13555,6 +13958,7 @@ M.IpamExternalResourceVerificationToken = {
 
 M.CreateIpamExternalResourceVerificationTokenOutput = {
     type = "structure",
+    id = "CreateIpamExternalResourceVerificationTokenOutput",
     members = {
         IpamExternalResourceVerificationToken = setmetatable({ traits = {
             xml_name = "ipamExternalResourceVerificationToken",
@@ -13564,6 +13968,7 @@ M.CreateIpamExternalResourceVerificationTokenOutput = {
 
 M.CreateIpamPolicyInput = {
     type = "structure",
+    id = "CreateIpamPolicyInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -13607,6 +14012,7 @@ M.IpamPolicyState = {
 
 M.IpamPolicy = {
     type = "structure",
+    id = "IpamPolicy",
     members = {
         OwnerId = {
             type = "string",
@@ -13662,6 +14068,7 @@ M.IpamPolicy = {
 
 M.CreateIpamPolicyOutput = {
     type = "structure",
+    id = "CreateIpamPolicyOutput",
     members = {
         IpamPolicy = setmetatable({ traits = {
             xml_name = "ipamPolicy",
@@ -13671,6 +14078,7 @@ M.CreateIpamPolicyOutput = {
 
 M.RequestIpamResourceTag = {
     type = "structure",
+    id = "RequestIpamResourceTag",
     members = {
         Key = {
             type = "string",
@@ -13697,6 +14105,7 @@ M.IpamPoolSourceResourceType = {
 
 M.IpamPoolSourceResourceRequest = {
     type = "structure",
+    id = "IpamPoolSourceResourceRequest",
     members = {
         ResourceId = {
             type = "string",
@@ -13715,6 +14124,7 @@ M.IpamPoolSourceResourceRequest = {
 
 M.CreateIpamPoolInput = {
     type = "structure",
+    id = "CreateIpamPoolInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -13787,6 +14197,7 @@ M.CreateIpamPoolInput = {
 
 M.IpamResourceTag = {
     type = "structure",
+    id = "IpamResourceTag",
     members = {
         Key = {
             type = "string",
@@ -13810,6 +14221,7 @@ M.IpamScopeType = {
 
 M.IpamPoolSourceResource = {
     type = "structure",
+    id = "IpamPoolSourceResource",
     members = {
         ResourceId = {
             type = "string",
@@ -13855,6 +14267,7 @@ M.IpamPoolState = {
 
 M.IpamPool = {
     type = "structure",
+    id = "IpamPool",
     members = {
         OwnerId = {
             type = "string",
@@ -14004,6 +14417,7 @@ M.IpamPool = {
 
 M.CreateIpamPoolOutput = {
     type = "structure",
+    id = "CreateIpamPoolOutput",
     members = {
         IpamPool = setmetatable({ traits = {
             xml_name = "ipamPool",
@@ -14019,6 +14433,7 @@ M.IpamPrefixListResolverRuleConditionOperation = {
 
 M.IpamPrefixListResolverRuleConditionRequest = {
     type = "structure",
+    id = "IpamPrefixListResolverRuleConditionRequest",
     members = {
         Operation = {
             type = "string",
@@ -14063,6 +14478,7 @@ M.IpamPrefixListResolverRuleType = {
 
 M.IpamPrefixListResolverRuleRequest = {
     type = "structure",
+    id = "IpamPrefixListResolverRuleRequest",
     members = {
         RuleType = {
             type = "string",
@@ -14091,6 +14507,7 @@ M.IpamPrefixListResolverRuleRequest = {
 
 M.CreateIpamPrefixListResolverInput = {
     type = "structure",
+    id = "CreateIpamPrefixListResolverInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -14156,6 +14573,7 @@ M.IpamPrefixListResolverState = {
 
 M.IpamPrefixListResolver = {
     type = "structure",
+    id = "IpamPrefixListResolver",
     members = {
         OwnerId = {
             type = "string",
@@ -14229,6 +14647,7 @@ M.IpamPrefixListResolver = {
 
 M.CreateIpamPrefixListResolverOutput = {
     type = "structure",
+    id = "CreateIpamPrefixListResolverOutput",
     members = {
         IpamPrefixListResolver = setmetatable({ traits = {
             xml_name = "ipamPrefixListResolver",
@@ -14238,6 +14657,7 @@ M.CreateIpamPrefixListResolverOutput = {
 
 M.CreateIpamPrefixListResolverTargetInput = {
     type = "structure",
+    id = "CreateIpamPrefixListResolverTargetInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -14305,6 +14725,7 @@ M.IpamPrefixListResolverTargetState = {
 
 M.IpamPrefixListResolverTarget = {
     type = "structure",
+    id = "IpamPrefixListResolverTarget",
     members = {
         IpamPrefixListResolverTargetId = {
             type = "string",
@@ -14384,6 +14805,7 @@ M.IpamPrefixListResolverTarget = {
 
 M.CreateIpamPrefixListResolverTargetOutput = {
     type = "structure",
+    id = "CreateIpamPrefixListResolverTargetOutput",
     members = {
         IpamPrefixListResolverTarget = setmetatable({ traits = {
             xml_name = "ipamPrefixListResolverTarget",
@@ -14393,6 +14815,7 @@ M.CreateIpamPrefixListResolverTargetOutput = {
 
 M.CreateIpamResourceDiscoveryInput = {
     type = "structure",
+    id = "CreateIpamResourceDiscoveryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -14425,6 +14848,7 @@ M.CreateIpamResourceDiscoveryInput = {
 
 M.IpamOrganizationalUnitExclusion = {
     type = "structure",
+    id = "IpamOrganizationalUnitExclusion",
     members = {
         OrganizationsEntityPath = {
             type = "string",
@@ -14452,6 +14876,7 @@ M.IpamResourceDiscoveryState = {
 
 M.IpamResourceDiscovery = {
     type = "structure",
+    id = "IpamResourceDiscovery",
     members = {
         OwnerId = {
             type = "string",
@@ -14521,6 +14946,7 @@ M.IpamResourceDiscovery = {
 
 M.CreateIpamResourceDiscoveryOutput = {
     type = "structure",
+    id = "CreateIpamResourceDiscoveryOutput",
     members = {
         IpamResourceDiscovery = setmetatable({ traits = {
             xml_name = "ipamResourceDiscovery",
@@ -14534,6 +14960,7 @@ M.IpamScopeExternalAuthorityType = {
 
 M.ExternalAuthorityConfiguration = {
     type = "structure",
+    id = "ExternalAuthorityConfiguration",
     members = {
         Type = {
             type = "string",
@@ -14546,6 +14973,7 @@ M.ExternalAuthorityConfiguration = {
 
 M.CreateIpamScopeInput = {
     type = "structure",
+    id = "CreateIpamScopeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -14578,6 +15006,7 @@ M.CreateIpamScopeInput = {
 
 M.IpamScopeExternalAuthorityConfiguration = {
     type = "structure",
+    id = "IpamScopeExternalAuthorityConfiguration",
     members = {
         Type = {
             type = "string",
@@ -14611,6 +15040,7 @@ M.IpamScopeState = {
 
 M.IpamScope = {
     type = "structure",
+    id = "IpamScope",
     members = {
         OwnerId = {
             type = "string",
@@ -14687,6 +15117,7 @@ M.IpamScope = {
 
 M.CreateIpamScopeOutput = {
     type = "structure",
+    id = "CreateIpamScopeOutput",
     members = {
         IpamScope = setmetatable({ traits = {
             xml_name = "ipamScope",
@@ -14706,6 +15137,7 @@ M.KeyType = {
 
 M.CreateKeyPairInput = {
     type = "structure",
+    id = "CreateKeyPairInput",
     members = {
         KeyName = {
             type = "string",
@@ -14737,6 +15169,7 @@ M.CreateKeyPairInput = {
 
 M.CreateKeyPairOutput = {
     type = "structure",
+    id = "CreateKeyPairOutput",
     members = {
         KeyPairId = {
             type = "string",
@@ -14774,6 +15207,7 @@ M.CreateKeyPairOutput = {
 
 M.LaunchTemplateEbsBlockDeviceRequest = {
     type = "structure",
+    id = "LaunchTemplateEbsBlockDeviceRequest",
     members = {
         Encrypted = {
             type = "boolean",
@@ -14810,6 +15244,7 @@ M.LaunchTemplateEbsBlockDeviceRequest = {
 
 M.LaunchTemplateBlockDeviceMappingRequest = {
     type = "structure",
+    id = "LaunchTemplateBlockDeviceMappingRequest",
     members = {
         DeviceName = {
             type = "string",
@@ -14832,6 +15267,7 @@ M.CapacityReservationPreference = {
 
 M.CapacityReservationTarget = {
     type = "structure",
+    id = "CapacityReservationTarget",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -14844,6 +15280,7 @@ M.CapacityReservationTarget = {
 
 M.LaunchTemplateCapacityReservationSpecificationRequest = {
     type = "structure",
+    id = "LaunchTemplateCapacityReservationSpecificationRequest",
     members = {
         CapacityReservationPreference = {
             type = "string",
@@ -14864,6 +15301,7 @@ M.NestedVirtualizationSpecification = {
 
 M.LaunchTemplateCpuOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateCpuOptionsRequest",
     members = {
         CoreCount = {
             type = "integer",
@@ -14882,6 +15320,7 @@ M.LaunchTemplateCpuOptionsRequest = {
 
 M.CreditSpecificationRequest = {
     type = "structure",
+    id = "CreditSpecificationRequest",
     members = {
         CpuCredits = {
             type = "string",
@@ -14894,6 +15333,7 @@ M.CreditSpecificationRequest = {
 
 M.ElasticGpuSpecification = {
     type = "structure",
+    id = "ElasticGpuSpecification",
     members = {
         Type = {
             type = "string",
@@ -14906,6 +15346,7 @@ M.ElasticGpuSpecification = {
 
 M.LaunchTemplateElasticInferenceAccelerator = {
     type = "structure",
+    id = "LaunchTemplateElasticInferenceAccelerator",
     members = {
         Type = {
             type = "string",
@@ -14921,6 +15362,7 @@ M.LaunchTemplateElasticInferenceAccelerator = {
 
 M.LaunchTemplateEnclaveOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateEnclaveOptionsRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -14930,6 +15372,7 @@ M.LaunchTemplateEnclaveOptionsRequest = {
 
 M.LaunchTemplateHibernationOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateHibernationOptionsRequest",
     members = {
         Configured = {
             type = "boolean",
@@ -14939,6 +15382,7 @@ M.LaunchTemplateHibernationOptionsRequest = {
 
 M.LaunchTemplateIamInstanceProfileSpecificationRequest = {
     type = "structure",
+    id = "LaunchTemplateIamInstanceProfileSpecificationRequest",
     members = {
         Arn = {
             type = "string",
@@ -14973,6 +15417,7 @@ M.SpotInstanceType = {
 
 M.LaunchTemplateSpotMarketOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateSpotMarketOptionsRequest",
     members = {
         MaxPrice = {
             type = "string",
@@ -14994,6 +15439,7 @@ M.LaunchTemplateSpotMarketOptionsRequest = {
 
 M.LaunchTemplateInstanceMarketOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateInstanceMarketOptionsRequest",
     members = {
         MarketType = {
             type = "string",
@@ -15004,6 +15450,7 @@ M.LaunchTemplateInstanceMarketOptionsRequest = {
 
 M.LaunchTemplateLicenseConfigurationRequest = {
     type = "structure",
+    id = "LaunchTemplateLicenseConfigurationRequest",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -15018,6 +15465,7 @@ M.LaunchTemplateAutoRecoveryState = {
 
 M.LaunchTemplateInstanceMaintenanceOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateInstanceMaintenanceOptionsRequest",
     members = {
         AutoRecovery = {
             type = "string",
@@ -15047,6 +15495,7 @@ M.LaunchTemplateInstanceMetadataTagsState = {
 
 M.LaunchTemplateInstanceMetadataOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateInstanceMetadataOptionsRequest",
     members = {
         HttpTokens = {
             type = "string",
@@ -15068,6 +15517,7 @@ M.LaunchTemplateInstanceMetadataOptionsRequest = {
 
 M.LaunchTemplatesMonitoringRequest = {
     type = "structure",
+    id = "LaunchTemplatesMonitoringRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -15077,6 +15527,7 @@ M.LaunchTemplatesMonitoringRequest = {
 
 M.ConnectionTrackingSpecificationRequest = {
     type = "structure",
+    id = "ConnectionTrackingSpecificationRequest",
     members = {
         TcpEstablishedTimeout = {
             type = "integer",
@@ -15092,6 +15543,7 @@ M.ConnectionTrackingSpecificationRequest = {
 
 M.EnaSrdUdpSpecificationRequest = {
     type = "structure",
+    id = "EnaSrdUdpSpecificationRequest",
     members = {
         EnaSrdUdpEnabled = {
             type = "boolean",
@@ -15101,6 +15553,7 @@ M.EnaSrdUdpSpecificationRequest = {
 
 M.EnaSrdSpecificationRequest = {
     type = "structure",
+    id = "EnaSrdSpecificationRequest",
     members = {
         EnaSrdEnabled = {
             type = "boolean",
@@ -15111,6 +15564,7 @@ M.EnaSrdSpecificationRequest = {
 
 M.Ipv4PrefixSpecificationRequest = {
     type = "structure",
+    id = "Ipv4PrefixSpecificationRequest",
     members = {
         Ipv4Prefix = {
             type = "string",
@@ -15120,6 +15574,7 @@ M.Ipv4PrefixSpecificationRequest = {
 
 M.InstanceIpv6AddressRequest = {
     type = "structure",
+    id = "InstanceIpv6AddressRequest",
     members = {
         Ipv6Address = {
             type = "string",
@@ -15129,6 +15584,7 @@ M.InstanceIpv6AddressRequest = {
 
 M.Ipv6PrefixSpecificationRequest = {
     type = "structure",
+    id = "Ipv6PrefixSpecificationRequest",
     members = {
         Ipv6Prefix = {
             type = "string",
@@ -15138,6 +15594,7 @@ M.Ipv6PrefixSpecificationRequest = {
 
 M.PrivateIpAddressSpecification = {
     type = "structure",
+    id = "PrivateIpAddressSpecification",
     members = {
         Primary = {
             type = "boolean",
@@ -15156,6 +15613,7 @@ M.PrivateIpAddressSpecification = {
 
 M.LaunchTemplateInstanceNetworkInterfaceSpecificationRequest = {
     type = "structure",
+    id = "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest",
     members = {
         AssociateCarrierIpAddress = {
             type = "boolean",
@@ -15247,6 +15705,7 @@ M.InstanceBandwidthWeighting = {
 
 M.LaunchTemplateNetworkPerformanceOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplateNetworkPerformanceOptionsRequest",
     members = {
         BandwidthWeighting = {
             type = "string",
@@ -15256,6 +15715,7 @@ M.LaunchTemplateNetworkPerformanceOptionsRequest = {
 
 M.OperatorRequest = {
     type = "structure",
+    id = "OperatorRequest",
     members = {
         Principal = {
             type = "string",
@@ -15265,6 +15725,7 @@ M.OperatorRequest = {
 
 M.LaunchTemplatePlacementRequest = {
     type = "structure",
+    id = "LaunchTemplatePlacementRequest",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -15301,6 +15762,7 @@ M.LaunchTemplatePlacementRequest = {
 
 M.LaunchTemplatePrivateDnsNameOptionsRequest = {
     type = "structure",
+    id = "LaunchTemplatePrivateDnsNameOptionsRequest",
     members = {
         HostnameType = {
             type = "string",
@@ -15320,6 +15782,7 @@ M.SecondaryInterfaceType = {
 
 M.SecondaryInterfacePrivateIpAddressSpecificationRequest = {
     type = "structure",
+    id = "SecondaryInterfacePrivateIpAddressSpecificationRequest",
     members = {
         PrivateIpAddress = {
             type = "string",
@@ -15329,6 +15792,7 @@ M.SecondaryInterfacePrivateIpAddressSpecificationRequest = {
 
 M.LaunchTemplateInstanceSecondaryInterfaceSpecificationRequest = {
     type = "structure",
+    id = "LaunchTemplateInstanceSecondaryInterfaceSpecificationRequest",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -15360,6 +15824,7 @@ M.LaunchTemplateInstanceSecondaryInterfaceSpecificationRequest = {
 
 M.LaunchTemplateTagSpecificationRequest = {
     type = "structure",
+    id = "LaunchTemplateTagSpecificationRequest",
     members = {
         ResourceType = {
             type = "string",
@@ -15376,6 +15841,7 @@ M.LaunchTemplateTagSpecificationRequest = {
 
 M.RequestLaunchTemplateData = {
     type = "structure",
+    id = "RequestLaunchTemplateData",
     members = {
         KernelId = {
             type = "string",
@@ -15490,6 +15956,7 @@ M.RequestLaunchTemplateData = {
 
 M.CreateLaunchTemplateInput = {
     type = "structure",
+    id = "CreateLaunchTemplateInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -15525,6 +15992,7 @@ M.CreateLaunchTemplateInput = {
 
 M.LaunchTemplate = {
     type = "structure",
+    id = "LaunchTemplate",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -15577,6 +16045,7 @@ M.LaunchTemplate = {
 
 M.ValidationError = {
     type = "structure",
+    id = "ValidationError",
     members = {
         Code = {
             type = "string",
@@ -15595,6 +16064,7 @@ M.ValidationError = {
 
 M.ValidationWarning = {
     type = "structure",
+    id = "ValidationWarning",
     members = {
         Errors = {
             type = "list",
@@ -15608,6 +16078,7 @@ M.ValidationWarning = {
 
 M.CreateLaunchTemplateOutput = {
     type = "structure",
+    id = "CreateLaunchTemplateOutput",
     members = {
         LaunchTemplate = setmetatable({ traits = {
             xml_name = "launchTemplate",
@@ -15620,6 +16091,7 @@ M.CreateLaunchTemplateOutput = {
 
 M.CreateLaunchTemplateVersionInput = {
     type = "structure",
+    id = "CreateLaunchTemplateVersionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -15653,6 +16125,7 @@ M.CreateLaunchTemplateVersionInput = {
 
 M.LaunchTemplateEbsBlockDevice = {
     type = "structure",
+    id = "LaunchTemplateEbsBlockDevice",
     members = {
         Encrypted = {
             type = "boolean",
@@ -15719,6 +16192,7 @@ M.LaunchTemplateEbsBlockDevice = {
 
 M.LaunchTemplateBlockDeviceMapping = {
     type = "structure",
+    id = "LaunchTemplateBlockDeviceMapping",
     members = {
         DeviceName = {
             type = "string",
@@ -15746,6 +16220,7 @@ M.LaunchTemplateBlockDeviceMapping = {
 
 M.CapacityReservationTargetResponse = {
     type = "structure",
+    id = "CapacityReservationTargetResponse",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -15764,6 +16239,7 @@ M.CapacityReservationTargetResponse = {
 
 M.LaunchTemplateCapacityReservationSpecificationResponse = {
     type = "structure",
+    id = "LaunchTemplateCapacityReservationSpecificationResponse",
     members = {
         CapacityReservationPreference = {
             type = "string",
@@ -15779,6 +16255,7 @@ M.LaunchTemplateCapacityReservationSpecificationResponse = {
 
 M.LaunchTemplateCpuOptions = {
     type = "structure",
+    id = "LaunchTemplateCpuOptions",
     members = {
         CoreCount = {
             type = "integer",
@@ -15809,6 +16286,7 @@ M.LaunchTemplateCpuOptions = {
 
 M.CreditSpecification = {
     type = "structure",
+    id = "CreditSpecification",
     members = {
         CpuCredits = {
             type = "string",
@@ -15821,6 +16299,7 @@ M.CreditSpecification = {
 
 M.ElasticGpuSpecificationResponse = {
     type = "structure",
+    id = "ElasticGpuSpecificationResponse",
     members = {
         Type = {
             type = "string",
@@ -15833,6 +16312,7 @@ M.ElasticGpuSpecificationResponse = {
 
 M.LaunchTemplateElasticInferenceAcceleratorResponse = {
     type = "structure",
+    id = "LaunchTemplateElasticInferenceAcceleratorResponse",
     members = {
         Type = {
             type = "string",
@@ -15851,6 +16331,7 @@ M.LaunchTemplateElasticInferenceAcceleratorResponse = {
 
 M.LaunchTemplateEnclaveOptions = {
     type = "structure",
+    id = "LaunchTemplateEnclaveOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -15863,6 +16344,7 @@ M.LaunchTemplateEnclaveOptions = {
 
 M.LaunchTemplateHibernationOptions = {
     type = "structure",
+    id = "LaunchTemplateHibernationOptions",
     members = {
         Configured = {
             type = "boolean",
@@ -15875,6 +16357,7 @@ M.LaunchTemplateHibernationOptions = {
 
 M.LaunchTemplateIamInstanceProfileSpecification = {
     type = "structure",
+    id = "LaunchTemplateIamInstanceProfileSpecification",
     members = {
         Arn = {
             type = "string",
@@ -15893,6 +16376,7 @@ M.LaunchTemplateIamInstanceProfileSpecification = {
 
 M.LaunchTemplateSpotMarketOptions = {
     type = "structure",
+    id = "LaunchTemplateSpotMarketOptions",
     members = {
         MaxPrice = {
             type = "string",
@@ -15929,6 +16413,7 @@ M.LaunchTemplateSpotMarketOptions = {
 
 M.LaunchTemplateInstanceMarketOptions = {
     type = "structure",
+    id = "LaunchTemplateInstanceMarketOptions",
     members = {
         MarketType = {
             type = "string",
@@ -15944,6 +16429,7 @@ M.LaunchTemplateInstanceMarketOptions = {
 
 M.LaunchTemplateLicenseConfiguration = {
     type = "structure",
+    id = "LaunchTemplateLicenseConfiguration",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -15956,6 +16442,7 @@ M.LaunchTemplateLicenseConfiguration = {
 
 M.LaunchTemplateInstanceMaintenanceOptions = {
     type = "structure",
+    id = "LaunchTemplateInstanceMaintenanceOptions",
     members = {
         AutoRecovery = {
             type = "string",
@@ -15973,6 +16460,7 @@ M.LaunchTemplateInstanceMetadataOptionsState = {
 
 M.LaunchTemplateInstanceMetadataOptions = {
     type = "structure",
+    id = "LaunchTemplateInstanceMetadataOptions",
     members = {
         State = {
             type = "string",
@@ -16015,6 +16503,7 @@ M.LaunchTemplateInstanceMetadataOptions = {
 
 M.LaunchTemplatesMonitoring = {
     type = "structure",
+    id = "LaunchTemplatesMonitoring",
     members = {
         Enabled = {
             type = "boolean",
@@ -16027,6 +16516,7 @@ M.LaunchTemplatesMonitoring = {
 
 M.ConnectionTrackingSpecification = {
     type = "structure",
+    id = "ConnectionTrackingSpecification",
     members = {
         TcpEstablishedTimeout = {
             type = "integer",
@@ -16051,6 +16541,7 @@ M.ConnectionTrackingSpecification = {
 
 M.LaunchTemplateEnaSrdUdpSpecification = {
     type = "structure",
+    id = "LaunchTemplateEnaSrdUdpSpecification",
     members = {
         EnaSrdUdpEnabled = {
             type = "boolean",
@@ -16063,6 +16554,7 @@ M.LaunchTemplateEnaSrdUdpSpecification = {
 
 M.LaunchTemplateEnaSrdSpecification = {
     type = "structure",
+    id = "LaunchTemplateEnaSrdSpecification",
     members = {
         EnaSrdEnabled = {
             type = "boolean",
@@ -16078,6 +16570,7 @@ M.LaunchTemplateEnaSrdSpecification = {
 
 M.Ipv4PrefixSpecificationResponse = {
     type = "structure",
+    id = "Ipv4PrefixSpecificationResponse",
     members = {
         Ipv4Prefix = {
             type = "string",
@@ -16090,6 +16583,7 @@ M.Ipv4PrefixSpecificationResponse = {
 
 M.InstanceIpv6Address = {
     type = "structure",
+    id = "InstanceIpv6Address",
     members = {
         Ipv6Address = {
             type = "string",
@@ -16108,6 +16602,7 @@ M.InstanceIpv6Address = {
 
 M.Ipv6PrefixSpecificationResponse = {
     type = "structure",
+    id = "Ipv6PrefixSpecificationResponse",
     members = {
         Ipv6Prefix = {
             type = "string",
@@ -16120,6 +16615,7 @@ M.Ipv6PrefixSpecificationResponse = {
 
 M.LaunchTemplateInstanceNetworkInterfaceSpecification = {
     type = "structure",
+    id = "LaunchTemplateInstanceNetworkInterfaceSpecification",
     members = {
         AssociateCarrierIpAddress = {
             type = "boolean",
@@ -16263,6 +16759,7 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecification = {
 
 M.LaunchTemplateNetworkPerformanceOptions = {
     type = "structure",
+    id = "LaunchTemplateNetworkPerformanceOptions",
     members = {
         BandwidthWeighting = {
             type = "string",
@@ -16275,6 +16772,7 @@ M.LaunchTemplateNetworkPerformanceOptions = {
 
 M.LaunchTemplatePlacement = {
     type = "structure",
+    id = "LaunchTemplatePlacement",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -16341,6 +16839,7 @@ M.LaunchTemplatePlacement = {
 
 M.LaunchTemplatePrivateDnsNameOptions = {
     type = "structure",
+    id = "LaunchTemplatePrivateDnsNameOptions",
     members = {
         HostnameType = {
             type = "string",
@@ -16365,6 +16864,7 @@ M.LaunchTemplatePrivateDnsNameOptions = {
 
 M.SecondaryInterfacePrivateIpAddressSpecification = {
     type = "structure",
+    id = "SecondaryInterfacePrivateIpAddressSpecification",
     members = {
         PrivateIpAddress = {
             type = "string",
@@ -16377,6 +16877,7 @@ M.SecondaryInterfacePrivateIpAddressSpecification = {
 
 M.LaunchTemplateInstanceSecondaryInterfaceSpecification = {
     type = "structure",
+    id = "LaunchTemplateInstanceSecondaryInterfaceSpecification",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -16426,6 +16927,7 @@ M.LaunchTemplateInstanceSecondaryInterfaceSpecification = {
 
 M.LaunchTemplateTagSpecification = {
     type = "structure",
+    id = "LaunchTemplateTagSpecification",
     members = {
         ResourceType = {
             type = "string",
@@ -16445,6 +16947,7 @@ M.LaunchTemplateTagSpecification = {
 
 M.ResponseLaunchTemplateData = {
     type = "structure",
+    id = "ResponseLaunchTemplateData",
     members = {
         KernelId = {
             type = "string",
@@ -16619,6 +17122,7 @@ M.ResponseLaunchTemplateData = {
 
 M.LaunchTemplateVersion = {
     type = "structure",
+    id = "LaunchTemplateVersion",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -16673,6 +17177,7 @@ M.LaunchTemplateVersion = {
 
 M.CreateLaunchTemplateVersionOutput = {
     type = "structure",
+    id = "CreateLaunchTemplateVersionOutput",
     members = {
         LaunchTemplateVersion = setmetatable({ traits = {
             xml_name = "launchTemplateVersion",
@@ -16685,6 +17190,7 @@ M.CreateLaunchTemplateVersionOutput = {
 
 M.CreateLocalGatewayRouteInput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteInput",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -16725,6 +17231,7 @@ M.LocalGatewayRouteType = {
 
 M.LocalGatewayRoute = {
     type = "structure",
+    id = "LocalGatewayRoute",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -16797,6 +17304,7 @@ M.LocalGatewayRoute = {
 
 M.CreateLocalGatewayRouteOutput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteOutput",
     members = {
         Route = setmetatable({ traits = {
             xml_name = "route",
@@ -16811,6 +17319,7 @@ M.LocalGatewayRouteTableMode = {
 
 M.CreateLocalGatewayRouteTableInput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteTableInput",
     members = {
         LocalGatewayId = {
             type = "string",
@@ -16836,6 +17345,7 @@ M.CreateLocalGatewayRouteTableInput = {
 
 M.StateReason = {
     type = "structure",
+    id = "StateReason",
     members = {
         Code = {
             type = "string",
@@ -16854,6 +17364,7 @@ M.StateReason = {
 
 M.LocalGatewayRouteTable = {
     type = "structure",
+    id = "LocalGatewayRouteTable",
     members = {
         LocalGatewayRouteTableId = {
             type = "string",
@@ -16912,6 +17423,7 @@ M.LocalGatewayRouteTable = {
 
 M.CreateLocalGatewayRouteTableOutput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteTableOutput",
     members = {
         LocalGatewayRouteTable = setmetatable({ traits = {
             xml_name = "localGatewayRouteTable",
@@ -16921,6 +17433,7 @@ M.CreateLocalGatewayRouteTableOutput = {
 
 M.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput",
     members = {
         LocalGatewayRouteTableId = {
             type = "string",
@@ -16949,6 +17462,7 @@ M.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput = {
 
 M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation = {
     type = "structure",
+    id = "LocalGatewayRouteTableVirtualInterfaceGroupAssociation",
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociationId = {
             type = "string",
@@ -17004,6 +17518,7 @@ M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation = {
 
 M.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput",
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociation = setmetatable({ traits = {
             xml_name = "localGatewayRouteTableVirtualInterfaceGroupAssociation",
@@ -17013,6 +17528,7 @@ M.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput = {
 
 M.CreateLocalGatewayRouteTableVpcAssociationInput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteTableVpcAssociationInput",
     members = {
         LocalGatewayRouteTableId = {
             type = "string",
@@ -17041,6 +17557,7 @@ M.CreateLocalGatewayRouteTableVpcAssociationInput = {
 
 M.LocalGatewayRouteTableVpcAssociation = {
     type = "structure",
+    id = "LocalGatewayRouteTableVpcAssociation",
     members = {
         LocalGatewayRouteTableVpcAssociationId = {
             type = "string",
@@ -17096,6 +17613,7 @@ M.LocalGatewayRouteTableVpcAssociation = {
 
 M.CreateLocalGatewayRouteTableVpcAssociationOutput = {
     type = "structure",
+    id = "CreateLocalGatewayRouteTableVpcAssociationOutput",
     members = {
         LocalGatewayRouteTableVpcAssociation = setmetatable({ traits = {
             xml_name = "localGatewayRouteTableVpcAssociation",
@@ -17105,6 +17623,7 @@ M.CreateLocalGatewayRouteTableVpcAssociationOutput = {
 
 M.CreateLocalGatewayVirtualInterfaceInput = {
     type = "structure",
+    id = "CreateLocalGatewayVirtualInterfaceInput",
     members = {
         LocalGatewayVirtualInterfaceGroupId = {
             type = "string",
@@ -17164,6 +17683,7 @@ M.LocalGatewayVirtualInterfaceConfigurationState = {
 
 M.LocalGatewayVirtualInterface = {
     type = "structure",
+    id = "LocalGatewayVirtualInterface",
     members = {
         LocalGatewayVirtualInterfaceId = {
             type = "string",
@@ -17255,6 +17775,7 @@ M.LocalGatewayVirtualInterface = {
 
 M.CreateLocalGatewayVirtualInterfaceOutput = {
     type = "structure",
+    id = "CreateLocalGatewayVirtualInterfaceOutput",
     members = {
         LocalGatewayVirtualInterface = setmetatable({ traits = {
             xml_name = "localGatewayVirtualInterface",
@@ -17264,6 +17785,7 @@ M.CreateLocalGatewayVirtualInterfaceOutput = {
 
 M.CreateLocalGatewayVirtualInterfaceGroupInput = {
     type = "structure",
+    id = "CreateLocalGatewayVirtualInterfaceGroupInput",
     members = {
         LocalGatewayId = {
             type = "string",
@@ -17300,6 +17822,7 @@ M.LocalGatewayVirtualInterfaceGroupConfigurationState = {
 
 M.LocalGatewayVirtualInterfaceGroup = {
     type = "structure",
+    id = "LocalGatewayVirtualInterfaceGroup",
     members = {
         LocalGatewayVirtualInterfaceGroupId = {
             type = "string",
@@ -17362,6 +17885,7 @@ M.LocalGatewayVirtualInterfaceGroup = {
 
 M.CreateLocalGatewayVirtualInterfaceGroupOutput = {
     type = "structure",
+    id = "CreateLocalGatewayVirtualInterfaceGroupOutput",
     members = {
         LocalGatewayVirtualInterfaceGroup = setmetatable({ traits = {
             xml_name = "localGatewayVirtualInterfaceGroup",
@@ -17371,6 +17895,7 @@ M.CreateLocalGatewayVirtualInterfaceGroupOutput = {
 
 M.MacSystemIntegrityProtectionConfigurationRequest = {
     type = "structure",
+    id = "MacSystemIntegrityProtectionConfigurationRequest",
     members = {
         AppleInternal = {
             type = "string",
@@ -17398,6 +17923,7 @@ M.MacSystemIntegrityProtectionConfigurationRequest = {
 
 M.CreateMacSystemIntegrityProtectionModificationTaskInput = {
     type = "structure",
+    id = "CreateMacSystemIntegrityProtectionModificationTaskInput",
     members = {
         ClientToken = {
             type = "string",
@@ -17436,6 +17962,7 @@ M.CreateMacSystemIntegrityProtectionModificationTaskInput = {
 
 M.CreateMacSystemIntegrityProtectionModificationTaskOutput = {
     type = "structure",
+    id = "CreateMacSystemIntegrityProtectionModificationTaskOutput",
     members = {
         MacModificationTask = setmetatable({ traits = {
             xml_name = "macModificationTask",
@@ -17445,6 +17972,7 @@ M.CreateMacSystemIntegrityProtectionModificationTaskOutput = {
 
 M.CreateManagedPrefixListInput = {
     type = "structure",
+    id = "CreateManagedPrefixListInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -17507,6 +18035,7 @@ M.PrefixListState = {
 
 M.ManagedPrefixList = {
     type = "structure",
+    id = "ManagedPrefixList",
     members = {
         PrefixListId = {
             type = "string",
@@ -17586,6 +18115,7 @@ M.ManagedPrefixList = {
 
 M.CreateManagedPrefixListOutput = {
     type = "structure",
+    id = "CreateManagedPrefixListOutput",
     members = {
         PrefixList = setmetatable({ traits = {
             xml_name = "prefixList",
@@ -17600,6 +18130,7 @@ M.AvailabilityMode = {
 
 M.AvailabilityZoneAddress = {
     type = "structure",
+    id = "AvailabilityZoneAddress",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -17624,6 +18155,7 @@ M.ConnectivityType = {
 
 M.CreateNatGatewayInput = {
     type = "structure",
+    id = "CreateNatGatewayInput",
     members = {
         AvailabilityMode = {
             type = "string",
@@ -17707,6 +18239,7 @@ M.NatGatewayApplianceType = {
 
 M.NatGatewayAttachedAppliance = {
     type = "structure",
+    id = "NatGatewayAttachedAppliance",
     members = {
         Type = {
             type = "string",
@@ -17765,6 +18298,7 @@ M.AutoScalingIpsState = {
 
 M.ProvisionedBandwidth = {
     type = "structure",
+    id = "ProvisionedBandwidth",
     members = {
         ProvisionTime = {
             type = "timestamp",
@@ -17809,6 +18343,7 @@ M.NatGatewayState = {
 
 M.NatGateway = {
     type = "structure",
+    id = "NatGateway",
     members = {
         CreateTime = {
             type = "timestamp",
@@ -17917,6 +18452,7 @@ M.NatGateway = {
 
 M.CreateNatGatewayOutput = {
     type = "structure",
+    id = "CreateNatGatewayOutput",
     members = {
         ClientToken = {
             type = "string",
@@ -17932,6 +18468,7 @@ M.CreateNatGatewayOutput = {
 
 M.CreateNetworkAclInput = {
     type = "structure",
+    id = "CreateNetworkAclInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -17964,6 +18501,7 @@ M.CreateNetworkAclInput = {
 
 M.NetworkAclAssociation = {
     type = "structure",
+    id = "NetworkAclAssociation",
     members = {
         NetworkAclAssociationId = {
             type = "string",
@@ -17988,6 +18526,7 @@ M.NetworkAclAssociation = {
 
 M.IcmpTypeCode = {
     type = "structure",
+    id = "IcmpTypeCode",
     members = {
         Code = {
             type = "integer",
@@ -18011,6 +18550,7 @@ M.RuleAction = {
 
 M.NetworkAclEntry = {
     type = "structure",
+    id = "NetworkAclEntry",
     members = {
         CidrBlock = {
             type = "string",
@@ -18059,6 +18599,7 @@ M.NetworkAclEntry = {
 
 M.NetworkAcl = {
     type = "structure",
+    id = "NetworkAcl",
     members = {
         Associations = {
             type = "list",
@@ -18110,6 +18651,7 @@ M.NetworkAcl = {
 
 M.CreateNetworkAclOutput = {
     type = "structure",
+    id = "CreateNetworkAclOutput",
     members = {
         NetworkAcl = setmetatable({ traits = {
             xml_name = "networkAcl",
@@ -18125,6 +18667,7 @@ M.CreateNetworkAclOutput = {
 
 M.CreateNetworkAclEntryInput = {
     type = "structure",
+    id = "CreateNetworkAclEntryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -18190,10 +18733,12 @@ M.CreateNetworkAclEntryInput = {
 
 M.CreateNetworkAclEntryOutput = {
     type = "structure",
+    id = "CreateNetworkAclEntryOutput",
 }
 
 M.CreateNetworkInsightsAccessScopeInput = {
     type = "structure",
+    id = "CreateNetworkInsightsAccessScopeInput",
     members = {
         MatchPaths = {
             type = "list",
@@ -18231,6 +18776,7 @@ M.CreateNetworkInsightsAccessScopeInput = {
 
 M.NetworkInsightsAccessScope = {
     type = "structure",
+    id = "NetworkInsightsAccessScope",
     members = {
         NetworkInsightsAccessScopeId = {
             type = "string",
@@ -18268,6 +18814,7 @@ M.NetworkInsightsAccessScope = {
 
 M.NetworkInsightsAccessScopeContent = {
     type = "structure",
+    id = "NetworkInsightsAccessScopeContent",
     members = {
         NetworkInsightsAccessScopeId = {
             type = "string",
@@ -18294,6 +18841,7 @@ M.NetworkInsightsAccessScopeContent = {
 
 M.CreateNetworkInsightsAccessScopeOutput = {
     type = "structure",
+    id = "CreateNetworkInsightsAccessScopeOutput",
     members = {
         NetworkInsightsAccessScope = setmetatable({ traits = {
             xml_name = "networkInsightsAccessScope",
@@ -18306,6 +18854,7 @@ M.CreateNetworkInsightsAccessScopeOutput = {
 
 M.RequestFilterPortRange = {
     type = "structure",
+    id = "RequestFilterPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -18318,6 +18867,7 @@ M.RequestFilterPortRange = {
 
 M.PathRequestFilter = {
     type = "structure",
+    id = "PathRequestFilter",
     members = {
         SourceAddress = {
             type = "string",
@@ -18332,6 +18882,7 @@ M.PathRequestFilter = {
 
 M.CreateNetworkInsightsPathInput = {
     type = "structure",
+    id = "CreateNetworkInsightsPathInput",
     members = {
         SourceIp = {
             type = "string",
@@ -18381,6 +18932,7 @@ M.CreateNetworkInsightsPathInput = {
 
 M.FilterPortRange = {
     type = "structure",
+    id = "FilterPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -18399,6 +18951,7 @@ M.FilterPortRange = {
 
 M.PathFilter = {
     type = "structure",
+    id = "PathFilter",
     members = {
         SourceAddress = {
             type = "string",
@@ -18423,6 +18976,7 @@ M.PathFilter = {
 
 M.NetworkInsightsPath = {
     type = "structure",
+    id = "NetworkInsightsPath",
     members = {
         NetworkInsightsPathId = {
             type = "string",
@@ -18508,6 +19062,7 @@ M.NetworkInsightsPath = {
 
 M.CreateNetworkInsightsPathOutput = {
     type = "structure",
+    id = "CreateNetworkInsightsPathOutput",
     members = {
         NetworkInsightsPath = setmetatable({ traits = {
             xml_name = "networkInsightsPath",
@@ -18524,6 +19079,7 @@ M.NetworkInterfaceCreationType = {
 
 M.CreateNetworkInterfaceInput = {
     type = "structure",
+    id = "CreateNetworkInterfaceInput",
     members = {
         Ipv4Prefixes = {
             type = "list",
@@ -18629,6 +19185,7 @@ M.CreateNetworkInterfaceInput = {
 
 M.NetworkInterfaceAssociation = {
     type = "structure",
+    id = "NetworkInterfaceAssociation",
     members = {
         AllocationId = {
             type = "string",
@@ -18677,6 +19234,7 @@ M.NetworkInterfaceAssociation = {
 
 M.AttachmentEnaSrdUdpSpecification = {
     type = "structure",
+    id = "AttachmentEnaSrdUdpSpecification",
     members = {
         EnaSrdUdpEnabled = {
             type = "boolean",
@@ -18689,6 +19247,7 @@ M.AttachmentEnaSrdUdpSpecification = {
 
 M.AttachmentEnaSrdSpecification = {
     type = "structure",
+    id = "AttachmentEnaSrdSpecification",
     members = {
         EnaSrdEnabled = {
             type = "boolean",
@@ -18704,6 +19263,7 @@ M.AttachmentEnaSrdSpecification = {
 
 M.NetworkInterfaceAttachment = {
     type = "structure",
+    id = "NetworkInterfaceAttachment",
     members = {
         AttachTime = {
             type = "timestamp",
@@ -18767,6 +19327,7 @@ M.NetworkInterfaceAttachment = {
 
 M.ConnectionTrackingConfiguration = {
     type = "structure",
+    id = "ConnectionTrackingConfiguration",
     members = {
         TcpEstablishedTimeout = {
             type = "integer",
@@ -18791,6 +19352,7 @@ M.ConnectionTrackingConfiguration = {
 
 M.GroupIdentifier = {
     type = "structure",
+    id = "GroupIdentifier",
     members = {
         GroupId = {
             type = "string",
@@ -18830,6 +19392,7 @@ M.NetworkInterfaceType = {
 
 M.NetworkInterfaceIpv6Address = {
     type = "structure",
+    id = "NetworkInterfaceIpv6Address",
     members = {
         Ipv6Address = {
             type = "string",
@@ -18854,6 +19417,7 @@ M.NetworkInterfaceIpv6Address = {
 
 M.Ipv6PrefixSpecification = {
     type = "structure",
+    id = "Ipv6PrefixSpecification",
     members = {
         Ipv6Prefix = {
             type = "string",
@@ -18866,6 +19430,7 @@ M.Ipv6PrefixSpecification = {
 
 M.NetworkInterfacePrivateIpAddress = {
     type = "structure",
+    id = "NetworkInterfacePrivateIpAddress",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -18893,6 +19458,7 @@ M.NetworkInterfacePrivateIpAddress = {
 
 M.PublicIpDnsNameOptions = {
     type = "structure",
+    id = "PublicIpDnsNameOptions",
     members = {
         DnsHostnameType = {
             type = "string",
@@ -18931,6 +19497,7 @@ M.NetworkInterfaceStatus = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -19121,6 +19688,7 @@ M.NetworkInterface = {
 
 M.CreateNetworkInterfaceOutput = {
     type = "structure",
+    id = "CreateNetworkInterfaceOutput",
     members = {
         NetworkInterface = setmetatable({ traits = {
             xml_name = "networkInterface",
@@ -19141,6 +19709,7 @@ M.InterfacePermissionType = {
 
 M.CreateNetworkInterfacePermissionInput = {
     type = "structure",
+    id = "CreateNetworkInterfacePermissionInput",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -19175,6 +19744,7 @@ M.NetworkInterfacePermissionStateCode = {
 
 M.NetworkInterfacePermissionState = {
     type = "structure",
+    id = "NetworkInterfacePermissionState",
     members = {
         State = {
             type = "string",
@@ -19193,6 +19763,7 @@ M.NetworkInterfacePermissionState = {
 
 M.NetworkInterfacePermission = {
     type = "structure",
+    id = "NetworkInterfacePermission",
     members = {
         NetworkInterfacePermissionId = {
             type = "string",
@@ -19232,6 +19803,7 @@ M.NetworkInterfacePermission = {
 
 M.CreateNetworkInterfacePermissionOutput = {
     type = "structure",
+    id = "CreateNetworkInterfacePermissionOutput",
     members = {
         InterfacePermission = setmetatable({ traits = {
             xml_name = "interfacePermission",
@@ -19252,6 +19824,7 @@ M.PlacementStrategy = {
 
 M.CreatePlacementGroupInput = {
     type = "structure",
+    id = "CreatePlacementGroupInput",
     members = {
         PartitionCount = {
             type = "integer",
@@ -19300,6 +19873,7 @@ M.PlacementGroupState = {
 
 M.PlacementGroup = {
     type = "structure",
+    id = "PlacementGroup",
     members = {
         GroupName = {
             type = "string",
@@ -19364,6 +19938,7 @@ M.PlacementGroup = {
 
 M.CreatePlacementGroupOutput = {
     type = "structure",
+    id = "CreatePlacementGroupOutput",
     members = {
         PlacementGroup = setmetatable({ traits = {
             xml_name = "placementGroup",
@@ -19373,6 +19948,7 @@ M.CreatePlacementGroupOutput = {
 
 M.CreatePublicIpv4PoolInput = {
     type = "structure",
+    id = "CreatePublicIpv4PoolInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -19392,6 +19968,7 @@ M.CreatePublicIpv4PoolInput = {
 
 M.CreatePublicIpv4PoolOutput = {
     type = "structure",
+    id = "CreatePublicIpv4PoolOutput",
     members = {
         PoolId = {
             type = "string",
@@ -19404,6 +19981,7 @@ M.CreatePublicIpv4PoolOutput = {
 
 M.CreateReplaceRootVolumeTaskInput = {
     type = "structure",
+    id = "CreateReplaceRootVolumeTaskInput",
     members = {
         InstanceId = {
             type = "string",
@@ -19453,6 +20031,7 @@ M.ReplaceRootVolumeTaskState = {
 
 M.ReplaceRootVolumeTask = {
     type = "structure",
+    id = "ReplaceRootVolumeTask",
     members = {
         ReplaceRootVolumeTaskId = {
             type = "string",
@@ -19514,6 +20093,7 @@ M.ReplaceRootVolumeTask = {
 
 M.CreateReplaceRootVolumeTaskOutput = {
     type = "structure",
+    id = "CreateReplaceRootVolumeTaskOutput",
     members = {
         ReplaceRootVolumeTask = setmetatable({ traits = {
             xml_name = "replaceRootVolumeTask",
@@ -19523,6 +20103,7 @@ M.CreateReplaceRootVolumeTaskOutput = {
 
 M.PriceScheduleSpecification = {
     type = "structure",
+    id = "PriceScheduleSpecification",
     members = {
         Term = {
             type = "long",
@@ -19547,6 +20128,7 @@ M.PriceScheduleSpecification = {
 
 M.CreateReservedInstancesListingInput = {
     type = "structure",
+    id = "CreateReservedInstancesListingInput",
     members = {
         ReservedInstancesId = {
             type = "string",
@@ -19582,6 +20164,7 @@ M.CreateReservedInstancesListingInput = {
 
 M.CreateReservedInstancesListingOutput = {
     type = "structure",
+    id = "CreateReservedInstancesListingOutput",
     members = {
         ReservedInstancesListings = {
             type = "list",
@@ -19595,6 +20178,7 @@ M.CreateReservedInstancesListingOutput = {
 
 M.CreateRestoreImageTaskInput = {
     type = "structure",
+    id = "CreateRestoreImageTaskInput",
     members = {
         Bucket = {
             type = "string",
@@ -19626,6 +20210,7 @@ M.CreateRestoreImageTaskInput = {
 
 M.CreateRestoreImageTaskOutput = {
     type = "structure",
+    id = "CreateRestoreImageTaskOutput",
     members = {
         ImageId = {
             type = "string",
@@ -19638,6 +20223,7 @@ M.CreateRestoreImageTaskOutput = {
 
 M.CreateRouteInput = {
     type = "structure",
+    id = "CreateRouteInput",
     members = {
         DestinationPrefixListId = {
             type = "string",
@@ -19726,6 +20312,7 @@ M.CreateRouteInput = {
 
 M.CreateRouteOutput = {
     type = "structure",
+    id = "CreateRouteOutput",
     members = {
         Return = {
             type = "boolean",
@@ -19744,6 +20331,7 @@ M.RouteServerPersistRoutesAction = {
 
 M.CreateRouteServerInput = {
     type = "structure",
+    id = "CreateRouteServerInput",
     members = {
         AmazonSideAsn = {
             type = "long",
@@ -19798,6 +20386,7 @@ M.RouteServerState = {
 
 M.RouteServer = {
     type = "structure",
+    id = "RouteServer",
     members = {
         RouteServerId = {
             type = "string",
@@ -19853,6 +20442,7 @@ M.RouteServer = {
 
 M.CreateRouteServerOutput = {
     type = "structure",
+    id = "CreateRouteServerOutput",
     members = {
         RouteServer = setmetatable({ traits = {
             xml_name = "routeServer",
@@ -19862,6 +20452,7 @@ M.CreateRouteServerOutput = {
 
 M.CreateRouteServerEndpointInput = {
     type = "structure",
+    id = "CreateRouteServerEndpointInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -19906,6 +20497,7 @@ M.RouteServerEndpointState = {
 
 M.RouteServerEndpoint = {
     type = "structure",
+    id = "RouteServerEndpoint",
     members = {
         RouteServerId = {
             type = "string",
@@ -19967,6 +20559,7 @@ M.RouteServerEndpoint = {
 
 M.CreateRouteServerEndpointOutput = {
     type = "structure",
+    id = "CreateRouteServerEndpointOutput",
     members = {
         RouteServerEndpoint = setmetatable({ traits = {
             xml_name = "routeServerEndpoint",
@@ -19981,6 +20574,7 @@ M.RouteServerPeerLivenessMode = {
 
 M.RouteServerBgpOptionsRequest = {
     type = "structure",
+    id = "RouteServerBgpOptionsRequest",
     members = {
         PeerAsn = {
             type = "long",
@@ -19996,6 +20590,7 @@ M.RouteServerBgpOptionsRequest = {
 
 M.CreateRouteServerPeerInput = {
     type = "structure",
+    id = "CreateRouteServerPeerInput",
     members = {
         RouteServerEndpointId = {
             type = "string",
@@ -20032,6 +20627,7 @@ M.RouteServerBfdState = {
 
 M.RouteServerBfdStatus = {
     type = "structure",
+    id = "RouteServerBfdStatus",
     members = {
         Status = {
             type = "string",
@@ -20044,6 +20640,7 @@ M.RouteServerBfdStatus = {
 
 M.RouteServerBgpOptions = {
     type = "structure",
+    id = "RouteServerBgpOptions",
     members = {
         PeerAsn = {
             type = "long",
@@ -20067,6 +20664,7 @@ M.RouteServerBgpState = {
 
 M.RouteServerBgpStatus = {
     type = "structure",
+    id = "RouteServerBgpStatus",
     members = {
         Status = {
             type = "string",
@@ -20088,6 +20686,7 @@ M.RouteServerPeerState = {
 
 M.RouteServerPeer = {
     type = "structure",
+    id = "RouteServerPeer",
     members = {
         RouteServerPeerId = {
             type = "string",
@@ -20170,6 +20769,7 @@ M.RouteServerPeer = {
 
 M.CreateRouteServerPeerOutput = {
     type = "structure",
+    id = "CreateRouteServerPeerOutput",
     members = {
         RouteServerPeer = setmetatable({ traits = {
             xml_name = "routeServerPeer",
@@ -20179,6 +20779,7 @@ M.CreateRouteServerPeerOutput = {
 
 M.CreateRouteTableInput = {
     type = "structure",
+    id = "CreateRouteTableInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -20211,6 +20812,7 @@ M.CreateRouteTableInput = {
 
 M.RouteTableAssociation = {
     type = "structure",
+    id = "RouteTableAssociation",
     members = {
         Main = {
             type = "boolean",
@@ -20256,6 +20858,7 @@ M.RouteTableAssociation = {
 
 M.PropagatingVgw = {
     type = "structure",
+    id = "PropagatingVgw",
     members = {
         GatewayId = {
             type = "string",
@@ -20281,6 +20884,7 @@ M.RouteState = {
 
 M.Route = {
     type = "structure",
+    id = "Route",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -20395,6 +20999,7 @@ M.Route = {
 
 M.RouteTable = {
     type = "structure",
+    id = "RouteTable",
     members = {
         Associations = {
             type = "list",
@@ -20447,6 +21052,7 @@ M.RouteTable = {
 
 M.CreateRouteTableOutput = {
     type = "structure",
+    id = "CreateRouteTableOutput",
     members = {
         RouteTable = setmetatable({ traits = {
             xml_name = "routeTable",
@@ -20466,6 +21072,7 @@ M.SecondaryNetworkType = {
 
 M.CreateSecondaryNetworkInput = {
     type = "structure",
+    id = "CreateSecondaryNetworkInput",
     members = {
         ClientToken = {
             type = "string",
@@ -20509,6 +21116,7 @@ M.SecondaryNetworkCidrBlockAssociationState = {
 
 M.SecondaryNetworkIpv4CidrBlockAssociation = {
     type = "structure",
+    id = "SecondaryNetworkIpv4CidrBlockAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -20548,6 +21156,7 @@ M.SecondaryNetworkState = {
 
 M.SecondaryNetwork = {
     type = "structure",
+    id = "SecondaryNetwork",
     members = {
         SecondaryNetworkId = {
             type = "string",
@@ -20604,6 +21213,7 @@ M.SecondaryNetwork = {
 
 M.CreateSecondaryNetworkOutput = {
     type = "structure",
+    id = "CreateSecondaryNetworkOutput",
     members = {
         SecondaryNetwork = setmetatable({ traits = {
             xml_name = "secondaryNetwork",
@@ -20619,6 +21229,7 @@ M.CreateSecondaryNetworkOutput = {
 
 M.CreateSecondarySubnetInput = {
     type = "structure",
+    id = "CreateSecondarySubnetInput",
     members = {
         ClientToken = {
             type = "string",
@@ -20668,6 +21279,7 @@ M.SecondarySubnetCidrBlockAssociationState = {
 
 M.SecondarySubnetIpv4CidrBlockAssociation = {
     type = "structure",
+    id = "SecondarySubnetIpv4CidrBlockAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -20707,6 +21319,7 @@ M.SecondarySubnetState = {
 
 M.SecondarySubnet = {
     type = "structure",
+    id = "SecondarySubnet",
     members = {
         SecondarySubnetId = {
             type = "string",
@@ -20781,6 +21394,7 @@ M.SecondarySubnet = {
 
 M.CreateSecondarySubnetOutput = {
     type = "structure",
+    id = "CreateSecondarySubnetOutput",
     members = {
         SecondarySubnet = setmetatable({ traits = {
             xml_name = "secondarySubnet",
@@ -20796,6 +21410,7 @@ M.CreateSecondarySubnetOutput = {
 
 M.CreateSecurityGroupInput = {
     type = "structure",
+    id = "CreateSecurityGroupInput",
     members = {
         Description = {
             type = "string",
@@ -20831,6 +21446,7 @@ M.CreateSecurityGroupInput = {
 
 M.CreateSecurityGroupOutput = {
     type = "structure",
+    id = "CreateSecurityGroupOutput",
     members = {
         GroupId = {
             type = "string",
@@ -20856,6 +21472,7 @@ M.CreateSecurityGroupOutput = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         Description = {
             type = "string",
@@ -20908,6 +21525,7 @@ M.TransferType = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
     members = {
         OwnerAlias = {
             type = "string",
@@ -21057,6 +21675,7 @@ M.CopyTagsFromSource = {
 
 M.InstanceSpecification = {
     type = "structure",
+    id = "InstanceSpecification",
     members = {
         InstanceId = {
             type = "string",
@@ -21079,6 +21698,7 @@ M.InstanceSpecification = {
 
 M.CreateSnapshotsInput = {
     type = "structure",
+    id = "CreateSnapshotsInput",
     members = {
         Description = {
             type = "string",
@@ -21110,6 +21730,7 @@ M.CreateSnapshotsInput = {
 
 M.SnapshotInfo = {
     type = "structure",
+    id = "SnapshotInfo",
     members = {
         Description = {
             type = "string",
@@ -21195,6 +21816,7 @@ M.SnapshotInfo = {
 
 M.CreateSnapshotsOutput = {
     type = "structure",
+    id = "CreateSnapshotsOutput",
     members = {
         Snapshots = {
             type = "list",
@@ -21208,6 +21830,7 @@ M.CreateSnapshotsOutput = {
 
 M.CreateSpotDatafeedSubscriptionInput = {
     type = "structure",
+    id = "CreateSpotDatafeedSubscriptionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -21233,6 +21856,7 @@ M.CreateSpotDatafeedSubscriptionInput = {
 
 M.SpotInstanceStateFault = {
     type = "structure",
+    id = "SpotInstanceStateFault",
     members = {
         Code = {
             type = "string",
@@ -21256,6 +21880,7 @@ M.DatafeedSubscriptionState = {
 
 M.SpotDatafeedSubscription = {
     type = "structure",
+    id = "SpotDatafeedSubscription",
     members = {
         Bucket = {
             type = "string",
@@ -21289,6 +21914,7 @@ M.SpotDatafeedSubscription = {
 
 M.CreateSpotDatafeedSubscriptionOutput = {
     type = "structure",
+    id = "CreateSpotDatafeedSubscriptionOutput",
     members = {
         SpotDatafeedSubscription = setmetatable({ traits = {
             xml_name = "spotDatafeedSubscription",
@@ -21298,6 +21924,7 @@ M.CreateSpotDatafeedSubscriptionOutput = {
 
 M.S3ObjectTag = {
     type = "structure",
+    id = "S3ObjectTag",
     members = {
         Key = {
             type = "string",
@@ -21310,6 +21937,7 @@ M.S3ObjectTag = {
 
 M.CreateStoreImageTaskInput = {
     type = "structure",
+    id = "CreateStoreImageTaskInput",
     members = {
         ImageId = {
             type = "string",
@@ -21338,6 +21966,7 @@ M.CreateStoreImageTaskInput = {
 
 M.CreateStoreImageTaskOutput = {
     type = "structure",
+    id = "CreateStoreImageTaskOutput",
     members = {
         ObjectKey = {
             type = "string",
@@ -21350,6 +21979,7 @@ M.CreateStoreImageTaskOutput = {
 
 M.CreateSubnetInput = {
     type = "structure",
+    id = "CreateSubnetInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -21405,6 +22035,7 @@ M.CreateSubnetInput = {
 
 M.CreateSubnetOutput = {
     type = "structure",
+    id = "CreateSubnetOutput",
     members = {
         Subnet = setmetatable({ traits = {
             xml_name = "subnet",
@@ -21419,6 +22050,7 @@ M.SubnetCidrReservationType = {
 
 M.CreateSubnetCidrReservationInput = {
     type = "structure",
+    id = "CreateSubnetCidrReservationInput",
     members = {
         SubnetId = {
             type = "string",
@@ -21456,6 +22088,7 @@ M.CreateSubnetCidrReservationInput = {
 
 M.SubnetCidrReservation = {
     type = "structure",
+    id = "SubnetCidrReservation",
     members = {
         SubnetCidrReservationId = {
             type = "string",
@@ -21505,6 +22138,7 @@ M.SubnetCidrReservation = {
 
 M.CreateSubnetCidrReservationOutput = {
     type = "structure",
+    id = "CreateSubnetCidrReservationOutput",
     members = {
         SubnetCidrReservation = setmetatable({ traits = {
             xml_name = "subnetCidrReservation",
@@ -21514,6 +22148,7 @@ M.CreateSubnetCidrReservationOutput = {
 
 M.CreateTagsInput = {
     type = "structure",
+    id = "CreateTagsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -21542,10 +22177,12 @@ M.CreateTagsInput = {
 
 M.CreateTagsOutput = {
     type = "structure",
+    id = "CreateTagsOutput",
 }
 
 M.CreateTrafficMirrorFilterInput = {
     type = "structure",
+    id = "CreateTrafficMirrorFilterInput",
     members = {
         Description = {
             type = "string",
@@ -21571,6 +22208,7 @@ M.CreateTrafficMirrorFilterInput = {
 
 M.TrafficMirrorPortRange = {
     type = "structure",
+    id = "TrafficMirrorPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -21599,6 +22237,7 @@ M.TrafficDirection = {
 
 M.TrafficMirrorFilterRule = {
     type = "structure",
+    id = "TrafficMirrorFilterRule",
     members = {
         TrafficMirrorFilterRuleId = {
             type = "string",
@@ -21676,6 +22315,7 @@ M.TrafficMirrorNetworkService = {
 
 M.TrafficMirrorFilter = {
     type = "structure",
+    id = "TrafficMirrorFilter",
     members = {
         TrafficMirrorFilterId = {
             type = "string",
@@ -21722,6 +22362,7 @@ M.TrafficMirrorFilter = {
 
 M.CreateTrafficMirrorFilterOutput = {
     type = "structure",
+    id = "CreateTrafficMirrorFilterOutput",
     members = {
         TrafficMirrorFilter = setmetatable({ traits = {
             xml_name = "trafficMirrorFilter",
@@ -21737,6 +22378,7 @@ M.CreateTrafficMirrorFilterOutput = {
 
 M.TrafficMirrorPortRangeRequest = {
     type = "structure",
+    id = "TrafficMirrorPortRangeRequest",
     members = {
         FromPort = {
             type = "integer",
@@ -21749,6 +22391,7 @@ M.TrafficMirrorPortRangeRequest = {
 
 M.CreateTrafficMirrorFilterRuleInput = {
     type = "structure",
+    id = "CreateTrafficMirrorFilterRuleInput",
     members = {
         TrafficMirrorFilterId = {
             type = "string",
@@ -21815,6 +22458,7 @@ M.CreateTrafficMirrorFilterRuleInput = {
 
 M.CreateTrafficMirrorFilterRuleOutput = {
     type = "structure",
+    id = "CreateTrafficMirrorFilterRuleOutput",
     members = {
         TrafficMirrorFilterRule = setmetatable({ traits = {
             xml_name = "trafficMirrorFilterRule",
@@ -21830,6 +22474,7 @@ M.CreateTrafficMirrorFilterRuleOutput = {
 
 M.CreateTrafficMirrorSessionInput = {
     type = "structure",
+    id = "CreateTrafficMirrorSessionInput",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -21885,6 +22530,7 @@ M.CreateTrafficMirrorSessionInput = {
 
 M.TrafficMirrorSession = {
     type = "structure",
+    id = "TrafficMirrorSession",
     members = {
         TrafficMirrorSessionId = {
             type = "string",
@@ -21952,6 +22598,7 @@ M.TrafficMirrorSession = {
 
 M.CreateTrafficMirrorSessionOutput = {
     type = "structure",
+    id = "CreateTrafficMirrorSessionOutput",
     members = {
         TrafficMirrorSession = setmetatable({ traits = {
             xml_name = "trafficMirrorSession",
@@ -21967,6 +22614,7 @@ M.CreateTrafficMirrorSessionOutput = {
 
 M.CreateTrafficMirrorTargetInput = {
     type = "structure",
+    id = "CreateTrafficMirrorTargetInput",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -22007,6 +22655,7 @@ M.TrafficMirrorTargetType = {
 
 M.TrafficMirrorTarget = {
     type = "structure",
+    id = "TrafficMirrorTarget",
     members = {
         TrafficMirrorTargetId = {
             type = "string",
@@ -22062,6 +22711,7 @@ M.TrafficMirrorTarget = {
 
 M.CreateTrafficMirrorTargetOutput = {
     type = "structure",
+    id = "CreateTrafficMirrorTargetOutput",
     members = {
         TrafficMirrorTarget = setmetatable({ traits = {
             xml_name = "trafficMirrorTarget",
@@ -22102,6 +22752,7 @@ M.VpnEcmpSupportValue = {
 
 M.TransitGatewayRequestOptions = {
     type = "structure",
+    id = "TransitGatewayRequestOptions",
     members = {
         AmazonSideAsn = {
             type = "long",
@@ -22136,6 +22787,7 @@ M.TransitGatewayRequestOptions = {
 
 M.CreateTransitGatewayInput = {
     type = "structure",
+    id = "CreateTransitGatewayInput",
     members = {
         Description = {
             type = "string",
@@ -22163,6 +22815,7 @@ M.EncryptionStateValue = {
 
 M.EncryptionSupport = {
     type = "structure",
+    id = "EncryptionSupport",
     members = {
         EncryptionState = {
             type = "string",
@@ -22181,6 +22834,7 @@ M.EncryptionSupport = {
 
 M.TransitGatewayOptions = {
     type = "structure",
+    id = "TransitGatewayOptions",
     members = {
         AmazonSideAsn = {
             type = "long",
@@ -22265,6 +22919,7 @@ M.TransitGatewayState = {
 
 M.TransitGateway = {
     type = "structure",
+    id = "TransitGateway",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -22317,6 +22972,7 @@ M.TransitGateway = {
 
 M.CreateTransitGatewayOutput = {
     type = "structure",
+    id = "CreateTransitGatewayOutput",
     members = {
         TransitGateway = setmetatable({ traits = {
             xml_name = "transitGateway",
@@ -22330,6 +22986,7 @@ M.ProtocolValue = {
 
 M.CreateTransitGatewayConnectRequestOptions = {
     type = "structure",
+    id = "CreateTransitGatewayConnectRequestOptions",
     members = {
         Protocol = {
             type = "string",
@@ -22342,6 +22999,7 @@ M.CreateTransitGatewayConnectRequestOptions = {
 
 M.CreateTransitGatewayConnectInput = {
     type = "structure",
+    id = "CreateTransitGatewayConnectInput",
     members = {
         TransportTransitGatewayAttachmentId = {
             type = "string",
@@ -22367,6 +23025,7 @@ M.CreateTransitGatewayConnectInput = {
 
 M.TransitGatewayConnectOptions = {
     type = "structure",
+    id = "TransitGatewayConnectOptions",
     members = {
         Protocol = {
             type = "string",
@@ -22379,6 +23038,7 @@ M.TransitGatewayConnectOptions = {
 
 M.TransitGatewayConnect = {
     type = "structure",
+    id = "TransitGatewayConnect",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -22425,6 +23085,7 @@ M.TransitGatewayConnect = {
 
 M.CreateTransitGatewayConnectOutput = {
     type = "structure",
+    id = "CreateTransitGatewayConnectOutput",
     members = {
         TransitGatewayConnect = setmetatable({ traits = {
             xml_name = "transitGatewayConnect",
@@ -22434,6 +23095,7 @@ M.CreateTransitGatewayConnectOutput = {
 
 M.TransitGatewayConnectRequestBgpOptions = {
     type = "structure",
+    id = "TransitGatewayConnectRequestBgpOptions",
     members = {
         PeerAsn = {
             type = "long",
@@ -22443,6 +23105,7 @@ M.TransitGatewayConnectRequestBgpOptions = {
 
 M.CreateTransitGatewayConnectPeerInput = {
     type = "structure",
+    id = "CreateTransitGatewayConnectPeerInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -22487,6 +23150,7 @@ M.BgpStatus = {
 
 M.TransitGatewayAttachmentBgpConfiguration = {
     type = "structure",
+    id = "TransitGatewayAttachmentBgpConfiguration",
     members = {
         TransitGatewayAsn = {
             type = "long",
@@ -22523,6 +23187,7 @@ M.TransitGatewayAttachmentBgpConfiguration = {
 
 M.TransitGatewayConnectPeerConfiguration = {
     type = "structure",
+    id = "TransitGatewayConnectPeerConfiguration",
     members = {
         TransitGatewayAddress = {
             type = "string",
@@ -22568,6 +23233,7 @@ M.TransitGatewayConnectPeerState = {
 
 M.TransitGatewayConnectPeer = {
     type = "structure",
+    id = "TransitGatewayConnectPeer",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -22608,6 +23274,7 @@ M.TransitGatewayConnectPeer = {
 
 M.CreateTransitGatewayConnectPeerOutput = {
     type = "structure",
+    id = "CreateTransitGatewayConnectPeerOutput",
     members = {
         TransitGatewayConnectPeer = setmetatable({ traits = {
             xml_name = "transitGatewayConnectPeer",
@@ -22617,6 +23284,7 @@ M.CreateTransitGatewayConnectPeerOutput = {
 
 M.CreateTransitGatewayMeteringPolicyInput = {
     type = "structure",
+    id = "CreateTransitGatewayMeteringPolicyInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -22651,6 +23319,7 @@ M.TransitGatewayMeteringPolicyState = {
 
 M.TransitGatewayMeteringPolicy = {
     type = "structure",
+    id = "TransitGatewayMeteringPolicy",
     members = {
         TransitGatewayMeteringPolicyId = {
             type = "string",
@@ -22695,6 +23364,7 @@ M.TransitGatewayMeteringPolicy = {
 
 M.CreateTransitGatewayMeteringPolicyOutput = {
     type = "structure",
+    id = "CreateTransitGatewayMeteringPolicyOutput",
     members = {
         TransitGatewayMeteringPolicy = setmetatable({ traits = {
             xml_name = "transitGatewayMeteringPolicy",
@@ -22710,6 +23380,7 @@ M.TransitGatewayMeteringPayerType = {
 
 M.CreateTransitGatewayMeteringPolicyEntryInput = {
     type = "structure",
+    id = "CreateTransitGatewayMeteringPolicyEntryInput",
     members = {
         TransitGatewayMeteringPolicyId = {
             type = "string",
@@ -22764,6 +23435,7 @@ M.CreateTransitGatewayMeteringPolicyEntryInput = {
 
 M.TransitGatewayMeteringPolicyRule = {
     type = "structure",
+    id = "TransitGatewayMeteringPolicyRule",
     members = {
         SourceTransitGatewayAttachmentId = {
             type = "string",
@@ -22829,6 +23501,7 @@ M.TransitGatewayMeteringPolicyEntryState = {
 
 M.TransitGatewayMeteringPolicyEntry = {
     type = "structure",
+    id = "TransitGatewayMeteringPolicyEntry",
     members = {
         PolicyRuleNumber = {
             type = "string",
@@ -22868,6 +23541,7 @@ M.TransitGatewayMeteringPolicyEntry = {
 
 M.CreateTransitGatewayMeteringPolicyEntryOutput = {
     type = "structure",
+    id = "CreateTransitGatewayMeteringPolicyEntryOutput",
     members = {
         TransitGatewayMeteringPolicyEntry = setmetatable({ traits = {
             xml_name = "transitGatewayMeteringPolicyEntry",
@@ -22892,6 +23566,7 @@ M.StaticSourcesSupportValue = {
 
 M.CreateTransitGatewayMulticastDomainRequestOptions = {
     type = "structure",
+    id = "CreateTransitGatewayMulticastDomainRequestOptions",
     members = {
         Igmpv2Support = {
             type = "string",
@@ -22907,6 +23582,7 @@ M.CreateTransitGatewayMulticastDomainRequestOptions = {
 
 M.CreateTransitGatewayMulticastDomainInput = {
     type = "structure",
+    id = "CreateTransitGatewayMulticastDomainInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -22930,6 +23606,7 @@ M.CreateTransitGatewayMulticastDomainInput = {
 
 M.TransitGatewayMulticastDomainOptions = {
     type = "structure",
+    id = "TransitGatewayMulticastDomainOptions",
     members = {
         Igmpv2Support = {
             type = "string",
@@ -22961,6 +23638,7 @@ M.TransitGatewayMulticastDomainState = {
 
 M.TransitGatewayMulticastDomain = {
     type = "structure",
+    id = "TransitGatewayMulticastDomain",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -23013,6 +23691,7 @@ M.TransitGatewayMulticastDomain = {
 
 M.CreateTransitGatewayMulticastDomainOutput = {
     type = "structure",
+    id = "CreateTransitGatewayMulticastDomainOutput",
     members = {
         TransitGatewayMulticastDomain = setmetatable({ traits = {
             xml_name = "transitGatewayMulticastDomain",
@@ -23022,6 +23701,7 @@ M.CreateTransitGatewayMulticastDomainOutput = {
 
 M.CreateTransitGatewayPeeringAttachmentRequestOptions = {
     type = "structure",
+    id = "CreateTransitGatewayPeeringAttachmentRequestOptions",
     members = {
         DynamicRouting = {
             type = "string",
@@ -23031,6 +23711,7 @@ M.CreateTransitGatewayPeeringAttachmentRequestOptions = {
 
 M.CreateTransitGatewayPeeringAttachmentInput = {
     type = "structure",
+    id = "CreateTransitGatewayPeeringAttachmentInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -23072,6 +23753,7 @@ M.CreateTransitGatewayPeeringAttachmentInput = {
 
 M.CreateTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
+    id = "CreateTransitGatewayPeeringAttachmentOutput",
     members = {
         TransitGatewayPeeringAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayPeeringAttachment",
@@ -23081,6 +23763,7 @@ M.CreateTransitGatewayPeeringAttachmentOutput = {
 
 M.CreateTransitGatewayPolicyTableInput = {
     type = "structure",
+    id = "CreateTransitGatewayPolicyTableInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -23107,6 +23790,7 @@ M.TransitGatewayPolicyTableState = {
 
 M.TransitGatewayPolicyTable = {
     type = "structure",
+    id = "TransitGatewayPolicyTable",
     members = {
         TransitGatewayPolicyTableId = {
             type = "string",
@@ -23144,6 +23828,7 @@ M.TransitGatewayPolicyTable = {
 
 M.CreateTransitGatewayPolicyTableOutput = {
     type = "structure",
+    id = "CreateTransitGatewayPolicyTableOutput",
     members = {
         TransitGatewayPolicyTable = setmetatable({ traits = {
             xml_name = "transitGatewayPolicyTable",
@@ -23153,6 +23838,7 @@ M.CreateTransitGatewayPolicyTableOutput = {
 
 M.CreateTransitGatewayPrefixListReferenceInput = {
     type = "structure",
+    id = "CreateTransitGatewayPrefixListReferenceInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -23187,6 +23873,7 @@ M.TransitGatewayPrefixListReferenceState = {
 
 M.TransitGatewayPrefixListAttachment = {
     type = "structure",
+    id = "TransitGatewayPrefixListAttachment",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -23211,6 +23898,7 @@ M.TransitGatewayPrefixListAttachment = {
 
 M.TransitGatewayPrefixListReference = {
     type = "structure",
+    id = "TransitGatewayPrefixListReference",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -23250,6 +23938,7 @@ M.TransitGatewayPrefixListReference = {
 
 M.CreateTransitGatewayPrefixListReferenceOutput = {
     type = "structure",
+    id = "CreateTransitGatewayPrefixListReferenceOutput",
     members = {
         TransitGatewayPrefixListReference = setmetatable({ traits = {
             xml_name = "transitGatewayPrefixListReference",
@@ -23259,6 +23948,7 @@ M.CreateTransitGatewayPrefixListReferenceOutput = {
 
 M.CreateTransitGatewayRouteInput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteInput",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -23294,6 +23984,7 @@ M.TransitGatewayRouteState = {
 
 M.TransitGatewayRouteAttachment = {
     type = "structure",
+    id = "TransitGatewayRouteAttachment",
     members = {
         ResourceId = {
             type = "string",
@@ -23323,6 +24014,7 @@ M.TransitGatewayRouteType = {
 
 M.TransitGatewayRoute = {
     type = "structure",
+    id = "TransitGatewayRoute",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -23366,6 +24058,7 @@ M.TransitGatewayRoute = {
 
 M.CreateTransitGatewayRouteOutput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteOutput",
     members = {
         Route = setmetatable({ traits = {
             xml_name = "route",
@@ -23375,6 +24068,7 @@ M.CreateTransitGatewayRouteOutput = {
 
 M.CreateTransitGatewayRouteTableInput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteTableInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -23401,6 +24095,7 @@ M.TransitGatewayRouteTableState = {
 
 M.TransitGatewayRouteTable = {
     type = "structure",
+    id = "TransitGatewayRouteTable",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -23450,6 +24145,7 @@ M.TransitGatewayRouteTable = {
 
 M.CreateTransitGatewayRouteTableOutput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteTableOutput",
     members = {
         TransitGatewayRouteTable = setmetatable({ traits = {
             xml_name = "transitGatewayRouteTable",
@@ -23459,6 +24155,7 @@ M.CreateTransitGatewayRouteTableOutput = {
 
 M.CreateTransitGatewayRouteTableAnnouncementInput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteTableAnnouncementInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -23501,6 +24198,7 @@ M.TransitGatewayRouteTableAnnouncementState = {
 
 M.TransitGatewayRouteTableAnnouncement = {
     type = "structure",
+    id = "TransitGatewayRouteTableAnnouncement",
     members = {
         TransitGatewayRouteTableAnnouncementId = {
             type = "string",
@@ -23574,6 +24272,7 @@ M.TransitGatewayRouteTableAnnouncement = {
 
 M.CreateTransitGatewayRouteTableAnnouncementOutput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteTableAnnouncementOutput",
     members = {
         TransitGatewayRouteTableAnnouncement = setmetatable({ traits = {
             xml_name = "transitGatewayRouteTableAnnouncement",
@@ -23583,6 +24282,7 @@ M.CreateTransitGatewayRouteTableAnnouncementOutput = {
 
 M.CreateTransitGatewayVpcAttachmentRequestOptions = {
     type = "structure",
+    id = "CreateTransitGatewayVpcAttachmentRequestOptions",
     members = {
         DnsSupport = {
             type = "string",
@@ -23601,6 +24301,7 @@ M.CreateTransitGatewayVpcAttachmentRequestOptions = {
 
 M.CreateTransitGatewayVpcAttachmentInput = {
     type = "structure",
+    id = "CreateTransitGatewayVpcAttachmentInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -23634,6 +24335,7 @@ M.CreateTransitGatewayVpcAttachmentInput = {
 
 M.CreateTransitGatewayVpcAttachmentOutput = {
     type = "structure",
+    id = "CreateTransitGatewayVpcAttachmentOutput",
     members = {
         TransitGatewayVpcAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayVpcAttachment",
@@ -23647,6 +24349,7 @@ M.VerifiedAccessEndpointAttachmentType = {
 
 M.CreateVerifiedAccessEndpointPortRange = {
     type = "structure",
+    id = "CreateVerifiedAccessEndpointPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -23665,6 +24368,7 @@ M.VerifiedAccessEndpointProtocol = {
 
 M.CreateVerifiedAccessEndpointCidrOptions = {
     type = "structure",
+    id = "CreateVerifiedAccessEndpointCidrOptions",
     members = {
         Protocol = {
             type = "string",
@@ -23698,6 +24402,7 @@ M.VerifiedAccessEndpointType = {
 
 M.CreateVerifiedAccessEndpointLoadBalancerOptions = {
     type = "structure",
+    id = "CreateVerifiedAccessEndpointLoadBalancerOptions",
     members = {
         Protocol = {
             type = "string",
@@ -23727,6 +24432,7 @@ M.CreateVerifiedAccessEndpointLoadBalancerOptions = {
 
 M.CreateVerifiedAccessEndpointEniOptions = {
     type = "structure",
+    id = "CreateVerifiedAccessEndpointEniOptions",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -23749,6 +24455,7 @@ M.CreateVerifiedAccessEndpointEniOptions = {
 
 M.CreateVerifiedAccessEndpointRdsOptions = {
     type = "structure",
+    id = "CreateVerifiedAccessEndpointRdsOptions",
     members = {
         Protocol = {
             type = "string",
@@ -23780,6 +24487,7 @@ M.CreateVerifiedAccessEndpointRdsOptions = {
 
 M.VerifiedAccessSseSpecificationRequest = {
     type = "structure",
+    id = "VerifiedAccessSseSpecificationRequest",
     members = {
         CustomerManagedKeyEnabled = {
             type = "boolean",
@@ -23792,6 +24500,7 @@ M.VerifiedAccessSseSpecificationRequest = {
 
 M.CreateVerifiedAccessEndpointInput = {
     type = "structure",
+    id = "CreateVerifiedAccessEndpointInput",
     members = {
         VerifiedAccessGroupId = {
             type = "string",
@@ -23859,6 +24568,7 @@ M.CreateVerifiedAccessEndpointInput = {
 
 M.VerifiedAccessEndpointPortRange = {
     type = "structure",
+    id = "VerifiedAccessEndpointPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -23877,6 +24587,7 @@ M.VerifiedAccessEndpointPortRange = {
 
 M.VerifiedAccessEndpointCidrOptions = {
     type = "structure",
+    id = "VerifiedAccessEndpointCidrOptions",
     members = {
         Cidr = {
             type = "string",
@@ -23909,6 +24620,7 @@ M.VerifiedAccessEndpointCidrOptions = {
 
 M.VerifiedAccessEndpointLoadBalancerOptions = {
     type = "structure",
+    id = "VerifiedAccessEndpointLoadBalancerOptions",
     members = {
         Protocol = {
             type = "string",
@@ -23947,6 +24659,7 @@ M.VerifiedAccessEndpointLoadBalancerOptions = {
 
 M.VerifiedAccessEndpointEniOptions = {
     type = "structure",
+    id = "VerifiedAccessEndpointEniOptions",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -23978,6 +24691,7 @@ M.VerifiedAccessEndpointEniOptions = {
 
 M.VerifiedAccessEndpointRdsOptions = {
     type = "structure",
+    id = "VerifiedAccessEndpointRdsOptions",
     members = {
         Protocol = {
             type = "string",
@@ -24035,6 +24749,7 @@ M.VerifiedAccessEndpointStatusCode = {
 
 M.VerifiedAccessEndpointStatus = {
     type = "structure",
+    id = "VerifiedAccessEndpointStatus",
     members = {
         Code = {
             type = "string",
@@ -24053,6 +24768,7 @@ M.VerifiedAccessEndpointStatus = {
 
 M.VerifiedAccessEndpoint = {
     type = "structure",
+    id = "VerifiedAccessEndpoint",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -24169,6 +24885,7 @@ M.VerifiedAccessEndpoint = {
 
 M.CreateVerifiedAccessEndpointOutput = {
     type = "structure",
+    id = "CreateVerifiedAccessEndpointOutput",
     members = {
         VerifiedAccessEndpoint = setmetatable({ traits = {
             xml_name = "verifiedAccessEndpoint",
@@ -24178,6 +24895,7 @@ M.CreateVerifiedAccessEndpointOutput = {
 
 M.CreateVerifiedAccessGroupInput = {
     type = "structure",
+    id = "CreateVerifiedAccessGroupInput",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -24213,6 +24931,7 @@ M.CreateVerifiedAccessGroupInput = {
 
 M.VerifiedAccessGroup = {
     type = "structure",
+    id = "VerifiedAccessGroup",
     members = {
         VerifiedAccessGroupId = {
             type = "string",
@@ -24277,6 +24996,7 @@ M.VerifiedAccessGroup = {
 
 M.CreateVerifiedAccessGroupOutput = {
     type = "structure",
+    id = "CreateVerifiedAccessGroupOutput",
     members = {
         VerifiedAccessGroup = setmetatable({ traits = {
             xml_name = "verifiedAccessGroup",
@@ -24286,6 +25006,7 @@ M.CreateVerifiedAccessGroupOutput = {
 
 M.CreateVerifiedAccessInstanceInput = {
     type = "structure",
+    id = "CreateVerifiedAccessInstanceInput",
     members = {
         Description = {
             type = "string",
@@ -24317,6 +25038,7 @@ M.CreateVerifiedAccessInstanceInput = {
 
 M.CreateVerifiedAccessInstanceOutput = {
     type = "structure",
+    id = "CreateVerifiedAccessInstanceOutput",
     members = {
         VerifiedAccessInstance = setmetatable({ traits = {
             xml_name = "verifiedAccessInstance",
@@ -24326,6 +25048,7 @@ M.CreateVerifiedAccessInstanceOutput = {
 
 M.CreateVerifiedAccessTrustProviderDeviceOptions = {
     type = "structure",
+    id = "CreateVerifiedAccessTrustProviderDeviceOptions",
     members = {
         TenantId = {
             type = "string",
@@ -24338,6 +25061,7 @@ M.CreateVerifiedAccessTrustProviderDeviceOptions = {
 
 M.CreateVerifiedAccessNativeApplicationOidcOptions = {
     type = "structure",
+    id = "CreateVerifiedAccessNativeApplicationOidcOptions",
     members = {
         PublicSigningKeyEndpoint = {
             type = "string",
@@ -24368,6 +25092,7 @@ M.CreateVerifiedAccessNativeApplicationOidcOptions = {
 
 M.CreateVerifiedAccessTrustProviderOidcOptions = {
     type = "structure",
+    id = "CreateVerifiedAccessTrustProviderOidcOptions",
     members = {
         Issuer = {
             type = "string",
@@ -24395,6 +25120,7 @@ M.CreateVerifiedAccessTrustProviderOidcOptions = {
 
 M.CreateVerifiedAccessTrustProviderInput = {
     type = "structure",
+    id = "CreateVerifiedAccessTrustProviderInput",
     members = {
         TrustProviderType = {
             type = "string",
@@ -24442,6 +25168,7 @@ M.CreateVerifiedAccessTrustProviderInput = {
 
 M.CreateVerifiedAccessTrustProviderOutput = {
     type = "structure",
+    id = "CreateVerifiedAccessTrustProviderOutput",
     members = {
         VerifiedAccessTrustProvider = setmetatable({ traits = {
             xml_name = "verifiedAccessTrustProvider",
@@ -24451,6 +25178,7 @@ M.CreateVerifiedAccessTrustProviderOutput = {
 
 M.CreateVolumeInput = {
     type = "structure",
+    id = "CreateVolumeInput",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -24516,6 +25244,7 @@ M.CreateVolumeInput = {
 
 M.CreateVolumeOutput = {
     type = "structure",
+    id = "CreateVolumeOutput",
     members = {
         AvailabilityZoneId = {
             type = "string",
@@ -24652,6 +25381,7 @@ M.VpcEncryptionControlExclusionStateInput = {
 
 M.VpcEncryptionControlConfiguration = {
     type = "structure",
+    id = "VpcEncryptionControlConfiguration",
     members = {
         Mode = {
             type = "string",
@@ -24688,6 +25418,7 @@ M.VpcEncryptionControlConfiguration = {
 
 M.CreateVpcInput = {
     type = "structure",
+    id = "CreateVpcInput",
     members = {
         CidrBlock = {
             type = "string",
@@ -24744,6 +25475,7 @@ M.CreateVpcInput = {
 
 M.CreateVpcOutput = {
     type = "structure",
+    id = "CreateVpcOutput",
     members = {
         Vpc = setmetatable({ traits = {
             xml_name = "vpc",
@@ -24758,6 +25490,7 @@ M.InternetGatewayExclusionMode = {
 
 M.CreateVpcBlockPublicAccessExclusionInput = {
     type = "structure",
+    id = "CreateVpcBlockPublicAccessExclusionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -24799,6 +25532,7 @@ M.VpcBlockPublicAccessExclusionState = {
 
 M.VpcBlockPublicAccessExclusion = {
     type = "structure",
+    id = "VpcBlockPublicAccessExclusion",
     members = {
         ExclusionId = {
             type = "string",
@@ -24860,6 +25594,7 @@ M.VpcBlockPublicAccessExclusion = {
 
 M.CreateVpcBlockPublicAccessExclusionOutput = {
     type = "structure",
+    id = "CreateVpcBlockPublicAccessExclusionOutput",
     members = {
         VpcBlockPublicAccessExclusion = setmetatable({ traits = {
             xml_name = "vpcBlockPublicAccessExclusion",
@@ -24869,6 +25604,7 @@ M.CreateVpcBlockPublicAccessExclusionOutput = {
 
 M.CreateVpcEncryptionControlInput = {
     type = "structure",
+    id = "CreateVpcEncryptionControlInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -24891,6 +25627,7 @@ M.CreateVpcEncryptionControlInput = {
 
 M.CreateVpcEncryptionControlOutput = {
     type = "structure",
+    id = "CreateVpcEncryptionControlOutput",
     members = {
         VpcEncryptionControl = setmetatable({ traits = {
             xml_name = "vpcEncryptionControl",
@@ -24907,6 +25644,7 @@ M.DnsRecordIpType = {
 
 M.DnsOptionsSpecification = {
     type = "structure",
+    id = "DnsOptionsSpecification",
     members = {
         DnsRecordIpType = {
             type = "string",
@@ -24929,6 +25667,7 @@ M.DnsOptionsSpecification = {
 
 M.SubnetConfiguration = {
     type = "structure",
+    id = "SubnetConfiguration",
     members = {
         SubnetId = {
             type = "string",
@@ -24952,6 +25691,7 @@ M.VpcEndpointType = {
 
 M.CreateVpcEndpointInput = {
     type = "structure",
+    id = "CreateVpcEndpointInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -25030,6 +25770,7 @@ M.CreateVpcEndpointInput = {
 
 M.DnsEntry = {
     type = "structure",
+    id = "DnsEntry",
     members = {
         DnsName = {
             type = "string",
@@ -25048,6 +25789,7 @@ M.DnsEntry = {
 
 M.DnsOptions = {
     type = "structure",
+    id = "DnsOptions",
     members = {
         DnsRecordIpType = {
             type = "string",
@@ -25079,6 +25821,7 @@ M.DnsOptions = {
 
 M.SecurityGroupIdentifier = {
     type = "structure",
+    id = "SecurityGroupIdentifier",
     members = {
         GroupId = {
             type = "string",
@@ -25097,6 +25840,7 @@ M.SecurityGroupIdentifier = {
 
 M.SubnetIpPrefixes = {
     type = "structure",
+    id = "SubnetIpPrefixes",
     members = {
         SubnetId = {
             type = "string",
@@ -25116,6 +25860,7 @@ M.SubnetIpPrefixes = {
 
 M.LastError = {
     type = "structure",
+    id = "LastError",
     members = {
         Message = {
             type = "string",
@@ -25146,6 +25891,7 @@ M.State = {
 
 M.VpcEndpoint = {
     type = "structure",
+    id = "VpcEndpoint",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -25304,6 +26050,7 @@ M.VpcEndpoint = {
 
 M.CreateVpcEndpointOutput = {
     type = "structure",
+    id = "CreateVpcEndpointOutput",
     members = {
         VpcEndpoint = setmetatable({ traits = {
             xml_name = "vpcEndpoint",
@@ -25319,6 +26066,7 @@ M.CreateVpcEndpointOutput = {
 
 M.CreateVpcEndpointConnectionNotificationInput = {
     type = "structure",
+    id = "CreateVpcEndpointConnectionNotificationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -25359,6 +26107,7 @@ M.ConnectionNotificationType = {
 
 M.ConnectionNotification = {
     type = "structure",
+    id = "ConnectionNotification",
     members = {
         ConnectionNotificationId = {
             type = "string",
@@ -25414,6 +26163,7 @@ M.ConnectionNotification = {
 
 M.CreateVpcEndpointConnectionNotificationOutput = {
     type = "structure",
+    id = "CreateVpcEndpointConnectionNotificationOutput",
     members = {
         ConnectionNotification = setmetatable({ traits = {
             xml_name = "connectionNotification",
@@ -25429,6 +26179,7 @@ M.CreateVpcEndpointConnectionNotificationOutput = {
 
 M.CreateVpcEndpointServiceConfigurationInput = {
     type = "structure",
+    id = "CreateVpcEndpointServiceConfigurationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -25492,6 +26243,7 @@ M.DnsNameState = {
 
 M.PrivateDnsNameConfiguration = {
     type = "structure",
+    id = "PrivateDnsNameConfiguration",
     members = {
         State = {
             type = "string",
@@ -25536,6 +26288,7 @@ M.ServiceType = {
 
 M.ServiceTypeDetail = {
     type = "structure",
+    id = "ServiceTypeDetail",
     members = {
         ServiceType = {
             type = "string",
@@ -25553,6 +26306,7 @@ M.ServiceConnectivityType = {
 
 M.SupportedRegionDetail = {
     type = "structure",
+    id = "SupportedRegionDetail",
     members = {
         Region = {
             type = "string",
@@ -25571,6 +26325,7 @@ M.SupportedRegionDetail = {
 
 M.ServiceConfiguration = {
     type = "structure",
+    id = "ServiceConfiguration",
     members = {
         ServiceType = {
             type = "list",
@@ -25691,6 +26446,7 @@ M.ServiceConfiguration = {
 
 M.CreateVpcEndpointServiceConfigurationOutput = {
     type = "structure",
+    id = "CreateVpcEndpointServiceConfigurationOutput",
     members = {
         ServiceConfiguration = setmetatable({ traits = {
             xml_name = "serviceConfiguration",
@@ -25706,6 +26462,7 @@ M.CreateVpcEndpointServiceConfigurationOutput = {
 
 M.CreateVpcPeeringConnectionInput = {
     type = "structure",
+    id = "CreateVpcPeeringConnectionInput",
     members = {
         PeerRegion = {
             type = "string",
@@ -25747,6 +26504,7 @@ M.CreateVpcPeeringConnectionInput = {
 
 M.CreateVpcPeeringConnectionOutput = {
     type = "structure",
+    id = "CreateVpcPeeringConnectionOutput",
     members = {
         VpcPeeringConnection = setmetatable({ traits = {
             xml_name = "vpcPeeringConnection",
@@ -25760,6 +26518,7 @@ M.VpnConcentratorType = {
 
 M.CreateVpnConcentratorInput = {
     type = "structure",
+    id = "CreateVpnConcentratorInput",
     members = {
         Type = {
             type = "string",
@@ -25785,6 +26544,7 @@ M.CreateVpnConcentratorInput = {
 
 M.VpnConcentrator = {
     type = "structure",
+    id = "VpnConcentrator",
     members = {
         VpnConcentratorId = {
             type = "string",
@@ -25828,6 +26588,7 @@ M.VpnConcentrator = {
 
 M.CreateVpnConcentratorOutput = {
     type = "structure",
+    id = "CreateVpnConcentratorOutput",
     members = {
         VpnConcentrator = setmetatable({ traits = {
             xml_name = "vpnConcentrator",
@@ -25847,6 +26608,7 @@ M.TunnelInsideIpVersion = {
 
 M.IKEVersionsRequestListValue = {
     type = "structure",
+    id = "IKEVersionsRequestListValue",
     members = {
         Value = {
             type = "string",
@@ -25856,6 +26618,7 @@ M.IKEVersionsRequestListValue = {
 
 M.CloudWatchLogOptionsSpecification = {
     type = "structure",
+    id = "CloudWatchLogOptionsSpecification",
     members = {
         LogEnabled = {
             type = "boolean",
@@ -25880,6 +26643,7 @@ M.CloudWatchLogOptionsSpecification = {
 
 M.VpnTunnelLogOptionsSpecification = {
     type = "structure",
+    id = "VpnTunnelLogOptionsSpecification",
     members = {
         CloudWatchLogOptions = M.CloudWatchLogOptionsSpecification,
     },
@@ -25887,6 +26651,7 @@ M.VpnTunnelLogOptionsSpecification = {
 
 M.Phase1DHGroupNumbersRequestListValue = {
     type = "structure",
+    id = "Phase1DHGroupNumbersRequestListValue",
     members = {
         Value = {
             type = "integer",
@@ -25896,6 +26661,7 @@ M.Phase1DHGroupNumbersRequestListValue = {
 
 M.Phase1EncryptionAlgorithmsRequestListValue = {
     type = "structure",
+    id = "Phase1EncryptionAlgorithmsRequestListValue",
     members = {
         Value = {
             type = "string",
@@ -25905,6 +26671,7 @@ M.Phase1EncryptionAlgorithmsRequestListValue = {
 
 M.Phase1IntegrityAlgorithmsRequestListValue = {
     type = "structure",
+    id = "Phase1IntegrityAlgorithmsRequestListValue",
     members = {
         Value = {
             type = "string",
@@ -25914,6 +26681,7 @@ M.Phase1IntegrityAlgorithmsRequestListValue = {
 
 M.Phase2DHGroupNumbersRequestListValue = {
     type = "structure",
+    id = "Phase2DHGroupNumbersRequestListValue",
     members = {
         Value = {
             type = "integer",
@@ -25923,6 +26691,7 @@ M.Phase2DHGroupNumbersRequestListValue = {
 
 M.Phase2EncryptionAlgorithmsRequestListValue = {
     type = "structure",
+    id = "Phase2EncryptionAlgorithmsRequestListValue",
     members = {
         Value = {
             type = "string",
@@ -25932,6 +26701,7 @@ M.Phase2EncryptionAlgorithmsRequestListValue = {
 
 M.Phase2IntegrityAlgorithmsRequestListValue = {
     type = "structure",
+    id = "Phase2IntegrityAlgorithmsRequestListValue",
     members = {
         Value = {
             type = "string",
@@ -25941,6 +26711,7 @@ M.Phase2IntegrityAlgorithmsRequestListValue = {
 
 M.VpnTunnelOptionsSpecification = {
     type = "structure",
+    id = "VpnTunnelOptionsSpecification",
     members = {
         TunnelInsideCidr = {
             type = "string",
@@ -26033,6 +26804,7 @@ M.VpnTunnelOptionsSpecification = {
 
 M.VpnConnectionOptionsSpecification = {
     type = "structure",
+    id = "VpnConnectionOptionsSpecification",
     members = {
         EnableAcceleration = {
             type = "boolean",
@@ -26076,6 +26848,7 @@ M.VpnConnectionOptionsSpecification = {
 
 M.CreateVpnConnectionInput = {
     type = "structure",
+    id = "CreateVpnConnectionInput",
     members = {
         CustomerGatewayId = {
             type = "string",
@@ -26129,6 +26902,7 @@ M.GatewayAssociationState = {
 
 M.IKEVersionsListValue = {
     type = "structure",
+    id = "IKEVersionsListValue",
     members = {
         Value = {
             type = "string",
@@ -26141,6 +26915,7 @@ M.IKEVersionsListValue = {
 
 M.CloudWatchLogOptions = {
     type = "structure",
+    id = "CloudWatchLogOptions",
     members = {
         LogEnabled = {
             type = "boolean",
@@ -26183,6 +26958,7 @@ M.CloudWatchLogOptions = {
 
 M.VpnTunnelLogOptions = {
     type = "structure",
+    id = "VpnTunnelLogOptions",
     members = {
         CloudWatchLogOptions = setmetatable({ traits = {
             xml_name = "cloudWatchLogOptions",
@@ -26192,6 +26968,7 @@ M.VpnTunnelLogOptions = {
 
 M.Phase1DHGroupNumbersListValue = {
     type = "structure",
+    id = "Phase1DHGroupNumbersListValue",
     members = {
         Value = {
             type = "integer",
@@ -26204,6 +26981,7 @@ M.Phase1DHGroupNumbersListValue = {
 
 M.Phase1EncryptionAlgorithmsListValue = {
     type = "structure",
+    id = "Phase1EncryptionAlgorithmsListValue",
     members = {
         Value = {
             type = "string",
@@ -26216,6 +26994,7 @@ M.Phase1EncryptionAlgorithmsListValue = {
 
 M.Phase1IntegrityAlgorithmsListValue = {
     type = "structure",
+    id = "Phase1IntegrityAlgorithmsListValue",
     members = {
         Value = {
             type = "string",
@@ -26228,6 +27007,7 @@ M.Phase1IntegrityAlgorithmsListValue = {
 
 M.Phase2DHGroupNumbersListValue = {
     type = "structure",
+    id = "Phase2DHGroupNumbersListValue",
     members = {
         Value = {
             type = "integer",
@@ -26240,6 +27020,7 @@ M.Phase2DHGroupNumbersListValue = {
 
 M.Phase2EncryptionAlgorithmsListValue = {
     type = "structure",
+    id = "Phase2EncryptionAlgorithmsListValue",
     members = {
         Value = {
             type = "string",
@@ -26252,6 +27033,7 @@ M.Phase2EncryptionAlgorithmsListValue = {
 
 M.Phase2IntegrityAlgorithmsListValue = {
     type = "structure",
+    id = "Phase2IntegrityAlgorithmsListValue",
     members = {
         Value = {
             type = "string",
@@ -26264,6 +27046,7 @@ M.Phase2IntegrityAlgorithmsListValue = {
 
 M.TunnelOption = {
     type = "structure",
+    id = "TunnelOption",
     members = {
         OutsideIpAddress = {
             type = "string",
@@ -26400,6 +27183,7 @@ M.TunnelOption = {
 
 M.VpnConnectionOptions = {
     type = "structure",
+    id = "VpnConnectionOptions",
     members = {
         EnableAcceleration = {
             type = "boolean",
@@ -26484,6 +27268,7 @@ M.VpnState = {
 
 M.VpnStaticRoute = {
     type = "structure",
+    id = "VpnStaticRoute",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -26513,6 +27298,7 @@ M.TelemetryStatus = {
 
 M.VgwTelemetry = {
     type = "structure",
+    id = "VgwTelemetry",
     members = {
         AcceptedRouteCount = {
             type = "integer",
@@ -26555,6 +27341,7 @@ M.VgwTelemetry = {
 
 M.VpnConnection = {
     type = "structure",
+    id = "VpnConnection",
     members = {
         Category = {
             type = "string",
@@ -26663,6 +27450,7 @@ M.VpnConnection = {
 
 M.CreateVpnConnectionOutput = {
     type = "structure",
+    id = "CreateVpnConnectionOutput",
     members = {
         VpnConnection = setmetatable({ traits = {
             xml_name = "vpnConnection",
@@ -26672,6 +27460,7 @@ M.CreateVpnConnectionOutput = {
 
 M.CreateVpnConnectionRouteInput = {
     type = "structure",
+    id = "CreateVpnConnectionRouteInput",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -26690,10 +27479,12 @@ M.CreateVpnConnectionRouteInput = {
 
 M.CreateVpnConnectionRouteOutput = {
     type = "structure",
+    id = "CreateVpnConnectionRouteOutput",
 }
 
 M.CreateVpnGatewayInput = {
     type = "structure",
+    id = "CreateVpnGatewayInput",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -26725,6 +27516,7 @@ M.CreateVpnGatewayInput = {
 
 M.VpnGateway = {
     type = "structure",
+    id = "VpnGateway",
     members = {
         AmazonSideAsn = {
             type = "long",
@@ -26775,6 +27567,7 @@ M.VpnGateway = {
 
 M.CreateVpnGatewayOutput = {
     type = "structure",
+    id = "CreateVpnGatewayOutput",
     members = {
         VpnGateway = setmetatable({ traits = {
             xml_name = "vpnGateway",
@@ -26784,6 +27577,7 @@ M.CreateVpnGatewayOutput = {
 
 M.DeleteCapacityManagerDataExportInput = {
     type = "structure",
+    id = "DeleteCapacityManagerDataExportInput",
     members = {
         CapacityManagerDataExportId = {
             type = "string",
@@ -26799,6 +27593,7 @@ M.DeleteCapacityManagerDataExportInput = {
 
 M.DeleteCapacityManagerDataExportOutput = {
     type = "structure",
+    id = "DeleteCapacityManagerDataExportOutput",
     members = {
         CapacityManagerDataExportId = {
             type = "string",
@@ -26811,6 +27606,7 @@ M.DeleteCapacityManagerDataExportOutput = {
 
 M.DeleteCarrierGatewayInput = {
     type = "structure",
+    id = "DeleteCarrierGatewayInput",
     members = {
         CarrierGatewayId = {
             type = "string",
@@ -26826,6 +27622,7 @@ M.DeleteCarrierGatewayInput = {
 
 M.DeleteCarrierGatewayOutput = {
     type = "structure",
+    id = "DeleteCarrierGatewayOutput",
     members = {
         CarrierGateway = setmetatable({ traits = {
             xml_name = "carrierGateway",
@@ -26835,6 +27632,7 @@ M.DeleteCarrierGatewayOutput = {
 
 M.DeleteClientVpnEndpointInput = {
     type = "structure",
+    id = "DeleteClientVpnEndpointInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -26850,6 +27648,7 @@ M.DeleteClientVpnEndpointInput = {
 
 M.DeleteClientVpnEndpointOutput = {
     type = "structure",
+    id = "DeleteClientVpnEndpointOutput",
     members = {
         Status = setmetatable({ traits = {
             xml_name = "status",
@@ -26859,6 +27658,7 @@ M.DeleteClientVpnEndpointOutput = {
 
 M.DeleteClientVpnRouteInput = {
     type = "structure",
+    id = "DeleteClientVpnRouteInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -26883,6 +27683,7 @@ M.DeleteClientVpnRouteInput = {
 
 M.DeleteClientVpnRouteOutput = {
     type = "structure",
+    id = "DeleteClientVpnRouteOutput",
     members = {
         Status = setmetatable({ traits = {
             xml_name = "status",
@@ -26892,6 +27693,7 @@ M.DeleteClientVpnRouteOutput = {
 
 M.DeleteCoipCidrInput = {
     type = "structure",
+    id = "DeleteCoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -26913,6 +27715,7 @@ M.DeleteCoipCidrInput = {
 
 M.DeleteCoipCidrOutput = {
     type = "structure",
+    id = "DeleteCoipCidrOutput",
     members = {
         CoipCidr = setmetatable({ traits = {
             xml_name = "coipCidr",
@@ -26922,6 +27725,7 @@ M.DeleteCoipCidrOutput = {
 
 M.DeleteCoipPoolInput = {
     type = "structure",
+    id = "DeleteCoipPoolInput",
     members = {
         CoipPoolId = {
             type = "string",
@@ -26937,6 +27741,7 @@ M.DeleteCoipPoolInput = {
 
 M.DeleteCoipPoolOutput = {
     type = "structure",
+    id = "DeleteCoipPoolOutput",
     members = {
         CoipPool = setmetatable({ traits = {
             xml_name = "coipPool",
@@ -26946,6 +27751,7 @@ M.DeleteCoipPoolOutput = {
 
 M.DeleteCustomerGatewayInput = {
     type = "structure",
+    id = "DeleteCustomerGatewayInput",
     members = {
         CustomerGatewayId = {
             type = "string",
@@ -26964,10 +27770,12 @@ M.DeleteCustomerGatewayInput = {
 
 M.DeleteCustomerGatewayOutput = {
     type = "structure",
+    id = "DeleteCustomerGatewayOutput",
 }
 
 M.DeleteDhcpOptionsInput = {
     type = "structure",
+    id = "DeleteDhcpOptionsInput",
     members = {
         DhcpOptionsId = {
             type = "string",
@@ -26986,10 +27794,12 @@ M.DeleteDhcpOptionsInput = {
 
 M.DeleteDhcpOptionsOutput = {
     type = "structure",
+    id = "DeleteDhcpOptionsOutput",
 }
 
 M.DeleteEgressOnlyInternetGatewayInput = {
     type = "structure",
+    id = "DeleteEgressOnlyInternetGatewayInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27005,6 +27815,7 @@ M.DeleteEgressOnlyInternetGatewayInput = {
 
 M.DeleteEgressOnlyInternetGatewayOutput = {
     type = "structure",
+    id = "DeleteEgressOnlyInternetGatewayOutput",
     members = {
         ReturnCode = {
             type = "boolean",
@@ -27017,6 +27828,7 @@ M.DeleteEgressOnlyInternetGatewayOutput = {
 
 M.DeleteFleetsInput = {
     type = "structure",
+    id = "DeleteFleetsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27050,6 +27862,7 @@ M.FleetStateCode = {
 
 M.DeleteFleetSuccessItem = {
     type = "structure",
+    id = "DeleteFleetSuccessItem",
     members = {
         CurrentFleetState = {
             type = "string",
@@ -27081,6 +27894,7 @@ M.DeleteFleetErrorCode = {
 
 M.DeleteFleetError = {
     type = "structure",
+    id = "DeleteFleetError",
     members = {
         Code = {
             type = "string",
@@ -27099,6 +27913,7 @@ M.DeleteFleetError = {
 
 M.DeleteFleetErrorItem = {
     type = "structure",
+    id = "DeleteFleetErrorItem",
     members = {
         Error = setmetatable({ traits = {
             xml_name = "error",
@@ -27114,6 +27929,7 @@ M.DeleteFleetErrorItem = {
 
 M.DeleteFleetsOutput = {
     type = "structure",
+    id = "DeleteFleetsOutput",
     members = {
         SuccessfulFleetDeletions = {
             type = "list",
@@ -27134,6 +27950,7 @@ M.DeleteFleetsOutput = {
 
 M.DeleteFlowLogsInput = {
     type = "structure",
+    id = "DeleteFlowLogsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27151,6 +27968,7 @@ M.DeleteFlowLogsInput = {
 
 M.DeleteFlowLogsOutput = {
     type = "structure",
+    id = "DeleteFlowLogsOutput",
     members = {
         Unsuccessful = {
             type = "list",
@@ -27164,6 +27982,7 @@ M.DeleteFlowLogsOutput = {
 
 M.DeleteFpgaImageInput = {
     type = "structure",
+    id = "DeleteFpgaImageInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27179,6 +27998,7 @@ M.DeleteFpgaImageInput = {
 
 M.DeleteFpgaImageOutput = {
     type = "structure",
+    id = "DeleteFpgaImageOutput",
     members = {
         Return = {
             type = "boolean",
@@ -27191,6 +28011,7 @@ M.DeleteFpgaImageOutput = {
 
 M.DeleteImageUsageReportInput = {
     type = "structure",
+    id = "DeleteImageUsageReportInput",
     members = {
         ReportId = {
             type = "string",
@@ -27206,6 +28027,7 @@ M.DeleteImageUsageReportInput = {
 
 M.DeleteImageUsageReportOutput = {
     type = "structure",
+    id = "DeleteImageUsageReportOutput",
     members = {
         Return = {
             type = "boolean",
@@ -27218,6 +28040,7 @@ M.DeleteImageUsageReportOutput = {
 
 M.DeleteInstanceConnectEndpointInput = {
     type = "structure",
+    id = "DeleteInstanceConnectEndpointInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27233,6 +28056,7 @@ M.DeleteInstanceConnectEndpointInput = {
 
 M.DeleteInstanceConnectEndpointOutput = {
     type = "structure",
+    id = "DeleteInstanceConnectEndpointOutput",
     members = {
         InstanceConnectEndpoint = setmetatable({ traits = {
             xml_name = "instanceConnectEndpoint",
@@ -27242,6 +28066,7 @@ M.DeleteInstanceConnectEndpointOutput = {
 
 M.DeleteInstanceEventWindowInput = {
     type = "structure",
+    id = "DeleteInstanceEventWindowInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27261,6 +28086,7 @@ M.DeleteInstanceEventWindowInput = {
 
 M.InstanceEventWindowStateChange = {
     type = "structure",
+    id = "InstanceEventWindowStateChange",
     members = {
         InstanceEventWindowId = {
             type = "string",
@@ -27279,6 +28105,7 @@ M.InstanceEventWindowStateChange = {
 
 M.DeleteInstanceEventWindowOutput = {
     type = "structure",
+    id = "DeleteInstanceEventWindowOutput",
     members = {
         InstanceEventWindowState = setmetatable({ traits = {
             xml_name = "instanceEventWindowState",
@@ -27288,6 +28115,7 @@ M.DeleteInstanceEventWindowOutput = {
 
 M.DeleteInternetGatewayInput = {
     type = "structure",
+    id = "DeleteInternetGatewayInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27307,10 +28135,12 @@ M.DeleteInternetGatewayInput = {
 
 M.DeleteInternetGatewayOutput = {
     type = "structure",
+    id = "DeleteInternetGatewayOutput",
 }
 
 M.DeleteIpamInput = {
     type = "structure",
+    id = "DeleteIpamInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27329,6 +28159,7 @@ M.DeleteIpamInput = {
 
 M.DeleteIpamOutput = {
     type = "structure",
+    id = "DeleteIpamOutput",
     members = {
         Ipam = setmetatable({ traits = {
             xml_name = "ipam",
@@ -27338,6 +28169,7 @@ M.DeleteIpamOutput = {
 
 M.DeleteIpamExternalResourceVerificationTokenInput = {
     type = "structure",
+    id = "DeleteIpamExternalResourceVerificationTokenInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27353,6 +28185,7 @@ M.DeleteIpamExternalResourceVerificationTokenInput = {
 
 M.DeleteIpamExternalResourceVerificationTokenOutput = {
     type = "structure",
+    id = "DeleteIpamExternalResourceVerificationTokenOutput",
     members = {
         IpamExternalResourceVerificationToken = setmetatable({ traits = {
             xml_name = "ipamExternalResourceVerificationToken",
@@ -27362,6 +28195,7 @@ M.DeleteIpamExternalResourceVerificationTokenOutput = {
 
 M.DeleteIpamPolicyInput = {
     type = "structure",
+    id = "DeleteIpamPolicyInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27377,6 +28211,7 @@ M.DeleteIpamPolicyInput = {
 
 M.DeleteIpamPolicyOutput = {
     type = "structure",
+    id = "DeleteIpamPolicyOutput",
     members = {
         IpamPolicy = setmetatable({ traits = {
             xml_name = "ipamPolicy",
@@ -27386,6 +28221,7 @@ M.DeleteIpamPolicyOutput = {
 
 M.DeleteIpamPoolInput = {
     type = "structure",
+    id = "DeleteIpamPoolInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27404,6 +28240,7 @@ M.DeleteIpamPoolInput = {
 
 M.DeleteIpamPoolOutput = {
     type = "structure",
+    id = "DeleteIpamPoolOutput",
     members = {
         IpamPool = setmetatable({ traits = {
             xml_name = "ipamPool",
@@ -27413,6 +28250,7 @@ M.DeleteIpamPoolOutput = {
 
 M.DeleteIpamPrefixListResolverInput = {
     type = "structure",
+    id = "DeleteIpamPrefixListResolverInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27428,6 +28266,7 @@ M.DeleteIpamPrefixListResolverInput = {
 
 M.DeleteIpamPrefixListResolverOutput = {
     type = "structure",
+    id = "DeleteIpamPrefixListResolverOutput",
     members = {
         IpamPrefixListResolver = setmetatable({ traits = {
             xml_name = "ipamPrefixListResolver",
@@ -27437,6 +28276,7 @@ M.DeleteIpamPrefixListResolverOutput = {
 
 M.DeleteIpamPrefixListResolverTargetInput = {
     type = "structure",
+    id = "DeleteIpamPrefixListResolverTargetInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27452,6 +28292,7 @@ M.DeleteIpamPrefixListResolverTargetInput = {
 
 M.DeleteIpamPrefixListResolverTargetOutput = {
     type = "structure",
+    id = "DeleteIpamPrefixListResolverTargetOutput",
     members = {
         IpamPrefixListResolverTarget = setmetatable({ traits = {
             xml_name = "ipamPrefixListResolverTarget",
@@ -27461,6 +28302,7 @@ M.DeleteIpamPrefixListResolverTargetOutput = {
 
 M.DeleteIpamResourceDiscoveryInput = {
     type = "structure",
+    id = "DeleteIpamResourceDiscoveryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27476,6 +28318,7 @@ M.DeleteIpamResourceDiscoveryInput = {
 
 M.DeleteIpamResourceDiscoveryOutput = {
     type = "structure",
+    id = "DeleteIpamResourceDiscoveryOutput",
     members = {
         IpamResourceDiscovery = setmetatable({ traits = {
             xml_name = "ipamResourceDiscovery",
@@ -27485,6 +28328,7 @@ M.DeleteIpamResourceDiscoveryOutput = {
 
 M.DeleteIpamScopeInput = {
     type = "structure",
+    id = "DeleteIpamScopeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27500,6 +28344,7 @@ M.DeleteIpamScopeInput = {
 
 M.DeleteIpamScopeOutput = {
     type = "structure",
+    id = "DeleteIpamScopeOutput",
     members = {
         IpamScope = setmetatable({ traits = {
             xml_name = "ipamScope",
@@ -27509,6 +28354,7 @@ M.DeleteIpamScopeOutput = {
 
 M.DeleteKeyPairInput = {
     type = "structure",
+    id = "DeleteKeyPairInput",
     members = {
         KeyName = {
             type = "string",
@@ -27527,6 +28373,7 @@ M.DeleteKeyPairInput = {
 
 M.DeleteKeyPairOutput = {
     type = "structure",
+    id = "DeleteKeyPairOutput",
     members = {
         Return = {
             type = "boolean",
@@ -27545,6 +28392,7 @@ M.DeleteKeyPairOutput = {
 
 M.DeleteLaunchTemplateInput = {
     type = "structure",
+    id = "DeleteLaunchTemplateInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27560,6 +28408,7 @@ M.DeleteLaunchTemplateInput = {
 
 M.DeleteLaunchTemplateOutput = {
     type = "structure",
+    id = "DeleteLaunchTemplateOutput",
     members = {
         LaunchTemplate = setmetatable({ traits = {
             xml_name = "launchTemplate",
@@ -27569,6 +28418,7 @@ M.DeleteLaunchTemplateOutput = {
 
 M.DeleteLaunchTemplateVersionsInput = {
     type = "structure",
+    id = "DeleteLaunchTemplateVersionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27592,6 +28442,7 @@ M.DeleteLaunchTemplateVersionsInput = {
 
 M.DeleteLaunchTemplateVersionsResponseSuccessItem = {
     type = "structure",
+    id = "DeleteLaunchTemplateVersionsResponseSuccessItem",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -27625,6 +28476,7 @@ M.LaunchTemplateErrorCode = {
 
 M.ResponseError = {
     type = "structure",
+    id = "ResponseError",
     members = {
         Code = {
             type = "string",
@@ -27643,6 +28495,7 @@ M.ResponseError = {
 
 M.DeleteLaunchTemplateVersionsResponseErrorItem = {
     type = "structure",
+    id = "DeleteLaunchTemplateVersionsResponseErrorItem",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -27670,6 +28523,7 @@ M.DeleteLaunchTemplateVersionsResponseErrorItem = {
 
 M.DeleteLaunchTemplateVersionsOutput = {
     type = "structure",
+    id = "DeleteLaunchTemplateVersionsOutput",
     members = {
         SuccessfullyDeletedLaunchTemplateVersions = {
             type = "list",
@@ -27690,6 +28544,7 @@ M.DeleteLaunchTemplateVersionsOutput = {
 
 M.DeleteLocalGatewayRouteInput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteInput",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -27711,6 +28566,7 @@ M.DeleteLocalGatewayRouteInput = {
 
 M.DeleteLocalGatewayRouteOutput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteOutput",
     members = {
         Route = setmetatable({ traits = {
             xml_name = "route",
@@ -27720,6 +28576,7 @@ M.DeleteLocalGatewayRouteOutput = {
 
 M.DeleteLocalGatewayRouteTableInput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteTableInput",
     members = {
         LocalGatewayRouteTableId = {
             type = "string",
@@ -27735,6 +28592,7 @@ M.DeleteLocalGatewayRouteTableInput = {
 
 M.DeleteLocalGatewayRouteTableOutput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteTableOutput",
     members = {
         LocalGatewayRouteTable = setmetatable({ traits = {
             xml_name = "localGatewayRouteTable",
@@ -27744,6 +28602,7 @@ M.DeleteLocalGatewayRouteTableOutput = {
 
 M.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput",
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociationId = {
             type = "string",
@@ -27759,6 +28618,7 @@ M.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput = {
 
 M.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput",
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociation = setmetatable({ traits = {
             xml_name = "localGatewayRouteTableVirtualInterfaceGroupAssociation",
@@ -27768,6 +28628,7 @@ M.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput = {
 
 M.DeleteLocalGatewayRouteTableVpcAssociationInput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteTableVpcAssociationInput",
     members = {
         LocalGatewayRouteTableVpcAssociationId = {
             type = "string",
@@ -27783,6 +28644,7 @@ M.DeleteLocalGatewayRouteTableVpcAssociationInput = {
 
 M.DeleteLocalGatewayRouteTableVpcAssociationOutput = {
     type = "structure",
+    id = "DeleteLocalGatewayRouteTableVpcAssociationOutput",
     members = {
         LocalGatewayRouteTableVpcAssociation = setmetatable({ traits = {
             xml_name = "localGatewayRouteTableVpcAssociation",
@@ -27792,6 +28654,7 @@ M.DeleteLocalGatewayRouteTableVpcAssociationOutput = {
 
 M.DeleteLocalGatewayVirtualInterfaceInput = {
     type = "structure",
+    id = "DeleteLocalGatewayVirtualInterfaceInput",
     members = {
         LocalGatewayVirtualInterfaceId = {
             type = "string",
@@ -27807,6 +28670,7 @@ M.DeleteLocalGatewayVirtualInterfaceInput = {
 
 M.DeleteLocalGatewayVirtualInterfaceOutput = {
     type = "structure",
+    id = "DeleteLocalGatewayVirtualInterfaceOutput",
     members = {
         LocalGatewayVirtualInterface = setmetatable({ traits = {
             xml_name = "localGatewayVirtualInterface",
@@ -27816,6 +28680,7 @@ M.DeleteLocalGatewayVirtualInterfaceOutput = {
 
 M.DeleteLocalGatewayVirtualInterfaceGroupInput = {
     type = "structure",
+    id = "DeleteLocalGatewayVirtualInterfaceGroupInput",
     members = {
         LocalGatewayVirtualInterfaceGroupId = {
             type = "string",
@@ -27831,6 +28696,7 @@ M.DeleteLocalGatewayVirtualInterfaceGroupInput = {
 
 M.DeleteLocalGatewayVirtualInterfaceGroupOutput = {
     type = "structure",
+    id = "DeleteLocalGatewayVirtualInterfaceGroupOutput",
     members = {
         LocalGatewayVirtualInterfaceGroup = setmetatable({ traits = {
             xml_name = "localGatewayVirtualInterfaceGroup",
@@ -27840,6 +28706,7 @@ M.DeleteLocalGatewayVirtualInterfaceGroupOutput = {
 
 M.DeleteManagedPrefixListInput = {
     type = "structure",
+    id = "DeleteManagedPrefixListInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27855,6 +28722,7 @@ M.DeleteManagedPrefixListInput = {
 
 M.DeleteManagedPrefixListOutput = {
     type = "structure",
+    id = "DeleteManagedPrefixListOutput",
     members = {
         PrefixList = setmetatable({ traits = {
             xml_name = "prefixList",
@@ -27864,6 +28732,7 @@ M.DeleteManagedPrefixListOutput = {
 
 M.DeleteNatGatewayInput = {
     type = "structure",
+    id = "DeleteNatGatewayInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27880,6 +28749,7 @@ M.DeleteNatGatewayInput = {
 
 M.DeleteNatGatewayOutput = {
     type = "structure",
+    id = "DeleteNatGatewayOutput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -27892,6 +28762,7 @@ M.DeleteNatGatewayOutput = {
 
 M.DeleteNetworkAclInput = {
     type = "structure",
+    id = "DeleteNetworkAclInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27911,10 +28782,12 @@ M.DeleteNetworkAclInput = {
 
 M.DeleteNetworkAclOutput = {
     type = "structure",
+    id = "DeleteNetworkAclOutput",
 }
 
 M.DeleteNetworkAclEntryInput = {
     type = "structure",
+    id = "DeleteNetworkAclEntryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27948,10 +28821,12 @@ M.DeleteNetworkAclEntryInput = {
 
 M.DeleteNetworkAclEntryOutput = {
     type = "structure",
+    id = "DeleteNetworkAclEntryOutput",
 }
 
 M.DeleteNetworkInsightsAccessScopeInput = {
     type = "structure",
+    id = "DeleteNetworkInsightsAccessScopeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -27967,6 +28842,7 @@ M.DeleteNetworkInsightsAccessScopeInput = {
 
 M.DeleteNetworkInsightsAccessScopeOutput = {
     type = "structure",
+    id = "DeleteNetworkInsightsAccessScopeOutput",
     members = {
         NetworkInsightsAccessScopeId = {
             type = "string",
@@ -27979,6 +28855,7 @@ M.DeleteNetworkInsightsAccessScopeOutput = {
 
 M.DeleteNetworkInsightsAccessScopeAnalysisInput = {
     type = "structure",
+    id = "DeleteNetworkInsightsAccessScopeAnalysisInput",
     members = {
         NetworkInsightsAccessScopeAnalysisId = {
             type = "string",
@@ -27994,6 +28871,7 @@ M.DeleteNetworkInsightsAccessScopeAnalysisInput = {
 
 M.DeleteNetworkInsightsAccessScopeAnalysisOutput = {
     type = "structure",
+    id = "DeleteNetworkInsightsAccessScopeAnalysisOutput",
     members = {
         NetworkInsightsAccessScopeAnalysisId = {
             type = "string",
@@ -28006,6 +28884,7 @@ M.DeleteNetworkInsightsAccessScopeAnalysisOutput = {
 
 M.DeleteNetworkInsightsAnalysisInput = {
     type = "structure",
+    id = "DeleteNetworkInsightsAnalysisInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28021,6 +28900,7 @@ M.DeleteNetworkInsightsAnalysisInput = {
 
 M.DeleteNetworkInsightsAnalysisOutput = {
     type = "structure",
+    id = "DeleteNetworkInsightsAnalysisOutput",
     members = {
         NetworkInsightsAnalysisId = {
             type = "string",
@@ -28033,6 +28913,7 @@ M.DeleteNetworkInsightsAnalysisOutput = {
 
 M.DeleteNetworkInsightsPathInput = {
     type = "structure",
+    id = "DeleteNetworkInsightsPathInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28048,6 +28929,7 @@ M.DeleteNetworkInsightsPathInput = {
 
 M.DeleteNetworkInsightsPathOutput = {
     type = "structure",
+    id = "DeleteNetworkInsightsPathOutput",
     members = {
         NetworkInsightsPathId = {
             type = "string",
@@ -28060,6 +28942,7 @@ M.DeleteNetworkInsightsPathOutput = {
 
 M.DeleteNetworkInterfaceInput = {
     type = "structure",
+    id = "DeleteNetworkInterfaceInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28079,10 +28962,12 @@ M.DeleteNetworkInterfaceInput = {
 
 M.DeleteNetworkInterfaceOutput = {
     type = "structure",
+    id = "DeleteNetworkInterfaceOutput",
 }
 
 M.DeleteNetworkInterfacePermissionInput = {
     type = "structure",
+    id = "DeleteNetworkInterfacePermissionInput",
     members = {
         NetworkInterfacePermissionId = {
             type = "string",
@@ -28101,6 +28986,7 @@ M.DeleteNetworkInterfacePermissionInput = {
 
 M.DeleteNetworkInterfacePermissionOutput = {
     type = "structure",
+    id = "DeleteNetworkInterfacePermissionOutput",
     members = {
         Return = {
             type = "boolean",
@@ -28113,6 +28999,7 @@ M.DeleteNetworkInterfacePermissionOutput = {
 
 M.DeletePlacementGroupInput = {
     type = "structure",
+    id = "DeletePlacementGroupInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28132,10 +29019,12 @@ M.DeletePlacementGroupInput = {
 
 M.DeletePlacementGroupOutput = {
     type = "structure",
+    id = "DeletePlacementGroupOutput",
 }
 
 M.DeletePublicIpv4PoolInput = {
     type = "structure",
+    id = "DeletePublicIpv4PoolInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28154,6 +29043,7 @@ M.DeletePublicIpv4PoolInput = {
 
 M.DeletePublicIpv4PoolOutput = {
     type = "structure",
+    id = "DeletePublicIpv4PoolOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -28166,6 +29056,7 @@ M.DeletePublicIpv4PoolOutput = {
 
 M.DeleteQueuedReservedInstancesInput = {
     type = "structure",
+    id = "DeleteQueuedReservedInstancesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28189,6 +29080,7 @@ M.DeleteQueuedReservedInstancesErrorCode = {
 
 M.DeleteQueuedReservedInstancesError = {
     type = "structure",
+    id = "DeleteQueuedReservedInstancesError",
     members = {
         Code = {
             type = "string",
@@ -28207,6 +29099,7 @@ M.DeleteQueuedReservedInstancesError = {
 
 M.FailedQueuedPurchaseDeletion = {
     type = "structure",
+    id = "FailedQueuedPurchaseDeletion",
     members = {
         Error = setmetatable({ traits = {
             xml_name = "error",
@@ -28222,6 +29115,7 @@ M.FailedQueuedPurchaseDeletion = {
 
 M.SuccessfulQueuedPurchaseDeletion = {
     type = "structure",
+    id = "SuccessfulQueuedPurchaseDeletion",
     members = {
         ReservedInstancesId = {
             type = "string",
@@ -28234,6 +29128,7 @@ M.SuccessfulQueuedPurchaseDeletion = {
 
 M.DeleteQueuedReservedInstancesOutput = {
     type = "structure",
+    id = "DeleteQueuedReservedInstancesOutput",
     members = {
         SuccessfulQueuedPurchaseDeletions = {
             type = "list",
@@ -28254,6 +29149,7 @@ M.DeleteQueuedReservedInstancesOutput = {
 
 M.DeleteRouteInput = {
     type = "structure",
+    id = "DeleteRouteInput",
     members = {
         DestinationPrefixListId = {
             type = "string",
@@ -28288,10 +29184,12 @@ M.DeleteRouteInput = {
 
 M.DeleteRouteOutput = {
     type = "structure",
+    id = "DeleteRouteOutput",
 }
 
 M.DeleteRouteServerInput = {
     type = "structure",
+    id = "DeleteRouteServerInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -28307,6 +29205,7 @@ M.DeleteRouteServerInput = {
 
 M.DeleteRouteServerOutput = {
     type = "structure",
+    id = "DeleteRouteServerOutput",
     members = {
         RouteServer = setmetatable({ traits = {
             xml_name = "routeServer",
@@ -28316,6 +29215,7 @@ M.DeleteRouteServerOutput = {
 
 M.DeleteRouteServerEndpointInput = {
     type = "structure",
+    id = "DeleteRouteServerEndpointInput",
     members = {
         RouteServerEndpointId = {
             type = "string",
@@ -28331,6 +29231,7 @@ M.DeleteRouteServerEndpointInput = {
 
 M.DeleteRouteServerEndpointOutput = {
     type = "structure",
+    id = "DeleteRouteServerEndpointOutput",
     members = {
         RouteServerEndpoint = setmetatable({ traits = {
             xml_name = "routeServerEndpoint",
@@ -28340,6 +29241,7 @@ M.DeleteRouteServerEndpointOutput = {
 
 M.DeleteRouteServerPeerInput = {
     type = "structure",
+    id = "DeleteRouteServerPeerInput",
     members = {
         RouteServerPeerId = {
             type = "string",
@@ -28355,6 +29257,7 @@ M.DeleteRouteServerPeerInput = {
 
 M.DeleteRouteServerPeerOutput = {
     type = "structure",
+    id = "DeleteRouteServerPeerOutput",
     members = {
         RouteServerPeer = setmetatable({ traits = {
             xml_name = "routeServerPeer",
@@ -28364,6 +29267,7 @@ M.DeleteRouteServerPeerOutput = {
 
 M.DeleteRouteTableInput = {
     type = "structure",
+    id = "DeleteRouteTableInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28383,10 +29287,12 @@ M.DeleteRouteTableInput = {
 
 M.DeleteRouteTableOutput = {
     type = "structure",
+    id = "DeleteRouteTableOutput",
 }
 
 M.DeleteSecondaryNetworkInput = {
     type = "structure",
+    id = "DeleteSecondaryNetworkInput",
     members = {
         ClientToken = {
             type = "string",
@@ -28408,6 +29314,7 @@ M.DeleteSecondaryNetworkInput = {
 
 M.DeleteSecondaryNetworkOutput = {
     type = "structure",
+    id = "DeleteSecondaryNetworkOutput",
     members = {
         SecondaryNetwork = setmetatable({ traits = {
             xml_name = "secondaryNetwork",
@@ -28423,6 +29330,7 @@ M.DeleteSecondaryNetworkOutput = {
 
 M.DeleteSecondarySubnetInput = {
     type = "structure",
+    id = "DeleteSecondarySubnetInput",
     members = {
         ClientToken = {
             type = "string",
@@ -28444,6 +29352,7 @@ M.DeleteSecondarySubnetInput = {
 
 M.DeleteSecondarySubnetOutput = {
     type = "structure",
+    id = "DeleteSecondarySubnetOutput",
     members = {
         SecondarySubnet = setmetatable({ traits = {
             xml_name = "secondarySubnet",
@@ -28459,6 +29368,7 @@ M.DeleteSecondarySubnetOutput = {
 
 M.DeleteSecurityGroupInput = {
     type = "structure",
+    id = "DeleteSecurityGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -28477,6 +29387,7 @@ M.DeleteSecurityGroupInput = {
 
 M.DeleteSecurityGroupOutput = {
     type = "structure",
+    id = "DeleteSecurityGroupOutput",
     members = {
         Return = {
             type = "boolean",
@@ -28495,6 +29406,7 @@ M.DeleteSecurityGroupOutput = {
 
 M.DeleteSnapshotInput = {
     type = "structure",
+    id = "DeleteSnapshotInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -28513,10 +29425,12 @@ M.DeleteSnapshotInput = {
 
 M.DeleteSnapshotOutput = {
     type = "structure",
+    id = "DeleteSnapshotOutput",
 }
 
 M.DeleteSpotDatafeedSubscriptionInput = {
     type = "structure",
+    id = "DeleteSpotDatafeedSubscriptionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28529,10 +29443,12 @@ M.DeleteSpotDatafeedSubscriptionInput = {
 
 M.DeleteSpotDatafeedSubscriptionOutput = {
     type = "structure",
+    id = "DeleteSpotDatafeedSubscriptionOutput",
 }
 
 M.DeleteSubnetInput = {
     type = "structure",
+    id = "DeleteSubnetInput",
     members = {
         SubnetId = {
             type = "string",
@@ -28551,10 +29467,12 @@ M.DeleteSubnetInput = {
 
 M.DeleteSubnetOutput = {
     type = "structure",
+    id = "DeleteSubnetOutput",
 }
 
 M.DeleteSubnetCidrReservationInput = {
     type = "structure",
+    id = "DeleteSubnetCidrReservationInput",
     members = {
         SubnetCidrReservationId = {
             type = "string",
@@ -28570,6 +29488,7 @@ M.DeleteSubnetCidrReservationInput = {
 
 M.DeleteSubnetCidrReservationOutput = {
     type = "structure",
+    id = "DeleteSubnetCidrReservationOutput",
     members = {
         DeletedSubnetCidrReservation = setmetatable({ traits = {
             xml_name = "deletedSubnetCidrReservation",
@@ -28579,6 +29498,7 @@ M.DeleteSubnetCidrReservationOutput = {
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -28606,10 +29526,12 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.DeleteTrafficMirrorFilterInput = {
     type = "structure",
+    id = "DeleteTrafficMirrorFilterInput",
     members = {
         TrafficMirrorFilterId = {
             type = "string",
@@ -28625,6 +29547,7 @@ M.DeleteTrafficMirrorFilterInput = {
 
 M.DeleteTrafficMirrorFilterOutput = {
     type = "structure",
+    id = "DeleteTrafficMirrorFilterOutput",
     members = {
         TrafficMirrorFilterId = {
             type = "string",
@@ -28637,6 +29560,7 @@ M.DeleteTrafficMirrorFilterOutput = {
 
 M.DeleteTrafficMirrorFilterRuleInput = {
     type = "structure",
+    id = "DeleteTrafficMirrorFilterRuleInput",
     members = {
         TrafficMirrorFilterRuleId = {
             type = "string",
@@ -28652,6 +29576,7 @@ M.DeleteTrafficMirrorFilterRuleInput = {
 
 M.DeleteTrafficMirrorFilterRuleOutput = {
     type = "structure",
+    id = "DeleteTrafficMirrorFilterRuleOutput",
     members = {
         TrafficMirrorFilterRuleId = {
             type = "string",
@@ -28664,6 +29589,7 @@ M.DeleteTrafficMirrorFilterRuleOutput = {
 
 M.DeleteTrafficMirrorSessionInput = {
     type = "structure",
+    id = "DeleteTrafficMirrorSessionInput",
     members = {
         TrafficMirrorSessionId = {
             type = "string",
@@ -28679,6 +29605,7 @@ M.DeleteTrafficMirrorSessionInput = {
 
 M.DeleteTrafficMirrorSessionOutput = {
     type = "structure",
+    id = "DeleteTrafficMirrorSessionOutput",
     members = {
         TrafficMirrorSessionId = {
             type = "string",
@@ -28691,6 +29618,7 @@ M.DeleteTrafficMirrorSessionOutput = {
 
 M.DeleteTrafficMirrorTargetInput = {
     type = "structure",
+    id = "DeleteTrafficMirrorTargetInput",
     members = {
         TrafficMirrorTargetId = {
             type = "string",
@@ -28706,6 +29634,7 @@ M.DeleteTrafficMirrorTargetInput = {
 
 M.DeleteTrafficMirrorTargetOutput = {
     type = "structure",
+    id = "DeleteTrafficMirrorTargetOutput",
     members = {
         TrafficMirrorTargetId = {
             type = "string",
@@ -28718,6 +29647,7 @@ M.DeleteTrafficMirrorTargetOutput = {
 
 M.DeleteTransitGatewayInput = {
     type = "structure",
+    id = "DeleteTransitGatewayInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -28733,6 +29663,7 @@ M.DeleteTransitGatewayInput = {
 
 M.DeleteTransitGatewayOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayOutput",
     members = {
         TransitGateway = setmetatable({ traits = {
             xml_name = "transitGateway",
@@ -28742,6 +29673,7 @@ M.DeleteTransitGatewayOutput = {
 
 M.DeleteTransitGatewayClientVpnAttachmentInput = {
     type = "structure",
+    id = "DeleteTransitGatewayClientVpnAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -28757,6 +29689,7 @@ M.DeleteTransitGatewayClientVpnAttachmentInput = {
 
 M.DeleteTransitGatewayClientVpnAttachmentOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayClientVpnAttachmentOutput",
     members = {
         TransitGatewayClientVpnAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayClientVpnAttachment",
@@ -28766,6 +29699,7 @@ M.DeleteTransitGatewayClientVpnAttachmentOutput = {
 
 M.DeleteTransitGatewayConnectInput = {
     type = "structure",
+    id = "DeleteTransitGatewayConnectInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -28781,6 +29715,7 @@ M.DeleteTransitGatewayConnectInput = {
 
 M.DeleteTransitGatewayConnectOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayConnectOutput",
     members = {
         TransitGatewayConnect = setmetatable({ traits = {
             xml_name = "transitGatewayConnect",
@@ -28790,6 +29725,7 @@ M.DeleteTransitGatewayConnectOutput = {
 
 M.DeleteTransitGatewayConnectPeerInput = {
     type = "structure",
+    id = "DeleteTransitGatewayConnectPeerInput",
     members = {
         TransitGatewayConnectPeerId = {
             type = "string",
@@ -28805,6 +29741,7 @@ M.DeleteTransitGatewayConnectPeerInput = {
 
 M.DeleteTransitGatewayConnectPeerOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayConnectPeerOutput",
     members = {
         TransitGatewayConnectPeer = setmetatable({ traits = {
             xml_name = "transitGatewayConnectPeer",
@@ -28814,6 +29751,7 @@ M.DeleteTransitGatewayConnectPeerOutput = {
 
 M.DeleteTransitGatewayMeteringPolicyInput = {
     type = "structure",
+    id = "DeleteTransitGatewayMeteringPolicyInput",
     members = {
         TransitGatewayMeteringPolicyId = {
             type = "string",
@@ -28829,6 +29767,7 @@ M.DeleteTransitGatewayMeteringPolicyInput = {
 
 M.DeleteTransitGatewayMeteringPolicyOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayMeteringPolicyOutput",
     members = {
         TransitGatewayMeteringPolicy = setmetatable({ traits = {
             xml_name = "transitGatewayMeteringPolicy",
@@ -28838,6 +29777,7 @@ M.DeleteTransitGatewayMeteringPolicyOutput = {
 
 M.DeleteTransitGatewayMeteringPolicyEntryInput = {
     type = "structure",
+    id = "DeleteTransitGatewayMeteringPolicyEntryInput",
     members = {
         TransitGatewayMeteringPolicyId = {
             type = "string",
@@ -28859,6 +29799,7 @@ M.DeleteTransitGatewayMeteringPolicyEntryInput = {
 
 M.DeleteTransitGatewayMeteringPolicyEntryOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayMeteringPolicyEntryOutput",
     members = {
         TransitGatewayMeteringPolicyEntry = setmetatable({ traits = {
             xml_name = "transitGatewayMeteringPolicyEntry",
@@ -28868,6 +29809,7 @@ M.DeleteTransitGatewayMeteringPolicyEntryOutput = {
 
 M.DeleteTransitGatewayMulticastDomainInput = {
     type = "structure",
+    id = "DeleteTransitGatewayMulticastDomainInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -28883,6 +29825,7 @@ M.DeleteTransitGatewayMulticastDomainInput = {
 
 M.DeleteTransitGatewayMulticastDomainOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayMulticastDomainOutput",
     members = {
         TransitGatewayMulticastDomain = setmetatable({ traits = {
             xml_name = "transitGatewayMulticastDomain",
@@ -28892,6 +29835,7 @@ M.DeleteTransitGatewayMulticastDomainOutput = {
 
 M.DeleteTransitGatewayPeeringAttachmentInput = {
     type = "structure",
+    id = "DeleteTransitGatewayPeeringAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -28907,6 +29851,7 @@ M.DeleteTransitGatewayPeeringAttachmentInput = {
 
 M.DeleteTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayPeeringAttachmentOutput",
     members = {
         TransitGatewayPeeringAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayPeeringAttachment",
@@ -28916,6 +29861,7 @@ M.DeleteTransitGatewayPeeringAttachmentOutput = {
 
 M.DeleteTransitGatewayPolicyTableInput = {
     type = "structure",
+    id = "DeleteTransitGatewayPolicyTableInput",
     members = {
         TransitGatewayPolicyTableId = {
             type = "string",
@@ -28931,6 +29877,7 @@ M.DeleteTransitGatewayPolicyTableInput = {
 
 M.DeleteTransitGatewayPolicyTableOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayPolicyTableOutput",
     members = {
         TransitGatewayPolicyTable = setmetatable({ traits = {
             xml_name = "transitGatewayPolicyTable",
@@ -28940,6 +29887,7 @@ M.DeleteTransitGatewayPolicyTableOutput = {
 
 M.DeleteTransitGatewayPrefixListReferenceInput = {
     type = "structure",
+    id = "DeleteTransitGatewayPrefixListReferenceInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -28961,6 +29909,7 @@ M.DeleteTransitGatewayPrefixListReferenceInput = {
 
 M.DeleteTransitGatewayPrefixListReferenceOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayPrefixListReferenceOutput",
     members = {
         TransitGatewayPrefixListReference = setmetatable({ traits = {
             xml_name = "transitGatewayPrefixListReference",
@@ -28970,6 +29919,7 @@ M.DeleteTransitGatewayPrefixListReferenceOutput = {
 
 M.DeleteTransitGatewayRouteInput = {
     type = "structure",
+    id = "DeleteTransitGatewayRouteInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -28991,6 +29941,7 @@ M.DeleteTransitGatewayRouteInput = {
 
 M.DeleteTransitGatewayRouteOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayRouteOutput",
     members = {
         Route = setmetatable({ traits = {
             xml_name = "route",
@@ -29000,6 +29951,7 @@ M.DeleteTransitGatewayRouteOutput = {
 
 M.DeleteTransitGatewayRouteTableInput = {
     type = "structure",
+    id = "DeleteTransitGatewayRouteTableInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -29015,6 +29967,7 @@ M.DeleteTransitGatewayRouteTableInput = {
 
 M.DeleteTransitGatewayRouteTableOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayRouteTableOutput",
     members = {
         TransitGatewayRouteTable = setmetatable({ traits = {
             xml_name = "transitGatewayRouteTable",
@@ -29024,6 +29977,7 @@ M.DeleteTransitGatewayRouteTableOutput = {
 
 M.DeleteTransitGatewayRouteTableAnnouncementInput = {
     type = "structure",
+    id = "DeleteTransitGatewayRouteTableAnnouncementInput",
     members = {
         TransitGatewayRouteTableAnnouncementId = {
             type = "string",
@@ -29039,6 +29993,7 @@ M.DeleteTransitGatewayRouteTableAnnouncementInput = {
 
 M.DeleteTransitGatewayRouteTableAnnouncementOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayRouteTableAnnouncementOutput",
     members = {
         TransitGatewayRouteTableAnnouncement = setmetatable({ traits = {
             xml_name = "transitGatewayRouteTableAnnouncement",
@@ -29048,6 +30003,7 @@ M.DeleteTransitGatewayRouteTableAnnouncementOutput = {
 
 M.DeleteTransitGatewayVpcAttachmentInput = {
     type = "structure",
+    id = "DeleteTransitGatewayVpcAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -29063,6 +30019,7 @@ M.DeleteTransitGatewayVpcAttachmentInput = {
 
 M.DeleteTransitGatewayVpcAttachmentOutput = {
     type = "structure",
+    id = "DeleteTransitGatewayVpcAttachmentOutput",
     members = {
         TransitGatewayVpcAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayVpcAttachment",
@@ -29072,6 +30029,7 @@ M.DeleteTransitGatewayVpcAttachmentOutput = {
 
 M.DeleteVerifiedAccessEndpointInput = {
     type = "structure",
+    id = "DeleteVerifiedAccessEndpointInput",
     members = {
         VerifiedAccessEndpointId = {
             type = "string",
@@ -29093,6 +30051,7 @@ M.DeleteVerifiedAccessEndpointInput = {
 
 M.DeleteVerifiedAccessEndpointOutput = {
     type = "structure",
+    id = "DeleteVerifiedAccessEndpointOutput",
     members = {
         VerifiedAccessEndpoint = setmetatable({ traits = {
             xml_name = "verifiedAccessEndpoint",
@@ -29102,6 +30061,7 @@ M.DeleteVerifiedAccessEndpointOutput = {
 
 M.DeleteVerifiedAccessGroupInput = {
     type = "structure",
+    id = "DeleteVerifiedAccessGroupInput",
     members = {
         VerifiedAccessGroupId = {
             type = "string",
@@ -29123,6 +30083,7 @@ M.DeleteVerifiedAccessGroupInput = {
 
 M.DeleteVerifiedAccessGroupOutput = {
     type = "structure",
+    id = "DeleteVerifiedAccessGroupOutput",
     members = {
         VerifiedAccessGroup = setmetatable({ traits = {
             xml_name = "verifiedAccessGroup",
@@ -29132,6 +30093,7 @@ M.DeleteVerifiedAccessGroupOutput = {
 
 M.DeleteVerifiedAccessInstanceInput = {
     type = "structure",
+    id = "DeleteVerifiedAccessInstanceInput",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -29153,6 +30115,7 @@ M.DeleteVerifiedAccessInstanceInput = {
 
 M.DeleteVerifiedAccessInstanceOutput = {
     type = "structure",
+    id = "DeleteVerifiedAccessInstanceOutput",
     members = {
         VerifiedAccessInstance = setmetatable({ traits = {
             xml_name = "verifiedAccessInstance",
@@ -29162,6 +30125,7 @@ M.DeleteVerifiedAccessInstanceOutput = {
 
 M.DeleteVerifiedAccessTrustProviderInput = {
     type = "structure",
+    id = "DeleteVerifiedAccessTrustProviderInput",
     members = {
         VerifiedAccessTrustProviderId = {
             type = "string",
@@ -29183,6 +30147,7 @@ M.DeleteVerifiedAccessTrustProviderInput = {
 
 M.DeleteVerifiedAccessTrustProviderOutput = {
     type = "structure",
+    id = "DeleteVerifiedAccessTrustProviderOutput",
     members = {
         VerifiedAccessTrustProvider = setmetatable({ traits = {
             xml_name = "verifiedAccessTrustProvider",
@@ -29192,6 +30157,7 @@ M.DeleteVerifiedAccessTrustProviderOutput = {
 
 M.DeleteVolumeInput = {
     type = "structure",
+    id = "DeleteVolumeInput",
     members = {
         VolumeId = {
             type = "string",
@@ -29210,10 +30176,12 @@ M.DeleteVolumeInput = {
 
 M.DeleteVolumeOutput = {
     type = "structure",
+    id = "DeleteVolumeOutput",
 }
 
 M.DeleteVpcInput = {
     type = "structure",
+    id = "DeleteVpcInput",
     members = {
         VpcId = {
             type = "string",
@@ -29232,10 +30200,12 @@ M.DeleteVpcInput = {
 
 M.DeleteVpcOutput = {
     type = "structure",
+    id = "DeleteVpcOutput",
 }
 
 M.DeleteVpcBlockPublicAccessExclusionInput = {
     type = "structure",
+    id = "DeleteVpcBlockPublicAccessExclusionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29251,6 +30221,7 @@ M.DeleteVpcBlockPublicAccessExclusionInput = {
 
 M.DeleteVpcBlockPublicAccessExclusionOutput = {
     type = "structure",
+    id = "DeleteVpcBlockPublicAccessExclusionOutput",
     members = {
         VpcBlockPublicAccessExclusion = setmetatable({ traits = {
             xml_name = "vpcBlockPublicAccessExclusion",
@@ -29260,6 +30231,7 @@ M.DeleteVpcBlockPublicAccessExclusionOutput = {
 
 M.DeleteVpcEncryptionControlInput = {
     type = "structure",
+    id = "DeleteVpcEncryptionControlInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29275,6 +30247,7 @@ M.DeleteVpcEncryptionControlInput = {
 
 M.DeleteVpcEncryptionControlOutput = {
     type = "structure",
+    id = "DeleteVpcEncryptionControlOutput",
     members = {
         VpcEncryptionControl = setmetatable({ traits = {
             xml_name = "vpcEncryptionControl",
@@ -29284,6 +30257,7 @@ M.DeleteVpcEncryptionControlOutput = {
 
 M.DeleteVpcEndpointConnectionNotificationsInput = {
     type = "structure",
+    id = "DeleteVpcEndpointConnectionNotificationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29301,6 +30275,7 @@ M.DeleteVpcEndpointConnectionNotificationsInput = {
 
 M.DeleteVpcEndpointConnectionNotificationsOutput = {
     type = "structure",
+    id = "DeleteVpcEndpointConnectionNotificationsOutput",
     members = {
         Unsuccessful = {
             type = "list",
@@ -29314,6 +30289,7 @@ M.DeleteVpcEndpointConnectionNotificationsOutput = {
 
 M.DeleteVpcEndpointsInput = {
     type = "structure",
+    id = "DeleteVpcEndpointsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29331,6 +30307,7 @@ M.DeleteVpcEndpointsInput = {
 
 M.DeleteVpcEndpointsOutput = {
     type = "structure",
+    id = "DeleteVpcEndpointsOutput",
     members = {
         Unsuccessful = {
             type = "list",
@@ -29344,6 +30321,7 @@ M.DeleteVpcEndpointsOutput = {
 
 M.DeleteVpcEndpointServiceConfigurationsInput = {
     type = "structure",
+    id = "DeleteVpcEndpointServiceConfigurationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29361,6 +30339,7 @@ M.DeleteVpcEndpointServiceConfigurationsInput = {
 
 M.DeleteVpcEndpointServiceConfigurationsOutput = {
     type = "structure",
+    id = "DeleteVpcEndpointServiceConfigurationsOutput",
     members = {
         Unsuccessful = {
             type = "list",
@@ -29374,6 +30353,7 @@ M.DeleteVpcEndpointServiceConfigurationsOutput = {
 
 M.DeleteVpcPeeringConnectionInput = {
     type = "structure",
+    id = "DeleteVpcPeeringConnectionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29393,6 +30373,7 @@ M.DeleteVpcPeeringConnectionInput = {
 
 M.DeleteVpcPeeringConnectionOutput = {
     type = "structure",
+    id = "DeleteVpcPeeringConnectionOutput",
     members = {
         Return = {
             type = "boolean",
@@ -29405,6 +30386,7 @@ M.DeleteVpcPeeringConnectionOutput = {
 
 M.DeleteVpnConcentratorInput = {
     type = "structure",
+    id = "DeleteVpnConcentratorInput",
     members = {
         VpnConcentratorId = {
             type = "string",
@@ -29420,6 +30402,7 @@ M.DeleteVpnConcentratorInput = {
 
 M.DeleteVpnConcentratorOutput = {
     type = "structure",
+    id = "DeleteVpnConcentratorOutput",
     members = {
         Return = {
             type = "boolean",
@@ -29432,6 +30415,7 @@ M.DeleteVpnConcentratorOutput = {
 
 M.DeleteVpnConnectionInput = {
     type = "structure",
+    id = "DeleteVpnConnectionInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -29450,10 +30434,12 @@ M.DeleteVpnConnectionInput = {
 
 M.DeleteVpnConnectionOutput = {
     type = "structure",
+    id = "DeleteVpnConnectionOutput",
 }
 
 M.DeleteVpnConnectionRouteInput = {
     type = "structure",
+    id = "DeleteVpnConnectionRouteInput",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -29472,10 +30458,12 @@ M.DeleteVpnConnectionRouteInput = {
 
 M.DeleteVpnConnectionRouteOutput = {
     type = "structure",
+    id = "DeleteVpnConnectionRouteOutput",
 }
 
 M.DeleteVpnGatewayInput = {
     type = "structure",
+    id = "DeleteVpnGatewayInput",
     members = {
         VpnGatewayId = {
             type = "string",
@@ -29494,10 +30482,12 @@ M.DeleteVpnGatewayInput = {
 
 M.DeleteVpnGatewayOutput = {
     type = "structure",
+    id = "DeleteVpnGatewayOutput",
 }
 
 M.DeprovisionByoipCidrInput = {
     type = "structure",
+    id = "DeprovisionByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -29513,6 +30503,7 @@ M.DeprovisionByoipCidrInput = {
 
 M.DeprovisionByoipCidrOutput = {
     type = "structure",
+    id = "DeprovisionByoipCidrOutput",
     members = {
         ByoipCidr = setmetatable({ traits = {
             xml_name = "byoipCidr",
@@ -29522,6 +30513,7 @@ M.DeprovisionByoipCidrOutput = {
 
 M.DeprovisionIpamByoasnInput = {
     type = "structure",
+    id = "DeprovisionIpamByoasnInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29552,6 +30544,7 @@ M.AsnState = {
 
 M.Byoasn = {
     type = "structure",
+    id = "Byoasn",
     members = {
         Asn = {
             type = "string",
@@ -29582,6 +30575,7 @@ M.Byoasn = {
 
 M.DeprovisionIpamByoasnOutput = {
     type = "structure",
+    id = "DeprovisionIpamByoasnOutput",
     members = {
         Byoasn = setmetatable({ traits = {
             xml_name = "byoasn",
@@ -29591,6 +30585,7 @@ M.DeprovisionIpamByoasnOutput = {
 
 M.DeprovisionIpamPoolCidrInput = {
     type = "structure",
+    id = "DeprovisionIpamPoolCidrInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29614,6 +30609,7 @@ M.IpamPoolCidrFailureCode = {
 
 M.IpamPoolCidrFailureReason = {
     type = "structure",
+    id = "IpamPoolCidrFailureReason",
     members = {
         Code = {
             type = "string",
@@ -29643,6 +30639,7 @@ M.IpamPoolCidrState = {
 
 M.IpamPoolCidr = {
     type = "structure",
+    id = "IpamPoolCidr",
     members = {
         Cidr = {
             type = "string",
@@ -29676,6 +30673,7 @@ M.IpamPoolCidr = {
 
 M.DeprovisionIpamPoolCidrOutput = {
     type = "structure",
+    id = "DeprovisionIpamPoolCidrOutput",
     members = {
         IpamPoolCidr = setmetatable({ traits = {
             xml_name = "ipamPoolCidr",
@@ -29685,6 +30683,7 @@ M.DeprovisionIpamPoolCidrOutput = {
 
 M.DeprovisionPublicIpv4PoolCidrInput = {
     type = "structure",
+    id = "DeprovisionPublicIpv4PoolCidrInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29706,6 +30705,7 @@ M.DeprovisionPublicIpv4PoolCidrInput = {
 
 M.DeprovisionPublicIpv4PoolCidrOutput = {
     type = "structure",
+    id = "DeprovisionPublicIpv4PoolCidrOutput",
     members = {
         PoolId = {
             type = "string",
@@ -29725,6 +30725,7 @@ M.DeprovisionPublicIpv4PoolCidrOutput = {
 
 M.DeregisterImageInput = {
     type = "structure",
+    id = "DeregisterImageInput",
     members = {
         ImageId = {
             type = "string",
@@ -29754,6 +30755,7 @@ M.SnapshotReturnCodes = {
 
 M.DeleteSnapshotReturnCode = {
     type = "structure",
+    id = "DeleteSnapshotReturnCode",
     members = {
         SnapshotId = {
             type = "string",
@@ -29772,6 +30774,7 @@ M.DeleteSnapshotReturnCode = {
 
 M.DeregisterImageOutput = {
     type = "structure",
+    id = "DeregisterImageOutput",
     members = {
         Return = {
             type = "boolean",
@@ -29791,6 +30794,7 @@ M.DeregisterImageOutput = {
 
 M.DeregisterInstanceTagAttributeRequest = {
     type = "structure",
+    id = "DeregisterInstanceTagAttributeRequest",
     members = {
         IncludeAllTagsOfInstance = {
             type = "boolean",
@@ -29807,6 +30811,7 @@ M.DeregisterInstanceTagAttributeRequest = {
 
 M.DeregisterInstanceEventNotificationAttributesInput = {
     type = "structure",
+    id = "DeregisterInstanceEventNotificationAttributesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29819,6 +30824,7 @@ M.DeregisterInstanceEventNotificationAttributesInput = {
 
 M.InstanceTagNotificationAttribute = {
     type = "structure",
+    id = "InstanceTagNotificationAttribute",
     members = {
         InstanceTagKeys = {
             type = "list",
@@ -29838,6 +30844,7 @@ M.InstanceTagNotificationAttribute = {
 
 M.DeregisterInstanceEventNotificationAttributesOutput = {
     type = "structure",
+    id = "DeregisterInstanceEventNotificationAttributesOutput",
     members = {
         InstanceTagAttribute = setmetatable({ traits = {
             xml_name = "instanceTagAttribute",
@@ -29847,6 +30854,7 @@ M.DeregisterInstanceEventNotificationAttributesOutput = {
 
 M.DeregisterTransitGatewayMulticastGroupMembersInput = {
     type = "structure",
+    id = "DeregisterTransitGatewayMulticastGroupMembersInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -29866,6 +30874,7 @@ M.DeregisterTransitGatewayMulticastGroupMembersInput = {
 
 M.TransitGatewayMulticastDeregisteredGroupMembers = {
     type = "structure",
+    id = "TransitGatewayMulticastDeregisteredGroupMembers",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -29891,6 +30900,7 @@ M.TransitGatewayMulticastDeregisteredGroupMembers = {
 
 M.DeregisterTransitGatewayMulticastGroupMembersOutput = {
     type = "structure",
+    id = "DeregisterTransitGatewayMulticastGroupMembersOutput",
     members = {
         DeregisteredMulticastGroupMembers = setmetatable({ traits = {
             xml_name = "deregisteredMulticastGroupMembers",
@@ -29900,6 +30910,7 @@ M.DeregisterTransitGatewayMulticastGroupMembersOutput = {
 
 M.DeregisterTransitGatewayMulticastGroupSourcesInput = {
     type = "structure",
+    id = "DeregisterTransitGatewayMulticastGroupSourcesInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -29919,6 +30930,7 @@ M.DeregisterTransitGatewayMulticastGroupSourcesInput = {
 
 M.TransitGatewayMulticastDeregisteredGroupSources = {
     type = "structure",
+    id = "TransitGatewayMulticastDeregisteredGroupSources",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -29944,6 +30956,7 @@ M.TransitGatewayMulticastDeregisteredGroupSources = {
 
 M.DeregisterTransitGatewayMulticastGroupSourcesOutput = {
     type = "structure",
+    id = "DeregisterTransitGatewayMulticastGroupSourcesOutput",
     members = {
         DeregisteredMulticastGroupSources = setmetatable({ traits = {
             xml_name = "deregisteredMulticastGroupSources",
@@ -29953,6 +30966,7 @@ M.DeregisterTransitGatewayMulticastGroupSourcesOutput = {
 
 M.DescribeAccountAttributesInput = {
     type = "structure",
+    id = "DescribeAccountAttributesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -29972,6 +30986,7 @@ M.DescribeAccountAttributesInput = {
 
 M.DescribeAccountAttributesOutput = {
     type = "structure",
+    id = "DescribeAccountAttributesOutput",
     members = {
         AccountAttributes = {
             type = "list",
@@ -29985,6 +31000,7 @@ M.DescribeAccountAttributesOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -30001,6 +31017,7 @@ M.Filter = {
 
 M.DescribeAddressesInput = {
     type = "structure",
+    id = "DescribeAddressesInput",
     members = {
         PublicIps = {
             type = "list",
@@ -30034,6 +31051,7 @@ M.DescribeAddressesInput = {
 
 M.DescribeAddressesOutput = {
     type = "structure",
+    id = "DescribeAddressesOutput",
     members = {
         Addresses = {
             type = "list",
@@ -30047,6 +31065,7 @@ M.DescribeAddressesOutput = {
 
 M.DescribeAddressesAttributeInput = {
     type = "structure",
+    id = "DescribeAddressesAttributeInput",
     members = {
         AllocationIds = {
             type = "list",
@@ -30072,6 +31091,7 @@ M.DescribeAddressesAttributeInput = {
 
 M.DescribeAddressesAttributeOutput = {
     type = "structure",
+    id = "DescribeAddressesAttributeOutput",
     members = {
         Addresses = {
             type = "list",
@@ -30091,6 +31111,7 @@ M.DescribeAddressesAttributeOutput = {
 
 M.DescribeAddressTransfersInput = {
     type = "structure",
+    id = "DescribeAddressTransfersInput",
     members = {
         AllocationIds = {
             type = "list",
@@ -30113,6 +31134,7 @@ M.DescribeAddressTransfersInput = {
 
 M.DescribeAddressTransfersOutput = {
     type = "structure",
+    id = "DescribeAddressTransfersOutput",
     members = {
         AddressTransfers = {
             type = "list",
@@ -30132,6 +31154,7 @@ M.DescribeAddressTransfersOutput = {
 
 M.DescribeAggregateIdFormatInput = {
     type = "structure",
+    id = "DescribeAggregateIdFormatInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -30141,6 +31164,7 @@ M.DescribeAggregateIdFormatInput = {
 
 M.IdFormat = {
     type = "structure",
+    id = "IdFormat",
     members = {
         Deadline = {
             type = "timestamp",
@@ -30165,6 +31189,7 @@ M.IdFormat = {
 
 M.DescribeAggregateIdFormatOutput = {
     type = "structure",
+    id = "DescribeAggregateIdFormatOutput",
     members = {
         UseLongIdsAggregated = {
             type = "boolean",
@@ -30184,6 +31209,7 @@ M.DescribeAggregateIdFormatOutput = {
 
 M.DescribeAvailabilityZonesInput = {
     type = "structure",
+    id = "DescribeAvailabilityZonesInput",
     members = {
         ZoneNames = {
             type = "list",
@@ -30220,6 +31246,7 @@ M.DescribeAvailabilityZonesInput = {
 
 M.AvailabilityZoneGeography = {
     type = "structure",
+    id = "AvailabilityZoneGeography",
     members = {
         Name = {
             type = "string",
@@ -30232,6 +31259,7 @@ M.AvailabilityZoneGeography = {
 
 M.AvailabilityZoneMessage = {
     type = "structure",
+    id = "AvailabilityZoneMessage",
     members = {
         Message = {
             type = "string",
@@ -30258,6 +31286,7 @@ M.AvailabilityZoneState = {
 
 M.AvailabilityZoneSubGeography = {
     type = "structure",
+    id = "AvailabilityZoneSubGeography",
     members = {
         Name = {
             type = "string",
@@ -30270,6 +31299,7 @@ M.AvailabilityZoneSubGeography = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         OptInStatus = {
             type = "string",
@@ -30363,6 +31393,7 @@ M.AvailabilityZone = {
 
 M.DescribeAvailabilityZonesOutput = {
     type = "structure",
+    id = "DescribeAvailabilityZonesOutput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -30376,6 +31407,7 @@ M.DescribeAvailabilityZonesOutput = {
 
 M.DescribeAwsNetworkPerformanceMetricSubscriptionsInput = {
     type = "structure",
+    id = "DescribeAwsNetworkPerformanceMetricSubscriptionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -30415,6 +31447,7 @@ M.StatisticType = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         Source = {
             type = "string",
@@ -30451,6 +31484,7 @@ M.Subscription = {
 
 M.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput = {
     type = "structure",
+    id = "DescribeAwsNetworkPerformanceMetricSubscriptionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -30470,6 +31504,7 @@ M.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput = {
 
 M.DescribeBundleTasksInput = {
     type = "structure",
+    id = "DescribeBundleTasksInput",
     members = {
         BundleIds = {
             type = "list",
@@ -30496,6 +31531,7 @@ M.DescribeBundleTasksInput = {
 
 M.DescribeBundleTasksOutput = {
     type = "structure",
+    id = "DescribeBundleTasksOutput",
     members = {
         BundleTasks = {
             type = "list",
@@ -30509,6 +31545,7 @@ M.DescribeBundleTasksOutput = {
 
 M.DescribeByoipCidrsInput = {
     type = "structure",
+    id = "DescribeByoipCidrsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -30527,6 +31564,7 @@ M.DescribeByoipCidrsInput = {
 
 M.DescribeByoipCidrsOutput = {
     type = "structure",
+    id = "DescribeByoipCidrsOutput",
     members = {
         ByoipCidrs = {
             type = "list",
@@ -30546,6 +31584,7 @@ M.DescribeByoipCidrsOutput = {
 
 M.DescribeCapacityBlockExtensionHistoryInput = {
     type = "structure",
+    id = "DescribeCapacityBlockExtensionHistoryInput",
     members = {
         CapacityReservationIds = {
             type = "list",
@@ -30581,6 +31620,7 @@ M.CapacityBlockExtensionStatus = {
 
 M.CapacityBlockExtension = {
     type = "structure",
+    id = "CapacityBlockExtension",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -30671,6 +31711,7 @@ M.CapacityBlockExtension = {
 
 M.DescribeCapacityBlockExtensionHistoryOutput = {
     type = "structure",
+    id = "DescribeCapacityBlockExtensionHistoryOutput",
     members = {
         CapacityBlockExtensions = {
             type = "list",
@@ -30690,6 +31731,7 @@ M.DescribeCapacityBlockExtensionHistoryOutput = {
 
 M.DescribeCapacityBlockExtensionOfferingsInput = {
     type = "structure",
+    id = "DescribeCapacityBlockExtensionOfferingsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -30717,6 +31759,7 @@ M.DescribeCapacityBlockExtensionOfferingsInput = {
 
 M.CapacityBlockExtensionOffering = {
     type = "structure",
+    id = "CapacityBlockExtensionOffering",
     members = {
         CapacityBlockExtensionOfferingId = {
             type = "string",
@@ -30801,6 +31844,7 @@ M.CapacityBlockExtensionOffering = {
 
 M.DescribeCapacityBlockExtensionOfferingsOutput = {
     type = "structure",
+    id = "DescribeCapacityBlockExtensionOfferingsOutput",
     members = {
         CapacityBlockExtensionOfferings = {
             type = "list",
@@ -30820,6 +31864,7 @@ M.DescribeCapacityBlockExtensionOfferingsOutput = {
 
 M.DescribeCapacityBlockOfferingsInput = {
     type = "structure",
+    id = "DescribeCapacityBlockOfferingsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -30862,6 +31907,7 @@ M.DescribeCapacityBlockOfferingsInput = {
 
 M.CapacityBlockOffering = {
     type = "structure",
+    id = "CapacityBlockOffering",
     members = {
         CapacityBlockOfferingId = {
             type = "string",
@@ -30952,6 +31998,7 @@ M.CapacityBlockOffering = {
 
 M.DescribeCapacityBlockOfferingsOutput = {
     type = "structure",
+    id = "DescribeCapacityBlockOfferingsOutput",
     members = {
         CapacityBlockOfferings = {
             type = "list",
@@ -30971,6 +32018,7 @@ M.DescribeCapacityBlockOfferingsOutput = {
 
 M.DescribeCapacityBlocksInput = {
     type = "structure",
+    id = "DescribeCapacityBlocksInput",
     members = {
         CapacityBlockIds = {
             type = "list",
@@ -31011,6 +32059,7 @@ M.CapacityBlockResourceState = {
 
 M.CapacityBlock = {
     type = "structure",
+    id = "CapacityBlock",
     members = {
         CapacityBlockId = {
             type = "string",
@@ -31079,6 +32128,7 @@ M.CapacityBlock = {
 
 M.DescribeCapacityBlocksOutput = {
     type = "structure",
+    id = "DescribeCapacityBlocksOutput",
     members = {
         CapacityBlocks = {
             type = "list",
@@ -31098,6 +32148,7 @@ M.DescribeCapacityBlocksOutput = {
 
 M.DescribeCapacityBlockStatusInput = {
     type = "structure",
+    id = "DescribeCapacityBlockStatusInput",
     members = {
         CapacityBlockIds = {
             type = "list",
@@ -31127,6 +32178,7 @@ M.DescribeCapacityBlockStatusInput = {
 
 M.CapacityReservationStatus = {
     type = "structure",
+    id = "CapacityReservationStatus",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -31163,6 +32215,7 @@ M.CapacityBlockInterconnectStatus = {
 
 M.CapacityBlockStatus = {
     type = "structure",
+    id = "CapacityBlockStatus",
     members = {
         CapacityBlockId = {
             type = "string",
@@ -31206,6 +32259,7 @@ M.CapacityBlockStatus = {
 
 M.DescribeCapacityBlockStatusOutput = {
     type = "structure",
+    id = "DescribeCapacityBlockStatusOutput",
     members = {
         CapacityBlockStatuses = {
             type = "list",
@@ -31225,6 +32279,7 @@ M.DescribeCapacityBlockStatusOutput = {
 
 M.DescribeCapacityManagerDataExportsInput = {
     type = "structure",
+    id = "DescribeCapacityManagerDataExportsInput",
     members = {
         CapacityManagerDataExportIds = {
             type = "list",
@@ -31261,6 +32316,7 @@ M.CapacityManagerDataExportStatus = {
 
 M.CapacityManagerDataExportResponse = {
     type = "structure",
+    id = "CapacityManagerDataExportResponse",
     members = {
         CapacityManagerDataExportId = {
             type = "string",
@@ -31334,6 +32390,7 @@ M.CapacityManagerDataExportResponse = {
 
 M.DescribeCapacityManagerDataExportsOutput = {
     type = "structure",
+    id = "DescribeCapacityManagerDataExportsOutput",
     members = {
         CapacityManagerDataExports = {
             type = "list",
@@ -31358,6 +32415,7 @@ M.CallerRole = {
 
 M.DescribeCapacityReservationBillingRequestsInput = {
     type = "structure",
+    id = "DescribeCapacityReservationBillingRequestsInput",
     members = {
         CapacityReservationIds = {
             type = "list",
@@ -31393,6 +32451,7 @@ M.DescribeCapacityReservationBillingRequestsInput = {
 
 M.CapacityReservationInfo = {
     type = "structure",
+    id = "CapacityReservationInfo",
     members = {
         InstanceType = {
             type = "string",
@@ -31432,6 +32491,7 @@ M.CapacityReservationBillingRequestStatus = {
 
 M.CapacityReservationBillingRequest = {
     type = "structure",
+    id = "CapacityReservationBillingRequest",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -31477,6 +32537,7 @@ M.CapacityReservationBillingRequest = {
 
 M.DescribeCapacityReservationBillingRequestsOutput = {
     type = "structure",
+    id = "DescribeCapacityReservationBillingRequestsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -31496,6 +32557,7 @@ M.DescribeCapacityReservationBillingRequestsOutput = {
 
 M.DescribeCapacityReservationFleetsInput = {
     type = "structure",
+    id = "DescribeCapacityReservationFleetsInput",
     members = {
         CapacityReservationFleetIds = {
             type = "list",
@@ -31525,6 +32587,7 @@ M.DescribeCapacityReservationFleetsInput = {
 
 M.CapacityReservationFleet = {
     type = "structure",
+    id = "CapacityReservationFleet",
     members = {
         CapacityReservationFleetId = {
             type = "string",
@@ -31605,6 +32668,7 @@ M.CapacityReservationFleet = {
 
 M.DescribeCapacityReservationFleetsOutput = {
     type = "structure",
+    id = "DescribeCapacityReservationFleetsOutput",
     members = {
         CapacityReservationFleets = {
             type = "list",
@@ -31624,6 +32688,7 @@ M.DescribeCapacityReservationFleetsOutput = {
 
 M.DescribeCapacityReservationsInput = {
     type = "structure",
+    id = "DescribeCapacityReservationsInput",
     members = {
         CapacityReservationIds = {
             type = "list",
@@ -31653,6 +32718,7 @@ M.DescribeCapacityReservationsInput = {
 
 M.DescribeCapacityReservationsOutput = {
     type = "structure",
+    id = "DescribeCapacityReservationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -31672,6 +32738,7 @@ M.DescribeCapacityReservationsOutput = {
 
 M.DescribeCapacityReservationTopologyInput = {
     type = "structure",
+    id = "DescribeCapacityReservationTopologyInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -31701,6 +32768,7 @@ M.DescribeCapacityReservationTopologyInput = {
 
 M.CapacityReservationTopology = {
     type = "structure",
+    id = "CapacityReservationTopology",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -31756,6 +32824,7 @@ M.CapacityReservationTopology = {
 
 M.DescribeCapacityReservationTopologyOutput = {
     type = "structure",
+    id = "DescribeCapacityReservationTopologyOutput",
     members = {
         NextToken = {
             type = "string",
@@ -31775,6 +32844,7 @@ M.DescribeCapacityReservationTopologyOutput = {
 
 M.DescribeCarrierGatewaysInput = {
     type = "structure",
+    id = "DescribeCarrierGatewaysInput",
     members = {
         CarrierGatewayIds = {
             type = "list",
@@ -31804,6 +32874,7 @@ M.DescribeCarrierGatewaysInput = {
 
 M.DescribeCarrierGatewaysOutput = {
     type = "structure",
+    id = "DescribeCarrierGatewaysOutput",
     members = {
         CarrierGateways = {
             type = "list",
@@ -31823,6 +32894,7 @@ M.DescribeCarrierGatewaysOutput = {
 
 M.DescribeClassicLinkInstancesInput = {
     type = "structure",
+    id = "DescribeClassicLinkInstancesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -31861,6 +32933,7 @@ M.DescribeClassicLinkInstancesInput = {
 
 M.ClassicLinkInstance = {
     type = "structure",
+    id = "ClassicLinkInstance",
     members = {
         Groups = {
             type = "list",
@@ -31893,6 +32966,7 @@ M.ClassicLinkInstance = {
 
 M.DescribeClassicLinkInstancesOutput = {
     type = "structure",
+    id = "DescribeClassicLinkInstancesOutput",
     members = {
         Instances = {
             type = "list",
@@ -31912,6 +32986,7 @@ M.DescribeClassicLinkInstancesOutput = {
 
 M.DescribeClientVpnAuthorizationRulesInput = {
     type = "structure",
+    id = "DescribeClientVpnAuthorizationRulesInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -31940,6 +33015,7 @@ M.DescribeClientVpnAuthorizationRulesInput = {
 
 M.AuthorizationRule = {
     type = "structure",
+    id = "AuthorizationRule",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -31979,6 +33055,7 @@ M.AuthorizationRule = {
 
 M.DescribeClientVpnAuthorizationRulesOutput = {
     type = "structure",
+    id = "DescribeClientVpnAuthorizationRulesOutput",
     members = {
         AuthorizationRules = {
             type = "list",
@@ -31998,6 +33075,7 @@ M.DescribeClientVpnAuthorizationRulesOutput = {
 
 M.DescribeClientVpnConnectionsInput = {
     type = "structure",
+    id = "DescribeClientVpnConnectionsInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -32033,6 +33111,7 @@ M.ClientVpnConnectionStatusCode = {
 
 M.ClientVpnConnectionStatus = {
     type = "structure",
+    id = "ClientVpnConnectionStatus",
     members = {
         Code = {
             type = "string",
@@ -32051,6 +33130,7 @@ M.ClientVpnConnectionStatus = {
 
 M.ClientVpnConnection = {
     type = "structure",
+    id = "ClientVpnConnection",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -32145,6 +33225,7 @@ M.ClientVpnConnection = {
 
 M.DescribeClientVpnConnectionsOutput = {
     type = "structure",
+    id = "DescribeClientVpnConnectionsOutput",
     members = {
         Connections = {
             type = "list",
@@ -32164,6 +33245,7 @@ M.DescribeClientVpnConnectionsOutput = {
 
 M.DescribeClientVpnEndpointsInput = {
     type = "structure",
+    id = "DescribeClientVpnEndpointsInput",
     members = {
         ClientVpnEndpointIds = {
             type = "list",
@@ -32197,6 +33279,7 @@ M.AssociatedNetworkType = {
 
 M.AssociatedTargetNetwork = {
     type = "structure",
+    id = "AssociatedTargetNetwork",
     members = {
         NetworkId = {
             type = "string",
@@ -32215,6 +33298,7 @@ M.AssociatedTargetNetwork = {
 
 M.DirectoryServiceAuthentication = {
     type = "structure",
+    id = "DirectoryServiceAuthentication",
     members = {
         DirectoryId = {
             type = "string",
@@ -32227,6 +33311,7 @@ M.DirectoryServiceAuthentication = {
 
 M.FederatedAuthentication = {
     type = "structure",
+    id = "FederatedAuthentication",
     members = {
         SamlProviderArn = {
             type = "string",
@@ -32245,6 +33330,7 @@ M.FederatedAuthentication = {
 
 M.CertificateAuthentication = {
     type = "structure",
+    id = "CertificateAuthentication",
     members = {
         ClientRootCertificateChain = {
             type = "string",
@@ -32257,6 +33343,7 @@ M.CertificateAuthentication = {
 
 M.ClientVpnAuthentication = {
     type = "structure",
+    id = "ClientVpnAuthentication",
     members = {
         Type = {
             type = "string",
@@ -32283,6 +33370,7 @@ M.ClientVpnEndpointAttributeStatusCode = {
 
 M.ClientVpnEndpointAttributeStatus = {
     type = "structure",
+    id = "ClientVpnEndpointAttributeStatus",
     members = {
         Code = {
             type = "string",
@@ -32301,6 +33389,7 @@ M.ClientVpnEndpointAttributeStatus = {
 
 M.ClientConnectResponseOptions = {
     type = "structure",
+    id = "ClientConnectResponseOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -32322,6 +33411,7 @@ M.ClientConnectResponseOptions = {
 
 M.ClientLoginBannerResponseOptions = {
     type = "structure",
+    id = "ClientLoginBannerResponseOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -32340,6 +33430,7 @@ M.ClientLoginBannerResponseOptions = {
 
 M.ClientRouteEnforcementResponseOptions = {
     type = "structure",
+    id = "ClientRouteEnforcementResponseOptions",
     members = {
         Enforced = {
             type = "boolean",
@@ -32352,6 +33443,7 @@ M.ClientRouteEnforcementResponseOptions = {
 
 M.ConnectionLogResponseOptions = {
     type = "structure",
+    id = "ConnectionLogResponseOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -32367,6 +33459,7 @@ M.ConnectionLogResponseOptions = {
 
 M.TransitGatewayConfigurationDescribeEndpointStructure = {
     type = "structure",
+    id = "TransitGatewayConfigurationDescribeEndpointStructure",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -32403,6 +33496,7 @@ M.VpnProtocol = {
 
 M.ClientVpnEndpoint = {
     type = "structure",
+    id = "ClientVpnEndpoint",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -32564,6 +33658,7 @@ M.ClientVpnEndpoint = {
 
 M.DescribeClientVpnEndpointsOutput = {
     type = "structure",
+    id = "DescribeClientVpnEndpointsOutput",
     members = {
         ClientVpnEndpoints = {
             type = "list",
@@ -32583,6 +33678,7 @@ M.DescribeClientVpnEndpointsOutput = {
 
 M.DescribeClientVpnRoutesInput = {
     type = "structure",
+    id = "DescribeClientVpnRoutesInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -32611,6 +33707,7 @@ M.DescribeClientVpnRoutesInput = {
 
 M.ClientVpnRoute = {
     type = "structure",
+    id = "ClientVpnRoute",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -32662,6 +33759,7 @@ M.ClientVpnRoute = {
 
 M.DescribeClientVpnRoutesOutput = {
     type = "structure",
+    id = "DescribeClientVpnRoutesOutput",
     members = {
         Routes = {
             type = "list",
@@ -32681,6 +33779,7 @@ M.DescribeClientVpnRoutesOutput = {
 
 M.DescribeClientVpnTargetNetworksInput = {
     type = "structure",
+    id = "DescribeClientVpnTargetNetworksInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -32713,6 +33812,7 @@ M.DescribeClientVpnTargetNetworksInput = {
 
 M.TargetNetwork = {
     type = "structure",
+    id = "TargetNetwork",
     members = {
         AssociationId = {
             type = "string",
@@ -32767,6 +33867,7 @@ M.TargetNetwork = {
 
 M.DescribeClientVpnTargetNetworksOutput = {
     type = "structure",
+    id = "DescribeClientVpnTargetNetworksOutput",
     members = {
         ClientVpnTargetNetworks = {
             type = "list",
@@ -32786,6 +33887,7 @@ M.DescribeClientVpnTargetNetworksOutput = {
 
 M.DescribeCoipPoolsInput = {
     type = "structure",
+    id = "DescribeCoipPoolsInput",
     members = {
         PoolIds = {
             type = "list",
@@ -32815,6 +33917,7 @@ M.DescribeCoipPoolsInput = {
 
 M.DescribeCoipPoolsOutput = {
     type = "structure",
+    id = "DescribeCoipPoolsOutput",
     members = {
         CoipPools = {
             type = "list",
@@ -32834,6 +33937,7 @@ M.DescribeCoipPoolsOutput = {
 
 M.DescribeConversionTasksInput = {
     type = "structure",
+    id = "DescribeConversionTasksInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -32853,6 +33957,7 @@ M.DescribeConversionTasksInput = {
 
 M.DiskImageDescription = {
     type = "structure",
+    id = "DiskImageDescription",
     members = {
         Checksum = {
             type = "string",
@@ -32883,6 +33988,7 @@ M.DiskImageDescription = {
 
 M.DiskImageVolumeDescription = {
     type = "structure",
+    id = "DiskImageVolumeDescription",
     members = {
         Id = {
             type = "string",
@@ -32901,6 +34007,7 @@ M.DiskImageVolumeDescription = {
 
 M.ImportInstanceVolumeDetailItem = {
     type = "structure",
+    id = "ImportInstanceVolumeDetailItem",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -32949,6 +34056,7 @@ M.ImportInstanceVolumeDetailItem = {
 
 M.ImportInstanceTaskDetails = {
     type = "structure",
+    id = "ImportInstanceTaskDetails",
     members = {
         Description = {
             type = "string",
@@ -32980,6 +34088,7 @@ M.ImportInstanceTaskDetails = {
 
 M.ImportVolumeTaskDetails = {
     type = "structure",
+    id = "ImportVolumeTaskDetails",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -33023,6 +34132,7 @@ M.ConversionTaskState = {
 
 M.ConversionTask = {
     type = "structure",
+    id = "ConversionTask",
     members = {
         ConversionTaskId = {
             type = "string",
@@ -33066,6 +34176,7 @@ M.ConversionTask = {
 
 M.DescribeConversionTasksOutput = {
     type = "structure",
+    id = "DescribeConversionTasksOutput",
     members = {
         ConversionTasks = {
             type = "list",
@@ -33079,6 +34190,7 @@ M.DescribeConversionTasksOutput = {
 
 M.DescribeCustomerGatewaysInput = {
     type = "structure",
+    id = "DescribeCustomerGatewaysInput",
     members = {
         CustomerGatewayIds = {
             type = "list",
@@ -33105,6 +34217,7 @@ M.DescribeCustomerGatewaysInput = {
 
 M.DescribeCustomerGatewaysOutput = {
     type = "structure",
+    id = "DescribeCustomerGatewaysOutput",
     members = {
         CustomerGateways = {
             type = "list",
@@ -33118,6 +34231,7 @@ M.DescribeCustomerGatewaysOutput = {
 
 M.DescribeDeclarativePoliciesReportsInput = {
     type = "structure",
+    id = "DescribeDeclarativePoliciesReportsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -33147,6 +34261,7 @@ M.ReportState = {
 
 M.DeclarativePoliciesReport = {
     type = "structure",
+    id = "DeclarativePoliciesReport",
     members = {
         ReportId = {
             type = "string",
@@ -33202,6 +34317,7 @@ M.DeclarativePoliciesReport = {
 
 M.DescribeDeclarativePoliciesReportsOutput = {
     type = "structure",
+    id = "DescribeDeclarativePoliciesReportsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -33221,6 +34337,7 @@ M.DescribeDeclarativePoliciesReportsOutput = {
 
 M.DescribeDhcpOptionsInput = {
     type = "structure",
+    id = "DescribeDhcpOptionsInput",
     members = {
         DhcpOptionsIds = {
             type = "list",
@@ -33253,6 +34370,7 @@ M.DescribeDhcpOptionsInput = {
 
 M.DescribeDhcpOptionsOutput = {
     type = "structure",
+    id = "DescribeDhcpOptionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -33272,6 +34390,7 @@ M.DescribeDhcpOptionsOutput = {
 
 M.DescribeEgressOnlyInternetGatewaysInput = {
     type = "structure",
+    id = "DescribeEgressOnlyInternetGatewaysInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -33301,6 +34420,7 @@ M.DescribeEgressOnlyInternetGatewaysInput = {
 
 M.DescribeEgressOnlyInternetGatewaysOutput = {
     type = "structure",
+    id = "DescribeEgressOnlyInternetGatewaysOutput",
     members = {
         EgressOnlyInternetGateways = {
             type = "list",
@@ -33320,6 +34440,7 @@ M.DescribeEgressOnlyInternetGatewaysOutput = {
 
 M.DescribeElasticGpusInput = {
     type = "structure",
+    id = "DescribeElasticGpusInput",
     members = {
         ElasticGpuIds = {
             type = "list",
@@ -33354,6 +34475,7 @@ M.ElasticGpuStatus = {
 
 M.ElasticGpuHealth = {
     type = "structure",
+    id = "ElasticGpuHealth",
     members = {
         Status = {
             type = "string",
@@ -33370,6 +34492,7 @@ M.ElasticGpuState = {
 
 M.ElasticGpus = {
     type = "structure",
+    id = "ElasticGpus",
     members = {
         ElasticGpuId = {
             type = "string",
@@ -33416,6 +34539,7 @@ M.ElasticGpus = {
 
 M.DescribeElasticGpusOutput = {
     type = "structure",
+    id = "DescribeElasticGpusOutput",
     members = {
         ElasticGpuSet = {
             type = "list",
@@ -33441,6 +34565,7 @@ M.DescribeElasticGpusOutput = {
 
 M.DescribeExportImageTasksInput = {
     type = "structure",
+    id = "DescribeExportImageTasksInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -33470,6 +34595,7 @@ M.DescribeExportImageTasksInput = {
 
 M.ExportTaskS3Location = {
     type = "structure",
+    id = "ExportTaskS3Location",
     members = {
         S3Bucket = {
             type = "string",
@@ -33488,6 +34614,7 @@ M.ExportTaskS3Location = {
 
 M.ExportImageTask = {
     type = "structure",
+    id = "ExportImageTask",
     members = {
         Description = {
             type = "string",
@@ -33540,6 +34667,7 @@ M.ExportImageTask = {
 
 M.DescribeExportImageTasksOutput = {
     type = "structure",
+    id = "DescribeExportImageTasksOutput",
     members = {
         ExportImageTasks = {
             type = "list",
@@ -33559,6 +34687,7 @@ M.DescribeExportImageTasksOutput = {
 
 M.DescribeExportTasksInput = {
     type = "structure",
+    id = "DescribeExportTasksInput",
     members = {
         Filters = {
             type = "list",
@@ -33579,6 +34708,7 @@ M.DescribeExportTasksInput = {
 
 M.DescribeExportTasksOutput = {
     type = "structure",
+    id = "DescribeExportTasksOutput",
     members = {
         ExportTasks = {
             type = "list",
@@ -33592,6 +34722,7 @@ M.DescribeExportTasksOutput = {
 
 M.DescribeFastLaunchImagesInput = {
     type = "structure",
+    id = "DescribeFastLaunchImagesInput",
     members = {
         ImageIds = {
             type = "list",
@@ -33621,6 +34752,7 @@ M.DescribeFastLaunchImagesInput = {
 
 M.FastLaunchLaunchTemplateSpecificationResponse = {
     type = "structure",
+    id = "FastLaunchLaunchTemplateSpecificationResponse",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -33649,6 +34781,7 @@ M.FastLaunchResourceType = {
 
 M.FastLaunchSnapshotConfigurationResponse = {
     type = "structure",
+    id = "FastLaunchSnapshotConfigurationResponse",
     members = {
         TargetResourceCount = {
             type = "integer",
@@ -33670,6 +34803,7 @@ M.FastLaunchStateCode = {
 
 M.DescribeFastLaunchImagesSuccessItem = {
     type = "structure",
+    id = "DescribeFastLaunchImagesSuccessItem",
     members = {
         ImageId = {
             type = "string",
@@ -33724,6 +34858,7 @@ M.DescribeFastLaunchImagesSuccessItem = {
 
 M.DescribeFastLaunchImagesOutput = {
     type = "structure",
+    id = "DescribeFastLaunchImagesOutput",
     members = {
         FastLaunchImages = {
             type = "list",
@@ -33743,6 +34878,7 @@ M.DescribeFastLaunchImagesOutput = {
 
 M.DescribeFastSnapshotRestoresInput = {
     type = "structure",
+    id = "DescribeFastSnapshotRestoresInput",
     members = {
         Filters = {
             type = "list",
@@ -33773,6 +34909,7 @@ M.FastSnapshotRestoreStateCode = {
 
 M.DescribeFastSnapshotRestoreSuccessItem = {
     type = "structure",
+    id = "DescribeFastSnapshotRestoreSuccessItem",
     members = {
         SnapshotId = {
             type = "string",
@@ -33851,6 +34988,7 @@ M.DescribeFastSnapshotRestoreSuccessItem = {
 
 M.DescribeFastSnapshotRestoresOutput = {
     type = "structure",
+    id = "DescribeFastSnapshotRestoresOutput",
     members = {
         FastSnapshotRestores = {
             type = "list",
@@ -33876,6 +35014,7 @@ M.FleetEventType = {
 
 M.DescribeFleetHistoryInput = {
     type = "structure",
+    id = "DescribeFleetHistoryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -33906,6 +35045,7 @@ M.DescribeFleetHistoryInput = {
 
 M.EventInformation = {
     type = "structure",
+    id = "EventInformation",
     members = {
         EventDescription = {
             type = "string",
@@ -33930,6 +35070,7 @@ M.EventInformation = {
 
 M.HistoryRecordEntry = {
     type = "structure",
+    id = "HistoryRecordEntry",
     members = {
         EventInformation = setmetatable({ traits = {
             xml_name = "eventInformation",
@@ -33951,6 +35092,7 @@ M.HistoryRecordEntry = {
 
 M.DescribeFleetHistoryOutput = {
     type = "structure",
+    id = "DescribeFleetHistoryOutput",
     members = {
         HistoryRecords = {
             type = "list",
@@ -33988,6 +35130,7 @@ M.DescribeFleetHistoryOutput = {
 
 M.DescribeFleetInstancesInput = {
     type = "structure",
+    id = "DescribeFleetInstancesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -34016,6 +35159,7 @@ M.DescribeFleetInstancesInput = {
 
 M.DescribeFleetInstancesOutput = {
     type = "structure",
+    id = "DescribeFleetInstancesOutput",
     members = {
         ActiveInstances = {
             type = "list",
@@ -34041,6 +35185,7 @@ M.DescribeFleetInstancesOutput = {
 
 M.DescribeFleetsInput = {
     type = "structure",
+    id = "DescribeFleetsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -34077,6 +35222,7 @@ M.FleetActivityStatus = {
 
 M.DescribeFleetError = {
     type = "structure",
+    id = "DescribeFleetError",
     members = {
         LaunchTemplateAndOverrides = setmetatable({ traits = {
             xml_name = "launchTemplateAndOverrides",
@@ -34104,6 +35250,7 @@ M.DescribeFleetError = {
 
 M.DescribeFleetsInstances = {
     type = "structure",
+    id = "DescribeFleetsInstances",
     members = {
         LaunchTemplateAndOverrides = setmetatable({ traits = {
             xml_name = "launchTemplateAndOverrides",
@@ -34138,6 +35285,7 @@ M.DescribeFleetsInstances = {
 
 M.FleetLaunchTemplateConfig = {
     type = "structure",
+    id = "FleetLaunchTemplateConfig",
     members = {
         LaunchTemplateSpecification = setmetatable({ traits = {
             xml_name = "launchTemplateSpecification",
@@ -34154,6 +35302,7 @@ M.FleetLaunchTemplateConfig = {
 
 M.CapacityReservationOptions = {
     type = "structure",
+    id = "CapacityReservationOptions",
     members = {
         UsageStrategy = {
             type = "string",
@@ -34166,6 +35315,7 @@ M.CapacityReservationOptions = {
 
 M.OnDemandOptions = {
     type = "structure",
+    id = "OnDemandOptions",
     members = {
         AllocationStrategy = {
             type = "string",
@@ -34205,6 +35355,7 @@ M.OnDemandOptions = {
 
 M.ReservedCapacityOptions = {
     type = "structure",
+    id = "ReservedCapacityOptions",
     members = {
         ReservationTypes = {
             type = "list",
@@ -34218,6 +35369,7 @@ M.ReservedCapacityOptions = {
 
 M.FleetSpotCapacityRebalance = {
     type = "structure",
+    id = "FleetSpotCapacityRebalance",
     members = {
         ReplacementStrategy = {
             type = "string",
@@ -34236,6 +35388,7 @@ M.FleetSpotCapacityRebalance = {
 
 M.FleetSpotMaintenanceStrategies = {
     type = "structure",
+    id = "FleetSpotMaintenanceStrategies",
     members = {
         CapacityRebalance = setmetatable({ traits = {
             xml_name = "capacityRebalance",
@@ -34245,6 +35398,7 @@ M.FleetSpotMaintenanceStrategies = {
 
 M.SpotOptions = {
     type = "structure",
+    id = "SpotOptions",
     members = {
         AllocationStrategy = {
             type = "string",
@@ -34296,6 +35450,7 @@ M.SpotOptions = {
 
 M.TargetCapacitySpecification = {
     type = "structure",
+    id = "TargetCapacitySpecification",
     members = {
         TotalTargetCapacity = {
             type = "integer",
@@ -34332,6 +35487,7 @@ M.TargetCapacitySpecification = {
 
 M.FleetData = {
     type = "structure",
+    id = "FleetData",
     members = {
         ActivityStatus = {
             type = "string",
@@ -34462,6 +35618,7 @@ M.FleetData = {
 
 M.DescribeFleetsOutput = {
     type = "structure",
+    id = "DescribeFleetsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -34481,6 +35638,7 @@ M.DescribeFleetsOutput = {
 
 M.DescribeFlowLogsInput = {
     type = "structure",
+    id = "DescribeFlowLogsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -34507,6 +35665,7 @@ M.DescribeFlowLogsInput = {
 
 M.DestinationOptionsResponse = {
     type = "structure",
+    id = "DestinationOptionsResponse",
     members = {
         FileFormat = {
             type = "string",
@@ -34531,6 +35690,7 @@ M.DestinationOptionsResponse = {
 
 M.FlowLog = {
     type = "structure",
+    id = "FlowLog",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -34631,6 +35791,7 @@ M.FlowLog = {
 
 M.DescribeFlowLogsOutput = {
     type = "structure",
+    id = "DescribeFlowLogsOutput",
     members = {
         FlowLogs = {
             type = "list",
@@ -34657,6 +35818,7 @@ M.FpgaImageAttributeName = {
 
 M.DescribeFpgaImageAttributeInput = {
     type = "structure",
+    id = "DescribeFpgaImageAttributeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -34682,6 +35844,7 @@ M.PermissionGroup = {
 
 M.LoadPermission = {
     type = "structure",
+    id = "LoadPermission",
     members = {
         UserId = {
             type = "string",
@@ -34705,6 +35868,7 @@ M.ProductCodeValues = {
 
 M.ProductCode = {
     type = "structure",
+    id = "ProductCode",
     members = {
         ProductCodeId = {
             type = "string",
@@ -34723,6 +35887,7 @@ M.ProductCode = {
 
 M.FpgaImageAttribute = {
     type = "structure",
+    id = "FpgaImageAttribute",
     members = {
         FpgaImageId = {
             type = "string",
@@ -34761,6 +35926,7 @@ M.FpgaImageAttribute = {
 
 M.DescribeFpgaImageAttributeOutput = {
     type = "structure",
+    id = "DescribeFpgaImageAttributeOutput",
     members = {
         FpgaImageAttribute = setmetatable({ traits = {
             xml_name = "fpgaImageAttribute",
@@ -34770,6 +35936,7 @@ M.DescribeFpgaImageAttributeOutput = {
 
 M.DescribeFpgaImagesInput = {
     type = "structure",
+    id = "DescribeFpgaImagesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -34806,6 +35973,7 @@ M.DescribeFpgaImagesInput = {
 
 M.PciId = {
     type = "structure",
+    id = "PciId",
     members = {
         DeviceId = {
             type = "string",
@@ -34831,6 +35999,7 @@ M.FpgaImageStateCode = {
 
 M.FpgaImageState = {
     type = "structure",
+    id = "FpgaImageState",
     members = {
         Code = {
             type = "string",
@@ -34849,6 +36018,7 @@ M.FpgaImageState = {
 
 M.FpgaImage = {
     type = "structure",
+    id = "FpgaImage",
     members = {
         FpgaImageId = {
             type = "string",
@@ -34948,6 +36118,7 @@ M.FpgaImage = {
 
 M.DescribeFpgaImagesOutput = {
     type = "structure",
+    id = "DescribeFpgaImagesOutput",
     members = {
         FpgaImages = {
             type = "list",
@@ -34967,6 +36138,7 @@ M.DescribeFpgaImagesOutput = {
 
 M.DescribeHostReservationOfferingsInput = {
     type = "structure",
+    id = "DescribeHostReservationOfferingsInput",
     members = {
         Filter = {
             type = "list",
@@ -34998,6 +36170,7 @@ M.PaymentOption = {
 
 M.HostOffering = {
     type = "structure",
+    id = "HostOffering",
     members = {
         CurrencyCode = {
             type = "string",
@@ -35046,6 +36219,7 @@ M.HostOffering = {
 
 M.DescribeHostReservationOfferingsOutput = {
     type = "structure",
+    id = "DescribeHostReservationOfferingsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -35065,6 +36239,7 @@ M.DescribeHostReservationOfferingsOutput = {
 
 M.DescribeHostReservationsInput = {
     type = "structure",
+    id = "DescribeHostReservationsInput",
     members = {
         Filter = {
             type = "list",
@@ -35099,6 +36274,7 @@ M.ReservationState = {
 
 M.HostReservation = {
     type = "structure",
+    id = "HostReservation",
     members = {
         Count = {
             type = "integer",
@@ -35191,6 +36367,7 @@ M.HostReservation = {
 
 M.DescribeHostReservationsOutput = {
     type = "structure",
+    id = "DescribeHostReservationsOutput",
     members = {
         HostReservationSet = {
             type = "list",
@@ -35210,6 +36387,7 @@ M.DescribeHostReservationsOutput = {
 
 M.DescribeHostsInput = {
     type = "structure",
+    id = "DescribeHostsInput",
     members = {
         HostIds = {
             type = "list",
@@ -35242,6 +36420,7 @@ M.DescribeHostsInput = {
 
 M.InstanceCapacity = {
     type = "structure",
+    id = "InstanceCapacity",
     members = {
         AvailableCapacity = {
             type = "integer",
@@ -35266,6 +36445,7 @@ M.InstanceCapacity = {
 
 M.AvailableCapacity = {
     type = "structure",
+    id = "AvailableCapacity",
     members = {
         AvailableInstanceCapacity = {
             type = "list",
@@ -35285,6 +36465,7 @@ M.AvailableCapacity = {
 
 M.HostProperties = {
     type = "structure",
+    id = "HostProperties",
     members = {
         Cores = {
             type = "integer",
@@ -35321,6 +36502,7 @@ M.HostProperties = {
 
 M.HostInstance = {
     type = "structure",
+    id = "HostInstance",
     members = {
         InstanceId = {
             type = "string",
@@ -35345,6 +36527,7 @@ M.HostInstance = {
 
 M.Host = {
     type = "structure",
+    id = "Host",
     members = {
         AutoPlacement = {
             type = "string",
@@ -35467,6 +36650,7 @@ M.Host = {
 
 M.DescribeHostsOutput = {
     type = "structure",
+    id = "DescribeHostsOutput",
     members = {
         Hosts = {
             type = "list",
@@ -35486,6 +36670,7 @@ M.DescribeHostsOutput = {
 
 M.DescribeIamInstanceProfileAssociationsInput = {
     type = "structure",
+    id = "DescribeIamInstanceProfileAssociationsInput",
     members = {
         AssociationIds = {
             type = "list",
@@ -35512,6 +36697,7 @@ M.DescribeIamInstanceProfileAssociationsInput = {
 
 M.DescribeIamInstanceProfileAssociationsOutput = {
     type = "structure",
+    id = "DescribeIamInstanceProfileAssociationsOutput",
     members = {
         IamInstanceProfileAssociations = {
             type = "list",
@@ -35531,6 +36717,7 @@ M.DescribeIamInstanceProfileAssociationsOutput = {
 
 M.DescribeIdentityIdFormatInput = {
     type = "structure",
+    id = "DescribeIdentityIdFormatInput",
     members = {
         Resource = {
             type = "string",
@@ -35550,6 +36737,7 @@ M.DescribeIdentityIdFormatInput = {
 
 M.DescribeIdentityIdFormatOutput = {
     type = "structure",
+    id = "DescribeIdentityIdFormatOutput",
     members = {
         Statuses = {
             type = "list",
@@ -35563,6 +36751,7 @@ M.DescribeIdentityIdFormatOutput = {
 
 M.DescribeIdFormatInput = {
     type = "structure",
+    id = "DescribeIdFormatInput",
     members = {
         Resource = {
             type = "string",
@@ -35572,6 +36761,7 @@ M.DescribeIdFormatInput = {
 
 M.DescribeIdFormatOutput = {
     type = "structure",
+    id = "DescribeIdFormatOutput",
     members = {
         Statuses = {
             type = "list",
@@ -35601,6 +36791,7 @@ M.ImageAttributeName = {
 
 M.DescribeImageAttributeInput = {
     type = "structure",
+    id = "DescribeImageAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -35625,6 +36816,7 @@ M.DescribeImageAttributeInput = {
 
 M.LaunchPermission = {
     type = "structure",
+    id = "LaunchPermission",
     members = {
         OrganizationArn = {
             type = "string",
@@ -35655,6 +36847,7 @@ M.LaunchPermission = {
 
 M.DescribeImageAttributeOutput = {
     type = "structure",
+    id = "DescribeImageAttributeOutput",
     members = {
         Description = setmetatable({ traits = {
             xml_name = "description",
@@ -35731,6 +36924,7 @@ M.ImageReferenceOptionName = {
 
 M.ResourceTypeOption = {
     type = "structure",
+    id = "ResourceTypeOption",
     members = {
         OptionName = {
             type = "string",
@@ -35747,6 +36941,7 @@ M.ResourceTypeOption = {
 
 M.ResourceTypeRequest = {
     type = "structure",
+    id = "ResourceTypeRequest",
     members = {
         ResourceType = {
             type = "string",
@@ -35763,6 +36958,7 @@ M.ResourceTypeRequest = {
 
 M.DescribeImageReferencesInput = {
     type = "structure",
+    id = "DescribeImageReferencesInput",
     members = {
         ImageIds = {
             type = "list",
@@ -35796,6 +36992,7 @@ M.DescribeImageReferencesInput = {
 
 M.ImageReference = {
     type = "structure",
+    id = "ImageReference",
     members = {
         ImageId = {
             type = "string",
@@ -35820,6 +37017,7 @@ M.ImageReference = {
 
 M.DescribeImageReferencesOutput = {
     type = "structure",
+    id = "DescribeImageReferencesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -35839,6 +37037,7 @@ M.DescribeImageReferencesOutput = {
 
 M.DescribeImagesInput = {
     type = "structure",
+    id = "DescribeImagesInput",
     members = {
         ExecutableUsers = {
             type = "list",
@@ -35945,6 +37144,7 @@ M.VirtualizationType = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         PlatformDetails = {
             type = "string",
@@ -36173,6 +37373,7 @@ M.Image = {
 
 M.DescribeImagesOutput = {
     type = "structure",
+    id = "DescribeImagesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -36192,6 +37393,7 @@ M.DescribeImagesOutput = {
 
 M.DescribeImageUsageReportEntriesInput = {
     type = "structure",
+    id = "DescribeImageUsageReportEntriesInput",
     members = {
         ImageIds = {
             type = "list",
@@ -36228,6 +37430,7 @@ M.DescribeImageUsageReportEntriesInput = {
 
 M.ImageUsageReportEntry = {
     type = "structure",
+    id = "ImageUsageReportEntry",
     members = {
         ResourceType = {
             type = "string",
@@ -36270,6 +37473,7 @@ M.ImageUsageReportEntry = {
 
 M.DescribeImageUsageReportEntriesOutput = {
     type = "structure",
+    id = "DescribeImageUsageReportEntriesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -36289,6 +37493,7 @@ M.DescribeImageUsageReportEntriesOutput = {
 
 M.DescribeImageUsageReportsInput = {
     type = "structure",
+    id = "DescribeImageUsageReportsInput",
     members = {
         ImageIds = {
             type = "list",
@@ -36325,6 +37530,7 @@ M.DescribeImageUsageReportsInput = {
 
 M.ImageUsageResourceTypeOption = {
     type = "structure",
+    id = "ImageUsageResourceTypeOption",
     members = {
         OptionName = {
             type = "string",
@@ -36344,6 +37550,7 @@ M.ImageUsageResourceTypeOption = {
 
 M.ImageUsageResourceType = {
     type = "structure",
+    id = "ImageUsageResourceType",
     members = {
         ResourceType = {
             type = "string",
@@ -36363,6 +37570,7 @@ M.ImageUsageResourceType = {
 
 M.ImageUsageReport = {
     type = "structure",
+    id = "ImageUsageReport",
     members = {
         ImageId = {
             type = "string",
@@ -36426,6 +37634,7 @@ M.ImageUsageReport = {
 
 M.DescribeImageUsageReportsOutput = {
     type = "structure",
+    id = "DescribeImageUsageReportsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -36445,6 +37654,7 @@ M.DescribeImageUsageReportsOutput = {
 
 M.DescribeImportImageTasksInput = {
     type = "structure",
+    id = "DescribeImportImageTasksInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -36474,6 +37684,7 @@ M.DescribeImportImageTasksInput = {
 
 M.ImportImageLicenseConfigurationResponse = {
     type = "structure",
+    id = "ImportImageLicenseConfigurationResponse",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -36486,6 +37697,7 @@ M.ImportImageLicenseConfigurationResponse = {
 
 M.UserBucketDetails = {
     type = "structure",
+    id = "UserBucketDetails",
     members = {
         S3Bucket = {
             type = "string",
@@ -36504,6 +37716,7 @@ M.UserBucketDetails = {
 
 M.SnapshotDetail = {
     type = "structure",
+    id = "SnapshotDetail",
     members = {
         Description = {
             type = "string",
@@ -36567,6 +37780,7 @@ M.SnapshotDetail = {
 
 M.ImportImageTask = {
     type = "structure",
+    id = "ImportImageTask",
     members = {
         Architecture = {
             type = "string",
@@ -36678,6 +37892,7 @@ M.ImportImageTask = {
 
 M.DescribeImportImageTasksOutput = {
     type = "structure",
+    id = "DescribeImportImageTasksOutput",
     members = {
         ImportImageTasks = {
             type = "list",
@@ -36697,6 +37912,7 @@ M.DescribeImportImageTasksOutput = {
 
 M.DescribeImportSnapshotTasksInput = {
     type = "structure",
+    id = "DescribeImportSnapshotTasksInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -36726,6 +37942,7 @@ M.DescribeImportSnapshotTasksInput = {
 
 M.SnapshotTaskDetail = {
     type = "structure",
+    id = "SnapshotTaskDetail",
     members = {
         Description = {
             type = "string",
@@ -36795,6 +38012,7 @@ M.SnapshotTaskDetail = {
 
 M.ImportSnapshotTask = {
     type = "structure",
+    id = "ImportSnapshotTask",
     members = {
         Description = {
             type = "string",
@@ -36823,6 +38041,7 @@ M.ImportSnapshotTask = {
 
 M.DescribeImportSnapshotTasksOutput = {
     type = "structure",
+    id = "DescribeImportSnapshotTasksOutput",
     members = {
         ImportSnapshotTasks = {
             type = "list",
@@ -36861,6 +38080,7 @@ M.InstanceAttributeName = {
 
 M.DescribeInstanceAttributeInput = {
     type = "structure",
+    id = "DescribeInstanceAttributeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -36887,6 +38107,7 @@ M.DescribeInstanceAttributeInput = {
 
 M.EbsInstanceBlockDevice = {
     type = "structure",
+    id = "EbsInstanceBlockDevice",
     members = {
         AttachTime = {
             type = "timestamp",
@@ -36938,6 +38159,7 @@ M.EbsInstanceBlockDevice = {
 
 M.InstanceBlockDeviceMapping = {
     type = "structure",
+    id = "InstanceBlockDeviceMapping",
     members = {
         DeviceName = {
             type = "string",
@@ -36953,6 +38175,7 @@ M.InstanceBlockDeviceMapping = {
 
 M.AttributeBooleanValue = {
     type = "structure",
+    id = "AttributeBooleanValue",
     members = {
         Value = {
             type = "boolean",
@@ -36965,6 +38188,7 @@ M.AttributeBooleanValue = {
 
 M.EnclaveOptions = {
     type = "structure",
+    id = "EnclaveOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -36977,6 +38201,7 @@ M.EnclaveOptions = {
 
 M.DescribeInstanceAttributeOutput = {
     type = "structure",
+    id = "DescribeInstanceAttributeOutput",
     members = {
         BlockDeviceMappings = {
             type = "list",
@@ -37049,6 +38274,7 @@ M.DescribeInstanceAttributeOutput = {
 
 M.DescribeInstanceConnectEndpointsInput = {
     type = "structure",
+    id = "DescribeInstanceConnectEndpointsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -37078,6 +38304,7 @@ M.DescribeInstanceConnectEndpointsInput = {
 
 M.DescribeInstanceConnectEndpointsOutput = {
     type = "structure",
+    id = "DescribeInstanceConnectEndpointsOutput",
     members = {
         InstanceConnectEndpoints = {
             type = "list",
@@ -37097,6 +38324,7 @@ M.DescribeInstanceConnectEndpointsOutput = {
 
 M.DescribeInstanceCreditSpecificationsInput = {
     type = "structure",
+    id = "DescribeInstanceCreditSpecificationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -37126,6 +38354,7 @@ M.DescribeInstanceCreditSpecificationsInput = {
 
 M.InstanceCreditSpecification = {
     type = "structure",
+    id = "InstanceCreditSpecification",
     members = {
         InstanceId = {
             type = "string",
@@ -37144,6 +38373,7 @@ M.InstanceCreditSpecification = {
 
 M.DescribeInstanceCreditSpecificationsOutput = {
     type = "structure",
+    id = "DescribeInstanceCreditSpecificationsOutput",
     members = {
         InstanceCreditSpecifications = {
             type = "list",
@@ -37163,6 +38393,7 @@ M.DescribeInstanceCreditSpecificationsOutput = {
 
 M.DescribeInstanceEventNotificationAttributesInput = {
     type = "structure",
+    id = "DescribeInstanceEventNotificationAttributesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -37172,6 +38403,7 @@ M.DescribeInstanceEventNotificationAttributesInput = {
 
 M.DescribeInstanceEventNotificationAttributesOutput = {
     type = "structure",
+    id = "DescribeInstanceEventNotificationAttributesOutput",
     members = {
         InstanceTagAttribute = setmetatable({ traits = {
             xml_name = "instanceTagAttribute",
@@ -37181,6 +38413,7 @@ M.DescribeInstanceEventNotificationAttributesOutput = {
 
 M.DescribeInstanceEventWindowsInput = {
     type = "structure",
+    id = "DescribeInstanceEventWindowsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -37210,6 +38443,7 @@ M.DescribeInstanceEventWindowsInput = {
 
 M.DescribeInstanceEventWindowsOutput = {
     type = "structure",
+    id = "DescribeInstanceEventWindowsOutput",
     members = {
         InstanceEventWindows = {
             type = "list",
@@ -37229,6 +38463,7 @@ M.DescribeInstanceEventWindowsOutput = {
 
 M.DescribeInstanceImageMetadataInput = {
     type = "structure",
+    id = "DescribeInstanceImageMetadataInput",
     members = {
         Filters = {
             type = "list",
@@ -37258,6 +38493,7 @@ M.DescribeInstanceImageMetadataInput = {
 
 M.ImageMetadata = {
     type = "structure",
+    id = "ImageMetadata",
     members = {
         ImageId = {
             type = "string",
@@ -37327,6 +38563,7 @@ M.InstanceStateName = {
 
 M.InstanceState = {
     type = "structure",
+    id = "InstanceState",
     members = {
         Code = {
             type = "integer",
@@ -37345,6 +38582,7 @@ M.InstanceState = {
 
 M.InstanceImageMetadata = {
     type = "structure",
+    id = "InstanceImageMetadata",
     members = {
         InstanceId = {
             type = "string",
@@ -37403,6 +38641,7 @@ M.InstanceImageMetadata = {
 
 M.DescribeInstanceImageMetadataOutput = {
     type = "structure",
+    id = "DescribeInstanceImageMetadataOutput",
     members = {
         InstanceImageMetadata = {
             type = "list",
@@ -37422,6 +38661,7 @@ M.DescribeInstanceImageMetadataOutput = {
 
 M.DescribeInstancesInput = {
     type = "structure",
+    id = "DescribeInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -37463,6 +38703,7 @@ M.DescribeInstancesInput = {
 
 M.CapacityReservationSpecificationResponse = {
     type = "structure",
+    id = "CapacityReservationSpecificationResponse",
     members = {
         CapacityReservationPreference = {
             type = "string",
@@ -37478,6 +38719,7 @@ M.CapacityReservationSpecificationResponse = {
 
 M.CpuOptions = {
     type = "structure",
+    id = "CpuOptions",
     members = {
         CoreCount = {
             type = "integer",
@@ -37513,6 +38755,7 @@ M.InstanceBootModeValues = {
 
 M.ElasticGpuAssociation = {
     type = "structure",
+    id = "ElasticGpuAssociation",
     members = {
         ElasticGpuId = {
             type = "string",
@@ -37543,6 +38786,7 @@ M.ElasticGpuAssociation = {
 
 M.ElasticInferenceAcceleratorAssociation = {
     type = "structure",
+    id = "ElasticInferenceAcceleratorAssociation",
     members = {
         ElasticInferenceAcceleratorArn = {
             type = "string",
@@ -37573,6 +38817,7 @@ M.ElasticInferenceAcceleratorAssociation = {
 
 M.HibernationOptions = {
     type = "structure",
+    id = "HibernationOptions",
     members = {
         Configured = {
             type = "boolean",
@@ -37592,6 +38837,7 @@ M.InstanceLifecycleType = {
 
 M.LicenseConfiguration = {
     type = "structure",
+    id = "LicenseConfiguration",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -37614,6 +38860,7 @@ M.InstanceRebootMigrationState = {
 
 M.InstanceMaintenanceOptions = {
     type = "structure",
+    id = "InstanceMaintenanceOptions",
     members = {
         AutoRecovery = {
             type = "string",
@@ -37657,6 +38904,7 @@ M.InstanceMetadataOptionsState = {
 
 M.InstanceMetadataOptionsResponse = {
     type = "structure",
+    id = "InstanceMetadataOptionsResponse",
     members = {
         State = {
             type = "string",
@@ -37706,6 +38954,7 @@ M.MonitoringState = {
 
 M.Monitoring = {
     type = "structure",
+    id = "Monitoring",
     members = {
         State = {
             type = "string",
@@ -37718,6 +38967,7 @@ M.Monitoring = {
 
 M.InstanceNetworkInterfaceAssociation = {
     type = "structure",
+    id = "InstanceNetworkInterfaceAssociation",
     members = {
         CarrierIp = {
             type = "string",
@@ -37754,6 +39004,7 @@ M.InstanceNetworkInterfaceAssociation = {
 
 M.InstanceAttachmentEnaSrdUdpSpecification = {
     type = "structure",
+    id = "InstanceAttachmentEnaSrdUdpSpecification",
     members = {
         EnaSrdUdpEnabled = {
             type = "boolean",
@@ -37766,6 +39017,7 @@ M.InstanceAttachmentEnaSrdUdpSpecification = {
 
 M.InstanceAttachmentEnaSrdSpecification = {
     type = "structure",
+    id = "InstanceAttachmentEnaSrdSpecification",
     members = {
         EnaSrdEnabled = {
             type = "boolean",
@@ -37781,6 +39033,7 @@ M.InstanceAttachmentEnaSrdSpecification = {
 
 M.InstanceNetworkInterfaceAttachment = {
     type = "structure",
+    id = "InstanceNetworkInterfaceAttachment",
     members = {
         AttachTime = {
             type = "timestamp",
@@ -37832,6 +39085,7 @@ M.InstanceNetworkInterfaceAttachment = {
 
 M.ConnectionTrackingSpecificationResponse = {
     type = "structure",
+    id = "ConnectionTrackingSpecificationResponse",
     members = {
         TcpEstablishedTimeout = {
             type = "integer",
@@ -37856,6 +39110,7 @@ M.ConnectionTrackingSpecificationResponse = {
 
 M.InstanceIpv4Prefix = {
     type = "structure",
+    id = "InstanceIpv4Prefix",
     members = {
         Ipv4Prefix = {
             type = "string",
@@ -37868,6 +39123,7 @@ M.InstanceIpv4Prefix = {
 
 M.InstanceIpv6Prefix = {
     type = "structure",
+    id = "InstanceIpv6Prefix",
     members = {
         Ipv6Prefix = {
             type = "string",
@@ -37880,6 +39136,7 @@ M.InstanceIpv6Prefix = {
 
 M.InstancePrivateIpAddress = {
     type = "structure",
+    id = "InstancePrivateIpAddress",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -37907,6 +39164,7 @@ M.InstancePrivateIpAddress = {
 
 M.InstanceNetworkInterface = {
     type = "structure",
+    id = "InstanceNetworkInterface",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -38026,6 +39284,7 @@ M.InstanceNetworkInterface = {
 
 M.InstanceNetworkPerformanceOptions = {
     type = "structure",
+    id = "InstanceNetworkPerformanceOptions",
     members = {
         BandwidthWeighting = {
             type = "string",
@@ -38038,6 +39297,7 @@ M.InstanceNetworkPerformanceOptions = {
 
 M.PrivateDnsNameOptionsResponse = {
     type = "structure",
+    id = "PrivateDnsNameOptionsResponse",
     members = {
         HostnameType = {
             type = "string",
@@ -38062,6 +39322,7 @@ M.PrivateDnsNameOptionsResponse = {
 
 M.InstanceSecondaryInterfaceAttachment = {
     type = "structure",
+    id = "InstanceSecondaryInterfaceAttachment",
     members = {
         AttachTime = {
             type = "timestamp",
@@ -38104,6 +39365,7 @@ M.InstanceSecondaryInterfaceAttachment = {
 
 M.InstanceSecondaryInterfacePrivateIpAddress = {
     type = "structure",
+    id = "InstanceSecondaryInterfacePrivateIpAddress",
     members = {
         PrivateIpAddress = {
             type = "string",
@@ -38121,6 +39383,7 @@ M.SecondaryInterfaceStatus = {
 
 M.InstanceSecondaryInterface = {
     type = "structure",
+    id = "InstanceSecondaryInterface",
     members = {
         Attachment = setmetatable({ traits = {
             xml_name = "attachment",
@@ -38185,6 +39448,7 @@ M.InstanceSecondaryInterface = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         Architecture = {
             type = "string",
@@ -38524,6 +39788,7 @@ M.Instance = {
 
 M.Reservation = {
     type = "structure",
+    id = "Reservation",
     members = {
         ReservationId = {
             type = "string",
@@ -38562,6 +39827,7 @@ M.Reservation = {
 
 M.DescribeInstancesOutput = {
     type = "structure",
+    id = "DescribeInstancesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -38581,6 +39847,7 @@ M.DescribeInstancesOutput = {
 
 M.DescribeInstanceSqlHaHistoryStatesInput = {
     type = "structure",
+    id = "DescribeInstanceSqlHaHistoryStatesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -38628,6 +39895,7 @@ M.SqlServerLicenseUsage = {
 
 M.RegisteredInstance = {
     type = "structure",
+    id = "RegisteredInstance",
     members = {
         InstanceId = {
             type = "string",
@@ -38677,6 +39945,7 @@ M.RegisteredInstance = {
 
 M.DescribeInstanceSqlHaHistoryStatesOutput = {
     type = "structure",
+    id = "DescribeInstanceSqlHaHistoryStatesOutput",
     members = {
         Instances = {
             type = "list",
@@ -38696,6 +39965,7 @@ M.DescribeInstanceSqlHaHistoryStatesOutput = {
 
 M.DescribeInstanceSqlHaStatesInput = {
     type = "structure",
+    id = "DescribeInstanceSqlHaStatesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -38725,6 +39995,7 @@ M.DescribeInstanceSqlHaStatesInput = {
 
 M.DescribeInstanceSqlHaStatesOutput = {
     type = "structure",
+    id = "DescribeInstanceSqlHaStatesOutput",
     members = {
         Instances = {
             type = "list",
@@ -38744,6 +40015,7 @@ M.DescribeInstanceSqlHaStatesOutput = {
 
 M.DescribeInstanceStatusInput = {
     type = "structure",
+    id = "DescribeInstanceStatusInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -38796,6 +40068,7 @@ M.StatusType = {
 
 M.EbsStatusDetails = {
     type = "structure",
+    id = "EbsStatusDetails",
     members = {
         ImpairedSince = {
             type = "timestamp",
@@ -38828,6 +40101,7 @@ M.SummaryStatus = {
 
 M.EbsStatusSummary = {
     type = "structure",
+    id = "EbsStatusSummary",
     members = {
         Details = {
             type = "list",
@@ -38855,6 +40129,7 @@ M.EventCode = {
 
 M.InstanceStatusEvent = {
     type = "structure",
+    id = "InstanceStatusEvent",
     members = {
         InstanceEventId = {
             type = "string",
@@ -38897,6 +40172,7 @@ M.InstanceStatusEvent = {
 
 M.InstanceStatusDetails = {
     type = "structure",
+    id = "InstanceStatusDetails",
     members = {
         ImpairedSince = {
             type = "timestamp",
@@ -38921,6 +40197,7 @@ M.InstanceStatusDetails = {
 
 M.InstanceStatusSummary = {
     type = "structure",
+    id = "InstanceStatusSummary",
     members = {
         Details = {
             type = "list",
@@ -38940,6 +40217,7 @@ M.InstanceStatusSummary = {
 
 M.InstanceStatus = {
     type = "structure",
+    id = "InstanceStatus",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -38992,6 +40270,7 @@ M.InstanceStatus = {
 
 M.DescribeInstanceStatusOutput = {
     type = "structure",
+    id = "DescribeInstanceStatusOutput",
     members = {
         InstanceStatuses = {
             type = "list",
@@ -39011,6 +40290,7 @@ M.DescribeInstanceStatusOutput = {
 
 M.DescribeInstanceTopologyInput = {
     type = "structure",
+    id = "DescribeInstanceTopologyInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -39047,6 +40327,7 @@ M.DescribeInstanceTopologyInput = {
 
 M.InstanceTopology = {
     type = "structure",
+    id = "InstanceTopology",
     members = {
         InstanceId = {
             type = "string",
@@ -39096,6 +40377,7 @@ M.InstanceTopology = {
 
 M.DescribeInstanceTopologyOutput = {
     type = "structure",
+    id = "DescribeInstanceTopologyOutput",
     members = {
         Instances = {
             type = "list",
@@ -39122,6 +40404,7 @@ M.LocationType = {
 
 M.DescribeInstanceTypeOfferingsInput = {
     type = "structure",
+    id = "DescribeInstanceTypeOfferingsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -39147,6 +40430,7 @@ M.DescribeInstanceTypeOfferingsInput = {
 
 M.InstanceTypeOffering = {
     type = "structure",
+    id = "InstanceTypeOffering",
     members = {
         InstanceType = {
             type = "string",
@@ -39171,6 +40455,7 @@ M.InstanceTypeOffering = {
 
 M.DescribeInstanceTypeOfferingsOutput = {
     type = "structure",
+    id = "DescribeInstanceTypeOfferingsOutput",
     members = {
         InstanceTypeOfferings = {
             type = "list",
@@ -39190,6 +40475,7 @@ M.DescribeInstanceTypeOfferingsOutput = {
 
 M.DescribeInstanceTypesInput = {
     type = "structure",
+    id = "DescribeInstanceTypesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -39224,6 +40510,7 @@ M.AttachmentLimitType = {
 
 M.EbsCardInfo = {
     type = "structure",
+    id = "EbsCardInfo",
     members = {
         EbsCardIndex = {
             type = "integer",
@@ -39272,6 +40559,7 @@ M.EbsCardInfo = {
 
 M.EbsOptimizedInfo = {
     type = "structure",
+    id = "EbsOptimizedInfo",
     members = {
         BaselineBandwidthInMbps = {
             type = "integer",
@@ -39331,6 +40619,7 @@ M.EbsNvmeSupport = {
 
 M.EbsInfo = {
     type = "structure",
+    id = "EbsInfo",
     members = {
         EbsOptimizedSupport = {
             type = "string",
@@ -39383,6 +40672,7 @@ M.EbsInfo = {
 
 M.FpgaDeviceMemoryInfo = {
     type = "structure",
+    id = "FpgaDeviceMemoryInfo",
     members = {
         SizeInMiB = {
             type = "integer",
@@ -39395,6 +40685,7 @@ M.FpgaDeviceMemoryInfo = {
 
 M.FpgaDeviceInfo = {
     type = "structure",
+    id = "FpgaDeviceInfo",
     members = {
         Name = {
             type = "string",
@@ -39422,6 +40713,7 @@ M.FpgaDeviceInfo = {
 
 M.FpgaInfo = {
     type = "structure",
+    id = "FpgaInfo",
     members = {
         Fpgas = {
             type = "list",
@@ -39441,6 +40733,7 @@ M.FpgaInfo = {
 
 M.GpuDeviceMemoryInfo = {
     type = "structure",
+    id = "GpuDeviceMemoryInfo",
     members = {
         SizeInMiB = {
             type = "integer",
@@ -39453,6 +40746,7 @@ M.GpuDeviceMemoryInfo = {
 
 M.GpuDeviceInfo = {
     type = "structure",
+    id = "GpuDeviceInfo",
     members = {
         Name = {
             type = "string",
@@ -39499,6 +40793,7 @@ M.GpuDeviceInfo = {
 
 M.GpuInfo = {
     type = "structure",
+    id = "GpuInfo",
     members = {
         Gpus = {
             type = "list",
@@ -39523,6 +40818,7 @@ M.InstanceTypeHypervisor = {
 
 M.InferenceDeviceMemoryInfo = {
     type = "structure",
+    id = "InferenceDeviceMemoryInfo",
     members = {
         SizeInMiB = {
             type = "integer",
@@ -39535,6 +40831,7 @@ M.InferenceDeviceMemoryInfo = {
 
 M.InferenceDeviceInfo = {
     type = "structure",
+    id = "InferenceDeviceInfo",
     members = {
         Count = {
             type = "integer",
@@ -39562,6 +40859,7 @@ M.InferenceDeviceInfo = {
 
 M.InferenceAcceleratorInfo = {
     type = "structure",
+    id = "InferenceAcceleratorInfo",
     members = {
         Accelerators = {
             type = "list",
@@ -39586,6 +40884,7 @@ M.DiskType = {
 
 M.DiskInfo = {
     type = "structure",
+    id = "DiskInfo",
     members = {
         SizeInGB = {
             type = "long",
@@ -39621,6 +40920,7 @@ M.EphemeralNvmeSupport = {
 
 M.InstanceStorageInfo = {
     type = "structure",
+    id = "InstanceStorageInfo",
     members = {
         TotalSizeInGB = {
             type = "long",
@@ -39652,6 +40952,7 @@ M.InstanceStorageInfo = {
 
 M.MediaDeviceMemoryInfo = {
     type = "structure",
+    id = "MediaDeviceMemoryInfo",
     members = {
         SizeInMiB = {
             type = "integer",
@@ -39664,6 +40965,7 @@ M.MediaDeviceMemoryInfo = {
 
 M.MediaDeviceInfo = {
     type = "structure",
+    id = "MediaDeviceInfo",
     members = {
         Count = {
             type = "integer",
@@ -39691,6 +40993,7 @@ M.MediaDeviceInfo = {
 
 M.MediaAcceleratorInfo = {
     type = "structure",
+    id = "MediaAcceleratorInfo",
     members = {
         Accelerators = {
             type = "list",
@@ -39710,6 +41013,7 @@ M.MediaAcceleratorInfo = {
 
 M.MemoryInfo = {
     type = "structure",
+    id = "MemoryInfo",
     members = {
         SizeInMiB = {
             type = "long",
@@ -39728,6 +41032,7 @@ M.BandwidthWeightingType = {
 
 M.DefaultConnectionTrackingConfiguration = {
     type = "structure",
+    id = "DefaultConnectionTrackingConfiguration",
     members = {
         DefaultTcpEstablishedTimeout = {
             type = "integer",
@@ -39752,6 +41057,7 @@ M.DefaultConnectionTrackingConfiguration = {
 
 M.EfaInfo = {
     type = "structure",
+    id = "EfaInfo",
     members = {
         MaximumEfaInterfaces = {
             type = "integer",
@@ -39775,6 +41081,7 @@ M.FlexibleEnaQueuesSupport = {
 
 M.NetworkCardInfo = {
     type = "structure",
+    id = "NetworkCardInfo",
     members = {
         NetworkCardIndex = {
             type = "integer",
@@ -39835,6 +41142,7 @@ M.NetworkCardInfo = {
 
 M.NetworkInfo = {
     type = "structure",
+    id = "NetworkInfo",
     members = {
         NetworkPerformance = {
             type = "string",
@@ -39951,6 +41259,7 @@ M.NetworkInfo = {
 
 M.NeuronDeviceCoreInfo = {
     type = "structure",
+    id = "NeuronDeviceCoreInfo",
     members = {
         Count = {
             type = "integer",
@@ -39969,6 +41278,7 @@ M.NeuronDeviceCoreInfo = {
 
 M.NeuronDeviceMemoryInfo = {
     type = "structure",
+    id = "NeuronDeviceMemoryInfo",
     members = {
         SizeInMiB = {
             type = "integer",
@@ -39981,6 +41291,7 @@ M.NeuronDeviceMemoryInfo = {
 
 M.NeuronDeviceInfo = {
     type = "structure",
+    id = "NeuronDeviceInfo",
     members = {
         Count = {
             type = "integer",
@@ -40005,6 +41316,7 @@ M.NeuronDeviceInfo = {
 
 M.NeuronInfo = {
     type = "structure",
+    id = "NeuronInfo",
     members = {
         NeuronDevices = {
             type = "list",
@@ -40029,6 +41341,7 @@ M.NitroEnclavesSupport = {
 
 M.NitroTpmInfo = {
     type = "structure",
+    id = "NitroTpmInfo",
     members = {
         SupportedVersions = {
             type = "list",
@@ -40058,6 +41371,7 @@ M.PlacementGroupStrategy = {
 
 M.PlacementGroupInfo = {
     type = "structure",
+    id = "PlacementGroupInfo",
     members = {
         SupportedStrategies = {
             type = "list",
@@ -40084,6 +41398,7 @@ M.SupportedAdditionalProcessorFeature = {
 
 M.ProcessorInfo = {
     type = "structure",
+    id = "ProcessorInfo",
     members = {
         SupportedArchitectures = {
             type = "list",
@@ -40137,6 +41452,7 @@ M.UsageClassType = {
 
 M.VCpuInfo = {
     type = "structure",
+    id = "VCpuInfo",
     members = {
         DefaultVCpus = {
             type = "integer",
@@ -40175,6 +41491,7 @@ M.VCpuInfo = {
 
 M.InstanceTypeInfo = {
     type = "structure",
+    id = "InstanceTypeInfo",
     members = {
         InstanceType = {
             type = "string",
@@ -40332,6 +41649,7 @@ M.InstanceTypeInfo = {
 
 M.DescribeInstanceTypesOutput = {
     type = "structure",
+    id = "DescribeInstanceTypesOutput",
     members = {
         InstanceTypes = {
             type = "list",
@@ -40351,6 +41669,7 @@ M.DescribeInstanceTypesOutput = {
 
 M.DescribeInternetGatewaysInput = {
     type = "structure",
+    id = "DescribeInternetGatewaysInput",
     members = {
         NextToken = {
             type = "string",
@@ -40383,6 +41702,7 @@ M.DescribeInternetGatewaysInput = {
 
 M.DescribeInternetGatewaysOutput = {
     type = "structure",
+    id = "DescribeInternetGatewaysOutput",
     members = {
         InternetGateways = {
             type = "list",
@@ -40402,6 +41722,7 @@ M.DescribeInternetGatewaysOutput = {
 
 M.DescribeIpamByoasnInput = {
     type = "structure",
+    id = "DescribeIpamByoasnInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40417,6 +41738,7 @@ M.DescribeIpamByoasnInput = {
 
 M.DescribeIpamByoasnOutput = {
     type = "structure",
+    id = "DescribeIpamByoasnOutput",
     members = {
         Byoasns = {
             type = "list",
@@ -40436,6 +41758,7 @@ M.DescribeIpamByoasnOutput = {
 
 M.DescribeIpamExternalResourceVerificationTokensInput = {
     type = "structure",
+    id = "DescribeIpamExternalResourceVerificationTokensInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40465,6 +41788,7 @@ M.DescribeIpamExternalResourceVerificationTokensInput = {
 
 M.DescribeIpamExternalResourceVerificationTokensOutput = {
     type = "structure",
+    id = "DescribeIpamExternalResourceVerificationTokensOutput",
     members = {
         NextToken = {
             type = "string",
@@ -40484,6 +41808,7 @@ M.DescribeIpamExternalResourceVerificationTokensOutput = {
 
 M.DescribeIpamPoliciesInput = {
     type = "structure",
+    id = "DescribeIpamPoliciesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40513,6 +41838,7 @@ M.DescribeIpamPoliciesInput = {
 
 M.DescribeIpamPoliciesOutput = {
     type = "structure",
+    id = "DescribeIpamPoliciesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -40532,6 +41858,7 @@ M.DescribeIpamPoliciesOutput = {
 
 M.DescribeIpamPoolsInput = {
     type = "structure",
+    id = "DescribeIpamPoolsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40561,6 +41888,7 @@ M.DescribeIpamPoolsInput = {
 
 M.DescribeIpamPoolsOutput = {
     type = "structure",
+    id = "DescribeIpamPoolsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -40580,6 +41908,7 @@ M.DescribeIpamPoolsOutput = {
 
 M.DescribeIpamPrefixListResolversInput = {
     type = "structure",
+    id = "DescribeIpamPrefixListResolversInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40609,6 +41938,7 @@ M.DescribeIpamPrefixListResolversInput = {
 
 M.DescribeIpamPrefixListResolversOutput = {
     type = "structure",
+    id = "DescribeIpamPrefixListResolversOutput",
     members = {
         NextToken = {
             type = "string",
@@ -40628,6 +41958,7 @@ M.DescribeIpamPrefixListResolversOutput = {
 
 M.DescribeIpamPrefixListResolverTargetsInput = {
     type = "structure",
+    id = "DescribeIpamPrefixListResolverTargetsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40660,6 +41991,7 @@ M.DescribeIpamPrefixListResolverTargetsInput = {
 
 M.DescribeIpamPrefixListResolverTargetsOutput = {
     type = "structure",
+    id = "DescribeIpamPrefixListResolverTargetsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -40679,6 +42011,7 @@ M.DescribeIpamPrefixListResolverTargetsOutput = {
 
 M.DescribeIpamResourceDiscoveriesInput = {
     type = "structure",
+    id = "DescribeIpamResourceDiscoveriesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40708,6 +42041,7 @@ M.DescribeIpamResourceDiscoveriesInput = {
 
 M.DescribeIpamResourceDiscoveriesOutput = {
     type = "structure",
+    id = "DescribeIpamResourceDiscoveriesOutput",
     members = {
         IpamResourceDiscoveries = {
             type = "list",
@@ -40727,6 +42061,7 @@ M.DescribeIpamResourceDiscoveriesOutput = {
 
 M.DescribeIpamResourceDiscoveryAssociationsInput = {
     type = "structure",
+    id = "DescribeIpamResourceDiscoveryAssociationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40756,6 +42091,7 @@ M.DescribeIpamResourceDiscoveryAssociationsInput = {
 
 M.DescribeIpamResourceDiscoveryAssociationsOutput = {
     type = "structure",
+    id = "DescribeIpamResourceDiscoveryAssociationsOutput",
     members = {
         IpamResourceDiscoveryAssociations = {
             type = "list",
@@ -40775,6 +42111,7 @@ M.DescribeIpamResourceDiscoveryAssociationsOutput = {
 
 M.DescribeIpamsInput = {
     type = "structure",
+    id = "DescribeIpamsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40804,6 +42141,7 @@ M.DescribeIpamsInput = {
 
 M.DescribeIpamsOutput = {
     type = "structure",
+    id = "DescribeIpamsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -40823,6 +42161,7 @@ M.DescribeIpamsOutput = {
 
 M.DescribeIpamScopesInput = {
     type = "structure",
+    id = "DescribeIpamScopesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -40852,6 +42191,7 @@ M.DescribeIpamScopesInput = {
 
 M.DescribeIpamScopesOutput = {
     type = "structure",
+    id = "DescribeIpamScopesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -40871,6 +42211,7 @@ M.DescribeIpamScopesOutput = {
 
 M.DescribeIpv6PoolsInput = {
     type = "structure",
+    id = "DescribeIpv6PoolsInput",
     members = {
         PoolIds = {
             type = "list",
@@ -40900,6 +42241,7 @@ M.DescribeIpv6PoolsInput = {
 
 M.PoolCidrBlock = {
     type = "structure",
+    id = "PoolCidrBlock",
     members = {
         Cidr = {
             type = "string",
@@ -40912,6 +42254,7 @@ M.PoolCidrBlock = {
 
 M.Ipv6Pool = {
     type = "structure",
+    id = "Ipv6Pool",
     members = {
         PoolId = {
             type = "string",
@@ -40944,6 +42287,7 @@ M.Ipv6Pool = {
 
 M.DescribeIpv6PoolsOutput = {
     type = "structure",
+    id = "DescribeIpv6PoolsOutput",
     members = {
         Ipv6Pools = {
             type = "list",
@@ -40963,6 +42307,7 @@ M.DescribeIpv6PoolsOutput = {
 
 M.DescribeKeyPairsInput = {
     type = "structure",
+    id = "DescribeKeyPairsInput",
     members = {
         KeyNames = {
             type = "list",
@@ -40999,6 +42344,7 @@ M.DescribeKeyPairsInput = {
 
 M.KeyPairInfo = {
     type = "structure",
+    id = "KeyPairInfo",
     members = {
         KeyPairId = {
             type = "string",
@@ -41048,6 +42394,7 @@ M.KeyPairInfo = {
 
 M.DescribeKeyPairsOutput = {
     type = "structure",
+    id = "DescribeKeyPairsOutput",
     members = {
         KeyPairs = {
             type = "list",
@@ -41061,6 +42408,7 @@ M.DescribeKeyPairsOutput = {
 
 M.DescribeLaunchTemplatesInput = {
     type = "structure",
+    id = "DescribeLaunchTemplatesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -41100,6 +42448,7 @@ M.DescribeLaunchTemplatesInput = {
 
 M.DescribeLaunchTemplatesOutput = {
     type = "structure",
+    id = "DescribeLaunchTemplatesOutput",
     members = {
         LaunchTemplates = {
             type = "list",
@@ -41119,6 +42468,7 @@ M.DescribeLaunchTemplatesOutput = {
 
 M.DescribeLaunchTemplateVersionsInput = {
     type = "structure",
+    id = "DescribeLaunchTemplateVersionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -41166,6 +42516,7 @@ M.DescribeLaunchTemplateVersionsInput = {
 
 M.DescribeLaunchTemplateVersionsOutput = {
     type = "structure",
+    id = "DescribeLaunchTemplateVersionsOutput",
     members = {
         LaunchTemplateVersions = {
             type = "list",
@@ -41185,6 +42536,7 @@ M.DescribeLaunchTemplateVersionsOutput = {
 
 M.DescribeLocalGatewayRouteTablesInput = {
     type = "structure",
+    id = "DescribeLocalGatewayRouteTablesInput",
     members = {
         LocalGatewayRouteTableIds = {
             type = "list",
@@ -41214,6 +42566,7 @@ M.DescribeLocalGatewayRouteTablesInput = {
 
 M.DescribeLocalGatewayRouteTablesOutput = {
     type = "structure",
+    id = "DescribeLocalGatewayRouteTablesOutput",
     members = {
         LocalGatewayRouteTables = {
             type = "list",
@@ -41233,6 +42586,7 @@ M.DescribeLocalGatewayRouteTablesOutput = {
 
 M.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput = {
     type = "structure",
+    id = "DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput",
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociationIds = {
             type = "list",
@@ -41262,6 +42616,7 @@ M.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput = {
 
 M.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput = {
     type = "structure",
+    id = "DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput",
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociations = {
             type = "list",
@@ -41281,6 +42636,7 @@ M.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput = {
 
 M.DescribeLocalGatewayRouteTableVpcAssociationsInput = {
     type = "structure",
+    id = "DescribeLocalGatewayRouteTableVpcAssociationsInput",
     members = {
         LocalGatewayRouteTableVpcAssociationIds = {
             type = "list",
@@ -41310,6 +42666,7 @@ M.DescribeLocalGatewayRouteTableVpcAssociationsInput = {
 
 M.DescribeLocalGatewayRouteTableVpcAssociationsOutput = {
     type = "structure",
+    id = "DescribeLocalGatewayRouteTableVpcAssociationsOutput",
     members = {
         LocalGatewayRouteTableVpcAssociations = {
             type = "list",
@@ -41329,6 +42686,7 @@ M.DescribeLocalGatewayRouteTableVpcAssociationsOutput = {
 
 M.DescribeLocalGatewaysInput = {
     type = "structure",
+    id = "DescribeLocalGatewaysInput",
     members = {
         LocalGatewayIds = {
             type = "list",
@@ -41358,6 +42716,7 @@ M.DescribeLocalGatewaysInput = {
 
 M.LocalGateway = {
     type = "structure",
+    id = "LocalGateway",
     members = {
         LocalGatewayId = {
             type = "string",
@@ -41395,6 +42754,7 @@ M.LocalGateway = {
 
 M.DescribeLocalGatewaysOutput = {
     type = "structure",
+    id = "DescribeLocalGatewaysOutput",
     members = {
         LocalGateways = {
             type = "list",
@@ -41414,6 +42774,7 @@ M.DescribeLocalGatewaysOutput = {
 
 M.DescribeLocalGatewayVirtualInterfaceGroupsInput = {
     type = "structure",
+    id = "DescribeLocalGatewayVirtualInterfaceGroupsInput",
     members = {
         LocalGatewayVirtualInterfaceGroupIds = {
             type = "list",
@@ -41443,6 +42804,7 @@ M.DescribeLocalGatewayVirtualInterfaceGroupsInput = {
 
 M.DescribeLocalGatewayVirtualInterfaceGroupsOutput = {
     type = "structure",
+    id = "DescribeLocalGatewayVirtualInterfaceGroupsOutput",
     members = {
         LocalGatewayVirtualInterfaceGroups = {
             type = "list",
@@ -41462,6 +42824,7 @@ M.DescribeLocalGatewayVirtualInterfaceGroupsOutput = {
 
 M.DescribeLocalGatewayVirtualInterfacesInput = {
     type = "structure",
+    id = "DescribeLocalGatewayVirtualInterfacesInput",
     members = {
         LocalGatewayVirtualInterfaceIds = {
             type = "list",
@@ -41491,6 +42854,7 @@ M.DescribeLocalGatewayVirtualInterfacesInput = {
 
 M.DescribeLocalGatewayVirtualInterfacesOutput = {
     type = "structure",
+    id = "DescribeLocalGatewayVirtualInterfacesOutput",
     members = {
         LocalGatewayVirtualInterfaces = {
             type = "list",
@@ -41510,6 +42874,7 @@ M.DescribeLocalGatewayVirtualInterfacesOutput = {
 
 M.DescribeLockedSnapshotsInput = {
     type = "structure",
+    id = "DescribeLockedSnapshotsInput",
     members = {
         Filters = {
             type = "list",
@@ -41546,6 +42911,7 @@ M.LockState = {
 
 M.LockedSnapshotsInfo = {
     type = "structure",
+    id = "LockedSnapshotsInfo",
     members = {
         OwnerId = {
             type = "string",
@@ -41606,6 +42972,7 @@ M.LockedSnapshotsInfo = {
 
 M.DescribeLockedSnapshotsOutput = {
     type = "structure",
+    id = "DescribeLockedSnapshotsOutput",
     members = {
         Snapshots = {
             type = "list",
@@ -41625,6 +42992,7 @@ M.DescribeLockedSnapshotsOutput = {
 
 M.DescribeMacHostsInput = {
     type = "structure",
+    id = "DescribeMacHostsInput",
     members = {
         Filters = {
             type = "list",
@@ -41651,6 +43019,7 @@ M.DescribeMacHostsInput = {
 
 M.MacHost = {
     type = "structure",
+    id = "MacHost",
     members = {
         HostId = {
             type = "string",
@@ -41670,6 +43039,7 @@ M.MacHost = {
 
 M.DescribeMacHostsOutput = {
     type = "structure",
+    id = "DescribeMacHostsOutput",
     members = {
         MacHosts = {
             type = "list",
@@ -41689,6 +43059,7 @@ M.DescribeMacHostsOutput = {
 
 M.DescribeMacModificationTasksInput = {
     type = "structure",
+    id = "DescribeMacModificationTasksInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -41718,6 +43089,7 @@ M.DescribeMacModificationTasksInput = {
 
 M.DescribeMacModificationTasksOutput = {
     type = "structure",
+    id = "DescribeMacModificationTasksOutput",
     members = {
         MacModificationTasks = {
             type = "list",
@@ -41737,6 +43109,7 @@ M.DescribeMacModificationTasksOutput = {
 
 M.DescribeManagedPrefixListsInput = {
     type = "structure",
+    id = "DescribeManagedPrefixListsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -41766,6 +43139,7 @@ M.DescribeManagedPrefixListsInput = {
 
 M.DescribeManagedPrefixListsOutput = {
     type = "structure",
+    id = "DescribeManagedPrefixListsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -41785,6 +43159,7 @@ M.DescribeManagedPrefixListsOutput = {
 
 M.DescribeMovingAddressesInput = {
     type = "structure",
+    id = "DescribeMovingAddressesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -41828,6 +43203,7 @@ M.MoveStatus = {
 
 M.MovingAddressStatus = {
     type = "structure",
+    id = "MovingAddressStatus",
     members = {
         MoveStatus = {
             type = "string",
@@ -41846,6 +43222,7 @@ M.MovingAddressStatus = {
 
 M.DescribeMovingAddressesOutput = {
     type = "structure",
+    id = "DescribeMovingAddressesOutput",
     members = {
         MovingAddressStatuses = {
             type = "list",
@@ -41865,6 +43242,7 @@ M.DescribeMovingAddressesOutput = {
 
 M.DescribeNatGatewaysInput = {
     type = "structure",
+    id = "DescribeNatGatewaysInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -41891,6 +43269,7 @@ M.DescribeNatGatewaysInput = {
 
 M.DescribeNatGatewaysOutput = {
     type = "structure",
+    id = "DescribeNatGatewaysOutput",
     members = {
         NatGateways = {
             type = "list",
@@ -41910,6 +43289,7 @@ M.DescribeNatGatewaysOutput = {
 
 M.DescribeNetworkAclsInput = {
     type = "structure",
+    id = "DescribeNetworkAclsInput",
     members = {
         NextToken = {
             type = "string",
@@ -41942,6 +43322,7 @@ M.DescribeNetworkAclsInput = {
 
 M.DescribeNetworkAclsOutput = {
     type = "structure",
+    id = "DescribeNetworkAclsOutput",
     members = {
         NetworkAcls = {
             type = "list",
@@ -41961,6 +43342,7 @@ M.DescribeNetworkAclsOutput = {
 
 M.DescribeNetworkInsightsAccessScopeAnalysesInput = {
     type = "structure",
+    id = "DescribeNetworkInsightsAccessScopeAnalysesInput",
     members = {
         NetworkInsightsAccessScopeAnalysisIds = {
             type = "list",
@@ -42011,6 +43393,7 @@ M.AnalysisStatus = {
 
 M.NetworkInsightsAccessScopeAnalysis = {
     type = "structure",
+    id = "NetworkInsightsAccessScopeAnalysis",
     members = {
         NetworkInsightsAccessScopeAnalysisId = {
             type = "string",
@@ -42084,6 +43467,7 @@ M.NetworkInsightsAccessScopeAnalysis = {
 
 M.DescribeNetworkInsightsAccessScopeAnalysesOutput = {
     type = "structure",
+    id = "DescribeNetworkInsightsAccessScopeAnalysesOutput",
     members = {
         NetworkInsightsAccessScopeAnalyses = {
             type = "list",
@@ -42103,6 +43487,7 @@ M.DescribeNetworkInsightsAccessScopeAnalysesOutput = {
 
 M.DescribeNetworkInsightsAccessScopesInput = {
     type = "structure",
+    id = "DescribeNetworkInsightsAccessScopesInput",
     members = {
         NetworkInsightsAccessScopeIds = {
             type = "list",
@@ -42132,6 +43517,7 @@ M.DescribeNetworkInsightsAccessScopesInput = {
 
 M.DescribeNetworkInsightsAccessScopesOutput = {
     type = "structure",
+    id = "DescribeNetworkInsightsAccessScopesOutput",
     members = {
         NetworkInsightsAccessScopes = {
             type = "list",
@@ -42151,6 +43537,7 @@ M.DescribeNetworkInsightsAccessScopesOutput = {
 
 M.DescribeNetworkInsightsAnalysesInput = {
     type = "structure",
+    id = "DescribeNetworkInsightsAnalysesInput",
     members = {
         NetworkInsightsAnalysisIds = {
             type = "list",
@@ -42189,6 +43576,7 @@ M.DescribeNetworkInsightsAnalysesInput = {
 
 M.NetworkInsightsAnalysis = {
     type = "structure",
+    id = "NetworkInsightsAnalysis",
     members = {
         NetworkInsightsAnalysisId = {
             type = "string",
@@ -42306,6 +43694,7 @@ M.NetworkInsightsAnalysis = {
 
 M.DescribeNetworkInsightsAnalysesOutput = {
     type = "structure",
+    id = "DescribeNetworkInsightsAnalysesOutput",
     members = {
         NetworkInsightsAnalyses = {
             type = "list",
@@ -42325,6 +43714,7 @@ M.DescribeNetworkInsightsAnalysesOutput = {
 
 M.DescribeNetworkInsightsPathsInput = {
     type = "structure",
+    id = "DescribeNetworkInsightsPathsInput",
     members = {
         NetworkInsightsPathIds = {
             type = "list",
@@ -42354,6 +43744,7 @@ M.DescribeNetworkInsightsPathsInput = {
 
 M.DescribeNetworkInsightsPathsOutput = {
     type = "structure",
+    id = "DescribeNetworkInsightsPathsOutput",
     members = {
         NetworkInsightsPaths = {
             type = "list",
@@ -42381,6 +43772,7 @@ M.NetworkInterfaceAttribute = {
 
 M.DescribeNetworkInterfaceAttributeInput = {
     type = "structure",
+    id = "DescribeNetworkInterfaceAttributeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -42406,6 +43798,7 @@ M.DescribeNetworkInterfaceAttributeInput = {
 
 M.DescribeNetworkInterfaceAttributeOutput = {
     type = "structure",
+    id = "DescribeNetworkInterfaceAttributeOutput",
     members = {
         Attachment = setmetatable({ traits = {
             xml_name = "attachment",
@@ -42440,6 +43833,7 @@ M.DescribeNetworkInterfaceAttributeOutput = {
 
 M.DescribeNetworkInterfacePermissionsInput = {
     type = "structure",
+    id = "DescribeNetworkInterfacePermissionsInput",
     members = {
         NetworkInterfacePermissionIds = {
             type = "list",
@@ -42466,6 +43860,7 @@ M.DescribeNetworkInterfacePermissionsInput = {
 
 M.DescribeNetworkInterfacePermissionsOutput = {
     type = "structure",
+    id = "DescribeNetworkInterfacePermissionsOutput",
     members = {
         NetworkInterfacePermissions = {
             type = "list",
@@ -42485,6 +43880,7 @@ M.DescribeNetworkInterfacePermissionsOutput = {
 
 M.DescribeNetworkInterfacesInput = {
     type = "structure",
+    id = "DescribeNetworkInterfacesInput",
     members = {
         NextToken = {
             type = "string",
@@ -42520,6 +43916,7 @@ M.DescribeNetworkInterfacesInput = {
 
 M.DescribeNetworkInterfacesOutput = {
     type = "structure",
+    id = "DescribeNetworkInterfacesOutput",
     members = {
         NetworkInterfaces = {
             type = "list",
@@ -42539,6 +43936,7 @@ M.DescribeNetworkInterfacesOutput = {
 
 M.DescribeOutpostLagsInput = {
     type = "structure",
+    id = "DescribeOutpostLagsInput",
     members = {
         OutpostLagIds = {
             type = "list",
@@ -42568,6 +43966,7 @@ M.DescribeOutpostLagsInput = {
 
 M.OutpostLag = {
     type = "structure",
+    id = "OutpostLag",
     members = {
         OutpostArn = {
             type = "string",
@@ -42619,6 +44018,7 @@ M.OutpostLag = {
 
 M.DescribeOutpostLagsOutput = {
     type = "structure",
+    id = "DescribeOutpostLagsOutput",
     members = {
         OutpostLags = {
             type = "list",
@@ -42638,6 +44038,7 @@ M.DescribeOutpostLagsOutput = {
 
 M.DescribePlacementGroupsInput = {
     type = "structure",
+    id = "DescribePlacementGroupsInput",
     members = {
         GroupIds = {
             type = "list",
@@ -42671,6 +44072,7 @@ M.DescribePlacementGroupsInput = {
 
 M.DescribePlacementGroupsOutput = {
     type = "structure",
+    id = "DescribePlacementGroupsOutput",
     members = {
         PlacementGroups = {
             type = "list",
@@ -42684,6 +44086,7 @@ M.DescribePlacementGroupsOutput = {
 
 M.DescribePrefixListsInput = {
     type = "structure",
+    id = "DescribePrefixListsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -42713,6 +44116,7 @@ M.DescribePrefixListsInput = {
 
 M.PrefixList = {
     type = "structure",
+    id = "PrefixList",
     members = {
         Cidrs = {
             type = "list",
@@ -42738,6 +44142,7 @@ M.PrefixList = {
 
 M.DescribePrefixListsOutput = {
     type = "structure",
+    id = "DescribePrefixListsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -42757,6 +44162,7 @@ M.DescribePrefixListsOutput = {
 
 M.DescribePrincipalIdFormatInput = {
     type = "structure",
+    id = "DescribePrincipalIdFormatInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -42779,6 +44185,7 @@ M.DescribePrincipalIdFormatInput = {
 
 M.PrincipalIdFormat = {
     type = "structure",
+    id = "PrincipalIdFormat",
     members = {
         Arn = {
             type = "string",
@@ -42798,6 +44205,7 @@ M.PrincipalIdFormat = {
 
 M.DescribePrincipalIdFormatOutput = {
     type = "structure",
+    id = "DescribePrincipalIdFormatOutput",
     members = {
         Principals = {
             type = "list",
@@ -42817,6 +44225,7 @@ M.DescribePrincipalIdFormatOutput = {
 
 M.DescribePublicIpv4PoolsInput = {
     type = "structure",
+    id = "DescribePublicIpv4PoolsInput",
     members = {
         PoolIds = {
             type = "list",
@@ -42843,6 +44252,7 @@ M.DescribePublicIpv4PoolsInput = {
 
 M.PublicIpv4PoolRange = {
     type = "structure",
+    id = "PublicIpv4PoolRange",
     members = {
         FirstAddress = {
             type = "string",
@@ -42873,6 +44283,7 @@ M.PublicIpv4PoolRange = {
 
 M.PublicIpv4Pool = {
     type = "structure",
+    id = "PublicIpv4Pool",
     members = {
         PoolId = {
             type = "string",
@@ -42923,6 +44334,7 @@ M.PublicIpv4Pool = {
 
 M.DescribePublicIpv4PoolsOutput = {
     type = "structure",
+    id = "DescribePublicIpv4PoolsOutput",
     members = {
         PublicIpv4Pools = {
             type = "list",
@@ -42942,6 +44354,7 @@ M.DescribePublicIpv4PoolsOutput = {
 
 M.DescribeRegionsInput = {
     type = "structure",
+    id = "DescribeRegionsInput",
     members = {
         RegionNames = {
             type = "list",
@@ -42971,6 +44384,7 @@ M.DescribeRegionsInput = {
 
 M.RegionGeography = {
     type = "structure",
+    id = "RegionGeography",
     members = {
         Name = {
             type = "string",
@@ -42983,6 +44397,7 @@ M.RegionGeography = {
 
 M.Region = {
     type = "structure",
+    id = "Region",
     members = {
         OptInStatus = {
             type = "string",
@@ -43014,6 +44429,7 @@ M.Region = {
 
 M.DescribeRegionsOutput = {
     type = "structure",
+    id = "DescribeRegionsOutput",
     members = {
         Regions = {
             type = "list",
@@ -43027,6 +44443,7 @@ M.DescribeRegionsOutput = {
 
 M.DescribeReplaceRootVolumeTasksInput = {
     type = "structure",
+    id = "DescribeReplaceRootVolumeTasksInput",
     members = {
         ReplaceRootVolumeTaskIds = {
             type = "list",
@@ -43056,6 +44473,7 @@ M.DescribeReplaceRootVolumeTasksInput = {
 
 M.DescribeReplaceRootVolumeTasksOutput = {
     type = "structure",
+    id = "DescribeReplaceRootVolumeTasksOutput",
     members = {
         ReplaceRootVolumeTasks = {
             type = "list",
@@ -43089,6 +44507,7 @@ M.OfferingTypeValues = {
 
 M.DescribeReservedInstancesInput = {
     type = "structure",
+    id = "DescribeReservedInstancesInput",
     members = {
         OfferingClass = {
             type = "string",
@@ -43135,6 +44554,7 @@ M.RecurringChargeFrequency = {
 
 M.RecurringCharge = {
     type = "structure",
+    id = "RecurringCharge",
     members = {
         Amount = {
             type = "double",
@@ -43167,6 +44587,7 @@ M.ReservedInstanceState = {
 
 M.ReservedInstances = {
     type = "structure",
+    id = "ReservedInstances",
     members = {
         CurrencyCode = {
             type = "string",
@@ -43289,6 +44710,7 @@ M.ReservedInstances = {
 
 M.DescribeReservedInstancesOutput = {
     type = "structure",
+    id = "DescribeReservedInstancesOutput",
     members = {
         ReservedInstances = {
             type = "list",
@@ -43302,6 +44724,7 @@ M.DescribeReservedInstancesOutput = {
 
 M.DescribeReservedInstancesListingsInput = {
     type = "structure",
+    id = "DescribeReservedInstancesListingsInput",
     members = {
         ReservedInstancesId = {
             type = "string",
@@ -43327,6 +44750,7 @@ M.DescribeReservedInstancesListingsInput = {
 
 M.DescribeReservedInstancesListingsOutput = {
     type = "structure",
+    id = "DescribeReservedInstancesListingsOutput",
     members = {
         ReservedInstancesListings = {
             type = "list",
@@ -43340,6 +44764,7 @@ M.DescribeReservedInstancesListingsOutput = {
 
 M.DescribeReservedInstancesModificationsInput = {
     type = "structure",
+    id = "DescribeReservedInstancesModificationsInput",
     members = {
         ReservedInstancesModificationIds = {
             type = "list",
@@ -43366,6 +44791,7 @@ M.DescribeReservedInstancesModificationsInput = {
 
 M.ReservedInstancesConfiguration = {
     type = "structure",
+    id = "ReservedInstancesConfiguration",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -43408,6 +44834,7 @@ M.ReservedInstancesConfiguration = {
 
 M.ReservedInstancesModificationResult = {
     type = "structure",
+    id = "ReservedInstancesModificationResult",
     members = {
         ReservedInstancesId = {
             type = "string",
@@ -43423,6 +44850,7 @@ M.ReservedInstancesModificationResult = {
 
 M.ReservedInstancesId = {
     type = "structure",
+    id = "ReservedInstancesId",
     members = {
         ReservedInstancesId = {
             type = "string",
@@ -43435,6 +44863,7 @@ M.ReservedInstancesId = {
 
 M.ReservedInstancesModification = {
     type = "structure",
+    id = "ReservedInstancesModification",
     members = {
         ClientToken = {
             type = "string",
@@ -43497,6 +44926,7 @@ M.ReservedInstancesModification = {
 
 M.DescribeReservedInstancesModificationsOutput = {
     type = "structure",
+    id = "DescribeReservedInstancesModificationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -43516,6 +44946,7 @@ M.DescribeReservedInstancesModificationsOutput = {
 
 M.DescribeReservedInstancesOfferingsInput = {
     type = "structure",
+    id = "DescribeReservedInstancesOfferingsInput",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -43593,6 +45024,7 @@ M.DescribeReservedInstancesOfferingsInput = {
 
 M.PricingDetail = {
     type = "structure",
+    id = "PricingDetail",
     members = {
         Count = {
             type = "integer",
@@ -43611,6 +45043,7 @@ M.PricingDetail = {
 
 M.ReservedInstancesOffering = {
     type = "structure",
+    id = "ReservedInstancesOffering",
     members = {
         CurrencyCode = {
             type = "string",
@@ -43715,6 +45148,7 @@ M.ReservedInstancesOffering = {
 
 M.DescribeReservedInstancesOfferingsOutput = {
     type = "structure",
+    id = "DescribeReservedInstancesOfferingsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -43734,6 +45168,7 @@ M.DescribeReservedInstancesOfferingsOutput = {
 
 M.DescribeRouteServerEndpointsInput = {
     type = "structure",
+    id = "DescribeRouteServerEndpointsInput",
     members = {
         RouteServerEndpointIds = {
             type = "list",
@@ -43763,6 +45198,7 @@ M.DescribeRouteServerEndpointsInput = {
 
 M.DescribeRouteServerEndpointsOutput = {
     type = "structure",
+    id = "DescribeRouteServerEndpointsOutput",
     members = {
         RouteServerEndpoints = {
             type = "list",
@@ -43782,6 +45218,7 @@ M.DescribeRouteServerEndpointsOutput = {
 
 M.DescribeRouteServerPeersInput = {
     type = "structure",
+    id = "DescribeRouteServerPeersInput",
     members = {
         RouteServerPeerIds = {
             type = "list",
@@ -43811,6 +45248,7 @@ M.DescribeRouteServerPeersInput = {
 
 M.DescribeRouteServerPeersOutput = {
     type = "structure",
+    id = "DescribeRouteServerPeersOutput",
     members = {
         RouteServerPeers = {
             type = "list",
@@ -43830,6 +45268,7 @@ M.DescribeRouteServerPeersOutput = {
 
 M.DescribeRouteServersInput = {
     type = "structure",
+    id = "DescribeRouteServersInput",
     members = {
         RouteServerIds = {
             type = "list",
@@ -43859,6 +45298,7 @@ M.DescribeRouteServersInput = {
 
 M.DescribeRouteServersOutput = {
     type = "structure",
+    id = "DescribeRouteServersOutput",
     members = {
         RouteServers = {
             type = "list",
@@ -43878,6 +45318,7 @@ M.DescribeRouteServersOutput = {
 
 M.DescribeRouteTablesInput = {
     type = "structure",
+    id = "DescribeRouteTablesInput",
     members = {
         NextToken = {
             type = "string",
@@ -43910,6 +45351,7 @@ M.DescribeRouteTablesInput = {
 
 M.DescribeRouteTablesOutput = {
     type = "structure",
+    id = "DescribeRouteTablesOutput",
     members = {
         RouteTables = {
             type = "list",
@@ -43929,6 +45371,7 @@ M.DescribeRouteTablesOutput = {
 
 M.SlotDateTimeRangeRequest = {
     type = "structure",
+    id = "SlotDateTimeRangeRequest",
     members = {
         EarliestTime = {
             type = "timestamp",
@@ -43947,6 +45390,7 @@ M.SlotDateTimeRangeRequest = {
 
 M.ScheduledInstanceRecurrenceRequest = {
     type = "structure",
+    id = "ScheduledInstanceRecurrenceRequest",
     members = {
         Frequency = {
             type = "string",
@@ -43972,6 +45416,7 @@ M.ScheduledInstanceRecurrenceRequest = {
 
 M.DescribeScheduledInstanceAvailabilityInput = {
     type = "structure",
+    id = "DescribeScheduledInstanceAvailabilityInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -44006,6 +45451,7 @@ M.DescribeScheduledInstanceAvailabilityInput = {
 
 M.ScheduledInstanceRecurrence = {
     type = "structure",
+    id = "ScheduledInstanceRecurrence",
     members = {
         Frequency = {
             type = "string",
@@ -44043,6 +45489,7 @@ M.ScheduledInstanceRecurrence = {
 
 M.ScheduledInstanceAvailability = {
     type = "structure",
+    id = "ScheduledInstanceAvailability",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -44124,6 +45571,7 @@ M.ScheduledInstanceAvailability = {
 
 M.DescribeScheduledInstanceAvailabilityOutput = {
     type = "structure",
+    id = "DescribeScheduledInstanceAvailabilityOutput",
     members = {
         NextToken = {
             type = "string",
@@ -44143,6 +45591,7 @@ M.DescribeScheduledInstanceAvailabilityOutput = {
 
 M.SlotStartTimeRangeRequest = {
     type = "structure",
+    id = "SlotStartTimeRangeRequest",
     members = {
         EarliestTime = {
             type = "timestamp",
@@ -44155,6 +45604,7 @@ M.SlotStartTimeRangeRequest = {
 
 M.DescribeScheduledInstancesInput = {
     type = "structure",
+    id = "DescribeScheduledInstancesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -44185,6 +45635,7 @@ M.DescribeScheduledInstancesInput = {
 
 M.ScheduledInstance = {
     type = "structure",
+    id = "ScheduledInstance",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -44278,6 +45729,7 @@ M.ScheduledInstance = {
 
 M.DescribeScheduledInstancesOutput = {
     type = "structure",
+    id = "DescribeScheduledInstancesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -44297,6 +45749,7 @@ M.DescribeScheduledInstancesOutput = {
 
 M.DescribeSecondaryInterfacesInput = {
     type = "structure",
+    id = "DescribeSecondaryInterfacesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -44326,6 +45779,7 @@ M.DescribeSecondaryInterfacesInput = {
 
 M.SecondaryInterfaceAttachment = {
     type = "structure",
+    id = "SecondaryInterfaceAttachment",
     members = {
         AttachmentId = {
             type = "string",
@@ -44380,6 +45834,7 @@ M.SecondaryInterfaceAttachment = {
 
 M.SecondaryInterfaceIpv4Address = {
     type = "structure",
+    id = "SecondaryInterfaceIpv4Address",
     members = {
         PrivateIpAddress = {
             type = "string",
@@ -44392,6 +45847,7 @@ M.SecondaryInterfaceIpv4Address = {
 
 M.SecondaryInterface = {
     type = "structure",
+    id = "SecondaryInterface",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -44487,6 +45943,7 @@ M.SecondaryInterface = {
 
 M.DescribeSecondaryInterfacesOutput = {
     type = "structure",
+    id = "DescribeSecondaryInterfacesOutput",
     members = {
         SecondaryInterfaces = {
             type = "list",
@@ -44506,6 +45963,7 @@ M.DescribeSecondaryInterfacesOutput = {
 
 M.DescribeSecondaryNetworksInput = {
     type = "structure",
+    id = "DescribeSecondaryNetworksInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -44535,6 +45993,7 @@ M.DescribeSecondaryNetworksInput = {
 
 M.DescribeSecondaryNetworksOutput = {
     type = "structure",
+    id = "DescribeSecondaryNetworksOutput",
     members = {
         SecondaryNetworks = {
             type = "list",
@@ -44554,6 +46013,7 @@ M.DescribeSecondaryNetworksOutput = {
 
 M.DescribeSecondarySubnetsInput = {
     type = "structure",
+    id = "DescribeSecondarySubnetsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -44583,6 +46043,7 @@ M.DescribeSecondarySubnetsInput = {
 
 M.DescribeSecondarySubnetsOutput = {
     type = "structure",
+    id = "DescribeSecondarySubnetsOutput",
     members = {
         SecondarySubnets = {
             type = "list",
@@ -44602,6 +46063,7 @@ M.DescribeSecondarySubnetsOutput = {
 
 M.DescribeSecurityGroupReferencesInput = {
     type = "structure",
+    id = "DescribeSecurityGroupReferencesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -44618,6 +46080,7 @@ M.DescribeSecurityGroupReferencesInput = {
 
 M.SecurityGroupReference = {
     type = "structure",
+    id = "SecurityGroupReference",
     members = {
         GroupId = {
             type = "string",
@@ -44648,6 +46111,7 @@ M.SecurityGroupReference = {
 
 M.DescribeSecurityGroupReferencesOutput = {
     type = "structure",
+    id = "DescribeSecurityGroupReferencesOutput",
     members = {
         SecurityGroupReferenceSet = {
             type = "list",
@@ -44661,6 +46125,7 @@ M.DescribeSecurityGroupReferencesOutput = {
 
 M.DescribeSecurityGroupRulesInput = {
     type = "structure",
+    id = "DescribeSecurityGroupRulesInput",
     members = {
         Filters = {
             type = "list",
@@ -44690,6 +46155,7 @@ M.DescribeSecurityGroupRulesInput = {
 
 M.DescribeSecurityGroupRulesOutput = {
     type = "structure",
+    id = "DescribeSecurityGroupRulesOutput",
     members = {
         SecurityGroupRules = {
             type = "list",
@@ -44709,6 +46175,7 @@ M.DescribeSecurityGroupRulesOutput = {
 
 M.DescribeSecurityGroupsInput = {
     type = "structure",
+    id = "DescribeSecurityGroupsInput",
     members = {
         GroupIds = {
             type = "list",
@@ -44748,6 +46215,7 @@ M.DescribeSecurityGroupsInput = {
 
 M.SecurityGroup = {
     type = "structure",
+    id = "SecurityGroup",
     members = {
         GroupId = {
             type = "string",
@@ -44811,6 +46279,7 @@ M.SecurityGroup = {
 
 M.DescribeSecurityGroupsOutput = {
     type = "structure",
+    id = "DescribeSecurityGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -44830,6 +46299,7 @@ M.DescribeSecurityGroupsOutput = {
 
 M.DescribeSecurityGroupVpcAssociationsInput = {
     type = "structure",
+    id = "DescribeSecurityGroupVpcAssociationsInput",
     members = {
         Filters = {
             type = "list",
@@ -44852,6 +46322,7 @@ M.DescribeSecurityGroupVpcAssociationsInput = {
 
 M.SecurityGroupVpcAssociation = {
     type = "structure",
+    id = "SecurityGroupVpcAssociation",
     members = {
         GroupId = {
             type = "string",
@@ -44894,6 +46365,7 @@ M.SecurityGroupVpcAssociation = {
 
 M.DescribeSecurityGroupVpcAssociationsOutput = {
     type = "structure",
+    id = "DescribeSecurityGroupVpcAssociationsOutput",
     members = {
         SecurityGroupVpcAssociations = {
             type = "list",
@@ -44913,6 +46385,7 @@ M.DescribeSecurityGroupVpcAssociationsOutput = {
 
 M.DescribeServiceLinkVirtualInterfacesInput = {
     type = "structure",
+    id = "DescribeServiceLinkVirtualInterfacesInput",
     members = {
         ServiceLinkVirtualInterfaceIds = {
             type = "list",
@@ -44949,6 +46422,7 @@ M.ServiceLinkVirtualInterfaceConfigurationState = {
 
 M.ServiceLinkVirtualInterface = {
     type = "structure",
+    id = "ServiceLinkVirtualInterface",
     members = {
         ServiceLinkVirtualInterfaceId = {
             type = "string",
@@ -45028,6 +46502,7 @@ M.ServiceLinkVirtualInterface = {
 
 M.DescribeServiceLinkVirtualInterfacesOutput = {
     type = "structure",
+    id = "DescribeServiceLinkVirtualInterfacesOutput",
     members = {
         ServiceLinkVirtualInterfaces = {
             type = "list",
@@ -45052,6 +46527,7 @@ M.SnapshotAttributeName = {
 
 M.DescribeSnapshotAttributeInput = {
     type = "structure",
+    id = "DescribeSnapshotAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -45076,6 +46552,7 @@ M.DescribeSnapshotAttributeInput = {
 
 M.CreateVolumePermission = {
     type = "structure",
+    id = "CreateVolumePermission",
     members = {
         UserId = {
             type = "string",
@@ -45094,6 +46571,7 @@ M.CreateVolumePermission = {
 
 M.DescribeSnapshotAttributeOutput = {
     type = "structure",
+    id = "DescribeSnapshotAttributeOutput",
     members = {
         ProductCodes = {
             type = "list",
@@ -45120,6 +46598,7 @@ M.DescribeSnapshotAttributeOutput = {
 
 M.DescribeSnapshotsInput = {
     type = "structure",
+    id = "DescribeSnapshotsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -45166,6 +46645,7 @@ M.DescribeSnapshotsInput = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         OwnerAlias = {
             type = "string",
@@ -45311,6 +46791,7 @@ M.Snapshot = {
 
 M.DescribeSnapshotsOutput = {
     type = "structure",
+    id = "DescribeSnapshotsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -45330,6 +46811,7 @@ M.DescribeSnapshotsOutput = {
 
 M.DescribeSnapshotTierStatusInput = {
     type = "structure",
+    id = "DescribeSnapshotTierStatusInput",
     members = {
         Filters = {
             type = "list",
@@ -45364,6 +46846,7 @@ M.TieringOperationStatus = {
 
 M.SnapshotTierStatus = {
     type = "structure",
+    id = "SnapshotTierStatus",
     members = {
         SnapshotId = {
             type = "string",
@@ -45443,6 +46926,7 @@ M.SnapshotTierStatus = {
 
 M.DescribeSnapshotTierStatusOutput = {
     type = "structure",
+    id = "DescribeSnapshotTierStatusOutput",
     members = {
         SnapshotTierStatuses = {
             type = "list",
@@ -45462,6 +46946,7 @@ M.DescribeSnapshotTierStatusOutput = {
 
 M.DescribeSpotDatafeedSubscriptionInput = {
     type = "structure",
+    id = "DescribeSpotDatafeedSubscriptionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -45474,6 +46959,7 @@ M.DescribeSpotDatafeedSubscriptionInput = {
 
 M.DescribeSpotDatafeedSubscriptionOutput = {
     type = "structure",
+    id = "DescribeSpotDatafeedSubscriptionOutput",
     members = {
         SpotDatafeedSubscription = setmetatable({ traits = {
             xml_name = "spotDatafeedSubscription",
@@ -45483,6 +46969,7 @@ M.DescribeSpotDatafeedSubscriptionOutput = {
 
 M.DescribeSpotFleetInstancesInput = {
     type = "structure",
+    id = "DescribeSpotFleetInstancesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -45514,6 +47001,7 @@ M.DescribeSpotFleetInstancesInput = {
 
 M.DescribeSpotFleetInstancesOutput = {
     type = "structure",
+    id = "DescribeSpotFleetInstancesOutput",
     members = {
         ActiveInstances = {
             type = "list",
@@ -45546,6 +47034,7 @@ M.EventType = {
 
 M.DescribeSpotFleetRequestHistoryInput = {
     type = "structure",
+    id = "DescribeSpotFleetRequestHistoryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -45590,6 +47079,7 @@ M.DescribeSpotFleetRequestHistoryInput = {
 
 M.HistoryRecord = {
     type = "structure",
+    id = "HistoryRecord",
     members = {
         EventInformation = setmetatable({ traits = {
             xml_name = "eventInformation",
@@ -45611,6 +47101,7 @@ M.HistoryRecord = {
 
 M.DescribeSpotFleetRequestHistoryOutput = {
     type = "structure",
+    id = "DescribeSpotFleetRequestHistoryOutput",
     members = {
         HistoryRecords = {
             type = "list",
@@ -45648,6 +47139,7 @@ M.DescribeSpotFleetRequestHistoryOutput = {
 
 M.DescribeSpotFleetRequestsInput = {
     type = "structure",
+    id = "DescribeSpotFleetRequestsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -45684,6 +47176,7 @@ M.ExcessCapacityTerminationPolicy = {
 
 M.SpotFleetMonitoring = {
     type = "structure",
+    id = "SpotFleetMonitoring",
     members = {
         Enabled = {
             type = "boolean",
@@ -45696,6 +47189,7 @@ M.SpotFleetMonitoring = {
 
 M.InstanceNetworkInterfaceSpecification = {
     type = "structure",
+    id = "InstanceNetworkInterfaceSpecification",
     members = {
         AssociatePublicIpAddress = {
             type = "boolean",
@@ -45814,6 +47308,7 @@ M.InstanceNetworkInterfaceSpecification = {
 
 M.SpotPlacement = {
     type = "structure",
+    id = "SpotPlacement",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -45844,6 +47339,7 @@ M.SpotPlacement = {
 
 M.SpotFleetTagSpecification = {
     type = "structure",
+    id = "SpotFleetTagSpecification",
     members = {
         ResourceType = {
             type = "string",
@@ -45863,6 +47359,7 @@ M.SpotFleetTagSpecification = {
 
 M.SpotFleetLaunchSpecification = {
     type = "structure",
+    id = "SpotFleetLaunchSpecification",
     members = {
         AddressingType = {
             type = "string",
@@ -45975,6 +47472,7 @@ M.SpotFleetLaunchSpecification = {
 
 M.LaunchTemplateOverrides = {
     type = "structure",
+    id = "LaunchTemplateOverrides",
     members = {
         InstanceType = {
             type = "string",
@@ -46026,6 +47524,7 @@ M.LaunchTemplateOverrides = {
 
 M.LaunchTemplateConfig = {
     type = "structure",
+    id = "LaunchTemplateConfig",
     members = {
         LaunchTemplateSpecification = setmetatable({ traits = {
             xml_name = "launchTemplateSpecification",
@@ -46042,6 +47541,7 @@ M.LaunchTemplateConfig = {
 
 M.ClassicLoadBalancer = {
     type = "structure",
+    id = "ClassicLoadBalancer",
     members = {
         Name = {
             type = "string",
@@ -46054,6 +47554,7 @@ M.ClassicLoadBalancer = {
 
 M.ClassicLoadBalancersConfig = {
     type = "structure",
+    id = "ClassicLoadBalancersConfig",
     members = {
         ClassicLoadBalancers = {
             type = "list",
@@ -46067,6 +47568,7 @@ M.ClassicLoadBalancersConfig = {
 
 M.TargetGroup = {
     type = "structure",
+    id = "TargetGroup",
     members = {
         Arn = {
             type = "string",
@@ -46079,6 +47581,7 @@ M.TargetGroup = {
 
 M.TargetGroupsConfig = {
     type = "structure",
+    id = "TargetGroupsConfig",
     members = {
         TargetGroups = {
             type = "list",
@@ -46092,6 +47595,7 @@ M.TargetGroupsConfig = {
 
 M.LoadBalancersConfig = {
     type = "structure",
+    id = "LoadBalancersConfig",
     members = {
         ClassicLoadBalancersConfig = setmetatable({ traits = {
             xml_name = "classicLoadBalancersConfig",
@@ -46114,6 +47618,7 @@ M.ReplacementStrategy = {
 
 M.SpotCapacityRebalance = {
     type = "structure",
+    id = "SpotCapacityRebalance",
     members = {
         ReplacementStrategy = {
             type = "string",
@@ -46132,6 +47637,7 @@ M.SpotCapacityRebalance = {
 
 M.SpotMaintenanceStrategies = {
     type = "structure",
+    id = "SpotMaintenanceStrategies",
     members = {
         CapacityRebalance = setmetatable({ traits = {
             xml_name = "capacityRebalance",
@@ -46141,6 +47647,7 @@ M.SpotMaintenanceStrategies = {
 
 M.SpotFleetRequestConfigData = {
     type = "structure",
+    id = "SpotFleetRequestConfigData",
     members = {
         AllocationStrategy = {
             type = "string",
@@ -46302,6 +47809,7 @@ M.SpotFleetRequestConfigData = {
 
 M.SpotFleetRequestConfig = {
     type = "structure",
+    id = "SpotFleetRequestConfig",
     members = {
         ActivityStatus = {
             type = "string",
@@ -46342,6 +47850,7 @@ M.SpotFleetRequestConfig = {
 
 M.DescribeSpotFleetRequestsOutput = {
     type = "structure",
+    id = "DescribeSpotFleetRequestsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -46361,6 +47870,7 @@ M.DescribeSpotFleetRequestsOutput = {
 
 M.DescribeSpotInstanceRequestsInput = {
     type = "structure",
+    id = "DescribeSpotInstanceRequestsInput",
     members = {
         NextToken = {
             type = "string",
@@ -46393,6 +47903,7 @@ M.DescribeSpotInstanceRequestsInput = {
 
 M.RunInstancesMonitoringEnabled = {
     type = "structure",
+    id = "RunInstancesMonitoringEnabled",
     members = {
         Enabled = {
             type = "boolean",
@@ -46406,6 +47917,7 @@ M.RunInstancesMonitoringEnabled = {
 
 M.LaunchSpecification = {
     type = "structure",
+    id = "LaunchSpecification",
     members = {
         UserData = {
             type = "string",
@@ -46505,6 +48017,7 @@ M.SpotInstanceState = {
 
 M.SpotInstanceStatus = {
     type = "structure",
+    id = "SpotInstanceStatus",
     members = {
         Code = {
             type = "string",
@@ -46529,6 +48042,7 @@ M.SpotInstanceStatus = {
 
 M.SpotInstanceRequest = {
     type = "structure",
+    id = "SpotInstanceRequest",
     members = {
         ActualBlockHourlyPrice = {
             type = "string",
@@ -46647,6 +48161,7 @@ M.SpotInstanceRequest = {
 
 M.DescribeSpotInstanceRequestsOutput = {
     type = "structure",
+    id = "DescribeSpotInstanceRequestsOutput",
     members = {
         SpotInstanceRequests = {
             type = "list",
@@ -46666,6 +48181,7 @@ M.DescribeSpotInstanceRequestsOutput = {
 
 M.DescribeSpotPriceHistoryInput = {
     type = "structure",
+    id = "DescribeSpotPriceHistoryInput",
     members = {
         AvailabilityZoneId = {
             type = "string",
@@ -46732,6 +48248,7 @@ M.DescribeSpotPriceHistoryInput = {
 
 M.SpotPrice = {
     type = "structure",
+    id = "SpotPrice",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -46774,6 +48291,7 @@ M.SpotPrice = {
 
 M.DescribeSpotPriceHistoryOutput = {
     type = "structure",
+    id = "DescribeSpotPriceHistoryOutput",
     members = {
         NextToken = {
             type = "string",
@@ -46793,6 +48311,7 @@ M.DescribeSpotPriceHistoryOutput = {
 
 M.DescribeStaleSecurityGroupsInput = {
     type = "structure",
+    id = "DescribeStaleSecurityGroupsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -46814,6 +48333,7 @@ M.DescribeStaleSecurityGroupsInput = {
 
 M.StaleIpPermission = {
     type = "structure",
+    id = "StaleIpPermission",
     members = {
         FromPort = {
             type = "integer",
@@ -46859,6 +48379,7 @@ M.StaleIpPermission = {
 
 M.StaleSecurityGroup = {
     type = "structure",
+    id = "StaleSecurityGroup",
     members = {
         Description = {
             type = "string",
@@ -46903,6 +48424,7 @@ M.StaleSecurityGroup = {
 
 M.DescribeStaleSecurityGroupsOutput = {
     type = "structure",
+    id = "DescribeStaleSecurityGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -46922,6 +48444,7 @@ M.DescribeStaleSecurityGroupsOutput = {
 
 M.DescribeStoreImageTasksInput = {
     type = "structure",
+    id = "DescribeStoreImageTasksInput",
     members = {
         ImageIds = {
             type = "list",
@@ -46951,6 +48474,7 @@ M.DescribeStoreImageTasksInput = {
 
 M.StoreImageTaskResult = {
     type = "structure",
+    id = "StoreImageTaskResult",
     members = {
         AmiId = {
             type = "string",
@@ -46999,6 +48523,7 @@ M.StoreImageTaskResult = {
 
 M.DescribeStoreImageTasksOutput = {
     type = "structure",
+    id = "DescribeStoreImageTasksOutput",
     members = {
         StoreImageTaskResults = {
             type = "list",
@@ -47018,6 +48543,7 @@ M.DescribeStoreImageTasksOutput = {
 
 M.DescribeSubnetsInput = {
     type = "structure",
+    id = "DescribeSubnetsInput",
     members = {
         Filters = {
             type = "list",
@@ -47050,6 +48576,7 @@ M.DescribeSubnetsInput = {
 
 M.DescribeSubnetsOutput = {
     type = "structure",
+    id = "DescribeSubnetsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -47069,6 +48596,7 @@ M.DescribeSubnetsOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -47100,6 +48628,7 @@ M.DescribeTagsInput = {
 
 M.TagDescription = {
     type = "structure",
+    id = "TagDescription",
     members = {
         Key = {
             type = "string",
@@ -47130,6 +48659,7 @@ M.TagDescription = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -47149,6 +48679,7 @@ M.DescribeTagsOutput = {
 
 M.DescribeTrafficMirrorFilterRulesInput = {
     type = "structure",
+    id = "DescribeTrafficMirrorFilterRulesInput",
     members = {
         TrafficMirrorFilterRuleIds = {
             type = "list",
@@ -47181,6 +48712,7 @@ M.DescribeTrafficMirrorFilterRulesInput = {
 
 M.DescribeTrafficMirrorFilterRulesOutput = {
     type = "structure",
+    id = "DescribeTrafficMirrorFilterRulesOutput",
     members = {
         TrafficMirrorFilterRules = {
             type = "list",
@@ -47200,6 +48732,7 @@ M.DescribeTrafficMirrorFilterRulesOutput = {
 
 M.DescribeTrafficMirrorFiltersInput = {
     type = "structure",
+    id = "DescribeTrafficMirrorFiltersInput",
     members = {
         TrafficMirrorFilterIds = {
             type = "list",
@@ -47229,6 +48762,7 @@ M.DescribeTrafficMirrorFiltersInput = {
 
 M.DescribeTrafficMirrorFiltersOutput = {
     type = "structure",
+    id = "DescribeTrafficMirrorFiltersOutput",
     members = {
         TrafficMirrorFilters = {
             type = "list",
@@ -47248,6 +48782,7 @@ M.DescribeTrafficMirrorFiltersOutput = {
 
 M.DescribeTrafficMirrorSessionsInput = {
     type = "structure",
+    id = "DescribeTrafficMirrorSessionsInput",
     members = {
         TrafficMirrorSessionIds = {
             type = "list",
@@ -47277,6 +48812,7 @@ M.DescribeTrafficMirrorSessionsInput = {
 
 M.DescribeTrafficMirrorSessionsOutput = {
     type = "structure",
+    id = "DescribeTrafficMirrorSessionsOutput",
     members = {
         TrafficMirrorSessions = {
             type = "list",
@@ -47296,6 +48832,7 @@ M.DescribeTrafficMirrorSessionsOutput = {
 
 M.DescribeTrafficMirrorTargetsInput = {
     type = "structure",
+    id = "DescribeTrafficMirrorTargetsInput",
     members = {
         TrafficMirrorTargetIds = {
             type = "list",
@@ -47325,6 +48862,7 @@ M.DescribeTrafficMirrorTargetsInput = {
 
 M.DescribeTrafficMirrorTargetsOutput = {
     type = "structure",
+    id = "DescribeTrafficMirrorTargetsOutput",
     members = {
         TrafficMirrorTargets = {
             type = "list",
@@ -47344,6 +48882,7 @@ M.DescribeTrafficMirrorTargetsOutput = {
 
 M.DescribeTransitGatewayAttachmentsInput = {
     type = "structure",
+    id = "DescribeTransitGatewayAttachmentsInput",
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
@@ -47370,6 +48909,7 @@ M.DescribeTransitGatewayAttachmentsInput = {
 
 M.TransitGatewayAttachmentAssociation = {
     type = "structure",
+    id = "TransitGatewayAttachmentAssociation",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -47388,6 +48928,7 @@ M.TransitGatewayAttachmentAssociation = {
 
 M.TransitGatewayAttachment = {
     type = "structure",
+    id = "TransitGatewayAttachment",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -47452,6 +48993,7 @@ M.TransitGatewayAttachment = {
 
 M.DescribeTransitGatewayAttachmentsOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayAttachmentsOutput",
     members = {
         TransitGatewayAttachments = {
             type = "list",
@@ -47471,6 +49013,7 @@ M.DescribeTransitGatewayAttachmentsOutput = {
 
 M.DescribeTransitGatewayConnectPeersInput = {
     type = "structure",
+    id = "DescribeTransitGatewayConnectPeersInput",
     members = {
         TransitGatewayConnectPeerIds = {
             type = "list",
@@ -47497,6 +49040,7 @@ M.DescribeTransitGatewayConnectPeersInput = {
 
 M.DescribeTransitGatewayConnectPeersOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayConnectPeersOutput",
     members = {
         TransitGatewayConnectPeers = {
             type = "list",
@@ -47516,6 +49060,7 @@ M.DescribeTransitGatewayConnectPeersOutput = {
 
 M.DescribeTransitGatewayConnectsInput = {
     type = "structure",
+    id = "DescribeTransitGatewayConnectsInput",
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
@@ -47542,6 +49087,7 @@ M.DescribeTransitGatewayConnectsInput = {
 
 M.DescribeTransitGatewayConnectsOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayConnectsOutput",
     members = {
         TransitGatewayConnects = {
             type = "list",
@@ -47561,6 +49107,7 @@ M.DescribeTransitGatewayConnectsOutput = {
 
 M.DescribeTransitGatewayMeteringPoliciesInput = {
     type = "structure",
+    id = "DescribeTransitGatewayMeteringPoliciesInput",
     members = {
         TransitGatewayMeteringPolicyIds = {
             type = "list",
@@ -47587,6 +49134,7 @@ M.DescribeTransitGatewayMeteringPoliciesInput = {
 
 M.DescribeTransitGatewayMeteringPoliciesOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayMeteringPoliciesOutput",
     members = {
         TransitGatewayMeteringPolicies = {
             type = "list",
@@ -47606,6 +49154,7 @@ M.DescribeTransitGatewayMeteringPoliciesOutput = {
 
 M.DescribeTransitGatewayMulticastDomainsInput = {
     type = "structure",
+    id = "DescribeTransitGatewayMulticastDomainsInput",
     members = {
         TransitGatewayMulticastDomainIds = {
             type = "list",
@@ -47632,6 +49181,7 @@ M.DescribeTransitGatewayMulticastDomainsInput = {
 
 M.DescribeTransitGatewayMulticastDomainsOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayMulticastDomainsOutput",
     members = {
         TransitGatewayMulticastDomains = {
             type = "list",
@@ -47651,6 +49201,7 @@ M.DescribeTransitGatewayMulticastDomainsOutput = {
 
 M.DescribeTransitGatewayPeeringAttachmentsInput = {
     type = "structure",
+    id = "DescribeTransitGatewayPeeringAttachmentsInput",
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
@@ -47677,6 +49228,7 @@ M.DescribeTransitGatewayPeeringAttachmentsInput = {
 
 M.DescribeTransitGatewayPeeringAttachmentsOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayPeeringAttachmentsOutput",
     members = {
         TransitGatewayPeeringAttachments = {
             type = "list",
@@ -47696,6 +49248,7 @@ M.DescribeTransitGatewayPeeringAttachmentsOutput = {
 
 M.DescribeTransitGatewayPolicyTablesInput = {
     type = "structure",
+    id = "DescribeTransitGatewayPolicyTablesInput",
     members = {
         TransitGatewayPolicyTableIds = {
             type = "list",
@@ -47722,6 +49275,7 @@ M.DescribeTransitGatewayPolicyTablesInput = {
 
 M.DescribeTransitGatewayPolicyTablesOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayPolicyTablesOutput",
     members = {
         TransitGatewayPolicyTables = {
             type = "list",
@@ -47741,6 +49295,7 @@ M.DescribeTransitGatewayPolicyTablesOutput = {
 
 M.DescribeTransitGatewayRouteTableAnnouncementsInput = {
     type = "structure",
+    id = "DescribeTransitGatewayRouteTableAnnouncementsInput",
     members = {
         TransitGatewayRouteTableAnnouncementIds = {
             type = "list",
@@ -47767,6 +49322,7 @@ M.DescribeTransitGatewayRouteTableAnnouncementsInput = {
 
 M.DescribeTransitGatewayRouteTableAnnouncementsOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayRouteTableAnnouncementsOutput",
     members = {
         TransitGatewayRouteTableAnnouncements = {
             type = "list",
@@ -47786,6 +49342,7 @@ M.DescribeTransitGatewayRouteTableAnnouncementsOutput = {
 
 M.DescribeTransitGatewayRouteTablesInput = {
     type = "structure",
+    id = "DescribeTransitGatewayRouteTablesInput",
     members = {
         TransitGatewayRouteTableIds = {
             type = "list",
@@ -47812,6 +49369,7 @@ M.DescribeTransitGatewayRouteTablesInput = {
 
 M.DescribeTransitGatewayRouteTablesOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayRouteTablesOutput",
     members = {
         TransitGatewayRouteTables = {
             type = "list",
@@ -47831,6 +49389,7 @@ M.DescribeTransitGatewayRouteTablesOutput = {
 
 M.DescribeTransitGatewaysInput = {
     type = "structure",
+    id = "DescribeTransitGatewaysInput",
     members = {
         TransitGatewayIds = {
             type = "list",
@@ -47857,6 +49416,7 @@ M.DescribeTransitGatewaysInput = {
 
 M.DescribeTransitGatewaysOutput = {
     type = "structure",
+    id = "DescribeTransitGatewaysOutput",
     members = {
         TransitGateways = {
             type = "list",
@@ -47876,6 +49436,7 @@ M.DescribeTransitGatewaysOutput = {
 
 M.DescribeTransitGatewayVpcAttachmentsInput = {
     type = "structure",
+    id = "DescribeTransitGatewayVpcAttachmentsInput",
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
@@ -47902,6 +49463,7 @@ M.DescribeTransitGatewayVpcAttachmentsInput = {
 
 M.DescribeTransitGatewayVpcAttachmentsOutput = {
     type = "structure",
+    id = "DescribeTransitGatewayVpcAttachmentsOutput",
     members = {
         TransitGatewayVpcAttachments = {
             type = "list",
@@ -47921,6 +49483,7 @@ M.DescribeTransitGatewayVpcAttachmentsOutput = {
 
 M.DescribeTrunkInterfaceAssociationsInput = {
     type = "structure",
+    id = "DescribeTrunkInterfaceAssociationsInput",
     members = {
         AssociationIds = {
             type = "list",
@@ -47950,6 +49513,7 @@ M.DescribeTrunkInterfaceAssociationsInput = {
 
 M.DescribeTrunkInterfaceAssociationsOutput = {
     type = "structure",
+    id = "DescribeTrunkInterfaceAssociationsOutput",
     members = {
         InterfaceAssociations = {
             type = "list",
@@ -47969,6 +49533,7 @@ M.DescribeTrunkInterfaceAssociationsOutput = {
 
 M.DescribeVerifiedAccessEndpointsInput = {
     type = "structure",
+    id = "DescribeVerifiedAccessEndpointsInput",
     members = {
         VerifiedAccessEndpointIds = {
             type = "list",
@@ -48004,6 +49569,7 @@ M.DescribeVerifiedAccessEndpointsInput = {
 
 M.DescribeVerifiedAccessEndpointsOutput = {
     type = "structure",
+    id = "DescribeVerifiedAccessEndpointsOutput",
     members = {
         VerifiedAccessEndpoints = {
             type = "list",
@@ -48023,6 +49589,7 @@ M.DescribeVerifiedAccessEndpointsOutput = {
 
 M.DescribeVerifiedAccessGroupsInput = {
     type = "structure",
+    id = "DescribeVerifiedAccessGroupsInput",
     members = {
         VerifiedAccessGroupIds = {
             type = "list",
@@ -48055,6 +49622,7 @@ M.DescribeVerifiedAccessGroupsInput = {
 
 M.DescribeVerifiedAccessGroupsOutput = {
     type = "structure",
+    id = "DescribeVerifiedAccessGroupsOutput",
     members = {
         VerifiedAccessGroups = {
             type = "list",
@@ -48074,6 +49642,7 @@ M.DescribeVerifiedAccessGroupsOutput = {
 
 M.DescribeVerifiedAccessInstanceLoggingConfigurationsInput = {
     type = "structure",
+    id = "DescribeVerifiedAccessInstanceLoggingConfigurationsInput",
     members = {
         VerifiedAccessInstanceIds = {
             type = "list",
@@ -48108,6 +49677,7 @@ M.VerifiedAccessLogDeliveryStatusCode = {
 
 M.VerifiedAccessLogDeliveryStatus = {
     type = "structure",
+    id = "VerifiedAccessLogDeliveryStatus",
     members = {
         Code = {
             type = "string",
@@ -48126,6 +49696,7 @@ M.VerifiedAccessLogDeliveryStatus = {
 
 M.VerifiedAccessLogCloudWatchLogsDestination = {
     type = "structure",
+    id = "VerifiedAccessLogCloudWatchLogsDestination",
     members = {
         Enabled = {
             type = "boolean",
@@ -48147,6 +49718,7 @@ M.VerifiedAccessLogCloudWatchLogsDestination = {
 
 M.VerifiedAccessLogKinesisDataFirehoseDestination = {
     type = "structure",
+    id = "VerifiedAccessLogKinesisDataFirehoseDestination",
     members = {
         Enabled = {
             type = "boolean",
@@ -48168,6 +49740,7 @@ M.VerifiedAccessLogKinesisDataFirehoseDestination = {
 
 M.VerifiedAccessLogS3Destination = {
     type = "structure",
+    id = "VerifiedAccessLogS3Destination",
     members = {
         Enabled = {
             type = "boolean",
@@ -48201,6 +49774,7 @@ M.VerifiedAccessLogS3Destination = {
 
 M.VerifiedAccessLogs = {
     type = "structure",
+    id = "VerifiedAccessLogs",
     members = {
         S3 = setmetatable({ traits = {
             xml_name = "s3",
@@ -48228,6 +49802,7 @@ M.VerifiedAccessLogs = {
 
 M.VerifiedAccessInstanceLoggingConfiguration = {
     type = "structure",
+    id = "VerifiedAccessInstanceLoggingConfiguration",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -48243,6 +49818,7 @@ M.VerifiedAccessInstanceLoggingConfiguration = {
 
 M.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput = {
     type = "structure",
+    id = "DescribeVerifiedAccessInstanceLoggingConfigurationsOutput",
     members = {
         LoggingConfigurations = {
             type = "list",
@@ -48262,6 +49838,7 @@ M.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput = {
 
 M.DescribeVerifiedAccessInstancesInput = {
     type = "structure",
+    id = "DescribeVerifiedAccessInstancesInput",
     members = {
         VerifiedAccessInstanceIds = {
             type = "list",
@@ -48291,6 +49868,7 @@ M.DescribeVerifiedAccessInstancesInput = {
 
 M.DescribeVerifiedAccessInstancesOutput = {
     type = "structure",
+    id = "DescribeVerifiedAccessInstancesOutput",
     members = {
         VerifiedAccessInstances = {
             type = "list",
@@ -48310,6 +49888,7 @@ M.DescribeVerifiedAccessInstancesOutput = {
 
 M.DescribeVerifiedAccessTrustProvidersInput = {
     type = "structure",
+    id = "DescribeVerifiedAccessTrustProvidersInput",
     members = {
         VerifiedAccessTrustProviderIds = {
             type = "list",
@@ -48339,6 +49918,7 @@ M.DescribeVerifiedAccessTrustProvidersInput = {
 
 M.DescribeVerifiedAccessTrustProvidersOutput = {
     type = "structure",
+    id = "DescribeVerifiedAccessTrustProvidersOutput",
     members = {
         VerifiedAccessTrustProviders = {
             type = "list",
@@ -48363,6 +49943,7 @@ M.VolumeAttributeName = {
 
 M.DescribeVolumeAttributeInput = {
     type = "structure",
+    id = "DescribeVolumeAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -48387,6 +49968,7 @@ M.DescribeVolumeAttributeInput = {
 
 M.DescribeVolumeAttributeOutput = {
     type = "structure",
+    id = "DescribeVolumeAttributeOutput",
     members = {
         AutoEnableIO = setmetatable({ traits = {
             xml_name = "autoEnableIO",
@@ -48409,6 +49991,7 @@ M.DescribeVolumeAttributeOutput = {
 
 M.DescribeVolumesInput = {
     type = "structure",
+    id = "DescribeVolumesInput",
     members = {
         VolumeIds = {
             type = "list",
@@ -48450,6 +50033,7 @@ M.DescribeVolumesInput = {
 
 M.DescribeVolumesOutput = {
     type = "structure",
+    id = "DescribeVolumesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -48469,6 +50053,7 @@ M.DescribeVolumesOutput = {
 
 M.DescribeVolumesModificationsInput = {
     type = "structure",
+    id = "DescribeVolumesModificationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -48505,6 +50090,7 @@ M.VolumeModificationState = {
 
 M.VolumeModification = {
     type = "structure",
+    id = "VolumeModification",
     members = {
         VolumeId = {
             type = "string",
@@ -48610,6 +50196,7 @@ M.VolumeModification = {
 
 M.DescribeVolumesModificationsOutput = {
     type = "structure",
+    id = "DescribeVolumesModificationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -48629,6 +50216,7 @@ M.DescribeVolumesModificationsOutput = {
 
 M.DescribeVolumeStatusInput = {
     type = "structure",
+    id = "DescribeVolumeStatusInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -48664,6 +50252,7 @@ M.DescribeVolumeStatusInput = {
 
 M.VolumeStatusAction = {
     type = "structure",
+    id = "VolumeStatusAction",
     members = {
         Code = {
             type = "string",
@@ -48694,6 +50283,7 @@ M.VolumeStatusAction = {
 
 M.VolumeStatusAttachmentStatus = {
     type = "structure",
+    id = "VolumeStatusAttachmentStatus",
     members = {
         IoPerformance = {
             type = "string",
@@ -48712,6 +50302,7 @@ M.VolumeStatusAttachmentStatus = {
 
 M.VolumeStatusEvent = {
     type = "structure",
+    id = "VolumeStatusEvent",
     members = {
         Description = {
             type = "string",
@@ -48760,6 +50351,7 @@ M.InitializationType = {
 
 M.InitializationStatusDetails = {
     type = "structure",
+    id = "InitializationStatusDetails",
     members = {
         InitializationType = {
             type = "string",
@@ -48790,6 +50382,7 @@ M.VolumeStatusName = {
 
 M.VolumeStatusDetails = {
     type = "structure",
+    id = "VolumeStatusDetails",
     members = {
         Name = {
             type = "string",
@@ -48815,6 +50408,7 @@ M.VolumeStatusInfoStatus = {
 
 M.VolumeStatusInfo = {
     type = "structure",
+    id = "VolumeStatusInfo",
     members = {
         Details = {
             type = "list",
@@ -48834,6 +50428,7 @@ M.VolumeStatusInfo = {
 
 M.VolumeStatusItem = {
     type = "structure",
+    id = "VolumeStatusItem",
     members = {
         Actions = {
             type = "list",
@@ -48894,6 +50489,7 @@ M.VolumeStatusItem = {
 
 M.DescribeVolumeStatusOutput = {
     type = "structure",
+    id = "DescribeVolumeStatusOutput",
     members = {
         NextToken = {
             type = "string",
@@ -48919,6 +50515,7 @@ M.VpcAttributeName = {
 
 M.DescribeVpcAttributeInput = {
     type = "structure",
+    id = "DescribeVpcAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -48943,6 +50540,7 @@ M.DescribeVpcAttributeInput = {
 
 M.DescribeVpcAttributeOutput = {
     type = "structure",
+    id = "DescribeVpcAttributeOutput",
     members = {
         EnableDnsHostnames = setmetatable({ traits = {
             xml_name = "enableDnsHostnames",
@@ -48964,6 +50562,7 @@ M.DescribeVpcAttributeOutput = {
 
 M.DescribeVpcBlockPublicAccessExclusionsInput = {
     type = "structure",
+    id = "DescribeVpcBlockPublicAccessExclusionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -48993,6 +50592,7 @@ M.DescribeVpcBlockPublicAccessExclusionsInput = {
 
 M.DescribeVpcBlockPublicAccessExclusionsOutput = {
     type = "structure",
+    id = "DescribeVpcBlockPublicAccessExclusionsOutput",
     members = {
         VpcBlockPublicAccessExclusions = {
             type = "list",
@@ -49012,6 +50612,7 @@ M.DescribeVpcBlockPublicAccessExclusionsOutput = {
 
 M.DescribeVpcBlockPublicAccessOptionsInput = {
     type = "structure",
+    id = "DescribeVpcBlockPublicAccessOptionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49043,6 +50644,7 @@ M.VpcBlockPublicAccessState = {
 
 M.VpcBlockPublicAccessOptions = {
     type = "structure",
+    id = "VpcBlockPublicAccessOptions",
     members = {
         AwsAccountId = {
             type = "string",
@@ -49097,6 +50699,7 @@ M.VpcBlockPublicAccessOptions = {
 
 M.DescribeVpcBlockPublicAccessOptionsOutput = {
     type = "structure",
+    id = "DescribeVpcBlockPublicAccessOptionsOutput",
     members = {
         VpcBlockPublicAccessOptions = setmetatable({ traits = {
             xml_name = "vpcBlockPublicAccessOptions",
@@ -49106,6 +50709,7 @@ M.DescribeVpcBlockPublicAccessOptionsOutput = {
 
 M.DescribeVpcClassicLinkInput = {
     type = "structure",
+    id = "DescribeVpcClassicLinkInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49132,6 +50736,7 @@ M.DescribeVpcClassicLinkInput = {
 
 M.VpcClassicLink = {
     type = "structure",
+    id = "VpcClassicLink",
     members = {
         ClassicLinkEnabled = {
             type = "boolean",
@@ -49157,6 +50762,7 @@ M.VpcClassicLink = {
 
 M.DescribeVpcClassicLinkOutput = {
     type = "structure",
+    id = "DescribeVpcClassicLinkOutput",
     members = {
         Vpcs = {
             type = "list",
@@ -49170,6 +50776,7 @@ M.DescribeVpcClassicLinkOutput = {
 
 M.DescribeVpcClassicLinkDnsSupportInput = {
     type = "structure",
+    id = "DescribeVpcClassicLinkDnsSupportInput",
     members = {
         VpcIds = {
             type = "list",
@@ -49195,6 +50802,7 @@ M.DescribeVpcClassicLinkDnsSupportInput = {
 
 M.ClassicLinkDnsSupport = {
     type = "structure",
+    id = "ClassicLinkDnsSupport",
     members = {
         ClassicLinkDnsSupported = {
             type = "boolean",
@@ -49213,6 +50821,7 @@ M.ClassicLinkDnsSupport = {
 
 M.DescribeVpcClassicLinkDnsSupportOutput = {
     type = "structure",
+    id = "DescribeVpcClassicLinkDnsSupportOutput",
     members = {
         NextToken = {
             type = "string",
@@ -49232,6 +50841,7 @@ M.DescribeVpcClassicLinkDnsSupportOutput = {
 
 M.DescribeVpcEncryptionControlsInput = {
     type = "structure",
+    id = "DescribeVpcEncryptionControlsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49268,6 +50878,7 @@ M.DescribeVpcEncryptionControlsInput = {
 
 M.DescribeVpcEncryptionControlsOutput = {
     type = "structure",
+    id = "DescribeVpcEncryptionControlsOutput",
     members = {
         VpcEncryptionControls = {
             type = "list",
@@ -49287,6 +50898,7 @@ M.DescribeVpcEncryptionControlsOutput = {
 
 M.DescribeVpcEndpointAssociationsInput = {
     type = "structure",
+    id = "DescribeVpcEndpointAssociationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49316,6 +50928,7 @@ M.DescribeVpcEndpointAssociationsInput = {
 
 M.VpcEndpointAssociation = {
     type = "structure",
+    id = "VpcEndpointAssociation",
     members = {
         Id = {
             type = "string",
@@ -49389,6 +51002,7 @@ M.VpcEndpointAssociation = {
 
 M.DescribeVpcEndpointAssociationsOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointAssociationsOutput",
     members = {
         VpcEndpointAssociations = {
             type = "list",
@@ -49408,6 +51022,7 @@ M.DescribeVpcEndpointAssociationsOutput = {
 
 M.DescribeVpcEndpointConnectionNotificationsInput = {
     type = "structure",
+    id = "DescribeVpcEndpointConnectionNotificationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49433,6 +51048,7 @@ M.DescribeVpcEndpointConnectionNotificationsInput = {
 
 M.DescribeVpcEndpointConnectionNotificationsOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointConnectionNotificationsOutput",
     members = {
         ConnectionNotificationSet = {
             type = "list",
@@ -49452,6 +51068,7 @@ M.DescribeVpcEndpointConnectionNotificationsOutput = {
 
 M.DescribeVpcEndpointConnectionsInput = {
     type = "structure",
+    id = "DescribeVpcEndpointConnectionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49474,6 +51091,7 @@ M.DescribeVpcEndpointConnectionsInput = {
 
 M.VpcEndpointConnection = {
     type = "structure",
+    id = "VpcEndpointConnection",
     members = {
         ServiceId = {
             type = "string",
@@ -49556,6 +51174,7 @@ M.VpcEndpointConnection = {
 
 M.DescribeVpcEndpointConnectionsOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointConnectionsOutput",
     members = {
         VpcEndpointConnections = {
             type = "list",
@@ -49575,6 +51194,7 @@ M.DescribeVpcEndpointConnectionsOutput = {
 
 M.DescribeVpcEndpointsInput = {
     type = "structure",
+    id = "DescribeVpcEndpointsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49604,6 +51224,7 @@ M.DescribeVpcEndpointsInput = {
 
 M.DescribeVpcEndpointsOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointsOutput",
     members = {
         VpcEndpoints = {
             type = "list",
@@ -49623,6 +51244,7 @@ M.DescribeVpcEndpointsOutput = {
 
 M.DescribeVpcEndpointServiceConfigurationsInput = {
     type = "structure",
+    id = "DescribeVpcEndpointServiceConfigurationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49652,6 +51274,7 @@ M.DescribeVpcEndpointServiceConfigurationsInput = {
 
 M.DescribeVpcEndpointServiceConfigurationsOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointServiceConfigurationsOutput",
     members = {
         ServiceConfigurations = {
             type = "list",
@@ -49671,6 +51294,7 @@ M.DescribeVpcEndpointServiceConfigurationsOutput = {
 
 M.DescribeVpcEndpointServicePermissionsInput = {
     type = "structure",
+    id = "DescribeVpcEndpointServicePermissionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49699,6 +51323,7 @@ M.DescribeVpcEndpointServicePermissionsInput = {
 
 M.DescribeVpcEndpointServicePermissionsOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointServicePermissionsOutput",
     members = {
         AllowedPrincipals = {
             type = "list",
@@ -49718,6 +51343,7 @@ M.DescribeVpcEndpointServicePermissionsOutput = {
 
 M.DescribeVpcEndpointServicesInput = {
     type = "structure",
+    id = "DescribeVpcEndpointServicesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -49754,6 +51380,7 @@ M.DescribeVpcEndpointServicesInput = {
 
 M.PrivateDnsDetails = {
     type = "structure",
+    id = "PrivateDnsDetails",
     members = {
         PrivateDnsName = {
             type = "string",
@@ -49766,6 +51393,7 @@ M.PrivateDnsDetails = {
 
 M.ServiceDetail = {
     type = "structure",
+    id = "ServiceDetail",
     members = {
         ServiceName = {
             type = "string",
@@ -49881,6 +51509,7 @@ M.ServiceDetail = {
 
 M.DescribeVpcEndpointServicesOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointServicesOutput",
     members = {
         ServiceNames = {
             type = "list",
@@ -49907,6 +51536,7 @@ M.DescribeVpcEndpointServicesOutput = {
 
 M.DescribeVpcPeeringConnectionsInput = {
     type = "structure",
+    id = "DescribeVpcPeeringConnectionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -49939,6 +51569,7 @@ M.DescribeVpcPeeringConnectionsInput = {
 
 M.DescribeVpcPeeringConnectionsOutput = {
     type = "structure",
+    id = "DescribeVpcPeeringConnectionsOutput",
     members = {
         VpcPeeringConnections = {
             type = "list",
@@ -49958,6 +51589,7 @@ M.DescribeVpcPeeringConnectionsOutput = {
 
 M.DescribeVpcsInput = {
     type = "structure",
+    id = "DescribeVpcsInput",
     members = {
         Filters = {
             type = "list",
@@ -49990,6 +51622,7 @@ M.DescribeVpcsInput = {
 
 M.DescribeVpcsOutput = {
     type = "structure",
+    id = "DescribeVpcsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -50009,6 +51642,7 @@ M.DescribeVpcsOutput = {
 
 M.DescribeVpnConcentratorsInput = {
     type = "structure",
+    id = "DescribeVpnConcentratorsInput",
     members = {
         VpnConcentratorIds = {
             type = "list",
@@ -50038,6 +51672,7 @@ M.DescribeVpnConcentratorsInput = {
 
 M.DescribeVpnConcentratorsOutput = {
     type = "structure",
+    id = "DescribeVpnConcentratorsOutput",
     members = {
         VpnConcentrators = {
             type = "list",
@@ -50057,6 +51692,7 @@ M.DescribeVpnConcentratorsOutput = {
 
 M.DescribeVpnConnectionsInput = {
     type = "structure",
+    id = "DescribeVpnConnectionsInput",
     members = {
         Filters = {
             type = "list",
@@ -50083,6 +51719,7 @@ M.DescribeVpnConnectionsInput = {
 
 M.DescribeVpnConnectionsOutput = {
     type = "structure",
+    id = "DescribeVpnConnectionsOutput",
     members = {
         VpnConnections = {
             type = "list",
@@ -50096,6 +51733,7 @@ M.DescribeVpnConnectionsOutput = {
 
 M.DescribeVpnGatewaysInput = {
     type = "structure",
+    id = "DescribeVpnGatewaysInput",
     members = {
         Filters = {
             type = "list",
@@ -50122,6 +51760,7 @@ M.DescribeVpnGatewaysInput = {
 
 M.DescribeVpnGatewaysOutput = {
     type = "structure",
+    id = "DescribeVpnGatewaysOutput",
     members = {
         VpnGateways = {
             type = "list",
@@ -50135,6 +51774,7 @@ M.DescribeVpnGatewaysOutput = {
 
 M.DetachClassicLinkVpcInput = {
     type = "structure",
+    id = "DetachClassicLinkVpcInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50161,6 +51801,7 @@ M.DetachClassicLinkVpcInput = {
 
 M.DetachClassicLinkVpcOutput = {
     type = "structure",
+    id = "DetachClassicLinkVpcOutput",
     members = {
         Return = {
             type = "boolean",
@@ -50173,6 +51814,7 @@ M.DetachClassicLinkVpcOutput = {
 
 M.DetachInternetGatewayInput = {
     type = "structure",
+    id = "DetachInternetGatewayInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50199,10 +51841,12 @@ M.DetachInternetGatewayInput = {
 
 M.DetachInternetGatewayOutput = {
     type = "structure",
+    id = "DetachInternetGatewayOutput",
 }
 
 M.DetachNetworkInterfaceInput = {
     type = "structure",
+    id = "DetachNetworkInterfaceInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50228,10 +51872,12 @@ M.DetachNetworkInterfaceInput = {
 
 M.DetachNetworkInterfaceOutput = {
     type = "structure",
+    id = "DetachNetworkInterfaceOutput",
 }
 
 M.DetachVerifiedAccessTrustProviderInput = {
     type = "structure",
+    id = "DetachVerifiedAccessTrustProviderInput",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -50259,6 +51905,7 @@ M.DetachVerifiedAccessTrustProviderInput = {
 
 M.DetachVerifiedAccessTrustProviderOutput = {
     type = "structure",
+    id = "DetachVerifiedAccessTrustProviderOutput",
     members = {
         VerifiedAccessTrustProvider = setmetatable({ traits = {
             xml_name = "verifiedAccessTrustProvider",
@@ -50271,6 +51918,7 @@ M.DetachVerifiedAccessTrustProviderOutput = {
 
 M.DetachVolumeInput = {
     type = "structure",
+    id = "DetachVolumeInput",
     members = {
         Device = {
             type = "string",
@@ -50298,6 +51946,7 @@ M.DetachVolumeInput = {
 
 M.DetachVolumeOutput = {
     type = "structure",
+    id = "DetachVolumeOutput",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -50358,6 +52007,7 @@ M.DetachVolumeOutput = {
 
 M.DetachVpnGatewayInput = {
     type = "structure",
+    id = "DetachVpnGatewayInput",
     members = {
         VpcId = {
             type = "string",
@@ -50382,10 +52032,12 @@ M.DetachVpnGatewayInput = {
 
 M.DetachVpnGatewayOutput = {
     type = "structure",
+    id = "DetachVpnGatewayOutput",
 }
 
 M.DisableAddressTransferInput = {
     type = "structure",
+    id = "DisableAddressTransferInput",
     members = {
         AllocationId = {
             type = "string",
@@ -50401,6 +52053,7 @@ M.DisableAddressTransferInput = {
 
 M.DisableAddressTransferOutput = {
     type = "structure",
+    id = "DisableAddressTransferOutput",
     members = {
         AddressTransfer = setmetatable({ traits = {
             xml_name = "addressTransfer",
@@ -50410,6 +52063,7 @@ M.DisableAddressTransferOutput = {
 
 M.DisableAllowedImagesSettingsInput = {
     type = "structure",
+    id = "DisableAllowedImagesSettingsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50419,6 +52073,7 @@ M.DisableAllowedImagesSettingsInput = {
 
 M.DisableAllowedImagesSettingsOutput = {
     type = "structure",
+    id = "DisableAllowedImagesSettingsOutput",
     members = {
         AllowedImagesSettingsState = {
             type = "string",
@@ -50431,6 +52086,7 @@ M.DisableAllowedImagesSettingsOutput = {
 
 M.DisableAwsNetworkPerformanceMetricSubscriptionInput = {
     type = "structure",
+    id = "DisableAwsNetworkPerformanceMetricSubscriptionInput",
     members = {
         Source = {
             type = "string",
@@ -50452,6 +52108,7 @@ M.DisableAwsNetworkPerformanceMetricSubscriptionInput = {
 
 M.DisableAwsNetworkPerformanceMetricSubscriptionOutput = {
     type = "structure",
+    id = "DisableAwsNetworkPerformanceMetricSubscriptionOutput",
     members = {
         Output = {
             type = "boolean",
@@ -50464,6 +52121,7 @@ M.DisableAwsNetworkPerformanceMetricSubscriptionOutput = {
 
 M.DisableCapacityManagerInput = {
     type = "structure",
+    id = "DisableCapacityManagerInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50484,6 +52142,7 @@ M.CapacityManagerStatus = {
 
 M.DisableCapacityManagerOutput = {
     type = "structure",
+    id = "DisableCapacityManagerOutput",
     members = {
         CapacityManagerStatus = {
             type = "string",
@@ -50502,6 +52161,7 @@ M.DisableCapacityManagerOutput = {
 
 M.DisableEbsEncryptionByDefaultInput = {
     type = "structure",
+    id = "DisableEbsEncryptionByDefaultInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50511,6 +52171,7 @@ M.DisableEbsEncryptionByDefaultInput = {
 
 M.DisableEbsEncryptionByDefaultOutput = {
     type = "structure",
+    id = "DisableEbsEncryptionByDefaultOutput",
     members = {
         EbsEncryptionByDefault = {
             type = "boolean",
@@ -50523,6 +52184,7 @@ M.DisableEbsEncryptionByDefaultOutput = {
 
 M.DisableFastLaunchInput = {
     type = "structure",
+    id = "DisableFastLaunchInput",
     members = {
         ImageId = {
             type = "string",
@@ -50541,6 +52203,7 @@ M.DisableFastLaunchInput = {
 
 M.DisableFastLaunchOutput = {
     type = "structure",
+    id = "DisableFastLaunchOutput",
     members = {
         ImageId = {
             type = "string",
@@ -50595,6 +52258,7 @@ M.DisableFastLaunchOutput = {
 
 M.DisableFastSnapshotRestoresInput = {
     type = "structure",
+    id = "DisableFastSnapshotRestoresInput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -50626,6 +52290,7 @@ M.DisableFastSnapshotRestoresInput = {
 
 M.DisableFastSnapshotRestoreSuccessItem = {
     type = "structure",
+    id = "DisableFastSnapshotRestoreSuccessItem",
     members = {
         SnapshotId = {
             type = "string",
@@ -50704,6 +52369,7 @@ M.DisableFastSnapshotRestoreSuccessItem = {
 
 M.DisableFastSnapshotRestoreStateError = {
     type = "structure",
+    id = "DisableFastSnapshotRestoreStateError",
     members = {
         Code = {
             type = "string",
@@ -50722,6 +52388,7 @@ M.DisableFastSnapshotRestoreStateError = {
 
 M.DisableFastSnapshotRestoreStateErrorItem = {
     type = "structure",
+    id = "DisableFastSnapshotRestoreStateErrorItem",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -50743,6 +52410,7 @@ M.DisableFastSnapshotRestoreStateErrorItem = {
 
 M.DisableFastSnapshotRestoreErrorItem = {
     type = "structure",
+    id = "DisableFastSnapshotRestoreErrorItem",
     members = {
         SnapshotId = {
             type = "string",
@@ -50762,6 +52430,7 @@ M.DisableFastSnapshotRestoreErrorItem = {
 
 M.DisableFastSnapshotRestoresOutput = {
     type = "structure",
+    id = "DisableFastSnapshotRestoresOutput",
     members = {
         Successful = {
             type = "list",
@@ -50782,6 +52451,7 @@ M.DisableFastSnapshotRestoresOutput = {
 
 M.DisableImageInput = {
     type = "structure",
+    id = "DisableImageInput",
     members = {
         ImageId = {
             type = "string",
@@ -50797,6 +52467,7 @@ M.DisableImageInput = {
 
 M.DisableImageOutput = {
     type = "structure",
+    id = "DisableImageOutput",
     members = {
         Return = {
             type = "boolean",
@@ -50809,6 +52480,7 @@ M.DisableImageOutput = {
 
 M.DisableImageBlockPublicAccessInput = {
     type = "structure",
+    id = "DisableImageBlockPublicAccessInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50822,6 +52494,7 @@ M.ImageBlockPublicAccessDisabledState = {
 
 M.DisableImageBlockPublicAccessOutput = {
     type = "structure",
+    id = "DisableImageBlockPublicAccessOutput",
     members = {
         ImageBlockPublicAccessState = {
             type = "string",
@@ -50834,6 +52507,7 @@ M.DisableImageBlockPublicAccessOutput = {
 
 M.DisableImageDeprecationInput = {
     type = "structure",
+    id = "DisableImageDeprecationInput",
     members = {
         ImageId = {
             type = "string",
@@ -50849,6 +52523,7 @@ M.DisableImageDeprecationInput = {
 
 M.DisableImageDeprecationOutput = {
     type = "structure",
+    id = "DisableImageDeprecationOutput",
     members = {
         Return = {
             type = "boolean",
@@ -50861,6 +52536,7 @@ M.DisableImageDeprecationOutput = {
 
 M.DisableImageDeregistrationProtectionInput = {
     type = "structure",
+    id = "DisableImageDeregistrationProtectionInput",
     members = {
         ImageId = {
             type = "string",
@@ -50876,6 +52552,7 @@ M.DisableImageDeregistrationProtectionInput = {
 
 M.DisableImageDeregistrationProtectionOutput = {
     type = "structure",
+    id = "DisableImageDeregistrationProtectionOutput",
     members = {
         Return = {
             type = "string",
@@ -50888,6 +52565,7 @@ M.DisableImageDeregistrationProtectionOutput = {
 
 M.DisableInstanceSqlHaStandbyDetectionsInput = {
     type = "structure",
+    id = "DisableInstanceSqlHaStandbyDetectionsInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -50905,6 +52583,7 @@ M.DisableInstanceSqlHaStandbyDetectionsInput = {
 
 M.DisableInstanceSqlHaStandbyDetectionsOutput = {
     type = "structure",
+    id = "DisableInstanceSqlHaStandbyDetectionsOutput",
     members = {
         Instances = {
             type = "list",
@@ -50918,6 +52597,7 @@ M.DisableInstanceSqlHaStandbyDetectionsOutput = {
 
 M.DisableIpamOrganizationAdminAccountInput = {
     type = "structure",
+    id = "DisableIpamOrganizationAdminAccountInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50933,6 +52613,7 @@ M.DisableIpamOrganizationAdminAccountInput = {
 
 M.DisableIpamOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "DisableIpamOrganizationAdminAccountOutput",
     members = {
         Success = {
             type = "boolean",
@@ -50945,6 +52626,7 @@ M.DisableIpamOrganizationAdminAccountOutput = {
 
 M.DisableIpamPolicyInput = {
     type = "structure",
+    id = "DisableIpamPolicyInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -50963,6 +52645,7 @@ M.DisableIpamPolicyInput = {
 
 M.DisableIpamPolicyOutput = {
     type = "structure",
+    id = "DisableIpamPolicyOutput",
     members = {
         Return = {
             type = "boolean",
@@ -50975,6 +52658,7 @@ M.DisableIpamPolicyOutput = {
 
 M.DisableRouteServerPropagationInput = {
     type = "structure",
+    id = "DisableRouteServerPropagationInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -51002,6 +52686,7 @@ M.RouteServerPropagationState = {
 
 M.RouteServerPropagation = {
     type = "structure",
+    id = "RouteServerPropagation",
     members = {
         RouteServerId = {
             type = "string",
@@ -51026,6 +52711,7 @@ M.RouteServerPropagation = {
 
 M.DisableRouteServerPropagationOutput = {
     type = "structure",
+    id = "DisableRouteServerPropagationOutput",
     members = {
         RouteServerPropagation = setmetatable({ traits = {
             xml_name = "routeServerPropagation",
@@ -51035,6 +52721,7 @@ M.DisableRouteServerPropagationOutput = {
 
 M.DisableSerialConsoleAccessInput = {
     type = "structure",
+    id = "DisableSerialConsoleAccessInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51044,6 +52731,7 @@ M.DisableSerialConsoleAccessInput = {
 
 M.DisableSerialConsoleAccessOutput = {
     type = "structure",
+    id = "DisableSerialConsoleAccessOutput",
     members = {
         SerialConsoleAccessEnabled = {
             type = "boolean",
@@ -51056,6 +52744,7 @@ M.DisableSerialConsoleAccessOutput = {
 
 M.DisableSnapshotBlockPublicAccessInput = {
     type = "structure",
+    id = "DisableSnapshotBlockPublicAccessInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51071,6 +52760,7 @@ M.SnapshotBlockPublicAccessState = {
 
 M.DisableSnapshotBlockPublicAccessOutput = {
     type = "structure",
+    id = "DisableSnapshotBlockPublicAccessOutput",
     members = {
         State = {
             type = "string",
@@ -51083,6 +52773,7 @@ M.DisableSnapshotBlockPublicAccessOutput = {
 
 M.DisableTransitGatewayRouteTablePropagationInput = {
     type = "structure",
+    id = "DisableTransitGatewayRouteTablePropagationInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -51111,6 +52802,7 @@ M.TransitGatewayPropagationState = {
 
 M.TransitGatewayPropagation = {
     type = "structure",
+    id = "TransitGatewayPropagation",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -51153,6 +52845,7 @@ M.TransitGatewayPropagation = {
 
 M.DisableTransitGatewayRouteTablePropagationOutput = {
     type = "structure",
+    id = "DisableTransitGatewayRouteTablePropagationOutput",
     members = {
         Propagation = setmetatable({ traits = {
             xml_name = "propagation",
@@ -51162,6 +52855,7 @@ M.DisableTransitGatewayRouteTablePropagationOutput = {
 
 M.DisableVgwRoutePropagationInput = {
     type = "structure",
+    id = "DisableVgwRoutePropagationInput",
     members = {
         GatewayId = {
             type = "string",
@@ -51183,10 +52877,12 @@ M.DisableVgwRoutePropagationInput = {
 
 M.DisableVgwRoutePropagationOutput = {
     type = "structure",
+    id = "DisableVgwRoutePropagationOutput",
 }
 
 M.DisableVpcClassicLinkInput = {
     type = "structure",
+    id = "DisableVpcClassicLinkInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51206,6 +52902,7 @@ M.DisableVpcClassicLinkInput = {
 
 M.DisableVpcClassicLinkOutput = {
     type = "structure",
+    id = "DisableVpcClassicLinkOutput",
     members = {
         Return = {
             type = "boolean",
@@ -51218,6 +52915,7 @@ M.DisableVpcClassicLinkOutput = {
 
 M.DisableVpcClassicLinkDnsSupportInput = {
     type = "structure",
+    id = "DisableVpcClassicLinkDnsSupportInput",
     members = {
         VpcId = {
             type = "string",
@@ -51230,6 +52928,7 @@ M.DisableVpcClassicLinkDnsSupportInput = {
 
 M.DisableVpcClassicLinkDnsSupportOutput = {
     type = "structure",
+    id = "DisableVpcClassicLinkDnsSupportOutput",
     members = {
         Return = {
             type = "boolean",
@@ -51242,6 +52941,7 @@ M.DisableVpcClassicLinkDnsSupportOutput = {
 
 M.DisassociateAddressInput = {
     type = "structure",
+    id = "DisassociateAddressInput",
     members = {
         AssociationId = {
             type = "string",
@@ -51260,10 +52960,12 @@ M.DisassociateAddressInput = {
 
 M.DisassociateAddressOutput = {
     type = "structure",
+    id = "DisassociateAddressOutput",
 }
 
 M.DisassociateCapacityReservationBillingOwnerInput = {
     type = "structure",
+    id = "DisassociateCapacityReservationBillingOwnerInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51285,6 +52987,7 @@ M.DisassociateCapacityReservationBillingOwnerInput = {
 
 M.DisassociateCapacityReservationBillingOwnerOutput = {
     type = "structure",
+    id = "DisassociateCapacityReservationBillingOwnerOutput",
     members = {
         Return = {
             type = "boolean",
@@ -51297,6 +53000,7 @@ M.DisassociateCapacityReservationBillingOwnerOutput = {
 
 M.DisassociateClientVpnTargetNetworkInput = {
     type = "structure",
+    id = "DisassociateClientVpnTargetNetworkInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -51318,6 +53022,7 @@ M.DisassociateClientVpnTargetNetworkInput = {
 
 M.DisassociateClientVpnTargetNetworkOutput = {
     type = "structure",
+    id = "DisassociateClientVpnTargetNetworkOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -51333,6 +53038,7 @@ M.DisassociateClientVpnTargetNetworkOutput = {
 
 M.DisassociateEnclaveCertificateIamRoleInput = {
     type = "structure",
+    id = "DisassociateEnclaveCertificateIamRoleInput",
     members = {
         CertificateArn = {
             type = "string",
@@ -51354,6 +53060,7 @@ M.DisassociateEnclaveCertificateIamRoleInput = {
 
 M.DisassociateEnclaveCertificateIamRoleOutput = {
     type = "structure",
+    id = "DisassociateEnclaveCertificateIamRoleOutput",
     members = {
         Return = {
             type = "boolean",
@@ -51366,6 +53073,7 @@ M.DisassociateEnclaveCertificateIamRoleOutput = {
 
 M.DisassociateIamInstanceProfileInput = {
     type = "structure",
+    id = "DisassociateIamInstanceProfileInput",
     members = {
         AssociationId = {
             type = "string",
@@ -51378,6 +53086,7 @@ M.DisassociateIamInstanceProfileInput = {
 
 M.DisassociateIamInstanceProfileOutput = {
     type = "structure",
+    id = "DisassociateIamInstanceProfileOutput",
     members = {
         IamInstanceProfileAssociation = setmetatable({ traits = {
             xml_name = "iamInstanceProfileAssociation",
@@ -51387,6 +53096,7 @@ M.DisassociateIamInstanceProfileOutput = {
 
 M.InstanceEventWindowDisassociationRequest = {
     type = "structure",
+    id = "InstanceEventWindowDisassociationRequest",
     members = {
         InstanceIds = {
             type = "list",
@@ -51414,6 +53124,7 @@ M.InstanceEventWindowDisassociationRequest = {
 
 M.DisassociateInstanceEventWindowInput = {
     type = "structure",
+    id = "DisassociateInstanceEventWindowInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51432,6 +53143,7 @@ M.DisassociateInstanceEventWindowInput = {
 
 M.DisassociateInstanceEventWindowOutput = {
     type = "structure",
+    id = "DisassociateInstanceEventWindowOutput",
     members = {
         InstanceEventWindow = setmetatable({ traits = {
             xml_name = "instanceEventWindow",
@@ -51441,6 +53153,7 @@ M.DisassociateInstanceEventWindowOutput = {
 
 M.DisassociateIpamByoasnInput = {
     type = "structure",
+    id = "DisassociateIpamByoasnInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51462,6 +53175,7 @@ M.DisassociateIpamByoasnInput = {
 
 M.DisassociateIpamByoasnOutput = {
     type = "structure",
+    id = "DisassociateIpamByoasnOutput",
     members = {
         AsnAssociation = setmetatable({ traits = {
             xml_name = "asnAssociation",
@@ -51471,6 +53185,7 @@ M.DisassociateIpamByoasnOutput = {
 
 M.DisassociateIpamResourceDiscoveryInput = {
     type = "structure",
+    id = "DisassociateIpamResourceDiscoveryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51486,6 +53201,7 @@ M.DisassociateIpamResourceDiscoveryInput = {
 
 M.DisassociateIpamResourceDiscoveryOutput = {
     type = "structure",
+    id = "DisassociateIpamResourceDiscoveryOutput",
     members = {
         IpamResourceDiscoveryAssociation = setmetatable({ traits = {
             xml_name = "ipamResourceDiscoveryAssociation",
@@ -51495,6 +53211,7 @@ M.DisassociateIpamResourceDiscoveryOutput = {
 
 M.DisassociateNatGatewayAddressInput = {
     type = "structure",
+    id = "DisassociateNatGatewayAddressInput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -51521,6 +53238,7 @@ M.DisassociateNatGatewayAddressInput = {
 
 M.DisassociateNatGatewayAddressOutput = {
     type = "structure",
+    id = "DisassociateNatGatewayAddressOutput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -51540,6 +53258,7 @@ M.DisassociateNatGatewayAddressOutput = {
 
 M.DisassociateRouteServerInput = {
     type = "structure",
+    id = "DisassociateRouteServerInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -51561,6 +53280,7 @@ M.DisassociateRouteServerInput = {
 
 M.DisassociateRouteServerOutput = {
     type = "structure",
+    id = "DisassociateRouteServerOutput",
     members = {
         RouteServerAssociation = setmetatable({ traits = {
             xml_name = "routeServerAssociation",
@@ -51570,6 +53290,7 @@ M.DisassociateRouteServerOutput = {
 
 M.DisassociateRouteTableInput = {
     type = "structure",
+    id = "DisassociateRouteTableInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51589,10 +53310,12 @@ M.DisassociateRouteTableInput = {
 
 M.DisassociateRouteTableOutput = {
     type = "structure",
+    id = "DisassociateRouteTableOutput",
 }
 
 M.DisassociateSecurityGroupVpcInput = {
     type = "structure",
+    id = "DisassociateSecurityGroupVpcInput",
     members = {
         GroupId = {
             type = "string",
@@ -51614,6 +53337,7 @@ M.DisassociateSecurityGroupVpcInput = {
 
 M.DisassociateSecurityGroupVpcOutput = {
     type = "structure",
+    id = "DisassociateSecurityGroupVpcOutput",
     members = {
         State = {
             type = "string",
@@ -51626,6 +53350,7 @@ M.DisassociateSecurityGroupVpcOutput = {
 
 M.DisassociateSubnetCidrBlockInput = {
     type = "structure",
+    id = "DisassociateSubnetCidrBlockInput",
     members = {
         AssociationId = {
             type = "string",
@@ -51639,6 +53364,7 @@ M.DisassociateSubnetCidrBlockInput = {
 
 M.DisassociateSubnetCidrBlockOutput = {
     type = "structure",
+    id = "DisassociateSubnetCidrBlockOutput",
     members = {
         Ipv6CidrBlockAssociation = setmetatable({ traits = {
             xml_name = "ipv6CidrBlockAssociation",
@@ -51654,6 +53380,7 @@ M.DisassociateSubnetCidrBlockOutput = {
 
 M.DisassociateTransitGatewayMulticastDomainInput = {
     type = "structure",
+    id = "DisassociateTransitGatewayMulticastDomainInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -51682,6 +53409,7 @@ M.DisassociateTransitGatewayMulticastDomainInput = {
 
 M.DisassociateTransitGatewayMulticastDomainOutput = {
     type = "structure",
+    id = "DisassociateTransitGatewayMulticastDomainOutput",
     members = {
         Associations = setmetatable({ traits = {
             xml_name = "associations",
@@ -51691,6 +53419,7 @@ M.DisassociateTransitGatewayMulticastDomainOutput = {
 
 M.DisassociateTransitGatewayPolicyTableInput = {
     type = "structure",
+    id = "DisassociateTransitGatewayPolicyTableInput",
     members = {
         TransitGatewayPolicyTableId = {
             type = "string",
@@ -51712,6 +53441,7 @@ M.DisassociateTransitGatewayPolicyTableInput = {
 
 M.DisassociateTransitGatewayPolicyTableOutput = {
     type = "structure",
+    id = "DisassociateTransitGatewayPolicyTableOutput",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -51721,6 +53451,7 @@ M.DisassociateTransitGatewayPolicyTableOutput = {
 
 M.DisassociateTransitGatewayRouteTableInput = {
     type = "structure",
+    id = "DisassociateTransitGatewayRouteTableInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -51742,6 +53473,7 @@ M.DisassociateTransitGatewayRouteTableInput = {
 
 M.DisassociateTransitGatewayRouteTableOutput = {
     type = "structure",
+    id = "DisassociateTransitGatewayRouteTableOutput",
     members = {
         Association = setmetatable({ traits = {
             xml_name = "association",
@@ -51751,6 +53483,7 @@ M.DisassociateTransitGatewayRouteTableOutput = {
 
 M.DisassociateTrunkInterfaceInput = {
     type = "structure",
+    id = "DisassociateTrunkInterfaceInput",
     members = {
         AssociationId = {
             type = "string",
@@ -51772,6 +53505,7 @@ M.DisassociateTrunkInterfaceInput = {
 
 M.DisassociateTrunkInterfaceOutput = {
     type = "structure",
+    id = "DisassociateTrunkInterfaceOutput",
     members = {
         Return = {
             type = "boolean",
@@ -51790,6 +53524,7 @@ M.DisassociateTrunkInterfaceOutput = {
 
 M.DisassociateVpcCidrBlockInput = {
     type = "structure",
+    id = "DisassociateVpcCidrBlockInput",
     members = {
         AssociationId = {
             type = "string",
@@ -51803,6 +53538,7 @@ M.DisassociateVpcCidrBlockInput = {
 
 M.DisassociateVpcCidrBlockOutput = {
     type = "structure",
+    id = "DisassociateVpcCidrBlockOutput",
     members = {
         Ipv6CidrBlockAssociation = setmetatable({ traits = {
             xml_name = "ipv6CidrBlockAssociation",
@@ -51821,6 +53557,7 @@ M.DisassociateVpcCidrBlockOutput = {
 
 M.EnableAddressTransferInput = {
     type = "structure",
+    id = "EnableAddressTransferInput",
     members = {
         AllocationId = {
             type = "string",
@@ -51842,6 +53579,7 @@ M.EnableAddressTransferInput = {
 
 M.EnableAddressTransferOutput = {
     type = "structure",
+    id = "EnableAddressTransferOutput",
     members = {
         AddressTransfer = setmetatable({ traits = {
             xml_name = "addressTransfer",
@@ -51851,6 +53589,7 @@ M.EnableAddressTransferOutput = {
 
 M.EnableAllowedImagesSettingsInput = {
     type = "structure",
+    id = "EnableAllowedImagesSettingsInput",
     members = {
         AllowedImagesSettingsState = {
             type = "string",
@@ -51866,6 +53605,7 @@ M.EnableAllowedImagesSettingsInput = {
 
 M.EnableAllowedImagesSettingsOutput = {
     type = "structure",
+    id = "EnableAllowedImagesSettingsOutput",
     members = {
         AllowedImagesSettingsState = {
             type = "string",
@@ -51878,6 +53618,7 @@ M.EnableAllowedImagesSettingsOutput = {
 
 M.EnableAwsNetworkPerformanceMetricSubscriptionInput = {
     type = "structure",
+    id = "EnableAwsNetworkPerformanceMetricSubscriptionInput",
     members = {
         Source = {
             type = "string",
@@ -51899,6 +53640,7 @@ M.EnableAwsNetworkPerformanceMetricSubscriptionInput = {
 
 M.EnableAwsNetworkPerformanceMetricSubscriptionOutput = {
     type = "structure",
+    id = "EnableAwsNetworkPerformanceMetricSubscriptionOutput",
     members = {
         Output = {
             type = "boolean",
@@ -51911,6 +53653,7 @@ M.EnableAwsNetworkPerformanceMetricSubscriptionOutput = {
 
 M.EnableCapacityManagerInput = {
     type = "structure",
+    id = "EnableCapacityManagerInput",
     members = {
         OrganizationsAccess = {
             type = "boolean",
@@ -51929,6 +53672,7 @@ M.EnableCapacityManagerInput = {
 
 M.EnableCapacityManagerOutput = {
     type = "structure",
+    id = "EnableCapacityManagerOutput",
     members = {
         CapacityManagerStatus = {
             type = "string",
@@ -51947,6 +53691,7 @@ M.EnableCapacityManagerOutput = {
 
 M.EnableEbsEncryptionByDefaultInput = {
     type = "structure",
+    id = "EnableEbsEncryptionByDefaultInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -51956,6 +53701,7 @@ M.EnableEbsEncryptionByDefaultInput = {
 
 M.EnableEbsEncryptionByDefaultOutput = {
     type = "structure",
+    id = "EnableEbsEncryptionByDefaultOutput",
     members = {
         EbsEncryptionByDefault = {
             type = "boolean",
@@ -51968,6 +53714,7 @@ M.EnableEbsEncryptionByDefaultOutput = {
 
 M.FastLaunchLaunchTemplateSpecificationRequest = {
     type = "structure",
+    id = "FastLaunchLaunchTemplateSpecificationRequest",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -51986,6 +53733,7 @@ M.FastLaunchLaunchTemplateSpecificationRequest = {
 
 M.FastLaunchSnapshotConfigurationRequest = {
     type = "structure",
+    id = "FastLaunchSnapshotConfigurationRequest",
     members = {
         TargetResourceCount = {
             type = "integer",
@@ -51995,6 +53743,7 @@ M.FastLaunchSnapshotConfigurationRequest = {
 
 M.EnableFastLaunchInput = {
     type = "structure",
+    id = "EnableFastLaunchInput",
     members = {
         ImageId = {
             type = "string",
@@ -52018,6 +53767,7 @@ M.EnableFastLaunchInput = {
 
 M.EnableFastLaunchOutput = {
     type = "structure",
+    id = "EnableFastLaunchOutput",
     members = {
         ImageId = {
             type = "string",
@@ -52072,6 +53822,7 @@ M.EnableFastLaunchOutput = {
 
 M.EnableFastSnapshotRestoresInput = {
     type = "structure",
+    id = "EnableFastSnapshotRestoresInput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -52103,6 +53854,7 @@ M.EnableFastSnapshotRestoresInput = {
 
 M.EnableFastSnapshotRestoreSuccessItem = {
     type = "structure",
+    id = "EnableFastSnapshotRestoreSuccessItem",
     members = {
         SnapshotId = {
             type = "string",
@@ -52181,6 +53933,7 @@ M.EnableFastSnapshotRestoreSuccessItem = {
 
 M.EnableFastSnapshotRestoreStateError = {
     type = "structure",
+    id = "EnableFastSnapshotRestoreStateError",
     members = {
         Code = {
             type = "string",
@@ -52199,6 +53952,7 @@ M.EnableFastSnapshotRestoreStateError = {
 
 M.EnableFastSnapshotRestoreStateErrorItem = {
     type = "structure",
+    id = "EnableFastSnapshotRestoreStateErrorItem",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -52220,6 +53974,7 @@ M.EnableFastSnapshotRestoreStateErrorItem = {
 
 M.EnableFastSnapshotRestoreErrorItem = {
     type = "structure",
+    id = "EnableFastSnapshotRestoreErrorItem",
     members = {
         SnapshotId = {
             type = "string",
@@ -52239,6 +53994,7 @@ M.EnableFastSnapshotRestoreErrorItem = {
 
 M.EnableFastSnapshotRestoresOutput = {
     type = "structure",
+    id = "EnableFastSnapshotRestoresOutput",
     members = {
         Successful = {
             type = "list",
@@ -52259,6 +54015,7 @@ M.EnableFastSnapshotRestoresOutput = {
 
 M.EnableImageInput = {
     type = "structure",
+    id = "EnableImageInput",
     members = {
         ImageId = {
             type = "string",
@@ -52274,6 +54031,7 @@ M.EnableImageInput = {
 
 M.EnableImageOutput = {
     type = "structure",
+    id = "EnableImageOutput",
     members = {
         Return = {
             type = "boolean",
@@ -52290,6 +54048,7 @@ M.ImageBlockPublicAccessEnabledState = {
 
 M.EnableImageBlockPublicAccessInput = {
     type = "structure",
+    id = "EnableImageBlockPublicAccessInput",
     members = {
         ImageBlockPublicAccessState = {
             type = "string",
@@ -52305,6 +54064,7 @@ M.EnableImageBlockPublicAccessInput = {
 
 M.EnableImageBlockPublicAccessOutput = {
     type = "structure",
+    id = "EnableImageBlockPublicAccessOutput",
     members = {
         ImageBlockPublicAccessState = {
             type = "string",
@@ -52317,6 +54077,7 @@ M.EnableImageBlockPublicAccessOutput = {
 
 M.EnableImageDeprecationInput = {
     type = "structure",
+    id = "EnableImageDeprecationInput",
     members = {
         ImageId = {
             type = "string",
@@ -52338,6 +54099,7 @@ M.EnableImageDeprecationInput = {
 
 M.EnableImageDeprecationOutput = {
     type = "structure",
+    id = "EnableImageDeprecationOutput",
     members = {
         Return = {
             type = "boolean",
@@ -52350,6 +54112,7 @@ M.EnableImageDeprecationOutput = {
 
 M.EnableImageDeregistrationProtectionInput = {
     type = "structure",
+    id = "EnableImageDeregistrationProtectionInput",
     members = {
         ImageId = {
             type = "string",
@@ -52368,6 +54131,7 @@ M.EnableImageDeregistrationProtectionInput = {
 
 M.EnableImageDeregistrationProtectionOutput = {
     type = "structure",
+    id = "EnableImageDeregistrationProtectionOutput",
     members = {
         Return = {
             type = "string",
@@ -52380,6 +54144,7 @@ M.EnableImageDeregistrationProtectionOutput = {
 
 M.EnableInstanceSqlHaStandbyDetectionsInput = {
     type = "structure",
+    id = "EnableInstanceSqlHaStandbyDetectionsInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -52400,6 +54165,7 @@ M.EnableInstanceSqlHaStandbyDetectionsInput = {
 
 M.EnableInstanceSqlHaStandbyDetectionsOutput = {
     type = "structure",
+    id = "EnableInstanceSqlHaStandbyDetectionsOutput",
     members = {
         Instances = {
             type = "list",
@@ -52413,6 +54179,7 @@ M.EnableInstanceSqlHaStandbyDetectionsOutput = {
 
 M.EnableIpamOrganizationAdminAccountInput = {
     type = "structure",
+    id = "EnableIpamOrganizationAdminAccountInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -52428,6 +54195,7 @@ M.EnableIpamOrganizationAdminAccountInput = {
 
 M.EnableIpamOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "EnableIpamOrganizationAdminAccountOutput",
     members = {
         Success = {
             type = "boolean",
@@ -52440,6 +54208,7 @@ M.EnableIpamOrganizationAdminAccountOutput = {
 
 M.EnableIpamPolicyInput = {
     type = "structure",
+    id = "EnableIpamPolicyInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -52458,6 +54227,7 @@ M.EnableIpamPolicyInput = {
 
 M.EnableIpamPolicyOutput = {
     type = "structure",
+    id = "EnableIpamPolicyOutput",
     members = {
         IpamPolicyId = {
             type = "string",
@@ -52470,6 +54240,7 @@ M.EnableIpamPolicyOutput = {
 
 M.EnableReachabilityAnalyzerOrganizationSharingInput = {
     type = "structure",
+    id = "EnableReachabilityAnalyzerOrganizationSharingInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -52479,6 +54250,7 @@ M.EnableReachabilityAnalyzerOrganizationSharingInput = {
 
 M.EnableReachabilityAnalyzerOrganizationSharingOutput = {
     type = "structure",
+    id = "EnableReachabilityAnalyzerOrganizationSharingOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -52491,6 +54263,7 @@ M.EnableReachabilityAnalyzerOrganizationSharingOutput = {
 
 M.EnableRouteServerPropagationInput = {
     type = "structure",
+    id = "EnableRouteServerPropagationInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -52512,6 +54285,7 @@ M.EnableRouteServerPropagationInput = {
 
 M.EnableRouteServerPropagationOutput = {
     type = "structure",
+    id = "EnableRouteServerPropagationOutput",
     members = {
         RouteServerPropagation = setmetatable({ traits = {
             xml_name = "routeServerPropagation",
@@ -52521,6 +54295,7 @@ M.EnableRouteServerPropagationOutput = {
 
 M.EnableSerialConsoleAccessInput = {
     type = "structure",
+    id = "EnableSerialConsoleAccessInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -52530,6 +54305,7 @@ M.EnableSerialConsoleAccessInput = {
 
 M.EnableSerialConsoleAccessOutput = {
     type = "structure",
+    id = "EnableSerialConsoleAccessOutput",
     members = {
         SerialConsoleAccessEnabled = {
             type = "boolean",
@@ -52542,6 +54318,7 @@ M.EnableSerialConsoleAccessOutput = {
 
 M.EnableSnapshotBlockPublicAccessInput = {
     type = "structure",
+    id = "EnableSnapshotBlockPublicAccessInput",
     members = {
         State = {
             type = "string",
@@ -52557,6 +54334,7 @@ M.EnableSnapshotBlockPublicAccessInput = {
 
 M.EnableSnapshotBlockPublicAccessOutput = {
     type = "structure",
+    id = "EnableSnapshotBlockPublicAccessOutput",
     members = {
         State = {
             type = "string",
@@ -52569,6 +54347,7 @@ M.EnableSnapshotBlockPublicAccessOutput = {
 
 M.EnableTransitGatewayRouteTablePropagationInput = {
     type = "structure",
+    id = "EnableTransitGatewayRouteTablePropagationInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -52590,6 +54369,7 @@ M.EnableTransitGatewayRouteTablePropagationInput = {
 
 M.EnableTransitGatewayRouteTablePropagationOutput = {
     type = "structure",
+    id = "EnableTransitGatewayRouteTablePropagationOutput",
     members = {
         Propagation = setmetatable({ traits = {
             xml_name = "propagation",
@@ -52599,6 +54379,7 @@ M.EnableTransitGatewayRouteTablePropagationOutput = {
 
 M.EnableVgwRoutePropagationInput = {
     type = "structure",
+    id = "EnableVgwRoutePropagationInput",
     members = {
         GatewayId = {
             type = "string",
@@ -52620,10 +54401,12 @@ M.EnableVgwRoutePropagationInput = {
 
 M.EnableVgwRoutePropagationOutput = {
     type = "structure",
+    id = "EnableVgwRoutePropagationOutput",
 }
 
 M.EnableVolumeIOInput = {
     type = "structure",
+    id = "EnableVolumeIOInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -52643,10 +54426,12 @@ M.EnableVolumeIOInput = {
 
 M.EnableVolumeIOOutput = {
     type = "structure",
+    id = "EnableVolumeIOOutput",
 }
 
 M.EnableVpcClassicLinkInput = {
     type = "structure",
+    id = "EnableVpcClassicLinkInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -52666,6 +54451,7 @@ M.EnableVpcClassicLinkInput = {
 
 M.EnableVpcClassicLinkOutput = {
     type = "structure",
+    id = "EnableVpcClassicLinkOutput",
     members = {
         Return = {
             type = "boolean",
@@ -52678,6 +54464,7 @@ M.EnableVpcClassicLinkOutput = {
 
 M.EnableVpcClassicLinkDnsSupportInput = {
     type = "structure",
+    id = "EnableVpcClassicLinkDnsSupportInput",
     members = {
         VpcId = {
             type = "string",
@@ -52690,6 +54477,7 @@ M.EnableVpcClassicLinkDnsSupportInput = {
 
 M.EnableVpcClassicLinkDnsSupportOutput = {
     type = "structure",
+    id = "EnableVpcClassicLinkDnsSupportOutput",
     members = {
         Return = {
             type = "boolean",
@@ -52702,6 +54490,7 @@ M.EnableVpcClassicLinkDnsSupportOutput = {
 
 M.ExportClientVpnClientCertificateRevocationListInput = {
     type = "structure",
+    id = "ExportClientVpnClientCertificateRevocationListInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -52722,6 +54511,7 @@ M.ClientCertificateRevocationListStatusCode = {
 
 M.ClientCertificateRevocationListStatus = {
     type = "structure",
+    id = "ClientCertificateRevocationListStatus",
     members = {
         Code = {
             type = "string",
@@ -52740,6 +54530,7 @@ M.ClientCertificateRevocationListStatus = {
 
 M.ExportClientVpnClientCertificateRevocationListOutput = {
     type = "structure",
+    id = "ExportClientVpnClientCertificateRevocationListOutput",
     members = {
         CertificateRevocationList = {
             type = "string",
@@ -52755,6 +54546,7 @@ M.ExportClientVpnClientCertificateRevocationListOutput = {
 
 M.ExportClientVpnClientConfigurationInput = {
     type = "structure",
+    id = "ExportClientVpnClientConfigurationInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -52770,6 +54562,7 @@ M.ExportClientVpnClientConfigurationInput = {
 
 M.ExportClientVpnClientConfigurationOutput = {
     type = "structure",
+    id = "ExportClientVpnClientConfigurationOutput",
     members = {
         ClientConfiguration = {
             type = "string",
@@ -52782,6 +54575,7 @@ M.ExportClientVpnClientConfigurationOutput = {
 
 M.ExportTaskS3LocationRequest = {
     type = "structure",
+    id = "ExportTaskS3LocationRequest",
     members = {
         S3Bucket = {
             type = "string",
@@ -52797,6 +54591,7 @@ M.ExportTaskS3LocationRequest = {
 
 M.ExportImageInput = {
     type = "structure",
+    id = "ExportImageInput",
     members = {
         ClientToken = {
             type = "string",
@@ -52840,6 +54635,7 @@ M.ExportImageInput = {
 
 M.ExportImageOutput = {
     type = "structure",
+    id = "ExportImageOutput",
     members = {
         Description = {
             type = "string",
@@ -52904,6 +54700,7 @@ M.ExportImageOutput = {
 
 M.ExportTransitGatewayRoutesInput = {
     type = "structure",
+    id = "ExportTransitGatewayRoutesInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -52932,6 +54729,7 @@ M.ExportTransitGatewayRoutesInput = {
 
 M.ExportTransitGatewayRoutesOutput = {
     type = "structure",
+    id = "ExportTransitGatewayRoutesOutput",
     members = {
         S3Location = {
             type = "string",
@@ -52944,6 +54742,7 @@ M.ExportTransitGatewayRoutesOutput = {
 
 M.ExportVerifiedAccessInstanceClientConfigurationInput = {
     type = "structure",
+    id = "ExportVerifiedAccessInstanceClientConfigurationInput",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -52959,6 +54758,7 @@ M.ExportVerifiedAccessInstanceClientConfigurationInput = {
 
 M.VerifiedAccessInstanceOpenVpnClientConfigurationRoute = {
     type = "structure",
+    id = "VerifiedAccessInstanceOpenVpnClientConfigurationRoute",
     members = {
         Cidr = {
             type = "string",
@@ -52971,6 +54771,7 @@ M.VerifiedAccessInstanceOpenVpnClientConfigurationRoute = {
 
 M.VerifiedAccessInstanceOpenVpnClientConfiguration = {
     type = "structure",
+    id = "VerifiedAccessInstanceOpenVpnClientConfiguration",
     members = {
         Config = {
             type = "string",
@@ -52990,6 +54791,7 @@ M.VerifiedAccessInstanceOpenVpnClientConfiguration = {
 
 M.VerifiedAccessInstanceUserTrustProviderClientConfiguration = {
     type = "structure",
+    id = "VerifiedAccessInstanceUserTrustProviderClientConfiguration",
     members = {
         Type = {
             type = "string",
@@ -53056,6 +54858,7 @@ M.VerifiedAccessInstanceUserTrustProviderClientConfiguration = {
 
 M.ExportVerifiedAccessInstanceClientConfigurationOutput = {
     type = "structure",
+    id = "ExportVerifiedAccessInstanceClientConfigurationOutput",
     members = {
         Version = {
             type = "string",
@@ -53097,6 +54900,7 @@ M.ExportVerifiedAccessInstanceClientConfigurationOutput = {
 
 M.GetActiveVpnTunnelStatusInput = {
     type = "structure",
+    id = "GetActiveVpnTunnelStatusInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -53118,6 +54922,7 @@ M.GetActiveVpnTunnelStatusInput = {
 
 M.GetActiveVpnTunnelStatusOutput = {
     type = "structure",
+    id = "GetActiveVpnTunnelStatusOutput",
     members = {
         ActiveVpnTunnelStatus = setmetatable({ traits = {
             xml_name = "activeVpnTunnelStatus",
@@ -53127,6 +54932,7 @@ M.GetActiveVpnTunnelStatusOutput = {
 
 M.GetAllowedImagesSettingsInput = {
     type = "structure",
+    id = "GetAllowedImagesSettingsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -53136,6 +54942,7 @@ M.GetAllowedImagesSettingsInput = {
 
 M.CreationDateCondition = {
     type = "structure",
+    id = "CreationDateCondition",
     members = {
         MaximumDaysSinceCreated = {
             type = "integer",
@@ -53148,6 +54955,7 @@ M.CreationDateCondition = {
 
 M.DeprecationTimeCondition = {
     type = "structure",
+    id = "DeprecationTimeCondition",
     members = {
         MaximumDaysSinceDeprecated = {
             type = "integer",
@@ -53160,6 +54968,7 @@ M.DeprecationTimeCondition = {
 
 M.ImageCriterion = {
     type = "structure",
+    id = "ImageCriterion",
     members = {
         ImageProviders = {
             type = "list",
@@ -53193,6 +55002,7 @@ M.ImageCriterion = {
 
 M.GetAllowedImagesSettingsOutput = {
     type = "structure",
+    id = "GetAllowedImagesSettingsOutput",
     members = {
         State = {
             type = "string",
@@ -53218,6 +55028,7 @@ M.GetAllowedImagesSettingsOutput = {
 
 M.GetAssociatedEnclaveCertificateIamRolesInput = {
     type = "structure",
+    id = "GetAssociatedEnclaveCertificateIamRolesInput",
     members = {
         CertificateArn = {
             type = "string",
@@ -53233,6 +55044,7 @@ M.GetAssociatedEnclaveCertificateIamRolesInput = {
 
 M.AssociatedRole = {
     type = "structure",
+    id = "AssociatedRole",
     members = {
         AssociatedRoleArn = {
             type = "string",
@@ -53263,6 +55075,7 @@ M.AssociatedRole = {
 
 M.GetAssociatedEnclaveCertificateIamRolesOutput = {
     type = "structure",
+    id = "GetAssociatedEnclaveCertificateIamRolesOutput",
     members = {
         AssociatedRoles = {
             type = "list",
@@ -53276,6 +55089,7 @@ M.GetAssociatedEnclaveCertificateIamRolesOutput = {
 
 M.GetAssociatedIpv6PoolCidrsInput = {
     type = "structure",
+    id = "GetAssociatedIpv6PoolCidrsInput",
     members = {
         PoolId = {
             type = "string",
@@ -53297,6 +55111,7 @@ M.GetAssociatedIpv6PoolCidrsInput = {
 
 M.Ipv6CidrAssociation = {
     type = "structure",
+    id = "Ipv6CidrAssociation",
     members = {
         Ipv6Cidr = {
             type = "string",
@@ -53315,6 +55130,7 @@ M.Ipv6CidrAssociation = {
 
 M.GetAssociatedIpv6PoolCidrsOutput = {
     type = "structure",
+    id = "GetAssociatedIpv6PoolCidrsOutput",
     members = {
         Ipv6CidrAssociations = {
             type = "list",
@@ -53334,6 +55150,7 @@ M.GetAssociatedIpv6PoolCidrsOutput = {
 
 M.DataQuery = {
     type = "structure",
+    id = "DataQuery",
     members = {
         Id = {
             type = "string",
@@ -53358,6 +55175,7 @@ M.DataQuery = {
 
 M.GetAwsNetworkPerformanceDataInput = {
     type = "structure",
+    id = "GetAwsNetworkPerformanceDataInput",
     members = {
         DataQueries = {
             type = "list",
@@ -53386,6 +55204,7 @@ M.GetAwsNetworkPerformanceDataInput = {
 
 M.MetricPoint = {
     type = "structure",
+    id = "MetricPoint",
     members = {
         StartDate = {
             type = "timestamp",
@@ -53416,6 +55235,7 @@ M.MetricPoint = {
 
 M.DataResponse = {
     type = "structure",
+    id = "DataResponse",
     members = {
         Id = {
             type = "string",
@@ -53465,6 +55285,7 @@ M.DataResponse = {
 
 M.GetAwsNetworkPerformanceDataOutput = {
     type = "structure",
+    id = "GetAwsNetworkPerformanceDataOutput",
     members = {
         DataResponses = {
             type = "list",
@@ -53484,6 +55305,7 @@ M.GetAwsNetworkPerformanceDataOutput = {
 
 M.GetCapacityManagerAttributesInput = {
     type = "structure",
+    id = "GetCapacityManagerAttributesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -53499,6 +55321,7 @@ M.IngestionStatus = {
 
 M.GetCapacityManagerAttributesOutput = {
     type = "structure",
+    id = "GetCapacityManagerAttributesOutput",
     members = {
         CapacityManagerStatus = {
             type = "string",
@@ -53573,6 +55396,7 @@ M.FilterByDimension = {
 
 M.DimensionCondition = {
     type = "structure",
+    id = "DimensionCondition",
     members = {
         Dimension = {
             type = "string",
@@ -53592,6 +55416,7 @@ M.DimensionCondition = {
 
 M.CapacityManagerCondition = {
     type = "structure",
+    id = "CapacityManagerCondition",
     members = {
         DimensionCondition = M.DimensionCondition,
     },
@@ -53672,6 +55497,7 @@ M.Metric = {
 
 M.GetCapacityManagerMetricDataInput = {
     type = "structure",
+    id = "GetCapacityManagerMetricDataInput",
     members = {
         MetricNames = {
             type = "list",
@@ -53734,6 +55560,7 @@ M.ReservationType = {
 
 M.CapacityManagerTagDimension = {
     type = "structure",
+    id = "CapacityManagerTagDimension",
     members = {
         Key = {
             type = "string",
@@ -53757,6 +55584,7 @@ M.CapacityTenancy = {
 
 M.CapacityManagerDimension = {
     type = "structure",
+    id = "CapacityManagerDimension",
     members = {
         ResourceRegion = {
             type = "string",
@@ -53878,6 +55706,7 @@ M.CapacityManagerDimension = {
 
 M.MetricValue = {
     type = "structure",
+    id = "MetricValue",
     members = {
         Metric = {
             type = "string",
@@ -53896,6 +55725,7 @@ M.MetricValue = {
 
 M.MetricDataResult = {
     type = "structure",
+    id = "MetricDataResult",
     members = {
         Dimension = setmetatable({ traits = {
             xml_name = "dimension",
@@ -53918,6 +55748,7 @@ M.MetricDataResult = {
 
 M.GetCapacityManagerMetricDataOutput = {
     type = "structure",
+    id = "GetCapacityManagerMetricDataOutput",
     members = {
         MetricDataResults = {
             type = "list",
@@ -53937,6 +55768,7 @@ M.GetCapacityManagerMetricDataOutput = {
 
 M.GetCapacityManagerMetricDimensionsInput = {
     type = "structure",
+    id = "GetCapacityManagerMetricDimensionsInput",
     members = {
         GroupBy = {
             type = "list",
@@ -53984,6 +55816,7 @@ M.GetCapacityManagerMetricDimensionsInput = {
 
 M.GetCapacityManagerMetricDimensionsOutput = {
     type = "structure",
+    id = "GetCapacityManagerMetricDimensionsOutput",
     members = {
         MetricDimensionResults = {
             type = "list",
@@ -54003,6 +55836,7 @@ M.GetCapacityManagerMetricDimensionsOutput = {
 
 M.GetCapacityManagerMonitoredTagKeysInput = {
     type = "structure",
+    id = "GetCapacityManagerMonitoredTagKeysInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -54025,6 +55859,7 @@ M.CapacityManagerMonitoredTagKeyStatus = {
 
 M.CapacityManagerMonitoredTagKey = {
     type = "structure",
+    id = "CapacityManagerMonitoredTagKey",
     members = {
         TagKey = {
             type = "string",
@@ -54061,6 +55896,7 @@ M.CapacityManagerMonitoredTagKey = {
 
 M.GetCapacityManagerMonitoredTagKeysOutput = {
     type = "structure",
+    id = "GetCapacityManagerMonitoredTagKeysOutput",
     members = {
         CapacityManagerTagKeys = {
             type = "list",
@@ -54080,6 +55916,7 @@ M.GetCapacityManagerMonitoredTagKeysOutput = {
 
 M.GetCapacityReservationUsageInput = {
     type = "structure",
+    id = "GetCapacityReservationUsageInput",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -54101,6 +55938,7 @@ M.GetCapacityReservationUsageInput = {
 
 M.InstanceUsage = {
     type = "structure",
+    id = "InstanceUsage",
     members = {
         AccountId = {
             type = "string",
@@ -54119,6 +55957,7 @@ M.InstanceUsage = {
 
 M.GetCapacityReservationUsageOutput = {
     type = "structure",
+    id = "GetCapacityReservationUsageOutput",
     members = {
         NextToken = {
             type = "string",
@@ -54180,6 +56019,7 @@ M.GetCapacityReservationUsageOutput = {
 
 M.GetCoipPoolUsageInput = {
     type = "structure",
+    id = "GetCoipPoolUsageInput",
     members = {
         PoolId = {
             type = "string",
@@ -54208,6 +56048,7 @@ M.GetCoipPoolUsageInput = {
 
 M.CoipAddressUsage = {
     type = "structure",
+    id = "CoipAddressUsage",
     members = {
         AllocationId = {
             type = "string",
@@ -54238,6 +56079,7 @@ M.CoipAddressUsage = {
 
 M.GetCoipPoolUsageOutput = {
     type = "structure",
+    id = "GetCoipPoolUsageOutput",
     members = {
         CoipPoolId = {
             type = "string",
@@ -54269,6 +56111,7 @@ M.GetCoipPoolUsageOutput = {
 
 M.GetConsoleOutputInput = {
     type = "structure",
+    id = "GetConsoleOutputInput",
     members = {
         InstanceId = {
             type = "string",
@@ -54290,6 +56133,7 @@ M.GetConsoleOutputInput = {
 
 M.GetConsoleOutputOutput = {
     type = "structure",
+    id = "GetConsoleOutputOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -54314,6 +56158,7 @@ M.GetConsoleOutputOutput = {
 
 M.GetConsoleScreenshotInput = {
     type = "structure",
+    id = "GetConsoleScreenshotInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54332,6 +56177,7 @@ M.GetConsoleScreenshotInput = {
 
 M.GetConsoleScreenshotOutput = {
     type = "structure",
+    id = "GetConsoleScreenshotOutput",
     members = {
         ImageData = {
             type = "string",
@@ -54350,6 +56196,7 @@ M.GetConsoleScreenshotOutput = {
 
 M.GetDeclarativePoliciesReportSummaryInput = {
     type = "structure",
+    id = "GetDeclarativePoliciesReportSummaryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54365,6 +56212,7 @@ M.GetDeclarativePoliciesReportSummaryInput = {
 
 M.RegionalSummary = {
     type = "structure",
+    id = "RegionalSummary",
     members = {
         RegionName = {
             type = "string",
@@ -54389,6 +56237,7 @@ M.RegionalSummary = {
 
 M.AttributeSummary = {
     type = "structure",
+    id = "AttributeSummary",
     members = {
         AttributeName = {
             type = "string",
@@ -54426,6 +56275,7 @@ M.AttributeSummary = {
 
 M.GetDeclarativePoliciesReportSummaryOutput = {
     type = "structure",
+    id = "GetDeclarativePoliciesReportSummaryOutput",
     members = {
         ReportId = {
             type = "string",
@@ -54494,6 +56344,7 @@ M.UnlimitedSupportedInstanceFamily = {
 
 M.GetDefaultCreditSpecificationInput = {
     type = "structure",
+    id = "GetDefaultCreditSpecificationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54509,6 +56360,7 @@ M.GetDefaultCreditSpecificationInput = {
 
 M.InstanceFamilyCreditSpecification = {
     type = "structure",
+    id = "InstanceFamilyCreditSpecification",
     members = {
         InstanceFamily = {
             type = "string",
@@ -54527,6 +56379,7 @@ M.InstanceFamilyCreditSpecification = {
 
 M.GetDefaultCreditSpecificationOutput = {
     type = "structure",
+    id = "GetDefaultCreditSpecificationOutput",
     members = {
         InstanceFamilyCreditSpecification = setmetatable({ traits = {
             xml_name = "instanceFamilyCreditSpecification",
@@ -54536,6 +56389,7 @@ M.GetDefaultCreditSpecificationOutput = {
 
 M.GetEbsDefaultKmsKeyIdInput = {
     type = "structure",
+    id = "GetEbsDefaultKmsKeyIdInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54545,6 +56399,7 @@ M.GetEbsDefaultKmsKeyIdInput = {
 
 M.GetEbsDefaultKmsKeyIdOutput = {
     type = "structure",
+    id = "GetEbsDefaultKmsKeyIdOutput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -54557,6 +56412,7 @@ M.GetEbsDefaultKmsKeyIdOutput = {
 
 M.GetEbsEncryptionByDefaultInput = {
     type = "structure",
+    id = "GetEbsEncryptionByDefaultInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54566,6 +56422,7 @@ M.GetEbsEncryptionByDefaultInput = {
 
 M.GetEbsEncryptionByDefaultOutput = {
     type = "structure",
+    id = "GetEbsEncryptionByDefaultOutput",
     members = {
         EbsEncryptionByDefault = {
             type = "boolean",
@@ -54584,6 +56441,7 @@ M.GetEbsEncryptionByDefaultOutput = {
 
 M.GetEnabledIpamPolicyInput = {
     type = "structure",
+    id = "GetEnabledIpamPolicyInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54598,6 +56456,7 @@ M.IpamPolicyManagedBy = {
 
 M.GetEnabledIpamPolicyOutput = {
     type = "structure",
+    id = "GetEnabledIpamPolicyOutput",
     members = {
         IpamPolicyEnabled = {
             type = "boolean",
@@ -54629,6 +56488,7 @@ M.PartitionLoadFrequency = {
 
 M.AthenaIntegration = {
     type = "structure",
+    id = "AthenaIntegration",
     members = {
         IntegrationResultS3DestinationArn = {
             type = "string",
@@ -54653,6 +56513,7 @@ M.AthenaIntegration = {
 
 M.IntegrateServices = {
     type = "structure",
+    id = "IntegrateServices",
     members = {
         AthenaIntegrations = {
             type = "list",
@@ -54666,6 +56527,7 @@ M.IntegrateServices = {
 
 M.GetFlowLogsIntegrationTemplateInput = {
     type = "structure",
+    id = "GetFlowLogsIntegrationTemplateInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54691,6 +56553,7 @@ M.GetFlowLogsIntegrationTemplateInput = {
 
 M.GetFlowLogsIntegrationTemplateOutput = {
     type = "structure",
+    id = "GetFlowLogsIntegrationTemplateOutput",
     members = {
         Result = {
             type = "string",
@@ -54703,6 +56566,7 @@ M.GetFlowLogsIntegrationTemplateOutput = {
 
 M.GetGroupsForCapacityReservationInput = {
     type = "structure",
+    id = "GetGroupsForCapacityReservationInput",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -54724,6 +56588,7 @@ M.GetGroupsForCapacityReservationInput = {
 
 M.CapacityReservationGroup = {
     type = "structure",
+    id = "CapacityReservationGroup",
     members = {
         GroupArn = {
             type = "string",
@@ -54742,6 +56607,7 @@ M.CapacityReservationGroup = {
 
 M.GetGroupsForCapacityReservationOutput = {
     type = "structure",
+    id = "GetGroupsForCapacityReservationOutput",
     members = {
         NextToken = {
             type = "string",
@@ -54761,6 +56627,7 @@ M.GetGroupsForCapacityReservationOutput = {
 
 M.GetHostReservationPurchasePreviewInput = {
     type = "structure",
+    id = "GetHostReservationPurchasePreviewInput",
     members = {
         HostIdSet = {
             type = "list",
@@ -54780,6 +56647,7 @@ M.GetHostReservationPurchasePreviewInput = {
 
 M.Purchase = {
     type = "structure",
+    id = "Purchase",
     members = {
         CurrencyCode = {
             type = "string",
@@ -54835,6 +56703,7 @@ M.Purchase = {
 
 M.GetHostReservationPurchasePreviewOutput = {
     type = "structure",
+    id = "GetHostReservationPurchasePreviewOutput",
     members = {
         CurrencyCode = {
             type = "string",
@@ -54866,6 +56735,7 @@ M.GetHostReservationPurchasePreviewOutput = {
 
 M.GetImageAncestryInput = {
     type = "structure",
+    id = "GetImageAncestryInput",
     members = {
         ImageId = {
             type = "string",
@@ -54881,6 +56751,7 @@ M.GetImageAncestryInput = {
 
 M.ImageAncestryEntry = {
     type = "structure",
+    id = "ImageAncestryEntry",
     members = {
         CreationDate = {
             type = "timestamp",
@@ -54917,6 +56788,7 @@ M.ImageAncestryEntry = {
 
 M.GetImageAncestryOutput = {
     type = "structure",
+    id = "GetImageAncestryOutput",
     members = {
         ImageAncestryEntries = {
             type = "list",
@@ -54930,6 +56802,7 @@ M.GetImageAncestryOutput = {
 
 M.GetImageBlockPublicAccessStateInput = {
     type = "structure",
+    id = "GetImageBlockPublicAccessStateInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54939,6 +56812,7 @@ M.GetImageBlockPublicAccessStateInput = {
 
 M.GetImageBlockPublicAccessStateOutput = {
     type = "structure",
+    id = "GetImageBlockPublicAccessStateOutput",
     members = {
         ImageBlockPublicAccessState = {
             type = "string",
@@ -54957,6 +56831,7 @@ M.GetImageBlockPublicAccessStateOutput = {
 
 M.GetInstanceMetadataDefaultsInput = {
     type = "structure",
+    id = "GetInstanceMetadataDefaultsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -54971,6 +56846,7 @@ M.HttpTokensEnforcedState = {
 
 M.InstanceMetadataDefaultsResponse = {
     type = "structure",
+    id = "InstanceMetadataDefaultsResponse",
     members = {
         HttpTokens = {
             type = "string",
@@ -55019,6 +56895,7 @@ M.InstanceMetadataDefaultsResponse = {
 
 M.GetInstanceMetadataDefaultsOutput = {
     type = "structure",
+    id = "GetInstanceMetadataDefaultsOutput",
     members = {
         AccountLevel = setmetatable({ traits = {
             xml_name = "accountLevel",
@@ -55038,6 +56915,7 @@ M.EkPubKeyType = {
 
 M.GetInstanceTpmEkPubInput = {
     type = "structure",
+    id = "GetInstanceTpmEkPubInput",
     members = {
         InstanceId = {
             type = "string",
@@ -55066,6 +56944,7 @@ M.GetInstanceTpmEkPubInput = {
 
 M.GetInstanceTpmEkPubOutput = {
     type = "structure",
+    id = "GetInstanceTpmEkPubOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -55096,6 +56975,7 @@ M.GetInstanceTpmEkPubOutput = {
 
 M.GetInstanceTypesFromInstanceRequirementsInput = {
     type = "structure",
+    id = "GetInstanceTypesFromInstanceRequirementsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -55133,6 +57013,7 @@ M.GetInstanceTypesFromInstanceRequirementsInput = {
 
 M.InstanceTypeInfoFromInstanceRequirements = {
     type = "structure",
+    id = "InstanceTypeInfoFromInstanceRequirements",
     members = {
         InstanceType = {
             type = "string",
@@ -55145,6 +57026,7 @@ M.InstanceTypeInfoFromInstanceRequirements = {
 
 M.GetInstanceTypesFromInstanceRequirementsOutput = {
     type = "structure",
+    id = "GetInstanceTypesFromInstanceRequirementsOutput",
     members = {
         InstanceTypes = {
             type = "list",
@@ -55164,6 +57046,7 @@ M.GetInstanceTypesFromInstanceRequirementsOutput = {
 
 M.GetInstanceUefiDataInput = {
     type = "structure",
+    id = "GetInstanceUefiDataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -55180,6 +57063,7 @@ M.GetInstanceUefiDataInput = {
 
 M.GetInstanceUefiDataOutput = {
     type = "structure",
+    id = "GetInstanceUefiDataOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -55198,6 +57082,7 @@ M.GetInstanceUefiDataOutput = {
 
 M.GetIpamAddressHistoryInput = {
     type = "structure",
+    id = "GetIpamAddressHistoryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -55255,6 +57140,7 @@ M.IpamAddressHistoryResourceType = {
 
 M.IpamAddressHistoryRecord = {
     type = "structure",
+    id = "IpamAddressHistoryRecord",
     members = {
         ResourceOwnerId = {
             type = "string",
@@ -55327,6 +57213,7 @@ M.IpamAddressHistoryRecord = {
 
 M.GetIpamAddressHistoryOutput = {
     type = "structure",
+    id = "GetIpamAddressHistoryOutput",
     members = {
         HistoryRecords = {
             type = "list",
@@ -55346,6 +57233,7 @@ M.GetIpamAddressHistoryOutput = {
 
 M.GetIpamDiscoveredAccountsInput = {
     type = "structure",
+    id = "GetIpamDiscoveredAccountsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -55386,6 +57274,7 @@ M.IpamDiscoveryFailureCode = {
 
 M.IpamDiscoveryFailureReason = {
     type = "structure",
+    id = "IpamDiscoveryFailureReason",
     members = {
         Code = {
             type = "string",
@@ -55404,6 +57293,7 @@ M.IpamDiscoveryFailureReason = {
 
 M.IpamDiscoveredAccount = {
     type = "structure",
+    id = "IpamDiscoveredAccount",
     members = {
         AccountId = {
             type = "string",
@@ -55443,6 +57333,7 @@ M.IpamDiscoveredAccount = {
 
 M.GetIpamDiscoveredAccountsOutput = {
     type = "structure",
+    id = "GetIpamDiscoveredAccountsOutput",
     members = {
         IpamDiscoveredAccounts = {
             type = "list",
@@ -55462,6 +57353,7 @@ M.GetIpamDiscoveredAccountsOutput = {
 
 M.GetIpamDiscoveredPublicAddressesInput = {
     type = "structure",
+    id = "GetIpamDiscoveredPublicAddressesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -55511,6 +57403,7 @@ M.IpamPublicAddressAssociationStatus = {
 
 M.IpamPublicAddressSecurityGroup = {
     type = "structure",
+    id = "IpamPublicAddressSecurityGroup",
     members = {
         GroupName = {
             type = "string",
@@ -55542,6 +57435,7 @@ M.IpamPublicAddressAwsService = {
 
 M.IpamPublicAddressTag = {
     type = "structure",
+    id = "IpamPublicAddressTag",
     members = {
         Key = {
             type = "string",
@@ -55560,6 +57454,7 @@ M.IpamPublicAddressTag = {
 
 M.IpamPublicAddressTags = {
     type = "structure",
+    id = "IpamPublicAddressTags",
     members = {
         EipTags = {
             type = "list",
@@ -55573,6 +57468,7 @@ M.IpamPublicAddressTags = {
 
 M.IpamDiscoveredPublicAddress = {
     type = "structure",
+    id = "IpamDiscoveredPublicAddress",
     members = {
         IpamResourceDiscoveryId = {
             type = "string",
@@ -55691,6 +57587,7 @@ M.IpamDiscoveredPublicAddress = {
 
 M.GetIpamDiscoveredPublicAddressesOutput = {
     type = "structure",
+    id = "GetIpamDiscoveredPublicAddressesOutput",
     members = {
         IpamDiscoveredPublicAddresses = {
             type = "list",
@@ -55716,6 +57613,7 @@ M.GetIpamDiscoveredPublicAddressesOutput = {
 
 M.GetIpamDiscoveredResourceCidrsInput = {
     type = "structure",
+    id = "GetIpamDiscoveredResourceCidrsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -55761,6 +57659,7 @@ M.IpamNetworkInterfaceAttachmentStatus = {
 
 M.IpamDiscoveredResourceCidr = {
     type = "structure",
+    id = "IpamDiscoveredResourceCidr",
     members = {
         IpamResourceDiscoveryId = {
             type = "string",
@@ -55852,6 +57751,7 @@ M.IpamDiscoveredResourceCidr = {
 
 M.GetIpamDiscoveredResourceCidrsOutput = {
     type = "structure",
+    id = "GetIpamDiscoveredResourceCidrsOutput",
     members = {
         IpamDiscoveredResourceCidrs = {
             type = "list",
@@ -55878,6 +57778,7 @@ M.IpamPolicyResourceType = {
 
 M.GetIpamPolicyAllocationRulesInput = {
     type = "structure",
+    id = "GetIpamPolicyAllocationRulesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -55912,6 +57813,7 @@ M.GetIpamPolicyAllocationRulesInput = {
 
 M.IpamPolicyAllocationRule = {
     type = "structure",
+    id = "IpamPolicyAllocationRule",
     members = {
         SourceIpamPoolId = {
             type = "string",
@@ -55924,6 +57826,7 @@ M.IpamPolicyAllocationRule = {
 
 M.IpamPolicyDocument = {
     type = "structure",
+    id = "IpamPolicyDocument",
     members = {
         IpamPolicyId = {
             type = "string",
@@ -55955,6 +57858,7 @@ M.IpamPolicyDocument = {
 
 M.GetIpamPolicyAllocationRulesOutput = {
     type = "structure",
+    id = "GetIpamPolicyAllocationRulesOutput",
     members = {
         IpamPolicyDocuments = {
             type = "list",
@@ -55974,6 +57878,7 @@ M.GetIpamPolicyAllocationRulesOutput = {
 
 M.GetIpamPolicyOrganizationTargetsInput = {
     type = "structure",
+    id = "GetIpamPolicyOrganizationTargetsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56002,6 +57907,7 @@ M.GetIpamPolicyOrganizationTargetsInput = {
 
 M.IpamPolicyOrganizationTarget = {
     type = "structure",
+    id = "IpamPolicyOrganizationTarget",
     members = {
         OrganizationTargetId = {
             type = "string",
@@ -56014,6 +57920,7 @@ M.IpamPolicyOrganizationTarget = {
 
 M.GetIpamPolicyOrganizationTargetsOutput = {
     type = "structure",
+    id = "GetIpamPolicyOrganizationTargetsOutput",
     members = {
         OrganizationTargets = {
             type = "list",
@@ -56033,6 +57940,7 @@ M.GetIpamPolicyOrganizationTargetsOutput = {
 
 M.GetIpamPoolAllocationsInput = {
     type = "structure",
+    id = "GetIpamPoolAllocationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56064,6 +57972,7 @@ M.GetIpamPoolAllocationsInput = {
 
 M.GetIpamPoolAllocationsOutput = {
     type = "structure",
+    id = "GetIpamPoolAllocationsOutput",
     members = {
         IpamPoolAllocations = {
             type = "list",
@@ -56083,6 +57992,7 @@ M.GetIpamPoolAllocationsOutput = {
 
 M.GetIpamPoolCidrsInput = {
     type = "structure",
+    id = "GetIpamPoolCidrsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56111,6 +58021,7 @@ M.GetIpamPoolCidrsInput = {
 
 M.GetIpamPoolCidrsOutput = {
     type = "structure",
+    id = "GetIpamPoolCidrsOutput",
     members = {
         IpamPoolCidrs = {
             type = "list",
@@ -56130,6 +58041,7 @@ M.GetIpamPoolCidrsOutput = {
 
 M.GetIpamPrefixListResolverRulesInput = {
     type = "structure",
+    id = "GetIpamPrefixListResolverRulesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56158,6 +58070,7 @@ M.GetIpamPrefixListResolverRulesInput = {
 
 M.IpamPrefixListResolverRuleCondition = {
     type = "structure",
+    id = "IpamPrefixListResolverRuleCondition",
     members = {
         Operation = {
             type = "string",
@@ -56203,6 +58116,7 @@ M.IpamPrefixListResolverRuleCondition = {
 
 M.IpamPrefixListResolverRule = {
     type = "structure",
+    id = "IpamPrefixListResolverRule",
     members = {
         RuleType = {
             type = "string",
@@ -56240,6 +58154,7 @@ M.IpamPrefixListResolverRule = {
 
 M.GetIpamPrefixListResolverRulesOutput = {
     type = "structure",
+    id = "GetIpamPrefixListResolverRulesOutput",
     members = {
         Rules = {
             type = "list",
@@ -56259,6 +58174,7 @@ M.GetIpamPrefixListResolverRulesOutput = {
 
 M.GetIpamPrefixListResolverVersionEntriesInput = {
     type = "structure",
+    id = "GetIpamPrefixListResolverVersionEntriesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56286,6 +58202,7 @@ M.GetIpamPrefixListResolverVersionEntriesInput = {
 
 M.IpamPrefixListResolverVersionEntry = {
     type = "structure",
+    id = "IpamPrefixListResolverVersionEntry",
     members = {
         Cidr = {
             type = "string",
@@ -56298,6 +58215,7 @@ M.IpamPrefixListResolverVersionEntry = {
 
 M.GetIpamPrefixListResolverVersionEntriesOutput = {
     type = "structure",
+    id = "GetIpamPrefixListResolverVersionEntriesOutput",
     members = {
         Entries = {
             type = "list",
@@ -56317,6 +58235,7 @@ M.GetIpamPrefixListResolverVersionEntriesOutput = {
 
 M.GetIpamPrefixListResolverVersionsInput = {
     type = "structure",
+    id = "GetIpamPrefixListResolverVersionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56352,6 +58271,7 @@ M.GetIpamPrefixListResolverVersionsInput = {
 
 M.IpamPrefixListResolverVersion = {
     type = "structure",
+    id = "IpamPrefixListResolverVersion",
     members = {
         Version = {
             type = "long",
@@ -56364,6 +58284,7 @@ M.IpamPrefixListResolverVersion = {
 
 M.GetIpamPrefixListResolverVersionsOutput = {
     type = "structure",
+    id = "GetIpamPrefixListResolverVersionsOutput",
     members = {
         IpamPrefixListResolverVersions = {
             type = "list",
@@ -56383,6 +58304,7 @@ M.GetIpamPrefixListResolverVersionsOutput = {
 
 M.GetIpamResourceCidrsInput = {
     type = "structure",
+    id = "GetIpamResourceCidrsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56430,6 +58352,7 @@ M.IpamManagementState = {
 
 M.IpamResourceCidr = {
     type = "structure",
+    id = "IpamResourceCidr",
     members = {
         IpamId = {
             type = "string",
@@ -56533,6 +58456,7 @@ M.IpamResourceCidr = {
 
 M.GetIpamResourceCidrsOutput = {
     type = "structure",
+    id = "GetIpamResourceCidrsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -56552,6 +58476,7 @@ M.GetIpamResourceCidrsOutput = {
 
 M.GetLaunchTemplateDataInput = {
     type = "structure",
+    id = "GetLaunchTemplateDataInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56567,6 +58492,7 @@ M.GetLaunchTemplateDataInput = {
 
 M.GetLaunchTemplateDataOutput = {
     type = "structure",
+    id = "GetLaunchTemplateDataOutput",
     members = {
         LaunchTemplateData = setmetatable({ traits = {
             xml_name = "launchTemplateData",
@@ -56576,6 +58502,7 @@ M.GetLaunchTemplateDataOutput = {
 
 M.GetManagedPrefixListAssociationsInput = {
     type = "structure",
+    id = "GetManagedPrefixListAssociationsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56597,6 +58524,7 @@ M.GetManagedPrefixListAssociationsInput = {
 
 M.PrefixListAssociation = {
     type = "structure",
+    id = "PrefixListAssociation",
     members = {
         ResourceId = {
             type = "string",
@@ -56615,6 +58543,7 @@ M.PrefixListAssociation = {
 
 M.GetManagedPrefixListAssociationsOutput = {
     type = "structure",
+    id = "GetManagedPrefixListAssociationsOutput",
     members = {
         PrefixListAssociations = {
             type = "list",
@@ -56634,6 +58563,7 @@ M.GetManagedPrefixListAssociationsOutput = {
 
 M.GetManagedPrefixListEntriesInput = {
     type = "structure",
+    id = "GetManagedPrefixListEntriesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56658,6 +58588,7 @@ M.GetManagedPrefixListEntriesInput = {
 
 M.PrefixListEntry = {
     type = "structure",
+    id = "PrefixListEntry",
     members = {
         Cidr = {
             type = "string",
@@ -56676,6 +58607,7 @@ M.PrefixListEntry = {
 
 M.GetManagedPrefixListEntriesOutput = {
     type = "structure",
+    id = "GetManagedPrefixListEntriesOutput",
     members = {
         Entries = {
             type = "list",
@@ -56695,6 +58627,7 @@ M.GetManagedPrefixListEntriesOutput = {
 
 M.GetManagedResourceVisibilityInput = {
     type = "structure",
+    id = "GetManagedResourceVisibilityInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56709,6 +58642,7 @@ M.ManagedResourceDefaultVisibility = {
 
 M.ManagedResourceVisibilitySettings = {
     type = "structure",
+    id = "ManagedResourceVisibilitySettings",
     members = {
         DefaultVisibility = {
             type = "string",
@@ -56721,6 +58655,7 @@ M.ManagedResourceVisibilitySettings = {
 
 M.GetManagedResourceVisibilityOutput = {
     type = "structure",
+    id = "GetManagedResourceVisibilityOutput",
     members = {
         Visibility = setmetatable({ traits = {
             xml_name = "visibility",
@@ -56730,6 +58665,7 @@ M.GetManagedResourceVisibilityOutput = {
 
 M.GetNetworkInsightsAccessScopeAnalysisFindingsInput = {
     type = "structure",
+    id = "GetNetworkInsightsAccessScopeAnalysisFindingsInput",
     members = {
         NetworkInsightsAccessScopeAnalysisId = {
             type = "string",
@@ -56751,6 +58687,7 @@ M.GetNetworkInsightsAccessScopeAnalysisFindingsInput = {
 
 M.GetNetworkInsightsAccessScopeAnalysisFindingsOutput = {
     type = "structure",
+    id = "GetNetworkInsightsAccessScopeAnalysisFindingsOutput",
     members = {
         NetworkInsightsAccessScopeAnalysisId = {
             type = "string",
@@ -56782,6 +58719,7 @@ M.GetNetworkInsightsAccessScopeAnalysisFindingsOutput = {
 
 M.GetNetworkInsightsAccessScopeContentInput = {
     type = "structure",
+    id = "GetNetworkInsightsAccessScopeContentInput",
     members = {
         NetworkInsightsAccessScopeId = {
             type = "string",
@@ -56797,6 +58735,7 @@ M.GetNetworkInsightsAccessScopeContentInput = {
 
 M.GetNetworkInsightsAccessScopeContentOutput = {
     type = "structure",
+    id = "GetNetworkInsightsAccessScopeContentOutput",
     members = {
         NetworkInsightsAccessScopeContent = setmetatable({ traits = {
             xml_name = "networkInsightsAccessScopeContent",
@@ -56806,6 +58745,7 @@ M.GetNetworkInsightsAccessScopeContentOutput = {
 
 M.GetPasswordDataInput = {
     type = "structure",
+    id = "GetPasswordDataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -56824,6 +58764,7 @@ M.GetPasswordDataInput = {
 
 M.GetPasswordDataOutput = {
     type = "structure",
+    id = "GetPasswordDataOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -56848,6 +58789,7 @@ M.GetPasswordDataOutput = {
 
 M.GetReservedInstancesExchangeQuoteInput = {
     type = "structure",
+    id = "GetReservedInstancesExchangeQuoteInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -56872,6 +58814,7 @@ M.GetReservedInstancesExchangeQuoteInput = {
 
 M.ReservationValue = {
     type = "structure",
+    id = "ReservationValue",
     members = {
         HourlyPrice = {
             type = "string",
@@ -56896,6 +58839,7 @@ M.ReservationValue = {
 
 M.ReservedInstanceReservationValue = {
     type = "structure",
+    id = "ReservedInstanceReservationValue",
     members = {
         ReservationValue = setmetatable({ traits = {
             xml_name = "reservationValue",
@@ -56911,6 +58855,7 @@ M.ReservedInstanceReservationValue = {
 
 M.TargetConfiguration = {
     type = "structure",
+    id = "TargetConfiguration",
     members = {
         InstanceCount = {
             type = "integer",
@@ -56929,6 +58874,7 @@ M.TargetConfiguration = {
 
 M.TargetReservationValue = {
     type = "structure",
+    id = "TargetReservationValue",
     members = {
         ReservationValue = setmetatable({ traits = {
             xml_name = "reservationValue",
@@ -56941,6 +58887,7 @@ M.TargetReservationValue = {
 
 M.GetReservedInstancesExchangeQuoteOutput = {
     type = "structure",
+    id = "GetReservedInstancesExchangeQuoteOutput",
     members = {
         CurrencyCode = {
             type = "string",
@@ -56997,6 +58944,7 @@ M.GetReservedInstancesExchangeQuoteOutput = {
 
 M.GetRouteServerAssociationsInput = {
     type = "structure",
+    id = "GetRouteServerAssociationsInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -57012,6 +58960,7 @@ M.GetRouteServerAssociationsInput = {
 
 M.GetRouteServerAssociationsOutput = {
     type = "structure",
+    id = "GetRouteServerAssociationsOutput",
     members = {
         RouteServerAssociations = {
             type = "list",
@@ -57025,6 +58974,7 @@ M.GetRouteServerAssociationsOutput = {
 
 M.GetRouteServerPropagationsInput = {
     type = "structure",
+    id = "GetRouteServerPropagationsInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -57043,6 +58993,7 @@ M.GetRouteServerPropagationsInput = {
 
 M.GetRouteServerPropagationsOutput = {
     type = "structure",
+    id = "GetRouteServerPropagationsOutput",
     members = {
         RouteServerPropagations = {
             type = "list",
@@ -57056,6 +59007,7 @@ M.GetRouteServerPropagationsOutput = {
 
 M.GetRouteServerRoutingDatabaseInput = {
     type = "structure",
+    id = "GetRouteServerRoutingDatabaseInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -57089,6 +59041,7 @@ M.RouteServerRouteInstallationStatus = {
 
 M.RouteServerRouteInstallationDetail = {
     type = "structure",
+    id = "RouteServerRouteInstallationDetail",
     members = {
         RouteTableId = {
             type = "string",
@@ -57118,6 +59071,7 @@ M.RouteServerRouteStatus = {
 
 M.RouteServerRoute = {
     type = "structure",
+    id = "RouteServerRoute",
     members = {
         RouteServerEndpointId = {
             type = "string",
@@ -57174,6 +59128,7 @@ M.RouteServerRoute = {
 
 M.GetRouteServerRoutingDatabaseOutput = {
     type = "structure",
+    id = "GetRouteServerRoutingDatabaseOutput",
     members = {
         AreRoutesPersisted = {
             type = "boolean",
@@ -57199,6 +59154,7 @@ M.GetRouteServerRoutingDatabaseOutput = {
 
 M.GetSecurityGroupsForVpcInput = {
     type = "structure",
+    id = "GetSecurityGroupsForVpcInput",
     members = {
         VpcId = {
             type = "string",
@@ -57227,6 +59183,7 @@ M.GetSecurityGroupsForVpcInput = {
 
 M.SecurityGroupForVpc = {
     type = "structure",
+    id = "SecurityGroupForVpc",
     members = {
         Description = {
             type = "string",
@@ -57270,6 +59227,7 @@ M.SecurityGroupForVpc = {
 
 M.GetSecurityGroupsForVpcOutput = {
     type = "structure",
+    id = "GetSecurityGroupsForVpcOutput",
     members = {
         NextToken = {
             type = "string",
@@ -57289,6 +59247,7 @@ M.GetSecurityGroupsForVpcOutput = {
 
 M.GetSerialConsoleAccessStatusInput = {
     type = "structure",
+    id = "GetSerialConsoleAccessStatusInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -57298,6 +59257,7 @@ M.GetSerialConsoleAccessStatusInput = {
 
 M.GetSerialConsoleAccessStatusOutput = {
     type = "structure",
+    id = "GetSerialConsoleAccessStatusOutput",
     members = {
         SerialConsoleAccessEnabled = {
             type = "boolean",
@@ -57316,6 +59276,7 @@ M.GetSerialConsoleAccessStatusOutput = {
 
 M.GetSnapshotBlockPublicAccessStateInput = {
     type = "structure",
+    id = "GetSnapshotBlockPublicAccessStateInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -57325,6 +59286,7 @@ M.GetSnapshotBlockPublicAccessStateInput = {
 
 M.GetSnapshotBlockPublicAccessStateOutput = {
     type = "structure",
+    id = "GetSnapshotBlockPublicAccessStateOutput",
     members = {
         State = {
             type = "string",
@@ -57343,6 +59305,7 @@ M.GetSnapshotBlockPublicAccessStateOutput = {
 
 M.InstanceRequirementsWithMetadataRequest = {
     type = "structure",
+    id = "InstanceRequirementsWithMetadataRequest",
     members = {
         ArchitectureTypes = {
             type = "list",
@@ -57364,6 +59327,7 @@ M.InstanceRequirementsWithMetadataRequest = {
 
 M.GetSpotPlacementScoresInput = {
     type = "structure",
+    id = "GetSpotPlacementScoresInput",
     members = {
         InstanceTypes = {
             type = "list",
@@ -57406,6 +59370,7 @@ M.GetSpotPlacementScoresInput = {
 
 M.SpotPlacementScore = {
     type = "structure",
+    id = "SpotPlacementScore",
     members = {
         Region = {
             type = "string",
@@ -57430,6 +59395,7 @@ M.SpotPlacementScore = {
 
 M.GetSpotPlacementScoresOutput = {
     type = "structure",
+    id = "GetSpotPlacementScoresOutput",
     members = {
         SpotPlacementScores = {
             type = "list",
@@ -57449,6 +59415,7 @@ M.GetSpotPlacementScoresOutput = {
 
 M.GetSubnetCidrReservationsInput = {
     type = "structure",
+    id = "GetSubnetCidrReservationsInput",
     members = {
         Filters = {
             type = "list",
@@ -57477,6 +59444,7 @@ M.GetSubnetCidrReservationsInput = {
 
 M.GetSubnetCidrReservationsOutput = {
     type = "structure",
+    id = "GetSubnetCidrReservationsOutput",
     members = {
         SubnetIpv4CidrReservations = {
             type = "list",
@@ -57503,6 +59471,7 @@ M.GetSubnetCidrReservationsOutput = {
 
 M.GetTransitGatewayAttachmentPropagationsInput = {
     type = "structure",
+    id = "GetTransitGatewayAttachmentPropagationsInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -57531,6 +59500,7 @@ M.GetTransitGatewayAttachmentPropagationsInput = {
 
 M.TransitGatewayAttachmentPropagation = {
     type = "structure",
+    id = "TransitGatewayAttachmentPropagation",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -57549,6 +59519,7 @@ M.TransitGatewayAttachmentPropagation = {
 
 M.GetTransitGatewayAttachmentPropagationsOutput = {
     type = "structure",
+    id = "GetTransitGatewayAttachmentPropagationsOutput",
     members = {
         TransitGatewayAttachmentPropagations = {
             type = "list",
@@ -57568,6 +59539,7 @@ M.GetTransitGatewayAttachmentPropagationsOutput = {
 
 M.GetTransitGatewayMeteringPolicyEntriesInput = {
     type = "structure",
+    id = "GetTransitGatewayMeteringPolicyEntriesInput",
     members = {
         TransitGatewayMeteringPolicyId = {
             type = "string",
@@ -57596,6 +59568,7 @@ M.GetTransitGatewayMeteringPolicyEntriesInput = {
 
 M.GetTransitGatewayMeteringPolicyEntriesOutput = {
     type = "structure",
+    id = "GetTransitGatewayMeteringPolicyEntriesOutput",
     members = {
         TransitGatewayMeteringPolicyEntries = {
             type = "list",
@@ -57615,6 +59588,7 @@ M.GetTransitGatewayMeteringPolicyEntriesOutput = {
 
 M.GetTransitGatewayMulticastDomainAssociationsInput = {
     type = "structure",
+    id = "GetTransitGatewayMulticastDomainAssociationsInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -57643,6 +59617,7 @@ M.GetTransitGatewayMulticastDomainAssociationsInput = {
 
 M.TransitGatewayMulticastDomainAssociation = {
     type = "structure",
+    id = "TransitGatewayMulticastDomainAssociation",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -57676,6 +59651,7 @@ M.TransitGatewayMulticastDomainAssociation = {
 
 M.GetTransitGatewayMulticastDomainAssociationsOutput = {
     type = "structure",
+    id = "GetTransitGatewayMulticastDomainAssociationsOutput",
     members = {
         MulticastDomainAssociations = {
             type = "list",
@@ -57695,6 +59671,7 @@ M.GetTransitGatewayMulticastDomainAssociationsOutput = {
 
 M.GetTransitGatewayPolicyTableAssociationsInput = {
     type = "structure",
+    id = "GetTransitGatewayPolicyTableAssociationsInput",
     members = {
         TransitGatewayPolicyTableId = {
             type = "string",
@@ -57723,6 +59700,7 @@ M.GetTransitGatewayPolicyTableAssociationsInput = {
 
 M.GetTransitGatewayPolicyTableAssociationsOutput = {
     type = "structure",
+    id = "GetTransitGatewayPolicyTableAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -57742,6 +59720,7 @@ M.GetTransitGatewayPolicyTableAssociationsOutput = {
 
 M.GetTransitGatewayPolicyTableEntriesInput = {
     type = "structure",
+    id = "GetTransitGatewayPolicyTableEntriesInput",
     members = {
         TransitGatewayPolicyTableId = {
             type = "string",
@@ -57770,6 +59749,7 @@ M.GetTransitGatewayPolicyTableEntriesInput = {
 
 M.TransitGatewayPolicyRuleMetaData = {
     type = "structure",
+    id = "TransitGatewayPolicyRuleMetaData",
     members = {
         MetaDataKey = {
             type = "string",
@@ -57788,6 +59768,7 @@ M.TransitGatewayPolicyRuleMetaData = {
 
 M.TransitGatewayPolicyRule = {
     type = "structure",
+    id = "TransitGatewayPolicyRule",
     members = {
         SourceCidrBlock = {
             type = "string",
@@ -57827,6 +59808,7 @@ M.TransitGatewayPolicyRule = {
 
 M.TransitGatewayPolicyTableEntry = {
     type = "structure",
+    id = "TransitGatewayPolicyTableEntry",
     members = {
         PolicyRuleNumber = {
             type = "string",
@@ -57848,6 +59830,7 @@ M.TransitGatewayPolicyTableEntry = {
 
 M.GetTransitGatewayPolicyTableEntriesOutput = {
     type = "structure",
+    id = "GetTransitGatewayPolicyTableEntriesOutput",
     members = {
         TransitGatewayPolicyTableEntries = {
             type = "list",
@@ -57861,6 +59844,7 @@ M.GetTransitGatewayPolicyTableEntriesOutput = {
 
 M.GetTransitGatewayPrefixListReferencesInput = {
     type = "structure",
+    id = "GetTransitGatewayPrefixListReferencesInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -57889,6 +59873,7 @@ M.GetTransitGatewayPrefixListReferencesInput = {
 
 M.GetTransitGatewayPrefixListReferencesOutput = {
     type = "structure",
+    id = "GetTransitGatewayPrefixListReferencesOutput",
     members = {
         TransitGatewayPrefixListReferences = {
             type = "list",
@@ -57908,6 +59893,7 @@ M.GetTransitGatewayPrefixListReferencesOutput = {
 
 M.GetTransitGatewayRouteTableAssociationsInput = {
     type = "structure",
+    id = "GetTransitGatewayRouteTableAssociationsInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -57936,6 +59922,7 @@ M.GetTransitGatewayRouteTableAssociationsInput = {
 
 M.TransitGatewayRouteTableAssociation = {
     type = "structure",
+    id = "TransitGatewayRouteTableAssociation",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -57966,6 +59953,7 @@ M.TransitGatewayRouteTableAssociation = {
 
 M.GetTransitGatewayRouteTableAssociationsOutput = {
     type = "structure",
+    id = "GetTransitGatewayRouteTableAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -57985,6 +59973,7 @@ M.GetTransitGatewayRouteTableAssociationsOutput = {
 
 M.GetTransitGatewayRouteTablePropagationsInput = {
     type = "structure",
+    id = "GetTransitGatewayRouteTablePropagationsInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -58013,6 +60002,7 @@ M.GetTransitGatewayRouteTablePropagationsInput = {
 
 M.TransitGatewayRouteTablePropagation = {
     type = "structure",
+    id = "TransitGatewayRouteTablePropagation",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -58049,6 +60039,7 @@ M.TransitGatewayRouteTablePropagation = {
 
 M.GetTransitGatewayRouteTablePropagationsOutput = {
     type = "structure",
+    id = "GetTransitGatewayRouteTablePropagationsOutput",
     members = {
         TransitGatewayRouteTablePropagations = {
             type = "list",
@@ -58068,6 +60059,7 @@ M.GetTransitGatewayRouteTablePropagationsOutput = {
 
 M.GetVerifiedAccessEndpointPolicyInput = {
     type = "structure",
+    id = "GetVerifiedAccessEndpointPolicyInput",
     members = {
         VerifiedAccessEndpointId = {
             type = "string",
@@ -58083,6 +60075,7 @@ M.GetVerifiedAccessEndpointPolicyInput = {
 
 M.GetVerifiedAccessEndpointPolicyOutput = {
     type = "structure",
+    id = "GetVerifiedAccessEndpointPolicyOutput",
     members = {
         PolicyEnabled = {
             type = "boolean",
@@ -58101,6 +60094,7 @@ M.GetVerifiedAccessEndpointPolicyOutput = {
 
 M.GetVerifiedAccessEndpointTargetsInput = {
     type = "structure",
+    id = "GetVerifiedAccessEndpointTargetsInput",
     members = {
         VerifiedAccessEndpointId = {
             type = "string",
@@ -58123,6 +60117,7 @@ M.GetVerifiedAccessEndpointTargetsInput = {
 
 M.VerifiedAccessEndpointTarget = {
     type = "structure",
+    id = "VerifiedAccessEndpointTarget",
     members = {
         VerifiedAccessEndpointId = {
             type = "string",
@@ -58147,6 +60142,7 @@ M.VerifiedAccessEndpointTarget = {
 
 M.GetVerifiedAccessEndpointTargetsOutput = {
     type = "structure",
+    id = "GetVerifiedAccessEndpointTargetsOutput",
     members = {
         VerifiedAccessEndpointTargets = {
             type = "list",
@@ -58166,6 +60162,7 @@ M.GetVerifiedAccessEndpointTargetsOutput = {
 
 M.GetVerifiedAccessGroupPolicyInput = {
     type = "structure",
+    id = "GetVerifiedAccessGroupPolicyInput",
     members = {
         VerifiedAccessGroupId = {
             type = "string",
@@ -58181,6 +60178,7 @@ M.GetVerifiedAccessGroupPolicyInput = {
 
 M.GetVerifiedAccessGroupPolicyOutput = {
     type = "structure",
+    id = "GetVerifiedAccessGroupPolicyOutput",
     members = {
         PolicyEnabled = {
             type = "boolean",
@@ -58199,6 +60197,7 @@ M.GetVerifiedAccessGroupPolicyOutput = {
 
 M.GetVpcResourcesBlockingEncryptionEnforcementInput = {
     type = "structure",
+    id = "GetVpcResourcesBlockingEncryptionEnforcementInput",
     members = {
         VpcId = {
             type = "string",
@@ -58220,6 +60219,7 @@ M.GetVpcResourcesBlockingEncryptionEnforcementInput = {
 
 M.VpcEncryptionNonCompliantResource = {
     type = "structure",
+    id = "VpcEncryptionNonCompliantResource",
     members = {
         Id = {
             type = "string",
@@ -58250,6 +60250,7 @@ M.VpcEncryptionNonCompliantResource = {
 
 M.GetVpcResourcesBlockingEncryptionEnforcementOutput = {
     type = "structure",
+    id = "GetVpcResourcesBlockingEncryptionEnforcementOutput",
     members = {
         NonCompliantResources = {
             type = "list",
@@ -58269,6 +60270,7 @@ M.GetVpcResourcesBlockingEncryptionEnforcementOutput = {
 
 M.GetVpnConnectionDeviceSampleConfigurationInput = {
     type = "structure",
+    id = "GetVpnConnectionDeviceSampleConfigurationInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -58296,6 +60298,7 @@ M.GetVpnConnectionDeviceSampleConfigurationInput = {
 
 M.GetVpnConnectionDeviceSampleConfigurationOutput = {
     type = "structure",
+    id = "GetVpnConnectionDeviceSampleConfigurationOutput",
     members = {
         VpnConnectionDeviceSampleConfiguration = {
             type = "string",
@@ -58308,6 +60311,7 @@ M.GetVpnConnectionDeviceSampleConfigurationOutput = {
 
 M.GetVpnConnectionDeviceTypesInput = {
     type = "structure",
+    id = "GetVpnConnectionDeviceTypesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -58323,6 +60327,7 @@ M.GetVpnConnectionDeviceTypesInput = {
 
 M.VpnConnectionDeviceType = {
     type = "structure",
+    id = "VpnConnectionDeviceType",
     members = {
         VpnConnectionDeviceTypeId = {
             type = "string",
@@ -58353,6 +60358,7 @@ M.VpnConnectionDeviceType = {
 
 M.GetVpnConnectionDeviceTypesOutput = {
     type = "structure",
+    id = "GetVpnConnectionDeviceTypesOutput",
     members = {
         VpnConnectionDeviceTypes = {
             type = "list",
@@ -58372,6 +60378,7 @@ M.GetVpnConnectionDeviceTypesOutput = {
 
 M.GetVpnTunnelReplacementStatusInput = {
     type = "structure",
+    id = "GetVpnTunnelReplacementStatusInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -58393,6 +60400,7 @@ M.GetVpnTunnelReplacementStatusInput = {
 
 M.MaintenanceDetails = {
     type = "structure",
+    id = "MaintenanceDetails",
     members = {
         PendingMaintenance = {
             type = "string",
@@ -58417,6 +60425,7 @@ M.MaintenanceDetails = {
 
 M.GetVpnTunnelReplacementStatusOutput = {
     type = "structure",
+    id = "GetVpnTunnelReplacementStatusOutput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -58456,6 +60465,7 @@ M.GetVpnTunnelReplacementStatusOutput = {
 
 M.ImportClientVpnClientCertificateRevocationListInput = {
     type = "structure",
+    id = "ImportClientVpnClientCertificateRevocationListInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -58477,6 +60487,7 @@ M.ImportClientVpnClientCertificateRevocationListInput = {
 
 M.ImportClientVpnClientCertificateRevocationListOutput = {
     type = "structure",
+    id = "ImportClientVpnClientCertificateRevocationListOutput",
     members = {
         Return = {
             type = "boolean",
@@ -58489,6 +60500,7 @@ M.ImportClientVpnClientCertificateRevocationListOutput = {
 
 M.ClientData = {
     type = "structure",
+    id = "ClientData",
     members = {
         Comment = {
             type = "string",
@@ -58507,6 +60519,7 @@ M.ClientData = {
 
 M.UserBucket = {
     type = "structure",
+    id = "UserBucket",
     members = {
         S3Bucket = {
             type = "string",
@@ -58519,6 +60532,7 @@ M.UserBucket = {
 
 M.ImageDiskContainer = {
     type = "structure",
+    id = "ImageDiskContainer",
     members = {
         Description = {
             type = "string",
@@ -58541,6 +60555,7 @@ M.ImageDiskContainer = {
 
 M.ImportImageLicenseConfigurationRequest = {
     type = "structure",
+    id = "ImportImageLicenseConfigurationRequest",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -58550,6 +60565,7 @@ M.ImportImageLicenseConfigurationRequest = {
 
 M.ImportImageInput = {
     type = "structure",
+    id = "ImportImageInput",
     members = {
         Architecture = {
             type = "string",
@@ -58611,6 +60627,7 @@ M.ImportImageInput = {
 
 M.ImportImageOutput = {
     type = "structure",
+    id = "ImportImageOutput",
     members = {
         Architecture = {
             type = "string",
@@ -58716,6 +60733,7 @@ M.ImportImageOutput = {
 
 M.DiskImageDetail = {
     type = "structure",
+    id = "DiskImageDetail",
     members = {
         Format = {
             type = "string",
@@ -58743,6 +60761,7 @@ M.DiskImageDetail = {
 
 M.VolumeDetail = {
     type = "structure",
+    id = "VolumeDetail",
     members = {
         Size = {
             type = "long",
@@ -58756,6 +60775,7 @@ M.VolumeDetail = {
 
 M.DiskImage = {
     type = "structure",
+    id = "DiskImage",
     members = {
         Description = {
             type = "string",
@@ -58767,6 +60787,7 @@ M.DiskImage = {
 
 M.UserData = {
     type = "structure",
+    id = "UserData",
     members = {
         Data = {
             type = "string",
@@ -58779,6 +60800,7 @@ M.UserData = {
 
 M.ImportInstanceLaunchSpecification = {
     type = "structure",
+    id = "ImportInstanceLaunchSpecification",
     members = {
         Architecture = {
             type = "string",
@@ -58847,6 +60869,7 @@ M.ImportInstanceLaunchSpecification = {
 
 M.ImportInstanceInput = {
     type = "structure",
+    id = "ImportInstanceInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -58882,6 +60905,7 @@ M.ImportInstanceInput = {
 
 M.ImportInstanceOutput = {
     type = "structure",
+    id = "ImportInstanceOutput",
     members = {
         ConversionTask = setmetatable({ traits = {
             xml_name = "conversionTask",
@@ -58891,6 +60915,7 @@ M.ImportInstanceOutput = {
 
 M.ImportKeyPairInput = {
     type = "structure",
+    id = "ImportKeyPairInput",
     members = {
         TagSpecifications = {
             type = "list",
@@ -58924,6 +60949,7 @@ M.ImportKeyPairInput = {
 
 M.ImportKeyPairOutput = {
     type = "structure",
+    id = "ImportKeyPairOutput",
     members = {
         KeyFingerprint = {
             type = "string",
@@ -58955,6 +60981,7 @@ M.ImportKeyPairOutput = {
 
 M.SnapshotDiskContainer = {
     type = "structure",
+    id = "SnapshotDiskContainer",
     members = {
         Description = {
             type = "string",
@@ -58971,6 +60998,7 @@ M.SnapshotDiskContainer = {
 
 M.ImportSnapshotInput = {
     type = "structure",
+    id = "ImportSnapshotInput",
     members = {
         ClientData = M.ClientData,
         ClientToken = {
@@ -59004,6 +61032,7 @@ M.ImportSnapshotInput = {
 
 M.ImportSnapshotOutput = {
     type = "structure",
+    id = "ImportSnapshotOutput",
     members = {
         Description = {
             type = "string",
@@ -59032,6 +61061,7 @@ M.ImportSnapshotOutput = {
 
 M.ImportVolumeInput = {
     type = "structure",
+    id = "ImportVolumeInput",
     members = {
         AvailabilityZoneId = {
             type = "string",
@@ -59067,6 +61097,7 @@ M.ImportVolumeInput = {
 
 M.ImportVolumeOutput = {
     type = "structure",
+    id = "ImportVolumeOutput",
     members = {
         ConversionTask = setmetatable({ traits = {
             xml_name = "conversionTask",
@@ -59076,6 +61107,7 @@ M.ImportVolumeOutput = {
 
 M.ListImagesInRecycleBinInput = {
     type = "structure",
+    id = "ListImagesInRecycleBinInput",
     members = {
         ImageIds = {
             type = "list",
@@ -59098,6 +61130,7 @@ M.ListImagesInRecycleBinInput = {
 
 M.ImageRecycleBinInfo = {
     type = "structure",
+    id = "ImageRecycleBinInfo",
     members = {
         ImageId = {
             type = "string",
@@ -59134,6 +61167,7 @@ M.ImageRecycleBinInfo = {
 
 M.ListImagesInRecycleBinOutput = {
     type = "structure",
+    id = "ListImagesInRecycleBinOutput",
     members = {
         Images = {
             type = "list",
@@ -59153,6 +61187,7 @@ M.ListImagesInRecycleBinOutput = {
 
 M.ListSnapshotsInRecycleBinInput = {
     type = "structure",
+    id = "ListSnapshotsInRecycleBinInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -59175,6 +61210,7 @@ M.ListSnapshotsInRecycleBinInput = {
 
 M.SnapshotRecycleBinInfo = {
     type = "structure",
+    id = "SnapshotRecycleBinInfo",
     members = {
         SnapshotId = {
             type = "string",
@@ -59211,6 +61247,7 @@ M.SnapshotRecycleBinInfo = {
 
 M.ListSnapshotsInRecycleBinOutput = {
     type = "structure",
+    id = "ListSnapshotsInRecycleBinOutput",
     members = {
         Snapshots = {
             type = "list",
@@ -59230,6 +61267,7 @@ M.ListSnapshotsInRecycleBinOutput = {
 
 M.ListVolumesInRecycleBinInput = {
     type = "structure",
+    id = "ListVolumesInRecycleBinInput",
     members = {
         VolumeIds = {
             type = "list",
@@ -59252,6 +61290,7 @@ M.ListVolumesInRecycleBinInput = {
 
 M.VolumeRecycleBinInfo = {
     type = "structure",
+    id = "VolumeRecycleBinInfo",
     members = {
         VolumeId = {
             type = "string",
@@ -59345,6 +61384,7 @@ M.VolumeRecycleBinInfo = {
 
 M.ListVolumesInRecycleBinOutput = {
     type = "structure",
+    id = "ListVolumesInRecycleBinOutput",
     members = {
         Volumes = {
             type = "list",
@@ -59369,6 +61409,7 @@ M.LockMode = {
 
 M.LockSnapshotInput = {
     type = "structure",
+    id = "LockSnapshotInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -59399,6 +61440,7 @@ M.LockSnapshotInput = {
 
 M.LockSnapshotOutput = {
     type = "structure",
+    id = "LockSnapshotOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -59453,6 +61495,7 @@ M.LockSnapshotOutput = {
 
 M.ModifyAddressAttributeInput = {
     type = "structure",
+    id = "ModifyAddressAttributeInput",
     members = {
         AllocationId = {
             type = "string",
@@ -59471,6 +61514,7 @@ M.ModifyAddressAttributeInput = {
 
 M.ModifyAddressAttributeOutput = {
     type = "structure",
+    id = "ModifyAddressAttributeOutput",
     members = {
         Address = setmetatable({ traits = {
             xml_name = "address",
@@ -59485,6 +61529,7 @@ M.ModifyAvailabilityZoneOptInStatus = {
 
 M.ModifyAvailabilityZoneGroupInput = {
     type = "structure",
+    id = "ModifyAvailabilityZoneGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -59506,6 +61551,7 @@ M.ModifyAvailabilityZoneGroupInput = {
 
 M.ModifyAvailabilityZoneGroupOutput = {
     type = "structure",
+    id = "ModifyAvailabilityZoneGroupOutput",
     members = {
         Return = {
             type = "boolean",
@@ -59518,6 +61564,7 @@ M.ModifyAvailabilityZoneGroupOutput = {
 
 M.ModifyCapacityReservationInput = {
     type = "structure",
+    id = "ModifyCapacityReservationInput",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -59551,6 +61598,7 @@ M.ModifyCapacityReservationInput = {
 
 M.ModifyCapacityReservationOutput = {
     type = "structure",
+    id = "ModifyCapacityReservationOutput",
     members = {
         Return = {
             type = "boolean",
@@ -59563,6 +61611,7 @@ M.ModifyCapacityReservationOutput = {
 
 M.ModifyCapacityReservationFleetInput = {
     type = "structure",
+    id = "ModifyCapacityReservationFleetInput",
     members = {
         CapacityReservationFleetId = {
             type = "string",
@@ -59587,6 +61636,7 @@ M.ModifyCapacityReservationFleetInput = {
 
 M.ModifyCapacityReservationFleetOutput = {
     type = "structure",
+    id = "ModifyCapacityReservationFleetOutput",
     members = {
         Return = {
             type = "boolean",
@@ -59599,6 +61649,7 @@ M.ModifyCapacityReservationFleetOutput = {
 
 M.DnsServersOptionsModifyStructure = {
     type = "structure",
+    id = "DnsServersOptionsModifyStructure",
     members = {
         CustomDnsServers = {
             type = "list",
@@ -59612,6 +61663,7 @@ M.DnsServersOptionsModifyStructure = {
 
 M.ModifyClientVpnEndpointInput = {
     type = "structure",
+    id = "ModifyClientVpnEndpointInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -59664,6 +61716,7 @@ M.ModifyClientVpnEndpointInput = {
 
 M.ModifyClientVpnEndpointOutput = {
     type = "structure",
+    id = "ModifyClientVpnEndpointOutput",
     members = {
         Return = {
             type = "boolean",
@@ -59676,6 +61729,7 @@ M.ModifyClientVpnEndpointOutput = {
 
 M.ModifyDefaultCreditSpecificationInput = {
     type = "structure",
+    id = "ModifyDefaultCreditSpecificationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -59697,6 +61751,7 @@ M.ModifyDefaultCreditSpecificationInput = {
 
 M.ModifyDefaultCreditSpecificationOutput = {
     type = "structure",
+    id = "ModifyDefaultCreditSpecificationOutput",
     members = {
         InstanceFamilyCreditSpecification = setmetatable({ traits = {
             xml_name = "instanceFamilyCreditSpecification",
@@ -59706,6 +61761,7 @@ M.ModifyDefaultCreditSpecificationOutput = {
 
 M.ModifyEbsDefaultKmsKeyIdInput = {
     type = "structure",
+    id = "ModifyEbsDefaultKmsKeyIdInput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -59721,6 +61777,7 @@ M.ModifyEbsDefaultKmsKeyIdInput = {
 
 M.ModifyEbsDefaultKmsKeyIdOutput = {
     type = "structure",
+    id = "ModifyEbsDefaultKmsKeyIdOutput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -59733,6 +61790,7 @@ M.ModifyEbsDefaultKmsKeyIdOutput = {
 
 M.ModifyFleetInput = {
     type = "structure",
+    id = "ModifyFleetInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -59762,6 +61820,7 @@ M.ModifyFleetInput = {
 
 M.ModifyFleetOutput = {
     type = "structure",
+    id = "ModifyFleetOutput",
     members = {
         Return = {
             type = "boolean",
@@ -59774,6 +61833,7 @@ M.ModifyFleetOutput = {
 
 M.LoadPermissionRequest = {
     type = "structure",
+    id = "LoadPermissionRequest",
     members = {
         Group = {
             type = "string",
@@ -59786,6 +61846,7 @@ M.LoadPermissionRequest = {
 
 M.LoadPermissionModifications = {
     type = "structure",
+    id = "LoadPermissionModifications",
     members = {
         Add = {
             type = "list",
@@ -59805,6 +61866,7 @@ M.OperationType = {
 
 M.ModifyFpgaImageAttributeInput = {
     type = "structure",
+    id = "ModifyFpgaImageAttributeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -59854,6 +61916,7 @@ M.ModifyFpgaImageAttributeInput = {
 
 M.ModifyFpgaImageAttributeOutput = {
     type = "structure",
+    id = "ModifyFpgaImageAttributeOutput",
     members = {
         FpgaImageAttribute = setmetatable({ traits = {
             xml_name = "fpgaImageAttribute",
@@ -59863,6 +61926,7 @@ M.ModifyFpgaImageAttributeOutput = {
 
 M.ModifyHostsInput = {
     type = "structure",
+    id = "ModifyHostsInput",
     members = {
         HostRecovery = {
             type = "string",
@@ -59895,6 +61959,7 @@ M.ModifyHostsInput = {
 
 M.ModifyHostsOutput = {
     type = "structure",
+    id = "ModifyHostsOutput",
     members = {
         Successful = {
             type = "list",
@@ -59915,6 +61980,7 @@ M.ModifyHostsOutput = {
 
 M.ModifyIdentityIdFormatInput = {
     type = "structure",
+    id = "ModifyIdentityIdFormatInput",
     members = {
         Resource = {
             type = "string",
@@ -59942,10 +62008,12 @@ M.ModifyIdentityIdFormatInput = {
 
 M.ModifyIdentityIdFormatOutput = {
     type = "structure",
+    id = "ModifyIdentityIdFormatOutput",
 }
 
 M.ModifyIdFormatInput = {
     type = "structure",
+    id = "ModifyIdFormatInput",
     members = {
         Resource = {
             type = "string",
@@ -59964,10 +62032,12 @@ M.ModifyIdFormatInput = {
 
 M.ModifyIdFormatOutput = {
     type = "structure",
+    id = "ModifyIdFormatOutput",
 }
 
 M.LaunchPermissionModifications = {
     type = "structure",
+    id = "LaunchPermissionModifications",
     members = {
         Add = {
             type = "list",
@@ -59982,6 +62052,7 @@ M.LaunchPermissionModifications = {
 
 M.ModifyImageAttributeInput = {
     type = "structure",
+    id = "ModifyImageAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -60047,10 +62118,12 @@ M.ModifyImageAttributeInput = {
 
 M.ModifyImageAttributeOutput = {
     type = "structure",
+    id = "ModifyImageAttributeOutput",
 }
 
 M.EbsInstanceBlockDeviceSpecification = {
     type = "structure",
+    id = "EbsInstanceBlockDeviceSpecification",
     members = {
         VolumeId = {
             type = "string",
@@ -60069,6 +62142,7 @@ M.EbsInstanceBlockDeviceSpecification = {
 
 M.InstanceBlockDeviceMappingSpecification = {
     type = "structure",
+    id = "InstanceBlockDeviceMappingSpecification",
     members = {
         DeviceName = {
             type = "string",
@@ -60096,6 +62170,7 @@ M.InstanceBlockDeviceMappingSpecification = {
 
 M.BlobAttributeValue = {
     type = "structure",
+    id = "BlobAttributeValue",
     members = {
         Value = {
             type = "blob",
@@ -60108,6 +62183,7 @@ M.BlobAttributeValue = {
 
 M.ModifyInstanceAttributeInput = {
     type = "structure",
+    id = "ModifyInstanceAttributeInput",
     members = {
         SourceDestCheck = M.AttributeBooleanValue,
         DisableApiStop = M.AttributeBooleanValue,
@@ -60182,10 +62258,12 @@ M.ModifyInstanceAttributeInput = {
 
 M.ModifyInstanceAttributeOutput = {
     type = "structure",
+    id = "ModifyInstanceAttributeOutput",
 }
 
 M.CapacityReservationSpecification = {
     type = "structure",
+    id = "CapacityReservationSpecification",
     members = {
         CapacityReservationPreference = {
             type = "string",
@@ -60196,6 +62274,7 @@ M.CapacityReservationSpecification = {
 
 M.ModifyInstanceCapacityReservationAttributesInput = {
     type = "structure",
+    id = "ModifyInstanceCapacityReservationAttributesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -60214,6 +62293,7 @@ M.ModifyInstanceCapacityReservationAttributesInput = {
 
 M.ModifyInstanceCapacityReservationAttributesOutput = {
     type = "structure",
+    id = "ModifyInstanceCapacityReservationAttributesOutput",
     members = {
         Return = {
             type = "boolean",
@@ -60226,6 +62306,7 @@ M.ModifyInstanceCapacityReservationAttributesOutput = {
 
 M.ModifyInstanceConnectEndpointInput = {
     type = "structure",
+    id = "ModifyInstanceConnectEndpointInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60254,6 +62335,7 @@ M.ModifyInstanceConnectEndpointInput = {
 
 M.ModifyInstanceConnectEndpointOutput = {
     type = "structure",
+    id = "ModifyInstanceConnectEndpointOutput",
     members = {
         Return = {
             type = "boolean",
@@ -60266,6 +62348,7 @@ M.ModifyInstanceConnectEndpointOutput = {
 
 M.ModifyInstanceCpuOptionsInput = {
     type = "structure",
+    id = "ModifyInstanceCpuOptionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -60290,6 +62373,7 @@ M.ModifyInstanceCpuOptionsInput = {
 
 M.ModifyInstanceCpuOptionsOutput = {
     type = "structure",
+    id = "ModifyInstanceCpuOptionsOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -60320,6 +62404,7 @@ M.ModifyInstanceCpuOptionsOutput = {
 
 M.InstanceCreditSpecificationRequest = {
     type = "structure",
+    id = "InstanceCreditSpecificationRequest",
     members = {
         InstanceId = {
             type = "string",
@@ -60335,6 +62420,7 @@ M.InstanceCreditSpecificationRequest = {
 
 M.ModifyInstanceCreditSpecificationInput = {
     type = "structure",
+    id = "ModifyInstanceCreditSpecificationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60355,6 +62441,7 @@ M.ModifyInstanceCreditSpecificationInput = {
 
 M.SuccessfulInstanceCreditSpecificationItem = {
     type = "structure",
+    id = "SuccessfulInstanceCreditSpecificationItem",
     members = {
         InstanceId = {
             type = "string",
@@ -60374,6 +62461,7 @@ M.UnsuccessfulInstanceCreditSpecificationErrorCode = {
 
 M.UnsuccessfulInstanceCreditSpecificationItemError = {
     type = "structure",
+    id = "UnsuccessfulInstanceCreditSpecificationItemError",
     members = {
         Code = {
             type = "string",
@@ -60392,6 +62480,7 @@ M.UnsuccessfulInstanceCreditSpecificationItemError = {
 
 M.UnsuccessfulInstanceCreditSpecificationItem = {
     type = "structure",
+    id = "UnsuccessfulInstanceCreditSpecificationItem",
     members = {
         InstanceId = {
             type = "string",
@@ -60407,6 +62496,7 @@ M.UnsuccessfulInstanceCreditSpecificationItem = {
 
 M.ModifyInstanceCreditSpecificationOutput = {
     type = "structure",
+    id = "ModifyInstanceCreditSpecificationOutput",
     members = {
         SuccessfulInstanceCreditSpecifications = {
             type = "list",
@@ -60427,6 +62517,7 @@ M.ModifyInstanceCreditSpecificationOutput = {
 
 M.ModifyInstanceEventStartTimeInput = {
     type = "structure",
+    id = "ModifyInstanceEventStartTimeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60454,6 +62545,7 @@ M.ModifyInstanceEventStartTimeInput = {
 
 M.ModifyInstanceEventStartTimeOutput = {
     type = "structure",
+    id = "ModifyInstanceEventStartTimeOutput",
     members = {
         Event = setmetatable({ traits = {
             xml_name = "event",
@@ -60463,6 +62555,7 @@ M.ModifyInstanceEventStartTimeOutput = {
 
 M.ModifyInstanceEventWindowInput = {
     type = "structure",
+    id = "ModifyInstanceEventWindowInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60491,6 +62584,7 @@ M.ModifyInstanceEventWindowInput = {
 
 M.ModifyInstanceEventWindowOutput = {
     type = "structure",
+    id = "ModifyInstanceEventWindowOutput",
     members = {
         InstanceEventWindow = setmetatable({ traits = {
             xml_name = "instanceEventWindow",
@@ -60500,6 +62594,7 @@ M.ModifyInstanceEventWindowOutput = {
 
 M.ModifyInstanceMaintenanceOptionsInput = {
     type = "structure",
+    id = "ModifyInstanceMaintenanceOptionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -60521,6 +62616,7 @@ M.ModifyInstanceMaintenanceOptionsInput = {
 
 M.ModifyInstanceMaintenanceOptionsOutput = {
     type = "structure",
+    id = "ModifyInstanceMaintenanceOptionsOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -60569,6 +62665,7 @@ M.DefaultInstanceMetadataTagsState = {
 
 M.ModifyInstanceMetadataDefaultsInput = {
     type = "structure",
+    id = "ModifyInstanceMetadataDefaultsInput",
     members = {
         HttpTokens = {
             type = "string",
@@ -60593,6 +62690,7 @@ M.ModifyInstanceMetadataDefaultsInput = {
 
 M.ModifyInstanceMetadataDefaultsOutput = {
     type = "structure",
+    id = "ModifyInstanceMetadataDefaultsOutput",
     members = {
         Return = {
             type = "boolean",
@@ -60605,6 +62703,7 @@ M.ModifyInstanceMetadataDefaultsOutput = {
 
 M.ModifyInstanceMetadataOptionsInput = {
     type = "structure",
+    id = "ModifyInstanceMetadataOptionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -60635,6 +62734,7 @@ M.ModifyInstanceMetadataOptionsInput = {
 
 M.ModifyInstanceMetadataOptionsOutput = {
     type = "structure",
+    id = "ModifyInstanceMetadataOptionsOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -60650,6 +62750,7 @@ M.ModifyInstanceMetadataOptionsOutput = {
 
 M.ModifyInstanceNetworkPerformanceOptionsInput = {
     type = "structure",
+    id = "ModifyInstanceNetworkPerformanceOptionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -60671,6 +62772,7 @@ M.ModifyInstanceNetworkPerformanceOptionsInput = {
 
 M.ModifyInstanceNetworkPerformanceOptionsOutput = {
     type = "structure",
+    id = "ModifyInstanceNetworkPerformanceOptionsOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -60695,6 +62797,7 @@ M.HostTenancy = {
 
 M.ModifyInstancePlacementInput = {
     type = "structure",
+    id = "ModifyInstancePlacementInput",
     members = {
         GroupName = {
             type = "string",
@@ -60738,6 +62841,7 @@ M.ModifyInstancePlacementInput = {
 
 M.ModifyInstancePlacementOutput = {
     type = "structure",
+    id = "ModifyInstancePlacementOutput",
     members = {
         Return = {
             type = "boolean",
@@ -60750,6 +62854,7 @@ M.ModifyInstancePlacementOutput = {
 
 M.RemoveIpamOperatingRegion = {
     type = "structure",
+    id = "RemoveIpamOperatingRegion",
     members = {
         RegionName = {
             type = "string",
@@ -60759,6 +62864,7 @@ M.RemoveIpamOperatingRegion = {
 
 M.ModifyIpamInput = {
     type = "structure",
+    id = "ModifyIpamInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60800,6 +62906,7 @@ M.ModifyIpamInput = {
 
 M.ModifyIpamOutput = {
     type = "structure",
+    id = "ModifyIpamOutput",
     members = {
         Ipam = setmetatable({ traits = {
             xml_name = "ipam",
@@ -60809,6 +62916,7 @@ M.ModifyIpamOutput = {
 
 M.IpamPolicyAllocationRuleRequest = {
     type = "structure",
+    id = "IpamPolicyAllocationRuleRequest",
     members = {
         SourceIpamPoolId = {
             type = "string",
@@ -60818,6 +62926,7 @@ M.IpamPolicyAllocationRuleRequest = {
 
 M.ModifyIpamPolicyAllocationRulesInput = {
     type = "structure",
+    id = "ModifyIpamPolicyAllocationRulesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60852,6 +62961,7 @@ M.ModifyIpamPolicyAllocationRulesInput = {
 
 M.ModifyIpamPolicyAllocationRulesOutput = {
     type = "structure",
+    id = "ModifyIpamPolicyAllocationRulesOutput",
     members = {
         IpamPolicyDocument = setmetatable({ traits = {
             xml_name = "ipamPolicyDocument",
@@ -60861,6 +62971,7 @@ M.ModifyIpamPolicyAllocationRulesOutput = {
 
 M.ModifyIpamPoolInput = {
     type = "structure",
+    id = "ModifyIpamPoolInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60908,6 +63019,7 @@ M.ModifyIpamPoolInput = {
 
 M.ModifyIpamPoolOutput = {
     type = "structure",
+    id = "ModifyIpamPoolOutput",
     members = {
         IpamPool = setmetatable({ traits = {
             xml_name = "ipamPool",
@@ -60917,6 +63029,7 @@ M.ModifyIpamPoolOutput = {
 
 M.ModifyIpamPrefixListResolverInput = {
     type = "structure",
+    id = "ModifyIpamPrefixListResolverInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60942,6 +63055,7 @@ M.ModifyIpamPrefixListResolverInput = {
 
 M.ModifyIpamPrefixListResolverOutput = {
     type = "structure",
+    id = "ModifyIpamPrefixListResolverOutput",
     members = {
         IpamPrefixListResolver = setmetatable({ traits = {
             xml_name = "ipamPrefixListResolver",
@@ -60951,6 +63065,7 @@ M.ModifyIpamPrefixListResolverOutput = {
 
 M.ModifyIpamPrefixListResolverTargetInput = {
     type = "structure",
+    id = "ModifyIpamPrefixListResolverTargetInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -60978,6 +63093,7 @@ M.ModifyIpamPrefixListResolverTargetInput = {
 
 M.ModifyIpamPrefixListResolverTargetOutput = {
     type = "structure",
+    id = "ModifyIpamPrefixListResolverTargetOutput",
     members = {
         IpamPrefixListResolverTarget = setmetatable({ traits = {
             xml_name = "ipamPrefixListResolverTarget",
@@ -60987,6 +63103,7 @@ M.ModifyIpamPrefixListResolverTargetOutput = {
 
 M.ModifyIpamResourceCidrInput = {
     type = "structure",
+    id = "ModifyIpamResourceCidrInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -61029,6 +63146,7 @@ M.ModifyIpamResourceCidrInput = {
 
 M.ModifyIpamResourceCidrOutput = {
     type = "structure",
+    id = "ModifyIpamResourceCidrOutput",
     members = {
         IpamResourceCidr = setmetatable({ traits = {
             xml_name = "ipamResourceCidr",
@@ -61038,6 +63156,7 @@ M.ModifyIpamResourceCidrOutput = {
 
 M.RemoveIpamOrganizationalUnitExclusion = {
     type = "structure",
+    id = "RemoveIpamOrganizationalUnitExclusion",
     members = {
         OrganizationsEntityPath = {
             type = "string",
@@ -61047,6 +63166,7 @@ M.RemoveIpamOrganizationalUnitExclusion = {
 
 M.ModifyIpamResourceDiscoveryInput = {
     type = "structure",
+    id = "ModifyIpamResourceDiscoveryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -61093,6 +63213,7 @@ M.ModifyIpamResourceDiscoveryInput = {
 
 M.ModifyIpamResourceDiscoveryOutput = {
     type = "structure",
+    id = "ModifyIpamResourceDiscoveryOutput",
     members = {
         IpamResourceDiscovery = setmetatable({ traits = {
             xml_name = "ipamResourceDiscovery",
@@ -61102,6 +63223,7 @@ M.ModifyIpamResourceDiscoveryOutput = {
 
 M.ModifyIpamScopeInput = {
     type = "structure",
+    id = "ModifyIpamScopeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -61124,6 +63246,7 @@ M.ModifyIpamScopeInput = {
 
 M.ModifyIpamScopeOutput = {
     type = "structure",
+    id = "ModifyIpamScopeOutput",
     members = {
         IpamScope = setmetatable({ traits = {
             xml_name = "ipamScope",
@@ -61133,6 +63256,7 @@ M.ModifyIpamScopeOutput = {
 
 M.ModifyLaunchTemplateInput = {
     type = "structure",
+    id = "ModifyLaunchTemplateInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -61160,6 +63284,7 @@ M.ModifyLaunchTemplateInput = {
 
 M.ModifyLaunchTemplateOutput = {
     type = "structure",
+    id = "ModifyLaunchTemplateOutput",
     members = {
         LaunchTemplate = setmetatable({ traits = {
             xml_name = "launchTemplate",
@@ -61169,6 +63294,7 @@ M.ModifyLaunchTemplateOutput = {
 
 M.ModifyLocalGatewayRouteInput = {
     type = "structure",
+    id = "ModifyLocalGatewayRouteInput",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -61196,6 +63322,7 @@ M.ModifyLocalGatewayRouteInput = {
 
 M.ModifyLocalGatewayRouteOutput = {
     type = "structure",
+    id = "ModifyLocalGatewayRouteOutput",
     members = {
         Route = setmetatable({ traits = {
             xml_name = "route",
@@ -61205,6 +63332,7 @@ M.ModifyLocalGatewayRouteOutput = {
 
 M.RemovePrefixListEntry = {
     type = "structure",
+    id = "RemovePrefixListEntry",
     members = {
         Cidr = {
             type = "string",
@@ -61217,6 +63345,7 @@ M.RemovePrefixListEntry = {
 
 M.ModifyManagedPrefixListInput = {
     type = "structure",
+    id = "ModifyManagedPrefixListInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -61258,6 +63387,7 @@ M.ModifyManagedPrefixListInput = {
 
 M.ModifyManagedPrefixListOutput = {
     type = "structure",
+    id = "ModifyManagedPrefixListOutput",
     members = {
         PrefixList = setmetatable({ traits = {
             xml_name = "prefixList",
@@ -61267,6 +63397,7 @@ M.ModifyManagedPrefixListOutput = {
 
 M.ModifyManagedResourceVisibilityInput = {
     type = "structure",
+    id = "ModifyManagedResourceVisibilityInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -61279,6 +63410,7 @@ M.ModifyManagedResourceVisibilityInput = {
 
 M.ModifyManagedResourceVisibilityOutput = {
     type = "structure",
+    id = "ModifyManagedResourceVisibilityOutput",
     members = {
         Visibility = setmetatable({ traits = {
             xml_name = "visibility",
@@ -61288,6 +63420,7 @@ M.ModifyManagedResourceVisibilityOutput = {
 
 M.NetworkInterfaceAttachmentChanges = {
     type = "structure",
+    id = "NetworkInterfaceAttachmentChanges",
     members = {
         DefaultEnaQueueCount = {
             type = "boolean",
@@ -61312,6 +63445,7 @@ M.NetworkInterfaceAttachmentChanges = {
 
 M.ModifyNetworkInterfaceAttributeInput = {
     type = "structure",
+    id = "ModifyNetworkInterfaceAttributeInput",
     members = {
         EnaSrdSpecification = M.EnaSrdSpecification,
         EnablePrimaryIpv6 = {
@@ -61362,10 +63496,12 @@ M.ModifyNetworkInterfaceAttributeInput = {
 
 M.ModifyNetworkInterfaceAttributeOutput = {
     type = "structure",
+    id = "ModifyNetworkInterfaceAttributeOutput",
 }
 
 M.ModifyPrivateDnsNameOptionsInput = {
     type = "structure",
+    id = "ModifyPrivateDnsNameOptionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -61390,6 +63526,7 @@ M.ModifyPrivateDnsNameOptionsInput = {
 
 M.ModifyPrivateDnsNameOptionsOutput = {
     type = "structure",
+    id = "ModifyPrivateDnsNameOptionsOutput",
     members = {
         Return = {
             type = "boolean",
@@ -61408,6 +63545,7 @@ M.PublicIpDnsOption = {
 
 M.ModifyPublicIpDnsNameOptionsInput = {
     type = "structure",
+    id = "ModifyPublicIpDnsNameOptionsInput",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -61429,6 +63567,7 @@ M.ModifyPublicIpDnsNameOptionsInput = {
 
 M.ModifyPublicIpDnsNameOptionsOutput = {
     type = "structure",
+    id = "ModifyPublicIpDnsNameOptionsOutput",
     members = {
         Successful = {
             type = "boolean",
@@ -61441,6 +63580,7 @@ M.ModifyPublicIpDnsNameOptionsOutput = {
 
 M.ModifyReservedInstancesInput = {
     type = "structure",
+    id = "ModifyReservedInstancesInput",
     members = {
         ReservedInstancesIds = {
             type = "list",
@@ -61469,6 +63609,7 @@ M.ModifyReservedInstancesInput = {
 
 M.ModifyReservedInstancesOutput = {
     type = "structure",
+    id = "ModifyReservedInstancesOutput",
     members = {
         ReservedInstancesModificationId = {
             type = "string",
@@ -61481,6 +63622,7 @@ M.ModifyReservedInstancesOutput = {
 
 M.ModifyRouteServerInput = {
     type = "structure",
+    id = "ModifyRouteServerInput",
     members = {
         RouteServerId = {
             type = "string",
@@ -61505,6 +63647,7 @@ M.ModifyRouteServerInput = {
 
 M.ModifyRouteServerOutput = {
     type = "structure",
+    id = "ModifyRouteServerOutput",
     members = {
         RouteServer = setmetatable({ traits = {
             xml_name = "routeServer",
@@ -61514,6 +63657,7 @@ M.ModifyRouteServerOutput = {
 
 M.SecurityGroupRuleRequest = {
     type = "structure",
+    id = "SecurityGroupRuleRequest",
     members = {
         IpProtocol = {
             type = "string",
@@ -61544,6 +63688,7 @@ M.SecurityGroupRuleRequest = {
 
 M.SecurityGroupRuleUpdate = {
     type = "structure",
+    id = "SecurityGroupRuleUpdate",
     members = {
         SecurityGroupRuleId = {
             type = "string",
@@ -61557,6 +63702,7 @@ M.SecurityGroupRuleUpdate = {
 
 M.ModifySecurityGroupRulesInput = {
     type = "structure",
+    id = "ModifySecurityGroupRulesInput",
     members = {
         GroupId = {
             type = "string",
@@ -61580,6 +63726,7 @@ M.ModifySecurityGroupRulesInput = {
 
 M.ModifySecurityGroupRulesOutput = {
     type = "structure",
+    id = "ModifySecurityGroupRulesOutput",
     members = {
         Return = {
             type = "boolean",
@@ -61592,6 +63739,7 @@ M.ModifySecurityGroupRulesOutput = {
 
 M.CreateVolumePermissionModifications = {
     type = "structure",
+    id = "CreateVolumePermissionModifications",
     members = {
         Add = {
             type = "list",
@@ -61606,6 +63754,7 @@ M.CreateVolumePermissionModifications = {
 
 M.ModifySnapshotAttributeInput = {
     type = "structure",
+    id = "ModifySnapshotAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -61645,6 +63794,7 @@ M.ModifySnapshotAttributeInput = {
 
 M.ModifySnapshotAttributeOutput = {
     type = "structure",
+    id = "ModifySnapshotAttributeOutput",
 }
 
 M.TargetStorageTier = {
@@ -61653,6 +63803,7 @@ M.TargetStorageTier = {
 
 M.ModifySnapshotTierInput = {
     type = "structure",
+    id = "ModifySnapshotTierInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -61671,6 +63822,7 @@ M.ModifySnapshotTierInput = {
 
 M.ModifySnapshotTierOutput = {
     type = "structure",
+    id = "ModifySnapshotTierOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -61689,6 +63841,7 @@ M.ModifySnapshotTierOutput = {
 
 M.ModifySpotFleetRequestInput = {
     type = "structure",
+    id = "ModifySpotFleetRequestInput",
     members = {
         LaunchTemplateConfigs = {
             type = "list",
@@ -61727,6 +63880,7 @@ M.ModifySpotFleetRequestInput = {
 
 M.ModifySpotFleetRequestOutput = {
     type = "structure",
+    id = "ModifySpotFleetRequestOutput",
     members = {
         Return = {
             type = "boolean",
@@ -61739,6 +63893,7 @@ M.ModifySpotFleetRequestOutput = {
 
 M.ModifySubnetAttributeInput = {
     type = "structure",
+    id = "ModifySubnetAttributeInput",
     members = {
         AssignIpv6AddressOnCreation = M.AttributeBooleanValue,
         MapPublicIpOnLaunch = M.AttributeBooleanValue,
@@ -61768,10 +63923,12 @@ M.ModifySubnetAttributeInput = {
 
 M.ModifySubnetAttributeOutput = {
     type = "structure",
+    id = "ModifySubnetAttributeOutput",
 }
 
 M.ModifyTrafficMirrorFilterNetworkServicesInput = {
     type = "structure",
+    id = "ModifyTrafficMirrorFilterNetworkServicesInput",
     members = {
         TrafficMirrorFilterId = {
             type = "string",
@@ -61801,6 +63958,7 @@ M.ModifyTrafficMirrorFilterNetworkServicesInput = {
 
 M.ModifyTrafficMirrorFilterNetworkServicesOutput = {
     type = "structure",
+    id = "ModifyTrafficMirrorFilterNetworkServicesOutput",
     members = {
         TrafficMirrorFilter = setmetatable({ traits = {
             xml_name = "trafficMirrorFilter",
@@ -61817,6 +63975,7 @@ M.TrafficMirrorFilterRuleField = {
 
 M.ModifyTrafficMirrorFilterRuleInput = {
     type = "structure",
+    id = "ModifyTrafficMirrorFilterRuleInput",
     members = {
         TrafficMirrorFilterRuleId = {
             type = "string",
@@ -61862,6 +64021,7 @@ M.ModifyTrafficMirrorFilterRuleInput = {
 
 M.ModifyTrafficMirrorFilterRuleOutput = {
     type = "structure",
+    id = "ModifyTrafficMirrorFilterRuleOutput",
     members = {
         TrafficMirrorFilterRule = setmetatable({ traits = {
             xml_name = "trafficMirrorFilterRule",
@@ -61877,6 +64037,7 @@ M.TrafficMirrorSessionField = {
 
 M.ModifyTrafficMirrorSessionInput = {
     type = "structure",
+    id = "ModifyTrafficMirrorSessionInput",
     members = {
         TrafficMirrorSessionId = {
             type = "string",
@@ -61917,6 +64078,7 @@ M.ModifyTrafficMirrorSessionInput = {
 
 M.ModifyTrafficMirrorSessionOutput = {
     type = "structure",
+    id = "ModifyTrafficMirrorSessionOutput",
     members = {
         TrafficMirrorSession = setmetatable({ traits = {
             xml_name = "trafficMirrorSession",
@@ -61931,6 +64093,7 @@ M.EncryptionSupportOptionValue = {
 
 M.ModifyTransitGatewayOptions = {
     type = "structure",
+    id = "ModifyTransitGatewayOptions",
     members = {
         AddTransitGatewayCidrBlocks = {
             type = "list",
@@ -61975,6 +64138,7 @@ M.ModifyTransitGatewayOptions = {
 
 M.ModifyTransitGatewayInput = {
     type = "structure",
+    id = "ModifyTransitGatewayInput",
     members = {
         TransitGatewayId = {
             type = "string",
@@ -61994,6 +64158,7 @@ M.ModifyTransitGatewayInput = {
 
 M.ModifyTransitGatewayOutput = {
     type = "structure",
+    id = "ModifyTransitGatewayOutput",
     members = {
         TransitGateway = setmetatable({ traits = {
             xml_name = "transitGateway",
@@ -62003,6 +64168,7 @@ M.ModifyTransitGatewayOutput = {
 
 M.ModifyTransitGatewayMeteringPolicyInput = {
     type = "structure",
+    id = "ModifyTransitGatewayMeteringPolicyInput",
     members = {
         TransitGatewayMeteringPolicyId = {
             type = "string",
@@ -62032,6 +64198,7 @@ M.ModifyTransitGatewayMeteringPolicyInput = {
 
 M.ModifyTransitGatewayMeteringPolicyOutput = {
     type = "structure",
+    id = "ModifyTransitGatewayMeteringPolicyOutput",
     members = {
         TransitGatewayMeteringPolicy = setmetatable({ traits = {
             xml_name = "transitGatewayMeteringPolicy",
@@ -62041,6 +64208,7 @@ M.ModifyTransitGatewayMeteringPolicyOutput = {
 
 M.ModifyTransitGatewayPrefixListReferenceInput = {
     type = "structure",
+    id = "ModifyTransitGatewayPrefixListReferenceInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -62068,6 +64236,7 @@ M.ModifyTransitGatewayPrefixListReferenceInput = {
 
 M.ModifyTransitGatewayPrefixListReferenceOutput = {
     type = "structure",
+    id = "ModifyTransitGatewayPrefixListReferenceOutput",
     members = {
         TransitGatewayPrefixListReference = setmetatable({ traits = {
             xml_name = "transitGatewayPrefixListReference",
@@ -62077,6 +64246,7 @@ M.ModifyTransitGatewayPrefixListReferenceOutput = {
 
 M.ModifyTransitGatewayVpcAttachmentRequestOptions = {
     type = "structure",
+    id = "ModifyTransitGatewayVpcAttachmentRequestOptions",
     members = {
         DnsSupport = {
             type = "string",
@@ -62095,6 +64265,7 @@ M.ModifyTransitGatewayVpcAttachmentRequestOptions = {
 
 M.ModifyTransitGatewayVpcAttachmentInput = {
     type = "structure",
+    id = "ModifyTransitGatewayVpcAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -62119,6 +64290,7 @@ M.ModifyTransitGatewayVpcAttachmentInput = {
 
 M.ModifyTransitGatewayVpcAttachmentOutput = {
     type = "structure",
+    id = "ModifyTransitGatewayVpcAttachmentOutput",
     members = {
         TransitGatewayVpcAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayVpcAttachment",
@@ -62128,6 +64300,7 @@ M.ModifyTransitGatewayVpcAttachmentOutput = {
 
 M.ModifyVerifiedAccessEndpointPortRange = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -62140,6 +64313,7 @@ M.ModifyVerifiedAccessEndpointPortRange = {
 
 M.ModifyVerifiedAccessEndpointCidrOptions = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointCidrOptions",
     members = {
         PortRanges = {
             type = "list",
@@ -62153,6 +64327,7 @@ M.ModifyVerifiedAccessEndpointCidrOptions = {
 
 M.ModifyVerifiedAccessEndpointLoadBalancerOptions = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointLoadBalancerOptions",
     members = {
         SubnetIds = {
             type = "list",
@@ -62179,6 +64354,7 @@ M.ModifyVerifiedAccessEndpointLoadBalancerOptions = {
 
 M.ModifyVerifiedAccessEndpointEniOptions = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointEniOptions",
     members = {
         Protocol = {
             type = "string",
@@ -62198,6 +64374,7 @@ M.ModifyVerifiedAccessEndpointEniOptions = {
 
 M.ModifyVerifiedAccessEndpointRdsOptions = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointRdsOptions",
     members = {
         SubnetIds = {
             type = "list",
@@ -62217,6 +64394,7 @@ M.ModifyVerifiedAccessEndpointRdsOptions = {
 
 M.ModifyVerifiedAccessEndpointInput = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointInput",
     members = {
         VerifiedAccessEndpointId = {
             type = "string",
@@ -62248,6 +64426,7 @@ M.ModifyVerifiedAccessEndpointInput = {
 
 M.ModifyVerifiedAccessEndpointOutput = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointOutput",
     members = {
         VerifiedAccessEndpoint = setmetatable({ traits = {
             xml_name = "verifiedAccessEndpoint",
@@ -62257,6 +64436,7 @@ M.ModifyVerifiedAccessEndpointOutput = {
 
 M.ModifyVerifiedAccessEndpointPolicyInput = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointPolicyInput",
     members = {
         VerifiedAccessEndpointId = {
             type = "string",
@@ -62285,6 +64465,7 @@ M.ModifyVerifiedAccessEndpointPolicyInput = {
 
 M.ModifyVerifiedAccessEndpointPolicyOutput = {
     type = "structure",
+    id = "ModifyVerifiedAccessEndpointPolicyOutput",
     members = {
         PolicyEnabled = {
             type = "boolean",
@@ -62306,6 +64487,7 @@ M.ModifyVerifiedAccessEndpointPolicyOutput = {
 
 M.ModifyVerifiedAccessGroupInput = {
     type = "structure",
+    id = "ModifyVerifiedAccessGroupInput",
     members = {
         VerifiedAccessGroupId = {
             type = "string",
@@ -62333,6 +64515,7 @@ M.ModifyVerifiedAccessGroupInput = {
 
 M.ModifyVerifiedAccessGroupOutput = {
     type = "structure",
+    id = "ModifyVerifiedAccessGroupOutput",
     members = {
         VerifiedAccessGroup = setmetatable({ traits = {
             xml_name = "verifiedAccessGroup",
@@ -62342,6 +64525,7 @@ M.ModifyVerifiedAccessGroupOutput = {
 
 M.ModifyVerifiedAccessGroupPolicyInput = {
     type = "structure",
+    id = "ModifyVerifiedAccessGroupPolicyInput",
     members = {
         VerifiedAccessGroupId = {
             type = "string",
@@ -62370,6 +64554,7 @@ M.ModifyVerifiedAccessGroupPolicyInput = {
 
 M.ModifyVerifiedAccessGroupPolicyOutput = {
     type = "structure",
+    id = "ModifyVerifiedAccessGroupPolicyOutput",
     members = {
         PolicyEnabled = {
             type = "boolean",
@@ -62391,6 +64576,7 @@ M.ModifyVerifiedAccessGroupPolicyOutput = {
 
 M.ModifyVerifiedAccessInstanceInput = {
     type = "structure",
+    id = "ModifyVerifiedAccessInstanceInput",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -62418,6 +64604,7 @@ M.ModifyVerifiedAccessInstanceInput = {
 
 M.ModifyVerifiedAccessInstanceOutput = {
     type = "structure",
+    id = "ModifyVerifiedAccessInstanceOutput",
     members = {
         VerifiedAccessInstance = setmetatable({ traits = {
             xml_name = "verifiedAccessInstance",
@@ -62427,6 +64614,7 @@ M.ModifyVerifiedAccessInstanceOutput = {
 
 M.VerifiedAccessLogCloudWatchLogsDestinationOptions = {
     type = "structure",
+    id = "VerifiedAccessLogCloudWatchLogsDestinationOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -62442,6 +64630,7 @@ M.VerifiedAccessLogCloudWatchLogsDestinationOptions = {
 
 M.VerifiedAccessLogKinesisDataFirehoseDestinationOptions = {
     type = "structure",
+    id = "VerifiedAccessLogKinesisDataFirehoseDestinationOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -62457,6 +64646,7 @@ M.VerifiedAccessLogKinesisDataFirehoseDestinationOptions = {
 
 M.VerifiedAccessLogS3DestinationOptions = {
     type = "structure",
+    id = "VerifiedAccessLogS3DestinationOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -62478,6 +64668,7 @@ M.VerifiedAccessLogS3DestinationOptions = {
 
 M.VerifiedAccessLogOptions = {
     type = "structure",
+    id = "VerifiedAccessLogOptions",
     members = {
         S3 = M.VerifiedAccessLogS3DestinationOptions,
         CloudWatchLogs = M.VerifiedAccessLogCloudWatchLogsDestinationOptions,
@@ -62493,6 +64684,7 @@ M.VerifiedAccessLogOptions = {
 
 M.ModifyVerifiedAccessInstanceLoggingConfigurationInput = {
     type = "structure",
+    id = "ModifyVerifiedAccessInstanceLoggingConfigurationInput",
     members = {
         VerifiedAccessInstanceId = {
             type = "string",
@@ -62517,6 +64709,7 @@ M.ModifyVerifiedAccessInstanceLoggingConfigurationInput = {
 
 M.ModifyVerifiedAccessInstanceLoggingConfigurationOutput = {
     type = "structure",
+    id = "ModifyVerifiedAccessInstanceLoggingConfigurationOutput",
     members = {
         LoggingConfiguration = setmetatable({ traits = {
             xml_name = "loggingConfiguration",
@@ -62526,6 +64719,7 @@ M.ModifyVerifiedAccessInstanceLoggingConfigurationOutput = {
 
 M.ModifyVerifiedAccessTrustProviderDeviceOptions = {
     type = "structure",
+    id = "ModifyVerifiedAccessTrustProviderDeviceOptions",
     members = {
         PublicSigningKeyUrl = {
             type = "string",
@@ -62535,6 +64729,7 @@ M.ModifyVerifiedAccessTrustProviderDeviceOptions = {
 
 M.ModifyVerifiedAccessNativeApplicationOidcOptions = {
     type = "structure",
+    id = "ModifyVerifiedAccessNativeApplicationOidcOptions",
     members = {
         PublicSigningKeyEndpoint = {
             type = "string",
@@ -62565,6 +64760,7 @@ M.ModifyVerifiedAccessNativeApplicationOidcOptions = {
 
 M.ModifyVerifiedAccessTrustProviderOidcOptions = {
     type = "structure",
+    id = "ModifyVerifiedAccessTrustProviderOidcOptions",
     members = {
         Issuer = {
             type = "string",
@@ -62592,6 +64788,7 @@ M.ModifyVerifiedAccessTrustProviderOidcOptions = {
 
 M.ModifyVerifiedAccessTrustProviderInput = {
     type = "structure",
+    id = "ModifyVerifiedAccessTrustProviderInput",
     members = {
         VerifiedAccessTrustProviderId = {
             type = "string",
@@ -62620,6 +64817,7 @@ M.ModifyVerifiedAccessTrustProviderInput = {
 
 M.ModifyVerifiedAccessTrustProviderOutput = {
     type = "structure",
+    id = "ModifyVerifiedAccessTrustProviderOutput",
     members = {
         VerifiedAccessTrustProvider = setmetatable({ traits = {
             xml_name = "verifiedAccessTrustProvider",
@@ -62629,6 +64827,7 @@ M.ModifyVerifiedAccessTrustProviderOutput = {
 
 M.ModifyVolumeInput = {
     type = "structure",
+    id = "ModifyVolumeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -62659,6 +64858,7 @@ M.ModifyVolumeInput = {
 
 M.ModifyVolumeOutput = {
     type = "structure",
+    id = "ModifyVolumeOutput",
     members = {
         VolumeModification = setmetatable({ traits = {
             xml_name = "volumeModification",
@@ -62668,6 +64868,7 @@ M.ModifyVolumeOutput = {
 
 M.ModifyVolumeAttributeInput = {
     type = "structure",
+    id = "ModifyVolumeAttributeInput",
     members = {
         AutoEnableIO = M.AttributeBooleanValue,
         VolumeId = {
@@ -62687,10 +64888,12 @@ M.ModifyVolumeAttributeInput = {
 
 M.ModifyVolumeAttributeOutput = {
     type = "structure",
+    id = "ModifyVolumeAttributeOutput",
 }
 
 M.ModifyVpcAttributeInput = {
     type = "structure",
+    id = "ModifyVpcAttributeInput",
     members = {
         EnableDnsHostnames = M.AttributeBooleanValue,
         EnableDnsSupport = M.AttributeBooleanValue,
@@ -62707,10 +64910,12 @@ M.ModifyVpcAttributeInput = {
 
 M.ModifyVpcAttributeOutput = {
     type = "structure",
+    id = "ModifyVpcAttributeOutput",
 }
 
 M.ModifyVpcBlockPublicAccessExclusionInput = {
     type = "structure",
+    id = "ModifyVpcBlockPublicAccessExclusionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -62732,6 +64937,7 @@ M.ModifyVpcBlockPublicAccessExclusionInput = {
 
 M.ModifyVpcBlockPublicAccessExclusionOutput = {
     type = "structure",
+    id = "ModifyVpcBlockPublicAccessExclusionOutput",
     members = {
         VpcBlockPublicAccessExclusion = setmetatable({ traits = {
             xml_name = "vpcBlockPublicAccessExclusion",
@@ -62741,6 +64947,7 @@ M.ModifyVpcBlockPublicAccessExclusionOutput = {
 
 M.ModifyVpcBlockPublicAccessOptionsInput = {
     type = "structure",
+    id = "ModifyVpcBlockPublicAccessOptionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -62756,6 +64963,7 @@ M.ModifyVpcBlockPublicAccessOptionsInput = {
 
 M.ModifyVpcBlockPublicAccessOptionsOutput = {
     type = "structure",
+    id = "ModifyVpcBlockPublicAccessOptionsOutput",
     members = {
         VpcBlockPublicAccessOptions = setmetatable({ traits = {
             xml_name = "vpcBlockPublicAccessOptions",
@@ -62765,6 +64973,7 @@ M.ModifyVpcBlockPublicAccessOptionsOutput = {
 
 M.ModifyVpcEncryptionControlInput = {
     type = "structure",
+    id = "ModifyVpcEncryptionControlInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -62807,6 +65016,7 @@ M.ModifyVpcEncryptionControlInput = {
 
 M.ModifyVpcEncryptionControlOutput = {
     type = "structure",
+    id = "ModifyVpcEncryptionControlOutput",
     members = {
         VpcEncryptionControl = setmetatable({ traits = {
             xml_name = "vpcEncryptionControl",
@@ -62816,6 +65026,7 @@ M.ModifyVpcEncryptionControlOutput = {
 
 M.ModifyVpcEndpointInput = {
     type = "structure",
+    id = "ModifyVpcEndpointInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -62893,6 +65104,7 @@ M.ModifyVpcEndpointInput = {
 
 M.ModifyVpcEndpointOutput = {
     type = "structure",
+    id = "ModifyVpcEndpointOutput",
     members = {
         Return = {
             type = "boolean",
@@ -62905,6 +65117,7 @@ M.ModifyVpcEndpointOutput = {
 
 M.ModifyVpcEndpointConnectionNotificationInput = {
     type = "structure",
+    id = "ModifyVpcEndpointConnectionNotificationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -62927,6 +65140,7 @@ M.ModifyVpcEndpointConnectionNotificationInput = {
 
 M.ModifyVpcEndpointConnectionNotificationOutput = {
     type = "structure",
+    id = "ModifyVpcEndpointConnectionNotificationOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -62939,6 +65153,7 @@ M.ModifyVpcEndpointConnectionNotificationOutput = {
 
 M.ModifyVpcEndpointServiceConfigurationInput = {
     type = "structure",
+    id = "ModifyVpcEndpointServiceConfigurationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63019,6 +65234,7 @@ M.ModifyVpcEndpointServiceConfigurationInput = {
 
 M.ModifyVpcEndpointServiceConfigurationOutput = {
     type = "structure",
+    id = "ModifyVpcEndpointServiceConfigurationOutput",
     members = {
         Return = {
             type = "boolean",
@@ -63031,6 +65247,7 @@ M.ModifyVpcEndpointServiceConfigurationOutput = {
 
 M.ModifyVpcEndpointServicePayerResponsibilityInput = {
     type = "structure",
+    id = "ModifyVpcEndpointServicePayerResponsibilityInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63052,6 +65269,7 @@ M.ModifyVpcEndpointServicePayerResponsibilityInput = {
 
 M.ModifyVpcEndpointServicePayerResponsibilityOutput = {
     type = "structure",
+    id = "ModifyVpcEndpointServicePayerResponsibilityOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -63064,6 +65282,7 @@ M.ModifyVpcEndpointServicePayerResponsibilityOutput = {
 
 M.ModifyVpcEndpointServicePermissionsInput = {
     type = "structure",
+    id = "ModifyVpcEndpointServicePermissionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63087,6 +65306,7 @@ M.ModifyVpcEndpointServicePermissionsInput = {
 
 M.ModifyVpcEndpointServicePermissionsOutput = {
     type = "structure",
+    id = "ModifyVpcEndpointServicePermissionsOutput",
     members = {
         AddedPrincipals = {
             type = "list",
@@ -63106,6 +65326,7 @@ M.ModifyVpcEndpointServicePermissionsOutput = {
 
 M.PeeringConnectionOptionsRequest = {
     type = "structure",
+    id = "PeeringConnectionOptionsRequest",
     members = {
         AllowDnsResolutionFromRemoteVpc = {
             type = "boolean",
@@ -63121,6 +65342,7 @@ M.PeeringConnectionOptionsRequest = {
 
 M.ModifyVpcPeeringConnectionOptionsInput = {
     type = "structure",
+    id = "ModifyVpcPeeringConnectionOptionsInput",
     members = {
         AccepterPeeringConnectionOptions = M.PeeringConnectionOptionsRequest,
         DryRun = {
@@ -63138,6 +65360,7 @@ M.ModifyVpcPeeringConnectionOptionsInput = {
 
 M.PeeringConnectionOptions = {
     type = "structure",
+    id = "PeeringConnectionOptions",
     members = {
         AllowDnsResolutionFromRemoteVpc = {
             type = "boolean",
@@ -63162,6 +65385,7 @@ M.PeeringConnectionOptions = {
 
 M.ModifyVpcPeeringConnectionOptionsOutput = {
     type = "structure",
+    id = "ModifyVpcPeeringConnectionOptionsOutput",
     members = {
         AccepterPeeringConnectionOptions = setmetatable({ traits = {
             xml_name = "accepterPeeringConnectionOptions",
@@ -63178,6 +65402,7 @@ M.VpcTenancy = {
 
 M.ModifyVpcTenancyInput = {
     type = "structure",
+    id = "ModifyVpcTenancyInput",
     members = {
         VpcId = {
             type = "string",
@@ -63199,6 +65424,7 @@ M.ModifyVpcTenancyInput = {
 
 M.ModifyVpcTenancyOutput = {
     type = "structure",
+    id = "ModifyVpcTenancyOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -63211,6 +65437,7 @@ M.ModifyVpcTenancyOutput = {
 
 M.ModifyVpnConnectionInput = {
     type = "structure",
+    id = "ModifyVpnConnectionInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -63235,6 +65462,7 @@ M.ModifyVpnConnectionInput = {
 
 M.ModifyVpnConnectionOutput = {
     type = "structure",
+    id = "ModifyVpnConnectionOutput",
     members = {
         VpnConnection = setmetatable({ traits = {
             xml_name = "vpnConnection",
@@ -63244,6 +65472,7 @@ M.ModifyVpnConnectionOutput = {
 
 M.ModifyVpnConnectionOptionsInput = {
     type = "structure",
+    id = "ModifyVpnConnectionOptionsInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -63271,6 +65500,7 @@ M.ModifyVpnConnectionOptionsInput = {
 
 M.ModifyVpnConnectionOptionsOutput = {
     type = "structure",
+    id = "ModifyVpnConnectionOptionsOutput",
     members = {
         VpnConnection = setmetatable({ traits = {
             xml_name = "vpnConnection",
@@ -63280,6 +65510,7 @@ M.ModifyVpnConnectionOptionsOutput = {
 
 M.ModifyVpnTunnelCertificateInput = {
     type = "structure",
+    id = "ModifyVpnTunnelCertificateInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -63301,6 +65532,7 @@ M.ModifyVpnTunnelCertificateInput = {
 
 M.ModifyVpnTunnelCertificateOutput = {
     type = "structure",
+    id = "ModifyVpnTunnelCertificateOutput",
     members = {
         VpnConnection = setmetatable({ traits = {
             xml_name = "vpnConnection",
@@ -63310,6 +65542,7 @@ M.ModifyVpnTunnelCertificateOutput = {
 
 M.ModifyVpnTunnelOptionsSpecification = {
     type = "structure",
+    id = "ModifyVpnTunnelOptionsSpecification",
     members = {
         TunnelInsideCidr = {
             type = "string",
@@ -63402,6 +65635,7 @@ M.ModifyVpnTunnelOptionsSpecification = {
 
 M.ModifyVpnTunnelOptionsInput = {
     type = "structure",
+    id = "ModifyVpnTunnelOptionsInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -63432,6 +65666,7 @@ M.ModifyVpnTunnelOptionsInput = {
 
 M.ModifyVpnTunnelOptionsOutput = {
     type = "structure",
+    id = "ModifyVpnTunnelOptionsOutput",
     members = {
         VpnConnection = setmetatable({ traits = {
             xml_name = "vpnConnection",
@@ -63441,6 +65676,7 @@ M.ModifyVpnTunnelOptionsOutput = {
 
 M.MonitorInstancesInput = {
     type = "structure",
+    id = "MonitorInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -63461,6 +65697,7 @@ M.MonitorInstancesInput = {
 
 M.InstanceMonitoring = {
     type = "structure",
+    id = "InstanceMonitoring",
     members = {
         InstanceId = {
             type = "string",
@@ -63476,6 +65713,7 @@ M.InstanceMonitoring = {
 
 M.MonitorInstancesOutput = {
     type = "structure",
+    id = "MonitorInstancesOutput",
     members = {
         InstanceMonitorings = {
             type = "list",
@@ -63489,6 +65727,7 @@ M.MonitorInstancesOutput = {
 
 M.MoveAddressToVpcInput = {
     type = "structure",
+    id = "MoveAddressToVpcInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63514,6 +65753,7 @@ M.Status = {
 
 M.MoveAddressToVpcOutput = {
     type = "structure",
+    id = "MoveAddressToVpcOutput",
     members = {
         AllocationId = {
             type = "string",
@@ -63532,6 +65772,7 @@ M.MoveAddressToVpcOutput = {
 
 M.MoveByoipCidrToIpamInput = {
     type = "structure",
+    id = "MoveByoipCidrToIpamInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63559,6 +65800,7 @@ M.MoveByoipCidrToIpamInput = {
 
 M.MoveByoipCidrToIpamOutput = {
     type = "structure",
+    id = "MoveByoipCidrToIpamOutput",
     members = {
         ByoipCidr = setmetatable({ traits = {
             xml_name = "byoipCidr",
@@ -63568,6 +65810,7 @@ M.MoveByoipCidrToIpamOutput = {
 
 M.MoveCapacityReservationInstancesInput = {
     type = "structure",
+    id = "MoveCapacityReservationInstancesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63601,6 +65844,7 @@ M.MoveCapacityReservationInstancesInput = {
 
 M.MoveCapacityReservationInstancesOutput = {
     type = "structure",
+    id = "MoveCapacityReservationInstancesOutput",
     members = {
         SourceCapacityReservation = setmetatable({ traits = {
             xml_name = "sourceCapacityReservation",
@@ -63619,6 +65863,7 @@ M.MoveCapacityReservationInstancesOutput = {
 
 M.CidrAuthorizationContext = {
     type = "structure",
+    id = "CidrAuthorizationContext",
     members = {
         Message = {
             type = "string",
@@ -63637,6 +65882,7 @@ M.CidrAuthorizationContext = {
 
 M.ProvisionByoipCidrInput = {
     type = "structure",
+    id = "ProvisionByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -63672,6 +65918,7 @@ M.ProvisionByoipCidrInput = {
 
 M.ProvisionByoipCidrOutput = {
     type = "structure",
+    id = "ProvisionByoipCidrOutput",
     members = {
         ByoipCidr = setmetatable({ traits = {
             xml_name = "byoipCidr",
@@ -63681,6 +65928,7 @@ M.ProvisionByoipCidrOutput = {
 
 M.AsnAuthorizationContext = {
     type = "structure",
+    id = "AsnAuthorizationContext",
     members = {
         Message = {
             type = "string",
@@ -63699,6 +65947,7 @@ M.AsnAuthorizationContext = {
 
 M.ProvisionIpamByoasnInput = {
     type = "structure",
+    id = "ProvisionIpamByoasnInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63723,6 +65972,7 @@ M.ProvisionIpamByoasnInput = {
 
 M.ProvisionIpamByoasnOutput = {
     type = "structure",
+    id = "ProvisionIpamByoasnOutput",
     members = {
         Byoasn = setmetatable({ traits = {
             xml_name = "byoasn",
@@ -63732,6 +65982,7 @@ M.ProvisionIpamByoasnOutput = {
 
 M.IpamCidrAuthorizationContext = {
     type = "structure",
+    id = "IpamCidrAuthorizationContext",
     members = {
         Message = {
             type = "string",
@@ -63749,6 +66000,7 @@ M.VerificationMethod = {
 
 M.ProvisionIpamPoolCidrInput = {
     type = "structure",
+    id = "ProvisionIpamPoolCidrInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63783,6 +66035,7 @@ M.ProvisionIpamPoolCidrInput = {
 
 M.ProvisionIpamPoolCidrOutput = {
     type = "structure",
+    id = "ProvisionIpamPoolCidrOutput",
     members = {
         IpamPoolCidr = setmetatable({ traits = {
             xml_name = "ipamPoolCidr",
@@ -63792,6 +66045,7 @@ M.ProvisionIpamPoolCidrOutput = {
 
 M.ProvisionPublicIpv4PoolCidrInput = {
     type = "structure",
+    id = "ProvisionPublicIpv4PoolCidrInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63822,6 +66076,7 @@ M.ProvisionPublicIpv4PoolCidrInput = {
 
 M.ProvisionPublicIpv4PoolCidrOutput = {
     type = "structure",
+    id = "ProvisionPublicIpv4PoolCidrOutput",
     members = {
         PoolId = {
             type = "string",
@@ -63837,6 +66092,7 @@ M.ProvisionPublicIpv4PoolCidrOutput = {
 
 M.PurchaseCapacityBlockInput = {
     type = "structure",
+    id = "PurchaseCapacityBlockInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -63865,6 +66121,7 @@ M.PurchaseCapacityBlockInput = {
 
 M.PurchaseCapacityBlockOutput = {
     type = "structure",
+    id = "PurchaseCapacityBlockOutput",
     members = {
         CapacityReservation = setmetatable({ traits = {
             xml_name = "capacityReservation",
@@ -63881,6 +66138,7 @@ M.PurchaseCapacityBlockOutput = {
 
 M.PurchaseCapacityBlockExtensionInput = {
     type = "structure",
+    id = "PurchaseCapacityBlockExtensionInput",
     members = {
         CapacityBlockExtensionOfferingId = {
             type = "string",
@@ -63902,6 +66160,7 @@ M.PurchaseCapacityBlockExtensionInput = {
 
 M.PurchaseCapacityBlockExtensionOutput = {
     type = "structure",
+    id = "PurchaseCapacityBlockExtensionOutput",
     members = {
         CapacityBlockExtensions = {
             type = "list",
@@ -63915,6 +66174,7 @@ M.PurchaseCapacityBlockExtensionOutput = {
 
 M.PurchaseHostReservationInput = {
     type = "structure",
+    id = "PurchaseHostReservationInput",
     members = {
         ClientToken = {
             type = "string",
@@ -63950,6 +66210,7 @@ M.PurchaseHostReservationInput = {
 
 M.PurchaseHostReservationOutput = {
     type = "structure",
+    id = "PurchaseHostReservationOutput",
     members = {
         ClientToken = {
             type = "string",
@@ -63987,6 +66248,7 @@ M.PurchaseHostReservationOutput = {
 
 M.ReservedInstanceLimitPrice = {
     type = "structure",
+    id = "ReservedInstanceLimitPrice",
     members = {
         Amount = {
             type = "double",
@@ -64005,6 +66267,7 @@ M.ReservedInstanceLimitPrice = {
 
 M.PurchaseReservedInstancesOfferingInput = {
     type = "structure",
+    id = "PurchaseReservedInstancesOfferingInput",
     members = {
         InstanceCount = {
             type = "integer",
@@ -64035,6 +66298,7 @@ M.PurchaseReservedInstancesOfferingInput = {
 
 M.PurchaseReservedInstancesOfferingOutput = {
     type = "structure",
+    id = "PurchaseReservedInstancesOfferingOutput",
     members = {
         ReservedInstancesId = {
             type = "string",
@@ -64047,6 +66311,7 @@ M.PurchaseReservedInstancesOfferingOutput = {
 
 M.PurchaseRequest = {
     type = "structure",
+    id = "PurchaseRequest",
     members = {
         InstanceCount = {
             type = "integer",
@@ -64065,6 +66330,7 @@ M.PurchaseRequest = {
 
 M.PurchaseScheduledInstancesInput = {
     type = "structure",
+    id = "PurchaseScheduledInstancesInput",
     members = {
         ClientToken = {
             type = "string",
@@ -64088,6 +66354,7 @@ M.PurchaseScheduledInstancesInput = {
 
 M.PurchaseScheduledInstancesOutput = {
     type = "structure",
+    id = "PurchaseScheduledInstancesOutput",
     members = {
         ScheduledInstanceSet = {
             type = "list",
@@ -64101,6 +66368,7 @@ M.PurchaseScheduledInstancesOutput = {
 
 M.RebootInstancesInput = {
     type = "structure",
+    id = "RebootInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -64121,10 +66389,12 @@ M.RebootInstancesInput = {
 
 M.RebootInstancesOutput = {
     type = "structure",
+    id = "RebootInstancesOutput",
 }
 
 M.RegisterImageInput = {
     type = "structure",
+    id = "RegisterImageInput",
     members = {
         ImageLocation = {
             type = "string",
@@ -64228,6 +66498,7 @@ M.RegisterImageInput = {
 
 M.RegisterImageOutput = {
     type = "structure",
+    id = "RegisterImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -64240,6 +66511,7 @@ M.RegisterImageOutput = {
 
 M.RegisterInstanceTagAttributeRequest = {
     type = "structure",
+    id = "RegisterInstanceTagAttributeRequest",
     members = {
         IncludeAllTagsOfInstance = {
             type = "boolean",
@@ -64256,6 +66528,7 @@ M.RegisterInstanceTagAttributeRequest = {
 
 M.RegisterInstanceEventNotificationAttributesInput = {
     type = "structure",
+    id = "RegisterInstanceEventNotificationAttributesInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -64268,6 +66541,7 @@ M.RegisterInstanceEventNotificationAttributesInput = {
 
 M.RegisterInstanceEventNotificationAttributesOutput = {
     type = "structure",
+    id = "RegisterInstanceEventNotificationAttributesOutput",
     members = {
         InstanceTagAttribute = setmetatable({ traits = {
             xml_name = "instanceTagAttribute",
@@ -64277,6 +66551,7 @@ M.RegisterInstanceEventNotificationAttributesOutput = {
 
 M.RegisterTransitGatewayMulticastGroupMembersInput = {
     type = "structure",
+    id = "RegisterTransitGatewayMulticastGroupMembersInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -64302,6 +66577,7 @@ M.RegisterTransitGatewayMulticastGroupMembersInput = {
 
 M.TransitGatewayMulticastRegisteredGroupMembers = {
     type = "structure",
+    id = "TransitGatewayMulticastRegisteredGroupMembers",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -64327,6 +66603,7 @@ M.TransitGatewayMulticastRegisteredGroupMembers = {
 
 M.RegisterTransitGatewayMulticastGroupMembersOutput = {
     type = "structure",
+    id = "RegisterTransitGatewayMulticastGroupMembersOutput",
     members = {
         RegisteredMulticastGroupMembers = setmetatable({ traits = {
             xml_name = "registeredMulticastGroupMembers",
@@ -64336,6 +66613,7 @@ M.RegisterTransitGatewayMulticastGroupMembersOutput = {
 
 M.RegisterTransitGatewayMulticastGroupSourcesInput = {
     type = "structure",
+    id = "RegisterTransitGatewayMulticastGroupSourcesInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -64361,6 +66639,7 @@ M.RegisterTransitGatewayMulticastGroupSourcesInput = {
 
 M.TransitGatewayMulticastRegisteredGroupSources = {
     type = "structure",
+    id = "TransitGatewayMulticastRegisteredGroupSources",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -64386,6 +66665,7 @@ M.TransitGatewayMulticastRegisteredGroupSources = {
 
 M.RegisterTransitGatewayMulticastGroupSourcesOutput = {
     type = "structure",
+    id = "RegisterTransitGatewayMulticastGroupSourcesOutput",
     members = {
         RegisteredMulticastGroupSources = setmetatable({ traits = {
             xml_name = "registeredMulticastGroupSources",
@@ -64395,6 +66675,7 @@ M.RegisterTransitGatewayMulticastGroupSourcesOutput = {
 
 M.RejectCapacityReservationBillingOwnershipInput = {
     type = "structure",
+    id = "RejectCapacityReservationBillingOwnershipInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -64410,6 +66691,7 @@ M.RejectCapacityReservationBillingOwnershipInput = {
 
 M.RejectCapacityReservationBillingOwnershipOutput = {
     type = "structure",
+    id = "RejectCapacityReservationBillingOwnershipOutput",
     members = {
         Return = {
             type = "boolean",
@@ -64422,6 +66704,7 @@ M.RejectCapacityReservationBillingOwnershipOutput = {
 
 M.RejectTransitGatewayClientVpnAttachmentInput = {
     type = "structure",
+    id = "RejectTransitGatewayClientVpnAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -64437,6 +66720,7 @@ M.RejectTransitGatewayClientVpnAttachmentInput = {
 
 M.RejectTransitGatewayClientVpnAttachmentOutput = {
     type = "structure",
+    id = "RejectTransitGatewayClientVpnAttachmentOutput",
     members = {
         TransitGatewayClientVpnAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayClientVpnAttachment",
@@ -64446,6 +66730,7 @@ M.RejectTransitGatewayClientVpnAttachmentOutput = {
 
 M.RejectTransitGatewayMulticastDomainAssociationsInput = {
     type = "structure",
+    id = "RejectTransitGatewayMulticastDomainAssociationsInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -64465,6 +66750,7 @@ M.RejectTransitGatewayMulticastDomainAssociationsInput = {
 
 M.RejectTransitGatewayMulticastDomainAssociationsOutput = {
     type = "structure",
+    id = "RejectTransitGatewayMulticastDomainAssociationsOutput",
     members = {
         Associations = setmetatable({ traits = {
             xml_name = "associations",
@@ -64474,6 +66760,7 @@ M.RejectTransitGatewayMulticastDomainAssociationsOutput = {
 
 M.RejectTransitGatewayPeeringAttachmentInput = {
     type = "structure",
+    id = "RejectTransitGatewayPeeringAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -64489,6 +66776,7 @@ M.RejectTransitGatewayPeeringAttachmentInput = {
 
 M.RejectTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
+    id = "RejectTransitGatewayPeeringAttachmentOutput",
     members = {
         TransitGatewayPeeringAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayPeeringAttachment",
@@ -64498,6 +66786,7 @@ M.RejectTransitGatewayPeeringAttachmentOutput = {
 
 M.RejectTransitGatewayVpcAttachmentInput = {
     type = "structure",
+    id = "RejectTransitGatewayVpcAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -64513,6 +66802,7 @@ M.RejectTransitGatewayVpcAttachmentInput = {
 
 M.RejectTransitGatewayVpcAttachmentOutput = {
     type = "structure",
+    id = "RejectTransitGatewayVpcAttachmentOutput",
     members = {
         TransitGatewayVpcAttachment = setmetatable({ traits = {
             xml_name = "transitGatewayVpcAttachment",
@@ -64522,6 +66812,7 @@ M.RejectTransitGatewayVpcAttachmentOutput = {
 
 M.RejectVpcEndpointConnectionsInput = {
     type = "structure",
+    id = "RejectVpcEndpointConnectionsInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -64545,6 +66836,7 @@ M.RejectVpcEndpointConnectionsInput = {
 
 M.RejectVpcEndpointConnectionsOutput = {
     type = "structure",
+    id = "RejectVpcEndpointConnectionsOutput",
     members = {
         Unsuccessful = {
             type = "list",
@@ -64558,6 +66850,7 @@ M.RejectVpcEndpointConnectionsOutput = {
 
 M.RejectVpcPeeringConnectionInput = {
     type = "structure",
+    id = "RejectVpcPeeringConnectionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -64577,6 +66870,7 @@ M.RejectVpcPeeringConnectionInput = {
 
 M.RejectVpcPeeringConnectionOutput = {
     type = "structure",
+    id = "RejectVpcPeeringConnectionOutput",
     members = {
         Return = {
             type = "boolean",
@@ -64589,6 +66883,7 @@ M.RejectVpcPeeringConnectionOutput = {
 
 M.ReleaseAddressInput = {
     type = "structure",
+    id = "ReleaseAddressInput",
     members = {
         AllocationId = {
             type = "string",
@@ -64610,10 +66905,12 @@ M.ReleaseAddressInput = {
 
 M.ReleaseAddressOutput = {
     type = "structure",
+    id = "ReleaseAddressOutput",
 }
 
 M.ReleaseHostsInput = {
     type = "structure",
+    id = "ReleaseHostsInput",
     members = {
         HostIds = {
             type = "list",
@@ -64628,6 +66925,7 @@ M.ReleaseHostsInput = {
 
 M.ReleaseHostsOutput = {
     type = "structure",
+    id = "ReleaseHostsOutput",
     members = {
         Successful = {
             type = "list",
@@ -64648,6 +66946,7 @@ M.ReleaseHostsOutput = {
 
 M.ReleaseIpamPoolAllocationInput = {
     type = "structure",
+    id = "ReleaseIpamPoolAllocationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -64675,6 +66974,7 @@ M.ReleaseIpamPoolAllocationInput = {
 
 M.ReleaseIpamPoolAllocationOutput = {
     type = "structure",
+    id = "ReleaseIpamPoolAllocationOutput",
     members = {
         Success = {
             type = "boolean",
@@ -64687,6 +66987,7 @@ M.ReleaseIpamPoolAllocationOutput = {
 
 M.ReplaceIamInstanceProfileAssociationInput = {
     type = "structure",
+    id = "ReplaceIamInstanceProfileAssociationInput",
     members = {
         IamInstanceProfile = setmetatable({ traits = {
             required = true,
@@ -64702,6 +67003,7 @@ M.ReplaceIamInstanceProfileAssociationInput = {
 
 M.ReplaceIamInstanceProfileAssociationOutput = {
     type = "structure",
+    id = "ReplaceIamInstanceProfileAssociationOutput",
     members = {
         IamInstanceProfileAssociation = setmetatable({ traits = {
             xml_name = "iamInstanceProfileAssociation",
@@ -64711,6 +67013,7 @@ M.ReplaceIamInstanceProfileAssociationOutput = {
 
 M.CreationDateConditionRequest = {
     type = "structure",
+    id = "CreationDateConditionRequest",
     members = {
         MaximumDaysSinceCreated = {
             type = "integer",
@@ -64720,6 +67023,7 @@ M.CreationDateConditionRequest = {
 
 M.DeprecationTimeConditionRequest = {
     type = "structure",
+    id = "DeprecationTimeConditionRequest",
     members = {
         MaximumDaysSinceDeprecated = {
             type = "integer",
@@ -64729,6 +67033,7 @@ M.DeprecationTimeConditionRequest = {
 
 M.ImageCriterionRequest = {
     type = "structure",
+    id = "ImageCriterionRequest",
     members = {
         ImageProviders = {
             type = "list",
@@ -64758,6 +67063,7 @@ M.ImageCriterionRequest = {
 
 M.ReplaceImageCriteriaInAllowedImagesSettingsInput = {
     type = "structure",
+    id = "ReplaceImageCriteriaInAllowedImagesSettingsInput",
     members = {
         ImageCriteria = {
             type = "list",
@@ -64774,6 +67080,7 @@ M.ReplaceImageCriteriaInAllowedImagesSettingsInput = {
 
 M.ReplaceImageCriteriaInAllowedImagesSettingsOutput = {
     type = "structure",
+    id = "ReplaceImageCriteriaInAllowedImagesSettingsOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -64786,6 +67093,7 @@ M.ReplaceImageCriteriaInAllowedImagesSettingsOutput = {
 
 M.ReplaceNetworkAclAssociationInput = {
     type = "structure",
+    id = "ReplaceNetworkAclAssociationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -64812,6 +67120,7 @@ M.ReplaceNetworkAclAssociationInput = {
 
 M.ReplaceNetworkAclAssociationOutput = {
     type = "structure",
+    id = "ReplaceNetworkAclAssociationOutput",
     members = {
         NewAssociationId = {
             type = "string",
@@ -64824,6 +67133,7 @@ M.ReplaceNetworkAclAssociationOutput = {
 
 M.ReplaceNetworkAclEntryInput = {
     type = "structure",
+    id = "ReplaceNetworkAclEntryInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -64889,10 +67199,12 @@ M.ReplaceNetworkAclEntryInput = {
 
 M.ReplaceNetworkAclEntryOutput = {
     type = "structure",
+    id = "ReplaceNetworkAclEntryOutput",
 }
 
 M.ReplaceRouteInput = {
     type = "structure",
+    id = "ReplaceRouteInput",
     members = {
         DestinationPrefixListId = {
             type = "string",
@@ -64984,10 +67296,12 @@ M.ReplaceRouteInput = {
 
 M.ReplaceRouteOutput = {
     type = "structure",
+    id = "ReplaceRouteOutput",
 }
 
 M.ReplaceRouteTableAssociationInput = {
     type = "structure",
+    id = "ReplaceRouteTableAssociationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65014,6 +67328,7 @@ M.ReplaceRouteTableAssociationInput = {
 
 M.ReplaceRouteTableAssociationOutput = {
     type = "structure",
+    id = "ReplaceRouteTableAssociationOutput",
     members = {
         NewAssociationId = {
             type = "string",
@@ -65029,6 +67344,7 @@ M.ReplaceRouteTableAssociationOutput = {
 
 M.ReplaceTransitGatewayRouteInput = {
     type = "structure",
+    id = "ReplaceTransitGatewayRouteInput",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -65056,6 +67372,7 @@ M.ReplaceTransitGatewayRouteInput = {
 
 M.ReplaceTransitGatewayRouteOutput = {
     type = "structure",
+    id = "ReplaceTransitGatewayRouteOutput",
     members = {
         Route = setmetatable({ traits = {
             xml_name = "route",
@@ -65065,6 +67382,7 @@ M.ReplaceTransitGatewayRouteOutput = {
 
 M.ReplaceVpnTunnelInput = {
     type = "structure",
+    id = "ReplaceVpnTunnelInput",
     members = {
         VpnConnectionId = {
             type = "string",
@@ -65089,6 +67407,7 @@ M.ReplaceVpnTunnelInput = {
 
 M.ReplaceVpnTunnelOutput = {
     type = "structure",
+    id = "ReplaceVpnTunnelOutput",
     members = {
         Return = {
             type = "boolean",
@@ -65118,6 +67437,7 @@ M.ReportStatusType = {
 
 M.ReportInstanceStatusInput = {
     type = "structure",
+    id = "ReportInstanceStatusInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65171,10 +67491,12 @@ M.ReportInstanceStatusInput = {
 
 M.ReportInstanceStatusOutput = {
     type = "structure",
+    id = "ReportInstanceStatusOutput",
 }
 
 M.RequestSpotFleetInput = {
     type = "structure",
+    id = "RequestSpotFleetInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65191,6 +67513,7 @@ M.RequestSpotFleetInput = {
 
 M.RequestSpotFleetOutput = {
     type = "structure",
+    id = "RequestSpotFleetOutput",
     members = {
         SpotFleetRequestId = {
             type = "string",
@@ -65203,6 +67526,7 @@ M.RequestSpotFleetOutput = {
 
 M.RequestSpotLaunchSpecification = {
     type = "structure",
+    id = "RequestSpotLaunchSpecification",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -65300,6 +67624,7 @@ M.RequestSpotLaunchSpecification = {
 
 M.RequestSpotInstancesInput = {
     type = "structure",
+    id = "RequestSpotInstancesInput",
     members = {
         LaunchSpecification = M.RequestSpotLaunchSpecification,
         TagSpecifications = {
@@ -65377,6 +67702,7 @@ M.RequestSpotInstancesInput = {
 
 M.RequestSpotInstancesOutput = {
     type = "structure",
+    id = "RequestSpotInstancesOutput",
     members = {
         SpotInstanceRequests = {
             type = "list",
@@ -65390,6 +67716,7 @@ M.RequestSpotInstancesOutput = {
 
 M.ResetAddressAttributeInput = {
     type = "structure",
+    id = "ResetAddressAttributeInput",
     members = {
         AllocationId = {
             type = "string",
@@ -65411,6 +67738,7 @@ M.ResetAddressAttributeInput = {
 
 M.ResetAddressAttributeOutput = {
     type = "structure",
+    id = "ResetAddressAttributeOutput",
     members = {
         Address = setmetatable({ traits = {
             xml_name = "address",
@@ -65420,6 +67748,7 @@ M.ResetAddressAttributeOutput = {
 
 M.ResetEbsDefaultKmsKeyIdInput = {
     type = "structure",
+    id = "ResetEbsDefaultKmsKeyIdInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65429,6 +67758,7 @@ M.ResetEbsDefaultKmsKeyIdInput = {
 
 M.ResetEbsDefaultKmsKeyIdOutput = {
     type = "structure",
+    id = "ResetEbsDefaultKmsKeyIdOutput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -65445,6 +67775,7 @@ M.ResetFpgaImageAttributeName = {
 
 M.ResetFpgaImageAttributeInput = {
     type = "structure",
+    id = "ResetFpgaImageAttributeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65463,6 +67794,7 @@ M.ResetFpgaImageAttributeInput = {
 
 M.ResetFpgaImageAttributeOutput = {
     type = "structure",
+    id = "ResetFpgaImageAttributeOutput",
     members = {
         Return = {
             type = "boolean",
@@ -65479,6 +67811,7 @@ M.ResetImageAttributeName = {
 
 M.ResetImageAttributeInput = {
     type = "structure",
+    id = "ResetImageAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -65503,10 +67836,12 @@ M.ResetImageAttributeInput = {
 
 M.ResetImageAttributeOutput = {
     type = "structure",
+    id = "ResetImageAttributeOutput",
 }
 
 M.ResetInstanceAttributeInput = {
     type = "structure",
+    id = "ResetInstanceAttributeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65533,10 +67868,12 @@ M.ResetInstanceAttributeInput = {
 
 M.ResetInstanceAttributeOutput = {
     type = "structure",
+    id = "ResetInstanceAttributeOutput",
 }
 
 M.ResetNetworkInterfaceAttributeInput = {
     type = "structure",
+    id = "ResetNetworkInterfaceAttributeInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65562,10 +67899,12 @@ M.ResetNetworkInterfaceAttributeInput = {
 
 M.ResetNetworkInterfaceAttributeOutput = {
     type = "structure",
+    id = "ResetNetworkInterfaceAttributeOutput",
 }
 
 M.ResetSnapshotAttributeInput = {
     type = "structure",
+    id = "ResetSnapshotAttributeInput",
     members = {
         Attribute = {
             type = "string",
@@ -65590,10 +67929,12 @@ M.ResetSnapshotAttributeInput = {
 
 M.ResetSnapshotAttributeOutput = {
     type = "structure",
+    id = "ResetSnapshotAttributeOutput",
 }
 
 M.RestoreAddressToClassicInput = {
     type = "structure",
+    id = "RestoreAddressToClassicInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65613,6 +67954,7 @@ M.RestoreAddressToClassicInput = {
 
 M.RestoreAddressToClassicOutput = {
     type = "structure",
+    id = "RestoreAddressToClassicOutput",
     members = {
         PublicIp = {
             type = "string",
@@ -65631,6 +67973,7 @@ M.RestoreAddressToClassicOutput = {
 
 M.RestoreImageFromRecycleBinInput = {
     type = "structure",
+    id = "RestoreImageFromRecycleBinInput",
     members = {
         ImageId = {
             type = "string",
@@ -65646,6 +67989,7 @@ M.RestoreImageFromRecycleBinInput = {
 
 M.RestoreImageFromRecycleBinOutput = {
     type = "structure",
+    id = "RestoreImageFromRecycleBinOutput",
     members = {
         Return = {
             type = "boolean",
@@ -65658,6 +68002,7 @@ M.RestoreImageFromRecycleBinOutput = {
 
 M.RestoreManagedPrefixListVersionInput = {
     type = "structure",
+    id = "RestoreManagedPrefixListVersionInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -65685,6 +68030,7 @@ M.RestoreManagedPrefixListVersionInput = {
 
 M.RestoreManagedPrefixListVersionOutput = {
     type = "structure",
+    id = "RestoreManagedPrefixListVersionOutput",
     members = {
         PrefixList = setmetatable({ traits = {
             xml_name = "prefixList",
@@ -65694,6 +68040,7 @@ M.RestoreManagedPrefixListVersionOutput = {
 
 M.RestoreSnapshotFromRecycleBinInput = {
     type = "structure",
+    id = "RestoreSnapshotFromRecycleBinInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -65709,6 +68056,7 @@ M.RestoreSnapshotFromRecycleBinInput = {
 
 M.RestoreSnapshotFromRecycleBinOutput = {
     type = "structure",
+    id = "RestoreSnapshotFromRecycleBinOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -65781,6 +68129,7 @@ M.RestoreSnapshotFromRecycleBinOutput = {
 
 M.RestoreSnapshotTierInput = {
     type = "structure",
+    id = "RestoreSnapshotTierInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -65802,6 +68151,7 @@ M.RestoreSnapshotTierInput = {
 
 M.RestoreSnapshotTierOutput = {
     type = "structure",
+    id = "RestoreSnapshotTierOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -65832,6 +68182,7 @@ M.RestoreSnapshotTierOutput = {
 
 M.RestoreVolumeFromRecycleBinInput = {
     type = "structure",
+    id = "RestoreVolumeFromRecycleBinInput",
     members = {
         VolumeId = {
             type = "string",
@@ -65847,6 +68198,7 @@ M.RestoreVolumeFromRecycleBinInput = {
 
 M.RestoreVolumeFromRecycleBinOutput = {
     type = "structure",
+    id = "RestoreVolumeFromRecycleBinOutput",
     members = {
         Return = {
             type = "boolean",
@@ -65859,6 +68211,7 @@ M.RestoreVolumeFromRecycleBinOutput = {
 
 M.RevokeClientVpnIngressInput = {
     type = "structure",
+    id = "RevokeClientVpnIngressInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -65886,6 +68239,7 @@ M.RevokeClientVpnIngressInput = {
 
 M.RevokeClientVpnIngressOutput = {
     type = "structure",
+    id = "RevokeClientVpnIngressOutput",
     members = {
         Status = setmetatable({ traits = {
             xml_name = "status",
@@ -65895,6 +68249,7 @@ M.RevokeClientVpnIngressOutput = {
 
 M.RevokeSecurityGroupEgressInput = {
     type = "structure",
+    id = "RevokeSecurityGroupEgressInput",
     members = {
         SecurityGroupRuleIds = {
             type = "list",
@@ -65964,6 +68319,7 @@ M.RevokeSecurityGroupEgressInput = {
 
 M.RevokedSecurityGroupRule = {
     type = "structure",
+    id = "RevokedSecurityGroupRule",
     members = {
         SecurityGroupRuleId = {
             type = "string",
@@ -66036,6 +68392,7 @@ M.RevokedSecurityGroupRule = {
 
 M.RevokeSecurityGroupEgressOutput = {
     type = "structure",
+    id = "RevokeSecurityGroupEgressOutput",
     members = {
         Return = {
             type = "boolean",
@@ -66062,6 +68419,7 @@ M.RevokeSecurityGroupEgressOutput = {
 
 M.RevokeSecurityGroupIngressInput = {
     type = "structure",
+    id = "RevokeSecurityGroupIngressInput",
     members = {
         CidrIp = {
             type = "string",
@@ -66109,6 +68467,7 @@ M.RevokeSecurityGroupIngressInput = {
 
 M.RevokeSecurityGroupIngressOutput = {
     type = "structure",
+    id = "RevokeSecurityGroupIngressOutput",
     members = {
         Return = {
             type = "boolean",
@@ -66135,6 +68494,7 @@ M.RevokeSecurityGroupIngressOutput = {
 
 M.CpuOptionsRequest = {
     type = "structure",
+    id = "CpuOptionsRequest",
     members = {
         CoreCount = {
             type = "integer",
@@ -66153,6 +68513,7 @@ M.CpuOptionsRequest = {
 
 M.ElasticInferenceAccelerator = {
     type = "structure",
+    id = "ElasticInferenceAccelerator",
     members = {
         Type = {
             type = "string",
@@ -66168,6 +68529,7 @@ M.ElasticInferenceAccelerator = {
 
 M.EnclaveOptionsRequest = {
     type = "structure",
+    id = "EnclaveOptionsRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -66177,6 +68539,7 @@ M.EnclaveOptionsRequest = {
 
 M.HibernationOptionsRequest = {
     type = "structure",
+    id = "HibernationOptionsRequest",
     members = {
         Configured = {
             type = "boolean",
@@ -66186,6 +68549,7 @@ M.HibernationOptionsRequest = {
 
 M.SpotMarketOptions = {
     type = "structure",
+    id = "SpotMarketOptions",
     members = {
         MaxPrice = {
             type = "string",
@@ -66207,6 +68571,7 @@ M.SpotMarketOptions = {
 
 M.InstanceMarketOptionsRequest = {
     type = "structure",
+    id = "InstanceMarketOptionsRequest",
     members = {
         MarketType = {
             type = "string",
@@ -66217,6 +68582,7 @@ M.InstanceMarketOptionsRequest = {
 
 M.LaunchTemplateSpecification = {
     type = "structure",
+    id = "LaunchTemplateSpecification",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -66232,6 +68598,7 @@ M.LaunchTemplateSpecification = {
 
 M.LicenseConfigurationRequest = {
     type = "structure",
+    id = "LicenseConfigurationRequest",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -66241,6 +68608,7 @@ M.LicenseConfigurationRequest = {
 
 M.InstanceMaintenanceOptionsRequest = {
     type = "structure",
+    id = "InstanceMaintenanceOptionsRequest",
     members = {
         AutoRecovery = {
             type = "string",
@@ -66250,6 +68618,7 @@ M.InstanceMaintenanceOptionsRequest = {
 
 M.InstanceMetadataOptionsRequest = {
     type = "structure",
+    id = "InstanceMetadataOptionsRequest",
     members = {
         HttpTokens = {
             type = "string",
@@ -66271,6 +68640,7 @@ M.InstanceMetadataOptionsRequest = {
 
 M.InstanceNetworkPerformanceOptionsRequest = {
     type = "structure",
+    id = "InstanceNetworkPerformanceOptionsRequest",
     members = {
         BandwidthWeighting = {
             type = "string",
@@ -66280,6 +68650,7 @@ M.InstanceNetworkPerformanceOptionsRequest = {
 
 M.PrivateDnsNameOptionsRequest = {
     type = "structure",
+    id = "PrivateDnsNameOptionsRequest",
     members = {
         HostnameType = {
             type = "string",
@@ -66295,6 +68666,7 @@ M.PrivateDnsNameOptionsRequest = {
 
 M.InstanceSecondaryInterfacePrivateIpAddressRequest = {
     type = "structure",
+    id = "InstanceSecondaryInterfacePrivateIpAddressRequest",
     members = {
         PrivateIpAddress = {
             type = "string",
@@ -66307,6 +68679,7 @@ M.InstanceSecondaryInterfacePrivateIpAddressRequest = {
 
 M.InstanceSecondaryInterfaceSpecificationRequest = {
     type = "structure",
+    id = "InstanceSecondaryInterfaceSpecificationRequest",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -66338,6 +68711,7 @@ M.InstanceSecondaryInterfaceSpecificationRequest = {
 
 M.RunInstancesInput = {
     type = "structure",
+    id = "RunInstancesInput",
     members = {
         BlockDeviceMappings = {
             type = "list",
@@ -66513,6 +68887,7 @@ M.RunInstancesInput = {
 
 M.RunInstancesOutput = {
     type = "structure",
+    id = "RunInstancesOutput",
     members = {
         ReservationId = {
             type = "string",
@@ -66551,6 +68926,7 @@ M.RunInstancesOutput = {
 
 M.ScheduledInstancesEbs = {
     type = "structure",
+    id = "ScheduledInstancesEbs",
     members = {
         DeleteOnTermination = {
             type = "boolean",
@@ -66575,6 +68951,7 @@ M.ScheduledInstancesEbs = {
 
 M.ScheduledInstancesBlockDeviceMapping = {
     type = "structure",
+    id = "ScheduledInstancesBlockDeviceMapping",
     members = {
         DeviceName = {
             type = "string",
@@ -66591,6 +68968,7 @@ M.ScheduledInstancesBlockDeviceMapping = {
 
 M.ScheduledInstancesIamInstanceProfile = {
     type = "structure",
+    id = "ScheduledInstancesIamInstanceProfile",
     members = {
         Arn = {
             type = "string",
@@ -66603,6 +68981,7 @@ M.ScheduledInstancesIamInstanceProfile = {
 
 M.ScheduledInstancesMonitoring = {
     type = "structure",
+    id = "ScheduledInstancesMonitoring",
     members = {
         Enabled = {
             type = "boolean",
@@ -66612,6 +68991,7 @@ M.ScheduledInstancesMonitoring = {
 
 M.ScheduledInstancesIpv6Address = {
     type = "structure",
+    id = "ScheduledInstancesIpv6Address",
     members = {
         Ipv6Address = {
             type = "string",
@@ -66621,6 +69001,7 @@ M.ScheduledInstancesIpv6Address = {
 
 M.ScheduledInstancesPrivateIpAddressConfig = {
     type = "structure",
+    id = "ScheduledInstancesPrivateIpAddressConfig",
     members = {
         Primary = {
             type = "boolean",
@@ -66633,6 +69014,7 @@ M.ScheduledInstancesPrivateIpAddressConfig = {
 
 M.ScheduledInstancesNetworkInterface = {
     type = "structure",
+    id = "ScheduledInstancesNetworkInterface",
     members = {
         AssociatePublicIpAddress = {
             type = "boolean",
@@ -66687,6 +69069,7 @@ M.ScheduledInstancesNetworkInterface = {
 
 M.ScheduledInstancesPlacement = {
     type = "structure",
+    id = "ScheduledInstancesPlacement",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -66699,6 +69082,7 @@ M.ScheduledInstancesPlacement = {
 
 M.ScheduledInstancesLaunchSpecification = {
     type = "structure",
+    id = "ScheduledInstancesLaunchSpecification",
     members = {
         BlockDeviceMappings = {
             type = "list",
@@ -66756,6 +69140,7 @@ M.ScheduledInstancesLaunchSpecification = {
 
 M.RunScheduledInstancesInput = {
     type = "structure",
+    id = "RunScheduledInstancesInput",
     members = {
         ClientToken = {
             type = "string",
@@ -66783,6 +69168,7 @@ M.RunScheduledInstancesInput = {
 
 M.RunScheduledInstancesOutput = {
     type = "structure",
+    id = "RunScheduledInstancesOutput",
     members = {
         InstanceIdSet = {
             type = "list",
@@ -66796,6 +69182,7 @@ M.RunScheduledInstancesOutput = {
 
 M.SearchLocalGatewayRoutesInput = {
     type = "structure",
+    id = "SearchLocalGatewayRoutesInput",
     members = {
         LocalGatewayRouteTableId = {
             type = "string",
@@ -66824,6 +69211,7 @@ M.SearchLocalGatewayRoutesInput = {
 
 M.SearchLocalGatewayRoutesOutput = {
     type = "structure",
+    id = "SearchLocalGatewayRoutesOutput",
     members = {
         Routes = {
             type = "list",
@@ -66843,6 +69231,7 @@ M.SearchLocalGatewayRoutesOutput = {
 
 M.SearchTransitGatewayMulticastGroupsInput = {
     type = "structure",
+    id = "SearchTransitGatewayMulticastGroupsInput",
     members = {
         TransitGatewayMulticastDomainId = {
             type = "string",
@@ -66876,6 +69265,7 @@ M.MembershipType = {
 
 M.TransitGatewayMulticastGroup = {
     type = "structure",
+    id = "TransitGatewayMulticastGroup",
     members = {
         GroupIpAddress = {
             type = "string",
@@ -66948,6 +69338,7 @@ M.TransitGatewayMulticastGroup = {
 
 M.SearchTransitGatewayMulticastGroupsOutput = {
     type = "structure",
+    id = "SearchTransitGatewayMulticastGroupsOutput",
     members = {
         MulticastGroups = {
             type = "list",
@@ -66967,6 +69358,7 @@ M.SearchTransitGatewayMulticastGroupsOutput = {
 
 M.SearchTransitGatewayRoutesInput = {
     type = "structure",
+    id = "SearchTransitGatewayRoutesInput",
     members = {
         TransitGatewayRouteTableId = {
             type = "string",
@@ -66996,6 +69388,7 @@ M.SearchTransitGatewayRoutesInput = {
 
 M.SearchTransitGatewayRoutesOutput = {
     type = "structure",
+    id = "SearchTransitGatewayRoutesOutput",
     members = {
         Routes = {
             type = "list",
@@ -67021,6 +69414,7 @@ M.SearchTransitGatewayRoutesOutput = {
 
 M.SendDiagnosticInterruptInput = {
     type = "structure",
+    id = "SendDiagnosticInterruptInput",
     members = {
         InstanceId = {
             type = "string",
@@ -67036,10 +69430,12 @@ M.SendDiagnosticInterruptInput = {
 
 M.SendDiagnosticInterruptOutput = {
     type = "structure",
+    id = "SendDiagnosticInterruptOutput",
 }
 
 M.StartDeclarativePoliciesReportInput = {
     type = "structure",
+    id = "StartDeclarativePoliciesReportInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -67071,6 +69467,7 @@ M.StartDeclarativePoliciesReportInput = {
 
 M.StartDeclarativePoliciesReportOutput = {
     type = "structure",
+    id = "StartDeclarativePoliciesReportOutput",
     members = {
         ReportId = {
             type = "string",
@@ -67083,6 +69480,7 @@ M.StartDeclarativePoliciesReportOutput = {
 
 M.StartInstancesInput = {
     type = "structure",
+    id = "StartInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -67109,6 +69507,7 @@ M.StartInstancesInput = {
 
 M.InstanceStateChange = {
     type = "structure",
+    id = "InstanceStateChange",
     members = {
         InstanceId = {
             type = "string",
@@ -67127,6 +69526,7 @@ M.InstanceStateChange = {
 
 M.StartInstancesOutput = {
     type = "structure",
+    id = "StartInstancesOutput",
     members = {
         StartingInstances = {
             type = "list",
@@ -67140,6 +69540,7 @@ M.StartInstancesOutput = {
 
 M.StartNetworkInsightsAccessScopeAnalysisInput = {
     type = "structure",
+    id = "StartNetworkInsightsAccessScopeAnalysisInput",
     members = {
         NetworkInsightsAccessScopeId = {
             type = "string",
@@ -67169,6 +69570,7 @@ M.StartNetworkInsightsAccessScopeAnalysisInput = {
 
 M.StartNetworkInsightsAccessScopeAnalysisOutput = {
     type = "structure",
+    id = "StartNetworkInsightsAccessScopeAnalysisOutput",
     members = {
         NetworkInsightsAccessScopeAnalysis = setmetatable({ traits = {
             xml_name = "networkInsightsAccessScopeAnalysis",
@@ -67178,6 +69580,7 @@ M.StartNetworkInsightsAccessScopeAnalysisOutput = {
 
 M.StartNetworkInsightsAnalysisInput = {
     type = "structure",
+    id = "StartNetworkInsightsAnalysisInput",
     members = {
         NetworkInsightsPathId = {
             type = "string",
@@ -67228,6 +69631,7 @@ M.StartNetworkInsightsAnalysisInput = {
 
 M.StartNetworkInsightsAnalysisOutput = {
     type = "structure",
+    id = "StartNetworkInsightsAnalysisOutput",
     members = {
         NetworkInsightsAnalysis = setmetatable({ traits = {
             xml_name = "networkInsightsAnalysis",
@@ -67237,6 +69641,7 @@ M.StartNetworkInsightsAnalysisOutput = {
 
 M.StartVpcEndpointServicePrivateDnsVerificationInput = {
     type = "structure",
+    id = "StartVpcEndpointServicePrivateDnsVerificationInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -67252,6 +69657,7 @@ M.StartVpcEndpointServicePrivateDnsVerificationInput = {
 
 M.StartVpcEndpointServicePrivateDnsVerificationOutput = {
     type = "structure",
+    id = "StartVpcEndpointServicePrivateDnsVerificationOutput",
     members = {
         ReturnValue = {
             type = "boolean",
@@ -67264,6 +69670,7 @@ M.StartVpcEndpointServicePrivateDnsVerificationOutput = {
 
 M.StopInstancesInput = {
     type = "structure",
+    id = "StopInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -67296,6 +69703,7 @@ M.StopInstancesInput = {
 
 M.StopInstancesOutput = {
     type = "structure",
+    id = "StopInstancesOutput",
     members = {
         StoppingInstances = {
             type = "list",
@@ -67309,6 +69717,7 @@ M.StopInstancesOutput = {
 
 M.TerminateClientVpnConnectionsInput = {
     type = "structure",
+    id = "TerminateClientVpnConnectionsInput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -67330,6 +69739,7 @@ M.TerminateClientVpnConnectionsInput = {
 
 M.TerminateConnectionStatus = {
     type = "structure",
+    id = "TerminateConnectionStatus",
     members = {
         ConnectionId = {
             type = "string",
@@ -67348,6 +69758,7 @@ M.TerminateConnectionStatus = {
 
 M.TerminateClientVpnConnectionsOutput = {
     type = "structure",
+    id = "TerminateClientVpnConnectionsOutput",
     members = {
         ClientVpnEndpointId = {
             type = "string",
@@ -67373,6 +69784,7 @@ M.TerminateClientVpnConnectionsOutput = {
 
 M.TerminateInstancesInput = {
     type = "structure",
+    id = "TerminateInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -67399,6 +69811,7 @@ M.TerminateInstancesInput = {
 
 M.TerminateInstancesOutput = {
     type = "structure",
+    id = "TerminateInstancesOutput",
     members = {
         TerminatingInstances = {
             type = "list",
@@ -67412,6 +69825,7 @@ M.TerminateInstancesOutput = {
 
 M.UnassignIpv6AddressesInput = {
     type = "structure",
+    id = "UnassignIpv6AddressesInput",
     members = {
         Ipv6Prefixes = {
             type = "list",
@@ -67439,6 +69853,7 @@ M.UnassignIpv6AddressesInput = {
 
 M.UnassignIpv6AddressesOutput = {
     type = "structure",
+    id = "UnassignIpv6AddressesOutput",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -67465,6 +69880,7 @@ M.UnassignIpv6AddressesOutput = {
 
 M.UnassignPrivateIpAddressesInput = {
     type = "structure",
+    id = "UnassignPrivateIpAddressesInput",
     members = {
         Ipv4Prefixes = {
             type = "list",
@@ -67492,10 +69908,12 @@ M.UnassignPrivateIpAddressesInput = {
 
 M.UnassignPrivateIpAddressesOutput = {
     type = "structure",
+    id = "UnassignPrivateIpAddressesOutput",
 }
 
 M.UnassignPrivateNatGatewayAddressInput = {
     type = "structure",
+    id = "UnassignPrivateNatGatewayAddressInput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -67522,6 +69940,7 @@ M.UnassignPrivateNatGatewayAddressInput = {
 
 M.UnassignPrivateNatGatewayAddressOutput = {
     type = "structure",
+    id = "UnassignPrivateNatGatewayAddressOutput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -67541,6 +69960,7 @@ M.UnassignPrivateNatGatewayAddressOutput = {
 
 M.UnlockSnapshotInput = {
     type = "structure",
+    id = "UnlockSnapshotInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -67556,6 +69976,7 @@ M.UnlockSnapshotInput = {
 
 M.UnlockSnapshotOutput = {
     type = "structure",
+    id = "UnlockSnapshotOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -67568,6 +69989,7 @@ M.UnlockSnapshotOutput = {
 
 M.UnmonitorInstancesInput = {
     type = "structure",
+    id = "UnmonitorInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -67588,6 +70010,7 @@ M.UnmonitorInstancesInput = {
 
 M.UnmonitorInstancesOutput = {
     type = "structure",
+    id = "UnmonitorInstancesOutput",
     members = {
         InstanceMonitorings = {
             type = "list",
@@ -67601,6 +70024,7 @@ M.UnmonitorInstancesOutput = {
 
 M.UpdateCapacityManagerMonitoredTagKeysInput = {
     type = "structure",
+    id = "UpdateCapacityManagerMonitoredTagKeysInput",
     members = {
         ActivateTagKeys = {
             type = "list",
@@ -67630,6 +70054,7 @@ M.UpdateCapacityManagerMonitoredTagKeysInput = {
 
 M.UpdateCapacityManagerMonitoredTagKeysOutput = {
     type = "structure",
+    id = "UpdateCapacityManagerMonitoredTagKeysOutput",
     members = {
         CapacityManagerTagKeys = {
             type = "list",
@@ -67643,6 +70068,7 @@ M.UpdateCapacityManagerMonitoredTagKeysOutput = {
 
 M.UpdateCapacityManagerOrganizationsAccessInput = {
     type = "structure",
+    id = "UpdateCapacityManagerOrganizationsAccessInput",
     members = {
         OrganizationsAccess = {
             type = "boolean",
@@ -67664,6 +70090,7 @@ M.UpdateCapacityManagerOrganizationsAccessInput = {
 
 M.UpdateCapacityManagerOrganizationsAccessOutput = {
     type = "structure",
+    id = "UpdateCapacityManagerOrganizationsAccessOutput",
     members = {
         CapacityManagerStatus = {
             type = "string",
@@ -67682,6 +70109,7 @@ M.UpdateCapacityManagerOrganizationsAccessOutput = {
 
 M.UpdateInterruptibleCapacityReservationAllocationInput = {
     type = "structure",
+    id = "UpdateInterruptibleCapacityReservationAllocationInput",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -67703,6 +70131,7 @@ M.UpdateInterruptibleCapacityReservationAllocationInput = {
 
 M.UpdateInterruptibleCapacityReservationAllocationOutput = {
     type = "structure",
+    id = "UpdateInterruptibleCapacityReservationAllocationOutput",
     members = {
         InterruptibleCapacityReservationId = {
             type = "string",
@@ -67745,6 +70174,7 @@ M.UpdateInterruptibleCapacityReservationAllocationOutput = {
 
 M.SecurityGroupRuleDescription = {
     type = "structure",
+    id = "SecurityGroupRuleDescription",
     members = {
         SecurityGroupRuleId = {
             type = "string",
@@ -67757,6 +70187,7 @@ M.SecurityGroupRuleDescription = {
 
 M.UpdateSecurityGroupRuleDescriptionsEgressInput = {
     type = "structure",
+    id = "UpdateSecurityGroupRuleDescriptionsEgressInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -67783,6 +70214,7 @@ M.UpdateSecurityGroupRuleDescriptionsEgressInput = {
 
 M.UpdateSecurityGroupRuleDescriptionsEgressOutput = {
     type = "structure",
+    id = "UpdateSecurityGroupRuleDescriptionsEgressOutput",
     members = {
         Return = {
             type = "boolean",
@@ -67795,6 +70227,7 @@ M.UpdateSecurityGroupRuleDescriptionsEgressOutput = {
 
 M.UpdateSecurityGroupRuleDescriptionsIngressInput = {
     type = "structure",
+    id = "UpdateSecurityGroupRuleDescriptionsIngressInput",
     members = {
         DryRun = {
             type = "boolean",
@@ -67821,6 +70254,7 @@ M.UpdateSecurityGroupRuleDescriptionsIngressInput = {
 
 M.UpdateSecurityGroupRuleDescriptionsIngressOutput = {
     type = "structure",
+    id = "UpdateSecurityGroupRuleDescriptionsIngressOutput",
     members = {
         Return = {
             type = "boolean",
@@ -67833,6 +70267,7 @@ M.UpdateSecurityGroupRuleDescriptionsIngressOutput = {
 
 M.WithdrawByoipCidrInput = {
     type = "structure",
+    id = "WithdrawByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -67848,6 +70283,7 @@ M.WithdrawByoipCidrInput = {
 
 M.WithdrawByoipCidrOutput = {
     type = "structure",
+    id = "WithdrawByoipCidrOutput",
     members = {
         ByoipCidr = setmetatable({ traits = {
             xml_name = "byoipCidr",

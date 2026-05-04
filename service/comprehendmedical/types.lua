@@ -49,6 +49,7 @@ M.AttributeName = {
 
 M.Trait = {
     type = "structure",
+    id = "Trait",
     members = {
         Name = {
             type = "string",
@@ -109,6 +110,7 @@ M.EntitySubType = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         Type = {
             type = "string",
@@ -146,6 +148,7 @@ M.Attribute = {
 
 M.Characters = {
     type = "structure",
+    id = "Characters",
     members = {
         OriginalTextCharacters = {
             type = "integer",
@@ -155,6 +158,7 @@ M.Characters = {
 
 M.DescribeEntitiesDetectionV2JobInput = {
     type = "structure",
+    id = "DescribeEntitiesDetectionV2JobInput",
     members = {
         JobId = {
             type = "string",
@@ -167,6 +171,7 @@ M.DescribeEntitiesDetectionV2JobInput = {
 
 M.InputDataConfig = {
     type = "structure",
+    id = "InputDataConfig",
     members = {
         S3Bucket = {
             type = "string",
@@ -196,6 +201,7 @@ M.LanguageCode = {
 
 M.OutputDataConfig = {
     type = "structure",
+    id = "OutputDataConfig",
     members = {
         S3Bucket = {
             type = "string",
@@ -211,6 +217,7 @@ M.OutputDataConfig = {
 
 M.ComprehendMedicalAsyncJobProperties = {
     type = "structure",
+    id = "ComprehendMedicalAsyncJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -255,6 +262,7 @@ M.ComprehendMedicalAsyncJobProperties = {
 
 M.DescribeEntitiesDetectionV2JobOutput = {
     type = "structure",
+    id = "DescribeEntitiesDetectionV2JobOutput",
     members = {
         ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
@@ -262,6 +270,7 @@ M.DescribeEntitiesDetectionV2JobOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -272,6 +281,7 @@ M.InternalServerException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -282,6 +292,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -292,6 +303,7 @@ M.ResourceNotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -302,6 +314,7 @@ M.TooManyRequestsException = {
 
 M.DescribeICD10CMInferenceJobInput = {
     type = "structure",
+    id = "DescribeICD10CMInferenceJobInput",
     members = {
         JobId = {
             type = "string",
@@ -314,6 +327,7 @@ M.DescribeICD10CMInferenceJobInput = {
 
 M.DescribeICD10CMInferenceJobOutput = {
     type = "structure",
+    id = "DescribeICD10CMInferenceJobOutput",
     members = {
         ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
@@ -321,6 +335,7 @@ M.DescribeICD10CMInferenceJobOutput = {
 
 M.DescribePHIDetectionJobInput = {
     type = "structure",
+    id = "DescribePHIDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -333,6 +348,7 @@ M.DescribePHIDetectionJobInput = {
 
 M.DescribePHIDetectionJobOutput = {
     type = "structure",
+    id = "DescribePHIDetectionJobOutput",
     members = {
         ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
@@ -340,6 +356,7 @@ M.DescribePHIDetectionJobOutput = {
 
 M.DescribeRxNormInferenceJobInput = {
     type = "structure",
+    id = "DescribeRxNormInferenceJobInput",
     members = {
         JobId = {
             type = "string",
@@ -352,6 +369,7 @@ M.DescribeRxNormInferenceJobInput = {
 
 M.DescribeRxNormInferenceJobOutput = {
     type = "structure",
+    id = "DescribeRxNormInferenceJobOutput",
     members = {
         ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
@@ -359,6 +377,7 @@ M.DescribeRxNormInferenceJobOutput = {
 
 M.DescribeSNOMEDCTInferenceJobInput = {
     type = "structure",
+    id = "DescribeSNOMEDCTInferenceJobInput",
     members = {
         JobId = {
             type = "string",
@@ -371,6 +390,7 @@ M.DescribeSNOMEDCTInferenceJobInput = {
 
 M.DescribeSNOMEDCTInferenceJobOutput = {
     type = "structure",
+    id = "DescribeSNOMEDCTInferenceJobOutput",
     members = {
         ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
@@ -378,6 +398,7 @@ M.DescribeSNOMEDCTInferenceJobOutput = {
 
 M.DetectEntitiesInput = {
     type = "structure",
+    id = "DetectEntitiesInput",
     members = {
         Text = {
             type = "string",
@@ -390,6 +411,7 @@ M.DetectEntitiesInput = {
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         Id = {
             type = "integer",
@@ -425,6 +447,7 @@ M.Entity = {
 
 M.UnmappedAttribute = {
     type = "structure",
+    id = "UnmappedAttribute",
     members = {
         Type = {
             type = "string",
@@ -435,6 +458,7 @@ M.UnmappedAttribute = {
 
 M.DetectEntitiesOutput = {
     type = "structure",
+    id = "DetectEntitiesOutput",
     members = {
         Entities = {
             type = "list",
@@ -461,6 +485,7 @@ M.DetectEntitiesOutput = {
 
 M.InvalidEncodingException = {
     type = "structure",
+    id = "InvalidEncodingException",
     error = "client",
     members = {
         Message = {
@@ -471,6 +496,7 @@ M.InvalidEncodingException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -481,6 +507,7 @@ M.ServiceUnavailableException = {
 
 M.TextSizeLimitExceededException = {
     type = "structure",
+    id = "TextSizeLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -491,6 +518,7 @@ M.TextSizeLimitExceededException = {
 
 M.DetectEntitiesV2Input = {
     type = "structure",
+    id = "DetectEntitiesV2Input",
     members = {
         Text = {
             type = "string",
@@ -503,6 +531,7 @@ M.DetectEntitiesV2Input = {
 
 M.DetectEntitiesV2Output = {
     type = "structure",
+    id = "DetectEntitiesV2Output",
     members = {
         Entities = {
             type = "list",
@@ -529,6 +558,7 @@ M.DetectEntitiesV2Output = {
 
 M.DetectPHIInput = {
     type = "structure",
+    id = "DetectPHIInput",
     members = {
         Text = {
             type = "string",
@@ -541,6 +571,7 @@ M.DetectPHIInput = {
 
 M.DetectPHIOutput = {
     type = "structure",
+    id = "DetectPHIOutput",
     members = {
         Entities = {
             type = "list",
@@ -563,6 +594,7 @@ M.DetectPHIOutput = {
 
 M.InferICD10CMInput = {
     type = "structure",
+    id = "InferICD10CMInput",
     members = {
         Text = {
             type = "string",
@@ -596,6 +628,7 @@ M.ICD10CMTraitName = {
 
 M.ICD10CMTrait = {
     type = "structure",
+    id = "ICD10CMTrait",
     members = {
         Name = {
             type = "string",
@@ -618,6 +651,7 @@ M.ICD10CMAttributeType = {
 
 M.ICD10CMAttribute = {
     type = "structure",
+    id = "ICD10CMAttribute",
     members = {
         Type = {
             type = "string",
@@ -659,6 +693,7 @@ M.ICD10CMEntityCategory = {
 
 M.ICD10CMConcept = {
     type = "structure",
+    id = "ICD10CMConcept",
     members = {
         Description = {
             type = "string",
@@ -674,6 +709,7 @@ M.ICD10CMConcept = {
 
 M.ICD10CMEntity = {
     type = "structure",
+    id = "ICD10CMEntity",
     members = {
         Id = {
             type = "integer",
@@ -713,6 +749,7 @@ M.ICD10CMEntity = {
 
 M.InferICD10CMOutput = {
     type = "structure",
+    id = "InferICD10CMOutput",
     members = {
         Entities = {
             type = "list",
@@ -732,6 +769,7 @@ M.InferICD10CMOutput = {
 
 M.InferRxNormInput = {
     type = "structure",
+    id = "InferRxNormInput",
     members = {
         Text = {
             type = "string",
@@ -749,6 +787,7 @@ M.RxNormTraitName = {
 
 M.RxNormTrait = {
     type = "structure",
+    id = "RxNormTrait",
     members = {
         Name = {
             type = "string",
@@ -771,6 +810,7 @@ M.RxNormAttributeType = {
 
 M.RxNormAttribute = {
     type = "structure",
+    id = "RxNormAttribute",
     members = {
         Type = {
             type = "string",
@@ -806,6 +846,7 @@ M.RxNormEntityCategory = {
 
 M.RxNormConcept = {
     type = "structure",
+    id = "RxNormConcept",
     members = {
         Description = {
             type = "string",
@@ -826,6 +867,7 @@ M.RxNormEntityType = {
 
 M.RxNormEntity = {
     type = "structure",
+    id = "RxNormEntity",
     members = {
         Id = {
             type = "integer",
@@ -865,6 +907,7 @@ M.RxNormEntity = {
 
 M.InferRxNormOutput = {
     type = "structure",
+    id = "InferRxNormOutput",
     members = {
         Entities = {
             type = "list",
@@ -884,6 +927,7 @@ M.InferRxNormOutput = {
 
 M.InferSNOMEDCTInput = {
     type = "structure",
+    id = "InferSNOMEDCTInput",
     members = {
         Text = {
             type = "string",
@@ -912,6 +956,7 @@ M.SNOMEDCTRelationshipType = {
 
 M.SNOMEDCTConcept = {
     type = "structure",
+    id = "SNOMEDCTConcept",
     members = {
         Description = {
             type = "string",
@@ -939,6 +984,7 @@ M.SNOMEDCTTraitName = {
 
 M.SNOMEDCTTrait = {
     type = "structure",
+    id = "SNOMEDCTTrait",
     members = {
         Name = {
             type = "string",
@@ -960,6 +1006,7 @@ M.SNOMEDCTAttributeType = {
 
 M.SNOMEDCTAttribute = {
     type = "structure",
+    id = "SNOMEDCTAttribute",
     members = {
         Category = {
             type = "string",
@@ -1008,6 +1055,7 @@ M.SNOMEDCTEntityType = {
 
 M.SNOMEDCTEntity = {
     type = "structure",
+    id = "SNOMEDCTEntity",
     members = {
         Id = {
             type = "integer",
@@ -1047,6 +1095,7 @@ M.SNOMEDCTEntity = {
 
 M.SNOMEDCTDetails = {
     type = "structure",
+    id = "SNOMEDCTDetails",
     members = {
         Edition = {
             type = "string",
@@ -1062,6 +1111,7 @@ M.SNOMEDCTDetails = {
 
 M.InferSNOMEDCTOutput = {
     type = "structure",
+    id = "InferSNOMEDCTOutput",
     members = {
         Entities = {
             type = "list",
@@ -1083,6 +1133,7 @@ M.InferSNOMEDCTOutput = {
 
 M.ComprehendMedicalAsyncJobFilter = {
     type = "structure",
+    id = "ComprehendMedicalAsyncJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -1101,6 +1152,7 @@ M.ComprehendMedicalAsyncJobFilter = {
 
 M.ListEntitiesDetectionV2JobsInput = {
     type = "structure",
+    id = "ListEntitiesDetectionV2JobsInput",
     members = {
         Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
@@ -1114,6 +1166,7 @@ M.ListEntitiesDetectionV2JobsInput = {
 
 M.ListEntitiesDetectionV2JobsOutput = {
     type = "structure",
+    id = "ListEntitiesDetectionV2JobsOutput",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
@@ -1127,6 +1180,7 @@ M.ListEntitiesDetectionV2JobsOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -1137,6 +1191,7 @@ M.ValidationException = {
 
 M.ListICD10CMInferenceJobsInput = {
     type = "structure",
+    id = "ListICD10CMInferenceJobsInput",
     members = {
         Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
@@ -1150,6 +1205,7 @@ M.ListICD10CMInferenceJobsInput = {
 
 M.ListICD10CMInferenceJobsOutput = {
     type = "structure",
+    id = "ListICD10CMInferenceJobsOutput",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
@@ -1163,6 +1219,7 @@ M.ListICD10CMInferenceJobsOutput = {
 
 M.ListPHIDetectionJobsInput = {
     type = "structure",
+    id = "ListPHIDetectionJobsInput",
     members = {
         Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
@@ -1176,6 +1233,7 @@ M.ListPHIDetectionJobsInput = {
 
 M.ListPHIDetectionJobsOutput = {
     type = "structure",
+    id = "ListPHIDetectionJobsOutput",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
@@ -1189,6 +1247,7 @@ M.ListPHIDetectionJobsOutput = {
 
 M.ListRxNormInferenceJobsInput = {
     type = "structure",
+    id = "ListRxNormInferenceJobsInput",
     members = {
         Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
@@ -1202,6 +1261,7 @@ M.ListRxNormInferenceJobsInput = {
 
 M.ListRxNormInferenceJobsOutput = {
     type = "structure",
+    id = "ListRxNormInferenceJobsOutput",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
@@ -1215,6 +1275,7 @@ M.ListRxNormInferenceJobsOutput = {
 
 M.ListSNOMEDCTInferenceJobsInput = {
     type = "structure",
+    id = "ListSNOMEDCTInferenceJobsInput",
     members = {
         Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
@@ -1228,6 +1289,7 @@ M.ListSNOMEDCTInferenceJobsInput = {
 
 M.ListSNOMEDCTInferenceJobsOutput = {
     type = "structure",
+    id = "ListSNOMEDCTInferenceJobsOutput",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
@@ -1241,6 +1303,7 @@ M.ListSNOMEDCTInferenceJobsOutput = {
 
 M.StartEntitiesDetectionV2JobInput = {
     type = "structure",
+    id = "StartEntitiesDetectionV2JobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -1277,6 +1340,7 @@ M.StartEntitiesDetectionV2JobInput = {
 
 M.StartEntitiesDetectionV2JobOutput = {
     type = "structure",
+    id = "StartEntitiesDetectionV2JobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1286,6 +1350,7 @@ M.StartEntitiesDetectionV2JobOutput = {
 
 M.StartICD10CMInferenceJobInput = {
     type = "structure",
+    id = "StartICD10CMInferenceJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -1322,6 +1387,7 @@ M.StartICD10CMInferenceJobInput = {
 
 M.StartICD10CMInferenceJobOutput = {
     type = "structure",
+    id = "StartICD10CMInferenceJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1331,6 +1397,7 @@ M.StartICD10CMInferenceJobOutput = {
 
 M.StartPHIDetectionJobInput = {
     type = "structure",
+    id = "StartPHIDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -1367,6 +1434,7 @@ M.StartPHIDetectionJobInput = {
 
 M.StartPHIDetectionJobOutput = {
     type = "structure",
+    id = "StartPHIDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1376,6 +1444,7 @@ M.StartPHIDetectionJobOutput = {
 
 M.StartRxNormInferenceJobInput = {
     type = "structure",
+    id = "StartRxNormInferenceJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -1412,6 +1481,7 @@ M.StartRxNormInferenceJobInput = {
 
 M.StartRxNormInferenceJobOutput = {
     type = "structure",
+    id = "StartRxNormInferenceJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1421,6 +1491,7 @@ M.StartRxNormInferenceJobOutput = {
 
 M.StartSNOMEDCTInferenceJobInput = {
     type = "structure",
+    id = "StartSNOMEDCTInferenceJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -1457,6 +1528,7 @@ M.StartSNOMEDCTInferenceJobInput = {
 
 M.StartSNOMEDCTInferenceJobOutput = {
     type = "structure",
+    id = "StartSNOMEDCTInferenceJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1466,6 +1538,7 @@ M.StartSNOMEDCTInferenceJobOutput = {
 
 M.StopEntitiesDetectionV2JobInput = {
     type = "structure",
+    id = "StopEntitiesDetectionV2JobInput",
     members = {
         JobId = {
             type = "string",
@@ -1478,6 +1551,7 @@ M.StopEntitiesDetectionV2JobInput = {
 
 M.StopEntitiesDetectionV2JobOutput = {
     type = "structure",
+    id = "StopEntitiesDetectionV2JobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1487,6 +1561,7 @@ M.StopEntitiesDetectionV2JobOutput = {
 
 M.StopICD10CMInferenceJobInput = {
     type = "structure",
+    id = "StopICD10CMInferenceJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1499,6 +1574,7 @@ M.StopICD10CMInferenceJobInput = {
 
 M.StopICD10CMInferenceJobOutput = {
     type = "structure",
+    id = "StopICD10CMInferenceJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1508,6 +1584,7 @@ M.StopICD10CMInferenceJobOutput = {
 
 M.StopPHIDetectionJobInput = {
     type = "structure",
+    id = "StopPHIDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1520,6 +1597,7 @@ M.StopPHIDetectionJobInput = {
 
 M.StopPHIDetectionJobOutput = {
     type = "structure",
+    id = "StopPHIDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1529,6 +1607,7 @@ M.StopPHIDetectionJobOutput = {
 
 M.StopRxNormInferenceJobInput = {
     type = "structure",
+    id = "StopRxNormInferenceJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1541,6 +1620,7 @@ M.StopRxNormInferenceJobInput = {
 
 M.StopRxNormInferenceJobOutput = {
     type = "structure",
+    id = "StopRxNormInferenceJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1550,6 +1630,7 @@ M.StopRxNormInferenceJobOutput = {
 
 M.StopSNOMEDCTInferenceJobInput = {
     type = "structure",
+    id = "StopSNOMEDCTInferenceJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1562,6 +1643,7 @@ M.StopSNOMEDCTInferenceJobInput = {
 
 M.StopSNOMEDCTInferenceJobOutput = {
     type = "structure",
+    id = "StopSNOMEDCTInferenceJobOutput",
     members = {
         JobId = {
             type = "string",

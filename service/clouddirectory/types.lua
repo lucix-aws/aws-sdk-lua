@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AttributeKey = {
     type = "structure",
+    id = "AttributeKey",
     members = {
         SchemaArn = {
             type = "string",
@@ -36,6 +38,7 @@ M.AttributeKey = {
 
 M.TypedAttributeValue = {
     type = "union",
+    id = "TypedAttributeValue",
     members = {
         StringValue = {
             type = "string",
@@ -57,6 +60,7 @@ M.TypedAttributeValue = {
 
 M.AttributeKeyAndValue = {
     type = "structure",
+    id = "AttributeKeyAndValue",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -69,6 +73,7 @@ M.AttributeKeyAndValue = {
 
 M.ObjectReference = {
     type = "structure",
+    id = "ObjectReference",
     members = {
         Selector = {
             type = "string",
@@ -78,6 +83,7 @@ M.ObjectReference = {
 
 M.SchemaFacet = {
     type = "structure",
+    id = "SchemaFacet",
     members = {
         SchemaArn = {
             type = "string",
@@ -90,6 +96,7 @@ M.SchemaFacet = {
 
 M.AddFacetToObjectInput = {
     type = "structure",
+    id = "AddFacetToObjectInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -113,10 +120,12 @@ M.AddFacetToObjectInput = {
 
 M.AddFacetToObjectOutput = {
     type = "structure",
+    id = "AddFacetToObjectOutput",
 }
 
 M.DirectoryNotEnabledException = {
     type = "structure",
+    id = "DirectoryNotEnabledException",
     error = "client",
     members = {
         Message = {
@@ -127,6 +136,7 @@ M.DirectoryNotEnabledException = {
 
 M.FacetValidationException = {
     type = "structure",
+    id = "FacetValidationException",
     error = "client",
     members = {
         Message = {
@@ -137,6 +147,7 @@ M.FacetValidationException = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -147,6 +158,7 @@ M.InternalServiceException = {
 
 M.InvalidArnException = {
     type = "structure",
+    id = "InvalidArnException",
     error = "client",
     members = {
         Message = {
@@ -157,6 +169,7 @@ M.InvalidArnException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -167,6 +180,7 @@ M.LimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -177,6 +191,7 @@ M.ResourceNotFoundException = {
 
 M.RetryableConflictException = {
     type = "structure",
+    id = "RetryableConflictException",
     error = "client",
     members = {
         Message = {
@@ -187,6 +202,7 @@ M.RetryableConflictException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -197,6 +213,7 @@ M.ValidationException = {
 
 M.ApplySchemaInput = {
     type = "structure",
+    id = "ApplySchemaInput",
     members = {
         PublishedSchemaArn = {
             type = "string",
@@ -216,6 +233,7 @@ M.ApplySchemaInput = {
 
 M.ApplySchemaOutput = {
     type = "structure",
+    id = "ApplySchemaOutput",
     members = {
         AppliedSchemaArn = {
             type = "string",
@@ -228,6 +246,7 @@ M.ApplySchemaOutput = {
 
 M.InvalidAttachmentException = {
     type = "structure",
+    id = "InvalidAttachmentException",
     error = "client",
     members = {
         Message = {
@@ -238,6 +257,7 @@ M.InvalidAttachmentException = {
 
 M.SchemaAlreadyExistsException = {
     type = "structure",
+    id = "SchemaAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -248,6 +268,7 @@ M.SchemaAlreadyExistsException = {
 
 M.AttachObjectInput = {
     type = "structure",
+    id = "AttachObjectInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -273,6 +294,7 @@ M.AttachObjectInput = {
 
 M.AttachObjectOutput = {
     type = "structure",
+    id = "AttachObjectOutput",
     members = {
         AttachedObjectIdentifier = {
             type = "string",
@@ -282,6 +304,7 @@ M.AttachObjectOutput = {
 
 M.LinkNameAlreadyInUseException = {
     type = "structure",
+    id = "LinkNameAlreadyInUseException",
     error = "client",
     members = {
         Message = {
@@ -292,6 +315,7 @@ M.LinkNameAlreadyInUseException = {
 
 M.AttachPolicyInput = {
     type = "structure",
+    id = "AttachPolicyInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -311,10 +335,12 @@ M.AttachPolicyInput = {
 
 M.AttachPolicyOutput = {
     type = "structure",
+    id = "AttachPolicyOutput",
 }
 
 M.NotPolicyException = {
     type = "structure",
+    id = "NotPolicyException",
     error = "client",
     members = {
         Message = {
@@ -325,6 +351,7 @@ M.NotPolicyException = {
 
 M.AttachToIndexInput = {
     type = "structure",
+    id = "AttachToIndexInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -344,6 +371,7 @@ M.AttachToIndexInput = {
 
 M.AttachToIndexOutput = {
     type = "structure",
+    id = "AttachToIndexOutput",
     members = {
         AttachedObjectIdentifier = {
             type = "string",
@@ -353,6 +381,7 @@ M.AttachToIndexOutput = {
 
 M.IndexedAttributeMissingException = {
     type = "structure",
+    id = "IndexedAttributeMissingException",
     error = "client",
     members = {
         Message = {
@@ -363,6 +392,7 @@ M.IndexedAttributeMissingException = {
 
 M.NotIndexException = {
     type = "structure",
+    id = "NotIndexException",
     error = "client",
     members = {
         Message = {
@@ -373,6 +403,7 @@ M.NotIndexException = {
 
 M.AttributeNameAndValue = {
     type = "structure",
+    id = "AttributeNameAndValue",
     members = {
         AttributeName = {
             type = "string",
@@ -388,6 +419,7 @@ M.AttributeNameAndValue = {
 
 M.TypedLinkSchemaAndFacetName = {
     type = "structure",
+    id = "TypedLinkSchemaAndFacetName",
     members = {
         SchemaArn = {
             type = "string",
@@ -406,6 +438,7 @@ M.TypedLinkSchemaAndFacetName = {
 
 M.AttachTypedLinkInput = {
     type = "structure",
+    id = "AttachTypedLinkInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -435,6 +468,7 @@ M.AttachTypedLinkInput = {
 
 M.TypedLinkSpecifier = {
     type = "structure",
+    id = "TypedLinkSpecifier",
     members = {
         TypedLinkFacet = setmetatable({ traits = {
             required = true,
@@ -457,6 +491,7 @@ M.TypedLinkSpecifier = {
 
 M.AttachTypedLinkOutput = {
     type = "structure",
+    id = "AttachTypedLinkOutput",
     members = {
         TypedLinkSpecifier = M.TypedLinkSpecifier,
     },
@@ -469,6 +504,7 @@ M.ConsistencyLevel = {
 
 M.BatchGetLinkAttributes = {
     type = "structure",
+    id = "BatchGetLinkAttributes",
     members = {
         TypedLinkSpecifier = setmetatable({ traits = {
             required = true,
@@ -485,6 +521,7 @@ M.BatchGetLinkAttributes = {
 
 M.BatchGetObjectAttributes = {
     type = "structure",
+    id = "BatchGetObjectAttributes",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -504,6 +541,7 @@ M.BatchGetObjectAttributes = {
 
 M.BatchGetObjectInformation = {
     type = "structure",
+    id = "BatchGetObjectInformation",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -513,6 +551,7 @@ M.BatchGetObjectInformation = {
 
 M.BatchListAttachedIndices = {
     type = "structure",
+    id = "BatchListAttachedIndices",
     members = {
         TargetReference = setmetatable({ traits = {
             required = true,
@@ -536,6 +575,7 @@ M.RangeMode = {
 
 M.TypedAttributeValueRange = {
     type = "structure",
+    id = "TypedAttributeValueRange",
     members = {
         StartMode = {
             type = "string",
@@ -556,6 +596,7 @@ M.TypedAttributeValueRange = {
 
 M.TypedLinkAttributeRange = {
     type = "structure",
+    id = "TypedLinkAttributeRange",
     members = {
         AttributeName = {
             type = "string",
@@ -568,6 +609,7 @@ M.TypedLinkAttributeRange = {
 
 M.BatchListIncomingTypedLinks = {
     type = "structure",
+    id = "BatchListIncomingTypedLinks",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -588,6 +630,7 @@ M.BatchListIncomingTypedLinks = {
 
 M.ObjectAttributeRange = {
     type = "structure",
+    id = "ObjectAttributeRange",
     members = {
         AttributeKey = M.AttributeKey,
         Range = M.TypedAttributeValueRange,
@@ -596,6 +639,7 @@ M.ObjectAttributeRange = {
 
 M.BatchListIndex = {
     type = "structure",
+    id = "BatchListIndex",
     members = {
         RangesOnIndexedValues = {
             type = "list",
@@ -615,6 +659,7 @@ M.BatchListIndex = {
 
 M.BatchListObjectAttributes = {
     type = "structure",
+    id = "BatchListObjectAttributes",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -631,6 +676,7 @@ M.BatchListObjectAttributes = {
 
 M.BatchListObjectChildren = {
     type = "structure",
+    id = "BatchListObjectChildren",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -646,6 +692,7 @@ M.BatchListObjectChildren = {
 
 M.BatchListObjectParentPaths = {
     type = "structure",
+    id = "BatchListObjectParentPaths",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -661,6 +708,7 @@ M.BatchListObjectParentPaths = {
 
 M.BatchListObjectParents = {
     type = "structure",
+    id = "BatchListObjectParents",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -676,6 +724,7 @@ M.BatchListObjectParents = {
 
 M.BatchListObjectPolicies = {
     type = "structure",
+    id = "BatchListObjectPolicies",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -691,6 +740,7 @@ M.BatchListObjectPolicies = {
 
 M.BatchListOutgoingTypedLinks = {
     type = "structure",
+    id = "BatchListOutgoingTypedLinks",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -711,6 +761,7 @@ M.BatchListOutgoingTypedLinks = {
 
 M.BatchListPolicyAttachments = {
     type = "structure",
+    id = "BatchListPolicyAttachments",
     members = {
         PolicyReference = setmetatable({ traits = {
             required = true,
@@ -726,6 +777,7 @@ M.BatchListPolicyAttachments = {
 
 M.BatchLookupPolicy = {
     type = "structure",
+    id = "BatchLookupPolicy",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -741,6 +793,7 @@ M.BatchLookupPolicy = {
 
 M.BatchReadOperation = {
     type = "structure",
+    id = "BatchReadOperation",
     members = {
         ListObjectAttributes = M.BatchListObjectAttributes,
         ListObjectChildren = M.BatchListObjectChildren,
@@ -761,6 +814,7 @@ M.BatchReadOperation = {
 
 M.BatchReadInput = {
     type = "structure",
+    id = "BatchReadInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -803,6 +857,7 @@ M.BatchReadExceptionType = {
 
 M.BatchReadException = {
     type = "structure",
+    id = "BatchReadException",
     members = {
         Type = {
             type = "string",
@@ -815,6 +870,7 @@ M.BatchReadException = {
 
 M.BatchGetLinkAttributesResponse = {
     type = "structure",
+    id = "BatchGetLinkAttributesResponse",
     members = {
         Attributes = {
             type = "list",
@@ -825,6 +881,7 @@ M.BatchGetLinkAttributesResponse = {
 
 M.BatchGetObjectAttributesResponse = {
     type = "structure",
+    id = "BatchGetObjectAttributesResponse",
     members = {
         Attributes = {
             type = "list",
@@ -835,6 +892,7 @@ M.BatchGetObjectAttributesResponse = {
 
 M.BatchGetObjectInformationResponse = {
     type = "structure",
+    id = "BatchGetObjectInformationResponse",
     members = {
         SchemaFacets = {
             type = "list",
@@ -848,6 +906,7 @@ M.BatchGetObjectInformationResponse = {
 
 M.IndexAttachment = {
     type = "structure",
+    id = "IndexAttachment",
     members = {
         IndexedAttributes = {
             type = "list",
@@ -861,6 +920,7 @@ M.IndexAttachment = {
 
 M.BatchListAttachedIndicesResponse = {
     type = "structure",
+    id = "BatchListAttachedIndicesResponse",
     members = {
         IndexAttachments = {
             type = "list",
@@ -874,6 +934,7 @@ M.BatchListAttachedIndicesResponse = {
 
 M.BatchListIncomingTypedLinksResponse = {
     type = "structure",
+    id = "BatchListIncomingTypedLinksResponse",
     members = {
         LinkSpecifiers = {
             type = "list",
@@ -887,6 +948,7 @@ M.BatchListIncomingTypedLinksResponse = {
 
 M.BatchListIndexResponse = {
     type = "structure",
+    id = "BatchListIndexResponse",
     members = {
         IndexAttachments = {
             type = "list",
@@ -900,6 +962,7 @@ M.BatchListIndexResponse = {
 
 M.BatchListObjectAttributesResponse = {
     type = "structure",
+    id = "BatchListObjectAttributesResponse",
     members = {
         Attributes = {
             type = "list",
@@ -913,6 +976,7 @@ M.BatchListObjectAttributesResponse = {
 
 M.BatchListObjectChildrenResponse = {
     type = "structure",
+    id = "BatchListObjectChildrenResponse",
     members = {
         Children = {
             type = "map",
@@ -927,6 +991,7 @@ M.BatchListObjectChildrenResponse = {
 
 M.PathToObjectIdentifiers = {
     type = "structure",
+    id = "PathToObjectIdentifiers",
     members = {
         Path = {
             type = "string",
@@ -940,6 +1005,7 @@ M.PathToObjectIdentifiers = {
 
 M.BatchListObjectParentPathsResponse = {
     type = "structure",
+    id = "BatchListObjectParentPathsResponse",
     members = {
         PathToObjectIdentifiersList = {
             type = "list",
@@ -953,6 +1019,7 @@ M.BatchListObjectParentPathsResponse = {
 
 M.ObjectIdentifierAndLinkNameTuple = {
     type = "structure",
+    id = "ObjectIdentifierAndLinkNameTuple",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -965,6 +1032,7 @@ M.ObjectIdentifierAndLinkNameTuple = {
 
 M.BatchListObjectParentsResponse = {
     type = "structure",
+    id = "BatchListObjectParentsResponse",
     members = {
         ParentLinks = {
             type = "list",
@@ -978,6 +1046,7 @@ M.BatchListObjectParentsResponse = {
 
 M.BatchListObjectPoliciesResponse = {
     type = "structure",
+    id = "BatchListObjectPoliciesResponse",
     members = {
         AttachedPolicyIds = {
             type = "list",
@@ -991,6 +1060,7 @@ M.BatchListObjectPoliciesResponse = {
 
 M.BatchListOutgoingTypedLinksResponse = {
     type = "structure",
+    id = "BatchListOutgoingTypedLinksResponse",
     members = {
         TypedLinkSpecifiers = {
             type = "list",
@@ -1004,6 +1074,7 @@ M.BatchListOutgoingTypedLinksResponse = {
 
 M.BatchListPolicyAttachmentsResponse = {
     type = "structure",
+    id = "BatchListPolicyAttachmentsResponse",
     members = {
         ObjectIdentifiers = {
             type = "list",
@@ -1017,6 +1088,7 @@ M.BatchListPolicyAttachmentsResponse = {
 
 M.PolicyAttachment = {
     type = "structure",
+    id = "PolicyAttachment",
     members = {
         PolicyId = {
             type = "string",
@@ -1032,6 +1104,7 @@ M.PolicyAttachment = {
 
 M.PolicyToPath = {
     type = "structure",
+    id = "PolicyToPath",
     members = {
         Path = {
             type = "string",
@@ -1045,6 +1118,7 @@ M.PolicyToPath = {
 
 M.BatchLookupPolicyResponse = {
     type = "structure",
+    id = "BatchLookupPolicyResponse",
     members = {
         PolicyToPathList = {
             type = "list",
@@ -1058,6 +1132,7 @@ M.BatchLookupPolicyResponse = {
 
 M.BatchReadSuccessfulResponse = {
     type = "structure",
+    id = "BatchReadSuccessfulResponse",
     members = {
         ListObjectAttributes = M.BatchListObjectAttributesResponse,
         ListObjectChildren = M.BatchListObjectChildrenResponse,
@@ -1078,6 +1153,7 @@ M.BatchReadSuccessfulResponse = {
 
 M.BatchReadOperationResponse = {
     type = "structure",
+    id = "BatchReadOperationResponse",
     members = {
         SuccessfulResponse = M.BatchReadSuccessfulResponse,
         ExceptionResponse = M.BatchReadException,
@@ -1086,6 +1162,7 @@ M.BatchReadOperationResponse = {
 
 M.BatchReadOutput = {
     type = "structure",
+    id = "BatchReadOutput",
     members = {
         Responses = {
             type = "list",
@@ -1117,6 +1194,7 @@ M.BatchWriteExceptionType = {
 
 M.BatchWriteException = {
     type = "structure",
+    id = "BatchWriteException",
     error = "client",
     members = {
         Index = {
@@ -1136,6 +1214,7 @@ M.BatchWriteException = {
 
 M.BatchAddFacetToObject = {
     type = "structure",
+    id = "BatchAddFacetToObject",
     members = {
         SchemaFacet = setmetatable({ traits = {
             required = true,
@@ -1155,6 +1234,7 @@ M.BatchAddFacetToObject = {
 
 M.BatchAttachObject = {
     type = "structure",
+    id = "BatchAttachObject",
     members = {
         ParentReference = setmetatable({ traits = {
             required = true,
@@ -1173,6 +1253,7 @@ M.BatchAttachObject = {
 
 M.BatchAttachPolicy = {
     type = "structure",
+    id = "BatchAttachPolicy",
     members = {
         PolicyReference = setmetatable({ traits = {
             required = true,
@@ -1185,6 +1266,7 @@ M.BatchAttachPolicy = {
 
 M.BatchAttachToIndex = {
     type = "structure",
+    id = "BatchAttachToIndex",
     members = {
         IndexReference = setmetatable({ traits = {
             required = true,
@@ -1197,6 +1279,7 @@ M.BatchAttachToIndex = {
 
 M.BatchAttachTypedLink = {
     type = "structure",
+    id = "BatchAttachTypedLink",
     members = {
         SourceObjectReference = setmetatable({ traits = {
             required = true,
@@ -1219,6 +1302,7 @@ M.BatchAttachTypedLink = {
 
 M.BatchCreateIndex = {
     type = "structure",
+    id = "BatchCreateIndex",
     members = {
         OrderedIndexedAttributeList = {
             type = "list",
@@ -1246,6 +1330,7 @@ M.BatchCreateIndex = {
 
 M.BatchCreateObject = {
     type = "structure",
+    id = "BatchCreateObject",
     members = {
         SchemaFacet = {
             type = "list",
@@ -1273,6 +1358,7 @@ M.BatchCreateObject = {
 
 M.BatchDeleteObject = {
     type = "structure",
+    id = "BatchDeleteObject",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -1282,6 +1368,7 @@ M.BatchDeleteObject = {
 
 M.BatchDetachFromIndex = {
     type = "structure",
+    id = "BatchDetachFromIndex",
     members = {
         IndexReference = setmetatable({ traits = {
             required = true,
@@ -1294,6 +1381,7 @@ M.BatchDetachFromIndex = {
 
 M.BatchDetachObject = {
     type = "structure",
+    id = "BatchDetachObject",
     members = {
         ParentReference = setmetatable({ traits = {
             required = true,
@@ -1312,6 +1400,7 @@ M.BatchDetachObject = {
 
 M.BatchDetachPolicy = {
     type = "structure",
+    id = "BatchDetachPolicy",
     members = {
         PolicyReference = setmetatable({ traits = {
             required = true,
@@ -1324,6 +1413,7 @@ M.BatchDetachPolicy = {
 
 M.BatchDetachTypedLink = {
     type = "structure",
+    id = "BatchDetachTypedLink",
     members = {
         TypedLinkSpecifier = setmetatable({ traits = {
             required = true,
@@ -1333,6 +1423,7 @@ M.BatchDetachTypedLink = {
 
 M.BatchRemoveFacetFromObject = {
     type = "structure",
+    id = "BatchRemoveFacetFromObject",
     members = {
         SchemaFacet = setmetatable({ traits = {
             required = true,
@@ -1350,6 +1441,7 @@ M.UpdateActionType = {
 
 M.LinkAttributeAction = {
     type = "structure",
+    id = "LinkAttributeAction",
     members = {
         AttributeActionType = {
             type = "string",
@@ -1360,6 +1452,7 @@ M.LinkAttributeAction = {
 
 M.LinkAttributeUpdate = {
     type = "structure",
+    id = "LinkAttributeUpdate",
     members = {
         AttributeKey = M.AttributeKey,
         AttributeAction = M.LinkAttributeAction,
@@ -1368,6 +1461,7 @@ M.LinkAttributeUpdate = {
 
 M.BatchUpdateLinkAttributes = {
     type = "structure",
+    id = "BatchUpdateLinkAttributes",
     members = {
         TypedLinkSpecifier = setmetatable({ traits = {
             required = true,
@@ -1384,6 +1478,7 @@ M.BatchUpdateLinkAttributes = {
 
 M.ObjectAttributeAction = {
     type = "structure",
+    id = "ObjectAttributeAction",
     members = {
         ObjectAttributeActionType = {
             type = "string",
@@ -1394,6 +1489,7 @@ M.ObjectAttributeAction = {
 
 M.ObjectAttributeUpdate = {
     type = "structure",
+    id = "ObjectAttributeUpdate",
     members = {
         ObjectAttributeKey = M.AttributeKey,
         ObjectAttributeAction = M.ObjectAttributeAction,
@@ -1402,6 +1498,7 @@ M.ObjectAttributeUpdate = {
 
 M.BatchUpdateObjectAttributes = {
     type = "structure",
+    id = "BatchUpdateObjectAttributes",
     members = {
         ObjectReference = setmetatable({ traits = {
             required = true,
@@ -1418,6 +1515,7 @@ M.BatchUpdateObjectAttributes = {
 
 M.BatchWriteOperation = {
     type = "structure",
+    id = "BatchWriteOperation",
     members = {
         CreateObject = M.BatchCreateObject,
         AttachObject = M.BatchAttachObject,
@@ -1439,6 +1537,7 @@ M.BatchWriteOperation = {
 
 M.BatchWriteInput = {
     type = "structure",
+    id = "BatchWriteInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -1459,10 +1558,12 @@ M.BatchWriteInput = {
 
 M.BatchAddFacetToObjectResponse = {
     type = "structure",
+    id = "BatchAddFacetToObjectResponse",
 }
 
 M.BatchAttachObjectResponse = {
     type = "structure",
+    id = "BatchAttachObjectResponse",
     members = {
         attachedObjectIdentifier = {
             type = "string",
@@ -1472,10 +1573,12 @@ M.BatchAttachObjectResponse = {
 
 M.BatchAttachPolicyResponse = {
     type = "structure",
+    id = "BatchAttachPolicyResponse",
 }
 
 M.BatchAttachToIndexResponse = {
     type = "structure",
+    id = "BatchAttachToIndexResponse",
     members = {
         AttachedObjectIdentifier = {
             type = "string",
@@ -1485,6 +1588,7 @@ M.BatchAttachToIndexResponse = {
 
 M.BatchAttachTypedLinkResponse = {
     type = "structure",
+    id = "BatchAttachTypedLinkResponse",
     members = {
         TypedLinkSpecifier = M.TypedLinkSpecifier,
     },
@@ -1492,6 +1596,7 @@ M.BatchAttachTypedLinkResponse = {
 
 M.BatchCreateIndexResponse = {
     type = "structure",
+    id = "BatchCreateIndexResponse",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -1501,6 +1606,7 @@ M.BatchCreateIndexResponse = {
 
 M.BatchCreateObjectResponse = {
     type = "structure",
+    id = "BatchCreateObjectResponse",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -1510,10 +1616,12 @@ M.BatchCreateObjectResponse = {
 
 M.BatchDeleteObjectResponse = {
     type = "structure",
+    id = "BatchDeleteObjectResponse",
 }
 
 M.BatchDetachFromIndexResponse = {
     type = "structure",
+    id = "BatchDetachFromIndexResponse",
     members = {
         DetachedObjectIdentifier = {
             type = "string",
@@ -1523,6 +1631,7 @@ M.BatchDetachFromIndexResponse = {
 
 M.BatchDetachObjectResponse = {
     type = "structure",
+    id = "BatchDetachObjectResponse",
     members = {
         detachedObjectIdentifier = {
             type = "string",
@@ -1532,22 +1641,27 @@ M.BatchDetachObjectResponse = {
 
 M.BatchDetachPolicyResponse = {
     type = "structure",
+    id = "BatchDetachPolicyResponse",
 }
 
 M.BatchDetachTypedLinkResponse = {
     type = "structure",
+    id = "BatchDetachTypedLinkResponse",
 }
 
 M.BatchRemoveFacetFromObjectResponse = {
     type = "structure",
+    id = "BatchRemoveFacetFromObjectResponse",
 }
 
 M.BatchUpdateLinkAttributesResponse = {
     type = "structure",
+    id = "BatchUpdateLinkAttributesResponse",
 }
 
 M.BatchUpdateObjectAttributesResponse = {
     type = "structure",
+    id = "BatchUpdateObjectAttributesResponse",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -1557,6 +1671,7 @@ M.BatchUpdateObjectAttributesResponse = {
 
 M.BatchWriteOperationResponse = {
     type = "structure",
+    id = "BatchWriteOperationResponse",
     members = {
         CreateObject = M.BatchCreateObjectResponse,
         AttachObject = M.BatchAttachObjectResponse,
@@ -1578,6 +1693,7 @@ M.BatchWriteOperationResponse = {
 
 M.BatchWriteOutput = {
     type = "structure",
+    id = "BatchWriteOutput",
     members = {
         Responses = {
             type = "list",
@@ -1588,6 +1704,7 @@ M.BatchWriteOutput = {
 
 M.CreateDirectoryInput = {
     type = "structure",
+    id = "CreateDirectoryInput",
     members = {
         Name = {
             type = "string",
@@ -1607,6 +1724,7 @@ M.CreateDirectoryInput = {
 
 M.CreateDirectoryOutput = {
     type = "structure",
+    id = "CreateDirectoryOutput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -1637,6 +1755,7 @@ M.CreateDirectoryOutput = {
 
 M.DirectoryAlreadyExistsException = {
     type = "structure",
+    id = "DirectoryAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1654,6 +1773,7 @@ M.RuleType = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         Type = {
             type = "string",
@@ -1677,6 +1797,7 @@ M.FacetAttributeType = {
 
 M.FacetAttributeDefinition = {
     type = "structure",
+    id = "FacetAttributeDefinition",
     members = {
         Type = {
             type = "string",
@@ -1701,6 +1822,7 @@ M.FacetAttributeDefinition = {
 
 M.FacetAttributeReference = {
     type = "structure",
+    id = "FacetAttributeReference",
     members = {
         TargetFacetName = {
             type = "string",
@@ -1724,6 +1846,7 @@ M.RequiredAttributeBehavior = {
 
 M.FacetAttribute = {
     type = "structure",
+    id = "FacetAttribute",
     members = {
         Name = {
             type = "string",
@@ -1753,6 +1876,7 @@ M.ObjectType = {
 
 M.CreateFacetInput = {
     type = "structure",
+    id = "CreateFacetInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -1782,10 +1906,12 @@ M.CreateFacetInput = {
 
 M.CreateFacetOutput = {
     type = "structure",
+    id = "CreateFacetOutput",
 }
 
 M.FacetAlreadyExistsException = {
     type = "structure",
+    id = "FacetAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1796,6 +1922,7 @@ M.FacetAlreadyExistsException = {
 
 M.InvalidRuleException = {
     type = "structure",
+    id = "InvalidRuleException",
     error = "client",
     members = {
         Message = {
@@ -1806,6 +1933,7 @@ M.InvalidRuleException = {
 
 M.CreateIndexInput = {
     type = "structure",
+    id = "CreateIndexInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -1837,6 +1965,7 @@ M.CreateIndexInput = {
 
 M.CreateIndexOutput = {
     type = "structure",
+    id = "CreateIndexOutput",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -1846,6 +1975,7 @@ M.CreateIndexOutput = {
 
 M.UnsupportedIndexTypeException = {
     type = "structure",
+    id = "UnsupportedIndexTypeException",
     error = "client",
     members = {
         Message = {
@@ -1856,6 +1986,7 @@ M.UnsupportedIndexTypeException = {
 
 M.CreateObjectInput = {
     type = "structure",
+    id = "CreateObjectInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -1884,6 +2015,7 @@ M.CreateObjectInput = {
 
 M.CreateObjectOutput = {
     type = "structure",
+    id = "CreateObjectOutput",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -1893,6 +2025,7 @@ M.CreateObjectOutput = {
 
 M.CreateSchemaInput = {
     type = "structure",
+    id = "CreateSchemaInput",
     members = {
         Name = {
             type = "string",
@@ -1905,6 +2038,7 @@ M.CreateSchemaInput = {
 
 M.CreateSchemaOutput = {
     type = "structure",
+    id = "CreateSchemaOutput",
     members = {
         SchemaArn = {
             type = "string",
@@ -1914,6 +2048,7 @@ M.CreateSchemaOutput = {
 
 M.TypedLinkAttributeDefinition = {
     type = "structure",
+    id = "TypedLinkAttributeDefinition",
     members = {
         Name = {
             type = "string",
@@ -1950,6 +2085,7 @@ M.TypedLinkAttributeDefinition = {
 
 M.TypedLinkFacet = {
     type = "structure",
+    id = "TypedLinkFacet",
     members = {
         Name = {
             type = "string",
@@ -1976,6 +2112,7 @@ M.TypedLinkFacet = {
 
 M.CreateTypedLinkFacetInput = {
     type = "structure",
+    id = "CreateTypedLinkFacetInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -1992,10 +2129,12 @@ M.CreateTypedLinkFacetInput = {
 
 M.CreateTypedLinkFacetOutput = {
     type = "structure",
+    id = "CreateTypedLinkFacetOutput",
 }
 
 M.DeleteDirectoryInput = {
     type = "structure",
+    id = "DeleteDirectoryInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2009,6 +2148,7 @@ M.DeleteDirectoryInput = {
 
 M.DeleteDirectoryOutput = {
     type = "structure",
+    id = "DeleteDirectoryOutput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2021,6 +2161,7 @@ M.DeleteDirectoryOutput = {
 
 M.DirectoryDeletedException = {
     type = "structure",
+    id = "DirectoryDeletedException",
     error = "client",
     members = {
         Message = {
@@ -2031,6 +2172,7 @@ M.DirectoryDeletedException = {
 
 M.DirectoryNotDisabledException = {
     type = "structure",
+    id = "DirectoryNotDisabledException",
     error = "client",
     members = {
         Message = {
@@ -2041,6 +2183,7 @@ M.DirectoryNotDisabledException = {
 
 M.DeleteFacetInput = {
     type = "structure",
+    id = "DeleteFacetInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2060,10 +2203,12 @@ M.DeleteFacetInput = {
 
 M.DeleteFacetOutput = {
     type = "structure",
+    id = "DeleteFacetOutput",
 }
 
 M.FacetInUseException = {
     type = "structure",
+    id = "FacetInUseException",
     error = "client",
     members = {
         Message = {
@@ -2074,6 +2219,7 @@ M.FacetInUseException = {
 
 M.FacetNotFoundException = {
     type = "structure",
+    id = "FacetNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2084,6 +2230,7 @@ M.FacetNotFoundException = {
 
 M.DeleteObjectInput = {
     type = "structure",
+    id = "DeleteObjectInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2100,10 +2247,12 @@ M.DeleteObjectInput = {
 
 M.DeleteObjectOutput = {
     type = "structure",
+    id = "DeleteObjectOutput",
 }
 
 M.ObjectNotDetachedException = {
     type = "structure",
+    id = "ObjectNotDetachedException",
     error = "client",
     members = {
         Message = {
@@ -2114,6 +2263,7 @@ M.ObjectNotDetachedException = {
 
 M.DeleteSchemaInput = {
     type = "structure",
+    id = "DeleteSchemaInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2127,6 +2277,7 @@ M.DeleteSchemaInput = {
 
 M.DeleteSchemaOutput = {
     type = "structure",
+    id = "DeleteSchemaOutput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2136,6 +2287,7 @@ M.DeleteSchemaOutput = {
 
 M.StillContainsLinksException = {
     type = "structure",
+    id = "StillContainsLinksException",
     error = "client",
     members = {
         Message = {
@@ -2146,6 +2298,7 @@ M.StillContainsLinksException = {
 
 M.DeleteTypedLinkFacetInput = {
     type = "structure",
+    id = "DeleteTypedLinkFacetInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2165,10 +2318,12 @@ M.DeleteTypedLinkFacetInput = {
 
 M.DeleteTypedLinkFacetOutput = {
     type = "structure",
+    id = "DeleteTypedLinkFacetOutput",
 }
 
 M.DetachFromIndexInput = {
     type = "structure",
+    id = "DetachFromIndexInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2188,6 +2343,7 @@ M.DetachFromIndexInput = {
 
 M.DetachFromIndexOutput = {
     type = "structure",
+    id = "DetachFromIndexOutput",
     members = {
         DetachedObjectIdentifier = {
             type = "string",
@@ -2197,6 +2353,7 @@ M.DetachFromIndexOutput = {
 
 M.ObjectAlreadyDetachedException = {
     type = "structure",
+    id = "ObjectAlreadyDetachedException",
     error = "client",
     members = {
         Message = {
@@ -2207,6 +2364,7 @@ M.ObjectAlreadyDetachedException = {
 
 M.DetachObjectInput = {
     type = "structure",
+    id = "DetachObjectInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2229,6 +2387,7 @@ M.DetachObjectInput = {
 
 M.DetachObjectOutput = {
     type = "structure",
+    id = "DetachObjectOutput",
     members = {
         DetachedObjectIdentifier = {
             type = "string",
@@ -2238,6 +2397,7 @@ M.DetachObjectOutput = {
 
 M.NotNodeException = {
     type = "structure",
+    id = "NotNodeException",
     error = "client",
     members = {
         Message = {
@@ -2248,6 +2408,7 @@ M.NotNodeException = {
 
 M.DetachPolicyInput = {
     type = "structure",
+    id = "DetachPolicyInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2267,10 +2428,12 @@ M.DetachPolicyInput = {
 
 M.DetachPolicyOutput = {
     type = "structure",
+    id = "DetachPolicyOutput",
 }
 
 M.DetachTypedLinkInput = {
     type = "structure",
+    id = "DetachTypedLinkInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2287,10 +2450,12 @@ M.DetachTypedLinkInput = {
 
 M.DetachTypedLinkOutput = {
     type = "structure",
+    id = "DetachTypedLinkOutput",
 }
 
 M.DisableDirectoryInput = {
     type = "structure",
+    id = "DisableDirectoryInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2304,6 +2469,7 @@ M.DisableDirectoryInput = {
 
 M.DisableDirectoryOutput = {
     type = "structure",
+    id = "DisableDirectoryOutput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2316,6 +2482,7 @@ M.DisableDirectoryOutput = {
 
 M.EnableDirectoryInput = {
     type = "structure",
+    id = "EnableDirectoryInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2329,6 +2496,7 @@ M.EnableDirectoryInput = {
 
 M.EnableDirectoryOutput = {
     type = "structure",
+    id = "EnableDirectoryOutput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2341,6 +2509,7 @@ M.EnableDirectoryOutput = {
 
 M.GetAppliedSchemaVersionInput = {
     type = "structure",
+    id = "GetAppliedSchemaVersionInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2353,6 +2522,7 @@ M.GetAppliedSchemaVersionInput = {
 
 M.GetAppliedSchemaVersionOutput = {
     type = "structure",
+    id = "GetAppliedSchemaVersionOutput",
     members = {
         AppliedSchemaArn = {
             type = "string",
@@ -2362,6 +2532,7 @@ M.GetAppliedSchemaVersionOutput = {
 
 M.GetDirectoryInput = {
     type = "structure",
+    id = "GetDirectoryInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2381,6 +2552,7 @@ M.DirectoryState = {
 
 M.Directory = {
     type = "structure",
+    id = "Directory",
     members = {
         Name = {
             type = "string",
@@ -2399,6 +2571,7 @@ M.Directory = {
 
 M.GetDirectoryOutput = {
     type = "structure",
+    id = "GetDirectoryOutput",
     members = {
         Directory = setmetatable({ traits = {
             required = true,
@@ -2408,6 +2581,7 @@ M.GetDirectoryOutput = {
 
 M.GetFacetInput = {
     type = "structure",
+    id = "GetFacetInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2427,6 +2601,7 @@ M.GetFacetInput = {
 
 M.Facet = {
     type = "structure",
+    id = "Facet",
     members = {
         Name = {
             type = "string",
@@ -2442,6 +2617,7 @@ M.Facet = {
 
 M.GetFacetOutput = {
     type = "structure",
+    id = "GetFacetOutput",
     members = {
         Facet = M.Facet,
     },
@@ -2449,6 +2625,7 @@ M.GetFacetOutput = {
 
 M.GetLinkAttributesInput = {
     type = "structure",
+    id = "GetLinkAttributesInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2475,6 +2652,7 @@ M.GetLinkAttributesInput = {
 
 M.GetLinkAttributesOutput = {
     type = "structure",
+    id = "GetLinkAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2485,6 +2663,7 @@ M.GetLinkAttributesOutput = {
 
 M.GetObjectAttributesInput = {
     type = "structure",
+    id = "GetObjectAttributesInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2517,6 +2696,7 @@ M.GetObjectAttributesInput = {
 
 M.GetObjectAttributesOutput = {
     type = "structure",
+    id = "GetObjectAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2527,6 +2707,7 @@ M.GetObjectAttributesOutput = {
 
 M.GetObjectInformationInput = {
     type = "structure",
+    id = "GetObjectInformationInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2549,6 +2730,7 @@ M.GetObjectInformationInput = {
 
 M.GetObjectInformationOutput = {
     type = "structure",
+    id = "GetObjectInformationOutput",
     members = {
         SchemaFacets = {
             type = "list",
@@ -2562,6 +2744,7 @@ M.GetObjectInformationOutput = {
 
 M.GetSchemaAsJsonInput = {
     type = "structure",
+    id = "GetSchemaAsJsonInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2575,6 +2758,7 @@ M.GetSchemaAsJsonInput = {
 
 M.GetSchemaAsJsonOutput = {
     type = "structure",
+    id = "GetSchemaAsJsonOutput",
     members = {
         Name = {
             type = "string",
@@ -2587,6 +2771,7 @@ M.GetSchemaAsJsonOutput = {
 
 M.GetTypedLinkFacetInformationInput = {
     type = "structure",
+    id = "GetTypedLinkFacetInformationInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2606,6 +2791,7 @@ M.GetTypedLinkFacetInformationInput = {
 
 M.GetTypedLinkFacetInformationOutput = {
     type = "structure",
+    id = "GetTypedLinkFacetInformationOutput",
     members = {
         IdentityAttributeOrder = {
             type = "list",
@@ -2616,6 +2802,7 @@ M.GetTypedLinkFacetInformationOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -2626,6 +2813,7 @@ M.InvalidNextTokenException = {
 
 M.ListAppliedSchemaArnsInput = {
     type = "structure",
+    id = "ListAppliedSchemaArnsInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2647,6 +2835,7 @@ M.ListAppliedSchemaArnsInput = {
 
 M.ListAppliedSchemaArnsOutput = {
     type = "structure",
+    id = "ListAppliedSchemaArnsOutput",
     members = {
         SchemaArns = {
             type = "list",
@@ -2660,6 +2849,7 @@ M.ListAppliedSchemaArnsOutput = {
 
 M.ListAttachedIndicesInput = {
     type = "structure",
+    id = "ListAttachedIndicesInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2688,6 +2878,7 @@ M.ListAttachedIndicesInput = {
 
 M.ListAttachedIndicesOutput = {
     type = "structure",
+    id = "ListAttachedIndicesOutput",
     members = {
         IndexAttachments = {
             type = "list",
@@ -2701,6 +2892,7 @@ M.ListAttachedIndicesOutput = {
 
 M.ListDevelopmentSchemaArnsInput = {
     type = "structure",
+    id = "ListDevelopmentSchemaArnsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2713,6 +2905,7 @@ M.ListDevelopmentSchemaArnsInput = {
 
 M.ListDevelopmentSchemaArnsOutput = {
     type = "structure",
+    id = "ListDevelopmentSchemaArnsOutput",
     members = {
         SchemaArns = {
             type = "list",
@@ -2726,6 +2919,7 @@ M.ListDevelopmentSchemaArnsOutput = {
 
 M.ListDirectoriesInput = {
     type = "structure",
+    id = "ListDirectoriesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2741,6 +2935,7 @@ M.ListDirectoriesInput = {
 
 M.ListDirectoriesOutput = {
     type = "structure",
+    id = "ListDirectoriesOutput",
     members = {
         Directories = {
             type = "list",
@@ -2757,6 +2952,7 @@ M.ListDirectoriesOutput = {
 
 M.ListFacetAttributesInput = {
     type = "structure",
+    id = "ListFacetAttributesInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2782,6 +2978,7 @@ M.ListFacetAttributesInput = {
 
 M.ListFacetAttributesOutput = {
     type = "structure",
+    id = "ListFacetAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2795,6 +2992,7 @@ M.ListFacetAttributesOutput = {
 
 M.ListFacetNamesInput = {
     type = "structure",
+    id = "ListFacetNamesInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2814,6 +3012,7 @@ M.ListFacetNamesInput = {
 
 M.ListFacetNamesOutput = {
     type = "structure",
+    id = "ListFacetNamesOutput",
     members = {
         FacetNames = {
             type = "list",
@@ -2827,6 +3026,7 @@ M.ListFacetNamesOutput = {
 
 M.ListIncomingTypedLinksInput = {
     type = "structure",
+    id = "ListIncomingTypedLinksInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2857,6 +3057,7 @@ M.ListIncomingTypedLinksInput = {
 
 M.ListIncomingTypedLinksOutput = {
     type = "structure",
+    id = "ListIncomingTypedLinksOutput",
     members = {
         LinkSpecifiers = {
             type = "list",
@@ -2870,6 +3071,7 @@ M.ListIncomingTypedLinksOutput = {
 
 M.ListIndexInput = {
     type = "structure",
+    id = "ListIndexInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2902,6 +3104,7 @@ M.ListIndexInput = {
 
 M.ListIndexOutput = {
     type = "structure",
+    id = "ListIndexOutput",
     members = {
         IndexAttachments = {
             type = "list",
@@ -2915,6 +3118,7 @@ M.ListIndexOutput = {
 
 M.ListManagedSchemaArnsInput = {
     type = "structure",
+    id = "ListManagedSchemaArnsInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -2930,6 +3134,7 @@ M.ListManagedSchemaArnsInput = {
 
 M.ListManagedSchemaArnsOutput = {
     type = "structure",
+    id = "ListManagedSchemaArnsOutput",
     members = {
         SchemaArns = {
             type = "list",
@@ -2943,6 +3148,7 @@ M.ListManagedSchemaArnsOutput = {
 
 M.ListObjectAttributesInput = {
     type = "structure",
+    id = "ListObjectAttributesInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -2972,6 +3178,7 @@ M.ListObjectAttributesInput = {
 
 M.ListObjectAttributesOutput = {
     type = "structure",
+    id = "ListObjectAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2985,6 +3192,7 @@ M.ListObjectAttributesOutput = {
 
 M.ListObjectChildrenInput = {
     type = "structure",
+    id = "ListObjectChildrenInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3013,6 +3221,7 @@ M.ListObjectChildrenInput = {
 
 M.ListObjectChildrenOutput = {
     type = "structure",
+    id = "ListObjectChildrenOutput",
     members = {
         Children = {
             type = "map",
@@ -3027,6 +3236,7 @@ M.ListObjectChildrenOutput = {
 
 M.ListObjectParentPathsInput = {
     type = "structure",
+    id = "ListObjectParentPathsInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3049,6 +3259,7 @@ M.ListObjectParentPathsInput = {
 
 M.ListObjectParentPathsOutput = {
     type = "structure",
+    id = "ListObjectParentPathsOutput",
     members = {
         PathToObjectIdentifiersList = {
             type = "list",
@@ -3062,6 +3273,7 @@ M.ListObjectParentPathsOutput = {
 
 M.CannotListParentOfRootException = {
     type = "structure",
+    id = "CannotListParentOfRootException",
     error = "client",
     members = {
         Message = {
@@ -3072,6 +3284,7 @@ M.CannotListParentOfRootException = {
 
 M.ListObjectParentsInput = {
     type = "structure",
+    id = "ListObjectParentsInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3106,6 +3319,7 @@ M.ListObjectParentsInput = {
 
 M.ListObjectParentsOutput = {
     type = "structure",
+    id = "ListObjectParentsOutput",
     members = {
         Parents = {
             type = "map",
@@ -3124,6 +3338,7 @@ M.ListObjectParentsOutput = {
 
 M.ListObjectPoliciesInput = {
     type = "structure",
+    id = "ListObjectPoliciesInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3152,6 +3367,7 @@ M.ListObjectPoliciesInput = {
 
 M.ListObjectPoliciesOutput = {
     type = "structure",
+    id = "ListObjectPoliciesOutput",
     members = {
         AttachedPolicyIds = {
             type = "list",
@@ -3165,6 +3381,7 @@ M.ListObjectPoliciesOutput = {
 
 M.ListOutgoingTypedLinksInput = {
     type = "structure",
+    id = "ListOutgoingTypedLinksInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3195,6 +3412,7 @@ M.ListOutgoingTypedLinksInput = {
 
 M.ListOutgoingTypedLinksOutput = {
     type = "structure",
+    id = "ListOutgoingTypedLinksOutput",
     members = {
         TypedLinkSpecifiers = {
             type = "list",
@@ -3208,6 +3426,7 @@ M.ListOutgoingTypedLinksOutput = {
 
 M.ListPolicyAttachmentsInput = {
     type = "structure",
+    id = "ListPolicyAttachmentsInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3236,6 +3455,7 @@ M.ListPolicyAttachmentsInput = {
 
 M.ListPolicyAttachmentsOutput = {
     type = "structure",
+    id = "ListPolicyAttachmentsOutput",
     members = {
         ObjectIdentifiers = {
             type = "list",
@@ -3249,6 +3469,7 @@ M.ListPolicyAttachmentsOutput = {
 
 M.ListPublishedSchemaArnsInput = {
     type = "structure",
+    id = "ListPublishedSchemaArnsInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3264,6 +3485,7 @@ M.ListPublishedSchemaArnsInput = {
 
 M.ListPublishedSchemaArnsOutput = {
     type = "structure",
+    id = "ListPublishedSchemaArnsOutput",
     members = {
         SchemaArns = {
             type = "list",
@@ -3277,6 +3499,7 @@ M.ListPublishedSchemaArnsOutput = {
 
 M.InvalidTaggingRequestException = {
     type = "structure",
+    id = "InvalidTaggingRequestException",
     error = "client",
     members = {
         Message = {
@@ -3287,6 +3510,7 @@ M.InvalidTaggingRequestException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3305,6 +3529,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -3317,6 +3542,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3330,6 +3556,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTypedLinkFacetAttributesInput = {
     type = "structure",
+    id = "ListTypedLinkFacetAttributesInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3355,6 +3582,7 @@ M.ListTypedLinkFacetAttributesInput = {
 
 M.ListTypedLinkFacetAttributesOutput = {
     type = "structure",
+    id = "ListTypedLinkFacetAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -3368,6 +3596,7 @@ M.ListTypedLinkFacetAttributesOutput = {
 
 M.ListTypedLinkFacetNamesInput = {
     type = "structure",
+    id = "ListTypedLinkFacetNamesInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3387,6 +3616,7 @@ M.ListTypedLinkFacetNamesInput = {
 
 M.ListTypedLinkFacetNamesOutput = {
     type = "structure",
+    id = "ListTypedLinkFacetNamesOutput",
     members = {
         FacetNames = {
             type = "list",
@@ -3400,6 +3630,7 @@ M.ListTypedLinkFacetNamesOutput = {
 
 M.LookupPolicyInput = {
     type = "structure",
+    id = "LookupPolicyInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3422,6 +3653,7 @@ M.LookupPolicyInput = {
 
 M.LookupPolicyOutput = {
     type = "structure",
+    id = "LookupPolicyOutput",
     members = {
         PolicyToPathList = {
             type = "list",
@@ -3435,6 +3667,7 @@ M.LookupPolicyOutput = {
 
 M.PublishSchemaInput = {
     type = "structure",
+    id = "PublishSchemaInput",
     members = {
         DevelopmentSchemaArn = {
             type = "string",
@@ -3460,6 +3693,7 @@ M.PublishSchemaInput = {
 
 M.PublishSchemaOutput = {
     type = "structure",
+    id = "PublishSchemaOutput",
     members = {
         PublishedSchemaArn = {
             type = "string",
@@ -3469,6 +3703,7 @@ M.PublishSchemaOutput = {
 
 M.SchemaAlreadyPublishedException = {
     type = "structure",
+    id = "SchemaAlreadyPublishedException",
     error = "client",
     members = {
         Message = {
@@ -3479,6 +3714,7 @@ M.SchemaAlreadyPublishedException = {
 
 M.InvalidSchemaDocException = {
     type = "structure",
+    id = "InvalidSchemaDocException",
     error = "client",
     members = {
         Message = {
@@ -3489,6 +3725,7 @@ M.InvalidSchemaDocException = {
 
 M.PutSchemaFromJsonInput = {
     type = "structure",
+    id = "PutSchemaFromJsonInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3508,6 +3745,7 @@ M.PutSchemaFromJsonInput = {
 
 M.PutSchemaFromJsonOutput = {
     type = "structure",
+    id = "PutSchemaFromJsonOutput",
     members = {
         Arn = {
             type = "string",
@@ -3517,6 +3755,7 @@ M.PutSchemaFromJsonOutput = {
 
 M.RemoveFacetFromObjectInput = {
     type = "structure",
+    id = "RemoveFacetFromObjectInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3536,10 +3775,12 @@ M.RemoveFacetFromObjectInput = {
 
 M.RemoveFacetFromObjectOutput = {
     type = "structure",
+    id = "RemoveFacetFromObjectOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3559,10 +3800,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3582,10 +3825,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.InvalidFacetUpdateException = {
     type = "structure",
+    id = "InvalidFacetUpdateException",
     error = "client",
     members = {
         Message = {
@@ -3596,6 +3841,7 @@ M.InvalidFacetUpdateException = {
 
 M.FacetAttributeUpdate = {
     type = "structure",
+    id = "FacetAttributeUpdate",
     members = {
         Attribute = M.FacetAttribute,
         Action = {
@@ -3606,6 +3852,7 @@ M.FacetAttributeUpdate = {
 
 M.UpdateFacetInput = {
     type = "structure",
+    id = "UpdateFacetInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3632,10 +3879,12 @@ M.UpdateFacetInput = {
 
 M.UpdateFacetOutput = {
     type = "structure",
+    id = "UpdateFacetOutput",
 }
 
 M.UpdateLinkAttributesInput = {
     type = "structure",
+    id = "UpdateLinkAttributesInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3659,10 +3908,12 @@ M.UpdateLinkAttributesInput = {
 
 M.UpdateLinkAttributesOutput = {
     type = "structure",
+    id = "UpdateLinkAttributesOutput",
 }
 
 M.UpdateObjectAttributesInput = {
     type = "structure",
+    id = "UpdateObjectAttributesInput",
     members = {
         DirectoryArn = {
             type = "string",
@@ -3686,6 +3937,7 @@ M.UpdateObjectAttributesInput = {
 
 M.UpdateObjectAttributesOutput = {
     type = "structure",
+    id = "UpdateObjectAttributesOutput",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -3695,6 +3947,7 @@ M.UpdateObjectAttributesOutput = {
 
 M.UpdateSchemaInput = {
     type = "structure",
+    id = "UpdateSchemaInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3714,6 +3967,7 @@ M.UpdateSchemaInput = {
 
 M.UpdateSchemaOutput = {
     type = "structure",
+    id = "UpdateSchemaOutput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3723,6 +3977,7 @@ M.UpdateSchemaOutput = {
 
 M.TypedLinkFacetAttributeUpdate = {
     type = "structure",
+    id = "TypedLinkFacetAttributeUpdate",
     members = {
         Attribute = setmetatable({ traits = {
             required = true,
@@ -3738,6 +3993,7 @@ M.TypedLinkFacetAttributeUpdate = {
 
 M.UpdateTypedLinkFacetInput = {
     type = "structure",
+    id = "UpdateTypedLinkFacetInput",
     members = {
         SchemaArn = {
             type = "string",
@@ -3771,10 +4027,12 @@ M.UpdateTypedLinkFacetInput = {
 
 M.UpdateTypedLinkFacetOutput = {
     type = "structure",
+    id = "UpdateTypedLinkFacetOutput",
 }
 
 M.IncompatibleSchemaException = {
     type = "structure",
+    id = "IncompatibleSchemaException",
     error = "client",
     members = {
         Message = {
@@ -3785,6 +4043,7 @@ M.IncompatibleSchemaException = {
 
 M.UpgradeAppliedSchemaInput = {
     type = "structure",
+    id = "UpgradeAppliedSchemaInput",
     members = {
         PublishedSchemaArn = {
             type = "string",
@@ -3809,6 +4068,7 @@ M.UpgradeAppliedSchemaInput = {
 
 M.UpgradeAppliedSchemaOutput = {
     type = "structure",
+    id = "UpgradeAppliedSchemaOutput",
     members = {
         UpgradedSchemaArn = {
             type = "string",
@@ -3821,6 +4081,7 @@ M.UpgradeAppliedSchemaOutput = {
 
 M.UpgradePublishedSchemaInput = {
     type = "structure",
+    id = "UpgradePublishedSchemaInput",
     members = {
         DevelopmentSchemaArn = {
             type = "string",
@@ -3851,6 +4112,7 @@ M.UpgradePublishedSchemaInput = {
 
 M.UpgradePublishedSchemaOutput = {
     type = "structure",
+    id = "UpgradePublishedSchemaOutput",
     members = {
         UpgradedSchemaArn = {
             type = "string",

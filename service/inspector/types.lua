@@ -13,6 +13,7 @@ M.AccessDeniedErrorCode = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -38,6 +39,7 @@ M.AccessDeniedException = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         key = {
             type = "string",
@@ -53,6 +55,7 @@ M.Attribute = {
 
 M.AddAttributesToFindingsInput = {
     type = "structure",
+    id = "AddAttributesToFindingsInput",
     members = {
         findingArns = {
             type = "list",
@@ -82,6 +85,7 @@ M.FailedItemErrorCode = {
 
 M.FailedItemDetails = {
     type = "structure",
+    id = "FailedItemDetails",
     members = {
         failureCode = {
             type = "string",
@@ -100,6 +104,7 @@ M.FailedItemDetails = {
 
 M.AddAttributesToFindingsOutput = {
     type = "structure",
+    id = "AddAttributesToFindingsOutput",
     members = {
         failedItems = {
             type = "map",
@@ -114,6 +119,7 @@ M.AddAttributesToFindingsOutput = {
 
 M.InternalException = {
     type = "structure",
+    id = "InternalException",
     error = "server",
     members = {
         message = {
@@ -190,6 +196,7 @@ M.InvalidInputErrorCode = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -226,6 +233,7 @@ M.NoSuchEntityErrorCode = {
 
 M.NoSuchEntityException = {
     type = "structure",
+    id = "NoSuchEntityException",
     error = "client",
     members = {
         message = {
@@ -251,6 +259,7 @@ M.NoSuchEntityException = {
 
 M.ServiceTemporarilyUnavailableException = {
     type = "structure",
+    id = "ServiceTemporarilyUnavailableException",
     error = "server",
     members = {
         message = {
@@ -270,6 +279,7 @@ M.ServiceTemporarilyUnavailableException = {
 
 M.AgentAlreadyRunningAssessment = {
     type = "structure",
+    id = "AgentAlreadyRunningAssessment",
     members = {
         agentId = {
             type = "string",
@@ -303,6 +313,7 @@ M.AgentHealth = {
 
 M.AgentFilter = {
     type = "structure",
+    id = "AgentFilter",
     members = {
         agentHealths = {
             type = "list",
@@ -323,6 +334,7 @@ M.AgentFilter = {
 
 M.AgentPreview = {
     type = "structure",
+    id = "AgentPreview",
     members = {
         hostname = {
             type = "string",
@@ -356,6 +368,7 @@ M.AgentPreview = {
 
 M.AgentsAlreadyRunningAssessmentException = {
     type = "structure",
+    id = "AgentsAlreadyRunningAssessmentException",
     error = "client",
     members = {
         message = {
@@ -411,6 +424,7 @@ M.AssessmentRunNotificationSnsStatusCode = {
 
 M.AssessmentRunNotification = {
     type = "structure",
+    id = "AssessmentRunNotification",
     members = {
         date = {
             type = "timestamp",
@@ -460,6 +474,7 @@ M.AssessmentRunState = {
 
 M.AssessmentRunStateChange = {
     type = "structure",
+    id = "AssessmentRunStateChange",
     members = {
         stateChangedAt = {
             type = "timestamp",
@@ -478,6 +493,7 @@ M.AssessmentRunStateChange = {
 
 M.AssessmentRun = {
     type = "structure",
+    id = "AssessmentRun",
     members = {
         arn = {
             type = "string",
@@ -574,6 +590,7 @@ M.AssessmentRun = {
 
 M.TelemetryMetadata = {
     type = "structure",
+    id = "TelemetryMetadata",
     members = {
         messageType = {
             type = "string",
@@ -595,6 +612,7 @@ M.TelemetryMetadata = {
 
 M.AssessmentRunAgent = {
     type = "structure",
+    id = "AssessmentRunAgent",
     members = {
         agentId = {
             type = "string",
@@ -638,6 +656,7 @@ M.AssessmentRunAgent = {
 
 M.TimestampRange = {
     type = "structure",
+    id = "TimestampRange",
     members = {
         beginDate = {
             type = "timestamp",
@@ -650,6 +669,7 @@ M.TimestampRange = {
 
 M.DurationRange = {
     type = "structure",
+    id = "DurationRange",
     members = {
         minSeconds = {
             type = "integer",
@@ -662,6 +682,7 @@ M.DurationRange = {
 
 M.AssessmentRunFilter = {
     type = "structure",
+    id = "AssessmentRunFilter",
     members = {
         namePattern = {
             type = "string",
@@ -683,6 +704,7 @@ M.AssessmentRunFilter = {
 
 M.AssessmentRunInProgressException = {
     type = "structure",
+    id = "AssessmentRunInProgressException",
     error = "client",
     members = {
         message = {
@@ -715,6 +737,7 @@ M.AssessmentRunInProgressException = {
 
 M.AssessmentTarget = {
     type = "structure",
+    id = "AssessmentTarget",
     members = {
         arn = {
             type = "string",
@@ -748,6 +771,7 @@ M.AssessmentTarget = {
 
 M.AssessmentTargetFilter = {
     type = "structure",
+    id = "AssessmentTargetFilter",
     members = {
         assessmentTargetNamePattern = {
             type = "string",
@@ -757,6 +781,7 @@ M.AssessmentTargetFilter = {
 
 M.AssessmentTemplate = {
     type = "structure",
+    id = "AssessmentTemplate",
     members = {
         arn = {
             type = "string",
@@ -816,6 +841,7 @@ M.AssessmentTemplate = {
 
 M.AssessmentTemplateFilter = {
     type = "structure",
+    id = "AssessmentTemplateFilter",
     members = {
         namePattern = {
             type = "string",
@@ -830,6 +856,7 @@ M.AssessmentTemplateFilter = {
 
 M.PrivateIp = {
     type = "structure",
+    id = "PrivateIp",
     members = {
         privateDnsName = {
             type = "string",
@@ -842,6 +869,7 @@ M.PrivateIp = {
 
 M.SecurityGroup = {
     type = "structure",
+    id = "SecurityGroup",
     members = {
         groupName = {
             type = "string",
@@ -854,6 +882,7 @@ M.SecurityGroup = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         networkInterfaceId = {
             type = "string",
@@ -893,6 +922,7 @@ M.NetworkInterface = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -908,6 +938,7 @@ M.Tag = {
 
 M.AssetAttributes = {
     type = "structure",
+    id = "AssetAttributes",
     members = {
         schemaVersion = {
             type = "integer",
@@ -949,6 +980,7 @@ M.AssetType = {
 
 M.CreateAssessmentTargetInput = {
     type = "structure",
+    id = "CreateAssessmentTargetInput",
     members = {
         assessmentTargetName = {
             type = "string",
@@ -964,6 +996,7 @@ M.CreateAssessmentTargetInput = {
 
 M.CreateAssessmentTargetOutput = {
     type = "structure",
+    id = "CreateAssessmentTargetOutput",
     members = {
         assessmentTargetArn = {
             type = "string",
@@ -981,6 +1014,7 @@ M.InvalidCrossAccountRoleErrorCode = {
 
 M.InvalidCrossAccountRoleException = {
     type = "structure",
+    id = "InvalidCrossAccountRoleException",
     error = "client",
     members = {
         message = {
@@ -1014,6 +1048,7 @@ M.LimitExceededErrorCode = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1039,6 +1074,7 @@ M.LimitExceededException = {
 
 M.CreateAssessmentTemplateInput = {
     type = "structure",
+    id = "CreateAssessmentTemplateInput",
     members = {
         assessmentTargetArn = {
             type = "string",
@@ -1074,6 +1110,7 @@ M.CreateAssessmentTemplateInput = {
 
 M.CreateAssessmentTemplateOutput = {
     type = "structure",
+    id = "CreateAssessmentTemplateOutput",
     members = {
         assessmentTemplateArn = {
             type = "string",
@@ -1086,6 +1123,7 @@ M.CreateAssessmentTemplateOutput = {
 
 M.CreateExclusionsPreviewInput = {
     type = "structure",
+    id = "CreateExclusionsPreviewInput",
     members = {
         assessmentTemplateArn = {
             type = "string",
@@ -1098,6 +1136,7 @@ M.CreateExclusionsPreviewInput = {
 
 M.CreateExclusionsPreviewOutput = {
     type = "structure",
+    id = "CreateExclusionsPreviewOutput",
     members = {
         previewToken = {
             type = "string",
@@ -1110,6 +1149,7 @@ M.CreateExclusionsPreviewOutput = {
 
 M.PreviewGenerationInProgressException = {
     type = "structure",
+    id = "PreviewGenerationInProgressException",
     error = "client",
     members = {
         message = {
@@ -1123,6 +1163,7 @@ M.PreviewGenerationInProgressException = {
 
 M.ResourceGroupTag = {
     type = "structure",
+    id = "ResourceGroupTag",
     members = {
         key = {
             type = "string",
@@ -1138,6 +1179,7 @@ M.ResourceGroupTag = {
 
 M.CreateResourceGroupInput = {
     type = "structure",
+    id = "CreateResourceGroupInput",
     members = {
         resourceGroupTags = {
             type = "list",
@@ -1151,6 +1193,7 @@ M.CreateResourceGroupInput = {
 
 M.CreateResourceGroupOutput = {
     type = "structure",
+    id = "CreateResourceGroupOutput",
     members = {
         resourceGroupArn = {
             type = "string",
@@ -1163,6 +1206,7 @@ M.CreateResourceGroupOutput = {
 
 M.DeleteAssessmentRunInput = {
     type = "structure",
+    id = "DeleteAssessmentRunInput",
     members = {
         assessmentRunArn = {
             type = "string",
@@ -1175,10 +1219,12 @@ M.DeleteAssessmentRunInput = {
 
 M.DeleteAssessmentRunOutput = {
     type = "structure",
+    id = "DeleteAssessmentRunOutput",
 }
 
 M.DeleteAssessmentTargetInput = {
     type = "structure",
+    id = "DeleteAssessmentTargetInput",
     members = {
         assessmentTargetArn = {
             type = "string",
@@ -1191,10 +1237,12 @@ M.DeleteAssessmentTargetInput = {
 
 M.DeleteAssessmentTargetOutput = {
     type = "structure",
+    id = "DeleteAssessmentTargetOutput",
 }
 
 M.DeleteAssessmentTemplateInput = {
     type = "structure",
+    id = "DeleteAssessmentTemplateInput",
     members = {
         assessmentTemplateArn = {
             type = "string",
@@ -1207,10 +1255,12 @@ M.DeleteAssessmentTemplateInput = {
 
 M.DeleteAssessmentTemplateOutput = {
     type = "structure",
+    id = "DeleteAssessmentTemplateOutput",
 }
 
 M.DescribeAssessmentRunsInput = {
     type = "structure",
+    id = "DescribeAssessmentRunsInput",
     members = {
         assessmentRunArns = {
             type = "list",
@@ -1224,6 +1274,7 @@ M.DescribeAssessmentRunsInput = {
 
 M.DescribeAssessmentRunsOutput = {
     type = "structure",
+    id = "DescribeAssessmentRunsOutput",
     members = {
         assessmentRuns = {
             type = "list",
@@ -1245,6 +1296,7 @@ M.DescribeAssessmentRunsOutput = {
 
 M.DescribeAssessmentTargetsInput = {
     type = "structure",
+    id = "DescribeAssessmentTargetsInput",
     members = {
         assessmentTargetArns = {
             type = "list",
@@ -1258,6 +1310,7 @@ M.DescribeAssessmentTargetsInput = {
 
 M.DescribeAssessmentTargetsOutput = {
     type = "structure",
+    id = "DescribeAssessmentTargetsOutput",
     members = {
         assessmentTargets = {
             type = "list",
@@ -1279,6 +1332,7 @@ M.DescribeAssessmentTargetsOutput = {
 
 M.DescribeAssessmentTemplatesInput = {
     type = "structure",
+    id = "DescribeAssessmentTemplatesInput",
     members = {
         assessmentTemplateArns = {
             type = "list",
@@ -1292,6 +1346,7 @@ M.DescribeAssessmentTemplatesInput = {
 
 M.DescribeAssessmentTemplatesOutput = {
     type = "structure",
+    id = "DescribeAssessmentTemplatesOutput",
     members = {
         assessmentTemplates = {
             type = "list",
@@ -1313,10 +1368,12 @@ M.DescribeAssessmentTemplatesOutput = {
 
 M.DescribeCrossAccountAccessRoleInput = {
     type = "structure",
+    id = "DescribeCrossAccountAccessRoleInput",
 }
 
 M.DescribeCrossAccountAccessRoleOutput = {
     type = "structure",
+    id = "DescribeCrossAccountAccessRoleOutput",
     members = {
         roleArn = {
             type = "string",
@@ -1345,6 +1402,7 @@ M.Locale = {
 
 M.DescribeExclusionsInput = {
     type = "structure",
+    id = "DescribeExclusionsInput",
     members = {
         exclusionArns = {
             type = "list",
@@ -1366,6 +1424,7 @@ M.ScopeType = {
 
 M.Scope = {
     type = "structure",
+    id = "Scope",
     members = {
         key = {
             type = "string",
@@ -1378,6 +1437,7 @@ M.Scope = {
 
 M.Exclusion = {
     type = "structure",
+    id = "Exclusion",
     members = {
         arn = {
             type = "string",
@@ -1419,6 +1479,7 @@ M.Exclusion = {
 
 M.DescribeExclusionsOutput = {
     type = "structure",
+    id = "DescribeExclusionsOutput",
     members = {
         exclusions = {
             type = "map",
@@ -1441,6 +1502,7 @@ M.DescribeExclusionsOutput = {
 
 M.DescribeFindingsInput = {
     type = "structure",
+    id = "DescribeFindingsInput",
     members = {
         findingArns = {
             type = "list",
@@ -1457,6 +1519,7 @@ M.DescribeFindingsInput = {
 
 M.InspectorServiceAttributes = {
     type = "structure",
+    id = "InspectorServiceAttributes",
     members = {
         schemaVersion = {
             type = "integer",
@@ -1476,6 +1539,7 @@ M.InspectorServiceAttributes = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         arn = {
             type = "string",
@@ -1558,6 +1622,7 @@ M.Finding = {
 
 M.DescribeFindingsOutput = {
     type = "structure",
+    id = "DescribeFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -1579,6 +1644,7 @@ M.DescribeFindingsOutput = {
 
 M.DescribeResourceGroupsInput = {
     type = "structure",
+    id = "DescribeResourceGroupsInput",
     members = {
         resourceGroupArns = {
             type = "list",
@@ -1592,6 +1658,7 @@ M.DescribeResourceGroupsInput = {
 
 M.ResourceGroup = {
     type = "structure",
+    id = "ResourceGroup",
     members = {
         arn = {
             type = "string",
@@ -1617,6 +1684,7 @@ M.ResourceGroup = {
 
 M.DescribeResourceGroupsOutput = {
     type = "structure",
+    id = "DescribeResourceGroupsOutput",
     members = {
         resourceGroups = {
             type = "list",
@@ -1638,6 +1706,7 @@ M.DescribeResourceGroupsOutput = {
 
 M.DescribeRulesPackagesInput = {
     type = "structure",
+    id = "DescribeRulesPackagesInput",
     members = {
         rulesPackageArns = {
             type = "list",
@@ -1654,6 +1723,7 @@ M.DescribeRulesPackagesInput = {
 
 M.RulesPackage = {
     type = "structure",
+    id = "RulesPackage",
     members = {
         arn = {
             type = "string",
@@ -1687,6 +1757,7 @@ M.RulesPackage = {
 
 M.DescribeRulesPackagesOutput = {
     type = "structure",
+    id = "DescribeRulesPackagesOutput",
     members = {
         rulesPackages = {
             type = "list",
@@ -1708,6 +1779,7 @@ M.DescribeRulesPackagesOutput = {
 
 M.EventSubscription = {
     type = "structure",
+    id = "EventSubscription",
     members = {
         event = {
             type = "string",
@@ -1726,6 +1798,7 @@ M.EventSubscription = {
 
 M.ExclusionPreview = {
     type = "structure",
+    id = "ExclusionPreview",
     members = {
         title = {
             type = "string",
@@ -1761,6 +1834,7 @@ M.ExclusionPreview = {
 
 M.FindingFilter = {
     type = "structure",
+    id = "FindingFilter",
     members = {
         agentIds = {
             type = "list",
@@ -1806,6 +1880,7 @@ M.ReportType = {
 
 M.GetAssessmentReportInput = {
     type = "structure",
+    id = "GetAssessmentReportInput",
     members = {
         assessmentRunArn = {
             type = "string",
@@ -1836,6 +1911,7 @@ M.ReportStatus = {
 
 M.GetAssessmentReportOutput = {
     type = "structure",
+    id = "GetAssessmentReportOutput",
     members = {
         status = {
             type = "string",
@@ -1851,6 +1927,7 @@ M.GetAssessmentReportOutput = {
 
 M.UnsupportedFeatureException = {
     type = "structure",
+    id = "UnsupportedFeatureException",
     error = "client",
     members = {
         message = {
@@ -1870,6 +1947,7 @@ M.UnsupportedFeatureException = {
 
 M.GetExclusionsPreviewInput = {
     type = "structure",
+    id = "GetExclusionsPreviewInput",
     members = {
         assessmentTemplateArn = {
             type = "string",
@@ -1902,6 +1980,7 @@ M.PreviewStatus = {
 
 M.GetExclusionsPreviewOutput = {
     type = "structure",
+    id = "GetExclusionsPreviewOutput",
     members = {
         previewStatus = {
             type = "string",
@@ -1921,6 +2000,7 @@ M.GetExclusionsPreviewOutput = {
 
 M.GetTelemetryMetadataInput = {
     type = "structure",
+    id = "GetTelemetryMetadataInput",
     members = {
         assessmentRunArn = {
             type = "string",
@@ -1933,6 +2013,7 @@ M.GetTelemetryMetadataInput = {
 
 M.GetTelemetryMetadataOutput = {
     type = "structure",
+    id = "GetTelemetryMetadataOutput",
     members = {
         telemetryMetadata = {
             type = "list",
@@ -1946,6 +2027,7 @@ M.GetTelemetryMetadataOutput = {
 
 M.ListAssessmentRunAgentsInput = {
     type = "structure",
+    id = "ListAssessmentRunAgentsInput",
     members = {
         assessmentRunArn = {
             type = "string",
@@ -1965,6 +2047,7 @@ M.ListAssessmentRunAgentsInput = {
 
 M.ListAssessmentRunAgentsOutput = {
     type = "structure",
+    id = "ListAssessmentRunAgentsOutput",
     members = {
         assessmentRunAgents = {
             type = "list",
@@ -1981,6 +2064,7 @@ M.ListAssessmentRunAgentsOutput = {
 
 M.ListAssessmentRunsInput = {
     type = "structure",
+    id = "ListAssessmentRunsInput",
     members = {
         assessmentTemplateArns = {
             type = "list",
@@ -1998,6 +2082,7 @@ M.ListAssessmentRunsInput = {
 
 M.ListAssessmentRunsOutput = {
     type = "structure",
+    id = "ListAssessmentRunsOutput",
     members = {
         assessmentRunArns = {
             type = "list",
@@ -2014,6 +2099,7 @@ M.ListAssessmentRunsOutput = {
 
 M.ListAssessmentTargetsInput = {
     type = "structure",
+    id = "ListAssessmentTargetsInput",
     members = {
         filter = M.AssessmentTargetFilter,
         nextToken = {
@@ -2027,6 +2113,7 @@ M.ListAssessmentTargetsInput = {
 
 M.ListAssessmentTargetsOutput = {
     type = "structure",
+    id = "ListAssessmentTargetsOutput",
     members = {
         assessmentTargetArns = {
             type = "list",
@@ -2043,6 +2130,7 @@ M.ListAssessmentTargetsOutput = {
 
 M.ListAssessmentTemplatesInput = {
     type = "structure",
+    id = "ListAssessmentTemplatesInput",
     members = {
         assessmentTargetArns = {
             type = "list",
@@ -2060,6 +2148,7 @@ M.ListAssessmentTemplatesInput = {
 
 M.ListAssessmentTemplatesOutput = {
     type = "structure",
+    id = "ListAssessmentTemplatesOutput",
     members = {
         assessmentTemplateArns = {
             type = "list",
@@ -2076,6 +2165,7 @@ M.ListAssessmentTemplatesOutput = {
 
 M.ListEventSubscriptionsInput = {
     type = "structure",
+    id = "ListEventSubscriptionsInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2091,6 +2181,7 @@ M.ListEventSubscriptionsInput = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         resourceArn = {
             type = "string",
@@ -2116,6 +2207,7 @@ M.Subscription = {
 
 M.ListEventSubscriptionsOutput = {
     type = "structure",
+    id = "ListEventSubscriptionsOutput",
     members = {
         subscriptions = {
             type = "list",
@@ -2132,6 +2224,7 @@ M.ListEventSubscriptionsOutput = {
 
 M.ListExclusionsInput = {
     type = "structure",
+    id = "ListExclusionsInput",
     members = {
         assessmentRunArn = {
             type = "string",
@@ -2150,6 +2243,7 @@ M.ListExclusionsInput = {
 
 M.ListExclusionsOutput = {
     type = "structure",
+    id = "ListExclusionsOutput",
     members = {
         exclusionArns = {
             type = "list",
@@ -2166,6 +2260,7 @@ M.ListExclusionsOutput = {
 
 M.ListFindingsInput = {
     type = "structure",
+    id = "ListFindingsInput",
     members = {
         assessmentRunArns = {
             type = "list",
@@ -2183,6 +2278,7 @@ M.ListFindingsInput = {
 
 M.ListFindingsOutput = {
     type = "structure",
+    id = "ListFindingsOutput",
     members = {
         findingArns = {
             type = "list",
@@ -2199,6 +2295,7 @@ M.ListFindingsOutput = {
 
 M.ListRulesPackagesInput = {
     type = "structure",
+    id = "ListRulesPackagesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2211,6 +2308,7 @@ M.ListRulesPackagesInput = {
 
 M.ListRulesPackagesOutput = {
     type = "structure",
+    id = "ListRulesPackagesOutput",
     members = {
         rulesPackageArns = {
             type = "list",
@@ -2227,6 +2325,7 @@ M.ListRulesPackagesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2239,6 +2338,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2252,6 +2352,7 @@ M.ListTagsForResourceOutput = {
 
 M.PreviewAgentsInput = {
     type = "structure",
+    id = "PreviewAgentsInput",
     members = {
         previewAgentsArn = {
             type = "string",
@@ -2270,6 +2371,7 @@ M.PreviewAgentsInput = {
 
 M.PreviewAgentsOutput = {
     type = "structure",
+    id = "PreviewAgentsOutput",
     members = {
         agentPreviews = {
             type = "list",
@@ -2286,6 +2388,7 @@ M.PreviewAgentsOutput = {
 
 M.RegisterCrossAccountAccessRoleInput = {
     type = "structure",
+    id = "RegisterCrossAccountAccessRoleInput",
     members = {
         roleArn = {
             type = "string",
@@ -2298,10 +2401,12 @@ M.RegisterCrossAccountAccessRoleInput = {
 
 M.RegisterCrossAccountAccessRoleOutput = {
     type = "structure",
+    id = "RegisterCrossAccountAccessRoleOutput",
 }
 
 M.RemoveAttributesFromFindingsInput = {
     type = "structure",
+    id = "RemoveAttributesFromFindingsInput",
     members = {
         findingArns = {
             type = "list",
@@ -2322,6 +2427,7 @@ M.RemoveAttributesFromFindingsInput = {
 
 M.RemoveAttributesFromFindingsOutput = {
     type = "structure",
+    id = "RemoveAttributesFromFindingsOutput",
     members = {
         failedItems = {
             type = "map",
@@ -2336,6 +2442,7 @@ M.RemoveAttributesFromFindingsOutput = {
 
 M.SetTagsForResourceInput = {
     type = "structure",
+    id = "SetTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2352,10 +2459,12 @@ M.SetTagsForResourceInput = {
 
 M.SetTagsForResourceOutput = {
     type = "structure",
+    id = "SetTagsForResourceOutput",
 }
 
 M.StartAssessmentRunInput = {
     type = "structure",
+    id = "StartAssessmentRunInput",
     members = {
         assessmentTemplateArn = {
             type = "string",
@@ -2371,6 +2480,7 @@ M.StartAssessmentRunInput = {
 
 M.StartAssessmentRunOutput = {
     type = "structure",
+    id = "StartAssessmentRunOutput",
     members = {
         assessmentRunArn = {
             type = "string",
@@ -2388,6 +2498,7 @@ M.StopAction = {
 
 M.StopAssessmentRunInput = {
     type = "structure",
+    id = "StopAssessmentRunInput",
     members = {
         assessmentRunArn = {
             type = "string",
@@ -2403,10 +2514,12 @@ M.StopAssessmentRunInput = {
 
 M.StopAssessmentRunOutput = {
     type = "structure",
+    id = "StopAssessmentRunOutput",
 }
 
 M.SubscribeToEventInput = {
     type = "structure",
+    id = "SubscribeToEventInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2431,10 +2544,12 @@ M.SubscribeToEventInput = {
 
 M.SubscribeToEventOutput = {
     type = "structure",
+    id = "SubscribeToEventOutput",
 }
 
 M.UnsubscribeFromEventInput = {
     type = "structure",
+    id = "UnsubscribeFromEventInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2459,10 +2574,12 @@ M.UnsubscribeFromEventInput = {
 
 M.UnsubscribeFromEventOutput = {
     type = "structure",
+    id = "UnsubscribeFromEventOutput",
 }
 
 M.UpdateAssessmentTargetInput = {
     type = "structure",
+    id = "UpdateAssessmentTargetInput",
     members = {
         assessmentTargetArn = {
             type = "string",
@@ -2484,6 +2601,7 @@ M.UpdateAssessmentTargetInput = {
 
 M.UpdateAssessmentTargetOutput = {
     type = "structure",
+    id = "UpdateAssessmentTargetOutput",
 }
 
 return M

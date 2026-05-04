@@ -2,6 +2,7 @@ local M = {}
 
 M.BatchCheckLayerAvailabilityInput = {
     type = "structure",
+    id = "BatchCheckLayerAvailabilityInput",
     members = {
         registryId = {
             type = "string",
@@ -29,6 +30,7 @@ M.LayerFailureCode = {
 
 M.LayerFailure = {
     type = "structure",
+    id = "LayerFailure",
     members = {
         layerDigest = {
             type = "string",
@@ -50,6 +52,7 @@ M.LayerAvailability = {
 
 M.Layer = {
     type = "structure",
+    id = "Layer",
     members = {
         layerDigest = {
             type = "string",
@@ -68,6 +71,7 @@ M.Layer = {
 
 M.BatchCheckLayerAvailabilityOutput = {
     type = "structure",
+    id = "BatchCheckLayerAvailabilityOutput",
     members = {
         layers = {
             type = "list",
@@ -82,6 +86,7 @@ M.BatchCheckLayerAvailabilityOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -92,6 +97,7 @@ M.InvalidParameterException = {
 
 M.RepositoryNotFoundException = {
     type = "structure",
+    id = "RepositoryNotFoundException",
     error = "client",
     members = {
         message = {
@@ -102,6 +108,7 @@ M.RepositoryNotFoundException = {
 
 M.ServerException = {
     type = "structure",
+    id = "ServerException",
     error = "server",
     members = {
         message = {
@@ -112,6 +119,7 @@ M.ServerException = {
 
 M.ImageIdentifier = {
     type = "structure",
+    id = "ImageIdentifier",
     members = {
         imageDigest = {
             type = "string",
@@ -124,6 +132,7 @@ M.ImageIdentifier = {
 
 M.BatchDeleteImageInput = {
     type = "structure",
+    id = "BatchDeleteImageInput",
     members = {
         registryId = {
             type = "string",
@@ -160,6 +169,7 @@ M.ImageFailureCode = {
 
 M.ImageFailure = {
     type = "structure",
+    id = "ImageFailure",
     members = {
         imageId = M.ImageIdentifier,
         failureCode = {
@@ -173,6 +183,7 @@ M.ImageFailure = {
 
 M.BatchDeleteImageOutput = {
     type = "structure",
+    id = "BatchDeleteImageOutput",
     members = {
         imageIds = {
             type = "list",
@@ -187,6 +198,7 @@ M.BatchDeleteImageOutput = {
 
 M.BatchGetImageInput = {
     type = "structure",
+    id = "BatchGetImageInput",
     members = {
         registryId = {
             type = "string",
@@ -213,6 +225,7 @@ M.BatchGetImageInput = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         registryId = {
             type = "string",
@@ -232,6 +245,7 @@ M.Image = {
 
 M.BatchGetImageOutput = {
     type = "structure",
+    id = "BatchGetImageOutput",
     members = {
         images = {
             type = "list",
@@ -246,6 +260,7 @@ M.BatchGetImageOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -256,6 +271,7 @@ M.LimitExceededException = {
 
 M.UnableToGetUpstreamImageException = {
     type = "structure",
+    id = "UnableToGetUpstreamImageException",
     error = "client",
     members = {
         message = {
@@ -266,6 +282,7 @@ M.UnableToGetUpstreamImageException = {
 
 M.BatchGetRepositoryScanningConfigurationInput = {
     type = "structure",
+    id = "BatchGetRepositoryScanningConfigurationInput",
     members = {
         repositoryNames = {
             type = "list",
@@ -283,6 +300,7 @@ M.ScanningConfigurationFailureCode = {
 
 M.RepositoryScanningConfigurationFailure = {
     type = "structure",
+    id = "RepositoryScanningConfigurationFailure",
     members = {
         repositoryName = {
             type = "string",
@@ -302,6 +320,7 @@ M.ScanningRepositoryFilterType = {
 
 M.ScanningRepositoryFilter = {
     type = "structure",
+    id = "ScanningRepositoryFilter",
     members = {
         filter = {
             type = "string",
@@ -326,6 +345,7 @@ M.ScanFrequency = {
 
 M.RepositoryScanningConfiguration = {
     type = "structure",
+    id = "RepositoryScanningConfiguration",
     members = {
         repositoryArn = {
             type = "string",
@@ -351,6 +371,7 @@ M.RepositoryScanningConfiguration = {
 
 M.BatchGetRepositoryScanningConfigurationOutput = {
     type = "structure",
+    id = "BatchGetRepositoryScanningConfigurationOutput",
     members = {
         scanningConfigurations = {
             type = "list",
@@ -365,6 +386,7 @@ M.BatchGetRepositoryScanningConfigurationOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -375,6 +397,7 @@ M.ValidationException = {
 
 M.CompleteLayerUploadInput = {
     type = "structure",
+    id = "CompleteLayerUploadInput",
     members = {
         registryId = {
             type = "string",
@@ -403,6 +426,7 @@ M.CompleteLayerUploadInput = {
 
 M.CompleteLayerUploadOutput = {
     type = "structure",
+    id = "CompleteLayerUploadOutput",
     members = {
         registryId = {
             type = "string",
@@ -421,6 +445,7 @@ M.CompleteLayerUploadOutput = {
 
 M.EmptyUploadException = {
     type = "structure",
+    id = "EmptyUploadException",
     error = "client",
     members = {
         message = {
@@ -431,6 +456,7 @@ M.EmptyUploadException = {
 
 M.InvalidLayerException = {
     type = "structure",
+    id = "InvalidLayerException",
     error = "client",
     members = {
         message = {
@@ -441,6 +467,7 @@ M.InvalidLayerException = {
 
 M.KmsException = {
     type = "structure",
+    id = "KmsException",
     error = "client",
     members = {
         message = {
@@ -454,6 +481,7 @@ M.KmsException = {
 
 M.LayerAlreadyExistsException = {
     type = "structure",
+    id = "LayerAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -464,6 +492,7 @@ M.LayerAlreadyExistsException = {
 
 M.LayerPartTooSmallException = {
     type = "structure",
+    id = "LayerPartTooSmallException",
     error = "client",
     members = {
         message = {
@@ -474,6 +503,7 @@ M.LayerPartTooSmallException = {
 
 M.UploadNotFoundException = {
     type = "structure",
+    id = "UploadNotFoundException",
     error = "client",
     members = {
         message = {
@@ -496,6 +526,7 @@ M.UpstreamRegistry = {
 
 M.CreatePullThroughCacheRuleInput = {
     type = "structure",
+    id = "CreatePullThroughCacheRuleInput",
     members = {
         ecrRepositoryPrefix = {
             type = "string",
@@ -529,6 +560,7 @@ M.CreatePullThroughCacheRuleInput = {
 
 M.CreatePullThroughCacheRuleOutput = {
     type = "structure",
+    id = "CreatePullThroughCacheRuleOutput",
     members = {
         ecrRepositoryPrefix = {
             type = "string",
@@ -559,6 +591,7 @@ M.CreatePullThroughCacheRuleOutput = {
 
 M.PullThroughCacheRuleAlreadyExistsException = {
     type = "structure",
+    id = "PullThroughCacheRuleAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -569,6 +602,7 @@ M.PullThroughCacheRuleAlreadyExistsException = {
 
 M.SecretNotFoundException = {
     type = "structure",
+    id = "SecretNotFoundException",
     error = "client",
     members = {
         message = {
@@ -579,6 +613,7 @@ M.SecretNotFoundException = {
 
 M.UnableToAccessSecretException = {
     type = "structure",
+    id = "UnableToAccessSecretException",
     error = "client",
     members = {
         message = {
@@ -589,6 +624,7 @@ M.UnableToAccessSecretException = {
 
 M.UnableToDecryptSecretValueException = {
     type = "structure",
+    id = "UnableToDecryptSecretValueException",
     error = "client",
     members = {
         message = {
@@ -599,6 +635,7 @@ M.UnableToDecryptSecretValueException = {
 
 M.UnsupportedUpstreamRegistryException = {
     type = "structure",
+    id = "UnsupportedUpstreamRegistryException",
     error = "client",
     members = {
         message = {
@@ -615,6 +652,7 @@ M.EncryptionType = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         encryptionType = {
             type = "string",
@@ -630,6 +668,7 @@ M.EncryptionConfiguration = {
 
 M.ImageScanningConfiguration = {
     type = "structure",
+    id = "ImageScanningConfiguration",
     members = {
         scanOnPush = {
             type = "boolean",
@@ -653,6 +692,7 @@ M.ImageTagMutabilityExclusionFilterType = {
 
 M.ImageTagMutabilityExclusionFilter = {
     type = "structure",
+    id = "ImageTagMutabilityExclusionFilter",
     members = {
         filterType = {
             type = "string",
@@ -671,6 +711,7 @@ M.ImageTagMutabilityExclusionFilter = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -689,6 +730,7 @@ M.Tag = {
 
 M.CreateRepositoryInput = {
     type = "structure",
+    id = "CreateRepositoryInput",
     members = {
         registryId = {
             type = "string",
@@ -717,6 +759,7 @@ M.CreateRepositoryInput = {
 
 M.Repository = {
     type = "structure",
+    id = "Repository",
     members = {
         repositoryArn = {
             type = "string",
@@ -747,6 +790,7 @@ M.Repository = {
 
 M.CreateRepositoryOutput = {
     type = "structure",
+    id = "CreateRepositoryOutput",
     members = {
         repository = M.Repository,
     },
@@ -754,6 +798,7 @@ M.CreateRepositoryOutput = {
 
 M.InvalidTagParameterException = {
     type = "structure",
+    id = "InvalidTagParameterException",
     error = "client",
     members = {
         message = {
@@ -764,6 +809,7 @@ M.InvalidTagParameterException = {
 
 M.RepositoryAlreadyExistsException = {
     type = "structure",
+    id = "RepositoryAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -774,6 +820,7 @@ M.RepositoryAlreadyExistsException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -790,6 +837,7 @@ M.RCTAppliedFor = {
 
 M.EncryptionConfigurationForRepositoryCreationTemplate = {
     type = "structure",
+    id = "EncryptionConfigurationForRepositoryCreationTemplate",
     members = {
         encryptionType = {
             type = "string",
@@ -805,6 +853,7 @@ M.EncryptionConfigurationForRepositoryCreationTemplate = {
 
 M.CreateRepositoryCreationTemplateInput = {
     type = "structure",
+    id = "CreateRepositoryCreationTemplateInput",
     members = {
         prefix = {
             type = "string",
@@ -848,6 +897,7 @@ M.CreateRepositoryCreationTemplateInput = {
 
 M.RepositoryCreationTemplate = {
     type = "structure",
+    id = "RepositoryCreationTemplate",
     members = {
         prefix = {
             type = "string",
@@ -891,6 +941,7 @@ M.RepositoryCreationTemplate = {
 
 M.CreateRepositoryCreationTemplateOutput = {
     type = "structure",
+    id = "CreateRepositoryCreationTemplateOutput",
     members = {
         registryId = {
             type = "string",
@@ -901,6 +952,7 @@ M.CreateRepositoryCreationTemplateOutput = {
 
 M.TemplateAlreadyExistsException = {
     type = "structure",
+    id = "TemplateAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -911,6 +963,7 @@ M.TemplateAlreadyExistsException = {
 
 M.DeleteLifecyclePolicyInput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyInput",
     members = {
         registryId = {
             type = "string",
@@ -926,6 +979,7 @@ M.DeleteLifecyclePolicyInput = {
 
 M.DeleteLifecyclePolicyOutput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -944,6 +998,7 @@ M.DeleteLifecyclePolicyOutput = {
 
 M.LifecyclePolicyNotFoundException = {
     type = "structure",
+    id = "LifecyclePolicyNotFoundException",
     error = "client",
     members = {
         message = {
@@ -954,6 +1009,7 @@ M.LifecyclePolicyNotFoundException = {
 
 M.DeletePullThroughCacheRuleInput = {
     type = "structure",
+    id = "DeletePullThroughCacheRuleInput",
     members = {
         ecrRepositoryPrefix = {
             type = "string",
@@ -969,6 +1025,7 @@ M.DeletePullThroughCacheRuleInput = {
 
 M.DeletePullThroughCacheRuleOutput = {
     type = "structure",
+    id = "DeletePullThroughCacheRuleOutput",
     members = {
         ecrRepositoryPrefix = {
             type = "string",
@@ -996,6 +1053,7 @@ M.DeletePullThroughCacheRuleOutput = {
 
 M.PullThroughCacheRuleNotFoundException = {
     type = "structure",
+    id = "PullThroughCacheRuleNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1006,10 +1064,12 @@ M.PullThroughCacheRuleNotFoundException = {
 
 M.DeleteRegistryPolicyInput = {
     type = "structure",
+    id = "DeleteRegistryPolicyInput",
 }
 
 M.DeleteRegistryPolicyOutput = {
     type = "structure",
+    id = "DeleteRegistryPolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -1022,6 +1082,7 @@ M.DeleteRegistryPolicyOutput = {
 
 M.RegistryPolicyNotFoundException = {
     type = "structure",
+    id = "RegistryPolicyNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1032,6 +1093,7 @@ M.RegistryPolicyNotFoundException = {
 
 M.DeleteRepositoryInput = {
     type = "structure",
+    id = "DeleteRepositoryInput",
     members = {
         registryId = {
             type = "string",
@@ -1053,6 +1115,7 @@ M.DeleteRepositoryInput = {
 
 M.DeleteRepositoryOutput = {
     type = "structure",
+    id = "DeleteRepositoryOutput",
     members = {
         repository = M.Repository,
     },
@@ -1060,6 +1123,7 @@ M.DeleteRepositoryOutput = {
 
 M.RepositoryNotEmptyException = {
     type = "structure",
+    id = "RepositoryNotEmptyException",
     error = "client",
     members = {
         message = {
@@ -1070,6 +1134,7 @@ M.RepositoryNotEmptyException = {
 
 M.DeleteRepositoryCreationTemplateInput = {
     type = "structure",
+    id = "DeleteRepositoryCreationTemplateInput",
     members = {
         prefix = {
             type = "string",
@@ -1082,6 +1147,7 @@ M.DeleteRepositoryCreationTemplateInput = {
 
 M.DeleteRepositoryCreationTemplateOutput = {
     type = "structure",
+    id = "DeleteRepositoryCreationTemplateOutput",
     members = {
         registryId = {
             type = "string",
@@ -1092,6 +1158,7 @@ M.DeleteRepositoryCreationTemplateOutput = {
 
 M.TemplateNotFoundException = {
     type = "structure",
+    id = "TemplateNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1102,6 +1169,7 @@ M.TemplateNotFoundException = {
 
 M.DeleteRepositoryPolicyInput = {
     type = "structure",
+    id = "DeleteRepositoryPolicyInput",
     members = {
         registryId = {
             type = "string",
@@ -1117,6 +1185,7 @@ M.DeleteRepositoryPolicyInput = {
 
 M.DeleteRepositoryPolicyOutput = {
     type = "structure",
+    id = "DeleteRepositoryPolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -1132,6 +1201,7 @@ M.DeleteRepositoryPolicyOutput = {
 
 M.RepositoryPolicyNotFoundException = {
     type = "structure",
+    id = "RepositoryPolicyNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1142,6 +1212,7 @@ M.RepositoryPolicyNotFoundException = {
 
 M.DeleteSigningConfigurationInput = {
     type = "structure",
+    id = "DeleteSigningConfigurationInput",
 }
 
 M.SigningRepositoryFilterType = {
@@ -1150,6 +1221,7 @@ M.SigningRepositoryFilterType = {
 
 M.SigningRepositoryFilter = {
     type = "structure",
+    id = "SigningRepositoryFilter",
     members = {
         filter = {
             type = "string",
@@ -1168,6 +1240,7 @@ M.SigningRepositoryFilter = {
 
 M.SigningRule = {
     type = "structure",
+    id = "SigningRule",
     members = {
         signingProfileArn = {
             type = "string",
@@ -1184,6 +1257,7 @@ M.SigningRule = {
 
 M.SigningConfiguration = {
     type = "structure",
+    id = "SigningConfiguration",
     members = {
         rules = {
             type = "list",
@@ -1197,6 +1271,7 @@ M.SigningConfiguration = {
 
 M.DeleteSigningConfigurationOutput = {
     type = "structure",
+    id = "DeleteSigningConfigurationOutput",
     members = {
         registryId = {
             type = "string",
@@ -1207,6 +1282,7 @@ M.DeleteSigningConfigurationOutput = {
 
 M.SigningConfigurationNotFoundException = {
     type = "structure",
+    id = "SigningConfigurationNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1217,6 +1293,7 @@ M.SigningConfigurationNotFoundException = {
 
 M.DeregisterPullTimeUpdateExclusionInput = {
     type = "structure",
+    id = "DeregisterPullTimeUpdateExclusionInput",
     members = {
         principalArn = {
             type = "string",
@@ -1229,6 +1306,7 @@ M.DeregisterPullTimeUpdateExclusionInput = {
 
 M.DeregisterPullTimeUpdateExclusionOutput = {
     type = "structure",
+    id = "DeregisterPullTimeUpdateExclusionOutput",
     members = {
         principalArn = {
             type = "string",
@@ -1238,6 +1316,7 @@ M.DeregisterPullTimeUpdateExclusionOutput = {
 
 M.ExclusionNotFoundException = {
     type = "structure",
+    id = "ExclusionNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1248,6 +1327,7 @@ M.ExclusionNotFoundException = {
 
 M.DescribeImageReplicationStatusInput = {
     type = "structure",
+    id = "DescribeImageReplicationStatusInput",
     members = {
         repositoryName = {
             type = "string",
@@ -1272,6 +1352,7 @@ M.ReplicationStatus = {
 
 M.ImageReplicationStatus = {
     type = "structure",
+    id = "ImageReplicationStatus",
     members = {
         region = {
             type = "string",
@@ -1290,6 +1371,7 @@ M.ImageReplicationStatus = {
 
 M.DescribeImageReplicationStatusOutput = {
     type = "structure",
+    id = "DescribeImageReplicationStatusOutput",
     members = {
         repositoryName = {
             type = "string",
@@ -1304,6 +1386,7 @@ M.DescribeImageReplicationStatusOutput = {
 
 M.ImageNotFoundException = {
     type = "structure",
+    id = "ImageNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1327,6 +1410,7 @@ M.TagStatus = {
 
 M.DescribeImagesFilter = {
     type = "structure",
+    id = "DescribeImagesFilter",
     members = {
         tagStatus = {
             type = "string",
@@ -1339,6 +1423,7 @@ M.DescribeImagesFilter = {
 
 M.DescribeImagesInput = {
     type = "structure",
+    id = "DescribeImagesInput",
     members = {
         registryId = {
             type = "string",
@@ -1374,6 +1459,7 @@ M.FindingSeverity = {
 
 M.ImageScanFindingsSummary = {
     type = "structure",
+    id = "ImageScanFindingsSummary",
     members = {
         imageScanCompletedAt = {
             type = "timestamp",
@@ -1404,6 +1490,7 @@ M.ScanStatus = {
 
 M.ImageScanStatus = {
     type = "structure",
+    id = "ImageScanStatus",
     members = {
         status = {
             type = "string",
@@ -1422,6 +1509,7 @@ M.ImageStatus = {
 
 M.ImageDetail = {
     type = "structure",
+    id = "ImageDetail",
     members = {
         registryId = {
             type = "string",
@@ -1470,6 +1558,7 @@ M.ImageDetail = {
 
 M.DescribeImagesOutput = {
     type = "structure",
+    id = "DescribeImagesOutput",
     members = {
         imageDetails = {
             type = "list",
@@ -1483,6 +1572,7 @@ M.DescribeImagesOutput = {
 
 M.DescribeImageScanFindingsInput = {
     type = "structure",
+    id = "DescribeImageScanFindingsInput",
     members = {
         registryId = {
             type = "string",
@@ -1507,6 +1597,7 @@ M.DescribeImageScanFindingsInput = {
 
 M.CvssScore = {
     type = "structure",
+    id = "CvssScore",
     members = {
         baseScore = {
             type = "double",
@@ -1528,6 +1619,7 @@ M.CvssScore = {
 
 M.VulnerablePackage = {
     type = "structure",
+    id = "VulnerablePackage",
     members = {
         arch = {
             type = "string",
@@ -1561,6 +1653,7 @@ M.VulnerablePackage = {
 
 M.PackageVulnerabilityDetails = {
     type = "structure",
+    id = "PackageVulnerabilityDetails",
     members = {
         cvss = {
             type = "list",
@@ -1601,6 +1694,7 @@ M.PackageVulnerabilityDetails = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         url = {
             type = "string",
@@ -1613,6 +1707,7 @@ M.Recommendation = {
 
 M.Remediation = {
     type = "structure",
+    id = "Remediation",
     members = {
         recommendation = M.Recommendation,
     },
@@ -1620,6 +1715,7 @@ M.Remediation = {
 
 M.AwsEcrContainerImageDetails = {
     type = "structure",
+    id = "AwsEcrContainerImageDetails",
     members = {
         architecture = {
             type = "string",
@@ -1657,6 +1753,7 @@ M.AwsEcrContainerImageDetails = {
 
 M.ResourceDetails = {
     type = "structure",
+    id = "ResourceDetails",
     members = {
         awsEcrContainerImage = M.AwsEcrContainerImageDetails,
     },
@@ -1664,6 +1761,7 @@ M.ResourceDetails = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         details = M.ResourceDetails,
         id = {
@@ -1682,6 +1780,7 @@ M.Resource = {
 
 M.CvssScoreAdjustment = {
     type = "structure",
+    id = "CvssScoreAdjustment",
     members = {
         metric = {
             type = "string",
@@ -1694,6 +1793,7 @@ M.CvssScoreAdjustment = {
 
 M.CvssScoreDetails = {
     type = "structure",
+    id = "CvssScoreDetails",
     members = {
         adjustments = {
             type = "list",
@@ -1719,6 +1819,7 @@ M.CvssScoreDetails = {
 
 M.ScoreDetails = {
     type = "structure",
+    id = "ScoreDetails",
     members = {
         cvss = M.CvssScoreDetails,
     },
@@ -1726,6 +1827,7 @@ M.ScoreDetails = {
 
 M.EnhancedImageScanFinding = {
     type = "structure",
+    id = "EnhancedImageScanFinding",
     members = {
         awsAccountId = {
             type = "string",
@@ -1781,6 +1883,7 @@ M.EnhancedImageScanFinding = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         key = {
             type = "string",
@@ -1796,6 +1899,7 @@ M.Attribute = {
 
 M.ImageScanFinding = {
     type = "structure",
+    id = "ImageScanFinding",
     members = {
         name = {
             type = "string",
@@ -1818,6 +1922,7 @@ M.ImageScanFinding = {
 
 M.ImageScanFindings = {
     type = "structure",
+    id = "ImageScanFindings",
     members = {
         imageScanCompletedAt = {
             type = "timestamp",
@@ -1843,6 +1948,7 @@ M.ImageScanFindings = {
 
 M.DescribeImageScanFindingsOutput = {
     type = "structure",
+    id = "DescribeImageScanFindingsOutput",
     members = {
         registryId = {
             type = "string",
@@ -1861,6 +1967,7 @@ M.DescribeImageScanFindingsOutput = {
 
 M.ScanNotFoundException = {
     type = "structure",
+    id = "ScanNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1871,6 +1978,7 @@ M.ScanNotFoundException = {
 
 M.DescribeImageSigningStatusInput = {
     type = "structure",
+    id = "DescribeImageSigningStatusInput",
     members = {
         repositoryName = {
             type = "string",
@@ -1895,6 +2003,7 @@ M.SigningStatus = {
 
 M.ImageSigningStatus = {
     type = "structure",
+    id = "ImageSigningStatus",
     members = {
         signingProfileArn = {
             type = "string",
@@ -1913,6 +2022,7 @@ M.ImageSigningStatus = {
 
 M.DescribeImageSigningStatusOutput = {
     type = "structure",
+    id = "DescribeImageSigningStatusOutput",
     members = {
         repositoryName = {
             type = "string",
@@ -1930,6 +2040,7 @@ M.DescribeImageSigningStatusOutput = {
 
 M.DescribePullThroughCacheRulesInput = {
     type = "structure",
+    id = "DescribePullThroughCacheRulesInput",
     members = {
         registryId = {
             type = "string",
@@ -1949,6 +2060,7 @@ M.DescribePullThroughCacheRulesInput = {
 
 M.PullThroughCacheRule = {
     type = "structure",
+    id = "PullThroughCacheRule",
     members = {
         ecrRepositoryPrefix = {
             type = "string",
@@ -1982,6 +2094,7 @@ M.PullThroughCacheRule = {
 
 M.DescribePullThroughCacheRulesOutput = {
     type = "structure",
+    id = "DescribePullThroughCacheRulesOutput",
     members = {
         pullThroughCacheRules = {
             type = "list",
@@ -1995,10 +2108,12 @@ M.DescribePullThroughCacheRulesOutput = {
 
 M.DescribeRegistryInput = {
     type = "structure",
+    id = "DescribeRegistryInput",
 }
 
 M.ReplicationDestination = {
     type = "structure",
+    id = "ReplicationDestination",
     members = {
         region = {
             type = "string",
@@ -2021,6 +2136,7 @@ M.RepositoryFilterType = {
 
 M.RepositoryFilter = {
     type = "structure",
+    id = "RepositoryFilter",
     members = {
         filter = {
             type = "string",
@@ -2039,6 +2155,7 @@ M.RepositoryFilter = {
 
 M.ReplicationRule = {
     type = "structure",
+    id = "ReplicationRule",
     members = {
         destinations = {
             type = "list",
@@ -2056,6 +2173,7 @@ M.ReplicationRule = {
 
 M.ReplicationConfiguration = {
     type = "structure",
+    id = "ReplicationConfiguration",
     members = {
         rules = {
             type = "list",
@@ -2069,6 +2187,7 @@ M.ReplicationConfiguration = {
 
 M.DescribeRegistryOutput = {
     type = "structure",
+    id = "DescribeRegistryOutput",
     members = {
         registryId = {
             type = "string",
@@ -2079,6 +2198,7 @@ M.DescribeRegistryOutput = {
 
 M.DescribeRepositoriesInput = {
     type = "structure",
+    id = "DescribeRepositoriesInput",
     members = {
         registryId = {
             type = "string",
@@ -2098,6 +2218,7 @@ M.DescribeRepositoriesInput = {
 
 M.DescribeRepositoriesOutput = {
     type = "structure",
+    id = "DescribeRepositoriesOutput",
     members = {
         repositories = {
             type = "list",
@@ -2111,6 +2232,7 @@ M.DescribeRepositoriesOutput = {
 
 M.DescribeRepositoryCreationTemplatesInput = {
     type = "structure",
+    id = "DescribeRepositoryCreationTemplatesInput",
     members = {
         prefixes = {
             type = "list",
@@ -2127,6 +2249,7 @@ M.DescribeRepositoryCreationTemplatesInput = {
 
 M.DescribeRepositoryCreationTemplatesOutput = {
     type = "structure",
+    id = "DescribeRepositoryCreationTemplatesOutput",
     members = {
         registryId = {
             type = "string",
@@ -2143,6 +2266,7 @@ M.DescribeRepositoryCreationTemplatesOutput = {
 
 M.GetAccountSettingInput = {
     type = "structure",
+    id = "GetAccountSettingInput",
     members = {
         name = {
             type = "string",
@@ -2155,6 +2279,7 @@ M.GetAccountSettingInput = {
 
 M.GetAccountSettingOutput = {
     type = "structure",
+    id = "GetAccountSettingOutput",
     members = {
         name = {
             type = "string",
@@ -2167,6 +2292,7 @@ M.GetAccountSettingOutput = {
 
 M.GetAuthorizationTokenInput = {
     type = "structure",
+    id = "GetAuthorizationTokenInput",
     members = {
         registryIds = {
             type = "list",
@@ -2177,6 +2303,7 @@ M.GetAuthorizationTokenInput = {
 
 M.AuthorizationData = {
     type = "structure",
+    id = "AuthorizationData",
     members = {
         authorizationToken = {
             type = "string",
@@ -2192,6 +2319,7 @@ M.AuthorizationData = {
 
 M.GetAuthorizationTokenOutput = {
     type = "structure",
+    id = "GetAuthorizationTokenOutput",
     members = {
         authorizationData = {
             type = "list",
@@ -2202,6 +2330,7 @@ M.GetAuthorizationTokenOutput = {
 
 M.GetDownloadUrlForLayerInput = {
     type = "structure",
+    id = "GetDownloadUrlForLayerInput",
     members = {
         registryId = {
             type = "string",
@@ -2223,6 +2352,7 @@ M.GetDownloadUrlForLayerInput = {
 
 M.GetDownloadUrlForLayerOutput = {
     type = "structure",
+    id = "GetDownloadUrlForLayerOutput",
     members = {
         downloadUrl = {
             type = "string",
@@ -2235,6 +2365,7 @@ M.GetDownloadUrlForLayerOutput = {
 
 M.LayerInaccessibleException = {
     type = "structure",
+    id = "LayerInaccessibleException",
     error = "client",
     members = {
         message = {
@@ -2245,6 +2376,7 @@ M.LayerInaccessibleException = {
 
 M.LayersNotFoundException = {
     type = "structure",
+    id = "LayersNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2255,6 +2387,7 @@ M.LayersNotFoundException = {
 
 M.UnableToGetUpstreamLayerException = {
     type = "structure",
+    id = "UnableToGetUpstreamLayerException",
     error = "client",
     members = {
         message = {
@@ -2265,6 +2398,7 @@ M.UnableToGetUpstreamLayerException = {
 
 M.GetLifecyclePolicyInput = {
     type = "structure",
+    id = "GetLifecyclePolicyInput",
     members = {
         registryId = {
             type = "string",
@@ -2280,6 +2414,7 @@ M.GetLifecyclePolicyInput = {
 
 M.GetLifecyclePolicyOutput = {
     type = "structure",
+    id = "GetLifecyclePolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -2298,6 +2433,7 @@ M.GetLifecyclePolicyOutput = {
 
 M.LifecyclePolicyPreviewFilter = {
     type = "structure",
+    id = "LifecyclePolicyPreviewFilter",
     members = {
         tagStatus = {
             type = "string",
@@ -2307,6 +2443,7 @@ M.LifecyclePolicyPreviewFilter = {
 
 M.GetLifecyclePolicyPreviewInput = {
     type = "structure",
+    id = "GetLifecyclePolicyPreviewInput",
     members = {
         registryId = {
             type = "string",
@@ -2342,6 +2479,7 @@ M.ImageActionType = {
 
 M.LifecyclePolicyRuleAction = {
     type = "structure",
+    id = "LifecyclePolicyRuleAction",
     members = {
         type = {
             type = "string",
@@ -2359,6 +2497,7 @@ M.LifecyclePolicyStorageClass = {
 
 M.LifecyclePolicyPreviewResult = {
     type = "structure",
+    id = "LifecyclePolicyPreviewResult",
     members = {
         imageTags = {
             type = "list",
@@ -2389,6 +2528,7 @@ M.LifecyclePolicyPreviewStatus = {
 
 M.TransitioningImageTotalCount = {
     type = "structure",
+    id = "TransitioningImageTotalCount",
     members = {
         targetStorageClass = {
             type = "string",
@@ -2401,6 +2541,7 @@ M.TransitioningImageTotalCount = {
 
 M.LifecyclePolicyPreviewSummary = {
     type = "structure",
+    id = "LifecyclePolicyPreviewSummary",
     members = {
         expiringImageTotalCount = {
             type = "integer",
@@ -2414,6 +2555,7 @@ M.LifecyclePolicyPreviewSummary = {
 
 M.GetLifecyclePolicyPreviewOutput = {
     type = "structure",
+    id = "GetLifecyclePolicyPreviewOutput",
     members = {
         registryId = {
             type = "string",
@@ -2440,6 +2582,7 @@ M.GetLifecyclePolicyPreviewOutput = {
 
 M.LifecyclePolicyPreviewNotFoundException = {
     type = "structure",
+    id = "LifecyclePolicyPreviewNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2450,10 +2593,12 @@ M.LifecyclePolicyPreviewNotFoundException = {
 
 M.GetRegistryPolicyInput = {
     type = "structure",
+    id = "GetRegistryPolicyInput",
 }
 
 M.GetRegistryPolicyOutput = {
     type = "structure",
+    id = "GetRegistryPolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -2466,10 +2611,12 @@ M.GetRegistryPolicyOutput = {
 
 M.GetRegistryScanningConfigurationInput = {
     type = "structure",
+    id = "GetRegistryScanningConfigurationInput",
 }
 
 M.RegistryScanningRule = {
     type = "structure",
+    id = "RegistryScanningRule",
     members = {
         scanFrequency = {
             type = "string",
@@ -2494,6 +2641,7 @@ M.ScanType = {
 
 M.RegistryScanningConfiguration = {
     type = "structure",
+    id = "RegistryScanningConfiguration",
     members = {
         scanType = {
             type = "string",
@@ -2507,6 +2655,7 @@ M.RegistryScanningConfiguration = {
 
 M.GetRegistryScanningConfigurationOutput = {
     type = "structure",
+    id = "GetRegistryScanningConfigurationOutput",
     members = {
         registryId = {
             type = "string",
@@ -2517,6 +2666,7 @@ M.GetRegistryScanningConfigurationOutput = {
 
 M.GetRepositoryPolicyInput = {
     type = "structure",
+    id = "GetRepositoryPolicyInput",
     members = {
         registryId = {
             type = "string",
@@ -2532,6 +2682,7 @@ M.GetRepositoryPolicyInput = {
 
 M.GetRepositoryPolicyOutput = {
     type = "structure",
+    id = "GetRepositoryPolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -2547,10 +2698,12 @@ M.GetRepositoryPolicyOutput = {
 
 M.GetSigningConfigurationInput = {
     type = "structure",
+    id = "GetSigningConfigurationInput",
 }
 
 M.GetSigningConfigurationOutput = {
     type = "structure",
+    id = "GetSigningConfigurationOutput",
     members = {
         registryId = {
             type = "string",
@@ -2561,6 +2714,7 @@ M.GetSigningConfigurationOutput = {
 
 M.InitiateLayerUploadInput = {
     type = "structure",
+    id = "InitiateLayerUploadInput",
     members = {
         registryId = {
             type = "string",
@@ -2576,6 +2730,7 @@ M.InitiateLayerUploadInput = {
 
 M.InitiateLayerUploadOutput = {
     type = "structure",
+    id = "InitiateLayerUploadOutput",
     members = {
         uploadId = {
             type = "string",
@@ -2595,6 +2750,7 @@ M.ArtifactStatusFilter = {
 
 M.ListImageReferrersFilter = {
     type = "structure",
+    id = "ListImageReferrersFilter",
     members = {
         artifactTypes = {
             type = "list",
@@ -2608,6 +2764,7 @@ M.ListImageReferrersFilter = {
 
 M.SubjectIdentifier = {
     type = "structure",
+    id = "SubjectIdentifier",
     members = {
         imageDigest = {
             type = "string",
@@ -2620,6 +2777,7 @@ M.SubjectIdentifier = {
 
 M.ListImageReferrersInput = {
     type = "structure",
+    id = "ListImageReferrersInput",
     members = {
         registryId = {
             type = "string",
@@ -2651,6 +2809,7 @@ M.ArtifactStatus = {
 
 M.ImageReferrer = {
     type = "structure",
+    id = "ImageReferrer",
     members = {
         digest = {
             type = "string",
@@ -2686,6 +2845,7 @@ M.ImageReferrer = {
 
 M.ListImageReferrersOutput = {
     type = "structure",
+    id = "ListImageReferrersOutput",
     members = {
         referrers = {
             type = "list",
@@ -2699,6 +2859,7 @@ M.ListImageReferrersOutput = {
 
 M.UnableToListUpstreamImageReferrersException = {
     type = "structure",
+    id = "UnableToListUpstreamImageReferrersException",
     error = "client",
     members = {
         message = {
@@ -2709,6 +2870,7 @@ M.UnableToListUpstreamImageReferrersException = {
 
 M.ListImagesFilter = {
     type = "structure",
+    id = "ListImagesFilter",
     members = {
         tagStatus = {
             type = "string",
@@ -2721,6 +2883,7 @@ M.ListImagesFilter = {
 
 M.ListImagesInput = {
     type = "structure",
+    id = "ListImagesInput",
     members = {
         registryId = {
             type = "string",
@@ -2743,6 +2906,7 @@ M.ListImagesInput = {
 
 M.ListImagesOutput = {
     type = "structure",
+    id = "ListImagesOutput",
     members = {
         imageIds = {
             type = "list",
@@ -2756,6 +2920,7 @@ M.ListImagesOutput = {
 
 M.ListPullTimeUpdateExclusionsInput = {
     type = "structure",
+    id = "ListPullTimeUpdateExclusionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2768,6 +2933,7 @@ M.ListPullTimeUpdateExclusionsInput = {
 
 M.ListPullTimeUpdateExclusionsOutput = {
     type = "structure",
+    id = "ListPullTimeUpdateExclusionsOutput",
     members = {
         pullTimeUpdateExclusions = {
             type = "list",
@@ -2781,6 +2947,7 @@ M.ListPullTimeUpdateExclusionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2793,6 +2960,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2803,6 +2971,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutAccountSettingInput = {
     type = "structure",
+    id = "PutAccountSettingInput",
     members = {
         name = {
             type = "string",
@@ -2821,6 +2990,7 @@ M.PutAccountSettingInput = {
 
 M.PutAccountSettingOutput = {
     type = "structure",
+    id = "PutAccountSettingOutput",
     members = {
         name = {
             type = "string",
@@ -2833,6 +3003,7 @@ M.PutAccountSettingOutput = {
 
 M.ImageAlreadyExistsException = {
     type = "structure",
+    id = "ImageAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -2843,6 +3014,7 @@ M.ImageAlreadyExistsException = {
 
 M.ImageDigestDoesNotMatchException = {
     type = "structure",
+    id = "ImageDigestDoesNotMatchException",
     error = "client",
     members = {
         message = {
@@ -2853,6 +3025,7 @@ M.ImageDigestDoesNotMatchException = {
 
 M.ImageTagAlreadyExistsException = {
     type = "structure",
+    id = "ImageTagAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -2863,6 +3036,7 @@ M.ImageTagAlreadyExistsException = {
 
 M.PutImageInput = {
     type = "structure",
+    id = "PutImageInput",
     members = {
         registryId = {
             type = "string",
@@ -2893,6 +3067,7 @@ M.PutImageInput = {
 
 M.PutImageOutput = {
     type = "structure",
+    id = "PutImageOutput",
     members = {
         image = M.Image,
     },
@@ -2900,6 +3075,7 @@ M.PutImageOutput = {
 
 M.ReferencedImagesNotFoundException = {
     type = "structure",
+    id = "ReferencedImagesNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2910,6 +3086,7 @@ M.ReferencedImagesNotFoundException = {
 
 M.PutImageScanningConfigurationInput = {
     type = "structure",
+    id = "PutImageScanningConfigurationInput",
     members = {
         registryId = {
             type = "string",
@@ -2928,6 +3105,7 @@ M.PutImageScanningConfigurationInput = {
 
 M.PutImageScanningConfigurationOutput = {
     type = "structure",
+    id = "PutImageScanningConfigurationOutput",
     members = {
         registryId = {
             type = "string",
@@ -2941,6 +3119,7 @@ M.PutImageScanningConfigurationOutput = {
 
 M.PutImageTagMutabilityInput = {
     type = "structure",
+    id = "PutImageTagMutabilityInput",
     members = {
         registryId = {
             type = "string",
@@ -2966,6 +3145,7 @@ M.PutImageTagMutabilityInput = {
 
 M.PutImageTagMutabilityOutput = {
     type = "structure",
+    id = "PutImageTagMutabilityOutput",
     members = {
         registryId = {
             type = "string",
@@ -2985,6 +3165,7 @@ M.PutImageTagMutabilityOutput = {
 
 M.PutLifecyclePolicyInput = {
     type = "structure",
+    id = "PutLifecyclePolicyInput",
     members = {
         registryId = {
             type = "string",
@@ -3006,6 +3187,7 @@ M.PutLifecyclePolicyInput = {
 
 M.PutLifecyclePolicyOutput = {
     type = "structure",
+    id = "PutLifecyclePolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -3021,6 +3203,7 @@ M.PutLifecyclePolicyOutput = {
 
 M.PutRegistryPolicyInput = {
     type = "structure",
+    id = "PutRegistryPolicyInput",
     members = {
         policyText = {
             type = "string",
@@ -3033,6 +3216,7 @@ M.PutRegistryPolicyInput = {
 
 M.PutRegistryPolicyOutput = {
     type = "structure",
+    id = "PutRegistryPolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -3045,6 +3229,7 @@ M.PutRegistryPolicyOutput = {
 
 M.BlockedByOrganizationPolicyException = {
     type = "structure",
+    id = "BlockedByOrganizationPolicyException",
     error = "client",
     members = {
         message = {
@@ -3055,6 +3240,7 @@ M.BlockedByOrganizationPolicyException = {
 
 M.PutRegistryScanningConfigurationInput = {
     type = "structure",
+    id = "PutRegistryScanningConfigurationInput",
     members = {
         scanType = {
             type = "string",
@@ -3068,6 +3254,7 @@ M.PutRegistryScanningConfigurationInput = {
 
 M.PutRegistryScanningConfigurationOutput = {
     type = "structure",
+    id = "PutRegistryScanningConfigurationOutput",
     members = {
         registryScanningConfiguration = M.RegistryScanningConfiguration,
     },
@@ -3075,6 +3262,7 @@ M.PutRegistryScanningConfigurationOutput = {
 
 M.PutReplicationConfigurationInput = {
     type = "structure",
+    id = "PutReplicationConfigurationInput",
     members = {
         replicationConfiguration = setmetatable({ traits = {
             required = true,
@@ -3084,6 +3272,7 @@ M.PutReplicationConfigurationInput = {
 
 M.PutReplicationConfigurationOutput = {
     type = "structure",
+    id = "PutReplicationConfigurationOutput",
     members = {
         replicationConfiguration = M.ReplicationConfiguration,
     },
@@ -3091,6 +3280,7 @@ M.PutReplicationConfigurationOutput = {
 
 M.PutSigningConfigurationInput = {
     type = "structure",
+    id = "PutSigningConfigurationInput",
     members = {
         signingConfiguration = setmetatable({ traits = {
             required = true,
@@ -3100,6 +3290,7 @@ M.PutSigningConfigurationInput = {
 
 M.PutSigningConfigurationOutput = {
     type = "structure",
+    id = "PutSigningConfigurationOutput",
     members = {
         signingConfiguration = M.SigningConfiguration,
     },
@@ -3107,6 +3298,7 @@ M.PutSigningConfigurationOutput = {
 
 M.ExclusionAlreadyExistsException = {
     type = "structure",
+    id = "ExclusionAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -3117,6 +3309,7 @@ M.ExclusionAlreadyExistsException = {
 
 M.RegisterPullTimeUpdateExclusionInput = {
     type = "structure",
+    id = "RegisterPullTimeUpdateExclusionInput",
     members = {
         principalArn = {
             type = "string",
@@ -3129,6 +3322,7 @@ M.RegisterPullTimeUpdateExclusionInput = {
 
 M.RegisterPullTimeUpdateExclusionOutput = {
     type = "structure",
+    id = "RegisterPullTimeUpdateExclusionOutput",
     members = {
         principalArn = {
             type = "string",
@@ -3141,6 +3335,7 @@ M.RegisterPullTimeUpdateExclusionOutput = {
 
 M.SetRepositoryPolicyInput = {
     type = "structure",
+    id = "SetRepositoryPolicyInput",
     members = {
         registryId = {
             type = "string",
@@ -3168,6 +3363,7 @@ M.SetRepositoryPolicyInput = {
 
 M.SetRepositoryPolicyOutput = {
     type = "structure",
+    id = "SetRepositoryPolicyOutput",
     members = {
         registryId = {
             type = "string",
@@ -3183,6 +3379,7 @@ M.SetRepositoryPolicyOutput = {
 
 M.ImageArchivedException = {
     type = "structure",
+    id = "ImageArchivedException",
     error = "client",
     members = {
         message = {
@@ -3193,6 +3390,7 @@ M.ImageArchivedException = {
 
 M.StartImageScanInput = {
     type = "structure",
+    id = "StartImageScanInput",
     members = {
         registryId = {
             type = "string",
@@ -3211,6 +3409,7 @@ M.StartImageScanInput = {
 
 M.StartImageScanOutput = {
     type = "structure",
+    id = "StartImageScanOutput",
     members = {
         registryId = {
             type = "string",
@@ -3225,6 +3424,7 @@ M.StartImageScanOutput = {
 
 M.UnsupportedImageTypeException = {
     type = "structure",
+    id = "UnsupportedImageTypeException",
     error = "client",
     members = {
         message = {
@@ -3235,6 +3435,7 @@ M.UnsupportedImageTypeException = {
 
 M.LifecyclePolicyPreviewInProgressException = {
     type = "structure",
+    id = "LifecyclePolicyPreviewInProgressException",
     error = "client",
     members = {
         message = {
@@ -3245,6 +3446,7 @@ M.LifecyclePolicyPreviewInProgressException = {
 
 M.StartLifecyclePolicyPreviewInput = {
     type = "structure",
+    id = "StartLifecyclePolicyPreviewInput",
     members = {
         registryId = {
             type = "string",
@@ -3263,6 +3465,7 @@ M.StartLifecyclePolicyPreviewInput = {
 
 M.StartLifecyclePolicyPreviewOutput = {
     type = "structure",
+    id = "StartLifecyclePolicyPreviewOutput",
     members = {
         registryId = {
             type = "string",
@@ -3281,6 +3484,7 @@ M.StartLifecyclePolicyPreviewOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3300,10 +3504,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3323,10 +3529,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ImageStorageClassUpdateNotSupportedException = {
     type = "structure",
+    id = "ImageStorageClassUpdateNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -3342,6 +3550,7 @@ M.TargetStorageClass = {
 
 M.UpdateImageStorageClassInput = {
     type = "structure",
+    id = "UpdateImageStorageClassInput",
     members = {
         registryId = {
             type = "string",
@@ -3366,6 +3575,7 @@ M.UpdateImageStorageClassInput = {
 
 M.UpdateImageStorageClassOutput = {
     type = "structure",
+    id = "UpdateImageStorageClassOutput",
     members = {
         registryId = {
             type = "string",
@@ -3382,6 +3592,7 @@ M.UpdateImageStorageClassOutput = {
 
 M.UpdatePullThroughCacheRuleInput = {
     type = "structure",
+    id = "UpdatePullThroughCacheRuleInput",
     members = {
         registryId = {
             type = "string",
@@ -3403,6 +3614,7 @@ M.UpdatePullThroughCacheRuleInput = {
 
 M.UpdatePullThroughCacheRuleOutput = {
     type = "structure",
+    id = "UpdatePullThroughCacheRuleOutput",
     members = {
         ecrRepositoryPrefix = {
             type = "string",
@@ -3427,6 +3639,7 @@ M.UpdatePullThroughCacheRuleOutput = {
 
 M.UpdateRepositoryCreationTemplateInput = {
     type = "structure",
+    id = "UpdateRepositoryCreationTemplateInput",
     members = {
         prefix = {
             type = "string",
@@ -3467,6 +3680,7 @@ M.UpdateRepositoryCreationTemplateInput = {
 
 M.UpdateRepositoryCreationTemplateOutput = {
     type = "structure",
+    id = "UpdateRepositoryCreationTemplateOutput",
     members = {
         registryId = {
             type = "string",
@@ -3477,6 +3691,7 @@ M.UpdateRepositoryCreationTemplateOutput = {
 
 M.InvalidLayerPartException = {
     type = "structure",
+    id = "InvalidLayerPartException",
     error = "client",
     members = {
         registryId = {
@@ -3499,6 +3714,7 @@ M.InvalidLayerPartException = {
 
 M.UploadLayerPartInput = {
     type = "structure",
+    id = "UploadLayerPartInput",
     members = {
         registryId = {
             type = "string",
@@ -3538,6 +3754,7 @@ M.UploadLayerPartInput = {
 
 M.UploadLayerPartOutput = {
     type = "structure",
+    id = "UploadLayerPartOutput",
     members = {
         registryId = {
             type = "string",
@@ -3556,6 +3773,7 @@ M.UploadLayerPartOutput = {
 
 M.ValidatePullThroughCacheRuleInput = {
     type = "structure",
+    id = "ValidatePullThroughCacheRuleInput",
     members = {
         ecrRepositoryPrefix = {
             type = "string",
@@ -3571,6 +3789,7 @@ M.ValidatePullThroughCacheRuleInput = {
 
 M.ValidatePullThroughCacheRuleOutput = {
     type = "structure",
+    id = "ValidatePullThroughCacheRuleOutput",
     members = {
         ecrRepositoryPrefix = {
             type = "string",

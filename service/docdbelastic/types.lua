@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -22,6 +23,7 @@ M.OptInType = {
 
 M.ApplyPendingMaintenanceActionInput = {
     type = "structure",
+    id = "ApplyPendingMaintenanceActionInput",
     members = {
         resourceArn = {
             type = "string",
@@ -49,6 +51,7 @@ M.ApplyPendingMaintenanceActionInput = {
 
 M.PendingMaintenanceActionDetails = {
     type = "structure",
+    id = "PendingMaintenanceActionDetails",
     members = {
         action = {
             type = "string",
@@ -76,6 +79,7 @@ M.PendingMaintenanceActionDetails = {
 
 M.ResourcePendingMaintenanceAction = {
     type = "structure",
+    id = "ResourcePendingMaintenanceAction",
     members = {
         resourceArn = {
             type = "string",
@@ -89,6 +93,7 @@ M.ResourcePendingMaintenanceAction = {
 
 M.ApplyPendingMaintenanceActionOutput = {
     type = "structure",
+    id = "ApplyPendingMaintenanceActionOutput",
     members = {
         resourcePendingMaintenanceAction = setmetatable({ traits = {
             required = true,
@@ -98,6 +103,7 @@ M.ApplyPendingMaintenanceActionOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -123,6 +129,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -136,6 +143,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -161,6 +169,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -180,6 +189,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -205,6 +215,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -233,6 +244,7 @@ M.Auth = {
 
 M.CopyClusterSnapshotInput = {
     type = "structure",
+    id = "CopyClusterSnapshotInput",
     members = {
         snapshotArn = {
             type = "string",
@@ -295,6 +307,7 @@ M.Status = {
 
 M.ClusterSnapshot = {
     type = "structure",
+    id = "ClusterSnapshot",
     members = {
         subnetIds = {
             type = "list",
@@ -366,6 +379,7 @@ M.ClusterSnapshot = {
 
 M.CopyClusterSnapshotOutput = {
     type = "structure",
+    id = "CopyClusterSnapshotOutput",
     members = {
         snapshot = setmetatable({ traits = {
             required = true,
@@ -375,6 +389,7 @@ M.CopyClusterSnapshotOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -388,6 +403,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         clusterName = {
             type = "string",
@@ -464,6 +480,7 @@ M.CreateClusterInput = {
 
 M.Shard = {
     type = "structure",
+    id = "Shard",
     members = {
         shardId = {
             type = "string",
@@ -488,6 +505,7 @@ M.Shard = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         clusterName = {
             type = "string",
@@ -587,6 +605,7 @@ M.Cluster = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         cluster = setmetatable({ traits = {
             required = true,
@@ -596,6 +615,7 @@ M.CreateClusterOutput = {
 
 M.CreateClusterSnapshotInput = {
     type = "structure",
+    id = "CreateClusterSnapshotInput",
     members = {
         clusterArn = {
             type = "string",
@@ -619,6 +639,7 @@ M.CreateClusterSnapshotInput = {
 
 M.CreateClusterSnapshotOutput = {
     type = "structure",
+    id = "CreateClusterSnapshotOutput",
     members = {
         snapshot = setmetatable({ traits = {
             required = true,
@@ -628,6 +649,7 @@ M.CreateClusterSnapshotOutput = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         clusterArn = {
             type = "string",
@@ -641,6 +663,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         cluster = setmetatable({ traits = {
             required = true,
@@ -650,6 +673,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteClusterSnapshotInput = {
     type = "structure",
+    id = "DeleteClusterSnapshotInput",
     members = {
         snapshotArn = {
             type = "string",
@@ -663,6 +687,7 @@ M.DeleteClusterSnapshotInput = {
 
 M.DeleteClusterSnapshotOutput = {
     type = "structure",
+    id = "DeleteClusterSnapshotOutput",
     members = {
         snapshot = setmetatable({ traits = {
             required = true,
@@ -672,6 +697,7 @@ M.DeleteClusterSnapshotOutput = {
 
 M.GetClusterInput = {
     type = "structure",
+    id = "GetClusterInput",
     members = {
         clusterArn = {
             type = "string",
@@ -685,6 +711,7 @@ M.GetClusterInput = {
 
 M.GetClusterOutput = {
     type = "structure",
+    id = "GetClusterOutput",
     members = {
         cluster = setmetatable({ traits = {
             required = true,
@@ -694,6 +721,7 @@ M.GetClusterOutput = {
 
 M.GetClusterSnapshotInput = {
     type = "structure",
+    id = "GetClusterSnapshotInput",
     members = {
         snapshotArn = {
             type = "string",
@@ -707,6 +735,7 @@ M.GetClusterSnapshotInput = {
 
 M.GetClusterSnapshotOutput = {
     type = "structure",
+    id = "GetClusterSnapshotOutput",
     members = {
         snapshot = setmetatable({ traits = {
             required = true,
@@ -716,6 +745,7 @@ M.GetClusterSnapshotOutput = {
 
 M.GetPendingMaintenanceActionInput = {
     type = "structure",
+    id = "GetPendingMaintenanceActionInput",
     members = {
         resourceArn = {
             type = "string",
@@ -729,6 +759,7 @@ M.GetPendingMaintenanceActionInput = {
 
 M.GetPendingMaintenanceActionOutput = {
     type = "structure",
+    id = "GetPendingMaintenanceActionOutput",
     members = {
         resourcePendingMaintenanceAction = setmetatable({ traits = {
             required = true,
@@ -738,6 +769,7 @@ M.GetPendingMaintenanceActionOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         nextToken = {
             type = "string",
@@ -757,6 +789,7 @@ M.ListClustersInput = {
 
 M.ClusterInList = {
     type = "structure",
+    id = "ClusterInList",
     members = {
         clusterName = {
             type = "string",
@@ -781,6 +814,7 @@ M.ClusterInList = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         clusters = {
             type = "list",
@@ -794,6 +828,7 @@ M.ListClustersOutput = {
 
 M.ListClusterSnapshotsInput = {
     type = "structure",
+    id = "ListClusterSnapshotsInput",
     members = {
         clusterArn = {
             type = "string",
@@ -825,6 +860,7 @@ M.ListClusterSnapshotsInput = {
 
 M.ClusterSnapshotInList = {
     type = "structure",
+    id = "ClusterSnapshotInList",
     members = {
         snapshotName = {
             type = "string",
@@ -861,6 +897,7 @@ M.ClusterSnapshotInList = {
 
 M.ListClusterSnapshotsOutput = {
     type = "structure",
+    id = "ListClusterSnapshotsOutput",
     members = {
         snapshots = {
             type = "list",
@@ -874,6 +911,7 @@ M.ListClusterSnapshotsOutput = {
 
 M.ListPendingMaintenanceActionsInput = {
     type = "structure",
+    id = "ListPendingMaintenanceActionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -893,6 +931,7 @@ M.ListPendingMaintenanceActionsInput = {
 
 M.ListPendingMaintenanceActionsOutput = {
     type = "structure",
+    id = "ListPendingMaintenanceActionsOutput",
     members = {
         resourcePendingMaintenanceActions = {
             type = "list",
@@ -909,6 +948,7 @@ M.ListPendingMaintenanceActionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -922,6 +962,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -933,6 +974,7 @@ M.ListTagsForResourceOutput = {
 
 M.RestoreClusterFromSnapshotInput = {
     type = "structure",
+    id = "RestoreClusterFromSnapshotInput",
     members = {
         clusterName = {
             type = "string",
@@ -974,6 +1016,7 @@ M.RestoreClusterFromSnapshotInput = {
 
 M.RestoreClusterFromSnapshotOutput = {
     type = "structure",
+    id = "RestoreClusterFromSnapshotOutput",
     members = {
         cluster = setmetatable({ traits = {
             required = true,
@@ -983,6 +1026,7 @@ M.RestoreClusterFromSnapshotOutput = {
 
 M.StartClusterInput = {
     type = "structure",
+    id = "StartClusterInput",
     members = {
         clusterArn = {
             type = "string",
@@ -996,6 +1040,7 @@ M.StartClusterInput = {
 
 M.StartClusterOutput = {
     type = "structure",
+    id = "StartClusterOutput",
     members = {
         cluster = setmetatable({ traits = {
             required = true,
@@ -1005,6 +1050,7 @@ M.StartClusterOutput = {
 
 M.StopClusterInput = {
     type = "structure",
+    id = "StopClusterInput",
     members = {
         clusterArn = {
             type = "string",
@@ -1018,6 +1064,7 @@ M.StopClusterInput = {
 
 M.StopClusterOutput = {
     type = "structure",
+    id = "StopClusterOutput",
     members = {
         cluster = setmetatable({ traits = {
             required = true,
@@ -1027,6 +1074,7 @@ M.StopClusterOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1048,10 +1096,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1073,10 +1123,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         clusterArn = {
             type = "string",
@@ -1128,6 +1180,7 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
     members = {
         cluster = setmetatable({ traits = {
             required = true,

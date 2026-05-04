@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessControlConfigurationSummary = {
     type = "structure",
+    id = "AccessControlConfigurationSummary",
     members = {
         Id = {
             type = "string",
@@ -14,6 +15,7 @@ M.AccessControlConfigurationSummary = {
 
 M.AccessControlListConfiguration = {
     type = "structure",
+    id = "AccessControlListConfiguration",
     members = {
         KeyPath = {
             type = "string",
@@ -23,6 +25,7 @@ M.AccessControlListConfiguration = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -33,6 +36,7 @@ M.AccessDeniedException = {
 
 M.AclConfiguration = {
     type = "structure",
+    id = "AclConfiguration",
     members = {
         AllowedGroupsColumnName = {
             type = "string",
@@ -50,6 +54,7 @@ M.HighlightType = {
 
 M.Highlight = {
     type = "structure",
+    id = "Highlight",
     members = {
         BeginOffset = {
             type = "integer",
@@ -77,6 +82,7 @@ M.Highlight = {
 
 M.TextWithHighlights = {
     type = "structure",
+    id = "TextWithHighlights",
     members = {
         Text = {
             type = "string",
@@ -90,6 +96,7 @@ M.TextWithHighlights = {
 
 M.AdditionalResultAttributeValue = {
     type = "structure",
+    id = "AdditionalResultAttributeValue",
     members = {
         TextWithHighlightsValue = M.TextWithHighlights,
     },
@@ -101,6 +108,7 @@ M.AdditionalResultAttributeValueType = {
 
 M.AdditionalResultAttribute = {
     type = "structure",
+    id = "AdditionalResultAttribute",
     members = {
         Key = {
             type = "string",
@@ -122,6 +130,7 @@ M.AdditionalResultAttribute = {
 
 M.DataSourceToIndexFieldMapping = {
     type = "structure",
+    id = "DataSourceToIndexFieldMapping",
     members = {
         DataSourceFieldName = {
             type = "string",
@@ -149,6 +158,7 @@ M.AlfrescoEntity = {
 
 M.S3Path = {
     type = "structure",
+    id = "S3Path",
     members = {
         Bucket = {
             type = "string",
@@ -167,6 +177,7 @@ M.S3Path = {
 
 M.DataSourceVpcConfiguration = {
     type = "structure",
+    id = "DataSourceVpcConfiguration",
     members = {
         SubnetIds = {
             type = "list",
@@ -187,6 +198,7 @@ M.DataSourceVpcConfiguration = {
 
 M.AlfrescoConfiguration = {
     type = "structure",
+    id = "AlfrescoConfiguration",
     members = {
         SiteUrl = {
             type = "string",
@@ -256,6 +268,7 @@ M.EntityType = {
 
 M.EntityConfiguration = {
     type = "structure",
+    id = "EntityConfiguration",
     members = {
         EntityId = {
             type = "string",
@@ -274,6 +287,7 @@ M.EntityConfiguration = {
 
 M.AssociateEntitiesToExperienceInput = {
     type = "structure",
+    id = "AssociateEntitiesToExperienceInput",
     members = {
         Id = {
             type = "string",
@@ -299,6 +313,7 @@ M.AssociateEntitiesToExperienceInput = {
 
 M.FailedEntity = {
     type = "structure",
+    id = "FailedEntity",
     members = {
         EntityId = {
             type = "string",
@@ -311,6 +326,7 @@ M.FailedEntity = {
 
 M.AssociateEntitiesToExperienceOutput = {
     type = "structure",
+    id = "AssociateEntitiesToExperienceOutput",
     members = {
         FailedEntityList = {
             type = "list",
@@ -321,6 +337,7 @@ M.AssociateEntitiesToExperienceOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -331,6 +348,7 @@ M.InternalServerException = {
 
 M.ResourceAlreadyExistException = {
     type = "structure",
+    id = "ResourceAlreadyExistException",
     error = "client",
     members = {
         Message = {
@@ -341,6 +359,7 @@ M.ResourceAlreadyExistException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -351,6 +370,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -361,6 +381,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -376,6 +397,7 @@ M.Persona = {
 
 M.EntityPersonaConfiguration = {
     type = "structure",
+    id = "EntityPersonaConfiguration",
     members = {
         EntityId = {
             type = "string",
@@ -394,6 +416,7 @@ M.EntityPersonaConfiguration = {
 
 M.AssociatePersonasToEntitiesInput = {
     type = "structure",
+    id = "AssociatePersonasToEntitiesInput",
     members = {
         Id = {
             type = "string",
@@ -419,6 +442,7 @@ M.AssociatePersonasToEntitiesInput = {
 
 M.AssociatePersonasToEntitiesOutput = {
     type = "structure",
+    id = "AssociatePersonasToEntitiesOutput",
     members = {
         FailedEntityList = {
             type = "list",
@@ -429,6 +453,7 @@ M.AssociatePersonasToEntitiesOutput = {
 
 M.DocumentAttributeValue = {
     type = "structure",
+    id = "DocumentAttributeValue",
     members = {
         StringValue = {
             type = "string",
@@ -448,6 +473,7 @@ M.DocumentAttributeValue = {
 
 M.DocumentAttribute = {
     type = "structure",
+    id = "DocumentAttribute",
     members = {
         Key = {
             type = "string",
@@ -468,6 +494,7 @@ M.AttributeSuggestionsMode = {
 
 M.SuggestableConfig = {
     type = "structure",
+    id = "SuggestableConfig",
     members = {
         AttributeName = {
             type = "string",
@@ -480,6 +507,7 @@ M.SuggestableConfig = {
 
 M.AttributeSuggestionsDescribeConfig = {
     type = "structure",
+    id = "AttributeSuggestionsDescribeConfig",
     members = {
         SuggestableConfigList = {
             type = "list",
@@ -493,6 +521,7 @@ M.AttributeSuggestionsDescribeConfig = {
 
 M.DataSourceGroup = {
     type = "structure",
+    id = "DataSourceGroup",
     members = {
         GroupId = {
             type = "string",
@@ -511,6 +540,7 @@ M.DataSourceGroup = {
 
 M.UserContext = {
     type = "structure",
+    id = "UserContext",
     members = {
         Token = {
             type = "string",
@@ -531,6 +561,7 @@ M.UserContext = {
 
 M.AttributeSuggestionsUpdateConfig = {
     type = "structure",
+    id = "AttributeSuggestionsUpdateConfig",
     members = {
         SuggestableConfigList = {
             type = "list",
@@ -544,6 +575,7 @@ M.AttributeSuggestionsUpdateConfig = {
 
 M.BasicAuthenticationConfiguration = {
     type = "structure",
+    id = "BasicAuthenticationConfiguration",
     members = {
         Host = {
             type = "string",
@@ -568,6 +600,7 @@ M.BasicAuthenticationConfiguration = {
 
 M.AuthenticationConfiguration = {
     type = "structure",
+    id = "AuthenticationConfiguration",
     members = {
         BasicAuthentication = {
             type = "list",
@@ -578,6 +611,7 @@ M.AuthenticationConfiguration = {
 
 M.DataSourceSyncJobMetricTarget = {
     type = "structure",
+    id = "DataSourceSyncJobMetricTarget",
     members = {
         DataSourceId = {
             type = "string",
@@ -593,6 +627,7 @@ M.DataSourceSyncJobMetricTarget = {
 
 M.BatchDeleteDocumentInput = {
     type = "structure",
+    id = "BatchDeleteDocumentInput",
     members = {
         IndexId = {
             type = "string",
@@ -618,6 +653,7 @@ M.ErrorCode = {
 
 M.BatchDeleteDocumentResponseFailedDocument = {
     type = "structure",
+    id = "BatchDeleteDocumentResponseFailedDocument",
     members = {
         Id = {
             type = "string",
@@ -636,6 +672,7 @@ M.BatchDeleteDocumentResponseFailedDocument = {
 
 M.BatchDeleteDocumentOutput = {
     type = "structure",
+    id = "BatchDeleteDocumentOutput",
     members = {
         FailedDocuments = {
             type = "list",
@@ -646,6 +683,7 @@ M.BatchDeleteDocumentOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -656,6 +694,7 @@ M.ConflictException = {
 
 M.BatchDeleteFeaturedResultsSetInput = {
     type = "structure",
+    id = "BatchDeleteFeaturedResultsSetInput",
     members = {
         IndexId = {
             type = "string",
@@ -675,6 +714,7 @@ M.BatchDeleteFeaturedResultsSetInput = {
 
 M.BatchDeleteFeaturedResultsSetError = {
     type = "structure",
+    id = "BatchDeleteFeaturedResultsSetError",
     members = {
         Id = {
             type = "string",
@@ -699,6 +739,7 @@ M.BatchDeleteFeaturedResultsSetError = {
 
 M.BatchDeleteFeaturedResultsSetOutput = {
     type = "structure",
+    id = "BatchDeleteFeaturedResultsSetOutput",
     members = {
         Errors = {
             type = "list",
@@ -712,6 +753,7 @@ M.BatchDeleteFeaturedResultsSetOutput = {
 
 M.DocumentInfo = {
     type = "structure",
+    id = "DocumentInfo",
     members = {
         DocumentId = {
             type = "string",
@@ -728,6 +770,7 @@ M.DocumentInfo = {
 
 M.BatchGetDocumentStatusInput = {
     type = "structure",
+    id = "BatchGetDocumentStatusInput",
     members = {
         IndexId = {
             type = "string",
@@ -756,6 +799,7 @@ M.DocumentStatus = {
 
 M.Status = {
     type = "structure",
+    id = "Status",
     members = {
         DocumentId = {
             type = "string",
@@ -774,6 +818,7 @@ M.Status = {
 
 M.BatchGetDocumentStatusResponseError = {
     type = "structure",
+    id = "BatchGetDocumentStatusResponseError",
     members = {
         DocumentId = {
             type = "string",
@@ -792,6 +837,7 @@ M.BatchGetDocumentStatusResponseError = {
 
 M.BatchGetDocumentStatusOutput = {
     type = "structure",
+    id = "BatchGetDocumentStatusOutput",
     members = {
         Errors = {
             type = "list",
@@ -820,6 +866,7 @@ M.ConditionOperator = {
 
 M.DocumentAttributeCondition = {
     type = "structure",
+    id = "DocumentAttributeCondition",
     members = {
         ConditionDocumentAttributeKey = {
             type = "string",
@@ -839,6 +886,7 @@ M.DocumentAttributeCondition = {
 
 M.DocumentAttributeTarget = {
     type = "structure",
+    id = "DocumentAttributeTarget",
     members = {
         TargetDocumentAttributeKey = {
             type = "string",
@@ -855,6 +903,7 @@ M.DocumentAttributeTarget = {
 
 M.InlineCustomDocumentEnrichmentConfiguration = {
     type = "structure",
+    id = "InlineCustomDocumentEnrichmentConfiguration",
     members = {
         Condition = M.DocumentAttributeCondition,
         Target = M.DocumentAttributeTarget,
@@ -869,6 +918,7 @@ M.InlineCustomDocumentEnrichmentConfiguration = {
 
 M.HookConfiguration = {
     type = "structure",
+    id = "HookConfiguration",
     members = {
         InvocationCondition = M.DocumentAttributeCondition,
         LambdaArn = {
@@ -888,6 +938,7 @@ M.HookConfiguration = {
 
 M.CustomDocumentEnrichmentConfiguration = {
     type = "structure",
+    id = "CustomDocumentEnrichmentConfiguration",
     members = {
         InlineConfigurations = {
             type = "list",
@@ -913,6 +964,7 @@ M.PrincipalType = {
 
 M.Principal = {
     type = "structure",
+    id = "Principal",
     members = {
         Name = {
             type = "string",
@@ -955,6 +1007,7 @@ M.ContentType = {
 
 M.HierarchicalPrincipal = {
     type = "structure",
+    id = "HierarchicalPrincipal",
     members = {
         PrincipalList = {
             type = "list",
@@ -968,6 +1021,7 @@ M.HierarchicalPrincipal = {
 
 M.Document = {
     type = "structure",
+    id = "Document",
     members = {
         Id = {
             type = "string",
@@ -1005,6 +1059,7 @@ M.Document = {
 
 M.BatchPutDocumentInput = {
     type = "structure",
+    id = "BatchPutDocumentInput",
     members = {
         IndexId = {
             type = "string",
@@ -1028,6 +1083,7 @@ M.BatchPutDocumentInput = {
 
 M.BatchPutDocumentResponseFailedDocument = {
     type = "structure",
+    id = "BatchPutDocumentResponseFailedDocument",
     members = {
         Id = {
             type = "string",
@@ -1046,6 +1102,7 @@ M.BatchPutDocumentResponseFailedDocument = {
 
 M.BatchPutDocumentOutput = {
     type = "structure",
+    id = "BatchPutDocumentOutput",
     members = {
         FailedDocuments = {
             type = "list",
@@ -1056,6 +1113,7 @@ M.BatchPutDocumentOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -1066,6 +1124,7 @@ M.ServiceQuotaExceededException = {
 
 M.ClearQuerySuggestionsInput = {
     type = "structure",
+    id = "ClearQuerySuggestionsInput",
     members = {
         IndexId = {
             type = "string",
@@ -1078,10 +1137,12 @@ M.ClearQuerySuggestionsInput = {
 
 M.ClearQuerySuggestionsOutput = {
     type = "structure",
+    id = "ClearQuerySuggestionsOutput",
 }
 
 M.CreateAccessControlConfigurationInput = {
     type = "structure",
+    id = "CreateAccessControlConfigurationInput",
     members = {
         IndexId = {
             type = "string",
@@ -1117,6 +1178,7 @@ M.CreateAccessControlConfigurationInput = {
 
 M.CreateAccessControlConfigurationOutput = {
     type = "structure",
+    id = "CreateAccessControlConfigurationOutput",
     members = {
         Id = {
             type = "string",
@@ -1129,6 +1191,7 @@ M.CreateAccessControlConfigurationOutput = {
 
 M.BoxConfiguration = {
     type = "structure",
+    id = "BoxConfiguration",
     members = {
         EnterpriseId = {
             type = "string",
@@ -1210,6 +1273,7 @@ M.ConfluenceAttachmentFieldName = {
 
 M.ConfluenceAttachmentToIndexFieldMapping = {
     type = "structure",
+    id = "ConfluenceAttachmentToIndexFieldMapping",
     members = {
         DataSourceFieldName = {
             type = "string",
@@ -1225,6 +1289,7 @@ M.ConfluenceAttachmentToIndexFieldMapping = {
 
 M.ConfluenceAttachmentConfiguration = {
     type = "structure",
+    id = "ConfluenceAttachmentConfiguration",
     members = {
         CrawlAttachments = {
             type = "boolean",
@@ -1258,6 +1323,7 @@ M.ConfluenceBlogFieldName = {
 
 M.ConfluenceBlogToIndexFieldMapping = {
     type = "structure",
+    id = "ConfluenceBlogToIndexFieldMapping",
     members = {
         DataSourceFieldName = {
             type = "string",
@@ -1273,6 +1339,7 @@ M.ConfluenceBlogToIndexFieldMapping = {
 
 M.ConfluenceBlogConfiguration = {
     type = "structure",
+    id = "ConfluenceBlogConfiguration",
     members = {
         BlogFieldMappings = {
             type = "list",
@@ -1298,6 +1365,7 @@ M.ConfluencePageFieldName = {
 
 M.ConfluencePageToIndexFieldMapping = {
     type = "structure",
+    id = "ConfluencePageToIndexFieldMapping",
     members = {
         DataSourceFieldName = {
             type = "string",
@@ -1313,6 +1381,7 @@ M.ConfluencePageToIndexFieldMapping = {
 
 M.ConfluencePageConfiguration = {
     type = "structure",
+    id = "ConfluencePageConfiguration",
     members = {
         PageFieldMappings = {
             type = "list",
@@ -1323,6 +1392,7 @@ M.ConfluencePageConfiguration = {
 
 M.ProxyConfiguration = {
     type = "structure",
+    id = "ProxyConfiguration",
     members = {
         Host = {
             type = "string",
@@ -1351,6 +1421,7 @@ M.ConfluenceSpaceFieldName = {
 
 M.ConfluenceSpaceToIndexFieldMapping = {
     type = "structure",
+    id = "ConfluenceSpaceToIndexFieldMapping",
     members = {
         DataSourceFieldName = {
             type = "string",
@@ -1366,6 +1437,7 @@ M.ConfluenceSpaceToIndexFieldMapping = {
 
 M.ConfluenceSpaceConfiguration = {
     type = "structure",
+    id = "ConfluenceSpaceConfiguration",
     members = {
         CrawlPersonalSpaces = {
             type = "boolean",
@@ -1401,6 +1473,7 @@ M.ConfluenceVersion = {
 
 M.ConfluenceConfiguration = {
     type = "structure",
+    id = "ConfluenceConfiguration",
     members = {
         ServerUrl = {
             type = "string",
@@ -1442,6 +1515,7 @@ M.ConfluenceConfiguration = {
 
 M.ColumnConfiguration = {
     type = "structure",
+    id = "ColumnConfiguration",
     members = {
         DocumentIdColumnName = {
             type = "string",
@@ -1474,6 +1548,7 @@ M.ColumnConfiguration = {
 
 M.ConnectionConfiguration = {
     type = "structure",
+    id = "ConnectionConfiguration",
     members = {
         DatabaseHost = {
             type = "string",
@@ -1522,6 +1597,7 @@ M.QueryIdentifiersEnclosingOption = {
 
 M.SqlConfiguration = {
     type = "structure",
+    id = "SqlConfiguration",
     members = {
         QueryIdentifiersEnclosingOption = {
             type = "string",
@@ -1531,6 +1607,7 @@ M.SqlConfiguration = {
 
 M.DatabaseConfiguration = {
     type = "structure",
+    id = "DatabaseConfiguration",
     members = {
         DatabaseEngineType = {
             type = "string",
@@ -1556,6 +1633,7 @@ M.FsxFileSystemType = {
 
 M.FsxConfiguration = {
     type = "structure",
+    id = "FsxConfiguration",
     members = {
         FileSystemId = {
             type = "string",
@@ -1592,6 +1670,7 @@ M.FsxConfiguration = {
 
 M.GitHubDocumentCrawlProperties = {
     type = "structure",
+    id = "GitHubDocumentCrawlProperties",
     members = {
         CrawlRepositoryDocuments = {
             type = "boolean",
@@ -1640,6 +1719,7 @@ M.GitHubDocumentCrawlProperties = {
 
 M.OnPremiseConfiguration = {
     type = "structure",
+    id = "OnPremiseConfiguration",
     members = {
         HostUrl = {
             type = "string",
@@ -1661,6 +1741,7 @@ M.OnPremiseConfiguration = {
 
 M.SaaSConfiguration = {
     type = "structure",
+    id = "SaaSConfiguration",
     members = {
         OrganizationName = {
             type = "string",
@@ -1684,6 +1765,7 @@ M.Type = {
 
 M.GitHubConfiguration = {
     type = "structure",
+    id = "GitHubConfiguration",
     members = {
         SaaSConfiguration = M.SaaSConfiguration,
         OnPremiseConfiguration = M.OnPremiseConfiguration,
@@ -1769,6 +1851,7 @@ M.GitHubConfiguration = {
 
 M.GoogleDriveConfiguration = {
     type = "structure",
+    id = "GoogleDriveConfiguration",
     members = {
         SecretArn = {
             type = "string",
@@ -1811,6 +1894,7 @@ M.IssueSubEntity = {
 
 M.JiraConfiguration = {
     type = "structure",
+    id = "JiraConfiguration",
     members = {
         JiraAccountUrl = {
             type = "string",
@@ -1880,6 +1964,7 @@ M.JiraConfiguration = {
 
 M.OneDriveUsers = {
     type = "structure",
+    id = "OneDriveUsers",
     members = {
         OneDriveUserList = {
             type = "list",
@@ -1891,6 +1976,7 @@ M.OneDriveUsers = {
 
 M.OneDriveConfiguration = {
     type = "structure",
+    id = "OneDriveConfiguration",
     members = {
         TenantDomain = {
             type = "string",
@@ -1930,6 +2016,7 @@ M.OneDriveConfiguration = {
 
 M.QuipConfiguration = {
     type = "structure",
+    id = "QuipConfiguration",
     members = {
         Domain = {
             type = "string",
@@ -1991,6 +2078,7 @@ M.QuipConfiguration = {
 
 M.DocumentsMetadataConfiguration = {
     type = "structure",
+    id = "DocumentsMetadataConfiguration",
     members = {
         S3Prefix = {
             type = "string",
@@ -2000,6 +2088,7 @@ M.DocumentsMetadataConfiguration = {
 
 M.S3DataSourceConfiguration = {
     type = "structure",
+    id = "S3DataSourceConfiguration",
     members = {
         BucketName = {
             type = "string",
@@ -2031,6 +2120,7 @@ M.SalesforceChatterFeedIncludeFilterType = {
 
 M.SalesforceChatterFeedConfiguration = {
     type = "structure",
+    id = "SalesforceChatterFeedConfiguration",
     members = {
         DocumentDataFieldName = {
             type = "string",
@@ -2054,6 +2144,7 @@ M.SalesforceChatterFeedConfiguration = {
 
 M.SalesforceCustomKnowledgeArticleTypeConfiguration = {
     type = "structure",
+    id = "SalesforceCustomKnowledgeArticleTypeConfiguration",
     members = {
         Name = {
             type = "string",
@@ -2085,6 +2176,7 @@ M.SalesforceKnowledgeArticleState = {
 
 M.SalesforceStandardKnowledgeArticleTypeConfiguration = {
     type = "structure",
+    id = "SalesforceStandardKnowledgeArticleTypeConfiguration",
     members = {
         DocumentDataFieldName = {
             type = "string",
@@ -2104,6 +2196,7 @@ M.SalesforceStandardKnowledgeArticleTypeConfiguration = {
 
 M.SalesforceKnowledgeArticleConfiguration = {
     type = "structure",
+    id = "SalesforceKnowledgeArticleConfiguration",
     members = {
         IncludedStates = {
             type = "list",
@@ -2122,6 +2215,7 @@ M.SalesforceKnowledgeArticleConfiguration = {
 
 M.SalesforceStandardObjectAttachmentConfiguration = {
     type = "structure",
+    id = "SalesforceStandardObjectAttachmentConfiguration",
     members = {
         DocumentTitleFieldName = {
             type = "string",
@@ -2155,6 +2249,7 @@ M.SalesforceStandardObjectName = {
 
 M.SalesforceStandardObjectConfiguration = {
     type = "structure",
+    id = "SalesforceStandardObjectConfiguration",
     members = {
         Name = {
             type = "string",
@@ -2180,6 +2275,7 @@ M.SalesforceStandardObjectConfiguration = {
 
 M.SalesforceConfiguration = {
     type = "structure",
+    id = "SalesforceConfiguration",
     members = {
         ServerUrl = {
             type = "string",
@@ -2224,6 +2320,7 @@ M.ServiceNowAuthenticationType = {
 
 M.ServiceNowKnowledgeArticleConfiguration = {
     type = "structure",
+    id = "ServiceNowKnowledgeArticleConfiguration",
     members = {
         CrawlAttachments = {
             type = "boolean",
@@ -2260,6 +2357,7 @@ M.ServiceNowKnowledgeArticleConfiguration = {
 
 M.ServiceNowServiceCatalogConfiguration = {
     type = "structure",
+    id = "ServiceNowServiceCatalogConfiguration",
     members = {
         CrawlAttachments = {
             type = "boolean",
@@ -2298,6 +2396,7 @@ M.ServiceNowBuildVersionType = {
 
 M.ServiceNowConfiguration = {
     type = "structure",
+    id = "ServiceNowConfiguration",
     members = {
         HostUrl = {
             type = "string",
@@ -2339,6 +2438,7 @@ M.SharePointVersion = {
 
 M.SharePointConfiguration = {
     type = "structure",
+    id = "SharePointConfiguration",
     members = {
         SharePointVersion = {
             type = "string",
@@ -2410,6 +2510,7 @@ M.SlackEntity = {
 
 M.SlackConfiguration = {
     type = "structure",
+    id = "SlackConfiguration",
     members = {
         TeamId = {
             type = "string",
@@ -2483,6 +2584,7 @@ M.SlackConfiguration = {
 
 M.TemplateConfiguration = {
     type = "structure",
+    id = "TemplateConfiguration",
     members = {
         Template = {
             type = "document",
@@ -2498,6 +2600,7 @@ M.WebCrawlerMode = {
 
 M.SeedUrlConfiguration = {
     type = "structure",
+    id = "SeedUrlConfiguration",
     members = {
         SeedUrls = {
             type = "list",
@@ -2514,6 +2617,7 @@ M.SeedUrlConfiguration = {
 
 M.SiteMapsConfiguration = {
     type = "structure",
+    id = "SiteMapsConfiguration",
     members = {
         SiteMaps = {
             type = "list",
@@ -2527,6 +2631,7 @@ M.SiteMapsConfiguration = {
 
 M.Urls = {
     type = "structure",
+    id = "Urls",
     members = {
         SeedUrlConfiguration = M.SeedUrlConfiguration,
         SiteMapsConfiguration = M.SiteMapsConfiguration,
@@ -2535,6 +2640,7 @@ M.Urls = {
 
 M.WebCrawlerConfiguration = {
     type = "structure",
+    id = "WebCrawlerConfiguration",
     members = {
         Urls = setmetatable({ traits = {
             required = true,
@@ -2566,6 +2672,7 @@ M.WebCrawlerConfiguration = {
 
 M.WorkDocsConfiguration = {
     type = "structure",
+    id = "WorkDocsConfiguration",
     members = {
         OrganizationId = {
             type = "string",
@@ -2602,6 +2709,7 @@ M.WorkDocsConfiguration = {
 
 M.DataSourceConfiguration = {
     type = "structure",
+    id = "DataSourceConfiguration",
     members = {
         S3Configuration = M.S3DataSourceConfiguration,
         SharePointConfiguration = M.SharePointConfiguration,
@@ -2626,6 +2734,7 @@ M.DataSourceConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -2666,6 +2775,7 @@ M.DataSourceType = {
 
 M.CreateDataSourceInput = {
     type = "structure",
+    id = "CreateDataSourceInput",
     members = {
         Name = {
             type = "string",
@@ -2715,6 +2825,7 @@ M.CreateDataSourceInput = {
 
 M.CreateDataSourceOutput = {
     type = "structure",
+    id = "CreateDataSourceOutput",
     members = {
         Id = {
             type = "string",
@@ -2727,6 +2838,7 @@ M.CreateDataSourceOutput = {
 
 M.ContentSourceConfiguration = {
     type = "structure",
+    id = "ContentSourceConfiguration",
     members = {
         DataSourceIds = {
             type = "list",
@@ -2747,6 +2859,7 @@ M.ContentSourceConfiguration = {
 
 M.UserIdentityConfiguration = {
     type = "structure",
+    id = "UserIdentityConfiguration",
     members = {
         IdentityAttributeName = {
             type = "string",
@@ -2756,6 +2869,7 @@ M.UserIdentityConfiguration = {
 
 M.ExperienceConfiguration = {
     type = "structure",
+    id = "ExperienceConfiguration",
     members = {
         ContentSourceConfiguration = M.ContentSourceConfiguration,
         UserIdentityConfiguration = M.UserIdentityConfiguration,
@@ -2764,6 +2878,7 @@ M.ExperienceConfiguration = {
 
 M.CreateExperienceInput = {
     type = "structure",
+    id = "CreateExperienceInput",
     members = {
         Name = {
             type = "string",
@@ -2795,6 +2910,7 @@ M.CreateExperienceInput = {
 
 M.CreateExperienceOutput = {
     type = "structure",
+    id = "CreateExperienceOutput",
     members = {
         Id = {
             type = "string",
@@ -2813,6 +2929,7 @@ M.FaqFileFormat = {
 
 M.CreateFaqInput = {
     type = "structure",
+    id = "CreateFaqInput",
     members = {
         IndexId = {
             type = "string",
@@ -2859,6 +2976,7 @@ M.CreateFaqInput = {
 
 M.CreateFaqOutput = {
     type = "structure",
+    id = "CreateFaqOutput",
     members = {
         Id = {
             type = "string",
@@ -2868,6 +2986,7 @@ M.CreateFaqOutput = {
 
 M.FeaturedDocument = {
     type = "structure",
+    id = "FeaturedDocument",
     members = {
         Id = {
             type = "string",
@@ -2882,6 +3001,7 @@ M.FeaturedResultsSetStatus = {
 
 M.CreateFeaturedResultsSetInput = {
     type = "structure",
+    id = "CreateFeaturedResultsSetInput",
     members = {
         IndexId = {
             type = "string",
@@ -2921,6 +3041,7 @@ M.CreateFeaturedResultsSetInput = {
 
 M.FeaturedResultsSet = {
     type = "structure",
+    id = "FeaturedResultsSet",
     members = {
         FeaturedResultsSetId = {
             type = "string",
@@ -2953,6 +3074,7 @@ M.FeaturedResultsSet = {
 
 M.CreateFeaturedResultsSetOutput = {
     type = "structure",
+    id = "CreateFeaturedResultsSetOutput",
     members = {
         FeaturedResultsSet = M.FeaturedResultsSet,
     },
@@ -2960,6 +3082,7 @@ M.CreateFeaturedResultsSetOutput = {
 
 M.ConflictingItem = {
     type = "structure",
+    id = "ConflictingItem",
     members = {
         QueryText = {
             type = "string",
@@ -2975,6 +3098,7 @@ M.ConflictingItem = {
 
 M.FeaturedResultsConflictException = {
     type = "structure",
+    id = "FeaturedResultsConflictException",
     error = "client",
     members = {
         Message = {
@@ -2995,6 +3119,7 @@ M.IndexEdition = {
 
 M.ServerSideEncryptionConfiguration = {
     type = "structure",
+    id = "ServerSideEncryptionConfiguration",
     members = {
         KmsKeyId = {
             type = "string",
@@ -3014,6 +3139,7 @@ M.UserGroupResolutionMode = {
 
 M.UserGroupResolutionConfiguration = {
     type = "structure",
+    id = "UserGroupResolutionConfiguration",
     members = {
         UserGroupResolutionMode = {
             type = "string",
@@ -3026,6 +3152,7 @@ M.UserGroupResolutionConfiguration = {
 
 M.JsonTokenTypeConfiguration = {
     type = "structure",
+    id = "JsonTokenTypeConfiguration",
     members = {
         UserNameAttributeField = {
             type = "string",
@@ -3049,6 +3176,7 @@ M.KeyLocation = {
 
 M.JwtTokenTypeConfiguration = {
     type = "structure",
+    id = "JwtTokenTypeConfiguration",
     members = {
         KeyLocation = {
             type = "string",
@@ -3079,6 +3207,7 @@ M.JwtTokenTypeConfiguration = {
 
 M.UserTokenConfiguration = {
     type = "structure",
+    id = "UserTokenConfiguration",
     members = {
         JwtTokenTypeConfiguration = M.JwtTokenTypeConfiguration,
         JsonTokenTypeConfiguration = M.JsonTokenTypeConfiguration,
@@ -3087,6 +3216,7 @@ M.UserTokenConfiguration = {
 
 M.CreateIndexInput = {
     type = "structure",
+    id = "CreateIndexInput",
     members = {
         Name = {
             type = "string",
@@ -3130,6 +3260,7 @@ M.CreateIndexInput = {
 
 M.CreateIndexOutput = {
     type = "structure",
+    id = "CreateIndexOutput",
     members = {
         Id = {
             type = "string",
@@ -3139,6 +3270,7 @@ M.CreateIndexOutput = {
 
 M.CreateQuerySuggestionsBlockListInput = {
     type = "structure",
+    id = "CreateQuerySuggestionsBlockListInput",
     members = {
         IndexId = {
             type = "string",
@@ -3179,6 +3311,7 @@ M.CreateQuerySuggestionsBlockListInput = {
 
 M.CreateQuerySuggestionsBlockListOutput = {
     type = "structure",
+    id = "CreateQuerySuggestionsBlockListOutput",
     members = {
         Id = {
             type = "string",
@@ -3188,6 +3321,7 @@ M.CreateQuerySuggestionsBlockListOutput = {
 
 M.CreateThesaurusInput = {
     type = "structure",
+    id = "CreateThesaurusInput",
     members = {
         IndexId = {
             type = "string",
@@ -3228,6 +3362,7 @@ M.CreateThesaurusInput = {
 
 M.CreateThesaurusOutput = {
     type = "structure",
+    id = "CreateThesaurusOutput",
     members = {
         Id = {
             type = "string",
@@ -3237,6 +3372,7 @@ M.CreateThesaurusOutput = {
 
 M.DeleteAccessControlConfigurationInput = {
     type = "structure",
+    id = "DeleteAccessControlConfigurationInput",
     members = {
         IndexId = {
             type = "string",
@@ -3255,10 +3391,12 @@ M.DeleteAccessControlConfigurationInput = {
 
 M.DeleteAccessControlConfigurationOutput = {
     type = "structure",
+    id = "DeleteAccessControlConfigurationOutput",
 }
 
 M.DeleteDataSourceInput = {
     type = "structure",
+    id = "DeleteDataSourceInput",
     members = {
         Id = {
             type = "string",
@@ -3277,10 +3415,12 @@ M.DeleteDataSourceInput = {
 
 M.DeleteDataSourceOutput = {
     type = "structure",
+    id = "DeleteDataSourceOutput",
 }
 
 M.DeleteExperienceInput = {
     type = "structure",
+    id = "DeleteExperienceInput",
     members = {
         Id = {
             type = "string",
@@ -3299,10 +3439,12 @@ M.DeleteExperienceInput = {
 
 M.DeleteExperienceOutput = {
     type = "structure",
+    id = "DeleteExperienceOutput",
 }
 
 M.DeleteFaqInput = {
     type = "structure",
+    id = "DeleteFaqInput",
     members = {
         Id = {
             type = "string",
@@ -3321,10 +3463,12 @@ M.DeleteFaqInput = {
 
 M.DeleteFaqOutput = {
     type = "structure",
+    id = "DeleteFaqOutput",
 }
 
 M.DeleteIndexInput = {
     type = "structure",
+    id = "DeleteIndexInput",
     members = {
         Id = {
             type = "string",
@@ -3337,10 +3481,12 @@ M.DeleteIndexInput = {
 
 M.DeleteIndexOutput = {
     type = "structure",
+    id = "DeleteIndexOutput",
 }
 
 M.DeletePrincipalMappingInput = {
     type = "structure",
+    id = "DeletePrincipalMappingInput",
     members = {
         IndexId = {
             type = "string",
@@ -3365,10 +3511,12 @@ M.DeletePrincipalMappingInput = {
 
 M.DeletePrincipalMappingOutput = {
     type = "structure",
+    id = "DeletePrincipalMappingOutput",
 }
 
 M.DeleteQuerySuggestionsBlockListInput = {
     type = "structure",
+    id = "DeleteQuerySuggestionsBlockListInput",
     members = {
         IndexId = {
             type = "string",
@@ -3387,10 +3535,12 @@ M.DeleteQuerySuggestionsBlockListInput = {
 
 M.DeleteQuerySuggestionsBlockListOutput = {
     type = "structure",
+    id = "DeleteQuerySuggestionsBlockListOutput",
 }
 
 M.DeleteThesaurusInput = {
     type = "structure",
+    id = "DeleteThesaurusInput",
     members = {
         Id = {
             type = "string",
@@ -3409,10 +3559,12 @@ M.DeleteThesaurusInput = {
 
 M.DeleteThesaurusOutput = {
     type = "structure",
+    id = "DeleteThesaurusOutput",
 }
 
 M.DescribeAccessControlConfigurationInput = {
     type = "structure",
+    id = "DescribeAccessControlConfigurationInput",
     members = {
         IndexId = {
             type = "string",
@@ -3431,6 +3583,7 @@ M.DescribeAccessControlConfigurationInput = {
 
 M.DescribeAccessControlConfigurationOutput = {
     type = "structure",
+    id = "DescribeAccessControlConfigurationOutput",
     members = {
         Name = {
             type = "string",
@@ -3457,6 +3610,7 @@ M.DescribeAccessControlConfigurationOutput = {
 
 M.DescribeDataSourceInput = {
     type = "structure",
+    id = "DescribeDataSourceInput",
     members = {
         Id = {
             type = "string",
@@ -3483,6 +3637,7 @@ M.DataSourceStatus = {
 
 M.DescribeDataSourceOutput = {
     type = "structure",
+    id = "DescribeDataSourceOutput",
     members = {
         Id = {
             type = "string",
@@ -3528,6 +3683,7 @@ M.DescribeDataSourceOutput = {
 
 M.DescribeExperienceInput = {
     type = "structure",
+    id = "DescribeExperienceInput",
     members = {
         Id = {
             type = "string",
@@ -3550,6 +3706,7 @@ M.EndpointType = {
 
 M.ExperienceEndpoint = {
     type = "structure",
+    id = "ExperienceEndpoint",
     members = {
         EndpointType = {
             type = "string",
@@ -3569,6 +3726,7 @@ M.ExperienceStatus = {
 
 M.DescribeExperienceOutput = {
     type = "structure",
+    id = "DescribeExperienceOutput",
     members = {
         Id = {
             type = "string",
@@ -3607,6 +3765,7 @@ M.DescribeExperienceOutput = {
 
 M.DescribeFaqInput = {
     type = "structure",
+    id = "DescribeFaqInput",
     members = {
         Id = {
             type = "string",
@@ -3633,6 +3792,7 @@ M.FaqStatus = {
 
 M.DescribeFaqOutput = {
     type = "structure",
+    id = "DescribeFaqOutput",
     members = {
         Id = {
             type = "string",
@@ -3673,6 +3833,7 @@ M.DescribeFaqOutput = {
 
 M.DescribeFeaturedResultsSetInput = {
     type = "structure",
+    id = "DescribeFeaturedResultsSetInput",
     members = {
         IndexId = {
             type = "string",
@@ -3691,6 +3852,7 @@ M.DescribeFeaturedResultsSetInput = {
 
 M.FeaturedDocumentMissing = {
     type = "structure",
+    id = "FeaturedDocumentMissing",
     members = {
         Id = {
             type = "string",
@@ -3700,6 +3862,7 @@ M.FeaturedDocumentMissing = {
 
 M.FeaturedDocumentWithMetadata = {
     type = "structure",
+    id = "FeaturedDocumentWithMetadata",
     members = {
         Id = {
             type = "string",
@@ -3715,6 +3878,7 @@ M.FeaturedDocumentWithMetadata = {
 
 M.DescribeFeaturedResultsSetOutput = {
     type = "structure",
+    id = "DescribeFeaturedResultsSetOutput",
     members = {
         FeaturedResultsSetId = {
             type = "string",
@@ -3751,6 +3915,7 @@ M.DescribeFeaturedResultsSetOutput = {
 
 M.DescribeIndexInput = {
     type = "structure",
+    id = "DescribeIndexInput",
     members = {
         Id = {
             type = "string",
@@ -3763,6 +3928,7 @@ M.DescribeIndexInput = {
 
 M.CapacityUnitsConfiguration = {
     type = "structure",
+    id = "CapacityUnitsConfiguration",
     members = {
         StorageCapacityUnits = {
             type = "integer",
@@ -3786,6 +3952,7 @@ M.Order = {
 
 M.Relevance = {
     type = "structure",
+    id = "Relevance",
     members = {
         Freshness = {
             type = "boolean",
@@ -3809,6 +3976,7 @@ M.Relevance = {
 
 M.Search = {
     type = "structure",
+    id = "Search",
     members = {
         Facetable = {
             type = "boolean",
@@ -3846,6 +4014,7 @@ M.DocumentAttributeValueType = {
 
 M.DocumentMetadataConfiguration = {
     type = "structure",
+    id = "DocumentMetadataConfiguration",
     members = {
         Name = {
             type = "string",
@@ -3866,6 +4035,7 @@ M.DocumentMetadataConfiguration = {
 
 M.FaqStatistics = {
     type = "structure",
+    id = "FaqStatistics",
     members = {
         IndexedQuestionAnswersCount = {
             type = "integer",
@@ -3879,6 +4049,7 @@ M.FaqStatistics = {
 
 M.TextDocumentStatistics = {
     type = "structure",
+    id = "TextDocumentStatistics",
     members = {
         IndexedTextDocumentsCount = {
             type = "integer",
@@ -3899,6 +4070,7 @@ M.TextDocumentStatistics = {
 
 M.IndexStatistics = {
     type = "structure",
+    id = "IndexStatistics",
     members = {
         FaqStatistics = setmetatable({ traits = {
             required = true,
@@ -3920,6 +4092,7 @@ M.IndexStatus = {
 
 M.DescribeIndexOutput = {
     type = "structure",
+    id = "DescribeIndexOutput",
     members = {
         Name = {
             type = "string",
@@ -3968,6 +4141,7 @@ M.DescribeIndexOutput = {
 
 M.DescribePrincipalMappingInput = {
     type = "structure",
+    id = "DescribePrincipalMappingInput",
     members = {
         IndexId = {
             type = "string",
@@ -3997,6 +4171,7 @@ M.PrincipalMappingStatus = {
 
 M.GroupOrderingIdSummary = {
     type = "structure",
+    id = "GroupOrderingIdSummary",
     members = {
         Status = {
             type = "string",
@@ -4018,6 +4193,7 @@ M.GroupOrderingIdSummary = {
 
 M.DescribePrincipalMappingOutput = {
     type = "structure",
+    id = "DescribePrincipalMappingOutput",
     members = {
         IndexId = {
             type = "string",
@@ -4037,6 +4213,7 @@ M.DescribePrincipalMappingOutput = {
 
 M.DescribeQuerySuggestionsBlockListInput = {
     type = "structure",
+    id = "DescribeQuerySuggestionsBlockListInput",
     members = {
         IndexId = {
             type = "string",
@@ -4064,6 +4241,7 @@ M.QuerySuggestionsBlockListStatus = {
 
 M.DescribeQuerySuggestionsBlockListOutput = {
     type = "structure",
+    id = "DescribeQuerySuggestionsBlockListOutput",
     members = {
         IndexId = {
             type = "string",
@@ -4104,6 +4282,7 @@ M.DescribeQuerySuggestionsBlockListOutput = {
 
 M.DescribeQuerySuggestionsConfigInput = {
     type = "structure",
+    id = "DescribeQuerySuggestionsConfigInput",
     members = {
         IndexId = {
             type = "string",
@@ -4126,6 +4305,7 @@ M.QuerySuggestionsStatus = {
 
 M.DescribeQuerySuggestionsConfigOutput = {
     type = "structure",
+    id = "DescribeQuerySuggestionsConfigOutput",
     members = {
         Mode = {
             type = "string",
@@ -4160,6 +4340,7 @@ M.DescribeQuerySuggestionsConfigOutput = {
 
 M.DescribeThesaurusInput = {
     type = "structure",
+    id = "DescribeThesaurusInput",
     members = {
         Id = {
             type = "string",
@@ -4187,6 +4368,7 @@ M.ThesaurusStatus = {
 
 M.DescribeThesaurusOutput = {
     type = "structure",
+    id = "DescribeThesaurusOutput",
     members = {
         Id = {
             type = "string",
@@ -4230,6 +4412,7 @@ M.DescribeThesaurusOutput = {
 
 M.DisassociateEntitiesFromExperienceInput = {
     type = "structure",
+    id = "DisassociateEntitiesFromExperienceInput",
     members = {
         Id = {
             type = "string",
@@ -4255,6 +4438,7 @@ M.DisassociateEntitiesFromExperienceInput = {
 
 M.DisassociateEntitiesFromExperienceOutput = {
     type = "structure",
+    id = "DisassociateEntitiesFromExperienceOutput",
     members = {
         FailedEntityList = {
             type = "list",
@@ -4265,6 +4449,7 @@ M.DisassociateEntitiesFromExperienceOutput = {
 
 M.DisassociatePersonasFromEntitiesInput = {
     type = "structure",
+    id = "DisassociatePersonasFromEntitiesInput",
     members = {
         Id = {
             type = "string",
@@ -4290,6 +4475,7 @@ M.DisassociatePersonasFromEntitiesInput = {
 
 M.DisassociatePersonasFromEntitiesOutput = {
     type = "structure",
+    id = "DisassociatePersonasFromEntitiesOutput",
     members = {
         FailedEntityList = {
             type = "list",
@@ -4305,6 +4491,7 @@ M.SuggestionType = {
 
 M.SourceDocument = {
     type = "structure",
+    id = "SourceDocument",
     members = {
         DocumentId = {
             type = "string",
@@ -4322,6 +4509,7 @@ M.SourceDocument = {
 
 M.SuggestionHighlight = {
     type = "structure",
+    id = "SuggestionHighlight",
     members = {
         BeginOffset = {
             type = "integer",
@@ -4334,6 +4522,7 @@ M.SuggestionHighlight = {
 
 M.SuggestionTextWithHighlights = {
     type = "structure",
+    id = "SuggestionTextWithHighlights",
     members = {
         Text = {
             type = "string",
@@ -4347,6 +4536,7 @@ M.SuggestionTextWithHighlights = {
 
 M.SuggestionValue = {
     type = "structure",
+    id = "SuggestionValue",
     members = {
         Text = M.SuggestionTextWithHighlights,
     },
@@ -4354,6 +4544,7 @@ M.SuggestionValue = {
 
 M.Suggestion = {
     type = "structure",
+    id = "Suggestion",
     members = {
         Id = {
             type = "string",
@@ -4368,6 +4559,7 @@ M.Suggestion = {
 
 M.GetQuerySuggestionsOutput = {
     type = "structure",
+    id = "GetQuerySuggestionsOutput",
     members = {
         QuerySuggestionsId = {
             type = "string",
@@ -4399,6 +4591,7 @@ M.MetricType = {
 
 M.GetSnapshotsInput = {
     type = "structure",
+    id = "GetSnapshotsInput",
     members = {
         IndexId = {
             type = "string",
@@ -4429,6 +4622,7 @@ M.GetSnapshotsInput = {
 
 M.TimeRange = {
     type = "structure",
+    id = "TimeRange",
     members = {
         StartTime = {
             type = "timestamp",
@@ -4441,6 +4635,7 @@ M.TimeRange = {
 
 M.GetSnapshotsOutput = {
     type = "structure",
+    id = "GetSnapshotsOutput",
     members = {
         SnapShotTimeFilter = M.TimeRange,
         SnapshotsDataHeader = {
@@ -4459,6 +4654,7 @@ M.GetSnapshotsOutput = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -4469,6 +4665,7 @@ M.InvalidRequestException = {
 
 M.ListAccessControlConfigurationsInput = {
     type = "structure",
+    id = "ListAccessControlConfigurationsInput",
     members = {
         IndexId = {
             type = "string",
@@ -4487,6 +4684,7 @@ M.ListAccessControlConfigurationsInput = {
 
 M.ListAccessControlConfigurationsOutput = {
     type = "structure",
+    id = "ListAccessControlConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4503,6 +4701,7 @@ M.ListAccessControlConfigurationsOutput = {
 
 M.ListDataSourcesInput = {
     type = "structure",
+    id = "ListDataSourcesInput",
     members = {
         IndexId = {
             type = "string",
@@ -4521,6 +4720,7 @@ M.ListDataSourcesInput = {
 
 M.DataSourceSummary = {
     type = "structure",
+    id = "DataSourceSummary",
     members = {
         Name = {
             type = "string",
@@ -4548,6 +4748,7 @@ M.DataSourceSummary = {
 
 M.ListDataSourcesOutput = {
     type = "structure",
+    id = "ListDataSourcesOutput",
     members = {
         SummaryItems = {
             type = "list",
@@ -4571,6 +4772,7 @@ M.DataSourceSyncJobStatus = {
 
 M.ListDataSourceSyncJobsInput = {
     type = "structure",
+    id = "ListDataSourceSyncJobsInput",
     members = {
         Id = {
             type = "string",
@@ -4599,6 +4801,7 @@ M.ListDataSourceSyncJobsInput = {
 
 M.DataSourceSyncJobMetrics = {
     type = "structure",
+    id = "DataSourceSyncJobMetrics",
     members = {
         DocumentsAdded = {
             type = "string",
@@ -4620,6 +4823,7 @@ M.DataSourceSyncJobMetrics = {
 
 M.DataSourceSyncJob = {
     type = "structure",
+    id = "DataSourceSyncJob",
     members = {
         ExecutionId = {
             type = "string",
@@ -4648,6 +4852,7 @@ M.DataSourceSyncJob = {
 
 M.ListDataSourceSyncJobsOutput = {
     type = "structure",
+    id = "ListDataSourceSyncJobsOutput",
     members = {
         History = {
             type = "list",
@@ -4661,6 +4866,7 @@ M.ListDataSourceSyncJobsOutput = {
 
 M.ListEntityPersonasInput = {
     type = "structure",
+    id = "ListEntityPersonasInput",
     members = {
         Id = {
             type = "string",
@@ -4685,6 +4891,7 @@ M.ListEntityPersonasInput = {
 
 M.PersonasSummary = {
     type = "structure",
+    id = "PersonasSummary",
     members = {
         EntityId = {
             type = "string",
@@ -4703,6 +4910,7 @@ M.PersonasSummary = {
 
 M.ListEntityPersonasOutput = {
     type = "structure",
+    id = "ListEntityPersonasOutput",
     members = {
         SummaryItems = {
             type = "list",
@@ -4716,6 +4924,7 @@ M.ListEntityPersonasOutput = {
 
 M.ListExperienceEntitiesInput = {
     type = "structure",
+    id = "ListExperienceEntitiesInput",
     members = {
         Id = {
             type = "string",
@@ -4737,6 +4946,7 @@ M.ListExperienceEntitiesInput = {
 
 M.EntityDisplayData = {
     type = "structure",
+    id = "EntityDisplayData",
     members = {
         UserName = {
             type = "string",
@@ -4758,6 +4968,7 @@ M.EntityDisplayData = {
 
 M.ExperienceEntitiesSummary = {
     type = "structure",
+    id = "ExperienceEntitiesSummary",
     members = {
         EntityId = {
             type = "string",
@@ -4771,6 +4982,7 @@ M.ExperienceEntitiesSummary = {
 
 M.ListExperienceEntitiesOutput = {
     type = "structure",
+    id = "ListExperienceEntitiesOutput",
     members = {
         SummaryItems = {
             type = "list",
@@ -4784,6 +4996,7 @@ M.ListExperienceEntitiesOutput = {
 
 M.ListExperiencesInput = {
     type = "structure",
+    id = "ListExperiencesInput",
     members = {
         IndexId = {
             type = "string",
@@ -4802,6 +5015,7 @@ M.ListExperiencesInput = {
 
 M.ExperiencesSummary = {
     type = "structure",
+    id = "ExperiencesSummary",
     members = {
         Name = {
             type = "string",
@@ -4824,6 +5038,7 @@ M.ExperiencesSummary = {
 
 M.ListExperiencesOutput = {
     type = "structure",
+    id = "ListExperiencesOutput",
     members = {
         SummaryItems = {
             type = "list",
@@ -4837,6 +5052,7 @@ M.ListExperiencesOutput = {
 
 M.ListFaqsInput = {
     type = "structure",
+    id = "ListFaqsInput",
     members = {
         IndexId = {
             type = "string",
@@ -4855,6 +5071,7 @@ M.ListFaqsInput = {
 
 M.FaqSummary = {
     type = "structure",
+    id = "FaqSummary",
     members = {
         Id = {
             type = "string",
@@ -4882,6 +5099,7 @@ M.FaqSummary = {
 
 M.ListFaqsOutput = {
     type = "structure",
+    id = "ListFaqsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4895,6 +5113,7 @@ M.ListFaqsOutput = {
 
 M.ListFeaturedResultsSetsInput = {
     type = "structure",
+    id = "ListFeaturedResultsSetsInput",
     members = {
         IndexId = {
             type = "string",
@@ -4913,6 +5132,7 @@ M.ListFeaturedResultsSetsInput = {
 
 M.FeaturedResultsSetSummary = {
     type = "structure",
+    id = "FeaturedResultsSetSummary",
     members = {
         FeaturedResultsSetId = {
             type = "string",
@@ -4934,6 +5154,7 @@ M.FeaturedResultsSetSummary = {
 
 M.ListFeaturedResultsSetsOutput = {
     type = "structure",
+    id = "ListFeaturedResultsSetsOutput",
     members = {
         FeaturedResultsSetSummaryItems = {
             type = "list",
@@ -4947,6 +5168,7 @@ M.ListFeaturedResultsSetsOutput = {
 
 M.ListGroupsOlderThanOrderingIdInput = {
     type = "structure",
+    id = "ListGroupsOlderThanOrderingIdInput",
     members = {
         IndexId = {
             type = "string",
@@ -4974,6 +5196,7 @@ M.ListGroupsOlderThanOrderingIdInput = {
 
 M.GroupSummary = {
     type = "structure",
+    id = "GroupSummary",
     members = {
         GroupId = {
             type = "string",
@@ -4986,6 +5209,7 @@ M.GroupSummary = {
 
 M.ListGroupsOlderThanOrderingIdOutput = {
     type = "structure",
+    id = "ListGroupsOlderThanOrderingIdOutput",
     members = {
         GroupsSummaries = {
             type = "list",
@@ -4999,6 +5223,7 @@ M.ListGroupsOlderThanOrderingIdOutput = {
 
 M.ListIndicesInput = {
     type = "structure",
+    id = "ListIndicesInput",
     members = {
         NextToken = {
             type = "string",
@@ -5011,6 +5236,7 @@ M.ListIndicesInput = {
 
 M.IndexConfigurationSummary = {
     type = "structure",
+    id = "IndexConfigurationSummary",
     members = {
         Name = {
             type = "string",
@@ -5044,6 +5270,7 @@ M.IndexConfigurationSummary = {
 
 M.ListIndicesOutput = {
     type = "structure",
+    id = "ListIndicesOutput",
     members = {
         IndexConfigurationSummaryItems = {
             type = "list",
@@ -5057,6 +5284,7 @@ M.ListIndicesOutput = {
 
 M.ListQuerySuggestionsBlockListsInput = {
     type = "structure",
+    id = "ListQuerySuggestionsBlockListsInput",
     members = {
         IndexId = {
             type = "string",
@@ -5075,6 +5303,7 @@ M.ListQuerySuggestionsBlockListsInput = {
 
 M.QuerySuggestionsBlockListSummary = {
     type = "structure",
+    id = "QuerySuggestionsBlockListSummary",
     members = {
         Id = {
             type = "string",
@@ -5099,6 +5328,7 @@ M.QuerySuggestionsBlockListSummary = {
 
 M.ListQuerySuggestionsBlockListsOutput = {
     type = "structure",
+    id = "ListQuerySuggestionsBlockListsOutput",
     members = {
         BlockListSummaryItems = {
             type = "list",
@@ -5112,6 +5342,7 @@ M.ListQuerySuggestionsBlockListsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -5124,6 +5355,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -5134,6 +5366,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -5144,6 +5377,7 @@ M.ResourceUnavailableException = {
 
 M.ListThesauriInput = {
     type = "structure",
+    id = "ListThesauriInput",
     members = {
         IndexId = {
             type = "string",
@@ -5162,6 +5396,7 @@ M.ListThesauriInput = {
 
 M.ThesaurusSummary = {
     type = "structure",
+    id = "ThesaurusSummary",
     members = {
         Id = {
             type = "string",
@@ -5183,6 +5418,7 @@ M.ThesaurusSummary = {
 
 M.ListThesauriOutput = {
     type = "structure",
+    id = "ListThesauriOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5196,6 +5432,7 @@ M.ListThesauriOutput = {
 
 M.MemberGroup = {
     type = "structure",
+    id = "MemberGroup",
     members = {
         GroupId = {
             type = "string",
@@ -5211,6 +5448,7 @@ M.MemberGroup = {
 
 M.MemberUser = {
     type = "structure",
+    id = "MemberUser",
     members = {
         UserId = {
             type = "string",
@@ -5223,6 +5461,7 @@ M.MemberUser = {
 
 M.GroupMembers = {
     type = "structure",
+    id = "GroupMembers",
     members = {
         MemberGroups = {
             type = "list",
@@ -5238,6 +5477,7 @@ M.GroupMembers = {
 
 M.PutPrincipalMappingInput = {
     type = "structure",
+    id = "PutPrincipalMappingInput",
     members = {
         IndexId = {
             type = "string",
@@ -5268,10 +5508,12 @@ M.PutPrincipalMappingInput = {
 
 M.PutPrincipalMappingOutput = {
     type = "structure",
+    id = "PutPrincipalMappingOutput",
 }
 
 M.ExpandConfiguration = {
     type = "structure",
+    id = "ExpandConfiguration",
     members = {
         MaxResultItemsToExpand = {
             type = "integer",
@@ -5295,6 +5537,7 @@ M.SortOrder = {
 
 M.SortingConfiguration = {
     type = "structure",
+    id = "SortingConfiguration",
     members = {
         DocumentAttributeKey = {
             type = "string",
@@ -5313,6 +5556,7 @@ M.SortingConfiguration = {
 
 M.CollapseConfiguration = {
     type = "structure",
+    id = "CollapseConfiguration",
     members = {
         DocumentAttributeKey = {
             type = "string",
@@ -5339,6 +5583,7 @@ M.CollapseConfiguration = {
 
 M.DocumentRelevanceConfiguration = {
     type = "structure",
+    id = "DocumentRelevanceConfiguration",
     members = {
         Name = {
             type = "string",
@@ -5360,6 +5605,7 @@ M.QueryResultType = {
 
 M.SpellCorrectionConfiguration = {
     type = "structure",
+    id = "SpellCorrectionConfiguration",
     members = {
         IncludeQuerySpellCheckSuggestions = {
             type = "boolean",
@@ -5373,6 +5619,7 @@ M.SpellCorrectionConfiguration = {
 
 M.FeaturedResultsItem = {
     type = "structure",
+    id = "FeaturedResultsItem",
     members = {
         Id = {
             type = "string",
@@ -5404,6 +5651,7 @@ M.FeaturedResultsItem = {
 
 M.ExpandedResultItem = {
     type = "structure",
+    id = "ExpandedResultItem",
     members = {
         Id = {
             type = "string",
@@ -5425,6 +5673,7 @@ M.ExpandedResultItem = {
 
 M.CollapsedResultDetail = {
     type = "structure",
+    id = "CollapsedResultDetail",
     members = {
         DocumentAttribute = setmetatable({ traits = {
             required = true,
@@ -5451,6 +5700,7 @@ M.ScoreConfidence = {
 
 M.ScoreAttributes = {
     type = "structure",
+    id = "ScoreAttributes",
     members = {
         ScoreConfidence = {
             type = "string",
@@ -5460,6 +5710,7 @@ M.ScoreAttributes = {
 
 M.TableCell = {
     type = "structure",
+    id = "TableCell",
     members = {
         Value = {
             type = "string",
@@ -5487,6 +5738,7 @@ M.TableCell = {
 
 M.TableRow = {
     type = "structure",
+    id = "TableRow",
     members = {
         Cells = {
             type = "list",
@@ -5497,6 +5749,7 @@ M.TableRow = {
 
 M.TableExcerpt = {
     type = "structure",
+    id = "TableExcerpt",
     members = {
         Rows = {
             type = "list",
@@ -5510,6 +5763,7 @@ M.TableExcerpt = {
 
 M.QueryResultItem = {
     type = "structure",
+    id = "QueryResultItem",
     members = {
         Id = {
             type = "string",
@@ -5547,6 +5801,7 @@ M.QueryResultItem = {
 
 M.Correction = {
     type = "structure",
+    id = "Correction",
     members = {
         BeginOffset = {
             type = "integer",
@@ -5565,6 +5820,7 @@ M.Correction = {
 
 M.SpellCorrectedQuery = {
     type = "structure",
+    id = "SpellCorrectedQuery",
     members = {
         SuggestedQueryText = {
             type = "string",
@@ -5582,6 +5838,7 @@ M.WarningCode = {
 
 M.Warning = {
     type = "structure",
+    id = "Warning",
     members = {
         Message = {
             type = "string",
@@ -5594,6 +5851,7 @@ M.Warning = {
 
 M.RetrieveResultItem = {
     type = "structure",
+    id = "RetrieveResultItem",
     members = {
         Id = {
             type = "string",
@@ -5620,6 +5878,7 @@ M.RetrieveResultItem = {
 
 M.RetrieveOutput = {
     type = "structure",
+    id = "RetrieveOutput",
     members = {
         QueryId = {
             type = "string",
@@ -5633,6 +5892,7 @@ M.RetrieveOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -5643,6 +5903,7 @@ M.ResourceInUseException = {
 
 M.StartDataSourceSyncJobInput = {
     type = "structure",
+    id = "StartDataSourceSyncJobInput",
     members = {
         Id = {
             type = "string",
@@ -5661,6 +5922,7 @@ M.StartDataSourceSyncJobInput = {
 
 M.StartDataSourceSyncJobOutput = {
     type = "structure",
+    id = "StartDataSourceSyncJobOutput",
     members = {
         ExecutionId = {
             type = "string",
@@ -5670,6 +5932,7 @@ M.StartDataSourceSyncJobOutput = {
 
 M.StopDataSourceSyncJobInput = {
     type = "structure",
+    id = "StopDataSourceSyncJobInput",
     members = {
         Id = {
             type = "string",
@@ -5688,10 +5951,12 @@ M.StopDataSourceSyncJobInput = {
 
 M.StopDataSourceSyncJobOutput = {
     type = "structure",
+    id = "StopDataSourceSyncJobOutput",
 }
 
 M.ClickFeedback = {
     type = "structure",
+    id = "ClickFeedback",
     members = {
         ResultId = {
             type = "string",
@@ -5715,6 +5980,7 @@ M.RelevanceType = {
 
 M.RelevanceFeedback = {
     type = "structure",
+    id = "RelevanceFeedback",
     members = {
         ResultId = {
             type = "string",
@@ -5733,6 +5999,7 @@ M.RelevanceFeedback = {
 
 M.SubmitFeedbackInput = {
     type = "structure",
+    id = "SubmitFeedbackInput",
     members = {
         IndexId = {
             type = "string",
@@ -5759,10 +6026,12 @@ M.SubmitFeedbackInput = {
 
 M.SubmitFeedbackOutput = {
     type = "structure",
+    id = "SubmitFeedbackOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -5782,10 +6051,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -5805,10 +6076,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccessControlConfigurationInput = {
     type = "structure",
+    id = "UpdateAccessControlConfigurationInput",
     members = {
         IndexId = {
             type = "string",
@@ -5841,10 +6114,12 @@ M.UpdateAccessControlConfigurationInput = {
 
 M.UpdateAccessControlConfigurationOutput = {
     type = "structure",
+    id = "UpdateAccessControlConfigurationOutput",
 }
 
 M.UpdateDataSourceInput = {
     type = "structure",
+    id = "UpdateDataSourceInput",
     members = {
         Id = {
             type = "string",
@@ -5881,10 +6156,12 @@ M.UpdateDataSourceInput = {
 
 M.UpdateDataSourceOutput = {
     type = "structure",
+    id = "UpdateDataSourceOutput",
 }
 
 M.UpdateExperienceInput = {
     type = "structure",
+    id = "UpdateExperienceInput",
     members = {
         Id = {
             type = "string",
@@ -5913,10 +6190,12 @@ M.UpdateExperienceInput = {
 
 M.UpdateExperienceOutput = {
     type = "structure",
+    id = "UpdateExperienceOutput",
 }
 
 M.UpdateFeaturedResultsSetInput = {
     type = "structure",
+    id = "UpdateFeaturedResultsSetInput",
     members = {
         IndexId = {
             type = "string",
@@ -5952,6 +6231,7 @@ M.UpdateFeaturedResultsSetInput = {
 
 M.UpdateFeaturedResultsSetOutput = {
     type = "structure",
+    id = "UpdateFeaturedResultsSetOutput",
     members = {
         FeaturedResultsSet = M.FeaturedResultsSet,
     },
@@ -5959,6 +6239,7 @@ M.UpdateFeaturedResultsSetOutput = {
 
 M.UpdateIndexInput = {
     type = "structure",
+    id = "UpdateIndexInput",
     members = {
         Id = {
             type = "string",
@@ -5993,10 +6274,12 @@ M.UpdateIndexInput = {
 
 M.UpdateIndexOutput = {
     type = "structure",
+    id = "UpdateIndexOutput",
 }
 
 M.UpdateQuerySuggestionsBlockListInput = {
     type = "structure",
+    id = "UpdateQuerySuggestionsBlockListInput",
     members = {
         IndexId = {
             type = "string",
@@ -6025,10 +6308,12 @@ M.UpdateQuerySuggestionsBlockListInput = {
 
 M.UpdateQuerySuggestionsBlockListOutput = {
     type = "structure",
+    id = "UpdateQuerySuggestionsBlockListOutput",
 }
 
 M.UpdateQuerySuggestionsConfigInput = {
     type = "structure",
+    id = "UpdateQuerySuggestionsConfigInput",
     members = {
         IndexId = {
             type = "string",
@@ -6057,10 +6342,12 @@ M.UpdateQuerySuggestionsConfigInput = {
 
 M.UpdateQuerySuggestionsConfigOutput = {
     type = "structure",
+    id = "UpdateQuerySuggestionsConfigOutput",
 }
 
 M.UpdateThesaurusInput = {
     type = "structure",
+    id = "UpdateThesaurusInput",
     members = {
         Id = {
             type = "string",
@@ -6089,10 +6376,12 @@ M.UpdateThesaurusInput = {
 
 M.UpdateThesaurusOutput = {
     type = "structure",
+    id = "UpdateThesaurusOutput",
 }
 
 M.Facet = {
     type = "structure",
+    id = "Facet",
     members = {
         DocumentAttributeKey = {
             type = "string",
@@ -6112,6 +6401,7 @@ M.Facet = {
 
 M.DocumentAttributeValueCountPair = {
     type = "structure",
+    id = "DocumentAttributeValueCountPair",
     members = {
         DocumentAttributeValue = M.DocumentAttributeValue,
         Count = {
@@ -6126,6 +6416,7 @@ M.DocumentAttributeValueCountPair = {
 
 M.FacetResult = {
     type = "structure",
+    id = "FacetResult",
     members = {
         DocumentAttributeKey = {
             type = "string",
@@ -6142,6 +6433,7 @@ M.FacetResult = {
 
 M.AttributeFilter = {
     type = "structure",
+    id = "AttributeFilter",
     members = {
         AndAllFilters = {
             type = "list",
@@ -6164,6 +6456,7 @@ M.AttributeFilter = {
 
 M.QueryOutput = {
     type = "structure",
+    id = "QueryOutput",
     members = {
         QueryId = {
             type = "string",
@@ -6196,6 +6489,7 @@ M.QueryOutput = {
 
 M.AttributeSuggestionsGetConfig = {
     type = "structure",
+    id = "AttributeSuggestionsGetConfig",
     members = {
         SuggestionAttributes = {
             type = "list",
@@ -6212,6 +6506,7 @@ M.AttributeSuggestionsGetConfig = {
 
 M.RetrieveInput = {
     type = "structure",
+    id = "RetrieveInput",
     members = {
         IndexId = {
             type = "string",
@@ -6246,6 +6541,7 @@ M.RetrieveInput = {
 
 M.GetQuerySuggestionsInput = {
     type = "structure",
+    id = "GetQuerySuggestionsInput",
     members = {
         IndexId = {
             type = "string",
@@ -6272,6 +6568,7 @@ M.GetQuerySuggestionsInput = {
 
 M.QueryInput = {
     type = "structure",
+    id = "QueryInput",
     members = {
         IndexId = {
             type = "string",

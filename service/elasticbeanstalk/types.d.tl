@@ -850,21 +850,21 @@ local record TooManyBucketsException
     message: string
 end
 
-local type EnvironmentHealth = "Green" | "Yellow" | "Red" | "Grey"
-
-local type EnvironmentStatus = "Aborting" | "Launching" | "Updating" | "LinkingFrom" | "LinkingTo" | "Ready" | "Terminating" | "Terminated"
-
-local type EnvironmentInfoType = "tail" | "bundle" | "analyze"
+local type EnvironmentHealthStatus = "NoData" | "Unknown" | "Pending" | "Ok" | "Info" | "Warning" | "Degraded" | "Severe" | "Suspended"
 
 local type ActionType = "InstanceRefresh" | "PlatformUpdate" | "Unknown"
 
-local type EnvironmentHealthStatus = "NoData" | "Unknown" | "Pending" | "Ok" | "Info" | "Warning" | "Degraded" | "Severe" | "Suspended"
+local type EnvironmentStatus = "Aborting" | "Launching" | "Updating" | "LinkingFrom" | "LinkingTo" | "Ready" | "Terminating" | "Terminated"
 
 local type EventSeverity = "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR" | "FATAL"
 
-local type ActionStatus = "Scheduled" | "Pending" | "Running" | "Unknown"
+local type EnvironmentInfoType = "tail" | "bundle" | "analyze"
+
+local type EnvironmentHealth = "Green" | "Yellow" | "Red" | "Grey"
 
 local type ConfigurationDeploymentStatus = "deployed" | "pending" | "failed"
+
+local type ActionStatus = "Scheduled" | "Pending" | "Running" | "Unknown"
 
 local record M
     AbortEnvironmentUpdateInput: AbortEnvironmentUpdateInput

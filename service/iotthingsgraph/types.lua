@@ -2,6 +2,7 @@ local M = {}
 
 M.AssociateEntityToThingInput = {
     type = "structure",
+    id = "AssociateEntityToThingInput",
     members = {
         thingName = {
             type = "string",
@@ -23,10 +24,12 @@ M.AssociateEntityToThingInput = {
 
 M.AssociateEntityToThingOutput = {
     type = "structure",
+    id = "AssociateEntityToThingOutput",
 }
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -37,6 +40,7 @@ M.InternalFailureException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -47,6 +51,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -57,6 +62,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -71,6 +77,7 @@ M.DefinitionLanguage = {
 
 M.DefinitionDocument = {
     type = "structure",
+    id = "DefinitionDocument",
     members = {
         language = {
             type = "string",
@@ -89,6 +96,7 @@ M.DefinitionDocument = {
 
 M.CreateFlowTemplateInput = {
     type = "structure",
+    id = "CreateFlowTemplateInput",
     members = {
         definition = setmetatable({ traits = {
             required = true,
@@ -101,6 +109,7 @@ M.CreateFlowTemplateInput = {
 
 M.FlowTemplateSummary = {
     type = "structure",
+    id = "FlowTemplateSummary",
     members = {
         id = {
             type = "string",
@@ -119,6 +128,7 @@ M.FlowTemplateSummary = {
 
 M.CreateFlowTemplateOutput = {
     type = "structure",
+    id = "CreateFlowTemplateOutput",
     members = {
         summary = M.FlowTemplateSummary,
     },
@@ -126,6 +136,7 @@ M.CreateFlowTemplateOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -136,6 +147,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -146,6 +158,7 @@ M.ResourceAlreadyExistsException = {
 
 M.MetricsConfiguration = {
     type = "structure",
+    id = "MetricsConfiguration",
     members = {
         cloudMetricEnabled = {
             type = "boolean",
@@ -161,6 +174,7 @@ M.MetricsConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -184,6 +198,7 @@ M.DeploymentTarget = {
 
 M.CreateSystemInstanceInput = {
     type = "structure",
+    id = "CreateSystemInstanceInput",
     members = {
         tags = {
             type = "list",
@@ -224,6 +239,7 @@ M.SystemInstanceDeploymentStatus = {
 
 M.SystemInstanceSummary = {
     type = "structure",
+    id = "SystemInstanceSummary",
     members = {
         id = {
             type = "string",
@@ -257,6 +273,7 @@ M.SystemInstanceSummary = {
 
 M.CreateSystemInstanceOutput = {
     type = "structure",
+    id = "CreateSystemInstanceOutput",
     members = {
         summary = M.SystemInstanceSummary,
     },
@@ -264,6 +281,7 @@ M.CreateSystemInstanceOutput = {
 
 M.CreateSystemTemplateInput = {
     type = "structure",
+    id = "CreateSystemTemplateInput",
     members = {
         definition = setmetatable({ traits = {
             required = true,
@@ -276,6 +294,7 @@ M.CreateSystemTemplateInput = {
 
 M.SystemTemplateSummary = {
     type = "structure",
+    id = "SystemTemplateSummary",
     members = {
         id = {
             type = "string",
@@ -294,6 +313,7 @@ M.SystemTemplateSummary = {
 
 M.CreateSystemTemplateOutput = {
     type = "structure",
+    id = "CreateSystemTemplateOutput",
     members = {
         summary = M.SystemTemplateSummary,
     },
@@ -301,6 +321,7 @@ M.CreateSystemTemplateOutput = {
 
 M.DeleteFlowTemplateInput = {
     type = "structure",
+    id = "DeleteFlowTemplateInput",
     members = {
         id = {
             type = "string",
@@ -313,10 +334,12 @@ M.DeleteFlowTemplateInput = {
 
 M.DeleteFlowTemplateOutput = {
     type = "structure",
+    id = "DeleteFlowTemplateOutput",
 }
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -327,10 +350,12 @@ M.ResourceInUseException = {
 
 M.DeleteNamespaceInput = {
     type = "structure",
+    id = "DeleteNamespaceInput",
 }
 
 M.DeleteNamespaceOutput = {
     type = "structure",
+    id = "DeleteNamespaceOutput",
     members = {
         namespaceArn = {
             type = "string",
@@ -343,6 +368,7 @@ M.DeleteNamespaceOutput = {
 
 M.DeleteSystemInstanceInput = {
     type = "structure",
+    id = "DeleteSystemInstanceInput",
     members = {
         id = {
             type = "string",
@@ -352,10 +378,12 @@ M.DeleteSystemInstanceInput = {
 
 M.DeleteSystemInstanceOutput = {
     type = "structure",
+    id = "DeleteSystemInstanceOutput",
 }
 
 M.DeleteSystemTemplateInput = {
     type = "structure",
+    id = "DeleteSystemTemplateInput",
     members = {
         id = {
             type = "string",
@@ -368,10 +396,12 @@ M.DeleteSystemTemplateInput = {
 
 M.DeleteSystemTemplateOutput = {
     type = "structure",
+    id = "DeleteSystemTemplateOutput",
 }
 
 M.DependencyRevision = {
     type = "structure",
+    id = "DependencyRevision",
     members = {
         id = {
             type = "string",
@@ -384,6 +414,7 @@ M.DependencyRevision = {
 
 M.DeploySystemInstanceInput = {
     type = "structure",
+    id = "DeploySystemInstanceInput",
     members = {
         id = {
             type = "string",
@@ -393,6 +424,7 @@ M.DeploySystemInstanceInput = {
 
 M.DeploySystemInstanceOutput = {
     type = "structure",
+    id = "DeploySystemInstanceOutput",
     members = {
         summary = setmetatable({ traits = {
             required = true,
@@ -405,6 +437,7 @@ M.DeploySystemInstanceOutput = {
 
 M.DeprecateFlowTemplateInput = {
     type = "structure",
+    id = "DeprecateFlowTemplateInput",
     members = {
         id = {
             type = "string",
@@ -417,10 +450,12 @@ M.DeprecateFlowTemplateInput = {
 
 M.DeprecateFlowTemplateOutput = {
     type = "structure",
+    id = "DeprecateFlowTemplateOutput",
 }
 
 M.DeprecateSystemTemplateInput = {
     type = "structure",
+    id = "DeprecateSystemTemplateInput",
     members = {
         id = {
             type = "string",
@@ -433,10 +468,12 @@ M.DeprecateSystemTemplateInput = {
 
 M.DeprecateSystemTemplateOutput = {
     type = "structure",
+    id = "DeprecateSystemTemplateOutput",
 }
 
 M.DescribeNamespaceInput = {
     type = "structure",
+    id = "DescribeNamespaceInput",
     members = {
         namespaceName = {
             type = "string",
@@ -446,6 +483,7 @@ M.DescribeNamespaceInput = {
 
 M.DescribeNamespaceOutput = {
     type = "structure",
+    id = "DescribeNamespaceOutput",
     members = {
         namespaceArn = {
             type = "string",
@@ -480,6 +518,7 @@ M.EntityType = {
 
 M.DissociateEntityFromThingInput = {
     type = "structure",
+    id = "DissociateEntityFromThingInput",
     members = {
         thingName = {
             type = "string",
@@ -498,10 +537,12 @@ M.DissociateEntityFromThingInput = {
 
 M.DissociateEntityFromThingOutput = {
     type = "structure",
+    id = "DissociateEntityFromThingOutput",
 }
 
 M.EntityDescription = {
     type = "structure",
+    id = "EntityDescription",
     members = {
         id = {
             type = "string",
@@ -528,6 +569,7 @@ M.EntityFilterName = {
 
 M.EntityFilter = {
     type = "structure",
+    id = "EntityFilter",
     members = {
         name = {
             type = "string",
@@ -561,6 +603,7 @@ M.FlowExecutionEventType = {
 
 M.FlowExecutionMessage = {
     type = "structure",
+    id = "FlowExecutionMessage",
     members = {
         messageId = {
             type = "string",
@@ -586,6 +629,7 @@ M.FlowExecutionStatus = {
 
 M.FlowExecutionSummary = {
     type = "structure",
+    id = "FlowExecutionSummary",
     members = {
         flowExecutionId = {
             type = "string",
@@ -610,6 +654,7 @@ M.FlowExecutionSummary = {
 
 M.FlowTemplateDescription = {
     type = "structure",
+    id = "FlowTemplateDescription",
     members = {
         summary = M.FlowTemplateSummary,
         definition = M.DefinitionDocument,
@@ -625,6 +670,7 @@ M.FlowTemplateFilterName = {
 
 M.FlowTemplateFilter = {
     type = "structure",
+    id = "FlowTemplateFilter",
     members = {
         name = {
             type = "string",
@@ -644,6 +690,7 @@ M.FlowTemplateFilter = {
 
 M.GetEntitiesInput = {
     type = "structure",
+    id = "GetEntitiesInput",
     members = {
         ids = {
             type = "list",
@@ -660,6 +707,7 @@ M.GetEntitiesInput = {
 
 M.GetEntitiesOutput = {
     type = "structure",
+    id = "GetEntitiesOutput",
     members = {
         descriptions = {
             type = "list",
@@ -670,6 +718,7 @@ M.GetEntitiesOutput = {
 
 M.GetFlowTemplateInput = {
     type = "structure",
+    id = "GetFlowTemplateInput",
     members = {
         id = {
             type = "string",
@@ -685,6 +734,7 @@ M.GetFlowTemplateInput = {
 
 M.GetFlowTemplateOutput = {
     type = "structure",
+    id = "GetFlowTemplateOutput",
     members = {
         description = M.FlowTemplateDescription,
     },
@@ -692,6 +742,7 @@ M.GetFlowTemplateOutput = {
 
 M.GetFlowTemplateRevisionsInput = {
     type = "structure",
+    id = "GetFlowTemplateRevisionsInput",
     members = {
         id = {
             type = "string",
@@ -710,6 +761,7 @@ M.GetFlowTemplateRevisionsInput = {
 
 M.GetFlowTemplateRevisionsOutput = {
     type = "structure",
+    id = "GetFlowTemplateRevisionsOutput",
     members = {
         summaries = {
             type = "list",
@@ -723,6 +775,7 @@ M.GetFlowTemplateRevisionsOutput = {
 
 M.GetNamespaceDeletionStatusInput = {
     type = "structure",
+    id = "GetNamespaceDeletionStatusInput",
 }
 
 M.NamespaceDeletionStatusErrorCodes = {
@@ -737,6 +790,7 @@ M.NamespaceDeletionStatus = {
 
 M.GetNamespaceDeletionStatusOutput = {
     type = "structure",
+    id = "GetNamespaceDeletionStatusOutput",
     members = {
         namespaceArn = {
             type = "string",
@@ -758,6 +812,7 @@ M.GetNamespaceDeletionStatusOutput = {
 
 M.GetSystemInstanceInput = {
     type = "structure",
+    id = "GetSystemInstanceInput",
     members = {
         id = {
             type = "string",
@@ -770,6 +825,7 @@ M.GetSystemInstanceInput = {
 
 M.SystemInstanceDescription = {
     type = "structure",
+    id = "SystemInstanceDescription",
     members = {
         summary = M.SystemInstanceSummary,
         definition = M.DefinitionDocument,
@@ -792,6 +848,7 @@ M.SystemInstanceDescription = {
 
 M.GetSystemInstanceOutput = {
     type = "structure",
+    id = "GetSystemInstanceOutput",
     members = {
         description = M.SystemInstanceDescription,
     },
@@ -799,6 +856,7 @@ M.GetSystemInstanceOutput = {
 
 M.GetSystemTemplateInput = {
     type = "structure",
+    id = "GetSystemTemplateInput",
     members = {
         id = {
             type = "string",
@@ -814,6 +872,7 @@ M.GetSystemTemplateInput = {
 
 M.SystemTemplateDescription = {
     type = "structure",
+    id = "SystemTemplateDescription",
     members = {
         summary = M.SystemTemplateSummary,
         definition = M.DefinitionDocument,
@@ -825,6 +884,7 @@ M.SystemTemplateDescription = {
 
 M.GetSystemTemplateOutput = {
     type = "structure",
+    id = "GetSystemTemplateOutput",
     members = {
         description = M.SystemTemplateDescription,
     },
@@ -832,6 +892,7 @@ M.GetSystemTemplateOutput = {
 
 M.GetSystemTemplateRevisionsInput = {
     type = "structure",
+    id = "GetSystemTemplateRevisionsInput",
     members = {
         id = {
             type = "string",
@@ -850,6 +911,7 @@ M.GetSystemTemplateRevisionsInput = {
 
 M.GetSystemTemplateRevisionsOutput = {
     type = "structure",
+    id = "GetSystemTemplateRevisionsOutput",
     members = {
         summaries = {
             type = "list",
@@ -863,6 +925,7 @@ M.GetSystemTemplateRevisionsOutput = {
 
 M.GetUploadStatusInput = {
     type = "structure",
+    id = "GetUploadStatusInput",
     members = {
         uploadId = {
             type = "string",
@@ -881,6 +944,7 @@ M.UploadStatus = {
 
 M.GetUploadStatusOutput = {
     type = "structure",
+    id = "GetUploadStatusOutput",
     members = {
         uploadId = {
             type = "string",
@@ -918,6 +982,7 @@ M.GetUploadStatusOutput = {
 
 M.ListFlowExecutionMessagesInput = {
     type = "structure",
+    id = "ListFlowExecutionMessagesInput",
     members = {
         flowExecutionId = {
             type = "string",
@@ -936,6 +1001,7 @@ M.ListFlowExecutionMessagesInput = {
 
 M.ListFlowExecutionMessagesOutput = {
     type = "structure",
+    id = "ListFlowExecutionMessagesOutput",
     members = {
         messages = {
             type = "list",
@@ -949,6 +1015,7 @@ M.ListFlowExecutionMessagesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         maxResults = {
             type = "integer",
@@ -967,6 +1034,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -980,6 +1048,7 @@ M.ListTagsForResourceOutput = {
 
 M.SearchEntitiesInput = {
     type = "structure",
+    id = "SearchEntitiesInput",
     members = {
         entityTypes = {
             type = "list",
@@ -1006,6 +1075,7 @@ M.SearchEntitiesInput = {
 
 M.SearchEntitiesOutput = {
     type = "structure",
+    id = "SearchEntitiesOutput",
     members = {
         descriptions = {
             type = "list",
@@ -1019,6 +1089,7 @@ M.SearchEntitiesOutput = {
 
 M.SearchFlowExecutionsInput = {
     type = "structure",
+    id = "SearchFlowExecutionsInput",
     members = {
         systemInstanceId = {
             type = "string",
@@ -1046,6 +1117,7 @@ M.SearchFlowExecutionsInput = {
 
 M.SearchFlowExecutionsOutput = {
     type = "structure",
+    id = "SearchFlowExecutionsOutput",
     members = {
         summaries = {
             type = "list",
@@ -1059,6 +1131,7 @@ M.SearchFlowExecutionsOutput = {
 
 M.SearchFlowTemplatesInput = {
     type = "structure",
+    id = "SearchFlowTemplatesInput",
     members = {
         filters = {
             type = "list",
@@ -1075,6 +1148,7 @@ M.SearchFlowTemplatesInput = {
 
 M.SearchFlowTemplatesOutput = {
     type = "structure",
+    id = "SearchFlowTemplatesOutput",
     members = {
         summaries = {
             type = "list",
@@ -1094,6 +1168,7 @@ M.SystemInstanceFilterName = {
 
 M.SystemInstanceFilter = {
     type = "structure",
+    id = "SystemInstanceFilter",
     members = {
         name = {
             type = "string",
@@ -1107,6 +1182,7 @@ M.SystemInstanceFilter = {
 
 M.SearchSystemInstancesInput = {
     type = "structure",
+    id = "SearchSystemInstancesInput",
     members = {
         filters = {
             type = "list",
@@ -1123,6 +1199,7 @@ M.SearchSystemInstancesInput = {
 
 M.SearchSystemInstancesOutput = {
     type = "structure",
+    id = "SearchSystemInstancesOutput",
     members = {
         summaries = {
             type = "list",
@@ -1140,6 +1217,7 @@ M.SystemTemplateFilterName = {
 
 M.SystemTemplateFilter = {
     type = "structure",
+    id = "SystemTemplateFilter",
     members = {
         name = {
             type = "string",
@@ -1159,6 +1237,7 @@ M.SystemTemplateFilter = {
 
 M.SearchSystemTemplatesInput = {
     type = "structure",
+    id = "SearchSystemTemplatesInput",
     members = {
         filters = {
             type = "list",
@@ -1175,6 +1254,7 @@ M.SearchSystemTemplatesInput = {
 
 M.SearchSystemTemplatesOutput = {
     type = "structure",
+    id = "SearchSystemTemplatesOutput",
     members = {
         summaries = {
             type = "list",
@@ -1188,6 +1268,7 @@ M.SearchSystemTemplatesOutput = {
 
 M.SearchThingsInput = {
     type = "structure",
+    id = "SearchThingsInput",
     members = {
         entityId = {
             type = "string",
@@ -1209,6 +1290,7 @@ M.SearchThingsInput = {
 
 M.Thing = {
     type = "structure",
+    id = "Thing",
     members = {
         thingArn = {
             type = "string",
@@ -1221,6 +1303,7 @@ M.Thing = {
 
 M.SearchThingsOutput = {
     type = "structure",
+    id = "SearchThingsOutput",
     members = {
         things = {
             type = "list",
@@ -1234,6 +1317,7 @@ M.SearchThingsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1253,10 +1337,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UndeploySystemInstanceInput = {
     type = "structure",
+    id = "UndeploySystemInstanceInput",
     members = {
         id = {
             type = "string",
@@ -1266,6 +1352,7 @@ M.UndeploySystemInstanceInput = {
 
 M.UndeploySystemInstanceOutput = {
     type = "structure",
+    id = "UndeploySystemInstanceOutput",
     members = {
         summary = M.SystemInstanceSummary,
     },
@@ -1273,6 +1360,7 @@ M.UndeploySystemInstanceOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1292,10 +1380,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateFlowTemplateInput = {
     type = "structure",
+    id = "UpdateFlowTemplateInput",
     members = {
         id = {
             type = "string",
@@ -1314,6 +1404,7 @@ M.UpdateFlowTemplateInput = {
 
 M.UpdateFlowTemplateOutput = {
     type = "structure",
+    id = "UpdateFlowTemplateOutput",
     members = {
         summary = M.FlowTemplateSummary,
     },
@@ -1321,6 +1412,7 @@ M.UpdateFlowTemplateOutput = {
 
 M.UpdateSystemTemplateInput = {
     type = "structure",
+    id = "UpdateSystemTemplateInput",
     members = {
         id = {
             type = "string",
@@ -1339,6 +1431,7 @@ M.UpdateSystemTemplateInput = {
 
 M.UpdateSystemTemplateOutput = {
     type = "structure",
+    id = "UpdateSystemTemplateOutput",
     members = {
         summary = M.SystemTemplateSummary,
     },
@@ -1346,6 +1439,7 @@ M.UpdateSystemTemplateOutput = {
 
 M.UploadEntityDefinitionsInput = {
     type = "structure",
+    id = "UploadEntityDefinitionsInput",
     members = {
         document = M.DefinitionDocument,
         syncWithPublicNamespace = {
@@ -1365,6 +1459,7 @@ M.UploadEntityDefinitionsInput = {
 
 M.UploadEntityDefinitionsOutput = {
     type = "structure",
+    id = "UploadEntityDefinitionsOutput",
     members = {
         uploadId = {
             type = "string",

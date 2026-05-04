@@ -2,6 +2,7 @@ local M = {}
 
 M.GetDeploymentsInput = {
     type = "structure",
+    id = "GetDeploymentsInput",
     members = {
         DeviceName = {
             type = "string",
@@ -24,6 +25,7 @@ M.ChecksumType = {
 
 M.Checksum = {
     type = "structure",
+    id = "Checksum",
     members = {
         Type = {
             type = "string",
@@ -41,6 +43,7 @@ M.ModelState = {
 
 M.Definition = {
     type = "structure",
+    id = "Definition",
     members = {
         ModelHandle = {
             type = "string",
@@ -66,6 +69,7 @@ M.DeploymentType = {
 
 M.EdgeDeployment = {
     type = "structure",
+    id = "EdgeDeployment",
     members = {
         DeploymentName = {
             type = "string",
@@ -85,6 +89,7 @@ M.EdgeDeployment = {
 
 M.GetDeploymentsOutput = {
     type = "structure",
+    id = "GetDeploymentsOutput",
     members = {
         Deployments = {
             type = "list",
@@ -95,6 +100,7 @@ M.GetDeploymentsOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "client",
     members = {
         Message = {
@@ -105,6 +111,7 @@ M.InternalServiceException = {
 
 M.GetDeviceRegistrationInput = {
     type = "structure",
+    id = "GetDeviceRegistrationInput",
     members = {
         DeviceName = {
             type = "string",
@@ -123,6 +130,7 @@ M.GetDeviceRegistrationInput = {
 
 M.GetDeviceRegistrationOutput = {
     type = "structure",
+    id = "GetDeviceRegistrationOutput",
     members = {
         DeviceRegistration = {
             type = "string",
@@ -135,6 +143,7 @@ M.GetDeviceRegistrationOutput = {
 
 M.EdgeMetric = {
     type = "structure",
+    id = "EdgeMetric",
     members = {
         Dimension = {
             type = "string",
@@ -158,6 +167,7 @@ M.DeploymentStatus = {
 
 M.DeploymentModel = {
     type = "structure",
+    id = "DeploymentModel",
     members = {
         ModelHandle = {
             type = "string",
@@ -188,6 +198,7 @@ M.DeploymentModel = {
 
 M.DeploymentResult = {
     type = "structure",
+    id = "DeploymentResult",
     members = {
         DeploymentName = {
             type = "string",
@@ -213,6 +224,7 @@ M.DeploymentResult = {
 
 M.Model = {
     type = "structure",
+    id = "Model",
     members = {
         ModelName = {
             type = "string",
@@ -235,6 +247,7 @@ M.Model = {
 
 M.SendHeartbeatInput = {
     type = "structure",
+    id = "SendHeartbeatInput",
     members = {
         AgentMetrics = {
             type = "list",
@@ -268,6 +281,7 @@ M.SendHeartbeatInput = {
 
 M.SendHeartbeatOutput = {
     type = "structure",
+    id = "SendHeartbeatOutput",
 }
 
 return M

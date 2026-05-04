@@ -6,6 +6,7 @@ M.__PeriodTriggersElement = {
 
 M.AssetShallow = {
     type = "structure",
+    id = "AssetShallow",
     members = {
         Arn = {
             type = "string",
@@ -83,6 +84,7 @@ M.StreamOrder = {
 
 M.StreamSelection = {
     type = "structure",
+    id = "StreamSelection",
     members = {
         MaxVideoBitsPerSecond = {
             type = "integer",
@@ -107,6 +109,7 @@ M.StreamSelection = {
 
 M.DashManifest = {
     type = "structure",
+    id = "DashManifest",
     members = {
         ManifestLayout = {
             type = "string",
@@ -146,6 +149,7 @@ M.DashManifest = {
 
 M.EgressEndpoint = {
     type = "structure",
+    id = "EgressEndpoint",
     members = {
         PackagingConfigurationId = {
             type = "string",
@@ -176,6 +180,7 @@ M.AdMarkers = {
 
 M.HlsManifest = {
     type = "structure",
+    id = "HlsManifest",
     members = {
         AdMarkers = {
             type = "string",
@@ -215,6 +220,7 @@ M.HlsManifest = {
 
 M.MssManifest = {
     type = "structure",
+    id = "MssManifest",
     members = {
         ManifestName = {
             type = "string",
@@ -251,6 +257,7 @@ M.PresetSpeke20Video = {
 
 M.EncryptionContractConfiguration = {
     type = "structure",
+    id = "EncryptionContractConfiguration",
     members = {
         PresetSpeke20Audio = {
             type = "string",
@@ -271,6 +278,7 @@ M.EncryptionContractConfiguration = {
 
 M.SpekeKeyProvider = {
     type = "structure",
+    id = "SpekeKeyProvider",
     members = {
         EncryptionContractConfiguration = setmetatable({ traits = {
             json_name = "encryptionContractConfiguration",
@@ -302,6 +310,7 @@ M.SpekeKeyProvider = {
 
 M.CmafEncryption = {
     type = "structure",
+    id = "CmafEncryption",
     members = {
         ConstantInitializationVector = {
             type = "string",
@@ -318,6 +327,7 @@ M.CmafEncryption = {
 
 M.CmafPackage = {
     type = "structure",
+    id = "CmafPackage",
     members = {
         Encryption = setmetatable({ traits = {
             json_name = "encryption",
@@ -347,6 +357,7 @@ M.CmafPackage = {
 
 M.DashEncryption = {
     type = "structure",
+    id = "DashEncryption",
     members = {
         SpekeKeyProvider = setmetatable({ traits = {
             json_name = "spekeKeyProvider",
@@ -363,6 +374,7 @@ M.SegmentTemplateFormat = {
 
 M.DashPackage = {
     type = "structure",
+    id = "DashPackage",
     members = {
         DashManifests = {
             type = "list",
@@ -416,6 +428,7 @@ M.EncryptionMethod = {
 
 M.HlsEncryption = {
     type = "structure",
+    id = "HlsEncryption",
     members = {
         ConstantInitializationVector = {
             type = "string",
@@ -438,6 +451,7 @@ M.HlsEncryption = {
 
 M.HlsPackage = {
     type = "structure",
+    id = "HlsPackage",
     members = {
         Encryption = setmetatable({ traits = {
             json_name = "encryption",
@@ -473,6 +487,7 @@ M.HlsPackage = {
 
 M.MssEncryption = {
     type = "structure",
+    id = "MssEncryption",
     members = {
         SpekeKeyProvider = setmetatable({ traits = {
             json_name = "spekeKeyProvider",
@@ -483,6 +498,7 @@ M.MssEncryption = {
 
 M.MssPackage = {
     type = "structure",
+    id = "MssPackage",
     members = {
         Encryption = setmetatable({ traits = {
             json_name = "encryption",
@@ -506,6 +522,7 @@ M.MssPackage = {
 
 M.PackagingConfiguration = {
     type = "structure",
+    id = "PackagingConfiguration",
     members = {
         Arn = {
             type = "string",
@@ -556,6 +573,7 @@ M.PackagingConfiguration = {
 
 M.Authorization = {
     type = "structure",
+    id = "Authorization",
     members = {
         CdnIdentifierSecret = {
             type = "string",
@@ -576,6 +594,7 @@ M.Authorization = {
 
 M.EgressAccessLogs = {
     type = "structure",
+    id = "EgressAccessLogs",
     members = {
         LogGroupName = {
             type = "string",
@@ -588,6 +607,7 @@ M.EgressAccessLogs = {
 
 M.PackagingGroup = {
     type = "structure",
+    id = "PackagingGroup",
     members = {
         ApproximateAssetCount = {
             type = "integer",
@@ -638,6 +658,7 @@ M.PackagingGroup = {
 
 M.ConfigureLogsInput = {
     type = "structure",
+    id = "ConfigureLogsInput",
     members = {
         EgressAccessLogs = setmetatable({ traits = {
             json_name = "egressAccessLogs",
@@ -654,6 +675,7 @@ M.ConfigureLogsInput = {
 
 M.ConfigureLogsOutput = {
     type = "structure",
+    id = "ConfigureLogsOutput",
     members = {
         Arn = {
             type = "string",
@@ -698,6 +720,7 @@ M.ConfigureLogsOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Message = {
@@ -711,6 +734,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -724,6 +748,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -737,6 +762,7 @@ M.NotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -750,6 +776,7 @@ M.ServiceUnavailableException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -763,6 +790,7 @@ M.TooManyRequestsException = {
 
 M.UnprocessableEntityException = {
     type = "structure",
+    id = "UnprocessableEntityException",
     error = "client",
     members = {
         Message = {
@@ -776,6 +804,7 @@ M.UnprocessableEntityException = {
 
 M.CreateAssetInput = {
     type = "structure",
+    id = "CreateAssetInput",
     members = {
         Id = {
             type = "string",
@@ -824,6 +853,7 @@ M.CreateAssetInput = {
 
 M.CreateAssetOutput = {
     type = "structure",
+    id = "CreateAssetOutput",
     members = {
         Arn = {
             type = "string",
@@ -887,6 +917,7 @@ M.CreateAssetOutput = {
 
 M.CreatePackagingConfigurationInput = {
     type = "structure",
+    id = "CreatePackagingConfigurationInput",
     members = {
         CmafPackage = setmetatable({ traits = {
             json_name = "cmafPackage",
@@ -927,6 +958,7 @@ M.CreatePackagingConfigurationInput = {
 
 M.CreatePackagingConfigurationOutput = {
     type = "structure",
+    id = "CreatePackagingConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -977,6 +1009,7 @@ M.CreatePackagingConfigurationOutput = {
 
 M.CreatePackagingGroupInput = {
     type = "structure",
+    id = "CreatePackagingGroupInput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -1004,6 +1037,7 @@ M.CreatePackagingGroupInput = {
 
 M.CreatePackagingGroupOutput = {
     type = "structure",
+    id = "CreatePackagingGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -1048,6 +1082,7 @@ M.CreatePackagingGroupOutput = {
 
 M.DeleteAssetInput = {
     type = "structure",
+    id = "DeleteAssetInput",
     members = {
         Id = {
             type = "string",
@@ -1061,10 +1096,12 @@ M.DeleteAssetInput = {
 
 M.DeleteAssetOutput = {
     type = "structure",
+    id = "DeleteAssetOutput",
 }
 
 M.DeletePackagingConfigurationInput = {
     type = "structure",
+    id = "DeletePackagingConfigurationInput",
     members = {
         Id = {
             type = "string",
@@ -1078,10 +1115,12 @@ M.DeletePackagingConfigurationInput = {
 
 M.DeletePackagingConfigurationOutput = {
     type = "structure",
+    id = "DeletePackagingConfigurationOutput",
 }
 
 M.DeletePackagingGroupInput = {
     type = "structure",
+    id = "DeletePackagingGroupInput",
     members = {
         Id = {
             type = "string",
@@ -1095,10 +1134,12 @@ M.DeletePackagingGroupInput = {
 
 M.DeletePackagingGroupOutput = {
     type = "structure",
+    id = "DeletePackagingGroupOutput",
 }
 
 M.DescribeAssetInput = {
     type = "structure",
+    id = "DescribeAssetInput",
     members = {
         Id = {
             type = "string",
@@ -1112,6 +1153,7 @@ M.DescribeAssetInput = {
 
 M.DescribeAssetOutput = {
     type = "structure",
+    id = "DescribeAssetOutput",
     members = {
         Arn = {
             type = "string",
@@ -1175,6 +1217,7 @@ M.DescribeAssetOutput = {
 
 M.DescribePackagingConfigurationInput = {
     type = "structure",
+    id = "DescribePackagingConfigurationInput",
     members = {
         Id = {
             type = "string",
@@ -1188,6 +1231,7 @@ M.DescribePackagingConfigurationInput = {
 
 M.DescribePackagingConfigurationOutput = {
     type = "structure",
+    id = "DescribePackagingConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -1238,6 +1282,7 @@ M.DescribePackagingConfigurationOutput = {
 
 M.DescribePackagingGroupInput = {
     type = "structure",
+    id = "DescribePackagingGroupInput",
     members = {
         Id = {
             type = "string",
@@ -1251,6 +1296,7 @@ M.DescribePackagingGroupInput = {
 
 M.DescribePackagingGroupOutput = {
     type = "structure",
+    id = "DescribePackagingGroupOutput",
     members = {
         ApproximateAssetCount = {
             type = "integer",
@@ -1301,6 +1347,7 @@ M.DescribePackagingGroupOutput = {
 
 M.ListAssetsInput = {
     type = "structure",
+    id = "ListAssetsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1325,6 +1372,7 @@ M.ListAssetsInput = {
 
 M.ListAssetsOutput = {
     type = "structure",
+    id = "ListAssetsOutput",
     members = {
         Assets = {
             type = "list",
@@ -1344,6 +1392,7 @@ M.ListAssetsOutput = {
 
 M.ListPackagingConfigurationsInput = {
     type = "structure",
+    id = "ListPackagingConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1368,6 +1417,7 @@ M.ListPackagingConfigurationsInput = {
 
 M.ListPackagingConfigurationsOutput = {
     type = "structure",
+    id = "ListPackagingConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1387,6 +1437,7 @@ M.ListPackagingConfigurationsOutput = {
 
 M.ListPackagingGroupsInput = {
     type = "structure",
+    id = "ListPackagingGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1405,6 +1456,7 @@ M.ListPackagingGroupsInput = {
 
 M.ListPackagingGroupsOutput = {
     type = "structure",
+    id = "ListPackagingGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1424,6 +1476,7 @@ M.ListPackagingGroupsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1437,6 +1490,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1451,6 +1505,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1473,10 +1528,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1498,10 +1555,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdatePackagingGroupInput = {
     type = "structure",
+    id = "UpdatePackagingGroupInput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -1518,6 +1577,7 @@ M.UpdatePackagingGroupInput = {
 
 M.UpdatePackagingGroupOutput = {
     type = "structure",
+    id = "UpdatePackagingGroupOutput",
     members = {
         ApproximateAssetCount = {
             type = "integer",

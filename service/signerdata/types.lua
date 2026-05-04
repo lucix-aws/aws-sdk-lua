@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.GetRevocationStatusInput = {
     type = "structure",
+    id = "GetRevocationStatusInput",
     members = {
         signatureTimestamp = {
             type = "timestamp",
@@ -57,6 +59,7 @@ M.GetRevocationStatusInput = {
 
 M.GetRevocationStatusOutput = {
     type = "structure",
+    id = "GetRevocationStatusOutput",
     members = {
         revokedEntities = {
             type = "list",
@@ -67,6 +70,7 @@ M.GetRevocationStatusOutput = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         message = {
@@ -80,6 +84,7 @@ M.InternalServiceErrorException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -93,6 +98,7 @@ M.TooManyRequestsException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {

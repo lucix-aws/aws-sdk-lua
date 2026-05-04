@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessLog = {
     type = "structure",
+    id = "AccessLog",
     members = {
         Enabled = {
             type = "boolean",
@@ -24,6 +25,7 @@ M.AccessLog = {
 
 M.AccessPointNotFoundException = {
     type = "structure",
+    id = "AccessPointNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -34,6 +36,7 @@ M.AccessPointNotFoundException = {
 
 M.AdditionalAttribute = {
     type = "structure",
+    id = "AdditionalAttribute",
     members = {
         Key = {
             type = "string",
@@ -46,6 +49,7 @@ M.AdditionalAttribute = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -61,6 +65,7 @@ M.Tag = {
 
 M.AddTagsInput = {
     type = "structure",
+    id = "AddTagsInput",
     members = {
         LoadBalancerNames = {
             type = "list",
@@ -81,10 +86,12 @@ M.AddTagsInput = {
 
 M.AddTagsOutput = {
     type = "structure",
+    id = "AddTagsOutput",
 }
 
 M.DuplicateTagKeysException = {
     type = "structure",
+    id = "DuplicateTagKeysException",
     error = "client",
     members = {
         Message = {
@@ -95,6 +102,7 @@ M.DuplicateTagKeysException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -105,6 +113,7 @@ M.TooManyTagsException = {
 
 M.AppCookieStickinessPolicy = {
     type = "structure",
+    id = "AppCookieStickinessPolicy",
     members = {
         PolicyName = {
             type = "string",
@@ -117,6 +126,7 @@ M.AppCookieStickinessPolicy = {
 
 M.ApplySecurityGroupsToLoadBalancerInput = {
     type = "structure",
+    id = "ApplySecurityGroupsToLoadBalancerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -136,6 +146,7 @@ M.ApplySecurityGroupsToLoadBalancerInput = {
 
 M.ApplySecurityGroupsToLoadBalancerOutput = {
     type = "structure",
+    id = "ApplySecurityGroupsToLoadBalancerOutput",
     members = {
         SecurityGroups = {
             type = "list",
@@ -146,6 +157,7 @@ M.ApplySecurityGroupsToLoadBalancerOutput = {
 
 M.InvalidConfigurationRequestException = {
     type = "structure",
+    id = "InvalidConfigurationRequestException",
     error = "client",
     members = {
         Message = {
@@ -156,6 +168,7 @@ M.InvalidConfigurationRequestException = {
 
 M.InvalidSecurityGroupException = {
     type = "structure",
+    id = "InvalidSecurityGroupException",
     error = "client",
     members = {
         Message = {
@@ -166,6 +179,7 @@ M.InvalidSecurityGroupException = {
 
 M.AttachLoadBalancerToSubnetsInput = {
     type = "structure",
+    id = "AttachLoadBalancerToSubnetsInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -185,6 +199,7 @@ M.AttachLoadBalancerToSubnetsInput = {
 
 M.AttachLoadBalancerToSubnetsOutput = {
     type = "structure",
+    id = "AttachLoadBalancerToSubnetsOutput",
     members = {
         Subnets = {
             type = "list",
@@ -195,6 +210,7 @@ M.AttachLoadBalancerToSubnetsOutput = {
 
 M.InvalidSubnetException = {
     type = "structure",
+    id = "InvalidSubnetException",
     error = "client",
     members = {
         Message = {
@@ -205,6 +221,7 @@ M.InvalidSubnetException = {
 
 M.SubnetNotFoundException = {
     type = "structure",
+    id = "SubnetNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -215,6 +232,7 @@ M.SubnetNotFoundException = {
 
 M.BackendServerDescription = {
     type = "structure",
+    id = "BackendServerDescription",
     members = {
         InstancePort = {
             type = "integer",
@@ -228,6 +246,7 @@ M.BackendServerDescription = {
 
 M.CertificateNotFoundException = {
     type = "structure",
+    id = "CertificateNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -238,6 +257,7 @@ M.CertificateNotFoundException = {
 
 M.HealthCheck = {
     type = "structure",
+    id = "HealthCheck",
     members = {
         Target = {
             type = "string",
@@ -274,6 +294,7 @@ M.HealthCheck = {
 
 M.ConfigureHealthCheckInput = {
     type = "structure",
+    id = "ConfigureHealthCheckInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -289,6 +310,7 @@ M.ConfigureHealthCheckInput = {
 
 M.ConfigureHealthCheckOutput = {
     type = "structure",
+    id = "ConfigureHealthCheckOutput",
     members = {
         HealthCheck = M.HealthCheck,
     },
@@ -296,6 +318,7 @@ M.ConfigureHealthCheckOutput = {
 
 M.ConnectionDraining = {
     type = "structure",
+    id = "ConnectionDraining",
     members = {
         Enabled = {
             type = "boolean",
@@ -312,6 +335,7 @@ M.ConnectionDraining = {
 
 M.ConnectionSettings = {
     type = "structure",
+    id = "ConnectionSettings",
     members = {
         IdleTimeout = {
             type = "integer",
@@ -324,6 +348,7 @@ M.ConnectionSettings = {
 
 M.CreateAppCookieStickinessPolicyInput = {
     type = "structure",
+    id = "CreateAppCookieStickinessPolicyInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -348,10 +373,12 @@ M.CreateAppCookieStickinessPolicyInput = {
 
 M.CreateAppCookieStickinessPolicyOutput = {
     type = "structure",
+    id = "CreateAppCookieStickinessPolicyOutput",
 }
 
 M.DuplicatePolicyNameException = {
     type = "structure",
+    id = "DuplicatePolicyNameException",
     error = "client",
     members = {
         Message = {
@@ -362,6 +389,7 @@ M.DuplicatePolicyNameException = {
 
 M.TooManyPoliciesException = {
     type = "structure",
+    id = "TooManyPoliciesException",
     error = "client",
     members = {
         Message = {
@@ -372,6 +400,7 @@ M.TooManyPoliciesException = {
 
 M.CreateLBCookieStickinessPolicyInput = {
     type = "structure",
+    id = "CreateLBCookieStickinessPolicyInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -393,10 +422,12 @@ M.CreateLBCookieStickinessPolicyInput = {
 
 M.CreateLBCookieStickinessPolicyOutput = {
     type = "structure",
+    id = "CreateLBCookieStickinessPolicyOutput",
 }
 
 M.Listener = {
     type = "structure",
+    id = "Listener",
     members = {
         Protocol = {
             type = "string",
@@ -428,6 +459,7 @@ M.Listener = {
 
 M.CreateLoadBalancerInput = {
     type = "structure",
+    id = "CreateLoadBalancerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -466,6 +498,7 @@ M.CreateLoadBalancerInput = {
 
 M.CreateLoadBalancerOutput = {
     type = "structure",
+    id = "CreateLoadBalancerOutput",
     members = {
         DNSName = {
             type = "string",
@@ -475,6 +508,7 @@ M.CreateLoadBalancerOutput = {
 
 M.DuplicateAccessPointNameException = {
     type = "structure",
+    id = "DuplicateAccessPointNameException",
     error = "client",
     members = {
         Message = {
@@ -485,6 +519,7 @@ M.DuplicateAccessPointNameException = {
 
 M.InvalidSchemeException = {
     type = "structure",
+    id = "InvalidSchemeException",
     error = "client",
     members = {
         Message = {
@@ -495,6 +530,7 @@ M.InvalidSchemeException = {
 
 M.OperationNotPermittedException = {
     type = "structure",
+    id = "OperationNotPermittedException",
     error = "client",
     members = {
         Message = {
@@ -505,6 +541,7 @@ M.OperationNotPermittedException = {
 
 M.TooManyAccessPointsException = {
     type = "structure",
+    id = "TooManyAccessPointsException",
     error = "client",
     members = {
         Message = {
@@ -515,6 +552,7 @@ M.TooManyAccessPointsException = {
 
 M.UnsupportedProtocolException = {
     type = "structure",
+    id = "UnsupportedProtocolException",
     error = "client",
     members = {
         Message = {
@@ -525,6 +563,7 @@ M.UnsupportedProtocolException = {
 
 M.CreateLoadBalancerListenersInput = {
     type = "structure",
+    id = "CreateLoadBalancerListenersInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -544,10 +583,12 @@ M.CreateLoadBalancerListenersInput = {
 
 M.CreateLoadBalancerListenersOutput = {
     type = "structure",
+    id = "CreateLoadBalancerListenersOutput",
 }
 
 M.DuplicateListenerException = {
     type = "structure",
+    id = "DuplicateListenerException",
     error = "client",
     members = {
         Message = {
@@ -558,6 +599,7 @@ M.DuplicateListenerException = {
 
 M.PolicyAttribute = {
     type = "structure",
+    id = "PolicyAttribute",
     members = {
         AttributeName = {
             type = "string",
@@ -570,6 +612,7 @@ M.PolicyAttribute = {
 
 M.CreateLoadBalancerPolicyInput = {
     type = "structure",
+    id = "CreateLoadBalancerPolicyInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -598,10 +641,12 @@ M.CreateLoadBalancerPolicyInput = {
 
 M.CreateLoadBalancerPolicyOutput = {
     type = "structure",
+    id = "CreateLoadBalancerPolicyOutput",
 }
 
 M.PolicyTypeNotFoundException = {
     type = "structure",
+    id = "PolicyTypeNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -612,6 +657,7 @@ M.PolicyTypeNotFoundException = {
 
 M.CrossZoneLoadBalancing = {
     type = "structure",
+    id = "CrossZoneLoadBalancing",
     members = {
         Enabled = {
             type = "boolean",
@@ -625,6 +671,7 @@ M.CrossZoneLoadBalancing = {
 
 M.DeleteLoadBalancerInput = {
     type = "structure",
+    id = "DeleteLoadBalancerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -637,10 +684,12 @@ M.DeleteLoadBalancerInput = {
 
 M.DeleteLoadBalancerOutput = {
     type = "structure",
+    id = "DeleteLoadBalancerOutput",
 }
 
 M.DeleteLoadBalancerListenersInput = {
     type = "structure",
+    id = "DeleteLoadBalancerListenersInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -660,10 +709,12 @@ M.DeleteLoadBalancerListenersInput = {
 
 M.DeleteLoadBalancerListenersOutput = {
     type = "structure",
+    id = "DeleteLoadBalancerListenersOutput",
 }
 
 M.DeleteLoadBalancerPolicyInput = {
     type = "structure",
+    id = "DeleteLoadBalancerPolicyInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -682,10 +733,12 @@ M.DeleteLoadBalancerPolicyInput = {
 
 M.DeleteLoadBalancerPolicyOutput = {
     type = "structure",
+    id = "DeleteLoadBalancerPolicyOutput",
 }
 
 M.DependencyThrottleException = {
     type = "structure",
+    id = "DependencyThrottleException",
     error = "client",
     members = {
         Message = {
@@ -696,6 +749,7 @@ M.DependencyThrottleException = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         InstanceId = {
             type = "string",
@@ -705,6 +759,7 @@ M.Instance = {
 
 M.DeregisterInstancesFromLoadBalancerInput = {
     type = "structure",
+    id = "DeregisterInstancesFromLoadBalancerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -724,6 +779,7 @@ M.DeregisterInstancesFromLoadBalancerInput = {
 
 M.DeregisterInstancesFromLoadBalancerOutput = {
     type = "structure",
+    id = "DeregisterInstancesFromLoadBalancerOutput",
     members = {
         Instances = {
             type = "list",
@@ -734,6 +790,7 @@ M.DeregisterInstancesFromLoadBalancerOutput = {
 
 M.InvalidEndPointException = {
     type = "structure",
+    id = "InvalidEndPointException",
     error = "client",
     members = {
         Message = {
@@ -744,6 +801,7 @@ M.InvalidEndPointException = {
 
 M.DescribeAccountLimitsInput = {
     type = "structure",
+    id = "DescribeAccountLimitsInput",
     members = {
         Marker = {
             type = "string",
@@ -756,6 +814,7 @@ M.DescribeAccountLimitsInput = {
 
 M.Limit = {
     type = "structure",
+    id = "Limit",
     members = {
         Name = {
             type = "string",
@@ -768,6 +827,7 @@ M.Limit = {
 
 M.DescribeAccountLimitsOutput = {
     type = "structure",
+    id = "DescribeAccountLimitsOutput",
     members = {
         Limits = {
             type = "list",
@@ -781,6 +841,7 @@ M.DescribeAccountLimitsOutput = {
 
 M.DescribeInstanceHealthInput = {
     type = "structure",
+    id = "DescribeInstanceHealthInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -797,6 +858,7 @@ M.DescribeInstanceHealthInput = {
 
 M.InstanceState = {
     type = "structure",
+    id = "InstanceState",
     members = {
         InstanceId = {
             type = "string",
@@ -815,6 +877,7 @@ M.InstanceState = {
 
 M.DescribeInstanceHealthOutput = {
     type = "structure",
+    id = "DescribeInstanceHealthOutput",
     members = {
         InstanceStates = {
             type = "list",
@@ -825,6 +888,7 @@ M.DescribeInstanceHealthOutput = {
 
 M.DescribeLoadBalancerAttributesInput = {
     type = "structure",
+    id = "DescribeLoadBalancerAttributesInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -837,6 +901,7 @@ M.DescribeLoadBalancerAttributesInput = {
 
 M.LoadBalancerAttributes = {
     type = "structure",
+    id = "LoadBalancerAttributes",
     members = {
         CrossZoneLoadBalancing = M.CrossZoneLoadBalancing,
         AccessLog = M.AccessLog,
@@ -851,6 +916,7 @@ M.LoadBalancerAttributes = {
 
 M.DescribeLoadBalancerAttributesOutput = {
     type = "structure",
+    id = "DescribeLoadBalancerAttributesOutput",
     members = {
         LoadBalancerAttributes = M.LoadBalancerAttributes,
     },
@@ -858,6 +924,7 @@ M.DescribeLoadBalancerAttributesOutput = {
 
 M.LoadBalancerAttributeNotFoundException = {
     type = "structure",
+    id = "LoadBalancerAttributeNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -868,6 +935,7 @@ M.LoadBalancerAttributeNotFoundException = {
 
 M.DescribeLoadBalancerPoliciesInput = {
     type = "structure",
+    id = "DescribeLoadBalancerPoliciesInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -881,6 +949,7 @@ M.DescribeLoadBalancerPoliciesInput = {
 
 M.PolicyAttributeDescription = {
     type = "structure",
+    id = "PolicyAttributeDescription",
     members = {
         AttributeName = {
             type = "string",
@@ -893,6 +962,7 @@ M.PolicyAttributeDescription = {
 
 M.PolicyDescription = {
     type = "structure",
+    id = "PolicyDescription",
     members = {
         PolicyName = {
             type = "string",
@@ -909,6 +979,7 @@ M.PolicyDescription = {
 
 M.DescribeLoadBalancerPoliciesOutput = {
     type = "structure",
+    id = "DescribeLoadBalancerPoliciesOutput",
     members = {
         PolicyDescriptions = {
             type = "list",
@@ -919,6 +990,7 @@ M.DescribeLoadBalancerPoliciesOutput = {
 
 M.PolicyNotFoundException = {
     type = "structure",
+    id = "PolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -929,6 +1001,7 @@ M.PolicyNotFoundException = {
 
 M.DescribeLoadBalancerPolicyTypesInput = {
     type = "structure",
+    id = "DescribeLoadBalancerPolicyTypesInput",
     members = {
         PolicyTypeNames = {
             type = "list",
@@ -939,6 +1012,7 @@ M.DescribeLoadBalancerPolicyTypesInput = {
 
 M.PolicyAttributeTypeDescription = {
     type = "structure",
+    id = "PolicyAttributeTypeDescription",
     members = {
         AttributeName = {
             type = "string",
@@ -960,6 +1034,7 @@ M.PolicyAttributeTypeDescription = {
 
 M.PolicyTypeDescription = {
     type = "structure",
+    id = "PolicyTypeDescription",
     members = {
         PolicyTypeName = {
             type = "string",
@@ -976,6 +1051,7 @@ M.PolicyTypeDescription = {
 
 M.DescribeLoadBalancerPolicyTypesOutput = {
     type = "structure",
+    id = "DescribeLoadBalancerPolicyTypesOutput",
     members = {
         PolicyTypeDescriptions = {
             type = "list",
@@ -986,6 +1062,7 @@ M.DescribeLoadBalancerPolicyTypesOutput = {
 
 M.DescribeLoadBalancersInput = {
     type = "structure",
+    id = "DescribeLoadBalancersInput",
     members = {
         LoadBalancerNames = {
             type = "list",
@@ -1002,6 +1079,7 @@ M.DescribeLoadBalancersInput = {
 
 M.ListenerDescription = {
     type = "structure",
+    id = "ListenerDescription",
     members = {
         Listener = M.Listener,
         PolicyNames = {
@@ -1013,6 +1091,7 @@ M.ListenerDescription = {
 
 M.LBCookieStickinessPolicy = {
     type = "structure",
+    id = "LBCookieStickinessPolicy",
     members = {
         PolicyName = {
             type = "string",
@@ -1025,6 +1104,7 @@ M.LBCookieStickinessPolicy = {
 
 M.Policies = {
     type = "structure",
+    id = "Policies",
     members = {
         AppCookieStickinessPolicies = {
             type = "list",
@@ -1043,6 +1123,7 @@ M.Policies = {
 
 M.SourceSecurityGroup = {
     type = "structure",
+    id = "SourceSecurityGroup",
     members = {
         OwnerAlias = {
             type = "string",
@@ -1055,6 +1136,7 @@ M.SourceSecurityGroup = {
 
 M.LoadBalancerDescription = {
     type = "structure",
+    id = "LoadBalancerDescription",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1109,6 +1191,7 @@ M.LoadBalancerDescription = {
 
 M.DescribeLoadBalancersOutput = {
     type = "structure",
+    id = "DescribeLoadBalancersOutput",
     members = {
         LoadBalancerDescriptions = {
             type = "list",
@@ -1122,6 +1205,7 @@ M.DescribeLoadBalancersOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         LoadBalancerNames = {
             type = "list",
@@ -1135,6 +1219,7 @@ M.DescribeTagsInput = {
 
 M.TagDescription = {
     type = "structure",
+    id = "TagDescription",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1148,6 +1233,7 @@ M.TagDescription = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         TagDescriptions = {
             type = "list",
@@ -1158,6 +1244,7 @@ M.DescribeTagsOutput = {
 
 M.DetachLoadBalancerFromSubnetsInput = {
     type = "structure",
+    id = "DetachLoadBalancerFromSubnetsInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1177,6 +1264,7 @@ M.DetachLoadBalancerFromSubnetsInput = {
 
 M.DetachLoadBalancerFromSubnetsOutput = {
     type = "structure",
+    id = "DetachLoadBalancerFromSubnetsOutput",
     members = {
         Subnets = {
             type = "list",
@@ -1187,6 +1275,7 @@ M.DetachLoadBalancerFromSubnetsOutput = {
 
 M.DisableAvailabilityZonesForLoadBalancerInput = {
     type = "structure",
+    id = "DisableAvailabilityZonesForLoadBalancerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1206,6 +1295,7 @@ M.DisableAvailabilityZonesForLoadBalancerInput = {
 
 M.DisableAvailabilityZonesForLoadBalancerOutput = {
     type = "structure",
+    id = "DisableAvailabilityZonesForLoadBalancerOutput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -1216,6 +1306,7 @@ M.DisableAvailabilityZonesForLoadBalancerOutput = {
 
 M.EnableAvailabilityZonesForLoadBalancerInput = {
     type = "structure",
+    id = "EnableAvailabilityZonesForLoadBalancerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1235,6 +1326,7 @@ M.EnableAvailabilityZonesForLoadBalancerInput = {
 
 M.EnableAvailabilityZonesForLoadBalancerOutput = {
     type = "structure",
+    id = "EnableAvailabilityZonesForLoadBalancerOutput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -1245,6 +1337,7 @@ M.EnableAvailabilityZonesForLoadBalancerOutput = {
 
 M.ModifyLoadBalancerAttributesInput = {
     type = "structure",
+    id = "ModifyLoadBalancerAttributesInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1260,6 +1353,7 @@ M.ModifyLoadBalancerAttributesInput = {
 
 M.ModifyLoadBalancerAttributesOutput = {
     type = "structure",
+    id = "ModifyLoadBalancerAttributesOutput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1270,6 +1364,7 @@ M.ModifyLoadBalancerAttributesOutput = {
 
 M.RegisterInstancesWithLoadBalancerInput = {
     type = "structure",
+    id = "RegisterInstancesWithLoadBalancerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1289,6 +1384,7 @@ M.RegisterInstancesWithLoadBalancerInput = {
 
 M.RegisterInstancesWithLoadBalancerOutput = {
     type = "structure",
+    id = "RegisterInstancesWithLoadBalancerOutput",
     members = {
         Instances = {
             type = "list",
@@ -1299,6 +1395,7 @@ M.RegisterInstancesWithLoadBalancerOutput = {
 
 M.TagKeyOnly = {
     type = "structure",
+    id = "TagKeyOnly",
     members = {
         Key = {
             type = "string",
@@ -1308,6 +1405,7 @@ M.TagKeyOnly = {
 
 M.RemoveTagsInput = {
     type = "structure",
+    id = "RemoveTagsInput",
     members = {
         LoadBalancerNames = {
             type = "list",
@@ -1328,10 +1426,12 @@ M.RemoveTagsInput = {
 
 M.RemoveTagsOutput = {
     type = "structure",
+    id = "RemoveTagsOutput",
 }
 
 M.ListenerNotFoundException = {
     type = "structure",
+    id = "ListenerNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1342,6 +1442,7 @@ M.ListenerNotFoundException = {
 
 M.SetLoadBalancerListenerSSLCertificateInput = {
     type = "structure",
+    id = "SetLoadBalancerListenerSSLCertificateInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1367,10 +1468,12 @@ M.SetLoadBalancerListenerSSLCertificateInput = {
 
 M.SetLoadBalancerListenerSSLCertificateOutput = {
     type = "structure",
+    id = "SetLoadBalancerListenerSSLCertificateOutput",
 }
 
 M.SetLoadBalancerPoliciesForBackendServerInput = {
     type = "structure",
+    id = "SetLoadBalancerPoliciesForBackendServerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1396,10 +1499,12 @@ M.SetLoadBalancerPoliciesForBackendServerInput = {
 
 M.SetLoadBalancerPoliciesForBackendServerOutput = {
     type = "structure",
+    id = "SetLoadBalancerPoliciesForBackendServerOutput",
 }
 
 M.SetLoadBalancerPoliciesOfListenerInput = {
     type = "structure",
+    id = "SetLoadBalancerPoliciesOfListenerInput",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -1426,6 +1531,7 @@ M.SetLoadBalancerPoliciesOfListenerInput = {
 
 M.SetLoadBalancerPoliciesOfListenerOutput = {
     type = "structure",
+    id = "SetLoadBalancerPoliciesOfListenerOutput",
 }
 
 return M

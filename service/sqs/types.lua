@@ -2,6 +2,7 @@ local M = {}
 
 M.AddPermissionInput = {
     type = "structure",
+    id = "AddPermissionInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -20,6 +21,7 @@ M.AddPermissionInput = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "AWSAccountId",
             },
         },
@@ -28,6 +30,7 @@ M.AddPermissionInput = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "ActionName",
             },
         },
@@ -36,10 +39,12 @@ M.AddPermissionInput = {
 
 M.AddPermissionOutput = {
     type = "structure",
+    id = "AddPermissionOutput",
 }
 
 M.InvalidAddress = {
     type = "structure",
+    id = "InvalidAddress",
     error = "client",
     members = {
         message = {
@@ -50,6 +55,7 @@ M.InvalidAddress = {
 
 M.InvalidSecurity = {
     type = "structure",
+    id = "InvalidSecurity",
     error = "client",
     members = {
         message = {
@@ -60,6 +66,7 @@ M.InvalidSecurity = {
 
 M.OverLimit = {
     type = "structure",
+    id = "OverLimit",
     error = "client",
     members = {
         message = {
@@ -70,6 +77,7 @@ M.OverLimit = {
 
 M.QueueDoesNotExist = {
     type = "structure",
+    id = "QueueDoesNotExist",
     error = "client",
     members = {
         message = {
@@ -80,6 +88,7 @@ M.QueueDoesNotExist = {
 
 M.RequestThrottled = {
     type = "structure",
+    id = "RequestThrottled",
     error = "client",
     members = {
         message = {
@@ -90,6 +99,7 @@ M.RequestThrottled = {
 
 M.UnsupportedOperation = {
     type = "structure",
+    id = "UnsupportedOperation",
     error = "client",
     members = {
         message = {
@@ -100,6 +110,7 @@ M.UnsupportedOperation = {
 
 M.CancelMessageMoveTaskInput = {
     type = "structure",
+    id = "CancelMessageMoveTaskInput",
     members = {
         TaskHandle = {
             type = "string",
@@ -112,6 +123,7 @@ M.CancelMessageMoveTaskInput = {
 
 M.CancelMessageMoveTaskOutput = {
     type = "structure",
+    id = "CancelMessageMoveTaskOutput",
     members = {
         ApproximateNumberOfMessagesMoved = {
             type = "long",
@@ -124,6 +136,7 @@ M.CancelMessageMoveTaskOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -134,6 +147,7 @@ M.ResourceNotFoundException = {
 
 M.ChangeMessageVisibilityInput = {
     type = "structure",
+    id = "ChangeMessageVisibilityInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -158,15 +172,18 @@ M.ChangeMessageVisibilityInput = {
 
 M.ChangeMessageVisibilityOutput = {
     type = "structure",
+    id = "ChangeMessageVisibilityOutput",
 }
 
 M.MessageNotInflight = {
     type = "structure",
+    id = "MessageNotInflight",
     error = "client",
 }
 
 M.ReceiptHandleIsInvalid = {
     type = "structure",
+    id = "ReceiptHandleIsInvalid",
     error = "client",
     members = {
         message = {
@@ -177,6 +194,7 @@ M.ReceiptHandleIsInvalid = {
 
 M.BatchEntryIdsNotDistinct = {
     type = "structure",
+    id = "BatchEntryIdsNotDistinct",
     error = "client",
     members = {
         message = {
@@ -187,6 +205,7 @@ M.BatchEntryIdsNotDistinct = {
 
 M.ChangeMessageVisibilityBatchRequestEntry = {
     type = "structure",
+    id = "ChangeMessageVisibilityBatchRequestEntry",
     members = {
         Id = {
             type = "string",
@@ -208,6 +227,7 @@ M.ChangeMessageVisibilityBatchRequestEntry = {
 
 M.ChangeMessageVisibilityBatchInput = {
     type = "structure",
+    id = "ChangeMessageVisibilityBatchInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -220,6 +240,7 @@ M.ChangeMessageVisibilityBatchInput = {
             member = M.ChangeMessageVisibilityBatchRequestEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "ChangeMessageVisibilityBatchRequestEntry",
             },
         },
@@ -228,6 +249,7 @@ M.ChangeMessageVisibilityBatchInput = {
 
 M.BatchResultErrorEntry = {
     type = "structure",
+    id = "BatchResultErrorEntry",
     members = {
         Id = {
             type = "string",
@@ -256,6 +278,7 @@ M.BatchResultErrorEntry = {
 
 M.ChangeMessageVisibilityBatchResultEntry = {
     type = "structure",
+    id = "ChangeMessageVisibilityBatchResultEntry",
     members = {
         Id = {
             type = "string",
@@ -268,12 +291,14 @@ M.ChangeMessageVisibilityBatchResultEntry = {
 
 M.ChangeMessageVisibilityBatchOutput = {
     type = "structure",
+    id = "ChangeMessageVisibilityBatchOutput",
     members = {
         Successful = {
             type = "list",
             member = M.ChangeMessageVisibilityBatchResultEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "ChangeMessageVisibilityBatchResultEntry",
             },
         },
@@ -282,6 +307,7 @@ M.ChangeMessageVisibilityBatchOutput = {
             member = M.BatchResultErrorEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "BatchResultErrorEntry",
             },
         },
@@ -290,6 +316,7 @@ M.ChangeMessageVisibilityBatchOutput = {
 
 M.EmptyBatchRequest = {
     type = "structure",
+    id = "EmptyBatchRequest",
     error = "client",
     members = {
         message = {
@@ -300,6 +327,7 @@ M.EmptyBatchRequest = {
 
 M.InvalidBatchEntryId = {
     type = "structure",
+    id = "InvalidBatchEntryId",
     error = "client",
     members = {
         message = {
@@ -310,6 +338,7 @@ M.InvalidBatchEntryId = {
 
 M.TooManyEntriesInBatchRequest = {
     type = "structure",
+    id = "TooManyEntriesInBatchRequest",
     error = "client",
     members = {
         message = {
@@ -345,6 +374,7 @@ M.QueueAttributeName = {
 
 M.CreateQueueInput = {
     type = "structure",
+    id = "CreateQueueInput",
     members = {
         QueueName = {
             type = "string",
@@ -354,17 +384,27 @@ M.CreateQueueInput = {
         },
         Attributes = {
             type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
+            value = { type = "string", traits = {
+                xml_name = "Value",
+            } },
             traits = {
+                xml_flattened = true,
                 xml_name = "Attribute",
             },
         },
         tags = {
             type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Key",
+            } },
+            value = { type = "string", traits = {
+                xml_name = "Value",
+            } },
             traits = {
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -373,6 +413,7 @@ M.CreateQueueInput = {
 
 M.CreateQueueOutput = {
     type = "structure",
+    id = "CreateQueueOutput",
     members = {
         QueueUrl = {
             type = "string",
@@ -382,6 +423,7 @@ M.CreateQueueOutput = {
 
 M.InvalidAttributeName = {
     type = "structure",
+    id = "InvalidAttributeName",
     error = "client",
     members = {
         message = {
@@ -392,6 +434,7 @@ M.InvalidAttributeName = {
 
 M.InvalidAttributeValue = {
     type = "structure",
+    id = "InvalidAttributeValue",
     error = "client",
     members = {
         message = {
@@ -402,6 +445,7 @@ M.InvalidAttributeValue = {
 
 M.QueueDeletedRecently = {
     type = "structure",
+    id = "QueueDeletedRecently",
     error = "client",
     members = {
         message = {
@@ -412,6 +456,7 @@ M.QueueDeletedRecently = {
 
 M.QueueNameExists = {
     type = "structure",
+    id = "QueueNameExists",
     error = "client",
     members = {
         message = {
@@ -422,6 +467,7 @@ M.QueueNameExists = {
 
 M.DeleteMessageInput = {
     type = "structure",
+    id = "DeleteMessageInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -440,15 +486,18 @@ M.DeleteMessageInput = {
 
 M.DeleteMessageOutput = {
     type = "structure",
+    id = "DeleteMessageOutput",
 }
 
 M.InvalidIdFormat = {
     type = "structure",
+    id = "InvalidIdFormat",
     error = "client",
 }
 
 M.DeleteMessageBatchRequestEntry = {
     type = "structure",
+    id = "DeleteMessageBatchRequestEntry",
     members = {
         Id = {
             type = "string",
@@ -467,6 +516,7 @@ M.DeleteMessageBatchRequestEntry = {
 
 M.DeleteMessageBatchInput = {
     type = "structure",
+    id = "DeleteMessageBatchInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -479,6 +529,7 @@ M.DeleteMessageBatchInput = {
             member = M.DeleteMessageBatchRequestEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "DeleteMessageBatchRequestEntry",
             },
         },
@@ -487,6 +538,7 @@ M.DeleteMessageBatchInput = {
 
 M.DeleteMessageBatchResultEntry = {
     type = "structure",
+    id = "DeleteMessageBatchResultEntry",
     members = {
         Id = {
             type = "string",
@@ -499,12 +551,14 @@ M.DeleteMessageBatchResultEntry = {
 
 M.DeleteMessageBatchOutput = {
     type = "structure",
+    id = "DeleteMessageBatchOutput",
     members = {
         Successful = {
             type = "list",
             member = M.DeleteMessageBatchResultEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "DeleteMessageBatchResultEntry",
             },
         },
@@ -513,6 +567,7 @@ M.DeleteMessageBatchOutput = {
             member = M.BatchResultErrorEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "BatchResultErrorEntry",
             },
         },
@@ -521,6 +576,7 @@ M.DeleteMessageBatchOutput = {
 
 M.DeleteQueueInput = {
     type = "structure",
+    id = "DeleteQueueInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -533,10 +589,12 @@ M.DeleteQueueInput = {
 
 M.DeleteQueueOutput = {
     type = "structure",
+    id = "DeleteQueueOutput",
 }
 
 M.GetQueueAttributesInput = {
     type = "structure",
+    id = "GetQueueAttributesInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -548,6 +606,7 @@ M.GetQueueAttributesInput = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "AttributeName",
             },
         },
@@ -556,12 +615,18 @@ M.GetQueueAttributesInput = {
 
 M.GetQueueAttributesOutput = {
     type = "structure",
+    id = "GetQueueAttributesOutput",
     members = {
         Attributes = {
             type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
+            value = { type = "string", traits = {
+                xml_name = "Value",
+            } },
             traits = {
+                xml_flattened = true,
                 xml_name = "Attribute",
             },
         },
@@ -570,6 +635,7 @@ M.GetQueueAttributesOutput = {
 
 M.GetQueueUrlInput = {
     type = "structure",
+    id = "GetQueueUrlInput",
     members = {
         QueueName = {
             type = "string",
@@ -585,6 +651,7 @@ M.GetQueueUrlInput = {
 
 M.GetQueueUrlOutput = {
     type = "structure",
+    id = "GetQueueUrlOutput",
     members = {
         QueueUrl = {
             type = "string",
@@ -594,6 +661,7 @@ M.GetQueueUrlOutput = {
 
 M.ListDeadLetterSourceQueuesInput = {
     type = "structure",
+    id = "ListDeadLetterSourceQueuesInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -612,12 +680,14 @@ M.ListDeadLetterSourceQueuesInput = {
 
 M.ListDeadLetterSourceQueuesOutput = {
     type = "structure",
+    id = "ListDeadLetterSourceQueuesOutput",
     members = {
         queueUrls = {
             type = "list",
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "QueueUrl",
             },
         },
@@ -629,6 +699,7 @@ M.ListDeadLetterSourceQueuesOutput = {
 
 M.ListMessageMoveTasksInput = {
     type = "structure",
+    id = "ListMessageMoveTasksInput",
     members = {
         SourceArn = {
             type = "string",
@@ -644,6 +715,7 @@ M.ListMessageMoveTasksInput = {
 
 M.ListMessageMoveTasksResultEntry = {
     type = "structure",
+    id = "ListMessageMoveTasksResultEntry",
     members = {
         TaskHandle = {
             type = "string",
@@ -683,11 +755,16 @@ M.ListMessageMoveTasksResultEntry = {
 
 M.ListMessageMoveTasksOutput = {
     type = "structure",
+    id = "ListMessageMoveTasksOutput",
+    traits = {
+        xml_name = "ListMessageMoveTasksResult",
+    },
     members = {
         Results = {
             type = "list",
             member = M.ListMessageMoveTasksResultEntry,
             traits = {
+                xml_flattened = true,
                 xml_name = "ListMessageMoveTasksResultEntry",
             },
         },
@@ -696,6 +773,7 @@ M.ListMessageMoveTasksOutput = {
 
 M.ListQueuesInput = {
     type = "structure",
+    id = "ListQueuesInput",
     members = {
         QueueNamePrefix = {
             type = "string",
@@ -711,11 +789,13 @@ M.ListQueuesInput = {
 
 M.ListQueuesOutput = {
     type = "structure",
+    id = "ListQueuesOutput",
     members = {
         QueueUrls = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "QueueUrl",
             },
         },
@@ -727,6 +807,7 @@ M.ListQueuesOutput = {
 
 M.ListQueueTagsInput = {
     type = "structure",
+    id = "ListQueueTagsInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -739,12 +820,18 @@ M.ListQueueTagsInput = {
 
 M.ListQueueTagsOutput = {
     type = "structure",
+    id = "ListQueueTagsOutput",
     members = {
         Tags = {
             type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Key",
+            } },
+            value = { type = "string", traits = {
+                xml_name = "Value",
+            } },
             traits = {
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -753,6 +840,7 @@ M.ListQueueTagsOutput = {
 
 M.PurgeQueueInProgress = {
     type = "structure",
+    id = "PurgeQueueInProgress",
     error = "client",
     members = {
         message = {
@@ -763,6 +851,7 @@ M.PurgeQueueInProgress = {
 
 M.PurgeQueueInput = {
     type = "structure",
+    id = "PurgeQueueInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -775,10 +864,12 @@ M.PurgeQueueInput = {
 
 M.PurgeQueueOutput = {
     type = "structure",
+    id = "PurgeQueueOutput",
 }
 
 M.KmsAccessDenied = {
     type = "structure",
+    id = "KmsAccessDenied",
     error = "client",
     members = {
         message = {
@@ -789,6 +880,7 @@ M.KmsAccessDenied = {
 
 M.KmsDisabled = {
     type = "structure",
+    id = "KmsDisabled",
     error = "client",
     members = {
         message = {
@@ -799,6 +891,7 @@ M.KmsDisabled = {
 
 M.KmsInvalidKeyUsage = {
     type = "structure",
+    id = "KmsInvalidKeyUsage",
     error = "client",
     members = {
         message = {
@@ -809,6 +902,7 @@ M.KmsInvalidKeyUsage = {
 
 M.KmsInvalidState = {
     type = "structure",
+    id = "KmsInvalidState",
     error = "client",
     members = {
         message = {
@@ -819,6 +913,7 @@ M.KmsInvalidState = {
 
 M.KmsNotFound = {
     type = "structure",
+    id = "KmsNotFound",
     error = "client",
     members = {
         message = {
@@ -829,6 +924,7 @@ M.KmsNotFound = {
 
 M.KmsOptInRequired = {
     type = "structure",
+    id = "KmsOptInRequired",
     error = "client",
     members = {
         message = {
@@ -839,6 +935,7 @@ M.KmsOptInRequired = {
 
 M.KmsThrottled = {
     type = "structure",
+    id = "KmsThrottled",
     error = "client",
     members = {
         message = {
@@ -862,6 +959,7 @@ M.MessageSystemAttributeName = {
 
 M.ReceiveMessageInput = {
     type = "structure",
+    id = "ReceiveMessageInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -873,6 +971,7 @@ M.ReceiveMessageInput = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "AttributeName",
             },
         },
@@ -880,6 +979,7 @@ M.ReceiveMessageInput = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "AttributeName",
             },
         },
@@ -887,6 +987,7 @@ M.ReceiveMessageInput = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "MessageAttributeName",
             },
         },
@@ -907,6 +1008,7 @@ M.ReceiveMessageInput = {
 
 M.MessageAttributeValue = {
     type = "structure",
+    id = "MessageAttributeValue",
     members = {
         StringValue = {
             type = "string",
@@ -918,6 +1020,7 @@ M.MessageAttributeValue = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "StringListValue",
             },
         },
@@ -925,6 +1028,7 @@ M.MessageAttributeValue = {
             type = "list",
             member = { type = "blob" },
             traits = {
+                xml_flattened = true,
                 xml_name = "BinaryListValue",
             },
         },
@@ -939,6 +1043,7 @@ M.MessageAttributeValue = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         MessageId = {
             type = "string",
@@ -954,9 +1059,14 @@ M.Message = {
         },
         Attributes = {
             type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
+            value = { type = "string", traits = {
+                xml_name = "Value",
+            } },
             traits = {
+                xml_flattened = true,
                 xml_name = "Attribute",
             },
         },
@@ -965,9 +1075,12 @@ M.Message = {
         },
         MessageAttributes = {
             type = "map",
-            key = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
             value = M.MessageAttributeValue,
             traits = {
+                xml_flattened = true,
                 xml_name = "MessageAttribute",
             },
         },
@@ -976,11 +1089,13 @@ M.Message = {
 
 M.ReceiveMessageOutput = {
     type = "structure",
+    id = "ReceiveMessageOutput",
     members = {
         Messages = {
             type = "list",
             member = M.Message,
             traits = {
+                xml_flattened = true,
                 xml_name = "Message",
             },
         },
@@ -989,6 +1104,7 @@ M.ReceiveMessageOutput = {
 
 M.RemovePermissionInput = {
     type = "structure",
+    id = "RemovePermissionInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -1007,10 +1123,12 @@ M.RemovePermissionInput = {
 
 M.RemovePermissionOutput = {
     type = "structure",
+    id = "RemovePermissionOutput",
 }
 
 M.InvalidMessageContents = {
     type = "structure",
+    id = "InvalidMessageContents",
     error = "client",
     members = {
         message = {
@@ -1025,6 +1143,7 @@ M.MessageSystemAttributeNameForSends = {
 
 M.MessageSystemAttributeValue = {
     type = "structure",
+    id = "MessageSystemAttributeValue",
     members = {
         StringValue = {
             type = "string",
@@ -1036,6 +1155,7 @@ M.MessageSystemAttributeValue = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "StringListValue",
             },
         },
@@ -1043,6 +1163,7 @@ M.MessageSystemAttributeValue = {
             type = "list",
             member = { type = "blob" },
             traits = {
+                xml_flattened = true,
                 xml_name = "BinaryListValue",
             },
         },
@@ -1057,6 +1178,7 @@ M.MessageSystemAttributeValue = {
 
 M.SendMessageInput = {
     type = "structure",
+    id = "SendMessageInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -1075,17 +1197,23 @@ M.SendMessageInput = {
         },
         MessageAttributes = {
             type = "map",
-            key = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
             value = M.MessageAttributeValue,
             traits = {
+                xml_flattened = true,
                 xml_name = "MessageAttribute",
             },
         },
         MessageSystemAttributes = {
             type = "map",
-            key = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
             value = M.MessageSystemAttributeValue,
             traits = {
+                xml_flattened = true,
                 xml_name = "MessageSystemAttribute",
             },
         },
@@ -1100,6 +1228,7 @@ M.SendMessageInput = {
 
 M.SendMessageOutput = {
     type = "structure",
+    id = "SendMessageOutput",
     members = {
         MD5OfMessageBody = {
             type = "string",
@@ -1121,6 +1250,7 @@ M.SendMessageOutput = {
 
 M.BatchRequestTooLong = {
     type = "structure",
+    id = "BatchRequestTooLong",
     error = "client",
     members = {
         message = {
@@ -1131,6 +1261,7 @@ M.BatchRequestTooLong = {
 
 M.SendMessageBatchRequestEntry = {
     type = "structure",
+    id = "SendMessageBatchRequestEntry",
     members = {
         Id = {
             type = "string",
@@ -1149,17 +1280,23 @@ M.SendMessageBatchRequestEntry = {
         },
         MessageAttributes = {
             type = "map",
-            key = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
             value = M.MessageAttributeValue,
             traits = {
+                xml_flattened = true,
                 xml_name = "MessageAttribute",
             },
         },
         MessageSystemAttributes = {
             type = "map",
-            key = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
             value = M.MessageSystemAttributeValue,
             traits = {
+                xml_flattened = true,
                 xml_name = "MessageSystemAttribute",
             },
         },
@@ -1174,6 +1311,7 @@ M.SendMessageBatchRequestEntry = {
 
 M.SendMessageBatchInput = {
     type = "structure",
+    id = "SendMessageBatchInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -1186,6 +1324,7 @@ M.SendMessageBatchInput = {
             member = M.SendMessageBatchRequestEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "SendMessageBatchRequestEntry",
             },
         },
@@ -1194,6 +1333,7 @@ M.SendMessageBatchInput = {
 
 M.SendMessageBatchResultEntry = {
     type = "structure",
+    id = "SendMessageBatchResultEntry",
     members = {
         Id = {
             type = "string",
@@ -1227,12 +1367,14 @@ M.SendMessageBatchResultEntry = {
 
 M.SendMessageBatchOutput = {
     type = "structure",
+    id = "SendMessageBatchOutput",
     members = {
         Successful = {
             type = "list",
             member = M.SendMessageBatchResultEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "SendMessageBatchResultEntry",
             },
         },
@@ -1241,6 +1383,7 @@ M.SendMessageBatchOutput = {
             member = M.BatchResultErrorEntry,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "BatchResultErrorEntry",
             },
         },
@@ -1249,6 +1392,7 @@ M.SendMessageBatchOutput = {
 
 M.SetQueueAttributesInput = {
     type = "structure",
+    id = "SetQueueAttributesInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -1258,10 +1402,15 @@ M.SetQueueAttributesInput = {
         },
         Attributes = {
             type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Name",
+            } },
+            value = { type = "string", traits = {
+                xml_name = "Value",
+            } },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Attribute",
             },
         },
@@ -1270,10 +1419,12 @@ M.SetQueueAttributesInput = {
 
 M.SetQueueAttributesOutput = {
     type = "structure",
+    id = "SetQueueAttributesOutput",
 }
 
 M.StartMessageMoveTaskInput = {
     type = "structure",
+    id = "StartMessageMoveTaskInput",
     members = {
         SourceArn = {
             type = "string",
@@ -1292,6 +1443,7 @@ M.StartMessageMoveTaskInput = {
 
 M.StartMessageMoveTaskOutput = {
     type = "structure",
+    id = "StartMessageMoveTaskOutput",
     members = {
         TaskHandle = {
             type = "string",
@@ -1301,6 +1453,7 @@ M.StartMessageMoveTaskOutput = {
 
 M.TagQueueInput = {
     type = "structure",
+    id = "TagQueueInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -1310,10 +1463,15 @@ M.TagQueueInput = {
         },
         Tags = {
             type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
+            key = { type = "string", traits = {
+                xml_name = "Key",
+            } },
+            value = { type = "string", traits = {
+                xml_name = "Value",
+            } },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -1322,10 +1480,12 @@ M.TagQueueInput = {
 
 M.TagQueueOutput = {
     type = "structure",
+    id = "TagQueueOutput",
 }
 
 M.UntagQueueInput = {
     type = "structure",
+    id = "UntagQueueInput",
     members = {
         QueueUrl = {
             type = "string",
@@ -1338,6 +1498,7 @@ M.UntagQueueInput = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "TagKey",
             },
         },
@@ -1346,6 +1507,7 @@ M.UntagQueueInput = {
 
 M.UntagQueueOutput = {
     type = "structure",
+    id = "UntagQueueOutput",
 }
 
 return M

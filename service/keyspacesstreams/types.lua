@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.GetRecordsInput = {
     type = "structure",
+    id = "GetRecordsInput",
     members = {
         shardIterator = {
             type = "string",
@@ -27,6 +29,7 @@ M.GetRecordsInput = {
 
 M.KeyspacesMetadata = {
     type = "structure",
+    id = "KeyspacesMetadata",
     members = {
         expirationTime = {
             type = "string",
@@ -45,6 +48,7 @@ M.OriginType = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -55,6 +59,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -65,6 +70,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -82,6 +88,7 @@ M.ValidationExceptionType = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -102,6 +109,7 @@ M.ShardIteratorType = {
 
 M.GetShardIteratorInput = {
     type = "structure",
+    id = "GetShardIteratorInput",
     members = {
         streamArn = {
             type = "string",
@@ -129,6 +137,7 @@ M.GetShardIteratorInput = {
 
 M.GetShardIteratorOutput = {
     type = "structure",
+    id = "GetShardIteratorOutput",
     members = {
         shardIterator = {
             type = "string",
@@ -142,6 +151,7 @@ M.ShardFilterType = {
 
 M.ShardFilter = {
     type = "structure",
+    id = "ShardFilter",
     members = {
         type = {
             type = "string",
@@ -154,6 +164,7 @@ M.ShardFilter = {
 
 M.GetStreamInput = {
     type = "structure",
+    id = "GetStreamInput",
     members = {
         streamArn = {
             type = "string",
@@ -173,6 +184,7 @@ M.GetStreamInput = {
 
 M.SequenceNumberRange = {
     type = "structure",
+    id = "SequenceNumberRange",
     members = {
         startingSequenceNumber = {
             type = "string",
@@ -185,6 +197,7 @@ M.SequenceNumberRange = {
 
 M.Shard = {
     type = "structure",
+    id = "Shard",
     members = {
         shardId = {
             type = "string",
@@ -213,6 +226,7 @@ M.StreamViewType = {
 
 M.GetStreamOutput = {
     type = "structure",
+    id = "GetStreamOutput",
     members = {
         streamArn = {
             type = "string",
@@ -268,6 +282,7 @@ M.GetStreamOutput = {
 
 M.ListStreamsInput = {
     type = "structure",
+    id = "ListStreamsInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -286,6 +301,7 @@ M.ListStreamsInput = {
 
 M.Stream = {
     type = "structure",
+    id = "Stream",
     members = {
         streamArn = {
             type = "string",
@@ -316,6 +332,7 @@ M.Stream = {
 
 M.ListStreamsOutput = {
     type = "structure",
+    id = "ListStreamsOutput",
     members = {
         streams = {
             type = "list",
@@ -329,6 +346,7 @@ M.ListStreamsOutput = {
 
 M.KeyspacesCellValue = {
     type = "union",
+    id = "KeyspacesCellValue",
     members = {
         asciiT = {
             type = "string",
@@ -419,6 +437,7 @@ M.KeyspacesCellValue = {
 
 M.KeyspacesCell = {
     type = "structure",
+    id = "KeyspacesCell",
     members = {
         value = M.KeyspacesCellValue,
         metadata = M.KeyspacesMetadata,
@@ -427,6 +446,7 @@ M.KeyspacesCell = {
 
 M.KeyspacesCellMapDefinition = {
     type = "structure",
+    id = "KeyspacesCellMapDefinition",
     members = {
         key = M.KeyspacesCellValue,
         value = M.KeyspacesCellValue,
@@ -436,6 +456,7 @@ M.KeyspacesCellMapDefinition = {
 
 M.KeyspacesRow = {
     type = "structure",
+    id = "KeyspacesRow",
     members = {
         valueCells = {
             type = "map",
@@ -453,6 +474,7 @@ M.KeyspacesRow = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         eventVersion = {
             type = "string",
@@ -483,6 +505,7 @@ M.Record = {
 
 M.GetRecordsOutput = {
     type = "structure",
+    id = "GetRecordsOutput",
     members = {
         changeRecords = {
             type = "list",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccountAggregationSource = {
     type = "structure",
+    id = "AccountAggregationSource",
     members = {
         AccountIds = {
             type = "list",
@@ -25,6 +26,7 @@ M.AccountAggregationSource = {
 
 M.ComplianceContributorCount = {
     type = "structure",
+    id = "ComplianceContributorCount",
     members = {
         CappedCount = {
             type = "integer",
@@ -50,6 +52,7 @@ M.ComplianceType = {
 
 M.Compliance = {
     type = "structure",
+    id = "Compliance",
     members = {
         ComplianceType = {
             type = "string",
@@ -60,6 +63,7 @@ M.Compliance = {
 
 M.AggregateComplianceByConfigRule = {
     type = "structure",
+    id = "AggregateComplianceByConfigRule",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -82,6 +86,7 @@ M.ConformancePackComplianceType = {
 
 M.AggregateConformancePackCompliance = {
     type = "structure",
+    id = "AggregateConformancePackCompliance",
     members = {
         ComplianceType = {
             type = "string",
@@ -109,6 +114,7 @@ M.AggregateConformancePackCompliance = {
 
 M.AggregateComplianceByConformancePack = {
     type = "structure",
+    id = "AggregateComplianceByConformancePack",
     members = {
         ConformancePackName = {
             type = "string",
@@ -125,6 +131,7 @@ M.AggregateComplianceByConformancePack = {
 
 M.ComplianceSummary = {
     type = "structure",
+    id = "ComplianceSummary",
     members = {
         CompliantResourceCount = M.ComplianceContributorCount,
         NonCompliantResourceCount = M.ComplianceContributorCount,
@@ -136,6 +143,7 @@ M.ComplianceSummary = {
 
 M.AggregateComplianceCount = {
     type = "structure",
+    id = "AggregateComplianceCount",
     members = {
         GroupName = {
             type = "string",
@@ -146,6 +154,7 @@ M.AggregateComplianceCount = {
 
 M.AggregateConformancePackComplianceCount = {
     type = "structure",
+    id = "AggregateConformancePackComplianceCount",
     members = {
         CompliantConformancePackCount = {
             type = "integer",
@@ -164,6 +173,7 @@ M.AggregateConformancePackComplianceCount = {
 
 M.AggregateConformancePackComplianceFilters = {
     type = "structure",
+    id = "AggregateConformancePackComplianceFilters",
     members = {
         ConformancePackName = {
             type = "string",
@@ -182,6 +192,7 @@ M.AggregateConformancePackComplianceFilters = {
 
 M.AggregateConformancePackComplianceSummary = {
     type = "structure",
+    id = "AggregateConformancePackComplianceSummary",
     members = {
         ComplianceSummary = M.AggregateConformancePackComplianceCount,
         GroupName = {
@@ -192,6 +203,7 @@ M.AggregateConformancePackComplianceSummary = {
 
 M.AggregateConformancePackComplianceSummaryFilters = {
     type = "structure",
+    id = "AggregateConformancePackComplianceSummaryFilters",
     members = {
         AccountId = {
             type = "string",
@@ -220,6 +232,7 @@ M.AggregatedSourceType = {
 
 M.AggregatedSourceStatus = {
     type = "structure",
+    id = "AggregatedSourceStatus",
     members = {
         SourceId = {
             type = "string",
@@ -252,6 +265,7 @@ M.EvaluationMode = {
 
 M.EvaluationResultQualifier = {
     type = "structure",
+    id = "EvaluationResultQualifier",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -270,6 +284,7 @@ M.EvaluationResultQualifier = {
 
 M.EvaluationResultIdentifier = {
     type = "structure",
+    id = "EvaluationResultIdentifier",
     members = {
         EvaluationResultQualifier = M.EvaluationResultQualifier,
         OrderingTimestamp = {
@@ -283,6 +298,7 @@ M.EvaluationResultIdentifier = {
 
 M.AggregateEvaluationResult = {
     type = "structure",
+    id = "AggregateEvaluationResult",
     members = {
         EvaluationResultIdentifier = M.EvaluationResultIdentifier,
         ComplianceType = {
@@ -844,6 +860,7 @@ M.ResourceType = {
 
 M.AggregateResourceIdentifier = {
     type = "structure",
+    id = "AggregateResourceIdentifier",
     members = {
         SourceAccountId = {
             type = "string",
@@ -877,6 +894,7 @@ M.AggregateResourceIdentifier = {
 
 M.AggregationAuthorization = {
     type = "structure",
+    id = "AggregationAuthorization",
     members = {
         AggregationAuthorizationArn = {
             type = "string",
@@ -899,6 +917,7 @@ M.AggregatorFilterType = {
 
 M.AggregatorFilterResourceType = {
     type = "structure",
+    id = "AggregatorFilterResourceType",
     members = {
         Type = {
             type = "string",
@@ -912,6 +931,7 @@ M.AggregatorFilterResourceType = {
 
 M.AggregatorFilterServicePrincipal = {
     type = "structure",
+    id = "AggregatorFilterServicePrincipal",
     members = {
         Type = {
             type = "string",
@@ -925,6 +945,7 @@ M.AggregatorFilterServicePrincipal = {
 
 M.AggregatorFilters = {
     type = "structure",
+    id = "AggregatorFilters",
     members = {
         ResourceType = M.AggregatorFilterResourceType,
         ServicePrincipal = M.AggregatorFilterServicePrincipal,
@@ -933,6 +954,7 @@ M.AggregatorFilters = {
 
 M.AssociateResourceTypesInput = {
     type = "structure",
+    id = "AssociateResourceTypesInput",
     members = {
         ConfigurationRecorderArn = {
             type = "string",
@@ -952,6 +974,7 @@ M.AssociateResourceTypesInput = {
 
 M.ExclusionByResourceTypes = {
     type = "structure",
+    id = "ExclusionByResourceTypes",
     members = {
         resourceTypes = {
             type = "list",
@@ -968,6 +991,7 @@ M.RecordingStrategyType = {
 
 M.RecordingStrategy = {
     type = "structure",
+    id = "RecordingStrategy",
     members = {
         useOnly = {
             type = "string",
@@ -977,6 +1001,7 @@ M.RecordingStrategy = {
 
 M.RecordingGroup = {
     type = "structure",
+    id = "RecordingGroup",
     members = {
         allSupported = {
             type = "boolean",
@@ -1006,6 +1031,7 @@ M.RecordingFrequency = {
 
 M.RecordingModeOverride = {
     type = "structure",
+    id = "RecordingModeOverride",
     members = {
         description = {
             type = "string",
@@ -1028,6 +1054,7 @@ M.RecordingModeOverride = {
 
 M.RecordingMode = {
     type = "structure",
+    id = "RecordingMode",
     members = {
         recordingFrequency = {
             type = "string",
@@ -1049,6 +1076,7 @@ M.RecordingScope = {
 
 M.ConfigurationRecorder = {
     type = "structure",
+    id = "ConfigurationRecorder",
     members = {
         arn = {
             type = "string",
@@ -1072,6 +1100,7 @@ M.ConfigurationRecorder = {
 
 M.AssociateResourceTypesOutput = {
     type = "structure",
+    id = "AssociateResourceTypesOutput",
     members = {
         ConfigurationRecorder = setmetatable({ traits = {
             required = true,
@@ -1081,6 +1110,7 @@ M.AssociateResourceTypesOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -1091,6 +1121,7 @@ M.ConflictException = {
 
 M.NoSuchConfigurationRecorderException = {
     type = "structure",
+    id = "NoSuchConfigurationRecorderException",
     error = "client",
     members = {
         message = {
@@ -1101,6 +1132,7 @@ M.NoSuchConfigurationRecorderException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -1119,6 +1151,7 @@ M.ConfigurationItemStatus = {
 
 M.BaseConfigurationItem = {
     type = "structure",
+    id = "BaseConfigurationItem",
     members = {
         version = {
             type = "string",
@@ -1175,6 +1208,7 @@ M.BaseConfigurationItem = {
 
 M.BatchGetAggregateResourceConfigInput = {
     type = "structure",
+    id = "BatchGetAggregateResourceConfigInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -1194,6 +1228,7 @@ M.BatchGetAggregateResourceConfigInput = {
 
 M.BatchGetAggregateResourceConfigOutput = {
     type = "structure",
+    id = "BatchGetAggregateResourceConfigOutput",
     members = {
         BaseConfigurationItems = {
             type = "list",
@@ -1208,6 +1243,7 @@ M.BatchGetAggregateResourceConfigOutput = {
 
 M.NoSuchConfigurationAggregatorException = {
     type = "structure",
+    id = "NoSuchConfigurationAggregatorException",
     error = "client",
     members = {
         message = {
@@ -1218,6 +1254,7 @@ M.NoSuchConfigurationAggregatorException = {
 
 M.ResourceKey = {
     type = "structure",
+    id = "ResourceKey",
     members = {
         resourceType = {
             type = "string",
@@ -1236,6 +1273,7 @@ M.ResourceKey = {
 
 M.BatchGetResourceConfigInput = {
     type = "structure",
+    id = "BatchGetResourceConfigInput",
     members = {
         resourceKeys = {
             type = "list",
@@ -1249,6 +1287,7 @@ M.BatchGetResourceConfigInput = {
 
 M.BatchGetResourceConfigOutput = {
     type = "structure",
+    id = "BatchGetResourceConfigOutput",
     members = {
         baseConfigurationItems = {
             type = "list",
@@ -1263,6 +1302,7 @@ M.BatchGetResourceConfigOutput = {
 
 M.NoAvailableConfigurationRecorderException = {
     type = "structure",
+    id = "NoAvailableConfigurationRecorderException",
     error = "client",
     members = {
         message = {
@@ -1278,6 +1318,7 @@ M.ChronologicalOrder = {
 
 M.ComplianceByConfigRule = {
     type = "structure",
+    id = "ComplianceByConfigRule",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -1288,6 +1329,7 @@ M.ComplianceByConfigRule = {
 
 M.ComplianceByResource = {
     type = "structure",
+    id = "ComplianceByResource",
     members = {
         ResourceType = {
             type = "string",
@@ -1301,6 +1343,7 @@ M.ComplianceByResource = {
 
 M.ComplianceSummaryByResourceType = {
     type = "structure",
+    id = "ComplianceSummaryByResourceType",
     members = {
         ResourceType = {
             type = "string",
@@ -1317,6 +1360,7 @@ M.DeliveryStatus = {
 
 M.ConfigExportDeliveryInfo = {
     type = "structure",
+    id = "ConfigExportDeliveryInfo",
     members = {
         lastStatus = {
             type = "string",
@@ -1348,6 +1392,7 @@ M.ConfigRuleState = {
 
 M.EvaluationModeConfiguration = {
     type = "structure",
+    id = "EvaluationModeConfiguration",
     members = {
         Mode = {
             type = "string",
@@ -1365,6 +1410,7 @@ M.MaximumExecutionFrequency = {
 
 M.Scope = {
     type = "structure",
+    id = "Scope",
     members = {
         ComplianceResourceTypes = {
             type = "list",
@@ -1384,6 +1430,7 @@ M.Scope = {
 
 M.CustomPolicyDetails = {
     type = "structure",
+    id = "CustomPolicyDetails",
     members = {
         PolicyRuntime = {
             type = "string",
@@ -1425,6 +1472,7 @@ M.MessageType = {
 
 M.SourceDetail = {
     type = "structure",
+    id = "SourceDetail",
     members = {
         EventSource = {
             type = "string",
@@ -1440,6 +1488,7 @@ M.SourceDetail = {
 
 M.Source = {
     type = "structure",
+    id = "Source",
     members = {
         Owner = {
             type = "string",
@@ -1460,6 +1509,7 @@ M.Source = {
 
 M.ConfigRule = {
     type = "structure",
+    id = "ConfigRule",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -1498,6 +1548,7 @@ M.ConfigRule = {
 
 M.ConfigRuleComplianceFilters = {
     type = "structure",
+    id = "ConfigRuleComplianceFilters",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -1516,6 +1567,7 @@ M.ConfigRuleComplianceFilters = {
 
 M.ConfigRuleComplianceSummaryFilters = {
     type = "structure",
+    id = "ConfigRuleComplianceSummaryFilters",
     members = {
         AccountId = {
             type = "string",
@@ -1533,6 +1585,7 @@ M.ConfigRuleComplianceSummaryGroupKey = {
 
 M.ConfigRuleEvaluationStatus = {
     type = "structure",
+    id = "ConfigRuleEvaluationStatus",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -1587,6 +1640,7 @@ M.ConfigRuleEvaluationStatus = {
 
 M.ConfigSnapshotDeliveryProperties = {
     type = "structure",
+    id = "ConfigSnapshotDeliveryProperties",
     members = {
         deliveryFrequency = {
             type = "string",
@@ -1596,6 +1650,7 @@ M.ConfigSnapshotDeliveryProperties = {
 
 M.ConfigStreamDeliveryInfo = {
     type = "structure",
+    id = "ConfigStreamDeliveryInfo",
     members = {
         lastStatus = {
             type = "string",
@@ -1614,6 +1669,7 @@ M.ConfigStreamDeliveryInfo = {
 
 M.OrganizationAggregationSource = {
     type = "structure",
+    id = "OrganizationAggregationSource",
     members = {
         RoleArn = {
             type = "string",
@@ -1636,6 +1692,7 @@ M.OrganizationAggregationSource = {
 
 M.ConfigurationAggregator = {
     type = "structure",
+    id = "ConfigurationAggregator",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -1663,6 +1720,7 @@ M.ConfigurationAggregator = {
 
 M.Relationship = {
     type = "structure",
+    id = "Relationship",
     members = {
         resourceType = {
             type = "string",
@@ -1681,6 +1739,7 @@ M.Relationship = {
 
 M.ConfigurationItem = {
     type = "structure",
+    id = "ConfigurationItem",
     members = {
         version = {
             type = "string",
@@ -1757,6 +1816,7 @@ M.ConfigurationRecorderFilterName = {
 
 M.ConfigurationRecorderFilter = {
     type = "structure",
+    id = "ConfigurationRecorderFilter",
     members = {
         filterName = {
             type = "string",
@@ -1777,6 +1837,7 @@ M.RecorderStatus = {
 
 M.ConfigurationRecorderStatus = {
     type = "structure",
+    id = "ConfigurationRecorderStatus",
     members = {
         arn = {
             type = "string",
@@ -1816,6 +1877,7 @@ M.ConfigurationRecorderStatus = {
 
 M.ConfigurationRecorderSummary = {
     type = "structure",
+    id = "ConfigurationRecorderSummary",
     members = {
         arn = {
             type = "string",
@@ -1843,6 +1905,7 @@ M.ConfigurationRecorderSummary = {
 
 M.ConformancePackComplianceFilters = {
     type = "structure",
+    id = "ConformancePackComplianceFilters",
     members = {
         ConfigRuleNames = {
             type = "list",
@@ -1856,6 +1919,7 @@ M.ConformancePackComplianceFilters = {
 
 M.ConformancePackComplianceScore = {
     type = "structure",
+    id = "ConformancePackComplianceScore",
     members = {
         Score = {
             type = "string",
@@ -1871,6 +1935,7 @@ M.ConformancePackComplianceScore = {
 
 M.ConformancePackComplianceScoresFilters = {
     type = "structure",
+    id = "ConformancePackComplianceScoresFilters",
     members = {
         ConformancePackNames = {
             type = "list",
@@ -1884,6 +1949,7 @@ M.ConformancePackComplianceScoresFilters = {
 
 M.ConformancePackComplianceSummary = {
     type = "structure",
+    id = "ConformancePackComplianceSummary",
     members = {
         ConformancePackName = {
             type = "string",
@@ -1902,6 +1968,7 @@ M.ConformancePackComplianceSummary = {
 
 M.ConformancePackInputParameter = {
     type = "structure",
+    id = "ConformancePackInputParameter",
     members = {
         ParameterName = {
             type = "string",
@@ -1920,6 +1987,7 @@ M.ConformancePackInputParameter = {
 
 M.TemplateSSMDocumentDetails = {
     type = "structure",
+    id = "TemplateSSMDocumentDetails",
     members = {
         DocumentName = {
             type = "string",
@@ -1935,6 +2003,7 @@ M.TemplateSSMDocumentDetails = {
 
 M.ConformancePackDetail = {
     type = "structure",
+    id = "ConformancePackDetail",
     members = {
         ConformancePackName = {
             type = "string",
@@ -1976,6 +2045,7 @@ M.ConformancePackDetail = {
 
 M.ConformancePackEvaluationFilters = {
     type = "structure",
+    id = "ConformancePackEvaluationFilters",
     members = {
         ConfigRuleNames = {
             type = "list",
@@ -1996,6 +2066,7 @@ M.ConformancePackEvaluationFilters = {
 
 M.ConformancePackEvaluationResult = {
     type = "structure",
+    id = "ConformancePackEvaluationResult",
     members = {
         ComplianceType = {
             type = "string",
@@ -2026,6 +2097,7 @@ M.ConformancePackEvaluationResult = {
 
 M.ConformancePackRuleCompliance = {
     type = "structure",
+    id = "ConformancePackRuleCompliance",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -2050,6 +2122,7 @@ M.ConformancePackState = {
 
 M.ConformancePackStatusDetail = {
     type = "structure",
+    id = "ConformancePackStatusDetail",
     members = {
         ConformancePackName = {
             type = "string",
@@ -2098,6 +2171,7 @@ M.ConformancePackStatusDetail = {
 
 M.ConformancePackTemplateValidationException = {
     type = "structure",
+    id = "ConformancePackTemplateValidationException",
     error = "client",
     members = {
         message = {
@@ -2108,6 +2182,7 @@ M.ConformancePackTemplateValidationException = {
 
 M.DeleteAggregationAuthorizationInput = {
     type = "structure",
+    id = "DeleteAggregationAuthorizationInput",
     members = {
         AuthorizedAccountId = {
             type = "string",
@@ -2126,10 +2201,12 @@ M.DeleteAggregationAuthorizationInput = {
 
 M.DeleteAggregationAuthorizationOutput = {
     type = "structure",
+    id = "DeleteAggregationAuthorizationOutput",
 }
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -2140,6 +2217,7 @@ M.InvalidParameterValueException = {
 
 M.DeleteConfigRuleInput = {
     type = "structure",
+    id = "DeleteConfigRuleInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -2152,10 +2230,12 @@ M.DeleteConfigRuleInput = {
 
 M.DeleteConfigRuleOutput = {
     type = "structure",
+    id = "DeleteConfigRuleOutput",
 }
 
 M.NoSuchConfigRuleException = {
     type = "structure",
+    id = "NoSuchConfigRuleException",
     error = "client",
     members = {
         message = {
@@ -2166,6 +2246,7 @@ M.NoSuchConfigRuleException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -2176,6 +2257,7 @@ M.ResourceInUseException = {
 
 M.DeleteConfigurationAggregatorInput = {
     type = "structure",
+    id = "DeleteConfigurationAggregatorInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -2188,10 +2270,12 @@ M.DeleteConfigurationAggregatorInput = {
 
 M.DeleteConfigurationAggregatorOutput = {
     type = "structure",
+    id = "DeleteConfigurationAggregatorOutput",
 }
 
 M.DeleteConfigurationRecorderInput = {
     type = "structure",
+    id = "DeleteConfigurationRecorderInput",
     members = {
         ConfigurationRecorderName = {
             type = "string",
@@ -2204,10 +2288,12 @@ M.DeleteConfigurationRecorderInput = {
 
 M.DeleteConfigurationRecorderOutput = {
     type = "structure",
+    id = "DeleteConfigurationRecorderOutput",
 }
 
 M.UnmodifiableEntityException = {
     type = "structure",
+    id = "UnmodifiableEntityException",
     error = "client",
     members = {
         message = {
@@ -2218,6 +2304,7 @@ M.UnmodifiableEntityException = {
 
 M.DeleteConformancePackInput = {
     type = "structure",
+    id = "DeleteConformancePackInput",
     members = {
         ConformancePackName = {
             type = "string",
@@ -2230,10 +2317,12 @@ M.DeleteConformancePackInput = {
 
 M.DeleteConformancePackOutput = {
     type = "structure",
+    id = "DeleteConformancePackOutput",
 }
 
 M.NoSuchConformancePackException = {
     type = "structure",
+    id = "NoSuchConformancePackException",
     error = "client",
     members = {
         message = {
@@ -2244,6 +2333,7 @@ M.NoSuchConformancePackException = {
 
 M.DeleteDeliveryChannelInput = {
     type = "structure",
+    id = "DeleteDeliveryChannelInput",
     members = {
         DeliveryChannelName = {
             type = "string",
@@ -2256,10 +2346,12 @@ M.DeleteDeliveryChannelInput = {
 
 M.DeleteDeliveryChannelOutput = {
     type = "structure",
+    id = "DeleteDeliveryChannelOutput",
 }
 
 M.LastDeliveryChannelDeleteFailedException = {
     type = "structure",
+    id = "LastDeliveryChannelDeleteFailedException",
     error = "client",
     members = {
         message = {
@@ -2270,6 +2362,7 @@ M.LastDeliveryChannelDeleteFailedException = {
 
 M.NoSuchDeliveryChannelException = {
     type = "structure",
+    id = "NoSuchDeliveryChannelException",
     error = "client",
     members = {
         message = {
@@ -2280,6 +2373,7 @@ M.NoSuchDeliveryChannelException = {
 
 M.DeleteEvaluationResultsInput = {
     type = "structure",
+    id = "DeleteEvaluationResultsInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -2292,10 +2386,12 @@ M.DeleteEvaluationResultsInput = {
 
 M.DeleteEvaluationResultsOutput = {
     type = "structure",
+    id = "DeleteEvaluationResultsOutput",
 }
 
 M.DeleteOrganizationConfigRuleInput = {
     type = "structure",
+    id = "DeleteOrganizationConfigRuleInput",
     members = {
         OrganizationConfigRuleName = {
             type = "string",
@@ -2308,10 +2404,12 @@ M.DeleteOrganizationConfigRuleInput = {
 
 M.DeleteOrganizationConfigRuleOutput = {
     type = "structure",
+    id = "DeleteOrganizationConfigRuleOutput",
 }
 
 M.NoSuchOrganizationConfigRuleException = {
     type = "structure",
+    id = "NoSuchOrganizationConfigRuleException",
     error = "client",
     members = {
         message = {
@@ -2322,6 +2420,7 @@ M.NoSuchOrganizationConfigRuleException = {
 
 M.OrganizationAccessDeniedException = {
     type = "structure",
+    id = "OrganizationAccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -2332,6 +2431,7 @@ M.OrganizationAccessDeniedException = {
 
 M.DeleteOrganizationConformancePackInput = {
     type = "structure",
+    id = "DeleteOrganizationConformancePackInput",
     members = {
         OrganizationConformancePackName = {
             type = "string",
@@ -2344,10 +2444,12 @@ M.DeleteOrganizationConformancePackInput = {
 
 M.DeleteOrganizationConformancePackOutput = {
     type = "structure",
+    id = "DeleteOrganizationConformancePackOutput",
 }
 
 M.NoSuchOrganizationConformancePackException = {
     type = "structure",
+    id = "NoSuchOrganizationConformancePackException",
     error = "client",
     members = {
         message = {
@@ -2358,6 +2460,7 @@ M.NoSuchOrganizationConformancePackException = {
 
 M.DeletePendingAggregationRequestInput = {
     type = "structure",
+    id = "DeletePendingAggregationRequestInput",
     members = {
         RequesterAccountId = {
             type = "string",
@@ -2376,10 +2479,12 @@ M.DeletePendingAggregationRequestInput = {
 
 M.DeletePendingAggregationRequestOutput = {
     type = "structure",
+    id = "DeletePendingAggregationRequestOutput",
 }
 
 M.DeleteRemediationConfigurationInput = {
     type = "structure",
+    id = "DeleteRemediationConfigurationInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -2395,10 +2500,12 @@ M.DeleteRemediationConfigurationInput = {
 
 M.DeleteRemediationConfigurationOutput = {
     type = "structure",
+    id = "DeleteRemediationConfigurationOutput",
 }
 
 M.InsufficientPermissionsException = {
     type = "structure",
+    id = "InsufficientPermissionsException",
     error = "client",
     members = {
         message = {
@@ -2409,6 +2516,7 @@ M.InsufficientPermissionsException = {
 
 M.NoSuchRemediationConfigurationException = {
     type = "structure",
+    id = "NoSuchRemediationConfigurationException",
     error = "client",
     members = {
         message = {
@@ -2419,6 +2527,7 @@ M.NoSuchRemediationConfigurationException = {
 
 M.RemediationInProgressException = {
     type = "structure",
+    id = "RemediationInProgressException",
     error = "client",
     members = {
         message = {
@@ -2429,6 +2538,7 @@ M.RemediationInProgressException = {
 
 M.RemediationExceptionResourceKey = {
     type = "structure",
+    id = "RemediationExceptionResourceKey",
     members = {
         ResourceType = {
             type = "string",
@@ -2441,6 +2551,7 @@ M.RemediationExceptionResourceKey = {
 
 M.DeleteRemediationExceptionsInput = {
     type = "structure",
+    id = "DeleteRemediationExceptionsInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -2460,6 +2571,7 @@ M.DeleteRemediationExceptionsInput = {
 
 M.FailedDeleteRemediationExceptionsBatch = {
     type = "structure",
+    id = "FailedDeleteRemediationExceptionsBatch",
     members = {
         FailureMessage = {
             type = "string",
@@ -2473,6 +2585,7 @@ M.FailedDeleteRemediationExceptionsBatch = {
 
 M.DeleteRemediationExceptionsOutput = {
     type = "structure",
+    id = "DeleteRemediationExceptionsOutput",
     members = {
         FailedBatches = {
             type = "list",
@@ -2483,6 +2596,7 @@ M.DeleteRemediationExceptionsOutput = {
 
 M.NoSuchRemediationExceptionException = {
     type = "structure",
+    id = "NoSuchRemediationExceptionException",
     error = "client",
     members = {
         message = {
@@ -2493,6 +2607,7 @@ M.NoSuchRemediationExceptionException = {
 
 M.DeleteResourceConfigInput = {
     type = "structure",
+    id = "DeleteResourceConfigInput",
     members = {
         ResourceType = {
             type = "string",
@@ -2511,10 +2626,12 @@ M.DeleteResourceConfigInput = {
 
 M.DeleteResourceConfigOutput = {
     type = "structure",
+    id = "DeleteResourceConfigOutput",
 }
 
 M.NoRunningConfigurationRecorderException = {
     type = "structure",
+    id = "NoRunningConfigurationRecorderException",
     error = "client",
     members = {
         message = {
@@ -2525,6 +2642,7 @@ M.NoRunningConfigurationRecorderException = {
 
 M.DeleteRetentionConfigurationInput = {
     type = "structure",
+    id = "DeleteRetentionConfigurationInput",
     members = {
         RetentionConfigurationName = {
             type = "string",
@@ -2537,10 +2655,12 @@ M.DeleteRetentionConfigurationInput = {
 
 M.DeleteRetentionConfigurationOutput = {
     type = "structure",
+    id = "DeleteRetentionConfigurationOutput",
 }
 
 M.NoSuchRetentionConfigurationException = {
     type = "structure",
+    id = "NoSuchRetentionConfigurationException",
     error = "client",
     members = {
         message = {
@@ -2551,6 +2671,7 @@ M.NoSuchRetentionConfigurationException = {
 
 M.DeleteServiceLinkedConfigurationRecorderInput = {
     type = "structure",
+    id = "DeleteServiceLinkedConfigurationRecorderInput",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -2563,6 +2684,7 @@ M.DeleteServiceLinkedConfigurationRecorderInput = {
 
 M.DeleteServiceLinkedConfigurationRecorderOutput = {
     type = "structure",
+    id = "DeleteServiceLinkedConfigurationRecorderOutput",
     members = {
         Arn = {
             type = "string",
@@ -2581,6 +2703,7 @@ M.DeleteServiceLinkedConfigurationRecorderOutput = {
 
 M.DeleteStoredQueryInput = {
     type = "structure",
+    id = "DeleteStoredQueryInput",
     members = {
         QueryName = {
             type = "string",
@@ -2593,10 +2716,12 @@ M.DeleteStoredQueryInput = {
 
 M.DeleteStoredQueryOutput = {
     type = "structure",
+    id = "DeleteStoredQueryOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2607,6 +2732,7 @@ M.ResourceNotFoundException = {
 
 M.DeliverConfigSnapshotInput = {
     type = "structure",
+    id = "DeliverConfigSnapshotInput",
     members = {
         deliveryChannelName = {
             type = "string",
@@ -2619,6 +2745,7 @@ M.DeliverConfigSnapshotInput = {
 
 M.DeliverConfigSnapshotOutput = {
     type = "structure",
+    id = "DeliverConfigSnapshotOutput",
     members = {
         configSnapshotId = {
             type = "string",
@@ -2628,6 +2755,7 @@ M.DeliverConfigSnapshotOutput = {
 
 M.DeliveryChannel = {
     type = "structure",
+    id = "DeliveryChannel",
     members = {
         name = {
             type = "string",
@@ -2650,6 +2778,7 @@ M.DeliveryChannel = {
 
 M.DeliveryChannelStatus = {
     type = "structure",
+    id = "DeliveryChannelStatus",
     members = {
         name = {
             type = "string",
@@ -2662,6 +2791,7 @@ M.DeliveryChannelStatus = {
 
 M.DescribeAggregateComplianceByConfigRulesInput = {
     type = "structure",
+    id = "DescribeAggregateComplianceByConfigRulesInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -2684,6 +2814,7 @@ M.DescribeAggregateComplianceByConfigRulesInput = {
 
 M.DescribeAggregateComplianceByConfigRulesOutput = {
     type = "structure",
+    id = "DescribeAggregateComplianceByConfigRulesOutput",
     members = {
         AggregateComplianceByConfigRules = {
             type = "list",
@@ -2697,6 +2828,7 @@ M.DescribeAggregateComplianceByConfigRulesOutput = {
 
 M.InvalidLimitException = {
     type = "structure",
+    id = "InvalidLimitException",
     error = "client",
     members = {
         message = {
@@ -2707,6 +2839,7 @@ M.InvalidLimitException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -2717,6 +2850,7 @@ M.InvalidNextTokenException = {
 
 M.DescribeAggregateComplianceByConformancePacksInput = {
     type = "structure",
+    id = "DescribeAggregateComplianceByConformancePacksInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -2739,6 +2873,7 @@ M.DescribeAggregateComplianceByConformancePacksInput = {
 
 M.DescribeAggregateComplianceByConformancePacksOutput = {
     type = "structure",
+    id = "DescribeAggregateComplianceByConformancePacksOutput",
     members = {
         AggregateComplianceByConformancePacks = {
             type = "list",
@@ -2752,6 +2887,7 @@ M.DescribeAggregateComplianceByConformancePacksOutput = {
 
 M.DescribeAggregationAuthorizationsInput = {
     type = "structure",
+    id = "DescribeAggregationAuthorizationsInput",
     members = {
         Limit = {
             type = "integer",
@@ -2767,6 +2903,7 @@ M.DescribeAggregationAuthorizationsInput = {
 
 M.DescribeAggregationAuthorizationsOutput = {
     type = "structure",
+    id = "DescribeAggregationAuthorizationsOutput",
     members = {
         AggregationAuthorizations = {
             type = "list",
@@ -2780,6 +2917,7 @@ M.DescribeAggregationAuthorizationsOutput = {
 
 M.DescribeComplianceByConfigRuleInput = {
     type = "structure",
+    id = "DescribeComplianceByConfigRuleInput",
     members = {
         ConfigRuleNames = {
             type = "list",
@@ -2797,6 +2935,7 @@ M.DescribeComplianceByConfigRuleInput = {
 
 M.DescribeComplianceByConfigRuleOutput = {
     type = "structure",
+    id = "DescribeComplianceByConfigRuleOutput",
     members = {
         ComplianceByConfigRules = {
             type = "list",
@@ -2810,6 +2949,7 @@ M.DescribeComplianceByConfigRuleOutput = {
 
 M.DescribeComplianceByResourceInput = {
     type = "structure",
+    id = "DescribeComplianceByResourceInput",
     members = {
         ResourceType = {
             type = "string",
@@ -2835,6 +2975,7 @@ M.DescribeComplianceByResourceInput = {
 
 M.DescribeComplianceByResourceOutput = {
     type = "structure",
+    id = "DescribeComplianceByResourceOutput",
     members = {
         ComplianceByResources = {
             type = "list",
@@ -2848,6 +2989,7 @@ M.DescribeComplianceByResourceOutput = {
 
 M.DescribeConfigRuleEvaluationStatusInput = {
     type = "structure",
+    id = "DescribeConfigRuleEvaluationStatusInput",
     members = {
         ConfigRuleNames = {
             type = "list",
@@ -2867,6 +3009,7 @@ M.DescribeConfigRuleEvaluationStatusInput = {
 
 M.DescribeConfigRuleEvaluationStatusOutput = {
     type = "structure",
+    id = "DescribeConfigRuleEvaluationStatusOutput",
     members = {
         ConfigRulesEvaluationStatus = {
             type = "list",
@@ -2880,6 +3023,7 @@ M.DescribeConfigRuleEvaluationStatusOutput = {
 
 M.DescribeConfigRulesFilters = {
     type = "structure",
+    id = "DescribeConfigRulesFilters",
     members = {
         EvaluationMode = {
             type = "string",
@@ -2889,6 +3033,7 @@ M.DescribeConfigRulesFilters = {
 
 M.DescribeConfigRulesInput = {
     type = "structure",
+    id = "DescribeConfigRulesInput",
     members = {
         ConfigRuleNames = {
             type = "list",
@@ -2903,6 +3048,7 @@ M.DescribeConfigRulesInput = {
 
 M.DescribeConfigRulesOutput = {
     type = "structure",
+    id = "DescribeConfigRulesOutput",
     members = {
         ConfigRules = {
             type = "list",
@@ -2916,6 +3062,7 @@ M.DescribeConfigRulesOutput = {
 
 M.DescribeConfigurationAggregatorsInput = {
     type = "structure",
+    id = "DescribeConfigurationAggregatorsInput",
     members = {
         ConfigurationAggregatorNames = {
             type = "list",
@@ -2935,6 +3082,7 @@ M.DescribeConfigurationAggregatorsInput = {
 
 M.DescribeConfigurationAggregatorsOutput = {
     type = "structure",
+    id = "DescribeConfigurationAggregatorsOutput",
     members = {
         ConfigurationAggregators = {
             type = "list",
@@ -2948,6 +3096,7 @@ M.DescribeConfigurationAggregatorsOutput = {
 
 M.DescribeConfigurationAggregatorSourcesStatusInput = {
     type = "structure",
+    id = "DescribeConfigurationAggregatorSourcesStatusInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -2973,6 +3122,7 @@ M.DescribeConfigurationAggregatorSourcesStatusInput = {
 
 M.DescribeConfigurationAggregatorSourcesStatusOutput = {
     type = "structure",
+    id = "DescribeConfigurationAggregatorSourcesStatusOutput",
     members = {
         AggregatedSourceStatusList = {
             type = "list",
@@ -2986,6 +3136,7 @@ M.DescribeConfigurationAggregatorSourcesStatusOutput = {
 
 M.DescribeConfigurationRecordersInput = {
     type = "structure",
+    id = "DescribeConfigurationRecordersInput",
     members = {
         ConfigurationRecorderNames = {
             type = "list",
@@ -3002,6 +3153,7 @@ M.DescribeConfigurationRecordersInput = {
 
 M.DescribeConfigurationRecordersOutput = {
     type = "structure",
+    id = "DescribeConfigurationRecordersOutput",
     members = {
         ConfigurationRecorders = {
             type = "list",
@@ -3012,6 +3164,7 @@ M.DescribeConfigurationRecordersOutput = {
 
 M.DescribeConfigurationRecorderStatusInput = {
     type = "structure",
+    id = "DescribeConfigurationRecorderStatusInput",
     members = {
         ConfigurationRecorderNames = {
             type = "list",
@@ -3028,6 +3181,7 @@ M.DescribeConfigurationRecorderStatusInput = {
 
 M.DescribeConfigurationRecorderStatusOutput = {
     type = "structure",
+    id = "DescribeConfigurationRecorderStatusOutput",
     members = {
         ConfigurationRecordersStatus = {
             type = "list",
@@ -3038,6 +3192,7 @@ M.DescribeConfigurationRecorderStatusOutput = {
 
 M.DescribeConformancePackComplianceInput = {
     type = "structure",
+    id = "DescribeConformancePackComplianceInput",
     members = {
         ConformancePackName = {
             type = "string",
@@ -3060,6 +3215,7 @@ M.DescribeConformancePackComplianceInput = {
 
 M.DescribeConformancePackComplianceOutput = {
     type = "structure",
+    id = "DescribeConformancePackComplianceOutput",
     members = {
         ConformancePackName = {
             type = "string",
@@ -3082,6 +3238,7 @@ M.DescribeConformancePackComplianceOutput = {
 
 M.NoSuchConfigRuleInConformancePackException = {
     type = "structure",
+    id = "NoSuchConfigRuleInConformancePackException",
     error = "client",
     members = {
         message = {
@@ -3092,6 +3249,7 @@ M.NoSuchConfigRuleInConformancePackException = {
 
 M.DescribeConformancePacksInput = {
     type = "structure",
+    id = "DescribeConformancePacksInput",
     members = {
         ConformancePackNames = {
             type = "list",
@@ -3111,6 +3269,7 @@ M.DescribeConformancePacksInput = {
 
 M.DescribeConformancePacksOutput = {
     type = "structure",
+    id = "DescribeConformancePacksOutput",
     members = {
         ConformancePackDetails = {
             type = "list",
@@ -3124,6 +3283,7 @@ M.DescribeConformancePacksOutput = {
 
 M.DescribeConformancePackStatusInput = {
     type = "structure",
+    id = "DescribeConformancePackStatusInput",
     members = {
         ConformancePackNames = {
             type = "list",
@@ -3143,6 +3303,7 @@ M.DescribeConformancePackStatusInput = {
 
 M.DescribeConformancePackStatusOutput = {
     type = "structure",
+    id = "DescribeConformancePackStatusOutput",
     members = {
         ConformancePackStatusDetails = {
             type = "list",
@@ -3156,6 +3317,7 @@ M.DescribeConformancePackStatusOutput = {
 
 M.DescribeDeliveryChannelsInput = {
     type = "structure",
+    id = "DescribeDeliveryChannelsInput",
     members = {
         DeliveryChannelNames = {
             type = "list",
@@ -3166,6 +3328,7 @@ M.DescribeDeliveryChannelsInput = {
 
 M.DescribeDeliveryChannelsOutput = {
     type = "structure",
+    id = "DescribeDeliveryChannelsOutput",
     members = {
         DeliveryChannels = {
             type = "list",
@@ -3176,6 +3339,7 @@ M.DescribeDeliveryChannelsOutput = {
 
 M.DescribeDeliveryChannelStatusInput = {
     type = "structure",
+    id = "DescribeDeliveryChannelStatusInput",
     members = {
         DeliveryChannelNames = {
             type = "list",
@@ -3186,6 +3350,7 @@ M.DescribeDeliveryChannelStatusInput = {
 
 M.DescribeDeliveryChannelStatusOutput = {
     type = "structure",
+    id = "DescribeDeliveryChannelStatusOutput",
     members = {
         DeliveryChannelsStatus = {
             type = "list",
@@ -3196,6 +3361,7 @@ M.DescribeDeliveryChannelStatusOutput = {
 
 M.DescribeOrganizationConfigRulesInput = {
     type = "structure",
+    id = "DescribeOrganizationConfigRulesInput",
     members = {
         OrganizationConfigRuleNames = {
             type = "list",
@@ -3220,6 +3386,7 @@ M.OrganizationConfigRuleTriggerTypeNoSN = {
 
 M.OrganizationCustomPolicyRuleMetadataNoPolicy = {
     type = "structure",
+    id = "OrganizationCustomPolicyRuleMetadataNoPolicy",
     members = {
         Description = {
             type = "string",
@@ -3265,6 +3432,7 @@ M.OrganizationConfigRuleTriggerType = {
 
 M.OrganizationCustomRuleMetadata = {
     type = "structure",
+    id = "OrganizationCustomRuleMetadata",
     members = {
         Description = {
             type = "string",
@@ -3306,6 +3474,7 @@ M.OrganizationCustomRuleMetadata = {
 
 M.OrganizationManagedRuleMetadata = {
     type = "structure",
+    id = "OrganizationManagedRuleMetadata",
     members = {
         Description = {
             type = "string",
@@ -3340,6 +3509,7 @@ M.OrganizationManagedRuleMetadata = {
 
 M.OrganizationConfigRule = {
     type = "structure",
+    id = "OrganizationConfigRule",
     members = {
         OrganizationConfigRuleName = {
             type = "string",
@@ -3368,6 +3538,7 @@ M.OrganizationConfigRule = {
 
 M.DescribeOrganizationConfigRulesOutput = {
     type = "structure",
+    id = "DescribeOrganizationConfigRulesOutput",
     members = {
         OrganizationConfigRules = {
             type = "list",
@@ -3381,6 +3552,7 @@ M.DescribeOrganizationConfigRulesOutput = {
 
 M.DescribeOrganizationConfigRuleStatusesInput = {
     type = "structure",
+    id = "DescribeOrganizationConfigRuleStatusesInput",
     members = {
         OrganizationConfigRuleNames = {
             type = "list",
@@ -3412,6 +3584,7 @@ M.OrganizationRuleStatus = {
 
 M.OrganizationConfigRuleStatus = {
     type = "structure",
+    id = "OrganizationConfigRuleStatus",
     members = {
         OrganizationConfigRuleName = {
             type = "string",
@@ -3439,6 +3612,7 @@ M.OrganizationConfigRuleStatus = {
 
 M.DescribeOrganizationConfigRuleStatusesOutput = {
     type = "structure",
+    id = "DescribeOrganizationConfigRuleStatusesOutput",
     members = {
         OrganizationConfigRuleStatuses = {
             type = "list",
@@ -3452,6 +3626,7 @@ M.DescribeOrganizationConfigRuleStatusesOutput = {
 
 M.DescribeOrganizationConformancePacksInput = {
     type = "structure",
+    id = "DescribeOrganizationConformancePacksInput",
     members = {
         OrganizationConformancePackNames = {
             type = "list",
@@ -3471,6 +3646,7 @@ M.DescribeOrganizationConformancePacksInput = {
 
 M.OrganizationConformancePack = {
     type = "structure",
+    id = "OrganizationConformancePack",
     members = {
         OrganizationConformancePackName = {
             type = "string",
@@ -3509,6 +3685,7 @@ M.OrganizationConformancePack = {
 
 M.DescribeOrganizationConformancePacksOutput = {
     type = "structure",
+    id = "DescribeOrganizationConformancePacksOutput",
     members = {
         OrganizationConformancePacks = {
             type = "list",
@@ -3522,6 +3699,7 @@ M.DescribeOrganizationConformancePacksOutput = {
 
 M.DescribeOrganizationConformancePackStatusesInput = {
     type = "structure",
+    id = "DescribeOrganizationConformancePackStatusesInput",
     members = {
         OrganizationConformancePackNames = {
             type = "list",
@@ -3553,6 +3731,7 @@ M.OrganizationResourceStatus = {
 
 M.OrganizationConformancePackStatus = {
     type = "structure",
+    id = "OrganizationConformancePackStatus",
     members = {
         OrganizationConformancePackName = {
             type = "string",
@@ -3580,6 +3759,7 @@ M.OrganizationConformancePackStatus = {
 
 M.DescribeOrganizationConformancePackStatusesOutput = {
     type = "structure",
+    id = "DescribeOrganizationConformancePackStatusesOutput",
     members = {
         OrganizationConformancePackStatuses = {
             type = "list",
@@ -3593,6 +3773,7 @@ M.DescribeOrganizationConformancePackStatusesOutput = {
 
 M.DescribePendingAggregationRequestsInput = {
     type = "structure",
+    id = "DescribePendingAggregationRequestsInput",
     members = {
         Limit = {
             type = "integer",
@@ -3608,6 +3789,7 @@ M.DescribePendingAggregationRequestsInput = {
 
 M.PendingAggregationRequest = {
     type = "structure",
+    id = "PendingAggregationRequest",
     members = {
         RequesterAccountId = {
             type = "string",
@@ -3620,6 +3802,7 @@ M.PendingAggregationRequest = {
 
 M.DescribePendingAggregationRequestsOutput = {
     type = "structure",
+    id = "DescribePendingAggregationRequestsOutput",
     members = {
         PendingAggregationRequests = {
             type = "list",
@@ -3633,6 +3816,7 @@ M.DescribePendingAggregationRequestsOutput = {
 
 M.DescribeRemediationConfigurationsInput = {
     type = "structure",
+    id = "DescribeRemediationConfigurationsInput",
     members = {
         ConfigRuleNames = {
             type = "list",
@@ -3646,6 +3830,7 @@ M.DescribeRemediationConfigurationsInput = {
 
 M.SsmControls = {
     type = "structure",
+    id = "SsmControls",
     members = {
         ConcurrentExecutionRatePercentage = {
             type = "integer",
@@ -3658,6 +3843,7 @@ M.SsmControls = {
 
 M.ExecutionControls = {
     type = "structure",
+    id = "ExecutionControls",
     members = {
         SsmControls = M.SsmControls,
     },
@@ -3669,6 +3855,7 @@ M.ResourceValueType = {
 
 M.ResourceValue = {
     type = "structure",
+    id = "ResourceValue",
     members = {
         Value = {
             type = "string",
@@ -3681,6 +3868,7 @@ M.ResourceValue = {
 
 M.StaticValue = {
     type = "structure",
+    id = "StaticValue",
     members = {
         Values = {
             type = "list",
@@ -3694,6 +3882,7 @@ M.StaticValue = {
 
 M.RemediationParameterValue = {
     type = "structure",
+    id = "RemediationParameterValue",
     members = {
         ResourceValue = M.ResourceValue,
         StaticValue = M.StaticValue,
@@ -3706,6 +3895,7 @@ M.RemediationTargetType = {
 
 M.RemediationConfiguration = {
     type = "structure",
+    id = "RemediationConfiguration",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -3760,6 +3950,7 @@ M.RemediationConfiguration = {
 
 M.DescribeRemediationConfigurationsOutput = {
     type = "structure",
+    id = "DescribeRemediationConfigurationsOutput",
     members = {
         RemediationConfigurations = {
             type = "list",
@@ -3770,6 +3961,7 @@ M.DescribeRemediationConfigurationsOutput = {
 
 M.DescribeRemediationExceptionsInput = {
     type = "structure",
+    id = "DescribeRemediationExceptionsInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -3795,6 +3987,7 @@ M.DescribeRemediationExceptionsInput = {
 
 M.RemediationException = {
     type = "structure",
+    id = "RemediationException",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -3825,6 +4018,7 @@ M.RemediationException = {
 
 M.DescribeRemediationExceptionsOutput = {
     type = "structure",
+    id = "DescribeRemediationExceptionsOutput",
     members = {
         RemediationExceptions = {
             type = "list",
@@ -3838,6 +4032,7 @@ M.DescribeRemediationExceptionsOutput = {
 
 M.DescribeRemediationExecutionStatusInput = {
     type = "structure",
+    id = "DescribeRemediationExecutionStatusInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -3880,6 +4075,7 @@ M.RemediationExecutionStepState = {
 
 M.RemediationExecutionStep = {
     type = "structure",
+    id = "RemediationExecutionStep",
     members = {
         Name = {
             type = "string",
@@ -3901,6 +4097,7 @@ M.RemediationExecutionStep = {
 
 M.RemediationExecutionStatus = {
     type = "structure",
+    id = "RemediationExecutionStatus",
     members = {
         ResourceKey = M.ResourceKey,
         State = {
@@ -3921,6 +4118,7 @@ M.RemediationExecutionStatus = {
 
 M.DescribeRemediationExecutionStatusOutput = {
     type = "structure",
+    id = "DescribeRemediationExecutionStatusOutput",
     members = {
         RemediationExecutionStatuses = {
             type = "list",
@@ -3934,6 +4132,7 @@ M.DescribeRemediationExecutionStatusOutput = {
 
 M.DescribeRetentionConfigurationsInput = {
     type = "structure",
+    id = "DescribeRetentionConfigurationsInput",
     members = {
         RetentionConfigurationNames = {
             type = "list",
@@ -3947,6 +4146,7 @@ M.DescribeRetentionConfigurationsInput = {
 
 M.RetentionConfiguration = {
     type = "structure",
+    id = "RetentionConfiguration",
     members = {
         Name = {
             type = "string",
@@ -3965,6 +4165,7 @@ M.RetentionConfiguration = {
 
 M.DescribeRetentionConfigurationsOutput = {
     type = "structure",
+    id = "DescribeRetentionConfigurationsOutput",
     members = {
         RetentionConfigurations = {
             type = "list",
@@ -3978,6 +4179,7 @@ M.DescribeRetentionConfigurationsOutput = {
 
 M.DisassociateResourceTypesInput = {
     type = "structure",
+    id = "DisassociateResourceTypesInput",
     members = {
         ConfigurationRecorderArn = {
             type = "string",
@@ -3997,6 +4199,7 @@ M.DisassociateResourceTypesInput = {
 
 M.DisassociateResourceTypesOutput = {
     type = "structure",
+    id = "DisassociateResourceTypesOutput",
     members = {
         ConfigurationRecorder = setmetatable({ traits = {
             required = true,
@@ -4006,6 +4209,7 @@ M.DisassociateResourceTypesOutput = {
 
 M.Evaluation = {
     type = "structure",
+    id = "Evaluation",
     members = {
         ComplianceResourceType = {
             type = "string",
@@ -4039,6 +4243,7 @@ M.Evaluation = {
 
 M.EvaluationContext = {
     type = "structure",
+    id = "EvaluationContext",
     members = {
         EvaluationContextIdentifier = {
             type = "string",
@@ -4048,6 +4253,7 @@ M.EvaluationContext = {
 
 M.EvaluationResult = {
     type = "structure",
+    id = "EvaluationResult",
     members = {
         EvaluationResultIdentifier = M.EvaluationResultIdentifier,
         ComplianceType = {
@@ -4076,6 +4282,7 @@ M.ResourceEvaluationStatus = {
 
 M.EvaluationStatus = {
     type = "structure",
+    id = "EvaluationStatus",
     members = {
         Status = {
             type = "string",
@@ -4091,6 +4298,7 @@ M.EvaluationStatus = {
 
 M.ExternalEvaluation = {
     type = "structure",
+    id = "ExternalEvaluation",
     members = {
         ComplianceResourceType = {
             type = "string",
@@ -4124,6 +4332,7 @@ M.ExternalEvaluation = {
 
 M.FailedRemediationBatch = {
     type = "structure",
+    id = "FailedRemediationBatch",
     members = {
         FailureMessage = {
             type = "string",
@@ -4137,6 +4346,7 @@ M.FailedRemediationBatch = {
 
 M.FailedRemediationExceptionBatch = {
     type = "structure",
+    id = "FailedRemediationExceptionBatch",
     members = {
         FailureMessage = {
             type = "string",
@@ -4150,6 +4360,7 @@ M.FailedRemediationExceptionBatch = {
 
 M.FieldInfo = {
     type = "structure",
+    id = "FieldInfo",
     members = {
         Name = {
             type = "string",
@@ -4159,6 +4370,7 @@ M.FieldInfo = {
 
 M.GetAggregateComplianceDetailsByConfigRuleInput = {
     type = "structure",
+    id = "GetAggregateComplianceDetailsByConfigRuleInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -4201,6 +4413,7 @@ M.GetAggregateComplianceDetailsByConfigRuleInput = {
 
 M.GetAggregateComplianceDetailsByConfigRuleOutput = {
     type = "structure",
+    id = "GetAggregateComplianceDetailsByConfigRuleOutput",
     members = {
         AggregateEvaluationResults = {
             type = "list",
@@ -4214,6 +4427,7 @@ M.GetAggregateComplianceDetailsByConfigRuleOutput = {
 
 M.GetAggregateConfigRuleComplianceSummaryInput = {
     type = "structure",
+    id = "GetAggregateConfigRuleComplianceSummaryInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -4239,6 +4453,7 @@ M.GetAggregateConfigRuleComplianceSummaryInput = {
 
 M.GetAggregateConfigRuleComplianceSummaryOutput = {
     type = "structure",
+    id = "GetAggregateConfigRuleComplianceSummaryOutput",
     members = {
         GroupByKey = {
             type = "string",
@@ -4255,6 +4470,7 @@ M.GetAggregateConfigRuleComplianceSummaryOutput = {
 
 M.GetAggregateConformancePackComplianceSummaryInput = {
     type = "structure",
+    id = "GetAggregateConformancePackComplianceSummaryInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -4280,6 +4496,7 @@ M.GetAggregateConformancePackComplianceSummaryInput = {
 
 M.GetAggregateConformancePackComplianceSummaryOutput = {
     type = "structure",
+    id = "GetAggregateConformancePackComplianceSummaryOutput",
     members = {
         AggregateConformancePackComplianceSummaries = {
             type = "list",
@@ -4296,6 +4513,7 @@ M.GetAggregateConformancePackComplianceSummaryOutput = {
 
 M.ResourceCountFilters = {
     type = "structure",
+    id = "ResourceCountFilters",
     members = {
         ResourceType = {
             type = "string",
@@ -4317,6 +4535,7 @@ M.ResourceCountGroupKey = {
 
 M.GetAggregateDiscoveredResourceCountsInput = {
     type = "structure",
+    id = "GetAggregateDiscoveredResourceCountsInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -4342,6 +4561,7 @@ M.GetAggregateDiscoveredResourceCountsInput = {
 
 M.GroupedResourceCount = {
     type = "structure",
+    id = "GroupedResourceCount",
     members = {
         GroupName = {
             type = "string",
@@ -4361,6 +4581,7 @@ M.GroupedResourceCount = {
 
 M.GetAggregateDiscoveredResourceCountsOutput = {
     type = "structure",
+    id = "GetAggregateDiscoveredResourceCountsOutput",
     members = {
         TotalDiscoveredResources = {
             type = "long",
@@ -4384,6 +4605,7 @@ M.GetAggregateDiscoveredResourceCountsOutput = {
 
 M.GetAggregateResourceConfigInput = {
     type = "structure",
+    id = "GetAggregateResourceConfigInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -4399,6 +4621,7 @@ M.GetAggregateResourceConfigInput = {
 
 M.GetAggregateResourceConfigOutput = {
     type = "structure",
+    id = "GetAggregateResourceConfigOutput",
     members = {
         ConfigurationItem = M.ConfigurationItem,
     },
@@ -4406,6 +4629,7 @@ M.GetAggregateResourceConfigOutput = {
 
 M.OversizedConfigurationItemException = {
     type = "structure",
+    id = "OversizedConfigurationItemException",
     error = "client",
     members = {
         message = {
@@ -4416,6 +4640,7 @@ M.OversizedConfigurationItemException = {
 
 M.ResourceNotDiscoveredException = {
     type = "structure",
+    id = "ResourceNotDiscoveredException",
     error = "client",
     members = {
         message = {
@@ -4426,6 +4651,7 @@ M.ResourceNotDiscoveredException = {
 
 M.GetComplianceDetailsByConfigRuleInput = {
     type = "structure",
+    id = "GetComplianceDetailsByConfigRuleInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -4451,6 +4677,7 @@ M.GetComplianceDetailsByConfigRuleInput = {
 
 M.GetComplianceDetailsByConfigRuleOutput = {
     type = "structure",
+    id = "GetComplianceDetailsByConfigRuleOutput",
     members = {
         EvaluationResults = {
             type = "list",
@@ -4464,6 +4691,7 @@ M.GetComplianceDetailsByConfigRuleOutput = {
 
 M.GetComplianceDetailsByResourceInput = {
     type = "structure",
+    id = "GetComplianceDetailsByResourceInput",
     members = {
         ResourceType = {
             type = "string",
@@ -4486,6 +4714,7 @@ M.GetComplianceDetailsByResourceInput = {
 
 M.GetComplianceDetailsByResourceOutput = {
     type = "structure",
+    id = "GetComplianceDetailsByResourceOutput",
     members = {
         EvaluationResults = {
             type = "list",
@@ -4499,10 +4728,12 @@ M.GetComplianceDetailsByResourceOutput = {
 
 M.GetComplianceSummaryByConfigRuleInput = {
     type = "structure",
+    id = "GetComplianceSummaryByConfigRuleInput",
 }
 
 M.GetComplianceSummaryByConfigRuleOutput = {
     type = "structure",
+    id = "GetComplianceSummaryByConfigRuleOutput",
     members = {
         ComplianceSummary = M.ComplianceSummary,
     },
@@ -4510,6 +4741,7 @@ M.GetComplianceSummaryByConfigRuleOutput = {
 
 M.GetComplianceSummaryByResourceTypeInput = {
     type = "structure",
+    id = "GetComplianceSummaryByResourceTypeInput",
     members = {
         ResourceTypes = {
             type = "list",
@@ -4520,6 +4752,7 @@ M.GetComplianceSummaryByResourceTypeInput = {
 
 M.GetComplianceSummaryByResourceTypeOutput = {
     type = "structure",
+    id = "GetComplianceSummaryByResourceTypeOutput",
     members = {
         ComplianceSummariesByResourceType = {
             type = "list",
@@ -4530,6 +4763,7 @@ M.GetComplianceSummaryByResourceTypeOutput = {
 
 M.GetConformancePackComplianceDetailsInput = {
     type = "structure",
+    id = "GetConformancePackComplianceDetailsInput",
     members = {
         ConformancePackName = {
             type = "string",
@@ -4552,6 +4786,7 @@ M.GetConformancePackComplianceDetailsInput = {
 
 M.GetConformancePackComplianceDetailsOutput = {
     type = "structure",
+    id = "GetConformancePackComplianceDetailsOutput",
     members = {
         ConformancePackName = {
             type = "string",
@@ -4571,6 +4806,7 @@ M.GetConformancePackComplianceDetailsOutput = {
 
 M.GetConformancePackComplianceSummaryInput = {
     type = "structure",
+    id = "GetConformancePackComplianceSummaryInput",
     members = {
         ConformancePackNames = {
             type = "list",
@@ -4593,6 +4829,7 @@ M.GetConformancePackComplianceSummaryInput = {
 
 M.GetConformancePackComplianceSummaryOutput = {
     type = "structure",
+    id = "GetConformancePackComplianceSummaryOutput",
     members = {
         ConformancePackComplianceSummaryList = {
             type = "list",
@@ -4606,6 +4843,7 @@ M.GetConformancePackComplianceSummaryOutput = {
 
 M.GetCustomRulePolicyInput = {
     type = "structure",
+    id = "GetCustomRulePolicyInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -4615,6 +4853,7 @@ M.GetCustomRulePolicyInput = {
 
 M.GetCustomRulePolicyOutput = {
     type = "structure",
+    id = "GetCustomRulePolicyOutput",
     members = {
         PolicyText = {
             type = "string",
@@ -4624,6 +4863,7 @@ M.GetCustomRulePolicyOutput = {
 
 M.GetDiscoveredResourceCountsInput = {
     type = "structure",
+    id = "GetDiscoveredResourceCountsInput",
     members = {
         resourceTypes = {
             type = "list",
@@ -4643,6 +4883,7 @@ M.GetDiscoveredResourceCountsInput = {
 
 M.ResourceCount = {
     type = "structure",
+    id = "ResourceCount",
     members = {
         resourceType = {
             type = "string",
@@ -4658,6 +4899,7 @@ M.ResourceCount = {
 
 M.GetDiscoveredResourceCountsOutput = {
     type = "structure",
+    id = "GetDiscoveredResourceCountsOutput",
     members = {
         totalDiscoveredResources = {
             type = "long",
@@ -4689,6 +4931,7 @@ M.MemberAccountRuleStatus = {
 
 M.StatusDetailFilters = {
     type = "structure",
+    id = "StatusDetailFilters",
     members = {
         AccountId = {
             type = "string",
@@ -4701,6 +4944,7 @@ M.StatusDetailFilters = {
 
 M.GetOrganizationConfigRuleDetailedStatusInput = {
     type = "structure",
+    id = "GetOrganizationConfigRuleDetailedStatusInput",
     members = {
         OrganizationConfigRuleName = {
             type = "string",
@@ -4723,6 +4967,7 @@ M.GetOrganizationConfigRuleDetailedStatusInput = {
 
 M.MemberAccountStatus = {
     type = "structure",
+    id = "MemberAccountStatus",
     members = {
         AccountId = {
             type = "string",
@@ -4756,6 +5001,7 @@ M.MemberAccountStatus = {
 
 M.GetOrganizationConfigRuleDetailedStatusOutput = {
     type = "structure",
+    id = "GetOrganizationConfigRuleDetailedStatusOutput",
     members = {
         OrganizationConfigRuleDetailedStatus = {
             type = "list",
@@ -4781,6 +5027,7 @@ M.OrganizationResourceDetailedStatus = {
 
 M.OrganizationResourceDetailedStatusFilters = {
     type = "structure",
+    id = "OrganizationResourceDetailedStatusFilters",
     members = {
         AccountId = {
             type = "string",
@@ -4793,6 +5040,7 @@ M.OrganizationResourceDetailedStatusFilters = {
 
 M.GetOrganizationConformancePackDetailedStatusInput = {
     type = "structure",
+    id = "GetOrganizationConformancePackDetailedStatusInput",
     members = {
         OrganizationConformancePackName = {
             type = "string",
@@ -4815,6 +5063,7 @@ M.GetOrganizationConformancePackDetailedStatusInput = {
 
 M.OrganizationConformancePackDetailedStatus = {
     type = "structure",
+    id = "OrganizationConformancePackDetailedStatus",
     members = {
         AccountId = {
             type = "string",
@@ -4848,6 +5097,7 @@ M.OrganizationConformancePackDetailedStatus = {
 
 M.GetOrganizationConformancePackDetailedStatusOutput = {
     type = "structure",
+    id = "GetOrganizationConformancePackDetailedStatusOutput",
     members = {
         OrganizationConformancePackDetailedStatuses = {
             type = "list",
@@ -4861,6 +5111,7 @@ M.GetOrganizationConformancePackDetailedStatusOutput = {
 
 M.GetOrganizationCustomRulePolicyInput = {
     type = "structure",
+    id = "GetOrganizationCustomRulePolicyInput",
     members = {
         OrganizationConfigRuleName = {
             type = "string",
@@ -4873,6 +5124,7 @@ M.GetOrganizationCustomRulePolicyInput = {
 
 M.GetOrganizationCustomRulePolicyOutput = {
     type = "structure",
+    id = "GetOrganizationCustomRulePolicyOutput",
     members = {
         PolicyText = {
             type = "string",
@@ -4882,6 +5134,7 @@ M.GetOrganizationCustomRulePolicyOutput = {
 
 M.GetResourceConfigHistoryInput = {
     type = "structure",
+    id = "GetResourceConfigHistoryInput",
     members = {
         resourceType = {
             type = "string",
@@ -4918,6 +5171,7 @@ M.GetResourceConfigHistoryInput = {
 
 M.GetResourceConfigHistoryOutput = {
     type = "structure",
+    id = "GetResourceConfigHistoryOutput",
     members = {
         configurationItems = {
             type = "list",
@@ -4931,6 +5185,7 @@ M.GetResourceConfigHistoryOutput = {
 
 M.InvalidTimeRangeException = {
     type = "structure",
+    id = "InvalidTimeRangeException",
     error = "client",
     members = {
         message = {
@@ -4941,6 +5196,7 @@ M.InvalidTimeRangeException = {
 
 M.GetResourceEvaluationSummaryInput = {
     type = "structure",
+    id = "GetResourceEvaluationSummaryInput",
     members = {
         ResourceEvaluationId = {
             type = "string",
@@ -4957,6 +5213,7 @@ M.ResourceConfigurationSchemaType = {
 
 M.ResourceDetails = {
     type = "structure",
+    id = "ResourceDetails",
     members = {
         ResourceId = {
             type = "string",
@@ -4984,6 +5241,7 @@ M.ResourceDetails = {
 
 M.GetResourceEvaluationSummaryOutput = {
     type = "structure",
+    id = "GetResourceEvaluationSummaryOutput",
     members = {
         ResourceEvaluationId = {
             type = "string",
@@ -5005,6 +5263,7 @@ M.GetResourceEvaluationSummaryOutput = {
 
 M.GetStoredQueryInput = {
     type = "structure",
+    id = "GetStoredQueryInput",
     members = {
         QueryName = {
             type = "string",
@@ -5017,6 +5276,7 @@ M.GetStoredQueryInput = {
 
 M.StoredQuery = {
     type = "structure",
+    id = "StoredQuery",
     members = {
         QueryId = {
             type = "string",
@@ -5041,6 +5301,7 @@ M.StoredQuery = {
 
 M.GetStoredQueryOutput = {
     type = "structure",
+    id = "GetStoredQueryOutput",
     members = {
         StoredQuery = M.StoredQuery,
     },
@@ -5048,6 +5309,7 @@ M.GetStoredQueryOutput = {
 
 M.IdempotentParameterMismatch = {
     type = "structure",
+    id = "IdempotentParameterMismatch",
     error = "client",
     members = {
         message = {
@@ -5058,6 +5320,7 @@ M.IdempotentParameterMismatch = {
 
 M.InsufficientDeliveryPolicyException = {
     type = "structure",
+    id = "InsufficientDeliveryPolicyException",
     error = "client",
     members = {
         message = {
@@ -5068,6 +5331,7 @@ M.InsufficientDeliveryPolicyException = {
 
 M.InvalidConfigurationRecorderNameException = {
     type = "structure",
+    id = "InvalidConfigurationRecorderNameException",
     error = "client",
     members = {
         message = {
@@ -5078,6 +5342,7 @@ M.InvalidConfigurationRecorderNameException = {
 
 M.InvalidDeliveryChannelNameException = {
     type = "structure",
+    id = "InvalidDeliveryChannelNameException",
     error = "client",
     members = {
         message = {
@@ -5088,6 +5353,7 @@ M.InvalidDeliveryChannelNameException = {
 
 M.InvalidExpressionException = {
     type = "structure",
+    id = "InvalidExpressionException",
     error = "client",
     members = {
         message = {
@@ -5098,6 +5364,7 @@ M.InvalidExpressionException = {
 
 M.InvalidRecordingGroupException = {
     type = "structure",
+    id = "InvalidRecordingGroupException",
     error = "client",
     members = {
         message = {
@@ -5108,6 +5375,7 @@ M.InvalidRecordingGroupException = {
 
 M.InvalidResultTokenException = {
     type = "structure",
+    id = "InvalidResultTokenException",
     error = "client",
     members = {
         message = {
@@ -5118,6 +5386,7 @@ M.InvalidResultTokenException = {
 
 M.InvalidRoleException = {
     type = "structure",
+    id = "InvalidRoleException",
     error = "client",
     members = {
         message = {
@@ -5128,6 +5397,7 @@ M.InvalidRoleException = {
 
 M.InvalidS3KeyPrefixException = {
     type = "structure",
+    id = "InvalidS3KeyPrefixException",
     error = "client",
     members = {
         message = {
@@ -5138,6 +5408,7 @@ M.InvalidS3KeyPrefixException = {
 
 M.InvalidS3KmsKeyArnException = {
     type = "structure",
+    id = "InvalidS3KmsKeyArnException",
     error = "client",
     members = {
         message = {
@@ -5148,6 +5419,7 @@ M.InvalidS3KmsKeyArnException = {
 
 M.InvalidSNSTopicARNException = {
     type = "structure",
+    id = "InvalidSNSTopicARNException",
     error = "client",
     members = {
         message = {
@@ -5158,6 +5430,7 @@ M.InvalidSNSTopicARNException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -5168,6 +5441,7 @@ M.LimitExceededException = {
 
 M.ResourceFilters = {
     type = "structure",
+    id = "ResourceFilters",
     members = {
         AccountId = {
             type = "string",
@@ -5186,6 +5460,7 @@ M.ResourceFilters = {
 
 M.ListAggregateDiscoveredResourcesInput = {
     type = "structure",
+    id = "ListAggregateDiscoveredResourcesInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -5214,6 +5489,7 @@ M.ListAggregateDiscoveredResourcesInput = {
 
 M.ListAggregateDiscoveredResourcesOutput = {
     type = "structure",
+    id = "ListAggregateDiscoveredResourcesOutput",
     members = {
         ResourceIdentifiers = {
             type = "list",
@@ -5227,6 +5503,7 @@ M.ListAggregateDiscoveredResourcesOutput = {
 
 M.ListConfigurationRecordersInput = {
     type = "structure",
+    id = "ListConfigurationRecordersInput",
     members = {
         Filters = {
             type = "list",
@@ -5246,6 +5523,7 @@ M.ListConfigurationRecordersInput = {
 
 M.ListConfigurationRecordersOutput = {
     type = "structure",
+    id = "ListConfigurationRecordersOutput",
     members = {
         ConfigurationRecorderSummaries = {
             type = "list",
@@ -5271,6 +5549,7 @@ M.SortOrder = {
 
 M.ListConformancePackComplianceScoresInput = {
     type = "structure",
+    id = "ListConformancePackComplianceScoresInput",
     members = {
         Filters = M.ConformancePackComplianceScoresFilters,
         SortOrder = {
@@ -5293,6 +5572,7 @@ M.ListConformancePackComplianceScoresInput = {
 
 M.ListConformancePackComplianceScoresOutput = {
     type = "structure",
+    id = "ListConformancePackComplianceScoresOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5309,6 +5589,7 @@ M.ListConformancePackComplianceScoresOutput = {
 
 M.ListDiscoveredResourcesInput = {
     type = "structure",
+    id = "ListDiscoveredResourcesInput",
     members = {
         resourceType = {
             type = "string",
@@ -5343,6 +5624,7 @@ M.ListDiscoveredResourcesInput = {
 
 M.ResourceIdentifier = {
     type = "structure",
+    id = "ResourceIdentifier",
     members = {
         resourceType = {
             type = "string",
@@ -5361,6 +5643,7 @@ M.ResourceIdentifier = {
 
 M.ListDiscoveredResourcesOutput = {
     type = "structure",
+    id = "ListDiscoveredResourcesOutput",
     members = {
         resourceIdentifiers = {
             type = "list",
@@ -5374,6 +5657,7 @@ M.ListDiscoveredResourcesOutput = {
 
 M.TimeWindow = {
     type = "structure",
+    id = "TimeWindow",
     members = {
         StartTime = {
             type = "timestamp",
@@ -5386,6 +5670,7 @@ M.TimeWindow = {
 
 M.ResourceEvaluationFilters = {
     type = "structure",
+    id = "ResourceEvaluationFilters",
     members = {
         EvaluationMode = {
             type = "string",
@@ -5399,6 +5684,7 @@ M.ResourceEvaluationFilters = {
 
 M.ListResourceEvaluationsInput = {
     type = "structure",
+    id = "ListResourceEvaluationsInput",
     members = {
         Filters = M.ResourceEvaluationFilters,
         Limit = {
@@ -5415,6 +5701,7 @@ M.ListResourceEvaluationsInput = {
 
 M.ResourceEvaluation = {
     type = "structure",
+    id = "ResourceEvaluation",
     members = {
         ResourceEvaluationId = {
             type = "string",
@@ -5430,6 +5717,7 @@ M.ResourceEvaluation = {
 
 M.ListResourceEvaluationsOutput = {
     type = "structure",
+    id = "ListResourceEvaluationsOutput",
     members = {
         ResourceEvaluations = {
             type = "list",
@@ -5443,6 +5731,7 @@ M.ListResourceEvaluationsOutput = {
 
 M.ListStoredQueriesInput = {
     type = "structure",
+    id = "ListStoredQueriesInput",
     members = {
         NextToken = {
             type = "string",
@@ -5458,6 +5747,7 @@ M.ListStoredQueriesInput = {
 
 M.StoredQueryMetadata = {
     type = "structure",
+    id = "StoredQueryMetadata",
     members = {
         QueryId = {
             type = "string",
@@ -5485,6 +5775,7 @@ M.StoredQueryMetadata = {
 
 M.ListStoredQueriesOutput = {
     type = "structure",
+    id = "ListStoredQueriesOutput",
     members = {
         StoredQueryMetadata = {
             type = "list",
@@ -5498,6 +5789,7 @@ M.ListStoredQueriesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5519,6 +5811,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -5531,6 +5824,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -5544,6 +5838,7 @@ M.ListTagsForResourceOutput = {
 
 M.MaxActiveResourcesExceededException = {
     type = "structure",
+    id = "MaxActiveResourcesExceededException",
     error = "client",
     members = {
         message = {
@@ -5554,6 +5849,7 @@ M.MaxActiveResourcesExceededException = {
 
 M.MaxNumberOfConfigRulesExceededException = {
     type = "structure",
+    id = "MaxNumberOfConfigRulesExceededException",
     error = "client",
     members = {
         message = {
@@ -5564,6 +5860,7 @@ M.MaxNumberOfConfigRulesExceededException = {
 
 M.MaxNumberOfConfigurationRecordersExceededException = {
     type = "structure",
+    id = "MaxNumberOfConfigurationRecordersExceededException",
     error = "client",
     members = {
         message = {
@@ -5574,6 +5871,7 @@ M.MaxNumberOfConfigurationRecordersExceededException = {
 
 M.MaxNumberOfConformancePacksExceededException = {
     type = "structure",
+    id = "MaxNumberOfConformancePacksExceededException",
     error = "client",
     members = {
         message = {
@@ -5584,6 +5882,7 @@ M.MaxNumberOfConformancePacksExceededException = {
 
 M.MaxNumberOfDeliveryChannelsExceededException = {
     type = "structure",
+    id = "MaxNumberOfDeliveryChannelsExceededException",
     error = "client",
     members = {
         message = {
@@ -5594,6 +5893,7 @@ M.MaxNumberOfDeliveryChannelsExceededException = {
 
 M.MaxNumberOfOrganizationConfigRulesExceededException = {
     type = "structure",
+    id = "MaxNumberOfOrganizationConfigRulesExceededException",
     error = "client",
     members = {
         message = {
@@ -5604,6 +5904,7 @@ M.MaxNumberOfOrganizationConfigRulesExceededException = {
 
 M.MaxNumberOfOrganizationConformancePacksExceededException = {
     type = "structure",
+    id = "MaxNumberOfOrganizationConformancePacksExceededException",
     error = "client",
     members = {
         message = {
@@ -5614,6 +5915,7 @@ M.MaxNumberOfOrganizationConformancePacksExceededException = {
 
 M.MaxNumberOfRetentionConfigurationsExceededException = {
     type = "structure",
+    id = "MaxNumberOfRetentionConfigurationsExceededException",
     error = "client",
     members = {
         message = {
@@ -5624,6 +5926,7 @@ M.MaxNumberOfRetentionConfigurationsExceededException = {
 
 M.NoAvailableDeliveryChannelException = {
     type = "structure",
+    id = "NoAvailableDeliveryChannelException",
     error = "client",
     members = {
         message = {
@@ -5634,6 +5937,7 @@ M.NoAvailableDeliveryChannelException = {
 
 M.NoAvailableOrganizationException = {
     type = "structure",
+    id = "NoAvailableOrganizationException",
     error = "client",
     members = {
         message = {
@@ -5644,6 +5948,7 @@ M.NoAvailableOrganizationException = {
 
 M.NoSuchBucketException = {
     type = "structure",
+    id = "NoSuchBucketException",
     error = "client",
     members = {
         message = {
@@ -5654,6 +5959,7 @@ M.NoSuchBucketException = {
 
 M.OrganizationAllFeaturesNotEnabledException = {
     type = "structure",
+    id = "OrganizationAllFeaturesNotEnabledException",
     error = "client",
     members = {
         message = {
@@ -5664,6 +5970,7 @@ M.OrganizationAllFeaturesNotEnabledException = {
 
 M.OrganizationConformancePackTemplateValidationException = {
     type = "structure",
+    id = "OrganizationConformancePackTemplateValidationException",
     error = "client",
     members = {
         message = {
@@ -5674,6 +5981,7 @@ M.OrganizationConformancePackTemplateValidationException = {
 
 M.OrganizationCustomPolicyRuleMetadata = {
     type = "structure",
+    id = "OrganizationCustomPolicyRuleMetadata",
     members = {
         Description = {
             type = "string",
@@ -5722,6 +6030,7 @@ M.OrganizationCustomPolicyRuleMetadata = {
 
 M.PutAggregationAuthorizationInput = {
     type = "structure",
+    id = "PutAggregationAuthorizationInput",
     members = {
         AuthorizedAccountId = {
             type = "string",
@@ -5744,6 +6053,7 @@ M.PutAggregationAuthorizationInput = {
 
 M.PutAggregationAuthorizationOutput = {
     type = "structure",
+    id = "PutAggregationAuthorizationOutput",
     members = {
         AggregationAuthorization = M.AggregationAuthorization,
     },
@@ -5751,6 +6061,7 @@ M.PutAggregationAuthorizationOutput = {
 
 M.PutConfigRuleInput = {
     type = "structure",
+    id = "PutConfigRuleInput",
     members = {
         ConfigRule = setmetatable({ traits = {
             required = true,
@@ -5764,10 +6075,12 @@ M.PutConfigRuleInput = {
 
 M.PutConfigRuleOutput = {
     type = "structure",
+    id = "PutConfigRuleOutput",
 }
 
 M.PutConfigurationAggregatorInput = {
     type = "structure",
+    id = "PutConfigurationAggregatorInput",
     members = {
         ConfigurationAggregatorName = {
             type = "string",
@@ -5790,6 +6103,7 @@ M.PutConfigurationAggregatorInput = {
 
 M.PutConfigurationAggregatorOutput = {
     type = "structure",
+    id = "PutConfigurationAggregatorOutput",
     members = {
         ConfigurationAggregator = M.ConfigurationAggregator,
     },
@@ -5797,6 +6111,7 @@ M.PutConfigurationAggregatorOutput = {
 
 M.PutConfigurationRecorderInput = {
     type = "structure",
+    id = "PutConfigurationRecorderInput",
     members = {
         ConfigurationRecorder = setmetatable({ traits = {
             required = true,
@@ -5810,10 +6125,12 @@ M.PutConfigurationRecorderInput = {
 
 M.PutConfigurationRecorderOutput = {
     type = "structure",
+    id = "PutConfigurationRecorderOutput",
 }
 
 M.PutConformancePackInput = {
     type = "structure",
+    id = "PutConformancePackInput",
     members = {
         ConformancePackName = {
             type = "string",
@@ -5847,6 +6164,7 @@ M.PutConformancePackInput = {
 
 M.PutConformancePackOutput = {
     type = "structure",
+    id = "PutConformancePackOutput",
     members = {
         ConformancePackArn = {
             type = "string",
@@ -5856,6 +6174,7 @@ M.PutConformancePackOutput = {
 
 M.PutDeliveryChannelInput = {
     type = "structure",
+    id = "PutDeliveryChannelInput",
     members = {
         DeliveryChannel = setmetatable({ traits = {
             required = true,
@@ -5865,10 +6184,12 @@ M.PutDeliveryChannelInput = {
 
 M.PutDeliveryChannelOutput = {
     type = "structure",
+    id = "PutDeliveryChannelOutput",
 }
 
 M.PutEvaluationsInput = {
     type = "structure",
+    id = "PutEvaluationsInput",
     members = {
         Evaluations = {
             type = "list",
@@ -5891,6 +6212,7 @@ M.PutEvaluationsInput = {
 
 M.PutEvaluationsOutput = {
     type = "structure",
+    id = "PutEvaluationsOutput",
     members = {
         FailedEvaluations = {
             type = "list",
@@ -5901,6 +6223,7 @@ M.PutEvaluationsOutput = {
 
 M.PutExternalEvaluationInput = {
     type = "structure",
+    id = "PutExternalEvaluationInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -5916,10 +6239,12 @@ M.PutExternalEvaluationInput = {
 
 M.PutExternalEvaluationOutput = {
     type = "structure",
+    id = "PutExternalEvaluationOutput",
 }
 
 M.PutOrganizationConfigRuleInput = {
     type = "structure",
+    id = "PutOrganizationConfigRuleInput",
     members = {
         OrganizationConfigRuleName = {
             type = "string",
@@ -5939,6 +6264,7 @@ M.PutOrganizationConfigRuleInput = {
 
 M.PutOrganizationConfigRuleOutput = {
     type = "structure",
+    id = "PutOrganizationConfigRuleOutput",
     members = {
         OrganizationConfigRuleArn = {
             type = "string",
@@ -5948,6 +6274,7 @@ M.PutOrganizationConfigRuleOutput = {
 
 M.PutOrganizationConformancePackInput = {
     type = "structure",
+    id = "PutOrganizationConformancePackInput",
     members = {
         OrganizationConformancePackName = {
             type = "string",
@@ -5980,6 +6307,7 @@ M.PutOrganizationConformancePackInput = {
 
 M.PutOrganizationConformancePackOutput = {
     type = "structure",
+    id = "PutOrganizationConformancePackOutput",
     members = {
         OrganizationConformancePackArn = {
             type = "string",
@@ -5989,6 +6317,7 @@ M.PutOrganizationConformancePackOutput = {
 
 M.PutRemediationConfigurationsInput = {
     type = "structure",
+    id = "PutRemediationConfigurationsInput",
     members = {
         RemediationConfigurations = {
             type = "list",
@@ -6002,6 +6331,7 @@ M.PutRemediationConfigurationsInput = {
 
 M.PutRemediationConfigurationsOutput = {
     type = "structure",
+    id = "PutRemediationConfigurationsOutput",
     members = {
         FailedBatches = {
             type = "list",
@@ -6012,6 +6342,7 @@ M.PutRemediationConfigurationsOutput = {
 
 M.PutRemediationExceptionsInput = {
     type = "structure",
+    id = "PutRemediationExceptionsInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -6037,6 +6368,7 @@ M.PutRemediationExceptionsInput = {
 
 M.PutRemediationExceptionsOutput = {
     type = "structure",
+    id = "PutRemediationExceptionsOutput",
     members = {
         FailedBatches = {
             type = "list",
@@ -6047,6 +6379,7 @@ M.PutRemediationExceptionsOutput = {
 
 M.PutResourceConfigInput = {
     type = "structure",
+    id = "PutResourceConfigInput",
     members = {
         ResourceType = {
             type = "string",
@@ -6085,10 +6418,12 @@ M.PutResourceConfigInput = {
 
 M.PutResourceConfigOutput = {
     type = "structure",
+    id = "PutResourceConfigOutput",
 }
 
 M.PutRetentionConfigurationInput = {
     type = "structure",
+    id = "PutRetentionConfigurationInput",
     members = {
         RetentionPeriodInDays = {
             type = "integer",
@@ -6101,6 +6436,7 @@ M.PutRetentionConfigurationInput = {
 
 M.PutRetentionConfigurationOutput = {
     type = "structure",
+    id = "PutRetentionConfigurationOutput",
     members = {
         RetentionConfiguration = M.RetentionConfiguration,
     },
@@ -6108,6 +6444,7 @@ M.PutRetentionConfigurationOutput = {
 
 M.PutServiceLinkedConfigurationRecorderInput = {
     type = "structure",
+    id = "PutServiceLinkedConfigurationRecorderInput",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -6124,6 +6461,7 @@ M.PutServiceLinkedConfigurationRecorderInput = {
 
 M.PutServiceLinkedConfigurationRecorderOutput = {
     type = "structure",
+    id = "PutServiceLinkedConfigurationRecorderOutput",
     members = {
         Arn = {
             type = "string",
@@ -6136,6 +6474,7 @@ M.PutServiceLinkedConfigurationRecorderOutput = {
 
 M.PutStoredQueryInput = {
     type = "structure",
+    id = "PutStoredQueryInput",
     members = {
         StoredQuery = setmetatable({ traits = {
             required = true,
@@ -6149,6 +6488,7 @@ M.PutStoredQueryInput = {
 
 M.PutStoredQueryOutput = {
     type = "structure",
+    id = "PutStoredQueryOutput",
     members = {
         QueryArn = {
             type = "string",
@@ -6158,6 +6498,7 @@ M.PutStoredQueryOutput = {
 
 M.ResourceConcurrentModificationException = {
     type = "structure",
+    id = "ResourceConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -6168,6 +6509,7 @@ M.ResourceConcurrentModificationException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -6178,6 +6520,7 @@ M.TooManyTagsException = {
 
 M.QueryInfo = {
     type = "structure",
+    id = "QueryInfo",
     members = {
         SelectFields = {
             type = "list",
@@ -6188,6 +6531,7 @@ M.QueryInfo = {
 
 M.SelectAggregateResourceConfigInput = {
     type = "structure",
+    id = "SelectAggregateResourceConfigInput",
     members = {
         Expression = {
             type = "string",
@@ -6221,6 +6565,7 @@ M.SelectAggregateResourceConfigInput = {
 
 M.SelectAggregateResourceConfigOutput = {
     type = "structure",
+    id = "SelectAggregateResourceConfigOutput",
     members = {
         Results = {
             type = "list",
@@ -6235,6 +6580,7 @@ M.SelectAggregateResourceConfigOutput = {
 
 M.SelectResourceConfigInput = {
     type = "structure",
+    id = "SelectResourceConfigInput",
     members = {
         Expression = {
             type = "string",
@@ -6256,6 +6602,7 @@ M.SelectResourceConfigInput = {
 
 M.SelectResourceConfigOutput = {
     type = "structure",
+    id = "SelectResourceConfigOutput",
     members = {
         Results = {
             type = "list",
@@ -6270,6 +6617,7 @@ M.SelectResourceConfigOutput = {
 
 M.StartConfigRulesEvaluationInput = {
     type = "structure",
+    id = "StartConfigRulesEvaluationInput",
     members = {
         ConfigRuleNames = {
             type = "list",
@@ -6280,10 +6628,12 @@ M.StartConfigRulesEvaluationInput = {
 
 M.StartConfigRulesEvaluationOutput = {
     type = "structure",
+    id = "StartConfigRulesEvaluationOutput",
 }
 
 M.StartConfigurationRecorderInput = {
     type = "structure",
+    id = "StartConfigurationRecorderInput",
     members = {
         ConfigurationRecorderName = {
             type = "string",
@@ -6296,10 +6646,12 @@ M.StartConfigurationRecorderInput = {
 
 M.StartConfigurationRecorderOutput = {
     type = "structure",
+    id = "StartConfigurationRecorderOutput",
 }
 
 M.StartRemediationExecutionInput = {
     type = "structure",
+    id = "StartRemediationExecutionInput",
     members = {
         ConfigRuleName = {
             type = "string",
@@ -6319,6 +6671,7 @@ M.StartRemediationExecutionInput = {
 
 M.StartRemediationExecutionOutput = {
     type = "structure",
+    id = "StartRemediationExecutionOutput",
     members = {
         FailureMessage = {
             type = "string",
@@ -6332,6 +6685,7 @@ M.StartRemediationExecutionOutput = {
 
 M.StartResourceEvaluationInput = {
     type = "structure",
+    id = "StartResourceEvaluationInput",
     members = {
         ResourceDetails = setmetatable({ traits = {
             required = true,
@@ -6357,6 +6711,7 @@ M.StartResourceEvaluationInput = {
 
 M.StartResourceEvaluationOutput = {
     type = "structure",
+    id = "StartResourceEvaluationOutput",
     members = {
         ResourceEvaluationId = {
             type = "string",
@@ -6366,6 +6721,7 @@ M.StartResourceEvaluationOutput = {
 
 M.StopConfigurationRecorderInput = {
     type = "structure",
+    id = "StopConfigurationRecorderInput",
     members = {
         ConfigurationRecorderName = {
             type = "string",
@@ -6378,10 +6734,12 @@ M.StopConfigurationRecorderInput = {
 
 M.StopConfigurationRecorderOutput = {
     type = "structure",
+    id = "StopConfigurationRecorderOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6401,10 +6759,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6424,6 +6784,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

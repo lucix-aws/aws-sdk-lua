@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -32,6 +33,7 @@ M.UpdateRecommendationLifecycleStageReasonCode = {
 
 M.AccountRecommendationLifecycleSummary = {
     type = "structure",
+    id = "AccountRecommendationLifecycleSummary",
     members = {
         accountId = {
             type = "string",
@@ -65,6 +67,7 @@ M.AccountRecommendationLifecycleSummary = {
 
 M.RecommendationResourceExclusion = {
     type = "structure",
+    id = "RecommendationResourceExclusion",
     members = {
         arn = {
             type = "string",
@@ -83,6 +86,7 @@ M.RecommendationResourceExclusion = {
 
 M.BatchUpdateRecommendationResourceExclusionInput = {
     type = "structure",
+    id = "BatchUpdateRecommendationResourceExclusionInput",
     members = {
         recommendationResourceExclusions = {
             type = "list",
@@ -96,6 +100,7 @@ M.BatchUpdateRecommendationResourceExclusionInput = {
 
 M.UpdateRecommendationResourceExclusionError = {
     type = "structure",
+    id = "UpdateRecommendationResourceExclusionError",
     members = {
         arn = {
             type = "string",
@@ -111,6 +116,7 @@ M.UpdateRecommendationResourceExclusionError = {
 
 M.BatchUpdateRecommendationResourceExclusionOutput = {
     type = "structure",
+    id = "BatchUpdateRecommendationResourceExclusionOutput",
     members = {
         batchUpdateRecommendationResourceExclusionErrors = {
             type = "list",
@@ -124,6 +130,7 @@ M.BatchUpdateRecommendationResourceExclusionOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -137,6 +144,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -150,6 +158,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -163,6 +172,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -202,6 +212,7 @@ M.RecommendationSource = {
 
 M.CheckSummary = {
     type = "structure",
+    id = "CheckSummary",
     members = {
         id = {
             type = "string",
@@ -265,6 +276,7 @@ M.ExclusionStatus = {
 
 M.GetOrganizationRecommendationInput = {
     type = "structure",
+    id = "GetOrganizationRecommendationInput",
     members = {
         organizationRecommendationIdentifier = {
             type = "string",
@@ -278,6 +290,7 @@ M.GetOrganizationRecommendationInput = {
 
 M.RecommendationCostOptimizingAggregates = {
     type = "structure",
+    id = "RecommendationCostOptimizingAggregates",
     members = {
         estimatedMonthlySavings = {
             type = "double",
@@ -296,6 +309,7 @@ M.RecommendationCostOptimizingAggregates = {
 
 M.RecommendationPillarSpecificAggregates = {
     type = "structure",
+    id = "RecommendationPillarSpecificAggregates",
     members = {
         costOptimizing = M.RecommendationCostOptimizingAggregates,
     },
@@ -303,6 +317,7 @@ M.RecommendationPillarSpecificAggregates = {
 
 M.RecommendationResourcesAggregates = {
     type = "structure",
+    id = "RecommendationResourcesAggregates",
     members = {
         okCount = {
             type = "long",
@@ -341,6 +356,7 @@ M.RecommendationType = {
 
 M.OrganizationRecommendation = {
     type = "structure",
+    id = "OrganizationRecommendation",
     members = {
         id = {
             type = "string",
@@ -443,6 +459,7 @@ M.OrganizationRecommendation = {
 
 M.GetOrganizationRecommendationOutput = {
     type = "structure",
+    id = "GetOrganizationRecommendationOutput",
     members = {
         organizationRecommendation = M.OrganizationRecommendation,
     },
@@ -450,6 +467,7 @@ M.GetOrganizationRecommendationOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -477,6 +495,7 @@ M.RecommendationLanguage = {
 
 M.GetRecommendationInput = {
     type = "structure",
+    id = "GetRecommendationInput",
     members = {
         recommendationIdentifier = {
             type = "string",
@@ -500,6 +519,7 @@ M.StatusReason = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         id = {
             type = "string",
@@ -605,6 +625,7 @@ M.Recommendation = {
 
 M.GetRecommendationOutput = {
     type = "structure",
+    id = "GetRecommendationOutput",
     members = {
         recommendation = M.Recommendation,
     },
@@ -612,6 +633,7 @@ M.GetRecommendationOutput = {
 
 M.ListChecksInput = {
     type = "structure",
+    id = "ListChecksInput",
     members = {
         nextToken = {
             type = "string",
@@ -654,6 +676,7 @@ M.ListChecksInput = {
 
 M.ListChecksOutput = {
     type = "structure",
+    id = "ListChecksOutput",
     members = {
         nextToken = {
             type = "string",
@@ -670,6 +693,7 @@ M.ListChecksOutput = {
 
 M.ListOrganizationRecommendationAccountsInput = {
     type = "structure",
+    id = "ListOrganizationRecommendationAccountsInput",
     members = {
         nextToken = {
             type = "string",
@@ -701,6 +725,7 @@ M.ListOrganizationRecommendationAccountsInput = {
 
 M.ListOrganizationRecommendationAccountsOutput = {
     type = "structure",
+    id = "ListOrganizationRecommendationAccountsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -723,6 +748,7 @@ M.ResourceStatus = {
 
 M.ListOrganizationRecommendationResourcesInput = {
     type = "structure",
+    id = "ListOrganizationRecommendationResourcesInput",
     members = {
         nextToken = {
             type = "string",
@@ -772,6 +798,7 @@ M.ListOrganizationRecommendationResourcesInput = {
 
 M.OrganizationRecommendationResourceSummary = {
     type = "structure",
+    id = "OrganizationRecommendationResourceSummary",
     members = {
         id = {
             type = "string",
@@ -838,6 +865,7 @@ M.OrganizationRecommendationResourceSummary = {
 
 M.ListOrganizationRecommendationResourcesOutput = {
     type = "structure",
+    id = "ListOrganizationRecommendationResourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -854,6 +882,7 @@ M.ListOrganizationRecommendationResourcesOutput = {
 
 M.ListOrganizationRecommendationsInput = {
     type = "structure",
+    id = "ListOrganizationRecommendationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -920,6 +949,7 @@ M.ListOrganizationRecommendationsInput = {
 
 M.OrganizationRecommendationSummary = {
     type = "structure",
+    id = "OrganizationRecommendationSummary",
     members = {
         id = {
             type = "string",
@@ -995,6 +1025,7 @@ M.OrganizationRecommendationSummary = {
 
 M.ListOrganizationRecommendationsOutput = {
     type = "structure",
+    id = "ListOrganizationRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1011,6 +1042,7 @@ M.ListOrganizationRecommendationsOutput = {
 
 M.ListRecommendationResourcesInput = {
     type = "structure",
+    id = "ListRecommendationResourcesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1060,6 +1092,7 @@ M.ListRecommendationResourcesInput = {
 
 M.RecommendationResourceSummary = {
     type = "structure",
+    id = "RecommendationResourceSummary",
     members = {
         id = {
             type = "string",
@@ -1123,6 +1156,7 @@ M.RecommendationResourceSummary = {
 
 M.ListRecommendationResourcesOutput = {
     type = "structure",
+    id = "ListRecommendationResourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1139,6 +1173,7 @@ M.ListRecommendationResourcesOutput = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1211,6 +1246,7 @@ M.ListRecommendationsInput = {
 
 M.RecommendationSummary = {
     type = "structure",
+    id = "RecommendationSummary",
     members = {
         id = {
             type = "string",
@@ -1289,6 +1325,7 @@ M.RecommendationSummary = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1312,6 +1349,7 @@ M.UpdateRecommendationLifecycleStage = {
 
 M.UpdateOrganizationRecommendationLifecycleInput = {
     type = "structure",
+    id = "UpdateOrganizationRecommendationLifecycleInput",
     members = {
         lifecycleStage = {
             type = "string",
@@ -1337,10 +1375,12 @@ M.UpdateOrganizationRecommendationLifecycleInput = {
 
 M.UpdateOrganizationRecommendationLifecycleOutput = {
     type = "structure",
+    id = "UpdateOrganizationRecommendationLifecycleOutput",
 }
 
 M.UpdateRecommendationLifecycleInput = {
     type = "structure",
+    id = "UpdateRecommendationLifecycleInput",
     members = {
         lifecycleStage = {
             type = "string",
@@ -1366,6 +1406,7 @@ M.UpdateRecommendationLifecycleInput = {
 
 M.UpdateRecommendationLifecycleOutput = {
     type = "structure",
+    id = "UpdateRecommendationLifecycleOutput",
 }
 
 return M

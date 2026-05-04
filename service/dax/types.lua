@@ -2,6 +2,7 @@ local M = {}
 
 M.ClusterAlreadyExistsFault = {
     type = "structure",
+    id = "ClusterAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.ClusterAlreadyExistsFault = {
 
 M.ClusterQuotaForCustomerExceededFault = {
     type = "structure",
+    id = "ClusterQuotaForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -33,6 +35,7 @@ M.NetworkType = {
 
 M.SSESpecification = {
     type = "structure",
+    id = "SSESpecification",
     members = {
         Enabled = {
             type = "boolean",
@@ -45,6 +48,7 @@ M.SSESpecification = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -57,6 +61,7 @@ M.Tag = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         ClusterName = {
             type = "string",
@@ -122,6 +127,7 @@ M.CreateClusterInput = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -140,6 +146,7 @@ M.Endpoint = {
 
 M.Node = {
     type = "structure",
+    id = "Node",
     members = {
         NodeId = {
             type = "string",
@@ -162,6 +169,7 @@ M.Node = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         TopicArn = {
             type = "string",
@@ -174,6 +182,7 @@ M.NotificationConfiguration = {
 
 M.ParameterGroupStatus = {
     type = "structure",
+    id = "ParameterGroupStatus",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -190,6 +199,7 @@ M.ParameterGroupStatus = {
 
 M.SecurityGroupMembership = {
     type = "structure",
+    id = "SecurityGroupMembership",
     members = {
         SecurityGroupIdentifier = {
             type = "string",
@@ -209,6 +219,7 @@ M.SSEStatus = {
 
 M.SSEDescription = {
     type = "structure",
+    id = "SSEDescription",
     members = {
         Status = {
             type = "string",
@@ -218,6 +229,7 @@ M.SSEDescription = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         ClusterName = {
             type = "string",
@@ -276,6 +288,7 @@ M.Cluster = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -283,6 +296,7 @@ M.CreateClusterOutput = {
 
 M.InsufficientClusterCapacityFault = {
     type = "structure",
+    id = "InsufficientClusterCapacityFault",
     error = "client",
     members = {
         message = {
@@ -293,6 +307,7 @@ M.InsufficientClusterCapacityFault = {
 
 M.InvalidClusterStateFault = {
     type = "structure",
+    id = "InvalidClusterStateFault",
     error = "client",
     members = {
         message = {
@@ -303,6 +318,7 @@ M.InvalidClusterStateFault = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         message = {
@@ -313,6 +329,7 @@ M.InvalidParameterCombinationException = {
 
 M.InvalidParameterGroupStateFault = {
     type = "structure",
+    id = "InvalidParameterGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -323,6 +340,7 @@ M.InvalidParameterGroupStateFault = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -333,6 +351,7 @@ M.InvalidParameterValueException = {
 
 M.InvalidVPCNetworkStateFault = {
     type = "structure",
+    id = "InvalidVPCNetworkStateFault",
     error = "client",
     members = {
         message = {
@@ -343,6 +362,7 @@ M.InvalidVPCNetworkStateFault = {
 
 M.NodeQuotaForClusterExceededFault = {
     type = "structure",
+    id = "NodeQuotaForClusterExceededFault",
     error = "client",
     members = {
         message = {
@@ -353,6 +373,7 @@ M.NodeQuotaForClusterExceededFault = {
 
 M.NodeQuotaForCustomerExceededFault = {
     type = "structure",
+    id = "NodeQuotaForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -363,6 +384,7 @@ M.NodeQuotaForCustomerExceededFault = {
 
 M.ParameterGroupNotFoundFault = {
     type = "structure",
+    id = "ParameterGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -373,6 +395,7 @@ M.ParameterGroupNotFoundFault = {
 
 M.ServiceLinkedRoleNotFoundFault = {
     type = "structure",
+    id = "ServiceLinkedRoleNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -383,11 +406,13 @@ M.ServiceLinkedRoleNotFoundFault = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
 }
 
 M.SubnetGroupNotFoundFault = {
     type = "structure",
+    id = "SubnetGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -398,6 +423,7 @@ M.SubnetGroupNotFoundFault = {
 
 M.TagQuotaPerResourceExceeded = {
     type = "structure",
+    id = "TagQuotaPerResourceExceeded",
     error = "client",
     members = {
         message = {
@@ -408,6 +434,7 @@ M.TagQuotaPerResourceExceeded = {
 
 M.CreateParameterGroupInput = {
     type = "structure",
+    id = "CreateParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -423,6 +450,7 @@ M.CreateParameterGroupInput = {
 
 M.ParameterGroup = {
     type = "structure",
+    id = "ParameterGroup",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -435,6 +463,7 @@ M.ParameterGroup = {
 
 M.CreateParameterGroupOutput = {
     type = "structure",
+    id = "CreateParameterGroupOutput",
     members = {
         ParameterGroup = M.ParameterGroup,
     },
@@ -442,6 +471,7 @@ M.CreateParameterGroupOutput = {
 
 M.ParameterGroupAlreadyExistsFault = {
     type = "structure",
+    id = "ParameterGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -452,6 +482,7 @@ M.ParameterGroupAlreadyExistsFault = {
 
 M.ParameterGroupQuotaExceededFault = {
     type = "structure",
+    id = "ParameterGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -462,6 +493,7 @@ M.ParameterGroupQuotaExceededFault = {
 
 M.CreateSubnetGroupInput = {
     type = "structure",
+    id = "CreateSubnetGroupInput",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -484,6 +516,7 @@ M.CreateSubnetGroupInput = {
 
 M.Subnet = {
     type = "structure",
+    id = "Subnet",
     members = {
         SubnetIdentifier = {
             type = "string",
@@ -500,6 +533,7 @@ M.Subnet = {
 
 M.SubnetGroup = {
     type = "structure",
+    id = "SubnetGroup",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -523,6 +557,7 @@ M.SubnetGroup = {
 
 M.CreateSubnetGroupOutput = {
     type = "structure",
+    id = "CreateSubnetGroupOutput",
     members = {
         SubnetGroup = M.SubnetGroup,
     },
@@ -530,6 +565,7 @@ M.CreateSubnetGroupOutput = {
 
 M.InvalidSubnet = {
     type = "structure",
+    id = "InvalidSubnet",
     error = "client",
     members = {
         message = {
@@ -540,6 +576,7 @@ M.InvalidSubnet = {
 
 M.SubnetGroupAlreadyExistsFault = {
     type = "structure",
+    id = "SubnetGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -550,6 +587,7 @@ M.SubnetGroupAlreadyExistsFault = {
 
 M.SubnetGroupQuotaExceededFault = {
     type = "structure",
+    id = "SubnetGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -560,6 +598,7 @@ M.SubnetGroupQuotaExceededFault = {
 
 M.SubnetNotAllowedFault = {
     type = "structure",
+    id = "SubnetNotAllowedFault",
     error = "client",
     members = {
         message = {
@@ -570,6 +609,7 @@ M.SubnetNotAllowedFault = {
 
 M.SubnetQuotaExceededFault = {
     type = "structure",
+    id = "SubnetQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -580,6 +620,7 @@ M.SubnetQuotaExceededFault = {
 
 M.ClusterNotFoundFault = {
     type = "structure",
+    id = "ClusterNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -590,6 +631,7 @@ M.ClusterNotFoundFault = {
 
 M.DecreaseReplicationFactorInput = {
     type = "structure",
+    id = "DecreaseReplicationFactorInput",
     members = {
         ClusterName = {
             type = "string",
@@ -617,6 +659,7 @@ M.DecreaseReplicationFactorInput = {
 
 M.DecreaseReplicationFactorOutput = {
     type = "structure",
+    id = "DecreaseReplicationFactorOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -624,6 +667,7 @@ M.DecreaseReplicationFactorOutput = {
 
 M.NodeNotFoundFault = {
     type = "structure",
+    id = "NodeNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -634,6 +678,7 @@ M.NodeNotFoundFault = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         ClusterName = {
             type = "string",
@@ -646,6 +691,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -653,6 +699,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteParameterGroupInput = {
     type = "structure",
+    id = "DeleteParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -665,6 +712,7 @@ M.DeleteParameterGroupInput = {
 
 M.DeleteParameterGroupOutput = {
     type = "structure",
+    id = "DeleteParameterGroupOutput",
     members = {
         DeletionMessage = {
             type = "string",
@@ -674,6 +722,7 @@ M.DeleteParameterGroupOutput = {
 
 M.DeleteSubnetGroupInput = {
     type = "structure",
+    id = "DeleteSubnetGroupInput",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -686,6 +735,7 @@ M.DeleteSubnetGroupInput = {
 
 M.DeleteSubnetGroupOutput = {
     type = "structure",
+    id = "DeleteSubnetGroupOutput",
     members = {
         DeletionMessage = {
             type = "string",
@@ -695,6 +745,7 @@ M.DeleteSubnetGroupOutput = {
 
 M.SubnetGroupInUseFault = {
     type = "structure",
+    id = "SubnetGroupInUseFault",
     error = "client",
     members = {
         message = {
@@ -705,6 +756,7 @@ M.SubnetGroupInUseFault = {
 
 M.DescribeClustersInput = {
     type = "structure",
+    id = "DescribeClustersInput",
     members = {
         ClusterNames = {
             type = "list",
@@ -721,6 +773,7 @@ M.DescribeClustersInput = {
 
 M.DescribeClustersOutput = {
     type = "structure",
+    id = "DescribeClustersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -734,6 +787,7 @@ M.DescribeClustersOutput = {
 
 M.DescribeDefaultParametersInput = {
     type = "structure",
+    id = "DescribeDefaultParametersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -757,6 +811,7 @@ M.IsModifiable = {
 
 M.NodeTypeSpecificValue = {
     type = "structure",
+    id = "NodeTypeSpecificValue",
     members = {
         NodeType = {
             type = "string",
@@ -774,6 +829,7 @@ M.ParameterType = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         ParameterName = {
             type = "string",
@@ -811,6 +867,7 @@ M.Parameter = {
 
 M.DescribeDefaultParametersOutput = {
     type = "structure",
+    id = "DescribeDefaultParametersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -830,6 +887,7 @@ M.SourceType = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         SourceName = {
             type = "string",
@@ -857,6 +915,7 @@ M.DescribeEventsInput = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         SourceName = {
             type = "string",
@@ -875,6 +934,7 @@ M.Event = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -888,6 +948,7 @@ M.DescribeEventsOutput = {
 
 M.DescribeParameterGroupsInput = {
     type = "structure",
+    id = "DescribeParameterGroupsInput",
     members = {
         ParameterGroupNames = {
             type = "list",
@@ -904,6 +965,7 @@ M.DescribeParameterGroupsInput = {
 
 M.DescribeParameterGroupsOutput = {
     type = "structure",
+    id = "DescribeParameterGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -917,6 +979,7 @@ M.DescribeParameterGroupsOutput = {
 
 M.DescribeParametersInput = {
     type = "structure",
+    id = "DescribeParametersInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -938,6 +1001,7 @@ M.DescribeParametersInput = {
 
 M.DescribeParametersOutput = {
     type = "structure",
+    id = "DescribeParametersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -951,6 +1015,7 @@ M.DescribeParametersOutput = {
 
 M.DescribeSubnetGroupsInput = {
     type = "structure",
+    id = "DescribeSubnetGroupsInput",
     members = {
         SubnetGroupNames = {
             type = "list",
@@ -967,6 +1032,7 @@ M.DescribeSubnetGroupsInput = {
 
 M.DescribeSubnetGroupsOutput = {
     type = "structure",
+    id = "DescribeSubnetGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -980,6 +1046,7 @@ M.DescribeSubnetGroupsOutput = {
 
 M.IncreaseReplicationFactorInput = {
     type = "structure",
+    id = "IncreaseReplicationFactorInput",
     members = {
         ClusterName = {
             type = "string",
@@ -1003,6 +1070,7 @@ M.IncreaseReplicationFactorInput = {
 
 M.IncreaseReplicationFactorOutput = {
     type = "structure",
+    id = "IncreaseReplicationFactorOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -1010,6 +1078,7 @@ M.IncreaseReplicationFactorOutput = {
 
 M.InvalidARNFault = {
     type = "structure",
+    id = "InvalidARNFault",
     error = "client",
     members = {
         message = {
@@ -1020,6 +1089,7 @@ M.InvalidARNFault = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         ResourceName = {
             type = "string",
@@ -1035,6 +1105,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -1048,6 +1119,7 @@ M.ListTagsOutput = {
 
 M.RebootNodeInput = {
     type = "structure",
+    id = "RebootNodeInput",
     members = {
         ClusterName = {
             type = "string",
@@ -1066,6 +1138,7 @@ M.RebootNodeInput = {
 
 M.RebootNodeOutput = {
     type = "structure",
+    id = "RebootNodeOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -1073,6 +1146,7 @@ M.RebootNodeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -1092,6 +1166,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1102,6 +1177,7 @@ M.TagResourceOutput = {
 
 M.TagNotFoundFault = {
     type = "structure",
+    id = "TagNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1112,6 +1188,7 @@ M.TagNotFoundFault = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -1131,6 +1208,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1141,6 +1219,7 @@ M.UntagResourceOutput = {
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         ClusterName = {
             type = "string",
@@ -1172,6 +1251,7 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -1179,6 +1259,7 @@ M.UpdateClusterOutput = {
 
 M.ParameterNameValue = {
     type = "structure",
+    id = "ParameterNameValue",
     members = {
         ParameterName = {
             type = "string",
@@ -1191,6 +1272,7 @@ M.ParameterNameValue = {
 
 M.UpdateParameterGroupInput = {
     type = "structure",
+    id = "UpdateParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -1210,6 +1292,7 @@ M.UpdateParameterGroupInput = {
 
 M.UpdateParameterGroupOutput = {
     type = "structure",
+    id = "UpdateParameterGroupOutput",
     members = {
         ParameterGroup = M.ParameterGroup,
     },
@@ -1217,6 +1300,7 @@ M.UpdateParameterGroupOutput = {
 
 M.SubnetInUse = {
     type = "structure",
+    id = "SubnetInUse",
     error = "client",
     members = {
         message = {
@@ -1227,6 +1311,7 @@ M.SubnetInUse = {
 
 M.UpdateSubnetGroupInput = {
     type = "structure",
+    id = "UpdateSubnetGroupInput",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -1246,6 +1331,7 @@ M.UpdateSubnetGroupInput = {
 
 M.UpdateSubnetGroupOutput = {
     type = "structure",
+    id = "UpdateSubnetGroupOutput",
     members = {
         SubnetGroup = M.SubnetGroup,
     },

@@ -1791,19 +1791,19 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
-local type DataSourceType = "AWS_Cloudtrail" | "AWS_Config" | "AWS_Security_Hub" | "AWS_API_Call" | "MANUAL"
+local type AccountStatus = "ACTIVE" | "INACTIVE" | "PENDING_ACTIVATION"
+
+local type ControlSetStatus = "ACTIVE" | "UNDER_REVIEW" | "REVIEWED"
+
+local type ControlStatus = "UNDER_REVIEW" | "REVIEWED" | "INACTIVE"
+
+local type ShareRequestType = "SENT" | "RECEIVED"
 
 local type AssessmentStatus = "ACTIVE" | "INACTIVE"
 
 local type FrameworkType = "Standard" | "Custom"
 
-local type AccountStatus = "ACTIVE" | "INACTIVE" | "PENDING_ACTIVATION"
-
-local type ControlStatus = "UNDER_REVIEW" | "REVIEWED" | "INACTIVE"
-
-local type ControlSetStatus = "ACTIVE" | "UNDER_REVIEW" | "REVIEWED"
-
-local type ShareRequestType = "SENT" | "RECEIVED"
+local type DataSourceType = "AWS_Cloudtrail" | "AWS_Config" | "AWS_Security_Hub" | "AWS_API_Call" | "MANUAL"
 
 local type ControlType = "Standard" | "Custom" | "Core"
 

@@ -7,6 +7,7 @@ M.AcceptAction = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +23,7 @@ M.ActionFailurePolicy = {
 
 M.AddHeaderAction = {
     type = "structure",
+    id = "AddHeaderAction",
     members = {
         HeaderName = {
             type = "string",
@@ -40,6 +42,7 @@ M.AddHeaderAction = {
 
 M.AddonInstance = {
     type = "structure",
+    id = "AddonInstance",
     members = {
         AddonInstanceId = {
             type = "string",
@@ -61,6 +64,7 @@ M.AddonInstance = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -71,6 +75,7 @@ M.ConflictException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -89,6 +94,7 @@ M.Tag = {
 
 M.CreateAddonInstanceInput = {
     type = "structure",
+    id = "CreateAddonInstanceInput",
     members = {
         ClientToken = {
             type = "string",
@@ -111,6 +117,7 @@ M.CreateAddonInstanceInput = {
 
 M.CreateAddonInstanceOutput = {
     type = "structure",
+    id = "CreateAddonInstanceOutput",
     members = {
         AddonInstanceId = {
             type = "string",
@@ -123,6 +130,7 @@ M.CreateAddonInstanceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -133,6 +141,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -143,6 +152,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -153,6 +163,7 @@ M.ValidationException = {
 
 M.DeleteAddonInstanceInput = {
     type = "structure",
+    id = "DeleteAddonInstanceInput",
     members = {
         AddonInstanceId = {
             type = "string",
@@ -165,10 +176,12 @@ M.DeleteAddonInstanceInput = {
 
 M.DeleteAddonInstanceOutput = {
     type = "structure",
+    id = "DeleteAddonInstanceOutput",
 }
 
 M.GetAddonInstanceInput = {
     type = "structure",
+    id = "GetAddonInstanceInput",
     members = {
         AddonInstanceId = {
             type = "string",
@@ -181,6 +194,7 @@ M.GetAddonInstanceInput = {
 
 M.GetAddonInstanceOutput = {
     type = "structure",
+    id = "GetAddonInstanceOutput",
     members = {
         AddonSubscriptionId = {
             type = "string",
@@ -199,6 +213,7 @@ M.GetAddonInstanceOutput = {
 
 M.ListAddonInstancesInput = {
     type = "structure",
+    id = "ListAddonInstancesInput",
     members = {
         NextToken = {
             type = "string",
@@ -211,6 +226,7 @@ M.ListAddonInstancesInput = {
 
 M.ListAddonInstancesOutput = {
     type = "structure",
+    id = "ListAddonInstancesOutput",
     members = {
         AddonInstances = {
             type = "list",
@@ -224,6 +240,7 @@ M.ListAddonInstancesOutput = {
 
 M.AddonSubscription = {
     type = "structure",
+    id = "AddonSubscription",
     members = {
         AddonSubscriptionId = {
             type = "string",
@@ -242,6 +259,7 @@ M.AddonSubscription = {
 
 M.CreateAddonSubscriptionInput = {
     type = "structure",
+    id = "CreateAddonSubscriptionInput",
     members = {
         ClientToken = {
             type = "string",
@@ -264,6 +282,7 @@ M.CreateAddonSubscriptionInput = {
 
 M.CreateAddonSubscriptionOutput = {
     type = "structure",
+    id = "CreateAddonSubscriptionOutput",
     members = {
         AddonSubscriptionId = {
             type = "string",
@@ -276,6 +295,7 @@ M.CreateAddonSubscriptionOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -286,6 +306,7 @@ M.ThrottlingException = {
 
 M.DeleteAddonSubscriptionInput = {
     type = "structure",
+    id = "DeleteAddonSubscriptionInput",
     members = {
         AddonSubscriptionId = {
             type = "string",
@@ -298,10 +319,12 @@ M.DeleteAddonSubscriptionInput = {
 
 M.DeleteAddonSubscriptionOutput = {
     type = "structure",
+    id = "DeleteAddonSubscriptionOutput",
 }
 
 M.GetAddonSubscriptionInput = {
     type = "structure",
+    id = "GetAddonSubscriptionInput",
     members = {
         AddonSubscriptionId = {
             type = "string",
@@ -314,6 +337,7 @@ M.GetAddonSubscriptionInput = {
 
 M.GetAddonSubscriptionOutput = {
     type = "structure",
+    id = "GetAddonSubscriptionOutput",
     members = {
         AddonName = {
             type = "string",
@@ -329,6 +353,7 @@ M.GetAddonSubscriptionOutput = {
 
 M.ListAddonSubscriptionsInput = {
     type = "structure",
+    id = "ListAddonSubscriptionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -341,6 +366,7 @@ M.ListAddonSubscriptionsInput = {
 
 M.ListAddonSubscriptionsOutput = {
     type = "structure",
+    id = "ListAddonSubscriptionsOutput",
     members = {
         AddonSubscriptions = {
             type = "list",
@@ -354,6 +380,7 @@ M.ListAddonSubscriptionsOutput = {
 
 M.AddressFilter = {
     type = "structure",
+    id = "AddressFilter",
     members = {
         AddressPrefix = {
             type = "string",
@@ -363,6 +390,7 @@ M.AddressFilter = {
 
 M.AddressList = {
     type = "structure",
+    id = "AddressList",
     members = {
         AddressListId = {
             type = "string",
@@ -399,6 +427,7 @@ M.AddressList = {
 
 M.CreateAddressListInput = {
     type = "structure",
+    id = "CreateAddressListInput",
     members = {
         ClientToken = {
             type = "string",
@@ -421,6 +450,7 @@ M.CreateAddressListInput = {
 
 M.CreateAddressListOutput = {
     type = "structure",
+    id = "CreateAddressListOutput",
     members = {
         AddressListId = {
             type = "string",
@@ -433,6 +463,7 @@ M.CreateAddressListOutput = {
 
 M.DeleteAddressListInput = {
     type = "structure",
+    id = "DeleteAddressListInput",
     members = {
         AddressListId = {
             type = "string",
@@ -445,10 +476,12 @@ M.DeleteAddressListInput = {
 
 M.DeleteAddressListOutput = {
     type = "structure",
+    id = "DeleteAddressListOutput",
 }
 
 M.GetAddressListInput = {
     type = "structure",
+    id = "GetAddressListInput",
     members = {
         AddressListId = {
             type = "string",
@@ -461,6 +494,7 @@ M.GetAddressListInput = {
 
 M.GetAddressListOutput = {
     type = "structure",
+    id = "GetAddressListOutput",
     members = {
         AddressListId = {
             type = "string",
@@ -497,6 +531,7 @@ M.GetAddressListOutput = {
 
 M.ListAddressListsInput = {
     type = "structure",
+    id = "ListAddressListsInput",
     members = {
         NextToken = {
             type = "string",
@@ -509,6 +544,7 @@ M.ListAddressListsInput = {
 
 M.ListAddressListsOutput = {
     type = "structure",
+    id = "ListAddressListsOutput",
     members = {
         AddressLists = {
             type = "list",
@@ -525,6 +561,7 @@ M.ListAddressListsOutput = {
 
 M.Analysis = {
     type = "structure",
+    id = "Analysis",
     members = {
         Analyzer = {
             type = "string",
@@ -548,6 +585,7 @@ M.ArchiveState = {
 
 M.Archive = {
     type = "structure",
+    id = "Archive",
     members = {
         ArchiveId = {
             type = "string",
@@ -569,6 +607,7 @@ M.Archive = {
 
 M.ArchiveAction = {
     type = "structure",
+    id = "ArchiveAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -588,6 +627,7 @@ M.ArchiveBooleanEmailAttribute = {
 
 M.ArchiveBooleanToEvaluate = {
     type = "union",
+    id = "ArchiveBooleanToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -602,6 +642,7 @@ M.ArchiveBooleanOperator = {
 
 M.ArchiveBooleanExpression = {
     type = "structure",
+    id = "ArchiveBooleanExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -626,6 +667,7 @@ M.ArchiveStringEmailAttribute = {
 
 M.ArchiveStringToEvaluate = {
     type = "union",
+    id = "ArchiveStringToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -639,6 +681,7 @@ M.ArchiveStringOperator = {
 
 M.ArchiveStringExpression = {
     type = "structure",
+    id = "ArchiveStringExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -661,6 +704,7 @@ M.ArchiveStringExpression = {
 
 M.ArchiveFilterCondition = {
     type = "union",
+    id = "ArchiveFilterCondition",
     members = {
         StringExpression = M.ArchiveStringExpression,
         BooleanExpression = M.ArchiveBooleanExpression,
@@ -669,6 +713,7 @@ M.ArchiveFilterCondition = {
 
 M.ArchiveFilters = {
     type = "structure",
+    id = "ArchiveFilters",
     members = {
         Include = {
             type = "list",
@@ -702,6 +747,7 @@ M.RetentionPeriod = {
 
 M.ArchiveRetention = {
     type = "union",
+    id = "ArchiveRetention",
     members = {
         RetentionPeriod = {
             type = "string",
@@ -711,6 +757,7 @@ M.ArchiveRetention = {
 
 M.CreateArchiveInput = {
     type = "structure",
+    id = "CreateArchiveInput",
     members = {
         ClientToken = {
             type = "string",
@@ -737,6 +784,7 @@ M.CreateArchiveInput = {
 
 M.CreateArchiveOutput = {
     type = "structure",
+    id = "CreateArchiveOutput",
     members = {
         ArchiveId = {
             type = "string",
@@ -749,6 +797,7 @@ M.CreateArchiveOutput = {
 
 M.DeleteArchiveInput = {
     type = "structure",
+    id = "DeleteArchiveInput",
     members = {
         ArchiveId = {
             type = "string",
@@ -761,10 +810,12 @@ M.DeleteArchiveInput = {
 
 M.DeleteArchiveOutput = {
     type = "structure",
+    id = "DeleteArchiveOutput",
 }
 
 M.GetArchiveInput = {
     type = "structure",
+    id = "GetArchiveInput",
     members = {
         ArchiveId = {
             type = "string",
@@ -777,6 +828,7 @@ M.GetArchiveInput = {
 
 M.GetArchiveOutput = {
     type = "structure",
+    id = "GetArchiveOutput",
     members = {
         ArchiveId = {
             type = "string",
@@ -819,6 +871,7 @@ M.GetArchiveOutput = {
 
 M.ListArchivesInput = {
     type = "structure",
+    id = "ListArchivesInput",
     members = {
         NextToken = {
             type = "string",
@@ -831,6 +884,7 @@ M.ListArchivesInput = {
 
 M.ListArchivesOutput = {
     type = "structure",
+    id = "ListArchivesOutput",
     members = {
         Archives = {
             type = "list",
@@ -847,6 +901,7 @@ M.ListArchivesOutput = {
 
 M.UpdateArchiveInput = {
     type = "structure",
+    id = "UpdateArchiveInput",
     members = {
         ArchiveId = {
             type = "string",
@@ -863,10 +918,12 @@ M.UpdateArchiveInput = {
 
 M.UpdateArchiveOutput = {
     type = "structure",
+    id = "UpdateArchiveOutput",
 }
 
 M.BounceAction = {
     type = "structure",
+    id = "BounceAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -914,6 +971,7 @@ M.ImportDataType = {
 
 M.ImportDataFormat = {
     type = "structure",
+    id = "ImportDataFormat",
     members = {
         ImportDataType = {
             type = "string",
@@ -926,6 +984,7 @@ M.ImportDataFormat = {
 
 M.CreateAddressListImportJobInput = {
     type = "structure",
+    id = "CreateAddressListImportJobInput",
     members = {
         ClientToken = {
             type = "string",
@@ -953,6 +1012,7 @@ M.CreateAddressListImportJobInput = {
 
 M.CreateAddressListImportJobOutput = {
     type = "structure",
+    id = "CreateAddressListImportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -971,6 +1031,7 @@ M.CreateAddressListImportJobOutput = {
 
 M.TrustStore = {
     type = "structure",
+    id = "TrustStore",
     members = {
         CAContent = {
             type = "string",
@@ -989,6 +1050,7 @@ M.TrustStore = {
 
 M.TlsAuthConfiguration = {
     type = "structure",
+    id = "TlsAuthConfiguration",
     members = {
         TrustStore = M.TrustStore,
     },
@@ -996,6 +1058,7 @@ M.TlsAuthConfiguration = {
 
 M.IngressPointConfiguration = {
     type = "union",
+    id = "IngressPointConfiguration",
     members = {
         SmtpPassword = {
             type = "string",
@@ -1009,6 +1072,7 @@ M.IngressPointConfiguration = {
 
 M.PrivateNetworkConfiguration = {
     type = "structure",
+    id = "PrivateNetworkConfiguration",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -1026,6 +1090,7 @@ M.IpType = {
 
 M.PublicNetworkConfiguration = {
     type = "structure",
+    id = "PublicNetworkConfiguration",
     members = {
         IpType = {
             type = "string",
@@ -1039,6 +1104,7 @@ M.PublicNetworkConfiguration = {
 
 M.NetworkConfiguration = {
     type = "union",
+    id = "NetworkConfiguration",
     members = {
         PublicNetworkConfiguration = M.PublicNetworkConfiguration,
         PrivateNetworkConfiguration = M.PrivateNetworkConfiguration,
@@ -1059,6 +1125,7 @@ M.IngressPointType = {
 
 M.CreateIngressPointInput = {
     type = "structure",
+    id = "CreateIngressPointInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1104,6 +1171,7 @@ M.CreateIngressPointInput = {
 
 M.CreateIngressPointOutput = {
     type = "structure",
+    id = "CreateIngressPointOutput",
     members = {
         IngressPointId = {
             type = "string",
@@ -1116,10 +1184,12 @@ M.CreateIngressPointOutput = {
 
 M.NoAuthentication = {
     type = "structure",
+    id = "NoAuthentication",
 }
 
 M.RelayAuthentication = {
     type = "union",
+    id = "RelayAuthentication",
     members = {
         SecretArn = {
             type = "string",
@@ -1130,6 +1200,7 @@ M.RelayAuthentication = {
 
 M.CreateRelayInput = {
     type = "structure",
+    id = "CreateRelayInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1167,6 +1238,7 @@ M.CreateRelayInput = {
 
 M.CreateRelayOutput = {
     type = "structure",
+    id = "CreateRelayOutput",
     members = {
         RelayId = {
             type = "string",
@@ -1179,6 +1251,7 @@ M.CreateRelayOutput = {
 
 M.DeliverToMailboxAction = {
     type = "structure",
+    id = "DeliverToMailboxAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -1200,6 +1273,7 @@ M.DeliverToMailboxAction = {
 
 M.DeliverToQBusinessAction = {
     type = "structure",
+    id = "DeliverToQBusinessAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -1227,6 +1301,7 @@ M.DeliverToQBusinessAction = {
 
 M.DropAction = {
     type = "structure",
+    id = "DropAction",
 }
 
 M.LambdaInvocationType = {
@@ -1236,6 +1311,7 @@ M.LambdaInvocationType = {
 
 M.InvokeLambdaAction = {
     type = "structure",
+    id = "InvokeLambdaAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -1276,6 +1352,7 @@ M.SnsNotificationPayloadType = {
 
 M.SnsAction = {
     type = "structure",
+    id = "SnsAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -1314,6 +1391,7 @@ M.MailFrom = {
 
 M.RelayAction = {
     type = "structure",
+    id = "RelayAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -1332,6 +1410,7 @@ M.RelayAction = {
 
 M.ReplaceRecipientAction = {
     type = "structure",
+    id = "ReplaceRecipientAction",
     members = {
         ReplaceWith = {
             type = "list",
@@ -1342,6 +1421,7 @@ M.ReplaceRecipientAction = {
 
 M.SendAction = {
     type = "structure",
+    id = "SendAction",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -1357,6 +1437,7 @@ M.SendAction = {
 
 M.S3Action = {
     type = "structure",
+    id = "S3Action",
     members = {
         ActionFailurePolicy = {
             type = "string",
@@ -1384,6 +1465,7 @@ M.S3Action = {
 
 M.RuleAction = {
     type = "union",
+    id = "RuleAction",
     members = {
         Drop = M.DropAction,
         Relay = M.RelayAction,
@@ -1417,6 +1499,7 @@ M.RuleAddressListEmailAttribute = {
 
 M.RuleIsInAddressList = {
     type = "structure",
+    id = "RuleIsInAddressList",
     members = {
         Attribute = {
             type = "string",
@@ -1436,6 +1519,7 @@ M.RuleIsInAddressList = {
 
 M.RuleBooleanToEvaluate = {
     type = "union",
+    id = "RuleBooleanToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1452,6 +1536,7 @@ M.RuleBooleanOperator = {
 
 M.RuleBooleanExpression = {
     type = "structure",
+    id = "RuleBooleanExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1478,6 +1563,7 @@ M.RuleDmarcPolicy = {
 
 M.RuleDmarcExpression = {
     type = "structure",
+    id = "RuleDmarcExpression",
     members = {
         Operator = {
             type = "string",
@@ -1501,6 +1587,7 @@ M.RuleIpEmailAttribute = {
 
 M.RuleIpToEvaluate = {
     type = "union",
+    id = "RuleIpToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1515,6 +1602,7 @@ M.RuleIpOperator = {
 
 M.RuleIpExpression = {
     type = "structure",
+    id = "RuleIpExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1541,6 +1629,7 @@ M.RuleNumberEmailAttribute = {
 
 M.RuleNumberToEvaluate = {
     type = "union",
+    id = "RuleNumberToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1559,6 +1648,7 @@ M.RuleNumberOperator = {
 
 M.RuleNumberExpression = {
     type = "structure",
+    id = "RuleNumberExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1602,6 +1692,7 @@ M.RuleClientCertificateAttribute = {
 
 M.RuleStringToEvaluate = {
     type = "union",
+    id = "RuleStringToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1626,6 +1717,7 @@ M.RuleStringOperator = {
 
 M.RuleStringExpression = {
     type = "structure",
+    id = "RuleStringExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1653,6 +1745,7 @@ M.RuleVerdictAttribute = {
 
 M.RuleVerdictToEvaluate = {
     type = "union",
+    id = "RuleVerdictToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1675,6 +1768,7 @@ M.RuleVerdict = {
 
 M.RuleVerdictExpression = {
     type = "structure",
+    id = "RuleVerdictExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1697,6 +1791,7 @@ M.RuleVerdictExpression = {
 
 M.RuleCondition = {
     type = "union",
+    id = "RuleCondition",
     members = {
         BooleanExpression = M.RuleBooleanExpression,
         StringExpression = M.RuleStringExpression,
@@ -1709,6 +1804,7 @@ M.RuleCondition = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         Name = {
             type = "string",
@@ -1733,6 +1829,7 @@ M.Rule = {
 
 M.CreateRuleSetInput = {
     type = "structure",
+    id = "CreateRuleSetInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1762,6 +1859,7 @@ M.CreateRuleSetInput = {
 
 M.CreateRuleSetOutput = {
     type = "structure",
+    id = "CreateRuleSetOutput",
     members = {
         RuleSetId = {
             type = "string",
@@ -1774,6 +1872,7 @@ M.CreateRuleSetOutput = {
 
 M.IngressAnalysis = {
     type = "structure",
+    id = "IngressAnalysis",
     members = {
         Analyzer = {
             type = "string",
@@ -1796,6 +1895,7 @@ M.IngressAddressListEmailAttribute = {
 
 M.IngressIsInAddressList = {
     type = "structure",
+    id = "IngressIsInAddressList",
     members = {
         Attribute = {
             type = "string",
@@ -1815,6 +1915,7 @@ M.IngressIsInAddressList = {
 
 M.IngressBooleanToEvaluate = {
     type = "union",
+    id = "IngressBooleanToEvaluate",
     members = {
         Analysis = M.IngressAnalysis,
         IsInAddressList = M.IngressIsInAddressList,
@@ -1828,6 +1929,7 @@ M.IngressBooleanOperator = {
 
 M.IngressBooleanExpression = {
     type = "structure",
+    id = "IngressBooleanExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1847,6 +1949,7 @@ M.IngressIpv4Attribute = {
 
 M.IngressIpToEvaluate = {
     type = "union",
+    id = "IngressIpToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1861,6 +1964,7 @@ M.IngressIpOperator = {
 
 M.IngressIpv4Expression = {
     type = "structure",
+    id = "IngressIpv4Expression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1887,6 +1991,7 @@ M.IngressIpv6Attribute = {
 
 M.IngressIpv6ToEvaluate = {
     type = "union",
+    id = "IngressIpv6ToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1896,6 +2001,7 @@ M.IngressIpv6ToEvaluate = {
 
 M.IngressIpv6Expression = {
     type = "structure",
+    id = "IngressIpv6Expression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1922,6 +2028,7 @@ M.IngressStringEmailAttribute = {
 
 M.IngressStringToEvaluate = {
     type = "union",
+    id = "IngressStringToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1940,6 +2047,7 @@ M.IngressStringOperator = {
 
 M.IngressStringExpression = {
     type = "structure",
+    id = "IngressStringExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -1966,6 +2074,7 @@ M.IngressTlsAttribute = {
 
 M.IngressTlsProtocolToEvaluate = {
     type = "union",
+    id = "IngressTlsProtocolToEvaluate",
     members = {
         Attribute = {
             type = "string",
@@ -1985,6 +2094,7 @@ M.IngressTlsProtocolAttribute = {
 
 M.IngressTlsProtocolExpression = {
     type = "structure",
+    id = "IngressTlsProtocolExpression",
     members = {
         Evaluate = setmetatable({ traits = {
             required = true,
@@ -2006,6 +2116,7 @@ M.IngressTlsProtocolExpression = {
 
 M.PolicyCondition = {
     type = "union",
+    id = "PolicyCondition",
     members = {
         StringExpression = M.IngressStringExpression,
         IpExpression = M.IngressIpv4Expression,
@@ -2017,6 +2128,7 @@ M.PolicyCondition = {
 
 M.PolicyStatement = {
     type = "structure",
+    id = "PolicyStatement",
     members = {
         Conditions = {
             type = "list",
@@ -2036,6 +2148,7 @@ M.PolicyStatement = {
 
 M.CreateTrafficPolicyInput = {
     type = "structure",
+    id = "CreateTrafficPolicyInput",
     members = {
         ClientToken = {
             type = "string",
@@ -2074,6 +2187,7 @@ M.CreateTrafficPolicyInput = {
 
 M.CreateTrafficPolicyOutput = {
     type = "structure",
+    id = "CreateTrafficPolicyOutput",
     members = {
         TrafficPolicyId = {
             type = "string",
@@ -2086,6 +2200,7 @@ M.CreateTrafficPolicyOutput = {
 
 M.DeleteIngressPointInput = {
     type = "structure",
+    id = "DeleteIngressPointInput",
     members = {
         IngressPointId = {
             type = "string",
@@ -2098,10 +2213,12 @@ M.DeleteIngressPointInput = {
 
 M.DeleteIngressPointOutput = {
     type = "structure",
+    id = "DeleteIngressPointOutput",
 }
 
 M.DeleteRelayInput = {
     type = "structure",
+    id = "DeleteRelayInput",
     members = {
         RelayId = {
             type = "string",
@@ -2114,10 +2231,12 @@ M.DeleteRelayInput = {
 
 M.DeleteRelayOutput = {
     type = "structure",
+    id = "DeleteRelayOutput",
 }
 
 M.DeleteRuleSetInput = {
     type = "structure",
+    id = "DeleteRuleSetInput",
     members = {
         RuleSetId = {
             type = "string",
@@ -2130,10 +2249,12 @@ M.DeleteRuleSetInput = {
 
 M.DeleteRuleSetOutput = {
     type = "structure",
+    id = "DeleteRuleSetOutput",
 }
 
 M.DeleteTrafficPolicyInput = {
     type = "structure",
+    id = "DeleteTrafficPolicyInput",
     members = {
         TrafficPolicyId = {
             type = "string",
@@ -2146,10 +2267,12 @@ M.DeleteTrafficPolicyInput = {
 
 M.DeleteTrafficPolicyOutput = {
     type = "structure",
+    id = "DeleteTrafficPolicyOutput",
 }
 
 M.DeregisterMemberFromAddressListInput = {
     type = "structure",
+    id = "DeregisterMemberFromAddressListInput",
     members = {
         AddressListId = {
             type = "string",
@@ -2168,10 +2291,12 @@ M.DeregisterMemberFromAddressListInput = {
 
 M.DeregisterMemberFromAddressListOutput = {
     type = "structure",
+    id = "DeregisterMemberFromAddressListOutput",
 }
 
 M.Envelope = {
     type = "structure",
+    id = "Envelope",
     members = {
         Helo = {
             type = "string",
@@ -2188,6 +2313,7 @@ M.Envelope = {
 
 M.S3ExportDestinationConfiguration = {
     type = "structure",
+    id = "S3ExportDestinationConfiguration",
     members = {
         S3Location = {
             type = "string",
@@ -2197,6 +2323,7 @@ M.S3ExportDestinationConfiguration = {
 
 M.ExportDestinationConfiguration = {
     type = "union",
+    id = "ExportDestinationConfiguration",
     members = {
         S3 = M.S3ExportDestinationConfiguration,
     },
@@ -2213,6 +2340,7 @@ M.ExportState = {
 
 M.ExportStatus = {
     type = "structure",
+    id = "ExportStatus",
     members = {
         SubmissionTimestamp = {
             type = "timestamp",
@@ -2231,6 +2359,7 @@ M.ExportStatus = {
 
 M.ExportSummary = {
     type = "structure",
+    id = "ExportSummary",
     members = {
         ExportId = {
             type = "string",
@@ -2241,6 +2370,7 @@ M.ExportSummary = {
 
 M.GetAddressListImportJobInput = {
     type = "structure",
+    id = "GetAddressListImportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2261,6 +2391,7 @@ M.ImportJobStatus = {
 
 M.GetAddressListImportJobOutput = {
     type = "structure",
+    id = "GetAddressListImportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -2321,6 +2452,7 @@ M.GetAddressListImportJobOutput = {
 
 M.GetArchiveExportInput = {
     type = "structure",
+    id = "GetArchiveExportInput",
     members = {
         ExportId = {
             type = "string",
@@ -2333,6 +2465,7 @@ M.GetArchiveExportInput = {
 
 M.GetArchiveExportOutput = {
     type = "structure",
+    id = "GetArchiveExportOutput",
     members = {
         ArchiveId = {
             type = "string",
@@ -2354,6 +2487,7 @@ M.GetArchiveExportOutput = {
 
 M.GetArchiveMessageInput = {
     type = "structure",
+    id = "GetArchiveMessageInput",
     members = {
         ArchivedMessageId = {
             type = "string",
@@ -2366,6 +2500,7 @@ M.GetArchiveMessageInput = {
 
 M.Metadata = {
     type = "structure",
+    id = "Metadata",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -2411,6 +2546,7 @@ M.Metadata = {
 
 M.GetArchiveMessageOutput = {
     type = "structure",
+    id = "GetArchiveMessageOutput",
     members = {
         MessageDownloadLink = {
             type = "string",
@@ -2422,6 +2558,7 @@ M.GetArchiveMessageOutput = {
 
 M.GetArchiveMessageContentInput = {
     type = "structure",
+    id = "GetArchiveMessageContentInput",
     members = {
         ArchivedMessageId = {
             type = "string",
@@ -2434,6 +2571,7 @@ M.GetArchiveMessageContentInput = {
 
 M.MessageBody = {
     type = "structure",
+    id = "MessageBody",
     members = {
         Text = {
             type = "string",
@@ -2449,6 +2587,7 @@ M.MessageBody = {
 
 M.GetArchiveMessageContentOutput = {
     type = "structure",
+    id = "GetArchiveMessageContentOutput",
     members = {
         Body = M.MessageBody,
     },
@@ -2456,6 +2595,7 @@ M.GetArchiveMessageContentOutput = {
 
 M.GetArchiveSearchInput = {
     type = "structure",
+    id = "GetArchiveSearchInput",
     members = {
         SearchId = {
             type = "string",
@@ -2476,6 +2616,7 @@ M.SearchState = {
 
 M.SearchStatus = {
     type = "structure",
+    id = "SearchStatus",
     members = {
         SubmissionTimestamp = {
             type = "timestamp",
@@ -2494,6 +2635,7 @@ M.SearchStatus = {
 
 M.GetArchiveSearchOutput = {
     type = "structure",
+    id = "GetArchiveSearchOutput",
     members = {
         ArchiveId = {
             type = "string",
@@ -2514,6 +2656,7 @@ M.GetArchiveSearchOutput = {
 
 M.GetArchiveSearchResultsInput = {
     type = "structure",
+    id = "GetArchiveSearchResultsInput",
     members = {
         SearchId = {
             type = "string",
@@ -2526,6 +2669,7 @@ M.GetArchiveSearchResultsInput = {
 
 M.Row = {
     type = "structure",
+    id = "Row",
     members = {
         ArchivedMessageId = {
             type = "string",
@@ -2588,6 +2732,7 @@ M.Row = {
 
 M.GetArchiveSearchResultsOutput = {
     type = "structure",
+    id = "GetArchiveSearchResultsOutput",
     members = {
         Rows = {
             type = "list",
@@ -2603,6 +2748,7 @@ M.TrustStoreResponseOption = {
 
 M.GetIngressPointInput = {
     type = "structure",
+    id = "GetIngressPointInput",
     members = {
         IngressPointId = {
             type = "string",
@@ -2618,6 +2764,7 @@ M.GetIngressPointInput = {
 
 M.IngressPointPasswordConfiguration = {
     type = "structure",
+    id = "IngressPointPasswordConfiguration",
     members = {
         SmtpPasswordVersion = {
             type = "string",
@@ -2633,6 +2780,7 @@ M.IngressPointPasswordConfiguration = {
 
 M.IngressPointAuthConfiguration = {
     type = "structure",
+    id = "IngressPointAuthConfiguration",
     members = {
         IngressPointPasswordConfiguration = M.IngressPointPasswordConfiguration,
         SecretArn = {
@@ -2654,6 +2802,7 @@ M.IngressPointStatus = {
 
 M.GetIngressPointOutput = {
     type = "structure",
+    id = "GetIngressPointOutput",
     members = {
         IngressPointId = {
             type = "string",
@@ -2701,6 +2850,7 @@ M.GetIngressPointOutput = {
 
 M.GetMemberOfAddressListInput = {
     type = "structure",
+    id = "GetMemberOfAddressListInput",
     members = {
         AddressListId = {
             type = "string",
@@ -2719,6 +2869,7 @@ M.GetMemberOfAddressListInput = {
 
 M.GetMemberOfAddressListOutput = {
     type = "structure",
+    id = "GetMemberOfAddressListOutput",
     members = {
         Address = {
             type = "string",
@@ -2737,6 +2888,7 @@ M.GetMemberOfAddressListOutput = {
 
 M.GetRelayInput = {
     type = "structure",
+    id = "GetRelayInput",
     members = {
         RelayId = {
             type = "string",
@@ -2749,6 +2901,7 @@ M.GetRelayInput = {
 
 M.GetRelayOutput = {
     type = "structure",
+    id = "GetRelayOutput",
     members = {
         RelayId = {
             type = "string",
@@ -2780,6 +2933,7 @@ M.GetRelayOutput = {
 
 M.GetRuleSetInput = {
     type = "structure",
+    id = "GetRuleSetInput",
     members = {
         RuleSetId = {
             type = "string",
@@ -2792,6 +2946,7 @@ M.GetRuleSetInput = {
 
 M.GetRuleSetOutput = {
     type = "structure",
+    id = "GetRuleSetOutput",
     members = {
         RuleSetId = {
             type = "string",
@@ -2835,6 +2990,7 @@ M.GetRuleSetOutput = {
 
 M.GetTrafficPolicyInput = {
     type = "structure",
+    id = "GetTrafficPolicyInput",
     members = {
         TrafficPolicyId = {
             type = "string",
@@ -2847,6 +3003,7 @@ M.GetTrafficPolicyInput = {
 
 M.GetTrafficPolicyOutput = {
     type = "structure",
+    id = "GetTrafficPolicyOutput",
     members = {
         TrafficPolicyName = {
             type = "string",
@@ -2884,6 +3041,7 @@ M.GetTrafficPolicyOutput = {
 
 M.ImportJob = {
     type = "structure",
+    id = "ImportJob",
     members = {
         JobId = {
             type = "string",
@@ -2944,6 +3102,7 @@ M.ImportJob = {
 
 M.IngressPoint = {
     type = "structure",
+    id = "IngressPoint",
     members = {
         IngressPointName = {
             type = "string",
@@ -2977,6 +3136,7 @@ M.IngressPoint = {
 
 M.ListIngressPointsInput = {
     type = "structure",
+    id = "ListIngressPointsInput",
     members = {
         PageSize = {
             type = "integer",
@@ -2989,6 +3149,7 @@ M.ListIngressPointsInput = {
 
 M.ListIngressPointsOutput = {
     type = "structure",
+    id = "ListIngressPointsOutput",
     members = {
         IngressPoints = {
             type = "list",
@@ -3007,6 +3168,7 @@ M.IngressPointStatusToUpdate = {
 
 M.UpdateIngressPointInput = {
     type = "structure",
+    id = "UpdateIngressPointInput",
     members = {
         IngressPointId = {
             type = "string",
@@ -3035,10 +3197,12 @@ M.UpdateIngressPointInput = {
 
 M.UpdateIngressPointOutput = {
     type = "structure",
+    id = "UpdateIngressPointOutput",
 }
 
 M.ListAddressListImportJobsInput = {
     type = "structure",
+    id = "ListAddressListImportJobsInput",
     members = {
         AddressListId = {
             type = "string",
@@ -3057,6 +3221,7 @@ M.ListAddressListImportJobsInput = {
 
 M.ListAddressListImportJobsOutput = {
     type = "structure",
+    id = "ListAddressListImportJobsOutput",
     members = {
         ImportJobs = {
             type = "list",
@@ -3073,6 +3238,7 @@ M.ListAddressListImportJobsOutput = {
 
 M.ListArchiveExportsInput = {
     type = "structure",
+    id = "ListArchiveExportsInput",
     members = {
         ArchiveId = {
             type = "string",
@@ -3091,6 +3257,7 @@ M.ListArchiveExportsInput = {
 
 M.ListArchiveExportsOutput = {
     type = "structure",
+    id = "ListArchiveExportsOutput",
     members = {
         Exports = {
             type = "list",
@@ -3104,6 +3271,7 @@ M.ListArchiveExportsOutput = {
 
 M.ListArchiveSearchesInput = {
     type = "structure",
+    id = "ListArchiveSearchesInput",
     members = {
         ArchiveId = {
             type = "string",
@@ -3122,6 +3290,7 @@ M.ListArchiveSearchesInput = {
 
 M.SearchSummary = {
     type = "structure",
+    id = "SearchSummary",
     members = {
         SearchId = {
             type = "string",
@@ -3132,6 +3301,7 @@ M.SearchSummary = {
 
 M.ListArchiveSearchesOutput = {
     type = "structure",
+    id = "ListArchiveSearchesOutput",
     members = {
         Searches = {
             type = "list",
@@ -3145,6 +3315,7 @@ M.ListArchiveSearchesOutput = {
 
 M.ListMembersOfAddressListInput = {
     type = "structure",
+    id = "ListMembersOfAddressListInput",
     members = {
         AddressListId = {
             type = "string",
@@ -3164,6 +3335,7 @@ M.ListMembersOfAddressListInput = {
 
 M.SavedAddress = {
     type = "structure",
+    id = "SavedAddress",
     members = {
         Address = {
             type = "string",
@@ -3182,6 +3354,7 @@ M.SavedAddress = {
 
 M.ListMembersOfAddressListOutput = {
     type = "structure",
+    id = "ListMembersOfAddressListOutput",
     members = {
         Addresses = {
             type = "list",
@@ -3198,6 +3371,7 @@ M.ListMembersOfAddressListOutput = {
 
 M.ListRelaysInput = {
     type = "structure",
+    id = "ListRelaysInput",
     members = {
         PageSize = {
             type = "integer",
@@ -3210,6 +3384,7 @@ M.ListRelaysInput = {
 
 M.Relay = {
     type = "structure",
+    id = "Relay",
     members = {
         RelayId = {
             type = "string",
@@ -3225,6 +3400,7 @@ M.Relay = {
 
 M.ListRelaysOutput = {
     type = "structure",
+    id = "ListRelaysOutput",
     members = {
         Relays = {
             type = "list",
@@ -3241,6 +3417,7 @@ M.ListRelaysOutput = {
 
 M.ListRuleSetsInput = {
     type = "structure",
+    id = "ListRuleSetsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3253,6 +3430,7 @@ M.ListRuleSetsInput = {
 
 M.RuleSet = {
     type = "structure",
+    id = "RuleSet",
     members = {
         RuleSetId = {
             type = "string",
@@ -3268,6 +3446,7 @@ M.RuleSet = {
 
 M.ListRuleSetsOutput = {
     type = "structure",
+    id = "ListRuleSetsOutput",
     members = {
         RuleSets = {
             type = "list",
@@ -3284,6 +3463,7 @@ M.ListRuleSetsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3296,6 +3476,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3309,6 +3490,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTrafficPoliciesInput = {
     type = "structure",
+    id = "ListTrafficPoliciesInput",
     members = {
         PageSize = {
             type = "integer",
@@ -3321,6 +3503,7 @@ M.ListTrafficPoliciesInput = {
 
 M.TrafficPolicy = {
     type = "structure",
+    id = "TrafficPolicy",
     members = {
         TrafficPolicyName = {
             type = "string",
@@ -3345,6 +3528,7 @@ M.TrafficPolicy = {
 
 M.ListTrafficPoliciesOutput = {
     type = "structure",
+    id = "ListTrafficPoliciesOutput",
     members = {
         TrafficPolicies = {
             type = "list",
@@ -3358,6 +3542,7 @@ M.ListTrafficPoliciesOutput = {
 
 M.RegisterMemberToAddressListInput = {
     type = "structure",
+    id = "RegisterMemberToAddressListInput",
     members = {
         AddressListId = {
             type = "string",
@@ -3376,10 +3561,12 @@ M.RegisterMemberToAddressListInput = {
 
 M.RegisterMemberToAddressListOutput = {
     type = "structure",
+    id = "RegisterMemberToAddressListOutput",
 }
 
 M.UpdateRelayInput = {
     type = "structure",
+    id = "UpdateRelayInput",
     members = {
         RelayId = {
             type = "string",
@@ -3402,10 +3589,12 @@ M.UpdateRelayInput = {
 
 M.UpdateRelayOutput = {
     type = "structure",
+    id = "UpdateRelayOutput",
 }
 
 M.UpdateRuleSetInput = {
     type = "structure",
+    id = "UpdateRuleSetInput",
     members = {
         RuleSetId = {
             type = "string",
@@ -3425,10 +3614,12 @@ M.UpdateRuleSetInput = {
 
 M.UpdateRuleSetOutput = {
     type = "structure",
+    id = "UpdateRuleSetOutput",
 }
 
 M.StartAddressListImportJobInput = {
     type = "structure",
+    id = "StartAddressListImportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3441,10 +3632,12 @@ M.StartAddressListImportJobInput = {
 
 M.StartAddressListImportJobOutput = {
     type = "structure",
+    id = "StartAddressListImportJobOutput",
 }
 
 M.StartArchiveExportInput = {
     type = "structure",
+    id = "StartArchiveExportInput",
     members = {
         ArchiveId = {
             type = "string",
@@ -3479,6 +3672,7 @@ M.StartArchiveExportInput = {
 
 M.StartArchiveExportOutput = {
     type = "structure",
+    id = "StartArchiveExportOutput",
     members = {
         ExportId = {
             type = "string",
@@ -3488,6 +3682,7 @@ M.StartArchiveExportOutput = {
 
 M.StartArchiveSearchInput = {
     type = "structure",
+    id = "StartArchiveSearchInput",
     members = {
         ArchiveId = {
             type = "string",
@@ -3519,6 +3714,7 @@ M.StartArchiveSearchInput = {
 
 M.StartArchiveSearchOutput = {
     type = "structure",
+    id = "StartArchiveSearchOutput",
     members = {
         SearchId = {
             type = "string",
@@ -3528,6 +3724,7 @@ M.StartArchiveSearchOutput = {
 
 M.StopAddressListImportJobInput = {
     type = "structure",
+    id = "StopAddressListImportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3540,10 +3737,12 @@ M.StopAddressListImportJobInput = {
 
 M.StopAddressListImportJobOutput = {
     type = "structure",
+    id = "StopAddressListImportJobOutput",
 }
 
 M.StopArchiveExportInput = {
     type = "structure",
+    id = "StopArchiveExportInput",
     members = {
         ExportId = {
             type = "string",
@@ -3556,10 +3755,12 @@ M.StopArchiveExportInput = {
 
 M.StopArchiveExportOutput = {
     type = "structure",
+    id = "StopArchiveExportOutput",
 }
 
 M.StopArchiveSearchInput = {
     type = "structure",
+    id = "StopArchiveSearchInput",
     members = {
         SearchId = {
             type = "string",
@@ -3572,10 +3773,12 @@ M.StopArchiveSearchInput = {
 
 M.StopArchiveSearchOutput = {
     type = "structure",
+    id = "StopArchiveSearchOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3595,10 +3798,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UpdateTrafficPolicyInput = {
     type = "structure",
+    id = "UpdateTrafficPolicyInput",
     members = {
         TrafficPolicyId = {
             type = "string",
@@ -3624,10 +3829,12 @@ M.UpdateTrafficPolicyInput = {
 
 M.UpdateTrafficPolicyOutput = {
     type = "structure",
+    id = "UpdateTrafficPolicyOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3647,6 +3854,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

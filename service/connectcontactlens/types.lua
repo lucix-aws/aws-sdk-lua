@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -25,6 +27,7 @@ M.InternalServiceException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -35,6 +38,7 @@ M.InvalidRequestException = {
 
 M.ListRealtimeContactAnalysisSegmentsInput = {
     type = "structure",
+    id = "ListRealtimeContactAnalysisSegmentsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -59,6 +63,7 @@ M.ListRealtimeContactAnalysisSegmentsInput = {
 
 M.PointOfInterest = {
     type = "structure",
+    id = "PointOfInterest",
     members = {
         BeginOffsetMillis = {
             type = "integer",
@@ -77,6 +82,7 @@ M.PointOfInterest = {
 
 M.CategoryDetails = {
     type = "structure",
+    id = "CategoryDetails",
     members = {
         PointsOfInterest = {
             type = "list",
@@ -90,6 +96,7 @@ M.CategoryDetails = {
 
 M.Categories = {
     type = "structure",
+    id = "Categories",
     members = {
         MatchedCategories = {
             type = "list",
@@ -124,6 +131,7 @@ M.PostContactSummaryStatus = {
 
 M.PostContactSummary = {
     type = "structure",
+    id = "PostContactSummary",
     members = {
         Content = {
             type = "string",
@@ -142,6 +150,7 @@ M.PostContactSummary = {
 
 M.CharacterOffsets = {
     type = "structure",
+    id = "CharacterOffsets",
     members = {
         BeginOffsetChar = {
             type = "integer",
@@ -160,6 +169,7 @@ M.CharacterOffsets = {
 
 M.IssueDetected = {
     type = "structure",
+    id = "IssueDetected",
     members = {
         CharacterOffsets = setmetatable({ traits = {
             required = true,
@@ -175,6 +185,7 @@ M.SentimentValue = {
 
 M.Transcript = {
     type = "structure",
+    id = "Transcript",
     members = {
         Id = {
             type = "string",
@@ -224,6 +235,7 @@ M.Transcript = {
 
 M.RealtimeContactAnalysisSegment = {
     type = "structure",
+    id = "RealtimeContactAnalysisSegment",
     members = {
         Transcript = M.Transcript,
         Categories = M.Categories,
@@ -233,6 +245,7 @@ M.RealtimeContactAnalysisSegment = {
 
 M.ListRealtimeContactAnalysisSegmentsOutput = {
     type = "structure",
+    id = "ListRealtimeContactAnalysisSegmentsOutput",
     members = {
         Segments = {
             type = "list",
@@ -249,6 +262,7 @@ M.ListRealtimeContactAnalysisSegmentsOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -259,6 +273,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {

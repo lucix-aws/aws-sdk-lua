@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -22,6 +24,7 @@ M.ConflictException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -32,6 +35,7 @@ M.ForbiddenException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -42,6 +46,7 @@ M.InternalServerException = {
 
 M.CrossAccountConfiguration = {
     type = "structure",
+    id = "CrossAccountConfiguration",
     members = {
         sourceRoleArn = {
             type = "string",
@@ -56,6 +61,7 @@ M.EncryptionConfigurationType = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         type = {
             type = "string",
@@ -68,6 +74,7 @@ M.EncryptionConfiguration = {
 
 M.CreateInvestigationGroupInput = {
     type = "structure",
+    id = "CreateInvestigationGroupInput",
     members = {
         name = {
             type = "string",
@@ -111,6 +118,7 @@ M.CreateInvestigationGroupInput = {
 
 M.CreateInvestigationGroupOutput = {
     type = "structure",
+    id = "CreateInvestigationGroupOutput",
     members = {
         arn = {
             type = "string",
@@ -120,6 +128,7 @@ M.CreateInvestigationGroupOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -130,6 +139,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -152,6 +162,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -162,6 +173,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -172,6 +184,7 @@ M.ValidationException = {
 
 M.DeleteInvestigationGroupInput = {
     type = "structure",
+    id = "DeleteInvestigationGroupInput",
     members = {
         identifier = {
             type = "string",
@@ -185,10 +198,12 @@ M.DeleteInvestigationGroupInput = {
 
 M.DeleteInvestigationGroupOutput = {
     type = "structure",
+    id = "DeleteInvestigationGroupOutput",
 }
 
 M.GetInvestigationGroupInput = {
     type = "structure",
+    id = "GetInvestigationGroupInput",
     members = {
         identifier = {
             type = "string",
@@ -202,6 +217,7 @@ M.GetInvestigationGroupInput = {
 
 M.GetInvestigationGroupOutput = {
     type = "structure",
+    id = "GetInvestigationGroupOutput",
     members = {
         createdBy = {
             type = "string",
@@ -249,6 +265,7 @@ M.GetInvestigationGroupOutput = {
 
 M.ListInvestigationGroupsInput = {
     type = "structure",
+    id = "ListInvestigationGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -267,6 +284,7 @@ M.ListInvestigationGroupsInput = {
 
 M.ListInvestigationGroupsModel = {
     type = "structure",
+    id = "ListInvestigationGroupsModel",
     members = {
         arn = {
             type = "string",
@@ -279,6 +297,7 @@ M.ListInvestigationGroupsModel = {
 
 M.ListInvestigationGroupsOutput = {
     type = "structure",
+    id = "ListInvestigationGroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -292,6 +311,7 @@ M.ListInvestigationGroupsOutput = {
 
 M.UpdateInvestigationGroupInput = {
     type = "structure",
+    id = "UpdateInvestigationGroupInput",
     members = {
         identifier = {
             type = "string",
@@ -325,10 +345,12 @@ M.UpdateInvestigationGroupInput = {
 
 M.UpdateInvestigationGroupOutput = {
     type = "structure",
+    id = "UpdateInvestigationGroupOutput",
 }
 
 M.DeleteInvestigationGroupPolicyInput = {
     type = "structure",
+    id = "DeleteInvestigationGroupPolicyInput",
     members = {
         identifier = {
             type = "string",
@@ -342,10 +364,12 @@ M.DeleteInvestigationGroupPolicyInput = {
 
 M.DeleteInvestigationGroupPolicyOutput = {
     type = "structure",
+    id = "DeleteInvestigationGroupPolicyOutput",
 }
 
 M.GetInvestigationGroupPolicyInput = {
     type = "structure",
+    id = "GetInvestigationGroupPolicyInput",
     members = {
         identifier = {
             type = "string",
@@ -359,6 +383,7 @@ M.GetInvestigationGroupPolicyInput = {
 
 M.GetInvestigationGroupPolicyOutput = {
     type = "structure",
+    id = "GetInvestigationGroupPolicyOutput",
     members = {
         investigationGroupArn = {
             type = "string",
@@ -371,6 +396,7 @@ M.GetInvestigationGroupPolicyOutput = {
 
 M.PutInvestigationGroupPolicyInput = {
     type = "structure",
+    id = "PutInvestigationGroupPolicyInput",
     members = {
         identifier = {
             type = "string",
@@ -390,6 +416,7 @@ M.PutInvestigationGroupPolicyInput = {
 
 M.PutInvestigationGroupPolicyOutput = {
     type = "structure",
+    id = "PutInvestigationGroupPolicyOutput",
     members = {
         investigationGroupArn = {
             type = "string",
@@ -399,6 +426,7 @@ M.PutInvestigationGroupPolicyOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -412,6 +440,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -423,6 +452,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -444,10 +474,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -469,6 +501,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

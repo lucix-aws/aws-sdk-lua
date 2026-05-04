@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptQualificationRequestInput = {
     type = "structure",
+    id = "AcceptQualificationRequestInput",
     members = {
         QualificationRequestId = {
             type = "string",
@@ -17,10 +18,12 @@ M.AcceptQualificationRequestInput = {
 
 M.AcceptQualificationRequestOutput = {
     type = "structure",
+    id = "AcceptQualificationRequestOutput",
 }
 
 M.RequestError = {
     type = "structure",
+    id = "RequestError",
     error = "client",
     members = {
         Message = {
@@ -34,6 +37,7 @@ M.RequestError = {
 
 M.ServiceFault = {
     type = "structure",
+    id = "ServiceFault",
     error = "server",
     members = {
         Message = {
@@ -47,6 +51,7 @@ M.ServiceFault = {
 
 M.ApproveAssignmentInput = {
     type = "structure",
+    id = "ApproveAssignmentInput",
     members = {
         AssignmentId = {
             type = "string",
@@ -65,6 +70,7 @@ M.ApproveAssignmentInput = {
 
 M.ApproveAssignmentOutput = {
     type = "structure",
+    id = "ApproveAssignmentOutput",
 }
 
 M.AssignmentStatus = {
@@ -75,6 +81,7 @@ M.AssignmentStatus = {
 
 M.Assignment = {
     type = "structure",
+    id = "Assignment",
     members = {
         AssignmentId = {
             type = "string",
@@ -117,6 +124,7 @@ M.Assignment = {
 
 M.AssociateQualificationWithWorkerInput = {
     type = "structure",
+    id = "AssociateQualificationWithWorkerInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -141,10 +149,12 @@ M.AssociateQualificationWithWorkerInput = {
 
 M.AssociateQualificationWithWorkerOutput = {
     type = "structure",
+    id = "AssociateQualificationWithWorkerOutput",
 }
 
 M.BonusPayment = {
     type = "structure",
+    id = "BonusPayment",
     members = {
         WorkerId = {
             type = "string",
@@ -179,6 +189,7 @@ M.Comparator = {
 
 M.CreateAdditionalAssignmentsForHITInput = {
     type = "structure",
+    id = "CreateAdditionalAssignmentsForHITInput",
     members = {
         HITId = {
             type = "string",
@@ -200,10 +211,12 @@ M.CreateAdditionalAssignmentsForHITInput = {
 
 M.CreateAdditionalAssignmentsForHITOutput = {
     type = "structure",
+    id = "CreateAdditionalAssignmentsForHITOutput",
 }
 
 M.ParameterMapEntry = {
     type = "structure",
+    id = "ParameterMapEntry",
     members = {
         Key = {
             type = "string",
@@ -217,6 +230,7 @@ M.ParameterMapEntry = {
 
 M.PolicyParameter = {
     type = "structure",
+    id = "PolicyParameter",
     members = {
         Key = {
             type = "string",
@@ -234,6 +248,7 @@ M.PolicyParameter = {
 
 M.ReviewPolicy = {
     type = "structure",
+    id = "ReviewPolicy",
     members = {
         PolicyName = {
             type = "string",
@@ -250,6 +265,7 @@ M.ReviewPolicy = {
 
 M.HITLayoutParameter = {
     type = "structure",
+    id = "HITLayoutParameter",
     members = {
         Name = {
             type = "string",
@@ -274,6 +290,7 @@ M.HITAccessActions = {
 
 M.Locale = {
     type = "structure",
+    id = "Locale",
     members = {
         Country = {
             type = "string",
@@ -289,6 +306,7 @@ M.Locale = {
 
 M.QualificationRequirement = {
     type = "structure",
+    id = "QualificationRequirement",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -321,6 +339,7 @@ M.QualificationRequirement = {
 
 M.CreateHITInput = {
     type = "structure",
+    id = "CreateHITInput",
     members = {
         MaxAssignments = {
             type = "integer",
@@ -403,6 +422,7 @@ M.HITStatus = {
 
 M.HIT = {
     type = "structure",
+    id = "HIT",
     members = {
         HITId = {
             type = "string",
@@ -473,6 +493,7 @@ M.HIT = {
 
 M.CreateHITOutput = {
     type = "structure",
+    id = "CreateHITOutput",
     members = {
         HIT = M.HIT,
     },
@@ -480,6 +501,7 @@ M.CreateHITOutput = {
 
 M.CreateHITTypeInput = {
     type = "structure",
+    id = "CreateHITTypeInput",
     members = {
         AutoApprovalDelayInSeconds = {
             type = "long",
@@ -520,6 +542,7 @@ M.CreateHITTypeInput = {
 
 M.CreateHITTypeOutput = {
     type = "structure",
+    id = "CreateHITTypeOutput",
     members = {
         HITTypeId = {
             type = "string",
@@ -529,6 +552,7 @@ M.CreateHITTypeOutput = {
 
 M.CreateHITWithHITTypeInput = {
     type = "structure",
+    id = "CreateHITWithHITTypeInput",
     members = {
         HITTypeId = {
             type = "string",
@@ -568,6 +592,7 @@ M.CreateHITWithHITTypeInput = {
 
 M.CreateHITWithHITTypeOutput = {
     type = "structure",
+    id = "CreateHITWithHITTypeOutput",
     members = {
         HIT = M.HIT,
     },
@@ -580,6 +605,7 @@ M.QualificationTypeStatus = {
 
 M.CreateQualificationTypeInput = {
     type = "structure",
+    id = "CreateQualificationTypeInput",
     members = {
         Name = {
             type = "string",
@@ -625,6 +651,7 @@ M.CreateQualificationTypeInput = {
 
 M.QualificationType = {
     type = "structure",
+    id = "QualificationType",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -670,6 +697,7 @@ M.QualificationType = {
 
 M.CreateQualificationTypeOutput = {
     type = "structure",
+    id = "CreateQualificationTypeOutput",
     members = {
         QualificationType = M.QualificationType,
     },
@@ -677,6 +705,7 @@ M.CreateQualificationTypeOutput = {
 
 M.CreateWorkerBlockInput = {
     type = "structure",
+    id = "CreateWorkerBlockInput",
     members = {
         WorkerId = {
             type = "string",
@@ -695,10 +724,12 @@ M.CreateWorkerBlockInput = {
 
 M.CreateWorkerBlockOutput = {
     type = "structure",
+    id = "CreateWorkerBlockOutput",
 }
 
 M.DeleteHITInput = {
     type = "structure",
+    id = "DeleteHITInput",
     members = {
         HITId = {
             type = "string",
@@ -711,10 +742,12 @@ M.DeleteHITInput = {
 
 M.DeleteHITOutput = {
     type = "structure",
+    id = "DeleteHITOutput",
 }
 
 M.DeleteQualificationTypeInput = {
     type = "structure",
+    id = "DeleteQualificationTypeInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -727,10 +760,12 @@ M.DeleteQualificationTypeInput = {
 
 M.DeleteQualificationTypeOutput = {
     type = "structure",
+    id = "DeleteQualificationTypeOutput",
 }
 
 M.DeleteWorkerBlockInput = {
     type = "structure",
+    id = "DeleteWorkerBlockInput",
     members = {
         WorkerId = {
             type = "string",
@@ -746,10 +781,12 @@ M.DeleteWorkerBlockInput = {
 
 M.DeleteWorkerBlockOutput = {
     type = "structure",
+    id = "DeleteWorkerBlockOutput",
 }
 
 M.DisassociateQualificationFromWorkerInput = {
     type = "structure",
+    id = "DisassociateQualificationFromWorkerInput",
     members = {
         WorkerId = {
             type = "string",
@@ -771,6 +808,7 @@ M.DisassociateQualificationFromWorkerInput = {
 
 M.DisassociateQualificationFromWorkerOutput = {
     type = "structure",
+    id = "DisassociateQualificationFromWorkerOutput",
 }
 
 M.EventType = {
@@ -790,10 +828,12 @@ M.EventType = {
 
 M.GetAccountBalanceInput = {
     type = "structure",
+    id = "GetAccountBalanceInput",
 }
 
 M.GetAccountBalanceOutput = {
     type = "structure",
+    id = "GetAccountBalanceOutput",
     members = {
         AvailableBalance = {
             type = "string",
@@ -806,6 +846,7 @@ M.GetAccountBalanceOutput = {
 
 M.GetAssignmentInput = {
     type = "structure",
+    id = "GetAssignmentInput",
     members = {
         AssignmentId = {
             type = "string",
@@ -818,6 +859,7 @@ M.GetAssignmentInput = {
 
 M.GetAssignmentOutput = {
     type = "structure",
+    id = "GetAssignmentOutput",
     members = {
         Assignment = M.Assignment,
         HIT = M.HIT,
@@ -826,6 +868,7 @@ M.GetAssignmentOutput = {
 
 M.GetFileUploadURLInput = {
     type = "structure",
+    id = "GetFileUploadURLInput",
     members = {
         AssignmentId = {
             type = "string",
@@ -844,6 +887,7 @@ M.GetFileUploadURLInput = {
 
 M.GetFileUploadURLOutput = {
     type = "structure",
+    id = "GetFileUploadURLOutput",
     members = {
         FileUploadURL = {
             type = "string",
@@ -853,6 +897,7 @@ M.GetFileUploadURLOutput = {
 
 M.GetHITInput = {
     type = "structure",
+    id = "GetHITInput",
     members = {
         HITId = {
             type = "string",
@@ -865,6 +910,7 @@ M.GetHITInput = {
 
 M.GetHITOutput = {
     type = "structure",
+    id = "GetHITOutput",
     members = {
         HIT = M.HIT,
     },
@@ -872,6 +918,7 @@ M.GetHITOutput = {
 
 M.GetQualificationScoreInput = {
     type = "structure",
+    id = "GetQualificationScoreInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -895,6 +942,7 @@ M.QualificationStatus = {
 
 M.Qualification = {
     type = "structure",
+    id = "Qualification",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -917,6 +965,7 @@ M.Qualification = {
 
 M.GetQualificationScoreOutput = {
     type = "structure",
+    id = "GetQualificationScoreOutput",
     members = {
         Qualification = M.Qualification,
     },
@@ -924,6 +973,7 @@ M.GetQualificationScoreOutput = {
 
 M.GetQualificationTypeInput = {
     type = "structure",
+    id = "GetQualificationTypeInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -936,6 +986,7 @@ M.GetQualificationTypeInput = {
 
 M.GetQualificationTypeOutput = {
     type = "structure",
+    id = "GetQualificationTypeOutput",
     members = {
         QualificationType = M.QualificationType,
     },
@@ -943,6 +994,7 @@ M.GetQualificationTypeOutput = {
 
 M.ListAssignmentsForHITInput = {
     type = "structure",
+    id = "ListAssignmentsForHITInput",
     members = {
         HITId = {
             type = "string",
@@ -965,6 +1017,7 @@ M.ListAssignmentsForHITInput = {
 
 M.ListAssignmentsForHITOutput = {
     type = "structure",
+    id = "ListAssignmentsForHITOutput",
     members = {
         NextToken = {
             type = "string",
@@ -981,6 +1034,7 @@ M.ListAssignmentsForHITOutput = {
 
 M.ListBonusPaymentsInput = {
     type = "structure",
+    id = "ListBonusPaymentsInput",
     members = {
         HITId = {
             type = "string",
@@ -999,6 +1053,7 @@ M.ListBonusPaymentsInput = {
 
 M.ListBonusPaymentsOutput = {
     type = "structure",
+    id = "ListBonusPaymentsOutput",
     members = {
         NumResults = {
             type = "integer",
@@ -1015,6 +1070,7 @@ M.ListBonusPaymentsOutput = {
 
 M.ListHITsInput = {
     type = "structure",
+    id = "ListHITsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1027,6 +1083,7 @@ M.ListHITsInput = {
 
 M.ListHITsOutput = {
     type = "structure",
+    id = "ListHITsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1043,6 +1100,7 @@ M.ListHITsOutput = {
 
 M.ListHITsForQualificationTypeInput = {
     type = "structure",
+    id = "ListHITsForQualificationTypeInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -1061,6 +1119,7 @@ M.ListHITsForQualificationTypeInput = {
 
 M.ListHITsForQualificationTypeOutput = {
     type = "structure",
+    id = "ListHITsForQualificationTypeOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1077,6 +1136,7 @@ M.ListHITsForQualificationTypeOutput = {
 
 M.ListQualificationRequestsInput = {
     type = "structure",
+    id = "ListQualificationRequestsInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -1092,6 +1152,7 @@ M.ListQualificationRequestsInput = {
 
 M.QualificationRequest = {
     type = "structure",
+    id = "QualificationRequest",
     members = {
         QualificationRequestId = {
             type = "string",
@@ -1116,6 +1177,7 @@ M.QualificationRequest = {
 
 M.ListQualificationRequestsOutput = {
     type = "structure",
+    id = "ListQualificationRequestsOutput",
     members = {
         NumResults = {
             type = "integer",
@@ -1132,6 +1194,7 @@ M.ListQualificationRequestsOutput = {
 
 M.ListQualificationTypesInput = {
     type = "structure",
+    id = "ListQualificationTypesInput",
     members = {
         Query = {
             type = "string",
@@ -1156,6 +1219,7 @@ M.ListQualificationTypesInput = {
 
 M.ListQualificationTypesOutput = {
     type = "structure",
+    id = "ListQualificationTypesOutput",
     members = {
         NumResults = {
             type = "integer",
@@ -1177,6 +1241,7 @@ M.ReviewableHITStatus = {
 
 M.ListReviewableHITsInput = {
     type = "structure",
+    id = "ListReviewableHITsInput",
     members = {
         HITTypeId = {
             type = "string",
@@ -1195,6 +1260,7 @@ M.ListReviewableHITsInput = {
 
 M.ListReviewableHITsOutput = {
     type = "structure",
+    id = "ListReviewableHITsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1216,6 +1282,7 @@ M.ReviewPolicyLevel = {
 
 M.ListReviewPolicyResultsForHITInput = {
     type = "structure",
+    id = "ListReviewPolicyResultsForHITInput",
     members = {
         HITId = {
             type = "string",
@@ -1251,6 +1318,7 @@ M.ReviewActionStatus = {
 
 M.ReviewActionDetail = {
     type = "structure",
+    id = "ReviewActionDetail",
     members = {
         ActionId = {
             type = "string",
@@ -1281,6 +1349,7 @@ M.ReviewActionDetail = {
 
 M.ReviewResultDetail = {
     type = "structure",
+    id = "ReviewResultDetail",
     members = {
         ActionId = {
             type = "string",
@@ -1305,6 +1374,7 @@ M.ReviewResultDetail = {
 
 M.ReviewReport = {
     type = "structure",
+    id = "ReviewReport",
     members = {
         ReviewResults = {
             type = "list",
@@ -1319,6 +1389,7 @@ M.ReviewReport = {
 
 M.ListReviewPolicyResultsForHITOutput = {
     type = "structure",
+    id = "ListReviewPolicyResultsForHITOutput",
     members = {
         HITId = {
             type = "string",
@@ -1335,6 +1406,7 @@ M.ListReviewPolicyResultsForHITOutput = {
 
 M.ListWorkerBlocksInput = {
     type = "structure",
+    id = "ListWorkerBlocksInput",
     members = {
         NextToken = {
             type = "string",
@@ -1347,6 +1419,7 @@ M.ListWorkerBlocksInput = {
 
 M.WorkerBlock = {
     type = "structure",
+    id = "WorkerBlock",
     members = {
         WorkerId = {
             type = "string",
@@ -1359,6 +1432,7 @@ M.WorkerBlock = {
 
 M.ListWorkerBlocksOutput = {
     type = "structure",
+    id = "ListWorkerBlocksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1375,6 +1449,7 @@ M.ListWorkerBlocksOutput = {
 
 M.ListWorkersWithQualificationTypeInput = {
     type = "structure",
+    id = "ListWorkersWithQualificationTypeInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -1396,6 +1471,7 @@ M.ListWorkersWithQualificationTypeInput = {
 
 M.ListWorkersWithQualificationTypeOutput = {
     type = "structure",
+    id = "ListWorkersWithQualificationTypeOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1412,6 +1488,7 @@ M.ListWorkersWithQualificationTypeOutput = {
 
 M.NotifyWorkersInput = {
     type = "structure",
+    id = "NotifyWorkersInput",
     members = {
         Subject = {
             type = "string",
@@ -1442,6 +1519,7 @@ M.NotifyWorkersFailureCode = {
 
 M.NotifyWorkersFailureStatus = {
     type = "structure",
+    id = "NotifyWorkersFailureStatus",
     members = {
         NotifyWorkersFailureCode = {
             type = "string",
@@ -1457,6 +1535,7 @@ M.NotifyWorkersFailureStatus = {
 
 M.NotifyWorkersOutput = {
     type = "structure",
+    id = "NotifyWorkersOutput",
     members = {
         NotifyWorkersFailureStatuses = {
             type = "list",
@@ -1467,6 +1546,7 @@ M.NotifyWorkersOutput = {
 
 M.RejectAssignmentInput = {
     type = "structure",
+    id = "RejectAssignmentInput",
     members = {
         AssignmentId = {
             type = "string",
@@ -1485,10 +1565,12 @@ M.RejectAssignmentInput = {
 
 M.RejectAssignmentOutput = {
     type = "structure",
+    id = "RejectAssignmentOutput",
 }
 
 M.RejectQualificationRequestInput = {
     type = "structure",
+    id = "RejectQualificationRequestInput",
     members = {
         QualificationRequestId = {
             type = "string",
@@ -1504,10 +1586,12 @@ M.RejectQualificationRequestInput = {
 
 M.RejectQualificationRequestOutput = {
     type = "structure",
+    id = "RejectQualificationRequestOutput",
 }
 
 M.SendBonusInput = {
     type = "structure",
+    id = "SendBonusInput",
     members = {
         WorkerId = {
             type = "string",
@@ -1541,6 +1625,7 @@ M.SendBonusInput = {
 
 M.SendBonusOutput = {
     type = "structure",
+    id = "SendBonusOutput",
 }
 
 M.NotificationTransport = {
@@ -1551,6 +1636,7 @@ M.NotificationTransport = {
 
 M.NotificationSpecification = {
     type = "structure",
+    id = "NotificationSpecification",
     members = {
         Destination = {
             type = "string",
@@ -1582,6 +1668,7 @@ M.NotificationSpecification = {
 
 M.SendTestEventNotificationInput = {
     type = "structure",
+    id = "SendTestEventNotificationInput",
     members = {
         Notification = setmetatable({ traits = {
             required = true,
@@ -1597,10 +1684,12 @@ M.SendTestEventNotificationInput = {
 
 M.SendTestEventNotificationOutput = {
     type = "structure",
+    id = "SendTestEventNotificationOutput",
 }
 
 M.UpdateExpirationForHITInput = {
     type = "structure",
+    id = "UpdateExpirationForHITInput",
     members = {
         HITId = {
             type = "string",
@@ -1619,10 +1708,12 @@ M.UpdateExpirationForHITInput = {
 
 M.UpdateExpirationForHITOutput = {
     type = "structure",
+    id = "UpdateExpirationForHITOutput",
 }
 
 M.UpdateHITReviewStatusInput = {
     type = "structure",
+    id = "UpdateHITReviewStatusInput",
     members = {
         HITId = {
             type = "string",
@@ -1638,10 +1729,12 @@ M.UpdateHITReviewStatusInput = {
 
 M.UpdateHITReviewStatusOutput = {
     type = "structure",
+    id = "UpdateHITReviewStatusOutput",
 }
 
 M.UpdateHITTypeOfHITInput = {
     type = "structure",
+    id = "UpdateHITTypeOfHITInput",
     members = {
         HITId = {
             type = "string",
@@ -1660,10 +1753,12 @@ M.UpdateHITTypeOfHITInput = {
 
 M.UpdateHITTypeOfHITOutput = {
     type = "structure",
+    id = "UpdateHITTypeOfHITOutput",
 }
 
 M.UpdateNotificationSettingsInput = {
     type = "structure",
+    id = "UpdateNotificationSettingsInput",
     members = {
         HITTypeId = {
             type = "string",
@@ -1680,10 +1775,12 @@ M.UpdateNotificationSettingsInput = {
 
 M.UpdateNotificationSettingsOutput = {
     type = "structure",
+    id = "UpdateNotificationSettingsOutput",
 }
 
 M.UpdateQualificationTypeInput = {
     type = "structure",
+    id = "UpdateQualificationTypeInput",
     members = {
         QualificationTypeId = {
             type = "string",
@@ -1720,6 +1817,7 @@ M.UpdateQualificationTypeInput = {
 
 M.UpdateQualificationTypeOutput = {
     type = "structure",
+    id = "UpdateQualificationTypeOutput",
     members = {
         QualificationType = M.QualificationType,
     },

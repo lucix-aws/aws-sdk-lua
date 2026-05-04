@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceleratorEvent = {
     type = "structure",
+    id = "AcceleratorEvent",
     members = {
         Message = {
             type = "string",
@@ -24,6 +25,7 @@ M.IpAddressFamily = {
 
 M.IpSet = {
     type = "structure",
+    id = "IpSet",
     members = {
         IpFamily = {
             type = "string",
@@ -45,6 +47,7 @@ M.AcceleratorStatus = {
 
 M.Accelerator = {
     type = "structure",
+    id = "Accelerator",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -86,6 +89,7 @@ M.Accelerator = {
 
 M.AcceleratorAttributes = {
     type = "structure",
+    id = "AcceleratorAttributes",
     members = {
         FlowLogsEnabled = {
             type = "boolean",
@@ -101,6 +105,7 @@ M.AcceleratorAttributes = {
 
 M.AcceleratorNotDisabledException = {
     type = "structure",
+    id = "AcceleratorNotDisabledException",
     error = "client",
     members = {
         Message = {
@@ -111,6 +116,7 @@ M.AcceleratorNotDisabledException = {
 
 M.AcceleratorNotFoundException = {
     type = "structure",
+    id = "AcceleratorNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -121,6 +127,7 @@ M.AcceleratorNotFoundException = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -131,6 +138,7 @@ M.AccessDeniedException = {
 
 M.CustomRoutingEndpointConfiguration = {
     type = "structure",
+    id = "CustomRoutingEndpointConfiguration",
     members = {
         EndpointId = {
             type = "string",
@@ -143,6 +151,7 @@ M.CustomRoutingEndpointConfiguration = {
 
 M.AddCustomRoutingEndpointsInput = {
     type = "structure",
+    id = "AddCustomRoutingEndpointsInput",
     members = {
         EndpointConfigurations = {
             type = "list",
@@ -162,6 +171,7 @@ M.AddCustomRoutingEndpointsInput = {
 
 M.CustomRoutingEndpointDescription = {
     type = "structure",
+    id = "CustomRoutingEndpointDescription",
     members = {
         EndpointId = {
             type = "string",
@@ -171,6 +181,7 @@ M.CustomRoutingEndpointDescription = {
 
 M.AddCustomRoutingEndpointsOutput = {
     type = "structure",
+    id = "AddCustomRoutingEndpointsOutput",
     members = {
         EndpointDescriptions = {
             type = "list",
@@ -184,6 +195,7 @@ M.AddCustomRoutingEndpointsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -194,6 +206,7 @@ M.ConflictException = {
 
 M.EndpointAlreadyExistsException = {
     type = "structure",
+    id = "EndpointAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -204,6 +217,7 @@ M.EndpointAlreadyExistsException = {
 
 M.EndpointGroupNotFoundException = {
     type = "structure",
+    id = "EndpointGroupNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -214,6 +228,7 @@ M.EndpointGroupNotFoundException = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         Message = {
@@ -224,6 +239,7 @@ M.InternalServiceErrorException = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -234,6 +250,7 @@ M.InvalidArgumentException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -244,6 +261,7 @@ M.LimitExceededException = {
 
 M.EndpointConfiguration = {
     type = "structure",
+    id = "EndpointConfiguration",
     members = {
         EndpointId = {
             type = "string",
@@ -262,6 +280,7 @@ M.EndpointConfiguration = {
 
 M.AddEndpointsInput = {
     type = "structure",
+    id = "AddEndpointsInput",
     members = {
         EndpointConfigurations = {
             type = "list",
@@ -287,6 +306,7 @@ M.HealthState = {
 
 M.EndpointDescription = {
     type = "structure",
+    id = "EndpointDescription",
     members = {
         EndpointId = {
             type = "string",
@@ -308,6 +328,7 @@ M.EndpointDescription = {
 
 M.AddEndpointsOutput = {
     type = "structure",
+    id = "AddEndpointsOutput",
     members = {
         EndpointDescriptions = {
             type = "list",
@@ -321,6 +342,7 @@ M.AddEndpointsOutput = {
 
 M.TransactionInProgressException = {
     type = "structure",
+    id = "TransactionInProgressException",
     error = "client",
     members = {
         Message = {
@@ -331,6 +353,7 @@ M.TransactionInProgressException = {
 
 M.AdvertiseByoipCidrInput = {
     type = "structure",
+    id = "AdvertiseByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -343,6 +366,7 @@ M.AdvertiseByoipCidrInput = {
 
 M.ByoipCidrEvent = {
     type = "structure",
+    id = "ByoipCidrEvent",
     members = {
         Message = {
             type = "string",
@@ -369,6 +393,7 @@ M.ByoipCidrState = {
 
 M.ByoipCidr = {
     type = "structure",
+    id = "ByoipCidr",
     members = {
         Cidr = {
             type = "string",
@@ -385,6 +410,7 @@ M.ByoipCidr = {
 
 M.AdvertiseByoipCidrOutput = {
     type = "structure",
+    id = "AdvertiseByoipCidrOutput",
     members = {
         ByoipCidr = M.ByoipCidr,
     },
@@ -392,6 +418,7 @@ M.AdvertiseByoipCidrOutput = {
 
 M.ByoipCidrNotFoundException = {
     type = "structure",
+    id = "ByoipCidrNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -402,6 +429,7 @@ M.ByoipCidrNotFoundException = {
 
 M.IncorrectCidrStateException = {
     type = "structure",
+    id = "IncorrectCidrStateException",
     error = "client",
     members = {
         Message = {
@@ -412,6 +440,7 @@ M.IncorrectCidrStateException = {
 
 M.AllowCustomRoutingTrafficInput = {
     type = "structure",
+    id = "AllowCustomRoutingTrafficInput",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -441,10 +470,12 @@ M.AllowCustomRoutingTrafficInput = {
 
 M.AllowCustomRoutingTrafficOutput = {
     type = "structure",
+    id = "AllowCustomRoutingTrafficOutput",
 }
 
 M.AssociatedEndpointGroupFoundException = {
     type = "structure",
+    id = "AssociatedEndpointGroupFoundException",
     error = "client",
     members = {
         Message = {
@@ -455,6 +486,7 @@ M.AssociatedEndpointGroupFoundException = {
 
 M.AssociatedListenerFoundException = {
     type = "structure",
+    id = "AssociatedListenerFoundException",
     error = "client",
     members = {
         Message = {
@@ -465,6 +497,7 @@ M.AssociatedListenerFoundException = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         EndpointId = {
             type = "string",
@@ -483,6 +516,7 @@ M.Resource = {
 
 M.Attachment = {
     type = "structure",
+    id = "Attachment",
     members = {
         AttachmentArn = {
             type = "string",
@@ -509,6 +543,7 @@ M.Attachment = {
 
 M.AttachmentNotFoundException = {
     type = "structure",
+    id = "AttachmentNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -519,6 +554,7 @@ M.AttachmentNotFoundException = {
 
 M.CidrAuthorizationContext = {
     type = "structure",
+    id = "CidrAuthorizationContext",
     members = {
         Message = {
             type = "string",
@@ -542,6 +578,7 @@ M.ClientAffinity = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -560,6 +597,7 @@ M.Tag = {
 
 M.CreateAcceleratorInput = {
     type = "structure",
+    id = "CreateAcceleratorInput",
     members = {
         Name = {
             type = "string",
@@ -593,6 +631,7 @@ M.CreateAcceleratorInput = {
 
 M.CreateAcceleratorOutput = {
     type = "structure",
+    id = "CreateAcceleratorOutput",
     members = {
         Accelerator = M.Accelerator,
     },
@@ -600,6 +639,7 @@ M.CreateAcceleratorOutput = {
 
 M.CreateCrossAccountAttachmentInput = {
     type = "structure",
+    id = "CreateCrossAccountAttachmentInput",
     members = {
         Name = {
             type = "string",
@@ -631,6 +671,7 @@ M.CreateCrossAccountAttachmentInput = {
 
 M.CreateCrossAccountAttachmentOutput = {
     type = "structure",
+    id = "CreateCrossAccountAttachmentOutput",
     members = {
         CrossAccountAttachment = M.Attachment,
     },
@@ -638,6 +679,7 @@ M.CreateCrossAccountAttachmentOutput = {
 
 M.CreateCustomRoutingAcceleratorInput = {
     type = "structure",
+    id = "CreateCustomRoutingAcceleratorInput",
     members = {
         Name = {
             type = "string",
@@ -676,6 +718,7 @@ M.CustomRoutingAcceleratorStatus = {
 
 M.CustomRoutingAccelerator = {
     type = "structure",
+    id = "CustomRoutingAccelerator",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -710,6 +753,7 @@ M.CustomRoutingAccelerator = {
 
 M.CreateCustomRoutingAcceleratorOutput = {
     type = "structure",
+    id = "CreateCustomRoutingAcceleratorOutput",
     members = {
         Accelerator = M.CustomRoutingAccelerator,
     },
@@ -722,6 +766,7 @@ M.CustomRoutingProtocol = {
 
 M.CustomRoutingDestinationConfiguration = {
     type = "structure",
+    id = "CustomRoutingDestinationConfiguration",
     members = {
         FromPort = {
             type = "integer",
@@ -747,6 +792,7 @@ M.CustomRoutingDestinationConfiguration = {
 
 M.CreateCustomRoutingEndpointGroupInput = {
     type = "structure",
+    id = "CreateCustomRoutingEndpointGroupInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -784,6 +830,7 @@ M.Protocol = {
 
 M.CustomRoutingDestinationDescription = {
     type = "structure",
+    id = "CustomRoutingDestinationDescription",
     members = {
         FromPort = {
             type = "integer",
@@ -800,6 +847,7 @@ M.CustomRoutingDestinationDescription = {
 
 M.CustomRoutingEndpointGroup = {
     type = "structure",
+    id = "CustomRoutingEndpointGroup",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -820,6 +868,7 @@ M.CustomRoutingEndpointGroup = {
 
 M.CreateCustomRoutingEndpointGroupOutput = {
     type = "structure",
+    id = "CreateCustomRoutingEndpointGroupOutput",
     members = {
         EndpointGroup = M.CustomRoutingEndpointGroup,
     },
@@ -827,6 +876,7 @@ M.CreateCustomRoutingEndpointGroupOutput = {
 
 M.EndpointGroupAlreadyExistsException = {
     type = "structure",
+    id = "EndpointGroupAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -837,6 +887,7 @@ M.EndpointGroupAlreadyExistsException = {
 
 M.InvalidPortRangeException = {
     type = "structure",
+    id = "InvalidPortRangeException",
     error = "client",
     members = {
         Message = {
@@ -847,6 +898,7 @@ M.InvalidPortRangeException = {
 
 M.ListenerNotFoundException = {
     type = "structure",
+    id = "ListenerNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -857,6 +909,7 @@ M.ListenerNotFoundException = {
 
 M.PortRange = {
     type = "structure",
+    id = "PortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -869,6 +922,7 @@ M.PortRange = {
 
 M.CreateCustomRoutingListenerInput = {
     type = "structure",
+    id = "CreateCustomRoutingListenerInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -895,6 +949,7 @@ M.CreateCustomRoutingListenerInput = {
 
 M.CustomRoutingListener = {
     type = "structure",
+    id = "CustomRoutingListener",
     members = {
         ListenerArn = {
             type = "string",
@@ -908,6 +963,7 @@ M.CustomRoutingListener = {
 
 M.CreateCustomRoutingListenerOutput = {
     type = "structure",
+    id = "CreateCustomRoutingListenerOutput",
     members = {
         Listener = M.CustomRoutingListener,
     },
@@ -921,6 +977,7 @@ M.HealthCheckProtocol = {
 
 M.PortOverride = {
     type = "structure",
+    id = "PortOverride",
     members = {
         ListenerPort = {
             type = "integer",
@@ -933,6 +990,7 @@ M.PortOverride = {
 
 M.CreateEndpointGroupInput = {
     type = "structure",
+    id = "CreateEndpointGroupInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -984,6 +1042,7 @@ M.CreateEndpointGroupInput = {
 
 M.EndpointGroup = {
     type = "structure",
+    id = "EndpointGroup",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -1022,6 +1081,7 @@ M.EndpointGroup = {
 
 M.CreateEndpointGroupOutput = {
     type = "structure",
+    id = "CreateEndpointGroupOutput",
     members = {
         EndpointGroup = M.EndpointGroup,
     },
@@ -1029,6 +1089,7 @@ M.CreateEndpointGroupOutput = {
 
 M.CreateListenerInput = {
     type = "structure",
+    id = "CreateListenerInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1064,6 +1125,7 @@ M.CreateListenerInput = {
 
 M.Listener = {
     type = "structure",
+    id = "Listener",
     members = {
         ListenerArn = {
             type = "string",
@@ -1083,6 +1145,7 @@ M.Listener = {
 
 M.CreateListenerOutput = {
     type = "structure",
+    id = "CreateListenerOutput",
     members = {
         Listener = M.Listener,
     },
@@ -1090,6 +1153,7 @@ M.CreateListenerOutput = {
 
 M.CrossAccountResource = {
     type = "structure",
+    id = "CrossAccountResource",
     members = {
         EndpointId = {
             type = "string",
@@ -1105,6 +1169,7 @@ M.CrossAccountResource = {
 
 M.CustomRoutingAcceleratorAttributes = {
     type = "structure",
+    id = "CustomRoutingAcceleratorAttributes",
     members = {
         FlowLogsEnabled = {
             type = "boolean",
@@ -1125,6 +1190,7 @@ M.CustomRoutingDestinationTrafficState = {
 
 M.DeleteAcceleratorInput = {
     type = "structure",
+    id = "DeleteAcceleratorInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1137,10 +1203,12 @@ M.DeleteAcceleratorInput = {
 
 M.DeleteAcceleratorOutput = {
     type = "structure",
+    id = "DeleteAcceleratorOutput",
 }
 
 M.DeleteCrossAccountAttachmentInput = {
     type = "structure",
+    id = "DeleteCrossAccountAttachmentInput",
     members = {
         AttachmentArn = {
             type = "string",
@@ -1153,10 +1221,12 @@ M.DeleteCrossAccountAttachmentInput = {
 
 M.DeleteCrossAccountAttachmentOutput = {
     type = "structure",
+    id = "DeleteCrossAccountAttachmentOutput",
 }
 
 M.DeleteCustomRoutingAcceleratorInput = {
     type = "structure",
+    id = "DeleteCustomRoutingAcceleratorInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1169,10 +1239,12 @@ M.DeleteCustomRoutingAcceleratorInput = {
 
 M.DeleteCustomRoutingAcceleratorOutput = {
     type = "structure",
+    id = "DeleteCustomRoutingAcceleratorOutput",
 }
 
 M.DeleteCustomRoutingEndpointGroupInput = {
     type = "structure",
+    id = "DeleteCustomRoutingEndpointGroupInput",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -1185,10 +1257,12 @@ M.DeleteCustomRoutingEndpointGroupInput = {
 
 M.DeleteCustomRoutingEndpointGroupOutput = {
     type = "structure",
+    id = "DeleteCustomRoutingEndpointGroupOutput",
 }
 
 M.DeleteCustomRoutingListenerInput = {
     type = "structure",
+    id = "DeleteCustomRoutingListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1201,10 +1275,12 @@ M.DeleteCustomRoutingListenerInput = {
 
 M.DeleteCustomRoutingListenerOutput = {
     type = "structure",
+    id = "DeleteCustomRoutingListenerOutput",
 }
 
 M.DeleteEndpointGroupInput = {
     type = "structure",
+    id = "DeleteEndpointGroupInput",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -1217,10 +1293,12 @@ M.DeleteEndpointGroupInput = {
 
 M.DeleteEndpointGroupOutput = {
     type = "structure",
+    id = "DeleteEndpointGroupOutput",
 }
 
 M.DeleteListenerInput = {
     type = "structure",
+    id = "DeleteListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1233,10 +1311,12 @@ M.DeleteListenerInput = {
 
 M.DeleteListenerOutput = {
     type = "structure",
+    id = "DeleteListenerOutput",
 }
 
 M.DenyCustomRoutingTrafficInput = {
     type = "structure",
+    id = "DenyCustomRoutingTrafficInput",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -1266,10 +1346,12 @@ M.DenyCustomRoutingTrafficInput = {
 
 M.DenyCustomRoutingTrafficOutput = {
     type = "structure",
+    id = "DenyCustomRoutingTrafficOutput",
 }
 
 M.DeprovisionByoipCidrInput = {
     type = "structure",
+    id = "DeprovisionByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -1282,6 +1364,7 @@ M.DeprovisionByoipCidrInput = {
 
 M.DeprovisionByoipCidrOutput = {
     type = "structure",
+    id = "DeprovisionByoipCidrOutput",
     members = {
         ByoipCidr = M.ByoipCidr,
     },
@@ -1289,6 +1372,7 @@ M.DeprovisionByoipCidrOutput = {
 
 M.DescribeAcceleratorInput = {
     type = "structure",
+    id = "DescribeAcceleratorInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1301,6 +1385,7 @@ M.DescribeAcceleratorInput = {
 
 M.DescribeAcceleratorOutput = {
     type = "structure",
+    id = "DescribeAcceleratorOutput",
     members = {
         Accelerator = M.Accelerator,
     },
@@ -1308,6 +1393,7 @@ M.DescribeAcceleratorOutput = {
 
 M.DescribeAcceleratorAttributesInput = {
     type = "structure",
+    id = "DescribeAcceleratorAttributesInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1320,6 +1406,7 @@ M.DescribeAcceleratorAttributesInput = {
 
 M.DescribeAcceleratorAttributesOutput = {
     type = "structure",
+    id = "DescribeAcceleratorAttributesOutput",
     members = {
         AcceleratorAttributes = M.AcceleratorAttributes,
     },
@@ -1327,6 +1414,7 @@ M.DescribeAcceleratorAttributesOutput = {
 
 M.DescribeCrossAccountAttachmentInput = {
     type = "structure",
+    id = "DescribeCrossAccountAttachmentInput",
     members = {
         AttachmentArn = {
             type = "string",
@@ -1339,6 +1427,7 @@ M.DescribeCrossAccountAttachmentInput = {
 
 M.DescribeCrossAccountAttachmentOutput = {
     type = "structure",
+    id = "DescribeCrossAccountAttachmentOutput",
     members = {
         CrossAccountAttachment = M.Attachment,
     },
@@ -1346,6 +1435,7 @@ M.DescribeCrossAccountAttachmentOutput = {
 
 M.DescribeCustomRoutingAcceleratorInput = {
     type = "structure",
+    id = "DescribeCustomRoutingAcceleratorInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1358,6 +1448,7 @@ M.DescribeCustomRoutingAcceleratorInput = {
 
 M.DescribeCustomRoutingAcceleratorOutput = {
     type = "structure",
+    id = "DescribeCustomRoutingAcceleratorOutput",
     members = {
         Accelerator = M.CustomRoutingAccelerator,
     },
@@ -1365,6 +1456,7 @@ M.DescribeCustomRoutingAcceleratorOutput = {
 
 M.DescribeCustomRoutingAcceleratorAttributesInput = {
     type = "structure",
+    id = "DescribeCustomRoutingAcceleratorAttributesInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1377,6 +1469,7 @@ M.DescribeCustomRoutingAcceleratorAttributesInput = {
 
 M.DescribeCustomRoutingAcceleratorAttributesOutput = {
     type = "structure",
+    id = "DescribeCustomRoutingAcceleratorAttributesOutput",
     members = {
         AcceleratorAttributes = M.CustomRoutingAcceleratorAttributes,
     },
@@ -1384,6 +1477,7 @@ M.DescribeCustomRoutingAcceleratorAttributesOutput = {
 
 M.DescribeCustomRoutingEndpointGroupInput = {
     type = "structure",
+    id = "DescribeCustomRoutingEndpointGroupInput",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -1396,6 +1490,7 @@ M.DescribeCustomRoutingEndpointGroupInput = {
 
 M.DescribeCustomRoutingEndpointGroupOutput = {
     type = "structure",
+    id = "DescribeCustomRoutingEndpointGroupOutput",
     members = {
         EndpointGroup = M.CustomRoutingEndpointGroup,
     },
@@ -1403,6 +1498,7 @@ M.DescribeCustomRoutingEndpointGroupOutput = {
 
 M.DescribeCustomRoutingListenerInput = {
     type = "structure",
+    id = "DescribeCustomRoutingListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1415,6 +1511,7 @@ M.DescribeCustomRoutingListenerInput = {
 
 M.DescribeCustomRoutingListenerOutput = {
     type = "structure",
+    id = "DescribeCustomRoutingListenerOutput",
     members = {
         Listener = M.CustomRoutingListener,
     },
@@ -1422,6 +1519,7 @@ M.DescribeCustomRoutingListenerOutput = {
 
 M.DescribeEndpointGroupInput = {
     type = "structure",
+    id = "DescribeEndpointGroupInput",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -1434,6 +1532,7 @@ M.DescribeEndpointGroupInput = {
 
 M.DescribeEndpointGroupOutput = {
     type = "structure",
+    id = "DescribeEndpointGroupOutput",
     members = {
         EndpointGroup = M.EndpointGroup,
     },
@@ -1441,6 +1540,7 @@ M.DescribeEndpointGroupOutput = {
 
 M.DescribeListenerInput = {
     type = "structure",
+    id = "DescribeListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1453,6 +1553,7 @@ M.DescribeListenerInput = {
 
 M.DescribeListenerOutput = {
     type = "structure",
+    id = "DescribeListenerOutput",
     members = {
         Listener = M.Listener,
     },
@@ -1460,6 +1561,7 @@ M.DescribeListenerOutput = {
 
 M.SocketAddress = {
     type = "structure",
+    id = "SocketAddress",
     members = {
         IpAddress = {
             type = "string",
@@ -1472,6 +1574,7 @@ M.SocketAddress = {
 
 M.DestinationPortMapping = {
     type = "structure",
+    id = "DestinationPortMapping",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1501,6 +1604,7 @@ M.DestinationPortMapping = {
 
 M.EndpointIdentifier = {
     type = "structure",
+    id = "EndpointIdentifier",
     members = {
         EndpointId = {
             type = "string",
@@ -1516,6 +1620,7 @@ M.EndpointIdentifier = {
 
 M.EndpointNotFoundException = {
     type = "structure",
+    id = "EndpointNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1526,6 +1631,7 @@ M.EndpointNotFoundException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -1536,6 +1642,7 @@ M.InvalidNextTokenException = {
 
 M.ListAcceleratorsInput = {
     type = "structure",
+    id = "ListAcceleratorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1548,6 +1655,7 @@ M.ListAcceleratorsInput = {
 
 M.ListAcceleratorsOutput = {
     type = "structure",
+    id = "ListAcceleratorsOutput",
     members = {
         Accelerators = {
             type = "list",
@@ -1561,6 +1669,7 @@ M.ListAcceleratorsOutput = {
 
 M.ListByoipCidrsInput = {
     type = "structure",
+    id = "ListByoipCidrsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1573,6 +1682,7 @@ M.ListByoipCidrsInput = {
 
 M.ListByoipCidrsOutput = {
     type = "structure",
+    id = "ListByoipCidrsOutput",
     members = {
         ByoipCidrs = {
             type = "list",
@@ -1586,6 +1696,7 @@ M.ListByoipCidrsOutput = {
 
 M.ListCrossAccountAttachmentsInput = {
     type = "structure",
+    id = "ListCrossAccountAttachmentsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1598,6 +1709,7 @@ M.ListCrossAccountAttachmentsInput = {
 
 M.ListCrossAccountAttachmentsOutput = {
     type = "structure",
+    id = "ListCrossAccountAttachmentsOutput",
     members = {
         CrossAccountAttachments = {
             type = "list",
@@ -1611,10 +1723,12 @@ M.ListCrossAccountAttachmentsOutput = {
 
 M.ListCrossAccountResourceAccountsInput = {
     type = "structure",
+    id = "ListCrossAccountResourceAccountsInput",
 }
 
 M.ListCrossAccountResourceAccountsOutput = {
     type = "structure",
+    id = "ListCrossAccountResourceAccountsOutput",
     members = {
         ResourceOwnerAwsAccountIds = {
             type = "list",
@@ -1625,6 +1739,7 @@ M.ListCrossAccountResourceAccountsOutput = {
 
 M.ListCrossAccountResourcesInput = {
     type = "structure",
+    id = "ListCrossAccountResourcesInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1646,6 +1761,7 @@ M.ListCrossAccountResourcesInput = {
 
 M.ListCrossAccountResourcesOutput = {
     type = "structure",
+    id = "ListCrossAccountResourcesOutput",
     members = {
         CrossAccountResources = {
             type = "list",
@@ -1659,6 +1775,7 @@ M.ListCrossAccountResourcesOutput = {
 
 M.ListCustomRoutingAcceleratorsInput = {
     type = "structure",
+    id = "ListCustomRoutingAcceleratorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1671,6 +1788,7 @@ M.ListCustomRoutingAcceleratorsInput = {
 
 M.ListCustomRoutingAcceleratorsOutput = {
     type = "structure",
+    id = "ListCustomRoutingAcceleratorsOutput",
     members = {
         Accelerators = {
             type = "list",
@@ -1684,6 +1802,7 @@ M.ListCustomRoutingAcceleratorsOutput = {
 
 M.ListCustomRoutingEndpointGroupsInput = {
     type = "structure",
+    id = "ListCustomRoutingEndpointGroupsInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1702,6 +1821,7 @@ M.ListCustomRoutingEndpointGroupsInput = {
 
 M.ListCustomRoutingEndpointGroupsOutput = {
     type = "structure",
+    id = "ListCustomRoutingEndpointGroupsOutput",
     members = {
         EndpointGroups = {
             type = "list",
@@ -1715,6 +1835,7 @@ M.ListCustomRoutingEndpointGroupsOutput = {
 
 M.ListCustomRoutingListenersInput = {
     type = "structure",
+    id = "ListCustomRoutingListenersInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1733,6 +1854,7 @@ M.ListCustomRoutingListenersInput = {
 
 M.ListCustomRoutingListenersOutput = {
     type = "structure",
+    id = "ListCustomRoutingListenersOutput",
     members = {
         Listeners = {
             type = "list",
@@ -1746,6 +1868,7 @@ M.ListCustomRoutingListenersOutput = {
 
 M.ListCustomRoutingPortMappingsInput = {
     type = "structure",
+    id = "ListCustomRoutingPortMappingsInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1767,6 +1890,7 @@ M.ListCustomRoutingPortMappingsInput = {
 
 M.PortMapping = {
     type = "structure",
+    id = "PortMapping",
     members = {
         AcceleratorPort = {
             type = "integer",
@@ -1790,6 +1914,7 @@ M.PortMapping = {
 
 M.ListCustomRoutingPortMappingsOutput = {
     type = "structure",
+    id = "ListCustomRoutingPortMappingsOutput",
     members = {
         PortMappings = {
             type = "list",
@@ -1803,6 +1928,7 @@ M.ListCustomRoutingPortMappingsOutput = {
 
 M.ListCustomRoutingPortMappingsByDestinationInput = {
     type = "structure",
+    id = "ListCustomRoutingPortMappingsByDestinationInput",
     members = {
         EndpointId = {
             type = "string",
@@ -1827,6 +1953,7 @@ M.ListCustomRoutingPortMappingsByDestinationInput = {
 
 M.ListCustomRoutingPortMappingsByDestinationOutput = {
     type = "structure",
+    id = "ListCustomRoutingPortMappingsByDestinationOutput",
     members = {
         DestinationPortMappings = {
             type = "list",
@@ -1840,6 +1967,7 @@ M.ListCustomRoutingPortMappingsByDestinationOutput = {
 
 M.ListEndpointGroupsInput = {
     type = "structure",
+    id = "ListEndpointGroupsInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1858,6 +1986,7 @@ M.ListEndpointGroupsInput = {
 
 M.ListEndpointGroupsOutput = {
     type = "structure",
+    id = "ListEndpointGroupsOutput",
     members = {
         EndpointGroups = {
             type = "list",
@@ -1871,6 +2000,7 @@ M.ListEndpointGroupsOutput = {
 
 M.ListListenersInput = {
     type = "structure",
+    id = "ListListenersInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -1889,6 +2019,7 @@ M.ListListenersInput = {
 
 M.ListListenersOutput = {
     type = "structure",
+    id = "ListListenersOutput",
     members = {
         Listeners = {
             type = "list",
@@ -1902,6 +2033,7 @@ M.ListListenersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1914,6 +2046,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1924,6 +2057,7 @@ M.ListTagsForResourceOutput = {
 
 M.ProvisionByoipCidrInput = {
     type = "structure",
+    id = "ProvisionByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -1939,6 +2073,7 @@ M.ProvisionByoipCidrInput = {
 
 M.ProvisionByoipCidrOutput = {
     type = "structure",
+    id = "ProvisionByoipCidrOutput",
     members = {
         ByoipCidr = M.ByoipCidr,
     },
@@ -1946,6 +2081,7 @@ M.ProvisionByoipCidrOutput = {
 
 M.RemoveCustomRoutingEndpointsInput = {
     type = "structure",
+    id = "RemoveCustomRoutingEndpointsInput",
     members = {
         EndpointIds = {
             type = "list",
@@ -1965,10 +2101,12 @@ M.RemoveCustomRoutingEndpointsInput = {
 
 M.RemoveCustomRoutingEndpointsOutput = {
     type = "structure",
+    id = "RemoveCustomRoutingEndpointsOutput",
 }
 
 M.RemoveEndpointsInput = {
     type = "structure",
+    id = "RemoveEndpointsInput",
     members = {
         EndpointIdentifiers = {
             type = "list",
@@ -1988,10 +2126,12 @@ M.RemoveEndpointsInput = {
 
 M.RemoveEndpointsOutput = {
     type = "structure",
+    id = "RemoveEndpointsOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2011,10 +2151,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2034,10 +2176,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAcceleratorInput = {
     type = "structure",
+    id = "UpdateAcceleratorInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -2063,6 +2207,7 @@ M.UpdateAcceleratorInput = {
 
 M.UpdateAcceleratorOutput = {
     type = "structure",
+    id = "UpdateAcceleratorOutput",
     members = {
         Accelerator = M.Accelerator,
     },
@@ -2070,6 +2215,7 @@ M.UpdateAcceleratorOutput = {
 
 M.UpdateAcceleratorAttributesInput = {
     type = "structure",
+    id = "UpdateAcceleratorAttributesInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -2091,6 +2237,7 @@ M.UpdateAcceleratorAttributesInput = {
 
 M.UpdateAcceleratorAttributesOutput = {
     type = "structure",
+    id = "UpdateAcceleratorAttributesOutput",
     members = {
         AcceleratorAttributes = M.AcceleratorAttributes,
     },
@@ -2098,6 +2245,7 @@ M.UpdateAcceleratorAttributesOutput = {
 
 M.UpdateCrossAccountAttachmentInput = {
     type = "structure",
+    id = "UpdateCrossAccountAttachmentInput",
     members = {
         AttachmentArn = {
             type = "string",
@@ -2129,6 +2277,7 @@ M.UpdateCrossAccountAttachmentInput = {
 
 M.UpdateCrossAccountAttachmentOutput = {
     type = "structure",
+    id = "UpdateCrossAccountAttachmentOutput",
     members = {
         CrossAccountAttachment = M.Attachment,
     },
@@ -2136,6 +2285,7 @@ M.UpdateCrossAccountAttachmentOutput = {
 
 M.UpdateCustomRoutingAcceleratorInput = {
     type = "structure",
+    id = "UpdateCustomRoutingAcceleratorInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -2161,6 +2311,7 @@ M.UpdateCustomRoutingAcceleratorInput = {
 
 M.UpdateCustomRoutingAcceleratorOutput = {
     type = "structure",
+    id = "UpdateCustomRoutingAcceleratorOutput",
     members = {
         Accelerator = M.CustomRoutingAccelerator,
     },
@@ -2168,6 +2319,7 @@ M.UpdateCustomRoutingAcceleratorOutput = {
 
 M.UpdateCustomRoutingAcceleratorAttributesInput = {
     type = "structure",
+    id = "UpdateCustomRoutingAcceleratorAttributesInput",
     members = {
         AcceleratorArn = {
             type = "string",
@@ -2189,6 +2341,7 @@ M.UpdateCustomRoutingAcceleratorAttributesInput = {
 
 M.UpdateCustomRoutingAcceleratorAttributesOutput = {
     type = "structure",
+    id = "UpdateCustomRoutingAcceleratorAttributesOutput",
     members = {
         AcceleratorAttributes = M.CustomRoutingAcceleratorAttributes,
     },
@@ -2196,6 +2349,7 @@ M.UpdateCustomRoutingAcceleratorAttributesOutput = {
 
 M.UpdateCustomRoutingListenerInput = {
     type = "structure",
+    id = "UpdateCustomRoutingListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -2215,6 +2369,7 @@ M.UpdateCustomRoutingListenerInput = {
 
 M.UpdateCustomRoutingListenerOutput = {
     type = "structure",
+    id = "UpdateCustomRoutingListenerOutput",
     members = {
         Listener = M.CustomRoutingListener,
     },
@@ -2222,6 +2377,7 @@ M.UpdateCustomRoutingListenerOutput = {
 
 M.UpdateEndpointGroupInput = {
     type = "structure",
+    id = "UpdateEndpointGroupInput",
     members = {
         EndpointGroupArn = {
             type = "string",
@@ -2260,6 +2416,7 @@ M.UpdateEndpointGroupInput = {
 
 M.UpdateEndpointGroupOutput = {
     type = "structure",
+    id = "UpdateEndpointGroupOutput",
     members = {
         EndpointGroup = M.EndpointGroup,
     },
@@ -2267,6 +2424,7 @@ M.UpdateEndpointGroupOutput = {
 
 M.UpdateListenerInput = {
     type = "structure",
+    id = "UpdateListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -2289,6 +2447,7 @@ M.UpdateListenerInput = {
 
 M.UpdateListenerOutput = {
     type = "structure",
+    id = "UpdateListenerOutput",
     members = {
         Listener = M.Listener,
     },
@@ -2296,6 +2455,7 @@ M.UpdateListenerOutput = {
 
 M.WithdrawByoipCidrInput = {
     type = "structure",
+    id = "WithdrawByoipCidrInput",
     members = {
         Cidr = {
             type = "string",
@@ -2308,6 +2468,7 @@ M.WithdrawByoipCidrInput = {
 
 M.WithdrawByoipCidrOutput = {
     type = "structure",
+    id = "WithdrawByoipCidrOutput",
     members = {
         ByoipCidr = M.ByoipCidr,
     },

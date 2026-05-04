@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.VpcTransitConfiguration = {
     type = "structure",
+    id = "VpcTransitConfiguration",
     members = {
         VpcId = {
             type = "string",
@@ -34,6 +36,7 @@ M.VpcTransitConfiguration = {
 
 M.LocationConfiguration = {
     type = "structure",
+    id = "LocationConfiguration",
     members = {
         LocationName = {
             type = "string",
@@ -59,6 +62,7 @@ M.LocationConfiguration = {
 
 M.AddStreamGroupLocationsInput = {
     type = "structure",
+    id = "AddStreamGroupLocationsInput",
     members = {
         Identifier = {
             type = "string",
@@ -86,6 +90,7 @@ M.StreamGroupLocationStatus = {
 
 M.VpcTransitConfigurationResponse = {
     type = "structure",
+    id = "VpcTransitConfigurationResponse",
     members = {
         VpcId = {
             type = "string",
@@ -105,6 +110,7 @@ M.VpcTransitConfigurationResponse = {
 
 M.LocationState = {
     type = "structure",
+    id = "LocationState",
     members = {
         LocationName = {
             type = "string",
@@ -142,6 +148,7 @@ M.LocationState = {
 
 M.AddStreamGroupLocationsOutput = {
     type = "structure",
+    id = "AddStreamGroupLocationsOutput",
     members = {
         Identifier = {
             type = "string",
@@ -161,6 +168,7 @@ M.AddStreamGroupLocationsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -174,6 +182,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -187,6 +196,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -200,6 +210,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -213,6 +224,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -240,6 +252,7 @@ M.ApplicationStatusReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -259,6 +272,7 @@ M.RuntimeEnvironmentType = {
 
 M.RuntimeEnvironment = {
     type = "structure",
+    id = "RuntimeEnvironment",
     members = {
         Type = {
             type = "string",
@@ -277,6 +291,7 @@ M.RuntimeEnvironment = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         Description = {
             type = "string",
@@ -327,6 +342,7 @@ M.ReplicationStatusType = {
 
 M.ReplicationStatus = {
     type = "structure",
+    id = "ReplicationStatus",
     members = {
         Location = {
             type = "string",
@@ -339,6 +355,7 @@ M.ReplicationStatus = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         Arn = {
             type = "string",
@@ -391,6 +408,7 @@ M.CreateApplicationOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         Identifier = {
             type = "string",
@@ -404,10 +422,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         Identifier = {
             type = "string",
@@ -421,6 +441,7 @@ M.GetApplicationInput = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         Arn = {
             type = "string",
@@ -473,6 +494,7 @@ M.GetApplicationOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -491,6 +513,7 @@ M.ListApplicationsInput = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         Arn = {
             type = "string",
@@ -519,6 +542,7 @@ M.ApplicationSummary = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         Items = {
             type = "list",
@@ -532,6 +556,7 @@ M.ListApplicationsOutput = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         Identifier = {
             type = "string",
@@ -555,6 +580,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         Arn = {
             type = "string",
@@ -607,6 +633,7 @@ M.UpdateApplicationOutput = {
 
 M.AssociateApplicationsInput = {
     type = "structure",
+    id = "AssociateApplicationsInput",
     members = {
         Identifier = {
             type = "string",
@@ -627,6 +654,7 @@ M.AssociateApplicationsInput = {
 
 M.AssociateApplicationsOutput = {
     type = "structure",
+    id = "AssociateApplicationsOutput",
     members = {
         Arn = {
             type = "string",
@@ -660,6 +688,7 @@ M.StreamClass = {
 
 M.CreateStreamGroupInput = {
     type = "structure",
+    id = "CreateStreamGroupInput",
     members = {
         Description = {
             type = "string",
@@ -696,6 +725,7 @@ M.CreateStreamGroupInput = {
 
 M.DefaultApplication = {
     type = "structure",
+    id = "DefaultApplication",
     members = {
         Id = {
             type = "string",
@@ -723,6 +753,7 @@ M.StreamGroupStatusReason = {
 
 M.CreateStreamGroupOutput = {
     type = "structure",
+    id = "CreateStreamGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -768,6 +799,7 @@ M.CreateStreamGroupOutput = {
 
 M.CreateStreamSessionConnectionInput = {
     type = "structure",
+    id = "CreateStreamSessionConnectionInput",
     members = {
         ClientToken = {
             type = "string",
@@ -800,6 +832,7 @@ M.CreateStreamSessionConnectionInput = {
 
 M.CreateStreamSessionConnectionOutput = {
     type = "structure",
+    id = "CreateStreamSessionConnectionOutput",
     members = {
         SignalResponse = {
             type = "string",
@@ -809,6 +842,7 @@ M.CreateStreamSessionConnectionOutput = {
 
 M.DeleteStreamGroupInput = {
     type = "structure",
+    id = "DeleteStreamGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -822,10 +856,12 @@ M.DeleteStreamGroupInput = {
 
 M.DeleteStreamGroupOutput = {
     type = "structure",
+    id = "DeleteStreamGroupOutput",
 }
 
 M.DisassociateApplicationsInput = {
     type = "structure",
+    id = "DisassociateApplicationsInput",
     members = {
         Identifier = {
             type = "string",
@@ -846,6 +882,7 @@ M.DisassociateApplicationsInput = {
 
 M.DisassociateApplicationsOutput = {
     type = "structure",
+    id = "DisassociateApplicationsOutput",
     members = {
         Arn = {
             type = "string",
@@ -865,6 +902,7 @@ M.ExportFilesStatus = {
 
 M.ExportFilesMetadata = {
     type = "structure",
+    id = "ExportFilesMetadata",
     members = {
         Status = {
             type = "string",
@@ -880,6 +918,7 @@ M.ExportFilesMetadata = {
 
 M.ExportStreamSessionFilesInput = {
     type = "structure",
+    id = "ExportStreamSessionFilesInput",
     members = {
         Identifier = {
             type = "string",
@@ -906,10 +945,12 @@ M.ExportStreamSessionFilesInput = {
 
 M.ExportStreamSessionFilesOutput = {
     type = "structure",
+    id = "ExportStreamSessionFilesOutput",
 }
 
 M.GetStreamSessionInput = {
     type = "structure",
+    id = "GetStreamSessionInput",
     members = {
         Identifier = {
             type = "string",
@@ -930,6 +971,7 @@ M.GetStreamSessionInput = {
 
 M.PerformanceStatsConfiguration = {
     type = "structure",
+    id = "PerformanceStatsConfiguration",
     members = {
         SharedWithClient = {
             type = "boolean",
@@ -967,6 +1009,7 @@ M.StreamSessionStatusReason = {
 
 M.GetStreamSessionOutput = {
     type = "structure",
+    id = "GetStreamSessionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1035,6 +1078,7 @@ M.GetStreamSessionOutput = {
 
 M.ListStreamSessionsInput = {
     type = "structure",
+    id = "ListStreamSessionsInput",
     members = {
         Status = {
             type = "string",
@@ -1072,6 +1116,7 @@ M.ListStreamSessionsInput = {
 
 M.StreamSessionSummary = {
     type = "structure",
+    id = "StreamSessionSummary",
     members = {
         Arn = {
             type = "string",
@@ -1106,6 +1151,7 @@ M.StreamSessionSummary = {
 
 M.ListStreamSessionsOutput = {
     type = "structure",
+    id = "ListStreamSessionsOutput",
     members = {
         Items = {
             type = "list",
@@ -1119,6 +1165,7 @@ M.ListStreamSessionsOutput = {
 
 M.ListStreamSessionsByAccountInput = {
     type = "structure",
+    id = "ListStreamSessionsByAccountInput",
     members = {
         Status = {
             type = "string",
@@ -1149,6 +1196,7 @@ M.ListStreamSessionsByAccountInput = {
 
 M.ListStreamSessionsByAccountOutput = {
     type = "structure",
+    id = "ListStreamSessionsByAccountOutput",
     members = {
         Items = {
             type = "list",
@@ -1162,6 +1210,7 @@ M.ListStreamSessionsByAccountOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1175,6 +1224,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1186,6 +1236,7 @@ M.ListTagsForResourceOutput = {
 
 M.RemoveStreamGroupLocationsInput = {
     type = "structure",
+    id = "RemoveStreamGroupLocationsInput",
     members = {
         Identifier = {
             type = "string",
@@ -1207,10 +1258,12 @@ M.RemoveStreamGroupLocationsInput = {
 
 M.RemoveStreamGroupLocationsOutput = {
     type = "structure",
+    id = "RemoveStreamGroupLocationsOutput",
 }
 
 M.StartStreamSessionInput = {
     type = "structure",
+    id = "StartStreamSessionInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1274,6 +1327,7 @@ M.StartStreamSessionInput = {
 
 M.StartStreamSessionOutput = {
     type = "structure",
+    id = "StartStreamSessionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1342,6 +1396,7 @@ M.StartStreamSessionOutput = {
 
 M.GetStreamGroupInput = {
     type = "structure",
+    id = "GetStreamGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -1355,6 +1410,7 @@ M.GetStreamGroupInput = {
 
 M.GetStreamGroupOutput = {
     type = "structure",
+    id = "GetStreamGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -1400,6 +1456,7 @@ M.GetStreamGroupOutput = {
 
 M.ListStreamGroupsInput = {
     type = "structure",
+    id = "ListStreamGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1418,6 +1475,7 @@ M.ListStreamGroupsInput = {
 
 M.StreamGroupSummary = {
     type = "structure",
+    id = "StreamGroupSummary",
     members = {
         Arn = {
             type = "string",
@@ -1452,6 +1510,7 @@ M.StreamGroupSummary = {
 
 M.ListStreamGroupsOutput = {
     type = "structure",
+    id = "ListStreamGroupsOutput",
     members = {
         Items = {
             type = "list",
@@ -1465,6 +1524,7 @@ M.ListStreamGroupsOutput = {
 
 M.UpdateStreamGroupInput = {
     type = "structure",
+    id = "UpdateStreamGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -1488,6 +1548,7 @@ M.UpdateStreamGroupInput = {
 
 M.UpdateStreamGroupOutput = {
     type = "structure",
+    id = "UpdateStreamGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -1533,6 +1594,7 @@ M.UpdateStreamGroupOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1554,10 +1616,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TerminateStreamSessionInput = {
     type = "structure",
+    id = "TerminateStreamSessionInput",
     members = {
         Identifier = {
             type = "string",
@@ -1578,10 +1642,12 @@ M.TerminateStreamSessionInput = {
 
 M.TerminateStreamSessionOutput = {
     type = "structure",
+    id = "TerminateStreamSessionOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1603,6 +1669,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

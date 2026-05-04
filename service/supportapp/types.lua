@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.AccountType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -33,6 +35,7 @@ M.NotificationSeverityLevel = {
 
 M.CreateSlackChannelConfigurationInput = {
     type = "structure",
+    id = "CreateSlackChannelConfigurationInput",
     members = {
         teamId = {
             type = "string",
@@ -75,10 +78,12 @@ M.CreateSlackChannelConfigurationInput = {
 
 M.CreateSlackChannelConfigurationOutput = {
     type = "structure",
+    id = "CreateSlackChannelConfigurationOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -89,6 +94,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -99,6 +105,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -109,14 +116,17 @@ M.ValidationException = {
 
 M.DeleteAccountAliasInput = {
     type = "structure",
+    id = "DeleteAccountAliasInput",
 }
 
 M.DeleteAccountAliasOutput = {
     type = "structure",
+    id = "DeleteAccountAliasOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -127,6 +137,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteSlackChannelConfigurationInput = {
     type = "structure",
+    id = "DeleteSlackChannelConfigurationInput",
     members = {
         teamId = {
             type = "string",
@@ -145,10 +156,12 @@ M.DeleteSlackChannelConfigurationInput = {
 
 M.DeleteSlackChannelConfigurationOutput = {
     type = "structure",
+    id = "DeleteSlackChannelConfigurationOutput",
 }
 
 M.DeleteSlackWorkspaceConfigurationInput = {
     type = "structure",
+    id = "DeleteSlackWorkspaceConfigurationInput",
     members = {
         teamId = {
             type = "string",
@@ -161,14 +174,17 @@ M.DeleteSlackWorkspaceConfigurationInput = {
 
 M.DeleteSlackWorkspaceConfigurationOutput = {
     type = "structure",
+    id = "DeleteSlackWorkspaceConfigurationOutput",
 }
 
 M.GetAccountAliasInput = {
     type = "structure",
+    id = "GetAccountAliasInput",
 }
 
 M.GetAccountAliasOutput = {
     type = "structure",
+    id = "GetAccountAliasOutput",
     members = {
         accountAlias = {
             type = "string",
@@ -178,6 +194,7 @@ M.GetAccountAliasOutput = {
 
 M.ListSlackChannelConfigurationsInput = {
     type = "structure",
+    id = "ListSlackChannelConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -187,6 +204,7 @@ M.ListSlackChannelConfigurationsInput = {
 
 M.SlackChannelConfiguration = {
     type = "structure",
+    id = "SlackChannelConfiguration",
     members = {
         teamId = {
             type = "string",
@@ -223,6 +241,7 @@ M.SlackChannelConfiguration = {
 
 M.ListSlackChannelConfigurationsOutput = {
     type = "structure",
+    id = "ListSlackChannelConfigurationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -239,6 +258,7 @@ M.ListSlackChannelConfigurationsOutput = {
 
 M.ListSlackWorkspaceConfigurationsInput = {
     type = "structure",
+    id = "ListSlackWorkspaceConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -248,6 +268,7 @@ M.ListSlackWorkspaceConfigurationsInput = {
 
 M.SlackWorkspaceConfiguration = {
     type = "structure",
+    id = "SlackWorkspaceConfiguration",
     members = {
         teamId = {
             type = "string",
@@ -266,6 +287,7 @@ M.SlackWorkspaceConfiguration = {
 
 M.ListSlackWorkspaceConfigurationsOutput = {
     type = "structure",
+    id = "ListSlackWorkspaceConfigurationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -279,6 +301,7 @@ M.ListSlackWorkspaceConfigurationsOutput = {
 
 M.PutAccountAliasInput = {
     type = "structure",
+    id = "PutAccountAliasInput",
     members = {
         accountAlias = {
             type = "string",
@@ -291,10 +314,12 @@ M.PutAccountAliasInput = {
 
 M.PutAccountAliasOutput = {
     type = "structure",
+    id = "PutAccountAliasOutput",
 }
 
 M.RegisterSlackWorkspaceForOrganizationInput = {
     type = "structure",
+    id = "RegisterSlackWorkspaceForOrganizationInput",
     members = {
         teamId = {
             type = "string",
@@ -307,6 +332,7 @@ M.RegisterSlackWorkspaceForOrganizationInput = {
 
 M.RegisterSlackWorkspaceForOrganizationOutput = {
     type = "structure",
+    id = "RegisterSlackWorkspaceForOrganizationOutput",
     members = {
         teamId = {
             type = "string",
@@ -322,6 +348,7 @@ M.RegisterSlackWorkspaceForOrganizationOutput = {
 
 M.UpdateSlackChannelConfigurationInput = {
     type = "structure",
+    id = "UpdateSlackChannelConfigurationInput",
     members = {
         teamId = {
             type = "string",
@@ -358,6 +385,7 @@ M.UpdateSlackChannelConfigurationInput = {
 
 M.UpdateSlackChannelConfigurationOutput = {
     type = "structure",
+    id = "UpdateSlackChannelConfigurationOutput",
     members = {
         teamId = {
             type = "string",

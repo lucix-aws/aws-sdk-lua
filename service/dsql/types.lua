@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -28,6 +29,7 @@ M.ClusterStatus = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -47,6 +49,7 @@ M.ConflictException = {
 
 M.MultiRegionProperties = {
     type = "structure",
+    id = "MultiRegionProperties",
     members = {
         witnessRegion = {
             type = "string",
@@ -60,6 +63,7 @@ M.MultiRegionProperties = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         deletionProtectionEnabled = {
             type = "boolean",
@@ -108,6 +112,7 @@ M.EncryptionType = {
 
 M.EncryptionDetails = {
     type = "structure",
+    id = "EncryptionDetails",
     members = {
         encryptionType = {
             type = "string",
@@ -129,6 +134,7 @@ M.EncryptionDetails = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         identifier = {
             type = "string",
@@ -170,6 +176,7 @@ M.CreateClusterOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -189,6 +196,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -226,6 +234,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -251,6 +260,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -277,6 +287,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -300,6 +311,7 @@ M.ValidationException = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         identifier = {
             type = "string",
@@ -320,6 +332,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         identifier = {
             type = "string",
@@ -350,6 +363,7 @@ M.DeleteClusterOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -375,6 +389,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteClusterPolicyInput = {
     type = "structure",
+    id = "DeleteClusterPolicyInput",
     members = {
         identifier = {
             type = "string",
@@ -401,6 +416,7 @@ M.DeleteClusterPolicyInput = {
 
 M.DeleteClusterPolicyOutput = {
     type = "structure",
+    id = "DeleteClusterPolicyOutput",
     members = {
         policyVersion = {
             type = "string",
@@ -413,6 +429,7 @@ M.DeleteClusterPolicyOutput = {
 
 M.GetClusterInput = {
     type = "structure",
+    id = "GetClusterInput",
     members = {
         identifier = {
             type = "string",
@@ -426,6 +443,7 @@ M.GetClusterInput = {
 
 M.GetClusterOutput = {
     type = "structure",
+    id = "GetClusterOutput",
     members = {
         identifier = {
             type = "string",
@@ -472,6 +490,7 @@ M.GetClusterOutput = {
 
 M.GetClusterPolicyInput = {
     type = "structure",
+    id = "GetClusterPolicyInput",
     members = {
         identifier = {
             type = "string",
@@ -485,6 +504,7 @@ M.GetClusterPolicyInput = {
 
 M.GetClusterPolicyOutput = {
     type = "structure",
+    id = "GetClusterPolicyOutput",
     members = {
         policy = {
             type = "string",
@@ -503,6 +523,7 @@ M.GetClusterPolicyOutput = {
 
 M.GetVpcEndpointServiceNameInput = {
     type = "structure",
+    id = "GetVpcEndpointServiceNameInput",
     members = {
         identifier = {
             type = "string",
@@ -516,6 +537,7 @@ M.GetVpcEndpointServiceNameInput = {
 
 M.GetVpcEndpointServiceNameOutput = {
     type = "structure",
+    id = "GetVpcEndpointServiceNameOutput",
     members = {
         serviceName = {
             type = "string",
@@ -531,6 +553,7 @@ M.GetVpcEndpointServiceNameOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -550,6 +573,7 @@ M.ListClustersInput = {
 
 M.ClusterSummary = {
     type = "structure",
+    id = "ClusterSummary",
     members = {
         identifier = {
             type = "string",
@@ -568,6 +592,7 @@ M.ClusterSummary = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -584,6 +609,7 @@ M.ListClustersOutput = {
 
 M.PutClusterPolicyInput = {
     type = "structure",
+    id = "PutClusterPolicyInput",
     members = {
         identifier = {
             type = "string",
@@ -618,6 +644,7 @@ M.PutClusterPolicyInput = {
 
 M.PutClusterPolicyOutput = {
     type = "structure",
+    id = "PutClusterPolicyOutput",
     members = {
         policyVersion = {
             type = "string",
@@ -630,6 +657,7 @@ M.PutClusterPolicyOutput = {
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         identifier = {
             type = "string",
@@ -656,6 +684,7 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
     members = {
         identifier = {
             type = "string",
@@ -686,6 +715,7 @@ M.UpdateClusterOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -699,6 +729,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -710,6 +741,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -731,10 +763,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -756,6 +790,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

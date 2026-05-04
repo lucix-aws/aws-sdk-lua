@@ -2,6 +2,7 @@ local M = {}
 
 M.ComponentPropertyBindingProperties = {
     type = "structure",
+    id = "ComponentPropertyBindingProperties",
     members = {
         property = {
             type = "string",
@@ -17,6 +18,7 @@ M.ComponentPropertyBindingProperties = {
 
 M.FormBindingElement = {
     type = "structure",
+    id = "FormBindingElement",
     members = {
         element = {
             type = "string",
@@ -35,6 +37,7 @@ M.FormBindingElement = {
 
 M.GetCodegenJobInput = {
     type = "structure",
+    id = "GetCodegenJobInput",
     members = {
         appId = {
             type = "string",
@@ -62,6 +65,7 @@ M.GetCodegenJobInput = {
 
 M.CodegenJobAsset = {
     type = "structure",
+    id = "CodegenJobAsset",
     members = {
         downloadUrl = {
             type = "string",
@@ -71,6 +75,7 @@ M.CodegenJobAsset = {
 
 M.CodegenDependency = {
     type = "structure",
+    id = "CodegenDependency",
     members = {
         name = {
             type = "string",
@@ -89,6 +94,7 @@ M.CodegenDependency = {
 
 M.CodegenFeatureFlags = {
     type = "structure",
+    id = "CodegenFeatureFlags",
     members = {
         isRelationshipSupported = {
             type = "boolean",
@@ -105,6 +111,7 @@ M.CodegenJobGenericDataSourceType = {
 
 M.CodegenGenericDataEnum = {
     type = "structure",
+    id = "CodegenGenericDataEnum",
     members = {
         values = {
             type = "list",
@@ -144,6 +151,7 @@ M.GenericDataRelationshipType = {
 
 M.CodegenGenericDataRelationshipType = {
     type = "structure",
+    id = "CodegenGenericDataRelationshipType",
     members = {
         type = {
             type = "string",
@@ -185,6 +193,7 @@ M.CodegenGenericDataRelationshipType = {
 
 M.CodegenGenericDataField = {
     type = "structure",
+    id = "CodegenGenericDataField",
     members = {
         dataType = {
             type = "string",
@@ -222,6 +231,7 @@ M.CodegenGenericDataField = {
 
 M.CodegenGenericDataModel = {
     type = "structure",
+    id = "CodegenGenericDataModel",
     members = {
         fields = {
             type = "map",
@@ -246,6 +256,7 @@ M.CodegenGenericDataModel = {
 
 M.CodegenGenericDataNonModel = {
     type = "structure",
+    id = "CodegenGenericDataNonModel",
     members = {
         fields = {
             type = "map",
@@ -260,6 +271,7 @@ M.CodegenGenericDataNonModel = {
 
 M.CodegenJobGenericDataSchema = {
     type = "structure",
+    id = "CodegenJobGenericDataSchema",
     members = {
         dataSourceType = {
             type = "string",
@@ -296,10 +308,12 @@ M.CodegenJobGenericDataSchema = {
 
 M.DataStoreRenderConfig = {
     type = "structure",
+    id = "DataStoreRenderConfig",
 }
 
 M.GraphQLRenderConfig = {
     type = "structure",
+    id = "GraphQLRenderConfig",
     members = {
         typesFilePath = {
             type = "string",
@@ -336,10 +350,12 @@ M.GraphQLRenderConfig = {
 
 M.NoApiRenderConfig = {
     type = "structure",
+    id = "NoApiRenderConfig",
 }
 
 M.ApiConfiguration = {
     type = "union",
+    id = "ApiConfiguration",
     members = {
         graphQLConfig = M.GraphQLRenderConfig,
         dataStoreConfig = M.DataStoreRenderConfig,
@@ -365,6 +381,7 @@ M.JSTarget = {
 
 M.ReactStartCodegenJobData = {
     type = "structure",
+    id = "ReactStartCodegenJobData",
     members = {
         module = {
             type = "string",
@@ -398,6 +415,7 @@ M.ReactStartCodegenJobData = {
 
 M.CodegenJobRenderConfig = {
     type = "union",
+    id = "CodegenJobRenderConfig",
     members = {
         react = M.ReactStartCodegenJobData,
     },
@@ -411,6 +429,7 @@ M.CodegenJobStatus = {
 
 M.CodegenJob = {
     type = "structure",
+    id = "CodegenJob",
     members = {
         id = {
             type = "string",
@@ -469,6 +488,7 @@ M.CodegenJob = {
 
 M.GetCodegenJobOutput = {
     type = "structure",
+    id = "GetCodegenJobOutput",
     members = {
         job = setmetatable({ traits = {
             http_payload = true,
@@ -478,6 +498,7 @@ M.GetCodegenJobOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -488,6 +509,7 @@ M.InternalServerException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -498,6 +520,7 @@ M.InvalidParameterException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -508,6 +531,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -518,6 +542,7 @@ M.ThrottlingException = {
 
 M.ListCodegenJobsInput = {
     type = "structure",
+    id = "ListCodegenJobsInput",
     members = {
         appId = {
             type = "string",
@@ -551,6 +576,7 @@ M.ListCodegenJobsInput = {
 
 M.CodegenJobSummary = {
     type = "structure",
+    id = "CodegenJobSummary",
     members = {
         appId = {
             type = "string",
@@ -587,6 +613,7 @@ M.CodegenJobSummary = {
 
 M.ListCodegenJobsOutput = {
     type = "structure",
+    id = "ListCodegenJobsOutput",
     members = {
         entities = {
             type = "list",
@@ -603,6 +630,7 @@ M.ListCodegenJobsOutput = {
 
 M.StartCodegenJobData = {
     type = "structure",
+    id = "StartCodegenJobData",
     members = {
         renderConfig = setmetatable({ traits = {
             required = true,
@@ -622,6 +650,7 @@ M.StartCodegenJobData = {
 
 M.StartCodegenJobInput = {
     type = "structure",
+    id = "StartCodegenJobInput",
     members = {
         appId = {
             type = "string",
@@ -653,6 +682,7 @@ M.StartCodegenJobInput = {
 
 M.StartCodegenJobOutput = {
     type = "structure",
+    id = "StartCodegenJobOutput",
     members = {
         entity = setmetatable({ traits = {
             http_payload = true,
@@ -667,6 +697,7 @@ M.SortDirection = {
 
 M.SortProperty = {
     type = "structure",
+    id = "SortProperty",
     members = {
         field = {
             type = "string",
@@ -685,6 +716,7 @@ M.SortProperty = {
 
 M.ComponentVariant = {
     type = "structure",
+    id = "ComponentVariant",
     members = {
         variantValues = {
             type = "map",
@@ -701,6 +733,7 @@ M.ComponentVariant = {
 
 M.ResourceConflictException = {
     type = "structure",
+    id = "ResourceConflictException",
     error = "client",
     members = {
         message = {
@@ -711,6 +744,7 @@ M.ResourceConflictException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -721,6 +755,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteComponentInput = {
     type = "structure",
+    id = "DeleteComponentInput",
     members = {
         appId = {
             type = "string",
@@ -748,10 +783,12 @@ M.DeleteComponentInput = {
 
 M.DeleteComponentOutput = {
     type = "structure",
+    id = "DeleteComponentOutput",
 }
 
 M.ExportComponentsInput = {
     type = "structure",
+    id = "ExportComponentsInput",
     members = {
         appId = {
             type = "string",
@@ -778,6 +815,7 @@ M.ExportComponentsInput = {
 
 M.GetComponentInput = {
     type = "structure",
+    id = "GetComponentInput",
     members = {
         appId = {
             type = "string",
@@ -805,6 +843,7 @@ M.GetComponentInput = {
 
 M.ListComponentsInput = {
     type = "structure",
+    id = "ListComponentsInput",
     members = {
         appId = {
             type = "string",
@@ -838,6 +877,7 @@ M.ListComponentsInput = {
 
 M.ComponentSummary = {
     type = "structure",
+    id = "ComponentSummary",
     members = {
         appId = {
             type = "string",
@@ -874,6 +914,7 @@ M.ComponentSummary = {
 
 M.ListComponentsOutput = {
     type = "structure",
+    id = "ListComponentsOutput",
     members = {
         entities = {
             type = "list",
@@ -894,6 +935,7 @@ M.TokenProviders = {
 
 M.ExchangeCodeForTokenRequestBody = {
     type = "structure",
+    id = "ExchangeCodeForTokenRequestBody",
     members = {
         code = {
             type = "string",
@@ -915,6 +957,7 @@ M.ExchangeCodeForTokenRequestBody = {
 
 M.ExchangeCodeForTokenInput = {
     type = "structure",
+    id = "ExchangeCodeForTokenInput",
     members = {
         provider = {
             type = "string",
@@ -932,6 +975,7 @@ M.ExchangeCodeForTokenInput = {
 
 M.ExchangeCodeForTokenOutput = {
     type = "structure",
+    id = "ExchangeCodeForTokenOutput",
     members = {
         accessToken = {
             type = "string",
@@ -960,6 +1004,7 @@ M.FixedPosition = {
 
 M.FieldPosition = {
     type = "union",
+    id = "FieldPosition",
     members = {
         fixed = {
             type = "string",
@@ -975,6 +1020,7 @@ M.FieldPosition = {
 
 M.FormButton = {
     type = "structure",
+    id = "FormButton",
     members = {
         excluded = {
             type = "boolean",
@@ -994,6 +1040,7 @@ M.FormButtonsPosition = {
 
 M.FormCTA = {
     type = "structure",
+    id = "FormCTA",
     members = {
         position = {
             type = "string",
@@ -1011,6 +1058,7 @@ M.FormDataSourceType = {
 
 M.FormDataTypeConfig = {
     type = "structure",
+    id = "FormDataTypeConfig",
     members = {
         dataSourceType = {
             type = "string",
@@ -1035,6 +1083,7 @@ M.StorageAccessLevel = {
 
 M.FileUploaderFieldConfig = {
     type = "structure",
+    id = "FileUploaderFieldConfig",
     members = {
         accessLevel = {
             type = "string",
@@ -1066,6 +1115,7 @@ M.FileUploaderFieldConfig = {
 
 M.FormInputBindingPropertiesValueProperties = {
     type = "structure",
+    id = "FormInputBindingPropertiesValueProperties",
     members = {
         model = {
             type = "string",
@@ -1075,6 +1125,7 @@ M.FormInputBindingPropertiesValueProperties = {
 
 M.FormInputBindingPropertiesValue = {
     type = "structure",
+    id = "FormInputBindingPropertiesValue",
     members = {
         type = {
             type = "string",
@@ -1085,6 +1136,7 @@ M.FormInputBindingPropertiesValue = {
 
 M.FormInputValuePropertyBindingProperties = {
     type = "structure",
+    id = "FormInputValuePropertyBindingProperties",
     members = {
         property = {
             type = "string",
@@ -1100,6 +1152,7 @@ M.FormInputValuePropertyBindingProperties = {
 
 M.FieldValidationConfiguration = {
     type = "structure",
+    id = "FieldValidationConfiguration",
     members = {
         type = {
             type = "string",
@@ -1134,6 +1187,7 @@ M.LabelDecorator = {
 
 M.SectionalElement = {
     type = "structure",
+    id = "SectionalElement",
     members = {
         type = {
             type = "string",
@@ -1159,6 +1213,7 @@ M.SectionalElement = {
 
 M.FormStyleConfig = {
     type = "union",
+    id = "FormStyleConfig",
     members = {
         tokenReference = {
             type = "string",
@@ -1171,6 +1226,7 @@ M.FormStyleConfig = {
 
 M.FormStyle = {
     type = "structure",
+    id = "FormStyle",
     members = {
         horizontalGap = M.FormStyleConfig,
         verticalGap = M.FormStyleConfig,
@@ -1180,6 +1236,7 @@ M.FormStyle = {
 
 M.DeleteFormInput = {
     type = "structure",
+    id = "DeleteFormInput",
     members = {
         appId = {
             type = "string",
@@ -1207,10 +1264,12 @@ M.DeleteFormInput = {
 
 M.DeleteFormOutput = {
     type = "structure",
+    id = "DeleteFormOutput",
 }
 
 M.ExportFormsInput = {
     type = "structure",
+    id = "ExportFormsInput",
     members = {
         appId = {
             type = "string",
@@ -1237,6 +1296,7 @@ M.ExportFormsInput = {
 
 M.GetFormInput = {
     type = "structure",
+    id = "GetFormInput",
     members = {
         appId = {
             type = "string",
@@ -1264,6 +1324,7 @@ M.GetFormInput = {
 
 M.ListFormsInput = {
     type = "structure",
+    id = "ListFormsInput",
     members = {
         appId = {
             type = "string",
@@ -1297,6 +1358,7 @@ M.ListFormsInput = {
 
 M.FormSummary = {
     type = "structure",
+    id = "FormSummary",
     members = {
         appId = {
             type = "string",
@@ -1336,6 +1398,7 @@ M.FormSummary = {
 
 M.ListFormsOutput = {
     type = "structure",
+    id = "ListFormsOutput",
     members = {
         entities = {
             type = "list",
@@ -1352,6 +1415,7 @@ M.ListFormsOutput = {
 
 M.GetMetadataInput = {
     type = "structure",
+    id = "GetMetadataInput",
     members = {
         appId = {
             type = "string",
@@ -1372,6 +1436,7 @@ M.GetMetadataInput = {
 
 M.GetMetadataOutput = {
     type = "structure",
+    id = "GetMetadataOutput",
     members = {
         features = {
             type = "map",
@@ -1386,6 +1451,7 @@ M.GetMetadataOutput = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -1396,6 +1462,7 @@ M.UnauthorizedException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1409,6 +1476,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1423,6 +1491,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutMetadataFlagBody = {
     type = "structure",
+    id = "PutMetadataFlagBody",
     members = {
         newValue = {
             type = "string",
@@ -1435,6 +1504,7 @@ M.PutMetadataFlagBody = {
 
 M.PutMetadataFlagInput = {
     type = "structure",
+    id = "PutMetadataFlagInput",
     members = {
         appId = {
             type = "string",
@@ -1466,10 +1536,12 @@ M.PutMetadataFlagInput = {
 
 M.PutMetadataFlagOutput = {
     type = "structure",
+    id = "PutMetadataFlagOutput",
 }
 
 M.RefreshTokenRequestBody = {
     type = "structure",
+    id = "RefreshTokenRequestBody",
     members = {
         token = {
             type = "string",
@@ -1485,6 +1557,7 @@ M.RefreshTokenRequestBody = {
 
 M.RefreshTokenInput = {
     type = "structure",
+    id = "RefreshTokenInput",
     members = {
         provider = {
             type = "string",
@@ -1502,6 +1575,7 @@ M.RefreshTokenInput = {
 
 M.RefreshTokenOutput = {
     type = "structure",
+    id = "RefreshTokenOutput",
     members = {
         accessToken = {
             type = "string",
@@ -1520,6 +1594,7 @@ M.RefreshTokenOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1541,10 +1616,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.DeleteThemeInput = {
     type = "structure",
+    id = "DeleteThemeInput",
     members = {
         appId = {
             type = "string",
@@ -1572,10 +1649,12 @@ M.DeleteThemeInput = {
 
 M.DeleteThemeOutput = {
     type = "structure",
+    id = "DeleteThemeOutput",
 }
 
 M.ExportThemesInput = {
     type = "structure",
+    id = "ExportThemesInput",
     members = {
         appId = {
             type = "string",
@@ -1602,6 +1681,7 @@ M.ExportThemesInput = {
 
 M.GetThemeInput = {
     type = "structure",
+    id = "GetThemeInput",
     members = {
         appId = {
             type = "string",
@@ -1629,6 +1709,7 @@ M.GetThemeInput = {
 
 M.ListThemesInput = {
     type = "structure",
+    id = "ListThemesInput",
     members = {
         appId = {
             type = "string",
@@ -1662,6 +1743,7 @@ M.ListThemesInput = {
 
 M.ThemeSummary = {
     type = "structure",
+    id = "ThemeSummary",
     members = {
         appId = {
             type = "string",
@@ -1692,6 +1774,7 @@ M.ThemeSummary = {
 
 M.ListThemesOutput = {
     type = "structure",
+    id = "ListThemesOutput",
     members = {
         entities = {
             type = "list",
@@ -1708,6 +1791,7 @@ M.ListThemesOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1729,10 +1813,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.FormInputValueProperty = {
     type = "structure",
+    id = "FormInputValueProperty",
     members = {
         value = {
             type = "string",
@@ -1747,6 +1833,7 @@ M.FormInputValueProperty = {
 
 M.ThemeValue = {
     type = "structure",
+    id = "ThemeValue",
     members = {
         value = {
             type = "string",
@@ -1760,6 +1847,7 @@ M.ThemeValue = {
 
 M.ThemeValues = {
     type = "structure",
+    id = "ThemeValues",
     members = {
         key = {
             type = "string",
@@ -1770,6 +1858,7 @@ M.ThemeValues = {
 
 M.Predicate = {
     type = "structure",
+    id = "Predicate",
     members = {
         or = {
             type = "list",
@@ -1796,6 +1885,7 @@ M.Predicate = {
 
 M.ComponentBindingPropertiesValueProperties = {
     type = "structure",
+    id = "ComponentBindingPropertiesValueProperties",
     members = {
         model = {
             type = "string",
@@ -1827,6 +1917,7 @@ M.ComponentBindingPropertiesValueProperties = {
 
 M.ComponentDataConfiguration = {
     type = "structure",
+    id = "ComponentDataConfiguration",
     members = {
         model = {
             type = "string",
@@ -1848,6 +1939,7 @@ M.ComponentDataConfiguration = {
 
 M.ComponentProperty = {
     type = "structure",
+    id = "ComponentProperty",
     members = {
         value = {
             type = "string",
@@ -1896,6 +1988,7 @@ M.ComponentProperty = {
 
 M.ValueMapping = {
     type = "structure",
+    id = "ValueMapping",
     members = {
         displayValue = M.FormInputValueProperty,
         value = setmetatable({ traits = {
@@ -1906,6 +1999,7 @@ M.ValueMapping = {
 
 M.ComponentBindingPropertiesValue = {
     type = "structure",
+    id = "ComponentBindingPropertiesValue",
     members = {
         type = {
             type = "string",
@@ -1919,6 +2013,7 @@ M.ComponentBindingPropertiesValue = {
 
 M.CreateThemeData = {
     type = "structure",
+    id = "CreateThemeData",
     members = {
         name = {
             type = "string",
@@ -1947,6 +2042,7 @@ M.CreateThemeData = {
 
 M.Theme = {
     type = "structure",
+    id = "Theme",
     members = {
         appId = {
             type = "string",
@@ -2006,6 +2102,7 @@ M.Theme = {
 
 M.UpdateThemeData = {
     type = "structure",
+    id = "UpdateThemeData",
     members = {
         id = {
             type = "string",
@@ -2029,6 +2126,7 @@ M.UpdateThemeData = {
 
 M.MutationActionSetStateParameter = {
     type = "structure",
+    id = "MutationActionSetStateParameter",
     members = {
         componentName = {
             type = "string",
@@ -2050,6 +2148,7 @@ M.MutationActionSetStateParameter = {
 
 M.ComponentConditionProperty = {
     type = "structure",
+    id = "ComponentConditionProperty",
     members = {
         property = {
             type = "string",
@@ -2073,6 +2172,7 @@ M.ComponentConditionProperty = {
 
 M.CreateThemeInput = {
     type = "structure",
+    id = "CreateThemeInput",
     members = {
         appId = {
             type = "string",
@@ -2104,6 +2204,7 @@ M.CreateThemeInput = {
 
 M.CreateThemeOutput = {
     type = "structure",
+    id = "CreateThemeOutput",
     members = {
         entity = setmetatable({ traits = {
             http_payload = true,
@@ -2113,6 +2214,7 @@ M.CreateThemeOutput = {
 
 M.GetThemeOutput = {
     type = "structure",
+    id = "GetThemeOutput",
     members = {
         theme = setmetatable({ traits = {
             http_payload = true,
@@ -2122,6 +2224,7 @@ M.GetThemeOutput = {
 
 M.UpdateThemeInput = {
     type = "structure",
+    id = "UpdateThemeInput",
     members = {
         appId = {
             type = "string",
@@ -2160,6 +2263,7 @@ M.UpdateThemeInput = {
 
 M.UpdateThemeOutput = {
     type = "structure",
+    id = "UpdateThemeOutput",
     members = {
         entity = setmetatable({ traits = {
             http_payload = true,
@@ -2169,6 +2273,7 @@ M.UpdateThemeOutput = {
 
 M.ValueMappings = {
     type = "structure",
+    id = "ValueMappings",
     members = {
         values = {
             type = "list",
@@ -2187,6 +2292,7 @@ M.ValueMappings = {
 
 M.ExportThemesOutput = {
     type = "structure",
+    id = "ExportThemesOutput",
     members = {
         entities = {
             type = "list",
@@ -2203,6 +2309,7 @@ M.ExportThemesOutput = {
 
 M.FieldInputConfig = {
     type = "structure",
+    id = "FieldInputConfig",
     members = {
         type = {
             type = "string",
@@ -2256,6 +2363,7 @@ M.FieldInputConfig = {
 
 M.FieldConfig = {
     type = "structure",
+    id = "FieldConfig",
     members = {
         label = {
             type = "string",
@@ -2274,6 +2382,7 @@ M.FieldConfig = {
 
 M.CreateFormData = {
     type = "structure",
+    id = "CreateFormData",
     members = {
         name = {
             type = "string",
@@ -2329,6 +2438,7 @@ M.CreateFormData = {
 
 M.Form = {
     type = "structure",
+    id = "Form",
     members = {
         appId = {
             type = "string",
@@ -2402,6 +2512,7 @@ M.Form = {
 
 M.UpdateFormData = {
     type = "structure",
+    id = "UpdateFormData",
     members = {
         name = {
             type = "string",
@@ -2433,6 +2544,7 @@ M.UpdateFormData = {
 
 M.CreateFormInput = {
     type = "structure",
+    id = "CreateFormInput",
     members = {
         appId = {
             type = "string",
@@ -2464,6 +2576,7 @@ M.CreateFormInput = {
 
 M.CreateFormOutput = {
     type = "structure",
+    id = "CreateFormOutput",
     members = {
         entity = setmetatable({ traits = {
             http_payload = true,
@@ -2473,6 +2586,7 @@ M.CreateFormOutput = {
 
 M.GetFormOutput = {
     type = "structure",
+    id = "GetFormOutput",
     members = {
         form = setmetatable({ traits = {
             http_payload = true,
@@ -2482,6 +2596,7 @@ M.GetFormOutput = {
 
 M.UpdateFormInput = {
     type = "structure",
+    id = "UpdateFormInput",
     members = {
         appId = {
             type = "string",
@@ -2520,6 +2635,7 @@ M.UpdateFormInput = {
 
 M.UpdateFormOutput = {
     type = "structure",
+    id = "UpdateFormOutput",
     members = {
         entity = setmetatable({ traits = {
             http_payload = true,
@@ -2529,6 +2645,7 @@ M.UpdateFormOutput = {
 
 M.ExportFormsOutput = {
     type = "structure",
+    id = "ExportFormsOutput",
     members = {
         entities = {
             type = "list",
@@ -2545,6 +2662,7 @@ M.ExportFormsOutput = {
 
 M.ActionParameters = {
     type = "structure",
+    id = "ActionParameters",
     members = {
         type = M.ComponentProperty,
         url = M.ComponentProperty,
@@ -2566,6 +2684,7 @@ M.ActionParameters = {
 
 M.ComponentEvent = {
     type = "structure",
+    id = "ComponentEvent",
     members = {
         action = {
             type = "string",
@@ -2579,6 +2698,7 @@ M.ComponentEvent = {
 
 M.ComponentChild = {
     type = "structure",
+    id = "ComponentChild",
     members = {
         componentType = {
             type = "string",
@@ -2617,6 +2737,7 @@ M.ComponentChild = {
 
 M.Component = {
     type = "structure",
+    id = "Component",
     members = {
         appId = {
             type = "string",
@@ -2722,6 +2843,7 @@ M.Component = {
 
 M.CreateComponentData = {
     type = "structure",
+    id = "CreateComponentData",
     members = {
         name = {
             type = "string",
@@ -2796,6 +2918,7 @@ M.CreateComponentData = {
 
 M.UpdateComponentData = {
     type = "structure",
+    id = "UpdateComponentData",
     members = {
         id = {
             type = "string",
@@ -2850,6 +2973,7 @@ M.UpdateComponentData = {
 
 M.CreateComponentInput = {
     type = "structure",
+    id = "CreateComponentInput",
     members = {
         appId = {
             type = "string",
@@ -2881,6 +3005,7 @@ M.CreateComponentInput = {
 
 M.CreateComponentOutput = {
     type = "structure",
+    id = "CreateComponentOutput",
     members = {
         entity = setmetatable({ traits = {
             http_payload = true,
@@ -2890,6 +3015,7 @@ M.CreateComponentOutput = {
 
 M.GetComponentOutput = {
     type = "structure",
+    id = "GetComponentOutput",
     members = {
         component = setmetatable({ traits = {
             http_payload = true,
@@ -2899,6 +3025,7 @@ M.GetComponentOutput = {
 
 M.UpdateComponentInput = {
     type = "structure",
+    id = "UpdateComponentInput",
     members = {
         appId = {
             type = "string",
@@ -2937,6 +3064,7 @@ M.UpdateComponentInput = {
 
 M.UpdateComponentOutput = {
     type = "structure",
+    id = "UpdateComponentOutput",
     members = {
         entity = setmetatable({ traits = {
             http_payload = true,
@@ -2946,6 +3074,7 @@ M.UpdateComponentOutput = {
 
 M.ExportComponentsOutput = {
     type = "structure",
+    id = "ExportComponentsOutput",
     members = {
         entities = {
             type = "list",

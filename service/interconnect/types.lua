@@ -2,6 +2,7 @@ local M = {}
 
 M.AttachPoint = {
     type = "union",
+    id = "AttachPoint",
     members = {
         directConnectGateway = {
             type = "string",
@@ -14,6 +15,7 @@ M.AttachPoint = {
 
 M.AcceptConnectionProposalInput = {
     type = "structure",
+    id = "AcceptConnectionProposalInput",
     members = {
         attachPoint = setmetatable({ traits = {
             required = true,
@@ -43,6 +45,7 @@ M.AcceptConnectionProposalInput = {
 
 M.Provider = {
     type = "union",
+    id = "Provider",
     members = {
         cloudServiceProvider = {
             type = "string",
@@ -66,6 +69,7 @@ M.ConnectionState = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         id = {
             type = "string",
@@ -152,6 +156,7 @@ M.Connection = {
 
 M.AcceptConnectionProposalOutput = {
     type = "structure",
+    id = "AcceptConnectionProposalOutput",
     members = {
         connection = M.Connection,
     },
@@ -159,6 +164,7 @@ M.AcceptConnectionProposalOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -169,6 +175,7 @@ M.AccessDeniedException = {
 
 M.InterconnectClientException = {
     type = "structure",
+    id = "InterconnectClientException",
     error = "client",
     members = {
         message = {
@@ -182,6 +189,7 @@ M.InterconnectClientException = {
 
 M.InterconnectServerException = {
     type = "structure",
+    id = "InterconnectServerException",
     error = "server",
     members = {
         message = {
@@ -195,6 +203,7 @@ M.InterconnectServerException = {
 
 M.InterconnectValidationException = {
     type = "structure",
+    id = "InterconnectValidationException",
     error = "client",
     members = {
         message = {
@@ -208,6 +217,7 @@ M.InterconnectValidationException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -218,6 +228,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -228,6 +239,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -242,6 +254,7 @@ M.AttachPointType = {
 
 M.AttachPointDescriptor = {
     type = "structure",
+    id = "AttachPointDescriptor",
     members = {
         type = {
             type = "string",
@@ -266,6 +279,7 @@ M.AttachPointDescriptor = {
 
 M.Bandwidths = {
     type = "structure",
+    id = "Bandwidths",
     members = {
         available = {
             type = "list",
@@ -280,6 +294,7 @@ M.Bandwidths = {
 
 M.RemoteAccountIdentifier = {
     type = "union",
+    id = "RemoteAccountIdentifier",
     members = {
         identifier = {
             type = "string",
@@ -289,6 +304,7 @@ M.RemoteAccountIdentifier = {
 
 M.CreateConnectionInput = {
     type = "structure",
+    id = "CreateConnectionInput",
     members = {
         description = {
             type = "string",
@@ -325,6 +341,7 @@ M.CreateConnectionInput = {
 
 M.CreateConnectionOutput = {
     type = "structure",
+    id = "CreateConnectionOutput",
     members = {
         connection = M.Connection,
     },
@@ -332,6 +349,7 @@ M.CreateConnectionOutput = {
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         identifier = {
             type = "string",
@@ -350,6 +368,7 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
     members = {
         connection = setmetatable({ traits = {
             required = true,
@@ -359,6 +378,7 @@ M.DeleteConnectionOutput = {
 
 M.GetConnectionInput = {
     type = "structure",
+    id = "GetConnectionInput",
     members = {
         identifier = {
             type = "string",
@@ -371,6 +391,7 @@ M.GetConnectionInput = {
 
 M.GetConnectionOutput = {
     type = "structure",
+    id = "GetConnectionOutput",
     members = {
         connection = M.Connection,
     },
@@ -378,6 +399,7 @@ M.GetConnectionOutput = {
 
 M.ListConnectionsInput = {
     type = "structure",
+    id = "ListConnectionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -398,6 +420,7 @@ M.ListConnectionsInput = {
 
 M.ConnectionSummary = {
     type = "structure",
+    id = "ConnectionSummary",
     members = {
         id = {
             type = "string",
@@ -467,6 +490,7 @@ M.ConnectionSummary = {
 
 M.ListConnectionsOutput = {
     type = "structure",
+    id = "ListConnectionsOutput",
     members = {
         connections = {
             type = "list",
@@ -480,6 +504,7 @@ M.ListConnectionsOutput = {
 
 M.UpdateConnectionInput = {
     type = "structure",
+    id = "UpdateConnectionInput",
     members = {
         identifier = {
             type = "string",
@@ -504,6 +529,7 @@ M.UpdateConnectionInput = {
 
 M.UpdateConnectionOutput = {
     type = "structure",
+    id = "UpdateConnectionOutput",
     members = {
         connection = M.Connection,
     },
@@ -511,6 +537,7 @@ M.UpdateConnectionOutput = {
 
 M.DescribeConnectionProposalInput = {
     type = "structure",
+    id = "DescribeConnectionProposalInput",
     members = {
         activationKey = {
             type = "string",
@@ -523,6 +550,7 @@ M.DescribeConnectionProposalInput = {
 
 M.DescribeConnectionProposalOutput = {
     type = "structure",
+    id = "DescribeConnectionProposalOutput",
     members = {
         bandwidth = {
             type = "string",
@@ -561,6 +589,7 @@ M.EnvironmentState = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         provider = setmetatable({ traits = {
             required = true,
@@ -603,6 +632,7 @@ M.Environment = {
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         id = {
             type = "string",
@@ -615,6 +645,7 @@ M.GetEnvironmentInput = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         environment = setmetatable({ traits = {
             required = true,
@@ -624,6 +655,7 @@ M.GetEnvironmentOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -640,6 +672,7 @@ M.ListEnvironmentsInput = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         environments = {
             type = "list",
@@ -656,6 +689,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListAttachPointsInput = {
     type = "structure",
+    id = "ListAttachPointsInput",
     members = {
         environmentId = {
             type = "string",
@@ -674,6 +708,7 @@ M.ListAttachPointsInput = {
 
 M.ListAttachPointsOutput = {
     type = "structure",
+    id = "ListAttachPointsOutput",
     members = {
         attachPoints = {
             type = "list",
@@ -690,6 +725,7 @@ M.ListAttachPointsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -702,6 +738,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -713,6 +750,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -733,10 +771,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -756,6 +796,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

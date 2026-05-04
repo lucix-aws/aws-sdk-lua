@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -16,6 +17,7 @@ M.AutoScalingMetric = {
 
 M.AutoScalingConfiguration = {
     type = "structure",
+    id = "AutoScalingConfiguration",
     members = {
         minNodeCount = {
             type = "integer",
@@ -45,6 +47,7 @@ M.FederationMode = {
 
 M.FederationParameters = {
     type = "structure",
+    id = "FederationParameters",
     members = {
         samlMetadataDocument = {
             type = "string",
@@ -71,6 +74,7 @@ M.FederationParameters = {
 
 M.SuperuserParameters = {
     type = "structure",
+    id = "SuperuserParameters",
     members = {
         emailAddress = {
             type = "string",
@@ -95,6 +99,7 @@ M.SuperuserParameters = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -127,6 +132,7 @@ M.CreateEnvironmentInput = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         environmentId = {
             type = "string",
@@ -142,6 +148,7 @@ M.CreateEnvironmentOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -152,6 +159,7 @@ M.InternalServerException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -162,6 +170,7 @@ M.LimitExceededException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -172,6 +181,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -182,6 +192,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -192,6 +203,7 @@ M.ValidationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -210,6 +222,7 @@ M.ChangeType = {
 
 M.ChangeRequest = {
     type = "structure",
+    id = "ChangeRequest",
     members = {
         changeType = {
             type = "string",
@@ -231,6 +244,7 @@ M.ChangeRequest = {
 
 M.CreateKxChangesetInput = {
     type = "structure",
+    id = "CreateKxChangesetInput",
     members = {
         environmentId = {
             type = "string",
@@ -276,6 +290,7 @@ M.ErrorDetails = {
 
 M.ErrorInfo = {
     type = "structure",
+    id = "ErrorInfo",
     members = {
         errorMessage = {
             type = "string",
@@ -295,6 +310,7 @@ M.ChangesetStatus = {
 
 M.CreateKxChangesetOutput = {
     type = "structure",
+    id = "CreateKxChangesetOutput",
     members = {
         changesetId = {
             type = "string",
@@ -324,6 +340,7 @@ M.CreateKxChangesetOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -339,6 +356,7 @@ M.KxAzMode = {
 
 M.KxCacheStorageConfiguration = {
     type = "structure",
+    id = "KxCacheStorageConfiguration",
     members = {
         type = {
             type = "string",
@@ -357,6 +375,7 @@ M.KxCacheStorageConfiguration = {
 
 M.CapacityConfiguration = {
     type = "structure",
+    id = "CapacityConfiguration",
     members = {
         nodeType = {
             type = "string",
@@ -377,6 +396,7 @@ M.KxClusterType = {
 
 M.CodeConfiguration = {
     type = "structure",
+    id = "CodeConfiguration",
     members = {
         s3Bucket = {
             type = "string",
@@ -392,6 +412,7 @@ M.CodeConfiguration = {
 
 M.KxCommandLineArgument = {
     type = "structure",
+    id = "KxCommandLineArgument",
     members = {
         key = {
             type = "string",
@@ -404,6 +425,7 @@ M.KxCommandLineArgument = {
 
 M.KxDatabaseCacheConfiguration = {
     type = "structure",
+    id = "KxDatabaseCacheConfiguration",
     members = {
         cacheType = {
             type = "string",
@@ -426,6 +448,7 @@ M.KxDatabaseCacheConfiguration = {
 
 M.KxDataviewSegmentConfiguration = {
     type = "structure",
+    id = "KxDataviewSegmentConfiguration",
     members = {
         dbPaths = {
             type = "list",
@@ -451,6 +474,7 @@ M.KxDataviewSegmentConfiguration = {
 
 M.KxDataviewConfiguration = {
     type = "structure",
+    id = "KxDataviewConfiguration",
     members = {
         dataviewName = {
             type = "string",
@@ -470,6 +494,7 @@ M.KxDataviewConfiguration = {
 
 M.KxDatabaseConfiguration = {
     type = "structure",
+    id = "KxDatabaseConfiguration",
     members = {
         databaseName = {
             type = "string",
@@ -497,6 +522,7 @@ M.KxSavedownStorageType = {
 
 M.KxSavedownStorageConfiguration = {
     type = "structure",
+    id = "KxSavedownStorageConfiguration",
     members = {
         type = {
             type = "string",
@@ -512,6 +538,7 @@ M.KxSavedownStorageConfiguration = {
 
 M.KxScalingGroupConfiguration = {
     type = "structure",
+    id = "KxScalingGroupConfiguration",
     members = {
         scalingGroupName = {
             type = "string",
@@ -542,6 +569,7 @@ M.KxScalingGroupConfiguration = {
 
 M.TickerplantLogConfiguration = {
     type = "structure",
+    id = "TickerplantLogConfiguration",
     members = {
         tickerplantLogVolumes = {
             type = "list",
@@ -556,6 +584,7 @@ M.IPAddressType = {
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         vpcId = {
             type = "string",
@@ -576,6 +605,7 @@ M.VpcConfiguration = {
 
 M.CreateKxClusterInput = {
     type = "structure",
+    id = "CreateKxClusterInput",
     members = {
         clientToken = {
             type = "string",
@@ -672,6 +702,7 @@ M.VolumeType = {
 
 M.Volume = {
     type = "structure",
+    id = "Volume",
     members = {
         volumeName = {
             type = "string",
@@ -684,6 +715,7 @@ M.Volume = {
 
 M.CreateKxClusterOutput = {
     type = "structure",
+    id = "CreateKxClusterOutput",
     members = {
         environmentId = {
             type = "string",
@@ -752,6 +784,7 @@ M.CreateKxClusterOutput = {
 
 M.CreateKxDatabaseInput = {
     type = "structure",
+    id = "CreateKxDatabaseInput",
     members = {
         environmentId = {
             type = "string",
@@ -786,6 +819,7 @@ M.CreateKxDatabaseInput = {
 
 M.CreateKxDatabaseOutput = {
     type = "structure",
+    id = "CreateKxDatabaseOutput",
     members = {
         databaseName = {
             type = "string",
@@ -810,6 +844,7 @@ M.CreateKxDatabaseOutput = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -820,6 +855,7 @@ M.ResourceAlreadyExistsException = {
 
 M.CreateKxDataviewInput = {
     type = "structure",
+    id = "CreateKxDataviewInput",
     members = {
         environmentId = {
             type = "string",
@@ -897,6 +933,7 @@ M.KxDataviewStatus = {
 
 M.CreateKxDataviewOutput = {
     type = "structure",
+    id = "CreateKxDataviewOutput",
     members = {
         dataviewName = {
             type = "string",
@@ -949,6 +986,7 @@ M.CreateKxDataviewOutput = {
 
 M.CreateKxEnvironmentInput = {
     type = "structure",
+    id = "CreateKxEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -997,6 +1035,7 @@ M.EnvironmentStatus = {
 
 M.CreateKxEnvironmentOutput = {
     type = "structure",
+    id = "CreateKxEnvironmentOutput",
     members = {
         name = {
             type = "string",
@@ -1024,6 +1063,7 @@ M.CreateKxEnvironmentOutput = {
 
 M.CreateKxScalingGroupInput = {
     type = "structure",
+    id = "CreateKxScalingGroupInput",
     members = {
         clientToken = {
             type = "string",
@@ -1076,6 +1116,7 @@ M.KxScalingGroupStatus = {
 
 M.CreateKxScalingGroupOutput = {
     type = "structure",
+    id = "CreateKxScalingGroupOutput",
     members = {
         environmentId = {
             type = "string",
@@ -1103,6 +1144,7 @@ M.CreateKxScalingGroupOutput = {
 
 M.CreateKxUserInput = {
     type = "structure",
+    id = "CreateKxUserInput",
     members = {
         environmentId = {
             type = "string",
@@ -1139,6 +1181,7 @@ M.CreateKxUserInput = {
 
 M.CreateKxUserOutput = {
     type = "structure",
+    id = "CreateKxUserOutput",
     members = {
         userName = {
             type = "string",
@@ -1163,6 +1206,7 @@ M.KxNAS1Type = {
 
 M.KxNAS1Configuration = {
     type = "structure",
+    id = "KxNAS1Configuration",
     members = {
         type = {
             type = "string",
@@ -1179,6 +1223,7 @@ M.KxVolumeType = {
 
 M.CreateKxVolumeInput = {
     type = "structure",
+    id = "CreateKxVolumeInput",
     members = {
         clientToken = {
             type = "string",
@@ -1244,6 +1289,7 @@ M.KxVolumeStatus = {
 
 M.CreateKxVolumeOutput = {
     type = "structure",
+    id = "CreateKxVolumeOutput",
     members = {
         environmentId = {
             type = "string",
@@ -1282,6 +1328,7 @@ M.CreateKxVolumeOutput = {
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -1295,10 +1342,12 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
 }
 
 M.DeleteKxClusterInput = {
     type = "structure",
+    id = "DeleteKxClusterInput",
     members = {
         environmentId = {
             type = "string",
@@ -1326,10 +1375,12 @@ M.DeleteKxClusterInput = {
 
 M.DeleteKxClusterOutput = {
     type = "structure",
+    id = "DeleteKxClusterOutput",
 }
 
 M.DeleteKxClusterNodeInput = {
     type = "structure",
+    id = "DeleteKxClusterNodeInput",
     members = {
         environmentId = {
             type = "string",
@@ -1357,10 +1408,12 @@ M.DeleteKxClusterNodeInput = {
 
 M.DeleteKxClusterNodeOutput = {
     type = "structure",
+    id = "DeleteKxClusterNodeOutput",
 }
 
 M.DeleteKxDatabaseInput = {
     type = "structure",
+    id = "DeleteKxDatabaseInput",
     members = {
         environmentId = {
             type = "string",
@@ -1389,10 +1442,12 @@ M.DeleteKxDatabaseInput = {
 
 M.DeleteKxDatabaseOutput = {
     type = "structure",
+    id = "DeleteKxDatabaseOutput",
 }
 
 M.DeleteKxDataviewInput = {
     type = "structure",
+    id = "DeleteKxDataviewInput",
     members = {
         environmentId = {
             type = "string",
@@ -1428,10 +1483,12 @@ M.DeleteKxDataviewInput = {
 
 M.DeleteKxDataviewOutput = {
     type = "structure",
+    id = "DeleteKxDataviewOutput",
 }
 
 M.DeleteKxEnvironmentInput = {
     type = "structure",
+    id = "DeleteKxEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -1452,10 +1509,12 @@ M.DeleteKxEnvironmentInput = {
 
 M.DeleteKxEnvironmentOutput = {
     type = "structure",
+    id = "DeleteKxEnvironmentOutput",
 }
 
 M.DeleteKxScalingGroupInput = {
     type = "structure",
+    id = "DeleteKxScalingGroupInput",
     members = {
         environmentId = {
             type = "string",
@@ -1483,10 +1542,12 @@ M.DeleteKxScalingGroupInput = {
 
 M.DeleteKxScalingGroupOutput = {
     type = "structure",
+    id = "DeleteKxScalingGroupOutput",
 }
 
 M.DeleteKxUserInput = {
     type = "structure",
+    id = "DeleteKxUserInput",
     members = {
         userName = {
             type = "string",
@@ -1514,10 +1575,12 @@ M.DeleteKxUserInput = {
 
 M.DeleteKxUserOutput = {
     type = "structure",
+    id = "DeleteKxUserOutput",
 }
 
 M.DeleteKxVolumeInput = {
     type = "structure",
+    id = "DeleteKxVolumeInput",
     members = {
         environmentId = {
             type = "string",
@@ -1545,10 +1608,12 @@ M.DeleteKxVolumeInput = {
 
 M.DeleteKxVolumeOutput = {
     type = "structure",
+    id = "DeleteKxVolumeOutput",
 }
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -1562,6 +1627,7 @@ M.GetEnvironmentInput = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         name = {
             type = "string",
@@ -1602,6 +1668,7 @@ M.Environment = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         environment = M.Environment,
     },
@@ -1609,6 +1676,7 @@ M.GetEnvironmentOutput = {
 
 M.GetKxChangesetInput = {
     type = "structure",
+    id = "GetKxChangesetInput",
     members = {
         environmentId = {
             type = "string",
@@ -1636,6 +1704,7 @@ M.GetKxChangesetInput = {
 
 M.GetKxChangesetOutput = {
     type = "structure",
+    id = "GetKxChangesetOutput",
     members = {
         changesetId = {
             type = "string",
@@ -1668,6 +1737,7 @@ M.GetKxChangesetOutput = {
 
 M.GetKxClusterInput = {
     type = "structure",
+    id = "GetKxClusterInput",
     members = {
         environmentId = {
             type = "string",
@@ -1688,6 +1758,7 @@ M.GetKxClusterInput = {
 
 M.GetKxClusterOutput = {
     type = "structure",
+    id = "GetKxClusterOutput",
     members = {
         status = {
             type = "string",
@@ -1753,6 +1824,7 @@ M.GetKxClusterOutput = {
 
 M.GetKxConnectionStringInput = {
     type = "structure",
+    id = "GetKxConnectionStringInput",
     members = {
         userArn = {
             type = "string",
@@ -1780,6 +1852,7 @@ M.GetKxConnectionStringInput = {
 
 M.GetKxConnectionStringOutput = {
     type = "structure",
+    id = "GetKxConnectionStringOutput",
     members = {
         signedConnectionString = {
             type = "string",
@@ -1789,6 +1862,7 @@ M.GetKxConnectionStringOutput = {
 
 M.GetKxDatabaseInput = {
     type = "structure",
+    id = "GetKxDatabaseInput",
     members = {
         environmentId = {
             type = "string",
@@ -1809,6 +1883,7 @@ M.GetKxDatabaseInput = {
 
 M.GetKxDatabaseOutput = {
     type = "structure",
+    id = "GetKxDatabaseOutput",
     members = {
         databaseName = {
             type = "string",
@@ -1854,6 +1929,7 @@ M.GetKxDatabaseOutput = {
 
 M.GetKxDataviewInput = {
     type = "structure",
+    id = "GetKxDataviewInput",
     members = {
         environmentId = {
             type = "string",
@@ -1881,6 +1957,7 @@ M.GetKxDataviewInput = {
 
 M.KxDataviewActiveVersion = {
     type = "structure",
+    id = "KxDataviewActiveVersion",
     members = {
         changesetId = {
             type = "string",
@@ -1904,6 +1981,7 @@ M.KxDataviewActiveVersion = {
 
 M.GetKxDataviewOutput = {
     type = "structure",
+    id = "GetKxDataviewOutput",
     members = {
         databaseName = {
             type = "string",
@@ -1963,6 +2041,7 @@ M.GetKxDataviewOutput = {
 
 M.GetKxEnvironmentInput = {
     type = "structure",
+    id = "GetKxEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -1976,6 +2055,7 @@ M.GetKxEnvironmentInput = {
 
 M.CustomDNSServer = {
     type = "structure",
+    id = "CustomDNSServer",
     members = {
         customDNSServerName = {
             type = "string",
@@ -2010,6 +2090,7 @@ M.tgwStatus = {
 
 M.IcmpTypeCode = {
     type = "structure",
+    id = "IcmpTypeCode",
     members = {
         type = {
             type = "integer",
@@ -2030,6 +2111,7 @@ M.IcmpTypeCode = {
 
 M.PortRange = {
     type = "structure",
+    id = "PortRange",
     members = {
         from = {
             type = "integer",
@@ -2055,6 +2137,7 @@ M.RuleAction = {
 
 M.NetworkACLEntry = {
     type = "structure",
+    id = "NetworkACLEntry",
     members = {
         ruleNumber = {
             type = "integer",
@@ -2087,6 +2170,7 @@ M.NetworkACLEntry = {
 
 M.TransitGatewayConfiguration = {
     type = "structure",
+    id = "TransitGatewayConfiguration",
     members = {
         transitGatewayID = {
             type = "string",
@@ -2109,6 +2193,7 @@ M.TransitGatewayConfiguration = {
 
 M.GetKxEnvironmentOutput = {
     type = "structure",
+    id = "GetKxEnvironmentOutput",
     members = {
         name = {
             type = "string",
@@ -2166,6 +2251,7 @@ M.GetKxEnvironmentOutput = {
 
 M.GetKxScalingGroupInput = {
     type = "structure",
+    id = "GetKxScalingGroupInput",
     members = {
         environmentId = {
             type = "string",
@@ -2186,6 +2272,7 @@ M.GetKxScalingGroupInput = {
 
 M.GetKxScalingGroupOutput = {
     type = "structure",
+    id = "GetKxScalingGroupOutput",
     members = {
         scalingGroupName = {
             type = "string",
@@ -2220,6 +2307,7 @@ M.GetKxScalingGroupOutput = {
 
 M.GetKxUserInput = {
     type = "structure",
+    id = "GetKxUserInput",
     members = {
         userName = {
             type = "string",
@@ -2240,6 +2328,7 @@ M.GetKxUserInput = {
 
 M.GetKxUserOutput = {
     type = "structure",
+    id = "GetKxUserOutput",
     members = {
         userName = {
             type = "string",
@@ -2258,6 +2347,7 @@ M.GetKxUserOutput = {
 
 M.GetKxVolumeInput = {
     type = "structure",
+    id = "GetKxVolumeInput",
     members = {
         environmentId = {
             type = "string",
@@ -2278,6 +2368,7 @@ M.GetKxVolumeInput = {
 
 M.KxAttachedCluster = {
     type = "structure",
+    id = "KxAttachedCluster",
     members = {
         clusterName = {
             type = "string",
@@ -2293,6 +2384,7 @@ M.KxAttachedCluster = {
 
 M.GetKxVolumeOutput = {
     type = "structure",
+    id = "GetKxVolumeOutput",
     members = {
         environmentId = {
             type = "string",
@@ -2338,6 +2430,7 @@ M.GetKxVolumeOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2357,6 +2450,7 @@ M.ListEnvironmentsInput = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         environments = {
             type = "list",
@@ -2370,6 +2464,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListKxChangesetsInput = {
     type = "structure",
+    id = "ListKxChangesetsInput",
     members = {
         environmentId = {
             type = "string",
@@ -2403,6 +2498,7 @@ M.ListKxChangesetsInput = {
 
 M.KxChangesetListEntry = {
     type = "structure",
+    id = "KxChangesetListEntry",
     members = {
         changesetId = {
             type = "string",
@@ -2424,6 +2520,7 @@ M.KxChangesetListEntry = {
 
 M.ListKxChangesetsOutput = {
     type = "structure",
+    id = "ListKxChangesetsOutput",
     members = {
         kxChangesets = {
             type = "list",
@@ -2437,6 +2534,7 @@ M.ListKxChangesetsOutput = {
 
 M.ListKxClusterNodesInput = {
     type = "structure",
+    id = "ListKxClusterNodesInput",
     members = {
         environmentId = {
             type = "string",
@@ -2475,6 +2573,7 @@ M.KxNodeStatus = {
 
 M.KxNode = {
     type = "structure",
+    id = "KxNode",
     members = {
         nodeId = {
             type = "string",
@@ -2493,6 +2592,7 @@ M.KxNode = {
 
 M.ListKxClusterNodesOutput = {
     type = "structure",
+    id = "ListKxClusterNodesOutput",
     members = {
         nodes = {
             type = "list",
@@ -2506,6 +2606,7 @@ M.ListKxClusterNodesOutput = {
 
 M.ListKxClustersInput = {
     type = "structure",
+    id = "ListKxClustersInput",
     members = {
         environmentId = {
             type = "string",
@@ -2538,6 +2639,7 @@ M.ListKxClustersInput = {
 
 M.KxCluster = {
     type = "structure",
+    id = "KxCluster",
     members = {
         status = {
             type = "string",
@@ -2584,6 +2686,7 @@ M.KxCluster = {
 
 M.ListKxClustersOutput = {
     type = "structure",
+    id = "ListKxClustersOutput",
     members = {
         kxClusterSummaries = {
             type = "list",
@@ -2597,6 +2700,7 @@ M.ListKxClustersOutput = {
 
 M.ListKxDatabasesInput = {
     type = "structure",
+    id = "ListKxDatabasesInput",
     members = {
         environmentId = {
             type = "string",
@@ -2623,6 +2727,7 @@ M.ListKxDatabasesInput = {
 
 M.KxDatabaseListEntry = {
     type = "structure",
+    id = "KxDatabaseListEntry",
     members = {
         databaseName = {
             type = "string",
@@ -2638,6 +2743,7 @@ M.KxDatabaseListEntry = {
 
 M.ListKxDatabasesOutput = {
     type = "structure",
+    id = "ListKxDatabasesOutput",
     members = {
         kxDatabases = {
             type = "list",
@@ -2651,6 +2757,7 @@ M.ListKxDatabasesOutput = {
 
 M.ListKxDataviewsInput = {
     type = "structure",
+    id = "ListKxDataviewsInput",
     members = {
         environmentId = {
             type = "string",
@@ -2684,6 +2791,7 @@ M.ListKxDataviewsInput = {
 
 M.KxDataviewListEntry = {
     type = "structure",
+    id = "KxDataviewListEntry",
     members = {
         environmentId = {
             type = "string",
@@ -2743,6 +2851,7 @@ M.KxDataviewListEntry = {
 
 M.ListKxDataviewsOutput = {
     type = "structure",
+    id = "ListKxDataviewsOutput",
     members = {
         kxDataviews = {
             type = "list",
@@ -2756,6 +2865,7 @@ M.ListKxDataviewsOutput = {
 
 M.ListKxEnvironmentsInput = {
     type = "structure",
+    id = "ListKxEnvironmentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2774,6 +2884,7 @@ M.ListKxEnvironmentsInput = {
 
 M.KxEnvironment = {
     type = "structure",
+    id = "KxEnvironment",
     members = {
         name = {
             type = "string",
@@ -2831,6 +2942,7 @@ M.KxEnvironment = {
 
 M.ListKxEnvironmentsOutput = {
     type = "structure",
+    id = "ListKxEnvironmentsOutput",
     members = {
         environments = {
             type = "list",
@@ -2844,6 +2956,7 @@ M.ListKxEnvironmentsOutput = {
 
 M.ListKxScalingGroupsInput = {
     type = "structure",
+    id = "ListKxScalingGroupsInput",
     members = {
         environmentId = {
             type = "string",
@@ -2870,6 +2983,7 @@ M.ListKxScalingGroupsInput = {
 
 M.KxScalingGroup = {
     type = "structure",
+    id = "KxScalingGroup",
     members = {
         scalingGroupName = {
             type = "string",
@@ -2901,6 +3015,7 @@ M.KxScalingGroup = {
 
 M.ListKxScalingGroupsOutput = {
     type = "structure",
+    id = "ListKxScalingGroupsOutput",
     members = {
         scalingGroups = {
             type = "list",
@@ -2914,6 +3029,7 @@ M.ListKxScalingGroupsOutput = {
 
 M.ListKxUsersInput = {
     type = "structure",
+    id = "ListKxUsersInput",
     members = {
         environmentId = {
             type = "string",
@@ -2940,6 +3056,7 @@ M.ListKxUsersInput = {
 
 M.KxUser = {
     type = "structure",
+    id = "KxUser",
     members = {
         userArn = {
             type = "string",
@@ -2961,6 +3078,7 @@ M.KxUser = {
 
 M.ListKxUsersOutput = {
     type = "structure",
+    id = "ListKxUsersOutput",
     members = {
         users = {
             type = "list",
@@ -2974,6 +3092,7 @@ M.ListKxUsersOutput = {
 
 M.ListKxVolumesInput = {
     type = "structure",
+    id = "ListKxVolumesInput",
     members = {
         environmentId = {
             type = "string",
@@ -3006,6 +3125,7 @@ M.ListKxVolumesInput = {
 
 M.KxVolume = {
     type = "structure",
+    id = "KxVolume",
     members = {
         volumeName = {
             type = "string",
@@ -3040,6 +3160,7 @@ M.KxVolume = {
 
 M.ListKxVolumesOutput = {
     type = "structure",
+    id = "ListKxVolumesOutput",
     members = {
         kxVolumeSummaries = {
             type = "list",
@@ -3053,6 +3174,7 @@ M.ListKxVolumesOutput = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -3063,6 +3185,7 @@ M.InvalidRequestException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3076,6 +3199,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3087,6 +3211,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3108,10 +3233,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3133,10 +3260,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -3160,6 +3289,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         environment = M.Environment,
     },
@@ -3173,6 +3303,7 @@ M.KxClusterCodeDeploymentStrategy = {
 
 M.KxClusterCodeDeploymentConfiguration = {
     type = "structure",
+    id = "KxClusterCodeDeploymentConfiguration",
     members = {
         deploymentStrategy = {
             type = "string",
@@ -3185,6 +3316,7 @@ M.KxClusterCodeDeploymentConfiguration = {
 
 M.UpdateKxClusterCodeConfigurationInput = {
     type = "structure",
+    id = "UpdateKxClusterCodeConfigurationInput",
     members = {
         environmentId = {
             type = "string",
@@ -3222,6 +3354,7 @@ M.UpdateKxClusterCodeConfigurationInput = {
 
 M.UpdateKxClusterCodeConfigurationOutput = {
     type = "structure",
+    id = "UpdateKxClusterCodeConfigurationOutput",
 }
 
 M.KxDeploymentStrategy = {
@@ -3231,6 +3364,7 @@ M.KxDeploymentStrategy = {
 
 M.KxDeploymentConfiguration = {
     type = "structure",
+    id = "KxDeploymentConfiguration",
     members = {
         deploymentStrategy = {
             type = "string",
@@ -3243,6 +3377,7 @@ M.KxDeploymentConfiguration = {
 
 M.UpdateKxClusterDatabasesInput = {
     type = "structure",
+    id = "UpdateKxClusterDatabasesInput",
     members = {
         environmentId = {
             type = "string",
@@ -3277,10 +3412,12 @@ M.UpdateKxClusterDatabasesInput = {
 
 M.UpdateKxClusterDatabasesOutput = {
     type = "structure",
+    id = "UpdateKxClusterDatabasesOutput",
 }
 
 M.UpdateKxDatabaseInput = {
     type = "structure",
+    id = "UpdateKxDatabaseInput",
     members = {
         environmentId = {
             type = "string",
@@ -3311,6 +3448,7 @@ M.UpdateKxDatabaseInput = {
 
 M.UpdateKxDatabaseOutput = {
     type = "structure",
+    id = "UpdateKxDatabaseOutput",
     members = {
         databaseName = {
             type = "string",
@@ -3329,6 +3467,7 @@ M.UpdateKxDatabaseOutput = {
 
 M.UpdateKxDataviewInput = {
     type = "structure",
+    id = "UpdateKxDataviewInput",
     members = {
         environmentId = {
             type = "string",
@@ -3373,6 +3512,7 @@ M.UpdateKxDataviewInput = {
 
 M.UpdateKxDataviewOutput = {
     type = "structure",
+    id = "UpdateKxDataviewOutput",
     members = {
         environmentId = {
             type = "string",
@@ -3429,6 +3569,7 @@ M.UpdateKxDataviewOutput = {
 
 M.UpdateKxEnvironmentInput = {
     type = "structure",
+    id = "UpdateKxEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -3454,6 +3595,7 @@ M.UpdateKxEnvironmentInput = {
 
 M.UpdateKxEnvironmentOutput = {
     type = "structure",
+    id = "UpdateKxEnvironmentOutput",
     members = {
         name = {
             type = "string",
@@ -3508,6 +3650,7 @@ M.UpdateKxEnvironmentOutput = {
 
 M.UpdateKxEnvironmentNetworkInput = {
     type = "structure",
+    id = "UpdateKxEnvironmentNetworkInput",
     members = {
         environmentId = {
             type = "string",
@@ -3532,6 +3675,7 @@ M.UpdateKxEnvironmentNetworkInput = {
 
 M.UpdateKxEnvironmentNetworkOutput = {
     type = "structure",
+    id = "UpdateKxEnvironmentNetworkOutput",
     members = {
         name = {
             type = "string",
@@ -3586,6 +3730,7 @@ M.UpdateKxEnvironmentNetworkOutput = {
 
 M.UpdateKxUserInput = {
     type = "structure",
+    id = "UpdateKxUserInput",
     members = {
         environmentId = {
             type = "string",
@@ -3618,6 +3763,7 @@ M.UpdateKxUserInput = {
 
 M.UpdateKxUserOutput = {
     type = "structure",
+    id = "UpdateKxUserOutput",
     members = {
         userName = {
             type = "string",
@@ -3636,6 +3782,7 @@ M.UpdateKxUserOutput = {
 
 M.UpdateKxVolumeInput = {
     type = "structure",
+    id = "UpdateKxVolumeInput",
     members = {
         environmentId = {
             type = "string",
@@ -3666,6 +3813,7 @@ M.UpdateKxVolumeInput = {
 
 M.UpdateKxVolumeOutput = {
     type = "structure",
+    id = "UpdateKxVolumeOutput",
     members = {
         environmentId = {
             type = "string",

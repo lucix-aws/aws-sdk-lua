@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -25,10 +26,12 @@ M.AgentAction = {
 
 M.AgentlessConfig = {
     type = "structure",
+    id = "AgentlessConfig",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -48,6 +51,7 @@ M.ConflictException = {
 
 M.EmailOutboundConfig = {
     type = "structure",
+    id = "EmailOutboundConfig",
     members = {
         connectSourceEmailAddress = {
             type = "string",
@@ -69,6 +73,7 @@ M.EmailOutboundConfig = {
 
 M.EmailOutboundMode = {
     type = "union",
+    id = "EmailOutboundMode",
     members = {
         agentless = M.AgentlessConfig,
     },
@@ -76,6 +81,7 @@ M.EmailOutboundMode = {
 
 M.EmailChannelSubtypeConfig = {
     type = "structure",
+    id = "EmailChannelSubtypeConfig",
     members = {
         capacity = {
             type = "double",
@@ -91,6 +97,7 @@ M.EmailChannelSubtypeConfig = {
 
 M.SmsOutboundConfig = {
     type = "structure",
+    id = "SmsOutboundConfig",
     members = {
         connectSourcePhoneNumberArn = {
             type = "string",
@@ -109,6 +116,7 @@ M.SmsOutboundConfig = {
 
 M.SmsOutboundMode = {
     type = "union",
+    id = "SmsOutboundMode",
     members = {
         agentless = M.AgentlessConfig,
     },
@@ -116,6 +124,7 @@ M.SmsOutboundMode = {
 
 M.SmsChannelSubtypeConfig = {
     type = "structure",
+    id = "SmsChannelSubtypeConfig",
     members = {
         capacity = {
             type = "double",
@@ -131,6 +140,7 @@ M.SmsChannelSubtypeConfig = {
 
 M.AnswerMachineDetectionConfig = {
     type = "structure",
+    id = "AnswerMachineDetectionConfig",
     members = {
         enableAnswerMachineDetection = {
             type = "boolean",
@@ -149,6 +159,7 @@ M.AnswerMachineDetectionConfig = {
 
 M.TelephonyOutboundConfig = {
     type = "structure",
+    id = "TelephonyOutboundConfig",
     members = {
         connectContactFlowId = {
             type = "string",
@@ -168,6 +179,7 @@ M.TelephonyOutboundConfig = {
 
 M.PredictiveConfig = {
     type = "structure",
+    id = "PredictiveConfig",
     members = {
         bandwidthAllocation = {
             type = "double",
@@ -180,6 +192,7 @@ M.PredictiveConfig = {
 
 M.TimeoutConfig = {
     type = "structure",
+    id = "TimeoutConfig",
     members = {
         durationInSeconds = {
             type = "integer",
@@ -192,6 +205,7 @@ M.TimeoutConfig = {
 
 M.PreviewConfig = {
     type = "structure",
+    id = "PreviewConfig",
     members = {
         bandwidthAllocation = {
             type = "double",
@@ -211,6 +225,7 @@ M.PreviewConfig = {
 
 M.ProgressiveConfig = {
     type = "structure",
+    id = "ProgressiveConfig",
     members = {
         bandwidthAllocation = {
             type = "double",
@@ -223,6 +238,7 @@ M.ProgressiveConfig = {
 
 M.TelephonyOutboundMode = {
     type = "union",
+    id = "TelephonyOutboundMode",
     members = {
         progressive = M.ProgressiveConfig,
         predictive = M.PredictiveConfig,
@@ -233,6 +249,7 @@ M.TelephonyOutboundMode = {
 
 M.TelephonyChannelSubtypeConfig = {
     type = "structure",
+    id = "TelephonyChannelSubtypeConfig",
     members = {
         capacity = {
             type = "double",
@@ -251,6 +268,7 @@ M.TelephonyChannelSubtypeConfig = {
 
 M.WhatsAppOutboundConfig = {
     type = "structure",
+    id = "WhatsAppOutboundConfig",
     members = {
         connectSourcePhoneNumberArn = {
             type = "string",
@@ -269,6 +287,7 @@ M.WhatsAppOutboundConfig = {
 
 M.WhatsAppOutboundMode = {
     type = "union",
+    id = "WhatsAppOutboundMode",
     members = {
         agentless = M.AgentlessConfig,
     },
@@ -276,6 +295,7 @@ M.WhatsAppOutboundMode = {
 
 M.WhatsAppChannelSubtypeConfig = {
     type = "structure",
+    id = "WhatsAppChannelSubtypeConfig",
     members = {
         capacity = {
             type = "double",
@@ -291,6 +311,7 @@ M.WhatsAppChannelSubtypeConfig = {
 
 M.ChannelSubtypeConfig = {
     type = "structure",
+    id = "ChannelSubtypeConfig",
     members = {
         telephony = M.TelephonyChannelSubtypeConfig,
         sms = M.SmsChannelSubtypeConfig,
@@ -305,6 +326,7 @@ M.CommunicationLimitTimeUnit = {
 
 M.CommunicationLimit = {
     type = "structure",
+    id = "CommunicationLimit",
     members = {
         maxCountPerRecipient = {
             type = "integer",
@@ -329,6 +351,7 @@ M.CommunicationLimit = {
 
 M.CommunicationLimits = {
     type = "union",
+    id = "CommunicationLimits",
     members = {
         communicationLimitsList = {
             type = "list",
@@ -344,6 +367,7 @@ M.InstanceLimitsHandling = {
 
 M.CommunicationLimitsConfig = {
     type = "structure",
+    id = "CommunicationLimitsConfig",
     members = {
         allChannelSubtypes = M.CommunicationLimits,
         instanceLimitsHandling = {
@@ -364,6 +388,7 @@ M.DayOfWeek = {
 
 M.TimeRange = {
     type = "structure",
+    id = "TimeRange",
     members = {
         startTime = {
             type = "string",
@@ -382,6 +407,7 @@ M.TimeRange = {
 
 M.OpenHours = {
     type = "union",
+    id = "OpenHours",
     members = {
         dailyHours = {
             type = "map",
@@ -393,6 +419,7 @@ M.OpenHours = {
 
 M.RestrictedPeriod = {
     type = "structure",
+    id = "RestrictedPeriod",
     members = {
         name = {
             type = "string",
@@ -414,6 +441,7 @@ M.RestrictedPeriod = {
 
 M.RestrictedPeriods = {
     type = "union",
+    id = "RestrictedPeriods",
     members = {
         restrictedPeriodList = {
             type = "list",
@@ -424,6 +452,7 @@ M.RestrictedPeriods = {
 
 M.TimeWindow = {
     type = "structure",
+    id = "TimeWindow",
     members = {
         openHours = setmetatable({ traits = {
             required = true,
@@ -439,6 +468,7 @@ M.LocalTimeZoneDetectionType = {
 
 M.LocalTimeZoneConfig = {
     type = "structure",
+    id = "LocalTimeZoneConfig",
     members = {
         defaultTimeZone = {
             type = "string",
@@ -452,6 +482,7 @@ M.LocalTimeZoneConfig = {
 
 M.CommunicationTimeConfig = {
     type = "structure",
+    id = "CommunicationTimeConfig",
     members = {
         localTimeZoneConfig = setmetatable({ traits = {
             required = true,
@@ -465,6 +496,7 @@ M.CommunicationTimeConfig = {
 
 M.EntryLimitsConfig = {
     type = "structure",
+    id = "EntryLimitsConfig",
     members = {
         maxEntryCount = {
             type = "integer",
@@ -483,6 +515,7 @@ M.EntryLimitsConfig = {
 
 M.Schedule = {
     type = "structure",
+    id = "Schedule",
     members = {
         startTime = {
             type = "timestamp",
@@ -506,6 +539,7 @@ M.Schedule = {
 
 M.EventTrigger = {
     type = "structure",
+    id = "EventTrigger",
     members = {
         customerProfilesDomainArn = {
             type = "string",
@@ -515,6 +549,7 @@ M.EventTrigger = {
 
 M.Source = {
     type = "union",
+    id = "Source",
     members = {
         customerProfilesSegmentArn = {
             type = "string",
@@ -530,6 +565,7 @@ M.ExternalCampaignType = {
 
 M.CreateCampaignInput = {
     type = "structure",
+    id = "CreateCampaignInput",
     members = {
         name = {
             type = "string",
@@ -565,6 +601,7 @@ M.CreateCampaignInput = {
 
 M.CreateCampaignOutput = {
     type = "structure",
+    id = "CreateCampaignOutput",
     members = {
         id = {
             type = "string",
@@ -582,6 +619,7 @@ M.CreateCampaignOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -601,6 +639,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -620,6 +659,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -639,6 +679,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -658,6 +699,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -677,6 +719,7 @@ M.ValidationException = {
 
 M.DeleteCampaignInput = {
     type = "structure",
+    id = "DeleteCampaignInput",
     members = {
         id = {
             type = "string",
@@ -690,6 +733,7 @@ M.DeleteCampaignInput = {
 
 M.DeleteCampaignOutput = {
     type = "structure",
+    id = "DeleteCampaignOutput",
 }
 
 M.ChannelSubtype = {
@@ -701,6 +745,7 @@ M.ChannelSubtype = {
 
 M.DeleteCampaignChannelSubtypeConfigInput = {
     type = "structure",
+    id = "DeleteCampaignChannelSubtypeConfigInput",
     members = {
         id = {
             type = "string",
@@ -721,6 +766,7 @@ M.DeleteCampaignChannelSubtypeConfigInput = {
 
 M.DeleteCampaignChannelSubtypeConfigOutput = {
     type = "structure",
+    id = "DeleteCampaignChannelSubtypeConfigOutput",
 }
 
 M.CommunicationLimitsConfigType = {
@@ -729,6 +775,7 @@ M.CommunicationLimitsConfigType = {
 
 M.DeleteCampaignCommunicationLimitsInput = {
     type = "structure",
+    id = "DeleteCampaignCommunicationLimitsInput",
     members = {
         id = {
             type = "string",
@@ -749,6 +796,7 @@ M.DeleteCampaignCommunicationLimitsInput = {
 
 M.DeleteCampaignCommunicationLimitsOutput = {
     type = "structure",
+    id = "DeleteCampaignCommunicationLimitsOutput",
 }
 
 M.CampaignState = {
@@ -762,6 +810,7 @@ M.CampaignState = {
 
 M.InvalidCampaignStateException = {
     type = "structure",
+    id = "InvalidCampaignStateException",
     error = "client",
     members = {
         state = {
@@ -794,6 +843,7 @@ M.CommunicationTimeConfigType = {
 
 M.DeleteCampaignCommunicationTimeInput = {
     type = "structure",
+    id = "DeleteCampaignCommunicationTimeInput",
     members = {
         id = {
             type = "string",
@@ -814,10 +864,12 @@ M.DeleteCampaignCommunicationTimeInput = {
 
 M.DeleteCampaignCommunicationTimeOutput = {
     type = "structure",
+    id = "DeleteCampaignCommunicationTimeOutput",
 }
 
 M.DeleteCampaignEntryLimitsInput = {
     type = "structure",
+    id = "DeleteCampaignEntryLimitsInput",
     members = {
         id = {
             type = "string",
@@ -831,6 +883,7 @@ M.DeleteCampaignEntryLimitsInput = {
 
 M.DeleteCampaignEntryLimitsOutput = {
     type = "structure",
+    id = "DeleteCampaignEntryLimitsOutput",
 }
 
 M.CampaignDeletionPolicy = {
@@ -840,6 +893,7 @@ M.CampaignDeletionPolicy = {
 
 M.DeleteConnectInstanceConfigInput = {
     type = "structure",
+    id = "DeleteConnectInstanceConfigInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -859,10 +913,12 @@ M.DeleteConnectInstanceConfigInput = {
 
 M.DeleteConnectInstanceConfigOutput = {
     type = "structure",
+    id = "DeleteConnectInstanceConfigOutput",
 }
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         message = {
@@ -882,6 +938,7 @@ M.InvalidStateException = {
 
 M.CustomerProfilesIntegrationIdentifier = {
     type = "structure",
+    id = "CustomerProfilesIntegrationIdentifier",
     members = {
         domainArn = {
             type = "string",
@@ -894,6 +951,7 @@ M.CustomerProfilesIntegrationIdentifier = {
 
 M.LambdaIntegrationIdentifier = {
     type = "structure",
+    id = "LambdaIntegrationIdentifier",
     members = {
         functionArn = {
             type = "string",
@@ -906,6 +964,7 @@ M.LambdaIntegrationIdentifier = {
 
 M.QConnectIntegrationIdentifier = {
     type = "structure",
+    id = "QConnectIntegrationIdentifier",
     members = {
         knowledgeBaseArn = {
             type = "string",
@@ -918,6 +977,7 @@ M.QConnectIntegrationIdentifier = {
 
 M.IntegrationIdentifier = {
     type = "union",
+    id = "IntegrationIdentifier",
     members = {
         customerProfiles = M.CustomerProfilesIntegrationIdentifier,
         qConnect = M.QConnectIntegrationIdentifier,
@@ -927,6 +987,7 @@ M.IntegrationIdentifier = {
 
 M.DeleteConnectInstanceIntegrationInput = {
     type = "structure",
+    id = "DeleteConnectInstanceIntegrationInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -943,10 +1004,12 @@ M.DeleteConnectInstanceIntegrationInput = {
 
 M.DeleteConnectInstanceIntegrationOutput = {
     type = "structure",
+    id = "DeleteConnectInstanceIntegrationOutput",
 }
 
 M.DeleteInstanceOnboardingJobInput = {
     type = "structure",
+    id = "DeleteInstanceOnboardingJobInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -960,10 +1023,12 @@ M.DeleteInstanceOnboardingJobInput = {
 
 M.DeleteInstanceOnboardingJobOutput = {
     type = "structure",
+    id = "DeleteInstanceOnboardingJobOutput",
 }
 
 M.DescribeCampaignInput = {
     type = "structure",
+    id = "DescribeCampaignInput",
     members = {
         id = {
             type = "string",
@@ -977,6 +1042,7 @@ M.DescribeCampaignInput = {
 
 M.Campaign = {
     type = "structure",
+    id = "Campaign",
     members = {
         id = {
             type = "string",
@@ -1024,6 +1090,7 @@ M.Campaign = {
 
 M.DescribeCampaignOutput = {
     type = "structure",
+    id = "DescribeCampaignOutput",
     members = {
         campaign = M.Campaign,
     },
@@ -1031,6 +1098,7 @@ M.DescribeCampaignOutput = {
 
 M.GetCampaignStateInput = {
     type = "structure",
+    id = "GetCampaignStateInput",
     members = {
         id = {
             type = "string",
@@ -1044,6 +1112,7 @@ M.GetCampaignStateInput = {
 
 M.GetCampaignStateOutput = {
     type = "structure",
+    id = "GetCampaignStateOutput",
     members = {
         state = {
             type = "string",
@@ -1053,6 +1122,7 @@ M.GetCampaignStateOutput = {
 
 M.GetCampaignStateBatchInput = {
     type = "structure",
+    id = "GetCampaignStateBatchInput",
     members = {
         campaignIds = {
             type = "list",
@@ -1071,6 +1141,7 @@ M.GetCampaignStateBatchFailureCode = {
 
 M.FailedCampaignStateResponse = {
     type = "structure",
+    id = "FailedCampaignStateResponse",
     members = {
         campaignId = {
             type = "string",
@@ -1083,6 +1154,7 @@ M.FailedCampaignStateResponse = {
 
 M.SuccessfulCampaignStateResponse = {
     type = "structure",
+    id = "SuccessfulCampaignStateResponse",
     members = {
         campaignId = {
             type = "string",
@@ -1095,6 +1167,7 @@ M.SuccessfulCampaignStateResponse = {
 
 M.GetCampaignStateBatchOutput = {
     type = "structure",
+    id = "GetCampaignStateBatchOutput",
     members = {
         successfulRequests = {
             type = "list",
@@ -1109,6 +1182,7 @@ M.GetCampaignStateBatchOutput = {
 
 M.GetConnectInstanceConfigInput = {
     type = "structure",
+    id = "GetConnectInstanceConfigInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1126,6 +1200,7 @@ M.EncryptionType = {
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -1145,6 +1220,7 @@ M.EncryptionConfig = {
 
 M.InstanceConfig = {
     type = "structure",
+    id = "InstanceConfig",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1166,6 +1242,7 @@ M.InstanceConfig = {
 
 M.GetConnectInstanceConfigOutput = {
     type = "structure",
+    id = "GetConnectInstanceConfigOutput",
     members = {
         connectInstanceConfig = M.InstanceConfig,
     },
@@ -1173,6 +1250,7 @@ M.GetConnectInstanceConfigOutput = {
 
 M.GetInstanceCommunicationLimitsInput = {
     type = "structure",
+    id = "GetInstanceCommunicationLimitsInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1186,6 +1264,7 @@ M.GetInstanceCommunicationLimitsInput = {
 
 M.InstanceCommunicationLimitsConfig = {
     type = "structure",
+    id = "InstanceCommunicationLimitsConfig",
     members = {
         allChannelSubtypes = M.CommunicationLimits,
     },
@@ -1193,6 +1272,7 @@ M.InstanceCommunicationLimitsConfig = {
 
 M.GetInstanceCommunicationLimitsOutput = {
     type = "structure",
+    id = "GetInstanceCommunicationLimitsOutput",
     members = {
         communicationLimitsConfig = M.InstanceCommunicationLimitsConfig,
     },
@@ -1200,6 +1280,7 @@ M.GetInstanceCommunicationLimitsOutput = {
 
 M.GetInstanceOnboardingJobStatusInput = {
     type = "structure",
+    id = "GetInstanceOnboardingJobStatusInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1228,6 +1309,7 @@ M.InstanceOnboardingJobStatusCode = {
 
 M.InstanceOnboardingJobStatus = {
     type = "structure",
+    id = "InstanceOnboardingJobStatus",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1249,6 +1331,7 @@ M.InstanceOnboardingJobStatus = {
 
 M.GetInstanceOnboardingJobStatusOutput = {
     type = "structure",
+    id = "GetInstanceOnboardingJobStatusOutput",
     members = {
         connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
@@ -1260,6 +1343,7 @@ M.InstanceIdFilterOperator = {
 
 M.InstanceIdFilter = {
     type = "structure",
+    id = "InstanceIdFilter",
     members = {
         value = {
             type = "string",
@@ -1278,6 +1362,7 @@ M.InstanceIdFilter = {
 
 M.CampaignFilters = {
     type = "structure",
+    id = "CampaignFilters",
     members = {
         instanceIdFilter = M.InstanceIdFilter,
     },
@@ -1285,6 +1370,7 @@ M.CampaignFilters = {
 
 M.ListCampaignsInput = {
     type = "structure",
+    id = "ListCampaignsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1298,6 +1384,7 @@ M.ListCampaignsInput = {
 
 M.CampaignSummary = {
     type = "structure",
+    id = "CampaignSummary",
     members = {
         id = {
             type = "string",
@@ -1343,6 +1430,7 @@ M.CampaignSummary = {
 
 M.ListCampaignsOutput = {
     type = "structure",
+    id = "ListCampaignsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1356,6 +1444,7 @@ M.ListCampaignsOutput = {
 
 M.ListConnectInstanceIntegrationsInput = {
     type = "structure",
+    id = "ListConnectInstanceIntegrationsInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1389,6 +1478,7 @@ M.EventType = {
 
 M.CustomerProfilesIntegrationSummary = {
     type = "structure",
+    id = "CustomerProfilesIntegrationSummary",
     members = {
         domainArn = {
             type = "string",
@@ -1409,6 +1499,7 @@ M.CustomerProfilesIntegrationSummary = {
 
 M.LambdaIntegrationSummary = {
     type = "structure",
+    id = "LambdaIntegrationSummary",
     members = {
         functionArn = {
             type = "string",
@@ -1421,6 +1512,7 @@ M.LambdaIntegrationSummary = {
 
 M.QConnectIntegrationSummary = {
     type = "structure",
+    id = "QConnectIntegrationSummary",
     members = {
         knowledgeBaseArn = {
             type = "string",
@@ -1433,6 +1525,7 @@ M.QConnectIntegrationSummary = {
 
 M.IntegrationSummary = {
     type = "union",
+    id = "IntegrationSummary",
     members = {
         customerProfiles = M.CustomerProfilesIntegrationSummary,
         qConnect = M.QConnectIntegrationSummary,
@@ -1442,6 +1535,7 @@ M.IntegrationSummary = {
 
 M.ListConnectInstanceIntegrationsOutput = {
     type = "structure",
+    id = "ListConnectInstanceIntegrationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1455,6 +1549,7 @@ M.ListConnectInstanceIntegrationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1468,6 +1563,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1479,6 +1575,7 @@ M.ListTagsForResourceOutput = {
 
 M.PauseCampaignInput = {
     type = "structure",
+    id = "PauseCampaignInput",
     members = {
         id = {
             type = "string",
@@ -1492,10 +1589,12 @@ M.PauseCampaignInput = {
 
 M.PauseCampaignOutput = {
     type = "structure",
+    id = "PauseCampaignOutput",
 }
 
 M.CustomerProfilesIntegrationConfig = {
     type = "structure",
+    id = "CustomerProfilesIntegrationConfig",
     members = {
         domainArn = {
             type = "string",
@@ -1516,6 +1615,7 @@ M.CustomerProfilesIntegrationConfig = {
 
 M.LambdaIntegrationConfig = {
     type = "structure",
+    id = "LambdaIntegrationConfig",
     members = {
         functionArn = {
             type = "string",
@@ -1528,6 +1628,7 @@ M.LambdaIntegrationConfig = {
 
 M.QConnectIntegrationConfig = {
     type = "structure",
+    id = "QConnectIntegrationConfig",
     members = {
         knowledgeBaseArn = {
             type = "string",
@@ -1540,6 +1641,7 @@ M.QConnectIntegrationConfig = {
 
 M.IntegrationConfig = {
     type = "union",
+    id = "IntegrationConfig",
     members = {
         customerProfiles = M.CustomerProfilesIntegrationConfig,
         qConnect = M.QConnectIntegrationConfig,
@@ -1549,6 +1651,7 @@ M.IntegrationConfig = {
 
 M.PutConnectInstanceIntegrationInput = {
     type = "structure",
+    id = "PutConnectInstanceIntegrationInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1565,10 +1668,12 @@ M.PutConnectInstanceIntegrationInput = {
 
 M.PutConnectInstanceIntegrationOutput = {
     type = "structure",
+    id = "PutConnectInstanceIntegrationOutput",
 }
 
 M.PutInstanceCommunicationLimitsInput = {
     type = "structure",
+    id = "PutInstanceCommunicationLimitsInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1585,10 +1690,12 @@ M.PutInstanceCommunicationLimitsInput = {
 
 M.PutInstanceCommunicationLimitsOutput = {
     type = "structure",
+    id = "PutInstanceCommunicationLimitsOutput",
 }
 
 M.EmailChannelSubtypeParameters = {
     type = "structure",
+    id = "EmailChannelSubtypeParameters",
     members = {
         destinationEmailAddress = {
             type = "string",
@@ -1615,6 +1722,7 @@ M.EmailChannelSubtypeParameters = {
 
 M.SmsChannelSubtypeParameters = {
     type = "structure",
+    id = "SmsChannelSubtypeParameters",
     members = {
         destinationPhoneNumber = {
             type = "string",
@@ -1641,6 +1749,7 @@ M.SmsChannelSubtypeParameters = {
 
 M.TelephonyChannelSubtypeParameters = {
     type = "structure",
+    id = "TelephonyChannelSubtypeParameters",
     members = {
         destinationPhoneNumber = {
             type = "string",
@@ -1668,6 +1777,7 @@ M.TelephonyChannelSubtypeParameters = {
 
 M.WhatsAppChannelSubtypeParameters = {
     type = "structure",
+    id = "WhatsAppChannelSubtypeParameters",
     members = {
         destinationPhoneNumber = {
             type = "string",
@@ -1694,6 +1804,7 @@ M.WhatsAppChannelSubtypeParameters = {
 
 M.ChannelSubtypeParameters = {
     type = "union",
+    id = "ChannelSubtypeParameters",
     members = {
         telephony = M.TelephonyChannelSubtypeParameters,
         sms = M.SmsChannelSubtypeParameters,
@@ -1704,6 +1815,7 @@ M.ChannelSubtypeParameters = {
 
 M.OutboundRequest = {
     type = "structure",
+    id = "OutboundRequest",
     members = {
         clientToken = {
             type = "string",
@@ -1726,6 +1838,7 @@ M.OutboundRequest = {
 
 M.PutOutboundRequestBatchInput = {
     type = "structure",
+    id = "PutOutboundRequestBatchInput",
     members = {
         id = {
             type = "string",
@@ -1753,6 +1866,7 @@ M.FailureCode = {
 
 M.FailedRequest = {
     type = "structure",
+    id = "FailedRequest",
     members = {
         clientToken = {
             type = "string",
@@ -1768,6 +1882,7 @@ M.FailedRequest = {
 
 M.SuccessfulRequest = {
     type = "structure",
+    id = "SuccessfulRequest",
     members = {
         clientToken = {
             type = "string",
@@ -1780,6 +1895,7 @@ M.SuccessfulRequest = {
 
 M.PutOutboundRequestBatchOutput = {
     type = "structure",
+    id = "PutOutboundRequestBatchOutput",
     members = {
         successfulRequests = {
             type = "list",
@@ -1794,6 +1910,7 @@ M.PutOutboundRequestBatchOutput = {
 
 M.ProfileOutboundRequest = {
     type = "structure",
+    id = "ProfileOutboundRequest",
     members = {
         clientToken = {
             type = "string",
@@ -1818,6 +1935,7 @@ M.ProfileOutboundRequest = {
 
 M.PutProfileOutboundRequestBatchInput = {
     type = "structure",
+    id = "PutProfileOutboundRequestBatchInput",
     members = {
         id = {
             type = "string",
@@ -1846,6 +1964,7 @@ M.ProfileOutboundRequestFailureCode = {
 
 M.FailedProfileOutboundRequest = {
     type = "structure",
+    id = "FailedProfileOutboundRequest",
     members = {
         clientToken = {
             type = "string",
@@ -1861,6 +1980,7 @@ M.FailedProfileOutboundRequest = {
 
 M.SuccessfulProfileOutboundRequest = {
     type = "structure",
+    id = "SuccessfulProfileOutboundRequest",
     members = {
         clientToken = {
             type = "string",
@@ -1873,6 +1993,7 @@ M.SuccessfulProfileOutboundRequest = {
 
 M.PutProfileOutboundRequestBatchOutput = {
     type = "structure",
+    id = "PutProfileOutboundRequestBatchOutput",
     members = {
         successfulRequests = {
             type = "list",
@@ -1887,6 +2008,7 @@ M.PutProfileOutboundRequestBatchOutput = {
 
 M.ResumeCampaignInput = {
     type = "structure",
+    id = "ResumeCampaignInput",
     members = {
         id = {
             type = "string",
@@ -1900,10 +2022,12 @@ M.ResumeCampaignInput = {
 
 M.ResumeCampaignOutput = {
     type = "structure",
+    id = "ResumeCampaignOutput",
 }
 
 M.StartCampaignInput = {
     type = "structure",
+    id = "StartCampaignInput",
     members = {
         id = {
             type = "string",
@@ -1917,10 +2041,12 @@ M.StartCampaignInput = {
 
 M.StartCampaignOutput = {
     type = "structure",
+    id = "StartCampaignOutput",
 }
 
 M.StartInstanceOnboardingJobInput = {
     type = "structure",
+    id = "StartInstanceOnboardingJobInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -1937,6 +2063,7 @@ M.StartInstanceOnboardingJobInput = {
 
 M.StartInstanceOnboardingJobOutput = {
     type = "structure",
+    id = "StartInstanceOnboardingJobOutput",
     members = {
         connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
@@ -1944,6 +2071,7 @@ M.StartInstanceOnboardingJobOutput = {
 
 M.StopCampaignInput = {
     type = "structure",
+    id = "StopCampaignInput",
     members = {
         id = {
             type = "string",
@@ -1957,10 +2085,12 @@ M.StopCampaignInput = {
 
 M.StopCampaignOutput = {
     type = "structure",
+    id = "StopCampaignOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -1982,10 +2112,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -2007,10 +2139,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCampaignChannelSubtypeConfigInput = {
     type = "structure",
+    id = "UpdateCampaignChannelSubtypeConfigInput",
     members = {
         id = {
             type = "string",
@@ -2027,10 +2161,12 @@ M.UpdateCampaignChannelSubtypeConfigInput = {
 
 M.UpdateCampaignChannelSubtypeConfigOutput = {
     type = "structure",
+    id = "UpdateCampaignChannelSubtypeConfigOutput",
 }
 
 M.UpdateCampaignCommunicationLimitsInput = {
     type = "structure",
+    id = "UpdateCampaignCommunicationLimitsInput",
     members = {
         id = {
             type = "string",
@@ -2047,10 +2183,12 @@ M.UpdateCampaignCommunicationLimitsInput = {
 
 M.UpdateCampaignCommunicationLimitsOutput = {
     type = "structure",
+    id = "UpdateCampaignCommunicationLimitsOutput",
 }
 
 M.UpdateCampaignCommunicationTimeInput = {
     type = "structure",
+    id = "UpdateCampaignCommunicationTimeInput",
     members = {
         id = {
             type = "string",
@@ -2067,10 +2205,12 @@ M.UpdateCampaignCommunicationTimeInput = {
 
 M.UpdateCampaignCommunicationTimeOutput = {
     type = "structure",
+    id = "UpdateCampaignCommunicationTimeOutput",
 }
 
 M.UpdateCampaignEntryLimitsInput = {
     type = "structure",
+    id = "UpdateCampaignEntryLimitsInput",
     members = {
         id = {
             type = "string",
@@ -2087,10 +2227,12 @@ M.UpdateCampaignEntryLimitsInput = {
 
 M.UpdateCampaignEntryLimitsOutput = {
     type = "structure",
+    id = "UpdateCampaignEntryLimitsOutput",
 }
 
 M.UpdateCampaignFlowAssociationInput = {
     type = "structure",
+    id = "UpdateCampaignFlowAssociationInput",
     members = {
         id = {
             type = "string",
@@ -2110,10 +2252,12 @@ M.UpdateCampaignFlowAssociationInput = {
 
 M.UpdateCampaignFlowAssociationOutput = {
     type = "structure",
+    id = "UpdateCampaignFlowAssociationOutput",
 }
 
 M.UpdateCampaignNameInput = {
     type = "structure",
+    id = "UpdateCampaignNameInput",
     members = {
         id = {
             type = "string",
@@ -2133,10 +2277,12 @@ M.UpdateCampaignNameInput = {
 
 M.UpdateCampaignNameOutput = {
     type = "structure",
+    id = "UpdateCampaignNameOutput",
 }
 
 M.UpdateCampaignScheduleInput = {
     type = "structure",
+    id = "UpdateCampaignScheduleInput",
     members = {
         id = {
             type = "string",
@@ -2153,10 +2299,12 @@ M.UpdateCampaignScheduleInput = {
 
 M.UpdateCampaignScheduleOutput = {
     type = "structure",
+    id = "UpdateCampaignScheduleOutput",
 }
 
 M.UpdateCampaignSourceInput = {
     type = "structure",
+    id = "UpdateCampaignSourceInput",
     members = {
         id = {
             type = "string",
@@ -2173,6 +2321,7 @@ M.UpdateCampaignSourceInput = {
 
 M.UpdateCampaignSourceOutput = {
     type = "structure",
+    id = "UpdateCampaignSourceOutput",
 }
 
 return M

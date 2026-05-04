@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.ConfigurationJobStatus = {
 
 M.BillOfMaterialsImportJob = {
     type = "structure",
+    id = "BillOfMaterialsImportJob",
     members = {
         instanceId = {
             type = "string",
@@ -53,6 +55,7 @@ M.BillOfMaterialsImportJob = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -63,6 +66,7 @@ M.ConflictException = {
 
 M.CreateBillOfMaterialsImportJobInput = {
     type = "structure",
+    id = "CreateBillOfMaterialsImportJobInput",
     members = {
         instanceId = {
             type = "string",
@@ -88,6 +92,7 @@ M.CreateBillOfMaterialsImportJobInput = {
 
 M.CreateBillOfMaterialsImportJobOutput = {
     type = "structure",
+    id = "CreateBillOfMaterialsImportJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -100,6 +105,7 @@ M.CreateBillOfMaterialsImportJobOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -110,6 +116,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -120,6 +127,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -130,6 +138,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -140,6 +149,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -150,6 +160,7 @@ M.ValidationException = {
 
 M.GetBillOfMaterialsImportJobInput = {
     type = "structure",
+    id = "GetBillOfMaterialsImportJobInput",
     members = {
         instanceId = {
             type = "string",
@@ -170,6 +181,7 @@ M.GetBillOfMaterialsImportJobInput = {
 
 M.GetBillOfMaterialsImportJobOutput = {
     type = "structure",
+    id = "GetBillOfMaterialsImportJobOutput",
     members = {
         job = setmetatable({ traits = {
             required = true,
@@ -184,6 +196,7 @@ M.DataIntegrationFlowFieldPriorityDedupeSortOrder = {
 
 M.DataIntegrationFlowFieldPriorityDedupeField = {
     type = "structure",
+    id = "DataIntegrationFlowFieldPriorityDedupeField",
     members = {
         name = {
             type = "string",
@@ -202,6 +215,7 @@ M.DataIntegrationFlowFieldPriorityDedupeField = {
 
 M.DataIntegrationFlowFieldPriorityDedupeStrategyConfiguration = {
     type = "structure",
+    id = "DataIntegrationFlowFieldPriorityDedupeStrategyConfiguration",
     members = {
         fields = {
             type = "list",
@@ -219,6 +233,7 @@ M.DataIntegrationFlowDedupeStrategyType = {
 
 M.DataIntegrationFlowDedupeStrategy = {
     type = "structure",
+    id = "DataIntegrationFlowDedupeStrategy",
     members = {
         type = {
             type = "string",
@@ -237,6 +252,7 @@ M.DataIntegrationFlowLoadType = {
 
 M.DataIntegrationFlowDatasetOptions = {
     type = "structure",
+    id = "DataIntegrationFlowDatasetOptions",
     members = {
         loadType = {
             type = "string",
@@ -250,6 +266,7 @@ M.DataIntegrationFlowDatasetOptions = {
 
 M.DataIntegrationFlowDatasetSourceConfiguration = {
     type = "structure",
+    id = "DataIntegrationFlowDatasetSourceConfiguration",
     members = {
         datasetIdentifier = {
             type = "string",
@@ -269,6 +286,7 @@ M.DataIntegrationFlowFileType = {
 
 M.DataIntegrationFlowS3Options = {
     type = "structure",
+    id = "DataIntegrationFlowS3Options",
     members = {
         fileType = {
             type = "string",
@@ -278,6 +296,7 @@ M.DataIntegrationFlowS3Options = {
 
 M.DataIntegrationFlowS3SourceConfiguration = {
     type = "structure",
+    id = "DataIntegrationFlowS3SourceConfiguration",
     members = {
         bucketName = {
             type = "string",
@@ -302,6 +321,7 @@ M.DataIntegrationFlowSourceType = {
 
 M.DataIntegrationFlowSource = {
     type = "structure",
+    id = "DataIntegrationFlowSource",
     members = {
         sourceType = {
             type = "string",
@@ -322,6 +342,7 @@ M.DataIntegrationFlowSource = {
 
 M.DataIntegrationFlowDatasetTargetConfiguration = {
     type = "structure",
+    id = "DataIntegrationFlowDatasetTargetConfiguration",
     members = {
         datasetIdentifier = {
             type = "string",
@@ -335,6 +356,7 @@ M.DataIntegrationFlowDatasetTargetConfiguration = {
 
 M.DataIntegrationFlowS3TargetConfiguration = {
     type = "structure",
+    id = "DataIntegrationFlowS3TargetConfiguration",
     members = {
         bucketName = {
             type = "string",
@@ -359,6 +381,7 @@ M.DataIntegrationFlowTargetType = {
 
 M.DataIntegrationFlowTarget = {
     type = "structure",
+    id = "DataIntegrationFlowTarget",
     members = {
         targetType = {
             type = "string",
@@ -373,6 +396,7 @@ M.DataIntegrationFlowTarget = {
 
 M.DataIntegrationFlowSQLTransformationConfiguration = {
     type = "structure",
+    id = "DataIntegrationFlowSQLTransformationConfiguration",
     members = {
         query = {
             type = "string",
@@ -390,6 +414,7 @@ M.DataIntegrationFlowTransformationType = {
 
 M.DataIntegrationFlowTransformation = {
     type = "structure",
+    id = "DataIntegrationFlowTransformation",
     members = {
         transformationType = {
             type = "string",
@@ -403,6 +428,7 @@ M.DataIntegrationFlowTransformation = {
 
 M.CreateDataIntegrationFlowInput = {
     type = "structure",
+    id = "CreateDataIntegrationFlowInput",
     members = {
         instanceId = {
             type = "string",
@@ -441,6 +467,7 @@ M.CreateDataIntegrationFlowInput = {
 
 M.CreateDataIntegrationFlowOutput = {
     type = "structure",
+    id = "CreateDataIntegrationFlowOutput",
     members = {
         instanceId = {
             type = "string",
@@ -467,6 +494,7 @@ M.DataLakeDatasetPartitionTransformType = {
 
 M.DataLakeDatasetPartitionFieldTransform = {
     type = "structure",
+    id = "DataLakeDatasetPartitionFieldTransform",
     members = {
         type = {
             type = "string",
@@ -479,6 +507,7 @@ M.DataLakeDatasetPartitionFieldTransform = {
 
 M.DataLakeDatasetPartitionField = {
     type = "structure",
+    id = "DataLakeDatasetPartitionField",
     members = {
         name = {
             type = "string",
@@ -494,6 +523,7 @@ M.DataLakeDatasetPartitionField = {
 
 M.DataLakeDatasetPartitionSpec = {
     type = "structure",
+    id = "DataLakeDatasetPartitionSpec",
     members = {
         fields = {
             type = "list",
@@ -515,6 +545,7 @@ M.DataLakeDatasetSchemaFieldType = {
 
 M.DataLakeDatasetSchemaField = {
     type = "structure",
+    id = "DataLakeDatasetSchemaField",
     members = {
         name = {
             type = "string",
@@ -539,6 +570,7 @@ M.DataLakeDatasetSchemaField = {
 
 M.DataLakeDatasetPrimaryKeyField = {
     type = "structure",
+    id = "DataLakeDatasetPrimaryKeyField",
     members = {
         name = {
             type = "string",
@@ -551,6 +583,7 @@ M.DataLakeDatasetPrimaryKeyField = {
 
 M.DataLakeDatasetSchema = {
     type = "structure",
+    id = "DataLakeDatasetSchema",
     members = {
         name = {
             type = "string",
@@ -574,6 +607,7 @@ M.DataLakeDatasetSchema = {
 
 M.CreateDataLakeDatasetInput = {
     type = "structure",
+    id = "CreateDataLakeDatasetInput",
     members = {
         instanceId = {
             type = "string",
@@ -611,6 +645,7 @@ M.CreateDataLakeDatasetInput = {
 
 M.DataLakeDataset = {
     type = "structure",
+    id = "DataLakeDataset",
     members = {
         instanceId = {
             type = "string",
@@ -660,6 +695,7 @@ M.DataLakeDataset = {
 
 M.CreateDataLakeDatasetOutput = {
     type = "structure",
+    id = "CreateDataLakeDatasetOutput",
     members = {
         dataset = setmetatable({ traits = {
             required = true,
@@ -669,6 +705,7 @@ M.CreateDataLakeDatasetOutput = {
 
 M.CreateDataLakeNamespaceInput = {
     type = "structure",
+    id = "CreateDataLakeNamespaceInput",
     members = {
         instanceId = {
             type = "string",
@@ -697,6 +734,7 @@ M.CreateDataLakeNamespaceInput = {
 
 M.DataLakeNamespace = {
     type = "structure",
+    id = "DataLakeNamespace",
     members = {
         instanceId = {
             type = "string",
@@ -736,6 +774,7 @@ M.DataLakeNamespace = {
 
 M.CreateDataLakeNamespaceOutput = {
     type = "structure",
+    id = "CreateDataLakeNamespaceOutput",
     members = {
         namespace = setmetatable({ traits = {
             required = true,
@@ -745,6 +784,7 @@ M.CreateDataLakeNamespaceOutput = {
 
 M.CreateInstanceInput = {
     type = "structure",
+    id = "CreateInstanceInput",
     members = {
         instanceName = {
             type = "string",
@@ -783,6 +823,7 @@ M.InstanceState = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         instanceId = {
             type = "string",
@@ -831,6 +872,7 @@ M.Instance = {
 
 M.CreateInstanceOutput = {
     type = "structure",
+    id = "CreateInstanceOutput",
     members = {
         instance = setmetatable({ traits = {
             required = true,
@@ -846,6 +888,7 @@ M.DataIntegrationEventDatasetLoadStatus = {
 
 M.DataIntegrationEventDatasetLoadExecutionDetails = {
     type = "structure",
+    id = "DataIntegrationEventDatasetLoadExecutionDetails",
     members = {
         status = {
             type = "string",
@@ -867,6 +910,7 @@ M.DataIntegrationEventDatasetOperationType = {
 
 M.DataIntegrationEventDatasetTargetDetails = {
     type = "structure",
+    id = "DataIntegrationEventDatasetTargetDetails",
     members = {
         datasetIdentifier = {
             type = "string",
@@ -907,6 +951,7 @@ M.DataIntegrationEventType = {
 
 M.DataIntegrationEvent = {
     type = "structure",
+    id = "DataIntegrationEvent",
     members = {
         instanceId = {
             type = "string",
@@ -944,6 +989,7 @@ M.DataIntegrationEvent = {
 
 M.DataIntegrationEventDatasetTargetConfiguration = {
     type = "structure",
+    id = "DataIntegrationEventDatasetTargetConfiguration",
     members = {
         datasetIdentifier = {
             type = "string",
@@ -962,6 +1008,7 @@ M.DataIntegrationEventDatasetTargetConfiguration = {
 
 M.DataIntegrationFlow = {
     type = "structure",
+    id = "DataIntegrationFlow",
     members = {
         instanceId = {
             type = "string",
@@ -1005,6 +1052,7 @@ M.DataIntegrationFlow = {
 
 M.DataIntegrationFlowDatasetSource = {
     type = "structure",
+    id = "DataIntegrationFlowDatasetSource",
     members = {
         datasetIdentifier = {
             type = "string",
@@ -1017,6 +1065,7 @@ M.DataIntegrationFlowDatasetSource = {
 
 M.DataIntegrationFlowExecutionOutputMetadata = {
     type = "structure",
+    id = "DataIntegrationFlowExecutionOutputMetadata",
     members = {
         diagnosticReportsRootS3URI = {
             type = "string",
@@ -1026,6 +1075,7 @@ M.DataIntegrationFlowExecutionOutputMetadata = {
 
 M.DataIntegrationFlowS3Source = {
     type = "structure",
+    id = "DataIntegrationFlowS3Source",
     members = {
         bucketName = {
             type = "string",
@@ -1044,6 +1094,7 @@ M.DataIntegrationFlowS3Source = {
 
 M.DataIntegrationFlowExecutionSourceInfo = {
     type = "structure",
+    id = "DataIntegrationFlowExecutionSourceInfo",
     members = {
         sourceType = {
             type = "string",
@@ -1064,6 +1115,7 @@ M.DataIntegrationFlowExecutionStatus = {
 
 M.DataIntegrationFlowExecution = {
     type = "structure",
+    id = "DataIntegrationFlowExecution",
     members = {
         instanceId = {
             type = "string",
@@ -1102,6 +1154,7 @@ M.DataIntegrationFlowExecution = {
 
 M.DeleteDataIntegrationFlowInput = {
     type = "structure",
+    id = "DeleteDataIntegrationFlowInput",
     members = {
         instanceId = {
             type = "string",
@@ -1122,6 +1175,7 @@ M.DeleteDataIntegrationFlowInput = {
 
 M.DeleteDataIntegrationFlowOutput = {
     type = "structure",
+    id = "DeleteDataIntegrationFlowOutput",
     members = {
         instanceId = {
             type = "string",
@@ -1140,6 +1194,7 @@ M.DeleteDataIntegrationFlowOutput = {
 
 M.GetDataIntegrationFlowInput = {
     type = "structure",
+    id = "GetDataIntegrationFlowInput",
     members = {
         instanceId = {
             type = "string",
@@ -1160,6 +1215,7 @@ M.GetDataIntegrationFlowInput = {
 
 M.GetDataIntegrationFlowOutput = {
     type = "structure",
+    id = "GetDataIntegrationFlowOutput",
     members = {
         flow = setmetatable({ traits = {
             required = true,
@@ -1169,6 +1225,7 @@ M.GetDataIntegrationFlowOutput = {
 
 M.ListDataIntegrationFlowsInput = {
     type = "structure",
+    id = "ListDataIntegrationFlowsInput",
     members = {
         instanceId = {
             type = "string",
@@ -1195,6 +1252,7 @@ M.ListDataIntegrationFlowsInput = {
 
 M.ListDataIntegrationFlowsOutput = {
     type = "structure",
+    id = "ListDataIntegrationFlowsOutput",
     members = {
         flows = {
             type = "list",
@@ -1211,6 +1269,7 @@ M.ListDataIntegrationFlowsOutput = {
 
 M.UpdateDataIntegrationFlowInput = {
     type = "structure",
+    id = "UpdateDataIntegrationFlowInput",
     members = {
         instanceId = {
             type = "string",
@@ -1237,6 +1296,7 @@ M.UpdateDataIntegrationFlowInput = {
 
 M.UpdateDataIntegrationFlowOutput = {
     type = "structure",
+    id = "UpdateDataIntegrationFlowOutput",
     members = {
         flow = setmetatable({ traits = {
             required = true,
@@ -1246,6 +1306,7 @@ M.UpdateDataIntegrationFlowOutput = {
 
 M.DeleteDataLakeDatasetInput = {
     type = "structure",
+    id = "DeleteDataLakeDatasetInput",
     members = {
         instanceId = {
             type = "string",
@@ -1273,6 +1334,7 @@ M.DeleteDataLakeDatasetInput = {
 
 M.DeleteDataLakeDatasetOutput = {
     type = "structure",
+    id = "DeleteDataLakeDatasetOutput",
     members = {
         instanceId = {
             type = "string",
@@ -1297,6 +1359,7 @@ M.DeleteDataLakeDatasetOutput = {
 
 M.GetDataLakeDatasetInput = {
     type = "structure",
+    id = "GetDataLakeDatasetInput",
     members = {
         instanceId = {
             type = "string",
@@ -1324,6 +1387,7 @@ M.GetDataLakeDatasetInput = {
 
 M.GetDataLakeDatasetOutput = {
     type = "structure",
+    id = "GetDataLakeDatasetOutput",
     members = {
         dataset = setmetatable({ traits = {
             required = true,
@@ -1333,6 +1397,7 @@ M.GetDataLakeDatasetOutput = {
 
 M.ListDataLakeDatasetsInput = {
     type = "structure",
+    id = "ListDataLakeDatasetsInput",
     members = {
         instanceId = {
             type = "string",
@@ -1366,6 +1431,7 @@ M.ListDataLakeDatasetsInput = {
 
 M.ListDataLakeDatasetsOutput = {
     type = "structure",
+    id = "ListDataLakeDatasetsOutput",
     members = {
         datasets = {
             type = "list",
@@ -1382,6 +1448,7 @@ M.ListDataLakeDatasetsOutput = {
 
 M.UpdateDataLakeDatasetInput = {
     type = "structure",
+    id = "UpdateDataLakeDatasetInput",
     members = {
         instanceId = {
             type = "string",
@@ -1412,6 +1479,7 @@ M.UpdateDataLakeDatasetInput = {
 
 M.UpdateDataLakeDatasetOutput = {
     type = "structure",
+    id = "UpdateDataLakeDatasetOutput",
     members = {
         dataset = setmetatable({ traits = {
             required = true,
@@ -1421,6 +1489,7 @@ M.UpdateDataLakeDatasetOutput = {
 
 M.DeleteDataLakeNamespaceInput = {
     type = "structure",
+    id = "DeleteDataLakeNamespaceInput",
     members = {
         instanceId = {
             type = "string",
@@ -1441,6 +1510,7 @@ M.DeleteDataLakeNamespaceInput = {
 
 M.DeleteDataLakeNamespaceOutput = {
     type = "structure",
+    id = "DeleteDataLakeNamespaceOutput",
     members = {
         instanceId = {
             type = "string",
@@ -1459,6 +1529,7 @@ M.DeleteDataLakeNamespaceOutput = {
 
 M.GetDataLakeNamespaceInput = {
     type = "structure",
+    id = "GetDataLakeNamespaceInput",
     members = {
         instanceId = {
             type = "string",
@@ -1479,6 +1550,7 @@ M.GetDataLakeNamespaceInput = {
 
 M.GetDataLakeNamespaceOutput = {
     type = "structure",
+    id = "GetDataLakeNamespaceOutput",
     members = {
         namespace = setmetatable({ traits = {
             required = true,
@@ -1488,6 +1560,7 @@ M.GetDataLakeNamespaceOutput = {
 
 M.ListDataLakeNamespacesInput = {
     type = "structure",
+    id = "ListDataLakeNamespacesInput",
     members = {
         instanceId = {
             type = "string",
@@ -1514,6 +1587,7 @@ M.ListDataLakeNamespacesInput = {
 
 M.ListDataLakeNamespacesOutput = {
     type = "structure",
+    id = "ListDataLakeNamespacesOutput",
     members = {
         namespaces = {
             type = "list",
@@ -1530,6 +1604,7 @@ M.ListDataLakeNamespacesOutput = {
 
 M.UpdateDataLakeNamespaceInput = {
     type = "structure",
+    id = "UpdateDataLakeNamespaceInput",
     members = {
         instanceId = {
             type = "string",
@@ -1553,6 +1628,7 @@ M.UpdateDataLakeNamespaceInput = {
 
 M.UpdateDataLakeNamespaceOutput = {
     type = "structure",
+    id = "UpdateDataLakeNamespaceOutput",
     members = {
         namespace = setmetatable({ traits = {
             required = true,
@@ -1562,6 +1638,7 @@ M.UpdateDataLakeNamespaceOutput = {
 
 M.DeleteInstanceInput = {
     type = "structure",
+    id = "DeleteInstanceInput",
     members = {
         instanceId = {
             type = "string",
@@ -1575,6 +1652,7 @@ M.DeleteInstanceInput = {
 
 M.DeleteInstanceOutput = {
     type = "structure",
+    id = "DeleteInstanceOutput",
     members = {
         instance = setmetatable({ traits = {
             required = true,
@@ -1584,6 +1662,7 @@ M.DeleteInstanceOutput = {
 
 M.GetDataIntegrationEventInput = {
     type = "structure",
+    id = "GetDataIntegrationEventInput",
     members = {
         instanceId = {
             type = "string",
@@ -1604,6 +1683,7 @@ M.GetDataIntegrationEventInput = {
 
 M.GetDataIntegrationEventOutput = {
     type = "structure",
+    id = "GetDataIntegrationEventOutput",
     members = {
         event = setmetatable({ traits = {
             required = true,
@@ -1613,6 +1693,7 @@ M.GetDataIntegrationEventOutput = {
 
 M.GetDataIntegrationFlowExecutionInput = {
     type = "structure",
+    id = "GetDataIntegrationFlowExecutionInput",
     members = {
         instanceId = {
             type = "string",
@@ -1640,6 +1721,7 @@ M.GetDataIntegrationFlowExecutionInput = {
 
 M.GetDataIntegrationFlowExecutionOutput = {
     type = "structure",
+    id = "GetDataIntegrationFlowExecutionOutput",
     members = {
         flowExecution = setmetatable({ traits = {
             required = true,
@@ -1649,6 +1731,7 @@ M.GetDataIntegrationFlowExecutionOutput = {
 
 M.GetInstanceInput = {
     type = "structure",
+    id = "GetInstanceInput",
     members = {
         instanceId = {
             type = "string",
@@ -1662,6 +1745,7 @@ M.GetInstanceInput = {
 
 M.GetInstanceOutput = {
     type = "structure",
+    id = "GetInstanceOutput",
     members = {
         instance = setmetatable({ traits = {
             required = true,
@@ -1671,6 +1755,7 @@ M.GetInstanceOutput = {
 
 M.ListInstancesInput = {
     type = "structure",
+    id = "ListInstancesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1704,6 +1789,7 @@ M.ListInstancesInput = {
 
 M.ListInstancesOutput = {
     type = "structure",
+    id = "ListInstancesOutput",
     members = {
         instances = {
             type = "list",
@@ -1720,6 +1806,7 @@ M.ListInstancesOutput = {
 
 M.UpdateInstanceInput = {
     type = "structure",
+    id = "UpdateInstanceInput",
     members = {
         instanceId = {
             type = "string",
@@ -1739,6 +1826,7 @@ M.UpdateInstanceInput = {
 
 M.UpdateInstanceOutput = {
     type = "structure",
+    id = "UpdateInstanceOutput",
     members = {
         instance = setmetatable({ traits = {
             required = true,
@@ -1748,6 +1836,7 @@ M.UpdateInstanceOutput = {
 
 M.ListDataIntegrationEventsInput = {
     type = "structure",
+    id = "ListDataIntegrationEventsInput",
     members = {
         instanceId = {
             type = "string",
@@ -1780,6 +1869,7 @@ M.ListDataIntegrationEventsInput = {
 
 M.ListDataIntegrationEventsOutput = {
     type = "structure",
+    id = "ListDataIntegrationEventsOutput",
     members = {
         events = {
             type = "list",
@@ -1796,6 +1886,7 @@ M.ListDataIntegrationEventsOutput = {
 
 M.ListDataIntegrationFlowExecutionsInput = {
     type = "structure",
+    id = "ListDataIntegrationFlowExecutionsInput",
     members = {
         instanceId = {
             type = "string",
@@ -1829,6 +1920,7 @@ M.ListDataIntegrationFlowExecutionsInput = {
 
 M.ListDataIntegrationFlowExecutionsOutput = {
     type = "structure",
+    id = "ListDataIntegrationFlowExecutionsOutput",
     members = {
         flowExecutions = {
             type = "list",
@@ -1845,6 +1937,7 @@ M.ListDataIntegrationFlowExecutionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1858,6 +1951,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1872,6 +1966,7 @@ M.ListTagsForResourceOutput = {
 
 M.SendDataIntegrationEventInput = {
     type = "structure",
+    id = "SendDataIntegrationEventInput",
     members = {
         instanceId = {
             type = "string",
@@ -1916,6 +2011,7 @@ M.SendDataIntegrationEventInput = {
 
 M.SendDataIntegrationEventOutput = {
     type = "structure",
+    id = "SendDataIntegrationEventOutput",
     members = {
         eventId = {
             type = "string",
@@ -1928,6 +2024,7 @@ M.SendDataIntegrationEventOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1949,10 +2046,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1974,6 +2073,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

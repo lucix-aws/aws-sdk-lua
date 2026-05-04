@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -30,6 +32,7 @@ M.Tag = {
 
 M.AssociateProfileInput = {
     type = "structure",
+    id = "AssociateProfileInput",
     members = {
         ProfileId = {
             type = "string",
@@ -67,6 +70,7 @@ M.ProfileStatus = {
 
 M.ProfileAssociation = {
     type = "structure",
+    id = "ProfileAssociation",
     members = {
         Id = {
             type = "string",
@@ -100,6 +104,7 @@ M.ProfileAssociation = {
 
 M.AssociateProfileOutput = {
     type = "structure",
+    id = "AssociateProfileOutput",
     members = {
         ProfileAssociation = M.ProfileAssociation,
     },
@@ -107,6 +112,7 @@ M.AssociateProfileOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -117,6 +123,7 @@ M.ConflictException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -133,6 +140,7 @@ M.InvalidParameterException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -146,6 +154,7 @@ M.LimitExceededException = {
 
 M.ResourceExistsException = {
     type = "structure",
+    id = "ResourceExistsException",
     error = "client",
     members = {
         Message = {
@@ -159,6 +168,7 @@ M.ResourceExistsException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -172,6 +182,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -182,6 +193,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -192,6 +204,7 @@ M.ValidationException = {
 
 M.AssociateResourceToProfileInput = {
     type = "structure",
+    id = "AssociateResourceToProfileInput",
     members = {
         ProfileId = {
             type = "string",
@@ -219,6 +232,7 @@ M.AssociateResourceToProfileInput = {
 
 M.ProfileResourceAssociation = {
     type = "structure",
+    id = "ProfileResourceAssociation",
     members = {
         Id = {
             type = "string",
@@ -258,6 +272,7 @@ M.ProfileResourceAssociation = {
 
 M.AssociateResourceToProfileOutput = {
     type = "structure",
+    id = "AssociateResourceToProfileOutput",
     members = {
         ProfileResourceAssociation = M.ProfileResourceAssociation,
     },
@@ -265,6 +280,7 @@ M.AssociateResourceToProfileOutput = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "client",
     members = {
         Message = {
@@ -275,6 +291,7 @@ M.InternalServiceErrorException = {
 
 M.CreateProfileInput = {
     type = "structure",
+    id = "CreateProfileInput",
     members = {
         Name = {
             type = "string",
@@ -304,6 +321,7 @@ M.ShareStatus = {
 
 M.Profile = {
     type = "structure",
+    id = "Profile",
     members = {
         Id = {
             type = "string",
@@ -340,6 +358,7 @@ M.Profile = {
 
 M.CreateProfileOutput = {
     type = "structure",
+    id = "CreateProfileOutput",
     members = {
         Profile = M.Profile,
     },
@@ -347,6 +366,7 @@ M.CreateProfileOutput = {
 
 M.DeleteProfileInput = {
     type = "structure",
+    id = "DeleteProfileInput",
     members = {
         ProfileId = {
             type = "string",
@@ -360,6 +380,7 @@ M.DeleteProfileInput = {
 
 M.DeleteProfileOutput = {
     type = "structure",
+    id = "DeleteProfileOutput",
     members = {
         Profile = M.Profile,
     },
@@ -367,6 +388,7 @@ M.DeleteProfileOutput = {
 
 M.DisassociateProfileInput = {
     type = "structure",
+    id = "DisassociateProfileInput",
     members = {
         ProfileId = {
             type = "string",
@@ -387,6 +409,7 @@ M.DisassociateProfileInput = {
 
 M.DisassociateProfileOutput = {
     type = "structure",
+    id = "DisassociateProfileOutput",
     members = {
         ProfileAssociation = M.ProfileAssociation,
     },
@@ -394,6 +417,7 @@ M.DisassociateProfileOutput = {
 
 M.DisassociateResourceFromProfileInput = {
     type = "structure",
+    id = "DisassociateResourceFromProfileInput",
     members = {
         ProfileId = {
             type = "string",
@@ -414,6 +438,7 @@ M.DisassociateResourceFromProfileInput = {
 
 M.DisassociateResourceFromProfileOutput = {
     type = "structure",
+    id = "DisassociateResourceFromProfileOutput",
     members = {
         ProfileResourceAssociation = M.ProfileResourceAssociation,
     },
@@ -421,6 +446,7 @@ M.DisassociateResourceFromProfileOutput = {
 
 M.GetProfileInput = {
     type = "structure",
+    id = "GetProfileInput",
     members = {
         ProfileId = {
             type = "string",
@@ -434,6 +460,7 @@ M.GetProfileInput = {
 
 M.GetProfileOutput = {
     type = "structure",
+    id = "GetProfileOutput",
     members = {
         Profile = M.Profile,
     },
@@ -441,6 +468,7 @@ M.GetProfileOutput = {
 
 M.GetProfileAssociationInput = {
     type = "structure",
+    id = "GetProfileAssociationInput",
     members = {
         ProfileAssociationId = {
             type = "string",
@@ -454,6 +482,7 @@ M.GetProfileAssociationInput = {
 
 M.GetProfileAssociationOutput = {
     type = "structure",
+    id = "GetProfileAssociationOutput",
     members = {
         ProfileAssociation = M.ProfileAssociation,
     },
@@ -461,6 +490,7 @@ M.GetProfileAssociationOutput = {
 
 M.GetProfileResourceAssociationInput = {
     type = "structure",
+    id = "GetProfileResourceAssociationInput",
     members = {
         ProfileResourceAssociationId = {
             type = "string",
@@ -474,6 +504,7 @@ M.GetProfileResourceAssociationInput = {
 
 M.GetProfileResourceAssociationOutput = {
     type = "structure",
+    id = "GetProfileResourceAssociationOutput",
     members = {
         ProfileResourceAssociation = M.ProfileResourceAssociation,
     },
@@ -481,6 +512,7 @@ M.GetProfileResourceAssociationOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -491,6 +523,7 @@ M.InvalidNextTokenException = {
 
 M.ListProfileAssociationsInput = {
     type = "structure",
+    id = "ListProfileAssociationsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -521,6 +554,7 @@ M.ListProfileAssociationsInput = {
 
 M.ListProfileAssociationsOutput = {
     type = "structure",
+    id = "ListProfileAssociationsOutput",
     members = {
         ProfileAssociations = {
             type = "list",
@@ -534,6 +568,7 @@ M.ListProfileAssociationsOutput = {
 
 M.ListProfileResourceAssociationsInput = {
     type = "structure",
+    id = "ListProfileResourceAssociationsInput",
     members = {
         ProfileId = {
             type = "string",
@@ -565,6 +600,7 @@ M.ListProfileResourceAssociationsInput = {
 
 M.ListProfileResourceAssociationsOutput = {
     type = "structure",
+    id = "ListProfileResourceAssociationsOutput",
     members = {
         ProfileResourceAssociations = {
             type = "list",
@@ -578,6 +614,7 @@ M.ListProfileResourceAssociationsOutput = {
 
 M.ListProfilesInput = {
     type = "structure",
+    id = "ListProfilesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -596,6 +633,7 @@ M.ListProfilesInput = {
 
 M.ProfileSummary = {
     type = "structure",
+    id = "ProfileSummary",
     members = {
         Id = {
             type = "string",
@@ -614,6 +652,7 @@ M.ProfileSummary = {
 
 M.ListProfilesOutput = {
     type = "structure",
+    id = "ListProfilesOutput",
     members = {
         ProfileSummaries = {
             type = "list",
@@ -627,6 +666,7 @@ M.ListProfilesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -640,6 +680,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -654,6 +695,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -675,10 +717,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -700,10 +744,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateProfileResourceAssociationInput = {
     type = "structure",
+    id = "UpdateProfileResourceAssociationInput",
     members = {
         ProfileResourceAssociationId = {
             type = "string",
@@ -723,6 +769,7 @@ M.UpdateProfileResourceAssociationInput = {
 
 M.UpdateProfileResourceAssociationOutput = {
     type = "structure",
+    id = "UpdateProfileResourceAssociationOutput",
     members = {
         ProfileResourceAssociation = M.ProfileResourceAssociation,
     },

@@ -2,6 +2,7 @@ local M = {}
 
 M.CloudWatchLoggingOption = {
     type = "structure",
+    id = "CloudWatchLoggingOption",
     members = {
         LogStreamARN = {
             type = "string",
@@ -14,6 +15,7 @@ M.CloudWatchLoggingOption = {
 
 M.AddApplicationCloudWatchLoggingOptionInput = {
     type = "structure",
+    id = "AddApplicationCloudWatchLoggingOptionInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -35,6 +37,7 @@ M.AddApplicationCloudWatchLoggingOptionInput = {
 
 M.CloudWatchLoggingOptionDescription = {
     type = "structure",
+    id = "CloudWatchLoggingOptionDescription",
     members = {
         CloudWatchLoggingOptionId = {
             type = "string",
@@ -53,6 +56,7 @@ M.CloudWatchLoggingOptionDescription = {
 
 M.AddApplicationCloudWatchLoggingOptionOutput = {
     type = "structure",
+    id = "AddApplicationCloudWatchLoggingOptionOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -72,6 +76,7 @@ M.AddApplicationCloudWatchLoggingOptionOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -82,6 +87,7 @@ M.ConcurrentModificationException = {
 
 M.InvalidApplicationConfigurationException = {
     type = "structure",
+    id = "InvalidApplicationConfigurationException",
     error = "client",
     members = {
         Message = {
@@ -92,6 +98,7 @@ M.InvalidApplicationConfigurationException = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -102,6 +109,7 @@ M.InvalidArgumentException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -112,6 +120,7 @@ M.InvalidRequestException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -122,6 +131,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -132,6 +142,7 @@ M.ResourceNotFoundException = {
 
 M.InputParallelism = {
     type = "structure",
+    id = "InputParallelism",
     members = {
         Count = {
             type = "integer",
@@ -141,6 +152,7 @@ M.InputParallelism = {
 
 M.InputLambdaProcessor = {
     type = "structure",
+    id = "InputLambdaProcessor",
     members = {
         ResourceARN = {
             type = "string",
@@ -153,6 +165,7 @@ M.InputLambdaProcessor = {
 
 M.InputProcessingConfiguration = {
     type = "structure",
+    id = "InputProcessingConfiguration",
     members = {
         InputLambdaProcessor = setmetatable({ traits = {
             required = true,
@@ -162,6 +175,7 @@ M.InputProcessingConfiguration = {
 
 M.RecordColumn = {
     type = "structure",
+    id = "RecordColumn",
     members = {
         Name = {
             type = "string",
@@ -183,6 +197,7 @@ M.RecordColumn = {
 
 M.CSVMappingParameters = {
     type = "structure",
+    id = "CSVMappingParameters",
     members = {
         RecordRowDelimiter = {
             type = "string",
@@ -201,6 +216,7 @@ M.CSVMappingParameters = {
 
 M.JSONMappingParameters = {
     type = "structure",
+    id = "JSONMappingParameters",
     members = {
         RecordRowPath = {
             type = "string",
@@ -213,6 +229,7 @@ M.JSONMappingParameters = {
 
 M.MappingParameters = {
     type = "structure",
+    id = "MappingParameters",
     members = {
         JSONMappingParameters = M.JSONMappingParameters,
         CSVMappingParameters = M.CSVMappingParameters,
@@ -226,6 +243,7 @@ M.RecordFormatType = {
 
 M.RecordFormat = {
     type = "structure",
+    id = "RecordFormat",
     members = {
         RecordFormatType = {
             type = "string",
@@ -239,6 +257,7 @@ M.RecordFormat = {
 
 M.SourceSchema = {
     type = "structure",
+    id = "SourceSchema",
     members = {
         RecordFormat = setmetatable({ traits = {
             required = true,
@@ -258,6 +277,7 @@ M.SourceSchema = {
 
 M.KinesisFirehoseInput = {
     type = "structure",
+    id = "KinesisFirehoseInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -270,6 +290,7 @@ M.KinesisFirehoseInput = {
 
 M.KinesisStreamsInput = {
     type = "structure",
+    id = "KinesisStreamsInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -282,6 +303,7 @@ M.KinesisStreamsInput = {
 
 M.Input = {
     type = "structure",
+    id = "Input",
     members = {
         NamePrefix = {
             type = "string",
@@ -301,6 +323,7 @@ M.Input = {
 
 M.AddApplicationInputInput = {
     type = "structure",
+    id = "AddApplicationInputInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -322,6 +345,7 @@ M.AddApplicationInputInput = {
 
 M.InputLambdaProcessorDescription = {
     type = "structure",
+    id = "InputLambdaProcessorDescription",
     members = {
         ResourceARN = {
             type = "string",
@@ -337,6 +361,7 @@ M.InputLambdaProcessorDescription = {
 
 M.InputProcessingConfigurationDescription = {
     type = "structure",
+    id = "InputProcessingConfigurationDescription",
     members = {
         InputLambdaProcessorDescription = M.InputLambdaProcessorDescription,
     },
@@ -350,6 +375,7 @@ M.InputStartingPosition = {
 
 M.InputStartingPositionConfiguration = {
     type = "structure",
+    id = "InputStartingPositionConfiguration",
     members = {
         InputStartingPosition = {
             type = "string",
@@ -359,6 +385,7 @@ M.InputStartingPositionConfiguration = {
 
 M.KinesisFirehoseInputDescription = {
     type = "structure",
+    id = "KinesisFirehoseInputDescription",
     members = {
         ResourceARN = {
             type = "string",
@@ -374,6 +401,7 @@ M.KinesisFirehoseInputDescription = {
 
 M.KinesisStreamsInputDescription = {
     type = "structure",
+    id = "KinesisStreamsInputDescription",
     members = {
         ResourceARN = {
             type = "string",
@@ -389,6 +417,7 @@ M.KinesisStreamsInputDescription = {
 
 M.InputDescription = {
     type = "structure",
+    id = "InputDescription",
     members = {
         InputId = {
             type = "string",
@@ -411,6 +440,7 @@ M.InputDescription = {
 
 M.AddApplicationInputOutput = {
     type = "structure",
+    id = "AddApplicationInputOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -427,6 +457,7 @@ M.AddApplicationInputOutput = {
 
 M.CodeValidationException = {
     type = "structure",
+    id = "CodeValidationException",
     error = "client",
     members = {
         Message = {
@@ -437,6 +468,7 @@ M.CodeValidationException = {
 
 M.AddApplicationInputProcessingConfigurationInput = {
     type = "structure",
+    id = "AddApplicationInputProcessingConfigurationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -464,6 +496,7 @@ M.AddApplicationInputProcessingConfigurationInput = {
 
 M.AddApplicationInputProcessingConfigurationOutput = {
     type = "structure",
+    id = "AddApplicationInputProcessingConfigurationOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -480,6 +513,7 @@ M.AddApplicationInputProcessingConfigurationOutput = {
 
 M.DestinationSchema = {
     type = "structure",
+    id = "DestinationSchema",
     members = {
         RecordFormatType = {
             type = "string",
@@ -492,6 +526,7 @@ M.DestinationSchema = {
 
 M.KinesisFirehoseOutput = {
     type = "structure",
+    id = "KinesisFirehoseOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -504,6 +539,7 @@ M.KinesisFirehoseOutput = {
 
 M.KinesisStreamsOutput = {
     type = "structure",
+    id = "KinesisStreamsOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -516,6 +552,7 @@ M.KinesisStreamsOutput = {
 
 M.LambdaOutput = {
     type = "structure",
+    id = "LambdaOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -528,6 +565,7 @@ M.LambdaOutput = {
 
 M.Output = {
     type = "structure",
+    id = "Output",
     members = {
         Name = {
             type = "string",
@@ -546,6 +584,7 @@ M.Output = {
 
 M.AddApplicationOutputInput = {
     type = "structure",
+    id = "AddApplicationOutputInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -567,6 +606,7 @@ M.AddApplicationOutputInput = {
 
 M.KinesisFirehoseOutputDescription = {
     type = "structure",
+    id = "KinesisFirehoseOutputDescription",
     members = {
         ResourceARN = {
             type = "string",
@@ -582,6 +622,7 @@ M.KinesisFirehoseOutputDescription = {
 
 M.KinesisStreamsOutputDescription = {
     type = "structure",
+    id = "KinesisStreamsOutputDescription",
     members = {
         ResourceARN = {
             type = "string",
@@ -597,6 +638,7 @@ M.KinesisStreamsOutputDescription = {
 
 M.LambdaOutputDescription = {
     type = "structure",
+    id = "LambdaOutputDescription",
     members = {
         ResourceARN = {
             type = "string",
@@ -612,6 +654,7 @@ M.LambdaOutputDescription = {
 
 M.OutputDescription = {
     type = "structure",
+    id = "OutputDescription",
     members = {
         OutputId = {
             type = "string",
@@ -628,6 +671,7 @@ M.OutputDescription = {
 
 M.AddApplicationOutputOutput = {
     type = "structure",
+    id = "AddApplicationOutputOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -644,6 +688,7 @@ M.AddApplicationOutputOutput = {
 
 M.S3ReferenceDataSource = {
     type = "structure",
+    id = "S3ReferenceDataSource",
     members = {
         BucketARN = {
             type = "string",
@@ -656,6 +701,7 @@ M.S3ReferenceDataSource = {
 
 M.ReferenceDataSource = {
     type = "structure",
+    id = "ReferenceDataSource",
     members = {
         TableName = {
             type = "string",
@@ -672,6 +718,7 @@ M.ReferenceDataSource = {
 
 M.AddApplicationReferenceDataSourceInput = {
     type = "structure",
+    id = "AddApplicationReferenceDataSourceInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -693,6 +740,7 @@ M.AddApplicationReferenceDataSourceInput = {
 
 M.S3ReferenceDataSourceDescription = {
     type = "structure",
+    id = "S3ReferenceDataSourceDescription",
     members = {
         BucketARN = {
             type = "string",
@@ -714,6 +762,7 @@ M.S3ReferenceDataSourceDescription = {
 
 M.ReferenceDataSourceDescription = {
     type = "structure",
+    id = "ReferenceDataSourceDescription",
     members = {
         ReferenceId = {
             type = "string",
@@ -736,6 +785,7 @@ M.ReferenceDataSourceDescription = {
 
 M.AddApplicationReferenceDataSourceOutput = {
     type = "structure",
+    id = "AddApplicationReferenceDataSourceOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -752,6 +802,7 @@ M.AddApplicationReferenceDataSourceOutput = {
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         SubnetIds = {
             type = "list",
@@ -772,6 +823,7 @@ M.VpcConfiguration = {
 
 M.AddApplicationVpcConfigurationInput = {
     type = "structure",
+    id = "AddApplicationVpcConfigurationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -793,6 +845,7 @@ M.AddApplicationVpcConfigurationInput = {
 
 M.VpcConfigurationDescription = {
     type = "structure",
+    id = "VpcConfigurationDescription",
     members = {
         VpcConfigurationId = {
             type = "string",
@@ -825,6 +878,7 @@ M.VpcConfigurationDescription = {
 
 M.AddApplicationVpcConfigurationOutput = {
     type = "structure",
+    id = "AddApplicationVpcConfigurationOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -841,6 +895,7 @@ M.AddApplicationVpcConfigurationOutput = {
 
 M.S3ContentLocation = {
     type = "structure",
+    id = "S3ContentLocation",
     members = {
         BucketARN = {
             type = "string",
@@ -862,6 +917,7 @@ M.S3ContentLocation = {
 
 M.CodeContent = {
     type = "structure",
+    id = "CodeContent",
     members = {
         TextContent = {
             type = "string",
@@ -880,6 +936,7 @@ M.CodeContentType = {
 
 M.ApplicationCodeConfiguration = {
     type = "structure",
+    id = "ApplicationCodeConfiguration",
     members = {
         CodeContent = M.CodeContent,
         CodeContentType = {
@@ -893,6 +950,7 @@ M.ApplicationCodeConfiguration = {
 
 M.S3ApplicationCodeLocationDescription = {
     type = "structure",
+    id = "S3ApplicationCodeLocationDescription",
     members = {
         BucketARN = {
             type = "string",
@@ -914,6 +972,7 @@ M.S3ApplicationCodeLocationDescription = {
 
 M.CodeContentDescription = {
     type = "structure",
+    id = "CodeContentDescription",
     members = {
         TextContent = {
             type = "string",
@@ -930,6 +989,7 @@ M.CodeContentDescription = {
 
 M.ApplicationCodeConfigurationDescription = {
     type = "structure",
+    id = "ApplicationCodeConfigurationDescription",
     members = {
         CodeContentType = {
             type = "string",
@@ -943,6 +1003,7 @@ M.ApplicationCodeConfigurationDescription = {
 
 M.S3ContentLocationUpdate = {
     type = "structure",
+    id = "S3ContentLocationUpdate",
     members = {
         BucketARNUpdate = {
             type = "string",
@@ -958,6 +1019,7 @@ M.S3ContentLocationUpdate = {
 
 M.CodeContentUpdate = {
     type = "structure",
+    id = "CodeContentUpdate",
     members = {
         TextContentUpdate = {
             type = "string",
@@ -971,6 +1033,7 @@ M.CodeContentUpdate = {
 
 M.ApplicationCodeConfigurationUpdate = {
     type = "structure",
+    id = "ApplicationCodeConfigurationUpdate",
     members = {
         CodeContentTypeUpdate = {
             type = "string",
@@ -986,6 +1049,7 @@ M.KeyType = {
 
 M.ApplicationEncryptionConfiguration = {
     type = "structure",
+    id = "ApplicationEncryptionConfiguration",
     members = {
         KeyId = {
             type = "string",
@@ -1001,6 +1065,7 @@ M.ApplicationEncryptionConfiguration = {
 
 M.ApplicationSnapshotConfiguration = {
     type = "structure",
+    id = "ApplicationSnapshotConfiguration",
     members = {
         SnapshotsEnabled = {
             type = "boolean",
@@ -1013,6 +1078,7 @@ M.ApplicationSnapshotConfiguration = {
 
 M.ApplicationSystemRollbackConfiguration = {
     type = "structure",
+    id = "ApplicationSystemRollbackConfiguration",
     members = {
         RollbackEnabled = {
             type = "boolean",
@@ -1025,6 +1091,7 @@ M.ApplicationSystemRollbackConfiguration = {
 
 M.PropertyGroup = {
     type = "structure",
+    id = "PropertyGroup",
     members = {
         PropertyGroupId = {
             type = "string",
@@ -1045,6 +1112,7 @@ M.PropertyGroup = {
 
 M.EnvironmentProperties = {
     type = "structure",
+    id = "EnvironmentProperties",
     members = {
         PropertyGroups = {
             type = "list",
@@ -1063,6 +1131,7 @@ M.ConfigurationType = {
 
 M.CheckpointConfiguration = {
     type = "structure",
+    id = "CheckpointConfiguration",
     members = {
         ConfigurationType = {
             type = "string",
@@ -1098,6 +1167,7 @@ M.MetricsLevel = {
 
 M.MonitoringConfiguration = {
     type = "structure",
+    id = "MonitoringConfiguration",
     members = {
         ConfigurationType = {
             type = "string",
@@ -1116,6 +1186,7 @@ M.MonitoringConfiguration = {
 
 M.ParallelismConfiguration = {
     type = "structure",
+    id = "ParallelismConfiguration",
     members = {
         ConfigurationType = {
             type = "string",
@@ -1137,6 +1208,7 @@ M.ParallelismConfiguration = {
 
 M.FlinkApplicationConfiguration = {
     type = "structure",
+    id = "FlinkApplicationConfiguration",
     members = {
         CheckpointConfiguration = M.CheckpointConfiguration,
         MonitoringConfiguration = M.MonitoringConfiguration,
@@ -1146,6 +1218,7 @@ M.FlinkApplicationConfiguration = {
 
 M.SqlApplicationConfiguration = {
     type = "structure",
+    id = "SqlApplicationConfiguration",
     members = {
         Inputs = {
             type = "list",
@@ -1164,6 +1237,7 @@ M.SqlApplicationConfiguration = {
 
 M.GlueDataCatalogConfiguration = {
     type = "structure",
+    id = "GlueDataCatalogConfiguration",
     members = {
         DatabaseARN = {
             type = "string",
@@ -1176,6 +1250,7 @@ M.GlueDataCatalogConfiguration = {
 
 M.CatalogConfiguration = {
     type = "structure",
+    id = "CatalogConfiguration",
     members = {
         GlueDataCatalogConfiguration = setmetatable({ traits = {
             required = true,
@@ -1190,6 +1265,7 @@ M.ArtifactType = {
 
 M.MavenReference = {
     type = "structure",
+    id = "MavenReference",
     members = {
         GroupId = {
             type = "string",
@@ -1214,6 +1290,7 @@ M.MavenReference = {
 
 M.CustomArtifactConfiguration = {
     type = "structure",
+    id = "CustomArtifactConfiguration",
     members = {
         ArtifactType = {
             type = "string",
@@ -1228,6 +1305,7 @@ M.CustomArtifactConfiguration = {
 
 M.S3ContentBaseLocation = {
     type = "structure",
+    id = "S3ContentBaseLocation",
     members = {
         BucketARN = {
             type = "string",
@@ -1243,6 +1321,7 @@ M.S3ContentBaseLocation = {
 
 M.DeployAsApplicationConfiguration = {
     type = "structure",
+    id = "DeployAsApplicationConfiguration",
     members = {
         S3ContentLocation = setmetatable({ traits = {
             required = true,
@@ -1252,6 +1331,7 @@ M.DeployAsApplicationConfiguration = {
 
 M.ZeppelinMonitoringConfiguration = {
     type = "structure",
+    id = "ZeppelinMonitoringConfiguration",
     members = {
         LogLevel = {
             type = "string",
@@ -1264,6 +1344,7 @@ M.ZeppelinMonitoringConfiguration = {
 
 M.ZeppelinApplicationConfiguration = {
     type = "structure",
+    id = "ZeppelinApplicationConfiguration",
     members = {
         MonitoringConfiguration = M.ZeppelinMonitoringConfiguration,
         CatalogConfiguration = M.CatalogConfiguration,
@@ -1277,6 +1358,7 @@ M.ZeppelinApplicationConfiguration = {
 
 M.ApplicationConfiguration = {
     type = "structure",
+    id = "ApplicationConfiguration",
     members = {
         SqlApplicationConfiguration = M.SqlApplicationConfiguration,
         FlinkApplicationConfiguration = M.FlinkApplicationConfiguration,
@@ -1295,6 +1377,7 @@ M.ApplicationConfiguration = {
 
 M.ApplicationEncryptionConfigurationDescription = {
     type = "structure",
+    id = "ApplicationEncryptionConfigurationDescription",
     members = {
         KeyId = {
             type = "string",
@@ -1310,6 +1393,7 @@ M.ApplicationEncryptionConfigurationDescription = {
 
 M.ApplicationSnapshotConfigurationDescription = {
     type = "structure",
+    id = "ApplicationSnapshotConfigurationDescription",
     members = {
         SnapshotsEnabled = {
             type = "boolean",
@@ -1322,6 +1406,7 @@ M.ApplicationSnapshotConfigurationDescription = {
 
 M.ApplicationSystemRollbackConfigurationDescription = {
     type = "structure",
+    id = "ApplicationSystemRollbackConfigurationDescription",
     members = {
         RollbackEnabled = {
             type = "boolean",
@@ -1334,6 +1419,7 @@ M.ApplicationSystemRollbackConfigurationDescription = {
 
 M.EnvironmentPropertyDescriptions = {
     type = "structure",
+    id = "EnvironmentPropertyDescriptions",
     members = {
         PropertyGroupDescriptions = {
             type = "list",
@@ -1344,6 +1430,7 @@ M.EnvironmentPropertyDescriptions = {
 
 M.CheckpointConfigurationDescription = {
     type = "structure",
+    id = "CheckpointConfigurationDescription",
     members = {
         ConfigurationType = {
             type = "string",
@@ -1362,6 +1449,7 @@ M.CheckpointConfigurationDescription = {
 
 M.MonitoringConfigurationDescription = {
     type = "structure",
+    id = "MonitoringConfigurationDescription",
     members = {
         ConfigurationType = {
             type = "string",
@@ -1377,6 +1465,7 @@ M.MonitoringConfigurationDescription = {
 
 M.ParallelismConfigurationDescription = {
     type = "structure",
+    id = "ParallelismConfigurationDescription",
     members = {
         ConfigurationType = {
             type = "string",
@@ -1398,6 +1487,7 @@ M.ParallelismConfigurationDescription = {
 
 M.FlinkApplicationConfigurationDescription = {
     type = "structure",
+    id = "FlinkApplicationConfigurationDescription",
     members = {
         CheckpointConfigurationDescription = M.CheckpointConfigurationDescription,
         MonitoringConfigurationDescription = M.MonitoringConfigurationDescription,
@@ -1416,6 +1506,7 @@ M.ApplicationRestoreType = {
 
 M.ApplicationRestoreConfiguration = {
     type = "structure",
+    id = "ApplicationRestoreConfiguration",
     members = {
         ApplicationRestoreType = {
             type = "string",
@@ -1431,6 +1522,7 @@ M.ApplicationRestoreConfiguration = {
 
 M.FlinkRunConfiguration = {
     type = "structure",
+    id = "FlinkRunConfiguration",
     members = {
         AllowNonRestoredState = {
             type = "boolean",
@@ -1440,6 +1532,7 @@ M.FlinkRunConfiguration = {
 
 M.RunConfigurationDescription = {
     type = "structure",
+    id = "RunConfigurationDescription",
     members = {
         ApplicationRestoreConfigurationDescription = M.ApplicationRestoreConfiguration,
         FlinkRunConfigurationDescription = M.FlinkRunConfiguration,
@@ -1448,6 +1541,7 @@ M.RunConfigurationDescription = {
 
 M.SqlApplicationConfigurationDescription = {
     type = "structure",
+    id = "SqlApplicationConfigurationDescription",
     members = {
         InputDescriptions = {
             type = "list",
@@ -1466,6 +1560,7 @@ M.SqlApplicationConfigurationDescription = {
 
 M.GlueDataCatalogConfigurationDescription = {
     type = "structure",
+    id = "GlueDataCatalogConfigurationDescription",
     members = {
         DatabaseARN = {
             type = "string",
@@ -1478,6 +1573,7 @@ M.GlueDataCatalogConfigurationDescription = {
 
 M.CatalogConfigurationDescription = {
     type = "structure",
+    id = "CatalogConfigurationDescription",
     members = {
         GlueDataCatalogConfigurationDescription = setmetatable({ traits = {
             required = true,
@@ -1487,6 +1583,7 @@ M.CatalogConfigurationDescription = {
 
 M.CustomArtifactConfigurationDescription = {
     type = "structure",
+    id = "CustomArtifactConfigurationDescription",
     members = {
         ArtifactType = {
             type = "string",
@@ -1498,6 +1595,7 @@ M.CustomArtifactConfigurationDescription = {
 
 M.S3ContentBaseLocationDescription = {
     type = "structure",
+    id = "S3ContentBaseLocationDescription",
     members = {
         BucketARN = {
             type = "string",
@@ -1513,6 +1611,7 @@ M.S3ContentBaseLocationDescription = {
 
 M.DeployAsApplicationConfigurationDescription = {
     type = "structure",
+    id = "DeployAsApplicationConfigurationDescription",
     members = {
         S3ContentLocationDescription = setmetatable({ traits = {
             required = true,
@@ -1522,6 +1621,7 @@ M.DeployAsApplicationConfigurationDescription = {
 
 M.ZeppelinMonitoringConfigurationDescription = {
     type = "structure",
+    id = "ZeppelinMonitoringConfigurationDescription",
     members = {
         LogLevel = {
             type = "string",
@@ -1531,6 +1631,7 @@ M.ZeppelinMonitoringConfigurationDescription = {
 
 M.ZeppelinApplicationConfigurationDescription = {
     type = "structure",
+    id = "ZeppelinApplicationConfigurationDescription",
     members = {
         MonitoringConfigurationDescription = setmetatable({ traits = {
             required = true,
@@ -1546,6 +1647,7 @@ M.ZeppelinApplicationConfigurationDescription = {
 
 M.ApplicationConfigurationDescription = {
     type = "structure",
+    id = "ApplicationConfigurationDescription",
     members = {
         SqlApplicationConfigurationDescription = M.SqlApplicationConfigurationDescription,
         ApplicationCodeConfigurationDescription = M.ApplicationCodeConfigurationDescription,
@@ -1565,6 +1667,7 @@ M.ApplicationConfigurationDescription = {
 
 M.ApplicationEncryptionConfigurationUpdate = {
     type = "structure",
+    id = "ApplicationEncryptionConfigurationUpdate",
     members = {
         KeyIdUpdate = {
             type = "string",
@@ -1580,6 +1683,7 @@ M.ApplicationEncryptionConfigurationUpdate = {
 
 M.ApplicationSnapshotConfigurationUpdate = {
     type = "structure",
+    id = "ApplicationSnapshotConfigurationUpdate",
     members = {
         SnapshotsEnabledUpdate = {
             type = "boolean",
@@ -1592,6 +1696,7 @@ M.ApplicationSnapshotConfigurationUpdate = {
 
 M.ApplicationSystemRollbackConfigurationUpdate = {
     type = "structure",
+    id = "ApplicationSystemRollbackConfigurationUpdate",
     members = {
         RollbackEnabledUpdate = {
             type = "boolean",
@@ -1604,6 +1709,7 @@ M.ApplicationSystemRollbackConfigurationUpdate = {
 
 M.EnvironmentPropertyUpdates = {
     type = "structure",
+    id = "EnvironmentPropertyUpdates",
     members = {
         PropertyGroups = {
             type = "list",
@@ -1617,6 +1723,7 @@ M.EnvironmentPropertyUpdates = {
 
 M.CheckpointConfigurationUpdate = {
     type = "structure",
+    id = "CheckpointConfigurationUpdate",
     members = {
         ConfigurationTypeUpdate = {
             type = "string",
@@ -1635,6 +1742,7 @@ M.CheckpointConfigurationUpdate = {
 
 M.MonitoringConfigurationUpdate = {
     type = "structure",
+    id = "MonitoringConfigurationUpdate",
     members = {
         ConfigurationTypeUpdate = {
             type = "string",
@@ -1650,6 +1758,7 @@ M.MonitoringConfigurationUpdate = {
 
 M.ParallelismConfigurationUpdate = {
     type = "structure",
+    id = "ParallelismConfigurationUpdate",
     members = {
         ConfigurationTypeUpdate = {
             type = "string",
@@ -1668,6 +1777,7 @@ M.ParallelismConfigurationUpdate = {
 
 M.FlinkApplicationConfigurationUpdate = {
     type = "structure",
+    id = "FlinkApplicationConfigurationUpdate",
     members = {
         CheckpointConfigurationUpdate = M.CheckpointConfigurationUpdate,
         MonitoringConfigurationUpdate = M.MonitoringConfigurationUpdate,
@@ -1677,6 +1787,7 @@ M.FlinkApplicationConfigurationUpdate = {
 
 M.InputParallelismUpdate = {
     type = "structure",
+    id = "InputParallelismUpdate",
     members = {
         CountUpdate = {
             type = "integer",
@@ -1689,6 +1800,7 @@ M.InputParallelismUpdate = {
 
 M.InputLambdaProcessorUpdate = {
     type = "structure",
+    id = "InputLambdaProcessorUpdate",
     members = {
         ResourceARNUpdate = {
             type = "string",
@@ -1701,6 +1813,7 @@ M.InputLambdaProcessorUpdate = {
 
 M.InputProcessingConfigurationUpdate = {
     type = "structure",
+    id = "InputProcessingConfigurationUpdate",
     members = {
         InputLambdaProcessorUpdate = setmetatable({ traits = {
             required = true,
@@ -1710,6 +1823,7 @@ M.InputProcessingConfigurationUpdate = {
 
 M.InputSchemaUpdate = {
     type = "structure",
+    id = "InputSchemaUpdate",
     members = {
         RecordFormatUpdate = M.RecordFormat,
         RecordEncodingUpdate = {
@@ -1724,6 +1838,7 @@ M.InputSchemaUpdate = {
 
 M.KinesisFirehoseInputUpdate = {
     type = "structure",
+    id = "KinesisFirehoseInputUpdate",
     members = {
         ResourceARNUpdate = {
             type = "string",
@@ -1736,6 +1851,7 @@ M.KinesisFirehoseInputUpdate = {
 
 M.KinesisStreamsInputUpdate = {
     type = "structure",
+    id = "KinesisStreamsInputUpdate",
     members = {
         ResourceARNUpdate = {
             type = "string",
@@ -1748,6 +1864,7 @@ M.KinesisStreamsInputUpdate = {
 
 M.InputUpdate = {
     type = "structure",
+    id = "InputUpdate",
     members = {
         InputId = {
             type = "string",
@@ -1768,6 +1885,7 @@ M.InputUpdate = {
 
 M.KinesisFirehoseOutputUpdate = {
     type = "structure",
+    id = "KinesisFirehoseOutputUpdate",
     members = {
         ResourceARNUpdate = {
             type = "string",
@@ -1780,6 +1898,7 @@ M.KinesisFirehoseOutputUpdate = {
 
 M.KinesisStreamsOutputUpdate = {
     type = "structure",
+    id = "KinesisStreamsOutputUpdate",
     members = {
         ResourceARNUpdate = {
             type = "string",
@@ -1792,6 +1911,7 @@ M.KinesisStreamsOutputUpdate = {
 
 M.LambdaOutputUpdate = {
     type = "structure",
+    id = "LambdaOutputUpdate",
     members = {
         ResourceARNUpdate = {
             type = "string",
@@ -1804,6 +1924,7 @@ M.LambdaOutputUpdate = {
 
 M.OutputUpdate = {
     type = "structure",
+    id = "OutputUpdate",
     members = {
         OutputId = {
             type = "string",
@@ -1823,6 +1944,7 @@ M.OutputUpdate = {
 
 M.S3ReferenceDataSourceUpdate = {
     type = "structure",
+    id = "S3ReferenceDataSourceUpdate",
     members = {
         BucketARNUpdate = {
             type = "string",
@@ -1835,6 +1957,7 @@ M.S3ReferenceDataSourceUpdate = {
 
 M.ReferenceDataSourceUpdate = {
     type = "structure",
+    id = "ReferenceDataSourceUpdate",
     members = {
         ReferenceId = {
             type = "string",
@@ -1852,6 +1975,7 @@ M.ReferenceDataSourceUpdate = {
 
 M.SqlApplicationConfigurationUpdate = {
     type = "structure",
+    id = "SqlApplicationConfigurationUpdate",
     members = {
         InputUpdates = {
             type = "list",
@@ -1870,6 +1994,7 @@ M.SqlApplicationConfigurationUpdate = {
 
 M.VpcConfigurationUpdate = {
     type = "structure",
+    id = "VpcConfigurationUpdate",
     members = {
         VpcConfigurationId = {
             type = "string",
@@ -1890,6 +2015,7 @@ M.VpcConfigurationUpdate = {
 
 M.GlueDataCatalogConfigurationUpdate = {
     type = "structure",
+    id = "GlueDataCatalogConfigurationUpdate",
     members = {
         DatabaseARNUpdate = {
             type = "string",
@@ -1902,6 +2028,7 @@ M.GlueDataCatalogConfigurationUpdate = {
 
 M.CatalogConfigurationUpdate = {
     type = "structure",
+    id = "CatalogConfigurationUpdate",
     members = {
         GlueDataCatalogConfigurationUpdate = setmetatable({ traits = {
             required = true,
@@ -1911,6 +2038,7 @@ M.CatalogConfigurationUpdate = {
 
 M.S3ContentBaseLocationUpdate = {
     type = "structure",
+    id = "S3ContentBaseLocationUpdate",
     members = {
         BucketARNUpdate = {
             type = "string",
@@ -1923,6 +2051,7 @@ M.S3ContentBaseLocationUpdate = {
 
 M.DeployAsApplicationConfigurationUpdate = {
     type = "structure",
+    id = "DeployAsApplicationConfigurationUpdate",
     members = {
         S3ContentLocationUpdate = M.S3ContentBaseLocationUpdate,
     },
@@ -1930,6 +2059,7 @@ M.DeployAsApplicationConfigurationUpdate = {
 
 M.ZeppelinMonitoringConfigurationUpdate = {
     type = "structure",
+    id = "ZeppelinMonitoringConfigurationUpdate",
     members = {
         LogLevelUpdate = {
             type = "string",
@@ -1942,6 +2072,7 @@ M.ZeppelinMonitoringConfigurationUpdate = {
 
 M.ZeppelinApplicationConfigurationUpdate = {
     type = "structure",
+    id = "ZeppelinApplicationConfigurationUpdate",
     members = {
         MonitoringConfigurationUpdate = M.ZeppelinMonitoringConfigurationUpdate,
         CatalogConfigurationUpdate = M.CatalogConfigurationUpdate,
@@ -1955,6 +2086,7 @@ M.ZeppelinApplicationConfigurationUpdate = {
 
 M.ApplicationConfigurationUpdate = {
     type = "structure",
+    id = "ApplicationConfigurationUpdate",
     members = {
         SqlApplicationConfigurationUpdate = M.SqlApplicationConfigurationUpdate,
         ApplicationCodeConfigurationUpdate = M.ApplicationCodeConfigurationUpdate,
@@ -1973,6 +2105,7 @@ M.ApplicationConfigurationUpdate = {
 
 M.ApplicationMaintenanceConfigurationDescription = {
     type = "structure",
+    id = "ApplicationMaintenanceConfigurationDescription",
     members = {
         ApplicationMaintenanceWindowStartTime = {
             type = "string",
@@ -2026,6 +2159,7 @@ M.RuntimeEnvironment = {
 
 M.ApplicationDetail = {
     type = "structure",
+    id = "ApplicationDetail",
     members = {
         ApplicationARN = {
             type = "string",
@@ -2098,6 +2232,7 @@ M.ApplicationDetail = {
 
 M.ApplicationMaintenanceConfigurationUpdate = {
     type = "structure",
+    id = "ApplicationMaintenanceConfigurationUpdate",
     members = {
         ApplicationMaintenanceWindowStartTimeUpdate = {
             type = "string",
@@ -2117,6 +2252,7 @@ M.OperationStatus = {
 
 M.ApplicationOperationInfo = {
     type = "structure",
+    id = "ApplicationOperationInfo",
     members = {
         Operation = {
             type = "string",
@@ -2138,6 +2274,7 @@ M.ApplicationOperationInfo = {
 
 M.ApplicationVersionChangeDetails = {
     type = "structure",
+    id = "ApplicationVersionChangeDetails",
     members = {
         ApplicationVersionUpdatedFrom = {
             type = "long",
@@ -2156,6 +2293,7 @@ M.ApplicationVersionChangeDetails = {
 
 M.ErrorInfo = {
     type = "structure",
+    id = "ErrorInfo",
     members = {
         ErrorString = {
             type = "string",
@@ -2165,6 +2303,7 @@ M.ErrorInfo = {
 
 M.OperationFailureDetails = {
     type = "structure",
+    id = "OperationFailureDetails",
     members = {
         RollbackOperationId = {
             type = "string",
@@ -2175,6 +2314,7 @@ M.OperationFailureDetails = {
 
 M.ApplicationOperationInfoDetails = {
     type = "structure",
+    id = "ApplicationOperationInfoDetails",
     members = {
         Operation = {
             type = "string",
@@ -2207,6 +2347,7 @@ M.ApplicationOperationInfoDetails = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         ApplicationName = {
             type = "string",
@@ -2246,6 +2387,7 @@ M.ApplicationSummary = {
 
 M.ApplicationVersionSummary = {
     type = "structure",
+    id = "ApplicationVersionSummary",
     members = {
         ApplicationVersionId = {
             type = "long",
@@ -2264,6 +2406,7 @@ M.ApplicationVersionSummary = {
 
 M.CloudWatchLoggingOptionUpdate = {
     type = "structure",
+    id = "CloudWatchLoggingOptionUpdate",
     members = {
         CloudWatchLoggingOptionId = {
             type = "string",
@@ -2279,6 +2422,7 @@ M.CloudWatchLoggingOptionUpdate = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -2294,6 +2438,7 @@ M.Tag = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2333,6 +2478,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         ApplicationDetail = setmetatable({ traits = {
             required = true,
@@ -2342,6 +2488,7 @@ M.CreateApplicationOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -2352,6 +2499,7 @@ M.LimitExceededException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -2362,6 +2510,7 @@ M.TooManyTagsException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -2377,6 +2526,7 @@ M.UrlType = {
 
 M.CreateApplicationPresignedUrlInput = {
     type = "structure",
+    id = "CreateApplicationPresignedUrlInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2398,6 +2548,7 @@ M.CreateApplicationPresignedUrlInput = {
 
 M.CreateApplicationPresignedUrlOutput = {
     type = "structure",
+    id = "CreateApplicationPresignedUrlOutput",
     members = {
         AuthorizedUrl = {
             type = "string",
@@ -2407,6 +2558,7 @@ M.CreateApplicationPresignedUrlOutput = {
 
 M.CreateApplicationSnapshotInput = {
     type = "structure",
+    id = "CreateApplicationSnapshotInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2425,10 +2577,12 @@ M.CreateApplicationSnapshotInput = {
 
 M.CreateApplicationSnapshotOutput = {
     type = "structure",
+    id = "CreateApplicationSnapshotOutput",
 }
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2447,10 +2601,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOperationOutput = {
     type = "structure",
+    id = "DeleteApplicationOperationOutput",
 }
 
 M.DeleteApplicationCloudWatchLoggingOptionInput = {
     type = "structure",
+    id = "DeleteApplicationCloudWatchLoggingOptionInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2475,6 +2631,7 @@ M.DeleteApplicationCloudWatchLoggingOptionInput = {
 
 M.DeleteApplicationCloudWatchLoggingOptionOutput = {
     type = "structure",
+    id = "DeleteApplicationCloudWatchLoggingOptionOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -2494,6 +2651,7 @@ M.DeleteApplicationCloudWatchLoggingOptionOutput = {
 
 M.DeleteApplicationInputProcessingConfigurationInput = {
     type = "structure",
+    id = "DeleteApplicationInputProcessingConfigurationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2518,6 +2676,7 @@ M.DeleteApplicationInputProcessingConfigurationInput = {
 
 M.DeleteApplicationInputProcessingConfigurationOutput = {
     type = "structure",
+    id = "DeleteApplicationInputProcessingConfigurationOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -2530,6 +2689,7 @@ M.DeleteApplicationInputProcessingConfigurationOutput = {
 
 M.DeleteApplicationOutputInput = {
     type = "structure",
+    id = "DeleteApplicationOutputInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2554,6 +2714,7 @@ M.DeleteApplicationOutputInput = {
 
 M.DeleteApplicationOutputOutput = {
     type = "structure",
+    id = "DeleteApplicationOutputOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -2566,6 +2727,7 @@ M.DeleteApplicationOutputOutput = {
 
 M.DeleteApplicationReferenceDataSourceInput = {
     type = "structure",
+    id = "DeleteApplicationReferenceDataSourceInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2590,6 +2752,7 @@ M.DeleteApplicationReferenceDataSourceInput = {
 
 M.DeleteApplicationReferenceDataSourceOutput = {
     type = "structure",
+    id = "DeleteApplicationReferenceDataSourceOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -2602,6 +2765,7 @@ M.DeleteApplicationReferenceDataSourceOutput = {
 
 M.DeleteApplicationSnapshotInput = {
     type = "structure",
+    id = "DeleteApplicationSnapshotInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2626,10 +2790,12 @@ M.DeleteApplicationSnapshotInput = {
 
 M.DeleteApplicationSnapshotOutput = {
     type = "structure",
+    id = "DeleteApplicationSnapshotOutput",
 }
 
 M.DeleteApplicationVpcConfigurationInput = {
     type = "structure",
+    id = "DeleteApplicationVpcConfigurationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2654,6 +2820,7 @@ M.DeleteApplicationVpcConfigurationInput = {
 
 M.DeleteApplicationVpcConfigurationOutput = {
     type = "structure",
+    id = "DeleteApplicationVpcConfigurationOutput",
     members = {
         ApplicationARN = {
             type = "string",
@@ -2669,6 +2836,7 @@ M.DeleteApplicationVpcConfigurationOutput = {
 
 M.DescribeApplicationInput = {
     type = "structure",
+    id = "DescribeApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2684,6 +2852,7 @@ M.DescribeApplicationInput = {
 
 M.DescribeApplicationOutput = {
     type = "structure",
+    id = "DescribeApplicationOutput",
     members = {
         ApplicationDetail = setmetatable({ traits = {
             required = true,
@@ -2693,6 +2862,7 @@ M.DescribeApplicationOutput = {
 
 M.DescribeApplicationOperationInput = {
     type = "structure",
+    id = "DescribeApplicationOperationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2711,6 +2881,7 @@ M.DescribeApplicationOperationInput = {
 
 M.DescribeApplicationOperationOutput = {
     type = "structure",
+    id = "DescribeApplicationOperationOutput",
     members = {
         ApplicationOperationInfoDetails = M.ApplicationOperationInfoDetails,
     },
@@ -2718,6 +2889,7 @@ M.DescribeApplicationOperationOutput = {
 
 M.DescribeApplicationSnapshotInput = {
     type = "structure",
+    id = "DescribeApplicationSnapshotInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2743,6 +2915,7 @@ M.SnapshotStatus = {
 
 M.SnapshotDetails = {
     type = "structure",
+    id = "SnapshotDetails",
     members = {
         SnapshotName = {
             type = "string",
@@ -2774,6 +2947,7 @@ M.SnapshotDetails = {
 
 M.DescribeApplicationSnapshotOutput = {
     type = "structure",
+    id = "DescribeApplicationSnapshotOutput",
     members = {
         SnapshotDetails = setmetatable({ traits = {
             required = true,
@@ -2783,6 +2957,7 @@ M.DescribeApplicationSnapshotOutput = {
 
 M.DescribeApplicationVersionInput = {
     type = "structure",
+    id = "DescribeApplicationVersionInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2801,6 +2976,7 @@ M.DescribeApplicationVersionInput = {
 
 M.DescribeApplicationVersionOutput = {
     type = "structure",
+    id = "DescribeApplicationVersionOutput",
     members = {
         ApplicationVersionDetail = M.ApplicationDetail,
     },
@@ -2808,6 +2984,7 @@ M.DescribeApplicationVersionOutput = {
 
 M.S3Configuration = {
     type = "structure",
+    id = "S3Configuration",
     members = {
         BucketARN = {
             type = "string",
@@ -2826,6 +3003,7 @@ M.S3Configuration = {
 
 M.DiscoverInputSchemaInput = {
     type = "structure",
+    id = "DiscoverInputSchemaInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2844,6 +3022,7 @@ M.DiscoverInputSchemaInput = {
 
 M.DiscoverInputSchemaOutput = {
     type = "structure",
+    id = "DiscoverInputSchemaOutput",
     members = {
         InputSchema = M.SourceSchema,
         ParsedInputRecords = {
@@ -2863,6 +3042,7 @@ M.DiscoverInputSchemaOutput = {
 
 M.ResourceProvisionedThroughputExceededException = {
     type = "structure",
+    id = "ResourceProvisionedThroughputExceededException",
     error = "client",
     members = {
         Message = {
@@ -2873,6 +3053,7 @@ M.ResourceProvisionedThroughputExceededException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -2883,6 +3064,7 @@ M.ServiceUnavailableException = {
 
 M.UnableToDetectSchemaException = {
     type = "structure",
+    id = "UnableToDetectSchemaException",
     error = "client",
     members = {
         Message = {
@@ -2901,6 +3083,7 @@ M.UnableToDetectSchemaException = {
 
 M.ListApplicationOperationsInput = {
     type = "structure",
+    id = "ListApplicationOperationsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2925,6 +3108,7 @@ M.ListApplicationOperationsInput = {
 
 M.ListApplicationOperationsOutput = {
     type = "structure",
+    id = "ListApplicationOperationsOutput",
     members = {
         ApplicationOperationInfoList = {
             type = "list",
@@ -2938,6 +3122,7 @@ M.ListApplicationOperationsOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         Limit = {
             type = "integer",
@@ -2950,6 +3135,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         ApplicationSummaries = {
             type = "list",
@@ -2966,6 +3152,7 @@ M.ListApplicationsOutput = {
 
 M.ListApplicationSnapshotsInput = {
     type = "structure",
+    id = "ListApplicationSnapshotsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2984,6 +3171,7 @@ M.ListApplicationSnapshotsInput = {
 
 M.ListApplicationSnapshotsOutput = {
     type = "structure",
+    id = "ListApplicationSnapshotsOutput",
     members = {
         SnapshotSummaries = {
             type = "list",
@@ -2997,6 +3185,7 @@ M.ListApplicationSnapshotsOutput = {
 
 M.ListApplicationVersionsInput = {
     type = "structure",
+    id = "ListApplicationVersionsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -3015,6 +3204,7 @@ M.ListApplicationVersionsInput = {
 
 M.ListApplicationVersionsOutput = {
     type = "structure",
+    id = "ListApplicationVersionsOutput",
     members = {
         ApplicationVersionSummaries = {
             type = "list",
@@ -3028,6 +3218,7 @@ M.ListApplicationVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3040,6 +3231,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3050,6 +3242,7 @@ M.ListTagsForResourceOutput = {
 
 M.RollbackApplicationInput = {
     type = "structure",
+    id = "RollbackApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -3068,6 +3261,7 @@ M.RollbackApplicationInput = {
 
 M.RollbackApplicationOutput = {
     type = "structure",
+    id = "RollbackApplicationOutput",
     members = {
         ApplicationDetail = setmetatable({ traits = {
             required = true,
@@ -3080,6 +3274,7 @@ M.RollbackApplicationOutput = {
 
 M.SqlRunConfiguration = {
     type = "structure",
+    id = "SqlRunConfiguration",
     members = {
         InputId = {
             type = "string",
@@ -3095,6 +3290,7 @@ M.SqlRunConfiguration = {
 
 M.RunConfiguration = {
     type = "structure",
+    id = "RunConfiguration",
     members = {
         FlinkRunConfiguration = M.FlinkRunConfiguration,
         SqlRunConfigurations = {
@@ -3107,6 +3303,7 @@ M.RunConfiguration = {
 
 M.StartApplicationInput = {
     type = "structure",
+    id = "StartApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -3120,6 +3317,7 @@ M.StartApplicationInput = {
 
 M.StartApplicationOutput = {
     type = "structure",
+    id = "StartApplicationOutput",
     members = {
         OperationId = {
             type = "string",
@@ -3129,6 +3327,7 @@ M.StartApplicationOutput = {
 
 M.StopApplicationInput = {
     type = "structure",
+    id = "StopApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -3144,6 +3343,7 @@ M.StopApplicationInput = {
 
 M.StopApplicationOutput = {
     type = "structure",
+    id = "StopApplicationOutput",
     members = {
         OperationId = {
             type = "string",
@@ -3153,6 +3353,7 @@ M.StopApplicationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3172,10 +3373,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3195,10 +3398,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.RunConfigurationUpdate = {
     type = "structure",
+    id = "RunConfigurationUpdate",
     members = {
         FlinkRunConfiguration = M.FlinkRunConfiguration,
         ApplicationRestoreConfiguration = M.ApplicationRestoreConfiguration,
@@ -3207,6 +3412,7 @@ M.RunConfigurationUpdate = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -3237,6 +3443,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         ApplicationDetail = setmetatable({ traits = {
             required = true,
@@ -3249,6 +3456,7 @@ M.UpdateApplicationOutput = {
 
 M.UpdateApplicationMaintenanceConfigurationInput = {
     type = "structure",
+    id = "UpdateApplicationMaintenanceConfigurationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -3264,6 +3472,7 @@ M.UpdateApplicationMaintenanceConfigurationInput = {
 
 M.UpdateApplicationMaintenanceConfigurationOutput = {
     type = "structure",
+    id = "UpdateApplicationMaintenanceConfigurationOutput",
     members = {
         ApplicationARN = {
             type = "string",

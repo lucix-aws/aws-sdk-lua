@@ -2,6 +2,7 @@ local M = {}
 
 M.AssumedRoleUser = {
     type = "structure",
+    id = "AssumedRoleUser",
     members = {
         AssumedRoleId = {
             type = "string",
@@ -20,6 +21,7 @@ M.AssumedRoleUser = {
 
 M.PolicyDescriptorType = {
     type = "structure",
+    id = "PolicyDescriptorType",
     members = {
         arn = {
             type = "string",
@@ -29,6 +31,7 @@ M.PolicyDescriptorType = {
 
 M.ProvidedContext = {
     type = "structure",
+    id = "ProvidedContext",
     members = {
         ProviderArn = {
             type = "string",
@@ -41,6 +44,7 @@ M.ProvidedContext = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -59,6 +63,7 @@ M.Tag = {
 
 M.AssumeRoleInput = {
     type = "structure",
+    id = "AssumeRoleInput",
     members = {
         RoleArn = {
             type = "string",
@@ -111,6 +116,7 @@ M.AssumeRoleInput = {
 
 M.Credentials = {
     type = "structure",
+    id = "Credentials",
     members = {
         AccessKeyId = {
             type = "string",
@@ -141,6 +147,7 @@ M.Credentials = {
 
 M.AssumeRoleOutput = {
     type = "structure",
+    id = "AssumeRoleOutput",
     members = {
         Credentials = M.Credentials,
         AssumedRoleUser = M.AssumedRoleUser,
@@ -155,6 +162,7 @@ M.AssumeRoleOutput = {
 
 M.ExpiredTokenException = {
     type = "structure",
+    id = "ExpiredTokenException",
     error = "client",
     members = {
         message = {
@@ -165,6 +173,7 @@ M.ExpiredTokenException = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         message = {
@@ -175,6 +184,7 @@ M.MalformedPolicyDocumentException = {
 
 M.PackedPolicyTooLargeException = {
     type = "structure",
+    id = "PackedPolicyTooLargeException",
     error = "client",
     members = {
         message = {
@@ -185,6 +195,7 @@ M.PackedPolicyTooLargeException = {
 
 M.RegionDisabledException = {
     type = "structure",
+    id = "RegionDisabledException",
     error = "client",
     members = {
         message = {
@@ -195,6 +206,7 @@ M.RegionDisabledException = {
 
 M.AssumeRoleWithSAMLInput = {
     type = "structure",
+    id = "AssumeRoleWithSAMLInput",
     members = {
         RoleArn = {
             type = "string",
@@ -229,6 +241,7 @@ M.AssumeRoleWithSAMLInput = {
 
 M.AssumeRoleWithSAMLOutput = {
     type = "structure",
+    id = "AssumeRoleWithSAMLOutput",
     members = {
         Credentials = M.Credentials,
         AssumedRoleUser = M.AssumedRoleUser,
@@ -258,6 +271,7 @@ M.AssumeRoleWithSAMLOutput = {
 
 M.IDPRejectedClaimException = {
     type = "structure",
+    id = "IDPRejectedClaimException",
     error = "client",
     members = {
         message = {
@@ -268,6 +282,7 @@ M.IDPRejectedClaimException = {
 
 M.InvalidIdentityTokenException = {
     type = "structure",
+    id = "InvalidIdentityTokenException",
     error = "client",
     members = {
         message = {
@@ -278,6 +293,7 @@ M.InvalidIdentityTokenException = {
 
 M.AssumeRoleWithWebIdentityInput = {
     type = "structure",
+    id = "AssumeRoleWithWebIdentityInput",
     members = {
         RoleArn = {
             type = "string",
@@ -315,6 +331,7 @@ M.AssumeRoleWithWebIdentityInput = {
 
 M.AssumeRoleWithWebIdentityOutput = {
     type = "structure",
+    id = "AssumeRoleWithWebIdentityOutput",
     members = {
         Credentials = M.Credentials,
         SubjectFromWebIdentityToken = {
@@ -338,6 +355,7 @@ M.AssumeRoleWithWebIdentityOutput = {
 
 M.IDPCommunicationErrorException = {
     type = "structure",
+    id = "IDPCommunicationErrorException",
     error = "client",
     members = {
         message = {
@@ -348,6 +366,7 @@ M.IDPCommunicationErrorException = {
 
 M.AssumeRootInput = {
     type = "structure",
+    id = "AssumeRootInput",
     members = {
         TargetPrincipal = {
             type = "string",
@@ -366,6 +385,7 @@ M.AssumeRootInput = {
 
 M.AssumeRootOutput = {
     type = "structure",
+    id = "AssumeRootOutput",
     members = {
         Credentials = M.Credentials,
         SourceIdentity = {
@@ -376,6 +396,7 @@ M.AssumeRootOutput = {
 
 M.DecodeAuthorizationMessageInput = {
     type = "structure",
+    id = "DecodeAuthorizationMessageInput",
     members = {
         EncodedMessage = {
             type = "string",
@@ -388,6 +409,7 @@ M.DecodeAuthorizationMessageInput = {
 
 M.DecodeAuthorizationMessageOutput = {
     type = "structure",
+    id = "DecodeAuthorizationMessageOutput",
     members = {
         DecodedMessage = {
             type = "string",
@@ -397,6 +419,7 @@ M.DecodeAuthorizationMessageOutput = {
 
 M.InvalidAuthorizationMessageException = {
     type = "structure",
+    id = "InvalidAuthorizationMessageException",
     error = "client",
     members = {
         message = {
@@ -407,6 +430,7 @@ M.InvalidAuthorizationMessageException = {
 
 M.GetAccessKeyInfoInput = {
     type = "structure",
+    id = "GetAccessKeyInfoInput",
     members = {
         AccessKeyId = {
             type = "string",
@@ -419,6 +443,7 @@ M.GetAccessKeyInfoInput = {
 
 M.GetAccessKeyInfoOutput = {
     type = "structure",
+    id = "GetAccessKeyInfoOutput",
     members = {
         Account = {
             type = "string",
@@ -428,10 +453,12 @@ M.GetAccessKeyInfoOutput = {
 
 M.GetCallerIdentityInput = {
     type = "structure",
+    id = "GetCallerIdentityInput",
 }
 
 M.GetCallerIdentityOutput = {
     type = "structure",
+    id = "GetCallerIdentityOutput",
     members = {
         UserId = {
             type = "string",
@@ -447,6 +474,7 @@ M.GetCallerIdentityOutput = {
 
 M.ExpiredTradeInTokenException = {
     type = "structure",
+    id = "ExpiredTradeInTokenException",
     error = "client",
     members = {
         message = {
@@ -457,6 +485,7 @@ M.ExpiredTradeInTokenException = {
 
 M.GetDelegatedAccessTokenInput = {
     type = "structure",
+    id = "GetDelegatedAccessTokenInput",
     members = {
         TradeInToken = {
             type = "string",
@@ -469,6 +498,7 @@ M.GetDelegatedAccessTokenInput = {
 
 M.GetDelegatedAccessTokenOutput = {
     type = "structure",
+    id = "GetDelegatedAccessTokenOutput",
     members = {
         Credentials = M.Credentials,
         PackedPolicySize = {
@@ -482,6 +512,7 @@ M.GetDelegatedAccessTokenOutput = {
 
 M.GetFederationTokenInput = {
     type = "structure",
+    id = "GetFederationTokenInput",
     members = {
         Name = {
             type = "string",
@@ -508,6 +539,7 @@ M.GetFederationTokenInput = {
 
 M.FederatedUser = {
     type = "structure",
+    id = "FederatedUser",
     members = {
         FederatedUserId = {
             type = "string",
@@ -526,6 +558,7 @@ M.FederatedUser = {
 
 M.GetFederationTokenOutput = {
     type = "structure",
+    id = "GetFederationTokenOutput",
     members = {
         Credentials = M.Credentials,
         FederatedUser = M.FederatedUser,
@@ -537,6 +570,7 @@ M.GetFederationTokenOutput = {
 
 M.GetSessionTokenInput = {
     type = "structure",
+    id = "GetSessionTokenInput",
     members = {
         DurationSeconds = {
             type = "integer",
@@ -552,6 +586,7 @@ M.GetSessionTokenInput = {
 
 M.GetSessionTokenOutput = {
     type = "structure",
+    id = "GetSessionTokenOutput",
     members = {
         Credentials = M.Credentials,
     },
@@ -559,6 +594,7 @@ M.GetSessionTokenOutput = {
 
 M.GetWebIdentityTokenInput = {
     type = "structure",
+    id = "GetWebIdentityTokenInput",
     members = {
         Audience = {
             type = "list",
@@ -585,6 +621,7 @@ M.GetWebIdentityTokenInput = {
 
 M.GetWebIdentityTokenOutput = {
     type = "structure",
+    id = "GetWebIdentityTokenOutput",
     members = {
         WebIdentityToken = {
             type = "string",
@@ -597,6 +634,7 @@ M.GetWebIdentityTokenOutput = {
 
 M.JWTPayloadSizeExceededException = {
     type = "structure",
+    id = "JWTPayloadSizeExceededException",
     error = "client",
     members = {
         message = {
@@ -607,6 +645,7 @@ M.JWTPayloadSizeExceededException = {
 
 M.OutboundWebIdentityFederationDisabledException = {
     type = "structure",
+    id = "OutboundWebIdentityFederationDisabledException",
     error = "client",
     members = {
         message = {
@@ -617,6 +656,7 @@ M.OutboundWebIdentityFederationDisabledException = {
 
 M.SessionDurationEscalationException = {
     type = "structure",
+    id = "SessionDurationEscalationException",
     error = "client",
     members = {
         message = {

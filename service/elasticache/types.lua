@@ -2,6 +2,7 @@ local M = {}
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -14,6 +15,7 @@ M.Tag = {
 
 M.AddTagsToResourceInput = {
     type = "structure",
+    id = "AddTagsToResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -33,6 +35,7 @@ M.AddTagsToResourceInput = {
 
 M.AddTagsToResourceOutput = {
     type = "structure",
+    id = "AddTagsToResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -43,6 +46,7 @@ M.AddTagsToResourceOutput = {
 
 M.CacheClusterNotFoundFault = {
     type = "structure",
+    id = "CacheClusterNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -53,6 +57,7 @@ M.CacheClusterNotFoundFault = {
 
 M.CacheParameterGroupNotFoundFault = {
     type = "structure",
+    id = "CacheParameterGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -63,6 +68,7 @@ M.CacheParameterGroupNotFoundFault = {
 
 M.CacheSecurityGroupNotFoundFault = {
     type = "structure",
+    id = "CacheSecurityGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -73,6 +79,7 @@ M.CacheSecurityGroupNotFoundFault = {
 
 M.CacheSubnetGroupNotFoundFault = {
     type = "structure",
+    id = "CacheSubnetGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -83,6 +90,7 @@ M.CacheSubnetGroupNotFoundFault = {
 
 M.InvalidARNFault = {
     type = "structure",
+    id = "InvalidARNFault",
     error = "client",
     members = {
         message = {
@@ -93,6 +101,7 @@ M.InvalidARNFault = {
 
 M.InvalidReplicationGroupStateFault = {
     type = "structure",
+    id = "InvalidReplicationGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -103,6 +112,7 @@ M.InvalidReplicationGroupStateFault = {
 
 M.InvalidServerlessCacheSnapshotStateFault = {
     type = "structure",
+    id = "InvalidServerlessCacheSnapshotStateFault",
     error = "client",
     members = {
         message = {
@@ -113,6 +123,7 @@ M.InvalidServerlessCacheSnapshotStateFault = {
 
 M.InvalidServerlessCacheStateFault = {
     type = "structure",
+    id = "InvalidServerlessCacheStateFault",
     error = "client",
     members = {
         message = {
@@ -123,6 +134,7 @@ M.InvalidServerlessCacheStateFault = {
 
 M.ReplicationGroupNotFoundFault = {
     type = "structure",
+    id = "ReplicationGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -133,6 +145,7 @@ M.ReplicationGroupNotFoundFault = {
 
 M.ReservedCacheNodeNotFoundFault = {
     type = "structure",
+    id = "ReservedCacheNodeNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -143,6 +156,7 @@ M.ReservedCacheNodeNotFoundFault = {
 
 M.ServerlessCacheNotFoundFault = {
     type = "structure",
+    id = "ServerlessCacheNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -153,6 +167,7 @@ M.ServerlessCacheNotFoundFault = {
 
 M.ServerlessCacheSnapshotNotFoundFault = {
     type = "structure",
+    id = "ServerlessCacheSnapshotNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -163,6 +178,7 @@ M.ServerlessCacheSnapshotNotFoundFault = {
 
 M.SnapshotNotFoundFault = {
     type = "structure",
+    id = "SnapshotNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -173,6 +189,7 @@ M.SnapshotNotFoundFault = {
 
 M.TagQuotaPerResourceExceeded = {
     type = "structure",
+    id = "TagQuotaPerResourceExceeded",
     error = "client",
     members = {
         message = {
@@ -183,6 +200,7 @@ M.TagQuotaPerResourceExceeded = {
 
 M.UserGroupNotFoundFault = {
     type = "structure",
+    id = "UserGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -193,6 +211,7 @@ M.UserGroupNotFoundFault = {
 
 M.UserNotFoundFault = {
     type = "structure",
+    id = "UserNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -203,6 +222,7 @@ M.UserNotFoundFault = {
 
 M.AuthorizationAlreadyExistsFault = {
     type = "structure",
+    id = "AuthorizationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -213,6 +233,7 @@ M.AuthorizationAlreadyExistsFault = {
 
 M.AuthorizeCacheSecurityGroupIngressInput = {
     type = "structure",
+    id = "AuthorizeCacheSecurityGroupIngressInput",
     members = {
         CacheSecurityGroupName = {
             type = "string",
@@ -237,6 +258,7 @@ M.AuthorizeCacheSecurityGroupIngressInput = {
 
 M.EC2SecurityGroup = {
     type = "structure",
+    id = "EC2SecurityGroup",
     members = {
         Status = {
             type = "string",
@@ -252,6 +274,7 @@ M.EC2SecurityGroup = {
 
 M.CacheSecurityGroup = {
     type = "structure",
+    id = "CacheSecurityGroup",
     members = {
         OwnerId = {
             type = "string",
@@ -274,6 +297,7 @@ M.CacheSecurityGroup = {
 
 M.AuthorizeCacheSecurityGroupIngressOutput = {
     type = "structure",
+    id = "AuthorizeCacheSecurityGroupIngressOutput",
     members = {
         CacheSecurityGroup = M.CacheSecurityGroup,
     },
@@ -281,6 +305,7 @@ M.AuthorizeCacheSecurityGroupIngressOutput = {
 
 M.InvalidCacheSecurityGroupStateFault = {
     type = "structure",
+    id = "InvalidCacheSecurityGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -291,6 +316,7 @@ M.InvalidCacheSecurityGroupStateFault = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         message = {
@@ -301,6 +327,7 @@ M.InvalidParameterCombinationException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -311,6 +338,7 @@ M.InvalidParameterValueException = {
 
 M.BatchApplyUpdateActionInput = {
     type = "structure",
+    id = "BatchApplyUpdateActionInput",
     members = {
         ReplicationGroupIds = {
             type = "list",
@@ -343,6 +371,7 @@ M.UpdateActionStatus = {
 
 M.ProcessedUpdateAction = {
     type = "structure",
+    id = "ProcessedUpdateAction",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -361,6 +390,7 @@ M.ProcessedUpdateAction = {
 
 M.UnprocessedUpdateAction = {
     type = "structure",
+    id = "UnprocessedUpdateAction",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -382,6 +412,7 @@ M.UnprocessedUpdateAction = {
 
 M.BatchApplyUpdateActionOutput = {
     type = "structure",
+    id = "BatchApplyUpdateActionOutput",
     members = {
         ProcessedUpdateActions = {
             type = "list",
@@ -396,6 +427,7 @@ M.BatchApplyUpdateActionOutput = {
 
 M.ServiceUpdateNotFoundFault = {
     type = "structure",
+    id = "ServiceUpdateNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -406,6 +438,7 @@ M.ServiceUpdateNotFoundFault = {
 
 M.BatchStopUpdateActionInput = {
     type = "structure",
+    id = "BatchStopUpdateActionInput",
     members = {
         ReplicationGroupIds = {
             type = "list",
@@ -426,6 +459,7 @@ M.BatchStopUpdateActionInput = {
 
 M.BatchStopUpdateActionOutput = {
     type = "structure",
+    id = "BatchStopUpdateActionOutput",
     members = {
         ProcessedUpdateActions = {
             type = "list",
@@ -440,6 +474,7 @@ M.BatchStopUpdateActionOutput = {
 
 M.CompleteMigrationInput = {
     type = "structure",
+    id = "CompleteMigrationInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -468,6 +503,7 @@ M.ClusterMode = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -485,6 +521,7 @@ M.DataTieringStatus = {
 
 M.GlobalReplicationGroupInfo = {
     type = "structure",
+    id = "GlobalReplicationGroupInfo",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -502,6 +539,7 @@ M.IpDiscovery = {
 
 M.CloudWatchLogsDestinationDetails = {
     type = "structure",
+    id = "CloudWatchLogsDestinationDetails",
     members = {
         LogGroup = {
             type = "string",
@@ -511,6 +549,7 @@ M.CloudWatchLogsDestinationDetails = {
 
 M.KinesisFirehoseDestinationDetails = {
     type = "structure",
+    id = "KinesisFirehoseDestinationDetails",
     members = {
         DeliveryStream = {
             type = "string",
@@ -520,6 +559,7 @@ M.KinesisFirehoseDestinationDetails = {
 
 M.DestinationDetails = {
     type = "structure",
+    id = "DestinationDetails",
     members = {
         CloudWatchLogsDetails = M.CloudWatchLogsDestinationDetails,
         KinesisFirehoseDetails = M.KinesisFirehoseDestinationDetails,
@@ -551,6 +591,7 @@ M.LogDeliveryConfigurationStatus = {
 
 M.LogDeliveryConfiguration = {
     type = "structure",
+    id = "LogDeliveryConfiguration",
     members = {
         LogType = {
             type = "string",
@@ -584,6 +625,7 @@ M.NetworkType = {
 
 M.NodeGroupMember = {
     type = "structure",
+    id = "NodeGroupMember",
     members = {
         CacheClusterId = {
             type = "string",
@@ -606,6 +648,7 @@ M.NodeGroupMember = {
 
 M.NodeGroup = {
     type = "structure",
+    id = "NodeGroup",
     members = {
         NodeGroupId = {
             type = "string",
@@ -637,6 +680,7 @@ M.PendingAutomaticFailoverStatus = {
 
 M.PendingLogDeliveryConfiguration = {
     type = "structure",
+    id = "PendingLogDeliveryConfiguration",
     members = {
         LogType = {
             type = "string",
@@ -653,6 +697,7 @@ M.PendingLogDeliveryConfiguration = {
 
 M.SlotMigration = {
     type = "structure",
+    id = "SlotMigration",
     members = {
         ProgressPercentage = {
             type = "double",
@@ -662,6 +707,7 @@ M.SlotMigration = {
 
 M.ReshardingStatus = {
     type = "structure",
+    id = "ReshardingStatus",
     members = {
         SlotMigration = M.SlotMigration,
     },
@@ -674,6 +720,7 @@ M.TransitEncryptionMode = {
 
 M.UserGroupsUpdateStatus = {
     type = "structure",
+    id = "UserGroupsUpdateStatus",
     members = {
         UserGroupIdsToAdd = {
             type = "list",
@@ -688,6 +735,7 @@ M.UserGroupsUpdateStatus = {
 
 M.ReplicationGroupPendingModifiedValues = {
     type = "structure",
+    id = "ReplicationGroupPendingModifiedValues",
     members = {
         PrimaryClusterId = {
             type = "string",
@@ -718,6 +766,7 @@ M.ReplicationGroupPendingModifiedValues = {
 
 M.ReplicationGroup = {
     type = "structure",
+    id = "ReplicationGroup",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -819,6 +868,7 @@ M.ReplicationGroup = {
 
 M.CompleteMigrationOutput = {
     type = "structure",
+    id = "CompleteMigrationOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -826,6 +876,7 @@ M.CompleteMigrationOutput = {
 
 M.ReplicationGroupNotUnderMigrationFault = {
     type = "structure",
+    id = "ReplicationGroupNotUnderMigrationFault",
     error = "client",
     members = {
         message = {
@@ -836,6 +887,7 @@ M.ReplicationGroupNotUnderMigrationFault = {
 
 M.CopyServerlessCacheSnapshotInput = {
     type = "structure",
+    id = "CopyServerlessCacheSnapshotInput",
     members = {
         SourceServerlessCacheSnapshotName = {
             type = "string",
@@ -861,6 +913,7 @@ M.CopyServerlessCacheSnapshotInput = {
 
 M.ServerlessCacheConfiguration = {
     type = "structure",
+    id = "ServerlessCacheConfiguration",
     members = {
         ServerlessCacheName = {
             type = "string",
@@ -876,6 +929,7 @@ M.ServerlessCacheConfiguration = {
 
 M.ServerlessCacheSnapshot = {
     type = "structure",
+    id = "ServerlessCacheSnapshot",
     members = {
         ServerlessCacheSnapshotName = {
             type = "string",
@@ -907,6 +961,7 @@ M.ServerlessCacheSnapshot = {
 
 M.CopyServerlessCacheSnapshotOutput = {
     type = "structure",
+    id = "CopyServerlessCacheSnapshotOutput",
     members = {
         ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
@@ -914,6 +969,7 @@ M.CopyServerlessCacheSnapshotOutput = {
 
 M.ServerlessCacheSnapshotAlreadyExistsFault = {
     type = "structure",
+    id = "ServerlessCacheSnapshotAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -924,6 +980,7 @@ M.ServerlessCacheSnapshotAlreadyExistsFault = {
 
 M.ServerlessCacheSnapshotQuotaExceededFault = {
     type = "structure",
+    id = "ServerlessCacheSnapshotQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -934,6 +991,7 @@ M.ServerlessCacheSnapshotQuotaExceededFault = {
 
 M.ServiceLinkedRoleNotFoundFault = {
     type = "structure",
+    id = "ServiceLinkedRoleNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -944,6 +1002,7 @@ M.ServiceLinkedRoleNotFoundFault = {
 
 M.CopySnapshotInput = {
     type = "structure",
+    id = "CopySnapshotInput",
     members = {
         SourceSnapshotName = {
             type = "string",
@@ -972,6 +1031,7 @@ M.CopySnapshotInput = {
 
 M.NodeGroupConfiguration = {
     type = "structure",
+    id = "NodeGroupConfiguration",
     members = {
         NodeGroupId = {
             type = "string",
@@ -1001,6 +1061,7 @@ M.NodeGroupConfiguration = {
 
 M.NodeSnapshot = {
     type = "structure",
+    id = "NodeSnapshot",
     members = {
         CacheClusterId = {
             type = "string",
@@ -1026,6 +1087,7 @@ M.NodeSnapshot = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         SnapshotName = {
             type = "string",
@@ -1117,6 +1179,7 @@ M.Snapshot = {
 
 M.CopySnapshotOutput = {
     type = "structure",
+    id = "CopySnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -1124,6 +1187,7 @@ M.CopySnapshotOutput = {
 
 M.InvalidSnapshotStateFault = {
     type = "structure",
+    id = "InvalidSnapshotStateFault",
     error = "client",
     members = {
         message = {
@@ -1134,6 +1198,7 @@ M.InvalidSnapshotStateFault = {
 
 M.SnapshotAlreadyExistsFault = {
     type = "structure",
+    id = "SnapshotAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1144,6 +1209,7 @@ M.SnapshotAlreadyExistsFault = {
 
 M.SnapshotQuotaExceededFault = {
     type = "structure",
+    id = "SnapshotQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1154,6 +1220,7 @@ M.SnapshotQuotaExceededFault = {
 
 M.CacheClusterAlreadyExistsFault = {
     type = "structure",
+    id = "CacheClusterAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1164,6 +1231,7 @@ M.CacheClusterAlreadyExistsFault = {
 
 M.ClusterQuotaForCustomerExceededFault = {
     type = "structure",
+    id = "ClusterQuotaForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -1179,6 +1247,7 @@ M.AZMode = {
 
 M.LogDeliveryConfigurationRequest = {
     type = "structure",
+    id = "LogDeliveryConfigurationRequest",
     members = {
         LogType = {
             type = "string",
@@ -1203,6 +1272,7 @@ M.OutpostMode = {
 
 M.CreateCacheClusterInput = {
     type = "structure",
+    id = "CreateCacheClusterInput",
     members = {
         CacheClusterId = {
             type = "string",
@@ -1309,6 +1379,7 @@ M.CreateCacheClusterInput = {
 
 M.CacheNode = {
     type = "structure",
+    id = "CacheNode",
     members = {
         CacheNodeId = {
             type = "string",
@@ -1337,6 +1408,7 @@ M.CacheNode = {
 
 M.CacheParameterGroupStatus = {
     type = "structure",
+    id = "CacheParameterGroupStatus",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -1353,6 +1425,7 @@ M.CacheParameterGroupStatus = {
 
 M.CacheSecurityGroupMembership = {
     type = "structure",
+    id = "CacheSecurityGroupMembership",
     members = {
         CacheSecurityGroupName = {
             type = "string",
@@ -1365,6 +1438,7 @@ M.CacheSecurityGroupMembership = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         TopicArn = {
             type = "string",
@@ -1377,6 +1451,7 @@ M.NotificationConfiguration = {
 
 M.ScaleConfig = {
     type = "structure",
+    id = "ScaleConfig",
     members = {
         ScalePercentage = {
             type = "integer",
@@ -1389,6 +1464,7 @@ M.ScaleConfig = {
 
 M.PendingModifiedValues = {
     type = "structure",
+    id = "PendingModifiedValues",
     members = {
         NumCacheNodes = {
             type = "integer",
@@ -1422,6 +1498,7 @@ M.PendingModifiedValues = {
 
 M.SecurityGroupMembership = {
     type = "structure",
+    id = "SecurityGroupMembership",
     members = {
         SecurityGroupId = {
             type = "string",
@@ -1434,6 +1511,7 @@ M.SecurityGroupMembership = {
 
 M.CacheCluster = {
     type = "structure",
+    id = "CacheCluster",
     members = {
         CacheClusterId = {
             type = "string",
@@ -1535,6 +1613,7 @@ M.CacheCluster = {
 
 M.CreateCacheClusterOutput = {
     type = "structure",
+    id = "CreateCacheClusterOutput",
     members = {
         CacheCluster = M.CacheCluster,
     },
@@ -1542,6 +1621,7 @@ M.CreateCacheClusterOutput = {
 
 M.InsufficientCacheClusterCapacityFault = {
     type = "structure",
+    id = "InsufficientCacheClusterCapacityFault",
     error = "client",
     members = {
         message = {
@@ -1552,6 +1632,7 @@ M.InsufficientCacheClusterCapacityFault = {
 
 M.InvalidVPCNetworkStateFault = {
     type = "structure",
+    id = "InvalidVPCNetworkStateFault",
     error = "client",
     members = {
         message = {
@@ -1562,6 +1643,7 @@ M.InvalidVPCNetworkStateFault = {
 
 M.NodeQuotaForClusterExceededFault = {
     type = "structure",
+    id = "NodeQuotaForClusterExceededFault",
     error = "client",
     members = {
         message = {
@@ -1572,6 +1654,7 @@ M.NodeQuotaForClusterExceededFault = {
 
 M.NodeQuotaForCustomerExceededFault = {
     type = "structure",
+    id = "NodeQuotaForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -1582,6 +1665,7 @@ M.NodeQuotaForCustomerExceededFault = {
 
 M.CacheParameterGroupAlreadyExistsFault = {
     type = "structure",
+    id = "CacheParameterGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1592,6 +1676,7 @@ M.CacheParameterGroupAlreadyExistsFault = {
 
 M.CacheParameterGroupQuotaExceededFault = {
     type = "structure",
+    id = "CacheParameterGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1602,6 +1687,7 @@ M.CacheParameterGroupQuotaExceededFault = {
 
 M.CreateCacheParameterGroupInput = {
     type = "structure",
+    id = "CreateCacheParameterGroupInput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -1630,6 +1716,7 @@ M.CreateCacheParameterGroupInput = {
 
 M.CacheParameterGroup = {
     type = "structure",
+    id = "CacheParameterGroup",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -1651,6 +1738,7 @@ M.CacheParameterGroup = {
 
 M.CreateCacheParameterGroupOutput = {
     type = "structure",
+    id = "CreateCacheParameterGroupOutput",
     members = {
         CacheParameterGroup = M.CacheParameterGroup,
     },
@@ -1658,6 +1746,7 @@ M.CreateCacheParameterGroupOutput = {
 
 M.InvalidCacheParameterGroupStateFault = {
     type = "structure",
+    id = "InvalidCacheParameterGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -1668,6 +1757,7 @@ M.InvalidCacheParameterGroupStateFault = {
 
 M.CacheSecurityGroupAlreadyExistsFault = {
     type = "structure",
+    id = "CacheSecurityGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1678,6 +1768,7 @@ M.CacheSecurityGroupAlreadyExistsFault = {
 
 M.CacheSecurityGroupQuotaExceededFault = {
     type = "structure",
+    id = "CacheSecurityGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1688,6 +1779,7 @@ M.CacheSecurityGroupQuotaExceededFault = {
 
 M.CreateCacheSecurityGroupInput = {
     type = "structure",
+    id = "CreateCacheSecurityGroupInput",
     members = {
         CacheSecurityGroupName = {
             type = "string",
@@ -1710,6 +1802,7 @@ M.CreateCacheSecurityGroupInput = {
 
 M.CreateCacheSecurityGroupOutput = {
     type = "structure",
+    id = "CreateCacheSecurityGroupOutput",
     members = {
         CacheSecurityGroup = M.CacheSecurityGroup,
     },
@@ -1717,6 +1810,7 @@ M.CreateCacheSecurityGroupOutput = {
 
 M.CacheSubnetGroupAlreadyExistsFault = {
     type = "structure",
+    id = "CacheSubnetGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1727,6 +1821,7 @@ M.CacheSubnetGroupAlreadyExistsFault = {
 
 M.CacheSubnetGroupQuotaExceededFault = {
     type = "structure",
+    id = "CacheSubnetGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1737,6 +1832,7 @@ M.CacheSubnetGroupQuotaExceededFault = {
 
 M.CacheSubnetQuotaExceededFault = {
     type = "structure",
+    id = "CacheSubnetQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1747,6 +1843,7 @@ M.CacheSubnetQuotaExceededFault = {
 
 M.CreateCacheSubnetGroupInput = {
     type = "structure",
+    id = "CreateCacheSubnetGroupInput",
     members = {
         CacheSubnetGroupName = {
             type = "string",
@@ -1776,6 +1873,7 @@ M.CreateCacheSubnetGroupInput = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         Name = {
             type = "string",
@@ -1785,6 +1883,7 @@ M.AvailabilityZone = {
 
 M.SubnetOutpost = {
     type = "structure",
+    id = "SubnetOutpost",
     members = {
         SubnetOutpostArn = {
             type = "string",
@@ -1794,6 +1893,7 @@ M.SubnetOutpost = {
 
 M.Subnet = {
     type = "structure",
+    id = "Subnet",
     members = {
         SubnetIdentifier = {
             type = "string",
@@ -1809,6 +1909,7 @@ M.Subnet = {
 
 M.CacheSubnetGroup = {
     type = "structure",
+    id = "CacheSubnetGroup",
     members = {
         CacheSubnetGroupName = {
             type = "string",
@@ -1835,6 +1936,7 @@ M.CacheSubnetGroup = {
 
 M.CreateCacheSubnetGroupOutput = {
     type = "structure",
+    id = "CreateCacheSubnetGroupOutput",
     members = {
         CacheSubnetGroup = M.CacheSubnetGroup,
     },
@@ -1842,6 +1944,7 @@ M.CreateCacheSubnetGroupOutput = {
 
 M.InvalidSubnet = {
     type = "structure",
+    id = "InvalidSubnet",
     error = "client",
     members = {
         message = {
@@ -1852,6 +1955,7 @@ M.InvalidSubnet = {
 
 M.SubnetNotAllowedFault = {
     type = "structure",
+    id = "SubnetNotAllowedFault",
     error = "client",
     members = {
         message = {
@@ -1862,6 +1966,7 @@ M.SubnetNotAllowedFault = {
 
 M.CreateGlobalReplicationGroupInput = {
     type = "structure",
+    id = "CreateGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupIdSuffix = {
             type = "string",
@@ -1883,6 +1988,7 @@ M.CreateGlobalReplicationGroupInput = {
 
 M.GlobalNodeGroup = {
     type = "structure",
+    id = "GlobalNodeGroup",
     members = {
         GlobalNodeGroupId = {
             type = "string",
@@ -1895,6 +2001,7 @@ M.GlobalNodeGroup = {
 
 M.GlobalReplicationGroupMember = {
     type = "structure",
+    id = "GlobalReplicationGroupMember",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -1916,6 +2023,7 @@ M.GlobalReplicationGroupMember = {
 
 M.GlobalReplicationGroup = {
     type = "structure",
+    id = "GlobalReplicationGroup",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -1963,6 +2071,7 @@ M.GlobalReplicationGroup = {
 
 M.CreateGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "CreateGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -1970,6 +2079,7 @@ M.CreateGlobalReplicationGroupOutput = {
 
 M.GlobalReplicationGroupAlreadyExistsFault = {
     type = "structure",
+    id = "GlobalReplicationGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1980,6 +2090,7 @@ M.GlobalReplicationGroupAlreadyExistsFault = {
 
 M.CreateReplicationGroupInput = {
     type = "structure",
+    id = "CreateReplicationGroupInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -2117,6 +2228,7 @@ M.CreateReplicationGroupInput = {
 
 M.CreateReplicationGroupOutput = {
     type = "structure",
+    id = "CreateReplicationGroupOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -2124,6 +2236,7 @@ M.CreateReplicationGroupOutput = {
 
 M.GlobalReplicationGroupNotFoundFault = {
     type = "structure",
+    id = "GlobalReplicationGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2134,6 +2247,7 @@ M.GlobalReplicationGroupNotFoundFault = {
 
 M.InvalidCacheClusterStateFault = {
     type = "structure",
+    id = "InvalidCacheClusterStateFault",
     error = "client",
     members = {
         message = {
@@ -2144,6 +2258,7 @@ M.InvalidCacheClusterStateFault = {
 
 M.InvalidGlobalReplicationGroupStateFault = {
     type = "structure",
+    id = "InvalidGlobalReplicationGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -2154,6 +2269,7 @@ M.InvalidGlobalReplicationGroupStateFault = {
 
 M.InvalidUserGroupStateFault = {
     type = "structure",
+    id = "InvalidUserGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -2164,6 +2280,7 @@ M.InvalidUserGroupStateFault = {
 
 M.NodeGroupsPerReplicationGroupQuotaExceededFault = {
     type = "structure",
+    id = "NodeGroupsPerReplicationGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2174,6 +2291,7 @@ M.NodeGroupsPerReplicationGroupQuotaExceededFault = {
 
 M.ReplicationGroupAlreadyExistsFault = {
     type = "structure",
+    id = "ReplicationGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2188,6 +2306,7 @@ M.DataStorageUnit = {
 
 M.DataStorage = {
     type = "structure",
+    id = "DataStorage",
     members = {
         Maximum = {
             type = "integer",
@@ -2206,6 +2325,7 @@ M.DataStorage = {
 
 M.ECPUPerSecond = {
     type = "structure",
+    id = "ECPUPerSecond",
     members = {
         Maximum = {
             type = "integer",
@@ -2218,6 +2338,7 @@ M.ECPUPerSecond = {
 
 M.CacheUsageLimits = {
     type = "structure",
+    id = "CacheUsageLimits",
     members = {
         DataStorage = M.DataStorage,
         ECPUPerSecond = M.ECPUPerSecond,
@@ -2226,6 +2347,7 @@ M.CacheUsageLimits = {
 
 M.CreateServerlessCacheInput = {
     type = "structure",
+    id = "CreateServerlessCacheInput",
     members = {
         ServerlessCacheName = {
             type = "string",
@@ -2282,6 +2404,7 @@ M.CreateServerlessCacheInput = {
 
 M.ServerlessCache = {
     type = "structure",
+    id = "ServerlessCache",
     members = {
         ServerlessCacheName = {
             type = "string",
@@ -2338,6 +2461,7 @@ M.ServerlessCache = {
 
 M.CreateServerlessCacheOutput = {
     type = "structure",
+    id = "CreateServerlessCacheOutput",
     members = {
         ServerlessCache = M.ServerlessCache,
     },
@@ -2345,6 +2469,7 @@ M.CreateServerlessCacheOutput = {
 
 M.InvalidCredentialsException = {
     type = "structure",
+    id = "InvalidCredentialsException",
     error = "client",
     members = {
         message = {
@@ -2355,6 +2480,7 @@ M.InvalidCredentialsException = {
 
 M.ServerlessCacheAlreadyExistsFault = {
     type = "structure",
+    id = "ServerlessCacheAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2365,6 +2491,7 @@ M.ServerlessCacheAlreadyExistsFault = {
 
 M.ServerlessCacheQuotaForCustomerExceededFault = {
     type = "structure",
+    id = "ServerlessCacheQuotaForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -2375,6 +2502,7 @@ M.ServerlessCacheQuotaForCustomerExceededFault = {
 
 M.CreateServerlessCacheSnapshotInput = {
     type = "structure",
+    id = "CreateServerlessCacheSnapshotInput",
     members = {
         ServerlessCacheSnapshotName = {
             type = "string",
@@ -2400,6 +2528,7 @@ M.CreateServerlessCacheSnapshotInput = {
 
 M.CreateServerlessCacheSnapshotOutput = {
     type = "structure",
+    id = "CreateServerlessCacheSnapshotOutput",
     members = {
         ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
@@ -2407,6 +2536,7 @@ M.CreateServerlessCacheSnapshotOutput = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -2432,6 +2562,7 @@ M.CreateSnapshotInput = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -2439,6 +2570,7 @@ M.CreateSnapshotOutput = {
 
 M.SnapshotFeatureNotSupportedFault = {
     type = "structure",
+    id = "SnapshotFeatureNotSupportedFault",
     error = "client",
     members = {
         message = {
@@ -2455,6 +2587,7 @@ M.InputAuthenticationType = {
 
 M.AuthenticationMode = {
     type = "structure",
+    id = "AuthenticationMode",
     members = {
         Type = {
             type = "string",
@@ -2468,6 +2601,7 @@ M.AuthenticationMode = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         UserId = {
             type = "string",
@@ -2516,6 +2650,7 @@ M.AuthenticationType = {
 
 M.Authentication = {
     type = "structure",
+    id = "Authentication",
     members = {
         Type = {
             type = "string",
@@ -2528,6 +2663,7 @@ M.Authentication = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         UserId = {
             type = "string",
@@ -2560,6 +2696,7 @@ M.CreateUserOutput = {
 
 M.DuplicateUserNameFault = {
     type = "structure",
+    id = "DuplicateUserNameFault",
     error = "client",
     members = {
         message = {
@@ -2570,6 +2707,7 @@ M.DuplicateUserNameFault = {
 
 M.UserAlreadyExistsFault = {
     type = "structure",
+    id = "UserAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2580,6 +2718,7 @@ M.UserAlreadyExistsFault = {
 
 M.UserQuotaExceededFault = {
     type = "structure",
+    id = "UserQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2590,6 +2729,7 @@ M.UserQuotaExceededFault = {
 
 M.CreateUserGroupInput = {
     type = "structure",
+    id = "CreateUserGroupInput",
     members = {
         UserGroupId = {
             type = "string",
@@ -2616,6 +2756,7 @@ M.CreateUserGroupInput = {
 
 M.UserGroupPendingChanges = {
     type = "structure",
+    id = "UserGroupPendingChanges",
     members = {
         UserIdsToRemove = {
             type = "list",
@@ -2630,6 +2771,7 @@ M.UserGroupPendingChanges = {
 
 M.CreateUserGroupOutput = {
     type = "structure",
+    id = "CreateUserGroupOutput",
     members = {
         UserGroupId = {
             type = "string",
@@ -2664,6 +2806,7 @@ M.CreateUserGroupOutput = {
 
 M.DefaultUserRequired = {
     type = "structure",
+    id = "DefaultUserRequired",
     error = "client",
     members = {
         message = {
@@ -2674,6 +2817,7 @@ M.DefaultUserRequired = {
 
 M.UserGroupAlreadyExistsFault = {
     type = "structure",
+    id = "UserGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2684,6 +2828,7 @@ M.UserGroupAlreadyExistsFault = {
 
 M.UserGroupQuotaExceededFault = {
     type = "structure",
+    id = "UserGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2694,6 +2839,7 @@ M.UserGroupQuotaExceededFault = {
 
 M.DecreaseNodeGroupsInGlobalReplicationGroupInput = {
     type = "structure",
+    id = "DecreaseNodeGroupsInGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -2726,6 +2872,7 @@ M.DecreaseNodeGroupsInGlobalReplicationGroupInput = {
 
 M.DecreaseNodeGroupsInGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "DecreaseNodeGroupsInGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -2733,6 +2880,7 @@ M.DecreaseNodeGroupsInGlobalReplicationGroupOutput = {
 
 M.ConfigureShard = {
     type = "structure",
+    id = "ConfigureShard",
     members = {
         NodeGroupId = {
             type = "string",
@@ -2759,6 +2907,7 @@ M.ConfigureShard = {
 
 M.DecreaseReplicaCountInput = {
     type = "structure",
+    id = "DecreaseReplicaCountInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -2788,6 +2937,7 @@ M.DecreaseReplicaCountInput = {
 
 M.DecreaseReplicaCountOutput = {
     type = "structure",
+    id = "DecreaseReplicaCountOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -2795,6 +2945,7 @@ M.DecreaseReplicaCountOutput = {
 
 M.NoOperationFault = {
     type = "structure",
+    id = "NoOperationFault",
     error = "client",
     members = {
         message = {
@@ -2805,6 +2956,7 @@ M.NoOperationFault = {
 
 M.DeleteCacheClusterInput = {
     type = "structure",
+    id = "DeleteCacheClusterInput",
     members = {
         CacheClusterId = {
             type = "string",
@@ -2820,6 +2972,7 @@ M.DeleteCacheClusterInput = {
 
 M.DeleteCacheClusterOutput = {
     type = "structure",
+    id = "DeleteCacheClusterOutput",
     members = {
         CacheCluster = M.CacheCluster,
     },
@@ -2827,6 +2980,7 @@ M.DeleteCacheClusterOutput = {
 
 M.DeleteCacheParameterGroupInput = {
     type = "structure",
+    id = "DeleteCacheParameterGroupInput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -2839,10 +2993,12 @@ M.DeleteCacheParameterGroupInput = {
 
 M.DeleteCacheParameterGroupOutput = {
     type = "structure",
+    id = "DeleteCacheParameterGroupOutput",
 }
 
 M.DeleteCacheSecurityGroupInput = {
     type = "structure",
+    id = "DeleteCacheSecurityGroupInput",
     members = {
         CacheSecurityGroupName = {
             type = "string",
@@ -2855,10 +3011,12 @@ M.DeleteCacheSecurityGroupInput = {
 
 M.DeleteCacheSecurityGroupOutput = {
     type = "structure",
+    id = "DeleteCacheSecurityGroupOutput",
 }
 
 M.CacheSubnetGroupInUse = {
     type = "structure",
+    id = "CacheSubnetGroupInUse",
     error = "client",
     members = {
         message = {
@@ -2869,6 +3027,7 @@ M.CacheSubnetGroupInUse = {
 
 M.DeleteCacheSubnetGroupInput = {
     type = "structure",
+    id = "DeleteCacheSubnetGroupInput",
     members = {
         CacheSubnetGroupName = {
             type = "string",
@@ -2881,10 +3040,12 @@ M.DeleteCacheSubnetGroupInput = {
 
 M.DeleteCacheSubnetGroupOutput = {
     type = "structure",
+    id = "DeleteCacheSubnetGroupOutput",
 }
 
 M.DeleteGlobalReplicationGroupInput = {
     type = "structure",
+    id = "DeleteGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -2903,6 +3064,7 @@ M.DeleteGlobalReplicationGroupInput = {
 
 M.DeleteGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "DeleteGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -2910,6 +3072,7 @@ M.DeleteGlobalReplicationGroupOutput = {
 
 M.DeleteReplicationGroupInput = {
     type = "structure",
+    id = "DeleteReplicationGroupInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -2928,6 +3091,7 @@ M.DeleteReplicationGroupInput = {
 
 M.DeleteReplicationGroupOutput = {
     type = "structure",
+    id = "DeleteReplicationGroupOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -2935,6 +3099,7 @@ M.DeleteReplicationGroupOutput = {
 
 M.DeleteServerlessCacheInput = {
     type = "structure",
+    id = "DeleteServerlessCacheInput",
     members = {
         ServerlessCacheName = {
             type = "string",
@@ -2950,6 +3115,7 @@ M.DeleteServerlessCacheInput = {
 
 M.DeleteServerlessCacheOutput = {
     type = "structure",
+    id = "DeleteServerlessCacheOutput",
     members = {
         ServerlessCache = M.ServerlessCache,
     },
@@ -2957,6 +3123,7 @@ M.DeleteServerlessCacheOutput = {
 
 M.DeleteServerlessCacheSnapshotInput = {
     type = "structure",
+    id = "DeleteServerlessCacheSnapshotInput",
     members = {
         ServerlessCacheSnapshotName = {
             type = "string",
@@ -2969,6 +3136,7 @@ M.DeleteServerlessCacheSnapshotInput = {
 
 M.DeleteServerlessCacheSnapshotOutput = {
     type = "structure",
+    id = "DeleteServerlessCacheSnapshotOutput",
     members = {
         ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
@@ -2976,6 +3144,7 @@ M.DeleteServerlessCacheSnapshotOutput = {
 
 M.DeleteSnapshotInput = {
     type = "structure",
+    id = "DeleteSnapshotInput",
     members = {
         SnapshotName = {
             type = "string",
@@ -2988,6 +3157,7 @@ M.DeleteSnapshotInput = {
 
 M.DeleteSnapshotOutput = {
     type = "structure",
+    id = "DeleteSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -2995,6 +3165,7 @@ M.DeleteSnapshotOutput = {
 
 M.DefaultUserAssociatedToUserGroupFault = {
     type = "structure",
+    id = "DefaultUserAssociatedToUserGroupFault",
     error = "client",
     members = {
         message = {
@@ -3005,6 +3176,7 @@ M.DefaultUserAssociatedToUserGroupFault = {
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         UserId = {
             type = "string",
@@ -3017,6 +3189,7 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
     members = {
         UserId = {
             type = "string",
@@ -3049,6 +3222,7 @@ M.DeleteUserOutput = {
 
 M.InvalidUserStateFault = {
     type = "structure",
+    id = "InvalidUserStateFault",
     error = "client",
     members = {
         message = {
@@ -3059,6 +3233,7 @@ M.InvalidUserStateFault = {
 
 M.DeleteUserGroupInput = {
     type = "structure",
+    id = "DeleteUserGroupInput",
     members = {
         UserGroupId = {
             type = "string",
@@ -3071,6 +3246,7 @@ M.DeleteUserGroupInput = {
 
 M.DeleteUserGroupOutput = {
     type = "structure",
+    id = "DeleteUserGroupOutput",
     members = {
         UserGroupId = {
             type = "string",
@@ -3105,6 +3281,7 @@ M.DeleteUserGroupOutput = {
 
 M.DescribeCacheClustersInput = {
     type = "structure",
+    id = "DescribeCacheClustersInput",
     members = {
         CacheClusterId = {
             type = "string",
@@ -3126,6 +3303,7 @@ M.DescribeCacheClustersInput = {
 
 M.DescribeCacheClustersOutput = {
     type = "structure",
+    id = "DescribeCacheClustersOutput",
     members = {
         Marker = {
             type = "string",
@@ -3139,6 +3317,7 @@ M.DescribeCacheClustersOutput = {
 
 M.DescribeCacheEngineVersionsInput = {
     type = "structure",
+    id = "DescribeCacheEngineVersionsInput",
     members = {
         Engine = {
             type = "string",
@@ -3163,6 +3342,7 @@ M.DescribeCacheEngineVersionsInput = {
 
 M.CacheEngineVersion = {
     type = "structure",
+    id = "CacheEngineVersion",
     members = {
         Engine = {
             type = "string",
@@ -3184,6 +3364,7 @@ M.CacheEngineVersion = {
 
 M.DescribeCacheEngineVersionsOutput = {
     type = "structure",
+    id = "DescribeCacheEngineVersionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3197,6 +3378,7 @@ M.DescribeCacheEngineVersionsOutput = {
 
 M.DescribeCacheParameterGroupsInput = {
     type = "structure",
+    id = "DescribeCacheParameterGroupsInput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -3212,6 +3394,7 @@ M.DescribeCacheParameterGroupsInput = {
 
 M.DescribeCacheParameterGroupsOutput = {
     type = "structure",
+    id = "DescribeCacheParameterGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3225,6 +3408,7 @@ M.DescribeCacheParameterGroupsOutput = {
 
 M.DescribeCacheParametersInput = {
     type = "structure",
+    id = "DescribeCacheParametersInput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -3246,6 +3430,7 @@ M.DescribeCacheParametersInput = {
 
 M.CacheNodeTypeSpecificValue = {
     type = "structure",
+    id = "CacheNodeTypeSpecificValue",
     members = {
         CacheNodeType = {
             type = "string",
@@ -3263,6 +3448,7 @@ M.ChangeType = {
 
 M.CacheNodeTypeSpecificParameter = {
     type = "structure",
+    id = "CacheNodeTypeSpecificParameter",
     members = {
         ParameterName = {
             type = "string",
@@ -3297,6 +3483,7 @@ M.CacheNodeTypeSpecificParameter = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         ParameterName = {
             type = "string",
@@ -3330,6 +3517,7 @@ M.Parameter = {
 
 M.DescribeCacheParametersOutput = {
     type = "structure",
+    id = "DescribeCacheParametersOutput",
     members = {
         Marker = {
             type = "string",
@@ -3347,6 +3535,7 @@ M.DescribeCacheParametersOutput = {
 
 M.DescribeCacheSecurityGroupsInput = {
     type = "structure",
+    id = "DescribeCacheSecurityGroupsInput",
     members = {
         CacheSecurityGroupName = {
             type = "string",
@@ -3362,6 +3551,7 @@ M.DescribeCacheSecurityGroupsInput = {
 
 M.DescribeCacheSecurityGroupsOutput = {
     type = "structure",
+    id = "DescribeCacheSecurityGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3375,6 +3565,7 @@ M.DescribeCacheSecurityGroupsOutput = {
 
 M.DescribeCacheSubnetGroupsInput = {
     type = "structure",
+    id = "DescribeCacheSubnetGroupsInput",
     members = {
         CacheSubnetGroupName = {
             type = "string",
@@ -3390,6 +3581,7 @@ M.DescribeCacheSubnetGroupsInput = {
 
 M.DescribeCacheSubnetGroupsOutput = {
     type = "structure",
+    id = "DescribeCacheSubnetGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3403,6 +3595,7 @@ M.DescribeCacheSubnetGroupsOutput = {
 
 M.DescribeEngineDefaultParametersInput = {
     type = "structure",
+    id = "DescribeEngineDefaultParametersInput",
     members = {
         CacheParameterGroupFamily = {
             type = "string",
@@ -3421,6 +3614,7 @@ M.DescribeEngineDefaultParametersInput = {
 
 M.EngineDefaults = {
     type = "structure",
+    id = "EngineDefaults",
     members = {
         CacheParameterGroupFamily = {
             type = "string",
@@ -3441,6 +3635,7 @@ M.EngineDefaults = {
 
 M.DescribeEngineDefaultParametersOutput = {
     type = "structure",
+    id = "DescribeEngineDefaultParametersOutput",
     members = {
         EngineDefaults = M.EngineDefaults,
     },
@@ -3460,6 +3655,7 @@ M.SourceType = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -3487,6 +3683,7 @@ M.DescribeEventsInput = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -3505,6 +3702,7 @@ M.Event = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3518,6 +3716,7 @@ M.DescribeEventsOutput = {
 
 M.DescribeGlobalReplicationGroupsInput = {
     type = "structure",
+    id = "DescribeGlobalReplicationGroupsInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -3536,6 +3735,7 @@ M.DescribeGlobalReplicationGroupsInput = {
 
 M.DescribeGlobalReplicationGroupsOutput = {
     type = "structure",
+    id = "DescribeGlobalReplicationGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3549,6 +3749,7 @@ M.DescribeGlobalReplicationGroupsOutput = {
 
 M.DescribeReplicationGroupsInput = {
     type = "structure",
+    id = "DescribeReplicationGroupsInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -3564,6 +3765,7 @@ M.DescribeReplicationGroupsInput = {
 
 M.DescribeReplicationGroupsOutput = {
     type = "structure",
+    id = "DescribeReplicationGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3577,6 +3779,7 @@ M.DescribeReplicationGroupsOutput = {
 
 M.DescribeReservedCacheNodesInput = {
     type = "structure",
+    id = "DescribeReservedCacheNodesInput",
     members = {
         ReservedCacheNodeId = {
             type = "string",
@@ -3607,6 +3810,7 @@ M.DescribeReservedCacheNodesInput = {
 
 M.RecurringCharge = {
     type = "structure",
+    id = "RecurringCharge",
     members = {
         RecurringChargeAmount = {
             type = "double",
@@ -3619,6 +3823,7 @@ M.RecurringCharge = {
 
 M.ReservedCacheNode = {
     type = "structure",
+    id = "ReservedCacheNode",
     members = {
         ReservedCacheNodeId = {
             type = "string",
@@ -3665,6 +3870,7 @@ M.ReservedCacheNode = {
 
 M.DescribeReservedCacheNodesOutput = {
     type = "structure",
+    id = "DescribeReservedCacheNodesOutput",
     members = {
         Marker = {
             type = "string",
@@ -3678,6 +3884,7 @@ M.DescribeReservedCacheNodesOutput = {
 
 M.DescribeReservedCacheNodesOfferingsInput = {
     type = "structure",
+    id = "DescribeReservedCacheNodesOfferingsInput",
     members = {
         ReservedCacheNodesOfferingId = {
             type = "string",
@@ -3705,6 +3912,7 @@ M.DescribeReservedCacheNodesOfferingsInput = {
 
 M.ReservedCacheNodesOffering = {
     type = "structure",
+    id = "ReservedCacheNodesOffering",
     members = {
         ReservedCacheNodesOfferingId = {
             type = "string",
@@ -3736,6 +3944,7 @@ M.ReservedCacheNodesOffering = {
 
 M.DescribeReservedCacheNodesOfferingsOutput = {
     type = "structure",
+    id = "DescribeReservedCacheNodesOfferingsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3749,6 +3958,7 @@ M.DescribeReservedCacheNodesOfferingsOutput = {
 
 M.ReservedCacheNodesOfferingNotFoundFault = {
     type = "structure",
+    id = "ReservedCacheNodesOfferingNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3759,6 +3969,7 @@ M.ReservedCacheNodesOfferingNotFoundFault = {
 
 M.DescribeServerlessCachesInput = {
     type = "structure",
+    id = "DescribeServerlessCachesInput",
     members = {
         ServerlessCacheName = {
             type = "string",
@@ -3774,6 +3985,7 @@ M.DescribeServerlessCachesInput = {
 
 M.DescribeServerlessCachesOutput = {
     type = "structure",
+    id = "DescribeServerlessCachesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3787,6 +3999,7 @@ M.DescribeServerlessCachesOutput = {
 
 M.DescribeServerlessCacheSnapshotsInput = {
     type = "structure",
+    id = "DescribeServerlessCacheSnapshotsInput",
     members = {
         ServerlessCacheName = {
             type = "string",
@@ -3808,6 +4021,7 @@ M.DescribeServerlessCacheSnapshotsInput = {
 
 M.DescribeServerlessCacheSnapshotsOutput = {
     type = "structure",
+    id = "DescribeServerlessCacheSnapshotsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3827,6 +4041,7 @@ M.ServiceUpdateStatus = {
 
 M.DescribeServiceUpdatesInput = {
     type = "structure",
+    id = "DescribeServiceUpdatesInput",
     members = {
         ServiceUpdateName = {
             type = "string",
@@ -3857,6 +4072,7 @@ M.ServiceUpdateType = {
 
 M.ServiceUpdate = {
     type = "structure",
+    id = "ServiceUpdate",
     members = {
         ServiceUpdateName = {
             type = "string",
@@ -3899,6 +4115,7 @@ M.ServiceUpdate = {
 
 M.DescribeServiceUpdatesOutput = {
     type = "structure",
+    id = "DescribeServiceUpdatesOutput",
     members = {
         Marker = {
             type = "string",
@@ -3912,6 +4129,7 @@ M.DescribeServiceUpdatesOutput = {
 
 M.DescribeSnapshotsInput = {
     type = "structure",
+    id = "DescribeSnapshotsInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -3939,6 +4157,7 @@ M.DescribeSnapshotsInput = {
 
 M.DescribeSnapshotsOutput = {
     type = "structure",
+    id = "DescribeSnapshotsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3952,6 +4171,7 @@ M.DescribeSnapshotsOutput = {
 
 M.TimeRangeFilter = {
     type = "structure",
+    id = "TimeRangeFilter",
     members = {
         StartTime = {
             type = "timestamp",
@@ -3964,6 +4184,7 @@ M.TimeRangeFilter = {
 
 M.DescribeUpdateActionsInput = {
     type = "structure",
+    id = "DescribeUpdateActionsInput",
     members = {
         ServiceUpdateName = {
             type = "string",
@@ -4016,6 +4237,7 @@ M.NodeUpdateStatus = {
 
 M.CacheNodeUpdateStatus = {
     type = "structure",
+    id = "CacheNodeUpdateStatus",
     members = {
         CacheNodeId = {
             type = "string",
@@ -4046,6 +4268,7 @@ M.CacheNodeUpdateStatus = {
 
 M.NodeGroupMemberUpdateStatus = {
     type = "structure",
+    id = "NodeGroupMemberUpdateStatus",
     members = {
         CacheClusterId = {
             type = "string",
@@ -4079,6 +4302,7 @@ M.NodeGroupMemberUpdateStatus = {
 
 M.NodeGroupUpdateStatus = {
     type = "structure",
+    id = "NodeGroupUpdateStatus",
     members = {
         NodeGroupId = {
             type = "string",
@@ -4098,6 +4322,7 @@ M.SlaMet = {
 
 M.UpdateAction = {
     type = "structure",
+    id = "UpdateAction",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -4157,6 +4382,7 @@ M.UpdateAction = {
 
 M.DescribeUpdateActionsOutput = {
     type = "structure",
+    id = "DescribeUpdateActionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4170,6 +4396,7 @@ M.DescribeUpdateActionsOutput = {
 
 M.DescribeUserGroupsInput = {
     type = "structure",
+    id = "DescribeUserGroupsInput",
     members = {
         UserGroupId = {
             type = "string",
@@ -4185,6 +4412,7 @@ M.DescribeUserGroupsInput = {
 
 M.UserGroup = {
     type = "structure",
+    id = "UserGroup",
     members = {
         UserGroupId = {
             type = "string",
@@ -4219,6 +4447,7 @@ M.UserGroup = {
 
 M.DescribeUserGroupsOutput = {
     type = "structure",
+    id = "DescribeUserGroupsOutput",
     members = {
         UserGroups = {
             type = "list",
@@ -4232,6 +4461,7 @@ M.DescribeUserGroupsOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -4251,6 +4481,7 @@ M.Filter = {
 
 M.DescribeUsersInput = {
     type = "structure",
+    id = "DescribeUsersInput",
     members = {
         Engine = {
             type = "string",
@@ -4273,6 +4504,7 @@ M.DescribeUsersInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         UserId = {
             type = "string",
@@ -4305,6 +4537,7 @@ M.User = {
 
 M.DescribeUsersOutput = {
     type = "structure",
+    id = "DescribeUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -4318,6 +4551,7 @@ M.DescribeUsersOutput = {
 
 M.DisassociateGlobalReplicationGroupInput = {
     type = "structure",
+    id = "DisassociateGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -4342,6 +4576,7 @@ M.DisassociateGlobalReplicationGroupInput = {
 
 M.DisassociateGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "DisassociateGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -4349,6 +4584,7 @@ M.DisassociateGlobalReplicationGroupOutput = {
 
 M.ExportServerlessCacheSnapshotInput = {
     type = "structure",
+    id = "ExportServerlessCacheSnapshotInput",
     members = {
         ServerlessCacheSnapshotName = {
             type = "string",
@@ -4367,6 +4603,7 @@ M.ExportServerlessCacheSnapshotInput = {
 
 M.ExportServerlessCacheSnapshotOutput = {
     type = "structure",
+    id = "ExportServerlessCacheSnapshotOutput",
     members = {
         ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
@@ -4374,6 +4611,7 @@ M.ExportServerlessCacheSnapshotOutput = {
 
 M.FailoverGlobalReplicationGroupInput = {
     type = "structure",
+    id = "FailoverGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -4398,6 +4636,7 @@ M.FailoverGlobalReplicationGroupInput = {
 
 M.FailoverGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "FailoverGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -4405,6 +4644,7 @@ M.FailoverGlobalReplicationGroupOutput = {
 
 M.ReshardingConfiguration = {
     type = "structure",
+    id = "ReshardingConfiguration",
     members = {
         NodeGroupId = {
             type = "string",
@@ -4418,6 +4658,7 @@ M.ReshardingConfiguration = {
 
 M.RegionalConfiguration = {
     type = "structure",
+    id = "RegionalConfiguration",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -4443,6 +4684,7 @@ M.RegionalConfiguration = {
 
 M.IncreaseNodeGroupsInGlobalReplicationGroupInput = {
     type = "structure",
+    id = "IncreaseNodeGroupsInGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -4471,6 +4713,7 @@ M.IncreaseNodeGroupsInGlobalReplicationGroupInput = {
 
 M.IncreaseNodeGroupsInGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "IncreaseNodeGroupsInGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -4478,6 +4721,7 @@ M.IncreaseNodeGroupsInGlobalReplicationGroupOutput = {
 
 M.IncreaseReplicaCountInput = {
     type = "structure",
+    id = "IncreaseReplicaCountInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -4503,6 +4747,7 @@ M.IncreaseReplicaCountInput = {
 
 M.IncreaseReplicaCountOutput = {
     type = "structure",
+    id = "IncreaseReplicaCountOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -4510,6 +4755,7 @@ M.IncreaseReplicaCountOutput = {
 
 M.InvalidKMSKeyFault = {
     type = "structure",
+    id = "InvalidKMSKeyFault",
     error = "client",
     members = {
         message = {
@@ -4520,6 +4766,7 @@ M.InvalidKMSKeyFault = {
 
 M.ListAllowedNodeTypeModificationsInput = {
     type = "structure",
+    id = "ListAllowedNodeTypeModificationsInput",
     members = {
         CacheClusterId = {
             type = "string",
@@ -4532,6 +4779,7 @@ M.ListAllowedNodeTypeModificationsInput = {
 
 M.ListAllowedNodeTypeModificationsOutput = {
     type = "structure",
+    id = "ListAllowedNodeTypeModificationsOutput",
     members = {
         ScaleUpModifications = {
             type = "list",
@@ -4546,6 +4794,7 @@ M.ListAllowedNodeTypeModificationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -4558,6 +4807,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -4574,6 +4824,7 @@ M.AuthTokenUpdateStrategyType = {
 
 M.ModifyCacheClusterInput = {
     type = "structure",
+    id = "ModifyCacheClusterInput",
     members = {
         CacheClusterId = {
             type = "string",
@@ -4655,6 +4906,7 @@ M.ModifyCacheClusterInput = {
 
 M.ModifyCacheClusterOutput = {
     type = "structure",
+    id = "ModifyCacheClusterOutput",
     members = {
         CacheCluster = M.CacheCluster,
     },
@@ -4662,6 +4914,7 @@ M.ModifyCacheClusterOutput = {
 
 M.ParameterNameValue = {
     type = "structure",
+    id = "ParameterNameValue",
     members = {
         ParameterName = {
             type = "string",
@@ -4674,6 +4927,7 @@ M.ParameterNameValue = {
 
 M.ModifyCacheParameterGroupInput = {
     type = "structure",
+    id = "ModifyCacheParameterGroupInput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -4693,6 +4947,7 @@ M.ModifyCacheParameterGroupInput = {
 
 M.ModifyCacheParameterGroupOutput = {
     type = "structure",
+    id = "ModifyCacheParameterGroupOutput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -4702,6 +4957,7 @@ M.ModifyCacheParameterGroupOutput = {
 
 M.ModifyCacheSubnetGroupInput = {
     type = "structure",
+    id = "ModifyCacheSubnetGroupInput",
     members = {
         CacheSubnetGroupName = {
             type = "string",
@@ -4721,6 +4977,7 @@ M.ModifyCacheSubnetGroupInput = {
 
 M.ModifyCacheSubnetGroupOutput = {
     type = "structure",
+    id = "ModifyCacheSubnetGroupOutput",
     members = {
         CacheSubnetGroup = M.CacheSubnetGroup,
     },
@@ -4728,6 +4985,7 @@ M.ModifyCacheSubnetGroupOutput = {
 
 M.SubnetInUse = {
     type = "structure",
+    id = "SubnetInUse",
     error = "client",
     members = {
         message = {
@@ -4738,6 +4996,7 @@ M.SubnetInUse = {
 
 M.ModifyGlobalReplicationGroupInput = {
     type = "structure",
+    id = "ModifyGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -4774,6 +5033,7 @@ M.ModifyGlobalReplicationGroupInput = {
 
 M.ModifyGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "ModifyGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -4781,6 +5041,7 @@ M.ModifyGlobalReplicationGroupOutput = {
 
 M.ModifyReplicationGroupInput = {
     type = "structure",
+    id = "ModifyReplicationGroupInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -4885,6 +5146,7 @@ M.ModifyReplicationGroupInput = {
 
 M.ModifyReplicationGroupOutput = {
     type = "structure",
+    id = "ModifyReplicationGroupOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -4892,6 +5154,7 @@ M.ModifyReplicationGroupOutput = {
 
 M.ModifyReplicationGroupShardConfigurationInput = {
     type = "structure",
+    id = "ModifyReplicationGroupShardConfigurationInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -4928,6 +5191,7 @@ M.ModifyReplicationGroupShardConfigurationInput = {
 
 M.ModifyReplicationGroupShardConfigurationOutput = {
     type = "structure",
+    id = "ModifyReplicationGroupShardConfigurationOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -4935,6 +5199,7 @@ M.ModifyReplicationGroupShardConfigurationOutput = {
 
 M.ModifyServerlessCacheInput = {
     type = "structure",
+    id = "ModifyServerlessCacheInput",
     members = {
         ServerlessCacheName = {
             type = "string",
@@ -4973,6 +5238,7 @@ M.ModifyServerlessCacheInput = {
 
 M.ModifyServerlessCacheOutput = {
     type = "structure",
+    id = "ModifyServerlessCacheOutput",
     members = {
         ServerlessCache = M.ServerlessCache,
     },
@@ -4980,6 +5246,7 @@ M.ModifyServerlessCacheOutput = {
 
 M.ModifyUserInput = {
     type = "structure",
+    id = "ModifyUserInput",
     members = {
         UserId = {
             type = "string",
@@ -5009,6 +5276,7 @@ M.ModifyUserInput = {
 
 M.ModifyUserOutput = {
     type = "structure",
+    id = "ModifyUserOutput",
     members = {
         UserId = {
             type = "string",
@@ -5041,6 +5309,7 @@ M.ModifyUserOutput = {
 
 M.ModifyUserGroupInput = {
     type = "structure",
+    id = "ModifyUserGroupInput",
     members = {
         UserGroupId = {
             type = "string",
@@ -5064,6 +5333,7 @@ M.ModifyUserGroupInput = {
 
 M.ModifyUserGroupOutput = {
     type = "structure",
+    id = "ModifyUserGroupOutput",
     members = {
         UserGroupId = {
             type = "string",
@@ -5098,6 +5368,7 @@ M.ModifyUserGroupOutput = {
 
 M.PurchaseReservedCacheNodesOfferingInput = {
     type = "structure",
+    id = "PurchaseReservedCacheNodesOfferingInput",
     members = {
         ReservedCacheNodesOfferingId = {
             type = "string",
@@ -5120,6 +5391,7 @@ M.PurchaseReservedCacheNodesOfferingInput = {
 
 M.PurchaseReservedCacheNodesOfferingOutput = {
     type = "structure",
+    id = "PurchaseReservedCacheNodesOfferingOutput",
     members = {
         ReservedCacheNode = M.ReservedCacheNode,
     },
@@ -5127,6 +5399,7 @@ M.PurchaseReservedCacheNodesOfferingOutput = {
 
 M.ReservedCacheNodeAlreadyExistsFault = {
     type = "structure",
+    id = "ReservedCacheNodeAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -5137,6 +5410,7 @@ M.ReservedCacheNodeAlreadyExistsFault = {
 
 M.ReservedCacheNodeQuotaExceededFault = {
     type = "structure",
+    id = "ReservedCacheNodeQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -5147,6 +5421,7 @@ M.ReservedCacheNodeQuotaExceededFault = {
 
 M.RebalanceSlotsInGlobalReplicationGroupInput = {
     type = "structure",
+    id = "RebalanceSlotsInGlobalReplicationGroupInput",
     members = {
         GlobalReplicationGroupId = {
             type = "string",
@@ -5165,6 +5440,7 @@ M.RebalanceSlotsInGlobalReplicationGroupInput = {
 
 M.RebalanceSlotsInGlobalReplicationGroupOutput = {
     type = "structure",
+    id = "RebalanceSlotsInGlobalReplicationGroupOutput",
     members = {
         GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
@@ -5172,6 +5448,7 @@ M.RebalanceSlotsInGlobalReplicationGroupOutput = {
 
 M.RebootCacheClusterInput = {
     type = "structure",
+    id = "RebootCacheClusterInput",
     members = {
         CacheClusterId = {
             type = "string",
@@ -5191,6 +5468,7 @@ M.RebootCacheClusterInput = {
 
 M.RebootCacheClusterOutput = {
     type = "structure",
+    id = "RebootCacheClusterOutput",
     members = {
         CacheCluster = M.CacheCluster,
     },
@@ -5198,6 +5476,7 @@ M.RebootCacheClusterOutput = {
 
 M.RemoveTagsFromResourceInput = {
     type = "structure",
+    id = "RemoveTagsFromResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -5217,6 +5496,7 @@ M.RemoveTagsFromResourceInput = {
 
 M.RemoveTagsFromResourceOutput = {
     type = "structure",
+    id = "RemoveTagsFromResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -5227,6 +5507,7 @@ M.RemoveTagsFromResourceOutput = {
 
 M.TagNotFoundFault = {
     type = "structure",
+    id = "TagNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -5237,6 +5518,7 @@ M.TagNotFoundFault = {
 
 M.ResetCacheParameterGroupInput = {
     type = "structure",
+    id = "ResetCacheParameterGroupInput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -5256,6 +5538,7 @@ M.ResetCacheParameterGroupInput = {
 
 M.ResetCacheParameterGroupOutput = {
     type = "structure",
+    id = "ResetCacheParameterGroupOutput",
     members = {
         CacheParameterGroupName = {
             type = "string",
@@ -5265,6 +5548,7 @@ M.ResetCacheParameterGroupOutput = {
 
 M.AuthorizationNotFoundFault = {
     type = "structure",
+    id = "AuthorizationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -5275,6 +5559,7 @@ M.AuthorizationNotFoundFault = {
 
 M.RevokeCacheSecurityGroupIngressInput = {
     type = "structure",
+    id = "RevokeCacheSecurityGroupIngressInput",
     members = {
         CacheSecurityGroupName = {
             type = "string",
@@ -5299,6 +5584,7 @@ M.RevokeCacheSecurityGroupIngressInput = {
 
 M.RevokeCacheSecurityGroupIngressOutput = {
     type = "structure",
+    id = "RevokeCacheSecurityGroupIngressOutput",
     members = {
         CacheSecurityGroup = M.CacheSecurityGroup,
     },
@@ -5306,6 +5592,7 @@ M.RevokeCacheSecurityGroupIngressOutput = {
 
 M.ReplicationGroupAlreadyUnderMigrationFault = {
     type = "structure",
+    id = "ReplicationGroupAlreadyUnderMigrationFault",
     error = "client",
     members = {
         message = {
@@ -5316,6 +5603,7 @@ M.ReplicationGroupAlreadyUnderMigrationFault = {
 
 M.CustomerNodeEndpoint = {
     type = "structure",
+    id = "CustomerNodeEndpoint",
     members = {
         Address = {
             type = "string",
@@ -5328,6 +5616,7 @@ M.CustomerNodeEndpoint = {
 
 M.StartMigrationInput = {
     type = "structure",
+    id = "StartMigrationInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -5347,6 +5636,7 @@ M.StartMigrationInput = {
 
 M.StartMigrationOutput = {
     type = "structure",
+    id = "StartMigrationOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -5354,6 +5644,7 @@ M.StartMigrationOutput = {
 
 M.APICallRateForCustomerExceededFault = {
     type = "structure",
+    id = "APICallRateForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -5364,6 +5655,7 @@ M.APICallRateForCustomerExceededFault = {
 
 M.NodeGroupNotFoundFault = {
     type = "structure",
+    id = "NodeGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -5374,6 +5666,7 @@ M.NodeGroupNotFoundFault = {
 
 M.TestFailoverInput = {
     type = "structure",
+    id = "TestFailoverInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -5392,6 +5685,7 @@ M.TestFailoverInput = {
 
 M.TestFailoverNotAvailableFault = {
     type = "structure",
+    id = "TestFailoverNotAvailableFault",
     error = "client",
     members = {
         message = {
@@ -5402,6 +5696,7 @@ M.TestFailoverNotAvailableFault = {
 
 M.TestFailoverOutput = {
     type = "structure",
+    id = "TestFailoverOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },
@@ -5409,6 +5704,7 @@ M.TestFailoverOutput = {
 
 M.TestMigrationInput = {
     type = "structure",
+    id = "TestMigrationInput",
     members = {
         ReplicationGroupId = {
             type = "string",
@@ -5428,6 +5724,7 @@ M.TestMigrationInput = {
 
 M.TestMigrationOutput = {
     type = "structure",
+    id = "TestMigrationOutput",
     members = {
         ReplicationGroup = M.ReplicationGroup,
     },

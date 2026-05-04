@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.AccessType = {
 
 M.AwsIdentity = {
     type = "structure",
+    id = "AwsIdentity",
     members = {
         principal = {
             type = "string",
@@ -49,6 +51,7 @@ M.AwsLogSourceName = {
 
 M.AwsLogSourceConfiguration = {
     type = "structure",
+    id = "AwsLogSourceConfiguration",
     members = {
         accounts = {
             type = "list",
@@ -78,6 +81,7 @@ M.AwsLogSourceConfiguration = {
 
 M.AwsLogSourceResource = {
     type = "structure",
+    id = "AwsLogSourceResource",
     members = {
         sourceName = {
             type = "string",
@@ -90,6 +94,7 @@ M.AwsLogSourceResource = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -100,6 +105,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -116,6 +122,7 @@ M.ConflictException = {
 
 M.CreateAwsLogSourceInput = {
     type = "structure",
+    id = "CreateAwsLogSourceInput",
     members = {
         sources = {
             type = "list",
@@ -129,6 +136,7 @@ M.CreateAwsLogSourceInput = {
 
 M.CreateAwsLogSourceOutput = {
     type = "structure",
+    id = "CreateAwsLogSourceOutput",
     members = {
         failed = {
             type = "list",
@@ -139,6 +147,7 @@ M.CreateAwsLogSourceOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -149,6 +158,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -165,6 +175,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -187,6 +198,7 @@ M.ThrottlingException = {
 
 M.CustomLogSourceCrawlerConfiguration = {
     type = "structure",
+    id = "CustomLogSourceCrawlerConfiguration",
     members = {
         roleArn = {
             type = "string",
@@ -199,6 +211,7 @@ M.CustomLogSourceCrawlerConfiguration = {
 
 M.CustomLogSourceConfiguration = {
     type = "structure",
+    id = "CustomLogSourceConfiguration",
     members = {
         crawlerConfiguration = setmetatable({ traits = {
             required = true,
@@ -211,6 +224,7 @@ M.CustomLogSourceConfiguration = {
 
 M.CreateCustomLogSourceInput = {
     type = "structure",
+    id = "CreateCustomLogSourceInput",
     members = {
         sourceName = {
             type = "string",
@@ -233,6 +247,7 @@ M.CreateCustomLogSourceInput = {
 
 M.CustomLogSourceAttributes = {
     type = "structure",
+    id = "CustomLogSourceAttributes",
     members = {
         crawlerArn = {
             type = "string",
@@ -248,6 +263,7 @@ M.CustomLogSourceAttributes = {
 
 M.CustomLogSourceProvider = {
     type = "structure",
+    id = "CustomLogSourceProvider",
     members = {
         roleArn = {
             type = "string",
@@ -260,6 +276,7 @@ M.CustomLogSourceProvider = {
 
 M.CustomLogSourceResource = {
     type = "structure",
+    id = "CustomLogSourceResource",
     members = {
         sourceName = {
             type = "string",
@@ -274,6 +291,7 @@ M.CustomLogSourceResource = {
 
 M.CreateCustomLogSourceOutput = {
     type = "structure",
+    id = "CreateCustomLogSourceOutput",
     members = {
         source = M.CustomLogSourceResource,
     },
@@ -281,6 +299,7 @@ M.CreateCustomLogSourceOutput = {
 
 M.DataLakeEncryptionConfiguration = {
     type = "structure",
+    id = "DataLakeEncryptionConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -290,6 +309,7 @@ M.DataLakeEncryptionConfiguration = {
 
 M.DataLakeLifecycleExpiration = {
     type = "structure",
+    id = "DataLakeLifecycleExpiration",
     members = {
         days = {
             type = "integer",
@@ -299,6 +319,7 @@ M.DataLakeLifecycleExpiration = {
 
 M.DataLakeLifecycleTransition = {
     type = "structure",
+    id = "DataLakeLifecycleTransition",
     members = {
         storageClass = {
             type = "string",
@@ -311,6 +332,7 @@ M.DataLakeLifecycleTransition = {
 
 M.DataLakeLifecycleConfiguration = {
     type = "structure",
+    id = "DataLakeLifecycleConfiguration",
     members = {
         expiration = M.DataLakeLifecycleExpiration,
         transitions = {
@@ -322,6 +344,7 @@ M.DataLakeLifecycleConfiguration = {
 
 M.DataLakeReplicationConfiguration = {
     type = "structure",
+    id = "DataLakeReplicationConfiguration",
     members = {
         regions = {
             type = "list",
@@ -335,6 +358,7 @@ M.DataLakeReplicationConfiguration = {
 
 M.DataLakeConfiguration = {
     type = "structure",
+    id = "DataLakeConfiguration",
     members = {
         region = {
             type = "string",
@@ -350,6 +374,7 @@ M.DataLakeConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -368,6 +393,7 @@ M.Tag = {
 
 M.CreateDataLakeInput = {
     type = "structure",
+    id = "CreateDataLakeInput",
     members = {
         configurations = {
             type = "list",
@@ -398,6 +424,7 @@ M.DataLakeStatus = {
 
 M.DataLakeUpdateException = {
     type = "structure",
+    id = "DataLakeUpdateException",
     members = {
         reason = {
             type = "string",
@@ -410,6 +437,7 @@ M.DataLakeUpdateException = {
 
 M.DataLakeUpdateStatus = {
     type = "structure",
+    id = "DataLakeUpdateStatus",
     members = {
         requestId = {
             type = "string",
@@ -423,6 +451,7 @@ M.DataLakeUpdateStatus = {
 
 M.DataLakeResource = {
     type = "structure",
+    id = "DataLakeResource",
     members = {
         dataLakeArn = {
             type = "string",
@@ -451,6 +480,7 @@ M.DataLakeResource = {
 
 M.CreateDataLakeOutput = {
     type = "structure",
+    id = "CreateDataLakeOutput",
     members = {
         dataLakes = {
             type = "list",
@@ -461,6 +491,7 @@ M.CreateDataLakeOutput = {
 
 M.CreateDataLakeExceptionSubscriptionInput = {
     type = "structure",
+    id = "CreateDataLakeExceptionSubscriptionInput",
     members = {
         subscriptionProtocol = {
             type = "string",
@@ -482,10 +513,12 @@ M.CreateDataLakeExceptionSubscriptionInput = {
 
 M.CreateDataLakeExceptionSubscriptionOutput = {
     type = "structure",
+    id = "CreateDataLakeExceptionSubscriptionOutput",
 }
 
 M.DataLakeAutoEnableNewAccountConfiguration = {
     type = "structure",
+    id = "DataLakeAutoEnableNewAccountConfiguration",
     members = {
         region = {
             type = "string",
@@ -505,6 +538,7 @@ M.DataLakeAutoEnableNewAccountConfiguration = {
 
 M.CreateDataLakeOrganizationConfigurationInput = {
     type = "structure",
+    id = "CreateDataLakeOrganizationConfigurationInput",
     members = {
         autoEnableNewAccount = {
             type = "list",
@@ -515,10 +549,12 @@ M.CreateDataLakeOrganizationConfigurationInput = {
 
 M.CreateDataLakeOrganizationConfigurationOutput = {
     type = "structure",
+    id = "CreateDataLakeOrganizationConfigurationOutput",
 }
 
 M.LogSourceResource = {
     type = "union",
+    id = "LogSourceResource",
     members = {
         awsLogSource = M.AwsLogSourceResource,
         customLogSource = M.CustomLogSourceResource,
@@ -527,6 +563,7 @@ M.LogSourceResource = {
 
 M.CreateSubscriberInput = {
     type = "structure",
+    id = "CreateSubscriberInput",
     members = {
         subscriberIdentity = setmetatable({ traits = {
             required = true,
@@ -567,6 +604,7 @@ M.SubscriberStatus = {
 
 M.SubscriberResource = {
     type = "structure",
+    id = "SubscriberResource",
     members = {
         subscriberId = {
             type = "string",
@@ -638,6 +676,7 @@ M.SubscriberResource = {
 
 M.CreateSubscriberOutput = {
     type = "structure",
+    id = "CreateSubscriberOutput",
     members = {
         subscriber = M.SubscriberResource,
     },
@@ -650,6 +689,7 @@ M.HttpMethod = {
 
 M.HttpsNotificationConfiguration = {
     type = "structure",
+    id = "HttpsNotificationConfiguration",
     members = {
         endpoint = {
             type = "string",
@@ -677,10 +717,12 @@ M.HttpsNotificationConfiguration = {
 
 M.SqsNotificationConfiguration = {
     type = "structure",
+    id = "SqsNotificationConfiguration",
 }
 
 M.NotificationConfiguration = {
     type = "union",
+    id = "NotificationConfiguration",
     members = {
         sqsNotificationConfiguration = M.SqsNotificationConfiguration,
         httpsNotificationConfiguration = M.HttpsNotificationConfiguration,
@@ -689,6 +731,7 @@ M.NotificationConfiguration = {
 
 M.CreateSubscriberNotificationInput = {
     type = "structure",
+    id = "CreateSubscriberNotificationInput",
     members = {
         subscriberId = {
             type = "string",
@@ -705,6 +748,7 @@ M.CreateSubscriberNotificationInput = {
 
 M.CreateSubscriberNotificationOutput = {
     type = "structure",
+    id = "CreateSubscriberNotificationOutput",
     members = {
         subscriberEndpoint = {
             type = "string",
@@ -714,6 +758,7 @@ M.CreateSubscriberNotificationOutput = {
 
 M.DeleteAwsLogSourceInput = {
     type = "structure",
+    id = "DeleteAwsLogSourceInput",
     members = {
         sources = {
             type = "list",
@@ -727,6 +772,7 @@ M.DeleteAwsLogSourceInput = {
 
 M.DeleteAwsLogSourceOutput = {
     type = "structure",
+    id = "DeleteAwsLogSourceOutput",
     members = {
         failed = {
             type = "list",
@@ -737,6 +783,7 @@ M.DeleteAwsLogSourceOutput = {
 
 M.DeleteCustomLogSourceInput = {
     type = "structure",
+    id = "DeleteCustomLogSourceInput",
     members = {
         sourceName = {
             type = "string",
@@ -756,10 +803,12 @@ M.DeleteCustomLogSourceInput = {
 
 M.DeleteCustomLogSourceOutput = {
     type = "structure",
+    id = "DeleteCustomLogSourceOutput",
 }
 
 M.DeleteDataLakeInput = {
     type = "structure",
+    id = "DeleteDataLakeInput",
     members = {
         regions = {
             type = "list",
@@ -773,10 +822,12 @@ M.DeleteDataLakeInput = {
 
 M.DeleteDataLakeOutput = {
     type = "structure",
+    id = "DeleteDataLakeOutput",
 }
 
 M.DeleteDataLakeOrganizationConfigurationInput = {
     type = "structure",
+    id = "DeleteDataLakeOrganizationConfigurationInput",
     members = {
         autoEnableNewAccount = {
             type = "list",
@@ -787,14 +838,17 @@ M.DeleteDataLakeOrganizationConfigurationInput = {
 
 M.DeleteDataLakeOrganizationConfigurationOutput = {
     type = "structure",
+    id = "DeleteDataLakeOrganizationConfigurationOutput",
 }
 
 M.GetDataLakeOrganizationConfigurationInput = {
     type = "structure",
+    id = "GetDataLakeOrganizationConfigurationInput",
 }
 
 M.GetDataLakeOrganizationConfigurationOutput = {
     type = "structure",
+    id = "GetDataLakeOrganizationConfigurationOutput",
     members = {
         autoEnableNewAccount = {
             type = "list",
@@ -805,6 +859,7 @@ M.GetDataLakeOrganizationConfigurationOutput = {
 
 M.GetDataLakeSourcesInput = {
     type = "structure",
+    id = "GetDataLakeSourcesInput",
     members = {
         accounts = {
             type = "list",
@@ -830,6 +885,7 @@ M.SourceCollectionStatus = {
 
 M.DataLakeSourceStatus = {
     type = "structure",
+    id = "DataLakeSourceStatus",
     members = {
         resource = {
             type = "string",
@@ -842,6 +898,7 @@ M.DataLakeSourceStatus = {
 
 M.DataLakeSource = {
     type = "structure",
+    id = "DataLakeSource",
     members = {
         account = {
             type = "string",
@@ -862,6 +919,7 @@ M.DataLakeSource = {
 
 M.GetDataLakeSourcesOutput = {
     type = "structure",
+    id = "GetDataLakeSourcesOutput",
     members = {
         dataLakeArn = {
             type = "string",
@@ -878,6 +936,7 @@ M.GetDataLakeSourcesOutput = {
 
 M.ListDataLakesInput = {
     type = "structure",
+    id = "ListDataLakesInput",
     members = {
         regions = {
             type = "list",
@@ -891,6 +950,7 @@ M.ListDataLakesInput = {
 
 M.ListDataLakesOutput = {
     type = "structure",
+    id = "ListDataLakesOutput",
     members = {
         dataLakes = {
             type = "list",
@@ -901,6 +961,7 @@ M.ListDataLakesOutput = {
 
 M.ListLogSourcesInput = {
     type = "structure",
+    id = "ListLogSourcesInput",
     members = {
         accounts = {
             type = "list",
@@ -928,6 +989,7 @@ M.ListLogSourcesInput = {
 
 M.LogSource = {
     type = "structure",
+    id = "LogSource",
     members = {
         account = {
             type = "string",
@@ -944,6 +1006,7 @@ M.LogSource = {
 
 M.ListLogSourcesOutput = {
     type = "structure",
+    id = "ListLogSourcesOutput",
     members = {
         sources = {
             type = "list",
@@ -957,6 +1020,7 @@ M.ListLogSourcesOutput = {
 
 M.UpdateDataLakeInput = {
     type = "structure",
+    id = "UpdateDataLakeInput",
     members = {
         configurations = {
             type = "list",
@@ -973,6 +1037,7 @@ M.UpdateDataLakeInput = {
 
 M.UpdateDataLakeOutput = {
     type = "structure",
+    id = "UpdateDataLakeOutput",
     members = {
         dataLakes = {
             type = "list",
@@ -983,6 +1048,7 @@ M.UpdateDataLakeOutput = {
 
 M.DataLakeException = {
     type = "structure",
+    id = "DataLakeException",
     members = {
         region = {
             type = "string",
@@ -1004,14 +1070,17 @@ M.DataLakeException = {
 
 M.DeleteDataLakeExceptionSubscriptionInput = {
     type = "structure",
+    id = "DeleteDataLakeExceptionSubscriptionInput",
 }
 
 M.DeleteDataLakeExceptionSubscriptionOutput = {
     type = "structure",
+    id = "DeleteDataLakeExceptionSubscriptionOutput",
 }
 
 M.DeleteSubscriberInput = {
     type = "structure",
+    id = "DeleteSubscriberInput",
     members = {
         subscriberId = {
             type = "string",
@@ -1025,10 +1094,12 @@ M.DeleteSubscriberInput = {
 
 M.DeleteSubscriberOutput = {
     type = "structure",
+    id = "DeleteSubscriberOutput",
 }
 
 M.DeleteSubscriberNotificationInput = {
     type = "structure",
+    id = "DeleteSubscriberNotificationInput",
     members = {
         subscriberId = {
             type = "string",
@@ -1042,22 +1113,27 @@ M.DeleteSubscriberNotificationInput = {
 
 M.DeleteSubscriberNotificationOutput = {
     type = "structure",
+    id = "DeleteSubscriberNotificationOutput",
 }
 
 M.DeregisterDataLakeDelegatedAdministratorInput = {
     type = "structure",
+    id = "DeregisterDataLakeDelegatedAdministratorInput",
 }
 
 M.DeregisterDataLakeDelegatedAdministratorOutput = {
     type = "structure",
+    id = "DeregisterDataLakeDelegatedAdministratorOutput",
 }
 
 M.GetDataLakeExceptionSubscriptionInput = {
     type = "structure",
+    id = "GetDataLakeExceptionSubscriptionInput",
 }
 
 M.GetDataLakeExceptionSubscriptionOutput = {
     type = "structure",
+    id = "GetDataLakeExceptionSubscriptionOutput",
     members = {
         subscriptionProtocol = {
             type = "string",
@@ -1073,6 +1149,7 @@ M.GetDataLakeExceptionSubscriptionOutput = {
 
 M.GetSubscriberInput = {
     type = "structure",
+    id = "GetSubscriberInput",
     members = {
         subscriberId = {
             type = "string",
@@ -1086,6 +1163,7 @@ M.GetSubscriberInput = {
 
 M.GetSubscriberOutput = {
     type = "structure",
+    id = "GetSubscriberOutput",
     members = {
         subscriber = M.SubscriberResource,
     },
@@ -1093,6 +1171,7 @@ M.GetSubscriberOutput = {
 
 M.ListDataLakeExceptionsInput = {
     type = "structure",
+    id = "ListDataLakeExceptionsInput",
     members = {
         regions = {
             type = "list",
@@ -1112,6 +1191,7 @@ M.ListDataLakeExceptionsInput = {
 
 M.ListDataLakeExceptionsOutput = {
     type = "structure",
+    id = "ListDataLakeExceptionsOutput",
     members = {
         exceptions = {
             type = "list",
@@ -1125,6 +1205,7 @@ M.ListDataLakeExceptionsOutput = {
 
 M.ListSubscribersInput = {
     type = "structure",
+    id = "ListSubscribersInput",
     members = {
         nextToken = {
             type = "string",
@@ -1144,6 +1225,7 @@ M.ListSubscribersInput = {
 
 M.ListSubscribersOutput = {
     type = "structure",
+    id = "ListSubscribersOutput",
     members = {
         subscribers = {
             type = "list",
@@ -1157,6 +1239,7 @@ M.ListSubscribersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1170,6 +1253,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1180,6 +1264,7 @@ M.ListTagsForResourceOutput = {
 
 M.RegisterDataLakeDelegatedAdministratorInput = {
     type = "structure",
+    id = "RegisterDataLakeDelegatedAdministratorInput",
     members = {
         accountId = {
             type = "string",
@@ -1192,10 +1277,12 @@ M.RegisterDataLakeDelegatedAdministratorInput = {
 
 M.RegisterDataLakeDelegatedAdministratorOutput = {
     type = "structure",
+    id = "RegisterDataLakeDelegatedAdministratorOutput",
 }
 
 M.UpdateSubscriberInput = {
     type = "structure",
+    id = "UpdateSubscriberInput",
     members = {
         subscriberId = {
             type = "string",
@@ -1220,6 +1307,7 @@ M.UpdateSubscriberInput = {
 
 M.UpdateSubscriberOutput = {
     type = "structure",
+    id = "UpdateSubscriberOutput",
     members = {
         subscriber = M.SubscriberResource,
     },
@@ -1227,6 +1315,7 @@ M.UpdateSubscriberOutput = {
 
 M.UpdateSubscriberNotificationInput = {
     type = "structure",
+    id = "UpdateSubscriberNotificationInput",
     members = {
         subscriberId = {
             type = "string",
@@ -1243,6 +1332,7 @@ M.UpdateSubscriberNotificationInput = {
 
 M.UpdateSubscriberNotificationOutput = {
     type = "structure",
+    id = "UpdateSubscriberNotificationOutput",
     members = {
         subscriberEndpoint = {
             type = "string",
@@ -1252,6 +1342,7 @@ M.UpdateSubscriberNotificationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1272,10 +1363,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1297,10 +1390,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDataLakeExceptionSubscriptionInput = {
     type = "structure",
+    id = "UpdateDataLakeExceptionSubscriptionInput",
     members = {
         subscriptionProtocol = {
             type = "string",
@@ -1322,6 +1417,7 @@ M.UpdateDataLakeExceptionSubscriptionInput = {
 
 M.UpdateDataLakeExceptionSubscriptionOutput = {
     type = "structure",
+    id = "UpdateDataLakeExceptionSubscriptionOutput",
 }
 
 return M

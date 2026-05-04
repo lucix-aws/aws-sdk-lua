@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -60,6 +61,7 @@ M.AwsRegion = {
 
 M.BatchGetMemberAccountDetailsInput = {
     type = "structure",
+    id = "BatchGetMemberAccountDetailsInput",
     members = {
         membershipId = {
             type = "string",
@@ -80,6 +82,7 @@ M.BatchGetMemberAccountDetailsInput = {
 
 M.GetMembershipAccountDetailError = {
     type = "structure",
+    id = "GetMembershipAccountDetailError",
     members = {
         accountId = {
             type = "string",
@@ -115,6 +118,7 @@ M.MembershipAccountRelationshipType = {
 
 M.GetMembershipAccountDetailItem = {
     type = "structure",
+    id = "GetMembershipAccountDetailItem",
     members = {
         accountId = {
             type = "string",
@@ -130,6 +134,7 @@ M.GetMembershipAccountDetailItem = {
 
 M.BatchGetMemberAccountDetailsOutput = {
     type = "structure",
+    id = "BatchGetMemberAccountDetailsOutput",
     members = {
         items = {
             type = "list",
@@ -144,6 +149,7 @@ M.BatchGetMemberAccountDetailsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -169,6 +175,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -188,6 +195,7 @@ M.InternalServerException = {
 
 M.InvalidTokenException = {
     type = "structure",
+    id = "InvalidTokenException",
     error = "client",
     members = {
         message = {
@@ -201,6 +209,7 @@ M.InvalidTokenException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -214,6 +223,7 @@ M.ResourceNotFoundException = {
 
 M.SecurityIncidentResponseNotActiveException = {
     type = "structure",
+    id = "SecurityIncidentResponseNotActiveException",
     error = "client",
     members = {
         message = {
@@ -227,6 +237,7 @@ M.SecurityIncidentResponseNotActiveException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -264,6 +275,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -289,6 +301,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -314,6 +327,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -337,6 +351,7 @@ M.ValidationException = {
 
 M.CancelMembershipInput = {
     type = "structure",
+    id = "CancelMembershipInput",
     members = {
         membershipId = {
             type = "string",
@@ -350,6 +365,7 @@ M.CancelMembershipInput = {
 
 M.CancelMembershipOutput = {
     type = "structure",
+    id = "CancelMembershipOutput",
     members = {
         membershipId = {
             type = "string",
@@ -362,6 +378,7 @@ M.CancelMembershipOutput = {
 
 M.CloseCaseInput = {
     type = "structure",
+    id = "CloseCaseInput",
     members = {
         caseId = {
             type = "string",
@@ -385,6 +402,7 @@ M.CaseStatus = {
 
 M.CloseCaseOutput = {
     type = "structure",
+    id = "CloseCaseOutput",
     members = {
         caseStatus = {
             type = "string",
@@ -402,6 +420,7 @@ M.EngagementType = {
 
 M.ImpactedAwsRegion = {
     type = "structure",
+    id = "ImpactedAwsRegion",
     members = {
         region = {
             type = "string",
@@ -419,6 +438,7 @@ M.ResolverType = {
 
 M.ThreatActorIp = {
     type = "structure",
+    id = "ThreatActorIp",
     members = {
         ipAddress = {
             type = "string",
@@ -434,6 +454,7 @@ M.ThreatActorIp = {
 
 M.Watcher = {
     type = "structure",
+    id = "Watcher",
     members = {
         email = {
             type = "string",
@@ -452,6 +473,7 @@ M.Watcher = {
 
 M.CreateCaseInput = {
     type = "structure",
+    id = "CreateCaseInput",
     members = {
         clientToken = {
             type = "string",
@@ -525,6 +547,7 @@ M.CreateCaseInput = {
 
 M.CreateCaseOutput = {
     type = "structure",
+    id = "CreateCaseOutput",
     members = {
         caseId = {
             type = "string",
@@ -537,6 +560,7 @@ M.CreateCaseOutput = {
 
 M.CreateCaseCommentInput = {
     type = "structure",
+    id = "CreateCaseCommentInput",
     members = {
         caseId = {
             type = "string",
@@ -562,6 +586,7 @@ M.CreateCaseCommentInput = {
 
 M.CreateCaseCommentOutput = {
     type = "structure",
+    id = "CreateCaseCommentOutput",
     members = {
         commentId = {
             type = "string",
@@ -574,6 +599,7 @@ M.CreateCaseCommentOutput = {
 
 M.GetCaseInput = {
     type = "structure",
+    id = "GetCaseInput",
     members = {
         caseId = {
             type = "string",
@@ -593,6 +619,7 @@ M.CaseAttachmentStatus = {
 
 M.CaseAttachmentAttributes = {
     type = "structure",
+    id = "CaseAttachmentAttributes",
     members = {
         attachmentId = {
             type = "string",
@@ -629,6 +656,7 @@ M.CaseAttachmentAttributes = {
 
 M.CaseMetadataEntry = {
     type = "structure",
+    id = "CaseMetadataEntry",
     members = {
         key = {
             type = "string",
@@ -659,6 +687,7 @@ M.PendingAction = {
 
 M.GetCaseOutput = {
     type = "structure",
+    id = "GetCaseOutput",
     members = {
         title = {
             type = "string",
@@ -732,6 +761,7 @@ M.GetCaseOutput = {
 
 M.GetCaseAttachmentDownloadUrlInput = {
     type = "structure",
+    id = "GetCaseAttachmentDownloadUrlInput",
     members = {
         caseId = {
             type = "string",
@@ -752,6 +782,7 @@ M.GetCaseAttachmentDownloadUrlInput = {
 
 M.GetCaseAttachmentDownloadUrlOutput = {
     type = "structure",
+    id = "GetCaseAttachmentDownloadUrlOutput",
     members = {
         attachmentPresignedUrl = {
             type = "string",
@@ -764,6 +795,7 @@ M.GetCaseAttachmentDownloadUrlOutput = {
 
 M.GetCaseAttachmentUploadUrlInput = {
     type = "structure",
+    id = "GetCaseAttachmentUploadUrlInput",
     members = {
         caseId = {
             type = "string",
@@ -795,6 +827,7 @@ M.GetCaseAttachmentUploadUrlInput = {
 
 M.GetCaseAttachmentUploadUrlOutput = {
     type = "structure",
+    id = "GetCaseAttachmentUploadUrlOutput",
     members = {
         attachmentPresignedUrl = {
             type = "string",
@@ -807,6 +840,7 @@ M.GetCaseAttachmentUploadUrlOutput = {
 
 M.ListCaseEditsInput = {
     type = "structure",
+    id = "ListCaseEditsInput",
     members = {
         nextToken = {
             type = "string",
@@ -826,6 +860,7 @@ M.ListCaseEditsInput = {
 
 M.CaseEditItem = {
     type = "structure",
+    id = "CaseEditItem",
     members = {
         eventTimestamp = {
             type = "timestamp",
@@ -844,6 +879,7 @@ M.CaseEditItem = {
 
 M.ListCaseEditsOutput = {
     type = "structure",
+    id = "ListCaseEditsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -860,6 +896,7 @@ M.ListCaseEditsOutput = {
 
 M.ListCasesInput = {
     type = "structure",
+    id = "ListCasesInput",
     members = {
         nextToken = {
             type = "string",
@@ -872,6 +909,7 @@ M.ListCasesInput = {
 
 M.ListCasesItem = {
     type = "structure",
+    id = "ListCasesItem",
     members = {
         caseId = {
             type = "string",
@@ -911,6 +949,7 @@ M.ListCasesItem = {
 
 M.ListCasesOutput = {
     type = "structure",
+    id = "ListCasesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -927,6 +966,7 @@ M.ListCasesOutput = {
 
 M.ListCommentsInput = {
     type = "structure",
+    id = "ListCommentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -946,6 +986,7 @@ M.ListCommentsInput = {
 
 M.ListCommentsItem = {
     type = "structure",
+    id = "ListCommentsItem",
     members = {
         commentId = {
             type = "string",
@@ -973,6 +1014,7 @@ M.ListCommentsItem = {
 
 M.ListCommentsOutput = {
     type = "structure",
+    id = "ListCommentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -989,6 +1031,7 @@ M.ListCommentsOutput = {
 
 M.ListInvestigationsInput = {
     type = "structure",
+    id = "ListInvestigationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1019,6 +1062,7 @@ M.UsefulnessRating = {
 
 M.InvestigationFeedback = {
     type = "structure",
+    id = "InvestigationFeedback",
     members = {
         usefulness = {
             type = "string",
@@ -1043,6 +1087,7 @@ M.ExecutionStatus = {
 
 M.InvestigationAction = {
     type = "structure",
+    id = "InvestigationAction",
     members = {
         investigationId = {
             type = "string",
@@ -1086,6 +1131,7 @@ M.InvestigationAction = {
 
 M.ListInvestigationsOutput = {
     type = "structure",
+    id = "ListInvestigationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1102,6 +1148,7 @@ M.ListInvestigationsOutput = {
 
 M.SendFeedbackInput = {
     type = "structure",
+    id = "SendFeedbackInput",
     members = {
         caseId = {
             type = "string",
@@ -1131,10 +1178,12 @@ M.SendFeedbackInput = {
 
 M.SendFeedbackOutput = {
     type = "structure",
+    id = "SendFeedbackOutput",
 }
 
 M.UpdateCaseInput = {
     type = "structure",
+    id = "UpdateCaseInput",
     members = {
         caseId = {
             type = "string",
@@ -1207,10 +1256,12 @@ M.UpdateCaseInput = {
 
 M.UpdateCaseOutput = {
     type = "structure",
+    id = "UpdateCaseOutput",
 }
 
 M.UpdateCaseCommentInput = {
     type = "structure",
+    id = "UpdateCaseCommentInput",
     members = {
         caseId = {
             type = "string",
@@ -1237,6 +1288,7 @@ M.UpdateCaseCommentInput = {
 
 M.UpdateCaseCommentOutput = {
     type = "structure",
+    id = "UpdateCaseCommentOutput",
     members = {
         commentId = {
             type = "string",
@@ -1259,6 +1311,7 @@ M.SelfManagedCaseStatus = {
 
 M.UpdateCaseStatusInput = {
     type = "structure",
+    id = "UpdateCaseStatusInput",
     members = {
         caseId = {
             type = "string",
@@ -1278,6 +1331,7 @@ M.UpdateCaseStatusInput = {
 
 M.UpdateCaseStatusOutput = {
     type = "structure",
+    id = "UpdateCaseStatusOutput",
     members = {
         caseStatus = {
             type = "string",
@@ -1287,6 +1341,7 @@ M.UpdateCaseStatusOutput = {
 
 M.UpdateResolverTypeInput = {
     type = "structure",
+    id = "UpdateResolverTypeInput",
     members = {
         caseId = {
             type = "string",
@@ -1306,6 +1361,7 @@ M.UpdateResolverTypeInput = {
 
 M.UpdateResolverTypeOutput = {
     type = "structure",
+    id = "UpdateResolverTypeOutput",
     members = {
         caseId = {
             type = "string",
@@ -1343,6 +1399,7 @@ M.CommunicationType = {
 
 M.IncidentResponder = {
     type = "structure",
+    id = "IncidentResponder",
     members = {
         name = {
             type = "string",
@@ -1375,6 +1432,7 @@ M.OptInFeatureName = {
 
 M.OptInFeature = {
     type = "structure",
+    id = "OptInFeature",
     members = {
         featureName = {
             type = "string",
@@ -1393,6 +1451,7 @@ M.OptInFeature = {
 
 M.CreateMembershipInput = {
     type = "structure",
+    id = "CreateMembershipInput",
     members = {
         clientToken = {
             type = "string",
@@ -1433,6 +1492,7 @@ M.CreateMembershipInput = {
 
 M.CreateMembershipOutput = {
     type = "structure",
+    id = "CreateMembershipOutput",
     members = {
         membershipId = {
             type = "string",
@@ -1450,6 +1510,7 @@ M.CustomerType = {
 
 M.GetMembershipInput = {
     type = "structure",
+    id = "GetMembershipInput",
     members = {
         membershipId = {
             type = "string",
@@ -1463,6 +1524,7 @@ M.GetMembershipInput = {
 
 M.MembershipAccountsConfigurations = {
     type = "structure",
+    id = "MembershipAccountsConfigurations",
     members = {
         coverEntireOrganization = {
             type = "boolean",
@@ -1482,6 +1544,7 @@ M.MembershipStatus = {
 
 M.GetMembershipOutput = {
     type = "structure",
+    id = "GetMembershipOutput",
     members = {
         membershipId = {
             type = "string",
@@ -1530,6 +1593,7 @@ M.GetMembershipOutput = {
 
 M.ListMembershipItem = {
     type = "structure",
+    id = "ListMembershipItem",
     members = {
         membershipId = {
             type = "string",
@@ -1554,6 +1618,7 @@ M.ListMembershipItem = {
 
 M.ListMembershipsInput = {
     type = "structure",
+    id = "ListMembershipsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1566,6 +1631,7 @@ M.ListMembershipsInput = {
 
 M.ListMembershipsOutput = {
     type = "structure",
+    id = "ListMembershipsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1579,6 +1645,7 @@ M.ListMembershipsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1592,6 +1659,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1606,6 +1674,7 @@ M.ListTagsForResourceOutput = {
 
 M.MembershipAccountsConfigurationsUpdate = {
     type = "structure",
+    id = "MembershipAccountsConfigurationsUpdate",
     members = {
         coverEntireOrganization = {
             type = "boolean",
@@ -1623,6 +1692,7 @@ M.MembershipAccountsConfigurationsUpdate = {
 
 M.UpdateMembershipInput = {
     type = "structure",
+    id = "UpdateMembershipInput",
     members = {
         membershipId = {
             type = "string",
@@ -1651,10 +1721,12 @@ M.UpdateMembershipInput = {
 
 M.UpdateMembershipOutput = {
     type = "structure",
+    id = "UpdateMembershipOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1676,10 +1748,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1701,6 +1775,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

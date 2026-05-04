@@ -6,6 +6,7 @@ M.S3AclOption = {
 
 M.AclConfiguration = {
     type = "structure",
+    id = "AclConfiguration",
     members = {
         S3AclOption = {
             type = "string",
@@ -18,6 +19,7 @@ M.AclConfiguration = {
 
 M.BatchGetNamedQueryInput = {
     type = "structure",
+    id = "BatchGetNamedQueryInput",
     members = {
         NamedQueryIds = {
             type = "list",
@@ -31,6 +33,7 @@ M.BatchGetNamedQueryInput = {
 
 M.NamedQuery = {
     type = "structure",
+    id = "NamedQuery",
     members = {
         Name = {
             type = "string",
@@ -64,6 +67,7 @@ M.NamedQuery = {
 
 M.UnprocessedNamedQueryId = {
     type = "structure",
+    id = "UnprocessedNamedQueryId",
     members = {
         NamedQueryId = {
             type = "string",
@@ -79,6 +83,7 @@ M.UnprocessedNamedQueryId = {
 
 M.BatchGetNamedQueryOutput = {
     type = "structure",
+    id = "BatchGetNamedQueryOutput",
     members = {
         NamedQueries = {
             type = "list",
@@ -93,6 +98,7 @@ M.BatchGetNamedQueryOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -103,6 +109,7 @@ M.InternalServerException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         AthenaErrorCode = {
@@ -116,6 +123,7 @@ M.InvalidRequestException = {
 
 M.BatchGetPreparedStatementInput = {
     type = "structure",
+    id = "BatchGetPreparedStatementInput",
     members = {
         PreparedStatementNames = {
             type = "list",
@@ -135,6 +143,7 @@ M.BatchGetPreparedStatementInput = {
 
 M.PreparedStatement = {
     type = "structure",
+    id = "PreparedStatement",
     members = {
         StatementName = {
             type = "string",
@@ -156,6 +165,7 @@ M.PreparedStatement = {
 
 M.UnprocessedPreparedStatementName = {
     type = "structure",
+    id = "UnprocessedPreparedStatementName",
     members = {
         StatementName = {
             type = "string",
@@ -171,6 +181,7 @@ M.UnprocessedPreparedStatementName = {
 
 M.BatchGetPreparedStatementOutput = {
     type = "structure",
+    id = "BatchGetPreparedStatementOutput",
     members = {
         PreparedStatements = {
             type = "list",
@@ -185,6 +196,7 @@ M.BatchGetPreparedStatementOutput = {
 
 M.BatchGetQueryExecutionInput = {
     type = "structure",
+    id = "BatchGetQueryExecutionInput",
     members = {
         QueryExecutionIds = {
             type = "list",
@@ -198,6 +210,7 @@ M.BatchGetQueryExecutionInput = {
 
 M.EngineVersion = {
     type = "structure",
+    id = "EngineVersion",
     members = {
         SelectedEngineVersion = {
             type = "string",
@@ -210,6 +223,7 @@ M.EngineVersion = {
 
 M.ManagedQueryResultsEncryptionConfiguration = {
     type = "structure",
+    id = "ManagedQueryResultsEncryptionConfiguration",
     members = {
         KmsKey = {
             type = "string",
@@ -222,6 +236,7 @@ M.ManagedQueryResultsEncryptionConfiguration = {
 
 M.ManagedQueryResultsConfiguration = {
     type = "structure",
+    id = "ManagedQueryResultsConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -236,6 +251,7 @@ M.ManagedQueryResultsConfiguration = {
 
 M.QueryExecutionContext = {
     type = "structure",
+    id = "QueryExecutionContext",
     members = {
         Database = {
             type = "string",
@@ -252,6 +268,7 @@ M.AuthenticationType = {
 
 M.QueryResultsS3AccessGrantsConfiguration = {
     type = "structure",
+    id = "QueryResultsS3AccessGrantsConfiguration",
     members = {
         EnableS3AccessGrants = {
             type = "boolean",
@@ -279,6 +296,7 @@ M.EncryptionOption = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         EncryptionOption = {
             type = "string",
@@ -294,6 +312,7 @@ M.EncryptionConfiguration = {
 
 M.ResultConfiguration = {
     type = "structure",
+    id = "ResultConfiguration",
     members = {
         OutputLocation = {
             type = "string",
@@ -308,6 +327,7 @@ M.ResultConfiguration = {
 
 M.ResultReuseByAgeConfiguration = {
     type = "structure",
+    id = "ResultReuseByAgeConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -324,6 +344,7 @@ M.ResultReuseByAgeConfiguration = {
 
 M.ResultReuseConfiguration = {
     type = "structure",
+    id = "ResultReuseConfiguration",
     members = {
         ResultReuseByAgeConfiguration = M.ResultReuseByAgeConfiguration,
     },
@@ -337,6 +358,7 @@ M.StatementType = {
 
 M.ResultReuseInformation = {
     type = "structure",
+    id = "ResultReuseInformation",
     members = {
         ReusedPreviousResult = {
             type = "boolean",
@@ -350,6 +372,7 @@ M.ResultReuseInformation = {
 
 M.QueryExecutionStatistics = {
     type = "structure",
+    id = "QueryExecutionStatistics",
     members = {
         EngineExecutionTimeInMillis = {
             type = "long",
@@ -384,6 +407,7 @@ M.QueryExecutionStatistics = {
 
 M.AthenaError = {
     type = "structure",
+    id = "AthenaError",
     members = {
         ErrorCategory = {
             type = "integer",
@@ -413,6 +437,7 @@ M.QueryExecutionState = {
 
 M.QueryExecutionStatus = {
     type = "structure",
+    id = "QueryExecutionStatus",
     members = {
         State = {
             type = "string",
@@ -432,6 +457,7 @@ M.QueryExecutionStatus = {
 
 M.QueryExecution = {
     type = "structure",
+    id = "QueryExecution",
     members = {
         QueryExecutionId = {
             type = "string",
@@ -465,6 +491,7 @@ M.QueryExecution = {
 
 M.UnprocessedQueryExecutionId = {
     type = "structure",
+    id = "UnprocessedQueryExecutionId",
     members = {
         QueryExecutionId = {
             type = "string",
@@ -480,6 +507,7 @@ M.UnprocessedQueryExecutionId = {
 
 M.BatchGetQueryExecutionOutput = {
     type = "structure",
+    id = "BatchGetQueryExecutionOutput",
     members = {
         QueryExecutions = {
             type = "list",
@@ -494,6 +522,7 @@ M.BatchGetQueryExecutionOutput = {
 
 M.CancelCapacityReservationInput = {
     type = "structure",
+    id = "CancelCapacityReservationInput",
     members = {
         Name = {
             type = "string",
@@ -506,10 +535,12 @@ M.CancelCapacityReservationInput = {
 
 M.CancelCapacityReservationOutput = {
     type = "structure",
+    id = "CancelCapacityReservationOutput",
 }
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -522,6 +553,7 @@ M.Tag = {
 
 M.CreateCapacityReservationInput = {
     type = "structure",
+    id = "CreateCapacityReservationInput",
     members = {
         TargetDpus = {
             type = "integer",
@@ -544,6 +576,7 @@ M.CreateCapacityReservationInput = {
 
 M.CreateCapacityReservationOutput = {
     type = "structure",
+    id = "CreateCapacityReservationOutput",
 }
 
 M.DataCatalogType = {
@@ -555,6 +588,7 @@ M.DataCatalogType = {
 
 M.CreateDataCatalogInput = {
     type = "structure",
+    id = "CreateDataCatalogInput",
     members = {
         Name = {
             type = "string",
@@ -620,6 +654,7 @@ M.DataCatalogStatus = {
 
 M.DataCatalog = {
     type = "structure",
+    id = "DataCatalog",
     members = {
         Name = {
             type = "string",
@@ -655,6 +690,7 @@ M.DataCatalog = {
 
 M.CreateDataCatalogOutput = {
     type = "structure",
+    id = "CreateDataCatalogOutput",
     members = {
         DataCatalog = M.DataCatalog,
     },
@@ -662,6 +698,7 @@ M.CreateDataCatalogOutput = {
 
 M.CreateNamedQueryInput = {
     type = "structure",
+    id = "CreateNamedQueryInput",
     members = {
         Name = {
             type = "string",
@@ -698,6 +735,7 @@ M.CreateNamedQueryInput = {
 
 M.CreateNamedQueryOutput = {
     type = "structure",
+    id = "CreateNamedQueryOutput",
     members = {
         NamedQueryId = {
             type = "string",
@@ -707,6 +745,7 @@ M.CreateNamedQueryOutput = {
 
 M.CreateNotebookInput = {
     type = "structure",
+    id = "CreateNotebookInput",
     members = {
         WorkGroup = {
             type = "string",
@@ -728,6 +767,7 @@ M.CreateNotebookInput = {
 
 M.CreateNotebookOutput = {
     type = "structure",
+    id = "CreateNotebookOutput",
     members = {
         NotebookId = {
             type = "string",
@@ -741,6 +781,7 @@ M.ThrottleReason = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -754,6 +795,7 @@ M.TooManyRequestsException = {
 
 M.CreatePreparedStatementInput = {
     type = "structure",
+    id = "CreatePreparedStatementInput",
     members = {
         StatementName = {
             type = "string",
@@ -781,10 +823,12 @@ M.CreatePreparedStatementInput = {
 
 M.CreatePreparedStatementOutput = {
     type = "structure",
+    id = "CreatePreparedStatementOutput",
 }
 
 M.CreatePresignedNotebookUrlInput = {
     type = "structure",
+    id = "CreatePresignedNotebookUrlInput",
     members = {
         SessionId = {
             type = "string",
@@ -797,6 +841,7 @@ M.CreatePresignedNotebookUrlInput = {
 
 M.CreatePresignedNotebookUrlOutput = {
     type = "structure",
+    id = "CreatePresignedNotebookUrlOutput",
     members = {
         NotebookUrl = {
             type = "string",
@@ -821,6 +866,7 @@ M.CreatePresignedNotebookUrlOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -834,6 +880,7 @@ M.ResourceNotFoundException = {
 
 M.CustomerContentEncryptionConfiguration = {
     type = "structure",
+    id = "CustomerContentEncryptionConfiguration",
     members = {
         KmsKey = {
             type = "string",
@@ -846,6 +893,7 @@ M.CustomerContentEncryptionConfiguration = {
 
 M.Classification = {
     type = "structure",
+    id = "Classification",
     members = {
         Name = {
             type = "string",
@@ -860,6 +908,7 @@ M.Classification = {
 
 M.EngineConfiguration = {
     type = "structure",
+    id = "EngineConfiguration",
     members = {
         CoordinatorDpuSize = {
             type = "integer",
@@ -892,6 +941,7 @@ M.EngineConfiguration = {
 
 M.IdentityCenterConfiguration = {
     type = "structure",
+    id = "IdentityCenterConfiguration",
     members = {
         EnableIdentityCenter = {
             type = "boolean",
@@ -904,6 +954,7 @@ M.IdentityCenterConfiguration = {
 
 M.CloudWatchLoggingConfiguration = {
     type = "structure",
+    id = "CloudWatchLoggingConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -927,6 +978,7 @@ M.CloudWatchLoggingConfiguration = {
 
 M.ManagedLoggingConfiguration = {
     type = "structure",
+    id = "ManagedLoggingConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -942,6 +994,7 @@ M.ManagedLoggingConfiguration = {
 
 M.S3LoggingConfiguration = {
     type = "structure",
+    id = "S3LoggingConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -960,6 +1013,7 @@ M.S3LoggingConfiguration = {
 
 M.MonitoringConfiguration = {
     type = "structure",
+    id = "MonitoringConfiguration",
     members = {
         CloudWatchLoggingConfiguration = M.CloudWatchLoggingConfiguration,
         ManagedLoggingConfiguration = M.ManagedLoggingConfiguration,
@@ -969,6 +1023,7 @@ M.MonitoringConfiguration = {
 
 M.WorkGroupConfiguration = {
     type = "structure",
+    id = "WorkGroupConfiguration",
     members = {
         ResultConfiguration = M.ResultConfiguration,
         ManagedQueryResultsConfiguration = M.ManagedQueryResultsConfiguration,
@@ -1004,6 +1059,7 @@ M.WorkGroupConfiguration = {
 
 M.CreateWorkGroupInput = {
     type = "structure",
+    id = "CreateWorkGroupInput",
     members = {
         Name = {
             type = "string",
@@ -1024,10 +1080,12 @@ M.CreateWorkGroupInput = {
 
 M.CreateWorkGroupOutput = {
     type = "structure",
+    id = "CreateWorkGroupOutput",
 }
 
 M.DeleteCapacityReservationInput = {
     type = "structure",
+    id = "DeleteCapacityReservationInput",
     members = {
         Name = {
             type = "string",
@@ -1040,10 +1098,12 @@ M.DeleteCapacityReservationInput = {
 
 M.DeleteCapacityReservationOutput = {
     type = "structure",
+    id = "DeleteCapacityReservationOutput",
 }
 
 M.DeleteDataCatalogInput = {
     type = "structure",
+    id = "DeleteDataCatalogInput",
     members = {
         Name = {
             type = "string",
@@ -1062,6 +1122,7 @@ M.DeleteDataCatalogInput = {
 
 M.DeleteDataCatalogOutput = {
     type = "structure",
+    id = "DeleteDataCatalogOutput",
     members = {
         DataCatalog = M.DataCatalog,
     },
@@ -1069,6 +1130,7 @@ M.DeleteDataCatalogOutput = {
 
 M.DeleteNamedQueryInput = {
     type = "structure",
+    id = "DeleteNamedQueryInput",
     members = {
         NamedQueryId = {
             type = "string",
@@ -1082,10 +1144,12 @@ M.DeleteNamedQueryInput = {
 
 M.DeleteNamedQueryOutput = {
     type = "structure",
+    id = "DeleteNamedQueryOutput",
 }
 
 M.DeleteNotebookInput = {
     type = "structure",
+    id = "DeleteNotebookInput",
     members = {
         NotebookId = {
             type = "string",
@@ -1098,10 +1162,12 @@ M.DeleteNotebookInput = {
 
 M.DeleteNotebookOutput = {
     type = "structure",
+    id = "DeleteNotebookOutput",
 }
 
 M.DeletePreparedStatementInput = {
     type = "structure",
+    id = "DeletePreparedStatementInput",
     members = {
         StatementName = {
             type = "string",
@@ -1120,10 +1186,12 @@ M.DeletePreparedStatementInput = {
 
 M.DeletePreparedStatementOutput = {
     type = "structure",
+    id = "DeletePreparedStatementOutput",
 }
 
 M.DeleteWorkGroupInput = {
     type = "structure",
+    id = "DeleteWorkGroupInput",
     members = {
         WorkGroup = {
             type = "string",
@@ -1139,10 +1207,12 @@ M.DeleteWorkGroupInput = {
 
 M.DeleteWorkGroupOutput = {
     type = "structure",
+    id = "DeleteWorkGroupOutput",
 }
 
 M.ExportNotebookInput = {
     type = "structure",
+    id = "ExportNotebookInput",
     members = {
         NotebookId = {
             type = "string",
@@ -1159,6 +1229,7 @@ M.NotebookType = {
 
 M.NotebookMetadata = {
     type = "structure",
+    id = "NotebookMetadata",
     members = {
         NotebookId = {
             type = "string",
@@ -1183,6 +1254,7 @@ M.NotebookMetadata = {
 
 M.ExportNotebookOutput = {
     type = "structure",
+    id = "ExportNotebookOutput",
     members = {
         NotebookMetadata = M.NotebookMetadata,
         Payload = {
@@ -1193,6 +1265,7 @@ M.ExportNotebookOutput = {
 
 M.GetCalculationExecutionInput = {
     type = "structure",
+    id = "GetCalculationExecutionInput",
     members = {
         CalculationExecutionId = {
             type = "string",
@@ -1205,6 +1278,7 @@ M.GetCalculationExecutionInput = {
 
 M.CalculationResult = {
     type = "structure",
+    id = "CalculationResult",
     members = {
         StdOutS3Uri = {
             type = "string",
@@ -1223,6 +1297,7 @@ M.CalculationResult = {
 
 M.CalculationStatistics = {
     type = "structure",
+    id = "CalculationStatistics",
     members = {
         DpuExecutionInMillis = {
             type = "long",
@@ -1246,6 +1321,7 @@ M.CalculationExecutionState = {
 
 M.CalculationStatus = {
     type = "structure",
+    id = "CalculationStatus",
     members = {
         SubmissionDateTime = {
             type = "timestamp",
@@ -1264,6 +1340,7 @@ M.CalculationStatus = {
 
 M.GetCalculationExecutionOutput = {
     type = "structure",
+    id = "GetCalculationExecutionOutput",
     members = {
         CalculationExecutionId = {
             type = "string",
@@ -1285,6 +1362,7 @@ M.GetCalculationExecutionOutput = {
 
 M.GetCalculationExecutionCodeInput = {
     type = "structure",
+    id = "GetCalculationExecutionCodeInput",
     members = {
         CalculationExecutionId = {
             type = "string",
@@ -1297,6 +1375,7 @@ M.GetCalculationExecutionCodeInput = {
 
 M.GetCalculationExecutionCodeOutput = {
     type = "structure",
+    id = "GetCalculationExecutionCodeOutput",
     members = {
         CodeBlock = {
             type = "string",
@@ -1306,6 +1385,7 @@ M.GetCalculationExecutionCodeOutput = {
 
 M.GetCalculationExecutionStatusInput = {
     type = "structure",
+    id = "GetCalculationExecutionStatusInput",
     members = {
         CalculationExecutionId = {
             type = "string",
@@ -1318,6 +1398,7 @@ M.GetCalculationExecutionStatusInput = {
 
 M.GetCalculationExecutionStatusOutput = {
     type = "structure",
+    id = "GetCalculationExecutionStatusOutput",
     members = {
         Status = M.CalculationStatus,
         Statistics = M.CalculationStatistics,
@@ -1326,6 +1407,7 @@ M.GetCalculationExecutionStatusOutput = {
 
 M.GetCapacityAssignmentConfigurationInput = {
     type = "structure",
+    id = "GetCapacityAssignmentConfigurationInput",
     members = {
         CapacityReservationName = {
             type = "string",
@@ -1338,6 +1420,7 @@ M.GetCapacityAssignmentConfigurationInput = {
 
 M.CapacityAssignment = {
     type = "structure",
+    id = "CapacityAssignment",
     members = {
         WorkGroupNames = {
             type = "list",
@@ -1348,6 +1431,7 @@ M.CapacityAssignment = {
 
 M.CapacityAssignmentConfiguration = {
     type = "structure",
+    id = "CapacityAssignmentConfiguration",
     members = {
         CapacityReservationName = {
             type = "string",
@@ -1361,6 +1445,7 @@ M.CapacityAssignmentConfiguration = {
 
 M.GetCapacityAssignmentConfigurationOutput = {
     type = "structure",
+    id = "GetCapacityAssignmentConfigurationOutput",
     members = {
         CapacityAssignmentConfiguration = setmetatable({ traits = {
             required = true,
@@ -1370,6 +1455,7 @@ M.GetCapacityAssignmentConfigurationOutput = {
 
 M.GetCapacityReservationInput = {
     type = "structure",
+    id = "GetCapacityReservationInput",
     members = {
         Name = {
             type = "string",
@@ -1388,6 +1474,7 @@ M.CapacityAllocationStatus = {
 
 M.CapacityAllocation = {
     type = "structure",
+    id = "CapacityAllocation",
     members = {
         Status = {
             type = "string",
@@ -1421,6 +1508,7 @@ M.CapacityReservationStatus = {
 
 M.CapacityReservation = {
     type = "structure",
+    id = "CapacityReservation",
     members = {
         Name = {
             type = "string",
@@ -1461,6 +1549,7 @@ M.CapacityReservation = {
 
 M.GetCapacityReservationOutput = {
     type = "structure",
+    id = "GetCapacityReservationOutput",
     members = {
         CapacityReservation = setmetatable({ traits = {
             required = true,
@@ -1470,6 +1559,7 @@ M.GetCapacityReservationOutput = {
 
 M.GetDatabaseInput = {
     type = "structure",
+    id = "GetDatabaseInput",
     members = {
         CatalogName = {
             type = "string",
@@ -1491,6 +1581,7 @@ M.GetDatabaseInput = {
 
 M.Database = {
     type = "structure",
+    id = "Database",
     members = {
         Name = {
             type = "string",
@@ -1511,6 +1602,7 @@ M.Database = {
 
 M.GetDatabaseOutput = {
     type = "structure",
+    id = "GetDatabaseOutput",
     members = {
         Database = M.Database,
     },
@@ -1518,6 +1610,7 @@ M.GetDatabaseOutput = {
 
 M.MetadataException = {
     type = "structure",
+    id = "MetadataException",
     error = "client",
     members = {
         Message = {
@@ -1528,6 +1621,7 @@ M.MetadataException = {
 
 M.GetDataCatalogInput = {
     type = "structure",
+    id = "GetDataCatalogInput",
     members = {
         Name = {
             type = "string",
@@ -1543,6 +1637,7 @@ M.GetDataCatalogInput = {
 
 M.GetDataCatalogOutput = {
     type = "structure",
+    id = "GetDataCatalogOutput",
     members = {
         DataCatalog = M.DataCatalog,
     },
@@ -1550,6 +1645,7 @@ M.GetDataCatalogOutput = {
 
 M.GetNamedQueryInput = {
     type = "structure",
+    id = "GetNamedQueryInput",
     members = {
         NamedQueryId = {
             type = "string",
@@ -1562,6 +1658,7 @@ M.GetNamedQueryInput = {
 
 M.GetNamedQueryOutput = {
     type = "structure",
+    id = "GetNamedQueryOutput",
     members = {
         NamedQuery = M.NamedQuery,
     },
@@ -1569,6 +1666,7 @@ M.GetNamedQueryOutput = {
 
 M.GetNotebookMetadataInput = {
     type = "structure",
+    id = "GetNotebookMetadataInput",
     members = {
         NotebookId = {
             type = "string",
@@ -1581,6 +1679,7 @@ M.GetNotebookMetadataInput = {
 
 M.GetNotebookMetadataOutput = {
     type = "structure",
+    id = "GetNotebookMetadataOutput",
     members = {
         NotebookMetadata = M.NotebookMetadata,
     },
@@ -1588,6 +1687,7 @@ M.GetNotebookMetadataOutput = {
 
 M.GetPreparedStatementInput = {
     type = "structure",
+    id = "GetPreparedStatementInput",
     members = {
         StatementName = {
             type = "string",
@@ -1606,6 +1706,7 @@ M.GetPreparedStatementInput = {
 
 M.GetPreparedStatementOutput = {
     type = "structure",
+    id = "GetPreparedStatementOutput",
     members = {
         PreparedStatement = M.PreparedStatement,
     },
@@ -1613,6 +1714,7 @@ M.GetPreparedStatementOutput = {
 
 M.GetQueryExecutionInput = {
     type = "structure",
+    id = "GetQueryExecutionInput",
     members = {
         QueryExecutionId = {
             type = "string",
@@ -1625,6 +1727,7 @@ M.GetQueryExecutionInput = {
 
 M.GetQueryExecutionOutput = {
     type = "structure",
+    id = "GetQueryExecutionOutput",
     members = {
         QueryExecution = M.QueryExecution,
     },
@@ -1637,6 +1740,7 @@ M.QueryResultType = {
 
 M.GetQueryResultsInput = {
     type = "structure",
+    id = "GetQueryResultsInput",
     members = {
         QueryExecutionId = {
             type = "string",
@@ -1664,6 +1768,7 @@ M.ColumnNullable = {
 
 M.ColumnInfo = {
     type = "structure",
+    id = "ColumnInfo",
     members = {
         CatalogName = {
             type = "string",
@@ -1715,6 +1820,7 @@ M.ColumnInfo = {
 
 M.ResultSetMetadata = {
     type = "structure",
+    id = "ResultSetMetadata",
     members = {
         ColumnInfo = {
             type = "list",
@@ -1725,6 +1831,7 @@ M.ResultSetMetadata = {
 
 M.Datum = {
     type = "structure",
+    id = "Datum",
     members = {
         VarCharValue = {
             type = "string",
@@ -1734,6 +1841,7 @@ M.Datum = {
 
 M.Row = {
     type = "structure",
+    id = "Row",
     members = {
         Data = {
             type = "list",
@@ -1744,6 +1852,7 @@ M.Row = {
 
 M.ResultSet = {
     type = "structure",
+    id = "ResultSet",
     members = {
         Rows = {
             type = "list",
@@ -1755,6 +1864,7 @@ M.ResultSet = {
 
 M.GetQueryResultsOutput = {
     type = "structure",
+    id = "GetQueryResultsOutput",
     members = {
         UpdateCount = {
             type = "long",
@@ -1768,6 +1878,7 @@ M.GetQueryResultsOutput = {
 
 M.GetQueryRuntimeStatisticsInput = {
     type = "structure",
+    id = "GetQueryRuntimeStatisticsInput",
     members = {
         QueryExecutionId = {
             type = "string",
@@ -1780,6 +1891,7 @@ M.GetQueryRuntimeStatisticsInput = {
 
 M.QueryRuntimeStatisticsRows = {
     type = "structure",
+    id = "QueryRuntimeStatisticsRows",
     members = {
         InputRows = {
             type = "long",
@@ -1798,6 +1910,7 @@ M.QueryRuntimeStatisticsRows = {
 
 M.QueryRuntimeStatisticsTimeline = {
     type = "structure",
+    id = "QueryRuntimeStatisticsTimeline",
     members = {
         QueryQueueTimeInMillis = {
             type = "long",
@@ -1822,6 +1935,7 @@ M.QueryRuntimeStatisticsTimeline = {
 
 M.GetResourceDashboardInput = {
     type = "structure",
+    id = "GetResourceDashboardInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1834,6 +1948,7 @@ M.GetResourceDashboardInput = {
 
 M.GetResourceDashboardOutput = {
     type = "structure",
+    id = "GetResourceDashboardOutput",
     members = {
         Url = {
             type = "string",
@@ -1846,6 +1961,7 @@ M.GetResourceDashboardOutput = {
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         SessionId = {
             type = "string",
@@ -1858,6 +1974,7 @@ M.GetSessionInput = {
 
 M.SessionConfiguration = {
     type = "structure",
+    id = "SessionConfiguration",
     members = {
         ExecutionRole = {
             type = "string",
@@ -1877,6 +1994,7 @@ M.SessionConfiguration = {
 
 M.SessionStatistics = {
     type = "structure",
+    id = "SessionStatistics",
     members = {
         DpuExecutionInMillis = {
             type = "long",
@@ -1897,6 +2015,7 @@ M.SessionState = {
 
 M.SessionStatus = {
     type = "structure",
+    id = "SessionStatus",
     members = {
         StartDateTime = {
             type = "timestamp",
@@ -1921,6 +2040,7 @@ M.SessionStatus = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         SessionId = {
             type = "string",
@@ -1947,6 +2067,7 @@ M.GetSessionOutput = {
 
 M.GetSessionEndpointInput = {
     type = "structure",
+    id = "GetSessionEndpointInput",
     members = {
         SessionId = {
             type = "string",
@@ -1959,6 +2080,7 @@ M.GetSessionEndpointInput = {
 
 M.GetSessionEndpointOutput = {
     type = "structure",
+    id = "GetSessionEndpointOutput",
     members = {
         EndpointUrl = {
             type = "string",
@@ -1983,6 +2105,7 @@ M.GetSessionEndpointOutput = {
 
 M.GetSessionStatusInput = {
     type = "structure",
+    id = "GetSessionStatusInput",
     members = {
         SessionId = {
             type = "string",
@@ -1995,6 +2118,7 @@ M.GetSessionStatusInput = {
 
 M.GetSessionStatusOutput = {
     type = "structure",
+    id = "GetSessionStatusOutput",
     members = {
         SessionId = {
             type = "string",
@@ -2005,6 +2129,7 @@ M.GetSessionStatusOutput = {
 
 M.GetTableMetadataInput = {
     type = "structure",
+    id = "GetTableMetadataInput",
     members = {
         CatalogName = {
             type = "string",
@@ -2032,6 +2157,7 @@ M.GetTableMetadataInput = {
 
 M.Column = {
     type = "structure",
+    id = "Column",
     members = {
         Name = {
             type = "string",
@@ -2050,6 +2176,7 @@ M.Column = {
 
 M.TableMetadata = {
     type = "structure",
+    id = "TableMetadata",
     members = {
         Name = {
             type = "string",
@@ -2084,6 +2211,7 @@ M.TableMetadata = {
 
 M.GetTableMetadataOutput = {
     type = "structure",
+    id = "GetTableMetadataOutput",
     members = {
         TableMetadata = M.TableMetadata,
     },
@@ -2091,6 +2219,7 @@ M.GetTableMetadataOutput = {
 
 M.GetWorkGroupInput = {
     type = "structure",
+    id = "GetWorkGroupInput",
     members = {
         WorkGroup = {
             type = "string",
@@ -2108,6 +2237,7 @@ M.WorkGroupState = {
 
 M.WorkGroup = {
     type = "structure",
+    id = "WorkGroup",
     members = {
         Name = {
             type = "string",
@@ -2133,6 +2263,7 @@ M.WorkGroup = {
 
 M.GetWorkGroupOutput = {
     type = "structure",
+    id = "GetWorkGroupOutput",
     members = {
         WorkGroup = M.WorkGroup,
     },
@@ -2140,6 +2271,7 @@ M.GetWorkGroupOutput = {
 
 M.ImportNotebookInput = {
     type = "structure",
+    id = "ImportNotebookInput",
     members = {
         WorkGroup = {
             type = "string",
@@ -2173,6 +2305,7 @@ M.ImportNotebookInput = {
 
 M.ImportNotebookOutput = {
     type = "structure",
+    id = "ImportNotebookOutput",
     members = {
         NotebookId = {
             type = "string",
@@ -2182,6 +2315,7 @@ M.ImportNotebookOutput = {
 
 M.ListApplicationDPUSizesInput = {
     type = "structure",
+    id = "ListApplicationDPUSizesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2194,6 +2328,7 @@ M.ListApplicationDPUSizesInput = {
 
 M.ApplicationDPUSizes = {
     type = "structure",
+    id = "ApplicationDPUSizes",
     members = {
         ApplicationRuntimeId = {
             type = "string",
@@ -2207,6 +2342,7 @@ M.ApplicationDPUSizes = {
 
 M.ListApplicationDPUSizesOutput = {
     type = "structure",
+    id = "ListApplicationDPUSizesOutput",
     members = {
         ApplicationDPUSizes = {
             type = "list",
@@ -2220,6 +2356,7 @@ M.ListApplicationDPUSizesOutput = {
 
 M.ListCalculationExecutionsInput = {
     type = "structure",
+    id = "ListCalculationExecutionsInput",
     members = {
         SessionId = {
             type = "string",
@@ -2241,6 +2378,7 @@ M.ListCalculationExecutionsInput = {
 
 M.CalculationSummary = {
     type = "structure",
+    id = "CalculationSummary",
     members = {
         CalculationExecutionId = {
             type = "string",
@@ -2254,6 +2392,7 @@ M.CalculationSummary = {
 
 M.ListCalculationExecutionsOutput = {
     type = "structure",
+    id = "ListCalculationExecutionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2267,6 +2406,7 @@ M.ListCalculationExecutionsOutput = {
 
 M.ListCapacityReservationsInput = {
     type = "structure",
+    id = "ListCapacityReservationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2279,6 +2419,7 @@ M.ListCapacityReservationsInput = {
 
 M.ListCapacityReservationsOutput = {
     type = "structure",
+    id = "ListCapacityReservationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2295,6 +2436,7 @@ M.ListCapacityReservationsOutput = {
 
 M.ListDatabasesInput = {
     type = "structure",
+    id = "ListDatabasesInput",
     members = {
         CatalogName = {
             type = "string",
@@ -2316,6 +2458,7 @@ M.ListDatabasesInput = {
 
 M.ListDatabasesOutput = {
     type = "structure",
+    id = "ListDatabasesOutput",
     members = {
         DatabaseList = {
             type = "list",
@@ -2329,6 +2472,7 @@ M.ListDatabasesOutput = {
 
 M.ListDataCatalogsInput = {
     type = "structure",
+    id = "ListDataCatalogsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2344,6 +2488,7 @@ M.ListDataCatalogsInput = {
 
 M.DataCatalogSummary = {
     type = "structure",
+    id = "DataCatalogSummary",
     members = {
         CatalogName = {
             type = "string",
@@ -2365,6 +2510,7 @@ M.DataCatalogSummary = {
 
 M.ListDataCatalogsOutput = {
     type = "structure",
+    id = "ListDataCatalogsOutput",
     members = {
         DataCatalogsSummary = {
             type = "list",
@@ -2378,6 +2524,7 @@ M.ListDataCatalogsOutput = {
 
 M.ListEngineVersionsInput = {
     type = "structure",
+    id = "ListEngineVersionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2390,6 +2537,7 @@ M.ListEngineVersionsInput = {
 
 M.ListEngineVersionsOutput = {
     type = "structure",
+    id = "ListEngineVersionsOutput",
     members = {
         EngineVersions = {
             type = "list",
@@ -2412,6 +2560,7 @@ M.ExecutorState = {
 
 M.ListExecutorsInput = {
     type = "structure",
+    id = "ListExecutorsInput",
     members = {
         SessionId = {
             type = "string",
@@ -2439,6 +2588,7 @@ M.ExecutorType = {
 
 M.ExecutorsSummary = {
     type = "structure",
+    id = "ExecutorsSummary",
     members = {
         ExecutorId = {
             type = "string",
@@ -2466,6 +2616,7 @@ M.ExecutorsSummary = {
 
 M.ListExecutorsOutput = {
     type = "structure",
+    id = "ListExecutorsOutput",
     members = {
         SessionId = {
             type = "string",
@@ -2485,6 +2636,7 @@ M.ListExecutorsOutput = {
 
 M.ListNamedQueriesInput = {
     type = "structure",
+    id = "ListNamedQueriesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2500,6 +2652,7 @@ M.ListNamedQueriesInput = {
 
 M.ListNamedQueriesOutput = {
     type = "structure",
+    id = "ListNamedQueriesOutput",
     members = {
         NamedQueryIds = {
             type = "list",
@@ -2513,6 +2666,7 @@ M.ListNamedQueriesOutput = {
 
 M.FilterDefinition = {
     type = "structure",
+    id = "FilterDefinition",
     members = {
         Name = {
             type = "string",
@@ -2522,6 +2676,7 @@ M.FilterDefinition = {
 
 M.ListNotebookMetadataInput = {
     type = "structure",
+    id = "ListNotebookMetadataInput",
     members = {
         Filters = M.FilterDefinition,
         NextToken = {
@@ -2541,6 +2696,7 @@ M.ListNotebookMetadataInput = {
 
 M.ListNotebookMetadataOutput = {
     type = "structure",
+    id = "ListNotebookMetadataOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2554,6 +2710,7 @@ M.ListNotebookMetadataOutput = {
 
 M.ListNotebookSessionsInput = {
     type = "structure",
+    id = "ListNotebookSessionsInput",
     members = {
         NotebookId = {
             type = "string",
@@ -2572,6 +2729,7 @@ M.ListNotebookSessionsInput = {
 
 M.NotebookSessionSummary = {
     type = "structure",
+    id = "NotebookSessionSummary",
     members = {
         SessionId = {
             type = "string",
@@ -2584,6 +2742,7 @@ M.NotebookSessionSummary = {
 
 M.ListNotebookSessionsOutput = {
     type = "structure",
+    id = "ListNotebookSessionsOutput",
     members = {
         NotebookSessionsList = {
             type = "list",
@@ -2600,6 +2759,7 @@ M.ListNotebookSessionsOutput = {
 
 M.ListPreparedStatementsInput = {
     type = "structure",
+    id = "ListPreparedStatementsInput",
     members = {
         WorkGroup = {
             type = "string",
@@ -2618,6 +2778,7 @@ M.ListPreparedStatementsInput = {
 
 M.PreparedStatementSummary = {
     type = "structure",
+    id = "PreparedStatementSummary",
     members = {
         StatementName = {
             type = "string",
@@ -2630,6 +2791,7 @@ M.PreparedStatementSummary = {
 
 M.ListPreparedStatementsOutput = {
     type = "structure",
+    id = "ListPreparedStatementsOutput",
     members = {
         PreparedStatements = {
             type = "list",
@@ -2643,6 +2805,7 @@ M.ListPreparedStatementsOutput = {
 
 M.ListQueryExecutionsInput = {
     type = "structure",
+    id = "ListQueryExecutionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2658,6 +2821,7 @@ M.ListQueryExecutionsInput = {
 
 M.ListQueryExecutionsOutput = {
     type = "structure",
+    id = "ListQueryExecutionsOutput",
     members = {
         QueryExecutionIds = {
             type = "list",
@@ -2671,6 +2835,7 @@ M.ListQueryExecutionsOutput = {
 
 M.ListSessionsInput = {
     type = "structure",
+    id = "ListSessionsInput",
     members = {
         WorkGroup = {
             type = "string",
@@ -2692,6 +2857,7 @@ M.ListSessionsInput = {
 
 M.SessionSummary = {
     type = "structure",
+    id = "SessionSummary",
     members = {
         SessionId = {
             type = "string",
@@ -2709,6 +2875,7 @@ M.SessionSummary = {
 
 M.ListSessionsOutput = {
     type = "structure",
+    id = "ListSessionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2722,6 +2889,7 @@ M.ListSessionsOutput = {
 
 M.ListTableMetadataInput = {
     type = "structure",
+    id = "ListTableMetadataInput",
     members = {
         CatalogName = {
             type = "string",
@@ -2752,6 +2920,7 @@ M.ListTableMetadataInput = {
 
 M.ListTableMetadataOutput = {
     type = "structure",
+    id = "ListTableMetadataOutput",
     members = {
         TableMetadataList = {
             type = "list",
@@ -2765,6 +2934,7 @@ M.ListTableMetadataOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2783,6 +2953,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2796,6 +2967,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWorkGroupsInput = {
     type = "structure",
+    id = "ListWorkGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2808,6 +2980,7 @@ M.ListWorkGroupsInput = {
 
 M.WorkGroupSummary = {
     type = "structure",
+    id = "WorkGroupSummary",
     members = {
         Name = {
             type = "string",
@@ -2830,6 +3003,7 @@ M.WorkGroupSummary = {
 
 M.ListWorkGroupsOutput = {
     type = "structure",
+    id = "ListWorkGroupsOutput",
     members = {
         WorkGroups = {
             type = "list",
@@ -2843,6 +3017,7 @@ M.ListWorkGroupsOutput = {
 
 M.PutCapacityAssignmentConfigurationInput = {
     type = "structure",
+    id = "PutCapacityAssignmentConfigurationInput",
     members = {
         CapacityReservationName = {
             type = "string",
@@ -2862,10 +3037,12 @@ M.PutCapacityAssignmentConfigurationInput = {
 
 M.PutCapacityAssignmentConfigurationOutput = {
     type = "structure",
+    id = "PutCapacityAssignmentConfigurationOutput",
 }
 
 M.CalculationConfiguration = {
     type = "structure",
+    id = "CalculationConfiguration",
     members = {
         CodeBlock = {
             type = "string",
@@ -2875,6 +3052,7 @@ M.CalculationConfiguration = {
 
 M.StartCalculationExecutionInput = {
     type = "structure",
+    id = "StartCalculationExecutionInput",
     members = {
         SessionId = {
             type = "string",
@@ -2897,6 +3075,7 @@ M.StartCalculationExecutionInput = {
 
 M.StartCalculationExecutionOutput = {
     type = "structure",
+    id = "StartCalculationExecutionOutput",
     members = {
         CalculationExecutionId = {
             type = "string",
@@ -2909,6 +3088,7 @@ M.StartCalculationExecutionOutput = {
 
 M.StartQueryExecutionInput = {
     type = "structure",
+    id = "StartQueryExecutionInput",
     members = {
         QueryString = {
             type = "string",
@@ -2938,6 +3118,7 @@ M.StartQueryExecutionInput = {
 
 M.StartQueryExecutionOutput = {
     type = "structure",
+    id = "StartQueryExecutionOutput",
     members = {
         QueryExecutionId = {
             type = "string",
@@ -2947,6 +3128,7 @@ M.StartQueryExecutionOutput = {
 
 M.SessionAlreadyExistsException = {
     type = "structure",
+    id = "SessionAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -2957,6 +3139,7 @@ M.SessionAlreadyExistsException = {
 
 M.StartSessionInput = {
     type = "structure",
+    id = "StartSessionInput",
     members = {
         Description = {
             type = "string",
@@ -2995,6 +3178,7 @@ M.StartSessionInput = {
 
 M.StartSessionOutput = {
     type = "structure",
+    id = "StartSessionOutput",
     members = {
         SessionId = {
             type = "string",
@@ -3007,6 +3191,7 @@ M.StartSessionOutput = {
 
 M.StopCalculationExecutionInput = {
     type = "structure",
+    id = "StopCalculationExecutionInput",
     members = {
         CalculationExecutionId = {
             type = "string",
@@ -3019,6 +3204,7 @@ M.StopCalculationExecutionInput = {
 
 M.StopCalculationExecutionOutput = {
     type = "structure",
+    id = "StopCalculationExecutionOutput",
     members = {
         State = {
             type = "string",
@@ -3028,6 +3214,7 @@ M.StopCalculationExecutionOutput = {
 
 M.StopQueryExecutionInput = {
     type = "structure",
+    id = "StopQueryExecutionInput",
     members = {
         QueryExecutionId = {
             type = "string",
@@ -3041,10 +3228,12 @@ M.StopQueryExecutionInput = {
 
 M.StopQueryExecutionOutput = {
     type = "structure",
+    id = "StopQueryExecutionOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3064,10 +3253,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TerminateSessionInput = {
     type = "structure",
+    id = "TerminateSessionInput",
     members = {
         SessionId = {
             type = "string",
@@ -3080,6 +3271,7 @@ M.TerminateSessionInput = {
 
 M.TerminateSessionOutput = {
     type = "structure",
+    id = "TerminateSessionOutput",
     members = {
         State = {
             type = "string",
@@ -3089,6 +3281,7 @@ M.TerminateSessionOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3108,10 +3301,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCapacityReservationInput = {
     type = "structure",
+    id = "UpdateCapacityReservationInput",
     members = {
         TargetDpus = {
             type = "integer",
@@ -3130,10 +3325,12 @@ M.UpdateCapacityReservationInput = {
 
 M.UpdateCapacityReservationOutput = {
     type = "structure",
+    id = "UpdateCapacityReservationOutput",
 }
 
 M.UpdateDataCatalogInput = {
     type = "structure",
+    id = "UpdateDataCatalogInput",
     members = {
         Name = {
             type = "string",
@@ -3160,10 +3357,12 @@ M.UpdateDataCatalogInput = {
 
 M.UpdateDataCatalogOutput = {
     type = "structure",
+    id = "UpdateDataCatalogOutput",
 }
 
 M.UpdateNamedQueryInput = {
     type = "structure",
+    id = "UpdateNamedQueryInput",
     members = {
         NamedQueryId = {
             type = "string",
@@ -3191,10 +3390,12 @@ M.UpdateNamedQueryInput = {
 
 M.UpdateNamedQueryOutput = {
     type = "structure",
+    id = "UpdateNamedQueryOutput",
 }
 
 M.UpdateNotebookInput = {
     type = "structure",
+    id = "UpdateNotebookInput",
     members = {
         NotebookId = {
             type = "string",
@@ -3225,10 +3426,12 @@ M.UpdateNotebookInput = {
 
 M.UpdateNotebookOutput = {
     type = "structure",
+    id = "UpdateNotebookOutput",
 }
 
 M.UpdateNotebookMetadataInput = {
     type = "structure",
+    id = "UpdateNotebookMetadataInput",
     members = {
         NotebookId = {
             type = "string",
@@ -3250,10 +3453,12 @@ M.UpdateNotebookMetadataInput = {
 
 M.UpdateNotebookMetadataOutput = {
     type = "structure",
+    id = "UpdateNotebookMetadataOutput",
 }
 
 M.UpdatePreparedStatementInput = {
     type = "structure",
+    id = "UpdatePreparedStatementInput",
     members = {
         StatementName = {
             type = "string",
@@ -3281,10 +3486,12 @@ M.UpdatePreparedStatementInput = {
 
 M.UpdatePreparedStatementOutput = {
     type = "structure",
+    id = "UpdatePreparedStatementOutput",
 }
 
 M.ManagedQueryResultsConfigurationUpdates = {
     type = "structure",
+    id = "ManagedQueryResultsConfigurationUpdates",
     members = {
         Enabled = {
             type = "boolean",
@@ -3298,6 +3505,7 @@ M.ManagedQueryResultsConfigurationUpdates = {
 
 M.ResultConfigurationUpdates = {
     type = "structure",
+    id = "ResultConfigurationUpdates",
     members = {
         OutputLocation = {
             type = "string",
@@ -3324,6 +3532,7 @@ M.ResultConfigurationUpdates = {
 
 M.WorkGroupConfigurationUpdates = {
     type = "structure",
+    id = "WorkGroupConfigurationUpdates",
     members = {
         EnforceWorkGroupConfiguration = {
             type = "boolean",
@@ -3364,6 +3573,7 @@ M.WorkGroupConfigurationUpdates = {
 
 M.UpdateWorkGroupInput = {
     type = "structure",
+    id = "UpdateWorkGroupInput",
     members = {
         WorkGroup = {
             type = "string",
@@ -3383,10 +3593,12 @@ M.UpdateWorkGroupInput = {
 
 M.UpdateWorkGroupOutput = {
     type = "structure",
+    id = "UpdateWorkGroupOutput",
 }
 
 M.QueryStagePlanNode = {
     type = "structure",
+    id = "QueryStagePlanNode",
     members = {
         Name = {
             type = "string",
@@ -3407,6 +3619,7 @@ M.QueryStagePlanNode = {
 
 M.QueryStage = {
     type = "structure",
+    id = "QueryStage",
     members = {
         StageId = {
             type = "long",
@@ -3439,6 +3652,7 @@ M.QueryStage = {
 
 M.QueryRuntimeStatistics = {
     type = "structure",
+    id = "QueryRuntimeStatistics",
     members = {
         Timeline = M.QueryRuntimeStatisticsTimeline,
         Rows = M.QueryRuntimeStatisticsRows,
@@ -3448,6 +3662,7 @@ M.QueryRuntimeStatistics = {
 
 M.GetQueryRuntimeStatisticsOutput = {
     type = "structure",
+    id = "GetQueryRuntimeStatisticsOutput",
     members = {
         QueryRuntimeStatistics = M.QueryRuntimeStatistics,
     },

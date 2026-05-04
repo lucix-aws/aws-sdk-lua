@@ -30,6 +30,7 @@ M.DataSetType = {
 
 M.GenerateDataSetInput = {
     type = "structure",
+    id = "GenerateDataSetInput",
     members = {
         dataSetType = {
             type = "string",
@@ -74,6 +75,7 @@ M.GenerateDataSetInput = {
 
 M.GenerateDataSetOutput = {
     type = "structure",
+    id = "GenerateDataSetOutput",
     members = {
         dataSetRequestId = {
             type = "string",
@@ -83,6 +85,7 @@ M.GenerateDataSetOutput = {
 
 M.MarketplaceCommerceAnalyticsException = {
     type = "structure",
+    id = "MarketplaceCommerceAnalyticsException",
     error = "server",
     members = {
         message = {
@@ -98,6 +101,7 @@ M.SupportDataSetType = {
 
 M.StartSupportDataExportInput = {
     type = "structure",
+    id = "StartSupportDataExportInput",
     members = {
         dataSetType = {
             type = "string",
@@ -142,6 +146,7 @@ M.StartSupportDataExportInput = {
 
 M.StartSupportDataExportOutput = {
     type = "structure",
+    id = "StartSupportDataExportOutput",
     members = {
         dataSetRequestId = {
             type = "string",

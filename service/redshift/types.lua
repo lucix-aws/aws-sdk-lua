@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptReservedNodeExchangeInput = {
     type = "structure",
+    id = "AcceptReservedNodeExchangeInput",
     members = {
         ReservedNodeId = {
             type = "string",
@@ -20,6 +21,7 @@ M.AcceptReservedNodeExchangeInput = {
 
 M.RecurringCharge = {
     type = "structure",
+    id = "RecurringCharge",
     members = {
         RecurringChargeAmount = {
             type = "double",
@@ -37,6 +39,7 @@ M.ReservedNodeOfferingType = {
 
 M.ReservedNode = {
     type = "structure",
+    id = "ReservedNode",
     members = {
         ReservedNodeId = {
             type = "string",
@@ -83,6 +86,7 @@ M.ReservedNode = {
 
 M.AcceptReservedNodeExchangeOutput = {
     type = "structure",
+    id = "AcceptReservedNodeExchangeOutput",
     members = {
         ExchangedReservedNode = M.ReservedNode,
     },
@@ -90,6 +94,7 @@ M.AcceptReservedNodeExchangeOutput = {
 
 M.DependentServiceUnavailableFault = {
     type = "structure",
+    id = "DependentServiceUnavailableFault",
     error = "client",
     members = {
         message = {
@@ -100,6 +105,7 @@ M.DependentServiceUnavailableFault = {
 
 M.InvalidReservedNodeStateFault = {
     type = "structure",
+    id = "InvalidReservedNodeStateFault",
     error = "client",
     members = {
         message = {
@@ -110,6 +116,7 @@ M.InvalidReservedNodeStateFault = {
 
 M.ReservedNodeAlreadyExistsFault = {
     type = "structure",
+    id = "ReservedNodeAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -120,6 +127,7 @@ M.ReservedNodeAlreadyExistsFault = {
 
 M.ReservedNodeAlreadyMigratedFault = {
     type = "structure",
+    id = "ReservedNodeAlreadyMigratedFault",
     error = "client",
     members = {
         message = {
@@ -130,6 +138,7 @@ M.ReservedNodeAlreadyMigratedFault = {
 
 M.ReservedNodeNotFoundFault = {
     type = "structure",
+    id = "ReservedNodeNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -140,6 +149,7 @@ M.ReservedNodeNotFoundFault = {
 
 M.ReservedNodeOfferingNotFoundFault = {
     type = "structure",
+    id = "ReservedNodeOfferingNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -150,6 +160,7 @@ M.ReservedNodeOfferingNotFoundFault = {
 
 M.UnsupportedOperationFault = {
     type = "structure",
+    id = "UnsupportedOperationFault",
     error = "client",
     members = {
         message = {
@@ -160,6 +171,7 @@ M.UnsupportedOperationFault = {
 
 M.AccessToClusterDeniedFault = {
     type = "structure",
+    id = "AccessToClusterDeniedFault",
     error = "client",
     members = {
         message = {
@@ -170,6 +182,7 @@ M.AccessToClusterDeniedFault = {
 
 M.AccessToSnapshotDeniedFault = {
     type = "structure",
+    id = "AccessToSnapshotDeniedFault",
     error = "client",
     members = {
         message = {
@@ -180,6 +193,7 @@ M.AccessToSnapshotDeniedFault = {
 
 M.AttributeValueTarget = {
     type = "structure",
+    id = "AttributeValueTarget",
     members = {
         AttributeValue = {
             type = "string",
@@ -189,6 +203,7 @@ M.AttributeValueTarget = {
 
 M.AccountAttribute = {
     type = "structure",
+    id = "AccountAttribute",
     members = {
         AttributeName = {
             type = "string",
@@ -202,6 +217,7 @@ M.AccountAttribute = {
 
 M.AccountWithRestoreAccess = {
     type = "structure",
+    id = "AccountWithRestoreAccess",
     members = {
         AccountId = {
             type = "string",
@@ -220,6 +236,7 @@ M.ActionType = {
 
 M.AddPartnerInput = {
     type = "structure",
+    id = "AddPartnerInput",
     members = {
         AccountId = {
             type = "string",
@@ -250,6 +267,7 @@ M.AddPartnerInput = {
 
 M.AddPartnerOutput = {
     type = "structure",
+    id = "AddPartnerOutput",
     members = {
         DatabaseName = {
             type = "string",
@@ -262,6 +280,7 @@ M.AddPartnerOutput = {
 
 M.ClusterNotFoundFault = {
     type = "structure",
+    id = "ClusterNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -272,6 +291,7 @@ M.ClusterNotFoundFault = {
 
 M.PartnerNotFoundFault = {
     type = "structure",
+    id = "PartnerNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -282,6 +302,7 @@ M.PartnerNotFoundFault = {
 
 M.UnauthorizedPartnerIntegrationFault = {
     type = "structure",
+    id = "UnauthorizedPartnerIntegrationFault",
     error = "client",
     members = {
         message = {
@@ -309,6 +330,7 @@ M.AquaStatus = {
 
 M.AquaConfiguration = {
     type = "structure",
+    id = "AquaConfiguration",
     members = {
         AquaStatus = {
             type = "string",
@@ -321,6 +343,7 @@ M.AquaConfiguration = {
 
 M.AssociateDataShareConsumerInput = {
     type = "structure",
+    id = "AssociateDataShareConsumerInput",
     members = {
         DataShareArn = {
             type = "string",
@@ -354,6 +377,7 @@ M.DataShareStatus = {
 
 M.DataShareAssociation = {
     type = "structure",
+    id = "DataShareAssociation",
     members = {
         ConsumerIdentifier = {
             type = "string",
@@ -385,6 +409,7 @@ M.DataShareType = {
 
 M.AssociateDataShareConsumerOutput = {
     type = "structure",
+    id = "AssociateDataShareConsumerOutput",
     members = {
         DataShareArn = {
             type = "string",
@@ -410,6 +435,7 @@ M.AssociateDataShareConsumerOutput = {
 
 M.InvalidDataShareFault = {
     type = "structure",
+    id = "InvalidDataShareFault",
     error = "client",
     members = {
         message = {
@@ -420,6 +446,7 @@ M.InvalidDataShareFault = {
 
 M.InvalidNamespaceFault = {
     type = "structure",
+    id = "InvalidNamespaceFault",
     error = "client",
     members = {
         message = {
@@ -436,6 +463,7 @@ M.ScheduleState = {
 
 M.ClusterAssociatedToSchedule = {
     type = "structure",
+    id = "ClusterAssociatedToSchedule",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -448,6 +476,7 @@ M.ClusterAssociatedToSchedule = {
 
 M.CertificateAssociation = {
     type = "structure",
+    id = "CertificateAssociation",
     members = {
         CustomDomainName = {
             type = "string",
@@ -460,6 +489,7 @@ M.CertificateAssociation = {
 
 M.Association = {
     type = "structure",
+    id = "Association",
     members = {
         CustomDomainCertificateArn = {
             type = "string",
@@ -476,6 +506,7 @@ M.Association = {
 
 M.AuthenticationProfile = {
     type = "structure",
+    id = "AuthenticationProfile",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -488,6 +519,7 @@ M.AuthenticationProfile = {
 
 M.AuthenticationProfileAlreadyExistsFault = {
     type = "structure",
+    id = "AuthenticationProfileAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -498,6 +530,7 @@ M.AuthenticationProfileAlreadyExistsFault = {
 
 M.AuthenticationProfileNotFoundFault = {
     type = "structure",
+    id = "AuthenticationProfileNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -508,6 +541,7 @@ M.AuthenticationProfileNotFoundFault = {
 
 M.AuthenticationProfileQuotaExceededFault = {
     type = "structure",
+    id = "AuthenticationProfileQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -518,6 +552,7 @@ M.AuthenticationProfileQuotaExceededFault = {
 
 M.AuthorizationAlreadyExistsFault = {
     type = "structure",
+    id = "AuthorizationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -528,6 +563,7 @@ M.AuthorizationAlreadyExistsFault = {
 
 M.AuthorizationNotFoundFault = {
     type = "structure",
+    id = "AuthorizationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -538,6 +574,7 @@ M.AuthorizationNotFoundFault = {
 
 M.AuthorizationQuotaExceededFault = {
     type = "structure",
+    id = "AuthorizationQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -553,6 +590,7 @@ M.AuthorizationStatus = {
 
 M.AuthorizeClusterSecurityGroupIngressInput = {
     type = "structure",
+    id = "AuthorizeClusterSecurityGroupIngressInput",
     members = {
         ClusterSecurityGroupName = {
             type = "string",
@@ -574,6 +612,7 @@ M.AuthorizeClusterSecurityGroupIngressInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -586,6 +625,7 @@ M.Tag = {
 
 M.EC2SecurityGroup = {
     type = "structure",
+    id = "EC2SecurityGroup",
     members = {
         Status = {
             type = "string",
@@ -605,6 +645,7 @@ M.EC2SecurityGroup = {
 
 M.IPRange = {
     type = "structure",
+    id = "IPRange",
     members = {
         Status = {
             type = "string",
@@ -621,6 +662,7 @@ M.IPRange = {
 
 M.ClusterSecurityGroup = {
     type = "structure",
+    id = "ClusterSecurityGroup",
     members = {
         ClusterSecurityGroupName = {
             type = "string",
@@ -645,6 +687,7 @@ M.ClusterSecurityGroup = {
 
 M.AuthorizeClusterSecurityGroupIngressOutput = {
     type = "structure",
+    id = "AuthorizeClusterSecurityGroupIngressOutput",
     members = {
         ClusterSecurityGroup = M.ClusterSecurityGroup,
     },
@@ -652,6 +695,7 @@ M.AuthorizeClusterSecurityGroupIngressOutput = {
 
 M.ClusterSecurityGroupNotFoundFault = {
     type = "structure",
+    id = "ClusterSecurityGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -662,6 +706,7 @@ M.ClusterSecurityGroupNotFoundFault = {
 
 M.InvalidClusterSecurityGroupStateFault = {
     type = "structure",
+    id = "InvalidClusterSecurityGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -672,6 +717,7 @@ M.InvalidClusterSecurityGroupStateFault = {
 
 M.AuthorizeDataShareInput = {
     type = "structure",
+    id = "AuthorizeDataShareInput",
     members = {
         DataShareArn = {
             type = "string",
@@ -693,6 +739,7 @@ M.AuthorizeDataShareInput = {
 
 M.AuthorizeDataShareOutput = {
     type = "structure",
+    id = "AuthorizeDataShareOutput",
     members = {
         DataShareArn = {
             type = "string",
@@ -718,6 +765,7 @@ M.AuthorizeDataShareOutput = {
 
 M.AuthorizedTokenIssuer = {
     type = "structure",
+    id = "AuthorizedTokenIssuer",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -731,6 +779,7 @@ M.AuthorizedTokenIssuer = {
 
 M.AuthorizeEndpointAccessInput = {
     type = "structure",
+    id = "AuthorizeEndpointAccessInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -750,6 +799,7 @@ M.AuthorizeEndpointAccessInput = {
 
 M.AuthorizeEndpointAccessOutput = {
     type = "structure",
+    id = "AuthorizeEndpointAccessOutput",
     members = {
         Grantor = {
             type = "string",
@@ -784,6 +834,7 @@ M.AuthorizeEndpointAccessOutput = {
 
 M.EndpointAuthorizationAlreadyExistsFault = {
     type = "structure",
+    id = "EndpointAuthorizationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -794,6 +845,7 @@ M.EndpointAuthorizationAlreadyExistsFault = {
 
 M.EndpointAuthorizationsPerClusterLimitExceededFault = {
     type = "structure",
+    id = "EndpointAuthorizationsPerClusterLimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -804,6 +856,7 @@ M.EndpointAuthorizationsPerClusterLimitExceededFault = {
 
 M.InvalidAuthorizationStateFault = {
     type = "structure",
+    id = "InvalidAuthorizationStateFault",
     error = "client",
     members = {
         message = {
@@ -814,6 +867,7 @@ M.InvalidAuthorizationStateFault = {
 
 M.InvalidClusterStateFault = {
     type = "structure",
+    id = "InvalidClusterStateFault",
     error = "client",
     members = {
         message = {
@@ -824,6 +878,7 @@ M.InvalidClusterStateFault = {
 
 M.AuthorizeSnapshotAccessInput = {
     type = "structure",
+    id = "AuthorizeSnapshotAccessInput",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -845,6 +900,7 @@ M.AuthorizeSnapshotAccessInput = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -965,6 +1021,7 @@ M.Snapshot = {
 
 M.AuthorizeSnapshotAccessOutput = {
     type = "structure",
+    id = "AuthorizeSnapshotAccessOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -972,6 +1029,7 @@ M.AuthorizeSnapshotAccessOutput = {
 
 M.ClusterSnapshotNotFoundFault = {
     type = "structure",
+    id = "ClusterSnapshotNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -982,6 +1040,7 @@ M.ClusterSnapshotNotFoundFault = {
 
 M.DependentServiceRequestThrottlingFault = {
     type = "structure",
+    id = "DependentServiceRequestThrottlingFault",
     error = "client",
     members = {
         message = {
@@ -992,6 +1051,7 @@ M.DependentServiceRequestThrottlingFault = {
 
 M.InvalidClusterSnapshotStateFault = {
     type = "structure",
+    id = "InvalidClusterSnapshotStateFault",
     error = "client",
     members = {
         message = {
@@ -1002,6 +1062,7 @@ M.InvalidClusterSnapshotStateFault = {
 
 M.LimitExceededFault = {
     type = "structure",
+    id = "LimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -1012,6 +1073,7 @@ M.LimitExceededFault = {
 
 M.SupportedPlatform = {
     type = "structure",
+    id = "SupportedPlatform",
     members = {
         Name = {
             type = "string",
@@ -1021,6 +1083,7 @@ M.SupportedPlatform = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         Name = {
             type = "string",
@@ -1034,6 +1097,7 @@ M.AvailabilityZone = {
 
 M.DeleteClusterSnapshotMessage = {
     type = "structure",
+    id = "DeleteClusterSnapshotMessage",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -1049,6 +1113,7 @@ M.DeleteClusterSnapshotMessage = {
 
 M.BatchDeleteClusterSnapshotsInput = {
     type = "structure",
+    id = "BatchDeleteClusterSnapshotsInput",
     members = {
         Identifiers = {
             type = "list",
@@ -1062,6 +1127,7 @@ M.BatchDeleteClusterSnapshotsInput = {
 
 M.SnapshotErrorMessage = {
     type = "structure",
+    id = "SnapshotErrorMessage",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -1080,6 +1146,7 @@ M.SnapshotErrorMessage = {
 
 M.BatchDeleteClusterSnapshotsOutput = {
     type = "structure",
+    id = "BatchDeleteClusterSnapshotsOutput",
     members = {
         Resources = {
             type = "list",
@@ -1094,6 +1161,7 @@ M.BatchDeleteClusterSnapshotsOutput = {
 
 M.BatchDeleteRequestSizeExceededFault = {
     type = "structure",
+    id = "BatchDeleteRequestSizeExceededFault",
     error = "client",
     members = {
         message = {
@@ -1104,6 +1172,7 @@ M.BatchDeleteRequestSizeExceededFault = {
 
 M.BatchModifyClusterSnapshotsInput = {
     type = "structure",
+    id = "BatchModifyClusterSnapshotsInput",
     members = {
         SnapshotIdentifierList = {
             type = "list",
@@ -1123,6 +1192,7 @@ M.BatchModifyClusterSnapshotsInput = {
 
 M.BatchModifyClusterSnapshotsLimitExceededFault = {
     type = "structure",
+    id = "BatchModifyClusterSnapshotsLimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -1133,6 +1203,7 @@ M.BatchModifyClusterSnapshotsLimitExceededFault = {
 
 M.BatchModifyClusterSnapshotsOutput = {
     type = "structure",
+    id = "BatchModifyClusterSnapshotsOutput",
     members = {
         Resources = {
             type = "list",
@@ -1147,6 +1218,7 @@ M.BatchModifyClusterSnapshotsOutput = {
 
 M.InvalidRetentionPeriodFault = {
     type = "structure",
+    id = "InvalidRetentionPeriodFault",
     error = "client",
     members = {
         message = {
@@ -1157,6 +1229,7 @@ M.InvalidRetentionPeriodFault = {
 
 M.BucketNotFoundFault = {
     type = "structure",
+    id = "BucketNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1167,6 +1240,7 @@ M.BucketNotFoundFault = {
 
 M.CancelResizeInput = {
     type = "structure",
+    id = "CancelResizeInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -1179,6 +1253,7 @@ M.CancelResizeInput = {
 
 M.CancelResizeOutput = {
     type = "structure",
+    id = "CancelResizeOutput",
     members = {
         TargetNodeType = {
             type = "string",
@@ -1236,6 +1311,7 @@ M.CancelResizeOutput = {
 
 M.ResizeNotFoundFault = {
     type = "structure",
+    id = "ResizeNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1246,6 +1322,7 @@ M.ResizeNotFoundFault = {
 
 M.ClusterNode = {
     type = "structure",
+    id = "ClusterNode",
     members = {
         NodeRole = {
             type = "string",
@@ -1261,6 +1338,7 @@ M.ClusterNode = {
 
 M.ClusterParameterStatus = {
     type = "structure",
+    id = "ClusterParameterStatus",
     members = {
         ParameterName = {
             type = "string",
@@ -1276,6 +1354,7 @@ M.ClusterParameterStatus = {
 
 M.ClusterParameterGroupStatus = {
     type = "structure",
+    id = "ClusterParameterGroupStatus",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -1292,6 +1371,7 @@ M.ClusterParameterGroupStatus = {
 
 M.ClusterSecurityGroupMembership = {
     type = "structure",
+    id = "ClusterSecurityGroupMembership",
     members = {
         ClusterSecurityGroupName = {
             type = "string",
@@ -1304,6 +1384,7 @@ M.ClusterSecurityGroupMembership = {
 
 M.ClusterSnapshotCopyStatus = {
     type = "structure",
+    id = "ClusterSnapshotCopyStatus",
     members = {
         DestinationRegion = {
             type = "string",
@@ -1322,6 +1403,7 @@ M.ClusterSnapshotCopyStatus = {
 
 M.DataTransferProgress = {
     type = "structure",
+    id = "DataTransferProgress",
     members = {
         Status = {
             type = "string",
@@ -1346,6 +1428,7 @@ M.DataTransferProgress = {
 
 M.DeferredMaintenanceWindow = {
     type = "structure",
+    id = "DeferredMaintenanceWindow",
     members = {
         DeferMaintenanceIdentifier = {
             type = "string",
@@ -1361,6 +1444,7 @@ M.DeferredMaintenanceWindow = {
 
 M.ElasticIpStatus = {
     type = "structure",
+    id = "ElasticIpStatus",
     members = {
         ElasticIp = {
             type = "string",
@@ -1373,6 +1457,7 @@ M.ElasticIpStatus = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -1394,6 +1479,7 @@ M.NetworkInterface = {
 
 M.VpcEndpoint = {
     type = "structure",
+    id = "VpcEndpoint",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -1410,6 +1496,7 @@ M.VpcEndpoint = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -1426,6 +1513,7 @@ M.Endpoint = {
 
 M.HsmStatus = {
     type = "structure",
+    id = "HsmStatus",
     members = {
         HsmClientCertificateIdentifier = {
             type = "string",
@@ -1441,6 +1529,7 @@ M.HsmStatus = {
 
 M.ClusterIamRole = {
     type = "structure",
+    id = "ClusterIamRole",
     members = {
         IamRoleArn = {
             type = "string",
@@ -1453,6 +1542,7 @@ M.ClusterIamRole = {
 
 M.SecondaryClusterInfo = {
     type = "structure",
+    id = "SecondaryClusterInfo",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -1466,6 +1556,7 @@ M.SecondaryClusterInfo = {
 
 M.PendingModifiedValues = {
     type = "structure",
+    id = "PendingModifiedValues",
     members = {
         MasterUserPassword = {
             type = "string",
@@ -1514,6 +1605,7 @@ M.ReservedNodeExchangeStatusType = {
 
 M.ReservedNodeExchangeStatus = {
     type = "structure",
+    id = "ReservedNodeExchangeStatus",
     members = {
         ReservedNodeExchangeRequestId = {
             type = "string",
@@ -1547,6 +1639,7 @@ M.ReservedNodeExchangeStatus = {
 
 M.ResizeInfo = {
     type = "structure",
+    id = "ResizeInfo",
     members = {
         ResizeType = {
             type = "string",
@@ -1559,6 +1652,7 @@ M.ResizeInfo = {
 
 M.RestoreStatus = {
     type = "structure",
+    id = "RestoreStatus",
     members = {
         Status = {
             type = "string",
@@ -1583,6 +1677,7 @@ M.RestoreStatus = {
 
 M.VpcSecurityGroupMembership = {
     type = "structure",
+    id = "VpcSecurityGroupMembership",
     members = {
         VpcSecurityGroupId = {
             type = "string",
@@ -1595,6 +1690,7 @@ M.VpcSecurityGroupMembership = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -1776,6 +1872,7 @@ M.Cluster = {
 
 M.ClusterAlreadyExistsFault = {
     type = "structure",
+    id = "ClusterAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1786,6 +1883,7 @@ M.ClusterAlreadyExistsFault = {
 
 M.RevisionTarget = {
     type = "structure",
+    id = "RevisionTarget",
     members = {
         DatabaseRevision = {
             type = "string",
@@ -1801,6 +1899,7 @@ M.RevisionTarget = {
 
 M.ClusterDbRevision = {
     type = "structure",
+    id = "ClusterDbRevision",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -1820,6 +1919,7 @@ M.ClusterDbRevision = {
 
 M.ClusterOnLatestRevisionFault = {
     type = "structure",
+    id = "ClusterOnLatestRevisionFault",
     error = "client",
     members = {
         message = {
@@ -1830,6 +1930,7 @@ M.ClusterOnLatestRevisionFault = {
 
 M.ClusterParameterGroup = {
     type = "structure",
+    id = "ClusterParameterGroup",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -1849,6 +1950,7 @@ M.ClusterParameterGroup = {
 
 M.ClusterParameterGroupAlreadyExistsFault = {
     type = "structure",
+    id = "ClusterParameterGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1859,6 +1961,7 @@ M.ClusterParameterGroupAlreadyExistsFault = {
 
 M.ClusterParameterGroupNotFoundFault = {
     type = "structure",
+    id = "ClusterParameterGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1869,6 +1972,7 @@ M.ClusterParameterGroupNotFoundFault = {
 
 M.ClusterParameterGroupQuotaExceededFault = {
     type = "structure",
+    id = "ClusterParameterGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1879,6 +1983,7 @@ M.ClusterParameterGroupQuotaExceededFault = {
 
 M.ClusterQuotaExceededFault = {
     type = "structure",
+    id = "ClusterQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1889,6 +1994,7 @@ M.ClusterQuotaExceededFault = {
 
 M.ClusterSecurityGroupAlreadyExistsFault = {
     type = "structure",
+    id = "ClusterSecurityGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1899,6 +2005,7 @@ M.ClusterSecurityGroupAlreadyExistsFault = {
 
 M.ClusterSecurityGroupQuotaExceededFault = {
     type = "structure",
+    id = "ClusterSecurityGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1909,6 +2016,7 @@ M.ClusterSecurityGroupQuotaExceededFault = {
 
 M.ClusterSnapshotAlreadyExistsFault = {
     type = "structure",
+    id = "ClusterSnapshotAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1919,6 +2027,7 @@ M.ClusterSnapshotAlreadyExistsFault = {
 
 M.ClusterSnapshotQuotaExceededFault = {
     type = "structure",
+    id = "ClusterSnapshotQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1929,6 +2038,7 @@ M.ClusterSnapshotQuotaExceededFault = {
 
 M.Subnet = {
     type = "structure",
+    id = "Subnet",
     members = {
         SubnetIdentifier = {
             type = "string",
@@ -1942,6 +2052,7 @@ M.Subnet = {
 
 M.ClusterSubnetGroup = {
     type = "structure",
+    id = "ClusterSubnetGroup",
     members = {
         ClusterSubnetGroupName = {
             type = "string",
@@ -1972,6 +2083,7 @@ M.ClusterSubnetGroup = {
 
 M.ClusterSubnetGroupAlreadyExistsFault = {
     type = "structure",
+    id = "ClusterSubnetGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1982,6 +2094,7 @@ M.ClusterSubnetGroupAlreadyExistsFault = {
 
 M.ClusterSubnetGroupNotFoundFault = {
     type = "structure",
+    id = "ClusterSubnetGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1992,6 +2105,7 @@ M.ClusterSubnetGroupNotFoundFault = {
 
 M.ClusterSubnetGroupQuotaExceededFault = {
     type = "structure",
+    id = "ClusterSubnetGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2002,6 +2116,7 @@ M.ClusterSubnetGroupQuotaExceededFault = {
 
 M.ClusterSubnetQuotaExceededFault = {
     type = "structure",
+    id = "ClusterSubnetQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2012,6 +2127,7 @@ M.ClusterSubnetQuotaExceededFault = {
 
 M.ClusterVersion = {
     type = "structure",
+    id = "ClusterVersion",
     members = {
         ClusterVersion = {
             type = "string",
@@ -2027,6 +2143,7 @@ M.ClusterVersion = {
 
 M.ConflictPolicyUpdateFault = {
     type = "structure",
+    id = "ConflictPolicyUpdateFault",
     error = "client",
     members = {
         message = {
@@ -2042,6 +2159,7 @@ M.ServiceAuthorization = {
 
 M.Connect = {
     type = "structure",
+    id = "Connect",
     members = {
         Authorization = {
             type = "string",
@@ -2054,6 +2172,7 @@ M.Connect = {
 
 M.CopyClusterSnapshotInput = {
     type = "structure",
+    id = "CopyClusterSnapshotInput",
     members = {
         SourceSnapshotIdentifier = {
             type = "string",
@@ -2078,6 +2197,7 @@ M.CopyClusterSnapshotInput = {
 
 M.CopyClusterSnapshotOutput = {
     type = "structure",
+    id = "CopyClusterSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -2085,6 +2205,7 @@ M.CopyClusterSnapshotOutput = {
 
 M.CopyToRegionDisabledFault = {
     type = "structure",
+    id = "CopyToRegionDisabledFault",
     error = "client",
     members = {
         message = {
@@ -2095,6 +2216,7 @@ M.CopyToRegionDisabledFault = {
 
 M.CreateAuthenticationProfileInput = {
     type = "structure",
+    id = "CreateAuthenticationProfileInput",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -2113,6 +2235,7 @@ M.CreateAuthenticationProfileInput = {
 
 M.CreateAuthenticationProfileOutput = {
     type = "structure",
+    id = "CreateAuthenticationProfileOutput",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -2125,6 +2248,7 @@ M.CreateAuthenticationProfileOutput = {
 
 M.InvalidAuthenticationProfileRequestFault = {
     type = "structure",
+    id = "InvalidAuthenticationProfileRequestFault",
     error = "client",
     members = {
         message = {
@@ -2135,6 +2259,7 @@ M.InvalidAuthenticationProfileRequestFault = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         DBName = {
             type = "string",
@@ -2277,6 +2402,7 @@ M.CreateClusterInput = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -2284,6 +2410,7 @@ M.CreateClusterOutput = {
 
 M.DependentServiceAccessDeniedFault = {
     type = "structure",
+    id = "DependentServiceAccessDeniedFault",
     error = "client",
     members = {
         message = {
@@ -2294,6 +2421,7 @@ M.DependentServiceAccessDeniedFault = {
 
 M.HsmClientCertificateNotFoundFault = {
     type = "structure",
+    id = "HsmClientCertificateNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2304,6 +2432,7 @@ M.HsmClientCertificateNotFoundFault = {
 
 M.HsmConfigurationNotFoundFault = {
     type = "structure",
+    id = "HsmConfigurationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2314,6 +2443,7 @@ M.HsmConfigurationNotFoundFault = {
 
 M.InsufficientClusterCapacityFault = {
     type = "structure",
+    id = "InsufficientClusterCapacityFault",
     error = "client",
     members = {
         message = {
@@ -2324,6 +2454,7 @@ M.InsufficientClusterCapacityFault = {
 
 M.InvalidClusterSubnetGroupStateFault = {
     type = "structure",
+    id = "InvalidClusterSubnetGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -2334,6 +2465,7 @@ M.InvalidClusterSubnetGroupStateFault = {
 
 M.InvalidClusterTrackFault = {
     type = "structure",
+    id = "InvalidClusterTrackFault",
     error = "client",
     members = {
         message = {
@@ -2344,6 +2476,7 @@ M.InvalidClusterTrackFault = {
 
 M.InvalidElasticIpFault = {
     type = "structure",
+    id = "InvalidElasticIpFault",
     error = "client",
     members = {
         message = {
@@ -2354,6 +2487,7 @@ M.InvalidElasticIpFault = {
 
 M.InvalidSubnet = {
     type = "structure",
+    id = "InvalidSubnet",
     error = "client",
     members = {
         message = {
@@ -2364,6 +2498,7 @@ M.InvalidSubnet = {
 
 M.InvalidTagFault = {
     type = "structure",
+    id = "InvalidTagFault",
     error = "client",
     members = {
         message = {
@@ -2374,6 +2509,7 @@ M.InvalidTagFault = {
 
 M.InvalidVPCNetworkStateFault = {
     type = "structure",
+    id = "InvalidVPCNetworkStateFault",
     error = "client",
     members = {
         message = {
@@ -2384,6 +2520,7 @@ M.InvalidVPCNetworkStateFault = {
 
 M.Ipv6CidrBlockNotFoundFault = {
     type = "structure",
+    id = "Ipv6CidrBlockNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2394,6 +2531,7 @@ M.Ipv6CidrBlockNotFoundFault = {
 
 M.NumberOfNodesPerClusterLimitExceededFault = {
     type = "structure",
+    id = "NumberOfNodesPerClusterLimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -2404,6 +2542,7 @@ M.NumberOfNodesPerClusterLimitExceededFault = {
 
 M.NumberOfNodesQuotaExceededFault = {
     type = "structure",
+    id = "NumberOfNodesQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2414,6 +2553,7 @@ M.NumberOfNodesQuotaExceededFault = {
 
 M.RedshiftIdcApplicationNotExistsFault = {
     type = "structure",
+    id = "RedshiftIdcApplicationNotExistsFault",
     error = "client",
     members = {
         message = {
@@ -2424,6 +2564,7 @@ M.RedshiftIdcApplicationNotExistsFault = {
 
 M.SnapshotScheduleNotFoundFault = {
     type = "structure",
+    id = "SnapshotScheduleNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2434,6 +2575,7 @@ M.SnapshotScheduleNotFoundFault = {
 
 M.TagLimitExceededFault = {
     type = "structure",
+    id = "TagLimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -2444,6 +2586,7 @@ M.TagLimitExceededFault = {
 
 M.UnauthorizedOperation = {
     type = "structure",
+    id = "UnauthorizedOperation",
     error = "client",
     members = {
         message = {
@@ -2454,6 +2597,7 @@ M.UnauthorizedOperation = {
 
 M.CreateClusterParameterGroupInput = {
     type = "structure",
+    id = "CreateClusterParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -2482,6 +2626,7 @@ M.CreateClusterParameterGroupInput = {
 
 M.CreateClusterParameterGroupOutput = {
     type = "structure",
+    id = "CreateClusterParameterGroupOutput",
     members = {
         ClusterParameterGroup = M.ClusterParameterGroup,
     },
@@ -2489,6 +2634,7 @@ M.CreateClusterParameterGroupOutput = {
 
 M.CreateClusterSecurityGroupInput = {
     type = "structure",
+    id = "CreateClusterSecurityGroupInput",
     members = {
         ClusterSecurityGroupName = {
             type = "string",
@@ -2511,6 +2657,7 @@ M.CreateClusterSecurityGroupInput = {
 
 M.CreateClusterSecurityGroupOutput = {
     type = "structure",
+    id = "CreateClusterSecurityGroupOutput",
     members = {
         ClusterSecurityGroup = M.ClusterSecurityGroup,
     },
@@ -2518,6 +2665,7 @@ M.CreateClusterSecurityGroupOutput = {
 
 M.CreateClusterSnapshotInput = {
     type = "structure",
+    id = "CreateClusterSnapshotInput",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -2543,6 +2691,7 @@ M.CreateClusterSnapshotInput = {
 
 M.CreateClusterSnapshotOutput = {
     type = "structure",
+    id = "CreateClusterSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -2550,6 +2699,7 @@ M.CreateClusterSnapshotOutput = {
 
 M.CreateClusterSubnetGroupInput = {
     type = "structure",
+    id = "CreateClusterSubnetGroupInput",
     members = {
         ClusterSubnetGroupName = {
             type = "string",
@@ -2579,6 +2729,7 @@ M.CreateClusterSubnetGroupInput = {
 
 M.CreateClusterSubnetGroupOutput = {
     type = "structure",
+    id = "CreateClusterSubnetGroupOutput",
     members = {
         ClusterSubnetGroup = M.ClusterSubnetGroup,
     },
@@ -2586,6 +2737,7 @@ M.CreateClusterSubnetGroupOutput = {
 
 M.CreateCustomDomainAssociationInput = {
     type = "structure",
+    id = "CreateCustomDomainAssociationInput",
     members = {
         CustomDomainName = {
             type = "string",
@@ -2610,6 +2762,7 @@ M.CreateCustomDomainAssociationInput = {
 
 M.CreateCustomDomainAssociationOutput = {
     type = "structure",
+    id = "CreateCustomDomainAssociationOutput",
     members = {
         CustomDomainName = {
             type = "string",
@@ -2628,6 +2781,7 @@ M.CreateCustomDomainAssociationOutput = {
 
 M.CustomCnameAssociationFault = {
     type = "structure",
+    id = "CustomCnameAssociationFault",
     error = "client",
     members = {
         message = {
@@ -2638,6 +2792,7 @@ M.CustomCnameAssociationFault = {
 
 M.CreateEndpointAccessInput = {
     type = "structure",
+    id = "CreateEndpointAccessInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -2666,6 +2821,7 @@ M.CreateEndpointAccessInput = {
 
 M.CreateEndpointAccessOutput = {
     type = "structure",
+    id = "CreateEndpointAccessOutput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -2701,6 +2857,7 @@ M.CreateEndpointAccessOutput = {
 
 M.EndpointAlreadyExistsFault = {
     type = "structure",
+    id = "EndpointAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2711,6 +2868,7 @@ M.EndpointAlreadyExistsFault = {
 
 M.EndpointsPerAuthorizationLimitExceededFault = {
     type = "structure",
+    id = "EndpointsPerAuthorizationLimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -2721,6 +2879,7 @@ M.EndpointsPerAuthorizationLimitExceededFault = {
 
 M.EndpointsPerClusterLimitExceededFault = {
     type = "structure",
+    id = "EndpointsPerClusterLimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -2731,6 +2890,7 @@ M.EndpointsPerClusterLimitExceededFault = {
 
 M.CreateEventSubscriptionInput = {
     type = "structure",
+    id = "CreateEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -2770,6 +2930,7 @@ M.CreateEventSubscriptionInput = {
 
 M.EventSubscription = {
     type = "structure",
+    id = "EventSubscription",
     members = {
         CustomerAwsId = {
             type = "string",
@@ -2812,6 +2973,7 @@ M.EventSubscription = {
 
 M.CreateEventSubscriptionOutput = {
     type = "structure",
+    id = "CreateEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -2819,6 +2981,7 @@ M.CreateEventSubscriptionOutput = {
 
 M.EventSubscriptionQuotaExceededFault = {
     type = "structure",
+    id = "EventSubscriptionQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2829,6 +2992,7 @@ M.EventSubscriptionQuotaExceededFault = {
 
 M.SNSInvalidTopicFault = {
     type = "structure",
+    id = "SNSInvalidTopicFault",
     error = "client",
     members = {
         message = {
@@ -2839,6 +3003,7 @@ M.SNSInvalidTopicFault = {
 
 M.SNSNoAuthorizationFault = {
     type = "structure",
+    id = "SNSNoAuthorizationFault",
     error = "client",
     members = {
         message = {
@@ -2849,6 +3014,7 @@ M.SNSNoAuthorizationFault = {
 
 M.SNSTopicArnNotFoundFault = {
     type = "structure",
+    id = "SNSTopicArnNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2859,6 +3025,7 @@ M.SNSTopicArnNotFoundFault = {
 
 M.SourceNotFoundFault = {
     type = "structure",
+    id = "SourceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2869,6 +3036,7 @@ M.SourceNotFoundFault = {
 
 M.SubscriptionAlreadyExistFault = {
     type = "structure",
+    id = "SubscriptionAlreadyExistFault",
     error = "client",
     members = {
         message = {
@@ -2879,6 +3047,7 @@ M.SubscriptionAlreadyExistFault = {
 
 M.SubscriptionCategoryNotFoundFault = {
     type = "structure",
+    id = "SubscriptionCategoryNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2889,6 +3058,7 @@ M.SubscriptionCategoryNotFoundFault = {
 
 M.SubscriptionEventIdNotFoundFault = {
     type = "structure",
+    id = "SubscriptionEventIdNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2899,6 +3069,7 @@ M.SubscriptionEventIdNotFoundFault = {
 
 M.SubscriptionSeverityNotFoundFault = {
     type = "structure",
+    id = "SubscriptionSeverityNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2909,6 +3080,7 @@ M.SubscriptionSeverityNotFoundFault = {
 
 M.CreateHsmClientCertificateInput = {
     type = "structure",
+    id = "CreateHsmClientCertificateInput",
     members = {
         HsmClientCertificateIdentifier = {
             type = "string",
@@ -2925,6 +3097,7 @@ M.CreateHsmClientCertificateInput = {
 
 M.HsmClientCertificate = {
     type = "structure",
+    id = "HsmClientCertificate",
     members = {
         HsmClientCertificateIdentifier = {
             type = "string",
@@ -2941,6 +3114,7 @@ M.HsmClientCertificate = {
 
 M.CreateHsmClientCertificateOutput = {
     type = "structure",
+    id = "CreateHsmClientCertificateOutput",
     members = {
         HsmClientCertificate = M.HsmClientCertificate,
     },
@@ -2948,6 +3122,7 @@ M.CreateHsmClientCertificateOutput = {
 
 M.HsmClientCertificateAlreadyExistsFault = {
     type = "structure",
+    id = "HsmClientCertificateAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2958,6 +3133,7 @@ M.HsmClientCertificateAlreadyExistsFault = {
 
 M.HsmClientCertificateQuotaExceededFault = {
     type = "structure",
+    id = "HsmClientCertificateQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2968,6 +3144,7 @@ M.HsmClientCertificateQuotaExceededFault = {
 
 M.CreateHsmConfigurationInput = {
     type = "structure",
+    id = "CreateHsmConfigurationInput",
     members = {
         HsmConfigurationIdentifier = {
             type = "string",
@@ -3014,6 +3191,7 @@ M.CreateHsmConfigurationInput = {
 
 M.HsmConfiguration = {
     type = "structure",
+    id = "HsmConfiguration",
     members = {
         HsmConfigurationIdentifier = {
             type = "string",
@@ -3036,6 +3214,7 @@ M.HsmConfiguration = {
 
 M.CreateHsmConfigurationOutput = {
     type = "structure",
+    id = "CreateHsmConfigurationOutput",
     members = {
         HsmConfiguration = M.HsmConfiguration,
     },
@@ -3043,6 +3222,7 @@ M.CreateHsmConfigurationOutput = {
 
 M.HsmConfigurationAlreadyExistsFault = {
     type = "structure",
+    id = "HsmConfigurationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3053,6 +3233,7 @@ M.HsmConfigurationAlreadyExistsFault = {
 
 M.HsmConfigurationQuotaExceededFault = {
     type = "structure",
+    id = "HsmConfigurationQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3063,6 +3244,7 @@ M.HsmConfigurationQuotaExceededFault = {
 
 M.CreateIntegrationInput = {
     type = "structure",
+    id = "CreateIntegrationInput",
     members = {
         SourceArn = {
             type = "string",
@@ -3102,6 +3284,7 @@ M.CreateIntegrationInput = {
 
 M.IntegrationError = {
     type = "structure",
+    id = "IntegrationError",
     members = {
         ErrorCode = {
             type = "string",
@@ -3127,6 +3310,7 @@ M.ZeroETLIntegrationStatus = {
 
 M.CreateIntegrationOutput = {
     type = "structure",
+    id = "CreateIntegrationOutput",
     members = {
         IntegrationArn = {
             type = "string",
@@ -3170,6 +3354,7 @@ M.CreateIntegrationOutput = {
 
 M.IntegrationAlreadyExistsFault = {
     type = "structure",
+    id = "IntegrationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3180,6 +3365,7 @@ M.IntegrationAlreadyExistsFault = {
 
 M.IntegrationConflictOperationFault = {
     type = "structure",
+    id = "IntegrationConflictOperationFault",
     error = "client",
     members = {
         message = {
@@ -3190,6 +3376,7 @@ M.IntegrationConflictOperationFault = {
 
 M.IntegrationQuotaExceededFault = {
     type = "structure",
+    id = "IntegrationQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3200,6 +3387,7 @@ M.IntegrationQuotaExceededFault = {
 
 M.IntegrationSourceNotFoundFault = {
     type = "structure",
+    id = "IntegrationSourceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3210,6 +3398,7 @@ M.IntegrationSourceNotFoundFault = {
 
 M.IntegrationTargetNotFoundFault = {
     type = "structure",
+    id = "IntegrationTargetNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3220,6 +3409,7 @@ M.IntegrationTargetNotFoundFault = {
 
 M.LakeFormationQuery = {
     type = "structure",
+    id = "LakeFormationQuery",
     members = {
         Authorization = {
             type = "string",
@@ -3232,6 +3422,7 @@ M.LakeFormationQuery = {
 
 M.LakeFormationScopeUnion = {
     type = "union",
+    id = "LakeFormationScopeUnion",
     members = {
         LakeFormationQuery = M.LakeFormationQuery,
     },
@@ -3239,6 +3430,7 @@ M.LakeFormationScopeUnion = {
 
 M.RedshiftScopeUnion = {
     type = "union",
+    id = "RedshiftScopeUnion",
     members = {
         Connect = M.Connect,
     },
@@ -3246,6 +3438,7 @@ M.RedshiftScopeUnion = {
 
 M.ReadWriteAccess = {
     type = "structure",
+    id = "ReadWriteAccess",
     members = {
         Authorization = {
             type = "string",
@@ -3258,6 +3451,7 @@ M.ReadWriteAccess = {
 
 M.S3AccessGrantsScopeUnion = {
     type = "union",
+    id = "S3AccessGrantsScopeUnion",
     members = {
         ReadWriteAccess = M.ReadWriteAccess,
     },
@@ -3265,6 +3459,7 @@ M.S3AccessGrantsScopeUnion = {
 
 M.ServiceIntegrationsUnion = {
     type = "union",
+    id = "ServiceIntegrationsUnion",
     members = {
         LakeFormation = {
             type = "list",
@@ -3283,6 +3478,7 @@ M.ServiceIntegrationsUnion = {
 
 M.CreateRedshiftIdcApplicationInput = {
     type = "structure",
+    id = "CreateRedshiftIdcApplicationInput",
     members = {
         IdcInstanceArn = {
             type = "string",
@@ -3335,6 +3531,7 @@ M.CreateRedshiftIdcApplicationInput = {
 
 M.RedshiftIdcApplication = {
     type = "structure",
+    id = "RedshiftIdcApplication",
     members = {
         IdcInstanceArn = {
             type = "string",
@@ -3384,6 +3581,7 @@ M.RedshiftIdcApplication = {
 
 M.CreateRedshiftIdcApplicationOutput = {
     type = "structure",
+    id = "CreateRedshiftIdcApplicationOutput",
     members = {
         RedshiftIdcApplication = M.RedshiftIdcApplication,
     },
@@ -3391,6 +3589,7 @@ M.CreateRedshiftIdcApplicationOutput = {
 
 M.RedshiftIdcApplicationAlreadyExistsFault = {
     type = "structure",
+    id = "RedshiftIdcApplicationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3401,6 +3600,7 @@ M.RedshiftIdcApplicationAlreadyExistsFault = {
 
 M.RedshiftIdcApplicationQuotaExceededFault = {
     type = "structure",
+    id = "RedshiftIdcApplicationQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3411,6 +3611,7 @@ M.RedshiftIdcApplicationQuotaExceededFault = {
 
 M.PauseClusterMessage = {
     type = "structure",
+    id = "PauseClusterMessage",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -3423,6 +3624,7 @@ M.PauseClusterMessage = {
 
 M.ResizeClusterMessage = {
     type = "structure",
+    id = "ResizeClusterMessage",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -3453,6 +3655,7 @@ M.ResizeClusterMessage = {
 
 M.ResumeClusterMessage = {
     type = "structure",
+    id = "ResumeClusterMessage",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -3465,6 +3668,7 @@ M.ResumeClusterMessage = {
 
 M.ScheduledActionType = {
     type = "structure",
+    id = "ScheduledActionType",
     members = {
         ResizeCluster = M.ResizeClusterMessage,
         PauseCluster = M.PauseClusterMessage,
@@ -3474,6 +3678,7 @@ M.ScheduledActionType = {
 
 M.CreateScheduledActionInput = {
     type = "structure",
+    id = "CreateScheduledActionInput",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -3518,6 +3723,7 @@ M.ScheduledActionState = {
 
 M.CreateScheduledActionOutput = {
     type = "structure",
+    id = "CreateScheduledActionOutput",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -3550,6 +3756,7 @@ M.CreateScheduledActionOutput = {
 
 M.InvalidScheduledActionFault = {
     type = "structure",
+    id = "InvalidScheduledActionFault",
     error = "client",
     members = {
         message = {
@@ -3560,6 +3767,7 @@ M.InvalidScheduledActionFault = {
 
 M.InvalidScheduleFault = {
     type = "structure",
+    id = "InvalidScheduleFault",
     error = "client",
     members = {
         message = {
@@ -3570,6 +3778,7 @@ M.InvalidScheduleFault = {
 
 M.ScheduledActionAlreadyExistsFault = {
     type = "structure",
+    id = "ScheduledActionAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3580,6 +3789,7 @@ M.ScheduledActionAlreadyExistsFault = {
 
 M.ScheduledActionQuotaExceededFault = {
     type = "structure",
+    id = "ScheduledActionQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3590,6 +3800,7 @@ M.ScheduledActionQuotaExceededFault = {
 
 M.ScheduledActionTypeUnsupportedFault = {
     type = "structure",
+    id = "ScheduledActionTypeUnsupportedFault",
     error = "client",
     members = {
         message = {
@@ -3600,6 +3811,7 @@ M.ScheduledActionTypeUnsupportedFault = {
 
 M.CreateSnapshotCopyGrantInput = {
     type = "structure",
+    id = "CreateSnapshotCopyGrantInput",
     members = {
         SnapshotCopyGrantName = {
             type = "string",
@@ -3619,6 +3831,7 @@ M.CreateSnapshotCopyGrantInput = {
 
 M.SnapshotCopyGrant = {
     type = "structure",
+    id = "SnapshotCopyGrant",
     members = {
         SnapshotCopyGrantName = {
             type = "string",
@@ -3635,6 +3848,7 @@ M.SnapshotCopyGrant = {
 
 M.CreateSnapshotCopyGrantOutput = {
     type = "structure",
+    id = "CreateSnapshotCopyGrantOutput",
     members = {
         SnapshotCopyGrant = M.SnapshotCopyGrant,
     },
@@ -3642,6 +3856,7 @@ M.CreateSnapshotCopyGrantOutput = {
 
 M.SnapshotCopyGrantAlreadyExistsFault = {
     type = "structure",
+    id = "SnapshotCopyGrantAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3652,6 +3867,7 @@ M.SnapshotCopyGrantAlreadyExistsFault = {
 
 M.SnapshotCopyGrantQuotaExceededFault = {
     type = "structure",
+    id = "SnapshotCopyGrantQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3662,6 +3878,7 @@ M.SnapshotCopyGrantQuotaExceededFault = {
 
 M.CreateSnapshotScheduleInput = {
     type = "structure",
+    id = "CreateSnapshotScheduleInput",
     members = {
         ScheduleDefinitions = {
             type = "list",
@@ -3688,6 +3905,7 @@ M.CreateSnapshotScheduleInput = {
 
 M.CreateSnapshotScheduleOutput = {
     type = "structure",
+    id = "CreateSnapshotScheduleOutput",
     members = {
         ScheduleDefinitions = {
             type = "list",
@@ -3719,6 +3937,7 @@ M.CreateSnapshotScheduleOutput = {
 
 M.ScheduleDefinitionTypeUnsupportedFault = {
     type = "structure",
+    id = "ScheduleDefinitionTypeUnsupportedFault",
     error = "client",
     members = {
         message = {
@@ -3729,6 +3948,7 @@ M.ScheduleDefinitionTypeUnsupportedFault = {
 
 M.SnapshotScheduleAlreadyExistsFault = {
     type = "structure",
+    id = "SnapshotScheduleAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3739,6 +3959,7 @@ M.SnapshotScheduleAlreadyExistsFault = {
 
 M.SnapshotScheduleQuotaExceededFault = {
     type = "structure",
+    id = "SnapshotScheduleQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3749,6 +3970,7 @@ M.SnapshotScheduleQuotaExceededFault = {
 
 M.CreateTagsInput = {
     type = "structure",
+    id = "CreateTagsInput",
     members = {
         ResourceName = {
             type = "string",
@@ -3768,10 +3990,12 @@ M.CreateTagsInput = {
 
 M.CreateTagsOutput = {
     type = "structure",
+    id = "CreateTagsOutput",
 }
 
 M.ResourceNotFoundFault = {
     type = "structure",
+    id = "ResourceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3806,6 +4030,7 @@ M.UsageLimitPeriod = {
 
 M.CreateUsageLimitInput = {
     type = "structure",
+    id = "CreateUsageLimitInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -3846,6 +4071,7 @@ M.CreateUsageLimitInput = {
 
 M.CreateUsageLimitOutput = {
     type = "structure",
+    id = "CreateUsageLimitOutput",
     members = {
         UsageLimitId = {
             type = "string",
@@ -3877,6 +4103,7 @@ M.CreateUsageLimitOutput = {
 
 M.InvalidUsageLimitFault = {
     type = "structure",
+    id = "InvalidUsageLimitFault",
     error = "client",
     members = {
         message = {
@@ -3887,6 +4114,7 @@ M.InvalidUsageLimitFault = {
 
 M.UsageLimitAlreadyExistsFault = {
     type = "structure",
+    id = "UsageLimitAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3897,6 +4125,7 @@ M.UsageLimitAlreadyExistsFault = {
 
 M.CustomDomainAssociationNotFoundFault = {
     type = "structure",
+    id = "CustomDomainAssociationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3907,6 +4136,7 @@ M.CustomDomainAssociationNotFoundFault = {
 
 M.DataShare = {
     type = "structure",
+    id = "DataShare",
     members = {
         DataShareArn = {
             type = "string",
@@ -3945,6 +4175,7 @@ M.DataShareStatusForProducer = {
 
 M.DeauthorizeDataShareInput = {
     type = "structure",
+    id = "DeauthorizeDataShareInput",
     members = {
         DataShareArn = {
             type = "string",
@@ -3963,6 +4194,7 @@ M.DeauthorizeDataShareInput = {
 
 M.DeauthorizeDataShareOutput = {
     type = "structure",
+    id = "DeauthorizeDataShareOutput",
     members = {
         DataShareArn = {
             type = "string",
@@ -3993,6 +4225,7 @@ M.ParameterApplyType = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         ParameterName = {
             type = "string",
@@ -4026,6 +4259,7 @@ M.Parameter = {
 
 M.DefaultClusterParameters = {
     type = "structure",
+    id = "DefaultClusterParameters",
     members = {
         ParameterGroupFamily = {
             type = "string",
@@ -4042,6 +4276,7 @@ M.DefaultClusterParameters = {
 
 M.DeleteAuthenticationProfileInput = {
     type = "structure",
+    id = "DeleteAuthenticationProfileInput",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -4054,6 +4289,7 @@ M.DeleteAuthenticationProfileInput = {
 
 M.DeleteAuthenticationProfileOutput = {
     type = "structure",
+    id = "DeleteAuthenticationProfileOutput",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -4063,6 +4299,7 @@ M.DeleteAuthenticationProfileOutput = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -4084,6 +4321,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -4091,6 +4329,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteClusterParameterGroupInput = {
     type = "structure",
+    id = "DeleteClusterParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -4103,10 +4342,12 @@ M.DeleteClusterParameterGroupInput = {
 
 M.DeleteClusterParameterGroupOutput = {
     type = "structure",
+    id = "DeleteClusterParameterGroupOutput",
 }
 
 M.InvalidClusterParameterGroupStateFault = {
     type = "structure",
+    id = "InvalidClusterParameterGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -4117,6 +4358,7 @@ M.InvalidClusterParameterGroupStateFault = {
 
 M.DeleteClusterSecurityGroupInput = {
     type = "structure",
+    id = "DeleteClusterSecurityGroupInput",
     members = {
         ClusterSecurityGroupName = {
             type = "string",
@@ -4129,10 +4371,12 @@ M.DeleteClusterSecurityGroupInput = {
 
 M.DeleteClusterSecurityGroupOutput = {
     type = "structure",
+    id = "DeleteClusterSecurityGroupOutput",
 }
 
 M.DeleteClusterSnapshotInput = {
     type = "structure",
+    id = "DeleteClusterSnapshotInput",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -4148,6 +4392,7 @@ M.DeleteClusterSnapshotInput = {
 
 M.DeleteClusterSnapshotOutput = {
     type = "structure",
+    id = "DeleteClusterSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -4155,6 +4400,7 @@ M.DeleteClusterSnapshotOutput = {
 
 M.DeleteClusterSubnetGroupInput = {
     type = "structure",
+    id = "DeleteClusterSubnetGroupInput",
     members = {
         ClusterSubnetGroupName = {
             type = "string",
@@ -4167,10 +4413,12 @@ M.DeleteClusterSubnetGroupInput = {
 
 M.DeleteClusterSubnetGroupOutput = {
     type = "structure",
+    id = "DeleteClusterSubnetGroupOutput",
 }
 
 M.InvalidClusterSubnetStateFault = {
     type = "structure",
+    id = "InvalidClusterSubnetStateFault",
     error = "client",
     members = {
         message = {
@@ -4181,6 +4429,7 @@ M.InvalidClusterSubnetStateFault = {
 
 M.DeleteCustomDomainAssociationInput = {
     type = "structure",
+    id = "DeleteCustomDomainAssociationInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -4199,10 +4448,12 @@ M.DeleteCustomDomainAssociationInput = {
 
 M.DeleteCustomDomainAssociationOutput = {
     type = "structure",
+    id = "DeleteCustomDomainAssociationOutput",
 }
 
 M.DeleteEndpointAccessInput = {
     type = "structure",
+    id = "DeleteEndpointAccessInput",
     members = {
         EndpointName = {
             type = "string",
@@ -4215,6 +4466,7 @@ M.DeleteEndpointAccessInput = {
 
 M.DeleteEndpointAccessOutput = {
     type = "structure",
+    id = "DeleteEndpointAccessOutput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -4250,6 +4502,7 @@ M.DeleteEndpointAccessOutput = {
 
 M.EndpointNotFoundFault = {
     type = "structure",
+    id = "EndpointNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4260,6 +4513,7 @@ M.EndpointNotFoundFault = {
 
 M.InvalidEndpointStateFault = {
     type = "structure",
+    id = "InvalidEndpointStateFault",
     error = "client",
     members = {
         message = {
@@ -4270,6 +4524,7 @@ M.InvalidEndpointStateFault = {
 
 M.DeleteEventSubscriptionInput = {
     type = "structure",
+    id = "DeleteEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -4282,10 +4537,12 @@ M.DeleteEventSubscriptionInput = {
 
 M.DeleteEventSubscriptionOutput = {
     type = "structure",
+    id = "DeleteEventSubscriptionOutput",
 }
 
 M.InvalidSubscriptionStateFault = {
     type = "structure",
+    id = "InvalidSubscriptionStateFault",
     error = "client",
     members = {
         message = {
@@ -4296,6 +4553,7 @@ M.InvalidSubscriptionStateFault = {
 
 M.SubscriptionNotFoundFault = {
     type = "structure",
+    id = "SubscriptionNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4306,6 +4564,7 @@ M.SubscriptionNotFoundFault = {
 
 M.DeleteHsmClientCertificateInput = {
     type = "structure",
+    id = "DeleteHsmClientCertificateInput",
     members = {
         HsmClientCertificateIdentifier = {
             type = "string",
@@ -4318,10 +4577,12 @@ M.DeleteHsmClientCertificateInput = {
 
 M.DeleteHsmClientCertificateOutput = {
     type = "structure",
+    id = "DeleteHsmClientCertificateOutput",
 }
 
 M.InvalidHsmClientCertificateStateFault = {
     type = "structure",
+    id = "InvalidHsmClientCertificateStateFault",
     error = "client",
     members = {
         message = {
@@ -4332,6 +4593,7 @@ M.InvalidHsmClientCertificateStateFault = {
 
 M.DeleteHsmConfigurationInput = {
     type = "structure",
+    id = "DeleteHsmConfigurationInput",
     members = {
         HsmConfigurationIdentifier = {
             type = "string",
@@ -4344,10 +4606,12 @@ M.DeleteHsmConfigurationInput = {
 
 M.DeleteHsmConfigurationOutput = {
     type = "structure",
+    id = "DeleteHsmConfigurationOutput",
 }
 
 M.InvalidHsmConfigurationStateFault = {
     type = "structure",
+    id = "InvalidHsmConfigurationStateFault",
     error = "client",
     members = {
         message = {
@@ -4358,6 +4622,7 @@ M.InvalidHsmConfigurationStateFault = {
 
 M.DeleteIntegrationInput = {
     type = "structure",
+    id = "DeleteIntegrationInput",
     members = {
         IntegrationArn = {
             type = "string",
@@ -4370,6 +4635,7 @@ M.DeleteIntegrationInput = {
 
 M.DeleteIntegrationOutput = {
     type = "structure",
+    id = "DeleteIntegrationOutput",
     members = {
         IntegrationArn = {
             type = "string",
@@ -4413,6 +4679,7 @@ M.DeleteIntegrationOutput = {
 
 M.IntegrationConflictStateFault = {
     type = "structure",
+    id = "IntegrationConflictStateFault",
     error = "client",
     members = {
         message = {
@@ -4423,6 +4690,7 @@ M.IntegrationConflictStateFault = {
 
 M.IntegrationNotFoundFault = {
     type = "structure",
+    id = "IntegrationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4433,6 +4701,7 @@ M.IntegrationNotFoundFault = {
 
 M.DeletePartnerInput = {
     type = "structure",
+    id = "DeletePartnerInput",
     members = {
         AccountId = {
             type = "string",
@@ -4463,6 +4732,7 @@ M.DeletePartnerInput = {
 
 M.DeletePartnerOutput = {
     type = "structure",
+    id = "DeletePartnerOutput",
     members = {
         DatabaseName = {
             type = "string",
@@ -4475,6 +4745,7 @@ M.DeletePartnerOutput = {
 
 M.DeleteRedshiftIdcApplicationInput = {
     type = "structure",
+    id = "DeleteRedshiftIdcApplicationInput",
     members = {
         RedshiftIdcApplicationArn = {
             type = "string",
@@ -4487,10 +4758,12 @@ M.DeleteRedshiftIdcApplicationInput = {
 
 M.DeleteRedshiftIdcApplicationOutput = {
     type = "structure",
+    id = "DeleteRedshiftIdcApplicationOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4503,10 +4776,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteScheduledActionInput = {
     type = "structure",
+    id = "DeleteScheduledActionInput",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -4519,10 +4794,12 @@ M.DeleteScheduledActionInput = {
 
 M.DeleteScheduledActionOutput = {
     type = "structure",
+    id = "DeleteScheduledActionOutput",
 }
 
 M.ScheduledActionNotFoundFault = {
     type = "structure",
+    id = "ScheduledActionNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4533,6 +4810,7 @@ M.ScheduledActionNotFoundFault = {
 
 M.DeleteSnapshotCopyGrantInput = {
     type = "structure",
+    id = "DeleteSnapshotCopyGrantInput",
     members = {
         SnapshotCopyGrantName = {
             type = "string",
@@ -4545,10 +4823,12 @@ M.DeleteSnapshotCopyGrantInput = {
 
 M.DeleteSnapshotCopyGrantOutput = {
     type = "structure",
+    id = "DeleteSnapshotCopyGrantOutput",
 }
 
 M.InvalidSnapshotCopyGrantStateFault = {
     type = "structure",
+    id = "InvalidSnapshotCopyGrantStateFault",
     error = "client",
     members = {
         message = {
@@ -4559,6 +4839,7 @@ M.InvalidSnapshotCopyGrantStateFault = {
 
 M.SnapshotCopyGrantNotFoundFault = {
     type = "structure",
+    id = "SnapshotCopyGrantNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4569,6 +4850,7 @@ M.SnapshotCopyGrantNotFoundFault = {
 
 M.DeleteSnapshotScheduleInput = {
     type = "structure",
+    id = "DeleteSnapshotScheduleInput",
     members = {
         ScheduleIdentifier = {
             type = "string",
@@ -4581,10 +4863,12 @@ M.DeleteSnapshotScheduleInput = {
 
 M.DeleteSnapshotScheduleOutput = {
     type = "structure",
+    id = "DeleteSnapshotScheduleOutput",
 }
 
 M.InvalidClusterSnapshotScheduleStateFault = {
     type = "structure",
+    id = "InvalidClusterSnapshotScheduleStateFault",
     error = "client",
     members = {
         message = {
@@ -4595,6 +4879,7 @@ M.InvalidClusterSnapshotScheduleStateFault = {
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         ResourceName = {
             type = "string",
@@ -4614,10 +4899,12 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.DeleteUsageLimitInput = {
     type = "structure",
+    id = "DeleteUsageLimitInput",
     members = {
         UsageLimitId = {
             type = "string",
@@ -4630,10 +4917,12 @@ M.DeleteUsageLimitInput = {
 
 M.DeleteUsageLimitOutput = {
     type = "structure",
+    id = "DeleteUsageLimitOutput",
 }
 
 M.UsageLimitNotFoundFault = {
     type = "structure",
+    id = "UsageLimitNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4644,6 +4933,7 @@ M.UsageLimitNotFoundFault = {
 
 M.ProvisionedIdentifier = {
     type = "structure",
+    id = "ProvisionedIdentifier",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -4656,6 +4946,7 @@ M.ProvisionedIdentifier = {
 
 M.ServerlessIdentifier = {
     type = "structure",
+    id = "ServerlessIdentifier",
     members = {
         NamespaceIdentifier = {
             type = "string",
@@ -4674,6 +4965,7 @@ M.ServerlessIdentifier = {
 
 M.NamespaceIdentifierUnion = {
     type = "union",
+    id = "NamespaceIdentifierUnion",
     members = {
         ServerlessIdentifier = M.ServerlessIdentifier,
         ProvisionedIdentifier = M.ProvisionedIdentifier,
@@ -4682,6 +4974,7 @@ M.NamespaceIdentifierUnion = {
 
 M.DeregisterNamespaceInput = {
     type = "structure",
+    id = "DeregisterNamespaceInput",
     members = {
         NamespaceIdentifier = setmetatable({ traits = {
             required = true,
@@ -4703,6 +4996,7 @@ M.NamespaceRegistrationStatus = {
 
 M.DeregisterNamespaceOutput = {
     type = "structure",
+    id = "DeregisterNamespaceOutput",
     members = {
         Status = {
             type = "string",
@@ -4712,6 +5006,7 @@ M.DeregisterNamespaceOutput = {
 
 M.DescribeAccountAttributesInput = {
     type = "structure",
+    id = "DescribeAccountAttributesInput",
     members = {
         AttributeNames = {
             type = "list",
@@ -4722,6 +5017,7 @@ M.DescribeAccountAttributesInput = {
 
 M.DescribeAccountAttributesOutput = {
     type = "structure",
+    id = "DescribeAccountAttributesOutput",
     members = {
         AccountAttributes = {
             type = "list",
@@ -4732,6 +5028,7 @@ M.DescribeAccountAttributesOutput = {
 
 M.DescribeAuthenticationProfilesInput = {
     type = "structure",
+    id = "DescribeAuthenticationProfilesInput",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -4741,6 +5038,7 @@ M.DescribeAuthenticationProfilesInput = {
 
 M.DescribeAuthenticationProfilesOutput = {
     type = "structure",
+    id = "DescribeAuthenticationProfilesOutput",
     members = {
         AuthenticationProfiles = {
             type = "list",
@@ -4751,6 +5049,7 @@ M.DescribeAuthenticationProfilesOutput = {
 
 M.DescribeClusterDbRevisionsInput = {
     type = "structure",
+    id = "DescribeClusterDbRevisionsInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -4766,6 +5065,7 @@ M.DescribeClusterDbRevisionsInput = {
 
 M.DescribeClusterDbRevisionsOutput = {
     type = "structure",
+    id = "DescribeClusterDbRevisionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4779,6 +5079,7 @@ M.DescribeClusterDbRevisionsOutput = {
 
 M.DescribeClusterParameterGroupsInput = {
     type = "structure",
+    id = "DescribeClusterParameterGroupsInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -4802,6 +5103,7 @@ M.DescribeClusterParameterGroupsInput = {
 
 M.DescribeClusterParameterGroupsOutput = {
     type = "structure",
+    id = "DescribeClusterParameterGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4815,6 +5117,7 @@ M.DescribeClusterParameterGroupsOutput = {
 
 M.DescribeClusterParametersInput = {
     type = "structure",
+    id = "DescribeClusterParametersInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -4836,6 +5139,7 @@ M.DescribeClusterParametersInput = {
 
 M.DescribeClusterParametersOutput = {
     type = "structure",
+    id = "DescribeClusterParametersOutput",
     members = {
         Parameters = {
             type = "list",
@@ -4849,6 +5153,7 @@ M.DescribeClusterParametersOutput = {
 
 M.DescribeClustersInput = {
     type = "structure",
+    id = "DescribeClustersInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -4872,6 +5177,7 @@ M.DescribeClustersInput = {
 
 M.DescribeClustersOutput = {
     type = "structure",
+    id = "DescribeClustersOutput",
     members = {
         Marker = {
             type = "string",
@@ -4885,6 +5191,7 @@ M.DescribeClustersOutput = {
 
 M.DescribeClusterSecurityGroupsInput = {
     type = "structure",
+    id = "DescribeClusterSecurityGroupsInput",
     members = {
         ClusterSecurityGroupName = {
             type = "string",
@@ -4908,6 +5215,7 @@ M.DescribeClusterSecurityGroupsInput = {
 
 M.DescribeClusterSecurityGroupsOutput = {
     type = "structure",
+    id = "DescribeClusterSecurityGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -4932,6 +5240,7 @@ M.SortByOrder = {
 
 M.SnapshotSortingEntity = {
     type = "structure",
+    id = "SnapshotSortingEntity",
     members = {
         Attribute = {
             type = "string",
@@ -4947,6 +5256,7 @@ M.SnapshotSortingEntity = {
 
 M.DescribeClusterSnapshotsInput = {
     type = "structure",
+    id = "DescribeClusterSnapshotsInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -4995,6 +5305,7 @@ M.DescribeClusterSnapshotsInput = {
 
 M.DescribeClusterSnapshotsOutput = {
     type = "structure",
+    id = "DescribeClusterSnapshotsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5008,6 +5319,7 @@ M.DescribeClusterSnapshotsOutput = {
 
 M.DescribeClusterSubnetGroupsInput = {
     type = "structure",
+    id = "DescribeClusterSubnetGroupsInput",
     members = {
         ClusterSubnetGroupName = {
             type = "string",
@@ -5031,6 +5343,7 @@ M.DescribeClusterSubnetGroupsInput = {
 
 M.DescribeClusterSubnetGroupsOutput = {
     type = "structure",
+    id = "DescribeClusterSubnetGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5044,6 +5357,7 @@ M.DescribeClusterSubnetGroupsOutput = {
 
 M.DescribeClusterTracksInput = {
     type = "structure",
+    id = "DescribeClusterTracksInput",
     members = {
         MaintenanceTrackName = {
             type = "string",
@@ -5059,6 +5373,7 @@ M.DescribeClusterTracksInput = {
 
 M.SupportedOperation = {
     type = "structure",
+    id = "SupportedOperation",
     members = {
         OperationName = {
             type = "string",
@@ -5068,6 +5383,7 @@ M.SupportedOperation = {
 
 M.UpdateTarget = {
     type = "structure",
+    id = "UpdateTarget",
     members = {
         MaintenanceTrackName = {
             type = "string",
@@ -5084,6 +5400,7 @@ M.UpdateTarget = {
 
 M.MaintenanceTrack = {
     type = "structure",
+    id = "MaintenanceTrack",
     members = {
         MaintenanceTrackName = {
             type = "string",
@@ -5100,6 +5417,7 @@ M.MaintenanceTrack = {
 
 M.DescribeClusterTracksOutput = {
     type = "structure",
+    id = "DescribeClusterTracksOutput",
     members = {
         MaintenanceTracks = {
             type = "list",
@@ -5113,6 +5431,7 @@ M.DescribeClusterTracksOutput = {
 
 M.DescribeClusterVersionsInput = {
     type = "structure",
+    id = "DescribeClusterVersionsInput",
     members = {
         ClusterVersion = {
             type = "string",
@@ -5131,6 +5450,7 @@ M.DescribeClusterVersionsInput = {
 
 M.DescribeClusterVersionsOutput = {
     type = "structure",
+    id = "DescribeClusterVersionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5144,6 +5464,7 @@ M.DescribeClusterVersionsOutput = {
 
 M.DescribeCustomDomainAssociationsInput = {
     type = "structure",
+    id = "DescribeCustomDomainAssociationsInput",
     members = {
         CustomDomainName = {
             type = "string",
@@ -5162,6 +5483,7 @@ M.DescribeCustomDomainAssociationsInput = {
 
 M.DescribeCustomDomainAssociationsOutput = {
     type = "structure",
+    id = "DescribeCustomDomainAssociationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5175,6 +5497,7 @@ M.DescribeCustomDomainAssociationsOutput = {
 
 M.DescribeDataSharesInput = {
     type = "structure",
+    id = "DescribeDataSharesInput",
     members = {
         DataShareArn = {
             type = "string",
@@ -5190,6 +5513,7 @@ M.DescribeDataSharesInput = {
 
 M.DescribeDataSharesOutput = {
     type = "structure",
+    id = "DescribeDataSharesOutput",
     members = {
         DataShares = {
             type = "list",
@@ -5203,6 +5527,7 @@ M.DescribeDataSharesOutput = {
 
 M.DescribeDataSharesForConsumerInput = {
     type = "structure",
+    id = "DescribeDataSharesForConsumerInput",
     members = {
         ConsumerArn = {
             type = "string",
@@ -5221,6 +5546,7 @@ M.DescribeDataSharesForConsumerInput = {
 
 M.DescribeDataSharesForConsumerOutput = {
     type = "structure",
+    id = "DescribeDataSharesForConsumerOutput",
     members = {
         DataShares = {
             type = "list",
@@ -5234,6 +5560,7 @@ M.DescribeDataSharesForConsumerOutput = {
 
 M.DescribeDataSharesForProducerInput = {
     type = "structure",
+    id = "DescribeDataSharesForProducerInput",
     members = {
         ProducerArn = {
             type = "string",
@@ -5252,6 +5579,7 @@ M.DescribeDataSharesForProducerInput = {
 
 M.DescribeDataSharesForProducerOutput = {
     type = "structure",
+    id = "DescribeDataSharesForProducerOutput",
     members = {
         DataShares = {
             type = "list",
@@ -5265,6 +5593,7 @@ M.DescribeDataSharesForProducerOutput = {
 
 M.DescribeDefaultClusterParametersInput = {
     type = "structure",
+    id = "DescribeDefaultClusterParametersInput",
     members = {
         ParameterGroupFamily = {
             type = "string",
@@ -5283,6 +5612,7 @@ M.DescribeDefaultClusterParametersInput = {
 
 M.DescribeDefaultClusterParametersOutput = {
     type = "structure",
+    id = "DescribeDefaultClusterParametersOutput",
     members = {
         DefaultClusterParameters = M.DefaultClusterParameters,
     },
@@ -5290,6 +5620,7 @@ M.DescribeDefaultClusterParametersOutput = {
 
 M.DescribeEndpointAccessInput = {
     type = "structure",
+    id = "DescribeEndpointAccessInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -5314,6 +5645,7 @@ M.DescribeEndpointAccessInput = {
 
 M.EndpointAccess = {
     type = "structure",
+    id = "EndpointAccess",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -5349,6 +5681,7 @@ M.EndpointAccess = {
 
 M.DescribeEndpointAccessOutput = {
     type = "structure",
+    id = "DescribeEndpointAccessOutput",
     members = {
         EndpointAccessList = {
             type = "list",
@@ -5362,6 +5695,7 @@ M.DescribeEndpointAccessOutput = {
 
 M.DescribeEndpointAuthorizationInput = {
     type = "structure",
+    id = "DescribeEndpointAuthorizationInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -5383,6 +5717,7 @@ M.DescribeEndpointAuthorizationInput = {
 
 M.EndpointAuthorization = {
     type = "structure",
+    id = "EndpointAuthorization",
     members = {
         Grantor = {
             type = "string",
@@ -5417,6 +5752,7 @@ M.EndpointAuthorization = {
 
 M.DescribeEndpointAuthorizationOutput = {
     type = "structure",
+    id = "DescribeEndpointAuthorizationOutput",
     members = {
         EndpointAuthorizationList = {
             type = "list",
@@ -5430,6 +5766,7 @@ M.DescribeEndpointAuthorizationOutput = {
 
 M.DescribeEventCategoriesInput = {
     type = "structure",
+    id = "DescribeEventCategoriesInput",
     members = {
         SourceType = {
             type = "string",
@@ -5439,6 +5776,7 @@ M.DescribeEventCategoriesInput = {
 
 M.EventInfoMap = {
     type = "structure",
+    id = "EventInfoMap",
     members = {
         EventId = {
             type = "string",
@@ -5458,6 +5796,7 @@ M.EventInfoMap = {
 
 M.EventCategoriesMap = {
     type = "structure",
+    id = "EventCategoriesMap",
     members = {
         SourceType = {
             type = "string",
@@ -5471,6 +5810,7 @@ M.EventCategoriesMap = {
 
 M.DescribeEventCategoriesOutput = {
     type = "structure",
+    id = "DescribeEventCategoriesOutput",
     members = {
         EventCategoriesMapList = {
             type = "list",
@@ -5489,6 +5829,7 @@ M.SourceType = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -5516,6 +5857,7 @@ M.DescribeEventsInput = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -5544,6 +5886,7 @@ M.Event = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5557,6 +5900,7 @@ M.DescribeEventsOutput = {
 
 M.DescribeEventSubscriptionsInput = {
     type = "structure",
+    id = "DescribeEventSubscriptionsInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -5580,6 +5924,7 @@ M.DescribeEventSubscriptionsInput = {
 
 M.DescribeEventSubscriptionsOutput = {
     type = "structure",
+    id = "DescribeEventSubscriptionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5593,6 +5938,7 @@ M.DescribeEventSubscriptionsOutput = {
 
 M.DescribeHsmClientCertificatesInput = {
     type = "structure",
+    id = "DescribeHsmClientCertificatesInput",
     members = {
         HsmClientCertificateIdentifier = {
             type = "string",
@@ -5616,6 +5962,7 @@ M.DescribeHsmClientCertificatesInput = {
 
 M.DescribeHsmClientCertificatesOutput = {
     type = "structure",
+    id = "DescribeHsmClientCertificatesOutput",
     members = {
         Marker = {
             type = "string",
@@ -5629,6 +5976,7 @@ M.DescribeHsmClientCertificatesOutput = {
 
 M.DescribeHsmConfigurationsInput = {
     type = "structure",
+    id = "DescribeHsmConfigurationsInput",
     members = {
         HsmConfigurationIdentifier = {
             type = "string",
@@ -5652,6 +6000,7 @@ M.DescribeHsmConfigurationsInput = {
 
 M.DescribeHsmConfigurationsOutput = {
     type = "structure",
+    id = "DescribeHsmConfigurationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5665,6 +6014,7 @@ M.DescribeHsmConfigurationsOutput = {
 
 M.DescribeInboundIntegrationsInput = {
     type = "structure",
+    id = "DescribeInboundIntegrationsInput",
     members = {
         IntegrationArn = {
             type = "string",
@@ -5683,6 +6033,7 @@ M.DescribeInboundIntegrationsInput = {
 
 M.InboundIntegration = {
     type = "structure",
+    id = "InboundIntegration",
     members = {
         IntegrationArn = {
             type = "string",
@@ -5708,6 +6059,7 @@ M.InboundIntegration = {
 
 M.DescribeInboundIntegrationsOutput = {
     type = "structure",
+    id = "DescribeInboundIntegrationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5728,6 +6080,7 @@ M.DescribeIntegrationsFilterName = {
 
 M.DescribeIntegrationsFilter = {
     type = "structure",
+    id = "DescribeIntegrationsFilter",
     members = {
         Name = {
             type = "string",
@@ -5747,6 +6100,7 @@ M.DescribeIntegrationsFilter = {
 
 M.DescribeIntegrationsInput = {
     type = "structure",
+    id = "DescribeIntegrationsInput",
     members = {
         IntegrationArn = {
             type = "string",
@@ -5766,6 +6120,7 @@ M.DescribeIntegrationsInput = {
 
 M.Integration = {
     type = "structure",
+    id = "Integration",
     members = {
         IntegrationArn = {
             type = "string",
@@ -5809,6 +6164,7 @@ M.Integration = {
 
 M.DescribeIntegrationsOutput = {
     type = "structure",
+    id = "DescribeIntegrationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -5822,6 +6178,7 @@ M.DescribeIntegrationsOutput = {
 
 M.DescribeLoggingStatusInput = {
     type = "structure",
+    id = "DescribeLoggingStatusInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -5839,6 +6196,7 @@ M.LogDestinationType = {
 
 M.DescribeLoggingStatusOutput = {
     type = "structure",
+    id = "DescribeLoggingStatusOutput",
     members = {
         LoggingEnabled = {
             type = "boolean",
@@ -5887,6 +6245,7 @@ M.OperatorType = {
 
 M.NodeConfigurationOptionsFilter = {
     type = "structure",
+    id = "NodeConfigurationOptionsFilter",
     members = {
         Name = {
             type = "string",
@@ -5906,6 +6265,7 @@ M.NodeConfigurationOptionsFilter = {
 
 M.DescribeNodeConfigurationOptionsInput = {
     type = "structure",
+    id = "DescribeNodeConfigurationOptionsInput",
     members = {
         ActionType = {
             type = "string",
@@ -5948,6 +6308,7 @@ M.Mode = {
 
 M.NodeConfigurationOption = {
     type = "structure",
+    id = "NodeConfigurationOption",
     members = {
         NodeType = {
             type = "string",
@@ -5966,6 +6327,7 @@ M.NodeConfigurationOption = {
 
 M.DescribeNodeConfigurationOptionsOutput = {
     type = "structure",
+    id = "DescribeNodeConfigurationOptionsOutput",
     members = {
         NodeConfigurationOptionList = {
             type = "list",
@@ -5979,6 +6341,7 @@ M.DescribeNodeConfigurationOptionsOutput = {
 
 M.DescribeOrderableClusterOptionsInput = {
     type = "structure",
+    id = "DescribeOrderableClusterOptionsInput",
     members = {
         ClusterVersion = {
             type = "string",
@@ -5997,6 +6360,7 @@ M.DescribeOrderableClusterOptionsInput = {
 
 M.OrderableClusterOption = {
     type = "structure",
+    id = "OrderableClusterOption",
     members = {
         ClusterVersion = {
             type = "string",
@@ -6016,6 +6380,7 @@ M.OrderableClusterOption = {
 
 M.DescribeOrderableClusterOptionsOutput = {
     type = "structure",
+    id = "DescribeOrderableClusterOptionsOutput",
     members = {
         OrderableClusterOptions = {
             type = "list",
@@ -6029,6 +6394,7 @@ M.DescribeOrderableClusterOptionsOutput = {
 
 M.DescribePartnersInput = {
     type = "structure",
+    id = "DescribePartnersInput",
     members = {
         AccountId = {
             type = "string",
@@ -6060,6 +6426,7 @@ M.PartnerIntegrationStatus = {
 
 M.PartnerIntegrationInfo = {
     type = "structure",
+    id = "PartnerIntegrationInfo",
     members = {
         DatabaseName = {
             type = "string",
@@ -6084,6 +6451,7 @@ M.PartnerIntegrationInfo = {
 
 M.DescribePartnersOutput = {
     type = "structure",
+    id = "DescribePartnersOutput",
     members = {
         PartnerIntegrationInfoList = {
             type = "list",
@@ -6094,6 +6462,7 @@ M.DescribePartnersOutput = {
 
 M.DescribeRedshiftIdcApplicationsInput = {
     type = "structure",
+    id = "DescribeRedshiftIdcApplicationsInput",
     members = {
         RedshiftIdcApplicationArn = {
             type = "string",
@@ -6109,6 +6478,7 @@ M.DescribeRedshiftIdcApplicationsInput = {
 
 M.DescribeRedshiftIdcApplicationsOutput = {
     type = "structure",
+    id = "DescribeRedshiftIdcApplicationsOutput",
     members = {
         RedshiftIdcApplications = {
             type = "list",
@@ -6122,6 +6492,7 @@ M.DescribeRedshiftIdcApplicationsOutput = {
 
 M.DescribeReservedNodeExchangeStatusInput = {
     type = "structure",
+    id = "DescribeReservedNodeExchangeStatusInput",
     members = {
         ReservedNodeId = {
             type = "string",
@@ -6140,6 +6511,7 @@ M.DescribeReservedNodeExchangeStatusInput = {
 
 M.DescribeReservedNodeExchangeStatusOutput = {
     type = "structure",
+    id = "DescribeReservedNodeExchangeStatusOutput",
     members = {
         ReservedNodeExchangeStatusDetails = {
             type = "list",
@@ -6153,6 +6525,7 @@ M.DescribeReservedNodeExchangeStatusOutput = {
 
 M.ReservedNodeExchangeNotFoundFault = {
     type = "structure",
+    id = "ReservedNodeExchangeNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -6163,6 +6536,7 @@ M.ReservedNodeExchangeNotFoundFault = {
 
 M.DescribeReservedNodeOfferingsInput = {
     type = "structure",
+    id = "DescribeReservedNodeOfferingsInput",
     members = {
         ReservedNodeOfferingId = {
             type = "string",
@@ -6178,6 +6552,7 @@ M.DescribeReservedNodeOfferingsInput = {
 
 M.ReservedNodeOffering = {
     type = "structure",
+    id = "ReservedNodeOffering",
     members = {
         ReservedNodeOfferingId = {
             type = "string",
@@ -6212,6 +6587,7 @@ M.ReservedNodeOffering = {
 
 M.DescribeReservedNodeOfferingsOutput = {
     type = "structure",
+    id = "DescribeReservedNodeOfferingsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6225,6 +6601,7 @@ M.DescribeReservedNodeOfferingsOutput = {
 
 M.DescribeReservedNodesInput = {
     type = "structure",
+    id = "DescribeReservedNodesInput",
     members = {
         ReservedNodeId = {
             type = "string",
@@ -6240,6 +6617,7 @@ M.DescribeReservedNodesInput = {
 
 M.DescribeReservedNodesOutput = {
     type = "structure",
+    id = "DescribeReservedNodesOutput",
     members = {
         Marker = {
             type = "string",
@@ -6253,6 +6631,7 @@ M.DescribeReservedNodesOutput = {
 
 M.DescribeResizeInput = {
     type = "structure",
+    id = "DescribeResizeInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -6265,6 +6644,7 @@ M.DescribeResizeInput = {
 
 M.DescribeResizeOutput = {
     type = "structure",
+    id = "DescribeResizeOutput",
     members = {
         TargetNodeType = {
             type = "string",
@@ -6327,6 +6707,7 @@ M.ScheduledActionFilterName = {
 
 M.ScheduledActionFilter = {
     type = "structure",
+    id = "ScheduledActionFilter",
     members = {
         Name = {
             type = "string",
@@ -6352,6 +6733,7 @@ M.ScheduledActionTypeValues = {
 
 M.DescribeScheduledActionsInput = {
     type = "structure",
+    id = "DescribeScheduledActionsInput",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -6383,6 +6765,7 @@ M.DescribeScheduledActionsInput = {
 
 M.ScheduledAction = {
     type = "structure",
+    id = "ScheduledAction",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -6415,6 +6798,7 @@ M.ScheduledAction = {
 
 M.DescribeScheduledActionsOutput = {
     type = "structure",
+    id = "DescribeScheduledActionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6428,6 +6812,7 @@ M.DescribeScheduledActionsOutput = {
 
 M.DescribeSnapshotCopyGrantsInput = {
     type = "structure",
+    id = "DescribeSnapshotCopyGrantsInput",
     members = {
         SnapshotCopyGrantName = {
             type = "string",
@@ -6451,6 +6836,7 @@ M.DescribeSnapshotCopyGrantsInput = {
 
 M.DescribeSnapshotCopyGrantsOutput = {
     type = "structure",
+    id = "DescribeSnapshotCopyGrantsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6464,6 +6850,7 @@ M.DescribeSnapshotCopyGrantsOutput = {
 
 M.DescribeSnapshotSchedulesInput = {
     type = "structure",
+    id = "DescribeSnapshotSchedulesInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -6490,6 +6877,7 @@ M.DescribeSnapshotSchedulesInput = {
 
 M.SnapshotSchedule = {
     type = "structure",
+    id = "SnapshotSchedule",
     members = {
         ScheduleDefinitions = {
             type = "list",
@@ -6521,6 +6909,7 @@ M.SnapshotSchedule = {
 
 M.DescribeSnapshotSchedulesOutput = {
     type = "structure",
+    id = "DescribeSnapshotSchedulesOutput",
     members = {
         SnapshotSchedules = {
             type = "list",
@@ -6534,10 +6923,12 @@ M.DescribeSnapshotSchedulesOutput = {
 
 M.DescribeStorageInput = {
     type = "structure",
+    id = "DescribeStorageInput",
 }
 
 M.DescribeStorageOutput = {
     type = "structure",
+    id = "DescribeStorageOutput",
     members = {
         TotalBackupSizeInMegaBytes = {
             type = "double",
@@ -6550,6 +6941,7 @@ M.DescribeStorageOutput = {
 
 M.DescribeTableRestoreStatusInput = {
     type = "structure",
+    id = "DescribeTableRestoreStatusInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -6576,6 +6968,7 @@ M.TableRestoreStatusType = {
 
 M.TableRestoreStatus = {
     type = "structure",
+    id = "TableRestoreStatus",
     members = {
         TableRestoreRequestId = {
             type = "string",
@@ -6624,6 +7017,7 @@ M.TableRestoreStatus = {
 
 M.DescribeTableRestoreStatusOutput = {
     type = "structure",
+    id = "DescribeTableRestoreStatusOutput",
     members = {
         TableRestoreStatusDetails = {
             type = "list",
@@ -6637,6 +7031,7 @@ M.DescribeTableRestoreStatusOutput = {
 
 M.TableRestoreNotFoundFault = {
     type = "structure",
+    id = "TableRestoreNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -6647,6 +7042,7 @@ M.TableRestoreNotFoundFault = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         ResourceName = {
             type = "string",
@@ -6673,6 +7069,7 @@ M.DescribeTagsInput = {
 
 M.TaggedResource = {
     type = "structure",
+    id = "TaggedResource",
     members = {
         Tag = M.Tag,
         ResourceName = {
@@ -6686,6 +7083,7 @@ M.TaggedResource = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         TaggedResources = {
             type = "list",
@@ -6699,6 +7097,7 @@ M.DescribeTagsOutput = {
 
 M.DescribeUsageLimitsInput = {
     type = "structure",
+    id = "DescribeUsageLimitsInput",
     members = {
         UsageLimitId = {
             type = "string",
@@ -6728,6 +7127,7 @@ M.DescribeUsageLimitsInput = {
 
 M.UsageLimit = {
     type = "structure",
+    id = "UsageLimit",
     members = {
         UsageLimitId = {
             type = "string",
@@ -6759,6 +7159,7 @@ M.UsageLimit = {
 
 M.DescribeUsageLimitsOutput = {
     type = "structure",
+    id = "DescribeUsageLimitsOutput",
     members = {
         UsageLimits = {
             type = "list",
@@ -6772,6 +7173,7 @@ M.DescribeUsageLimitsOutput = {
 
 M.DisableLoggingInput = {
     type = "structure",
+    id = "DisableLoggingInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -6784,6 +7186,7 @@ M.DisableLoggingInput = {
 
 M.DisableLoggingOutput = {
     type = "structure",
+    id = "DisableLoggingOutput",
     members = {
         LoggingEnabled = {
             type = "boolean",
@@ -6815,6 +7218,7 @@ M.DisableLoggingOutput = {
 
 M.DisableSnapshotCopyInput = {
     type = "structure",
+    id = "DisableSnapshotCopyInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -6827,6 +7231,7 @@ M.DisableSnapshotCopyInput = {
 
 M.DisableSnapshotCopyOutput = {
     type = "structure",
+    id = "DisableSnapshotCopyOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -6834,6 +7239,7 @@ M.DisableSnapshotCopyOutput = {
 
 M.SnapshotCopyAlreadyDisabledFault = {
     type = "structure",
+    id = "SnapshotCopyAlreadyDisabledFault",
     error = "client",
     members = {
         message = {
@@ -6844,6 +7250,7 @@ M.SnapshotCopyAlreadyDisabledFault = {
 
 M.DisassociateDataShareConsumerInput = {
     type = "structure",
+    id = "DisassociateDataShareConsumerInput",
     members = {
         DataShareArn = {
             type = "string",
@@ -6865,6 +7272,7 @@ M.DisassociateDataShareConsumerInput = {
 
 M.DisassociateDataShareConsumerOutput = {
     type = "structure",
+    id = "DisassociateDataShareConsumerOutput",
     members = {
         DataShareArn = {
             type = "string",
@@ -6890,6 +7298,7 @@ M.DisassociateDataShareConsumerOutput = {
 
 M.EnableLoggingInput = {
     type = "structure",
+    id = "EnableLoggingInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -6915,6 +7324,7 @@ M.EnableLoggingInput = {
 
 M.EnableLoggingOutput = {
     type = "structure",
+    id = "EnableLoggingOutput",
     members = {
         LoggingEnabled = {
             type = "boolean",
@@ -6946,6 +7356,7 @@ M.EnableLoggingOutput = {
 
 M.InsufficientS3BucketPolicyFault = {
     type = "structure",
+    id = "InsufficientS3BucketPolicyFault",
     error = "client",
     members = {
         message = {
@@ -6956,6 +7367,7 @@ M.InsufficientS3BucketPolicyFault = {
 
 M.InvalidS3BucketNameFault = {
     type = "structure",
+    id = "InvalidS3BucketNameFault",
     error = "client",
     members = {
         message = {
@@ -6966,6 +7378,7 @@ M.InvalidS3BucketNameFault = {
 
 M.InvalidS3KeyPrefixFault = {
     type = "structure",
+    id = "InvalidS3KeyPrefixFault",
     error = "client",
     members = {
         message = {
@@ -6976,6 +7389,7 @@ M.InvalidS3KeyPrefixFault = {
 
 M.EnableSnapshotCopyInput = {
     type = "structure",
+    id = "EnableSnapshotCopyInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7003,6 +7417,7 @@ M.EnableSnapshotCopyInput = {
 
 M.EnableSnapshotCopyOutput = {
     type = "structure",
+    id = "EnableSnapshotCopyOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -7010,6 +7425,7 @@ M.EnableSnapshotCopyOutput = {
 
 M.IncompatibleOrderableOptions = {
     type = "structure",
+    id = "IncompatibleOrderableOptions",
     error = "client",
     members = {
         message = {
@@ -7020,6 +7436,7 @@ M.IncompatibleOrderableOptions = {
 
 M.SnapshotCopyAlreadyEnabledFault = {
     type = "structure",
+    id = "SnapshotCopyAlreadyEnabledFault",
     error = "client",
     members = {
         message = {
@@ -7030,6 +7447,7 @@ M.SnapshotCopyAlreadyEnabledFault = {
 
 M.UnknownSnapshotCopyRegionFault = {
     type = "structure",
+    id = "UnknownSnapshotCopyRegionFault",
     error = "client",
     members = {
         message = {
@@ -7040,6 +7458,7 @@ M.UnknownSnapshotCopyRegionFault = {
 
 M.EndpointAuthorizationNotFoundFault = {
     type = "structure",
+    id = "EndpointAuthorizationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -7050,6 +7469,7 @@ M.EndpointAuthorizationNotFoundFault = {
 
 M.FailoverPrimaryComputeInput = {
     type = "structure",
+    id = "FailoverPrimaryComputeInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7062,6 +7482,7 @@ M.FailoverPrimaryComputeInput = {
 
 M.FailoverPrimaryComputeOutput = {
     type = "structure",
+    id = "FailoverPrimaryComputeOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -7069,6 +7490,7 @@ M.FailoverPrimaryComputeOutput = {
 
 M.GetClusterCredentialsInput = {
     type = "structure",
+    id = "GetClusterCredentialsInput",
     members = {
         DbUser = {
             type = "string",
@@ -7100,6 +7522,7 @@ M.GetClusterCredentialsInput = {
 
 M.GetClusterCredentialsOutput = {
     type = "structure",
+    id = "GetClusterCredentialsOutput",
     members = {
         DbUser = {
             type = "string",
@@ -7115,6 +7538,7 @@ M.GetClusterCredentialsOutput = {
 
 M.GetClusterCredentialsWithIAMInput = {
     type = "structure",
+    id = "GetClusterCredentialsWithIAMInput",
     members = {
         DbName = {
             type = "string",
@@ -7133,6 +7557,7 @@ M.GetClusterCredentialsWithIAMInput = {
 
 M.GetClusterCredentialsWithIAMOutput = {
     type = "structure",
+    id = "GetClusterCredentialsWithIAMOutput",
     members = {
         DbUser = {
             type = "string",
@@ -7151,6 +7576,7 @@ M.GetClusterCredentialsWithIAMOutput = {
 
 M.GetIdentityCenterAuthTokenInput = {
     type = "structure",
+    id = "GetIdentityCenterAuthTokenInput",
     members = {
         ClusterIds = {
             type = "list",
@@ -7164,6 +7590,7 @@ M.GetIdentityCenterAuthTokenInput = {
 
 M.GetIdentityCenterAuthTokenOutput = {
     type = "structure",
+    id = "GetIdentityCenterAuthTokenOutput",
     members = {
         Token = {
             type = "string",
@@ -7176,6 +7603,7 @@ M.GetIdentityCenterAuthTokenOutput = {
 
 M.RedshiftInvalidParameterFault = {
     type = "structure",
+    id = "RedshiftInvalidParameterFault",
     error = "client",
     members = {
         message = {
@@ -7191,6 +7619,7 @@ M.ReservedNodeExchangeActionType = {
 
 M.GetReservedNodeExchangeConfigurationOptionsInput = {
     type = "structure",
+    id = "GetReservedNodeExchangeConfigurationOptionsInput",
     members = {
         ActionType = {
             type = "string",
@@ -7215,6 +7644,7 @@ M.GetReservedNodeExchangeConfigurationOptionsInput = {
 
 M.ReservedNodeConfigurationOption = {
     type = "structure",
+    id = "ReservedNodeConfigurationOption",
     members = {
         SourceReservedNode = M.ReservedNode,
         TargetReservedNodeCount = {
@@ -7226,6 +7656,7 @@ M.ReservedNodeConfigurationOption = {
 
 M.GetReservedNodeExchangeConfigurationOptionsOutput = {
     type = "structure",
+    id = "GetReservedNodeExchangeConfigurationOptionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -7239,6 +7670,7 @@ M.GetReservedNodeExchangeConfigurationOptionsOutput = {
 
 M.GetReservedNodeExchangeOfferingsInput = {
     type = "structure",
+    id = "GetReservedNodeExchangeOfferingsInput",
     members = {
         ReservedNodeId = {
             type = "string",
@@ -7257,6 +7689,7 @@ M.GetReservedNodeExchangeOfferingsInput = {
 
 M.GetReservedNodeExchangeOfferingsOutput = {
     type = "structure",
+    id = "GetReservedNodeExchangeOfferingsOutput",
     members = {
         Marker = {
             type = "string",
@@ -7270,6 +7703,7 @@ M.GetReservedNodeExchangeOfferingsOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7282,6 +7716,7 @@ M.GetResourcePolicyInput = {
 
 M.ResourcePolicy = {
     type = "structure",
+    id = "ResourcePolicy",
     members = {
         ResourceArn = {
             type = "string",
@@ -7294,6 +7729,7 @@ M.ResourcePolicy = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ResourcePolicy = M.ResourcePolicy,
     },
@@ -7301,6 +7737,7 @@ M.GetResourcePolicyOutput = {
 
 M.InvalidPolicyFault = {
     type = "structure",
+    id = "InvalidPolicyFault",
     error = "client",
     members = {
         message = {
@@ -7317,6 +7754,7 @@ M.ImpactRankingType = {
 
 M.InProgressTableRestoreQuotaExceededFault = {
     type = "structure",
+    id = "InProgressTableRestoreQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -7327,6 +7765,7 @@ M.InProgressTableRestoreQuotaExceededFault = {
 
 M.InvalidRestoreFault = {
     type = "structure",
+    id = "InvalidRestoreFault",
     error = "client",
     members = {
         message = {
@@ -7337,6 +7776,7 @@ M.InvalidRestoreFault = {
 
 M.InvalidTableRestoreArgumentFault = {
     type = "structure",
+    id = "InvalidTableRestoreArgumentFault",
     error = "client",
     members = {
         message = {
@@ -7357,6 +7797,7 @@ M.LakehouseRegistration = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7380,6 +7821,7 @@ M.RecommendedActionType = {
 
 M.RecommendedAction = {
     type = "structure",
+    id = "RecommendedAction",
     members = {
         Text = {
             type = "string",
@@ -7398,6 +7840,7 @@ M.RecommendedAction = {
 
 M.ReferenceLink = {
     type = "structure",
+    id = "ReferenceLink",
     members = {
         Text = {
             type = "string",
@@ -7410,6 +7853,7 @@ M.ReferenceLink = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         Id = {
             type = "string",
@@ -7454,6 +7898,7 @@ M.Recommendation = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         Recommendations = {
             type = "list",
@@ -7467,6 +7912,7 @@ M.ListRecommendationsOutput = {
 
 M.ModifyAquaConfigurationInput = {
     type = "structure",
+    id = "ModifyAquaConfigurationInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7482,6 +7928,7 @@ M.ModifyAquaConfigurationInput = {
 
 M.ModifyAquaConfigurationOutput = {
     type = "structure",
+    id = "ModifyAquaConfigurationOutput",
     members = {
         AquaConfiguration = M.AquaConfiguration,
     },
@@ -7489,6 +7936,7 @@ M.ModifyAquaConfigurationOutput = {
 
 M.ModifyAuthenticationProfileInput = {
     type = "structure",
+    id = "ModifyAuthenticationProfileInput",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -7507,6 +7955,7 @@ M.ModifyAuthenticationProfileInput = {
 
 M.ModifyAuthenticationProfileOutput = {
     type = "structure",
+    id = "ModifyAuthenticationProfileOutput",
     members = {
         AuthenticationProfileName = {
             type = "string",
@@ -7519,6 +7968,7 @@ M.ModifyAuthenticationProfileOutput = {
 
 M.ModifyClusterInput = {
     type = "structure",
+    id = "ModifyClusterInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7620,6 +8070,7 @@ M.ModifyClusterInput = {
 
 M.ModifyClusterOutput = {
     type = "structure",
+    id = "ModifyClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -7627,6 +8078,7 @@ M.ModifyClusterOutput = {
 
 M.TableLimitExceededFault = {
     type = "structure",
+    id = "TableLimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -7637,6 +8089,7 @@ M.TableLimitExceededFault = {
 
 M.UnsupportedOptionFault = {
     type = "structure",
+    id = "UnsupportedOptionFault",
     error = "client",
     members = {
         message = {
@@ -7647,6 +8100,7 @@ M.UnsupportedOptionFault = {
 
 M.ModifyClusterDbRevisionInput = {
     type = "structure",
+    id = "ModifyClusterDbRevisionInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7665,6 +8119,7 @@ M.ModifyClusterDbRevisionInput = {
 
 M.ModifyClusterDbRevisionOutput = {
     type = "structure",
+    id = "ModifyClusterDbRevisionOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -7672,6 +8127,7 @@ M.ModifyClusterDbRevisionOutput = {
 
 M.ModifyClusterIamRolesInput = {
     type = "structure",
+    id = "ModifyClusterIamRolesInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7695,6 +8151,7 @@ M.ModifyClusterIamRolesInput = {
 
 M.ModifyClusterIamRolesOutput = {
     type = "structure",
+    id = "ModifyClusterIamRolesOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -7702,6 +8159,7 @@ M.ModifyClusterIamRolesOutput = {
 
 M.ModifyClusterMaintenanceInput = {
     type = "structure",
+    id = "ModifyClusterMaintenanceInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7729,6 +8187,7 @@ M.ModifyClusterMaintenanceInput = {
 
 M.ModifyClusterMaintenanceOutput = {
     type = "structure",
+    id = "ModifyClusterMaintenanceOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -7736,6 +8195,7 @@ M.ModifyClusterMaintenanceOutput = {
 
 M.ModifyClusterParameterGroupInput = {
     type = "structure",
+    id = "ModifyClusterParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -7755,6 +8215,7 @@ M.ModifyClusterParameterGroupInput = {
 
 M.ModifyClusterParameterGroupOutput = {
     type = "structure",
+    id = "ModifyClusterParameterGroupOutput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -7767,6 +8228,7 @@ M.ModifyClusterParameterGroupOutput = {
 
 M.ModifyClusterSnapshotInput = {
     type = "structure",
+    id = "ModifyClusterSnapshotInput",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -7785,6 +8247,7 @@ M.ModifyClusterSnapshotInput = {
 
 M.ModifyClusterSnapshotOutput = {
     type = "structure",
+    id = "ModifyClusterSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -7792,6 +8255,7 @@ M.ModifyClusterSnapshotOutput = {
 
 M.ModifyClusterSnapshotScheduleInput = {
     type = "structure",
+    id = "ModifyClusterSnapshotScheduleInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7810,10 +8274,12 @@ M.ModifyClusterSnapshotScheduleInput = {
 
 M.ModifyClusterSnapshotScheduleOutput = {
     type = "structure",
+    id = "ModifyClusterSnapshotScheduleOutput",
 }
 
 M.ModifyClusterSubnetGroupInput = {
     type = "structure",
+    id = "ModifyClusterSubnetGroupInput",
     members = {
         ClusterSubnetGroupName = {
             type = "string",
@@ -7836,6 +8302,7 @@ M.ModifyClusterSubnetGroupInput = {
 
 M.ModifyClusterSubnetGroupOutput = {
     type = "structure",
+    id = "ModifyClusterSubnetGroupOutput",
     members = {
         ClusterSubnetGroup = M.ClusterSubnetGroup,
     },
@@ -7843,6 +8310,7 @@ M.ModifyClusterSubnetGroupOutput = {
 
 M.SubnetAlreadyInUse = {
     type = "structure",
+    id = "SubnetAlreadyInUse",
     error = "client",
     members = {
         message = {
@@ -7853,6 +8321,7 @@ M.SubnetAlreadyInUse = {
 
 M.ModifyCustomDomainAssociationInput = {
     type = "structure",
+    id = "ModifyCustomDomainAssociationInput",
     members = {
         CustomDomainName = {
             type = "string",
@@ -7877,6 +8346,7 @@ M.ModifyCustomDomainAssociationInput = {
 
 M.ModifyCustomDomainAssociationOutput = {
     type = "structure",
+    id = "ModifyCustomDomainAssociationOutput",
     members = {
         CustomDomainName = {
             type = "string",
@@ -7895,6 +8365,7 @@ M.ModifyCustomDomainAssociationOutput = {
 
 M.ModifyEndpointAccessInput = {
     type = "structure",
+    id = "ModifyEndpointAccessInput",
     members = {
         EndpointName = {
             type = "string",
@@ -7911,6 +8382,7 @@ M.ModifyEndpointAccessInput = {
 
 M.ModifyEndpointAccessOutput = {
     type = "structure",
+    id = "ModifyEndpointAccessOutput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -7946,6 +8418,7 @@ M.ModifyEndpointAccessOutput = {
 
 M.ModifyEventSubscriptionInput = {
     type = "structure",
+    id = "ModifyEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -7978,6 +8451,7 @@ M.ModifyEventSubscriptionInput = {
 
 M.ModifyEventSubscriptionOutput = {
     type = "structure",
+    id = "ModifyEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -7985,6 +8459,7 @@ M.ModifyEventSubscriptionOutput = {
 
 M.ModifyIntegrationInput = {
     type = "structure",
+    id = "ModifyIntegrationInput",
     members = {
         IntegrationArn = {
             type = "string",
@@ -8003,6 +8478,7 @@ M.ModifyIntegrationInput = {
 
 M.ModifyIntegrationOutput = {
     type = "structure",
+    id = "ModifyIntegrationOutput",
     members = {
         IntegrationArn = {
             type = "string",
@@ -8046,6 +8522,7 @@ M.ModifyIntegrationOutput = {
 
 M.ModifyLakehouseConfigurationInput = {
     type = "structure",
+    id = "ModifyLakehouseConfigurationInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8073,6 +8550,7 @@ M.ModifyLakehouseConfigurationInput = {
 
 M.ModifyLakehouseConfigurationOutput = {
     type = "structure",
+    id = "ModifyLakehouseConfigurationOutput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8091,6 +8569,7 @@ M.ModifyLakehouseConfigurationOutput = {
 
 M.ModifyRedshiftIdcApplicationInput = {
     type = "structure",
+    id = "ModifyRedshiftIdcApplicationInput",
     members = {
         RedshiftIdcApplicationArn = {
             type = "string",
@@ -8120,6 +8599,7 @@ M.ModifyRedshiftIdcApplicationInput = {
 
 M.ModifyRedshiftIdcApplicationOutput = {
     type = "structure",
+    id = "ModifyRedshiftIdcApplicationOutput",
     members = {
         RedshiftIdcApplication = M.RedshiftIdcApplication,
     },
@@ -8127,6 +8607,7 @@ M.ModifyRedshiftIdcApplicationOutput = {
 
 M.ModifyScheduledActionInput = {
     type = "structure",
+    id = "ModifyScheduledActionInput",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -8158,6 +8639,7 @@ M.ModifyScheduledActionInput = {
 
 M.ModifyScheduledActionOutput = {
     type = "structure",
+    id = "ModifyScheduledActionOutput",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -8190,6 +8672,7 @@ M.ModifyScheduledActionOutput = {
 
 M.ModifySnapshotCopyRetentionPeriodInput = {
     type = "structure",
+    id = "ModifySnapshotCopyRetentionPeriodInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8211,6 +8694,7 @@ M.ModifySnapshotCopyRetentionPeriodInput = {
 
 M.ModifySnapshotCopyRetentionPeriodOutput = {
     type = "structure",
+    id = "ModifySnapshotCopyRetentionPeriodOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -8218,6 +8702,7 @@ M.ModifySnapshotCopyRetentionPeriodOutput = {
 
 M.SnapshotCopyDisabledFault = {
     type = "structure",
+    id = "SnapshotCopyDisabledFault",
     error = "client",
     members = {
         message = {
@@ -8228,6 +8713,7 @@ M.SnapshotCopyDisabledFault = {
 
 M.ModifySnapshotScheduleInput = {
     type = "structure",
+    id = "ModifySnapshotScheduleInput",
     members = {
         ScheduleIdentifier = {
             type = "string",
@@ -8247,6 +8733,7 @@ M.ModifySnapshotScheduleInput = {
 
 M.ModifySnapshotScheduleOutput = {
     type = "structure",
+    id = "ModifySnapshotScheduleOutput",
     members = {
         ScheduleDefinitions = {
             type = "list",
@@ -8278,6 +8765,7 @@ M.ModifySnapshotScheduleOutput = {
 
 M.SnapshotScheduleUpdateInProgressFault = {
     type = "structure",
+    id = "SnapshotScheduleUpdateInProgressFault",
     error = "client",
     members = {
         message = {
@@ -8288,6 +8776,7 @@ M.SnapshotScheduleUpdateInProgressFault = {
 
 M.ModifyUsageLimitInput = {
     type = "structure",
+    id = "ModifyUsageLimitInput",
     members = {
         UsageLimitId = {
             type = "string",
@@ -8306,6 +8795,7 @@ M.ModifyUsageLimitInput = {
 
 M.ModifyUsageLimitOutput = {
     type = "structure",
+    id = "ModifyUsageLimitOutput",
     members = {
         UsageLimitId = {
             type = "string",
@@ -8337,6 +8827,7 @@ M.ModifyUsageLimitOutput = {
 
 M.PauseClusterInput = {
     type = "structure",
+    id = "PauseClusterInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8349,6 +8840,7 @@ M.PauseClusterInput = {
 
 M.PauseClusterOutput = {
     type = "structure",
+    id = "PauseClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -8356,6 +8848,7 @@ M.PauseClusterOutput = {
 
 M.PurchaseReservedNodeOfferingInput = {
     type = "structure",
+    id = "PurchaseReservedNodeOfferingInput",
     members = {
         ReservedNodeOfferingId = {
             type = "string",
@@ -8371,6 +8864,7 @@ M.PurchaseReservedNodeOfferingInput = {
 
 M.PurchaseReservedNodeOfferingOutput = {
     type = "structure",
+    id = "PurchaseReservedNodeOfferingOutput",
     members = {
         ReservedNode = M.ReservedNode,
     },
@@ -8378,6 +8872,7 @@ M.PurchaseReservedNodeOfferingOutput = {
 
 M.ReservedNodeQuotaExceededFault = {
     type = "structure",
+    id = "ReservedNodeQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -8388,6 +8883,7 @@ M.ReservedNodeQuotaExceededFault = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -8406,6 +8902,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourcePolicy = M.ResourcePolicy,
     },
@@ -8413,6 +8910,7 @@ M.PutResourcePolicyOutput = {
 
 M.RebootClusterInput = {
     type = "structure",
+    id = "RebootClusterInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8425,6 +8923,7 @@ M.RebootClusterInput = {
 
 M.RebootClusterOutput = {
     type = "structure",
+    id = "RebootClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -8432,6 +8931,7 @@ M.RebootClusterOutput = {
 
 M.RegisterNamespaceInput = {
     type = "structure",
+    id = "RegisterNamespaceInput",
     members = {
         NamespaceIdentifier = setmetatable({ traits = {
             required = true,
@@ -8448,6 +8948,7 @@ M.RegisterNamespaceInput = {
 
 M.RegisterNamespaceOutput = {
     type = "structure",
+    id = "RegisterNamespaceOutput",
     members = {
         Status = {
             type = "string",
@@ -8457,6 +8958,7 @@ M.RegisterNamespaceOutput = {
 
 M.RejectDataShareInput = {
     type = "structure",
+    id = "RejectDataShareInput",
     members = {
         DataShareArn = {
             type = "string",
@@ -8469,6 +8971,7 @@ M.RejectDataShareInput = {
 
 M.RejectDataShareOutput = {
     type = "structure",
+    id = "RejectDataShareOutput",
     members = {
         DataShareArn = {
             type = "string",
@@ -8494,6 +8997,7 @@ M.RejectDataShareOutput = {
 
 M.ResetClusterParameterGroupInput = {
     type = "structure",
+    id = "ResetClusterParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -8513,6 +9017,7 @@ M.ResetClusterParameterGroupInput = {
 
 M.ResetClusterParameterGroupOutput = {
     type = "structure",
+    id = "ResetClusterParameterGroupOutput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -8525,6 +9030,7 @@ M.ResetClusterParameterGroupOutput = {
 
 M.ResizeClusterInput = {
     type = "structure",
+    id = "ResizeClusterInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8555,6 +9061,7 @@ M.ResizeClusterInput = {
 
 M.ResizeClusterOutput = {
     type = "structure",
+    id = "ResizeClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -8562,6 +9069,7 @@ M.ResizeClusterOutput = {
 
 M.RestoreFromClusterSnapshotInput = {
     type = "structure",
+    id = "RestoreFromClusterSnapshotInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8691,6 +9199,7 @@ M.RestoreFromClusterSnapshotInput = {
 
 M.RestoreFromClusterSnapshotOutput = {
     type = "structure",
+    id = "RestoreFromClusterSnapshotOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -8698,6 +9207,7 @@ M.RestoreFromClusterSnapshotOutput = {
 
 M.RestoreTableFromClusterSnapshotInput = {
     type = "structure",
+    id = "RestoreTableFromClusterSnapshotInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8746,6 +9256,7 @@ M.RestoreTableFromClusterSnapshotInput = {
 
 M.RestoreTableFromClusterSnapshotOutput = {
     type = "structure",
+    id = "RestoreTableFromClusterSnapshotOutput",
     members = {
         TableRestoreStatus = M.TableRestoreStatus,
     },
@@ -8753,6 +9264,7 @@ M.RestoreTableFromClusterSnapshotOutput = {
 
 M.ResumeClusterInput = {
     type = "structure",
+    id = "ResumeClusterInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8765,6 +9277,7 @@ M.ResumeClusterInput = {
 
 M.ResumeClusterOutput = {
     type = "structure",
+    id = "ResumeClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -8772,6 +9285,7 @@ M.ResumeClusterOutput = {
 
 M.RevokeClusterSecurityGroupIngressInput = {
     type = "structure",
+    id = "RevokeClusterSecurityGroupIngressInput",
     members = {
         ClusterSecurityGroupName = {
             type = "string",
@@ -8793,6 +9307,7 @@ M.RevokeClusterSecurityGroupIngressInput = {
 
 M.RevokeClusterSecurityGroupIngressOutput = {
     type = "structure",
+    id = "RevokeClusterSecurityGroupIngressOutput",
     members = {
         ClusterSecurityGroup = M.ClusterSecurityGroup,
     },
@@ -8800,6 +9315,7 @@ M.RevokeClusterSecurityGroupIngressOutput = {
 
 M.RevokeEndpointAccessInput = {
     type = "structure",
+    id = "RevokeEndpointAccessInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8819,6 +9335,7 @@ M.RevokeEndpointAccessInput = {
 
 M.RevokeEndpointAccessOutput = {
     type = "structure",
+    id = "RevokeEndpointAccessOutput",
     members = {
         Grantor = {
             type = "string",
@@ -8853,6 +9370,7 @@ M.RevokeEndpointAccessOutput = {
 
 M.RevokeSnapshotAccessInput = {
     type = "structure",
+    id = "RevokeSnapshotAccessInput",
     members = {
         SnapshotIdentifier = {
             type = "string",
@@ -8874,6 +9392,7 @@ M.RevokeSnapshotAccessInput = {
 
 M.RevokeSnapshotAccessOutput = {
     type = "structure",
+    id = "RevokeSnapshotAccessOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -8881,6 +9400,7 @@ M.RevokeSnapshotAccessOutput = {
 
 M.RotateEncryptionKeyInput = {
     type = "structure",
+    id = "RotateEncryptionKeyInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -8893,6 +9413,7 @@ M.RotateEncryptionKeyInput = {
 
 M.RotateEncryptionKeyOutput = {
     type = "structure",
+    id = "RotateEncryptionKeyOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -8900,6 +9421,7 @@ M.RotateEncryptionKeyOutput = {
 
 M.UpdatePartnerStatusInput = {
     type = "structure",
+    id = "UpdatePartnerStatusInput",
     members = {
         AccountId = {
             type = "string",
@@ -8939,6 +9461,7 @@ M.UpdatePartnerStatusInput = {
 
 M.UpdatePartnerStatusOutput = {
     type = "structure",
+    id = "UpdatePartnerStatusOutput",
     members = {
         DatabaseName = {
             type = "string",

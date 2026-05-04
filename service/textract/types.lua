@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.Adapter = {
     type = "structure",
+    id = "Adapter",
     members = {
         AdapterId = {
             type = "string",
@@ -45,6 +47,7 @@ M.FeatureType = {
 
 M.AdapterOverview = {
     type = "structure",
+    id = "AdapterOverview",
     members = {
         AdapterId = {
             type = "string",
@@ -64,6 +67,7 @@ M.AdapterOverview = {
 
 M.AdaptersConfig = {
     type = "structure",
+    id = "AdaptersConfig",
     members = {
         Adapters = {
             type = "list",
@@ -77,6 +81,7 @@ M.AdaptersConfig = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         Bucket = {
             type = "string",
@@ -92,6 +97,7 @@ M.S3Object = {
 
 M.AdapterVersionDatasetConfig = {
     type = "structure",
+    id = "AdapterVersionDatasetConfig",
     members = {
         ManifestS3Object = M.S3Object,
     },
@@ -99,6 +105,7 @@ M.AdapterVersionDatasetConfig = {
 
 M.EvaluationMetric = {
     type = "structure",
+    id = "EvaluationMetric",
     members = {
         F1Score = {
             type = "float",
@@ -123,6 +130,7 @@ M.EvaluationMetric = {
 
 M.AdapterVersionEvaluationMetric = {
     type = "structure",
+    id = "AdapterVersionEvaluationMetric",
     members = {
         Baseline = M.EvaluationMetric,
         AdapterVersion = M.EvaluationMetric,
@@ -142,6 +150,7 @@ M.AdapterVersionStatus = {
 
 M.AdapterVersionOverview = {
     type = "structure",
+    id = "AdapterVersionOverview",
     members = {
         AdapterId = {
             type = "string",
@@ -167,6 +176,7 @@ M.AdapterVersionOverview = {
 
 M.Document = {
     type = "structure",
+    id = "Document",
     members = {
         Bytes = {
             type = "blob",
@@ -182,6 +192,7 @@ M.ContentClassifier = {
 
 M.HumanLoopDataAttributes = {
     type = "structure",
+    id = "HumanLoopDataAttributes",
     members = {
         ContentClassifiers = {
             type = "list",
@@ -192,6 +203,7 @@ M.HumanLoopDataAttributes = {
 
 M.HumanLoopConfig = {
     type = "structure",
+    id = "HumanLoopConfig",
     members = {
         HumanLoopName = {
             type = "string",
@@ -211,6 +223,7 @@ M.HumanLoopConfig = {
 
 M.Query = {
     type = "structure",
+    id = "Query",
     members = {
         Text = {
             type = "string",
@@ -230,6 +243,7 @@ M.Query = {
 
 M.QueriesConfig = {
     type = "structure",
+    id = "QueriesConfig",
     members = {
         Queries = {
             type = "list",
@@ -243,6 +257,7 @@ M.QueriesConfig = {
 
 M.AnalyzeDocumentInput = {
     type = "structure",
+    id = "AnalyzeDocumentInput",
     members = {
         Document = setmetatable({ traits = {
             required = true,
@@ -301,6 +316,7 @@ M.EntityType = {
 
 M.BoundingBox = {
     type = "structure",
+    id = "BoundingBox",
     members = {
         Width = {
             type = "float",
@@ -331,6 +347,7 @@ M.BoundingBox = {
 
 M.Point = {
     type = "structure",
+    id = "Point",
     members = {
         X = {
             type = "float",
@@ -349,6 +366,7 @@ M.Point = {
 
 M.Geometry = {
     type = "structure",
+    id = "Geometry",
     members = {
         BoundingBox = M.BoundingBox,
         Polygon = {
@@ -375,6 +393,7 @@ M.RelationshipType = {
 
 M.Relationship = {
     type = "structure",
+    id = "Relationship",
     members = {
         Type = {
             type = "string",
@@ -398,6 +417,7 @@ M.TextType = {
 
 M.Block = {
     type = "structure",
+    id = "Block",
     members = {
         BlockType = {
             type = "string",
@@ -447,6 +467,7 @@ M.Block = {
 
 M.DocumentMetadata = {
     type = "structure",
+    id = "DocumentMetadata",
     members = {
         Pages = {
             type = "integer",
@@ -456,6 +477,7 @@ M.DocumentMetadata = {
 
 M.HumanLoopActivationOutput = {
     type = "structure",
+    id = "HumanLoopActivationOutput",
     members = {
         HumanLoopArn = {
             type = "string",
@@ -475,6 +497,7 @@ M.HumanLoopActivationOutput = {
 
 M.AnalyzeDocumentOutput = {
     type = "structure",
+    id = "AnalyzeDocumentOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         Blocks = {
@@ -490,6 +513,7 @@ M.AnalyzeDocumentOutput = {
 
 M.BadDocumentException = {
     type = "structure",
+    id = "BadDocumentException",
     error = "client",
     members = {
         Message = {
@@ -503,6 +527,7 @@ M.BadDocumentException = {
 
 M.DocumentTooLargeException = {
     type = "structure",
+    id = "DocumentTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -516,6 +541,7 @@ M.DocumentTooLargeException = {
 
 M.HumanLoopQuotaExceededException = {
     type = "structure",
+    id = "HumanLoopQuotaExceededException",
     error = "client",
     members = {
         ResourceType = {
@@ -538,6 +564,7 @@ M.HumanLoopQuotaExceededException = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -551,6 +578,7 @@ M.InternalServerError = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -564,6 +592,7 @@ M.InvalidParameterException = {
 
 M.InvalidS3ObjectException = {
     type = "structure",
+    id = "InvalidS3ObjectException",
     error = "client",
     members = {
         Message = {
@@ -577,6 +606,7 @@ M.InvalidS3ObjectException = {
 
 M.ProvisionedThroughputExceededException = {
     type = "structure",
+    id = "ProvisionedThroughputExceededException",
     error = "client",
     members = {
         Message = {
@@ -590,6 +620,7 @@ M.ProvisionedThroughputExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "server",
     members = {
         Message = {
@@ -603,6 +634,7 @@ M.ThrottlingException = {
 
 M.UnsupportedDocumentException = {
     type = "structure",
+    id = "UnsupportedDocumentException",
     error = "client",
     members = {
         Message = {
@@ -616,6 +648,7 @@ M.UnsupportedDocumentException = {
 
 M.AnalyzeExpenseInput = {
     type = "structure",
+    id = "AnalyzeExpenseInput",
     members = {
         Document = setmetatable({ traits = {
             required = true,
@@ -625,6 +658,7 @@ M.AnalyzeExpenseInput = {
 
 M.ExpenseCurrency = {
     type = "structure",
+    id = "ExpenseCurrency",
     members = {
         Code = {
             type = "string",
@@ -637,6 +671,7 @@ M.ExpenseCurrency = {
 
 M.ExpenseGroupProperty = {
     type = "structure",
+    id = "ExpenseGroupProperty",
     members = {
         Types = {
             type = "list",
@@ -650,6 +685,7 @@ M.ExpenseGroupProperty = {
 
 M.ExpenseDetection = {
     type = "structure",
+    id = "ExpenseDetection",
     members = {
         Text = {
             type = "string",
@@ -663,6 +699,7 @@ M.ExpenseDetection = {
 
 M.ExpenseType = {
     type = "structure",
+    id = "ExpenseType",
     members = {
         Text = {
             type = "string",
@@ -675,6 +712,7 @@ M.ExpenseType = {
 
 M.ExpenseField = {
     type = "structure",
+    id = "ExpenseField",
     members = {
         Type = M.ExpenseType,
         LabelDetection = M.ExpenseDetection,
@@ -692,6 +730,7 @@ M.ExpenseField = {
 
 M.LineItemFields = {
     type = "structure",
+    id = "LineItemFields",
     members = {
         LineItemExpenseFields = {
             type = "list",
@@ -702,6 +741,7 @@ M.LineItemFields = {
 
 M.LineItemGroup = {
     type = "structure",
+    id = "LineItemGroup",
     members = {
         LineItemGroupIndex = {
             type = "integer",
@@ -715,6 +755,7 @@ M.LineItemGroup = {
 
 M.ExpenseDocument = {
     type = "structure",
+    id = "ExpenseDocument",
     members = {
         ExpenseIndex = {
             type = "integer",
@@ -736,6 +777,7 @@ M.ExpenseDocument = {
 
 M.AnalyzeExpenseOutput = {
     type = "structure",
+    id = "AnalyzeExpenseOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         ExpenseDocuments = {
@@ -747,6 +789,7 @@ M.AnalyzeExpenseOutput = {
 
 M.AnalyzeIDInput = {
     type = "structure",
+    id = "AnalyzeIDInput",
     members = {
         DocumentPages = {
             type = "list",
@@ -764,6 +807,7 @@ M.ValueType = {
 
 M.NormalizedValue = {
     type = "structure",
+    id = "NormalizedValue",
     members = {
         Value = {
             type = "string",
@@ -776,6 +820,7 @@ M.NormalizedValue = {
 
 M.AnalyzeIDDetections = {
     type = "structure",
+    id = "AnalyzeIDDetections",
     members = {
         Text = {
             type = "string",
@@ -792,6 +837,7 @@ M.AnalyzeIDDetections = {
 
 M.IdentityDocumentField = {
     type = "structure",
+    id = "IdentityDocumentField",
     members = {
         Type = M.AnalyzeIDDetections,
         ValueDetection = M.AnalyzeIDDetections,
@@ -800,6 +846,7 @@ M.IdentityDocumentField = {
 
 M.IdentityDocument = {
     type = "structure",
+    id = "IdentityDocument",
     members = {
         DocumentIndex = {
             type = "integer",
@@ -817,6 +864,7 @@ M.IdentityDocument = {
 
 M.AnalyzeIDOutput = {
     type = "structure",
+    id = "AnalyzeIDOutput",
     members = {
         IdentityDocuments = {
             type = "list",
@@ -836,6 +884,7 @@ M.AutoUpdate = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -849,6 +898,7 @@ M.ConflictException = {
 
 M.CreateAdapterInput = {
     type = "structure",
+    id = "CreateAdapterInput",
     members = {
         AdapterName = {
             type = "string",
@@ -885,6 +935,7 @@ M.CreateAdapterInput = {
 
 M.CreateAdapterOutput = {
     type = "structure",
+    id = "CreateAdapterOutput",
     members = {
         AdapterId = {
             type = "string",
@@ -894,6 +945,7 @@ M.CreateAdapterOutput = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         Message = {
@@ -907,6 +959,7 @@ M.IdempotentParameterMismatchException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -920,6 +973,7 @@ M.LimitExceededException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -933,6 +987,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -946,6 +1001,7 @@ M.ValidationException = {
 
 M.OutputConfig = {
     type = "structure",
+    id = "OutputConfig",
     members = {
         S3Bucket = {
             type = "string",
@@ -961,6 +1017,7 @@ M.OutputConfig = {
 
 M.CreateAdapterVersionInput = {
     type = "structure",
+    id = "CreateAdapterVersionInput",
     members = {
         AdapterId = {
             type = "string",
@@ -993,6 +1050,7 @@ M.CreateAdapterVersionInput = {
 
 M.CreateAdapterVersionOutput = {
     type = "structure",
+    id = "CreateAdapterVersionOutput",
     members = {
         AdapterId = {
             type = "string",
@@ -1005,6 +1063,7 @@ M.CreateAdapterVersionOutput = {
 
 M.InvalidKMSKeyException = {
     type = "structure",
+    id = "InvalidKMSKeyException",
     error = "client",
     members = {
         Message = {
@@ -1018,6 +1077,7 @@ M.InvalidKMSKeyException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1031,6 +1091,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteAdapterInput = {
     type = "structure",
+    id = "DeleteAdapterInput",
     members = {
         AdapterId = {
             type = "string",
@@ -1043,10 +1104,12 @@ M.DeleteAdapterInput = {
 
 M.DeleteAdapterOutput = {
     type = "structure",
+    id = "DeleteAdapterOutput",
 }
 
 M.DeleteAdapterVersionInput = {
     type = "structure",
+    id = "DeleteAdapterVersionInput",
     members = {
         AdapterId = {
             type = "string",
@@ -1065,10 +1128,12 @@ M.DeleteAdapterVersionInput = {
 
 M.DeleteAdapterVersionOutput = {
     type = "structure",
+    id = "DeleteAdapterVersionOutput",
 }
 
 M.DetectDocumentTextInput = {
     type = "structure",
+    id = "DetectDocumentTextInput",
     members = {
         Document = setmetatable({ traits = {
             required = true,
@@ -1078,6 +1143,7 @@ M.DetectDocumentTextInput = {
 
 M.DetectDocumentTextOutput = {
     type = "structure",
+    id = "DetectDocumentTextOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         Blocks = {
@@ -1092,6 +1158,7 @@ M.DetectDocumentTextOutput = {
 
 M.DetectedSignature = {
     type = "structure",
+    id = "DetectedSignature",
     members = {
         Page = {
             type = "integer",
@@ -1101,6 +1168,7 @@ M.DetectedSignature = {
 
 M.SplitDocument = {
     type = "structure",
+    id = "SplitDocument",
     members = {
         Index = {
             type = "integer",
@@ -1114,6 +1182,7 @@ M.SplitDocument = {
 
 M.UndetectedSignature = {
     type = "structure",
+    id = "UndetectedSignature",
     members = {
         Page = {
             type = "integer",
@@ -1123,6 +1192,7 @@ M.UndetectedSignature = {
 
 M.DocumentGroup = {
     type = "structure",
+    id = "DocumentGroup",
     members = {
         Type = {
             type = "string",
@@ -1144,6 +1214,7 @@ M.DocumentGroup = {
 
 M.DocumentLocation = {
     type = "structure",
+    id = "DocumentLocation",
     members = {
         S3Object = M.S3Object,
     },
@@ -1151,6 +1222,7 @@ M.DocumentLocation = {
 
 M.LendingDetection = {
     type = "structure",
+    id = "LendingDetection",
     members = {
         Text = {
             type = "string",
@@ -1167,6 +1239,7 @@ M.LendingDetection = {
 
 M.LendingField = {
     type = "structure",
+    id = "LendingField",
     members = {
         Type = {
             type = "string",
@@ -1181,6 +1254,7 @@ M.LendingField = {
 
 M.SignatureDetection = {
     type = "structure",
+    id = "SignatureDetection",
     members = {
         Confidence = {
             type = "float",
@@ -1191,6 +1265,7 @@ M.SignatureDetection = {
 
 M.LendingDocument = {
     type = "structure",
+    id = "LendingDocument",
     members = {
         LendingFields = {
             type = "list",
@@ -1205,6 +1280,7 @@ M.LendingDocument = {
 
 M.Extraction = {
     type = "structure",
+    id = "Extraction",
     members = {
         LendingDocument = M.LendingDocument,
         ExpenseDocument = M.ExpenseDocument,
@@ -1214,6 +1290,7 @@ M.Extraction = {
 
 M.GetAdapterInput = {
     type = "structure",
+    id = "GetAdapterInput",
     members = {
         AdapterId = {
             type = "string",
@@ -1226,6 +1303,7 @@ M.GetAdapterInput = {
 
 M.GetAdapterOutput = {
     type = "structure",
+    id = "GetAdapterOutput",
     members = {
         AdapterId = {
             type = "string",
@@ -1256,6 +1334,7 @@ M.GetAdapterOutput = {
 
 M.GetAdapterVersionInput = {
     type = "structure",
+    id = "GetAdapterVersionInput",
     members = {
         AdapterId = {
             type = "string",
@@ -1274,6 +1353,7 @@ M.GetAdapterVersionInput = {
 
 M.GetAdapterVersionOutput = {
     type = "structure",
+    id = "GetAdapterVersionOutput",
     members = {
         AdapterId = {
             type = "string",
@@ -1313,6 +1393,7 @@ M.GetAdapterVersionOutput = {
 
 M.GetDocumentAnalysisInput = {
     type = "structure",
+    id = "GetDocumentAnalysisInput",
     members = {
         JobId = {
             type = "string",
@@ -1338,6 +1419,7 @@ M.JobStatus = {
 
 M.Warning = {
     type = "structure",
+    id = "Warning",
     members = {
         ErrorCode = {
             type = "string",
@@ -1351,6 +1433,7 @@ M.Warning = {
 
 M.GetDocumentAnalysisOutput = {
     type = "structure",
+    id = "GetDocumentAnalysisOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
@@ -1378,6 +1461,7 @@ M.GetDocumentAnalysisOutput = {
 
 M.InvalidJobIdException = {
     type = "structure",
+    id = "InvalidJobIdException",
     error = "client",
     members = {
         Message = {
@@ -1391,6 +1475,7 @@ M.InvalidJobIdException = {
 
 M.GetDocumentTextDetectionInput = {
     type = "structure",
+    id = "GetDocumentTextDetectionInput",
     members = {
         JobId = {
             type = "string",
@@ -1409,6 +1494,7 @@ M.GetDocumentTextDetectionInput = {
 
 M.GetDocumentTextDetectionOutput = {
     type = "structure",
+    id = "GetDocumentTextDetectionOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
@@ -1436,6 +1522,7 @@ M.GetDocumentTextDetectionOutput = {
 
 M.GetExpenseAnalysisInput = {
     type = "structure",
+    id = "GetExpenseAnalysisInput",
     members = {
         JobId = {
             type = "string",
@@ -1454,6 +1541,7 @@ M.GetExpenseAnalysisInput = {
 
 M.GetExpenseAnalysisOutput = {
     type = "structure",
+    id = "GetExpenseAnalysisOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
@@ -1481,6 +1569,7 @@ M.GetExpenseAnalysisOutput = {
 
 M.GetLendingAnalysisInput = {
     type = "structure",
+    id = "GetLendingAnalysisInput",
     members = {
         JobId = {
             type = "string",
@@ -1499,6 +1588,7 @@ M.GetLendingAnalysisInput = {
 
 M.Prediction = {
     type = "structure",
+    id = "Prediction",
     members = {
         Value = {
             type = "string",
@@ -1511,6 +1601,7 @@ M.Prediction = {
 
 M.PageClassification = {
     type = "structure",
+    id = "PageClassification",
     members = {
         PageType = {
             type = "list",
@@ -1531,6 +1622,7 @@ M.PageClassification = {
 
 M.LendingResult = {
     type = "structure",
+    id = "LendingResult",
     members = {
         Page = {
             type = "integer",
@@ -1545,6 +1637,7 @@ M.LendingResult = {
 
 M.GetLendingAnalysisOutput = {
     type = "structure",
+    id = "GetLendingAnalysisOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
@@ -1572,6 +1665,7 @@ M.GetLendingAnalysisOutput = {
 
 M.GetLendingAnalysisSummaryInput = {
     type = "structure",
+    id = "GetLendingAnalysisSummaryInput",
     members = {
         JobId = {
             type = "string",
@@ -1584,6 +1678,7 @@ M.GetLendingAnalysisSummaryInput = {
 
 M.LendingSummary = {
     type = "structure",
+    id = "LendingSummary",
     members = {
         DocumentGroups = {
             type = "list",
@@ -1598,6 +1693,7 @@ M.LendingSummary = {
 
 M.GetLendingAnalysisSummaryOutput = {
     type = "structure",
+    id = "GetLendingAnalysisSummaryOutput",
     members = {
         DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
@@ -1619,6 +1715,7 @@ M.GetLendingAnalysisSummaryOutput = {
 
 M.ListAdaptersInput = {
     type = "structure",
+    id = "ListAdaptersInput",
     members = {
         AfterCreationTime = {
             type = "timestamp",
@@ -1637,6 +1734,7 @@ M.ListAdaptersInput = {
 
 M.ListAdaptersOutput = {
     type = "structure",
+    id = "ListAdaptersOutput",
     members = {
         Adapters = {
             type = "list",
@@ -1650,6 +1748,7 @@ M.ListAdaptersOutput = {
 
 M.ListAdapterVersionsInput = {
     type = "structure",
+    id = "ListAdapterVersionsInput",
     members = {
         AdapterId = {
             type = "string",
@@ -1671,6 +1770,7 @@ M.ListAdapterVersionsInput = {
 
 M.ListAdapterVersionsOutput = {
     type = "structure",
+    id = "ListAdapterVersionsOutput",
     members = {
         AdapterVersions = {
             type = "list",
@@ -1684,6 +1784,7 @@ M.ListAdapterVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1696,6 +1797,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1707,6 +1809,7 @@ M.ListTagsForResourceOutput = {
 
 M.NotificationChannel = {
     type = "structure",
+    id = "NotificationChannel",
     members = {
         SNSTopicArn = {
             type = "string",
@@ -1725,6 +1828,7 @@ M.NotificationChannel = {
 
 M.StartDocumentAnalysisInput = {
     type = "structure",
+    id = "StartDocumentAnalysisInput",
     members = {
         DocumentLocation = setmetatable({ traits = {
             required = true,
@@ -1754,6 +1858,7 @@ M.StartDocumentAnalysisInput = {
 
 M.StartDocumentAnalysisOutput = {
     type = "structure",
+    id = "StartDocumentAnalysisOutput",
     members = {
         JobId = {
             type = "string",
@@ -1763,6 +1868,7 @@ M.StartDocumentAnalysisOutput = {
 
 M.StartDocumentTextDetectionInput = {
     type = "structure",
+    id = "StartDocumentTextDetectionInput",
     members = {
         DocumentLocation = setmetatable({ traits = {
             required = true,
@@ -1783,6 +1889,7 @@ M.StartDocumentTextDetectionInput = {
 
 M.StartDocumentTextDetectionOutput = {
     type = "structure",
+    id = "StartDocumentTextDetectionOutput",
     members = {
         JobId = {
             type = "string",
@@ -1792,6 +1899,7 @@ M.StartDocumentTextDetectionOutput = {
 
 M.StartExpenseAnalysisInput = {
     type = "structure",
+    id = "StartExpenseAnalysisInput",
     members = {
         DocumentLocation = setmetatable({ traits = {
             required = true,
@@ -1812,6 +1920,7 @@ M.StartExpenseAnalysisInput = {
 
 M.StartExpenseAnalysisOutput = {
     type = "structure",
+    id = "StartExpenseAnalysisOutput",
     members = {
         JobId = {
             type = "string",
@@ -1821,6 +1930,7 @@ M.StartExpenseAnalysisOutput = {
 
 M.StartLendingAnalysisInput = {
     type = "structure",
+    id = "StartLendingAnalysisInput",
     members = {
         DocumentLocation = setmetatable({ traits = {
             required = true,
@@ -1841,6 +1951,7 @@ M.StartLendingAnalysisInput = {
 
 M.StartLendingAnalysisOutput = {
     type = "structure",
+    id = "StartLendingAnalysisOutput",
     members = {
         JobId = {
             type = "string",
@@ -1850,6 +1961,7 @@ M.StartLendingAnalysisOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1870,10 +1982,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1893,10 +2007,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAdapterInput = {
     type = "structure",
+    id = "UpdateAdapterInput",
     members = {
         AdapterId = {
             type = "string",
@@ -1918,6 +2034,7 @@ M.UpdateAdapterInput = {
 
 M.UpdateAdapterOutput = {
     type = "structure",
+    id = "UpdateAdapterOutput",
     members = {
         AdapterId = {
             type = "string",

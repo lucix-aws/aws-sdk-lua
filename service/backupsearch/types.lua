@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.BackupCreationTimeFilter = {
     type = "structure",
+    id = "BackupCreationTimeFilter",
     members = {
         CreatedAfter = {
             type = "timestamp",
@@ -27,6 +29,7 @@ M.BackupCreationTimeFilter = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -52,6 +55,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -71,6 +75,7 @@ M.InternalServerException = {
 
 M.ListSearchJobBackupsInput = {
     type = "structure",
+    id = "ListSearchJobBackupsInput",
     members = {
         SearchJobIdentifier = {
             type = "string",
@@ -110,6 +115,7 @@ M.SearchJobState = {
 
 M.SearchJobBackupsResult = {
     type = "structure",
+    id = "SearchJobBackupsResult",
     members = {
         Status = {
             type = "string",
@@ -137,6 +143,7 @@ M.SearchJobBackupsResult = {
 
 M.ListSearchJobBackupsOutput = {
     type = "structure",
+    id = "ListSearchJobBackupsOutput",
     members = {
         Results = {
             type = "list",
@@ -153,6 +160,7 @@ M.ListSearchJobBackupsOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -178,6 +186,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -203,6 +212,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -216,6 +226,7 @@ M.ValidationException = {
 
 M.ListSearchJobResultsInput = {
     type = "structure",
+    id = "ListSearchJobResultsInput",
     members = {
         SearchJobIdentifier = {
             type = "string",
@@ -242,6 +253,7 @@ M.ListSearchJobResultsInput = {
 
 M.EBSResultItem = {
     type = "structure",
+    id = "EBSResultItem",
     members = {
         BackupResourceArn = {
             type = "string",
@@ -272,6 +284,7 @@ M.EBSResultItem = {
 
 M.S3ResultItem = {
     type = "structure",
+    id = "S3ResultItem",
     members = {
         BackupResourceArn = {
             type = "string",
@@ -302,6 +315,7 @@ M.S3ResultItem = {
 
 M.ResultItem = {
     type = "union",
+    id = "ResultItem",
     members = {
         S3ResultItem = M.S3ResultItem,
         EBSResultItem = M.EBSResultItem,
@@ -310,6 +324,7 @@ M.ResultItem = {
 
 M.ListSearchJobResultsOutput = {
     type = "structure",
+    id = "ListSearchJobResultsOutput",
     members = {
         Results = {
             type = "list",
@@ -326,6 +341,7 @@ M.ListSearchJobResultsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -339,6 +355,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -350,6 +367,7 @@ M.ListTagsForResourceOutput = {
 
 M.CurrentSearchProgress = {
     type = "structure",
+    id = "CurrentSearchProgress",
     members = {
         RecoveryPointsScannedCount = {
             type = "integer",
@@ -365,6 +383,7 @@ M.CurrentSearchProgress = {
 
 M.GetSearchJobInput = {
     type = "structure",
+    id = "GetSearchJobInput",
     members = {
         SearchJobIdentifier = {
             type = "string",
@@ -385,6 +404,7 @@ M.TimeConditionOperator = {
 
 M.TimeCondition = {
     type = "structure",
+    id = "TimeCondition",
     members = {
         Value = {
             type = "timestamp",
@@ -414,6 +434,7 @@ M.StringConditionOperator = {
 
 M.StringCondition = {
     type = "structure",
+    id = "StringCondition",
     members = {
         Value = {
             type = "string",
@@ -439,6 +460,7 @@ M.LongConditionOperator = {
 
 M.LongCondition = {
     type = "structure",
+    id = "LongCondition",
     members = {
         Value = {
             type = "long",
@@ -457,6 +479,7 @@ M.LongCondition = {
 
 M.EBSItemFilter = {
     type = "structure",
+    id = "EBSItemFilter",
     members = {
         FilePaths = {
             type = "list",
@@ -479,6 +502,7 @@ M.EBSItemFilter = {
 
 M.S3ItemFilter = {
     type = "structure",
+    id = "S3ItemFilter",
     members = {
         ObjectKeys = {
             type = "list",
@@ -505,6 +529,7 @@ M.S3ItemFilter = {
 
 M.ItemFilters = {
     type = "structure",
+    id = "ItemFilters",
     members = {
         S3ItemFilters = {
             type = "list",
@@ -519,6 +544,7 @@ M.ItemFilters = {
 
 M.SearchScope = {
     type = "structure",
+    id = "SearchScope",
     members = {
         BackupResourceTypes = {
             type = "list",
@@ -546,6 +572,7 @@ M.SearchScope = {
 
 M.SearchScopeSummary = {
     type = "structure",
+    id = "SearchScopeSummary",
     members = {
         TotalRecoveryPointsToScanCount = {
             type = "integer",
@@ -558,6 +585,7 @@ M.SearchScopeSummary = {
 
 M.GetSearchJobOutput = {
     type = "structure",
+    id = "GetSearchJobOutput",
     members = {
         Name = {
             type = "string",
@@ -608,6 +636,7 @@ M.GetSearchJobOutput = {
 
 M.ListSearchJobsInput = {
     type = "structure",
+    id = "ListSearchJobsInput",
     members = {
         ByStatus = {
             type = "string",
@@ -633,6 +662,7 @@ M.ListSearchJobsInput = {
 
 M.SearchJobSummary = {
     type = "structure",
+    id = "SearchJobSummary",
     members = {
         SearchJobIdentifier = {
             type = "string",
@@ -661,6 +691,7 @@ M.SearchJobSummary = {
 
 M.ListSearchJobsOutput = {
     type = "structure",
+    id = "ListSearchJobsOutput",
     members = {
         SearchJobs = {
             type = "list",
@@ -677,6 +708,7 @@ M.ListSearchJobsOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -714,6 +746,7 @@ M.ServiceQuotaExceededException = {
 
 M.StartSearchJobInput = {
     type = "structure",
+    id = "StartSearchJobInput",
     members = {
         Tags = {
             type = "map",
@@ -738,6 +771,7 @@ M.StartSearchJobInput = {
 
 M.StartSearchJobOutput = {
     type = "structure",
+    id = "StartSearchJobOutput",
     members = {
         SearchJobArn = {
             type = "string",
@@ -753,6 +787,7 @@ M.StartSearchJobOutput = {
 
 M.StopSearchJobInput = {
     type = "structure",
+    id = "StopSearchJobInput",
     members = {
         SearchJobIdentifier = {
             type = "string",
@@ -766,6 +801,7 @@ M.StopSearchJobInput = {
 
 M.StopSearchJobOutput = {
     type = "structure",
+    id = "StopSearchJobOutput",
 }
 
 M.ExportJobStatus = {
@@ -776,6 +812,7 @@ M.ExportJobStatus = {
 
 M.S3ExportSpecification = {
     type = "structure",
+    id = "S3ExportSpecification",
     members = {
         DestinationBucket = {
             type = "string",
@@ -791,6 +828,7 @@ M.S3ExportSpecification = {
 
 M.ExportSpecification = {
     type = "union",
+    id = "ExportSpecification",
     members = {
         s3ExportSpecification = M.S3ExportSpecification,
     },
@@ -798,6 +836,7 @@ M.ExportSpecification = {
 
 M.GetSearchResultExportJobInput = {
     type = "structure",
+    id = "GetSearchResultExportJobInput",
     members = {
         ExportJobIdentifier = {
             type = "string",
@@ -811,6 +850,7 @@ M.GetSearchResultExportJobInput = {
 
 M.GetSearchResultExportJobOutput = {
     type = "structure",
+    id = "GetSearchResultExportJobOutput",
     members = {
         ExportJobIdentifier = {
             type = "string",
@@ -842,6 +882,7 @@ M.GetSearchResultExportJobOutput = {
 
 M.ListSearchResultExportJobsInput = {
     type = "structure",
+    id = "ListSearchResultExportJobsInput",
     members = {
         Status = {
             type = "string",
@@ -873,6 +914,7 @@ M.ListSearchResultExportJobsInput = {
 
 M.ExportJobSummary = {
     type = "structure",
+    id = "ExportJobSummary",
     members = {
         ExportJobIdentifier = {
             type = "string",
@@ -903,6 +945,7 @@ M.ExportJobSummary = {
 
 M.ListSearchResultExportJobsOutput = {
     type = "structure",
+    id = "ListSearchResultExportJobsOutput",
     members = {
         ExportJobs = {
             type = "list",
@@ -919,6 +962,7 @@ M.ListSearchResultExportJobsOutput = {
 
 M.StartSearchResultExportJobInput = {
     type = "structure",
+    id = "StartSearchResultExportJobInput",
     members = {
         SearchJobIdentifier = {
             type = "string",
@@ -945,6 +989,7 @@ M.StartSearchResultExportJobInput = {
 
 M.StartSearchResultExportJobOutput = {
     type = "structure",
+    id = "StartSearchResultExportJobOutput",
     members = {
         ExportJobArn = {
             type = "string",
@@ -960,6 +1005,7 @@ M.StartSearchResultExportJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -981,10 +1027,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1006,6 +1054,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

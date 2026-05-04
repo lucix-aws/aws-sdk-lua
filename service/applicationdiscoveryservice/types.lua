@@ -2,6 +2,7 @@ local M = {}
 
 M.AgentConfigurationStatus = {
     type = "structure",
+    id = "AgentConfigurationStatus",
     members = {
         agentId = {
             type = "string",
@@ -20,6 +21,7 @@ M.AgentConfigurationStatus = {
 
 M.AgentNetworkInfo = {
     type = "structure",
+    id = "AgentNetworkInfo",
     members = {
         ipAddress = {
             type = "string",
@@ -41,6 +43,7 @@ M.AgentStatus = {
 
 M.AgentInfo = {
     type = "structure",
+    id = "AgentInfo",
     members = {
         agentId = {
             type = "string",
@@ -78,6 +81,7 @@ M.AgentInfo = {
 
 M.AssociateConfigurationItemsToApplicationInput = {
     type = "structure",
+    id = "AssociateConfigurationItemsToApplicationInput",
     members = {
         applicationConfigurationId = {
             type = "string",
@@ -97,10 +101,12 @@ M.AssociateConfigurationItemsToApplicationInput = {
 
 M.AssociateConfigurationItemsToApplicationOutput = {
     type = "structure",
+    id = "AssociateConfigurationItemsToApplicationOutput",
 }
 
 M.AuthorizationErrorException = {
     type = "structure",
+    id = "AuthorizationErrorException",
     error = "client",
     members = {
         message = {
@@ -111,6 +117,7 @@ M.AuthorizationErrorException = {
 
 M.HomeRegionNotSetException = {
     type = "structure",
+    id = "HomeRegionNotSetException",
     error = "client",
     members = {
         message = {
@@ -121,6 +128,7 @@ M.HomeRegionNotSetException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -131,6 +139,7 @@ M.InvalidParameterException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -141,6 +150,7 @@ M.InvalidParameterValueException = {
 
 M.ServerInternalErrorException = {
     type = "structure",
+    id = "ServerInternalErrorException",
     error = "server",
     members = {
         message = {
@@ -151,6 +161,7 @@ M.ServerInternalErrorException = {
 
 M.DeleteAgent = {
     type = "structure",
+    id = "DeleteAgent",
     members = {
         agentId = {
             type = "string",
@@ -169,6 +180,7 @@ M.DeleteAgent = {
 
 M.BatchDeleteAgentsInput = {
     type = "structure",
+    id = "BatchDeleteAgentsInput",
     members = {
         deleteAgents = {
             type = "list",
@@ -188,6 +200,7 @@ M.DeleteAgentErrorCode = {
 
 M.BatchDeleteAgentError = {
     type = "structure",
+    id = "BatchDeleteAgentError",
     members = {
         agentId = {
             type = "string",
@@ -212,6 +225,7 @@ M.BatchDeleteAgentError = {
 
 M.BatchDeleteAgentsOutput = {
     type = "structure",
+    id = "BatchDeleteAgentsOutput",
     members = {
         errors = {
             type = "list",
@@ -222,6 +236,7 @@ M.BatchDeleteAgentsOutput = {
 
 M.BatchDeleteImportDataInput = {
     type = "structure",
+    id = "BatchDeleteImportDataInput",
     members = {
         importTaskIds = {
             type = "list",
@@ -247,6 +262,7 @@ M.BatchDeleteImportDataErrorCode = {
 
 M.BatchDeleteImportDataError = {
     type = "structure",
+    id = "BatchDeleteImportDataError",
     members = {
         importTaskId = {
             type = "string",
@@ -262,6 +278,7 @@ M.BatchDeleteImportDataError = {
 
 M.BatchDeleteImportDataOutput = {
     type = "structure",
+    id = "BatchDeleteImportDataOutput",
     members = {
         errors = {
             type = "list",
@@ -272,6 +289,7 @@ M.BatchDeleteImportDataOutput = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         name = {
             type = "string",
@@ -290,6 +308,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         configurationId = {
             type = "string",
@@ -299,6 +318,7 @@ M.CreateApplicationOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -317,6 +337,7 @@ M.Tag = {
 
 M.CreateTagsInput = {
     type = "structure",
+    id = "CreateTagsInput",
     members = {
         configurationIds = {
             type = "list",
@@ -337,10 +358,12 @@ M.CreateTagsInput = {
 
 M.CreateTagsOutput = {
     type = "structure",
+    id = "CreateTagsOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -351,6 +374,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteApplicationsInput = {
     type = "structure",
+    id = "DeleteApplicationsInput",
     members = {
         configurationIds = {
             type = "list",
@@ -364,10 +388,12 @@ M.DeleteApplicationsInput = {
 
 M.DeleteApplicationsOutput = {
     type = "structure",
+    id = "DeleteApplicationsOutput",
 }
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         configurationIds = {
             type = "list",
@@ -385,10 +411,12 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         name = {
             type = "string",
@@ -414,6 +442,7 @@ M.Filter = {
 
 M.DescribeAgentsInput = {
     type = "structure",
+    id = "DescribeAgentsInput",
     members = {
         agentIds = {
             type = "list",
@@ -437,6 +466,7 @@ M.DescribeAgentsInput = {
 
 M.DescribeAgentsOutput = {
     type = "structure",
+    id = "DescribeAgentsOutput",
     members = {
         agentsInfo = {
             type = "list",
@@ -450,6 +480,7 @@ M.DescribeAgentsOutput = {
 
 M.DescribeBatchDeleteConfigurationTaskInput = {
     type = "structure",
+    id = "DescribeBatchDeleteConfigurationTaskInput",
     members = {
         taskId = {
             type = "string",
@@ -466,6 +497,7 @@ M.DeletionConfigurationItemType = {
 
 M.DeletionWarning = {
     type = "structure",
+    id = "DeletionWarning",
     members = {
         configurationId = {
             type = "string",
@@ -484,6 +516,7 @@ M.DeletionWarning = {
 
 M.FailedConfiguration = {
     type = "structure",
+    id = "FailedConfiguration",
     members = {
         configurationId = {
             type = "string",
@@ -510,6 +543,7 @@ M.BatchDeleteConfigurationTaskStatus = {
 
 M.BatchDeleteConfigurationTask = {
     type = "structure",
+    id = "BatchDeleteConfigurationTask",
     members = {
         taskId = {
             type = "string",
@@ -547,6 +581,7 @@ M.BatchDeleteConfigurationTask = {
 
 M.DescribeBatchDeleteConfigurationTaskOutput = {
     type = "structure",
+    id = "DescribeBatchDeleteConfigurationTaskOutput",
     members = {
         task = M.BatchDeleteConfigurationTask,
     },
@@ -554,6 +589,7 @@ M.DescribeBatchDeleteConfigurationTaskOutput = {
 
 M.DescribeConfigurationsInput = {
     type = "structure",
+    id = "DescribeConfigurationsInput",
     members = {
         configurationIds = {
             type = "list",
@@ -567,6 +603,7 @@ M.DescribeConfigurationsInput = {
 
 M.DescribeConfigurationsOutput = {
     type = "structure",
+    id = "DescribeConfigurationsOutput",
     members = {
         configurations = {
             type = "list",
@@ -577,6 +614,7 @@ M.DescribeConfigurationsOutput = {
 
 M.DescribeContinuousExportsInput = {
     type = "structure",
+    id = "DescribeContinuousExportsInput",
     members = {
         exportIds = {
             type = "list",
@@ -607,6 +645,7 @@ M.ContinuousExportStatus = {
 
 M.ContinuousExportDescription = {
     type = "structure",
+    id = "ContinuousExportDescription",
     members = {
         exportId = {
             type = "string",
@@ -639,6 +678,7 @@ M.ContinuousExportDescription = {
 
 M.DescribeContinuousExportsOutput = {
     type = "structure",
+    id = "DescribeContinuousExportsOutput",
     members = {
         descriptions = {
             type = "list",
@@ -652,6 +692,7 @@ M.DescribeContinuousExportsOutput = {
 
 M.OperationNotPermittedException = {
     type = "structure",
+    id = "OperationNotPermittedException",
     error = "client",
     members = {
         message = {
@@ -662,6 +703,7 @@ M.OperationNotPermittedException = {
 
 M.DescribeExportConfigurationsInput = {
     type = "structure",
+    id = "DescribeExportConfigurationsInput",
     members = {
         exportIds = {
             type = "list",
@@ -687,6 +729,7 @@ M.ExportStatus = {
 
 M.ExportInfo = {
     type = "structure",
+    id = "ExportInfo",
     members = {
         exportId = {
             type = "string",
@@ -732,6 +775,7 @@ M.ExportInfo = {
 
 M.DescribeExportConfigurationsOutput = {
     type = "structure",
+    id = "DescribeExportConfigurationsOutput",
     members = {
         exportsInfo = {
             type = "list",
@@ -745,6 +789,7 @@ M.DescribeExportConfigurationsOutput = {
 
 M.ExportFilter = {
     type = "structure",
+    id = "ExportFilter",
     members = {
         name = {
             type = "string",
@@ -770,6 +815,7 @@ M.ExportFilter = {
 
 M.DescribeExportTasksInput = {
     type = "structure",
+    id = "DescribeExportTasksInput",
     members = {
         exportIds = {
             type = "list",
@@ -793,6 +839,7 @@ M.DescribeExportTasksInput = {
 
 M.DescribeExportTasksOutput = {
     type = "structure",
+    id = "DescribeExportTasksOutput",
     members = {
         exportsInfo = {
             type = "list",
@@ -813,6 +860,7 @@ M.ImportTaskFilterName = {
 
 M.ImportTaskFilter = {
     type = "structure",
+    id = "ImportTaskFilter",
     members = {
         name = {
             type = "string",
@@ -826,6 +874,7 @@ M.ImportTaskFilter = {
 
 M.DescribeImportTasksInput = {
     type = "structure",
+    id = "DescribeImportTasksInput",
     members = {
         filters = {
             type = "list",
@@ -864,6 +913,7 @@ M.ImportStatus = {
 
 M.ImportTask = {
     type = "structure",
+    id = "ImportTask",
     members = {
         importTaskId = {
             type = "string",
@@ -924,6 +974,7 @@ M.ImportTask = {
 
 M.DescribeImportTasksOutput = {
     type = "structure",
+    id = "DescribeImportTasksOutput",
     members = {
         nextToken = {
             type = "string",
@@ -937,6 +988,7 @@ M.DescribeImportTasksOutput = {
 
 M.TagFilter = {
     type = "structure",
+    id = "TagFilter",
     members = {
         name = {
             type = "string",
@@ -956,6 +1008,7 @@ M.TagFilter = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         filters = {
             type = "list",
@@ -982,6 +1035,7 @@ M.ConfigurationItemType = {
 
 M.ConfigurationTag = {
     type = "structure",
+    id = "ConfigurationTag",
     members = {
         configurationType = {
             type = "string",
@@ -1003,6 +1057,7 @@ M.ConfigurationTag = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         tags = {
             type = "list",
@@ -1016,6 +1071,7 @@ M.DescribeTagsOutput = {
 
 M.DisassociateConfigurationItemsFromApplicationInput = {
     type = "structure",
+    id = "DisassociateConfigurationItemsFromApplicationInput",
     members = {
         applicationConfigurationId = {
             type = "string",
@@ -1035,14 +1091,17 @@ M.DisassociateConfigurationItemsFromApplicationInput = {
 
 M.DisassociateConfigurationItemsFromApplicationOutput = {
     type = "structure",
+    id = "DisassociateConfigurationItemsFromApplicationOutput",
 }
 
 M.ExportConfigurationsInput = {
     type = "structure",
+    id = "ExportConfigurationsInput",
 }
 
 M.ExportConfigurationsOutput = {
     type = "structure",
+    id = "ExportConfigurationsOutput",
     members = {
         exportId = {
             type = "string",
@@ -1052,10 +1111,12 @@ M.ExportConfigurationsOutput = {
 
 M.GetDiscoverySummaryInput = {
     type = "structure",
+    id = "GetDiscoverySummaryInput",
 }
 
 M.CustomerAgentlessCollectorInfo = {
     type = "structure",
+    id = "CustomerAgentlessCollectorInfo",
     members = {
         activeAgentlessCollectors = {
             type = "integer",
@@ -1111,6 +1172,7 @@ M.CustomerAgentlessCollectorInfo = {
 
 M.CustomerAgentInfo = {
     type = "structure",
+    id = "CustomerAgentInfo",
     members = {
         activeAgents = {
             type = "integer",
@@ -1166,6 +1228,7 @@ M.CustomerAgentInfo = {
 
 M.CustomerConnectorInfo = {
     type = "structure",
+    id = "CustomerConnectorInfo",
     members = {
         activeConnectors = {
             type = "integer",
@@ -1221,6 +1284,7 @@ M.CustomerConnectorInfo = {
 
 M.CustomerMeCollectorInfo = {
     type = "structure",
+    id = "CustomerMeCollectorInfo",
     members = {
         activeMeCollectors = {
             type = "integer",
@@ -1276,6 +1340,7 @@ M.CustomerMeCollectorInfo = {
 
 M.GetDiscoverySummaryOutput = {
     type = "structure",
+    id = "GetDiscoverySummaryOutput",
     members = {
         servers = {
             type = "long",
@@ -1315,6 +1380,7 @@ M.orderString = {
 
 M.OrderByElement = {
     type = "structure",
+    id = "OrderByElement",
     members = {
         fieldName = {
             type = "string",
@@ -1330,6 +1396,7 @@ M.OrderByElement = {
 
 M.ListConfigurationsInput = {
     type = "structure",
+    id = "ListConfigurationsInput",
     members = {
         configurationType = {
             type = "string",
@@ -1359,6 +1426,7 @@ M.ListConfigurationsInput = {
 
 M.ListConfigurationsOutput = {
     type = "structure",
+    id = "ListConfigurationsOutput",
     members = {
         configurations = {
             type = "list",
@@ -1372,6 +1440,7 @@ M.ListConfigurationsOutput = {
 
 M.ListServerNeighborsInput = {
     type = "structure",
+    id = "ListServerNeighborsInput",
     members = {
         configurationId = {
             type = "string",
@@ -1403,6 +1472,7 @@ M.ListServerNeighborsInput = {
 
 M.NeighborConnectionDetail = {
     type = "structure",
+    id = "NeighborConnectionDetail",
     members = {
         sourceServerId = {
             type = "string",
@@ -1434,6 +1504,7 @@ M.NeighborConnectionDetail = {
 
 M.ListServerNeighborsOutput = {
     type = "structure",
+    id = "ListServerNeighborsOutput",
     members = {
         neighbors = {
             type = "list",
@@ -1456,6 +1527,7 @@ M.ListServerNeighborsOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1466,6 +1538,7 @@ M.LimitExceededException = {
 
 M.StartBatchDeleteConfigurationTaskInput = {
     type = "structure",
+    id = "StartBatchDeleteConfigurationTaskInput",
     members = {
         configurationType = {
             type = "string",
@@ -1485,6 +1558,7 @@ M.StartBatchDeleteConfigurationTaskInput = {
 
 M.StartBatchDeleteConfigurationTaskOutput = {
     type = "structure",
+    id = "StartBatchDeleteConfigurationTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -1494,6 +1568,7 @@ M.StartBatchDeleteConfigurationTaskOutput = {
 
 M.ConflictErrorException = {
     type = "structure",
+    id = "ConflictErrorException",
     error = "client",
     members = {
         message = {
@@ -1504,6 +1579,7 @@ M.ConflictErrorException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -1514,10 +1590,12 @@ M.ResourceInUseException = {
 
 M.StartContinuousExportInput = {
     type = "structure",
+    id = "StartContinuousExportInput",
 }
 
 M.StartContinuousExportOutput = {
     type = "structure",
+    id = "StartContinuousExportOutput",
     members = {
         exportId = {
             type = "string",
@@ -1541,6 +1619,7 @@ M.StartContinuousExportOutput = {
 
 M.StartDataCollectionByAgentIdsInput = {
     type = "structure",
+    id = "StartDataCollectionByAgentIdsInput",
     members = {
         agentIds = {
             type = "list",
@@ -1554,6 +1633,7 @@ M.StartDataCollectionByAgentIdsInput = {
 
 M.StartDataCollectionByAgentIdsOutput = {
     type = "structure",
+    id = "StartDataCollectionByAgentIdsOutput",
     members = {
         agentsConfigurationStatus = {
             type = "list",
@@ -1568,6 +1648,7 @@ M.ExportDataFormat = {
 
 M.UsageMetricBasis = {
     type = "structure",
+    id = "UsageMetricBasis",
     members = {
         name = {
             type = "string",
@@ -1596,6 +1677,7 @@ M.TermLength = {
 
 M.ReservedInstanceOptions = {
     type = "structure",
+    id = "ReservedInstanceOptions",
     members = {
         purchasingOption = {
             type = "string",
@@ -1625,6 +1707,7 @@ M.Tenancy = {
 
 M.Ec2RecommendationsExportPreferences = {
     type = "structure",
+    id = "Ec2RecommendationsExportPreferences",
     members = {
         enabled = {
             type = "boolean",
@@ -1650,6 +1733,7 @@ M.Ec2RecommendationsExportPreferences = {
 
 M.ExportPreferences = {
     type = "union",
+    id = "ExportPreferences",
     members = {
         ec2RecommendationsPreferences = M.Ec2RecommendationsExportPreferences,
     },
@@ -1657,6 +1741,7 @@ M.ExportPreferences = {
 
 M.StartExportTaskInput = {
     type = "structure",
+    id = "StartExportTaskInput",
     members = {
         exportDataFormat = {
             type = "list",
@@ -1678,6 +1763,7 @@ M.StartExportTaskInput = {
 
 M.StartExportTaskOutput = {
     type = "structure",
+    id = "StartExportTaskOutput",
     members = {
         exportId = {
             type = "string",
@@ -1687,6 +1773,7 @@ M.StartExportTaskOutput = {
 
 M.StartImportTaskInput = {
     type = "structure",
+    id = "StartImportTaskInput",
     members = {
         clientRequestToken = {
             type = "string",
@@ -1711,6 +1798,7 @@ M.StartImportTaskInput = {
 
 M.StartImportTaskOutput = {
     type = "structure",
+    id = "StartImportTaskOutput",
     members = {
         task = M.ImportTask,
     },
@@ -1718,6 +1806,7 @@ M.StartImportTaskOutput = {
 
 M.StopContinuousExportInput = {
     type = "structure",
+    id = "StopContinuousExportInput",
     members = {
         exportId = {
             type = "string",
@@ -1730,6 +1819,7 @@ M.StopContinuousExportInput = {
 
 M.StopContinuousExportOutput = {
     type = "structure",
+    id = "StopContinuousExportOutput",
     members = {
         startTime = {
             type = "timestamp",
@@ -1742,6 +1832,7 @@ M.StopContinuousExportOutput = {
 
 M.StopDataCollectionByAgentIdsInput = {
     type = "structure",
+    id = "StopDataCollectionByAgentIdsInput",
     members = {
         agentIds = {
             type = "list",
@@ -1755,6 +1846,7 @@ M.StopDataCollectionByAgentIdsInput = {
 
 M.StopDataCollectionByAgentIdsOutput = {
     type = "structure",
+    id = "StopDataCollectionByAgentIdsOutput",
     members = {
         agentsConfigurationStatus = {
             type = "list",
@@ -1765,6 +1857,7 @@ M.StopDataCollectionByAgentIdsOutput = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         configurationId = {
             type = "string",
@@ -1786,6 +1879,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
 }
 
 return M

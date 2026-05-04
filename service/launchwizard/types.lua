@@ -2,6 +2,7 @@ local M = {}
 
 M.CreateDeploymentInput = {
     type = "structure",
+    id = "CreateDeploymentInput",
     members = {
         workloadName = {
             type = "string",
@@ -45,6 +46,7 @@ M.CreateDeploymentInput = {
 
 M.CreateDeploymentOutput = {
     type = "structure",
+    id = "CreateDeploymentOutput",
     members = {
         deploymentId = {
             type = "string",
@@ -54,6 +56,7 @@ M.CreateDeploymentOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -64,6 +67,7 @@ M.InternalServerException = {
 
 M.ResourceLimitException = {
     type = "structure",
+    id = "ResourceLimitException",
     error = "client",
     members = {
         message = {
@@ -74,6 +78,7 @@ M.ResourceLimitException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -84,6 +89,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -94,6 +100,7 @@ M.ValidationException = {
 
 M.DeleteDeploymentInput = {
     type = "structure",
+    id = "DeleteDeploymentInput",
     members = {
         deploymentId = {
             type = "string",
@@ -123,6 +130,7 @@ M.DeploymentStatus = {
 
 M.DeleteDeploymentOutput = {
     type = "structure",
+    id = "DeleteDeploymentOutput",
     members = {
         status = {
             type = "string",
@@ -135,6 +143,7 @@ M.DeleteDeploymentOutput = {
 
 M.ListDeploymentEventsInput = {
     type = "structure",
+    id = "ListDeploymentEventsInput",
     members = {
         deploymentId = {
             type = "string",
@@ -167,6 +176,7 @@ M.EventStatus = {
 
 M.DeploymentEventDataSummary = {
     type = "structure",
+    id = "DeploymentEventDataSummary",
     members = {
         name = {
             type = "string",
@@ -188,6 +198,7 @@ M.DeploymentEventDataSummary = {
 
 M.ListDeploymentEventsOutput = {
     type = "structure",
+    id = "ListDeploymentEventsOutput",
     members = {
         deploymentEvents = {
             type = "list",
@@ -201,6 +212,7 @@ M.ListDeploymentEventsOutput = {
 
 M.GetDeploymentInput = {
     type = "structure",
+    id = "GetDeploymentInput",
     members = {
         deploymentId = {
             type = "string",
@@ -213,6 +225,7 @@ M.GetDeploymentInput = {
 
 M.DeploymentData = {
     type = "structure",
+    id = "DeploymentData",
     members = {
         name = {
             type = "string",
@@ -259,6 +272,7 @@ M.DeploymentData = {
 
 M.GetDeploymentOutput = {
     type = "structure",
+    id = "GetDeploymentOutput",
     members = {
         deployment = M.DeploymentData,
     },
@@ -271,6 +285,7 @@ M.DeploymentFilterKey = {
 
 M.DeploymentFilter = {
     type = "structure",
+    id = "DeploymentFilter",
     members = {
         name = {
             type = "string",
@@ -284,6 +299,7 @@ M.DeploymentFilter = {
 
 M.ListDeploymentsInput = {
     type = "structure",
+    id = "ListDeploymentsInput",
     members = {
         filters = {
             type = "list",
@@ -303,6 +319,7 @@ M.ListDeploymentsInput = {
 
 M.DeploymentDataSummary = {
     type = "structure",
+    id = "DeploymentDataSummary",
     members = {
         name = {
             type = "string",
@@ -330,6 +347,7 @@ M.DeploymentDataSummary = {
 
 M.ListDeploymentsOutput = {
     type = "structure",
+    id = "ListDeploymentsOutput",
     members = {
         deployments = {
             type = "list",
@@ -343,6 +361,7 @@ M.ListDeploymentsOutput = {
 
 M.UpdateDeploymentInput = {
     type = "structure",
+    id = "UpdateDeploymentInput",
     members = {
         deploymentId = {
             type = "string",
@@ -381,6 +400,7 @@ M.UpdateDeploymentInput = {
 
 M.UpdateDeploymentOutput = {
     type = "structure",
+    id = "UpdateDeploymentOutput",
     members = {
         deployment = M.DeploymentDataSummary,
     },
@@ -388,6 +408,7 @@ M.UpdateDeploymentOutput = {
 
 M.DeploymentConditionalField = {
     type = "structure",
+    id = "DeploymentConditionalField",
     members = {
         name = {
             type = "string",
@@ -403,6 +424,7 @@ M.DeploymentConditionalField = {
 
 M.GetDeploymentPatternVersionInput = {
     type = "structure",
+    id = "GetDeploymentPatternVersionInput",
     members = {
         workloadName = {
             type = "string",
@@ -427,6 +449,7 @@ M.GetDeploymentPatternVersionInput = {
 
 M.DeploymentPatternVersionDataSummary = {
     type = "structure",
+    id = "DeploymentPatternVersionDataSummary",
     members = {
         deploymentPatternVersionName = {
             type = "string",
@@ -448,6 +471,7 @@ M.DeploymentPatternVersionDataSummary = {
 
 M.GetDeploymentPatternVersionOutput = {
     type = "structure",
+    id = "GetDeploymentPatternVersionOutput",
     members = {
         deploymentPatternVersion = M.DeploymentPatternVersionDataSummary,
     },
@@ -459,6 +483,7 @@ M.DeploymentPatternVersionFilterKey = {
 
 M.DeploymentPatternVersionFilter = {
     type = "structure",
+    id = "DeploymentPatternVersionFilter",
     members = {
         name = {
             type = "string",
@@ -478,6 +503,7 @@ M.DeploymentPatternVersionFilter = {
 
 M.ListDeploymentPatternVersionsInput = {
     type = "structure",
+    id = "ListDeploymentPatternVersionsInput",
     members = {
         workloadName = {
             type = "string",
@@ -509,6 +535,7 @@ M.ListDeploymentPatternVersionsInput = {
 
 M.ListDeploymentPatternVersionsOutput = {
     type = "structure",
+    id = "ListDeploymentPatternVersionsOutput",
     members = {
         deploymentPatternVersions = {
             type = "list",
@@ -522,6 +549,7 @@ M.ListDeploymentPatternVersionsOutput = {
 
 M.DeploymentSpecificationsField = {
     type = "structure",
+    id = "DeploymentSpecificationsField",
     members = {
         name = {
             type = "string",
@@ -545,6 +573,7 @@ M.DeploymentSpecificationsField = {
 
 M.GetWorkloadInput = {
     type = "structure",
+    id = "GetWorkloadInput",
     members = {
         workloadName = {
             type = "string",
@@ -564,6 +593,7 @@ M.WorkloadStatus = {
 
 M.WorkloadData = {
     type = "structure",
+    id = "WorkloadData",
     members = {
         workloadName = {
             type = "string",
@@ -591,6 +621,7 @@ M.WorkloadData = {
 
 M.GetWorkloadOutput = {
     type = "structure",
+    id = "GetWorkloadOutput",
     members = {
         workload = M.WorkloadData,
     },
@@ -598,6 +629,7 @@ M.GetWorkloadOutput = {
 
 M.GetWorkloadDeploymentPatternInput = {
     type = "structure",
+    id = "GetWorkloadDeploymentPatternInput",
     members = {
         workloadName = {
             type = "string",
@@ -623,6 +655,7 @@ M.WorkloadDeploymentPatternStatus = {
 
 M.WorkloadDeploymentPatternData = {
     type = "structure",
+    id = "WorkloadDeploymentPatternData",
     members = {
         workloadName = {
             type = "string",
@@ -657,6 +690,7 @@ M.WorkloadDeploymentPatternData = {
 
 M.GetWorkloadDeploymentPatternOutput = {
     type = "structure",
+    id = "GetWorkloadDeploymentPatternOutput",
     members = {
         workloadDeploymentPattern = M.WorkloadDeploymentPatternData,
     },
@@ -664,6 +698,7 @@ M.GetWorkloadDeploymentPatternOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -677,6 +712,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -688,6 +724,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -709,10 +746,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -734,10 +773,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ListWorkloadsInput = {
     type = "structure",
+    id = "ListWorkloadsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -753,6 +794,7 @@ M.ListWorkloadsInput = {
 
 M.WorkloadDataSummary = {
     type = "structure",
+    id = "WorkloadDataSummary",
     members = {
         workloadName = {
             type = "string",
@@ -768,6 +810,7 @@ M.WorkloadDataSummary = {
 
 M.ListWorkloadsOutput = {
     type = "structure",
+    id = "ListWorkloadsOutput",
     members = {
         workloads = {
             type = "list",
@@ -781,6 +824,7 @@ M.ListWorkloadsOutput = {
 
 M.ListWorkloadDeploymentPatternsInput = {
     type = "structure",
+    id = "ListWorkloadDeploymentPatternsInput",
     members = {
         workloadName = {
             type = "string",
@@ -802,6 +846,7 @@ M.ListWorkloadDeploymentPatternsInput = {
 
 M.WorkloadDeploymentPatternDataSummary = {
     type = "structure",
+    id = "WorkloadDeploymentPatternDataSummary",
     members = {
         workloadName = {
             type = "string",
@@ -832,6 +877,7 @@ M.WorkloadDeploymentPatternDataSummary = {
 
 M.ListWorkloadDeploymentPatternsOutput = {
     type = "structure",
+    id = "ListWorkloadDeploymentPatternsOutput",
     members = {
         workloadDeploymentPatterns = {
             type = "list",

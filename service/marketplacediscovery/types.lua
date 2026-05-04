@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -27,6 +28,7 @@ M.FulfillmentOptionType = {
 
 M.AmazonMachineImageOperatingSystem = {
     type = "structure",
+    id = "AmazonMachineImageOperatingSystem",
     members = {
         operatingSystemFamilyName = {
             type = "string",
@@ -48,6 +50,7 @@ M.AmazonMachineImageOperatingSystem = {
 
 M.AmazonMachineImageRecommendation = {
     type = "structure",
+    id = "AmazonMachineImageRecommendation",
     members = {
         instanceType = {
             type = "string",
@@ -60,6 +63,7 @@ M.AmazonMachineImageRecommendation = {
 
 M.AmazonMachineImageFulfillmentOption = {
     type = "structure",
+    id = "AmazonMachineImageFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -107,6 +111,7 @@ M.AmazonMachineImageFulfillmentOption = {
 
 M.AwsSupportedService = {
     type = "structure",
+    id = "AwsSupportedService",
     members = {
         supportedServiceType = {
             type = "string",
@@ -131,6 +136,7 @@ M.AwsSupportedService = {
 
 M.ApiFulfillmentOption = {
     type = "structure",
+    id = "ApiFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -165,6 +171,7 @@ M.ApiFulfillmentOption = {
 
 M.GetListingInput = {
     type = "structure",
+    id = "GetListingInput",
     members = {
         listingId = {
             type = "string",
@@ -177,6 +184,7 @@ M.GetListingInput = {
 
 M.SellerInformation = {
     type = "structure",
+    id = "SellerInformation",
     members = {
         sellerProfileId = {
             type = "string",
@@ -195,6 +203,7 @@ M.SellerInformation = {
 
 M.OfferInformation = {
     type = "structure",
+    id = "OfferInformation",
     members = {
         offerId = {
             type = "string",
@@ -213,6 +222,7 @@ M.OfferInformation = {
 
 M.ProductInformation = {
     type = "structure",
+    id = "ProductInformation",
     members = {
         productId = {
             type = "string",
@@ -234,6 +244,7 @@ M.ProductInformation = {
 
 M.ListingAssociatedEntity = {
     type = "structure",
+    id = "ListingAssociatedEntity",
     members = {
         product = M.ProductInformation,
         offer = M.OfferInformation,
@@ -250,6 +261,7 @@ M.ListingBadgeType = {
 
 M.ListingBadge = {
     type = "structure",
+    id = "ListingBadge",
     members = {
         displayName = {
             type = "string",
@@ -268,6 +280,7 @@ M.ListingBadge = {
 
 M.Category = {
     type = "structure",
+    id = "Category",
     members = {
         categoryId = {
             type = "string",
@@ -286,6 +299,7 @@ M.Category = {
 
 M.FulfillmentOptionSummary = {
     type = "structure",
+    id = "FulfillmentOptionSummary",
     members = {
         fulfillmentOptionType = {
             type = "string",
@@ -311,6 +325,7 @@ M.PricingModelType = {
 
 M.PricingModel = {
     type = "structure",
+    id = "PricingModel",
     members = {
         pricingModelType = {
             type = "string",
@@ -339,6 +354,7 @@ M.PricingUnitType = {
 
 M.PricingUnit = {
     type = "structure",
+    id = "PricingUnit",
     members = {
         pricingUnitType = {
             type = "string",
@@ -357,6 +373,7 @@ M.PricingUnit = {
 
 M.PromotionalEmbeddedImage = {
     type = "structure",
+    id = "PromotionalEmbeddedImage",
     members = {
         title = {
             type = "string",
@@ -378,6 +395,7 @@ M.PromotionalEmbeddedImage = {
 
 M.PromotionalEmbeddedVideo = {
     type = "structure",
+    id = "PromotionalEmbeddedVideo",
     members = {
         title = {
             type = "string",
@@ -411,6 +429,7 @@ M.PromotionalEmbeddedVideo = {
 
 M.PromotionalMedia = {
     type = "union",
+    id = "PromotionalMedia",
     members = {
         embeddedImage = M.PromotionalEmbeddedImage,
         embeddedVideo = M.PromotionalEmbeddedVideo,
@@ -431,6 +450,7 @@ M.ResourceType = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         resourceType = {
             type = "string",
@@ -462,6 +482,7 @@ M.ReviewSourceId = {
 
 M.ReviewSourceSummary = {
     type = "structure",
+    id = "ReviewSourceSummary",
     members = {
         sourceName = {
             type = "string",
@@ -495,6 +516,7 @@ M.ReviewSourceSummary = {
 
 M.ReviewSummary = {
     type = "structure",
+    id = "ReviewSummary",
     members = {
         reviewSourceSummaries = {
             type = "list",
@@ -517,6 +539,7 @@ M.SellerEngagementType = {
 
 M.SellerEngagement = {
     type = "structure",
+    id = "SellerEngagement",
     members = {
         engagementType = {
             type = "string",
@@ -541,6 +564,7 @@ M.SellerEngagement = {
 
 M.UseCase = {
     type = "structure",
+    id = "UseCase",
     members = {
         description = {
             type = "string",
@@ -565,6 +589,7 @@ M.UseCase = {
 
 M.UseCaseEntry = {
     type = "structure",
+    id = "UseCaseEntry",
     members = {
         useCase = setmetatable({ traits = {
             required = true,
@@ -574,6 +599,7 @@ M.UseCaseEntry = {
 
 M.GetListingOutput = {
     type = "structure",
+    id = "GetListingOutput",
     members = {
         associatedEntities = {
             type = "list",
@@ -700,6 +726,7 @@ M.GetListingOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -710,6 +737,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -720,6 +748,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -736,6 +765,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -749,6 +779,7 @@ M.ValidationException = {
 
 M.GetOfferInput = {
     type = "structure",
+    id = "GetOfferInput",
     members = {
         offerId = {
             type = "string",
@@ -761,6 +792,7 @@ M.GetOfferInput = {
 
 M.OfferSetInformation = {
     type = "structure",
+    id = "OfferSetInformation",
     members = {
         offerSetId = {
             type = "string",
@@ -776,6 +808,7 @@ M.OfferSetInformation = {
 
 M.OfferAssociatedEntity = {
     type = "structure",
+    id = "OfferAssociatedEntity",
     members = {
         product = setmetatable({ traits = {
             required = true,
@@ -792,6 +825,7 @@ M.PurchaseOptionBadgeType = {
 
 M.PurchaseOptionBadge = {
     type = "structure",
+    id = "PurchaseOptionBadge",
     members = {
         displayName = {
             type = "string",
@@ -810,6 +844,7 @@ M.PurchaseOptionBadge = {
 
 M.GetOfferOutput = {
     type = "structure",
+    id = "GetOfferOutput",
     members = {
         offerId = {
             type = "string",
@@ -866,6 +901,7 @@ M.GetOfferOutput = {
 
 M.GetOfferSetInput = {
     type = "structure",
+    id = "GetOfferSetInput",
     members = {
         offerSetId = {
             type = "string",
@@ -878,6 +914,7 @@ M.GetOfferSetInput = {
 
 M.OfferSetAssociatedEntity = {
     type = "structure",
+    id = "OfferSetAssociatedEntity",
     members = {
         product = setmetatable({ traits = {
             required = true,
@@ -890,6 +927,7 @@ M.OfferSetAssociatedEntity = {
 
 M.GetOfferSetOutput = {
     type = "structure",
+    id = "GetOfferSetOutput",
     members = {
         offerSetId = {
             type = "string",
@@ -937,6 +975,7 @@ M.GetOfferSetOutput = {
 
 M.GetOfferTermsInput = {
     type = "structure",
+    id = "GetOfferTermsInput",
     members = {
         offerId = {
             type = "string",
@@ -973,6 +1012,7 @@ M.TermType = {
 
 M.ByolPricingTerm = {
     type = "structure",
+    id = "ByolPricingTerm",
     members = {
         id = {
             type = "string",
@@ -996,6 +1036,7 @@ M.RateCardConstraintType = {
 
 M.Constraints = {
     type = "structure",
+    id = "Constraints",
     members = {
         multipleDimensionSelection = {
             type = "string",
@@ -1019,6 +1060,7 @@ M.DimensionLabelType = {
 
 M.DimensionLabel = {
     type = "structure",
+    id = "DimensionLabel",
     members = {
         labelType = {
             type = "string",
@@ -1040,6 +1082,7 @@ M.DimensionLabel = {
 
 M.RateCardItem = {
     type = "structure",
+    id = "RateCardItem",
     members = {
         dimensionKey = {
             type = "string",
@@ -1081,6 +1124,7 @@ M.SelectorType = {
 
 M.Selector = {
     type = "structure",
+    id = "Selector",
     members = {
         type = {
             type = "string",
@@ -1099,6 +1143,7 @@ M.Selector = {
 
 M.ConfigurableUpfrontRateCardItem = {
     type = "structure",
+    id = "ConfigurableUpfrontRateCardItem",
     members = {
         selector = setmetatable({ traits = {
             required = true,
@@ -1118,6 +1163,7 @@ M.ConfigurableUpfrontRateCardItem = {
 
 M.ConfigurableUpfrontPricingTerm = {
     type = "structure",
+    id = "ConfigurableUpfrontPricingTerm",
     members = {
         id = {
             type = "string",
@@ -1146,6 +1192,7 @@ M.ConfigurableUpfrontPricingTerm = {
 
 M.GrantItem = {
     type = "structure",
+    id = "GrantItem",
     members = {
         dimensionKey = {
             type = "string",
@@ -1180,6 +1227,7 @@ M.GrantItem = {
 
 M.FixedUpfrontPricingTerm = {
     type = "structure",
+    id = "FixedUpfrontPricingTerm",
     members = {
         id = {
             type = "string",
@@ -1220,6 +1268,7 @@ M.FixedUpfrontPricingTerm = {
 
 M.FreeTrialPricingTerm = {
     type = "structure",
+    id = "FreeTrialPricingTerm",
     members = {
         id = {
             type = "string",
@@ -1256,6 +1305,7 @@ M.LegalDocumentType = {
 
 M.DocumentItem = {
     type = "structure",
+    id = "DocumentItem",
     members = {
         type = {
             type = "string",
@@ -1277,6 +1327,7 @@ M.DocumentItem = {
 
 M.LegalTerm = {
     type = "structure",
+    id = "LegalTerm",
     members = {
         id = {
             type = "string",
@@ -1302,6 +1353,7 @@ M.LegalTerm = {
 
 M.ScheduleItem = {
     type = "structure",
+    id = "ScheduleItem",
     members = {
         chargeDate = {
             type = "timestamp",
@@ -1320,6 +1372,7 @@ M.ScheduleItem = {
 
 M.PaymentScheduleTerm = {
     type = "structure",
+    id = "PaymentScheduleTerm",
     members = {
         id = {
             type = "string",
@@ -1355,6 +1408,7 @@ M.BillingPeriodType = {
 
 M.RecurringPaymentTerm = {
     type = "structure",
+    id = "RecurringPaymentTerm",
     members = {
         id = {
             type = "string",
@@ -1391,6 +1445,7 @@ M.RecurringPaymentTerm = {
 
 M.RenewalTerm = {
     type = "structure",
+    id = "RenewalTerm",
     members = {
         id = {
             type = "string",
@@ -1409,6 +1464,7 @@ M.RenewalTerm = {
 
 M.SupportTerm = {
     type = "structure",
+    id = "SupportTerm",
     members = {
         id = {
             type = "string",
@@ -1433,6 +1489,7 @@ M.SupportTerm = {
 
 M.UsageBasedRateCardItem = {
     type = "structure",
+    id = "UsageBasedRateCardItem",
     members = {
         rateCard = {
             type = "list",
@@ -1446,6 +1503,7 @@ M.UsageBasedRateCardItem = {
 
 M.UsageBasedPricingTerm = {
     type = "structure",
+    id = "UsageBasedPricingTerm",
     members = {
         id = {
             type = "string",
@@ -1477,6 +1535,7 @@ M.UsageBasedPricingTerm = {
 
 M.ValidityTerm = {
     type = "structure",
+    id = "ValidityTerm",
     members = {
         id = {
             type = "string",
@@ -1504,6 +1563,7 @@ M.ValidityTerm = {
 
 M.VariablePaymentTerm = {
     type = "structure",
+    id = "VariablePaymentTerm",
     members = {
         id = {
             type = "string",
@@ -1534,6 +1594,7 @@ M.VariablePaymentTerm = {
 
 M.OfferTerm = {
     type = "union",
+    id = "OfferTerm",
     members = {
         byolPricingTerm = M.ByolPricingTerm,
         configurableUpfrontPricingTerm = M.ConfigurableUpfrontPricingTerm,
@@ -1552,6 +1613,7 @@ M.OfferTerm = {
 
 M.GetOfferTermsOutput = {
     type = "structure",
+    id = "GetOfferTermsOutput",
     members = {
         offerTerms = {
             type = "list",
@@ -1568,6 +1630,7 @@ M.GetOfferTermsOutput = {
 
 M.GetProductInput = {
     type = "structure",
+    id = "GetProductInput",
     members = {
         productId = {
             type = "string",
@@ -1586,6 +1649,7 @@ M.DeployedOnAwsStatus = {
 
 M.GetProductOutput = {
     type = "structure",
+    id = "GetProductOutput",
     members = {
         productId = {
             type = "string",
@@ -1679,6 +1743,7 @@ M.GetProductOutput = {
 
 M.ListFulfillmentOptionsInput = {
     type = "structure",
+    id = "ListFulfillmentOptionsInput",
     members = {
         productId = {
             type = "string",
@@ -1700,6 +1765,7 @@ M.ListFulfillmentOptionsInput = {
 
 M.CloudFormationFulfillmentOption = {
     type = "structure",
+    id = "CloudFormationFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -1739,6 +1805,7 @@ M.CloudFormationFulfillmentOption = {
 
 M.ContainerOperatingSystem = {
     type = "structure",
+    id = "ContainerOperatingSystem",
     members = {
         operatingSystemFamilyName = {
             type = "string",
@@ -1757,6 +1824,7 @@ M.ContainerOperatingSystem = {
 
 M.ContainerFulfillmentOption = {
     type = "structure",
+    id = "ContainerFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -1804,6 +1872,7 @@ M.ContainerFulfillmentOption = {
 
 M.DataArtifact = {
     type = "structure",
+    id = "DataArtifact",
     members = {
         description = {
             type = "string",
@@ -1828,6 +1897,7 @@ M.DataArtifact = {
 
 M.DataExchangeFulfillmentOption = {
     type = "structure",
+    id = "DataExchangeFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -1856,6 +1926,7 @@ M.DataExchangeFulfillmentOption = {
 
 M.Ec2ImageBuilderComponentFulfillmentOption = {
     type = "structure",
+    id = "Ec2ImageBuilderComponentFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -1903,6 +1974,7 @@ M.Ec2ImageBuilderComponentFulfillmentOption = {
 
 M.EksAddOnOperatingSystem = {
     type = "structure",
+    id = "EksAddOnOperatingSystem",
     members = {
         operatingSystemFamilyName = {
             type = "string",
@@ -1921,6 +1993,7 @@ M.EksAddOnOperatingSystem = {
 
 M.EksAddOnFulfillmentOption = {
     type = "structure",
+    id = "EksAddOnFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -1968,6 +2041,7 @@ M.EksAddOnFulfillmentOption = {
 
 M.HelmOperatingSystem = {
     type = "structure",
+    id = "HelmOperatingSystem",
     members = {
         operatingSystemFamilyName = {
             type = "string",
@@ -1986,6 +2060,7 @@ M.HelmOperatingSystem = {
 
 M.HelmFulfillmentOption = {
     type = "structure",
+    id = "HelmFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -2033,6 +2108,7 @@ M.HelmFulfillmentOption = {
 
 M.ProfessionalServicesFulfillmentOption = {
     type = "structure",
+    id = "ProfessionalServicesFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -2057,6 +2133,7 @@ M.ProfessionalServicesFulfillmentOption = {
 
 M.SaasFulfillmentOption = {
     type = "structure",
+    id = "SaasFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -2087,6 +2164,7 @@ M.SaasFulfillmentOption = {
 
 M.SageMakerAlgorithmRecommendation = {
     type = "structure",
+    id = "SageMakerAlgorithmRecommendation",
     members = {
         recommendedBatchTransformInstanceType = {
             type = "string",
@@ -2108,6 +2186,7 @@ M.SageMakerAlgorithmRecommendation = {
 
 M.SageMakerAlgorithmFulfillmentOption = {
     type = "structure",
+    id = "SageMakerAlgorithmFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -2142,6 +2221,7 @@ M.SageMakerAlgorithmFulfillmentOption = {
 
 M.SageMakerModelRecommendation = {
     type = "structure",
+    id = "SageMakerModelRecommendation",
     members = {
         recommendedBatchTransformInstanceType = {
             type = "string",
@@ -2157,6 +2237,7 @@ M.SageMakerModelRecommendation = {
 
 M.SageMakerModelFulfillmentOption = {
     type = "structure",
+    id = "SageMakerModelFulfillmentOption",
     members = {
         fulfillmentOptionId = {
             type = "string",
@@ -2191,6 +2272,7 @@ M.SageMakerModelFulfillmentOption = {
 
 M.FulfillmentOption = {
     type = "union",
+    id = "FulfillmentOption",
     members = {
         amazonMachineImageFulfillmentOption = M.AmazonMachineImageFulfillmentOption,
         apiFulfillmentOption = M.ApiFulfillmentOption,
@@ -2209,6 +2291,7 @@ M.FulfillmentOption = {
 
 M.ListFulfillmentOptionsOutput = {
     type = "structure",
+    id = "ListFulfillmentOptionsOutput",
     members = {
         fulfillmentOptions = {
             type = "list",
@@ -2233,6 +2316,7 @@ M.PurchaseOptionFilterType = {
 
 M.PurchaseOptionFilter = {
     type = "structure",
+    id = "PurchaseOptionFilter",
     members = {
         filterType = {
             type = "string",
@@ -2252,6 +2336,7 @@ M.PurchaseOptionFilter = {
 
 M.ListPurchaseOptionsInput = {
     type = "structure",
+    id = "ListPurchaseOptionsInput",
     members = {
         filters = {
             type = "list",
@@ -2271,6 +2356,7 @@ M.ListPurchaseOptionsInput = {
 
 M.PurchaseOptionAssociatedEntity = {
     type = "structure",
+    id = "PurchaseOptionAssociatedEntity",
     members = {
         product = setmetatable({ traits = {
             required = true,
@@ -2289,6 +2375,7 @@ M.PurchaseOptionType = {
 
 M.PurchaseOptionSummary = {
     type = "structure",
+    id = "PurchaseOptionSummary",
     members = {
         purchaseOptionId = {
             type = "string",
@@ -2336,6 +2423,7 @@ M.PurchaseOptionSummary = {
 
 M.ListPurchaseOptionsOutput = {
     type = "structure",
+    id = "ListPurchaseOptionsOutput",
     members = {
         purchaseOptions = {
             type = "list",
@@ -2372,6 +2460,7 @@ M.SearchFilterType = {
 
 M.SearchFilter = {
     type = "structure",
+    id = "SearchFilter",
     members = {
         filterType = {
             type = "string",
@@ -2391,6 +2480,7 @@ M.SearchFilter = {
 
 M.SearchFacetsInput = {
     type = "structure",
+    id = "SearchFacetsInput",
     members = {
         searchText = {
             type = "string",
@@ -2411,6 +2501,7 @@ M.SearchFacetsInput = {
 
 M.ListingFacet = {
     type = "structure",
+    id = "ListingFacet",
     members = {
         value = {
             type = "string",
@@ -2438,6 +2529,7 @@ M.ListingFacet = {
 
 M.SearchFacetsOutput = {
     type = "structure",
+    id = "SearchFacetsOutput",
     members = {
         totalResults = {
             type = "long",
@@ -2471,6 +2563,7 @@ M.SearchListingsSortOrder = {
 
 M.SearchListingsInput = {
     type = "structure",
+    id = "SearchListingsInput",
     members = {
         searchText = {
             type = "string",
@@ -2505,6 +2598,7 @@ M.SearchListingsInput = {
 
 M.ListingSummaryAssociatedEntity = {
     type = "structure",
+    id = "ListingSummaryAssociatedEntity",
     members = {
         product = M.ProductInformation,
     },
@@ -2512,6 +2606,7 @@ M.ListingSummaryAssociatedEntity = {
 
 M.ListingSummary = {
     type = "structure",
+    id = "ListingSummary",
     members = {
         listingId = {
             type = "string",
@@ -2596,6 +2691,7 @@ M.ListingSummary = {
 
 M.SearchListingsOutput = {
     type = "structure",
+    id = "SearchListingsOutput",
     members = {
         totalResults = {
             type = "long",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -23,6 +24,7 @@ M.CmkType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -37,6 +39,7 @@ M.FHIRVersion = {
 
 M.IdentityProviderConfiguration = {
     type = "structure",
+    id = "IdentityProviderConfiguration",
     members = {
         AuthorizationStrategy = {
             type = "string",
@@ -65,6 +68,7 @@ M.PreloadDataType = {
 
 M.PreloadDataConfig = {
     type = "structure",
+    id = "PreloadDataConfig",
     members = {
         PreloadDataType = {
             type = "string",
@@ -77,6 +81,7 @@ M.PreloadDataConfig = {
 
 M.KmsEncryptionConfig = {
     type = "structure",
+    id = "KmsEncryptionConfig",
     members = {
         CmkType = {
             type = "string",
@@ -92,6 +97,7 @@ M.KmsEncryptionConfig = {
 
 M.SseConfiguration = {
     type = "structure",
+    id = "SseConfiguration",
     members = {
         KmsEncryptionConfig = setmetatable({ traits = {
             required = true,
@@ -101,6 +107,7 @@ M.SseConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -119,6 +126,7 @@ M.Tag = {
 
 M.CreateFHIRDatastoreInput = {
     type = "structure",
+    id = "CreateFHIRDatastoreInput",
     members = {
         DatastoreName = {
             type = "string",
@@ -155,6 +163,7 @@ M.DatastoreStatus = {
 
 M.CreateFHIRDatastoreOutput = {
     type = "structure",
+    id = "CreateFHIRDatastoreOutput",
     members = {
         DatastoreId = {
             type = "string",
@@ -185,6 +194,7 @@ M.CreateFHIRDatastoreOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -195,6 +205,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -205,6 +216,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -215,6 +227,7 @@ M.ValidationException = {
 
 M.DatastoreFilter = {
     type = "structure",
+    id = "DatastoreFilter",
     members = {
         DatastoreName = {
             type = "string",
@@ -238,6 +251,7 @@ M.ErrorCategory = {
 
 M.ErrorCause = {
     type = "structure",
+    id = "ErrorCause",
     members = {
         ErrorMessage = {
             type = "string",
@@ -250,6 +264,7 @@ M.ErrorCause = {
 
 M.DatastoreProperties = {
     type = "structure",
+    id = "DatastoreProperties",
     members = {
         DatastoreId = {
             type = "string",
@@ -296,6 +311,7 @@ M.DatastoreProperties = {
 
 M.DeleteFHIRDatastoreInput = {
     type = "structure",
+    id = "DeleteFHIRDatastoreInput",
     members = {
         DatastoreId = {
             type = "string",
@@ -308,6 +324,7 @@ M.DeleteFHIRDatastoreInput = {
 
 M.DeleteFHIRDatastoreOutput = {
     type = "structure",
+    id = "DeleteFHIRDatastoreOutput",
     members = {
         DatastoreId = {
             type = "string",
@@ -338,6 +355,7 @@ M.DeleteFHIRDatastoreOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -348,6 +366,7 @@ M.ResourceNotFoundException = {
 
 M.DescribeFHIRDatastoreInput = {
     type = "structure",
+    id = "DescribeFHIRDatastoreInput",
     members = {
         DatastoreId = {
             type = "string",
@@ -360,6 +379,7 @@ M.DescribeFHIRDatastoreInput = {
 
 M.DescribeFHIRDatastoreOutput = {
     type = "structure",
+    id = "DescribeFHIRDatastoreOutput",
     members = {
         DatastoreProperties = setmetatable({ traits = {
             required = true,
@@ -369,6 +389,7 @@ M.DescribeFHIRDatastoreOutput = {
 
 M.DescribeFHIRExportJobInput = {
     type = "structure",
+    id = "DescribeFHIRExportJobInput",
     members = {
         DatastoreId = {
             type = "string",
@@ -400,6 +421,7 @@ M.JobStatus = {
 
 M.S3Configuration = {
     type = "structure",
+    id = "S3Configuration",
     members = {
         S3Uri = {
             type = "string",
@@ -418,6 +440,7 @@ M.S3Configuration = {
 
 M.OutputDataConfig = {
     type = "union",
+    id = "OutputDataConfig",
     members = {
         S3Configuration = M.S3Configuration,
     },
@@ -425,6 +448,7 @@ M.OutputDataConfig = {
 
 M.ExportJobProperties = {
     type = "structure",
+    id = "ExportJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -470,6 +494,7 @@ M.ExportJobProperties = {
 
 M.DescribeFHIRExportJobOutput = {
     type = "structure",
+    id = "DescribeFHIRExportJobOutput",
     members = {
         ExportJobProperties = setmetatable({ traits = {
             required = true,
@@ -479,6 +504,7 @@ M.DescribeFHIRExportJobOutput = {
 
 M.DescribeFHIRImportJobInput = {
     type = "structure",
+    id = "DescribeFHIRImportJobInput",
     members = {
         DatastoreId = {
             type = "string",
@@ -497,6 +523,7 @@ M.DescribeFHIRImportJobInput = {
 
 M.InputDataConfig = {
     type = "union",
+    id = "InputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -506,6 +533,7 @@ M.InputDataConfig = {
 
 M.JobProgressReport = {
     type = "structure",
+    id = "JobProgressReport",
     members = {
         TotalNumberOfScannedFiles = {
             type = "long",
@@ -542,6 +570,7 @@ M.ValidationLevel = {
 
 M.ImportJobProperties = {
     type = "structure",
+    id = "ImportJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -592,6 +621,7 @@ M.ImportJobProperties = {
 
 M.DescribeFHIRImportJobOutput = {
     type = "structure",
+    id = "DescribeFHIRImportJobOutput",
     members = {
         ImportJobProperties = setmetatable({ traits = {
             required = true,
@@ -601,6 +631,7 @@ M.DescribeFHIRImportJobOutput = {
 
 M.ListFHIRDatastoresInput = {
     type = "structure",
+    id = "ListFHIRDatastoresInput",
     members = {
         Filter = M.DatastoreFilter,
         NextToken = {
@@ -614,6 +645,7 @@ M.ListFHIRDatastoresInput = {
 
 M.ListFHIRDatastoresOutput = {
     type = "structure",
+    id = "ListFHIRDatastoresOutput",
     members = {
         DatastorePropertiesList = {
             type = "list",
@@ -630,6 +662,7 @@ M.ListFHIRDatastoresOutput = {
 
 M.ListFHIRExportJobsInput = {
     type = "structure",
+    id = "ListFHIRExportJobsInput",
     members = {
         DatastoreId = {
             type = "string",
@@ -660,6 +693,7 @@ M.ListFHIRExportJobsInput = {
 
 M.ListFHIRExportJobsOutput = {
     type = "structure",
+    id = "ListFHIRExportJobsOutput",
     members = {
         ExportJobPropertiesList = {
             type = "list",
@@ -676,6 +710,7 @@ M.ListFHIRExportJobsOutput = {
 
 M.ListFHIRImportJobsInput = {
     type = "structure",
+    id = "ListFHIRImportJobsInput",
     members = {
         DatastoreId = {
             type = "string",
@@ -706,6 +741,7 @@ M.ListFHIRImportJobsInput = {
 
 M.ListFHIRImportJobsOutput = {
     type = "structure",
+    id = "ListFHIRImportJobsOutput",
     members = {
         ImportJobPropertiesList = {
             type = "list",
@@ -722,6 +758,7 @@ M.ListFHIRImportJobsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -734,6 +771,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -744,6 +782,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartFHIRExportJobInput = {
     type = "structure",
+    id = "StartFHIRExportJobInput",
     members = {
         JobName = {
             type = "string",
@@ -774,6 +813,7 @@ M.StartFHIRExportJobInput = {
 
 M.StartFHIRExportJobOutput = {
     type = "structure",
+    id = "StartFHIRExportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -795,6 +835,7 @@ M.StartFHIRExportJobOutput = {
 
 M.StartFHIRImportJobInput = {
     type = "structure",
+    id = "StartFHIRImportJobInput",
     members = {
         JobName = {
             type = "string",
@@ -831,6 +872,7 @@ M.StartFHIRImportJobInput = {
 
 M.StartFHIRImportJobOutput = {
     type = "structure",
+    id = "StartFHIRImportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -852,6 +894,7 @@ M.StartFHIRImportJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -871,10 +914,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -894,6 +939,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

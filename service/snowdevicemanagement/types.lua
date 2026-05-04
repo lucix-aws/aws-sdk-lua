@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -22,6 +23,7 @@ M.AttachmentStatus = {
 
 M.CancelTaskInput = {
     type = "structure",
+    id = "CancelTaskInput",
     members = {
         taskId = {
             type = "string",
@@ -35,6 +37,7 @@ M.CancelTaskInput = {
 
 M.CancelTaskOutput = {
     type = "structure",
+    id = "CancelTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -44,6 +47,7 @@ M.CancelTaskOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -57,6 +61,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -70,6 +75,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -83,6 +89,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -96,6 +103,7 @@ M.ValidationException = {
 
 M.Capacity = {
     type = "structure",
+    id = "Capacity",
     members = {
         name = {
             type = "string",
@@ -117,14 +125,17 @@ M.Capacity = {
 
 M.Reboot = {
     type = "structure",
+    id = "Reboot",
 }
 
 M.Unlock = {
     type = "structure",
+    id = "Unlock",
 }
 
 M.Command = {
     type = "union",
+    id = "Command",
     members = {
         unlock = M.Unlock,
         reboot = M.Reboot,
@@ -133,6 +144,7 @@ M.Command = {
 
 M.CpuOptions = {
     type = "structure",
+    id = "CpuOptions",
     members = {
         coreCount = {
             type = "integer",
@@ -145,6 +157,7 @@ M.CpuOptions = {
 
 M.CreateTaskInput = {
     type = "structure",
+    id = "CreateTaskInput",
     members = {
         targets = {
             type = "list",
@@ -175,6 +188,7 @@ M.CreateTaskInput = {
 
 M.CreateTaskOutput = {
     type = "structure",
+    id = "CreateTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -187,6 +201,7 @@ M.CreateTaskOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -200,6 +215,7 @@ M.ServiceQuotaExceededException = {
 
 M.DescribeDeviceInput = {
     type = "structure",
+    id = "DescribeDeviceInput",
     members = {
         managedDeviceId = {
             type = "string",
@@ -232,6 +248,7 @@ M.PhysicalConnectorType = {
 
 M.PhysicalNetworkInterface = {
     type = "structure",
+    id = "PhysicalNetworkInterface",
     members = {
         physicalNetworkInterfaceId = {
             type = "string",
@@ -259,6 +276,7 @@ M.PhysicalNetworkInterface = {
 
 M.SoftwareInformation = {
     type = "structure",
+    id = "SoftwareInformation",
     members = {
         installedVersion = {
             type = "string",
@@ -274,6 +292,7 @@ M.SoftwareInformation = {
 
 M.DescribeDeviceOutput = {
     type = "structure",
+    id = "DescribeDeviceOutput",
     members = {
         lastReachedOutAt = {
             type = "timestamp",
@@ -315,6 +334,7 @@ M.DescribeDeviceOutput = {
 
 M.DescribeDeviceEc2InstancesInput = {
     type = "structure",
+    id = "DescribeDeviceEc2InstancesInput",
     members = {
         managedDeviceId = {
             type = "string",
@@ -335,6 +355,7 @@ M.DescribeDeviceEc2InstancesInput = {
 
 M.EbsInstanceBlockDevice = {
     type = "structure",
+    id = "EbsInstanceBlockDevice",
     members = {
         attachTime = {
             type = "timestamp",
@@ -353,6 +374,7 @@ M.EbsInstanceBlockDevice = {
 
 M.InstanceBlockDeviceMapping = {
     type = "structure",
+    id = "InstanceBlockDeviceMapping",
     members = {
         deviceName = {
             type = "string",
@@ -363,6 +385,7 @@ M.InstanceBlockDeviceMapping = {
 
 M.SecurityGroupIdentifier = {
     type = "structure",
+    id = "SecurityGroupIdentifier",
     members = {
         groupId = {
             type = "string",
@@ -384,6 +407,7 @@ M.InstanceStateName = {
 
 M.InstanceState = {
     type = "structure",
+    id = "InstanceState",
     members = {
         code = {
             type = "integer",
@@ -396,6 +420,7 @@ M.InstanceState = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         imageId = {
             type = "string",
@@ -439,6 +464,7 @@ M.Instance = {
 
 M.InstanceSummary = {
     type = "structure",
+    id = "InstanceSummary",
     members = {
         instance = M.Instance,
         lastUpdatedAt = {
@@ -449,6 +475,7 @@ M.InstanceSummary = {
 
 M.DescribeDeviceEc2InstancesOutput = {
     type = "structure",
+    id = "DescribeDeviceEc2InstancesOutput",
     members = {
         instances = {
             type = "list",
@@ -459,6 +486,7 @@ M.DescribeDeviceEc2InstancesOutput = {
 
 M.DescribeExecutionInput = {
     type = "structure",
+    id = "DescribeExecutionInput",
     members = {
         taskId = {
             type = "string",
@@ -489,6 +517,7 @@ M.ExecutionState = {
 
 M.DescribeExecutionOutput = {
     type = "structure",
+    id = "DescribeExecutionOutput",
     members = {
         taskId = {
             type = "string",
@@ -513,6 +542,7 @@ M.DescribeExecutionOutput = {
 
 M.DescribeTaskInput = {
     type = "structure",
+    id = "DescribeTaskInput",
     members = {
         taskId = {
             type = "string",
@@ -532,6 +562,7 @@ M.TaskState = {
 
 M.DescribeTaskOutput = {
     type = "structure",
+    id = "DescribeTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -568,6 +599,7 @@ M.DescribeTaskOutput = {
 
 M.DeviceSummary = {
     type = "structure",
+    id = "DeviceSummary",
     members = {
         managedDeviceId = {
             type = "string",
@@ -588,6 +620,7 @@ M.DeviceSummary = {
 
 M.ListExecutionsInput = {
     type = "structure",
+    id = "ListExecutionsInput",
     members = {
         taskId = {
             type = "string",
@@ -619,6 +652,7 @@ M.ListExecutionsInput = {
 
 M.ExecutionSummary = {
     type = "structure",
+    id = "ExecutionSummary",
     members = {
         taskId = {
             type = "string",
@@ -637,6 +671,7 @@ M.ExecutionSummary = {
 
 M.ListExecutionsOutput = {
     type = "structure",
+    id = "ListExecutionsOutput",
     members = {
         executions = {
             type = "list",
@@ -650,6 +685,7 @@ M.ListExecutionsOutput = {
 
 M.ListDeviceResourcesInput = {
     type = "structure",
+    id = "ListDeviceResourcesInput",
     members = {
         managedDeviceId = {
             type = "string",
@@ -681,6 +717,7 @@ M.ListDeviceResourcesInput = {
 
 M.ResourceSummary = {
     type = "structure",
+    id = "ResourceSummary",
     members = {
         resourceType = {
             type = "string",
@@ -699,6 +736,7 @@ M.ResourceSummary = {
 
 M.ListDeviceResourcesOutput = {
     type = "structure",
+    id = "ListDeviceResourcesOutput",
     members = {
         resources = {
             type = "list",
@@ -712,6 +750,7 @@ M.ListDeviceResourcesOutput = {
 
 M.ListDevicesInput = {
     type = "structure",
+    id = "ListDevicesInput",
     members = {
         jobId = {
             type = "string",
@@ -736,6 +775,7 @@ M.ListDevicesInput = {
 
 M.ListDevicesOutput = {
     type = "structure",
+    id = "ListDevicesOutput",
     members = {
         devices = {
             type = "list",
@@ -749,6 +789,7 @@ M.ListDevicesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -762,6 +803,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -773,6 +815,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTasksInput = {
     type = "structure",
+    id = "ListTasksInput",
     members = {
         state = {
             type = "string",
@@ -797,6 +840,7 @@ M.ListTasksInput = {
 
 M.TaskSummary = {
     type = "structure",
+    id = "TaskSummary",
     members = {
         taskId = {
             type = "string",
@@ -820,6 +864,7 @@ M.TaskSummary = {
 
 M.ListTasksOutput = {
     type = "structure",
+    id = "ListTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -833,6 +878,7 @@ M.ListTasksOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -854,10 +900,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -879,6 +927,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

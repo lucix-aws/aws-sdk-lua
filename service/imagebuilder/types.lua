@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.SeverityCounts = {
     type = "structure",
+    id = "SeverityCounts",
     members = {
         all = {
             type = "long",
@@ -30,6 +32,7 @@ M.SeverityCounts = {
 
 M.AccountAggregation = {
     type = "structure",
+    id = "AccountAggregation",
     members = {
         accountId = {
             type = "string",
@@ -40,6 +43,7 @@ M.AccountAggregation = {
 
 M.SystemsManagerAgent = {
     type = "structure",
+    id = "SystemsManagerAgent",
     members = {
         uninstallAfterBuild = {
             type = "boolean",
@@ -49,6 +53,7 @@ M.SystemsManagerAgent = {
 
 M.AdditionalInstanceConfiguration = {
     type = "structure",
+    id = "AdditionalInstanceConfiguration",
     members = {
         systemsManagerAgent = M.SystemsManagerAgent,
         userDataOverride = {
@@ -74,6 +79,7 @@ M.ImageStatus = {
 
 M.ImageState = {
     type = "structure",
+    id = "ImageState",
     members = {
         status = {
             type = "string",
@@ -86,6 +92,7 @@ M.ImageState = {
 
 M.Ami = {
     type = "structure",
+    id = "Ami",
     members = {
         region = {
             type = "string",
@@ -108,6 +115,7 @@ M.Ami = {
 
 M.LaunchPermissionConfiguration = {
     type = "structure",
+    id = "LaunchPermissionConfiguration",
     members = {
         userIds = {
             type = "list",
@@ -130,6 +138,7 @@ M.LaunchPermissionConfiguration = {
 
 M.AmiDistributionConfiguration = {
     type = "structure",
+    id = "AmiDistributionConfiguration",
     members = {
         name = {
             type = "string",
@@ -155,6 +164,7 @@ M.AmiDistributionConfiguration = {
 
 M.AutoDisablePolicy = {
     type = "structure",
+    id = "AutoDisablePolicy",
     members = {
         failureCount = {
             type = "integer",
@@ -174,6 +184,7 @@ M.BuildType = {
 
 M.CallRateLimitExceededException = {
     type = "structure",
+    id = "CallRateLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -184,6 +195,7 @@ M.CallRateLimitExceededException = {
 
 M.CancelImageCreationInput = {
     type = "structure",
+    id = "CancelImageCreationInput",
     members = {
         imageBuildVersionArn = {
             type = "string",
@@ -203,6 +215,7 @@ M.CancelImageCreationInput = {
 
 M.CancelImageCreationOutput = {
     type = "structure",
+    id = "CancelImageCreationOutput",
     members = {
         requestId = {
             type = "string",
@@ -218,6 +231,7 @@ M.CancelImageCreationOutput = {
 
 M.ClientException = {
     type = "structure",
+    id = "ClientException",
     error = "client",
     members = {
         message = {
@@ -228,6 +242,7 @@ M.ClientException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -238,6 +253,7 @@ M.ForbiddenException = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         message = {
@@ -248,6 +264,7 @@ M.IdempotentParameterMismatchException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -258,6 +275,7 @@ M.InvalidRequestException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -268,6 +286,7 @@ M.ResourceInUseException = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         message = {
@@ -278,6 +297,7 @@ M.ServiceException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -288,6 +308,7 @@ M.ServiceUnavailableException = {
 
 M.CancelLifecycleExecutionInput = {
     type = "structure",
+    id = "CancelLifecycleExecutionInput",
     members = {
         lifecycleExecutionId = {
             type = "string",
@@ -307,6 +328,7 @@ M.CancelLifecycleExecutionInput = {
 
 M.CancelLifecycleExecutionOutput = {
     type = "structure",
+    id = "CancelLifecycleExecutionOutput",
     members = {
         lifecycleExecutionId = {
             type = "string",
@@ -316,6 +338,7 @@ M.CancelLifecycleExecutionOutput = {
 
 M.ComponentParameterDetail = {
     type = "structure",
+    id = "ComponentParameterDetail",
     members = {
         name = {
             type = "string",
@@ -351,6 +374,7 @@ M.ProductCodeType = {
 
 M.ProductCodeListItem = {
     type = "structure",
+    id = "ProductCodeListItem",
     members = {
         productCodeId = {
             type = "string",
@@ -375,6 +399,7 @@ M.ComponentStatus = {
 
 M.ComponentState = {
     type = "structure",
+    id = "ComponentState",
     members = {
         status = {
             type = "string",
@@ -392,6 +417,7 @@ M.ComponentType = {
 
 M.Component = {
     type = "structure",
+    id = "Component",
     members = {
         arn = {
             type = "string",
@@ -461,6 +487,7 @@ M.Component = {
 
 M.ComponentParameter = {
     type = "structure",
+    id = "ComponentParameter",
     members = {
         name = {
             type = "string",
@@ -480,6 +507,7 @@ M.ComponentParameter = {
 
 M.ComponentConfiguration = {
     type = "structure",
+    id = "ComponentConfiguration",
     members = {
         componentArn = {
             type = "string",
@@ -500,6 +528,7 @@ M.ComponentFormat = {
 
 M.ComponentSummary = {
     type = "structure",
+    id = "ComponentSummary",
     members = {
         arn = {
             type = "string",
@@ -552,6 +581,7 @@ M.ComponentSummary = {
 
 M.ComponentVersion = {
     type = "structure",
+    id = "ComponentVersion",
     members = {
         arn = {
             type = "string",
@@ -593,6 +623,7 @@ M.ComponentVersion = {
 
 M.Container = {
     type = "structure",
+    id = "Container",
     members = {
         region = {
             type = "string",
@@ -610,6 +641,7 @@ M.ContainerRepositoryService = {
 
 M.TargetContainerRepository = {
     type = "structure",
+    id = "TargetContainerRepository",
     members = {
         service = {
             type = "string",
@@ -628,6 +660,7 @@ M.TargetContainerRepository = {
 
 M.ContainerDistributionConfiguration = {
     type = "structure",
+    id = "ContainerDistributionConfiguration",
     members = {
         description = {
             type = "string",
@@ -658,6 +691,7 @@ M.EbsVolumeType = {
 
 M.EbsInstanceBlockDeviceSpecification = {
     type = "structure",
+    id = "EbsInstanceBlockDeviceSpecification",
     members = {
         encrypted = {
             type = "boolean",
@@ -688,6 +722,7 @@ M.EbsInstanceBlockDeviceSpecification = {
 
 M.InstanceBlockDeviceMapping = {
     type = "structure",
+    id = "InstanceBlockDeviceMapping",
     members = {
         deviceName = {
             type = "string",
@@ -704,6 +739,7 @@ M.InstanceBlockDeviceMapping = {
 
 M.InstanceConfiguration = {
     type = "structure",
+    id = "InstanceConfiguration",
     members = {
         image = {
             type = "string",
@@ -717,6 +753,7 @@ M.InstanceConfiguration = {
 
 M.ContainerRecipe = {
     type = "structure",
+    id = "ContainerRecipe",
     members = {
         arn = {
             type = "string",
@@ -773,6 +810,7 @@ M.ContainerRecipe = {
 
 M.ContainerRecipeSummary = {
     type = "structure",
+    id = "ContainerRecipeSummary",
     members = {
         arn = {
             type = "string",
@@ -808,6 +846,7 @@ M.ContainerRecipeSummary = {
 
 M.CreateComponentInput = {
     type = "structure",
+    id = "CreateComponentInput",
     members = {
         name = {
             type = "string",
@@ -869,6 +908,7 @@ M.CreateComponentInput = {
 
 M.LatestVersionReferences = {
     type = "structure",
+    id = "LatestVersionReferences",
     members = {
         latestVersionArn = {
             type = "string",
@@ -887,6 +927,7 @@ M.LatestVersionReferences = {
 
 M.CreateComponentOutput = {
     type = "structure",
+    id = "CreateComponentOutput",
     members = {
         requestId = {
             type = "string",
@@ -903,6 +944,7 @@ M.CreateComponentOutput = {
 
 M.DryRunOperationException = {
     type = "structure",
+    id = "DryRunOperationException",
     error = "client",
     members = {
         message = {
@@ -913,6 +955,7 @@ M.DryRunOperationException = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         message = {
@@ -923,6 +966,7 @@ M.InvalidParameterCombinationException = {
 
 M.InvalidVersionNumberException = {
     type = "structure",
+    id = "InvalidVersionNumberException",
     error = "client",
     members = {
         message = {
@@ -933,6 +977,7 @@ M.InvalidVersionNumberException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -943,6 +988,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateContainerRecipeInput = {
     type = "structure",
+    id = "CreateContainerRecipeInput",
     members = {
         containerType = {
             type = "string",
@@ -1014,6 +1060,7 @@ M.CreateContainerRecipeInput = {
 
 M.CreateContainerRecipeOutput = {
     type = "structure",
+    id = "CreateContainerRecipeOutput",
     members = {
         requestId = {
             type = "string",
@@ -1030,6 +1077,7 @@ M.CreateContainerRecipeOutput = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -1040,6 +1088,7 @@ M.ResourceAlreadyExistsException = {
 
 M.FastLaunchLaunchTemplateSpecification = {
     type = "structure",
+    id = "FastLaunchLaunchTemplateSpecification",
     members = {
         launchTemplateId = {
             type = "string",
@@ -1055,6 +1104,7 @@ M.FastLaunchLaunchTemplateSpecification = {
 
 M.FastLaunchSnapshotConfiguration = {
     type = "structure",
+    id = "FastLaunchSnapshotConfiguration",
     members = {
         targetResourceCount = {
             type = "integer",
@@ -1064,6 +1114,7 @@ M.FastLaunchSnapshotConfiguration = {
 
 M.FastLaunchConfiguration = {
     type = "structure",
+    id = "FastLaunchConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -1085,6 +1136,7 @@ M.FastLaunchConfiguration = {
 
 M.LaunchTemplateConfiguration = {
     type = "structure",
+    id = "LaunchTemplateConfiguration",
     members = {
         launchTemplateId = {
             type = "string",
@@ -1112,6 +1164,7 @@ M.DiskImageFormat = {
 
 M.S3ExportConfiguration = {
     type = "structure",
+    id = "S3ExportConfiguration",
     members = {
         roleName = {
             type = "string",
@@ -1144,6 +1197,7 @@ M.SsmParameterDataType = {
 
 M.SsmParameterConfiguration = {
     type = "structure",
+    id = "SsmParameterConfiguration",
     members = {
         amiAccountId = {
             type = "string",
@@ -1162,6 +1216,7 @@ M.SsmParameterConfiguration = {
 
 M.Distribution = {
     type = "structure",
+    id = "Distribution",
     members = {
         region = {
             type = "string",
@@ -1193,6 +1248,7 @@ M.Distribution = {
 
 M.CreateDistributionConfigurationInput = {
     type = "structure",
+    id = "CreateDistributionConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -1227,6 +1283,7 @@ M.CreateDistributionConfigurationInput = {
 
 M.CreateDistributionConfigurationOutput = {
     type = "structure",
+    id = "CreateDistributionConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -1242,6 +1299,7 @@ M.CreateDistributionConfigurationOutput = {
 
 M.EcrConfiguration = {
     type = "structure",
+    id = "EcrConfiguration",
     members = {
         repositoryName = {
             type = "string",
@@ -1255,6 +1313,7 @@ M.EcrConfiguration = {
 
 M.ImageScanningConfiguration = {
     type = "structure",
+    id = "ImageScanningConfiguration",
     members = {
         imageScanningEnabled = {
             type = "boolean",
@@ -1265,6 +1324,7 @@ M.ImageScanningConfiguration = {
 
 M.ImageTestsConfiguration = {
     type = "structure",
+    id = "ImageTestsConfiguration",
     members = {
         imageTestsEnabled = {
             type = "boolean",
@@ -1277,6 +1337,7 @@ M.ImageTestsConfiguration = {
 
 M.ImageLoggingConfiguration = {
     type = "structure",
+    id = "ImageLoggingConfiguration",
     members = {
         logGroupName = {
             type = "string",
@@ -1291,6 +1352,7 @@ M.OnWorkflowFailure = {
 
 M.WorkflowParameter = {
     type = "structure",
+    id = "WorkflowParameter",
     members = {
         name = {
             type = "string",
@@ -1310,6 +1372,7 @@ M.WorkflowParameter = {
 
 M.WorkflowConfiguration = {
     type = "structure",
+    id = "WorkflowConfiguration",
     members = {
         workflowArn = {
             type = "string",
@@ -1332,6 +1395,7 @@ M.WorkflowConfiguration = {
 
 M.CreateImageInput = {
     type = "structure",
+    id = "CreateImageInput",
     members = {
         imageRecipeArn = {
             type = "string",
@@ -1378,6 +1442,7 @@ M.CreateImageInput = {
 
 M.CreateImageOutput = {
     type = "structure",
+    id = "CreateImageOutput",
     members = {
         requestId = {
             type = "string",
@@ -1394,6 +1459,7 @@ M.CreateImageOutput = {
 
 M.PipelineLoggingConfiguration = {
     type = "structure",
+    id = "PipelineLoggingConfiguration",
     members = {
         imageLogGroupName = {
             type = "string",
@@ -1411,6 +1477,7 @@ M.PipelineExecutionStartCondition = {
 
 M.Schedule = {
     type = "structure",
+    id = "Schedule",
     members = {
         scheduleExpression = {
             type = "string",
@@ -1432,6 +1499,7 @@ M.PipelineStatus = {
 
 M.CreateImagePipelineInput = {
     type = "structure",
+    id = "CreateImagePipelineInput",
     members = {
         name = {
             type = "string",
@@ -1496,6 +1564,7 @@ M.CreateImagePipelineInput = {
 
 M.CreateImagePipelineOutput = {
     type = "structure",
+    id = "CreateImagePipelineOutput",
     members = {
         requestId = {
             type = "string",
@@ -1511,6 +1580,7 @@ M.CreateImagePipelineOutput = {
 
 M.CreateImageRecipeInput = {
     type = "structure",
+    id = "CreateImageRecipeInput",
     members = {
         name = {
             type = "string",
@@ -1567,6 +1637,7 @@ M.CreateImageRecipeInput = {
 
 M.CreateImageRecipeOutput = {
     type = "structure",
+    id = "CreateImageRecipeOutput",
     members = {
         requestId = {
             type = "string",
@@ -1583,6 +1654,7 @@ M.CreateImageRecipeOutput = {
 
 M.InstanceMetadataOptions = {
     type = "structure",
+    id = "InstanceMetadataOptions",
     members = {
         httpTokens = {
             type = "string",
@@ -1595,6 +1667,7 @@ M.InstanceMetadataOptions = {
 
 M.S3Logs = {
     type = "structure",
+    id = "S3Logs",
     members = {
         s3BucketName = {
             type = "string",
@@ -1607,6 +1680,7 @@ M.S3Logs = {
 
 M.Logging = {
     type = "structure",
+    id = "Logging",
     members = {
         s3Logs = M.S3Logs,
     },
@@ -1620,6 +1694,7 @@ M.TenancyType = {
 
 M.Placement = {
     type = "structure",
+    id = "Placement",
     members = {
         availabilityZone = {
             type = "string",
@@ -1638,6 +1713,7 @@ M.Placement = {
 
 M.CreateInfrastructureConfigurationInput = {
     type = "structure",
+    id = "CreateInfrastructureConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -1699,6 +1775,7 @@ M.CreateInfrastructureConfigurationInput = {
 
 M.CreateInfrastructureConfigurationOutput = {
     type = "structure",
+    id = "CreateInfrastructureConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -1714,6 +1791,7 @@ M.CreateInfrastructureConfigurationOutput = {
 
 M.LifecyclePolicyDetailActionIncludeResources = {
     type = "structure",
+    id = "LifecyclePolicyDetailActionIncludeResources",
     members = {
         amis = {
             type = "boolean",
@@ -1744,6 +1822,7 @@ M.LifecyclePolicyDetailActionType = {
 
 M.LifecyclePolicyDetailAction = {
     type = "structure",
+    id = "LifecyclePolicyDetailAction",
     members = {
         type = {
             type = "string",
@@ -1764,6 +1843,7 @@ M.LifecyclePolicyTimeUnit = {
 
 M.LifecyclePolicyDetailExclusionRulesAmisLastLaunched = {
     type = "structure",
+    id = "LifecyclePolicyDetailExclusionRulesAmisLastLaunched",
     members = {
         value = {
             type = "integer",
@@ -1782,6 +1862,7 @@ M.LifecyclePolicyDetailExclusionRulesAmisLastLaunched = {
 
 M.LifecyclePolicyDetailExclusionRulesAmis = {
     type = "structure",
+    id = "LifecyclePolicyDetailExclusionRulesAmis",
     members = {
         isPublic = {
             type = "boolean",
@@ -1808,6 +1889,7 @@ M.LifecyclePolicyDetailExclusionRulesAmis = {
 
 M.LifecyclePolicyDetailExclusionRules = {
     type = "structure",
+    id = "LifecyclePolicyDetailExclusionRules",
     members = {
         tagMap = {
             type = "map",
@@ -1825,6 +1907,7 @@ M.LifecyclePolicyDetailFilterType = {
 
 M.LifecyclePolicyDetailFilter = {
     type = "structure",
+    id = "LifecyclePolicyDetailFilter",
     members = {
         type = {
             type = "string",
@@ -1849,6 +1932,7 @@ M.LifecyclePolicyDetailFilter = {
 
 M.LifecyclePolicyDetail = {
     type = "structure",
+    id = "LifecyclePolicyDetail",
     members = {
         action = setmetatable({ traits = {
             required = true,
@@ -1862,6 +1946,7 @@ M.LifecyclePolicyDetail = {
 
 M.LifecyclePolicyResourceSelectionRecipe = {
     type = "structure",
+    id = "LifecyclePolicyResourceSelectionRecipe",
     members = {
         name = {
             type = "string",
@@ -1880,6 +1965,7 @@ M.LifecyclePolicyResourceSelectionRecipe = {
 
 M.LifecyclePolicyResourceSelection = {
     type = "structure",
+    id = "LifecyclePolicyResourceSelection",
     members = {
         recipes = {
             type = "list",
@@ -1905,6 +1991,7 @@ M.LifecyclePolicyStatus = {
 
 M.CreateLifecyclePolicyInput = {
     type = "structure",
+    id = "CreateLifecyclePolicyInput",
     members = {
         name = {
             type = "string",
@@ -1957,6 +2044,7 @@ M.CreateLifecyclePolicyInput = {
 
 M.CreateLifecyclePolicyOutput = {
     type = "structure",
+    id = "CreateLifecyclePolicyOutput",
     members = {
         clientToken = {
             type = "string",
@@ -1975,6 +2063,7 @@ M.WorkflowType = {
 
 M.CreateWorkflowInput = {
     type = "structure",
+    id = "CreateWorkflowInput",
     members = {
         name = {
             type = "string",
@@ -2032,6 +2121,7 @@ M.CreateWorkflowInput = {
 
 M.CreateWorkflowOutput = {
     type = "structure",
+    id = "CreateWorkflowOutput",
     members = {
         clientToken = {
             type = "string",
@@ -2045,6 +2135,7 @@ M.CreateWorkflowOutput = {
 
 M.CvssScore = {
     type = "structure",
+    id = "CvssScore",
     members = {
         baseScore = {
             type = "double",
@@ -2063,6 +2154,7 @@ M.CvssScore = {
 
 M.CvssScoreAdjustment = {
     type = "structure",
+    id = "CvssScoreAdjustment",
     members = {
         metric = {
             type = "string",
@@ -2075,6 +2167,7 @@ M.CvssScoreAdjustment = {
 
 M.CvssScoreDetails = {
     type = "structure",
+    id = "CvssScoreDetails",
     members = {
         scoreSource = {
             type = "string",
@@ -2100,6 +2193,7 @@ M.CvssScoreDetails = {
 
 M.DeleteComponentInput = {
     type = "structure",
+    id = "DeleteComponentInput",
     members = {
         componentBuildVersionArn = {
             type = "string",
@@ -2113,6 +2207,7 @@ M.DeleteComponentInput = {
 
 M.DeleteComponentOutput = {
     type = "structure",
+    id = "DeleteComponentOutput",
     members = {
         requestId = {
             type = "string",
@@ -2125,6 +2220,7 @@ M.DeleteComponentOutput = {
 
 M.ResourceDependencyException = {
     type = "structure",
+    id = "ResourceDependencyException",
     error = "client",
     members = {
         message = {
@@ -2135,6 +2231,7 @@ M.ResourceDependencyException = {
 
 M.DeleteContainerRecipeInput = {
     type = "structure",
+    id = "DeleteContainerRecipeInput",
     members = {
         containerRecipeArn = {
             type = "string",
@@ -2148,6 +2245,7 @@ M.DeleteContainerRecipeInput = {
 
 M.DeleteContainerRecipeOutput = {
     type = "structure",
+    id = "DeleteContainerRecipeOutput",
     members = {
         requestId = {
             type = "string",
@@ -2160,6 +2258,7 @@ M.DeleteContainerRecipeOutput = {
 
 M.DeleteDistributionConfigurationInput = {
     type = "structure",
+    id = "DeleteDistributionConfigurationInput",
     members = {
         distributionConfigurationArn = {
             type = "string",
@@ -2173,6 +2272,7 @@ M.DeleteDistributionConfigurationInput = {
 
 M.DeleteDistributionConfigurationOutput = {
     type = "structure",
+    id = "DeleteDistributionConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -2185,6 +2285,7 @@ M.DeleteDistributionConfigurationOutput = {
 
 M.DeleteImageInput = {
     type = "structure",
+    id = "DeleteImageInput",
     members = {
         imageBuildVersionArn = {
             type = "string",
@@ -2198,6 +2299,7 @@ M.DeleteImageInput = {
 
 M.DeleteImageOutput = {
     type = "structure",
+    id = "DeleteImageOutput",
     members = {
         requestId = {
             type = "string",
@@ -2210,6 +2312,7 @@ M.DeleteImageOutput = {
 
 M.DeleteImagePipelineInput = {
     type = "structure",
+    id = "DeleteImagePipelineInput",
     members = {
         imagePipelineArn = {
             type = "string",
@@ -2223,6 +2326,7 @@ M.DeleteImagePipelineInput = {
 
 M.DeleteImagePipelineOutput = {
     type = "structure",
+    id = "DeleteImagePipelineOutput",
     members = {
         requestId = {
             type = "string",
@@ -2235,6 +2339,7 @@ M.DeleteImagePipelineOutput = {
 
 M.DeleteImageRecipeInput = {
     type = "structure",
+    id = "DeleteImageRecipeInput",
     members = {
         imageRecipeArn = {
             type = "string",
@@ -2248,6 +2353,7 @@ M.DeleteImageRecipeInput = {
 
 M.DeleteImageRecipeOutput = {
     type = "structure",
+    id = "DeleteImageRecipeOutput",
     members = {
         requestId = {
             type = "string",
@@ -2260,6 +2366,7 @@ M.DeleteImageRecipeOutput = {
 
 M.DeleteInfrastructureConfigurationInput = {
     type = "structure",
+    id = "DeleteInfrastructureConfigurationInput",
     members = {
         infrastructureConfigurationArn = {
             type = "string",
@@ -2273,6 +2380,7 @@ M.DeleteInfrastructureConfigurationInput = {
 
 M.DeleteInfrastructureConfigurationOutput = {
     type = "structure",
+    id = "DeleteInfrastructureConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -2285,6 +2393,7 @@ M.DeleteInfrastructureConfigurationOutput = {
 
 M.DeleteLifecyclePolicyInput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyInput",
     members = {
         lifecyclePolicyArn = {
             type = "string",
@@ -2298,6 +2407,7 @@ M.DeleteLifecyclePolicyInput = {
 
 M.DeleteLifecyclePolicyOutput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyOutput",
     members = {
         lifecyclePolicyArn = {
             type = "string",
@@ -2307,6 +2417,7 @@ M.DeleteLifecyclePolicyOutput = {
 
 M.DeleteWorkflowInput = {
     type = "structure",
+    id = "DeleteWorkflowInput",
     members = {
         workflowBuildVersionArn = {
             type = "string",
@@ -2320,6 +2431,7 @@ M.DeleteWorkflowInput = {
 
 M.DeleteWorkflowOutput = {
     type = "structure",
+    id = "DeleteWorkflowOutput",
     members = {
         workflowBuildVersionArn = {
             type = "string",
@@ -2329,6 +2441,7 @@ M.DeleteWorkflowOutput = {
 
 M.DistributeImageInput = {
     type = "structure",
+    id = "DistributeImageInput",
     members = {
         sourceImage = {
             type = "string",
@@ -2366,6 +2479,7 @@ M.DistributeImageInput = {
 
 M.DistributeImageOutput = {
     type = "structure",
+    id = "DistributeImageOutput",
     members = {
         clientToken = {
             type = "string",
@@ -2378,6 +2492,7 @@ M.DistributeImageOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2388,6 +2503,7 @@ M.ResourceNotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -2398,6 +2514,7 @@ M.TooManyRequestsException = {
 
 M.DistributionConfiguration = {
     type = "structure",
+    id = "DistributionConfiguration",
     members = {
         arn = {
             type = "string",
@@ -2434,6 +2551,7 @@ M.DistributionConfiguration = {
 
 M.DistributionConfigurationSummary = {
     type = "structure",
+    id = "DistributionConfigurationSummary",
     members = {
         arn = {
             type = "string",
@@ -2464,6 +2582,7 @@ M.DistributionConfigurationSummary = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         name = {
             type = "string",
@@ -2477,6 +2596,7 @@ M.Filter = {
 
 M.GetComponentInput = {
     type = "structure",
+    id = "GetComponentInput",
     members = {
         componentBuildVersionArn = {
             type = "string",
@@ -2490,6 +2610,7 @@ M.GetComponentInput = {
 
 M.GetComponentOutput = {
     type = "structure",
+    id = "GetComponentOutput",
     members = {
         requestId = {
             type = "string",
@@ -2501,6 +2622,7 @@ M.GetComponentOutput = {
 
 M.GetComponentPolicyInput = {
     type = "structure",
+    id = "GetComponentPolicyInput",
     members = {
         componentArn = {
             type = "string",
@@ -2514,6 +2636,7 @@ M.GetComponentPolicyInput = {
 
 M.GetComponentPolicyOutput = {
     type = "structure",
+    id = "GetComponentPolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -2526,6 +2649,7 @@ M.GetComponentPolicyOutput = {
 
 M.GetContainerRecipeInput = {
     type = "structure",
+    id = "GetContainerRecipeInput",
     members = {
         containerRecipeArn = {
             type = "string",
@@ -2539,6 +2663,7 @@ M.GetContainerRecipeInput = {
 
 M.GetContainerRecipeOutput = {
     type = "structure",
+    id = "GetContainerRecipeOutput",
     members = {
         requestId = {
             type = "string",
@@ -2550,6 +2675,7 @@ M.GetContainerRecipeOutput = {
 
 M.GetContainerRecipePolicyInput = {
     type = "structure",
+    id = "GetContainerRecipePolicyInput",
     members = {
         containerRecipeArn = {
             type = "string",
@@ -2563,6 +2689,7 @@ M.GetContainerRecipePolicyInput = {
 
 M.GetContainerRecipePolicyOutput = {
     type = "structure",
+    id = "GetContainerRecipePolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -2575,6 +2702,7 @@ M.GetContainerRecipePolicyOutput = {
 
 M.GetDistributionConfigurationInput = {
     type = "structure",
+    id = "GetDistributionConfigurationInput",
     members = {
         distributionConfigurationArn = {
             type = "string",
@@ -2588,6 +2716,7 @@ M.GetDistributionConfigurationInput = {
 
 M.GetDistributionConfigurationOutput = {
     type = "structure",
+    id = "GetDistributionConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -2598,6 +2727,7 @@ M.GetDistributionConfigurationOutput = {
 
 M.GetImageInput = {
     type = "structure",
+    id = "GetImageInput",
     members = {
         imageBuildVersionArn = {
             type = "string",
@@ -2616,6 +2746,7 @@ M.ImageType = {
 
 M.ImageRecipe = {
     type = "structure",
+    id = "ImageRecipe",
     members = {
         arn = {
             type = "string",
@@ -2678,6 +2809,7 @@ M.ImageSource = {
 
 M.InfrastructureConfiguration = {
     type = "structure",
+    id = "InfrastructureConfiguration",
     members = {
         arn = {
             type = "string",
@@ -2735,6 +2867,7 @@ M.InfrastructureConfiguration = {
 
 M.OutputResources = {
     type = "structure",
+    id = "OutputResources",
     members = {
         amis = {
             type = "list",
@@ -2759,6 +2892,7 @@ M.ImageScanStatus = {
 
 M.ImageScanState = {
     type = "structure",
+    id = "ImageScanState",
     members = {
         status = {
             type = "string",
@@ -2771,6 +2905,7 @@ M.ImageScanState = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         arn = {
             type = "string",
@@ -2841,6 +2976,7 @@ M.Image = {
 
 M.GetImageOutput = {
     type = "structure",
+    id = "GetImageOutput",
     members = {
         requestId = {
             type = "string",
@@ -2852,6 +2988,7 @@ M.GetImageOutput = {
 
 M.GetImagePipelineInput = {
     type = "structure",
+    id = "GetImagePipelineInput",
     members = {
         imagePipelineArn = {
             type = "string",
@@ -2865,6 +3002,7 @@ M.GetImagePipelineInput = {
 
 M.ImagePipeline = {
     type = "structure",
+    id = "ImagePipeline",
     members = {
         arn = {
             type = "string",
@@ -2940,6 +3078,7 @@ M.ImagePipeline = {
 
 M.GetImagePipelineOutput = {
     type = "structure",
+    id = "GetImagePipelineOutput",
     members = {
         requestId = {
             type = "string",
@@ -2950,6 +3089,7 @@ M.GetImagePipelineOutput = {
 
 M.GetImagePolicyInput = {
     type = "structure",
+    id = "GetImagePolicyInput",
     members = {
         imageArn = {
             type = "string",
@@ -2963,6 +3103,7 @@ M.GetImagePolicyInput = {
 
 M.GetImagePolicyOutput = {
     type = "structure",
+    id = "GetImagePolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -2975,6 +3116,7 @@ M.GetImagePolicyOutput = {
 
 M.GetImageRecipeInput = {
     type = "structure",
+    id = "GetImageRecipeInput",
     members = {
         imageRecipeArn = {
             type = "string",
@@ -2988,6 +3130,7 @@ M.GetImageRecipeInput = {
 
 M.GetImageRecipeOutput = {
     type = "structure",
+    id = "GetImageRecipeOutput",
     members = {
         requestId = {
             type = "string",
@@ -2999,6 +3142,7 @@ M.GetImageRecipeOutput = {
 
 M.GetImageRecipePolicyInput = {
     type = "structure",
+    id = "GetImageRecipePolicyInput",
     members = {
         imageRecipeArn = {
             type = "string",
@@ -3012,6 +3156,7 @@ M.GetImageRecipePolicyInput = {
 
 M.GetImageRecipePolicyOutput = {
     type = "structure",
+    id = "GetImageRecipePolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -3024,6 +3169,7 @@ M.GetImageRecipePolicyOutput = {
 
 M.GetInfrastructureConfigurationInput = {
     type = "structure",
+    id = "GetInfrastructureConfigurationInput",
     members = {
         infrastructureConfigurationArn = {
             type = "string",
@@ -3037,6 +3183,7 @@ M.GetInfrastructureConfigurationInput = {
 
 M.GetInfrastructureConfigurationOutput = {
     type = "structure",
+    id = "GetInfrastructureConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -3047,6 +3194,7 @@ M.GetInfrastructureConfigurationOutput = {
 
 M.GetLifecycleExecutionInput = {
     type = "structure",
+    id = "GetLifecycleExecutionInput",
     members = {
         lifecycleExecutionId = {
             type = "string",
@@ -3060,6 +3208,7 @@ M.GetLifecycleExecutionInput = {
 
 M.LifecycleExecutionResourcesImpactedSummary = {
     type = "structure",
+    id = "LifecycleExecutionResourcesImpactedSummary",
     members = {
         hasImpactedResources = {
             type = "boolean",
@@ -3081,6 +3230,7 @@ M.LifecycleExecutionStatus = {
 
 M.LifecycleExecutionState = {
     type = "structure",
+    id = "LifecycleExecutionState",
     members = {
         status = {
             type = "string",
@@ -3093,6 +3243,7 @@ M.LifecycleExecutionState = {
 
 M.LifecycleExecution = {
     type = "structure",
+    id = "LifecycleExecution",
     members = {
         lifecycleExecutionId = {
             type = "string",
@@ -3113,6 +3264,7 @@ M.LifecycleExecution = {
 
 M.GetLifecycleExecutionOutput = {
     type = "structure",
+    id = "GetLifecycleExecutionOutput",
     members = {
         lifecycleExecution = M.LifecycleExecution,
     },
@@ -3120,6 +3272,7 @@ M.GetLifecycleExecutionOutput = {
 
 M.GetLifecyclePolicyInput = {
     type = "structure",
+    id = "GetLifecyclePolicyInput",
     members = {
         lifecyclePolicyArn = {
             type = "string",
@@ -3133,6 +3286,7 @@ M.GetLifecyclePolicyInput = {
 
 M.LifecyclePolicy = {
     type = "structure",
+    id = "LifecyclePolicy",
     members = {
         arn = {
             type = "string",
@@ -3176,6 +3330,7 @@ M.LifecyclePolicy = {
 
 M.GetLifecyclePolicyOutput = {
     type = "structure",
+    id = "GetLifecyclePolicyOutput",
     members = {
         lifecyclePolicy = M.LifecyclePolicy,
     },
@@ -3188,6 +3343,7 @@ M.MarketplaceResourceType = {
 
 M.GetMarketplaceResourceInput = {
     type = "structure",
+    id = "GetMarketplaceResourceInput",
     members = {
         resourceType = {
             type = "string",
@@ -3209,6 +3365,7 @@ M.GetMarketplaceResourceInput = {
 
 M.GetMarketplaceResourceOutput = {
     type = "structure",
+    id = "GetMarketplaceResourceOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -3224,6 +3381,7 @@ M.GetMarketplaceResourceOutput = {
 
 M.GetWorkflowInput = {
     type = "structure",
+    id = "GetWorkflowInput",
     members = {
         workflowBuildVersionArn = {
             type = "string",
@@ -3237,6 +3395,7 @@ M.GetWorkflowInput = {
 
 M.WorkflowParameterDetail = {
     type = "structure",
+    id = "WorkflowParameterDetail",
     members = {
         name = {
             type = "string",
@@ -3266,6 +3425,7 @@ M.WorkflowStatus = {
 
 M.WorkflowState = {
     type = "structure",
+    id = "WorkflowState",
     members = {
         status = {
             type = "string",
@@ -3278,6 +3438,7 @@ M.WorkflowState = {
 
 M.Workflow = {
     type = "structure",
+    id = "Workflow",
     members = {
         arn = {
             type = "string",
@@ -3324,6 +3485,7 @@ M.Workflow = {
 
 M.GetWorkflowOutput = {
     type = "structure",
+    id = "GetWorkflowOutput",
     members = {
         workflow = M.Workflow,
         latestVersionReferences = M.LatestVersionReferences,
@@ -3332,6 +3494,7 @@ M.GetWorkflowOutput = {
 
 M.GetWorkflowExecutionInput = {
     type = "structure",
+    id = "GetWorkflowExecutionInput",
     members = {
         workflowExecutionId = {
             type = "string",
@@ -3356,6 +3519,7 @@ M.WorkflowExecutionStatus = {
 
 M.GetWorkflowExecutionOutput = {
     type = "structure",
+    id = "GetWorkflowExecutionOutput",
     members = {
         requestId = {
             type = "string",
@@ -3416,6 +3580,7 @@ M.GetWorkflowExecutionOutput = {
 
 M.GetWorkflowStepExecutionInput = {
     type = "structure",
+    id = "GetWorkflowStepExecutionInput",
     members = {
         stepExecutionId = {
             type = "string",
@@ -3445,6 +3610,7 @@ M.WorkflowStepExecutionStatus = {
 
 M.GetWorkflowStepExecutionOutput = {
     type = "structure",
+    id = "GetWorkflowStepExecutionOutput",
     members = {
         requestId = {
             type = "string",
@@ -3502,6 +3668,7 @@ M.GetWorkflowStepExecutionOutput = {
 
 M.ImageAggregation = {
     type = "structure",
+    id = "ImageAggregation",
     members = {
         imageBuildVersionArn = {
             type = "string",
@@ -3512,6 +3679,7 @@ M.ImageAggregation = {
 
 M.ImportComponentInput = {
     type = "structure",
+    id = "ImportComponentInput",
     members = {
         name = {
             type = "string",
@@ -3575,6 +3743,7 @@ M.ImportComponentInput = {
 
 M.ImportComponentOutput = {
     type = "structure",
+    id = "ImportComponentOutput",
     members = {
         requestId = {
             type = "string",
@@ -3590,6 +3759,7 @@ M.ImportComponentOutput = {
 
 M.RegisterImageOptions = {
     type = "structure",
+    id = "RegisterImageOptions",
     members = {
         secureBootEnabled = {
             type = "boolean",
@@ -3602,6 +3772,7 @@ M.RegisterImageOptions = {
 
 M.WindowsConfiguration = {
     type = "structure",
+    id = "WindowsConfiguration",
     members = {
         imageIndex = {
             type = "long",
@@ -3614,6 +3785,7 @@ M.WindowsConfiguration = {
 
 M.ImportDiskImageInput = {
     type = "structure",
+    id = "ImportDiskImageInput",
     members = {
         name = {
             type = "string",
@@ -3677,6 +3849,7 @@ M.ImportDiskImageInput = {
 
 M.ImportDiskImageOutput = {
     type = "structure",
+    id = "ImportDiskImageOutput",
     members = {
         clientToken = {
             type = "string",
@@ -3689,6 +3862,7 @@ M.ImportDiskImageOutput = {
 
 M.ImportVmImageInput = {
     type = "structure",
+    id = "ImportVmImageInput",
     members = {
         name = {
             type = "string",
@@ -3738,6 +3912,7 @@ M.ImportVmImageInput = {
 
 M.ImportVmImageOutput = {
     type = "structure",
+    id = "ImportVmImageOutput",
     members = {
         requestId = {
             type = "string",
@@ -3753,6 +3928,7 @@ M.ImportVmImageOutput = {
 
 M.InvalidPaginationTokenException = {
     type = "structure",
+    id = "InvalidPaginationTokenException",
     error = "client",
     members = {
         message = {
@@ -3763,6 +3939,7 @@ M.InvalidPaginationTokenException = {
 
 M.ListComponentBuildVersionsInput = {
     type = "structure",
+    id = "ListComponentBuildVersionsInput",
     members = {
         componentVersionArn = {
             type = "string",
@@ -3778,6 +3955,7 @@ M.ListComponentBuildVersionsInput = {
 
 M.ListComponentBuildVersionsOutput = {
     type = "structure",
+    id = "ListComponentBuildVersionsOutput",
     members = {
         requestId = {
             type = "string",
@@ -3802,6 +3980,7 @@ M.Ownership = {
 
 M.ListComponentsInput = {
     type = "structure",
+    id = "ListComponentsInput",
     members = {
         owner = {
             type = "string",
@@ -3827,6 +4006,7 @@ M.ListComponentsInput = {
 
 M.ListComponentsOutput = {
     type = "structure",
+    id = "ListComponentsOutput",
     members = {
         requestId = {
             type = "string",
@@ -3843,6 +4023,7 @@ M.ListComponentsOutput = {
 
 M.ListContainerRecipesInput = {
     type = "structure",
+    id = "ListContainerRecipesInput",
     members = {
         owner = {
             type = "string",
@@ -3862,6 +4043,7 @@ M.ListContainerRecipesInput = {
 
 M.ListContainerRecipesOutput = {
     type = "structure",
+    id = "ListContainerRecipesOutput",
     members = {
         requestId = {
             type = "string",
@@ -3878,6 +4060,7 @@ M.ListContainerRecipesOutput = {
 
 M.ListDistributionConfigurationsInput = {
     type = "structure",
+    id = "ListDistributionConfigurationsInput",
     members = {
         filters = {
             type = "list",
@@ -3894,6 +4077,7 @@ M.ListDistributionConfigurationsInput = {
 
 M.ListDistributionConfigurationsOutput = {
     type = "structure",
+    id = "ListDistributionConfigurationsOutput",
     members = {
         requestId = {
             type = "string",
@@ -3910,6 +4094,7 @@ M.ListDistributionConfigurationsOutput = {
 
 M.ListImageBuildVersionsInput = {
     type = "structure",
+    id = "ListImageBuildVersionsInput",
     members = {
         imageVersionArn = {
             type = "string",
@@ -3929,6 +4114,7 @@ M.ListImageBuildVersionsInput = {
 
 M.ImageSummary = {
     type = "structure",
+    id = "ImageSummary",
     members = {
         arn = {
             type = "string",
@@ -3979,6 +4165,7 @@ M.ImageSummary = {
 
 M.ListImageBuildVersionsOutput = {
     type = "structure",
+    id = "ListImageBuildVersionsOutput",
     members = {
         requestId = {
             type = "string",
@@ -3995,6 +4182,7 @@ M.ListImageBuildVersionsOutput = {
 
 M.ListImagePackagesInput = {
     type = "structure",
+    id = "ListImagePackagesInput",
     members = {
         imageBuildVersionArn = {
             type = "string",
@@ -4013,6 +4201,7 @@ M.ListImagePackagesInput = {
 
 M.ImagePackage = {
     type = "structure",
+    id = "ImagePackage",
     members = {
         packageName = {
             type = "string",
@@ -4025,6 +4214,7 @@ M.ImagePackage = {
 
 M.ListImagePackagesOutput = {
     type = "structure",
+    id = "ListImagePackagesOutput",
     members = {
         requestId = {
             type = "string",
@@ -4041,6 +4231,7 @@ M.ListImagePackagesOutput = {
 
 M.ListImagePipelineImagesInput = {
     type = "structure",
+    id = "ListImagePipelineImagesInput",
     members = {
         imagePipelineArn = {
             type = "string",
@@ -4063,6 +4254,7 @@ M.ListImagePipelineImagesInput = {
 
 M.ListImagePipelineImagesOutput = {
     type = "structure",
+    id = "ListImagePipelineImagesOutput",
     members = {
         requestId = {
             type = "string",
@@ -4079,6 +4271,7 @@ M.ListImagePipelineImagesOutput = {
 
 M.ListImagePipelinesInput = {
     type = "structure",
+    id = "ListImagePipelinesInput",
     members = {
         filters = {
             type = "list",
@@ -4095,6 +4288,7 @@ M.ListImagePipelinesInput = {
 
 M.ListImagePipelinesOutput = {
     type = "structure",
+    id = "ListImagePipelinesOutput",
     members = {
         requestId = {
             type = "string",
@@ -4111,6 +4305,7 @@ M.ListImagePipelinesOutput = {
 
 M.ListImageRecipesInput = {
     type = "structure",
+    id = "ListImageRecipesInput",
     members = {
         owner = {
             type = "string",
@@ -4130,6 +4325,7 @@ M.ListImageRecipesInput = {
 
 M.ImageRecipeSummary = {
     type = "structure",
+    id = "ImageRecipeSummary",
     members = {
         arn = {
             type = "string",
@@ -4159,6 +4355,7 @@ M.ImageRecipeSummary = {
 
 M.ListImageRecipesOutput = {
     type = "structure",
+    id = "ListImageRecipesOutput",
     members = {
         requestId = {
             type = "string",
@@ -4175,6 +4372,7 @@ M.ListImageRecipesOutput = {
 
 M.ListImagesInput = {
     type = "structure",
+    id = "ListImagesInput",
     members = {
         owner = {
             type = "string",
@@ -4203,6 +4401,7 @@ M.ListImagesInput = {
 
 M.ImageVersion = {
     type = "structure",
+    id = "ImageVersion",
     members = {
         arn = {
             type = "string",
@@ -4239,6 +4438,7 @@ M.ImageVersion = {
 
 M.ListImagesOutput = {
     type = "structure",
+    id = "ListImagesOutput",
     members = {
         requestId = {
             type = "string",
@@ -4255,6 +4455,7 @@ M.ListImagesOutput = {
 
 M.ListImageScanFindingAggregationsInput = {
     type = "structure",
+    id = "ListImageScanFindingAggregationsInput",
     members = {
         filter = M.Filter,
         nextToken = {
@@ -4265,6 +4466,7 @@ M.ListImageScanFindingAggregationsInput = {
 
 M.ImagePipelineAggregation = {
     type = "structure",
+    id = "ImagePipelineAggregation",
     members = {
         imagePipelineArn = {
             type = "string",
@@ -4275,6 +4477,7 @@ M.ImagePipelineAggregation = {
 
 M.VulnerabilityIdAggregation = {
     type = "structure",
+    id = "VulnerabilityIdAggregation",
     members = {
         vulnerabilityId = {
             type = "string",
@@ -4285,6 +4488,7 @@ M.VulnerabilityIdAggregation = {
 
 M.ImageScanFindingAggregation = {
     type = "structure",
+    id = "ImageScanFindingAggregation",
     members = {
         accountAggregation = M.AccountAggregation,
         imageAggregation = M.ImageAggregation,
@@ -4295,6 +4499,7 @@ M.ImageScanFindingAggregation = {
 
 M.ListImageScanFindingAggregationsOutput = {
     type = "structure",
+    id = "ListImageScanFindingAggregationsOutput",
     members = {
         requestId = {
             type = "string",
@@ -4314,6 +4519,7 @@ M.ListImageScanFindingAggregationsOutput = {
 
 M.ImageScanFindingsFilter = {
     type = "structure",
+    id = "ImageScanFindingsFilter",
     members = {
         name = {
             type = "string",
@@ -4327,6 +4533,7 @@ M.ImageScanFindingsFilter = {
 
 M.ListImageScanFindingsInput = {
     type = "structure",
+    id = "ListImageScanFindingsInput",
     members = {
         filters = {
             type = "list",
@@ -4343,6 +4550,7 @@ M.ListImageScanFindingsInput = {
 
 M.InspectorScoreDetails = {
     type = "structure",
+    id = "InspectorScoreDetails",
     members = {
         adjustedCvss = M.CvssScoreDetails,
     },
@@ -4350,6 +4558,7 @@ M.InspectorScoreDetails = {
 
 M.VulnerablePackage = {
     type = "structure",
+    id = "VulnerablePackage",
     members = {
         name = {
             type = "string",
@@ -4386,6 +4595,7 @@ M.VulnerablePackage = {
 
 M.PackageVulnerabilityDetails = {
     type = "structure",
+    id = "PackageVulnerabilityDetails",
     members = {
         vulnerabilityId = {
             type = "string",
@@ -4429,6 +4639,7 @@ M.PackageVulnerabilityDetails = {
 
 M.RemediationRecommendation = {
     type = "structure",
+    id = "RemediationRecommendation",
     members = {
         text = {
             type = "string",
@@ -4441,6 +4652,7 @@ M.RemediationRecommendation = {
 
 M.Remediation = {
     type = "structure",
+    id = "Remediation",
     members = {
         recommendation = M.RemediationRecommendation,
     },
@@ -4448,6 +4660,7 @@ M.Remediation = {
 
 M.ImageScanFinding = {
     type = "structure",
+    id = "ImageScanFinding",
     members = {
         awsAccountId = {
             type = "string",
@@ -4490,6 +4703,7 @@ M.ImageScanFinding = {
 
 M.ListImageScanFindingsOutput = {
     type = "structure",
+    id = "ListImageScanFindingsOutput",
     members = {
         requestId = {
             type = "string",
@@ -4506,6 +4720,7 @@ M.ListImageScanFindingsOutput = {
 
 M.ListInfrastructureConfigurationsInput = {
     type = "structure",
+    id = "ListInfrastructureConfigurationsInput",
     members = {
         filters = {
             type = "list",
@@ -4522,6 +4737,7 @@ M.ListInfrastructureConfigurationsInput = {
 
 M.InfrastructureConfigurationSummary = {
     type = "structure",
+    id = "InfrastructureConfigurationSummary",
     members = {
         arn = {
             type = "string",
@@ -4561,6 +4777,7 @@ M.InfrastructureConfigurationSummary = {
 
 M.ListInfrastructureConfigurationsOutput = {
     type = "structure",
+    id = "ListInfrastructureConfigurationsOutput",
     members = {
         requestId = {
             type = "string",
@@ -4577,6 +4794,7 @@ M.ListInfrastructureConfigurationsOutput = {
 
 M.ListLifecycleExecutionResourcesInput = {
     type = "structure",
+    id = "ListLifecycleExecutionResourcesInput",
     members = {
         lifecycleExecutionId = {
             type = "string",
@@ -4605,6 +4823,7 @@ M.LifecycleExecutionResourceActionName = {
 
 M.LifecycleExecutionResourceAction = {
     type = "structure",
+    id = "LifecycleExecutionResourceAction",
     members = {
         name = {
             type = "string",
@@ -4624,6 +4843,7 @@ M.LifecycleExecutionResourceStatus = {
 
 M.LifecycleExecutionResourceState = {
     type = "structure",
+    id = "LifecycleExecutionResourceState",
     members = {
         status = {
             type = "string",
@@ -4636,6 +4856,7 @@ M.LifecycleExecutionResourceState = {
 
 M.LifecycleExecutionSnapshotResource = {
     type = "structure",
+    id = "LifecycleExecutionSnapshotResource",
     members = {
         snapshotId = {
             type = "string",
@@ -4646,6 +4867,7 @@ M.LifecycleExecutionSnapshotResource = {
 
 M.LifecycleExecutionResource = {
     type = "structure",
+    id = "LifecycleExecutionResource",
     members = {
         accountId = {
             type = "string",
@@ -4677,6 +4899,7 @@ M.LifecycleExecutionResource = {
 
 M.ListLifecycleExecutionResourcesOutput = {
     type = "structure",
+    id = "ListLifecycleExecutionResourcesOutput",
     members = {
         lifecycleExecutionId = {
             type = "string",
@@ -4694,6 +4917,7 @@ M.ListLifecycleExecutionResourcesOutput = {
 
 M.ListLifecycleExecutionsInput = {
     type = "structure",
+    id = "ListLifecycleExecutionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4712,6 +4936,7 @@ M.ListLifecycleExecutionsInput = {
 
 M.ListLifecycleExecutionsOutput = {
     type = "structure",
+    id = "ListLifecycleExecutionsOutput",
     members = {
         lifecycleExecutions = {
             type = "list",
@@ -4725,6 +4950,7 @@ M.ListLifecycleExecutionsOutput = {
 
 M.ListLifecyclePoliciesInput = {
     type = "structure",
+    id = "ListLifecyclePoliciesInput",
     members = {
         filters = {
             type = "list",
@@ -4741,6 +4967,7 @@ M.ListLifecyclePoliciesInput = {
 
 M.LifecyclePolicySummary = {
     type = "structure",
+    id = "LifecyclePolicySummary",
     members = {
         arn = {
             type = "string",
@@ -4779,6 +5006,7 @@ M.LifecyclePolicySummary = {
 
 M.ListLifecyclePoliciesOutput = {
     type = "structure",
+    id = "ListLifecyclePoliciesOutput",
     members = {
         lifecyclePolicySummaryList = {
             type = "list",
@@ -4792,6 +5020,7 @@ M.ListLifecyclePoliciesOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -4802,6 +5031,7 @@ M.InvalidParameterException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4815,6 +5045,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -4826,6 +5057,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWaitingWorkflowStepsInput = {
     type = "structure",
+    id = "ListWaitingWorkflowStepsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4838,6 +5070,7 @@ M.ListWaitingWorkflowStepsInput = {
 
 M.WorkflowStepExecution = {
     type = "structure",
+    id = "WorkflowStepExecution",
     members = {
         stepExecutionId = {
             type = "string",
@@ -4865,6 +5098,7 @@ M.WorkflowStepExecution = {
 
 M.ListWaitingWorkflowStepsOutput = {
     type = "structure",
+    id = "ListWaitingWorkflowStepsOutput",
     members = {
         steps = {
             type = "list",
@@ -4878,6 +5112,7 @@ M.ListWaitingWorkflowStepsOutput = {
 
 M.ListWorkflowBuildVersionsInput = {
     type = "structure",
+    id = "ListWorkflowBuildVersionsInput",
     members = {
         workflowVersionArn = {
             type = "string",
@@ -4893,6 +5128,7 @@ M.ListWorkflowBuildVersionsInput = {
 
 M.WorkflowSummary = {
     type = "structure",
+    id = "WorkflowSummary",
     members = {
         arn = {
             type = "string",
@@ -4929,6 +5165,7 @@ M.WorkflowSummary = {
 
 M.ListWorkflowBuildVersionsOutput = {
     type = "structure",
+    id = "ListWorkflowBuildVersionsOutput",
     members = {
         workflowSummaryList = {
             type = "list",
@@ -4942,6 +5179,7 @@ M.ListWorkflowBuildVersionsOutput = {
 
 M.ListWorkflowExecutionsInput = {
     type = "structure",
+    id = "ListWorkflowExecutionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4960,6 +5198,7 @@ M.ListWorkflowExecutionsInput = {
 
 M.WorkflowExecutionMetadata = {
     type = "structure",
+    id = "WorkflowExecutionMetadata",
     members = {
         workflowBuildVersionArn = {
             type = "string",
@@ -5017,6 +5256,7 @@ M.WorkflowExecutionMetadata = {
 
 M.ListWorkflowExecutionsOutput = {
     type = "structure",
+    id = "ListWorkflowExecutionsOutput",
     members = {
         requestId = {
             type = "string",
@@ -5039,6 +5279,7 @@ M.ListWorkflowExecutionsOutput = {
 
 M.ListWorkflowsInput = {
     type = "structure",
+    id = "ListWorkflowsInput",
     members = {
         owner = {
             type = "string",
@@ -5064,6 +5305,7 @@ M.ListWorkflowsInput = {
 
 M.WorkflowVersion = {
     type = "structure",
+    id = "WorkflowVersion",
     members = {
         arn = {
             type = "string",
@@ -5091,6 +5333,7 @@ M.WorkflowVersion = {
 
 M.ListWorkflowsOutput = {
     type = "structure",
+    id = "ListWorkflowsOutput",
     members = {
         workflowVersionList = {
             type = "list",
@@ -5104,6 +5347,7 @@ M.ListWorkflowsOutput = {
 
 M.ListWorkflowStepExecutionsInput = {
     type = "structure",
+    id = "ListWorkflowStepExecutionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -5122,6 +5366,7 @@ M.ListWorkflowStepExecutionsInput = {
 
 M.WorkflowStepMetadata = {
     type = "structure",
+    id = "WorkflowStepMetadata",
     members = {
         stepExecutionId = {
             type = "string",
@@ -5161,6 +5406,7 @@ M.WorkflowStepMetadata = {
 
 M.ListWorkflowStepExecutionsOutput = {
     type = "structure",
+    id = "ListWorkflowStepExecutionsOutput",
     members = {
         requestId = {
             type = "string",
@@ -5189,6 +5435,7 @@ M.ListWorkflowStepExecutionsOutput = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -5199,6 +5446,7 @@ M.InvalidParameterValueException = {
 
 M.PutComponentPolicyInput = {
     type = "structure",
+    id = "PutComponentPolicyInput",
     members = {
         componentArn = {
             type = "string",
@@ -5217,6 +5465,7 @@ M.PutComponentPolicyInput = {
 
 M.PutComponentPolicyOutput = {
     type = "structure",
+    id = "PutComponentPolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -5229,6 +5478,7 @@ M.PutComponentPolicyOutput = {
 
 M.PutContainerRecipePolicyInput = {
     type = "structure",
+    id = "PutContainerRecipePolicyInput",
     members = {
         containerRecipeArn = {
             type = "string",
@@ -5247,6 +5497,7 @@ M.PutContainerRecipePolicyInput = {
 
 M.PutContainerRecipePolicyOutput = {
     type = "structure",
+    id = "PutContainerRecipePolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -5259,6 +5510,7 @@ M.PutContainerRecipePolicyOutput = {
 
 M.PutImagePolicyInput = {
     type = "structure",
+    id = "PutImagePolicyInput",
     members = {
         imageArn = {
             type = "string",
@@ -5277,6 +5529,7 @@ M.PutImagePolicyInput = {
 
 M.PutImagePolicyOutput = {
     type = "structure",
+    id = "PutImagePolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -5289,6 +5542,7 @@ M.PutImagePolicyOutput = {
 
 M.PutImageRecipePolicyInput = {
     type = "structure",
+    id = "PutImageRecipePolicyInput",
     members = {
         imageRecipeArn = {
             type = "string",
@@ -5307,6 +5561,7 @@ M.PutImageRecipePolicyInput = {
 
 M.PutImageRecipePolicyOutput = {
     type = "structure",
+    id = "PutImageRecipePolicyOutput",
     members = {
         requestId = {
             type = "string",
@@ -5319,6 +5574,7 @@ M.PutImageRecipePolicyOutput = {
 
 M.RetryImageInput = {
     type = "structure",
+    id = "RetryImageInput",
     members = {
         imageBuildVersionArn = {
             type = "string",
@@ -5338,6 +5594,7 @@ M.RetryImageInput = {
 
 M.RetryImageOutput = {
     type = "structure",
+    id = "RetryImageOutput",
     members = {
         clientToken = {
             type = "string",
@@ -5355,6 +5612,7 @@ M.WorkflowStepActionType = {
 
 M.SendWorkflowStepActionInput = {
     type = "structure",
+    id = "SendWorkflowStepActionInput",
     members = {
         stepExecutionId = {
             type = "string",
@@ -5389,6 +5647,7 @@ M.SendWorkflowStepActionInput = {
 
 M.SendWorkflowStepActionOutput = {
     type = "structure",
+    id = "SendWorkflowStepActionOutput",
     members = {
         stepExecutionId = {
             type = "string",
@@ -5404,6 +5663,7 @@ M.SendWorkflowStepActionOutput = {
 
 M.StartImagePipelineExecutionInput = {
     type = "structure",
+    id = "StartImagePipelineExecutionInput",
     members = {
         imagePipelineArn = {
             type = "string",
@@ -5428,6 +5688,7 @@ M.StartImagePipelineExecutionInput = {
 
 M.StartImagePipelineExecutionOutput = {
     type = "structure",
+    id = "StartImagePipelineExecutionOutput",
     members = {
         requestId = {
             type = "string",
@@ -5443,6 +5704,7 @@ M.StartImagePipelineExecutionOutput = {
 
 M.ResourceStateUpdateExclusionRules = {
     type = "structure",
+    id = "ResourceStateUpdateExclusionRules",
     members = {
         amis = M.LifecyclePolicyDetailExclusionRulesAmis,
     },
@@ -5450,6 +5712,7 @@ M.ResourceStateUpdateExclusionRules = {
 
 M.ResourceStateUpdateIncludeResources = {
     type = "structure",
+    id = "ResourceStateUpdateIncludeResources",
     members = {
         amis = {
             type = "boolean",
@@ -5481,6 +5744,7 @@ M.ResourceStatus = {
 
 M.ResourceState = {
     type = "structure",
+    id = "ResourceState",
     members = {
         status = {
             type = "string",
@@ -5490,6 +5754,7 @@ M.ResourceState = {
 
 M.StartResourceStateUpdateInput = {
     type = "structure",
+    id = "StartResourceStateUpdateInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5520,6 +5785,7 @@ M.StartResourceStateUpdateInput = {
 
 M.StartResourceStateUpdateOutput = {
     type = "structure",
+    id = "StartResourceStateUpdateOutput",
     members = {
         lifecycleExecutionId = {
             type = "string",
@@ -5532,6 +5798,7 @@ M.StartResourceStateUpdateOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5553,10 +5820,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5578,10 +5847,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDistributionConfigurationInput = {
     type = "structure",
+    id = "UpdateDistributionConfigurationInput",
     members = {
         distributionConfigurationArn = {
             type = "string",
@@ -5611,6 +5882,7 @@ M.UpdateDistributionConfigurationInput = {
 
 M.UpdateDistributionConfigurationOutput = {
     type = "structure",
+    id = "UpdateDistributionConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -5626,6 +5898,7 @@ M.UpdateDistributionConfigurationOutput = {
 
 M.UpdateImagePipelineInput = {
     type = "structure",
+    id = "UpdateImagePipelineInput",
     members = {
         imagePipelineArn = {
             type = "string",
@@ -5685,6 +5958,7 @@ M.UpdateImagePipelineInput = {
 
 M.UpdateImagePipelineOutput = {
     type = "structure",
+    id = "UpdateImagePipelineOutput",
     members = {
         requestId = {
             type = "string",
@@ -5700,6 +5974,7 @@ M.UpdateImagePipelineOutput = {
 
 M.UpdateInfrastructureConfigurationInput = {
     type = "structure",
+    id = "UpdateInfrastructureConfigurationInput",
     members = {
         infrastructureConfigurationArn = {
             type = "string",
@@ -5756,6 +6031,7 @@ M.UpdateInfrastructureConfigurationInput = {
 
 M.UpdateInfrastructureConfigurationOutput = {
     type = "structure",
+    id = "UpdateInfrastructureConfigurationOutput",
     members = {
         requestId = {
             type = "string",
@@ -5771,6 +6047,7 @@ M.UpdateInfrastructureConfigurationOutput = {
 
 M.UpdateLifecyclePolicyInput = {
     type = "structure",
+    id = "UpdateLifecyclePolicyInput",
     members = {
         lifecyclePolicyArn = {
             type = "string",
@@ -5818,6 +6095,7 @@ M.UpdateLifecyclePolicyInput = {
 
 M.UpdateLifecyclePolicyOutput = {
     type = "structure",
+    id = "UpdateLifecyclePolicyOutput",
     members = {
         lifecyclePolicyArn = {
             type = "string",

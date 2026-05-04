@@ -14,6 +14,7 @@ M.GroupLifecycleEventsStatus = {
 
 M.AccountSettings = {
     type = "structure",
+    id = "AccountSettings",
     members = {
         GroupLifecycleEventsDesiredStatus = {
             type = "string",
@@ -29,6 +30,7 @@ M.AccountSettings = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -39,6 +41,7 @@ M.BadRequestException = {
 
 M.CancelTagSyncTaskInput = {
     type = "structure",
+    id = "CancelTagSyncTaskInput",
     members = {
         TaskArn = {
             type = "string",
@@ -51,10 +54,12 @@ M.CancelTagSyncTaskInput = {
 
 M.CancelTagSyncTaskOutput = {
     type = "structure",
+    id = "CancelTagSyncTaskOutput",
 }
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Message = {
@@ -65,6 +70,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -75,6 +81,7 @@ M.InternalServerErrorException = {
 
 M.MethodNotAllowedException = {
     type = "structure",
+    id = "MethodNotAllowedException",
     error = "client",
     members = {
         Message = {
@@ -85,6 +92,7 @@ M.MethodNotAllowedException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -95,6 +103,7 @@ M.TooManyRequestsException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         Message = {
@@ -105,6 +114,7 @@ M.UnauthorizedException = {
 
 M.GroupConfigurationParameter = {
     type = "structure",
+    id = "GroupConfigurationParameter",
     members = {
         Name = {
             type = "string",
@@ -121,6 +131,7 @@ M.GroupConfigurationParameter = {
 
 M.GroupConfigurationItem = {
     type = "structure",
+    id = "GroupConfigurationItem",
     members = {
         Type = {
             type = "string",
@@ -142,6 +153,7 @@ M.QueryType = {
 
 M.ResourceQuery = {
     type = "structure",
+    id = "ResourceQuery",
     members = {
         Type = {
             type = "string",
@@ -160,6 +172,7 @@ M.ResourceQuery = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         Name = {
             type = "string",
@@ -194,6 +207,7 @@ M.CreateGroupInput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         GroupArn = {
             type = "string",
@@ -235,6 +249,7 @@ M.GroupConfigurationStatus = {
 
 M.GroupConfiguration = {
     type = "structure",
+    id = "GroupConfiguration",
     members = {
         Configuration = {
             type = "list",
@@ -255,6 +270,7 @@ M.GroupConfiguration = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         Group = M.Group,
         ResourceQuery = M.ResourceQuery,
@@ -269,6 +285,7 @@ M.CreateGroupOutput = {
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -281,6 +298,7 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -288,6 +306,7 @@ M.DeleteGroupOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -298,10 +317,12 @@ M.NotFoundException = {
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
 }
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         AccountSettings = M.AccountSettings,
     },
@@ -309,6 +330,7 @@ M.GetAccountSettingsOutput = {
 
 M.GetGroupInput = {
     type = "structure",
+    id = "GetGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -321,6 +343,7 @@ M.GetGroupInput = {
 
 M.GetGroupOutput = {
     type = "structure",
+    id = "GetGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -328,6 +351,7 @@ M.GetGroupOutput = {
 
 M.GetGroupConfigurationInput = {
     type = "structure",
+    id = "GetGroupConfigurationInput",
     members = {
         Group = {
             type = "string",
@@ -337,6 +361,7 @@ M.GetGroupConfigurationInput = {
 
 M.GetGroupConfigurationOutput = {
     type = "structure",
+    id = "GetGroupConfigurationOutput",
     members = {
         GroupConfiguration = M.GroupConfiguration,
     },
@@ -344,6 +369,7 @@ M.GetGroupConfigurationOutput = {
 
 M.GetGroupQueryInput = {
     type = "structure",
+    id = "GetGroupQueryInput",
     members = {
         GroupName = {
             type = "string",
@@ -356,6 +382,7 @@ M.GetGroupQueryInput = {
 
 M.GroupQuery = {
     type = "structure",
+    id = "GroupQuery",
     members = {
         GroupName = {
             type = "string",
@@ -371,6 +398,7 @@ M.GroupQuery = {
 
 M.GetGroupQueryOutput = {
     type = "structure",
+    id = "GetGroupQueryOutput",
     members = {
         GroupQuery = M.GroupQuery,
     },
@@ -378,6 +406,7 @@ M.GetGroupQueryOutput = {
 
 M.GetTagsInput = {
     type = "structure",
+    id = "GetTagsInput",
     members = {
         Arn = {
             type = "string",
@@ -391,6 +420,7 @@ M.GetTagsInput = {
 
 M.GetTagsOutput = {
     type = "structure",
+    id = "GetTagsOutput",
     members = {
         Arn = {
             type = "string",
@@ -405,6 +435,7 @@ M.GetTagsOutput = {
 
 M.GetTagSyncTaskInput = {
     type = "structure",
+    id = "GetTagSyncTaskInput",
     members = {
         TaskArn = {
             type = "string",
@@ -422,6 +453,7 @@ M.TagSyncTaskStatus = {
 
 M.GetTagSyncTaskOutput = {
     type = "structure",
+    id = "GetTagSyncTaskOutput",
     members = {
         GroupArn = {
             type = "string",
@@ -456,6 +488,7 @@ M.GetTagSyncTaskOutput = {
 
 M.GroupResourcesInput = {
     type = "structure",
+    id = "GroupResourcesInput",
     members = {
         Group = {
             type = "string",
@@ -475,6 +508,7 @@ M.GroupResourcesInput = {
 
 M.FailedResource = {
     type = "structure",
+    id = "FailedResource",
     members = {
         ResourceArn = {
             type = "string",
@@ -490,6 +524,7 @@ M.FailedResource = {
 
 M.PendingResource = {
     type = "structure",
+    id = "PendingResource",
     members = {
         ResourceArn = {
             type = "string",
@@ -499,6 +534,7 @@ M.PendingResource = {
 
 M.GroupResourcesOutput = {
     type = "structure",
+    id = "GroupResourcesOutput",
     members = {
         Succeeded = {
             type = "list",
@@ -522,6 +558,7 @@ M.ListGroupingStatusesFilterName = {
 
 M.ListGroupingStatusesFilter = {
     type = "structure",
+    id = "ListGroupingStatusesFilter",
     members = {
         Name = {
             type = "string",
@@ -541,6 +578,7 @@ M.ListGroupingStatusesFilter = {
 
 M.ListGroupingStatusesInput = {
     type = "structure",
+    id = "ListGroupingStatusesInput",
     members = {
         Group = {
             type = "string",
@@ -575,6 +613,7 @@ M.GroupingStatus = {
 
 M.GroupingStatusesItem = {
     type = "structure",
+    id = "GroupingStatusesItem",
     members = {
         ResourceArn = {
             type = "string",
@@ -599,6 +638,7 @@ M.GroupingStatusesItem = {
 
 M.ListGroupingStatusesOutput = {
     type = "structure",
+    id = "ListGroupingStatusesOutput",
     members = {
         Group = {
             type = "string",
@@ -619,6 +659,7 @@ M.ResourceFilterName = {
 
 M.ResourceFilter = {
     type = "structure",
+    id = "ResourceFilter",
     members = {
         Name = {
             type = "string",
@@ -638,6 +679,7 @@ M.ResourceFilter = {
 
 M.ListGroupResourcesInput = {
     type = "structure",
+    id = "ListGroupResourcesInput",
     members = {
         GroupName = {
             type = "string",
@@ -667,6 +709,7 @@ M.QueryErrorCode = {
 
 M.QueryError = {
     type = "structure",
+    id = "QueryError",
     members = {
         ErrorCode = {
             type = "string",
@@ -679,6 +722,7 @@ M.QueryError = {
 
 M.ResourceIdentifier = {
     type = "structure",
+    id = "ResourceIdentifier",
     members = {
         ResourceArn = {
             type = "string",
@@ -695,6 +739,7 @@ M.ResourceStatusValue = {
 
 M.ResourceStatus = {
     type = "structure",
+    id = "ResourceStatus",
     members = {
         Name = {
             type = "string",
@@ -704,6 +749,7 @@ M.ResourceStatus = {
 
 M.ListGroupResourcesItem = {
     type = "structure",
+    id = "ListGroupResourcesItem",
     members = {
         Identifier = M.ResourceIdentifier,
         Status = M.ResourceStatus,
@@ -712,6 +758,7 @@ M.ListGroupResourcesItem = {
 
 M.ListGroupResourcesOutput = {
     type = "structure",
+    id = "ListGroupResourcesOutput",
     members = {
         Resources = {
             type = "list",
@@ -741,6 +788,7 @@ M.GroupFilterName = {
 
 M.GroupFilter = {
     type = "structure",
+    id = "GroupFilter",
     members = {
         Name = {
             type = "string",
@@ -760,6 +808,7 @@ M.GroupFilter = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         Filters = {
             type = "list",
@@ -782,6 +831,7 @@ M.ListGroupsInput = {
 
 M.GroupIdentifier = {
     type = "structure",
+    id = "GroupIdentifier",
     members = {
         GroupName = {
             type = "string",
@@ -806,6 +856,7 @@ M.GroupIdentifier = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         GroupIdentifiers = {
             type = "list",
@@ -823,6 +874,7 @@ M.ListGroupsOutput = {
 
 M.ListTagSyncTasksFilter = {
     type = "structure",
+    id = "ListTagSyncTasksFilter",
     members = {
         GroupArn = {
             type = "string",
@@ -835,6 +887,7 @@ M.ListTagSyncTasksFilter = {
 
 M.ListTagSyncTasksInput = {
     type = "structure",
+    id = "ListTagSyncTasksInput",
     members = {
         Filters = {
             type = "list",
@@ -851,6 +904,7 @@ M.ListTagSyncTasksInput = {
 
 M.TagSyncTaskItem = {
     type = "structure",
+    id = "TagSyncTaskItem",
     members = {
         GroupArn = {
             type = "string",
@@ -885,6 +939,7 @@ M.TagSyncTaskItem = {
 
 M.ListTagSyncTasksOutput = {
     type = "structure",
+    id = "ListTagSyncTasksOutput",
     members = {
         TagSyncTasks = {
             type = "list",
@@ -898,6 +953,7 @@ M.ListTagSyncTasksOutput = {
 
 M.PutGroupConfigurationInput = {
     type = "structure",
+    id = "PutGroupConfigurationInput",
     members = {
         Group = {
             type = "string",
@@ -911,10 +967,12 @@ M.PutGroupConfigurationInput = {
 
 M.PutGroupConfigurationOutput = {
     type = "structure",
+    id = "PutGroupConfigurationOutput",
 }
 
 M.SearchResourcesInput = {
     type = "structure",
+    id = "SearchResourcesInput",
     members = {
         ResourceQuery = setmetatable({ traits = {
             required = true,
@@ -930,6 +988,7 @@ M.SearchResourcesInput = {
 
 M.SearchResourcesOutput = {
     type = "structure",
+    id = "SearchResourcesOutput",
     members = {
         ResourceIdentifiers = {
             type = "list",
@@ -947,6 +1006,7 @@ M.SearchResourcesOutput = {
 
 M.StartTagSyncTaskInput = {
     type = "structure",
+    id = "StartTagSyncTaskInput",
     members = {
         Group = {
             type = "string",
@@ -972,6 +1032,7 @@ M.StartTagSyncTaskInput = {
 
 M.StartTagSyncTaskOutput = {
     type = "structure",
+    id = "StartTagSyncTaskOutput",
     members = {
         GroupArn = {
             type = "string",
@@ -997,6 +1058,7 @@ M.StartTagSyncTaskOutput = {
 
 M.TagInput = {
     type = "structure",
+    id = "TagInput",
     members = {
         Arn = {
             type = "string",
@@ -1018,6 +1080,7 @@ M.TagInput = {
 
 M.TagOutput = {
     type = "structure",
+    id = "TagOutput",
     members = {
         Arn = {
             type = "string",
@@ -1032,6 +1095,7 @@ M.TagOutput = {
 
 M.UngroupResourcesInput = {
     type = "structure",
+    id = "UngroupResourcesInput",
     members = {
         Group = {
             type = "string",
@@ -1051,6 +1115,7 @@ M.UngroupResourcesInput = {
 
 M.UngroupResourcesOutput = {
     type = "structure",
+    id = "UngroupResourcesOutput",
     members = {
         Succeeded = {
             type = "list",
@@ -1069,6 +1134,7 @@ M.UngroupResourcesOutput = {
 
 M.UntagInput = {
     type = "structure",
+    id = "UntagInput",
     members = {
         Arn = {
             type = "string",
@@ -1089,6 +1155,7 @@ M.UntagInput = {
 
 M.UntagOutput = {
     type = "structure",
+    id = "UntagOutput",
     members = {
         Arn = {
             type = "string",
@@ -1102,6 +1169,7 @@ M.UntagOutput = {
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         GroupLifecycleEventsDesiredStatus = {
             type = "string",
@@ -1111,6 +1179,7 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
     members = {
         AccountSettings = M.AccountSettings,
     },
@@ -1118,6 +1187,7 @@ M.UpdateAccountSettingsOutput = {
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -1142,6 +1212,7 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -1149,6 +1220,7 @@ M.UpdateGroupOutput = {
 
 M.UpdateGroupQueryInput = {
     type = "structure",
+    id = "UpdateGroupQueryInput",
     members = {
         GroupName = {
             type = "string",
@@ -1164,6 +1236,7 @@ M.UpdateGroupQueryInput = {
 
 M.UpdateGroupQueryOutput = {
     type = "structure",
+    id = "UpdateGroupQueryOutput",
     members = {
         GroupQuery = M.GroupQuery,
     },

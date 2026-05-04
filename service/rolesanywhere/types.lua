@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -18,6 +19,7 @@ M.CertificateField = {
 
 M.MappingRule = {
     type = "structure",
+    id = "MappingRule",
     members = {
         specifier = {
             type = "string",
@@ -30,6 +32,7 @@ M.MappingRule = {
 
 M.AttributeMapping = {
     type = "structure",
+    id = "AttributeMapping",
     members = {
         certificateField = {
             type = "string",
@@ -43,6 +46,7 @@ M.AttributeMapping = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -61,6 +65,7 @@ M.Tag = {
 
 M.CreateProfileInput = {
     type = "structure",
+    id = "CreateProfileInput",
     members = {
         name = {
             type = "string",
@@ -103,6 +108,7 @@ M.CreateProfileInput = {
 
 M.ProfileDetail = {
     type = "structure",
+    id = "ProfileDetail",
     members = {
         profileId = {
             type = "string",
@@ -160,6 +166,7 @@ M.ProfileDetail = {
 
 M.CreateProfileOutput = {
     type = "structure",
+    id = "CreateProfileOutput",
     members = {
         profile = M.ProfileDetail,
     },
@@ -167,6 +174,7 @@ M.CreateProfileOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -186,6 +194,7 @@ M.NotificationEvent = {
 
 M.NotificationSetting = {
     type = "structure",
+    id = "NotificationSetting",
     members = {
         enabled = {
             type = "boolean",
@@ -210,6 +219,7 @@ M.NotificationSetting = {
 
 M.SourceData = {
     type = "union",
+    id = "SourceData",
     members = {
         x509CertificateData = {
             type = "string",
@@ -228,6 +238,7 @@ M.TrustAnchorType = {
 
 M.Source = {
     type = "structure",
+    id = "Source",
     members = {
         sourceType = {
             type = "string",
@@ -238,6 +249,7 @@ M.Source = {
 
 M.CreateTrustAnchorInput = {
     type = "structure",
+    id = "CreateTrustAnchorInput",
     members = {
         name = {
             type = "string",
@@ -264,6 +276,7 @@ M.CreateTrustAnchorInput = {
 
 M.NotificationSettingDetail = {
     type = "structure",
+    id = "NotificationSettingDetail",
     members = {
         enabled = {
             type = "boolean",
@@ -291,6 +304,7 @@ M.NotificationSettingDetail = {
 
 M.TrustAnchorDetail = {
     type = "structure",
+    id = "TrustAnchorDetail",
     members = {
         trustAnchorId = {
             type = "string",
@@ -326,6 +340,7 @@ M.TrustAnchorDetail = {
 
 M.CreateTrustAnchorOutput = {
     type = "structure",
+    id = "CreateTrustAnchorOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -335,6 +350,7 @@ M.CreateTrustAnchorOutput = {
 
 M.CredentialSummary = {
     type = "structure",
+    id = "CredentialSummary",
     members = {
         seenAt = {
             type = "timestamp",
@@ -362,6 +378,7 @@ M.CredentialSummary = {
 
 M.DeleteCrlInput = {
     type = "structure",
+    id = "DeleteCrlInput",
     members = {
         crlId = {
             type = "string",
@@ -375,6 +392,7 @@ M.DeleteCrlInput = {
 
 M.CrlDetail = {
     type = "structure",
+    id = "CrlDetail",
     members = {
         crlId = {
             type = "string",
@@ -411,6 +429,7 @@ M.CrlDetail = {
 
 M.DeleteCrlOutput = {
     type = "structure",
+    id = "DeleteCrlOutput",
     members = {
         crl = setmetatable({ traits = {
             required = true,
@@ -420,6 +439,7 @@ M.DeleteCrlOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -430,6 +450,7 @@ M.ResourceNotFoundException = {
 
 M.DisableCrlInput = {
     type = "structure",
+    id = "DisableCrlInput",
     members = {
         crlId = {
             type = "string",
@@ -443,6 +464,7 @@ M.DisableCrlInput = {
 
 M.DisableCrlOutput = {
     type = "structure",
+    id = "DisableCrlOutput",
     members = {
         crl = setmetatable({ traits = {
             required = true,
@@ -452,6 +474,7 @@ M.DisableCrlOutput = {
 
 M.EnableCrlInput = {
     type = "structure",
+    id = "EnableCrlInput",
     members = {
         crlId = {
             type = "string",
@@ -465,6 +488,7 @@ M.EnableCrlInput = {
 
 M.EnableCrlOutput = {
     type = "structure",
+    id = "EnableCrlOutput",
     members = {
         crl = setmetatable({ traits = {
             required = true,
@@ -474,6 +498,7 @@ M.EnableCrlOutput = {
 
 M.GetCrlInput = {
     type = "structure",
+    id = "GetCrlInput",
     members = {
         crlId = {
             type = "string",
@@ -487,6 +512,7 @@ M.GetCrlInput = {
 
 M.GetCrlOutput = {
     type = "structure",
+    id = "GetCrlOutput",
     members = {
         crl = setmetatable({ traits = {
             required = true,
@@ -496,6 +522,7 @@ M.GetCrlOutput = {
 
 M.ImportCrlInput = {
     type = "structure",
+    id = "ImportCrlInput",
     members = {
         name = {
             type = "string",
@@ -527,6 +554,7 @@ M.ImportCrlInput = {
 
 M.ImportCrlOutput = {
     type = "structure",
+    id = "ImportCrlOutput",
     members = {
         crl = setmetatable({ traits = {
             required = true,
@@ -536,6 +564,7 @@ M.ImportCrlOutput = {
 
 M.ListCrlsInput = {
     type = "structure",
+    id = "ListCrlsInput",
     members = {
         nextToken = {
             type = "string",
@@ -554,6 +583,7 @@ M.ListCrlsInput = {
 
 M.ListCrlsOutput = {
     type = "structure",
+    id = "ListCrlsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -567,6 +597,7 @@ M.ListCrlsOutput = {
 
 M.UpdateCrlInput = {
     type = "structure",
+    id = "UpdateCrlInput",
     members = {
         crlId = {
             type = "string",
@@ -586,6 +617,7 @@ M.UpdateCrlInput = {
 
 M.UpdateCrlOutput = {
     type = "structure",
+    id = "UpdateCrlOutput",
     members = {
         crl = setmetatable({ traits = {
             required = true,
@@ -595,6 +627,7 @@ M.UpdateCrlOutput = {
 
 M.DeleteAttributeMappingInput = {
     type = "structure",
+    id = "DeleteAttributeMappingInput",
     members = {
         profileId = {
             type = "string",
@@ -622,6 +655,7 @@ M.DeleteAttributeMappingInput = {
 
 M.DeleteAttributeMappingOutput = {
     type = "structure",
+    id = "DeleteAttributeMappingOutput",
     members = {
         profile = setmetatable({ traits = {
             required = true,
@@ -631,6 +665,7 @@ M.DeleteAttributeMappingOutput = {
 
 M.DeleteProfileInput = {
     type = "structure",
+    id = "DeleteProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -644,6 +679,7 @@ M.DeleteProfileInput = {
 
 M.DeleteProfileOutput = {
     type = "structure",
+    id = "DeleteProfileOutput",
     members = {
         profile = M.ProfileDetail,
     },
@@ -651,6 +687,7 @@ M.DeleteProfileOutput = {
 
 M.DeleteTrustAnchorInput = {
     type = "structure",
+    id = "DeleteTrustAnchorInput",
     members = {
         trustAnchorId = {
             type = "string",
@@ -664,6 +701,7 @@ M.DeleteTrustAnchorInput = {
 
 M.DeleteTrustAnchorOutput = {
     type = "structure",
+    id = "DeleteTrustAnchorOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -673,6 +711,7 @@ M.DeleteTrustAnchorOutput = {
 
 M.DisableProfileInput = {
     type = "structure",
+    id = "DisableProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -686,6 +725,7 @@ M.DisableProfileInput = {
 
 M.DisableProfileOutput = {
     type = "structure",
+    id = "DisableProfileOutput",
     members = {
         profile = M.ProfileDetail,
     },
@@ -693,6 +733,7 @@ M.DisableProfileOutput = {
 
 M.DisableTrustAnchorInput = {
     type = "structure",
+    id = "DisableTrustAnchorInput",
     members = {
         trustAnchorId = {
             type = "string",
@@ -706,6 +747,7 @@ M.DisableTrustAnchorInput = {
 
 M.DisableTrustAnchorOutput = {
     type = "structure",
+    id = "DisableTrustAnchorOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -715,6 +757,7 @@ M.DisableTrustAnchorOutput = {
 
 M.EnableProfileInput = {
     type = "structure",
+    id = "EnableProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -728,6 +771,7 @@ M.EnableProfileInput = {
 
 M.EnableProfileOutput = {
     type = "structure",
+    id = "EnableProfileOutput",
     members = {
         profile = M.ProfileDetail,
     },
@@ -735,6 +779,7 @@ M.EnableProfileOutput = {
 
 M.EnableTrustAnchorInput = {
     type = "structure",
+    id = "EnableTrustAnchorInput",
     members = {
         trustAnchorId = {
             type = "string",
@@ -748,6 +793,7 @@ M.EnableTrustAnchorInput = {
 
 M.EnableTrustAnchorOutput = {
     type = "structure",
+    id = "EnableTrustAnchorOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -757,6 +803,7 @@ M.EnableTrustAnchorOutput = {
 
 M.GetProfileInput = {
     type = "structure",
+    id = "GetProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -770,6 +817,7 @@ M.GetProfileInput = {
 
 M.GetProfileOutput = {
     type = "structure",
+    id = "GetProfileOutput",
     members = {
         profile = M.ProfileDetail,
     },
@@ -777,6 +825,7 @@ M.GetProfileOutput = {
 
 M.GetSubjectInput = {
     type = "structure",
+    id = "GetSubjectInput",
     members = {
         subjectId = {
             type = "string",
@@ -790,6 +839,7 @@ M.GetSubjectInput = {
 
 M.InstanceProperty = {
     type = "structure",
+    id = "InstanceProperty",
     members = {
         seenAt = {
             type = "timestamp",
@@ -810,6 +860,7 @@ M.InstanceProperty = {
 
 M.SubjectDetail = {
     type = "structure",
+    id = "SubjectDetail",
     members = {
         subjectArn = {
             type = "string",
@@ -854,6 +905,7 @@ M.SubjectDetail = {
 
 M.GetSubjectOutput = {
     type = "structure",
+    id = "GetSubjectOutput",
     members = {
         subject = M.SubjectDetail,
     },
@@ -861,6 +913,7 @@ M.GetSubjectOutput = {
 
 M.GetTrustAnchorInput = {
     type = "structure",
+    id = "GetTrustAnchorInput",
     members = {
         trustAnchorId = {
             type = "string",
@@ -874,6 +927,7 @@ M.GetTrustAnchorInput = {
 
 M.GetTrustAnchorOutput = {
     type = "structure",
+    id = "GetTrustAnchorOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -883,6 +937,7 @@ M.GetTrustAnchorOutput = {
 
 M.ListProfilesInput = {
     type = "structure",
+    id = "ListProfilesInput",
     members = {
         nextToken = {
             type = "string",
@@ -901,6 +956,7 @@ M.ListProfilesInput = {
 
 M.ListProfilesOutput = {
     type = "structure",
+    id = "ListProfilesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -914,6 +970,7 @@ M.ListProfilesOutput = {
 
 M.ListSubjectsInput = {
     type = "structure",
+    id = "ListSubjectsInput",
     members = {
         nextToken = {
             type = "string",
@@ -932,6 +989,7 @@ M.ListSubjectsInput = {
 
 M.SubjectSummary = {
     type = "structure",
+    id = "SubjectSummary",
     members = {
         subjectArn = {
             type = "string",
@@ -968,6 +1026,7 @@ M.SubjectSummary = {
 
 M.ListSubjectsOutput = {
     type = "structure",
+    id = "ListSubjectsOutput",
     members = {
         subjects = {
             type = "list",
@@ -981,6 +1040,7 @@ M.ListSubjectsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -994,6 +1054,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1004,6 +1065,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTrustAnchorsInput = {
     type = "structure",
+    id = "ListTrustAnchorsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1022,6 +1084,7 @@ M.ListTrustAnchorsInput = {
 
 M.ListTrustAnchorsOutput = {
     type = "structure",
+    id = "ListTrustAnchorsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1035,6 +1098,7 @@ M.ListTrustAnchorsOutput = {
 
 M.NotificationSettingKey = {
     type = "structure",
+    id = "NotificationSettingKey",
     members = {
         event = {
             type = "string",
@@ -1050,6 +1114,7 @@ M.NotificationSettingKey = {
 
 M.PutAttributeMappingInput = {
     type = "structure",
+    id = "PutAttributeMappingInput",
     members = {
         profileId = {
             type = "string",
@@ -1076,6 +1141,7 @@ M.PutAttributeMappingInput = {
 
 M.PutAttributeMappingOutput = {
     type = "structure",
+    id = "PutAttributeMappingOutput",
     members = {
         profile = setmetatable({ traits = {
             required = true,
@@ -1085,6 +1151,7 @@ M.PutAttributeMappingOutput = {
 
 M.UpdateProfileInput = {
     type = "structure",
+    id = "UpdateProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -1118,6 +1185,7 @@ M.UpdateProfileInput = {
 
 M.UpdateProfileOutput = {
     type = "structure",
+    id = "UpdateProfileOutput",
     members = {
         profile = M.ProfileDetail,
     },
@@ -1125,6 +1193,7 @@ M.UpdateProfileOutput = {
 
 M.PutNotificationSettingsInput = {
     type = "structure",
+    id = "PutNotificationSettingsInput",
     members = {
         trustAnchorId = {
             type = "string",
@@ -1144,6 +1213,7 @@ M.PutNotificationSettingsInput = {
 
 M.PutNotificationSettingsOutput = {
     type = "structure",
+    id = "PutNotificationSettingsOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -1153,6 +1223,7 @@ M.PutNotificationSettingsOutput = {
 
 M.ResetNotificationSettingsInput = {
     type = "structure",
+    id = "ResetNotificationSettingsInput",
     members = {
         trustAnchorId = {
             type = "string",
@@ -1172,6 +1243,7 @@ M.ResetNotificationSettingsInput = {
 
 M.ResetNotificationSettingsOutput = {
     type = "structure",
+    id = "ResetNotificationSettingsOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -1181,6 +1253,7 @@ M.ResetNotificationSettingsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1200,10 +1273,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -1214,6 +1289,7 @@ M.TooManyTagsException = {
 
 M.UpdateTrustAnchorInput = {
     type = "structure",
+    id = "UpdateTrustAnchorInput",
     members = {
         trustAnchorId = {
             type = "string",
@@ -1231,6 +1307,7 @@ M.UpdateTrustAnchorInput = {
 
 M.UpdateTrustAnchorOutput = {
     type = "structure",
+    id = "UpdateTrustAnchorOutput",
     members = {
         trustAnchor = setmetatable({ traits = {
             required = true,
@@ -1240,6 +1317,7 @@ M.UpdateTrustAnchorOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1259,6 +1337,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

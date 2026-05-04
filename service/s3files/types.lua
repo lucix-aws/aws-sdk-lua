@@ -2,6 +2,7 @@ local M = {}
 
 M.PosixUser = {
     type = "structure",
+    id = "PosixUser",
     members = {
         uid = {
             type = "long",
@@ -24,6 +25,7 @@ M.PosixUser = {
 
 M.CreationPermissions = {
     type = "structure",
+    id = "CreationPermissions",
     members = {
         ownerUid = {
             type = "long",
@@ -48,6 +50,7 @@ M.CreationPermissions = {
 
 M.RootDirectory = {
     type = "structure",
+    id = "RootDirectory",
     members = {
         path = {
             type = "string",
@@ -67,6 +70,7 @@ M.LifeCycleState = {
 
 M.ListAccessPointsDescription = {
     type = "structure",
+    id = "ListAccessPointsDescription",
     members = {
         accessPointArn = {
             type = "string",
@@ -108,6 +112,7 @@ M.ListAccessPointsDescription = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         errorCode = {
@@ -130,6 +135,7 @@ M.ConflictException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -148,6 +154,7 @@ M.Tag = {
 
 M.CreateAccessPointInput = {
     type = "structure",
+    id = "CreateAccessPointInput",
     members = {
         clientToken = {
             type = "string",
@@ -172,6 +179,7 @@ M.CreateAccessPointInput = {
 
 M.CreateAccessPointOutput = {
     type = "structure",
+    id = "CreateAccessPointOutput",
     members = {
         accessPointArn = {
             type = "string",
@@ -223,6 +231,7 @@ M.CreateAccessPointOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         errorCode = {
@@ -239,6 +248,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         errorCode = {
@@ -255,6 +265,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         errorCode = {
@@ -271,6 +282,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         errorCode = {
@@ -287,6 +299,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         errorCode = {
@@ -303,6 +316,7 @@ M.ValidationException = {
 
 M.CreateFileSystemInput = {
     type = "structure",
+    id = "CreateFileSystemInput",
     members = {
         bucket = {
             type = "string",
@@ -340,6 +354,7 @@ M.CreateFileSystemInput = {
 
 M.CreateFileSystemOutput = {
     type = "structure",
+    id = "CreateFileSystemOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -395,6 +410,7 @@ M.IpAddressType = {
 
 M.CreateMountTargetInput = {
     type = "structure",
+    id = "CreateMountTargetInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -426,6 +442,7 @@ M.CreateMountTargetInput = {
 
 M.CreateMountTargetOutput = {
     type = "structure",
+    id = "CreateMountTargetOutput",
     members = {
         availabilityZoneId = {
             type = "string",
@@ -478,6 +495,7 @@ M.CreateMountTargetOutput = {
 
 M.DeleteAccessPointInput = {
     type = "structure",
+    id = "DeleteAccessPointInput",
     members = {
         accessPointId = {
             type = "string",
@@ -491,10 +509,12 @@ M.DeleteAccessPointInput = {
 
 M.DeleteAccessPointOutput = {
     type = "structure",
+    id = "DeleteAccessPointOutput",
 }
 
 M.DeleteFileSystemInput = {
     type = "structure",
+    id = "DeleteFileSystemInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -514,10 +534,12 @@ M.DeleteFileSystemInput = {
 
 M.DeleteFileSystemOutput = {
     type = "structure",
+    id = "DeleteFileSystemOutput",
 }
 
 M.DeleteFileSystemPolicyInput = {
     type = "structure",
+    id = "DeleteFileSystemPolicyInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -531,10 +553,12 @@ M.DeleteFileSystemPolicyInput = {
 
 M.DeleteFileSystemPolicyOutput = {
     type = "structure",
+    id = "DeleteFileSystemPolicyOutput",
 }
 
 M.DeleteMountTargetInput = {
     type = "structure",
+    id = "DeleteMountTargetInput",
     members = {
         mountTargetId = {
             type = "string",
@@ -548,10 +572,12 @@ M.DeleteMountTargetInput = {
 
 M.DeleteMountTargetOutput = {
     type = "structure",
+    id = "DeleteMountTargetOutput",
 }
 
 M.ExpirationDataRule = {
     type = "structure",
+    id = "ExpirationDataRule",
     members = {
         daysAfterLastAccess = {
             type = "integer",
@@ -565,6 +591,7 @@ M.ExpirationDataRule = {
 
 M.ListFileSystemsDescription = {
     type = "structure",
+    id = "ListFileSystemsDescription",
     members = {
         creationTime = {
             type = "timestamp",
@@ -619,6 +646,7 @@ M.ListFileSystemsDescription = {
 
 M.GetAccessPointInput = {
     type = "structure",
+    id = "GetAccessPointInput",
     members = {
         accessPointId = {
             type = "string",
@@ -632,6 +660,7 @@ M.GetAccessPointInput = {
 
 M.GetAccessPointOutput = {
     type = "structure",
+    id = "GetAccessPointOutput",
     members = {
         accessPointArn = {
             type = "string",
@@ -683,6 +712,7 @@ M.GetAccessPointOutput = {
 
 M.GetFileSystemInput = {
     type = "structure",
+    id = "GetFileSystemInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -696,6 +726,7 @@ M.GetFileSystemInput = {
 
 M.GetFileSystemOutput = {
     type = "structure",
+    id = "GetFileSystemOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -745,6 +776,7 @@ M.GetFileSystemOutput = {
 
 M.GetFileSystemPolicyInput = {
     type = "structure",
+    id = "GetFileSystemPolicyInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -758,6 +790,7 @@ M.GetFileSystemPolicyInput = {
 
 M.GetFileSystemPolicyOutput = {
     type = "structure",
+    id = "GetFileSystemPolicyOutput",
     members = {
         fileSystemId = {
             type = "string",
@@ -777,6 +810,7 @@ M.GetFileSystemPolicyOutput = {
 
 M.GetMountTargetInput = {
     type = "structure",
+    id = "GetMountTargetInput",
     members = {
         mountTargetId = {
             type = "string",
@@ -790,6 +824,7 @@ M.GetMountTargetInput = {
 
 M.GetMountTargetOutput = {
     type = "structure",
+    id = "GetMountTargetOutput",
     members = {
         availabilityZoneId = {
             type = "string",
@@ -842,6 +877,7 @@ M.GetMountTargetOutput = {
 
 M.GetSynchronizationConfigurationInput = {
     type = "structure",
+    id = "GetSynchronizationConfigurationInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -860,6 +896,7 @@ M.ImportTrigger = {
 
 M.ImportDataRule = {
     type = "structure",
+    id = "ImportDataRule",
     members = {
         prefix = {
             type = "string",
@@ -887,6 +924,7 @@ M.ImportDataRule = {
 
 M.GetSynchronizationConfigurationOutput = {
     type = "structure",
+    id = "GetSynchronizationConfigurationOutput",
     members = {
         latestVersionNumber = {
             type = "integer",
@@ -915,6 +953,7 @@ M.GetSynchronizationConfigurationOutput = {
 
 M.ListAccessPointsInput = {
     type = "structure",
+    id = "ListAccessPointsInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -941,6 +980,7 @@ M.ListAccessPointsInput = {
 
 M.ListAccessPointsOutput = {
     type = "structure",
+    id = "ListAccessPointsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -957,6 +997,7 @@ M.ListAccessPointsOutput = {
 
 M.ListFileSystemsInput = {
     type = "structure",
+    id = "ListFileSystemsInput",
     members = {
         bucket = {
             type = "string",
@@ -982,6 +1023,7 @@ M.ListFileSystemsInput = {
 
 M.ListFileSystemsOutput = {
     type = "structure",
+    id = "ListFileSystemsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -998,6 +1040,7 @@ M.ListFileSystemsOutput = {
 
 M.ListMountTargetsInput = {
     type = "structure",
+    id = "ListMountTargetsInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -1029,6 +1072,7 @@ M.ListMountTargetsInput = {
 
 M.ListMountTargetsDescription = {
     type = "structure",
+    id = "ListMountTargetsDescription",
     members = {
         availabilityZoneId = {
             type = "string",
@@ -1077,6 +1121,7 @@ M.ListMountTargetsDescription = {
 
 M.ListMountTargetsOutput = {
     type = "structure",
+    id = "ListMountTargetsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1093,6 +1138,7 @@ M.ListMountTargetsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceId = {
             type = "string",
@@ -1118,6 +1164,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1131,6 +1178,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutFileSystemPolicyInput = {
     type = "structure",
+    id = "PutFileSystemPolicyInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -1151,10 +1199,12 @@ M.PutFileSystemPolicyInput = {
 
 M.PutFileSystemPolicyOutput = {
     type = "structure",
+    id = "PutFileSystemPolicyOutput",
 }
 
 M.PutSynchronizationConfigurationInput = {
     type = "structure",
+    id = "PutSynchronizationConfigurationInput",
     members = {
         fileSystemId = {
             type = "string",
@@ -1190,10 +1240,12 @@ M.PutSynchronizationConfigurationInput = {
 
 M.PutSynchronizationConfigurationOutput = {
     type = "structure",
+    id = "PutSynchronizationConfigurationOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceId = {
             type = "string",
@@ -1214,10 +1266,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceId = {
             type = "string",
@@ -1239,10 +1293,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateMountTargetInput = {
     type = "structure",
+    id = "UpdateMountTargetInput",
     members = {
         mountTargetId = {
             type = "string",
@@ -1263,6 +1319,7 @@ M.UpdateMountTargetInput = {
 
 M.UpdateMountTargetOutput = {
     type = "structure",
+    id = "UpdateMountTargetOutput",
     members = {
         availabilityZoneId = {
             type = "string",

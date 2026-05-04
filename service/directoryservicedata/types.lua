@@ -8,6 +8,7 @@ M.AccessDeniedReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -21,6 +22,7 @@ M.AccessDeniedException = {
 
 M.AddGroupMemberInput = {
     type = "structure",
+    id = "AddGroupMemberInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -55,10 +57,12 @@ M.AddGroupMemberInput = {
 
 M.AddGroupMemberOutput = {
     type = "structure",
+    id = "AddGroupMemberOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -77,6 +81,7 @@ M.DirectoryUnavailableReason = {
 
 M.DirectoryUnavailableException = {
     type = "structure",
+    id = "DirectoryUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -90,6 +95,7 @@ M.DirectoryUnavailableException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -100,6 +106,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -110,6 +117,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -147,6 +155,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -160,6 +169,7 @@ M.ValidationException = {
 
 M.AttributeValue = {
     type = "union",
+    id = "AttributeValue",
     members = {
         S = {
             type = "string",
@@ -191,6 +201,7 @@ M.GroupType = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -227,6 +238,7 @@ M.CreateGroupInput = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -242,6 +254,7 @@ M.CreateGroupOutput = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -281,6 +294,7 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -296,6 +310,7 @@ M.CreateUserOutput = {
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -321,10 +336,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -350,10 +367,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DescribeGroupInput = {
     type = "structure",
+    id = "DescribeGroupInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -380,6 +399,7 @@ M.DescribeGroupInput = {
 
 M.DescribeGroupOutput = {
     type = "structure",
+    id = "DescribeGroupOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -412,6 +432,7 @@ M.DescribeGroupOutput = {
 
 M.DescribeUserInput = {
     type = "structure",
+    id = "DescribeUserInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -438,6 +459,7 @@ M.DescribeUserInput = {
 
 M.DescribeUserOutput = {
     type = "structure",
+    id = "DescribeUserOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -479,6 +501,7 @@ M.DescribeUserOutput = {
 
 M.DisableUserInput = {
     type = "structure",
+    id = "DisableUserInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -504,10 +527,12 @@ M.DisableUserInput = {
 
 M.DisableUserOutput = {
     type = "structure",
+    id = "DisableUserOutput",
 }
 
 M.ListGroupMembersInput = {
     type = "structure",
+    id = "ListGroupMembersInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -545,6 +570,7 @@ M.MemberType = {
 
 M.Member = {
     type = "structure",
+    id = "Member",
     members = {
         SID = {
             type = "string",
@@ -569,6 +595,7 @@ M.Member = {
 
 M.ListGroupMembersOutput = {
     type = "structure",
+    id = "ListGroupMembersOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -591,6 +618,7 @@ M.ListGroupMembersOutput = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -613,6 +641,7 @@ M.ListGroupsInput = {
 
 M.GroupSummary = {
     type = "structure",
+    id = "GroupSummary",
     members = {
         SID = {
             type = "string",
@@ -643,6 +672,7 @@ M.GroupSummary = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -662,6 +692,7 @@ M.ListGroupsOutput = {
 
 M.ListGroupsForMemberInput = {
     type = "structure",
+    id = "ListGroupsForMemberInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -693,6 +724,7 @@ M.ListGroupsForMemberInput = {
 
 M.ListGroupsForMemberOutput = {
     type = "structure",
+    id = "ListGroupsForMemberOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -715,6 +747,7 @@ M.ListGroupsForMemberOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -737,6 +770,7 @@ M.ListUsersInput = {
 
 M.UserSummary = {
     type = "structure",
+    id = "UserSummary",
     members = {
         SID = {
             type = "string",
@@ -767,6 +801,7 @@ M.UserSummary = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -786,6 +821,7 @@ M.ListUsersOutput = {
 
 M.RemoveGroupMemberInput = {
     type = "structure",
+    id = "RemoveGroupMemberInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -820,10 +856,12 @@ M.RemoveGroupMemberInput = {
 
 M.RemoveGroupMemberOutput = {
     type = "structure",
+    id = "RemoveGroupMemberOutput",
 }
 
 M.SearchGroupsInput = {
     type = "structure",
+    id = "SearchGroupsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -859,6 +897,7 @@ M.SearchGroupsInput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         SID = {
             type = "string",
@@ -888,6 +927,7 @@ M.Group = {
 
 M.SearchGroupsOutput = {
     type = "structure",
+    id = "SearchGroupsOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -907,6 +947,7 @@ M.SearchGroupsOutput = {
 
 M.SearchUsersInput = {
     type = "structure",
+    id = "SearchUsersInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -942,6 +983,7 @@ M.SearchUsersInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         SID = {
             type = "string",
@@ -980,6 +1022,7 @@ M.User = {
 
 M.SearchUsersOutput = {
     type = "structure",
+    id = "SearchUsersOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1005,6 +1048,7 @@ M.UpdateType = {
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1044,10 +1088,12 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
 }
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -1090,6 +1136,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
 }
 
 return M

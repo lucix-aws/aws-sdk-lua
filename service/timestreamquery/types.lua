@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.SnsConfiguration = {
     type = "structure",
+    id = "SnsConfiguration",
     members = {
         TopicArn = {
             type = "string",
@@ -24,6 +26,7 @@ M.SnsConfiguration = {
 
 M.AccountSettingsNotificationConfiguration = {
     type = "structure",
+    id = "AccountSettingsNotificationConfiguration",
     members = {
         SnsConfiguration = M.SnsConfiguration,
         RoleArn = {
@@ -37,6 +40,7 @@ M.AccountSettingsNotificationConfiguration = {
 
 M.CancelQueryInput = {
     type = "structure",
+    id = "CancelQueryInput",
     members = {
         QueryId = {
             type = "string",
@@ -49,6 +53,7 @@ M.CancelQueryInput = {
 
 M.CancelQueryOutput = {
     type = "structure",
+    id = "CancelQueryOutput",
     members = {
         CancellationMessage = {
             type = "string",
@@ -58,6 +63,7 @@ M.CancelQueryOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -68,6 +74,7 @@ M.InternalServerException = {
 
 M.InvalidEndpointException = {
     type = "structure",
+    id = "InvalidEndpointException",
     error = "client",
     members = {
         Message = {
@@ -78,6 +85,7 @@ M.InvalidEndpointException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -88,6 +96,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -117,6 +126,7 @@ M.ComputeMode = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -132,6 +142,7 @@ M.S3EncryptionOption = {
 
 M.S3Configuration = {
     type = "structure",
+    id = "S3Configuration",
     members = {
         BucketName = {
             type = "string",
@@ -150,6 +161,7 @@ M.S3Configuration = {
 
 M.ErrorReportConfiguration = {
     type = "structure",
+    id = "ErrorReportConfiguration",
     members = {
         S3Configuration = setmetatable({ traits = {
             required = true,
@@ -159,6 +171,7 @@ M.ErrorReportConfiguration = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         SnsConfiguration = setmetatable({ traits = {
             required = true,
@@ -168,6 +181,7 @@ M.NotificationConfiguration = {
 
 M.ScheduleConfiguration = {
     type = "structure",
+    id = "ScheduleConfiguration",
     members = {
         ScheduleExpression = {
             type = "string",
@@ -180,6 +194,7 @@ M.ScheduleConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -202,6 +217,7 @@ M.DimensionValueType = {
 
 M.DimensionMapping = {
     type = "structure",
+    id = "DimensionMapping",
     members = {
         Name = {
             type = "string",
@@ -236,6 +252,7 @@ M.ScalarMeasureValueType = {
 
 M.MultiMeasureAttributeMapping = {
     type = "structure",
+    id = "MultiMeasureAttributeMapping",
     members = {
         SourceColumn = {
             type = "string",
@@ -257,6 +274,7 @@ M.MultiMeasureAttributeMapping = {
 
 M.MixedMeasureMapping = {
     type = "structure",
+    id = "MixedMeasureMapping",
     members = {
         MeasureName = {
             type = "string",
@@ -282,6 +300,7 @@ M.MixedMeasureMapping = {
 
 M.MultiMeasureMappings = {
     type = "structure",
+    id = "MultiMeasureMappings",
     members = {
         TargetMultiMeasureName = {
             type = "string",
@@ -298,6 +317,7 @@ M.MultiMeasureMappings = {
 
 M.TimestreamConfiguration = {
     type = "structure",
+    id = "TimestreamConfiguration",
     members = {
         DatabaseName = {
             type = "string",
@@ -337,6 +357,7 @@ M.TimestreamConfiguration = {
 
 M.TargetConfiguration = {
     type = "structure",
+    id = "TargetConfiguration",
     members = {
         TimestreamConfiguration = setmetatable({ traits = {
             required = true,
@@ -346,6 +367,7 @@ M.TargetConfiguration = {
 
 M.CreateScheduledQueryInput = {
     type = "structure",
+    id = "CreateScheduledQueryInput",
     members = {
         Name = {
             type = "string",
@@ -393,6 +415,7 @@ M.CreateScheduledQueryInput = {
 
 M.CreateScheduledQueryOutput = {
     type = "structure",
+    id = "CreateScheduledQueryOutput",
     members = {
         Arn = {
             type = "string",
@@ -405,6 +428,7 @@ M.CreateScheduledQueryOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -415,6 +439,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteScheduledQueryInput = {
     type = "structure",
+    id = "DeleteScheduledQueryInput",
     members = {
         ScheduledQueryArn = {
             type = "string",
@@ -427,10 +452,12 @@ M.DeleteScheduledQueryInput = {
 
 M.DeleteScheduledQueryOutput = {
     type = "structure",
+    id = "DeleteScheduledQueryOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -444,6 +471,7 @@ M.ResourceNotFoundException = {
 
 M.DescribeAccountSettingsInput = {
     type = "structure",
+    id = "DescribeAccountSettingsInput",
 }
 
 M.LastUpdateStatus = {
@@ -454,6 +482,7 @@ M.LastUpdateStatus = {
 
 M.LastUpdate = {
     type = "structure",
+    id = "LastUpdate",
     members = {
         TargetQueryTCU = {
             type = "integer",
@@ -469,6 +498,7 @@ M.LastUpdate = {
 
 M.ProvisionedCapacityResponse = {
     type = "structure",
+    id = "ProvisionedCapacityResponse",
     members = {
         ActiveQueryTCU = {
             type = "integer",
@@ -480,6 +510,7 @@ M.ProvisionedCapacityResponse = {
 
 M.QueryComputeResponse = {
     type = "structure",
+    id = "QueryComputeResponse",
     members = {
         ComputeMode = {
             type = "string",
@@ -495,6 +526,7 @@ M.QueryPricingModel = {
 
 M.DescribeAccountSettingsOutput = {
     type = "structure",
+    id = "DescribeAccountSettingsOutput",
     members = {
         MaxQueryTCU = {
             type = "integer",
@@ -508,10 +540,12 @@ M.DescribeAccountSettingsOutput = {
 
 M.DescribeEndpointsInput = {
     type = "structure",
+    id = "DescribeEndpointsInput",
 }
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -531,6 +565,7 @@ M.Endpoint = {
 
 M.DescribeEndpointsOutput = {
     type = "structure",
+    id = "DescribeEndpointsOutput",
     members = {
         Endpoints = {
             type = "list",
@@ -544,6 +579,7 @@ M.DescribeEndpointsOutput = {
 
 M.DescribeScheduledQueryInput = {
     type = "structure",
+    id = "DescribeScheduledQueryInput",
     members = {
         ScheduledQueryArn = {
             type = "string",
@@ -556,6 +592,7 @@ M.DescribeScheduledQueryInput = {
 
 M.S3ReportLocation = {
     type = "structure",
+    id = "S3ReportLocation",
     members = {
         BucketName = {
             type = "string",
@@ -568,6 +605,7 @@ M.S3ReportLocation = {
 
 M.ErrorReportLocation = {
     type = "structure",
+    id = "ErrorReportLocation",
     members = {
         S3ReportLocation = M.S3ReportLocation,
     },
@@ -575,6 +613,7 @@ M.ErrorReportLocation = {
 
 M.ExecutionStats = {
     type = "structure",
+    id = "ExecutionStats",
     members = {
         ExecutionTimeInMillis = {
             type = "long",
@@ -617,6 +656,7 @@ M.ExecutionStats = {
 
 M.QuerySpatialCoverageMax = {
     type = "structure",
+    id = "QuerySpatialCoverageMax",
     members = {
         Value = {
             type = "double",
@@ -636,6 +676,7 @@ M.QuerySpatialCoverageMax = {
 
 M.QuerySpatialCoverage = {
     type = "structure",
+    id = "QuerySpatialCoverage",
     members = {
         Max = M.QuerySpatialCoverageMax,
     },
@@ -643,6 +684,7 @@ M.QuerySpatialCoverage = {
 
 M.QueryTemporalRangeMax = {
     type = "structure",
+    id = "QueryTemporalRangeMax",
     members = {
         Value = {
             type = "long",
@@ -658,6 +700,7 @@ M.QueryTemporalRangeMax = {
 
 M.QueryTemporalRange = {
     type = "structure",
+    id = "QueryTemporalRange",
     members = {
         Max = M.QueryTemporalRangeMax,
     },
@@ -665,6 +708,7 @@ M.QueryTemporalRange = {
 
 M.ScheduledQueryInsightsResponse = {
     type = "structure",
+    id = "ScheduledQueryInsightsResponse",
     members = {
         QuerySpatialCoverage = M.QuerySpatialCoverage,
         QueryTemporalRange = M.QueryTemporalRange,
@@ -698,6 +742,7 @@ M.ScheduledQueryRunStatus = {
 
 M.ScheduledQueryRunSummary = {
     type = "structure",
+    id = "ScheduledQueryRunSummary",
     members = {
         InvocationTime = {
             type = "timestamp",
@@ -724,6 +769,7 @@ M.ScheduledQueryState = {
 
 M.ScheduledQueryDescription = {
     type = "structure",
+    id = "ScheduledQueryDescription",
     members = {
         Arn = {
             type = "string",
@@ -782,6 +828,7 @@ M.ScheduledQueryDescription = {
 
 M.DescribeScheduledQueryOutput = {
     type = "structure",
+    id = "DescribeScheduledQueryOutput",
     members = {
         ScheduledQuery = setmetatable({ traits = {
             required = true,
@@ -796,6 +843,7 @@ M.ScheduledQueryInsightsMode = {
 
 M.ScheduledQueryInsights = {
     type = "structure",
+    id = "ScheduledQueryInsights",
     members = {
         Mode = {
             type = "string",
@@ -808,6 +856,7 @@ M.ScheduledQueryInsights = {
 
 M.ExecuteScheduledQueryInput = {
     type = "structure",
+    id = "ExecuteScheduledQueryInput",
     members = {
         ScheduledQueryArn = {
             type = "string",
@@ -833,10 +882,12 @@ M.ExecuteScheduledQueryInput = {
 
 M.ExecuteScheduledQueryOutput = {
     type = "structure",
+    id = "ExecuteScheduledQueryOutput",
 }
 
 M.ListScheduledQueriesInput = {
     type = "structure",
+    id = "ListScheduledQueriesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -849,6 +900,7 @@ M.ListScheduledQueriesInput = {
 
 M.TimestreamDestination = {
     type = "structure",
+    id = "TimestreamDestination",
     members = {
         DatabaseName = {
             type = "string",
@@ -861,6 +913,7 @@ M.TimestreamDestination = {
 
 M.TargetDestination = {
     type = "structure",
+    id = "TargetDestination",
     members = {
         TimestreamDestination = M.TimestreamDestination,
     },
@@ -868,6 +921,7 @@ M.TargetDestination = {
 
 M.ScheduledQuery = {
     type = "structure",
+    id = "ScheduledQuery",
     members = {
         Arn = {
             type = "string",
@@ -906,6 +960,7 @@ M.ScheduledQuery = {
 
 M.ListScheduledQueriesOutput = {
     type = "structure",
+    id = "ListScheduledQueriesOutput",
     members = {
         ScheduledQueries = {
             type = "list",
@@ -922,6 +977,7 @@ M.ListScheduledQueriesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -940,6 +996,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -956,6 +1013,7 @@ M.ListTagsForResourceOutput = {
 
 M.PrepareQueryInput = {
     type = "structure",
+    id = "PrepareQueryInput",
     members = {
         QueryString = {
             type = "string",
@@ -971,6 +1029,7 @@ M.PrepareQueryInput = {
 
 M.ProvisionedCapacityRequest = {
     type = "structure",
+    id = "ProvisionedCapacityRequest",
     members = {
         TargetQueryTCU = {
             type = "integer",
@@ -984,6 +1043,7 @@ M.ProvisionedCapacityRequest = {
 
 M.QueryExecutionException = {
     type = "structure",
+    id = "QueryExecutionException",
     error = "client",
     members = {
         Message = {
@@ -999,6 +1059,7 @@ M.QueryInsightsMode = {
 
 M.QueryInsights = {
     type = "structure",
+    id = "QueryInsights",
     members = {
         Mode = {
             type = "string",
@@ -1011,6 +1072,7 @@ M.QueryInsights = {
 
 M.QueryInput = {
     type = "structure",
+    id = "QueryInput",
     members = {
         QueryString = {
             type = "string",
@@ -1036,6 +1098,7 @@ M.QueryInput = {
 
 M.QueryInsightsResponse = {
     type = "structure",
+    id = "QueryInsightsResponse",
     members = {
         QuerySpatialCoverage = M.QuerySpatialCoverage,
         QueryTemporalRange = M.QueryTemporalRange,
@@ -1080,6 +1143,7 @@ M.QueryInsightsResponse = {
 
 M.QueryStatus = {
     type = "structure",
+    id = "QueryStatus",
     members = {
         ProgressPercentage = {
             type = "double",
@@ -1104,6 +1168,7 @@ M.QueryStatus = {
 
 M.QueryComputeRequest = {
     type = "structure",
+    id = "QueryComputeRequest",
     members = {
         ComputeMode = {
             type = "string",
@@ -1114,6 +1179,7 @@ M.QueryComputeRequest = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1133,10 +1199,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1156,10 +1224,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         MaxQueryTCU = {
             type = "integer",
@@ -1173,6 +1243,7 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
     members = {
         MaxQueryTCU = {
             type = "integer",
@@ -1186,6 +1257,7 @@ M.UpdateAccountSettingsOutput = {
 
 M.UpdateScheduledQueryInput = {
     type = "structure",
+    id = "UpdateScheduledQueryInput",
     members = {
         ScheduledQueryArn = {
             type = "string",
@@ -1204,10 +1276,12 @@ M.UpdateScheduledQueryInput = {
 
 M.UpdateScheduledQueryOutput = {
     type = "structure",
+    id = "UpdateScheduledQueryOutput",
 }
 
 M.ColumnInfo = {
     type = "structure",
+    id = "ColumnInfo",
     members = {
         Name = {
             type = "string",
@@ -1220,6 +1294,7 @@ M.ColumnInfo = {
 
 M.Type = {
     type = "structure",
+    id = "Type",
     members = {
         ScalarType = {
             type = "string",
@@ -1235,6 +1310,7 @@ M.Type = {
 
 M.Datum = {
     type = "structure",
+    id = "Datum",
     members = {
         ScalarValue = {
             type = "string",
@@ -1256,6 +1332,7 @@ M.Datum = {
 
 M.ParameterMapping = {
     type = "structure",
+    id = "ParameterMapping",
     members = {
         Name = {
             type = "string",
@@ -1271,6 +1348,7 @@ M.ParameterMapping = {
 
 M.SelectColumn = {
     type = "structure",
+    id = "SelectColumn",
     members = {
         Name = {
             type = "string",
@@ -1290,6 +1368,7 @@ M.SelectColumn = {
 
 M.TimeSeriesDataPoint = {
     type = "structure",
+    id = "TimeSeriesDataPoint",
     members = {
         Time = {
             type = "string",
@@ -1305,6 +1384,7 @@ M.TimeSeriesDataPoint = {
 
 M.Row = {
     type = "structure",
+    id = "Row",
     members = {
         Data = {
             type = "list",
@@ -1318,6 +1398,7 @@ M.Row = {
 
 M.QueryOutput = {
     type = "structure",
+    id = "QueryOutput",
     members = {
         QueryId = {
             type = "string",
@@ -1349,6 +1430,7 @@ M.QueryOutput = {
 
 M.PrepareQueryOutput = {
     type = "structure",
+    id = "PrepareQueryOutput",
     members = {
         QueryString = {
             type = "string",

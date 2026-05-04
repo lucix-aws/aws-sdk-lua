@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AccessDeniedForDependencyException = {
     type = "structure",
+    id = "AccessDeniedForDependencyException",
     error = "client",
     members = {
         message = {
@@ -22,14 +24,17 @@ M.AccessDeniedForDependencyException = {
 
 M.BlockAction = {
     type = "structure",
+    id = "BlockAction",
 }
 
 M.CountAction = {
     type = "structure",
+    id = "CountAction",
 }
 
 M.ResponseAction = {
     type = "structure",
+    id = "ResponseAction",
     members = {
         Block = M.BlockAction,
         Count = M.CountAction,
@@ -43,6 +48,7 @@ M.ApplicationLayerAutomaticResponseStatus = {
 
 M.ApplicationLayerAutomaticResponseConfiguration = {
     type = "structure",
+    id = "ApplicationLayerAutomaticResponseConfiguration",
     members = {
         Status = {
             type = "string",
@@ -58,6 +64,7 @@ M.ApplicationLayerAutomaticResponseConfiguration = {
 
 M.AssociateDRTLogBucketInput = {
     type = "structure",
+    id = "AssociateDRTLogBucketInput",
     members = {
         LogBucket = {
             type = "string",
@@ -70,10 +77,12 @@ M.AssociateDRTLogBucketInput = {
 
 M.AssociateDRTLogBucketOutput = {
     type = "structure",
+    id = "AssociateDRTLogBucketOutput",
 }
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         message = {
@@ -84,6 +93,7 @@ M.InternalErrorException = {
 
 M.InvalidOperationException = {
     type = "structure",
+    id = "InvalidOperationException",
     error = "client",
     members = {
         message = {
@@ -94,6 +104,7 @@ M.InvalidOperationException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -117,6 +128,7 @@ M.ValidationExceptionReason = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -134,6 +146,7 @@ M.InvalidParameterException = {
 
 M.LimitsExceededException = {
     type = "structure",
+    id = "LimitsExceededException",
     error = "client",
     members = {
         message = {
@@ -153,6 +166,7 @@ M.LimitsExceededException = {
 
 M.NoAssociatedRoleException = {
     type = "structure",
+    id = "NoAssociatedRoleException",
     error = "client",
     members = {
         message = {
@@ -163,6 +177,7 @@ M.NoAssociatedRoleException = {
 
 M.OptimisticLockException = {
     type = "structure",
+    id = "OptimisticLockException",
     error = "client",
     members = {
         message = {
@@ -173,6 +188,7 @@ M.OptimisticLockException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -186,6 +202,7 @@ M.ResourceNotFoundException = {
 
 M.AssociateDRTRoleInput = {
     type = "structure",
+    id = "AssociateDRTRoleInput",
     members = {
         RoleArn = {
             type = "string",
@@ -198,10 +215,12 @@ M.AssociateDRTRoleInput = {
 
 M.AssociateDRTRoleOutput = {
     type = "structure",
+    id = "AssociateDRTRoleOutput",
 }
 
 M.AssociateHealthCheckInput = {
     type = "structure",
+    id = "AssociateHealthCheckInput",
     members = {
         ProtectionId = {
             type = "string",
@@ -220,10 +239,12 @@ M.AssociateHealthCheckInput = {
 
 M.AssociateHealthCheckOutput = {
     type = "structure",
+    id = "AssociateHealthCheckOutput",
 }
 
 M.InvalidResourceException = {
     type = "structure",
+    id = "InvalidResourceException",
     error = "client",
     members = {
         message = {
@@ -234,6 +255,7 @@ M.InvalidResourceException = {
 
 M.EmergencyContact = {
     type = "structure",
+    id = "EmergencyContact",
     members = {
         EmailAddress = {
             type = "string",
@@ -252,6 +274,7 @@ M.EmergencyContact = {
 
 M.AssociateProactiveEngagementDetailsInput = {
     type = "structure",
+    id = "AssociateProactiveEngagementDetailsInput",
     members = {
         EmergencyContactList = {
             type = "list",
@@ -265,10 +288,12 @@ M.AssociateProactiveEngagementDetailsInput = {
 
 M.AssociateProactiveEngagementDetailsOutput = {
     type = "structure",
+    id = "AssociateProactiveEngagementDetailsOutput",
 }
 
 M.SummarizedCounter = {
     type = "structure",
+    id = "SummarizedCounter",
     members = {
         Name = {
             type = "string",
@@ -321,6 +346,7 @@ M.AttackPropertyIdentifier = {
 
 M.Contributor = {
     type = "structure",
+    id = "Contributor",
     members = {
         Name = {
             type = "string",
@@ -343,6 +369,7 @@ M.Unit = {
 
 M.AttackProperty = {
     type = "structure",
+    id = "AttackProperty",
     members = {
         AttackLayer = {
             type = "string",
@@ -368,6 +395,7 @@ M.AttackProperty = {
 
 M.Mitigation = {
     type = "structure",
+    id = "Mitigation",
     members = {
         MitigationName = {
             type = "string",
@@ -377,6 +405,7 @@ M.Mitigation = {
 
 M.SummarizedAttackVector = {
     type = "structure",
+    id = "SummarizedAttackVector",
     members = {
         VectorType = {
             type = "string",
@@ -398,6 +427,7 @@ M.SubResourceType = {
 
 M.SubResourceSummary = {
     type = "structure",
+    id = "SubResourceSummary",
     members = {
         Type = {
             type = "string",
@@ -418,6 +448,7 @@ M.SubResourceSummary = {
 
 M.AttackDetail = {
     type = "structure",
+    id = "AttackDetail",
     members = {
         AttackId = {
             type = "string",
@@ -452,6 +483,7 @@ M.AttackDetail = {
 
 M.AttackVolumeStatistics = {
     type = "structure",
+    id = "AttackVolumeStatistics",
     members = {
         Max = {
             type = "double",
@@ -465,6 +497,7 @@ M.AttackVolumeStatistics = {
 
 M.AttackVolume = {
     type = "structure",
+    id = "AttackVolume",
     members = {
         BitsPerSecond = M.AttackVolumeStatistics,
         PacketsPerSecond = M.AttackVolumeStatistics,
@@ -474,6 +507,7 @@ M.AttackVolume = {
 
 M.AttackStatisticsDataItem = {
     type = "structure",
+    id = "AttackStatisticsDataItem",
     members = {
         AttackVolume = M.AttackVolume,
         AttackCount = {
@@ -488,6 +522,7 @@ M.AttackStatisticsDataItem = {
 
 M.AttackVectorDescription = {
     type = "structure",
+    id = "AttackVectorDescription",
     members = {
         VectorType = {
             type = "string",
@@ -500,6 +535,7 @@ M.AttackVectorDescription = {
 
 M.AttackSummary = {
     type = "structure",
+    id = "AttackSummary",
     members = {
         AttackId = {
             type = "string",
@@ -527,6 +563,7 @@ M.AutoRenew = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -539,6 +576,7 @@ M.Tag = {
 
 M.CreateProtectionInput = {
     type = "structure",
+    id = "CreateProtectionInput",
     members = {
         Name = {
             type = "string",
@@ -561,6 +599,7 @@ M.CreateProtectionInput = {
 
 M.CreateProtectionOutput = {
     type = "structure",
+    id = "CreateProtectionOutput",
     members = {
         ProtectionId = {
             type = "string",
@@ -570,6 +609,7 @@ M.CreateProtectionOutput = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -604,6 +644,7 @@ M.ProtectedResourceType = {
 
 M.CreateProtectionGroupInput = {
     type = "structure",
+    id = "CreateProtectionGroupInput",
     members = {
         ProtectionGroupId = {
             type = "string",
@@ -639,18 +680,22 @@ M.CreateProtectionGroupInput = {
 
 M.CreateProtectionGroupOutput = {
     type = "structure",
+    id = "CreateProtectionGroupOutput",
 }
 
 M.CreateSubscriptionInput = {
     type = "structure",
+    id = "CreateSubscriptionInput",
 }
 
 M.CreateSubscriptionOutput = {
     type = "structure",
+    id = "CreateSubscriptionOutput",
 }
 
 M.DeleteProtectionInput = {
     type = "structure",
+    id = "DeleteProtectionInput",
     members = {
         ProtectionId = {
             type = "string",
@@ -663,10 +708,12 @@ M.DeleteProtectionInput = {
 
 M.DeleteProtectionOutput = {
     type = "structure",
+    id = "DeleteProtectionOutput",
 }
 
 M.DeleteProtectionGroupInput = {
     type = "structure",
+    id = "DeleteProtectionGroupInput",
     members = {
         ProtectionGroupId = {
             type = "string",
@@ -679,18 +726,22 @@ M.DeleteProtectionGroupInput = {
 
 M.DeleteProtectionGroupOutput = {
     type = "structure",
+    id = "DeleteProtectionGroupOutput",
 }
 
 M.DeleteSubscriptionInput = {
     type = "structure",
+    id = "DeleteSubscriptionInput",
 }
 
 M.DeleteSubscriptionOutput = {
     type = "structure",
+    id = "DeleteSubscriptionOutput",
 }
 
 M.LockedSubscriptionException = {
     type = "structure",
+    id = "LockedSubscriptionException",
     error = "client",
     members = {
         message = {
@@ -701,6 +752,7 @@ M.LockedSubscriptionException = {
 
 M.DescribeAttackInput = {
     type = "structure",
+    id = "DescribeAttackInput",
     members = {
         AttackId = {
             type = "string",
@@ -713,6 +765,7 @@ M.DescribeAttackInput = {
 
 M.DescribeAttackOutput = {
     type = "structure",
+    id = "DescribeAttackOutput",
     members = {
         Attack = M.AttackDetail,
     },
@@ -720,10 +773,12 @@ M.DescribeAttackOutput = {
 
 M.DescribeAttackStatisticsInput = {
     type = "structure",
+    id = "DescribeAttackStatisticsInput",
 }
 
 M.TimeRange = {
     type = "structure",
+    id = "TimeRange",
     members = {
         FromInclusive = {
             type = "timestamp",
@@ -736,6 +791,7 @@ M.TimeRange = {
 
 M.DescribeAttackStatisticsOutput = {
     type = "structure",
+    id = "DescribeAttackStatisticsOutput",
     members = {
         TimeRange = setmetatable({ traits = {
             required = true,
@@ -752,10 +808,12 @@ M.DescribeAttackStatisticsOutput = {
 
 M.DescribeDRTAccessInput = {
     type = "structure",
+    id = "DescribeDRTAccessInput",
 }
 
 M.DescribeDRTAccessOutput = {
     type = "structure",
+    id = "DescribeDRTAccessOutput",
     members = {
         RoleArn = {
             type = "string",
@@ -769,10 +827,12 @@ M.DescribeDRTAccessOutput = {
 
 M.DescribeEmergencyContactSettingsInput = {
     type = "structure",
+    id = "DescribeEmergencyContactSettingsInput",
 }
 
 M.DescribeEmergencyContactSettingsOutput = {
     type = "structure",
+    id = "DescribeEmergencyContactSettingsOutput",
     members = {
         EmergencyContactList = {
             type = "list",
@@ -783,6 +843,7 @@ M.DescribeEmergencyContactSettingsOutput = {
 
 M.DescribeProtectionInput = {
     type = "structure",
+    id = "DescribeProtectionInput",
     members = {
         ProtectionId = {
             type = "string",
@@ -795,6 +856,7 @@ M.DescribeProtectionInput = {
 
 M.Protection = {
     type = "structure",
+    id = "Protection",
     members = {
         Id = {
             type = "string",
@@ -818,6 +880,7 @@ M.Protection = {
 
 M.DescribeProtectionOutput = {
     type = "structure",
+    id = "DescribeProtectionOutput",
     members = {
         Protection = M.Protection,
     },
@@ -825,6 +888,7 @@ M.DescribeProtectionOutput = {
 
 M.DescribeProtectionGroupInput = {
     type = "structure",
+    id = "DescribeProtectionGroupInput",
     members = {
         ProtectionGroupId = {
             type = "string",
@@ -837,6 +901,7 @@ M.DescribeProtectionGroupInput = {
 
 M.ProtectionGroup = {
     type = "structure",
+    id = "ProtectionGroup",
     members = {
         ProtectionGroupId = {
             type = "string",
@@ -874,6 +939,7 @@ M.ProtectionGroup = {
 
 M.DescribeProtectionGroupOutput = {
     type = "structure",
+    id = "DescribeProtectionGroupOutput",
     members = {
         ProtectionGroup = setmetatable({ traits = {
             required = true,
@@ -883,10 +949,12 @@ M.DescribeProtectionGroupOutput = {
 
 M.DescribeSubscriptionInput = {
     type = "structure",
+    id = "DescribeSubscriptionInput",
 }
 
 M.Limit = {
     type = "structure",
+    id = "Limit",
     members = {
         Type = {
             type = "string",
@@ -908,6 +976,7 @@ M.ProactiveEngagementStatus = {
 
 M.ProtectionGroupArbitraryPatternLimits = {
     type = "structure",
+    id = "ProtectionGroupArbitraryPatternLimits",
     members = {
         MaxMembers = {
             type = "long",
@@ -921,6 +990,7 @@ M.ProtectionGroupArbitraryPatternLimits = {
 
 M.ProtectionGroupPatternTypeLimits = {
     type = "structure",
+    id = "ProtectionGroupPatternTypeLimits",
     members = {
         ArbitraryPatternLimits = setmetatable({ traits = {
             required = true,
@@ -930,6 +1000,7 @@ M.ProtectionGroupPatternTypeLimits = {
 
 M.ProtectionGroupLimits = {
     type = "structure",
+    id = "ProtectionGroupLimits",
     members = {
         MaxProtectionGroups = {
             type = "long",
@@ -946,6 +1017,7 @@ M.ProtectionGroupLimits = {
 
 M.ProtectionLimits = {
     type = "structure",
+    id = "ProtectionLimits",
     members = {
         ProtectedResourceTypeLimits = {
             type = "list",
@@ -959,6 +1031,7 @@ M.ProtectionLimits = {
 
 M.SubscriptionLimits = {
     type = "structure",
+    id = "SubscriptionLimits",
     members = {
         ProtectionLimits = setmetatable({ traits = {
             required = true,
@@ -971,6 +1044,7 @@ M.SubscriptionLimits = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1005,6 +1079,7 @@ M.Subscription = {
 
 M.DescribeSubscriptionOutput = {
     type = "structure",
+    id = "DescribeSubscriptionOutput",
     members = {
         Subscription = M.Subscription,
     },
@@ -1012,6 +1087,7 @@ M.DescribeSubscriptionOutput = {
 
 M.DisableApplicationLayerAutomaticResponseInput = {
     type = "structure",
+    id = "DisableApplicationLayerAutomaticResponseInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1024,18 +1100,22 @@ M.DisableApplicationLayerAutomaticResponseInput = {
 
 M.DisableApplicationLayerAutomaticResponseOutput = {
     type = "structure",
+    id = "DisableApplicationLayerAutomaticResponseOutput",
 }
 
 M.DisableProactiveEngagementInput = {
     type = "structure",
+    id = "DisableProactiveEngagementInput",
 }
 
 M.DisableProactiveEngagementOutput = {
     type = "structure",
+    id = "DisableProactiveEngagementOutput",
 }
 
 M.DisassociateDRTLogBucketInput = {
     type = "structure",
+    id = "DisassociateDRTLogBucketInput",
     members = {
         LogBucket = {
             type = "string",
@@ -1048,18 +1128,22 @@ M.DisassociateDRTLogBucketInput = {
 
 M.DisassociateDRTLogBucketOutput = {
     type = "structure",
+    id = "DisassociateDRTLogBucketOutput",
 }
 
 M.DisassociateDRTRoleInput = {
     type = "structure",
+    id = "DisassociateDRTRoleInput",
 }
 
 M.DisassociateDRTRoleOutput = {
     type = "structure",
+    id = "DisassociateDRTRoleOutput",
 }
 
 M.DisassociateHealthCheckInput = {
     type = "structure",
+    id = "DisassociateHealthCheckInput",
     members = {
         ProtectionId = {
             type = "string",
@@ -1078,10 +1162,12 @@ M.DisassociateHealthCheckInput = {
 
 M.DisassociateHealthCheckOutput = {
     type = "structure",
+    id = "DisassociateHealthCheckOutput",
 }
 
 M.EnableApplicationLayerAutomaticResponseInput = {
     type = "structure",
+    id = "EnableApplicationLayerAutomaticResponseInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1097,18 +1183,22 @@ M.EnableApplicationLayerAutomaticResponseInput = {
 
 M.EnableApplicationLayerAutomaticResponseOutput = {
     type = "structure",
+    id = "EnableApplicationLayerAutomaticResponseOutput",
 }
 
 M.EnableProactiveEngagementInput = {
     type = "structure",
+    id = "EnableProactiveEngagementInput",
 }
 
 M.EnableProactiveEngagementOutput = {
     type = "structure",
+    id = "EnableProactiveEngagementOutput",
 }
 
 M.GetSubscriptionStateInput = {
     type = "structure",
+    id = "GetSubscriptionStateInput",
 }
 
 M.SubscriptionState = {
@@ -1118,6 +1208,7 @@ M.SubscriptionState = {
 
 M.GetSubscriptionStateOutput = {
     type = "structure",
+    id = "GetSubscriptionStateOutput",
     members = {
         SubscriptionState = {
             type = "string",
@@ -1130,6 +1221,7 @@ M.GetSubscriptionStateOutput = {
 
 M.ListAttacksInput = {
     type = "structure",
+    id = "ListAttacksInput",
     members = {
         ResourceArns = {
             type = "list",
@@ -1148,6 +1240,7 @@ M.ListAttacksInput = {
 
 M.ListAttacksOutput = {
     type = "structure",
+    id = "ListAttacksOutput",
     members = {
         AttackSummaries = {
             type = "list",
@@ -1161,6 +1254,7 @@ M.ListAttacksOutput = {
 
 M.InvalidPaginationTokenException = {
     type = "structure",
+    id = "InvalidPaginationTokenException",
     error = "client",
     members = {
         message = {
@@ -1171,6 +1265,7 @@ M.InvalidPaginationTokenException = {
 
 M.InclusionProtectionGroupFilters = {
     type = "structure",
+    id = "InclusionProtectionGroupFilters",
     members = {
         ProtectionGroupIds = {
             type = "list",
@@ -1193,6 +1288,7 @@ M.InclusionProtectionGroupFilters = {
 
 M.ListProtectionGroupsInput = {
     type = "structure",
+    id = "ListProtectionGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1206,6 +1302,7 @@ M.ListProtectionGroupsInput = {
 
 M.ListProtectionGroupsOutput = {
     type = "structure",
+    id = "ListProtectionGroupsOutput",
     members = {
         ProtectionGroups = {
             type = "list",
@@ -1222,6 +1319,7 @@ M.ListProtectionGroupsOutput = {
 
 M.InclusionProtectionFilters = {
     type = "structure",
+    id = "InclusionProtectionFilters",
     members = {
         ResourceArns = {
             type = "list",
@@ -1240,6 +1338,7 @@ M.InclusionProtectionFilters = {
 
 M.ListProtectionsInput = {
     type = "structure",
+    id = "ListProtectionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1253,6 +1352,7 @@ M.ListProtectionsInput = {
 
 M.ListProtectionsOutput = {
     type = "structure",
+    id = "ListProtectionsOutput",
     members = {
         Protections = {
             type = "list",
@@ -1266,6 +1366,7 @@ M.ListProtectionsOutput = {
 
 M.ListResourcesInProtectionGroupInput = {
     type = "structure",
+    id = "ListResourcesInProtectionGroupInput",
     members = {
         ProtectionGroupId = {
             type = "string",
@@ -1284,6 +1385,7 @@ M.ListResourcesInProtectionGroupInput = {
 
 M.ListResourcesInProtectionGroupOutput = {
     type = "structure",
+    id = "ListResourcesInProtectionGroupOutput",
     members = {
         ResourceArns = {
             type = "list",
@@ -1300,6 +1402,7 @@ M.ListResourcesInProtectionGroupOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1312,6 +1415,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1322,6 +1426,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1341,10 +1446,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1364,10 +1471,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApplicationLayerAutomaticResponseInput = {
     type = "structure",
+    id = "UpdateApplicationLayerAutomaticResponseInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1383,10 +1492,12 @@ M.UpdateApplicationLayerAutomaticResponseInput = {
 
 M.UpdateApplicationLayerAutomaticResponseOutput = {
     type = "structure",
+    id = "UpdateApplicationLayerAutomaticResponseOutput",
 }
 
 M.UpdateEmergencyContactSettingsInput = {
     type = "structure",
+    id = "UpdateEmergencyContactSettingsInput",
     members = {
         EmergencyContactList = {
             type = "list",
@@ -1397,10 +1508,12 @@ M.UpdateEmergencyContactSettingsInput = {
 
 M.UpdateEmergencyContactSettingsOutput = {
     type = "structure",
+    id = "UpdateEmergencyContactSettingsOutput",
 }
 
 M.UpdateProtectionGroupInput = {
     type = "structure",
+    id = "UpdateProtectionGroupInput",
     members = {
         ProtectionGroupId = {
             type = "string",
@@ -1432,10 +1545,12 @@ M.UpdateProtectionGroupInput = {
 
 M.UpdateProtectionGroupOutput = {
     type = "structure",
+    id = "UpdateProtectionGroupOutput",
 }
 
 M.UpdateSubscriptionInput = {
     type = "structure",
+    id = "UpdateSubscriptionInput",
     members = {
         AutoRenew = {
             type = "string",
@@ -1445,6 +1560,7 @@ M.UpdateSubscriptionInput = {
 
 M.UpdateSubscriptionOutput = {
     type = "structure",
+    id = "UpdateSubscriptionOutput",
 }
 
 return M

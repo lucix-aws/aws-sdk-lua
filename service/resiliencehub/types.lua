@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptGroupingRecommendationEntry = {
     type = "structure",
+    id = "AcceptGroupingRecommendationEntry",
     members = {
         groupingRecommendationId = {
             type = "string",
@@ -14,6 +15,7 @@ M.AcceptGroupingRecommendationEntry = {
 
 M.AcceptResourceGroupingRecommendationsInput = {
     type = "structure",
+    id = "AcceptResourceGroupingRecommendationsInput",
     members = {
         appArn = {
             type = "string",
@@ -33,6 +35,7 @@ M.AcceptResourceGroupingRecommendationsInput = {
 
 M.FailedGroupingRecommendationEntry = {
     type = "structure",
+    id = "FailedGroupingRecommendationEntry",
     members = {
         groupingRecommendationId = {
             type = "string",
@@ -51,6 +54,7 @@ M.FailedGroupingRecommendationEntry = {
 
 M.AcceptResourceGroupingRecommendationsOutput = {
     type = "structure",
+    id = "AcceptResourceGroupingRecommendationsOutput",
     members = {
         appArn = {
             type = "string",
@@ -70,6 +74,7 @@ M.AcceptResourceGroupingRecommendationsOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -80,6 +85,7 @@ M.AccessDeniedException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -90,6 +96,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -106,6 +113,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -119,6 +127,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -143,6 +152,7 @@ M.PhysicalIdentifierType = {
 
 M.PhysicalResourceId = {
     type = "structure",
+    id = "PhysicalResourceId",
     members = {
         identifier = {
             type = "string",
@@ -167,6 +177,7 @@ M.PhysicalResourceId = {
 
 M.ResourceMapping = {
     type = "structure",
+    id = "ResourceMapping",
     members = {
         resourceName = {
             type = "string",
@@ -200,6 +211,7 @@ M.ResourceMapping = {
 
 M.AddDraftAppVersionResourceMappingsInput = {
     type = "structure",
+    id = "AddDraftAppVersionResourceMappingsInput",
     members = {
         appArn = {
             type = "string",
@@ -219,6 +231,7 @@ M.AddDraftAppVersionResourceMappingsInput = {
 
 M.AddDraftAppVersionResourceMappingsOutput = {
     type = "structure",
+    id = "AddDraftAppVersionResourceMappingsOutput",
     members = {
         appArn = {
             type = "string",
@@ -244,6 +257,7 @@ M.AddDraftAppVersionResourceMappingsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -260,6 +274,7 @@ M.ConflictException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -270,6 +285,7 @@ M.ServiceQuotaExceededException = {
 
 M.Alarm = {
     type = "structure",
+    id = "Alarm",
     members = {
         alarmArn = {
             type = "string",
@@ -288,6 +304,7 @@ M.ExcludeRecommendationReason = {
 
 M.Experiment = {
     type = "structure",
+    id = "Experiment",
     members = {
         experimentArn = {
             type = "string",
@@ -300,6 +317,7 @@ M.Experiment = {
 
 M.RecommendationItem = {
     type = "structure",
+    id = "RecommendationItem",
     members = {
         resourceId = {
             type = "string",
@@ -341,6 +359,7 @@ M.AlarmType = {
 
 M.AlarmRecommendation = {
     type = "structure",
+    id = "AlarmRecommendation",
     members = {
         recommendationId = {
             type = "string",
@@ -416,6 +435,7 @@ M.EventType = {
 
 M.EventSubscription = {
     type = "structure",
+    id = "EventSubscription",
     members = {
         name = {
             type = "string",
@@ -442,6 +462,7 @@ M.PermissionModelType = {
 
 M.PermissionModel = {
     type = "structure",
+    id = "PermissionModel",
     members = {
         type = {
             type = "string",
@@ -466,6 +487,7 @@ M.AppStatusType = {
 
 M.App = {
     type = "structure",
+    id = "App",
     members = {
         appArn = {
             type = "string",
@@ -563,6 +585,7 @@ M.ComplianceStatus = {
 
 M.DisruptionCompliance = {
     type = "structure",
+    id = "DisruptionCompliance",
     members = {
         achievableRtoInSecs = {
             type = "integer",
@@ -621,6 +644,7 @@ M.CostFrequency = {
 
 M.Cost = {
     type = "structure",
+    id = "Cost",
     members = {
         amount = {
             type = "double",
@@ -670,6 +694,7 @@ M.EstimatedCostTier = {
 
 M.FailurePolicy = {
     type = "structure",
+    id = "FailurePolicy",
     members = {
         rtoInSecs = {
             type = "integer",
@@ -699,6 +724,7 @@ M.ResiliencyPolicyTier = {
 
 M.ResiliencyPolicy = {
     type = "structure",
+    id = "ResiliencyPolicy",
     members = {
         policyArn = {
             type = "string",
@@ -743,6 +769,7 @@ M.ResiliencyScoreType = {
 
 M.ScoringComponentResiliencyScore = {
     type = "structure",
+    id = "ScoringComponentResiliencyScore",
     members = {
         score = {
             type = "double",
@@ -773,6 +800,7 @@ M.ScoringComponentResiliencyScore = {
 
 M.ResiliencyScore = {
     type = "structure",
+    id = "ResiliencyScore",
     members = {
         score = {
             type = "double",
@@ -799,6 +827,7 @@ M.ResiliencyScore = {
 
 M.ResourceError = {
     type = "structure",
+    id = "ResourceError",
     members = {
         logicalResourceId = {
             type = "string",
@@ -814,6 +843,7 @@ M.ResourceError = {
 
 M.ResourceErrorsDetails = {
     type = "structure",
+    id = "ResourceErrorsDetails",
     members = {
         resourceErrors = {
             type = "list",
@@ -827,6 +857,7 @@ M.ResourceErrorsDetails = {
 
 M.AssessmentRiskRecommendation = {
     type = "structure",
+    id = "AssessmentRiskRecommendation",
     members = {
         risk = {
             type = "string",
@@ -843,6 +874,7 @@ M.AssessmentRiskRecommendation = {
 
 M.AssessmentSummary = {
     type = "structure",
+    id = "AssessmentSummary",
     members = {
         summary = {
             type = "string",
@@ -856,6 +888,7 @@ M.AssessmentSummary = {
 
 M.AppAssessment = {
     type = "structure",
+    id = "AppAssessment",
     members = {
         appArn = {
             type = "string",
@@ -922,6 +955,7 @@ M.AppAssessment = {
 
 M.AppAssessmentSummary = {
     type = "structure",
+    id = "AppAssessmentSummary",
     members = {
         appArn = {
             type = "string",
@@ -977,6 +1011,7 @@ M.AppAssessmentSummary = {
 
 M.AppComponent = {
     type = "structure",
+    id = "AppComponent",
     members = {
         name = {
             type = "string",
@@ -1003,6 +1038,7 @@ M.AppComponent = {
 
 M.AppComponentCompliance = {
     type = "structure",
+    id = "AppComponentCompliance",
     members = {
         cost = M.Cost,
         appComponentName = {
@@ -1025,6 +1061,7 @@ M.AppComponentCompliance = {
 
 M.EksSourceClusterNamespace = {
     type = "structure",
+    id = "EksSourceClusterNamespace",
     members = {
         eksClusterArn = {
             type = "string",
@@ -1043,6 +1080,7 @@ M.EksSourceClusterNamespace = {
 
 M.TerraformSource = {
     type = "structure",
+    id = "TerraformSource",
     members = {
         s3StateFileUrl = {
             type = "string",
@@ -1055,6 +1093,7 @@ M.TerraformSource = {
 
 M.AppInputSource = {
     type = "structure",
+    id = "AppInputSource",
     members = {
         sourceName = {
             type = "string",
@@ -1081,6 +1120,7 @@ M.AppInputSource = {
 
 M.AppSummary = {
     type = "structure",
+    id = "AppSummary",
     members = {
         appArn = {
             type = "string",
@@ -1138,6 +1178,7 @@ M.AppSummary = {
 
 M.AppVersionSummary = {
     type = "structure",
+    id = "AppVersionSummary",
     members = {
         appVersion = {
             type = "string",
@@ -1159,6 +1200,7 @@ M.AppVersionSummary = {
 
 M.UpdateRecommendationStatusItem = {
     type = "structure",
+    id = "UpdateRecommendationStatusItem",
     members = {
         resourceId = {
             type = "string",
@@ -1174,6 +1216,7 @@ M.UpdateRecommendationStatusItem = {
 
 M.UpdateRecommendationStatusRequestEntry = {
     type = "structure",
+    id = "UpdateRecommendationStatusRequestEntry",
     members = {
         entryId = {
             type = "string",
@@ -1205,6 +1248,7 @@ M.UpdateRecommendationStatusRequestEntry = {
 
 M.BatchUpdateRecommendationStatusInput = {
     type = "structure",
+    id = "BatchUpdateRecommendationStatusInput",
     members = {
         appArn = {
             type = "string",
@@ -1224,6 +1268,7 @@ M.BatchUpdateRecommendationStatusInput = {
 
 M.BatchUpdateRecommendationStatusFailedEntry = {
     type = "structure",
+    id = "BatchUpdateRecommendationStatusFailedEntry",
     members = {
         entryId = {
             type = "string",
@@ -1242,6 +1287,7 @@ M.BatchUpdateRecommendationStatusFailedEntry = {
 
 M.BatchUpdateRecommendationStatusSuccessfulEntry = {
     type = "structure",
+    id = "BatchUpdateRecommendationStatusSuccessfulEntry",
     members = {
         entryId = {
             type = "string",
@@ -1273,6 +1319,7 @@ M.BatchUpdateRecommendationStatusSuccessfulEntry = {
 
 M.BatchUpdateRecommendationStatusOutput = {
     type = "structure",
+    id = "BatchUpdateRecommendationStatusOutput",
     members = {
         appArn = {
             type = "string",
@@ -1299,6 +1346,7 @@ M.BatchUpdateRecommendationStatusOutput = {
 
 M.CreateAppInput = {
     type = "structure",
+    id = "CreateAppInput",
     members = {
         name = {
             type = "string",
@@ -1339,6 +1387,7 @@ M.CreateAppInput = {
 
 M.CreateAppOutput = {
     type = "structure",
+    id = "CreateAppOutput",
     members = {
         app = setmetatable({ traits = {
             required = true,
@@ -1348,6 +1397,7 @@ M.CreateAppOutput = {
 
 M.CreateAppVersionAppComponentInput = {
     type = "structure",
+    id = "CreateAppVersionAppComponentInput",
     members = {
         appArn = {
             type = "string",
@@ -1386,6 +1436,7 @@ M.CreateAppVersionAppComponentInput = {
 
 M.CreateAppVersionAppComponentOutput = {
     type = "structure",
+    id = "CreateAppVersionAppComponentOutput",
     members = {
         appArn = {
             type = "string",
@@ -1405,6 +1456,7 @@ M.CreateAppVersionAppComponentOutput = {
 
 M.LogicalResourceId = {
     type = "structure",
+    id = "LogicalResourceId",
     members = {
         identifier = {
             type = "string",
@@ -1429,6 +1481,7 @@ M.LogicalResourceId = {
 
 M.CreateAppVersionResourceInput = {
     type = "structure",
+    id = "CreateAppVersionResourceInput",
     members = {
         appArn = {
             type = "string",
@@ -1488,6 +1541,7 @@ M.ResourceSourceType = {
 
 M.PhysicalResource = {
     type = "structure",
+    id = "PhysicalResource",
     members = {
         resourceName = {
             type = "string",
@@ -1527,6 +1581,7 @@ M.PhysicalResource = {
 
 M.CreateAppVersionResourceOutput = {
     type = "structure",
+    id = "CreateAppVersionResourceOutput",
     members = {
         appArn = {
             type = "string",
@@ -1557,6 +1612,7 @@ M.RenderRecommendationType = {
 
 M.CreateRecommendationTemplateInput = {
     type = "structure",
+    id = "CreateRecommendationTemplateInput",
     members = {
         recommendationIds = {
             type = "list",
@@ -1607,6 +1663,7 @@ M.RecommendationTemplateStatus = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucket = {
             type = "string",
@@ -1619,6 +1676,7 @@ M.S3Location = {
 
 M.RecommendationTemplate = {
     type = "structure",
+    id = "RecommendationTemplate",
     members = {
         templatesLocation = M.S3Location,
         assessmentArn = {
@@ -1687,6 +1745,7 @@ M.RecommendationTemplate = {
 
 M.CreateRecommendationTemplateOutput = {
     type = "structure",
+    id = "CreateRecommendationTemplateOutput",
     members = {
         recommendationTemplate = M.RecommendationTemplate,
     },
@@ -1694,6 +1753,7 @@ M.CreateRecommendationTemplateOutput = {
 
 M.CreateResiliencyPolicyInput = {
     type = "structure",
+    id = "CreateResiliencyPolicyInput",
     members = {
         policyName = {
             type = "string",
@@ -1737,6 +1797,7 @@ M.CreateResiliencyPolicyInput = {
 
 M.CreateResiliencyPolicyOutput = {
     type = "structure",
+    id = "CreateResiliencyPolicyOutput",
     members = {
         policy = setmetatable({ traits = {
             required = true,
@@ -1746,6 +1807,7 @@ M.CreateResiliencyPolicyOutput = {
 
 M.DeleteAppInput = {
     type = "structure",
+    id = "DeleteAppInput",
     members = {
         appArn = {
             type = "string",
@@ -1767,6 +1829,7 @@ M.DeleteAppInput = {
 
 M.DeleteAppOutput = {
     type = "structure",
+    id = "DeleteAppOutput",
     members = {
         appArn = {
             type = "string",
@@ -1779,6 +1842,7 @@ M.DeleteAppOutput = {
 
 M.DeleteAppAssessmentInput = {
     type = "structure",
+    id = "DeleteAppAssessmentInput",
     members = {
         assessmentArn = {
             type = "string",
@@ -1797,6 +1861,7 @@ M.DeleteAppAssessmentInput = {
 
 M.DeleteAppAssessmentOutput = {
     type = "structure",
+    id = "DeleteAppAssessmentOutput",
     members = {
         assessmentArn = {
             type = "string",
@@ -1815,6 +1880,7 @@ M.DeleteAppAssessmentOutput = {
 
 M.DeleteAppInputSourceInput = {
     type = "structure",
+    id = "DeleteAppInputSourceInput",
     members = {
         appArn = {
             type = "string",
@@ -1838,6 +1904,7 @@ M.DeleteAppInputSourceInput = {
 
 M.DeleteAppInputSourceOutput = {
     type = "structure",
+    id = "DeleteAppInputSourceOutput",
     members = {
         appArn = {
             type = "string",
@@ -1848,6 +1915,7 @@ M.DeleteAppInputSourceOutput = {
 
 M.DeleteAppVersionAppComponentInput = {
     type = "structure",
+    id = "DeleteAppVersionAppComponentInput",
     members = {
         appArn = {
             type = "string",
@@ -1872,6 +1940,7 @@ M.DeleteAppVersionAppComponentInput = {
 
 M.DeleteAppVersionAppComponentOutput = {
     type = "structure",
+    id = "DeleteAppVersionAppComponentOutput",
     members = {
         appArn = {
             type = "string",
@@ -1891,6 +1960,7 @@ M.DeleteAppVersionAppComponentOutput = {
 
 M.DeleteAppVersionResourceInput = {
     type = "structure",
+    id = "DeleteAppVersionResourceInput",
     members = {
         appArn = {
             type = "string",
@@ -1922,6 +1992,7 @@ M.DeleteAppVersionResourceInput = {
 
 M.DeleteAppVersionResourceOutput = {
     type = "structure",
+    id = "DeleteAppVersionResourceOutput",
     members = {
         appArn = {
             type = "string",
@@ -1941,6 +2012,7 @@ M.DeleteAppVersionResourceOutput = {
 
 M.DeleteRecommendationTemplateInput = {
     type = "structure",
+    id = "DeleteRecommendationTemplateInput",
     members = {
         recommendationTemplateArn = {
             type = "string",
@@ -1959,6 +2031,7 @@ M.DeleteRecommendationTemplateInput = {
 
 M.DeleteRecommendationTemplateOutput = {
     type = "structure",
+    id = "DeleteRecommendationTemplateOutput",
     members = {
         recommendationTemplateArn = {
             type = "string",
@@ -1977,6 +2050,7 @@ M.DeleteRecommendationTemplateOutput = {
 
 M.DeleteResiliencyPolicyInput = {
     type = "structure",
+    id = "DeleteResiliencyPolicyInput",
     members = {
         policyArn = {
             type = "string",
@@ -1995,6 +2069,7 @@ M.DeleteResiliencyPolicyInput = {
 
 M.DeleteResiliencyPolicyOutput = {
     type = "structure",
+    id = "DeleteResiliencyPolicyOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2007,6 +2082,7 @@ M.DeleteResiliencyPolicyOutput = {
 
 M.DescribeAppInput = {
     type = "structure",
+    id = "DescribeAppInput",
     members = {
         appArn = {
             type = "string",
@@ -2019,6 +2095,7 @@ M.DescribeAppInput = {
 
 M.DescribeAppOutput = {
     type = "structure",
+    id = "DescribeAppOutput",
     members = {
         app = setmetatable({ traits = {
             required = true,
@@ -2028,6 +2105,7 @@ M.DescribeAppOutput = {
 
 M.DescribeAppAssessmentInput = {
     type = "structure",
+    id = "DescribeAppAssessmentInput",
     members = {
         assessmentArn = {
             type = "string",
@@ -2040,6 +2118,7 @@ M.DescribeAppAssessmentInput = {
 
 M.DescribeAppAssessmentOutput = {
     type = "structure",
+    id = "DescribeAppAssessmentOutput",
     members = {
         assessment = setmetatable({ traits = {
             required = true,
@@ -2049,6 +2128,7 @@ M.DescribeAppAssessmentOutput = {
 
 M.DescribeAppVersionInput = {
     type = "structure",
+    id = "DescribeAppVersionInput",
     members = {
         appArn = {
             type = "string",
@@ -2067,6 +2147,7 @@ M.DescribeAppVersionInput = {
 
 M.DescribeAppVersionOutput = {
     type = "structure",
+    id = "DescribeAppVersionOutput",
     members = {
         appArn = {
             type = "string",
@@ -2090,6 +2171,7 @@ M.DescribeAppVersionOutput = {
 
 M.DescribeAppVersionAppComponentInput = {
     type = "structure",
+    id = "DescribeAppVersionAppComponentInput",
     members = {
         appArn = {
             type = "string",
@@ -2114,6 +2196,7 @@ M.DescribeAppVersionAppComponentInput = {
 
 M.DescribeAppVersionAppComponentOutput = {
     type = "structure",
+    id = "DescribeAppVersionAppComponentOutput",
     members = {
         appArn = {
             type = "string",
@@ -2133,6 +2216,7 @@ M.DescribeAppVersionAppComponentOutput = {
 
 M.DescribeAppVersionResourceInput = {
     type = "structure",
+    id = "DescribeAppVersionResourceInput",
     members = {
         appArn = {
             type = "string",
@@ -2164,6 +2248,7 @@ M.DescribeAppVersionResourceInput = {
 
 M.DescribeAppVersionResourceOutput = {
     type = "structure",
+    id = "DescribeAppVersionResourceOutput",
     members = {
         appArn = {
             type = "string",
@@ -2183,6 +2268,7 @@ M.DescribeAppVersionResourceOutput = {
 
 M.DescribeAppVersionResourcesResolutionStatusInput = {
     type = "structure",
+    id = "DescribeAppVersionResourcesResolutionStatusInput",
     members = {
         appArn = {
             type = "string",
@@ -2211,6 +2297,7 @@ M.ResourceResolutionStatusType = {
 
 M.DescribeAppVersionResourcesResolutionStatusOutput = {
     type = "structure",
+    id = "DescribeAppVersionResourcesResolutionStatusOutput",
     members = {
         appArn = {
             type = "string",
@@ -2244,6 +2331,7 @@ M.DescribeAppVersionResourcesResolutionStatusOutput = {
 
 M.DescribeAppVersionTemplateInput = {
     type = "structure",
+    id = "DescribeAppVersionTemplateInput",
     members = {
         appArn = {
             type = "string",
@@ -2262,6 +2350,7 @@ M.DescribeAppVersionTemplateInput = {
 
 M.DescribeAppVersionTemplateOutput = {
     type = "structure",
+    id = "DescribeAppVersionTemplateOutput",
     members = {
         appArn = {
             type = "string",
@@ -2286,6 +2375,7 @@ M.DescribeAppVersionTemplateOutput = {
 
 M.DescribeDraftAppVersionResourcesImportStatusInput = {
     type = "structure",
+    id = "DescribeDraftAppVersionResourcesImportStatusInput",
     members = {
         appArn = {
             type = "string",
@@ -2298,6 +2388,7 @@ M.DescribeDraftAppVersionResourcesImportStatusInput = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         errorMessage = {
             type = "string",
@@ -2314,6 +2405,7 @@ M.ResourceImportStatusType = {
 
 M.DescribeDraftAppVersionResourcesImportStatusOutput = {
     type = "structure",
+    id = "DescribeDraftAppVersionResourcesImportStatusOutput",
     members = {
         appArn = {
             type = "string",
@@ -2351,6 +2443,7 @@ M.DescribeDraftAppVersionResourcesImportStatusOutput = {
 
 M.DescribeMetricsExportInput = {
     type = "structure",
+    id = "DescribeMetricsExportInput",
     members = {
         metricsExportId = {
             type = "string",
@@ -2370,6 +2463,7 @@ M.MetricsExportStatusType = {
 
 M.DescribeMetricsExportOutput = {
     type = "structure",
+    id = "DescribeMetricsExportOutput",
     members = {
         metricsExportId = {
             type = "string",
@@ -2392,6 +2486,7 @@ M.DescribeMetricsExportOutput = {
 
 M.DescribeResiliencyPolicyInput = {
     type = "structure",
+    id = "DescribeResiliencyPolicyInput",
     members = {
         policyArn = {
             type = "string",
@@ -2404,6 +2499,7 @@ M.DescribeResiliencyPolicyInput = {
 
 M.DescribeResiliencyPolicyOutput = {
     type = "structure",
+    id = "DescribeResiliencyPolicyOutput",
     members = {
         policy = setmetatable({ traits = {
             required = true,
@@ -2413,6 +2509,7 @@ M.DescribeResiliencyPolicyOutput = {
 
 M.DescribeResourceGroupingRecommendationTaskInput = {
     type = "structure",
+    id = "DescribeResourceGroupingRecommendationTaskInput",
     members = {
         appArn = {
             type = "string",
@@ -2435,6 +2532,7 @@ M.ResourcesGroupingRecGenStatusType = {
 
 M.DescribeResourceGroupingRecommendationTaskOutput = {
     type = "structure",
+    id = "DescribeResourceGroupingRecommendationTaskOutput",
     members = {
         groupingId = {
             type = "string",
@@ -2456,6 +2554,7 @@ M.DescribeResourceGroupingRecommendationTaskOutput = {
 
 M.EksSource = {
     type = "structure",
+    id = "EksSource",
     members = {
         eksClusterArn = {
             type = "string",
@@ -2480,6 +2579,7 @@ M.ResourceImportStrategyType = {
 
 M.ImportResourcesToDraftAppVersionInput = {
     type = "structure",
+    id = "ImportResourcesToDraftAppVersionInput",
     members = {
         appArn = {
             type = "string",
@@ -2507,6 +2607,7 @@ M.ImportResourcesToDraftAppVersionInput = {
 
 M.ImportResourcesToDraftAppVersionOutput = {
     type = "structure",
+    id = "ImportResourcesToDraftAppVersionOutput",
     members = {
         appArn = {
             type = "string",
@@ -2543,6 +2644,7 @@ M.ImportResourcesToDraftAppVersionOutput = {
 
 M.ListAlarmRecommendationsInput = {
     type = "structure",
+    id = "ListAlarmRecommendationsInput",
     members = {
         assessmentArn = {
             type = "string",
@@ -2561,6 +2663,7 @@ M.ListAlarmRecommendationsInput = {
 
 M.ListAlarmRecommendationsOutput = {
     type = "structure",
+    id = "ListAlarmRecommendationsOutput",
     members = {
         alarmRecommendations = {
             type = "list",
@@ -2577,6 +2680,7 @@ M.ListAlarmRecommendationsOutput = {
 
 M.ListAppAssessmentComplianceDriftsInput = {
     type = "structure",
+    id = "ListAppAssessmentComplianceDriftsInput",
     members = {
         assessmentArn = {
             type = "string",
@@ -2606,6 +2710,7 @@ M.DriftType = {
 
 M.ComplianceDrift = {
     type = "structure",
+    id = "ComplianceDrift",
     members = {
         entityId = {
             type = "string",
@@ -2646,6 +2751,7 @@ M.ComplianceDrift = {
 
 M.ListAppAssessmentComplianceDriftsOutput = {
     type = "structure",
+    id = "ListAppAssessmentComplianceDriftsOutput",
     members = {
         complianceDrifts = {
             type = "list",
@@ -2662,6 +2768,7 @@ M.ListAppAssessmentComplianceDriftsOutput = {
 
 M.ListAppAssessmentResourceDriftsInput = {
     type = "structure",
+    id = "ListAppAssessmentResourceDriftsInput",
     members = {
         assessmentArn = {
             type = "string",
@@ -2680,6 +2787,7 @@ M.ListAppAssessmentResourceDriftsInput = {
 
 M.ResourceIdentifier = {
     type = "structure",
+    id = "ResourceIdentifier",
     members = {
         logicalResourceId = M.LogicalResourceId,
         resourceType = {
@@ -2690,6 +2798,7 @@ M.ResourceIdentifier = {
 
 M.ResourceDrift = {
     type = "structure",
+    id = "ResourceDrift",
     members = {
         appArn = {
             type = "string",
@@ -2709,6 +2818,7 @@ M.ResourceDrift = {
 
 M.ListAppAssessmentResourceDriftsOutput = {
     type = "structure",
+    id = "ListAppAssessmentResourceDriftsOutput",
     members = {
         resourceDrifts = {
             type = "list",
@@ -2725,6 +2835,7 @@ M.ListAppAssessmentResourceDriftsOutput = {
 
 M.ListAppAssessmentsInput = {
     type = "structure",
+    id = "ListAppAssessmentsInput",
     members = {
         appArn = {
             type = "string",
@@ -2780,6 +2891,7 @@ M.ListAppAssessmentsInput = {
 
 M.ListAppAssessmentsOutput = {
     type = "structure",
+    id = "ListAppAssessmentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2796,6 +2908,7 @@ M.ListAppAssessmentsOutput = {
 
 M.ListAppComponentCompliancesInput = {
     type = "structure",
+    id = "ListAppComponentCompliancesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2814,6 +2927,7 @@ M.ListAppComponentCompliancesInput = {
 
 M.ListAppComponentCompliancesOutput = {
     type = "structure",
+    id = "ListAppComponentCompliancesOutput",
     members = {
         componentCompliances = {
             type = "list",
@@ -2830,6 +2944,7 @@ M.ListAppComponentCompliancesOutput = {
 
 M.ListAppComponentRecommendationsInput = {
     type = "structure",
+    id = "ListAppComponentRecommendationsInput",
     members = {
         assessmentArn = {
             type = "string",
@@ -2865,6 +2980,7 @@ M.ConfigRecommendationOptimizationType = {
 
 M.RecommendationDisruptionCompliance = {
     type = "structure",
+    id = "RecommendationDisruptionCompliance",
     members = {
         expectedComplianceStatus = {
             type = "string",
@@ -2895,6 +3011,7 @@ M.RecommendationDisruptionCompliance = {
 
 M.ConfigRecommendation = {
     type = "structure",
+    id = "ConfigRecommendation",
     members = {
         cost = M.Cost,
         appComponentName = {
@@ -2950,6 +3067,7 @@ M.RecommendationComplianceStatus = {
 
 M.ComponentRecommendation = {
     type = "structure",
+    id = "ComponentRecommendation",
     members = {
         appComponentName = {
             type = "string",
@@ -2975,6 +3093,7 @@ M.ComponentRecommendation = {
 
 M.ListAppComponentRecommendationsOutput = {
     type = "structure",
+    id = "ListAppComponentRecommendationsOutput",
     members = {
         componentRecommendations = {
             type = "list",
@@ -2991,6 +3110,7 @@ M.ListAppComponentRecommendationsOutput = {
 
 M.ListAppInputSourcesInput = {
     type = "structure",
+    id = "ListAppInputSourcesInput",
     members = {
         appArn = {
             type = "string",
@@ -3015,6 +3135,7 @@ M.ListAppInputSourcesInput = {
 
 M.ListAppInputSourcesOutput = {
     type = "structure",
+    id = "ListAppInputSourcesOutput",
     members = {
         appInputSources = {
             type = "list",
@@ -3031,6 +3152,7 @@ M.ListAppInputSourcesOutput = {
 
 M.ListAppsInput = {
     type = "structure",
+    id = "ListAppsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3085,6 +3207,7 @@ M.ListAppsInput = {
 
 M.ListAppsOutput = {
     type = "structure",
+    id = "ListAppsOutput",
     members = {
         appSummaries = {
             type = "list",
@@ -3101,6 +3224,7 @@ M.ListAppsOutput = {
 
 M.ListAppVersionAppComponentsInput = {
     type = "structure",
+    id = "ListAppVersionAppComponentsInput",
     members = {
         appArn = {
             type = "string",
@@ -3125,6 +3249,7 @@ M.ListAppVersionAppComponentsInput = {
 
 M.ListAppVersionAppComponentsOutput = {
     type = "structure",
+    id = "ListAppVersionAppComponentsOutput",
     members = {
         appArn = {
             type = "string",
@@ -3150,6 +3275,7 @@ M.ListAppVersionAppComponentsOutput = {
 
 M.ListAppVersionResourceMappingsInput = {
     type = "structure",
+    id = "ListAppVersionResourceMappingsInput",
     members = {
         appArn = {
             type = "string",
@@ -3174,6 +3300,7 @@ M.ListAppVersionResourceMappingsInput = {
 
 M.ListAppVersionResourceMappingsOutput = {
     type = "structure",
+    id = "ListAppVersionResourceMappingsOutput",
     members = {
         resourceMappings = {
             type = "list",
@@ -3190,6 +3317,7 @@ M.ListAppVersionResourceMappingsOutput = {
 
 M.ListAppVersionResourcesInput = {
     type = "structure",
+    id = "ListAppVersionResourcesInput",
     members = {
         appArn = {
             type = "string",
@@ -3217,6 +3345,7 @@ M.ListAppVersionResourcesInput = {
 
 M.ListAppVersionResourcesOutput = {
     type = "structure",
+    id = "ListAppVersionResourcesOutput",
     members = {
         physicalResources = {
             type = "list",
@@ -3239,6 +3368,7 @@ M.ListAppVersionResourcesOutput = {
 
 M.ListAppVersionsInput = {
     type = "structure",
+    id = "ListAppVersionsInput",
     members = {
         appArn = {
             type = "string",
@@ -3263,6 +3393,7 @@ M.ListAppVersionsInput = {
 
 M.ListAppVersionsOutput = {
     type = "structure",
+    id = "ListAppVersionsOutput",
     members = {
         appVersions = {
             type = "list",
@@ -3288,6 +3419,7 @@ M.ConditionOperatorType = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         field = {
             type = "string",
@@ -3317,6 +3449,7 @@ M.FieldAggregationType = {
 
 M.Field = {
     type = "structure",
+    id = "Field",
     members = {
         name = {
             type = "string",
@@ -3332,6 +3465,7 @@ M.Field = {
 
 M.Sort = {
     type = "structure",
+    id = "Sort",
     members = {
         field = {
             type = "string",
@@ -3347,6 +3481,7 @@ M.Sort = {
 
 M.ListMetricsInput = {
     type = "structure",
+    id = "ListMetricsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3374,6 +3509,7 @@ M.ListMetricsInput = {
 
 M.ListMetricsOutput = {
     type = "structure",
+    id = "ListMetricsOutput",
     members = {
         rows = {
             type = "list",
@@ -3390,6 +3526,7 @@ M.ListMetricsOutput = {
 
 M.ListRecommendationTemplatesInput = {
     type = "structure",
+    id = "ListRecommendationTemplatesInput",
     members = {
         assessmentArn = {
             type = "string",
@@ -3439,6 +3576,7 @@ M.ListRecommendationTemplatesInput = {
 
 M.ListRecommendationTemplatesOutput = {
     type = "structure",
+    id = "ListRecommendationTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3452,6 +3590,7 @@ M.ListRecommendationTemplatesOutput = {
 
 M.ListResiliencyPoliciesInput = {
     type = "structure",
+    id = "ListResiliencyPoliciesInput",
     members = {
         policyName = {
             type = "string",
@@ -3476,6 +3615,7 @@ M.ListResiliencyPoliciesInput = {
 
 M.ListResiliencyPoliciesOutput = {
     type = "structure",
+    id = "ListResiliencyPoliciesOutput",
     members = {
         resiliencyPolicies = {
             type = "list",
@@ -3492,6 +3632,7 @@ M.ListResiliencyPoliciesOutput = {
 
 M.ListResourceGroupingRecommendationsInput = {
     type = "structure",
+    id = "ListResourceGroupingRecommendationsInput",
     members = {
         appArn = {
             type = "string",
@@ -3521,6 +3662,7 @@ M.GroupingRecommendationConfidenceLevel = {
 
 M.GroupingAppComponent = {
     type = "structure",
+    id = "GroupingAppComponent",
     members = {
         appComponentId = {
             type = "string",
@@ -3552,6 +3694,7 @@ M.GroupingRecommendationRejectionReason = {
 
 M.GroupingResource = {
     type = "structure",
+    id = "GroupingResource",
     members = {
         resourceName = {
             type = "string",
@@ -3589,6 +3732,7 @@ M.GroupingRecommendationStatusType = {
 
 M.GroupingRecommendation = {
     type = "structure",
+    id = "GroupingRecommendation",
     members = {
         groupingRecommendationId = {
             type = "string",
@@ -3646,6 +3790,7 @@ M.GroupingRecommendation = {
 
 M.ListResourceGroupingRecommendationsOutput = {
     type = "structure",
+    id = "ListResourceGroupingRecommendationsOutput",
     members = {
         groupingRecommendations = {
             type = "list",
@@ -3662,6 +3807,7 @@ M.ListResourceGroupingRecommendationsOutput = {
 
 M.ListSopRecommendationsInput = {
     type = "structure",
+    id = "ListSopRecommendationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3684,6 +3830,7 @@ M.SopServiceType = {
 
 M.SopRecommendation = {
     type = "structure",
+    id = "SopRecommendation",
     members = {
         serviceType = {
             type = "string",
@@ -3727,6 +3874,7 @@ M.SopRecommendation = {
 
 M.ListSopRecommendationsOutput = {
     type = "structure",
+    id = "ListSopRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3743,6 +3891,7 @@ M.ListSopRecommendationsOutput = {
 
 M.ListSuggestedResiliencyPoliciesInput = {
     type = "structure",
+    id = "ListSuggestedResiliencyPoliciesInput",
     members = {
         nextToken = {
             type = "string",
@@ -3761,6 +3910,7 @@ M.ListSuggestedResiliencyPoliciesInput = {
 
 M.ListSuggestedResiliencyPoliciesOutput = {
     type = "structure",
+    id = "ListSuggestedResiliencyPoliciesOutput",
     members = {
         resiliencyPolicies = {
             type = "list",
@@ -3777,6 +3927,7 @@ M.ListSuggestedResiliencyPoliciesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3790,6 +3941,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3801,6 +3953,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTestRecommendationsInput = {
     type = "structure",
+    id = "ListTestRecommendationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3832,6 +3985,7 @@ M.TestType = {
 
 M.TestRecommendation = {
     type = "structure",
+    id = "TestRecommendation",
     members = {
         recommendationId = {
             type = "string",
@@ -3882,6 +4036,7 @@ M.TestRecommendation = {
 
 M.ListTestRecommendationsOutput = {
     type = "structure",
+    id = "ListTestRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3898,6 +4053,7 @@ M.ListTestRecommendationsOutput = {
 
 M.ListUnsupportedAppVersionResourcesInput = {
     type = "structure",
+    id = "ListUnsupportedAppVersionResourcesInput",
     members = {
         appArn = {
             type = "string",
@@ -3925,6 +4081,7 @@ M.ListUnsupportedAppVersionResourcesInput = {
 
 M.UnsupportedResource = {
     type = "structure",
+    id = "UnsupportedResource",
     members = {
         logicalResourceId = setmetatable({ traits = {
             required = true,
@@ -3946,6 +4103,7 @@ M.UnsupportedResource = {
 
 M.ListUnsupportedAppVersionResourcesOutput = {
     type = "structure",
+    id = "ListUnsupportedAppVersionResourcesOutput",
     members = {
         unsupportedResources = {
             type = "list",
@@ -3968,6 +4126,7 @@ M.ListUnsupportedAppVersionResourcesOutput = {
 
 M.PublishAppVersionInput = {
     type = "structure",
+    id = "PublishAppVersionInput",
     members = {
         appArn = {
             type = "string",
@@ -3983,6 +4142,7 @@ M.PublishAppVersionInput = {
 
 M.PublishAppVersionOutput = {
     type = "structure",
+    id = "PublishAppVersionOutput",
     members = {
         appArn = {
             type = "string",
@@ -4004,6 +4164,7 @@ M.PublishAppVersionOutput = {
 
 M.PutDraftAppVersionTemplateInput = {
     type = "structure",
+    id = "PutDraftAppVersionTemplateInput",
     members = {
         appArn = {
             type = "string",
@@ -4022,6 +4183,7 @@ M.PutDraftAppVersionTemplateInput = {
 
 M.PutDraftAppVersionTemplateOutput = {
     type = "structure",
+    id = "PutDraftAppVersionTemplateOutput",
     members = {
         appArn = {
             type = "string",
@@ -4034,6 +4196,7 @@ M.PutDraftAppVersionTemplateOutput = {
 
 M.RejectGroupingRecommendationEntry = {
     type = "structure",
+    id = "RejectGroupingRecommendationEntry",
     members = {
         groupingRecommendationId = {
             type = "string",
@@ -4049,6 +4212,7 @@ M.RejectGroupingRecommendationEntry = {
 
 M.RejectResourceGroupingRecommendationsInput = {
     type = "structure",
+    id = "RejectResourceGroupingRecommendationsInput",
     members = {
         appArn = {
             type = "string",
@@ -4068,6 +4232,7 @@ M.RejectResourceGroupingRecommendationsInput = {
 
 M.RejectResourceGroupingRecommendationsOutput = {
     type = "structure",
+    id = "RejectResourceGroupingRecommendationsOutput",
     members = {
         appArn = {
             type = "string",
@@ -4087,6 +4252,7 @@ M.RejectResourceGroupingRecommendationsOutput = {
 
 M.RemoveDraftAppVersionResourceMappingsInput = {
     type = "structure",
+    id = "RemoveDraftAppVersionResourceMappingsInput",
     members = {
         appArn = {
             type = "string",
@@ -4123,6 +4289,7 @@ M.RemoveDraftAppVersionResourceMappingsInput = {
 
 M.RemoveDraftAppVersionResourceMappingsOutput = {
     type = "structure",
+    id = "RemoveDraftAppVersionResourceMappingsOutput",
     members = {
         appArn = {
             type = "string",
@@ -4135,6 +4302,7 @@ M.RemoveDraftAppVersionResourceMappingsOutput = {
 
 M.ResolveAppVersionResourcesInput = {
     type = "structure",
+    id = "ResolveAppVersionResourcesInput",
     members = {
         appArn = {
             type = "string",
@@ -4153,6 +4321,7 @@ M.ResolveAppVersionResourcesInput = {
 
 M.ResolveAppVersionResourcesOutput = {
     type = "structure",
+    id = "ResolveAppVersionResourcesOutput",
     members = {
         appArn = {
             type = "string",
@@ -4183,6 +4352,7 @@ M.ResolveAppVersionResourcesOutput = {
 
 M.StartAppAssessmentInput = {
     type = "structure",
+    id = "StartAppAssessmentInput",
     members = {
         appArn = {
             type = "string",
@@ -4218,6 +4388,7 @@ M.StartAppAssessmentInput = {
 
 M.StartAppAssessmentOutput = {
     type = "structure",
+    id = "StartAppAssessmentOutput",
     members = {
         assessment = setmetatable({ traits = {
             required = true,
@@ -4227,6 +4398,7 @@ M.StartAppAssessmentOutput = {
 
 M.StartMetricsExportInput = {
     type = "structure",
+    id = "StartMetricsExportInput",
     members = {
         bucketName = {
             type = "string",
@@ -4242,6 +4414,7 @@ M.StartMetricsExportInput = {
 
 M.StartMetricsExportOutput = {
     type = "structure",
+    id = "StartMetricsExportOutput",
     members = {
         metricsExportId = {
             type = "string",
@@ -4260,6 +4433,7 @@ M.StartMetricsExportOutput = {
 
 M.StartResourceGroupingRecommendationTaskInput = {
     type = "structure",
+    id = "StartResourceGroupingRecommendationTaskInput",
     members = {
         appArn = {
             type = "string",
@@ -4272,6 +4446,7 @@ M.StartResourceGroupingRecommendationTaskInput = {
 
 M.StartResourceGroupingRecommendationTaskOutput = {
     type = "structure",
+    id = "StartResourceGroupingRecommendationTaskOutput",
     members = {
         appArn = {
             type = "string",
@@ -4299,6 +4474,7 @@ M.StartResourceGroupingRecommendationTaskOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4320,10 +4496,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4345,10 +4523,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAppInput = {
     type = "structure",
+    id = "UpdateAppInput",
     members = {
         appArn = {
             type = "string",
@@ -4378,6 +4558,7 @@ M.UpdateAppInput = {
 
 M.UpdateAppOutput = {
     type = "structure",
+    id = "UpdateAppOutput",
     members = {
         app = setmetatable({ traits = {
             required = true,
@@ -4387,6 +4568,7 @@ M.UpdateAppOutput = {
 
 M.UpdateAppVersionInput = {
     type = "structure",
+    id = "UpdateAppVersionInput",
     members = {
         appArn = {
             type = "string",
@@ -4404,6 +4586,7 @@ M.UpdateAppVersionInput = {
 
 M.UpdateAppVersionOutput = {
     type = "structure",
+    id = "UpdateAppVersionOutput",
     members = {
         appArn = {
             type = "string",
@@ -4427,6 +4610,7 @@ M.UpdateAppVersionOutput = {
 
 M.UpdateAppVersionAppComponentInput = {
     type = "structure",
+    id = "UpdateAppVersionAppComponentInput",
     members = {
         appArn = {
             type = "string",
@@ -4456,6 +4640,7 @@ M.UpdateAppVersionAppComponentInput = {
 
 M.UpdateAppVersionAppComponentOutput = {
     type = "structure",
+    id = "UpdateAppVersionAppComponentOutput",
     members = {
         appArn = {
             type = "string",
@@ -4475,6 +4660,7 @@ M.UpdateAppVersionAppComponentOutput = {
 
 M.UpdateAppVersionResourceInput = {
     type = "structure",
+    id = "UpdateAppVersionResourceInput",
     members = {
         appArn = {
             type = "string",
@@ -4515,6 +4701,7 @@ M.UpdateAppVersionResourceInput = {
 
 M.UpdateAppVersionResourceOutput = {
     type = "structure",
+    id = "UpdateAppVersionResourceOutput",
     members = {
         appArn = {
             type = "string",
@@ -4534,6 +4721,7 @@ M.UpdateAppVersionResourceOutput = {
 
 M.UpdateResiliencyPolicyInput = {
     type = "structure",
+    id = "UpdateResiliencyPolicyInput",
     members = {
         policyArn = {
             type = "string",
@@ -4563,6 +4751,7 @@ M.UpdateResiliencyPolicyInput = {
 
 M.UpdateResiliencyPolicyOutput = {
     type = "structure",
+    id = "UpdateResiliencyPolicyOutput",
     members = {
         policy = setmetatable({ traits = {
             required = true,

@@ -8,6 +8,7 @@ M.PortfolioShareType = {
 
 M.AcceptPortfolioShareInput = {
     type = "structure",
+    id = "AcceptPortfolioShareInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -26,10 +27,12 @@ M.AcceptPortfolioShareInput = {
 
 M.AcceptPortfolioShareOutput = {
     type = "structure",
+    id = "AcceptPortfolioShareOutput",
 }
 
 M.InvalidParametersException = {
     type = "structure",
+    id = "InvalidParametersException",
     error = "client",
     members = {
         Message = {
@@ -40,6 +43,7 @@ M.InvalidParametersException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -50,6 +54,7 @@ M.LimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -66,6 +71,7 @@ M.AccessLevelFilterKey = {
 
 M.AccessLevelFilter = {
     type = "structure",
+    id = "AccessLevelFilter",
     members = {
         Key = {
             type = "string",
@@ -84,6 +90,7 @@ M.AccessStatus = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -102,6 +109,7 @@ M.Tag = {
 
 M.AssociateBudgetWithResourceInput = {
     type = "structure",
+    id = "AssociateBudgetWithResourceInput",
     members = {
         BudgetName = {
             type = "string",
@@ -120,10 +128,12 @@ M.AssociateBudgetWithResourceInput = {
 
 M.AssociateBudgetWithResourceOutput = {
     type = "structure",
+    id = "AssociateBudgetWithResourceOutput",
 }
 
 M.DuplicateResourceException = {
     type = "structure",
+    id = "DuplicateResourceException",
     error = "client",
     members = {
         Message = {
@@ -139,6 +149,7 @@ M.PrincipalType = {
 
 M.AssociatePrincipalWithPortfolioInput = {
     type = "structure",
+    id = "AssociatePrincipalWithPortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -166,10 +177,12 @@ M.AssociatePrincipalWithPortfolioInput = {
 
 M.AssociatePrincipalWithPortfolioOutput = {
     type = "structure",
+    id = "AssociatePrincipalWithPortfolioOutput",
 }
 
 M.AssociateProductWithPortfolioInput = {
     type = "structure",
+    id = "AssociateProductWithPortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -194,10 +207,12 @@ M.AssociateProductWithPortfolioInput = {
 
 M.AssociateProductWithPortfolioOutput = {
     type = "structure",
+    id = "AssociateProductWithPortfolioOutput",
 }
 
 M.AssociateServiceActionWithProvisioningArtifactInput = {
     type = "structure",
+    id = "AssociateServiceActionWithProvisioningArtifactInput",
     members = {
         ProductId = {
             type = "string",
@@ -231,10 +246,12 @@ M.AssociateServiceActionWithProvisioningArtifactInput = {
 
 M.AssociateServiceActionWithProvisioningArtifactOutput = {
     type = "structure",
+    id = "AssociateServiceActionWithProvisioningArtifactOutput",
 }
 
 M.AssociateTagOptionWithResourceInput = {
     type = "structure",
+    id = "AssociateTagOptionWithResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -253,10 +270,12 @@ M.AssociateTagOptionWithResourceInput = {
 
 M.AssociateTagOptionWithResourceOutput = {
     type = "structure",
+    id = "AssociateTagOptionWithResourceOutput",
 }
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         Message = {
@@ -267,6 +286,7 @@ M.InvalidStateException = {
 
 M.TagOptionNotMigratedException = {
     type = "structure",
+    id = "TagOptionNotMigratedException",
     error = "client",
     members = {
         Message = {
@@ -277,6 +297,7 @@ M.TagOptionNotMigratedException = {
 
 M.ServiceActionAssociation = {
     type = "structure",
+    id = "ServiceActionAssociation",
     members = {
         ServiceActionId = {
             type = "string",
@@ -301,6 +322,7 @@ M.ServiceActionAssociation = {
 
 M.BatchAssociateServiceActionWithProvisioningArtifactInput = {
     type = "structure",
+    id = "BatchAssociateServiceActionWithProvisioningArtifactInput",
     members = {
         ServiceActionAssociations = {
             type = "list",
@@ -326,6 +348,7 @@ M.ServiceActionAssociationErrorCode = {
 
 M.FailedServiceActionAssociation = {
     type = "structure",
+    id = "FailedServiceActionAssociation",
     members = {
         ServiceActionId = {
             type = "string",
@@ -347,6 +370,7 @@ M.FailedServiceActionAssociation = {
 
 M.BatchAssociateServiceActionWithProvisioningArtifactOutput = {
     type = "structure",
+    id = "BatchAssociateServiceActionWithProvisioningArtifactOutput",
     members = {
         FailedServiceActionAssociations = {
             type = "list",
@@ -357,6 +381,7 @@ M.BatchAssociateServiceActionWithProvisioningArtifactOutput = {
 
 M.BatchDisassociateServiceActionFromProvisioningArtifactInput = {
     type = "structure",
+    id = "BatchDisassociateServiceActionFromProvisioningArtifactInput",
     members = {
         ServiceActionAssociations = {
             type = "list",
@@ -373,6 +398,7 @@ M.BatchDisassociateServiceActionFromProvisioningArtifactInput = {
 
 M.BatchDisassociateServiceActionFromProvisioningArtifactOutput = {
     type = "structure",
+    id = "BatchDisassociateServiceActionFromProvisioningArtifactOutput",
     members = {
         FailedServiceActionAssociations = {
             type = "list",
@@ -391,6 +417,7 @@ M.ProvisioningArtifactPropertyName = {
 
 M.CopyProductInput = {
     type = "structure",
+    id = "CopyProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -427,6 +454,7 @@ M.CopyProductInput = {
 
 M.CopyProductOutput = {
     type = "structure",
+    id = "CopyProductOutput",
     members = {
         CopyProductToken = {
             type = "string",
@@ -436,6 +464,7 @@ M.CopyProductOutput = {
 
 M.CreateConstraintInput = {
     type = "structure",
+    id = "CreateConstraintInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -479,6 +508,7 @@ M.CreateConstraintInput = {
 
 M.ConstraintDetail = {
     type = "structure",
+    id = "ConstraintDetail",
     members = {
         ConstraintId = {
             type = "string",
@@ -509,6 +539,7 @@ M.Status = {
 
 M.CreateConstraintOutput = {
     type = "structure",
+    id = "CreateConstraintOutput",
     members = {
         ConstraintDetail = M.ConstraintDetail,
         ConstraintParameters = {
@@ -522,6 +553,7 @@ M.CreateConstraintOutput = {
 
 M.CreatePortfolioInput = {
     type = "structure",
+    id = "CreatePortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -557,6 +589,7 @@ M.CreatePortfolioInput = {
 
 M.PortfolioDetail = {
     type = "structure",
+    id = "PortfolioDetail",
     members = {
         Id = {
             type = "string",
@@ -581,6 +614,7 @@ M.PortfolioDetail = {
 
 M.CreatePortfolioOutput = {
     type = "structure",
+    id = "CreatePortfolioOutput",
     members = {
         PortfolioDetail = M.PortfolioDetail,
         Tags = {
@@ -598,6 +632,7 @@ M.OrganizationNodeType = {
 
 M.OrganizationNode = {
     type = "structure",
+    id = "OrganizationNode",
     members = {
         Type = {
             type = "string",
@@ -610,6 +645,7 @@ M.OrganizationNode = {
 
 M.CreatePortfolioShareInput = {
     type = "structure",
+    id = "CreatePortfolioShareInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -641,6 +677,7 @@ M.CreatePortfolioShareInput = {
 
 M.CreatePortfolioShareOutput = {
     type = "structure",
+    id = "CreatePortfolioShareOutput",
     members = {
         PortfolioShareToken = {
             type = "string",
@@ -650,6 +687,7 @@ M.CreatePortfolioShareOutput = {
 
 M.OperationNotSupportedException = {
     type = "structure",
+    id = "OperationNotSupportedException",
     error = "client",
     members = {
         Message = {
@@ -677,6 +715,7 @@ M.ProvisioningArtifactType = {
 
 M.ProvisioningArtifactProperties = {
     type = "structure",
+    id = "ProvisioningArtifactProperties",
     members = {
         Name = {
             type = "string",
@@ -703,6 +742,7 @@ M.ProvisioningArtifactProperties = {
 
 M.CodeStarParameters = {
     type = "structure",
+    id = "CodeStarParameters",
     members = {
         ConnectionArn = {
             type = "string",
@@ -733,6 +773,7 @@ M.CodeStarParameters = {
 
 M.SourceConnectionParameters = {
     type = "structure",
+    id = "SourceConnectionParameters",
     members = {
         CodeStar = M.CodeStarParameters,
     },
@@ -744,6 +785,7 @@ M.SourceType = {
 
 M.SourceConnection = {
     type = "structure",
+    id = "SourceConnection",
     members = {
         Type = {
             type = "string",
@@ -756,6 +798,7 @@ M.SourceConnection = {
 
 M.CreateProductInput = {
     type = "structure",
+    id = "CreateProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -811,6 +854,7 @@ M.CreateProductInput = {
 
 M.ProductViewSummary = {
     type = "structure",
+    id = "ProductViewSummary",
     members = {
         Id = {
             type = "string",
@@ -858,6 +902,7 @@ M.LastSyncStatus = {
 
 M.LastSync = {
     type = "structure",
+    id = "LastSync",
     members = {
         LastSyncTime = {
             type = "timestamp",
@@ -879,6 +924,7 @@ M.LastSync = {
 
 M.SourceConnectionDetail = {
     type = "structure",
+    id = "SourceConnectionDetail",
     members = {
         Type = {
             type = "string",
@@ -890,6 +936,7 @@ M.SourceConnectionDetail = {
 
 M.ProductViewDetail = {
     type = "structure",
+    id = "ProductViewDetail",
     members = {
         ProductViewSummary = M.ProductViewSummary,
         Status = {
@@ -912,6 +959,7 @@ M.ProvisioningArtifactGuidance = {
 
 M.ProvisioningArtifactDetail = {
     type = "structure",
+    id = "ProvisioningArtifactDetail",
     members = {
         Id = {
             type = "string",
@@ -942,6 +990,7 @@ M.ProvisioningArtifactDetail = {
 
 M.CreateProductOutput = {
     type = "structure",
+    id = "CreateProductOutput",
     members = {
         ProductViewDetail = M.ProductViewDetail,
         ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
@@ -958,6 +1007,7 @@ M.ProvisionedProductPlanType = {
 
 M.UpdateProvisioningParameter = {
     type = "structure",
+    id = "UpdateProvisioningParameter",
     members = {
         Key = {
             type = "string",
@@ -976,6 +1026,7 @@ M.UpdateProvisioningParameter = {
 
 M.CreateProvisionedProductPlanInput = {
     type = "structure",
+    id = "CreateProvisionedProductPlanInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1037,6 +1088,7 @@ M.CreateProvisionedProductPlanInput = {
 
 M.CreateProvisionedProductPlanOutput = {
     type = "structure",
+    id = "CreateProvisionedProductPlanOutput",
     members = {
         PlanName = {
             type = "string",
@@ -1058,6 +1110,7 @@ M.CreateProvisionedProductPlanOutput = {
 
 M.CreateProvisioningArtifactInput = {
     type = "structure",
+    id = "CreateProvisioningArtifactInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1083,6 +1136,7 @@ M.CreateProvisioningArtifactInput = {
 
 M.CreateProvisioningArtifactOutput = {
     type = "structure",
+    id = "CreateProvisioningArtifactOutput",
     members = {
         ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
         Info = {
@@ -1109,6 +1163,7 @@ M.ServiceActionDefinitionType = {
 
 M.CreateServiceActionInput = {
     type = "structure",
+    id = "CreateServiceActionInput",
     members = {
         Name = {
             type = "string",
@@ -1148,6 +1203,7 @@ M.CreateServiceActionInput = {
 
 M.ServiceActionSummary = {
     type = "structure",
+    id = "ServiceActionSummary",
     members = {
         Id = {
             type = "string",
@@ -1166,6 +1222,7 @@ M.ServiceActionSummary = {
 
 M.ServiceActionDetail = {
     type = "structure",
+    id = "ServiceActionDetail",
     members = {
         ServiceActionSummary = M.ServiceActionSummary,
         Definition = {
@@ -1178,6 +1235,7 @@ M.ServiceActionDetail = {
 
 M.CreateServiceActionOutput = {
     type = "structure",
+    id = "CreateServiceActionOutput",
     members = {
         ServiceActionDetail = M.ServiceActionDetail,
     },
@@ -1185,6 +1243,7 @@ M.CreateServiceActionOutput = {
 
 M.CreateTagOptionInput = {
     type = "structure",
+    id = "CreateTagOptionInput",
     members = {
         Key = {
             type = "string",
@@ -1203,6 +1262,7 @@ M.CreateTagOptionInput = {
 
 M.TagOptionDetail = {
     type = "structure",
+    id = "TagOptionDetail",
     members = {
         Key = {
             type = "string",
@@ -1224,6 +1284,7 @@ M.TagOptionDetail = {
 
 M.CreateTagOptionOutput = {
     type = "structure",
+    id = "CreateTagOptionOutput",
     members = {
         TagOptionDetail = M.TagOptionDetail,
     },
@@ -1231,6 +1292,7 @@ M.CreateTagOptionOutput = {
 
 M.DeleteConstraintInput = {
     type = "structure",
+    id = "DeleteConstraintInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1246,10 +1308,12 @@ M.DeleteConstraintInput = {
 
 M.DeleteConstraintOutput = {
     type = "structure",
+    id = "DeleteConstraintOutput",
 }
 
 M.DeletePortfolioInput = {
     type = "structure",
+    id = "DeletePortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1265,10 +1329,12 @@ M.DeletePortfolioInput = {
 
 M.DeletePortfolioOutput = {
     type = "structure",
+    id = "DeletePortfolioOutput",
 }
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -1279,6 +1345,7 @@ M.ResourceInUseException = {
 
 M.DeletePortfolioShareInput = {
     type = "structure",
+    id = "DeletePortfolioShareInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1298,6 +1365,7 @@ M.DeletePortfolioShareInput = {
 
 M.DeletePortfolioShareOutput = {
     type = "structure",
+    id = "DeletePortfolioShareOutput",
     members = {
         PortfolioShareToken = {
             type = "string",
@@ -1307,6 +1375,7 @@ M.DeletePortfolioShareOutput = {
 
 M.DeleteProductInput = {
     type = "structure",
+    id = "DeleteProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1322,10 +1391,12 @@ M.DeleteProductInput = {
 
 M.DeleteProductOutput = {
     type = "structure",
+    id = "DeleteProductOutput",
 }
 
 M.DeleteProvisionedProductPlanInput = {
     type = "structure",
+    id = "DeleteProvisionedProductPlanInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1347,10 +1418,12 @@ M.DeleteProvisionedProductPlanInput = {
 
 M.DeleteProvisionedProductPlanOutput = {
     type = "structure",
+    id = "DeleteProvisionedProductPlanOutput",
 }
 
 M.DeleteProvisioningArtifactInput = {
     type = "structure",
+    id = "DeleteProvisioningArtifactInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1372,10 +1445,12 @@ M.DeleteProvisioningArtifactInput = {
 
 M.DeleteProvisioningArtifactOutput = {
     type = "structure",
+    id = "DeleteProvisioningArtifactOutput",
 }
 
 M.DeleteServiceActionInput = {
     type = "structure",
+    id = "DeleteServiceActionInput",
     members = {
         Id = {
             type = "string",
@@ -1397,10 +1472,12 @@ M.DeleteServiceActionInput = {
 
 M.DeleteServiceActionOutput = {
     type = "structure",
+    id = "DeleteServiceActionOutput",
 }
 
 M.DeleteTagOptionInput = {
     type = "structure",
+    id = "DeleteTagOptionInput",
     members = {
         Id = {
             type = "string",
@@ -1414,10 +1491,12 @@ M.DeleteTagOptionInput = {
 
 M.DeleteTagOptionOutput = {
     type = "structure",
+    id = "DeleteTagOptionOutput",
 }
 
 M.DescribeConstraintInput = {
     type = "structure",
+    id = "DescribeConstraintInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1433,6 +1512,7 @@ M.DescribeConstraintInput = {
 
 M.DescribeConstraintOutput = {
     type = "structure",
+    id = "DescribeConstraintOutput",
     members = {
         ConstraintDetail = M.ConstraintDetail,
         ConstraintParameters = {
@@ -1446,6 +1526,7 @@ M.DescribeConstraintOutput = {
 
 M.DescribeCopyProductStatusInput = {
     type = "structure",
+    id = "DescribeCopyProductStatusInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1467,6 +1548,7 @@ M.CopyProductStatus = {
 
 M.DescribeCopyProductStatusOutput = {
     type = "structure",
+    id = "DescribeCopyProductStatusOutput",
     members = {
         CopyProductStatus = {
             type = "string",
@@ -1482,6 +1564,7 @@ M.DescribeCopyProductStatusOutput = {
 
 M.DescribePortfolioInput = {
     type = "structure",
+    id = "DescribePortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1497,6 +1580,7 @@ M.DescribePortfolioInput = {
 
 M.BudgetDetail = {
     type = "structure",
+    id = "BudgetDetail",
     members = {
         BudgetName = {
             type = "string",
@@ -1506,6 +1590,7 @@ M.BudgetDetail = {
 
 M.DescribePortfolioOutput = {
     type = "structure",
+    id = "DescribePortfolioOutput",
     members = {
         PortfolioDetail = M.PortfolioDetail,
         Tags = {
@@ -1532,6 +1617,7 @@ M.DescribePortfolioShareType = {
 
 M.DescribePortfolioSharesInput = {
     type = "structure",
+    id = "DescribePortfolioSharesInput",
     members = {
         PortfolioId = {
             type = "string",
@@ -1559,6 +1645,7 @@ M.DescribePortfolioSharesInput = {
 
 M.PortfolioShareDetail = {
     type = "structure",
+    id = "PortfolioShareDetail",
     members = {
         PrincipalId = {
             type = "string",
@@ -1589,6 +1676,7 @@ M.PortfolioShareDetail = {
 
 M.DescribePortfolioSharesOutput = {
     type = "structure",
+    id = "DescribePortfolioSharesOutput",
     members = {
         NextPageToken = {
             type = "string",
@@ -1602,6 +1690,7 @@ M.DescribePortfolioSharesOutput = {
 
 M.DescribePortfolioShareStatusInput = {
     type = "structure",
+    id = "DescribePortfolioShareStatusInput",
     members = {
         PortfolioShareToken = {
             type = "string",
@@ -1614,6 +1703,7 @@ M.DescribePortfolioShareStatusInput = {
 
 M.ShareError = {
     type = "structure",
+    id = "ShareError",
     members = {
         Accounts = {
             type = "list",
@@ -1630,6 +1720,7 @@ M.ShareError = {
 
 M.ShareDetails = {
     type = "structure",
+    id = "ShareDetails",
     members = {
         SuccessfulShares = {
             type = "list",
@@ -1652,6 +1743,7 @@ M.ShareStatus = {
 
 M.DescribePortfolioShareStatusOutput = {
     type = "structure",
+    id = "DescribePortfolioShareStatusOutput",
     members = {
         PortfolioShareToken = {
             type = "string",
@@ -1671,6 +1763,7 @@ M.DescribePortfolioShareStatusOutput = {
 
 M.DescribeProductInput = {
     type = "structure",
+    id = "DescribeProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1686,6 +1779,7 @@ M.DescribeProductInput = {
 
 M.LaunchPath = {
     type = "structure",
+    id = "LaunchPath",
     members = {
         Id = {
             type = "string",
@@ -1698,6 +1792,7 @@ M.LaunchPath = {
 
 M.ProvisioningArtifact = {
     type = "structure",
+    id = "ProvisioningArtifact",
     members = {
         Id = {
             type = "string",
@@ -1719,6 +1814,7 @@ M.ProvisioningArtifact = {
 
 M.DescribeProductOutput = {
     type = "structure",
+    id = "DescribeProductOutput",
     members = {
         ProductViewSummary = M.ProductViewSummary,
         ProvisioningArtifacts = {
@@ -1738,6 +1834,7 @@ M.DescribeProductOutput = {
 
 M.DescribeProductAsAdminInput = {
     type = "structure",
+    id = "DescribeProductAsAdminInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1756,6 +1853,7 @@ M.DescribeProductAsAdminInput = {
 
 M.ProvisioningArtifactSummary = {
     type = "structure",
+    id = "ProvisioningArtifactSummary",
     members = {
         Id = {
             type = "string",
@@ -1779,6 +1877,7 @@ M.ProvisioningArtifactSummary = {
 
 M.DescribeProductAsAdminOutput = {
     type = "structure",
+    id = "DescribeProductAsAdminOutput",
     members = {
         ProductViewDetail = M.ProductViewDetail,
         ProvisioningArtifactSummaries = {
@@ -1802,6 +1901,7 @@ M.DescribeProductAsAdminOutput = {
 
 M.DescribeProductViewInput = {
     type = "structure",
+    id = "DescribeProductViewInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1817,6 +1917,7 @@ M.DescribeProductViewInput = {
 
 M.DescribeProductViewOutput = {
     type = "structure",
+    id = "DescribeProductViewOutput",
     members = {
         ProductViewSummary = M.ProductViewSummary,
         ProvisioningArtifacts = {
@@ -1828,6 +1929,7 @@ M.DescribeProductViewOutput = {
 
 M.DescribeProvisionedProductInput = {
     type = "structure",
+    id = "DescribeProvisionedProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1843,6 +1945,7 @@ M.DescribeProvisionedProductInput = {
 
 M.CloudWatchDashboard = {
     type = "structure",
+    id = "CloudWatchDashboard",
     members = {
         Name = {
             type = "string",
@@ -1860,6 +1963,7 @@ M.ProvisionedProductStatus = {
 
 M.ProvisionedProductDetail = {
     type = "structure",
+    id = "ProvisionedProductDetail",
     members = {
         Name = {
             type = "string",
@@ -1908,6 +2012,7 @@ M.ProvisionedProductDetail = {
 
 M.DescribeProvisionedProductOutput = {
     type = "structure",
+    id = "DescribeProvisionedProductOutput",
     members = {
         ProvisionedProductDetail = M.ProvisionedProductDetail,
         CloudWatchDashboards = {
@@ -1919,6 +2024,7 @@ M.DescribeProvisionedProductOutput = {
 
 M.DescribeProvisionedProductPlanInput = {
     type = "structure",
+    id = "DescribeProvisionedProductPlanInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -1952,6 +2058,7 @@ M.ProvisionedProductPlanStatus = {
 
 M.ProvisionedProductPlanDetails = {
     type = "structure",
+    id = "ProvisionedProductPlanDetails",
     members = {
         CreatedTime = {
             type = "timestamp",
@@ -2032,6 +2139,7 @@ M.RequiresRecreation = {
 
 M.ResourceTargetDefinition = {
     type = "structure",
+    id = "ResourceTargetDefinition",
     members = {
         Attribute = {
             type = "string",
@@ -2047,6 +2155,7 @@ M.ResourceTargetDefinition = {
 
 M.ResourceChangeDetail = {
     type = "structure",
+    id = "ResourceChangeDetail",
     members = {
         Target = M.ResourceTargetDefinition,
         Evaluation = {
@@ -2066,6 +2175,7 @@ M.Replacement = {
 
 M.ResourceChange = {
     type = "structure",
+    id = "ResourceChange",
     members = {
         Action = {
             type = "string",
@@ -2095,6 +2205,7 @@ M.ResourceChange = {
 
 M.DescribeProvisionedProductPlanOutput = {
     type = "structure",
+    id = "DescribeProvisionedProductPlanOutput",
     members = {
         ProvisionedProductPlanDetails = M.ProvisionedProductPlanDetails,
         ResourceChanges = {
@@ -2109,6 +2220,7 @@ M.DescribeProvisionedProductPlanOutput = {
 
 M.DescribeProvisioningArtifactInput = {
     type = "structure",
+    id = "DescribeProvisioningArtifactInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2142,6 +2254,7 @@ M.DescribeProvisioningArtifactInput = {
 
 M.ParameterConstraints = {
     type = "structure",
+    id = "ParameterConstraints",
     members = {
         AllowedValues = {
             type = "list",
@@ -2170,6 +2283,7 @@ M.ParameterConstraints = {
 
 M.ProvisioningArtifactParameter = {
     type = "structure",
+    id = "ProvisioningArtifactParameter",
     members = {
         ParameterKey = {
             type = "string",
@@ -2195,6 +2309,7 @@ M.ProvisioningArtifactParameter = {
 
 M.DescribeProvisioningArtifactOutput = {
     type = "structure",
+    id = "DescribeProvisioningArtifactOutput",
     members = {
         ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
         Info = {
@@ -2214,6 +2329,7 @@ M.DescribeProvisioningArtifactOutput = {
 
 M.DescribeProvisioningParametersInput = {
     type = "structure",
+    id = "DescribeProvisioningParametersInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2241,6 +2357,7 @@ M.DescribeProvisioningParametersInput = {
 
 M.ConstraintSummary = {
     type = "structure",
+    id = "ConstraintSummary",
     members = {
         Type = {
             type = "string",
@@ -2253,6 +2370,7 @@ M.ConstraintSummary = {
 
 M.ProvisioningArtifactOutput = {
     type = "structure",
+    id = "ProvisioningArtifactOutput",
     members = {
         Key = {
             type = "string",
@@ -2265,6 +2383,7 @@ M.ProvisioningArtifactOutput = {
 
 M.ProvisioningArtifactPreferences = {
     type = "structure",
+    id = "ProvisioningArtifactPreferences",
     members = {
         StackSetAccounts = {
             type = "list",
@@ -2279,6 +2398,7 @@ M.ProvisioningArtifactPreferences = {
 
 M.TagOptionSummary = {
     type = "structure",
+    id = "TagOptionSummary",
     members = {
         Key = {
             type = "string",
@@ -2292,6 +2412,7 @@ M.TagOptionSummary = {
 
 M.UsageInstruction = {
     type = "structure",
+    id = "UsageInstruction",
     members = {
         Type = {
             type = "string",
@@ -2304,6 +2425,7 @@ M.UsageInstruction = {
 
 M.DescribeProvisioningParametersOutput = {
     type = "structure",
+    id = "DescribeProvisioningParametersOutput",
     members = {
         ProvisioningArtifactParameters = {
             type = "list",
@@ -2335,6 +2457,7 @@ M.DescribeProvisioningParametersOutput = {
 
 M.DescribeRecordInput = {
     type = "structure",
+    id = "DescribeRecordInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2359,6 +2482,7 @@ M.DescribeRecordInput = {
 
 M.RecordError = {
     type = "structure",
+    id = "RecordError",
     members = {
         Code = {
             type = "string",
@@ -2371,6 +2495,7 @@ M.RecordError = {
 
 M.RecordTag = {
     type = "structure",
+    id = "RecordTag",
     members = {
         Key = {
             type = "string",
@@ -2391,6 +2516,7 @@ M.RecordStatus = {
 
 M.RecordDetail = {
     type = "structure",
+    id = "RecordDetail",
     members = {
         RecordId = {
             type = "string",
@@ -2441,6 +2567,7 @@ M.RecordDetail = {
 
 M.RecordOutput = {
     type = "structure",
+    id = "RecordOutput",
     members = {
         OutputKey = {
             type = "string",
@@ -2456,6 +2583,7 @@ M.RecordOutput = {
 
 M.DescribeRecordOutput = {
     type = "structure",
+    id = "DescribeRecordOutput",
     members = {
         RecordDetail = M.RecordDetail,
         RecordOutputs = {
@@ -2470,6 +2598,7 @@ M.DescribeRecordOutput = {
 
 M.DescribeServiceActionInput = {
     type = "structure",
+    id = "DescribeServiceActionInput",
     members = {
         Id = {
             type = "string",
@@ -2485,6 +2614,7 @@ M.DescribeServiceActionInput = {
 
 M.DescribeServiceActionOutput = {
     type = "structure",
+    id = "DescribeServiceActionOutput",
     members = {
         ServiceActionDetail = M.ServiceActionDetail,
     },
@@ -2492,6 +2622,7 @@ M.DescribeServiceActionOutput = {
 
 M.DescribeServiceActionExecutionParametersInput = {
     type = "structure",
+    id = "DescribeServiceActionExecutionParametersInput",
     members = {
         ProvisionedProductId = {
             type = "string",
@@ -2513,6 +2644,7 @@ M.DescribeServiceActionExecutionParametersInput = {
 
 M.ExecutionParameter = {
     type = "structure",
+    id = "ExecutionParameter",
     members = {
         Name = {
             type = "string",
@@ -2529,6 +2661,7 @@ M.ExecutionParameter = {
 
 M.DescribeServiceActionExecutionParametersOutput = {
     type = "structure",
+    id = "DescribeServiceActionExecutionParametersOutput",
     members = {
         ServiceActionParameters = {
             type = "list",
@@ -2539,6 +2672,7 @@ M.DescribeServiceActionExecutionParametersOutput = {
 
 M.DescribeTagOptionInput = {
     type = "structure",
+    id = "DescribeTagOptionInput",
     members = {
         Id = {
             type = "string",
@@ -2552,6 +2686,7 @@ M.DescribeTagOptionInput = {
 
 M.DescribeTagOptionOutput = {
     type = "structure",
+    id = "DescribeTagOptionOutput",
     members = {
         TagOptionDetail = M.TagOptionDetail,
     },
@@ -2559,14 +2694,17 @@ M.DescribeTagOptionOutput = {
 
 M.DisableAWSOrganizationsAccessInput = {
     type = "structure",
+    id = "DisableAWSOrganizationsAccessInput",
 }
 
 M.DisableAWSOrganizationsAccessOutput = {
     type = "structure",
+    id = "DisableAWSOrganizationsAccessOutput",
 }
 
 M.DisassociateBudgetFromResourceInput = {
     type = "structure",
+    id = "DisassociateBudgetFromResourceInput",
     members = {
         BudgetName = {
             type = "string",
@@ -2585,10 +2723,12 @@ M.DisassociateBudgetFromResourceInput = {
 
 M.DisassociateBudgetFromResourceOutput = {
     type = "structure",
+    id = "DisassociateBudgetFromResourceOutput",
 }
 
 M.DisassociatePrincipalFromPortfolioInput = {
     type = "structure",
+    id = "DisassociatePrincipalFromPortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2613,10 +2753,12 @@ M.DisassociatePrincipalFromPortfolioInput = {
 
 M.DisassociatePrincipalFromPortfolioOutput = {
     type = "structure",
+    id = "DisassociatePrincipalFromPortfolioOutput",
 }
 
 M.DisassociateProductFromPortfolioInput = {
     type = "structure",
+    id = "DisassociateProductFromPortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2638,10 +2780,12 @@ M.DisassociateProductFromPortfolioInput = {
 
 M.DisassociateProductFromPortfolioOutput = {
     type = "structure",
+    id = "DisassociateProductFromPortfolioOutput",
 }
 
 M.DisassociateServiceActionFromProvisioningArtifactInput = {
     type = "structure",
+    id = "DisassociateServiceActionFromProvisioningArtifactInput",
     members = {
         ProductId = {
             type = "string",
@@ -2675,10 +2819,12 @@ M.DisassociateServiceActionFromProvisioningArtifactInput = {
 
 M.DisassociateServiceActionFromProvisioningArtifactOutput = {
     type = "structure",
+    id = "DisassociateServiceActionFromProvisioningArtifactOutput",
 }
 
 M.DisassociateTagOptionFromResourceInput = {
     type = "structure",
+    id = "DisassociateTagOptionFromResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2699,18 +2845,22 @@ M.DisassociateTagOptionFromResourceInput = {
 
 M.DisassociateTagOptionFromResourceOutput = {
     type = "structure",
+    id = "DisassociateTagOptionFromResourceOutput",
 }
 
 M.EnableAWSOrganizationsAccessInput = {
     type = "structure",
+    id = "EnableAWSOrganizationsAccessInput",
 }
 
 M.EnableAWSOrganizationsAccessOutput = {
     type = "structure",
+    id = "EnableAWSOrganizationsAccessOutput",
 }
 
 M.ExecuteProvisionedProductPlanInput = {
     type = "structure",
+    id = "ExecuteProvisionedProductPlanInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2733,6 +2883,7 @@ M.ExecuteProvisionedProductPlanInput = {
 
 M.ExecuteProvisionedProductPlanOutput = {
     type = "structure",
+    id = "ExecuteProvisionedProductPlanOutput",
     members = {
         RecordDetail = M.RecordDetail,
     },
@@ -2740,6 +2891,7 @@ M.ExecuteProvisionedProductPlanOutput = {
 
 M.ExecuteProvisionedProductServiceActionInput = {
     type = "structure",
+    id = "ExecuteProvisionedProductServiceActionInput",
     members = {
         ProvisionedProductId = {
             type = "string",
@@ -2773,6 +2925,7 @@ M.ExecuteProvisionedProductServiceActionInput = {
 
 M.ExecuteProvisionedProductServiceActionOutput = {
     type = "structure",
+    id = "ExecuteProvisionedProductServiceActionOutput",
     members = {
         RecordDetail = M.RecordDetail,
     },
@@ -2780,10 +2933,12 @@ M.ExecuteProvisionedProductServiceActionOutput = {
 
 M.GetAWSOrganizationsAccessStatusInput = {
     type = "structure",
+    id = "GetAWSOrganizationsAccessStatusInput",
 }
 
 M.GetAWSOrganizationsAccessStatusOutput = {
     type = "structure",
+    id = "GetAWSOrganizationsAccessStatusOutput",
     members = {
         AccessStatus = {
             type = "string",
@@ -2793,6 +2948,7 @@ M.GetAWSOrganizationsAccessStatusOutput = {
 
 M.GetProvisionedProductOutputsInput = {
     type = "structure",
+    id = "GetProvisionedProductOutputsInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2821,6 +2977,7 @@ M.GetProvisionedProductOutputsInput = {
 
 M.GetProvisionedProductOutputsOutput = {
     type = "structure",
+    id = "GetProvisionedProductOutputsOutput",
     members = {
         Outputs = {
             type = "list",
@@ -2834,6 +2991,7 @@ M.GetProvisionedProductOutputsOutput = {
 
 M.ImportAsProvisionedProductInput = {
     type = "structure",
+    id = "ImportAsProvisionedProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2874,6 +3032,7 @@ M.ImportAsProvisionedProductInput = {
 
 M.ImportAsProvisionedProductOutput = {
     type = "structure",
+    id = "ImportAsProvisionedProductOutput",
     members = {
         RecordDetail = M.RecordDetail,
     },
@@ -2881,6 +3040,7 @@ M.ImportAsProvisionedProductOutput = {
 
 M.ListAcceptedPortfolioSharesInput = {
     type = "structure",
+    id = "ListAcceptedPortfolioSharesInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2902,6 +3062,7 @@ M.ListAcceptedPortfolioSharesInput = {
 
 M.ListAcceptedPortfolioSharesOutput = {
     type = "structure",
+    id = "ListAcceptedPortfolioSharesOutput",
     members = {
         PortfolioDetails = {
             type = "list",
@@ -2915,6 +3076,7 @@ M.ListAcceptedPortfolioSharesOutput = {
 
 M.ListBudgetsForResourceInput = {
     type = "structure",
+    id = "ListBudgetsForResourceInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2939,6 +3101,7 @@ M.ListBudgetsForResourceInput = {
 
 M.ListBudgetsForResourceOutput = {
     type = "structure",
+    id = "ListBudgetsForResourceOutput",
     members = {
         Budgets = {
             type = "list",
@@ -2952,6 +3115,7 @@ M.ListBudgetsForResourceOutput = {
 
 M.ListConstraintsForPortfolioInput = {
     type = "structure",
+    id = "ListConstraintsForPortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -2979,6 +3143,7 @@ M.ListConstraintsForPortfolioInput = {
 
 M.ListConstraintsForPortfolioOutput = {
     type = "structure",
+    id = "ListConstraintsForPortfolioOutput",
     members = {
         ConstraintDetails = {
             type = "list",
@@ -2992,6 +3157,7 @@ M.ListConstraintsForPortfolioOutput = {
 
 M.ListLaunchPathsInput = {
     type = "structure",
+    id = "ListLaunchPathsInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3016,6 +3182,7 @@ M.ListLaunchPathsInput = {
 
 M.LaunchPathSummary = {
     type = "structure",
+    id = "LaunchPathSummary",
     members = {
         Id = {
             type = "string",
@@ -3036,6 +3203,7 @@ M.LaunchPathSummary = {
 
 M.ListLaunchPathsOutput = {
     type = "structure",
+    id = "ListLaunchPathsOutput",
     members = {
         LaunchPathSummaries = {
             type = "list",
@@ -3049,6 +3217,7 @@ M.ListLaunchPathsOutput = {
 
 M.ListOrganizationPortfolioAccessInput = {
     type = "structure",
+    id = "ListOrganizationPortfolioAccessInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3079,6 +3248,7 @@ M.ListOrganizationPortfolioAccessInput = {
 
 M.ListOrganizationPortfolioAccessOutput = {
     type = "structure",
+    id = "ListOrganizationPortfolioAccessOutput",
     members = {
         OrganizationNodes = {
             type = "list",
@@ -3092,6 +3262,7 @@ M.ListOrganizationPortfolioAccessOutput = {
 
 M.ListPortfolioAccessInput = {
     type = "structure",
+    id = "ListPortfolioAccessInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3119,6 +3290,7 @@ M.ListPortfolioAccessInput = {
 
 M.ListPortfolioAccessOutput = {
     type = "structure",
+    id = "ListPortfolioAccessOutput",
     members = {
         AccountIds = {
             type = "list",
@@ -3132,6 +3304,7 @@ M.ListPortfolioAccessOutput = {
 
 M.ListPortfoliosInput = {
     type = "structure",
+    id = "ListPortfoliosInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3150,6 +3323,7 @@ M.ListPortfoliosInput = {
 
 M.ListPortfoliosOutput = {
     type = "structure",
+    id = "ListPortfoliosOutput",
     members = {
         PortfolioDetails = {
             type = "list",
@@ -3163,6 +3337,7 @@ M.ListPortfoliosOutput = {
 
 M.ListPortfoliosForProductInput = {
     type = "structure",
+    id = "ListPortfoliosForProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3187,6 +3362,7 @@ M.ListPortfoliosForProductInput = {
 
 M.ListPortfoliosForProductOutput = {
     type = "structure",
+    id = "ListPortfoliosForProductOutput",
     members = {
         PortfolioDetails = {
             type = "list",
@@ -3200,6 +3376,7 @@ M.ListPortfoliosForProductOutput = {
 
 M.ListPrincipalsForPortfolioInput = {
     type = "structure",
+    id = "ListPrincipalsForPortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3224,6 +3401,7 @@ M.ListPrincipalsForPortfolioInput = {
 
 M.Principal = {
     type = "structure",
+    id = "Principal",
     members = {
         PrincipalARN = {
             type = "string",
@@ -3236,6 +3414,7 @@ M.Principal = {
 
 M.ListPrincipalsForPortfolioOutput = {
     type = "structure",
+    id = "ListPrincipalsForPortfolioOutput",
     members = {
         Principals = {
             type = "list",
@@ -3249,6 +3428,7 @@ M.ListPrincipalsForPortfolioOutput = {
 
 M.ListProvisionedProductPlansInput = {
     type = "structure",
+    id = "ListProvisionedProductPlansInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3271,6 +3451,7 @@ M.ListProvisionedProductPlansInput = {
 
 M.ProvisionedProductPlanSummary = {
     type = "structure",
+    id = "ProvisionedProductPlanSummary",
     members = {
         PlanName = {
             type = "string",
@@ -3295,6 +3476,7 @@ M.ProvisionedProductPlanSummary = {
 
 M.ListProvisionedProductPlansOutput = {
     type = "structure",
+    id = "ListProvisionedProductPlansOutput",
     members = {
         ProvisionedProductPlans = {
             type = "list",
@@ -3308,6 +3490,7 @@ M.ListProvisionedProductPlansOutput = {
 
 M.ListProvisioningArtifactsInput = {
     type = "structure",
+    id = "ListProvisioningArtifactsInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3323,6 +3506,7 @@ M.ListProvisioningArtifactsInput = {
 
 M.ListProvisioningArtifactsOutput = {
     type = "structure",
+    id = "ListProvisioningArtifactsOutput",
     members = {
         ProvisioningArtifactDetails = {
             type = "list",
@@ -3336,6 +3520,7 @@ M.ListProvisioningArtifactsOutput = {
 
 M.ListProvisioningArtifactsForServiceActionInput = {
     type = "structure",
+    id = "ListProvisioningArtifactsForServiceActionInput",
     members = {
         ServiceActionId = {
             type = "string",
@@ -3360,6 +3545,7 @@ M.ListProvisioningArtifactsForServiceActionInput = {
 
 M.ProvisioningArtifactView = {
     type = "structure",
+    id = "ProvisioningArtifactView",
     members = {
         ProductViewSummary = M.ProductViewSummary,
         ProvisioningArtifact = M.ProvisioningArtifact,
@@ -3368,6 +3554,7 @@ M.ProvisioningArtifactView = {
 
 M.ListProvisioningArtifactsForServiceActionOutput = {
     type = "structure",
+    id = "ListProvisioningArtifactsForServiceActionOutput",
     members = {
         ProvisioningArtifactViews = {
             type = "list",
@@ -3381,6 +3568,7 @@ M.ListProvisioningArtifactsForServiceActionOutput = {
 
 M.ListRecordHistorySearchFilter = {
     type = "structure",
+    id = "ListRecordHistorySearchFilter",
     members = {
         Key = {
             type = "string",
@@ -3393,6 +3581,7 @@ M.ListRecordHistorySearchFilter = {
 
 M.ListRecordHistoryInput = {
     type = "structure",
+    id = "ListRecordHistoryInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3413,6 +3602,7 @@ M.ListRecordHistoryInput = {
 
 M.ListRecordHistoryOutput = {
     type = "structure",
+    id = "ListRecordHistoryOutput",
     members = {
         RecordDetails = {
             type = "list",
@@ -3426,6 +3616,7 @@ M.ListRecordHistoryOutput = {
 
 M.ListResourcesForTagOptionInput = {
     type = "structure",
+    id = "ListResourcesForTagOptionInput",
     members = {
         TagOptionId = {
             type = "string",
@@ -3458,6 +3649,7 @@ M.ListResourcesForTagOptionInput = {
 
 M.ResourceDetail = {
     type = "structure",
+    id = "ResourceDetail",
     members = {
         Id = {
             type = "string",
@@ -3479,6 +3671,7 @@ M.ResourceDetail = {
 
 M.ListResourcesForTagOptionOutput = {
     type = "structure",
+    id = "ListResourcesForTagOptionOutput",
     members = {
         ResourceDetails = {
             type = "list",
@@ -3492,6 +3685,7 @@ M.ListResourcesForTagOptionOutput = {
 
 M.ListServiceActionsInput = {
     type = "structure",
+    id = "ListServiceActionsInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3510,6 +3704,7 @@ M.ListServiceActionsInput = {
 
 M.ListServiceActionsOutput = {
     type = "structure",
+    id = "ListServiceActionsOutput",
     members = {
         ServiceActionSummaries = {
             type = "list",
@@ -3523,6 +3718,7 @@ M.ListServiceActionsOutput = {
 
 M.ListServiceActionsForProvisioningArtifactInput = {
     type = "structure",
+    id = "ListServiceActionsForProvisioningArtifactInput",
     members = {
         ProductId = {
             type = "string",
@@ -3553,6 +3749,7 @@ M.ListServiceActionsForProvisioningArtifactInput = {
 
 M.ListServiceActionsForProvisioningArtifactOutput = {
     type = "structure",
+    id = "ListServiceActionsForProvisioningArtifactOutput",
     members = {
         ServiceActionSummaries = {
             type = "list",
@@ -3566,6 +3763,7 @@ M.ListServiceActionsForProvisioningArtifactOutput = {
 
 M.ListStackInstancesForProvisionedProductInput = {
     type = "structure",
+    id = "ListStackInstancesForProvisionedProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3596,6 +3794,7 @@ M.StackInstanceStatus = {
 
 M.StackInstance = {
     type = "structure",
+    id = "StackInstance",
     members = {
         Account = {
             type = "string",
@@ -3611,6 +3810,7 @@ M.StackInstance = {
 
 M.ListStackInstancesForProvisionedProductOutput = {
     type = "structure",
+    id = "ListStackInstancesForProvisionedProductOutput",
     members = {
         StackInstances = {
             type = "list",
@@ -3624,6 +3824,7 @@ M.ListStackInstancesForProvisionedProductOutput = {
 
 M.ListTagOptionsFilters = {
     type = "structure",
+    id = "ListTagOptionsFilters",
     members = {
         Key = {
             type = "string",
@@ -3639,6 +3840,7 @@ M.ListTagOptionsFilters = {
 
 M.ListTagOptionsInput = {
     type = "structure",
+    id = "ListTagOptionsInput",
     members = {
         Filters = M.ListTagOptionsFilters,
         PageSize = {
@@ -3655,6 +3857,7 @@ M.ListTagOptionsInput = {
 
 M.ListTagOptionsOutput = {
     type = "structure",
+    id = "ListTagOptionsOutput",
     members = {
         TagOptionDetails = {
             type = "list",
@@ -3668,6 +3871,7 @@ M.ListTagOptionsOutput = {
 
 M.UniqueTagResourceIdentifier = {
     type = "structure",
+    id = "UniqueTagResourceIdentifier",
     members = {
         Key = {
             type = "string",
@@ -3680,6 +3884,7 @@ M.UniqueTagResourceIdentifier = {
 
 M.EngineWorkflowResourceIdentifier = {
     type = "structure",
+    id = "EngineWorkflowResourceIdentifier",
     members = {
         UniqueTag = M.UniqueTagResourceIdentifier,
     },
@@ -3692,6 +3897,7 @@ M.EngineWorkflowStatus = {
 
 M.NotifyProvisionProductEngineWorkflowResultInput = {
     type = "structure",
+    id = "NotifyProvisionProductEngineWorkflowResultInput",
     members = {
         WorkflowToken = {
             type = "string",
@@ -3731,10 +3937,12 @@ M.NotifyProvisionProductEngineWorkflowResultInput = {
 
 M.NotifyProvisionProductEngineWorkflowResultOutput = {
     type = "structure",
+    id = "NotifyProvisionProductEngineWorkflowResultOutput",
 }
 
 M.NotifyTerminateProvisionedProductEngineWorkflowResultInput = {
     type = "structure",
+    id = "NotifyTerminateProvisionedProductEngineWorkflowResultInput",
     members = {
         WorkflowToken = {
             type = "string",
@@ -3769,10 +3977,12 @@ M.NotifyTerminateProvisionedProductEngineWorkflowResultInput = {
 
 M.NotifyTerminateProvisionedProductEngineWorkflowResultOutput = {
     type = "structure",
+    id = "NotifyTerminateProvisionedProductEngineWorkflowResultOutput",
 }
 
 M.NotifyUpdateProvisionedProductEngineWorkflowResultInput = {
     type = "structure",
+    id = "NotifyUpdateProvisionedProductEngineWorkflowResultInput",
     members = {
         WorkflowToken = {
             type = "string",
@@ -3811,10 +4021,12 @@ M.NotifyUpdateProvisionedProductEngineWorkflowResultInput = {
 
 M.NotifyUpdateProvisionedProductEngineWorkflowResultOutput = {
     type = "structure",
+    id = "NotifyUpdateProvisionedProductEngineWorkflowResultOutput",
 }
 
 M.ProvisioningParameter = {
     type = "structure",
+    id = "ProvisioningParameter",
     members = {
         Key = {
             type = "string",
@@ -3827,6 +4039,7 @@ M.ProvisioningParameter = {
 
 M.ProvisioningPreferences = {
     type = "structure",
+    id = "ProvisioningPreferences",
     members = {
         StackSetAccounts = {
             type = "list",
@@ -3853,6 +4066,7 @@ M.ProvisioningPreferences = {
 
 M.ProvisionProductInput = {
     type = "structure",
+    id = "ProvisionProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3906,6 +4120,7 @@ M.ProvisionProductInput = {
 
 M.ProvisionProductOutput = {
     type = "structure",
+    id = "ProvisionProductOutput",
     members = {
         RecordDetail = M.RecordDetail,
     },
@@ -3913,6 +4128,7 @@ M.ProvisionProductOutput = {
 
 M.RejectPortfolioShareInput = {
     type = "structure",
+    id = "RejectPortfolioShareInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3931,10 +4147,12 @@ M.RejectPortfolioShareInput = {
 
 M.RejectPortfolioShareOutput = {
     type = "structure",
+    id = "RejectPortfolioShareOutput",
 }
 
 M.ScanProvisionedProductsInput = {
     type = "structure",
+    id = "ScanProvisionedProductsInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -3954,6 +4172,7 @@ M.ScanProvisionedProductsInput = {
 
 M.ScanProvisionedProductsOutput = {
     type = "structure",
+    id = "ScanProvisionedProductsOutput",
     members = {
         ProvisionedProducts = {
             type = "list",
@@ -3985,6 +4204,7 @@ M.SortOrder = {
 
 M.SearchProductsInput = {
     type = "structure",
+    id = "SearchProductsInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4014,6 +4234,7 @@ M.SearchProductsInput = {
 
 M.ProductViewAggregationValue = {
     type = "structure",
+    id = "ProductViewAggregationValue",
     members = {
         Value = {
             type = "string",
@@ -4029,6 +4250,7 @@ M.ProductViewAggregationValue = {
 
 M.SearchProductsOutput = {
     type = "structure",
+    id = "SearchProductsOutput",
     members = {
         ProductViewSummaries = {
             type = "list",
@@ -4051,6 +4273,7 @@ M.ProductSource = {
 
 M.SearchProductsAsAdminInput = {
     type = "structure",
+    id = "SearchProductsAsAdminInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4086,6 +4309,7 @@ M.SearchProductsAsAdminInput = {
 
 M.SearchProductsAsAdminOutput = {
     type = "structure",
+    id = "SearchProductsAsAdminOutput",
     members = {
         ProductViewDetails = {
             type = "list",
@@ -4103,6 +4327,7 @@ M.ProvisionedProductViewFilterBy = {
 
 M.SearchProvisionedProductsInput = {
     type = "structure",
+    id = "SearchProvisionedProductsInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4133,6 +4358,7 @@ M.SearchProvisionedProductsInput = {
 
 M.ProvisionedProductAttribute = {
     type = "structure",
+    id = "ProvisionedProductAttribute",
     members = {
         Name = {
             type = "string",
@@ -4197,6 +4423,7 @@ M.ProvisionedProductAttribute = {
 
 M.SearchProvisionedProductsOutput = {
     type = "structure",
+    id = "SearchProvisionedProductsOutput",
     members = {
         ProvisionedProducts = {
             type = "list",
@@ -4216,6 +4443,7 @@ M.SearchProvisionedProductsOutput = {
 
 M.TerminateProvisionedProductInput = {
     type = "structure",
+    id = "TerminateProvisionedProductInput",
     members = {
         ProvisionedProductName = {
             type = "string",
@@ -4250,6 +4478,7 @@ M.TerminateProvisionedProductInput = {
 
 M.TerminateProvisionedProductOutput = {
     type = "structure",
+    id = "TerminateProvisionedProductOutput",
     members = {
         RecordDetail = M.RecordDetail,
     },
@@ -4257,6 +4486,7 @@ M.TerminateProvisionedProductOutput = {
 
 M.UpdateConstraintInput = {
     type = "structure",
+    id = "UpdateConstraintInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4278,6 +4508,7 @@ M.UpdateConstraintInput = {
 
 M.UpdateConstraintOutput = {
     type = "structure",
+    id = "UpdateConstraintOutput",
     members = {
         ConstraintDetail = M.ConstraintDetail,
         ConstraintParameters = {
@@ -4291,6 +4522,7 @@ M.UpdateConstraintOutput = {
 
 M.UpdatePortfolioInput = {
     type = "structure",
+    id = "UpdatePortfolioInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4323,6 +4555,7 @@ M.UpdatePortfolioInput = {
 
 M.UpdatePortfolioOutput = {
     type = "structure",
+    id = "UpdatePortfolioOutput",
     members = {
         PortfolioDetail = M.PortfolioDetail,
         Tags = {
@@ -4334,6 +4567,7 @@ M.UpdatePortfolioOutput = {
 
 M.UpdatePortfolioShareInput = {
     type = "structure",
+    id = "UpdatePortfolioShareInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4359,6 +4593,7 @@ M.UpdatePortfolioShareInput = {
 
 M.UpdatePortfolioShareOutput = {
     type = "structure",
+    id = "UpdatePortfolioShareOutput",
     members = {
         PortfolioShareToken = {
             type = "string",
@@ -4371,6 +4606,7 @@ M.UpdatePortfolioShareOutput = {
 
 M.UpdateProductInput = {
     type = "structure",
+    id = "UpdateProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4416,6 +4652,7 @@ M.UpdateProductInput = {
 
 M.UpdateProductOutput = {
     type = "structure",
+    id = "UpdateProductOutput",
     members = {
         ProductViewDetail = M.ProductViewDetail,
         Tags = {
@@ -4433,6 +4670,7 @@ M.StackSetOperationType = {
 
 M.UpdateProvisioningPreferences = {
     type = "structure",
+    id = "UpdateProvisioningPreferences",
     members = {
         StackSetAccounts = {
             type = "list",
@@ -4462,6 +4700,7 @@ M.UpdateProvisioningPreferences = {
 
 M.UpdateProvisionedProductInput = {
     type = "structure",
+    id = "UpdateProvisionedProductInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4511,6 +4750,7 @@ M.UpdateProvisionedProductInput = {
 
 M.UpdateProvisionedProductOutput = {
     type = "structure",
+    id = "UpdateProvisionedProductOutput",
     members = {
         RecordDetail = M.RecordDetail,
     },
@@ -4523,6 +4763,7 @@ M.PropertyKey = {
 
 M.UpdateProvisionedProductPropertiesInput = {
     type = "structure",
+    id = "UpdateProvisionedProductPropertiesInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4553,6 +4794,7 @@ M.UpdateProvisionedProductPropertiesInput = {
 
 M.UpdateProvisionedProductPropertiesOutput = {
     type = "structure",
+    id = "UpdateProvisionedProductPropertiesOutput",
     members = {
         ProvisionedProductId = {
             type = "string",
@@ -4573,6 +4815,7 @@ M.UpdateProvisionedProductPropertiesOutput = {
 
 M.UpdateProvisioningArtifactInput = {
     type = "structure",
+    id = "UpdateProvisioningArtifactInput",
     members = {
         AcceptLanguage = {
             type = "string",
@@ -4606,6 +4849,7 @@ M.UpdateProvisioningArtifactInput = {
 
 M.UpdateProvisioningArtifactOutput = {
     type = "structure",
+    id = "UpdateProvisioningArtifactOutput",
     members = {
         ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
         Info = {
@@ -4621,6 +4865,7 @@ M.UpdateProvisioningArtifactOutput = {
 
 M.UpdateServiceActionInput = {
     type = "structure",
+    id = "UpdateServiceActionInput",
     members = {
         Id = {
             type = "string",
@@ -4647,6 +4892,7 @@ M.UpdateServiceActionInput = {
 
 M.UpdateServiceActionOutput = {
     type = "structure",
+    id = "UpdateServiceActionOutput",
     members = {
         ServiceActionDetail = M.ServiceActionDetail,
     },
@@ -4654,6 +4900,7 @@ M.UpdateServiceActionOutput = {
 
 M.UpdateTagOptionInput = {
     type = "structure",
+    id = "UpdateTagOptionInput",
     members = {
         Id = {
             type = "string",
@@ -4672,6 +4919,7 @@ M.UpdateTagOptionInput = {
 
 M.UpdateTagOptionOutput = {
     type = "structure",
+    id = "UpdateTagOptionOutput",
     members = {
         TagOptionDetail = M.TagOptionDetail,
     },

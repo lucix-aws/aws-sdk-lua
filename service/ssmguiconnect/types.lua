@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -28,6 +30,7 @@ M.ConflictException = {
 
 M.S3Bucket = {
     type = "structure",
+    id = "S3Bucket",
     members = {
         BucketOwner = {
             type = "string",
@@ -46,6 +49,7 @@ M.S3Bucket = {
 
 M.RecordingDestinations = {
     type = "structure",
+    id = "RecordingDestinations",
     members = {
         S3Buckets = {
             type = "list",
@@ -59,6 +63,7 @@ M.RecordingDestinations = {
 
 M.ConnectionRecordingPreferences = {
     type = "structure",
+    id = "ConnectionRecordingPreferences",
     members = {
         RecordingDestinations = setmetatable({ traits = {
             required = true,
@@ -74,6 +79,7 @@ M.ConnectionRecordingPreferences = {
 
 M.DeleteConnectionRecordingPreferencesInput = {
     type = "structure",
+    id = "DeleteConnectionRecordingPreferencesInput",
     members = {
         ClientToken = {
             type = "string",
@@ -86,6 +92,7 @@ M.DeleteConnectionRecordingPreferencesInput = {
 
 M.DeleteConnectionRecordingPreferencesOutput = {
     type = "structure",
+    id = "DeleteConnectionRecordingPreferencesOutput",
     members = {
         ClientToken = {
             type = "string",
@@ -95,6 +102,7 @@ M.DeleteConnectionRecordingPreferencesOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -108,6 +116,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -121,6 +130,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -134,6 +144,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -147,6 +158,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -160,10 +172,12 @@ M.ValidationException = {
 
 M.GetConnectionRecordingPreferencesInput = {
     type = "structure",
+    id = "GetConnectionRecordingPreferencesInput",
 }
 
 M.GetConnectionRecordingPreferencesOutput = {
     type = "structure",
+    id = "GetConnectionRecordingPreferencesOutput",
     members = {
         ClientToken = {
             type = "string",
@@ -174,6 +188,7 @@ M.GetConnectionRecordingPreferencesOutput = {
 
 M.UpdateConnectionRecordingPreferencesInput = {
     type = "structure",
+    id = "UpdateConnectionRecordingPreferencesInput",
     members = {
         ConnectionRecordingPreferences = setmetatable({ traits = {
             required = true,
@@ -189,6 +204,7 @@ M.UpdateConnectionRecordingPreferencesInput = {
 
 M.UpdateConnectionRecordingPreferencesOutput = {
     type = "structure",
+    id = "UpdateConnectionRecordingPreferencesOutput",
     members = {
         ClientToken = {
             type = "string",

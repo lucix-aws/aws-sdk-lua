@@ -11,6 +11,7 @@ M.ActionValue = {
 
 M.ActionCondition = {
     type = "structure",
+    id = "ActionCondition",
     members = {
         Action = {
             type = "string",
@@ -23,6 +24,7 @@ M.ActionCondition = {
 
 M.AddressField = {
     type = "structure",
+    id = "AddressField",
     members = {
         Identifier = {
             type = "string",
@@ -35,10 +37,12 @@ M.AddressField = {
 
 M.All = {
     type = "structure",
+    id = "All",
 }
 
 M.CustomHTTPHeader = {
     type = "structure",
+    id = "CustomHTTPHeader",
     members = {
         Name = {
             type = "string",
@@ -57,6 +61,7 @@ M.CustomHTTPHeader = {
 
 M.CustomRequestHandling = {
     type = "structure",
+    id = "CustomRequestHandling",
     members = {
         InsertHeaders = {
             type = "list",
@@ -70,6 +75,7 @@ M.CustomRequestHandling = {
 
 M.AllowAction = {
     type = "structure",
+    id = "AllowAction",
     members = {
         CustomRequestHandling = M.CustomRequestHandling,
     },
@@ -77,6 +83,7 @@ M.AllowAction = {
 
 M.AllQueryArguments = {
     type = "structure",
+    id = "AllQueryArguments",
 }
 
 M.FallbackBehavior = {
@@ -86,6 +93,7 @@ M.FallbackBehavior = {
 
 M.ForwardedIPConfig = {
     type = "structure",
+    id = "ForwardedIPConfig",
     members = {
         HeaderName = {
             type = "string",
@@ -104,6 +112,7 @@ M.ForwardedIPConfig = {
 
 M.AsnMatchStatement = {
     type = "structure",
+    id = "AsnMatchStatement",
     members = {
         AsnList = {
             type = "list",
@@ -124,6 +133,7 @@ M.OversizeHandling = {
 
 M.Body = {
     type = "structure",
+    id = "Body",
     members = {
         OversizeHandling = {
             type = "string",
@@ -133,6 +143,7 @@ M.Body = {
 
 M.CookieMatchPattern = {
     type = "structure",
+    id = "CookieMatchPattern",
     members = {
         All = M.All,
         IncludedCookies = {
@@ -154,6 +165,7 @@ M.MapMatchScope = {
 
 M.Cookies = {
     type = "structure",
+    id = "Cookies",
     members = {
         MatchPattern = setmetatable({ traits = {
             required = true,
@@ -175,6 +187,7 @@ M.Cookies = {
 
 M.HeaderOrder = {
     type = "structure",
+    id = "HeaderOrder",
     members = {
         OversizeHandling = {
             type = "string",
@@ -187,6 +200,7 @@ M.HeaderOrder = {
 
 M.HeaderMatchPattern = {
     type = "structure",
+    id = "HeaderMatchPattern",
     members = {
         All = M.All,
         IncludedHeaders = {
@@ -202,6 +216,7 @@ M.HeaderMatchPattern = {
 
 M.Headers = {
     type = "structure",
+    id = "Headers",
     members = {
         MatchPattern = setmetatable({ traits = {
             required = true,
@@ -223,6 +238,7 @@ M.Headers = {
 
 M.JA3Fingerprint = {
     type = "structure",
+    id = "JA3Fingerprint",
     members = {
         FallbackBehavior = {
             type = "string",
@@ -235,6 +251,7 @@ M.JA3Fingerprint = {
 
 M.JA4Fingerprint = {
     type = "structure",
+    id = "JA4Fingerprint",
     members = {
         FallbackBehavior = {
             type = "string",
@@ -253,6 +270,7 @@ M.BodyParsingFallbackBehavior = {
 
 M.JsonMatchPattern = {
     type = "structure",
+    id = "JsonMatchPattern",
     members = {
         All = M.All,
         IncludedPaths = {
@@ -270,6 +288,7 @@ M.JsonMatchScope = {
 
 M.JsonBody = {
     type = "structure",
+    id = "JsonBody",
     members = {
         MatchPattern = setmetatable({ traits = {
             required = true,
@@ -291,14 +310,17 @@ M.JsonBody = {
 
 M.Method = {
     type = "structure",
+    id = "Method",
 }
 
 M.QueryString = {
     type = "structure",
+    id = "QueryString",
 }
 
 M.SingleHeader = {
     type = "structure",
+    id = "SingleHeader",
     members = {
         Name = {
             type = "string",
@@ -311,6 +333,7 @@ M.SingleHeader = {
 
 M.SingleQueryArgument = {
     type = "structure",
+    id = "SingleQueryArgument",
     members = {
         Name = {
             type = "string",
@@ -323,6 +346,7 @@ M.SingleQueryArgument = {
 
 M.UriFragment = {
     type = "structure",
+    id = "UriFragment",
     members = {
         FallbackBehavior = {
             type = "string",
@@ -332,10 +356,12 @@ M.UriFragment = {
 
 M.UriPath = {
     type = "structure",
+    id = "UriPath",
 }
 
 M.FieldToMatch = {
     type = "structure",
+    id = "FieldToMatch",
     members = {
         SingleHeader = M.SingleHeader,
         SingleQueryArgument = M.SingleQueryArgument,
@@ -388,6 +414,7 @@ M.TextTransformationType = {
 
 M.TextTransformation = {
     type = "structure",
+    id = "TextTransformation",
     members = {
         Priority = {
             type = "integer",
@@ -407,6 +434,7 @@ M.TextTransformation = {
 
 M.ByteMatchStatement = {
     type = "structure",
+    id = "ByteMatchStatement",
     members = {
         SearchString = {
             type = "blob",
@@ -688,6 +716,7 @@ M.CountryCode = {
 
 M.GeoMatchStatement = {
     type = "structure",
+    id = "GeoMatchStatement",
     members = {
         CountryCodes = {
             type = "list",
@@ -705,6 +734,7 @@ M.ForwardedIPPosition = {
 
 M.IPSetForwardedIPConfig = {
     type = "structure",
+    id = "IPSetForwardedIPConfig",
     members = {
         HeaderName = {
             type = "string",
@@ -729,6 +759,7 @@ M.IPSetForwardedIPConfig = {
 
 M.IPSetReferenceStatement = {
     type = "structure",
+    id = "IPSetReferenceStatement",
     members = {
         ARN = {
             type = "string",
@@ -747,6 +778,7 @@ M.LabelMatchScope = {
 
 M.LabelMatchStatement = {
     type = "structure",
+    id = "LabelMatchStatement",
     members = {
         Scope = {
             type = "string",
@@ -765,6 +797,7 @@ M.LabelMatchStatement = {
 
 M.ExcludedRule = {
     type = "structure",
+    id = "ExcludedRule",
     members = {
         Name = {
             type = "string",
@@ -777,6 +810,7 @@ M.ExcludedRule = {
 
 M.EmailField = {
     type = "structure",
+    id = "EmailField",
     members = {
         Identifier = {
             type = "string",
@@ -789,6 +823,7 @@ M.EmailField = {
 
 M.PasswordField = {
     type = "structure",
+    id = "PasswordField",
     members = {
         Identifier = {
             type = "string",
@@ -806,6 +841,7 @@ M.PayloadType = {
 
 M.PhoneNumberField = {
     type = "structure",
+    id = "PhoneNumberField",
     members = {
         Identifier = {
             type = "string",
@@ -818,6 +854,7 @@ M.PhoneNumberField = {
 
 M.UsernameField = {
     type = "structure",
+    id = "UsernameField",
     members = {
         Identifier = {
             type = "string",
@@ -830,6 +867,7 @@ M.UsernameField = {
 
 M.RequestInspectionACFP = {
     type = "structure",
+    id = "RequestInspectionACFP",
     members = {
         PayloadType = {
             type = "string",
@@ -853,6 +891,7 @@ M.RequestInspectionACFP = {
 
 M.ResponseInspectionBodyContains = {
     type = "structure",
+    id = "ResponseInspectionBodyContains",
     members = {
         SuccessStrings = {
             type = "list",
@@ -873,6 +912,7 @@ M.ResponseInspectionBodyContains = {
 
 M.ResponseInspectionHeader = {
     type = "structure",
+    id = "ResponseInspectionHeader",
     members = {
         Name = {
             type = "string",
@@ -899,6 +939,7 @@ M.ResponseInspectionHeader = {
 
 M.ResponseInspectionJson = {
     type = "structure",
+    id = "ResponseInspectionJson",
     members = {
         Identifier = {
             type = "string",
@@ -925,6 +966,7 @@ M.ResponseInspectionJson = {
 
 M.ResponseInspectionStatusCode = {
     type = "structure",
+    id = "ResponseInspectionStatusCode",
     members = {
         SuccessCodes = {
             type = "list",
@@ -945,6 +987,7 @@ M.ResponseInspectionStatusCode = {
 
 M.ResponseInspection = {
     type = "structure",
+    id = "ResponseInspection",
     members = {
         StatusCode = M.ResponseInspectionStatusCode,
         Header = M.ResponseInspectionHeader,
@@ -955,6 +998,7 @@ M.ResponseInspection = {
 
 M.AWSManagedRulesACFPRuleSet = {
     type = "structure",
+    id = "AWSManagedRulesACFPRuleSet",
     members = {
         CreationPath = {
             type = "string",
@@ -983,6 +1027,7 @@ M.AWSManagedRulesACFPRuleSet = {
 
 M.Regex = {
     type = "structure",
+    id = "Regex",
     members = {
         RegexString = {
             type = "string",
@@ -1003,6 +1048,7 @@ M.UsageOfAction = {
 
 M.ClientSideAction = {
     type = "structure",
+    id = "ClientSideAction",
     members = {
         UsageOfAction = {
             type = "string",
@@ -1022,6 +1068,7 @@ M.ClientSideAction = {
 
 M.ClientSideActionConfig = {
     type = "structure",
+    id = "ClientSideActionConfig",
     members = {
         Challenge = setmetatable({ traits = {
             required = true,
@@ -1031,6 +1078,7 @@ M.ClientSideActionConfig = {
 
 M.AWSManagedRulesAntiDDoSRuleSet = {
     type = "structure",
+    id = "AWSManagedRulesAntiDDoSRuleSet",
     members = {
         ClientSideActionConfig = setmetatable({ traits = {
             required = true,
@@ -1043,6 +1091,7 @@ M.AWSManagedRulesAntiDDoSRuleSet = {
 
 M.RequestInspection = {
     type = "structure",
+    id = "RequestInspection",
     members = {
         PayloadType = {
             type = "string",
@@ -1061,6 +1110,7 @@ M.RequestInspection = {
 
 M.AWSManagedRulesATPRuleSet = {
     type = "structure",
+    id = "AWSManagedRulesATPRuleSet",
     members = {
         LoginPath = {
             type = "string",
@@ -1086,6 +1136,7 @@ M.InspectionLevel = {
 
 M.AWSManagedRulesBotControlRuleSet = {
     type = "structure",
+    id = "AWSManagedRulesBotControlRuleSet",
     members = {
         InspectionLevel = {
             type = "string",
@@ -1104,6 +1155,7 @@ M.AWSManagedRulesBotControlRuleSet = {
 
 M.ManagedRuleGroupConfig = {
     type = "structure",
+    id = "ManagedRuleGroupConfig",
     members = {
         LoginPath = {
             type = "string",
@@ -1122,6 +1174,7 @@ M.ManagedRuleGroupConfig = {
 
 M.CustomResponse = {
     type = "structure",
+    id = "CustomResponse",
     members = {
         ResponseCode = {
             type = "integer",
@@ -1141,6 +1194,7 @@ M.CustomResponse = {
 
 M.BlockAction = {
     type = "structure",
+    id = "BlockAction",
     members = {
         CustomResponse = M.CustomResponse,
     },
@@ -1148,6 +1202,7 @@ M.BlockAction = {
 
 M.CaptchaAction = {
     type = "structure",
+    id = "CaptchaAction",
     members = {
         CustomRequestHandling = M.CustomRequestHandling,
     },
@@ -1155,6 +1210,7 @@ M.CaptchaAction = {
 
 M.ChallengeAction = {
     type = "structure",
+    id = "ChallengeAction",
     members = {
         CustomRequestHandling = M.CustomRequestHandling,
     },
@@ -1162,6 +1218,7 @@ M.ChallengeAction = {
 
 M.CountAction = {
     type = "structure",
+    id = "CountAction",
     members = {
         CustomRequestHandling = M.CustomRequestHandling,
     },
@@ -1169,6 +1226,7 @@ M.CountAction = {
 
 M.RuleAction = {
     type = "structure",
+    id = "RuleAction",
     members = {
         Block = M.BlockAction,
         Allow = M.AllowAction,
@@ -1180,6 +1238,7 @@ M.RuleAction = {
 
 M.RuleActionOverride = {
     type = "structure",
+    id = "RuleActionOverride",
     members = {
         Name = {
             type = "string",
@@ -1202,10 +1261,12 @@ M.RateBasedStatementAggregateKeyType = {
 
 M.RateLimitAsn = {
     type = "structure",
+    id = "RateLimitAsn",
 }
 
 M.RateLimitCookie = {
     type = "structure",
+    id = "RateLimitCookie",
     members = {
         Name = {
             type = "string",
@@ -1225,10 +1286,12 @@ M.RateLimitCookie = {
 
 M.RateLimitForwardedIP = {
     type = "structure",
+    id = "RateLimitForwardedIP",
 }
 
 M.RateLimitHeader = {
     type = "structure",
+    id = "RateLimitHeader",
     members = {
         Name = {
             type = "string",
@@ -1248,14 +1311,17 @@ M.RateLimitHeader = {
 
 M.RateLimitHTTPMethod = {
     type = "structure",
+    id = "RateLimitHTTPMethod",
 }
 
 M.RateLimitIP = {
     type = "structure",
+    id = "RateLimitIP",
 }
 
 M.RateLimitJA3Fingerprint = {
     type = "structure",
+    id = "RateLimitJA3Fingerprint",
     members = {
         FallbackBehavior = {
             type = "string",
@@ -1268,6 +1334,7 @@ M.RateLimitJA3Fingerprint = {
 
 M.RateLimitJA4Fingerprint = {
     type = "structure",
+    id = "RateLimitJA4Fingerprint",
     members = {
         FallbackBehavior = {
             type = "string",
@@ -1280,6 +1347,7 @@ M.RateLimitJA4Fingerprint = {
 
 M.RateLimitLabelNamespace = {
     type = "structure",
+    id = "RateLimitLabelNamespace",
     members = {
         Namespace = {
             type = "string",
@@ -1292,6 +1360,7 @@ M.RateLimitLabelNamespace = {
 
 M.RateLimitQueryArgument = {
     type = "structure",
+    id = "RateLimitQueryArgument",
     members = {
         Name = {
             type = "string",
@@ -1311,6 +1380,7 @@ M.RateLimitQueryArgument = {
 
 M.RateLimitQueryString = {
     type = "structure",
+    id = "RateLimitQueryString",
     members = {
         TextTransformations = {
             type = "list",
@@ -1324,6 +1394,7 @@ M.RateLimitQueryString = {
 
 M.RateLimitUriPath = {
     type = "structure",
+    id = "RateLimitUriPath",
     members = {
         TextTransformations = {
             type = "list",
@@ -1337,6 +1408,7 @@ M.RateLimitUriPath = {
 
 M.RateBasedStatementCustomKey = {
     type = "structure",
+    id = "RateBasedStatementCustomKey",
     members = {
         Header = M.RateLimitHeader,
         Cookie = M.RateLimitCookie,
@@ -1355,6 +1427,7 @@ M.RateBasedStatementCustomKey = {
 
 M.RegexMatchStatement = {
     type = "structure",
+    id = "RegexMatchStatement",
     members = {
         RegexString = {
             type = "string",
@@ -1377,6 +1450,7 @@ M.RegexMatchStatement = {
 
 M.RegexPatternSetReferenceStatement = {
     type = "structure",
+    id = "RegexPatternSetReferenceStatement",
     members = {
         ARN = {
             type = "string",
@@ -1399,6 +1473,7 @@ M.RegexPatternSetReferenceStatement = {
 
 M.RuleGroupReferenceStatement = {
     type = "structure",
+    id = "RuleGroupReferenceStatement",
     members = {
         ARN = {
             type = "string",
@@ -1428,6 +1503,7 @@ M.ComparisonOperator = {
 
 M.SizeConstraintStatement = {
     type = "structure",
+    id = "SizeConstraintStatement",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -1462,6 +1538,7 @@ M.SensitivityLevel = {
 
 M.SqliMatchStatement = {
     type = "structure",
+    id = "SqliMatchStatement",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -1481,6 +1558,7 @@ M.SqliMatchStatement = {
 
 M.XssMatchStatement = {
     type = "structure",
+    id = "XssMatchStatement",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -1497,6 +1575,7 @@ M.XssMatchStatement = {
 
 M.APIKeySummary = {
     type = "structure",
+    id = "APIKeySummary",
     members = {
         TokenDomains = {
             type = "list",
@@ -1519,6 +1598,7 @@ M.APIKeySummary = {
 
 M.ApplicationAttribute = {
     type = "structure",
+    id = "ApplicationAttribute",
     members = {
         Name = {
             type = "string",
@@ -1532,6 +1612,7 @@ M.ApplicationAttribute = {
 
 M.ApplicationConfig = {
     type = "structure",
+    id = "ApplicationConfig",
     members = {
         Attributes = {
             type = "list",
@@ -1550,6 +1631,7 @@ M.AssociatedResourceType = {
 
 M.AssociateWebACLInput = {
     type = "structure",
+    id = "AssociateWebACLInput",
     members = {
         WebACLArn = {
             type = "string",
@@ -1568,10 +1650,12 @@ M.AssociateWebACLInput = {
 
 M.AssociateWebACLOutput = {
     type = "structure",
+    id = "AssociateWebACLOutput",
 }
 
 M.DisallowedFeature = {
     type = "structure",
+    id = "DisallowedFeature",
     members = {
         Feature = {
             type = "string",
@@ -1584,6 +1668,7 @@ M.DisallowedFeature = {
 
 M.WAFFeatureNotIncludedInPricingPlanException = {
     type = "structure",
+    id = "WAFFeatureNotIncludedInPricingPlanException",
     error = "client",
     members = {
         Message = {
@@ -1598,6 +1683,7 @@ M.WAFFeatureNotIncludedInPricingPlanException = {
 
 M.WAFInternalErrorException = {
     type = "structure",
+    id = "WAFInternalErrorException",
     error = "server",
     members = {
         Message = {
@@ -1608,6 +1694,7 @@ M.WAFInternalErrorException = {
 
 M.WAFInvalidOperationException = {
     type = "structure",
+    id = "WAFInvalidOperationException",
     error = "client",
     members = {
         Message = {
@@ -1693,6 +1780,7 @@ M.ParameterExceptionField = {
 
 M.WAFInvalidParameterException = {
     type = "structure",
+    id = "WAFInvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -1712,6 +1800,7 @@ M.WAFInvalidParameterException = {
 
 M.WAFLimitsExceededException = {
     type = "structure",
+    id = "WAFLimitsExceededException",
     error = "client",
     members = {
         Message = {
@@ -1725,6 +1814,7 @@ M.WAFLimitsExceededException = {
 
 M.WAFNonexistentItemException = {
     type = "structure",
+    id = "WAFNonexistentItemException",
     error = "client",
     members = {
         Message = {
@@ -1735,6 +1825,7 @@ M.WAFNonexistentItemException = {
 
 M.WAFUnavailableEntityException = {
     type = "structure",
+    id = "WAFUnavailableEntityException",
     error = "client",
     members = {
         Message = {
@@ -1752,6 +1843,7 @@ M.SizeInspectionLimit = {
 
 M.RequestBodyAssociatedResourceTypeConfig = {
     type = "structure",
+    id = "RequestBodyAssociatedResourceTypeConfig",
     members = {
         DefaultSizeInspectionLimit = {
             type = "string",
@@ -1764,6 +1856,7 @@ M.RequestBodyAssociatedResourceTypeConfig = {
 
 M.AssociationConfig = {
     type = "structure",
+    id = "AssociationConfig",
     members = {
         RequestBody = {
             type = "map",
@@ -1775,6 +1868,7 @@ M.AssociationConfig = {
 
 M.ImmunityTimeProperty = {
     type = "structure",
+    id = "ImmunityTimeProperty",
     members = {
         ImmunityTime = {
             type = "long",
@@ -1787,6 +1881,7 @@ M.ImmunityTimeProperty = {
 
 M.CaptchaConfig = {
     type = "structure",
+    id = "CaptchaConfig",
     members = {
         ImmunityTimeProperty = M.ImmunityTimeProperty,
     },
@@ -1794,6 +1889,7 @@ M.CaptchaConfig = {
 
 M.ChallengeConfig = {
     type = "structure",
+    id = "ChallengeConfig",
     members = {
         ImmunityTimeProperty = M.ImmunityTimeProperty,
     },
@@ -1801,10 +1897,12 @@ M.ChallengeConfig = {
 
 M.NoneAction = {
     type = "structure",
+    id = "NoneAction",
 }
 
 M.OverrideAction = {
     type = "structure",
+    id = "OverrideAction",
     members = {
         Count = M.CountAction,
         None = M.NoneAction,
@@ -1813,6 +1911,7 @@ M.OverrideAction = {
 
 M.Label = {
     type = "structure",
+    id = "Label",
     members = {
         Name = {
             type = "string",
@@ -1825,6 +1924,7 @@ M.Label = {
 
 M.VisibilityConfig = {
     type = "structure",
+    id = "VisibilityConfig",
     members = {
         SampledRequestsEnabled = {
             type = "boolean",
@@ -1856,6 +1956,7 @@ M.Scope = {
 
 M.CheckCapacityOutput = {
     type = "structure",
+    id = "CheckCapacityOutput",
     members = {
         Capacity = {
             type = "long",
@@ -1868,6 +1969,7 @@ M.CheckCapacityOutput = {
 
 M.WAFExpiredManagedRuleGroupVersionException = {
     type = "structure",
+    id = "WAFExpiredManagedRuleGroupVersionException",
     error = "client",
     members = {
         Message = {
@@ -1878,6 +1980,7 @@ M.WAFExpiredManagedRuleGroupVersionException = {
 
 M.WAFInvalidResourceException = {
     type = "structure",
+    id = "WAFInvalidResourceException",
     error = "client",
     members = {
         Message = {
@@ -1888,6 +1991,7 @@ M.WAFInvalidResourceException = {
 
 M.WAFSubscriptionNotFoundException = {
     type = "structure",
+    id = "WAFSubscriptionNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1898,6 +2002,7 @@ M.WAFSubscriptionNotFoundException = {
 
 M.CreateAPIKeyInput = {
     type = "structure",
+    id = "CreateAPIKeyInput",
     members = {
         Scope = {
             type = "string",
@@ -1917,6 +2022,7 @@ M.CreateAPIKeyInput = {
 
 M.CreateAPIKeyOutput = {
     type = "structure",
+    id = "CreateAPIKeyOutput",
     members = {
         APIKey = {
             type = "string",
@@ -1931,6 +2037,7 @@ M.IPAddressVersion = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1949,6 +2056,7 @@ M.Tag = {
 
 M.CreateIPSetInput = {
     type = "structure",
+    id = "CreateIPSetInput",
     members = {
         Name = {
             type = "string",
@@ -1987,6 +2095,7 @@ M.CreateIPSetInput = {
 
 M.IPSetSummary = {
     type = "structure",
+    id = "IPSetSummary",
     members = {
         Name = {
             type = "string",
@@ -2008,6 +2117,7 @@ M.IPSetSummary = {
 
 M.CreateIPSetOutput = {
     type = "structure",
+    id = "CreateIPSetOutput",
     members = {
         Summary = M.IPSetSummary,
     },
@@ -2015,6 +2125,7 @@ M.CreateIPSetOutput = {
 
 M.WAFDuplicateItemException = {
     type = "structure",
+    id = "WAFDuplicateItemException",
     error = "client",
     members = {
         Message = {
@@ -2025,6 +2136,7 @@ M.WAFDuplicateItemException = {
 
 M.WAFOptimisticLockException = {
     type = "structure",
+    id = "WAFOptimisticLockException",
     error = "client",
     members = {
         Message = {
@@ -2035,6 +2147,7 @@ M.WAFOptimisticLockException = {
 
 M.WAFTagOperationException = {
     type = "structure",
+    id = "WAFTagOperationException",
     error = "client",
     members = {
         Message = {
@@ -2045,6 +2158,7 @@ M.WAFTagOperationException = {
 
 M.WAFTagOperationInternalErrorException = {
     type = "structure",
+    id = "WAFTagOperationInternalErrorException",
     error = "server",
     members = {
         Message = {
@@ -2055,6 +2169,7 @@ M.WAFTagOperationInternalErrorException = {
 
 M.CreateRegexPatternSetInput = {
     type = "structure",
+    id = "CreateRegexPatternSetInput",
     members = {
         Name = {
             type = "string",
@@ -2087,6 +2202,7 @@ M.CreateRegexPatternSetInput = {
 
 M.RegexPatternSetSummary = {
     type = "structure",
+    id = "RegexPatternSetSummary",
     members = {
         Name = {
             type = "string",
@@ -2108,6 +2224,7 @@ M.RegexPatternSetSummary = {
 
 M.CreateRegexPatternSetOutput = {
     type = "structure",
+    id = "CreateRegexPatternSetOutput",
     members = {
         Summary = M.RegexPatternSetSummary,
     },
@@ -2121,6 +2238,7 @@ M.ResponseContentType = {
 
 M.CustomResponseBody = {
     type = "structure",
+    id = "CustomResponseBody",
     members = {
         ContentType = {
             type = "string",
@@ -2139,6 +2257,7 @@ M.CustomResponseBody = {
 
 M.RuleGroupSummary = {
     type = "structure",
+    id = "RuleGroupSummary",
     members = {
         Name = {
             type = "string",
@@ -2160,6 +2279,7 @@ M.RuleGroupSummary = {
 
 M.CreateRuleGroupOutput = {
     type = "structure",
+    id = "CreateRuleGroupOutput",
     members = {
         Summary = M.RuleGroupSummary,
     },
@@ -2180,6 +2300,7 @@ M.FieldToProtectType = {
 
 M.FieldToProtect = {
     type = "structure",
+    id = "FieldToProtect",
     members = {
         FieldType = {
             type = "string",
@@ -2196,6 +2317,7 @@ M.FieldToProtect = {
 
 M.DataProtection = {
     type = "structure",
+    id = "DataProtection",
     members = {
         Field = setmetatable({ traits = {
             required = true,
@@ -2223,6 +2345,7 @@ M.DataProtection = {
 
 M.DataProtectionConfig = {
     type = "structure",
+    id = "DataProtectionConfig",
     members = {
         DataProtections = {
             type = "list",
@@ -2236,6 +2359,7 @@ M.DataProtectionConfig = {
 
 M.DefaultAction = {
     type = "structure",
+    id = "DefaultAction",
     members = {
         Block = M.BlockAction,
         Allow = M.AllowAction,
@@ -2249,6 +2373,7 @@ M.LowReputationMode = {
 
 M.OnSourceDDoSProtectionConfig = {
     type = "structure",
+    id = "OnSourceDDoSProtectionConfig",
     members = {
         ALBLowReputationMode = {
             type = "string",
@@ -2261,6 +2386,7 @@ M.OnSourceDDoSProtectionConfig = {
 
 M.WebACLSummary = {
     type = "structure",
+    id = "WebACLSummary",
     members = {
         Name = {
             type = "string",
@@ -2282,6 +2408,7 @@ M.WebACLSummary = {
 
 M.CreateWebACLOutput = {
     type = "structure",
+    id = "CreateWebACLOutput",
     members = {
         Summary = M.WebACLSummary,
     },
@@ -2289,6 +2416,7 @@ M.CreateWebACLOutput = {
 
 M.WAFConfigurationWarningException = {
     type = "structure",
+    id = "WAFConfigurationWarningException",
     error = "client",
     members = {
         Message = {
@@ -2299,6 +2427,7 @@ M.WAFConfigurationWarningException = {
 
 M.DeleteAPIKeyInput = {
     type = "structure",
+    id = "DeleteAPIKeyInput",
     members = {
         Scope = {
             type = "string",
@@ -2317,10 +2446,12 @@ M.DeleteAPIKeyInput = {
 
 M.DeleteAPIKeyOutput = {
     type = "structure",
+    id = "DeleteAPIKeyOutput",
 }
 
 M.DeleteFirewallManagerRuleGroupsInput = {
     type = "structure",
+    id = "DeleteFirewallManagerRuleGroupsInput",
     members = {
         WebACLArn = {
             type = "string",
@@ -2339,6 +2470,7 @@ M.DeleteFirewallManagerRuleGroupsInput = {
 
 M.DeleteFirewallManagerRuleGroupsOutput = {
     type = "structure",
+    id = "DeleteFirewallManagerRuleGroupsOutput",
     members = {
         NextWebACLLockToken = {
             type = "string",
@@ -2348,6 +2480,7 @@ M.DeleteFirewallManagerRuleGroupsOutput = {
 
 M.DeleteIPSetInput = {
     type = "structure",
+    id = "DeleteIPSetInput",
     members = {
         Name = {
             type = "string",
@@ -2378,10 +2511,12 @@ M.DeleteIPSetInput = {
 
 M.DeleteIPSetOutput = {
     type = "structure",
+    id = "DeleteIPSetOutput",
 }
 
 M.WAFAssociatedItemException = {
     type = "structure",
+    id = "WAFAssociatedItemException",
     error = "client",
     members = {
         Message = {
@@ -2402,6 +2537,7 @@ M.LogType = {
 
 M.DeleteLoggingConfigurationInput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2420,10 +2556,12 @@ M.DeleteLoggingConfigurationInput = {
 
 M.DeleteLoggingConfigurationOutput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationOutput",
 }
 
 M.DeletePermissionPolicyInput = {
     type = "structure",
+    id = "DeletePermissionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2436,10 +2574,12 @@ M.DeletePermissionPolicyInput = {
 
 M.DeletePermissionPolicyOutput = {
     type = "structure",
+    id = "DeletePermissionPolicyOutput",
 }
 
 M.DeleteRegexPatternSetInput = {
     type = "structure",
+    id = "DeleteRegexPatternSetInput",
     members = {
         Name = {
             type = "string",
@@ -2470,10 +2610,12 @@ M.DeleteRegexPatternSetInput = {
 
 M.DeleteRegexPatternSetOutput = {
     type = "structure",
+    id = "DeleteRegexPatternSetOutput",
 }
 
 M.DeleteRuleGroupInput = {
     type = "structure",
+    id = "DeleteRuleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -2504,10 +2646,12 @@ M.DeleteRuleGroupInput = {
 
 M.DeleteRuleGroupOutput = {
     type = "structure",
+    id = "DeleteRuleGroupOutput",
 }
 
 M.DeleteWebACLInput = {
     type = "structure",
+    id = "DeleteWebACLInput",
     members = {
         Name = {
             type = "string",
@@ -2538,10 +2682,12 @@ M.DeleteWebACLInput = {
 
 M.DeleteWebACLOutput = {
     type = "structure",
+    id = "DeleteWebACLOutput",
 }
 
 M.DescribeAllManagedProductsInput = {
     type = "structure",
+    id = "DescribeAllManagedProductsInput",
     members = {
         Scope = {
             type = "string",
@@ -2554,6 +2700,7 @@ M.DescribeAllManagedProductsInput = {
 
 M.ManagedProductDescriptor = {
     type = "structure",
+    id = "ManagedProductDescriptor",
     members = {
         VendorName = {
             type = "string",
@@ -2593,6 +2740,7 @@ M.ManagedProductDescriptor = {
 
 M.DescribeAllManagedProductsOutput = {
     type = "structure",
+    id = "DescribeAllManagedProductsOutput",
     members = {
         ManagedProducts = {
             type = "list",
@@ -2603,6 +2751,7 @@ M.DescribeAllManagedProductsOutput = {
 
 M.DescribeManagedProductsByVendorInput = {
     type = "structure",
+    id = "DescribeManagedProductsByVendorInput",
     members = {
         VendorName = {
             type = "string",
@@ -2621,6 +2770,7 @@ M.DescribeManagedProductsByVendorInput = {
 
 M.DescribeManagedProductsByVendorOutput = {
     type = "structure",
+    id = "DescribeManagedProductsByVendorOutput",
     members = {
         ManagedProducts = {
             type = "list",
@@ -2631,6 +2781,7 @@ M.DescribeManagedProductsByVendorOutput = {
 
 M.DescribeManagedRuleGroupInput = {
     type = "structure",
+    id = "DescribeManagedRuleGroupInput",
     members = {
         VendorName = {
             type = "string",
@@ -2658,6 +2809,7 @@ M.DescribeManagedRuleGroupInput = {
 
 M.LabelSummary = {
     type = "structure",
+    id = "LabelSummary",
     members = {
         Name = {
             type = "string",
@@ -2667,6 +2819,7 @@ M.LabelSummary = {
 
 M.RuleSummary = {
     type = "structure",
+    id = "RuleSummary",
     members = {
         Name = {
             type = "string",
@@ -2677,6 +2830,7 @@ M.RuleSummary = {
 
 M.DescribeManagedRuleGroupOutput = {
     type = "structure",
+    id = "DescribeManagedRuleGroupOutput",
     members = {
         VersionName = {
             type = "string",
@@ -2707,6 +2861,7 @@ M.DescribeManagedRuleGroupOutput = {
 
 M.DisassociateWebACLInput = {
     type = "structure",
+    id = "DisassociateWebACLInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2719,6 +2874,7 @@ M.DisassociateWebACLInput = {
 
 M.DisassociateWebACLOutput = {
     type = "structure",
+    id = "DisassociateWebACLOutput",
 }
 
 M.Platform = {
@@ -2728,6 +2884,7 @@ M.Platform = {
 
 M.GenerateMobileSdkReleaseUrlInput = {
     type = "structure",
+    id = "GenerateMobileSdkReleaseUrlInput",
     members = {
         Platform = {
             type = "string",
@@ -2746,6 +2903,7 @@ M.GenerateMobileSdkReleaseUrlInput = {
 
 M.GenerateMobileSdkReleaseUrlOutput = {
     type = "structure",
+    id = "GenerateMobileSdkReleaseUrlOutput",
     members = {
         Url = {
             type = "string",
@@ -2755,6 +2913,7 @@ M.GenerateMobileSdkReleaseUrlOutput = {
 
 M.GetDecryptedAPIKeyInput = {
     type = "structure",
+    id = "GetDecryptedAPIKeyInput",
     members = {
         Scope = {
             type = "string",
@@ -2773,6 +2932,7 @@ M.GetDecryptedAPIKeyInput = {
 
 M.GetDecryptedAPIKeyOutput = {
     type = "structure",
+    id = "GetDecryptedAPIKeyOutput",
     members = {
         TokenDomains = {
             type = "list",
@@ -2786,6 +2946,7 @@ M.GetDecryptedAPIKeyOutput = {
 
 M.GetIPSetInput = {
     type = "structure",
+    id = "GetIPSetInput",
     members = {
         Name = {
             type = "string",
@@ -2810,6 +2971,7 @@ M.GetIPSetInput = {
 
 M.IPSet = {
     type = "structure",
+    id = "IPSet",
     members = {
         Name = {
             type = "string",
@@ -2850,6 +3012,7 @@ M.IPSet = {
 
 M.GetIPSetOutput = {
     type = "structure",
+    id = "GetIPSetOutput",
     members = {
         IPSet = M.IPSet,
         LockToken = {
@@ -2860,6 +3023,7 @@ M.GetIPSetOutput = {
 
 M.GetLoggingConfigurationInput = {
     type = "structure",
+    id = "GetLoggingConfigurationInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2883,6 +3047,7 @@ M.FilterBehavior = {
 
 M.LabelNameCondition = {
     type = "structure",
+    id = "LabelNameCondition",
     members = {
         LabelName = {
             type = "string",
@@ -2895,6 +3060,7 @@ M.LabelNameCondition = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         ActionCondition = M.ActionCondition,
         LabelNameCondition = M.LabelNameCondition,
@@ -2908,6 +3074,7 @@ M.FilterRequirement = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Behavior = {
             type = "string",
@@ -2933,6 +3100,7 @@ M.Filter = {
 
 M.LoggingFilter = {
     type = "structure",
+    id = "LoggingFilter",
     members = {
         Filters = {
             type = "list",
@@ -2952,6 +3120,7 @@ M.LoggingFilter = {
 
 M.LoggingConfiguration = {
     type = "structure",
+    id = "LoggingConfiguration",
     members = {
         ResourceArn = {
             type = "string",
@@ -2988,6 +3157,7 @@ M.LoggingConfiguration = {
 
 M.GetLoggingConfigurationOutput = {
     type = "structure",
+    id = "GetLoggingConfigurationOutput",
     members = {
         LoggingConfiguration = M.LoggingConfiguration,
     },
@@ -2995,6 +3165,7 @@ M.GetLoggingConfigurationOutput = {
 
 M.GetManagedRuleSetInput = {
     type = "structure",
+    id = "GetManagedRuleSetInput",
     members = {
         Name = {
             type = "string",
@@ -3019,6 +3190,7 @@ M.GetManagedRuleSetInput = {
 
 M.ManagedRuleSetVersion = {
     type = "structure",
+    id = "ManagedRuleSetVersion",
     members = {
         AssociatedRuleGroupArn = {
             type = "string",
@@ -3043,6 +3215,7 @@ M.ManagedRuleSetVersion = {
 
 M.ManagedRuleSet = {
     type = "structure",
+    id = "ManagedRuleSet",
     members = {
         Name = {
             type = "string",
@@ -3081,6 +3254,7 @@ M.ManagedRuleSet = {
 
 M.GetManagedRuleSetOutput = {
     type = "structure",
+    id = "GetManagedRuleSetOutput",
     members = {
         ManagedRuleSet = M.ManagedRuleSet,
         LockToken = {
@@ -3091,6 +3265,7 @@ M.GetManagedRuleSetOutput = {
 
 M.GetMobileSdkReleaseInput = {
     type = "structure",
+    id = "GetMobileSdkReleaseInput",
     members = {
         Platform = {
             type = "string",
@@ -3109,6 +3284,7 @@ M.GetMobileSdkReleaseInput = {
 
 M.MobileSdkRelease = {
     type = "structure",
+    id = "MobileSdkRelease",
     members = {
         ReleaseVersion = {
             type = "string",
@@ -3128,6 +3304,7 @@ M.MobileSdkRelease = {
 
 M.GetMobileSdkReleaseOutput = {
     type = "structure",
+    id = "GetMobileSdkReleaseOutput",
     members = {
         MobileSdkRelease = M.MobileSdkRelease,
     },
@@ -3135,6 +3312,7 @@ M.GetMobileSdkReleaseOutput = {
 
 M.GetPermissionPolicyInput = {
     type = "structure",
+    id = "GetPermissionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3147,6 +3325,7 @@ M.GetPermissionPolicyInput = {
 
 M.GetPermissionPolicyOutput = {
     type = "structure",
+    id = "GetPermissionPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -3156,6 +3335,7 @@ M.GetPermissionPolicyOutput = {
 
 M.GetRateBasedStatementManagedKeysInput = {
     type = "structure",
+    id = "GetRateBasedStatementManagedKeysInput",
     members = {
         Scope = {
             type = "string",
@@ -3189,6 +3369,7 @@ M.GetRateBasedStatementManagedKeysInput = {
 
 M.RateBasedStatementManagedKeysIPSet = {
     type = "structure",
+    id = "RateBasedStatementManagedKeysIPSet",
     members = {
         IPAddressVersion = {
             type = "string",
@@ -3202,6 +3383,7 @@ M.RateBasedStatementManagedKeysIPSet = {
 
 M.GetRateBasedStatementManagedKeysOutput = {
     type = "structure",
+    id = "GetRateBasedStatementManagedKeysOutput",
     members = {
         ManagedKeysIPV4 = M.RateBasedStatementManagedKeysIPSet,
         ManagedKeysIPV6 = M.RateBasedStatementManagedKeysIPSet,
@@ -3210,6 +3392,7 @@ M.GetRateBasedStatementManagedKeysOutput = {
 
 M.WAFUnsupportedAggregateKeyTypeException = {
     type = "structure",
+    id = "WAFUnsupportedAggregateKeyTypeException",
     error = "client",
     members = {
         Message = {
@@ -3220,6 +3403,7 @@ M.WAFUnsupportedAggregateKeyTypeException = {
 
 M.GetRegexPatternSetInput = {
     type = "structure",
+    id = "GetRegexPatternSetInput",
     members = {
         Name = {
             type = "string",
@@ -3244,6 +3428,7 @@ M.GetRegexPatternSetInput = {
 
 M.RegexPatternSet = {
     type = "structure",
+    id = "RegexPatternSet",
     members = {
         Name = {
             type = "string",
@@ -3266,6 +3451,7 @@ M.RegexPatternSet = {
 
 M.GetRegexPatternSetOutput = {
     type = "structure",
+    id = "GetRegexPatternSetOutput",
     members = {
         RegexPatternSet = M.RegexPatternSet,
         LockToken = {
@@ -3276,6 +3462,7 @@ M.GetRegexPatternSetOutput = {
 
 M.GetRuleGroupInput = {
     type = "structure",
+    id = "GetRuleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -3294,6 +3481,7 @@ M.GetRuleGroupInput = {
 
 M.TimeWindow = {
     type = "structure",
+    id = "TimeWindow",
     members = {
         StartTime = {
             type = "timestamp",
@@ -3312,6 +3500,7 @@ M.TimeWindow = {
 
 M.GetSampledRequestsInput = {
     type = "structure",
+    id = "GetSampledRequestsInput",
     members = {
         WebAclArn = {
             type = "string",
@@ -3352,6 +3541,7 @@ M.FailureReason = {
 
 M.CaptchaResponse = {
     type = "structure",
+    id = "CaptchaResponse",
     members = {
         ResponseCode = {
             type = "integer",
@@ -3367,6 +3557,7 @@ M.CaptchaResponse = {
 
 M.ChallengeResponse = {
     type = "structure",
+    id = "ChallengeResponse",
     members = {
         ResponseCode = {
             type = "integer",
@@ -3382,6 +3573,7 @@ M.ChallengeResponse = {
 
 M.HTTPHeader = {
     type = "structure",
+    id = "HTTPHeader",
     members = {
         Name = {
             type = "string",
@@ -3394,6 +3586,7 @@ M.HTTPHeader = {
 
 M.HTTPRequest = {
     type = "structure",
+    id = "HTTPRequest",
     members = {
         ClientIP = {
             type = "string",
@@ -3419,6 +3612,7 @@ M.HTTPRequest = {
 
 M.SampledHTTPRequest = {
     type = "structure",
+    id = "SampledHTTPRequest",
     members = {
         Request = setmetatable({ traits = {
             required = true,
@@ -3460,6 +3654,7 @@ M.SampledHTTPRequest = {
 
 M.GetSampledRequestsOutput = {
     type = "structure",
+    id = "GetSampledRequestsOutput",
     members = {
         SampledRequests = {
             type = "list",
@@ -3477,6 +3672,7 @@ M.GetSampledRequestsOutput = {
 
 M.GetTopPathStatisticsByTrafficInput = {
     type = "structure",
+    id = "GetTopPathStatisticsByTrafficInput",
     members = {
         WebAclArn = {
             type = "string",
@@ -3525,6 +3721,7 @@ M.GetTopPathStatisticsByTrafficInput = {
 
 M.FilterSource = {
     type = "structure",
+    id = "FilterSource",
     members = {
         BotCategory = {
             type = "string",
@@ -3540,6 +3737,7 @@ M.FilterSource = {
 
 M.BotStatistics = {
     type = "structure",
+    id = "BotStatistics",
     members = {
         BotName = {
             type = "string",
@@ -3566,6 +3764,7 @@ M.BotStatistics = {
 
 M.PathStatistics = {
     type = "structure",
+    id = "PathStatistics",
     members = {
         Source = M.FilterSource,
         Path = {
@@ -3597,6 +3796,7 @@ M.PathStatistics = {
 
 M.GetTopPathStatisticsByTrafficOutput = {
     type = "structure",
+    id = "GetTopPathStatisticsByTrafficOutput",
     members = {
         PathStatistics = {
             type = "list",
@@ -3624,6 +3824,7 @@ M.GetTopPathStatisticsByTrafficOutput = {
 
 M.GetWebACLInput = {
     type = "structure",
+    id = "GetWebACLInput",
     members = {
         Name = {
             type = "string",
@@ -3642,6 +3843,7 @@ M.GetWebACLInput = {
 
 M.GetWebACLForResourceInput = {
     type = "structure",
+    id = "GetWebACLForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3654,6 +3856,7 @@ M.GetWebACLForResourceInput = {
 
 M.ListAPIKeysInput = {
     type = "structure",
+    id = "ListAPIKeysInput",
     members = {
         Scope = {
             type = "string",
@@ -3672,6 +3875,7 @@ M.ListAPIKeysInput = {
 
 M.ListAPIKeysOutput = {
     type = "structure",
+    id = "ListAPIKeysOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -3688,6 +3892,7 @@ M.ListAPIKeysOutput = {
 
 M.ListAvailableManagedRuleGroupsInput = {
     type = "structure",
+    id = "ListAvailableManagedRuleGroupsInput",
     members = {
         Scope = {
             type = "string",
@@ -3706,6 +3911,7 @@ M.ListAvailableManagedRuleGroupsInput = {
 
 M.ManagedRuleGroupSummary = {
     type = "structure",
+    id = "ManagedRuleGroupSummary",
     members = {
         VendorName = {
             type = "string",
@@ -3727,6 +3933,7 @@ M.ManagedRuleGroupSummary = {
 
 M.ListAvailableManagedRuleGroupsOutput = {
     type = "structure",
+    id = "ListAvailableManagedRuleGroupsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -3740,6 +3947,7 @@ M.ListAvailableManagedRuleGroupsOutput = {
 
 M.ListAvailableManagedRuleGroupVersionsInput = {
     type = "structure",
+    id = "ListAvailableManagedRuleGroupVersionsInput",
     members = {
         VendorName = {
             type = "string",
@@ -3770,6 +3978,7 @@ M.ListAvailableManagedRuleGroupVersionsInput = {
 
 M.ManagedRuleGroupVersion = {
     type = "structure",
+    id = "ManagedRuleGroupVersion",
     members = {
         Name = {
             type = "string",
@@ -3782,6 +3991,7 @@ M.ManagedRuleGroupVersion = {
 
 M.ListAvailableManagedRuleGroupVersionsOutput = {
     type = "structure",
+    id = "ListAvailableManagedRuleGroupVersionsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -3798,6 +4008,7 @@ M.ListAvailableManagedRuleGroupVersionsOutput = {
 
 M.ListIPSetsInput = {
     type = "structure",
+    id = "ListIPSetsInput",
     members = {
         Scope = {
             type = "string",
@@ -3816,6 +4027,7 @@ M.ListIPSetsInput = {
 
 M.ListIPSetsOutput = {
     type = "structure",
+    id = "ListIPSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -3829,6 +4041,7 @@ M.ListIPSetsOutput = {
 
 M.ListLoggingConfigurationsInput = {
     type = "structure",
+    id = "ListLoggingConfigurationsInput",
     members = {
         Scope = {
             type = "string",
@@ -3850,6 +4063,7 @@ M.ListLoggingConfigurationsInput = {
 
 M.ListLoggingConfigurationsOutput = {
     type = "structure",
+    id = "ListLoggingConfigurationsOutput",
     members = {
         LoggingConfigurations = {
             type = "list",
@@ -3863,6 +4077,7 @@ M.ListLoggingConfigurationsOutput = {
 
 M.ListManagedRuleSetsInput = {
     type = "structure",
+    id = "ListManagedRuleSetsInput",
     members = {
         Scope = {
             type = "string",
@@ -3881,6 +4096,7 @@ M.ListManagedRuleSetsInput = {
 
 M.ManagedRuleSetSummary = {
     type = "structure",
+    id = "ManagedRuleSetSummary",
     members = {
         Name = {
             type = "string",
@@ -3905,6 +4121,7 @@ M.ManagedRuleSetSummary = {
 
 M.ListManagedRuleSetsOutput = {
     type = "structure",
+    id = "ListManagedRuleSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -3918,6 +4135,7 @@ M.ListManagedRuleSetsOutput = {
 
 M.ListMobileSdkReleasesInput = {
     type = "structure",
+    id = "ListMobileSdkReleasesInput",
     members = {
         Platform = {
             type = "string",
@@ -3936,6 +4154,7 @@ M.ListMobileSdkReleasesInput = {
 
 M.ReleaseSummary = {
     type = "structure",
+    id = "ReleaseSummary",
     members = {
         ReleaseVersion = {
             type = "string",
@@ -3948,6 +4167,7 @@ M.ReleaseSummary = {
 
 M.ListMobileSdkReleasesOutput = {
     type = "structure",
+    id = "ListMobileSdkReleasesOutput",
     members = {
         ReleaseSummaries = {
             type = "list",
@@ -3961,6 +4181,7 @@ M.ListMobileSdkReleasesOutput = {
 
 M.ListRegexPatternSetsInput = {
     type = "structure",
+    id = "ListRegexPatternSetsInput",
     members = {
         Scope = {
             type = "string",
@@ -3979,6 +4200,7 @@ M.ListRegexPatternSetsInput = {
 
 M.ListRegexPatternSetsOutput = {
     type = "structure",
+    id = "ListRegexPatternSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -4002,6 +4224,7 @@ M.ResourceType = {
 
 M.ListResourcesForWebACLInput = {
     type = "structure",
+    id = "ListResourcesForWebACLInput",
     members = {
         WebACLArn = {
             type = "string",
@@ -4017,6 +4240,7 @@ M.ListResourcesForWebACLInput = {
 
 M.ListResourcesForWebACLOutput = {
     type = "structure",
+    id = "ListResourcesForWebACLOutput",
     members = {
         ResourceArns = {
             type = "list",
@@ -4027,6 +4251,7 @@ M.ListResourcesForWebACLOutput = {
 
 M.ListRuleGroupsInput = {
     type = "structure",
+    id = "ListRuleGroupsInput",
     members = {
         Scope = {
             type = "string",
@@ -4045,6 +4270,7 @@ M.ListRuleGroupsInput = {
 
 M.ListRuleGroupsOutput = {
     type = "structure",
+    id = "ListRuleGroupsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -4058,6 +4284,7 @@ M.ListRuleGroupsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         NextMarker = {
             type = "string",
@@ -4076,6 +4303,7 @@ M.ListTagsForResourceInput = {
 
 M.TagInfoForResource = {
     type = "structure",
+    id = "TagInfoForResource",
     members = {
         ResourceARN = {
             type = "string",
@@ -4089,6 +4317,7 @@ M.TagInfoForResource = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -4099,6 +4328,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWebACLsInput = {
     type = "structure",
+    id = "ListWebACLsInput",
     members = {
         Scope = {
             type = "string",
@@ -4117,6 +4347,7 @@ M.ListWebACLsInput = {
 
 M.ListWebACLsOutput = {
     type = "structure",
+    id = "ListWebACLsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -4130,6 +4361,7 @@ M.ListWebACLsOutput = {
 
 M.PutLoggingConfigurationInput = {
     type = "structure",
+    id = "PutLoggingConfigurationInput",
     members = {
         LoggingConfiguration = setmetatable({ traits = {
             required = true,
@@ -4139,6 +4371,7 @@ M.PutLoggingConfigurationInput = {
 
 M.PutLoggingConfigurationOutput = {
     type = "structure",
+    id = "PutLoggingConfigurationOutput",
     members = {
         LoggingConfiguration = M.LoggingConfiguration,
     },
@@ -4146,6 +4379,7 @@ M.PutLoggingConfigurationOutput = {
 
 M.WAFLogDestinationPermissionIssueException = {
     type = "structure",
+    id = "WAFLogDestinationPermissionIssueException",
     error = "client",
     members = {
         Message = {
@@ -4156,6 +4390,7 @@ M.WAFLogDestinationPermissionIssueException = {
 
 M.WAFServiceLinkedRoleErrorException = {
     type = "structure",
+    id = "WAFServiceLinkedRoleErrorException",
     error = "client",
     members = {
         message = {
@@ -4166,6 +4401,7 @@ M.WAFServiceLinkedRoleErrorException = {
 
 M.VersionToPublish = {
     type = "structure",
+    id = "VersionToPublish",
     members = {
         AssociatedRuleGroupArn = {
             type = "string",
@@ -4178,6 +4414,7 @@ M.VersionToPublish = {
 
 M.PutManagedRuleSetVersionsInput = {
     type = "structure",
+    id = "PutManagedRuleSetVersionsInput",
     members = {
         Name = {
             type = "string",
@@ -4216,6 +4453,7 @@ M.PutManagedRuleSetVersionsInput = {
 
 M.PutManagedRuleSetVersionsOutput = {
     type = "structure",
+    id = "PutManagedRuleSetVersionsOutput",
     members = {
         NextLockToken = {
             type = "string",
@@ -4225,6 +4463,7 @@ M.PutManagedRuleSetVersionsOutput = {
 
 M.PutPermissionPolicyInput = {
     type = "structure",
+    id = "PutPermissionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4243,10 +4482,12 @@ M.PutPermissionPolicyInput = {
 
 M.PutPermissionPolicyOutput = {
     type = "structure",
+    id = "PutPermissionPolicyOutput",
 }
 
 M.WAFInvalidPermissionPolicyException = {
     type = "structure",
+    id = "WAFInvalidPermissionPolicyException",
     error = "client",
     members = {
         Message = {
@@ -4257,6 +4498,7 @@ M.WAFInvalidPermissionPolicyException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -4276,10 +4518,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -4299,10 +4543,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateIPSetInput = {
     type = "structure",
+    id = "UpdateIPSetInput",
     members = {
         Name = {
             type = "string",
@@ -4343,6 +4589,7 @@ M.UpdateIPSetInput = {
 
 M.UpdateIPSetOutput = {
     type = "structure",
+    id = "UpdateIPSetOutput",
     members = {
         NextLockToken = {
             type = "string",
@@ -4352,6 +4599,7 @@ M.UpdateIPSetOutput = {
 
 M.UpdateManagedRuleSetVersionExpiryDateInput = {
     type = "structure",
+    id = "UpdateManagedRuleSetVersionExpiryDateInput",
     members = {
         Name = {
             type = "string",
@@ -4394,6 +4642,7 @@ M.UpdateManagedRuleSetVersionExpiryDateInput = {
 
 M.UpdateManagedRuleSetVersionExpiryDateOutput = {
     type = "structure",
+    id = "UpdateManagedRuleSetVersionExpiryDateOutput",
     members = {
         ExpiringVersion = {
             type = "string",
@@ -4409,6 +4658,7 @@ M.UpdateManagedRuleSetVersionExpiryDateOutput = {
 
 M.UpdateRegexPatternSetInput = {
     type = "structure",
+    id = "UpdateRegexPatternSetInput",
     members = {
         Name = {
             type = "string",
@@ -4449,6 +4699,7 @@ M.UpdateRegexPatternSetInput = {
 
 M.UpdateRegexPatternSetOutput = {
     type = "structure",
+    id = "UpdateRegexPatternSetOutput",
     members = {
         NextLockToken = {
             type = "string",
@@ -4458,6 +4709,7 @@ M.UpdateRegexPatternSetOutput = {
 
 M.UpdateRuleGroupOutput = {
     type = "structure",
+    id = "UpdateRuleGroupOutput",
     members = {
         NextLockToken = {
             type = "string",
@@ -4467,6 +4719,7 @@ M.UpdateRuleGroupOutput = {
 
 M.UpdateWebACLOutput = {
     type = "structure",
+    id = "UpdateWebACLOutput",
     members = {
         NextLockToken = {
             type = "string",
@@ -4476,6 +4729,7 @@ M.UpdateWebACLOutput = {
 
 M.Statement = {
     type = "structure",
+    id = "Statement",
     members = {
         ByteMatchStatement = M.ByteMatchStatement,
         SqliMatchStatement = M.SqliMatchStatement,
@@ -4498,6 +4752,7 @@ M.Statement = {
 
 M.ManagedRuleGroupStatement = {
     type = "structure",
+    id = "ManagedRuleGroupStatement",
     members = {
         VendorName = {
             type = "string",
@@ -4532,6 +4787,7 @@ M.ManagedRuleGroupStatement = {
 
 M.NotStatement = {
     type = "structure",
+    id = "NotStatement",
     members = {
         Statement = setmetatable({ traits = {
             required = true,
@@ -4541,6 +4797,7 @@ M.NotStatement = {
 
 M.RateBasedStatement = {
     type = "structure",
+    id = "RateBasedStatement",
     members = {
         Limit = {
             type = "long",
@@ -4571,6 +4828,7 @@ M.RateBasedStatement = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         Name = {
             type = "string",
@@ -4604,6 +4862,7 @@ M.Rule = {
 
 M.AndStatement = {
     type = "structure",
+    id = "AndStatement",
     members = {
         Statements = {
             type = "list",
@@ -4617,6 +4876,7 @@ M.AndStatement = {
 
 M.OrStatement = {
     type = "structure",
+    id = "OrStatement",
     members = {
         Statements = {
             type = "list",
@@ -4630,6 +4890,7 @@ M.OrStatement = {
 
 M.FirewallManagerStatement = {
     type = "structure",
+    id = "FirewallManagerStatement",
     members = {
         ManagedRuleGroupStatement = M.ManagedRuleGroupStatement,
         RuleGroupReferenceStatement = M.RuleGroupReferenceStatement,
@@ -4638,6 +4899,7 @@ M.FirewallManagerStatement = {
 
 M.FirewallManagerRuleGroup = {
     type = "structure",
+    id = "FirewallManagerRuleGroup",
     members = {
         Name = {
             type = "string",
@@ -4666,6 +4928,7 @@ M.FirewallManagerRuleGroup = {
 
 M.CheckCapacityInput = {
     type = "structure",
+    id = "CheckCapacityInput",
     members = {
         Scope = {
             type = "string",
@@ -4685,6 +4948,7 @@ M.CheckCapacityInput = {
 
 M.CreateRuleGroupInput = {
     type = "structure",
+    id = "CreateRuleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -4728,6 +4992,7 @@ M.CreateRuleGroupInput = {
 
 M.CreateWebACLInput = {
     type = "structure",
+    id = "CreateWebACLInput",
     members = {
         Name = {
             type = "string",
@@ -4778,6 +5043,7 @@ M.CreateWebACLInput = {
 
 M.RuleGroup = {
     type = "structure",
+    id = "RuleGroup",
     members = {
         Name = {
             type = "string",
@@ -4834,6 +5100,7 @@ M.RuleGroup = {
 
 M.UpdateRuleGroupInput = {
     type = "structure",
+    id = "UpdateRuleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -4879,6 +5146,7 @@ M.UpdateRuleGroupInput = {
 
 M.UpdateWebACLInput = {
     type = "structure",
+    id = "UpdateWebACLInput",
     members = {
         Name = {
             type = "string",
@@ -4937,6 +5205,7 @@ M.UpdateWebACLInput = {
 
 M.GetRuleGroupOutput = {
     type = "structure",
+    id = "GetRuleGroupOutput",
     members = {
         RuleGroup = M.RuleGroup,
         LockToken = {
@@ -4947,6 +5216,7 @@ M.GetRuleGroupOutput = {
 
 M.WebACL = {
     type = "structure",
+    id = "WebACL",
     members = {
         Name = {
             type = "string",
@@ -5028,6 +5298,7 @@ M.WebACL = {
 
 M.GetWebACLForResourceOutput = {
     type = "structure",
+    id = "GetWebACLForResourceOutput",
     members = {
         WebACL = M.WebACL,
     },
@@ -5035,6 +5306,7 @@ M.GetWebACLForResourceOutput = {
 
 M.GetWebACLOutput = {
     type = "structure",
+    id = "GetWebACLOutput",
     members = {
         WebACL = M.WebACL,
         LockToken = {

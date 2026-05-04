@@ -2,6 +2,7 @@ local M = {}
 
 M.AbortMultipartReadSetUploadInput = {
     type = "structure",
+    id = "AbortMultipartReadSetUploadInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -22,10 +23,12 @@ M.AbortMultipartReadSetUploadInput = {
 
 M.AbortMultipartReadSetUploadOutput = {
     type = "structure",
+    id = "AbortMultipartReadSetUploadOutput",
 }
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -39,6 +42,7 @@ M.AccessDeniedException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -52,6 +56,7 @@ M.InternalServerException = {
 
 M.NotSupportedOperationException = {
     type = "structure",
+    id = "NotSupportedOperationException",
     error = "client",
     members = {
         message = {
@@ -65,6 +70,7 @@ M.NotSupportedOperationException = {
 
 M.RequestTimeoutException = {
     type = "structure",
+    id = "RequestTimeoutException",
     error = "client",
     members = {
         message = {
@@ -78,6 +84,7 @@ M.RequestTimeoutException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -91,6 +98,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -104,6 +112,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -117,6 +126,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -134,6 +144,7 @@ M.Accelerators = {
 
 M.AcceptShareInput = {
     type = "structure",
+    id = "AcceptShareInput",
     members = {
         shareId = {
             type = "string",
@@ -156,6 +167,7 @@ M.ShareStatus = {
 
 M.AcceptShareOutput = {
     type = "structure",
+    id = "AcceptShareOutput",
     members = {
         status = {
             type = "string",
@@ -165,6 +177,7 @@ M.AcceptShareOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -188,6 +201,7 @@ M.ReadSetActivationJobStatus = {
 
 M.ActivateReadSetFilter = {
     type = "structure",
+    id = "ActivateReadSetFilter",
     members = {
         status = {
             type = "string",
@@ -209,6 +223,7 @@ M.ActivateReadSetFilter = {
 
 M.ActivateReadSetJobItem = {
     type = "structure",
+    id = "ActivateReadSetJobItem",
     members = {
         id = {
             type = "string",
@@ -253,6 +268,7 @@ M.ReadSetActivationJobItemStatus = {
 
 M.ActivateReadSetSourceItem = {
     type = "structure",
+    id = "ActivateReadSetSourceItem",
     members = {
         readSetId = {
             type = "string",
@@ -283,6 +299,7 @@ M.JobStatus = {
 
 M.AnnotationImportItemDetail = {
     type = "structure",
+    id = "AnnotationImportItemDetail",
     members = {
         source = {
             type = "string",
@@ -301,6 +318,7 @@ M.AnnotationImportItemDetail = {
 
 M.AnnotationImportItemSource = {
     type = "structure",
+    id = "AnnotationImportItemSource",
     members = {
         source = {
             type = "string",
@@ -313,6 +331,7 @@ M.AnnotationImportItemSource = {
 
 M.CancelAnnotationImportJobInput = {
     type = "structure",
+    id = "CancelAnnotationImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -326,10 +345,12 @@ M.CancelAnnotationImportJobInput = {
 
 M.CancelAnnotationImportJobOutput = {
     type = "structure",
+    id = "CancelAnnotationImportJobOutput",
 }
 
 M.GetAnnotationImportJobInput = {
     type = "structure",
+    id = "GetAnnotationImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -343,6 +364,7 @@ M.GetAnnotationImportJobInput = {
 
 M.ReadOptions = {
     type = "structure",
+    id = "ReadOptions",
     members = {
         sep = {
             type = "string",
@@ -385,6 +407,7 @@ M.ReadOptions = {
 
 M.TsvOptions = {
     type = "structure",
+    id = "TsvOptions",
     members = {
         readOptions = M.ReadOptions,
     },
@@ -392,6 +415,7 @@ M.TsvOptions = {
 
 M.VcfOptions = {
     type = "structure",
+    id = "VcfOptions",
     members = {
         ignoreQualField = {
             type = "boolean",
@@ -404,6 +428,7 @@ M.VcfOptions = {
 
 M.FormatOptions = {
     type = "union",
+    id = "FormatOptions",
     members = {
         tsvOptions = M.TsvOptions,
         vcfOptions = M.VcfOptions,
@@ -412,6 +437,7 @@ M.FormatOptions = {
 
 M.GetAnnotationImportJobOutput = {
     type = "structure",
+    id = "GetAnnotationImportJobOutput",
     members = {
         id = {
             type = "string",
@@ -497,6 +523,7 @@ M.GetAnnotationImportJobOutput = {
 
 M.ListAnnotationImportJobsFilter = {
     type = "structure",
+    id = "ListAnnotationImportJobsFilter",
     members = {
         status = {
             type = "string",
@@ -509,6 +536,7 @@ M.ListAnnotationImportJobsFilter = {
 
 M.ListAnnotationImportJobsInput = {
     type = "structure",
+    id = "ListAnnotationImportJobsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -532,6 +560,7 @@ M.ListAnnotationImportJobsInput = {
 
 M.AnnotationImportJobItem = {
     type = "structure",
+    id = "AnnotationImportJobItem",
     members = {
         id = {
             type = "string",
@@ -599,6 +628,7 @@ M.AnnotationImportJobItem = {
 
 M.ListAnnotationImportJobsOutput = {
     type = "structure",
+    id = "ListAnnotationImportJobsOutput",
     members = {
         annotationImportJobs = {
             type = "list",
@@ -612,6 +642,7 @@ M.ListAnnotationImportJobsOutput = {
 
 M.StartAnnotationImportJobInput = {
     type = "structure",
+    id = "StartAnnotationImportJobInput",
     members = {
         destinationName = {
             type = "string",
@@ -652,6 +683,7 @@ M.StartAnnotationImportJobInput = {
 
 M.StartAnnotationImportJobOutput = {
     type = "structure",
+    id = "StartAnnotationImportJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -664,6 +696,7 @@ M.StartAnnotationImportJobOutput = {
 
 M.ReferenceItem = {
     type = "union",
+    id = "ReferenceItem",
     members = {
         referenceArn = {
             type = "string",
@@ -677,6 +710,7 @@ M.EncryptionType = {
 
 M.SseConfig = {
     type = "structure",
+    id = "SseConfig",
     members = {
         type = {
             type = "string",
@@ -726,6 +760,7 @@ M.SchemaValueType = {
 
 M.TsvStoreOptions = {
     type = "structure",
+    id = "TsvStoreOptions",
     members = {
         annotationType = {
             type = "string",
@@ -744,6 +779,7 @@ M.TsvStoreOptions = {
 
 M.StoreOptions = {
     type = "union",
+    id = "StoreOptions",
     members = {
         tsvStoreOptions = M.TsvStoreOptions,
     },
@@ -751,6 +787,7 @@ M.StoreOptions = {
 
 M.CreateAnnotationStoreInput = {
     type = "structure",
+    id = "CreateAnnotationStoreInput",
     members = {
         reference = M.ReferenceItem,
         name = {
@@ -788,6 +825,7 @@ M.StoreStatus = {
 
 M.CreateAnnotationStoreOutput = {
     type = "structure",
+    id = "CreateAnnotationStoreOutput",
     members = {
         id = {
             type = "string",
@@ -830,6 +868,7 @@ M.CreateAnnotationStoreOutput = {
 
 M.DeleteAnnotationStoreInput = {
     type = "structure",
+    id = "DeleteAnnotationStoreInput",
     members = {
         name = {
             type = "string",
@@ -850,6 +889,7 @@ M.DeleteAnnotationStoreInput = {
 
 M.DeleteAnnotationStoreOutput = {
     type = "structure",
+    id = "DeleteAnnotationStoreOutput",
     members = {
         status = {
             type = "string",
@@ -862,6 +902,7 @@ M.DeleteAnnotationStoreOutput = {
 
 M.GetAnnotationStoreInput = {
     type = "structure",
+    id = "GetAnnotationStoreInput",
     members = {
         name = {
             type = "string",
@@ -875,6 +916,7 @@ M.GetAnnotationStoreInput = {
 
 M.GetAnnotationStoreOutput = {
     type = "structure",
+    id = "GetAnnotationStoreOutput",
     members = {
         id = {
             type = "string",
@@ -961,6 +1003,7 @@ M.GetAnnotationStoreOutput = {
 
 M.ListAnnotationStoresFilter = {
     type = "structure",
+    id = "ListAnnotationStoresFilter",
     members = {
         status = {
             type = "string",
@@ -970,6 +1013,7 @@ M.ListAnnotationStoresFilter = {
 
 M.ListAnnotationStoresInput = {
     type = "structure",
+    id = "ListAnnotationStoresInput",
     members = {
         ids = {
             type = "list",
@@ -993,6 +1037,7 @@ M.ListAnnotationStoresInput = {
 
 M.AnnotationStoreItem = {
     type = "structure",
+    id = "AnnotationStoreItem",
     members = {
         id = {
             type = "string",
@@ -1067,6 +1112,7 @@ M.AnnotationStoreItem = {
 
 M.ListAnnotationStoresOutput = {
     type = "structure",
+    id = "ListAnnotationStoresOutput",
     members = {
         annotationStores = {
             type = "list",
@@ -1080,6 +1126,7 @@ M.ListAnnotationStoresOutput = {
 
 M.UpdateAnnotationStoreInput = {
     type = "structure",
+    id = "UpdateAnnotationStoreInput",
     members = {
         name = {
             type = "string",
@@ -1096,6 +1143,7 @@ M.UpdateAnnotationStoreInput = {
 
 M.UpdateAnnotationStoreOutput = {
     type = "structure",
+    id = "UpdateAnnotationStoreOutput",
     members = {
         id = {
             type = "string",
@@ -1147,6 +1195,7 @@ M.UpdateAnnotationStoreOutput = {
 
 M.TsvVersionOptions = {
     type = "structure",
+    id = "TsvVersionOptions",
     members = {
         annotationType = {
             type = "string",
@@ -1165,6 +1214,7 @@ M.TsvVersionOptions = {
 
 M.VersionOptions = {
     type = "union",
+    id = "VersionOptions",
     members = {
         tsvVersionOptions = M.TsvVersionOptions,
     },
@@ -1172,6 +1222,7 @@ M.VersionOptions = {
 
 M.CreateAnnotationStoreVersionInput = {
     type = "structure",
+    id = "CreateAnnotationStoreVersionInput",
     members = {
         name = {
             type = "string",
@@ -1208,6 +1259,7 @@ M.VersionStatus = {
 
 M.CreateAnnotationStoreVersionOutput = {
     type = "structure",
+    id = "CreateAnnotationStoreVersionOutput",
     members = {
         id = {
             type = "string",
@@ -1252,6 +1304,7 @@ M.CreateAnnotationStoreVersionOutput = {
 
 M.DeleteAnnotationStoreVersionsInput = {
     type = "structure",
+    id = "DeleteAnnotationStoreVersionsInput",
     members = {
         name = {
             type = "string",
@@ -1279,6 +1332,7 @@ M.DeleteAnnotationStoreVersionsInput = {
 
 M.VersionDeleteError = {
     type = "structure",
+    id = "VersionDeleteError",
     members = {
         versionName = {
             type = "string",
@@ -1297,6 +1351,7 @@ M.VersionDeleteError = {
 
 M.DeleteAnnotationStoreVersionsOutput = {
     type = "structure",
+    id = "DeleteAnnotationStoreVersionsOutput",
     members = {
         errors = {
             type = "list",
@@ -1307,6 +1362,7 @@ M.DeleteAnnotationStoreVersionsOutput = {
 
 M.GetAnnotationStoreVersionInput = {
     type = "structure",
+    id = "GetAnnotationStoreVersionInput",
     members = {
         name = {
             type = "string",
@@ -1327,6 +1383,7 @@ M.GetAnnotationStoreVersionInput = {
 
 M.GetAnnotationStoreVersionOutput = {
     type = "structure",
+    id = "GetAnnotationStoreVersionOutput",
     members = {
         storeId = {
             type = "string",
@@ -1410,6 +1467,7 @@ M.GetAnnotationStoreVersionOutput = {
 
 M.ListAnnotationStoreVersionsFilter = {
     type = "structure",
+    id = "ListAnnotationStoreVersionsFilter",
     members = {
         status = {
             type = "string",
@@ -1419,6 +1477,7 @@ M.ListAnnotationStoreVersionsFilter = {
 
 M.ListAnnotationStoreVersionsInput = {
     type = "structure",
+    id = "ListAnnotationStoreVersionsInput",
     members = {
         name = {
             type = "string",
@@ -1445,6 +1504,7 @@ M.ListAnnotationStoreVersionsInput = {
 
 M.AnnotationStoreVersionItem = {
     type = "structure",
+    id = "AnnotationStoreVersionItem",
     members = {
         storeId = {
             type = "string",
@@ -1519,6 +1579,7 @@ M.AnnotationStoreVersionItem = {
 
 M.ListAnnotationStoreVersionsOutput = {
     type = "structure",
+    id = "ListAnnotationStoreVersionsOutput",
     members = {
         annotationStoreVersions = {
             type = "list",
@@ -1532,6 +1593,7 @@ M.ListAnnotationStoreVersionsOutput = {
 
 M.UpdateAnnotationStoreVersionInput = {
     type = "structure",
+    id = "UpdateAnnotationStoreVersionInput",
     members = {
         name = {
             type = "string",
@@ -1555,6 +1617,7 @@ M.UpdateAnnotationStoreVersionInput = {
 
 M.UpdateAnnotationStoreVersionOutput = {
     type = "structure",
+    id = "UpdateAnnotationStoreVersionOutput",
     members = {
         storeId = {
             type = "string",
@@ -1611,6 +1674,7 @@ M.UpdateAnnotationStoreVersionOutput = {
 
 M.BatchDeleteReadSetInput = {
     type = "structure",
+    id = "BatchDeleteReadSetInput",
     members = {
         ids = {
             type = "list",
@@ -1631,6 +1695,7 @@ M.BatchDeleteReadSetInput = {
 
 M.ReadSetBatchError = {
     type = "structure",
+    id = "ReadSetBatchError",
     members = {
         id = {
             type = "string",
@@ -1655,6 +1720,7 @@ M.ReadSetBatchError = {
 
 M.BatchDeleteReadSetOutput = {
     type = "structure",
+    id = "BatchDeleteReadSetOutput",
     members = {
         errors = {
             type = "list",
@@ -1678,6 +1744,7 @@ M.BatchStatus = {
 
 M.BatchListItem = {
     type = "structure",
+    id = "BatchListItem",
     members = {
         id = {
             type = "string",
@@ -1705,6 +1772,7 @@ M.BatchListItem = {
 
 M.InlineSetting = {
     type = "structure",
+    id = "InlineSetting",
     members = {
         runSettingId = {
             type = "string",
@@ -1737,6 +1805,7 @@ M.InlineSetting = {
 
 M.BatchRunSettings = {
     type = "union",
+    id = "BatchRunSettings",
     members = {
         inlineSettings = {
             type = "list",
@@ -1755,6 +1824,7 @@ M.CacheBehavior = {
 
 M.CancelRunInput = {
     type = "structure",
+    id = "CancelRunInput",
     members = {
         id = {
             type = "string",
@@ -1768,10 +1838,12 @@ M.CancelRunInput = {
 
 M.CancelRunOutput = {
     type = "structure",
+    id = "CancelRunOutput",
 }
 
 M.CancelRunBatchInput = {
     type = "structure",
+    id = "CancelRunBatchInput",
     members = {
         batchId = {
             type = "string",
@@ -1784,10 +1856,12 @@ M.CancelRunBatchInput = {
 
 M.CancelRunBatchOutput = {
     type = "structure",
+    id = "CancelRunBatchOutput",
 }
 
 M.CancelVariantImportJobInput = {
     type = "structure",
+    id = "CancelVariantImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -1801,6 +1875,7 @@ M.CancelVariantImportJobInput = {
 
 M.CancelVariantImportJobOutput = {
     type = "structure",
+    id = "CancelVariantImportJobOutput",
 }
 
 M.ReadSetPartSource = {
@@ -1810,6 +1885,7 @@ M.ReadSetPartSource = {
 
 M.CompleteReadSetUploadPartListItem = {
     type = "structure",
+    id = "CompleteReadSetUploadPartListItem",
     members = {
         partNumber = {
             type = "integer",
@@ -1834,6 +1910,7 @@ M.CompleteReadSetUploadPartListItem = {
 
 M.CompleteMultipartReadSetUploadInput = {
     type = "structure",
+    id = "CompleteMultipartReadSetUploadInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -1861,6 +1938,7 @@ M.CompleteMultipartReadSetUploadInput = {
 
 M.CompleteMultipartReadSetUploadOutput = {
     type = "structure",
+    id = "CompleteMultipartReadSetUploadOutput",
     members = {
         readSetId = {
             type = "string",
@@ -1873,6 +1951,7 @@ M.CompleteMultipartReadSetUploadOutput = {
 
 M.ConfigurationDetails = {
     type = "structure",
+    id = "ConfigurationDetails",
     members = {
         name = {
             type = "string",
@@ -1897,6 +1976,7 @@ M.ConfigurationStatus = {
 
 M.ConfigurationListItem = {
     type = "structure",
+    id = "ConfigurationListItem",
     members = {
         arn = {
             type = "string",
@@ -1921,6 +2001,7 @@ M.ConfigurationListItem = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         securityGroupIds = {
             type = "list",
@@ -1935,6 +2016,7 @@ M.VpcConfig = {
 
 M.RunConfigurations = {
     type = "structure",
+    id = "RunConfigurations",
     members = {
         vpcConfig = M.VpcConfig,
     },
@@ -1942,6 +2024,7 @@ M.RunConfigurations = {
 
 M.CreateConfigurationInput = {
     type = "structure",
+    id = "CreateConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -1972,6 +2055,7 @@ M.CreateConfigurationInput = {
 
 M.VpcConfigResponse = {
     type = "structure",
+    id = "VpcConfigResponse",
     members = {
         securityGroupIds = {
             type = "list",
@@ -1989,6 +2073,7 @@ M.VpcConfigResponse = {
 
 M.RunConfigurationsResponse = {
     type = "structure",
+    id = "RunConfigurationsResponse",
     members = {
         vpcConfig = M.VpcConfigResponse,
     },
@@ -1996,6 +2081,7 @@ M.RunConfigurationsResponse = {
 
 M.CreateConfigurationOutput = {
     type = "structure",
+    id = "CreateConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -2029,6 +2115,7 @@ M.CreateConfigurationOutput = {
 
 M.DeleteConfigurationInput = {
     type = "structure",
+    id = "DeleteConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -2042,10 +2129,12 @@ M.DeleteConfigurationInput = {
 
 M.DeleteConfigurationOutput = {
     type = "structure",
+    id = "DeleteConfigurationOutput",
 }
 
 M.GetConfigurationInput = {
     type = "structure",
+    id = "GetConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -2059,6 +2148,7 @@ M.GetConfigurationInput = {
 
 M.GetConfigurationOutput = {
     type = "structure",
+    id = "GetConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -2092,6 +2182,7 @@ M.GetConfigurationOutput = {
 
 M.ListConfigurationsInput = {
     type = "structure",
+    id = "ListConfigurationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2110,6 +2201,7 @@ M.ListConfigurationsInput = {
 
 M.ListConfigurationsOutput = {
     type = "structure",
+    id = "ListConfigurationsOutput",
     members = {
         items = {
             type = "list",
@@ -2123,6 +2215,7 @@ M.ListConfigurationsOutput = {
 
 M.ImageMapping = {
     type = "structure",
+    id = "ImageMapping",
     members = {
         sourceImage = {
             type = "string",
@@ -2135,6 +2228,7 @@ M.ImageMapping = {
 
 M.RegistryMapping = {
     type = "structure",
+    id = "RegistryMapping",
     members = {
         upstreamRegistryUrl = {
             type = "string",
@@ -2153,6 +2247,7 @@ M.RegistryMapping = {
 
 M.ContainerRegistryMap = {
     type = "structure",
+    id = "ContainerRegistryMap",
     members = {
         registryMappings = {
             type = "list",
@@ -2174,6 +2269,7 @@ M.FileType = {
 
 M.CreateMultipartReadSetUploadInput = {
     type = "structure",
+    id = "CreateMultipartReadSetUploadInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -2228,6 +2324,7 @@ M.CreateMultipartReadSetUploadInput = {
 
 M.CreateMultipartReadSetUploadOutput = {
     type = "structure",
+    id = "CreateMultipartReadSetUploadOutput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -2291,6 +2388,7 @@ M.CreateMultipartReadSetUploadOutput = {
 
 M.CreateReferenceStoreInput = {
     type = "structure",
+    id = "CreateReferenceStoreInput",
     members = {
         name = {
             type = "string",
@@ -2315,6 +2413,7 @@ M.CreateReferenceStoreInput = {
 
 M.CreateReferenceStoreOutput = {
     type = "structure",
+    id = "CreateReferenceStoreOutput",
     members = {
         id = {
             type = "string",
@@ -2347,6 +2446,7 @@ M.CreateReferenceStoreOutput = {
 
 M.CreateRunCacheInput = {
     type = "structure",
+    id = "CreateRunCacheInput",
     members = {
         cacheBehavior = {
             type = "string",
@@ -2389,6 +2489,7 @@ M.RunCacheStatus = {
 
 M.CreateRunCacheOutput = {
     type = "structure",
+    id = "CreateRunCacheOutput",
     members = {
         arn = {
             type = "string",
@@ -2409,6 +2510,7 @@ M.CreateRunCacheOutput = {
 
 M.CreateRunGroupInput = {
     type = "structure",
+    id = "CreateRunGroupInput",
     members = {
         name = {
             type = "string",
@@ -2442,6 +2544,7 @@ M.CreateRunGroupInput = {
 
 M.CreateRunGroupOutput = {
     type = "structure",
+    id = "CreateRunGroupOutput",
     members = {
         arn = {
             type = "string",
@@ -2465,6 +2568,7 @@ M.ETagAlgorithmFamily = {
 
 M.S3AccessConfig = {
     type = "structure",
+    id = "S3AccessConfig",
     members = {
         accessLogLocation = {
             type = "string",
@@ -2474,6 +2578,7 @@ M.S3AccessConfig = {
 
 M.CreateSequenceStoreInput = {
     type = "structure",
+    id = "CreateSequenceStoreInput",
     members = {
         name = {
             type = "string",
@@ -2512,6 +2617,7 @@ M.CreateSequenceStoreInput = {
 
 M.SequenceStoreS3Access = {
     type = "structure",
+    id = "SequenceStoreS3Access",
     members = {
         s3Uri = {
             type = "string",
@@ -2535,6 +2641,7 @@ M.SequenceStoreStatus = {
 
 M.CreateSequenceStoreOutput = {
     type = "structure",
+    id = "CreateSequenceStoreOutput",
     members = {
         id = {
             type = "string",
@@ -2584,6 +2691,7 @@ M.CreateSequenceStoreOutput = {
 
 M.CreateShareInput = {
     type = "structure",
+    id = "CreateShareInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2605,6 +2713,7 @@ M.CreateShareInput = {
 
 M.CreateShareOutput = {
     type = "structure",
+    id = "CreateShareOutput",
     members = {
         shareId = {
             type = "string",
@@ -2620,6 +2729,7 @@ M.CreateShareOutput = {
 
 M.CreateVariantStoreInput = {
     type = "structure",
+    id = "CreateVariantStoreInput",
     members = {
         reference = setmetatable({ traits = {
             required = true,
@@ -2641,6 +2751,7 @@ M.CreateVariantStoreInput = {
 
 M.CreateVariantStoreOutput = {
     type = "structure",
+    id = "CreateVariantStoreOutput",
     members = {
         id = {
             type = "string",
@@ -2679,6 +2790,7 @@ M.SourceReferenceType = {
 
 M.SourceReference = {
     type = "structure",
+    id = "SourceReference",
     members = {
         type = {
             type = "string",
@@ -2697,6 +2809,7 @@ M.SourceReference = {
 
 M.DefinitionRepository = {
     type = "structure",
+    id = "DefinitionRepository",
     members = {
         connectionArn = {
             type = "string",
@@ -2727,6 +2840,7 @@ M.WorkflowEngine = {
 
 M.WorkflowParameter = {
     type = "structure",
+    id = "WorkflowParameter",
     members = {
         description = {
             type = "string",
@@ -2744,6 +2858,7 @@ M.StorageType = {
 
 M.CreateWorkflowInput = {
     type = "structure",
+    id = "CreateWorkflowInput",
     members = {
         name = {
             type = "string",
@@ -2826,6 +2941,7 @@ M.WorkflowStatus = {
 
 M.CreateWorkflowOutput = {
     type = "structure",
+    id = "CreateWorkflowOutput",
     members = {
         arn = {
             type = "string",
@@ -2849,6 +2965,7 @@ M.CreateWorkflowOutput = {
 
 M.CreateWorkflowVersionInput = {
     type = "structure",
+    id = "CreateWorkflowVersionInput",
     members = {
         workflowId = {
             type = "string",
@@ -2932,6 +3049,7 @@ M.CreateWorkflowVersionInput = {
 
 M.CreateWorkflowVersionOutput = {
     type = "structure",
+    id = "CreateWorkflowVersionOutput",
     members = {
         arn = {
             type = "string",
@@ -2985,6 +3103,7 @@ M.WorkflowType = {
 
 M.DefaultRunSetting = {
     type = "structure",
+    id = "DefaultRunSetting",
     members = {
         workflowId = {
             type = "string",
@@ -3059,6 +3178,7 @@ M.DefaultRunSetting = {
 
 M.DefinitionRepositoryDetails = {
     type = "structure",
+    id = "DefinitionRepositoryDetails",
     members = {
         connectionArn = {
             type = "string",
@@ -3078,6 +3198,7 @@ M.DefinitionRepositoryDetails = {
 
 M.DeleteBatchInput = {
     type = "structure",
+    id = "DeleteBatchInput",
     members = {
         batchId = {
             type = "string",
@@ -3091,10 +3212,12 @@ M.DeleteBatchInput = {
 
 M.DeleteBatchOutput = {
     type = "structure",
+    id = "DeleteBatchOutput",
 }
 
 M.DeleteReferenceInput = {
     type = "structure",
+    id = "DeleteReferenceInput",
     members = {
         id = {
             type = "string",
@@ -3115,10 +3238,12 @@ M.DeleteReferenceInput = {
 
 M.DeleteReferenceOutput = {
     type = "structure",
+    id = "DeleteReferenceOutput",
 }
 
 M.DeleteReferenceStoreInput = {
     type = "structure",
+    id = "DeleteReferenceStoreInput",
     members = {
         id = {
             type = "string",
@@ -3132,10 +3257,12 @@ M.DeleteReferenceStoreInput = {
 
 M.DeleteReferenceStoreOutput = {
     type = "structure",
+    id = "DeleteReferenceStoreOutput",
 }
 
 M.DeleteRunInput = {
     type = "structure",
+    id = "DeleteRunInput",
     members = {
         id = {
             type = "string",
@@ -3149,10 +3276,12 @@ M.DeleteRunInput = {
 
 M.DeleteRunOutput = {
     type = "structure",
+    id = "DeleteRunOutput",
 }
 
 M.DeleteRunBatchInput = {
     type = "structure",
+    id = "DeleteRunBatchInput",
     members = {
         batchId = {
             type = "string",
@@ -3165,10 +3294,12 @@ M.DeleteRunBatchInput = {
 
 M.DeleteRunBatchOutput = {
     type = "structure",
+    id = "DeleteRunBatchOutput",
 }
 
 M.DeleteRunCacheInput = {
     type = "structure",
+    id = "DeleteRunCacheInput",
     members = {
         id = {
             type = "string",
@@ -3182,10 +3313,12 @@ M.DeleteRunCacheInput = {
 
 M.DeleteRunCacheOutput = {
     type = "structure",
+    id = "DeleteRunCacheOutput",
 }
 
 M.DeleteRunGroupInput = {
     type = "structure",
+    id = "DeleteRunGroupInput",
     members = {
         id = {
             type = "string",
@@ -3199,10 +3332,12 @@ M.DeleteRunGroupInput = {
 
 M.DeleteRunGroupOutput = {
     type = "structure",
+    id = "DeleteRunGroupOutput",
 }
 
 M.DeleteS3AccessPolicyInput = {
     type = "structure",
+    id = "DeleteS3AccessPolicyInput",
     members = {
         s3AccessPointArn = {
             type = "string",
@@ -3216,10 +3351,12 @@ M.DeleteS3AccessPolicyInput = {
 
 M.DeleteS3AccessPolicyOutput = {
     type = "structure",
+    id = "DeleteS3AccessPolicyOutput",
 }
 
 M.DeleteSequenceStoreInput = {
     type = "structure",
+    id = "DeleteSequenceStoreInput",
     members = {
         id = {
             type = "string",
@@ -3233,10 +3370,12 @@ M.DeleteSequenceStoreInput = {
 
 M.DeleteSequenceStoreOutput = {
     type = "structure",
+    id = "DeleteSequenceStoreOutput",
 }
 
 M.DeleteShareInput = {
     type = "structure",
+    id = "DeleteShareInput",
     members = {
         shareId = {
             type = "string",
@@ -3250,6 +3389,7 @@ M.DeleteShareInput = {
 
 M.DeleteShareOutput = {
     type = "structure",
+    id = "DeleteShareOutput",
     members = {
         status = {
             type = "string",
@@ -3259,6 +3399,7 @@ M.DeleteShareOutput = {
 
 M.DeleteVariantStoreInput = {
     type = "structure",
+    id = "DeleteVariantStoreInput",
     members = {
         name = {
             type = "string",
@@ -3279,6 +3420,7 @@ M.DeleteVariantStoreInput = {
 
 M.DeleteVariantStoreOutput = {
     type = "structure",
+    id = "DeleteVariantStoreOutput",
     members = {
         status = {
             type = "string",
@@ -3291,6 +3433,7 @@ M.DeleteVariantStoreOutput = {
 
 M.DeleteWorkflowInput = {
     type = "structure",
+    id = "DeleteWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -3304,10 +3447,12 @@ M.DeleteWorkflowInput = {
 
 M.DeleteWorkflowOutput = {
     type = "structure",
+    id = "DeleteWorkflowOutput",
 }
 
 M.DeleteWorkflowVersionInput = {
     type = "structure",
+    id = "DeleteWorkflowVersionInput",
     members = {
         workflowId = {
             type = "string",
@@ -3328,6 +3473,7 @@ M.DeleteWorkflowVersionInput = {
 
 M.DeleteWorkflowVersionOutput = {
     type = "structure",
+    id = "DeleteWorkflowVersionOutput",
 }
 
 M.ETagAlgorithm = {
@@ -3344,6 +3490,7 @@ M.ETagAlgorithm = {
 
 M.ETag = {
     type = "structure",
+    id = "ETag",
     members = {
         algorithm = {
             type = "string",
@@ -3359,6 +3506,7 @@ M.ETag = {
 
 M.ExportReadSet = {
     type = "structure",
+    id = "ExportReadSet",
     members = {
         readSetId = {
             type = "string",
@@ -3378,6 +3526,7 @@ M.ReadSetExportJobItemStatus = {
 
 M.ExportReadSetDetail = {
     type = "structure",
+    id = "ExportReadSetDetail",
     members = {
         id = {
             type = "string",
@@ -3409,6 +3558,7 @@ M.ReadSetExportJobStatus = {
 
 M.ExportReadSetFilter = {
     type = "structure",
+    id = "ExportReadSetFilter",
     members = {
         status = {
             type = "string",
@@ -3430,6 +3580,7 @@ M.ExportReadSetFilter = {
 
 M.ExportReadSetJobDetail = {
     type = "structure",
+    id = "ExportReadSetJobDetail",
     members = {
         id = {
             type = "string",
@@ -3473,6 +3624,7 @@ M.ExportReadSetJobDetail = {
 
 M.ReadSetS3Access = {
     type = "structure",
+    id = "ReadSetS3Access",
     members = {
         s3Uri = {
             type = "string",
@@ -3482,6 +3634,7 @@ M.ReadSetS3Access = {
 
 M.FileInformation = {
     type = "structure",
+    id = "FileInformation",
     members = {
         totalParts = {
             type = "integer",
@@ -3504,6 +3657,7 @@ M.ShareResourceType = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         resourceArns = {
             type = "list",
@@ -3522,6 +3676,7 @@ M.Filter = {
 
 M.GetBatchInput = {
     type = "structure",
+    id = "GetBatchInput",
     members = {
         batchId = {
             type = "string",
@@ -3535,6 +3690,7 @@ M.GetBatchInput = {
 
 M.RunSummary = {
     type = "structure",
+    id = "RunSummary",
     members = {
         pendingRunCount = {
             type = "integer",
@@ -3565,6 +3721,7 @@ M.RunSummary = {
 
 M.SubmissionSummary = {
     type = "structure",
+    id = "SubmissionSummary",
     members = {
         successfulStartSubmissionCount = {
             type = "integer",
@@ -3592,6 +3749,7 @@ M.SubmissionSummary = {
 
 M.GetBatchOutput = {
     type = "structure",
+    id = "GetBatchOutput",
     members = {
         id = {
             type = "string",
@@ -3657,6 +3815,7 @@ M.ReadSetFile = {
 
 M.GetReadSetInput = {
     type = "structure",
+    id = "GetReadSetInput",
     members = {
         id = {
             type = "string",
@@ -3690,6 +3849,7 @@ M.GetReadSetInput = {
 
 M.GetReadSetOutput = {
     type = "structure",
+    id = "GetReadSetOutput",
     members = {
         payload = {
             type = "blob",
@@ -3703,6 +3863,7 @@ M.GetReadSetOutput = {
 
 M.RangeNotSatisfiableException = {
     type = "structure",
+    id = "RangeNotSatisfiableException",
     error = "client",
     members = {
         message = {
@@ -3716,6 +3877,7 @@ M.RangeNotSatisfiableException = {
 
 M.GetReadSetActivationJobInput = {
     type = "structure",
+    id = "GetReadSetActivationJobInput",
     members = {
         id = {
             type = "string",
@@ -3736,6 +3898,7 @@ M.GetReadSetActivationJobInput = {
 
 M.GetReadSetActivationJobOutput = {
     type = "structure",
+    id = "GetReadSetActivationJobOutput",
     members = {
         id = {
             type = "string",
@@ -3780,6 +3943,7 @@ M.GetReadSetActivationJobOutput = {
 
 M.GetReadSetExportJobInput = {
     type = "structure",
+    id = "GetReadSetExportJobInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -3800,6 +3964,7 @@ M.GetReadSetExportJobInput = {
 
 M.GetReadSetExportJobOutput = {
     type = "structure",
+    id = "GetReadSetExportJobOutput",
     members = {
         id = {
             type = "string",
@@ -3850,6 +4015,7 @@ M.GetReadSetExportJobOutput = {
 
 M.GetReadSetImportJobInput = {
     type = "structure",
+    id = "GetReadSetImportJobInput",
     members = {
         id = {
             type = "string",
@@ -3870,6 +4036,7 @@ M.GetReadSetImportJobInput = {
 
 M.SourceFiles = {
     type = "structure",
+    id = "SourceFiles",
     members = {
         source1 = {
             type = "string",
@@ -3892,6 +4059,7 @@ M.ReadSetImportJobItemStatus = {
 
 M.ImportReadSetSourceItem = {
     type = "structure",
+    id = "ImportReadSetSourceItem",
     members = {
         sourceFiles = setmetatable({ traits = {
             required = true,
@@ -3958,6 +4126,7 @@ M.ReadSetImportJobStatus = {
 
 M.GetReadSetImportJobOutput = {
     type = "structure",
+    id = "GetReadSetImportJobOutput",
     members = {
         id = {
             type = "string",
@@ -4011,6 +4180,7 @@ M.GetReadSetImportJobOutput = {
 
 M.GetReadSetMetadataInput = {
     type = "structure",
+    id = "GetReadSetMetadataInput",
     members = {
         id = {
             type = "string",
@@ -4031,6 +4201,7 @@ M.GetReadSetMetadataInput = {
 
 M.ReadSetFiles = {
     type = "structure",
+    id = "ReadSetFiles",
     members = {
         source1 = M.FileInformation,
         source2 = M.FileInformation,
@@ -4040,6 +4211,7 @@ M.ReadSetFiles = {
 
 M.SequenceInformation = {
     type = "structure",
+    id = "SequenceInformation",
     members = {
         totalReadCount = {
             type = "long",
@@ -4068,6 +4240,7 @@ M.ReadSetStatus = {
 
 M.GetReadSetMetadataOutput = {
     type = "structure",
+    id = "GetReadSetMetadataOutput",
     members = {
         id = {
             type = "string",
@@ -4143,6 +4316,7 @@ M.ReferenceFile = {
 
 M.GetReferenceInput = {
     type = "structure",
+    id = "GetReferenceInput",
     members = {
         id = {
             type = "string",
@@ -4182,6 +4356,7 @@ M.GetReferenceInput = {
 
 M.GetReferenceOutput = {
     type = "structure",
+    id = "GetReferenceOutput",
     members = {
         payload = {
             type = "blob",
@@ -4195,6 +4370,7 @@ M.GetReferenceOutput = {
 
 M.GetReferenceImportJobInput = {
     type = "structure",
+    id = "GetReferenceImportJobInput",
     members = {
         id = {
             type = "string",
@@ -4222,6 +4398,7 @@ M.ReferenceImportJobItemStatus = {
 
 M.ImportReferenceSourceItem = {
     type = "structure",
+    id = "ImportReferenceSourceItem",
     members = {
         sourceFile = {
             type = "string",
@@ -4264,6 +4441,7 @@ M.ReferenceImportJobStatus = {
 
 M.GetReferenceImportJobOutput = {
     type = "structure",
+    id = "GetReferenceImportJobOutput",
     members = {
         id = {
             type = "string",
@@ -4317,6 +4495,7 @@ M.GetReferenceImportJobOutput = {
 
 M.GetReferenceMetadataInput = {
     type = "structure",
+    id = "GetReferenceMetadataInput",
     members = {
         id = {
             type = "string",
@@ -4341,6 +4520,7 @@ M.ReferenceCreationType = {
 
 M.ReferenceFiles = {
     type = "structure",
+    id = "ReferenceFiles",
     members = {
         source = M.FileInformation,
         index = M.FileInformation,
@@ -4355,6 +4535,7 @@ M.ReferenceStatus = {
 
 M.GetReferenceMetadataOutput = {
     type = "structure",
+    id = "GetReferenceMetadataOutput",
     members = {
         id = {
             type = "string",
@@ -4415,6 +4596,7 @@ M.GetReferenceMetadataOutput = {
 
 M.GetReferenceStoreInput = {
     type = "structure",
+    id = "GetReferenceStoreInput",
     members = {
         id = {
             type = "string",
@@ -4428,6 +4610,7 @@ M.GetReferenceStoreInput = {
 
 M.GetReferenceStoreOutput = {
     type = "structure",
+    id = "GetReferenceStoreOutput",
     members = {
         id = {
             type = "string",
@@ -4464,6 +4647,7 @@ M.RunExport = {
 
 M.GetRunInput = {
     type = "structure",
+    id = "GetRunInput",
     members = {
         id = {
             type = "string",
@@ -4484,6 +4668,7 @@ M.GetRunInput = {
 
 M.RunLogLocation = {
     type = "structure",
+    id = "RunLogLocation",
     members = {
         engineLogStream = {
             type = "string",
@@ -4507,6 +4692,7 @@ M.RunStatus = {
 
 M.GetRunOutput = {
     type = "structure",
+    id = "GetRunOutput",
     members = {
         arn = {
             type = "string",
@@ -4640,6 +4826,7 @@ M.GetRunOutput = {
 
 M.GetRunCacheInput = {
     type = "structure",
+    id = "GetRunCacheInput",
     members = {
         id = {
             type = "string",
@@ -4653,6 +4840,7 @@ M.GetRunCacheInput = {
 
 M.GetRunCacheOutput = {
     type = "structure",
+    id = "GetRunCacheOutput",
     members = {
         arn = {
             type = "string",
@@ -4694,6 +4882,7 @@ M.GetRunCacheOutput = {
 
 M.GetRunGroupInput = {
     type = "structure",
+    id = "GetRunGroupInput",
     members = {
         id = {
             type = "string",
@@ -4707,6 +4896,7 @@ M.GetRunGroupInput = {
 
 M.GetRunGroupOutput = {
     type = "structure",
+    id = "GetRunGroupOutput",
     members = {
         arn = {
             type = "string",
@@ -4745,6 +4935,7 @@ M.GetRunGroupOutput = {
 
 M.GetRunTaskInput = {
     type = "structure",
+    id = "GetRunTaskInput",
     members = {
         id = {
             type = "string",
@@ -4765,6 +4956,7 @@ M.GetRunTaskInput = {
 
 M.ImageDetails = {
     type = "structure",
+    id = "ImageDetails",
     members = {
         image = {
             type = "string",
@@ -4790,6 +4982,7 @@ M.TaskStatus = {
 
 M.GetRunTaskOutput = {
     type = "structure",
+    id = "GetRunTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -4851,6 +5044,7 @@ M.GetRunTaskOutput = {
 
 M.GetS3AccessPolicyInput = {
     type = "structure",
+    id = "GetS3AccessPolicyInput",
     members = {
         s3AccessPointArn = {
             type = "string",
@@ -4869,6 +5063,7 @@ M.StoreType = {
 
 M.GetS3AccessPolicyOutput = {
     type = "structure",
+    id = "GetS3AccessPolicyOutput",
     members = {
         s3AccessPointArn = {
             type = "string",
@@ -4897,6 +5092,7 @@ M.GetS3AccessPolicyOutput = {
 
 M.GetSequenceStoreInput = {
     type = "structure",
+    id = "GetSequenceStoreInput",
     members = {
         id = {
             type = "string",
@@ -4910,6 +5106,7 @@ M.GetSequenceStoreInput = {
 
 M.GetSequenceStoreOutput = {
     type = "structure",
+    id = "GetSequenceStoreOutput",
     members = {
         id = {
             type = "string",
@@ -4965,6 +5162,7 @@ M.GetSequenceStoreOutput = {
 
 M.GetShareInput = {
     type = "structure",
+    id = "GetShareInput",
     members = {
         shareId = {
             type = "string",
@@ -4978,6 +5176,7 @@ M.GetShareInput = {
 
 M.ShareDetails = {
     type = "structure",
+    id = "ShareDetails",
     members = {
         shareId = {
             type = "string",
@@ -5020,6 +5219,7 @@ M.ShareDetails = {
 
 M.GetShareOutput = {
     type = "structure",
+    id = "GetShareOutput",
     members = {
         share = M.ShareDetails,
     },
@@ -5027,6 +5227,7 @@ M.GetShareOutput = {
 
 M.GetVariantImportJobInput = {
     type = "structure",
+    id = "GetVariantImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -5040,6 +5241,7 @@ M.GetVariantImportJobInput = {
 
 M.VariantImportItemDetail = {
     type = "structure",
+    id = "VariantImportItemDetail",
     members = {
         source = {
             type = "string",
@@ -5061,6 +5263,7 @@ M.VariantImportItemDetail = {
 
 M.GetVariantImportJobOutput = {
     type = "structure",
+    id = "GetVariantImportJobOutput",
     members = {
         id = {
             type = "string",
@@ -5136,6 +5339,7 @@ M.GetVariantImportJobOutput = {
 
 M.GetVariantStoreInput = {
     type = "structure",
+    id = "GetVariantStoreInput",
     members = {
         name = {
             type = "string",
@@ -5149,6 +5353,7 @@ M.GetVariantStoreInput = {
 
 M.GetVariantStoreOutput = {
     type = "structure",
+    id = "GetVariantStoreOutput",
     members = {
         id = {
             type = "string",
@@ -5230,6 +5435,7 @@ M.WorkflowExport = {
 
 M.GetWorkflowInput = {
     type = "structure",
+    id = "GetWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -5262,6 +5468,7 @@ M.GetWorkflowInput = {
 
 M.GetWorkflowOutput = {
     type = "structure",
+    id = "GetWorkflowOutput",
     members = {
         arn = {
             type = "string",
@@ -5342,6 +5549,7 @@ M.GetWorkflowOutput = {
 
 M.GetWorkflowVersionInput = {
     type = "structure",
+    id = "GetWorkflowVersionInput",
     members = {
         workflowId = {
             type = "string",
@@ -5381,6 +5589,7 @@ M.GetWorkflowVersionInput = {
 
 M.GetWorkflowVersionOutput = {
     type = "structure",
+    id = "GetWorkflowVersionOutput",
     members = {
         arn = {
             type = "string",
@@ -5464,6 +5673,7 @@ M.GetWorkflowVersionOutput = {
 
 M.ImportReadSetFilter = {
     type = "structure",
+    id = "ImportReadSetFilter",
     members = {
         status = {
             type = "string",
@@ -5485,6 +5695,7 @@ M.ImportReadSetFilter = {
 
 M.ImportReadSetJobItem = {
     type = "structure",
+    id = "ImportReadSetJobItem",
     members = {
         id = {
             type = "string",
@@ -5528,6 +5739,7 @@ M.ImportReadSetJobItem = {
 
 M.ImportReferenceFilter = {
     type = "structure",
+    id = "ImportReferenceFilter",
     members = {
         status = {
             type = "string",
@@ -5549,6 +5761,7 @@ M.ImportReferenceFilter = {
 
 M.ImportReferenceJobItem = {
     type = "structure",
+    id = "ImportReferenceJobItem",
     members = {
         id = {
             type = "string",
@@ -5592,6 +5805,7 @@ M.ImportReferenceJobItem = {
 
 M.ListBatchInput = {
     type = "structure",
+    id = "ListBatchInput",
     members = {
         maxItems = {
             type = "integer",
@@ -5628,6 +5842,7 @@ M.ListBatchInput = {
 
 M.ListBatchOutput = {
     type = "structure",
+    id = "ListBatchOutput",
     members = {
         items = {
             type = "list",
@@ -5641,6 +5856,7 @@ M.ListBatchOutput = {
 
 M.ListMultipartReadSetUploadsInput = {
     type = "structure",
+    id = "ListMultipartReadSetUploadsInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -5666,6 +5882,7 @@ M.ListMultipartReadSetUploadsInput = {
 
 M.MultipartReadSetUploadListItem = {
     type = "structure",
+    id = "MultipartReadSetUploadListItem",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -5732,6 +5949,7 @@ M.MultipartReadSetUploadListItem = {
 
 M.ListMultipartReadSetUploadsOutput = {
     type = "structure",
+    id = "ListMultipartReadSetUploadsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -5745,6 +5963,7 @@ M.ListMultipartReadSetUploadsOutput = {
 
 M.ListReadSetActivationJobsInput = {
     type = "structure",
+    id = "ListReadSetActivationJobsInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -5771,6 +5990,7 @@ M.ListReadSetActivationJobsInput = {
 
 M.ListReadSetActivationJobsOutput = {
     type = "structure",
+    id = "ListReadSetActivationJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -5784,6 +6004,7 @@ M.ListReadSetActivationJobsOutput = {
 
 M.ListReadSetExportJobsInput = {
     type = "structure",
+    id = "ListReadSetExportJobsInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -5810,6 +6031,7 @@ M.ListReadSetExportJobsInput = {
 
 M.ListReadSetExportJobsOutput = {
     type = "structure",
+    id = "ListReadSetExportJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -5823,6 +6045,7 @@ M.ListReadSetExportJobsOutput = {
 
 M.ListReadSetImportJobsInput = {
     type = "structure",
+    id = "ListReadSetImportJobsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -5849,6 +6072,7 @@ M.ListReadSetImportJobsInput = {
 
 M.ListReadSetImportJobsOutput = {
     type = "structure",
+    id = "ListReadSetImportJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -5862,6 +6086,7 @@ M.ListReadSetImportJobsOutput = {
 
 M.ReadSetFilter = {
     type = "structure",
+    id = "ReadSetFilter",
     members = {
         name = {
             type = "string",
@@ -5901,6 +6126,7 @@ M.ReadSetFilter = {
 
 M.ListReadSetsInput = {
     type = "structure",
+    id = "ListReadSetsInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -5927,6 +6153,7 @@ M.ListReadSetsInput = {
 
 M.ReadSetListItem = {
     type = "structure",
+    id = "ReadSetListItem",
     members = {
         id = {
             type = "string",
@@ -5993,6 +6220,7 @@ M.ReadSetListItem = {
 
 M.ListReadSetsOutput = {
     type = "structure",
+    id = "ListReadSetsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6009,6 +6237,7 @@ M.ListReadSetsOutput = {
 
 M.ReadSetUploadPartListFilter = {
     type = "structure",
+    id = "ReadSetUploadPartListFilter",
     members = {
         createdAfter = {
             type = "timestamp",
@@ -6027,6 +6256,7 @@ M.ReadSetUploadPartListFilter = {
 
 M.ListReadSetUploadPartsInput = {
     type = "structure",
+    id = "ListReadSetUploadPartsInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -6066,6 +6296,7 @@ M.ListReadSetUploadPartsInput = {
 
 M.ReadSetUploadPartListItem = {
     type = "structure",
+    id = "ReadSetUploadPartListItem",
     members = {
         partNumber = {
             type = "integer",
@@ -6108,6 +6339,7 @@ M.ReadSetUploadPartListItem = {
 
 M.ListReadSetUploadPartsOutput = {
     type = "structure",
+    id = "ListReadSetUploadPartsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6121,6 +6353,7 @@ M.ListReadSetUploadPartsOutput = {
 
 M.ListReferenceImportJobsInput = {
     type = "structure",
+    id = "ListReferenceImportJobsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6147,6 +6380,7 @@ M.ListReferenceImportJobsInput = {
 
 M.ListReferenceImportJobsOutput = {
     type = "structure",
+    id = "ListReferenceImportJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6160,6 +6394,7 @@ M.ListReferenceImportJobsOutput = {
 
 M.ReferenceFilter = {
     type = "structure",
+    id = "ReferenceFilter",
     members = {
         name = {
             type = "string",
@@ -6184,6 +6419,7 @@ M.ReferenceFilter = {
 
 M.ListReferencesInput = {
     type = "structure",
+    id = "ListReferencesInput",
     members = {
         referenceStoreId = {
             type = "string",
@@ -6210,6 +6446,7 @@ M.ListReferencesInput = {
 
 M.ReferenceListItem = {
     type = "structure",
+    id = "ReferenceListItem",
     members = {
         id = {
             type = "string",
@@ -6263,6 +6500,7 @@ M.ReferenceListItem = {
 
 M.ListReferencesOutput = {
     type = "structure",
+    id = "ListReferencesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6279,6 +6517,7 @@ M.ListReferencesOutput = {
 
 M.ReferenceStoreFilter = {
     type = "structure",
+    id = "ReferenceStoreFilter",
     members = {
         name = {
             type = "string",
@@ -6300,6 +6539,7 @@ M.ReferenceStoreFilter = {
 
 M.ListReferenceStoresInput = {
     type = "structure",
+    id = "ListReferenceStoresInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6319,6 +6559,7 @@ M.ListReferenceStoresInput = {
 
 M.ReferenceStoreDetail = {
     type = "structure",
+    id = "ReferenceStoreDetail",
     members = {
         arn = {
             type = "string",
@@ -6351,6 +6592,7 @@ M.ReferenceStoreDetail = {
 
 M.ListReferenceStoresOutput = {
     type = "structure",
+    id = "ListReferenceStoresOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6367,6 +6609,7 @@ M.ListReferenceStoresOutput = {
 
 M.ListRunCachesInput = {
     type = "structure",
+    id = "ListRunCachesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6385,6 +6628,7 @@ M.ListRunCachesInput = {
 
 M.RunCacheListItem = {
     type = "structure",
+    id = "RunCacheListItem",
     members = {
         arn = {
             type = "string",
@@ -6415,6 +6659,7 @@ M.RunCacheListItem = {
 
 M.ListRunCachesOutput = {
     type = "structure",
+    id = "ListRunCachesOutput",
     members = {
         items = {
             type = "list",
@@ -6428,6 +6673,7 @@ M.ListRunCachesOutput = {
 
 M.ListRunGroupsInput = {
     type = "structure",
+    id = "ListRunGroupsInput",
     members = {
         name = {
             type = "string",
@@ -6452,6 +6698,7 @@ M.ListRunGroupsInput = {
 
 M.RunGroupListItem = {
     type = "structure",
+    id = "RunGroupListItem",
     members = {
         arn = {
             type = "string",
@@ -6485,6 +6732,7 @@ M.RunGroupListItem = {
 
 M.ListRunGroupsOutput = {
     type = "structure",
+    id = "ListRunGroupsOutput",
     members = {
         items = {
             type = "list",
@@ -6498,6 +6746,7 @@ M.ListRunGroupsOutput = {
 
 M.ListRunsInput = {
     type = "structure",
+    id = "ListRunsInput",
     members = {
         name = {
             type = "string",
@@ -6540,6 +6789,7 @@ M.ListRunsInput = {
 
 M.RunListItem = {
     type = "structure",
+    id = "RunListItem",
     members = {
         arn = {
             type = "string",
@@ -6594,6 +6844,7 @@ M.RunListItem = {
 
 M.ListRunsOutput = {
     type = "structure",
+    id = "ListRunsOutput",
     members = {
         items = {
             type = "list",
@@ -6616,6 +6867,7 @@ M.SubmissionStatus = {
 
 M.ListRunsInBatchInput = {
     type = "structure",
+    id = "ListRunsInBatchInput",
     members = {
         batchId = {
             type = "string",
@@ -6659,6 +6911,7 @@ M.ListRunsInBatchInput = {
 
 M.RunBatchListItem = {
     type = "structure",
+    id = "RunBatchListItem",
     members = {
         runSettingId = {
             type = "string",
@@ -6686,6 +6939,7 @@ M.RunBatchListItem = {
 
 M.ListRunsInBatchOutput = {
     type = "structure",
+    id = "ListRunsInBatchOutput",
     members = {
         runs = {
             type = "list",
@@ -6699,6 +6953,7 @@ M.ListRunsInBatchOutput = {
 
 M.ListRunTasksInput = {
     type = "structure",
+    id = "ListRunTasksInput",
     members = {
         id = {
             type = "string",
@@ -6730,6 +6985,7 @@ M.ListRunTasksInput = {
 
 M.TaskListItem = {
     type = "structure",
+    id = "TaskListItem",
     members = {
         taskId = {
             type = "string",
@@ -6781,6 +7037,7 @@ M.TaskListItem = {
 
 M.ListRunTasksOutput = {
     type = "structure",
+    id = "ListRunTasksOutput",
     members = {
         items = {
             type = "list",
@@ -6794,6 +7051,7 @@ M.ListRunTasksOutput = {
 
 M.SequenceStoreFilter = {
     type = "structure",
+    id = "SequenceStoreFilter",
     members = {
         name = {
             type = "string",
@@ -6830,6 +7088,7 @@ M.SequenceStoreFilter = {
 
 M.ListSequenceStoresInput = {
     type = "structure",
+    id = "ListSequenceStoresInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6849,6 +7108,7 @@ M.ListSequenceStoresInput = {
 
 M.SequenceStoreDetail = {
     type = "structure",
+    id = "SequenceStoreDetail",
     members = {
         arn = {
             type = "string",
@@ -6899,6 +7159,7 @@ M.SequenceStoreDetail = {
 
 M.ListSequenceStoresOutput = {
     type = "structure",
+    id = "ListSequenceStoresOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6920,6 +7181,7 @@ M.ResourceOwner = {
 
 M.ListSharesInput = {
     type = "structure",
+    id = "ListSharesInput",
     members = {
         resourceOwner = {
             type = "string",
@@ -6945,6 +7207,7 @@ M.ListSharesInput = {
 
 M.ListSharesOutput = {
     type = "structure",
+    id = "ListSharesOutput",
     members = {
         shares = {
             type = "list",
@@ -6961,6 +7224,7 @@ M.ListSharesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6974,6 +7238,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -6988,6 +7253,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVariantImportJobsFilter = {
     type = "structure",
+    id = "ListVariantImportJobsFilter",
     members = {
         status = {
             type = "string",
@@ -7000,6 +7266,7 @@ M.ListVariantImportJobsFilter = {
 
 M.ListVariantImportJobsInput = {
     type = "structure",
+    id = "ListVariantImportJobsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -7023,6 +7290,7 @@ M.ListVariantImportJobsInput = {
 
 M.VariantImportJobItem = {
     type = "structure",
+    id = "VariantImportJobItem",
     members = {
         id = {
             type = "string",
@@ -7084,6 +7352,7 @@ M.VariantImportJobItem = {
 
 M.ListVariantImportJobsOutput = {
     type = "structure",
+    id = "ListVariantImportJobsOutput",
     members = {
         variantImportJobs = {
             type = "list",
@@ -7097,6 +7366,7 @@ M.ListVariantImportJobsOutput = {
 
 M.ListVariantStoresFilter = {
     type = "structure",
+    id = "ListVariantStoresFilter",
     members = {
         status = {
             type = "string",
@@ -7106,6 +7376,7 @@ M.ListVariantStoresFilter = {
 
 M.ListVariantStoresInput = {
     type = "structure",
+    id = "ListVariantStoresInput",
     members = {
         maxResults = {
             type = "integer",
@@ -7129,6 +7400,7 @@ M.ListVariantStoresInput = {
 
 M.VariantStoreItem = {
     type = "structure",
+    id = "VariantStoreItem",
     members = {
         id = {
             type = "string",
@@ -7197,6 +7469,7 @@ M.VariantStoreItem = {
 
 M.ListVariantStoresOutput = {
     type = "structure",
+    id = "ListVariantStoresOutput",
     members = {
         variantStores = {
             type = "list",
@@ -7210,6 +7483,7 @@ M.ListVariantStoresOutput = {
 
 M.ListWorkflowsInput = {
     type = "structure",
+    id = "ListWorkflowsInput",
     members = {
         type = {
             type = "string",
@@ -7240,6 +7514,7 @@ M.ListWorkflowsInput = {
 
 M.WorkflowListItem = {
     type = "structure",
+    id = "WorkflowListItem",
     members = {
         arn = {
             type = "string",
@@ -7275,6 +7550,7 @@ M.WorkflowListItem = {
 
 M.ListWorkflowsOutput = {
     type = "structure",
+    id = "ListWorkflowsOutput",
     members = {
         items = {
             type = "list",
@@ -7288,6 +7564,7 @@ M.ListWorkflowsOutput = {
 
 M.ListWorkflowVersionsInput = {
     type = "structure",
+    id = "ListWorkflowVersionsInput",
     members = {
         workflowId = {
             type = "string",
@@ -7325,6 +7602,7 @@ M.ListWorkflowVersionsInput = {
 
 M.WorkflowVersionListItem = {
     type = "structure",
+    id = "WorkflowVersionListItem",
     members = {
         arn = {
             type = "string",
@@ -7363,6 +7641,7 @@ M.WorkflowVersionListItem = {
 
 M.ListWorkflowVersionsOutput = {
     type = "structure",
+    id = "ListWorkflowVersionsOutput",
     members = {
         items = {
             type = "list",
@@ -7376,6 +7655,7 @@ M.ListWorkflowVersionsOutput = {
 
 M.PutS3AccessPolicyInput = {
     type = "structure",
+    id = "PutS3AccessPolicyInput",
     members = {
         s3AccessPointArn = {
             type = "string",
@@ -7396,6 +7676,7 @@ M.PutS3AccessPolicyInput = {
 
 M.PutS3AccessPolicyOutput = {
     type = "structure",
+    id = "PutS3AccessPolicyOutput",
     members = {
         s3AccessPointArn = {
             type = "string",
@@ -7411,6 +7692,7 @@ M.PutS3AccessPolicyOutput = {
 
 M.StartReferenceImportJobSourceItem = {
     type = "structure",
+    id = "StartReferenceImportJobSourceItem",
     members = {
         sourceFile = {
             type = "string",
@@ -7437,6 +7719,7 @@ M.StartReferenceImportJobSourceItem = {
 
 M.StartReferenceImportJobInput = {
     type = "structure",
+    id = "StartReferenceImportJobInput",
     members = {
         referenceStoreId = {
             type = "string",
@@ -7466,6 +7749,7 @@ M.StartReferenceImportJobInput = {
 
 M.StartReferenceImportJobOutput = {
     type = "structure",
+    id = "StartReferenceImportJobOutput",
     members = {
         id = {
             type = "string",
@@ -7503,6 +7787,7 @@ M.StartReferenceImportJobOutput = {
 
 M.StartRunBatchInput = {
     type = "structure",
+    id = "StartRunBatchInput",
     members = {
         batchName = {
             type = "string",
@@ -7530,6 +7815,7 @@ M.StartRunBatchInput = {
 
 M.StartRunBatchOutput = {
     type = "structure",
+    id = "StartRunBatchOutput",
     members = {
         id = {
             type = "string",
@@ -7553,6 +7839,7 @@ M.StartRunBatchOutput = {
 
 M.UpdateRunCacheInput = {
     type = "structure",
+    id = "UpdateRunCacheInput",
     members = {
         cacheBehavior = {
             type = "string",
@@ -7575,10 +7862,12 @@ M.UpdateRunCacheInput = {
 
 M.UpdateRunCacheOutput = {
     type = "structure",
+    id = "UpdateRunCacheOutput",
 }
 
 M.UpdateRunGroupInput = {
     type = "structure",
+    id = "UpdateRunGroupInput",
     members = {
         id = {
             type = "string",
@@ -7607,10 +7896,12 @@ M.UpdateRunGroupInput = {
 
 M.UpdateRunGroupOutput = {
     type = "structure",
+    id = "UpdateRunGroupOutput",
 }
 
 M.StartRunInput = {
     type = "structure",
+    id = "StartRunInput",
     members = {
         workflowId = {
             type = "string",
@@ -7692,6 +7983,7 @@ M.StartRunInput = {
 
 M.StartRunOutput = {
     type = "structure",
+    id = "StartRunOutput",
     members = {
         arn = {
             type = "string",
@@ -7722,6 +8014,7 @@ M.StartRunOutput = {
 
 M.StartReadSetActivationJobSourceItem = {
     type = "structure",
+    id = "StartReadSetActivationJobSourceItem",
     members = {
         readSetId = {
             type = "string",
@@ -7734,6 +8027,7 @@ M.StartReadSetActivationJobSourceItem = {
 
 M.StartReadSetActivationJobInput = {
     type = "structure",
+    id = "StartReadSetActivationJobInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -7757,6 +8051,7 @@ M.StartReadSetActivationJobInput = {
 
 M.StartReadSetActivationJobOutput = {
     type = "structure",
+    id = "StartReadSetActivationJobOutput",
     members = {
         id = {
             type = "string",
@@ -7788,6 +8083,7 @@ M.StartReadSetActivationJobOutput = {
 
 M.StartReadSetExportJobInput = {
     type = "structure",
+    id = "StartReadSetExportJobInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -7823,6 +8119,7 @@ M.StartReadSetExportJobInput = {
 
 M.StartReadSetExportJobOutput = {
     type = "structure",
+    id = "StartReadSetExportJobOutput",
     members = {
         id = {
             type = "string",
@@ -7860,6 +8157,7 @@ M.StartReadSetExportJobOutput = {
 
 M.StartReadSetImportJobSourceItem = {
     type = "structure",
+    id = "StartReadSetImportJobSourceItem",
     members = {
         sourceFiles = setmetatable({ traits = {
             required = true,
@@ -7904,6 +8202,7 @@ M.StartReadSetImportJobSourceItem = {
 
 M.StartReadSetImportJobInput = {
     type = "structure",
+    id = "StartReadSetImportJobInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -7933,6 +8232,7 @@ M.StartReadSetImportJobInput = {
 
 M.StartReadSetImportJobOutput = {
     type = "structure",
+    id = "StartReadSetImportJobOutput",
     members = {
         id = {
             type = "string",
@@ -7970,6 +8270,7 @@ M.StartReadSetImportJobOutput = {
 
 M.UpdateSequenceStoreInput = {
     type = "structure",
+    id = "UpdateSequenceStoreInput",
     members = {
         id = {
             type = "string",
@@ -8003,6 +8304,7 @@ M.UpdateSequenceStoreInput = {
 
 M.UpdateSequenceStoreOutput = {
     type = "structure",
+    id = "UpdateSequenceStoreOutput",
     members = {
         id = {
             type = "string",
@@ -8058,6 +8360,7 @@ M.UpdateSequenceStoreOutput = {
 
 M.UploadReadSetPartInput = {
     type = "structure",
+    id = "UploadReadSetPartInput",
     members = {
         sequenceStoreId = {
             type = "string",
@@ -8099,6 +8402,7 @@ M.UploadReadSetPartInput = {
 
 M.UploadReadSetPartOutput = {
     type = "structure",
+    id = "UploadReadSetPartOutput",
     members = {
         checksum = {
             type = "string",
@@ -8111,6 +8415,7 @@ M.UploadReadSetPartOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8132,10 +8437,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8157,10 +8464,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.VariantImportItemSource = {
     type = "structure",
+    id = "VariantImportItemSource",
     members = {
         source = {
             type = "string",
@@ -8173,6 +8482,7 @@ M.VariantImportItemSource = {
 
 M.StartVariantImportJobInput = {
     type = "structure",
+    id = "StartVariantImportJobInput",
     members = {
         destinationName = {
             type = "string",
@@ -8209,6 +8519,7 @@ M.StartVariantImportJobInput = {
 
 M.StartVariantImportJobOutput = {
     type = "structure",
+    id = "StartVariantImportJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -8221,6 +8532,7 @@ M.StartVariantImportJobOutput = {
 
 M.UpdateVariantStoreInput = {
     type = "structure",
+    id = "UpdateVariantStoreInput",
     members = {
         name = {
             type = "string",
@@ -8237,6 +8549,7 @@ M.UpdateVariantStoreInput = {
 
 M.UpdateVariantStoreOutput = {
     type = "structure",
+    id = "UpdateVariantStoreOutput",
     members = {
         id = {
             type = "string",
@@ -8284,6 +8597,7 @@ M.UpdateVariantStoreOutput = {
 
 M.UpdateWorkflowInput = {
     type = "structure",
+    id = "UpdateWorkflowInput",
     members = {
         id = {
             type = "string",
@@ -8315,10 +8629,12 @@ M.UpdateWorkflowInput = {
 
 M.UpdateWorkflowOutput = {
     type = "structure",
+    id = "UpdateWorkflowOutput",
 }
 
 M.UpdateWorkflowVersionInput = {
     type = "structure",
+    id = "UpdateWorkflowVersionInput",
     members = {
         workflowId = {
             type = "string",
@@ -8354,6 +8670,7 @@ M.UpdateWorkflowVersionInput = {
 
 M.UpdateWorkflowVersionOutput = {
     type = "structure",
+    id = "UpdateWorkflowVersionOutput",
 }
 
 return M

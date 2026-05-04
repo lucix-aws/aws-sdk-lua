@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -17,6 +18,7 @@ M.EncryptionMode = {
 
 M.S3EncryptionConfig = {
     type = "structure",
+    id = "S3EncryptionConfig",
     members = {
         EncryptionMode = {
             type = "string",
@@ -29,6 +31,7 @@ M.S3EncryptionConfig = {
 
 M.ArtifactConfigInput = {
     type = "structure",
+    id = "ArtifactConfigInput",
     members = {
         S3Encryption = M.S3EncryptionConfig,
     },
@@ -36,6 +39,7 @@ M.ArtifactConfigInput = {
 
 M.ArtifactConfigOutput = {
     type = "structure",
+    id = "ArtifactConfigOutput",
     members = {
         S3Encryption = M.S3EncryptionConfig,
     },
@@ -43,6 +47,7 @@ M.ArtifactConfigOutput = {
 
 M.AssociateResourceInput = {
     type = "structure",
+    id = "AssociateResourceInput",
     members = {
         GroupIdentifier = {
             type = "string",
@@ -62,10 +67,12 @@ M.AssociateResourceInput = {
 
 M.AssociateResourceOutput = {
     type = "structure",
+    id = "AssociateResourceOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -76,6 +83,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -86,6 +94,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -96,6 +105,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -106,6 +116,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +127,7 @@ M.ValidationException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -126,6 +138,7 @@ M.BadRequestException = {
 
 M.BaseScreenshot = {
     type = "structure",
+    id = "BaseScreenshot",
     members = {
         ScreenshotName = {
             type = "string",
@@ -147,6 +160,7 @@ M.BrowserType = {
 
 M.BrowserConfig = {
     type = "structure",
+    id = "BrowserConfig",
     members = {
         BrowserType = {
             type = "string",
@@ -160,6 +174,7 @@ M.DependencyType = {
 
 M.Dependency = {
     type = "structure",
+    id = "Dependency",
     members = {
         Type = {
             type = "string",
@@ -175,6 +190,7 @@ M.Dependency = {
 
 M.CanaryCodeOutput = {
     type = "structure",
+    id = "CanaryCodeOutput",
     members = {
         SourceLocationArn = {
             type = "string",
@@ -195,6 +211,7 @@ M.CanaryCodeOutput = {
 
 M.DryRunConfigOutput = {
     type = "structure",
+    id = "DryRunConfigOutput",
     members = {
         DryRunId = {
             type = "string",
@@ -207,6 +224,7 @@ M.DryRunConfigOutput = {
 
 M.EngineConfig = {
     type = "structure",
+    id = "EngineConfig",
     members = {
         EngineArn = {
             type = "string",
@@ -224,6 +242,7 @@ M.ProvisionedResourceCleanupSetting = {
 
 M.CanaryRunConfigOutput = {
     type = "structure",
+    id = "CanaryRunConfigOutput",
     members = {
         TimeoutInSeconds = {
             type = "integer",
@@ -242,6 +261,7 @@ M.CanaryRunConfigOutput = {
 
 M.RetryConfigOutput = {
     type = "structure",
+    id = "RetryConfigOutput",
     members = {
         MaxRetries = {
             type = "integer",
@@ -251,6 +271,7 @@ M.RetryConfigOutput = {
 
 M.CanaryScheduleOutput = {
     type = "structure",
+    id = "CanaryScheduleOutput",
     members = {
         Expression = {
             type = "string",
@@ -291,6 +312,7 @@ M.CanaryStateReasonCode = {
 
 M.CanaryStatus = {
     type = "structure",
+    id = "CanaryStatus",
     members = {
         State = {
             type = "string",
@@ -306,6 +328,7 @@ M.CanaryStatus = {
 
 M.CanaryTimeline = {
     type = "structure",
+    id = "CanaryTimeline",
     members = {
         Created = {
             type = "timestamp",
@@ -324,6 +347,7 @@ M.CanaryTimeline = {
 
 M.VisualReferenceOutput = {
     type = "structure",
+    id = "VisualReferenceOutput",
     members = {
         BaseScreenshots = {
             type = "list",
@@ -340,6 +364,7 @@ M.VisualReferenceOutput = {
 
 M.VpcConfigOutput = {
     type = "structure",
+    id = "VpcConfigOutput",
     members = {
         VpcId = {
             type = "string",
@@ -360,6 +385,7 @@ M.VpcConfigOutput = {
 
 M.Canary = {
     type = "structure",
+    id = "Canary",
     members = {
         Id = {
             type = "string",
@@ -419,6 +445,7 @@ M.Canary = {
 
 M.CanaryDryRunConfigOutput = {
     type = "structure",
+    id = "CanaryDryRunConfigOutput",
     members = {
         DryRunId = {
             type = "string",
@@ -445,6 +472,7 @@ M.CanaryRunTestResult = {
 
 M.CanaryRunStatus = {
     type = "structure",
+    id = "CanaryRunStatus",
     members = {
         State = {
             type = "string",
@@ -463,6 +491,7 @@ M.CanaryRunStatus = {
 
 M.CanaryRunTimeline = {
     type = "structure",
+    id = "CanaryRunTimeline",
     members = {
         Started = {
             type = "timestamp",
@@ -478,6 +507,7 @@ M.CanaryRunTimeline = {
 
 M.CanaryRun = {
     type = "structure",
+    id = "CanaryRun",
     members = {
         Id = {
             type = "string",
@@ -505,6 +535,7 @@ M.CanaryRun = {
 
 M.CanaryLastRun = {
     type = "structure",
+    id = "CanaryLastRun",
     members = {
         CanaryName = {
             type = "string",
@@ -515,6 +546,7 @@ M.CanaryLastRun = {
 
 M.CanaryCodeInput = {
     type = "structure",
+    id = "CanaryCodeInput",
     members = {
         S3Bucket = {
             type = "string",
@@ -547,6 +579,7 @@ M.CanaryCodeInput = {
 
 M.CanaryRunConfigInput = {
     type = "structure",
+    id = "CanaryRunConfigInput",
     members = {
         TimeoutInSeconds = {
             type = "integer",
@@ -570,6 +603,7 @@ M.CanaryRunConfigInput = {
 
 M.RetryConfigInput = {
     type = "structure",
+    id = "RetryConfigInput",
     members = {
         MaxRetries = {
             type = "integer",
@@ -582,6 +616,7 @@ M.RetryConfigInput = {
 
 M.CanaryScheduleInput = {
     type = "structure",
+    id = "CanaryScheduleInput",
     members = {
         Expression = {
             type = "string",
@@ -602,6 +637,7 @@ M.ResourceToTag = {
 
 M.VpcConfigInput = {
     type = "structure",
+    id = "VpcConfigInput",
     members = {
         SubnetIds = {
             type = "list",
@@ -619,6 +655,7 @@ M.VpcConfigInput = {
 
 M.CreateCanaryInput = {
     type = "structure",
+    id = "CreateCanaryInput",
     members = {
         Name = {
             type = "string",
@@ -680,6 +717,7 @@ M.CreateCanaryInput = {
 
 M.CreateCanaryOutput = {
     type = "structure",
+    id = "CreateCanaryOutput",
     members = {
         Canary = M.Canary,
     },
@@ -687,6 +725,7 @@ M.CreateCanaryOutput = {
 
 M.RequestEntityTooLargeException = {
     type = "structure",
+    id = "RequestEntityTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -697,6 +736,7 @@ M.RequestEntityTooLargeException = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         Name = {
             type = "string",
@@ -714,6 +754,7 @@ M.CreateGroupInput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         Id = {
             type = "string",
@@ -740,6 +781,7 @@ M.Group = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -747,6 +789,7 @@ M.CreateGroupOutput = {
 
 M.DeleteCanaryInput = {
     type = "structure",
+    id = "DeleteCanaryInput",
     members = {
         Name = {
             type = "string",
@@ -767,10 +810,12 @@ M.DeleteCanaryInput = {
 
 M.DeleteCanaryOutput = {
     type = "structure",
+    id = "DeleteCanaryOutput",
 }
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         GroupIdentifier = {
             type = "string",
@@ -784,10 +829,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DescribeCanariesInput = {
     type = "structure",
+    id = "DescribeCanariesInput",
     members = {
         NextToken = {
             type = "string",
@@ -804,6 +851,7 @@ M.DescribeCanariesInput = {
 
 M.DescribeCanariesOutput = {
     type = "structure",
+    id = "DescribeCanariesOutput",
     members = {
         Canaries = {
             type = "list",
@@ -817,6 +865,7 @@ M.DescribeCanariesOutput = {
 
 M.DescribeCanariesLastRunInput = {
     type = "structure",
+    id = "DescribeCanariesLastRunInput",
     members = {
         NextToken = {
             type = "string",
@@ -836,6 +885,7 @@ M.DescribeCanariesLastRunInput = {
 
 M.DescribeCanariesLastRunOutput = {
     type = "structure",
+    id = "DescribeCanariesLastRunOutput",
     members = {
         CanariesLastRun = {
             type = "list",
@@ -849,6 +899,7 @@ M.DescribeCanariesLastRunOutput = {
 
 M.DescribeRuntimeVersionsInput = {
     type = "structure",
+    id = "DescribeRuntimeVersionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -861,6 +912,7 @@ M.DescribeRuntimeVersionsInput = {
 
 M.RuntimeVersion = {
     type = "structure",
+    id = "RuntimeVersion",
     members = {
         VersionName = {
             type = "string",
@@ -879,6 +931,7 @@ M.RuntimeVersion = {
 
 M.DescribeRuntimeVersionsOutput = {
     type = "structure",
+    id = "DescribeRuntimeVersionsOutput",
     members = {
         RuntimeVersions = {
             type = "list",
@@ -892,6 +945,7 @@ M.DescribeRuntimeVersionsOutput = {
 
 M.DisassociateResourceInput = {
     type = "structure",
+    id = "DisassociateResourceInput",
     members = {
         GroupIdentifier = {
             type = "string",
@@ -911,10 +965,12 @@ M.DisassociateResourceInput = {
 
 M.DisassociateResourceOutput = {
     type = "structure",
+    id = "DisassociateResourceOutput",
 }
 
 M.GetCanaryInput = {
     type = "structure",
+    id = "GetCanaryInput",
     members = {
         Name = {
             type = "string",
@@ -934,6 +990,7 @@ M.GetCanaryInput = {
 
 M.GetCanaryOutput = {
     type = "structure",
+    id = "GetCanaryOutput",
     members = {
         Canary = M.Canary,
     },
@@ -946,6 +1003,7 @@ M.RunType = {
 
 M.GetCanaryRunsInput = {
     type = "structure",
+    id = "GetCanaryRunsInput",
     members = {
         Name = {
             type = "string",
@@ -971,6 +1029,7 @@ M.GetCanaryRunsInput = {
 
 M.GetCanaryRunsOutput = {
     type = "structure",
+    id = "GetCanaryRunsOutput",
     members = {
         CanaryRuns = {
             type = "list",
@@ -984,6 +1043,7 @@ M.GetCanaryRunsOutput = {
 
 M.GetGroupInput = {
     type = "structure",
+    id = "GetGroupInput",
     members = {
         GroupIdentifier = {
             type = "string",
@@ -997,6 +1057,7 @@ M.GetGroupInput = {
 
 M.GetGroupOutput = {
     type = "structure",
+    id = "GetGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -1004,6 +1065,7 @@ M.GetGroupOutput = {
 
 M.GroupSummary = {
     type = "structure",
+    id = "GroupSummary",
     members = {
         Id = {
             type = "string",
@@ -1019,6 +1081,7 @@ M.GroupSummary = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         Message = {
@@ -1029,6 +1092,7 @@ M.InternalFailureException = {
 
 M.ListAssociatedGroupsInput = {
     type = "structure",
+    id = "ListAssociatedGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1048,6 +1112,7 @@ M.ListAssociatedGroupsInput = {
 
 M.ListAssociatedGroupsOutput = {
     type = "structure",
+    id = "ListAssociatedGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -1061,6 +1126,7 @@ M.ListAssociatedGroupsOutput = {
 
 M.ListGroupResourcesInput = {
     type = "structure",
+    id = "ListGroupResourcesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1080,6 +1146,7 @@ M.ListGroupResourcesInput = {
 
 M.ListGroupResourcesOutput = {
     type = "structure",
+    id = "ListGroupResourcesOutput",
     members = {
         Resources = {
             type = "list",
@@ -1093,6 +1160,7 @@ M.ListGroupResourcesOutput = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1105,6 +1173,7 @@ M.ListGroupsInput = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -1118,6 +1187,7 @@ M.ListGroupsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1131,6 +1201,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1142,6 +1213,7 @@ M.ListTagsForResourceOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1152,6 +1224,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -1162,6 +1235,7 @@ M.TooManyRequestsException = {
 
 M.StartCanaryInput = {
     type = "structure",
+    id = "StartCanaryInput",
     members = {
         Name = {
             type = "string",
@@ -1175,10 +1249,12 @@ M.StartCanaryInput = {
 
 M.StartCanaryOutput = {
     type = "structure",
+    id = "StartCanaryOutput",
 }
 
 M.VisualReferenceInput = {
     type = "structure",
+    id = "VisualReferenceInput",
     members = {
         BaseScreenshots = {
             type = "list",
@@ -1198,6 +1274,7 @@ M.VisualReferenceInput = {
 
 M.StartCanaryDryRunInput = {
     type = "structure",
+    id = "StartCanaryDryRunInput",
     members = {
         Name = {
             type = "string",
@@ -1242,6 +1319,7 @@ M.StartCanaryDryRunInput = {
 
 M.StartCanaryDryRunOutput = {
     type = "structure",
+    id = "StartCanaryDryRunOutput",
     members = {
         DryRunConfig = M.DryRunConfigOutput,
     },
@@ -1249,6 +1327,7 @@ M.StartCanaryDryRunOutput = {
 
 M.StopCanaryInput = {
     type = "structure",
+    id = "StopCanaryInput",
     members = {
         Name = {
             type = "string",
@@ -1262,10 +1341,12 @@ M.StopCanaryInput = {
 
 M.StopCanaryOutput = {
     type = "structure",
+    id = "StopCanaryOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1287,10 +1368,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1312,10 +1395,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCanaryInput = {
     type = "structure",
+    id = "UpdateCanaryInput",
     members = {
         Name = {
             type = "string",
@@ -1364,6 +1449,7 @@ M.UpdateCanaryInput = {
 
 M.UpdateCanaryOutput = {
     type = "structure",
+    id = "UpdateCanaryOutput",
 }
 
 return M

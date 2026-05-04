@@ -7,6 +7,7 @@ M.AddressType = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         AddressId = {
             type = "string",
@@ -61,6 +62,7 @@ M.Address = {
 
 M.CancelClusterInput = {
     type = "structure",
+    id = "CancelClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -73,10 +75,12 @@ M.CancelClusterInput = {
 
 M.CancelClusterOutput = {
     type = "structure",
+    id = "CancelClusterOutput",
 }
 
 M.InvalidJobStateException = {
     type = "structure",
+    id = "InvalidJobStateException",
     error = "client",
     members = {
         Message = {
@@ -87,6 +91,7 @@ M.InvalidJobStateException = {
 
 M.InvalidResourceException = {
     type = "structure",
+    id = "InvalidResourceException",
     error = "client",
     members = {
         Message = {
@@ -100,6 +105,7 @@ M.InvalidResourceException = {
 
 M.KMSRequestFailedException = {
     type = "structure",
+    id = "KMSRequestFailedException",
     error = "client",
     members = {
         Message = {
@@ -110,6 +116,7 @@ M.KMSRequestFailedException = {
 
 M.CancelJobInput = {
     type = "structure",
+    id = "CancelJobInput",
     members = {
         JobId = {
             type = "string",
@@ -122,10 +129,12 @@ M.CancelJobInput = {
 
 M.CancelJobOutput = {
     type = "structure",
+    id = "CancelJobOutput",
 }
 
 M.CreateAddressInput = {
     type = "structure",
+    id = "CreateAddressInput",
     members = {
         Address = setmetatable({ traits = {
             required = true,
@@ -135,6 +144,7 @@ M.CreateAddressInput = {
 
 M.CreateAddressOutput = {
     type = "structure",
+    id = "CreateAddressOutput",
     members = {
         AddressId = {
             type = "string",
@@ -144,6 +154,7 @@ M.CreateAddressOutput = {
 
 M.InvalidAddressException = {
     type = "structure",
+    id = "InvalidAddressException",
     error = "client",
     members = {
         Message = {
@@ -154,6 +165,7 @@ M.InvalidAddressException = {
 
 M.UnsupportedAddressException = {
     type = "structure",
+    id = "UnsupportedAddressException",
     error = "client",
     members = {
         Message = {
@@ -186,6 +198,7 @@ M.JobState = {
 
 M.Notification = {
     type = "structure",
+    id = "Notification",
     members = {
         SnsTopicARN = {
             type = "string",
@@ -208,6 +221,7 @@ M.Notification = {
 
 M.EKSOnDeviceServiceConfiguration = {
     type = "structure",
+    id = "EKSOnDeviceServiceConfiguration",
     members = {
         KubernetesVersion = {
             type = "string",
@@ -224,6 +238,7 @@ M.StorageUnit = {
 
 M.NFSOnDeviceServiceConfiguration = {
     type = "structure",
+    id = "NFSOnDeviceServiceConfiguration",
     members = {
         StorageLimit = {
             type = "integer",
@@ -239,6 +254,7 @@ M.NFSOnDeviceServiceConfiguration = {
 
 M.S3OnDeviceServiceConfiguration = {
     type = "structure",
+    id = "S3OnDeviceServiceConfiguration",
     members = {
         StorageLimit = {
             type = "double",
@@ -257,6 +273,7 @@ M.S3OnDeviceServiceConfiguration = {
 
 M.TGWOnDeviceServiceConfiguration = {
     type = "structure",
+    id = "TGWOnDeviceServiceConfiguration",
     members = {
         StorageLimit = {
             type = "integer",
@@ -272,6 +289,7 @@ M.TGWOnDeviceServiceConfiguration = {
 
 M.OnDeviceServiceConfiguration = {
     type = "structure",
+    id = "OnDeviceServiceConfiguration",
     members = {
         NFSOnDeviceService = M.NFSOnDeviceServiceConfiguration,
         TGWOnDeviceService = M.TGWOnDeviceServiceConfiguration,
@@ -288,6 +306,7 @@ M.RemoteManagement = {
 
 M.Ec2AmiResource = {
     type = "structure",
+    id = "Ec2AmiResource",
     members = {
         AmiId = {
             type = "string",
@@ -303,6 +322,7 @@ M.Ec2AmiResource = {
 
 M.EventTriggerDefinition = {
     type = "structure",
+    id = "EventTriggerDefinition",
     members = {
         EventResourceARN = {
             type = "string",
@@ -312,6 +332,7 @@ M.EventTriggerDefinition = {
 
 M.LambdaResource = {
     type = "structure",
+    id = "LambdaResource",
     members = {
         LambdaArn = {
             type = "string",
@@ -325,6 +346,7 @@ M.LambdaResource = {
 
 M.KeyRange = {
     type = "structure",
+    id = "KeyRange",
     members = {
         BeginMarker = {
             type = "string",
@@ -348,6 +370,7 @@ M.TransferOption = {
 
 M.TargetOnDeviceService = {
     type = "structure",
+    id = "TargetOnDeviceService",
     members = {
         ServiceName = {
             type = "string",
@@ -360,6 +383,7 @@ M.TargetOnDeviceService = {
 
 M.S3Resource = {
     type = "structure",
+    id = "S3Resource",
     members = {
         BucketArn = {
             type = "string",
@@ -374,6 +398,7 @@ M.S3Resource = {
 
 M.JobResource = {
     type = "structure",
+    id = "JobResource",
     members = {
         S3Resources = {
             type = "list",
@@ -426,6 +451,7 @@ M.SnowballType = {
 
 M.INDTaxDocuments = {
     type = "structure",
+    id = "INDTaxDocuments",
     members = {
         GSTIN = {
             type = "string",
@@ -435,6 +461,7 @@ M.INDTaxDocuments = {
 
 M.TaxDocuments = {
     type = "structure",
+    id = "TaxDocuments",
     members = {
         IND = M.INDTaxDocuments,
     },
@@ -442,6 +469,7 @@ M.TaxDocuments = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         JobType = {
             type = "string",
@@ -507,6 +535,7 @@ M.CreateClusterInput = {
 
 M.JobListEntry = {
     type = "structure",
+    id = "JobListEntry",
     members = {
         JobId = {
             type = "string",
@@ -537,6 +566,7 @@ M.JobListEntry = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         ClusterId = {
             type = "string",
@@ -550,6 +580,7 @@ M.CreateClusterOutput = {
 
 M.Ec2RequestFailedException = {
     type = "structure",
+    id = "Ec2RequestFailedException",
     error = "client",
     members = {
         Message = {
@@ -560,6 +591,7 @@ M.Ec2RequestFailedException = {
 
 M.InvalidInputCombinationException = {
     type = "structure",
+    id = "InvalidInputCombinationException",
     error = "client",
     members = {
         Message = {
@@ -570,6 +602,7 @@ M.InvalidInputCombinationException = {
 
 M.ClusterLimitExceededException = {
     type = "structure",
+    id = "ClusterLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -580,6 +613,7 @@ M.ClusterLimitExceededException = {
 
 M.WirelessConnection = {
     type = "structure",
+    id = "WirelessConnection",
     members = {
         IsWifiEnabled = {
             type = "boolean",
@@ -592,6 +626,7 @@ M.WirelessConnection = {
 
 M.SnowconeDeviceConfiguration = {
     type = "structure",
+    id = "SnowconeDeviceConfiguration",
     members = {
         WirelessConnection = M.WirelessConnection,
     },
@@ -599,6 +634,7 @@ M.SnowconeDeviceConfiguration = {
 
 M.DeviceConfiguration = {
     type = "structure",
+    id = "DeviceConfiguration",
     members = {
         SnowconeDeviceConfiguration = M.SnowconeDeviceConfiguration,
     },
@@ -614,6 +650,7 @@ M.ImpactLevel = {
 
 M.PickupDetails = {
     type = "structure",
+    id = "PickupDetails",
     members = {
         Name = {
             type = "string",
@@ -641,6 +678,7 @@ M.PickupDetails = {
 
 M.CreateJobInput = {
     type = "structure",
+    id = "CreateJobInput",
     members = {
         JobType = {
             type = "string",
@@ -692,6 +730,7 @@ M.CreateJobInput = {
 
 M.CreateJobOutput = {
     type = "structure",
+    id = "CreateJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -707,6 +746,7 @@ M.LongTermPricingType = {
 
 M.CreateLongTermPricingInput = {
     type = "structure",
+    id = "CreateLongTermPricingInput",
     members = {
         LongTermPricingType = {
             type = "string",
@@ -728,6 +768,7 @@ M.CreateLongTermPricingInput = {
 
 M.CreateLongTermPricingOutput = {
     type = "structure",
+    id = "CreateLongTermPricingOutput",
     members = {
         LongTermPricingId = {
             type = "string",
@@ -737,6 +778,7 @@ M.CreateLongTermPricingOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         ConflictResource = {
@@ -750,6 +792,7 @@ M.ConflictException = {
 
 M.CreateReturnShippingLabelInput = {
     type = "structure",
+    id = "CreateReturnShippingLabelInput",
     members = {
         JobId = {
             type = "string",
@@ -772,6 +815,7 @@ M.ShippingLabelStatus = {
 
 M.CreateReturnShippingLabelOutput = {
     type = "structure",
+    id = "CreateReturnShippingLabelOutput",
     members = {
         Status = {
             type = "string",
@@ -781,6 +825,7 @@ M.CreateReturnShippingLabelOutput = {
 
 M.ReturnShippingLabelAlreadyExistsException = {
     type = "structure",
+    id = "ReturnShippingLabelAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -791,6 +836,7 @@ M.ReturnShippingLabelAlreadyExistsException = {
 
 M.DescribeAddressInput = {
     type = "structure",
+    id = "DescribeAddressInput",
     members = {
         AddressId = {
             type = "string",
@@ -803,6 +849,7 @@ M.DescribeAddressInput = {
 
 M.DescribeAddressOutput = {
     type = "structure",
+    id = "DescribeAddressOutput",
     members = {
         Address = M.Address,
     },
@@ -810,6 +857,7 @@ M.DescribeAddressOutput = {
 
 M.DescribeAddressesInput = {
     type = "structure",
+    id = "DescribeAddressesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -822,6 +870,7 @@ M.DescribeAddressesInput = {
 
 M.DescribeAddressesOutput = {
     type = "structure",
+    id = "DescribeAddressesOutput",
     members = {
         Addresses = {
             type = "list",
@@ -835,6 +884,7 @@ M.DescribeAddressesOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -845,6 +895,7 @@ M.InvalidNextTokenException = {
 
 M.DescribeClusterInput = {
     type = "structure",
+    id = "DescribeClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -865,6 +916,7 @@ M.ClusterState = {
 
 M.ClusterMetadata = {
     type = "structure",
+    id = "ClusterMetadata",
     members = {
         ClusterId = {
             type = "string",
@@ -908,6 +960,7 @@ M.ClusterMetadata = {
 
 M.DescribeClusterOutput = {
     type = "structure",
+    id = "DescribeClusterOutput",
     members = {
         ClusterMetadata = M.ClusterMetadata,
     },
@@ -915,6 +968,7 @@ M.DescribeClusterOutput = {
 
 M.DescribeJobInput = {
     type = "structure",
+    id = "DescribeJobInput",
     members = {
         JobId = {
             type = "string",
@@ -927,6 +981,7 @@ M.DescribeJobInput = {
 
 M.DataTransfer = {
     type = "structure",
+    id = "DataTransfer",
     members = {
         BytesTransferred = {
             type = "long",
@@ -957,6 +1012,7 @@ M.DataTransfer = {
 
 M.JobLogs = {
     type = "structure",
+    id = "JobLogs",
     members = {
         JobCompletionReportURI = {
             type = "string",
@@ -972,6 +1028,7 @@ M.JobLogs = {
 
 M.Shipment = {
     type = "structure",
+    id = "Shipment",
     members = {
         Status = {
             type = "string",
@@ -984,6 +1041,7 @@ M.Shipment = {
 
 M.ShippingDetails = {
     type = "structure",
+    id = "ShippingDetails",
     members = {
         ShippingOption = {
             type = "string",
@@ -995,6 +1053,7 @@ M.ShippingDetails = {
 
 M.JobMetadata = {
     type = "structure",
+    id = "JobMetadata",
     members = {
         JobId = {
             type = "string",
@@ -1058,6 +1117,7 @@ M.JobMetadata = {
 
 M.DescribeJobOutput = {
     type = "structure",
+    id = "DescribeJobOutput",
     members = {
         JobMetadata = M.JobMetadata,
         SubJobMetadata = {
@@ -1069,6 +1129,7 @@ M.DescribeJobOutput = {
 
 M.DescribeReturnShippingLabelInput = {
     type = "structure",
+    id = "DescribeReturnShippingLabelInput",
     members = {
         JobId = {
             type = "string",
@@ -1081,6 +1142,7 @@ M.DescribeReturnShippingLabelInput = {
 
 M.DescribeReturnShippingLabelOutput = {
     type = "structure",
+    id = "DescribeReturnShippingLabelOutput",
     members = {
         Status = {
             type = "string",
@@ -1096,6 +1158,7 @@ M.DescribeReturnShippingLabelOutput = {
 
 M.GetJobManifestInput = {
     type = "structure",
+    id = "GetJobManifestInput",
     members = {
         JobId = {
             type = "string",
@@ -1108,6 +1171,7 @@ M.GetJobManifestInput = {
 
 M.GetJobManifestOutput = {
     type = "structure",
+    id = "GetJobManifestOutput",
     members = {
         ManifestURI = {
             type = "string",
@@ -1117,6 +1181,7 @@ M.GetJobManifestOutput = {
 
 M.GetJobUnlockCodeInput = {
     type = "structure",
+    id = "GetJobUnlockCodeInput",
     members = {
         JobId = {
             type = "string",
@@ -1129,6 +1194,7 @@ M.GetJobUnlockCodeInput = {
 
 M.GetJobUnlockCodeOutput = {
     type = "structure",
+    id = "GetJobUnlockCodeOutput",
     members = {
         UnlockCode = {
             type = "string",
@@ -1138,10 +1204,12 @@ M.GetJobUnlockCodeOutput = {
 
 M.GetSnowballUsageInput = {
     type = "structure",
+    id = "GetSnowballUsageInput",
 }
 
 M.GetSnowballUsageOutput = {
     type = "structure",
+    id = "GetSnowballUsageOutput",
     members = {
         SnowballLimit = {
             type = "integer",
@@ -1154,6 +1222,7 @@ M.GetSnowballUsageOutput = {
 
 M.GetSoftwareUpdatesInput = {
     type = "structure",
+    id = "GetSoftwareUpdatesInput",
     members = {
         JobId = {
             type = "string",
@@ -1166,6 +1235,7 @@ M.GetSoftwareUpdatesInput = {
 
 M.GetSoftwareUpdatesOutput = {
     type = "structure",
+    id = "GetSoftwareUpdatesOutput",
     members = {
         UpdatesURI = {
             type = "string",
@@ -1175,6 +1245,7 @@ M.GetSoftwareUpdatesOutput = {
 
 M.ListClusterJobsInput = {
     type = "structure",
+    id = "ListClusterJobsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -1193,6 +1264,7 @@ M.ListClusterJobsInput = {
 
 M.ListClusterJobsOutput = {
     type = "structure",
+    id = "ListClusterJobsOutput",
     members = {
         JobListEntries = {
             type = "list",
@@ -1206,6 +1278,7 @@ M.ListClusterJobsOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1218,6 +1291,7 @@ M.ListClustersInput = {
 
 M.ClusterListEntry = {
     type = "structure",
+    id = "ClusterListEntry",
     members = {
         ClusterId = {
             type = "string",
@@ -1236,6 +1310,7 @@ M.ClusterListEntry = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         ClusterListEntries = {
             type = "list",
@@ -1249,6 +1324,7 @@ M.ListClustersOutput = {
 
 M.ListCompatibleImagesInput = {
     type = "structure",
+    id = "ListCompatibleImagesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1261,6 +1337,7 @@ M.ListCompatibleImagesInput = {
 
 M.CompatibleImage = {
     type = "structure",
+    id = "CompatibleImage",
     members = {
         AmiId = {
             type = "string",
@@ -1273,6 +1350,7 @@ M.CompatibleImage = {
 
 M.ListCompatibleImagesOutput = {
     type = "structure",
+    id = "ListCompatibleImagesOutput",
     members = {
         CompatibleImages = {
             type = "list",
@@ -1286,6 +1364,7 @@ M.ListCompatibleImagesOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1298,6 +1377,7 @@ M.ListJobsInput = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         JobListEntries = {
             type = "list",
@@ -1311,6 +1391,7 @@ M.ListJobsOutput = {
 
 M.ListLongTermPricingInput = {
     type = "structure",
+    id = "ListLongTermPricingInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1323,6 +1404,7 @@ M.ListLongTermPricingInput = {
 
 M.LongTermPricingListEntry = {
     type = "structure",
+    id = "LongTermPricingListEntry",
     members = {
         LongTermPricingId = {
             type = "string",
@@ -1360,6 +1442,7 @@ M.LongTermPricingListEntry = {
 
 M.ListLongTermPricingOutput = {
     type = "structure",
+    id = "ListLongTermPricingOutput",
     members = {
         LongTermPricingEntries = {
             type = "list",
@@ -1373,6 +1456,7 @@ M.ListLongTermPricingOutput = {
 
 M.ListPickupLocationsInput = {
     type = "structure",
+    id = "ListPickupLocationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1385,6 +1469,7 @@ M.ListPickupLocationsInput = {
 
 M.ListPickupLocationsOutput = {
     type = "structure",
+    id = "ListPickupLocationsOutput",
     members = {
         Addresses = {
             type = "list",
@@ -1403,6 +1488,7 @@ M.ServiceName = {
 
 M.ServiceVersion = {
     type = "structure",
+    id = "ServiceVersion",
     members = {
         Version = {
             type = "string",
@@ -1412,6 +1498,7 @@ M.ServiceVersion = {
 
 M.DependentService = {
     type = "structure",
+    id = "DependentService",
     members = {
         ServiceName = {
             type = "string",
@@ -1422,6 +1509,7 @@ M.DependentService = {
 
 M.ListServiceVersionsInput = {
     type = "structure",
+    id = "ListServiceVersionsInput",
     members = {
         ServiceName = {
             type = "string",
@@ -1444,6 +1532,7 @@ M.ListServiceVersionsInput = {
 
 M.ListServiceVersionsOutput = {
     type = "structure",
+    id = "ListServiceVersionsOutput",
     members = {
         ServiceVersions = {
             type = "list",
@@ -1470,6 +1559,7 @@ M.ListServiceVersionsOutput = {
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -1500,10 +1590,12 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
 }
 
 M.UpdateJobInput = {
     type = "structure",
+    id = "UpdateJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1538,6 +1630,7 @@ M.UpdateJobInput = {
 
 M.UpdateJobOutput = {
     type = "structure",
+    id = "UpdateJobOutput",
 }
 
 M.ShipmentState = {
@@ -1547,6 +1640,7 @@ M.ShipmentState = {
 
 M.UpdateJobShipmentStateInput = {
     type = "structure",
+    id = "UpdateJobShipmentStateInput",
     members = {
         JobId = {
             type = "string",
@@ -1565,10 +1659,12 @@ M.UpdateJobShipmentStateInput = {
 
 M.UpdateJobShipmentStateOutput = {
     type = "structure",
+    id = "UpdateJobShipmentStateOutput",
 }
 
 M.UpdateLongTermPricingInput = {
     type = "structure",
+    id = "UpdateLongTermPricingInput",
     members = {
         LongTermPricingId = {
             type = "string",
@@ -1587,6 +1683,7 @@ M.UpdateLongTermPricingInput = {
 
 M.UpdateLongTermPricingOutput = {
     type = "structure",
+    id = "UpdateLongTermPricingOutput",
 }
 
 return M

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -38,6 +39,7 @@ M.Tier = {
 
 M.WorkloadConfiguration = {
     type = "structure",
+    id = "WorkloadConfiguration",
     members = {
         WorkloadName = {
             type = "string",
@@ -53,6 +55,7 @@ M.WorkloadConfiguration = {
 
 M.AddWorkloadInput = {
     type = "structure",
+    id = "AddWorkloadInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -74,6 +77,7 @@ M.AddWorkloadInput = {
 
 M.AddWorkloadOutput = {
     type = "structure",
+    id = "AddWorkloadOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -84,6 +88,7 @@ M.AddWorkloadOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -94,6 +99,7 @@ M.InternalServerException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -104,6 +110,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -114,6 +121,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -129,6 +137,7 @@ M.OsType = {
 
 M.ApplicationComponent = {
     type = "structure",
+    id = "ApplicationComponent",
     members = {
         ComponentName = {
             type = "string",
@@ -163,6 +172,7 @@ M.DiscoveryType = {
 
 M.ApplicationInfo = {
     type = "structure",
+    id = "ApplicationInfo",
     members = {
         AccountId = {
             type = "string",
@@ -202,6 +212,7 @@ M.ApplicationInfo = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -232,6 +243,7 @@ M.ConfigurationEventStatus = {
 
 M.ConfigurationEvent = {
     type = "structure",
+    id = "ConfigurationEvent",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -266,6 +278,7 @@ M.GroupingType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -284,6 +297,7 @@ M.Tag = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -321,6 +335,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         ApplicationInfo = M.ApplicationInfo,
     },
@@ -328,6 +343,7 @@ M.CreateApplicationOutput = {
 
 M.TagsAlreadyExistException = {
     type = "structure",
+    id = "TagsAlreadyExistException",
     error = "client",
     members = {
         Message = {
@@ -338,6 +354,7 @@ M.TagsAlreadyExistException = {
 
 M.CreateComponentInput = {
     type = "structure",
+    id = "CreateComponentInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -363,10 +380,12 @@ M.CreateComponentInput = {
 
 M.CreateComponentOutput = {
     type = "structure",
+    id = "CreateComponentOutput",
 }
 
 M.CreateLogPatternInput = {
     type = "structure",
+    id = "CreateLogPatternInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -404,6 +423,7 @@ M.CreateLogPatternInput = {
 
 M.LogPattern = {
     type = "structure",
+    id = "LogPattern",
     members = {
         PatternSetName = {
             type = "string",
@@ -425,6 +445,7 @@ M.LogPattern = {
 
 M.CreateLogPatternOutput = {
     type = "structure",
+    id = "CreateLogPatternOutput",
     members = {
         LogPattern = M.LogPattern,
         ResourceGroupName = {
@@ -435,6 +456,7 @@ M.CreateLogPatternOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -447,10 +469,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.DeleteComponentInput = {
     type = "structure",
+    id = "DeleteComponentInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -469,10 +493,12 @@ M.DeleteComponentInput = {
 
 M.DeleteComponentOutput = {
     type = "structure",
+    id = "DeleteComponentOutput",
 }
 
 M.DeleteLogPatternInput = {
     type = "structure",
+    id = "DeleteLogPatternInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -497,10 +523,12 @@ M.DeleteLogPatternInput = {
 
 M.DeleteLogPatternOutput = {
     type = "structure",
+    id = "DeleteLogPatternOutput",
 }
 
 M.DescribeApplicationInput = {
     type = "structure",
+    id = "DescribeApplicationInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -516,6 +544,7 @@ M.DescribeApplicationInput = {
 
 M.DescribeApplicationOutput = {
     type = "structure",
+    id = "DescribeApplicationOutput",
     members = {
         ApplicationInfo = M.ApplicationInfo,
     },
@@ -523,6 +552,7 @@ M.DescribeApplicationOutput = {
 
 M.DescribeComponentInput = {
     type = "structure",
+    id = "DescribeComponentInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -544,6 +574,7 @@ M.DescribeComponentInput = {
 
 M.DescribeComponentOutput = {
     type = "structure",
+    id = "DescribeComponentOutput",
     members = {
         ApplicationComponent = M.ApplicationComponent,
         ResourceList = {
@@ -555,6 +586,7 @@ M.DescribeComponentOutput = {
 
 M.DescribeComponentConfigurationInput = {
     type = "structure",
+    id = "DescribeComponentConfigurationInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -576,6 +608,7 @@ M.DescribeComponentConfigurationInput = {
 
 M.DescribeComponentConfigurationOutput = {
     type = "structure",
+    id = "DescribeComponentConfigurationOutput",
     members = {
         Monitor = {
             type = "boolean",
@@ -597,6 +630,7 @@ M.RecommendationType = {
 
 M.DescribeComponentConfigurationRecommendationInput = {
     type = "structure",
+    id = "DescribeComponentConfigurationRecommendationInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -627,6 +661,7 @@ M.DescribeComponentConfigurationRecommendationInput = {
 
 M.DescribeComponentConfigurationRecommendationOutput = {
     type = "structure",
+    id = "DescribeComponentConfigurationRecommendationOutput",
     members = {
         ComponentConfiguration = {
             type = "string",
@@ -636,6 +671,7 @@ M.DescribeComponentConfigurationRecommendationOutput = {
 
 M.DescribeLogPatternInput = {
     type = "structure",
+    id = "DescribeLogPatternInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -663,6 +699,7 @@ M.DescribeLogPatternInput = {
 
 M.DescribeLogPatternOutput = {
     type = "structure",
+    id = "DescribeLogPatternOutput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -676,6 +713,7 @@ M.DescribeLogPatternOutput = {
 
 M.DescribeObservationInput = {
     type = "structure",
+    id = "DescribeObservationInput",
     members = {
         ObservationId = {
             type = "string",
@@ -697,6 +735,7 @@ M.LogFilter = {
 
 M.Observation = {
     type = "structure",
+    id = "Observation",
     members = {
         Id = {
             type = "string",
@@ -838,6 +877,7 @@ M.Observation = {
 
 M.DescribeObservationOutput = {
     type = "structure",
+    id = "DescribeObservationOutput",
     members = {
         Observation = M.Observation,
     },
@@ -845,6 +885,7 @@ M.DescribeObservationOutput = {
 
 M.DescribeProblemInput = {
     type = "structure",
+    id = "DescribeProblemInput",
     members = {
         ProblemId = {
             type = "string",
@@ -896,6 +937,7 @@ M.Visibility = {
 
 M.Problem = {
     type = "structure",
+    id = "Problem",
     members = {
         Id = {
             type = "string",
@@ -952,6 +994,7 @@ M.Problem = {
 
 M.DescribeProblemOutput = {
     type = "structure",
+    id = "DescribeProblemOutput",
     members = {
         Problem = M.Problem,
         SNSNotificationArn = {
@@ -962,6 +1005,7 @@ M.DescribeProblemOutput = {
 
 M.DescribeProblemObservationsInput = {
     type = "structure",
+    id = "DescribeProblemObservationsInput",
     members = {
         ProblemId = {
             type = "string",
@@ -977,6 +1021,7 @@ M.DescribeProblemObservationsInput = {
 
 M.RelatedObservations = {
     type = "structure",
+    id = "RelatedObservations",
     members = {
         ObservationList = {
             type = "list",
@@ -987,6 +1032,7 @@ M.RelatedObservations = {
 
 M.DescribeProblemObservationsOutput = {
     type = "structure",
+    id = "DescribeProblemObservationsOutput",
     members = {
         RelatedObservations = M.RelatedObservations,
     },
@@ -994,6 +1040,7 @@ M.DescribeProblemObservationsOutput = {
 
 M.DescribeWorkloadInput = {
     type = "structure",
+    id = "DescribeWorkloadInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1021,6 +1068,7 @@ M.DescribeWorkloadInput = {
 
 M.DescribeWorkloadOutput = {
     type = "structure",
+    id = "DescribeWorkloadOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1034,6 +1082,7 @@ M.DescribeWorkloadOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1049,6 +1098,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         ApplicationInfoList = {
             type = "list",
@@ -1062,6 +1112,7 @@ M.ListApplicationsOutput = {
 
 M.ListComponentsInput = {
     type = "structure",
+    id = "ListComponentsInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1083,6 +1134,7 @@ M.ListComponentsInput = {
 
 M.ListComponentsOutput = {
     type = "structure",
+    id = "ListComponentsOutput",
     members = {
         ApplicationComponentList = {
             type = "list",
@@ -1096,6 +1148,7 @@ M.ListComponentsOutput = {
 
 M.ListConfigurationHistoryInput = {
     type = "structure",
+    id = "ListConfigurationHistoryInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1123,6 +1176,7 @@ M.ListConfigurationHistoryInput = {
 
 M.ListConfigurationHistoryOutput = {
     type = "structure",
+    id = "ListConfigurationHistoryOutput",
     members = {
         EventList = {
             type = "list",
@@ -1136,6 +1190,7 @@ M.ListConfigurationHistoryOutput = {
 
 M.ListLogPatternsInput = {
     type = "structure",
+    id = "ListLogPatternsInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1160,6 +1215,7 @@ M.ListLogPatternsInput = {
 
 M.ListLogPatternsOutput = {
     type = "structure",
+    id = "ListLogPatternsOutput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1179,6 +1235,7 @@ M.ListLogPatternsOutput = {
 
 M.ListLogPatternSetsInput = {
     type = "structure",
+    id = "ListLogPatternSetsInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1200,6 +1257,7 @@ M.ListLogPatternSetsInput = {
 
 M.ListLogPatternSetsOutput = {
     type = "structure",
+    id = "ListLogPatternSetsOutput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1219,6 +1277,7 @@ M.ListLogPatternSetsOutput = {
 
 M.ListProblemsInput = {
     type = "structure",
+    id = "ListProblemsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1249,6 +1308,7 @@ M.ListProblemsInput = {
 
 M.ListProblemsOutput = {
     type = "structure",
+    id = "ListProblemsOutput",
     members = {
         ProblemList = {
             type = "list",
@@ -1268,6 +1328,7 @@ M.ListProblemsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1280,6 +1341,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1290,6 +1352,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWorkloadsInput = {
     type = "structure",
+    id = "ListWorkloadsInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1317,6 +1380,7 @@ M.ListWorkloadsInput = {
 
 M.Workload = {
     type = "structure",
+    id = "Workload",
     members = {
         WorkloadId = {
             type = "string",
@@ -1341,6 +1405,7 @@ M.Workload = {
 
 M.ListWorkloadsOutput = {
     type = "structure",
+    id = "ListWorkloadsOutput",
     members = {
         WorkloadList = {
             type = "list",
@@ -1354,6 +1419,7 @@ M.ListWorkloadsOutput = {
 
 M.RemoveWorkloadInput = {
     type = "structure",
+    id = "RemoveWorkloadInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1378,10 +1444,12 @@ M.RemoveWorkloadInput = {
 
 M.RemoveWorkloadOutput = {
     type = "structure",
+    id = "RemoveWorkloadOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1401,10 +1469,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -1418,6 +1488,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1437,10 +1508,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1474,6 +1547,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         ApplicationInfo = M.ApplicationInfo,
     },
@@ -1481,6 +1555,7 @@ M.UpdateApplicationOutput = {
 
 M.UpdateComponentInput = {
     type = "structure",
+    id = "UpdateComponentInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1506,10 +1581,12 @@ M.UpdateComponentInput = {
 
 M.UpdateComponentOutput = {
     type = "structure",
+    id = "UpdateComponentOutput",
 }
 
 M.UpdateComponentConfigurationInput = {
     type = "structure",
+    id = "UpdateComponentConfigurationInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1540,10 +1617,12 @@ M.UpdateComponentConfigurationInput = {
 
 M.UpdateComponentConfigurationOutput = {
     type = "structure",
+    id = "UpdateComponentConfigurationOutput",
 }
 
 M.UpdateLogPatternInput = {
     type = "structure",
+    id = "UpdateLogPatternInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1577,6 +1656,7 @@ M.UpdateLogPatternInput = {
 
 M.UpdateLogPatternOutput = {
     type = "structure",
+    id = "UpdateLogPatternOutput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1591,6 +1671,7 @@ M.UpdateStatus = {
 
 M.UpdateProblemInput = {
     type = "structure",
+    id = "UpdateProblemInput",
     members = {
         ProblemId = {
             type = "string",
@@ -1609,10 +1690,12 @@ M.UpdateProblemInput = {
 
 M.UpdateProblemOutput = {
     type = "structure",
+    id = "UpdateProblemOutput",
 }
 
 M.UpdateWorkloadInput = {
     type = "structure",
+    id = "UpdateWorkloadInput",
     members = {
         ResourceGroupName = {
             type = "string",
@@ -1637,6 +1720,7 @@ M.UpdateWorkloadInput = {
 
 M.UpdateWorkloadOutput = {
     type = "structure",
+    id = "UpdateWorkloadOutput",
     members = {
         WorkloadId = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptChoice = {
     type = "structure",
+    id = "AcceptChoice",
     members = {
         predictionTarget = {
             type = "string",
@@ -20,6 +21,7 @@ M.AcceptChoice = {
 
 M.AcceptedAssetScope = {
     type = "structure",
+    id = "AcceptedAssetScope",
     members = {
         assetId = {
             type = "string",
@@ -44,6 +46,7 @@ M.AcceptRuleBehavior = {
 
 M.AcceptRule = {
     type = "structure",
+    id = "AcceptRule",
     members = {
         rule = {
             type = "string",
@@ -56,6 +59,7 @@ M.AcceptRule = {
 
 M.AcceptPredictionsInput = {
     type = "structure",
+    id = "AcceptPredictionsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -93,6 +97,7 @@ M.AcceptPredictionsInput = {
 
 M.AcceptPredictionsOutput = {
     type = "structure",
+    id = "AcceptPredictionsOutput",
     members = {
         domainId = {
             type = "string",
@@ -117,6 +122,7 @@ M.AcceptPredictionsOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -130,6 +136,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -143,6 +150,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -156,6 +164,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -169,6 +178,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -182,6 +192,7 @@ M.ThrottlingException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -195,6 +206,7 @@ M.UnauthorizedException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -213,6 +225,7 @@ M.S3Permission = {
 
 M.Permissions = {
     type = "union",
+    id = "Permissions",
     members = {
         s3 = {
             type = "list",
@@ -223,6 +236,7 @@ M.Permissions = {
 
 M.AssetPermission = {
     type = "structure",
+    id = "AssetPermission",
     members = {
         assetId = {
             type = "string",
@@ -238,6 +252,7 @@ M.AssetPermission = {
 
 M.AcceptSubscriptionRequestInput = {
     type = "structure",
+    id = "AcceptSubscriptionRequestInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -269,6 +284,7 @@ M.AcceptSubscriptionRequestInput = {
 
 M.FormOutput = {
     type = "structure",
+    id = "FormOutput",
     members = {
         formName = {
             type = "string",
@@ -296,6 +312,7 @@ M.SubscriptionRequestStatus = {
 
 M.AssetScope = {
     type = "structure",
+    id = "AssetScope",
     members = {
         assetId = {
             type = "string",
@@ -324,6 +341,7 @@ M.AssetScope = {
 
 M.DetailedGlossaryTerm = {
     type = "structure",
+    id = "DetailedGlossaryTerm",
     members = {
         name = {
             type = "string",
@@ -336,6 +354,7 @@ M.DetailedGlossaryTerm = {
 
 M.SubscribedAssetListing = {
     type = "structure",
+    id = "SubscribedAssetListing",
     members = {
         entityId = {
             type = "string",
@@ -360,6 +379,7 @@ M.SubscribedAssetListing = {
 
 M.AssetInDataProductListingItem = {
     type = "structure",
+    id = "AssetInDataProductListingItem",
     members = {
         entityId = {
             type = "string",
@@ -375,6 +395,7 @@ M.AssetInDataProductListingItem = {
 
 M.SubscribedProductListing = {
     type = "structure",
+    id = "SubscribedProductListing",
     members = {
         entityId = {
             type = "string",
@@ -401,6 +422,7 @@ M.SubscribedProductListing = {
 
 M.SubscribedListingItem = {
     type = "union",
+    id = "SubscribedListingItem",
     members = {
         assetListing = M.SubscribedAssetListing,
         productListing = M.SubscribedProductListing,
@@ -409,6 +431,7 @@ M.SubscribedListingItem = {
 
 M.SubscribedListing = {
     type = "structure",
+    id = "SubscribedListing",
     members = {
         id = {
             type = "string",
@@ -448,6 +471,7 @@ M.SubscribedListing = {
 
 M.SubscribedGroup = {
     type = "structure",
+    id = "SubscribedGroup",
     members = {
         id = {
             type = "string",
@@ -460,6 +484,7 @@ M.SubscribedGroup = {
 
 M.SubscribedIamPrincipal = {
     type = "structure",
+    id = "SubscribedIamPrincipal",
     members = {
         principalArn = {
             type = "string",
@@ -469,6 +494,7 @@ M.SubscribedIamPrincipal = {
 
 M.SubscribedProject = {
     type = "structure",
+    id = "SubscribedProject",
     members = {
         id = {
             type = "string",
@@ -481,6 +507,7 @@ M.SubscribedProject = {
 
 M.IamUserProfileDetails = {
     type = "structure",
+    id = "IamUserProfileDetails",
     members = {
         arn = {
             type = "string",
@@ -499,6 +526,7 @@ M.IamUserProfileDetails = {
 
 M.SsoUserProfileDetails = {
     type = "structure",
+    id = "SsoUserProfileDetails",
     members = {
         username = {
             type = "string",
@@ -514,6 +542,7 @@ M.SsoUserProfileDetails = {
 
 M.UserProfileDetails = {
     type = "union",
+    id = "UserProfileDetails",
     members = {
         iam = M.IamUserProfileDetails,
         sso = M.SsoUserProfileDetails,
@@ -522,6 +551,7 @@ M.UserProfileDetails = {
 
 M.SubscribedUser = {
     type = "structure",
+    id = "SubscribedUser",
     members = {
         id = {
             type = "string",
@@ -532,6 +562,7 @@ M.SubscribedUser = {
 
 M.SubscribedPrincipal = {
     type = "union",
+    id = "SubscribedPrincipal",
     members = {
         project = M.SubscribedProject,
         user = M.SubscribedUser,
@@ -542,6 +573,7 @@ M.SubscribedPrincipal = {
 
 M.AcceptSubscriptionRequestOutput = {
     type = "structure",
+    id = "AcceptSubscriptionRequestOutput",
     members = {
         id = {
             type = "string",
@@ -620,6 +652,7 @@ M.AcceptSubscriptionRequestOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -633,6 +666,7 @@ M.ServiceQuotaExceededException = {
 
 M.AccountInfo = {
     type = "structure",
+    id = "AccountInfo",
     members = {
         awsAccountId = {
             type = "string",
@@ -659,6 +693,7 @@ M.ResolutionStrategy = {
 
 M.AccountPoolSummary = {
     type = "structure",
+    id = "AccountPoolSummary",
     members = {
         domainId = {
             type = "string",
@@ -686,6 +721,7 @@ M.AccountPoolSummary = {
 
 M.CustomAccountPoolHandler = {
     type = "structure",
+    id = "CustomAccountPoolHandler",
     members = {
         lambdaFunctionArn = {
             type = "string",
@@ -701,6 +737,7 @@ M.CustomAccountPoolHandler = {
 
 M.AccountSource = {
     type = "union",
+    id = "AccountSource",
     members = {
         accounts = {
             type = "list",
@@ -712,6 +749,7 @@ M.AccountSource = {
 
 M.AwsConsoleLinkParameters = {
     type = "structure",
+    id = "AwsConsoleLinkParameters",
     members = {
         uri = {
             type = "string",
@@ -721,6 +759,7 @@ M.AwsConsoleLinkParameters = {
 
 M.ActionParameters = {
     type = "union",
+    id = "ActionParameters",
     members = {
         awsConsoleLink = M.AwsConsoleLinkParameters,
     },
@@ -732,6 +771,7 @@ M.DataZoneEntityType = {
 
 M.OwnerGroupProperties = {
     type = "structure",
+    id = "OwnerGroupProperties",
     members = {
         groupIdentifier = {
             type = "string",
@@ -744,6 +784,7 @@ M.OwnerGroupProperties = {
 
 M.OwnerUserProperties = {
     type = "structure",
+    id = "OwnerUserProperties",
     members = {
         userIdentifier = {
             type = "string",
@@ -756,6 +797,7 @@ M.OwnerUserProperties = {
 
 M.OwnerProperties = {
     type = "union",
+    id = "OwnerProperties",
     members = {
         user = M.OwnerUserProperties,
         group = M.OwnerGroupProperties,
@@ -764,6 +806,7 @@ M.OwnerProperties = {
 
 M.AddEntityOwnerInput = {
     type = "structure",
+    id = "AddEntityOwnerInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -800,10 +843,12 @@ M.AddEntityOwnerInput = {
 
 M.AddEntityOwnerOutput = {
     type = "structure",
+    id = "AddEntityOwnerOutput",
 }
 
 M.AdditionalAttributes = {
     type = "structure",
+    id = "AdditionalAttributes",
     members = {
         formNames = {
             type = "list",
@@ -814,6 +859,7 @@ M.AdditionalAttributes = {
 
 M.AddToProjectMemberPoolPolicyGrantDetail = {
     type = "structure",
+    id = "AddToProjectMemberPoolPolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -823,6 +869,7 @@ M.AddToProjectMemberPoolPolicyGrantDetail = {
 
 M.CreateAssetTypePolicyGrantDetail = {
     type = "structure",
+    id = "CreateAssetTypePolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -832,6 +879,7 @@ M.CreateAssetTypePolicyGrantDetail = {
 
 M.CreateDomainUnitPolicyGrantDetail = {
     type = "structure",
+    id = "CreateDomainUnitPolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -841,10 +889,12 @@ M.CreateDomainUnitPolicyGrantDetail = {
 
 M.Unit = {
     type = "structure",
+    id = "Unit",
 }
 
 M.CreateEnvironmentProfilePolicyGrantDetail = {
     type = "structure",
+    id = "CreateEnvironmentProfilePolicyGrantDetail",
     members = {
         domainUnitId = {
             type = "string",
@@ -854,6 +904,7 @@ M.CreateEnvironmentProfilePolicyGrantDetail = {
 
 M.CreateFormTypePolicyGrantDetail = {
     type = "structure",
+    id = "CreateFormTypePolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -863,6 +914,7 @@ M.CreateFormTypePolicyGrantDetail = {
 
 M.CreateGlossaryPolicyGrantDetail = {
     type = "structure",
+    id = "CreateGlossaryPolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -872,6 +924,7 @@ M.CreateGlossaryPolicyGrantDetail = {
 
 M.CreateProjectPolicyGrantDetail = {
     type = "structure",
+    id = "CreateProjectPolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -881,6 +934,7 @@ M.CreateProjectPolicyGrantDetail = {
 
 M.CreateProjectFromProjectProfilePolicyGrantDetail = {
     type = "structure",
+    id = "CreateProjectFromProjectProfilePolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -894,6 +948,7 @@ M.CreateProjectFromProjectProfilePolicyGrantDetail = {
 
 M.OverrideDomainUnitOwnersPolicyGrantDetail = {
     type = "structure",
+    id = "OverrideDomainUnitOwnersPolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -903,6 +958,7 @@ M.OverrideDomainUnitOwnersPolicyGrantDetail = {
 
 M.OverrideProjectOwnersPolicyGrantDetail = {
     type = "structure",
+    id = "OverrideProjectOwnersPolicyGrantDetail",
     members = {
         includeChildDomainUnits = {
             type = "boolean",
@@ -912,6 +968,7 @@ M.OverrideProjectOwnersPolicyGrantDetail = {
 
 M.UseAssetTypePolicyGrantDetail = {
     type = "structure",
+    id = "UseAssetTypePolicyGrantDetail",
     members = {
         domainUnitId = {
             type = "string",
@@ -921,6 +978,7 @@ M.UseAssetTypePolicyGrantDetail = {
 
 M.PolicyGrantDetail = {
     type = "union",
+    id = "PolicyGrantDetail",
     members = {
         createDomainUnit = M.CreateDomainUnitPolicyGrantDetail,
         overrideDomainUnitOwners = M.OverrideDomainUnitOwnersPolicyGrantDetail,
@@ -969,10 +1027,12 @@ M.DomainUnitDesignation = {
 
 M.AllDomainUnitsGrantFilter = {
     type = "structure",
+    id = "AllDomainUnitsGrantFilter",
 }
 
 M.DomainUnitGrantFilter = {
     type = "union",
+    id = "DomainUnitGrantFilter",
     members = {
         allDomainUnitsGrantFilter = M.AllDomainUnitsGrantFilter,
     },
@@ -980,6 +1040,7 @@ M.DomainUnitGrantFilter = {
 
 M.DomainUnitPolicyGrantPrincipal = {
     type = "structure",
+    id = "DomainUnitPolicyGrantPrincipal",
     members = {
         domainUnitDesignation = {
             type = "string",
@@ -996,6 +1057,7 @@ M.DomainUnitPolicyGrantPrincipal = {
 
 M.GroupPolicyGrantPrincipal = {
     type = "union",
+    id = "GroupPolicyGrantPrincipal",
     members = {
         groupIdentifier = {
             type = "string",
@@ -1011,6 +1073,7 @@ M.ProjectDesignation = {
 
 M.DomainUnitFilterForProject = {
     type = "structure",
+    id = "DomainUnitFilterForProject",
     members = {
         domainUnit = {
             type = "string",
@@ -1029,6 +1092,7 @@ M.DomainUnitFilterForProject = {
 
 M.ProjectGrantFilter = {
     type = "union",
+    id = "ProjectGrantFilter",
     members = {
         domainUnitFilter = M.DomainUnitFilterForProject,
     },
@@ -1036,6 +1100,7 @@ M.ProjectGrantFilter = {
 
 M.ProjectPolicyGrantPrincipal = {
     type = "structure",
+    id = "ProjectPolicyGrantPrincipal",
     members = {
         projectDesignation = {
             type = "string",
@@ -1052,10 +1117,12 @@ M.ProjectPolicyGrantPrincipal = {
 
 M.AllUsersGrantFilter = {
     type = "structure",
+    id = "AllUsersGrantFilter",
 }
 
 M.UserPolicyGrantPrincipal = {
     type = "union",
+    id = "UserPolicyGrantPrincipal",
     members = {
         userIdentifier = {
             type = "string",
@@ -1066,6 +1133,7 @@ M.UserPolicyGrantPrincipal = {
 
 M.PolicyGrantPrincipal = {
     type = "union",
+    id = "PolicyGrantPrincipal",
     members = {
         user = M.UserPolicyGrantPrincipal,
         group = M.GroupPolicyGrantPrincipal,
@@ -1076,6 +1144,7 @@ M.PolicyGrantPrincipal = {
 
 M.AddPolicyGrantInput = {
     type = "structure",
+    id = "AddPolicyGrantInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -1121,6 +1190,7 @@ M.AddPolicyGrantInput = {
 
 M.AddPolicyGrantOutput = {
     type = "structure",
+    id = "AddPolicyGrantOutput",
     members = {
         grantId = {
             type = "string",
@@ -1130,6 +1200,7 @@ M.AddPolicyGrantOutput = {
 
 M.AggregationListItem = {
     type = "structure",
+    id = "AggregationListItem",
     members = {
         attribute = {
             type = "string",
@@ -1145,6 +1216,7 @@ M.AggregationListItem = {
 
 M.AggregationOutputItem = {
     type = "structure",
+    id = "AggregationOutputItem",
     members = {
         value = {
             type = "string",
@@ -1160,6 +1232,7 @@ M.AggregationOutputItem = {
 
 M.AggregationOutput = {
     type = "structure",
+    id = "AggregationOutput",
     members = {
         attribute = {
             type = "string",
@@ -1176,6 +1249,7 @@ M.AggregationOutput = {
 
 M.AmazonQPropertiesInput = {
     type = "structure",
+    id = "AmazonQPropertiesInput",
     members = {
         isEnabled = {
             type = "boolean",
@@ -1194,6 +1268,7 @@ M.AmazonQPropertiesInput = {
 
 M.AmazonQPropertiesOutput = {
     type = "structure",
+    id = "AmazonQPropertiesOutput",
     members = {
         isEnabled = {
             type = "boolean",
@@ -1212,6 +1287,7 @@ M.AmazonQPropertiesOutput = {
 
 M.AmazonQPropertiesPatch = {
     type = "structure",
+    id = "AmazonQPropertiesPatch",
     members = {
         isEnabled = {
             type = "boolean",
@@ -1236,6 +1312,7 @@ M.ListingStatus = {
 
 M.AssetListingDetails = {
     type = "structure",
+    id = "AssetListingDetails",
     members = {
         listingId = {
             type = "string",
@@ -1254,6 +1331,7 @@ M.AssetListingDetails = {
 
 M.FormInput = {
     type = "structure",
+    id = "FormInput",
     members = {
         formName = {
             type = "string",
@@ -1275,6 +1353,7 @@ M.FormInput = {
 
 M.BusinessNameGenerationConfiguration = {
     type = "structure",
+    id = "BusinessNameGenerationConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -1284,6 +1363,7 @@ M.BusinessNameGenerationConfiguration = {
 
 M.PredictionConfiguration = {
     type = "structure",
+    id = "PredictionConfiguration",
     members = {
         businessNameGeneration = M.BusinessNameGenerationConfiguration,
     },
@@ -1291,6 +1371,7 @@ M.PredictionConfiguration = {
 
 M.CreateAssetInput = {
     type = "structure",
+    id = "CreateAssetInput",
     members = {
         name = {
             type = "string",
@@ -1346,6 +1427,7 @@ M.CreateAssetInput = {
 
 M.TimeSeriesDataPointSummaryFormOutput = {
     type = "structure",
+    id = "TimeSeriesDataPointSummaryFormOutput",
     members = {
         formName = {
             type = "string",
@@ -1379,6 +1461,7 @@ M.TimeSeriesDataPointSummaryFormOutput = {
 
 M.CreateAssetOutput = {
     type = "structure",
+    id = "CreateAssetOutput",
     members = {
         id = {
             type = "string",
@@ -1470,6 +1553,7 @@ M.CreateAssetOutput = {
 
 M.CreateAssetRevisionInput = {
     type = "structure",
+    id = "CreateAssetRevisionInput",
     members = {
         name = {
             type = "string",
@@ -1517,6 +1601,7 @@ M.CreateAssetRevisionInput = {
 
 M.CreateAssetRevisionOutput = {
     type = "structure",
+    id = "CreateAssetRevisionOutput",
     members = {
         id = {
             type = "string",
@@ -1608,6 +1693,7 @@ M.CreateAssetRevisionOutput = {
 
 M.DeleteAssetInput = {
     type = "structure",
+    id = "DeleteAssetInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -1628,10 +1714,12 @@ M.DeleteAssetInput = {
 
 M.DeleteAssetOutput = {
     type = "structure",
+    id = "DeleteAssetOutput",
 }
 
 M.GetAssetInput = {
     type = "structure",
+    id = "GetAssetInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -1658,6 +1746,7 @@ M.GetAssetInput = {
 
 M.GetAssetOutput = {
     type = "structure",
+    id = "GetAssetOutput",
     members = {
         id = {
             type = "string",
@@ -1748,6 +1837,7 @@ M.GetAssetOutput = {
 
 M.ColumnFilterConfiguration = {
     type = "structure",
+    id = "ColumnFilterConfiguration",
     members = {
         includedColumnNames = {
             type = "list",
@@ -1758,6 +1848,7 @@ M.ColumnFilterConfiguration = {
 
 M.EqualToExpression = {
     type = "structure",
+    id = "EqualToExpression",
     members = {
         columnName = {
             type = "string",
@@ -1776,6 +1867,7 @@ M.EqualToExpression = {
 
 M.GreaterThanExpression = {
     type = "structure",
+    id = "GreaterThanExpression",
     members = {
         columnName = {
             type = "string",
@@ -1794,6 +1886,7 @@ M.GreaterThanExpression = {
 
 M.GreaterThanOrEqualToExpression = {
     type = "structure",
+    id = "GreaterThanOrEqualToExpression",
     members = {
         columnName = {
             type = "string",
@@ -1812,6 +1905,7 @@ M.GreaterThanOrEqualToExpression = {
 
 M.InExpression = {
     type = "structure",
+    id = "InExpression",
     members = {
         columnName = {
             type = "string",
@@ -1831,6 +1925,7 @@ M.InExpression = {
 
 M.IsNotNullExpression = {
     type = "structure",
+    id = "IsNotNullExpression",
     members = {
         columnName = {
             type = "string",
@@ -1843,6 +1938,7 @@ M.IsNotNullExpression = {
 
 M.IsNullExpression = {
     type = "structure",
+    id = "IsNullExpression",
     members = {
         columnName = {
             type = "string",
@@ -1855,6 +1951,7 @@ M.IsNullExpression = {
 
 M.LessThanExpression = {
     type = "structure",
+    id = "LessThanExpression",
     members = {
         columnName = {
             type = "string",
@@ -1873,6 +1970,7 @@ M.LessThanExpression = {
 
 M.LessThanOrEqualToExpression = {
     type = "structure",
+    id = "LessThanOrEqualToExpression",
     members = {
         columnName = {
             type = "string",
@@ -1891,6 +1989,7 @@ M.LessThanOrEqualToExpression = {
 
 M.LikeExpression = {
     type = "structure",
+    id = "LikeExpression",
     members = {
         columnName = {
             type = "string",
@@ -1909,6 +2008,7 @@ M.LikeExpression = {
 
 M.NotEqualToExpression = {
     type = "structure",
+    id = "NotEqualToExpression",
     members = {
         columnName = {
             type = "string",
@@ -1927,6 +2027,7 @@ M.NotEqualToExpression = {
 
 M.NotInExpression = {
     type = "structure",
+    id = "NotInExpression",
     members = {
         columnName = {
             type = "string",
@@ -1946,6 +2047,7 @@ M.NotInExpression = {
 
 M.NotLikeExpression = {
     type = "structure",
+    id = "NotLikeExpression",
     members = {
         columnName = {
             type = "string",
@@ -1964,6 +2066,7 @@ M.NotLikeExpression = {
 
 M.RowFilterExpression = {
     type = "union",
+    id = "RowFilterExpression",
     members = {
         equalTo = M.EqualToExpression,
         notEqualTo = M.NotEqualToExpression,
@@ -1987,6 +2090,7 @@ M.FilterStatus = {
 
 M.AssetFilterSummary = {
     type = "structure",
+    id = "AssetFilterSummary",
     members = {
         id = {
             type = "string",
@@ -2036,6 +2140,7 @@ M.AssetFilterSummary = {
 
 M.MatchOffset = {
     type = "structure",
+    id = "MatchOffset",
     members = {
         startOffset = {
             type = "integer",
@@ -2048,6 +2153,7 @@ M.MatchOffset = {
 
 M.TextMatchItem = {
     type = "structure",
+    id = "TextMatchItem",
     members = {
         attribute = {
             type = "string",
@@ -2064,6 +2170,7 @@ M.TextMatchItem = {
 
 M.MatchRationaleItem = {
     type = "union",
+    id = "MatchRationaleItem",
     members = {
         textMatches = {
             type = "list",
@@ -2074,6 +2181,7 @@ M.MatchRationaleItem = {
 
 M.AssetItemAdditionalAttributes = {
     type = "structure",
+    id = "AssetItemAdditionalAttributes",
     members = {
         formsOutput = {
             type = "list",
@@ -2096,6 +2204,7 @@ M.AssetItemAdditionalAttributes = {
 
 M.AssetItem = {
     type = "structure",
+    id = "AssetItem",
     members = {
         domainId = {
             type = "string",
@@ -2165,6 +2274,7 @@ M.AssetItem = {
 
 M.AssetListing = {
     type = "structure",
+    id = "AssetListing",
     members = {
         assetId = {
             type = "string",
@@ -2201,6 +2311,7 @@ M.AssetListing = {
 
 M.AssetListingItemAdditionalAttributes = {
     type = "structure",
+    id = "AssetListingItemAdditionalAttributes",
     members = {
         forms = {
             type = "string",
@@ -2218,6 +2329,7 @@ M.AssetListingItemAdditionalAttributes = {
 
 M.AssetListingItem = {
     type = "structure",
+    id = "AssetListingItem",
     members = {
         listingId = {
             type = "string",
@@ -2266,6 +2378,7 @@ M.AssetListingItem = {
 
 M.AssetRevision = {
     type = "structure",
+    id = "AssetRevision",
     members = {
         domainId = {
             type = "string",
@@ -2287,6 +2400,7 @@ M.AssetRevision = {
 
 M.AssetTargetNameMap = {
     type = "structure",
+    id = "AssetTargetNameMap",
     members = {
         assetId = {
             type = "string",
@@ -2305,6 +2419,7 @@ M.AssetTargetNameMap = {
 
 M.FormEntryInput = {
     type = "structure",
+    id = "FormEntryInput",
     members = {
         typeIdentifier = {
             type = "string",
@@ -2326,6 +2441,7 @@ M.FormEntryInput = {
 
 M.CreateAssetTypeInput = {
     type = "structure",
+    id = "CreateAssetTypeInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -2362,6 +2478,7 @@ M.CreateAssetTypeInput = {
 
 M.FormEntryOutput = {
     type = "structure",
+    id = "FormEntryOutput",
     members = {
         typeName = {
             type = "string",
@@ -2383,6 +2500,7 @@ M.FormEntryOutput = {
 
 M.CreateAssetTypeOutput = {
     type = "structure",
+    id = "CreateAssetTypeOutput",
     members = {
         domainId = {
             type = "string",
@@ -2439,6 +2557,7 @@ M.CreateAssetTypeOutput = {
 
 M.DeleteAssetTypeInput = {
     type = "structure",
+    id = "DeleteAssetTypeInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -2459,10 +2578,12 @@ M.DeleteAssetTypeInput = {
 
 M.DeleteAssetTypeOutput = {
     type = "structure",
+    id = "DeleteAssetTypeOutput",
 }
 
 M.GetAssetTypeInput = {
     type = "structure",
+    id = "GetAssetTypeInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -2489,6 +2610,7 @@ M.GetAssetTypeInput = {
 
 M.GetAssetTypeOutput = {
     type = "structure",
+    id = "GetAssetTypeOutput",
     members = {
         domainId = {
             type = "string",
@@ -2548,6 +2670,7 @@ M.GetAssetTypeOutput = {
 
 M.AssetTypeItem = {
     type = "structure",
+    id = "AssetTypeItem",
     members = {
         domainId = {
             type = "string",
@@ -2612,6 +2735,7 @@ M.RuleScopeSelectionMode = {
 
 M.AssetTypesForRule = {
     type = "structure",
+    id = "AssetTypesForRule",
     members = {
         selectionMode = {
             type = "string",
@@ -2628,6 +2752,7 @@ M.AssetTypesForRule = {
 
 M.AssociateEnvironmentRoleInput = {
     type = "structure",
+    id = "AssociateEnvironmentRoleInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -2655,6 +2780,7 @@ M.AssociateEnvironmentRoleInput = {
 
 M.AssociateEnvironmentRoleOutput = {
     type = "structure",
+    id = "AssociateEnvironmentRoleOutput",
 }
 
 M.GovernedEntityType = {
@@ -2663,6 +2789,7 @@ M.GovernedEntityType = {
 
 M.AssociateGovernedTermsInput = {
     type = "structure",
+    id = "AssociateGovernedTermsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -2697,10 +2824,12 @@ M.AssociateGovernedTermsInput = {
 
 M.AssociateGovernedTermsOutput = {
     type = "structure",
+    id = "AssociateGovernedTermsOutput",
 }
 
 M.AthenaPropertiesInput = {
     type = "structure",
+    id = "AthenaPropertiesInput",
     members = {
         workgroupName = {
             type = "string",
@@ -2710,6 +2839,7 @@ M.AthenaPropertiesInput = {
 
 M.AthenaPropertiesOutput = {
     type = "structure",
+    id = "AthenaPropertiesOutput",
     members = {
         workgroupName = {
             type = "string",
@@ -2719,6 +2849,7 @@ M.AthenaPropertiesOutput = {
 
 M.AthenaPropertiesPatch = {
     type = "structure",
+    id = "AthenaPropertiesPatch",
     members = {
         workgroupName = {
             type = "string",
@@ -2733,6 +2864,7 @@ M.AttributeEntityType = {
 
 M.AttributeError = {
     type = "structure",
+    id = "AttributeError",
     members = {
         attributeIdentifier = {
             type = "string",
@@ -2757,6 +2889,7 @@ M.AttributeError = {
 
 M.AttributeInput = {
     type = "structure",
+    id = "AttributeInput",
     members = {
         attributeIdentifier = {
             type = "string",
@@ -2782,6 +2915,7 @@ M.AuthenticationType = {
 
 M.AuthorizationCodeProperties = {
     type = "structure",
+    id = "AuthorizationCodeProperties",
     members = {
         authorizationCode = {
             type = "string",
@@ -2794,6 +2928,7 @@ M.AuthorizationCodeProperties = {
 
 M.OAuth2ClientApplication = {
     type = "structure",
+    id = "OAuth2ClientApplication",
     members = {
         userManagedClientApplicationClientId = {
             type = "string",
@@ -2806,6 +2941,7 @@ M.OAuth2ClientApplication = {
 
 M.GlueOAuth2Credentials = {
     type = "structure",
+    id = "GlueOAuth2Credentials",
     members = {
         userManagedClientApplicationClientSecret = {
             type = "string",
@@ -2830,6 +2966,7 @@ M.OAuth2GrantType = {
 
 M.OAuth2Properties = {
     type = "structure",
+    id = "OAuth2Properties",
     members = {
         oAuth2GrantType = {
             type = "string",
@@ -2850,6 +2987,7 @@ M.OAuth2Properties = {
 
 M.AuthenticationConfiguration = {
     type = "structure",
+    id = "AuthenticationConfiguration",
     members = {
         authenticationType = {
             type = "string",
@@ -2863,6 +3001,7 @@ M.AuthenticationConfiguration = {
 
 M.BasicAuthenticationCredentials = {
     type = "structure",
+    id = "BasicAuthenticationCredentials",
     members = {
         userName = {
             type = "string",
@@ -2875,6 +3014,7 @@ M.BasicAuthenticationCredentials = {
 
 M.AuthenticationConfigurationInput = {
     type = "structure",
+    id = "AuthenticationConfigurationInput",
     members = {
         authenticationType = {
             type = "string",
@@ -2897,6 +3037,7 @@ M.AuthenticationConfigurationInput = {
 
 M.AuthenticationConfigurationPatch = {
     type = "structure",
+    id = "AuthenticationConfigurationPatch",
     members = {
         secretArn = {
             type = "string",
@@ -2912,6 +3053,7 @@ M.AuthType = {
 
 M.AwsAccount = {
     type = "union",
+    id = "AwsAccount",
     members = {
         awsAccountId = {
             type = "string",
@@ -2924,6 +3066,7 @@ M.AwsAccount = {
 
 M.AwsLocation = {
     type = "structure",
+    id = "AwsLocation",
     members = {
         accessRole = {
             type = "string",
@@ -2942,6 +3085,7 @@ M.AwsLocation = {
 
 M.BatchGetAttributeOutput = {
     type = "structure",
+    id = "BatchGetAttributeOutput",
     members = {
         attributeIdentifier = {
             type = "string",
@@ -2958,6 +3102,7 @@ M.BatchGetAttributeOutput = {
 
 M.BatchGetAttributesMetadataInput = {
     type = "structure",
+    id = "BatchGetAttributesMetadataInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -2999,6 +3144,7 @@ M.BatchGetAttributesMetadataInput = {
 
 M.BatchGetAttributesMetadataOutput = {
     type = "structure",
+    id = "BatchGetAttributesMetadataOutput",
     members = {
         attributes = {
             type = "list",
@@ -3016,6 +3162,7 @@ M.BatchGetAttributesMetadataOutput = {
 
 M.BatchPutAttributeOutput = {
     type = "structure",
+    id = "BatchPutAttributeOutput",
     members = {
         attributeIdentifier = {
             type = "string",
@@ -3028,6 +3175,7 @@ M.BatchPutAttributeOutput = {
 
 M.BatchPutAttributesMetadataInput = {
     type = "structure",
+    id = "BatchPutAttributesMetadataInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -3068,6 +3216,7 @@ M.BatchPutAttributesMetadataInput = {
 
 M.BatchPutAttributesMetadataOutput = {
     type = "structure",
+    id = "BatchPutAttributesMetadataOutput",
     members = {
         errors = {
             type = "list",
@@ -3082,6 +3231,7 @@ M.BatchPutAttributesMetadataOutput = {
 
 M.CancelMetadataGenerationRunInput = {
     type = "structure",
+    id = "CancelMetadataGenerationRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -3102,10 +3252,12 @@ M.CancelMetadataGenerationRunInput = {
 
 M.CancelMetadataGenerationRunOutput = {
     type = "structure",
+    id = "CancelMetadataGenerationRunOutput",
 }
 
 M.CancelSubscriptionInput = {
     type = "structure",
+    id = "CancelSubscriptionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -3132,6 +3284,7 @@ M.SubscriptionStatus = {
 
 M.CancelSubscriptionOutput = {
     type = "structure",
+    id = "CancelSubscriptionOutput",
     members = {
         id = {
             type = "string",
@@ -3189,6 +3342,7 @@ M.CancelSubscriptionOutput = {
 
 M.CellInformation = {
     type = "structure",
+    id = "CellInformation",
 }
 
 M.ChangeAction = {
@@ -3198,6 +3352,7 @@ M.ChangeAction = {
 
 M.CloudFormationProperties = {
     type = "structure",
+    id = "CloudFormationProperties",
     members = {
         templateUrl = {
             type = "string",
@@ -3210,6 +3365,7 @@ M.CloudFormationProperties = {
 
 M.ComputeConfig = {
     type = "structure",
+    id = "ComputeConfig",
     members = {
         instanceType = {
             type = "string",
@@ -3228,6 +3384,7 @@ M.ComputeEnvironments = {
 
 M.ConfigurableActionParameter = {
     type = "structure",
+    id = "ConfigurableActionParameter",
     members = {
         key = {
             type = "string",
@@ -3245,6 +3402,7 @@ M.ConfigurableActionTypeAuthorization = {
 
 M.ConfigurableEnvironmentAction = {
     type = "structure",
+    id = "ConfigurableEnvironmentAction",
     members = {
         type = {
             type = "string",
@@ -3267,6 +3425,7 @@ M.ConfigurableEnvironmentAction = {
 
 M.Configuration = {
     type = "structure",
+    id = "Configuration",
     members = {
         classification = {
             type = "string",
@@ -3286,6 +3445,7 @@ M.ConfigurationStatus = {
 
 M.ConnectionCredentials = {
     type = "structure",
+    id = "ConnectionCredentials",
     members = {
         accessKeyId = {
             type = "string",
@@ -3323,6 +3483,7 @@ M.GlueConnectionType = {
 
 M.PhysicalConnectionRequirements = {
     type = "structure",
+    id = "PhysicalConnectionRequirements",
     members = {
         subnetId = {
             type = "string",
@@ -3343,6 +3504,7 @@ M.PhysicalConnectionRequirements = {
 
 M.GlueConnectionInput = {
     type = "structure",
+    id = "GlueConnectionInput",
     members = {
         connectionProperties = {
             type = "map",
@@ -3390,6 +3552,7 @@ M.GlueConnectionInput = {
 
 M.GluePropertiesInput = {
     type = "structure",
+    id = "GluePropertiesInput",
     members = {
         glueConnectionInput = M.GlueConnectionInput,
     },
@@ -3397,6 +3560,7 @@ M.GluePropertiesInput = {
 
 M.HyperPodPropertiesInput = {
     type = "structure",
+    id = "HyperPodPropertiesInput",
     members = {
         clusterName = {
             type = "string",
@@ -3409,6 +3573,7 @@ M.HyperPodPropertiesInput = {
 
 M.IamPropertiesInput = {
     type = "structure",
+    id = "IamPropertiesInput",
     members = {
         glueLineageSyncEnabled = {
             type = "boolean",
@@ -3418,6 +3583,7 @@ M.IamPropertiesInput = {
 
 M.LakehousePropertiesInput = {
     type = "structure",
+    id = "LakehousePropertiesInput",
     members = {
         glueLineageSyncEnabled = {
             type = "boolean",
@@ -3427,6 +3593,7 @@ M.LakehousePropertiesInput = {
 
 M.MlflowPropertiesInput = {
     type = "structure",
+    id = "MlflowPropertiesInput",
     members = {
         trackingServerArn = {
             type = "string",
@@ -3436,6 +3603,7 @@ M.MlflowPropertiesInput = {
 
 M.UsernamePassword = {
     type = "structure",
+    id = "UsernamePassword",
     members = {
         password = {
             type = "string",
@@ -3454,6 +3622,7 @@ M.UsernamePassword = {
 
 M.RedshiftCredentials = {
     type = "union",
+    id = "RedshiftCredentials",
     members = {
         secretArn = {
             type = "string",
@@ -3464,6 +3633,7 @@ M.RedshiftCredentials = {
 
 M.LineageSyncSchedule = {
     type = "structure",
+    id = "LineageSyncSchedule",
     members = {
         schedule = {
             type = "string",
@@ -3473,6 +3643,7 @@ M.LineageSyncSchedule = {
 
 M.RedshiftLineageSyncConfigurationInput = {
     type = "structure",
+    id = "RedshiftLineageSyncConfigurationInput",
     members = {
         enabled = {
             type = "boolean",
@@ -3483,6 +3654,7 @@ M.RedshiftLineageSyncConfigurationInput = {
 
 M.RedshiftStorageProperties = {
     type = "union",
+    id = "RedshiftStorageProperties",
     members = {
         clusterName = {
             type = "string",
@@ -3495,6 +3667,7 @@ M.RedshiftStorageProperties = {
 
 M.RedshiftPropertiesInput = {
     type = "structure",
+    id = "RedshiftPropertiesInput",
     members = {
         storage = M.RedshiftStorageProperties,
         databaseName = {
@@ -3513,6 +3686,7 @@ M.RedshiftPropertiesInput = {
 
 M.S3PropertiesInput = {
     type = "structure",
+    id = "S3PropertiesInput",
     members = {
         s3Uri = {
             type = "string",
@@ -3531,6 +3705,7 @@ M.S3PropertiesInput = {
 
 M.SparkEmrPropertiesInput = {
     type = "structure",
+    id = "SparkEmrPropertiesInput",
     members = {
         computeArn = {
             type = "string",
@@ -3561,6 +3736,7 @@ M.SparkEmrPropertiesInput = {
 
 M.SparkGlueArgs = {
     type = "structure",
+    id = "SparkGlueArgs",
     members = {
         connection = {
             type = "string",
@@ -3570,6 +3746,7 @@ M.SparkGlueArgs = {
 
 M.SparkGluePropertiesInput = {
     type = "structure",
+    id = "SparkGluePropertiesInput",
     members = {
         additionalArgs = M.SparkGlueArgs,
         glueConnectionName = {
@@ -3602,6 +3779,7 @@ M.SparkGluePropertiesInput = {
 
 M.WorkflowsMwaaPropertiesInput = {
     type = "structure",
+    id = "WorkflowsMwaaPropertiesInput",
     members = {
         mwaaEnvironmentName = {
             type = "string",
@@ -3611,10 +3789,12 @@ M.WorkflowsMwaaPropertiesInput = {
 
 M.WorkflowsServerlessPropertiesInput = {
     type = "structure",
+    id = "WorkflowsServerlessPropertiesInput",
 }
 
 M.ConnectionPropertiesInput = {
     type = "union",
+    id = "ConnectionPropertiesInput",
     members = {
         athenaProperties = M.AthenaPropertiesInput,
         glueProperties = M.GluePropertiesInput,
@@ -3645,6 +3825,7 @@ M.ConnectionStatus = {
 
 M.GluePropertiesOutput = {
     type = "structure",
+    id = "GluePropertiesOutput",
     members = {
         status = {
             type = "string",
@@ -3662,6 +3843,7 @@ M.HyperPodOrchestrator = {
 
 M.HyperPodPropertiesOutput = {
     type = "structure",
+    id = "HyperPodPropertiesOutput",
     members = {
         clusterName = {
             type = "string",
@@ -3680,6 +3862,7 @@ M.HyperPodPropertiesOutput = {
 
 M.IamPropertiesOutput = {
     type = "structure",
+    id = "IamPropertiesOutput",
     members = {
         environmentId = {
             type = "string",
@@ -3692,6 +3875,7 @@ M.IamPropertiesOutput = {
 
 M.LakehousePropertiesOutput = {
     type = "structure",
+    id = "LakehousePropertiesOutput",
     members = {
         glueLineageSyncEnabled = {
             type = "boolean",
@@ -3701,6 +3885,7 @@ M.LakehousePropertiesOutput = {
 
 M.MlflowPropertiesOutput = {
     type = "structure",
+    id = "MlflowPropertiesOutput",
     members = {
         trackingServerArn = {
             type = "string",
@@ -3710,6 +3895,7 @@ M.MlflowPropertiesOutput = {
 
 M.RedshiftLineageSyncConfigurationOutput = {
     type = "structure",
+    id = "RedshiftLineageSyncConfigurationOutput",
     members = {
         lineageJobId = {
             type = "string",
@@ -3723,6 +3909,7 @@ M.RedshiftLineageSyncConfigurationOutput = {
 
 M.RedshiftPropertiesOutput = {
     type = "structure",
+    id = "RedshiftPropertiesOutput",
     members = {
         storage = M.RedshiftStorageProperties,
         credentials = M.RedshiftCredentials,
@@ -3750,6 +3937,7 @@ M.RedshiftPropertiesOutput = {
 
 M.S3PropertiesOutput = {
     type = "structure",
+    id = "S3PropertiesOutput",
     members = {
         s3Uri = {
             type = "string",
@@ -3779,6 +3967,7 @@ M.GovernanceType = {
 
 M.ManagedEndpointCredentials = {
     type = "structure",
+    id = "ManagedEndpointCredentials",
     members = {
         id = {
             type = "string",
@@ -3791,6 +3980,7 @@ M.ManagedEndpointCredentials = {
 
 M.SparkEmrPropertiesOutput = {
     type = "structure",
+    id = "SparkEmrPropertiesOutput",
     members = {
         computeArn = {
             type = "string",
@@ -3838,6 +4028,7 @@ M.SparkEmrPropertiesOutput = {
 
 M.SparkGluePropertiesOutput = {
     type = "structure",
+    id = "SparkGluePropertiesOutput",
     members = {
         additionalArgs = M.SparkGlueArgs,
         glueConnectionName = {
@@ -3870,6 +4061,7 @@ M.SparkGluePropertiesOutput = {
 
 M.WorkflowsMwaaPropertiesOutput = {
     type = "structure",
+    id = "WorkflowsMwaaPropertiesOutput",
     members = {
         mwaaEnvironmentName = {
             type = "string",
@@ -3879,10 +4071,12 @@ M.WorkflowsMwaaPropertiesOutput = {
 
 M.WorkflowsServerlessPropertiesOutput = {
     type = "structure",
+    id = "WorkflowsServerlessPropertiesOutput",
 }
 
 M.ConnectionPropertiesOutput = {
     type = "union",
+    id = "ConnectionPropertiesOutput",
     members = {
         athenaProperties = M.AthenaPropertiesOutput,
         glueProperties = M.GluePropertiesOutput,
@@ -3902,6 +4096,7 @@ M.ConnectionPropertiesOutput = {
 
 M.GlueConnectionPatch = {
     type = "structure",
+    id = "GlueConnectionPatch",
     members = {
         description = {
             type = "string",
@@ -3917,6 +4112,7 @@ M.GlueConnectionPatch = {
 
 M.GluePropertiesPatch = {
     type = "structure",
+    id = "GluePropertiesPatch",
     members = {
         glueConnectionInput = M.GlueConnectionPatch,
     },
@@ -3924,6 +4120,7 @@ M.GluePropertiesPatch = {
 
 M.IamPropertiesPatch = {
     type = "structure",
+    id = "IamPropertiesPatch",
     members = {
         glueLineageSyncEnabled = {
             type = "boolean",
@@ -3933,6 +4130,7 @@ M.IamPropertiesPatch = {
 
 M.LakehousePropertiesPatch = {
     type = "structure",
+    id = "LakehousePropertiesPatch",
     members = {
         glueLineageSyncEnabled = {
             type = "boolean",
@@ -3942,6 +4140,7 @@ M.LakehousePropertiesPatch = {
 
 M.MlflowPropertiesPatch = {
     type = "structure",
+    id = "MlflowPropertiesPatch",
     members = {
         trackingServerArn = {
             type = "string",
@@ -3951,6 +4150,7 @@ M.MlflowPropertiesPatch = {
 
 M.RedshiftPropertiesPatch = {
     type = "structure",
+    id = "RedshiftPropertiesPatch",
     members = {
         storage = M.RedshiftStorageProperties,
         databaseName = {
@@ -3969,6 +4169,7 @@ M.RedshiftPropertiesPatch = {
 
 M.S3PropertiesPatch = {
     type = "structure",
+    id = "S3PropertiesPatch",
     members = {
         s3Uri = {
             type = "string",
@@ -3987,6 +4188,7 @@ M.S3PropertiesPatch = {
 
 M.SparkEmrPropertiesPatch = {
     type = "structure",
+    id = "SparkEmrPropertiesPatch",
     members = {
         computeArn = {
             type = "string",
@@ -4017,6 +4219,7 @@ M.SparkEmrPropertiesPatch = {
 
 M.ConnectionPropertiesPatch = {
     type = "union",
+    id = "ConnectionPropertiesPatch",
     members = {
         athenaProperties = M.AthenaPropertiesPatch,
         glueProperties = M.GluePropertiesPatch,
@@ -4062,6 +4265,7 @@ M.ConnectionType = {
 
 M.GlueConnection = {
     type = "structure",
+    id = "GlueConnection",
     members = {
         name = {
             type = "string",
@@ -4138,6 +4342,7 @@ M.Protocol = {
 
 M.PhysicalEndpoint = {
     type = "structure",
+    id = "PhysicalEndpoint",
     members = {
         awsLocation = M.AwsLocation,
         glueConnectionName = {
@@ -4168,6 +4373,7 @@ M.PhysicalEndpoint = {
 
 M.ConnectionSummary = {
     type = "structure",
+    id = "ConnectionSummary",
     members = {
         configurations = {
             type = "list",
@@ -4225,6 +4431,7 @@ M.ConnectionSummary = {
 
 M.CreateAccountPoolInput = {
     type = "structure",
+    id = "CreateAccountPoolInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -4256,6 +4463,7 @@ M.CreateAccountPoolInput = {
 
 M.CreateAccountPoolOutput = {
     type = "structure",
+    id = "CreateAccountPoolOutput",
     members = {
         domainId = {
             type = "string",
@@ -4304,6 +4512,7 @@ M.CreateAccountPoolOutput = {
 
 M.CreateConnectionInput = {
     type = "structure",
+    id = "CreateConnectionInput",
     members = {
         awsLocation = M.AwsLocation,
         clientToken = {
@@ -4347,6 +4556,7 @@ M.CreateConnectionInput = {
 
 M.CreateConnectionOutput = {
     type = "structure",
+    id = "CreateConnectionOutput",
     members = {
         connectionId = {
             type = "string",
@@ -4411,6 +4621,7 @@ M.DataProductItemType = {
 
 M.DataProductItem = {
     type = "structure",
+    id = "DataProductItem",
     members = {
         itemType = {
             type = "string",
@@ -4436,6 +4647,7 @@ M.DataProductItem = {
 
 M.CreateDataProductInput = {
     type = "structure",
+    id = "CreateDataProductInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -4488,6 +4700,7 @@ M.DataProductStatus = {
 
 M.CreateDataProductOutput = {
     type = "structure",
+    id = "CreateDataProductOutput",
     members = {
         domainId = {
             type = "string",
@@ -4558,6 +4771,7 @@ M.CreateDataProductOutput = {
 
 M.CreateDataProductRevisionInput = {
     type = "structure",
+    id = "CreateDataProductRevisionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -4605,6 +4819,7 @@ M.CreateDataProductRevisionInput = {
 
 M.CreateDataProductRevisionOutput = {
     type = "structure",
+    id = "CreateDataProductRevisionOutput",
     members = {
         domainId = {
             type = "string",
@@ -4680,6 +4895,7 @@ M.FilterExpressionType = {
 
 M.FilterExpression = {
     type = "structure",
+    id = "FilterExpression",
     members = {
         type = {
             type = "string",
@@ -4698,6 +4914,7 @@ M.FilterExpression = {
 
 M.RelationalFilterConfiguration = {
     type = "structure",
+    id = "RelationalFilterConfiguration",
     members = {
         databaseName = {
             type = "string",
@@ -4717,6 +4934,7 @@ M.RelationalFilterConfiguration = {
 
 M.GlueRunConfigurationInput = {
     type = "structure",
+    id = "GlueRunConfigurationInput",
     members = {
         dataAccessRole = {
             type = "string",
@@ -4739,6 +4957,7 @@ M.GlueRunConfigurationInput = {
 
 M.RedshiftCredentialConfiguration = {
     type = "structure",
+    id = "RedshiftCredentialConfiguration",
     members = {
         secretManagerArn = {
             type = "string",
@@ -4751,6 +4970,7 @@ M.RedshiftCredentialConfiguration = {
 
 M.RedshiftClusterStorage = {
     type = "structure",
+    id = "RedshiftClusterStorage",
     members = {
         clusterName = {
             type = "string",
@@ -4763,6 +4983,7 @@ M.RedshiftClusterStorage = {
 
 M.RedshiftServerlessStorage = {
     type = "structure",
+    id = "RedshiftServerlessStorage",
     members = {
         workgroupName = {
             type = "string",
@@ -4775,6 +4996,7 @@ M.RedshiftServerlessStorage = {
 
 M.RedshiftStorage = {
     type = "union",
+    id = "RedshiftStorage",
     members = {
         redshiftClusterSource = M.RedshiftClusterStorage,
         redshiftServerlessSource = M.RedshiftServerlessStorage,
@@ -4783,6 +5005,7 @@ M.RedshiftStorage = {
 
 M.RedshiftRunConfigurationInput = {
     type = "structure",
+    id = "RedshiftRunConfigurationInput",
     members = {
         dataAccessRole = {
             type = "string",
@@ -4801,6 +5024,7 @@ M.RedshiftRunConfigurationInput = {
 
 M.SageMakerRunConfigurationInput = {
     type = "structure",
+    id = "SageMakerRunConfigurationInput",
     members = {
         trackingAssets = {
             type = "map",
@@ -4815,6 +5039,7 @@ M.SageMakerRunConfigurationInput = {
 
 M.DataSourceConfigurationInput = {
     type = "union",
+    id = "DataSourceConfigurationInput",
     members = {
         glueRunConfiguration = M.GlueRunConfigurationInput,
         redshiftRunConfiguration = M.RedshiftRunConfigurationInput,
@@ -4829,6 +5054,7 @@ M.EnableSetting = {
 
 M.RecommendationConfiguration = {
     type = "structure",
+    id = "RecommendationConfiguration",
     members = {
         enableBusinessNameGeneration = {
             type = "boolean",
@@ -4905,6 +5131,7 @@ M.Timezone = {
 
 M.ScheduleConfiguration = {
     type = "structure",
+    id = "ScheduleConfiguration",
     members = {
         timezone = {
             type = "string",
@@ -4917,6 +5144,7 @@ M.ScheduleConfiguration = {
 
 M.CreateDataSourceInput = {
     type = "structure",
+    id = "CreateDataSourceInput",
     members = {
         name = {
             type = "string",
@@ -4976,6 +5204,7 @@ M.CreateDataSourceInput = {
 
 M.GlueRunConfigurationOutput = {
     type = "structure",
+    id = "GlueRunConfigurationOutput",
     members = {
         accountId = {
             type = "string",
@@ -5004,6 +5233,7 @@ M.GlueRunConfigurationOutput = {
 
 M.RedshiftRunConfigurationOutput = {
     type = "structure",
+    id = "RedshiftRunConfigurationOutput",
     members = {
         accountId = {
             type = "string",
@@ -5030,6 +5260,7 @@ M.RedshiftRunConfigurationOutput = {
 
 M.SageMakerRunConfigurationOutput = {
     type = "structure",
+    id = "SageMakerRunConfigurationOutput",
     members = {
         accountId = {
             type = "string",
@@ -5050,6 +5281,7 @@ M.SageMakerRunConfigurationOutput = {
 
 M.DataSourceConfigurationOutput = {
     type = "union",
+    id = "DataSourceConfigurationOutput",
     members = {
         glueRunConfiguration = M.GlueRunConfigurationOutput,
         redshiftRunConfiguration = M.RedshiftRunConfigurationOutput,
@@ -5069,6 +5301,7 @@ M.DataSourceErrorType = {
 
 M.DataSourceErrorMessage = {
     type = "structure",
+    id = "DataSourceErrorMessage",
     members = {
         errorType = {
             type = "string",
@@ -5103,6 +5336,7 @@ M.DataSourceStatus = {
 
 M.CreateDataSourceOutput = {
     type = "structure",
+    id = "CreateDataSourceOutput",
     members = {
         id = {
             type = "string",
@@ -5194,6 +5428,7 @@ M.UserAssignment = {
 
 M.SingleSignOn = {
     type = "structure",
+    id = "SingleSignOn",
     members = {
         type = {
             type = "string",
@@ -5209,6 +5444,7 @@ M.SingleSignOn = {
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         name = {
             type = "string",
@@ -5257,6 +5493,7 @@ M.DomainStatus = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         id = {
             type = "string",
@@ -5305,6 +5542,7 @@ M.CreateDomainOutput = {
 
 M.CreateDomainUnitInput = {
     type = "structure",
+    id = "CreateDomainUnitInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -5339,6 +5577,7 @@ M.CreateDomainUnitInput = {
 
 M.DomainUnitGroupProperties = {
     type = "structure",
+    id = "DomainUnitGroupProperties",
     members = {
         groupId = {
             type = "string",
@@ -5348,6 +5587,7 @@ M.DomainUnitGroupProperties = {
 
 M.DomainUnitUserProperties = {
     type = "structure",
+    id = "DomainUnitUserProperties",
     members = {
         userId = {
             type = "string",
@@ -5357,6 +5597,7 @@ M.DomainUnitUserProperties = {
 
 M.DomainUnitOwnerProperties = {
     type = "union",
+    id = "DomainUnitOwnerProperties",
     members = {
         user = M.DomainUnitUserProperties,
         group = M.DomainUnitGroupProperties,
@@ -5365,6 +5606,7 @@ M.DomainUnitOwnerProperties = {
 
 M.CreateDomainUnitOutput = {
     type = "structure",
+    id = "CreateDomainUnitOutput",
     members = {
         id = {
             type = "string",
@@ -5415,6 +5657,7 @@ M.CreateDomainUnitOutput = {
 
 M.EnvironmentParameter = {
     type = "structure",
+    id = "EnvironmentParameter",
     members = {
         name = {
             type = "string",
@@ -5427,6 +5670,7 @@ M.EnvironmentParameter = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         projectIdentifier = {
             type = "string",
@@ -5484,6 +5728,7 @@ M.CreateEnvironmentInput = {
 
 M.DeploymentProperties = {
     type = "structure",
+    id = "DeploymentProperties",
     members = {
         startTimeoutMinutes = {
             type = "integer",
@@ -5509,6 +5754,7 @@ M.DeploymentType = {
 
 M.EnvironmentError = {
     type = "structure",
+    id = "EnvironmentError",
     members = {
         code = {
             type = "string",
@@ -5524,6 +5770,7 @@ M.EnvironmentError = {
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         deploymentId = {
             type = "string",
@@ -5547,6 +5794,7 @@ M.Deployment = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         provider = {
             type = "string",
@@ -5571,6 +5819,7 @@ M.Resource = {
 
 M.ProvisioningProperties = {
     type = "union",
+    id = "ProvisioningProperties",
     members = {
         cloudFormation = M.CloudFormationProperties,
     },
@@ -5594,6 +5843,7 @@ M.EnvironmentStatus = {
 
 M.CustomParameter = {
     type = "structure",
+    id = "CustomParameter",
     members = {
         keyName = {
             type = "string",
@@ -5627,6 +5877,7 @@ M.CustomParameter = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         projectId = {
             type = "string",
@@ -5724,6 +5975,7 @@ M.CreateEnvironmentOutput = {
 
 M.CreateEnvironmentActionInput = {
     type = "structure",
+    id = "CreateEnvironmentActionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -5756,6 +6008,7 @@ M.CreateEnvironmentActionInput = {
 
 M.CreateEnvironmentActionOutput = {
     type = "structure",
+    id = "CreateEnvironmentActionOutput",
     members = {
         domainId = {
             type = "string",
@@ -5792,6 +6045,7 @@ M.CreateEnvironmentActionOutput = {
 
 M.CreateEnvironmentBlueprintInput = {
     type = "structure",
+    id = "CreateEnvironmentBlueprintInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -5821,6 +6075,7 @@ M.CreateEnvironmentBlueprintInput = {
 
 M.CreateEnvironmentBlueprintOutput = {
     type = "structure",
+    id = "CreateEnvironmentBlueprintOutput",
     members = {
         id = {
             type = "string",
@@ -5872,6 +6127,7 @@ M.CreateEnvironmentBlueprintOutput = {
 
 M.CreateEnvironmentProfileInput = {
     type = "structure",
+    id = "CreateEnvironmentProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -5916,6 +6172,7 @@ M.CreateEnvironmentProfileInput = {
 
 M.CreateEnvironmentProfileOutput = {
     type = "structure",
+    id = "CreateEnvironmentProfileOutput",
     members = {
         id = {
             type = "string",
@@ -5980,6 +6237,7 @@ M.CreateEnvironmentProfileOutput = {
 
 M.Model = {
     type = "union",
+    id = "Model",
     members = {
         smithy = {
             type = "string",
@@ -5994,6 +6252,7 @@ M.FormTypeStatus = {
 
 M.CreateFormTypeInput = {
     type = "structure",
+    id = "CreateFormTypeInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6028,6 +6287,7 @@ M.CreateFormTypeInput = {
 
 M.CreateFormTypeOutput = {
     type = "structure",
+    id = "CreateFormTypeOutput",
     members = {
         domainId = {
             type = "string",
@@ -6073,6 +6333,7 @@ M.GlossaryUsageRestriction = {
 
 M.CreateGlossaryInput = {
     type = "structure",
+    id = "CreateGlossaryInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6114,6 +6375,7 @@ M.CreateGlossaryInput = {
 
 M.CreateGlossaryOutput = {
     type = "structure",
+    id = "CreateGlossaryOutput",
     members = {
         domainId = {
             type = "string",
@@ -6159,6 +6421,7 @@ M.GlossaryTermStatus = {
 
 M.TermRelations = {
     type = "structure",
+    id = "TermRelations",
     members = {
         isA = {
             type = "list",
@@ -6173,6 +6436,7 @@ M.TermRelations = {
 
 M.CreateGlossaryTermInput = {
     type = "structure",
+    id = "CreateGlossaryTermInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6214,6 +6478,7 @@ M.CreateGlossaryTermInput = {
 
 M.CreateGlossaryTermOutput = {
     type = "structure",
+    id = "CreateGlossaryTermOutput",
     members = {
         id = {
             type = "string",
@@ -6261,6 +6526,7 @@ M.CreateGlossaryTermOutput = {
 
 M.CreateGroupProfileInput = {
     type = "structure",
+    id = "CreateGroupProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6291,6 +6557,7 @@ M.GroupProfileStatus = {
 
 M.CreateGroupProfileOutput = {
     type = "structure",
+    id = "CreateGroupProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -6320,6 +6587,7 @@ M.EntityType = {
 
 M.CreateListingChangeSetInput = {
     type = "structure",
+    id = "CreateListingChangeSetInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6360,6 +6628,7 @@ M.CreateListingChangeSetInput = {
 
 M.CreateListingChangeSetOutput = {
     type = "structure",
+    id = "CreateListingChangeSetOutput",
     members = {
         listingId = {
             type = "string",
@@ -6392,6 +6661,7 @@ M.UserDesignation = {
 
 M.Member = {
     type = "union",
+    id = "Member",
     members = {
         userIdentifier = {
             type = "string",
@@ -6404,6 +6674,7 @@ M.Member = {
 
 M.ProjectMembershipAssignment = {
     type = "structure",
+    id = "ProjectMembershipAssignment",
     members = {
         member = setmetatable({ traits = {
             required = true,
@@ -6419,6 +6690,7 @@ M.ProjectMembershipAssignment = {
 
 M.EnvironmentResolvedAccount = {
     type = "structure",
+    id = "EnvironmentResolvedAccount",
     members = {
         awsAccountId = {
             type = "string",
@@ -6440,6 +6712,7 @@ M.EnvironmentResolvedAccount = {
 
 M.EnvironmentConfigurationUserParameter = {
     type = "structure",
+    id = "EnvironmentConfigurationUserParameter",
     members = {
         environmentId = {
             type = "string",
@@ -6457,6 +6730,7 @@ M.EnvironmentConfigurationUserParameter = {
 
 M.CreateProjectInput = {
     type = "structure",
+    id = "CreateProjectInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6516,6 +6790,7 @@ M.OverallDeploymentStatus = {
 
 M.EnvironmentDeploymentDetails = {
     type = "structure",
+    id = "EnvironmentDeploymentDetails",
     members = {
         overallDeploymentStatus = {
             type = "string",
@@ -6530,6 +6805,7 @@ M.EnvironmentDeploymentDetails = {
 
 M.ProjectDeletionError = {
     type = "structure",
+    id = "ProjectDeletionError",
     members = {
         code = {
             type = "string",
@@ -6556,6 +6832,7 @@ M.ResourceTagSource = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         key = {
             type = "string",
@@ -6580,6 +6857,7 @@ M.ResourceTag = {
 
 M.CreateProjectOutput = {
     type = "structure",
+    id = "CreateProjectOutput",
     members = {
         domainId = {
             type = "string",
@@ -6654,6 +6932,7 @@ M.CreateProjectOutput = {
 
 M.CreateProjectMembershipInput = {
     type = "structure",
+    id = "CreateProjectMembershipInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6683,10 +6962,12 @@ M.CreateProjectMembershipInput = {
 
 M.CreateProjectMembershipOutput = {
     type = "structure",
+    id = "CreateProjectMembershipOutput",
 }
 
 M.Region = {
     type = "union",
+    id = "Region",
     members = {
         regionName = {
             type = "string",
@@ -6699,6 +6980,7 @@ M.Region = {
 
 M.EnvironmentConfigurationParameter = {
     type = "structure",
+    id = "EnvironmentConfigurationParameter",
     members = {
         name = {
             type = "string",
@@ -6714,6 +6996,7 @@ M.EnvironmentConfigurationParameter = {
 
 M.EnvironmentConfigurationParametersDetails = {
     type = "structure",
+    id = "EnvironmentConfigurationParametersDetails",
     members = {
         ssmPath = {
             type = "string",
@@ -6736,6 +7019,7 @@ M.DeploymentMode = {
 
 M.EnvironmentConfiguration = {
     type = "structure",
+    id = "EnvironmentConfiguration",
     members = {
         name = {
             type = "string",
@@ -6773,6 +7057,7 @@ M.EnvironmentConfiguration = {
 
 M.ResourceTagParameter = {
     type = "structure",
+    id = "ResourceTagParameter",
     members = {
         key = {
             type = "string",
@@ -6802,6 +7087,7 @@ M.Status = {
 
 M.CreateProjectProfileInput = {
     type = "structure",
+    id = "CreateProjectProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -6844,6 +7130,7 @@ M.CreateProjectProfileInput = {
 
 M.CreateProjectProfileOutput = {
     type = "structure",
+    id = "CreateProjectProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -6914,6 +7201,7 @@ M.RuleAction = {
 
 M.GlossaryTermEnforcementDetail = {
     type = "structure",
+    id = "GlossaryTermEnforcementDetail",
     members = {
         requiredGlossaryTermIds = {
             type = "list",
@@ -6924,6 +7212,7 @@ M.GlossaryTermEnforcementDetail = {
 
 M.MetadataFormReference = {
     type = "structure",
+    id = "MetadataFormReference",
     members = {
         typeIdentifier = {
             type = "string",
@@ -6942,6 +7231,7 @@ M.MetadataFormReference = {
 
 M.MetadataFormEnforcementDetail = {
     type = "structure",
+    id = "MetadataFormEnforcementDetail",
     members = {
         requiredMetadataForms = {
             type = "list",
@@ -6952,6 +7242,7 @@ M.MetadataFormEnforcementDetail = {
 
 M.RuleDetail = {
     type = "union",
+    id = "RuleDetail",
     members = {
         metadataFormEnforcementDetail = M.MetadataFormEnforcementDetail,
         glossaryTermEnforcementDetail = M.GlossaryTermEnforcementDetail,
@@ -6960,6 +7251,7 @@ M.RuleDetail = {
 
 M.ProjectsForRule = {
     type = "structure",
+    id = "ProjectsForRule",
     members = {
         selectionMode = {
             type = "string",
@@ -6976,6 +7268,7 @@ M.ProjectsForRule = {
 
 M.RuleScope = {
     type = "structure",
+    id = "RuleScope",
     members = {
         assetType = M.AssetTypesForRule,
         dataProduct = {
@@ -6987,6 +7280,7 @@ M.RuleScope = {
 
 M.DomainUnitTarget = {
     type = "structure",
+    id = "DomainUnitTarget",
     members = {
         domainUnitId = {
             type = "string",
@@ -7002,6 +7296,7 @@ M.DomainUnitTarget = {
 
 M.RuleTarget = {
     type = "union",
+    id = "RuleTarget",
     members = {
         domainUnitTarget = M.DomainUnitTarget,
     },
@@ -7009,6 +7304,7 @@ M.RuleTarget = {
 
 M.CreateRuleInput = {
     type = "structure",
+    id = "CreateRuleInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -7061,6 +7357,7 @@ M.RuleTargetType = {
 
 M.CreateRuleOutput = {
     type = "structure",
+    id = "CreateRuleOutput",
     members = {
         identifier = {
             type = "string",
@@ -7118,6 +7415,7 @@ M.CreateRuleOutput = {
 
 M.ListingRevisionInput = {
     type = "structure",
+    id = "ListingRevisionInput",
     members = {
         identifier = {
             type = "string",
@@ -7136,6 +7434,7 @@ M.ListingRevisionInput = {
 
 M.GrantedEntityInput = {
     type = "union",
+    id = "GrantedEntityInput",
     members = {
         listing = M.ListingRevisionInput,
     },
@@ -7143,6 +7442,7 @@ M.GrantedEntityInput = {
 
 M.CreateSubscriptionGrantInput = {
     type = "structure",
+    id = "CreateSubscriptionGrantInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -7178,6 +7478,7 @@ M.CreateSubscriptionGrantInput = {
 
 M.FailureCause = {
     type = "structure",
+    id = "FailureCause",
     members = {
         message = {
             type = "string",
@@ -7198,6 +7499,7 @@ M.SubscriptionGrantStatus = {
 
 M.SubscribedAsset = {
     type = "structure",
+    id = "SubscribedAsset",
     members = {
         assetId = {
             type = "string",
@@ -7234,6 +7536,7 @@ M.SubscribedAsset = {
 
 M.ListingRevision = {
     type = "structure",
+    id = "ListingRevision",
     members = {
         id = {
             type = "string",
@@ -7252,6 +7555,7 @@ M.ListingRevision = {
 
 M.GrantedEntity = {
     type = "union",
+    id = "GrantedEntity",
     members = {
         listing = M.ListingRevision,
     },
@@ -7269,6 +7573,7 @@ M.SubscriptionGrantOverallStatus = {
 
 M.CreateSubscriptionGrantOutput = {
     type = "structure",
+    id = "CreateSubscriptionGrantOutput",
     members = {
         id = {
             type = "string",
@@ -7333,6 +7638,7 @@ M.CreateSubscriptionGrantOutput = {
 
 M.SubscribedListingInput = {
     type = "structure",
+    id = "SubscribedListingInput",
     members = {
         identifier = {
             type = "string",
@@ -7345,6 +7651,7 @@ M.SubscribedListingInput = {
 
 M.SubscribedGroupInput = {
     type = "structure",
+    id = "SubscribedGroupInput",
     members = {
         identifier = {
             type = "string",
@@ -7354,6 +7661,7 @@ M.SubscribedGroupInput = {
 
 M.SubscribedIamPrincipalInput = {
     type = "structure",
+    id = "SubscribedIamPrincipalInput",
     members = {
         identifier = {
             type = "string",
@@ -7363,6 +7671,7 @@ M.SubscribedIamPrincipalInput = {
 
 M.SubscribedProjectInput = {
     type = "structure",
+    id = "SubscribedProjectInput",
     members = {
         identifier = {
             type = "string",
@@ -7372,6 +7681,7 @@ M.SubscribedProjectInput = {
 
 M.SubscribedUserInput = {
     type = "structure",
+    id = "SubscribedUserInput",
     members = {
         identifier = {
             type = "string",
@@ -7381,6 +7691,7 @@ M.SubscribedUserInput = {
 
 M.SubscribedPrincipalInput = {
     type = "union",
+    id = "SubscribedPrincipalInput",
     members = {
         project = M.SubscribedProjectInput,
         user = M.SubscribedUserInput,
@@ -7391,6 +7702,7 @@ M.SubscribedPrincipalInput = {
 
 M.CreateSubscriptionRequestInput = {
     type = "structure",
+    id = "CreateSubscriptionRequestInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -7442,6 +7754,7 @@ M.CreateSubscriptionRequestInput = {
 
 M.CreateSubscriptionRequestOutput = {
     type = "structure",
+    id = "CreateSubscriptionRequestOutput",
     members = {
         id = {
             type = "string",
@@ -7525,6 +7838,7 @@ M.SubscriptionGrantCreationMode = {
 
 M.SubscriptionTargetForm = {
     type = "structure",
+    id = "SubscriptionTargetForm",
     members = {
         formName = {
             type = "string",
@@ -7543,6 +7857,7 @@ M.SubscriptionTargetForm = {
 
 M.CreateSubscriptionTargetInput = {
     type = "structure",
+    id = "CreateSubscriptionTargetInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -7614,6 +7929,7 @@ M.CreateSubscriptionTargetInput = {
 
 M.CreateSubscriptionTargetOutput = {
     type = "structure",
+    id = "CreateSubscriptionTargetOutput",
     members = {
         id = {
             type = "string",
@@ -7714,6 +8030,7 @@ M.UserType = {
 
 M.CreateUserProfileInput = {
     type = "structure",
+    id = "CreateUserProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -7757,6 +8074,7 @@ M.UserProfileType = {
 
 M.CreateUserProfileOutput = {
     type = "structure",
+    id = "CreateUserProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -7787,6 +8105,7 @@ M.DataAssetActivityStatus = {
 
 M.DeleteDataProductInput = {
     type = "structure",
+    id = "DeleteDataProductInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -7807,10 +8126,12 @@ M.DeleteDataProductInput = {
 
 M.DeleteDataProductOutput = {
     type = "structure",
+    id = "DeleteDataProductOutput",
 }
 
 M.GetDataProductInput = {
     type = "structure",
+    id = "GetDataProductInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -7837,6 +8158,7 @@ M.GetDataProductInput = {
 
 M.GetDataProductOutput = {
     type = "structure",
+    id = "GetDataProductOutput",
     members = {
         domainId = {
             type = "string",
@@ -7907,6 +8229,7 @@ M.GetDataProductOutput = {
 
 M.DataProductItemAdditionalAttributes = {
     type = "structure",
+    id = "DataProductItemAdditionalAttributes",
     members = {
         matchRationale = {
             type = "list",
@@ -7917,6 +8240,7 @@ M.DataProductItemAdditionalAttributes = {
 
 M.ListingSummary = {
     type = "structure",
+    id = "ListingSummary",
     members = {
         listingId = {
             type = "string",
@@ -7933,6 +8257,7 @@ M.ListingSummary = {
 
 M.DataProductListing = {
     type = "structure",
+    id = "DataProductListing",
     members = {
         dataProductId = {
             type = "string",
@@ -7962,6 +8287,7 @@ M.DataProductListing = {
 
 M.DataProductListingItemAdditionalAttributes = {
     type = "structure",
+    id = "DataProductListingItemAdditionalAttributes",
     members = {
         forms = {
             type = "string",
@@ -7975,6 +8301,7 @@ M.DataProductListingItemAdditionalAttributes = {
 
 M.ListingSummaryItem = {
     type = "structure",
+    id = "ListingSummaryItem",
     members = {
         listingId = {
             type = "string",
@@ -7991,6 +8318,7 @@ M.ListingSummaryItem = {
 
 M.DataProductListingItem = {
     type = "structure",
+    id = "DataProductListingItem",
     members = {
         listingId = {
             type = "string",
@@ -8036,6 +8364,7 @@ M.DataProductListingItem = {
 
 M.DataProductResultItem = {
     type = "structure",
+    id = "DataProductResultItem",
     members = {
         domainId = {
             type = "string",
@@ -8086,6 +8415,7 @@ M.DataProductResultItem = {
 
 M.DataProductRevision = {
     type = "structure",
+    id = "DataProductRevision",
     members = {
         domainId = {
             type = "string",
@@ -8107,6 +8437,7 @@ M.DataProductRevision = {
 
 M.DeleteDataSourceInput = {
     type = "structure",
+    id = "DeleteDataSourceInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -8150,6 +8481,7 @@ M.SelfGrantStatus = {
 
 M.SelfGrantStatusDetail = {
     type = "structure",
+    id = "SelfGrantStatusDetail",
     members = {
         databaseName = {
             type = "string",
@@ -8174,6 +8506,7 @@ M.SelfGrantStatusDetail = {
 
 M.GlueSelfGrantStatusOutput = {
     type = "structure",
+    id = "GlueSelfGrantStatusOutput",
     members = {
         selfGrantStatusDetails = {
             type = "list",
@@ -8187,6 +8520,7 @@ M.GlueSelfGrantStatusOutput = {
 
 M.RedshiftSelfGrantStatusOutput = {
     type = "structure",
+    id = "RedshiftSelfGrantStatusOutput",
     members = {
         selfGrantStatusDetails = {
             type = "list",
@@ -8200,6 +8534,7 @@ M.RedshiftSelfGrantStatusOutput = {
 
 M.SelfGrantStatusOutput = {
     type = "union",
+    id = "SelfGrantStatusOutput",
     members = {
         glueSelfGrantStatus = M.GlueSelfGrantStatusOutput,
         redshiftSelfGrantStatus = M.RedshiftSelfGrantStatusOutput,
@@ -8208,6 +8543,7 @@ M.SelfGrantStatusOutput = {
 
 M.DeleteDataSourceOutput = {
     type = "structure",
+    id = "DeleteDataSourceOutput",
     members = {
         id = {
             type = "string",
@@ -8292,6 +8628,7 @@ M.DeleteDataSourceOutput = {
 
 M.GetDataSourceInput = {
     type = "structure",
+    id = "GetDataSourceInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -8312,6 +8649,7 @@ M.GetDataSourceInput = {
 
 M.GetDataSourceOutput = {
     type = "structure",
+    id = "GetDataSourceOutput",
     members = {
         id = {
             type = "string",
@@ -8397,6 +8735,7 @@ M.GetDataSourceOutput = {
 
 M.ListDataSourcesInput = {
     type = "structure",
+    id = "ListDataSourcesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -8459,6 +8798,7 @@ M.ListDataSourcesInput = {
 
 M.DataSourceSummary = {
     type = "structure",
+    id = "DataSourceSummary",
     members = {
         domainId = {
             type = "string",
@@ -8533,6 +8873,7 @@ M.DataSourceSummary = {
 
 M.ListDataSourcesOutput = {
     type = "structure",
+    id = "ListDataSourcesOutput",
     members = {
         items = {
             type = "list",
@@ -8549,6 +8890,7 @@ M.ListDataSourcesOutput = {
 
 M.UpdateDataSourceInput = {
     type = "structure",
+    id = "UpdateDataSourceInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -8591,6 +8933,7 @@ M.UpdateDataSourceInput = {
 
 M.UpdateDataSourceOutput = {
     type = "structure",
+    id = "UpdateDataSourceOutput",
     members = {
         id = {
             type = "string",
@@ -8683,6 +9026,7 @@ M.LineageImportStatus = {
 
 M.DataSourceRunLineageSummary = {
     type = "structure",
+    id = "DataSourceRunLineageSummary",
     members = {
         importStatus = {
             type = "string",
@@ -8697,6 +9041,7 @@ M.DataSourceRunType = {
 
 M.GetDataSourceRunInput = {
     type = "structure",
+    id = "GetDataSourceRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -8717,6 +9062,7 @@ M.GetDataSourceRunInput = {
 
 M.RunStatisticsForAssets = {
     type = "structure",
+    id = "RunStatisticsForAssets",
     members = {
         added = {
             type = "integer",
@@ -8738,6 +9084,7 @@ M.RunStatisticsForAssets = {
 
 M.GetDataSourceRunOutput = {
     type = "structure",
+    id = "GetDataSourceRunOutput",
     members = {
         domainId = {
             type = "string",
@@ -8812,6 +9159,7 @@ M.GetDataSourceRunOutput = {
 
 M.ListDataSourceRunsInput = {
     type = "structure",
+    id = "ListDataSourceRunsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -8850,6 +9198,7 @@ M.ListDataSourceRunsInput = {
 
 M.DataSourceRunSummary = {
     type = "structure",
+    id = "DataSourceRunSummary",
     members = {
         id = {
             type = "string",
@@ -8915,6 +9264,7 @@ M.DataSourceRunSummary = {
 
 M.ListDataSourceRunsOutput = {
     type = "structure",
+    id = "ListDataSourceRunsOutput",
     members = {
         items = {
             type = "list",
@@ -8931,6 +9281,7 @@ M.ListDataSourceRunsOutput = {
 
 M.StartDataSourceRunInput = {
     type = "structure",
+    id = "StartDataSourceRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -8957,6 +9308,7 @@ M.StartDataSourceRunInput = {
 
 M.StartDataSourceRunOutput = {
     type = "structure",
+    id = "StartDataSourceRunOutput",
     members = {
         domainId = {
             type = "string",
@@ -9037,6 +9389,7 @@ M.LineageEventProcessingStatus = {
 
 M.LineageInfo = {
     type = "structure",
+    id = "LineageInfo",
     members = {
         eventId = {
             type = "string",
@@ -9052,6 +9405,7 @@ M.LineageInfo = {
 
 M.DataSourceRunActivity = {
     type = "structure",
+    id = "DataSourceRunActivity",
     members = {
         database = {
             type = "string",
@@ -9110,6 +9464,7 @@ M.DataSourceRunActivity = {
 
 M.DeleteAccountPoolInput = {
     type = "structure",
+    id = "DeleteAccountPoolInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9130,10 +9485,12 @@ M.DeleteAccountPoolInput = {
 
 M.DeleteAccountPoolOutput = {
     type = "structure",
+    id = "DeleteAccountPoolOutput",
 }
 
 M.DeleteAssetFilterInput = {
     type = "structure",
+    id = "DeleteAssetFilterInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9161,10 +9518,12 @@ M.DeleteAssetFilterInput = {
 
 M.DeleteAssetFilterOutput = {
     type = "structure",
+    id = "DeleteAssetFilterOutput",
 }
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9185,6 +9544,7 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
     members = {
         status = {
             type = "string",
@@ -9194,6 +9554,7 @@ M.DeleteConnectionOutput = {
 
 M.DeleteDataExportConfigurationInput = {
     type = "structure",
+    id = "DeleteDataExportConfigurationInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9207,10 +9568,12 @@ M.DeleteDataExportConfigurationInput = {
 
 M.DeleteDataExportConfigurationOutput = {
     type = "structure",
+    id = "DeleteDataExportConfigurationOutput",
 }
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9231,10 +9594,12 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
 }
 
 M.DeleteEnvironmentActionInput = {
     type = "structure",
+    id = "DeleteEnvironmentActionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9262,10 +9627,12 @@ M.DeleteEnvironmentActionInput = {
 
 M.DeleteEnvironmentActionOutput = {
     type = "structure",
+    id = "DeleteEnvironmentActionOutput",
 }
 
 M.DeleteEnvironmentBlueprintInput = {
     type = "structure",
+    id = "DeleteEnvironmentBlueprintInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9286,10 +9653,12 @@ M.DeleteEnvironmentBlueprintInput = {
 
 M.DeleteEnvironmentBlueprintOutput = {
     type = "structure",
+    id = "DeleteEnvironmentBlueprintOutput",
 }
 
 M.DeleteEnvironmentProfileInput = {
     type = "structure",
+    id = "DeleteEnvironmentProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9310,10 +9679,12 @@ M.DeleteEnvironmentProfileInput = {
 
 M.DeleteEnvironmentProfileOutput = {
     type = "structure",
+    id = "DeleteEnvironmentProfileOutput",
 }
 
 M.DeleteProjectInput = {
     type = "structure",
+    id = "DeleteProjectInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9340,10 +9711,12 @@ M.DeleteProjectInput = {
 
 M.DeleteProjectOutput = {
     type = "structure",
+    id = "DeleteProjectOutput",
 }
 
 M.DeleteProjectMembershipInput = {
     type = "structure",
+    id = "DeleteProjectMembershipInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9367,10 +9740,12 @@ M.DeleteProjectMembershipInput = {
 
 M.DeleteProjectMembershipOutput = {
     type = "structure",
+    id = "DeleteProjectMembershipOutput",
 }
 
 M.DeleteProjectProfileInput = {
     type = "structure",
+    id = "DeleteProjectProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9391,10 +9766,12 @@ M.DeleteProjectProfileInput = {
 
 M.DeleteProjectProfileOutput = {
     type = "structure",
+    id = "DeleteProjectProfileOutput",
 }
 
 M.DeleteSubscriptionGrantInput = {
     type = "structure",
+    id = "DeleteSubscriptionGrantInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9415,6 +9792,7 @@ M.DeleteSubscriptionGrantInput = {
 
 M.DeleteSubscriptionGrantOutput = {
     type = "structure",
+    id = "DeleteSubscriptionGrantOutput",
     members = {
         id = {
             type = "string",
@@ -9479,6 +9857,7 @@ M.DeleteSubscriptionGrantOutput = {
 
 M.DeleteSubscriptionRequestInput = {
     type = "structure",
+    id = "DeleteSubscriptionRequestInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9499,10 +9878,12 @@ M.DeleteSubscriptionRequestInput = {
 
 M.DeleteSubscriptionRequestOutput = {
     type = "structure",
+    id = "DeleteSubscriptionRequestOutput",
 }
 
 M.DeleteSubscriptionTargetInput = {
     type = "structure",
+    id = "DeleteSubscriptionTargetInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9530,6 +9911,7 @@ M.DeleteSubscriptionTargetInput = {
 
 M.DeleteSubscriptionTargetOutput = {
     type = "structure",
+    id = "DeleteSubscriptionTargetOutput",
 }
 
 M.TimeSeriesEntityType = {
@@ -9539,6 +9921,7 @@ M.TimeSeriesEntityType = {
 
 M.DeleteTimeSeriesDataPointsInput = {
     type = "structure",
+    id = "DeleteTimeSeriesDataPointsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9580,10 +9963,12 @@ M.DeleteTimeSeriesDataPointsInput = {
 
 M.DeleteTimeSeriesDataPointsOutput = {
     type = "structure",
+    id = "DeleteTimeSeriesDataPointsOutput",
 }
 
 M.DisassociateEnvironmentRoleInput = {
     type = "structure",
+    id = "DisassociateEnvironmentRoleInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9611,10 +9996,12 @@ M.DisassociateEnvironmentRoleInput = {
 
 M.DisassociateEnvironmentRoleOutput = {
     type = "structure",
+    id = "DisassociateEnvironmentRoleOutput",
 }
 
 M.DisassociateGovernedTermsInput = {
     type = "structure",
+    id = "DisassociateGovernedTermsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9649,10 +10036,12 @@ M.DisassociateGovernedTermsInput = {
 
 M.DisassociateGovernedTermsOutput = {
     type = "structure",
+    id = "DisassociateGovernedTermsOutput",
 }
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         identifier = {
             type = "string",
@@ -9679,6 +10068,7 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
     members = {
         status = {
             type = "string",
@@ -9691,6 +10081,7 @@ M.DeleteDomainOutput = {
 
 M.GetDomainInput = {
     type = "structure",
+    id = "GetDomainInput",
     members = {
         identifier = {
             type = "string",
@@ -9704,6 +10095,7 @@ M.GetDomainInput = {
 
 M.GetDomainOutput = {
     type = "structure",
+    id = "GetDomainOutput",
     members = {
         id = {
             type = "string",
@@ -9764,6 +10156,7 @@ M.GetDomainOutput = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         status = {
             type = "string",
@@ -9788,6 +10181,7 @@ M.ListDomainsInput = {
 
 M.DomainSummary = {
     type = "structure",
+    id = "DomainSummary",
     members = {
         id = {
             type = "string",
@@ -9842,6 +10236,7 @@ M.DomainSummary = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         items = {
             type = "list",
@@ -9858,6 +10253,7 @@ M.ListDomainsOutput = {
 
 M.UpdateDomainInput = {
     type = "structure",
+    id = "UpdateDomainInput",
     members = {
         identifier = {
             type = "string",
@@ -9891,6 +10287,7 @@ M.UpdateDomainInput = {
 
 M.UpdateDomainOutput = {
     type = "structure",
+    id = "UpdateDomainOutput",
     members = {
         id = {
             type = "string",
@@ -9922,6 +10319,7 @@ M.UpdateDomainOutput = {
 
 M.DeleteDomainUnitInput = {
     type = "structure",
+    id = "DeleteDomainUnitInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9942,10 +10340,12 @@ M.DeleteDomainUnitInput = {
 
 M.DeleteDomainUnitOutput = {
     type = "structure",
+    id = "DeleteDomainUnitOutput",
 }
 
 M.GetDomainUnitInput = {
     type = "structure",
+    id = "GetDomainUnitInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -9966,6 +10366,7 @@ M.GetDomainUnitInput = {
 
 M.GetDomainUnitOutput = {
     type = "structure",
+    id = "GetDomainUnitOutput",
     members = {
         id = {
             type = "string",
@@ -10015,6 +10416,7 @@ M.GetDomainUnitOutput = {
 
 M.ListDomainUnitsForParentInput = {
     type = "structure",
+    id = "ListDomainUnitsForParentInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10047,6 +10449,7 @@ M.ListDomainUnitsForParentInput = {
 
 M.DomainUnitSummary = {
     type = "structure",
+    id = "DomainUnitSummary",
     members = {
         name = {
             type = "string",
@@ -10065,6 +10468,7 @@ M.DomainUnitSummary = {
 
 M.ListDomainUnitsForParentOutput = {
     type = "structure",
+    id = "ListDomainUnitsForParentOutput",
     members = {
         items = {
             type = "list",
@@ -10081,6 +10485,7 @@ M.ListDomainUnitsForParentOutput = {
 
 M.UpdateDomainUnitInput = {
     type = "structure",
+    id = "UpdateDomainUnitInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10107,6 +10512,7 @@ M.UpdateDomainUnitInput = {
 
 M.UpdateDomainUnitOutput = {
     type = "structure",
+    id = "UpdateDomainUnitOutput",
     members = {
         id = {
             type = "string",
@@ -10156,6 +10562,7 @@ M.UpdateDomainUnitOutput = {
 
 M.DeleteEnvironmentBlueprintConfigurationInput = {
     type = "structure",
+    id = "DeleteEnvironmentBlueprintConfigurationInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10176,10 +10583,12 @@ M.DeleteEnvironmentBlueprintConfigurationInput = {
 
 M.DeleteEnvironmentBlueprintConfigurationOutput = {
     type = "structure",
+    id = "DeleteEnvironmentBlueprintConfigurationOutput",
 }
 
 M.GetEnvironmentBlueprintConfigurationInput = {
     type = "structure",
+    id = "GetEnvironmentBlueprintConfigurationInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10200,6 +10609,7 @@ M.GetEnvironmentBlueprintConfigurationInput = {
 
 M.LakeFormationConfiguration = {
     type = "structure",
+    id = "LakeFormationConfiguration",
     members = {
         locationRegistrationRole = {
             type = "string",
@@ -10213,6 +10623,7 @@ M.LakeFormationConfiguration = {
 
 M.ProvisioningConfiguration = {
     type = "union",
+    id = "ProvisioningConfiguration",
     members = {
         lakeFormationConfiguration = M.LakeFormationConfiguration,
     },
@@ -10220,6 +10631,7 @@ M.ProvisioningConfiguration = {
 
 M.GetEnvironmentBlueprintConfigurationOutput = {
     type = "structure",
+    id = "GetEnvironmentBlueprintConfigurationOutput",
     members = {
         domainId = {
             type = "string",
@@ -10272,6 +10684,7 @@ M.GetEnvironmentBlueprintConfigurationOutput = {
 
 M.ListEnvironmentBlueprintConfigurationsInput = {
     type = "structure",
+    id = "ListEnvironmentBlueprintConfigurationsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10297,6 +10710,7 @@ M.ListEnvironmentBlueprintConfigurationsInput = {
 
 M.EnvironmentBlueprintConfigurationItem = {
     type = "structure",
+    id = "EnvironmentBlueprintConfigurationItem",
     members = {
         domainId = {
             type = "string",
@@ -10349,6 +10763,7 @@ M.EnvironmentBlueprintConfigurationItem = {
 
 M.ListEnvironmentBlueprintConfigurationsOutput = {
     type = "structure",
+    id = "ListEnvironmentBlueprintConfigurationsOutput",
     members = {
         items = {
             type = "list",
@@ -10362,6 +10777,7 @@ M.ListEnvironmentBlueprintConfigurationsOutput = {
 
 M.PutEnvironmentBlueprintConfigurationInput = {
     type = "structure",
+    id = "PutEnvironmentBlueprintConfigurationInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10412,6 +10828,7 @@ M.PutEnvironmentBlueprintConfigurationInput = {
 
 M.PutEnvironmentBlueprintConfigurationOutput = {
     type = "structure",
+    id = "PutEnvironmentBlueprintConfigurationOutput",
     members = {
         domainId = {
             type = "string",
@@ -10464,6 +10881,7 @@ M.PutEnvironmentBlueprintConfigurationOutput = {
 
 M.DeleteFormTypeInput = {
     type = "structure",
+    id = "DeleteFormTypeInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10484,10 +10902,12 @@ M.DeleteFormTypeInput = {
 
 M.DeleteFormTypeOutput = {
     type = "structure",
+    id = "DeleteFormTypeOutput",
 }
 
 M.GetFormTypeInput = {
     type = "structure",
+    id = "GetFormTypeInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10514,6 +10934,7 @@ M.GetFormTypeInput = {
 
 M.Import = {
     type = "structure",
+    id = "Import",
     members = {
         name = {
             type = "string",
@@ -10532,6 +10953,7 @@ M.Import = {
 
 M.GetFormTypeOutput = {
     type = "structure",
+    id = "GetFormTypeOutput",
     members = {
         domainId = {
             type = "string",
@@ -10584,6 +11006,7 @@ M.GetFormTypeOutput = {
 
 M.GetAccountPoolInput = {
     type = "structure",
+    id = "GetAccountPoolInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10604,6 +11027,7 @@ M.GetAccountPoolInput = {
 
 M.GetAccountPoolOutput = {
     type = "structure",
+    id = "GetAccountPoolOutput",
     members = {
         domainId = {
             type = "string",
@@ -10652,6 +11076,7 @@ M.GetAccountPoolOutput = {
 
 M.GetAssetFilterInput = {
     type = "structure",
+    id = "GetAssetFilterInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10679,6 +11104,7 @@ M.GetAssetFilterInput = {
 
 M.GetConnectionInput = {
     type = "structure",
+    id = "GetConnectionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10705,6 +11131,7 @@ M.GetConnectionInput = {
 
 M.GetConnectionOutput = {
     type = "structure",
+    id = "GetConnectionOutput",
     members = {
         connectionCredentials = M.ConnectionCredentials,
         configurations = {
@@ -10769,6 +11196,7 @@ M.GetConnectionOutput = {
 
 M.GetDataExportConfigurationInput = {
     type = "structure",
+    id = "GetDataExportConfigurationInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10782,6 +11210,7 @@ M.GetDataExportConfigurationInput = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         kmsKeyArn = {
             type = "string",
@@ -10794,6 +11223,7 @@ M.EncryptionConfiguration = {
 
 M.GetDataExportConfigurationOutput = {
     type = "structure",
+    id = "GetDataExportConfigurationOutput",
     members = {
         isExportEnabled = {
             type = "boolean",
@@ -10816,6 +11246,7 @@ M.GetDataExportConfigurationOutput = {
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10836,6 +11267,7 @@ M.GetEnvironmentInput = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         projectId = {
             type = "string",
@@ -10933,6 +11365,7 @@ M.GetEnvironmentOutput = {
 
 M.GetEnvironmentActionInput = {
     type = "structure",
+    id = "GetEnvironmentActionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -10960,6 +11393,7 @@ M.GetEnvironmentActionInput = {
 
 M.GetEnvironmentActionOutput = {
     type = "structure",
+    id = "GetEnvironmentActionOutput",
     members = {
         domainId = {
             type = "string",
@@ -10996,6 +11430,7 @@ M.GetEnvironmentActionOutput = {
 
 M.GetEnvironmentBlueprintInput = {
     type = "structure",
+    id = "GetEnvironmentBlueprintInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11016,6 +11451,7 @@ M.GetEnvironmentBlueprintInput = {
 
 M.GetEnvironmentBlueprintOutput = {
     type = "structure",
+    id = "GetEnvironmentBlueprintOutput",
     members = {
         id = {
             type = "string",
@@ -11067,6 +11503,7 @@ M.GetEnvironmentBlueprintOutput = {
 
 M.GetEnvironmentCredentialsInput = {
     type = "structure",
+    id = "GetEnvironmentCredentialsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11087,6 +11524,7 @@ M.GetEnvironmentCredentialsInput = {
 
 M.GetEnvironmentCredentialsOutput = {
     type = "structure",
+    id = "GetEnvironmentCredentialsOutput",
     members = {
         accessKeyId = {
             type = "string",
@@ -11108,6 +11546,7 @@ M.GetEnvironmentCredentialsOutput = {
 
 M.GetEnvironmentProfileInput = {
     type = "structure",
+    id = "GetEnvironmentProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11128,6 +11567,7 @@ M.GetEnvironmentProfileInput = {
 
 M.GetEnvironmentProfileOutput = {
     type = "structure",
+    id = "GetEnvironmentProfileOutput",
     members = {
         id = {
             type = "string",
@@ -11192,6 +11632,7 @@ M.GetEnvironmentProfileOutput = {
 
 M.GetGroupProfileInput = {
     type = "structure",
+    id = "GetGroupProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11212,6 +11653,7 @@ M.GetGroupProfileInput = {
 
 M.GetGroupProfileOutput = {
     type = "structure",
+    id = "GetGroupProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -11236,6 +11678,7 @@ M.GetGroupProfileOutput = {
 
 M.GetIamPortalLoginUrlInput = {
     type = "structure",
+    id = "GetIamPortalLoginUrlInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11249,6 +11692,7 @@ M.GetIamPortalLoginUrlInput = {
 
 M.GetIamPortalLoginUrlOutput = {
     type = "structure",
+    id = "GetIamPortalLoginUrlOutput",
     members = {
         authCodeUrl = {
             type = "string",
@@ -11264,6 +11708,7 @@ M.GetIamPortalLoginUrlOutput = {
 
 M.GetJobRunInput = {
     type = "structure",
+    id = "GetJobRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11284,6 +11729,7 @@ M.GetJobRunInput = {
 
 M.LineageSqlQueryRunDetails = {
     type = "structure",
+    id = "LineageSqlQueryRunDetails",
     members = {
         queryStartTime = {
             type = "timestamp",
@@ -11306,6 +11752,7 @@ M.LineageSqlQueryRunDetails = {
 
 M.LineageRunDetails = {
     type = "structure",
+    id = "LineageRunDetails",
     members = {
         sqlQueryRunDetails = M.LineageSqlQueryRunDetails,
     },
@@ -11313,6 +11760,7 @@ M.LineageRunDetails = {
 
 M.JobRunDetails = {
     type = "union",
+    id = "JobRunDetails",
     members = {
         lineageRunDetails = M.LineageRunDetails,
     },
@@ -11320,6 +11768,7 @@ M.JobRunDetails = {
 
 M.JobRunError = {
     type = "structure",
+    id = "JobRunError",
     members = {
         message = {
             type = "string",
@@ -11352,6 +11801,7 @@ M.JobRunStatus = {
 
 M.GetJobRunOutput = {
     type = "structure",
+    id = "GetJobRunOutput",
     members = {
         domainId = {
             type = "string",
@@ -11390,6 +11840,7 @@ M.GetJobRunOutput = {
 
 M.GetLineageEventInput = {
     type = "structure",
+    id = "GetLineageEventInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11410,6 +11861,7 @@ M.GetLineageEventInput = {
 
 M.GetLineageEventOutput = {
     type = "structure",
+    id = "GetLineageEventOutput",
     members = {
         domainId = {
             type = "string",
@@ -11458,6 +11910,7 @@ M.GetLineageEventOutput = {
 
 M.GetLineageNodeInput = {
     type = "structure",
+    id = "GetLineageNodeInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11484,6 +11937,7 @@ M.GetLineageNodeInput = {
 
 M.LineageNodeReference = {
     type = "structure",
+    id = "LineageNodeReference",
     members = {
         id = {
             type = "string",
@@ -11496,6 +11950,7 @@ M.LineageNodeReference = {
 
 M.GetLineageNodeOutput = {
     type = "structure",
+    id = "GetLineageNodeOutput",
     members = {
         domainId = {
             type = "string",
@@ -11559,6 +12014,7 @@ M.GetLineageNodeOutput = {
 
 M.GetProjectInput = {
     type = "structure",
+    id = "GetProjectInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11579,6 +12035,7 @@ M.GetProjectInput = {
 
 M.GetProjectOutput = {
     type = "structure",
+    id = "GetProjectOutput",
     members = {
         domainId = {
             type = "string",
@@ -11653,6 +12110,7 @@ M.GetProjectOutput = {
 
 M.GetProjectProfileInput = {
     type = "structure",
+    id = "GetProjectProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11673,6 +12131,7 @@ M.GetProjectProfileInput = {
 
 M.GetProjectProfileOutput = {
     type = "structure",
+    id = "GetProjectProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -11738,6 +12197,7 @@ M.GetProjectProfileOutput = {
 
 M.GetSubscriptionInput = {
     type = "structure",
+    id = "GetSubscriptionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11758,6 +12218,7 @@ M.GetSubscriptionInput = {
 
 M.GetSubscriptionOutput = {
     type = "structure",
+    id = "GetSubscriptionOutput",
     members = {
         id = {
             type = "string",
@@ -11815,6 +12276,7 @@ M.GetSubscriptionOutput = {
 
 M.GetSubscriptionGrantInput = {
     type = "structure",
+    id = "GetSubscriptionGrantInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11835,6 +12297,7 @@ M.GetSubscriptionGrantInput = {
 
 M.GetSubscriptionGrantOutput = {
     type = "structure",
+    id = "GetSubscriptionGrantOutput",
     members = {
         id = {
             type = "string",
@@ -11899,6 +12362,7 @@ M.GetSubscriptionGrantOutput = {
 
 M.GetSubscriptionRequestDetailsInput = {
     type = "structure",
+    id = "GetSubscriptionRequestDetailsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -11919,6 +12383,7 @@ M.GetSubscriptionRequestDetailsInput = {
 
 M.GetSubscriptionRequestDetailsOutput = {
     type = "structure",
+    id = "GetSubscriptionRequestDetailsOutput",
     members = {
         id = {
             type = "string",
@@ -11997,6 +12462,7 @@ M.GetSubscriptionRequestDetailsOutput = {
 
 M.GetSubscriptionTargetInput = {
     type = "structure",
+    id = "GetSubscriptionTargetInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12024,6 +12490,7 @@ M.GetSubscriptionTargetInput = {
 
 M.GetSubscriptionTargetOutput = {
     type = "structure",
+    id = "GetSubscriptionTargetOutput",
     members = {
         id = {
             type = "string",
@@ -12117,6 +12584,7 @@ M.GetSubscriptionTargetOutput = {
 
 M.GetTimeSeriesDataPointInput = {
     type = "structure",
+    id = "GetTimeSeriesDataPointInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12158,6 +12626,7 @@ M.GetTimeSeriesDataPointInput = {
 
 M.TimeSeriesDataPointFormOutput = {
     type = "structure",
+    id = "TimeSeriesDataPointFormOutput",
     members = {
         formName = {
             type = "string",
@@ -12191,6 +12660,7 @@ M.TimeSeriesDataPointFormOutput = {
 
 M.GetTimeSeriesDataPointOutput = {
     type = "structure",
+    id = "GetTimeSeriesDataPointOutput",
     members = {
         domainId = {
             type = "string",
@@ -12210,6 +12680,7 @@ M.GetTimeSeriesDataPointOutput = {
 
 M.GetUserProfileInput = {
     type = "structure",
+    id = "GetUserProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12242,6 +12713,7 @@ M.GetUserProfileInput = {
 
 M.GetUserProfileOutput = {
     type = "structure",
+    id = "GetUserProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -12261,6 +12733,7 @@ M.GetUserProfileOutput = {
 
 M.DeleteGlossaryInput = {
     type = "structure",
+    id = "DeleteGlossaryInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12281,10 +12754,12 @@ M.DeleteGlossaryInput = {
 
 M.DeleteGlossaryOutput = {
     type = "structure",
+    id = "DeleteGlossaryOutput",
 }
 
 M.GetGlossaryInput = {
     type = "structure",
+    id = "GetGlossaryInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12305,6 +12780,7 @@ M.GetGlossaryInput = {
 
 M.GetGlossaryOutput = {
     type = "structure",
+    id = "GetGlossaryOutput",
     members = {
         domainId = {
             type = "string",
@@ -12360,6 +12836,7 @@ M.GetGlossaryOutput = {
 
 M.UpdateGlossaryInput = {
     type = "structure",
+    id = "UpdateGlossaryInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12395,6 +12872,7 @@ M.UpdateGlossaryInput = {
 
 M.UpdateGlossaryOutput = {
     type = "structure",
+    id = "UpdateGlossaryOutput",
     members = {
         domainId = {
             type = "string",
@@ -12435,6 +12913,7 @@ M.UpdateGlossaryOutput = {
 
 M.DeleteGlossaryTermInput = {
     type = "structure",
+    id = "DeleteGlossaryTermInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12455,10 +12934,12 @@ M.DeleteGlossaryTermInput = {
 
 M.DeleteGlossaryTermOutput = {
     type = "structure",
+    id = "DeleteGlossaryTermOutput",
 }
 
 M.GetGlossaryTermInput = {
     type = "structure",
+    id = "GetGlossaryTermInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12479,6 +12960,7 @@ M.GetGlossaryTermInput = {
 
 M.GetGlossaryTermOutput = {
     type = "structure",
+    id = "GetGlossaryTermOutput",
     members = {
         domainId = {
             type = "string",
@@ -12538,6 +13020,7 @@ M.GetGlossaryTermOutput = {
 
 M.UpdateGlossaryTermInput = {
     type = "structure",
+    id = "UpdateGlossaryTermInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12574,6 +13057,7 @@ M.UpdateGlossaryTermInput = {
 
 M.UpdateGlossaryTermOutput = {
     type = "structure",
+    id = "UpdateGlossaryTermOutput",
     members = {
         id = {
             type = "string",
@@ -12630,6 +13114,7 @@ M.SortOrder = {
 
 M.ListAccountPoolsInput = {
     type = "structure",
+    id = "ListAccountPoolsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12673,6 +13158,7 @@ M.ListAccountPoolsInput = {
 
 M.ListAccountPoolsOutput = {
     type = "structure",
+    id = "ListAccountPoolsOutput",
     members = {
         items = {
             type = "list",
@@ -12686,6 +13172,7 @@ M.ListAccountPoolsOutput = {
 
 M.ListAccountsInAccountPoolInput = {
     type = "structure",
+    id = "ListAccountsInAccountPoolInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12718,6 +13205,7 @@ M.ListAccountsInAccountPoolInput = {
 
 M.ListAccountsInAccountPoolOutput = {
     type = "structure",
+    id = "ListAccountsInAccountPoolOutput",
     members = {
         items = {
             type = "list",
@@ -12731,6 +13219,7 @@ M.ListAccountsInAccountPoolOutput = {
 
 M.ListAssetFiltersInput = {
     type = "structure",
+    id = "ListAssetFiltersInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12769,6 +13258,7 @@ M.ListAssetFiltersInput = {
 
 M.ListAssetFiltersOutput = {
     type = "structure",
+    id = "ListAssetFiltersOutput",
     members = {
         items = {
             type = "list",
@@ -12785,6 +13275,7 @@ M.ListAssetFiltersOutput = {
 
 M.ListAssetRevisionsInput = {
     type = "structure",
+    id = "ListAssetRevisionsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12817,6 +13308,7 @@ M.ListAssetRevisionsInput = {
 
 M.ListAssetRevisionsOutput = {
     type = "structure",
+    id = "ListAssetRevisionsOutput",
     members = {
         items = {
             type = "list",
@@ -12834,6 +13326,7 @@ M.SortFieldConnection = {
 
 M.ListConnectionsInput = {
     type = "structure",
+    id = "ListConnectionsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12901,6 +13394,7 @@ M.ListConnectionsInput = {
 
 M.ListConnectionsOutput = {
     type = "structure",
+    id = "ListConnectionsOutput",
     members = {
         items = {
             type = "list",
@@ -12917,6 +13411,7 @@ M.ListConnectionsOutput = {
 
 M.ListDataProductRevisionsInput = {
     type = "structure",
+    id = "ListDataProductRevisionsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -12949,6 +13444,7 @@ M.ListDataProductRevisionsInput = {
 
 M.ListDataProductRevisionsOutput = {
     type = "structure",
+    id = "ListDataProductRevisionsOutput",
     members = {
         items = {
             type = "list",
@@ -12965,6 +13461,7 @@ M.ListDataProductRevisionsOutput = {
 
 M.ListDataSourceRunActivitiesInput = {
     type = "structure",
+    id = "ListDataSourceRunActivitiesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13003,6 +13500,7 @@ M.ListDataSourceRunActivitiesInput = {
 
 M.ListDataSourceRunActivitiesOutput = {
     type = "structure",
+    id = "ListDataSourceRunActivitiesOutput",
     members = {
         items = {
             type = "list",
@@ -13019,6 +13517,7 @@ M.ListDataSourceRunActivitiesOutput = {
 
 M.ListEntityOwnersInput = {
     type = "structure",
+    id = "ListEntityOwnersInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13058,6 +13557,7 @@ M.ListEntityOwnersInput = {
 
 M.OwnerGroupPropertiesOutput = {
     type = "structure",
+    id = "OwnerGroupPropertiesOutput",
     members = {
         groupId = {
             type = "string",
@@ -13067,6 +13567,7 @@ M.OwnerGroupPropertiesOutput = {
 
 M.OwnerUserPropertiesOutput = {
     type = "structure",
+    id = "OwnerUserPropertiesOutput",
     members = {
         userId = {
             type = "string",
@@ -13076,6 +13577,7 @@ M.OwnerUserPropertiesOutput = {
 
 M.OwnerPropertiesOutput = {
     type = "union",
+    id = "OwnerPropertiesOutput",
     members = {
         user = M.OwnerUserPropertiesOutput,
         group = M.OwnerGroupPropertiesOutput,
@@ -13084,6 +13586,7 @@ M.OwnerPropertiesOutput = {
 
 M.ListEntityOwnersOutput = {
     type = "structure",
+    id = "ListEntityOwnersOutput",
     members = {
         owners = {
             type = "list",
@@ -13100,6 +13603,7 @@ M.ListEntityOwnersOutput = {
 
 M.ListEnvironmentActionsInput = {
     type = "structure",
+    id = "ListEnvironmentActionsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13132,6 +13636,7 @@ M.ListEnvironmentActionsInput = {
 
 M.EnvironmentActionSummary = {
     type = "structure",
+    id = "EnvironmentActionSummary",
     members = {
         domainId = {
             type = "string",
@@ -13168,6 +13673,7 @@ M.EnvironmentActionSummary = {
 
 M.ListEnvironmentActionsOutput = {
     type = "structure",
+    id = "ListEnvironmentActionsOutput",
     members = {
         items = {
             type = "list",
@@ -13181,6 +13687,7 @@ M.ListEnvironmentActionsOutput = {
 
 M.ListEnvironmentBlueprintsInput = {
     type = "structure",
+    id = "ListEnvironmentBlueprintsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13218,6 +13725,7 @@ M.ListEnvironmentBlueprintsInput = {
 
 M.EnvironmentBlueprintSummary = {
     type = "structure",
+    id = "EnvironmentBlueprintSummary",
     members = {
         id = {
             type = "string",
@@ -13260,6 +13768,7 @@ M.EnvironmentBlueprintSummary = {
 
 M.ListEnvironmentBlueprintsOutput = {
     type = "structure",
+    id = "ListEnvironmentBlueprintsOutput",
     members = {
         items = {
             type = "list",
@@ -13276,6 +13785,7 @@ M.ListEnvironmentBlueprintsOutput = {
 
 M.ListEnvironmentProfilesInput = {
     type = "structure",
+    id = "ListEnvironmentProfilesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13331,6 +13841,7 @@ M.ListEnvironmentProfilesInput = {
 
 M.EnvironmentProfileSummary = {
     type = "structure",
+    id = "EnvironmentProfileSummary",
     members = {
         id = {
             type = "string",
@@ -13391,6 +13902,7 @@ M.EnvironmentProfileSummary = {
 
 M.ListEnvironmentProfilesOutput = {
     type = "structure",
+    id = "ListEnvironmentProfilesOutput",
     members = {
         items = {
             type = "list",
@@ -13407,6 +13919,7 @@ M.ListEnvironmentProfilesOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13481,6 +13994,7 @@ M.ListEnvironmentsInput = {
 
 M.EnvironmentSummary = {
     type = "structure",
+    id = "EnvironmentSummary",
     members = {
         projectId = {
             type = "string",
@@ -13556,6 +14070,7 @@ M.EnvironmentSummary = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         items = {
             type = "list",
@@ -13572,6 +14087,7 @@ M.ListEnvironmentsOutput = {
 
 M.DeleteListingInput = {
     type = "structure",
+    id = "DeleteListingInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13592,10 +14108,12 @@ M.DeleteListingInput = {
 
 M.DeleteListingOutput = {
     type = "structure",
+    id = "DeleteListingOutput",
 }
 
 M.GetListingInput = {
     type = "structure",
+    id = "GetListingInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13623,6 +14141,7 @@ M.GetListingInput = {
 
 M.ListingItem = {
     type = "union",
+    id = "ListingItem",
     members = {
         assetListing = M.AssetListing,
         dataProductListing = M.DataProductListing,
@@ -13631,6 +14150,7 @@ M.ListingItem = {
 
 M.GetListingOutput = {
     type = "structure",
+    id = "GetListingOutput",
     members = {
         domainId = {
             type = "string",
@@ -13677,6 +14197,7 @@ M.GetListingOutput = {
 
 M.ListJobRunsInput = {
     type = "structure",
+    id = "ListJobRunsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13721,6 +14242,7 @@ M.ListJobRunsInput = {
 
 M.JobRunSummary = {
     type = "structure",
+    id = "JobRunSummary",
     members = {
         domainId = {
             type = "string",
@@ -13758,6 +14280,7 @@ M.JobRunSummary = {
 
 M.ListJobRunsOutput = {
     type = "structure",
+    id = "ListJobRunsOutput",
     members = {
         items = {
             type = "list",
@@ -13771,6 +14294,7 @@ M.ListJobRunsOutput = {
 
 M.ListLineageEventsInput = {
     type = "structure",
+    id = "ListLineageEventsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13829,6 +14353,7 @@ M.OpenLineageRunState = {
 
 M.NameIdentifier = {
     type = "structure",
+    id = "NameIdentifier",
     members = {
         name = {
             type = "string",
@@ -13841,6 +14366,7 @@ M.NameIdentifier = {
 
 M.OpenLineageRunEventSummary = {
     type = "structure",
+    id = "OpenLineageRunEventSummary",
     members = {
         eventType = {
             type = "string",
@@ -13862,6 +14388,7 @@ M.OpenLineageRunEventSummary = {
 
 M.EventSummary = {
     type = "union",
+    id = "EventSummary",
     members = {
         openLineageRunEventSummary = M.OpenLineageRunEventSummary,
     },
@@ -13869,6 +14396,7 @@ M.EventSummary = {
 
 M.LineageEventSummary = {
     type = "structure",
+    id = "LineageEventSummary",
     members = {
         id = {
             type = "string",
@@ -13894,6 +14422,7 @@ M.LineageEventSummary = {
 
 M.ListLineageEventsOutput = {
     type = "structure",
+    id = "ListLineageEventsOutput",
     members = {
         items = {
             type = "list",
@@ -13912,6 +14441,7 @@ M.EdgeDirection = {
 
 M.ListLineageNodeHistoryInput = {
     type = "structure",
+    id = "ListLineageNodeHistoryInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -13968,6 +14498,7 @@ M.ListLineageNodeHistoryInput = {
 
 M.LineageNodeSummary = {
     type = "structure",
+    id = "LineageNodeSummary",
     members = {
         domainId = {
             type = "string",
@@ -14019,6 +14550,7 @@ M.LineageNodeSummary = {
 
 M.ListLineageNodeHistoryOutput = {
     type = "structure",
+    id = "ListLineageNodeHistoryOutput",
     members = {
         nodes = {
             type = "list",
@@ -14042,6 +14574,7 @@ M.NotificationType = {
 
 M.ListNotificationsInput = {
     type = "structure",
+    id = "ListNotificationsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -14103,6 +14636,7 @@ M.NotificationResourceType = {
 
 M.NotificationResource = {
     type = "structure",
+    id = "NotificationResource",
     members = {
         type = {
             type = "string",
@@ -14132,6 +14666,7 @@ M.NotificationRole = {
 
 M.Topic = {
     type = "structure",
+    id = "Topic",
     members = {
         subject = {
             type = "string",
@@ -14153,6 +14688,7 @@ M.Topic = {
 
 M.NotificationOutput = {
     type = "structure",
+    id = "NotificationOutput",
     members = {
         identifier = {
             type = "string",
@@ -14218,6 +14754,7 @@ M.NotificationOutput = {
 
 M.ListNotificationsOutput = {
     type = "structure",
+    id = "ListNotificationsOutput",
     members = {
         notifications = {
             type = "list",
@@ -14231,6 +14768,7 @@ M.ListNotificationsOutput = {
 
 M.ListPolicyGrantsInput = {
     type = "structure",
+    id = "ListPolicyGrantsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -14277,6 +14815,7 @@ M.ListPolicyGrantsInput = {
 
 M.PolicyGrantMember = {
     type = "structure",
+    id = "PolicyGrantMember",
     members = {
         principal = M.PolicyGrantPrincipal,
         detail = M.PolicyGrantDetail,
@@ -14294,6 +14833,7 @@ M.PolicyGrantMember = {
 
 M.ListPolicyGrantsOutput = {
     type = "structure",
+    id = "ListPolicyGrantsOutput",
     members = {
         grantList = {
             type = "list",
@@ -14314,6 +14854,7 @@ M.SortFieldProject = {
 
 M.ListProjectMembershipsInput = {
     type = "structure",
+    id = "ListProjectMembershipsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -14358,6 +14899,7 @@ M.ListProjectMembershipsInput = {
 
 M.GroupDetails = {
     type = "structure",
+    id = "GroupDetails",
     members = {
         groupId = {
             type = "string",
@@ -14370,6 +14912,7 @@ M.GroupDetails = {
 
 M.UserDetails = {
     type = "structure",
+    id = "UserDetails",
     members = {
         userId = {
             type = "string",
@@ -14382,6 +14925,7 @@ M.UserDetails = {
 
 M.MemberDetails = {
     type = "union",
+    id = "MemberDetails",
     members = {
         user = M.UserDetails,
         group = M.GroupDetails,
@@ -14390,6 +14934,7 @@ M.MemberDetails = {
 
 M.ProjectMember = {
     type = "structure",
+    id = "ProjectMember",
     members = {
         memberDetails = setmetatable({ traits = {
             required = true,
@@ -14405,6 +14950,7 @@ M.ProjectMember = {
 
 M.ListProjectMembershipsOutput = {
     type = "structure",
+    id = "ListProjectMembershipsOutput",
     members = {
         members = {
             type = "list",
@@ -14421,6 +14967,7 @@ M.ListProjectMembershipsOutput = {
 
 M.ListProjectProfilesInput = {
     type = "structure",
+    id = "ListProjectProfilesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -14464,6 +15011,7 @@ M.ListProjectProfilesInput = {
 
 M.ProjectProfileSummary = {
     type = "structure",
+    id = "ProjectProfileSummary",
     members = {
         domainId = {
             type = "string",
@@ -14515,6 +15063,7 @@ M.ProjectProfileSummary = {
 
 M.ListProjectProfilesOutput = {
     type = "structure",
+    id = "ListProjectProfilesOutput",
     members = {
         items = {
             type = "list",
@@ -14528,6 +15077,7 @@ M.ListProjectProfilesOutput = {
 
 M.ListProjectsInput = {
     type = "structure",
+    id = "ListProjectsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -14577,6 +15127,7 @@ M.ListProjectsInput = {
 
 M.ProjectSummary = {
     type = "structure",
+    id = "ProjectSummary",
     members = {
         domainId = {
             type = "string",
@@ -14635,6 +15186,7 @@ M.ProjectSummary = {
 
 M.ListProjectsOutput = {
     type = "structure",
+    id = "ListProjectsOutput",
     members = {
         items = {
             type = "list",
@@ -14653,6 +15205,7 @@ M.SortKey = {
 
 M.ListSubscriptionGrantsInput = {
     type = "structure",
+    id = "ListSubscriptionGrantsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -14738,6 +15291,7 @@ M.ListSubscriptionGrantsInput = {
 
 M.SubscriptionGrantSummary = {
     type = "structure",
+    id = "SubscriptionGrantSummary",
     members = {
         id = {
             type = "string",
@@ -14802,6 +15356,7 @@ M.SubscriptionGrantSummary = {
 
 M.ListSubscriptionGrantsOutput = {
     type = "structure",
+    id = "ListSubscriptionGrantsOutput",
     members = {
         items = {
             type = "list",
@@ -14818,6 +15373,7 @@ M.ListSubscriptionGrantsOutput = {
 
 M.ListSubscriptionRequestsInput = {
     type = "structure",
+    id = "ListSubscriptionRequestsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -14897,6 +15453,7 @@ M.ListSubscriptionRequestsInput = {
 
 M.MetadataFormSummary = {
     type = "structure",
+    id = "MetadataFormSummary",
     members = {
         formName = {
             type = "string",
@@ -14918,6 +15475,7 @@ M.MetadataFormSummary = {
 
 M.SubscriptionRequestSummary = {
     type = "structure",
+    id = "SubscriptionRequestSummary",
     members = {
         id = {
             type = "string",
@@ -14996,6 +15554,7 @@ M.SubscriptionRequestSummary = {
 
 M.ListSubscriptionRequestsOutput = {
     type = "structure",
+    id = "ListSubscriptionRequestsOutput",
     members = {
         items = {
             type = "list",
@@ -15012,6 +15571,7 @@ M.ListSubscriptionRequestsOutput = {
 
 M.ListSubscriptionsInput = {
     type = "structure",
+    id = "ListSubscriptionsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15097,6 +15657,7 @@ M.ListSubscriptionsInput = {
 
 M.SubscriptionSummary = {
     type = "structure",
+    id = "SubscriptionSummary",
     members = {
         id = {
             type = "string",
@@ -15154,6 +15715,7 @@ M.SubscriptionSummary = {
 
 M.ListSubscriptionsOutput = {
     type = "structure",
+    id = "ListSubscriptionsOutput",
     members = {
         items = {
             type = "list",
@@ -15170,6 +15732,7 @@ M.ListSubscriptionsOutput = {
 
 M.ListSubscriptionTargetsInput = {
     type = "structure",
+    id = "ListSubscriptionTargetsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15214,6 +15777,7 @@ M.ListSubscriptionTargetsInput = {
 
 M.SubscriptionTargetSummary = {
     type = "structure",
+    id = "SubscriptionTargetSummary",
     members = {
         id = {
             type = "string",
@@ -15307,6 +15871,7 @@ M.SubscriptionTargetSummary = {
 
 M.ListSubscriptionTargetsOutput = {
     type = "structure",
+    id = "ListSubscriptionTargetsOutput",
     members = {
         items = {
             type = "list",
@@ -15323,6 +15888,7 @@ M.ListSubscriptionTargetsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -15336,6 +15902,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -15347,6 +15914,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTimeSeriesDataPointsInput = {
     type = "structure",
+    id = "ListTimeSeriesDataPointsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15405,6 +15973,7 @@ M.ListTimeSeriesDataPointsInput = {
 
 M.ListTimeSeriesDataPointsOutput = {
     type = "structure",
+    id = "ListTimeSeriesDataPointsOutput",
     members = {
         items = {
             type = "list",
@@ -15424,6 +15993,7 @@ M.MetadataGenerationRunType = {
 
 M.GetMetadataGenerationRunInput = {
     type = "structure",
+    id = "GetMetadataGenerationRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15463,6 +16033,7 @@ M.MetadataGenerationTargetType = {
 
 M.MetadataGenerationRunTarget = {
     type = "structure",
+    id = "MetadataGenerationRunTarget",
     members = {
         type = {
             type = "string",
@@ -15484,6 +16055,7 @@ M.MetadataGenerationRunTarget = {
 
 M.MetadataGenerationRunTypeStat = {
     type = "structure",
+    id = "MetadataGenerationRunTypeStat",
     members = {
         type = {
             type = "string",
@@ -15505,6 +16077,7 @@ M.MetadataGenerationRunTypeStat = {
 
 M.GetMetadataGenerationRunOutput = {
     type = "structure",
+    id = "GetMetadataGenerationRunOutput",
     members = {
         domainId = {
             type = "string",
@@ -15550,6 +16123,7 @@ M.GetMetadataGenerationRunOutput = {
 
 M.ListMetadataGenerationRunsInput = {
     type = "structure",
+    id = "ListMetadataGenerationRunsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15593,6 +16167,7 @@ M.ListMetadataGenerationRunsInput = {
 
 M.MetadataGenerationRunItem = {
     type = "structure",
+    id = "MetadataGenerationRunItem",
     members = {
         domainId = {
             type = "string",
@@ -15634,6 +16209,7 @@ M.MetadataGenerationRunItem = {
 
 M.ListMetadataGenerationRunsOutput = {
     type = "structure",
+    id = "ListMetadataGenerationRunsOutput",
     members = {
         items = {
             type = "list",
@@ -15647,6 +16223,7 @@ M.ListMetadataGenerationRunsOutput = {
 
 M.StartMetadataGenerationRunInput = {
     type = "structure",
+    id = "StartMetadataGenerationRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15682,6 +16259,7 @@ M.StartMetadataGenerationRunInput = {
 
 M.StartMetadataGenerationRunOutput = {
     type = "structure",
+    id = "StartMetadataGenerationRunOutput",
     members = {
         domainId = {
             type = "string",
@@ -15723,6 +16301,7 @@ M.PackageManager = {
 
 M.PackageConfig = {
     type = "structure",
+    id = "PackageConfig",
     members = {
         packageManager = {
             type = "string",
@@ -15739,6 +16318,7 @@ M.PackageConfig = {
 
 M.EnvironmentConfig = {
     type = "structure",
+    id = "EnvironmentConfig",
     members = {
         imageVersion = {
             type = "string",
@@ -15749,6 +16329,7 @@ M.EnvironmentConfig = {
 
 M.GetNotebookRunInput = {
     type = "structure",
+    id = "GetNotebookRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15769,6 +16350,7 @@ M.GetNotebookRunInput = {
 
 M.NotebookRunError = {
     type = "structure",
+    id = "NotebookRunError",
     members = {
         message = {
             type = "string",
@@ -15786,6 +16368,7 @@ M.NetworkAccessType = {
 
 M.NetworkConfig = {
     type = "structure",
+    id = "NetworkConfig",
     members = {
         networkAccessType = {
             type = "string",
@@ -15819,6 +16402,7 @@ M.NotebookRunStatus = {
 
 M.StorageConfig = {
     type = "structure",
+    id = "StorageConfig",
     members = {
         projectS3Path = {
             type = "string",
@@ -15831,6 +16415,7 @@ M.StorageConfig = {
 
 M.TimeoutConfig = {
     type = "structure",
+    id = "TimeoutConfig",
     members = {
         runTimeoutInMinutes = {
             type = "integer",
@@ -15846,6 +16431,7 @@ M.TriggerSourceType = {
 
 M.TriggerSource = {
     type = "structure",
+    id = "TriggerSource",
     members = {
         type = {
             type = "string",
@@ -15858,6 +16444,7 @@ M.TriggerSource = {
 
 M.GetNotebookRunOutput = {
     type = "structure",
+    id = "GetNotebookRunOutput",
     members = {
         id = {
             type = "string",
@@ -15936,6 +16523,7 @@ M.GetNotebookRunOutput = {
 
 M.ListNotebookRunsInput = {
     type = "structure",
+    id = "ListNotebookRunsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -15992,6 +16580,7 @@ M.ListNotebookRunsInput = {
 
 M.NotebookRunSummary = {
     type = "structure",
+    id = "NotebookRunSummary",
     members = {
         id = {
             type = "string",
@@ -16050,6 +16639,7 @@ M.NotebookRunSummary = {
 
 M.ListNotebookRunsOutput = {
     type = "structure",
+    id = "ListNotebookRunsOutput",
     members = {
         items = {
             type = "list",
@@ -16063,6 +16653,7 @@ M.ListNotebookRunsOutput = {
 
 M.StartNotebookRunInput = {
     type = "structure",
+    id = "StartNotebookRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16111,6 +16702,7 @@ M.StartNotebookRunInput = {
 
 M.StartNotebookRunOutput = {
     type = "structure",
+    id = "StartNotebookRunOutput",
     members = {
         id = {
             type = "string",
@@ -16189,6 +16781,7 @@ M.StartNotebookRunOutput = {
 
 M.StopNotebookRunInput = {
     type = "structure",
+    id = "StopNotebookRunInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16215,6 +16808,7 @@ M.StopNotebookRunInput = {
 
 M.StopNotebookRunOutput = {
     type = "structure",
+    id = "StopNotebookRunOutput",
     members = {
         id = {
             type = "string",
@@ -16245,6 +16839,7 @@ M.StopNotebookRunOutput = {
 
 M.PostLineageEventInput = {
     type = "structure",
+    id = "PostLineageEventInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16272,6 +16867,7 @@ M.PostLineageEventInput = {
 
 M.PostLineageEventOutput = {
     type = "structure",
+    id = "PostLineageEventOutput",
     members = {
         id = {
             type = "string",
@@ -16284,6 +16880,7 @@ M.PostLineageEventOutput = {
 
 M.TimeSeriesDataPointFormInput = {
     type = "structure",
+    id = "TimeSeriesDataPointFormInput",
     members = {
         formName = {
             type = "string",
@@ -16314,6 +16911,7 @@ M.TimeSeriesDataPointFormInput = {
 
 M.PostTimeSeriesDataPointsInput = {
     type = "structure",
+    id = "PostTimeSeriesDataPointsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16354,6 +16952,7 @@ M.PostTimeSeriesDataPointsInput = {
 
 M.PostTimeSeriesDataPointsOutput = {
     type = "structure",
+    id = "PostTimeSeriesDataPointsOutput",
     members = {
         domainId = {
             type = "string",
@@ -16373,6 +16972,7 @@ M.PostTimeSeriesDataPointsOutput = {
 
 M.PutDataExportConfigurationInput = {
     type = "structure",
+    id = "PutDataExportConfigurationInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16399,6 +16999,7 @@ M.PutDataExportConfigurationInput = {
 
 M.PutDataExportConfigurationOutput = {
     type = "structure",
+    id = "PutDataExportConfigurationOutput",
 }
 
 M.GraphEntityType = {
@@ -16416,6 +17017,7 @@ M.FilterOperator = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         attribute = {
             type = "string",
@@ -16452,6 +17054,7 @@ M.RelationType = {
 
 M.RelationPattern = {
     type = "structure",
+    id = "RelationPattern",
     members = {
         relationType = {
             type = "string",
@@ -16473,6 +17076,7 @@ M.RelationPattern = {
 
 M.LineageNodeItem = {
     type = "structure",
+    id = "LineageNodeItem",
     members = {
         domainId = {
             type = "string",
@@ -16536,6 +17140,7 @@ M.LineageNodeItem = {
 
 M.ResultItem = {
     type = "union",
+    id = "ResultItem",
     members = {
         lineageNode = M.LineageNodeItem,
     },
@@ -16543,6 +17148,7 @@ M.ResultItem = {
 
 M.QueryGraphOutput = {
     type = "structure",
+    id = "QueryGraphOutput",
     members = {
         items = {
             type = "list",
@@ -16556,6 +17162,7 @@ M.QueryGraphOutput = {
 
 M.RejectChoice = {
     type = "structure",
+    id = "RejectChoice",
     members = {
         predictionTarget = {
             type = "string",
@@ -16577,6 +17184,7 @@ M.RejectRuleBehavior = {
 
 M.RejectRule = {
     type = "structure",
+    id = "RejectRule",
     members = {
         rule = {
             type = "string",
@@ -16589,6 +17197,7 @@ M.RejectRule = {
 
 M.RejectPredictionsInput = {
     type = "structure",
+    id = "RejectPredictionsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16626,6 +17235,7 @@ M.RejectPredictionsInput = {
 
 M.RejectPredictionsOutput = {
     type = "structure",
+    id = "RejectPredictionsOutput",
     members = {
         domainId = {
             type = "string",
@@ -16650,6 +17260,7 @@ M.RejectPredictionsOutput = {
 
 M.RejectSubscriptionRequestInput = {
     type = "structure",
+    id = "RejectSubscriptionRequestInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16673,6 +17284,7 @@ M.RejectSubscriptionRequestInput = {
 
 M.RejectSubscriptionRequestOutput = {
     type = "structure",
+    id = "RejectSubscriptionRequestOutput",
     members = {
         id = {
             type = "string",
@@ -16751,6 +17363,7 @@ M.RejectSubscriptionRequestOutput = {
 
 M.RemoveEntityOwnerInput = {
     type = "structure",
+    id = "RemoveEntityOwnerInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16787,10 +17400,12 @@ M.RemoveEntityOwnerInput = {
 
 M.RemoveEntityOwnerOutput = {
     type = "structure",
+    id = "RemoveEntityOwnerOutput",
 }
 
 M.RemovePolicyGrantInput = {
     type = "structure",
+    id = "RemovePolicyGrantInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16836,10 +17451,12 @@ M.RemovePolicyGrantInput = {
 
 M.RemovePolicyGrantOutput = {
     type = "structure",
+    id = "RemovePolicyGrantOutput",
 }
 
 M.RevokeSubscriptionInput = {
     type = "structure",
+    id = "RevokeSubscriptionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16863,6 +17480,7 @@ M.RevokeSubscriptionInput = {
 
 M.RevokeSubscriptionOutput = {
     type = "structure",
+    id = "RevokeSubscriptionOutput",
     members = {
         id = {
             type = "string",
@@ -16920,6 +17538,7 @@ M.RevokeSubscriptionOutput = {
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16940,10 +17559,12 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
 }
 
 M.GetRuleInput = {
     type = "structure",
+    id = "GetRuleInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -16970,6 +17591,7 @@ M.GetRuleInput = {
 
 M.GetRuleOutput = {
     type = "structure",
+    id = "GetRuleOutput",
     members = {
         identifier = {
             type = "string",
@@ -17045,6 +17667,7 @@ M.GetRuleOutput = {
 
 M.ListRulesInput = {
     type = "structure",
+    id = "ListRulesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -17122,6 +17745,7 @@ M.ListRulesInput = {
 
 M.RuleSummary = {
     type = "structure",
+    id = "RuleSummary",
     members = {
         identifier = {
             type = "string",
@@ -17154,6 +17778,7 @@ M.RuleSummary = {
 
 M.ListRulesOutput = {
     type = "structure",
+    id = "ListRulesOutput",
     members = {
         items = {
             type = "list",
@@ -17170,6 +17795,7 @@ M.ListRulesOutput = {
 
 M.UpdateRuleInput = {
     type = "structure",
+    id = "UpdateRuleInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -17201,6 +17827,7 @@ M.UpdateRuleInput = {
 
 M.UpdateRuleOutput = {
     type = "structure",
+    id = "UpdateRuleOutput",
     members = {
         identifier = {
             type = "string",
@@ -17279,6 +17906,7 @@ M.SearchOutputAdditionalAttribute = {
 
 M.SearchInItem = {
     type = "structure",
+    id = "SearchInItem",
     members = {
         attribute = {
             type = "string",
@@ -17298,6 +17926,7 @@ M.InventorySearchScope = {
 
 M.SearchSort = {
     type = "structure",
+    id = "SearchSort",
     members = {
         attribute = {
             type = "string",
@@ -17313,6 +17942,7 @@ M.SearchSort = {
 
 M.GlossaryItemAdditionalAttributes = {
     type = "structure",
+    id = "GlossaryItemAdditionalAttributes",
     members = {
         matchRationale = {
             type = "list",
@@ -17323,6 +17953,7 @@ M.GlossaryItemAdditionalAttributes = {
 
 M.GlossaryItem = {
     type = "structure",
+    id = "GlossaryItem",
     members = {
         domainId = {
             type = "string",
@@ -17379,6 +18010,7 @@ M.GlossaryItem = {
 
 M.GlossaryTermItemAdditionalAttributes = {
     type = "structure",
+    id = "GlossaryTermItemAdditionalAttributes",
     members = {
         matchRationale = {
             type = "list",
@@ -17389,6 +18021,7 @@ M.GlossaryTermItemAdditionalAttributes = {
 
 M.GlossaryTermItem = {
     type = "structure",
+    id = "GlossaryTermItem",
     members = {
         domainId = {
             type = "string",
@@ -17449,6 +18082,7 @@ M.GlossaryTermItem = {
 
 M.SearchInventoryResultItem = {
     type = "union",
+    id = "SearchInventoryResultItem",
     members = {
         glossaryItem = M.GlossaryItem,
         glossaryTermItem = M.GlossaryTermItem,
@@ -17459,6 +18093,7 @@ M.SearchInventoryResultItem = {
 
 M.SearchOutput = {
     type = "structure",
+    id = "SearchOutput",
     members = {
         items = {
             type = "list",
@@ -17481,6 +18116,7 @@ M.GroupSearchType = {
 
 M.SearchGroupProfilesInput = {
     type = "structure",
+    id = "SearchGroupProfilesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -17509,6 +18145,7 @@ M.SearchGroupProfilesInput = {
 
 M.GroupProfileSummary = {
     type = "structure",
+    id = "GroupProfileSummary",
     members = {
         domainId = {
             type = "string",
@@ -17533,6 +18170,7 @@ M.GroupProfileSummary = {
 
 M.SearchGroupProfilesOutput = {
     type = "structure",
+    id = "SearchGroupProfilesOutput",
     members = {
         items = {
             type = "list",
@@ -17546,6 +18184,7 @@ M.SearchGroupProfilesOutput = {
 
 M.SearchResultItem = {
     type = "union",
+    id = "SearchResultItem",
     members = {
         assetListing = M.AssetListingItem,
         dataProductListing = M.DataProductListingItem,
@@ -17554,6 +18193,7 @@ M.SearchResultItem = {
 
 M.SearchListingsOutput = {
     type = "structure",
+    id = "SearchListingsOutput",
     members = {
         items = {
             type = "list",
@@ -17580,6 +18220,7 @@ M.TypesSearchScope = {
 
 M.FormTypeData = {
     type = "structure",
+    id = "FormTypeData",
     members = {
         domainId = {
             type = "string",
@@ -17630,6 +18271,7 @@ M.FormTypeData = {
 
 M.LineageNodeTypeItem = {
     type = "structure",
+    id = "LineageNodeTypeItem",
     members = {
         domainId = {
             type = "string",
@@ -17674,6 +18316,7 @@ M.LineageNodeTypeItem = {
 
 M.SearchTypesResultItem = {
     type = "union",
+    id = "SearchTypesResultItem",
     members = {
         assetTypeItem = M.AssetTypeItem,
         formTypeItem = M.FormTypeData,
@@ -17683,6 +18326,7 @@ M.SearchTypesResultItem = {
 
 M.SearchTypesOutput = {
     type = "structure",
+    id = "SearchTypesOutput",
     members = {
         items = {
             type = "list",
@@ -17706,6 +18350,7 @@ M.UserSearchType = {
 
 M.SearchUserProfilesInput = {
     type = "structure",
+    id = "SearchUserProfilesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -17734,6 +18379,7 @@ M.SearchUserProfilesInput = {
 
 M.UserProfileSummary = {
     type = "structure",
+    id = "UserProfileSummary",
     members = {
         domainId = {
             type = "string",
@@ -17753,6 +18399,7 @@ M.UserProfileSummary = {
 
 M.SearchUserProfilesOutput = {
     type = "structure",
+    id = "SearchUserProfilesOutput",
     members = {
         items = {
             type = "list",
@@ -17766,6 +18413,7 @@ M.SearchUserProfilesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -17787,10 +18435,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -17812,10 +18462,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccountPoolInput = {
     type = "structure",
+    id = "UpdateAccountPoolInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -17846,6 +18498,7 @@ M.UpdateAccountPoolInput = {
 
 M.UpdateAccountPoolOutput = {
     type = "structure",
+    id = "UpdateAccountPoolOutput",
     members = {
         domainId = {
             type = "string",
@@ -17894,6 +18547,7 @@ M.UpdateAccountPoolOutput = {
 
 M.UpdateConnectionInput = {
     type = "structure",
+    id = "UpdateConnectionInput",
     members = {
         configurations = {
             type = "list",
@@ -17923,6 +18577,7 @@ M.UpdateConnectionInput = {
 
 M.UpdateConnectionOutput = {
     type = "structure",
+    id = "UpdateConnectionOutput",
     members = {
         configurations = {
             type = "list",
@@ -17983,6 +18638,7 @@ M.UpdateConnectionOutput = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18023,6 +18679,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         projectId = {
             type = "string",
@@ -18120,6 +18777,7 @@ M.UpdateEnvironmentOutput = {
 
 M.UpdateEnvironmentActionInput = {
     type = "structure",
+    id = "UpdateEnvironmentActionInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18154,6 +18812,7 @@ M.UpdateEnvironmentActionInput = {
 
 M.UpdateEnvironmentActionOutput = {
     type = "structure",
+    id = "UpdateEnvironmentActionOutput",
     members = {
         domainId = {
             type = "string",
@@ -18190,6 +18849,7 @@ M.UpdateEnvironmentActionOutput = {
 
 M.UpdateEnvironmentBlueprintInput = {
     type = "structure",
+    id = "UpdateEnvironmentBlueprintInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18218,6 +18878,7 @@ M.UpdateEnvironmentBlueprintInput = {
 
 M.UpdateEnvironmentBlueprintOutput = {
     type = "structure",
+    id = "UpdateEnvironmentBlueprintOutput",
     members = {
         id = {
             type = "string",
@@ -18269,6 +18930,7 @@ M.UpdateEnvironmentBlueprintOutput = {
 
 M.UpdateEnvironmentProfileInput = {
     type = "structure",
+    id = "UpdateEnvironmentProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18305,6 +18967,7 @@ M.UpdateEnvironmentProfileInput = {
 
 M.UpdateEnvironmentProfileOutput = {
     type = "structure",
+    id = "UpdateEnvironmentProfileOutput",
     members = {
         id = {
             type = "string",
@@ -18369,6 +19032,7 @@ M.UpdateEnvironmentProfileOutput = {
 
 M.UpdateGroupProfileInput = {
     type = "structure",
+    id = "UpdateGroupProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18395,6 +19059,7 @@ M.UpdateGroupProfileInput = {
 
 M.UpdateGroupProfileOutput = {
     type = "structure",
+    id = "UpdateGroupProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -18419,6 +19084,7 @@ M.UpdateGroupProfileOutput = {
 
 M.UpdateProjectInput = {
     type = "structure",
+    id = "UpdateProjectInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18465,6 +19131,7 @@ M.UpdateProjectInput = {
 
 M.UpdateProjectOutput = {
     type = "structure",
+    id = "UpdateProjectOutput",
     members = {
         domainId = {
             type = "string",
@@ -18539,6 +19206,7 @@ M.UpdateProjectOutput = {
 
 M.UpdateProjectProfileInput = {
     type = "structure",
+    id = "UpdateProjectProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18585,6 +19253,7 @@ M.UpdateProjectProfileInput = {
 
 M.UpdateProjectProfileOutput = {
     type = "structure",
+    id = "UpdateProjectProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -18650,6 +19319,7 @@ M.UpdateProjectProfileOutput = {
 
 M.UpdateRootDomainUnitOwnerInput = {
     type = "structure",
+    id = "UpdateRootDomainUnitOwnerInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18681,10 +19351,12 @@ M.UpdateRootDomainUnitOwnerInput = {
 
 M.UpdateRootDomainUnitOwnerOutput = {
     type = "structure",
+    id = "UpdateRootDomainUnitOwnerOutput",
 }
 
 M.UpdateSubscriptionGrantStatusInput = {
     type = "structure",
+    id = "UpdateSubscriptionGrantStatusInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18722,6 +19394,7 @@ M.UpdateSubscriptionGrantStatusInput = {
 
 M.UpdateSubscriptionGrantStatusOutput = {
     type = "structure",
+    id = "UpdateSubscriptionGrantStatusOutput",
     members = {
         id = {
             type = "string",
@@ -18786,6 +19459,7 @@ M.UpdateSubscriptionGrantStatusOutput = {
 
 M.UpdateSubscriptionRequestInput = {
     type = "structure",
+    id = "UpdateSubscriptionRequestInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18812,6 +19486,7 @@ M.UpdateSubscriptionRequestInput = {
 
 M.UpdateSubscriptionRequestOutput = {
     type = "structure",
+    id = "UpdateSubscriptionRequestOutput",
     members = {
         id = {
             type = "string",
@@ -18890,6 +19565,7 @@ M.UpdateSubscriptionRequestOutput = {
 
 M.UpdateSubscriptionTargetInput = {
     type = "structure",
+    id = "UpdateSubscriptionTargetInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -18941,6 +19617,7 @@ M.UpdateSubscriptionTargetInput = {
 
 M.UpdateSubscriptionTargetOutput = {
     type = "structure",
+    id = "UpdateSubscriptionTargetOutput",
     members = {
         id = {
             type = "string",
@@ -19034,6 +19711,7 @@ M.UpdateSubscriptionTargetOutput = {
 
 M.UpdateUserProfileInput = {
     type = "structure",
+    id = "UpdateUserProfileInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -19066,6 +19744,7 @@ M.UpdateUserProfileInput = {
 
 M.UpdateUserProfileOutput = {
     type = "structure",
+    id = "UpdateUserProfileOutput",
     members = {
         domainId = {
             type = "string",
@@ -19085,6 +19764,7 @@ M.UpdateUserProfileOutput = {
 
 M.FilterClause = {
     type = "union",
+    id = "FilterClause",
     members = {
         filter = M.Filter,
         and = {
@@ -19100,6 +19780,7 @@ M.FilterClause = {
 
 M.RowFilter = {
     type = "union",
+    id = "RowFilter",
     members = {
         expression = M.RowFilterExpression,
         and = {
@@ -19115,6 +19796,7 @@ M.RowFilter = {
 
 M.EntityPattern = {
     type = "structure",
+    id = "EntityPattern",
     members = {
         entityType = {
             type = "string",
@@ -19134,6 +19816,7 @@ M.EntityPattern = {
 
 M.RowFilterConfiguration = {
     type = "structure",
+    id = "RowFilterConfiguration",
     members = {
         rowFilter = setmetatable({ traits = {
             required = true,
@@ -19149,6 +19832,7 @@ M.RowFilterConfiguration = {
 
 M.SearchInput = {
     type = "structure",
+    id = "SearchInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -19190,6 +19874,7 @@ M.SearchInput = {
 
 M.SearchListingsInput = {
     type = "structure",
+    id = "SearchListingsInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -19226,6 +19911,7 @@ M.SearchListingsInput = {
 
 M.SearchTypesInput = {
     type = "structure",
+    id = "SearchTypesInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -19266,6 +19952,7 @@ M.SearchTypesInput = {
 
 M.AssetFilterConfiguration = {
     type = "union",
+    id = "AssetFilterConfiguration",
     members = {
         columnConfiguration = M.ColumnFilterConfiguration,
         rowConfiguration = M.RowFilterConfiguration,
@@ -19274,6 +19961,7 @@ M.AssetFilterConfiguration = {
 
 M.MatchClause = {
     type = "union",
+    id = "MatchClause",
     members = {
         relationPattern = M.RelationPattern,
         entityPattern = M.EntityPattern,
@@ -19282,6 +19970,7 @@ M.MatchClause = {
 
 M.CreateAssetFilterInput = {
     type = "structure",
+    id = "CreateAssetFilterInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -19320,6 +20009,7 @@ M.CreateAssetFilterInput = {
 
 M.CreateAssetFilterOutput = {
     type = "structure",
+    id = "CreateAssetFilterOutput",
     members = {
         id = {
             type = "string",
@@ -19372,6 +20062,7 @@ M.CreateAssetFilterOutput = {
 
 M.GetAssetFilterOutput = {
     type = "structure",
+    id = "GetAssetFilterOutput",
     members = {
         id = {
             type = "string",
@@ -19424,6 +20115,7 @@ M.GetAssetFilterOutput = {
 
 M.UpdateAssetFilterInput = {
     type = "structure",
+    id = "UpdateAssetFilterInput",
     members = {
         domainIdentifier = {
             type = "string",
@@ -19458,6 +20150,7 @@ M.UpdateAssetFilterInput = {
 
 M.UpdateAssetFilterOutput = {
     type = "structure",
+    id = "UpdateAssetFilterOutput",
     members = {
         id = {
             type = "string",
@@ -19510,6 +20203,7 @@ M.UpdateAssetFilterOutput = {
 
 M.QueryGraphInput = {
     type = "structure",
+    id = "QueryGraphInput",
     members = {
         domainIdentifier = {
             type = "string",

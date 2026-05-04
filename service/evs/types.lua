@@ -2,6 +2,7 @@ local M = {}
 
 M.AssociateEipToVlanInput = {
     type = "structure",
+    id = "AssociateEipToVlanInput",
     members = {
         clientToken = {
             type = "string",
@@ -32,6 +33,7 @@ M.AssociateEipToVlanInput = {
 
 M.EipAssociation = {
     type = "structure",
+    id = "EipAssociation",
     members = {
         associationId = {
             type = "string",
@@ -55,6 +57,7 @@ M.VlanState = {
 
 M.Vlan = {
     type = "structure",
+    id = "Vlan",
     members = {
         vlanId = {
             type = "integer",
@@ -98,6 +101,7 @@ M.Vlan = {
 
 M.AssociateEipToVlanOutput = {
     type = "structure",
+    id = "AssociateEipToVlanOutput",
     members = {
         vlan = M.Vlan,
     },
@@ -105,6 +109,7 @@ M.AssociateEipToVlanOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -130,6 +135,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -149,6 +155,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -174,6 +181,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -201,6 +209,7 @@ M.EntitlementType = {
 
 M.CreateEntitlementInput = {
     type = "structure",
+    id = "CreateEntitlementInput",
     members = {
         clientToken = {
             type = "string",
@@ -238,6 +247,7 @@ M.CreateEntitlementInput = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         errorCode = {
             type = "string",
@@ -265,6 +275,7 @@ M.EntitlementStatus = {
 
 M.VmEntitlement = {
     type = "structure",
+    id = "VmEntitlement",
     members = {
         vmId = {
             type = "string",
@@ -299,6 +310,7 @@ M.VmEntitlement = {
 
 M.CreateEntitlementOutput = {
     type = "structure",
+    id = "CreateEntitlementOutput",
     members = {
         entitlements = {
             type = "list",
@@ -309,6 +321,7 @@ M.CreateEntitlementOutput = {
 
 M.ConnectivityInfo = {
     type = "structure",
+    id = "ConnectivityInfo",
     members = {
         privateRouteServerPeerings = {
             type = "list",
@@ -327,6 +340,7 @@ M.InstanceType = {
 
 M.HostInfoForCreate = {
     type = "structure",
+    id = "HostInfoForCreate",
     members = {
         hostName = {
             type = "string",
@@ -357,6 +371,7 @@ M.HostInfoForCreate = {
 
 M.InitialVlanInfo = {
     type = "structure",
+    id = "InitialVlanInfo",
     members = {
         cidr = {
             type = "string",
@@ -369,6 +384,7 @@ M.InitialVlanInfo = {
 
 M.InitialVlans = {
     type = "structure",
+    id = "InitialVlans",
     members = {
         vmkManagement = setmetatable({ traits = {
             required = true,
@@ -414,6 +430,7 @@ M.InitialVlans = {
 
 M.LicenseInfo = {
     type = "structure",
+    id = "LicenseInfo",
     members = {
         solutionKey = {
             type = "string",
@@ -432,6 +449,7 @@ M.LicenseInfo = {
 
 M.ServiceAccessSecurityGroups = {
     type = "structure",
+    id = "ServiceAccessSecurityGroups",
     members = {
         securityGroups = {
             type = "list",
@@ -442,6 +460,7 @@ M.ServiceAccessSecurityGroups = {
 
 M.VcfHostnames = {
     type = "structure",
+    id = "VcfHostnames",
     members = {
         vCenter = {
             type = "string",
@@ -507,6 +526,7 @@ M.VcfVersion = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         clientToken = {
             type = "string",
@@ -600,6 +620,7 @@ M.CheckType = {
 
 M.Check = {
     type = "structure",
+    id = "Check",
     members = {
         type = {
             type = "string",
@@ -615,6 +636,7 @@ M.Check = {
 
 M.Secret = {
     type = "structure",
+    id = "Secret",
     members = {
         secretArn = {
             type = "string",
@@ -632,6 +654,7 @@ M.EnvironmentState = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         environmentId = {
             type = "string",
@@ -695,6 +718,7 @@ M.Environment = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         environment = M.Environment,
     },
@@ -706,6 +730,7 @@ M.ConnectorType = {
 
 M.CreateEnvironmentConnectorInput = {
     type = "structure",
+    id = "CreateEnvironmentConnectorInput",
     members = {
         clientToken = {
             type = "string",
@@ -743,6 +768,7 @@ M.CreateEnvironmentConnectorInput = {
 
 M.ConnectorCheck = {
     type = "structure",
+    id = "ConnectorCheck",
     members = {
         type = {
             type = "string",
@@ -771,6 +797,7 @@ M.ConnectorState = {
 
 M.Connector = {
     type = "structure",
+    id = "Connector",
     members = {
         environmentId = {
             type = "string",
@@ -811,6 +838,7 @@ M.Connector = {
 
 M.CreateEnvironmentConnectorOutput = {
     type = "structure",
+    id = "CreateEnvironmentConnectorOutput",
     members = {
         connector = M.Connector,
     },
@@ -818,6 +846,7 @@ M.CreateEnvironmentConnectorOutput = {
 
 M.CreateEnvironmentHostInput = {
     type = "structure",
+    id = "CreateEnvironmentHostInput",
     members = {
         clientToken = {
             type = "string",
@@ -842,6 +871,7 @@ M.CreateEnvironmentHostInput = {
 
 M.EnvironmentSummary = {
     type = "structure",
+    id = "EnvironmentSummary",
     members = {
         environmentId = {
             type = "string",
@@ -882,6 +912,7 @@ M.HostState = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         networkInterfaceId = {
             type = "string",
@@ -891,6 +922,7 @@ M.NetworkInterface = {
 
 M.Host = {
     type = "structure",
+    id = "Host",
     members = {
         hostName = {
             type = "string",
@@ -934,6 +966,7 @@ M.Host = {
 
 M.CreateEnvironmentHostOutput = {
     type = "structure",
+    id = "CreateEnvironmentHostOutput",
     members = {
         environmentSummary = M.EnvironmentSummary,
         host = M.Host,
@@ -942,6 +975,7 @@ M.CreateEnvironmentHostOutput = {
 
 M.DeleteEntitlementInput = {
     type = "structure",
+    id = "DeleteEntitlementInput",
     members = {
         clientToken = {
             type = "string",
@@ -979,6 +1013,7 @@ M.DeleteEntitlementInput = {
 
 M.DeleteEntitlementOutput = {
     type = "structure",
+    id = "DeleteEntitlementOutput",
     members = {
         entitlements = {
             type = "list",
@@ -989,6 +1024,7 @@ M.DeleteEntitlementOutput = {
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         clientToken = {
             type = "string",
@@ -1008,6 +1044,7 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
     members = {
         environment = M.Environment,
     },
@@ -1015,6 +1052,7 @@ M.DeleteEnvironmentOutput = {
 
 M.DeleteEnvironmentConnectorInput = {
     type = "structure",
+    id = "DeleteEnvironmentConnectorInput",
     members = {
         clientToken = {
             type = "string",
@@ -1041,6 +1079,7 @@ M.DeleteEnvironmentConnectorInput = {
 
 M.DeleteEnvironmentConnectorOutput = {
     type = "structure",
+    id = "DeleteEnvironmentConnectorOutput",
     members = {
         connector = M.Connector,
         environmentSummary = M.EnvironmentSummary,
@@ -1049,6 +1088,7 @@ M.DeleteEnvironmentConnectorOutput = {
 
 M.DeleteEnvironmentHostInput = {
     type = "structure",
+    id = "DeleteEnvironmentHostInput",
     members = {
         clientToken = {
             type = "string",
@@ -1073,6 +1113,7 @@ M.DeleteEnvironmentHostInput = {
 
 M.DeleteEnvironmentHostOutput = {
     type = "structure",
+    id = "DeleteEnvironmentHostOutput",
     members = {
         environmentSummary = M.EnvironmentSummary,
         host = M.Host,
@@ -1081,6 +1122,7 @@ M.DeleteEnvironmentHostOutput = {
 
 M.DisassociateEipFromVlanInput = {
     type = "structure",
+    id = "DisassociateEipFromVlanInput",
     members = {
         clientToken = {
             type = "string",
@@ -1111,6 +1153,7 @@ M.DisassociateEipFromVlanInput = {
 
 M.DisassociateEipFromVlanOutput = {
     type = "structure",
+    id = "DisassociateEipFromVlanOutput",
     members = {
         vlan = M.Vlan,
     },
@@ -1118,6 +1161,7 @@ M.DisassociateEipFromVlanOutput = {
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -1131,6 +1175,7 @@ M.GetEnvironmentInput = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         environment = M.Environment,
     },
@@ -1138,6 +1183,7 @@ M.GetEnvironmentOutput = {
 
 M.ListEnvironmentConnectorsInput = {
     type = "structure",
+    id = "ListEnvironmentConnectorsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1163,6 +1209,7 @@ M.ListEnvironmentConnectorsInput = {
 
 M.ListEnvironmentConnectorsOutput = {
     type = "structure",
+    id = "ListEnvironmentConnectorsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1176,6 +1223,7 @@ M.ListEnvironmentConnectorsOutput = {
 
 M.ListEnvironmentHostsInput = {
     type = "structure",
+    id = "ListEnvironmentHostsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1201,6 +1249,7 @@ M.ListEnvironmentHostsInput = {
 
 M.ListEnvironmentHostsOutput = {
     type = "structure",
+    id = "ListEnvironmentHostsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1214,6 +1263,7 @@ M.ListEnvironmentHostsOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1239,6 +1289,7 @@ M.ListEnvironmentsInput = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1252,6 +1303,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListEnvironmentVlansInput = {
     type = "structure",
+    id = "ListEnvironmentVlansInput",
     members = {
         nextToken = {
             type = "string",
@@ -1277,6 +1329,7 @@ M.ListEnvironmentVlansInput = {
 
 M.ListEnvironmentVlansOutput = {
     type = "structure",
+    id = "ListEnvironmentVlansOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1290,6 +1343,7 @@ M.ListEnvironmentVlansOutput = {
 
 M.ListVmEntitlementsInput = {
     type = "structure",
+    id = "ListVmEntitlementsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1326,6 +1380,7 @@ M.ListVmEntitlementsInput = {
 
 M.ListVmEntitlementsOutput = {
     type = "structure",
+    id = "ListVmEntitlementsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1339,6 +1394,7 @@ M.ListVmEntitlementsOutput = {
 
 M.UpdateEnvironmentConnectorInput = {
     type = "structure",
+    id = "UpdateEnvironmentConnectorInput",
     members = {
         clientToken = {
             type = "string",
@@ -1371,6 +1427,7 @@ M.UpdateEnvironmentConnectorInput = {
 
 M.UpdateEnvironmentConnectorOutput = {
     type = "structure",
+    id = "UpdateEnvironmentConnectorOutput",
     members = {
         connector = M.Connector,
     },
@@ -1378,10 +1435,12 @@ M.UpdateEnvironmentConnectorOutput = {
 
 M.GetVersionsInput = {
     type = "structure",
+    id = "GetVersionsInput",
 }
 
 M.InstanceTypeEsxVersionsInfo = {
     type = "structure",
+    id = "InstanceTypeEsxVersionsInfo",
     members = {
         instanceType = {
             type = "string",
@@ -1401,6 +1460,7 @@ M.InstanceTypeEsxVersionsInfo = {
 
 M.VcfVersionInfo = {
     type = "structure",
+    id = "VcfVersionInfo",
     members = {
         vcfVersion = {
             type = "string",
@@ -1432,6 +1492,7 @@ M.VcfVersionInfo = {
 
 M.GetVersionsOutput = {
     type = "structure",
+    id = "GetVersionsOutput",
     members = {
         vcfVersions = {
             type = "list",
@@ -1452,6 +1513,7 @@ M.GetVersionsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -1465,6 +1527,7 @@ M.InternalServerException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1477,6 +1540,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1488,6 +1552,7 @@ M.ListTagsForResourceOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1501,6 +1566,7 @@ M.ServiceQuotaExceededException = {
 
 M.TagPolicyException = {
     type = "structure",
+    id = "TagPolicyException",
     error = "client",
     members = {
         message = {
@@ -1514,6 +1580,7 @@ M.TagPolicyException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1534,10 +1601,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -1551,6 +1620,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1570,6 +1640,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

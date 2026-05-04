@@ -7,6 +7,7 @@ M.AcceptanceStateFilterValue = {
 
 M.AcceptDataGrantInput = {
     type = "structure",
+    id = "AcceptDataGrantInput",
     members = {
         DataGrantArn = {
             type = "string",
@@ -30,6 +31,7 @@ M.GrantDistributionScope = {
 
 M.AcceptDataGrantOutput = {
     type = "structure",
+    id = "AcceptDataGrantOutput",
     members = {
         Name = {
             type = "string",
@@ -110,6 +112,7 @@ M.AcceptDataGrantOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -132,6 +135,7 @@ M.ResourceType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -151,6 +155,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -164,6 +169,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -183,6 +189,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -201,6 +208,7 @@ M.ExceptionCause = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -222,6 +230,7 @@ M.ServerSideEncryptionTypes = {
 
 M.ExportServerSideEncryption = {
     type = "structure",
+    id = "ExportServerSideEncryption",
     members = {
         KmsKeyArn = {
             type = "string",
@@ -237,6 +246,7 @@ M.ExportServerSideEncryption = {
 
 M.AutoExportRevisionDestinationEntry = {
     type = "structure",
+    id = "AutoExportRevisionDestinationEntry",
     members = {
         Bucket = {
             type = "string",
@@ -252,6 +262,7 @@ M.AutoExportRevisionDestinationEntry = {
 
 M.AutoExportRevisionToS3RequestDetails = {
     type = "structure",
+    id = "AutoExportRevisionToS3RequestDetails",
     members = {
         Encryption = M.ExportServerSideEncryption,
         RevisionDestination = setmetatable({ traits = {
@@ -262,6 +273,7 @@ M.AutoExportRevisionToS3RequestDetails = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         ExportRevisionToS3 = M.AutoExportRevisionToS3RequestDetails,
     },
@@ -273,6 +285,7 @@ M.ProtocolType = {
 
 M.ApiGatewayApiAsset = {
     type = "structure",
+    id = "ApiGatewayApiAsset",
     members = {
         ApiDescription = {
             type = "string",
@@ -309,6 +322,7 @@ M.ApiGatewayApiAsset = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -327,6 +341,7 @@ M.Tag = {
 
 M.AssetConfiguration = {
     type = "structure",
+    id = "AssetConfiguration",
     members = {
         Tags = {
             type = "list",
@@ -337,6 +352,7 @@ M.AssetConfiguration = {
 
 M.AssetDestinationEntry = {
     type = "structure",
+    id = "AssetDestinationEntry",
     members = {
         AssetId = {
             type = "string",
@@ -358,6 +374,7 @@ M.AssetDestinationEntry = {
 
 M.LFTag = {
     type = "structure",
+    id = "LFTag",
     members = {
         TagKey = {
             type = "string",
@@ -377,6 +394,7 @@ M.LFTag = {
 
 M.DatabaseLFTagPolicy = {
     type = "structure",
+    id = "DatabaseLFTagPolicy",
     members = {
         Expression = {
             type = "list",
@@ -390,6 +408,7 @@ M.DatabaseLFTagPolicy = {
 
 M.TableLFTagPolicy = {
     type = "structure",
+    id = "TableLFTagPolicy",
     members = {
         Expression = {
             type = "list",
@@ -403,6 +422,7 @@ M.TableLFTagPolicy = {
 
 M.LFResourceDetails = {
     type = "structure",
+    id = "LFResourceDetails",
     members = {
         Database = M.DatabaseLFTagPolicy,
         Table = M.TableLFTagPolicy,
@@ -416,6 +436,7 @@ M.LFResourceType = {
 
 M.LFTagPolicyDetails = {
     type = "structure",
+    id = "LFTagPolicyDetails",
     members = {
         CatalogId = {
             type = "string",
@@ -437,6 +458,7 @@ M.LFTagPolicyDetails = {
 
 M.LakeFormationDataPermissionDetails = {
     type = "structure",
+    id = "LakeFormationDataPermissionDetails",
     members = {
         LFTagPolicy = M.LFTagPolicyDetails,
     },
@@ -453,6 +475,7 @@ M.LFPermission = {
 
 M.LakeFormationDataPermissionAsset = {
     type = "structure",
+    id = "LakeFormationDataPermissionAsset",
     members = {
         LakeFormationDataPermissionDetails = setmetatable({ traits = {
             required = true,
@@ -478,6 +501,7 @@ M.LakeFormationDataPermissionAsset = {
 
 M.RedshiftDataShareAsset = {
     type = "structure",
+    id = "RedshiftDataShareAsset",
     members = {
         Arn = {
             type = "string",
@@ -490,6 +514,7 @@ M.RedshiftDataShareAsset = {
 
 M.KmsKeyToGrant = {
     type = "structure",
+    id = "KmsKeyToGrant",
     members = {
         KmsKeyArn = {
             type = "string",
@@ -502,6 +527,7 @@ M.KmsKeyToGrant = {
 
 M.S3DataAccessAsset = {
     type = "structure",
+    id = "S3DataAccessAsset",
     members = {
         Bucket = {
             type = "string",
@@ -532,6 +558,7 @@ M.S3DataAccessAsset = {
 
 M.S3SnapshotAsset = {
     type = "structure",
+    id = "S3SnapshotAsset",
     members = {
         Size = {
             type = "double",
@@ -545,6 +572,7 @@ M.S3SnapshotAsset = {
 
 M.AssetDetails = {
     type = "structure",
+    id = "AssetDetails",
     members = {
         S3SnapshotAsset = M.S3SnapshotAsset,
         RedshiftDataShareAsset = M.RedshiftDataShareAsset,
@@ -564,6 +592,7 @@ M.AssetType = {
 
 M.AssetEntry = {
     type = "structure",
+    id = "AssetEntry",
     members = {
         Arn = {
             type = "string",
@@ -626,6 +655,7 @@ M.AssetEntry = {
 
 M.AssetSourceEntry = {
     type = "structure",
+    id = "AssetSourceEntry",
     members = {
         Bucket = {
             type = "string",
@@ -644,6 +674,7 @@ M.AssetSourceEntry = {
 
 M.CancelJobInput = {
     type = "structure",
+    id = "CancelJobInput",
     members = {
         JobId = {
             type = "string",
@@ -657,6 +688,7 @@ M.CancelJobInput = {
 
 M.CancelJobOutput = {
     type = "structure",
+    id = "CancelJobOutput",
 }
 
 M.Code = {
@@ -671,6 +703,7 @@ M.Code = {
 
 M.CreateDataGrantInput = {
     type = "structure",
+    id = "CreateDataGrantInput",
     members = {
         Name = {
             type = "string",
@@ -715,6 +748,7 @@ M.CreateDataGrantInput = {
 
 M.CreateDataGrantOutput = {
     type = "structure",
+    id = "CreateDataGrantOutput",
     members = {
         Name = {
             type = "string",
@@ -842,6 +876,7 @@ M.LimitName = {
 
 M.ServiceLimitExceededException = {
     type = "structure",
+    id = "ServiceLimitExceededException",
     error = "client",
     members = {
         LimitName = {
@@ -864,6 +899,7 @@ M.ServiceLimitExceededException = {
 
 M.CreateDataSetInput = {
     type = "structure",
+    id = "CreateDataSetInput",
     members = {
         AssetType = {
             type = "string",
@@ -898,6 +934,7 @@ M.Origin = {
 
 M.OriginDetails = {
     type = "structure",
+    id = "OriginDetails",
     members = {
         ProductId = {
             type = "string",
@@ -910,6 +947,7 @@ M.OriginDetails = {
 
 M.CreateDataSetOutput = {
     type = "structure",
+    id = "CreateDataSetOutput",
     members = {
         Arn = {
             type = "string",
@@ -955,6 +993,7 @@ M.CreateDataSetOutput = {
 
 M.RevisionPublished = {
     type = "structure",
+    id = "RevisionPublished",
     members = {
         DataSetId = {
             type = "string",
@@ -967,6 +1006,7 @@ M.RevisionPublished = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         RevisionPublished = M.RevisionPublished,
     },
@@ -974,6 +1014,7 @@ M.Event = {
 
 M.CreateEventActionInput = {
     type = "structure",
+    id = "CreateEventActionInput",
     members = {
         Action = setmetatable({ traits = {
             required = true,
@@ -991,6 +1032,7 @@ M.CreateEventActionInput = {
 
 M.CreateEventActionOutput = {
     type = "structure",
+    id = "CreateEventActionOutput",
     members = {
         Action = M.Action,
         Arn = {
@@ -1022,6 +1064,7 @@ M.CreateEventActionOutput = {
 
 M.S3DataAccessAssetSourceEntry = {
     type = "structure",
+    id = "S3DataAccessAssetSourceEntry",
     members = {
         Bucket = {
             type = "string",
@@ -1046,6 +1089,7 @@ M.S3DataAccessAssetSourceEntry = {
 
 M.CreateS3DataAccessFromS3BucketRequestDetails = {
     type = "structure",
+    id = "CreateS3DataAccessFromS3BucketRequestDetails",
     members = {
         AssetSource = setmetatable({ traits = {
             required = true,
@@ -1067,6 +1111,7 @@ M.CreateS3DataAccessFromS3BucketRequestDetails = {
 
 M.ExportAssetsToS3RequestDetails = {
     type = "structure",
+    id = "ExportAssetsToS3RequestDetails",
     members = {
         AssetDestinations = {
             type = "list",
@@ -1093,6 +1138,7 @@ M.ExportAssetsToS3RequestDetails = {
 
 M.ExportAssetToSignedUrlRequestDetails = {
     type = "structure",
+    id = "ExportAssetToSignedUrlRequestDetails",
     members = {
         AssetId = {
             type = "string",
@@ -1117,6 +1163,7 @@ M.ExportAssetToSignedUrlRequestDetails = {
 
 M.RevisionDestinationEntry = {
     type = "structure",
+    id = "RevisionDestinationEntry",
     members = {
         Bucket = {
             type = "string",
@@ -1138,6 +1185,7 @@ M.RevisionDestinationEntry = {
 
 M.ExportRevisionsToS3RequestDetails = {
     type = "structure",
+    id = "ExportRevisionsToS3RequestDetails",
     members = {
         DataSetId = {
             type = "string",
@@ -1158,6 +1206,7 @@ M.ExportRevisionsToS3RequestDetails = {
 
 M.ImportAssetFromApiGatewayApiRequestDetails = {
     type = "structure",
+    id = "ImportAssetFromApiGatewayApiRequestDetails",
     members = {
         ApiDescription = {
             type = "string",
@@ -1212,6 +1261,7 @@ M.ImportAssetFromApiGatewayApiRequestDetails = {
 
 M.ImportAssetFromSignedUrlRequestDetails = {
     type = "structure",
+    id = "ImportAssetFromSignedUrlRequestDetails",
     members = {
         AssetName = {
             type = "string",
@@ -1246,6 +1296,7 @@ M.DatabaseLFTagPolicyPermission = {
 
 M.DatabaseLFTagPolicyAndPermissions = {
     type = "structure",
+    id = "DatabaseLFTagPolicyAndPermissions",
     members = {
         Expression = {
             type = "list",
@@ -1271,6 +1322,7 @@ M.TableTagPolicyLFPermission = {
 
 M.TableLFTagPolicyAndPermissions = {
     type = "structure",
+    id = "TableLFTagPolicyAndPermissions",
     members = {
         Expression = {
             type = "list",
@@ -1291,6 +1343,7 @@ M.TableLFTagPolicyAndPermissions = {
 
 M.ImportAssetsFromLakeFormationTagPolicyRequestDetails = {
     type = "structure",
+    id = "ImportAssetsFromLakeFormationTagPolicyRequestDetails",
     members = {
         CatalogId = {
             type = "string",
@@ -1323,6 +1376,7 @@ M.ImportAssetsFromLakeFormationTagPolicyRequestDetails = {
 
 M.RedshiftDataShareAssetSourceEntry = {
     type = "structure",
+    id = "RedshiftDataShareAssetSourceEntry",
     members = {
         DataShareArn = {
             type = "string",
@@ -1335,6 +1389,7 @@ M.RedshiftDataShareAssetSourceEntry = {
 
 M.ImportAssetsFromRedshiftDataSharesRequestDetails = {
     type = "structure",
+    id = "ImportAssetsFromRedshiftDataSharesRequestDetails",
     members = {
         AssetSources = {
             type = "list",
@@ -1360,6 +1415,7 @@ M.ImportAssetsFromRedshiftDataSharesRequestDetails = {
 
 M.ImportAssetsFromS3RequestDetails = {
     type = "structure",
+    id = "ImportAssetsFromS3RequestDetails",
     members = {
         AssetSources = {
             type = "list",
@@ -1385,6 +1441,7 @@ M.ImportAssetsFromS3RequestDetails = {
 
 M.RequestDetails = {
     type = "structure",
+    id = "RequestDetails",
     members = {
         ExportAssetToSignedUrl = M.ExportAssetToSignedUrlRequestDetails,
         ExportAssetsToS3 = M.ExportAssetsToS3RequestDetails,
@@ -1412,6 +1469,7 @@ M.Type = {
 
 M.CreateJobInput = {
     type = "structure",
+    id = "CreateJobInput",
     members = {
         AssetConfiguration = M.AssetConfiguration,
         Details = setmetatable({ traits = {
@@ -1428,6 +1486,7 @@ M.CreateJobInput = {
 
 M.CreateS3DataAccessFromS3BucketResponseDetails = {
     type = "structure",
+    id = "CreateS3DataAccessFromS3BucketResponseDetails",
     members = {
         AssetSource = setmetatable({ traits = {
             required = true,
@@ -1449,6 +1508,7 @@ M.CreateS3DataAccessFromS3BucketResponseDetails = {
 
 M.ExportAssetsToS3ResponseDetails = {
     type = "structure",
+    id = "ExportAssetsToS3ResponseDetails",
     members = {
         AssetDestinations = {
             type = "list",
@@ -1475,6 +1535,7 @@ M.ExportAssetsToS3ResponseDetails = {
 
 M.ExportAssetToSignedUrlResponseDetails = {
     type = "structure",
+    id = "ExportAssetToSignedUrlResponseDetails",
     members = {
         AssetId = {
             type = "string",
@@ -1508,6 +1569,7 @@ M.ExportAssetToSignedUrlResponseDetails = {
 
 M.ExportRevisionsToS3ResponseDetails = {
     type = "structure",
+    id = "ExportRevisionsToS3ResponseDetails",
     members = {
         DataSetId = {
             type = "string",
@@ -1531,6 +1593,7 @@ M.ExportRevisionsToS3ResponseDetails = {
 
 M.ImportAssetFromApiGatewayApiResponseDetails = {
     type = "structure",
+    id = "ImportAssetFromApiGatewayApiResponseDetails",
     members = {
         ApiDescription = {
             type = "string",
@@ -1598,6 +1661,7 @@ M.ImportAssetFromApiGatewayApiResponseDetails = {
 
 M.ImportAssetFromSignedUrlResponseDetails = {
     type = "structure",
+    id = "ImportAssetFromSignedUrlResponseDetails",
     members = {
         AssetName = {
             type = "string",
@@ -1634,6 +1698,7 @@ M.ImportAssetFromSignedUrlResponseDetails = {
 
 M.ImportAssetsFromLakeFormationTagPolicyResponseDetails = {
     type = "structure",
+    id = "ImportAssetsFromLakeFormationTagPolicyResponseDetails",
     members = {
         CatalogId = {
             type = "string",
@@ -1666,6 +1731,7 @@ M.ImportAssetsFromLakeFormationTagPolicyResponseDetails = {
 
 M.ImportAssetsFromRedshiftDataSharesResponseDetails = {
     type = "structure",
+    id = "ImportAssetsFromRedshiftDataSharesResponseDetails",
     members = {
         AssetSources = {
             type = "list",
@@ -1691,6 +1757,7 @@ M.ImportAssetsFromRedshiftDataSharesResponseDetails = {
 
 M.ImportAssetsFromS3ResponseDetails = {
     type = "structure",
+    id = "ImportAssetsFromS3ResponseDetails",
     members = {
         AssetSources = {
             type = "list",
@@ -1716,6 +1783,7 @@ M.ImportAssetsFromS3ResponseDetails = {
 
 M.ResponseDetails = {
     type = "structure",
+    id = "ResponseDetails",
     members = {
         ExportAssetToSignedUrl = M.ExportAssetToSignedUrlResponseDetails,
         ExportAssetsToS3 = M.ExportAssetsToS3ResponseDetails,
@@ -1731,6 +1799,7 @@ M.ResponseDetails = {
 
 M.ImportAssetFromSignedUrlJobErrorDetails = {
     type = "structure",
+    id = "ImportAssetFromSignedUrlJobErrorDetails",
     members = {
         AssetName = {
             type = "string",
@@ -1743,6 +1812,7 @@ M.ImportAssetFromSignedUrlJobErrorDetails = {
 
 M.Details = {
     type = "structure",
+    id = "Details",
     members = {
         ImportAssetFromSignedUrlJobErrorDetails = M.ImportAssetFromSignedUrlJobErrorDetails,
         ImportAssetsFromS3JobErrorDetails = {
@@ -1768,6 +1838,7 @@ M.JobErrorResourceTypes = {
 
 M.JobError = {
     type = "structure",
+    id = "JobError",
     members = {
         Code = {
             type = "string",
@@ -1811,6 +1882,7 @@ M.State = {
 
 M.CreateJobOutput = {
     type = "structure",
+    id = "CreateJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -1847,6 +1919,7 @@ M.CreateJobOutput = {
 
 M.CreateRevisionInput = {
     type = "structure",
+    id = "CreateRevisionInput",
     members = {
         Comment = {
             type = "string",
@@ -1868,6 +1941,7 @@ M.CreateRevisionInput = {
 
 M.CreateRevisionOutput = {
     type = "structure",
+    id = "CreateRevisionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1927,6 +2001,7 @@ M.CreateRevisionOutput = {
 
 M.DeleteAssetInput = {
     type = "structure",
+    id = "DeleteAssetInput",
     members = {
         AssetId = {
             type = "string",
@@ -1954,10 +2029,12 @@ M.DeleteAssetInput = {
 
 M.DeleteAssetOutput = {
     type = "structure",
+    id = "DeleteAssetOutput",
 }
 
 M.DeleteDataGrantInput = {
     type = "structure",
+    id = "DeleteDataGrantInput",
     members = {
         DataGrantId = {
             type = "string",
@@ -1971,10 +2048,12 @@ M.DeleteDataGrantInput = {
 
 M.DeleteDataGrantOutput = {
     type = "structure",
+    id = "DeleteDataGrantOutput",
 }
 
 M.DeleteDataSetInput = {
     type = "structure",
+    id = "DeleteDataSetInput",
     members = {
         DataSetId = {
             type = "string",
@@ -1988,10 +2067,12 @@ M.DeleteDataSetInput = {
 
 M.DeleteDataSetOutput = {
     type = "structure",
+    id = "DeleteDataSetOutput",
 }
 
 M.DeleteEventActionInput = {
     type = "structure",
+    id = "DeleteEventActionInput",
     members = {
         EventActionId = {
             type = "string",
@@ -2005,10 +2086,12 @@ M.DeleteEventActionInput = {
 
 M.DeleteEventActionOutput = {
     type = "structure",
+    id = "DeleteEventActionOutput",
 }
 
 M.DeleteRevisionInput = {
     type = "structure",
+    id = "DeleteRevisionInput",
     members = {
         DataSetId = {
             type = "string",
@@ -2029,10 +2112,12 @@ M.DeleteRevisionInput = {
 
 M.DeleteRevisionOutput = {
     type = "structure",
+    id = "DeleteRevisionOutput",
 }
 
 M.GetAssetInput = {
     type = "structure",
+    id = "GetAssetInput",
     members = {
         AssetId = {
             type = "string",
@@ -2060,6 +2145,7 @@ M.GetAssetInput = {
 
 M.GetAssetOutput = {
     type = "structure",
+    id = "GetAssetOutput",
     members = {
         Arn = {
             type = "string",
@@ -2105,6 +2191,7 @@ M.GetAssetOutput = {
 
 M.GetDataGrantInput = {
     type = "structure",
+    id = "GetDataGrantInput",
     members = {
         DataGrantId = {
             type = "string",
@@ -2118,6 +2205,7 @@ M.GetDataGrantInput = {
 
 M.GetDataGrantOutput = {
     type = "structure",
+    id = "GetDataGrantOutput",
     members = {
         Name = {
             type = "string",
@@ -2212,6 +2300,7 @@ M.GetDataGrantOutput = {
 
 M.GetDataSetInput = {
     type = "structure",
+    id = "GetDataSetInput",
     members = {
         DataSetId = {
             type = "string",
@@ -2225,6 +2314,7 @@ M.GetDataSetInput = {
 
 M.GetDataSetOutput = {
     type = "structure",
+    id = "GetDataSetOutput",
     members = {
         Arn = {
             type = "string",
@@ -2270,6 +2360,7 @@ M.GetDataSetOutput = {
 
 M.GetEventActionInput = {
     type = "structure",
+    id = "GetEventActionInput",
     members = {
         EventActionId = {
             type = "string",
@@ -2283,6 +2374,7 @@ M.GetEventActionInput = {
 
 M.GetEventActionOutput = {
     type = "structure",
+    id = "GetEventActionOutput",
     members = {
         Action = M.Action,
         Arn = {
@@ -2314,6 +2406,7 @@ M.GetEventActionOutput = {
 
 M.GetJobInput = {
     type = "structure",
+    id = "GetJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2327,6 +2420,7 @@ M.GetJobInput = {
 
 M.GetJobOutput = {
     type = "structure",
+    id = "GetJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -2363,6 +2457,7 @@ M.GetJobOutput = {
 
 M.GetReceivedDataGrantInput = {
     type = "structure",
+    id = "GetReceivedDataGrantInput",
     members = {
         DataGrantArn = {
             type = "string",
@@ -2376,6 +2471,7 @@ M.GetReceivedDataGrantInput = {
 
 M.GetReceivedDataGrantOutput = {
     type = "structure",
+    id = "GetReceivedDataGrantOutput",
     members = {
         Name = {
             type = "string",
@@ -2456,6 +2552,7 @@ M.GetReceivedDataGrantOutput = {
 
 M.GetRevisionInput = {
     type = "structure",
+    id = "GetRevisionInput",
     members = {
         DataSetId = {
             type = "string",
@@ -2476,6 +2573,7 @@ M.GetRevisionInput = {
 
 M.GetRevisionOutput = {
     type = "structure",
+    id = "GetRevisionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2535,6 +2633,7 @@ M.GetRevisionOutput = {
 
 M.ListDataGrantsInput = {
     type = "structure",
+    id = "ListDataGrantsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2554,6 +2653,7 @@ M.ListDataGrantsInput = {
 
 M.DataGrantSummaryEntry = {
     type = "structure",
+    id = "DataGrantSummaryEntry",
     members = {
         Name = {
             type = "string",
@@ -2634,6 +2734,7 @@ M.DataGrantSummaryEntry = {
 
 M.ListDataGrantsOutput = {
     type = "structure",
+    id = "ListDataGrantsOutput",
     members = {
         DataGrantSummaries = {
             type = "list",
@@ -2647,6 +2748,7 @@ M.ListDataGrantsOutput = {
 
 M.ListDataSetRevisionsInput = {
     type = "structure",
+    id = "ListDataSetRevisionsInput",
     members = {
         DataSetId = {
             type = "string",
@@ -2673,6 +2775,7 @@ M.ListDataSetRevisionsInput = {
 
 M.RevisionEntry = {
     type = "structure",
+    id = "RevisionEntry",
     members = {
         Arn = {
             type = "string",
@@ -2738,6 +2841,7 @@ M.RevisionEntry = {
 
 M.ListDataSetRevisionsOutput = {
     type = "structure",
+    id = "ListDataSetRevisionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2751,6 +2855,7 @@ M.ListDataSetRevisionsOutput = {
 
 M.ListDataSetsInput = {
     type = "structure",
+    id = "ListDataSetsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2776,6 +2881,7 @@ M.ListDataSetsInput = {
 
 M.DataSetEntry = {
     type = "structure",
+    id = "DataSetEntry",
     members = {
         Arn = {
             type = "string",
@@ -2836,6 +2942,7 @@ M.DataSetEntry = {
 
 M.ListDataSetsOutput = {
     type = "structure",
+    id = "ListDataSetsOutput",
     members = {
         DataSets = {
             type = "list",
@@ -2849,6 +2956,7 @@ M.ListDataSetsOutput = {
 
 M.ListEventActionsInput = {
     type = "structure",
+    id = "ListEventActionsInput",
     members = {
         EventSourceId = {
             type = "string",
@@ -2874,6 +2982,7 @@ M.ListEventActionsInput = {
 
 M.EventActionEntry = {
     type = "structure",
+    id = "EventActionEntry",
     members = {
         Action = setmetatable({ traits = {
             required = true,
@@ -2912,6 +3021,7 @@ M.EventActionEntry = {
 
 M.ListEventActionsOutput = {
     type = "structure",
+    id = "ListEventActionsOutput",
     members = {
         EventActions = {
             type = "list",
@@ -2925,6 +3035,7 @@ M.ListEventActionsOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         DataSetId = {
             type = "string",
@@ -2956,6 +3067,7 @@ M.ListJobsInput = {
 
 M.JobEntry = {
     type = "structure",
+    id = "JobEntry",
     members = {
         Arn = {
             type = "string",
@@ -3008,6 +3120,7 @@ M.JobEntry = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         Jobs = {
             type = "list",
@@ -3021,6 +3134,7 @@ M.ListJobsOutput = {
 
 M.ListReceivedDataGrantsInput = {
     type = "structure",
+    id = "ListReceivedDataGrantsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3047,6 +3161,7 @@ M.ListReceivedDataGrantsInput = {
 
 M.ReceivedDataGrantSummariesEntry = {
     type = "structure",
+    id = "ReceivedDataGrantSummariesEntry",
     members = {
         Name = {
             type = "string",
@@ -3121,6 +3236,7 @@ M.ReceivedDataGrantSummariesEntry = {
 
 M.ListReceivedDataGrantsOutput = {
     type = "structure",
+    id = "ListReceivedDataGrantsOutput",
     members = {
         DataGrantSummaries = {
             type = "list",
@@ -3134,6 +3250,7 @@ M.ListReceivedDataGrantsOutput = {
 
 M.ListRevisionAssetsInput = {
     type = "structure",
+    id = "ListRevisionAssetsInput",
     members = {
         DataSetId = {
             type = "string",
@@ -3167,6 +3284,7 @@ M.ListRevisionAssetsInput = {
 
 M.ListRevisionAssetsOutput = {
     type = "structure",
+    id = "ListRevisionAssetsOutput",
     members = {
         Assets = {
             type = "list",
@@ -3180,6 +3298,7 @@ M.ListRevisionAssetsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3193,6 +3312,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -3207,6 +3327,7 @@ M.ListTagsForResourceOutput = {
 
 M.RevokeRevisionInput = {
     type = "structure",
+    id = "RevokeRevisionInput",
     members = {
         DataSetId = {
             type = "string",
@@ -3233,6 +3354,7 @@ M.RevokeRevisionInput = {
 
 M.RevokeRevisionOutput = {
     type = "structure",
+    id = "RevokeRevisionOutput",
     members = {
         Arn = {
             type = "string",
@@ -3287,6 +3409,7 @@ M.RevokeRevisionOutput = {
 
 M.SendApiAssetInput = {
     type = "structure",
+    id = "SendApiAssetInput",
     members = {
         Body = {
             type = "string",
@@ -3348,6 +3471,7 @@ M.SendApiAssetInput = {
 
 M.SendApiAssetOutput = {
     type = "structure",
+    id = "SendApiAssetOutput",
     members = {
         Body = {
             type = "string",
@@ -3368,6 +3492,7 @@ M.SendApiAssetOutput = {
 
 M.DataUpdateRequestDetails = {
     type = "structure",
+    id = "DataUpdateRequestDetails",
     members = {
         DataUpdatedAt = {
             type = "timestamp",
@@ -3380,6 +3505,7 @@ M.DataUpdateRequestDetails = {
 
 M.DeprecationRequestDetails = {
     type = "structure",
+    id = "DeprecationRequestDetails",
     members = {
         DeprecationAt = {
             type = "timestamp",
@@ -3399,6 +3525,7 @@ M.SchemaChangeType = {
 
 M.SchemaChangeDetails = {
     type = "structure",
+    id = "SchemaChangeDetails",
     members = {
         Name = {
             type = "string",
@@ -3420,6 +3547,7 @@ M.SchemaChangeDetails = {
 
 M.SchemaChangeRequestDetails = {
     type = "structure",
+    id = "SchemaChangeRequestDetails",
     members = {
         Changes = {
             type = "list",
@@ -3437,6 +3565,7 @@ M.SchemaChangeRequestDetails = {
 
 M.NotificationDetails = {
     type = "structure",
+    id = "NotificationDetails",
     members = {
         DataUpdate = M.DataUpdateRequestDetails,
         Deprecation = M.DeprecationRequestDetails,
@@ -3446,6 +3575,7 @@ M.NotificationDetails = {
 
 M.LakeFormationTagPolicyDetails = {
     type = "structure",
+    id = "LakeFormationTagPolicyDetails",
     members = {
         Database = {
             type = "string",
@@ -3458,6 +3588,7 @@ M.LakeFormationTagPolicyDetails = {
 
 M.RedshiftDataShareDetails = {
     type = "structure",
+    id = "RedshiftDataShareDetails",
     members = {
         Arn = {
             type = "string",
@@ -3488,6 +3619,7 @@ M.RedshiftDataShareDetails = {
 
 M.S3DataAccessDetails = {
     type = "structure",
+    id = "S3DataAccessDetails",
     members = {
         KeyPrefixes = {
             type = "list",
@@ -3502,6 +3634,7 @@ M.S3DataAccessDetails = {
 
 M.ScopeDetails = {
     type = "structure",
+    id = "ScopeDetails",
     members = {
         LakeFormationTagPolicies = {
             type = "list",
@@ -3527,6 +3660,7 @@ M.NotificationType = {
 
 M.SendDataSetNotificationInput = {
     type = "structure",
+    id = "SendDataSetNotificationInput",
     members = {
         Scope = M.ScopeDetails,
         ClientToken = {
@@ -3557,10 +3691,12 @@ M.SendDataSetNotificationInput = {
 
 M.SendDataSetNotificationOutput = {
     type = "structure",
+    id = "SendDataSetNotificationOutput",
 }
 
 M.StartJobInput = {
     type = "structure",
+    id = "StartJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3574,10 +3710,12 @@ M.StartJobInput = {
 
 M.StartJobOutput = {
     type = "structure",
+    id = "StartJobOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3600,10 +3738,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3625,10 +3765,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAssetInput = {
     type = "structure",
+    id = "UpdateAssetInput",
     members = {
         AssetId = {
             type = "string",
@@ -3662,6 +3804,7 @@ M.UpdateAssetInput = {
 
 M.UpdateAssetOutput = {
     type = "structure",
+    id = "UpdateAssetOutput",
     members = {
         Arn = {
             type = "string",
@@ -3702,6 +3845,7 @@ M.UpdateAssetOutput = {
 
 M.UpdateDataSetInput = {
     type = "structure",
+    id = "UpdateDataSetInput",
     members = {
         DataSetId = {
             type = "string",
@@ -3721,6 +3865,7 @@ M.UpdateDataSetInput = {
 
 M.UpdateDataSetOutput = {
     type = "structure",
+    id = "UpdateDataSetOutput",
     members = {
         Arn = {
             type = "string",
@@ -3761,6 +3906,7 @@ M.UpdateDataSetOutput = {
 
 M.UpdateEventActionInput = {
     type = "structure",
+    id = "UpdateEventActionInput",
     members = {
         Action = M.Action,
         EventActionId = {
@@ -3775,6 +3921,7 @@ M.UpdateEventActionInput = {
 
 M.UpdateEventActionOutput = {
     type = "structure",
+    id = "UpdateEventActionOutput",
     members = {
         Action = M.Action,
         Arn = {
@@ -3801,6 +3948,7 @@ M.UpdateEventActionOutput = {
 
 M.UpdateRevisionInput = {
     type = "structure",
+    id = "UpdateRevisionInput",
     members = {
         Comment = {
             type = "string",
@@ -3830,6 +3978,7 @@ M.UpdateRevisionInput = {
 
 M.UpdateRevisionOutput = {
     type = "structure",
+    id = "UpdateRevisionOutput",
     members = {
         Arn = {
             type = "string",

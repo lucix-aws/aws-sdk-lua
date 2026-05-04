@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -21,6 +22,7 @@ M.AccessDeniedException = {
 
 M.AgentlessDialerConfig = {
     type = "structure",
+    id = "AgentlessDialerConfig",
     members = {
         dialingCapacity = {
             type = "double",
@@ -30,6 +32,7 @@ M.AgentlessDialerConfig = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -49,6 +52,7 @@ M.ConflictException = {
 
 M.PredictiveDialerConfig = {
     type = "structure",
+    id = "PredictiveDialerConfig",
     members = {
         bandwidthAllocation = {
             type = "double",
@@ -64,6 +68,7 @@ M.PredictiveDialerConfig = {
 
 M.ProgressiveDialerConfig = {
     type = "structure",
+    id = "ProgressiveDialerConfig",
     members = {
         bandwidthAllocation = {
             type = "double",
@@ -79,6 +84,7 @@ M.ProgressiveDialerConfig = {
 
 M.DialerConfig = {
     type = "union",
+    id = "DialerConfig",
     members = {
         progressiveDialerConfig = M.ProgressiveDialerConfig,
         predictiveDialerConfig = M.PredictiveDialerConfig,
@@ -88,6 +94,7 @@ M.DialerConfig = {
 
 M.AnswerMachineDetectionConfig = {
     type = "structure",
+    id = "AnswerMachineDetectionConfig",
     members = {
         enableAnswerMachineDetection = {
             type = "boolean",
@@ -106,6 +113,7 @@ M.AnswerMachineDetectionConfig = {
 
 M.OutboundCallConfig = {
     type = "structure",
+    id = "OutboundCallConfig",
     members = {
         connectContactFlowId = {
             type = "string",
@@ -125,6 +133,7 @@ M.OutboundCallConfig = {
 
 M.CreateCampaignInput = {
     type = "structure",
+    id = "CreateCampaignInput",
     members = {
         name = {
             type = "string",
@@ -154,6 +163,7 @@ M.CreateCampaignInput = {
 
 M.CreateCampaignOutput = {
     type = "structure",
+    id = "CreateCampaignOutput",
     members = {
         id = {
             type = "string",
@@ -171,6 +181,7 @@ M.CreateCampaignOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -190,6 +201,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -209,6 +221,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -228,6 +241,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -247,6 +261,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -266,6 +281,7 @@ M.ValidationException = {
 
 M.DeleteCampaignInput = {
     type = "structure",
+    id = "DeleteCampaignInput",
     members = {
         id = {
             type = "string",
@@ -279,10 +295,12 @@ M.DeleteCampaignInput = {
 
 M.DeleteCampaignOutput = {
     type = "structure",
+    id = "DeleteCampaignOutput",
 }
 
 M.DeleteConnectInstanceConfigInput = {
     type = "structure",
+    id = "DeleteConnectInstanceConfigInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -296,10 +314,12 @@ M.DeleteConnectInstanceConfigInput = {
 
 M.DeleteConnectInstanceConfigOutput = {
     type = "structure",
+    id = "DeleteConnectInstanceConfigOutput",
 }
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         message = {
@@ -319,6 +339,7 @@ M.InvalidStateException = {
 
 M.DeleteInstanceOnboardingJobInput = {
     type = "structure",
+    id = "DeleteInstanceOnboardingJobInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -332,10 +353,12 @@ M.DeleteInstanceOnboardingJobInput = {
 
 M.DeleteInstanceOnboardingJobOutput = {
     type = "structure",
+    id = "DeleteInstanceOnboardingJobOutput",
 }
 
 M.DescribeCampaignInput = {
     type = "structure",
+    id = "DescribeCampaignInput",
     members = {
         id = {
             type = "string",
@@ -349,6 +372,7 @@ M.DescribeCampaignInput = {
 
 M.Campaign = {
     type = "structure",
+    id = "Campaign",
     members = {
         id = {
             type = "string",
@@ -390,6 +414,7 @@ M.Campaign = {
 
 M.DescribeCampaignOutput = {
     type = "structure",
+    id = "DescribeCampaignOutput",
     members = {
         campaign = M.Campaign,
     },
@@ -397,6 +422,7 @@ M.DescribeCampaignOutput = {
 
 M.GetCampaignStateInput = {
     type = "structure",
+    id = "GetCampaignStateInput",
     members = {
         id = {
             type = "string",
@@ -418,6 +444,7 @@ M.CampaignState = {
 
 M.GetCampaignStateOutput = {
     type = "structure",
+    id = "GetCampaignStateOutput",
     members = {
         state = {
             type = "string",
@@ -427,6 +454,7 @@ M.GetCampaignStateOutput = {
 
 M.GetCampaignStateBatchInput = {
     type = "structure",
+    id = "GetCampaignStateBatchInput",
     members = {
         campaignIds = {
             type = "list",
@@ -445,6 +473,7 @@ M.GetCampaignStateBatchFailureCode = {
 
 M.FailedCampaignStateResponse = {
     type = "structure",
+    id = "FailedCampaignStateResponse",
     members = {
         campaignId = {
             type = "string",
@@ -457,6 +486,7 @@ M.FailedCampaignStateResponse = {
 
 M.SuccessfulCampaignStateResponse = {
     type = "structure",
+    id = "SuccessfulCampaignStateResponse",
     members = {
         campaignId = {
             type = "string",
@@ -469,6 +499,7 @@ M.SuccessfulCampaignStateResponse = {
 
 M.GetCampaignStateBatchOutput = {
     type = "structure",
+    id = "GetCampaignStateBatchOutput",
     members = {
         successfulRequests = {
             type = "list",
@@ -483,6 +514,7 @@ M.GetCampaignStateBatchOutput = {
 
 M.GetConnectInstanceConfigInput = {
     type = "structure",
+    id = "GetConnectInstanceConfigInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -500,6 +532,7 @@ M.EncryptionType = {
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -519,6 +552,7 @@ M.EncryptionConfig = {
 
 M.InstanceConfig = {
     type = "structure",
+    id = "InstanceConfig",
     members = {
         connectInstanceId = {
             type = "string",
@@ -540,6 +574,7 @@ M.InstanceConfig = {
 
 M.GetConnectInstanceConfigOutput = {
     type = "structure",
+    id = "GetConnectInstanceConfigOutput",
     members = {
         connectInstanceConfig = M.InstanceConfig,
     },
@@ -547,6 +582,7 @@ M.GetConnectInstanceConfigOutput = {
 
 M.GetInstanceOnboardingJobStatusInput = {
     type = "structure",
+    id = "GetInstanceOnboardingJobStatusInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -575,6 +611,7 @@ M.InstanceOnboardingJobStatusCode = {
 
 M.InstanceOnboardingJobStatus = {
     type = "structure",
+    id = "InstanceOnboardingJobStatus",
     members = {
         connectInstanceId = {
             type = "string",
@@ -596,6 +633,7 @@ M.InstanceOnboardingJobStatus = {
 
 M.GetInstanceOnboardingJobStatusOutput = {
     type = "structure",
+    id = "GetInstanceOnboardingJobStatusOutput",
     members = {
         connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
@@ -607,6 +645,7 @@ M.InstanceIdFilterOperator = {
 
 M.InstanceIdFilter = {
     type = "structure",
+    id = "InstanceIdFilter",
     members = {
         value = {
             type = "string",
@@ -625,6 +664,7 @@ M.InstanceIdFilter = {
 
 M.CampaignFilters = {
     type = "structure",
+    id = "CampaignFilters",
     members = {
         instanceIdFilter = M.InstanceIdFilter,
     },
@@ -632,6 +672,7 @@ M.CampaignFilters = {
 
 M.ListCampaignsInput = {
     type = "structure",
+    id = "ListCampaignsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -645,6 +686,7 @@ M.ListCampaignsInput = {
 
 M.CampaignSummary = {
     type = "structure",
+    id = "CampaignSummary",
     members = {
         id = {
             type = "string",
@@ -675,6 +717,7 @@ M.CampaignSummary = {
 
 M.ListCampaignsOutput = {
     type = "structure",
+    id = "ListCampaignsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -688,6 +731,7 @@ M.ListCampaignsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -701,6 +745,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -712,6 +757,7 @@ M.ListTagsForResourceOutput = {
 
 M.InvalidCampaignStateException = {
     type = "structure",
+    id = "InvalidCampaignStateException",
     error = "client",
     members = {
         state = {
@@ -737,6 +783,7 @@ M.InvalidCampaignStateException = {
 
 M.PauseCampaignInput = {
     type = "structure",
+    id = "PauseCampaignInput",
     members = {
         id = {
             type = "string",
@@ -750,10 +797,12 @@ M.PauseCampaignInput = {
 
 M.PauseCampaignOutput = {
     type = "structure",
+    id = "PauseCampaignOutput",
 }
 
 M.DialRequest = {
     type = "structure",
+    id = "DialRequest",
     members = {
         clientToken = {
             type = "string",
@@ -787,6 +836,7 @@ M.DialRequest = {
 
 M.PutDialRequestBatchInput = {
     type = "structure",
+    id = "PutDialRequestBatchInput",
     members = {
         id = {
             type = "string",
@@ -813,6 +863,7 @@ M.FailureCode = {
 
 M.FailedRequest = {
     type = "structure",
+    id = "FailedRequest",
     members = {
         clientToken = {
             type = "string",
@@ -828,6 +879,7 @@ M.FailedRequest = {
 
 M.SuccessfulRequest = {
     type = "structure",
+    id = "SuccessfulRequest",
     members = {
         clientToken = {
             type = "string",
@@ -840,6 +892,7 @@ M.SuccessfulRequest = {
 
 M.PutDialRequestBatchOutput = {
     type = "structure",
+    id = "PutDialRequestBatchOutput",
     members = {
         successfulRequests = {
             type = "list",
@@ -854,6 +907,7 @@ M.PutDialRequestBatchOutput = {
 
 M.ResumeCampaignInput = {
     type = "structure",
+    id = "ResumeCampaignInput",
     members = {
         id = {
             type = "string",
@@ -867,10 +921,12 @@ M.ResumeCampaignInput = {
 
 M.ResumeCampaignOutput = {
     type = "structure",
+    id = "ResumeCampaignOutput",
 }
 
 M.StartCampaignInput = {
     type = "structure",
+    id = "StartCampaignInput",
     members = {
         id = {
             type = "string",
@@ -884,10 +940,12 @@ M.StartCampaignInput = {
 
 M.StartCampaignOutput = {
     type = "structure",
+    id = "StartCampaignOutput",
 }
 
 M.StartInstanceOnboardingJobInput = {
     type = "structure",
+    id = "StartInstanceOnboardingJobInput",
     members = {
         connectInstanceId = {
             type = "string",
@@ -904,6 +962,7 @@ M.StartInstanceOnboardingJobInput = {
 
 M.StartInstanceOnboardingJobOutput = {
     type = "structure",
+    id = "StartInstanceOnboardingJobOutput",
     members = {
         connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
@@ -911,6 +970,7 @@ M.StartInstanceOnboardingJobOutput = {
 
 M.StopCampaignInput = {
     type = "structure",
+    id = "StopCampaignInput",
     members = {
         id = {
             type = "string",
@@ -924,10 +984,12 @@ M.StopCampaignInput = {
 
 M.StopCampaignOutput = {
     type = "structure",
+    id = "StopCampaignOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -949,10 +1011,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -974,10 +1038,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCampaignDialerConfigInput = {
     type = "structure",
+    id = "UpdateCampaignDialerConfigInput",
     members = {
         id = {
             type = "string",
@@ -994,10 +1060,12 @@ M.UpdateCampaignDialerConfigInput = {
 
 M.UpdateCampaignDialerConfigOutput = {
     type = "structure",
+    id = "UpdateCampaignDialerConfigOutput",
 }
 
 M.UpdateCampaignNameInput = {
     type = "structure",
+    id = "UpdateCampaignNameInput",
     members = {
         id = {
             type = "string",
@@ -1017,10 +1085,12 @@ M.UpdateCampaignNameInput = {
 
 M.UpdateCampaignNameOutput = {
     type = "structure",
+    id = "UpdateCampaignNameOutput",
 }
 
 M.UpdateCampaignOutboundCallConfigInput = {
     type = "structure",
+    id = "UpdateCampaignOutboundCallConfigInput",
     members = {
         id = {
             type = "string",
@@ -1041,6 +1111,7 @@ M.UpdateCampaignOutboundCallConfigInput = {
 
 M.UpdateCampaignOutboundCallConfigOutput = {
     type = "structure",
+    id = "UpdateCampaignOutboundCallConfigOutput",
 }
 
 return M

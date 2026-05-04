@@ -611,11 +611,11 @@ local record TooManyRequestsException
     code: number
 end
 
-local type MemberPermissions = "read-write" | "read-only"
+local type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM"
 
 local type ManagedCredentialsAction = "ENABLE" | "DISABLE"
 
-local type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM"
+local type MemberPermissions = "read-write" | "read-only"
 
 local type EnvironmentStatus = "error" | "creating" | "connecting" | "ready" | "stopping" | "stopped" | "deleting"
 

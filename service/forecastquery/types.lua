@@ -2,6 +2,7 @@ local M = {}
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.InvalidInputException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.InvalidNextTokenException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -32,6 +35,7 @@ M.LimitExceededException = {
 
 M.QueryForecastInput = {
     type = "structure",
+    id = "QueryForecastInput",
     members = {
         ForecastArn = {
             type = "string",
@@ -61,6 +65,7 @@ M.QueryForecastInput = {
 
 M.DataPoint = {
     type = "structure",
+    id = "DataPoint",
     members = {
         Timestamp = {
             type = "string",
@@ -73,6 +78,7 @@ M.DataPoint = {
 
 M.Forecast = {
     type = "structure",
+    id = "Forecast",
     members = {
         Predictions = {
             type = "map",
@@ -84,6 +90,7 @@ M.Forecast = {
 
 M.QueryForecastOutput = {
     type = "structure",
+    id = "QueryForecastOutput",
     members = {
         Forecast = M.Forecast,
     },
@@ -91,6 +98,7 @@ M.QueryForecastOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -101,6 +109,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -111,6 +120,7 @@ M.ResourceNotFoundException = {
 
 M.QueryWhatIfForecastInput = {
     type = "structure",
+    id = "QueryWhatIfForecastInput",
     members = {
         WhatIfForecastArn = {
             type = "string",
@@ -140,6 +150,7 @@ M.QueryWhatIfForecastInput = {
 
 M.QueryWhatIfForecastOutput = {
     type = "structure",
+    id = "QueryWhatIfForecastOutput",
     members = {
         Forecast = M.Forecast,
     },

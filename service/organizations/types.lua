@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptHandshakeInput = {
     type = "structure",
+    id = "AcceptHandshakeInput",
     members = {
         HandshakeId = {
             type = "string",
@@ -28,6 +29,7 @@ M.HandshakePartyType = {
 
 M.HandshakeParty = {
     type = "structure",
+    id = "HandshakeParty",
     members = {
         Id = {
             type = "string",
@@ -72,6 +74,7 @@ M.HandshakeState = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -86,6 +89,7 @@ M.AccessDeniedForDependencyExceptionReason = {
 
 M.AccessDeniedForDependencyException = {
     type = "structure",
+    id = "AccessDeniedForDependencyException",
     error = "client",
     members = {
         Message = {
@@ -99,6 +103,7 @@ M.AccessDeniedForDependencyException = {
 
 M.AWSOrganizationsNotInUseException = {
     type = "structure",
+    id = "AWSOrganizationsNotInUseException",
     error = "client",
     members = {
         Message = {
@@ -109,6 +114,7 @@ M.AWSOrganizationsNotInUseException = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -167,6 +173,7 @@ M.ConstraintViolationExceptionReason = {
 
 M.ConstraintViolationException = {
     type = "structure",
+    id = "ConstraintViolationException",
     error = "client",
     members = {
         Message = {
@@ -180,6 +187,7 @@ M.ConstraintViolationException = {
 
 M.HandshakeAlreadyInStateException = {
     type = "structure",
+    id = "HandshakeAlreadyInStateException",
     error = "client",
     members = {
         Message = {
@@ -207,6 +215,7 @@ M.HandshakeConstraintViolationExceptionReason = {
 
 M.HandshakeConstraintViolationException = {
     type = "structure",
+    id = "HandshakeConstraintViolationException",
     error = "client",
     members = {
         Message = {
@@ -220,6 +229,7 @@ M.HandshakeConstraintViolationException = {
 
 M.HandshakeNotFoundException = {
     type = "structure",
+    id = "HandshakeNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -230,6 +240,7 @@ M.HandshakeNotFoundException = {
 
 M.InvalidHandshakeTransitionException = {
     type = "structure",
+    id = "InvalidHandshakeTransitionException",
     error = "client",
     members = {
         Message = {
@@ -283,6 +294,7 @@ M.InvalidInputExceptionReason = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         Message = {
@@ -296,6 +308,7 @@ M.InvalidInputException = {
 
 M.MasterCannotLeaveOrganizationException = {
     type = "structure",
+    id = "MasterCannotLeaveOrganizationException",
     error = "client",
     members = {
         Message = {
@@ -306,6 +319,7 @@ M.MasterCannotLeaveOrganizationException = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         Message = {
@@ -316,6 +330,7 @@ M.ServiceException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Type = {
@@ -348,6 +363,7 @@ M.AccountStatus = {
 
 M.Account = {
     type = "structure",
+    id = "Account",
     members = {
         Id = {
             type = "string",
@@ -382,6 +398,7 @@ M.Account = {
 
 M.AccountAlreadyClosedException = {
     type = "structure",
+    id = "AccountAlreadyClosedException",
     error = "client",
     members = {
         Message = {
@@ -392,6 +409,7 @@ M.AccountAlreadyClosedException = {
 
 M.AccountAlreadyRegisteredException = {
     type = "structure",
+    id = "AccountAlreadyRegisteredException",
     error = "client",
     members = {
         Message = {
@@ -402,6 +420,7 @@ M.AccountAlreadyRegisteredException = {
 
 M.AccountNotFoundException = {
     type = "structure",
+    id = "AccountNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -412,6 +431,7 @@ M.AccountNotFoundException = {
 
 M.AccountNotRegisteredException = {
     type = "structure",
+    id = "AccountNotRegisteredException",
     error = "client",
     members = {
         Message = {
@@ -422,6 +442,7 @@ M.AccountNotRegisteredException = {
 
 M.AccountOwnerNotVerifiedException = {
     type = "structure",
+    id = "AccountOwnerNotVerifiedException",
     error = "client",
     members = {
         Message = {
@@ -432,6 +453,7 @@ M.AccountOwnerNotVerifiedException = {
 
 M.AlreadyInOrganizationException = {
     type = "structure",
+    id = "AlreadyInOrganizationException",
     error = "client",
     members = {
         Message = {
@@ -442,6 +464,7 @@ M.AlreadyInOrganizationException = {
 
 M.AttachPolicyInput = {
     type = "structure",
+    id = "AttachPolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -460,10 +483,12 @@ M.AttachPolicyInput = {
 
 M.AttachPolicyOutput = {
     type = "structure",
+    id = "AttachPolicyOutput",
 }
 
 M.DuplicatePolicyAttachmentException = {
     type = "structure",
+    id = "DuplicatePolicyAttachmentException",
     error = "client",
     members = {
         Message = {
@@ -474,6 +499,7 @@ M.DuplicatePolicyAttachmentException = {
 
 M.PolicyChangesInProgressException = {
     type = "structure",
+    id = "PolicyChangesInProgressException",
     error = "client",
     members = {
         Message = {
@@ -484,6 +510,7 @@ M.PolicyChangesInProgressException = {
 
 M.PolicyNotFoundException = {
     type = "structure",
+    id = "PolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -494,6 +521,7 @@ M.PolicyNotFoundException = {
 
 M.PolicyTypeNotEnabledException = {
     type = "structure",
+    id = "PolicyTypeNotEnabledException",
     error = "client",
     members = {
         Message = {
@@ -504,6 +532,7 @@ M.PolicyTypeNotEnabledException = {
 
 M.TargetNotFoundException = {
     type = "structure",
+    id = "TargetNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -514,6 +543,7 @@ M.TargetNotFoundException = {
 
 M.UnsupportedAPIEndpointException = {
     type = "structure",
+    id = "UnsupportedAPIEndpointException",
     error = "client",
     members = {
         Message = {
@@ -524,6 +554,7 @@ M.UnsupportedAPIEndpointException = {
 
 M.CancelHandshakeInput = {
     type = "structure",
+    id = "CancelHandshakeInput",
     members = {
         HandshakeId = {
             type = "string",
@@ -536,6 +567,7 @@ M.CancelHandshakeInput = {
 
 M.CloseAccountInput = {
     type = "structure",
+    id = "CloseAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -548,10 +580,12 @@ M.CloseAccountInput = {
 
 M.CloseAccountOutput = {
     type = "structure",
+    id = "CloseAccountOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -567,6 +601,7 @@ M.IAMUserAccessToBilling = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -585,6 +620,7 @@ M.Tag = {
 
 M.CreateAccountInput = {
     type = "structure",
+    id = "CreateAccountInput",
     members = {
         Email = {
             type = "string",
@@ -637,6 +673,7 @@ M.CreateAccountState = {
 
 M.CreateAccountStatus = {
     type = "structure",
+    id = "CreateAccountStatus",
     members = {
         Id = {
             type = "string",
@@ -667,6 +704,7 @@ M.CreateAccountStatus = {
 
 M.CreateAccountOutput = {
     type = "structure",
+    id = "CreateAccountOutput",
     members = {
         CreateAccountStatus = M.CreateAccountStatus,
     },
@@ -674,6 +712,7 @@ M.CreateAccountOutput = {
 
 M.FinalizingOrganizationException = {
     type = "structure",
+    id = "FinalizingOrganizationException",
     error = "client",
     members = {
         Message = {
@@ -684,6 +723,7 @@ M.FinalizingOrganizationException = {
 
 M.CreateGovCloudAccountInput = {
     type = "structure",
+    id = "CreateGovCloudAccountInput",
     members = {
         Email = {
             type = "string",
@@ -712,6 +752,7 @@ M.CreateGovCloudAccountInput = {
 
 M.CreateGovCloudAccountOutput = {
     type = "structure",
+    id = "CreateGovCloudAccountOutput",
     members = {
         CreateAccountStatus = M.CreateAccountStatus,
     },
@@ -724,6 +765,7 @@ M.OrganizationFeatureSet = {
 
 M.CreateOrganizationInput = {
     type = "structure",
+    id = "CreateOrganizationInput",
     members = {
         FeatureSet = {
             type = "string",
@@ -755,6 +797,7 @@ M.PolicyType = {
 
 M.PolicyTypeSummary = {
     type = "structure",
+    id = "PolicyTypeSummary",
     members = {
         Type = {
             type = "string",
@@ -767,6 +810,7 @@ M.PolicyTypeSummary = {
 
 M.Organization = {
     type = "structure",
+    id = "Organization",
     members = {
         Id = {
             type = "string",
@@ -795,6 +839,7 @@ M.Organization = {
 
 M.CreateOrganizationOutput = {
     type = "structure",
+    id = "CreateOrganizationOutput",
     members = {
         Organization = M.Organization,
     },
@@ -802,6 +847,7 @@ M.CreateOrganizationOutput = {
 
 M.CreateOrganizationalUnitInput = {
     type = "structure",
+    id = "CreateOrganizationalUnitInput",
     members = {
         ParentId = {
             type = "string",
@@ -824,6 +870,7 @@ M.CreateOrganizationalUnitInput = {
 
 M.OrganizationalUnit = {
     type = "structure",
+    id = "OrganizationalUnit",
     members = {
         Id = {
             type = "string",
@@ -842,6 +889,7 @@ M.OrganizationalUnit = {
 
 M.CreateOrganizationalUnitOutput = {
     type = "structure",
+    id = "CreateOrganizationalUnitOutput",
     members = {
         OrganizationalUnit = M.OrganizationalUnit,
     },
@@ -849,6 +897,7 @@ M.CreateOrganizationalUnitOutput = {
 
 M.DuplicateOrganizationalUnitException = {
     type = "structure",
+    id = "DuplicateOrganizationalUnitException",
     error = "client",
     members = {
         Message = {
@@ -859,6 +908,7 @@ M.DuplicateOrganizationalUnitException = {
 
 M.ParentNotFoundException = {
     type = "structure",
+    id = "ParentNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -869,6 +919,7 @@ M.ParentNotFoundException = {
 
 M.CreatePolicyInput = {
     type = "structure",
+    id = "CreatePolicyInput",
     members = {
         Content = {
             type = "string",
@@ -903,6 +954,7 @@ M.CreatePolicyInput = {
 
 M.PolicySummary = {
     type = "structure",
+    id = "PolicySummary",
     members = {
         Id = {
             type = "string",
@@ -930,6 +982,7 @@ M.PolicySummary = {
 
 M.Policy = {
     type = "structure",
+    id = "Policy",
     members = {
         PolicySummary = M.PolicySummary,
         Content = {
@@ -940,6 +993,7 @@ M.Policy = {
 
 M.CreatePolicyOutput = {
     type = "structure",
+    id = "CreatePolicyOutput",
     members = {
         Policy = M.Policy,
     },
@@ -947,6 +1001,7 @@ M.CreatePolicyOutput = {
 
 M.DuplicatePolicyException = {
     type = "structure",
+    id = "DuplicatePolicyException",
     error = "client",
     members = {
         Message = {
@@ -957,6 +1012,7 @@ M.DuplicatePolicyException = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         Message = {
@@ -967,6 +1023,7 @@ M.MalformedPolicyDocumentException = {
 
 M.PolicyTypeNotAvailableForOrganizationException = {
     type = "structure",
+    id = "PolicyTypeNotAvailableForOrganizationException",
     error = "client",
     members = {
         Message = {
@@ -977,6 +1034,7 @@ M.PolicyTypeNotAvailableForOrganizationException = {
 
 M.DeclineHandshakeInput = {
     type = "structure",
+    id = "DeclineHandshakeInput",
     members = {
         HandshakeId = {
             type = "string",
@@ -989,14 +1047,17 @@ M.DeclineHandshakeInput = {
 
 M.DeleteOrganizationInput = {
     type = "structure",
+    id = "DeleteOrganizationInput",
 }
 
 M.DeleteOrganizationOutput = {
     type = "structure",
+    id = "DeleteOrganizationOutput",
 }
 
 M.OrganizationNotEmptyException = {
     type = "structure",
+    id = "OrganizationNotEmptyException",
     error = "client",
     members = {
         Message = {
@@ -1007,6 +1068,7 @@ M.OrganizationNotEmptyException = {
 
 M.DeleteOrganizationalUnitInput = {
     type = "structure",
+    id = "DeleteOrganizationalUnitInput",
     members = {
         OrganizationalUnitId = {
             type = "string",
@@ -1019,10 +1081,12 @@ M.DeleteOrganizationalUnitInput = {
 
 M.DeleteOrganizationalUnitOutput = {
     type = "structure",
+    id = "DeleteOrganizationalUnitOutput",
 }
 
 M.OrganizationalUnitNotEmptyException = {
     type = "structure",
+    id = "OrganizationalUnitNotEmptyException",
     error = "client",
     members = {
         Message = {
@@ -1033,6 +1097,7 @@ M.OrganizationalUnitNotEmptyException = {
 
 M.OrganizationalUnitNotFoundException = {
     type = "structure",
+    id = "OrganizationalUnitNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1043,6 +1108,7 @@ M.OrganizationalUnitNotFoundException = {
 
 M.DeletePolicyInput = {
     type = "structure",
+    id = "DeletePolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -1055,10 +1121,12 @@ M.DeletePolicyInput = {
 
 M.DeletePolicyOutput = {
     type = "structure",
+    id = "DeletePolicyOutput",
 }
 
 M.PolicyInUseException = {
     type = "structure",
+    id = "PolicyInUseException",
     error = "client",
     members = {
         Message = {
@@ -1069,14 +1137,17 @@ M.PolicyInUseException = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
 }
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.ResourcePolicyNotFoundException = {
     type = "structure",
+    id = "ResourcePolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1087,6 +1158,7 @@ M.ResourcePolicyNotFoundException = {
 
 M.DeregisterDelegatedAdministratorInput = {
     type = "structure",
+    id = "DeregisterDelegatedAdministratorInput",
     members = {
         AccountId = {
             type = "string",
@@ -1105,10 +1177,12 @@ M.DeregisterDelegatedAdministratorInput = {
 
 M.DeregisterDelegatedAdministratorOutput = {
     type = "structure",
+    id = "DeregisterDelegatedAdministratorOutput",
 }
 
 M.DescribeAccountInput = {
     type = "structure",
+    id = "DescribeAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -1121,6 +1195,7 @@ M.DescribeAccountInput = {
 
 M.DescribeAccountOutput = {
     type = "structure",
+    id = "DescribeAccountOutput",
     members = {
         Account = M.Account,
     },
@@ -1128,6 +1203,7 @@ M.DescribeAccountOutput = {
 
 M.CreateAccountStatusNotFoundException = {
     type = "structure",
+    id = "CreateAccountStatusNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1138,6 +1214,7 @@ M.CreateAccountStatusNotFoundException = {
 
 M.DescribeCreateAccountStatusInput = {
     type = "structure",
+    id = "DescribeCreateAccountStatusInput",
     members = {
         CreateAccountRequestId = {
             type = "string",
@@ -1150,6 +1227,7 @@ M.DescribeCreateAccountStatusInput = {
 
 M.DescribeCreateAccountStatusOutput = {
     type = "structure",
+    id = "DescribeCreateAccountStatusOutput",
     members = {
         CreateAccountStatus = M.CreateAccountStatus,
     },
@@ -1171,6 +1249,7 @@ M.EffectivePolicyType = {
 
 M.DescribeEffectivePolicyInput = {
     type = "structure",
+    id = "DescribeEffectivePolicyInput",
     members = {
         PolicyType = {
             type = "string",
@@ -1186,6 +1265,7 @@ M.DescribeEffectivePolicyInput = {
 
 M.EffectivePolicy = {
     type = "structure",
+    id = "EffectivePolicy",
     members = {
         PolicyContent = {
             type = "string",
@@ -1204,6 +1284,7 @@ M.EffectivePolicy = {
 
 M.DescribeEffectivePolicyOutput = {
     type = "structure",
+    id = "DescribeEffectivePolicyOutput",
     members = {
         EffectivePolicy = M.EffectivePolicy,
     },
@@ -1211,6 +1292,7 @@ M.DescribeEffectivePolicyOutput = {
 
 M.EffectivePolicyNotFoundException = {
     type = "structure",
+    id = "EffectivePolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1221,6 +1303,7 @@ M.EffectivePolicyNotFoundException = {
 
 M.DescribeHandshakeInput = {
     type = "structure",
+    id = "DescribeHandshakeInput",
     members = {
         HandshakeId = {
             type = "string",
@@ -1233,10 +1316,12 @@ M.DescribeHandshakeInput = {
 
 M.DescribeOrganizationInput = {
     type = "structure",
+    id = "DescribeOrganizationInput",
 }
 
 M.DescribeOrganizationOutput = {
     type = "structure",
+    id = "DescribeOrganizationOutput",
     members = {
         Organization = M.Organization,
     },
@@ -1244,6 +1329,7 @@ M.DescribeOrganizationOutput = {
 
 M.DescribeOrganizationalUnitInput = {
     type = "structure",
+    id = "DescribeOrganizationalUnitInput",
     members = {
         OrganizationalUnitId = {
             type = "string",
@@ -1256,6 +1342,7 @@ M.DescribeOrganizationalUnitInput = {
 
 M.DescribeOrganizationalUnitOutput = {
     type = "structure",
+    id = "DescribeOrganizationalUnitOutput",
     members = {
         OrganizationalUnit = M.OrganizationalUnit,
     },
@@ -1263,6 +1350,7 @@ M.DescribeOrganizationalUnitOutput = {
 
 M.DescribePolicyInput = {
     type = "structure",
+    id = "DescribePolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -1275,6 +1363,7 @@ M.DescribePolicyInput = {
 
 M.DescribePolicyOutput = {
     type = "structure",
+    id = "DescribePolicyOutput",
     members = {
         Policy = M.Policy,
     },
@@ -1282,10 +1371,12 @@ M.DescribePolicyOutput = {
 
 M.DescribeResourcePolicyInput = {
     type = "structure",
+    id = "DescribeResourcePolicyInput",
 }
 
 M.ResourcePolicySummary = {
     type = "structure",
+    id = "ResourcePolicySummary",
     members = {
         Id = {
             type = "string",
@@ -1298,6 +1389,7 @@ M.ResourcePolicySummary = {
 
 M.ResourcePolicy = {
     type = "structure",
+    id = "ResourcePolicy",
     members = {
         ResourcePolicySummary = M.ResourcePolicySummary,
         Content = {
@@ -1308,6 +1400,7 @@ M.ResourcePolicy = {
 
 M.DescribeResourcePolicyOutput = {
     type = "structure",
+    id = "DescribeResourcePolicyOutput",
     members = {
         ResourcePolicy = M.ResourcePolicy,
     },
@@ -1315,6 +1408,7 @@ M.DescribeResourcePolicyOutput = {
 
 M.DescribeResponsibilityTransferInput = {
     type = "structure",
+    id = "DescribeResponsibilityTransferInput",
     members = {
         Id = {
             type = "string",
@@ -1327,6 +1421,7 @@ M.DescribeResponsibilityTransferInput = {
 
 M.TransferParticipant = {
     type = "structure",
+    id = "TransferParticipant",
     members = {
         ManagementAccountId = {
             type = "string",
@@ -1352,6 +1447,7 @@ M.ResponsibilityTransferType = {
 
 M.ResponsibilityTransfer = {
     type = "structure",
+    id = "ResponsibilityTransfer",
     members = {
         Arn = {
             type = "string",
@@ -1384,6 +1480,7 @@ M.ResponsibilityTransfer = {
 
 M.DescribeResponsibilityTransferOutput = {
     type = "structure",
+    id = "DescribeResponsibilityTransferOutput",
     members = {
         ResponsibilityTransfer = M.ResponsibilityTransfer,
     },
@@ -1391,6 +1488,7 @@ M.DescribeResponsibilityTransferOutput = {
 
 M.ResponsibilityTransferNotFoundException = {
     type = "structure",
+    id = "ResponsibilityTransferNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1401,6 +1499,7 @@ M.ResponsibilityTransferNotFoundException = {
 
 M.DetachPolicyInput = {
     type = "structure",
+    id = "DetachPolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -1419,10 +1518,12 @@ M.DetachPolicyInput = {
 
 M.DetachPolicyOutput = {
     type = "structure",
+    id = "DetachPolicyOutput",
 }
 
 M.PolicyNotAttachedException = {
     type = "structure",
+    id = "PolicyNotAttachedException",
     error = "client",
     members = {
         Message = {
@@ -1433,6 +1534,7 @@ M.PolicyNotAttachedException = {
 
 M.DisableAWSServiceAccessInput = {
     type = "structure",
+    id = "DisableAWSServiceAccessInput",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -1445,10 +1547,12 @@ M.DisableAWSServiceAccessInput = {
 
 M.DisableAWSServiceAccessOutput = {
     type = "structure",
+    id = "DisableAWSServiceAccessOutput",
 }
 
 M.DisablePolicyTypeInput = {
     type = "structure",
+    id = "DisablePolicyTypeInput",
     members = {
         RootId = {
             type = "string",
@@ -1467,6 +1571,7 @@ M.DisablePolicyTypeInput = {
 
 M.Root = {
     type = "structure",
+    id = "Root",
     members = {
         Id = {
             type = "string",
@@ -1486,6 +1591,7 @@ M.Root = {
 
 M.DisablePolicyTypeOutput = {
     type = "structure",
+    id = "DisablePolicyTypeOutput",
     members = {
         Root = M.Root,
     },
@@ -1493,6 +1599,7 @@ M.DisablePolicyTypeOutput = {
 
 M.RootNotFoundException = {
     type = "structure",
+    id = "RootNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1503,10 +1610,12 @@ M.RootNotFoundException = {
 
 M.EnableAllFeaturesInput = {
     type = "structure",
+    id = "EnableAllFeaturesInput",
 }
 
 M.EnableAWSServiceAccessInput = {
     type = "structure",
+    id = "EnableAWSServiceAccessInput",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -1519,10 +1628,12 @@ M.EnableAWSServiceAccessInput = {
 
 M.EnableAWSServiceAccessOutput = {
     type = "structure",
+    id = "EnableAWSServiceAccessOutput",
 }
 
 M.EnablePolicyTypeInput = {
     type = "structure",
+    id = "EnablePolicyTypeInput",
     members = {
         RootId = {
             type = "string",
@@ -1541,6 +1652,7 @@ M.EnablePolicyTypeInput = {
 
 M.EnablePolicyTypeOutput = {
     type = "structure",
+    id = "EnablePolicyTypeOutput",
     members = {
         Root = M.Root,
     },
@@ -1548,6 +1660,7 @@ M.EnablePolicyTypeOutput = {
 
 M.PolicyTypeAlreadyEnabledException = {
     type = "structure",
+    id = "PolicyTypeAlreadyEnabledException",
     error = "client",
     members = {
         Message = {
@@ -1558,6 +1671,7 @@ M.PolicyTypeAlreadyEnabledException = {
 
 M.DuplicateHandshakeException = {
     type = "structure",
+    id = "DuplicateHandshakeException",
     error = "client",
     members = {
         Message = {
@@ -1568,6 +1682,7 @@ M.DuplicateHandshakeException = {
 
 M.InviteAccountToOrganizationInput = {
     type = "structure",
+    id = "InviteAccountToOrganizationInput",
     members = {
         Target = setmetatable({ traits = {
             required = true,
@@ -1584,6 +1699,7 @@ M.InviteAccountToOrganizationInput = {
 
 M.InviteOrganizationToTransferResponsibilityInput = {
     type = "structure",
+    id = "InviteOrganizationToTransferResponsibilityInput",
     members = {
         Type = {
             type = "string",
@@ -1618,14 +1734,17 @@ M.InviteOrganizationToTransferResponsibilityInput = {
 
 M.LeaveOrganizationInput = {
     type = "structure",
+    id = "LeaveOrganizationInput",
 }
 
 M.LeaveOrganizationOutput = {
     type = "structure",
+    id = "LeaveOrganizationOutput",
 }
 
 M.ListAccountsInput = {
     type = "structure",
+    id = "ListAccountsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1638,6 +1757,7 @@ M.ListAccountsInput = {
 
 M.ListAccountsOutput = {
     type = "structure",
+    id = "ListAccountsOutput",
     members = {
         Accounts = {
             type = "list",
@@ -1651,6 +1771,7 @@ M.ListAccountsOutput = {
 
 M.ListAccountsForParentInput = {
     type = "structure",
+    id = "ListAccountsForParentInput",
     members = {
         ParentId = {
             type = "string",
@@ -1669,6 +1790,7 @@ M.ListAccountsForParentInput = {
 
 M.ListAccountsForParentOutput = {
     type = "structure",
+    id = "ListAccountsForParentOutput",
     members = {
         Accounts = {
             type = "list",
@@ -1682,6 +1804,7 @@ M.ListAccountsForParentOutput = {
 
 M.ListAccountsWithInvalidEffectivePolicyInput = {
     type = "structure",
+    id = "ListAccountsWithInvalidEffectivePolicyInput",
     members = {
         PolicyType = {
             type = "string",
@@ -1700,6 +1823,7 @@ M.ListAccountsWithInvalidEffectivePolicyInput = {
 
 M.ListAccountsWithInvalidEffectivePolicyOutput = {
     type = "structure",
+    id = "ListAccountsWithInvalidEffectivePolicyOutput",
     members = {
         Accounts = {
             type = "list",
@@ -1716,6 +1840,7 @@ M.ListAccountsWithInvalidEffectivePolicyOutput = {
 
 M.ListAWSServiceAccessForOrganizationInput = {
     type = "structure",
+    id = "ListAWSServiceAccessForOrganizationInput",
     members = {
         NextToken = {
             type = "string",
@@ -1728,6 +1853,7 @@ M.ListAWSServiceAccessForOrganizationInput = {
 
 M.EnabledServicePrincipal = {
     type = "structure",
+    id = "EnabledServicePrincipal",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -1740,6 +1866,7 @@ M.EnabledServicePrincipal = {
 
 M.ListAWSServiceAccessForOrganizationOutput = {
     type = "structure",
+    id = "ListAWSServiceAccessForOrganizationOutput",
     members = {
         EnabledServicePrincipals = {
             type = "list",
@@ -1758,6 +1885,7 @@ M.ChildType = {
 
 M.ListChildrenInput = {
     type = "structure",
+    id = "ListChildrenInput",
     members = {
         ParentId = {
             type = "string",
@@ -1782,6 +1910,7 @@ M.ListChildrenInput = {
 
 M.Child = {
     type = "structure",
+    id = "Child",
     members = {
         Id = {
             type = "string",
@@ -1794,6 +1923,7 @@ M.Child = {
 
 M.ListChildrenOutput = {
     type = "structure",
+    id = "ListChildrenOutput",
     members = {
         Children = {
             type = "list",
@@ -1807,6 +1937,7 @@ M.ListChildrenOutput = {
 
 M.ListCreateAccountStatusInput = {
     type = "structure",
+    id = "ListCreateAccountStatusInput",
     members = {
         States = {
             type = "list",
@@ -1823,6 +1954,7 @@ M.ListCreateAccountStatusInput = {
 
 M.ListCreateAccountStatusOutput = {
     type = "structure",
+    id = "ListCreateAccountStatusOutput",
     members = {
         CreateAccountStatuses = {
             type = "list",
@@ -1836,6 +1968,7 @@ M.ListCreateAccountStatusOutput = {
 
 M.ListDelegatedAdministratorsInput = {
     type = "structure",
+    id = "ListDelegatedAdministratorsInput",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -1851,6 +1984,7 @@ M.ListDelegatedAdministratorsInput = {
 
 M.DelegatedAdministrator = {
     type = "structure",
+    id = "DelegatedAdministrator",
     members = {
         Id = {
             type = "string",
@@ -1884,6 +2018,7 @@ M.DelegatedAdministrator = {
 
 M.ListDelegatedAdministratorsOutput = {
     type = "structure",
+    id = "ListDelegatedAdministratorsOutput",
     members = {
         DelegatedAdministrators = {
             type = "list",
@@ -1897,6 +2032,7 @@ M.ListDelegatedAdministratorsOutput = {
 
 M.ListDelegatedServicesForAccountInput = {
     type = "structure",
+    id = "ListDelegatedServicesForAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -1915,6 +2051,7 @@ M.ListDelegatedServicesForAccountInput = {
 
 M.DelegatedService = {
     type = "structure",
+    id = "DelegatedService",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -1927,6 +2064,7 @@ M.DelegatedService = {
 
 M.ListDelegatedServicesForAccountOutput = {
     type = "structure",
+    id = "ListDelegatedServicesForAccountOutput",
     members = {
         DelegatedServices = {
             type = "list",
@@ -1940,6 +2078,7 @@ M.ListDelegatedServicesForAccountOutput = {
 
 M.ListEffectivePolicyValidationErrorsInput = {
     type = "structure",
+    id = "ListEffectivePolicyValidationErrorsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1964,6 +2103,7 @@ M.ListEffectivePolicyValidationErrorsInput = {
 
 M.EffectivePolicyValidationError = {
     type = "structure",
+    id = "EffectivePolicyValidationError",
     members = {
         ErrorCode = {
             type = "string",
@@ -1983,6 +2123,7 @@ M.EffectivePolicyValidationError = {
 
 M.ListEffectivePolicyValidationErrorsOutput = {
     type = "structure",
+    id = "ListEffectivePolicyValidationErrorsOutput",
     members = {
         AccountId = {
             type = "string",
@@ -2008,6 +2149,7 @@ M.ListEffectivePolicyValidationErrorsOutput = {
 
 M.HandshakeFilter = {
     type = "structure",
+    id = "HandshakeFilter",
     members = {
         ActionType = {
             type = "string",
@@ -2020,6 +2162,7 @@ M.HandshakeFilter = {
 
 M.ListHandshakesForAccountInput = {
     type = "structure",
+    id = "ListHandshakesForAccountInput",
     members = {
         Filter = M.HandshakeFilter,
         NextToken = {
@@ -2033,6 +2176,7 @@ M.ListHandshakesForAccountInput = {
 
 M.ListHandshakesForOrganizationInput = {
     type = "structure",
+    id = "ListHandshakesForOrganizationInput",
     members = {
         Filter = M.HandshakeFilter,
         NextToken = {
@@ -2046,6 +2190,7 @@ M.ListHandshakesForOrganizationInput = {
 
 M.ListInboundResponsibilityTransfersInput = {
     type = "structure",
+    id = "ListInboundResponsibilityTransfersInput",
     members = {
         Type = {
             type = "string",
@@ -2067,6 +2212,7 @@ M.ListInboundResponsibilityTransfersInput = {
 
 M.ListInboundResponsibilityTransfersOutput = {
     type = "structure",
+    id = "ListInboundResponsibilityTransfersOutput",
     members = {
         ResponsibilityTransfers = {
             type = "list",
@@ -2080,6 +2226,7 @@ M.ListInboundResponsibilityTransfersOutput = {
 
 M.ListOrganizationalUnitsForParentInput = {
     type = "structure",
+    id = "ListOrganizationalUnitsForParentInput",
     members = {
         ParentId = {
             type = "string",
@@ -2098,6 +2245,7 @@ M.ListOrganizationalUnitsForParentInput = {
 
 M.ListOrganizationalUnitsForParentOutput = {
     type = "structure",
+    id = "ListOrganizationalUnitsForParentOutput",
     members = {
         OrganizationalUnits = {
             type = "list",
@@ -2111,6 +2259,7 @@ M.ListOrganizationalUnitsForParentOutput = {
 
 M.ListOutboundResponsibilityTransfersInput = {
     type = "structure",
+    id = "ListOutboundResponsibilityTransfersInput",
     members = {
         Type = {
             type = "string",
@@ -2129,6 +2278,7 @@ M.ListOutboundResponsibilityTransfersInput = {
 
 M.ListOutboundResponsibilityTransfersOutput = {
     type = "structure",
+    id = "ListOutboundResponsibilityTransfersOutput",
     members = {
         ResponsibilityTransfers = {
             type = "list",
@@ -2142,6 +2292,7 @@ M.ListOutboundResponsibilityTransfersOutput = {
 
 M.ChildNotFoundException = {
     type = "structure",
+    id = "ChildNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2152,6 +2303,7 @@ M.ChildNotFoundException = {
 
 M.ListParentsInput = {
     type = "structure",
+    id = "ListParentsInput",
     members = {
         ChildId = {
             type = "string",
@@ -2175,6 +2327,7 @@ M.ParentType = {
 
 M.Parent = {
     type = "structure",
+    id = "Parent",
     members = {
         Id = {
             type = "string",
@@ -2187,6 +2340,7 @@ M.Parent = {
 
 M.ListParentsOutput = {
     type = "structure",
+    id = "ListParentsOutput",
     members = {
         Parents = {
             type = "list",
@@ -2200,6 +2354,7 @@ M.ListParentsOutput = {
 
 M.ListPoliciesInput = {
     type = "structure",
+    id = "ListPoliciesInput",
     members = {
         Filter = {
             type = "string",
@@ -2218,6 +2373,7 @@ M.ListPoliciesInput = {
 
 M.ListPoliciesOutput = {
     type = "structure",
+    id = "ListPoliciesOutput",
     members = {
         Policies = {
             type = "list",
@@ -2231,6 +2387,7 @@ M.ListPoliciesOutput = {
 
 M.ListPoliciesForTargetInput = {
     type = "structure",
+    id = "ListPoliciesForTargetInput",
     members = {
         TargetId = {
             type = "string",
@@ -2255,6 +2412,7 @@ M.ListPoliciesForTargetInput = {
 
 M.ListPoliciesForTargetOutput = {
     type = "structure",
+    id = "ListPoliciesForTargetOutput",
     members = {
         Policies = {
             type = "list",
@@ -2268,6 +2426,7 @@ M.ListPoliciesForTargetOutput = {
 
 M.ListRootsInput = {
     type = "structure",
+    id = "ListRootsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2280,6 +2439,7 @@ M.ListRootsInput = {
 
 M.ListRootsOutput = {
     type = "structure",
+    id = "ListRootsOutput",
     members = {
         Roots = {
             type = "list",
@@ -2293,6 +2453,7 @@ M.ListRootsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2308,6 +2469,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2321,6 +2483,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTargetsForPolicyInput = {
     type = "structure",
+    id = "ListTargetsForPolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -2345,6 +2508,7 @@ M.TargetType = {
 
 M.PolicyTargetSummary = {
     type = "structure",
+    id = "PolicyTargetSummary",
     members = {
         TargetId = {
             type = "string",
@@ -2363,6 +2527,7 @@ M.PolicyTargetSummary = {
 
 M.ListTargetsForPolicyOutput = {
     type = "structure",
+    id = "ListTargetsForPolicyOutput",
     members = {
         Targets = {
             type = "list",
@@ -2376,6 +2541,7 @@ M.ListTargetsForPolicyOutput = {
 
 M.DestinationParentNotFoundException = {
     type = "structure",
+    id = "DestinationParentNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2386,6 +2552,7 @@ M.DestinationParentNotFoundException = {
 
 M.DuplicateAccountException = {
     type = "structure",
+    id = "DuplicateAccountException",
     error = "client",
     members = {
         Message = {
@@ -2396,6 +2563,7 @@ M.DuplicateAccountException = {
 
 M.MoveAccountInput = {
     type = "structure",
+    id = "MoveAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -2420,10 +2588,12 @@ M.MoveAccountInput = {
 
 M.MoveAccountOutput = {
     type = "structure",
+    id = "MoveAccountOutput",
 }
 
 M.SourceParentNotFoundException = {
     type = "structure",
+    id = "SourceParentNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2434,6 +2604,7 @@ M.SourceParentNotFoundException = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         Content = {
             type = "string",
@@ -2450,6 +2621,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourcePolicy = M.ResourcePolicy,
     },
@@ -2457,6 +2629,7 @@ M.PutResourcePolicyOutput = {
 
 M.RegisterDelegatedAdministratorInput = {
     type = "structure",
+    id = "RegisterDelegatedAdministratorInput",
     members = {
         AccountId = {
             type = "string",
@@ -2475,10 +2648,12 @@ M.RegisterDelegatedAdministratorInput = {
 
 M.RegisterDelegatedAdministratorOutput = {
     type = "structure",
+    id = "RegisterDelegatedAdministratorOutput",
 }
 
 M.RemoveAccountFromOrganizationInput = {
     type = "structure",
+    id = "RemoveAccountFromOrganizationInput",
     members = {
         AccountId = {
             type = "string",
@@ -2491,10 +2666,12 @@ M.RemoveAccountFromOrganizationInput = {
 
 M.RemoveAccountFromOrganizationOutput = {
     type = "structure",
+    id = "RemoveAccountFromOrganizationOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2514,10 +2691,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.InvalidResponsibilityTransferTransitionException = {
     type = "structure",
+    id = "InvalidResponsibilityTransferTransitionException",
     error = "client",
     members = {
         Message = {
@@ -2528,6 +2707,7 @@ M.InvalidResponsibilityTransferTransitionException = {
 
 M.ResponsibilityTransferAlreadyInStatusException = {
     type = "structure",
+    id = "ResponsibilityTransferAlreadyInStatusException",
     error = "client",
     members = {
         Message = {
@@ -2538,6 +2718,7 @@ M.ResponsibilityTransferAlreadyInStatusException = {
 
 M.TerminateResponsibilityTransferInput = {
     type = "structure",
+    id = "TerminateResponsibilityTransferInput",
     members = {
         Id = {
             type = "string",
@@ -2553,6 +2734,7 @@ M.TerminateResponsibilityTransferInput = {
 
 M.TerminateResponsibilityTransferOutput = {
     type = "structure",
+    id = "TerminateResponsibilityTransferOutput",
     members = {
         ResponsibilityTransfer = M.ResponsibilityTransfer,
     },
@@ -2560,6 +2742,7 @@ M.TerminateResponsibilityTransferOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2579,10 +2762,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateOrganizationalUnitInput = {
     type = "structure",
+    id = "UpdateOrganizationalUnitInput",
     members = {
         OrganizationalUnitId = {
             type = "string",
@@ -2598,6 +2783,7 @@ M.UpdateOrganizationalUnitInput = {
 
 M.UpdateOrganizationalUnitOutput = {
     type = "structure",
+    id = "UpdateOrganizationalUnitOutput",
     members = {
         OrganizationalUnit = M.OrganizationalUnit,
     },
@@ -2605,6 +2791,7 @@ M.UpdateOrganizationalUnitOutput = {
 
 M.UpdatePolicyInput = {
     type = "structure",
+    id = "UpdatePolicyInput",
     members = {
         PolicyId = {
             type = "string",
@@ -2626,6 +2813,7 @@ M.UpdatePolicyInput = {
 
 M.UpdatePolicyOutput = {
     type = "structure",
+    id = "UpdatePolicyOutput",
     members = {
         Policy = M.Policy,
     },
@@ -2633,6 +2821,7 @@ M.UpdatePolicyOutput = {
 
 M.UpdateResponsibilityTransferInput = {
     type = "structure",
+    id = "UpdateResponsibilityTransferInput",
     members = {
         Id = {
             type = "string",
@@ -2651,6 +2840,7 @@ M.UpdateResponsibilityTransferInput = {
 
 M.UpdateResponsibilityTransferOutput = {
     type = "structure",
+    id = "UpdateResponsibilityTransferOutput",
     members = {
         ResponsibilityTransfer = M.ResponsibilityTransfer,
     },
@@ -2658,6 +2848,7 @@ M.UpdateResponsibilityTransferOutput = {
 
 M.HandshakeResource = {
     type = "structure",
+    id = "HandshakeResource",
     members = {
         Value = {
             type = "string",
@@ -2674,6 +2865,7 @@ M.HandshakeResource = {
 
 M.Handshake = {
     type = "structure",
+    id = "Handshake",
     members = {
         Id = {
             type = "string",
@@ -2706,6 +2898,7 @@ M.Handshake = {
 
 M.AcceptHandshakeOutput = {
     type = "structure",
+    id = "AcceptHandshakeOutput",
     members = {
         Handshake = M.Handshake,
     },
@@ -2713,6 +2906,7 @@ M.AcceptHandshakeOutput = {
 
 M.CancelHandshakeOutput = {
     type = "structure",
+    id = "CancelHandshakeOutput",
     members = {
         Handshake = M.Handshake,
     },
@@ -2720,6 +2914,7 @@ M.CancelHandshakeOutput = {
 
 M.DeclineHandshakeOutput = {
     type = "structure",
+    id = "DeclineHandshakeOutput",
     members = {
         Handshake = M.Handshake,
     },
@@ -2727,6 +2922,7 @@ M.DeclineHandshakeOutput = {
 
 M.DescribeHandshakeOutput = {
     type = "structure",
+    id = "DescribeHandshakeOutput",
     members = {
         Handshake = M.Handshake,
     },
@@ -2734,6 +2930,7 @@ M.DescribeHandshakeOutput = {
 
 M.EnableAllFeaturesOutput = {
     type = "structure",
+    id = "EnableAllFeaturesOutput",
     members = {
         Handshake = M.Handshake,
     },
@@ -2741,6 +2938,7 @@ M.EnableAllFeaturesOutput = {
 
 M.InviteAccountToOrganizationOutput = {
     type = "structure",
+    id = "InviteAccountToOrganizationOutput",
     members = {
         Handshake = M.Handshake,
     },
@@ -2748,6 +2946,7 @@ M.InviteAccountToOrganizationOutput = {
 
 M.InviteOrganizationToTransferResponsibilityOutput = {
     type = "structure",
+    id = "InviteOrganizationToTransferResponsibilityOutput",
     members = {
         Handshake = M.Handshake,
     },
@@ -2755,6 +2954,7 @@ M.InviteOrganizationToTransferResponsibilityOutput = {
 
 M.ListHandshakesForAccountOutput = {
     type = "structure",
+    id = "ListHandshakesForAccountOutput",
     members = {
         Handshakes = {
             type = "list",
@@ -2768,6 +2968,7 @@ M.ListHandshakesForAccountOutput = {
 
 M.ListHandshakesForOrganizationOutput = {
     type = "structure",
+    id = "ListHandshakesForOrganizationOutput",
     members = {
         Handshakes = {
             type = "list",

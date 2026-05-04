@@ -7,6 +7,7 @@ M.BucketAbacStatus = {
 
 M.AbacStatus = {
     type = "structure",
+    id = "AbacStatus",
     members = {
         Status = {
             type = "string",
@@ -16,6 +17,7 @@ M.AbacStatus = {
 
 M.AbortIncompleteMultipartUpload = {
     type = "structure",
+    id = "AbortIncompleteMultipartUpload",
     members = {
         DaysAfterInitiation = {
             type = "integer",
@@ -29,6 +31,7 @@ M.RequestPayer = {
 
 M.AbortMultipartUploadInput = {
     type = "structure",
+    id = "AbortMultipartUploadInput",
     members = {
         Bucket = {
             type = "string",
@@ -79,6 +82,7 @@ M.RequestCharged = {
 
 M.AbortMultipartUploadOutput = {
     type = "structure",
+    id = "AbortMultipartUploadOutput",
     members = {
         RequestCharged = {
             type = "string",
@@ -91,6 +95,7 @@ M.AbortMultipartUploadOutput = {
 
 M.NoSuchUpload = {
     type = "structure",
+    id = "NoSuchUpload",
     error = "client",
 }
 
@@ -101,6 +106,7 @@ M.BucketAccelerateStatus = {
 
 M.AccelerateConfiguration = {
     type = "structure",
+    id = "AccelerateConfiguration",
     members = {
         Status = {
             type = "string",
@@ -116,6 +122,7 @@ M.Type = {
 
 M.Grantee = {
     type = "structure",
+    id = "Grantee",
     members = {
         DisplayName = {
             type = "string",
@@ -149,8 +156,11 @@ M.Permission = {
 
 M.Grant = {
     type = "structure",
+    id = "Grant",
     members = {
-        Grantee = M.Grantee,
+        Grantee = setmetatable({ traits = {
+            xml_namespace = { uri = "http://www.w3.org/2001/XMLSchema-instance", prefix = "xsi" },
+        } }, { __index = M.Grantee }),
         Permission = {
             type = "string",
         },
@@ -159,6 +169,7 @@ M.Grant = {
 
 M.Owner = {
     type = "structure",
+    id = "Owner",
     members = {
         DisplayName = {
             type = "string",
@@ -171,6 +182,7 @@ M.Owner = {
 
 M.AccessControlPolicy = {
     type = "structure",
+    id = "AccessControlPolicy",
     members = {
         Grants = {
             type = "list",
@@ -189,6 +201,7 @@ M.OwnerOverride = {
 
 M.AccessControlTranslation = {
     type = "structure",
+    id = "AccessControlTranslation",
     members = {
         Owner = {
             type = "string",
@@ -201,6 +214,7 @@ M.AccessControlTranslation = {
 
 M.AccessDenied = {
     type = "structure",
+    id = "AccessDenied",
     error = "client",
 }
 
@@ -211,6 +225,7 @@ M.ChecksumType = {
 
 M.CompletedPart = {
     type = "structure",
+    id = "CompletedPart",
     members = {
         ETag = {
             type = "string",
@@ -253,11 +268,13 @@ M.CompletedPart = {
 
 M.CompletedMultipartUpload = {
     type = "structure",
+    id = "CompletedMultipartUpload",
     members = {
         Parts = {
             type = "list",
             member = M.CompletedPart,
             traits = {
+                xml_flattened = true,
                 xml_name = "Part",
             },
         },
@@ -266,6 +283,7 @@ M.CompletedMultipartUpload = {
 
 M.CompleteMultipartUploadInput = {
     type = "structure",
+    id = "CompleteMultipartUploadInput",
     members = {
         Bucket = {
             type = "string",
@@ -418,6 +436,10 @@ M.ServerSideEncryption = {
 
 M.CompleteMultipartUploadOutput = {
     type = "structure",
+    id = "CompleteMultipartUploadOutput",
+    traits = {
+        xml_name = "CompleteMultipartUploadResult",
+    },
     members = {
         Location = {
             type = "string",
@@ -564,6 +586,7 @@ M.TaggingDirective = {
 
 M.CopyObjectInput = {
     type = "structure",
+    id = "CopyObjectInput",
     members = {
         ACL = {
             type = "string",
@@ -834,6 +857,7 @@ M.CopyObjectInput = {
 
 M.CopyObjectResult = {
     type = "structure",
+    id = "CopyObjectResult",
     members = {
         ETag = {
             type = "string",
@@ -879,6 +903,7 @@ M.CopyObjectResult = {
 
 M.CopyObjectOutput = {
     type = "structure",
+    id = "CopyObjectOutput",
     members = {
         CopyObjectResult = setmetatable({ traits = {
             http_payload = true,
@@ -948,16 +973,19 @@ M.CopyObjectOutput = {
 
 M.ObjectNotInActiveTierError = {
     type = "structure",
+    id = "ObjectNotInActiveTierError",
     error = "client",
 }
 
 M.BucketAlreadyExists = {
     type = "structure",
+    id = "BucketAlreadyExists",
     error = "client",
 }
 
 M.BucketAlreadyOwnedByYou = {
     type = "structure",
+    id = "BucketAlreadyOwnedByYou",
     error = "client",
 }
 
@@ -984,6 +1012,7 @@ M.BucketType = {
 
 M.BucketInfo = {
     type = "structure",
+    id = "BucketInfo",
     members = {
         DataRedundancy = {
             type = "string",
@@ -1001,6 +1030,7 @@ M.LocationType = {
 
 M.LocationInfo = {
     type = "structure",
+    id = "LocationInfo",
     members = {
         Type = {
             type = "string",
@@ -1054,6 +1084,7 @@ M.BucketLocationConstraint = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1072,6 +1103,7 @@ M.Tag = {
 
 M.CreateBucketConfiguration = {
     type = "structure",
+    id = "CreateBucketConfiguration",
     members = {
         LocationConstraint = {
             type = "string",
@@ -1093,6 +1125,7 @@ M.ObjectOwnership = {
 
 M.CreateBucketInput = {
     type = "structure",
+    id = "CreateBucketInput",
     members = {
         ACL = {
             type = "string",
@@ -1164,6 +1197,7 @@ M.CreateBucketInput = {
 
 M.CreateBucketOutput = {
     type = "structure",
+    id = "CreateBucketOutput",
     members = {
         Location = {
             type = "string",
@@ -1192,6 +1226,7 @@ M.TableSseAlgorithm = {
 
 M.MetadataTableEncryptionConfiguration = {
     type = "structure",
+    id = "MetadataTableEncryptionConfiguration",
     members = {
         SseAlgorithm = {
             type = "string",
@@ -1207,6 +1242,7 @@ M.MetadataTableEncryptionConfiguration = {
 
 M.InventoryTableConfiguration = {
     type = "structure",
+    id = "InventoryTableConfiguration",
     members = {
         ConfigurationState = {
             type = "string",
@@ -1225,6 +1261,7 @@ M.ExpirationState = {
 
 M.RecordExpiration = {
     type = "structure",
+    id = "RecordExpiration",
     members = {
         Expiration = {
             type = "string",
@@ -1240,6 +1277,7 @@ M.RecordExpiration = {
 
 M.JournalTableConfiguration = {
     type = "structure",
+    id = "JournalTableConfiguration",
     members = {
         RecordExpiration = setmetatable({ traits = {
             required = true,
@@ -1250,6 +1288,7 @@ M.JournalTableConfiguration = {
 
 M.MetadataConfiguration = {
     type = "structure",
+    id = "MetadataConfiguration",
     members = {
         JournalTableConfiguration = setmetatable({ traits = {
             required = true,
@@ -1260,6 +1299,7 @@ M.MetadataConfiguration = {
 
 M.CreateBucketMetadataConfigurationInput = {
     type = "structure",
+    id = "CreateBucketMetadataConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -1296,10 +1336,12 @@ M.CreateBucketMetadataConfigurationInput = {
 
 M.CreateBucketMetadataConfigurationOutput = {
     type = "structure",
+    id = "CreateBucketMetadataConfigurationOutput",
 }
 
 M.S3TablesDestination = {
     type = "structure",
+    id = "S3TablesDestination",
     members = {
         TableBucketArn = {
             type = "string",
@@ -1318,6 +1360,7 @@ M.S3TablesDestination = {
 
 M.MetadataTableConfiguration = {
     type = "structure",
+    id = "MetadataTableConfiguration",
     members = {
         S3TablesDestination = setmetatable({ traits = {
             required = true,
@@ -1327,6 +1370,7 @@ M.MetadataTableConfiguration = {
 
 M.CreateBucketMetadataTableConfigurationInput = {
     type = "structure",
+    id = "CreateBucketMetadataTableConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -1363,10 +1407,12 @@ M.CreateBucketMetadataTableConfigurationInput = {
 
 M.CreateBucketMetadataTableConfigurationOutput = {
     type = "structure",
+    id = "CreateBucketMetadataTableConfigurationOutput",
 }
 
 M.CreateMultipartUploadInput = {
     type = "structure",
+    id = "CreateMultipartUploadInput",
     members = {
         ACL = {
             type = "string",
@@ -1564,6 +1610,10 @@ M.CreateMultipartUploadInput = {
 
 M.CreateMultipartUploadOutput = {
     type = "structure",
+    id = "CreateMultipartUploadOutput",
+    traits = {
+        xml_name = "InitiateMultipartUploadResult",
+    },
     members = {
         AbortDate = {
             type = "timestamp",
@@ -1653,6 +1703,7 @@ M.SessionMode = {
 
 M.CreateSessionInput = {
     type = "structure",
+    id = "CreateSessionInput",
     members = {
         SessionMode = {
             type = "string",
@@ -1696,6 +1747,7 @@ M.CreateSessionInput = {
 
 M.SessionCredentials = {
     type = "structure",
+    id = "SessionCredentials",
     members = {
         AccessKeyId = {
             type = "string",
@@ -1730,6 +1782,10 @@ M.SessionCredentials = {
 
 M.CreateSessionOutput = {
     type = "structure",
+    id = "CreateSessionOutput",
+    traits = {
+        xml_name = "CreateSessionResult",
+    },
     members = {
         ServerSideEncryption = {
             type = "string",
@@ -1764,11 +1820,13 @@ M.CreateSessionOutput = {
 
 M.NoSuchBucket = {
     type = "structure",
+    id = "NoSuchBucket",
     error = "client",
 }
 
 M.DeleteBucketInput = {
     type = "structure",
+    id = "DeleteBucketInput",
     members = {
         Bucket = {
             type = "string",
@@ -1788,10 +1846,12 @@ M.DeleteBucketInput = {
 
 M.DeleteBucketOutput = {
     type = "structure",
+    id = "DeleteBucketOutput",
 }
 
 M.DeleteBucketAnalyticsConfigurationInput = {
     type = "structure",
+    id = "DeleteBucketAnalyticsConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -1818,10 +1878,12 @@ M.DeleteBucketAnalyticsConfigurationInput = {
 
 M.DeleteBucketAnalyticsConfigurationOutput = {
     type = "structure",
+    id = "DeleteBucketAnalyticsConfigurationOutput",
 }
 
 M.DeleteBucketCorsInput = {
     type = "structure",
+    id = "DeleteBucketCorsInput",
     members = {
         Bucket = {
             type = "string",
@@ -1841,10 +1903,12 @@ M.DeleteBucketCorsInput = {
 
 M.DeleteBucketCorsOutput = {
     type = "structure",
+    id = "DeleteBucketCorsOutput",
 }
 
 M.DeleteBucketEncryptionInput = {
     type = "structure",
+    id = "DeleteBucketEncryptionInput",
     members = {
         Bucket = {
             type = "string",
@@ -1864,10 +1928,12 @@ M.DeleteBucketEncryptionInput = {
 
 M.DeleteBucketEncryptionOutput = {
     type = "structure",
+    id = "DeleteBucketEncryptionOutput",
 }
 
 M.DeleteBucketIntelligentTieringConfigurationInput = {
     type = "structure",
+    id = "DeleteBucketIntelligentTieringConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -1894,10 +1960,12 @@ M.DeleteBucketIntelligentTieringConfigurationInput = {
 
 M.DeleteBucketIntelligentTieringConfigurationOutput = {
     type = "structure",
+    id = "DeleteBucketIntelligentTieringConfigurationOutput",
 }
 
 M.DeleteBucketInventoryConfigurationInput = {
     type = "structure",
+    id = "DeleteBucketInventoryConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -1924,10 +1992,12 @@ M.DeleteBucketInventoryConfigurationInput = {
 
 M.DeleteBucketInventoryConfigurationOutput = {
     type = "structure",
+    id = "DeleteBucketInventoryConfigurationOutput",
 }
 
 M.DeleteBucketLifecycleInput = {
     type = "structure",
+    id = "DeleteBucketLifecycleInput",
     members = {
         Bucket = {
             type = "string",
@@ -1947,10 +2017,12 @@ M.DeleteBucketLifecycleInput = {
 
 M.DeleteBucketLifecycleOutput = {
     type = "structure",
+    id = "DeleteBucketLifecycleOutput",
 }
 
 M.DeleteBucketMetadataConfigurationInput = {
     type = "structure",
+    id = "DeleteBucketMetadataConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -1970,10 +2042,12 @@ M.DeleteBucketMetadataConfigurationInput = {
 
 M.DeleteBucketMetadataConfigurationOutput = {
     type = "structure",
+    id = "DeleteBucketMetadataConfigurationOutput",
 }
 
 M.DeleteBucketMetadataTableConfigurationInput = {
     type = "structure",
+    id = "DeleteBucketMetadataTableConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -1993,10 +2067,12 @@ M.DeleteBucketMetadataTableConfigurationInput = {
 
 M.DeleteBucketMetadataTableConfigurationOutput = {
     type = "structure",
+    id = "DeleteBucketMetadataTableConfigurationOutput",
 }
 
 M.DeleteBucketMetricsConfigurationInput = {
     type = "structure",
+    id = "DeleteBucketMetricsConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -2023,10 +2099,12 @@ M.DeleteBucketMetricsConfigurationInput = {
 
 M.DeleteBucketMetricsConfigurationOutput = {
     type = "structure",
+    id = "DeleteBucketMetricsConfigurationOutput",
 }
 
 M.DeleteBucketOwnershipControlsInput = {
     type = "structure",
+    id = "DeleteBucketOwnershipControlsInput",
     members = {
         Bucket = {
             type = "string",
@@ -2046,10 +2124,12 @@ M.DeleteBucketOwnershipControlsInput = {
 
 M.DeleteBucketOwnershipControlsOutput = {
     type = "structure",
+    id = "DeleteBucketOwnershipControlsOutput",
 }
 
 M.DeleteBucketPolicyInput = {
     type = "structure",
+    id = "DeleteBucketPolicyInput",
     members = {
         Bucket = {
             type = "string",
@@ -2069,10 +2149,12 @@ M.DeleteBucketPolicyInput = {
 
 M.DeleteBucketPolicyOutput = {
     type = "structure",
+    id = "DeleteBucketPolicyOutput",
 }
 
 M.DeleteBucketReplicationInput = {
     type = "structure",
+    id = "DeleteBucketReplicationInput",
     members = {
         Bucket = {
             type = "string",
@@ -2092,10 +2174,12 @@ M.DeleteBucketReplicationInput = {
 
 M.DeleteBucketReplicationOutput = {
     type = "structure",
+    id = "DeleteBucketReplicationOutput",
 }
 
 M.DeleteBucketTaggingInput = {
     type = "structure",
+    id = "DeleteBucketTaggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -2115,10 +2199,12 @@ M.DeleteBucketTaggingInput = {
 
 M.DeleteBucketTaggingOutput = {
     type = "structure",
+    id = "DeleteBucketTaggingOutput",
 }
 
 M.DeleteBucketWebsiteInput = {
     type = "structure",
+    id = "DeleteBucketWebsiteInput",
     members = {
         Bucket = {
             type = "string",
@@ -2138,10 +2224,12 @@ M.DeleteBucketWebsiteInput = {
 
 M.DeleteBucketWebsiteOutput = {
     type = "structure",
+    id = "DeleteBucketWebsiteOutput",
 }
 
 M.DeleteObjectInput = {
     type = "structure",
+    id = "DeleteObjectInput",
     members = {
         Bucket = {
             type = "string",
@@ -2211,6 +2299,7 @@ M.DeleteObjectInput = {
 
 M.DeleteObjectOutput = {
     type = "structure",
+    id = "DeleteObjectOutput",
     members = {
         DeleteMarker = {
             type = "boolean",
@@ -2235,6 +2324,7 @@ M.DeleteObjectOutput = {
 
 M.ObjectIdentifier = {
     type = "structure",
+    id = "ObjectIdentifier",
     members = {
         Key = {
             type = "string",
@@ -2262,12 +2352,14 @@ M.ObjectIdentifier = {
 
 M.Delete = {
     type = "structure",
+    id = "Delete",
     members = {
         Objects = {
             type = "list",
             member = M.ObjectIdentifier,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Object",
             },
         },
@@ -2279,6 +2371,7 @@ M.Delete = {
 
 M.DeleteObjectsInput = {
     type = "structure",
+    id = "DeleteObjectsInput",
     members = {
         Bucket = {
             type = "string",
@@ -2327,6 +2420,7 @@ M.DeleteObjectsInput = {
 
 M.DeletedObject = {
     type = "structure",
+    id = "DeletedObject",
     members = {
         Key = {
             type = "string",
@@ -2345,6 +2439,7 @@ M.DeletedObject = {
 
 M.Error = {
     type = "structure",
+    id = "Error",
     members = {
         Key = {
             type = "string",
@@ -2363,10 +2458,17 @@ M.Error = {
 
 M.DeleteObjectsOutput = {
     type = "structure",
+    id = "DeleteObjectsOutput",
+    traits = {
+        xml_name = "DeleteResult",
+    },
     members = {
         Deleted = {
             type = "list",
             member = M.DeletedObject,
+            traits = {
+                xml_flattened = true,
+            },
         },
         RequestCharged = {
             type = "string",
@@ -2378,6 +2480,7 @@ M.DeleteObjectsOutput = {
             type = "list",
             member = M.Error,
             traits = {
+                xml_flattened = true,
                 xml_name = "Error",
             },
         },
@@ -2386,6 +2489,7 @@ M.DeleteObjectsOutput = {
 
 M.DeleteObjectTaggingInput = {
     type = "structure",
+    id = "DeleteObjectTaggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -2418,6 +2522,7 @@ M.DeleteObjectTaggingInput = {
 
 M.DeleteObjectTaggingOutput = {
     type = "structure",
+    id = "DeleteObjectTaggingOutput",
     members = {
         VersionId = {
             type = "string",
@@ -2430,6 +2535,7 @@ M.DeleteObjectTaggingOutput = {
 
 M.DeletePublicAccessBlockInput = {
     type = "structure",
+    id = "DeletePublicAccessBlockInput",
     members = {
         Bucket = {
             type = "string",
@@ -2449,10 +2555,12 @@ M.DeletePublicAccessBlockInput = {
 
 M.DeletePublicAccessBlockOutput = {
     type = "structure",
+    id = "DeletePublicAccessBlockOutput",
 }
 
 M.GetBucketAbacInput = {
     type = "structure",
+    id = "GetBucketAbacInput",
     members = {
         Bucket = {
             type = "string",
@@ -2472,6 +2580,7 @@ M.GetBucketAbacInput = {
 
 M.GetBucketAbacOutput = {
     type = "structure",
+    id = "GetBucketAbacOutput",
     members = {
         AbacStatus = setmetatable({ traits = {
             http_payload = true,
@@ -2481,6 +2590,7 @@ M.GetBucketAbacOutput = {
 
 M.GetBucketAccelerateConfigurationInput = {
     type = "structure",
+    id = "GetBucketAccelerateConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -2506,6 +2616,10 @@ M.GetBucketAccelerateConfigurationInput = {
 
 M.GetBucketAccelerateConfigurationOutput = {
     type = "structure",
+    id = "GetBucketAccelerateConfigurationOutput",
+    traits = {
+        xml_name = "AccelerateConfiguration",
+    },
     members = {
         Status = {
             type = "string",
@@ -2521,6 +2635,7 @@ M.GetBucketAccelerateConfigurationOutput = {
 
 M.GetBucketAclInput = {
     type = "structure",
+    id = "GetBucketAclInput",
     members = {
         Bucket = {
             type = "string",
@@ -2540,6 +2655,10 @@ M.GetBucketAclInput = {
 
 M.GetBucketAclOutput = {
     type = "structure",
+    id = "GetBucketAclOutput",
+    traits = {
+        xml_name = "AccessControlPolicy",
+    },
     members = {
         Owner = M.Owner,
         Grants = {
@@ -2554,6 +2673,7 @@ M.GetBucketAclOutput = {
 
 M.GetBucketAnalyticsConfigurationInput = {
     type = "structure",
+    id = "GetBucketAnalyticsConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -2580,6 +2700,7 @@ M.GetBucketAnalyticsConfigurationInput = {
 
 M.AnalyticsAndOperator = {
     type = "structure",
+    id = "AnalyticsAndOperator",
     members = {
         Prefix = {
             type = "string",
@@ -2588,6 +2709,7 @@ M.AnalyticsAndOperator = {
             type = "list",
             member = M.Tag,
             traits = {
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -2596,6 +2718,7 @@ M.AnalyticsAndOperator = {
 
 M.AnalyticsFilter = {
     type = "union",
+    id = "AnalyticsFilter",
     members = {
         Prefix = {
             type = "string",
@@ -2611,6 +2734,7 @@ M.AnalyticsS3ExportFileFormat = {
 
 M.AnalyticsS3BucketDestination = {
     type = "structure",
+    id = "AnalyticsS3BucketDestination",
     members = {
         Format = {
             type = "string",
@@ -2635,6 +2759,7 @@ M.AnalyticsS3BucketDestination = {
 
 M.AnalyticsExportDestination = {
     type = "structure",
+    id = "AnalyticsExportDestination",
     members = {
         S3BucketDestination = setmetatable({ traits = {
             required = true,
@@ -2648,6 +2773,7 @@ M.StorageClassAnalysisSchemaVersion = {
 
 M.StorageClassAnalysisDataExport = {
     type = "structure",
+    id = "StorageClassAnalysisDataExport",
     members = {
         OutputSchemaVersion = {
             type = "string",
@@ -2663,6 +2789,7 @@ M.StorageClassAnalysisDataExport = {
 
 M.StorageClassAnalysis = {
     type = "structure",
+    id = "StorageClassAnalysis",
     members = {
         DataExport = M.StorageClassAnalysisDataExport,
     },
@@ -2670,6 +2797,7 @@ M.StorageClassAnalysis = {
 
 M.AnalyticsConfiguration = {
     type = "structure",
+    id = "AnalyticsConfiguration",
     members = {
         Id = {
             type = "string",
@@ -2686,6 +2814,7 @@ M.AnalyticsConfiguration = {
 
 M.GetBucketAnalyticsConfigurationOutput = {
     type = "structure",
+    id = "GetBucketAnalyticsConfigurationOutput",
     members = {
         AnalyticsConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -2695,6 +2824,7 @@ M.GetBucketAnalyticsConfigurationOutput = {
 
 M.GetBucketCorsInput = {
     type = "structure",
+    id = "GetBucketCorsInput",
     members = {
         Bucket = {
             type = "string",
@@ -2714,6 +2844,7 @@ M.GetBucketCorsInput = {
 
 M.CORSRule = {
     type = "structure",
+    id = "CORSRule",
     members = {
         ID = {
             type = "string",
@@ -2722,6 +2853,7 @@ M.CORSRule = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "AllowedHeader",
             },
         },
@@ -2730,6 +2862,7 @@ M.CORSRule = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "AllowedMethod",
             },
         },
@@ -2738,6 +2871,7 @@ M.CORSRule = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "AllowedOrigin",
             },
         },
@@ -2745,6 +2879,7 @@ M.CORSRule = {
             type = "list",
             member = { type = "string" },
             traits = {
+                xml_flattened = true,
                 xml_name = "ExposeHeader",
             },
         },
@@ -2756,11 +2891,16 @@ M.CORSRule = {
 
 M.GetBucketCorsOutput = {
     type = "structure",
+    id = "GetBucketCorsOutput",
+    traits = {
+        xml_name = "CORSConfiguration",
+    },
     members = {
         CORSRules = {
             type = "list",
             member = M.CORSRule,
             traits = {
+                xml_flattened = true,
                 xml_name = "CORSRule",
             },
         },
@@ -2769,6 +2909,7 @@ M.GetBucketCorsOutput = {
 
 M.GetBucketEncryptionInput = {
     type = "structure",
+    id = "GetBucketEncryptionInput",
     members = {
         Bucket = {
             type = "string",
@@ -2788,6 +2929,7 @@ M.GetBucketEncryptionInput = {
 
 M.ServerSideEncryptionByDefault = {
     type = "structure",
+    id = "ServerSideEncryptionByDefault",
     members = {
         SSEAlgorithm = {
             type = "string",
@@ -2808,16 +2950,21 @@ M.EncryptionType = {
 
 M.BlockedEncryptionTypes = {
     type = "structure",
+    id = "BlockedEncryptionTypes",
     members = {
         EncryptionType = {
             type = "list",
             member = { type = "string" },
+            traits = {
+                xml_flattened = true,
+            },
         },
     },
 }
 
 M.ServerSideEncryptionRule = {
     type = "structure",
+    id = "ServerSideEncryptionRule",
     members = {
         ApplyServerSideEncryptionByDefault = M.ServerSideEncryptionByDefault,
         BucketKeyEnabled = {
@@ -2829,12 +2976,14 @@ M.ServerSideEncryptionRule = {
 
 M.ServerSideEncryptionConfiguration = {
     type = "structure",
+    id = "ServerSideEncryptionConfiguration",
     members = {
         Rules = {
             type = "list",
             member = M.ServerSideEncryptionRule,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Rule",
             },
         },
@@ -2843,6 +2992,7 @@ M.ServerSideEncryptionConfiguration = {
 
 M.GetBucketEncryptionOutput = {
     type = "structure",
+    id = "GetBucketEncryptionOutput",
     members = {
         ServerSideEncryptionConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -2852,6 +3002,7 @@ M.GetBucketEncryptionOutput = {
 
 M.GetBucketIntelligentTieringConfigurationInput = {
     type = "structure",
+    id = "GetBucketIntelligentTieringConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -2878,6 +3029,7 @@ M.GetBucketIntelligentTieringConfigurationInput = {
 
 M.IntelligentTieringAndOperator = {
     type = "structure",
+    id = "IntelligentTieringAndOperator",
     members = {
         Prefix = {
             type = "string",
@@ -2886,6 +3038,7 @@ M.IntelligentTieringAndOperator = {
             type = "list",
             member = M.Tag,
             traits = {
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -2894,6 +3047,7 @@ M.IntelligentTieringAndOperator = {
 
 M.IntelligentTieringFilter = {
     type = "structure",
+    id = "IntelligentTieringFilter",
     members = {
         Prefix = {
             type = "string",
@@ -2915,6 +3069,7 @@ M.IntelligentTieringAccessTier = {
 
 M.Tiering = {
     type = "structure",
+    id = "Tiering",
     members = {
         Days = {
             type = "integer",
@@ -2933,6 +3088,7 @@ M.Tiering = {
 
 M.IntelligentTieringConfiguration = {
     type = "structure",
+    id = "IntelligentTieringConfiguration",
     members = {
         Id = {
             type = "string",
@@ -2952,6 +3108,7 @@ M.IntelligentTieringConfiguration = {
             member = M.Tiering,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Tiering",
             },
         },
@@ -2960,6 +3117,7 @@ M.IntelligentTieringConfiguration = {
 
 M.GetBucketIntelligentTieringConfigurationOutput = {
     type = "structure",
+    id = "GetBucketIntelligentTieringConfigurationOutput",
     members = {
         IntelligentTieringConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -2969,6 +3127,7 @@ M.GetBucketIntelligentTieringConfigurationOutput = {
 
 M.GetBucketInventoryConfigurationInput = {
     type = "structure",
+    id = "GetBucketInventoryConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -2995,6 +3154,10 @@ M.GetBucketInventoryConfigurationInput = {
 
 M.SSEKMS = {
     type = "structure",
+    id = "SSEKMS",
+    traits = {
+        xml_name = "SSE-KMS",
+    },
     members = {
         KeyId = {
             type = "string",
@@ -3007,10 +3170,15 @@ M.SSEKMS = {
 
 M.SSES3 = {
     type = "structure",
+    id = "SSES3",
+    traits = {
+        xml_name = "SSE-S3",
+    },
 }
 
 M.InventoryEncryption = {
     type = "structure",
+    id = "InventoryEncryption",
     members = {
         SSES3 = setmetatable({ traits = {
             xml_name = "SSE-S3",
@@ -3029,6 +3197,7 @@ M.InventoryFormat = {
 
 M.InventoryS3BucketDestination = {
     type = "structure",
+    id = "InventoryS3BucketDestination",
     members = {
         AccountId = {
             type = "string",
@@ -3054,6 +3223,7 @@ M.InventoryS3BucketDestination = {
 
 M.InventoryDestination = {
     type = "structure",
+    id = "InventoryDestination",
     members = {
         S3BucketDestination = setmetatable({ traits = {
             required = true,
@@ -3063,6 +3233,7 @@ M.InventoryDestination = {
 
 M.InventoryFilter = {
     type = "structure",
+    id = "InventoryFilter",
     members = {
         Prefix = {
             type = "string",
@@ -3104,6 +3275,7 @@ M.InventoryFrequency = {
 
 M.InventorySchedule = {
     type = "structure",
+    id = "InventorySchedule",
     members = {
         Frequency = {
             type = "string",
@@ -3116,6 +3288,7 @@ M.InventorySchedule = {
 
 M.InventoryConfiguration = {
     type = "structure",
+    id = "InventoryConfiguration",
     members = {
         Destination = setmetatable({ traits = {
             required = true,
@@ -3151,6 +3324,7 @@ M.InventoryConfiguration = {
 
 M.GetBucketInventoryConfigurationOutput = {
     type = "structure",
+    id = "GetBucketInventoryConfigurationOutput",
     members = {
         InventoryConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -3160,6 +3334,7 @@ M.GetBucketInventoryConfigurationOutput = {
 
 M.GetBucketLifecycleConfigurationInput = {
     type = "structure",
+    id = "GetBucketLifecycleConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -3179,6 +3354,7 @@ M.GetBucketLifecycleConfigurationInput = {
 
 M.LifecycleExpiration = {
     type = "structure",
+    id = "LifecycleExpiration",
     members = {
         Date = {
             type = "timestamp",
@@ -3197,6 +3373,7 @@ M.LifecycleExpiration = {
 
 M.LifecycleRuleAndOperator = {
     type = "structure",
+    id = "LifecycleRuleAndOperator",
     members = {
         Prefix = {
             type = "string",
@@ -3205,6 +3382,7 @@ M.LifecycleRuleAndOperator = {
             type = "list",
             member = M.Tag,
             traits = {
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -3219,6 +3397,7 @@ M.LifecycleRuleAndOperator = {
 
 M.LifecycleRuleFilter = {
     type = "structure",
+    id = "LifecycleRuleFilter",
     members = {
         Prefix = {
             type = "string",
@@ -3236,6 +3415,7 @@ M.LifecycleRuleFilter = {
 
 M.NoncurrentVersionExpiration = {
     type = "structure",
+    id = "NoncurrentVersionExpiration",
     members = {
         NoncurrentDays = {
             type = "integer",
@@ -3257,6 +3437,7 @@ M.TransitionStorageClass = {
 
 M.NoncurrentVersionTransition = {
     type = "structure",
+    id = "NoncurrentVersionTransition",
     members = {
         NoncurrentDays = {
             type = "integer",
@@ -3277,6 +3458,7 @@ M.ExpirationStatus = {
 
 M.Transition = {
     type = "structure",
+    id = "Transition",
     members = {
         Date = {
             type = "timestamp",
@@ -3295,6 +3477,7 @@ M.Transition = {
 
 M.LifecycleRule = {
     type = "structure",
+    id = "LifecycleRule",
     members = {
         Expiration = M.LifecycleExpiration,
         ID = {
@@ -3314,6 +3497,7 @@ M.LifecycleRule = {
             type = "list",
             member = M.Transition,
             traits = {
+                xml_flattened = true,
                 xml_name = "Transition",
             },
         },
@@ -3321,6 +3505,7 @@ M.LifecycleRule = {
             type = "list",
             member = M.NoncurrentVersionTransition,
             traits = {
+                xml_flattened = true,
                 xml_name = "NoncurrentVersionTransition",
             },
         },
@@ -3336,11 +3521,16 @@ M.TransitionDefaultMinimumObjectSize = {
 
 M.GetBucketLifecycleConfigurationOutput = {
     type = "structure",
+    id = "GetBucketLifecycleConfigurationOutput",
+    traits = {
+        xml_name = "LifecycleConfiguration",
+    },
     members = {
         Rules = {
             type = "list",
             member = M.LifecycleRule,
             traits = {
+                xml_flattened = true,
                 xml_name = "Rule",
             },
         },
@@ -3355,6 +3545,7 @@ M.GetBucketLifecycleConfigurationOutput = {
 
 M.GetBucketLocationInput = {
     type = "structure",
+    id = "GetBucketLocationInput",
     members = {
         Bucket = {
             type = "string",
@@ -3374,6 +3565,10 @@ M.GetBucketLocationInput = {
 
 M.GetBucketLocationOutput = {
     type = "structure",
+    id = "GetBucketLocationOutput",
+    traits = {
+        xml_name = "LocationConstraint",
+    },
     members = {
         LocationConstraint = {
             type = "string",
@@ -3383,6 +3578,7 @@ M.GetBucketLocationOutput = {
 
 M.GetBucketLoggingInput = {
     type = "structure",
+    id = "GetBucketLoggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -3408,8 +3604,11 @@ M.BucketLogsPermission = {
 
 M.TargetGrant = {
     type = "structure",
+    id = "TargetGrant",
     members = {
-        Grantee = M.Grantee,
+        Grantee = setmetatable({ traits = {
+            xml_namespace = { uri = "http://www.w3.org/2001/XMLSchema-instance", prefix = "xsi" },
+        } }, { __index = M.Grantee }),
         Permission = {
             type = "string",
         },
@@ -3423,6 +3622,10 @@ M.PartitionDateSource = {
 
 M.PartitionedPrefix = {
     type = "structure",
+    id = "PartitionedPrefix",
+    traits = {
+        xml_name = "PartitionedPrefix",
+    },
     members = {
         PartitionDateSource = {
             type = "string",
@@ -3432,10 +3635,15 @@ M.PartitionedPrefix = {
 
 M.SimplePrefix = {
     type = "structure",
+    id = "SimplePrefix",
+    traits = {
+        xml_name = "SimplePrefix",
+    },
 }
 
 M.TargetObjectKeyFormat = {
     type = "structure",
+    id = "TargetObjectKeyFormat",
     members = {
         SimplePrefix = setmetatable({ traits = {
             xml_name = "SimplePrefix",
@@ -3448,6 +3656,7 @@ M.TargetObjectKeyFormat = {
 
 M.LoggingEnabled = {
     type = "structure",
+    id = "LoggingEnabled",
     members = {
         TargetBucket = {
             type = "string",
@@ -3471,6 +3680,10 @@ M.LoggingEnabled = {
 
 M.GetBucketLoggingOutput = {
     type = "structure",
+    id = "GetBucketLoggingOutput",
+    traits = {
+        xml_name = "BucketLoggingStatus",
+    },
     members = {
         LoggingEnabled = M.LoggingEnabled,
     },
@@ -3478,6 +3691,7 @@ M.GetBucketLoggingOutput = {
 
 M.GetBucketMetadataConfigurationInput = {
     type = "structure",
+    id = "GetBucketMetadataConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -3502,6 +3716,7 @@ M.S3TablesBucketType = {
 
 M.DestinationResult = {
     type = "structure",
+    id = "DestinationResult",
     members = {
         TableBucketType = {
             type = "string",
@@ -3517,6 +3732,7 @@ M.DestinationResult = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         ErrorCode = {
             type = "string",
@@ -3529,6 +3745,7 @@ M.ErrorDetails = {
 
 M.InventoryTableConfigurationResult = {
     type = "structure",
+    id = "InventoryTableConfigurationResult",
     members = {
         ConfigurationState = {
             type = "string",
@@ -3551,6 +3768,7 @@ M.InventoryTableConfigurationResult = {
 
 M.JournalTableConfigurationResult = {
     type = "structure",
+    id = "JournalTableConfigurationResult",
     members = {
         TableStatus = {
             type = "string",
@@ -3576,6 +3794,7 @@ M.JournalTableConfigurationResult = {
 
 M.MetadataConfigurationResult = {
     type = "structure",
+    id = "MetadataConfigurationResult",
     members = {
         DestinationResult = setmetatable({ traits = {
             required = true,
@@ -3587,6 +3806,7 @@ M.MetadataConfigurationResult = {
 
 M.GetBucketMetadataConfigurationResult = {
     type = "structure",
+    id = "GetBucketMetadataConfigurationResult",
     members = {
         MetadataConfigurationResult = setmetatable({ traits = {
             required = true,
@@ -3596,6 +3816,7 @@ M.GetBucketMetadataConfigurationResult = {
 
 M.GetBucketMetadataConfigurationOutput = {
     type = "structure",
+    id = "GetBucketMetadataConfigurationOutput",
     members = {
         GetBucketMetadataConfigurationResult = setmetatable({ traits = {
             http_payload = true,
@@ -3605,6 +3826,7 @@ M.GetBucketMetadataConfigurationOutput = {
 
 M.GetBucketMetadataTableConfigurationInput = {
     type = "structure",
+    id = "GetBucketMetadataTableConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -3624,6 +3846,7 @@ M.GetBucketMetadataTableConfigurationInput = {
 
 M.S3TablesDestinationResult = {
     type = "structure",
+    id = "S3TablesDestinationResult",
     members = {
         TableBucketArn = {
             type = "string",
@@ -3654,6 +3877,7 @@ M.S3TablesDestinationResult = {
 
 M.MetadataTableConfigurationResult = {
     type = "structure",
+    id = "MetadataTableConfigurationResult",
     members = {
         S3TablesDestinationResult = setmetatable({ traits = {
             required = true,
@@ -3663,6 +3887,7 @@ M.MetadataTableConfigurationResult = {
 
 M.GetBucketMetadataTableConfigurationResult = {
     type = "structure",
+    id = "GetBucketMetadataTableConfigurationResult",
     members = {
         MetadataTableConfigurationResult = setmetatable({ traits = {
             required = true,
@@ -3679,6 +3904,7 @@ M.GetBucketMetadataTableConfigurationResult = {
 
 M.GetBucketMetadataTableConfigurationOutput = {
     type = "structure",
+    id = "GetBucketMetadataTableConfigurationOutput",
     members = {
         GetBucketMetadataTableConfigurationResult = setmetatable({ traits = {
             http_payload = true,
@@ -3688,6 +3914,7 @@ M.GetBucketMetadataTableConfigurationOutput = {
 
 M.GetBucketMetricsConfigurationInput = {
     type = "structure",
+    id = "GetBucketMetricsConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -3714,6 +3941,7 @@ M.GetBucketMetricsConfigurationInput = {
 
 M.MetricsAndOperator = {
     type = "structure",
+    id = "MetricsAndOperator",
     members = {
         Prefix = {
             type = "string",
@@ -3722,6 +3950,7 @@ M.MetricsAndOperator = {
             type = "list",
             member = M.Tag,
             traits = {
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -3733,6 +3962,7 @@ M.MetricsAndOperator = {
 
 M.MetricsFilter = {
     type = "union",
+    id = "MetricsFilter",
     members = {
         Prefix = {
             type = "string",
@@ -3747,6 +3977,7 @@ M.MetricsFilter = {
 
 M.MetricsConfiguration = {
     type = "structure",
+    id = "MetricsConfiguration",
     members = {
         Id = {
             type = "string",
@@ -3760,6 +3991,7 @@ M.MetricsConfiguration = {
 
 M.GetBucketMetricsConfigurationOutput = {
     type = "structure",
+    id = "GetBucketMetricsConfigurationOutput",
     members = {
         MetricsConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -3769,6 +4001,7 @@ M.GetBucketMetricsConfigurationOutput = {
 
 M.GetBucketNotificationConfigurationInput = {
     type = "structure",
+    id = "GetBucketNotificationConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -3788,6 +4021,7 @@ M.GetBucketNotificationConfigurationInput = {
 
 M.EventBridgeConfiguration = {
     type = "structure",
+    id = "EventBridgeConfiguration",
 }
 
 M.Event = {
@@ -3827,6 +4061,7 @@ M.FilterRuleName = {
 
 M.FilterRule = {
     type = "structure",
+    id = "FilterRule",
     members = {
         Name = {
             type = "string",
@@ -3839,11 +4074,13 @@ M.FilterRule = {
 
 M.S3KeyFilter = {
     type = "structure",
+    id = "S3KeyFilter",
     members = {
         FilterRules = {
             type = "list",
             member = M.FilterRule,
             traits = {
+                xml_flattened = true,
                 xml_name = "FilterRule",
             },
         },
@@ -3852,6 +4089,7 @@ M.S3KeyFilter = {
 
 M.NotificationConfigurationFilter = {
     type = "structure",
+    id = "NotificationConfigurationFilter",
     members = {
         Key = setmetatable({ traits = {
             xml_name = "S3Key",
@@ -3861,6 +4099,7 @@ M.NotificationConfigurationFilter = {
 
 M.LambdaFunctionConfiguration = {
     type = "structure",
+    id = "LambdaFunctionConfiguration",
     members = {
         Id = {
             type = "string",
@@ -3877,6 +4116,7 @@ M.LambdaFunctionConfiguration = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Event",
             },
         },
@@ -3886,6 +4126,7 @@ M.LambdaFunctionConfiguration = {
 
 M.QueueConfiguration = {
     type = "structure",
+    id = "QueueConfiguration",
     members = {
         Id = {
             type = "string",
@@ -3902,6 +4143,7 @@ M.QueueConfiguration = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Event",
             },
         },
@@ -3911,6 +4153,7 @@ M.QueueConfiguration = {
 
 M.TopicConfiguration = {
     type = "structure",
+    id = "TopicConfiguration",
     members = {
         Id = {
             type = "string",
@@ -3927,6 +4170,7 @@ M.TopicConfiguration = {
             member = { type = "string" },
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Event",
             },
         },
@@ -3936,11 +4180,13 @@ M.TopicConfiguration = {
 
 M.GetBucketNotificationConfigurationOutput = {
     type = "structure",
+    id = "GetBucketNotificationConfigurationOutput",
     members = {
         TopicConfigurations = {
             type = "list",
             member = M.TopicConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "TopicConfiguration",
             },
         },
@@ -3948,6 +4194,7 @@ M.GetBucketNotificationConfigurationOutput = {
             type = "list",
             member = M.QueueConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "QueueConfiguration",
             },
         },
@@ -3955,6 +4202,7 @@ M.GetBucketNotificationConfigurationOutput = {
             type = "list",
             member = M.LambdaFunctionConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "CloudFunctionConfiguration",
             },
         },
@@ -3964,6 +4212,7 @@ M.GetBucketNotificationConfigurationOutput = {
 
 M.GetBucketOwnershipControlsInput = {
     type = "structure",
+    id = "GetBucketOwnershipControlsInput",
     members = {
         Bucket = {
             type = "string",
@@ -3983,6 +4232,7 @@ M.GetBucketOwnershipControlsInput = {
 
 M.OwnershipControlsRule = {
     type = "structure",
+    id = "OwnershipControlsRule",
     members = {
         ObjectOwnership = {
             type = "string",
@@ -3995,12 +4245,14 @@ M.OwnershipControlsRule = {
 
 M.OwnershipControls = {
     type = "structure",
+    id = "OwnershipControls",
     members = {
         Rules = {
             type = "list",
             member = M.OwnershipControlsRule,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Rule",
             },
         },
@@ -4009,6 +4261,7 @@ M.OwnershipControls = {
 
 M.GetBucketOwnershipControlsOutput = {
     type = "structure",
+    id = "GetBucketOwnershipControlsOutput",
     members = {
         OwnershipControls = setmetatable({ traits = {
             http_payload = true,
@@ -4018,6 +4271,7 @@ M.GetBucketOwnershipControlsOutput = {
 
 M.GetBucketPolicyInput = {
     type = "structure",
+    id = "GetBucketPolicyInput",
     members = {
         Bucket = {
             type = "string",
@@ -4037,6 +4291,7 @@ M.GetBucketPolicyInput = {
 
 M.GetBucketPolicyOutput = {
     type = "structure",
+    id = "GetBucketPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -4049,6 +4304,7 @@ M.GetBucketPolicyOutput = {
 
 M.GetBucketPolicyStatusInput = {
     type = "structure",
+    id = "GetBucketPolicyStatusInput",
     members = {
         Bucket = {
             type = "string",
@@ -4068,6 +4324,7 @@ M.GetBucketPolicyStatusInput = {
 
 M.PolicyStatus = {
     type = "structure",
+    id = "PolicyStatus",
     members = {
         IsPublic = {
             type = "boolean",
@@ -4080,6 +4337,7 @@ M.PolicyStatus = {
 
 M.GetBucketPolicyStatusOutput = {
     type = "structure",
+    id = "GetBucketPolicyStatusOutput",
     members = {
         PolicyStatus = setmetatable({ traits = {
             http_payload = true,
@@ -4089,6 +4347,7 @@ M.GetBucketPolicyStatusOutput = {
 
 M.GetBucketReplicationInput = {
     type = "structure",
+    id = "GetBucketReplicationInput",
     members = {
         Bucket = {
             type = "string",
@@ -4113,6 +4372,7 @@ M.DeleteMarkerReplicationStatus = {
 
 M.DeleteMarkerReplication = {
     type = "structure",
+    id = "DeleteMarkerReplication",
     members = {
         Status = {
             type = "string",
@@ -4122,6 +4382,7 @@ M.DeleteMarkerReplication = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         ReplicaKmsKeyID = {
             type = "string",
@@ -4131,6 +4392,7 @@ M.EncryptionConfiguration = {
 
 M.ReplicationTimeValue = {
     type = "structure",
+    id = "ReplicationTimeValue",
     members = {
         Minutes = {
             type = "integer",
@@ -4145,6 +4407,7 @@ M.MetricsStatus = {
 
 M.Metrics = {
     type = "structure",
+    id = "Metrics",
     members = {
         Status = {
             type = "string",
@@ -4163,6 +4426,7 @@ M.ReplicationTimeStatus = {
 
 M.ReplicationTime = {
     type = "structure",
+    id = "ReplicationTime",
     members = {
         Status = {
             type = "string",
@@ -4178,6 +4442,7 @@ M.ReplicationTime = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         Bucket = {
             type = "string",
@@ -4205,6 +4470,7 @@ M.ExistingObjectReplicationStatus = {
 
 M.ExistingObjectReplication = {
     type = "structure",
+    id = "ExistingObjectReplication",
     members = {
         Status = {
             type = "string",
@@ -4217,6 +4483,7 @@ M.ExistingObjectReplication = {
 
 M.ReplicationRuleAndOperator = {
     type = "structure",
+    id = "ReplicationRuleAndOperator",
     members = {
         Prefix = {
             type = "string",
@@ -4225,6 +4492,7 @@ M.ReplicationRuleAndOperator = {
             type = "list",
             member = M.Tag,
             traits = {
+                xml_flattened = true,
                 xml_name = "Tag",
             },
         },
@@ -4233,6 +4501,7 @@ M.ReplicationRuleAndOperator = {
 
 M.ReplicationRuleFilter = {
     type = "structure",
+    id = "ReplicationRuleFilter",
     members = {
         Prefix = {
             type = "string",
@@ -4249,6 +4518,7 @@ M.ReplicaModificationsStatus = {
 
 M.ReplicaModifications = {
     type = "structure",
+    id = "ReplicaModifications",
     members = {
         Status = {
             type = "string",
@@ -4266,6 +4536,7 @@ M.SseKmsEncryptedObjectsStatus = {
 
 M.SseKmsEncryptedObjects = {
     type = "structure",
+    id = "SseKmsEncryptedObjects",
     members = {
         Status = {
             type = "string",
@@ -4278,6 +4549,7 @@ M.SseKmsEncryptedObjects = {
 
 M.SourceSelectionCriteria = {
     type = "structure",
+    id = "SourceSelectionCriteria",
     members = {
         SseKmsEncryptedObjects = M.SseKmsEncryptedObjects,
         ReplicaModifications = M.ReplicaModifications,
@@ -4291,6 +4563,7 @@ M.ReplicationRuleStatus = {
 
 M.ReplicationRule = {
     type = "structure",
+    id = "ReplicationRule",
     members = {
         ID = {
             type = "string",
@@ -4319,6 +4592,7 @@ M.ReplicationRule = {
 
 M.ReplicationConfiguration = {
     type = "structure",
+    id = "ReplicationConfiguration",
     members = {
         Role = {
             type = "string",
@@ -4331,6 +4605,7 @@ M.ReplicationConfiguration = {
             member = M.ReplicationRule,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Rule",
             },
         },
@@ -4339,6 +4614,7 @@ M.ReplicationConfiguration = {
 
 M.GetBucketReplicationOutput = {
     type = "structure",
+    id = "GetBucketReplicationOutput",
     members = {
         ReplicationConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -4348,6 +4624,7 @@ M.GetBucketReplicationOutput = {
 
 M.GetBucketRequestPaymentInput = {
     type = "structure",
+    id = "GetBucketRequestPaymentInput",
     members = {
         Bucket = {
             type = "string",
@@ -4372,6 +4649,10 @@ M.Payer = {
 
 M.GetBucketRequestPaymentOutput = {
     type = "structure",
+    id = "GetBucketRequestPaymentOutput",
+    traits = {
+        xml_name = "RequestPaymentConfiguration",
+    },
     members = {
         Payer = {
             type = "string",
@@ -4381,6 +4662,7 @@ M.GetBucketRequestPaymentOutput = {
 
 M.GetBucketTaggingInput = {
     type = "structure",
+    id = "GetBucketTaggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -4400,6 +4682,10 @@ M.GetBucketTaggingInput = {
 
 M.GetBucketTaggingOutput = {
     type = "structure",
+    id = "GetBucketTaggingOutput",
+    traits = {
+        xml_name = "Tagging",
+    },
     members = {
         TagSet = {
             type = "list",
@@ -4413,6 +4699,7 @@ M.GetBucketTaggingOutput = {
 
 M.GetBucketVersioningInput = {
     type = "structure",
+    id = "GetBucketVersioningInput",
     members = {
         Bucket = {
             type = "string",
@@ -4442,6 +4729,10 @@ M.BucketVersioningStatus = {
 
 M.GetBucketVersioningOutput = {
     type = "structure",
+    id = "GetBucketVersioningOutput",
+    traits = {
+        xml_name = "VersioningConfiguration",
+    },
     members = {
         Status = {
             type = "string",
@@ -4457,6 +4748,7 @@ M.GetBucketVersioningOutput = {
 
 M.GetBucketWebsiteInput = {
     type = "structure",
+    id = "GetBucketWebsiteInput",
     members = {
         Bucket = {
             type = "string",
@@ -4476,6 +4768,7 @@ M.GetBucketWebsiteInput = {
 
 M.ErrorDocument = {
     type = "structure",
+    id = "ErrorDocument",
     members = {
         Key = {
             type = "string",
@@ -4488,6 +4781,7 @@ M.ErrorDocument = {
 
 M.IndexDocument = {
     type = "structure",
+    id = "IndexDocument",
     members = {
         Suffix = {
             type = "string",
@@ -4505,6 +4799,7 @@ M.Protocol = {
 
 M.RedirectAllRequestsTo = {
     type = "structure",
+    id = "RedirectAllRequestsTo",
     members = {
         HostName = {
             type = "string",
@@ -4520,6 +4815,7 @@ M.RedirectAllRequestsTo = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         HttpErrorCodeReturnedEquals = {
             type = "string",
@@ -4532,6 +4828,7 @@ M.Condition = {
 
 M.Redirect = {
     type = "structure",
+    id = "Redirect",
     members = {
         HostName = {
             type = "string",
@@ -4553,6 +4850,7 @@ M.Redirect = {
 
 M.RoutingRule = {
     type = "structure",
+    id = "RoutingRule",
     members = {
         Condition = M.Condition,
         Redirect = setmetatable({ traits = {
@@ -4563,6 +4861,10 @@ M.RoutingRule = {
 
 M.GetBucketWebsiteOutput = {
     type = "structure",
+    id = "GetBucketWebsiteOutput",
+    traits = {
+        xml_name = "WebsiteConfiguration",
+    },
     members = {
         RedirectAllRequestsTo = M.RedirectAllRequestsTo,
         IndexDocument = M.IndexDocument,
@@ -4580,6 +4882,7 @@ M.ChecksumMode = {
 
 M.GetObjectInput = {
     type = "structure",
+    id = "GetObjectInput",
     members = {
         Bucket = {
             type = "string",
@@ -4723,6 +5026,7 @@ M.ReplicationStatus = {
 
 M.GetObjectOutput = {
     type = "structure",
+    id = "GetObjectOutput",
     members = {
         Body = {
             type = "blob",
@@ -4991,6 +5295,7 @@ M.GetObjectOutput = {
 
 M.InvalidObjectState = {
     type = "structure",
+    id = "InvalidObjectState",
     error = "client",
     members = {
         StorageClass = {
@@ -5004,11 +5309,13 @@ M.InvalidObjectState = {
 
 M.NoSuchKey = {
     type = "structure",
+    id = "NoSuchKey",
     error = "client",
 }
 
 M.GetObjectAclInput = {
     type = "structure",
+    id = "GetObjectAclInput",
     members = {
         Bucket = {
             type = "string",
@@ -5047,6 +5354,10 @@ M.GetObjectAclInput = {
 
 M.GetObjectAclOutput = {
     type = "structure",
+    id = "GetObjectAclOutput",
+    traits = {
+        xml_name = "AccessControlPolicy",
+    },
     members = {
         Owner = M.Owner,
         Grants = {
@@ -5075,6 +5386,7 @@ M.ObjectAttributes = {
 
 M.GetObjectAttributesInput = {
     type = "structure",
+    id = "GetObjectAttributesInput",
     members = {
         Bucket = {
             type = "string",
@@ -5151,6 +5463,7 @@ M.GetObjectAttributesInput = {
 
 M.Checksum = {
     type = "structure",
+    id = "Checksum",
     members = {
         ChecksumCRC32 = {
             type = "string",
@@ -5190,6 +5503,7 @@ M.Checksum = {
 
 M.ObjectPart = {
     type = "structure",
+    id = "ObjectPart",
     members = {
         PartNumber = {
             type = "integer",
@@ -5232,6 +5546,7 @@ M.ObjectPart = {
 
 M.GetObjectAttributesParts = {
     type = "structure",
+    id = "GetObjectAttributesParts",
     members = {
         TotalPartsCount = {
             type = "integer",
@@ -5255,6 +5570,7 @@ M.GetObjectAttributesParts = {
             type = "list",
             member = M.ObjectPart,
             traits = {
+                xml_flattened = true,
                 xml_name = "Part",
             },
         },
@@ -5263,6 +5579,10 @@ M.GetObjectAttributesParts = {
 
 M.GetObjectAttributesOutput = {
     type = "structure",
+    id = "GetObjectAttributesOutput",
+    traits = {
+        xml_name = "GetObjectAttributesResponse",
+    },
     members = {
         DeleteMarker = {
             type = "boolean",
@@ -5304,6 +5624,7 @@ M.GetObjectAttributesOutput = {
 
 M.GetObjectLegalHoldInput = {
     type = "structure",
+    id = "GetObjectLegalHoldInput",
     members = {
         Bucket = {
             type = "string",
@@ -5342,6 +5663,7 @@ M.GetObjectLegalHoldInput = {
 
 M.ObjectLockLegalHold = {
     type = "structure",
+    id = "ObjectLockLegalHold",
     members = {
         Status = {
             type = "string",
@@ -5351,6 +5673,7 @@ M.ObjectLockLegalHold = {
 
 M.GetObjectLegalHoldOutput = {
     type = "structure",
+    id = "GetObjectLegalHoldOutput",
     members = {
         LegalHold = setmetatable({ traits = {
             http_payload = true,
@@ -5361,6 +5684,7 @@ M.GetObjectLegalHoldOutput = {
 
 M.GetObjectLockConfigurationInput = {
     type = "structure",
+    id = "GetObjectLockConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -5389,6 +5713,7 @@ M.ObjectLockRetentionMode = {
 
 M.DefaultRetention = {
     type = "structure",
+    id = "DefaultRetention",
     members = {
         Mode = {
             type = "string",
@@ -5404,6 +5729,7 @@ M.DefaultRetention = {
 
 M.ObjectLockRule = {
     type = "structure",
+    id = "ObjectLockRule",
     members = {
         DefaultRetention = M.DefaultRetention,
     },
@@ -5411,6 +5737,7 @@ M.ObjectLockRule = {
 
 M.ObjectLockConfiguration = {
     type = "structure",
+    id = "ObjectLockConfiguration",
     members = {
         ObjectLockEnabled = {
             type = "string",
@@ -5421,6 +5748,7 @@ M.ObjectLockConfiguration = {
 
 M.GetObjectLockConfigurationOutput = {
     type = "structure",
+    id = "GetObjectLockConfigurationOutput",
     members = {
         ObjectLockConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -5430,6 +5758,7 @@ M.GetObjectLockConfigurationOutput = {
 
 M.GetObjectRetentionInput = {
     type = "structure",
+    id = "GetObjectRetentionInput",
     members = {
         Bucket = {
             type = "string",
@@ -5468,6 +5797,7 @@ M.GetObjectRetentionInput = {
 
 M.ObjectLockRetention = {
     type = "structure",
+    id = "ObjectLockRetention",
     members = {
         Mode = {
             type = "string",
@@ -5483,6 +5813,7 @@ M.ObjectLockRetention = {
 
 M.GetObjectRetentionOutput = {
     type = "structure",
+    id = "GetObjectRetentionOutput",
     members = {
         Retention = setmetatable({ traits = {
             http_payload = true,
@@ -5493,6 +5824,7 @@ M.GetObjectRetentionOutput = {
 
 M.GetObjectTaggingInput = {
     type = "structure",
+    id = "GetObjectTaggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -5531,6 +5863,10 @@ M.GetObjectTaggingInput = {
 
 M.GetObjectTaggingOutput = {
     type = "structure",
+    id = "GetObjectTaggingOutput",
+    traits = {
+        xml_name = "Tagging",
+    },
     members = {
         VersionId = {
             type = "string",
@@ -5550,6 +5886,7 @@ M.GetObjectTaggingOutput = {
 
 M.GetObjectTorrentInput = {
     type = "structure",
+    id = "GetObjectTorrentInput",
     members = {
         Bucket = {
             type = "string",
@@ -5582,6 +5919,7 @@ M.GetObjectTorrentInput = {
 
 M.GetObjectTorrentOutput = {
     type = "structure",
+    id = "GetObjectTorrentOutput",
     members = {
         Body = {
             type = "blob",
@@ -5601,6 +5939,7 @@ M.GetObjectTorrentOutput = {
 
 M.GetPublicAccessBlockInput = {
     type = "structure",
+    id = "GetPublicAccessBlockInput",
     members = {
         Bucket = {
             type = "string",
@@ -5620,6 +5959,7 @@ M.GetPublicAccessBlockInput = {
 
 M.PublicAccessBlockConfiguration = {
     type = "structure",
+    id = "PublicAccessBlockConfiguration",
     members = {
         BlockPublicAcls = {
             type = "boolean",
@@ -5650,6 +5990,7 @@ M.PublicAccessBlockConfiguration = {
 
 M.GetPublicAccessBlockOutput = {
     type = "structure",
+    id = "GetPublicAccessBlockOutput",
     members = {
         PublicAccessBlockConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -5659,6 +6000,7 @@ M.GetPublicAccessBlockOutput = {
 
 M.HeadBucketInput = {
     type = "structure",
+    id = "HeadBucketInput",
     members = {
         Bucket = {
             type = "string",
@@ -5678,6 +6020,7 @@ M.HeadBucketInput = {
 
 M.HeadBucketOutput = {
     type = "structure",
+    id = "HeadBucketOutput",
     members = {
         BucketArn = {
             type = "string",
@@ -5714,11 +6057,13 @@ M.HeadBucketOutput = {
 
 M.NotFound = {
     type = "structure",
+    id = "NotFound",
     error = "client",
 }
 
 M.HeadObjectInput = {
     type = "structure",
+    id = "HeadObjectInput",
     members = {
         Bucket = {
             type = "string",
@@ -5859,6 +6204,7 @@ M.ArchiveStatus = {
 
 M.HeadObjectOutput = {
     type = "structure",
+    id = "HeadObjectOutput",
     members = {
         DeleteMarker = {
             type = "boolean",
@@ -6126,6 +6472,7 @@ M.HeadObjectOutput = {
 
 M.ListBucketAnalyticsConfigurationsInput = {
     type = "structure",
+    id = "ListBucketAnalyticsConfigurationsInput",
     members = {
         Bucket = {
             type = "string",
@@ -6151,6 +6498,10 @@ M.ListBucketAnalyticsConfigurationsInput = {
 
 M.ListBucketAnalyticsConfigurationsOutput = {
     type = "structure",
+    id = "ListBucketAnalyticsConfigurationsOutput",
+    traits = {
+        xml_name = "ListBucketAnalyticsConfigurationResult",
+    },
     members = {
         IsTruncated = {
             type = "boolean",
@@ -6165,6 +6516,7 @@ M.ListBucketAnalyticsConfigurationsOutput = {
             type = "list",
             member = M.AnalyticsConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "AnalyticsConfiguration",
             },
         },
@@ -6173,6 +6525,7 @@ M.ListBucketAnalyticsConfigurationsOutput = {
 
 M.ListBucketIntelligentTieringConfigurationsInput = {
     type = "structure",
+    id = "ListBucketIntelligentTieringConfigurationsInput",
     members = {
         Bucket = {
             type = "string",
@@ -6198,6 +6551,7 @@ M.ListBucketIntelligentTieringConfigurationsInput = {
 
 M.ListBucketIntelligentTieringConfigurationsOutput = {
     type = "structure",
+    id = "ListBucketIntelligentTieringConfigurationsOutput",
     members = {
         IsTruncated = {
             type = "boolean",
@@ -6212,6 +6566,7 @@ M.ListBucketIntelligentTieringConfigurationsOutput = {
             type = "list",
             member = M.IntelligentTieringConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "IntelligentTieringConfiguration",
             },
         },
@@ -6220,6 +6575,7 @@ M.ListBucketIntelligentTieringConfigurationsOutput = {
 
 M.ListBucketInventoryConfigurationsInput = {
     type = "structure",
+    id = "ListBucketInventoryConfigurationsInput",
     members = {
         Bucket = {
             type = "string",
@@ -6245,6 +6601,10 @@ M.ListBucketInventoryConfigurationsInput = {
 
 M.ListBucketInventoryConfigurationsOutput = {
     type = "structure",
+    id = "ListBucketInventoryConfigurationsOutput",
+    traits = {
+        xml_name = "ListInventoryConfigurationsResult",
+    },
     members = {
         ContinuationToken = {
             type = "string",
@@ -6253,6 +6613,7 @@ M.ListBucketInventoryConfigurationsOutput = {
             type = "list",
             member = M.InventoryConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "InventoryConfiguration",
             },
         },
@@ -6267,6 +6628,7 @@ M.ListBucketInventoryConfigurationsOutput = {
 
 M.ListBucketMetricsConfigurationsInput = {
     type = "structure",
+    id = "ListBucketMetricsConfigurationsInput",
     members = {
         Bucket = {
             type = "string",
@@ -6292,6 +6654,10 @@ M.ListBucketMetricsConfigurationsInput = {
 
 M.ListBucketMetricsConfigurationsOutput = {
     type = "structure",
+    id = "ListBucketMetricsConfigurationsOutput",
+    traits = {
+        xml_name = "ListMetricsConfigurationsResult",
+    },
     members = {
         IsTruncated = {
             type = "boolean",
@@ -6306,6 +6672,7 @@ M.ListBucketMetricsConfigurationsOutput = {
             type = "list",
             member = M.MetricsConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "MetricsConfiguration",
             },
         },
@@ -6314,6 +6681,7 @@ M.ListBucketMetricsConfigurationsOutput = {
 
 M.ListBucketsInput = {
     type = "structure",
+    id = "ListBucketsInput",
     members = {
         MaxBuckets = {
             type = "integer",
@@ -6344,6 +6712,7 @@ M.ListBucketsInput = {
 
 M.Bucket = {
     type = "structure",
+    id = "Bucket",
     members = {
         Name = {
             type = "string",
@@ -6362,6 +6731,10 @@ M.Bucket = {
 
 M.ListBucketsOutput = {
     type = "structure",
+    id = "ListBucketsOutput",
+    traits = {
+        xml_name = "ListAllMyBucketsResult",
+    },
     members = {
         Buckets = {
             type = "list",
@@ -6379,6 +6752,7 @@ M.ListBucketsOutput = {
 
 M.ListDirectoryBucketsInput = {
     type = "structure",
+    id = "ListDirectoryBucketsInput",
     members = {
         ContinuationToken = {
             type = "string",
@@ -6397,6 +6771,10 @@ M.ListDirectoryBucketsInput = {
 
 M.ListDirectoryBucketsOutput = {
     type = "structure",
+    id = "ListDirectoryBucketsOutput",
+    traits = {
+        xml_name = "ListAllMyDirectoryBucketsResult",
+    },
     members = {
         Buckets = {
             type = "list",
@@ -6414,6 +6792,7 @@ M.EncodingType = {
 
 M.ListMultipartUploadsInput = {
     type = "structure",
+    id = "ListMultipartUploadsInput",
     members = {
         Bucket = {
             type = "string",
@@ -6475,6 +6854,7 @@ M.ListMultipartUploadsInput = {
 
 M.CommonPrefix = {
     type = "structure",
+    id = "CommonPrefix",
     members = {
         Prefix = {
             type = "string",
@@ -6484,6 +6864,7 @@ M.CommonPrefix = {
 
 M.Initiator = {
     type = "structure",
+    id = "Initiator",
     members = {
         ID = {
             type = "string",
@@ -6496,6 +6877,7 @@ M.Initiator = {
 
 M.MultipartUpload = {
     type = "structure",
+    id = "MultipartUpload",
     members = {
         UploadId = {
             type = "string",
@@ -6522,6 +6904,10 @@ M.MultipartUpload = {
 
 M.ListMultipartUploadsOutput = {
     type = "structure",
+    id = "ListMultipartUploadsOutput",
+    traits = {
+        xml_name = "ListMultipartUploadsResult",
+    },
     members = {
         Bucket = {
             type = "string",
@@ -6554,12 +6940,16 @@ M.ListMultipartUploadsOutput = {
             type = "list",
             member = M.MultipartUpload,
             traits = {
+                xml_flattened = true,
                 xml_name = "Upload",
             },
         },
         CommonPrefixes = {
             type = "list",
             member = M.CommonPrefix,
+            traits = {
+                xml_flattened = true,
+            },
         },
         EncodingType = {
             type = "string",
@@ -6579,6 +6969,7 @@ M.OptionalObjectAttributes = {
 
 M.ListObjectsInput = {
     type = "structure",
+    id = "ListObjectsInput",
     members = {
         Bucket = {
             type = "string",
@@ -6641,6 +7032,7 @@ M.ListObjectsInput = {
 
 M.RestoreStatus = {
     type = "structure",
+    id = "RestoreStatus",
     members = {
         IsRestoreInProgress = {
             type = "boolean",
@@ -6669,6 +7061,7 @@ M.ObjectStorageClass = {
 
 M.Object = {
     type = "structure",
+    id = "Object",
     members = {
         Key = {
             type = "string",
@@ -6682,6 +7075,9 @@ M.Object = {
         ChecksumAlgorithm = {
             type = "list",
             member = { type = "string" },
+            traits = {
+                xml_flattened = true,
+            },
         },
         ChecksumType = {
             type = "string",
@@ -6699,6 +7095,10 @@ M.Object = {
 
 M.ListObjectsOutput = {
     type = "structure",
+    id = "ListObjectsOutput",
+    traits = {
+        xml_name = "ListBucketResult",
+    },
     members = {
         IsTruncated = {
             type = "boolean",
@@ -6712,6 +7112,9 @@ M.ListObjectsOutput = {
         Contents = {
             type = "list",
             member = M.Object,
+            traits = {
+                xml_flattened = true,
+            },
         },
         Name = {
             type = "string",
@@ -6728,6 +7131,9 @@ M.ListObjectsOutput = {
         CommonPrefixes = {
             type = "list",
             member = M.CommonPrefix,
+            traits = {
+                xml_flattened = true,
+            },
         },
         EncodingType = {
             type = "string",
@@ -6743,6 +7149,7 @@ M.ListObjectsOutput = {
 
 M.ListObjectsV2Input = {
     type = "structure",
+    id = "ListObjectsV2Input",
     members = {
         Bucket = {
             type = "string",
@@ -6817,6 +7224,10 @@ M.ListObjectsV2Input = {
 
 M.ListObjectsV2Output = {
     type = "structure",
+    id = "ListObjectsV2Output",
+    traits = {
+        xml_name = "ListBucketResult",
+    },
     members = {
         IsTruncated = {
             type = "boolean",
@@ -6824,6 +7235,9 @@ M.ListObjectsV2Output = {
         Contents = {
             type = "list",
             member = M.Object,
+            traits = {
+                xml_flattened = true,
+            },
         },
         Name = {
             type = "string",
@@ -6840,6 +7254,9 @@ M.ListObjectsV2Output = {
         CommonPrefixes = {
             type = "list",
             member = M.CommonPrefix,
+            traits = {
+                xml_flattened = true,
+            },
         },
         EncodingType = {
             type = "string",
@@ -6867,6 +7284,7 @@ M.ListObjectsV2Output = {
 
 M.ListObjectVersionsInput = {
     type = "structure",
+    id = "ListObjectVersionsInput",
     members = {
         Bucket = {
             type = "string",
@@ -6935,6 +7353,7 @@ M.ListObjectVersionsInput = {
 
 M.DeleteMarkerEntry = {
     type = "structure",
+    id = "DeleteMarkerEntry",
     members = {
         Owner = M.Owner,
         Key = {
@@ -6958,6 +7377,7 @@ M.ObjectVersionStorageClass = {
 
 M.ObjectVersion = {
     type = "structure",
+    id = "ObjectVersion",
     members = {
         ETag = {
             type = "string",
@@ -6965,6 +7385,9 @@ M.ObjectVersion = {
         ChecksumAlgorithm = {
             type = "list",
             member = { type = "string" },
+            traits = {
+                xml_flattened = true,
+            },
         },
         ChecksumType = {
             type = "string",
@@ -6994,6 +7417,10 @@ M.ObjectVersion = {
 
 M.ListObjectVersionsOutput = {
     type = "structure",
+    id = "ListObjectVersionsOutput",
+    traits = {
+        xml_name = "ListVersionsResult",
+    },
     members = {
         IsTruncated = {
             type = "boolean",
@@ -7014,6 +7441,7 @@ M.ListObjectVersionsOutput = {
             type = "list",
             member = M.ObjectVersion,
             traits = {
+                xml_flattened = true,
                 xml_name = "Version",
             },
         },
@@ -7021,6 +7449,7 @@ M.ListObjectVersionsOutput = {
             type = "list",
             member = M.DeleteMarkerEntry,
             traits = {
+                xml_flattened = true,
                 xml_name = "DeleteMarker",
             },
         },
@@ -7039,6 +7468,9 @@ M.ListObjectVersionsOutput = {
         CommonPrefixes = {
             type = "list",
             member = M.CommonPrefix,
+            traits = {
+                xml_flattened = true,
+            },
         },
         EncodingType = {
             type = "string",
@@ -7054,6 +7486,7 @@ M.ListObjectVersionsOutput = {
 
 M.ListPartsInput = {
     type = "structure",
+    id = "ListPartsInput",
     members = {
         Bucket = {
             type = "string",
@@ -7123,6 +7556,7 @@ M.ListPartsInput = {
 
 M.Part = {
     type = "structure",
+    id = "Part",
     members = {
         PartNumber = {
             type = "integer",
@@ -7171,6 +7605,10 @@ M.Part = {
 
 M.ListPartsOutput = {
     type = "structure",
+    id = "ListPartsOutput",
+    traits = {
+        xml_name = "ListPartsResult",
+    },
     members = {
         AbortDate = {
             type = "timestamp",
@@ -7209,6 +7647,7 @@ M.ListPartsOutput = {
             type = "list",
             member = M.Part,
             traits = {
+                xml_flattened = true,
                 xml_name = "Part",
             },
         },
@@ -7234,6 +7673,7 @@ M.ListPartsOutput = {
 
 M.PutBucketAbacInput = {
     type = "structure",
+    id = "PutBucketAbacInput",
     members = {
         Bucket = {
             type = "string",
@@ -7270,10 +7710,12 @@ M.PutBucketAbacInput = {
 
 M.PutBucketAbacOutput = {
     type = "structure",
+    id = "PutBucketAbacOutput",
 }
 
 M.PutBucketAccelerateConfigurationInput = {
     type = "structure",
+    id = "PutBucketAccelerateConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7304,10 +7746,12 @@ M.PutBucketAccelerateConfigurationInput = {
 
 M.PutBucketAccelerateConfigurationOutput = {
     type = "structure",
+    id = "PutBucketAccelerateConfigurationOutput",
 }
 
 M.PutBucketAclInput = {
     type = "structure",
+    id = "PutBucketAclInput",
     members = {
         ACL = {
             type = "string",
@@ -7379,10 +7823,12 @@ M.PutBucketAclInput = {
 
 M.PutBucketAclOutput = {
     type = "structure",
+    id = "PutBucketAclOutput",
 }
 
 M.PutBucketAnalyticsConfigurationInput = {
     type = "structure",
+    id = "PutBucketAnalyticsConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7414,16 +7860,19 @@ M.PutBucketAnalyticsConfigurationInput = {
 
 M.PutBucketAnalyticsConfigurationOutput = {
     type = "structure",
+    id = "PutBucketAnalyticsConfigurationOutput",
 }
 
 M.CORSConfiguration = {
     type = "structure",
+    id = "CORSConfiguration",
     members = {
         CORSRules = {
             type = "list",
             member = M.CORSRule,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "CORSRule",
             },
         },
@@ -7432,6 +7881,7 @@ M.CORSConfiguration = {
 
 M.PutBucketCorsInput = {
     type = "structure",
+    id = "PutBucketCorsInput",
     members = {
         Bucket = {
             type = "string",
@@ -7468,10 +7918,12 @@ M.PutBucketCorsInput = {
 
 M.PutBucketCorsOutput = {
     type = "structure",
+    id = "PutBucketCorsOutput",
 }
 
 M.PutBucketEncryptionInput = {
     type = "structure",
+    id = "PutBucketEncryptionInput",
     members = {
         Bucket = {
             type = "string",
@@ -7508,10 +7960,12 @@ M.PutBucketEncryptionInput = {
 
 M.PutBucketEncryptionOutput = {
     type = "structure",
+    id = "PutBucketEncryptionOutput",
 }
 
 M.PutBucketIntelligentTieringConfigurationInput = {
     type = "structure",
+    id = "PutBucketIntelligentTieringConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7543,10 +7997,12 @@ M.PutBucketIntelligentTieringConfigurationInput = {
 
 M.PutBucketIntelligentTieringConfigurationOutput = {
     type = "structure",
+    id = "PutBucketIntelligentTieringConfigurationOutput",
 }
 
 M.PutBucketInventoryConfigurationInput = {
     type = "structure",
+    id = "PutBucketInventoryConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7578,16 +8034,19 @@ M.PutBucketInventoryConfigurationInput = {
 
 M.PutBucketInventoryConfigurationOutput = {
     type = "structure",
+    id = "PutBucketInventoryConfigurationOutput",
 }
 
 M.BucketLifecycleConfiguration = {
     type = "structure",
+    id = "BucketLifecycleConfiguration",
     members = {
         Rules = {
             type = "list",
             member = M.LifecycleRule,
             traits = {
                 required = true,
+                xml_flattened = true,
                 xml_name = "Rule",
             },
         },
@@ -7596,6 +8055,7 @@ M.BucketLifecycleConfiguration = {
 
 M.PutBucketLifecycleConfigurationInput = {
     type = "structure",
+    id = "PutBucketLifecycleConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7631,6 +8091,7 @@ M.PutBucketLifecycleConfigurationInput = {
 
 M.PutBucketLifecycleConfigurationOutput = {
     type = "structure",
+    id = "PutBucketLifecycleConfigurationOutput",
     members = {
         TransitionDefaultMinimumObjectSize = {
             type = "string",
@@ -7643,6 +8104,7 @@ M.PutBucketLifecycleConfigurationOutput = {
 
 M.BucketLoggingStatus = {
     type = "structure",
+    id = "BucketLoggingStatus",
     members = {
         LoggingEnabled = M.LoggingEnabled,
     },
@@ -7650,6 +8112,7 @@ M.BucketLoggingStatus = {
 
 M.PutBucketLoggingInput = {
     type = "structure",
+    id = "PutBucketLoggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -7686,10 +8149,12 @@ M.PutBucketLoggingInput = {
 
 M.PutBucketLoggingOutput = {
     type = "structure",
+    id = "PutBucketLoggingOutput",
 }
 
 M.PutBucketMetricsConfigurationInput = {
     type = "structure",
+    id = "PutBucketMetricsConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7721,15 +8186,18 @@ M.PutBucketMetricsConfigurationInput = {
 
 M.PutBucketMetricsConfigurationOutput = {
     type = "structure",
+    id = "PutBucketMetricsConfigurationOutput",
 }
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         TopicConfigurations = {
             type = "list",
             member = M.TopicConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "TopicConfiguration",
             },
         },
@@ -7737,6 +8205,7 @@ M.NotificationConfiguration = {
             type = "list",
             member = M.QueueConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "QueueConfiguration",
             },
         },
@@ -7744,6 +8213,7 @@ M.NotificationConfiguration = {
             type = "list",
             member = M.LambdaFunctionConfiguration,
             traits = {
+                xml_flattened = true,
                 xml_name = "CloudFunctionConfiguration",
             },
         },
@@ -7753,6 +8223,7 @@ M.NotificationConfiguration = {
 
 M.PutBucketNotificationConfigurationInput = {
     type = "structure",
+    id = "PutBucketNotificationConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7783,10 +8254,12 @@ M.PutBucketNotificationConfigurationInput = {
 
 M.PutBucketNotificationConfigurationOutput = {
     type = "structure",
+    id = "PutBucketNotificationConfigurationOutput",
 }
 
 M.PutBucketOwnershipControlsInput = {
     type = "structure",
+    id = "PutBucketOwnershipControlsInput",
     members = {
         Bucket = {
             type = "string",
@@ -7823,10 +8296,12 @@ M.PutBucketOwnershipControlsInput = {
 
 M.PutBucketOwnershipControlsOutput = {
     type = "structure",
+    id = "PutBucketOwnershipControlsOutput",
 }
 
 M.PutBucketPolicyInput = {
     type = "structure",
+    id = "PutBucketPolicyInput",
     members = {
         Bucket = {
             type = "string",
@@ -7871,10 +8346,12 @@ M.PutBucketPolicyInput = {
 
 M.PutBucketPolicyOutput = {
     type = "structure",
+    id = "PutBucketPolicyOutput",
 }
 
 M.PutBucketReplicationInput = {
     type = "structure",
+    id = "PutBucketReplicationInput",
     members = {
         Bucket = {
             type = "string",
@@ -7917,10 +8394,12 @@ M.PutBucketReplicationInput = {
 
 M.PutBucketReplicationOutput = {
     type = "structure",
+    id = "PutBucketReplicationOutput",
 }
 
 M.RequestPaymentConfiguration = {
     type = "structure",
+    id = "RequestPaymentConfiguration",
     members = {
         Payer = {
             type = "string",
@@ -7933,6 +8412,7 @@ M.RequestPaymentConfiguration = {
 
 M.PutBucketRequestPaymentInput = {
     type = "structure",
+    id = "PutBucketRequestPaymentInput",
     members = {
         Bucket = {
             type = "string",
@@ -7969,10 +8449,12 @@ M.PutBucketRequestPaymentInput = {
 
 M.PutBucketRequestPaymentOutput = {
     type = "structure",
+    id = "PutBucketRequestPaymentOutput",
 }
 
 M.Tagging = {
     type = "structure",
+    id = "Tagging",
     members = {
         TagSet = {
             type = "list",
@@ -7986,6 +8468,7 @@ M.Tagging = {
 
 M.PutBucketTaggingInput = {
     type = "structure",
+    id = "PutBucketTaggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -8022,6 +8505,7 @@ M.PutBucketTaggingInput = {
 
 M.PutBucketTaggingOutput = {
     type = "structure",
+    id = "PutBucketTaggingOutput",
 }
 
 M.MFADelete = {
@@ -8031,6 +8515,7 @@ M.MFADelete = {
 
 M.VersioningConfiguration = {
     type = "structure",
+    id = "VersioningConfiguration",
     members = {
         MFADelete = {
             type = "string",
@@ -8046,6 +8531,7 @@ M.VersioningConfiguration = {
 
 M.PutBucketVersioningInput = {
     type = "structure",
+    id = "PutBucketVersioningInput",
     members = {
         Bucket = {
             type = "string",
@@ -8088,10 +8574,12 @@ M.PutBucketVersioningInput = {
 
 M.PutBucketVersioningOutput = {
     type = "structure",
+    id = "PutBucketVersioningOutput",
 }
 
 M.WebsiteConfiguration = {
     type = "structure",
+    id = "WebsiteConfiguration",
     members = {
         ErrorDocument = M.ErrorDocument,
         IndexDocument = M.IndexDocument,
@@ -8105,6 +8593,7 @@ M.WebsiteConfiguration = {
 
 M.PutBucketWebsiteInput = {
     type = "structure",
+    id = "PutBucketWebsiteInput",
     members = {
         Bucket = {
             type = "string",
@@ -8141,25 +8630,30 @@ M.PutBucketWebsiteInput = {
 
 M.PutBucketWebsiteOutput = {
     type = "structure",
+    id = "PutBucketWebsiteOutput",
 }
 
 M.EncryptionTypeMismatch = {
     type = "structure",
+    id = "EncryptionTypeMismatch",
     error = "client",
 }
 
 M.InvalidRequest = {
     type = "structure",
+    id = "InvalidRequest",
     error = "client",
 }
 
 M.InvalidWriteOffset = {
     type = "structure",
+    id = "InvalidWriteOffset",
     error = "client",
 }
 
 M.PutObjectInput = {
     type = "structure",
+    id = "PutObjectInput",
     members = {
         ACL = {
             type = "string",
@@ -8448,6 +8942,7 @@ M.PutObjectInput = {
 
 M.PutObjectOutput = {
     type = "structure",
+    id = "PutObjectOutput",
     members = {
         Expiration = {
             type = "string",
@@ -8586,11 +9081,13 @@ M.PutObjectOutput = {
 
 M.TooManyParts = {
     type = "structure",
+    id = "TooManyParts",
     error = "client",
 }
 
 M.PutObjectAclInput = {
     type = "structure",
+    id = "PutObjectAclInput",
     members = {
         ACL = {
             type = "string",
@@ -8681,6 +9178,7 @@ M.PutObjectAclInput = {
 
 M.PutObjectAclOutput = {
     type = "structure",
+    id = "PutObjectAclOutput",
     members = {
         RequestCharged = {
             type = "string",
@@ -8693,6 +9191,7 @@ M.PutObjectAclOutput = {
 
 M.PutObjectLegalHoldInput = {
     type = "structure",
+    id = "PutObjectLegalHoldInput",
     members = {
         Bucket = {
             type = "string",
@@ -8747,6 +9246,7 @@ M.PutObjectLegalHoldInput = {
 
 M.PutObjectLegalHoldOutput = {
     type = "structure",
+    id = "PutObjectLegalHoldOutput",
     members = {
         RequestCharged = {
             type = "string",
@@ -8759,6 +9259,7 @@ M.PutObjectLegalHoldOutput = {
 
 M.PutObjectLockConfigurationInput = {
     type = "structure",
+    id = "PutObjectLockConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -8806,6 +9307,7 @@ M.PutObjectLockConfigurationInput = {
 
 M.PutObjectLockConfigurationOutput = {
     type = "structure",
+    id = "PutObjectLockConfigurationOutput",
     members = {
         RequestCharged = {
             type = "string",
@@ -8818,6 +9320,7 @@ M.PutObjectLockConfigurationOutput = {
 
 M.PutObjectRetentionInput = {
     type = "structure",
+    id = "PutObjectRetentionInput",
     members = {
         Bucket = {
             type = "string",
@@ -8878,6 +9381,7 @@ M.PutObjectRetentionInput = {
 
 M.PutObjectRetentionOutput = {
     type = "structure",
+    id = "PutObjectRetentionOutput",
     members = {
         RequestCharged = {
             type = "string",
@@ -8890,6 +9394,7 @@ M.PutObjectRetentionOutput = {
 
 M.PutObjectTaggingInput = {
     type = "structure",
+    id = "PutObjectTaggingInput",
     members = {
         Bucket = {
             type = "string",
@@ -8945,6 +9450,7 @@ M.PutObjectTaggingInput = {
 
 M.PutObjectTaggingOutput = {
     type = "structure",
+    id = "PutObjectTaggingOutput",
     members = {
         VersionId = {
             type = "string",
@@ -8957,6 +9463,7 @@ M.PutObjectTaggingOutput = {
 
 M.PutPublicAccessBlockInput = {
     type = "structure",
+    id = "PutPublicAccessBlockInput",
     members = {
         Bucket = {
             type = "string",
@@ -8993,15 +9500,18 @@ M.PutPublicAccessBlockInput = {
 
 M.PutPublicAccessBlockOutput = {
     type = "structure",
+    id = "PutPublicAccessBlockOutput",
 }
 
 M.IdempotencyParameterMismatch = {
     type = "structure",
+    id = "IdempotencyParameterMismatch",
     error = "client",
 }
 
 M.RenameObjectInput = {
     type = "structure",
+    id = "RenameObjectInput",
     members = {
         Bucket = {
             type = "string",
@@ -9086,10 +9596,12 @@ M.RenameObjectInput = {
 
 M.RenameObjectOutput = {
     type = "structure",
+    id = "RenameObjectOutput",
 }
 
 M.ObjectAlreadyInActiveTierError = {
     type = "structure",
+    id = "ObjectAlreadyInActiveTierError",
     error = "client",
 }
 
@@ -9101,6 +9613,7 @@ M.Tier = {
 
 M.GlacierJobParameters = {
     type = "structure",
+    id = "GlacierJobParameters",
     members = {
         Tier = {
             type = "string",
@@ -9113,6 +9626,7 @@ M.GlacierJobParameters = {
 
 M.Encryption = {
     type = "structure",
+    id = "Encryption",
     members = {
         EncryptionType = {
             type = "string",
@@ -9131,6 +9645,7 @@ M.Encryption = {
 
 M.MetadataEntry = {
     type = "structure",
+    id = "MetadataEntry",
     members = {
         Name = {
             type = "string",
@@ -9143,6 +9658,7 @@ M.MetadataEntry = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         BucketName = {
             type = "string",
@@ -9177,6 +9693,7 @@ M.S3Location = {
 
 M.OutputLocation = {
     type = "structure",
+    id = "OutputLocation",
     members = {
         S3 = M.S3Location,
     },
@@ -9200,6 +9717,7 @@ M.FileHeaderInfo = {
 
 M.CSVInput = {
     type = "structure",
+    id = "CSVInput",
     members = {
         FileHeaderInfo = {
             type = "string",
@@ -9232,6 +9750,7 @@ M.JSONType = {
 
 M.JSONInput = {
     type = "structure",
+    id = "JSONInput",
     members = {
         Type = {
             type = "string",
@@ -9241,10 +9760,12 @@ M.JSONInput = {
 
 M.ParquetInput = {
     type = "structure",
+    id = "ParquetInput",
 }
 
 M.InputSerialization = {
     type = "structure",
+    id = "InputSerialization",
     members = {
         CSV = M.CSVInput,
         CompressionType = {
@@ -9262,6 +9783,7 @@ M.QuoteFields = {
 
 M.CSVOutput = {
     type = "structure",
+    id = "CSVOutput",
     members = {
         QuoteFields = {
             type = "string",
@@ -9283,6 +9805,7 @@ M.CSVOutput = {
 
 M.JSONOutput = {
     type = "structure",
+    id = "JSONOutput",
     members = {
         RecordDelimiter = {
             type = "string",
@@ -9292,6 +9815,7 @@ M.JSONOutput = {
 
 M.OutputSerialization = {
     type = "structure",
+    id = "OutputSerialization",
     members = {
         CSV = M.CSVOutput,
         JSON = M.JSONOutput,
@@ -9300,6 +9824,7 @@ M.OutputSerialization = {
 
 M.SelectParameters = {
     type = "structure",
+    id = "SelectParameters",
     members = {
         InputSerialization = setmetatable({ traits = {
             required = true,
@@ -9328,6 +9853,7 @@ M.RestoreRequestType = {
 
 M.RestoreRequest = {
     type = "structure",
+    id = "RestoreRequest",
     members = {
         Days = {
             type = "integer",
@@ -9349,6 +9875,7 @@ M.RestoreRequest = {
 
 M.RestoreObjectInput = {
     type = "structure",
+    id = "RestoreObjectInput",
     members = {
         Bucket = {
             type = "string",
@@ -9397,6 +9924,7 @@ M.RestoreObjectInput = {
 
 M.RestoreObjectOutput = {
     type = "structure",
+    id = "RestoreObjectOutput",
     members = {
         RequestCharged = {
             type = "string",
@@ -9415,6 +9943,7 @@ M.RestoreObjectOutput = {
 
 M.RequestProgress = {
     type = "structure",
+    id = "RequestProgress",
     members = {
         Enabled = {
             type = "boolean",
@@ -9424,6 +9953,7 @@ M.RequestProgress = {
 
 M.ScanRange = {
     type = "structure",
+    id = "ScanRange",
     members = {
         Start = {
             type = "long",
@@ -9436,6 +9966,7 @@ M.ScanRange = {
 
 M.SelectObjectContentInput = {
     type = "structure",
+    id = "SelectObjectContentInput",
     members = {
         Bucket = {
             type = "string",
@@ -9500,14 +10031,17 @@ M.SelectObjectContentInput = {
 
 M.ContinuationEvent = {
     type = "structure",
+    id = "ContinuationEvent",
 }
 
 M.EndEvent = {
     type = "structure",
+    id = "EndEvent",
 }
 
 M.Progress = {
     type = "structure",
+    id = "Progress",
     members = {
         BytesScanned = {
             type = "long",
@@ -9523,6 +10057,7 @@ M.Progress = {
 
 M.ProgressEvent = {
     type = "structure",
+    id = "ProgressEvent",
     members = {
         Details = M.Progress,
     },
@@ -9530,6 +10065,7 @@ M.ProgressEvent = {
 
 M.RecordsEvent = {
     type = "structure",
+    id = "RecordsEvent",
     members = {
         Payload = {
             type = "blob",
@@ -9539,6 +10075,7 @@ M.RecordsEvent = {
 
 M.Stats = {
     type = "structure",
+    id = "Stats",
     members = {
         BytesScanned = {
             type = "long",
@@ -9554,6 +10091,7 @@ M.Stats = {
 
 M.StatsEvent = {
     type = "structure",
+    id = "StatsEvent",
     members = {
         Details = M.Stats,
     },
@@ -9561,6 +10099,7 @@ M.StatsEvent = {
 
 M.SelectObjectContentEventStream = {
     type = "union",
+    id = "SelectObjectContentEventStream",
     members = {
         Records = M.RecordsEvent,
         Stats = M.StatsEvent,
@@ -9572,6 +10111,7 @@ M.SelectObjectContentEventStream = {
 
 M.SelectObjectContentOutput = {
     type = "structure",
+    id = "SelectObjectContentOutput",
     members = {
         Payload = setmetatable({ traits = {
             http_payload = true,
@@ -9581,6 +10121,7 @@ M.SelectObjectContentOutput = {
 
 M.InventoryTableConfigurationUpdates = {
     type = "structure",
+    id = "InventoryTableConfigurationUpdates",
     members = {
         ConfigurationState = {
             type = "string",
@@ -9594,6 +10135,7 @@ M.InventoryTableConfigurationUpdates = {
 
 M.UpdateBucketMetadataInventoryTableConfigurationInput = {
     type = "structure",
+    id = "UpdateBucketMetadataInventoryTableConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -9630,10 +10172,12 @@ M.UpdateBucketMetadataInventoryTableConfigurationInput = {
 
 M.UpdateBucketMetadataInventoryTableConfigurationOutput = {
     type = "structure",
+    id = "UpdateBucketMetadataInventoryTableConfigurationOutput",
 }
 
 M.JournalTableConfigurationUpdates = {
     type = "structure",
+    id = "JournalTableConfigurationUpdates",
     members = {
         RecordExpiration = setmetatable({ traits = {
             required = true,
@@ -9643,6 +10187,7 @@ M.JournalTableConfigurationUpdates = {
 
 M.UpdateBucketMetadataJournalTableConfigurationInput = {
     type = "structure",
+    id = "UpdateBucketMetadataJournalTableConfigurationInput",
     members = {
         Bucket = {
             type = "string",
@@ -9679,10 +10224,15 @@ M.UpdateBucketMetadataJournalTableConfigurationInput = {
 
 M.UpdateBucketMetadataJournalTableConfigurationOutput = {
     type = "structure",
+    id = "UpdateBucketMetadataJournalTableConfigurationOutput",
 }
 
 M.SSEKMSEncryption = {
     type = "structure",
+    id = "SSEKMSEncryption",
+    traits = {
+        xml_name = "SSE-KMS",
+    },
     members = {
         KMSKeyArn = {
             type = "string",
@@ -9698,6 +10248,7 @@ M.SSEKMSEncryption = {
 
 M.ObjectEncryption = {
     type = "union",
+    id = "ObjectEncryption",
     members = {
         SSEKMS = setmetatable({ traits = {
             xml_name = "SSE-KMS",
@@ -9707,6 +10258,7 @@ M.ObjectEncryption = {
 
 M.UpdateObjectEncryptionInput = {
     type = "structure",
+    id = "UpdateObjectEncryptionInput",
     members = {
         Bucket = {
             type = "string",
@@ -9761,6 +10313,7 @@ M.UpdateObjectEncryptionInput = {
 
 M.UpdateObjectEncryptionOutput = {
     type = "structure",
+    id = "UpdateObjectEncryptionOutput",
     members = {
         RequestCharged = {
             type = "string",
@@ -9773,6 +10326,7 @@ M.UpdateObjectEncryptionOutput = {
 
 M.UploadPartInput = {
     type = "structure",
+    id = "UploadPartInput",
     members = {
         Body = {
             type = "blob",
@@ -9922,6 +10476,7 @@ M.UploadPartInput = {
 
 M.UploadPartOutput = {
     type = "structure",
+    id = "UploadPartOutput",
     members = {
         ServerSideEncryption = {
             type = "string",
@@ -10030,6 +10585,7 @@ M.UploadPartOutput = {
 
 M.UploadPartCopyInput = {
     type = "structure",
+    id = "UploadPartCopyInput",
     members = {
         Bucket = {
             type = "string",
@@ -10155,6 +10711,7 @@ M.UploadPartCopyInput = {
 
 M.CopyPartResult = {
     type = "structure",
+    id = "CopyPartResult",
     members = {
         ETag = {
             type = "string",
@@ -10197,6 +10754,7 @@ M.CopyPartResult = {
 
 M.UploadPartCopyOutput = {
     type = "structure",
+    id = "UploadPartCopyOutput",
     members = {
         CopySourceVersionId = {
             type = "string",
@@ -10248,6 +10806,7 @@ M.UploadPartCopyOutput = {
 
 M.WriteGetObjectResponseInput = {
     type = "structure",
+    id = "WriteGetObjectResponseInput",
     members = {
         RequestRoute = {
             type = "string",
@@ -10536,6 +11095,7 @@ M.WriteGetObjectResponseInput = {
 
 M.WriteGetObjectResponseOutput = {
     type = "structure",
+    id = "WriteGetObjectResponseOutput",
 }
 
 return M

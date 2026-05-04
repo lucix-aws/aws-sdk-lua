@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptEnvironmentAccountConnectionInput = {
     type = "structure",
+    id = "AcceptEnvironmentAccountConnectionInput",
     members = {
         id = {
             type = "string",
@@ -20,6 +21,7 @@ M.EnvironmentAccountConnectionStatus = {
 
 M.EnvironmentAccountConnection = {
     type = "structure",
+    id = "EnvironmentAccountConnection",
     members = {
         id = {
             type = "string",
@@ -86,6 +88,7 @@ M.EnvironmentAccountConnection = {
 
 M.AcceptEnvironmentAccountConnectionOutput = {
     type = "structure",
+    id = "AcceptEnvironmentAccountConnectionOutput",
     members = {
         environmentAccountConnection = setmetatable({ traits = {
             required = true,
@@ -95,6 +98,7 @@ M.AcceptEnvironmentAccountConnectionOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -108,6 +112,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -121,6 +126,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -134,6 +140,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -147,6 +154,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -160,6 +168,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -179,6 +188,7 @@ M.RepositoryProvider = {
 
 M.RepositoryBranch = {
     type = "structure",
+    id = "RepositoryBranch",
     members = {
         arn = {
             type = "string",
@@ -209,6 +219,7 @@ M.RepositoryBranch = {
 
 M.AccountSettings = {
     type = "structure",
+    id = "AccountSettings",
     members = {
         pipelineServiceRoleArn = {
             type = "string",
@@ -222,10 +233,12 @@ M.AccountSettings = {
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
 }
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         accountSettings = M.AccountSettings,
     },
@@ -233,6 +246,7 @@ M.GetAccountSettingsOutput = {
 
 M.RepositoryBranchInput = {
     type = "structure",
+    id = "RepositoryBranchInput",
     members = {
         provider = {
             type = "string",
@@ -257,6 +271,7 @@ M.RepositoryBranchInput = {
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         pipelineServiceRoleArn = {
             type = "string",
@@ -273,6 +288,7 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
     members = {
         accountSettings = setmetatable({ traits = {
             required = true,
@@ -282,6 +298,7 @@ M.UpdateAccountSettingsOutput = {
 
 M.CancelComponentDeploymentInput = {
     type = "structure",
+    id = "CancelComponentDeploymentInput",
     members = {
         componentName = {
             type = "string",
@@ -305,6 +322,7 @@ M.DeploymentStatus = {
 
 M.Component = {
     type = "structure",
+    id = "Component",
     members = {
         name = {
             type = "string",
@@ -380,6 +398,7 @@ M.Component = {
 
 M.CancelComponentDeploymentOutput = {
     type = "structure",
+    id = "CancelComponentDeploymentOutput",
     members = {
         component = setmetatable({ traits = {
             required = true,
@@ -389,6 +408,7 @@ M.CancelComponentDeploymentOutput = {
 
 M.CancelEnvironmentDeploymentInput = {
     type = "structure",
+    id = "CancelEnvironmentDeploymentInput",
     members = {
         environmentName = {
             type = "string",
@@ -405,6 +425,7 @@ M.Provisioning = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         name = {
             type = "string",
@@ -502,6 +523,7 @@ M.Environment = {
 
 M.CancelEnvironmentDeploymentOutput = {
     type = "structure",
+    id = "CancelEnvironmentDeploymentOutput",
     members = {
         environment = setmetatable({ traits = {
             required = true,
@@ -511,6 +533,7 @@ M.CancelEnvironmentDeploymentOutput = {
 
 M.CancelServiceInstanceDeploymentInput = {
     type = "structure",
+    id = "CancelServiceInstanceDeploymentInput",
     members = {
         serviceInstanceName = {
             type = "string",
@@ -529,6 +552,7 @@ M.CancelServiceInstanceDeploymentInput = {
 
 M.ServiceInstance = {
     type = "structure",
+    id = "ServiceInstance",
     members = {
         name = {
             type = "string",
@@ -619,6 +643,7 @@ M.ServiceInstance = {
 
 M.CancelServiceInstanceDeploymentOutput = {
     type = "structure",
+    id = "CancelServiceInstanceDeploymentOutput",
     members = {
         serviceInstance = setmetatable({ traits = {
             required = true,
@@ -628,6 +653,7 @@ M.CancelServiceInstanceDeploymentOutput = {
 
 M.CancelServicePipelineDeploymentInput = {
     type = "structure",
+    id = "CancelServicePipelineDeploymentInput",
     members = {
         serviceName = {
             type = "string",
@@ -640,6 +666,7 @@ M.CancelServicePipelineDeploymentInput = {
 
 M.ServicePipeline = {
     type = "structure",
+    id = "ServicePipeline",
     members = {
         arn = {
             type = "string",
@@ -709,6 +736,7 @@ M.ServicePipeline = {
 
 M.CancelServicePipelineDeploymentOutput = {
     type = "structure",
+    id = "CancelServicePipelineDeploymentOutput",
     members = {
         pipeline = setmetatable({ traits = {
             required = true,
@@ -718,6 +746,7 @@ M.CancelServicePipelineDeploymentOutput = {
 
 M.ListComponentOutputsInput = {
     type = "structure",
+    id = "ListComponentOutputsInput",
     members = {
         componentName = {
             type = "string",
@@ -736,6 +765,7 @@ M.ListComponentOutputsInput = {
 
 M.Output = {
     type = "structure",
+    id = "Output",
     members = {
         key = {
             type = "string",
@@ -748,6 +778,7 @@ M.Output = {
 
 M.ListComponentOutputsOutput = {
     type = "structure",
+    id = "ListComponentOutputsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -764,6 +795,7 @@ M.ListComponentOutputsOutput = {
 
 M.ListComponentProvisionedResourcesInput = {
     type = "structure",
+    id = "ListComponentProvisionedResourcesInput",
     members = {
         componentName = {
             type = "string",
@@ -784,6 +816,7 @@ M.ProvisionedResourceEngine = {
 
 M.ProvisionedResource = {
     type = "structure",
+    id = "ProvisionedResource",
     members = {
         name = {
             type = "string",
@@ -799,6 +832,7 @@ M.ProvisionedResource = {
 
 M.ListComponentProvisionedResourcesOutput = {
     type = "structure",
+    id = "ListComponentProvisionedResourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -815,6 +849,7 @@ M.ListComponentProvisionedResourcesOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -833,6 +868,7 @@ M.Tag = {
 
 M.CreateComponentInput = {
     type = "structure",
+    id = "CreateComponentInput",
     members = {
         name = {
             type = "string",
@@ -887,6 +923,7 @@ M.CreateComponentInput = {
 
 M.CreateComponentOutput = {
     type = "structure",
+    id = "CreateComponentOutput",
     members = {
         component = setmetatable({ traits = {
             required = true,
@@ -896,6 +933,7 @@ M.CreateComponentOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -909,6 +947,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteComponentInput = {
     type = "structure",
+    id = "DeleteComponentInput",
     members = {
         name = {
             type = "string",
@@ -921,6 +960,7 @@ M.DeleteComponentInput = {
 
 M.DeleteComponentOutput = {
     type = "structure",
+    id = "DeleteComponentOutput",
     members = {
         component = M.Component,
     },
@@ -928,6 +968,7 @@ M.DeleteComponentOutput = {
 
 M.GetComponentInput = {
     type = "structure",
+    id = "GetComponentInput",
     members = {
         name = {
             type = "string",
@@ -940,6 +981,7 @@ M.GetComponentInput = {
 
 M.GetComponentOutput = {
     type = "structure",
+    id = "GetComponentOutput",
     members = {
         component = M.Component,
     },
@@ -947,6 +989,7 @@ M.GetComponentOutput = {
 
 M.ListComponentsInput = {
     type = "structure",
+    id = "ListComponentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -968,6 +1011,7 @@ M.ListComponentsInput = {
 
 M.ComponentSummary = {
     type = "structure",
+    id = "ComponentSummary",
     members = {
         name = {
             type = "string",
@@ -1031,6 +1075,7 @@ M.ComponentSummary = {
 
 M.ListComponentsOutput = {
     type = "structure",
+    id = "ListComponentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1052,6 +1097,7 @@ M.ComponentDeploymentUpdateType = {
 
 M.UpdateComponentInput = {
     type = "structure",
+    id = "UpdateComponentInput",
     members = {
         name = {
             type = "string",
@@ -1097,6 +1143,7 @@ M.UpdateComponentInput = {
 
 M.UpdateComponentOutput = {
     type = "structure",
+    id = "UpdateComponentOutput",
     members = {
         component = setmetatable({ traits = {
             required = true,
@@ -1106,6 +1153,7 @@ M.UpdateComponentOutput = {
 
 M.DeleteDeploymentInput = {
     type = "structure",
+    id = "DeleteDeploymentInput",
     members = {
         id = {
             type = "string",
@@ -1118,6 +1166,7 @@ M.DeleteDeploymentInput = {
 
 M.ComponentState = {
     type = "structure",
+    id = "ComponentState",
     members = {
         serviceName = {
             type = "string",
@@ -1142,6 +1191,7 @@ M.ComponentState = {
 
 M.EnvironmentState = {
     type = "structure",
+    id = "EnvironmentState",
     members = {
         spec = {
             type = "string",
@@ -1172,6 +1222,7 @@ M.EnvironmentState = {
 
 M.ServiceInstanceState = {
     type = "structure",
+    id = "ServiceInstanceState",
     members = {
         spec = {
             type = "string",
@@ -1213,6 +1264,7 @@ M.ServiceInstanceState = {
 
 M.ServicePipelineState = {
     type = "structure",
+    id = "ServicePipelineState",
     members = {
         spec = {
             type = "string",
@@ -1243,6 +1295,7 @@ M.ServicePipelineState = {
 
 M.DeploymentState = {
     type = "union",
+    id = "DeploymentState",
     members = {
         serviceInstance = M.ServiceInstanceState,
         environment = M.EnvironmentState,
@@ -1260,6 +1313,7 @@ M.DeploymentTargetResourceType = {
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         id = {
             type = "string",
@@ -1343,6 +1397,7 @@ M.Deployment = {
 
 M.DeleteDeploymentOutput = {
     type = "structure",
+    id = "DeleteDeploymentOutput",
     members = {
         deployment = M.Deployment,
     },
@@ -1350,6 +1405,7 @@ M.DeleteDeploymentOutput = {
 
 M.GetDeploymentInput = {
     type = "structure",
+    id = "GetDeploymentInput",
     members = {
         id = {
             type = "string",
@@ -1374,6 +1430,7 @@ M.GetDeploymentInput = {
 
 M.GetDeploymentOutput = {
     type = "structure",
+    id = "GetDeploymentOutput",
     members = {
         deployment = M.Deployment,
     },
@@ -1381,6 +1438,7 @@ M.GetDeploymentOutput = {
 
 M.ListDeploymentsInput = {
     type = "structure",
+    id = "ListDeploymentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1405,6 +1463,7 @@ M.ListDeploymentsInput = {
 
 M.DeploymentSummary = {
     type = "structure",
+    id = "DeploymentSummary",
     members = {
         id = {
             type = "string",
@@ -1483,6 +1542,7 @@ M.DeploymentSummary = {
 
 M.ListDeploymentsOutput = {
     type = "structure",
+    id = "ListDeploymentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1499,6 +1559,7 @@ M.ListDeploymentsOutput = {
 
 M.CreateEnvironmentAccountConnectionInput = {
     type = "structure",
+    id = "CreateEnvironmentAccountConnectionInput",
     members = {
         clientToken = {
             type = "string",
@@ -1536,6 +1597,7 @@ M.CreateEnvironmentAccountConnectionInput = {
 
 M.CreateEnvironmentAccountConnectionOutput = {
     type = "structure",
+    id = "CreateEnvironmentAccountConnectionOutput",
     members = {
         environmentAccountConnection = setmetatable({ traits = {
             required = true,
@@ -1545,6 +1607,7 @@ M.CreateEnvironmentAccountConnectionOutput = {
 
 M.DeleteEnvironmentAccountConnectionInput = {
     type = "structure",
+    id = "DeleteEnvironmentAccountConnectionInput",
     members = {
         id = {
             type = "string",
@@ -1557,6 +1620,7 @@ M.DeleteEnvironmentAccountConnectionInput = {
 
 M.DeleteEnvironmentAccountConnectionOutput = {
     type = "structure",
+    id = "DeleteEnvironmentAccountConnectionOutput",
     members = {
         environmentAccountConnection = M.EnvironmentAccountConnection,
     },
@@ -1564,6 +1628,7 @@ M.DeleteEnvironmentAccountConnectionOutput = {
 
 M.GetEnvironmentAccountConnectionInput = {
     type = "structure",
+    id = "GetEnvironmentAccountConnectionInput",
     members = {
         id = {
             type = "string",
@@ -1576,6 +1641,7 @@ M.GetEnvironmentAccountConnectionInput = {
 
 M.GetEnvironmentAccountConnectionOutput = {
     type = "structure",
+    id = "GetEnvironmentAccountConnectionOutput",
     members = {
         environmentAccountConnection = setmetatable({ traits = {
             required = true,
@@ -1590,6 +1656,7 @@ M.EnvironmentAccountConnectionRequesterAccountType = {
 
 M.ListEnvironmentAccountConnectionsInput = {
     type = "structure",
+    id = "ListEnvironmentAccountConnectionsInput",
     members = {
         requestedBy = {
             type = "string",
@@ -1615,6 +1682,7 @@ M.ListEnvironmentAccountConnectionsInput = {
 
 M.EnvironmentAccountConnectionSummary = {
     type = "structure",
+    id = "EnvironmentAccountConnectionSummary",
     members = {
         id = {
             type = "string",
@@ -1678,6 +1746,7 @@ M.EnvironmentAccountConnectionSummary = {
 
 M.ListEnvironmentAccountConnectionsOutput = {
     type = "structure",
+    id = "ListEnvironmentAccountConnectionsOutput",
     members = {
         environmentAccountConnections = {
             type = "list",
@@ -1694,6 +1763,7 @@ M.ListEnvironmentAccountConnectionsOutput = {
 
 M.RejectEnvironmentAccountConnectionInput = {
     type = "structure",
+    id = "RejectEnvironmentAccountConnectionInput",
     members = {
         id = {
             type = "string",
@@ -1706,6 +1776,7 @@ M.RejectEnvironmentAccountConnectionInput = {
 
 M.RejectEnvironmentAccountConnectionOutput = {
     type = "structure",
+    id = "RejectEnvironmentAccountConnectionOutput",
     members = {
         environmentAccountConnection = setmetatable({ traits = {
             required = true,
@@ -1715,6 +1786,7 @@ M.RejectEnvironmentAccountConnectionOutput = {
 
 M.UpdateEnvironmentAccountConnectionInput = {
     type = "structure",
+    id = "UpdateEnvironmentAccountConnectionInput",
     members = {
         id = {
             type = "string",
@@ -1736,6 +1808,7 @@ M.UpdateEnvironmentAccountConnectionInput = {
 
 M.UpdateEnvironmentAccountConnectionOutput = {
     type = "structure",
+    id = "UpdateEnvironmentAccountConnectionOutput",
     members = {
         environmentAccountConnection = setmetatable({ traits = {
             required = true,
@@ -1745,6 +1818,7 @@ M.UpdateEnvironmentAccountConnectionOutput = {
 
 M.ListEnvironmentOutputsInput = {
     type = "structure",
+    id = "ListEnvironmentOutputsInput",
     members = {
         environmentName = {
             type = "string",
@@ -1763,6 +1837,7 @@ M.ListEnvironmentOutputsInput = {
 
 M.ListEnvironmentOutputsOutput = {
     type = "structure",
+    id = "ListEnvironmentOutputsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1779,6 +1854,7 @@ M.ListEnvironmentOutputsOutput = {
 
 M.ListEnvironmentProvisionedResourcesInput = {
     type = "structure",
+    id = "ListEnvironmentProvisionedResourcesInput",
     members = {
         environmentName = {
             type = "string",
@@ -1794,6 +1870,7 @@ M.ListEnvironmentProvisionedResourcesInput = {
 
 M.ListEnvironmentProvisionedResourcesOutput = {
     type = "structure",
+    id = "ListEnvironmentProvisionedResourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1810,6 +1887,7 @@ M.ListEnvironmentProvisionedResourcesOutput = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -1864,6 +1942,7 @@ M.CreateEnvironmentInput = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         environment = setmetatable({ traits = {
             required = true,
@@ -1873,6 +1952,7 @@ M.CreateEnvironmentOutput = {
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -1885,6 +1965,7 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
     members = {
         environment = M.Environment,
     },
@@ -1892,6 +1973,7 @@ M.DeleteEnvironmentOutput = {
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -1904,6 +1986,7 @@ M.GetEnvironmentInput = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         environment = setmetatable({ traits = {
             required = true,
@@ -1913,6 +1996,7 @@ M.GetEnvironmentOutput = {
 
 M.EnvironmentTemplateFilter = {
     type = "structure",
+    id = "EnvironmentTemplateFilter",
     members = {
         templateName = {
             type = "string",
@@ -1931,6 +2015,7 @@ M.EnvironmentTemplateFilter = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1947,6 +2032,7 @@ M.ListEnvironmentsInput = {
 
 M.EnvironmentSummary = {
     type = "structure",
+    id = "EnvironmentSummary",
     members = {
         name = {
             type = "string",
@@ -2034,6 +2120,7 @@ M.EnvironmentSummary = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2057,6 +2144,7 @@ M.DeploymentUpdateType = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -2103,6 +2191,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         environment = setmetatable({ traits = {
             required = true,
@@ -2112,6 +2201,7 @@ M.UpdateEnvironmentOutput = {
 
 M.CreateEnvironmentTemplateInput = {
     type = "structure",
+    id = "CreateEnvironmentTemplateInput",
     members = {
         name = {
             type = "string",
@@ -2140,6 +2230,7 @@ M.CreateEnvironmentTemplateInput = {
 
 M.EnvironmentTemplate = {
     type = "structure",
+    id = "EnvironmentTemplate",
     members = {
         name = {
             type = "string",
@@ -2185,6 +2276,7 @@ M.EnvironmentTemplate = {
 
 M.CreateEnvironmentTemplateOutput = {
     type = "structure",
+    id = "CreateEnvironmentTemplateOutput",
     members = {
         environmentTemplate = setmetatable({ traits = {
             required = true,
@@ -2194,6 +2286,7 @@ M.CreateEnvironmentTemplateOutput = {
 
 M.DeleteEnvironmentTemplateInput = {
     type = "structure",
+    id = "DeleteEnvironmentTemplateInput",
     members = {
         name = {
             type = "string",
@@ -2206,6 +2299,7 @@ M.DeleteEnvironmentTemplateInput = {
 
 M.DeleteEnvironmentTemplateOutput = {
     type = "structure",
+    id = "DeleteEnvironmentTemplateOutput",
     members = {
         environmentTemplate = M.EnvironmentTemplate,
     },
@@ -2213,6 +2307,7 @@ M.DeleteEnvironmentTemplateOutput = {
 
 M.GetEnvironmentTemplateInput = {
     type = "structure",
+    id = "GetEnvironmentTemplateInput",
     members = {
         name = {
             type = "string",
@@ -2225,6 +2320,7 @@ M.GetEnvironmentTemplateInput = {
 
 M.GetEnvironmentTemplateOutput = {
     type = "structure",
+    id = "GetEnvironmentTemplateOutput",
     members = {
         environmentTemplate = setmetatable({ traits = {
             required = true,
@@ -2234,6 +2330,7 @@ M.GetEnvironmentTemplateOutput = {
 
 M.ListEnvironmentTemplatesInput = {
     type = "structure",
+    id = "ListEnvironmentTemplatesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2246,6 +2343,7 @@ M.ListEnvironmentTemplatesInput = {
 
 M.EnvironmentTemplateSummary = {
     type = "structure",
+    id = "EnvironmentTemplateSummary",
     members = {
         name = {
             type = "string",
@@ -2288,6 +2386,7 @@ M.EnvironmentTemplateSummary = {
 
 M.ListEnvironmentTemplatesOutput = {
     type = "structure",
+    id = "ListEnvironmentTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2304,6 +2403,7 @@ M.ListEnvironmentTemplatesOutput = {
 
 M.UpdateEnvironmentTemplateInput = {
     type = "structure",
+    id = "UpdateEnvironmentTemplateInput",
     members = {
         name = {
             type = "string",
@@ -2322,6 +2422,7 @@ M.UpdateEnvironmentTemplateInput = {
 
 M.UpdateEnvironmentTemplateOutput = {
     type = "structure",
+    id = "UpdateEnvironmentTemplateOutput",
     members = {
         environmentTemplate = setmetatable({ traits = {
             required = true,
@@ -2331,6 +2432,7 @@ M.UpdateEnvironmentTemplateOutput = {
 
 M.S3ObjectSource = {
     type = "structure",
+    id = "S3ObjectSource",
     members = {
         bucket = {
             type = "string",
@@ -2349,6 +2451,7 @@ M.S3ObjectSource = {
 
 M.TemplateVersionSourceInput = {
     type = "union",
+    id = "TemplateVersionSourceInput",
     members = {
         s3 = M.S3ObjectSource,
     },
@@ -2356,6 +2459,7 @@ M.TemplateVersionSourceInput = {
 
 M.CreateEnvironmentTemplateVersionInput = {
     type = "structure",
+    id = "CreateEnvironmentTemplateVersionInput",
     members = {
         clientToken = {
             type = "string",
@@ -2394,6 +2498,7 @@ M.TemplateVersionStatus = {
 
 M.EnvironmentTemplateVersion = {
     type = "structure",
+    id = "EnvironmentTemplateVersion",
     members = {
         templateName = {
             type = "string",
@@ -2457,6 +2562,7 @@ M.EnvironmentTemplateVersion = {
 
 M.CreateEnvironmentTemplateVersionOutput = {
     type = "structure",
+    id = "CreateEnvironmentTemplateVersionOutput",
     members = {
         environmentTemplateVersion = setmetatable({ traits = {
             required = true,
@@ -2466,6 +2572,7 @@ M.CreateEnvironmentTemplateVersionOutput = {
 
 M.DeleteEnvironmentTemplateVersionInput = {
     type = "structure",
+    id = "DeleteEnvironmentTemplateVersionInput",
     members = {
         templateName = {
             type = "string",
@@ -2490,6 +2597,7 @@ M.DeleteEnvironmentTemplateVersionInput = {
 
 M.DeleteEnvironmentTemplateVersionOutput = {
     type = "structure",
+    id = "DeleteEnvironmentTemplateVersionOutput",
     members = {
         environmentTemplateVersion = M.EnvironmentTemplateVersion,
     },
@@ -2497,6 +2605,7 @@ M.DeleteEnvironmentTemplateVersionOutput = {
 
 M.GetEnvironmentTemplateVersionInput = {
     type = "structure",
+    id = "GetEnvironmentTemplateVersionInput",
     members = {
         templateName = {
             type = "string",
@@ -2521,6 +2630,7 @@ M.GetEnvironmentTemplateVersionInput = {
 
 M.GetEnvironmentTemplateVersionOutput = {
     type = "structure",
+    id = "GetEnvironmentTemplateVersionOutput",
     members = {
         environmentTemplateVersion = setmetatable({ traits = {
             required = true,
@@ -2530,6 +2640,7 @@ M.GetEnvironmentTemplateVersionOutput = {
 
 M.ListEnvironmentTemplateVersionsInput = {
     type = "structure",
+    id = "ListEnvironmentTemplateVersionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2551,6 +2662,7 @@ M.ListEnvironmentTemplateVersionsInput = {
 
 M.EnvironmentTemplateVersionSummary = {
     type = "structure",
+    id = "EnvironmentTemplateVersionSummary",
     members = {
         templateName = {
             type = "string",
@@ -2608,6 +2720,7 @@ M.EnvironmentTemplateVersionSummary = {
 
 M.ListEnvironmentTemplateVersionsOutput = {
     type = "structure",
+    id = "ListEnvironmentTemplateVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2624,6 +2737,7 @@ M.ListEnvironmentTemplateVersionsOutput = {
 
 M.UpdateEnvironmentTemplateVersionInput = {
     type = "structure",
+    id = "UpdateEnvironmentTemplateVersionInput",
     members = {
         templateName = {
             type = "string",
@@ -2654,6 +2768,7 @@ M.UpdateEnvironmentTemplateVersionInput = {
 
 M.UpdateEnvironmentTemplateVersionOutput = {
     type = "structure",
+    id = "UpdateEnvironmentTemplateVersionOutput",
     members = {
         environmentTemplateVersion = setmetatable({ traits = {
             required = true,
@@ -2668,6 +2783,7 @@ M.SyncType = {
 
 M.GetRepositorySyncStatusInput = {
     type = "structure",
+    id = "GetRepositorySyncStatusInput",
     members = {
         repositoryName = {
             type = "string",
@@ -2698,6 +2814,7 @@ M.GetRepositorySyncStatusInput = {
 
 M.RepositorySyncEvent = {
     type = "structure",
+    id = "RepositorySyncEvent",
     members = {
         type = {
             type = "string",
@@ -2733,6 +2850,7 @@ M.RepositorySyncStatus = {
 
 M.RepositorySyncAttempt = {
     type = "structure",
+    id = "RepositorySyncAttempt",
     members = {
         startedAt = {
             type = "timestamp",
@@ -2758,6 +2876,7 @@ M.RepositorySyncAttempt = {
 
 M.GetRepositorySyncStatusOutput = {
     type = "structure",
+    id = "GetRepositorySyncStatusOutput",
     members = {
         latestSync = M.RepositorySyncAttempt,
     },
@@ -2765,10 +2884,12 @@ M.GetRepositorySyncStatusOutput = {
 
 M.GetResourcesSummaryInput = {
     type = "structure",
+    id = "GetResourcesSummaryInput",
 }
 
 M.ResourceCountsSummary = {
     type = "structure",
+    id = "ResourceCountsSummary",
     members = {
         total = {
             type = "integer",
@@ -2793,6 +2914,7 @@ M.ResourceCountsSummary = {
 
 M.CountsSummary = {
     type = "structure",
+    id = "CountsSummary",
     members = {
         components = M.ResourceCountsSummary,
         environments = M.ResourceCountsSummary,
@@ -2806,6 +2928,7 @@ M.CountsSummary = {
 
 M.GetResourcesSummaryOutput = {
     type = "structure",
+    id = "GetResourcesSummaryOutput",
     members = {
         counts = setmetatable({ traits = {
             required = true,
@@ -2815,6 +2938,7 @@ M.GetResourcesSummaryOutput = {
 
 M.GetServiceInstanceSyncStatusInput = {
     type = "structure",
+    id = "GetServiceInstanceSyncStatusInput",
     members = {
         serviceName = {
             type = "string",
@@ -2833,6 +2957,7 @@ M.GetServiceInstanceSyncStatusInput = {
 
 M.Revision = {
     type = "structure",
+    id = "Revision",
     members = {
         repositoryName = {
             type = "string",
@@ -2869,6 +2994,7 @@ M.Revision = {
 
 M.ResourceSyncEvent = {
     type = "structure",
+    id = "ResourceSyncEvent",
     members = {
         type = {
             type = "string",
@@ -2903,6 +3029,7 @@ M.ResourceSyncStatus = {
 
 M.ResourceSyncAttempt = {
     type = "structure",
+    id = "ResourceSyncAttempt",
     members = {
         initialRevision = setmetatable({ traits = {
             required = true,
@@ -2940,6 +3067,7 @@ M.ResourceSyncAttempt = {
 
 M.GetServiceInstanceSyncStatusOutput = {
     type = "structure",
+    id = "GetServiceInstanceSyncStatusOutput",
     members = {
         latestSync = M.ResourceSyncAttempt,
         latestSuccessfulSync = M.ResourceSyncAttempt,
@@ -2954,6 +3082,7 @@ M.TemplateType = {
 
 M.GetTemplateSyncStatusInput = {
     type = "structure",
+    id = "GetTemplateSyncStatusInput",
     members = {
         templateName = {
             type = "string",
@@ -2978,6 +3107,7 @@ M.GetTemplateSyncStatusInput = {
 
 M.GetTemplateSyncStatusOutput = {
     type = "structure",
+    id = "GetTemplateSyncStatusOutput",
     members = {
         latestSync = M.ResourceSyncAttempt,
         latestSuccessfulSync = M.ResourceSyncAttempt,
@@ -2987,6 +3117,7 @@ M.GetTemplateSyncStatusOutput = {
 
 M.ListRepositorySyncDefinitionsInput = {
     type = "structure",
+    id = "ListRepositorySyncDefinitionsInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3014,6 +3145,7 @@ M.ListRepositorySyncDefinitionsInput = {
 
 M.RepositorySyncDefinition = {
     type = "structure",
+    id = "RepositorySyncDefinition",
     members = {
         target = {
             type = "string",
@@ -3044,6 +3176,7 @@ M.RepositorySyncDefinition = {
 
 M.ListRepositorySyncDefinitionsOutput = {
     type = "structure",
+    id = "ListRepositorySyncDefinitionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3060,6 +3193,7 @@ M.ListRepositorySyncDefinitionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3085,6 +3219,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -3107,6 +3242,7 @@ M.ResourceDeploymentStatus = {
 
 M.NotifyResourceDeploymentStatusChangeInput = {
     type = "structure",
+    id = "NotifyResourceDeploymentStatusChangeInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3132,10 +3268,12 @@ M.NotifyResourceDeploymentStatusChangeInput = {
 
 M.NotifyResourceDeploymentStatusChangeOutput = {
     type = "structure",
+    id = "NotifyResourceDeploymentStatusChangeOutput",
 }
 
 M.CreateRepositoryInput = {
     type = "structure",
+    id = "CreateRepositoryInput",
     members = {
         provider = {
             type = "string",
@@ -3167,6 +3305,7 @@ M.CreateRepositoryInput = {
 
 M.Repository = {
     type = "structure",
+    id = "Repository",
     members = {
         arn = {
             type = "string",
@@ -3200,6 +3339,7 @@ M.Repository = {
 
 M.CreateRepositoryOutput = {
     type = "structure",
+    id = "CreateRepositoryOutput",
     members = {
         repository = setmetatable({ traits = {
             required = true,
@@ -3209,6 +3349,7 @@ M.CreateRepositoryOutput = {
 
 M.DeleteRepositoryInput = {
     type = "structure",
+    id = "DeleteRepositoryInput",
     members = {
         provider = {
             type = "string",
@@ -3227,6 +3368,7 @@ M.DeleteRepositoryInput = {
 
 M.DeleteRepositoryOutput = {
     type = "structure",
+    id = "DeleteRepositoryOutput",
     members = {
         repository = M.Repository,
     },
@@ -3234,6 +3376,7 @@ M.DeleteRepositoryOutput = {
 
 M.GetRepositoryInput = {
     type = "structure",
+    id = "GetRepositoryInput",
     members = {
         provider = {
             type = "string",
@@ -3252,6 +3395,7 @@ M.GetRepositoryInput = {
 
 M.GetRepositoryOutput = {
     type = "structure",
+    id = "GetRepositoryOutput",
     members = {
         repository = setmetatable({ traits = {
             required = true,
@@ -3261,6 +3405,7 @@ M.GetRepositoryOutput = {
 
 M.ListRepositoriesInput = {
     type = "structure",
+    id = "ListRepositoriesInput",
     members = {
         nextToken = {
             type = "string",
@@ -3273,6 +3418,7 @@ M.ListRepositoriesInput = {
 
 M.RepositorySummary = {
     type = "structure",
+    id = "RepositorySummary",
     members = {
         arn = {
             type = "string",
@@ -3303,6 +3449,7 @@ M.RepositorySummary = {
 
 M.ListRepositoriesOutput = {
     type = "structure",
+    id = "ListRepositoriesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3319,6 +3466,7 @@ M.ListRepositoriesOutput = {
 
 M.ListServiceInstanceOutputsInput = {
     type = "structure",
+    id = "ListServiceInstanceOutputsInput",
     members = {
         serviceInstanceName = {
             type = "string",
@@ -3343,6 +3491,7 @@ M.ListServiceInstanceOutputsInput = {
 
 M.ListServiceInstanceOutputsOutput = {
     type = "structure",
+    id = "ListServiceInstanceOutputsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3359,6 +3508,7 @@ M.ListServiceInstanceOutputsOutput = {
 
 M.ListServiceInstanceProvisionedResourcesInput = {
     type = "structure",
+    id = "ListServiceInstanceProvisionedResourcesInput",
     members = {
         serviceName = {
             type = "string",
@@ -3380,6 +3530,7 @@ M.ListServiceInstanceProvisionedResourcesInput = {
 
 M.ListServiceInstanceProvisionedResourcesOutput = {
     type = "structure",
+    id = "ListServiceInstanceProvisionedResourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3396,6 +3547,7 @@ M.ListServiceInstanceProvisionedResourcesOutput = {
 
 M.CreateServiceInstanceInput = {
     type = "structure",
+    id = "CreateServiceInstanceInput",
     members = {
         name = {
             type = "string",
@@ -3437,6 +3589,7 @@ M.CreateServiceInstanceInput = {
 
 M.CreateServiceInstanceOutput = {
     type = "structure",
+    id = "CreateServiceInstanceOutput",
     members = {
         serviceInstance = setmetatable({ traits = {
             required = true,
@@ -3446,6 +3599,7 @@ M.CreateServiceInstanceOutput = {
 
 M.GetServiceInstanceInput = {
     type = "structure",
+    id = "GetServiceInstanceInput",
     members = {
         name = {
             type = "string",
@@ -3464,6 +3618,7 @@ M.GetServiceInstanceInput = {
 
 M.GetServiceInstanceOutput = {
     type = "structure",
+    id = "GetServiceInstanceOutput",
     members = {
         serviceInstance = setmetatable({ traits = {
             required = true,
@@ -3486,6 +3641,7 @@ M.ListServiceInstancesFilterBy = {
 
 M.ListServiceInstancesFilter = {
     type = "structure",
+    id = "ListServiceInstancesFilter",
     members = {
         key = {
             type = "string",
@@ -3513,6 +3669,7 @@ M.SortOrder = {
 
 M.ListServiceInstancesInput = {
     type = "structure",
+    id = "ListServiceInstancesInput",
     members = {
         serviceName = {
             type = "string",
@@ -3538,6 +3695,7 @@ M.ListServiceInstancesInput = {
 
 M.ServiceInstanceSummary = {
     type = "structure",
+    id = "ServiceInstanceSummary",
     members = {
         name = {
             type = "string",
@@ -3619,6 +3777,7 @@ M.ServiceInstanceSummary = {
 
 M.ListServiceInstancesOutput = {
     type = "structure",
+    id = "ListServiceInstancesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3635,6 +3794,7 @@ M.ListServiceInstancesOutput = {
 
 M.UpdateServiceInstanceInput = {
     type = "structure",
+    id = "UpdateServiceInstanceInput",
     members = {
         name = {
             type = "string",
@@ -3677,6 +3837,7 @@ M.UpdateServiceInstanceInput = {
 
 M.UpdateServiceInstanceOutput = {
     type = "structure",
+    id = "UpdateServiceInstanceOutput",
     members = {
         serviceInstance = setmetatable({ traits = {
             required = true,
@@ -3686,6 +3847,7 @@ M.UpdateServiceInstanceOutput = {
 
 M.ListServicePipelineOutputsInput = {
     type = "structure",
+    id = "ListServicePipelineOutputsInput",
     members = {
         serviceName = {
             type = "string",
@@ -3704,6 +3866,7 @@ M.ListServicePipelineOutputsInput = {
 
 M.ListServicePipelineOutputsOutput = {
     type = "structure",
+    id = "ListServicePipelineOutputsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3720,6 +3883,7 @@ M.ListServicePipelineOutputsOutput = {
 
 M.ListServicePipelineProvisionedResourcesInput = {
     type = "structure",
+    id = "ListServicePipelineProvisionedResourcesInput",
     members = {
         serviceName = {
             type = "string",
@@ -3735,6 +3899,7 @@ M.ListServicePipelineProvisionedResourcesInput = {
 
 M.ListServicePipelineProvisionedResourcesOutput = {
     type = "structure",
+    id = "ListServicePipelineProvisionedResourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3751,6 +3916,7 @@ M.ListServicePipelineProvisionedResourcesOutput = {
 
 M.UpdateServicePipelineInput = {
     type = "structure",
+    id = "UpdateServicePipelineInput",
     members = {
         serviceName = {
             type = "string",
@@ -3782,6 +3948,7 @@ M.UpdateServicePipelineInput = {
 
 M.UpdateServicePipelineOutput = {
     type = "structure",
+    id = "UpdateServicePipelineOutput",
     members = {
         pipeline = setmetatable({ traits = {
             required = true,
@@ -3791,6 +3958,7 @@ M.UpdateServicePipelineOutput = {
 
 M.CreateServiceInput = {
     type = "structure",
+    id = "CreateServiceInput",
     members = {
         name = {
             type = "string",
@@ -3858,6 +4026,7 @@ M.ServiceStatus = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         name = {
             type = "string",
@@ -3923,6 +4092,7 @@ M.Service = {
 
 M.CreateServiceOutput = {
     type = "structure",
+    id = "CreateServiceOutput",
     members = {
         service = setmetatable({ traits = {
             required = true,
@@ -3932,6 +4102,7 @@ M.CreateServiceOutput = {
 
 M.DeleteServiceInput = {
     type = "structure",
+    id = "DeleteServiceInput",
     members = {
         name = {
             type = "string",
@@ -3944,6 +4115,7 @@ M.DeleteServiceInput = {
 
 M.DeleteServiceOutput = {
     type = "structure",
+    id = "DeleteServiceOutput",
     members = {
         service = M.Service,
     },
@@ -3951,6 +4123,7 @@ M.DeleteServiceOutput = {
 
 M.GetServiceInput = {
     type = "structure",
+    id = "GetServiceInput",
     members = {
         name = {
             type = "string",
@@ -3963,6 +4136,7 @@ M.GetServiceInput = {
 
 M.GetServiceOutput = {
     type = "structure",
+    id = "GetServiceOutput",
     members = {
         service = M.Service,
     },
@@ -3970,6 +4144,7 @@ M.GetServiceOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         nextToken = {
             type = "string",
@@ -3982,6 +4157,7 @@ M.ListServicesInput = {
 
 M.ServiceSummary = {
     type = "structure",
+    id = "ServiceSummary",
     members = {
         name = {
             type = "string",
@@ -4030,6 +4206,7 @@ M.ServiceSummary = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4046,6 +4223,7 @@ M.ListServicesOutput = {
 
 M.UpdateServiceInput = {
     type = "structure",
+    id = "UpdateServiceInput",
     members = {
         name = {
             type = "string",
@@ -4067,6 +4245,7 @@ M.UpdateServiceInput = {
 
 M.UpdateServiceOutput = {
     type = "structure",
+    id = "UpdateServiceOutput",
     members = {
         service = setmetatable({ traits = {
             required = true,
@@ -4076,6 +4255,7 @@ M.UpdateServiceOutput = {
 
 M.GetServiceSyncBlockerSummaryInput = {
     type = "structure",
+    id = "GetServiceSyncBlockerSummaryInput",
     members = {
         serviceName = {
             type = "string",
@@ -4091,6 +4271,7 @@ M.GetServiceSyncBlockerSummaryInput = {
 
 M.SyncBlockerContext = {
     type = "structure",
+    id = "SyncBlockerContext",
     members = {
         key = {
             type = "string",
@@ -4118,6 +4299,7 @@ M.BlockerType = {
 
 M.SyncBlocker = {
     type = "structure",
+    id = "SyncBlocker",
     members = {
         id = {
             type = "string",
@@ -4164,6 +4346,7 @@ M.SyncBlocker = {
 
 M.ServiceSyncBlockerSummary = {
     type = "structure",
+    id = "ServiceSyncBlockerSummary",
     members = {
         serviceName = {
             type = "string",
@@ -4183,6 +4366,7 @@ M.ServiceSyncBlockerSummary = {
 
 M.GetServiceSyncBlockerSummaryOutput = {
     type = "structure",
+    id = "GetServiceSyncBlockerSummaryOutput",
     members = {
         serviceSyncBlockerSummary = M.ServiceSyncBlockerSummary,
     },
@@ -4190,6 +4374,7 @@ M.GetServiceSyncBlockerSummaryOutput = {
 
 M.UpdateServiceSyncBlockerInput = {
     type = "structure",
+    id = "UpdateServiceSyncBlockerInput",
     members = {
         id = {
             type = "string",
@@ -4208,6 +4393,7 @@ M.UpdateServiceSyncBlockerInput = {
 
 M.UpdateServiceSyncBlockerOutput = {
     type = "structure",
+    id = "UpdateServiceSyncBlockerOutput",
     members = {
         serviceName = {
             type = "string",
@@ -4226,6 +4412,7 @@ M.UpdateServiceSyncBlockerOutput = {
 
 M.CreateServiceSyncConfigInput = {
     type = "structure",
+    id = "CreateServiceSyncConfigInput",
     members = {
         serviceName = {
             type = "string",
@@ -4262,6 +4449,7 @@ M.CreateServiceSyncConfigInput = {
 
 M.ServiceSyncConfig = {
     type = "structure",
+    id = "ServiceSyncConfig",
     members = {
         serviceName = {
             type = "string",
@@ -4298,6 +4486,7 @@ M.ServiceSyncConfig = {
 
 M.CreateServiceSyncConfigOutput = {
     type = "structure",
+    id = "CreateServiceSyncConfigOutput",
     members = {
         serviceSyncConfig = M.ServiceSyncConfig,
     },
@@ -4305,6 +4494,7 @@ M.CreateServiceSyncConfigOutput = {
 
 M.DeleteServiceSyncConfigInput = {
     type = "structure",
+    id = "DeleteServiceSyncConfigInput",
     members = {
         serviceName = {
             type = "string",
@@ -4317,6 +4507,7 @@ M.DeleteServiceSyncConfigInput = {
 
 M.DeleteServiceSyncConfigOutput = {
     type = "structure",
+    id = "DeleteServiceSyncConfigOutput",
     members = {
         serviceSyncConfig = M.ServiceSyncConfig,
     },
@@ -4324,6 +4515,7 @@ M.DeleteServiceSyncConfigOutput = {
 
 M.GetServiceSyncConfigInput = {
     type = "structure",
+    id = "GetServiceSyncConfigInput",
     members = {
         serviceName = {
             type = "string",
@@ -4336,6 +4528,7 @@ M.GetServiceSyncConfigInput = {
 
 M.GetServiceSyncConfigOutput = {
     type = "structure",
+    id = "GetServiceSyncConfigOutput",
     members = {
         serviceSyncConfig = M.ServiceSyncConfig,
     },
@@ -4343,6 +4536,7 @@ M.GetServiceSyncConfigOutput = {
 
 M.UpdateServiceSyncConfigInput = {
     type = "structure",
+    id = "UpdateServiceSyncConfigInput",
     members = {
         serviceName = {
             type = "string",
@@ -4379,6 +4573,7 @@ M.UpdateServiceSyncConfigInput = {
 
 M.UpdateServiceSyncConfigOutput = {
     type = "structure",
+    id = "UpdateServiceSyncConfigOutput",
     members = {
         serviceSyncConfig = M.ServiceSyncConfig,
     },
@@ -4386,6 +4581,7 @@ M.UpdateServiceSyncConfigOutput = {
 
 M.CreateServiceTemplateInput = {
     type = "structure",
+    id = "CreateServiceTemplateInput",
     members = {
         name = {
             type = "string",
@@ -4414,6 +4610,7 @@ M.CreateServiceTemplateInput = {
 
 M.ServiceTemplate = {
     type = "structure",
+    id = "ServiceTemplate",
     members = {
         name = {
             type = "string",
@@ -4459,6 +4656,7 @@ M.ServiceTemplate = {
 
 M.CreateServiceTemplateOutput = {
     type = "structure",
+    id = "CreateServiceTemplateOutput",
     members = {
         serviceTemplate = setmetatable({ traits = {
             required = true,
@@ -4468,6 +4666,7 @@ M.CreateServiceTemplateOutput = {
 
 M.DeleteServiceTemplateInput = {
     type = "structure",
+    id = "DeleteServiceTemplateInput",
     members = {
         name = {
             type = "string",
@@ -4480,6 +4679,7 @@ M.DeleteServiceTemplateInput = {
 
 M.DeleteServiceTemplateOutput = {
     type = "structure",
+    id = "DeleteServiceTemplateOutput",
     members = {
         serviceTemplate = M.ServiceTemplate,
     },
@@ -4487,6 +4687,7 @@ M.DeleteServiceTemplateOutput = {
 
 M.GetServiceTemplateInput = {
     type = "structure",
+    id = "GetServiceTemplateInput",
     members = {
         name = {
             type = "string",
@@ -4499,6 +4700,7 @@ M.GetServiceTemplateInput = {
 
 M.GetServiceTemplateOutput = {
     type = "structure",
+    id = "GetServiceTemplateOutput",
     members = {
         serviceTemplate = setmetatable({ traits = {
             required = true,
@@ -4508,6 +4710,7 @@ M.GetServiceTemplateOutput = {
 
 M.ListServiceTemplatesInput = {
     type = "structure",
+    id = "ListServiceTemplatesInput",
     members = {
         nextToken = {
             type = "string",
@@ -4520,6 +4723,7 @@ M.ListServiceTemplatesInput = {
 
 M.ServiceTemplateSummary = {
     type = "structure",
+    id = "ServiceTemplateSummary",
     members = {
         name = {
             type = "string",
@@ -4562,6 +4766,7 @@ M.ServiceTemplateSummary = {
 
 M.ListServiceTemplatesOutput = {
     type = "structure",
+    id = "ListServiceTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4578,6 +4783,7 @@ M.ListServiceTemplatesOutput = {
 
 M.UpdateServiceTemplateInput = {
     type = "structure",
+    id = "UpdateServiceTemplateInput",
     members = {
         name = {
             type = "string",
@@ -4596,6 +4802,7 @@ M.UpdateServiceTemplateInput = {
 
 M.UpdateServiceTemplateOutput = {
     type = "structure",
+    id = "UpdateServiceTemplateOutput",
     members = {
         serviceTemplate = setmetatable({ traits = {
             required = true,
@@ -4605,6 +4812,7 @@ M.UpdateServiceTemplateOutput = {
 
 M.CompatibleEnvironmentTemplateInput = {
     type = "structure",
+    id = "CompatibleEnvironmentTemplateInput",
     members = {
         templateName = {
             type = "string",
@@ -4627,6 +4835,7 @@ M.ServiceTemplateSupportedComponentSourceType = {
 
 M.CreateServiceTemplateVersionInput = {
     type = "structure",
+    id = "CreateServiceTemplateVersionInput",
     members = {
         clientToken = {
             type = "string",
@@ -4669,6 +4878,7 @@ M.CreateServiceTemplateVersionInput = {
 
 M.CompatibleEnvironmentTemplate = {
     type = "structure",
+    id = "CompatibleEnvironmentTemplate",
     members = {
         templateName = {
             type = "string",
@@ -4687,6 +4897,7 @@ M.CompatibleEnvironmentTemplate = {
 
 M.ServiceTemplateVersion = {
     type = "structure",
+    id = "ServiceTemplateVersion",
     members = {
         templateName = {
             type = "string",
@@ -4761,6 +4972,7 @@ M.ServiceTemplateVersion = {
 
 M.CreateServiceTemplateVersionOutput = {
     type = "structure",
+    id = "CreateServiceTemplateVersionOutput",
     members = {
         serviceTemplateVersion = setmetatable({ traits = {
             required = true,
@@ -4770,6 +4982,7 @@ M.CreateServiceTemplateVersionOutput = {
 
 M.DeleteServiceTemplateVersionInput = {
     type = "structure",
+    id = "DeleteServiceTemplateVersionInput",
     members = {
         templateName = {
             type = "string",
@@ -4794,6 +5007,7 @@ M.DeleteServiceTemplateVersionInput = {
 
 M.DeleteServiceTemplateVersionOutput = {
     type = "structure",
+    id = "DeleteServiceTemplateVersionOutput",
     members = {
         serviceTemplateVersion = M.ServiceTemplateVersion,
     },
@@ -4801,6 +5015,7 @@ M.DeleteServiceTemplateVersionOutput = {
 
 M.GetServiceTemplateVersionInput = {
     type = "structure",
+    id = "GetServiceTemplateVersionInput",
     members = {
         templateName = {
             type = "string",
@@ -4825,6 +5040,7 @@ M.GetServiceTemplateVersionInput = {
 
 M.GetServiceTemplateVersionOutput = {
     type = "structure",
+    id = "GetServiceTemplateVersionOutput",
     members = {
         serviceTemplateVersion = setmetatable({ traits = {
             required = true,
@@ -4834,6 +5050,7 @@ M.GetServiceTemplateVersionOutput = {
 
 M.ListServiceTemplateVersionsInput = {
     type = "structure",
+    id = "ListServiceTemplateVersionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -4855,6 +5072,7 @@ M.ListServiceTemplateVersionsInput = {
 
 M.ServiceTemplateVersionSummary = {
     type = "structure",
+    id = "ServiceTemplateVersionSummary",
     members = {
         templateName = {
             type = "string",
@@ -4912,6 +5130,7 @@ M.ServiceTemplateVersionSummary = {
 
 M.ListServiceTemplateVersionsOutput = {
     type = "structure",
+    id = "ListServiceTemplateVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4928,6 +5147,7 @@ M.ListServiceTemplateVersionsOutput = {
 
 M.UpdateServiceTemplateVersionInput = {
     type = "structure",
+    id = "UpdateServiceTemplateVersionInput",
     members = {
         templateName = {
             type = "string",
@@ -4966,6 +5186,7 @@ M.UpdateServiceTemplateVersionInput = {
 
 M.UpdateServiceTemplateVersionOutput = {
     type = "structure",
+    id = "UpdateServiceTemplateVersionOutput",
     members = {
         serviceTemplateVersion = setmetatable({ traits = {
             required = true,
@@ -4975,6 +5196,7 @@ M.UpdateServiceTemplateVersionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4995,10 +5217,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.CreateTemplateSyncConfigInput = {
     type = "structure",
+    id = "CreateTemplateSyncConfigInput",
     members = {
         templateName = {
             type = "string",
@@ -5038,6 +5262,7 @@ M.CreateTemplateSyncConfigInput = {
 
 M.TemplateSyncConfig = {
     type = "structure",
+    id = "TemplateSyncConfig",
     members = {
         templateName = {
             type = "string",
@@ -5077,6 +5302,7 @@ M.TemplateSyncConfig = {
 
 M.CreateTemplateSyncConfigOutput = {
     type = "structure",
+    id = "CreateTemplateSyncConfigOutput",
     members = {
         templateSyncConfig = M.TemplateSyncConfig,
     },
@@ -5084,6 +5310,7 @@ M.CreateTemplateSyncConfigOutput = {
 
 M.DeleteTemplateSyncConfigInput = {
     type = "structure",
+    id = "DeleteTemplateSyncConfigInput",
     members = {
         templateName = {
             type = "string",
@@ -5102,6 +5329,7 @@ M.DeleteTemplateSyncConfigInput = {
 
 M.DeleteTemplateSyncConfigOutput = {
     type = "structure",
+    id = "DeleteTemplateSyncConfigOutput",
     members = {
         templateSyncConfig = M.TemplateSyncConfig,
     },
@@ -5109,6 +5337,7 @@ M.DeleteTemplateSyncConfigOutput = {
 
 M.GetTemplateSyncConfigInput = {
     type = "structure",
+    id = "GetTemplateSyncConfigInput",
     members = {
         templateName = {
             type = "string",
@@ -5127,6 +5356,7 @@ M.GetTemplateSyncConfigInput = {
 
 M.GetTemplateSyncConfigOutput = {
     type = "structure",
+    id = "GetTemplateSyncConfigOutput",
     members = {
         templateSyncConfig = M.TemplateSyncConfig,
     },
@@ -5134,6 +5364,7 @@ M.GetTemplateSyncConfigOutput = {
 
 M.UpdateTemplateSyncConfigInput = {
     type = "structure",
+    id = "UpdateTemplateSyncConfigInput",
     members = {
         templateName = {
             type = "string",
@@ -5173,6 +5404,7 @@ M.UpdateTemplateSyncConfigInput = {
 
 M.UpdateTemplateSyncConfigOutput = {
     type = "structure",
+    id = "UpdateTemplateSyncConfigOutput",
     members = {
         templateSyncConfig = M.TemplateSyncConfig,
     },
@@ -5180,6 +5412,7 @@ M.UpdateTemplateSyncConfigOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5200,6 +5433,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

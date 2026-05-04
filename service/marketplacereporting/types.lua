@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -22,6 +24,7 @@ M.BadRequestException = {
 
 M.GetBuyerDashboardInput = {
     type = "structure",
+    id = "GetBuyerDashboardInput",
     members = {
         dashboardIdentifier = {
             type = "string",
@@ -41,6 +44,7 @@ M.GetBuyerDashboardInput = {
 
 M.GetBuyerDashboardOutput = {
     type = "structure",
+    id = "GetBuyerDashboardOutput",
     members = {
         embedUrl = {
             type = "string",
@@ -66,6 +70,7 @@ M.GetBuyerDashboardOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -76,6 +81,7 @@ M.InternalServerException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {

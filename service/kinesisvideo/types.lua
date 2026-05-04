@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AccountChannelLimitExceededException = {
     type = "structure",
+    id = "AccountChannelLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.AccountChannelLimitExceededException = {
 
 M.AccountStreamLimitExceededException = {
     type = "structure",
+    id = "AccountStreamLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -55,6 +58,7 @@ M.ChannelType = {
 
 M.SingleMasterConfiguration = {
     type = "structure",
+    id = "SingleMasterConfiguration",
     members = {
         MessageTtlSeconds = {
             type = "integer",
@@ -64,6 +68,7 @@ M.SingleMasterConfiguration = {
 
 M.ChannelInfo = {
     type = "structure",
+    id = "ChannelInfo",
     members = {
         ChannelName = {
             type = "string",
@@ -93,6 +98,7 @@ M.ComparisonOperator = {
 
 M.ChannelNameCondition = {
     type = "structure",
+    id = "ChannelNameCondition",
     members = {
         ComparisonOperator = {
             type = "string",
@@ -116,6 +122,7 @@ M.ChannelRole = {
 
 M.ClientLimitExceededException = {
     type = "structure",
+    id = "ClientLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -131,6 +138,7 @@ M.ConfigurationStatus = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -149,6 +157,7 @@ M.Tag = {
 
 M.CreateSignalingChannelInput = {
     type = "structure",
+    id = "CreateSignalingChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -169,6 +178,7 @@ M.CreateSignalingChannelInput = {
 
 M.CreateSignalingChannelOutput = {
     type = "structure",
+    id = "CreateSignalingChannelOutput",
     members = {
         ChannelARN = {
             type = "string",
@@ -178,6 +188,7 @@ M.CreateSignalingChannelOutput = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -188,6 +199,7 @@ M.InvalidArgumentException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -198,6 +210,7 @@ M.ResourceInUseException = {
 
 M.TagsPerResourceExceededLimitException = {
     type = "structure",
+    id = "TagsPerResourceExceededLimitException",
     error = "client",
     members = {
         Message = {
@@ -213,6 +226,7 @@ M.DefaultStorageTier = {
 
 M.StreamStorageConfiguration = {
     type = "structure",
+    id = "StreamStorageConfiguration",
     members = {
         DefaultStorageTier = {
             type = "string",
@@ -225,6 +239,7 @@ M.StreamStorageConfiguration = {
 
 M.CreateStreamInput = {
     type = "structure",
+    id = "CreateStreamInput",
     members = {
         DeviceName = {
             type = "string",
@@ -255,6 +270,7 @@ M.CreateStreamInput = {
 
 M.CreateStreamOutput = {
     type = "structure",
+    id = "CreateStreamOutput",
     members = {
         StreamARN = {
             type = "string",
@@ -264,6 +280,7 @@ M.CreateStreamOutput = {
 
 M.DeviceStreamLimitExceededException = {
     type = "structure",
+    id = "DeviceStreamLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -274,6 +291,7 @@ M.DeviceStreamLimitExceededException = {
 
 M.InvalidDeviceException = {
     type = "structure",
+    id = "InvalidDeviceException",
     error = "client",
     members = {
         Message = {
@@ -284,6 +302,7 @@ M.InvalidDeviceException = {
 
 M.DeleteEdgeConfigurationInput = {
     type = "structure",
+    id = "DeleteEdgeConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -296,10 +315,12 @@ M.DeleteEdgeConfigurationInput = {
 
 M.DeleteEdgeConfigurationOutput = {
     type = "structure",
+    id = "DeleteEdgeConfigurationOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -310,6 +331,7 @@ M.ResourceNotFoundException = {
 
 M.StreamEdgeConfigurationNotFoundException = {
     type = "structure",
+    id = "StreamEdgeConfigurationNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -320,6 +342,7 @@ M.StreamEdgeConfigurationNotFoundException = {
 
 M.DeleteSignalingChannelInput = {
     type = "structure",
+    id = "DeleteSignalingChannelInput",
     members = {
         ChannelARN = {
             type = "string",
@@ -335,10 +358,12 @@ M.DeleteSignalingChannelInput = {
 
 M.DeleteSignalingChannelOutput = {
     type = "structure",
+    id = "DeleteSignalingChannelOutput",
 }
 
 M.VersionMismatchException = {
     type = "structure",
+    id = "VersionMismatchException",
     error = "client",
     members = {
         Message = {
@@ -349,6 +374,7 @@ M.VersionMismatchException = {
 
 M.DeleteStreamInput = {
     type = "structure",
+    id = "DeleteStreamInput",
     members = {
         StreamARN = {
             type = "string",
@@ -364,10 +390,12 @@ M.DeleteStreamInput = {
 
 M.DeleteStreamOutput = {
     type = "structure",
+    id = "DeleteStreamOutput",
 }
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         Message = {
@@ -383,6 +411,7 @@ M.StrategyOnFullSize = {
 
 M.LocalSizeConfig = {
     type = "structure",
+    id = "LocalSizeConfig",
     members = {
         MaxLocalMediaSizeInMB = {
             type = "integer",
@@ -395,6 +424,7 @@ M.LocalSizeConfig = {
 
 M.DeletionConfig = {
     type = "structure",
+    id = "DeletionConfig",
     members = {
         EdgeRetentionInHours = {
             type = "integer",
@@ -408,6 +438,7 @@ M.DeletionConfig = {
 
 M.DescribeEdgeConfigurationInput = {
     type = "structure",
+    id = "DescribeEdgeConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -426,6 +457,7 @@ M.RecorderStatus = {
 
 M.LastRecorderStatus = {
     type = "structure",
+    id = "LastRecorderStatus",
     members = {
         JobStatusDetails = {
             type = "string",
@@ -450,6 +482,7 @@ M.UploaderStatus = {
 
 M.LastUploaderStatus = {
     type = "structure",
+    id = "LastUploaderStatus",
     members = {
         JobStatusDetails = {
             type = "string",
@@ -468,6 +501,7 @@ M.LastUploaderStatus = {
 
 M.EdgeAgentStatus = {
     type = "structure",
+    id = "EdgeAgentStatus",
     members = {
         LastRecorderStatus = M.LastRecorderStatus,
         LastUploaderStatus = M.LastUploaderStatus,
@@ -481,6 +515,7 @@ M.MediaUriType = {
 
 M.MediaSourceConfig = {
     type = "structure",
+    id = "MediaSourceConfig",
     members = {
         MediaUriSecretArn = {
             type = "string",
@@ -499,6 +534,7 @@ M.MediaSourceConfig = {
 
 M.ScheduleConfig = {
     type = "structure",
+    id = "ScheduleConfig",
     members = {
         ScheduleExpression = {
             type = "string",
@@ -517,6 +553,7 @@ M.ScheduleConfig = {
 
 M.RecorderConfig = {
     type = "structure",
+    id = "RecorderConfig",
     members = {
         MediaSourceConfig = setmetatable({ traits = {
             required = true,
@@ -527,6 +564,7 @@ M.RecorderConfig = {
 
 M.UploaderConfig = {
     type = "structure",
+    id = "UploaderConfig",
     members = {
         ScheduleConfig = setmetatable({ traits = {
             required = true,
@@ -536,6 +574,7 @@ M.UploaderConfig = {
 
 M.EdgeConfig = {
     type = "structure",
+    id = "EdgeConfig",
     members = {
         HubDeviceArn = {
             type = "string",
@@ -563,6 +602,7 @@ M.SyncStatus = {
 
 M.DescribeEdgeConfigurationOutput = {
     type = "structure",
+    id = "DescribeEdgeConfigurationOutput",
     members = {
         StreamName = {
             type = "string",
@@ -589,6 +629,7 @@ M.DescribeEdgeConfigurationOutput = {
 
 M.DescribeImageGenerationConfigurationInput = {
     type = "structure",
+    id = "DescribeImageGenerationConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -601,6 +642,7 @@ M.DescribeImageGenerationConfigurationInput = {
 
 M.ImageGenerationDestinationConfig = {
     type = "structure",
+    id = "ImageGenerationDestinationConfig",
     members = {
         Uri = {
             type = "string",
@@ -633,6 +675,7 @@ M.ImageSelectorType = {
 
 M.ImageGenerationConfiguration = {
     type = "structure",
+    id = "ImageGenerationConfiguration",
     members = {
         Status = {
             type = "string",
@@ -677,6 +720,7 @@ M.ImageGenerationConfiguration = {
 
 M.DescribeImageGenerationConfigurationOutput = {
     type = "structure",
+    id = "DescribeImageGenerationConfigurationOutput",
     members = {
         ImageGenerationConfiguration = M.ImageGenerationConfiguration,
     },
@@ -684,6 +728,7 @@ M.DescribeImageGenerationConfigurationOutput = {
 
 M.DescribeMappedResourceConfigurationInput = {
     type = "structure",
+    id = "DescribeMappedResourceConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -702,6 +747,7 @@ M.DescribeMappedResourceConfigurationInput = {
 
 M.MappedResourceConfigurationListItem = {
     type = "structure",
+    id = "MappedResourceConfigurationListItem",
     members = {
         Type = {
             type = "string",
@@ -714,6 +760,7 @@ M.MappedResourceConfigurationListItem = {
 
 M.DescribeMappedResourceConfigurationOutput = {
     type = "structure",
+    id = "DescribeMappedResourceConfigurationOutput",
     members = {
         MappedResourceConfigurationList = {
             type = "list",
@@ -727,6 +774,7 @@ M.DescribeMappedResourceConfigurationOutput = {
 
 M.DescribeMediaStorageConfigurationInput = {
     type = "structure",
+    id = "DescribeMediaStorageConfigurationInput",
     members = {
         ChannelName = {
             type = "string",
@@ -744,6 +792,7 @@ M.MediaStorageConfigurationStatus = {
 
 M.MediaStorageConfiguration = {
     type = "structure",
+    id = "MediaStorageConfiguration",
     members = {
         StreamARN = {
             type = "string",
@@ -759,6 +808,7 @@ M.MediaStorageConfiguration = {
 
 M.DescribeMediaStorageConfigurationOutput = {
     type = "structure",
+    id = "DescribeMediaStorageConfigurationOutput",
     members = {
         MediaStorageConfiguration = M.MediaStorageConfiguration,
     },
@@ -766,6 +816,7 @@ M.DescribeMediaStorageConfigurationOutput = {
 
 M.DescribeNotificationConfigurationInput = {
     type = "structure",
+    id = "DescribeNotificationConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -778,6 +829,7 @@ M.DescribeNotificationConfigurationInput = {
 
 M.NotificationDestinationConfig = {
     type = "structure",
+    id = "NotificationDestinationConfig",
     members = {
         Uri = {
             type = "string",
@@ -790,6 +842,7 @@ M.NotificationDestinationConfig = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         Status = {
             type = "string",
@@ -805,6 +858,7 @@ M.NotificationConfiguration = {
 
 M.DescribeNotificationConfigurationOutput = {
     type = "structure",
+    id = "DescribeNotificationConfigurationOutput",
     members = {
         NotificationConfiguration = M.NotificationConfiguration,
     },
@@ -812,6 +866,7 @@ M.DescribeNotificationConfigurationOutput = {
 
 M.DescribeSignalingChannelInput = {
     type = "structure",
+    id = "DescribeSignalingChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -824,6 +879,7 @@ M.DescribeSignalingChannelInput = {
 
 M.DescribeSignalingChannelOutput = {
     type = "structure",
+    id = "DescribeSignalingChannelOutput",
     members = {
         ChannelInfo = M.ChannelInfo,
     },
@@ -831,6 +887,7 @@ M.DescribeSignalingChannelOutput = {
 
 M.DescribeStreamInput = {
     type = "structure",
+    id = "DescribeStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -843,6 +900,7 @@ M.DescribeStreamInput = {
 
 M.StreamInfo = {
     type = "structure",
+    id = "StreamInfo",
     members = {
         DeviceName = {
             type = "string",
@@ -876,6 +934,7 @@ M.StreamInfo = {
 
 M.DescribeStreamOutput = {
     type = "structure",
+    id = "DescribeStreamOutput",
     members = {
         StreamInfo = M.StreamInfo,
     },
@@ -883,6 +942,7 @@ M.DescribeStreamOutput = {
 
 M.DescribeStreamStorageConfigurationInput = {
     type = "structure",
+    id = "DescribeStreamStorageConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -895,6 +955,7 @@ M.DescribeStreamStorageConfigurationInput = {
 
 M.DescribeStreamStorageConfigurationOutput = {
     type = "structure",
+    id = "DescribeStreamStorageConfigurationOutput",
     members = {
         StreamName = {
             type = "string",
@@ -908,6 +969,7 @@ M.DescribeStreamStorageConfigurationOutput = {
 
 M.GetDataEndpointInput = {
     type = "structure",
+    id = "GetDataEndpointInput",
     members = {
         StreamName = {
             type = "string",
@@ -926,6 +988,7 @@ M.GetDataEndpointInput = {
 
 M.GetDataEndpointOutput = {
     type = "structure",
+    id = "GetDataEndpointOutput",
     members = {
         DataEndpoint = {
             type = "string",
@@ -935,6 +998,7 @@ M.GetDataEndpointOutput = {
 
 M.SingleMasterChannelEndpointConfiguration = {
     type = "structure",
+    id = "SingleMasterChannelEndpointConfiguration",
     members = {
         Protocols = {
             type = "list",
@@ -948,6 +1012,7 @@ M.SingleMasterChannelEndpointConfiguration = {
 
 M.GetSignalingChannelEndpointInput = {
     type = "structure",
+    id = "GetSignalingChannelEndpointInput",
     members = {
         ChannelARN = {
             type = "string",
@@ -961,6 +1026,7 @@ M.GetSignalingChannelEndpointInput = {
 
 M.ResourceEndpointListItem = {
     type = "structure",
+    id = "ResourceEndpointListItem",
     members = {
         Protocol = {
             type = "string",
@@ -973,6 +1039,7 @@ M.ResourceEndpointListItem = {
 
 M.GetSignalingChannelEndpointOutput = {
     type = "structure",
+    id = "GetSignalingChannelEndpointOutput",
     members = {
         ResourceEndpointList = {
             type = "list",
@@ -983,6 +1050,7 @@ M.GetSignalingChannelEndpointOutput = {
 
 M.InvalidResourceFormatException = {
     type = "structure",
+    id = "InvalidResourceFormatException",
     error = "client",
     members = {
         Message = {
@@ -993,6 +1061,7 @@ M.InvalidResourceFormatException = {
 
 M.ListEdgeAgentConfigurationsInput = {
     type = "structure",
+    id = "ListEdgeAgentConfigurationsInput",
     members = {
         HubDeviceArn = {
             type = "string",
@@ -1011,6 +1080,7 @@ M.ListEdgeAgentConfigurationsInput = {
 
 M.ListEdgeAgentConfigurationsEdgeConfig = {
     type = "structure",
+    id = "ListEdgeAgentConfigurationsEdgeConfig",
     members = {
         StreamName = {
             type = "string",
@@ -1036,6 +1106,7 @@ M.ListEdgeAgentConfigurationsEdgeConfig = {
 
 M.ListEdgeAgentConfigurationsOutput = {
     type = "structure",
+    id = "ListEdgeAgentConfigurationsOutput",
     members = {
         EdgeConfigs = {
             type = "list",
@@ -1049,6 +1120,7 @@ M.ListEdgeAgentConfigurationsOutput = {
 
 M.ListSignalingChannelsInput = {
     type = "structure",
+    id = "ListSignalingChannelsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1062,6 +1134,7 @@ M.ListSignalingChannelsInput = {
 
 M.ListSignalingChannelsOutput = {
     type = "structure",
+    id = "ListSignalingChannelsOutput",
     members = {
         ChannelInfoList = {
             type = "list",
@@ -1075,6 +1148,7 @@ M.ListSignalingChannelsOutput = {
 
 M.StreamNameCondition = {
     type = "structure",
+    id = "StreamNameCondition",
     members = {
         ComparisonOperator = {
             type = "string",
@@ -1087,6 +1161,7 @@ M.StreamNameCondition = {
 
 M.ListStreamsInput = {
     type = "structure",
+    id = "ListStreamsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1100,6 +1175,7 @@ M.ListStreamsInput = {
 
 M.ListStreamsOutput = {
     type = "structure",
+    id = "ListStreamsOutput",
     members = {
         StreamInfoList = {
             type = "list",
@@ -1113,6 +1189,7 @@ M.ListStreamsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         NextToken = {
             type = "string",
@@ -1128,6 +1205,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1142,6 +1220,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTagsForStreamInput = {
     type = "structure",
+    id = "ListTagsForStreamInput",
     members = {
         NextToken = {
             type = "string",
@@ -1157,6 +1236,7 @@ M.ListTagsForStreamInput = {
 
 M.ListTagsForStreamOutput = {
     type = "structure",
+    id = "ListTagsForStreamOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1171,6 +1251,7 @@ M.ListTagsForStreamOutput = {
 
 M.NoDataRetentionException = {
     type = "structure",
+    id = "NoDataRetentionException",
     error = "client",
     members = {
         Message = {
@@ -1181,6 +1262,7 @@ M.NoDataRetentionException = {
 
 M.StartEdgeConfigurationUpdateInput = {
     type = "structure",
+    id = "StartEdgeConfigurationUpdateInput",
     members = {
         StreamName = {
             type = "string",
@@ -1196,6 +1278,7 @@ M.StartEdgeConfigurationUpdateInput = {
 
 M.StartEdgeConfigurationUpdateOutput = {
     type = "structure",
+    id = "StartEdgeConfigurationUpdateOutput",
     members = {
         StreamName = {
             type = "string",
@@ -1221,6 +1304,7 @@ M.StartEdgeConfigurationUpdateOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1240,10 +1324,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TagStreamInput = {
     type = "structure",
+    id = "TagStreamInput",
     members = {
         StreamARN = {
             type = "string",
@@ -1264,10 +1350,12 @@ M.TagStreamInput = {
 
 M.TagStreamOutput = {
     type = "structure",
+    id = "TagStreamOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1287,10 +1375,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UntagStreamInput = {
     type = "structure",
+    id = "UntagStreamInput",
     members = {
         StreamARN = {
             type = "string",
@@ -1310,6 +1400,7 @@ M.UntagStreamInput = {
 
 M.UntagStreamOutput = {
     type = "structure",
+    id = "UntagStreamOutput",
 }
 
 M.UpdateDataRetentionOperation = {
@@ -1319,6 +1410,7 @@ M.UpdateDataRetentionOperation = {
 
 M.UpdateDataRetentionInput = {
     type = "structure",
+    id = "UpdateDataRetentionInput",
     members = {
         StreamName = {
             type = "string",
@@ -1349,10 +1441,12 @@ M.UpdateDataRetentionInput = {
 
 M.UpdateDataRetentionOutput = {
     type = "structure",
+    id = "UpdateDataRetentionOutput",
 }
 
 M.UpdateImageGenerationConfigurationInput = {
     type = "structure",
+    id = "UpdateImageGenerationConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -1366,10 +1460,12 @@ M.UpdateImageGenerationConfigurationInput = {
 
 M.UpdateImageGenerationConfigurationOutput = {
     type = "structure",
+    id = "UpdateImageGenerationConfigurationOutput",
 }
 
 M.UpdateMediaStorageConfigurationInput = {
     type = "structure",
+    id = "UpdateMediaStorageConfigurationInput",
     members = {
         ChannelARN = {
             type = "string",
@@ -1385,10 +1481,12 @@ M.UpdateMediaStorageConfigurationInput = {
 
 M.UpdateMediaStorageConfigurationOutput = {
     type = "structure",
+    id = "UpdateMediaStorageConfigurationOutput",
 }
 
 M.UpdateNotificationConfigurationInput = {
     type = "structure",
+    id = "UpdateNotificationConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -1402,10 +1500,12 @@ M.UpdateNotificationConfigurationInput = {
 
 M.UpdateNotificationConfigurationOutput = {
     type = "structure",
+    id = "UpdateNotificationConfigurationOutput",
 }
 
 M.UpdateSignalingChannelInput = {
     type = "structure",
+    id = "UpdateSignalingChannelInput",
     members = {
         ChannelARN = {
             type = "string",
@@ -1425,10 +1525,12 @@ M.UpdateSignalingChannelInput = {
 
 M.UpdateSignalingChannelOutput = {
     type = "structure",
+    id = "UpdateSignalingChannelOutput",
 }
 
 M.UpdateStreamInput = {
     type = "structure",
+    id = "UpdateStreamInput",
     members = {
         StreamName = {
             type = "string",
@@ -1453,10 +1555,12 @@ M.UpdateStreamInput = {
 
 M.UpdateStreamOutput = {
     type = "structure",
+    id = "UpdateStreamOutput",
 }
 
 M.UpdateStreamStorageConfigurationInput = {
     type = "structure",
+    id = "UpdateStreamStorageConfigurationInput",
     members = {
         StreamName = {
             type = "string",
@@ -1478,6 +1582,7 @@ M.UpdateStreamStorageConfigurationInput = {
 
 M.UpdateStreamStorageConfigurationOutput = {
     type = "structure",
+    id = "UpdateStreamStorageConfigurationOutput",
 }
 
 return M

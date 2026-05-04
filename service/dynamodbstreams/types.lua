@@ -6,6 +6,7 @@ M.ShardFilterType = {
 
 M.ShardFilter = {
     type = "structure",
+    id = "ShardFilter",
     members = {
         Type = {
             type = "string",
@@ -18,6 +19,7 @@ M.ShardFilter = {
 
 M.DescribeStreamInput = {
     type = "structure",
+    id = "DescribeStreamInput",
     members = {
         StreamArn = {
             type = "string",
@@ -42,6 +44,7 @@ M.KeyType = {
 
 M.KeySchemaElement = {
     type = "structure",
+    id = "KeySchemaElement",
     members = {
         AttributeName = {
             type = "string",
@@ -60,6 +63,7 @@ M.KeySchemaElement = {
 
 M.SequenceNumberRange = {
     type = "structure",
+    id = "SequenceNumberRange",
     members = {
         StartingSequenceNumber = {
             type = "string",
@@ -72,6 +76,7 @@ M.SequenceNumberRange = {
 
 M.Shard = {
     type = "structure",
+    id = "Shard",
     members = {
         ShardId = {
             type = "string",
@@ -99,6 +104,7 @@ M.StreamViewType = {
 
 M.StreamDescription = {
     type = "structure",
+    id = "StreamDescription",
     members = {
         StreamArn = {
             type = "string",
@@ -134,6 +140,7 @@ M.StreamDescription = {
 
 M.DescribeStreamOutput = {
     type = "structure",
+    id = "DescribeStreamOutput",
     members = {
         StreamDescription = M.StreamDescription,
     },
@@ -141,6 +148,7 @@ M.DescribeStreamOutput = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         message = {
@@ -151,6 +159,7 @@ M.InternalServerError = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -161,6 +170,7 @@ M.ResourceNotFoundException = {
 
 M.ExpiredIteratorException = {
     type = "structure",
+    id = "ExpiredIteratorException",
     error = "client",
     members = {
         message = {
@@ -171,6 +181,7 @@ M.ExpiredIteratorException = {
 
 M.GetRecordsInput = {
     type = "structure",
+    id = "GetRecordsInput",
     members = {
         ShardIterator = {
             type = "string",
@@ -192,6 +203,7 @@ M.OperationType = {
 
 M.Identity = {
     type = "structure",
+    id = "Identity",
     members = {
         PrincipalId = {
             type = "string",
@@ -204,6 +216,7 @@ M.Identity = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -214,6 +227,7 @@ M.LimitExceededException = {
 
 M.TrimmedDataAccessException = {
     type = "structure",
+    id = "TrimmedDataAccessException",
     error = "client",
     members = {
         message = {
@@ -231,6 +245,7 @@ M.ShardIteratorType = {
 
 M.GetShardIteratorInput = {
     type = "structure",
+    id = "GetShardIteratorInput",
     members = {
         StreamArn = {
             type = "string",
@@ -258,6 +273,7 @@ M.GetShardIteratorInput = {
 
 M.GetShardIteratorOutput = {
     type = "structure",
+    id = "GetShardIteratorOutput",
     members = {
         ShardIterator = {
             type = "string",
@@ -267,6 +283,7 @@ M.GetShardIteratorOutput = {
 
 M.ListStreamsInput = {
     type = "structure",
+    id = "ListStreamsInput",
     members = {
         TableName = {
             type = "string",
@@ -282,6 +299,7 @@ M.ListStreamsInput = {
 
 M.Stream = {
     type = "structure",
+    id = "Stream",
     members = {
         StreamArn = {
             type = "string",
@@ -297,6 +315,7 @@ M.Stream = {
 
 M.ListStreamsOutput = {
     type = "structure",
+    id = "ListStreamsOutput",
     members = {
         Streams = {
             type = "list",
@@ -310,6 +329,7 @@ M.ListStreamsOutput = {
 
 M.AttributeValue = {
     type = "union",
+    id = "AttributeValue",
     members = {
         S = {
             type = "string",
@@ -352,6 +372,7 @@ M.AttributeValue = {
 
 M.StreamRecord = {
     type = "structure",
+    id = "StreamRecord",
     members = {
         ApproximateCreationDateTime = {
             type = "timestamp",
@@ -385,6 +406,7 @@ M.StreamRecord = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         eventID = {
             type = "string",
@@ -408,6 +430,7 @@ M.Record = {
 
 M.GetRecordsOutput = {
     type = "structure",
+    id = "GetRecordsOutput",
     members = {
         Records = {
             type = "list",

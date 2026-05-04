@@ -2,6 +2,7 @@ local M = {}
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.ConflictException = {
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         clientId = {
             type = "string",
@@ -39,10 +41,12 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
 }
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -53,6 +57,7 @@ M.ForbiddenException = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -63,6 +68,7 @@ M.InternalFailureException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -73,6 +79,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -83,6 +90,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -93,6 +101,7 @@ M.ThrottlingException = {
 
 M.DeleteThingShadowInput = {
     type = "structure",
+    id = "DeleteThingShadowInput",
     members = {
         thingName = {
             type = "string",
@@ -112,6 +121,7 @@ M.DeleteThingShadowInput = {
 
 M.DeleteThingShadowOutput = {
     type = "structure",
+    id = "DeleteThingShadowOutput",
     members = {
         payload = {
             type = "blob",
@@ -125,6 +135,7 @@ M.DeleteThingShadowOutput = {
 
 M.MethodNotAllowedException = {
     type = "structure",
+    id = "MethodNotAllowedException",
     error = "client",
     members = {
         message = {
@@ -135,6 +146,7 @@ M.MethodNotAllowedException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -145,6 +157,7 @@ M.ServiceUnavailableException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -155,6 +168,7 @@ M.UnauthorizedException = {
 
 M.UnsupportedDocumentEncodingException = {
     type = "structure",
+    id = "UnsupportedDocumentEncodingException",
     error = "client",
     members = {
         message = {
@@ -165,6 +179,7 @@ M.UnsupportedDocumentEncodingException = {
 
 M.GetRetainedMessageInput = {
     type = "structure",
+    id = "GetRetainedMessageInput",
     members = {
         topic = {
             type = "string",
@@ -178,6 +193,7 @@ M.GetRetainedMessageInput = {
 
 M.GetRetainedMessageOutput = {
     type = "structure",
+    id = "GetRetainedMessageOutput",
     members = {
         topic = {
             type = "string",
@@ -205,6 +221,7 @@ M.GetRetainedMessageOutput = {
 
 M.GetThingShadowInput = {
     type = "structure",
+    id = "GetThingShadowInput",
     members = {
         thingName = {
             type = "string",
@@ -224,6 +241,7 @@ M.GetThingShadowInput = {
 
 M.GetThingShadowOutput = {
     type = "structure",
+    id = "GetThingShadowOutput",
     members = {
         payload = {
             type = "blob",
@@ -236,6 +254,7 @@ M.GetThingShadowOutput = {
 
 M.ListNamedShadowsForThingInput = {
     type = "structure",
+    id = "ListNamedShadowsForThingInput",
     members = {
         thingName = {
             type = "string",
@@ -261,6 +280,7 @@ M.ListNamedShadowsForThingInput = {
 
 M.ListNamedShadowsForThingOutput = {
     type = "structure",
+    id = "ListNamedShadowsForThingOutput",
     members = {
         results = {
             type = "list",
@@ -280,6 +300,7 @@ M.ListNamedShadowsForThingOutput = {
 
 M.ListRetainedMessagesInput = {
     type = "structure",
+    id = "ListRetainedMessagesInput",
     members = {
         nextToken = {
             type = "string",
@@ -298,6 +319,7 @@ M.ListRetainedMessagesInput = {
 
 M.RetainedMessageSummary = {
     type = "structure",
+    id = "RetainedMessageSummary",
     members = {
         topic = {
             type = "string",
@@ -325,6 +347,7 @@ M.RetainedMessageSummary = {
 
 M.ListRetainedMessagesOutput = {
     type = "structure",
+    id = "ListRetainedMessagesOutput",
     members = {
         retainedTopics = {
             type = "list",
@@ -343,6 +366,7 @@ M.PayloadFormatIndicator = {
 
 M.PublishInput = {
     type = "structure",
+    id = "PublishInput",
     members = {
         topic = {
             type = "string",
@@ -414,10 +438,12 @@ M.PublishInput = {
 
 M.PublishOutput = {
     type = "structure",
+    id = "PublishOutput",
 }
 
 M.RequestEntityTooLargeException = {
     type = "structure",
+    id = "RequestEntityTooLargeException",
     error = "client",
     members = {
         message = {
@@ -428,6 +454,7 @@ M.RequestEntityTooLargeException = {
 
 M.UpdateThingShadowInput = {
     type = "structure",
+    id = "UpdateThingShadowInput",
     members = {
         thingName = {
             type = "string",
@@ -454,6 +481,7 @@ M.UpdateThingShadowInput = {
 
 M.UpdateThingShadowOutput = {
     type = "structure",
+    id = "UpdateThingShadowOutput",
     members = {
         payload = {
             type = "blob",

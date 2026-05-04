@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -28,10 +29,12 @@ M.AccountColor = {
 
 M.GetAccountCustomizationsInput = {
     type = "structure",
+    id = "GetAccountCustomizationsInput",
 }
 
 M.GetAccountCustomizationsOutput = {
     type = "structure",
+    id = "GetAccountCustomizationsOutput",
     members = {
         accountColor = {
             type = "string",
@@ -49,6 +52,7 @@ M.GetAccountCustomizationsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -62,6 +66,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -75,6 +80,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         path = {
             type = "string",
@@ -93,6 +99,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -110,6 +117,7 @@ M.ValidationException = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         nextToken = {
             type = "string",
@@ -128,6 +136,7 @@ M.ListServicesInput = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -141,6 +150,7 @@ M.ListServicesOutput = {
 
 M.UpdateAccountCustomizationsInput = {
     type = "structure",
+    id = "UpdateAccountCustomizationsInput",
     members = {
         accountColor = {
             type = "string",
@@ -158,6 +168,7 @@ M.UpdateAccountCustomizationsInput = {
 
 M.UpdateAccountCustomizationsOutput = {
     type = "structure",
+    id = "UpdateAccountCustomizationsOutput",
     members = {
         accountColor = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         key = {
             type = "string",
@@ -39,6 +41,7 @@ M.VisualType = {
 
 M.GraphDisplayConfig = {
     type = "structure",
+    id = "GraphDisplayConfig",
     members = {
         visualType = {
             type = "string",
@@ -51,10 +54,12 @@ M.GraphDisplayConfig = {
 
 M.TableDisplayConfigStruct = {
     type = "structure",
+    id = "TableDisplayConfigStruct",
 }
 
 M.DisplayConfig = {
     type = "union",
+    id = "DisplayConfig",
     members = {
         graph = {
             type = "map",
@@ -78,6 +83,7 @@ M.MatchOption = {
 
 M.CostCategoryValues = {
     type = "structure",
+    id = "CostCategoryValues",
     members = {
         key = {
             type = "string",
@@ -124,6 +130,7 @@ M.Dimension = {
 
 M.DimensionValues = {
     type = "structure",
+    id = "DimensionValues",
     members = {
         key = {
             type = "string",
@@ -147,6 +154,7 @@ M.DimensionValues = {
 
 M.TagValues = {
     type = "structure",
+    id = "TagValues",
     members = {
         key = {
             type = "string",
@@ -176,6 +184,7 @@ M.GroupDefinitionType = {
 
 M.GroupDefinition = {
     type = "structure",
+    id = "GroupDefinition",
     members = {
         key = {
             type = "string",
@@ -213,6 +222,7 @@ M.DateTimeType = {
 
 M.DateTimeValue = {
     type = "structure",
+    id = "DateTimeValue",
     members = {
         type = {
             type = "string",
@@ -231,6 +241,7 @@ M.DateTimeValue = {
 
 M.DateTimeRange = {
     type = "structure",
+    id = "DateTimeRange",
     members = {
         startTime = setmetatable({ traits = {
             required = true,
@@ -243,6 +254,7 @@ M.DateTimeRange = {
 
 M.CreateDashboardOutput = {
     type = "structure",
+    id = "CreateDashboardOutput",
     members = {
         arn = {
             type = "string",
@@ -255,6 +267,7 @@ M.CreateDashboardOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -268,6 +281,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -281,6 +295,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -294,6 +309,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -307,6 +323,7 @@ M.ValidationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -320,6 +337,7 @@ M.ConflictException = {
 
 M.SchedulePeriod = {
     type = "structure",
+    id = "SchedulePeriod",
     members = {
         startTime = {
             type = "timestamp",
@@ -337,6 +355,7 @@ M.ScheduleState = {
 
 M.ScheduleConfig = {
     type = "structure",
+    id = "ScheduleConfig",
     members = {
         scheduleExpression = {
             type = "string",
@@ -353,6 +372,7 @@ M.ScheduleConfig = {
 
 M.ScheduledReportInput = {
     type = "structure",
+    id = "ScheduledReportInput",
     members = {
         name = {
             type = "string",
@@ -388,6 +408,7 @@ M.ScheduledReportInput = {
 
 M.CreateScheduledReportInput = {
     type = "structure",
+    id = "CreateScheduledReportInput",
     members = {
         scheduledReport = setmetatable({ traits = {
             required = true,
@@ -408,6 +429,7 @@ M.CreateScheduledReportInput = {
 
 M.CreateScheduledReportOutput = {
     type = "structure",
+    id = "CreateScheduledReportOutput",
     members = {
         arn = {
             type = "string",
@@ -420,6 +442,7 @@ M.CreateScheduledReportOutput = {
 
 M.DeleteDashboardInput = {
     type = "structure",
+    id = "DeleteDashboardInput",
     members = {
         arn = {
             type = "string",
@@ -432,6 +455,7 @@ M.DeleteDashboardInput = {
 
 M.DeleteDashboardOutput = {
     type = "structure",
+    id = "DeleteDashboardOutput",
     members = {
         arn = {
             type = "string",
@@ -444,6 +468,7 @@ M.DeleteDashboardOutput = {
 
 M.DeleteScheduledReportInput = {
     type = "structure",
+    id = "DeleteScheduledReportInput",
     members = {
         arn = {
             type = "string",
@@ -456,6 +481,7 @@ M.DeleteScheduledReportInput = {
 
 M.DeleteScheduledReportOutput = {
     type = "structure",
+    id = "DeleteScheduledReportOutput",
     members = {
         arn = {
             type = "string",
@@ -468,6 +494,7 @@ M.DeleteScheduledReportOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -481,6 +508,7 @@ M.ResourceNotFoundException = {
 
 M.ExecuteScheduledReportInput = {
     type = "structure",
+    id = "ExecuteScheduledReportInput",
     members = {
         arn = {
             type = "string",
@@ -518,6 +546,7 @@ M.StatusReason = {
 
 M.HealthStatus = {
     type = "structure",
+    id = "HealthStatus",
     members = {
         statusCode = {
             type = "string",
@@ -537,6 +566,7 @@ M.HealthStatus = {
 
 M.ExecuteScheduledReportOutput = {
     type = "structure",
+    id = "ExecuteScheduledReportOutput",
     members = {
         healthStatus = M.HealthStatus,
         executionTriggered = {
@@ -547,6 +577,7 @@ M.ExecuteScheduledReportOutput = {
 
 M.GetDashboardInput = {
     type = "structure",
+    id = "GetDashboardInput",
     members = {
         arn = {
             type = "string",
@@ -563,6 +594,7 @@ M.DashboardType = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -575,6 +607,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -593,6 +626,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetScheduledReportInput = {
     type = "structure",
+    id = "GetScheduledReportInput",
     members = {
         arn = {
             type = "string",
@@ -605,6 +639,7 @@ M.GetScheduledReportInput = {
 
 M.ScheduledReport = {
     type = "structure",
+    id = "ScheduledReport",
     members = {
         arn = {
             type = "string",
@@ -653,6 +688,7 @@ M.ScheduledReport = {
 
 M.GetScheduledReportOutput = {
     type = "structure",
+    id = "GetScheduledReportOutput",
     members = {
         scheduledReport = setmetatable({ traits = {
             required = true,
@@ -662,6 +698,7 @@ M.GetScheduledReportOutput = {
 
 M.ListDashboardsInput = {
     type = "structure",
+    id = "ListDashboardsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -677,6 +714,7 @@ M.ListDashboardsInput = {
 
 M.DashboardReference = {
     type = "structure",
+    id = "DashboardReference",
     members = {
         arn = {
             type = "string",
@@ -716,6 +754,7 @@ M.DashboardReference = {
 
 M.ListDashboardsOutput = {
     type = "structure",
+    id = "ListDashboardsOutput",
     members = {
         dashboards = {
             type = "list",
@@ -732,6 +771,7 @@ M.ListDashboardsOutput = {
 
 M.ListScheduledReportsInput = {
     type = "structure",
+    id = "ListScheduledReportsInput",
     members = {
         nextToken = {
             type = "string",
@@ -747,6 +787,7 @@ M.ListScheduledReportsInput = {
 
 M.ScheduledReportSummary = {
     type = "structure",
+    id = "ScheduledReportSummary",
     members = {
         arn = {
             type = "string",
@@ -793,6 +834,7 @@ M.ScheduledReportSummary = {
 
 M.ListScheduledReportsOutput = {
     type = "structure",
+    id = "ListScheduledReportsOutput",
     members = {
         scheduledReports = {
             type = "list",
@@ -809,6 +851,7 @@ M.ListScheduledReportsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -821,6 +864,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         resourceTags = {
             type = "list",
@@ -831,6 +875,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -850,10 +895,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -873,10 +920,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDashboardOutput = {
     type = "structure",
+    id = "UpdateDashboardOutput",
     members = {
         arn = {
             type = "string",
@@ -889,6 +938,7 @@ M.UpdateDashboardOutput = {
 
 M.UpdateScheduledReportInput = {
     type = "structure",
+    id = "UpdateScheduledReportInput",
     members = {
         arn = {
             type = "string",
@@ -931,6 +981,7 @@ M.UpdateScheduledReportInput = {
 
 M.UpdateScheduledReportOutput = {
     type = "structure",
+    id = "UpdateScheduledReportOutput",
     members = {
         arn = {
             type = "string",
@@ -943,6 +994,7 @@ M.UpdateScheduledReportOutput = {
 
 M.Expression = {
     type = "structure",
+    id = "Expression",
     members = {
         or = {
             type = "list",
@@ -961,6 +1013,7 @@ M.Expression = {
 
 M.CostAndUsageQuery = {
     type = "structure",
+    id = "CostAndUsageQuery",
     members = {
         metrics = {
             type = "list",
@@ -988,6 +1041,7 @@ M.CostAndUsageQuery = {
 
 M.ReservationCoverageQuery = {
     type = "structure",
+    id = "ReservationCoverageQuery",
     members = {
         timeRange = setmetatable({ traits = {
             required = true,
@@ -1009,6 +1063,7 @@ M.ReservationCoverageQuery = {
 
 M.ReservationUtilizationQuery = {
     type = "structure",
+    id = "ReservationUtilizationQuery",
     members = {
         timeRange = setmetatable({ traits = {
             required = true,
@@ -1026,6 +1081,7 @@ M.ReservationUtilizationQuery = {
 
 M.SavingsPlansCoverageQuery = {
     type = "structure",
+    id = "SavingsPlansCoverageQuery",
     members = {
         timeRange = setmetatable({ traits = {
             required = true,
@@ -1047,6 +1103,7 @@ M.SavingsPlansCoverageQuery = {
 
 M.SavingsPlansUtilizationQuery = {
     type = "structure",
+    id = "SavingsPlansUtilizationQuery",
     members = {
         timeRange = setmetatable({ traits = {
             required = true,
@@ -1060,6 +1117,7 @@ M.SavingsPlansUtilizationQuery = {
 
 M.QueryParameters = {
     type = "union",
+    id = "QueryParameters",
     members = {
         costAndUsage = M.CostAndUsageQuery,
         savingsPlansCoverage = M.SavingsPlansCoverageQuery,
@@ -1071,6 +1129,7 @@ M.QueryParameters = {
 
 M.WidgetConfig = {
     type = "structure",
+    id = "WidgetConfig",
     members = {
         queryParameters = setmetatable({ traits = {
             required = true,
@@ -1083,6 +1142,7 @@ M.WidgetConfig = {
 
 M.Widget = {
     type = "structure",
+    id = "Widget",
     members = {
         id = {
             type = "string",
@@ -1126,6 +1186,7 @@ M.Widget = {
 
 M.CreateDashboardInput = {
     type = "structure",
+    id = "CreateDashboardInput",
     members = {
         name = {
             type = "string",
@@ -1152,6 +1213,7 @@ M.CreateDashboardInput = {
 
 M.GetDashboardOutput = {
     type = "structure",
+    id = "GetDashboardOutput",
     members = {
         arn = {
             type = "string",
@@ -1198,6 +1260,7 @@ M.GetDashboardOutput = {
 
 M.UpdateDashboardInput = {
     type = "structure",
+    id = "UpdateDashboardInput",
     members = {
         arn = {
             type = "string",

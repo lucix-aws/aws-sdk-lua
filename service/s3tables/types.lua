@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -22,6 +24,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -32,6 +35,7 @@ M.ConflictException = {
 
 M.CreateNamespaceInput = {
     type = "structure",
+    id = "CreateNamespaceInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -52,6 +56,7 @@ M.CreateNamespaceInput = {
 
 M.CreateNamespaceOutput = {
     type = "structure",
+    id = "CreateNamespaceOutput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -71,6 +76,7 @@ M.CreateNamespaceOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -81,6 +87,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         message = {
@@ -91,6 +98,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -101,6 +109,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -116,6 +125,7 @@ M.SSEAlgorithm = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         sseAlgorithm = {
             type = "string",
@@ -135,6 +145,7 @@ M.OpenTableFormat = {
 
 M.IcebergPartitionField = {
     type = "structure",
+    id = "IcebergPartitionField",
     members = {
         sourceId = {
             type = "integer",
@@ -166,6 +177,7 @@ M.IcebergPartitionField = {
 
 M.IcebergPartitionSpec = {
     type = "structure",
+    id = "IcebergPartitionSpec",
     members = {
         fields = {
             type = "list",
@@ -185,6 +197,7 @@ M.IcebergPartitionSpec = {
 
 M.SchemaField = {
     type = "structure",
+    id = "SchemaField",
     members = {
         id = {
             type = "integer",
@@ -212,6 +225,7 @@ M.SchemaField = {
 
 M.IcebergSchema = {
     type = "structure",
+    id = "IcebergSchema",
     members = {
         fields = {
             type = "list",
@@ -225,6 +239,7 @@ M.IcebergSchema = {
 
 M.SchemaV2Field = {
     type = "structure",
+    id = "SchemaV2Field",
     members = {
         id = {
             type = "integer",
@@ -262,6 +277,7 @@ M.SchemaV2FieldType = {
 
 M.IcebergSchemaV2 = {
     type = "structure",
+    id = "IcebergSchemaV2",
     members = {
         type = {
             type = "string",
@@ -304,6 +320,7 @@ M.IcebergNullOrder = {
 
 M.IcebergSortField = {
     type = "structure",
+    id = "IcebergSortField",
     members = {
         sourceId = {
             type = "integer",
@@ -336,6 +353,7 @@ M.IcebergSortField = {
 
 M.IcebergSortOrder = {
     type = "structure",
+    id = "IcebergSortOrder",
     members = {
         orderId = {
             type = "integer",
@@ -356,6 +374,7 @@ M.IcebergSortOrder = {
 
 M.IcebergMetadata = {
     type = "structure",
+    id = "IcebergMetadata",
     members = {
         schema = M.IcebergSchema,
         schemaV2 = M.IcebergSchemaV2,
@@ -371,6 +390,7 @@ M.IcebergMetadata = {
 
 M.TableMetadata = {
     type = "union",
+    id = "TableMetadata",
     members = {
         iceberg = M.IcebergMetadata,
     },
@@ -383,6 +403,7 @@ M.StorageClass = {
 
 M.StorageClassConfiguration = {
     type = "structure",
+    id = "StorageClassConfiguration",
     members = {
         storageClass = {
             type = "string",
@@ -395,6 +416,7 @@ M.StorageClassConfiguration = {
 
 M.CreateTableInput = {
     type = "structure",
+    id = "CreateTableInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -435,6 +457,7 @@ M.CreateTableInput = {
 
 M.CreateTableOutput = {
     type = "structure",
+    id = "CreateTableOutput",
     members = {
         tableARN = {
             type = "string",
@@ -453,6 +476,7 @@ M.CreateTableOutput = {
 
 M.CreateTableBucketInput = {
     type = "structure",
+    id = "CreateTableBucketInput",
     members = {
         name = {
             type = "string",
@@ -472,6 +496,7 @@ M.CreateTableBucketInput = {
 
 M.CreateTableBucketOutput = {
     type = "structure",
+    id = "CreateTableBucketOutput",
     members = {
         arn = {
             type = "string",
@@ -484,6 +509,7 @@ M.CreateTableBucketOutput = {
 
 M.DeleteNamespaceInput = {
     type = "structure",
+    id = "DeleteNamespaceInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -504,10 +530,12 @@ M.DeleteNamespaceInput = {
 
 M.DeleteNamespaceOutput = {
     type = "structure",
+    id = "DeleteNamespaceOutput",
 }
 
 M.DeleteTableInput = {
     type = "structure",
+    id = "DeleteTableInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -541,10 +569,12 @@ M.DeleteTableInput = {
 
 M.DeleteTableOutput = {
     type = "structure",
+    id = "DeleteTableOutput",
 }
 
 M.DeleteTableBucketInput = {
     type = "structure",
+    id = "DeleteTableBucketInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -558,10 +588,12 @@ M.DeleteTableBucketInput = {
 
 M.DeleteTableBucketOutput = {
     type = "structure",
+    id = "DeleteTableBucketOutput",
 }
 
 M.DeleteTableBucketEncryptionInput = {
     type = "structure",
+    id = "DeleteTableBucketEncryptionInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -575,10 +607,12 @@ M.DeleteTableBucketEncryptionInput = {
 
 M.DeleteTableBucketEncryptionOutput = {
     type = "structure",
+    id = "DeleteTableBucketEncryptionOutput",
 }
 
 M.DeleteTableBucketMetricsConfigurationInput = {
     type = "structure",
+    id = "DeleteTableBucketMetricsConfigurationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -592,10 +626,12 @@ M.DeleteTableBucketMetricsConfigurationInput = {
 
 M.DeleteTableBucketMetricsConfigurationOutput = {
     type = "structure",
+    id = "DeleteTableBucketMetricsConfigurationOutput",
 }
 
 M.DeleteTableBucketPolicyInput = {
     type = "structure",
+    id = "DeleteTableBucketPolicyInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -609,10 +645,12 @@ M.DeleteTableBucketPolicyInput = {
 
 M.DeleteTableBucketPolicyOutput = {
     type = "structure",
+    id = "DeleteTableBucketPolicyOutput",
 }
 
 M.DeleteTableBucketReplicationInput = {
     type = "structure",
+    id = "DeleteTableBucketReplicationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -632,10 +670,12 @@ M.DeleteTableBucketReplicationInput = {
 
 M.DeleteTableBucketReplicationOutput = {
     type = "structure",
+    id = "DeleteTableBucketReplicationOutput",
 }
 
 M.DeleteTablePolicyInput = {
     type = "structure",
+    id = "DeleteTablePolicyInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -663,10 +703,12 @@ M.DeleteTablePolicyInput = {
 
 M.DeleteTablePolicyOutput = {
     type = "structure",
+    id = "DeleteTablePolicyOutput",
 }
 
 M.DeleteTableReplicationInput = {
     type = "structure",
+    id = "DeleteTableReplicationInput",
     members = {
         tableArn = {
             type = "string",
@@ -687,10 +729,12 @@ M.DeleteTableReplicationInput = {
 
 M.DeleteTableReplicationOutput = {
     type = "structure",
+    id = "DeleteTableReplicationOutput",
 }
 
 M.GetNamespaceInput = {
     type = "structure",
+    id = "GetNamespaceInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -711,6 +755,7 @@ M.GetNamespaceInput = {
 
 M.GetNamespaceOutput = {
     type = "structure",
+    id = "GetNamespaceOutput",
     members = {
         namespace = {
             type = "list",
@@ -749,6 +794,7 @@ M.GetNamespaceOutput = {
 
 M.GetTableInput = {
     type = "structure",
+    id = "GetTableInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -779,6 +825,7 @@ M.GetTableInput = {
 
 M.ReplicationInformation = {
     type = "structure",
+    id = "ReplicationInformation",
     members = {
         sourceTableARN = {
             type = "string",
@@ -791,6 +838,7 @@ M.ReplicationInformation = {
 
 M.ManagedTableInformation = {
     type = "structure",
+    id = "ManagedTableInformation",
     members = {
         replicationInformation = M.ReplicationInformation,
     },
@@ -803,6 +851,7 @@ M.TableType = {
 
 M.GetTableOutput = {
     type = "structure",
+    id = "GetTableOutput",
     members = {
         name = {
             type = "string",
@@ -900,6 +949,7 @@ M.GetTableOutput = {
 
 M.GetTableBucketInput = {
     type = "structure",
+    id = "GetTableBucketInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -918,6 +968,7 @@ M.TableBucketType = {
 
 M.GetTableBucketOutput = {
     type = "structure",
+    id = "GetTableBucketOutput",
     members = {
         arn = {
             type = "string",
@@ -955,6 +1006,7 @@ M.GetTableBucketOutput = {
 
 M.GetTableBucketEncryptionInput = {
     type = "structure",
+    id = "GetTableBucketEncryptionInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -968,6 +1020,7 @@ M.GetTableBucketEncryptionInput = {
 
 M.GetTableBucketEncryptionOutput = {
     type = "structure",
+    id = "GetTableBucketEncryptionOutput",
     members = {
         encryptionConfiguration = setmetatable({ traits = {
             required = true,
@@ -977,6 +1030,7 @@ M.GetTableBucketEncryptionOutput = {
 
 M.GetTableBucketMaintenanceConfigurationInput = {
     type = "structure",
+    id = "GetTableBucketMaintenanceConfigurationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -994,6 +1048,7 @@ M.TableBucketMaintenanceType = {
 
 M.IcebergUnreferencedFileRemovalSettings = {
     type = "structure",
+    id = "IcebergUnreferencedFileRemovalSettings",
     members = {
         unreferencedDays = {
             type = "integer",
@@ -1006,6 +1061,7 @@ M.IcebergUnreferencedFileRemovalSettings = {
 
 M.TableBucketMaintenanceSettings = {
     type = "union",
+    id = "TableBucketMaintenanceSettings",
     members = {
         icebergUnreferencedFileRemoval = M.IcebergUnreferencedFileRemovalSettings,
     },
@@ -1018,6 +1074,7 @@ M.MaintenanceStatus = {
 
 M.TableBucketMaintenanceConfigurationValue = {
     type = "structure",
+    id = "TableBucketMaintenanceConfigurationValue",
     members = {
         status = {
             type = "string",
@@ -1028,6 +1085,7 @@ M.TableBucketMaintenanceConfigurationValue = {
 
 M.GetTableBucketMaintenanceConfigurationOutput = {
     type = "structure",
+    id = "GetTableBucketMaintenanceConfigurationOutput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1048,6 +1106,7 @@ M.GetTableBucketMaintenanceConfigurationOutput = {
 
 M.GetTableBucketMetricsConfigurationInput = {
     type = "structure",
+    id = "GetTableBucketMetricsConfigurationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1061,6 +1120,7 @@ M.GetTableBucketMetricsConfigurationInput = {
 
 M.GetTableBucketMetricsConfigurationOutput = {
     type = "structure",
+    id = "GetTableBucketMetricsConfigurationOutput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1076,6 +1136,7 @@ M.GetTableBucketMetricsConfigurationOutput = {
 
 M.GetTableBucketPolicyInput = {
     type = "structure",
+    id = "GetTableBucketPolicyInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1089,6 +1150,7 @@ M.GetTableBucketPolicyInput = {
 
 M.GetTableBucketPolicyOutput = {
     type = "structure",
+    id = "GetTableBucketPolicyOutput",
     members = {
         resourcePolicy = {
             type = "string",
@@ -1101,6 +1163,7 @@ M.GetTableBucketPolicyOutput = {
 
 M.GetTableBucketReplicationInput = {
     type = "structure",
+    id = "GetTableBucketReplicationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1114,6 +1177,7 @@ M.GetTableBucketReplicationInput = {
 
 M.ReplicationDestination = {
     type = "structure",
+    id = "ReplicationDestination",
     members = {
         destinationTableBucketARN = {
             type = "string",
@@ -1126,6 +1190,7 @@ M.ReplicationDestination = {
 
 M.TableBucketReplicationRule = {
     type = "structure",
+    id = "TableBucketReplicationRule",
     members = {
         destinations = {
             type = "list",
@@ -1139,6 +1204,7 @@ M.TableBucketReplicationRule = {
 
 M.TableBucketReplicationConfiguration = {
     type = "structure",
+    id = "TableBucketReplicationConfiguration",
     members = {
         role = {
             type = "string",
@@ -1158,6 +1224,7 @@ M.TableBucketReplicationConfiguration = {
 
 M.GetTableBucketReplicationOutput = {
     type = "structure",
+    id = "GetTableBucketReplicationOutput",
     members = {
         versionToken = {
             type = "string",
@@ -1173,6 +1240,7 @@ M.GetTableBucketReplicationOutput = {
 
 M.GetTableBucketStorageClassInput = {
     type = "structure",
+    id = "GetTableBucketStorageClassInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1186,6 +1254,7 @@ M.GetTableBucketStorageClassInput = {
 
 M.GetTableBucketStorageClassOutput = {
     type = "structure",
+    id = "GetTableBucketStorageClassOutput",
     members = {
         storageClassConfiguration = setmetatable({ traits = {
             required = true,
@@ -1195,6 +1264,7 @@ M.GetTableBucketStorageClassOutput = {
 
 M.GetTableEncryptionInput = {
     type = "structure",
+    id = "GetTableEncryptionInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1222,6 +1292,7 @@ M.GetTableEncryptionInput = {
 
 M.GetTableEncryptionOutput = {
     type = "structure",
+    id = "GetTableEncryptionOutput",
     members = {
         encryptionConfiguration = setmetatable({ traits = {
             required = true,
@@ -1231,6 +1302,7 @@ M.GetTableEncryptionOutput = {
 
 M.GetTableMaintenanceConfigurationInput = {
     type = "structure",
+    id = "GetTableMaintenanceConfigurationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1270,6 +1342,7 @@ M.IcebergCompactionStrategy = {
 
 M.IcebergCompactionSettings = {
     type = "structure",
+    id = "IcebergCompactionSettings",
     members = {
         targetFileSizeMB = {
             type = "integer",
@@ -1282,6 +1355,7 @@ M.IcebergCompactionSettings = {
 
 M.IcebergSnapshotManagementSettings = {
     type = "structure",
+    id = "IcebergSnapshotManagementSettings",
     members = {
         minSnapshotsToKeep = {
             type = "integer",
@@ -1294,6 +1368,7 @@ M.IcebergSnapshotManagementSettings = {
 
 M.TableMaintenanceSettings = {
     type = "union",
+    id = "TableMaintenanceSettings",
     members = {
         icebergCompaction = M.IcebergCompactionSettings,
         icebergSnapshotManagement = M.IcebergSnapshotManagementSettings,
@@ -1302,6 +1377,7 @@ M.TableMaintenanceSettings = {
 
 M.TableMaintenanceConfigurationValue = {
     type = "structure",
+    id = "TableMaintenanceConfigurationValue",
     members = {
         status = {
             type = "string",
@@ -1312,6 +1388,7 @@ M.TableMaintenanceConfigurationValue = {
 
 M.GetTableMaintenanceConfigurationOutput = {
     type = "structure",
+    id = "GetTableMaintenanceConfigurationOutput",
     members = {
         tableARN = {
             type = "string",
@@ -1332,6 +1409,7 @@ M.GetTableMaintenanceConfigurationOutput = {
 
 M.GetTableMaintenanceJobStatusInput = {
     type = "structure",
+    id = "GetTableMaintenanceJobStatusInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1372,6 +1450,7 @@ M.JobStatus = {
 
 M.TableMaintenanceJobStatusValue = {
     type = "structure",
+    id = "TableMaintenanceJobStatusValue",
     members = {
         status = {
             type = "string",
@@ -1393,6 +1472,7 @@ M.TableMaintenanceJobStatusValue = {
 
 M.GetTableMaintenanceJobStatusOutput = {
     type = "structure",
+    id = "GetTableMaintenanceJobStatusOutput",
     members = {
         tableARN = {
             type = "string",
@@ -1413,6 +1493,7 @@ M.GetTableMaintenanceJobStatusOutput = {
 
 M.GetTableMetadataLocationInput = {
     type = "structure",
+    id = "GetTableMetadataLocationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1440,6 +1521,7 @@ M.GetTableMetadataLocationInput = {
 
 M.GetTableMetadataLocationOutput = {
     type = "structure",
+    id = "GetTableMetadataLocationOutput",
     members = {
         versionToken = {
             type = "string",
@@ -1461,6 +1543,7 @@ M.GetTableMetadataLocationOutput = {
 
 M.GetTablePolicyInput = {
     type = "structure",
+    id = "GetTablePolicyInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1488,6 +1571,7 @@ M.GetTablePolicyInput = {
 
 M.GetTablePolicyOutput = {
     type = "structure",
+    id = "GetTablePolicyOutput",
     members = {
         resourcePolicy = {
             type = "string",
@@ -1500,6 +1584,7 @@ M.GetTablePolicyOutput = {
 
 M.GetTableRecordExpirationConfigurationInput = {
     type = "structure",
+    id = "GetTableRecordExpirationConfigurationInput",
     members = {
         tableArn = {
             type = "string",
@@ -1513,6 +1598,7 @@ M.GetTableRecordExpirationConfigurationInput = {
 
 M.TableRecordExpirationSettings = {
     type = "structure",
+    id = "TableRecordExpirationSettings",
     members = {
         days = {
             type = "integer",
@@ -1527,6 +1613,7 @@ M.TableRecordExpirationStatus = {
 
 M.TableRecordExpirationConfigurationValue = {
     type = "structure",
+    id = "TableRecordExpirationConfigurationValue",
     members = {
         status = {
             type = "string",
@@ -1537,6 +1624,7 @@ M.TableRecordExpirationConfigurationValue = {
 
 M.GetTableRecordExpirationConfigurationOutput = {
     type = "structure",
+    id = "GetTableRecordExpirationConfigurationOutput",
     members = {
         configuration = setmetatable({ traits = {
             required = true,
@@ -1546,6 +1634,7 @@ M.GetTableRecordExpirationConfigurationOutput = {
 
 M.MethodNotAllowedException = {
     type = "structure",
+    id = "MethodNotAllowedException",
     error = "client",
     members = {
         message = {
@@ -1556,6 +1645,7 @@ M.MethodNotAllowedException = {
 
 M.GetTableRecordExpirationJobStatusInput = {
     type = "structure",
+    id = "GetTableRecordExpirationJobStatusInput",
     members = {
         tableArn = {
             type = "string",
@@ -1569,6 +1659,7 @@ M.GetTableRecordExpirationJobStatusInput = {
 
 M.TableRecordExpirationJobMetrics = {
     type = "structure",
+    id = "TableRecordExpirationJobMetrics",
     members = {
         deletedDataFiles = {
             type = "long",
@@ -1591,6 +1682,7 @@ M.TableRecordExpirationJobStatus = {
 
 M.GetTableRecordExpirationJobStatusOutput = {
     type = "structure",
+    id = "GetTableRecordExpirationJobStatusOutput",
     members = {
         status = {
             type = "string",
@@ -1613,6 +1705,7 @@ M.GetTableRecordExpirationJobStatusOutput = {
 
 M.GetTableReplicationInput = {
     type = "structure",
+    id = "GetTableReplicationInput",
     members = {
         tableArn = {
             type = "string",
@@ -1626,6 +1719,7 @@ M.GetTableReplicationInput = {
 
 M.TableReplicationRule = {
     type = "structure",
+    id = "TableReplicationRule",
     members = {
         destinations = {
             type = "list",
@@ -1639,6 +1733,7 @@ M.TableReplicationRule = {
 
 M.TableReplicationConfiguration = {
     type = "structure",
+    id = "TableReplicationConfiguration",
     members = {
         role = {
             type = "string",
@@ -1658,6 +1753,7 @@ M.TableReplicationConfiguration = {
 
 M.GetTableReplicationOutput = {
     type = "structure",
+    id = "GetTableReplicationOutput",
     members = {
         versionToken = {
             type = "string",
@@ -1673,6 +1769,7 @@ M.GetTableReplicationOutput = {
 
 M.GetTableReplicationStatusInput = {
     type = "structure",
+    id = "GetTableReplicationStatusInput",
     members = {
         tableArn = {
             type = "string",
@@ -1686,6 +1783,7 @@ M.GetTableReplicationStatusInput = {
 
 M.LastSuccessfulReplicatedUpdate = {
     type = "structure",
+    id = "LastSuccessfulReplicatedUpdate",
     members = {
         metadataLocation = {
             type = "string",
@@ -1711,6 +1809,7 @@ M.ReplicationStatus = {
 
 M.ReplicationDestinationStatusModel = {
     type = "structure",
+    id = "ReplicationDestinationStatusModel",
     members = {
         replicationStatus = {
             type = "string",
@@ -1736,6 +1835,7 @@ M.ReplicationDestinationStatusModel = {
 
 M.GetTableReplicationStatusOutput = {
     type = "structure",
+    id = "GetTableReplicationStatusOutput",
     members = {
         sourceTableArn = {
             type = "string",
@@ -1755,6 +1855,7 @@ M.GetTableReplicationStatusOutput = {
 
 M.GetTableStorageClassInput = {
     type = "structure",
+    id = "GetTableStorageClassInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1782,6 +1883,7 @@ M.GetTableStorageClassInput = {
 
 M.GetTableStorageClassOutput = {
     type = "structure",
+    id = "GetTableStorageClassOutput",
     members = {
         storageClassConfiguration = setmetatable({ traits = {
             required = true,
@@ -1791,6 +1893,7 @@ M.GetTableStorageClassOutput = {
 
 M.ListNamespacesInput = {
     type = "structure",
+    id = "ListNamespacesInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1822,6 +1925,7 @@ M.ListNamespacesInput = {
 
 M.NamespaceSummary = {
     type = "structure",
+    id = "NamespaceSummary",
     members = {
         namespace = {
             type = "list",
@@ -1860,6 +1964,7 @@ M.NamespaceSummary = {
 
 M.ListNamespacesOutput = {
     type = "structure",
+    id = "ListNamespacesOutput",
     members = {
         namespaces = {
             type = "list",
@@ -1876,6 +1981,7 @@ M.ListNamespacesOutput = {
 
 M.ListTableBucketsInput = {
     type = "structure",
+    id = "ListTableBucketsInput",
     members = {
         prefix = {
             type = "string",
@@ -1906,6 +2012,7 @@ M.ListTableBucketsInput = {
 
 M.TableBucketSummary = {
     type = "structure",
+    id = "TableBucketSummary",
     members = {
         arn = {
             type = "string",
@@ -1943,6 +2050,7 @@ M.TableBucketSummary = {
 
 M.ListTableBucketsOutput = {
     type = "structure",
+    id = "ListTableBucketsOutput",
     members = {
         tableBuckets = {
             type = "list",
@@ -1959,6 +2067,7 @@ M.ListTableBucketsOutput = {
 
 M.ListTablesInput = {
     type = "structure",
+    id = "ListTablesInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -1996,6 +2105,7 @@ M.ListTablesInput = {
 
 M.TableSummary = {
     type = "structure",
+    id = "TableSummary",
     members = {
         namespace = {
             type = "list",
@@ -2050,6 +2160,7 @@ M.TableSummary = {
 
 M.ListTablesOutput = {
     type = "structure",
+    id = "ListTablesOutput",
     members = {
         tables = {
             type = "list",
@@ -2066,6 +2177,7 @@ M.ListTablesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2079,6 +2191,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2090,6 +2203,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutTableBucketEncryptionInput = {
     type = "structure",
+    id = "PutTableBucketEncryptionInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2106,10 +2220,12 @@ M.PutTableBucketEncryptionInput = {
 
 M.PutTableBucketEncryptionOutput = {
     type = "structure",
+    id = "PutTableBucketEncryptionOutput",
 }
 
 M.PutTableBucketMaintenanceConfigurationInput = {
     type = "structure",
+    id = "PutTableBucketMaintenanceConfigurationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2133,10 +2249,12 @@ M.PutTableBucketMaintenanceConfigurationInput = {
 
 M.PutTableBucketMaintenanceConfigurationOutput = {
     type = "structure",
+    id = "PutTableBucketMaintenanceConfigurationOutput",
 }
 
 M.PutTableBucketMetricsConfigurationInput = {
     type = "structure",
+    id = "PutTableBucketMetricsConfigurationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2150,10 +2268,12 @@ M.PutTableBucketMetricsConfigurationInput = {
 
 M.PutTableBucketMetricsConfigurationOutput = {
     type = "structure",
+    id = "PutTableBucketMetricsConfigurationOutput",
 }
 
 M.PutTableBucketPolicyInput = {
     type = "structure",
+    id = "PutTableBucketPolicyInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2173,10 +2293,12 @@ M.PutTableBucketPolicyInput = {
 
 M.PutTableBucketPolicyOutput = {
     type = "structure",
+    id = "PutTableBucketPolicyOutput",
 }
 
 M.PutTableBucketReplicationInput = {
     type = "structure",
+    id = "PutTableBucketReplicationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2199,6 +2321,7 @@ M.PutTableBucketReplicationInput = {
 
 M.PutTableBucketReplicationOutput = {
     type = "structure",
+    id = "PutTableBucketReplicationOutput",
     members = {
         versionToken = {
             type = "string",
@@ -2217,6 +2340,7 @@ M.PutTableBucketReplicationOutput = {
 
 M.PutTableBucketStorageClassInput = {
     type = "structure",
+    id = "PutTableBucketStorageClassInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2233,10 +2357,12 @@ M.PutTableBucketStorageClassInput = {
 
 M.PutTableBucketStorageClassOutput = {
     type = "structure",
+    id = "PutTableBucketStorageClassOutput",
 }
 
 M.PutTableMaintenanceConfigurationInput = {
     type = "structure",
+    id = "PutTableMaintenanceConfigurationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2274,10 +2400,12 @@ M.PutTableMaintenanceConfigurationInput = {
 
 M.PutTableMaintenanceConfigurationOutput = {
     type = "structure",
+    id = "PutTableMaintenanceConfigurationOutput",
 }
 
 M.PutTablePolicyInput = {
     type = "structure",
+    id = "PutTablePolicyInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2311,10 +2439,12 @@ M.PutTablePolicyInput = {
 
 M.PutTablePolicyOutput = {
     type = "structure",
+    id = "PutTablePolicyOutput",
 }
 
 M.PutTableRecordExpirationConfigurationInput = {
     type = "structure",
+    id = "PutTableRecordExpirationConfigurationInput",
     members = {
         tableArn = {
             type = "string",
@@ -2331,10 +2461,12 @@ M.PutTableRecordExpirationConfigurationInput = {
 
 M.PutTableRecordExpirationConfigurationOutput = {
     type = "structure",
+    id = "PutTableRecordExpirationConfigurationOutput",
 }
 
 M.PutTableReplicationInput = {
     type = "structure",
+    id = "PutTableReplicationInput",
     members = {
         tableArn = {
             type = "string",
@@ -2357,6 +2489,7 @@ M.PutTableReplicationInput = {
 
 M.PutTableReplicationOutput = {
     type = "structure",
+    id = "PutTableReplicationOutput",
     members = {
         versionToken = {
             type = "string",
@@ -2375,6 +2508,7 @@ M.PutTableReplicationOutput = {
 
 M.RenameTableInput = {
     type = "structure",
+    id = "RenameTableInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2411,10 +2545,12 @@ M.RenameTableInput = {
 
 M.RenameTableOutput = {
     type = "structure",
+    id = "RenameTableOutput",
 }
 
 M.UpdateTableMetadataLocationInput = {
     type = "structure",
+    id = "UpdateTableMetadataLocationInput",
     members = {
         tableBucketARN = {
             type = "string",
@@ -2454,6 +2590,7 @@ M.UpdateTableMetadataLocationInput = {
 
 M.UpdateTableMetadataLocationOutput = {
     type = "structure",
+    id = "UpdateTableMetadataLocationOutput",
     members = {
         name = {
             type = "string",
@@ -2491,6 +2628,7 @@ M.UpdateTableMetadataLocationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2512,10 +2650,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2537,6 +2677,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

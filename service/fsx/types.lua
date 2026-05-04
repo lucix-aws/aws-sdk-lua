@@ -2,7 +2,11 @@ local M = {}
 
 M.AccessPointAlreadyOwnedByYou = {
     type = "structure",
+    id = "AccessPointAlreadyOwnedByYou",
     error = "client",
+    traits = {
+        xml_name = "Error",
+    },
     members = {
         ErrorCode = {
             type = "string",
@@ -15,6 +19,7 @@ M.AccessPointAlreadyOwnedByYou = {
 
 M.ActiveDirectoryBackupAttributes = {
     type = "structure",
+    id = "ActiveDirectoryBackupAttributes",
     members = {
         DomainName = {
             type = "string",
@@ -38,6 +43,7 @@ M.ActiveDirectoryErrorType = {
 
 M.ActiveDirectoryError = {
     type = "structure",
+    id = "ActiveDirectoryError",
     error = "client",
     members = {
         ActiveDirectoryId = {
@@ -75,6 +81,7 @@ M.AdministrativeActionType = {
 
 M.AdministrativeActionFailureDetails = {
     type = "structure",
+    id = "AdministrativeActionFailureDetails",
     members = {
         Message = {
             type = "string",
@@ -95,6 +102,7 @@ M.Status = {
 
 M.FileSystemFailureDetails = {
     type = "structure",
+    id = "FileSystemFailureDetails",
     members = {
         Message = {
             type = "string",
@@ -132,6 +140,7 @@ M.LustreReadCacheSizingMode = {
 
 M.LustreReadCacheConfiguration = {
     type = "structure",
+    id = "LustreReadCacheConfiguration",
     members = {
         SizingMode = {
             type = "string",
@@ -151,6 +160,7 @@ M.AutoImportPolicyType = {
 
 M.DataRepositoryFailureDetails = {
     type = "structure",
+    id = "DataRepositoryFailureDetails",
     members = {
         Message = {
             type = "string",
@@ -169,6 +179,7 @@ M.DataRepositoryLifecycle = {
 
 M.DataRepositoryConfiguration = {
     type = "structure",
+    id = "DataRepositoryConfiguration",
     members = {
         Lifecycle = {
             type = "string",
@@ -210,6 +221,7 @@ M.LustreAccessAuditLogLevel = {
 
 M.LustreLogConfiguration = {
     type = "structure",
+    id = "LustreLogConfiguration",
     members = {
         Level = {
             type = "string",
@@ -230,6 +242,7 @@ M.MetadataConfigurationMode = {
 
 M.FileSystemLustreMetadataConfiguration = {
     type = "structure",
+    id = "FileSystemLustreMetadataConfiguration",
     members = {
         Iops = {
             type = "integer",
@@ -245,6 +258,7 @@ M.FileSystemLustreMetadataConfiguration = {
 
 M.LustreRootSquashConfiguration = {
     type = "structure",
+    id = "LustreRootSquashConfiguration",
     members = {
         RootSquash = {
             type = "string",
@@ -258,6 +272,7 @@ M.LustreRootSquashConfiguration = {
 
 M.LustreFileSystemConfiguration = {
     type = "structure",
+    id = "LustreFileSystemConfiguration",
     members = {
         WeeklyMaintenanceStartTime = {
             type = "string",
@@ -319,6 +334,7 @@ M.DiskIopsConfigurationMode = {
 
 M.DiskIopsConfiguration = {
     type = "structure",
+    id = "DiskIopsConfiguration",
     members = {
         Mode = {
             type = "string",
@@ -331,6 +347,7 @@ M.DiskIopsConfiguration = {
 
 M.FileSystemEndpoint = {
     type = "structure",
+    id = "FileSystemEndpoint",
     members = {
         DNSName = {
             type = "string",
@@ -348,6 +365,7 @@ M.FileSystemEndpoint = {
 
 M.FileSystemEndpoints = {
     type = "structure",
+    id = "FileSystemEndpoints",
     members = {
         Intercluster = M.FileSystemEndpoint,
         Management = M.FileSystemEndpoint,
@@ -356,6 +374,7 @@ M.FileSystemEndpoints = {
 
 M.OntapFileSystemConfiguration = {
     type = "structure",
+    id = "OntapFileSystemConfiguration",
     members = {
         AutomaticBackupRetentionDays = {
             type = "integer",
@@ -415,6 +434,7 @@ M.OpenZFSReadCacheSizingMode = {
 
 M.OpenZFSReadCacheConfiguration = {
     type = "structure",
+    id = "OpenZFSReadCacheConfiguration",
     members = {
         SizingMode = {
             type = "string",
@@ -427,6 +447,7 @@ M.OpenZFSReadCacheConfiguration = {
 
 M.OpenZFSFileSystemConfiguration = {
     type = "structure",
+    id = "OpenZFSFileSystemConfiguration",
     members = {
         AutomaticBackupRetentionDays = {
             type = "integer",
@@ -484,6 +505,7 @@ M.StorageType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -510,6 +532,7 @@ M.AliasLifecycle = {
 
 M.Alias = {
     type = "structure",
+    id = "Alias",
     members = {
         Name = {
             type = "string",
@@ -529,6 +552,7 @@ M.WindowsAccessAuditLogLevel = {
 
 M.WindowsAuditLogConfiguration = {
     type = "structure",
+    id = "WindowsAuditLogConfiguration",
     members = {
         FileAccessAuditLogLevel = {
             type = "string",
@@ -556,6 +580,7 @@ M.WindowsDeploymentType = {
 
 M.WindowsFsrmConfiguration = {
     type = "structure",
+    id = "WindowsFsrmConfiguration",
     members = {
         FsrmServiceEnabled = {
             type = "boolean",
@@ -576,6 +601,7 @@ M.FileSystemMaintenanceOperation = {
 
 M.SelfManagedActiveDirectoryAttributes = {
     type = "structure",
+    id = "SelfManagedActiveDirectoryAttributes",
     members = {
         DomainName = {
             type = "string",
@@ -601,6 +627,7 @@ M.SelfManagedActiveDirectoryAttributes = {
 
 M.WindowsFileSystemConfiguration = {
     type = "structure",
+    id = "WindowsFileSystemConfiguration",
     members = {
         ActiveDirectoryId = {
             type = "string",
@@ -659,6 +686,7 @@ M.SnapshotLifecycle = {
 
 M.LifecycleTransitionReason = {
     type = "structure",
+    id = "LifecycleTransitionReason",
     members = {
         Message = {
             type = "string",
@@ -678,6 +706,7 @@ M.VolumeLifecycle = {
 
 M.AggregateConfiguration = {
     type = "structure",
+    id = "AggregateConfiguration",
     members = {
         Aggregates = {
             type = "list",
@@ -718,6 +747,7 @@ M.AutocommitPeriodType = {
 
 M.AutocommitPeriod = {
     type = "structure",
+    id = "AutocommitPeriod",
     members = {
         Type = {
             type = "string",
@@ -750,6 +780,7 @@ M.RetentionPeriodType = {
 
 M.RetentionPeriod = {
     type = "structure",
+    id = "RetentionPeriod",
     members = {
         Type = {
             type = "string",
@@ -765,6 +796,7 @@ M.RetentionPeriod = {
 
 M.SnaplockRetentionPeriod = {
     type = "structure",
+    id = "SnaplockRetentionPeriod",
     members = {
         DefaultRetention = setmetatable({ traits = {
             required = true,
@@ -785,6 +817,7 @@ M.SnaplockType = {
 
 M.SnaplockConfiguration = {
     type = "structure",
+    id = "SnaplockConfiguration",
     members = {
         AuditLogVolume = {
             type = "boolean",
@@ -812,6 +845,7 @@ M.TieringPolicyName = {
 
 M.TieringPolicy = {
     type = "structure",
+    id = "TieringPolicy",
     members = {
         CoolingPeriod = {
             type = "integer",
@@ -829,6 +863,7 @@ M.VolumeStyle = {
 
 M.OntapVolumeConfiguration = {
     type = "structure",
+    id = "OntapVolumeConfiguration",
     members = {
         FlexCacheEndpointType = {
             type = "string",
@@ -889,6 +924,7 @@ M.OpenZFSDataCompressionType = {
 
 M.OpenZFSClientConfiguration = {
     type = "structure",
+    id = "OpenZFSClientConfiguration",
     members = {
         Clients = {
             type = "string",
@@ -908,6 +944,7 @@ M.OpenZFSClientConfiguration = {
 
 M.OpenZFSNfsExport = {
     type = "structure",
+    id = "OpenZFSNfsExport",
     members = {
         ClientConfigurations = {
             type = "list",
@@ -921,6 +958,7 @@ M.OpenZFSNfsExport = {
 
 M.OpenZFSOriginSnapshotConfiguration = {
     type = "structure",
+    id = "OpenZFSOriginSnapshotConfiguration",
     members = {
         SnapshotARN = {
             type = "string",
@@ -938,6 +976,7 @@ M.OpenZFSQuotaType = {
 
 M.OpenZFSUserOrGroupQuota = {
     type = "structure",
+    id = "OpenZFSUserOrGroupQuota",
     members = {
         Type = {
             type = "string",
@@ -962,6 +1001,7 @@ M.OpenZFSUserOrGroupQuota = {
 
 M.OpenZFSVolumeConfiguration = {
     type = "structure",
+    id = "OpenZFSVolumeConfiguration",
     members = {
         ParentVolumeId = {
             type = "string",
@@ -1027,6 +1067,7 @@ M.VolumeType = {
 
 M.AssociateFileSystemAliasesInput = {
     type = "structure",
+    id = "AssociateFileSystemAliasesInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -1052,6 +1093,7 @@ M.AssociateFileSystemAliasesInput = {
 
 M.AssociateFileSystemAliasesOutput = {
     type = "structure",
+    id = "AssociateFileSystemAliasesOutput",
     members = {
         Aliases = {
             type = "list",
@@ -1062,6 +1104,7 @@ M.AssociateFileSystemAliasesOutput = {
 
 M.BadRequest = {
     type = "structure",
+    id = "BadRequest",
     error = "client",
     members = {
         Message = {
@@ -1072,6 +1115,7 @@ M.BadRequest = {
 
 M.FileSystemNotFound = {
     type = "structure",
+    id = "FileSystemNotFound",
     error = "client",
     members = {
         Message = {
@@ -1082,6 +1126,7 @@ M.FileSystemNotFound = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -1098,6 +1143,7 @@ M.EventType = {
 
 M.AutoExportPolicy = {
     type = "structure",
+    id = "AutoExportPolicy",
     members = {
         Events = {
             type = "list",
@@ -1108,6 +1154,7 @@ M.AutoExportPolicy = {
 
 M.AutoImportPolicy = {
     type = "structure",
+    id = "AutoImportPolicy",
     members = {
         Events = {
             type = "list",
@@ -1118,6 +1165,7 @@ M.AutoImportPolicy = {
 
 M.CancelDataRepositoryTaskInput = {
     type = "structure",
+    id = "CancelDataRepositoryTaskInput",
     members = {
         TaskId = {
             type = "string",
@@ -1139,6 +1187,7 @@ M.DataRepositoryTaskLifecycle = {
 
 M.CancelDataRepositoryTaskOutput = {
     type = "structure",
+    id = "CancelDataRepositoryTaskOutput",
     members = {
         Lifecycle = {
             type = "string",
@@ -1151,6 +1200,7 @@ M.CancelDataRepositoryTaskOutput = {
 
 M.DataRepositoryTaskEnded = {
     type = "structure",
+    id = "DataRepositoryTaskEnded",
     error = "client",
     members = {
         Message = {
@@ -1161,6 +1211,7 @@ M.DataRepositoryTaskEnded = {
 
 M.DataRepositoryTaskNotFound = {
     type = "structure",
+    id = "DataRepositoryTaskNotFound",
     error = "client",
     members = {
         Message = {
@@ -1171,6 +1222,7 @@ M.DataRepositoryTaskNotFound = {
 
 M.UnsupportedOperation = {
     type = "structure",
+    id = "UnsupportedOperation",
     error = "client",
     members = {
         Message = {
@@ -1181,6 +1233,7 @@ M.UnsupportedOperation = {
 
 M.BackupNotFound = {
     type = "structure",
+    id = "BackupNotFound",
     error = "client",
     members = {
         Message = {
@@ -1191,6 +1244,7 @@ M.BackupNotFound = {
 
 M.CopyBackupInput = {
     type = "structure",
+    id = "CopyBackupInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -1222,6 +1276,7 @@ M.CopyBackupInput = {
 
 M.BackupFailureDetails = {
     type = "structure",
+    id = "BackupFailureDetails",
     members = {
         Message = {
             type = "string",
@@ -1252,6 +1307,7 @@ M.BackupType = {
 
 M.IncompatibleParameterError = {
     type = "structure",
+    id = "IncompatibleParameterError",
     error = "client",
     members = {
         Parameter = {
@@ -1268,6 +1324,7 @@ M.IncompatibleParameterError = {
 
 M.IncompatibleRegionForMultiAZ = {
     type = "structure",
+    id = "IncompatibleRegionForMultiAZ",
     error = "client",
     members = {
         Message = {
@@ -1278,6 +1335,7 @@ M.IncompatibleRegionForMultiAZ = {
 
 M.InvalidDestinationKmsKey = {
     type = "structure",
+    id = "InvalidDestinationKmsKey",
     error = "client",
     members = {
         Message = {
@@ -1288,6 +1346,7 @@ M.InvalidDestinationKmsKey = {
 
 M.InvalidRegion = {
     type = "structure",
+    id = "InvalidRegion",
     error = "client",
     members = {
         Message = {
@@ -1298,6 +1357,7 @@ M.InvalidRegion = {
 
 M.InvalidSourceKmsKey = {
     type = "structure",
+    id = "InvalidSourceKmsKey",
     error = "client",
     members = {
         Message = {
@@ -1321,6 +1381,7 @@ M.ServiceLimit = {
 
 M.ServiceLimitExceeded = {
     type = "structure",
+    id = "ServiceLimitExceeded",
     error = "client",
     members = {
         Limit = {
@@ -1337,6 +1398,7 @@ M.ServiceLimitExceeded = {
 
 M.SourceBackupUnavailable = {
     type = "structure",
+    id = "SourceBackupUnavailable",
     error = "client",
     members = {
         Message = {
@@ -1356,6 +1418,7 @@ M.UpdateOpenZFSVolumeOption = {
 
 M.CopySnapshotAndUpdateVolumeInput = {
     type = "structure",
+    id = "CopySnapshotAndUpdateVolumeInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -1392,6 +1455,7 @@ M.OntapFileSystemUserType = {
 
 M.OntapUnixFileSystemUser = {
     type = "structure",
+    id = "OntapUnixFileSystemUser",
     members = {
         Name = {
             type = "string",
@@ -1404,6 +1468,7 @@ M.OntapUnixFileSystemUser = {
 
 M.OntapWindowsFileSystemUser = {
     type = "structure",
+    id = "OntapWindowsFileSystemUser",
     members = {
         Name = {
             type = "string",
@@ -1416,6 +1481,7 @@ M.OntapWindowsFileSystemUser = {
 
 M.OntapFileSystemIdentity = {
     type = "structure",
+    id = "OntapFileSystemIdentity",
     members = {
         Type = {
             type = "string",
@@ -1430,6 +1496,7 @@ M.OntapFileSystemIdentity = {
 
 M.CreateAndAttachS3AccessPointOntapConfiguration = {
     type = "structure",
+    id = "CreateAndAttachS3AccessPointOntapConfiguration",
     members = {
         VolumeId = {
             type = "string",
@@ -1445,6 +1512,7 @@ M.CreateAndAttachS3AccessPointOntapConfiguration = {
 
 M.OpenZFSPosixFileSystemUser = {
     type = "structure",
+    id = "OpenZFSPosixFileSystemUser",
     members = {
         Uid = {
             type = "long",
@@ -1471,6 +1539,7 @@ M.OpenZFSFileSystemUserType = {
 
 M.OpenZFSFileSystemIdentity = {
     type = "structure",
+    id = "OpenZFSFileSystemIdentity",
     members = {
         Type = {
             type = "string",
@@ -1484,6 +1553,7 @@ M.OpenZFSFileSystemIdentity = {
 
 M.CreateAndAttachS3AccessPointOpenZFSConfiguration = {
     type = "structure",
+    id = "CreateAndAttachS3AccessPointOpenZFSConfiguration",
     members = {
         VolumeId = {
             type = "string",
@@ -1499,6 +1569,7 @@ M.CreateAndAttachS3AccessPointOpenZFSConfiguration = {
 
 M.S3AccessPointVpcConfiguration = {
     type = "structure",
+    id = "S3AccessPointVpcConfiguration",
     members = {
         VpcId = {
             type = "string",
@@ -1508,6 +1579,7 @@ M.S3AccessPointVpcConfiguration = {
 
 M.CreateAndAttachS3AccessPointS3Configuration = {
     type = "structure",
+    id = "CreateAndAttachS3AccessPointS3Configuration",
     members = {
         VpcConfiguration = M.S3AccessPointVpcConfiguration,
         Policy = {
@@ -1523,6 +1595,7 @@ M.S3AccessPointAttachmentType = {
 
 M.CreateAndAttachS3AccessPointInput = {
     type = "structure",
+    id = "CreateAndAttachS3AccessPointInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -1559,6 +1632,7 @@ M.S3AccessPointAttachmentLifecycle = {
 
 M.S3AccessPointOntapConfiguration = {
     type = "structure",
+    id = "S3AccessPointOntapConfiguration",
     members = {
         VolumeId = {
             type = "string",
@@ -1569,6 +1643,7 @@ M.S3AccessPointOntapConfiguration = {
 
 M.S3AccessPointOpenZFSConfiguration = {
     type = "structure",
+    id = "S3AccessPointOpenZFSConfiguration",
     members = {
         VolumeId = {
             type = "string",
@@ -1579,6 +1654,7 @@ M.S3AccessPointOpenZFSConfiguration = {
 
 M.S3AccessPoint = {
     type = "structure",
+    id = "S3AccessPoint",
     members = {
         ResourceARN = {
             type = "string",
@@ -1592,6 +1668,7 @@ M.S3AccessPoint = {
 
 M.S3AccessPointAttachment = {
     type = "structure",
+    id = "S3AccessPointAttachment",
     members = {
         Lifecycle = {
             type = "string",
@@ -1614,6 +1691,7 @@ M.S3AccessPointAttachment = {
 
 M.CreateAndAttachS3AccessPointOutput = {
     type = "structure",
+    id = "CreateAndAttachS3AccessPointOutput",
     members = {
         S3AccessPointAttachment = M.S3AccessPointAttachment,
     },
@@ -1621,7 +1699,11 @@ M.CreateAndAttachS3AccessPointOutput = {
 
 M.InvalidAccessPoint = {
     type = "structure",
+    id = "InvalidAccessPoint",
     error = "client",
+    traits = {
+        xml_name = "Error",
+    },
     members = {
         ErrorCode = {
             type = "string",
@@ -1634,7 +1716,11 @@ M.InvalidAccessPoint = {
 
 M.InvalidRequest = {
     type = "structure",
+    id = "InvalidRequest",
     error = "client",
+    traits = {
+        xml_name = "Error",
+    },
     members = {
         ErrorCode = {
             type = "string",
@@ -1647,7 +1733,11 @@ M.InvalidRequest = {
 
 M.TooManyAccessPoints = {
     type = "structure",
+    id = "TooManyAccessPoints",
     error = "client",
+    traits = {
+        xml_name = "Error",
+    },
     members = {
         ErrorCode = {
             type = "string",
@@ -1660,6 +1750,7 @@ M.TooManyAccessPoints = {
 
 M.VolumeNotFound = {
     type = "structure",
+    id = "VolumeNotFound",
     error = "client",
     members = {
         Message = {
@@ -1670,6 +1761,7 @@ M.VolumeNotFound = {
 
 M.BackupInProgress = {
     type = "structure",
+    id = "BackupInProgress",
     error = "client",
     members = {
         Message = {
@@ -1680,6 +1772,7 @@ M.BackupInProgress = {
 
 M.CreateBackupInput = {
     type = "structure",
+    id = "CreateBackupInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1702,6 +1795,7 @@ M.CreateBackupInput = {
 
 M.S3DataRepositoryConfiguration = {
     type = "structure",
+    id = "S3DataRepositoryConfiguration",
     members = {
         AutoImportPolicy = M.AutoImportPolicy,
         AutoExportPolicy = M.AutoExportPolicy,
@@ -1710,6 +1804,7 @@ M.S3DataRepositoryConfiguration = {
 
 M.CreateDataRepositoryAssociationInput = {
     type = "structure",
+    id = "CreateDataRepositoryAssociationInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -1752,6 +1847,7 @@ M.NfsVersion = {
 
 M.NFSDataRepositoryConfiguration = {
     type = "structure",
+    id = "NFSDataRepositoryConfiguration",
     members = {
         Version = {
             type = "string",
@@ -1769,6 +1865,7 @@ M.NFSDataRepositoryConfiguration = {
 
 M.DataRepositoryAssociation = {
     type = "structure",
+    id = "DataRepositoryAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -1819,6 +1916,7 @@ M.DataRepositoryAssociation = {
 
 M.CreateDataRepositoryAssociationOutput = {
     type = "structure",
+    id = "CreateDataRepositoryAssociationOutput",
     members = {
         Association = M.DataRepositoryAssociation,
     },
@@ -1830,6 +1928,7 @@ M.Unit = {
 
 M.DurationSinceLastAccess = {
     type = "structure",
+    id = "DurationSinceLastAccess",
     members = {
         Unit = {
             type = "string",
@@ -1842,6 +1941,7 @@ M.DurationSinceLastAccess = {
 
 M.ReleaseConfiguration = {
     type = "structure",
+    id = "ReleaseConfiguration",
     members = {
         DurationSinceLastAccess = M.DurationSinceLastAccess,
     },
@@ -1857,6 +1957,7 @@ M.ReportScope = {
 
 M.CompletionReport = {
     type = "structure",
+    id = "CompletionReport",
     members = {
         Enabled = {
             type = "boolean",
@@ -1885,6 +1986,7 @@ M.DataRepositoryTaskType = {
 
 M.CreateDataRepositoryTaskInput = {
     type = "structure",
+    id = "CreateDataRepositoryTaskInput",
     members = {
         Type = {
             type = "string",
@@ -1924,6 +2026,7 @@ M.CreateDataRepositoryTaskInput = {
 
 M.DataRepositoryTaskFailureDetails = {
     type = "structure",
+    id = "DataRepositoryTaskFailureDetails",
     members = {
         Message = {
             type = "string",
@@ -1933,6 +2036,7 @@ M.DataRepositoryTaskFailureDetails = {
 
 M.DataRepositoryTaskStatus = {
     type = "structure",
+    id = "DataRepositoryTaskStatus",
     members = {
         TotalCount = {
             type = "long",
@@ -1954,6 +2058,7 @@ M.DataRepositoryTaskStatus = {
 
 M.DataRepositoryTask = {
     type = "structure",
+    id = "DataRepositoryTask",
     members = {
         TaskId = {
             type = "string",
@@ -2014,6 +2119,7 @@ M.DataRepositoryTask = {
 
 M.CreateDataRepositoryTaskOutput = {
     type = "structure",
+    id = "CreateDataRepositoryTaskOutput",
     members = {
         DataRepositoryTask = M.DataRepositoryTask,
     },
@@ -2021,6 +2127,7 @@ M.CreateDataRepositoryTaskOutput = {
 
 M.DataRepositoryTaskExecuting = {
     type = "structure",
+    id = "DataRepositoryTaskExecuting",
     error = "client",
     members = {
         Message = {
@@ -2031,6 +2138,7 @@ M.DataRepositoryTaskExecuting = {
 
 M.FileCacheNFSConfiguration = {
     type = "structure",
+    id = "FileCacheNFSConfiguration",
     members = {
         Version = {
             type = "string",
@@ -2047,6 +2155,7 @@ M.FileCacheNFSConfiguration = {
 
 M.FileCacheDataRepositoryAssociation = {
     type = "structure",
+    id = "FileCacheDataRepositoryAssociation",
     members = {
         FileCachePath = {
             type = "string",
@@ -2078,6 +2187,7 @@ M.FileCacheLustreDeploymentType = {
 
 M.FileCacheLustreMetadataConfiguration = {
     type = "structure",
+    id = "FileCacheLustreMetadataConfiguration",
     members = {
         StorageCapacity = {
             type = "integer",
@@ -2090,6 +2200,7 @@ M.FileCacheLustreMetadataConfiguration = {
 
 M.CreateFileCacheLustreConfiguration = {
     type = "structure",
+    id = "CreateFileCacheLustreConfiguration",
     members = {
         PerUnitStorageThroughput = {
             type = "integer",
@@ -2114,6 +2225,7 @@ M.CreateFileCacheLustreConfiguration = {
 
 M.CreateFileCacheInput = {
     type = "structure",
+    id = "CreateFileCacheInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -2170,6 +2282,7 @@ M.CreateFileCacheInput = {
 
 M.FileCacheFailureDetails = {
     type = "structure",
+    id = "FileCacheFailureDetails",
     members = {
         Message = {
             type = "string",
@@ -2187,6 +2300,7 @@ M.FileCacheLifecycle = {
 
 M.FileCacheLustreConfiguration = {
     type = "structure",
+    id = "FileCacheLustreConfiguration",
     members = {
         PerUnitStorageThroughput = {
             type = "integer",
@@ -2207,6 +2321,7 @@ M.FileCacheLustreConfiguration = {
 
 M.FileCacheCreating = {
     type = "structure",
+    id = "FileCacheCreating",
     members = {
         OwnerId = {
             type = "string",
@@ -2267,6 +2382,7 @@ M.FileCacheCreating = {
 
 M.CreateFileCacheOutput = {
     type = "structure",
+    id = "CreateFileCacheOutput",
     members = {
         FileCache = M.FileCacheCreating,
     },
@@ -2274,6 +2390,7 @@ M.CreateFileCacheOutput = {
 
 M.InvalidNetworkSettings = {
     type = "structure",
+    id = "InvalidNetworkSettings",
     error = "client",
     members = {
         Message = {
@@ -2293,6 +2410,7 @@ M.InvalidNetworkSettings = {
 
 M.InvalidPerUnitStorageThroughput = {
     type = "structure",
+    id = "InvalidPerUnitStorageThroughput",
     error = "client",
     members = {
         Message = {
@@ -2303,6 +2421,7 @@ M.InvalidPerUnitStorageThroughput = {
 
 M.MissingFileCacheConfiguration = {
     type = "structure",
+    id = "MissingFileCacheConfiguration",
     error = "client",
     members = {
         Message = {
@@ -2313,6 +2432,7 @@ M.MissingFileCacheConfiguration = {
 
 M.LustreLogCreateConfiguration = {
     type = "structure",
+    id = "LustreLogCreateConfiguration",
     members = {
         Level = {
             type = "string",
@@ -2328,6 +2448,7 @@ M.LustreLogCreateConfiguration = {
 
 M.CreateFileSystemLustreMetadataConfiguration = {
     type = "structure",
+    id = "CreateFileSystemLustreMetadataConfiguration",
     members = {
         Iops = {
             type = "integer",
@@ -2343,6 +2464,7 @@ M.CreateFileSystemLustreMetadataConfiguration = {
 
 M.CreateFileSystemLustreConfiguration = {
     type = "structure",
+    id = "CreateFileSystemLustreConfiguration",
     members = {
         WeeklyMaintenanceStartTime = {
             type = "string",
@@ -2395,6 +2517,7 @@ M.CreateFileSystemLustreConfiguration = {
 
 M.CreateFileSystemOntapConfiguration = {
     type = "structure",
+    id = "CreateFileSystemOntapConfiguration",
     members = {
         AutomaticBackupRetentionDays = {
             type = "integer",
@@ -2442,6 +2565,7 @@ M.CreateFileSystemOntapConfiguration = {
 
 M.OpenZFSCreateRootVolumeConfiguration = {
     type = "structure",
+    id = "OpenZFSCreateRootVolumeConfiguration",
     members = {
         RecordSizeKiB = {
             type = "integer",
@@ -2468,6 +2592,7 @@ M.OpenZFSCreateRootVolumeConfiguration = {
 
 M.CreateFileSystemOpenZFSConfiguration = {
     type = "structure",
+    id = "CreateFileSystemOpenZFSConfiguration",
     members = {
         AutomaticBackupRetentionDays = {
             type = "integer",
@@ -2517,6 +2642,7 @@ M.CreateFileSystemOpenZFSConfiguration = {
 
 M.WindowsAuditLogCreateConfiguration = {
     type = "structure",
+    id = "WindowsAuditLogCreateConfiguration",
     members = {
         FileAccessAuditLogLevel = {
             type = "string",
@@ -2538,6 +2664,7 @@ M.WindowsAuditLogCreateConfiguration = {
 
 M.SelfManagedActiveDirectoryConfiguration = {
     type = "structure",
+    id = "SelfManagedActiveDirectoryConfiguration",
     members = {
         DomainName = {
             type = "string",
@@ -2572,6 +2699,7 @@ M.SelfManagedActiveDirectoryConfiguration = {
 
 M.CreateFileSystemWindowsConfiguration = {
     type = "structure",
+    id = "CreateFileSystemWindowsConfiguration",
     members = {
         ActiveDirectoryId = {
             type = "string",
@@ -2613,6 +2741,7 @@ M.CreateFileSystemWindowsConfiguration = {
 
 M.CreateFileSystemInput = {
     type = "structure",
+    id = "CreateFileSystemInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -2665,6 +2794,7 @@ M.CreateFileSystemInput = {
 
 M.InvalidExportPath = {
     type = "structure",
+    id = "InvalidExportPath",
     error = "client",
     members = {
         Message = {
@@ -2675,6 +2805,7 @@ M.InvalidExportPath = {
 
 M.InvalidImportPath = {
     type = "structure",
+    id = "InvalidImportPath",
     error = "client",
     members = {
         Message = {
@@ -2685,6 +2816,7 @@ M.InvalidImportPath = {
 
 M.MissingFileSystemConfiguration = {
     type = "structure",
+    id = "MissingFileSystemConfiguration",
     error = "client",
     members = {
         Message = {
@@ -2695,6 +2827,7 @@ M.MissingFileSystemConfiguration = {
 
 M.CreateFileSystemFromBackupInput = {
     type = "structure",
+    id = "CreateFileSystemFromBackupInput",
     members = {
         BackupId = {
             type = "string",
@@ -2746,6 +2879,7 @@ M.CreateFileSystemFromBackupInput = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -2774,6 +2908,7 @@ M.CreateSnapshotInput = {
 
 M.CreateSvmActiveDirectoryConfiguration = {
     type = "structure",
+    id = "CreateSvmActiveDirectoryConfiguration",
     members = {
         NetBiosName = {
             type = "string",
@@ -2793,6 +2928,7 @@ M.StorageVirtualMachineRootVolumeSecurityStyle = {
 
 M.CreateStorageVirtualMachineInput = {
     type = "structure",
+    id = "CreateStorageVirtualMachineInput",
     members = {
         ActiveDirectoryConfiguration = M.CreateSvmActiveDirectoryConfiguration,
         ClientRequestToken = {
@@ -2828,6 +2964,7 @@ M.CreateStorageVirtualMachineInput = {
 
 M.SvmActiveDirectoryConfiguration = {
     type = "structure",
+    id = "SvmActiveDirectoryConfiguration",
     members = {
         NetBiosName = {
             type = "string",
@@ -2838,6 +2975,7 @@ M.SvmActiveDirectoryConfiguration = {
 
 M.SvmEndpoint = {
     type = "structure",
+    id = "SvmEndpoint",
     members = {
         DNSName = {
             type = "string",
@@ -2855,6 +2993,7 @@ M.SvmEndpoint = {
 
 M.SvmEndpoints = {
     type = "structure",
+    id = "SvmEndpoints",
     members = {
         Iscsi = M.SvmEndpoint,
         Management = M.SvmEndpoint,
@@ -2881,6 +3020,7 @@ M.StorageVirtualMachineSubtype = {
 
 M.StorageVirtualMachine = {
     type = "structure",
+    id = "StorageVirtualMachine",
     members = {
         ActiveDirectoryConfiguration = M.SvmActiveDirectoryConfiguration,
         CreationTime = {
@@ -2921,6 +3061,7 @@ M.StorageVirtualMachine = {
 
 M.CreateStorageVirtualMachineOutput = {
     type = "structure",
+    id = "CreateStorageVirtualMachineOutput",
     members = {
         StorageVirtualMachine = M.StorageVirtualMachine,
     },
@@ -2928,6 +3069,7 @@ M.CreateStorageVirtualMachineOutput = {
 
 M.CreateAggregateConfiguration = {
     type = "structure",
+    id = "CreateAggregateConfiguration",
     members = {
         Aggregates = {
             type = "list",
@@ -2946,6 +3088,7 @@ M.InputOntapVolumeType = {
 
 M.CreateSnaplockConfiguration = {
     type = "structure",
+    id = "CreateSnaplockConfiguration",
     members = {
         AuditLogVolume = {
             type = "boolean",
@@ -2969,6 +3112,7 @@ M.CreateSnaplockConfiguration = {
 
 M.CreateOntapVolumeConfiguration = {
     type = "structure",
+    id = "CreateOntapVolumeConfiguration",
     members = {
         JunctionPath = {
             type = "string",
@@ -3011,6 +3155,7 @@ M.CreateOntapVolumeConfiguration = {
 
 M.CreateOpenZFSOriginSnapshotConfiguration = {
     type = "structure",
+    id = "CreateOpenZFSOriginSnapshotConfiguration",
     members = {
         SnapshotARN = {
             type = "string",
@@ -3029,6 +3174,7 @@ M.CreateOpenZFSOriginSnapshotConfiguration = {
 
 M.CreateOpenZFSVolumeConfiguration = {
     type = "structure",
+    id = "CreateOpenZFSVolumeConfiguration",
     members = {
         ParentVolumeId = {
             type = "string",
@@ -3068,6 +3214,7 @@ M.CreateOpenZFSVolumeConfiguration = {
 
 M.CreateVolumeInput = {
     type = "structure",
+    id = "CreateVolumeInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -3098,6 +3245,7 @@ M.CreateVolumeInput = {
 
 M.MissingVolumeConfiguration = {
     type = "structure",
+    id = "MissingVolumeConfiguration",
     error = "client",
     members = {
         Message = {
@@ -3108,6 +3256,7 @@ M.MissingVolumeConfiguration = {
 
 M.StorageVirtualMachineNotFound = {
     type = "structure",
+    id = "StorageVirtualMachineNotFound",
     error = "client",
     members = {
         Message = {
@@ -3118,6 +3267,7 @@ M.StorageVirtualMachineNotFound = {
 
 M.CreateVolumeFromBackupInput = {
     type = "structure",
+    id = "CreateVolumeFromBackupInput",
     members = {
         BackupId = {
             type = "string",
@@ -3147,6 +3297,7 @@ M.CreateVolumeFromBackupInput = {
 
 M.BackupBeingCopied = {
     type = "structure",
+    id = "BackupBeingCopied",
     error = "client",
     members = {
         Message = {
@@ -3160,6 +3311,7 @@ M.BackupBeingCopied = {
 
 M.BackupRestoring = {
     type = "structure",
+    id = "BackupRestoring",
     error = "client",
     members = {
         Message = {
@@ -3173,6 +3325,7 @@ M.BackupRestoring = {
 
 M.DeleteBackupInput = {
     type = "structure",
+    id = "DeleteBackupInput",
     members = {
         BackupId = {
             type = "string",
@@ -3191,6 +3344,7 @@ M.DeleteBackupInput = {
 
 M.DeleteBackupOutput = {
     type = "structure",
+    id = "DeleteBackupOutput",
     members = {
         BackupId = {
             type = "string",
@@ -3203,6 +3357,7 @@ M.DeleteBackupOutput = {
 
 M.DataRepositoryAssociationNotFound = {
     type = "structure",
+    id = "DataRepositoryAssociationNotFound",
     error = "client",
     members = {
         Message = {
@@ -3213,6 +3368,7 @@ M.DataRepositoryAssociationNotFound = {
 
 M.DeleteDataRepositoryAssociationInput = {
     type = "structure",
+    id = "DeleteDataRepositoryAssociationInput",
     members = {
         AssociationId = {
             type = "string",
@@ -3234,6 +3390,7 @@ M.DeleteDataRepositoryAssociationInput = {
 
 M.DeleteDataRepositoryAssociationOutput = {
     type = "structure",
+    id = "DeleteDataRepositoryAssociationOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -3249,6 +3406,7 @@ M.DeleteDataRepositoryAssociationOutput = {
 
 M.DeleteFileCacheInput = {
     type = "structure",
+    id = "DeleteFileCacheInput",
     members = {
         FileCacheId = {
             type = "string",
@@ -3267,6 +3425,7 @@ M.DeleteFileCacheInput = {
 
 M.DeleteFileCacheOutput = {
     type = "structure",
+    id = "DeleteFileCacheOutput",
     members = {
         FileCacheId = {
             type = "string",
@@ -3279,6 +3438,7 @@ M.DeleteFileCacheOutput = {
 
 M.FileCacheNotFound = {
     type = "structure",
+    id = "FileCacheNotFound",
     error = "client",
     members = {
         Message = {
@@ -3289,6 +3449,7 @@ M.FileCacheNotFound = {
 
 M.DeleteFileSystemLustreConfiguration = {
     type = "structure",
+    id = "DeleteFileSystemLustreConfiguration",
     members = {
         SkipFinalBackup = {
             type = "boolean",
@@ -3306,6 +3467,7 @@ M.DeleteFileSystemOpenZFSOption = {
 
 M.DeleteFileSystemOpenZFSConfiguration = {
     type = "structure",
+    id = "DeleteFileSystemOpenZFSConfiguration",
     members = {
         SkipFinalBackup = {
             type = "boolean",
@@ -3323,6 +3485,7 @@ M.DeleteFileSystemOpenZFSConfiguration = {
 
 M.DeleteFileSystemWindowsConfiguration = {
     type = "structure",
+    id = "DeleteFileSystemWindowsConfiguration",
     members = {
         SkipFinalBackup = {
             type = "boolean",
@@ -3336,6 +3499,7 @@ M.DeleteFileSystemWindowsConfiguration = {
 
 M.DeleteFileSystemInput = {
     type = "structure",
+    id = "DeleteFileSystemInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -3357,6 +3521,7 @@ M.DeleteFileSystemInput = {
 
 M.DeleteFileSystemLustreResponse = {
     type = "structure",
+    id = "DeleteFileSystemLustreResponse",
     members = {
         FinalBackupId = {
             type = "string",
@@ -3370,6 +3535,7 @@ M.DeleteFileSystemLustreResponse = {
 
 M.DeleteFileSystemOpenZFSResponse = {
     type = "structure",
+    id = "DeleteFileSystemOpenZFSResponse",
     members = {
         FinalBackupId = {
             type = "string",
@@ -3383,6 +3549,7 @@ M.DeleteFileSystemOpenZFSResponse = {
 
 M.DeleteFileSystemWindowsResponse = {
     type = "structure",
+    id = "DeleteFileSystemWindowsResponse",
     members = {
         FinalBackupId = {
             type = "string",
@@ -3396,6 +3563,7 @@ M.DeleteFileSystemWindowsResponse = {
 
 M.DeleteFileSystemOutput = {
     type = "structure",
+    id = "DeleteFileSystemOutput",
     members = {
         FileSystemId = {
             type = "string",
@@ -3411,6 +3579,7 @@ M.DeleteFileSystemOutput = {
 
 M.DeleteSnapshotInput = {
     type = "structure",
+    id = "DeleteSnapshotInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -3429,6 +3598,7 @@ M.DeleteSnapshotInput = {
 
 M.DeleteSnapshotOutput = {
     type = "structure",
+    id = "DeleteSnapshotOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -3441,6 +3611,7 @@ M.DeleteSnapshotOutput = {
 
 M.SnapshotNotFound = {
     type = "structure",
+    id = "SnapshotNotFound",
     error = "client",
     members = {
         Message = {
@@ -3451,6 +3622,7 @@ M.SnapshotNotFound = {
 
 M.DeleteStorageVirtualMachineInput = {
     type = "structure",
+    id = "DeleteStorageVirtualMachineInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -3469,6 +3641,7 @@ M.DeleteStorageVirtualMachineInput = {
 
 M.DeleteStorageVirtualMachineOutput = {
     type = "structure",
+    id = "DeleteStorageVirtualMachineOutput",
     members = {
         StorageVirtualMachineId = {
             type = "string",
@@ -3481,6 +3654,7 @@ M.DeleteStorageVirtualMachineOutput = {
 
 M.DeleteVolumeOntapConfiguration = {
     type = "structure",
+    id = "DeleteVolumeOntapConfiguration",
     members = {
         SkipFinalBackup = {
             type = "boolean",
@@ -3501,6 +3675,7 @@ M.DeleteOpenZFSVolumeOption = {
 
 M.DeleteVolumeOpenZFSConfiguration = {
     type = "structure",
+    id = "DeleteVolumeOpenZFSConfiguration",
     members = {
         Options = {
             type = "list",
@@ -3511,6 +3686,7 @@ M.DeleteVolumeOpenZFSConfiguration = {
 
 M.DeleteVolumeInput = {
     type = "structure",
+    id = "DeleteVolumeInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -3531,6 +3707,7 @@ M.DeleteVolumeInput = {
 
 M.DeleteVolumeOntapResponse = {
     type = "structure",
+    id = "DeleteVolumeOntapResponse",
     members = {
         FinalBackupId = {
             type = "string",
@@ -3544,6 +3721,7 @@ M.DeleteVolumeOntapResponse = {
 
 M.DeleteVolumeOutput = {
     type = "structure",
+    id = "DeleteVolumeOutput",
     members = {
         VolumeId = {
             type = "string",
@@ -3567,6 +3745,7 @@ M.FilterName = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -3580,6 +3759,7 @@ M.Filter = {
 
 M.DescribeBackupsInput = {
     type = "structure",
+    id = "DescribeBackupsInput",
     members = {
         BackupIds = {
             type = "list",
@@ -3600,6 +3780,7 @@ M.DescribeBackupsInput = {
 
 M.DescribeDataRepositoryAssociationsInput = {
     type = "structure",
+    id = "DescribeDataRepositoryAssociationsInput",
     members = {
         AssociationIds = {
             type = "list",
@@ -3620,6 +3801,7 @@ M.DescribeDataRepositoryAssociationsInput = {
 
 M.DescribeDataRepositoryAssociationsOutput = {
     type = "structure",
+    id = "DescribeDataRepositoryAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -3633,6 +3815,7 @@ M.DescribeDataRepositoryAssociationsOutput = {
 
 M.InvalidDataRepositoryType = {
     type = "structure",
+    id = "InvalidDataRepositoryType",
     error = "client",
     members = {
         Message = {
@@ -3650,6 +3833,7 @@ M.DataRepositoryTaskFilterName = {
 
 M.DataRepositoryTaskFilter = {
     type = "structure",
+    id = "DataRepositoryTaskFilter",
     members = {
         Name = {
             type = "string",
@@ -3663,6 +3847,7 @@ M.DataRepositoryTaskFilter = {
 
 M.DescribeDataRepositoryTasksInput = {
     type = "structure",
+    id = "DescribeDataRepositoryTasksInput",
     members = {
         TaskIds = {
             type = "list",
@@ -3683,6 +3868,7 @@ M.DescribeDataRepositoryTasksInput = {
 
 M.DescribeDataRepositoryTasksOutput = {
     type = "structure",
+    id = "DescribeDataRepositoryTasksOutput",
     members = {
         DataRepositoryTasks = {
             type = "list",
@@ -3696,6 +3882,7 @@ M.DescribeDataRepositoryTasksOutput = {
 
 M.DescribeFileCachesInput = {
     type = "structure",
+    id = "DescribeFileCachesInput",
     members = {
         FileCacheIds = {
             type = "list",
@@ -3712,6 +3899,7 @@ M.DescribeFileCachesInput = {
 
 M.FileCache = {
     type = "structure",
+    id = "FileCache",
     members = {
         OwnerId = {
             type = "string",
@@ -3765,6 +3953,7 @@ M.FileCache = {
 
 M.DescribeFileCachesOutput = {
     type = "structure",
+    id = "DescribeFileCachesOutput",
     members = {
         FileCaches = {
             type = "list",
@@ -3778,6 +3967,7 @@ M.DescribeFileCachesOutput = {
 
 M.DescribeFileSystemAliasesInput = {
     type = "structure",
+    id = "DescribeFileSystemAliasesInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -3802,6 +3992,7 @@ M.DescribeFileSystemAliasesInput = {
 
 M.DescribeFileSystemAliasesOutput = {
     type = "structure",
+    id = "DescribeFileSystemAliasesOutput",
     members = {
         Aliases = {
             type = "list",
@@ -3815,6 +4006,7 @@ M.DescribeFileSystemAliasesOutput = {
 
 M.DescribeFileSystemsInput = {
     type = "structure",
+    id = "DescribeFileSystemsInput",
     members = {
         FileSystemIds = {
             type = "list",
@@ -3837,6 +4029,7 @@ M.S3AccessPointAttachmentsFilterName = {
 
 M.S3AccessPointAttachmentsFilter = {
     type = "structure",
+    id = "S3AccessPointAttachmentsFilter",
     members = {
         Name = {
             type = "string",
@@ -3850,6 +4043,7 @@ M.S3AccessPointAttachmentsFilter = {
 
 M.DescribeS3AccessPointAttachmentsInput = {
     type = "structure",
+    id = "DescribeS3AccessPointAttachmentsInput",
     members = {
         Names = {
             type = "list",
@@ -3870,6 +4064,7 @@ M.DescribeS3AccessPointAttachmentsInput = {
 
 M.DescribeS3AccessPointAttachmentsOutput = {
     type = "structure",
+    id = "DescribeS3AccessPointAttachmentsOutput",
     members = {
         S3AccessPointAttachments = {
             type = "list",
@@ -3883,6 +4078,7 @@ M.DescribeS3AccessPointAttachmentsOutput = {
 
 M.S3AccessPointAttachmentNotFound = {
     type = "structure",
+    id = "S3AccessPointAttachmentNotFound",
     error = "client",
     members = {
         Message = {
@@ -3893,10 +4089,12 @@ M.S3AccessPointAttachmentNotFound = {
 
 M.DescribeSharedVpcConfigurationInput = {
     type = "structure",
+    id = "DescribeSharedVpcConfigurationInput",
 }
 
 M.DescribeSharedVpcConfigurationOutput = {
     type = "structure",
+    id = "DescribeSharedVpcConfigurationOutput",
     members = {
         EnableFsxRouteTableUpdatesFromParticipantAccounts = {
             type = "string",
@@ -3911,6 +4109,7 @@ M.SnapshotFilterName = {
 
 M.SnapshotFilter = {
     type = "structure",
+    id = "SnapshotFilter",
     members = {
         Name = {
             type = "string",
@@ -3924,6 +4123,7 @@ M.SnapshotFilter = {
 
 M.DescribeSnapshotsInput = {
     type = "structure",
+    id = "DescribeSnapshotsInput",
     members = {
         SnapshotIds = {
             type = "list",
@@ -3951,6 +4151,7 @@ M.StorageVirtualMachineFilterName = {
 
 M.StorageVirtualMachineFilter = {
     type = "structure",
+    id = "StorageVirtualMachineFilter",
     members = {
         Name = {
             type = "string",
@@ -3964,6 +4165,7 @@ M.StorageVirtualMachineFilter = {
 
 M.DescribeStorageVirtualMachinesInput = {
     type = "structure",
+    id = "DescribeStorageVirtualMachinesInput",
     members = {
         StorageVirtualMachineIds = {
             type = "list",
@@ -3984,6 +4186,7 @@ M.DescribeStorageVirtualMachinesInput = {
 
 M.DescribeStorageVirtualMachinesOutput = {
     type = "structure",
+    id = "DescribeStorageVirtualMachinesOutput",
     members = {
         StorageVirtualMachines = {
             type = "list",
@@ -4002,6 +4205,7 @@ M.VolumeFilterName = {
 
 M.VolumeFilter = {
     type = "structure",
+    id = "VolumeFilter",
     members = {
         Name = {
             type = "string",
@@ -4015,6 +4219,7 @@ M.VolumeFilter = {
 
 M.DescribeVolumesInput = {
     type = "structure",
+    id = "DescribeVolumesInput",
     members = {
         VolumeIds = {
             type = "list",
@@ -4035,6 +4240,7 @@ M.DescribeVolumesInput = {
 
 M.DetachAndDeleteS3AccessPointInput = {
     type = "structure",
+    id = "DetachAndDeleteS3AccessPointInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -4053,6 +4259,7 @@ M.DetachAndDeleteS3AccessPointInput = {
 
 M.DetachAndDeleteS3AccessPointOutput = {
     type = "structure",
+    id = "DetachAndDeleteS3AccessPointOutput",
     members = {
         Lifecycle = {
             type = "string",
@@ -4065,6 +4272,7 @@ M.DetachAndDeleteS3AccessPointOutput = {
 
 M.DisassociateFileSystemAliasesInput = {
     type = "structure",
+    id = "DisassociateFileSystemAliasesInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -4090,6 +4298,7 @@ M.DisassociateFileSystemAliasesInput = {
 
 M.DisassociateFileSystemAliasesOutput = {
     type = "structure",
+    id = "DisassociateFileSystemAliasesOutput",
     members = {
         Aliases = {
             type = "list",
@@ -4100,6 +4309,7 @@ M.DisassociateFileSystemAliasesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -4118,6 +4328,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -4131,6 +4342,7 @@ M.ListTagsForResourceOutput = {
 
 M.NotServiceResourceError = {
     type = "structure",
+    id = "NotServiceResourceError",
     error = "client",
     members = {
         ResourceARN = {
@@ -4147,6 +4359,7 @@ M.NotServiceResourceError = {
 
 M.ResourceDoesNotSupportTagging = {
     type = "structure",
+    id = "ResourceDoesNotSupportTagging",
     error = "client",
     members = {
         ResourceARN = {
@@ -4163,6 +4376,7 @@ M.ResourceDoesNotSupportTagging = {
 
 M.ResourceNotFound = {
     type = "structure",
+    id = "ResourceNotFound",
     error = "client",
     members = {
         ResourceARN = {
@@ -4179,6 +4393,7 @@ M.ResourceNotFound = {
 
 M.ReleaseFileSystemNfsV3LocksInput = {
     type = "structure",
+    id = "ReleaseFileSystemNfsV3LocksInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -4202,6 +4417,7 @@ M.RestoreOpenZFSVolumeOption = {
 
 M.RestoreVolumeFromSnapshotInput = {
     type = "structure",
+    id = "RestoreVolumeFromSnapshotInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -4230,6 +4446,7 @@ M.RestoreVolumeFromSnapshotInput = {
 
 M.StartMisconfiguredStateRecoveryInput = {
     type = "structure",
+    id = "StartMisconfiguredStateRecoveryInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -4248,6 +4465,7 @@ M.StartMisconfiguredStateRecoveryInput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -4267,10 +4485,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -4290,10 +4510,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDataRepositoryAssociationInput = {
     type = "structure",
+    id = "UpdateDataRepositoryAssociationInput",
     members = {
         AssociationId = {
             type = "string",
@@ -4316,6 +4538,7 @@ M.UpdateDataRepositoryAssociationInput = {
 
 M.UpdateDataRepositoryAssociationOutput = {
     type = "structure",
+    id = "UpdateDataRepositoryAssociationOutput",
     members = {
         Association = M.DataRepositoryAssociation,
     },
@@ -4323,6 +4546,7 @@ M.UpdateDataRepositoryAssociationOutput = {
 
 M.UpdateFileCacheLustreConfiguration = {
     type = "structure",
+    id = "UpdateFileCacheLustreConfiguration",
     members = {
         WeeklyMaintenanceStartTime = {
             type = "string",
@@ -4332,6 +4556,7 @@ M.UpdateFileCacheLustreConfiguration = {
 
 M.UpdateFileCacheInput = {
     type = "structure",
+    id = "UpdateFileCacheInput",
     members = {
         FileCacheId = {
             type = "string",
@@ -4351,6 +4576,7 @@ M.UpdateFileCacheInput = {
 
 M.UpdateFileCacheOutput = {
     type = "structure",
+    id = "UpdateFileCacheOutput",
     members = {
         FileCache = M.FileCache,
     },
@@ -4358,6 +4584,7 @@ M.UpdateFileCacheOutput = {
 
 M.UpdateFileSystemLustreMetadataConfiguration = {
     type = "structure",
+    id = "UpdateFileSystemLustreMetadataConfiguration",
     members = {
         Iops = {
             type = "integer",
@@ -4370,6 +4597,7 @@ M.UpdateFileSystemLustreMetadataConfiguration = {
 
 M.UpdateFileSystemLustreConfiguration = {
     type = "structure",
+    id = "UpdateFileSystemLustreConfiguration",
     members = {
         WeeklyMaintenanceStartTime = {
             type = "string",
@@ -4401,6 +4629,7 @@ M.UpdateFileSystemLustreConfiguration = {
 
 M.UpdateFileSystemOntapConfiguration = {
     type = "structure",
+    id = "UpdateFileSystemOntapConfiguration",
     members = {
         AutomaticBackupRetentionDays = {
             type = "integer",
@@ -4440,6 +4669,7 @@ M.UpdateFileSystemOntapConfiguration = {
 
 M.UpdateFileSystemOpenZFSConfiguration = {
     type = "structure",
+    id = "UpdateFileSystemOpenZFSConfiguration",
     members = {
         AutomaticBackupRetentionDays = {
             type = "integer",
@@ -4477,6 +4707,7 @@ M.UpdateFileSystemOpenZFSConfiguration = {
 
 M.SelfManagedActiveDirectoryConfigurationUpdates = {
     type = "structure",
+    id = "SelfManagedActiveDirectoryConfigurationUpdates",
     members = {
         UserName = {
             type = "string",
@@ -4505,6 +4736,7 @@ M.SelfManagedActiveDirectoryConfigurationUpdates = {
 
 M.UpdateFileSystemWindowsConfiguration = {
     type = "structure",
+    id = "UpdateFileSystemWindowsConfiguration",
     members = {
         WeeklyMaintenanceStartTime = {
             type = "string",
@@ -4527,6 +4759,7 @@ M.UpdateFileSystemWindowsConfiguration = {
 
 M.UpdateFileSystemInput = {
     type = "structure",
+    id = "UpdateFileSystemInput",
     members = {
         FileSystemId = {
             type = "string",
@@ -4561,6 +4794,7 @@ M.UpdateFileSystemInput = {
 
 M.UpdateSharedVpcConfigurationInput = {
     type = "structure",
+    id = "UpdateSharedVpcConfigurationInput",
     members = {
         EnableFsxRouteTableUpdatesFromParticipantAccounts = {
             type = "string",
@@ -4576,6 +4810,7 @@ M.UpdateSharedVpcConfigurationInput = {
 
 M.UpdateSharedVpcConfigurationOutput = {
     type = "structure",
+    id = "UpdateSharedVpcConfigurationOutput",
     members = {
         EnableFsxRouteTableUpdatesFromParticipantAccounts = {
             type = "string",
@@ -4585,6 +4820,7 @@ M.UpdateSharedVpcConfigurationOutput = {
 
 M.UpdateSnapshotInput = {
     type = "structure",
+    id = "UpdateSnapshotInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -4609,6 +4845,7 @@ M.UpdateSnapshotInput = {
 
 M.UpdateSvmActiveDirectoryConfiguration = {
     type = "structure",
+    id = "UpdateSvmActiveDirectoryConfiguration",
     members = {
         SelfManagedActiveDirectoryConfiguration = M.SelfManagedActiveDirectoryConfigurationUpdates,
         NetBiosName = {
@@ -4619,6 +4856,7 @@ M.UpdateSvmActiveDirectoryConfiguration = {
 
 M.UpdateStorageVirtualMachineInput = {
     type = "structure",
+    id = "UpdateStorageVirtualMachineInput",
     members = {
         ActiveDirectoryConfiguration = M.UpdateSvmActiveDirectoryConfiguration,
         ClientRequestToken = {
@@ -4641,6 +4879,7 @@ M.UpdateStorageVirtualMachineInput = {
 
 M.UpdateStorageVirtualMachineOutput = {
     type = "structure",
+    id = "UpdateStorageVirtualMachineOutput",
     members = {
         StorageVirtualMachine = M.StorageVirtualMachine,
     },
@@ -4648,6 +4887,7 @@ M.UpdateStorageVirtualMachineOutput = {
 
 M.UpdateSnaplockConfiguration = {
     type = "structure",
+    id = "UpdateSnaplockConfiguration",
     members = {
         AuditLogVolume = {
             type = "boolean",
@@ -4665,6 +4905,7 @@ M.UpdateSnaplockConfiguration = {
 
 M.UpdateOntapVolumeConfiguration = {
     type = "structure",
+    id = "UpdateOntapVolumeConfiguration",
     members = {
         JunctionPath = {
             type = "string",
@@ -4694,6 +4935,7 @@ M.UpdateOntapVolumeConfiguration = {
 
 M.UpdateOpenZFSVolumeConfiguration = {
     type = "structure",
+    id = "UpdateOpenZFSVolumeConfiguration",
     members = {
         StorageCapacityReservationGiB = {
             type = "integer",
@@ -4723,6 +4965,7 @@ M.UpdateOpenZFSVolumeConfiguration = {
 
 M.UpdateVolumeInput = {
     type = "structure",
+    id = "UpdateVolumeInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -4746,6 +4989,7 @@ M.UpdateVolumeInput = {
 
 M.AdministrativeAction = {
     type = "structure",
+    id = "AdministrativeAction",
     members = {
         AdministrativeActionType = {
             type = "string",
@@ -4777,6 +5021,7 @@ M.AdministrativeAction = {
 
 M.FileSystem = {
     type = "structure",
+    id = "FileSystem",
     members = {
         OwnerId = {
             type = "string",
@@ -4843,6 +5088,7 @@ M.FileSystem = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         ResourceARN = {
             type = "string",
@@ -4876,6 +5122,7 @@ M.Snapshot = {
 
 M.Volume = {
     type = "structure",
+    id = "Volume",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -4914,6 +5161,7 @@ M.Volume = {
 
 M.CopySnapshotAndUpdateVolumeOutput = {
     type = "structure",
+    id = "CopySnapshotAndUpdateVolumeOutput",
     members = {
         VolumeId = {
             type = "string",
@@ -4930,6 +5178,7 @@ M.CopySnapshotAndUpdateVolumeOutput = {
 
 M.RestoreVolumeFromSnapshotOutput = {
     type = "structure",
+    id = "RestoreVolumeFromSnapshotOutput",
     members = {
         VolumeId = {
             type = "string",
@@ -4946,6 +5195,7 @@ M.RestoreVolumeFromSnapshotOutput = {
 
 M.CreateFileSystemFromBackupOutput = {
     type = "structure",
+    id = "CreateFileSystemFromBackupOutput",
     members = {
         FileSystem = M.FileSystem,
     },
@@ -4953,6 +5203,7 @@ M.CreateFileSystemFromBackupOutput = {
 
 M.CreateFileSystemOutput = {
     type = "structure",
+    id = "CreateFileSystemOutput",
     members = {
         FileSystem = M.FileSystem,
     },
@@ -4960,6 +5211,7 @@ M.CreateFileSystemOutput = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -4967,6 +5219,7 @@ M.CreateSnapshotOutput = {
 
 M.CreateVolumeFromBackupOutput = {
     type = "structure",
+    id = "CreateVolumeFromBackupOutput",
     members = {
         Volume = M.Volume,
     },
@@ -4974,6 +5227,7 @@ M.CreateVolumeFromBackupOutput = {
 
 M.CreateVolumeOutput = {
     type = "structure",
+    id = "CreateVolumeOutput",
     members = {
         Volume = M.Volume,
     },
@@ -4981,6 +5235,7 @@ M.CreateVolumeOutput = {
 
 M.ReleaseFileSystemNfsV3LocksOutput = {
     type = "structure",
+    id = "ReleaseFileSystemNfsV3LocksOutput",
     members = {
         FileSystem = M.FileSystem,
     },
@@ -4988,6 +5243,7 @@ M.ReleaseFileSystemNfsV3LocksOutput = {
 
 M.StartMisconfiguredStateRecoveryOutput = {
     type = "structure",
+    id = "StartMisconfiguredStateRecoveryOutput",
     members = {
         FileSystem = M.FileSystem,
     },
@@ -4995,6 +5251,7 @@ M.StartMisconfiguredStateRecoveryOutput = {
 
 M.UpdateFileSystemOutput = {
     type = "structure",
+    id = "UpdateFileSystemOutput",
     members = {
         FileSystem = M.FileSystem,
     },
@@ -5002,6 +5259,7 @@ M.UpdateFileSystemOutput = {
 
 M.UpdateSnapshotOutput = {
     type = "structure",
+    id = "UpdateSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -5009,6 +5267,7 @@ M.UpdateSnapshotOutput = {
 
 M.UpdateVolumeOutput = {
     type = "structure",
+    id = "UpdateVolumeOutput",
     members = {
         Volume = M.Volume,
     },
@@ -5016,6 +5275,7 @@ M.UpdateVolumeOutput = {
 
 M.DescribeFileSystemsOutput = {
     type = "structure",
+    id = "DescribeFileSystemsOutput",
     members = {
         FileSystems = {
             type = "list",
@@ -5029,6 +5289,7 @@ M.DescribeFileSystemsOutput = {
 
 M.DescribeSnapshotsOutput = {
     type = "structure",
+    id = "DescribeSnapshotsOutput",
     members = {
         Snapshots = {
             type = "list",
@@ -5042,6 +5303,7 @@ M.DescribeSnapshotsOutput = {
 
 M.DescribeVolumesOutput = {
     type = "structure",
+    id = "DescribeVolumesOutput",
     members = {
         Volumes = {
             type = "list",
@@ -5055,6 +5317,7 @@ M.DescribeVolumesOutput = {
 
 M.Backup = {
     type = "structure",
+    id = "Backup",
     members = {
         BackupId = {
             type = "string",
@@ -5119,6 +5382,7 @@ M.Backup = {
 
 M.CopyBackupOutput = {
     type = "structure",
+    id = "CopyBackupOutput",
     members = {
         Backup = M.Backup,
     },
@@ -5126,6 +5390,7 @@ M.CopyBackupOutput = {
 
 M.CreateBackupOutput = {
     type = "structure",
+    id = "CreateBackupOutput",
     members = {
         Backup = M.Backup,
     },
@@ -5133,6 +5398,7 @@ M.CreateBackupOutput = {
 
 M.DescribeBackupsOutput = {
     type = "structure",
+    id = "DescribeBackupsOutput",
     members = {
         Backups = {
             type = "list",

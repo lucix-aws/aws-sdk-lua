@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -40,6 +42,7 @@ M.ConflictException = {
 
 M.CreateAlertManagerDefinitionInput = {
     type = "structure",
+    id = "CreateAlertManagerDefinitionInput",
     members = {
         workspaceId = {
             type = "string",
@@ -74,6 +77,7 @@ M.AlertManagerDefinitionStatusCode = {
 
 M.AlertManagerDefinitionStatus = {
     type = "structure",
+    id = "AlertManagerDefinitionStatus",
     members = {
         statusCode = {
             type = "string",
@@ -89,6 +93,7 @@ M.AlertManagerDefinitionStatus = {
 
 M.CreateAlertManagerDefinitionOutput = {
     type = "structure",
+    id = "CreateAlertManagerDefinitionOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -98,6 +103,7 @@ M.CreateAlertManagerDefinitionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -117,6 +123,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -142,6 +149,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -179,6 +187,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -204,6 +213,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -229,6 +239,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -252,6 +263,7 @@ M.ValidationException = {
 
 M.DeleteAlertManagerDefinitionInput = {
     type = "structure",
+    id = "DeleteAlertManagerDefinitionInput",
     members = {
         workspaceId = {
             type = "string",
@@ -272,10 +284,12 @@ M.DeleteAlertManagerDefinitionInput = {
 
 M.DeleteAlertManagerDefinitionOutput = {
     type = "structure",
+    id = "DeleteAlertManagerDefinitionOutput",
 }
 
 M.DescribeAlertManagerDefinitionInput = {
     type = "structure",
+    id = "DescribeAlertManagerDefinitionInput",
     members = {
         workspaceId = {
             type = "string",
@@ -289,6 +303,7 @@ M.DescribeAlertManagerDefinitionInput = {
 
 M.AlertManagerDefinitionDescription = {
     type = "structure",
+    id = "AlertManagerDefinitionDescription",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -316,6 +331,7 @@ M.AlertManagerDefinitionDescription = {
 
 M.DescribeAlertManagerDefinitionOutput = {
     type = "structure",
+    id = "DescribeAlertManagerDefinitionOutput",
     members = {
         alertManagerDefinition = setmetatable({ traits = {
             required = true,
@@ -325,6 +341,7 @@ M.DescribeAlertManagerDefinitionOutput = {
 
 M.PutAlertManagerDefinitionInput = {
     type = "structure",
+    id = "PutAlertManagerDefinitionInput",
     members = {
         workspaceId = {
             type = "string",
@@ -350,6 +367,7 @@ M.PutAlertManagerDefinitionInput = {
 
 M.PutAlertManagerDefinitionOutput = {
     type = "structure",
+    id = "PutAlertManagerDefinitionOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -359,10 +377,12 @@ M.PutAlertManagerDefinitionOutput = {
 
 M.GetDefaultScraperConfigurationInput = {
     type = "structure",
+    id = "GetDefaultScraperConfigurationInput",
 }
 
 M.GetDefaultScraperConfigurationOutput = {
     type = "structure",
+    id = "GetDefaultScraperConfigurationOutput",
     members = {
         configuration = {
             type = "blob",
@@ -375,6 +395,7 @@ M.GetDefaultScraperConfigurationOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -388,6 +409,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -399,6 +421,7 @@ M.ListTagsForResourceOutput = {
 
 M.AmpConfiguration = {
     type = "structure",
+    id = "AmpConfiguration",
     members = {
         workspaceArn = {
             type = "string",
@@ -411,6 +434,7 @@ M.AmpConfiguration = {
 
 M.Destination = {
     type = "union",
+    id = "Destination",
     members = {
         ampConfiguration = M.AmpConfiguration,
     },
@@ -418,6 +442,7 @@ M.Destination = {
 
 M.RoleConfiguration = {
     type = "structure",
+    id = "RoleConfiguration",
     members = {
         sourceRoleArn = {
             type = "string",
@@ -430,6 +455,7 @@ M.RoleConfiguration = {
 
 M.ScrapeConfiguration = {
     type = "union",
+    id = "ScrapeConfiguration",
     members = {
         configurationBlob = {
             type = "blob",
@@ -439,6 +465,7 @@ M.ScrapeConfiguration = {
 
 M.EksConfiguration = {
     type = "structure",
+    id = "EksConfiguration",
     members = {
         clusterArn = {
             type = "string",
@@ -462,6 +489,7 @@ M.EksConfiguration = {
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         securityGroupIds = {
             type = "list",
@@ -482,6 +510,7 @@ M.VpcConfiguration = {
 
 M.Source = {
     type = "union",
+    id = "Source",
     members = {
         eksConfiguration = M.EksConfiguration,
         vpcConfiguration = M.VpcConfiguration,
@@ -490,6 +519,7 @@ M.Source = {
 
 M.CreateScraperInput = {
     type = "structure",
+    id = "CreateScraperInput",
     members = {
         alias = {
             type = "string",
@@ -530,6 +560,7 @@ M.ScraperStatusCode = {
 
 M.ScraperStatus = {
     type = "structure",
+    id = "ScraperStatus",
     members = {
         statusCode = {
             type = "string",
@@ -542,6 +573,7 @@ M.ScraperStatus = {
 
 M.CreateScraperOutput = {
     type = "structure",
+    id = "CreateScraperOutput",
     members = {
         scraperId = {
             type = "string",
@@ -568,6 +600,7 @@ M.CreateScraperOutput = {
 
 M.DeleteScraperInput = {
     type = "structure",
+    id = "DeleteScraperInput",
     members = {
         scraperId = {
             type = "string",
@@ -588,6 +621,7 @@ M.DeleteScraperInput = {
 
 M.DeleteScraperOutput = {
     type = "structure",
+    id = "DeleteScraperOutput",
     members = {
         scraperId = {
             type = "string",
@@ -603,6 +637,7 @@ M.DeleteScraperOutput = {
 
 M.DescribeScraperInput = {
     type = "structure",
+    id = "DescribeScraperInput",
     members = {
         scraperId = {
             type = "string",
@@ -616,6 +651,7 @@ M.DescribeScraperInput = {
 
 M.ScraperDescription = {
     type = "structure",
+    id = "ScraperDescription",
     members = {
         alias = {
             type = "string",
@@ -676,6 +712,7 @@ M.ScraperDescription = {
 
 M.DescribeScraperOutput = {
     type = "structure",
+    id = "DescribeScraperOutput",
     members = {
         scraper = setmetatable({ traits = {
             required = true,
@@ -685,6 +722,7 @@ M.DescribeScraperOutput = {
 
 M.ListScrapersInput = {
     type = "structure",
+    id = "ListScrapersInput",
     members = {
         filters = {
             type = "map",
@@ -711,6 +749,7 @@ M.ListScrapersInput = {
 
 M.ScraperSummary = {
     type = "structure",
+    id = "ScraperSummary",
     members = {
         alias = {
             type = "string",
@@ -768,6 +807,7 @@ M.ScraperSummary = {
 
 M.ListScrapersOutput = {
     type = "structure",
+    id = "ListScrapersOutput",
     members = {
         scrapers = {
             type = "list",
@@ -784,6 +824,7 @@ M.ListScrapersOutput = {
 
 M.DeleteScraperLoggingConfigurationInput = {
     type = "structure",
+    id = "DeleteScraperLoggingConfigurationInput",
     members = {
         scraperId = {
             type = "string",
@@ -804,10 +845,12 @@ M.DeleteScraperLoggingConfigurationInput = {
 
 M.DeleteScraperLoggingConfigurationOutput = {
     type = "structure",
+    id = "DeleteScraperLoggingConfigurationOutput",
 }
 
 M.DescribeScraperLoggingConfigurationInput = {
     type = "structure",
+    id = "DescribeScraperLoggingConfigurationInput",
     members = {
         scraperId = {
             type = "string",
@@ -821,6 +864,7 @@ M.DescribeScraperLoggingConfigurationInput = {
 
 M.CloudWatchLogDestination = {
     type = "structure",
+    id = "CloudWatchLogDestination",
     members = {
         logGroupArn = {
             type = "string",
@@ -833,6 +877,7 @@ M.CloudWatchLogDestination = {
 
 M.ScraperLoggingDestination = {
     type = "union",
+    id = "ScraperLoggingDestination",
     members = {
         cloudWatchLogs = M.CloudWatchLogDestination,
     },
@@ -840,6 +885,7 @@ M.ScraperLoggingDestination = {
 
 M.ComponentConfig = {
     type = "structure",
+    id = "ComponentConfig",
     members = {
         options = {
             type = "map",
@@ -857,6 +903,7 @@ M.ScraperComponentType = {
 
 M.ScraperComponent = {
     type = "structure",
+    id = "ScraperComponent",
     members = {
         type = {
             type = "string",
@@ -879,6 +926,7 @@ M.ScraperLoggingConfigurationStatusCode = {
 
 M.ScraperLoggingConfigurationStatus = {
     type = "structure",
+    id = "ScraperLoggingConfigurationStatus",
     members = {
         statusCode = {
             type = "string",
@@ -894,6 +942,7 @@ M.ScraperLoggingConfigurationStatus = {
 
 M.DescribeScraperLoggingConfigurationOutput = {
     type = "structure",
+    id = "DescribeScraperLoggingConfigurationOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -925,6 +974,7 @@ M.DescribeScraperLoggingConfigurationOutput = {
 
 M.UpdateScraperLoggingConfigurationInput = {
     type = "structure",
+    id = "UpdateScraperLoggingConfigurationInput",
     members = {
         scraperId = {
             type = "string",
@@ -945,6 +995,7 @@ M.UpdateScraperLoggingConfigurationInput = {
 
 M.UpdateScraperLoggingConfigurationOutput = {
     type = "structure",
+    id = "UpdateScraperLoggingConfigurationOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -954,6 +1005,7 @@ M.UpdateScraperLoggingConfigurationOutput = {
 
 M.UpdateScraperInput = {
     type = "structure",
+    id = "UpdateScraperInput",
     members = {
         scraperId = {
             type = "string",
@@ -979,6 +1031,7 @@ M.UpdateScraperInput = {
 
 M.UpdateScraperOutput = {
     type = "structure",
+    id = "UpdateScraperOutput",
     members = {
         scraperId = {
             type = "string",
@@ -1005,6 +1058,7 @@ M.UpdateScraperOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1026,10 +1080,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1051,10 +1107,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.IgnoreNearExpected = {
     type = "union",
+    id = "IgnoreNearExpected",
     members = {
         amount = {
             type = "double",
@@ -1067,6 +1125,7 @@ M.IgnoreNearExpected = {
 
 M.RandomCutForestConfiguration = {
     type = "structure",
+    id = "RandomCutForestConfiguration",
     members = {
         query = {
             type = "string",
@@ -1093,6 +1152,7 @@ M.RandomCutForestConfiguration = {
 
 M.AnomalyDetectorConfiguration = {
     type = "union",
+    id = "AnomalyDetectorConfiguration",
     members = {
         randomCutForest = M.RandomCutForestConfiguration,
     },
@@ -1100,6 +1160,7 @@ M.AnomalyDetectorConfiguration = {
 
 M.AnomalyDetectorMissingDataAction = {
     type = "union",
+    id = "AnomalyDetectorMissingDataAction",
     members = {
         markAsAnomaly = {
             type = "boolean",
@@ -1112,6 +1173,7 @@ M.AnomalyDetectorMissingDataAction = {
 
 M.CreateAnomalyDetectorInput = {
     type = "structure",
+    id = "CreateAnomalyDetectorInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1167,6 +1229,7 @@ M.AnomalyDetectorStatusCode = {
 
 M.AnomalyDetectorStatus = {
     type = "structure",
+    id = "AnomalyDetectorStatus",
     members = {
         statusCode = {
             type = "string",
@@ -1182,6 +1245,7 @@ M.AnomalyDetectorStatus = {
 
 M.CreateAnomalyDetectorOutput = {
     type = "structure",
+    id = "CreateAnomalyDetectorOutput",
     members = {
         anomalyDetectorId = {
             type = "string",
@@ -1208,6 +1272,7 @@ M.CreateAnomalyDetectorOutput = {
 
 M.DeleteAnomalyDetectorInput = {
     type = "structure",
+    id = "DeleteAnomalyDetectorInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1235,10 +1300,12 @@ M.DeleteAnomalyDetectorInput = {
 
 M.DeleteAnomalyDetectorOutput = {
     type = "structure",
+    id = "DeleteAnomalyDetectorOutput",
 }
 
 M.DescribeAnomalyDetectorInput = {
     type = "structure",
+    id = "DescribeAnomalyDetectorInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1259,6 +1326,7 @@ M.DescribeAnomalyDetectorInput = {
 
 M.AnomalyDetectorDescription = {
     type = "structure",
+    id = "AnomalyDetectorDescription",
     members = {
         arn = {
             type = "string",
@@ -1313,6 +1381,7 @@ M.AnomalyDetectorDescription = {
 
 M.DescribeAnomalyDetectorOutput = {
     type = "structure",
+    id = "DescribeAnomalyDetectorOutput",
     members = {
         anomalyDetector = setmetatable({ traits = {
             required = true,
@@ -1322,6 +1391,7 @@ M.DescribeAnomalyDetectorOutput = {
 
 M.ListAnomalyDetectorsInput = {
     type = "structure",
+    id = "ListAnomalyDetectorsInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1353,6 +1423,7 @@ M.ListAnomalyDetectorsInput = {
 
 M.AnomalyDetectorSummary = {
     type = "structure",
+    id = "AnomalyDetectorSummary",
     members = {
         arn = {
             type = "string",
@@ -1397,6 +1468,7 @@ M.AnomalyDetectorSummary = {
 
 M.ListAnomalyDetectorsOutput = {
     type = "structure",
+    id = "ListAnomalyDetectorsOutput",
     members = {
         anomalyDetectors = {
             type = "list",
@@ -1413,6 +1485,7 @@ M.ListAnomalyDetectorsOutput = {
 
 M.PutAnomalyDetectorInput = {
     type = "structure",
+    id = "PutAnomalyDetectorInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1454,6 +1527,7 @@ M.PutAnomalyDetectorInput = {
 
 M.PutAnomalyDetectorOutput = {
     type = "structure",
+    id = "PutAnomalyDetectorOutput",
     members = {
         anomalyDetectorId = {
             type = "string",
@@ -1480,6 +1554,7 @@ M.PutAnomalyDetectorOutput = {
 
 M.CreateWorkspaceInput = {
     type = "structure",
+    id = "CreateWorkspaceInput",
     members = {
         alias = {
             type = "string",
@@ -1511,6 +1586,7 @@ M.WorkspaceStatusCode = {
 
 M.WorkspaceStatus = {
     type = "structure",
+    id = "WorkspaceStatus",
     members = {
         statusCode = {
             type = "string",
@@ -1523,6 +1599,7 @@ M.WorkspaceStatus = {
 
 M.CreateWorkspaceOutput = {
     type = "structure",
+    id = "CreateWorkspaceOutput",
     members = {
         workspaceId = {
             type = "string",
@@ -1552,6 +1629,7 @@ M.CreateWorkspaceOutput = {
 
 M.DeleteWorkspaceInput = {
     type = "structure",
+    id = "DeleteWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1572,10 +1650,12 @@ M.DeleteWorkspaceInput = {
 
 M.DeleteWorkspaceOutput = {
     type = "structure",
+    id = "DeleteWorkspaceOutput",
 }
 
 M.DescribeWorkspaceInput = {
     type = "structure",
+    id = "DescribeWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1589,6 +1669,7 @@ M.DescribeWorkspaceInput = {
 
 M.WorkspaceDescription = {
     type = "structure",
+    id = "WorkspaceDescription",
     members = {
         workspaceId = {
             type = "string",
@@ -1630,6 +1711,7 @@ M.WorkspaceDescription = {
 
 M.DescribeWorkspaceOutput = {
     type = "structure",
+    id = "DescribeWorkspaceOutput",
     members = {
         workspace = setmetatable({ traits = {
             required = true,
@@ -1639,6 +1721,7 @@ M.DescribeWorkspaceOutput = {
 
 M.ListWorkspacesInput = {
     type = "structure",
+    id = "ListWorkspacesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1663,6 +1746,7 @@ M.ListWorkspacesInput = {
 
 M.WorkspaceSummary = {
     type = "structure",
+    id = "WorkspaceSummary",
     members = {
         workspaceId = {
             type = "string",
@@ -1701,6 +1785,7 @@ M.WorkspaceSummary = {
 
 M.ListWorkspacesOutput = {
     type = "structure",
+    id = "ListWorkspacesOutput",
     members = {
         workspaces = {
             type = "list",
@@ -1717,6 +1802,7 @@ M.ListWorkspacesOutput = {
 
 M.CreateLoggingConfigurationInput = {
     type = "structure",
+    id = "CreateLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1751,6 +1837,7 @@ M.LoggingConfigurationStatusCode = {
 
 M.LoggingConfigurationStatus = {
     type = "structure",
+    id = "LoggingConfigurationStatus",
     members = {
         statusCode = {
             type = "string",
@@ -1766,6 +1853,7 @@ M.LoggingConfigurationStatus = {
 
 M.CreateLoggingConfigurationOutput = {
     type = "structure",
+    id = "CreateLoggingConfigurationOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -1775,6 +1863,7 @@ M.CreateLoggingConfigurationOutput = {
 
 M.DeleteLoggingConfigurationInput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1795,10 +1884,12 @@ M.DeleteLoggingConfigurationInput = {
 
 M.DeleteLoggingConfigurationOutput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationOutput",
 }
 
 M.DescribeLoggingConfigurationInput = {
     type = "structure",
+    id = "DescribeLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1812,6 +1903,7 @@ M.DescribeLoggingConfigurationInput = {
 
 M.LoggingConfigurationMetadata = {
     type = "structure",
+    id = "LoggingConfigurationMetadata",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -1845,6 +1937,7 @@ M.LoggingConfigurationMetadata = {
 
 M.DescribeLoggingConfigurationOutput = {
     type = "structure",
+    id = "DescribeLoggingConfigurationOutput",
     members = {
         loggingConfiguration = setmetatable({ traits = {
             required = true,
@@ -1854,6 +1947,7 @@ M.DescribeLoggingConfigurationOutput = {
 
 M.UpdateLoggingConfigurationInput = {
     type = "structure",
+    id = "UpdateLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1879,6 +1973,7 @@ M.UpdateLoggingConfigurationInput = {
 
 M.UpdateLoggingConfigurationOutput = {
     type = "structure",
+    id = "UpdateLoggingConfigurationOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -1888,6 +1983,7 @@ M.UpdateLoggingConfigurationOutput = {
 
 M.LoggingFilter = {
     type = "structure",
+    id = "LoggingFilter",
     members = {
         qspThreshold = {
             type = "long",
@@ -1900,6 +1996,7 @@ M.LoggingFilter = {
 
 M.LoggingDestination = {
     type = "structure",
+    id = "LoggingDestination",
     members = {
         cloudWatchLogs = setmetatable({ traits = {
             required = true,
@@ -1912,6 +2009,7 @@ M.LoggingDestination = {
 
 M.CreateQueryLoggingConfigurationInput = {
     type = "structure",
+    id = "CreateQueryLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1947,6 +2045,7 @@ M.QueryLoggingConfigurationStatusCode = {
 
 M.QueryLoggingConfigurationStatus = {
     type = "structure",
+    id = "QueryLoggingConfigurationStatus",
     members = {
         statusCode = {
             type = "string",
@@ -1962,6 +2061,7 @@ M.QueryLoggingConfigurationStatus = {
 
 M.CreateQueryLoggingConfigurationOutput = {
     type = "structure",
+    id = "CreateQueryLoggingConfigurationOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -1971,6 +2071,7 @@ M.CreateQueryLoggingConfigurationOutput = {
 
 M.DeleteQueryLoggingConfigurationInput = {
     type = "structure",
+    id = "DeleteQueryLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1991,10 +2092,12 @@ M.DeleteQueryLoggingConfigurationInput = {
 
 M.DeleteQueryLoggingConfigurationOutput = {
     type = "structure",
+    id = "DeleteQueryLoggingConfigurationOutput",
 }
 
 M.DescribeQueryLoggingConfigurationInput = {
     type = "structure",
+    id = "DescribeQueryLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2008,6 +2111,7 @@ M.DescribeQueryLoggingConfigurationInput = {
 
 M.QueryLoggingConfigurationMetadata = {
     type = "structure",
+    id = "QueryLoggingConfigurationMetadata",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -2042,6 +2146,7 @@ M.QueryLoggingConfigurationMetadata = {
 
 M.DescribeQueryLoggingConfigurationOutput = {
     type = "structure",
+    id = "DescribeQueryLoggingConfigurationOutput",
     members = {
         queryLoggingConfiguration = setmetatable({ traits = {
             required = true,
@@ -2051,6 +2156,7 @@ M.DescribeQueryLoggingConfigurationOutput = {
 
 M.UpdateQueryLoggingConfigurationInput = {
     type = "structure",
+    id = "UpdateQueryLoggingConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2077,6 +2183,7 @@ M.UpdateQueryLoggingConfigurationInput = {
 
 M.UpdateQueryLoggingConfigurationOutput = {
     type = "structure",
+    id = "UpdateQueryLoggingConfigurationOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -2086,6 +2193,7 @@ M.UpdateQueryLoggingConfigurationOutput = {
 
 M.CreateRuleGroupsNamespaceInput = {
     type = "structure",
+    id = "CreateRuleGroupsNamespaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2131,6 +2239,7 @@ M.RuleGroupsNamespaceStatusCode = {
 
 M.RuleGroupsNamespaceStatus = {
     type = "structure",
+    id = "RuleGroupsNamespaceStatus",
     members = {
         statusCode = {
             type = "string",
@@ -2146,6 +2255,7 @@ M.RuleGroupsNamespaceStatus = {
 
 M.CreateRuleGroupsNamespaceOutput = {
     type = "structure",
+    id = "CreateRuleGroupsNamespaceOutput",
     members = {
         name = {
             type = "string",
@@ -2172,6 +2282,7 @@ M.CreateRuleGroupsNamespaceOutput = {
 
 M.DeleteRuleGroupsNamespaceInput = {
     type = "structure",
+    id = "DeleteRuleGroupsNamespaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2199,10 +2310,12 @@ M.DeleteRuleGroupsNamespaceInput = {
 
 M.DeleteRuleGroupsNamespaceOutput = {
     type = "structure",
+    id = "DeleteRuleGroupsNamespaceOutput",
 }
 
 M.DescribeRuleGroupsNamespaceInput = {
     type = "structure",
+    id = "DescribeRuleGroupsNamespaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2223,6 +2336,7 @@ M.DescribeRuleGroupsNamespaceInput = {
 
 M.RuleGroupsNamespaceDescription = {
     type = "structure",
+    id = "RuleGroupsNamespaceDescription",
     members = {
         arn = {
             type = "string",
@@ -2267,6 +2381,7 @@ M.RuleGroupsNamespaceDescription = {
 
 M.DescribeRuleGroupsNamespaceOutput = {
     type = "structure",
+    id = "DescribeRuleGroupsNamespaceOutput",
     members = {
         ruleGroupsNamespace = setmetatable({ traits = {
             required = true,
@@ -2276,6 +2391,7 @@ M.DescribeRuleGroupsNamespaceOutput = {
 
 M.ListRuleGroupsNamespacesInput = {
     type = "structure",
+    id = "ListRuleGroupsNamespacesInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2307,6 +2423,7 @@ M.ListRuleGroupsNamespacesInput = {
 
 M.RuleGroupsNamespaceSummary = {
     type = "structure",
+    id = "RuleGroupsNamespaceSummary",
     members = {
         arn = {
             type = "string",
@@ -2345,6 +2462,7 @@ M.RuleGroupsNamespaceSummary = {
 
 M.ListRuleGroupsNamespacesOutput = {
     type = "structure",
+    id = "ListRuleGroupsNamespacesOutput",
     members = {
         ruleGroupsNamespaces = {
             type = "list",
@@ -2361,6 +2479,7 @@ M.ListRuleGroupsNamespacesOutput = {
 
 M.PutRuleGroupsNamespaceInput = {
     type = "structure",
+    id = "PutRuleGroupsNamespaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2393,6 +2512,7 @@ M.PutRuleGroupsNamespaceInput = {
 
 M.PutRuleGroupsNamespaceOutput = {
     type = "structure",
+    id = "PutRuleGroupsNamespaceOutput",
     members = {
         name = {
             type = "string",
@@ -2419,6 +2539,7 @@ M.PutRuleGroupsNamespaceOutput = {
 
 M.UpdateWorkspaceAliasInput = {
     type = "structure",
+    id = "UpdateWorkspaceAliasInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2441,10 +2562,12 @@ M.UpdateWorkspaceAliasInput = {
 
 M.UpdateWorkspaceAliasOutput = {
     type = "structure",
+    id = "UpdateWorkspaceAliasOutput",
 }
 
 M.DescribeWorkspaceConfigurationInput = {
     type = "structure",
+    id = "DescribeWorkspaceConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2458,6 +2581,7 @@ M.DescribeWorkspaceConfigurationInput = {
 
 M.LimitsPerLabelSetEntry = {
     type = "structure",
+    id = "LimitsPerLabelSetEntry",
     members = {
         maxSeries = {
             type = "long",
@@ -2467,6 +2591,7 @@ M.LimitsPerLabelSetEntry = {
 
 M.LimitsPerLabelSet = {
     type = "structure",
+    id = "LimitsPerLabelSet",
     members = {
         limits = setmetatable({ traits = {
             required = true,
@@ -2490,6 +2615,7 @@ M.WorkspaceConfigurationStatusCode = {
 
 M.WorkspaceConfigurationStatus = {
     type = "structure",
+    id = "WorkspaceConfigurationStatus",
     members = {
         statusCode = {
             type = "string",
@@ -2505,6 +2631,7 @@ M.WorkspaceConfigurationStatus = {
 
 M.WorkspaceConfigurationDescription = {
     type = "structure",
+    id = "WorkspaceConfigurationDescription",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -2521,6 +2648,7 @@ M.WorkspaceConfigurationDescription = {
 
 M.DescribeWorkspaceConfigurationOutput = {
     type = "structure",
+    id = "DescribeWorkspaceConfigurationOutput",
     members = {
         workspaceConfiguration = setmetatable({ traits = {
             required = true,
@@ -2530,6 +2658,7 @@ M.DescribeWorkspaceConfigurationOutput = {
 
 M.UpdateWorkspaceConfigurationInput = {
     type = "structure",
+    id = "UpdateWorkspaceConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2556,6 +2685,7 @@ M.UpdateWorkspaceConfigurationInput = {
 
 M.UpdateWorkspaceConfigurationOutput = {
     type = "structure",
+    id = "UpdateWorkspaceConfigurationOutput",
     members = {
         status = setmetatable({ traits = {
             required = true,
@@ -2565,6 +2695,7 @@ M.UpdateWorkspaceConfigurationOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2591,10 +2722,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DescribeResourcePolicyInput = {
     type = "structure",
+    id = "DescribeResourcePolicyInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2615,6 +2748,7 @@ M.WorkspacePolicyStatusCode = {
 
 M.DescribeResourcePolicyOutput = {
     type = "structure",
+    id = "DescribeResourcePolicyOutput",
     members = {
         policyDocument = {
             type = "string",
@@ -2639,6 +2773,7 @@ M.DescribeResourcePolicyOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2667,6 +2802,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         policyStatus = {
             type = "string",

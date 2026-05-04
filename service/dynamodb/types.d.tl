@@ -1812,19 +1812,13 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type InputFormat = "DYNAMODB_JSON" | "ION" | "CSV"
+local type ConditionalOperator = "AND" | "OR"
+
+local type InputCompressionType = "GZIP" | "ZSTD" | "NONE"
+
+local type ExportFormat = "DYNAMODB_JSON" | "ION"
 
 local type BillingMode = "PROVISIONED" | "PAY_PER_REQUEST"
-
-local type ReturnValue = "NONE" | "ALL_OLD" | "UPDATED_OLD" | "ALL_NEW" | "UPDATED_NEW"
-
-local type MultiRegionConsistency = "EVENTUAL" | "STRONG"
-
-local type ContributorInsightsAction = "ENABLE" | "DISABLE"
-
-local type GlobalTableSettingsReplicationMode = "ENABLED" | "DISABLED" | "ENABLED_WITH_OVERRIDES"
-
-local type ReturnValuesOnConditionCheckFailure = "ALL_OLD" | "NONE"
 
 local type Select = "ALL_ATTRIBUTES" | "ALL_PROJECTED_ATTRIBUTES" | "SPECIFIC_ATTRIBUTES" | "COUNT"
 
@@ -1832,19 +1826,25 @@ local type ReturnConsumedCapacity = "INDEXES" | "TOTAL" | "NONE"
 
 local type ExportType = "FULL_EXPORT" | "INCREMENTAL_EXPORT"
 
-local type DestinationStatus = "ENABLING" | "ACTIVE" | "DISABLING" | "DISABLED" | "ENABLE_FAILED" | "UPDATING"
+local type InputFormat = "DYNAMODB_JSON" | "ION" | "CSV"
 
-local type ExportFormat = "DYNAMODB_JSON" | "ION"
+local type ContributorInsightsAction = "ENABLE" | "DISABLE"
 
-local type InputCompressionType = "GZIP" | "ZSTD" | "NONE"
+local type ReturnValuesOnConditionCheckFailure = "ALL_OLD" | "NONE"
 
-local type S3SseAlgorithm = "AES256" | "KMS"
+local type GlobalTableSettingsReplicationMode = "ENABLED" | "DISABLED" | "ENABLED_WITH_OVERRIDES"
 
 local type ContributorInsightsStatus = "ENABLING" | "ENABLED" | "DISABLING" | "DISABLED" | "FAILED"
 
+local type S3SseAlgorithm = "AES256" | "KMS"
+
+local type MultiRegionConsistency = "EVENTUAL" | "STRONG"
+
+local type ReturnValue = "NONE" | "ALL_OLD" | "UPDATED_OLD" | "ALL_NEW" | "UPDATED_NEW"
+
 local type TableClass = "STANDARD" | "STANDARD_INFREQUENT_ACCESS"
 
-local type ConditionalOperator = "AND" | "OR"
+local type DestinationStatus = "ENABLING" | "ACTIVE" | "DISABLING" | "DISABLED" | "ENABLE_FAILED" | "UPDATING"
 
 local type BackupTypeFilter = "USER" | "SYSTEM" | "AWS_BACKUP" | "ALL"
 

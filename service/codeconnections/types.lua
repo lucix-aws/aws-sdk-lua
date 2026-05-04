@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -30,6 +31,7 @@ M.ProviderType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -48,6 +50,7 @@ M.Tag = {
 
 M.CreateConnectionInput = {
     type = "structure",
+    id = "CreateConnectionInput",
     members = {
         ProviderType = {
             type = "string",
@@ -70,6 +73,7 @@ M.CreateConnectionInput = {
 
 M.CreateConnectionOutput = {
     type = "structure",
+    id = "CreateConnectionOutput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -86,6 +90,7 @@ M.CreateConnectionOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -96,6 +101,7 @@ M.LimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -106,6 +112,7 @@ M.ResourceNotFoundException = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +123,7 @@ M.ResourceUnavailableException = {
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         VpcId = {
             type = "string",
@@ -145,6 +153,7 @@ M.VpcConfiguration = {
 
 M.CreateHostInput = {
     type = "structure",
+    id = "CreateHostInput",
     members = {
         Name = {
             type = "string",
@@ -174,6 +183,7 @@ M.CreateHostInput = {
 
 M.CreateHostOutput = {
     type = "structure",
+    id = "CreateHostOutput",
     members = {
         HostArn = {
             type = "string",
@@ -187,6 +197,7 @@ M.CreateHostOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -197,6 +208,7 @@ M.ConcurrentModificationException = {
 
 M.CreateRepositoryLinkInput = {
     type = "structure",
+    id = "CreateRepositoryLinkInput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -228,6 +240,7 @@ M.CreateRepositoryLinkInput = {
 
 M.RepositoryLinkInfo = {
     type = "structure",
+    id = "RepositoryLinkInfo",
     members = {
         ConnectionArn = {
             type = "string",
@@ -273,6 +286,7 @@ M.RepositoryLinkInfo = {
 
 M.CreateRepositoryLinkOutput = {
     type = "structure",
+    id = "CreateRepositoryLinkOutput",
     members = {
         RepositoryLinkInfo = setmetatable({ traits = {
             required = true,
@@ -282,6 +296,7 @@ M.CreateRepositoryLinkOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -292,6 +307,7 @@ M.InternalServerException = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         Message = {
@@ -302,6 +318,7 @@ M.InvalidInputException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -312,6 +329,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -341,6 +359,7 @@ M.TriggerResourceUpdateOn = {
 
 M.CreateSyncConfigurationInput = {
     type = "structure",
+    id = "CreateSyncConfigurationInput",
     members = {
         Branch = {
             type = "string",
@@ -392,6 +411,7 @@ M.CreateSyncConfigurationInput = {
 
 M.SyncConfiguration = {
     type = "structure",
+    id = "SyncConfiguration",
     members = {
         Branch = {
             type = "string",
@@ -458,6 +478,7 @@ M.SyncConfiguration = {
 
 M.CreateSyncConfigurationOutput = {
     type = "structure",
+    id = "CreateSyncConfigurationOutput",
     members = {
         SyncConfiguration = setmetatable({ traits = {
             required = true,
@@ -467,6 +488,7 @@ M.CreateSyncConfigurationOutput = {
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -479,10 +501,12 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
 }
 
 M.DeleteHostInput = {
     type = "structure",
+    id = "DeleteHostInput",
     members = {
         HostArn = {
             type = "string",
@@ -495,10 +519,12 @@ M.DeleteHostInput = {
 
 M.DeleteHostOutput = {
     type = "structure",
+    id = "DeleteHostOutput",
 }
 
 M.DeleteRepositoryLinkInput = {
     type = "structure",
+    id = "DeleteRepositoryLinkInput",
     members = {
         RepositoryLinkId = {
             type = "string",
@@ -511,10 +537,12 @@ M.DeleteRepositoryLinkInput = {
 
 M.DeleteRepositoryLinkOutput = {
     type = "structure",
+    id = "DeleteRepositoryLinkOutput",
 }
 
 M.SyncConfigurationStillExistsException = {
     type = "structure",
+    id = "SyncConfigurationStillExistsException",
     error = "client",
     members = {
         Message = {
@@ -525,6 +553,7 @@ M.SyncConfigurationStillExistsException = {
 
 M.UnsupportedProviderTypeException = {
     type = "structure",
+    id = "UnsupportedProviderTypeException",
     error = "client",
     members = {
         Message = {
@@ -535,6 +564,7 @@ M.UnsupportedProviderTypeException = {
 
 M.DeleteSyncConfigurationInput = {
     type = "structure",
+    id = "DeleteSyncConfigurationInput",
     members = {
         SyncType = {
             type = "string",
@@ -553,10 +583,12 @@ M.DeleteSyncConfigurationInput = {
 
 M.DeleteSyncConfigurationOutput = {
     type = "structure",
+    id = "DeleteSyncConfigurationOutput",
 }
 
 M.GetConnectionInput = {
     type = "structure",
+    id = "GetConnectionInput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -575,6 +607,7 @@ M.ConnectionStatus = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         ConnectionName = {
             type = "string",
@@ -599,6 +632,7 @@ M.Connection = {
 
 M.GetConnectionOutput = {
     type = "structure",
+    id = "GetConnectionOutput",
     members = {
         Connection = M.Connection,
     },
@@ -606,6 +640,7 @@ M.GetConnectionOutput = {
 
 M.GetHostInput = {
     type = "structure",
+    id = "GetHostInput",
     members = {
         HostArn = {
             type = "string",
@@ -618,6 +653,7 @@ M.GetHostInput = {
 
 M.GetHostOutput = {
     type = "structure",
+    id = "GetHostOutput",
     members = {
         Name = {
             type = "string",
@@ -637,6 +673,7 @@ M.GetHostOutput = {
 
 M.GetRepositoryLinkInput = {
     type = "structure",
+    id = "GetRepositoryLinkInput",
     members = {
         RepositoryLinkId = {
             type = "string",
@@ -649,6 +686,7 @@ M.GetRepositoryLinkInput = {
 
 M.GetRepositoryLinkOutput = {
     type = "structure",
+    id = "GetRepositoryLinkOutput",
     members = {
         RepositoryLinkInfo = setmetatable({ traits = {
             required = true,
@@ -658,6 +696,7 @@ M.GetRepositoryLinkOutput = {
 
 M.GetRepositorySyncStatusInput = {
     type = "structure",
+    id = "GetRepositorySyncStatusInput",
     members = {
         Branch = {
             type = "string",
@@ -682,6 +721,7 @@ M.GetRepositorySyncStatusInput = {
 
 M.RepositorySyncEvent = {
     type = "structure",
+    id = "RepositorySyncEvent",
     members = {
         Event = {
             type = "string",
@@ -717,6 +757,7 @@ M.RepositorySyncStatus = {
 
 M.RepositorySyncAttempt = {
     type = "structure",
+    id = "RepositorySyncAttempt",
     members = {
         StartedAt = {
             type = "timestamp",
@@ -742,6 +783,7 @@ M.RepositorySyncAttempt = {
 
 M.GetRepositorySyncStatusOutput = {
     type = "structure",
+    id = "GetRepositorySyncStatusOutput",
     members = {
         LatestSync = setmetatable({ traits = {
             required = true,
@@ -751,6 +793,7 @@ M.GetRepositorySyncStatusOutput = {
 
 M.GetResourceSyncStatusInput = {
     type = "structure",
+    id = "GetResourceSyncStatusInput",
     members = {
         ResourceName = {
             type = "string",
@@ -769,6 +812,7 @@ M.GetResourceSyncStatusInput = {
 
 M.Revision = {
     type = "structure",
+    id = "Revision",
     members = {
         Branch = {
             type = "string",
@@ -811,6 +855,7 @@ M.Revision = {
 
 M.ResourceSyncEvent = {
     type = "structure",
+    id = "ResourceSyncEvent",
     members = {
         Event = {
             type = "string",
@@ -845,6 +890,7 @@ M.ResourceSyncStatus = {
 
 M.ResourceSyncAttempt = {
     type = "structure",
+    id = "ResourceSyncAttempt",
     members = {
         Events = {
             type = "list",
@@ -882,6 +928,7 @@ M.ResourceSyncAttempt = {
 
 M.GetResourceSyncStatusOutput = {
     type = "structure",
+    id = "GetResourceSyncStatusOutput",
     members = {
         DesiredState = M.Revision,
         LatestSuccessfulSync = M.ResourceSyncAttempt,
@@ -893,6 +940,7 @@ M.GetResourceSyncStatusOutput = {
 
 M.GetSyncBlockerSummaryInput = {
     type = "structure",
+    id = "GetSyncBlockerSummaryInput",
     members = {
         SyncType = {
             type = "string",
@@ -911,6 +959,7 @@ M.GetSyncBlockerSummaryInput = {
 
 M.SyncBlockerContext = {
     type = "structure",
+    id = "SyncBlockerContext",
     members = {
         Key = {
             type = "string",
@@ -929,6 +978,7 @@ M.SyncBlockerContext = {
 
 M.SyncBlocker = {
     type = "structure",
+    id = "SyncBlocker",
     members = {
         Id = {
             type = "string",
@@ -975,6 +1025,7 @@ M.SyncBlocker = {
 
 M.SyncBlockerSummary = {
     type = "structure",
+    id = "SyncBlockerSummary",
     members = {
         ResourceName = {
             type = "string",
@@ -994,6 +1045,7 @@ M.SyncBlockerSummary = {
 
 M.GetSyncBlockerSummaryOutput = {
     type = "structure",
+    id = "GetSyncBlockerSummaryOutput",
     members = {
         SyncBlockerSummary = setmetatable({ traits = {
             required = true,
@@ -1003,6 +1055,7 @@ M.GetSyncBlockerSummaryOutput = {
 
 M.GetSyncConfigurationInput = {
     type = "structure",
+    id = "GetSyncConfigurationInput",
     members = {
         SyncType = {
             type = "string",
@@ -1021,6 +1074,7 @@ M.GetSyncConfigurationInput = {
 
 M.GetSyncConfigurationOutput = {
     type = "structure",
+    id = "GetSyncConfigurationOutput",
     members = {
         SyncConfiguration = setmetatable({ traits = {
             required = true,
@@ -1030,6 +1084,7 @@ M.GetSyncConfigurationOutput = {
 
 M.ListConnectionsInput = {
     type = "structure",
+    id = "ListConnectionsInput",
     members = {
         ProviderTypeFilter = {
             type = "string",
@@ -1051,6 +1106,7 @@ M.ListConnectionsInput = {
 
 M.ListConnectionsOutput = {
     type = "structure",
+    id = "ListConnectionsOutput",
     members = {
         Connections = {
             type = "list",
@@ -1064,6 +1120,7 @@ M.ListConnectionsOutput = {
 
 M.ListHostsInput = {
     type = "structure",
+    id = "ListHostsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1079,6 +1136,7 @@ M.ListHostsInput = {
 
 M.Host = {
     type = "structure",
+    id = "Host",
     members = {
         Name = {
             type = "string",
@@ -1104,6 +1162,7 @@ M.Host = {
 
 M.ListHostsOutput = {
     type = "structure",
+    id = "ListHostsOutput",
     members = {
         Hosts = {
             type = "list",
@@ -1117,6 +1176,7 @@ M.ListHostsOutput = {
 
 M.ListRepositoryLinksInput = {
     type = "structure",
+    id = "ListRepositoryLinksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1132,6 +1192,7 @@ M.ListRepositoryLinksInput = {
 
 M.ListRepositoryLinksOutput = {
     type = "structure",
+    id = "ListRepositoryLinksOutput",
     members = {
         RepositoryLinks = {
             type = "list",
@@ -1148,6 +1209,7 @@ M.ListRepositoryLinksOutput = {
 
 M.ListRepositorySyncDefinitionsInput = {
     type = "structure",
+    id = "ListRepositorySyncDefinitionsInput",
     members = {
         RepositoryLinkId = {
             type = "string",
@@ -1166,6 +1228,7 @@ M.ListRepositorySyncDefinitionsInput = {
 
 M.RepositorySyncDefinition = {
     type = "structure",
+    id = "RepositorySyncDefinition",
     members = {
         Branch = {
             type = "string",
@@ -1196,6 +1259,7 @@ M.RepositorySyncDefinition = {
 
 M.ListRepositorySyncDefinitionsOutput = {
     type = "structure",
+    id = "ListRepositorySyncDefinitionsOutput",
     members = {
         RepositorySyncDefinitions = {
             type = "list",
@@ -1212,6 +1276,7 @@ M.ListRepositorySyncDefinitionsOutput = {
 
 M.ListSyncConfigurationsInput = {
     type = "structure",
+    id = "ListSyncConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1239,6 +1304,7 @@ M.ListSyncConfigurationsInput = {
 
 M.ListSyncConfigurationsOutput = {
     type = "structure",
+    id = "ListSyncConfigurationsOutput",
     members = {
         SyncConfigurations = {
             type = "list",
@@ -1255,6 +1321,7 @@ M.ListSyncConfigurationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1267,6 +1334,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1277,6 +1345,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1296,10 +1365,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1319,10 +1390,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -1333,6 +1406,7 @@ M.ConflictException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -1343,6 +1417,7 @@ M.UnsupportedOperationException = {
 
 M.UpdateHostInput = {
     type = "structure",
+    id = "UpdateHostInput",
     members = {
         HostArn = {
             type = "string",
@@ -1359,10 +1434,12 @@ M.UpdateHostInput = {
 
 M.UpdateHostOutput = {
     type = "structure",
+    id = "UpdateHostOutput",
 }
 
 M.ConditionalCheckFailedException = {
     type = "structure",
+    id = "ConditionalCheckFailedException",
     error = "client",
     members = {
         Message = {
@@ -1373,6 +1450,7 @@ M.ConditionalCheckFailedException = {
 
 M.UpdateOutOfSyncException = {
     type = "structure",
+    id = "UpdateOutOfSyncException",
     error = "client",
     members = {
         Message = {
@@ -1383,6 +1461,7 @@ M.UpdateOutOfSyncException = {
 
 M.UpdateRepositoryLinkInput = {
     type = "structure",
+    id = "UpdateRepositoryLinkInput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -1401,6 +1480,7 @@ M.UpdateRepositoryLinkInput = {
 
 M.UpdateRepositoryLinkOutput = {
     type = "structure",
+    id = "UpdateRepositoryLinkOutput",
     members = {
         RepositoryLinkInfo = setmetatable({ traits = {
             required = true,
@@ -1410,6 +1490,7 @@ M.UpdateRepositoryLinkOutput = {
 
 M.RetryLatestCommitFailedException = {
     type = "structure",
+    id = "RetryLatestCommitFailedException",
     error = "server",
     members = {
         Message = {
@@ -1420,6 +1501,7 @@ M.RetryLatestCommitFailedException = {
 
 M.SyncBlockerDoesNotExistException = {
     type = "structure",
+    id = "SyncBlockerDoesNotExistException",
     error = "client",
     members = {
         Message = {
@@ -1430,6 +1512,7 @@ M.SyncBlockerDoesNotExistException = {
 
 M.UpdateSyncBlockerInput = {
     type = "structure",
+    id = "UpdateSyncBlockerInput",
     members = {
         Id = {
             type = "string",
@@ -1460,6 +1543,7 @@ M.UpdateSyncBlockerInput = {
 
 M.UpdateSyncBlockerOutput = {
     type = "structure",
+    id = "UpdateSyncBlockerOutput",
     members = {
         ResourceName = {
             type = "string",
@@ -1478,6 +1562,7 @@ M.UpdateSyncBlockerOutput = {
 
 M.UpdateSyncConfigurationInput = {
     type = "structure",
+    id = "UpdateSyncConfigurationInput",
     members = {
         Branch = {
             type = "string",
@@ -1517,6 +1602,7 @@ M.UpdateSyncConfigurationInput = {
 
 M.UpdateSyncConfigurationOutput = {
     type = "structure",
+    id = "UpdateSyncConfigurationOutput",
     members = {
         SyncConfiguration = setmetatable({ traits = {
             required = true,

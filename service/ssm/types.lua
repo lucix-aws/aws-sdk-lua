@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -28,6 +29,7 @@ M.AccessType = {
 
 M.AccountSharingInfo = {
     type = "structure",
+    id = "AccountSharingInfo",
     members = {
         AccountId = {
             type = "string",
@@ -40,6 +42,7 @@ M.AccountSharingInfo = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -58,6 +61,7 @@ M.Tag = {
 
 M.Activation = {
     type = "structure",
+    id = "Activation",
     members = {
         ActivationId = {
             type = "string",
@@ -110,6 +114,7 @@ M.ResourceTypeForTagging = {
 
 M.AddTagsToResourceInput = {
     type = "structure",
+    id = "AddTagsToResourceInput",
     members = {
         ResourceType = {
             type = "string",
@@ -135,10 +140,12 @@ M.AddTagsToResourceInput = {
 
 M.AddTagsToResourceOutput = {
     type = "structure",
+    id = "AddTagsToResourceOutput",
 }
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -149,21 +156,25 @@ M.InternalServerError = {
 
 M.InvalidResourceId = {
     type = "structure",
+    id = "InvalidResourceId",
     error = "client",
 }
 
 M.InvalidResourceType = {
     type = "structure",
+    id = "InvalidResourceType",
     error = "client",
 }
 
 M.TooManyTagsError = {
     type = "structure",
+    id = "TooManyTagsError",
     error = "client",
 }
 
 M.TooManyUpdates = {
     type = "structure",
+    id = "TooManyUpdates",
     error = "client",
     members = {
         Message = {
@@ -174,6 +185,7 @@ M.TooManyUpdates = {
 
 M.Alarm = {
     type = "structure",
+    id = "Alarm",
     members = {
         Name = {
             type = "string",
@@ -186,6 +198,7 @@ M.Alarm = {
 
 M.AlarmConfiguration = {
     type = "structure",
+    id = "AlarmConfiguration",
     members = {
         IgnorePollAlarmFailure = {
             type = "boolean",
@@ -210,6 +223,7 @@ M.ExternalAlarmState = {
 
 M.AlarmStateInformation = {
     type = "structure",
+    id = "AlarmStateInformation",
     members = {
         Name = {
             type = "string",
@@ -228,6 +242,7 @@ M.AlarmStateInformation = {
 
 M.AlreadyExistsException = {
     type = "structure",
+    id = "AlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -238,6 +253,7 @@ M.AlreadyExistsException = {
 
 M.AssociateOpsItemRelatedItemInput = {
     type = "structure",
+    id = "AssociateOpsItemRelatedItemInput",
     members = {
         OpsItemId = {
             type = "string",
@@ -268,6 +284,7 @@ M.AssociateOpsItemRelatedItemInput = {
 
 M.AssociateOpsItemRelatedItemOutput = {
     type = "structure",
+    id = "AssociateOpsItemRelatedItemOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -277,6 +294,7 @@ M.AssociateOpsItemRelatedItemOutput = {
 
 M.OpsItemConflictException = {
     type = "structure",
+    id = "OpsItemConflictException",
     error = "client",
     members = {
         Message = {
@@ -287,6 +305,7 @@ M.OpsItemConflictException = {
 
 M.OpsItemInvalidParameterException = {
     type = "structure",
+    id = "OpsItemInvalidParameterException",
     error = "client",
     members = {
         ParameterNames = {
@@ -301,6 +320,7 @@ M.OpsItemInvalidParameterException = {
 
 M.OpsItemLimitExceededException = {
     type = "structure",
+    id = "OpsItemLimitExceededException",
     error = "client",
     members = {
         ResourceTypes = {
@@ -324,6 +344,7 @@ M.OpsItemLimitExceededException = {
 
 M.OpsItemNotFoundException = {
     type = "structure",
+    id = "OpsItemNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -334,6 +355,7 @@ M.OpsItemNotFoundException = {
 
 M.OpsItemRelatedItemAlreadyExistsException = {
     type = "structure",
+    id = "OpsItemRelatedItemAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -350,6 +372,7 @@ M.OpsItemRelatedItemAlreadyExistsException = {
 
 M.CancelCommandInput = {
     type = "structure",
+    id = "CancelCommandInput",
     members = {
         CommandId = {
             type = "string",
@@ -366,20 +389,24 @@ M.CancelCommandInput = {
 
 M.CancelCommandOutput = {
     type = "structure",
+    id = "CancelCommandOutput",
 }
 
 M.DuplicateInstanceId = {
     type = "structure",
+    id = "DuplicateInstanceId",
     error = "client",
 }
 
 M.InvalidCommandId = {
     type = "structure",
+    id = "InvalidCommandId",
     error = "client",
 }
 
 M.InvalidInstanceId = {
     type = "structure",
+    id = "InvalidInstanceId",
     error = "client",
     members = {
         Message = {
@@ -390,6 +417,7 @@ M.InvalidInstanceId = {
 
 M.CancelMaintenanceWindowExecutionInput = {
     type = "structure",
+    id = "CancelMaintenanceWindowExecutionInput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -402,6 +430,7 @@ M.CancelMaintenanceWindowExecutionInput = {
 
 M.CancelMaintenanceWindowExecutionOutput = {
     type = "structure",
+    id = "CancelMaintenanceWindowExecutionOutput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -411,6 +440,7 @@ M.CancelMaintenanceWindowExecutionOutput = {
 
 M.DoesNotExistException = {
     type = "structure",
+    id = "DoesNotExistException",
     error = "client",
     members = {
         Message = {
@@ -421,6 +451,7 @@ M.DoesNotExistException = {
 
 M.RegistrationMetadataItem = {
     type = "structure",
+    id = "RegistrationMetadataItem",
     members = {
         Key = {
             type = "string",
@@ -439,6 +470,7 @@ M.RegistrationMetadataItem = {
 
 M.CreateActivationInput = {
     type = "structure",
+    id = "CreateActivationInput",
     members = {
         Description = {
             type = "string",
@@ -471,6 +503,7 @@ M.CreateActivationInput = {
 
 M.CreateActivationOutput = {
     type = "structure",
+    id = "CreateActivationOutput",
     members = {
         ActivationId = {
             type = "string",
@@ -483,6 +516,7 @@ M.CreateActivationOutput = {
 
 M.InvalidParameters = {
     type = "structure",
+    id = "InvalidParameters",
     error = "client",
     members = {
         Message = {
@@ -493,11 +527,13 @@ M.InvalidParameters = {
 
 M.AssociationAlreadyExists = {
     type = "structure",
+    id = "AssociationAlreadyExists",
     error = "client",
 }
 
 M.AssociationLimitExceeded = {
     type = "structure",
+    id = "AssociationLimitExceeded",
     error = "client",
 }
 
@@ -511,6 +547,7 @@ M.AssociationComplianceSeverity = {
 
 M.S3OutputLocation = {
     type = "structure",
+    id = "S3OutputLocation",
     members = {
         OutputS3Region = {
             type = "string",
@@ -526,6 +563,7 @@ M.S3OutputLocation = {
 
 M.InstanceAssociationOutputLocation = {
     type = "structure",
+    id = "InstanceAssociationOutputLocation",
     members = {
         S3Location = M.S3OutputLocation,
     },
@@ -538,6 +576,7 @@ M.AssociationSyncCompliance = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         Key = {
             type = "string",
@@ -551,6 +590,7 @@ M.Target = {
 
 M.TargetLocation = {
     type = "structure",
+    id = "TargetLocation",
     members = {
         Accounts = {
             type = "list",
@@ -595,6 +635,7 @@ M.TargetLocation = {
 
 M.CreateAssociationInput = {
     type = "structure",
+    id = "CreateAssociationInput",
     members = {
         Name = {
             type = "string",
@@ -676,6 +717,7 @@ M.CreateAssociationInput = {
 
 M.AssociationOverview = {
     type = "structure",
+    id = "AssociationOverview",
     members = {
         Status = {
             type = "string",
@@ -699,6 +741,7 @@ M.AssociationStatusName = {
 
 M.AssociationStatus = {
     type = "structure",
+    id = "AssociationStatus",
     members = {
         Date = {
             type = "timestamp",
@@ -726,6 +769,7 @@ M.AssociationStatus = {
 
 M.AssociationDescription = {
     type = "structure",
+    id = "AssociationDescription",
     members = {
         Name = {
             type = "string",
@@ -824,6 +868,7 @@ M.AssociationDescription = {
 
 M.CreateAssociationOutput = {
     type = "structure",
+    id = "CreateAssociationOutput",
     members = {
         AssociationDescription = M.AssociationDescription,
     },
@@ -831,6 +876,7 @@ M.CreateAssociationOutput = {
 
 M.InvalidDocument = {
     type = "structure",
+    id = "InvalidDocument",
     error = "client",
     members = {
         Message = {
@@ -841,6 +887,7 @@ M.InvalidDocument = {
 
 M.InvalidDocumentVersion = {
     type = "structure",
+    id = "InvalidDocumentVersion",
     error = "client",
     members = {
         Message = {
@@ -851,11 +898,13 @@ M.InvalidDocumentVersion = {
 
 M.InvalidOutputLocation = {
     type = "structure",
+    id = "InvalidOutputLocation",
     error = "client",
 }
 
 M.InvalidSchedule = {
     type = "structure",
+    id = "InvalidSchedule",
     error = "client",
     members = {
         Message = {
@@ -866,6 +915,7 @@ M.InvalidSchedule = {
 
 M.InvalidTag = {
     type = "structure",
+    id = "InvalidTag",
     error = "client",
     members = {
         Message = {
@@ -876,6 +926,7 @@ M.InvalidTag = {
 
 M.InvalidTarget = {
     type = "structure",
+    id = "InvalidTarget",
     error = "client",
     members = {
         Message = {
@@ -886,6 +937,7 @@ M.InvalidTarget = {
 
 M.InvalidTargetMaps = {
     type = "structure",
+    id = "InvalidTargetMaps",
     error = "client",
     members = {
         Message = {
@@ -896,6 +948,7 @@ M.InvalidTargetMaps = {
 
 M.UnsupportedPlatformType = {
     type = "structure",
+    id = "UnsupportedPlatformType",
     error = "client",
     members = {
         Message = {
@@ -906,6 +959,7 @@ M.UnsupportedPlatformType = {
 
 M.CreateAssociationBatchRequestEntry = {
     type = "structure",
+    id = "CreateAssociationBatchRequestEntry",
     members = {
         Name = {
             type = "string",
@@ -980,6 +1034,7 @@ M.CreateAssociationBatchRequestEntry = {
 
 M.CreateAssociationBatchInput = {
     type = "structure",
+    id = "CreateAssociationBatchInput",
     members = {
         Entries = {
             type = "list",
@@ -1002,6 +1057,7 @@ M.Fault = {
 
 M.FailedCreateAssociation = {
     type = "structure",
+    id = "FailedCreateAssociation",
     members = {
         Entry = M.CreateAssociationBatchRequestEntry,
         Message = {
@@ -1015,6 +1071,7 @@ M.FailedCreateAssociation = {
 
 M.CreateAssociationBatchOutput = {
     type = "structure",
+    id = "CreateAssociationBatchOutput",
     members = {
         Successful = {
             type = "list",
@@ -1035,6 +1092,7 @@ M.AttachmentsSourceKey = {
 
 M.AttachmentsSource = {
     type = "structure",
+    id = "AttachmentsSource",
     members = {
         Key = {
             type = "string",
@@ -1077,6 +1135,7 @@ M.DocumentType = {
 
 M.DocumentRequires = {
     type = "structure",
+    id = "DocumentRequires",
     members = {
         Name = {
             type = "string",
@@ -1098,6 +1157,7 @@ M.DocumentRequires = {
 
 M.CreateDocumentInput = {
     type = "structure",
+    id = "CreateDocumentInput",
     members = {
         Content = {
             type = "string",
@@ -1143,6 +1203,7 @@ M.CreateDocumentInput = {
 
 M.AttachmentInformation = {
     type = "structure",
+    id = "AttachmentInformation",
     members = {
         Name = {
             type = "string",
@@ -1162,6 +1223,7 @@ M.DocumentParameterType = {
 
 M.DocumentParameter = {
     type = "structure",
+    id = "DocumentParameter",
     members = {
         Name = {
             type = "string",
@@ -1193,6 +1255,7 @@ M.ReviewStatus = {
 
 M.ReviewInformation = {
     type = "structure",
+    id = "ReviewInformation",
     members = {
         ReviewedTime = {
             type = "timestamp",
@@ -1216,6 +1279,7 @@ M.DocumentStatus = {
 
 M.DocumentDescription = {
     type = "structure",
+    id = "DocumentDescription",
     members = {
         Sha1 = {
             type = "string",
@@ -1320,6 +1384,7 @@ M.DocumentDescription = {
 
 M.CreateDocumentOutput = {
     type = "structure",
+    id = "CreateDocumentOutput",
     members = {
         DocumentDescription = M.DocumentDescription,
     },
@@ -1327,6 +1392,7 @@ M.CreateDocumentOutput = {
 
 M.DocumentAlreadyExists = {
     type = "structure",
+    id = "DocumentAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -1337,6 +1403,7 @@ M.DocumentAlreadyExists = {
 
 M.DocumentLimitExceeded = {
     type = "structure",
+    id = "DocumentLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -1347,6 +1414,7 @@ M.DocumentLimitExceeded = {
 
 M.InvalidDocumentContent = {
     type = "structure",
+    id = "InvalidDocumentContent",
     error = "client",
     members = {
         Message = {
@@ -1357,6 +1425,7 @@ M.InvalidDocumentContent = {
 
 M.InvalidDocumentSchemaVersion = {
     type = "structure",
+    id = "InvalidDocumentSchemaVersion",
     error = "client",
     members = {
         Message = {
@@ -1367,6 +1436,7 @@ M.InvalidDocumentSchemaVersion = {
 
 M.MaxDocumentSizeExceeded = {
     type = "structure",
+    id = "MaxDocumentSizeExceeded",
     error = "client",
     members = {
         Message = {
@@ -1377,6 +1447,7 @@ M.MaxDocumentSizeExceeded = {
 
 M.NoLongerSupportedException = {
     type = "structure",
+    id = "NoLongerSupportedException",
     error = "client",
     members = {
         Message = {
@@ -1387,6 +1458,7 @@ M.NoLongerSupportedException = {
 
 M.CreateMaintenanceWindowInput = {
     type = "structure",
+    id = "CreateMaintenanceWindowInput",
     members = {
         Name = {
             type = "string",
@@ -1450,6 +1522,7 @@ M.CreateMaintenanceWindowInput = {
 
 M.CreateMaintenanceWindowOutput = {
     type = "structure",
+    id = "CreateMaintenanceWindowOutput",
     members = {
         WindowId = {
             type = "string",
@@ -1459,6 +1532,7 @@ M.CreateMaintenanceWindowOutput = {
 
 M.IdempotentParameterMismatch = {
     type = "structure",
+    id = "IdempotentParameterMismatch",
     error = "client",
     members = {
         Message = {
@@ -1469,6 +1543,7 @@ M.IdempotentParameterMismatch = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1479,6 +1554,7 @@ M.ResourceLimitExceededException = {
 
 M.OpsItemNotification = {
     type = "structure",
+    id = "OpsItemNotification",
     members = {
         Arn = {
             type = "string",
@@ -1493,6 +1569,7 @@ M.OpsItemDataType = {
 
 M.OpsItemDataValue = {
     type = "structure",
+    id = "OpsItemDataValue",
     members = {
         Value = {
             type = "string",
@@ -1505,6 +1582,7 @@ M.OpsItemDataValue = {
 
 M.RelatedOpsItem = {
     type = "structure",
+    id = "RelatedOpsItem",
     members = {
         OpsItemId = {
             type = "string",
@@ -1517,6 +1595,7 @@ M.RelatedOpsItem = {
 
 M.CreateOpsItemInput = {
     type = "structure",
+    id = "CreateOpsItemInput",
     members = {
         Description = {
             type = "string",
@@ -1585,6 +1664,7 @@ M.CreateOpsItemInput = {
 
 M.CreateOpsItemOutput = {
     type = "structure",
+    id = "CreateOpsItemOutput",
     members = {
         OpsItemId = {
             type = "string",
@@ -1597,6 +1677,7 @@ M.CreateOpsItemOutput = {
 
 M.OpsItemAccessDeniedException = {
     type = "structure",
+    id = "OpsItemAccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -1607,6 +1688,7 @@ M.OpsItemAccessDeniedException = {
 
 M.OpsItemAlreadyExistsException = {
     type = "structure",
+    id = "OpsItemAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1620,6 +1702,7 @@ M.OpsItemAlreadyExistsException = {
 
 M.MetadataValue = {
     type = "structure",
+    id = "MetadataValue",
     members = {
         Value = {
             type = "string",
@@ -1629,6 +1712,7 @@ M.MetadataValue = {
 
 M.CreateOpsMetadataInput = {
     type = "structure",
+    id = "CreateOpsMetadataInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1650,6 +1734,7 @@ M.CreateOpsMetadataInput = {
 
 M.CreateOpsMetadataOutput = {
     type = "structure",
+    id = "CreateOpsMetadataOutput",
     members = {
         OpsMetadataArn = {
             type = "string",
@@ -1659,6 +1744,7 @@ M.CreateOpsMetadataOutput = {
 
 M.OpsMetadataAlreadyExistsException = {
     type = "structure",
+    id = "OpsMetadataAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -1669,6 +1755,7 @@ M.OpsMetadataAlreadyExistsException = {
 
 M.OpsMetadataInvalidArgumentException = {
     type = "structure",
+    id = "OpsMetadataInvalidArgumentException",
     error = "client",
     members = {
         message = {
@@ -1679,6 +1766,7 @@ M.OpsMetadataInvalidArgumentException = {
 
 M.OpsMetadataLimitExceededException = {
     type = "structure",
+    id = "OpsMetadataLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1689,6 +1777,7 @@ M.OpsMetadataLimitExceededException = {
 
 M.OpsMetadataTooManyUpdatesException = {
     type = "structure",
+    id = "OpsMetadataTooManyUpdatesException",
     error = "client",
     members = {
         message = {
@@ -1730,6 +1819,7 @@ M.PatchFilterKey = {
 
 M.PatchFilter = {
     type = "structure",
+    id = "PatchFilter",
     members = {
         Key = {
             type = "string",
@@ -1749,6 +1839,7 @@ M.PatchFilter = {
 
 M.PatchFilterGroup = {
     type = "structure",
+    id = "PatchFilterGroup",
     members = {
         PatchFilters = {
             type = "list",
@@ -1762,6 +1853,7 @@ M.PatchFilterGroup = {
 
 M.PatchRule = {
     type = "structure",
+    id = "PatchRule",
     members = {
         PatchFilterGroup = setmetatable({ traits = {
             required = true,
@@ -1789,6 +1881,7 @@ M.PatchRule = {
 
 M.PatchRuleGroup = {
     type = "structure",
+    id = "PatchRuleGroup",
     members = {
         PatchRules = {
             type = "list",
@@ -1830,6 +1923,7 @@ M.PatchAction = {
 
 M.PatchSource = {
     type = "structure",
+    id = "PatchSource",
     members = {
         Name = {
             type = "string",
@@ -1855,6 +1949,7 @@ M.PatchSource = {
 
 M.CreatePatchBaselineInput = {
     type = "structure",
+    id = "CreatePatchBaselineInput",
     members = {
         OperatingSystem = {
             type = "string",
@@ -1912,6 +2007,7 @@ M.CreatePatchBaselineInput = {
 
 M.CreatePatchBaselineOutput = {
     type = "structure",
+    id = "CreatePatchBaselineOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -1921,6 +2017,7 @@ M.CreatePatchBaselineOutput = {
 
 M.ResourceDataSyncDestinationDataSharing = {
     type = "structure",
+    id = "ResourceDataSyncDestinationDataSharing",
     members = {
         DestinationDataSharingType = {
             type = "string",
@@ -1934,6 +2031,7 @@ M.ResourceDataSyncS3Format = {
 
 M.ResourceDataSyncS3Destination = {
     type = "structure",
+    id = "ResourceDataSyncS3Destination",
     members = {
         BucketName = {
             type = "string",
@@ -1965,6 +2063,7 @@ M.ResourceDataSyncS3Destination = {
 
 M.ResourceDataSyncOrganizationalUnit = {
     type = "structure",
+    id = "ResourceDataSyncOrganizationalUnit",
     members = {
         OrganizationalUnitId = {
             type = "string",
@@ -1974,6 +2073,7 @@ M.ResourceDataSyncOrganizationalUnit = {
 
 M.ResourceDataSyncAwsOrganizationsSource = {
     type = "structure",
+    id = "ResourceDataSyncAwsOrganizationsSource",
     members = {
         OrganizationSourceType = {
             type = "string",
@@ -1990,6 +2090,7 @@ M.ResourceDataSyncAwsOrganizationsSource = {
 
 M.ResourceDataSyncSource = {
     type = "structure",
+    id = "ResourceDataSyncSource",
     members = {
         SourceType = {
             type = "string",
@@ -2022,6 +2123,7 @@ M.ResourceDataSyncSource = {
 
 M.CreateResourceDataSyncInput = {
     type = "structure",
+    id = "CreateResourceDataSyncInput",
     members = {
         SyncName = {
             type = "string",
@@ -2039,10 +2141,12 @@ M.CreateResourceDataSyncInput = {
 
 M.CreateResourceDataSyncOutput = {
     type = "structure",
+    id = "CreateResourceDataSyncOutput",
 }
 
 M.ResourceDataSyncAlreadyExistsException = {
     type = "structure",
+    id = "ResourceDataSyncAlreadyExistsException",
     error = "client",
     members = {
         SyncName = {
@@ -2053,6 +2157,7 @@ M.ResourceDataSyncAlreadyExistsException = {
 
 M.ResourceDataSyncCountExceededException = {
     type = "structure",
+    id = "ResourceDataSyncCountExceededException",
     error = "client",
     members = {
         Message = {
@@ -2063,6 +2168,7 @@ M.ResourceDataSyncCountExceededException = {
 
 M.ResourceDataSyncInvalidConfigurationException = {
     type = "structure",
+    id = "ResourceDataSyncInvalidConfigurationException",
     error = "client",
     members = {
         Message = {
@@ -2073,6 +2179,7 @@ M.ResourceDataSyncInvalidConfigurationException = {
 
 M.DeleteActivationInput = {
     type = "structure",
+    id = "DeleteActivationInput",
     members = {
         ActivationId = {
             type = "string",
@@ -2085,10 +2192,12 @@ M.DeleteActivationInput = {
 
 M.DeleteActivationOutput = {
     type = "structure",
+    id = "DeleteActivationOutput",
 }
 
 M.InvalidActivation = {
     type = "structure",
+    id = "InvalidActivation",
     error = "client",
     members = {
         Message = {
@@ -2099,6 +2208,7 @@ M.InvalidActivation = {
 
 M.InvalidActivationId = {
     type = "structure",
+    id = "InvalidActivationId",
     error = "client",
     members = {
         Message = {
@@ -2109,6 +2219,7 @@ M.InvalidActivationId = {
 
 M.AssociationDoesNotExist = {
     type = "structure",
+    id = "AssociationDoesNotExist",
     error = "client",
     members = {
         Message = {
@@ -2119,6 +2230,7 @@ M.AssociationDoesNotExist = {
 
 M.DeleteAssociationInput = {
     type = "structure",
+    id = "DeleteAssociationInput",
     members = {
         Name = {
             type = "string",
@@ -2134,15 +2246,18 @@ M.DeleteAssociationInput = {
 
 M.DeleteAssociationOutput = {
     type = "structure",
+    id = "DeleteAssociationOutput",
 }
 
 M.AssociatedInstances = {
     type = "structure",
+    id = "AssociatedInstances",
     error = "client",
 }
 
 M.DeleteDocumentInput = {
     type = "structure",
+    id = "DeleteDocumentInput",
     members = {
         Name = {
             type = "string",
@@ -2167,10 +2282,12 @@ M.DeleteDocumentInput = {
 
 M.DeleteDocumentOutput = {
     type = "structure",
+    id = "DeleteDocumentOutput",
 }
 
 M.InvalidDocumentOperation = {
     type = "structure",
+    id = "InvalidDocumentOperation",
     error = "client",
     members = {
         Message = {
@@ -2186,6 +2303,7 @@ M.InventorySchemaDeleteOption = {
 
 M.DeleteInventoryInput = {
     type = "structure",
+    id = "DeleteInventoryInput",
     members = {
         TypeName = {
             type = "string",
@@ -2213,6 +2331,7 @@ M.DeleteInventoryInput = {
 
 M.InventoryDeletionSummaryItem = {
     type = "structure",
+    id = "InventoryDeletionSummaryItem",
     members = {
         Version = {
             type = "string",
@@ -2234,6 +2353,7 @@ M.InventoryDeletionSummaryItem = {
 
 M.InventoryDeletionSummary = {
     type = "structure",
+    id = "InventoryDeletionSummary",
     members = {
         TotalCount = {
             type = "integer",
@@ -2256,6 +2376,7 @@ M.InventoryDeletionSummary = {
 
 M.DeleteInventoryOutput = {
     type = "structure",
+    id = "DeleteInventoryOutput",
     members = {
         DeletionId = {
             type = "string",
@@ -2269,6 +2390,7 @@ M.DeleteInventoryOutput = {
 
 M.InvalidDeleteInventoryParametersException = {
     type = "structure",
+    id = "InvalidDeleteInventoryParametersException",
     error = "client",
     members = {
         Message = {
@@ -2279,6 +2401,7 @@ M.InvalidDeleteInventoryParametersException = {
 
 M.InvalidInventoryRequestException = {
     type = "structure",
+    id = "InvalidInventoryRequestException",
     error = "client",
     members = {
         Message = {
@@ -2289,6 +2412,7 @@ M.InvalidInventoryRequestException = {
 
 M.InvalidOptionException = {
     type = "structure",
+    id = "InvalidOptionException",
     error = "client",
     members = {
         Message = {
@@ -2299,6 +2423,7 @@ M.InvalidOptionException = {
 
 M.InvalidTypeNameException = {
     type = "structure",
+    id = "InvalidTypeNameException",
     error = "client",
     members = {
         Message = {
@@ -2309,6 +2434,7 @@ M.InvalidTypeNameException = {
 
 M.DeleteMaintenanceWindowInput = {
     type = "structure",
+    id = "DeleteMaintenanceWindowInput",
     members = {
         WindowId = {
             type = "string",
@@ -2321,6 +2447,7 @@ M.DeleteMaintenanceWindowInput = {
 
 M.DeleteMaintenanceWindowOutput = {
     type = "structure",
+    id = "DeleteMaintenanceWindowOutput",
     members = {
         WindowId = {
             type = "string",
@@ -2330,6 +2457,7 @@ M.DeleteMaintenanceWindowOutput = {
 
 M.DeleteOpsItemInput = {
     type = "structure",
+    id = "DeleteOpsItemInput",
     members = {
         OpsItemId = {
             type = "string",
@@ -2342,10 +2470,12 @@ M.DeleteOpsItemInput = {
 
 M.DeleteOpsItemOutput = {
     type = "structure",
+    id = "DeleteOpsItemOutput",
 }
 
 M.DeleteOpsMetadataInput = {
     type = "structure",
+    id = "DeleteOpsMetadataInput",
     members = {
         OpsMetadataArn = {
             type = "string",
@@ -2358,10 +2488,12 @@ M.DeleteOpsMetadataInput = {
 
 M.DeleteOpsMetadataOutput = {
     type = "structure",
+    id = "DeleteOpsMetadataOutput",
 }
 
 M.OpsMetadataNotFoundException = {
     type = "structure",
+    id = "OpsMetadataNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2372,6 +2504,7 @@ M.OpsMetadataNotFoundException = {
 
 M.DeleteParameterInput = {
     type = "structure",
+    id = "DeleteParameterInput",
     members = {
         Name = {
             type = "string",
@@ -2384,10 +2517,12 @@ M.DeleteParameterInput = {
 
 M.DeleteParameterOutput = {
     type = "structure",
+    id = "DeleteParameterOutput",
 }
 
 M.ParameterNotFound = {
     type = "structure",
+    id = "ParameterNotFound",
     error = "client",
     members = {
         message = {
@@ -2398,6 +2533,7 @@ M.ParameterNotFound = {
 
 M.DeleteParametersInput = {
     type = "structure",
+    id = "DeleteParametersInput",
     members = {
         Names = {
             type = "list",
@@ -2411,6 +2547,7 @@ M.DeleteParametersInput = {
 
 M.DeleteParametersOutput = {
     type = "structure",
+    id = "DeleteParametersOutput",
     members = {
         DeletedParameters = {
             type = "list",
@@ -2425,6 +2562,7 @@ M.DeleteParametersOutput = {
 
 M.DeletePatchBaselineInput = {
     type = "structure",
+    id = "DeletePatchBaselineInput",
     members = {
         BaselineId = {
             type = "string",
@@ -2437,6 +2575,7 @@ M.DeletePatchBaselineInput = {
 
 M.DeletePatchBaselineOutput = {
     type = "structure",
+    id = "DeletePatchBaselineOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -2446,6 +2585,7 @@ M.DeletePatchBaselineOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -2456,6 +2596,7 @@ M.ResourceInUseException = {
 
 M.DeleteResourceDataSyncInput = {
     type = "structure",
+    id = "DeleteResourceDataSyncInput",
     members = {
         SyncName = {
             type = "string",
@@ -2471,10 +2612,12 @@ M.DeleteResourceDataSyncInput = {
 
 M.DeleteResourceDataSyncOutput = {
     type = "structure",
+    id = "DeleteResourceDataSyncOutput",
 }
 
 M.ResourceDataSyncNotFoundException = {
     type = "structure",
+    id = "ResourceDataSyncNotFoundException",
     error = "client",
     members = {
         SyncName = {
@@ -2491,6 +2634,7 @@ M.ResourceDataSyncNotFoundException = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2515,10 +2659,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.MalformedResourcePolicyDocumentException = {
     type = "structure",
+    id = "MalformedResourcePolicyDocumentException",
     error = "client",
     members = {
         Message = {
@@ -2529,6 +2675,7 @@ M.MalformedResourcePolicyDocumentException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2539,6 +2686,7 @@ M.ResourceNotFoundException = {
 
 M.ResourcePolicyConflictException = {
     type = "structure",
+    id = "ResourcePolicyConflictException",
     error = "client",
     members = {
         Message = {
@@ -2549,6 +2697,7 @@ M.ResourcePolicyConflictException = {
 
 M.ResourcePolicyInvalidParameterException = {
     type = "structure",
+    id = "ResourcePolicyInvalidParameterException",
     error = "client",
     members = {
         ParameterNames = {
@@ -2563,6 +2712,7 @@ M.ResourcePolicyInvalidParameterException = {
 
 M.ResourcePolicyNotFoundException = {
     type = "structure",
+    id = "ResourcePolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2573,6 +2723,7 @@ M.ResourcePolicyNotFoundException = {
 
 M.DeregisterManagedInstanceInput = {
     type = "structure",
+    id = "DeregisterManagedInstanceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2585,10 +2736,12 @@ M.DeregisterManagedInstanceInput = {
 
 M.DeregisterManagedInstanceOutput = {
     type = "structure",
+    id = "DeregisterManagedInstanceOutput",
 }
 
 M.DeregisterPatchBaselineForPatchGroupInput = {
     type = "structure",
+    id = "DeregisterPatchBaselineForPatchGroupInput",
     members = {
         BaselineId = {
             type = "string",
@@ -2607,6 +2760,7 @@ M.DeregisterPatchBaselineForPatchGroupInput = {
 
 M.DeregisterPatchBaselineForPatchGroupOutput = {
     type = "structure",
+    id = "DeregisterPatchBaselineForPatchGroupOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -2619,6 +2773,7 @@ M.DeregisterPatchBaselineForPatchGroupOutput = {
 
 M.DeregisterTargetFromMaintenanceWindowInput = {
     type = "structure",
+    id = "DeregisterTargetFromMaintenanceWindowInput",
     members = {
         WindowId = {
             type = "string",
@@ -2643,6 +2798,7 @@ M.DeregisterTargetFromMaintenanceWindowInput = {
 
 M.DeregisterTargetFromMaintenanceWindowOutput = {
     type = "structure",
+    id = "DeregisterTargetFromMaintenanceWindowOutput",
     members = {
         WindowId = {
             type = "string",
@@ -2655,6 +2811,7 @@ M.DeregisterTargetFromMaintenanceWindowOutput = {
 
 M.TargetInUseException = {
     type = "structure",
+    id = "TargetInUseException",
     error = "client",
     members = {
         Message = {
@@ -2665,6 +2822,7 @@ M.TargetInUseException = {
 
 M.DeregisterTaskFromMaintenanceWindowInput = {
     type = "structure",
+    id = "DeregisterTaskFromMaintenanceWindowInput",
     members = {
         WindowId = {
             type = "string",
@@ -2683,6 +2841,7 @@ M.DeregisterTaskFromMaintenanceWindowInput = {
 
 M.DeregisterTaskFromMaintenanceWindowOutput = {
     type = "structure",
+    id = "DeregisterTaskFromMaintenanceWindowOutput",
     members = {
         WindowId = {
             type = "string",
@@ -2701,6 +2860,7 @@ M.DescribeActivationsFilterKeys = {
 
 M.DescribeActivationsFilter = {
     type = "structure",
+    id = "DescribeActivationsFilter",
     members = {
         FilterKey = {
             type = "string",
@@ -2714,6 +2874,7 @@ M.DescribeActivationsFilter = {
 
 M.DescribeActivationsInput = {
     type = "structure",
+    id = "DescribeActivationsInput",
     members = {
         Filters = {
             type = "list",
@@ -2730,6 +2891,7 @@ M.DescribeActivationsInput = {
 
 M.DescribeActivationsOutput = {
     type = "structure",
+    id = "DescribeActivationsOutput",
     members = {
         ActivationList = {
             type = "list",
@@ -2743,6 +2905,7 @@ M.DescribeActivationsOutput = {
 
 M.InvalidFilter = {
     type = "structure",
+    id = "InvalidFilter",
     error = "client",
     members = {
         Message = {
@@ -2753,6 +2916,7 @@ M.InvalidFilter = {
 
 M.InvalidNextToken = {
     type = "structure",
+    id = "InvalidNextToken",
     error = "client",
     members = {
         Message = {
@@ -2763,6 +2927,7 @@ M.InvalidNextToken = {
 
 M.DescribeAssociationInput = {
     type = "structure",
+    id = "DescribeAssociationInput",
     members = {
         Name = {
             type = "string",
@@ -2781,6 +2946,7 @@ M.DescribeAssociationInput = {
 
 M.DescribeAssociationOutput = {
     type = "structure",
+    id = "DescribeAssociationOutput",
     members = {
         AssociationDescription = M.AssociationDescription,
     },
@@ -2788,6 +2954,7 @@ M.DescribeAssociationOutput = {
 
 M.InvalidAssociationVersion = {
     type = "structure",
+    id = "InvalidAssociationVersion",
     error = "client",
     members = {
         Message = {
@@ -2810,6 +2977,7 @@ M.AssociationFilterOperatorType = {
 
 M.AssociationExecutionFilter = {
     type = "structure",
+    id = "AssociationExecutionFilter",
     members = {
         Key = {
             type = "string",
@@ -2834,6 +3002,7 @@ M.AssociationExecutionFilter = {
 
 M.DescribeAssociationExecutionsInput = {
     type = "structure",
+    id = "DescribeAssociationExecutionsInput",
     members = {
         AssociationId = {
             type = "string",
@@ -2856,6 +3025,7 @@ M.DescribeAssociationExecutionsInput = {
 
 M.AssociationExecution = {
     type = "structure",
+    id = "AssociationExecution",
     members = {
         AssociationId = {
             type = "string",
@@ -2891,6 +3061,7 @@ M.AssociationExecution = {
 
 M.DescribeAssociationExecutionsOutput = {
     type = "structure",
+    id = "DescribeAssociationExecutionsOutput",
     members = {
         AssociationExecutions = {
             type = "list",
@@ -2904,6 +3075,7 @@ M.DescribeAssociationExecutionsOutput = {
 
 M.AssociationExecutionDoesNotExist = {
     type = "structure",
+    id = "AssociationExecutionDoesNotExist",
     error = "client",
     members = {
         Message = {
@@ -2920,6 +3092,7 @@ M.AssociationExecutionTargetsFilterKey = {
 
 M.AssociationExecutionTargetsFilter = {
     type = "structure",
+    id = "AssociationExecutionTargetsFilter",
     members = {
         Key = {
             type = "string",
@@ -2938,6 +3111,7 @@ M.AssociationExecutionTargetsFilter = {
 
 M.DescribeAssociationExecutionTargetsInput = {
     type = "structure",
+    id = "DescribeAssociationExecutionTargetsInput",
     members = {
         AssociationId = {
             type = "string",
@@ -2966,6 +3140,7 @@ M.DescribeAssociationExecutionTargetsInput = {
 
 M.OutputSource = {
     type = "structure",
+    id = "OutputSource",
     members = {
         OutputSourceId = {
             type = "string",
@@ -2978,6 +3153,7 @@ M.OutputSource = {
 
 M.AssociationExecutionTarget = {
     type = "structure",
+    id = "AssociationExecutionTarget",
     members = {
         AssociationId = {
             type = "string",
@@ -3009,6 +3185,7 @@ M.AssociationExecutionTarget = {
 
 M.DescribeAssociationExecutionTargetsOutput = {
     type = "structure",
+    id = "DescribeAssociationExecutionTargetsOutput",
     members = {
         AssociationExecutionTargets = {
             type = "list",
@@ -3037,6 +3214,7 @@ M.AutomationExecutionFilterKey = {
 
 M.AutomationExecutionFilter = {
     type = "structure",
+    id = "AutomationExecutionFilter",
     members = {
         Key = {
             type = "string",
@@ -3056,6 +3234,7 @@ M.AutomationExecutionFilter = {
 
 M.DescribeAutomationExecutionsInput = {
     type = "structure",
+    id = "DescribeAutomationExecutionsInput",
     members = {
         Filters = {
             type = "list",
@@ -3109,6 +3288,7 @@ M.ExecutionMode = {
 
 M.ResolvedTargets = {
     type = "structure",
+    id = "ResolvedTargets",
     members = {
         ParameterValues = {
             type = "list",
@@ -3125,6 +3305,7 @@ M.ResolvedTargets = {
 
 M.Runbook = {
     type = "structure",
+    id = "Runbook",
     members = {
         DocumentName = {
             type = "string",
@@ -3166,6 +3347,7 @@ M.Runbook = {
 
 M.AutomationExecutionMetadata = {
     type = "structure",
+    id = "AutomationExecutionMetadata",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -3267,6 +3449,7 @@ M.AutomationExecutionMetadata = {
 
 M.DescribeAutomationExecutionsOutput = {
     type = "structure",
+    id = "DescribeAutomationExecutionsOutput",
     members = {
         AutomationExecutionMetadataList = {
             type = "list",
@@ -3280,11 +3463,13 @@ M.DescribeAutomationExecutionsOutput = {
 
 M.InvalidFilterKey = {
     type = "structure",
+    id = "InvalidFilterKey",
     error = "client",
 }
 
 M.InvalidFilterValue = {
     type = "structure",
+    id = "InvalidFilterValue",
     error = "client",
     members = {
         Message = {
@@ -3295,6 +3480,7 @@ M.InvalidFilterValue = {
 
 M.AutomationExecutionNotFoundException = {
     type = "structure",
+    id = "AutomationExecutionNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -3317,6 +3503,7 @@ M.StepExecutionFilterKey = {
 
 M.StepExecutionFilter = {
     type = "structure",
+    id = "StepExecutionFilter",
     members = {
         Key = {
             type = "string",
@@ -3336,6 +3523,7 @@ M.StepExecutionFilter = {
 
 M.DescribeAutomationStepExecutionsInput = {
     type = "structure",
+    id = "DescribeAutomationStepExecutionsInput",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -3364,6 +3552,7 @@ M.DescribeAutomationStepExecutionsInput = {
 
 M.FailureDetails = {
     type = "structure",
+    id = "FailureDetails",
     members = {
         FailureStage = {
             type = "string",
@@ -3381,6 +3570,7 @@ M.FailureDetails = {
 
 M.ParentStepDetails = {
     type = "structure",
+    id = "ParentStepDetails",
     members = {
         StepExecutionId = {
             type = "string",
@@ -3405,6 +3595,7 @@ M.ParentStepDetails = {
 
 M.StepExecution = {
     type = "structure",
+    id = "StepExecution",
     members = {
         StepName = {
             type = "string",
@@ -3498,6 +3689,7 @@ M.StepExecution = {
 
 M.DescribeAutomationStepExecutionsOutput = {
     type = "structure",
+    id = "DescribeAutomationStepExecutionsOutput",
     members = {
         StepExecutions = {
             type = "list",
@@ -3511,6 +3703,7 @@ M.DescribeAutomationStepExecutionsOutput = {
 
 M.PatchOrchestratorFilter = {
     type = "structure",
+    id = "PatchOrchestratorFilter",
     members = {
         Key = {
             type = "string",
@@ -3524,6 +3717,7 @@ M.PatchOrchestratorFilter = {
 
 M.DescribeAvailablePatchesInput = {
     type = "structure",
+    id = "DescribeAvailablePatchesInput",
     members = {
         Filters = {
             type = "list",
@@ -3540,6 +3734,7 @@ M.DescribeAvailablePatchesInput = {
 
 M.Patch = {
     type = "structure",
+    id = "Patch",
     members = {
         Id = {
             type = "string",
@@ -3621,6 +3816,7 @@ M.Patch = {
 
 M.DescribeAvailablePatchesOutput = {
     type = "structure",
+    id = "DescribeAvailablePatchesOutput",
     members = {
         Patches = {
             type = "list",
@@ -3634,6 +3830,7 @@ M.DescribeAvailablePatchesOutput = {
 
 M.DescribeDocumentInput = {
     type = "structure",
+    id = "DescribeDocumentInput",
     members = {
         Name = {
             type = "string",
@@ -3652,6 +3849,7 @@ M.DescribeDocumentInput = {
 
 M.DescribeDocumentOutput = {
     type = "structure",
+    id = "DescribeDocumentOutput",
     members = {
         Document = M.DocumentDescription,
     },
@@ -3663,6 +3861,7 @@ M.DocumentPermissionType = {
 
 M.DescribeDocumentPermissionInput = {
     type = "structure",
+    id = "DescribeDocumentPermissionInput",
     members = {
         Name = {
             type = "string",
@@ -3687,6 +3886,7 @@ M.DescribeDocumentPermissionInput = {
 
 M.DescribeDocumentPermissionOutput = {
     type = "structure",
+    id = "DescribeDocumentPermissionOutput",
     members = {
         AccountIds = {
             type = "list",
@@ -3704,6 +3904,7 @@ M.DescribeDocumentPermissionOutput = {
 
 M.InvalidPermissionType = {
     type = "structure",
+    id = "InvalidPermissionType",
     error = "client",
     members = {
         Message = {
@@ -3714,6 +3915,7 @@ M.InvalidPermissionType = {
 
 M.DescribeEffectiveInstanceAssociationsInput = {
     type = "structure",
+    id = "DescribeEffectiveInstanceAssociationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3732,6 +3934,7 @@ M.DescribeEffectiveInstanceAssociationsInput = {
 
 M.InstanceAssociation = {
     type = "structure",
+    id = "InstanceAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -3750,6 +3953,7 @@ M.InstanceAssociation = {
 
 M.DescribeEffectiveInstanceAssociationsOutput = {
     type = "structure",
+    id = "DescribeEffectiveInstanceAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -3763,6 +3967,7 @@ M.DescribeEffectiveInstanceAssociationsOutput = {
 
 M.DescribeEffectivePatchesForPatchBaselineInput = {
     type = "structure",
+    id = "DescribeEffectivePatchesForPatchBaselineInput",
     members = {
         BaselineId = {
             type = "string",
@@ -3788,6 +3993,7 @@ M.PatchDeploymentStatus = {
 
 M.PatchStatus = {
     type = "structure",
+    id = "PatchStatus",
     members = {
         DeploymentStatus = {
             type = "string",
@@ -3803,6 +4009,7 @@ M.PatchStatus = {
 
 M.EffectivePatch = {
     type = "structure",
+    id = "EffectivePatch",
     members = {
         Patch = M.Patch,
         PatchStatus = M.PatchStatus,
@@ -3811,6 +4018,7 @@ M.EffectivePatch = {
 
 M.DescribeEffectivePatchesForPatchBaselineOutput = {
     type = "structure",
+    id = "DescribeEffectivePatchesForPatchBaselineOutput",
     members = {
         EffectivePatches = {
             type = "list",
@@ -3824,6 +4032,7 @@ M.DescribeEffectivePatchesForPatchBaselineOutput = {
 
 M.UnsupportedOperatingSystem = {
     type = "structure",
+    id = "UnsupportedOperatingSystem",
     error = "client",
     members = {
         Message = {
@@ -3834,6 +4043,7 @@ M.UnsupportedOperatingSystem = {
 
 M.DescribeInstanceAssociationsStatusInput = {
     type = "structure",
+    id = "DescribeInstanceAssociationsStatusInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3852,6 +4062,7 @@ M.DescribeInstanceAssociationsStatusInput = {
 
 M.S3OutputUrl = {
     type = "structure",
+    id = "S3OutputUrl",
     members = {
         OutputUrl = {
             type = "string",
@@ -3861,6 +4072,7 @@ M.S3OutputUrl = {
 
 M.InstanceAssociationOutputUrl = {
     type = "structure",
+    id = "InstanceAssociationOutputUrl",
     members = {
         S3OutputUrl = M.S3OutputUrl,
     },
@@ -3868,6 +4080,7 @@ M.InstanceAssociationOutputUrl = {
 
 M.InstanceAssociationStatusInfo = {
     type = "structure",
+    id = "InstanceAssociationStatusInfo",
     members = {
         AssociationId = {
             type = "string",
@@ -3908,6 +4121,7 @@ M.InstanceAssociationStatusInfo = {
 
 M.DescribeInstanceAssociationsStatusOutput = {
     type = "structure",
+    id = "DescribeInstanceAssociationsStatusOutput",
     members = {
         InstanceAssociationStatusInfos = {
             type = "list",
@@ -3921,6 +4135,7 @@ M.DescribeInstanceAssociationsStatusOutput = {
 
 M.InstanceInformationStringFilter = {
     type = "structure",
+    id = "InstanceInformationStringFilter",
     members = {
         Key = {
             type = "string",
@@ -3951,6 +4166,7 @@ M.InstanceInformationFilterKey = {
 
 M.InstanceInformationFilter = {
     type = "structure",
+    id = "InstanceInformationFilter",
     members = {
         key = {
             type = "string",
@@ -3970,6 +4186,7 @@ M.InstanceInformationFilter = {
 
 M.DescribeInstanceInformationInput = {
     type = "structure",
+    id = "DescribeInstanceInformationInput",
     members = {
         InstanceInformationFilterList = {
             type = "list",
@@ -3990,6 +4207,7 @@ M.DescribeInstanceInformationInput = {
 
 M.InstanceAggregatedAssociationOverview = {
     type = "structure",
+    id = "InstanceAggregatedAssociationOverview",
     members = {
         DetailedStatus = {
             type = "string",
@@ -4021,6 +4239,7 @@ M.SourceType = {
 
 M.InstanceInformation = {
     type = "structure",
+    id = "InstanceInformation",
     members = {
         InstanceId = {
             type = "string",
@@ -4091,6 +4310,7 @@ M.InstanceInformation = {
 
 M.DescribeInstanceInformationOutput = {
     type = "structure",
+    id = "DescribeInstanceInformationOutput",
     members = {
         InstanceInformationList = {
             type = "list",
@@ -4104,6 +4324,7 @@ M.DescribeInstanceInformationOutput = {
 
 M.InvalidInstanceInformationFilterValue = {
     type = "structure",
+    id = "InvalidInstanceInformationFilterValue",
     error = "client",
     members = {
         message = {
@@ -4114,6 +4335,7 @@ M.InvalidInstanceInformationFilterValue = {
 
 M.DescribeInstancePatchesInput = {
     type = "structure",
+    id = "DescribeInstancePatchesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4147,6 +4369,7 @@ M.PatchComplianceDataState = {
 
 M.PatchComplianceData = {
     type = "structure",
+    id = "PatchComplianceData",
     members = {
         Title = {
             type = "string",
@@ -4192,6 +4415,7 @@ M.PatchComplianceData = {
 
 M.DescribeInstancePatchesOutput = {
     type = "structure",
+    id = "DescribeInstancePatchesOutput",
     members = {
         Patches = {
             type = "list",
@@ -4205,6 +4429,7 @@ M.DescribeInstancePatchesOutput = {
 
 M.DescribeInstancePatchStatesInput = {
     type = "structure",
+    id = "DescribeInstancePatchStatesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -4234,6 +4459,7 @@ M.RebootOption = {
 
 M.InstancePatchState = {
     type = "structure",
+    id = "InstancePatchState",
     members = {
         InstanceId = {
             type = "string",
@@ -4363,6 +4589,7 @@ M.InstancePatchState = {
 
 M.DescribeInstancePatchStatesOutput = {
     type = "structure",
+    id = "DescribeInstancePatchStatesOutput",
     members = {
         InstancePatchStates = {
             type = "list",
@@ -4383,6 +4610,7 @@ M.InstancePatchStateOperatorType = {
 
 M.InstancePatchStateFilter = {
     type = "structure",
+    id = "InstancePatchStateFilter",
     members = {
         Key = {
             type = "string",
@@ -4408,6 +4636,7 @@ M.InstancePatchStateFilter = {
 
 M.DescribeInstancePatchStatesForPatchGroupInput = {
     type = "structure",
+    id = "DescribeInstancePatchStatesForPatchGroupInput",
     members = {
         PatchGroup = {
             type = "string",
@@ -4430,6 +4659,7 @@ M.DescribeInstancePatchStatesForPatchGroupInput = {
 
 M.DescribeInstancePatchStatesForPatchGroupOutput = {
     type = "structure",
+    id = "DescribeInstancePatchStatesForPatchGroupOutput",
     members = {
         InstancePatchStates = {
             type = "list",
@@ -4451,6 +4681,7 @@ M.InstancePropertyFilterOperator = {
 
 M.InstancePropertyStringFilter = {
     type = "structure",
+    id = "InstancePropertyStringFilter",
     members = {
         Key = {
             type = "string",
@@ -4485,6 +4716,7 @@ M.InstancePropertyFilterKey = {
 
 M.InstancePropertyFilter = {
     type = "structure",
+    id = "InstancePropertyFilter",
     members = {
         key = {
             type = "string",
@@ -4504,6 +4736,7 @@ M.InstancePropertyFilter = {
 
 M.DescribeInstancePropertiesInput = {
     type = "structure",
+    id = "DescribeInstancePropertiesInput",
     members = {
         InstancePropertyFilterList = {
             type = "list",
@@ -4524,6 +4757,7 @@ M.DescribeInstancePropertiesInput = {
 
 M.InstanceProperty = {
     type = "structure",
+    id = "InstanceProperty",
     members = {
         Name = {
             type = "string",
@@ -4606,6 +4840,7 @@ M.InstanceProperty = {
 
 M.DescribeInstancePropertiesOutput = {
     type = "structure",
+    id = "DescribeInstancePropertiesOutput",
     members = {
         InstanceProperties = {
             type = "list",
@@ -4619,6 +4854,7 @@ M.DescribeInstancePropertiesOutput = {
 
 M.InvalidInstancePropertyFilterValue = {
     type = "structure",
+    id = "InvalidInstancePropertyFilterValue",
     error = "client",
     members = {
         message = {
@@ -4629,6 +4865,7 @@ M.InvalidInstancePropertyFilterValue = {
 
 M.DescribeInventoryDeletionsInput = {
     type = "structure",
+    id = "DescribeInventoryDeletionsInput",
     members = {
         DeletionId = {
             type = "string",
@@ -4649,6 +4886,7 @@ M.InventoryDeletionStatus = {
 
 M.InventoryDeletionStatusItem = {
     type = "structure",
+    id = "InventoryDeletionStatusItem",
     members = {
         DeletionId = {
             type = "string",
@@ -4674,6 +4912,7 @@ M.InventoryDeletionStatusItem = {
 
 M.DescribeInventoryDeletionsOutput = {
     type = "structure",
+    id = "DescribeInventoryDeletionsOutput",
     members = {
         InventoryDeletions = {
             type = "list",
@@ -4687,6 +4926,7 @@ M.DescribeInventoryDeletionsOutput = {
 
 M.InvalidDeletionIdException = {
     type = "structure",
+    id = "InvalidDeletionIdException",
     error = "client",
     members = {
         Message = {
@@ -4697,6 +4937,7 @@ M.InvalidDeletionIdException = {
 
 M.MaintenanceWindowFilter = {
     type = "structure",
+    id = "MaintenanceWindowFilter",
     members = {
         Key = {
             type = "string",
@@ -4710,6 +4951,7 @@ M.MaintenanceWindowFilter = {
 
 M.DescribeMaintenanceWindowExecutionsInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowExecutionsInput",
     members = {
         WindowId = {
             type = "string",
@@ -4743,6 +4985,7 @@ M.MaintenanceWindowExecutionStatus = {
 
 M.MaintenanceWindowExecution = {
     type = "structure",
+    id = "MaintenanceWindowExecution",
     members = {
         WindowId = {
             type = "string",
@@ -4767,6 +5010,7 @@ M.MaintenanceWindowExecution = {
 
 M.DescribeMaintenanceWindowExecutionsOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowExecutionsOutput",
     members = {
         WindowExecutions = {
             type = "list",
@@ -4780,6 +5024,7 @@ M.DescribeMaintenanceWindowExecutionsOutput = {
 
 M.DescribeMaintenanceWindowExecutionTaskInvocationsInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowExecutionTaskInvocationsInput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -4815,6 +5060,7 @@ M.MaintenanceWindowTaskType = {
 
 M.MaintenanceWindowExecutionTaskInvocationIdentity = {
     type = "structure",
+    id = "MaintenanceWindowExecutionTaskInvocationIdentity",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -4857,6 +5103,7 @@ M.MaintenanceWindowExecutionTaskInvocationIdentity = {
 
 M.DescribeMaintenanceWindowExecutionTaskInvocationsOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowExecutionTaskInvocationsOutput",
     members = {
         WindowExecutionTaskInvocationIdentities = {
             type = "list",
@@ -4870,6 +5117,7 @@ M.DescribeMaintenanceWindowExecutionTaskInvocationsOutput = {
 
 M.DescribeMaintenanceWindowExecutionTasksInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowExecutionTasksInput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -4892,6 +5140,7 @@ M.DescribeMaintenanceWindowExecutionTasksInput = {
 
 M.MaintenanceWindowExecutionTaskIdentity = {
     type = "structure",
+    id = "MaintenanceWindowExecutionTaskIdentity",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -4927,6 +5176,7 @@ M.MaintenanceWindowExecutionTaskIdentity = {
 
 M.DescribeMaintenanceWindowExecutionTasksOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowExecutionTasksOutput",
     members = {
         WindowExecutionTaskIdentities = {
             type = "list",
@@ -4940,6 +5190,7 @@ M.DescribeMaintenanceWindowExecutionTasksOutput = {
 
 M.DescribeMaintenanceWindowsInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowsInput",
     members = {
         Filters = {
             type = "list",
@@ -4956,6 +5207,7 @@ M.DescribeMaintenanceWindowsInput = {
 
 M.MaintenanceWindowIdentity = {
     type = "structure",
+    id = "MaintenanceWindowIdentity",
     members = {
         WindowId = {
             type = "string",
@@ -5004,6 +5256,7 @@ M.MaintenanceWindowIdentity = {
 
 M.DescribeMaintenanceWindowsOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowsOutput",
     members = {
         WindowIdentities = {
             type = "list",
@@ -5022,6 +5275,7 @@ M.MaintenanceWindowResourceType = {
 
 M.DescribeMaintenanceWindowScheduleInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowScheduleInput",
     members = {
         WindowId = {
             type = "string",
@@ -5048,6 +5302,7 @@ M.DescribeMaintenanceWindowScheduleInput = {
 
 M.ScheduledWindowExecution = {
     type = "structure",
+    id = "ScheduledWindowExecution",
     members = {
         WindowId = {
             type = "string",
@@ -5063,6 +5318,7 @@ M.ScheduledWindowExecution = {
 
 M.DescribeMaintenanceWindowScheduleOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowScheduleOutput",
     members = {
         ScheduledWindowExecutions = {
             type = "list",
@@ -5076,6 +5332,7 @@ M.DescribeMaintenanceWindowScheduleOutput = {
 
 M.DescribeMaintenanceWindowsForTargetInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowsForTargetInput",
     members = {
         Targets = {
             type = "list",
@@ -5101,6 +5358,7 @@ M.DescribeMaintenanceWindowsForTargetInput = {
 
 M.MaintenanceWindowIdentityForTarget = {
     type = "structure",
+    id = "MaintenanceWindowIdentityForTarget",
     members = {
         WindowId = {
             type = "string",
@@ -5113,6 +5371,7 @@ M.MaintenanceWindowIdentityForTarget = {
 
 M.DescribeMaintenanceWindowsForTargetOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowsForTargetOutput",
     members = {
         WindowIdentities = {
             type = "list",
@@ -5126,6 +5385,7 @@ M.DescribeMaintenanceWindowsForTargetOutput = {
 
 M.DescribeMaintenanceWindowTargetsInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowTargetsInput",
     members = {
         WindowId = {
             type = "string",
@@ -5148,6 +5408,7 @@ M.DescribeMaintenanceWindowTargetsInput = {
 
 M.MaintenanceWindowTarget = {
     type = "structure",
+    id = "MaintenanceWindowTarget",
     members = {
         WindowId = {
             type = "string",
@@ -5176,6 +5437,7 @@ M.MaintenanceWindowTarget = {
 
 M.DescribeMaintenanceWindowTargetsOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowTargetsOutput",
     members = {
         Targets = {
             type = "list",
@@ -5189,6 +5451,7 @@ M.DescribeMaintenanceWindowTargetsOutput = {
 
 M.DescribeMaintenanceWindowTasksInput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowTasksInput",
     members = {
         WindowId = {
             type = "string",
@@ -5216,6 +5479,7 @@ M.MaintenanceWindowTaskCutoffBehavior = {
 
 M.LoggingInfo = {
     type = "structure",
+    id = "LoggingInfo",
     members = {
         S3BucketName = {
             type = "string",
@@ -5237,6 +5501,7 @@ M.LoggingInfo = {
 
 M.MaintenanceWindowTaskParameterValueExpression = {
     type = "structure",
+    id = "MaintenanceWindowTaskParameterValueExpression",
     members = {
         Values = {
             type = "list",
@@ -5247,6 +5512,7 @@ M.MaintenanceWindowTaskParameterValueExpression = {
 
 M.MaintenanceWindowTask = {
     type = "structure",
+    id = "MaintenanceWindowTask",
     members = {
         WindowId = {
             type = "string",
@@ -5300,6 +5566,7 @@ M.MaintenanceWindowTask = {
 
 M.DescribeMaintenanceWindowTasksOutput = {
     type = "structure",
+    id = "DescribeMaintenanceWindowTasksOutput",
     members = {
         Tasks = {
             type = "list",
@@ -5360,6 +5627,7 @@ M.OpsItemFilterOperator = {
 
 M.OpsItemFilter = {
     type = "structure",
+    id = "OpsItemFilter",
     members = {
         Key = {
             type = "string",
@@ -5385,6 +5653,7 @@ M.OpsItemFilter = {
 
 M.DescribeOpsItemsInput = {
     type = "structure",
+    id = "DescribeOpsItemsInput",
     members = {
         OpsItemFilters = {
             type = "list",
@@ -5424,6 +5693,7 @@ M.OpsItemStatus = {
 
 M.OpsItemSummary = {
     type = "structure",
+    id = "OpsItemSummary",
     members = {
         CreatedBy = {
             type = "string",
@@ -5483,6 +5753,7 @@ M.OpsItemSummary = {
 
 M.DescribeOpsItemsOutput = {
     type = "structure",
+    id = "DescribeOpsItemsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5502,6 +5773,7 @@ M.ParametersFilterKey = {
 
 M.ParametersFilter = {
     type = "structure",
+    id = "ParametersFilter",
     members = {
         Key = {
             type = "string",
@@ -5521,6 +5793,7 @@ M.ParametersFilter = {
 
 M.ParameterStringFilter = {
     type = "structure",
+    id = "ParameterStringFilter",
     members = {
         Key = {
             type = "string",
@@ -5540,6 +5813,7 @@ M.ParameterStringFilter = {
 
 M.DescribeParametersInput = {
     type = "structure",
+    id = "DescribeParametersInput",
     members = {
         Filters = {
             type = "list",
@@ -5566,6 +5840,7 @@ M.DescribeParametersInput = {
 
 M.ParameterInlinePolicy = {
     type = "structure",
+    id = "ParameterInlinePolicy",
     members = {
         PolicyText = {
             type = "string",
@@ -5593,6 +5868,7 @@ M.ParameterType = {
 
 M.ParameterMetadata = {
     type = "structure",
+    id = "ParameterMetadata",
     members = {
         Name = {
             type = "string",
@@ -5639,6 +5915,7 @@ M.ParameterMetadata = {
 
 M.DescribeParametersOutput = {
     type = "structure",
+    id = "DescribeParametersOutput",
     members = {
         Parameters = {
             type = "list",
@@ -5652,6 +5929,7 @@ M.DescribeParametersOutput = {
 
 M.InvalidFilterOption = {
     type = "structure",
+    id = "InvalidFilterOption",
     error = "client",
     members = {
         message = {
@@ -5662,6 +5940,7 @@ M.InvalidFilterOption = {
 
 M.DescribePatchBaselinesInput = {
     type = "structure",
+    id = "DescribePatchBaselinesInput",
     members = {
         Filters = {
             type = "list",
@@ -5678,6 +5957,7 @@ M.DescribePatchBaselinesInput = {
 
 M.PatchBaselineIdentity = {
     type = "structure",
+    id = "PatchBaselineIdentity",
     members = {
         BaselineId = {
             type = "string",
@@ -5702,6 +5982,7 @@ M.PatchBaselineIdentity = {
 
 M.DescribePatchBaselinesOutput = {
     type = "structure",
+    id = "DescribePatchBaselinesOutput",
     members = {
         BaselineIdentities = {
             type = "list",
@@ -5715,6 +5996,7 @@ M.DescribePatchBaselinesOutput = {
 
 M.DescribePatchGroupsInput = {
     type = "structure",
+    id = "DescribePatchGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -5731,6 +6013,7 @@ M.DescribePatchGroupsInput = {
 
 M.PatchGroupPatchBaselineMapping = {
     type = "structure",
+    id = "PatchGroupPatchBaselineMapping",
     members = {
         PatchGroup = {
             type = "string",
@@ -5741,6 +6024,7 @@ M.PatchGroupPatchBaselineMapping = {
 
 M.DescribePatchGroupsOutput = {
     type = "structure",
+    id = "DescribePatchGroupsOutput",
     members = {
         Mappings = {
             type = "list",
@@ -5754,6 +6038,7 @@ M.DescribePatchGroupsOutput = {
 
 M.DescribePatchGroupStateInput = {
     type = "structure",
+    id = "DescribePatchGroupStateInput",
     members = {
         PatchGroup = {
             type = "string",
@@ -5766,6 +6051,7 @@ M.DescribePatchGroupStateInput = {
 
 M.DescribePatchGroupStateOutput = {
     type = "structure",
+    id = "DescribePatchGroupStateOutput",
     members = {
         Instances = {
             type = "integer",
@@ -5864,6 +6150,7 @@ M.PatchProperty = {
 
 M.DescribePatchPropertiesInput = {
     type = "structure",
+    id = "DescribePatchPropertiesInput",
     members = {
         OperatingSystem = {
             type = "string",
@@ -5891,6 +6178,7 @@ M.DescribePatchPropertiesInput = {
 
 M.DescribePatchPropertiesOutput = {
     type = "structure",
+    id = "DescribePatchPropertiesOutput",
     members = {
         Properties = {
             type = "list",
@@ -5914,6 +6202,7 @@ M.SessionFilterKey = {
 
 M.SessionFilter = {
     type = "structure",
+    id = "SessionFilter",
     members = {
         key = {
             type = "string",
@@ -5937,6 +6226,7 @@ M.SessionState = {
 
 M.DescribeSessionsInput = {
     type = "structure",
+    id = "DescribeSessionsInput",
     members = {
         State = {
             type = "string",
@@ -5959,6 +6249,7 @@ M.DescribeSessionsInput = {
 
 M.SessionManagerOutputUrl = {
     type = "structure",
+    id = "SessionManagerOutputUrl",
     members = {
         S3OutputUrl = {
             type = "string",
@@ -5980,6 +6271,7 @@ M.SessionStatus = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         SessionId = {
             type = "string",
@@ -6020,6 +6312,7 @@ M.Session = {
 
 M.DescribeSessionsOutput = {
     type = "structure",
+    id = "DescribeSessionsOutput",
     members = {
         Sessions = {
             type = "list",
@@ -6033,6 +6326,7 @@ M.DescribeSessionsOutput = {
 
 M.DisassociateOpsItemRelatedItemInput = {
     type = "structure",
+    id = "DisassociateOpsItemRelatedItemInput",
     members = {
         OpsItemId = {
             type = "string",
@@ -6051,10 +6345,12 @@ M.DisassociateOpsItemRelatedItemInput = {
 
 M.DisassociateOpsItemRelatedItemOutput = {
     type = "structure",
+    id = "DisassociateOpsItemRelatedItemOutput",
 }
 
 M.OpsItemRelatedItemAssociationNotFoundException = {
     type = "structure",
+    id = "OpsItemRelatedItemAssociationNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -6065,6 +6361,7 @@ M.OpsItemRelatedItemAssociationNotFoundException = {
 
 M.GetAccessTokenInput = {
     type = "structure",
+    id = "GetAccessTokenInput",
     members = {
         AccessRequestId = {
             type = "string",
@@ -6077,6 +6374,7 @@ M.GetAccessTokenInput = {
 
 M.Credentials = {
     type = "structure",
+    id = "Credentials",
     members = {
         AccessKeyId = {
             type = "string",
@@ -6107,6 +6405,7 @@ M.Credentials = {
 
 M.GetAccessTokenOutput = {
     type = "structure",
+    id = "GetAccessTokenOutput",
     members = {
         Credentials = M.Credentials,
         AccessRequestStatus = {
@@ -6117,6 +6416,7 @@ M.GetAccessTokenOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -6136,6 +6436,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -6149,6 +6450,7 @@ M.ValidationException = {
 
 M.GetAutomationExecutionInput = {
     type = "structure",
+    id = "GetAutomationExecutionInput",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -6161,6 +6463,7 @@ M.GetAutomationExecutionInput = {
 
 M.ProgressCounters = {
     type = "structure",
+    id = "ProgressCounters",
     members = {
         TotalSteps = {
             type = "integer",
@@ -6197,6 +6500,7 @@ M.ProgressCounters = {
 
 M.AutomationExecution = {
     type = "structure",
+    id = "AutomationExecution",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -6317,6 +6621,7 @@ M.AutomationExecution = {
 
 M.GetAutomationExecutionOutput = {
     type = "structure",
+    id = "GetAutomationExecutionOutput",
     members = {
         AutomationExecution = M.AutomationExecution,
     },
@@ -6324,6 +6629,7 @@ M.GetAutomationExecutionOutput = {
 
 M.GetCalendarStateInput = {
     type = "structure",
+    id = "GetCalendarStateInput",
     members = {
         CalendarNames = {
             type = "list",
@@ -6345,6 +6651,7 @@ M.CalendarState = {
 
 M.GetCalendarStateOutput = {
     type = "structure",
+    id = "GetCalendarStateOutput",
     members = {
         State = {
             type = "string",
@@ -6360,6 +6667,7 @@ M.GetCalendarStateOutput = {
 
 M.InvalidDocumentType = {
     type = "structure",
+    id = "InvalidDocumentType",
     error = "client",
     members = {
         Message = {
@@ -6370,6 +6678,7 @@ M.InvalidDocumentType = {
 
 M.UnsupportedCalendarException = {
     type = "structure",
+    id = "UnsupportedCalendarException",
     error = "client",
     members = {
         Message = {
@@ -6380,6 +6689,7 @@ M.UnsupportedCalendarException = {
 
 M.GetCommandInvocationInput = {
     type = "structure",
+    id = "GetCommandInvocationInput",
     members = {
         CommandId = {
             type = "string",
@@ -6401,6 +6711,7 @@ M.GetCommandInvocationInput = {
 
 M.CloudWatchOutputConfig = {
     type = "structure",
+    id = "CloudWatchOutputConfig",
     members = {
         CloudWatchLogGroupName = {
             type = "string",
@@ -6427,6 +6738,7 @@ M.CommandInvocationStatus = {
 
 M.GetCommandInvocationOutput = {
     type = "structure",
+    id = "GetCommandInvocationOutput",
     members = {
         CommandId = {
             type = "string",
@@ -6485,16 +6797,19 @@ M.GetCommandInvocationOutput = {
 
 M.InvalidPluginName = {
     type = "structure",
+    id = "InvalidPluginName",
     error = "client",
 }
 
 M.InvocationDoesNotExist = {
     type = "structure",
+    id = "InvocationDoesNotExist",
     error = "client",
 }
 
 M.GetConnectionStatusInput = {
     type = "structure",
+    id = "GetConnectionStatusInput",
     members = {
         Target = {
             type = "string",
@@ -6512,6 +6827,7 @@ M.ConnectionStatus = {
 
 M.GetConnectionStatusOutput = {
     type = "structure",
+    id = "GetConnectionStatusOutput",
     members = {
         Target = {
             type = "string",
@@ -6524,6 +6840,7 @@ M.GetConnectionStatusOutput = {
 
 M.GetDefaultPatchBaselineInput = {
     type = "structure",
+    id = "GetDefaultPatchBaselineInput",
     members = {
         OperatingSystem = {
             type = "string",
@@ -6533,6 +6850,7 @@ M.GetDefaultPatchBaselineInput = {
 
 M.GetDefaultPatchBaselineOutput = {
     type = "structure",
+    id = "GetDefaultPatchBaselineOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -6545,6 +6863,7 @@ M.GetDefaultPatchBaselineOutput = {
 
 M.BaselineOverride = {
     type = "structure",
+    id = "BaselineOverride",
     members = {
         OperatingSystem = {
             type = "string",
@@ -6583,6 +6902,7 @@ M.BaselineOverride = {
 
 M.GetDeployablePatchSnapshotForInstanceInput = {
     type = "structure",
+    id = "GetDeployablePatchSnapshotForInstanceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6608,6 +6928,7 @@ M.GetDeployablePatchSnapshotForInstanceInput = {
 
 M.GetDeployablePatchSnapshotForInstanceOutput = {
     type = "structure",
+    id = "GetDeployablePatchSnapshotForInstanceOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -6626,6 +6947,7 @@ M.GetDeployablePatchSnapshotForInstanceOutput = {
 
 M.UnsupportedFeatureRequiredException = {
     type = "structure",
+    id = "UnsupportedFeatureRequiredException",
     error = "client",
     members = {
         Message = {
@@ -6636,6 +6958,7 @@ M.UnsupportedFeatureRequiredException = {
 
 M.GetDocumentInput = {
     type = "structure",
+    id = "GetDocumentInput",
     members = {
         Name = {
             type = "string",
@@ -6661,6 +6984,7 @@ M.AttachmentHashType = {
 
 M.AttachmentContent = {
     type = "structure",
+    id = "AttachmentContent",
     members = {
         Name = {
             type = "string",
@@ -6685,6 +7009,7 @@ M.AttachmentContent = {
 
 M.GetDocumentOutput = {
     type = "structure",
+    id = "GetDocumentOutput",
     members = {
         Name = {
             type = "string",
@@ -6732,6 +7057,7 @@ M.GetDocumentOutput = {
 
 M.GetExecutionPreviewInput = {
     type = "structure",
+    id = "GetExecutionPreviewInput",
     members = {
         ExecutionPreviewId = {
             type = "string",
@@ -6750,6 +7076,7 @@ M.ImpactType = {
 
 M.TargetPreview = {
     type = "structure",
+    id = "TargetPreview",
     members = {
         Count = {
             type = "integer",
@@ -6765,6 +7092,7 @@ M.TargetPreview = {
 
 M.AutomationExecutionPreview = {
     type = "structure",
+    id = "AutomationExecutionPreview",
     members = {
         StepPreviews = {
             type = "map",
@@ -6790,6 +7118,7 @@ M.AutomationExecutionPreview = {
 
 M.ExecutionPreview = {
     type = "union",
+    id = "ExecutionPreview",
     members = {
         Automation = M.AutomationExecutionPreview,
     },
@@ -6804,6 +7133,7 @@ M.ExecutionPreviewStatus = {
 
 M.GetExecutionPreviewOutput = {
     type = "structure",
+    id = "GetExecutionPreviewOutput",
     members = {
         ExecutionPreviewId = {
             type = "string",
@@ -6832,6 +7162,7 @@ M.InventoryQueryOperatorType = {
 
 M.InventoryFilter = {
     type = "structure",
+    id = "InventoryFilter",
     members = {
         Key = {
             type = "string",
@@ -6854,6 +7185,7 @@ M.InventoryFilter = {
 
 M.InventoryGroup = {
     type = "structure",
+    id = "InventoryGroup",
     members = {
         Name = {
             type = "string",
@@ -6873,6 +7205,7 @@ M.InventoryGroup = {
 
 M.ResultAttribute = {
     type = "structure",
+    id = "ResultAttribute",
     members = {
         TypeName = {
             type = "string",
@@ -6885,6 +7218,7 @@ M.ResultAttribute = {
 
 M.InventoryResultItem = {
     type = "structure",
+    id = "InventoryResultItem",
     members = {
         TypeName = {
             type = "string",
@@ -6916,6 +7250,7 @@ M.InventoryResultItem = {
 
 M.InventoryResultEntity = {
     type = "structure",
+    id = "InventoryResultEntity",
     members = {
         Id = {
             type = "string",
@@ -6930,6 +7265,7 @@ M.InventoryResultEntity = {
 
 M.GetInventoryOutput = {
     type = "structure",
+    id = "GetInventoryOutput",
     members = {
         Entities = {
             type = "list",
@@ -6943,6 +7279,7 @@ M.GetInventoryOutput = {
 
 M.InvalidAggregatorException = {
     type = "structure",
+    id = "InvalidAggregatorException",
     error = "client",
     members = {
         Message = {
@@ -6953,6 +7290,7 @@ M.InvalidAggregatorException = {
 
 M.InvalidInventoryGroupException = {
     type = "structure",
+    id = "InvalidInventoryGroupException",
     error = "client",
     members = {
         Message = {
@@ -6963,6 +7301,7 @@ M.InvalidInventoryGroupException = {
 
 M.InvalidResultAttributeException = {
     type = "structure",
+    id = "InvalidResultAttributeException",
     error = "client",
     members = {
         Message = {
@@ -6973,6 +7312,7 @@ M.InvalidResultAttributeException = {
 
 M.GetInventorySchemaInput = {
     type = "structure",
+    id = "GetInventorySchemaInput",
     members = {
         TypeName = {
             type = "string",
@@ -7005,6 +7345,7 @@ M.InventoryAttributeDataType = {
 
 M.InventoryItemAttribute = {
     type = "structure",
+    id = "InventoryItemAttribute",
     members = {
         Name = {
             type = "string",
@@ -7023,6 +7364,7 @@ M.InventoryItemAttribute = {
 
 M.InventoryItemSchema = {
     type = "structure",
+    id = "InventoryItemSchema",
     members = {
         TypeName = {
             type = "string",
@@ -7048,6 +7390,7 @@ M.InventoryItemSchema = {
 
 M.GetInventorySchemaOutput = {
     type = "structure",
+    id = "GetInventorySchemaOutput",
     members = {
         Schemas = {
             type = "list",
@@ -7061,6 +7404,7 @@ M.GetInventorySchemaOutput = {
 
 M.GetMaintenanceWindowInput = {
     type = "structure",
+    id = "GetMaintenanceWindowInput",
     members = {
         WindowId = {
             type = "string",
@@ -7073,6 +7417,7 @@ M.GetMaintenanceWindowInput = {
 
 M.GetMaintenanceWindowOutput = {
     type = "structure",
+    id = "GetMaintenanceWindowOutput",
     members = {
         WindowId = {
             type = "string",
@@ -7133,6 +7478,7 @@ M.GetMaintenanceWindowOutput = {
 
 M.GetMaintenanceWindowExecutionInput = {
     type = "structure",
+    id = "GetMaintenanceWindowExecutionInput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -7145,6 +7491,7 @@ M.GetMaintenanceWindowExecutionInput = {
 
 M.GetMaintenanceWindowExecutionOutput = {
     type = "structure",
+    id = "GetMaintenanceWindowExecutionOutput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -7170,6 +7517,7 @@ M.GetMaintenanceWindowExecutionOutput = {
 
 M.GetMaintenanceWindowExecutionTaskInput = {
     type = "structure",
+    id = "GetMaintenanceWindowExecutionTaskInput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -7188,6 +7536,7 @@ M.GetMaintenanceWindowExecutionTaskInput = {
 
 M.GetMaintenanceWindowExecutionTaskOutput = {
     type = "structure",
+    id = "GetMaintenanceWindowExecutionTaskOutput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -7242,6 +7591,7 @@ M.GetMaintenanceWindowExecutionTaskOutput = {
 
 M.GetMaintenanceWindowExecutionTaskInvocationInput = {
     type = "structure",
+    id = "GetMaintenanceWindowExecutionTaskInvocationInput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -7266,6 +7616,7 @@ M.GetMaintenanceWindowExecutionTaskInvocationInput = {
 
 M.GetMaintenanceWindowExecutionTaskInvocationOutput = {
     type = "structure",
+    id = "GetMaintenanceWindowExecutionTaskInvocationOutput",
     members = {
         WindowExecutionId = {
             type = "string",
@@ -7308,6 +7659,7 @@ M.GetMaintenanceWindowExecutionTaskInvocationOutput = {
 
 M.GetMaintenanceWindowTaskInput = {
     type = "structure",
+    id = "GetMaintenanceWindowTaskInput",
     members = {
         WindowId = {
             type = "string",
@@ -7326,6 +7678,7 @@ M.GetMaintenanceWindowTaskInput = {
 
 M.MaintenanceWindowAutomationParameters = {
     type = "structure",
+    id = "MaintenanceWindowAutomationParameters",
     members = {
         DocumentVersion = {
             type = "string",
@@ -7340,6 +7693,7 @@ M.MaintenanceWindowAutomationParameters = {
 
 M.MaintenanceWindowLambdaParameters = {
     type = "structure",
+    id = "MaintenanceWindowLambdaParameters",
     members = {
         ClientContext = {
             type = "string",
@@ -7369,6 +7723,7 @@ M.NotificationType = {
 
 M.NotificationConfig = {
     type = "structure",
+    id = "NotificationConfig",
     members = {
         NotificationArn = {
             type = "string",
@@ -7385,6 +7740,7 @@ M.NotificationConfig = {
 
 M.MaintenanceWindowRunCommandParameters = {
     type = "structure",
+    id = "MaintenanceWindowRunCommandParameters",
     members = {
         Comment = {
             type = "string",
@@ -7422,6 +7778,7 @@ M.MaintenanceWindowRunCommandParameters = {
 
 M.MaintenanceWindowStepFunctionsParameters = {
     type = "structure",
+    id = "MaintenanceWindowStepFunctionsParameters",
     members = {
         Input = {
             type = "string",
@@ -7434,6 +7791,7 @@ M.MaintenanceWindowStepFunctionsParameters = {
 
 M.MaintenanceWindowTaskInvocationParameters = {
     type = "structure",
+    id = "MaintenanceWindowTaskInvocationParameters",
     members = {
         RunCommand = M.MaintenanceWindowRunCommandParameters,
         Automation = M.MaintenanceWindowAutomationParameters,
@@ -7444,6 +7802,7 @@ M.MaintenanceWindowTaskInvocationParameters = {
 
 M.GetMaintenanceWindowTaskOutput = {
     type = "structure",
+    id = "GetMaintenanceWindowTaskOutput",
     members = {
         WindowId = {
             type = "string",
@@ -7498,6 +7857,7 @@ M.GetMaintenanceWindowTaskOutput = {
 
 M.GetOpsItemInput = {
     type = "structure",
+    id = "GetOpsItemInput",
     members = {
         OpsItemId = {
             type = "string",
@@ -7513,6 +7873,7 @@ M.GetOpsItemInput = {
 
 M.OpsItem = {
     type = "structure",
+    id = "OpsItem",
     members = {
         CreatedBy = {
             type = "string",
@@ -7589,6 +7950,7 @@ M.OpsItem = {
 
 M.GetOpsItemOutput = {
     type = "structure",
+    id = "GetOpsItemOutput",
     members = {
         OpsItem = M.OpsItem,
     },
@@ -7596,6 +7958,7 @@ M.GetOpsItemOutput = {
 
 M.GetOpsMetadataInput = {
     type = "structure",
+    id = "GetOpsMetadataInput",
     members = {
         OpsMetadataArn = {
             type = "string",
@@ -7614,6 +7977,7 @@ M.GetOpsMetadataInput = {
 
 M.GetOpsMetadataOutput = {
     type = "structure",
+    id = "GetOpsMetadataOutput",
     members = {
         ResourceId = {
             type = "string",
@@ -7640,6 +8004,7 @@ M.OpsFilterOperatorType = {
 
 M.OpsFilter = {
     type = "structure",
+    id = "OpsFilter",
     members = {
         Key = {
             type = "string",
@@ -7662,6 +8027,7 @@ M.OpsFilter = {
 
 M.OpsResultAttribute = {
     type = "structure",
+    id = "OpsResultAttribute",
     members = {
         TypeName = {
             type = "string",
@@ -7674,6 +8040,7 @@ M.OpsResultAttribute = {
 
 M.OpsEntityItem = {
     type = "structure",
+    id = "OpsEntityItem",
     members = {
         CaptureTime = {
             type = "string",
@@ -7687,6 +8054,7 @@ M.OpsEntityItem = {
 
 M.OpsEntity = {
     type = "structure",
+    id = "OpsEntity",
     members = {
         Id = {
             type = "string",
@@ -7701,6 +8069,7 @@ M.OpsEntity = {
 
 M.GetOpsSummaryOutput = {
     type = "structure",
+    id = "GetOpsSummaryOutput",
     members = {
         Entities = {
             type = "list",
@@ -7714,6 +8083,7 @@ M.GetOpsSummaryOutput = {
 
 M.GetParameterInput = {
     type = "structure",
+    id = "GetParameterInput",
     members = {
         Name = {
             type = "string",
@@ -7732,6 +8102,7 @@ M.GetParameterInput = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         Name = {
             type = "string",
@@ -7768,6 +8139,7 @@ M.Parameter = {
 
 M.GetParameterOutput = {
     type = "structure",
+    id = "GetParameterOutput",
     members = {
         Parameter = M.Parameter,
     },
@@ -7775,6 +8147,7 @@ M.GetParameterOutput = {
 
 M.InvalidKeyId = {
     type = "structure",
+    id = "InvalidKeyId",
     error = "client",
     members = {
         message = {
@@ -7785,6 +8158,7 @@ M.InvalidKeyId = {
 
 M.ParameterVersionNotFound = {
     type = "structure",
+    id = "ParameterVersionNotFound",
     error = "client",
     members = {
         message = {
@@ -7795,6 +8169,7 @@ M.ParameterVersionNotFound = {
 
 M.GetParameterHistoryInput = {
     type = "structure",
+    id = "GetParameterHistoryInput",
     members = {
         Name = {
             type = "string",
@@ -7819,6 +8194,7 @@ M.GetParameterHistoryInput = {
 
 M.ParameterHistory = {
     type = "structure",
+    id = "ParameterHistory",
     members = {
         Name = {
             type = "string",
@@ -7869,6 +8245,7 @@ M.ParameterHistory = {
 
 M.GetParameterHistoryOutput = {
     type = "structure",
+    id = "GetParameterHistoryOutput",
     members = {
         Parameters = {
             type = "list",
@@ -7882,6 +8259,7 @@ M.GetParameterHistoryOutput = {
 
 M.GetParametersInput = {
     type = "structure",
+    id = "GetParametersInput",
     members = {
         Names = {
             type = "list",
@@ -7901,6 +8279,7 @@ M.GetParametersInput = {
 
 M.GetParametersOutput = {
     type = "structure",
+    id = "GetParametersOutput",
     members = {
         Parameters = {
             type = "list",
@@ -7915,6 +8294,7 @@ M.GetParametersOutput = {
 
 M.GetParametersByPathInput = {
     type = "structure",
+    id = "GetParametersByPathInput",
     members = {
         Path = {
             type = "string",
@@ -7949,6 +8329,7 @@ M.GetParametersByPathInput = {
 
 M.GetParametersByPathOutput = {
     type = "structure",
+    id = "GetParametersByPathOutput",
     members = {
         Parameters = {
             type = "list",
@@ -7962,6 +8343,7 @@ M.GetParametersByPathOutput = {
 
 M.GetPatchBaselineInput = {
     type = "structure",
+    id = "GetPatchBaselineInput",
     members = {
         BaselineId = {
             type = "string",
@@ -7974,6 +8356,7 @@ M.GetPatchBaselineInput = {
 
 M.GetPatchBaselineOutput = {
     type = "structure",
+    id = "GetPatchBaselineOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -8031,6 +8414,7 @@ M.GetPatchBaselineOutput = {
 
 M.GetPatchBaselineForPatchGroupInput = {
     type = "structure",
+    id = "GetPatchBaselineForPatchGroupInput",
     members = {
         PatchGroup = {
             type = "string",
@@ -8046,6 +8430,7 @@ M.GetPatchBaselineForPatchGroupInput = {
 
 M.GetPatchBaselineForPatchGroupOutput = {
     type = "structure",
+    id = "GetPatchBaselineForPatchGroupOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -8061,6 +8446,7 @@ M.GetPatchBaselineForPatchGroupOutput = {
 
 M.GetResourcePoliciesInput = {
     type = "structure",
+    id = "GetResourcePoliciesInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -8079,6 +8465,7 @@ M.GetResourcePoliciesInput = {
 
 M.GetResourcePoliciesResponseEntry = {
     type = "structure",
+    id = "GetResourcePoliciesResponseEntry",
     members = {
         PolicyId = {
             type = "string",
@@ -8094,6 +8481,7 @@ M.GetResourcePoliciesResponseEntry = {
 
 M.GetResourcePoliciesOutput = {
     type = "structure",
+    id = "GetResourcePoliciesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -8107,6 +8495,7 @@ M.GetResourcePoliciesOutput = {
 
 M.GetServiceSettingInput = {
     type = "structure",
+    id = "GetServiceSettingInput",
     members = {
         SettingId = {
             type = "string",
@@ -8119,6 +8508,7 @@ M.GetServiceSettingInput = {
 
 M.ServiceSetting = {
     type = "structure",
+    id = "ServiceSetting",
     members = {
         SettingId = {
             type = "string",
@@ -8143,6 +8533,7 @@ M.ServiceSetting = {
 
 M.GetServiceSettingOutput = {
     type = "structure",
+    id = "GetServiceSettingOutput",
     members = {
         ServiceSetting = M.ServiceSetting,
     },
@@ -8150,6 +8541,7 @@ M.GetServiceSettingOutput = {
 
 M.ServiceSettingNotFound = {
     type = "structure",
+    id = "ServiceSettingNotFound",
     error = "client",
     members = {
         Message = {
@@ -8160,6 +8552,7 @@ M.ServiceSettingNotFound = {
 
 M.LabelParameterVersionInput = {
     type = "structure",
+    id = "LabelParameterVersionInput",
     members = {
         Name = {
             type = "string",
@@ -8185,6 +8578,7 @@ M.LabelParameterVersionInput = {
 
 M.LabelParameterVersionOutput = {
     type = "structure",
+    id = "LabelParameterVersionOutput",
     members = {
         InvalidLabels = {
             type = "list",
@@ -8201,6 +8595,7 @@ M.LabelParameterVersionOutput = {
 
 M.ParameterVersionLabelLimitExceeded = {
     type = "structure",
+    id = "ParameterVersionLabelLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -8222,6 +8617,7 @@ M.AssociationFilterKey = {
 
 M.AssociationFilter = {
     type = "structure",
+    id = "AssociationFilter",
     members = {
         key = {
             type = "string",
@@ -8240,6 +8636,7 @@ M.AssociationFilter = {
 
 M.ListAssociationsInput = {
     type = "structure",
+    id = "ListAssociationsInput",
     members = {
         AssociationFilterList = {
             type = "list",
@@ -8256,6 +8653,7 @@ M.ListAssociationsInput = {
 
 M.Association = {
     type = "structure",
+    id = "Association",
     members = {
         Name = {
             type = "string",
@@ -8301,6 +8699,7 @@ M.Association = {
 
 M.ListAssociationsOutput = {
     type = "structure",
+    id = "ListAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -8314,6 +8713,7 @@ M.ListAssociationsOutput = {
 
 M.ListAssociationVersionsInput = {
     type = "structure",
+    id = "ListAssociationVersionsInput",
     members = {
         AssociationId = {
             type = "string",
@@ -8332,6 +8732,7 @@ M.ListAssociationVersionsInput = {
 
 M.AssociationVersionInfo = {
     type = "structure",
+    id = "AssociationVersionInfo",
     members = {
         AssociationId = {
             type = "string",
@@ -8408,6 +8809,7 @@ M.AssociationVersionInfo = {
 
 M.ListAssociationVersionsOutput = {
     type = "structure",
+    id = "ListAssociationVersionsOutput",
     members = {
         AssociationVersions = {
             type = "list",
@@ -8429,6 +8831,7 @@ M.CommandFilterKey = {
 
 M.CommandFilter = {
     type = "structure",
+    id = "CommandFilter",
     members = {
         key = {
             type = "string",
@@ -8447,6 +8850,7 @@ M.CommandFilter = {
 
 M.ListCommandInvocationsInput = {
     type = "structure",
+    id = "ListCommandInvocationsInput",
     members = {
         CommandId = {
             type = "string",
@@ -8484,6 +8888,7 @@ M.CommandPluginStatus = {
 
 M.CommandPlugin = {
     type = "structure",
+    id = "CommandPlugin",
     members = {
         Name = {
             type = "string",
@@ -8529,6 +8934,7 @@ M.CommandPlugin = {
 
 M.CommandInvocation = {
     type = "structure",
+    id = "CommandInvocation",
     members = {
         CommandId = {
             type = "string",
@@ -8580,6 +8986,7 @@ M.CommandInvocation = {
 
 M.ListCommandInvocationsOutput = {
     type = "structure",
+    id = "ListCommandInvocationsOutput",
     members = {
         CommandInvocations = {
             type = "list",
@@ -8593,6 +9000,7 @@ M.ListCommandInvocationsOutput = {
 
 M.ListCommandsInput = {
     type = "structure",
+    id = "ListCommandsInput",
     members = {
         CommandId = {
             type = "string",
@@ -8625,6 +9033,7 @@ M.CommandStatus = {
 
 M.Command = {
     type = "structure",
+    id = "Command",
     members = {
         CommandId = {
             type = "string",
@@ -8720,6 +9129,7 @@ M.Command = {
 
 M.ListCommandsOutput = {
     type = "structure",
+    id = "ListCommandsOutput",
     members = {
         Commands = {
             type = "list",
@@ -8741,6 +9151,7 @@ M.ComplianceQueryOperatorType = {
 
 M.ComplianceStringFilter = {
     type = "structure",
+    id = "ComplianceStringFilter",
     members = {
         Key = {
             type = "string",
@@ -8757,6 +9168,7 @@ M.ComplianceStringFilter = {
 
 M.ListComplianceItemsInput = {
     type = "structure",
+    id = "ListComplianceItemsInput",
     members = {
         Filters = {
             type = "list",
@@ -8781,6 +9193,7 @@ M.ListComplianceItemsInput = {
 
 M.ComplianceExecutionSummary = {
     type = "structure",
+    id = "ComplianceExecutionSummary",
     members = {
         ExecutionTime = {
             type = "timestamp",
@@ -8813,6 +9226,7 @@ M.ComplianceStatus = {
 
 M.ComplianceItem = {
     type = "structure",
+    id = "ComplianceItem",
     members = {
         ComplianceType = {
             type = "string",
@@ -8846,6 +9260,7 @@ M.ComplianceItem = {
 
 M.ListComplianceItemsOutput = {
     type = "structure",
+    id = "ListComplianceItemsOutput",
     members = {
         ComplianceItems = {
             type = "list",
@@ -8859,6 +9274,7 @@ M.ListComplianceItemsOutput = {
 
 M.ListComplianceSummariesInput = {
     type = "structure",
+    id = "ListComplianceSummariesInput",
     members = {
         Filters = {
             type = "list",
@@ -8875,6 +9291,7 @@ M.ListComplianceSummariesInput = {
 
 M.SeveritySummary = {
     type = "structure",
+    id = "SeveritySummary",
     members = {
         CriticalCount = {
             type = "integer",
@@ -8917,6 +9334,7 @@ M.SeveritySummary = {
 
 M.CompliantSummary = {
     type = "structure",
+    id = "CompliantSummary",
     members = {
         CompliantCount = {
             type = "integer",
@@ -8930,6 +9348,7 @@ M.CompliantSummary = {
 
 M.NonCompliantSummary = {
     type = "structure",
+    id = "NonCompliantSummary",
     members = {
         NonCompliantCount = {
             type = "integer",
@@ -8943,6 +9362,7 @@ M.NonCompliantSummary = {
 
 M.ComplianceSummaryItem = {
     type = "structure",
+    id = "ComplianceSummaryItem",
     members = {
         ComplianceType = {
             type = "string",
@@ -8954,6 +9374,7 @@ M.ComplianceSummaryItem = {
 
 M.ListComplianceSummariesOutput = {
     type = "structure",
+    id = "ListComplianceSummariesOutput",
     members = {
         ComplianceSummaryItems = {
             type = "list",
@@ -8971,6 +9392,7 @@ M.DocumentMetadataEnum = {
 
 M.ListDocumentMetadataHistoryInput = {
     type = "structure",
+    id = "ListDocumentMetadataHistoryInput",
     members = {
         Name = {
             type = "string",
@@ -9002,6 +9424,7 @@ M.DocumentReviewCommentType = {
 
 M.DocumentReviewCommentSource = {
     type = "structure",
+    id = "DocumentReviewCommentSource",
     members = {
         Type = {
             type = "string",
@@ -9014,6 +9437,7 @@ M.DocumentReviewCommentSource = {
 
 M.DocumentReviewerResponseSource = {
     type = "structure",
+    id = "DocumentReviewerResponseSource",
     members = {
         CreateTime = {
             type = "timestamp",
@@ -9036,6 +9460,7 @@ M.DocumentReviewerResponseSource = {
 
 M.DocumentMetadataResponseInfo = {
     type = "structure",
+    id = "DocumentMetadataResponseInfo",
     members = {
         ReviewerResponse = {
             type = "list",
@@ -9046,6 +9471,7 @@ M.DocumentMetadataResponseInfo = {
 
 M.ListDocumentMetadataHistoryOutput = {
     type = "structure",
+    id = "ListDocumentMetadataHistoryOutput",
     members = {
         Name = {
             type = "string",
@@ -9072,6 +9498,7 @@ M.DocumentFilterKey = {
 
 M.DocumentFilter = {
     type = "structure",
+    id = "DocumentFilter",
     members = {
         key = {
             type = "string",
@@ -9090,6 +9517,7 @@ M.DocumentFilter = {
 
 M.DocumentKeyValuesFilter = {
     type = "structure",
+    id = "DocumentKeyValuesFilter",
     members = {
         Key = {
             type = "string",
@@ -9103,6 +9531,7 @@ M.DocumentKeyValuesFilter = {
 
 M.ListDocumentsInput = {
     type = "structure",
+    id = "ListDocumentsInput",
     members = {
         DocumentFilterList = {
             type = "list",
@@ -9123,6 +9552,7 @@ M.ListDocumentsInput = {
 
 M.DocumentIdentifier = {
     type = "structure",
+    id = "DocumentIdentifier",
     members = {
         Name = {
             type = "string",
@@ -9177,6 +9607,7 @@ M.DocumentIdentifier = {
 
 M.ListDocumentsOutput = {
     type = "structure",
+    id = "ListDocumentsOutput",
     members = {
         DocumentIdentifiers = {
             type = "list",
@@ -9190,6 +9621,7 @@ M.ListDocumentsOutput = {
 
 M.ListDocumentVersionsInput = {
     type = "structure",
+    id = "ListDocumentVersionsInput",
     members = {
         Name = {
             type = "string",
@@ -9208,6 +9640,7 @@ M.ListDocumentVersionsInput = {
 
 M.DocumentVersionInfo = {
     type = "structure",
+    id = "DocumentVersionInfo",
     members = {
         Name = {
             type = "string",
@@ -9247,6 +9680,7 @@ M.DocumentVersionInfo = {
 
 M.ListDocumentVersionsOutput = {
     type = "structure",
+    id = "ListDocumentVersionsOutput",
     members = {
         DocumentVersions = {
             type = "list",
@@ -9260,6 +9694,7 @@ M.ListDocumentVersionsOutput = {
 
 M.ListInventoryEntriesInput = {
     type = "structure",
+    id = "ListInventoryEntriesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9288,6 +9723,7 @@ M.ListInventoryEntriesInput = {
 
 M.ListInventoryEntriesOutput = {
     type = "structure",
+    id = "ListInventoryEntriesOutput",
     members = {
         TypeName = {
             type = "string",
@@ -9337,6 +9773,7 @@ M.NodeFilterOperatorType = {
 
 M.NodeFilter = {
     type = "structure",
+    id = "NodeFilter",
     members = {
         Key = {
             type = "string",
@@ -9359,6 +9796,7 @@ M.NodeFilter = {
 
 M.ListNodesInput = {
     type = "structure",
+    id = "ListNodesInput",
     members = {
         SyncName = {
             type = "string",
@@ -9384,6 +9822,7 @@ M.ManagedStatus = {
 
 M.InstanceInfo = {
     type = "structure",
+    id = "InstanceInfo",
     members = {
         AgentType = {
             type = "string",
@@ -9420,6 +9859,7 @@ M.InstanceInfo = {
 
 M.NodeType = {
     type = "union",
+    id = "NodeType",
     members = {
         Instance = M.InstanceInfo,
     },
@@ -9427,6 +9867,7 @@ M.NodeType = {
 
 M.NodeOwnerInfo = {
     type = "structure",
+    id = "NodeOwnerInfo",
     members = {
         AccountId = {
             type = "string",
@@ -9442,6 +9883,7 @@ M.NodeOwnerInfo = {
 
 M.Node = {
     type = "structure",
+    id = "Node",
     members = {
         CaptureTime = {
             type = "timestamp",
@@ -9459,6 +9901,7 @@ M.Node = {
 
 M.ListNodesOutput = {
     type = "structure",
+    id = "ListNodesOutput",
     members = {
         Nodes = {
             type = "list",
@@ -9472,6 +9915,7 @@ M.ListNodesOutput = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -9499,6 +9943,7 @@ M.NodeTypeName = {
 
 M.ListNodesSummaryOutput = {
     type = "structure",
+    id = "ListNodesSummaryOutput",
     members = {
         Summary = {
             type = "list",
@@ -9520,6 +9965,7 @@ M.OpsItemEventFilterOperator = {
 
 M.OpsItemEventFilter = {
     type = "structure",
+    id = "OpsItemEventFilter",
     members = {
         Key = {
             type = "string",
@@ -9545,6 +9991,7 @@ M.OpsItemEventFilter = {
 
 M.ListOpsItemEventsInput = {
     type = "structure",
+    id = "ListOpsItemEventsInput",
     members = {
         Filters = {
             type = "list",
@@ -9561,6 +10008,7 @@ M.ListOpsItemEventsInput = {
 
 M.OpsItemIdentity = {
     type = "structure",
+    id = "OpsItemIdentity",
     members = {
         Arn = {
             type = "string",
@@ -9570,6 +10018,7 @@ M.OpsItemIdentity = {
 
 M.OpsItemEventSummary = {
     type = "structure",
+    id = "OpsItemEventSummary",
     members = {
         OpsItemId = {
             type = "string",
@@ -9595,6 +10044,7 @@ M.OpsItemEventSummary = {
 
 M.ListOpsItemEventsOutput = {
     type = "structure",
+    id = "ListOpsItemEventsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -9618,6 +10068,7 @@ M.OpsItemRelatedItemsFilterOperator = {
 
 M.OpsItemRelatedItemsFilter = {
     type = "structure",
+    id = "OpsItemRelatedItemsFilter",
     members = {
         Key = {
             type = "string",
@@ -9643,6 +10094,7 @@ M.OpsItemRelatedItemsFilter = {
 
 M.ListOpsItemRelatedItemsInput = {
     type = "structure",
+    id = "ListOpsItemRelatedItemsInput",
     members = {
         OpsItemId = {
             type = "string",
@@ -9662,6 +10114,7 @@ M.ListOpsItemRelatedItemsInput = {
 
 M.OpsItemRelatedItemSummary = {
     type = "structure",
+    id = "OpsItemRelatedItemSummary",
     members = {
         OpsItemId = {
             type = "string",
@@ -9691,6 +10144,7 @@ M.OpsItemRelatedItemSummary = {
 
 M.ListOpsItemRelatedItemsOutput = {
     type = "structure",
+    id = "ListOpsItemRelatedItemsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -9704,6 +10158,7 @@ M.ListOpsItemRelatedItemsOutput = {
 
 M.OpsMetadataFilter = {
     type = "structure",
+    id = "OpsMetadataFilter",
     members = {
         Key = {
             type = "string",
@@ -9723,6 +10178,7 @@ M.OpsMetadataFilter = {
 
 M.ListOpsMetadataInput = {
     type = "structure",
+    id = "ListOpsMetadataInput",
     members = {
         Filters = {
             type = "list",
@@ -9739,6 +10195,7 @@ M.ListOpsMetadataInput = {
 
 M.OpsMetadata = {
     type = "structure",
+    id = "OpsMetadata",
     members = {
         ResourceId = {
             type = "string",
@@ -9760,6 +10217,7 @@ M.OpsMetadata = {
 
 M.ListOpsMetadataOutput = {
     type = "structure",
+    id = "ListOpsMetadataOutput",
     members = {
         OpsMetadataList = {
             type = "list",
@@ -9773,6 +10231,7 @@ M.ListOpsMetadataOutput = {
 
 M.ListResourceComplianceSummariesInput = {
     type = "structure",
+    id = "ListResourceComplianceSummariesInput",
     members = {
         Filters = {
             type = "list",
@@ -9789,6 +10248,7 @@ M.ListResourceComplianceSummariesInput = {
 
 M.ResourceComplianceSummaryItem = {
     type = "structure",
+    id = "ResourceComplianceSummaryItem",
     members = {
         ComplianceType = {
             type = "string",
@@ -9813,6 +10273,7 @@ M.ResourceComplianceSummaryItem = {
 
 M.ListResourceComplianceSummariesOutput = {
     type = "structure",
+    id = "ListResourceComplianceSummariesOutput",
     members = {
         ResourceComplianceSummaryItems = {
             type = "list",
@@ -9826,6 +10287,7 @@ M.ListResourceComplianceSummariesOutput = {
 
 M.ListResourceDataSyncInput = {
     type = "structure",
+    id = "ListResourceDataSyncInput",
     members = {
         SyncType = {
             type = "string",
@@ -9847,6 +10309,7 @@ M.LastResourceDataSyncStatus = {
 
 M.ResourceDataSyncSourceWithState = {
     type = "structure",
+    id = "ResourceDataSyncSourceWithState",
     members = {
         SourceType = {
             type = "string",
@@ -9876,6 +10339,7 @@ M.ResourceDataSyncSourceWithState = {
 
 M.ResourceDataSyncItem = {
     type = "structure",
+    id = "ResourceDataSyncItem",
     members = {
         SyncName = {
             type = "string",
@@ -9908,6 +10372,7 @@ M.ResourceDataSyncItem = {
 
 M.ListResourceDataSyncOutput = {
     type = "structure",
+    id = "ListResourceDataSyncOutput",
     members = {
         ResourceDataSyncItems = {
             type = "list",
@@ -9921,6 +10386,7 @@ M.ListResourceDataSyncOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceType = {
             type = "string",
@@ -9939,6 +10405,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -9949,6 +10416,7 @@ M.ListTagsForResourceOutput = {
 
 M.DocumentPermissionLimit = {
     type = "structure",
+    id = "DocumentPermissionLimit",
     error = "client",
     members = {
         Message = {
@@ -9959,6 +10427,7 @@ M.DocumentPermissionLimit = {
 
 M.ModifyDocumentPermissionInput = {
     type = "structure",
+    id = "ModifyDocumentPermissionInput",
     members = {
         Name = {
             type = "string",
@@ -9988,10 +10457,12 @@ M.ModifyDocumentPermissionInput = {
 
 M.ModifyDocumentPermissionOutput = {
     type = "structure",
+    id = "ModifyDocumentPermissionOutput",
 }
 
 M.ComplianceTypeCountLimitExceededException = {
     type = "structure",
+    id = "ComplianceTypeCountLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -10002,6 +10473,7 @@ M.ComplianceTypeCountLimitExceededException = {
 
 M.InvalidItemContentException = {
     type = "structure",
+    id = "InvalidItemContentException",
     error = "client",
     members = {
         TypeName = {
@@ -10015,6 +10487,7 @@ M.InvalidItemContentException = {
 
 M.ItemSizeLimitExceededException = {
     type = "structure",
+    id = "ItemSizeLimitExceededException",
     error = "client",
     members = {
         TypeName = {
@@ -10028,6 +10501,7 @@ M.ItemSizeLimitExceededException = {
 
 M.ComplianceItemEntry = {
     type = "structure",
+    id = "ComplianceItemEntry",
     members = {
         Id = {
             type = "string",
@@ -10062,6 +10536,7 @@ M.ComplianceUploadType = {
 
 M.PutComplianceItemsInput = {
     type = "structure",
+    id = "PutComplianceItemsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -10102,10 +10577,12 @@ M.PutComplianceItemsInput = {
 
 M.PutComplianceItemsOutput = {
     type = "structure",
+    id = "PutComplianceItemsOutput",
 }
 
 M.TotalSizeLimitExceededException = {
     type = "structure",
+    id = "TotalSizeLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -10116,6 +10593,7 @@ M.TotalSizeLimitExceededException = {
 
 M.CustomSchemaCountLimitExceededException = {
     type = "structure",
+    id = "CustomSchemaCountLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -10126,6 +10604,7 @@ M.CustomSchemaCountLimitExceededException = {
 
 M.InvalidInventoryItemContextException = {
     type = "structure",
+    id = "InvalidInventoryItemContextException",
     error = "client",
     members = {
         Message = {
@@ -10136,6 +10615,7 @@ M.InvalidInventoryItemContextException = {
 
 M.ItemContentMismatchException = {
     type = "structure",
+    id = "ItemContentMismatchException",
     error = "client",
     members = {
         TypeName = {
@@ -10149,6 +10629,7 @@ M.ItemContentMismatchException = {
 
 M.InventoryItem = {
     type = "structure",
+    id = "InventoryItem",
     members = {
         TypeName = {
             type = "string",
@@ -10185,6 +10666,7 @@ M.InventoryItem = {
 
 M.PutInventoryInput = {
     type = "structure",
+    id = "PutInventoryInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10204,6 +10686,7 @@ M.PutInventoryInput = {
 
 M.PutInventoryOutput = {
     type = "structure",
+    id = "PutInventoryOutput",
     members = {
         Message = {
             type = "string",
@@ -10213,6 +10696,7 @@ M.PutInventoryOutput = {
 
 M.SubTypeCountLimitExceededException = {
     type = "structure",
+    id = "SubTypeCountLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -10223,6 +10707,7 @@ M.SubTypeCountLimitExceededException = {
 
 M.UnsupportedInventoryItemContextException = {
     type = "structure",
+    id = "UnsupportedInventoryItemContextException",
     error = "client",
     members = {
         TypeName = {
@@ -10236,6 +10721,7 @@ M.UnsupportedInventoryItemContextException = {
 
 M.UnsupportedInventorySchemaVersionException = {
     type = "structure",
+    id = "UnsupportedInventorySchemaVersionException",
     error = "client",
     members = {
         Message = {
@@ -10246,6 +10732,7 @@ M.UnsupportedInventorySchemaVersionException = {
 
 M.HierarchyLevelLimitExceededException = {
     type = "structure",
+    id = "HierarchyLevelLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -10256,6 +10743,7 @@ M.HierarchyLevelLimitExceededException = {
 
 M.HierarchyTypeMismatchException = {
     type = "structure",
+    id = "HierarchyTypeMismatchException",
     error = "client",
     members = {
         message = {
@@ -10266,6 +10754,7 @@ M.HierarchyTypeMismatchException = {
 
 M.IncompatiblePolicyException = {
     type = "structure",
+    id = "IncompatiblePolicyException",
     error = "client",
     members = {
         message = {
@@ -10276,6 +10765,7 @@ M.IncompatiblePolicyException = {
 
 M.InvalidAllowedPatternException = {
     type = "structure",
+    id = "InvalidAllowedPatternException",
     error = "client",
     members = {
         message = {
@@ -10286,6 +10776,7 @@ M.InvalidAllowedPatternException = {
 
 M.InvalidPolicyAttributeException = {
     type = "structure",
+    id = "InvalidPolicyAttributeException",
     error = "client",
     members = {
         message = {
@@ -10296,6 +10787,7 @@ M.InvalidPolicyAttributeException = {
 
 M.InvalidPolicyTypeException = {
     type = "structure",
+    id = "InvalidPolicyTypeException",
     error = "client",
     members = {
         message = {
@@ -10306,6 +10798,7 @@ M.InvalidPolicyTypeException = {
 
 M.ParameterAlreadyExists = {
     type = "structure",
+    id = "ParameterAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -10316,6 +10809,7 @@ M.ParameterAlreadyExists = {
 
 M.ParameterLimitExceeded = {
     type = "structure",
+    id = "ParameterLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -10326,6 +10820,7 @@ M.ParameterLimitExceeded = {
 
 M.ParameterMaxVersionLimitExceeded = {
     type = "structure",
+    id = "ParameterMaxVersionLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -10336,6 +10831,7 @@ M.ParameterMaxVersionLimitExceeded = {
 
 M.ParameterPatternMismatchException = {
     type = "structure",
+    id = "ParameterPatternMismatchException",
     error = "client",
     members = {
         message = {
@@ -10346,6 +10842,7 @@ M.ParameterPatternMismatchException = {
 
 M.PoliciesLimitExceededException = {
     type = "structure",
+    id = "PoliciesLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -10356,6 +10853,7 @@ M.PoliciesLimitExceededException = {
 
 M.PutParameterInput = {
     type = "structure",
+    id = "PutParameterInput",
     members = {
         Name = {
             type = "string",
@@ -10405,6 +10903,7 @@ M.PutParameterInput = {
 
 M.PutParameterOutput = {
     type = "structure",
+    id = "PutParameterOutput",
     members = {
         Version = {
             type = "long",
@@ -10420,6 +10919,7 @@ M.PutParameterOutput = {
 
 M.UnsupportedParameterType = {
     type = "structure",
+    id = "UnsupportedParameterType",
     error = "client",
     members = {
         message = {
@@ -10430,6 +10930,7 @@ M.UnsupportedParameterType = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -10454,6 +10955,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         PolicyId = {
             type = "string",
@@ -10466,6 +10968,7 @@ M.PutResourcePolicyOutput = {
 
 M.ResourcePolicyLimitExceededException = {
     type = "structure",
+    id = "ResourcePolicyLimitExceededException",
     error = "client",
     members = {
         Limit = {
@@ -10485,6 +10988,7 @@ M.ResourcePolicyLimitExceededException = {
 
 M.RegisterDefaultPatchBaselineInput = {
     type = "structure",
+    id = "RegisterDefaultPatchBaselineInput",
     members = {
         BaselineId = {
             type = "string",
@@ -10497,6 +11001,7 @@ M.RegisterDefaultPatchBaselineInput = {
 
 M.RegisterDefaultPatchBaselineOutput = {
     type = "structure",
+    id = "RegisterDefaultPatchBaselineOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -10506,6 +11011,7 @@ M.RegisterDefaultPatchBaselineOutput = {
 
 M.RegisterPatchBaselineForPatchGroupInput = {
     type = "structure",
+    id = "RegisterPatchBaselineForPatchGroupInput",
     members = {
         BaselineId = {
             type = "string",
@@ -10524,6 +11030,7 @@ M.RegisterPatchBaselineForPatchGroupInput = {
 
 M.RegisterPatchBaselineForPatchGroupOutput = {
     type = "structure",
+    id = "RegisterPatchBaselineForPatchGroupOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -10536,6 +11043,7 @@ M.RegisterPatchBaselineForPatchGroupOutput = {
 
 M.RegisterTargetWithMaintenanceWindowInput = {
     type = "structure",
+    id = "RegisterTargetWithMaintenanceWindowInput",
     members = {
         WindowId = {
             type = "string",
@@ -10576,6 +11084,7 @@ M.RegisterTargetWithMaintenanceWindowInput = {
 
 M.RegisterTargetWithMaintenanceWindowOutput = {
     type = "structure",
+    id = "RegisterTargetWithMaintenanceWindowOutput",
     members = {
         WindowTargetId = {
             type = "string",
@@ -10585,6 +11094,7 @@ M.RegisterTargetWithMaintenanceWindowOutput = {
 
 M.FeatureNotAvailableException = {
     type = "structure",
+    id = "FeatureNotAvailableException",
     error = "client",
     members = {
         Message = {
@@ -10595,6 +11105,7 @@ M.FeatureNotAvailableException = {
 
 M.RegisterTaskWithMaintenanceWindowInput = {
     type = "structure",
+    id = "RegisterTaskWithMaintenanceWindowInput",
     members = {
         WindowId = {
             type = "string",
@@ -10661,6 +11172,7 @@ M.RegisterTaskWithMaintenanceWindowInput = {
 
 M.RegisterTaskWithMaintenanceWindowOutput = {
     type = "structure",
+    id = "RegisterTaskWithMaintenanceWindowOutput",
     members = {
         WindowTaskId = {
             type = "string",
@@ -10670,6 +11182,7 @@ M.RegisterTaskWithMaintenanceWindowOutput = {
 
 M.RemoveTagsFromResourceInput = {
     type = "structure",
+    id = "RemoveTagsFromResourceInput",
     members = {
         ResourceType = {
             type = "string",
@@ -10695,10 +11208,12 @@ M.RemoveTagsFromResourceInput = {
 
 M.RemoveTagsFromResourceOutput = {
     type = "structure",
+    id = "RemoveTagsFromResourceOutput",
 }
 
 M.ResetServiceSettingInput = {
     type = "structure",
+    id = "ResetServiceSettingInput",
     members = {
         SettingId = {
             type = "string",
@@ -10711,6 +11226,7 @@ M.ResetServiceSettingInput = {
 
 M.ResetServiceSettingOutput = {
     type = "structure",
+    id = "ResetServiceSettingOutput",
     members = {
         ServiceSetting = M.ServiceSetting,
     },
@@ -10718,6 +11234,7 @@ M.ResetServiceSettingOutput = {
 
 M.ResumeSessionInput = {
     type = "structure",
+    id = "ResumeSessionInput",
     members = {
         SessionId = {
             type = "string",
@@ -10730,6 +11247,7 @@ M.ResumeSessionInput = {
 
 M.ResumeSessionOutput = {
     type = "structure",
+    id = "ResumeSessionOutput",
     members = {
         SessionId = {
             type = "string",
@@ -10745,6 +11263,7 @@ M.ResumeSessionOutput = {
 
 M.AutomationStepNotFoundException = {
     type = "structure",
+    id = "AutomationStepNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -10755,6 +11274,7 @@ M.AutomationStepNotFoundException = {
 
 M.InvalidAutomationSignalException = {
     type = "structure",
+    id = "InvalidAutomationSignalException",
     error = "client",
     members = {
         Message = {
@@ -10774,6 +11294,7 @@ M.SignalType = {
 
 M.SendAutomationSignalInput = {
     type = "structure",
+    id = "SendAutomationSignalInput",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -10797,10 +11318,12 @@ M.SendAutomationSignalInput = {
 
 M.SendAutomationSignalOutput = {
     type = "structure",
+    id = "SendAutomationSignalOutput",
 }
 
 M.InvalidNotificationConfig = {
     type = "structure",
+    id = "InvalidNotificationConfig",
     error = "client",
     members = {
         Message = {
@@ -10811,11 +11334,13 @@ M.InvalidNotificationConfig = {
 
 M.InvalidOutputFolder = {
     type = "structure",
+    id = "InvalidOutputFolder",
     error = "client",
 }
 
 M.InvalidRole = {
     type = "structure",
+    id = "InvalidRole",
     error = "client",
     members = {
         Message = {
@@ -10826,6 +11351,7 @@ M.InvalidRole = {
 
 M.SendCommandInput = {
     type = "structure",
+    id = "SendCommandInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -10887,6 +11413,7 @@ M.SendCommandInput = {
 
 M.SendCommandOutput = {
     type = "structure",
+    id = "SendCommandOutput",
     members = {
         Command = M.Command,
     },
@@ -10894,6 +11421,7 @@ M.SendCommandOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -10925,6 +11453,7 @@ M.ServiceQuotaExceededException = {
 
 M.StartAccessRequestInput = {
     type = "structure",
+    id = "StartAccessRequestInput",
     members = {
         Reason = {
             type = "string",
@@ -10948,6 +11477,7 @@ M.StartAccessRequestInput = {
 
 M.StartAccessRequestOutput = {
     type = "structure",
+    id = "StartAccessRequestOutput",
     members = {
         AccessRequestId = {
             type = "string",
@@ -10957,6 +11487,7 @@ M.StartAccessRequestOutput = {
 
 M.InvalidAssociation = {
     type = "structure",
+    id = "InvalidAssociation",
     error = "client",
     members = {
         Message = {
@@ -10967,6 +11498,7 @@ M.InvalidAssociation = {
 
 M.StartAssociationsOnceInput = {
     type = "structure",
+    id = "StartAssociationsOnceInput",
     members = {
         AssociationIds = {
             type = "list",
@@ -10980,10 +11512,12 @@ M.StartAssociationsOnceInput = {
 
 M.StartAssociationsOnceOutput = {
     type = "structure",
+    id = "StartAssociationsOnceOutput",
 }
 
 M.AutomationDefinitionNotFoundException = {
     type = "structure",
+    id = "AutomationDefinitionNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -10994,6 +11528,7 @@ M.AutomationDefinitionNotFoundException = {
 
 M.AutomationDefinitionVersionNotFoundException = {
     type = "structure",
+    id = "AutomationDefinitionVersionNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -11004,6 +11539,7 @@ M.AutomationDefinitionVersionNotFoundException = {
 
 M.AutomationExecutionLimitExceededException = {
     type = "structure",
+    id = "AutomationExecutionLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -11014,6 +11550,7 @@ M.AutomationExecutionLimitExceededException = {
 
 M.InvalidAutomationExecutionParametersException = {
     type = "structure",
+    id = "InvalidAutomationExecutionParametersException",
     error = "client",
     members = {
         Message = {
@@ -11024,6 +11561,7 @@ M.InvalidAutomationExecutionParametersException = {
 
 M.StartAutomationExecutionInput = {
     type = "structure",
+    id = "StartAutomationExecutionInput",
     members = {
         DocumentName = {
             type = "string",
@@ -11079,6 +11617,7 @@ M.StartAutomationExecutionInput = {
 
 M.StartAutomationExecutionOutput = {
     type = "structure",
+    id = "StartAutomationExecutionOutput",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -11088,6 +11627,7 @@ M.StartAutomationExecutionOutput = {
 
 M.AutomationDefinitionNotApprovedException = {
     type = "structure",
+    id = "AutomationDefinitionNotApprovedException",
     error = "client",
     members = {
         Message = {
@@ -11098,6 +11638,7 @@ M.AutomationDefinitionNotApprovedException = {
 
 M.StartChangeRequestExecutionInput = {
     type = "structure",
+    id = "StartChangeRequestExecutionInput",
     members = {
         ScheduledTime = {
             type = "timestamp",
@@ -11150,6 +11691,7 @@ M.StartChangeRequestExecutionInput = {
 
 M.StartChangeRequestExecutionOutput = {
     type = "structure",
+    id = "StartChangeRequestExecutionOutput",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -11159,6 +11701,7 @@ M.StartChangeRequestExecutionOutput = {
 
 M.AutomationExecutionInputs = {
     type = "structure",
+    id = "AutomationExecutionInputs",
     members = {
         Parameters = {
             type = "map",
@@ -11188,6 +11731,7 @@ M.AutomationExecutionInputs = {
 
 M.ExecutionInputs = {
     type = "union",
+    id = "ExecutionInputs",
     members = {
         Automation = M.AutomationExecutionInputs,
     },
@@ -11195,6 +11739,7 @@ M.ExecutionInputs = {
 
 M.StartExecutionPreviewInput = {
     type = "structure",
+    id = "StartExecutionPreviewInput",
     members = {
         DocumentName = {
             type = "string",
@@ -11211,6 +11756,7 @@ M.StartExecutionPreviewInput = {
 
 M.StartExecutionPreviewOutput = {
     type = "structure",
+    id = "StartExecutionPreviewOutput",
     members = {
         ExecutionPreviewId = {
             type = "string",
@@ -11220,6 +11766,7 @@ M.StartExecutionPreviewOutput = {
 
 M.StartSessionInput = {
     type = "structure",
+    id = "StartSessionInput",
     members = {
         Target = {
             type = "string",
@@ -11243,6 +11790,7 @@ M.StartSessionInput = {
 
 M.StartSessionOutput = {
     type = "structure",
+    id = "StartSessionOutput",
     members = {
         SessionId = {
             type = "string",
@@ -11258,6 +11806,7 @@ M.StartSessionOutput = {
 
 M.TargetNotConnected = {
     type = "structure",
+    id = "TargetNotConnected",
     error = "client",
     members = {
         Message = {
@@ -11268,6 +11817,7 @@ M.TargetNotConnected = {
 
 M.InvalidAutomationStatusUpdateException = {
     type = "structure",
+    id = "InvalidAutomationStatusUpdateException",
     error = "client",
     members = {
         Message = {
@@ -11283,6 +11833,7 @@ M.StopType = {
 
 M.StopAutomationExecutionInput = {
     type = "structure",
+    id = "StopAutomationExecutionInput",
     members = {
         AutomationExecutionId = {
             type = "string",
@@ -11298,10 +11849,12 @@ M.StopAutomationExecutionInput = {
 
 M.StopAutomationExecutionOutput = {
     type = "structure",
+    id = "StopAutomationExecutionOutput",
 }
 
 M.TerminateSessionInput = {
     type = "structure",
+    id = "TerminateSessionInput",
     members = {
         SessionId = {
             type = "string",
@@ -11314,6 +11867,7 @@ M.TerminateSessionInput = {
 
 M.TerminateSessionOutput = {
     type = "structure",
+    id = "TerminateSessionOutput",
     members = {
         SessionId = {
             type = "string",
@@ -11323,6 +11877,7 @@ M.TerminateSessionOutput = {
 
 M.UnlabelParameterVersionInput = {
     type = "structure",
+    id = "UnlabelParameterVersionInput",
     members = {
         Name = {
             type = "string",
@@ -11349,6 +11904,7 @@ M.UnlabelParameterVersionInput = {
 
 M.UnlabelParameterVersionOutput = {
     type = "structure",
+    id = "UnlabelParameterVersionOutput",
     members = {
         RemovedLabels = {
             type = "list",
@@ -11363,6 +11919,7 @@ M.UnlabelParameterVersionOutput = {
 
 M.AssociationVersionLimitExceeded = {
     type = "structure",
+    id = "AssociationVersionLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -11373,6 +11930,7 @@ M.AssociationVersionLimitExceeded = {
 
 M.InvalidUpdate = {
     type = "structure",
+    id = "InvalidUpdate",
     error = "client",
     members = {
         Message = {
@@ -11383,6 +11941,7 @@ M.InvalidUpdate = {
 
 M.UpdateAssociationInput = {
     type = "structure",
+    id = "UpdateAssociationInput",
     members = {
         AssociationId = {
             type = "string",
@@ -11463,6 +12022,7 @@ M.UpdateAssociationInput = {
 
 M.UpdateAssociationOutput = {
     type = "structure",
+    id = "UpdateAssociationOutput",
     members = {
         AssociationDescription = M.AssociationDescription,
     },
@@ -11470,11 +12030,13 @@ M.UpdateAssociationOutput = {
 
 M.StatusUnchanged = {
     type = "structure",
+    id = "StatusUnchanged",
     error = "client",
 }
 
 M.UpdateAssociationStatusInput = {
     type = "structure",
+    id = "UpdateAssociationStatusInput",
     members = {
         Name = {
             type = "string",
@@ -11496,6 +12058,7 @@ M.UpdateAssociationStatusInput = {
 
 M.UpdateAssociationStatusOutput = {
     type = "structure",
+    id = "UpdateAssociationStatusOutput",
     members = {
         AssociationDescription = M.AssociationDescription,
     },
@@ -11503,6 +12066,7 @@ M.UpdateAssociationStatusOutput = {
 
 M.DocumentVersionLimitExceeded = {
     type = "structure",
+    id = "DocumentVersionLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -11513,6 +12077,7 @@ M.DocumentVersionLimitExceeded = {
 
 M.DuplicateDocumentContent = {
     type = "structure",
+    id = "DuplicateDocumentContent",
     error = "client",
     members = {
         Message = {
@@ -11523,6 +12088,7 @@ M.DuplicateDocumentContent = {
 
 M.DuplicateDocumentVersionName = {
     type = "structure",
+    id = "DuplicateDocumentVersionName",
     error = "client",
     members = {
         Message = {
@@ -11533,6 +12099,7 @@ M.DuplicateDocumentVersionName = {
 
 M.UpdateDocumentInput = {
     type = "structure",
+    id = "UpdateDocumentInput",
     members = {
         Content = {
             type = "string",
@@ -11570,6 +12137,7 @@ M.UpdateDocumentInput = {
 
 M.UpdateDocumentOutput = {
     type = "structure",
+    id = "UpdateDocumentOutput",
     members = {
         DocumentDescription = M.DocumentDescription,
     },
@@ -11577,6 +12145,7 @@ M.UpdateDocumentOutput = {
 
 M.UpdateDocumentDefaultVersionInput = {
     type = "structure",
+    id = "UpdateDocumentDefaultVersionInput",
     members = {
         Name = {
             type = "string",
@@ -11595,6 +12164,7 @@ M.UpdateDocumentDefaultVersionInput = {
 
 M.DocumentDefaultVersionDescription = {
     type = "structure",
+    id = "DocumentDefaultVersionDescription",
     members = {
         Name = {
             type = "string",
@@ -11610,6 +12180,7 @@ M.DocumentDefaultVersionDescription = {
 
 M.UpdateDocumentDefaultVersionOutput = {
     type = "structure",
+    id = "UpdateDocumentDefaultVersionOutput",
     members = {
         Description = M.DocumentDefaultVersionDescription,
     },
@@ -11624,6 +12195,7 @@ M.DocumentReviewAction = {
 
 M.DocumentReviews = {
     type = "structure",
+    id = "DocumentReviews",
     members = {
         Action = {
             type = "string",
@@ -11640,6 +12212,7 @@ M.DocumentReviews = {
 
 M.UpdateDocumentMetadataInput = {
     type = "structure",
+    id = "UpdateDocumentMetadataInput",
     members = {
         Name = {
             type = "string",
@@ -11658,10 +12231,12 @@ M.UpdateDocumentMetadataInput = {
 
 M.UpdateDocumentMetadataOutput = {
     type = "structure",
+    id = "UpdateDocumentMetadataOutput",
 }
 
 M.UpdateMaintenanceWindowInput = {
     type = "structure",
+    id = "UpdateMaintenanceWindowInput",
     members = {
         WindowId = {
             type = "string",
@@ -11722,6 +12297,7 @@ M.UpdateMaintenanceWindowInput = {
 
 M.UpdateMaintenanceWindowOutput = {
     type = "structure",
+    id = "UpdateMaintenanceWindowOutput",
     members = {
         WindowId = {
             type = "string",
@@ -11773,6 +12349,7 @@ M.UpdateMaintenanceWindowOutput = {
 
 M.UpdateMaintenanceWindowTargetInput = {
     type = "structure",
+    id = "UpdateMaintenanceWindowTargetInput",
     members = {
         WindowId = {
             type = "string",
@@ -11810,6 +12387,7 @@ M.UpdateMaintenanceWindowTargetInput = {
 
 M.UpdateMaintenanceWindowTargetOutput = {
     type = "structure",
+    id = "UpdateMaintenanceWindowTargetOutput",
     members = {
         WindowId = {
             type = "string",
@@ -11835,6 +12413,7 @@ M.UpdateMaintenanceWindowTargetOutput = {
 
 M.UpdateMaintenanceWindowTaskInput = {
     type = "structure",
+    id = "UpdateMaintenanceWindowTaskInput",
     members = {
         WindowId = {
             type = "string",
@@ -11898,6 +12477,7 @@ M.UpdateMaintenanceWindowTaskInput = {
 
 M.UpdateMaintenanceWindowTaskOutput = {
     type = "structure",
+    id = "UpdateMaintenanceWindowTaskOutput",
     members = {
         WindowId = {
             type = "string",
@@ -11949,6 +12529,7 @@ M.UpdateMaintenanceWindowTaskOutput = {
 
 M.UpdateManagedInstanceRoleInput = {
     type = "structure",
+    id = "UpdateManagedInstanceRoleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11967,10 +12548,12 @@ M.UpdateManagedInstanceRoleInput = {
 
 M.UpdateManagedInstanceRoleOutput = {
     type = "structure",
+    id = "UpdateManagedInstanceRoleOutput",
 }
 
 M.UpdateOpsItemInput = {
     type = "structure",
+    id = "UpdateOpsItemInput",
     members = {
         Description = {
             type = "string",
@@ -12033,10 +12616,12 @@ M.UpdateOpsItemInput = {
 
 M.UpdateOpsItemOutput = {
     type = "structure",
+    id = "UpdateOpsItemOutput",
 }
 
 M.OpsMetadataKeyLimitExceededException = {
     type = "structure",
+    id = "OpsMetadataKeyLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -12047,6 +12632,7 @@ M.OpsMetadataKeyLimitExceededException = {
 
 M.UpdateOpsMetadataInput = {
     type = "structure",
+    id = "UpdateOpsMetadataInput",
     members = {
         OpsMetadataArn = {
             type = "string",
@@ -12068,6 +12654,7 @@ M.UpdateOpsMetadataInput = {
 
 M.UpdateOpsMetadataOutput = {
     type = "structure",
+    id = "UpdateOpsMetadataOutput",
     members = {
         OpsMetadataArn = {
             type = "string",
@@ -12077,6 +12664,7 @@ M.UpdateOpsMetadataOutput = {
 
 M.UpdatePatchBaselineInput = {
     type = "structure",
+    id = "UpdatePatchBaselineInput",
     members = {
         BaselineId = {
             type = "string",
@@ -12130,6 +12718,7 @@ M.UpdatePatchBaselineInput = {
 
 M.UpdatePatchBaselineOutput = {
     type = "structure",
+    id = "UpdatePatchBaselineOutput",
     members = {
         BaselineId = {
             type = "string",
@@ -12183,6 +12772,7 @@ M.UpdatePatchBaselineOutput = {
 
 M.ResourceDataSyncConflictException = {
     type = "structure",
+    id = "ResourceDataSyncConflictException",
     error = "client",
     members = {
         Message = {
@@ -12193,6 +12783,7 @@ M.ResourceDataSyncConflictException = {
 
 M.UpdateResourceDataSyncInput = {
     type = "structure",
+    id = "UpdateResourceDataSyncInput",
     members = {
         SyncName = {
             type = "string",
@@ -12214,10 +12805,12 @@ M.UpdateResourceDataSyncInput = {
 
 M.UpdateResourceDataSyncOutput = {
     type = "structure",
+    id = "UpdateResourceDataSyncOutput",
 }
 
 M.UpdateServiceSettingInput = {
     type = "structure",
+    id = "UpdateServiceSettingInput",
     members = {
         SettingId = {
             type = "string",
@@ -12236,10 +12829,12 @@ M.UpdateServiceSettingInput = {
 
 M.UpdateServiceSettingOutput = {
     type = "structure",
+    id = "UpdateServiceSettingOutput",
 }
 
 M.InventoryAggregator = {
     type = "structure",
+    id = "InventoryAggregator",
     members = {
         Expression = {
             type = "string",
@@ -12257,6 +12852,7 @@ M.InventoryAggregator = {
 
 M.NodeAggregator = {
     type = "structure",
+    id = "NodeAggregator",
     members = {
         AggregatorType = {
             type = "string",
@@ -12285,6 +12881,7 @@ M.NodeAggregator = {
 
 M.OpsAggregator = {
     type = "structure",
+    id = "OpsAggregator",
     members = {
         AggregatorType = {
             type = "string",
@@ -12313,6 +12910,7 @@ M.OpsAggregator = {
 
 M.GetInventoryInput = {
     type = "structure",
+    id = "GetInventoryInput",
     members = {
         Filters = {
             type = "list",
@@ -12337,6 +12935,7 @@ M.GetInventoryInput = {
 
 M.GetOpsSummaryInput = {
     type = "structure",
+    id = "GetOpsSummaryInput",
     members = {
         SyncName = {
             type = "string",
@@ -12364,6 +12963,7 @@ M.GetOpsSummaryInput = {
 
 M.ListNodesSummaryInput = {
     type = "structure",
+    id = "ListNodesSummaryInput",
     members = {
         SyncName = {
             type = "string",

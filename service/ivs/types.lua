@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -60,6 +61,7 @@ M.AccessDeniedException = {
 
 M.MediaTailorPlaybackConfiguration = {
     type = "structure",
+    id = "MediaTailorPlaybackConfiguration",
     members = {
         playbackConfigurationArn = {
             type = "string",
@@ -69,6 +71,7 @@ M.MediaTailorPlaybackConfiguration = {
 
 M.AdConfiguration = {
     type = "structure",
+    id = "AdConfiguration",
     members = {
         arn = {
             type = "string",
@@ -96,6 +99,7 @@ M.AdConfiguration = {
 
 M.AdConfigurationSummary = {
     type = "structure",
+    id = "AdConfigurationSummary",
     members = {
         arn = {
             type = "string",
@@ -123,6 +127,7 @@ M.AdConfigurationSummary = {
 
 M.BatchGetChannelInput = {
     type = "structure",
+    id = "BatchGetChannelInput",
     members = {
         arns = {
             type = "list",
@@ -157,6 +162,7 @@ M.MultitrackPolicy = {
 
 M.MultitrackInputConfiguration = {
     type = "structure",
+    id = "MultitrackInputConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -180,6 +186,7 @@ M.TranscodePreset = {
 
 M.Srt = {
     type = "structure",
+    id = "Srt",
     members = {
         endpoint = {
             type = "string",
@@ -199,6 +206,7 @@ M.ChannelType = {
 
 M.Channel = {
     type = "structure",
+    id = "Channel",
     members = {
         arn = {
             type = "string",
@@ -257,6 +265,7 @@ M.Channel = {
 
 M.BatchError = {
     type = "structure",
+    id = "BatchError",
     members = {
         arn = {
             type = "string",
@@ -272,6 +281,7 @@ M.BatchError = {
 
 M.BatchGetChannelOutput = {
     type = "structure",
+    id = "BatchGetChannelOutput",
     members = {
         accessControlAllowOrigin = {
             type = "string",
@@ -328,6 +338,7 @@ M.BatchGetChannelOutput = {
 
 M.ServiceUnavailable = {
     type = "structure",
+    id = "ServiceUnavailable",
     error = "server",
     members = {
         accessControlAllowOrigin = {
@@ -386,6 +397,7 @@ M.ServiceUnavailable = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -444,6 +456,7 @@ M.ValidationException = {
 
 M.BatchGetStreamKeyInput = {
     type = "structure",
+    id = "BatchGetStreamKeyInput",
     members = {
         arns = {
             type = "list",
@@ -457,6 +470,7 @@ M.BatchGetStreamKeyInput = {
 
 M.StreamKey = {
     type = "structure",
+    id = "StreamKey",
     members = {
         arn = {
             type = "string",
@@ -477,6 +491,7 @@ M.StreamKey = {
 
 M.BatchGetStreamKeyOutput = {
     type = "structure",
+    id = "BatchGetStreamKeyOutput",
     members = {
         accessControlAllowOrigin = {
             type = "string",
@@ -533,6 +548,7 @@ M.BatchGetStreamKeyOutput = {
 
 M.BatchStartViewerSessionRevocationViewerSession = {
     type = "structure",
+    id = "BatchStartViewerSessionRevocationViewerSession",
     members = {
         channelArn = {
             type = "string",
@@ -557,6 +573,7 @@ M.BatchStartViewerSessionRevocationViewerSession = {
 
 M.BatchStartViewerSessionRevocationInput = {
     type = "structure",
+    id = "BatchStartViewerSessionRevocationInput",
     members = {
         viewerSessions = {
             type = "list",
@@ -570,6 +587,7 @@ M.BatchStartViewerSessionRevocationInput = {
 
 M.BatchStartViewerSessionRevocationError = {
     type = "structure",
+    id = "BatchStartViewerSessionRevocationError",
     members = {
         channelArn = {
             type = "string",
@@ -594,6 +612,7 @@ M.BatchStartViewerSessionRevocationError = {
 
 M.BatchStartViewerSessionRevocationOutput = {
     type = "structure",
+    id = "BatchStartViewerSessionRevocationOutput",
     members = {
         accessControlAllowOrigin = {
             type = "string",
@@ -646,6 +665,7 @@ M.BatchStartViewerSessionRevocationOutput = {
 
 M.PendingVerification = {
     type = "structure",
+    id = "PendingVerification",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -704,6 +724,7 @@ M.PendingVerification = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -762,6 +783,7 @@ M.ThrottlingException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -820,6 +842,7 @@ M.ConflictException = {
 
 M.CreateAdConfigurationInput = {
     type = "structure",
+    id = "CreateAdConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -841,6 +864,7 @@ M.CreateAdConfigurationInput = {
 
 M.CreateAdConfigurationOutput = {
     type = "structure",
+    id = "CreateAdConfigurationOutput",
     members = {
         adConfiguration = setmetatable({ traits = {
             required = true,
@@ -850,6 +874,7 @@ M.CreateAdConfigurationOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         accessControlAllowOrigin = {
@@ -908,6 +933,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -966,6 +992,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -1024,6 +1051,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         name = {
             type = "string",
@@ -1072,6 +1100,7 @@ M.CreateChannelInput = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         channel = M.Channel,
         streamKey = M.StreamKey,
@@ -1080,6 +1109,7 @@ M.CreateChannelOutput = {
 
 M.CreatePlaybackRestrictionPolicyInput = {
     type = "structure",
+    id = "CreatePlaybackRestrictionPolicyInput",
     members = {
         allowedCountries = {
             type = "list",
@@ -1105,6 +1135,7 @@ M.CreatePlaybackRestrictionPolicyInput = {
 
 M.PlaybackRestrictionPolicy = {
     type = "structure",
+    id = "PlaybackRestrictionPolicy",
     members = {
         arn = {
             type = "string",
@@ -1142,6 +1173,7 @@ M.PlaybackRestrictionPolicy = {
 
 M.CreatePlaybackRestrictionPolicyOutput = {
     type = "structure",
+    id = "CreatePlaybackRestrictionPolicyOutput",
     members = {
         playbackRestrictionPolicy = M.PlaybackRestrictionPolicy,
     },
@@ -1149,6 +1181,7 @@ M.CreatePlaybackRestrictionPolicyOutput = {
 
 M.S3DestinationConfiguration = {
     type = "structure",
+    id = "S3DestinationConfiguration",
     members = {
         bucketName = {
             type = "string",
@@ -1161,6 +1194,7 @@ M.S3DestinationConfiguration = {
 
 M.DestinationConfiguration = {
     type = "structure",
+    id = "DestinationConfiguration",
     members = {
         s3 = M.S3DestinationConfiguration,
     },
@@ -1181,6 +1215,7 @@ M.RenditionConfigurationRenditionSelection = {
 
 M.RenditionConfiguration = {
     type = "structure",
+    id = "RenditionConfiguration",
     members = {
         renditionSelection = {
             type = "string",
@@ -1211,6 +1246,7 @@ M.ThumbnailConfigurationStorage = {
 
 M.ThumbnailConfiguration = {
     type = "structure",
+    id = "ThumbnailConfiguration",
     members = {
         recordingMode = {
             type = "string",
@@ -1230,6 +1266,7 @@ M.ThumbnailConfiguration = {
 
 M.CreateRecordingConfigurationInput = {
     type = "structure",
+    id = "CreateRecordingConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -1261,6 +1298,7 @@ M.RecordingConfigurationState = {
 
 M.RecordingConfiguration = {
     type = "structure",
+    id = "RecordingConfiguration",
     members = {
         arn = {
             type = "string",
@@ -1298,6 +1336,7 @@ M.RecordingConfiguration = {
 
 M.CreateRecordingConfigurationOutput = {
     type = "structure",
+    id = "CreateRecordingConfigurationOutput",
     members = {
         recordingConfiguration = M.RecordingConfiguration,
     },
@@ -1305,6 +1344,7 @@ M.CreateRecordingConfigurationOutput = {
 
 M.CreateStreamKeyInput = {
     type = "structure",
+    id = "CreateStreamKeyInput",
     members = {
         channelArn = {
             type = "string",
@@ -1322,6 +1362,7 @@ M.CreateStreamKeyInput = {
 
 M.CreateStreamKeyOutput = {
     type = "structure",
+    id = "CreateStreamKeyOutput",
     members = {
         streamKey = M.StreamKey,
     },
@@ -1329,6 +1370,7 @@ M.CreateStreamKeyOutput = {
 
 M.DeleteAdConfigurationInput = {
     type = "structure",
+    id = "DeleteAdConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1341,10 +1383,12 @@ M.DeleteAdConfigurationInput = {
 
 M.DeleteAdConfigurationOutput = {
     type = "structure",
+    id = "DeleteAdConfigurationOutput",
 }
 
 M.DeleteChannelInput = {
     type = "structure",
+    id = "DeleteChannelInput",
     members = {
         arn = {
             type = "string",
@@ -1357,10 +1401,12 @@ M.DeleteChannelInput = {
 
 M.DeleteChannelOutput = {
     type = "structure",
+    id = "DeleteChannelOutput",
 }
 
 M.DeletePlaybackKeyPairInput = {
     type = "structure",
+    id = "DeletePlaybackKeyPairInput",
     members = {
         arn = {
             type = "string",
@@ -1373,10 +1419,12 @@ M.DeletePlaybackKeyPairInput = {
 
 M.DeletePlaybackKeyPairOutput = {
     type = "structure",
+    id = "DeletePlaybackKeyPairOutput",
 }
 
 M.DeletePlaybackRestrictionPolicyInput = {
     type = "structure",
+    id = "DeletePlaybackRestrictionPolicyInput",
     members = {
         arn = {
             type = "string",
@@ -1389,10 +1437,12 @@ M.DeletePlaybackRestrictionPolicyInput = {
 
 M.DeletePlaybackRestrictionPolicyOutput = {
     type = "structure",
+    id = "DeletePlaybackRestrictionPolicyOutput",
 }
 
 M.DeleteRecordingConfigurationInput = {
     type = "structure",
+    id = "DeleteRecordingConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1405,10 +1455,12 @@ M.DeleteRecordingConfigurationInput = {
 
 M.DeleteRecordingConfigurationOutput = {
     type = "structure",
+    id = "DeleteRecordingConfigurationOutput",
 }
 
 M.DeleteStreamKeyInput = {
     type = "structure",
+    id = "DeleteStreamKeyInput",
     members = {
         arn = {
             type = "string",
@@ -1421,10 +1473,12 @@ M.DeleteStreamKeyInput = {
 
 M.DeleteStreamKeyOutput = {
     type = "structure",
+    id = "DeleteStreamKeyOutput",
 }
 
 M.GetAdConfigurationInput = {
     type = "structure",
+    id = "GetAdConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1437,6 +1491,7 @@ M.GetAdConfigurationInput = {
 
 M.GetAdConfigurationOutput = {
     type = "structure",
+    id = "GetAdConfigurationOutput",
     members = {
         adConfiguration = M.AdConfiguration,
     },
@@ -1444,6 +1499,7 @@ M.GetAdConfigurationOutput = {
 
 M.GetChannelInput = {
     type = "structure",
+    id = "GetChannelInput",
     members = {
         arn = {
             type = "string",
@@ -1456,6 +1512,7 @@ M.GetChannelInput = {
 
 M.GetChannelOutput = {
     type = "structure",
+    id = "GetChannelOutput",
     members = {
         channel = M.Channel,
     },
@@ -1463,6 +1520,7 @@ M.GetChannelOutput = {
 
 M.GetPlaybackKeyPairInput = {
     type = "structure",
+    id = "GetPlaybackKeyPairInput",
     members = {
         arn = {
             type = "string",
@@ -1475,6 +1533,7 @@ M.GetPlaybackKeyPairInput = {
 
 M.PlaybackKeyPair = {
     type = "structure",
+    id = "PlaybackKeyPair",
     members = {
         arn = {
             type = "string",
@@ -1495,6 +1554,7 @@ M.PlaybackKeyPair = {
 
 M.GetPlaybackKeyPairOutput = {
     type = "structure",
+    id = "GetPlaybackKeyPairOutput",
     members = {
         keyPair = M.PlaybackKeyPair,
     },
@@ -1502,6 +1562,7 @@ M.GetPlaybackKeyPairOutput = {
 
 M.GetPlaybackRestrictionPolicyInput = {
     type = "structure",
+    id = "GetPlaybackRestrictionPolicyInput",
     members = {
         arn = {
             type = "string",
@@ -1514,6 +1575,7 @@ M.GetPlaybackRestrictionPolicyInput = {
 
 M.GetPlaybackRestrictionPolicyOutput = {
     type = "structure",
+    id = "GetPlaybackRestrictionPolicyOutput",
     members = {
         playbackRestrictionPolicy = M.PlaybackRestrictionPolicy,
     },
@@ -1521,6 +1583,7 @@ M.GetPlaybackRestrictionPolicyOutput = {
 
 M.GetRecordingConfigurationInput = {
     type = "structure",
+    id = "GetRecordingConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1533,6 +1596,7 @@ M.GetRecordingConfigurationInput = {
 
 M.GetRecordingConfigurationOutput = {
     type = "structure",
+    id = "GetRecordingConfigurationOutput",
     members = {
         recordingConfiguration = M.RecordingConfiguration,
     },
@@ -1540,6 +1604,7 @@ M.GetRecordingConfigurationOutput = {
 
 M.ChannelNotBroadcasting = {
     type = "structure",
+    id = "ChannelNotBroadcasting",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -1598,6 +1663,7 @@ M.ChannelNotBroadcasting = {
 
 M.GetStreamInput = {
     type = "structure",
+    id = "GetStreamInput",
     members = {
         channelArn = {
             type = "string",
@@ -1621,6 +1687,7 @@ M.StreamState = {
 
 M.Stream = {
     type = "structure",
+    id = "Stream",
     members = {
         channelArn = {
             type = "string",
@@ -1654,6 +1721,7 @@ M.Stream = {
 
 M.GetStreamOutput = {
     type = "structure",
+    id = "GetStreamOutput",
     members = {
         stream = M.Stream,
     },
@@ -1661,6 +1729,7 @@ M.GetStreamOutput = {
 
 M.GetStreamKeyInput = {
     type = "structure",
+    id = "GetStreamKeyInput",
     members = {
         arn = {
             type = "string",
@@ -1673,6 +1742,7 @@ M.GetStreamKeyInput = {
 
 M.GetStreamKeyOutput = {
     type = "structure",
+    id = "GetStreamKeyOutput",
     members = {
         streamKey = M.StreamKey,
     },
@@ -1680,6 +1750,7 @@ M.GetStreamKeyOutput = {
 
 M.GetStreamSessionInput = {
     type = "structure",
+    id = "GetStreamSessionInput",
     members = {
         channelArn = {
             type = "string",
@@ -1695,6 +1766,7 @@ M.GetStreamSessionInput = {
 
 M.AudioConfiguration = {
     type = "structure",
+    id = "AudioConfiguration",
     members = {
         codec = {
             type = "string",
@@ -1725,6 +1797,7 @@ M.AudioConfiguration = {
 
 M.VideoConfiguration = {
     type = "structure",
+    id = "VideoConfiguration",
     members = {
         avcProfile = {
             type = "string",
@@ -1776,6 +1849,7 @@ M.VideoConfiguration = {
 
 M.IngestConfiguration = {
     type = "structure",
+    id = "IngestConfiguration",
     members = {
         video = M.VideoConfiguration,
         audio = M.AudioConfiguration,
@@ -1784,6 +1858,7 @@ M.IngestConfiguration = {
 
 M.IngestConfigurations = {
     type = "structure",
+    id = "IngestConfigurations",
     members = {
         videoConfigurations = {
             type = "list",
@@ -1804,6 +1879,7 @@ M.IngestConfigurations = {
 
 M.StreamEvent = {
     type = "structure",
+    id = "StreamEvent",
     members = {
         name = {
             type = "string",
@@ -1825,6 +1901,7 @@ M.StreamEvent = {
 
 M.StreamSession = {
     type = "structure",
+    id = "StreamSession",
     members = {
         streamId = {
             type = "string",
@@ -1854,6 +1931,7 @@ M.StreamSession = {
 
 M.GetStreamSessionOutput = {
     type = "structure",
+    id = "GetStreamSessionOutput",
     members = {
         streamSession = M.StreamSession,
     },
@@ -1861,6 +1939,7 @@ M.GetStreamSessionOutput = {
 
 M.ImportPlaybackKeyPairInput = {
     type = "structure",
+    id = "ImportPlaybackKeyPairInput",
     members = {
         publicKeyMaterial = {
             type = "string",
@@ -1881,6 +1960,7 @@ M.ImportPlaybackKeyPairInput = {
 
 M.ImportPlaybackKeyPairOutput = {
     type = "structure",
+    id = "ImportPlaybackKeyPairOutput",
     members = {
         keyPair = M.PlaybackKeyPair,
     },
@@ -1888,6 +1968,7 @@ M.ImportPlaybackKeyPairOutput = {
 
 M.InsertAdBreakInput = {
     type = "structure",
+    id = "InsertAdBreakInput",
     members = {
         channelArn = {
             type = "string",
@@ -1906,6 +1987,7 @@ M.InsertAdBreakInput = {
 
 M.InsertAdBreakOutput = {
     type = "structure",
+    id = "InsertAdBreakOutput",
     members = {
         adBreakId = {
             type = "string",
@@ -1915,6 +1997,7 @@ M.InsertAdBreakOutput = {
 
 M.ListAdConfigurationsInput = {
     type = "structure",
+    id = "ListAdConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1927,6 +2010,7 @@ M.ListAdConfigurationsInput = {
 
 M.ListAdConfigurationsOutput = {
     type = "structure",
+    id = "ListAdConfigurationsOutput",
     members = {
         adConfigurations = {
             type = "list",
@@ -1943,6 +2027,7 @@ M.ListAdConfigurationsOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         filterByName = {
             type = "string",
@@ -1967,6 +2052,7 @@ M.ListChannelsInput = {
 
 M.ChannelSummary = {
     type = "structure",
+    id = "ChannelSummary",
     members = {
         arn = {
             type = "string",
@@ -2014,6 +2100,7 @@ M.ChannelSummary = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         channels = {
             type = "list",
@@ -2030,6 +2117,7 @@ M.ListChannelsOutput = {
 
 M.ListPlaybackKeyPairsInput = {
     type = "structure",
+    id = "ListPlaybackKeyPairsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2042,6 +2130,7 @@ M.ListPlaybackKeyPairsInput = {
 
 M.PlaybackKeyPairSummary = {
     type = "structure",
+    id = "PlaybackKeyPairSummary",
     members = {
         arn = {
             type = "string",
@@ -2059,6 +2148,7 @@ M.PlaybackKeyPairSummary = {
 
 M.ListPlaybackKeyPairsOutput = {
     type = "structure",
+    id = "ListPlaybackKeyPairsOutput",
     members = {
         keyPairs = {
             type = "list",
@@ -2075,6 +2165,7 @@ M.ListPlaybackKeyPairsOutput = {
 
 M.ListPlaybackRestrictionPoliciesInput = {
     type = "structure",
+    id = "ListPlaybackRestrictionPoliciesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2087,6 +2178,7 @@ M.ListPlaybackRestrictionPoliciesInput = {
 
 M.PlaybackRestrictionPolicySummary = {
     type = "structure",
+    id = "PlaybackRestrictionPolicySummary",
     members = {
         arn = {
             type = "string",
@@ -2124,6 +2216,7 @@ M.PlaybackRestrictionPolicySummary = {
 
 M.ListPlaybackRestrictionPoliciesOutput = {
     type = "structure",
+    id = "ListPlaybackRestrictionPoliciesOutput",
     members = {
         playbackRestrictionPolicies = {
             type = "list",
@@ -2140,6 +2233,7 @@ M.ListPlaybackRestrictionPoliciesOutput = {
 
 M.ListRecordingConfigurationsInput = {
     type = "structure",
+    id = "ListRecordingConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2152,6 +2246,7 @@ M.ListRecordingConfigurationsInput = {
 
 M.RecordingConfigurationSummary = {
     type = "structure",
+    id = "RecordingConfigurationSummary",
     members = {
         arn = {
             type = "string",
@@ -2181,6 +2276,7 @@ M.RecordingConfigurationSummary = {
 
 M.ListRecordingConfigurationsOutput = {
     type = "structure",
+    id = "ListRecordingConfigurationsOutput",
     members = {
         recordingConfigurations = {
             type = "list",
@@ -2197,6 +2293,7 @@ M.ListRecordingConfigurationsOutput = {
 
 M.ListStreamKeysInput = {
     type = "structure",
+    id = "ListStreamKeysInput",
     members = {
         channelArn = {
             type = "string",
@@ -2215,6 +2312,7 @@ M.ListStreamKeysInput = {
 
 M.StreamKeySummary = {
     type = "structure",
+    id = "StreamKeySummary",
     members = {
         arn = {
             type = "string",
@@ -2232,6 +2330,7 @@ M.StreamKeySummary = {
 
 M.ListStreamKeysOutput = {
     type = "structure",
+    id = "ListStreamKeysOutput",
     members = {
         streamKeys = {
             type = "list",
@@ -2248,6 +2347,7 @@ M.ListStreamKeysOutput = {
 
 M.StreamFilters = {
     type = "structure",
+    id = "StreamFilters",
     members = {
         health = {
             type = "string",
@@ -2257,6 +2357,7 @@ M.StreamFilters = {
 
 M.ListStreamsInput = {
     type = "structure",
+    id = "ListStreamsInput",
     members = {
         filterBy = M.StreamFilters,
         nextToken = {
@@ -2270,6 +2371,7 @@ M.ListStreamsInput = {
 
 M.StreamSummary = {
     type = "structure",
+    id = "StreamSummary",
     members = {
         channelArn = {
             type = "string",
@@ -2300,6 +2402,7 @@ M.StreamSummary = {
 
 M.ListStreamsOutput = {
     type = "structure",
+    id = "ListStreamsOutput",
     members = {
         streams = {
             type = "list",
@@ -2316,6 +2419,7 @@ M.ListStreamsOutput = {
 
 M.ListStreamSessionsInput = {
     type = "structure",
+    id = "ListStreamSessionsInput",
     members = {
         channelArn = {
             type = "string",
@@ -2334,6 +2438,7 @@ M.ListStreamSessionsInput = {
 
 M.StreamSessionSummary = {
     type = "structure",
+    id = "StreamSessionSummary",
     members = {
         streamId = {
             type = "string",
@@ -2361,6 +2466,7 @@ M.StreamSessionSummary = {
 
 M.ListStreamSessionsOutput = {
     type = "structure",
+    id = "ListStreamSessionsOutput",
     members = {
         streamSessions = {
             type = "list",
@@ -2377,6 +2483,7 @@ M.ListStreamSessionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2390,6 +2497,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2404,6 +2512,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutMetadataInput = {
     type = "structure",
+    id = "PutMetadataInput",
     members = {
         channelArn = {
             type = "string",
@@ -2422,10 +2531,12 @@ M.PutMetadataInput = {
 
 M.PutMetadataOutput = {
     type = "structure",
+    id = "PutMetadataOutput",
 }
 
 M.StartViewerSessionRevocationInput = {
     type = "structure",
+    id = "StartViewerSessionRevocationInput",
     members = {
         channelArn = {
             type = "string",
@@ -2450,10 +2561,12 @@ M.StartViewerSessionRevocationInput = {
 
 M.StartViewerSessionRevocationOutput = {
     type = "structure",
+    id = "StartViewerSessionRevocationOutput",
 }
 
 M.StopStreamInput = {
     type = "structure",
+    id = "StopStreamInput",
     members = {
         channelArn = {
             type = "string",
@@ -2466,10 +2579,12 @@ M.StopStreamInput = {
 
 M.StopStreamOutput = {
     type = "structure",
+    id = "StopStreamOutput",
 }
 
 M.StreamUnavailable = {
     type = "structure",
+    id = "StreamUnavailable",
     error = "server",
     members = {
         accessControlAllowOrigin = {
@@ -2528,6 +2643,7 @@ M.StreamUnavailable = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2549,10 +2665,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2574,10 +2692,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         arn = {
             type = "string",
@@ -2627,6 +2747,7 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
     members = {
         channel = M.Channel,
     },
@@ -2634,6 +2755,7 @@ M.UpdateChannelOutput = {
 
 M.UpdatePlaybackRestrictionPolicyInput = {
     type = "structure",
+    id = "UpdatePlaybackRestrictionPolicyInput",
     members = {
         arn = {
             type = "string",
@@ -2660,6 +2782,7 @@ M.UpdatePlaybackRestrictionPolicyInput = {
 
 M.UpdatePlaybackRestrictionPolicyOutput = {
     type = "structure",
+    id = "UpdatePlaybackRestrictionPolicyOutput",
     members = {
         playbackRestrictionPolicy = M.PlaybackRestrictionPolicy,
     },

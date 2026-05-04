@@ -2,6 +2,7 @@ local M = {}
 
 M.CellOutput = {
     type = "structure",
+    id = "CellOutput",
     members = {
         CellArn = {
             type = "string",
@@ -46,6 +47,7 @@ M.CellOutput = {
 
 M.ListRulesOutput = {
     type = "structure",
+    id = "ListRulesOutput",
     members = {
         ResourceType = {
             type = "string",
@@ -73,6 +75,7 @@ M.ListRulesOutput = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         MessageText = {
             type = "string",
@@ -85,6 +88,7 @@ M.Message = {
 
 M.ReadinessCheckOutput = {
     type = "structure",
+    id = "ReadinessCheckOutput",
     members = {
         ReadinessCheckArn = {
             type = "string",
@@ -126,6 +130,7 @@ M.Readiness = {
 
 M.ReadinessCheckSummary = {
     type = "structure",
+    id = "ReadinessCheckSummary",
     members = {
         Readiness = {
             type = "string",
@@ -144,6 +149,7 @@ M.ReadinessCheckSummary = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         RecommendationText = {
             type = "string",
@@ -157,6 +163,7 @@ M.Recommendation = {
 
 M.RecoveryGroupOutput = {
     type = "structure",
+    id = "RecoveryGroupOutput",
     members = {
         Cells = {
             type = "list",
@@ -193,6 +200,7 @@ M.RecoveryGroupOutput = {
 
 M.NLBResource = {
     type = "structure",
+    id = "NLBResource",
     members = {
         Arn = {
             type = "string",
@@ -205,6 +213,7 @@ M.NLBResource = {
 
 M.R53ResourceRecord = {
     type = "structure",
+    id = "R53ResourceRecord",
     members = {
         DomainName = {
             type = "string",
@@ -223,6 +232,7 @@ M.R53ResourceRecord = {
 
 M.TargetResource = {
     type = "structure",
+    id = "TargetResource",
     members = {
         NLBResource = setmetatable({ traits = {
             json_name = "nLBResource",
@@ -235,6 +245,7 @@ M.TargetResource = {
 
 M.DNSTargetResource = {
     type = "structure",
+    id = "DNSTargetResource",
     members = {
         DomainName = {
             type = "string",
@@ -268,6 +279,7 @@ M.DNSTargetResource = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         ComponentId = {
             type = "string",
@@ -296,6 +308,7 @@ M.Resource = {
 
 M.ResourceResult = {
     type = "structure",
+    id = "ResourceResult",
     members = {
         ComponentId = {
             type = "string",
@@ -329,6 +342,7 @@ M.ResourceResult = {
 
 M.ResourceSetOutput = {
     type = "structure",
+    id = "ResourceSetOutput",
     members = {
         ResourceSetArn = {
             type = "string",
@@ -372,6 +386,7 @@ M.ResourceSetOutput = {
 
 M.RuleResult = {
     type = "structure",
+    id = "RuleResult",
     members = {
         LastCheckedTimestamp = {
             type = "timestamp",
@@ -408,6 +423,7 @@ M.RuleResult = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -421,6 +437,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -434,6 +451,7 @@ M.ConflictException = {
 
 M.CreateCellInput = {
     type = "structure",
+    id = "CreateCellInput",
     members = {
         CellName = {
             type = "string",
@@ -462,6 +480,7 @@ M.CreateCellInput = {
 
 M.CreateCellOutput = {
     type = "structure",
+    id = "CreateCellOutput",
     members = {
         CellArn = {
             type = "string",
@@ -502,6 +521,7 @@ M.CreateCellOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -515,6 +535,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -528,6 +549,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -541,6 +563,7 @@ M.ValidationException = {
 
 M.CreateCrossAccountAuthorizationInput = {
     type = "structure",
+    id = "CreateCrossAccountAuthorizationInput",
     members = {
         CrossAccountAuthorization = {
             type = "string",
@@ -554,6 +577,7 @@ M.CreateCrossAccountAuthorizationInput = {
 
 M.CreateCrossAccountAuthorizationOutput = {
     type = "structure",
+    id = "CreateCrossAccountAuthorizationOutput",
     members = {
         CrossAccountAuthorization = {
             type = "string",
@@ -566,6 +590,7 @@ M.CreateCrossAccountAuthorizationOutput = {
 
 M.CreateReadinessCheckInput = {
     type = "structure",
+    id = "CreateReadinessCheckInput",
     members = {
         ReadinessCheckName = {
             type = "string",
@@ -594,6 +619,7 @@ M.CreateReadinessCheckInput = {
 
 M.CreateReadinessCheckOutput = {
     type = "structure",
+    id = "CreateReadinessCheckOutput",
     members = {
         ReadinessCheckArn = {
             type = "string",
@@ -626,6 +652,7 @@ M.CreateReadinessCheckOutput = {
 
 M.CreateRecoveryGroupInput = {
     type = "structure",
+    id = "CreateRecoveryGroupInput",
     members = {
         Cells = {
             type = "list",
@@ -654,6 +681,7 @@ M.CreateRecoveryGroupInput = {
 
 M.CreateRecoveryGroupOutput = {
     type = "structure",
+    id = "CreateRecoveryGroupOutput",
     members = {
         Cells = {
             type = "list",
@@ -687,6 +715,7 @@ M.CreateRecoveryGroupOutput = {
 
 M.CreateResourceSetInput = {
     type = "structure",
+    id = "CreateResourceSetInput",
     members = {
         ResourceSetName = {
             type = "string",
@@ -723,6 +752,7 @@ M.CreateResourceSetInput = {
 
 M.CreateResourceSetOutput = {
     type = "structure",
+    id = "CreateResourceSetOutput",
     members = {
         ResourceSetArn = {
             type = "string",
@@ -762,6 +792,7 @@ M.CreateResourceSetOutput = {
 
 M.DeleteCellInput = {
     type = "structure",
+    id = "DeleteCellInput",
     members = {
         CellName = {
             type = "string",
@@ -775,10 +806,12 @@ M.DeleteCellInput = {
 
 M.DeleteCellOutput = {
     type = "structure",
+    id = "DeleteCellOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -792,6 +825,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteCrossAccountAuthorizationInput = {
     type = "structure",
+    id = "DeleteCrossAccountAuthorizationInput",
     members = {
         CrossAccountAuthorization = {
             type = "string",
@@ -805,10 +839,12 @@ M.DeleteCrossAccountAuthorizationInput = {
 
 M.DeleteCrossAccountAuthorizationOutput = {
     type = "structure",
+    id = "DeleteCrossAccountAuthorizationOutput",
 }
 
 M.DeleteReadinessCheckInput = {
     type = "structure",
+    id = "DeleteReadinessCheckInput",
     members = {
         ReadinessCheckName = {
             type = "string",
@@ -822,10 +858,12 @@ M.DeleteReadinessCheckInput = {
 
 M.DeleteReadinessCheckOutput = {
     type = "structure",
+    id = "DeleteReadinessCheckOutput",
 }
 
 M.DeleteRecoveryGroupInput = {
     type = "structure",
+    id = "DeleteRecoveryGroupInput",
     members = {
         RecoveryGroupName = {
             type = "string",
@@ -839,10 +877,12 @@ M.DeleteRecoveryGroupInput = {
 
 M.DeleteRecoveryGroupOutput = {
     type = "structure",
+    id = "DeleteRecoveryGroupOutput",
 }
 
 M.DeleteResourceSetInput = {
     type = "structure",
+    id = "DeleteResourceSetInput",
     members = {
         ResourceSetName = {
             type = "string",
@@ -856,10 +896,12 @@ M.DeleteResourceSetInput = {
 
 M.DeleteResourceSetOutput = {
     type = "structure",
+    id = "DeleteResourceSetOutput",
 }
 
 M.GetArchitectureRecommendationsInput = {
     type = "structure",
+    id = "GetArchitectureRecommendationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -885,6 +927,7 @@ M.GetArchitectureRecommendationsInput = {
 
 M.GetArchitectureRecommendationsOutput = {
     type = "structure",
+    id = "GetArchitectureRecommendationsOutput",
     members = {
         LastAuditTimestamp = {
             type = "timestamp",
@@ -911,6 +954,7 @@ M.GetArchitectureRecommendationsOutput = {
 
 M.GetCellInput = {
     type = "structure",
+    id = "GetCellInput",
     members = {
         CellName = {
             type = "string",
@@ -924,6 +968,7 @@ M.GetCellInput = {
 
 M.GetCellOutput = {
     type = "structure",
+    id = "GetCellOutput",
     members = {
         CellArn = {
             type = "string",
@@ -964,6 +1009,7 @@ M.GetCellOutput = {
 
 M.GetCellReadinessSummaryInput = {
     type = "structure",
+    id = "GetCellReadinessSummaryInput",
     members = {
         CellName = {
             type = "string",
@@ -989,6 +1035,7 @@ M.GetCellReadinessSummaryInput = {
 
 M.GetCellReadinessSummaryOutput = {
     type = "structure",
+    id = "GetCellReadinessSummaryOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1014,6 +1061,7 @@ M.GetCellReadinessSummaryOutput = {
 
 M.GetReadinessCheckInput = {
     type = "structure",
+    id = "GetReadinessCheckInput",
     members = {
         ReadinessCheckName = {
             type = "string",
@@ -1027,6 +1075,7 @@ M.GetReadinessCheckInput = {
 
 M.GetReadinessCheckOutput = {
     type = "structure",
+    id = "GetReadinessCheckOutput",
     members = {
         ReadinessCheckArn = {
             type = "string",
@@ -1059,6 +1108,7 @@ M.GetReadinessCheckOutput = {
 
 M.GetReadinessCheckResourceStatusInput = {
     type = "structure",
+    id = "GetReadinessCheckResourceStatusInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1091,6 +1141,7 @@ M.GetReadinessCheckResourceStatusInput = {
 
 M.GetReadinessCheckResourceStatusOutput = {
     type = "structure",
+    id = "GetReadinessCheckResourceStatusOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1116,6 +1167,7 @@ M.GetReadinessCheckResourceStatusOutput = {
 
 M.GetReadinessCheckStatusInput = {
     type = "structure",
+    id = "GetReadinessCheckStatusInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1141,6 +1193,7 @@ M.GetReadinessCheckStatusInput = {
 
 M.GetReadinessCheckStatusOutput = {
     type = "structure",
+    id = "GetReadinessCheckStatusOutput",
     members = {
         Messages = {
             type = "list",
@@ -1173,6 +1226,7 @@ M.GetReadinessCheckStatusOutput = {
 
 M.GetRecoveryGroupInput = {
     type = "structure",
+    id = "GetRecoveryGroupInput",
     members = {
         RecoveryGroupName = {
             type = "string",
@@ -1186,6 +1240,7 @@ M.GetRecoveryGroupInput = {
 
 M.GetRecoveryGroupOutput = {
     type = "structure",
+    id = "GetRecoveryGroupOutput",
     members = {
         Cells = {
             type = "list",
@@ -1219,6 +1274,7 @@ M.GetRecoveryGroupOutput = {
 
 M.GetRecoveryGroupReadinessSummaryInput = {
     type = "structure",
+    id = "GetRecoveryGroupReadinessSummaryInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1244,6 +1300,7 @@ M.GetRecoveryGroupReadinessSummaryInput = {
 
 M.GetRecoveryGroupReadinessSummaryOutput = {
     type = "structure",
+    id = "GetRecoveryGroupReadinessSummaryOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1269,6 +1326,7 @@ M.GetRecoveryGroupReadinessSummaryOutput = {
 
 M.GetResourceSetInput = {
     type = "structure",
+    id = "GetResourceSetInput",
     members = {
         ResourceSetName = {
             type = "string",
@@ -1282,6 +1340,7 @@ M.GetResourceSetInput = {
 
 M.GetResourceSetOutput = {
     type = "structure",
+    id = "GetResourceSetOutput",
     members = {
         ResourceSetArn = {
             type = "string",
@@ -1321,6 +1380,7 @@ M.GetResourceSetOutput = {
 
 M.ListCellsInput = {
     type = "structure",
+    id = "ListCellsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1339,6 +1399,7 @@ M.ListCellsInput = {
 
 M.ListCellsOutput = {
     type = "structure",
+    id = "ListCellsOutput",
     members = {
         Cells = {
             type = "list",
@@ -1358,6 +1419,7 @@ M.ListCellsOutput = {
 
 M.ListCrossAccountAuthorizationsInput = {
     type = "structure",
+    id = "ListCrossAccountAuthorizationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1376,6 +1438,7 @@ M.ListCrossAccountAuthorizationsInput = {
 
 M.ListCrossAccountAuthorizationsOutput = {
     type = "structure",
+    id = "ListCrossAccountAuthorizationsOutput",
     members = {
         CrossAccountAuthorizations = {
             type = "list",
@@ -1395,6 +1458,7 @@ M.ListCrossAccountAuthorizationsOutput = {
 
 M.ListReadinessChecksInput = {
     type = "structure",
+    id = "ListReadinessChecksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1413,6 +1477,7 @@ M.ListReadinessChecksInput = {
 
 M.ListReadinessChecksOutput = {
     type = "structure",
+    id = "ListReadinessChecksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1432,6 +1497,7 @@ M.ListReadinessChecksOutput = {
 
 M.ListRecoveryGroupsInput = {
     type = "structure",
+    id = "ListRecoveryGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1450,6 +1516,7 @@ M.ListRecoveryGroupsInput = {
 
 M.ListRecoveryGroupsOutput = {
     type = "structure",
+    id = "ListRecoveryGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1469,6 +1536,7 @@ M.ListRecoveryGroupsOutput = {
 
 M.ListResourceSetsInput = {
     type = "structure",
+    id = "ListResourceSetsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1487,6 +1555,7 @@ M.ListResourceSetsInput = {
 
 M.ListResourceSetsOutput = {
     type = "structure",
+    id = "ListResourceSetsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1506,6 +1575,7 @@ M.ListResourceSetsOutput = {
 
 M.ListRulesInput = {
     type = "structure",
+    id = "ListRulesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1530,6 +1600,7 @@ M.ListRulesInput = {
 
 M.ListRulesOperationOutput = {
     type = "structure",
+    id = "ListRulesOperationOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1549,6 +1620,7 @@ M.ListRulesOperationOutput = {
 
 M.ListTagsForResourcesInput = {
     type = "structure",
+    id = "ListTagsForResourcesInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1562,6 +1634,7 @@ M.ListTagsForResourcesInput = {
 
 M.ListTagsForResourcesOutput = {
     type = "structure",
+    id = "ListTagsForResourcesOutput",
     members = {
         Tags = {
             type = "map",
@@ -1576,6 +1649,7 @@ M.ListTagsForResourcesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1598,10 +1672,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1623,10 +1699,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCellInput = {
     type = "structure",
+    id = "UpdateCellInput",
     members = {
         CellName = {
             type = "string",
@@ -1648,6 +1726,7 @@ M.UpdateCellInput = {
 
 M.UpdateCellOutput = {
     type = "structure",
+    id = "UpdateCellOutput",
     members = {
         CellArn = {
             type = "string",
@@ -1688,6 +1767,7 @@ M.UpdateCellOutput = {
 
 M.UpdateReadinessCheckInput = {
     type = "structure",
+    id = "UpdateReadinessCheckInput",
     members = {
         ReadinessCheckName = {
             type = "string",
@@ -1708,6 +1788,7 @@ M.UpdateReadinessCheckInput = {
 
 M.UpdateReadinessCheckOutput = {
     type = "structure",
+    id = "UpdateReadinessCheckOutput",
     members = {
         ReadinessCheckArn = {
             type = "string",
@@ -1740,6 +1821,7 @@ M.UpdateReadinessCheckOutput = {
 
 M.UpdateRecoveryGroupInput = {
     type = "structure",
+    id = "UpdateRecoveryGroupInput",
     members = {
         Cells = {
             type = "list",
@@ -1761,6 +1843,7 @@ M.UpdateRecoveryGroupInput = {
 
 M.UpdateRecoveryGroupOutput = {
     type = "structure",
+    id = "UpdateRecoveryGroupOutput",
     members = {
         Cells = {
             type = "list",
@@ -1794,6 +1877,7 @@ M.UpdateRecoveryGroupOutput = {
 
 M.UpdateResourceSetInput = {
     type = "structure",
+    id = "UpdateResourceSetInput",
     members = {
         ResourceSetName = {
             type = "string",
@@ -1822,6 +1906,7 @@ M.UpdateResourceSetInput = {
 
 M.UpdateResourceSetOutput = {
     type = "structure",
+    id = "UpdateResourceSetOutput",
     members = {
         ResourceSetArn = {
             type = "string",

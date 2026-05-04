@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.AddressFamily = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -32,6 +34,7 @@ M.Protocol = {
 
 M.CreateMonitorProbeInput = {
     type = "structure",
+    id = "CreateMonitorProbeInput",
     members = {
         sourceArn = {
             type = "string",
@@ -67,6 +70,7 @@ M.CreateMonitorProbeInput = {
 
 M.CreateMonitorInput = {
     type = "structure",
+    id = "CreateMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -105,6 +109,7 @@ M.MonitorState = {
 
 M.CreateMonitorOutput = {
     type = "structure",
+    id = "CreateMonitorOutput",
     members = {
         monitorArn = {
             type = "string",
@@ -137,6 +142,7 @@ M.CreateMonitorOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -147,6 +153,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -157,6 +164,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -167,6 +175,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -177,6 +186,7 @@ M.ValidationException = {
 
 M.ProbeInput = {
     type = "structure",
+    id = "ProbeInput",
     members = {
         sourceArn = {
             type = "string",
@@ -212,6 +222,7 @@ M.ProbeInput = {
 
 M.CreateProbeInput = {
     type = "structure",
+    id = "CreateProbeInput",
     members = {
         monitorName = {
             type = "string",
@@ -248,6 +259,7 @@ M.ProbeState = {
 
 M.CreateProbeOutput = {
     type = "structure",
+    id = "CreateProbeOutput",
     members = {
         probeId = {
             type = "string",
@@ -304,6 +316,7 @@ M.CreateProbeOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -314,6 +327,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteMonitorInput = {
     type = "structure",
+    id = "DeleteMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -327,10 +341,12 @@ M.DeleteMonitorInput = {
 
 M.DeleteMonitorOutput = {
     type = "structure",
+    id = "DeleteMonitorOutput",
 }
 
 M.DeleteProbeInput = {
     type = "structure",
+    id = "DeleteProbeInput",
     members = {
         monitorName = {
             type = "string",
@@ -351,10 +367,12 @@ M.DeleteProbeInput = {
 
 M.DeleteProbeOutput = {
     type = "structure",
+    id = "DeleteProbeOutput",
 }
 
 M.GetMonitorInput = {
     type = "structure",
+    id = "GetMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -368,6 +386,7 @@ M.GetMonitorInput = {
 
 M.Probe = {
     type = "structure",
+    id = "Probe",
     members = {
         probeId = {
             type = "string",
@@ -424,6 +443,7 @@ M.Probe = {
 
 M.GetMonitorOutput = {
     type = "structure",
+    id = "GetMonitorOutput",
     members = {
         monitorArn = {
             type = "string",
@@ -475,6 +495,7 @@ M.GetMonitorOutput = {
 
 M.GetProbeInput = {
     type = "structure",
+    id = "GetProbeInput",
     members = {
         monitorName = {
             type = "string",
@@ -495,6 +516,7 @@ M.GetProbeInput = {
 
 M.GetProbeOutput = {
     type = "structure",
+    id = "GetProbeOutput",
     members = {
         probeId = {
             type = "string",
@@ -551,6 +573,7 @@ M.GetProbeOutput = {
 
 M.ListMonitorsInput = {
     type = "structure",
+    id = "ListMonitorsInput",
     members = {
         nextToken = {
             type = "string",
@@ -575,6 +598,7 @@ M.ListMonitorsInput = {
 
 M.MonitorSummary = {
     type = "structure",
+    id = "MonitorSummary",
     members = {
         monitorArn = {
             type = "string",
@@ -607,6 +631,7 @@ M.MonitorSummary = {
 
 M.ListMonitorsOutput = {
     type = "structure",
+    id = "ListMonitorsOutput",
     members = {
         monitors = {
             type = "list",
@@ -623,6 +648,7 @@ M.ListMonitorsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -636,6 +662,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -647,6 +674,7 @@ M.ListTagsForResourceOutput = {
 
 M.UpdateMonitorInput = {
     type = "structure",
+    id = "UpdateMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -666,6 +694,7 @@ M.UpdateMonitorInput = {
 
 M.UpdateMonitorOutput = {
     type = "structure",
+    id = "UpdateMonitorOutput",
     members = {
         monitorArn = {
             type = "string",
@@ -698,6 +727,7 @@ M.UpdateMonitorOutput = {
 
 M.UpdateProbeInput = {
     type = "structure",
+    id = "UpdateProbeInput",
     members = {
         monitorName = {
             type = "string",
@@ -733,6 +763,7 @@ M.UpdateProbeInput = {
 
 M.UpdateProbeOutput = {
     type = "structure",
+    id = "UpdateProbeOutput",
     members = {
         probeId = {
             type = "string",
@@ -789,6 +820,7 @@ M.UpdateProbeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -810,10 +842,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -835,6 +869,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

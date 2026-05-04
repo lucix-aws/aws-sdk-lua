@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.GetBaselineOperationInput = {
     type = "structure",
+    id = "GetBaselineOperationInput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -40,6 +42,7 @@ M.BaselineOperationStatus = {
 
 M.BaselineOperation = {
     type = "structure",
+    id = "BaselineOperation",
     members = {
         operationIdentifier = {
             type = "string",
@@ -70,6 +73,7 @@ M.BaselineOperation = {
 
 M.GetBaselineOperationOutput = {
     type = "structure",
+    id = "GetBaselineOperationOutput",
     members = {
         baselineOperation = setmetatable({ traits = {
             required = true,
@@ -79,6 +83,7 @@ M.GetBaselineOperationOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -92,6 +97,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -105,6 +111,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -130,6 +137,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -143,6 +151,7 @@ M.ValidationException = {
 
 M.GetBaselineInput = {
     type = "structure",
+    id = "GetBaselineInput",
     members = {
         baselineIdentifier = {
             type = "string",
@@ -155,6 +164,7 @@ M.GetBaselineInput = {
 
 M.GetBaselineOutput = {
     type = "structure",
+    id = "GetBaselineOutput",
     members = {
         arn = {
             type = "string",
@@ -176,6 +186,7 @@ M.GetBaselineOutput = {
 
 M.ListBaselinesInput = {
     type = "structure",
+    id = "ListBaselinesInput",
     members = {
         nextToken = {
             type = "string",
@@ -188,6 +199,7 @@ M.ListBaselinesInput = {
 
 M.BaselineSummary = {
     type = "structure",
+    id = "BaselineSummary",
     members = {
         arn = {
             type = "string",
@@ -209,6 +221,7 @@ M.BaselineSummary = {
 
 M.ListBaselinesOutput = {
     type = "structure",
+    id = "ListBaselinesOutput",
     members = {
         baselines = {
             type = "list",
@@ -225,6 +238,7 @@ M.ListBaselinesOutput = {
 
 M.GetControlOperationInput = {
     type = "structure",
+    id = "GetControlOperationInput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -250,6 +264,7 @@ M.ControlOperationStatus = {
 
 M.ControlOperation = {
     type = "structure",
+    id = "ControlOperation",
     members = {
         operationType = {
             type = "string",
@@ -289,6 +304,7 @@ M.ControlOperation = {
 
 M.GetControlOperationOutput = {
     type = "structure",
+    id = "GetControlOperationOutput",
     members = {
         controlOperation = setmetatable({ traits = {
             required = true,
@@ -298,6 +314,7 @@ M.GetControlOperationOutput = {
 
 M.ControlOperationFilter = {
     type = "structure",
+    id = "ControlOperationFilter",
     members = {
         controlIdentifiers = {
             type = "list",
@@ -324,6 +341,7 @@ M.ControlOperationFilter = {
 
 M.ListControlOperationsInput = {
     type = "structure",
+    id = "ListControlOperationsInput",
     members = {
         filter = M.ControlOperationFilter,
         nextToken = {
@@ -337,6 +355,7 @@ M.ListControlOperationsInput = {
 
 M.ControlOperationSummary = {
     type = "structure",
+    id = "ControlOperationSummary",
     members = {
         operationType = {
             type = "string",
@@ -376,6 +395,7 @@ M.ControlOperationSummary = {
 
 M.ListControlOperationsOutput = {
     type = "structure",
+    id = "ListControlOperationsOutput",
     members = {
         controlOperations = {
             type = "list",
@@ -392,6 +412,7 @@ M.ListControlOperationsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -405,6 +426,7 @@ M.ConflictException = {
 
 M.DisableControlInput = {
     type = "structure",
+    id = "DisableControlInput",
     members = {
         controlIdentifier = {
             type = "string",
@@ -420,6 +442,7 @@ M.DisableControlInput = {
 
 M.DisableControlOutput = {
     type = "structure",
+    id = "DisableControlOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -432,6 +455,7 @@ M.DisableControlOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -445,6 +469,7 @@ M.ServiceQuotaExceededException = {
 
 M.DisableBaselineInput = {
     type = "structure",
+    id = "DisableBaselineInput",
     members = {
         enabledBaselineIdentifier = {
             type = "string",
@@ -457,6 +482,7 @@ M.DisableBaselineInput = {
 
 M.DisableBaselineOutput = {
     type = "structure",
+    id = "DisableBaselineOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -469,6 +495,7 @@ M.DisableBaselineOutput = {
 
 M.EnabledBaselineParameter = {
     type = "structure",
+    id = "EnabledBaselineParameter",
     members = {
         key = {
             type = "string",
@@ -487,6 +514,7 @@ M.EnabledBaselineParameter = {
 
 M.EnableBaselineInput = {
     type = "structure",
+    id = "EnableBaselineInput",
     members = {
         baselineVersion = {
             type = "string",
@@ -520,6 +548,7 @@ M.EnableBaselineInput = {
 
 M.EnableBaselineOutput = {
     type = "structure",
+    id = "EnableBaselineOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -538,6 +567,7 @@ M.EnableBaselineOutput = {
 
 M.GetEnabledBaselineInput = {
     type = "structure",
+    id = "GetEnabledBaselineInput",
     members = {
         enabledBaselineIdentifier = {
             type = "string",
@@ -555,6 +585,7 @@ M.EnabledBaselineDriftStatus = {
 
 M.EnabledBaselineInheritanceDrift = {
     type = "structure",
+    id = "EnabledBaselineInheritanceDrift",
     members = {
         status = {
             type = "string",
@@ -564,6 +595,7 @@ M.EnabledBaselineInheritanceDrift = {
 
 M.EnabledBaselineDriftTypes = {
     type = "structure",
+    id = "EnabledBaselineDriftTypes",
     members = {
         inheritance = M.EnabledBaselineInheritanceDrift,
     },
@@ -571,6 +603,7 @@ M.EnabledBaselineDriftTypes = {
 
 M.EnabledBaselineDriftStatusSummary = {
     type = "structure",
+    id = "EnabledBaselineDriftStatusSummary",
     members = {
         types = M.EnabledBaselineDriftTypes,
     },
@@ -578,6 +611,7 @@ M.EnabledBaselineDriftStatusSummary = {
 
 M.EnabledBaselineParameterSummary = {
     type = "structure",
+    id = "EnabledBaselineParameterSummary",
     members = {
         key = {
             type = "string",
@@ -602,6 +636,7 @@ M.EnablementStatus = {
 
 M.EnablementStatusSummary = {
     type = "structure",
+    id = "EnablementStatusSummary",
     members = {
         status = {
             type = "string",
@@ -614,6 +649,7 @@ M.EnablementStatusSummary = {
 
 M.EnabledBaselineDetails = {
     type = "structure",
+    id = "EnabledBaselineDetails",
     members = {
         arn = {
             type = "string",
@@ -652,6 +688,7 @@ M.EnabledBaselineDetails = {
 
 M.GetEnabledBaselineOutput = {
     type = "structure",
+    id = "GetEnabledBaselineOutput",
     members = {
         enabledBaselineDetails = M.EnabledBaselineDetails,
     },
@@ -659,6 +696,7 @@ M.GetEnabledBaselineOutput = {
 
 M.EnabledBaselineFilter = {
     type = "structure",
+    id = "EnabledBaselineFilter",
     members = {
         targetIdentifiers = {
             type = "list",
@@ -685,6 +723,7 @@ M.EnabledBaselineFilter = {
 
 M.ListEnabledBaselinesInput = {
     type = "structure",
+    id = "ListEnabledBaselinesInput",
     members = {
         filter = M.EnabledBaselineFilter,
         nextToken = {
@@ -704,6 +743,7 @@ M.ListEnabledBaselinesInput = {
 
 M.EnabledBaselineSummary = {
     type = "structure",
+    id = "EnabledBaselineSummary",
     members = {
         arn = {
             type = "string",
@@ -738,6 +778,7 @@ M.EnabledBaselineSummary = {
 
 M.ListEnabledBaselinesOutput = {
     type = "structure",
+    id = "ListEnabledBaselinesOutput",
     members = {
         enabledBaselines = {
             type = "list",
@@ -754,6 +795,7 @@ M.ListEnabledBaselinesOutput = {
 
 M.ResetEnabledBaselineInput = {
     type = "structure",
+    id = "ResetEnabledBaselineInput",
     members = {
         enabledBaselineIdentifier = {
             type = "string",
@@ -766,6 +808,7 @@ M.ResetEnabledBaselineInput = {
 
 M.ResetEnabledBaselineOutput = {
     type = "structure",
+    id = "ResetEnabledBaselineOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -778,6 +821,7 @@ M.ResetEnabledBaselineOutput = {
 
 M.UpdateEnabledBaselineInput = {
     type = "structure",
+    id = "UpdateEnabledBaselineInput",
     members = {
         baselineVersion = {
             type = "string",
@@ -800,6 +844,7 @@ M.UpdateEnabledBaselineInput = {
 
 M.UpdateEnabledBaselineOutput = {
     type = "structure",
+    id = "UpdateEnabledBaselineOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -812,6 +857,7 @@ M.UpdateEnabledBaselineOutput = {
 
 M.EnabledControlParameter = {
     type = "structure",
+    id = "EnabledControlParameter",
     members = {
         key = {
             type = "string",
@@ -830,6 +876,7 @@ M.EnabledControlParameter = {
 
 M.EnableControlInput = {
     type = "structure",
+    id = "EnableControlInput",
     members = {
         controlIdentifier = {
             type = "string",
@@ -857,6 +904,7 @@ M.EnableControlInput = {
 
 M.EnableControlOutput = {
     type = "structure",
+    id = "EnableControlOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -872,6 +920,7 @@ M.EnableControlOutput = {
 
 M.GetEnabledControlInput = {
     type = "structure",
+    id = "GetEnabledControlInput",
     members = {
         enabledControlIdentifier = {
             type = "string",
@@ -891,6 +940,7 @@ M.DriftStatus = {
 
 M.EnabledControlInheritanceDrift = {
     type = "structure",
+    id = "EnabledControlInheritanceDrift",
     members = {
         status = {
             type = "string",
@@ -900,6 +950,7 @@ M.EnabledControlInheritanceDrift = {
 
 M.EnabledControlResourceDrift = {
     type = "structure",
+    id = "EnabledControlResourceDrift",
     members = {
         status = {
             type = "string",
@@ -909,6 +960,7 @@ M.EnabledControlResourceDrift = {
 
 M.EnabledControlDriftTypes = {
     type = "structure",
+    id = "EnabledControlDriftTypes",
     members = {
         inheritance = M.EnabledControlInheritanceDrift,
         resource = M.EnabledControlResourceDrift,
@@ -917,6 +969,7 @@ M.EnabledControlDriftTypes = {
 
 M.DriftStatusSummary = {
     type = "structure",
+    id = "DriftStatusSummary",
     members = {
         driftStatus = {
             type = "string",
@@ -927,6 +980,7 @@ M.DriftStatusSummary = {
 
 M.EnabledControlParameterSummary = {
     type = "structure",
+    id = "EnabledControlParameterSummary",
     members = {
         key = {
             type = "string",
@@ -945,6 +999,7 @@ M.EnabledControlParameterSummary = {
 
 M.Region = {
     type = "structure",
+    id = "Region",
     members = {
         name = {
             type = "string",
@@ -954,6 +1009,7 @@ M.Region = {
 
 M.EnabledControlDetails = {
     type = "structure",
+    id = "EnabledControlDetails",
     members = {
         arn = {
             type = "string",
@@ -982,6 +1038,7 @@ M.EnabledControlDetails = {
 
 M.GetEnabledControlOutput = {
     type = "structure",
+    id = "GetEnabledControlOutput",
     members = {
         enabledControlDetails = setmetatable({ traits = {
             required = true,
@@ -991,6 +1048,7 @@ M.GetEnabledControlOutput = {
 
 M.EnabledControlFilter = {
     type = "structure",
+    id = "EnabledControlFilter",
     members = {
         controlIdentifiers = {
             type = "list",
@@ -1021,6 +1079,7 @@ M.EnabledControlFilter = {
 
 M.ListEnabledControlsInput = {
     type = "structure",
+    id = "ListEnabledControlsInput",
     members = {
         targetIdentifier = {
             type = "string",
@@ -1046,6 +1105,7 @@ M.ListEnabledControlsInput = {
 
 M.EnabledControlSummary = {
     type = "structure",
+    id = "EnabledControlSummary",
     members = {
         arn = {
             type = "string",
@@ -1066,6 +1126,7 @@ M.EnabledControlSummary = {
 
 M.ListEnabledControlsOutput = {
     type = "structure",
+    id = "ListEnabledControlsOutput",
     members = {
         enabledControls = {
             type = "list",
@@ -1082,6 +1143,7 @@ M.ListEnabledControlsOutput = {
 
 M.ResetEnabledControlInput = {
     type = "structure",
+    id = "ResetEnabledControlInput",
     members = {
         enabledControlIdentifier = {
             type = "string",
@@ -1094,6 +1156,7 @@ M.ResetEnabledControlInput = {
 
 M.ResetEnabledControlOutput = {
     type = "structure",
+    id = "ResetEnabledControlOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -1106,6 +1169,7 @@ M.ResetEnabledControlOutput = {
 
 M.UpdateEnabledControlInput = {
     type = "structure",
+    id = "UpdateEnabledControlInput",
     members = {
         parameters = {
             type = "list",
@@ -1125,6 +1189,7 @@ M.UpdateEnabledControlInput = {
 
 M.UpdateEnabledControlOutput = {
     type = "structure",
+    id = "UpdateEnabledControlOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -1137,6 +1202,7 @@ M.UpdateEnabledControlOutput = {
 
 M.GetLandingZoneOperationInput = {
     type = "structure",
+    id = "GetLandingZoneOperationInput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -1162,6 +1228,7 @@ M.LandingZoneOperationStatus = {
 
 M.LandingZoneOperationDetail = {
     type = "structure",
+    id = "LandingZoneOperationDetail",
     members = {
         operationType = {
             type = "string",
@@ -1192,6 +1259,7 @@ M.LandingZoneOperationDetail = {
 
 M.GetLandingZoneOperationOutput = {
     type = "structure",
+    id = "GetLandingZoneOperationOutput",
     members = {
         operationDetails = setmetatable({ traits = {
             required = true,
@@ -1201,6 +1269,7 @@ M.GetLandingZoneOperationOutput = {
 
 M.LandingZoneOperationFilter = {
     type = "structure",
+    id = "LandingZoneOperationFilter",
     members = {
         types = {
             type = "list",
@@ -1215,6 +1284,7 @@ M.LandingZoneOperationFilter = {
 
 M.ListLandingZoneOperationsInput = {
     type = "structure",
+    id = "ListLandingZoneOperationsInput",
     members = {
         filter = M.LandingZoneOperationFilter,
         nextToken = {
@@ -1228,6 +1298,7 @@ M.ListLandingZoneOperationsInput = {
 
 M.LandingZoneOperationSummary = {
     type = "structure",
+    id = "LandingZoneOperationSummary",
     members = {
         operationType = {
             type = "string",
@@ -1243,6 +1314,7 @@ M.LandingZoneOperationSummary = {
 
 M.ListLandingZoneOperationsOutput = {
     type = "structure",
+    id = "ListLandingZoneOperationsOutput",
     members = {
         landingZoneOperations = {
             type = "list",
@@ -1263,6 +1335,7 @@ M.RemediationType = {
 
 M.CreateLandingZoneInput = {
     type = "structure",
+    id = "CreateLandingZoneInput",
     members = {
         version = {
             type = "string",
@@ -1287,6 +1360,7 @@ M.CreateLandingZoneInput = {
 
 M.CreateLandingZoneOutput = {
     type = "structure",
+    id = "CreateLandingZoneOutput",
     members = {
         arn = {
             type = "string",
@@ -1305,6 +1379,7 @@ M.CreateLandingZoneOutput = {
 
 M.DeleteLandingZoneInput = {
     type = "structure",
+    id = "DeleteLandingZoneInput",
     members = {
         landingZoneIdentifier = {
             type = "string",
@@ -1317,6 +1392,7 @@ M.DeleteLandingZoneInput = {
 
 M.DeleteLandingZoneOutput = {
     type = "structure",
+    id = "DeleteLandingZoneOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -1329,6 +1405,7 @@ M.DeleteLandingZoneOutput = {
 
 M.GetLandingZoneInput = {
     type = "structure",
+    id = "GetLandingZoneInput",
     members = {
         landingZoneIdentifier = {
             type = "string",
@@ -1346,6 +1423,7 @@ M.LandingZoneDriftStatus = {
 
 M.LandingZoneDriftStatusSummary = {
     type = "structure",
+    id = "LandingZoneDriftStatusSummary",
     members = {
         status = {
             type = "string",
@@ -1361,6 +1439,7 @@ M.LandingZoneStatus = {
 
 M.LandingZoneDetail = {
     type = "structure",
+    id = "LandingZoneDetail",
     members = {
         version = {
             type = "string",
@@ -1393,6 +1472,7 @@ M.LandingZoneDetail = {
 
 M.GetLandingZoneOutput = {
     type = "structure",
+    id = "GetLandingZoneOutput",
     members = {
         landingZone = setmetatable({ traits = {
             required = true,
@@ -1402,6 +1482,7 @@ M.GetLandingZoneOutput = {
 
 M.ListLandingZonesInput = {
     type = "structure",
+    id = "ListLandingZonesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1414,6 +1495,7 @@ M.ListLandingZonesInput = {
 
 M.LandingZoneSummary = {
     type = "structure",
+    id = "LandingZoneSummary",
     members = {
         arn = {
             type = "string",
@@ -1423,6 +1505,7 @@ M.LandingZoneSummary = {
 
 M.ListLandingZonesOutput = {
     type = "structure",
+    id = "ListLandingZonesOutput",
     members = {
         landingZones = {
             type = "list",
@@ -1439,6 +1522,7 @@ M.ListLandingZonesOutput = {
 
 M.ResetLandingZoneInput = {
     type = "structure",
+    id = "ResetLandingZoneInput",
     members = {
         landingZoneIdentifier = {
             type = "string",
@@ -1451,6 +1535,7 @@ M.ResetLandingZoneInput = {
 
 M.ResetLandingZoneOutput = {
     type = "structure",
+    id = "ResetLandingZoneOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -1463,6 +1548,7 @@ M.ResetLandingZoneOutput = {
 
 M.UpdateLandingZoneInput = {
     type = "structure",
+    id = "UpdateLandingZoneInput",
     members = {
         version = {
             type = "string",
@@ -1488,6 +1574,7 @@ M.UpdateLandingZoneInput = {
 
 M.UpdateLandingZoneOutput = {
     type = "structure",
+    id = "UpdateLandingZoneOutput",
     members = {
         operationIdentifier = {
             type = "string",
@@ -1500,6 +1587,7 @@ M.UpdateLandingZoneOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1513,6 +1601,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1527,6 +1616,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1548,10 +1638,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1573,6 +1665,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

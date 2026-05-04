@@ -1128,17 +1128,17 @@ end
 
 local type NetworkOrigin = "Internet" | "VPC"
 
-local type Permission = "READ" | "WRITE" | "READWRITE"
-
-local type GranteeType = "DIRECTORY_USER" | "DIRECTORY_GROUP" | "IAM"
-
-local type Privilege = "Minimal" | "Default"
+local type BucketVersioningStatus = "Enabled" | "Suspended"
 
 local type RequestedJobStatus = "Cancelled" | "Ready"
 
-local type MFADeleteStatus = "Enabled" | "Disabled"
+local type Privilege = "Minimal" | "Default"
 
-local type BucketVersioningStatus = "Enabled" | "Suspended"
+local type GranteeType = "DIRECTORY_USER" | "DIRECTORY_GROUP" | "IAM"
+
+local type Permission = "READ" | "WRITE" | "READWRITE"
+
+local type MFADeleteStatus = "Enabled" | "Disabled"
 
 local type BucketCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read"
 

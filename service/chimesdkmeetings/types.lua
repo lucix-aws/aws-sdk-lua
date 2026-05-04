@@ -9,6 +9,7 @@ M.MediaCapabilities = {
 
 M.AttendeeCapabilities = {
     type = "structure",
+    id = "AttendeeCapabilities",
     members = {
         Audio = {
             type = "string",
@@ -33,6 +34,7 @@ M.AttendeeCapabilities = {
 
 M.Attendee = {
     type = "structure",
+    id = "Attendee",
     members = {
         ExternalUserId = {
             type = "string",
@@ -49,6 +51,7 @@ M.Attendee = {
 
 M.AttendeeFeatures = {
     type = "structure",
+    id = "AttendeeFeatures",
     members = {
         MaxCount = {
             type = "integer",
@@ -58,6 +61,7 @@ M.AttendeeFeatures = {
 
 M.AttendeeIdItem = {
     type = "structure",
+    id = "AttendeeIdItem",
     members = {
         AttendeeId = {
             type = "string",
@@ -75,6 +79,7 @@ M.MeetingFeatureStatus = {
 
 M.AudioFeatures = {
     type = "structure",
+    id = "AudioFeatures",
     members = {
         EchoReduction = {
             type = "string",
@@ -84,6 +89,7 @@ M.AudioFeatures = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Code = {
@@ -100,6 +106,7 @@ M.BadRequestException = {
 
 M.CreateAttendeeRequestItem = {
     type = "structure",
+    id = "CreateAttendeeRequestItem",
     members = {
         ExternalUserId = {
             type = "string",
@@ -113,6 +120,7 @@ M.CreateAttendeeRequestItem = {
 
 M.BatchCreateAttendeeInput = {
     type = "structure",
+    id = "BatchCreateAttendeeInput",
     members = {
         MeetingId = {
             type = "string",
@@ -133,6 +141,7 @@ M.BatchCreateAttendeeInput = {
 
 M.CreateAttendeeError = {
     type = "structure",
+    id = "CreateAttendeeError",
     members = {
         ExternalUserId = {
             type = "string",
@@ -148,6 +157,7 @@ M.CreateAttendeeError = {
 
 M.BatchCreateAttendeeOutput = {
     type = "structure",
+    id = "BatchCreateAttendeeOutput",
     members = {
         Attendees = {
             type = "list",
@@ -162,6 +172,7 @@ M.BatchCreateAttendeeOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Code = {
@@ -178,6 +189,7 @@ M.ForbiddenException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Code = {
@@ -194,6 +206,7 @@ M.LimitExceededException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Code = {
@@ -210,6 +223,7 @@ M.NotFoundException = {
 
 M.ServiceFailureException = {
     type = "structure",
+    id = "ServiceFailureException",
     error = "server",
     members = {
         Code = {
@@ -226,6 +240,7 @@ M.ServiceFailureException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Code = {
@@ -248,6 +263,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Code = {
@@ -264,6 +280,7 @@ M.ThrottlingException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         Code = {
@@ -280,6 +297,7 @@ M.UnauthorizedException = {
 
 M.UnprocessableEntityException = {
     type = "structure",
+    id = "UnprocessableEntityException",
     error = "client",
     members = {
         Code = {
@@ -296,6 +314,7 @@ M.UnprocessableEntityException = {
 
 M.BatchUpdateAttendeeCapabilitiesExceptInput = {
     type = "structure",
+    id = "BatchUpdateAttendeeCapabilitiesExceptInput",
     members = {
         MeetingId = {
             type = "string",
@@ -319,10 +338,12 @@ M.BatchUpdateAttendeeCapabilitiesExceptInput = {
 
 M.BatchUpdateAttendeeCapabilitiesExceptOutput = {
     type = "structure",
+    id = "BatchUpdateAttendeeCapabilitiesExceptOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Code = {
@@ -339,6 +360,7 @@ M.ConflictException = {
 
 M.CreateAttendeeInput = {
     type = "structure",
+    id = "CreateAttendeeInput",
     members = {
         MeetingId = {
             type = "string",
@@ -359,6 +381,7 @@ M.CreateAttendeeInput = {
 
 M.CreateAttendeeOutput = {
     type = "structure",
+    id = "CreateAttendeeOutput",
     members = {
         Attendee = M.Attendee,
     },
@@ -377,6 +400,7 @@ M.ContentResolution = {
 
 M.ContentFeatures = {
     type = "structure",
+    id = "ContentFeatures",
     members = {
         MaxResolution = {
             type = "string",
@@ -392,6 +416,7 @@ M.VideoResolution = {
 
 M.VideoFeatures = {
     type = "structure",
+    id = "VideoFeatures",
     members = {
         MaxResolution = {
             type = "string",
@@ -401,6 +426,7 @@ M.VideoFeatures = {
 
 M.MeetingFeaturesConfiguration = {
     type = "structure",
+    id = "MeetingFeaturesConfiguration",
     members = {
         Audio = M.AudioFeatures,
         Video = M.VideoFeatures,
@@ -411,6 +437,7 @@ M.MeetingFeaturesConfiguration = {
 
 M.NotificationsConfiguration = {
     type = "structure",
+    id = "NotificationsConfiguration",
     members = {
         LambdaFunctionArn = {
             type = "string",
@@ -426,6 +453,7 @@ M.NotificationsConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -444,6 +472,7 @@ M.Tag = {
 
 M.CreateMeetingInput = {
     type = "structure",
+    id = "CreateMeetingInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -488,6 +517,7 @@ M.CreateMeetingInput = {
 
 M.MediaPlacement = {
     type = "structure",
+    id = "MediaPlacement",
     members = {
         AudioHostUrl = {
             type = "string",
@@ -518,6 +548,7 @@ M.MediaPlacement = {
 
 M.Meeting = {
     type = "structure",
+    id = "Meeting",
     members = {
         MeetingId = {
             type = "string",
@@ -548,6 +579,7 @@ M.Meeting = {
 
 M.CreateMeetingOutput = {
     type = "structure",
+    id = "CreateMeetingOutput",
     members = {
         Meeting = M.Meeting,
     },
@@ -555,6 +587,7 @@ M.CreateMeetingOutput = {
 
 M.CreateMeetingWithAttendeesInput = {
     type = "structure",
+    id = "CreateMeetingWithAttendeesInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -606,6 +639,7 @@ M.CreateMeetingWithAttendeesInput = {
 
 M.CreateMeetingWithAttendeesOutput = {
     type = "structure",
+    id = "CreateMeetingWithAttendeesOutput",
     members = {
         Meeting = M.Meeting,
         Attendees = {
@@ -621,6 +655,7 @@ M.CreateMeetingWithAttendeesOutput = {
 
 M.DeleteAttendeeInput = {
     type = "structure",
+    id = "DeleteAttendeeInput",
     members = {
         MeetingId = {
             type = "string",
@@ -641,10 +676,12 @@ M.DeleteAttendeeInput = {
 
 M.DeleteAttendeeOutput = {
     type = "structure",
+    id = "DeleteAttendeeOutput",
 }
 
 M.DeleteMeetingInput = {
     type = "structure",
+    id = "DeleteMeetingInput",
     members = {
         MeetingId = {
             type = "string",
@@ -658,10 +695,12 @@ M.DeleteMeetingInput = {
 
 M.DeleteMeetingOutput = {
     type = "structure",
+    id = "DeleteMeetingOutput",
 }
 
 M.GetAttendeeInput = {
     type = "structure",
+    id = "GetAttendeeInput",
     members = {
         MeetingId = {
             type = "string",
@@ -682,6 +721,7 @@ M.GetAttendeeInput = {
 
 M.GetAttendeeOutput = {
     type = "structure",
+    id = "GetAttendeeOutput",
     members = {
         Attendee = M.Attendee,
     },
@@ -689,6 +729,7 @@ M.GetAttendeeOutput = {
 
 M.GetMeetingInput = {
     type = "structure",
+    id = "GetMeetingInput",
     members = {
         MeetingId = {
             type = "string",
@@ -702,6 +743,7 @@ M.GetMeetingInput = {
 
 M.GetMeetingOutput = {
     type = "structure",
+    id = "GetMeetingOutput",
     members = {
         Meeting = M.Meeting,
     },
@@ -709,6 +751,7 @@ M.GetMeetingOutput = {
 
 M.ListAttendeesInput = {
     type = "structure",
+    id = "ListAttendeesInput",
     members = {
         MeetingId = {
             type = "string",
@@ -734,6 +777,7 @@ M.ListAttendeesInput = {
 
 M.ListAttendeesOutput = {
     type = "structure",
+    id = "ListAttendeesOutput",
     members = {
         Attendees = {
             type = "list",
@@ -747,6 +791,7 @@ M.ListAttendeesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -760,6 +805,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -770,6 +816,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Code = {
@@ -821,6 +868,7 @@ M.TranscribeMedicalType = {
 
 M.EngineTranscribeMedicalSettings = {
     type = "structure",
+    id = "EngineTranscribeMedicalSettings",
     members = {
         LanguageCode = {
             type = "string",
@@ -907,6 +955,7 @@ M.TranscribeVocabularyFilterMethod = {
 
 M.EngineTranscribeSettings = {
     type = "structure",
+    id = "EngineTranscribeSettings",
     members = {
         LanguageCode = {
             type = "string",
@@ -967,6 +1016,7 @@ M.EngineTranscribeSettings = {
 
 M.TranscriptionConfiguration = {
     type = "structure",
+    id = "TranscriptionConfiguration",
     members = {
         EngineTranscribeSettings = M.EngineTranscribeSettings,
         EngineTranscribeMedicalSettings = M.EngineTranscribeMedicalSettings,
@@ -975,6 +1025,7 @@ M.TranscriptionConfiguration = {
 
 M.StartMeetingTranscriptionInput = {
     type = "structure",
+    id = "StartMeetingTranscriptionInput",
     members = {
         MeetingId = {
             type = "string",
@@ -991,10 +1042,12 @@ M.StartMeetingTranscriptionInput = {
 
 M.StartMeetingTranscriptionOutput = {
     type = "structure",
+    id = "StartMeetingTranscriptionOutput",
 }
 
 M.StopMeetingTranscriptionInput = {
     type = "structure",
+    id = "StopMeetingTranscriptionInput",
     members = {
         MeetingId = {
             type = "string",
@@ -1008,10 +1061,12 @@ M.StopMeetingTranscriptionInput = {
 
 M.StopMeetingTranscriptionOutput = {
     type = "structure",
+    id = "StopMeetingTranscriptionOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1031,10 +1086,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Code = {
@@ -1054,6 +1111,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1073,10 +1131,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAttendeeCapabilitiesInput = {
     type = "structure",
+    id = "UpdateAttendeeCapabilitiesInput",
     members = {
         MeetingId = {
             type = "string",
@@ -1100,6 +1160,7 @@ M.UpdateAttendeeCapabilitiesInput = {
 
 M.UpdateAttendeeCapabilitiesOutput = {
     type = "structure",
+    id = "UpdateAttendeeCapabilitiesOutput",
     members = {
         Attendee = M.Attendee,
     },

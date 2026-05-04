@@ -8,6 +8,7 @@ M.ClientMode = {
 
 M.CloseTunnelInput = {
     type = "structure",
+    id = "CloseTunnelInput",
     members = {
         tunnelId = {
             type = "string",
@@ -28,10 +29,12 @@ M.CloseTunnelInput = {
 
 M.CloseTunnelOutput = {
     type = "structure",
+    id = "CloseTunnelOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -47,6 +50,7 @@ M.ConnectionStatus = {
 
 M.ConnectionState = {
     type = "structure",
+    id = "ConnectionState",
     members = {
         status = {
             type = "string",
@@ -59,6 +63,7 @@ M.ConnectionState = {
 
 M.DescribeTunnelInput = {
     type = "structure",
+    id = "DescribeTunnelInput",
     members = {
         tunnelId = {
             type = "string",
@@ -72,6 +77,7 @@ M.DescribeTunnelInput = {
 
 M.DestinationConfig = {
     type = "structure",
+    id = "DestinationConfig",
     members = {
         thingName = {
             type = "string",
@@ -93,6 +99,7 @@ M.TunnelStatus = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -111,6 +118,7 @@ M.Tag = {
 
 M.TimeoutConfig = {
     type = "structure",
+    id = "TimeoutConfig",
     members = {
         maxLifetimeTimeoutMinutes = {
             type = "integer",
@@ -120,6 +128,7 @@ M.TimeoutConfig = {
 
 M.Tunnel = {
     type = "structure",
+    id = "Tunnel",
     members = {
         tunnelId = {
             type = "string",
@@ -152,6 +161,7 @@ M.Tunnel = {
 
 M.DescribeTunnelOutput = {
     type = "structure",
+    id = "DescribeTunnelOutput",
     members = {
         tunnel = M.Tunnel,
     },
@@ -159,6 +169,7 @@ M.DescribeTunnelOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -172,6 +183,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -182,6 +194,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTunnelsInput = {
     type = "structure",
+    id = "ListTunnelsInput",
     members = {
         thingName = {
             type = "string",
@@ -206,6 +219,7 @@ M.ListTunnelsInput = {
 
 M.TunnelSummary = {
     type = "structure",
+    id = "TunnelSummary",
     members = {
         tunnelId = {
             type = "string",
@@ -230,6 +244,7 @@ M.TunnelSummary = {
 
 M.ListTunnelsOutput = {
     type = "structure",
+    id = "ListTunnelsOutput",
     members = {
         tunnelSummaries = {
             type = "list",
@@ -243,6 +258,7 @@ M.ListTunnelsOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -253,6 +269,7 @@ M.LimitExceededException = {
 
 M.OpenTunnelInput = {
     type = "structure",
+    id = "OpenTunnelInput",
     members = {
         description = {
             type = "string",
@@ -268,6 +285,7 @@ M.OpenTunnelInput = {
 
 M.OpenTunnelOutput = {
     type = "structure",
+    id = "OpenTunnelOutput",
     members = {
         tunnelId = {
             type = "string",
@@ -286,6 +304,7 @@ M.OpenTunnelOutput = {
 
 M.RotateTunnelAccessTokenInput = {
     type = "structure",
+    id = "RotateTunnelAccessTokenInput",
     members = {
         tunnelId = {
             type = "string",
@@ -306,6 +325,7 @@ M.RotateTunnelAccessTokenInput = {
 
 M.RotateTunnelAccessTokenOutput = {
     type = "structure",
+    id = "RotateTunnelAccessTokenOutput",
     members = {
         tunnelArn = {
             type = "string",
@@ -321,6 +341,7 @@ M.RotateTunnelAccessTokenOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -340,10 +361,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -363,6 +386,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

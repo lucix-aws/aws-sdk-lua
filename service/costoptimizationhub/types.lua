@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.EnrollmentStatus = {
 
 M.AccountEnrollmentStatus = {
     type = "structure",
+    id = "AccountEnrollmentStatus",
     members = {
         accountId = {
             type = "string",
@@ -54,6 +56,7 @@ M.AllocationStrategy = {
 
 M.AuroraDbClusterStorageConfiguration = {
     type = "structure",
+    id = "AuroraDbClusterStorageConfiguration",
     members = {
         storageType = {
             type = "string",
@@ -63,6 +66,7 @@ M.AuroraDbClusterStorageConfiguration = {
 
 M.EstimatedDiscounts = {
     type = "structure",
+    id = "EstimatedDiscounts",
     members = {
         savingsPlansDiscount = {
             type = "double",
@@ -78,6 +82,7 @@ M.EstimatedDiscounts = {
 
 M.ResourcePricing = {
     type = "structure",
+    id = "ResourcePricing",
     members = {
         estimatedCostBeforeDiscounts = {
             type = "double",
@@ -94,6 +99,7 @@ M.ResourcePricing = {
 
 M.Usage = {
     type = "structure",
+    id = "Usage",
     members = {
         usageType = {
             type = "string",
@@ -115,6 +121,7 @@ M.Usage = {
 
 M.ResourceCostCalculation = {
     type = "structure",
+    id = "ResourceCostCalculation",
     members = {
         usages = {
             type = "list",
@@ -126,6 +133,7 @@ M.ResourceCostCalculation = {
 
 M.AuroraDbClusterStorage = {
     type = "structure",
+    id = "AuroraDbClusterStorage",
     members = {
         configuration = M.AuroraDbClusterStorageConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -134,6 +142,7 @@ M.AuroraDbClusterStorage = {
 
 M.BlockStoragePerformanceConfiguration = {
     type = "structure",
+    id = "BlockStoragePerformanceConfiguration",
     members = {
         iops = {
             type = "double",
@@ -146,6 +155,7 @@ M.BlockStoragePerformanceConfiguration = {
 
 M.ComputeConfiguration = {
     type = "structure",
+    id = "ComputeConfiguration",
     members = {
         vCpu = {
             type = "double",
@@ -164,6 +174,7 @@ M.ComputeConfiguration = {
 
 M.ComputeSavingsPlansConfiguration = {
     type = "structure",
+    id = "ComputeSavingsPlansConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -182,6 +193,7 @@ M.ComputeSavingsPlansConfiguration = {
 
 M.SavingsPlansPricing = {
     type = "structure",
+    id = "SavingsPlansPricing",
     members = {
         monthlySavingsPlansEligibleCost = {
             type = "double",
@@ -200,6 +212,7 @@ M.SavingsPlansPricing = {
 
 M.SavingsPlansCostCalculation = {
     type = "structure",
+    id = "SavingsPlansCostCalculation",
     members = {
         pricing = M.SavingsPlansPricing,
     },
@@ -207,6 +220,7 @@ M.SavingsPlansCostCalculation = {
 
 M.ComputeSavingsPlans = {
     type = "structure",
+    id = "ComputeSavingsPlans",
     members = {
         configuration = M.ComputeSavingsPlansConfiguration,
         costCalculation = M.SavingsPlansCostCalculation,
@@ -215,6 +229,7 @@ M.ComputeSavingsPlans = {
 
 M.GetPreferencesInput = {
     type = "structure",
+    id = "GetPreferencesInput",
 }
 
 M.MemberAccountDiscountVisibility = {
@@ -235,6 +250,7 @@ M.Term = {
 
 M.PreferredCommitment = {
     type = "structure",
+    id = "PreferredCommitment",
     members = {
         term = {
             type = "string",
@@ -252,6 +268,7 @@ M.SavingsEstimationMode = {
 
 M.GetPreferencesOutput = {
     type = "structure",
+    id = "GetPreferencesOutput",
     members = {
         savingsEstimationMode = {
             type = "string",
@@ -265,6 +282,7 @@ M.GetPreferencesOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -278,6 +296,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -288,6 +307,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionDetail = {
     type = "structure",
+    id = "ValidationExceptionDetail",
     members = {
         fieldName = {
             type = "string",
@@ -311,6 +331,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -331,6 +352,7 @@ M.ValidationException = {
 
 M.GetRecommendationInput = {
     type = "structure",
+    id = "GetRecommendationInput",
     members = {
         recommendationId = {
             type = "string",
@@ -343,6 +365,7 @@ M.GetRecommendationInput = {
 
 M.DynamoDbReservedCapacityConfiguration = {
     type = "structure",
+    id = "DynamoDbReservedCapacityConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -376,6 +399,7 @@ M.DynamoDbReservedCapacityConfiguration = {
 
 M.ReservedInstancesPricing = {
     type = "structure",
+    id = "ReservedInstancesPricing",
     members = {
         estimatedOnDemandCost = {
             type = "double",
@@ -394,6 +418,7 @@ M.ReservedInstancesPricing = {
 
 M.ReservedInstancesCostCalculation = {
     type = "structure",
+    id = "ReservedInstancesCostCalculation",
     members = {
         pricing = M.ReservedInstancesPricing,
     },
@@ -401,6 +426,7 @@ M.ReservedInstancesCostCalculation = {
 
 M.DynamoDbReservedCapacity = {
     type = "structure",
+    id = "DynamoDbReservedCapacity",
     members = {
         configuration = M.DynamoDbReservedCapacityConfiguration,
         costCalculation = M.ReservedInstancesCostCalculation,
@@ -409,6 +435,7 @@ M.DynamoDbReservedCapacity = {
 
 M.StorageConfiguration = {
     type = "structure",
+    id = "StorageConfiguration",
     members = {
         type = {
             type = "string",
@@ -421,6 +448,7 @@ M.StorageConfiguration = {
 
 M.EbsVolumeConfiguration = {
     type = "structure",
+    id = "EbsVolumeConfiguration",
     members = {
         storage = M.StorageConfiguration,
         performance = M.BlockStoragePerformanceConfiguration,
@@ -432,6 +460,7 @@ M.EbsVolumeConfiguration = {
 
 M.EbsVolume = {
     type = "structure",
+    id = "EbsVolume",
     members = {
         configuration = M.EbsVolumeConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -440,6 +469,7 @@ M.EbsVolume = {
 
 M.InstanceConfiguration = {
     type = "structure",
+    id = "InstanceConfiguration",
     members = {
         type = {
             type = "string",
@@ -449,6 +479,7 @@ M.InstanceConfiguration = {
 
 M.MixedInstanceConfiguration = {
     type = "structure",
+    id = "MixedInstanceConfiguration",
     members = {
         type = {
             type = "string",
@@ -463,6 +494,7 @@ M.Ec2AutoScalingGroupType = {
 
 M.Ec2AutoScalingGroupConfiguration = {
     type = "structure",
+    id = "Ec2AutoScalingGroupConfiguration",
     members = {
         instance = M.InstanceConfiguration,
         mixedInstances = {
@@ -480,6 +512,7 @@ M.Ec2AutoScalingGroupConfiguration = {
 
 M.Ec2AutoScalingGroup = {
     type = "structure",
+    id = "Ec2AutoScalingGroup",
     members = {
         configuration = M.Ec2AutoScalingGroupConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -488,6 +521,7 @@ M.Ec2AutoScalingGroup = {
 
 M.Ec2InstanceConfiguration = {
     type = "structure",
+    id = "Ec2InstanceConfiguration",
     members = {
         instance = M.InstanceConfiguration,
     },
@@ -495,6 +529,7 @@ M.Ec2InstanceConfiguration = {
 
 M.Ec2Instance = {
     type = "structure",
+    id = "Ec2Instance",
     members = {
         configuration = M.Ec2InstanceConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -503,6 +538,7 @@ M.Ec2Instance = {
 
 M.Ec2InstanceSavingsPlansConfiguration = {
     type = "structure",
+    id = "Ec2InstanceSavingsPlansConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -527,6 +563,7 @@ M.Ec2InstanceSavingsPlansConfiguration = {
 
 M.Ec2InstanceSavingsPlans = {
     type = "structure",
+    id = "Ec2InstanceSavingsPlans",
     members = {
         configuration = M.Ec2InstanceSavingsPlansConfiguration,
         costCalculation = M.SavingsPlansCostCalculation,
@@ -535,6 +572,7 @@ M.Ec2InstanceSavingsPlans = {
 
 M.Ec2ReservedInstancesConfiguration = {
     type = "structure",
+    id = "Ec2ReservedInstancesConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -589,6 +627,7 @@ M.Ec2ReservedInstancesConfiguration = {
 
 M.Ec2ReservedInstances = {
     type = "structure",
+    id = "Ec2ReservedInstances",
     members = {
         configuration = M.Ec2ReservedInstancesConfiguration,
         costCalculation = M.ReservedInstancesCostCalculation,
@@ -597,6 +636,7 @@ M.Ec2ReservedInstances = {
 
 M.EcsServiceConfiguration = {
     type = "structure",
+    id = "EcsServiceConfiguration",
     members = {
         compute = M.ComputeConfiguration,
     },
@@ -604,6 +644,7 @@ M.EcsServiceConfiguration = {
 
 M.EcsService = {
     type = "structure",
+    id = "EcsService",
     members = {
         configuration = M.EcsServiceConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -612,6 +653,7 @@ M.EcsService = {
 
 M.ElastiCacheReservedInstancesConfiguration = {
     type = "structure",
+    id = "ElastiCacheReservedInstancesConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -657,6 +699,7 @@ M.ElastiCacheReservedInstancesConfiguration = {
 
 M.ElastiCacheReservedInstances = {
     type = "structure",
+    id = "ElastiCacheReservedInstances",
     members = {
         configuration = M.ElastiCacheReservedInstancesConfiguration,
         costCalculation = M.ReservedInstancesCostCalculation,
@@ -665,6 +708,7 @@ M.ElastiCacheReservedInstances = {
 
 M.LambdaFunctionConfiguration = {
     type = "structure",
+    id = "LambdaFunctionConfiguration",
     members = {
         compute = M.ComputeConfiguration,
     },
@@ -672,6 +716,7 @@ M.LambdaFunctionConfiguration = {
 
 M.LambdaFunction = {
     type = "structure",
+    id = "LambdaFunction",
     members = {
         configuration = M.LambdaFunctionConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -680,6 +725,7 @@ M.LambdaFunction = {
 
 M.MemoryDbReservedInstancesConfiguration = {
     type = "structure",
+    id = "MemoryDbReservedInstancesConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -725,6 +771,7 @@ M.MemoryDbReservedInstancesConfiguration = {
 
 M.MemoryDbReservedInstances = {
     type = "structure",
+    id = "MemoryDbReservedInstances",
     members = {
         configuration = M.MemoryDbReservedInstancesConfiguration,
         costCalculation = M.ReservedInstancesCostCalculation,
@@ -733,6 +780,7 @@ M.MemoryDbReservedInstances = {
 
 M.NatGatewayConfiguration = {
     type = "structure",
+    id = "NatGatewayConfiguration",
     members = {
         activeConnectionCount = {
             type = "long",
@@ -748,6 +796,7 @@ M.NatGatewayConfiguration = {
 
 M.NatGateway = {
     type = "structure",
+    id = "NatGateway",
     members = {
         configuration = M.NatGatewayConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -756,6 +805,7 @@ M.NatGateway = {
 
 M.OpenSearchReservedInstancesConfiguration = {
     type = "structure",
+    id = "OpenSearchReservedInstancesConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -798,6 +848,7 @@ M.OpenSearchReservedInstancesConfiguration = {
 
 M.OpenSearchReservedInstances = {
     type = "structure",
+    id = "OpenSearchReservedInstances",
     members = {
         configuration = M.OpenSearchReservedInstancesConfiguration,
         costCalculation = M.ReservedInstancesCostCalculation,
@@ -806,6 +857,7 @@ M.OpenSearchReservedInstances = {
 
 M.DbInstanceConfiguration = {
     type = "structure",
+    id = "DbInstanceConfiguration",
     members = {
         dbInstanceClass = {
             type = "string",
@@ -815,6 +867,7 @@ M.DbInstanceConfiguration = {
 
 M.RdsDbInstanceConfiguration = {
     type = "structure",
+    id = "RdsDbInstanceConfiguration",
     members = {
         instance = M.DbInstanceConfiguration,
     },
@@ -822,6 +875,7 @@ M.RdsDbInstanceConfiguration = {
 
 M.RdsDbInstance = {
     type = "structure",
+    id = "RdsDbInstance",
     members = {
         configuration = M.RdsDbInstanceConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -830,6 +884,7 @@ M.RdsDbInstance = {
 
 M.RdsDbInstanceStorageConfiguration = {
     type = "structure",
+    id = "RdsDbInstanceStorageConfiguration",
     members = {
         storageType = {
             type = "string",
@@ -848,6 +903,7 @@ M.RdsDbInstanceStorageConfiguration = {
 
 M.RdsDbInstanceStorage = {
     type = "structure",
+    id = "RdsDbInstanceStorage",
     members = {
         configuration = M.RdsDbInstanceStorageConfiguration,
         costCalculation = M.ResourceCostCalculation,
@@ -856,6 +912,7 @@ M.RdsDbInstanceStorage = {
 
 M.RdsReservedInstancesConfiguration = {
     type = "structure",
+    id = "RdsReservedInstancesConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -913,6 +970,7 @@ M.RdsReservedInstancesConfiguration = {
 
 M.RdsReservedInstances = {
     type = "structure",
+    id = "RdsReservedInstances",
     members = {
         configuration = M.RdsReservedInstancesConfiguration,
         costCalculation = M.ReservedInstancesCostCalculation,
@@ -921,6 +979,7 @@ M.RdsReservedInstances = {
 
 M.RedshiftReservedInstancesConfiguration = {
     type = "structure",
+    id = "RedshiftReservedInstancesConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -966,6 +1025,7 @@ M.RedshiftReservedInstancesConfiguration = {
 
 M.RedshiftReservedInstances = {
     type = "structure",
+    id = "RedshiftReservedInstances",
     members = {
         configuration = M.RedshiftReservedInstancesConfiguration,
         costCalculation = M.ReservedInstancesCostCalculation,
@@ -974,6 +1034,7 @@ M.RedshiftReservedInstances = {
 
 M.SageMakerSavingsPlansConfiguration = {
     type = "structure",
+    id = "SageMakerSavingsPlansConfiguration",
     members = {
         accountScope = {
             type = "string",
@@ -992,6 +1053,7 @@ M.SageMakerSavingsPlansConfiguration = {
 
 M.SageMakerSavingsPlans = {
     type = "structure",
+    id = "SageMakerSavingsPlans",
     members = {
         configuration = M.SageMakerSavingsPlansConfiguration,
         costCalculation = M.SavingsPlansCostCalculation,
@@ -1000,6 +1062,7 @@ M.SageMakerSavingsPlans = {
 
 M.ResourceDetails = {
     type = "union",
+    id = "ResourceDetails",
     members = {
         lambdaFunction = M.LambdaFunction,
         ecsService = M.EcsService,
@@ -1060,6 +1123,7 @@ M.Source = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -1072,6 +1136,7 @@ M.Tag = {
 
 M.GetRecommendationOutput = {
     type = "structure",
+    id = "GetRecommendationOutput",
     members = {
         recommendationId = {
             type = "string",
@@ -1144,6 +1209,7 @@ M.GetRecommendationOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1173,6 +1239,7 @@ M.Order = {
 
 M.OrderBy = {
     type = "structure",
+    id = "OrderBy",
     members = {
         dimension = {
             type = "string",
@@ -1185,6 +1252,7 @@ M.OrderBy = {
 
 M.TimePeriod = {
     type = "structure",
+    id = "TimePeriod",
     members = {
         start = {
             type = "string",
@@ -1203,6 +1271,7 @@ M.TimePeriod = {
 
 M.ListEfficiencyMetricsInput = {
     type = "structure",
+    id = "ListEfficiencyMetricsInput",
     members = {
         groupBy = {
             type = "string",
@@ -1228,6 +1297,7 @@ M.ListEfficiencyMetricsInput = {
 
 M.MetricsByTime = {
     type = "structure",
+    id = "MetricsByTime",
     members = {
         score = {
             type = "double",
@@ -1246,6 +1316,7 @@ M.MetricsByTime = {
 
 M.EfficiencyMetricsByGroup = {
     type = "structure",
+    id = "EfficiencyMetricsByGroup",
     members = {
         metricsByTime = {
             type = "list",
@@ -1262,6 +1333,7 @@ M.EfficiencyMetricsByGroup = {
 
 M.ListEfficiencyMetricsOutput = {
     type = "structure",
+    id = "ListEfficiencyMetricsOutput",
     members = {
         efficiencyMetricsByGroup = {
             type = "list",
@@ -1275,6 +1347,7 @@ M.ListEfficiencyMetricsOutput = {
 
 M.ListEnrollmentStatusesInput = {
     type = "structure",
+    id = "ListEnrollmentStatusesInput",
     members = {
         includeOrganizationInfo = {
             type = "boolean",
@@ -1296,6 +1369,7 @@ M.ListEnrollmentStatusesInput = {
 
 M.ListEnrollmentStatusesOutput = {
     type = "structure",
+    id = "ListEnrollmentStatusesOutput",
     members = {
         items = {
             type = "list",
@@ -1312,6 +1386,7 @@ M.ListEnrollmentStatusesOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         restartNeeded = {
             type = "boolean",
@@ -1360,6 +1435,7 @@ M.Filter = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         filter = M.Filter,
         orderBy = M.OrderBy,
@@ -1380,6 +1456,7 @@ M.ListRecommendationsInput = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         recommendationId = {
             type = "string",
@@ -1450,6 +1527,7 @@ M.Recommendation = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         items = {
             type = "list",
@@ -1467,6 +1545,7 @@ M.SummaryMetrics = {
 
 M.ListRecommendationSummariesInput = {
     type = "structure",
+    id = "ListRecommendationSummariesInput",
     members = {
         filter = M.Filter,
         groupBy = {
@@ -1490,6 +1569,7 @@ M.ListRecommendationSummariesInput = {
 
 M.RecommendationSummary = {
     type = "structure",
+    id = "RecommendationSummary",
     members = {
         group = {
             type = "string",
@@ -1505,6 +1585,7 @@ M.RecommendationSummary = {
 
 M.SummaryMetricsResult = {
     type = "structure",
+    id = "SummaryMetricsResult",
     members = {
         savingsPercentage = {
             type = "string",
@@ -1514,6 +1595,7 @@ M.SummaryMetricsResult = {
 
 M.ListRecommendationSummariesOutput = {
     type = "structure",
+    id = "ListRecommendationSummariesOutput",
     members = {
         estimatedTotalDedupedSavings = {
             type = "double",
@@ -1537,6 +1619,7 @@ M.ListRecommendationSummariesOutput = {
 
 M.UpdateEnrollmentStatusInput = {
     type = "structure",
+    id = "UpdateEnrollmentStatusInput",
     members = {
         status = {
             type = "string",
@@ -1552,6 +1635,7 @@ M.UpdateEnrollmentStatusInput = {
 
 M.UpdateEnrollmentStatusOutput = {
     type = "structure",
+    id = "UpdateEnrollmentStatusOutput",
     members = {
         status = {
             type = "string",
@@ -1561,6 +1645,7 @@ M.UpdateEnrollmentStatusOutput = {
 
 M.UpdatePreferencesInput = {
     type = "structure",
+    id = "UpdatePreferencesInput",
     members = {
         savingsEstimationMode = {
             type = "string",
@@ -1574,6 +1659,7 @@ M.UpdatePreferencesInput = {
 
 M.UpdatePreferencesOutput = {
     type = "structure",
+    id = "UpdatePreferencesOutput",
     members = {
         savingsEstimationMode = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.VariableType = {
 
 M.DynamicSsmParameterValue = {
     type = "union",
+    id = "DynamicSsmParameterValue",
     members = {
         variable = {
             type = "string",
@@ -34,6 +36,7 @@ M.SsmTargetAccount = {
 
 M.SsmAutomation = {
     type = "structure",
+    id = "SsmAutomation",
     members = {
         roleArn = {
             type = "string",
@@ -68,6 +71,7 @@ M.SsmAutomation = {
 
 M.Action = {
     type = "union",
+    id = "Action",
     members = {
         ssmAutomation = M.SsmAutomation,
     },
@@ -75,6 +79,7 @@ M.Action = {
 
 M.AddRegionAction = {
     type = "structure",
+    id = "AddRegionAction",
     members = {
         regionName = {
             type = "string",
@@ -90,6 +95,7 @@ M.AddRegionAction = {
 
 M.AttributeValueList = {
     type = "union",
+    id = "AttributeValueList",
     members = {
         stringValues = {
             type = "list",
@@ -104,6 +110,7 @@ M.AttributeValueList = {
 
 M.AutomationExecution = {
     type = "union",
+    id = "AutomationExecution",
     members = {
         ssmExecutionArn = {
             type = "string",
@@ -113,6 +120,7 @@ M.AutomationExecution = {
 
 M.BatchGetIncidentFindingsInput = {
     type = "structure",
+    id = "BatchGetIncidentFindingsInput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -132,6 +140,7 @@ M.BatchGetIncidentFindingsInput = {
 
 M.BatchGetIncidentFindingsError = {
     type = "structure",
+    id = "BatchGetIncidentFindingsError",
     members = {
         findingId = {
             type = "string",
@@ -156,6 +165,7 @@ M.BatchGetIncidentFindingsError = {
 
 M.CloudFormationStackUpdate = {
     type = "structure",
+    id = "CloudFormationStackUpdate",
     members = {
         startTime = {
             type = "timestamp",
@@ -177,6 +187,7 @@ M.CloudFormationStackUpdate = {
 
 M.CodeDeployDeployment = {
     type = "structure",
+    id = "CodeDeployDeployment",
     members = {
         startTime = {
             type = "timestamp",
@@ -204,6 +215,7 @@ M.CodeDeployDeployment = {
 
 M.FindingDetails = {
     type = "union",
+    id = "FindingDetails",
     members = {
         codeDeployDeployment = M.CodeDeployDeployment,
         cloudFormationStackUpdate = M.CloudFormationStackUpdate,
@@ -212,6 +224,7 @@ M.FindingDetails = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         id = {
             type = "string",
@@ -237,6 +250,7 @@ M.Finding = {
 
 M.BatchGetIncidentFindingsOutput = {
     type = "structure",
+    id = "BatchGetIncidentFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -257,6 +271,7 @@ M.BatchGetIncidentFindingsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -278,6 +293,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -301,6 +317,7 @@ M.ServiceCode = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -326,6 +343,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -339,10 +357,12 @@ M.ValidationException = {
 
 M.EmptyChatChannel = {
     type = "structure",
+    id = "EmptyChatChannel",
 }
 
 M.ChatChannel = {
     type = "union",
+    id = "ChatChannel",
     members = {
         empty = M.EmptyChatChannel,
         chatbotSns = {
@@ -354,6 +374,7 @@ M.ChatChannel = {
 
 M.Condition = {
     type = "union",
+    id = "Condition",
     members = {
         before = {
             type = "timestamp",
@@ -367,6 +388,7 @@ M.Condition = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -389,6 +411,7 @@ M.ConflictException = {
 
 M.RegionMapInputValue = {
     type = "structure",
+    id = "RegionMapInputValue",
     members = {
         sseKmsKeyId = {
             type = "string",
@@ -398,6 +421,7 @@ M.RegionMapInputValue = {
 
 M.CreateReplicationSetInput = {
     type = "structure",
+    id = "CreateReplicationSetInput",
     members = {
         regions = {
             type = "map",
@@ -423,6 +447,7 @@ M.CreateReplicationSetInput = {
 
 M.CreateReplicationSetOutput = {
     type = "structure",
+    id = "CreateReplicationSetOutput",
     members = {
         arn = {
             type = "string",
@@ -435,6 +460,7 @@ M.CreateReplicationSetOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -466,6 +492,7 @@ M.ServiceQuotaExceededException = {
 
 M.NotificationTargetItem = {
     type = "union",
+    id = "NotificationTargetItem",
     members = {
         snsTopicArn = {
             type = "string",
@@ -475,6 +502,7 @@ M.NotificationTargetItem = {
 
 M.IncidentTemplate = {
     type = "structure",
+    id = "IncidentTemplate",
     members = {
         title = {
             type = "string",
@@ -508,6 +536,7 @@ M.IncidentTemplate = {
 
 M.PagerDutyIncidentConfiguration = {
     type = "structure",
+    id = "PagerDutyIncidentConfiguration",
     members = {
         serviceId = {
             type = "string",
@@ -520,6 +549,7 @@ M.PagerDutyIncidentConfiguration = {
 
 M.PagerDutyConfiguration = {
     type = "structure",
+    id = "PagerDutyConfiguration",
     members = {
         name = {
             type = "string",
@@ -541,6 +571,7 @@ M.PagerDutyConfiguration = {
 
 M.Integration = {
     type = "union",
+    id = "Integration",
     members = {
         pagerDutyConfiguration = M.PagerDutyConfiguration,
     },
@@ -548,6 +579,7 @@ M.Integration = {
 
 M.CreateResponsePlanInput = {
     type = "structure",
+    id = "CreateResponsePlanInput",
     members = {
         clientToken = {
             type = "string",
@@ -590,6 +622,7 @@ M.CreateResponsePlanInput = {
 
 M.CreateResponsePlanOutput = {
     type = "structure",
+    id = "CreateResponsePlanOutput",
     members = {
         arn = {
             type = "string",
@@ -602,6 +635,7 @@ M.CreateResponsePlanOutput = {
 
 M.EventReference = {
     type = "union",
+    id = "EventReference",
     members = {
         resource = {
             type = "string",
@@ -614,6 +648,7 @@ M.EventReference = {
 
 M.CreateTimelineEventInput = {
     type = "structure",
+    id = "CreateTimelineEventInput",
     members = {
         clientToken = {
             type = "string",
@@ -654,6 +689,7 @@ M.CreateTimelineEventInput = {
 
 M.CreateTimelineEventOutput = {
     type = "structure",
+    id = "CreateTimelineEventOutput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -672,6 +708,7 @@ M.CreateTimelineEventOutput = {
 
 M.DeleteIncidentRecordInput = {
     type = "structure",
+    id = "DeleteIncidentRecordInput",
     members = {
         arn = {
             type = "string",
@@ -684,10 +721,12 @@ M.DeleteIncidentRecordInput = {
 
 M.DeleteIncidentRecordOutput = {
     type = "structure",
+    id = "DeleteIncidentRecordOutput",
 }
 
 M.DeleteRegionAction = {
     type = "structure",
+    id = "DeleteRegionAction",
     members = {
         regionName = {
             type = "string",
@@ -700,6 +739,7 @@ M.DeleteRegionAction = {
 
 M.DeleteReplicationSetInput = {
     type = "structure",
+    id = "DeleteReplicationSetInput",
     members = {
         arn = {
             type = "string",
@@ -713,10 +753,12 @@ M.DeleteReplicationSetInput = {
 
 M.DeleteReplicationSetOutput = {
     type = "structure",
+    id = "DeleteReplicationSetOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -735,10 +777,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteResponsePlanInput = {
     type = "structure",
+    id = "DeleteResponsePlanInput",
     members = {
         arn = {
             type = "string",
@@ -751,10 +795,12 @@ M.DeleteResponsePlanInput = {
 
 M.DeleteResponsePlanOutput = {
     type = "structure",
+    id = "DeleteResponsePlanOutput",
 }
 
 M.DeleteTimelineEventInput = {
     type = "structure",
+    id = "DeleteTimelineEventInput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -773,10 +819,12 @@ M.DeleteTimelineEventInput = {
 
 M.DeleteTimelineEventOutput = {
     type = "structure",
+    id = "DeleteTimelineEventOutput",
 }
 
 M.EventSummary = {
     type = "structure",
+    id = "EventSummary",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -817,6 +865,7 @@ M.EventSummary = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         key = {
             type = "string",
@@ -832,6 +881,7 @@ M.Filter = {
 
 M.FindingSummary = {
     type = "structure",
+    id = "FindingSummary",
     members = {
         id = {
             type = "string",
@@ -850,6 +900,7 @@ M.FindingSummary = {
 
 M.GetIncidentRecordInput = {
     type = "structure",
+    id = "GetIncidentRecordInput",
     members = {
         arn = {
             type = "string",
@@ -863,6 +914,7 @@ M.GetIncidentRecordInput = {
 
 M.IncidentRecordSource = {
     type = "structure",
+    id = "IncidentRecordSource",
     members = {
         createdBy = {
             type = "string",
@@ -892,6 +944,7 @@ M.IncidentRecordStatus = {
 
 M.IncidentRecord = {
     type = "structure",
+    id = "IncidentRecord",
     members = {
         arn = {
             type = "string",
@@ -964,6 +1017,7 @@ M.IncidentRecord = {
 
 M.GetIncidentRecordOutput = {
     type = "structure",
+    id = "GetIncidentRecordOutput",
     members = {
         incidentRecord = setmetatable({ traits = {
             required = true,
@@ -973,6 +1027,7 @@ M.GetIncidentRecordOutput = {
 
 M.GetReplicationSetInput = {
     type = "structure",
+    id = "GetReplicationSetInput",
     members = {
         arn = {
             type = "string",
@@ -993,6 +1048,7 @@ M.RegionStatus = {
 
 M.RegionInfo = {
     type = "structure",
+    id = "RegionInfo",
     members = {
         sseKmsKeyId = {
             type = "string",
@@ -1025,6 +1081,7 @@ M.ReplicationSetStatus = {
 
 M.ReplicationSet = {
     type = "structure",
+    id = "ReplicationSet",
     members = {
         arn = {
             type = "string",
@@ -1078,6 +1135,7 @@ M.ReplicationSet = {
 
 M.GetReplicationSetOutput = {
     type = "structure",
+    id = "GetReplicationSetOutput",
     members = {
         replicationSet = setmetatable({ traits = {
             required = true,
@@ -1087,6 +1145,7 @@ M.GetReplicationSetOutput = {
 
 M.GetResourcePoliciesInput = {
     type = "structure",
+    id = "GetResourcePoliciesInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1106,6 +1165,7 @@ M.GetResourcePoliciesInput = {
 
 M.ResourcePolicy = {
     type = "structure",
+    id = "ResourcePolicy",
     members = {
         policyDocument = {
             type = "string",
@@ -1130,6 +1190,7 @@ M.ResourcePolicy = {
 
 M.GetResourcePoliciesOutput = {
     type = "structure",
+    id = "GetResourcePoliciesOutput",
     members = {
         resourcePolicies = {
             type = "list",
@@ -1146,6 +1207,7 @@ M.GetResourcePoliciesOutput = {
 
 M.GetResponsePlanInput = {
     type = "structure",
+    id = "GetResponsePlanInput",
     members = {
         arn = {
             type = "string",
@@ -1159,6 +1221,7 @@ M.GetResponsePlanInput = {
 
 M.GetResponsePlanOutput = {
     type = "structure",
+    id = "GetResponsePlanOutput",
     members = {
         arn = {
             type = "string",
@@ -1196,6 +1259,7 @@ M.GetResponsePlanOutput = {
 
 M.GetTimelineEventInput = {
     type = "structure",
+    id = "GetTimelineEventInput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -1216,6 +1280,7 @@ M.GetTimelineEventInput = {
 
 M.TimelineEvent = {
     type = "structure",
+    id = "TimelineEvent",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -1262,6 +1327,7 @@ M.TimelineEvent = {
 
 M.GetTimelineEventOutput = {
     type = "structure",
+    id = "GetTimelineEventOutput",
     members = {
         event = setmetatable({ traits = {
             required = true,
@@ -1271,6 +1337,7 @@ M.GetTimelineEventOutput = {
 
 M.IncidentRecordSummary = {
     type = "structure",
+    id = "IncidentRecordSummary",
     members = {
         arn = {
             type = "string",
@@ -1325,6 +1392,7 @@ M.ItemType = {
 
 M.PagerDutyIncidentDetail = {
     type = "structure",
+    id = "PagerDutyIncidentDetail",
     members = {
         id = {
             type = "string",
@@ -1343,6 +1411,7 @@ M.PagerDutyIncidentDetail = {
 
 M.ItemValue = {
     type = "union",
+    id = "ItemValue",
     members = {
         arn = {
             type = "string",
@@ -1359,6 +1428,7 @@ M.ItemValue = {
 
 M.ItemIdentifier = {
     type = "structure",
+    id = "ItemIdentifier",
     members = {
         value = setmetatable({ traits = {
             required = true,
@@ -1374,6 +1444,7 @@ M.ItemIdentifier = {
 
 M.ListIncidentFindingsInput = {
     type = "structure",
+    id = "ListIncidentFindingsInput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -1392,6 +1463,7 @@ M.ListIncidentFindingsInput = {
 
 M.ListIncidentFindingsOutput = {
     type = "structure",
+    id = "ListIncidentFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -1408,6 +1480,7 @@ M.ListIncidentFindingsOutput = {
 
 M.ListIncidentRecordsInput = {
     type = "structure",
+    id = "ListIncidentRecordsInput",
     members = {
         filters = {
             type = "list",
@@ -1424,6 +1497,7 @@ M.ListIncidentRecordsInput = {
 
 M.ListIncidentRecordsOutput = {
     type = "structure",
+    id = "ListIncidentRecordsOutput",
     members = {
         incidentRecordSummaries = {
             type = "list",
@@ -1440,6 +1514,7 @@ M.ListIncidentRecordsOutput = {
 
 M.ListRelatedItemsInput = {
     type = "structure",
+    id = "ListRelatedItemsInput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -1458,6 +1533,7 @@ M.ListRelatedItemsInput = {
 
 M.RelatedItem = {
     type = "structure",
+    id = "RelatedItem",
     members = {
         identifier = setmetatable({ traits = {
             required = true,
@@ -1473,6 +1549,7 @@ M.RelatedItem = {
 
 M.ListRelatedItemsOutput = {
     type = "structure",
+    id = "ListRelatedItemsOutput",
     members = {
         relatedItems = {
             type = "list",
@@ -1489,6 +1566,7 @@ M.ListRelatedItemsOutput = {
 
 M.ListReplicationSetsInput = {
     type = "structure",
+    id = "ListReplicationSetsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1501,6 +1579,7 @@ M.ListReplicationSetsInput = {
 
 M.ListReplicationSetsOutput = {
     type = "structure",
+    id = "ListReplicationSetsOutput",
     members = {
         replicationSetArns = {
             type = "list",
@@ -1517,6 +1596,7 @@ M.ListReplicationSetsOutput = {
 
 M.ListResponsePlansInput = {
     type = "structure",
+    id = "ListResponsePlansInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1529,6 +1609,7 @@ M.ListResponsePlansInput = {
 
 M.ResponsePlanSummary = {
     type = "structure",
+    id = "ResponsePlanSummary",
     members = {
         arn = {
             type = "string",
@@ -1550,6 +1631,7 @@ M.ResponsePlanSummary = {
 
 M.ListResponsePlansOutput = {
     type = "structure",
+    id = "ListResponsePlansOutput",
     members = {
         responsePlanSummaries = {
             type = "list",
@@ -1566,6 +1648,7 @@ M.ListResponsePlansOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1579,6 +1662,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1602,6 +1686,7 @@ M.SortOrder = {
 
 M.ListTimelineEventsInput = {
     type = "structure",
+    id = "ListTimelineEventsInput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -1630,6 +1715,7 @@ M.ListTimelineEventsInput = {
 
 M.ListTimelineEventsOutput = {
     type = "structure",
+    id = "ListTimelineEventsOutput",
     members = {
         eventSummaries = {
             type = "list",
@@ -1646,6 +1732,7 @@ M.ListTimelineEventsOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1664,6 +1751,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         policyId = {
             type = "string",
@@ -1676,6 +1764,7 @@ M.PutResourcePolicyOutput = {
 
 M.RelatedItemsUpdate = {
     type = "union",
+    id = "RelatedItemsUpdate",
     members = {
         itemToAdd = M.RelatedItem,
         itemToRemove = M.ItemIdentifier,
@@ -1684,6 +1773,7 @@ M.RelatedItemsUpdate = {
 
 M.TriggerDetails = {
     type = "structure",
+    id = "TriggerDetails",
     members = {
         source = {
             type = "string",
@@ -1708,6 +1798,7 @@ M.TriggerDetails = {
 
 M.StartIncidentInput = {
     type = "structure",
+    id = "StartIncidentInput",
     members = {
         clientToken = {
             type = "string",
@@ -1737,6 +1828,7 @@ M.StartIncidentInput = {
 
 M.StartIncidentOutput = {
     type = "structure",
+    id = "StartIncidentOutput",
     members = {
         incidentRecordArn = {
             type = "string",
@@ -1749,6 +1841,7 @@ M.StartIncidentOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1770,10 +1863,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1795,10 +1890,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDeletionProtectionInput = {
     type = "structure",
+    id = "UpdateDeletionProtectionInput",
     members = {
         arn = {
             type = "string",
@@ -1823,10 +1920,12 @@ M.UpdateDeletionProtectionInput = {
 
 M.UpdateDeletionProtectionOutput = {
     type = "structure",
+    id = "UpdateDeletionProtectionOutput",
 }
 
 M.UpdateIncidentRecordInput = {
     type = "structure",
+    id = "UpdateIncidentRecordInput",
     members = {
         clientToken = {
             type = "string",
@@ -1862,10 +1961,12 @@ M.UpdateIncidentRecordInput = {
 
 M.UpdateIncidentRecordOutput = {
     type = "structure",
+    id = "UpdateIncidentRecordOutput",
 }
 
 M.UpdateRelatedItemsInput = {
     type = "structure",
+    id = "UpdateRelatedItemsInput",
     members = {
         clientToken = {
             type = "string",
@@ -1887,10 +1988,12 @@ M.UpdateRelatedItemsInput = {
 
 M.UpdateRelatedItemsOutput = {
     type = "structure",
+    id = "UpdateRelatedItemsOutput",
 }
 
 M.UpdateReplicationSetAction = {
     type = "union",
+    id = "UpdateReplicationSetAction",
     members = {
         addRegionAction = M.AddRegionAction,
         deleteRegionAction = M.DeleteRegionAction,
@@ -1899,6 +2002,7 @@ M.UpdateReplicationSetAction = {
 
 M.UpdateReplicationSetInput = {
     type = "structure",
+    id = "UpdateReplicationSetInput",
     members = {
         arn = {
             type = "string",
@@ -1924,10 +2028,12 @@ M.UpdateReplicationSetInput = {
 
 M.UpdateReplicationSetOutput = {
     type = "structure",
+    id = "UpdateReplicationSetOutput",
 }
 
 M.UpdateResponsePlanInput = {
     type = "structure",
+    id = "UpdateResponsePlanInput",
     members = {
         clientToken = {
             type = "string",
@@ -1983,10 +2089,12 @@ M.UpdateResponsePlanInput = {
 
 M.UpdateResponsePlanOutput = {
     type = "structure",
+    id = "UpdateResponsePlanOutput",
 }
 
 M.UpdateTimelineEventInput = {
     type = "structure",
+    id = "UpdateTimelineEventInput",
     members = {
         clientToken = {
             type = "string",
@@ -2024,6 +2132,7 @@ M.UpdateTimelineEventInput = {
 
 M.UpdateTimelineEventOutput = {
     type = "structure",
+    id = "UpdateTimelineEventOutput",
 }
 
 return M

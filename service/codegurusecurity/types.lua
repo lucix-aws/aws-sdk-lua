@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         errorCode = {
@@ -27,6 +28,7 @@ M.AccessDeniedException = {
 
 M.FindingMetricsValuePerSeverity = {
     type = "structure",
+    id = "FindingMetricsValuePerSeverity",
     members = {
         info = {
             type = "double",
@@ -48,6 +50,7 @@ M.FindingMetricsValuePerSeverity = {
 
 M.AccountFindingsMetric = {
     type = "structure",
+    id = "AccountFindingsMetric",
     members = {
         date = {
             type = "timestamp",
@@ -66,6 +69,7 @@ M.AnalysisType = {
 
 M.FindingIdentifier = {
     type = "structure",
+    id = "FindingIdentifier",
     members = {
         scanName = {
             type = "string",
@@ -84,6 +88,7 @@ M.FindingIdentifier = {
 
 M.BatchGetFindingsInput = {
     type = "structure",
+    id = "BatchGetFindingsInput",
     members = {
         findingIdentifiers = {
             type = "list",
@@ -105,6 +110,7 @@ M.ErrorCode = {
 
 M.BatchGetFindingsError = {
     type = "structure",
+    id = "BatchGetFindingsError",
     members = {
         scanName = {
             type = "string",
@@ -135,6 +141,7 @@ M.BatchGetFindingsError = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         text = {
             type = "string",
@@ -147,6 +154,7 @@ M.Recommendation = {
 
 M.SuggestedFix = {
     type = "structure",
+    id = "SuggestedFix",
     members = {
         description = {
             type = "string",
@@ -159,6 +167,7 @@ M.SuggestedFix = {
 
 M.Remediation = {
     type = "structure",
+    id = "Remediation",
     members = {
         recommendation = M.Recommendation,
         suggestedFixes = {
@@ -170,6 +179,7 @@ M.Remediation = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         id = {
             type = "string",
@@ -196,6 +206,7 @@ M.Status = {
 
 M.CodeLine = {
     type = "structure",
+    id = "CodeLine",
     members = {
         number = {
             type = "integer",
@@ -208,6 +219,7 @@ M.CodeLine = {
 
 M.FilePath = {
     type = "structure",
+    id = "FilePath",
     members = {
         name = {
             type = "string",
@@ -230,6 +242,7 @@ M.FilePath = {
 
 M.Vulnerability = {
     type = "structure",
+    id = "Vulnerability",
     members = {
         referenceUrls = {
             type = "list",
@@ -251,6 +264,7 @@ M.Vulnerability = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         createdAt = {
             type = "timestamp",
@@ -300,6 +314,7 @@ M.Finding = {
 
 M.BatchGetFindingsOutput = {
     type = "structure",
+    id = "BatchGetFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -320,6 +335,7 @@ M.BatchGetFindingsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         error = {
@@ -333,6 +349,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         errorCode = {
@@ -358,6 +375,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -384,6 +402,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         errorCode = {
@@ -413,6 +432,7 @@ M.ValidationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         errorCode = {
@@ -444,6 +464,7 @@ M.ConflictException = {
 
 M.ResourceId = {
     type = "union",
+    id = "ResourceId",
     members = {
         codeArtifactId = {
             type = "string",
@@ -458,6 +479,7 @@ M.ScanType = {
 
 M.CreateScanInput = {
     type = "structure",
+    id = "CreateScanInput",
     members = {
         clientToken = {
             type = "string",
@@ -496,6 +518,7 @@ M.ScanState = {
 
 M.CreateScanOutput = {
     type = "structure",
+    id = "CreateScanOutput",
     members = {
         scanName = {
             type = "string",
@@ -526,6 +549,7 @@ M.CreateScanOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         errorCode = {
@@ -557,6 +581,7 @@ M.ResourceNotFoundException = {
 
 M.CreateUploadUrlInput = {
     type = "structure",
+    id = "CreateUploadUrlInput",
     members = {
         scanName = {
             type = "string",
@@ -569,6 +594,7 @@ M.CreateUploadUrlInput = {
 
 M.CreateUploadUrlOutput = {
     type = "structure",
+    id = "CreateUploadUrlOutput",
     members = {
         s3Url = {
             type = "string",
@@ -595,10 +621,12 @@ M.CreateUploadUrlOutput = {
 
 M.GetAccountConfigurationInput = {
     type = "structure",
+    id = "GetAccountConfigurationInput",
 }
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         kmsKeyArn = {
             type = "string",
@@ -608,6 +636,7 @@ M.EncryptionConfig = {
 
 M.GetAccountConfigurationOutput = {
     type = "structure",
+    id = "GetAccountConfigurationOutput",
     members = {
         encryptionConfig = setmetatable({ traits = {
             required = true,
@@ -617,6 +646,7 @@ M.GetAccountConfigurationOutput = {
 
 M.GetFindingsInput = {
     type = "structure",
+    id = "GetFindingsInput",
     members = {
         scanName = {
             type = "string",
@@ -648,6 +678,7 @@ M.GetFindingsInput = {
 
 M.GetFindingsOutput = {
     type = "structure",
+    id = "GetFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -661,6 +692,7 @@ M.GetFindingsOutput = {
 
 M.GetMetricsSummaryInput = {
     type = "structure",
+    id = "GetMetricsSummaryInput",
     members = {
         date = {
             type = "timestamp",
@@ -674,6 +706,7 @@ M.GetMetricsSummaryInput = {
 
 M.CategoryWithFindingNum = {
     type = "structure",
+    id = "CategoryWithFindingNum",
     members = {
         categoryName = {
             type = "string",
@@ -686,6 +719,7 @@ M.CategoryWithFindingNum = {
 
 M.ScanNameWithFindingNum = {
     type = "structure",
+    id = "ScanNameWithFindingNum",
     members = {
         scanName = {
             type = "string",
@@ -698,6 +732,7 @@ M.ScanNameWithFindingNum = {
 
 M.MetricsSummary = {
     type = "structure",
+    id = "MetricsSummary",
     members = {
         date = {
             type = "timestamp",
@@ -720,6 +755,7 @@ M.MetricsSummary = {
 
 M.GetMetricsSummaryOutput = {
     type = "structure",
+    id = "GetMetricsSummaryOutput",
     members = {
         metricsSummary = M.MetricsSummary,
     },
@@ -727,6 +763,7 @@ M.GetMetricsSummaryOutput = {
 
 M.GetScanInput = {
     type = "structure",
+    id = "GetScanInput",
     members = {
         scanName = {
             type = "string",
@@ -746,6 +783,7 @@ M.GetScanInput = {
 
 M.GetScanOutput = {
     type = "structure",
+    id = "GetScanOutput",
     members = {
         scanName = {
             type = "string",
@@ -794,6 +832,7 @@ M.GetScanOutput = {
 
 M.ListFindingsMetricsInput = {
     type = "structure",
+    id = "ListFindingsMetricsInput",
     members = {
         nextToken = {
             type = "string",
@@ -826,6 +865,7 @@ M.ListFindingsMetricsInput = {
 
 M.ListFindingsMetricsOutput = {
     type = "structure",
+    id = "ListFindingsMetricsOutput",
     members = {
         findingsMetrics = {
             type = "list",
@@ -839,6 +879,7 @@ M.ListFindingsMetricsOutput = {
 
 M.ListScansInput = {
     type = "structure",
+    id = "ListScansInput",
     members = {
         nextToken = {
             type = "string",
@@ -857,6 +898,7 @@ M.ListScansInput = {
 
 M.ScanSummary = {
     type = "structure",
+    id = "ScanSummary",
     members = {
         scanState = {
             type = "string",
@@ -893,6 +935,7 @@ M.ScanSummary = {
 
 M.ListScansOutput = {
     type = "structure",
+    id = "ListScansOutput",
     members = {
         summaries = {
             type = "list",
@@ -906,6 +949,7 @@ M.ListScansOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -919,6 +963,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -930,6 +975,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -951,10 +997,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -976,10 +1024,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccountConfigurationInput = {
     type = "structure",
+    id = "UpdateAccountConfigurationInput",
     members = {
         encryptionConfig = setmetatable({ traits = {
             required = true,
@@ -989,6 +1039,7 @@ M.UpdateAccountConfigurationInput = {
 
 M.UpdateAccountConfigurationOutput = {
     type = "structure",
+    id = "UpdateAccountConfigurationOutput",
     members = {
         encryptionConfig = setmetatable({ traits = {
             required = true,

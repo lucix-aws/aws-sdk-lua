@@ -23,6 +23,7 @@ M.XAxisType = {
 
 M.MetricQuery = {
     type = "structure",
+    id = "MetricQuery",
     members = {
         MetricName = {
             type = "string",
@@ -65,6 +66,7 @@ M.MetricQuery = {
 
 M.BatchGetMetricsInput = {
     type = "structure",
+    id = "BatchGetMetricsInput",
     members = {
         MetricQueries = {
             type = "list",
@@ -85,6 +87,7 @@ M.MetricQueryResultStatus = {
 
 M.MetricQueryResult = {
     type = "structure",
+    id = "MetricQueryResult",
     members = {
         Status = {
             type = "string",
@@ -114,6 +117,7 @@ M.MetricQueryResult = {
 
 M.BatchGetMetricsOutput = {
     type = "structure",
+    id = "BatchGetMetricsOutput",
     members = {
         MetricQueryResults = {
             type = "list",
@@ -124,6 +128,7 @@ M.BatchGetMetricsOutput = {
 
 M.RawMetricData = {
     type = "structure",
+    id = "RawMetricData",
     members = {
         MetricName = {
             type = "string",
@@ -151,6 +156,7 @@ M.RawMetricData = {
 
 M.BatchPutMetricsInput = {
     type = "structure",
+    id = "BatchPutMetricsInput",
     members = {
         TrialComponentName = {
             type = "string",
@@ -177,6 +183,7 @@ M.PutMetricsErrorCode = {
 
 M.BatchPutMetricsError = {
     type = "structure",
+    id = "BatchPutMetricsError",
     members = {
         Code = {
             type = "string",
@@ -189,6 +196,7 @@ M.BatchPutMetricsError = {
 
 M.BatchPutMetricsOutput = {
     type = "structure",
+    id = "BatchPutMetricsOutput",
     members = {
         Errors = {
             type = "list",

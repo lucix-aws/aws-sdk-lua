@@ -1228,19 +1228,19 @@ local record ValidationException
     ErrorDetails: {ValidationError}
 end
 
-local type ProfileTaskStatus = "IN_PROGRESS" | "CANCELED" | "SUCCEEDED" | "FAILED"
-
-local type VerificationType = "BUSINESS_VERIFICATION" | "REGISTRANT_VERIFICATION"
-
-local type ProfileVisibility = "PRIVATE" | "PUBLIC"
-
-local type VerificationStatus = "PENDING_CUSTOMER_ACTION" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED" | "REJECTED"
-
-local type ParticipantType = "SENDER" | "RECEIVER"
-
 local type InvitationStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "CANCELED" | "EXPIRED"
 
 local type AccessType = "ALLOW_ALL" | "DENY_ALL" | "ALLOW_BY_DEFAULT_DENY_SOME"
+
+local type ParticipantType = "SENDER" | "RECEIVER"
+
+local type ProfileTaskStatus = "IN_PROGRESS" | "CANCELED" | "SUCCEEDED" | "FAILED"
+
+local type ProfileVisibility = "PRIVATE" | "PUBLIC"
+
+local type VerificationType = "BUSINESS_VERIFICATION" | "REGISTRANT_VERIFICATION"
+
+local type VerificationStatus = "PENDING_CUSTOMER_ACTION" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED" | "REJECTED"
 
 local type PrimarySolutionType = "SOFTWARE_PRODUCTS" | "CONSULTING_SERVICES" | "PROFESSIONAL_SERVICES" | "MANAGED_SERVICES" | "HARDWARE_PRODUCTS" | "COMMUNICATION_SERVICES" | "VALUE_ADDED_RESALE_AWS_SERVICES" | "TRAINING_SERVICES"
 

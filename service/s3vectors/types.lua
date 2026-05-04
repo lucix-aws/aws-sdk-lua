@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -42,6 +44,7 @@ M.SseType = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         sseType = {
             type = "string",
@@ -57,6 +60,7 @@ M.EncryptionConfiguration = {
 
 M.MetadataConfiguration = {
     type = "structure",
+    id = "MetadataConfiguration",
     members = {
         nonFilterableMetadataKeys = {
             type = "list",
@@ -70,6 +74,7 @@ M.MetadataConfiguration = {
 
 M.CreateIndexInput = {
     type = "structure",
+    id = "CreateIndexInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -113,6 +118,7 @@ M.CreateIndexInput = {
 
 M.CreateIndexOutput = {
     type = "structure",
+    id = "CreateIndexOutput",
     members = {
         indexArn = {
             type = "string",
@@ -125,6 +131,7 @@ M.CreateIndexOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -138,6 +145,7 @@ M.InternalServerException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -151,6 +159,7 @@ M.NotFoundException = {
 
 M.RequestTimeoutException = {
     type = "structure",
+    id = "RequestTimeoutException",
     error = "client",
     members = {
         message = {
@@ -164,6 +173,7 @@ M.RequestTimeoutException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -177,6 +187,7 @@ M.ServiceQuotaExceededException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -190,6 +201,7 @@ M.ServiceUnavailableException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -203,6 +215,7 @@ M.TooManyRequestsException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         path = {
             type = "string",
@@ -221,6 +234,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -238,6 +252,7 @@ M.ValidationException = {
 
 M.CreateVectorBucketInput = {
     type = "structure",
+    id = "CreateVectorBucketInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -256,6 +271,7 @@ M.CreateVectorBucketInput = {
 
 M.CreateVectorBucketOutput = {
     type = "structure",
+    id = "CreateVectorBucketOutput",
     members = {
         vectorBucketArn = {
             type = "string",
@@ -268,6 +284,7 @@ M.CreateVectorBucketOutput = {
 
 M.DeleteIndexInput = {
     type = "structure",
+    id = "DeleteIndexInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -283,10 +300,12 @@ M.DeleteIndexInput = {
 
 M.DeleteIndexOutput = {
     type = "structure",
+    id = "DeleteIndexOutput",
 }
 
 M.DeleteVectorBucketInput = {
     type = "structure",
+    id = "DeleteVectorBucketInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -299,10 +318,12 @@ M.DeleteVectorBucketInput = {
 
 M.DeleteVectorBucketOutput = {
     type = "structure",
+    id = "DeleteVectorBucketOutput",
 }
 
 M.DeleteVectorBucketPolicyInput = {
     type = "structure",
+    id = "DeleteVectorBucketPolicyInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -315,10 +336,12 @@ M.DeleteVectorBucketPolicyInput = {
 
 M.DeleteVectorBucketPolicyOutput = {
     type = "structure",
+    id = "DeleteVectorBucketPolicyOutput",
 }
 
 M.DeleteVectorsInput = {
     type = "structure",
+    id = "DeleteVectorsInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -341,10 +364,12 @@ M.DeleteVectorsInput = {
 
 M.DeleteVectorsOutput = {
     type = "structure",
+    id = "DeleteVectorsOutput",
 }
 
 M.KmsDisabledException = {
     type = "structure",
+    id = "KmsDisabledException",
     error = "client",
     members = {
         message = {
@@ -358,6 +383,7 @@ M.KmsDisabledException = {
 
 M.KmsInvalidKeyUsageException = {
     type = "structure",
+    id = "KmsInvalidKeyUsageException",
     error = "client",
     members = {
         message = {
@@ -371,6 +397,7 @@ M.KmsInvalidKeyUsageException = {
 
 M.KmsInvalidStateException = {
     type = "structure",
+    id = "KmsInvalidStateException",
     error = "client",
     members = {
         message = {
@@ -384,6 +411,7 @@ M.KmsInvalidStateException = {
 
 M.KmsNotFoundException = {
     type = "structure",
+    id = "KmsNotFoundException",
     error = "client",
     members = {
         message = {
@@ -397,6 +425,7 @@ M.KmsNotFoundException = {
 
 M.GetIndexInput = {
     type = "structure",
+    id = "GetIndexInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -412,6 +441,7 @@ M.GetIndexInput = {
 
 M.Index = {
     type = "structure",
+    id = "Index",
     members = {
         vectorBucketName = {
             type = "string",
@@ -462,6 +492,7 @@ M.Index = {
 
 M.GetIndexOutput = {
     type = "structure",
+    id = "GetIndexOutput",
     members = {
         index = setmetatable({ traits = {
             required = true,
@@ -471,6 +502,7 @@ M.GetIndexOutput = {
 
 M.VectorData = {
     type = "union",
+    id = "VectorData",
     members = {
         float32 = {
             type = "list",
@@ -481,6 +513,7 @@ M.VectorData = {
 
 M.GetOutputVector = {
     type = "structure",
+    id = "GetOutputVector",
     members = {
         key = {
             type = "string",
@@ -497,6 +530,7 @@ M.GetOutputVector = {
 
 M.GetVectorBucketInput = {
     type = "structure",
+    id = "GetVectorBucketInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -509,6 +543,7 @@ M.GetVectorBucketInput = {
 
 M.VectorBucket = {
     type = "structure",
+    id = "VectorBucket",
     members = {
         vectorBucketName = {
             type = "string",
@@ -534,6 +569,7 @@ M.VectorBucket = {
 
 M.GetVectorBucketOutput = {
     type = "structure",
+    id = "GetVectorBucketOutput",
     members = {
         vectorBucket = setmetatable({ traits = {
             required = true,
@@ -543,6 +579,7 @@ M.GetVectorBucketOutput = {
 
 M.GetVectorBucketPolicyInput = {
     type = "structure",
+    id = "GetVectorBucketPolicyInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -555,6 +592,7 @@ M.GetVectorBucketPolicyInput = {
 
 M.GetVectorBucketPolicyOutput = {
     type = "structure",
+    id = "GetVectorBucketPolicyOutput",
     members = {
         policy = {
             type = "string",
@@ -564,6 +602,7 @@ M.GetVectorBucketPolicyOutput = {
 
 M.GetVectorsInput = {
     type = "structure",
+    id = "GetVectorsInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -598,6 +637,7 @@ M.GetVectorsInput = {
 
 M.GetVectorsOutput = {
     type = "structure",
+    id = "GetVectorsOutput",
     members = {
         vectors = {
             type = "list",
@@ -611,6 +651,7 @@ M.GetVectorsOutput = {
 
 M.ListIndexesInput = {
     type = "structure",
+    id = "ListIndexesInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -632,6 +673,7 @@ M.ListIndexesInput = {
 
 M.IndexSummary = {
     type = "structure",
+    id = "IndexSummary",
     members = {
         vectorBucketName = {
             type = "string",
@@ -662,6 +704,7 @@ M.IndexSummary = {
 
 M.ListIndexesOutput = {
     type = "structure",
+    id = "ListIndexesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -678,6 +721,7 @@ M.ListIndexesOutput = {
 
 M.ListVectorsInput = {
     type = "structure",
+    id = "ListVectorsInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -726,6 +770,7 @@ M.ListVectorsInput = {
 
 M.ListOutputVector = {
     type = "structure",
+    id = "ListOutputVector",
     members = {
         key = {
             type = "string",
@@ -742,6 +787,7 @@ M.ListOutputVector = {
 
 M.ListVectorsOutput = {
     type = "structure",
+    id = "ListVectorsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -758,6 +804,7 @@ M.ListVectorsOutput = {
 
 M.PutInputVector = {
     type = "structure",
+    id = "PutInputVector",
     members = {
         key = {
             type = "string",
@@ -779,6 +826,7 @@ M.PutInputVector = {
 
 M.PutVectorsInput = {
     type = "structure",
+    id = "PutVectorsInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -801,10 +849,12 @@ M.PutVectorsInput = {
 
 M.PutVectorsOutput = {
     type = "structure",
+    id = "PutVectorsOutput",
 }
 
 M.QueryVectorsInput = {
     type = "structure",
+    id = "QueryVectorsInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -844,6 +894,7 @@ M.QueryVectorsInput = {
 
 M.QueryOutputVector = {
     type = "structure",
+    id = "QueryOutputVector",
     members = {
         distance = {
             type = "float",
@@ -862,6 +913,7 @@ M.QueryOutputVector = {
 
 M.QueryVectorsOutput = {
     type = "structure",
+    id = "QueryVectorsOutput",
     members = {
         vectors = {
             type = "list",
@@ -881,6 +933,7 @@ M.QueryVectorsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -894,6 +947,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -908,6 +962,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVectorBucketsInput = {
     type = "structure",
+    id = "ListVectorBucketsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -923,6 +978,7 @@ M.ListVectorBucketsInput = {
 
 M.VectorBucketSummary = {
     type = "structure",
+    id = "VectorBucketSummary",
     members = {
         vectorBucketName = {
             type = "string",
@@ -947,6 +1003,7 @@ M.VectorBucketSummary = {
 
 M.ListVectorBucketsOutput = {
     type = "structure",
+    id = "ListVectorBucketsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -963,6 +1020,7 @@ M.ListVectorBucketsOutput = {
 
 M.PutVectorBucketPolicyInput = {
     type = "structure",
+    id = "PutVectorBucketPolicyInput",
     members = {
         vectorBucketName = {
             type = "string",
@@ -981,10 +1039,12 @@ M.PutVectorBucketPolicyInput = {
 
 M.PutVectorBucketPolicyOutput = {
     type = "structure",
+    id = "PutVectorBucketPolicyOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1006,10 +1066,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1031,6 +1093,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

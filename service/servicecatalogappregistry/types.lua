@@ -2,6 +2,7 @@ local M = {}
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         id = {
             type = "string",
@@ -42,6 +43,7 @@ M.Application = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         id = {
             type = "string",
@@ -78,6 +80,7 @@ M.ApplicationTagStatus = {
 
 M.ResourcesListItem = {
     type = "structure",
+    id = "ResourcesListItem",
     members = {
         resourceArn = {
             type = "string",
@@ -96,6 +99,7 @@ M.ResourcesListItem = {
 
 M.ApplicationTagResult = {
     type = "structure",
+    id = "ApplicationTagResult",
     members = {
         applicationTagStatus = {
             type = "string",
@@ -115,6 +119,7 @@ M.ApplicationTagResult = {
 
 M.TagQueryConfiguration = {
     type = "structure",
+    id = "TagQueryConfiguration",
     members = {
         tagKey = {
             type = "string",
@@ -124,6 +129,7 @@ M.TagQueryConfiguration = {
 
 M.AppRegistryConfiguration = {
     type = "structure",
+    id = "AppRegistryConfiguration",
     members = {
         tagQueryConfiguration = M.TagQueryConfiguration,
     },
@@ -131,6 +137,7 @@ M.AppRegistryConfiguration = {
 
 M.AssociateAttributeGroupInput = {
     type = "structure",
+    id = "AssociateAttributeGroupInput",
     members = {
         application = {
             type = "string",
@@ -151,6 +158,7 @@ M.AssociateAttributeGroupInput = {
 
 M.AssociateAttributeGroupOutput = {
     type = "structure",
+    id = "AssociateAttributeGroupOutput",
     members = {
         applicationArn = {
             type = "string",
@@ -163,6 +171,7 @@ M.AssociateAttributeGroupOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -173,6 +182,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -183,6 +193,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -193,6 +204,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -203,6 +215,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -223,6 +236,7 @@ M.ResourceType = {
 
 M.AssociateResourceInput = {
     type = "structure",
+    id = "AssociateResourceInput",
     members = {
         application = {
             type = "string",
@@ -254,6 +268,7 @@ M.AssociateResourceInput = {
 
 M.AssociateResourceOutput = {
     type = "structure",
+    id = "AssociateResourceOutput",
     members = {
         applicationArn = {
             type = "string",
@@ -270,6 +285,7 @@ M.AssociateResourceOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -286,6 +302,7 @@ M.ThrottlingException = {
 
 M.AttributeGroup = {
     type = "structure",
+    id = "AttributeGroup",
     members = {
         id = {
             type = "string",
@@ -321,6 +338,7 @@ M.AttributeGroup = {
 
 M.AttributeGroupDetails = {
     type = "structure",
+    id = "AttributeGroupDetails",
     members = {
         id = {
             type = "string",
@@ -339,6 +357,7 @@ M.AttributeGroupDetails = {
 
 M.AttributeGroupSummary = {
     type = "structure",
+    id = "AttributeGroupSummary",
     members = {
         id = {
             type = "string",
@@ -372,6 +391,7 @@ M.AttributeGroupSummary = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         name = {
             type = "string",
@@ -399,6 +419,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         application = M.Application,
     },
@@ -406,6 +427,7 @@ M.CreateApplicationOutput = {
 
 M.CreateAttributeGroupInput = {
     type = "structure",
+    id = "CreateAttributeGroupInput",
     members = {
         name = {
             type = "string",
@@ -439,6 +461,7 @@ M.CreateAttributeGroupInput = {
 
 M.CreateAttributeGroupOutput = {
     type = "structure",
+    id = "CreateAttributeGroupOutput",
     members = {
         attributeGroup = M.AttributeGroup,
     },
@@ -446,6 +469,7 @@ M.CreateAttributeGroupOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         application = {
             type = "string",
@@ -459,6 +483,7 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
     members = {
         application = M.ApplicationSummary,
     },
@@ -466,6 +491,7 @@ M.DeleteApplicationOutput = {
 
 M.DeleteAttributeGroupInput = {
     type = "structure",
+    id = "DeleteAttributeGroupInput",
     members = {
         attributeGroup = {
             type = "string",
@@ -479,6 +505,7 @@ M.DeleteAttributeGroupInput = {
 
 M.DeleteAttributeGroupOutput = {
     type = "structure",
+    id = "DeleteAttributeGroupOutput",
     members = {
         attributeGroup = M.AttributeGroupSummary,
     },
@@ -486,6 +513,7 @@ M.DeleteAttributeGroupOutput = {
 
 M.DisassociateAttributeGroupInput = {
     type = "structure",
+    id = "DisassociateAttributeGroupInput",
     members = {
         application = {
             type = "string",
@@ -506,6 +534,7 @@ M.DisassociateAttributeGroupInput = {
 
 M.DisassociateAttributeGroupOutput = {
     type = "structure",
+    id = "DisassociateAttributeGroupOutput",
     members = {
         applicationArn = {
             type = "string",
@@ -518,6 +547,7 @@ M.DisassociateAttributeGroupOutput = {
 
 M.DisassociateResourceInput = {
     type = "structure",
+    id = "DisassociateResourceInput",
     members = {
         application = {
             type = "string",
@@ -545,6 +575,7 @@ M.DisassociateResourceInput = {
 
 M.DisassociateResourceOutput = {
     type = "structure",
+    id = "DisassociateResourceOutput",
     members = {
         applicationArn = {
             type = "string",
@@ -557,6 +588,7 @@ M.DisassociateResourceOutput = {
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         application = {
             type = "string",
@@ -579,6 +611,7 @@ M.ResourceGroupState = {
 
 M.ResourceGroup = {
     type = "structure",
+    id = "ResourceGroup",
     members = {
         state = {
             type = "string",
@@ -594,6 +627,7 @@ M.ResourceGroup = {
 
 M.Integrations = {
     type = "structure",
+    id = "Integrations",
     members = {
         resourceGroup = M.ResourceGroup,
         applicationTagResourceGroup = M.ResourceGroup,
@@ -602,6 +636,7 @@ M.Integrations = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         id = {
             type = "string",
@@ -656,6 +691,7 @@ M.ResourceItemStatus = {
 
 M.GetAssociatedResourceInput = {
     type = "structure",
+    id = "GetAssociatedResourceInput",
     members = {
         application = {
             type = "string",
@@ -702,6 +738,7 @@ M.GetAssociatedResourceInput = {
 
 M.ResourceIntegrations = {
     type = "structure",
+    id = "ResourceIntegrations",
     members = {
         resourceGroup = M.ResourceGroup,
     },
@@ -709,6 +746,7 @@ M.ResourceIntegrations = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         name = {
             type = "string",
@@ -728,6 +766,7 @@ M.Resource = {
 
 M.GetAssociatedResourceOutput = {
     type = "structure",
+    id = "GetAssociatedResourceOutput",
     members = {
         resource = M.Resource,
         options = {
@@ -740,6 +779,7 @@ M.GetAssociatedResourceOutput = {
 
 M.GetAttributeGroupInput = {
     type = "structure",
+    id = "GetAttributeGroupInput",
     members = {
         attributeGroup = {
             type = "string",
@@ -753,6 +793,7 @@ M.GetAttributeGroupInput = {
 
 M.GetAttributeGroupOutput = {
     type = "structure",
+    id = "GetAttributeGroupOutput",
     members = {
         id = {
             type = "string",
@@ -794,10 +835,12 @@ M.GetAttributeGroupOutput = {
 
 M.GetConfigurationInput = {
     type = "structure",
+    id = "GetConfigurationInput",
 }
 
 M.GetConfigurationOutput = {
     type = "structure",
+    id = "GetConfigurationOutput",
     members = {
         configuration = M.AppRegistryConfiguration,
     },
@@ -805,6 +848,7 @@ M.GetConfigurationOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -823,6 +867,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         applications = {
             type = "list",
@@ -836,6 +881,7 @@ M.ListApplicationsOutput = {
 
 M.ListAssociatedAttributeGroupsInput = {
     type = "structure",
+    id = "ListAssociatedAttributeGroupsInput",
     members = {
         application = {
             type = "string",
@@ -861,6 +907,7 @@ M.ListAssociatedAttributeGroupsInput = {
 
 M.ListAssociatedAttributeGroupsOutput = {
     type = "structure",
+    id = "ListAssociatedAttributeGroupsOutput",
     members = {
         attributeGroups = {
             type = "list",
@@ -874,6 +921,7 @@ M.ListAssociatedAttributeGroupsOutput = {
 
 M.ListAssociatedResourcesInput = {
     type = "structure",
+    id = "ListAssociatedResourcesInput",
     members = {
         application = {
             type = "string",
@@ -899,6 +947,7 @@ M.ListAssociatedResourcesInput = {
 
 M.ResourceDetails = {
     type = "structure",
+    id = "ResourceDetails",
     members = {
         tagValue = {
             type = "string",
@@ -908,6 +957,7 @@ M.ResourceDetails = {
 
 M.ResourceInfo = {
     type = "structure",
+    id = "ResourceInfo",
     members = {
         name = {
             type = "string",
@@ -928,6 +978,7 @@ M.ResourceInfo = {
 
 M.ListAssociatedResourcesOutput = {
     type = "structure",
+    id = "ListAssociatedResourcesOutput",
     members = {
         resources = {
             type = "list",
@@ -941,6 +992,7 @@ M.ListAssociatedResourcesOutput = {
 
 M.ListAttributeGroupsInput = {
     type = "structure",
+    id = "ListAttributeGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -959,6 +1011,7 @@ M.ListAttributeGroupsInput = {
 
 M.ListAttributeGroupsOutput = {
     type = "structure",
+    id = "ListAttributeGroupsOutput",
     members = {
         attributeGroups = {
             type = "list",
@@ -972,6 +1025,7 @@ M.ListAttributeGroupsOutput = {
 
 M.ListAttributeGroupsForApplicationInput = {
     type = "structure",
+    id = "ListAttributeGroupsForApplicationInput",
     members = {
         application = {
             type = "string",
@@ -997,6 +1051,7 @@ M.ListAttributeGroupsForApplicationInput = {
 
 M.ListAttributeGroupsForApplicationOutput = {
     type = "structure",
+    id = "ListAttributeGroupsForApplicationOutput",
     members = {
         attributeGroupsDetails = {
             type = "list",
@@ -1010,6 +1065,7 @@ M.ListAttributeGroupsForApplicationOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1023,6 +1079,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1034,6 +1091,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutConfigurationInput = {
     type = "structure",
+    id = "PutConfigurationInput",
     members = {
         configuration = setmetatable({ traits = {
             required = true,
@@ -1043,10 +1101,12 @@ M.PutConfigurationInput = {
 
 M.PutConfigurationOutput = {
     type = "structure",
+    id = "PutConfigurationOutput",
 }
 
 M.SyncResourceInput = {
     type = "structure",
+    id = "SyncResourceInput",
     members = {
         resourceType = {
             type = "string",
@@ -1072,6 +1132,7 @@ M.SyncAction = {
 
 M.SyncResourceOutput = {
     type = "structure",
+    id = "SyncResourceOutput",
     members = {
         applicationArn = {
             type = "string",
@@ -1087,6 +1148,7 @@ M.SyncResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1108,10 +1170,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1133,10 +1197,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         application = {
             type = "string",
@@ -1156,6 +1222,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         application = M.Application,
     },
@@ -1163,6 +1230,7 @@ M.UpdateApplicationOutput = {
 
 M.UpdateAttributeGroupInput = {
     type = "structure",
+    id = "UpdateAttributeGroupInput",
     members = {
         attributeGroup = {
             type = "string",
@@ -1185,6 +1253,7 @@ M.UpdateAttributeGroupInput = {
 
 M.UpdateAttributeGroupOutput = {
     type = "structure",
+    id = "UpdateAttributeGroupOutput",
     members = {
         attributeGroup = M.AttributeGroup,
     },

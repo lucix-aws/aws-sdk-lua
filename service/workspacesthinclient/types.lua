@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.ApplyTimeOf = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -48,6 +50,7 @@ M.MaintenanceWindowType = {
 
 M.MaintenanceWindow = {
     type = "structure",
+    id = "MaintenanceWindow",
     members = {
         type = {
             type = "string",
@@ -89,6 +92,7 @@ M.SoftwareSetUpdateSchedule = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -142,6 +146,7 @@ M.DesktopType = {
 
 M.EnvironmentSummary = {
     type = "structure",
+    id = "EnvironmentSummary",
     members = {
         id = {
             type = "string",
@@ -188,6 +193,7 @@ M.EnvironmentSummary = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         environment = M.EnvironmentSummary,
     },
@@ -195,6 +201,7 @@ M.CreateEnvironmentOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -211,6 +218,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -227,6 +235,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -249,6 +258,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -271,6 +281,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -296,6 +307,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -313,6 +325,7 @@ M.ValidationException = {
 
 M.DeleteDeviceInput = {
     type = "structure",
+    id = "DeleteDeviceInput",
     members = {
         id = {
             type = "string",
@@ -333,10 +346,12 @@ M.DeleteDeviceInput = {
 
 M.DeleteDeviceOutput = {
     type = "structure",
+    id = "DeleteDeviceOutput",
 }
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         id = {
             type = "string",
@@ -357,6 +372,7 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
 }
 
 M.TargetDeviceStatus = {
@@ -366,6 +382,7 @@ M.TargetDeviceStatus = {
 
 M.DeregisterDeviceInput = {
     type = "structure",
+    id = "DeregisterDeviceInput",
     members = {
         id = {
             type = "string",
@@ -388,6 +405,7 @@ M.DeregisterDeviceInput = {
 
 M.DeregisterDeviceOutput = {
     type = "structure",
+    id = "DeregisterDeviceOutput",
 }
 
 M.DeviceSoftwareSetComplianceStatus = {
@@ -411,6 +429,7 @@ M.DeviceStatus = {
 
 M.Device = {
     type = "structure",
+    id = "Device",
     members = {
         id = {
             type = "string",
@@ -480,6 +499,7 @@ M.Device = {
 
 M.DeviceSummary = {
     type = "structure",
+    id = "DeviceSummary",
     members = {
         id = {
             type = "string",
@@ -540,6 +560,7 @@ M.EnvironmentSoftwareSetComplianceStatus = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         id = {
             type = "string",
@@ -603,6 +624,7 @@ M.Environment = {
 
 M.GetDeviceInput = {
     type = "structure",
+    id = "GetDeviceInput",
     members = {
         id = {
             type = "string",
@@ -616,6 +638,7 @@ M.GetDeviceInput = {
 
 M.GetDeviceOutput = {
     type = "structure",
+    id = "GetDeviceOutput",
     members = {
         device = M.Device,
     },
@@ -623,6 +646,7 @@ M.GetDeviceOutput = {
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         id = {
             type = "string",
@@ -636,6 +660,7 @@ M.GetEnvironmentInput = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         environment = M.Environment,
     },
@@ -643,6 +668,7 @@ M.GetEnvironmentOutput = {
 
 M.GetSoftwareSetInput = {
     type = "structure",
+    id = "GetSoftwareSetInput",
     members = {
         id = {
             type = "string",
@@ -656,6 +682,7 @@ M.GetSoftwareSetInput = {
 
 M.Software = {
     type = "structure",
+    id = "Software",
     members = {
         name = {
             type = "string",
@@ -673,6 +700,7 @@ M.SoftwareSetValidationStatus = {
 
 M.SoftwareSet = {
     type = "structure",
+    id = "SoftwareSet",
     members = {
         id = {
             type = "string",
@@ -701,6 +729,7 @@ M.SoftwareSet = {
 
 M.GetSoftwareSetOutput = {
     type = "structure",
+    id = "GetSoftwareSetOutput",
     members = {
         softwareSet = M.SoftwareSet,
     },
@@ -708,6 +737,7 @@ M.GetSoftwareSetOutput = {
 
 M.ListDevicesInput = {
     type = "structure",
+    id = "ListDevicesInput",
     members = {
         nextToken = {
             type = "string",
@@ -726,6 +756,7 @@ M.ListDevicesInput = {
 
 M.ListDevicesOutput = {
     type = "structure",
+    id = "ListDevicesOutput",
     members = {
         devices = {
             type = "list",
@@ -739,6 +770,7 @@ M.ListDevicesOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -757,6 +789,7 @@ M.ListEnvironmentsInput = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         environments = {
             type = "list",
@@ -770,6 +803,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListSoftwareSetsInput = {
     type = "structure",
+    id = "ListSoftwareSetsInput",
     members = {
         nextToken = {
             type = "string",
@@ -788,6 +822,7 @@ M.ListSoftwareSetsInput = {
 
 M.SoftwareSetSummary = {
     type = "structure",
+    id = "SoftwareSetSummary",
     members = {
         id = {
             type = "string",
@@ -812,6 +847,7 @@ M.SoftwareSetSummary = {
 
 M.ListSoftwareSetsOutput = {
     type = "structure",
+    id = "ListSoftwareSetsOutput",
     members = {
         softwareSets = {
             type = "list",
@@ -825,6 +861,7 @@ M.ListSoftwareSetsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -838,6 +875,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -849,6 +887,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -870,10 +909,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -895,10 +936,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDeviceInput = {
     type = "structure",
+    id = "UpdateDeviceInput",
     members = {
         id = {
             type = "string",
@@ -921,6 +964,7 @@ M.UpdateDeviceInput = {
 
 M.UpdateDeviceOutput = {
     type = "structure",
+    id = "UpdateDeviceOutput",
     members = {
         device = M.DeviceSummary,
     },
@@ -928,6 +972,7 @@ M.UpdateDeviceOutput = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         id = {
             type = "string",
@@ -965,6 +1010,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         environment = M.EnvironmentSummary,
     },
@@ -972,6 +1018,7 @@ M.UpdateEnvironmentOutput = {
 
 M.UpdateSoftwareSetInput = {
     type = "structure",
+    id = "UpdateSoftwareSetInput",
     members = {
         id = {
             type = "string",
@@ -991,6 +1038,7 @@ M.UpdateSoftwareSetInput = {
 
 M.UpdateSoftwareSetOutput = {
     type = "structure",
+    id = "UpdateSoftwareSetOutput",
 }
 
 return M

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         ContactName = {
             type = "string",
@@ -77,6 +79,7 @@ M.AddressType = {
 
 M.AssetLocation = {
     type = "structure",
+    id = "AssetLocation",
     members = {
         RackElevation = {
             type = "float",
@@ -94,6 +97,7 @@ M.AssetType = {
 
 M.AssetInstanceTypeCapacity = {
     type = "structure",
+    id = "AssetInstanceTypeCapacity",
     members = {
         InstanceType = {
             type = "string",
@@ -120,6 +124,7 @@ M.ComputeAssetState = {
 
 M.ComputeAttributes = {
     type = "structure",
+    id = "ComputeAttributes",
     members = {
         HostId = {
             type = "string",
@@ -143,6 +148,7 @@ M.ComputeAttributes = {
 
 M.AssetInfo = {
     type = "structure",
+    id = "AssetInfo",
     members = {
         AssetId = {
             type = "string",
@@ -169,6 +175,7 @@ M.AWSServiceName = {
 
 M.AssetInstance = {
     type = "structure",
+    id = "AssetInstance",
     members = {
         InstanceId = {
             type = "string",
@@ -197,6 +204,7 @@ M.AssetState = {
 
 M.BlockingInstance = {
     type = "structure",
+    id = "BlockingInstance",
     members = {
         InstanceId = {
             type = "string",
@@ -222,6 +230,7 @@ M.BlockingResourceType = {
 
 M.CancelCapacityTaskInput = {
     type = "structure",
+    id = "CancelCapacityTaskInput",
     members = {
         CapacityTaskId = {
             type = "string",
@@ -242,6 +251,7 @@ M.CancelCapacityTaskInput = {
 
 M.CancelCapacityTaskOutput = {
     type = "structure",
+    id = "CancelCapacityTaskOutput",
 }
 
 M.ResourceType = {
@@ -251,6 +261,7 @@ M.ResourceType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -267,6 +278,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -277,6 +289,7 @@ M.InternalServerException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -287,6 +300,7 @@ M.NotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -297,6 +311,7 @@ M.ValidationException = {
 
 M.CancelOrderInput = {
     type = "structure",
+    id = "CancelOrderInput",
     members = {
         OrderId = {
             type = "string",
@@ -310,6 +325,7 @@ M.CancelOrderInput = {
 
 M.CancelOrderOutput = {
     type = "structure",
+    id = "CancelOrderOutput",
 }
 
 M.CapacityTaskFailureType = {
@@ -322,6 +338,7 @@ M.CapacityTaskFailureType = {
 
 M.CapacityTaskFailure = {
     type = "structure",
+    id = "CapacityTaskFailure",
     members = {
         Reason = {
             type = "string",
@@ -347,6 +364,7 @@ M.CapacityTaskStatus = {
 
 M.CapacityTaskSummary = {
     type = "structure",
+    id = "CapacityTaskSummary",
     members = {
         CapacityTaskId = {
             type = "string",
@@ -377,6 +395,7 @@ M.CapacityTaskSummary = {
 
 M.EC2Capacity = {
     type = "structure",
+    id = "EC2Capacity",
     members = {
         Family = {
             type = "string",
@@ -402,6 +421,7 @@ M.SupportedStorageEnum = {
 
 M.CatalogItem = {
     type = "structure",
+    id = "CatalogItem",
     members = {
         CatalogItemId = {
             type = "string",
@@ -437,6 +457,7 @@ M.CatalogItemClass = {
 
 M.ConnectionDetails = {
     type = "structure",
+    id = "ConnectionDetails",
     members = {
         ClientPublicKey = {
             type = "string",
@@ -462,6 +483,7 @@ M.ConnectionDetails = {
 
 M.LineItemRequest = {
     type = "structure",
+    id = "LineItemRequest",
     members = {
         CatalogItemId = {
             type = "string",
@@ -486,6 +508,7 @@ M.PaymentTerm = {
 
 M.CreateOrderInput = {
     type = "structure",
+    id = "CreateOrderInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -511,6 +534,7 @@ M.CreateOrderInput = {
 
 M.LineItemAssetInformation = {
     type = "structure",
+    id = "LineItemAssetInformation",
     members = {
         AssetId = {
             type = "string",
@@ -532,6 +556,7 @@ M.ShipmentCarrier = {
 
 M.ShipmentInformation = {
     type = "structure",
+    id = "ShipmentInformation",
     members = {
         ShipmentTrackingNumber = {
             type = "string",
@@ -556,6 +581,7 @@ M.LineItemStatus = {
 
 M.LineItem = {
     type = "structure",
+    id = "LineItem",
     members = {
         CatalogItemId = {
             type = "string",
@@ -604,6 +630,7 @@ M.OrderStatus = {
 
 M.Order = {
     type = "structure",
+    id = "Order",
     members = {
         OutpostId = {
             type = "string",
@@ -638,6 +665,7 @@ M.Order = {
 
 M.CreateOrderOutput = {
     type = "structure",
+    id = "CreateOrderOutput",
     members = {
         Order = M.Order,
     },
@@ -645,6 +673,7 @@ M.CreateOrderOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -660,6 +689,7 @@ M.SupportedHardwareType = {
 
 M.CreateOutpostInput = {
     type = "structure",
+    id = "CreateOutpostInput",
     members = {
         Name = {
             type = "string",
@@ -695,6 +725,7 @@ M.CreateOutpostInput = {
 
 M.Outpost = {
     type = "structure",
+    id = "Outpost",
     members = {
         OutpostId = {
             type = "string",
@@ -739,6 +770,7 @@ M.Outpost = {
 
 M.CreateOutpostOutput = {
     type = "structure",
+    id = "CreateOutpostOutput",
     members = {
         Outpost = M.Outpost,
     },
@@ -746,6 +778,7 @@ M.CreateOutpostOutput = {
 
 M.CreateRenewalInput = {
     type = "structure",
+    id = "CreateRenewalInput",
     members = {
         PaymentOption = {
             type = "string",
@@ -776,6 +809,7 @@ M.CreateRenewalInput = {
 
 M.CreateRenewalOutput = {
     type = "structure",
+    id = "CreateRenewalOutput",
     members = {
         PaymentOption = {
             type = "string",
@@ -871,6 +905,7 @@ M.UplinkGbps = {
 
 M.RackPhysicalProperties = {
     type = "structure",
+    id = "RackPhysicalProperties",
     members = {
         PowerDrawKva = {
             type = "string",
@@ -904,6 +939,7 @@ M.RackPhysicalProperties = {
 
 M.CreateSiteInput = {
     type = "structure",
+    id = "CreateSiteInput",
     members = {
         Name = {
             type = "string",
@@ -930,6 +966,7 @@ M.CreateSiteInput = {
 
 M.Site = {
     type = "structure",
+    id = "Site",
     members = {
         SiteId = {
             type = "string",
@@ -969,6 +1006,7 @@ M.Site = {
 
 M.CreateSiteOutput = {
     type = "structure",
+    id = "CreateSiteOutput",
     members = {
         Site = M.Site,
     },
@@ -982,6 +1020,7 @@ M.DecommissionRequestStatus = {
 
 M.DeleteOutpostInput = {
     type = "structure",
+    id = "DeleteOutpostInput",
     members = {
         OutpostId = {
             type = "string",
@@ -995,10 +1034,12 @@ M.DeleteOutpostInput = {
 
 M.DeleteOutpostOutput = {
     type = "structure",
+    id = "DeleteOutpostOutput",
 }
 
 M.DeleteSiteInput = {
     type = "structure",
+    id = "DeleteSiteInput",
     members = {
         SiteId = {
             type = "string",
@@ -1012,10 +1053,12 @@ M.DeleteSiteInput = {
 
 M.DeleteSiteOutput = {
     type = "structure",
+    id = "DeleteSiteOutput",
 }
 
 M.GetCapacityTaskInput = {
     type = "structure",
+    id = "GetCapacityTaskInput",
     members = {
         CapacityTaskId = {
             type = "string",
@@ -1036,6 +1079,7 @@ M.GetCapacityTaskInput = {
 
 M.InstancesToExclude = {
     type = "structure",
+    id = "InstancesToExclude",
     members = {
         Instances = {
             type = "list",
@@ -1054,6 +1098,7 @@ M.InstancesToExclude = {
 
 M.InstanceTypeCapacity = {
     type = "structure",
+    id = "InstanceTypeCapacity",
     members = {
         InstanceType = {
             type = "string",
@@ -1078,6 +1123,7 @@ M.TaskActionOnBlockingInstances = {
 
 M.GetCapacityTaskOutput = {
     type = "structure",
+    id = "GetCapacityTaskOutput",
     members = {
         CapacityTaskId = {
             type = "string",
@@ -1123,6 +1169,7 @@ M.GetCapacityTaskOutput = {
 
 M.GetCatalogItemInput = {
     type = "structure",
+    id = "GetCatalogItemInput",
     members = {
         CatalogItemId = {
             type = "string",
@@ -1136,6 +1183,7 @@ M.GetCatalogItemInput = {
 
 M.GetCatalogItemOutput = {
     type = "structure",
+    id = "GetCatalogItemOutput",
     members = {
         CatalogItem = M.CatalogItem,
     },
@@ -1143,6 +1191,7 @@ M.GetCatalogItemOutput = {
 
 M.GetConnectionInput = {
     type = "structure",
+    id = "GetConnectionInput",
     members = {
         ConnectionId = {
             type = "string",
@@ -1156,6 +1205,7 @@ M.GetConnectionInput = {
 
 M.GetConnectionOutput = {
     type = "structure",
+    id = "GetConnectionOutput",
     members = {
         ConnectionId = {
             type = "string",
@@ -1166,6 +1216,7 @@ M.GetConnectionOutput = {
 
 M.GetOrderInput = {
     type = "structure",
+    id = "GetOrderInput",
     members = {
         OrderId = {
             type = "string",
@@ -1179,6 +1230,7 @@ M.GetOrderInput = {
 
 M.GetOrderOutput = {
     type = "structure",
+    id = "GetOrderOutput",
     members = {
         Order = M.Order,
     },
@@ -1186,6 +1238,7 @@ M.GetOrderOutput = {
 
 M.GetOutpostInput = {
     type = "structure",
+    id = "GetOutpostInput",
     members = {
         OutpostId = {
             type = "string",
@@ -1199,6 +1252,7 @@ M.GetOutpostInput = {
 
 M.GetOutpostOutput = {
     type = "structure",
+    id = "GetOutpostOutput",
     members = {
         Outpost = M.Outpost,
     },
@@ -1206,6 +1260,7 @@ M.GetOutpostOutput = {
 
 M.GetOutpostBillingInformationInput = {
     type = "structure",
+    id = "GetOutpostBillingInformationInput",
     members = {
         NextToken = {
             type = "string",
@@ -1244,6 +1299,7 @@ M.SubscriptionType = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         SubscriptionId = {
             type = "string",
@@ -1275,6 +1331,7 @@ M.Subscription = {
 
 M.GetOutpostBillingInformationOutput = {
     type = "structure",
+    id = "GetOutpostBillingInformationOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1297,6 +1354,7 @@ M.GetOutpostBillingInformationOutput = {
 
 M.GetOutpostInstanceTypesInput = {
     type = "structure",
+    id = "GetOutpostInstanceTypesInput",
     members = {
         OutpostId = {
             type = "string",
@@ -1322,6 +1380,7 @@ M.GetOutpostInstanceTypesInput = {
 
 M.InstanceTypeItem = {
     type = "structure",
+    id = "InstanceTypeItem",
     members = {
         InstanceType = {
             type = "string",
@@ -1334,6 +1393,7 @@ M.InstanceTypeItem = {
 
 M.GetOutpostInstanceTypesOutput = {
     type = "structure",
+    id = "GetOutpostInstanceTypesOutput",
     members = {
         InstanceTypes = {
             type = "list",
@@ -1353,6 +1413,7 @@ M.GetOutpostInstanceTypesOutput = {
 
 M.GetOutpostSupportedInstanceTypesInput = {
     type = "structure",
+    id = "GetOutpostSupportedInstanceTypesInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -1390,6 +1451,7 @@ M.GetOutpostSupportedInstanceTypesInput = {
 
 M.GetOutpostSupportedInstanceTypesOutput = {
     type = "structure",
+    id = "GetOutpostSupportedInstanceTypesOutput",
     members = {
         InstanceTypes = {
             type = "list",
@@ -1403,6 +1465,7 @@ M.GetOutpostSupportedInstanceTypesOutput = {
 
 M.GetRenewalPricingInput = {
     type = "structure",
+    id = "GetRenewalPricingInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -1420,6 +1483,7 @@ M.QuotePricingType = {
 
 M.SubscriptionPricingDetails = {
     type = "structure",
+    id = "SubscriptionPricingDetails",
     members = {
         PaymentOption = {
             type = "string",
@@ -1438,6 +1502,7 @@ M.SubscriptionPricingDetails = {
 
 M.PricingOption = {
     type = "structure",
+    id = "PricingOption",
     members = {
         PricingType = {
             type = "string",
@@ -1453,6 +1518,7 @@ M.PricingResult = {
 
 M.GetRenewalPricingOutput = {
     type = "structure",
+    id = "GetRenewalPricingOutput",
     members = {
         PricingResult = {
             type = "string",
@@ -1466,6 +1532,7 @@ M.GetRenewalPricingOutput = {
 
 M.GetSiteInput = {
     type = "structure",
+    id = "GetSiteInput",
     members = {
         SiteId = {
             type = "string",
@@ -1479,6 +1546,7 @@ M.GetSiteInput = {
 
 M.GetSiteOutput = {
     type = "structure",
+    id = "GetSiteOutput",
     members = {
         Site = M.Site,
     },
@@ -1486,6 +1554,7 @@ M.GetSiteOutput = {
 
 M.GetSiteAddressInput = {
     type = "structure",
+    id = "GetSiteAddressInput",
     members = {
         SiteId = {
             type = "string",
@@ -1506,6 +1575,7 @@ M.GetSiteAddressInput = {
 
 M.GetSiteAddressOutput = {
     type = "structure",
+    id = "GetSiteAddressOutput",
     members = {
         SiteId = {
             type = "string",
@@ -1519,6 +1589,7 @@ M.GetSiteAddressOutput = {
 
 M.ListAssetInstancesInput = {
     type = "structure",
+    id = "ListAssetInstancesInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -1572,6 +1643,7 @@ M.ListAssetInstancesInput = {
 
 M.ListAssetInstancesOutput = {
     type = "structure",
+    id = "ListAssetInstancesOutput",
     members = {
         AssetInstances = {
             type = "list",
@@ -1585,6 +1657,7 @@ M.ListAssetInstancesOutput = {
 
 M.ListAssetsInput = {
     type = "structure",
+    id = "ListAssetsInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -1631,6 +1704,7 @@ M.ListAssetsInput = {
 
 M.ListAssetsOutput = {
     type = "structure",
+    id = "ListAssetsOutput",
     members = {
         Assets = {
             type = "list",
@@ -1644,6 +1718,7 @@ M.ListAssetsOutput = {
 
 M.ListBlockingInstancesForCapacityTaskInput = {
     type = "structure",
+    id = "ListBlockingInstancesForCapacityTaskInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -1676,6 +1751,7 @@ M.ListBlockingInstancesForCapacityTaskInput = {
 
 M.ListBlockingInstancesForCapacityTaskOutput = {
     type = "structure",
+    id = "ListBlockingInstancesForCapacityTaskOutput",
     members = {
         BlockingInstances = {
             type = "list",
@@ -1689,6 +1765,7 @@ M.ListBlockingInstancesForCapacityTaskOutput = {
 
 M.ListCapacityTasksInput = {
     type = "structure",
+    id = "ListCapacityTasksInput",
     members = {
         OutpostIdentifierFilter = {
             type = "string",
@@ -1720,6 +1797,7 @@ M.ListCapacityTasksInput = {
 
 M.ListCapacityTasksOutput = {
     type = "structure",
+    id = "ListCapacityTasksOutput",
     members = {
         CapacityTasks = {
             type = "list",
@@ -1733,6 +1811,7 @@ M.ListCapacityTasksOutput = {
 
 M.ListCatalogItemsInput = {
     type = "structure",
+    id = "ListCatalogItemsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1772,6 +1851,7 @@ M.ListCatalogItemsInput = {
 
 M.ListCatalogItemsOutput = {
     type = "structure",
+    id = "ListCatalogItemsOutput",
     members = {
         CatalogItems = {
             type = "list",
@@ -1785,6 +1865,7 @@ M.ListCatalogItemsOutput = {
 
 M.ListOrdersInput = {
     type = "structure",
+    id = "ListOrdersInput",
     members = {
         OutpostIdentifierFilter = {
             type = "string",
@@ -1809,6 +1890,7 @@ M.ListOrdersInput = {
 
 M.OrderSummary = {
     type = "structure",
+    id = "OrderSummary",
     members = {
         OutpostId = {
             type = "string",
@@ -1838,6 +1920,7 @@ M.OrderSummary = {
 
 M.ListOrdersOutput = {
     type = "structure",
+    id = "ListOrdersOutput",
     members = {
         Orders = {
             type = "list",
@@ -1851,6 +1934,7 @@ M.ListOrdersOutput = {
 
 M.ListOutpostsInput = {
     type = "structure",
+    id = "ListOutpostsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1890,6 +1974,7 @@ M.ListOutpostsInput = {
 
 M.ListOutpostsOutput = {
     type = "structure",
+    id = "ListOutpostsOutput",
     members = {
         Outposts = {
             type = "list",
@@ -1903,6 +1988,7 @@ M.ListOutpostsOutput = {
 
 M.ListSitesInput = {
     type = "structure",
+    id = "ListSitesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1942,6 +2028,7 @@ M.ListSitesInput = {
 
 M.ListSitesOutput = {
     type = "structure",
+    id = "ListSitesOutput",
     members = {
         Sites = {
             type = "list",
@@ -1955,6 +2042,7 @@ M.ListSitesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1968,6 +2056,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1979,6 +2068,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartCapacityTaskInput = {
     type = "structure",
+    id = "StartCapacityTaskInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -2015,6 +2105,7 @@ M.StartCapacityTaskInput = {
 
 M.StartCapacityTaskOutput = {
     type = "structure",
+    id = "StartCapacityTaskOutput",
     members = {
         CapacityTaskId = {
             type = "string",
@@ -2060,6 +2151,7 @@ M.StartCapacityTaskOutput = {
 
 M.StartConnectionInput = {
     type = "structure",
+    id = "StartConnectionInput",
     members = {
         DeviceSerialNumber = {
             type = "string",
@@ -2088,6 +2180,7 @@ M.StartConnectionInput = {
 
 M.StartConnectionOutput = {
     type = "structure",
+    id = "StartConnectionOutput",
     members = {
         ConnectionId = {
             type = "string",
@@ -2100,6 +2193,7 @@ M.StartConnectionOutput = {
 
 M.StartOutpostDecommissionInput = {
     type = "structure",
+    id = "StartOutpostDecommissionInput",
     members = {
         OutpostIdentifier = {
             type = "string",
@@ -2119,6 +2213,7 @@ M.StartOutpostDecommissionInput = {
 
 M.StartOutpostDecommissionOutput = {
     type = "structure",
+    id = "StartOutpostDecommissionOutput",
     members = {
         Status = {
             type = "string",
@@ -2132,6 +2227,7 @@ M.StartOutpostDecommissionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2153,10 +2249,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2178,10 +2276,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateOutpostInput = {
     type = "structure",
+    id = "UpdateOutpostInput",
     members = {
         OutpostId = {
             type = "string",
@@ -2204,6 +2304,7 @@ M.UpdateOutpostInput = {
 
 M.UpdateOutpostOutput = {
     type = "structure",
+    id = "UpdateOutpostOutput",
     members = {
         Outpost = M.Outpost,
     },
@@ -2211,6 +2312,7 @@ M.UpdateOutpostOutput = {
 
 M.UpdateSiteInput = {
     type = "structure",
+    id = "UpdateSiteInput",
     members = {
         SiteId = {
             type = "string",
@@ -2233,6 +2335,7 @@ M.UpdateSiteInput = {
 
 M.UpdateSiteOutput = {
     type = "structure",
+    id = "UpdateSiteOutput",
     members = {
         Site = M.Site,
     },
@@ -2240,6 +2343,7 @@ M.UpdateSiteOutput = {
 
 M.UpdateSiteAddressInput = {
     type = "structure",
+    id = "UpdateSiteAddressInput",
     members = {
         SiteId = {
             type = "string",
@@ -2262,6 +2366,7 @@ M.UpdateSiteAddressInput = {
 
 M.UpdateSiteAddressOutput = {
     type = "structure",
+    id = "UpdateSiteAddressOutput",
     members = {
         AddressType = {
             type = "string",
@@ -2272,6 +2377,7 @@ M.UpdateSiteAddressOutput = {
 
 M.UpdateSiteRackPhysicalPropertiesInput = {
     type = "structure",
+    id = "UpdateSiteRackPhysicalPropertiesInput",
     members = {
         SiteId = {
             type = "string",
@@ -2312,6 +2418,7 @@ M.UpdateSiteRackPhysicalPropertiesInput = {
 
 M.UpdateSiteRackPhysicalPropertiesOutput = {
     type = "structure",
+    id = "UpdateSiteRackPhysicalPropertiesOutput",
     members = {
         Site = M.Site,
     },

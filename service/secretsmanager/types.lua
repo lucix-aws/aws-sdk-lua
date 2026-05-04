@@ -2,6 +2,7 @@ local M = {}
 
 M.ReplicaRegionType = {
     type = "structure",
+    id = "ReplicaRegionType",
     members = {
         Region = {
             type = "string",
@@ -14,6 +15,7 @@ M.ReplicaRegionType = {
 
 M.APIErrorType = {
     type = "structure",
+    id = "APIErrorType",
     members = {
         SecretId = {
             type = "string",
@@ -39,6 +41,7 @@ M.FilterNameStringType = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Key = {
             type = "string",
@@ -52,6 +55,7 @@ M.Filter = {
 
 M.BatchGetSecretValueInput = {
     type = "structure",
+    id = "BatchGetSecretValueInput",
     members = {
         SecretIdList = {
             type = "list",
@@ -72,6 +76,7 @@ M.BatchGetSecretValueInput = {
 
 M.SecretValueEntry = {
     type = "structure",
+    id = "SecretValueEntry",
     members = {
         ARN = {
             type = "string",
@@ -100,6 +105,7 @@ M.SecretValueEntry = {
 
 M.BatchGetSecretValueOutput = {
     type = "structure",
+    id = "BatchGetSecretValueOutput",
     members = {
         SecretValues = {
             type = "list",
@@ -117,6 +123,7 @@ M.BatchGetSecretValueOutput = {
 
 M.DecryptionFailure = {
     type = "structure",
+    id = "DecryptionFailure",
     error = "client",
     members = {
         Message = {
@@ -127,6 +134,7 @@ M.DecryptionFailure = {
 
 M.InternalServiceError = {
     type = "structure",
+    id = "InternalServiceError",
     error = "server",
     members = {
         Message = {
@@ -137,6 +145,7 @@ M.InternalServiceError = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -147,6 +156,7 @@ M.InvalidNextTokenException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -157,6 +167,7 @@ M.InvalidParameterException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -167,6 +178,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -177,6 +189,7 @@ M.ResourceNotFoundException = {
 
 M.CancelRotateSecretInput = {
     type = "structure",
+    id = "CancelRotateSecretInput",
     members = {
         SecretId = {
             type = "string",
@@ -189,6 +202,7 @@ M.CancelRotateSecretInput = {
 
 M.CancelRotateSecretOutput = {
     type = "structure",
+    id = "CancelRotateSecretOutput",
     members = {
         ARN = {
             type = "string",
@@ -204,6 +218,7 @@ M.CancelRotateSecretOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -216,6 +231,7 @@ M.Tag = {
 
 M.CreateSecretInput = {
     type = "structure",
+    id = "CreateSecretInput",
     members = {
         Name = {
             type = "string",
@@ -269,6 +285,7 @@ M.StatusType = {
 
 M.ReplicationStatusType = {
     type = "structure",
+    id = "ReplicationStatusType",
     members = {
         Region = {
             type = "string",
@@ -290,6 +307,7 @@ M.ReplicationStatusType = {
 
 M.CreateSecretOutput = {
     type = "structure",
+    id = "CreateSecretOutput",
     members = {
         ARN = {
             type = "string",
@@ -309,6 +327,7 @@ M.CreateSecretOutput = {
 
 M.EncryptionFailure = {
     type = "structure",
+    id = "EncryptionFailure",
     error = "client",
     members = {
         Message = {
@@ -319,6 +338,7 @@ M.EncryptionFailure = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -329,6 +349,7 @@ M.LimitExceededException = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         Message = {
@@ -339,6 +360,7 @@ M.MalformedPolicyDocumentException = {
 
 M.PreconditionNotMetException = {
     type = "structure",
+    id = "PreconditionNotMetException",
     error = "client",
     members = {
         Message = {
@@ -349,6 +371,7 @@ M.PreconditionNotMetException = {
 
 M.ResourceExistsException = {
     type = "structure",
+    id = "ResourceExistsException",
     error = "client",
     members = {
         Message = {
@@ -359,6 +382,7 @@ M.ResourceExistsException = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         SecretId = {
             type = "string",
@@ -371,6 +395,7 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
     members = {
         ARN = {
             type = "string",
@@ -383,6 +408,7 @@ M.DeleteResourcePolicyOutput = {
 
 M.DeleteSecretInput = {
     type = "structure",
+    id = "DeleteSecretInput",
     members = {
         SecretId = {
             type = "string",
@@ -407,6 +433,7 @@ M.DeleteSecretInput = {
 
 M.DeleteSecretOutput = {
     type = "structure",
+    id = "DeleteSecretOutput",
     members = {
         ARN = {
             type = "string",
@@ -422,6 +449,7 @@ M.DeleteSecretOutput = {
 
 M.DescribeSecretInput = {
     type = "structure",
+    id = "DescribeSecretInput",
     members = {
         SecretId = {
             type = "string",
@@ -434,6 +462,7 @@ M.DescribeSecretInput = {
 
 M.ExternalSecretRotationMetadataItem = {
     type = "structure",
+    id = "ExternalSecretRotationMetadataItem",
     members = {
         Key = {
             type = "string",
@@ -446,6 +475,7 @@ M.ExternalSecretRotationMetadataItem = {
 
 M.RotationRulesType = {
     type = "structure",
+    id = "RotationRulesType",
     members = {
         AutomaticallyAfterDays = {
             type = "long",
@@ -461,6 +491,7 @@ M.RotationRulesType = {
 
 M.DescribeSecretOutput = {
     type = "structure",
+    id = "DescribeSecretOutput",
     members = {
         ARN = {
             type = "string",
@@ -536,6 +567,7 @@ M.DescribeSecretOutput = {
 
 M.GetRandomPasswordInput = {
     type = "structure",
+    id = "GetRandomPasswordInput",
     members = {
         PasswordLength = {
             type = "long",
@@ -584,6 +616,7 @@ M.GetRandomPasswordInput = {
 
 M.GetRandomPasswordOutput = {
     type = "structure",
+    id = "GetRandomPasswordOutput",
     members = {
         RandomPassword = {
             type = "string",
@@ -593,6 +626,7 @@ M.GetRandomPasswordOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         SecretId = {
             type = "string",
@@ -605,6 +639,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ARN = {
             type = "string",
@@ -620,6 +655,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetSecretValueInput = {
     type = "structure",
+    id = "GetSecretValueInput",
     members = {
         SecretId = {
             type = "string",
@@ -638,6 +674,7 @@ M.GetSecretValueInput = {
 
 M.GetSecretValueOutput = {
     type = "structure",
+    id = "GetSecretValueOutput",
     members = {
         ARN = {
             type = "string",
@@ -678,6 +715,7 @@ M.SortOrderType = {
 
 M.ListSecretsInput = {
     type = "structure",
+    id = "ListSecretsInput",
     members = {
         IncludePlannedDeletion = {
             type = "boolean",
@@ -706,6 +744,7 @@ M.ListSecretsInput = {
 
 M.SecretListEntry = {
     type = "structure",
+    id = "SecretListEntry",
     members = {
         ARN = {
             type = "string",
@@ -777,6 +816,7 @@ M.SecretListEntry = {
 
 M.ListSecretsOutput = {
     type = "structure",
+    id = "ListSecretsOutput",
     members = {
         SecretList = {
             type = "list",
@@ -790,6 +830,7 @@ M.ListSecretsOutput = {
 
 M.ListSecretVersionIdsInput = {
     type = "structure",
+    id = "ListSecretVersionIdsInput",
     members = {
         SecretId = {
             type = "string",
@@ -814,6 +855,7 @@ M.ListSecretVersionIdsInput = {
 
 M.SecretVersionsListEntry = {
     type = "structure",
+    id = "SecretVersionsListEntry",
     members = {
         VersionId = {
             type = "string",
@@ -837,6 +879,7 @@ M.SecretVersionsListEntry = {
 
 M.ListSecretVersionIdsOutput = {
     type = "structure",
+    id = "ListSecretVersionIdsOutput",
     members = {
         Versions = {
             type = "list",
@@ -856,6 +899,7 @@ M.ListSecretVersionIdsOutput = {
 
 M.PublicPolicyException = {
     type = "structure",
+    id = "PublicPolicyException",
     error = "client",
     members = {
         Message = {
@@ -866,6 +910,7 @@ M.PublicPolicyException = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         SecretId = {
             type = "string",
@@ -890,6 +935,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ARN = {
             type = "string",
@@ -902,6 +948,7 @@ M.PutResourcePolicyOutput = {
 
 M.PutSecretValueInput = {
     type = "structure",
+    id = "PutSecretValueInput",
     members = {
         SecretId = {
             type = "string",
@@ -933,6 +980,7 @@ M.PutSecretValueInput = {
 
 M.PutSecretValueOutput = {
     type = "structure",
+    id = "PutSecretValueOutput",
     members = {
         ARN = {
             type = "string",
@@ -952,6 +1000,7 @@ M.PutSecretValueOutput = {
 
 M.RemoveRegionsFromReplicationInput = {
     type = "structure",
+    id = "RemoveRegionsFromReplicationInput",
     members = {
         SecretId = {
             type = "string",
@@ -971,6 +1020,7 @@ M.RemoveRegionsFromReplicationInput = {
 
 M.RemoveRegionsFromReplicationOutput = {
     type = "structure",
+    id = "RemoveRegionsFromReplicationOutput",
     members = {
         ARN = {
             type = "string",
@@ -984,6 +1034,7 @@ M.RemoveRegionsFromReplicationOutput = {
 
 M.ReplicateSecretToRegionsInput = {
     type = "structure",
+    id = "ReplicateSecretToRegionsInput",
     members = {
         SecretId = {
             type = "string",
@@ -1009,6 +1060,7 @@ M.ReplicateSecretToRegionsInput = {
 
 M.ReplicateSecretToRegionsOutput = {
     type = "structure",
+    id = "ReplicateSecretToRegionsOutput",
     members = {
         ARN = {
             type = "string",
@@ -1022,6 +1074,7 @@ M.ReplicateSecretToRegionsOutput = {
 
 M.RestoreSecretInput = {
     type = "structure",
+    id = "RestoreSecretInput",
     members = {
         SecretId = {
             type = "string",
@@ -1034,6 +1087,7 @@ M.RestoreSecretInput = {
 
 M.RestoreSecretOutput = {
     type = "structure",
+    id = "RestoreSecretOutput",
     members = {
         ARN = {
             type = "string",
@@ -1046,6 +1100,7 @@ M.RestoreSecretOutput = {
 
 M.RotateSecretInput = {
     type = "structure",
+    id = "RotateSecretInput",
     members = {
         SecretId = {
             type = "string",
@@ -1081,6 +1136,7 @@ M.RotateSecretInput = {
 
 M.RotateSecretOutput = {
     type = "structure",
+    id = "RotateSecretOutput",
     members = {
         ARN = {
             type = "string",
@@ -1096,6 +1152,7 @@ M.RotateSecretOutput = {
 
 M.StopReplicationToReplicaInput = {
     type = "structure",
+    id = "StopReplicationToReplicaInput",
     members = {
         SecretId = {
             type = "string",
@@ -1108,6 +1165,7 @@ M.StopReplicationToReplicaInput = {
 
 M.StopReplicationToReplicaOutput = {
     type = "structure",
+    id = "StopReplicationToReplicaOutput",
     members = {
         ARN = {
             type = "string",
@@ -1117,6 +1175,7 @@ M.StopReplicationToReplicaOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         SecretId = {
             type = "string",
@@ -1136,10 +1195,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         SecretId = {
             type = "string",
@@ -1159,10 +1220,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateSecretInput = {
     type = "structure",
+    id = "UpdateSecretInput",
     members = {
         SecretId = {
             type = "string",
@@ -1196,6 +1259,7 @@ M.UpdateSecretInput = {
 
 M.UpdateSecretOutput = {
     type = "structure",
+    id = "UpdateSecretOutput",
     members = {
         ARN = {
             type = "string",
@@ -1211,6 +1275,7 @@ M.UpdateSecretOutput = {
 
 M.UpdateSecretVersionStageInput = {
     type = "structure",
+    id = "UpdateSecretVersionStageInput",
     members = {
         SecretId = {
             type = "string",
@@ -1235,6 +1300,7 @@ M.UpdateSecretVersionStageInput = {
 
 M.UpdateSecretVersionStageOutput = {
     type = "structure",
+    id = "UpdateSecretVersionStageOutput",
     members = {
         ARN = {
             type = "string",
@@ -1247,6 +1313,7 @@ M.UpdateSecretVersionStageOutput = {
 
 M.ValidateResourcePolicyInput = {
     type = "structure",
+    id = "ValidateResourcePolicyInput",
     members = {
         SecretId = {
             type = "string",
@@ -1262,6 +1329,7 @@ M.ValidateResourcePolicyInput = {
 
 M.ValidationErrorsEntry = {
     type = "structure",
+    id = "ValidationErrorsEntry",
     members = {
         CheckName = {
             type = "string",
@@ -1274,6 +1342,7 @@ M.ValidationErrorsEntry = {
 
 M.ValidateResourcePolicyOutput = {
     type = "structure",
+    id = "ValidateResourcePolicyOutput",
     members = {
         PolicyValidationPassed = {
             type = "boolean",

@@ -303,9 +303,9 @@ local record ValidationException
     message: string
 end
 
-local type AuthenticationMethod = "X509ClientCertificate" | "SignatureVersion4"
-
 local type SuiteRunStatus = "PASS" | "FAIL" | "CANCELED" | "PENDING" | "RUNNING" | "STOPPING" | "STOPPED" | "PASS_WITH_WARNINGS" | "ERROR"
+
+local type AuthenticationMethod = "X509ClientCertificate" | "SignatureVersion4"
 
 local record M
     CreateSuiteDefinitionInput: CreateSuiteDefinitionInput

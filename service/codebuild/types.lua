@@ -2,6 +2,7 @@ local M = {}
 
 M.AccountLimitExceededException = {
     type = "structure",
+    id = "AccountLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccountLimitExceededException = {
 
 M.AccountSuspendedException = {
     type = "structure",
+    id = "AccountSuspendedException",
     error = "client",
     members = {
         message = {
@@ -46,6 +48,7 @@ M.AuthType = {
 
 M.AutoRetryConfig = {
     type = "structure",
+    id = "AutoRetryConfig",
     members = {
         autoRetryLimit = {
             type = "integer",
@@ -64,6 +67,7 @@ M.AutoRetryConfig = {
 
 M.BatchDeleteBuildsInput = {
     type = "structure",
+    id = "BatchDeleteBuildsInput",
     members = {
         ids = {
             type = "list",
@@ -77,6 +81,7 @@ M.BatchDeleteBuildsInput = {
 
 M.BuildNotDeleted = {
     type = "structure",
+    id = "BuildNotDeleted",
     members = {
         id = {
             type = "string",
@@ -89,6 +94,7 @@ M.BuildNotDeleted = {
 
 M.BatchDeleteBuildsOutput = {
     type = "structure",
+    id = "BatchDeleteBuildsOutput",
     members = {
         buildsDeleted = {
             type = "list",
@@ -103,6 +109,7 @@ M.BatchDeleteBuildsOutput = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -113,6 +120,7 @@ M.InvalidInputException = {
 
 M.BatchGetBuildBatchesInput = {
     type = "structure",
+    id = "BatchGetBuildBatchesInput",
     members = {
         ids = {
             type = "list",
@@ -132,6 +140,7 @@ M.BucketOwnerAccess = {
 
 M.BuildArtifacts = {
     type = "structure",
+    id = "BuildArtifacts",
     members = {
         location = {
             type = "string",
@@ -164,6 +173,7 @@ M.BatchReportModeType = {
 
 M.BatchRestrictions = {
     type = "structure",
+    id = "BatchRestrictions",
     members = {
         maximumBuildsAllowed = {
             type = "integer",
@@ -181,6 +191,7 @@ M.BatchRestrictions = {
 
 M.ProjectBuildBatchConfig = {
     type = "structure",
+    id = "ProjectBuildBatchConfig",
     members = {
         serviceRole = {
             type = "string",
@@ -209,6 +220,7 @@ M.StatusType = {
 
 M.ResolvedArtifact = {
     type = "structure",
+    id = "ResolvedArtifact",
     members = {
         type = {
             type = "string",
@@ -224,6 +236,7 @@ M.ResolvedArtifact = {
 
 M.BuildSummary = {
     type = "structure",
+    id = "BuildSummary",
     members = {
         arn = {
             type = "string",
@@ -244,6 +257,7 @@ M.BuildSummary = {
 
 M.BuildGroup = {
     type = "structure",
+    id = "BuildGroup",
     members = {
         identifier = {
             type = "string",
@@ -280,6 +294,7 @@ M.CacheType = {
 
 M.ProjectCache = {
     type = "structure",
+    id = "ProjectCache",
     members = {
         type = {
             type = "string",
@@ -307,6 +322,7 @@ M.MachineType = {
 
 M.ComputeConfiguration = {
     type = "structure",
+    id = "ComputeConfiguration",
     members = {
         vCpu = {
             type = "long",
@@ -343,6 +359,7 @@ M.ComputeType = {
 
 M.DockerServerStatus = {
     type = "structure",
+    id = "DockerServerStatus",
     members = {
         status = {
             type = "string",
@@ -355,6 +372,7 @@ M.DockerServerStatus = {
 
 M.DockerServer = {
     type = "structure",
+    id = "DockerServer",
     members = {
         computeType = {
             type = "string",
@@ -378,6 +396,7 @@ M.EnvironmentVariableType = {
 
 M.EnvironmentVariable = {
     type = "structure",
+    id = "EnvironmentVariable",
     members = {
         name = {
             type = "string",
@@ -399,6 +418,7 @@ M.EnvironmentVariable = {
 
 M.ProjectFleet = {
     type = "structure",
+    id = "ProjectFleet",
     members = {
         fleetArn = {
             type = "string",
@@ -417,6 +437,7 @@ M.CredentialProviderType = {
 
 M.RegistryCredential = {
     type = "structure",
+    id = "RegistryCredential",
     members = {
         credential = {
             type = "string",
@@ -450,6 +471,7 @@ M.EnvironmentType = {
 
 M.ProjectEnvironment = {
     type = "structure",
+    id = "ProjectEnvironment",
     members = {
         type = {
             type = "string",
@@ -495,6 +517,7 @@ M.FileSystemType = {
 
 M.ProjectFileSystemLocation = {
     type = "structure",
+    id = "ProjectFileSystemLocation",
     members = {
         type = {
             type = "string",
@@ -521,6 +544,7 @@ M.LogsConfigStatusType = {
 
 M.CloudWatchLogsConfig = {
     type = "structure",
+    id = "CloudWatchLogsConfig",
     members = {
         status = {
             type = "string",
@@ -539,6 +563,7 @@ M.CloudWatchLogsConfig = {
 
 M.S3LogsConfig = {
     type = "structure",
+    id = "S3LogsConfig",
     members = {
         status = {
             type = "string",
@@ -560,6 +585,7 @@ M.S3LogsConfig = {
 
 M.LogsConfig = {
     type = "structure",
+    id = "LogsConfig",
     members = {
         cloudWatchLogs = M.CloudWatchLogsConfig,
         s3Logs = M.S3LogsConfig,
@@ -568,6 +594,7 @@ M.LogsConfig = {
 
 M.PhaseContext = {
     type = "structure",
+    id = "PhaseContext",
     members = {
         statusCode = {
             type = "string",
@@ -590,6 +617,7 @@ M.BuildBatchPhaseType = {
 
 M.BuildBatchPhase = {
     type = "structure",
+    id = "BuildBatchPhase",
     members = {
         phaseType = {
             type = "string",
@@ -621,6 +649,7 @@ M.SourceAuthType = {
 
 M.SourceAuth = {
     type = "structure",
+    id = "SourceAuth",
     members = {
         type = {
             type = "string",
@@ -636,6 +665,7 @@ M.SourceAuth = {
 
 M.BuildStatusConfig = {
     type = "structure",
+    id = "BuildStatusConfig",
     members = {
         context = {
             type = "string",
@@ -648,6 +678,7 @@ M.BuildStatusConfig = {
 
 M.GitSubmodulesConfig = {
     type = "structure",
+    id = "GitSubmodulesConfig",
     members = {
         fetchSubmodules = {
             type = "boolean",
@@ -672,6 +703,7 @@ M.SourceType = {
 
 M.ProjectSource = {
     type = "structure",
+    id = "ProjectSource",
     members = {
         type = {
             type = "string",
@@ -705,6 +737,7 @@ M.ProjectSource = {
 
 M.ProjectSourceVersion = {
     type = "structure",
+    id = "ProjectSourceVersion",
     members = {
         sourceIdentifier = {
             type = "string",
@@ -723,6 +756,7 @@ M.ProjectSourceVersion = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         vpcId = {
             type = "string",
@@ -740,6 +774,7 @@ M.VpcConfig = {
 
 M.BuildBatch = {
     type = "structure",
+    id = "BuildBatch",
     members = {
         id = {
             type = "string",
@@ -835,6 +870,7 @@ M.BuildBatch = {
 
 M.BatchGetBuildBatchesOutput = {
     type = "structure",
+    id = "BatchGetBuildBatchesOutput",
     members = {
         buildBatches = {
             type = "list",
@@ -849,6 +885,7 @@ M.BatchGetBuildBatchesOutput = {
 
 M.BatchGetBuildsInput = {
     type = "structure",
+    id = "BatchGetBuildsInput",
     members = {
         ids = {
             type = "list",
@@ -862,6 +899,7 @@ M.BatchGetBuildsInput = {
 
 M.DebugSession = {
     type = "structure",
+    id = "DebugSession",
     members = {
         sessionEnabled = {
             type = "boolean",
@@ -874,6 +912,7 @@ M.DebugSession = {
 
 M.ExportedEnvironmentVariable = {
     type = "structure",
+    id = "ExportedEnvironmentVariable",
     members = {
         name = {
             type = "string",
@@ -886,6 +925,7 @@ M.ExportedEnvironmentVariable = {
 
 M.LogsLocation = {
     type = "structure",
+    id = "LogsLocation",
     members = {
         groupName = {
             type = "string",
@@ -912,6 +952,7 @@ M.LogsLocation = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         subnetId = {
             type = "string",
@@ -938,6 +979,7 @@ M.BuildPhaseType = {
 
 M.BuildPhase = {
     type = "structure",
+    id = "BuildPhase",
     members = {
         phaseType = {
             type = "string",
@@ -963,6 +1005,7 @@ M.BuildPhase = {
 
 M.Build = {
     type = "structure",
+    id = "Build",
     members = {
         id = {
             type = "string",
@@ -1060,6 +1103,7 @@ M.Build = {
 
 M.BatchGetBuildsOutput = {
     type = "structure",
+    id = "BatchGetBuildsOutput",
     members = {
         builds = {
             type = "list",
@@ -1074,6 +1118,7 @@ M.BatchGetBuildsOutput = {
 
 M.BatchGetCommandExecutionsInput = {
     type = "structure",
+    id = "BatchGetCommandExecutionsInput",
     members = {
         sandboxId = {
             type = "string",
@@ -1097,6 +1142,7 @@ M.CommandType = {
 
 M.CommandExecution = {
     type = "structure",
+    id = "CommandExecution",
     members = {
         id = {
             type = "string",
@@ -1140,6 +1186,7 @@ M.CommandExecution = {
 
 M.BatchGetCommandExecutionsOutput = {
     type = "structure",
+    id = "BatchGetCommandExecutionsOutput",
     members = {
         commandExecutions = {
             type = "list",
@@ -1154,6 +1201,7 @@ M.BatchGetCommandExecutionsOutput = {
 
 M.BatchGetFleetsInput = {
     type = "structure",
+    id = "BatchGetFleetsInput",
     members = {
         names = {
             type = "list",
@@ -1187,6 +1235,7 @@ M.FleetProxyRuleType = {
 
 M.FleetProxyRule = {
     type = "structure",
+    id = "FleetProxyRule",
     members = {
         type = {
             type = "string",
@@ -1212,6 +1261,7 @@ M.FleetProxyRule = {
 
 M.ProxyConfiguration = {
     type = "structure",
+    id = "ProxyConfiguration",
     members = {
         defaultBehavior = {
             type = "string",
@@ -1233,6 +1283,7 @@ M.FleetScalingMetricType = {
 
 M.TargetTrackingScalingConfiguration = {
     type = "structure",
+    id = "TargetTrackingScalingConfiguration",
     members = {
         metricType = {
             type = "string",
@@ -1245,6 +1296,7 @@ M.TargetTrackingScalingConfiguration = {
 
 M.ScalingConfigurationOutput = {
     type = "structure",
+    id = "ScalingConfigurationOutput",
     members = {
         scalingType = {
             type = "string",
@@ -1283,6 +1335,7 @@ M.FleetStatusCode = {
 
 M.FleetStatus = {
     type = "structure",
+    id = "FleetStatus",
     members = {
         statusCode = {
             type = "string",
@@ -1298,6 +1351,7 @@ M.FleetStatus = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -1310,6 +1364,7 @@ M.Tag = {
 
 M.Fleet = {
     type = "structure",
+    id = "Fleet",
     members = {
         arn = {
             type = "string",
@@ -1358,6 +1413,7 @@ M.Fleet = {
 
 M.BatchGetFleetsOutput = {
     type = "structure",
+    id = "BatchGetFleetsOutput",
     members = {
         fleets = {
             type = "list",
@@ -1372,6 +1428,7 @@ M.BatchGetFleetsOutput = {
 
 M.BatchGetProjectsInput = {
     type = "structure",
+    id = "BatchGetProjectsInput",
     members = {
         names = {
             type = "list",
@@ -1385,6 +1442,7 @@ M.BatchGetProjectsInput = {
 
 M.ProjectArtifacts = {
     type = "structure",
+    id = "ProjectArtifacts",
     members = {
         type = {
             type = "string",
@@ -1424,6 +1482,7 @@ M.ProjectArtifacts = {
 
 M.ProjectBadge = {
     type = "structure",
+    id = "ProjectBadge",
     members = {
         badgeEnabled = {
             type = "boolean",
@@ -1464,6 +1523,7 @@ M.WebhookFilterType = {
 
 M.WebhookFilter = {
     type = "structure",
+    id = "WebhookFilter",
     members = {
         type = {
             type = "string",
@@ -1508,6 +1568,7 @@ M.PullRequestBuildCommentApproval = {
 
 M.PullRequestBuildPolicy = {
     type = "structure",
+    id = "PullRequestBuildPolicy",
     members = {
         requiresCommentApproval = {
             type = "string",
@@ -1530,6 +1591,7 @@ M.WebhookScopeType = {
 
 M.ScopeConfiguration = {
     type = "structure",
+    id = "ScopeConfiguration",
     members = {
         name = {
             type = "string",
@@ -1558,6 +1620,7 @@ M.WebhookStatus = {
 
 M.Webhook = {
     type = "structure",
+    id = "Webhook",
     members = {
         url = {
             type = "string",
@@ -1597,6 +1660,7 @@ M.Webhook = {
 
 M.Project = {
     type = "structure",
+    id = "Project",
     members = {
         name = {
             type = "string",
@@ -1677,6 +1741,7 @@ M.Project = {
 
 M.BatchGetProjectsOutput = {
     type = "structure",
+    id = "BatchGetProjectsOutput",
     members = {
         projects = {
             type = "list",
@@ -1691,6 +1756,7 @@ M.BatchGetProjectsOutput = {
 
 M.BatchGetReportGroupsInput = {
     type = "structure",
+    id = "BatchGetReportGroupsInput",
     members = {
         reportGroupArns = {
             type = "list",
@@ -1714,6 +1780,7 @@ M.ReportPackagingType = {
 
 M.S3ReportExportConfig = {
     type = "structure",
+    id = "S3ReportExportConfig",
     members = {
         bucket = {
             type = "string",
@@ -1738,6 +1805,7 @@ M.S3ReportExportConfig = {
 
 M.ReportExportConfig = {
     type = "structure",
+    id = "ReportExportConfig",
     members = {
         exportConfigType = {
             type = "string",
@@ -1758,6 +1826,7 @@ M.ReportType = {
 
 M.ReportGroup = {
     type = "structure",
+    id = "ReportGroup",
     members = {
         arn = {
             type = "string",
@@ -1787,6 +1856,7 @@ M.ReportGroup = {
 
 M.BatchGetReportGroupsOutput = {
     type = "structure",
+    id = "BatchGetReportGroupsOutput",
     members = {
         reportGroups = {
             type = "list",
@@ -1801,6 +1871,7 @@ M.BatchGetReportGroupsOutput = {
 
 M.BatchGetReportsInput = {
     type = "structure",
+    id = "BatchGetReportsInput",
     members = {
         reportArns = {
             type = "list",
@@ -1814,6 +1885,7 @@ M.BatchGetReportsInput = {
 
 M.CodeCoverageReportSummary = {
     type = "structure",
+    id = "CodeCoverageReportSummary",
     members = {
         lineCoveragePercentage = {
             type = "double",
@@ -1846,6 +1918,7 @@ M.ReportStatusType = {
 
 M.TestReportSummary = {
     type = "structure",
+    id = "TestReportSummary",
     members = {
         total = {
             type = "integer",
@@ -1872,6 +1945,7 @@ M.TestReportSummary = {
 
 M.Report = {
     type = "structure",
+    id = "Report",
     members = {
         arn = {
             type = "string",
@@ -1908,6 +1982,7 @@ M.Report = {
 
 M.BatchGetReportsOutput = {
     type = "structure",
+    id = "BatchGetReportsOutput",
     members = {
         reports = {
             type = "list",
@@ -1922,6 +1997,7 @@ M.BatchGetReportsOutput = {
 
 M.BatchGetSandboxesInput = {
     type = "structure",
+    id = "BatchGetSandboxesInput",
     members = {
         ids = {
             type = "list",
@@ -1935,6 +2011,7 @@ M.BatchGetSandboxesInput = {
 
 M.SandboxSessionPhase = {
     type = "structure",
+    id = "SandboxSessionPhase",
     members = {
         phaseType = {
             type = "string",
@@ -1960,6 +2037,7 @@ M.SandboxSessionPhase = {
 
 M.SandboxSession = {
     type = "structure",
+    id = "SandboxSession",
     members = {
         id = {
             type = "string",
@@ -1990,6 +2068,7 @@ M.SandboxSession = {
 
 M.Sandbox = {
     type = "structure",
+    id = "Sandbox",
     members = {
         id = {
             type = "string",
@@ -2049,6 +2128,7 @@ M.Sandbox = {
 
 M.BatchGetSandboxesOutput = {
     type = "structure",
+    id = "BatchGetSandboxesOutput",
     members = {
         sandboxes = {
             type = "list",
@@ -2063,6 +2143,7 @@ M.BatchGetSandboxesOutput = {
 
 M.BuildBatchFilter = {
     type = "structure",
+    id = "BuildBatchFilter",
     members = {
         status = {
             type = "string",
@@ -2072,6 +2153,7 @@ M.BuildBatchFilter = {
 
 M.ScalingConfigurationInput = {
     type = "structure",
+    id = "ScalingConfigurationInput",
     members = {
         scalingType = {
             type = "string",
@@ -2088,6 +2170,7 @@ M.ScalingConfigurationInput = {
 
 M.CreateFleetInput = {
     type = "structure",
+    id = "CreateFleetInput",
     members = {
         name = {
             type = "string",
@@ -2135,6 +2218,7 @@ M.CreateFleetInput = {
 
 M.CreateFleetOutput = {
     type = "structure",
+    id = "CreateFleetOutput",
     members = {
         fleet = M.Fleet,
     },
@@ -2142,6 +2226,7 @@ M.CreateFleetOutput = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -2152,6 +2237,7 @@ M.ResourceAlreadyExistsException = {
 
 M.CreateProjectInput = {
     type = "structure",
+    id = "CreateProjectInput",
     members = {
         name = {
             type = "string",
@@ -2227,6 +2313,7 @@ M.CreateProjectInput = {
 
 M.CreateProjectOutput = {
     type = "structure",
+    id = "CreateProjectOutput",
     members = {
         project = M.Project,
     },
@@ -2234,6 +2321,7 @@ M.CreateProjectOutput = {
 
 M.CreateReportGroupInput = {
     type = "structure",
+    id = "CreateReportGroupInput",
     members = {
         name = {
             type = "string",
@@ -2259,6 +2347,7 @@ M.CreateReportGroupInput = {
 
 M.CreateReportGroupOutput = {
     type = "structure",
+    id = "CreateReportGroupOutput",
     members = {
         reportGroup = M.ReportGroup,
     },
@@ -2266,6 +2355,7 @@ M.CreateReportGroupOutput = {
 
 M.CreateWebhookInput = {
     type = "structure",
+    id = "CreateWebhookInput",
     members = {
         projectName = {
             type = "string",
@@ -2293,6 +2383,7 @@ M.CreateWebhookInput = {
 
 M.CreateWebhookOutput = {
     type = "structure",
+    id = "CreateWebhookOutput",
     members = {
         webhook = M.Webhook,
     },
@@ -2300,6 +2391,7 @@ M.CreateWebhookOutput = {
 
 M.OAuthProviderException = {
     type = "structure",
+    id = "OAuthProviderException",
     error = "client",
     members = {
         message = {
@@ -2310,6 +2402,7 @@ M.OAuthProviderException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2320,6 +2413,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteBuildBatchInput = {
     type = "structure",
+    id = "DeleteBuildBatchInput",
     members = {
         id = {
             type = "string",
@@ -2332,6 +2426,7 @@ M.DeleteBuildBatchInput = {
 
 M.DeleteBuildBatchOutput = {
     type = "structure",
+    id = "DeleteBuildBatchOutput",
     members = {
         statusCode = {
             type = "string",
@@ -2349,6 +2444,7 @@ M.DeleteBuildBatchOutput = {
 
 M.DeleteFleetInput = {
     type = "structure",
+    id = "DeleteFleetInput",
     members = {
         arn = {
             type = "string",
@@ -2361,10 +2457,12 @@ M.DeleteFleetInput = {
 
 M.DeleteFleetOutput = {
     type = "structure",
+    id = "DeleteFleetOutput",
 }
 
 M.DeleteProjectInput = {
     type = "structure",
+    id = "DeleteProjectInput",
     members = {
         name = {
             type = "string",
@@ -2377,10 +2475,12 @@ M.DeleteProjectInput = {
 
 M.DeleteProjectOutput = {
     type = "structure",
+    id = "DeleteProjectOutput",
 }
 
 M.DeleteReportInput = {
     type = "structure",
+    id = "DeleteReportInput",
     members = {
         arn = {
             type = "string",
@@ -2393,10 +2493,12 @@ M.DeleteReportInput = {
 
 M.DeleteReportOutput = {
     type = "structure",
+    id = "DeleteReportOutput",
 }
 
 M.DeleteReportGroupInput = {
     type = "structure",
+    id = "DeleteReportGroupInput",
     members = {
         arn = {
             type = "string",
@@ -2415,10 +2517,12 @@ M.DeleteReportGroupInput = {
 
 M.DeleteReportGroupOutput = {
     type = "structure",
+    id = "DeleteReportGroupOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2431,10 +2535,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteSourceCredentialsInput = {
     type = "structure",
+    id = "DeleteSourceCredentialsInput",
     members = {
         arn = {
             type = "string",
@@ -2447,6 +2553,7 @@ M.DeleteSourceCredentialsInput = {
 
 M.DeleteSourceCredentialsOutput = {
     type = "structure",
+    id = "DeleteSourceCredentialsOutput",
     members = {
         arn = {
             type = "string",
@@ -2456,6 +2563,7 @@ M.DeleteSourceCredentialsOutput = {
 
 M.DeleteWebhookInput = {
     type = "structure",
+    id = "DeleteWebhookInput",
     members = {
         projectName = {
             type = "string",
@@ -2468,6 +2576,7 @@ M.DeleteWebhookInput = {
 
 M.DeleteWebhookOutput = {
     type = "structure",
+    id = "DeleteWebhookOutput",
 }
 
 M.ReportCodeCoverageSortByType = {
@@ -2482,6 +2591,7 @@ M.SortOrderType = {
 
 M.DescribeCodeCoveragesInput = {
     type = "structure",
+    id = "DescribeCodeCoveragesInput",
     members = {
         reportArn = {
             type = "string",
@@ -2512,6 +2622,7 @@ M.DescribeCodeCoveragesInput = {
 
 M.CodeCoverage = {
     type = "structure",
+    id = "CodeCoverage",
     members = {
         id = {
             type = "string",
@@ -2548,6 +2659,7 @@ M.CodeCoverage = {
 
 M.DescribeCodeCoveragesOutput = {
     type = "structure",
+    id = "DescribeCodeCoveragesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2561,6 +2673,7 @@ M.DescribeCodeCoveragesOutput = {
 
 M.TestCaseFilter = {
     type = "structure",
+    id = "TestCaseFilter",
     members = {
         status = {
             type = "string",
@@ -2573,6 +2686,7 @@ M.TestCaseFilter = {
 
 M.DescribeTestCasesInput = {
     type = "structure",
+    id = "DescribeTestCasesInput",
     members = {
         reportArn = {
             type = "string",
@@ -2592,6 +2706,7 @@ M.DescribeTestCasesInput = {
 
 M.TestCase = {
     type = "structure",
+    id = "TestCase",
     members = {
         reportArn = {
             type = "string",
@@ -2625,6 +2740,7 @@ M.TestCase = {
 
 M.DescribeTestCasesOutput = {
     type = "structure",
+    id = "DescribeTestCasesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2650,6 +2766,7 @@ M.ReportGroupTrendFieldType = {
 
 M.GetReportGroupTrendInput = {
     type = "structure",
+    id = "GetReportGroupTrendInput",
     members = {
         reportGroupArn = {
             type = "string",
@@ -2671,6 +2788,7 @@ M.GetReportGroupTrendInput = {
 
 M.ReportWithRawData = {
     type = "structure",
+    id = "ReportWithRawData",
     members = {
         reportArn = {
             type = "string",
@@ -2683,6 +2801,7 @@ M.ReportWithRawData = {
 
 M.ReportGroupTrendStats = {
     type = "structure",
+    id = "ReportGroupTrendStats",
     members = {
         average = {
             type = "string",
@@ -2698,6 +2817,7 @@ M.ReportGroupTrendStats = {
 
 M.GetReportGroupTrendOutput = {
     type = "structure",
+    id = "GetReportGroupTrendOutput",
     members = {
         stats = M.ReportGroupTrendStats,
         rawData = {
@@ -2709,6 +2829,7 @@ M.GetReportGroupTrendOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2721,6 +2842,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         policy = {
             type = "string",
@@ -2738,6 +2860,7 @@ M.ServerType = {
 
 M.ImportSourceCredentialsInput = {
     type = "structure",
+    id = "ImportSourceCredentialsInput",
     members = {
         username = {
             type = "string",
@@ -2768,6 +2891,7 @@ M.ImportSourceCredentialsInput = {
 
 M.ImportSourceCredentialsOutput = {
     type = "structure",
+    id = "ImportSourceCredentialsOutput",
     members = {
         arn = {
             type = "string",
@@ -2777,6 +2901,7 @@ M.ImportSourceCredentialsOutput = {
 
 M.InvalidateProjectCacheInput = {
     type = "structure",
+    id = "InvalidateProjectCacheInput",
     members = {
         projectName = {
             type = "string",
@@ -2789,10 +2914,12 @@ M.InvalidateProjectCacheInput = {
 
 M.InvalidateProjectCacheOutput = {
     type = "structure",
+    id = "InvalidateProjectCacheOutput",
 }
 
 M.ListBuildBatchesInput = {
     type = "structure",
+    id = "ListBuildBatchesInput",
     members = {
         filter = M.BuildBatchFilter,
         maxResults = {
@@ -2809,6 +2936,7 @@ M.ListBuildBatchesInput = {
 
 M.ListBuildBatchesOutput = {
     type = "structure",
+    id = "ListBuildBatchesOutput",
     members = {
         ids = {
             type = "list",
@@ -2822,6 +2950,7 @@ M.ListBuildBatchesOutput = {
 
 M.ListBuildBatchesForProjectInput = {
     type = "structure",
+    id = "ListBuildBatchesForProjectInput",
     members = {
         projectName = {
             type = "string",
@@ -2841,6 +2970,7 @@ M.ListBuildBatchesForProjectInput = {
 
 M.ListBuildBatchesForProjectOutput = {
     type = "structure",
+    id = "ListBuildBatchesForProjectOutput",
     members = {
         ids = {
             type = "list",
@@ -2854,6 +2984,7 @@ M.ListBuildBatchesForProjectOutput = {
 
 M.ListBuildsInput = {
     type = "structure",
+    id = "ListBuildsInput",
     members = {
         sortOrder = {
             type = "string",
@@ -2866,6 +2997,7 @@ M.ListBuildsInput = {
 
 M.ListBuildsOutput = {
     type = "structure",
+    id = "ListBuildsOutput",
     members = {
         ids = {
             type = "list",
@@ -2879,6 +3011,7 @@ M.ListBuildsOutput = {
 
 M.ListBuildsForProjectInput = {
     type = "structure",
+    id = "ListBuildsForProjectInput",
     members = {
         projectName = {
             type = "string",
@@ -2897,6 +3030,7 @@ M.ListBuildsForProjectInput = {
 
 M.ListBuildsForProjectOutput = {
     type = "structure",
+    id = "ListBuildsForProjectOutput",
     members = {
         ids = {
             type = "list",
@@ -2910,6 +3044,7 @@ M.ListBuildsForProjectOutput = {
 
 M.ListCommandExecutionsForSandboxInput = {
     type = "structure",
+    id = "ListCommandExecutionsForSandboxInput",
     members = {
         sandboxId = {
             type = "string",
@@ -2931,6 +3066,7 @@ M.ListCommandExecutionsForSandboxInput = {
 
 M.ListCommandExecutionsForSandboxOutput = {
     type = "structure",
+    id = "ListCommandExecutionsForSandboxOutput",
     members = {
         commandExecutions = {
             type = "list",
@@ -2944,10 +3080,12 @@ M.ListCommandExecutionsForSandboxOutput = {
 
 M.ListCuratedEnvironmentImagesInput = {
     type = "structure",
+    id = "ListCuratedEnvironmentImagesInput",
 }
 
 M.EnvironmentImage = {
     type = "structure",
+    id = "EnvironmentImage",
     members = {
         name = {
             type = "string",
@@ -2977,6 +3115,7 @@ M.LanguageType = {
 
 M.EnvironmentLanguage = {
     type = "structure",
+    id = "EnvironmentLanguage",
     members = {
         language = {
             type = "string",
@@ -2997,6 +3136,7 @@ M.PlatformType = {
 
 M.EnvironmentPlatform = {
     type = "structure",
+    id = "EnvironmentPlatform",
     members = {
         platform = {
             type = "string",
@@ -3010,6 +3150,7 @@ M.EnvironmentPlatform = {
 
 M.ListCuratedEnvironmentImagesOutput = {
     type = "structure",
+    id = "ListCuratedEnvironmentImagesOutput",
     members = {
         platforms = {
             type = "list",
@@ -3026,6 +3167,7 @@ M.FleetSortByType = {
 
 M.ListFleetsInput = {
     type = "structure",
+    id = "ListFleetsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3044,6 +3186,7 @@ M.ListFleetsInput = {
 
 M.ListFleetsOutput = {
     type = "structure",
+    id = "ListFleetsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3063,6 +3206,7 @@ M.ProjectSortByType = {
 
 M.ListProjectsInput = {
     type = "structure",
+    id = "ListProjectsInput",
     members = {
         sortBy = {
             type = "string",
@@ -3078,6 +3222,7 @@ M.ListProjectsInput = {
 
 M.ListProjectsOutput = {
     type = "structure",
+    id = "ListProjectsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3097,6 +3242,7 @@ M.ReportGroupSortByType = {
 
 M.ListReportGroupsInput = {
     type = "structure",
+    id = "ListReportGroupsInput",
     members = {
         sortOrder = {
             type = "string",
@@ -3115,6 +3261,7 @@ M.ListReportGroupsInput = {
 
 M.ListReportGroupsOutput = {
     type = "structure",
+    id = "ListReportGroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3128,6 +3275,7 @@ M.ListReportGroupsOutput = {
 
 M.ReportFilter = {
     type = "structure",
+    id = "ReportFilter",
     members = {
         status = {
             type = "string",
@@ -3137,6 +3285,7 @@ M.ReportFilter = {
 
 M.ListReportsInput = {
     type = "structure",
+    id = "ListReportsInput",
     members = {
         sortOrder = {
             type = "string",
@@ -3153,6 +3302,7 @@ M.ListReportsInput = {
 
 M.ListReportsOutput = {
     type = "structure",
+    id = "ListReportsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3166,6 +3316,7 @@ M.ListReportsOutput = {
 
 M.ListReportsForReportGroupInput = {
     type = "structure",
+    id = "ListReportsForReportGroupInput",
     members = {
         reportGroupArn = {
             type = "string",
@@ -3188,6 +3339,7 @@ M.ListReportsForReportGroupInput = {
 
 M.ListReportsForReportGroupOutput = {
     type = "structure",
+    id = "ListReportsForReportGroupOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3201,6 +3353,7 @@ M.ListReportsForReportGroupOutput = {
 
 M.ListSandboxesInput = {
     type = "structure",
+    id = "ListSandboxesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3216,6 +3369,7 @@ M.ListSandboxesInput = {
 
 M.ListSandboxesOutput = {
     type = "structure",
+    id = "ListSandboxesOutput",
     members = {
         ids = {
             type = "list",
@@ -3229,6 +3383,7 @@ M.ListSandboxesOutput = {
 
 M.ListSandboxesForProjectInput = {
     type = "structure",
+    id = "ListSandboxesForProjectInput",
     members = {
         projectName = {
             type = "string",
@@ -3250,6 +3405,7 @@ M.ListSandboxesForProjectInput = {
 
 M.ListSandboxesForProjectOutput = {
     type = "structure",
+    id = "ListSandboxesForProjectOutput",
     members = {
         ids = {
             type = "list",
@@ -3268,6 +3424,7 @@ M.SharedResourceSortByType = {
 
 M.ListSharedProjectsInput = {
     type = "structure",
+    id = "ListSharedProjectsInput",
     members = {
         sortBy = {
             type = "string",
@@ -3286,6 +3443,7 @@ M.ListSharedProjectsInput = {
 
 M.ListSharedProjectsOutput = {
     type = "structure",
+    id = "ListSharedProjectsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3299,6 +3457,7 @@ M.ListSharedProjectsOutput = {
 
 M.ListSharedReportGroupsInput = {
     type = "structure",
+    id = "ListSharedReportGroupsInput",
     members = {
         sortOrder = {
             type = "string",
@@ -3317,6 +3476,7 @@ M.ListSharedReportGroupsInput = {
 
 M.ListSharedReportGroupsOutput = {
     type = "structure",
+    id = "ListSharedReportGroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3330,10 +3490,12 @@ M.ListSharedReportGroupsOutput = {
 
 M.ListSourceCredentialsInput = {
     type = "structure",
+    id = "ListSourceCredentialsInput",
 }
 
 M.SourceCredentialsInfo = {
     type = "structure",
+    id = "SourceCredentialsInfo",
     members = {
         arn = {
             type = "string",
@@ -3352,6 +3514,7 @@ M.SourceCredentialsInfo = {
 
 M.ListSourceCredentialsOutput = {
     type = "structure",
+    id = "ListSourceCredentialsOutput",
     members = {
         sourceCredentialsInfos = {
             type = "list",
@@ -3362,6 +3525,7 @@ M.ListSourceCredentialsOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         policy = {
             type = "string",
@@ -3380,6 +3544,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -3389,6 +3554,7 @@ M.PutResourcePolicyOutput = {
 
 M.RetryBuildInput = {
     type = "structure",
+    id = "RetryBuildInput",
     members = {
         id = {
             type = "string",
@@ -3401,6 +3567,7 @@ M.RetryBuildInput = {
 
 M.RetryBuildOutput = {
     type = "structure",
+    id = "RetryBuildOutput",
     members = {
         build = M.Build,
     },
@@ -3413,6 +3580,7 @@ M.RetryBuildBatchType = {
 
 M.RetryBuildBatchInput = {
     type = "structure",
+    id = "RetryBuildBatchInput",
     members = {
         id = {
             type = "string",
@@ -3428,6 +3596,7 @@ M.RetryBuildBatchInput = {
 
 M.RetryBuildBatchOutput = {
     type = "structure",
+    id = "RetryBuildBatchOutput",
     members = {
         buildBatch = M.BuildBatch,
     },
@@ -3435,6 +3604,7 @@ M.RetryBuildBatchOutput = {
 
 M.StartBuildInput = {
     type = "structure",
+    id = "StartBuildInput",
     members = {
         projectName = {
             type = "string",
@@ -3531,6 +3701,7 @@ M.StartBuildInput = {
 
 M.StartBuildOutput = {
     type = "structure",
+    id = "StartBuildOutput",
     members = {
         build = M.Build,
     },
@@ -3538,6 +3709,7 @@ M.StartBuildOutput = {
 
 M.StartBuildBatchInput = {
     type = "structure",
+    id = "StartBuildBatchInput",
     members = {
         projectName = {
             type = "string",
@@ -3630,6 +3802,7 @@ M.StartBuildBatchInput = {
 
 M.StartBuildBatchOutput = {
     type = "structure",
+    id = "StartBuildBatchOutput",
     members = {
         buildBatch = M.BuildBatch,
     },
@@ -3637,6 +3810,7 @@ M.StartBuildBatchOutput = {
 
 M.StartCommandExecutionInput = {
     type = "structure",
+    id = "StartCommandExecutionInput",
     members = {
         sandboxId = {
             type = "string",
@@ -3658,6 +3832,7 @@ M.StartCommandExecutionInput = {
 
 M.StartCommandExecutionOutput = {
     type = "structure",
+    id = "StartCommandExecutionOutput",
     members = {
         commandExecution = M.CommandExecution,
     },
@@ -3665,6 +3840,7 @@ M.StartCommandExecutionOutput = {
 
 M.StartSandboxInput = {
     type = "structure",
+    id = "StartSandboxInput",
     members = {
         projectName = {
             type = "string",
@@ -3677,6 +3853,7 @@ M.StartSandboxInput = {
 
 M.StartSandboxOutput = {
     type = "structure",
+    id = "StartSandboxOutput",
     members = {
         sandbox = M.Sandbox,
     },
@@ -3684,6 +3861,7 @@ M.StartSandboxOutput = {
 
 M.StartSandboxConnectionInput = {
     type = "structure",
+    id = "StartSandboxConnectionInput",
     members = {
         sandboxId = {
             type = "string",
@@ -3696,6 +3874,7 @@ M.StartSandboxConnectionInput = {
 
 M.SSMSession = {
     type = "structure",
+    id = "SSMSession",
     members = {
         sessionId = {
             type = "string",
@@ -3711,6 +3890,7 @@ M.SSMSession = {
 
 M.StartSandboxConnectionOutput = {
     type = "structure",
+    id = "StartSandboxConnectionOutput",
     members = {
         ssmSession = M.SSMSession,
     },
@@ -3718,6 +3898,7 @@ M.StartSandboxConnectionOutput = {
 
 M.StopBuildInput = {
     type = "structure",
+    id = "StopBuildInput",
     members = {
         id = {
             type = "string",
@@ -3730,6 +3911,7 @@ M.StopBuildInput = {
 
 M.StopBuildOutput = {
     type = "structure",
+    id = "StopBuildOutput",
     members = {
         build = M.Build,
     },
@@ -3737,6 +3919,7 @@ M.StopBuildOutput = {
 
 M.StopBuildBatchInput = {
     type = "structure",
+    id = "StopBuildBatchInput",
     members = {
         id = {
             type = "string",
@@ -3749,6 +3932,7 @@ M.StopBuildBatchInput = {
 
 M.StopBuildBatchOutput = {
     type = "structure",
+    id = "StopBuildBatchOutput",
     members = {
         buildBatch = M.BuildBatch,
     },
@@ -3756,6 +3940,7 @@ M.StopBuildBatchOutput = {
 
 M.StopSandboxInput = {
     type = "structure",
+    id = "StopSandboxInput",
     members = {
         id = {
             type = "string",
@@ -3768,6 +3953,7 @@ M.StopSandboxInput = {
 
 M.StopSandboxOutput = {
     type = "structure",
+    id = "StopSandboxOutput",
     members = {
         sandbox = M.Sandbox,
     },
@@ -3775,6 +3961,7 @@ M.StopSandboxOutput = {
 
 M.UpdateFleetInput = {
     type = "structure",
+    id = "UpdateFleetInput",
     members = {
         arn = {
             type = "string",
@@ -3813,6 +4000,7 @@ M.UpdateFleetInput = {
 
 M.UpdateFleetOutput = {
     type = "structure",
+    id = "UpdateFleetOutput",
     members = {
         fleet = M.Fleet,
     },
@@ -3820,6 +4008,7 @@ M.UpdateFleetOutput = {
 
 M.UpdateProjectInput = {
     type = "structure",
+    id = "UpdateProjectInput",
     members = {
         name = {
             type = "string",
@@ -3886,6 +4075,7 @@ M.UpdateProjectInput = {
 
 M.UpdateProjectOutput = {
     type = "structure",
+    id = "UpdateProjectOutput",
     members = {
         project = M.Project,
     },
@@ -3893,6 +4083,7 @@ M.UpdateProjectOutput = {
 
 M.UpdateProjectVisibilityInput = {
     type = "structure",
+    id = "UpdateProjectVisibilityInput",
     members = {
         projectArn = {
             type = "string",
@@ -3914,6 +4105,7 @@ M.UpdateProjectVisibilityInput = {
 
 M.UpdateProjectVisibilityOutput = {
     type = "structure",
+    id = "UpdateProjectVisibilityOutput",
     members = {
         projectArn = {
             type = "string",
@@ -3929,6 +4121,7 @@ M.UpdateProjectVisibilityOutput = {
 
 M.UpdateReportGroupInput = {
     type = "structure",
+    id = "UpdateReportGroupInput",
     members = {
         arn = {
             type = "string",
@@ -3946,6 +4139,7 @@ M.UpdateReportGroupInput = {
 
 M.UpdateReportGroupOutput = {
     type = "structure",
+    id = "UpdateReportGroupOutput",
     members = {
         reportGroup = M.ReportGroup,
     },
@@ -3953,6 +4147,7 @@ M.UpdateReportGroupOutput = {
 
 M.UpdateWebhookInput = {
     type = "structure",
+    id = "UpdateWebhookInput",
     members = {
         projectName = {
             type = "string",
@@ -3982,6 +4177,7 @@ M.UpdateWebhookInput = {
 
 M.UpdateWebhookOutput = {
     type = "structure",
+    id = "UpdateWebhookOutput",
     members = {
         webhook = M.Webhook,
     },

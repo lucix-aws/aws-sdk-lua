@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ActivateEmailContactInput = {
     type = "structure",
+    id = "ActivateEmailContactInput",
     members = {
         arn = {
             type = "string",
@@ -35,10 +37,12 @@ M.ActivateEmailContactInput = {
 
 M.ActivateEmailContactOutput = {
     type = "structure",
+    id = "ActivateEmailContactOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -64,6 +68,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -77,6 +82,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -102,6 +108,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -127,6 +134,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -150,6 +158,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -173,6 +182,7 @@ M.ValidationException = {
 
 M.CreateEmailContactInput = {
     type = "structure",
+    id = "CreateEmailContactInput",
     members = {
         name = {
             type = "string",
@@ -196,6 +206,7 @@ M.CreateEmailContactInput = {
 
 M.CreateEmailContactOutput = {
     type = "structure",
+    id = "CreateEmailContactOutput",
     members = {
         arn = {
             type = "string",
@@ -208,6 +219,7 @@ M.CreateEmailContactOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -245,6 +257,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteEmailContactInput = {
     type = "structure",
+    id = "DeleteEmailContactInput",
     members = {
         arn = {
             type = "string",
@@ -258,6 +271,7 @@ M.DeleteEmailContactInput = {
 
 M.DeleteEmailContactOutput = {
     type = "structure",
+    id = "DeleteEmailContactOutput",
 }
 
 M.EmailContactStatus = {
@@ -267,6 +281,7 @@ M.EmailContactStatus = {
 
 M.EmailContact = {
     type = "structure",
+    id = "EmailContact",
     members = {
         arn = {
             type = "string",
@@ -311,6 +326,7 @@ M.EmailContact = {
 
 M.GetEmailContactInput = {
     type = "structure",
+    id = "GetEmailContactInput",
     members = {
         arn = {
             type = "string",
@@ -324,6 +340,7 @@ M.GetEmailContactInput = {
 
 M.GetEmailContactOutput = {
     type = "structure",
+    id = "GetEmailContactOutput",
     members = {
         emailContact = setmetatable({ traits = {
             required = true,
@@ -333,6 +350,7 @@ M.GetEmailContactOutput = {
 
 M.ListEmailContactsInput = {
     type = "structure",
+    id = "ListEmailContactsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -351,6 +369,7 @@ M.ListEmailContactsInput = {
 
 M.ListEmailContactsOutput = {
     type = "structure",
+    id = "ListEmailContactsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -367,6 +386,7 @@ M.ListEmailContactsOutput = {
 
 M.SendActivationCodeInput = {
     type = "structure",
+    id = "SendActivationCodeInput",
     members = {
         arn = {
             type = "string",
@@ -380,10 +400,12 @@ M.SendActivationCodeInput = {
 
 M.SendActivationCodeOutput = {
     type = "structure",
+    id = "SendActivationCodeOutput",
 }
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -397,6 +419,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -408,6 +431,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -429,10 +453,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -454,6 +480,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

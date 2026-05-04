@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptInvitationInput = {
     type = "structure",
+    id = "AcceptInvitationInput",
     members = {
         GraphArn = {
             type = "string",
@@ -14,6 +15,7 @@ M.AcceptInvitationInput = {
 
 M.AcceptInvitationOutput = {
     type = "structure",
+    id = "AcceptInvitationOutput",
 }
 
 M.ErrorCode = {
@@ -24,6 +26,7 @@ M.ErrorCode = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -46,6 +49,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -56,6 +60,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -66,6 +71,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -76,6 +82,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -92,6 +99,7 @@ M.ValidationException = {
 
 M.Account = {
     type = "structure",
+    id = "Account",
     members = {
         AccountId = {
             type = "string",
@@ -110,6 +118,7 @@ M.Account = {
 
 M.Administrator = {
     type = "structure",
+    id = "Administrator",
     members = {
         AccountId = {
             type = "string",
@@ -128,6 +137,7 @@ M.Administrator = {
 
 M.BatchGetGraphMemberDatasourcesInput = {
     type = "structure",
+    id = "BatchGetGraphMemberDatasourcesInput",
     members = {
         GraphArn = {
             type = "string",
@@ -159,6 +169,7 @@ M.DatasourcePackageIngestState = {
 
 M.TimestampForCollection = {
     type = "structure",
+    id = "TimestampForCollection",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -171,6 +182,7 @@ M.TimestampForCollection = {
 
 M.MembershipDatasources = {
     type = "structure",
+    id = "MembershipDatasources",
     members = {
         AccountId = {
             type = "string",
@@ -188,6 +200,7 @@ M.MembershipDatasources = {
 
 M.UnprocessedAccount = {
     type = "structure",
+    id = "UnprocessedAccount",
     members = {
         AccountId = {
             type = "string",
@@ -200,6 +213,7 @@ M.UnprocessedAccount = {
 
 M.BatchGetGraphMemberDatasourcesOutput = {
     type = "structure",
+    id = "BatchGetGraphMemberDatasourcesOutput",
     members = {
         MemberDatasources = {
             type = "list",
@@ -214,6 +228,7 @@ M.BatchGetGraphMemberDatasourcesOutput = {
 
 M.BatchGetMembershipDatasourcesInput = {
     type = "structure",
+    id = "BatchGetMembershipDatasourcesInput",
     members = {
         GraphArns = {
             type = "list",
@@ -227,6 +242,7 @@ M.BatchGetMembershipDatasourcesInput = {
 
 M.UnprocessedGraph = {
     type = "structure",
+    id = "UnprocessedGraph",
     members = {
         GraphArn = {
             type = "string",
@@ -239,6 +255,7 @@ M.UnprocessedGraph = {
 
 M.BatchGetMembershipDatasourcesOutput = {
     type = "structure",
+    id = "BatchGetMembershipDatasourcesOutput",
     members = {
         MembershipDatasources = {
             type = "list",
@@ -253,6 +270,7 @@ M.BatchGetMembershipDatasourcesOutput = {
 
 M.CreateGraphInput = {
     type = "structure",
+    id = "CreateGraphInput",
     members = {
         Tags = {
             type = "map",
@@ -264,6 +282,7 @@ M.CreateGraphInput = {
 
 M.CreateGraphOutput = {
     type = "structure",
+    id = "CreateGraphOutput",
     members = {
         GraphArn = {
             type = "string",
@@ -273,6 +292,7 @@ M.CreateGraphOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -287,6 +307,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateMembersInput = {
     type = "structure",
+    id = "CreateMembersInput",
     members = {
         GraphArn = {
             type = "string",
@@ -333,6 +354,7 @@ M.MemberStatus = {
 
 M.DatasourcePackageUsageInfo = {
     type = "structure",
+    id = "DatasourcePackageUsageInfo",
     members = {
         VolumeUsageInBytes = {
             type = "long",
@@ -348,6 +370,7 @@ M.DatasourcePackageUsageInfo = {
 
 M.MemberDetail = {
     type = "structure",
+    id = "MemberDetail",
     members = {
         AccountId = {
             type = "string",
@@ -418,6 +441,7 @@ M.MemberDetail = {
 
 M.CreateMembersOutput = {
     type = "structure",
+    id = "CreateMembersOutput",
     members = {
         Members = {
             type = "list",
@@ -432,6 +456,7 @@ M.CreateMembersOutput = {
 
 M.DeleteGraphInput = {
     type = "structure",
+    id = "DeleteGraphInput",
     members = {
         GraphArn = {
             type = "string",
@@ -444,10 +469,12 @@ M.DeleteGraphInput = {
 
 M.DeleteGraphOutput = {
     type = "structure",
+    id = "DeleteGraphOutput",
 }
 
 M.DeleteMembersInput = {
     type = "structure",
+    id = "DeleteMembersInput",
     members = {
         GraphArn = {
             type = "string",
@@ -467,6 +494,7 @@ M.DeleteMembersInput = {
 
 M.DeleteMembersOutput = {
     type = "structure",
+    id = "DeleteMembersOutput",
     members = {
         AccountIds = {
             type = "list",
@@ -481,6 +509,7 @@ M.DeleteMembersOutput = {
 
 M.DescribeOrganizationConfigurationInput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationInput",
     members = {
         GraphArn = {
             type = "string",
@@ -493,6 +522,7 @@ M.DescribeOrganizationConfigurationInput = {
 
 M.DescribeOrganizationConfigurationOutput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationOutput",
     members = {
         AutoEnable = {
             type = "boolean",
@@ -505,6 +535,7 @@ M.DescribeOrganizationConfigurationOutput = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -515,14 +546,17 @@ M.TooManyRequestsException = {
 
 M.DisableOrganizationAdminAccountInput = {
     type = "structure",
+    id = "DisableOrganizationAdminAccountInput",
 }
 
 M.DisableOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "DisableOrganizationAdminAccountOutput",
 }
 
 M.DisassociateMembershipInput = {
     type = "structure",
+    id = "DisassociateMembershipInput",
     members = {
         GraphArn = {
             type = "string",
@@ -535,10 +569,12 @@ M.DisassociateMembershipInput = {
 
 M.DisassociateMembershipOutput = {
     type = "structure",
+    id = "DisassociateMembershipOutput",
 }
 
 M.EnableOrganizationAdminAccountInput = {
     type = "structure",
+    id = "EnableOrganizationAdminAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -551,10 +587,12 @@ M.EnableOrganizationAdminAccountInput = {
 
 M.EnableOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "EnableOrganizationAdminAccountOutput",
 }
 
 M.GetInvestigationInput = {
     type = "structure",
+    id = "GetInvestigationInput",
     members = {
         GraphArn = {
             type = "string",
@@ -597,6 +635,7 @@ M.Status = {
 
 M.GetInvestigationOutput = {
     type = "structure",
+    id = "GetInvestigationOutput",
     members = {
         GraphArn = {
             type = "string",
@@ -642,6 +681,7 @@ M.GetInvestigationOutput = {
 
 M.GetMembersInput = {
     type = "structure",
+    id = "GetMembersInput",
     members = {
         GraphArn = {
             type = "string",
@@ -661,6 +701,7 @@ M.GetMembersInput = {
 
 M.GetMembersOutput = {
     type = "structure",
+    id = "GetMembersOutput",
     members = {
         MemberDetails = {
             type = "list",
@@ -675,6 +716,7 @@ M.GetMembersOutput = {
 
 M.ListDatasourcePackagesInput = {
     type = "structure",
+    id = "ListDatasourcePackagesInput",
     members = {
         GraphArn = {
             type = "string",
@@ -693,6 +735,7 @@ M.ListDatasourcePackagesInput = {
 
 M.DatasourcePackageIngestDetail = {
     type = "structure",
+    id = "DatasourcePackageIngestDetail",
     members = {
         DatasourcePackageIngestState = {
             type = "string",
@@ -707,6 +750,7 @@ M.DatasourcePackageIngestDetail = {
 
 M.ListDatasourcePackagesOutput = {
     type = "structure",
+    id = "ListDatasourcePackagesOutput",
     members = {
         DatasourcePackages = {
             type = "map",
@@ -721,6 +765,7 @@ M.ListDatasourcePackagesOutput = {
 
 M.ListGraphsInput = {
     type = "structure",
+    id = "ListGraphsInput",
     members = {
         NextToken = {
             type = "string",
@@ -733,6 +778,7 @@ M.ListGraphsInput = {
 
 M.Graph = {
     type = "structure",
+    id = "Graph",
     members = {
         Arn = {
             type = "string",
@@ -748,6 +794,7 @@ M.Graph = {
 
 M.ListGraphsOutput = {
     type = "structure",
+    id = "ListGraphsOutput",
     members = {
         GraphList = {
             type = "list",
@@ -772,6 +819,7 @@ M.IndicatorType = {
 
 M.ListIndicatorsInput = {
     type = "structure",
+    id = "ListIndicatorsInput",
     members = {
         GraphArn = {
             type = "string",
@@ -803,6 +851,7 @@ M.Reason = {
 
 M.FlaggedIpAddressDetail = {
     type = "structure",
+    id = "FlaggedIpAddressDetail",
     members = {
         IpAddress = {
             type = "string",
@@ -815,6 +864,7 @@ M.FlaggedIpAddressDetail = {
 
 M.ImpossibleTravelDetail = {
     type = "structure",
+    id = "ImpossibleTravelDetail",
     members = {
         StartingIpAddress = {
             type = "string",
@@ -836,6 +886,7 @@ M.ImpossibleTravelDetail = {
 
 M.NewAsoDetail = {
     type = "structure",
+    id = "NewAsoDetail",
     members = {
         Aso = {
             type = "string",
@@ -851,6 +902,7 @@ M.NewAsoDetail = {
 
 M.NewGeolocationDetail = {
     type = "structure",
+    id = "NewGeolocationDetail",
     members = {
         Location = {
             type = "string",
@@ -869,6 +921,7 @@ M.NewGeolocationDetail = {
 
 M.NewUserAgentDetail = {
     type = "structure",
+    id = "NewUserAgentDetail",
     members = {
         UserAgent = {
             type = "string",
@@ -884,6 +937,7 @@ M.NewUserAgentDetail = {
 
 M.RelatedFindingDetail = {
     type = "structure",
+    id = "RelatedFindingDetail",
     members = {
         Arn = {
             type = "string",
@@ -899,6 +953,7 @@ M.RelatedFindingDetail = {
 
 M.RelatedFindingGroupDetail = {
     type = "structure",
+    id = "RelatedFindingGroupDetail",
     members = {
         Id = {
             type = "string",
@@ -908,6 +963,7 @@ M.RelatedFindingGroupDetail = {
 
 M.TTPsObservedDetail = {
     type = "structure",
+    id = "TTPsObservedDetail",
     members = {
         Tactic = {
             type = "string",
@@ -941,6 +997,7 @@ M.TTPsObservedDetail = {
 
 M.IndicatorDetail = {
     type = "structure",
+    id = "IndicatorDetail",
     members = {
         TTPsObservedDetail = M.TTPsObservedDetail,
         ImpossibleTravelDetail = M.ImpossibleTravelDetail,
@@ -955,6 +1012,7 @@ M.IndicatorDetail = {
 
 M.Indicator = {
     type = "structure",
+    id = "Indicator",
     members = {
         IndicatorType = {
             type = "string",
@@ -965,6 +1023,7 @@ M.Indicator = {
 
 M.ListIndicatorsOutput = {
     type = "structure",
+    id = "ListIndicatorsOutput",
     members = {
         GraphArn = {
             type = "string",
@@ -984,6 +1043,7 @@ M.ListIndicatorsOutput = {
 
 M.DateFilter = {
     type = "structure",
+    id = "DateFilter",
     members = {
         StartInclusive = {
             type = "timestamp",
@@ -1004,6 +1064,7 @@ M.DateFilter = {
 
 M.StringFilter = {
     type = "structure",
+    id = "StringFilter",
     members = {
         Value = {
             type = "string",
@@ -1016,6 +1077,7 @@ M.StringFilter = {
 
 M.FilterCriteria = {
     type = "structure",
+    id = "FilterCriteria",
     members = {
         Severity = M.StringFilter,
         Status = M.StringFilter,
@@ -1038,6 +1100,7 @@ M.SortOrder = {
 
 M.SortCriteria = {
     type = "structure",
+    id = "SortCriteria",
     members = {
         Field = {
             type = "string",
@@ -1050,6 +1113,7 @@ M.SortCriteria = {
 
 M.ListInvestigationsInput = {
     type = "structure",
+    id = "ListInvestigationsInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1070,6 +1134,7 @@ M.ListInvestigationsInput = {
 
 M.InvestigationDetail = {
     type = "structure",
+    id = "InvestigationDetail",
     members = {
         InvestigationId = {
             type = "string",
@@ -1100,6 +1165,7 @@ M.InvestigationDetail = {
 
 M.ListInvestigationsOutput = {
     type = "structure",
+    id = "ListInvestigationsOutput",
     members = {
         InvestigationDetails = {
             type = "list",
@@ -1113,6 +1179,7 @@ M.ListInvestigationsOutput = {
 
 M.ListInvitationsInput = {
     type = "structure",
+    id = "ListInvitationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1125,6 +1192,7 @@ M.ListInvitationsInput = {
 
 M.ListInvitationsOutput = {
     type = "structure",
+    id = "ListInvitationsOutput",
     members = {
         Invitations = {
             type = "list",
@@ -1138,6 +1206,7 @@ M.ListInvitationsOutput = {
 
 M.ListMembersInput = {
     type = "structure",
+    id = "ListMembersInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1156,6 +1225,7 @@ M.ListMembersInput = {
 
 M.ListMembersOutput = {
     type = "structure",
+    id = "ListMembersOutput",
     members = {
         MemberDetails = {
             type = "list",
@@ -1169,6 +1239,7 @@ M.ListMembersOutput = {
 
 M.ListOrganizationAdminAccountsInput = {
     type = "structure",
+    id = "ListOrganizationAdminAccountsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1181,6 +1252,7 @@ M.ListOrganizationAdminAccountsInput = {
 
 M.ListOrganizationAdminAccountsOutput = {
     type = "structure",
+    id = "ListOrganizationAdminAccountsOutput",
     members = {
         Administrators = {
             type = "list",
@@ -1194,6 +1266,7 @@ M.ListOrganizationAdminAccountsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1207,6 +1280,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1218,6 +1292,7 @@ M.ListTagsForResourceOutput = {
 
 M.RejectInvitationInput = {
     type = "structure",
+    id = "RejectInvitationInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1230,10 +1305,12 @@ M.RejectInvitationInput = {
 
 M.RejectInvitationOutput = {
     type = "structure",
+    id = "RejectInvitationOutput",
 }
 
 M.StartInvestigationInput = {
     type = "structure",
+    id = "StartInvestigationInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1266,6 +1343,7 @@ M.StartInvestigationInput = {
 
 M.StartInvestigationOutput = {
     type = "structure",
+    id = "StartInvestigationOutput",
     members = {
         InvestigationId = {
             type = "string",
@@ -1275,6 +1353,7 @@ M.StartInvestigationOutput = {
 
 M.StartMonitoringMemberInput = {
     type = "structure",
+    id = "StartMonitoringMemberInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1293,10 +1372,12 @@ M.StartMonitoringMemberInput = {
 
 M.StartMonitoringMemberOutput = {
     type = "structure",
+    id = "StartMonitoringMemberOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1318,10 +1399,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1343,10 +1426,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDatasourcePackagesInput = {
     type = "structure",
+    id = "UpdateDatasourcePackagesInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1366,10 +1451,12 @@ M.UpdateDatasourcePackagesInput = {
 
 M.UpdateDatasourcePackagesOutput = {
     type = "structure",
+    id = "UpdateDatasourcePackagesOutput",
 }
 
 M.UpdateInvestigationStateInput = {
     type = "structure",
+    id = "UpdateInvestigationStateInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1394,10 +1481,12 @@ M.UpdateInvestigationStateInput = {
 
 M.UpdateInvestigationStateOutput = {
     type = "structure",
+    id = "UpdateInvestigationStateOutput",
 }
 
 M.UpdateOrganizationConfigurationInput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationInput",
     members = {
         GraphArn = {
             type = "string",
@@ -1416,6 +1505,7 @@ M.UpdateOrganizationConfigurationInput = {
 
 M.UpdateOrganizationConfigurationOutput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationOutput",
 }
 
 return M

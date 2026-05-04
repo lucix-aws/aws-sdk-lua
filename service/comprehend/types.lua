@@ -12,6 +12,7 @@ M.Split = {
 
 M.AugmentedManifestsListItem = {
     type = "structure",
+    id = "AugmentedManifestsListItem",
     members = {
         S3Uri = {
             type = "string",
@@ -43,6 +44,7 @@ M.AugmentedManifestsListItem = {
 
 M.BatchDetectDominantLanguageInput = {
     type = "structure",
+    id = "BatchDetectDominantLanguageInput",
     members = {
         TextList = {
             type = "list",
@@ -56,6 +58,7 @@ M.BatchDetectDominantLanguageInput = {
 
 M.BatchItemError = {
     type = "structure",
+    id = "BatchItemError",
     members = {
         Index = {
             type = "integer",
@@ -71,6 +74,7 @@ M.BatchItemError = {
 
 M.DominantLanguage = {
     type = "structure",
+    id = "DominantLanguage",
     members = {
         LanguageCode = {
             type = "string",
@@ -83,6 +87,7 @@ M.DominantLanguage = {
 
 M.BatchDetectDominantLanguageItemResult = {
     type = "structure",
+    id = "BatchDetectDominantLanguageItemResult",
     members = {
         Index = {
             type = "integer",
@@ -96,6 +101,7 @@ M.BatchDetectDominantLanguageItemResult = {
 
 M.BatchDetectDominantLanguageOutput = {
     type = "structure",
+    id = "BatchDetectDominantLanguageOutput",
     members = {
         ResultList = {
             type = "list",
@@ -116,6 +122,7 @@ M.BatchDetectDominantLanguageOutput = {
 
 M.BatchSizeLimitExceededException = {
     type = "structure",
+    id = "BatchSizeLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -126,6 +133,7 @@ M.BatchSizeLimitExceededException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -143,6 +151,7 @@ M.InvalidRequestDetailReason = {
 
 M.InvalidRequestDetail = {
     type = "structure",
+    id = "InvalidRequestDetail",
     members = {
         Reason = {
             type = "string",
@@ -156,6 +165,7 @@ M.InvalidRequestReason = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -170,6 +180,7 @@ M.InvalidRequestException = {
 
 M.TextSizeLimitExceededException = {
     type = "structure",
+    id = "TextSizeLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -195,6 +206,7 @@ M.LanguageCode = {
 
 M.BatchDetectEntitiesInput = {
     type = "structure",
+    id = "BatchDetectEntitiesInput",
     members = {
         TextList = {
             type = "list",
@@ -214,6 +226,7 @@ M.BatchDetectEntitiesInput = {
 
 M.ChildBlock = {
     type = "structure",
+    id = "ChildBlock",
     members = {
         ChildBlockId = {
             type = "string",
@@ -229,6 +242,7 @@ M.ChildBlock = {
 
 M.BlockReference = {
     type = "structure",
+    id = "BlockReference",
     members = {
         BlockId = {
             type = "string",
@@ -260,6 +274,7 @@ M.EntityType = {
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         Score = {
             type = "float",
@@ -285,6 +300,7 @@ M.Entity = {
 
 M.BatchDetectEntitiesItemResult = {
     type = "structure",
+    id = "BatchDetectEntitiesItemResult",
     members = {
         Index = {
             type = "integer",
@@ -298,6 +314,7 @@ M.BatchDetectEntitiesItemResult = {
 
 M.BatchDetectEntitiesOutput = {
     type = "structure",
+    id = "BatchDetectEntitiesOutput",
     members = {
         ResultList = {
             type = "list",
@@ -318,6 +335,7 @@ M.BatchDetectEntitiesOutput = {
 
 M.UnsupportedLanguageException = {
     type = "structure",
+    id = "UnsupportedLanguageException",
     error = "client",
     members = {
         Message = {
@@ -328,6 +346,7 @@ M.UnsupportedLanguageException = {
 
 M.BatchDetectKeyPhrasesInput = {
     type = "structure",
+    id = "BatchDetectKeyPhrasesInput",
     members = {
         TextList = {
             type = "list",
@@ -347,6 +366,7 @@ M.BatchDetectKeyPhrasesInput = {
 
 M.KeyPhrase = {
     type = "structure",
+    id = "KeyPhrase",
     members = {
         Score = {
             type = "float",
@@ -365,6 +385,7 @@ M.KeyPhrase = {
 
 M.BatchDetectKeyPhrasesItemResult = {
     type = "structure",
+    id = "BatchDetectKeyPhrasesItemResult",
     members = {
         Index = {
             type = "integer",
@@ -378,6 +399,7 @@ M.BatchDetectKeyPhrasesItemResult = {
 
 M.BatchDetectKeyPhrasesOutput = {
     type = "structure",
+    id = "BatchDetectKeyPhrasesOutput",
     members = {
         ResultList = {
             type = "list",
@@ -398,6 +420,7 @@ M.BatchDetectKeyPhrasesOutput = {
 
 M.BatchDetectSentimentInput = {
     type = "structure",
+    id = "BatchDetectSentimentInput",
     members = {
         TextList = {
             type = "list",
@@ -424,6 +447,7 @@ M.SentimentType = {
 
 M.SentimentScore = {
     type = "structure",
+    id = "SentimentScore",
     members = {
         Positive = {
             type = "float",
@@ -442,6 +466,7 @@ M.SentimentScore = {
 
 M.BatchDetectSentimentItemResult = {
     type = "structure",
+    id = "BatchDetectSentimentItemResult",
     members = {
         Index = {
             type = "integer",
@@ -455,6 +480,7 @@ M.BatchDetectSentimentItemResult = {
 
 M.BatchDetectSentimentOutput = {
     type = "structure",
+    id = "BatchDetectSentimentOutput",
     members = {
         ResultList = {
             type = "list",
@@ -484,6 +510,7 @@ M.SyntaxLanguageCode = {
 
 M.BatchDetectSyntaxInput = {
     type = "structure",
+    id = "BatchDetectSyntaxInput",
     members = {
         TextList = {
             type = "list",
@@ -524,6 +551,7 @@ M.PartOfSpeechTagType = {
 
 M.PartOfSpeechTag = {
     type = "structure",
+    id = "PartOfSpeechTag",
     members = {
         Tag = {
             type = "string",
@@ -536,6 +564,7 @@ M.PartOfSpeechTag = {
 
 M.SyntaxToken = {
     type = "structure",
+    id = "SyntaxToken",
     members = {
         TokenId = {
             type = "integer",
@@ -555,6 +584,7 @@ M.SyntaxToken = {
 
 M.BatchDetectSyntaxItemResult = {
     type = "structure",
+    id = "BatchDetectSyntaxItemResult",
     members = {
         Index = {
             type = "integer",
@@ -568,6 +598,7 @@ M.BatchDetectSyntaxItemResult = {
 
 M.BatchDetectSyntaxOutput = {
     type = "structure",
+    id = "BatchDetectSyntaxOutput",
     members = {
         ResultList = {
             type = "list",
@@ -588,6 +619,7 @@ M.BatchDetectSyntaxOutput = {
 
 M.BatchDetectTargetedSentimentInput = {
     type = "structure",
+    id = "BatchDetectTargetedSentimentInput",
     members = {
         TextList = {
             type = "list",
@@ -607,6 +639,7 @@ M.BatchDetectTargetedSentimentInput = {
 
 M.MentionSentiment = {
     type = "structure",
+    id = "MentionSentiment",
     members = {
         Sentiment = {
             type = "string",
@@ -637,6 +670,7 @@ M.TargetedSentimentEntityType = {
 
 M.TargetedSentimentMention = {
     type = "structure",
+    id = "TargetedSentimentMention",
     members = {
         Score = {
             type = "float",
@@ -662,6 +696,7 @@ M.TargetedSentimentMention = {
 
 M.TargetedSentimentEntity = {
     type = "structure",
+    id = "TargetedSentimentEntity",
     members = {
         DescriptiveMentionIndex = {
             type = "list",
@@ -676,6 +711,7 @@ M.TargetedSentimentEntity = {
 
 M.BatchDetectTargetedSentimentItemResult = {
     type = "structure",
+    id = "BatchDetectTargetedSentimentItemResult",
     members = {
         Index = {
             type = "integer",
@@ -689,6 +725,7 @@ M.BatchDetectTargetedSentimentItemResult = {
 
 M.BatchDetectTargetedSentimentOutput = {
     type = "structure",
+    id = "BatchDetectTargetedSentimentOutput",
     members = {
         ResultList = {
             type = "list",
@@ -714,6 +751,7 @@ M.BlockType = {
 
 M.BoundingBox = {
     type = "structure",
+    id = "BoundingBox",
     members = {
         Height = {
             type = "float",
@@ -732,6 +770,7 @@ M.BoundingBox = {
 
 M.Point = {
     type = "structure",
+    id = "Point",
     members = {
         X = {
             type = "float",
@@ -744,6 +783,7 @@ M.Point = {
 
 M.Geometry = {
     type = "structure",
+    id = "Geometry",
     members = {
         BoundingBox = M.BoundingBox,
         Polygon = {
@@ -759,6 +799,7 @@ M.RelationshipType = {
 
 M.RelationshipsListItem = {
     type = "structure",
+    id = "RelationshipsListItem",
     members = {
         Ids = {
             type = "list",
@@ -772,6 +813,7 @@ M.RelationshipsListItem = {
 
 M.Block = {
     type = "structure",
+    id = "Block",
     members = {
         Id = {
             type = "string",
@@ -795,6 +837,7 @@ M.Block = {
 
 M.ClassifierEvaluationMetrics = {
     type = "structure",
+    id = "ClassifierEvaluationMetrics",
     members = {
         Accuracy = {
             type = "double",
@@ -825,6 +868,7 @@ M.ClassifierEvaluationMetrics = {
 
 M.ClassifierMetadata = {
     type = "structure",
+    id = "ClassifierMetadata",
     members = {
         NumberOfLabels = {
             type = "integer",
@@ -856,6 +900,7 @@ M.DocumentReadFeatureTypes = {
 
 M.DocumentReaderConfig = {
     type = "structure",
+    id = "DocumentReaderConfig",
     members = {
         DocumentReadAction = {
             type = "string",
@@ -875,6 +920,7 @@ M.DocumentReaderConfig = {
 
 M.ClassifyDocumentInput = {
     type = "structure",
+    id = "ClassifyDocumentInput",
     members = {
         Text = {
             type = "string",
@@ -894,6 +940,7 @@ M.ClassifyDocumentInput = {
 
 M.DocumentClass = {
     type = "structure",
+    id = "DocumentClass",
     members = {
         Name = {
             type = "string",
@@ -909,6 +956,7 @@ M.DocumentClass = {
 
 M.ExtractedCharactersListItem = {
     type = "structure",
+    id = "ExtractedCharactersListItem",
     members = {
         Page = {
             type = "integer",
@@ -921,6 +969,7 @@ M.ExtractedCharactersListItem = {
 
 M.DocumentMetadata = {
     type = "structure",
+    id = "DocumentMetadata",
     members = {
         Pages = {
             type = "integer",
@@ -944,6 +993,7 @@ M.DocumentType = {
 
 M.DocumentTypeListItem = {
     type = "structure",
+    id = "DocumentTypeListItem",
     members = {
         Page = {
             type = "integer",
@@ -964,6 +1014,7 @@ M.PageBasedErrorCode = {
 
 M.ErrorsListItem = {
     type = "structure",
+    id = "ErrorsListItem",
     members = {
         Page = {
             type = "integer",
@@ -979,6 +1030,7 @@ M.ErrorsListItem = {
 
 M.DocumentLabel = {
     type = "structure",
+    id = "DocumentLabel",
     members = {
         Name = {
             type = "string",
@@ -999,6 +1051,7 @@ M.PageBasedWarningCode = {
 
 M.WarningsListItem = {
     type = "structure",
+    id = "WarningsListItem",
     members = {
         Page = {
             type = "integer",
@@ -1014,6 +1067,7 @@ M.WarningsListItem = {
 
 M.ClassifyDocumentOutput = {
     type = "structure",
+    id = "ClassifyDocumentOutput",
     members = {
         Classes = {
             type = "list",
@@ -1041,6 +1095,7 @@ M.ClassifyDocumentOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -1051,6 +1106,7 @@ M.ResourceUnavailableException = {
 
 M.ContainsPiiEntitiesInput = {
     type = "structure",
+    id = "ContainsPiiEntitiesInput",
     members = {
         Text = {
             type = "string",
@@ -1109,6 +1165,7 @@ M.PiiEntityType = {
 
 M.EntityLabel = {
     type = "structure",
+    id = "EntityLabel",
     members = {
         Name = {
             type = "string",
@@ -1121,6 +1178,7 @@ M.EntityLabel = {
 
 M.ContainsPiiEntitiesOutput = {
     type = "structure",
+    id = "ContainsPiiEntitiesOutput",
     members = {
         Labels = {
             type = "list",
@@ -1136,6 +1194,7 @@ M.DatasetType = {
 
 M.DatasetAugmentedManifestsListItem = {
     type = "structure",
+    id = "DatasetAugmentedManifestsListItem",
     members = {
         AttributeNames = {
             type = "list",
@@ -1169,6 +1228,7 @@ M.DatasetDataFormat = {
 
 M.DatasetDocumentClassifierInputDataConfig = {
     type = "structure",
+    id = "DatasetDocumentClassifierInputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -1184,6 +1244,7 @@ M.DatasetDocumentClassifierInputDataConfig = {
 
 M.DatasetEntityRecognizerAnnotations = {
     type = "structure",
+    id = "DatasetEntityRecognizerAnnotations",
     members = {
         S3Uri = {
             type = "string",
@@ -1201,6 +1262,7 @@ M.InputFormat = {
 
 M.DatasetEntityRecognizerDocuments = {
     type = "structure",
+    id = "DatasetEntityRecognizerDocuments",
     members = {
         S3Uri = {
             type = "string",
@@ -1216,6 +1278,7 @@ M.DatasetEntityRecognizerDocuments = {
 
 M.DatasetEntityRecognizerEntityList = {
     type = "structure",
+    id = "DatasetEntityRecognizerEntityList",
     members = {
         S3Uri = {
             type = "string",
@@ -1228,6 +1291,7 @@ M.DatasetEntityRecognizerEntityList = {
 
 M.DatasetEntityRecognizerInputDataConfig = {
     type = "structure",
+    id = "DatasetEntityRecognizerInputDataConfig",
     members = {
         Annotations = M.DatasetEntityRecognizerAnnotations,
         Documents = setmetatable({ traits = {
@@ -1239,6 +1303,7 @@ M.DatasetEntityRecognizerInputDataConfig = {
 
 M.DatasetInputDataConfig = {
     type = "structure",
+    id = "DatasetInputDataConfig",
     members = {
         AugmentedManifests = {
             type = "list",
@@ -1254,6 +1319,7 @@ M.DatasetInputDataConfig = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1269,6 +1335,7 @@ M.Tag = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -1306,6 +1373,7 @@ M.CreateDatasetInput = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         DatasetArn = {
             type = "string",
@@ -1315,6 +1383,7 @@ M.CreateDatasetOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -1325,6 +1394,7 @@ M.ResourceInUseException = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1335,6 +1405,7 @@ M.ResourceLimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1345,6 +1416,7 @@ M.ResourceNotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -1355,6 +1427,7 @@ M.TooManyRequestsException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -1370,6 +1443,7 @@ M.DocumentClassifierDataFormat = {
 
 M.DocumentClassifierDocuments = {
     type = "structure",
+    id = "DocumentClassifierDocuments",
     members = {
         S3Uri = {
             type = "string",
@@ -1390,6 +1464,7 @@ M.DocumentClassifierDocumentTypeFormat = {
 
 M.DocumentClassifierInputDataConfig = {
     type = "structure",
+    id = "DocumentClassifierInputDataConfig",
     members = {
         DataFormat = {
             type = "string",
@@ -1422,6 +1497,7 @@ M.DocumentClassifierMode = {
 
 M.DocumentClassifierOutputDataConfig = {
     type = "structure",
+    id = "DocumentClassifierOutputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -1437,6 +1513,7 @@ M.DocumentClassifierOutputDataConfig = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -1457,6 +1534,7 @@ M.VpcConfig = {
 
 M.CreateDocumentClassifierInput = {
     type = "structure",
+    id = "CreateDocumentClassifierInput",
     members = {
         DocumentClassifierName = {
             type = "string",
@@ -1511,6 +1589,7 @@ M.CreateDocumentClassifierInput = {
 
 M.CreateDocumentClassifierOutput = {
     type = "structure",
+    id = "CreateDocumentClassifierOutput",
     members = {
         DocumentClassifierArn = {
             type = "string",
@@ -1520,6 +1599,7 @@ M.CreateDocumentClassifierOutput = {
 
 M.KmsKeyValidationException = {
     type = "structure",
+    id = "KmsKeyValidationException",
     error = "client",
     members = {
         Message = {
@@ -1530,6 +1610,7 @@ M.KmsKeyValidationException = {
 
 M.CreateEndpointInput = {
     type = "structure",
+    id = "CreateEndpointInput",
     members = {
         EndpointName = {
             type = "string",
@@ -1567,6 +1648,7 @@ M.CreateEndpointInput = {
 
 M.CreateEndpointOutput = {
     type = "structure",
+    id = "CreateEndpointOutput",
     members = {
         EndpointArn = {
             type = "string",
@@ -1579,6 +1661,7 @@ M.CreateEndpointOutput = {
 
 M.EntityRecognizerAnnotations = {
     type = "structure",
+    id = "EntityRecognizerAnnotations",
     members = {
         S3Uri = {
             type = "string",
@@ -1599,6 +1682,7 @@ M.EntityRecognizerDataFormat = {
 
 M.EntityRecognizerDocuments = {
     type = "structure",
+    id = "EntityRecognizerDocuments",
     members = {
         S3Uri = {
             type = "string",
@@ -1617,6 +1701,7 @@ M.EntityRecognizerDocuments = {
 
 M.EntityRecognizerEntityList = {
     type = "structure",
+    id = "EntityRecognizerEntityList",
     members = {
         S3Uri = {
             type = "string",
@@ -1629,6 +1714,7 @@ M.EntityRecognizerEntityList = {
 
 M.EntityTypesListItem = {
     type = "structure",
+    id = "EntityTypesListItem",
     members = {
         Type = {
             type = "string",
@@ -1641,6 +1727,7 @@ M.EntityTypesListItem = {
 
 M.EntityRecognizerInputDataConfig = {
     type = "structure",
+    id = "EntityRecognizerInputDataConfig",
     members = {
         DataFormat = {
             type = "string",
@@ -1664,6 +1751,7 @@ M.EntityRecognizerInputDataConfig = {
 
 M.CreateEntityRecognizerInput = {
     type = "structure",
+    id = "CreateEntityRecognizerInput",
     members = {
         RecognizerName = {
             type = "string",
@@ -1714,6 +1802,7 @@ M.CreateEntityRecognizerInput = {
 
 M.CreateEntityRecognizerOutput = {
     type = "structure",
+    id = "CreateEntityRecognizerOutput",
     members = {
         EntityRecognizerArn = {
             type = "string",
@@ -1723,6 +1812,7 @@ M.CreateEntityRecognizerOutput = {
 
 M.DataSecurityConfig = {
     type = "structure",
+    id = "DataSecurityConfig",
     members = {
         ModelKmsKeyId = {
             type = "string",
@@ -1744,6 +1834,7 @@ M.ModelType = {
 
 M.DocumentClassificationConfig = {
     type = "structure",
+    id = "DocumentClassificationConfig",
     members = {
         Mode = {
             type = "string",
@@ -1760,6 +1851,7 @@ M.DocumentClassificationConfig = {
 
 M.EntityRecognitionConfig = {
     type = "structure",
+    id = "EntityRecognitionConfig",
     members = {
         EntityTypes = {
             type = "list",
@@ -1773,6 +1865,7 @@ M.EntityRecognitionConfig = {
 
 M.TaskConfig = {
     type = "structure",
+    id = "TaskConfig",
     members = {
         LanguageCode = {
             type = "string",
@@ -1787,6 +1880,7 @@ M.TaskConfig = {
 
 M.CreateFlywheelInput = {
     type = "structure",
+    id = "CreateFlywheelInput",
     members = {
         FlywheelName = {
             type = "string",
@@ -1829,6 +1923,7 @@ M.CreateFlywheelInput = {
 
 M.CreateFlywheelOutput = {
     type = "structure",
+    id = "CreateFlywheelOutput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -1841,6 +1936,7 @@ M.CreateFlywheelOutput = {
 
 M.DeleteDocumentClassifierInput = {
     type = "structure",
+    id = "DeleteDocumentClassifierInput",
     members = {
         DocumentClassifierArn = {
             type = "string",
@@ -1853,10 +1949,12 @@ M.DeleteDocumentClassifierInput = {
 
 M.DeleteDocumentClassifierOutput = {
     type = "structure",
+    id = "DeleteDocumentClassifierOutput",
 }
 
 M.DeleteEndpointInput = {
     type = "structure",
+    id = "DeleteEndpointInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -1869,10 +1967,12 @@ M.DeleteEndpointInput = {
 
 M.DeleteEndpointOutput = {
     type = "structure",
+    id = "DeleteEndpointOutput",
 }
 
 M.DeleteEntityRecognizerInput = {
     type = "structure",
+    id = "DeleteEntityRecognizerInput",
     members = {
         EntityRecognizerArn = {
             type = "string",
@@ -1885,10 +1985,12 @@ M.DeleteEntityRecognizerInput = {
 
 M.DeleteEntityRecognizerOutput = {
     type = "structure",
+    id = "DeleteEntityRecognizerOutput",
 }
 
 M.DeleteFlywheelInput = {
     type = "structure",
+    id = "DeleteFlywheelInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -1901,10 +2003,12 @@ M.DeleteFlywheelInput = {
 
 M.DeleteFlywheelOutput = {
     type = "structure",
+    id = "DeleteFlywheelOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1920,10 +2024,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -1942,6 +2048,7 @@ M.DatasetStatus = {
 
 M.DatasetProperties = {
     type = "structure",
+    id = "DatasetProperties",
     members = {
         DatasetArn = {
             type = "string",
@@ -1978,6 +2085,7 @@ M.DatasetProperties = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         DatasetProperties = M.DatasetProperties,
     },
@@ -1985,6 +2093,7 @@ M.DescribeDatasetOutput = {
 
 M.DescribeDocumentClassificationJobInput = {
     type = "structure",
+    id = "DescribeDocumentClassificationJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1997,6 +2106,7 @@ M.DescribeDocumentClassificationJobInput = {
 
 M.InputDataConfig = {
     type = "structure",
+    id = "InputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -2022,6 +2132,7 @@ M.JobStatus = {
 
 M.OutputDataConfig = {
     type = "structure",
+    id = "OutputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -2037,6 +2148,7 @@ M.OutputDataConfig = {
 
 M.DocumentClassificationJobProperties = {
     type = "structure",
+    id = "DocumentClassificationJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -2079,6 +2191,7 @@ M.DocumentClassificationJobProperties = {
 
 M.DescribeDocumentClassificationJobOutput = {
     type = "structure",
+    id = "DescribeDocumentClassificationJobOutput",
     members = {
         DocumentClassificationJobProperties = M.DocumentClassificationJobProperties,
     },
@@ -2086,6 +2199,7 @@ M.DescribeDocumentClassificationJobOutput = {
 
 M.JobNotFoundException = {
     type = "structure",
+    id = "JobNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2096,6 +2210,7 @@ M.JobNotFoundException = {
 
 M.DescribeDocumentClassifierInput = {
     type = "structure",
+    id = "DescribeDocumentClassifierInput",
     members = {
         DocumentClassifierArn = {
             type = "string",
@@ -2119,6 +2234,7 @@ M.ModelStatus = {
 
 M.DocumentClassifierProperties = {
     type = "structure",
+    id = "DocumentClassifierProperties",
     members = {
         DocumentClassifierArn = {
             type = "string",
@@ -2174,6 +2290,7 @@ M.DocumentClassifierProperties = {
 
 M.DescribeDocumentClassifierOutput = {
     type = "structure",
+    id = "DescribeDocumentClassifierOutput",
     members = {
         DocumentClassifierProperties = M.DocumentClassifierProperties,
     },
@@ -2181,6 +2298,7 @@ M.DescribeDocumentClassifierOutput = {
 
 M.DescribeDominantLanguageDetectionJobInput = {
     type = "structure",
+    id = "DescribeDominantLanguageDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2193,6 +2311,7 @@ M.DescribeDominantLanguageDetectionJobInput = {
 
 M.DominantLanguageDetectionJobProperties = {
     type = "structure",
+    id = "DominantLanguageDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -2229,6 +2348,7 @@ M.DominantLanguageDetectionJobProperties = {
 
 M.DescribeDominantLanguageDetectionJobOutput = {
     type = "structure",
+    id = "DescribeDominantLanguageDetectionJobOutput",
     members = {
         DominantLanguageDetectionJobProperties = M.DominantLanguageDetectionJobProperties,
     },
@@ -2236,6 +2356,7 @@ M.DescribeDominantLanguageDetectionJobOutput = {
 
 M.DescribeEndpointInput = {
     type = "structure",
+    id = "DescribeEndpointInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -2256,6 +2377,7 @@ M.EndpointStatus = {
 
 M.EndpointProperties = {
     type = "structure",
+    id = "EndpointProperties",
     members = {
         EndpointArn = {
             type = "string",
@@ -2298,6 +2420,7 @@ M.EndpointProperties = {
 
 M.DescribeEndpointOutput = {
     type = "structure",
+    id = "DescribeEndpointOutput",
     members = {
         EndpointProperties = M.EndpointProperties,
     },
@@ -2305,6 +2428,7 @@ M.DescribeEndpointOutput = {
 
 M.DescribeEntitiesDetectionJobInput = {
     type = "structure",
+    id = "DescribeEntitiesDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2317,6 +2441,7 @@ M.DescribeEntitiesDetectionJobInput = {
 
 M.EntitiesDetectionJobProperties = {
     type = "structure",
+    id = "EntitiesDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -2362,6 +2487,7 @@ M.EntitiesDetectionJobProperties = {
 
 M.DescribeEntitiesDetectionJobOutput = {
     type = "structure",
+    id = "DescribeEntitiesDetectionJobOutput",
     members = {
         EntitiesDetectionJobProperties = M.EntitiesDetectionJobProperties,
     },
@@ -2369,6 +2495,7 @@ M.DescribeEntitiesDetectionJobOutput = {
 
 M.DescribeEntityRecognizerInput = {
     type = "structure",
+    id = "DescribeEntityRecognizerInput",
     members = {
         EntityRecognizerArn = {
             type = "string",
@@ -2381,6 +2508,7 @@ M.DescribeEntityRecognizerInput = {
 
 M.EntityRecognizerOutputDataConfig = {
     type = "structure",
+    id = "EntityRecognizerOutputDataConfig",
     members = {
         FlywheelStatsS3Prefix = {
             type = "string",
@@ -2390,6 +2518,7 @@ M.EntityRecognizerOutputDataConfig = {
 
 M.EntityTypesEvaluationMetrics = {
     type = "structure",
+    id = "EntityTypesEvaluationMetrics",
     members = {
         Precision = {
             type = "double",
@@ -2405,6 +2534,7 @@ M.EntityTypesEvaluationMetrics = {
 
 M.EntityRecognizerMetadataEntityTypesListItem = {
     type = "structure",
+    id = "EntityRecognizerMetadataEntityTypesListItem",
     members = {
         Type = {
             type = "string",
@@ -2418,6 +2548,7 @@ M.EntityRecognizerMetadataEntityTypesListItem = {
 
 M.EntityRecognizerEvaluationMetrics = {
     type = "structure",
+    id = "EntityRecognizerEvaluationMetrics",
     members = {
         Precision = {
             type = "double",
@@ -2433,6 +2564,7 @@ M.EntityRecognizerEvaluationMetrics = {
 
 M.EntityRecognizerMetadata = {
     type = "structure",
+    id = "EntityRecognizerMetadata",
     members = {
         NumberOfTrainedDocuments = {
             type = "integer",
@@ -2450,6 +2582,7 @@ M.EntityRecognizerMetadata = {
 
 M.EntityRecognizerProperties = {
     type = "structure",
+    id = "EntityRecognizerProperties",
     members = {
         EntityRecognizerArn = {
             type = "string",
@@ -2502,6 +2635,7 @@ M.EntityRecognizerProperties = {
 
 M.DescribeEntityRecognizerOutput = {
     type = "structure",
+    id = "DescribeEntityRecognizerOutput",
     members = {
         EntityRecognizerProperties = M.EntityRecognizerProperties,
     },
@@ -2509,6 +2643,7 @@ M.DescribeEntityRecognizerOutput = {
 
 M.DescribeEventsDetectionJobInput = {
     type = "structure",
+    id = "DescribeEventsDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2521,6 +2656,7 @@ M.DescribeEventsDetectionJobInput = {
 
 M.EventsDetectionJobProperties = {
     type = "structure",
+    id = "EventsDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -2560,6 +2696,7 @@ M.EventsDetectionJobProperties = {
 
 M.DescribeEventsDetectionJobOutput = {
     type = "structure",
+    id = "DescribeEventsDetectionJobOutput",
     members = {
         EventsDetectionJobProperties = M.EventsDetectionJobProperties,
     },
@@ -2567,6 +2704,7 @@ M.DescribeEventsDetectionJobOutput = {
 
 M.DescribeFlywheelInput = {
     type = "structure",
+    id = "DescribeFlywheelInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -2587,6 +2725,7 @@ M.FlywheelStatus = {
 
 M.FlywheelProperties = {
     type = "structure",
+    id = "FlywheelProperties",
     members = {
         FlywheelArn = {
             type = "string",
@@ -2625,6 +2764,7 @@ M.FlywheelProperties = {
 
 M.DescribeFlywheelOutput = {
     type = "structure",
+    id = "DescribeFlywheelOutput",
     members = {
         FlywheelProperties = M.FlywheelProperties,
     },
@@ -2632,6 +2772,7 @@ M.DescribeFlywheelOutput = {
 
 M.DescribeFlywheelIterationInput = {
     type = "structure",
+    id = "DescribeFlywheelIterationInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -2650,6 +2791,7 @@ M.DescribeFlywheelIterationInput = {
 
 M.FlywheelModelEvaluationMetrics = {
     type = "structure",
+    id = "FlywheelModelEvaluationMetrics",
     members = {
         AverageF1Score = {
             type = "double",
@@ -2677,6 +2819,7 @@ M.FlywheelIterationStatus = {
 
 M.FlywheelIterationProperties = {
     type = "structure",
+    id = "FlywheelIterationProperties",
     members = {
         FlywheelArn = {
             type = "string",
@@ -2712,6 +2855,7 @@ M.FlywheelIterationProperties = {
 
 M.DescribeFlywheelIterationOutput = {
     type = "structure",
+    id = "DescribeFlywheelIterationOutput",
     members = {
         FlywheelIterationProperties = M.FlywheelIterationProperties,
     },
@@ -2719,6 +2863,7 @@ M.DescribeFlywheelIterationOutput = {
 
 M.DescribeKeyPhrasesDetectionJobInput = {
     type = "structure",
+    id = "DescribeKeyPhrasesDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2731,6 +2876,7 @@ M.DescribeKeyPhrasesDetectionJobInput = {
 
 M.KeyPhrasesDetectionJobProperties = {
     type = "structure",
+    id = "KeyPhrasesDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -2770,6 +2916,7 @@ M.KeyPhrasesDetectionJobProperties = {
 
 M.DescribeKeyPhrasesDetectionJobOutput = {
     type = "structure",
+    id = "DescribeKeyPhrasesDetectionJobOutput",
     members = {
         KeyPhrasesDetectionJobProperties = M.KeyPhrasesDetectionJobProperties,
     },
@@ -2777,6 +2924,7 @@ M.DescribeKeyPhrasesDetectionJobOutput = {
 
 M.DescribePiiEntitiesDetectionJobInput = {
     type = "structure",
+    id = "DescribePiiEntitiesDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2794,6 +2942,7 @@ M.PiiEntitiesDetectionMode = {
 
 M.PiiOutputDataConfig = {
     type = "structure",
+    id = "PiiOutputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -2814,6 +2963,7 @@ M.PiiEntitiesDetectionMaskMode = {
 
 M.RedactionConfig = {
     type = "structure",
+    id = "RedactionConfig",
     members = {
         PiiEntityTypes = {
             type = "list",
@@ -2830,6 +2980,7 @@ M.RedactionConfig = {
 
 M.PiiEntitiesDetectionJobProperties = {
     type = "structure",
+    id = "PiiEntitiesDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -2869,6 +3020,7 @@ M.PiiEntitiesDetectionJobProperties = {
 
 M.DescribePiiEntitiesDetectionJobOutput = {
     type = "structure",
+    id = "DescribePiiEntitiesDetectionJobOutput",
     members = {
         PiiEntitiesDetectionJobProperties = M.PiiEntitiesDetectionJobProperties,
     },
@@ -2876,6 +3028,7 @@ M.DescribePiiEntitiesDetectionJobOutput = {
 
 M.DescribeResourcePolicyInput = {
     type = "structure",
+    id = "DescribeResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2888,6 +3041,7 @@ M.DescribeResourcePolicyInput = {
 
 M.DescribeResourcePolicyOutput = {
     type = "structure",
+    id = "DescribeResourcePolicyOutput",
     members = {
         ResourcePolicy = {
             type = "string",
@@ -2906,6 +3060,7 @@ M.DescribeResourcePolicyOutput = {
 
 M.DescribeSentimentDetectionJobInput = {
     type = "structure",
+    id = "DescribeSentimentDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2918,6 +3073,7 @@ M.DescribeSentimentDetectionJobInput = {
 
 M.SentimentDetectionJobProperties = {
     type = "structure",
+    id = "SentimentDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -2957,6 +3113,7 @@ M.SentimentDetectionJobProperties = {
 
 M.DescribeSentimentDetectionJobOutput = {
     type = "structure",
+    id = "DescribeSentimentDetectionJobOutput",
     members = {
         SentimentDetectionJobProperties = M.SentimentDetectionJobProperties,
     },
@@ -2964,6 +3121,7 @@ M.DescribeSentimentDetectionJobOutput = {
 
 M.DescribeTargetedSentimentDetectionJobInput = {
     type = "structure",
+    id = "DescribeTargetedSentimentDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -2976,6 +3134,7 @@ M.DescribeTargetedSentimentDetectionJobInput = {
 
 M.TargetedSentimentDetectionJobProperties = {
     type = "structure",
+    id = "TargetedSentimentDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -3015,6 +3174,7 @@ M.TargetedSentimentDetectionJobProperties = {
 
 M.DescribeTargetedSentimentDetectionJobOutput = {
     type = "structure",
+    id = "DescribeTargetedSentimentDetectionJobOutput",
     members = {
         TargetedSentimentDetectionJobProperties = M.TargetedSentimentDetectionJobProperties,
     },
@@ -3022,6 +3182,7 @@ M.DescribeTargetedSentimentDetectionJobOutput = {
 
 M.DescribeTopicsDetectionJobInput = {
     type = "structure",
+    id = "DescribeTopicsDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3034,6 +3195,7 @@ M.DescribeTopicsDetectionJobInput = {
 
 M.TopicsDetectionJobProperties = {
     type = "structure",
+    id = "TopicsDetectionJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -3073,6 +3235,7 @@ M.TopicsDetectionJobProperties = {
 
 M.DescribeTopicsDetectionJobOutput = {
     type = "structure",
+    id = "DescribeTopicsDetectionJobOutput",
     members = {
         TopicsDetectionJobProperties = M.TopicsDetectionJobProperties,
     },
@@ -3080,6 +3243,7 @@ M.DescribeTopicsDetectionJobOutput = {
 
 M.DetectDominantLanguageInput = {
     type = "structure",
+    id = "DetectDominantLanguageInput",
     members = {
         Text = {
             type = "string",
@@ -3092,6 +3256,7 @@ M.DetectDominantLanguageInput = {
 
 M.DetectDominantLanguageOutput = {
     type = "structure",
+    id = "DetectDominantLanguageOutput",
     members = {
         Languages = {
             type = "list",
@@ -3102,6 +3267,7 @@ M.DetectDominantLanguageOutput = {
 
 M.DetectEntitiesInput = {
     type = "structure",
+    id = "DetectEntitiesInput",
     members = {
         Text = {
             type = "string",
@@ -3121,6 +3287,7 @@ M.DetectEntitiesInput = {
 
 M.DetectEntitiesOutput = {
     type = "structure",
+    id = "DetectEntitiesOutput",
     members = {
         Entities = {
             type = "list",
@@ -3144,6 +3311,7 @@ M.DetectEntitiesOutput = {
 
 M.DetectKeyPhrasesInput = {
     type = "structure",
+    id = "DetectKeyPhrasesInput",
     members = {
         Text = {
             type = "string",
@@ -3162,6 +3330,7 @@ M.DetectKeyPhrasesInput = {
 
 M.DetectKeyPhrasesOutput = {
     type = "structure",
+    id = "DetectKeyPhrasesOutput",
     members = {
         KeyPhrases = {
             type = "list",
@@ -3172,6 +3341,7 @@ M.DetectKeyPhrasesOutput = {
 
 M.DetectPiiEntitiesInput = {
     type = "structure",
+    id = "DetectPiiEntitiesInput",
     members = {
         Text = {
             type = "string",
@@ -3190,6 +3360,7 @@ M.DetectPiiEntitiesInput = {
 
 M.PiiEntity = {
     type = "structure",
+    id = "PiiEntity",
     members = {
         Score = {
             type = "float",
@@ -3208,6 +3379,7 @@ M.PiiEntity = {
 
 M.DetectPiiEntitiesOutput = {
     type = "structure",
+    id = "DetectPiiEntitiesOutput",
     members = {
         Entities = {
             type = "list",
@@ -3218,6 +3390,7 @@ M.DetectPiiEntitiesOutput = {
 
 M.DetectSentimentInput = {
     type = "structure",
+    id = "DetectSentimentInput",
     members = {
         Text = {
             type = "string",
@@ -3236,6 +3409,7 @@ M.DetectSentimentInput = {
 
 M.DetectSentimentOutput = {
     type = "structure",
+    id = "DetectSentimentOutput",
     members = {
         Sentiment = {
             type = "string",
@@ -3246,6 +3420,7 @@ M.DetectSentimentOutput = {
 
 M.DetectSyntaxInput = {
     type = "structure",
+    id = "DetectSyntaxInput",
     members = {
         Text = {
             type = "string",
@@ -3264,6 +3439,7 @@ M.DetectSyntaxInput = {
 
 M.DetectSyntaxOutput = {
     type = "structure",
+    id = "DetectSyntaxOutput",
     members = {
         SyntaxTokens = {
             type = "list",
@@ -3274,6 +3450,7 @@ M.DetectSyntaxOutput = {
 
 M.DetectTargetedSentimentInput = {
     type = "structure",
+    id = "DetectTargetedSentimentInput",
     members = {
         Text = {
             type = "string",
@@ -3292,6 +3469,7 @@ M.DetectTargetedSentimentInput = {
 
 M.DetectTargetedSentimentOutput = {
     type = "structure",
+    id = "DetectTargetedSentimentOutput",
     members = {
         Entities = {
             type = "list",
@@ -3302,6 +3480,7 @@ M.DetectTargetedSentimentOutput = {
 
 M.TextSegment = {
     type = "structure",
+    id = "TextSegment",
     members = {
         Text = {
             type = "string",
@@ -3314,6 +3493,7 @@ M.TextSegment = {
 
 M.DetectToxicContentInput = {
     type = "structure",
+    id = "DetectToxicContentInput",
     members = {
         TextSegments = {
             type = "list",
@@ -3343,6 +3523,7 @@ M.ToxicContentType = {
 
 M.ToxicContent = {
     type = "structure",
+    id = "ToxicContent",
     members = {
         Name = {
             type = "string",
@@ -3355,6 +3536,7 @@ M.ToxicContent = {
 
 M.ToxicLabels = {
     type = "structure",
+    id = "ToxicLabels",
     members = {
         Labels = {
             type = "list",
@@ -3368,6 +3550,7 @@ M.ToxicLabels = {
 
 M.DetectToxicContentOutput = {
     type = "structure",
+    id = "DetectToxicContentOutput",
     members = {
         ResultList = {
             type = "list",
@@ -3378,6 +3561,7 @@ M.DetectToxicContentOutput = {
 
 M.ImportModelInput = {
     type = "structure",
+    id = "ImportModelInput",
     members = {
         SourceModelArn = {
             type = "string",
@@ -3406,6 +3590,7 @@ M.ImportModelInput = {
 
 M.ImportModelOutput = {
     type = "structure",
+    id = "ImportModelOutput",
     members = {
         ModelArn = {
             type = "string",
@@ -3415,6 +3600,7 @@ M.ImportModelOutput = {
 
 M.InvalidFilterException = {
     type = "structure",
+    id = "InvalidFilterException",
     error = "client",
     members = {
         Message = {
@@ -3425,6 +3611,7 @@ M.InvalidFilterException = {
 
 M.DatasetFilter = {
     type = "structure",
+    id = "DatasetFilter",
     members = {
         Status = {
             type = "string",
@@ -3443,6 +3630,7 @@ M.DatasetFilter = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -3459,6 +3647,7 @@ M.ListDatasetsInput = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         DatasetPropertiesList = {
             type = "list",
@@ -3472,6 +3661,7 @@ M.ListDatasetsOutput = {
 
 M.DocumentClassificationJobFilter = {
     type = "structure",
+    id = "DocumentClassificationJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -3490,6 +3680,7 @@ M.DocumentClassificationJobFilter = {
 
 M.ListDocumentClassificationJobsInput = {
     type = "structure",
+    id = "ListDocumentClassificationJobsInput",
     members = {
         Filter = M.DocumentClassificationJobFilter,
         NextToken = {
@@ -3503,6 +3694,7 @@ M.ListDocumentClassificationJobsInput = {
 
 M.ListDocumentClassificationJobsOutput = {
     type = "structure",
+    id = "ListDocumentClassificationJobsOutput",
     members = {
         DocumentClassificationJobPropertiesList = {
             type = "list",
@@ -3516,6 +3708,7 @@ M.ListDocumentClassificationJobsOutput = {
 
 M.DocumentClassifierFilter = {
     type = "structure",
+    id = "DocumentClassifierFilter",
     members = {
         Status = {
             type = "string",
@@ -3534,6 +3727,7 @@ M.DocumentClassifierFilter = {
 
 M.ListDocumentClassifiersInput = {
     type = "structure",
+    id = "ListDocumentClassifiersInput",
     members = {
         Filter = M.DocumentClassifierFilter,
         NextToken = {
@@ -3547,6 +3741,7 @@ M.ListDocumentClassifiersInput = {
 
 M.ListDocumentClassifiersOutput = {
     type = "structure",
+    id = "ListDocumentClassifiersOutput",
     members = {
         DocumentClassifierPropertiesList = {
             type = "list",
@@ -3560,6 +3755,7 @@ M.ListDocumentClassifiersOutput = {
 
 M.ListDocumentClassifierSummariesInput = {
     type = "structure",
+    id = "ListDocumentClassifierSummariesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3572,6 +3768,7 @@ M.ListDocumentClassifierSummariesInput = {
 
 M.DocumentClassifierSummary = {
     type = "structure",
+    id = "DocumentClassifierSummary",
     members = {
         DocumentClassifierName = {
             type = "string",
@@ -3593,6 +3790,7 @@ M.DocumentClassifierSummary = {
 
 M.ListDocumentClassifierSummariesOutput = {
     type = "structure",
+    id = "ListDocumentClassifierSummariesOutput",
     members = {
         DocumentClassifierSummariesList = {
             type = "list",
@@ -3606,6 +3804,7 @@ M.ListDocumentClassifierSummariesOutput = {
 
 M.DominantLanguageDetectionJobFilter = {
     type = "structure",
+    id = "DominantLanguageDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -3624,6 +3823,7 @@ M.DominantLanguageDetectionJobFilter = {
 
 M.ListDominantLanguageDetectionJobsInput = {
     type = "structure",
+    id = "ListDominantLanguageDetectionJobsInput",
     members = {
         Filter = M.DominantLanguageDetectionJobFilter,
         NextToken = {
@@ -3637,6 +3837,7 @@ M.ListDominantLanguageDetectionJobsInput = {
 
 M.ListDominantLanguageDetectionJobsOutput = {
     type = "structure",
+    id = "ListDominantLanguageDetectionJobsOutput",
     members = {
         DominantLanguageDetectionJobPropertiesList = {
             type = "list",
@@ -3650,6 +3851,7 @@ M.ListDominantLanguageDetectionJobsOutput = {
 
 M.EndpointFilter = {
     type = "structure",
+    id = "EndpointFilter",
     members = {
         ModelArn = {
             type = "string",
@@ -3668,6 +3870,7 @@ M.EndpointFilter = {
 
 M.ListEndpointsInput = {
     type = "structure",
+    id = "ListEndpointsInput",
     members = {
         Filter = M.EndpointFilter,
         NextToken = {
@@ -3681,6 +3884,7 @@ M.ListEndpointsInput = {
 
 M.ListEndpointsOutput = {
     type = "structure",
+    id = "ListEndpointsOutput",
     members = {
         EndpointPropertiesList = {
             type = "list",
@@ -3694,6 +3898,7 @@ M.ListEndpointsOutput = {
 
 M.EntitiesDetectionJobFilter = {
     type = "structure",
+    id = "EntitiesDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -3712,6 +3917,7 @@ M.EntitiesDetectionJobFilter = {
 
 M.ListEntitiesDetectionJobsInput = {
     type = "structure",
+    id = "ListEntitiesDetectionJobsInput",
     members = {
         Filter = M.EntitiesDetectionJobFilter,
         NextToken = {
@@ -3725,6 +3931,7 @@ M.ListEntitiesDetectionJobsInput = {
 
 M.ListEntitiesDetectionJobsOutput = {
     type = "structure",
+    id = "ListEntitiesDetectionJobsOutput",
     members = {
         EntitiesDetectionJobPropertiesList = {
             type = "list",
@@ -3738,6 +3945,7 @@ M.ListEntitiesDetectionJobsOutput = {
 
 M.EntityRecognizerFilter = {
     type = "structure",
+    id = "EntityRecognizerFilter",
     members = {
         Status = {
             type = "string",
@@ -3756,6 +3964,7 @@ M.EntityRecognizerFilter = {
 
 M.ListEntityRecognizersInput = {
     type = "structure",
+    id = "ListEntityRecognizersInput",
     members = {
         Filter = M.EntityRecognizerFilter,
         NextToken = {
@@ -3769,6 +3978,7 @@ M.ListEntityRecognizersInput = {
 
 M.ListEntityRecognizersOutput = {
     type = "structure",
+    id = "ListEntityRecognizersOutput",
     members = {
         EntityRecognizerPropertiesList = {
             type = "list",
@@ -3782,6 +3992,7 @@ M.ListEntityRecognizersOutput = {
 
 M.ListEntityRecognizerSummariesInput = {
     type = "structure",
+    id = "ListEntityRecognizerSummariesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3794,6 +4005,7 @@ M.ListEntityRecognizerSummariesInput = {
 
 M.EntityRecognizerSummary = {
     type = "structure",
+    id = "EntityRecognizerSummary",
     members = {
         RecognizerName = {
             type = "string",
@@ -3815,6 +4027,7 @@ M.EntityRecognizerSummary = {
 
 M.ListEntityRecognizerSummariesOutput = {
     type = "structure",
+    id = "ListEntityRecognizerSummariesOutput",
     members = {
         EntityRecognizerSummariesList = {
             type = "list",
@@ -3828,6 +4041,7 @@ M.ListEntityRecognizerSummariesOutput = {
 
 M.EventsDetectionJobFilter = {
     type = "structure",
+    id = "EventsDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -3846,6 +4060,7 @@ M.EventsDetectionJobFilter = {
 
 M.ListEventsDetectionJobsInput = {
     type = "structure",
+    id = "ListEventsDetectionJobsInput",
     members = {
         Filter = M.EventsDetectionJobFilter,
         NextToken = {
@@ -3859,6 +4074,7 @@ M.ListEventsDetectionJobsInput = {
 
 M.ListEventsDetectionJobsOutput = {
     type = "structure",
+    id = "ListEventsDetectionJobsOutput",
     members = {
         EventsDetectionJobPropertiesList = {
             type = "list",
@@ -3872,6 +4088,7 @@ M.ListEventsDetectionJobsOutput = {
 
 M.FlywheelIterationFilter = {
     type = "structure",
+    id = "FlywheelIterationFilter",
     members = {
         CreationTimeAfter = {
             type = "timestamp",
@@ -3884,6 +4101,7 @@ M.FlywheelIterationFilter = {
 
 M.ListFlywheelIterationHistoryInput = {
     type = "structure",
+    id = "ListFlywheelIterationHistoryInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -3903,6 +4121,7 @@ M.ListFlywheelIterationHistoryInput = {
 
 M.ListFlywheelIterationHistoryOutput = {
     type = "structure",
+    id = "ListFlywheelIterationHistoryOutput",
     members = {
         FlywheelIterationPropertiesList = {
             type = "list",
@@ -3916,6 +4135,7 @@ M.ListFlywheelIterationHistoryOutput = {
 
 M.FlywheelFilter = {
     type = "structure",
+    id = "FlywheelFilter",
     members = {
         Status = {
             type = "string",
@@ -3931,6 +4151,7 @@ M.FlywheelFilter = {
 
 M.ListFlywheelsInput = {
     type = "structure",
+    id = "ListFlywheelsInput",
     members = {
         Filter = M.FlywheelFilter,
         NextToken = {
@@ -3944,6 +4165,7 @@ M.ListFlywheelsInput = {
 
 M.FlywheelSummary = {
     type = "structure",
+    id = "FlywheelSummary",
     members = {
         FlywheelArn = {
             type = "string",
@@ -3977,6 +4199,7 @@ M.FlywheelSummary = {
 
 M.ListFlywheelsOutput = {
     type = "structure",
+    id = "ListFlywheelsOutput",
     members = {
         FlywheelSummaryList = {
             type = "list",
@@ -3990,6 +4213,7 @@ M.ListFlywheelsOutput = {
 
 M.KeyPhrasesDetectionJobFilter = {
     type = "structure",
+    id = "KeyPhrasesDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -4008,6 +4232,7 @@ M.KeyPhrasesDetectionJobFilter = {
 
 M.ListKeyPhrasesDetectionJobsInput = {
     type = "structure",
+    id = "ListKeyPhrasesDetectionJobsInput",
     members = {
         Filter = M.KeyPhrasesDetectionJobFilter,
         NextToken = {
@@ -4021,6 +4246,7 @@ M.ListKeyPhrasesDetectionJobsInput = {
 
 M.ListKeyPhrasesDetectionJobsOutput = {
     type = "structure",
+    id = "ListKeyPhrasesDetectionJobsOutput",
     members = {
         KeyPhrasesDetectionJobPropertiesList = {
             type = "list",
@@ -4034,6 +4260,7 @@ M.ListKeyPhrasesDetectionJobsOutput = {
 
 M.PiiEntitiesDetectionJobFilter = {
     type = "structure",
+    id = "PiiEntitiesDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -4052,6 +4279,7 @@ M.PiiEntitiesDetectionJobFilter = {
 
 M.ListPiiEntitiesDetectionJobsInput = {
     type = "structure",
+    id = "ListPiiEntitiesDetectionJobsInput",
     members = {
         Filter = M.PiiEntitiesDetectionJobFilter,
         NextToken = {
@@ -4065,6 +4293,7 @@ M.ListPiiEntitiesDetectionJobsInput = {
 
 M.ListPiiEntitiesDetectionJobsOutput = {
     type = "structure",
+    id = "ListPiiEntitiesDetectionJobsOutput",
     members = {
         PiiEntitiesDetectionJobPropertiesList = {
             type = "list",
@@ -4078,6 +4307,7 @@ M.ListPiiEntitiesDetectionJobsOutput = {
 
 M.SentimentDetectionJobFilter = {
     type = "structure",
+    id = "SentimentDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -4096,6 +4326,7 @@ M.SentimentDetectionJobFilter = {
 
 M.ListSentimentDetectionJobsInput = {
     type = "structure",
+    id = "ListSentimentDetectionJobsInput",
     members = {
         Filter = M.SentimentDetectionJobFilter,
         NextToken = {
@@ -4109,6 +4340,7 @@ M.ListSentimentDetectionJobsInput = {
 
 M.ListSentimentDetectionJobsOutput = {
     type = "structure",
+    id = "ListSentimentDetectionJobsOutput",
     members = {
         SentimentDetectionJobPropertiesList = {
             type = "list",
@@ -4122,6 +4354,7 @@ M.ListSentimentDetectionJobsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4134,6 +4367,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4147,6 +4381,7 @@ M.ListTagsForResourceOutput = {
 
 M.TargetedSentimentDetectionJobFilter = {
     type = "structure",
+    id = "TargetedSentimentDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -4165,6 +4400,7 @@ M.TargetedSentimentDetectionJobFilter = {
 
 M.ListTargetedSentimentDetectionJobsInput = {
     type = "structure",
+    id = "ListTargetedSentimentDetectionJobsInput",
     members = {
         Filter = M.TargetedSentimentDetectionJobFilter,
         NextToken = {
@@ -4178,6 +4414,7 @@ M.ListTargetedSentimentDetectionJobsInput = {
 
 M.ListTargetedSentimentDetectionJobsOutput = {
     type = "structure",
+    id = "ListTargetedSentimentDetectionJobsOutput",
     members = {
         TargetedSentimentDetectionJobPropertiesList = {
             type = "list",
@@ -4191,6 +4428,7 @@ M.ListTargetedSentimentDetectionJobsOutput = {
 
 M.TopicsDetectionJobFilter = {
     type = "structure",
+    id = "TopicsDetectionJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -4209,6 +4447,7 @@ M.TopicsDetectionJobFilter = {
 
 M.ListTopicsDetectionJobsInput = {
     type = "structure",
+    id = "ListTopicsDetectionJobsInput",
     members = {
         Filter = M.TopicsDetectionJobFilter,
         NextToken = {
@@ -4222,6 +4461,7 @@ M.ListTopicsDetectionJobsInput = {
 
 M.ListTopicsDetectionJobsOutput = {
     type = "structure",
+    id = "ListTopicsDetectionJobsOutput",
     members = {
         TopicsDetectionJobPropertiesList = {
             type = "list",
@@ -4235,6 +4475,7 @@ M.ListTopicsDetectionJobsOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4256,6 +4497,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         PolicyRevisionId = {
             type = "string",
@@ -4265,6 +4507,7 @@ M.PutResourcePolicyOutput = {
 
 M.StartDocumentClassificationJobInput = {
     type = "structure",
+    id = "StartDocumentClassificationJobInput",
     members = {
         JobName = {
             type = "string",
@@ -4306,6 +4549,7 @@ M.StartDocumentClassificationJobInput = {
 
 M.StartDocumentClassificationJobOutput = {
     type = "structure",
+    id = "StartDocumentClassificationJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4324,6 +4568,7 @@ M.StartDocumentClassificationJobOutput = {
 
 M.StartDominantLanguageDetectionJobInput = {
     type = "structure",
+    id = "StartDominantLanguageDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4359,6 +4604,7 @@ M.StartDominantLanguageDetectionJobInput = {
 
 M.StartDominantLanguageDetectionJobOutput = {
     type = "structure",
+    id = "StartDominantLanguageDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4374,6 +4620,7 @@ M.StartDominantLanguageDetectionJobOutput = {
 
 M.StartEntitiesDetectionJobInput = {
     type = "structure",
+    id = "StartEntitiesDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4421,6 +4668,7 @@ M.StartEntitiesDetectionJobInput = {
 
 M.StartEntitiesDetectionJobOutput = {
     type = "structure",
+    id = "StartEntitiesDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4439,6 +4687,7 @@ M.StartEntitiesDetectionJobOutput = {
 
 M.StartEventsDetectionJobInput = {
     type = "structure",
+    id = "StartEventsDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4483,6 +4732,7 @@ M.StartEventsDetectionJobInput = {
 
 M.StartEventsDetectionJobOutput = {
     type = "structure",
+    id = "StartEventsDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4498,6 +4748,7 @@ M.StartEventsDetectionJobOutput = {
 
 M.StartFlywheelIterationInput = {
     type = "structure",
+    id = "StartFlywheelIterationInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -4513,6 +4764,7 @@ M.StartFlywheelIterationInput = {
 
 M.StartFlywheelIterationOutput = {
     type = "structure",
+    id = "StartFlywheelIterationOutput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -4525,6 +4777,7 @@ M.StartFlywheelIterationOutput = {
 
 M.StartKeyPhrasesDetectionJobInput = {
     type = "structure",
+    id = "StartKeyPhrasesDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4566,6 +4819,7 @@ M.StartKeyPhrasesDetectionJobInput = {
 
 M.StartKeyPhrasesDetectionJobOutput = {
     type = "structure",
+    id = "StartKeyPhrasesDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4581,6 +4835,7 @@ M.StartKeyPhrasesDetectionJobOutput = {
 
 M.StartPiiEntitiesDetectionJobInput = {
     type = "structure",
+    id = "StartPiiEntitiesDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4625,6 +4880,7 @@ M.StartPiiEntitiesDetectionJobInput = {
 
 M.StartPiiEntitiesDetectionJobOutput = {
     type = "structure",
+    id = "StartPiiEntitiesDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4640,6 +4896,7 @@ M.StartPiiEntitiesDetectionJobOutput = {
 
 M.StartSentimentDetectionJobInput = {
     type = "structure",
+    id = "StartSentimentDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4681,6 +4938,7 @@ M.StartSentimentDetectionJobInput = {
 
 M.StartSentimentDetectionJobOutput = {
     type = "structure",
+    id = "StartSentimentDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4696,6 +4954,7 @@ M.StartSentimentDetectionJobOutput = {
 
 M.StartTargetedSentimentDetectionJobInput = {
     type = "structure",
+    id = "StartTargetedSentimentDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4737,6 +4996,7 @@ M.StartTargetedSentimentDetectionJobInput = {
 
 M.StartTargetedSentimentDetectionJobOutput = {
     type = "structure",
+    id = "StartTargetedSentimentDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4752,6 +5012,7 @@ M.StartTargetedSentimentDetectionJobOutput = {
 
 M.StartTopicsDetectionJobInput = {
     type = "structure",
+    id = "StartTopicsDetectionJobInput",
     members = {
         InputDataConfig = setmetatable({ traits = {
             required = true,
@@ -4790,6 +5051,7 @@ M.StartTopicsDetectionJobInput = {
 
 M.StartTopicsDetectionJobOutput = {
     type = "structure",
+    id = "StartTopicsDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4805,6 +5067,7 @@ M.StartTopicsDetectionJobOutput = {
 
 M.StopDominantLanguageDetectionJobInput = {
     type = "structure",
+    id = "StopDominantLanguageDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -4817,6 +5080,7 @@ M.StopDominantLanguageDetectionJobInput = {
 
 M.StopDominantLanguageDetectionJobOutput = {
     type = "structure",
+    id = "StopDominantLanguageDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4829,6 +5093,7 @@ M.StopDominantLanguageDetectionJobOutput = {
 
 M.StopEntitiesDetectionJobInput = {
     type = "structure",
+    id = "StopEntitiesDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -4841,6 +5106,7 @@ M.StopEntitiesDetectionJobInput = {
 
 M.StopEntitiesDetectionJobOutput = {
     type = "structure",
+    id = "StopEntitiesDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4853,6 +5119,7 @@ M.StopEntitiesDetectionJobOutput = {
 
 M.StopEventsDetectionJobInput = {
     type = "structure",
+    id = "StopEventsDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -4865,6 +5132,7 @@ M.StopEventsDetectionJobInput = {
 
 M.StopEventsDetectionJobOutput = {
     type = "structure",
+    id = "StopEventsDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4877,6 +5145,7 @@ M.StopEventsDetectionJobOutput = {
 
 M.StopKeyPhrasesDetectionJobInput = {
     type = "structure",
+    id = "StopKeyPhrasesDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -4889,6 +5158,7 @@ M.StopKeyPhrasesDetectionJobInput = {
 
 M.StopKeyPhrasesDetectionJobOutput = {
     type = "structure",
+    id = "StopKeyPhrasesDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4901,6 +5171,7 @@ M.StopKeyPhrasesDetectionJobOutput = {
 
 M.StopPiiEntitiesDetectionJobInput = {
     type = "structure",
+    id = "StopPiiEntitiesDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -4913,6 +5184,7 @@ M.StopPiiEntitiesDetectionJobInput = {
 
 M.StopPiiEntitiesDetectionJobOutput = {
     type = "structure",
+    id = "StopPiiEntitiesDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4925,6 +5197,7 @@ M.StopPiiEntitiesDetectionJobOutput = {
 
 M.StopSentimentDetectionJobInput = {
     type = "structure",
+    id = "StopSentimentDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -4937,6 +5210,7 @@ M.StopSentimentDetectionJobInput = {
 
 M.StopSentimentDetectionJobOutput = {
     type = "structure",
+    id = "StopSentimentDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4949,6 +5223,7 @@ M.StopSentimentDetectionJobOutput = {
 
 M.StopTargetedSentimentDetectionJobInput = {
     type = "structure",
+    id = "StopTargetedSentimentDetectionJobInput",
     members = {
         JobId = {
             type = "string",
@@ -4961,6 +5236,7 @@ M.StopTargetedSentimentDetectionJobInput = {
 
 M.StopTargetedSentimentDetectionJobOutput = {
     type = "structure",
+    id = "StopTargetedSentimentDetectionJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4973,6 +5249,7 @@ M.StopTargetedSentimentDetectionJobOutput = {
 
 M.StopTrainingDocumentClassifierInput = {
     type = "structure",
+    id = "StopTrainingDocumentClassifierInput",
     members = {
         DocumentClassifierArn = {
             type = "string",
@@ -4985,10 +5262,12 @@ M.StopTrainingDocumentClassifierInput = {
 
 M.StopTrainingDocumentClassifierOutput = {
     type = "structure",
+    id = "StopTrainingDocumentClassifierOutput",
 }
 
 M.StopTrainingEntityRecognizerInput = {
     type = "structure",
+    id = "StopTrainingEntityRecognizerInput",
     members = {
         EntityRecognizerArn = {
             type = "string",
@@ -5001,10 +5280,12 @@ M.StopTrainingEntityRecognizerInput = {
 
 M.StopTrainingEntityRecognizerOutput = {
     type = "structure",
+    id = "StopTrainingEntityRecognizerOutput",
 }
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -5015,6 +5296,7 @@ M.ConcurrentModificationException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5034,10 +5316,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagKeysException = {
     type = "structure",
+    id = "TooManyTagKeysException",
     error = "client",
     members = {
         Message = {
@@ -5048,6 +5332,7 @@ M.TooManyTagKeysException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5067,10 +5352,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateEndpointInput = {
     type = "structure",
+    id = "UpdateEndpointInput",
     members = {
         EndpointArn = {
             type = "string",
@@ -5095,6 +5382,7 @@ M.UpdateEndpointInput = {
 
 M.UpdateEndpointOutput = {
     type = "structure",
+    id = "UpdateEndpointOutput",
     members = {
         DesiredModelArn = {
             type = "string",
@@ -5104,6 +5392,7 @@ M.UpdateEndpointOutput = {
 
 M.UpdateDataSecurityConfig = {
     type = "structure",
+    id = "UpdateDataSecurityConfig",
     members = {
         ModelKmsKeyId = {
             type = "string",
@@ -5117,6 +5406,7 @@ M.UpdateDataSecurityConfig = {
 
 M.UpdateFlywheelInput = {
     type = "structure",
+    id = "UpdateFlywheelInput",
     members = {
         FlywheelArn = {
             type = "string",
@@ -5136,6 +5426,7 @@ M.UpdateFlywheelInput = {
 
 M.UpdateFlywheelOutput = {
     type = "structure",
+    id = "UpdateFlywheelOutput",
     members = {
         FlywheelProperties = M.FlywheelProperties,
     },

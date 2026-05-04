@@ -2,6 +2,7 @@ local M = {}
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -21,6 +22,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -45,6 +47,7 @@ M.ConnectionType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -63,6 +66,7 @@ M.Tag = {
 
 M.CreateEnvironmentEC2Input = {
     type = "structure",
+    id = "CreateEnvironmentEC2Input",
     members = {
         name = {
             type = "string",
@@ -112,6 +116,7 @@ M.CreateEnvironmentEC2Input = {
 
 M.CreateEnvironmentEC2Output = {
     type = "structure",
+    id = "CreateEnvironmentEC2Output",
     members = {
         environmentId = {
             type = "string",
@@ -121,6 +126,7 @@ M.CreateEnvironmentEC2Output = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -140,6 +146,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         message = {
@@ -159,6 +166,7 @@ M.InternalServerErrorException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -178,6 +186,7 @@ M.LimitExceededException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -197,6 +206,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -221,6 +231,7 @@ M.MemberPermissions = {
 
 M.CreateEnvironmentMembershipInput = {
     type = "structure",
+    id = "CreateEnvironmentMembershipInput",
     members = {
         environmentId = {
             type = "string",
@@ -251,6 +262,7 @@ M.Permissions = {
 
 M.EnvironmentMember = {
     type = "structure",
+    id = "EnvironmentMember",
     members = {
         permissions = {
             type = "string",
@@ -284,6 +296,7 @@ M.EnvironmentMember = {
 
 M.CreateEnvironmentMembershipOutput = {
     type = "structure",
+    id = "CreateEnvironmentMembershipOutput",
     members = {
         membership = setmetatable({ traits = {
             required = true,
@@ -293,6 +306,7 @@ M.CreateEnvironmentMembershipOutput = {
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -305,10 +319,12 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
 }
 
 M.DeleteEnvironmentMembershipInput = {
     type = "structure",
+    id = "DeleteEnvironmentMembershipInput",
     members = {
         environmentId = {
             type = "string",
@@ -327,10 +343,12 @@ M.DeleteEnvironmentMembershipInput = {
 
 M.DeleteEnvironmentMembershipOutput = {
     type = "structure",
+    id = "DeleteEnvironmentMembershipOutput",
 }
 
 M.DescribeEnvironmentMembershipsInput = {
     type = "structure",
+    id = "DescribeEnvironmentMembershipsInput",
     members = {
         userArn = {
             type = "string",
@@ -353,6 +371,7 @@ M.DescribeEnvironmentMembershipsInput = {
 
 M.DescribeEnvironmentMembershipsOutput = {
     type = "structure",
+    id = "DescribeEnvironmentMembershipsOutput",
     members = {
         memberships = {
             type = "list",
@@ -366,6 +385,7 @@ M.DescribeEnvironmentMembershipsOutput = {
 
 M.DescribeEnvironmentsInput = {
     type = "structure",
+    id = "DescribeEnvironmentsInput",
     members = {
         environmentIds = {
             type = "list",
@@ -387,6 +407,7 @@ M.EnvironmentLifecycleStatus = {
 
 M.EnvironmentLifecycle = {
     type = "structure",
+    id = "EnvironmentLifecycle",
     members = {
         status = {
             type = "string",
@@ -421,6 +442,7 @@ M.EnvironmentType = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         id = {
             type = "string",
@@ -461,6 +483,7 @@ M.Environment = {
 
 M.DescribeEnvironmentsOutput = {
     type = "structure",
+    id = "DescribeEnvironmentsOutput",
     members = {
         environments = {
             type = "list",
@@ -471,6 +494,7 @@ M.DescribeEnvironmentsOutput = {
 
 M.DescribeEnvironmentStatusInput = {
     type = "structure",
+    id = "DescribeEnvironmentStatusInput",
     members = {
         environmentId = {
             type = "string",
@@ -493,6 +517,7 @@ M.EnvironmentStatus = {
 
 M.DescribeEnvironmentStatusOutput = {
     type = "structure",
+    id = "DescribeEnvironmentStatusOutput",
     members = {
         status = {
             type = "string",
@@ -511,6 +536,7 @@ M.DescribeEnvironmentStatusOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -523,6 +549,7 @@ M.ListEnvironmentsInput = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -536,6 +563,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -548,6 +576,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -558,6 +587,7 @@ M.ListTagsForResourceOutput = {
 
 M.ConcurrentAccessException = {
     type = "structure",
+    id = "ConcurrentAccessException",
     error = "client",
     members = {
         message = {
@@ -577,6 +607,7 @@ M.ConcurrentAccessException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -596,10 +627,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -619,6 +652,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ManagedCredentialsAction = {
@@ -628,6 +662,7 @@ M.ManagedCredentialsAction = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -649,10 +684,12 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
 }
 
 M.UpdateEnvironmentMembershipInput = {
     type = "structure",
+    id = "UpdateEnvironmentMembershipInput",
     members = {
         environmentId = {
             type = "string",
@@ -677,6 +714,7 @@ M.UpdateEnvironmentMembershipInput = {
 
 M.UpdateEnvironmentMembershipOutput = {
     type = "structure",
+    id = "UpdateEnvironmentMembershipOutput",
     members = {
         membership = M.EnvironmentMember,
     },

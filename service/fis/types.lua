@@ -7,6 +7,7 @@ M.AccountTargeting = {
 
 M.ActionParameter = {
     type = "structure",
+    id = "ActionParameter",
     members = {
         description = {
             type = "string",
@@ -22,6 +23,7 @@ M.ActionParameter = {
 
 M.ActionTarget = {
     type = "structure",
+    id = "ActionTarget",
     members = {
         resourceType = {
             type = "string",
@@ -31,6 +33,7 @@ M.ActionTarget = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         id = {
             type = "string",
@@ -66,6 +69,7 @@ M.ActionsMode = {
 
 M.ActionSummary = {
     type = "structure",
+    id = "ActionSummary",
     members = {
         id = {
             type = "string",
@@ -91,6 +95,7 @@ M.ActionSummary = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -101,6 +106,7 @@ M.ConflictException = {
 
 M.CreateExperimentTemplateActionInput = {
     type = "structure",
+    id = "CreateExperimentTemplateActionInput",
     members = {
         actionId = {
             type = "string",
@@ -135,6 +141,7 @@ M.EmptyTargetResolutionMode = {
 
 M.CreateExperimentTemplateExperimentOptionsInput = {
     type = "structure",
+    id = "CreateExperimentTemplateExperimentOptionsInput",
     members = {
         accountTargeting = {
             type = "string",
@@ -147,6 +154,7 @@ M.CreateExperimentTemplateExperimentOptionsInput = {
 
 M.ReportConfigurationCloudWatchDashboardInput = {
     type = "structure",
+    id = "ReportConfigurationCloudWatchDashboardInput",
     members = {
         dashboardIdentifier = {
             type = "string",
@@ -156,6 +164,7 @@ M.ReportConfigurationCloudWatchDashboardInput = {
 
 M.ExperimentTemplateReportConfigurationDataSourcesInput = {
     type = "structure",
+    id = "ExperimentTemplateReportConfigurationDataSourcesInput",
     members = {
         cloudWatchDashboards = {
             type = "list",
@@ -166,6 +175,7 @@ M.ExperimentTemplateReportConfigurationDataSourcesInput = {
 
 M.ReportConfigurationS3OutputInput = {
     type = "structure",
+    id = "ReportConfigurationS3OutputInput",
     members = {
         bucketName = {
             type = "string",
@@ -178,6 +188,7 @@ M.ReportConfigurationS3OutputInput = {
 
 M.ExperimentTemplateReportConfigurationOutputsInput = {
     type = "structure",
+    id = "ExperimentTemplateReportConfigurationOutputsInput",
     members = {
         s3Configuration = M.ReportConfigurationS3OutputInput,
     },
@@ -185,6 +196,7 @@ M.ExperimentTemplateReportConfigurationOutputsInput = {
 
 M.CreateExperimentTemplateReportConfigurationInput = {
     type = "structure",
+    id = "CreateExperimentTemplateReportConfigurationInput",
     members = {
         outputs = M.ExperimentTemplateReportConfigurationOutputsInput,
         dataSources = M.ExperimentTemplateReportConfigurationDataSourcesInput,
@@ -199,6 +211,7 @@ M.CreateExperimentTemplateReportConfigurationInput = {
 
 M.ExperimentTemplateCloudWatchLogsLogConfigurationInput = {
     type = "structure",
+    id = "ExperimentTemplateCloudWatchLogsLogConfigurationInput",
     members = {
         logGroupArn = {
             type = "string",
@@ -211,6 +224,7 @@ M.ExperimentTemplateCloudWatchLogsLogConfigurationInput = {
 
 M.ExperimentTemplateS3LogConfigurationInput = {
     type = "structure",
+    id = "ExperimentTemplateS3LogConfigurationInput",
     members = {
         bucketName = {
             type = "string",
@@ -226,6 +240,7 @@ M.ExperimentTemplateS3LogConfigurationInput = {
 
 M.CreateExperimentTemplateLogConfigurationInput = {
     type = "structure",
+    id = "CreateExperimentTemplateLogConfigurationInput",
     members = {
         cloudWatchLogsConfiguration = M.ExperimentTemplateCloudWatchLogsLogConfigurationInput,
         s3Configuration = M.ExperimentTemplateS3LogConfigurationInput,
@@ -240,6 +255,7 @@ M.CreateExperimentTemplateLogConfigurationInput = {
 
 M.CreateExperimentTemplateStopConditionInput = {
     type = "structure",
+    id = "CreateExperimentTemplateStopConditionInput",
     members = {
         source = {
             type = "string",
@@ -255,6 +271,7 @@ M.CreateExperimentTemplateStopConditionInput = {
 
 M.ExperimentTemplateTargetInputFilter = {
     type = "structure",
+    id = "ExperimentTemplateTargetInputFilter",
     members = {
         path = {
             type = "string",
@@ -274,6 +291,7 @@ M.ExperimentTemplateTargetInputFilter = {
 
 M.CreateExperimentTemplateTargetInput = {
     type = "structure",
+    id = "CreateExperimentTemplateTargetInput",
     members = {
         resourceType = {
             type = "string",
@@ -310,6 +328,7 @@ M.CreateExperimentTemplateTargetInput = {
 
 M.CreateExperimentTemplateInput = {
     type = "structure",
+    id = "CreateExperimentTemplateInput",
     members = {
         clientToken = {
             type = "string",
@@ -363,6 +382,7 @@ M.CreateExperimentTemplateInput = {
 
 M.ExperimentTemplateAction = {
     type = "structure",
+    id = "ExperimentTemplateAction",
     members = {
         actionId = {
             type = "string",
@@ -389,6 +409,7 @@ M.ExperimentTemplateAction = {
 
 M.ExperimentTemplateExperimentOptions = {
     type = "structure",
+    id = "ExperimentTemplateExperimentOptions",
     members = {
         accountTargeting = {
             type = "string",
@@ -401,6 +422,7 @@ M.ExperimentTemplateExperimentOptions = {
 
 M.ExperimentTemplateReportConfigurationCloudWatchDashboard = {
     type = "structure",
+    id = "ExperimentTemplateReportConfigurationCloudWatchDashboard",
     members = {
         dashboardIdentifier = {
             type = "string",
@@ -410,6 +432,7 @@ M.ExperimentTemplateReportConfigurationCloudWatchDashboard = {
 
 M.ExperimentTemplateReportConfigurationDataSources = {
     type = "structure",
+    id = "ExperimentTemplateReportConfigurationDataSources",
     members = {
         cloudWatchDashboards = {
             type = "list",
@@ -420,6 +443,7 @@ M.ExperimentTemplateReportConfigurationDataSources = {
 
 M.ReportConfigurationS3Output = {
     type = "structure",
+    id = "ReportConfigurationS3Output",
     members = {
         bucketName = {
             type = "string",
@@ -432,6 +456,7 @@ M.ReportConfigurationS3Output = {
 
 M.ExperimentTemplateReportConfigurationOutputs = {
     type = "structure",
+    id = "ExperimentTemplateReportConfigurationOutputs",
     members = {
         s3Configuration = M.ReportConfigurationS3Output,
     },
@@ -439,6 +464,7 @@ M.ExperimentTemplateReportConfigurationOutputs = {
 
 M.ExperimentTemplateReportConfiguration = {
     type = "structure",
+    id = "ExperimentTemplateReportConfiguration",
     members = {
         outputs = M.ExperimentTemplateReportConfigurationOutputs,
         dataSources = M.ExperimentTemplateReportConfigurationDataSources,
@@ -453,6 +479,7 @@ M.ExperimentTemplateReportConfiguration = {
 
 M.ExperimentTemplateCloudWatchLogsLogConfiguration = {
     type = "structure",
+    id = "ExperimentTemplateCloudWatchLogsLogConfiguration",
     members = {
         logGroupArn = {
             type = "string",
@@ -462,6 +489,7 @@ M.ExperimentTemplateCloudWatchLogsLogConfiguration = {
 
 M.ExperimentTemplateS3LogConfiguration = {
     type = "structure",
+    id = "ExperimentTemplateS3LogConfiguration",
     members = {
         bucketName = {
             type = "string",
@@ -474,6 +502,7 @@ M.ExperimentTemplateS3LogConfiguration = {
 
 M.ExperimentTemplateLogConfiguration = {
     type = "structure",
+    id = "ExperimentTemplateLogConfiguration",
     members = {
         cloudWatchLogsConfiguration = M.ExperimentTemplateCloudWatchLogsLogConfiguration,
         s3Configuration = M.ExperimentTemplateS3LogConfiguration,
@@ -485,6 +514,7 @@ M.ExperimentTemplateLogConfiguration = {
 
 M.ExperimentTemplateStopCondition = {
     type = "structure",
+    id = "ExperimentTemplateStopCondition",
     members = {
         source = {
             type = "string",
@@ -497,6 +527,7 @@ M.ExperimentTemplateStopCondition = {
 
 M.ExperimentTemplateTargetFilter = {
     type = "structure",
+    id = "ExperimentTemplateTargetFilter",
     members = {
         path = {
             type = "string",
@@ -510,6 +541,7 @@ M.ExperimentTemplateTargetFilter = {
 
 M.ExperimentTemplateTarget = {
     type = "structure",
+    id = "ExperimentTemplateTarget",
     members = {
         resourceType = {
             type = "string",
@@ -540,6 +572,7 @@ M.ExperimentTemplateTarget = {
 
 M.ExperimentTemplate = {
     type = "structure",
+    id = "ExperimentTemplate",
     members = {
         id = {
             type = "string",
@@ -589,6 +622,7 @@ M.ExperimentTemplate = {
 
 M.CreateExperimentTemplateOutput = {
     type = "structure",
+    id = "CreateExperimentTemplateOutput",
     members = {
         experimentTemplate = M.ExperimentTemplate,
     },
@@ -596,6 +630,7 @@ M.CreateExperimentTemplateOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -606,6 +641,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -616,6 +652,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -626,6 +663,7 @@ M.ValidationException = {
 
 M.CreateTargetAccountConfigurationInput = {
     type = "structure",
+    id = "CreateTargetAccountConfigurationInput",
     members = {
         clientToken = {
             type = "string",
@@ -661,6 +699,7 @@ M.CreateTargetAccountConfigurationInput = {
 
 M.TargetAccountConfiguration = {
     type = "structure",
+    id = "TargetAccountConfiguration",
     members = {
         roleArn = {
             type = "string",
@@ -676,6 +715,7 @@ M.TargetAccountConfiguration = {
 
 M.CreateTargetAccountConfigurationOutput = {
     type = "structure",
+    id = "CreateTargetAccountConfigurationOutput",
     members = {
         targetAccountConfiguration = M.TargetAccountConfiguration,
     },
@@ -683,6 +723,7 @@ M.CreateTargetAccountConfigurationOutput = {
 
 M.DeleteExperimentTemplateInput = {
     type = "structure",
+    id = "DeleteExperimentTemplateInput",
     members = {
         id = {
             type = "string",
@@ -696,6 +737,7 @@ M.DeleteExperimentTemplateInput = {
 
 M.DeleteExperimentTemplateOutput = {
     type = "structure",
+    id = "DeleteExperimentTemplateOutput",
     members = {
         experimentTemplate = M.ExperimentTemplate,
     },
@@ -703,6 +745,7 @@ M.DeleteExperimentTemplateOutput = {
 
 M.DeleteTargetAccountConfigurationInput = {
     type = "structure",
+    id = "DeleteTargetAccountConfigurationInput",
     members = {
         experimentTemplateId = {
             type = "string",
@@ -723,6 +766,7 @@ M.DeleteTargetAccountConfigurationInput = {
 
 M.DeleteTargetAccountConfigurationOutput = {
     type = "structure",
+    id = "DeleteTargetAccountConfigurationOutput",
     members = {
         targetAccountConfiguration = M.TargetAccountConfiguration,
     },
@@ -742,6 +786,7 @@ M.ExperimentActionStatus = {
 
 M.ExperimentActionState = {
     type = "structure",
+    id = "ExperimentActionState",
     members = {
         status = {
             type = "string",
@@ -754,6 +799,7 @@ M.ExperimentActionState = {
 
 M.ExperimentAction = {
     type = "structure",
+    id = "ExperimentAction",
     members = {
         actionId = {
             type = "string",
@@ -787,6 +833,7 @@ M.ExperimentAction = {
 
 M.ExperimentOptions = {
     type = "structure",
+    id = "ExperimentOptions",
     members = {
         accountTargeting = {
             type = "string",
@@ -802,6 +849,7 @@ M.ExperimentOptions = {
 
 M.ExperimentReportS3Report = {
     type = "structure",
+    id = "ExperimentReportS3Report",
     members = {
         arn = {
             type = "string",
@@ -814,6 +862,7 @@ M.ExperimentReportS3Report = {
 
 M.ExperimentReportError = {
     type = "structure",
+    id = "ExperimentReportError",
     members = {
         code = {
             type = "string",
@@ -831,6 +880,7 @@ M.ExperimentReportStatus = {
 
 M.ExperimentReportState = {
     type = "structure",
+    id = "ExperimentReportState",
     members = {
         status = {
             type = "string",
@@ -844,6 +894,7 @@ M.ExperimentReportState = {
 
 M.ExperimentReport = {
     type = "structure",
+    id = "ExperimentReport",
     members = {
         state = M.ExperimentReportState,
         s3Reports = {
@@ -855,6 +906,7 @@ M.ExperimentReport = {
 
 M.ExperimentReportConfigurationCloudWatchDashboard = {
     type = "structure",
+    id = "ExperimentReportConfigurationCloudWatchDashboard",
     members = {
         dashboardIdentifier = {
             type = "string",
@@ -864,6 +916,7 @@ M.ExperimentReportConfigurationCloudWatchDashboard = {
 
 M.ExperimentReportConfigurationDataSources = {
     type = "structure",
+    id = "ExperimentReportConfigurationDataSources",
     members = {
         cloudWatchDashboards = {
             type = "list",
@@ -874,6 +927,7 @@ M.ExperimentReportConfigurationDataSources = {
 
 M.ExperimentReportConfigurationOutputsS3Configuration = {
     type = "structure",
+    id = "ExperimentReportConfigurationOutputsS3Configuration",
     members = {
         bucketName = {
             type = "string",
@@ -886,6 +940,7 @@ M.ExperimentReportConfigurationOutputsS3Configuration = {
 
 M.ExperimentReportConfigurationOutputs = {
     type = "structure",
+    id = "ExperimentReportConfigurationOutputs",
     members = {
         s3Configuration = M.ExperimentReportConfigurationOutputsS3Configuration,
     },
@@ -893,6 +948,7 @@ M.ExperimentReportConfigurationOutputs = {
 
 M.ExperimentReportConfiguration = {
     type = "structure",
+    id = "ExperimentReportConfiguration",
     members = {
         outputs = M.ExperimentReportConfigurationOutputs,
         dataSources = M.ExperimentReportConfigurationDataSources,
@@ -907,6 +963,7 @@ M.ExperimentReportConfiguration = {
 
 M.ExperimentCloudWatchLogsLogConfiguration = {
     type = "structure",
+    id = "ExperimentCloudWatchLogsLogConfiguration",
     members = {
         logGroupArn = {
             type = "string",
@@ -916,6 +973,7 @@ M.ExperimentCloudWatchLogsLogConfiguration = {
 
 M.ExperimentS3LogConfiguration = {
     type = "structure",
+    id = "ExperimentS3LogConfiguration",
     members = {
         bucketName = {
             type = "string",
@@ -928,6 +986,7 @@ M.ExperimentS3LogConfiguration = {
 
 M.ExperimentLogConfiguration = {
     type = "structure",
+    id = "ExperimentLogConfiguration",
     members = {
         cloudWatchLogsConfiguration = M.ExperimentCloudWatchLogsLogConfiguration,
         s3Configuration = M.ExperimentS3LogConfiguration,
@@ -939,6 +998,7 @@ M.ExperimentLogConfiguration = {
 
 M.ExperimentError = {
     type = "structure",
+    id = "ExperimentError",
     members = {
         accountId = {
             type = "string",
@@ -965,6 +1025,7 @@ M.ExperimentStatus = {
 
 M.ExperimentState = {
     type = "structure",
+    id = "ExperimentState",
     members = {
         status = {
             type = "string",
@@ -978,6 +1039,7 @@ M.ExperimentState = {
 
 M.ExperimentStopCondition = {
     type = "structure",
+    id = "ExperimentStopCondition",
     members = {
         source = {
             type = "string",
@@ -990,6 +1052,7 @@ M.ExperimentStopCondition = {
 
 M.ExperimentTargetFilter = {
     type = "structure",
+    id = "ExperimentTargetFilter",
     members = {
         path = {
             type = "string",
@@ -1003,6 +1066,7 @@ M.ExperimentTargetFilter = {
 
 M.ExperimentTarget = {
     type = "structure",
+    id = "ExperimentTarget",
     members = {
         resourceType = {
             type = "string",
@@ -1033,6 +1097,7 @@ M.ExperimentTarget = {
 
 M.Experiment = {
     type = "structure",
+    id = "Experiment",
     members = {
         id = {
             type = "string",
@@ -1087,6 +1152,7 @@ M.Experiment = {
 
 M.ExperimentSummary = {
     type = "structure",
+    id = "ExperimentSummary",
     members = {
         id = {
             type = "string",
@@ -1112,6 +1178,7 @@ M.ExperimentSummary = {
 
 M.ExperimentTargetAccountConfiguration = {
     type = "structure",
+    id = "ExperimentTargetAccountConfiguration",
     members = {
         roleArn = {
             type = "string",
@@ -1127,6 +1194,7 @@ M.ExperimentTargetAccountConfiguration = {
 
 M.ExperimentTargetAccountConfigurationSummary = {
     type = "structure",
+    id = "ExperimentTargetAccountConfigurationSummary",
     members = {
         roleArn = {
             type = "string",
@@ -1142,6 +1210,7 @@ M.ExperimentTargetAccountConfigurationSummary = {
 
 M.ExperimentTemplateSummary = {
     type = "structure",
+    id = "ExperimentTemplateSummary",
     members = {
         id = {
             type = "string",
@@ -1168,6 +1237,7 @@ M.ExperimentTemplateSummary = {
 
 M.GetActionInput = {
     type = "structure",
+    id = "GetActionInput",
     members = {
         id = {
             type = "string",
@@ -1181,6 +1251,7 @@ M.GetActionInput = {
 
 M.GetActionOutput = {
     type = "structure",
+    id = "GetActionOutput",
     members = {
         action = M.Action,
     },
@@ -1188,6 +1259,7 @@ M.GetActionOutput = {
 
 M.GetExperimentInput = {
     type = "structure",
+    id = "GetExperimentInput",
     members = {
         id = {
             type = "string",
@@ -1201,6 +1273,7 @@ M.GetExperimentInput = {
 
 M.GetExperimentOutput = {
     type = "structure",
+    id = "GetExperimentOutput",
     members = {
         experiment = M.Experiment,
     },
@@ -1208,6 +1281,7 @@ M.GetExperimentOutput = {
 
 M.GetExperimentTargetAccountConfigurationInput = {
     type = "structure",
+    id = "GetExperimentTargetAccountConfigurationInput",
     members = {
         experimentId = {
             type = "string",
@@ -1228,6 +1302,7 @@ M.GetExperimentTargetAccountConfigurationInput = {
 
 M.GetExperimentTargetAccountConfigurationOutput = {
     type = "structure",
+    id = "GetExperimentTargetAccountConfigurationOutput",
     members = {
         targetAccountConfiguration = M.ExperimentTargetAccountConfiguration,
     },
@@ -1235,6 +1310,7 @@ M.GetExperimentTargetAccountConfigurationOutput = {
 
 M.GetExperimentTemplateInput = {
     type = "structure",
+    id = "GetExperimentTemplateInput",
     members = {
         id = {
             type = "string",
@@ -1248,6 +1324,7 @@ M.GetExperimentTemplateInput = {
 
 M.GetExperimentTemplateOutput = {
     type = "structure",
+    id = "GetExperimentTemplateOutput",
     members = {
         experimentTemplate = M.ExperimentTemplate,
     },
@@ -1255,6 +1332,7 @@ M.GetExperimentTemplateOutput = {
 
 M.GetSafetyLeverInput = {
     type = "structure",
+    id = "GetSafetyLeverInput",
     members = {
         id = {
             type = "string",
@@ -1274,6 +1352,7 @@ M.SafetyLeverStatus = {
 
 M.SafetyLeverState = {
     type = "structure",
+    id = "SafetyLeverState",
     members = {
         status = {
             type = "string",
@@ -1286,6 +1365,7 @@ M.SafetyLeverState = {
 
 M.SafetyLever = {
     type = "structure",
+    id = "SafetyLever",
     members = {
         id = {
             type = "string",
@@ -1299,6 +1379,7 @@ M.SafetyLever = {
 
 M.GetSafetyLeverOutput = {
     type = "structure",
+    id = "GetSafetyLeverOutput",
     members = {
         safetyLever = M.SafetyLever,
     },
@@ -1306,6 +1387,7 @@ M.GetSafetyLeverOutput = {
 
 M.GetTargetAccountConfigurationInput = {
     type = "structure",
+    id = "GetTargetAccountConfigurationInput",
     members = {
         experimentTemplateId = {
             type = "string",
@@ -1326,6 +1408,7 @@ M.GetTargetAccountConfigurationInput = {
 
 M.GetTargetAccountConfigurationOutput = {
     type = "structure",
+    id = "GetTargetAccountConfigurationOutput",
     members = {
         targetAccountConfiguration = M.TargetAccountConfiguration,
     },
@@ -1333,6 +1416,7 @@ M.GetTargetAccountConfigurationOutput = {
 
 M.GetTargetResourceTypeInput = {
     type = "structure",
+    id = "GetTargetResourceTypeInput",
     members = {
         resourceType = {
             type = "string",
@@ -1346,6 +1430,7 @@ M.GetTargetResourceTypeInput = {
 
 M.TargetResourceTypeParameter = {
     type = "structure",
+    id = "TargetResourceTypeParameter",
     members = {
         description = {
             type = "string",
@@ -1361,6 +1446,7 @@ M.TargetResourceTypeParameter = {
 
 M.TargetResourceType = {
     type = "structure",
+    id = "TargetResourceType",
     members = {
         resourceType = {
             type = "string",
@@ -1378,6 +1464,7 @@ M.TargetResourceType = {
 
 M.GetTargetResourceTypeOutput = {
     type = "structure",
+    id = "GetTargetResourceTypeOutput",
     members = {
         targetResourceType = M.TargetResourceType,
     },
@@ -1385,6 +1472,7 @@ M.GetTargetResourceTypeOutput = {
 
 M.ListActionsInput = {
     type = "structure",
+    id = "ListActionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1403,6 +1491,7 @@ M.ListActionsInput = {
 
 M.ListActionsOutput = {
     type = "structure",
+    id = "ListActionsOutput",
     members = {
         actions = {
             type = "list",
@@ -1416,6 +1505,7 @@ M.ListActionsOutput = {
 
 M.ListExperimentResolvedTargetsInput = {
     type = "structure",
+    id = "ListExperimentResolvedTargetsInput",
     members = {
         experimentId = {
             type = "string",
@@ -1447,6 +1537,7 @@ M.ListExperimentResolvedTargetsInput = {
 
 M.ResolvedTarget = {
     type = "structure",
+    id = "ResolvedTarget",
     members = {
         resourceType = {
             type = "string",
@@ -1464,6 +1555,7 @@ M.ResolvedTarget = {
 
 M.ListExperimentResolvedTargetsOutput = {
     type = "structure",
+    id = "ListExperimentResolvedTargetsOutput",
     members = {
         resolvedTargets = {
             type = "list",
@@ -1477,6 +1569,7 @@ M.ListExperimentResolvedTargetsOutput = {
 
 M.ListExperimentsInput = {
     type = "structure",
+    id = "ListExperimentsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1501,6 +1594,7 @@ M.ListExperimentsInput = {
 
 M.ListExperimentsOutput = {
     type = "structure",
+    id = "ListExperimentsOutput",
     members = {
         experiments = {
             type = "list",
@@ -1514,6 +1608,7 @@ M.ListExperimentsOutput = {
 
 M.ListExperimentTargetAccountConfigurationsInput = {
     type = "structure",
+    id = "ListExperimentTargetAccountConfigurationsInput",
     members = {
         experimentId = {
             type = "string",
@@ -1533,6 +1628,7 @@ M.ListExperimentTargetAccountConfigurationsInput = {
 
 M.ListExperimentTargetAccountConfigurationsOutput = {
     type = "structure",
+    id = "ListExperimentTargetAccountConfigurationsOutput",
     members = {
         targetAccountConfigurations = {
             type = "list",
@@ -1546,6 +1642,7 @@ M.ListExperimentTargetAccountConfigurationsOutput = {
 
 M.ListExperimentTemplatesInput = {
     type = "structure",
+    id = "ListExperimentTemplatesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1564,6 +1661,7 @@ M.ListExperimentTemplatesInput = {
 
 M.ListExperimentTemplatesOutput = {
     type = "structure",
+    id = "ListExperimentTemplatesOutput",
     members = {
         experimentTemplates = {
             type = "list",
@@ -1577,6 +1675,7 @@ M.ListExperimentTemplatesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1590,6 +1689,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1601,6 +1701,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTargetAccountConfigurationsInput = {
     type = "structure",
+    id = "ListTargetAccountConfigurationsInput",
     members = {
         experimentTemplateId = {
             type = "string",
@@ -1626,6 +1727,7 @@ M.ListTargetAccountConfigurationsInput = {
 
 M.TargetAccountConfigurationSummary = {
     type = "structure",
+    id = "TargetAccountConfigurationSummary",
     members = {
         roleArn = {
             type = "string",
@@ -1641,6 +1743,7 @@ M.TargetAccountConfigurationSummary = {
 
 M.ListTargetAccountConfigurationsOutput = {
     type = "structure",
+    id = "ListTargetAccountConfigurationsOutput",
     members = {
         targetAccountConfigurations = {
             type = "list",
@@ -1654,6 +1757,7 @@ M.ListTargetAccountConfigurationsOutput = {
 
 M.ListTargetResourceTypesInput = {
     type = "structure",
+    id = "ListTargetResourceTypesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1672,6 +1776,7 @@ M.ListTargetResourceTypesInput = {
 
 M.TargetResourceTypeSummary = {
     type = "structure",
+    id = "TargetResourceTypeSummary",
     members = {
         resourceType = {
             type = "string",
@@ -1684,6 +1789,7 @@ M.TargetResourceTypeSummary = {
 
 M.ListTargetResourceTypesOutput = {
     type = "structure",
+    id = "ListTargetResourceTypesOutput",
     members = {
         targetResourceTypes = {
             type = "list",
@@ -1697,6 +1803,7 @@ M.ListTargetResourceTypesOutput = {
 
 M.StartExperimentExperimentOptionsInput = {
     type = "structure",
+    id = "StartExperimentExperimentOptionsInput",
     members = {
         actionsMode = {
             type = "string",
@@ -1706,6 +1813,7 @@ M.StartExperimentExperimentOptionsInput = {
 
 M.StartExperimentInput = {
     type = "structure",
+    id = "StartExperimentInput",
     members = {
         clientToken = {
             type = "string",
@@ -1731,6 +1839,7 @@ M.StartExperimentInput = {
 
 M.StartExperimentOutput = {
     type = "structure",
+    id = "StartExperimentOutput",
     members = {
         experiment = M.Experiment,
     },
@@ -1738,6 +1847,7 @@ M.StartExperimentOutput = {
 
 M.StopExperimentInput = {
     type = "structure",
+    id = "StopExperimentInput",
     members = {
         id = {
             type = "string",
@@ -1751,6 +1861,7 @@ M.StopExperimentInput = {
 
 M.StopExperimentOutput = {
     type = "structure",
+    id = "StopExperimentOutput",
     members = {
         experiment = M.Experiment,
     },
@@ -1758,6 +1869,7 @@ M.StopExperimentOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1779,10 +1891,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1803,10 +1917,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateExperimentTemplateActionInputItem = {
     type = "structure",
+    id = "UpdateExperimentTemplateActionInputItem",
     members = {
         actionId = {
             type = "string",
@@ -1833,6 +1949,7 @@ M.UpdateExperimentTemplateActionInputItem = {
 
 M.UpdateExperimentTemplateExperimentOptionsInput = {
     type = "structure",
+    id = "UpdateExperimentTemplateExperimentOptionsInput",
     members = {
         emptyTargetResolutionMode = {
             type = "string",
@@ -1842,6 +1959,7 @@ M.UpdateExperimentTemplateExperimentOptionsInput = {
 
 M.UpdateExperimentTemplateReportConfigurationInput = {
     type = "structure",
+    id = "UpdateExperimentTemplateReportConfigurationInput",
     members = {
         outputs = M.ExperimentTemplateReportConfigurationOutputsInput,
         dataSources = M.ExperimentTemplateReportConfigurationDataSourcesInput,
@@ -1856,6 +1974,7 @@ M.UpdateExperimentTemplateReportConfigurationInput = {
 
 M.UpdateExperimentTemplateLogConfigurationInput = {
     type = "structure",
+    id = "UpdateExperimentTemplateLogConfigurationInput",
     members = {
         cloudWatchLogsConfiguration = M.ExperimentTemplateCloudWatchLogsLogConfigurationInput,
         s3Configuration = M.ExperimentTemplateS3LogConfigurationInput,
@@ -1867,6 +1986,7 @@ M.UpdateExperimentTemplateLogConfigurationInput = {
 
 M.UpdateExperimentTemplateStopConditionInput = {
     type = "structure",
+    id = "UpdateExperimentTemplateStopConditionInput",
     members = {
         source = {
             type = "string",
@@ -1882,6 +2002,7 @@ M.UpdateExperimentTemplateStopConditionInput = {
 
 M.UpdateExperimentTemplateTargetInput = {
     type = "structure",
+    id = "UpdateExperimentTemplateTargetInput",
     members = {
         resourceType = {
             type = "string",
@@ -1918,6 +2039,7 @@ M.UpdateExperimentTemplateTargetInput = {
 
 M.UpdateExperimentTemplateInput = {
     type = "structure",
+    id = "UpdateExperimentTemplateInput",
     members = {
         id = {
             type = "string",
@@ -1954,6 +2076,7 @@ M.UpdateExperimentTemplateInput = {
 
 M.UpdateExperimentTemplateOutput = {
     type = "structure",
+    id = "UpdateExperimentTemplateOutput",
     members = {
         experimentTemplate = M.ExperimentTemplate,
     },
@@ -1966,6 +2089,7 @@ M.SafetyLeverStatusInput = {
 
 M.UpdateSafetyLeverStateInput = {
     type = "structure",
+    id = "UpdateSafetyLeverStateInput",
     members = {
         status = {
             type = "string",
@@ -1984,6 +2108,7 @@ M.UpdateSafetyLeverStateInput = {
 
 M.UpdateSafetyLeverStateOperationInput = {
     type = "structure",
+    id = "UpdateSafetyLeverStateOperationInput",
     members = {
         id = {
             type = "string",
@@ -2000,6 +2125,7 @@ M.UpdateSafetyLeverStateOperationInput = {
 
 M.UpdateSafetyLeverStateOutput = {
     type = "structure",
+    id = "UpdateSafetyLeverStateOutput",
     members = {
         safetyLever = M.SafetyLever,
     },
@@ -2007,6 +2133,7 @@ M.UpdateSafetyLeverStateOutput = {
 
 M.UpdateTargetAccountConfigurationInput = {
     type = "structure",
+    id = "UpdateTargetAccountConfigurationInput",
     members = {
         experimentTemplateId = {
             type = "string",
@@ -2033,6 +2160,7 @@ M.UpdateTargetAccountConfigurationInput = {
 
 M.UpdateTargetAccountConfigurationOutput = {
     type = "structure",
+    id = "UpdateTargetAccountConfigurationOutput",
     members = {
         targetAccountConfiguration = M.TargetAccountConfiguration,
     },

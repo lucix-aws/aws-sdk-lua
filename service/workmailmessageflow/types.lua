@@ -2,6 +2,7 @@ local M = {}
 
 M.GetRawMessageContentInput = {
     type = "structure",
+    id = "GetRawMessageContentInput",
     members = {
         messageId = {
             type = "string",
@@ -15,6 +16,7 @@ M.GetRawMessageContentInput = {
 
 M.GetRawMessageContentOutput = {
     type = "structure",
+    id = "GetRawMessageContentOutput",
     members = {
         messageContent = {
             type = "blob",
@@ -28,6 +30,7 @@ M.GetRawMessageContentOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -38,6 +41,7 @@ M.ResourceNotFoundException = {
 
 M.InvalidContentLocation = {
     type = "structure",
+    id = "InvalidContentLocation",
     error = "client",
     members = {
         message = {
@@ -48,6 +52,7 @@ M.InvalidContentLocation = {
 
 M.MessageFrozen = {
     type = "structure",
+    id = "MessageFrozen",
     error = "client",
     members = {
         message = {
@@ -58,6 +63,7 @@ M.MessageFrozen = {
 
 M.MessageRejected = {
     type = "structure",
+    id = "MessageRejected",
     error = "client",
     members = {
         message = {
@@ -68,6 +74,7 @@ M.MessageRejected = {
 
 M.S3Reference = {
     type = "structure",
+    id = "S3Reference",
     members = {
         bucket = {
             type = "string",
@@ -89,6 +96,7 @@ M.S3Reference = {
 
 M.RawMessageContent = {
     type = "structure",
+    id = "RawMessageContent",
     members = {
         s3Reference = setmetatable({ traits = {
             required = true,
@@ -98,6 +106,7 @@ M.RawMessageContent = {
 
 M.PutRawMessageContentInput = {
     type = "structure",
+    id = "PutRawMessageContentInput",
     members = {
         messageId = {
             type = "string",
@@ -114,6 +123,7 @@ M.PutRawMessageContentInput = {
 
 M.PutRawMessageContentOutput = {
     type = "structure",
+    id = "PutRawMessageContentOutput",
 }
 
 return M

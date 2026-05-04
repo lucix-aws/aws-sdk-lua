@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -21,6 +22,7 @@ M.Telemetry = {
 
 M.AppMonitorConfiguration = {
     type = "structure",
+    id = "AppMonitorConfiguration",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -66,6 +68,7 @@ M.CustomEventsStatus = {
 
 M.CustomEvents = {
     type = "structure",
+    id = "CustomEvents",
     members = {
         Status = {
             type = "string",
@@ -75,6 +78,7 @@ M.CustomEvents = {
 
 M.CwLog = {
     type = "structure",
+    id = "CwLog",
     members = {
         CwLogEnabled = {
             type = "boolean",
@@ -87,6 +91,7 @@ M.CwLog = {
 
 M.DataStorage = {
     type = "structure",
+    id = "DataStorage",
     members = {
         CwLog = M.CwLog,
     },
@@ -99,6 +104,7 @@ M.DeobfuscationStatus = {
 
 M.JavaScriptSourceMaps = {
     type = "structure",
+    id = "JavaScriptSourceMaps",
     members = {
         Status = {
             type = "string",
@@ -114,6 +120,7 @@ M.JavaScriptSourceMaps = {
 
 M.DeobfuscationConfiguration = {
     type = "structure",
+    id = "DeobfuscationConfiguration",
     members = {
         JavaScriptSourceMaps = M.JavaScriptSourceMaps,
     },
@@ -133,6 +140,7 @@ M.StateEnum = {
 
 M.AppMonitor = {
     type = "structure",
+    id = "AppMonitor",
     members = {
         Name = {
             type = "string",
@@ -173,6 +181,7 @@ M.AppMonitor = {
 
 M.AppMonitorDetails = {
     type = "structure",
+    id = "AppMonitorDetails",
     members = {
         name = {
             type = "string",
@@ -193,6 +202,7 @@ M.MetricDestination = {
 
 M.MetricDefinitionRequest = {
     type = "structure",
+    id = "MetricDefinitionRequest",
     members = {
         Name = {
             type = "string",
@@ -222,6 +232,7 @@ M.MetricDefinitionRequest = {
 
 M.BatchCreateRumMetricDefinitionsInput = {
     type = "structure",
+    id = "BatchCreateRumMetricDefinitionsInput",
     members = {
         AppMonitorName = {
             type = "string",
@@ -251,6 +262,7 @@ M.BatchCreateRumMetricDefinitionsInput = {
 
 M.BatchCreateRumMetricDefinitionsError = {
     type = "structure",
+    id = "BatchCreateRumMetricDefinitionsError",
     members = {
         MetricDefinition = setmetatable({ traits = {
             required = true,
@@ -272,6 +284,7 @@ M.BatchCreateRumMetricDefinitionsError = {
 
 M.MetricDefinition = {
     type = "structure",
+    id = "MetricDefinition",
     members = {
         MetricDefinitionId = {
             type = "string",
@@ -307,6 +320,7 @@ M.MetricDefinition = {
 
 M.BatchCreateRumMetricDefinitionsOutput = {
     type = "structure",
+    id = "BatchCreateRumMetricDefinitionsOutput",
     members = {
         Errors = {
             type = "list",
@@ -324,6 +338,7 @@ M.BatchCreateRumMetricDefinitionsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -346,6 +361,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -365,6 +381,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -387,6 +404,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -400,6 +418,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -425,6 +444,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -438,6 +458,7 @@ M.ValidationException = {
 
 M.BatchDeleteRumMetricDefinitionsInput = {
     type = "structure",
+    id = "BatchDeleteRumMetricDefinitionsInput",
     members = {
         AppMonitorName = {
             type = "string",
@@ -472,6 +493,7 @@ M.BatchDeleteRumMetricDefinitionsInput = {
 
 M.BatchDeleteRumMetricDefinitionsError = {
     type = "structure",
+    id = "BatchDeleteRumMetricDefinitionsError",
     members = {
         MetricDefinitionId = {
             type = "string",
@@ -496,6 +518,7 @@ M.BatchDeleteRumMetricDefinitionsError = {
 
 M.BatchDeleteRumMetricDefinitionsOutput = {
     type = "structure",
+    id = "BatchDeleteRumMetricDefinitionsOutput",
     members = {
         Errors = {
             type = "list",
@@ -513,6 +536,7 @@ M.BatchDeleteRumMetricDefinitionsOutput = {
 
 M.BatchGetRumMetricDefinitionsInput = {
     type = "structure",
+    id = "BatchGetRumMetricDefinitionsInput",
     members = {
         AppMonitorName = {
             type = "string",
@@ -551,6 +575,7 @@ M.BatchGetRumMetricDefinitionsInput = {
 
 M.BatchGetRumMetricDefinitionsOutput = {
     type = "structure",
+    id = "BatchGetRumMetricDefinitionsOutput",
     members = {
         MetricDefinitions = {
             type = "list",
@@ -564,6 +589,7 @@ M.BatchGetRumMetricDefinitionsOutput = {
 
 M.CreateAppMonitorInput = {
     type = "structure",
+    id = "CreateAppMonitorInput",
     members = {
         Name = {
             type = "string",
@@ -597,6 +623,7 @@ M.CreateAppMonitorInput = {
 
 M.CreateAppMonitorOutput = {
     type = "structure",
+    id = "CreateAppMonitorOutput",
     members = {
         Id = {
             type = "string",
@@ -606,6 +633,7 @@ M.CreateAppMonitorOutput = {
 
 M.DeleteAppMonitorInput = {
     type = "structure",
+    id = "DeleteAppMonitorInput",
     members = {
         Name = {
             type = "string",
@@ -619,10 +647,12 @@ M.DeleteAppMonitorInput = {
 
 M.DeleteAppMonitorOutput = {
     type = "structure",
+    id = "DeleteAppMonitorOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         Name = {
             type = "string",
@@ -642,6 +672,7 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
     members = {
         PolicyRevisionId = {
             type = "string",
@@ -651,6 +682,7 @@ M.DeleteResourcePolicyOutput = {
 
 M.InvalidPolicyRevisionIdException = {
     type = "structure",
+    id = "InvalidPolicyRevisionIdException",
     error = "client",
     members = {
         message = {
@@ -664,6 +696,7 @@ M.InvalidPolicyRevisionIdException = {
 
 M.PolicyNotFoundException = {
     type = "structure",
+    id = "PolicyNotFoundException",
     error = "client",
     members = {
         message = {
@@ -677,6 +710,7 @@ M.PolicyNotFoundException = {
 
 M.DeleteRumMetricsDestinationInput = {
     type = "structure",
+    id = "DeleteRumMetricsDestinationInput",
     members = {
         AppMonitorName = {
             type = "string",
@@ -703,10 +737,12 @@ M.DeleteRumMetricsDestinationInput = {
 
 M.DeleteRumMetricsDestinationOutput = {
     type = "structure",
+    id = "DeleteRumMetricsDestinationOutput",
 }
 
 M.GetAppMonitorInput = {
     type = "structure",
+    id = "GetAppMonitorInput",
     members = {
         Name = {
             type = "string",
@@ -720,6 +756,7 @@ M.GetAppMonitorInput = {
 
 M.GetAppMonitorOutput = {
     type = "structure",
+    id = "GetAppMonitorOutput",
     members = {
         AppMonitor = M.AppMonitor,
     },
@@ -727,6 +764,7 @@ M.GetAppMonitorOutput = {
 
 M.QueryFilter = {
     type = "structure",
+    id = "QueryFilter",
     members = {
         Name = {
             type = "string",
@@ -740,6 +778,7 @@ M.QueryFilter = {
 
 M.TimeRange = {
     type = "structure",
+    id = "TimeRange",
     members = {
         After = {
             type = "long",
@@ -759,6 +798,7 @@ M.TimeRange = {
 
 M.GetAppMonitorDataInput = {
     type = "structure",
+    id = "GetAppMonitorDataInput",
     members = {
         Name = {
             type = "string",
@@ -788,6 +828,7 @@ M.GetAppMonitorDataInput = {
 
 M.GetAppMonitorDataOutput = {
     type = "structure",
+    id = "GetAppMonitorDataOutput",
     members = {
         Events = {
             type = "list",
@@ -801,6 +842,7 @@ M.GetAppMonitorDataOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         Name = {
             type = "string",
@@ -814,6 +856,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         PolicyDocument = {
             type = "string",
@@ -826,6 +869,7 @@ M.GetResourcePolicyOutput = {
 
 M.ListAppMonitorsInput = {
     type = "structure",
+    id = "ListAppMonitorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -844,6 +888,7 @@ M.ListAppMonitorsInput = {
 
 M.AppMonitorSummary = {
     type = "structure",
+    id = "AppMonitorSummary",
     members = {
         Name = {
             type = "string",
@@ -868,6 +913,7 @@ M.AppMonitorSummary = {
 
 M.ListAppMonitorsOutput = {
     type = "structure",
+    id = "ListAppMonitorsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -881,6 +927,7 @@ M.ListAppMonitorsOutput = {
 
 M.ListRumMetricsDestinationsInput = {
     type = "structure",
+    id = "ListRumMetricsDestinationsInput",
     members = {
         AppMonitorName = {
             type = "string",
@@ -906,6 +953,7 @@ M.ListRumMetricsDestinationsInput = {
 
 M.MetricDestinationSummary = {
     type = "structure",
+    id = "MetricDestinationSummary",
     members = {
         Destination = {
             type = "string",
@@ -921,6 +969,7 @@ M.MetricDestinationSummary = {
 
 M.ListRumMetricsDestinationsOutput = {
     type = "structure",
+    id = "ListRumMetricsDestinationsOutput",
     members = {
         Destinations = {
             type = "list",
@@ -934,6 +983,7 @@ M.ListRumMetricsDestinationsOutput = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         message = {
@@ -947,6 +997,7 @@ M.MalformedPolicyDocumentException = {
 
 M.PolicySizeLimitExceededException = {
     type = "structure",
+    id = "PolicySizeLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -960,6 +1011,7 @@ M.PolicySizeLimitExceededException = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         Name = {
             type = "string",
@@ -982,6 +1034,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         PolicyDocument = {
             type = "string",
@@ -994,6 +1047,7 @@ M.PutResourcePolicyOutput = {
 
 M.PutRumMetricsDestinationInput = {
     type = "structure",
+    id = "PutRumMetricsDestinationInput",
     members = {
         AppMonitorName = {
             type = "string",
@@ -1019,10 +1073,12 @@ M.PutRumMetricsDestinationInput = {
 
 M.PutRumMetricsDestinationOutput = {
     type = "structure",
+    id = "PutRumMetricsDestinationOutput",
 }
 
 M.UpdateAppMonitorInput = {
     type = "structure",
+    id = "UpdateAppMonitorInput",
     members = {
         Name = {
             type = "string",
@@ -1049,10 +1105,12 @@ M.UpdateAppMonitorInput = {
 
 M.UpdateAppMonitorOutput = {
     type = "structure",
+    id = "UpdateAppMonitorOutput",
 }
 
 M.UpdateRumMetricDefinitionInput = {
     type = "structure",
+    id = "UpdateRumMetricDefinitionInput",
     members = {
         AppMonitorName = {
             type = "string",
@@ -1084,10 +1142,12 @@ M.UpdateRumMetricDefinitionInput = {
 
 M.UpdateRumMetricDefinitionOutput = {
     type = "structure",
+    id = "UpdateRumMetricDefinitionOutput",
 }
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1101,6 +1161,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1121,6 +1182,7 @@ M.ListTagsForResourceOutput = {
 
 M.RumEvent = {
     type = "structure",
+    id = "RumEvent",
     members = {
         id = {
             type = "string",
@@ -1158,6 +1220,7 @@ M.RumEvent = {
 
 M.UserDetails = {
     type = "structure",
+    id = "UserDetails",
     members = {
         userId = {
             type = "string",
@@ -1170,6 +1233,7 @@ M.UserDetails = {
 
 M.PutRumEventsInput = {
     type = "structure",
+    id = "PutRumEventsInput",
     members = {
         Id = {
             type = "string",
@@ -1205,10 +1269,12 @@ M.PutRumEventsInput = {
 
 M.PutRumEventsOutput = {
     type = "structure",
+    id = "PutRumEventsOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1230,10 +1296,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1255,6 +1323,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

@@ -10,6 +10,7 @@ M.entityStatusCode = {
 
 M.AccountEntityAggregate = {
     type = "structure",
+    id = "AccountEntityAggregate",
     members = {
         accountId = {
             type = "string",
@@ -30,6 +31,7 @@ M.AccountEntityAggregate = {
 
 M.AffectedEntity = {
     type = "structure",
+    id = "AffectedEntity",
     members = {
         entityArn = {
             type = "string",
@@ -67,6 +69,7 @@ M.AffectedEntity = {
 
 M.DescribeAffectedAccountsForOrganizationInput = {
     type = "structure",
+    id = "DescribeAffectedAccountsForOrganizationInput",
     members = {
         eventArn = {
             type = "string",
@@ -91,6 +94,7 @@ M.eventScopeCode = {
 
 M.DescribeAffectedAccountsForOrganizationOutput = {
     type = "structure",
+    id = "DescribeAffectedAccountsForOrganizationOutput",
     members = {
         affectedAccounts = {
             type = "list",
@@ -107,6 +111,7 @@ M.DescribeAffectedAccountsForOrganizationOutput = {
 
 M.InvalidPaginationToken = {
     type = "structure",
+    id = "InvalidPaginationToken",
     error = "client",
     members = {
         message = {
@@ -117,6 +122,7 @@ M.InvalidPaginationToken = {
 
 M.DateTimeRange = {
     type = "structure",
+    id = "DateTimeRange",
     members = {
         from = {
             type = "timestamp",
@@ -129,6 +135,7 @@ M.DateTimeRange = {
 
 M.EntityFilter = {
     type = "structure",
+    id = "EntityFilter",
     members = {
         eventArns = {
             type = "list",
@@ -162,6 +169,7 @@ M.EntityFilter = {
 
 M.DescribeAffectedEntitiesInput = {
     type = "structure",
+    id = "DescribeAffectedEntitiesInput",
     members = {
         filter = setmetatable({ traits = {
             required = true,
@@ -180,6 +188,7 @@ M.DescribeAffectedEntitiesInput = {
 
 M.DescribeAffectedEntitiesOutput = {
     type = "structure",
+    id = "DescribeAffectedEntitiesOutput",
     members = {
         entities = {
             type = "list",
@@ -193,6 +202,7 @@ M.DescribeAffectedEntitiesOutput = {
 
 M.UnsupportedLocale = {
     type = "structure",
+    id = "UnsupportedLocale",
     error = "client",
     members = {
         message = {
@@ -203,6 +213,7 @@ M.UnsupportedLocale = {
 
 M.EntityAccountFilter = {
     type = "structure",
+    id = "EntityAccountFilter",
     members = {
         eventArn = {
             type = "string",
@@ -222,6 +233,7 @@ M.EntityAccountFilter = {
 
 M.EventAccountFilter = {
     type = "structure",
+    id = "EventAccountFilter",
     members = {
         eventArn = {
             type = "string",
@@ -237,6 +249,7 @@ M.EventAccountFilter = {
 
 M.DescribeAffectedEntitiesForOrganizationInput = {
     type = "structure",
+    id = "DescribeAffectedEntitiesForOrganizationInput",
     members = {
         organizationEntityFilters = {
             type = "list",
@@ -260,6 +273,7 @@ M.DescribeAffectedEntitiesForOrganizationInput = {
 
 M.OrganizationAffectedEntitiesErrorItem = {
     type = "structure",
+    id = "OrganizationAffectedEntitiesErrorItem",
     members = {
         awsAccountId = {
             type = "string",
@@ -278,6 +292,7 @@ M.OrganizationAffectedEntitiesErrorItem = {
 
 M.DescribeAffectedEntitiesForOrganizationOutput = {
     type = "structure",
+    id = "DescribeAffectedEntitiesForOrganizationOutput",
     members = {
         entities = {
             type = "list",
@@ -295,6 +310,7 @@ M.DescribeAffectedEntitiesForOrganizationOutput = {
 
 M.DescribeEntityAggregatesInput = {
     type = "structure",
+    id = "DescribeEntityAggregatesInput",
     members = {
         eventArns = {
             type = "list",
@@ -305,6 +321,7 @@ M.DescribeEntityAggregatesInput = {
 
 M.EntityAggregate = {
     type = "structure",
+    id = "EntityAggregate",
     members = {
         eventArn = {
             type = "string",
@@ -325,6 +342,7 @@ M.EntityAggregate = {
 
 M.DescribeEntityAggregatesOutput = {
     type = "structure",
+    id = "DescribeEntityAggregatesOutput",
     members = {
         entityAggregates = {
             type = "list",
@@ -335,6 +353,7 @@ M.DescribeEntityAggregatesOutput = {
 
 M.DescribeEntityAggregatesForOrganizationInput = {
     type = "structure",
+    id = "DescribeEntityAggregatesForOrganizationInput",
     members = {
         eventArns = {
             type = "list",
@@ -352,6 +371,7 @@ M.DescribeEntityAggregatesForOrganizationInput = {
 
 M.OrganizationEntityAggregate = {
     type = "structure",
+    id = "OrganizationEntityAggregate",
     members = {
         eventArn = {
             type = "string",
@@ -376,6 +396,7 @@ M.OrganizationEntityAggregate = {
 
 M.DescribeEntityAggregatesForOrganizationOutput = {
     type = "structure",
+    id = "DescribeEntityAggregatesForOrganizationOutput",
     members = {
         organizationEntityAggregates = {
             type = "list",
@@ -415,6 +436,7 @@ M.EventPersona = {
 
 M.EventFilter = {
     type = "structure",
+    id = "EventFilter",
     members = {
         actionabilities = {
             type = "list",
@@ -481,6 +503,7 @@ M.EventFilter = {
 
 M.DescribeEventAggregatesInput = {
     type = "structure",
+    id = "DescribeEventAggregatesInput",
     members = {
         filter = M.EventFilter,
         aggregateField = {
@@ -500,6 +523,7 @@ M.DescribeEventAggregatesInput = {
 
 M.EventAggregate = {
     type = "structure",
+    id = "EventAggregate",
     members = {
         aggregateValue = {
             type = "string",
@@ -515,6 +539,7 @@ M.EventAggregate = {
 
 M.DescribeEventAggregatesOutput = {
     type = "structure",
+    id = "DescribeEventAggregatesOutput",
     members = {
         eventAggregates = {
             type = "list",
@@ -528,6 +553,7 @@ M.DescribeEventAggregatesOutput = {
 
 M.DescribeEventDetailsInput = {
     type = "structure",
+    id = "DescribeEventDetailsInput",
     members = {
         eventArns = {
             type = "list",
@@ -544,6 +570,7 @@ M.DescribeEventDetailsInput = {
 
 M.EventDetailsErrorItem = {
     type = "structure",
+    id = "EventDetailsErrorItem",
     members = {
         eventArn = {
             type = "string",
@@ -559,6 +586,7 @@ M.EventDetailsErrorItem = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         arn = {
             type = "string",
@@ -605,6 +633,7 @@ M.Event = {
 
 M.EventDescription = {
     type = "structure",
+    id = "EventDescription",
     members = {
         latestDescription = {
             type = "string",
@@ -614,6 +643,7 @@ M.EventDescription = {
 
 M.EventDetails = {
     type = "structure",
+    id = "EventDetails",
     members = {
         event = M.Event,
         eventDescription = M.EventDescription,
@@ -627,6 +657,7 @@ M.EventDetails = {
 
 M.DescribeEventDetailsOutput = {
     type = "structure",
+    id = "DescribeEventDetailsOutput",
     members = {
         successfulSet = {
             type = "list",
@@ -641,6 +672,7 @@ M.DescribeEventDetailsOutput = {
 
 M.DescribeEventDetailsForOrganizationInput = {
     type = "structure",
+    id = "DescribeEventDetailsForOrganizationInput",
     members = {
         organizationEventDetailFilters = {
             type = "list",
@@ -657,6 +689,7 @@ M.DescribeEventDetailsForOrganizationInput = {
 
 M.OrganizationEventDetailsErrorItem = {
     type = "structure",
+    id = "OrganizationEventDetailsErrorItem",
     members = {
         awsAccountId = {
             type = "string",
@@ -675,6 +708,7 @@ M.OrganizationEventDetailsErrorItem = {
 
 M.OrganizationEventDetails = {
     type = "structure",
+    id = "OrganizationEventDetails",
     members = {
         awsAccountId = {
             type = "string",
@@ -691,6 +725,7 @@ M.OrganizationEventDetails = {
 
 M.DescribeEventDetailsForOrganizationOutput = {
     type = "structure",
+    id = "DescribeEventDetailsForOrganizationOutput",
     members = {
         successfulSet = {
             type = "list",
@@ -705,6 +740,7 @@ M.DescribeEventDetailsForOrganizationOutput = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         filter = M.EventFilter,
         nextToken = {
@@ -721,6 +757,7 @@ M.DescribeEventsInput = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         events = {
             type = "list",
@@ -734,6 +771,7 @@ M.DescribeEventsOutput = {
 
 M.OrganizationEventFilter = {
     type = "structure",
+    id = "OrganizationEventFilter",
     members = {
         actionabilities = {
             type = "list",
@@ -783,6 +821,7 @@ M.OrganizationEventFilter = {
 
 M.DescribeEventsForOrganizationInput = {
     type = "structure",
+    id = "DescribeEventsForOrganizationInput",
     members = {
         filter = M.OrganizationEventFilter,
         nextToken = {
@@ -799,6 +838,7 @@ M.DescribeEventsForOrganizationInput = {
 
 M.OrganizationEvent = {
     type = "structure",
+    id = "OrganizationEvent",
     members = {
         arn = {
             type = "string",
@@ -842,6 +882,7 @@ M.OrganizationEvent = {
 
 M.DescribeEventsForOrganizationOutput = {
     type = "structure",
+    id = "DescribeEventsForOrganizationOutput",
     members = {
         events = {
             type = "list",
@@ -867,6 +908,7 @@ M.EventTypePersona = {
 
 M.EventTypeFilter = {
     type = "structure",
+    id = "EventTypeFilter",
     members = {
         eventTypeCodes = {
             type = "list",
@@ -893,6 +935,7 @@ M.EventTypeFilter = {
 
 M.DescribeEventTypesInput = {
     type = "structure",
+    id = "DescribeEventTypesInput",
     members = {
         filter = M.EventTypeFilter,
         locale = {
@@ -909,6 +952,7 @@ M.DescribeEventTypesInput = {
 
 M.EventType = {
     type = "structure",
+    id = "EventType",
     members = {
         service = {
             type = "string",
@@ -931,6 +975,7 @@ M.EventType = {
 
 M.DescribeEventTypesOutput = {
     type = "structure",
+    id = "DescribeEventTypesOutput",
     members = {
         eventTypes = {
             type = "list",
@@ -944,10 +989,12 @@ M.DescribeEventTypesOutput = {
 
 M.DescribeHealthServiceStatusForOrganizationInput = {
     type = "structure",
+    id = "DescribeHealthServiceStatusForOrganizationInput",
 }
 
 M.DescribeHealthServiceStatusForOrganizationOutput = {
     type = "structure",
+    id = "DescribeHealthServiceStatusForOrganizationOutput",
     members = {
         healthServiceAccessStatusForOrganization = {
             type = "string",
@@ -957,6 +1004,7 @@ M.DescribeHealthServiceStatusForOrganizationOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -967,18 +1015,22 @@ M.ConcurrentModificationException = {
 
 M.DisableHealthServiceAccessForOrganizationInput = {
     type = "structure",
+    id = "DisableHealthServiceAccessForOrganizationInput",
 }
 
 M.DisableHealthServiceAccessForOrganizationOutput = {
     type = "structure",
+    id = "DisableHealthServiceAccessForOrganizationOutput",
 }
 
 M.EnableHealthServiceAccessForOrganizationInput = {
     type = "structure",
+    id = "EnableHealthServiceAccessForOrganizationInput",
 }
 
 M.EnableHealthServiceAccessForOrganizationOutput = {
     type = "structure",
+    id = "EnableHealthServiceAccessForOrganizationOutput",
 }
 
 return M

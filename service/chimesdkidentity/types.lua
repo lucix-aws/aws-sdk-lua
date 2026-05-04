@@ -7,6 +7,7 @@ M.AllowMessages = {
 
 M.AppInstance = {
     type = "structure",
+    id = "AppInstance",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -28,6 +29,7 @@ M.AppInstance = {
 
 M.Identity = {
     type = "structure",
+    id = "Identity",
     members = {
         Arn = {
             type = "string",
@@ -40,6 +42,7 @@ M.Identity = {
 
 M.AppInstanceAdmin = {
     type = "structure",
+    id = "AppInstanceAdmin",
     members = {
         Admin = M.Identity,
         AppInstanceArn = {
@@ -53,6 +56,7 @@ M.AppInstanceAdmin = {
 
 M.AppInstanceAdminSummary = {
     type = "structure",
+    id = "AppInstanceAdminSummary",
     members = {
         Admin = M.Identity,
     },
@@ -72,6 +76,7 @@ M.TargetedMessages = {
 
 M.InvokedBy = {
     type = "structure",
+    id = "InvokedBy",
     members = {
         StandardMessages = {
             type = "string",
@@ -94,6 +99,7 @@ M.RespondsTo = {
 
 M.LexConfiguration = {
     type = "structure",
+    id = "LexConfiguration",
     members = {
         RespondsTo = {
             type = "string",
@@ -119,6 +125,7 @@ M.LexConfiguration = {
 
 M.Configuration = {
     type = "structure",
+    id = "Configuration",
     members = {
         Lex = setmetatable({ traits = {
             required = true,
@@ -128,6 +135,7 @@ M.Configuration = {
 
 M.AppInstanceBot = {
     type = "structure",
+    id = "AppInstanceBot",
     members = {
         AppInstanceBotArn = {
             type = "string",
@@ -150,6 +158,7 @@ M.AppInstanceBot = {
 
 M.AppInstanceBotSummary = {
     type = "structure",
+    id = "AppInstanceBotSummary",
     members = {
         AppInstanceBotArn = {
             type = "string",
@@ -165,6 +174,7 @@ M.AppInstanceBotSummary = {
 
 M.AppInstanceSummary = {
     type = "structure",
+    id = "AppInstanceSummary",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -180,6 +190,7 @@ M.AppInstanceSummary = {
 
 M.ChannelRetentionSettings = {
     type = "structure",
+    id = "ChannelRetentionSettings",
     members = {
         RetentionDays = {
             type = "integer",
@@ -189,6 +200,7 @@ M.ChannelRetentionSettings = {
 
 M.AppInstanceRetentionSettings = {
     type = "structure",
+    id = "AppInstanceRetentionSettings",
     members = {
         ChannelRetentionSettings = M.ChannelRetentionSettings,
     },
@@ -200,6 +212,7 @@ M.ExpirationCriterion = {
 
 M.ExpirationSettings = {
     type = "structure",
+    id = "ExpirationSettings",
     members = {
         ExpirationDays = {
             type = "integer",
@@ -218,6 +231,7 @@ M.ExpirationSettings = {
 
 M.AppInstanceUser = {
     type = "structure",
+    id = "AppInstanceUser",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -240,6 +254,7 @@ M.AppInstanceUser = {
 
 M.EndpointAttributes = {
     type = "structure",
+    id = "EndpointAttributes",
     members = {
         DeviceToken = {
             type = "string",
@@ -265,6 +280,7 @@ M.EndpointStatusReason = {
 
 M.EndpointState = {
     type = "structure",
+    id = "EndpointState",
     members = {
         Status = {
             type = "string",
@@ -286,6 +302,7 @@ M.AppInstanceUserEndpointType = {
 
 M.AppInstanceUserEndpoint = {
     type = "structure",
+    id = "AppInstanceUserEndpoint",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -318,6 +335,7 @@ M.AppInstanceUserEndpoint = {
 
 M.AppInstanceUserEndpointSummary = {
     type = "structure",
+    id = "AppInstanceUserEndpointSummary",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -340,6 +358,7 @@ M.AppInstanceUserEndpointSummary = {
 
 M.AppInstanceUserSummary = {
     type = "structure",
+    id = "AppInstanceUserSummary",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -373,6 +392,7 @@ M.ErrorCode = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Code = {
@@ -386,6 +406,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Code = {
@@ -399,6 +420,7 @@ M.ConflictException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -417,6 +439,7 @@ M.Tag = {
 
 M.CreateAppInstanceInput = {
     type = "structure",
+    id = "CreateAppInstanceInput",
     members = {
         Name = {
             type = "string",
@@ -443,6 +466,7 @@ M.CreateAppInstanceInput = {
 
 M.CreateAppInstanceOutput = {
     type = "structure",
+    id = "CreateAppInstanceOutput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -452,6 +476,7 @@ M.CreateAppInstanceOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Code = {
@@ -465,6 +490,7 @@ M.ForbiddenException = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         Code = {
@@ -478,6 +504,7 @@ M.ResourceLimitExceededException = {
 
 M.ServiceFailureException = {
     type = "structure",
+    id = "ServiceFailureException",
     error = "server",
     members = {
         Code = {
@@ -491,6 +518,7 @@ M.ServiceFailureException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Code = {
@@ -504,6 +532,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottledClientException = {
     type = "structure",
+    id = "ThrottledClientException",
     error = "client",
     members = {
         Code = {
@@ -517,6 +546,7 @@ M.ThrottledClientException = {
 
 M.UnauthorizedClientException = {
     type = "structure",
+    id = "UnauthorizedClientException",
     error = "client",
     members = {
         Code = {
@@ -530,6 +560,7 @@ M.UnauthorizedClientException = {
 
 M.CreateAppInstanceAdminInput = {
     type = "structure",
+    id = "CreateAppInstanceAdminInput",
     members = {
         AppInstanceAdminArn = {
             type = "string",
@@ -549,6 +580,7 @@ M.CreateAppInstanceAdminInput = {
 
 M.CreateAppInstanceAdminOutput = {
     type = "structure",
+    id = "CreateAppInstanceAdminOutput",
     members = {
         AppInstanceAdmin = M.Identity,
         AppInstanceArn = {
@@ -559,6 +591,7 @@ M.CreateAppInstanceAdminOutput = {
 
 M.CreateAppInstanceBotInput = {
     type = "structure",
+    id = "CreateAppInstanceBotInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -591,6 +624,7 @@ M.CreateAppInstanceBotInput = {
 
 M.CreateAppInstanceBotOutput = {
     type = "structure",
+    id = "CreateAppInstanceBotOutput",
     members = {
         AppInstanceBotArn = {
             type = "string",
@@ -600,6 +634,7 @@ M.CreateAppInstanceBotOutput = {
 
 M.CreateAppInstanceUserInput = {
     type = "structure",
+    id = "CreateAppInstanceUserInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -639,6 +674,7 @@ M.CreateAppInstanceUserInput = {
 
 M.CreateAppInstanceUserOutput = {
     type = "structure",
+    id = "CreateAppInstanceUserOutput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -648,6 +684,7 @@ M.CreateAppInstanceUserOutput = {
 
 M.DeleteAppInstanceInput = {
     type = "structure",
+    id = "DeleteAppInstanceInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -661,10 +698,12 @@ M.DeleteAppInstanceInput = {
 
 M.DeleteAppInstanceOutput = {
     type = "structure",
+    id = "DeleteAppInstanceOutput",
 }
 
 M.DeleteAppInstanceAdminInput = {
     type = "structure",
+    id = "DeleteAppInstanceAdminInput",
     members = {
         AppInstanceAdminArn = {
             type = "string",
@@ -685,10 +724,12 @@ M.DeleteAppInstanceAdminInput = {
 
 M.DeleteAppInstanceAdminOutput = {
     type = "structure",
+    id = "DeleteAppInstanceAdminOutput",
 }
 
 M.DeleteAppInstanceBotInput = {
     type = "structure",
+    id = "DeleteAppInstanceBotInput",
     members = {
         AppInstanceBotArn = {
             type = "string",
@@ -702,10 +743,12 @@ M.DeleteAppInstanceBotInput = {
 
 M.DeleteAppInstanceBotOutput = {
     type = "structure",
+    id = "DeleteAppInstanceBotOutput",
 }
 
 M.DeleteAppInstanceUserInput = {
     type = "structure",
+    id = "DeleteAppInstanceUserInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -719,10 +762,12 @@ M.DeleteAppInstanceUserInput = {
 
 M.DeleteAppInstanceUserOutput = {
     type = "structure",
+    id = "DeleteAppInstanceUserOutput",
 }
 
 M.DeregisterAppInstanceUserEndpointInput = {
     type = "structure",
+    id = "DeregisterAppInstanceUserEndpointInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -743,10 +788,12 @@ M.DeregisterAppInstanceUserEndpointInput = {
 
 M.DeregisterAppInstanceUserEndpointOutput = {
     type = "structure",
+    id = "DeregisterAppInstanceUserEndpointOutput",
 }
 
 M.DescribeAppInstanceInput = {
     type = "structure",
+    id = "DescribeAppInstanceInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -760,6 +807,7 @@ M.DescribeAppInstanceInput = {
 
 M.DescribeAppInstanceOutput = {
     type = "structure",
+    id = "DescribeAppInstanceOutput",
     members = {
         AppInstance = M.AppInstance,
     },
@@ -767,6 +815,7 @@ M.DescribeAppInstanceOutput = {
 
 M.DescribeAppInstanceAdminInput = {
     type = "structure",
+    id = "DescribeAppInstanceAdminInput",
     members = {
         AppInstanceAdminArn = {
             type = "string",
@@ -787,6 +836,7 @@ M.DescribeAppInstanceAdminInput = {
 
 M.DescribeAppInstanceAdminOutput = {
     type = "structure",
+    id = "DescribeAppInstanceAdminOutput",
     members = {
         AppInstanceAdmin = M.AppInstanceAdmin,
     },
@@ -794,6 +844,7 @@ M.DescribeAppInstanceAdminOutput = {
 
 M.DescribeAppInstanceBotInput = {
     type = "structure",
+    id = "DescribeAppInstanceBotInput",
     members = {
         AppInstanceBotArn = {
             type = "string",
@@ -807,6 +858,7 @@ M.DescribeAppInstanceBotInput = {
 
 M.DescribeAppInstanceBotOutput = {
     type = "structure",
+    id = "DescribeAppInstanceBotOutput",
     members = {
         AppInstanceBot = M.AppInstanceBot,
     },
@@ -814,6 +866,7 @@ M.DescribeAppInstanceBotOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Code = {
@@ -827,6 +880,7 @@ M.NotFoundException = {
 
 M.DescribeAppInstanceUserInput = {
     type = "structure",
+    id = "DescribeAppInstanceUserInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -840,6 +894,7 @@ M.DescribeAppInstanceUserInput = {
 
 M.DescribeAppInstanceUserOutput = {
     type = "structure",
+    id = "DescribeAppInstanceUserOutput",
     members = {
         AppInstanceUser = M.AppInstanceUser,
     },
@@ -847,6 +902,7 @@ M.DescribeAppInstanceUserOutput = {
 
 M.DescribeAppInstanceUserEndpointInput = {
     type = "structure",
+    id = "DescribeAppInstanceUserEndpointInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -867,6 +923,7 @@ M.DescribeAppInstanceUserEndpointInput = {
 
 M.DescribeAppInstanceUserEndpointOutput = {
     type = "structure",
+    id = "DescribeAppInstanceUserEndpointOutput",
     members = {
         AppInstanceUserEndpoint = M.AppInstanceUserEndpoint,
     },
@@ -874,6 +931,7 @@ M.DescribeAppInstanceUserEndpointOutput = {
 
 M.GetAppInstanceRetentionSettingsInput = {
     type = "structure",
+    id = "GetAppInstanceRetentionSettingsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -887,6 +945,7 @@ M.GetAppInstanceRetentionSettingsInput = {
 
 M.GetAppInstanceRetentionSettingsOutput = {
     type = "structure",
+    id = "GetAppInstanceRetentionSettingsOutput",
     members = {
         AppInstanceRetentionSettings = M.AppInstanceRetentionSettings,
         InitiateDeletionTimestamp = {
@@ -897,6 +956,7 @@ M.GetAppInstanceRetentionSettingsOutput = {
 
 M.ListAppInstanceAdminsInput = {
     type = "structure",
+    id = "ListAppInstanceAdminsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -922,6 +982,7 @@ M.ListAppInstanceAdminsInput = {
 
 M.ListAppInstanceAdminsOutput = {
     type = "structure",
+    id = "ListAppInstanceAdminsOutput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -938,6 +999,7 @@ M.ListAppInstanceAdminsOutput = {
 
 M.ListAppInstanceBotsInput = {
     type = "structure",
+    id = "ListAppInstanceBotsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -963,6 +1025,7 @@ M.ListAppInstanceBotsInput = {
 
 M.ListAppInstanceBotsOutput = {
     type = "structure",
+    id = "ListAppInstanceBotsOutput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -979,6 +1042,7 @@ M.ListAppInstanceBotsOutput = {
 
 M.ListAppInstancesInput = {
     type = "structure",
+    id = "ListAppInstancesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -997,6 +1061,7 @@ M.ListAppInstancesInput = {
 
 M.ListAppInstancesOutput = {
     type = "structure",
+    id = "ListAppInstancesOutput",
     members = {
         AppInstances = {
             type = "list",
@@ -1010,6 +1075,7 @@ M.ListAppInstancesOutput = {
 
 M.ListAppInstanceUserEndpointsInput = {
     type = "structure",
+    id = "ListAppInstanceUserEndpointsInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1035,6 +1101,7 @@ M.ListAppInstanceUserEndpointsInput = {
 
 M.ListAppInstanceUserEndpointsOutput = {
     type = "structure",
+    id = "ListAppInstanceUserEndpointsOutput",
     members = {
         AppInstanceUserEndpoints = {
             type = "list",
@@ -1048,6 +1115,7 @@ M.ListAppInstanceUserEndpointsOutput = {
 
 M.ListAppInstanceUsersInput = {
     type = "structure",
+    id = "ListAppInstanceUsersInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1073,6 +1141,7 @@ M.ListAppInstanceUsersInput = {
 
 M.ListAppInstanceUsersOutput = {
     type = "structure",
+    id = "ListAppInstanceUsersOutput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1089,6 +1158,7 @@ M.ListAppInstanceUsersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1102,6 +1172,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1112,6 +1183,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutAppInstanceRetentionSettingsInput = {
     type = "structure",
+    id = "PutAppInstanceRetentionSettingsInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1128,6 +1200,7 @@ M.PutAppInstanceRetentionSettingsInput = {
 
 M.PutAppInstanceRetentionSettingsOutput = {
     type = "structure",
+    id = "PutAppInstanceRetentionSettingsOutput",
     members = {
         AppInstanceRetentionSettings = M.AppInstanceRetentionSettings,
         InitiateDeletionTimestamp = {
@@ -1138,6 +1211,7 @@ M.PutAppInstanceRetentionSettingsOutput = {
 
 M.PutAppInstanceUserExpirationSettingsInput = {
     type = "structure",
+    id = "PutAppInstanceUserExpirationSettingsInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1152,6 +1226,7 @@ M.PutAppInstanceUserExpirationSettingsInput = {
 
 M.PutAppInstanceUserExpirationSettingsOutput = {
     type = "structure",
+    id = "PutAppInstanceUserExpirationSettingsOutput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1162,6 +1237,7 @@ M.PutAppInstanceUserExpirationSettingsOutput = {
 
 M.RegisterAppInstanceUserEndpointInput = {
     type = "structure",
+    id = "RegisterAppInstanceUserEndpointInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1203,6 +1279,7 @@ M.RegisterAppInstanceUserEndpointInput = {
 
 M.RegisterAppInstanceUserEndpointOutput = {
     type = "structure",
+    id = "RegisterAppInstanceUserEndpointOutput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1215,6 +1292,7 @@ M.RegisterAppInstanceUserEndpointOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1234,10 +1312,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1257,10 +1337,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAppInstanceInput = {
     type = "structure",
+    id = "UpdateAppInstanceInput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1286,6 +1368,7 @@ M.UpdateAppInstanceInput = {
 
 M.UpdateAppInstanceOutput = {
     type = "structure",
+    id = "UpdateAppInstanceOutput",
     members = {
         AppInstanceArn = {
             type = "string",
@@ -1295,6 +1378,7 @@ M.UpdateAppInstanceOutput = {
 
 M.UpdateAppInstanceBotInput = {
     type = "structure",
+    id = "UpdateAppInstanceBotInput",
     members = {
         AppInstanceBotArn = {
             type = "string",
@@ -1321,6 +1405,7 @@ M.UpdateAppInstanceBotInput = {
 
 M.UpdateAppInstanceBotOutput = {
     type = "structure",
+    id = "UpdateAppInstanceBotOutput",
     members = {
         AppInstanceBotArn = {
             type = "string",
@@ -1330,6 +1415,7 @@ M.UpdateAppInstanceBotOutput = {
 
 M.UpdateAppInstanceUserInput = {
     type = "structure",
+    id = "UpdateAppInstanceUserInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1355,6 +1441,7 @@ M.UpdateAppInstanceUserInput = {
 
 M.UpdateAppInstanceUserOutput = {
     type = "structure",
+    id = "UpdateAppInstanceUserOutput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1364,6 +1451,7 @@ M.UpdateAppInstanceUserOutput = {
 
 M.UpdateAppInstanceUserEndpointInput = {
     type = "structure",
+    id = "UpdateAppInstanceUserEndpointInput",
     members = {
         AppInstanceUserArn = {
             type = "string",
@@ -1390,6 +1478,7 @@ M.UpdateAppInstanceUserEndpointInput = {
 
 M.UpdateAppInstanceUserEndpointOutput = {
     type = "structure",
+    id = "UpdateAppInstanceUserEndpointOutput",
     members = {
         AppInstanceUserArn = {
             type = "string",

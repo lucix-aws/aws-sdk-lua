@@ -2,6 +2,7 @@ local M = {}
 
 M.AccountInfo = {
     type = "structure",
+    id = "AccountInfo",
     members = {
         accountId = {
             type = "string",
@@ -17,6 +18,7 @@ M.AccountInfo = {
 
 M.GetRoleCredentialsInput = {
     type = "structure",
+    id = "GetRoleCredentialsInput",
     members = {
         roleName = {
             type = "string",
@@ -44,6 +46,7 @@ M.GetRoleCredentialsInput = {
 
 M.RoleCredentials = {
     type = "structure",
+    id = "RoleCredentials",
     members = {
         accessKeyId = {
             type = "string",
@@ -65,6 +68,7 @@ M.RoleCredentials = {
 
 M.GetRoleCredentialsOutput = {
     type = "structure",
+    id = "GetRoleCredentialsOutput",
     members = {
         roleCredentials = M.RoleCredentials,
     },
@@ -72,6 +76,7 @@ M.GetRoleCredentialsOutput = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -82,6 +87,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -92,6 +98,7 @@ M.ResourceNotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -102,6 +109,7 @@ M.TooManyRequestsException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -112,6 +120,7 @@ M.UnauthorizedException = {
 
 M.ListAccountRolesInput = {
     type = "structure",
+    id = "ListAccountRolesInput",
     members = {
         nextToken = {
             type = "string",
@@ -144,6 +153,7 @@ M.ListAccountRolesInput = {
 
 M.RoleInfo = {
     type = "structure",
+    id = "RoleInfo",
     members = {
         roleName = {
             type = "string",
@@ -156,6 +166,7 @@ M.RoleInfo = {
 
 M.ListAccountRolesOutput = {
     type = "structure",
+    id = "ListAccountRolesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -169,6 +180,7 @@ M.ListAccountRolesOutput = {
 
 M.ListAccountsInput = {
     type = "structure",
+    id = "ListAccountsInput",
     members = {
         nextToken = {
             type = "string",
@@ -194,6 +206,7 @@ M.ListAccountsInput = {
 
 M.ListAccountsOutput = {
     type = "structure",
+    id = "ListAccountsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -207,6 +220,7 @@ M.ListAccountsOutput = {
 
 M.LogoutInput = {
     type = "structure",
+    id = "LogoutInput",
     members = {
         accessToken = {
             type = "string",
@@ -220,6 +234,7 @@ M.LogoutInput = {
 
 M.LogoutOutput = {
     type = "structure",
+    id = "LogoutOutput",
 }
 
 return M

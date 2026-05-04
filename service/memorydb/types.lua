@@ -2,6 +2,7 @@ local M = {}
 
 M.ACLPendingChanges = {
     type = "structure",
+    id = "ACLPendingChanges",
     members = {
         UserNamesToRemove = {
             type = "list",
@@ -16,6 +17,7 @@ M.ACLPendingChanges = {
 
 M.ACL = {
     type = "structure",
+    id = "ACL",
     members = {
         Name = {
             type = "string",
@@ -43,6 +45,7 @@ M.ACL = {
 
 M.ACLAlreadyExistsFault = {
     type = "structure",
+    id = "ACLAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -53,6 +56,7 @@ M.ACLAlreadyExistsFault = {
 
 M.ACLNotFoundFault = {
     type = "structure",
+    id = "ACLNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -63,6 +67,7 @@ M.ACLNotFoundFault = {
 
 M.ACLQuotaExceededFault = {
     type = "structure",
+    id = "ACLQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -73,6 +78,7 @@ M.ACLQuotaExceededFault = {
 
 M.ACLsUpdateStatus = {
     type = "structure",
+    id = "ACLsUpdateStatus",
     members = {
         ACLToApply = {
             type = "string",
@@ -82,6 +88,7 @@ M.ACLsUpdateStatus = {
 
 M.ServiceUpdateRequest = {
     type = "structure",
+    id = "ServiceUpdateRequest",
     members = {
         ServiceUpdateNameToApply = {
             type = "string",
@@ -91,6 +98,7 @@ M.ServiceUpdateRequest = {
 
 M.BatchUpdateClusterInput = {
     type = "structure",
+    id = "BatchUpdateClusterInput",
     members = {
         ClusterNames = {
             type = "list",
@@ -110,6 +118,7 @@ M.AZStatus = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -141,6 +150,7 @@ M.NetworkType = {
 
 M.SlotMigration = {
     type = "structure",
+    id = "SlotMigration",
     members = {
         ProgressPercentage = {
             type = "double",
@@ -153,6 +163,7 @@ M.SlotMigration = {
 
 M.ReshardingStatus = {
     type = "structure",
+    id = "ReshardingStatus",
     members = {
         SlotMigration = M.SlotMigration,
     },
@@ -167,6 +178,7 @@ M.ServiceUpdateStatus = {
 
 M.PendingModifiedServiceUpdate = {
     type = "structure",
+    id = "PendingModifiedServiceUpdate",
     members = {
         ServiceUpdateName = {
             type = "string",
@@ -179,6 +191,7 @@ M.PendingModifiedServiceUpdate = {
 
 M.ClusterPendingUpdates = {
     type = "structure",
+    id = "ClusterPendingUpdates",
     members = {
         Resharding = M.ReshardingStatus,
         ACLs = M.ACLsUpdateStatus,
@@ -191,6 +204,7 @@ M.ClusterPendingUpdates = {
 
 M.SecurityGroupMembership = {
     type = "structure",
+    id = "SecurityGroupMembership",
     members = {
         SecurityGroupId = {
             type = "string",
@@ -203,6 +217,7 @@ M.SecurityGroupMembership = {
 
 M.Node = {
     type = "structure",
+    id = "Node",
     members = {
         Name = {
             type = "string",
@@ -222,6 +237,7 @@ M.Node = {
 
 M.Shard = {
     type = "structure",
+    id = "Shard",
     members = {
         Name = {
             type = "string",
@@ -244,6 +260,7 @@ M.Shard = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         Name = {
             type = "string",
@@ -338,6 +355,7 @@ M.Cluster = {
 
 M.UnprocessedCluster = {
     type = "structure",
+    id = "UnprocessedCluster",
     members = {
         ClusterName = {
             type = "string",
@@ -353,6 +371,7 @@ M.UnprocessedCluster = {
 
 M.BatchUpdateClusterOutput = {
     type = "structure",
+    id = "BatchUpdateClusterOutput",
     members = {
         ProcessedClusters = {
             type = "list",
@@ -367,6 +386,7 @@ M.BatchUpdateClusterOutput = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -377,6 +397,7 @@ M.InvalidParameterValueException = {
 
 M.ServiceUpdateNotFoundFault = {
     type = "structure",
+    id = "ServiceUpdateNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -387,6 +408,7 @@ M.ServiceUpdateNotFoundFault = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -399,6 +421,7 @@ M.Tag = {
 
 M.CopySnapshotInput = {
     type = "structure",
+    id = "CopySnapshotInput",
     members = {
         SourceSnapshotName = {
             type = "string",
@@ -427,6 +450,7 @@ M.CopySnapshotInput = {
 
 M.ShardConfiguration = {
     type = "structure",
+    id = "ShardConfiguration",
     members = {
         Slots = {
             type = "string",
@@ -439,6 +463,7 @@ M.ShardConfiguration = {
 
 M.ShardDetail = {
     type = "structure",
+    id = "ShardDetail",
     members = {
         Name = {
             type = "string",
@@ -455,6 +480,7 @@ M.ShardDetail = {
 
 M.ClusterConfiguration = {
     type = "structure",
+    id = "ClusterConfiguration",
     members = {
         Name = {
             type = "string",
@@ -513,6 +539,7 @@ M.ClusterConfiguration = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         Name = {
             type = "string",
@@ -538,6 +565,7 @@ M.Snapshot = {
 
 M.CopySnapshotOutput = {
     type = "structure",
+    id = "CopySnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -545,6 +573,7 @@ M.CopySnapshotOutput = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         message = {
@@ -555,6 +584,7 @@ M.InvalidParameterCombinationException = {
 
 M.InvalidSnapshotStateFault = {
     type = "structure",
+    id = "InvalidSnapshotStateFault",
     error = "client",
     members = {
         message = {
@@ -565,6 +595,7 @@ M.InvalidSnapshotStateFault = {
 
 M.ServiceLinkedRoleNotFoundFault = {
     type = "structure",
+    id = "ServiceLinkedRoleNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -575,6 +606,7 @@ M.ServiceLinkedRoleNotFoundFault = {
 
 M.SnapshotAlreadyExistsFault = {
     type = "structure",
+    id = "SnapshotAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -585,6 +617,7 @@ M.SnapshotAlreadyExistsFault = {
 
 M.SnapshotNotFoundFault = {
     type = "structure",
+    id = "SnapshotNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -595,6 +628,7 @@ M.SnapshotNotFoundFault = {
 
 M.SnapshotQuotaExceededFault = {
     type = "structure",
+    id = "SnapshotQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -605,6 +639,7 @@ M.SnapshotQuotaExceededFault = {
 
 M.TagQuotaPerResourceExceeded = {
     type = "structure",
+    id = "TagQuotaPerResourceExceeded",
     error = "client",
     members = {
         message = {
@@ -615,6 +650,7 @@ M.TagQuotaPerResourceExceeded = {
 
 M.CreateACLInput = {
     type = "structure",
+    id = "CreateACLInput",
     members = {
         ACLName = {
             type = "string",
@@ -635,6 +671,7 @@ M.CreateACLInput = {
 
 M.CreateACLOutput = {
     type = "structure",
+    id = "CreateACLOutput",
     members = {
         ACL = M.ACL,
     },
@@ -642,6 +679,7 @@ M.CreateACLOutput = {
 
 M.DefaultUserRequired = {
     type = "structure",
+    id = "DefaultUserRequired",
     error = "client",
     members = {
         message = {
@@ -652,6 +690,7 @@ M.DefaultUserRequired = {
 
 M.DuplicateUserNameFault = {
     type = "structure",
+    id = "DuplicateUserNameFault",
     error = "client",
     members = {
         message = {
@@ -662,6 +701,7 @@ M.DuplicateUserNameFault = {
 
 M.UserNotFoundFault = {
     type = "structure",
+    id = "UserNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -672,6 +712,7 @@ M.UserNotFoundFault = {
 
 M.ClusterAlreadyExistsFault = {
     type = "structure",
+    id = "ClusterAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -682,6 +723,7 @@ M.ClusterAlreadyExistsFault = {
 
 M.ClusterQuotaForCustomerExceededFault = {
     type = "structure",
+    id = "ClusterQuotaForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -692,6 +734,7 @@ M.ClusterQuotaForCustomerExceededFault = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         ClusterName = {
             type = "string",
@@ -788,6 +831,7 @@ M.CreateClusterInput = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -795,6 +839,7 @@ M.CreateClusterOutput = {
 
 M.InsufficientClusterCapacityFault = {
     type = "structure",
+    id = "InsufficientClusterCapacityFault",
     error = "client",
     members = {
         message = {
@@ -805,6 +850,7 @@ M.InsufficientClusterCapacityFault = {
 
 M.InvalidACLStateFault = {
     type = "structure",
+    id = "InvalidACLStateFault",
     error = "client",
     members = {
         message = {
@@ -815,6 +861,7 @@ M.InvalidACLStateFault = {
 
 M.InvalidCredentialsException = {
     type = "structure",
+    id = "InvalidCredentialsException",
     error = "client",
     members = {
         message = {
@@ -825,6 +872,7 @@ M.InvalidCredentialsException = {
 
 M.InvalidMultiRegionClusterStateFault = {
     type = "structure",
+    id = "InvalidMultiRegionClusterStateFault",
     error = "client",
     members = {
         message = {
@@ -835,6 +883,7 @@ M.InvalidMultiRegionClusterStateFault = {
 
 M.InvalidVPCNetworkStateFault = {
     type = "structure",
+    id = "InvalidVPCNetworkStateFault",
     error = "client",
     members = {
         message = {
@@ -845,6 +894,7 @@ M.InvalidVPCNetworkStateFault = {
 
 M.MultiRegionClusterNotFoundFault = {
     type = "structure",
+    id = "MultiRegionClusterNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -855,6 +905,7 @@ M.MultiRegionClusterNotFoundFault = {
 
 M.NodeQuotaForClusterExceededFault = {
     type = "structure",
+    id = "NodeQuotaForClusterExceededFault",
     error = "client",
     members = {
         message = {
@@ -865,6 +916,7 @@ M.NodeQuotaForClusterExceededFault = {
 
 M.NodeQuotaForCustomerExceededFault = {
     type = "structure",
+    id = "NodeQuotaForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -875,6 +927,7 @@ M.NodeQuotaForCustomerExceededFault = {
 
 M.ParameterGroupNotFoundFault = {
     type = "structure",
+    id = "ParameterGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -885,6 +938,7 @@ M.ParameterGroupNotFoundFault = {
 
 M.ShardsPerClusterQuotaExceededFault = {
     type = "structure",
+    id = "ShardsPerClusterQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -895,6 +949,7 @@ M.ShardsPerClusterQuotaExceededFault = {
 
 M.SubnetGroupNotFoundFault = {
     type = "structure",
+    id = "SubnetGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -905,6 +960,7 @@ M.SubnetGroupNotFoundFault = {
 
 M.CreateMultiRegionClusterInput = {
     type = "structure",
+    id = "CreateMultiRegionClusterInput",
     members = {
         MultiRegionClusterNameSuffix = {
             type = "string",
@@ -945,6 +1001,7 @@ M.CreateMultiRegionClusterInput = {
 
 M.RegionalCluster = {
     type = "structure",
+    id = "RegionalCluster",
     members = {
         ClusterName = {
             type = "string",
@@ -963,6 +1020,7 @@ M.RegionalCluster = {
 
 M.MultiRegionCluster = {
     type = "structure",
+    id = "MultiRegionCluster",
     members = {
         MultiRegionClusterName = {
             type = "string",
@@ -1003,6 +1061,7 @@ M.MultiRegionCluster = {
 
 M.CreateMultiRegionClusterOutput = {
     type = "structure",
+    id = "CreateMultiRegionClusterOutput",
     members = {
         MultiRegionCluster = M.MultiRegionCluster,
     },
@@ -1010,6 +1069,7 @@ M.CreateMultiRegionClusterOutput = {
 
 M.MultiRegionClusterAlreadyExistsFault = {
     type = "structure",
+    id = "MultiRegionClusterAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1020,6 +1080,7 @@ M.MultiRegionClusterAlreadyExistsFault = {
 
 M.MultiRegionParameterGroupNotFoundFault = {
     type = "structure",
+    id = "MultiRegionParameterGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1030,6 +1091,7 @@ M.MultiRegionParameterGroupNotFoundFault = {
 
 M.CreateParameterGroupInput = {
     type = "structure",
+    id = "CreateParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -1055,6 +1117,7 @@ M.CreateParameterGroupInput = {
 
 M.ParameterGroup = {
     type = "structure",
+    id = "ParameterGroup",
     members = {
         Name = {
             type = "string",
@@ -1073,6 +1136,7 @@ M.ParameterGroup = {
 
 M.CreateParameterGroupOutput = {
     type = "structure",
+    id = "CreateParameterGroupOutput",
     members = {
         ParameterGroup = M.ParameterGroup,
     },
@@ -1080,6 +1144,7 @@ M.CreateParameterGroupOutput = {
 
 M.InvalidParameterGroupStateFault = {
     type = "structure",
+    id = "InvalidParameterGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -1090,6 +1155,7 @@ M.InvalidParameterGroupStateFault = {
 
 M.ParameterGroupAlreadyExistsFault = {
     type = "structure",
+    id = "ParameterGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1100,6 +1166,7 @@ M.ParameterGroupAlreadyExistsFault = {
 
 M.ParameterGroupQuotaExceededFault = {
     type = "structure",
+    id = "ParameterGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1110,6 +1177,7 @@ M.ParameterGroupQuotaExceededFault = {
 
 M.ClusterNotFoundFault = {
     type = "structure",
+    id = "ClusterNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1120,6 +1188,7 @@ M.ClusterNotFoundFault = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         ClusterName = {
             type = "string",
@@ -1145,6 +1214,7 @@ M.CreateSnapshotInput = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -1152,6 +1222,7 @@ M.CreateSnapshotOutput = {
 
 M.InvalidClusterStateFault = {
     type = "structure",
+    id = "InvalidClusterStateFault",
     error = "client",
     members = {
         message = {
@@ -1162,6 +1233,7 @@ M.InvalidClusterStateFault = {
 
 M.CreateSubnetGroupInput = {
     type = "structure",
+    id = "CreateSubnetGroupInput",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -1188,6 +1260,7 @@ M.CreateSubnetGroupInput = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         Name = {
             type = "string",
@@ -1197,6 +1270,7 @@ M.AvailabilityZone = {
 
 M.Subnet = {
     type = "structure",
+    id = "Subnet",
     members = {
         Identifier = {
             type = "string",
@@ -1211,6 +1285,7 @@ M.Subnet = {
 
 M.SubnetGroup = {
     type = "structure",
+    id = "SubnetGroup",
     members = {
         Name = {
             type = "string",
@@ -1237,6 +1312,7 @@ M.SubnetGroup = {
 
 M.CreateSubnetGroupOutput = {
     type = "structure",
+    id = "CreateSubnetGroupOutput",
     members = {
         SubnetGroup = M.SubnetGroup,
     },
@@ -1244,6 +1320,7 @@ M.CreateSubnetGroupOutput = {
 
 M.InvalidSubnet = {
     type = "structure",
+    id = "InvalidSubnet",
     error = "client",
     members = {
         message = {
@@ -1254,6 +1331,7 @@ M.InvalidSubnet = {
 
 M.SubnetGroupAlreadyExistsFault = {
     type = "structure",
+    id = "SubnetGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1264,6 +1342,7 @@ M.SubnetGroupAlreadyExistsFault = {
 
 M.SubnetGroupQuotaExceededFault = {
     type = "structure",
+    id = "SubnetGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1274,6 +1353,7 @@ M.SubnetGroupQuotaExceededFault = {
 
 M.SubnetNotAllowedFault = {
     type = "structure",
+    id = "SubnetNotAllowedFault",
     error = "client",
     members = {
         message = {
@@ -1284,6 +1364,7 @@ M.SubnetNotAllowedFault = {
 
 M.SubnetQuotaExceededFault = {
     type = "structure",
+    id = "SubnetQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1299,6 +1380,7 @@ M.InputAuthenticationType = {
 
 M.AuthenticationMode = {
     type = "structure",
+    id = "AuthenticationMode",
     members = {
         Type = {
             type = "string",
@@ -1312,6 +1394,7 @@ M.AuthenticationMode = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         UserName = {
             type = "string",
@@ -1343,6 +1426,7 @@ M.AuthenticationType = {
 
 M.Authentication = {
     type = "structure",
+    id = "Authentication",
     members = {
         Type = {
             type = "string",
@@ -1355,6 +1439,7 @@ M.Authentication = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Name = {
             type = "string",
@@ -1381,6 +1466,7 @@ M.User = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         User = M.User,
     },
@@ -1388,6 +1474,7 @@ M.CreateUserOutput = {
 
 M.UserAlreadyExistsFault = {
     type = "structure",
+    id = "UserAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1398,6 +1485,7 @@ M.UserAlreadyExistsFault = {
 
 M.UserQuotaExceededFault = {
     type = "structure",
+    id = "UserQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1408,6 +1496,7 @@ M.UserQuotaExceededFault = {
 
 M.DeleteACLInput = {
     type = "structure",
+    id = "DeleteACLInput",
     members = {
         ACLName = {
             type = "string",
@@ -1420,6 +1509,7 @@ M.DeleteACLInput = {
 
 M.DeleteACLOutput = {
     type = "structure",
+    id = "DeleteACLOutput",
     members = {
         ACL = M.ACL,
     },
@@ -1427,6 +1517,7 @@ M.DeleteACLOutput = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         ClusterName = {
             type = "string",
@@ -1445,6 +1536,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -1452,6 +1544,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteMultiRegionClusterInput = {
     type = "structure",
+    id = "DeleteMultiRegionClusterInput",
     members = {
         MultiRegionClusterName = {
             type = "string",
@@ -1464,6 +1557,7 @@ M.DeleteMultiRegionClusterInput = {
 
 M.DeleteMultiRegionClusterOutput = {
     type = "structure",
+    id = "DeleteMultiRegionClusterOutput",
     members = {
         MultiRegionCluster = M.MultiRegionCluster,
     },
@@ -1471,6 +1565,7 @@ M.DeleteMultiRegionClusterOutput = {
 
 M.DeleteParameterGroupInput = {
     type = "structure",
+    id = "DeleteParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -1483,6 +1578,7 @@ M.DeleteParameterGroupInput = {
 
 M.DeleteParameterGroupOutput = {
     type = "structure",
+    id = "DeleteParameterGroupOutput",
     members = {
         ParameterGroup = M.ParameterGroup,
     },
@@ -1490,6 +1586,7 @@ M.DeleteParameterGroupOutput = {
 
 M.DeleteSnapshotInput = {
     type = "structure",
+    id = "DeleteSnapshotInput",
     members = {
         SnapshotName = {
             type = "string",
@@ -1502,6 +1599,7 @@ M.DeleteSnapshotInput = {
 
 M.DeleteSnapshotOutput = {
     type = "structure",
+    id = "DeleteSnapshotOutput",
     members = {
         Snapshot = M.Snapshot,
     },
@@ -1509,6 +1607,7 @@ M.DeleteSnapshotOutput = {
 
 M.DeleteSubnetGroupInput = {
     type = "structure",
+    id = "DeleteSubnetGroupInput",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -1521,6 +1620,7 @@ M.DeleteSubnetGroupInput = {
 
 M.DeleteSubnetGroupOutput = {
     type = "structure",
+    id = "DeleteSubnetGroupOutput",
     members = {
         SubnetGroup = M.SubnetGroup,
     },
@@ -1528,6 +1628,7 @@ M.DeleteSubnetGroupOutput = {
 
 M.SubnetGroupInUseFault = {
     type = "structure",
+    id = "SubnetGroupInUseFault",
     error = "client",
     members = {
         message = {
@@ -1538,6 +1639,7 @@ M.SubnetGroupInUseFault = {
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         UserName = {
             type = "string",
@@ -1550,6 +1652,7 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
     members = {
         User = M.User,
     },
@@ -1557,6 +1660,7 @@ M.DeleteUserOutput = {
 
 M.InvalidUserStateFault = {
     type = "structure",
+    id = "InvalidUserStateFault",
     error = "client",
     members = {
         message = {
@@ -1567,6 +1671,7 @@ M.InvalidUserStateFault = {
 
 M.DescribeACLsInput = {
     type = "structure",
+    id = "DescribeACLsInput",
     members = {
         ACLName = {
             type = "string",
@@ -1582,6 +1687,7 @@ M.DescribeACLsInput = {
 
 M.DescribeACLsOutput = {
     type = "structure",
+    id = "DescribeACLsOutput",
     members = {
         ACLs = {
             type = "list",
@@ -1595,6 +1701,7 @@ M.DescribeACLsOutput = {
 
 M.DescribeClustersInput = {
     type = "structure",
+    id = "DescribeClustersInput",
     members = {
         ClusterName = {
             type = "string",
@@ -1613,6 +1720,7 @@ M.DescribeClustersInput = {
 
 M.DescribeClustersOutput = {
     type = "structure",
+    id = "DescribeClustersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1626,6 +1734,7 @@ M.DescribeClustersOutput = {
 
 M.DescribeEngineVersionsInput = {
     type = "structure",
+    id = "DescribeEngineVersionsInput",
     members = {
         Engine = {
             type = "string",
@@ -1653,6 +1762,7 @@ M.DescribeEngineVersionsInput = {
 
 M.EngineVersionInfo = {
     type = "structure",
+    id = "EngineVersionInfo",
     members = {
         Engine = {
             type = "string",
@@ -1671,6 +1781,7 @@ M.EngineVersionInfo = {
 
 M.DescribeEngineVersionsOutput = {
     type = "structure",
+    id = "DescribeEngineVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1693,6 +1804,7 @@ M.SourceType = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         SourceName = {
             type = "string",
@@ -1720,6 +1832,7 @@ M.DescribeEventsInput = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         SourceName = {
             type = "string",
@@ -1738,6 +1851,7 @@ M.Event = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1751,6 +1865,7 @@ M.DescribeEventsOutput = {
 
 M.DescribeMultiRegionClustersInput = {
     type = "structure",
+    id = "DescribeMultiRegionClustersInput",
     members = {
         MultiRegionClusterName = {
             type = "string",
@@ -1769,6 +1884,7 @@ M.DescribeMultiRegionClustersInput = {
 
 M.DescribeMultiRegionClustersOutput = {
     type = "structure",
+    id = "DescribeMultiRegionClustersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1782,6 +1898,7 @@ M.DescribeMultiRegionClustersOutput = {
 
 M.DescribeMultiRegionParameterGroupsInput = {
     type = "structure",
+    id = "DescribeMultiRegionParameterGroupsInput",
     members = {
         MultiRegionParameterGroupName = {
             type = "string",
@@ -1797,6 +1914,7 @@ M.DescribeMultiRegionParameterGroupsInput = {
 
 M.MultiRegionParameterGroup = {
     type = "structure",
+    id = "MultiRegionParameterGroup",
     members = {
         Name = {
             type = "string",
@@ -1815,6 +1933,7 @@ M.MultiRegionParameterGroup = {
 
 M.DescribeMultiRegionParameterGroupsOutput = {
     type = "structure",
+    id = "DescribeMultiRegionParameterGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1828,6 +1947,7 @@ M.DescribeMultiRegionParameterGroupsOutput = {
 
 M.DescribeMultiRegionParametersInput = {
     type = "structure",
+    id = "DescribeMultiRegionParametersInput",
     members = {
         MultiRegionParameterGroupName = {
             type = "string",
@@ -1849,6 +1969,7 @@ M.DescribeMultiRegionParametersInput = {
 
 M.MultiRegionParameter = {
     type = "structure",
+    id = "MultiRegionParameter",
     members = {
         Name = {
             type = "string",
@@ -1876,6 +1997,7 @@ M.MultiRegionParameter = {
 
 M.DescribeMultiRegionParametersOutput = {
     type = "structure",
+    id = "DescribeMultiRegionParametersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1889,6 +2011,7 @@ M.DescribeMultiRegionParametersOutput = {
 
 M.DescribeParameterGroupsInput = {
     type = "structure",
+    id = "DescribeParameterGroupsInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -1904,6 +2027,7 @@ M.DescribeParameterGroupsInput = {
 
 M.DescribeParameterGroupsOutput = {
     type = "structure",
+    id = "DescribeParameterGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1917,6 +2041,7 @@ M.DescribeParameterGroupsOutput = {
 
 M.DescribeParametersInput = {
     type = "structure",
+    id = "DescribeParametersInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -1935,6 +2060,7 @@ M.DescribeParametersInput = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         Name = {
             type = "string",
@@ -1959,6 +2085,7 @@ M.Parameter = {
 
 M.DescribeParametersOutput = {
     type = "structure",
+    id = "DescribeParametersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1972,6 +2099,7 @@ M.DescribeParametersOutput = {
 
 M.DescribeReservedNodesInput = {
     type = "structure",
+    id = "DescribeReservedNodesInput",
     members = {
         ReservationId = {
             type = "string",
@@ -1999,6 +2127,7 @@ M.DescribeReservedNodesInput = {
 
 M.RecurringCharge = {
     type = "structure",
+    id = "RecurringCharge",
     members = {
         RecurringChargeAmount = {
             type = "double",
@@ -2014,6 +2143,7 @@ M.RecurringCharge = {
 
 M.ReservedNode = {
     type = "structure",
+    id = "ReservedNode",
     members = {
         ReservationId = {
             type = "string",
@@ -2063,6 +2193,7 @@ M.ReservedNode = {
 
 M.DescribeReservedNodesOutput = {
     type = "structure",
+    id = "DescribeReservedNodesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2076,6 +2207,7 @@ M.DescribeReservedNodesOutput = {
 
 M.ReservedNodeNotFoundFault = {
     type = "structure",
+    id = "ReservedNodeNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2086,6 +2218,7 @@ M.ReservedNodeNotFoundFault = {
 
 M.DescribeReservedNodesOfferingsInput = {
     type = "structure",
+    id = "DescribeReservedNodesOfferingsInput",
     members = {
         ReservedNodesOfferingId = {
             type = "string",
@@ -2110,6 +2243,7 @@ M.DescribeReservedNodesOfferingsInput = {
 
 M.ReservedNodesOffering = {
     type = "structure",
+    id = "ReservedNodesOffering",
     members = {
         ReservedNodesOfferingId = {
             type = "string",
@@ -2141,6 +2275,7 @@ M.ReservedNodesOffering = {
 
 M.DescribeReservedNodesOfferingsOutput = {
     type = "structure",
+    id = "DescribeReservedNodesOfferingsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2154,6 +2289,7 @@ M.DescribeReservedNodesOfferingsOutput = {
 
 M.ReservedNodesOfferingNotFoundFault = {
     type = "structure",
+    id = "ReservedNodesOfferingNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2164,6 +2300,7 @@ M.ReservedNodesOfferingNotFoundFault = {
 
 M.DescribeServiceUpdatesInput = {
     type = "structure",
+    id = "DescribeServiceUpdatesInput",
     members = {
         ServiceUpdateName = {
             type = "string",
@@ -2191,6 +2328,7 @@ M.ServiceUpdateType = {
 
 M.ServiceUpdate = {
     type = "structure",
+    id = "ServiceUpdate",
     members = {
         ClusterName = {
             type = "string",
@@ -2224,6 +2362,7 @@ M.ServiceUpdate = {
 
 M.DescribeServiceUpdatesOutput = {
     type = "structure",
+    id = "DescribeServiceUpdatesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2237,6 +2376,7 @@ M.DescribeServiceUpdatesOutput = {
 
 M.DescribeSnapshotsInput = {
     type = "structure",
+    id = "DescribeSnapshotsInput",
     members = {
         ClusterName = {
             type = "string",
@@ -2261,6 +2401,7 @@ M.DescribeSnapshotsInput = {
 
 M.DescribeSnapshotsOutput = {
     type = "structure",
+    id = "DescribeSnapshotsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2274,6 +2415,7 @@ M.DescribeSnapshotsOutput = {
 
 M.DescribeSubnetGroupsInput = {
     type = "structure",
+    id = "DescribeSubnetGroupsInput",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -2289,6 +2431,7 @@ M.DescribeSubnetGroupsInput = {
 
 M.DescribeSubnetGroupsOutput = {
     type = "structure",
+    id = "DescribeSubnetGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2302,6 +2445,7 @@ M.DescribeSubnetGroupsOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -2321,6 +2465,7 @@ M.Filter = {
 
 M.DescribeUsersInput = {
     type = "structure",
+    id = "DescribeUsersInput",
     members = {
         UserName = {
             type = "string",
@@ -2340,6 +2485,7 @@ M.DescribeUsersInput = {
 
 M.DescribeUsersOutput = {
     type = "structure",
+    id = "DescribeUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -2353,6 +2499,7 @@ M.DescribeUsersOutput = {
 
 M.APICallRateForCustomerExceededFault = {
     type = "structure",
+    id = "APICallRateForCustomerExceededFault",
     error = "client",
     members = {
         message = {
@@ -2363,6 +2510,7 @@ M.APICallRateForCustomerExceededFault = {
 
 M.FailoverShardInput = {
     type = "structure",
+    id = "FailoverShardInput",
     members = {
         ClusterName = {
             type = "string",
@@ -2381,6 +2529,7 @@ M.FailoverShardInput = {
 
 M.FailoverShardOutput = {
     type = "structure",
+    id = "FailoverShardOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -2388,6 +2537,7 @@ M.FailoverShardOutput = {
 
 M.InvalidKMSKeyFault = {
     type = "structure",
+    id = "InvalidKMSKeyFault",
     error = "client",
     members = {
         message = {
@@ -2398,6 +2548,7 @@ M.InvalidKMSKeyFault = {
 
 M.ShardNotFoundFault = {
     type = "structure",
+    id = "ShardNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2408,6 +2559,7 @@ M.ShardNotFoundFault = {
 
 M.TestFailoverNotAvailableFault = {
     type = "structure",
+    id = "TestFailoverNotAvailableFault",
     error = "client",
     members = {
         message = {
@@ -2418,6 +2570,7 @@ M.TestFailoverNotAvailableFault = {
 
 M.ListAllowedMultiRegionClusterUpdatesInput = {
     type = "structure",
+    id = "ListAllowedMultiRegionClusterUpdatesInput",
     members = {
         MultiRegionClusterName = {
             type = "string",
@@ -2430,6 +2583,7 @@ M.ListAllowedMultiRegionClusterUpdatesInput = {
 
 M.ListAllowedMultiRegionClusterUpdatesOutput = {
     type = "structure",
+    id = "ListAllowedMultiRegionClusterUpdatesOutput",
     members = {
         ScaleUpNodeTypes = {
             type = "list",
@@ -2444,6 +2598,7 @@ M.ListAllowedMultiRegionClusterUpdatesOutput = {
 
 M.ListAllowedNodeTypeUpdatesInput = {
     type = "structure",
+    id = "ListAllowedNodeTypeUpdatesInput",
     members = {
         ClusterName = {
             type = "string",
@@ -2456,6 +2611,7 @@ M.ListAllowedNodeTypeUpdatesInput = {
 
 M.ListAllowedNodeTypeUpdatesOutput = {
     type = "structure",
+    id = "ListAllowedNodeTypeUpdatesOutput",
     members = {
         ScaleUpNodeTypes = {
             type = "list",
@@ -2470,6 +2626,7 @@ M.ListAllowedNodeTypeUpdatesOutput = {
 
 M.InvalidARNFault = {
     type = "structure",
+    id = "InvalidARNFault",
     error = "client",
     members = {
         message = {
@@ -2480,6 +2637,7 @@ M.InvalidARNFault = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2492,6 +2650,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         TagList = {
             type = "list",
@@ -2502,6 +2661,7 @@ M.ListTagsOutput = {
 
 M.PurchaseReservedNodesOfferingInput = {
     type = "structure",
+    id = "PurchaseReservedNodesOfferingInput",
     members = {
         ReservedNodesOfferingId = {
             type = "string",
@@ -2524,6 +2684,7 @@ M.PurchaseReservedNodesOfferingInput = {
 
 M.PurchaseReservedNodesOfferingOutput = {
     type = "structure",
+    id = "PurchaseReservedNodesOfferingOutput",
     members = {
         ReservedNode = M.ReservedNode,
     },
@@ -2531,6 +2692,7 @@ M.PurchaseReservedNodesOfferingOutput = {
 
 M.ReservedNodeAlreadyExistsFault = {
     type = "structure",
+    id = "ReservedNodeAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2541,6 +2703,7 @@ M.ReservedNodeAlreadyExistsFault = {
 
 M.ReservedNodeQuotaExceededFault = {
     type = "structure",
+    id = "ReservedNodeQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2551,6 +2714,7 @@ M.ReservedNodeQuotaExceededFault = {
 
 M.ResetParameterGroupInput = {
     type = "structure",
+    id = "ResetParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -2573,6 +2737,7 @@ M.ResetParameterGroupInput = {
 
 M.ResetParameterGroupOutput = {
     type = "structure",
+    id = "ResetParameterGroupOutput",
     members = {
         ParameterGroup = M.ParameterGroup,
     },
@@ -2580,6 +2745,7 @@ M.ResetParameterGroupOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2599,6 +2765,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -2609,6 +2776,7 @@ M.TagResourceOutput = {
 
 M.TagNotFoundFault = {
     type = "structure",
+    id = "TagNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2619,6 +2787,7 @@ M.TagNotFoundFault = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2638,6 +2807,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -2648,6 +2818,7 @@ M.UntagResourceOutput = {
 
 M.UpdateACLInput = {
     type = "structure",
+    id = "UpdateACLInput",
     members = {
         ACLName = {
             type = "string",
@@ -2668,6 +2839,7 @@ M.UpdateACLInput = {
 
 M.UpdateACLOutput = {
     type = "structure",
+    id = "UpdateACLOutput",
     members = {
         ACL = M.ACL,
     },
@@ -2675,6 +2847,7 @@ M.UpdateACLOutput = {
 
 M.InvalidNodeStateFault = {
     type = "structure",
+    id = "InvalidNodeStateFault",
     error = "client",
     members = {
         message = {
@@ -2685,6 +2858,7 @@ M.InvalidNodeStateFault = {
 
 M.NoOperationFault = {
     type = "structure",
+    id = "NoOperationFault",
     error = "client",
     members = {
         message = {
@@ -2695,6 +2869,7 @@ M.NoOperationFault = {
 
 M.ReplicaConfigurationRequest = {
     type = "structure",
+    id = "ReplicaConfigurationRequest",
     members = {
         ReplicaCount = {
             type = "integer",
@@ -2707,6 +2882,7 @@ M.ReplicaConfigurationRequest = {
 
 M.ShardConfigurationRequest = {
     type = "structure",
+    id = "ShardConfigurationRequest",
     members = {
         ShardCount = {
             type = "integer",
@@ -2719,6 +2895,7 @@ M.ShardConfigurationRequest = {
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         ClusterName = {
             type = "string",
@@ -2773,6 +2950,7 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -2785,6 +2963,7 @@ M.UpdateStrategy = {
 
 M.UpdateMultiRegionClusterInput = {
     type = "structure",
+    id = "UpdateMultiRegionClusterInput",
     members = {
         MultiRegionClusterName = {
             type = "string",
@@ -2813,6 +2992,7 @@ M.UpdateMultiRegionClusterInput = {
 
 M.UpdateMultiRegionClusterOutput = {
     type = "structure",
+    id = "UpdateMultiRegionClusterOutput",
     members = {
         MultiRegionCluster = M.MultiRegionCluster,
     },
@@ -2820,6 +3000,7 @@ M.UpdateMultiRegionClusterOutput = {
 
 M.ParameterNameValue = {
     type = "structure",
+    id = "ParameterNameValue",
     members = {
         ParameterName = {
             type = "string",
@@ -2832,6 +3013,7 @@ M.ParameterNameValue = {
 
 M.UpdateParameterGroupInput = {
     type = "structure",
+    id = "UpdateParameterGroupInput",
     members = {
         ParameterGroupName = {
             type = "string",
@@ -2851,6 +3033,7 @@ M.UpdateParameterGroupInput = {
 
 M.UpdateParameterGroupOutput = {
     type = "structure",
+    id = "UpdateParameterGroupOutput",
     members = {
         ParameterGroup = M.ParameterGroup,
     },
@@ -2858,6 +3041,7 @@ M.UpdateParameterGroupOutput = {
 
 M.SubnetInUse = {
     type = "structure",
+    id = "SubnetInUse",
     error = "client",
     members = {
         message = {
@@ -2868,6 +3052,7 @@ M.SubnetInUse = {
 
 M.UpdateSubnetGroupInput = {
     type = "structure",
+    id = "UpdateSubnetGroupInput",
     members = {
         SubnetGroupName = {
             type = "string",
@@ -2887,6 +3072,7 @@ M.UpdateSubnetGroupInput = {
 
 M.UpdateSubnetGroupOutput = {
     type = "structure",
+    id = "UpdateSubnetGroupOutput",
     members = {
         SubnetGroup = M.SubnetGroup,
     },
@@ -2894,6 +3080,7 @@ M.UpdateSubnetGroupOutput = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         UserName = {
             type = "string",
@@ -2910,6 +3097,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
     members = {
         User = M.User,
     },

@@ -2,6 +2,7 @@ local M = {}
 
 M.ActionRequired = {
     type = "structure",
+    id = "ActionRequired",
     members = {
         ActionRequiredCode = {
             type = "string",
@@ -20,6 +21,7 @@ M.ActionRequired = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         Name = {
             type = "string",
@@ -37,6 +39,7 @@ M.EngineType = {
 
 M.EngineVersion = {
     type = "structure",
+    id = "EngineVersion",
     members = {
         Name = {
             type = "string",
@@ -49,6 +52,7 @@ M.EngineVersion = {
 
 M.BrokerEngineType = {
     type = "structure",
+    id = "BrokerEngineType",
     members = {
         EngineType = {
             type = "string",
@@ -68,6 +72,7 @@ M.BrokerEngineType = {
 
 M.BrokerInstance = {
     type = "structure",
+    id = "BrokerInstance",
     members = {
         ConsoleURL = {
             type = "string",
@@ -104,6 +109,7 @@ M.DeploymentMode = {
 
 M.BrokerInstanceOption = {
     type = "structure",
+    id = "BrokerInstanceOption",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -159,6 +165,7 @@ M.BrokerState = {
 
 M.BrokerSummary = {
     type = "structure",
+    id = "BrokerSummary",
     members = {
         BrokerArn = {
             type = "string",
@@ -222,6 +229,7 @@ M.AuthenticationStrategy = {
 
 M.ConfigurationRevision = {
     type = "structure",
+    id = "ConfigurationRevision",
     members = {
         Created = {
             type = "timestamp",
@@ -249,6 +257,7 @@ M.ConfigurationRevision = {
 
 M.Configuration = {
     type = "structure",
+    id = "Configuration",
     members = {
         Arn = {
             type = "string",
@@ -324,6 +333,7 @@ M.Configuration = {
 
 M.ConfigurationId = {
     type = "structure",
+    id = "ConfigurationId",
     members = {
         Id = {
             type = "string",
@@ -349,6 +359,7 @@ M.SanitizationWarningReason = {
 
 M.SanitizationWarning = {
     type = "structure",
+    id = "SanitizationWarning",
     members = {
         AttributeName = {
             type = "string",
@@ -374,6 +385,7 @@ M.SanitizationWarning = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         ConsoleAccess = {
             type = "boolean",
@@ -419,6 +431,7 @@ M.ChangeType = {
 
 M.UserSummary = {
     type = "structure",
+    id = "UserSummary",
     members = {
         PendingChange = {
             type = "string",
@@ -438,6 +451,7 @@ M.UserSummary = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         ErrorAttribute = {
@@ -457,6 +471,7 @@ M.BadRequestException = {
 
 M.Configurations = {
     type = "structure",
+    id = "Configurations",
     members = {
         Current = setmetatable({ traits = {
             json_name = "current",
@@ -476,6 +491,7 @@ M.Configurations = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         ErrorAttribute = {
@@ -500,6 +516,7 @@ M.DataReplicationMode = {
 
 M.EncryptionOptions = {
     type = "structure",
+    id = "EncryptionOptions",
     members = {
         KmsKeyId = {
             type = "string",
@@ -519,6 +536,7 @@ M.EncryptionOptions = {
 
 M.LdapServerMetadataInput = {
     type = "structure",
+    id = "LdapServerMetadataInput",
     members = {
         Hosts = {
             type = "list",
@@ -599,6 +617,7 @@ M.LdapServerMetadataInput = {
 
 M.Logs = {
     type = "structure",
+    id = "Logs",
     members = {
         Audit = {
             type = "boolean",
@@ -627,6 +646,7 @@ M.DayOfWeek = {
 
 M.WeeklyStartTime = {
     type = "structure",
+    id = "WeeklyStartTime",
     members = {
         DayOfWeek = {
             type = "string",
@@ -653,6 +673,7 @@ M.WeeklyStartTime = {
 
 M.CreateBrokerInput = {
     type = "structure",
+    id = "CreateBrokerInput",
     members = {
         AuthenticationStrategy = {
             type = "string",
@@ -781,6 +802,7 @@ M.CreateBrokerInput = {
 
 M.CreateBrokerOutput = {
     type = "structure",
+    id = "CreateBrokerOutput",
     members = {
         BrokerArn = {
             type = "string",
@@ -799,6 +821,7 @@ M.CreateBrokerOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         ErrorAttribute = {
@@ -818,6 +841,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         ErrorAttribute = {
@@ -837,6 +861,7 @@ M.InternalServerErrorException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         ErrorAttribute = {
@@ -856,6 +881,7 @@ M.UnauthorizedException = {
 
 M.CreateConfigurationInput = {
     type = "structure",
+    id = "CreateConfigurationInput",
     members = {
         AuthenticationStrategy = {
             type = "string",
@@ -896,6 +922,7 @@ M.CreateConfigurationInput = {
 
 M.CreateConfigurationOutput = {
     type = "structure",
+    id = "CreateConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -936,6 +963,7 @@ M.CreateConfigurationOutput = {
 
 M.CreateTagsInput = {
     type = "structure",
+    id = "CreateTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -957,10 +985,12 @@ M.CreateTagsInput = {
 
 M.CreateTagsOutput = {
     type = "structure",
+    id = "CreateTagsOutput",
 }
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         ErrorAttribute = {
@@ -980,6 +1010,7 @@ M.NotFoundException = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         BrokerId = {
             type = "string",
@@ -1026,10 +1057,12 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
 }
 
 M.DataReplicationCounterpart = {
     type = "structure",
+    id = "DataReplicationCounterpart",
     members = {
         BrokerId = {
             type = "string",
@@ -1050,6 +1083,7 @@ M.DataReplicationCounterpart = {
 
 M.DataReplicationMetadataOutput = {
     type = "structure",
+    id = "DataReplicationMetadataOutput",
     members = {
         DataReplicationCounterpart = setmetatable({ traits = {
             json_name = "dataReplicationCounterpart",
@@ -1066,6 +1100,7 @@ M.DataReplicationMetadataOutput = {
 
 M.DeleteBrokerInput = {
     type = "structure",
+    id = "DeleteBrokerInput",
     members = {
         BrokerId = {
             type = "string",
@@ -1079,6 +1114,7 @@ M.DeleteBrokerInput = {
 
 M.DeleteBrokerOutput = {
     type = "structure",
+    id = "DeleteBrokerOutput",
     members = {
         BrokerId = {
             type = "string",
@@ -1091,6 +1127,7 @@ M.DeleteBrokerOutput = {
 
 M.DeleteConfigurationInput = {
     type = "structure",
+    id = "DeleteConfigurationInput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -1104,6 +1141,7 @@ M.DeleteConfigurationInput = {
 
 M.DeleteConfigurationOutput = {
     type = "structure",
+    id = "DeleteConfigurationOutput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -1116,6 +1154,7 @@ M.DeleteConfigurationOutput = {
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1137,10 +1176,12 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         BrokerId = {
             type = "string",
@@ -1161,10 +1202,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DescribeBrokerInput = {
     type = "structure",
+    id = "DescribeBrokerInput",
     members = {
         BrokerId = {
             type = "string",
@@ -1178,6 +1221,7 @@ M.DescribeBrokerInput = {
 
 M.LdapServerMetadataOutput = {
     type = "structure",
+    id = "LdapServerMetadataOutput",
     members = {
         Hosts = {
             type = "list",
@@ -1251,6 +1295,7 @@ M.LdapServerMetadataOutput = {
 
 M.PendingLogs = {
     type = "structure",
+    id = "PendingLogs",
     members = {
         Audit = {
             type = "boolean",
@@ -1269,6 +1314,7 @@ M.PendingLogs = {
 
 M.LogsSummary = {
     type = "structure",
+    id = "LogsSummary",
     members = {
         Audit = {
             type = "boolean",
@@ -1304,6 +1350,7 @@ M.LogsSummary = {
 
 M.DescribeBrokerOutput = {
     type = "structure",
+    id = "DescribeBrokerOutput",
     members = {
         ActionsRequired = {
             type = "list",
@@ -1493,6 +1540,7 @@ M.DescribeBrokerOutput = {
 
 M.DescribeBrokerEngineTypesInput = {
     type = "structure",
+    id = "DescribeBrokerEngineTypesInput",
     members = {
         EngineType = {
             type = "string",
@@ -1517,6 +1565,7 @@ M.DescribeBrokerEngineTypesInput = {
 
 M.DescribeBrokerEngineTypesOutput = {
     type = "structure",
+    id = "DescribeBrokerEngineTypesOutput",
     members = {
         BrokerEngineTypes = {
             type = "list",
@@ -1542,6 +1591,7 @@ M.DescribeBrokerEngineTypesOutput = {
 
 M.DescribeBrokerInstanceOptionsInput = {
     type = "structure",
+    id = "DescribeBrokerInstanceOptionsInput",
     members = {
         EngineType = {
             type = "string",
@@ -1578,6 +1628,7 @@ M.DescribeBrokerInstanceOptionsInput = {
 
 M.DescribeBrokerInstanceOptionsOutput = {
     type = "structure",
+    id = "DescribeBrokerInstanceOptionsOutput",
     members = {
         BrokerInstanceOptions = {
             type = "list",
@@ -1603,6 +1654,7 @@ M.DescribeBrokerInstanceOptionsOutput = {
 
 M.DescribeConfigurationInput = {
     type = "structure",
+    id = "DescribeConfigurationInput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -1616,6 +1668,7 @@ M.DescribeConfigurationInput = {
 
 M.DescribeConfigurationOutput = {
     type = "structure",
+    id = "DescribeConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -1682,6 +1735,7 @@ M.DescribeConfigurationOutput = {
 
 M.DescribeConfigurationRevisionInput = {
     type = "structure",
+    id = "DescribeConfigurationRevisionInput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -1702,6 +1756,7 @@ M.DescribeConfigurationRevisionInput = {
 
 M.DescribeConfigurationRevisionOutput = {
     type = "structure",
+    id = "DescribeConfigurationRevisionOutput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -1733,6 +1788,7 @@ M.DescribeConfigurationRevisionOutput = {
 
 M.DescribeUserInput = {
     type = "structure",
+    id = "DescribeUserInput",
     members = {
         BrokerId = {
             type = "string",
@@ -1753,6 +1809,7 @@ M.DescribeUserInput = {
 
 M.UserPendingChanges = {
     type = "structure",
+    id = "UserPendingChanges",
     members = {
         ConsoleAccess = {
             type = "boolean",
@@ -1779,6 +1836,7 @@ M.UserPendingChanges = {
 
 M.DescribeUserOutput = {
     type = "structure",
+    id = "DescribeUserOutput",
     members = {
         BrokerId = {
             type = "string",
@@ -1819,6 +1877,7 @@ M.DescribeUserOutput = {
 
 M.ListBrokersInput = {
     type = "structure",
+    id = "ListBrokersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1837,6 +1896,7 @@ M.ListBrokersInput = {
 
 M.ListBrokersOutput = {
     type = "structure",
+    id = "ListBrokersOutput",
     members = {
         BrokerSummaries = {
             type = "list",
@@ -1856,6 +1916,7 @@ M.ListBrokersOutput = {
 
 M.ListConfigurationRevisionsInput = {
     type = "structure",
+    id = "ListConfigurationRevisionsInput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -1881,6 +1942,7 @@ M.ListConfigurationRevisionsInput = {
 
 M.ListConfigurationRevisionsOutput = {
     type = "structure",
+    id = "ListConfigurationRevisionsOutput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -1912,6 +1974,7 @@ M.ListConfigurationRevisionsOutput = {
 
 M.ListConfigurationsInput = {
     type = "structure",
+    id = "ListConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1930,6 +1993,7 @@ M.ListConfigurationsInput = {
 
 M.ListConfigurationsOutput = {
     type = "structure",
+    id = "ListConfigurationsOutput",
     members = {
         Configurations = {
             type = "list",
@@ -1955,6 +2019,7 @@ M.ListConfigurationsOutput = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1968,6 +2033,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         Tags = {
             type = "map",
@@ -1982,6 +2048,7 @@ M.ListTagsOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         BrokerId = {
             type = "string",
@@ -2007,6 +2074,7 @@ M.ListUsersInput = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         BrokerId = {
             type = "string",
@@ -2043,6 +2111,7 @@ M.PromoteMode = {
 
 M.PromoteInput = {
     type = "structure",
+    id = "PromoteInput",
     members = {
         BrokerId = {
             type = "string",
@@ -2063,6 +2132,7 @@ M.PromoteInput = {
 
 M.PromoteOutput = {
     type = "structure",
+    id = "PromoteOutput",
     members = {
         BrokerId = {
             type = "string",
@@ -2075,6 +2145,7 @@ M.PromoteOutput = {
 
 M.RebootBrokerInput = {
     type = "structure",
+    id = "RebootBrokerInput",
     members = {
         BrokerId = {
             type = "string",
@@ -2088,10 +2159,12 @@ M.RebootBrokerInput = {
 
 M.RebootBrokerOutput = {
     type = "structure",
+    id = "RebootBrokerOutput",
 }
 
 M.UpdateBrokerInput = {
     type = "structure",
+    id = "UpdateBrokerInput",
     members = {
         AuthenticationStrategy = {
             type = "string",
@@ -2154,6 +2227,7 @@ M.UpdateBrokerInput = {
 
 M.UpdateBrokerOutput = {
     type = "structure",
+    id = "UpdateBrokerOutput",
     members = {
         AuthenticationStrategy = {
             type = "string",
@@ -2227,6 +2301,7 @@ M.UpdateBrokerOutput = {
 
 M.UpdateConfigurationInput = {
     type = "structure",
+    id = "UpdateConfigurationInput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -2253,6 +2328,7 @@ M.UpdateConfigurationInput = {
 
 M.UpdateConfigurationOutput = {
     type = "structure",
+    id = "UpdateConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -2294,6 +2370,7 @@ M.UpdateConfigurationOutput = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         BrokerId = {
             type = "string",
@@ -2339,6 +2416,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
 }
 
 return M

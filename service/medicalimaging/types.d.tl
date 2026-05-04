@@ -651,9 +651,9 @@ local record ValidationException
     message: string
 end
 
-local type ImageSetState = "ACTIVE" | "LOCKED" | "DELETED"
-
 local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
+
+local type ImageSetState = "ACTIVE" | "LOCKED" | "DELETED"
 
 local type StorageTier = "FREQUENT_ACCESS" | "ARCHIVE_INSTANT_ACCESS"
 

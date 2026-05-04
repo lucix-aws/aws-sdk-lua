@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.SecretsManagerCredentialsProvider = {
     type = "structure",
+    id = "SecretsManagerCredentialsProvider",
     members = {
         SecretId = {
             type = "string",
@@ -21,6 +23,7 @@ M.SecretsManagerCredentialsProvider = {
 
 M.CredentialsProvider = {
     type = "union",
+    id = "CredentialsProvider",
     members = {
         SecretsManagerCredentialsProvider = M.SecretsManagerCredentialsProvider,
     },
@@ -28,6 +31,7 @@ M.CredentialsProvider = {
 
 M.DomainNetworkSettings = {
     type = "structure",
+    id = "DomainNetworkSettings",
     members = {
         Subnets = {
             type = "list",
@@ -41,6 +45,7 @@ M.DomainNetworkSettings = {
 
 M.ActiveDirectorySettings = {
     type = "structure",
+    id = "ActiveDirectorySettings",
     members = {
         DomainName = {
             type = "string",
@@ -65,6 +70,7 @@ M.ActiveDirectoryType = {
 
 M.ActiveDirectoryIdentityProvider = {
     type = "structure",
+    id = "ActiveDirectoryIdentityProvider",
     members = {
         DirectoryId = {
             type = "string",
@@ -81,6 +87,7 @@ M.ActiveDirectoryIdentityProvider = {
 
 M.IdentityProvider = {
     type = "union",
+    id = "IdentityProvider",
     members = {
         ActiveDirectoryIdentityProvider = M.ActiveDirectoryIdentityProvider,
     },
@@ -88,6 +95,7 @@ M.IdentityProvider = {
 
 M.AssociateUserInput = {
     type = "structure",
+    id = "AssociateUserInput",
     members = {
         Username = {
             type = "string",
@@ -117,6 +125,7 @@ M.AssociateUserInput = {
 
 M.InstanceUserSummary = {
     type = "structure",
+    id = "InstanceUserSummary",
     members = {
         Username = {
             type = "string",
@@ -159,6 +168,7 @@ M.InstanceUserSummary = {
 
 M.AssociateUserOutput = {
     type = "structure",
+    id = "AssociateUserOutput",
     members = {
         InstanceUserSummary = setmetatable({ traits = {
             required = true,
@@ -168,6 +178,7 @@ M.AssociateUserOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "server",
     members = {
         message = {
@@ -178,6 +189,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -188,6 +200,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -198,6 +211,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -208,6 +222,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -218,6 +233,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -228,6 +244,7 @@ M.ValidationException = {
 
 M.RdsSalSettings = {
     type = "structure",
+    id = "RdsSalSettings",
     members = {
         RdsSalCredentialsProvider = setmetatable({ traits = {
             required = true,
@@ -237,6 +254,7 @@ M.RdsSalSettings = {
 
 M.ServerSettings = {
     type = "union",
+    id = "ServerSettings",
     members = {
         RdsSalSettings = M.RdsSalSettings,
     },
@@ -248,6 +266,7 @@ M.ServerType = {
 
 M.LicenseServerSettings = {
     type = "structure",
+    id = "LicenseServerSettings",
     members = {
         ServerType = {
             type = "string",
@@ -263,6 +282,7 @@ M.LicenseServerSettings = {
 
 M.CreateLicenseServerEndpointInput = {
     type = "structure",
+    id = "CreateLicenseServerEndpointInput",
     members = {
         IdentityProviderArn = {
             type = "string",
@@ -283,6 +303,7 @@ M.CreateLicenseServerEndpointInput = {
 
 M.CreateLicenseServerEndpointOutput = {
     type = "structure",
+    id = "CreateLicenseServerEndpointOutput",
     members = {
         IdentityProviderArn = {
             type = "string",
@@ -295,6 +316,7 @@ M.CreateLicenseServerEndpointOutput = {
 
 M.DeleteLicenseServerEndpointInput = {
     type = "structure",
+    id = "DeleteLicenseServerEndpointInput",
     members = {
         LicenseServerEndpointArn = {
             type = "string",
@@ -328,6 +350,7 @@ M.LicenseServerHealthStatus = {
 
 M.LicenseServer = {
     type = "structure",
+    id = "LicenseServer",
     members = {
         ProvisioningStatus = {
             type = "string",
@@ -346,6 +369,7 @@ M.LicenseServer = {
 
 M.ServerEndpoint = {
     type = "structure",
+    id = "ServerEndpoint",
     members = {
         Endpoint = {
             type = "string",
@@ -355,6 +379,7 @@ M.ServerEndpoint = {
 
 M.LicenseServerEndpoint = {
     type = "structure",
+    id = "LicenseServerEndpoint",
     members = {
         IdentityProviderArn = {
             type = "string",
@@ -387,6 +412,7 @@ M.LicenseServerEndpoint = {
 
 M.DeleteLicenseServerEndpointOutput = {
     type = "structure",
+    id = "DeleteLicenseServerEndpointOutput",
     members = {
         LicenseServerEndpoint = M.LicenseServerEndpoint,
     },
@@ -394,6 +420,7 @@ M.DeleteLicenseServerEndpointOutput = {
 
 M.DeregisterIdentityProviderInput = {
     type = "structure",
+    id = "DeregisterIdentityProviderInput",
     members = {
         IdentityProvider = M.IdentityProvider,
         Product = {
@@ -407,6 +434,7 @@ M.DeregisterIdentityProviderInput = {
 
 M.Settings = {
     type = "structure",
+    id = "Settings",
     members = {
         Subnets = {
             type = "list",
@@ -426,6 +454,7 @@ M.Settings = {
 
 M.IdentityProviderSummary = {
     type = "structure",
+    id = "IdentityProviderSummary",
     members = {
         IdentityProvider = setmetatable({ traits = {
             required = true,
@@ -459,6 +488,7 @@ M.IdentityProviderSummary = {
 
 M.DeregisterIdentityProviderOutput = {
     type = "structure",
+    id = "DeregisterIdentityProviderOutput",
     members = {
         IdentityProviderSummary = setmetatable({ traits = {
             required = true,
@@ -468,6 +498,7 @@ M.DeregisterIdentityProviderOutput = {
 
 M.DisassociateUserInput = {
     type = "structure",
+    id = "DisassociateUserInput",
     members = {
         Username = {
             type = "string",
@@ -487,6 +518,7 @@ M.DisassociateUserInput = {
 
 M.DisassociateUserOutput = {
     type = "structure",
+    id = "DisassociateUserOutput",
     members = {
         InstanceUserSummary = setmetatable({ traits = {
             required = true,
@@ -496,6 +528,7 @@ M.DisassociateUserOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Attribute = {
             type = "string",
@@ -511,6 +544,7 @@ M.Filter = {
 
 M.InstanceSummary = {
     type = "structure",
+    id = "InstanceSummary",
     members = {
         InstanceId = {
             type = "string",
@@ -546,6 +580,7 @@ M.InstanceSummary = {
 
 M.ListIdentityProvidersInput = {
     type = "structure",
+    id = "ListIdentityProvidersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -562,6 +597,7 @@ M.ListIdentityProvidersInput = {
 
 M.ListIdentityProvidersOutput = {
     type = "structure",
+    id = "ListIdentityProvidersOutput",
     members = {
         IdentityProviderSummaries = {
             type = "list",
@@ -578,6 +614,7 @@ M.ListIdentityProvidersOutput = {
 
 M.ListInstancesInput = {
     type = "structure",
+    id = "ListInstancesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -594,6 +631,7 @@ M.ListInstancesInput = {
 
 M.ListInstancesOutput = {
     type = "structure",
+    id = "ListInstancesOutput",
     members = {
         InstanceSummaries = {
             type = "list",
@@ -607,6 +645,7 @@ M.ListInstancesOutput = {
 
 M.ListLicenseServerEndpointsInput = {
     type = "structure",
+    id = "ListLicenseServerEndpointsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -623,6 +662,7 @@ M.ListLicenseServerEndpointsInput = {
 
 M.ListLicenseServerEndpointsOutput = {
     type = "structure",
+    id = "ListLicenseServerEndpointsOutput",
     members = {
         LicenseServerEndpoints = {
             type = "list",
@@ -636,6 +676,7 @@ M.ListLicenseServerEndpointsOutput = {
 
 M.ListProductSubscriptionsInput = {
     type = "structure",
+    id = "ListProductSubscriptionsInput",
     members = {
         Product = {
             type = "string",
@@ -658,6 +699,7 @@ M.ListProductSubscriptionsInput = {
 
 M.ProductUserSummary = {
     type = "structure",
+    id = "ProductUserSummary",
     members = {
         Username = {
             type = "string",
@@ -700,6 +742,7 @@ M.ProductUserSummary = {
 
 M.ListProductSubscriptionsOutput = {
     type = "structure",
+    id = "ListProductSubscriptionsOutput",
     members = {
         ProductUserSummaries = {
             type = "list",
@@ -713,6 +756,7 @@ M.ListProductSubscriptionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -726,6 +770,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -737,6 +782,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListUserAssociationsInput = {
     type = "structure",
+    id = "ListUserAssociationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -762,6 +808,7 @@ M.ListUserAssociationsInput = {
 
 M.ListUserAssociationsOutput = {
     type = "structure",
+    id = "ListUserAssociationsOutput",
     members = {
         InstanceUserSummaries = {
             type = "list",
@@ -775,6 +822,7 @@ M.ListUserAssociationsOutput = {
 
 M.RegisterIdentityProviderInput = {
     type = "structure",
+    id = "RegisterIdentityProviderInput",
     members = {
         IdentityProvider = setmetatable({ traits = {
             required = true,
@@ -796,6 +844,7 @@ M.RegisterIdentityProviderInput = {
 
 M.RegisterIdentityProviderOutput = {
     type = "structure",
+    id = "RegisterIdentityProviderOutput",
     members = {
         IdentityProviderSummary = setmetatable({ traits = {
             required = true,
@@ -805,6 +854,7 @@ M.RegisterIdentityProviderOutput = {
 
 M.StartProductSubscriptionInput = {
     type = "structure",
+    id = "StartProductSubscriptionInput",
     members = {
         Username = {
             type = "string",
@@ -834,6 +884,7 @@ M.StartProductSubscriptionInput = {
 
 M.StartProductSubscriptionOutput = {
     type = "structure",
+    id = "StartProductSubscriptionOutput",
     members = {
         ProductUserSummary = setmetatable({ traits = {
             required = true,
@@ -843,6 +894,7 @@ M.StartProductSubscriptionOutput = {
 
 M.StopProductSubscriptionInput = {
     type = "structure",
+    id = "StopProductSubscriptionInput",
     members = {
         Username = {
             type = "string",
@@ -862,6 +914,7 @@ M.StopProductSubscriptionInput = {
 
 M.StopProductSubscriptionOutput = {
     type = "structure",
+    id = "StopProductSubscriptionOutput",
     members = {
         ProductUserSummary = setmetatable({ traits = {
             required = true,
@@ -871,6 +924,7 @@ M.StopProductSubscriptionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -892,10 +946,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -917,10 +973,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateSettings = {
     type = "structure",
+    id = "UpdateSettings",
     members = {
         AddSubnets = {
             type = "list",
@@ -944,6 +1002,7 @@ M.UpdateSettings = {
 
 M.UpdateIdentityProviderSettingsInput = {
     type = "structure",
+    id = "UpdateIdentityProviderSettingsInput",
     members = {
         IdentityProvider = M.IdentityProvider,
         Product = {
@@ -960,6 +1019,7 @@ M.UpdateIdentityProviderSettingsInput = {
 
 M.UpdateIdentityProviderSettingsOutput = {
     type = "structure",
+    id = "UpdateIdentityProviderSettingsOutput",
     members = {
         IdentityProviderSummary = setmetatable({ traits = {
             required = true,

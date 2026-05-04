@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptInboundCrossClusterSearchConnectionInput = {
     type = "structure",
+    id = "AcceptInboundCrossClusterSearchConnectionInput",
     members = {
         CrossClusterSearchConnectionId = {
             type = "string",
@@ -24,6 +25,7 @@ M.InboundCrossClusterSearchConnectionStatusCode = {
 
 M.InboundCrossClusterSearchConnectionStatus = {
     type = "structure",
+    id = "InboundCrossClusterSearchConnectionStatus",
     members = {
         StatusCode = {
             type = "string",
@@ -36,6 +38,7 @@ M.InboundCrossClusterSearchConnectionStatus = {
 
 M.DomainInformation = {
     type = "structure",
+    id = "DomainInformation",
     members = {
         OwnerId = {
             type = "string",
@@ -54,6 +57,7 @@ M.DomainInformation = {
 
 M.InboundCrossClusterSearchConnection = {
     type = "structure",
+    id = "InboundCrossClusterSearchConnection",
     members = {
         SourceDomainInfo = M.DomainInformation,
         DestinationDomainInfo = M.DomainInformation,
@@ -66,6 +70,7 @@ M.InboundCrossClusterSearchConnection = {
 
 M.AcceptInboundCrossClusterSearchConnectionOutput = {
     type = "structure",
+    id = "AcceptInboundCrossClusterSearchConnectionOutput",
     members = {
         CrossClusterSearchConnection = M.InboundCrossClusterSearchConnection,
     },
@@ -73,6 +78,7 @@ M.AcceptInboundCrossClusterSearchConnectionOutput = {
 
 M.DisabledOperationException = {
     type = "structure",
+    id = "DisabledOperationException",
     error = "client",
     members = {
         message = {
@@ -83,6 +89,7 @@ M.DisabledOperationException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -93,6 +100,7 @@ M.LimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -103,6 +111,7 @@ M.ResourceNotFoundException = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -119,6 +128,7 @@ M.OptionState = {
 
 M.OptionStatus = {
     type = "structure",
+    id = "OptionStatus",
     members = {
         CreationDate = {
             type = "timestamp",
@@ -152,6 +162,7 @@ M.OptionStatus = {
 
 M.AccessPoliciesStatus = {
     type = "structure",
+    id = "AccessPoliciesStatus",
     members = {
         Options = {
             type = "string",
@@ -167,6 +178,7 @@ M.AccessPoliciesStatus = {
 
 M.AdditionalLimit = {
     type = "structure",
+    id = "AdditionalLimit",
     members = {
         LimitName = {
             type = "string",
@@ -180,6 +192,7 @@ M.AdditionalLimit = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -198,6 +211,7 @@ M.Tag = {
 
 M.AddTagsInput = {
     type = "structure",
+    id = "AddTagsInput",
     members = {
         ARN = {
             type = "string",
@@ -217,10 +231,12 @@ M.AddTagsInput = {
 
 M.AddTagsOutput = {
     type = "structure",
+    id = "AddTagsOutput",
 }
 
 M.BaseException = {
     type = "structure",
+    id = "BaseException",
     error = "client",
     members = {
         message = {
@@ -231,6 +247,7 @@ M.BaseException = {
 
 M.InternalException = {
     type = "structure",
+    id = "InternalException",
     error = "server",
     members = {
         message = {
@@ -241,6 +258,7 @@ M.InternalException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -251,6 +269,7 @@ M.ValidationException = {
 
 M.AdvancedOptionsStatus = {
     type = "structure",
+    id = "AdvancedOptionsStatus",
     members = {
         Options = {
             type = "map",
@@ -268,6 +287,7 @@ M.AdvancedOptionsStatus = {
 
 M.SAMLIdp = {
     type = "structure",
+    id = "SAMLIdp",
     members = {
         MetadataContent = {
             type = "string",
@@ -286,6 +306,7 @@ M.SAMLIdp = {
 
 M.SAMLOptionsOutput = {
     type = "structure",
+    id = "SAMLOptionsOutput",
     members = {
         Enabled = {
             type = "boolean",
@@ -305,6 +326,7 @@ M.SAMLOptionsOutput = {
 
 M.AdvancedSecurityOptions = {
     type = "structure",
+    id = "AdvancedSecurityOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -324,6 +346,7 @@ M.AdvancedSecurityOptions = {
 
 M.MasterUserOptions = {
     type = "structure",
+    id = "MasterUserOptions",
     members = {
         MasterUserARN = {
             type = "string",
@@ -339,6 +362,7 @@ M.MasterUserOptions = {
 
 M.SAMLOptionsInput = {
     type = "structure",
+    id = "SAMLOptionsInput",
     members = {
         Enabled = {
             type = "boolean",
@@ -364,6 +388,7 @@ M.SAMLOptionsInput = {
 
 M.AdvancedSecurityOptionsInput = {
     type = "structure",
+    id = "AdvancedSecurityOptionsInput",
     members = {
         Enabled = {
             type = "boolean",
@@ -381,6 +406,7 @@ M.AdvancedSecurityOptionsInput = {
 
 M.AdvancedSecurityOptionsStatus = {
     type = "structure",
+    id = "AdvancedSecurityOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -393,6 +419,7 @@ M.AdvancedSecurityOptionsStatus = {
 
 M.AssociatePackageInput = {
     type = "structure",
+    id = "AssociatePackageInput",
     members = {
         PackageID = {
             type = "string",
@@ -421,6 +448,7 @@ M.DomainPackageStatus = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         ErrorType = {
             type = "string",
@@ -437,6 +465,7 @@ M.PackageType = {
 
 M.DomainPackageDetails = {
     type = "structure",
+    id = "DomainPackageDetails",
     members = {
         PackageID = {
             type = "string",
@@ -468,6 +497,7 @@ M.DomainPackageDetails = {
 
 M.AssociatePackageOutput = {
     type = "structure",
+    id = "AssociatePackageOutput",
     members = {
         DomainPackageDetails = M.DomainPackageDetails,
     },
@@ -475,6 +505,7 @@ M.AssociatePackageOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -485,6 +516,7 @@ M.ConflictException = {
 
 M.AuthorizeVpcEndpointAccessInput = {
     type = "structure",
+    id = "AuthorizeVpcEndpointAccessInput",
     members = {
         DomainName = {
             type = "string",
@@ -509,6 +541,7 @@ M.PrincipalType = {
 
 M.AuthorizedPrincipal = {
     type = "structure",
+    id = "AuthorizedPrincipal",
     members = {
         PrincipalType = {
             type = "string",
@@ -521,6 +554,7 @@ M.AuthorizedPrincipal = {
 
 M.AuthorizeVpcEndpointAccessOutput = {
     type = "structure",
+    id = "AuthorizeVpcEndpointAccessOutput",
     members = {
         AuthorizedPrincipal = setmetatable({ traits = {
             required = true,
@@ -530,6 +564,7 @@ M.AuthorizeVpcEndpointAccessOutput = {
 
 M.CancelDomainConfigChangeInput = {
     type = "structure",
+    id = "CancelDomainConfigChangeInput",
     members = {
         DomainName = {
             type = "string",
@@ -546,6 +581,7 @@ M.CancelDomainConfigChangeInput = {
 
 M.CancelledChangeProperty = {
     type = "structure",
+    id = "CancelledChangeProperty",
     members = {
         PropertyName = {
             type = "string",
@@ -561,6 +597,7 @@ M.CancelledChangeProperty = {
 
 M.CancelDomainConfigChangeOutput = {
     type = "structure",
+    id = "CancelDomainConfigChangeOutput",
     members = {
         DryRun = {
             type = "boolean",
@@ -578,6 +615,7 @@ M.CancelDomainConfigChangeOutput = {
 
 M.CancelElasticsearchServiceSoftwareUpdateInput = {
     type = "structure",
+    id = "CancelElasticsearchServiceSoftwareUpdateInput",
     members = {
         DomainName = {
             type = "string",
@@ -598,6 +636,7 @@ M.DeploymentStatus = {
 
 M.ServiceSoftwareOptions = {
     type = "structure",
+    id = "ServiceSoftwareOptions",
     members = {
         CurrentVersion = {
             type = "string",
@@ -628,6 +667,7 @@ M.ServiceSoftwareOptions = {
 
 M.CancelElasticsearchServiceSoftwareUpdateOutput = {
     type = "structure",
+    id = "CancelElasticsearchServiceSoftwareUpdateOutput",
     members = {
         ServiceSoftwareOptions = M.ServiceSoftwareOptions,
     },
@@ -644,6 +684,7 @@ M.TimeUnit = {
 
 M.Duration = {
     type = "structure",
+    id = "Duration",
     members = {
         Value = {
             type = "long",
@@ -656,6 +697,7 @@ M.Duration = {
 
 M.AutoTuneMaintenanceSchedule = {
     type = "structure",
+    id = "AutoTuneMaintenanceSchedule",
     members = {
         StartAt = {
             type = "timestamp",
@@ -669,6 +711,7 @@ M.AutoTuneMaintenanceSchedule = {
 
 M.AutoTuneOptionsInput = {
     type = "structure",
+    id = "AutoTuneOptionsInput",
     members = {
         DesiredState = {
             type = "string",
@@ -682,6 +725,7 @@ M.AutoTuneOptionsInput = {
 
 M.CognitoOptions = {
     type = "structure",
+    id = "CognitoOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -705,6 +749,7 @@ M.DeploymentStrategy = {
 
 M.DeploymentStrategyOptions = {
     type = "structure",
+    id = "DeploymentStrategyOptions",
     members = {
         DeploymentStrategy = {
             type = "string",
@@ -724,6 +769,7 @@ M.TLSSecurityPolicy = {
 
 M.DomainEndpointOptions = {
     type = "structure",
+    id = "DomainEndpointOptions",
     members = {
         EnforceHTTPS = {
             type = "boolean",
@@ -752,6 +798,7 @@ M.VolumeType = {
 
 M.EBSOptions = {
     type = "structure",
+    id = "EBSOptions",
     members = {
         EBSEnabled = {
             type = "boolean",
@@ -773,6 +820,7 @@ M.EBSOptions = {
 
 M.ColdStorageOptions = {
     type = "structure",
+    id = "ColdStorageOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -851,6 +899,7 @@ M.ESWarmPartitionInstanceType = {
 
 M.ZoneAwarenessConfig = {
     type = "structure",
+    id = "ZoneAwarenessConfig",
     members = {
         AvailabilityZoneCount = {
             type = "integer",
@@ -860,6 +909,7 @@ M.ZoneAwarenessConfig = {
 
 M.ElasticsearchClusterConfig = {
     type = "structure",
+    id = "ElasticsearchClusterConfig",
     members = {
         InstanceType = {
             type = "string",
@@ -895,6 +945,7 @@ M.ElasticsearchClusterConfig = {
 
 M.EncryptionAtRestOptions = {
     type = "structure",
+    id = "EncryptionAtRestOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -914,6 +965,7 @@ M.LogType = {
 
 M.LogPublishingOption = {
     type = "structure",
+    id = "LogPublishingOption",
     members = {
         CloudWatchLogsLogGroupArn = {
             type = "string",
@@ -926,6 +978,7 @@ M.LogPublishingOption = {
 
 M.NodeToNodeEncryptionOptions = {
     type = "structure",
+    id = "NodeToNodeEncryptionOptions",
     members = {
         Enabled = {
             type = "boolean",
@@ -935,6 +988,7 @@ M.NodeToNodeEncryptionOptions = {
 
 M.SnapshotOptions = {
     type = "structure",
+    id = "SnapshotOptions",
     members = {
         AutomatedSnapshotStartHour = {
             type = "integer",
@@ -944,6 +998,7 @@ M.SnapshotOptions = {
 
 M.VPCOptions = {
     type = "structure",
+    id = "VPCOptions",
     members = {
         SubnetIds = {
             type = "list",
@@ -958,6 +1013,7 @@ M.VPCOptions = {
 
 M.CreateElasticsearchDomainInput = {
     type = "structure",
+    id = "CreateElasticsearchDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1013,6 +1069,7 @@ M.AutoTuneState = {
 
 M.AutoTuneOptionsOutput = {
     type = "structure",
+    id = "AutoTuneOptionsOutput",
     members = {
         State = {
             type = "string",
@@ -1041,6 +1098,7 @@ M.InitiatedBy = {
 
 M.ChangeProgressDetails = {
     type = "structure",
+    id = "ChangeProgressDetails",
     members = {
         ChangeId = {
             type = "string",
@@ -1080,6 +1138,7 @@ M.PropertyValueType = {
 
 M.ModifyingProperties = {
     type = "structure",
+    id = "ModifyingProperties",
     members = {
         Name = {
             type = "string",
@@ -1098,6 +1157,7 @@ M.ModifyingProperties = {
 
 M.VPCDerivedInfo = {
     type = "structure",
+    id = "VPCDerivedInfo",
     members = {
         VPCId = {
             type = "string",
@@ -1119,6 +1179,7 @@ M.VPCDerivedInfo = {
 
 M.ElasticsearchDomainStatus = {
     type = "structure",
+    id = "ElasticsearchDomainStatus",
     members = {
         DomainId = {
             type = "string",
@@ -1201,6 +1262,7 @@ M.ElasticsearchDomainStatus = {
 
 M.CreateElasticsearchDomainOutput = {
     type = "structure",
+    id = "CreateElasticsearchDomainOutput",
     members = {
         DomainStatus = M.ElasticsearchDomainStatus,
     },
@@ -1208,6 +1270,7 @@ M.CreateElasticsearchDomainOutput = {
 
 M.InvalidTypeException = {
     type = "structure",
+    id = "InvalidTypeException",
     error = "client",
     members = {
         message = {
@@ -1218,6 +1281,7 @@ M.InvalidTypeException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -1228,6 +1292,7 @@ M.ResourceAlreadyExistsException = {
 
 M.CreateOutboundCrossClusterSearchConnectionInput = {
     type = "structure",
+    id = "CreateOutboundCrossClusterSearchConnectionInput",
     members = {
         SourceDomainInfo = setmetatable({ traits = {
             required = true,
@@ -1257,6 +1322,7 @@ M.OutboundCrossClusterSearchConnectionStatusCode = {
 
 M.OutboundCrossClusterSearchConnectionStatus = {
     type = "structure",
+    id = "OutboundCrossClusterSearchConnectionStatus",
     members = {
         StatusCode = {
             type = "string",
@@ -1269,6 +1335,7 @@ M.OutboundCrossClusterSearchConnectionStatus = {
 
 M.CreateOutboundCrossClusterSearchConnectionOutput = {
     type = "structure",
+    id = "CreateOutboundCrossClusterSearchConnectionOutput",
     members = {
         SourceDomainInfo = M.DomainInformation,
         DestinationDomainInfo = M.DomainInformation,
@@ -1284,6 +1351,7 @@ M.CreateOutboundCrossClusterSearchConnectionOutput = {
 
 M.PackageSource = {
     type = "structure",
+    id = "PackageSource",
     members = {
         S3BucketName = {
             type = "string",
@@ -1296,6 +1364,7 @@ M.PackageSource = {
 
 M.CreatePackageInput = {
     type = "structure",
+    id = "CreatePackageInput",
     members = {
         PackageName = {
             type = "string",
@@ -1331,6 +1400,7 @@ M.PackageStatus = {
 
 M.PackageDetails = {
     type = "structure",
+    id = "PackageDetails",
     members = {
         PackageID = {
             type = "string",
@@ -1362,6 +1432,7 @@ M.PackageDetails = {
 
 M.CreatePackageOutput = {
     type = "structure",
+    id = "CreatePackageOutput",
     members = {
         PackageDetails = M.PackageDetails,
     },
@@ -1369,6 +1440,7 @@ M.CreatePackageOutput = {
 
 M.CreateVpcEndpointInput = {
     type = "structure",
+    id = "CreateVpcEndpointInput",
     members = {
         DomainArn = {
             type = "string",
@@ -1397,6 +1469,7 @@ M.VpcEndpointStatus = {
 
 M.VpcEndpoint = {
     type = "structure",
+    id = "VpcEndpoint",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -1419,6 +1492,7 @@ M.VpcEndpoint = {
 
 M.CreateVpcEndpointOutput = {
     type = "structure",
+    id = "CreateVpcEndpointOutput",
     members = {
         VpcEndpoint = setmetatable({ traits = {
             required = true,
@@ -1428,6 +1502,7 @@ M.CreateVpcEndpointOutput = {
 
 M.DeleteElasticsearchDomainInput = {
     type = "structure",
+    id = "DeleteElasticsearchDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1441,6 +1516,7 @@ M.DeleteElasticsearchDomainInput = {
 
 M.DeleteElasticsearchDomainOutput = {
     type = "structure",
+    id = "DeleteElasticsearchDomainOutput",
     members = {
         DomainStatus = M.ElasticsearchDomainStatus,
     },
@@ -1448,14 +1524,17 @@ M.DeleteElasticsearchDomainOutput = {
 
 M.DeleteElasticsearchServiceRoleInput = {
     type = "structure",
+    id = "DeleteElasticsearchServiceRoleInput",
 }
 
 M.DeleteElasticsearchServiceRoleOutput = {
     type = "structure",
+    id = "DeleteElasticsearchServiceRoleOutput",
 }
 
 M.DeleteInboundCrossClusterSearchConnectionInput = {
     type = "structure",
+    id = "DeleteInboundCrossClusterSearchConnectionInput",
     members = {
         CrossClusterSearchConnectionId = {
             type = "string",
@@ -1469,6 +1548,7 @@ M.DeleteInboundCrossClusterSearchConnectionInput = {
 
 M.DeleteInboundCrossClusterSearchConnectionOutput = {
     type = "structure",
+    id = "DeleteInboundCrossClusterSearchConnectionOutput",
     members = {
         CrossClusterSearchConnection = M.InboundCrossClusterSearchConnection,
     },
@@ -1476,6 +1556,7 @@ M.DeleteInboundCrossClusterSearchConnectionOutput = {
 
 M.DeleteOutboundCrossClusterSearchConnectionInput = {
     type = "structure",
+    id = "DeleteOutboundCrossClusterSearchConnectionInput",
     members = {
         CrossClusterSearchConnectionId = {
             type = "string",
@@ -1489,6 +1570,7 @@ M.DeleteOutboundCrossClusterSearchConnectionInput = {
 
 M.OutboundCrossClusterSearchConnection = {
     type = "structure",
+    id = "OutboundCrossClusterSearchConnection",
     members = {
         SourceDomainInfo = M.DomainInformation,
         DestinationDomainInfo = M.DomainInformation,
@@ -1504,6 +1586,7 @@ M.OutboundCrossClusterSearchConnection = {
 
 M.DeleteOutboundCrossClusterSearchConnectionOutput = {
     type = "structure",
+    id = "DeleteOutboundCrossClusterSearchConnectionOutput",
     members = {
         CrossClusterSearchConnection = M.OutboundCrossClusterSearchConnection,
     },
@@ -1511,6 +1594,7 @@ M.DeleteOutboundCrossClusterSearchConnectionOutput = {
 
 M.DeletePackageInput = {
     type = "structure",
+    id = "DeletePackageInput",
     members = {
         PackageID = {
             type = "string",
@@ -1524,6 +1608,7 @@ M.DeletePackageInput = {
 
 M.DeletePackageOutput = {
     type = "structure",
+    id = "DeletePackageOutput",
     members = {
         PackageDetails = M.PackageDetails,
     },
@@ -1531,6 +1616,7 @@ M.DeletePackageOutput = {
 
 M.DeleteVpcEndpointInput = {
     type = "structure",
+    id = "DeleteVpcEndpointInput",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -1544,6 +1630,7 @@ M.DeleteVpcEndpointInput = {
 
 M.VpcEndpointSummary = {
     type = "structure",
+    id = "VpcEndpointSummary",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -1562,6 +1649,7 @@ M.VpcEndpointSummary = {
 
 M.DeleteVpcEndpointOutput = {
     type = "structure",
+    id = "DeleteVpcEndpointOutput",
     members = {
         VpcEndpointSummary = setmetatable({ traits = {
             required = true,
@@ -1571,6 +1659,7 @@ M.DeleteVpcEndpointOutput = {
 
 M.DescribeDomainAutoTunesInput = {
     type = "structure",
+    id = "DescribeDomainAutoTunesInput",
     members = {
         DomainName = {
             type = "string",
@@ -1608,6 +1697,7 @@ M.ScheduledAutoTuneSeverityType = {
 
 M.ScheduledAutoTuneDetails = {
     type = "structure",
+    id = "ScheduledAutoTuneDetails",
     members = {
         Date = {
             type = "timestamp",
@@ -1626,6 +1716,7 @@ M.ScheduledAutoTuneDetails = {
 
 M.AutoTuneDetails = {
     type = "structure",
+    id = "AutoTuneDetails",
     members = {
         ScheduledAutoTuneDetails = M.ScheduledAutoTuneDetails,
     },
@@ -1637,6 +1728,7 @@ M.AutoTuneType = {
 
 M.AutoTune = {
     type = "structure",
+    id = "AutoTune",
     members = {
         AutoTuneType = {
             type = "string",
@@ -1647,6 +1739,7 @@ M.AutoTune = {
 
 M.DescribeDomainAutoTunesOutput = {
     type = "structure",
+    id = "DescribeDomainAutoTunesOutput",
     members = {
         AutoTunes = {
             type = "list",
@@ -1660,6 +1753,7 @@ M.DescribeDomainAutoTunesOutput = {
 
 M.DescribeDomainChangeProgressInput = {
     type = "structure",
+    id = "DescribeDomainChangeProgressInput",
     members = {
         DomainName = {
             type = "string",
@@ -1679,6 +1773,7 @@ M.DescribeDomainChangeProgressInput = {
 
 M.ChangeProgressStage = {
     type = "structure",
+    id = "ChangeProgressStage",
     members = {
         Name = {
             type = "string",
@@ -1704,6 +1799,7 @@ M.OverallChangeStatus = {
 
 M.ChangeProgressStatusDetails = {
     type = "structure",
+    id = "ChangeProgressStatusDetails",
     members = {
         ChangeId = {
             type = "string",
@@ -1746,6 +1842,7 @@ M.ChangeProgressStatusDetails = {
 
 M.DescribeDomainChangeProgressOutput = {
     type = "structure",
+    id = "DescribeDomainChangeProgressOutput",
     members = {
         ChangeProgressStatus = M.ChangeProgressStatusDetails,
     },
@@ -1753,6 +1850,7 @@ M.DescribeDomainChangeProgressOutput = {
 
 M.DescribeElasticsearchDomainInput = {
     type = "structure",
+    id = "DescribeElasticsearchDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1766,6 +1864,7 @@ M.DescribeElasticsearchDomainInput = {
 
 M.DescribeElasticsearchDomainOutput = {
     type = "structure",
+    id = "DescribeElasticsearchDomainOutput",
     members = {
         DomainStatus = setmetatable({ traits = {
             required = true,
@@ -1775,6 +1874,7 @@ M.DescribeElasticsearchDomainOutput = {
 
 M.DescribeElasticsearchDomainConfigInput = {
     type = "structure",
+    id = "DescribeElasticsearchDomainConfigInput",
     members = {
         DomainName = {
             type = "string",
@@ -1793,6 +1893,7 @@ M.RollbackOnDisable = {
 
 M.AutoTuneOptions = {
     type = "structure",
+    id = "AutoTuneOptions",
     members = {
         DesiredState = {
             type = "string",
@@ -1809,6 +1910,7 @@ M.AutoTuneOptions = {
 
 M.AutoTuneStatus = {
     type = "structure",
+    id = "AutoTuneStatus",
     members = {
         CreationDate = {
             type = "timestamp",
@@ -1845,6 +1947,7 @@ M.AutoTuneStatus = {
 
 M.AutoTuneOptionsStatus = {
     type = "structure",
+    id = "AutoTuneOptionsStatus",
     members = {
         Options = M.AutoTuneOptions,
         Status = M.AutoTuneStatus,
@@ -1853,6 +1956,7 @@ M.AutoTuneOptionsStatus = {
 
 M.CognitoOptionsStatus = {
     type = "structure",
+    id = "CognitoOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1865,6 +1969,7 @@ M.CognitoOptionsStatus = {
 
 M.DeploymentStrategyOptionsStatus = {
     type = "structure",
+    id = "DeploymentStrategyOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1877,6 +1982,7 @@ M.DeploymentStrategyOptionsStatus = {
 
 M.DomainEndpointOptionsStatus = {
     type = "structure",
+    id = "DomainEndpointOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1889,6 +1995,7 @@ M.DomainEndpointOptionsStatus = {
 
 M.EBSOptionsStatus = {
     type = "structure",
+    id = "EBSOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1901,6 +2008,7 @@ M.EBSOptionsStatus = {
 
 M.ElasticsearchClusterConfigStatus = {
     type = "structure",
+    id = "ElasticsearchClusterConfigStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1913,6 +2021,7 @@ M.ElasticsearchClusterConfigStatus = {
 
 M.ElasticsearchVersionStatus = {
     type = "structure",
+    id = "ElasticsearchVersionStatus",
     members = {
         Options = {
             type = "string",
@@ -1928,6 +2037,7 @@ M.ElasticsearchVersionStatus = {
 
 M.EncryptionAtRestOptionsStatus = {
     type = "structure",
+    id = "EncryptionAtRestOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1940,6 +2050,7 @@ M.EncryptionAtRestOptionsStatus = {
 
 M.LogPublishingOptionsStatus = {
     type = "structure",
+    id = "LogPublishingOptionsStatus",
     members = {
         Options = {
             type = "map",
@@ -1952,6 +2063,7 @@ M.LogPublishingOptionsStatus = {
 
 M.NodeToNodeEncryptionOptionsStatus = {
     type = "structure",
+    id = "NodeToNodeEncryptionOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1964,6 +2076,7 @@ M.NodeToNodeEncryptionOptionsStatus = {
 
 M.SnapshotOptionsStatus = {
     type = "structure",
+    id = "SnapshotOptionsStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1976,6 +2089,7 @@ M.SnapshotOptionsStatus = {
 
 M.VPCDerivedInfoStatus = {
     type = "structure",
+    id = "VPCDerivedInfoStatus",
     members = {
         Options = setmetatable({ traits = {
             required = true,
@@ -1988,6 +2102,7 @@ M.VPCDerivedInfoStatus = {
 
 M.ElasticsearchDomainConfig = {
     type = "structure",
+    id = "ElasticsearchDomainConfig",
     members = {
         ElasticsearchVersion = M.ElasticsearchVersionStatus,
         ElasticsearchClusterConfig = M.ElasticsearchClusterConfigStatus,
@@ -2014,6 +2129,7 @@ M.ElasticsearchDomainConfig = {
 
 M.DescribeElasticsearchDomainConfigOutput = {
     type = "structure",
+    id = "DescribeElasticsearchDomainConfigOutput",
     members = {
         DomainConfig = setmetatable({ traits = {
             required = true,
@@ -2023,6 +2139,7 @@ M.DescribeElasticsearchDomainConfigOutput = {
 
 M.DescribeElasticsearchDomainsInput = {
     type = "structure",
+    id = "DescribeElasticsearchDomainsInput",
     members = {
         DomainNames = {
             type = "list",
@@ -2036,6 +2153,7 @@ M.DescribeElasticsearchDomainsInput = {
 
 M.DescribeElasticsearchDomainsOutput = {
     type = "structure",
+    id = "DescribeElasticsearchDomainsOutput",
     members = {
         DomainStatusList = {
             type = "list",
@@ -2049,6 +2167,7 @@ M.DescribeElasticsearchDomainsOutput = {
 
 M.DescribeElasticsearchInstanceTypeLimitsInput = {
     type = "structure",
+    id = "DescribeElasticsearchInstanceTypeLimitsInput",
     members = {
         DomainName = {
             type = "string",
@@ -2075,6 +2194,7 @@ M.DescribeElasticsearchInstanceTypeLimitsInput = {
 
 M.InstanceCountLimits = {
     type = "structure",
+    id = "InstanceCountLimits",
     members = {
         MinimumInstanceCount = {
             type = "integer",
@@ -2093,6 +2213,7 @@ M.InstanceCountLimits = {
 
 M.InstanceLimits = {
     type = "structure",
+    id = "InstanceLimits",
     members = {
         InstanceCountLimits = M.InstanceCountLimits,
     },
@@ -2100,6 +2221,7 @@ M.InstanceLimits = {
 
 M.StorageTypeLimit = {
     type = "structure",
+    id = "StorageTypeLimit",
     members = {
         LimitName = {
             type = "string",
@@ -2113,6 +2235,7 @@ M.StorageTypeLimit = {
 
 M.StorageType = {
     type = "structure",
+    id = "StorageType",
     members = {
         StorageTypeName = {
             type = "string",
@@ -2129,6 +2252,7 @@ M.StorageType = {
 
 M.Limits = {
     type = "structure",
+    id = "Limits",
     members = {
         StorageTypes = {
             type = "list",
@@ -2144,6 +2268,7 @@ M.Limits = {
 
 M.DescribeElasticsearchInstanceTypeLimitsOutput = {
     type = "structure",
+    id = "DescribeElasticsearchInstanceTypeLimitsOutput",
     members = {
         LimitsByRole = {
             type = "map",
@@ -2155,6 +2280,7 @@ M.DescribeElasticsearchInstanceTypeLimitsOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -2168,6 +2294,7 @@ M.Filter = {
 
 M.DescribeInboundCrossClusterSearchConnectionsInput = {
     type = "structure",
+    id = "DescribeInboundCrossClusterSearchConnectionsInput",
     members = {
         Filters = {
             type = "list",
@@ -2187,6 +2314,7 @@ M.DescribeInboundCrossClusterSearchConnectionsInput = {
 
 M.DescribeInboundCrossClusterSearchConnectionsOutput = {
     type = "structure",
+    id = "DescribeInboundCrossClusterSearchConnectionsOutput",
     members = {
         CrossClusterSearchConnections = {
             type = "list",
@@ -2200,6 +2328,7 @@ M.DescribeInboundCrossClusterSearchConnectionsOutput = {
 
 M.InvalidPaginationTokenException = {
     type = "structure",
+    id = "InvalidPaginationTokenException",
     error = "client",
     members = {
         message = {
@@ -2210,6 +2339,7 @@ M.InvalidPaginationTokenException = {
 
 M.DescribeOutboundCrossClusterSearchConnectionsInput = {
     type = "structure",
+    id = "DescribeOutboundCrossClusterSearchConnectionsInput",
     members = {
         Filters = {
             type = "list",
@@ -2229,6 +2359,7 @@ M.DescribeOutboundCrossClusterSearchConnectionsInput = {
 
 M.DescribeOutboundCrossClusterSearchConnectionsOutput = {
     type = "structure",
+    id = "DescribeOutboundCrossClusterSearchConnectionsOutput",
     members = {
         CrossClusterSearchConnections = {
             type = "list",
@@ -2248,6 +2379,7 @@ M.DescribePackagesFilterName = {
 
 M.DescribePackagesFilter = {
     type = "structure",
+    id = "DescribePackagesFilter",
     members = {
         Name = {
             type = "string",
@@ -2261,6 +2393,7 @@ M.DescribePackagesFilter = {
 
 M.DescribePackagesInput = {
     type = "structure",
+    id = "DescribePackagesInput",
     members = {
         Filters = {
             type = "list",
@@ -2280,6 +2413,7 @@ M.DescribePackagesInput = {
 
 M.DescribePackagesOutput = {
     type = "structure",
+    id = "DescribePackagesOutput",
     members = {
         PackageDetailsList = {
             type = "list",
@@ -2293,6 +2427,7 @@ M.DescribePackagesOutput = {
 
 M.DescribeReservedElasticsearchInstanceOfferingsInput = {
     type = "structure",
+    id = "DescribeReservedElasticsearchInstanceOfferingsInput",
     members = {
         ReservedElasticsearchInstanceOfferingId = {
             type = "string",
@@ -2324,6 +2459,7 @@ M.ReservedElasticsearchInstancePaymentOption = {
 
 M.RecurringCharge = {
     type = "structure",
+    id = "RecurringCharge",
     members = {
         RecurringChargeAmount = {
             type = "double",
@@ -2336,6 +2472,7 @@ M.RecurringCharge = {
 
 M.ReservedElasticsearchInstanceOffering = {
     type = "structure",
+    id = "ReservedElasticsearchInstanceOffering",
     members = {
         ReservedElasticsearchInstanceOfferingId = {
             type = "string",
@@ -2370,6 +2507,7 @@ M.ReservedElasticsearchInstanceOffering = {
 
 M.DescribeReservedElasticsearchInstanceOfferingsOutput = {
     type = "structure",
+    id = "DescribeReservedElasticsearchInstanceOfferingsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2383,6 +2521,7 @@ M.DescribeReservedElasticsearchInstanceOfferingsOutput = {
 
 M.DescribeReservedElasticsearchInstancesInput = {
     type = "structure",
+    id = "DescribeReservedElasticsearchInstancesInput",
     members = {
         ReservedElasticsearchInstanceId = {
             type = "string",
@@ -2408,6 +2547,7 @@ M.DescribeReservedElasticsearchInstancesInput = {
 
 M.ReservedElasticsearchInstance = {
     type = "structure",
+    id = "ReservedElasticsearchInstance",
     members = {
         ReservationName = {
             type = "string",
@@ -2460,6 +2600,7 @@ M.ReservedElasticsearchInstance = {
 
 M.DescribeReservedElasticsearchInstancesOutput = {
     type = "structure",
+    id = "DescribeReservedElasticsearchInstancesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2473,6 +2614,7 @@ M.DescribeReservedElasticsearchInstancesOutput = {
 
 M.DescribeVpcEndpointsInput = {
     type = "structure",
+    id = "DescribeVpcEndpointsInput",
     members = {
         VpcEndpointIds = {
             type = "list",
@@ -2491,6 +2633,7 @@ M.VpcEndpointErrorCode = {
 
 M.VpcEndpointError = {
     type = "structure",
+    id = "VpcEndpointError",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -2506,6 +2649,7 @@ M.VpcEndpointError = {
 
 M.DescribeVpcEndpointsOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointsOutput",
     members = {
         VpcEndpoints = {
             type = "list",
@@ -2526,6 +2670,7 @@ M.DescribeVpcEndpointsOutput = {
 
 M.DissociatePackageInput = {
     type = "structure",
+    id = "DissociatePackageInput",
     members = {
         PackageID = {
             type = "string",
@@ -2546,6 +2691,7 @@ M.DissociatePackageInput = {
 
 M.DissociatePackageOutput = {
     type = "structure",
+    id = "DissociatePackageOutput",
     members = {
         DomainPackageDetails = M.DomainPackageDetails,
     },
@@ -2553,6 +2699,7 @@ M.DissociatePackageOutput = {
 
 M.GetCompatibleElasticsearchVersionsInput = {
     type = "structure",
+    id = "GetCompatibleElasticsearchVersionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -2565,6 +2712,7 @@ M.GetCompatibleElasticsearchVersionsInput = {
 
 M.CompatibleVersionsMap = {
     type = "structure",
+    id = "CompatibleVersionsMap",
     members = {
         SourceVersion = {
             type = "string",
@@ -2578,6 +2726,7 @@ M.CompatibleVersionsMap = {
 
 M.GetCompatibleElasticsearchVersionsOutput = {
     type = "structure",
+    id = "GetCompatibleElasticsearchVersionsOutput",
     members = {
         CompatibleElasticsearchVersions = {
             type = "list",
@@ -2588,6 +2737,7 @@ M.GetCompatibleElasticsearchVersionsOutput = {
 
 M.GetPackageVersionHistoryInput = {
     type = "structure",
+    id = "GetPackageVersionHistoryInput",
     members = {
         PackageID = {
             type = "string",
@@ -2614,6 +2764,7 @@ M.GetPackageVersionHistoryInput = {
 
 M.PackageVersionHistory = {
     type = "structure",
+    id = "PackageVersionHistory",
     members = {
         PackageVersion = {
             type = "string",
@@ -2629,6 +2780,7 @@ M.PackageVersionHistory = {
 
 M.GetPackageVersionHistoryOutput = {
     type = "structure",
+    id = "GetPackageVersionHistoryOutput",
     members = {
         PackageID = {
             type = "string",
@@ -2645,6 +2797,7 @@ M.GetPackageVersionHistoryOutput = {
 
 M.GetUpgradeHistoryInput = {
     type = "structure",
+    id = "GetUpgradeHistoryInput",
     members = {
         DomainName = {
             type = "string",
@@ -2684,6 +2837,7 @@ M.UpgradeStatus = {
 
 M.UpgradeStepItem = {
     type = "structure",
+    id = "UpgradeStepItem",
     members = {
         UpgradeStep = {
             type = "string",
@@ -2703,6 +2857,7 @@ M.UpgradeStepItem = {
 
 M.UpgradeHistory = {
     type = "structure",
+    id = "UpgradeHistory",
     members = {
         UpgradeName = {
             type = "string",
@@ -2722,6 +2877,7 @@ M.UpgradeHistory = {
 
 M.GetUpgradeHistoryOutput = {
     type = "structure",
+    id = "GetUpgradeHistoryOutput",
     members = {
         UpgradeHistories = {
             type = "list",
@@ -2735,6 +2891,7 @@ M.GetUpgradeHistoryOutput = {
 
 M.GetUpgradeStatusInput = {
     type = "structure",
+    id = "GetUpgradeStatusInput",
     members = {
         DomainName = {
             type = "string",
@@ -2748,6 +2905,7 @@ M.GetUpgradeStatusInput = {
 
 M.GetUpgradeStatusOutput = {
     type = "structure",
+    id = "GetUpgradeStatusOutput",
     members = {
         UpgradeStep = {
             type = "string",
@@ -2768,6 +2926,7 @@ M.EngineType = {
 
 M.ListDomainNamesInput = {
     type = "structure",
+    id = "ListDomainNamesInput",
     members = {
         EngineType = {
             type = "string",
@@ -2780,6 +2939,7 @@ M.ListDomainNamesInput = {
 
 M.DomainInfo = {
     type = "structure",
+    id = "DomainInfo",
     members = {
         DomainName = {
             type = "string",
@@ -2792,6 +2952,7 @@ M.DomainInfo = {
 
 M.ListDomainNamesOutput = {
     type = "structure",
+    id = "ListDomainNamesOutput",
     members = {
         DomainNames = {
             type = "list",
@@ -2802,6 +2963,7 @@ M.ListDomainNamesOutput = {
 
 M.ListDomainsForPackageInput = {
     type = "structure",
+    id = "ListDomainsForPackageInput",
     members = {
         PackageID = {
             type = "string",
@@ -2828,6 +2990,7 @@ M.ListDomainsForPackageInput = {
 
 M.ListDomainsForPackageOutput = {
     type = "structure",
+    id = "ListDomainsForPackageOutput",
     members = {
         DomainPackageDetailsList = {
             type = "list",
@@ -2841,6 +3004,7 @@ M.ListDomainsForPackageOutput = {
 
 M.ListElasticsearchInstanceTypesInput = {
     type = "structure",
+    id = "ListElasticsearchInstanceTypesInput",
     members = {
         ElasticsearchVersion = {
             type = "string",
@@ -2873,6 +3037,7 @@ M.ListElasticsearchInstanceTypesInput = {
 
 M.ListElasticsearchInstanceTypesOutput = {
     type = "structure",
+    id = "ListElasticsearchInstanceTypesOutput",
     members = {
         ElasticsearchInstanceTypes = {
             type = "list",
@@ -2886,6 +3051,7 @@ M.ListElasticsearchInstanceTypesOutput = {
 
 M.ListElasticsearchVersionsInput = {
     type = "structure",
+    id = "ListElasticsearchVersionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2905,6 +3071,7 @@ M.ListElasticsearchVersionsInput = {
 
 M.ListElasticsearchVersionsOutput = {
     type = "structure",
+    id = "ListElasticsearchVersionsOutput",
     members = {
         ElasticsearchVersions = {
             type = "list",
@@ -2918,6 +3085,7 @@ M.ListElasticsearchVersionsOutput = {
 
 M.ListPackagesForDomainInput = {
     type = "structure",
+    id = "ListPackagesForDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -2944,6 +3112,7 @@ M.ListPackagesForDomainInput = {
 
 M.ListPackagesForDomainOutput = {
     type = "structure",
+    id = "ListPackagesForDomainOutput",
     members = {
         DomainPackageDetailsList = {
             type = "list",
@@ -2957,6 +3126,7 @@ M.ListPackagesForDomainOutput = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         ARN = {
             type = "string",
@@ -2970,6 +3140,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         TagList = {
             type = "list",
@@ -2980,6 +3151,7 @@ M.ListTagsOutput = {
 
 M.ListVpcEndpointAccessInput = {
     type = "structure",
+    id = "ListVpcEndpointAccessInput",
     members = {
         DomainName = {
             type = "string",
@@ -2999,6 +3171,7 @@ M.ListVpcEndpointAccessInput = {
 
 M.ListVpcEndpointAccessOutput = {
     type = "structure",
+    id = "ListVpcEndpointAccessOutput",
     members = {
         AuthorizedPrincipalList = {
             type = "list",
@@ -3018,6 +3191,7 @@ M.ListVpcEndpointAccessOutput = {
 
 M.ListVpcEndpointsInput = {
     type = "structure",
+    id = "ListVpcEndpointsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3030,6 +3204,7 @@ M.ListVpcEndpointsInput = {
 
 M.ListVpcEndpointsOutput = {
     type = "structure",
+    id = "ListVpcEndpointsOutput",
     members = {
         VpcEndpointSummaryList = {
             type = "list",
@@ -3049,6 +3224,7 @@ M.ListVpcEndpointsOutput = {
 
 M.ListVpcEndpointsForDomainInput = {
     type = "structure",
+    id = "ListVpcEndpointsForDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -3068,6 +3244,7 @@ M.ListVpcEndpointsForDomainInput = {
 
 M.ListVpcEndpointsForDomainOutput = {
     type = "structure",
+    id = "ListVpcEndpointsForDomainOutput",
     members = {
         VpcEndpointSummaryList = {
             type = "list",
@@ -3087,6 +3264,7 @@ M.ListVpcEndpointsForDomainOutput = {
 
 M.PurchaseReservedElasticsearchInstanceOfferingInput = {
     type = "structure",
+    id = "PurchaseReservedElasticsearchInstanceOfferingInput",
     members = {
         ReservedElasticsearchInstanceOfferingId = {
             type = "string",
@@ -3108,6 +3286,7 @@ M.PurchaseReservedElasticsearchInstanceOfferingInput = {
 
 M.PurchaseReservedElasticsearchInstanceOfferingOutput = {
     type = "structure",
+    id = "PurchaseReservedElasticsearchInstanceOfferingOutput",
     members = {
         ReservedElasticsearchInstanceId = {
             type = "string",
@@ -3120,6 +3299,7 @@ M.PurchaseReservedElasticsearchInstanceOfferingOutput = {
 
 M.RejectInboundCrossClusterSearchConnectionInput = {
     type = "structure",
+    id = "RejectInboundCrossClusterSearchConnectionInput",
     members = {
         CrossClusterSearchConnectionId = {
             type = "string",
@@ -3133,6 +3313,7 @@ M.RejectInboundCrossClusterSearchConnectionInput = {
 
 M.RejectInboundCrossClusterSearchConnectionOutput = {
     type = "structure",
+    id = "RejectInboundCrossClusterSearchConnectionOutput",
     members = {
         CrossClusterSearchConnection = M.InboundCrossClusterSearchConnection,
     },
@@ -3140,6 +3321,7 @@ M.RejectInboundCrossClusterSearchConnectionOutput = {
 
 M.RemoveTagsInput = {
     type = "structure",
+    id = "RemoveTagsInput",
     members = {
         ARN = {
             type = "string",
@@ -3159,10 +3341,12 @@ M.RemoveTagsInput = {
 
 M.RemoveTagsOutput = {
     type = "structure",
+    id = "RemoveTagsOutput",
 }
 
 M.RevokeVpcEndpointAccessInput = {
     type = "structure",
+    id = "RevokeVpcEndpointAccessInput",
     members = {
         DomainName = {
             type = "string",
@@ -3182,10 +3366,12 @@ M.RevokeVpcEndpointAccessInput = {
 
 M.RevokeVpcEndpointAccessOutput = {
     type = "structure",
+    id = "RevokeVpcEndpointAccessOutput",
 }
 
 M.StartElasticsearchServiceSoftwareUpdateInput = {
     type = "structure",
+    id = "StartElasticsearchServiceSoftwareUpdateInput",
     members = {
         DomainName = {
             type = "string",
@@ -3198,6 +3384,7 @@ M.StartElasticsearchServiceSoftwareUpdateInput = {
 
 M.StartElasticsearchServiceSoftwareUpdateOutput = {
     type = "structure",
+    id = "StartElasticsearchServiceSoftwareUpdateOutput",
     members = {
         ServiceSoftwareOptions = M.ServiceSoftwareOptions,
     },
@@ -3205,6 +3392,7 @@ M.StartElasticsearchServiceSoftwareUpdateOutput = {
 
 M.UpdateElasticsearchDomainConfigInput = {
     type = "structure",
+    id = "UpdateElasticsearchDomainConfigInput",
     members = {
         DomainName = {
             type = "string",
@@ -3245,6 +3433,7 @@ M.UpdateElasticsearchDomainConfigInput = {
 
 M.DryRunResults = {
     type = "structure",
+    id = "DryRunResults",
     members = {
         DeploymentType = {
             type = "string",
@@ -3257,6 +3446,7 @@ M.DryRunResults = {
 
 M.UpdateElasticsearchDomainConfigOutput = {
     type = "structure",
+    id = "UpdateElasticsearchDomainConfigOutput",
     members = {
         DomainConfig = setmetatable({ traits = {
             required = true,
@@ -3267,6 +3457,7 @@ M.UpdateElasticsearchDomainConfigOutput = {
 
 M.UpdatePackageInput = {
     type = "structure",
+    id = "UpdatePackageInput",
     members = {
         PackageID = {
             type = "string",
@@ -3288,6 +3479,7 @@ M.UpdatePackageInput = {
 
 M.UpdatePackageOutput = {
     type = "structure",
+    id = "UpdatePackageOutput",
     members = {
         PackageDetails = M.PackageDetails,
     },
@@ -3295,6 +3487,7 @@ M.UpdatePackageOutput = {
 
 M.UpdateVpcEndpointInput = {
     type = "structure",
+    id = "UpdateVpcEndpointInput",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -3310,6 +3503,7 @@ M.UpdateVpcEndpointInput = {
 
 M.UpdateVpcEndpointOutput = {
     type = "structure",
+    id = "UpdateVpcEndpointOutput",
     members = {
         VpcEndpoint = setmetatable({ traits = {
             required = true,
@@ -3319,6 +3513,7 @@ M.UpdateVpcEndpointOutput = {
 
 M.UpgradeElasticsearchDomainInput = {
     type = "structure",
+    id = "UpgradeElasticsearchDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -3340,6 +3535,7 @@ M.UpgradeElasticsearchDomainInput = {
 
 M.UpgradeElasticsearchDomainOutput = {
     type = "structure",
+    id = "UpgradeElasticsearchDomainOutput",
     members = {
         DomainName = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AlgorithmImage = {
     type = "structure",
+    id = "AlgorithmImage",
     members = {
         name = {
             type = "string",
@@ -17,6 +18,7 @@ M.AlgorithmImage = {
 
 M.DefaultCategoricalHyperParameterRange = {
     type = "structure",
+    id = "DefaultCategoricalHyperParameterRange",
     members = {
         name = {
             type = "string",
@@ -36,6 +38,7 @@ M.DefaultCategoricalHyperParameterRange = {
 
 M.DefaultContinuousHyperParameterRange = {
     type = "structure",
+    id = "DefaultContinuousHyperParameterRange",
     members = {
         name = {
             type = "string",
@@ -63,6 +66,7 @@ M.DefaultContinuousHyperParameterRange = {
 
 M.DefaultIntegerHyperParameterRange = {
     type = "structure",
+    id = "DefaultIntegerHyperParameterRange",
     members = {
         name = {
             type = "string",
@@ -90,6 +94,7 @@ M.DefaultIntegerHyperParameterRange = {
 
 M.DefaultHyperParameterRanges = {
     type = "structure",
+    id = "DefaultHyperParameterRanges",
     members = {
         integerHyperParameterRanges = {
             type = "list",
@@ -108,6 +113,7 @@ M.DefaultHyperParameterRanges = {
 
 M.Algorithm = {
     type = "structure",
+    id = "Algorithm",
     members = {
         name = {
             type = "string",
@@ -149,6 +155,7 @@ M.RankingInfluenceType = {
 
 M.BatchInferenceJobConfig = {
     type = "structure",
+    id = "BatchInferenceJobConfig",
     members = {
         itemExplorationConfig = {
             type = "map",
@@ -170,6 +177,7 @@ M.BatchInferenceJobMode = {
 
 M.S3DataConfig = {
     type = "structure",
+    id = "S3DataConfig",
     members = {
         path = {
             type = "string",
@@ -185,6 +193,7 @@ M.S3DataConfig = {
 
 M.BatchInferenceJobInput = {
     type = "structure",
+    id = "BatchInferenceJobInput",
     members = {
         s3DataSource = setmetatable({ traits = {
             required = true,
@@ -194,6 +203,7 @@ M.BatchInferenceJobInput = {
 
 M.BatchInferenceJobOutput = {
     type = "structure",
+    id = "BatchInferenceJobOutput",
     members = {
         s3DataDestination = setmetatable({ traits = {
             required = true,
@@ -203,6 +213,7 @@ M.BatchInferenceJobOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         tagKey = {
             type = "string",
@@ -221,6 +232,7 @@ M.Tag = {
 
 M.FieldsForThemeGeneration = {
     type = "structure",
+    id = "FieldsForThemeGeneration",
     members = {
         itemName = {
             type = "string",
@@ -233,6 +245,7 @@ M.FieldsForThemeGeneration = {
 
 M.ThemeGenerationConfig = {
     type = "structure",
+    id = "ThemeGenerationConfig",
     members = {
         fieldsForThemeGeneration = setmetatable({ traits = {
             required = true,
@@ -242,6 +255,7 @@ M.ThemeGenerationConfig = {
 
 M.CreateBatchInferenceJobInput = {
     type = "structure",
+    id = "CreateBatchInferenceJobInput",
     members = {
         jobName = {
             type = "string",
@@ -287,6 +301,7 @@ M.CreateBatchInferenceJobInput = {
 
 M.CreateBatchInferenceJobOutput = {
     type = "structure",
+    id = "CreateBatchInferenceJobOutput",
     members = {
         batchInferenceJobArn = {
             type = "string",
@@ -296,6 +311,7 @@ M.CreateBatchInferenceJobOutput = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -306,6 +322,7 @@ M.InvalidInputException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -316,6 +333,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -326,6 +344,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -336,6 +355,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -346,6 +366,7 @@ M.ResourceNotFoundException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -356,6 +377,7 @@ M.TooManyTagsException = {
 
 M.BatchSegmentJobInput = {
     type = "structure",
+    id = "BatchSegmentJobInput",
     members = {
         s3DataSource = setmetatable({ traits = {
             required = true,
@@ -365,6 +387,7 @@ M.BatchSegmentJobInput = {
 
 M.BatchSegmentJobOutput = {
     type = "structure",
+    id = "BatchSegmentJobOutput",
     members = {
         s3DataDestination = setmetatable({ traits = {
             required = true,
@@ -374,6 +397,7 @@ M.BatchSegmentJobOutput = {
 
 M.CreateBatchSegmentJobInput = {
     type = "structure",
+    id = "CreateBatchSegmentJobInput",
     members = {
         jobName = {
             type = "string",
@@ -414,6 +438,7 @@ M.CreateBatchSegmentJobInput = {
 
 M.CreateBatchSegmentJobOutput = {
     type = "structure",
+    id = "CreateBatchSegmentJobOutput",
     members = {
         batchSegmentJobArn = {
             type = "string",
@@ -423,6 +448,7 @@ M.CreateBatchSegmentJobOutput = {
 
 M.CampaignConfig = {
     type = "structure",
+    id = "CampaignConfig",
     members = {
         itemExplorationConfig = {
             type = "map",
@@ -445,6 +471,7 @@ M.CampaignConfig = {
 
 M.CreateCampaignInput = {
     type = "structure",
+    id = "CreateCampaignInput",
     members = {
         name = {
             type = "string",
@@ -471,6 +498,7 @@ M.CreateCampaignInput = {
 
 M.CreateCampaignOutput = {
     type = "structure",
+    id = "CreateCampaignOutput",
     members = {
         campaignArn = {
             type = "string",
@@ -480,6 +508,7 @@ M.CreateCampaignOutput = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         dataLocation = {
             type = "string",
@@ -489,6 +518,7 @@ M.DataSource = {
 
 M.CreateDataDeletionJobInput = {
     type = "structure",
+    id = "CreateDataDeletionJobInput",
     members = {
         jobName = {
             type = "string",
@@ -520,6 +550,7 @@ M.CreateDataDeletionJobInput = {
 
 M.CreateDataDeletionJobOutput = {
     type = "structure",
+    id = "CreateDataDeletionJobOutput",
     members = {
         dataDeletionJobArn = {
             type = "string",
@@ -529,6 +560,7 @@ M.CreateDataDeletionJobOutput = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         name = {
             type = "string",
@@ -563,6 +595,7 @@ M.CreateDatasetInput = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         datasetArn = {
             type = "string",
@@ -578,6 +611,7 @@ M.IngestionMode = {
 
 M.DatasetExportJobOutput = {
     type = "structure",
+    id = "DatasetExportJobOutput",
     members = {
         s3DataDestination = setmetatable({ traits = {
             required = true,
@@ -587,6 +621,7 @@ M.DatasetExportJobOutput = {
 
 M.CreateDatasetExportJobInput = {
     type = "structure",
+    id = "CreateDatasetExportJobInput",
     members = {
         jobName = {
             type = "string",
@@ -621,6 +656,7 @@ M.CreateDatasetExportJobInput = {
 
 M.CreateDatasetExportJobOutput = {
     type = "structure",
+    id = "CreateDatasetExportJobOutput",
     members = {
         datasetExportJobArn = {
             type = "string",
@@ -635,6 +671,7 @@ M.Domain = {
 
 M.CreateDatasetGroupInput = {
     type = "structure",
+    id = "CreateDatasetGroupInput",
     members = {
         name = {
             type = "string",
@@ -660,6 +697,7 @@ M.CreateDatasetGroupInput = {
 
 M.CreateDatasetGroupOutput = {
     type = "structure",
+    id = "CreateDatasetGroupOutput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -677,6 +715,7 @@ M.ImportMode = {
 
 M.CreateDatasetImportJobInput = {
     type = "structure",
+    id = "CreateDatasetImportJobInput",
     members = {
         jobName = {
             type = "string",
@@ -711,6 +750,7 @@ M.CreateDatasetImportJobInput = {
 
 M.CreateDatasetImportJobOutput = {
     type = "structure",
+    id = "CreateDatasetImportJobOutput",
     members = {
         datasetImportJobArn = {
             type = "string",
@@ -720,6 +760,7 @@ M.CreateDatasetImportJobOutput = {
 
 M.CreateEventTrackerInput = {
     type = "structure",
+    id = "CreateEventTrackerInput",
     members = {
         name = {
             type = "string",
@@ -742,6 +783,7 @@ M.CreateEventTrackerInput = {
 
 M.CreateEventTrackerOutput = {
     type = "structure",
+    id = "CreateEventTrackerOutput",
     members = {
         eventTrackerArn = {
             type = "string",
@@ -754,6 +796,7 @@ M.CreateEventTrackerOutput = {
 
 M.CreateFilterInput = {
     type = "structure",
+    id = "CreateFilterInput",
     members = {
         name = {
             type = "string",
@@ -782,6 +825,7 @@ M.CreateFilterInput = {
 
 M.CreateFilterOutput = {
     type = "structure",
+    id = "CreateFilterOutput",
     members = {
         filterArn = {
             type = "string",
@@ -791,6 +835,7 @@ M.CreateFilterOutput = {
 
 M.MetricAttribute = {
     type = "structure",
+    id = "MetricAttribute",
     members = {
         eventType = {
             type = "string",
@@ -815,6 +860,7 @@ M.MetricAttribute = {
 
 M.MetricAttributionOutput = {
     type = "structure",
+    id = "MetricAttributionOutput",
     members = {
         s3DataDestination = M.S3DataConfig,
         roleArn = {
@@ -828,6 +874,7 @@ M.MetricAttributionOutput = {
 
 M.CreateMetricAttributionInput = {
     type = "structure",
+    id = "CreateMetricAttributionInput",
     members = {
         name = {
             type = "string",
@@ -856,6 +903,7 @@ M.CreateMetricAttributionInput = {
 
 M.CreateMetricAttributionOutput = {
     type = "structure",
+    id = "CreateMetricAttributionOutput",
     members = {
         metricAttributionArn = {
             type = "string",
@@ -865,6 +913,7 @@ M.CreateMetricAttributionOutput = {
 
 M.TrainingDataConfig = {
     type = "structure",
+    id = "TrainingDataConfig",
     members = {
         excludedDatasetColumns = {
             type = "map",
@@ -881,6 +930,7 @@ M.TrainingDataConfig = {
 
 M.RecommenderConfig = {
     type = "structure",
+    id = "RecommenderConfig",
     members = {
         itemExplorationConfig = {
             type = "map",
@@ -899,6 +949,7 @@ M.RecommenderConfig = {
 
 M.CreateRecommenderInput = {
     type = "structure",
+    id = "CreateRecommenderInput",
     members = {
         name = {
             type = "string",
@@ -928,6 +979,7 @@ M.CreateRecommenderInput = {
 
 M.CreateRecommenderOutput = {
     type = "structure",
+    id = "CreateRecommenderOutput",
     members = {
         recommenderArn = {
             type = "string",
@@ -937,6 +989,7 @@ M.CreateRecommenderOutput = {
 
 M.CreateSchemaInput = {
     type = "structure",
+    id = "CreateSchemaInput",
     members = {
         name = {
             type = "string",
@@ -958,6 +1011,7 @@ M.CreateSchemaInput = {
 
 M.CreateSchemaOutput = {
     type = "structure",
+    id = "CreateSchemaOutput",
     members = {
         schemaArn = {
             type = "string",
@@ -967,6 +1021,7 @@ M.CreateSchemaOutput = {
 
 M.AutoMLConfig = {
     type = "structure",
+    id = "AutoMLConfig",
     members = {
         metricName = {
             type = "string",
@@ -980,6 +1035,7 @@ M.AutoMLConfig = {
 
 M.AutoTrainingConfig = {
     type = "structure",
+    id = "AutoTrainingConfig",
     members = {
         schedulingExpression = {
             type = "string",
@@ -989,6 +1045,7 @@ M.AutoTrainingConfig = {
 
 M.EventParameters = {
     type = "structure",
+    id = "EventParameters",
     members = {
         eventType = {
             type = "string",
@@ -1004,6 +1061,7 @@ M.EventParameters = {
 
 M.EventsConfig = {
     type = "structure",
+    id = "EventsConfig",
     members = {
         eventParametersList = {
             type = "list",
@@ -1014,6 +1072,7 @@ M.EventsConfig = {
 
 M.CategoricalHyperParameterRange = {
     type = "structure",
+    id = "CategoricalHyperParameterRange",
     members = {
         name = {
             type = "string",
@@ -1027,6 +1086,7 @@ M.CategoricalHyperParameterRange = {
 
 M.ContinuousHyperParameterRange = {
     type = "structure",
+    id = "ContinuousHyperParameterRange",
     members = {
         name = {
             type = "string",
@@ -1048,6 +1108,7 @@ M.ContinuousHyperParameterRange = {
 
 M.IntegerHyperParameterRange = {
     type = "structure",
+    id = "IntegerHyperParameterRange",
     members = {
         name = {
             type = "string",
@@ -1069,6 +1130,7 @@ M.IntegerHyperParameterRange = {
 
 M.HyperParameterRanges = {
     type = "structure",
+    id = "HyperParameterRanges",
     members = {
         integerHyperParameterRanges = {
             type = "list",
@@ -1087,6 +1149,7 @@ M.HyperParameterRanges = {
 
 M.HPOObjective = {
     type = "structure",
+    id = "HPOObjective",
     members = {
         type = {
             type = "string",
@@ -1102,6 +1165,7 @@ M.HPOObjective = {
 
 M.HPOResourceConfig = {
     type = "structure",
+    id = "HPOResourceConfig",
     members = {
         maxNumberOfTrainingJobs = {
             type = "string",
@@ -1114,6 +1178,7 @@ M.HPOResourceConfig = {
 
 M.HPOConfig = {
     type = "structure",
+    id = "HPOConfig",
     members = {
         hpoObjective = M.HPOObjective,
         hpoResourceConfig = M.HPOResourceConfig,
@@ -1130,6 +1195,7 @@ M.ObjectiveSensitivity = {
 
 M.OptimizationObjective = {
     type = "structure",
+    id = "OptimizationObjective",
     members = {
         itemAttribute = {
             type = "string",
@@ -1142,6 +1208,7 @@ M.OptimizationObjective = {
 
 M.SolutionConfig = {
     type = "structure",
+    id = "SolutionConfig",
     members = {
         eventValueThreshold = {
             type = "string",
@@ -1167,6 +1234,7 @@ M.SolutionConfig = {
 
 M.CreateSolutionInput = {
     type = "structure",
+    id = "CreateSolutionInput",
     members = {
         name = {
             type = "string",
@@ -1211,6 +1279,7 @@ M.CreateSolutionInput = {
 
 M.CreateSolutionOutput = {
     type = "structure",
+    id = "CreateSolutionOutput",
     members = {
         solutionArn = {
             type = "string",
@@ -1226,6 +1295,7 @@ M.TrainingMode = {
 
 M.CreateSolutionVersionInput = {
     type = "structure",
+    id = "CreateSolutionVersionInput",
     members = {
         name = {
             type = "string",
@@ -1248,6 +1318,7 @@ M.CreateSolutionVersionInput = {
 
 M.CreateSolutionVersionOutput = {
     type = "structure",
+    id = "CreateSolutionVersionOutput",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -1257,6 +1328,7 @@ M.CreateSolutionVersionOutput = {
 
 M.DeleteCampaignInput = {
     type = "structure",
+    id = "DeleteCampaignInput",
     members = {
         campaignArn = {
             type = "string",
@@ -1269,10 +1341,12 @@ M.DeleteCampaignInput = {
 
 M.DeleteCampaignOutput = {
     type = "structure",
+    id = "DeleteCampaignOutput",
 }
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         datasetArn = {
             type = "string",
@@ -1285,10 +1359,12 @@ M.DeleteDatasetInput = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
 }
 
 M.DeleteDatasetGroupInput = {
     type = "structure",
+    id = "DeleteDatasetGroupInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -1301,10 +1377,12 @@ M.DeleteDatasetGroupInput = {
 
 M.DeleteDatasetGroupOutput = {
     type = "structure",
+    id = "DeleteDatasetGroupOutput",
 }
 
 M.DeleteEventTrackerInput = {
     type = "structure",
+    id = "DeleteEventTrackerInput",
     members = {
         eventTrackerArn = {
             type = "string",
@@ -1317,10 +1395,12 @@ M.DeleteEventTrackerInput = {
 
 M.DeleteEventTrackerOutput = {
     type = "structure",
+    id = "DeleteEventTrackerOutput",
 }
 
 M.DeleteFilterInput = {
     type = "structure",
+    id = "DeleteFilterInput",
     members = {
         filterArn = {
             type = "string",
@@ -1333,10 +1413,12 @@ M.DeleteFilterInput = {
 
 M.DeleteFilterOutput = {
     type = "structure",
+    id = "DeleteFilterOutput",
 }
 
 M.DeleteMetricAttributionInput = {
     type = "structure",
+    id = "DeleteMetricAttributionInput",
     members = {
         metricAttributionArn = {
             type = "string",
@@ -1349,10 +1431,12 @@ M.DeleteMetricAttributionInput = {
 
 M.DeleteMetricAttributionOutput = {
     type = "structure",
+    id = "DeleteMetricAttributionOutput",
 }
 
 M.DeleteRecommenderInput = {
     type = "structure",
+    id = "DeleteRecommenderInput",
     members = {
         recommenderArn = {
             type = "string",
@@ -1365,10 +1449,12 @@ M.DeleteRecommenderInput = {
 
 M.DeleteRecommenderOutput = {
     type = "structure",
+    id = "DeleteRecommenderOutput",
 }
 
 M.DeleteSchemaInput = {
     type = "structure",
+    id = "DeleteSchemaInput",
     members = {
         schemaArn = {
             type = "string",
@@ -1381,10 +1467,12 @@ M.DeleteSchemaInput = {
 
 M.DeleteSchemaOutput = {
     type = "structure",
+    id = "DeleteSchemaOutput",
 }
 
 M.DeleteSolutionInput = {
     type = "structure",
+    id = "DeleteSolutionInput",
     members = {
         solutionArn = {
             type = "string",
@@ -1397,10 +1485,12 @@ M.DeleteSolutionInput = {
 
 M.DeleteSolutionOutput = {
     type = "structure",
+    id = "DeleteSolutionOutput",
 }
 
 M.DescribeAlgorithmInput = {
     type = "structure",
+    id = "DescribeAlgorithmInput",
     members = {
         algorithmArn = {
             type = "string",
@@ -1413,6 +1503,7 @@ M.DescribeAlgorithmInput = {
 
 M.DescribeAlgorithmOutput = {
     type = "structure",
+    id = "DescribeAlgorithmOutput",
     members = {
         algorithm = M.Algorithm,
     },
@@ -1420,6 +1511,7 @@ M.DescribeAlgorithmOutput = {
 
 M.DescribeBatchInferenceJobInput = {
     type = "structure",
+    id = "DescribeBatchInferenceJobInput",
     members = {
         batchInferenceJobArn = {
             type = "string",
@@ -1432,6 +1524,7 @@ M.DescribeBatchInferenceJobInput = {
 
 M.BatchInferenceJob = {
     type = "structure",
+    id = "BatchInferenceJob",
     members = {
         jobName = {
             type = "string",
@@ -1475,6 +1568,7 @@ M.BatchInferenceJob = {
 
 M.DescribeBatchInferenceJobOutput = {
     type = "structure",
+    id = "DescribeBatchInferenceJobOutput",
     members = {
         batchInferenceJob = M.BatchInferenceJob,
     },
@@ -1482,6 +1576,7 @@ M.DescribeBatchInferenceJobOutput = {
 
 M.DescribeBatchSegmentJobInput = {
     type = "structure",
+    id = "DescribeBatchSegmentJobInput",
     members = {
         batchSegmentJobArn = {
             type = "string",
@@ -1494,6 +1589,7 @@ M.DescribeBatchSegmentJobInput = {
 
 M.BatchSegmentJob = {
     type = "structure",
+    id = "BatchSegmentJob",
     members = {
         jobName = {
             type = "string",
@@ -1532,6 +1628,7 @@ M.BatchSegmentJob = {
 
 M.DescribeBatchSegmentJobOutput = {
     type = "structure",
+    id = "DescribeBatchSegmentJobOutput",
     members = {
         batchSegmentJob = M.BatchSegmentJob,
     },
@@ -1539,6 +1636,7 @@ M.DescribeBatchSegmentJobOutput = {
 
 M.DescribeCampaignInput = {
     type = "structure",
+    id = "DescribeCampaignInput",
     members = {
         campaignArn = {
             type = "string",
@@ -1551,6 +1649,7 @@ M.DescribeCampaignInput = {
 
 M.CampaignUpdateSummary = {
     type = "structure",
+    id = "CampaignUpdateSummary",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -1576,6 +1675,7 @@ M.CampaignUpdateSummary = {
 
 M.Campaign = {
     type = "structure",
+    id = "Campaign",
     members = {
         name = {
             type = "string",
@@ -1608,6 +1708,7 @@ M.Campaign = {
 
 M.DescribeCampaignOutput = {
     type = "structure",
+    id = "DescribeCampaignOutput",
     members = {
         campaign = M.Campaign,
     },
@@ -1615,6 +1716,7 @@ M.DescribeCampaignOutput = {
 
 M.DescribeDataDeletionJobInput = {
     type = "structure",
+    id = "DescribeDataDeletionJobInput",
     members = {
         dataDeletionJobArn = {
             type = "string",
@@ -1627,6 +1729,7 @@ M.DescribeDataDeletionJobInput = {
 
 M.DataDeletionJob = {
     type = "structure",
+    id = "DataDeletionJob",
     members = {
         jobName = {
             type = "string",
@@ -1661,6 +1764,7 @@ M.DataDeletionJob = {
 
 M.DescribeDataDeletionJobOutput = {
     type = "structure",
+    id = "DescribeDataDeletionJobOutput",
     members = {
         dataDeletionJob = M.DataDeletionJob,
     },
@@ -1668,6 +1772,7 @@ M.DescribeDataDeletionJobOutput = {
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         datasetArn = {
             type = "string",
@@ -1680,6 +1785,7 @@ M.DescribeDatasetInput = {
 
 M.DatasetUpdateSummary = {
     type = "structure",
+    id = "DatasetUpdateSummary",
     members = {
         schemaArn = {
             type = "string",
@@ -1701,6 +1807,7 @@ M.DatasetUpdateSummary = {
 
 M.Dataset = {
     type = "structure",
+    id = "Dataset",
     members = {
         name = {
             type = "string",
@@ -1735,6 +1842,7 @@ M.Dataset = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         dataset = M.Dataset,
     },
@@ -1742,6 +1850,7 @@ M.DescribeDatasetOutput = {
 
 M.DescribeDatasetExportJobInput = {
     type = "structure",
+    id = "DescribeDatasetExportJobInput",
     members = {
         datasetExportJobArn = {
             type = "string",
@@ -1754,6 +1863,7 @@ M.DescribeDatasetExportJobInput = {
 
 M.DatasetExportJob = {
     type = "structure",
+    id = "DatasetExportJob",
     members = {
         jobName = {
             type = "string",
@@ -1788,6 +1898,7 @@ M.DatasetExportJob = {
 
 M.DescribeDatasetExportJobOutput = {
     type = "structure",
+    id = "DescribeDatasetExportJobOutput",
     members = {
         datasetExportJob = M.DatasetExportJob,
     },
@@ -1795,6 +1906,7 @@ M.DescribeDatasetExportJobOutput = {
 
 M.DescribeDatasetGroupInput = {
     type = "structure",
+    id = "DescribeDatasetGroupInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -1807,6 +1919,7 @@ M.DescribeDatasetGroupInput = {
 
 M.DatasetGroup = {
     type = "structure",
+    id = "DatasetGroup",
     members = {
         name = {
             type = "string",
@@ -1840,6 +1953,7 @@ M.DatasetGroup = {
 
 M.DescribeDatasetGroupOutput = {
     type = "structure",
+    id = "DescribeDatasetGroupOutput",
     members = {
         datasetGroup = M.DatasetGroup,
     },
@@ -1847,6 +1961,7 @@ M.DescribeDatasetGroupOutput = {
 
 M.DescribeDatasetImportJobInput = {
     type = "structure",
+    id = "DescribeDatasetImportJobInput",
     members = {
         datasetImportJobArn = {
             type = "string",
@@ -1859,6 +1974,7 @@ M.DescribeDatasetImportJobInput = {
 
 M.DatasetImportJob = {
     type = "structure",
+    id = "DatasetImportJob",
     members = {
         jobName = {
             type = "string",
@@ -1896,6 +2012,7 @@ M.DatasetImportJob = {
 
 M.DescribeDatasetImportJobOutput = {
     type = "structure",
+    id = "DescribeDatasetImportJobOutput",
     members = {
         datasetImportJob = M.DatasetImportJob,
     },
@@ -1903,6 +2020,7 @@ M.DescribeDatasetImportJobOutput = {
 
 M.DescribeEventTrackerInput = {
     type = "structure",
+    id = "DescribeEventTrackerInput",
     members = {
         eventTrackerArn = {
             type = "string",
@@ -1915,6 +2033,7 @@ M.DescribeEventTrackerInput = {
 
 M.EventTracker = {
     type = "structure",
+    id = "EventTracker",
     members = {
         name = {
             type = "string",
@@ -1945,6 +2064,7 @@ M.EventTracker = {
 
 M.DescribeEventTrackerOutput = {
     type = "structure",
+    id = "DescribeEventTrackerOutput",
     members = {
         eventTracker = M.EventTracker,
     },
@@ -1952,6 +2072,7 @@ M.DescribeEventTrackerOutput = {
 
 M.DescribeFeatureTransformationInput = {
     type = "structure",
+    id = "DescribeFeatureTransformationInput",
     members = {
         featureTransformationArn = {
             type = "string",
@@ -1964,6 +2085,7 @@ M.DescribeFeatureTransformationInput = {
 
 M.FeatureTransformation = {
     type = "structure",
+    id = "FeatureTransformation",
     members = {
         name = {
             type = "string",
@@ -1990,6 +2112,7 @@ M.FeatureTransformation = {
 
 M.DescribeFeatureTransformationOutput = {
     type = "structure",
+    id = "DescribeFeatureTransformationOutput",
     members = {
         featureTransformation = M.FeatureTransformation,
     },
@@ -1997,6 +2120,7 @@ M.DescribeFeatureTransformationOutput = {
 
 M.DescribeFilterInput = {
     type = "structure",
+    id = "DescribeFilterInput",
     members = {
         filterArn = {
             type = "string",
@@ -2009,6 +2133,7 @@ M.DescribeFilterInput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         name = {
             type = "string",
@@ -2039,6 +2164,7 @@ M.Filter = {
 
 M.DescribeFilterOutput = {
     type = "structure",
+    id = "DescribeFilterOutput",
     members = {
         filter = M.Filter,
     },
@@ -2046,6 +2172,7 @@ M.DescribeFilterOutput = {
 
 M.DescribeMetricAttributionInput = {
     type = "structure",
+    id = "DescribeMetricAttributionInput",
     members = {
         metricAttributionArn = {
             type = "string",
@@ -2058,6 +2185,7 @@ M.DescribeMetricAttributionInput = {
 
 M.MetricAttribution = {
     type = "structure",
+    id = "MetricAttribution",
     members = {
         name = {
             type = "string",
@@ -2086,6 +2214,7 @@ M.MetricAttribution = {
 
 M.DescribeMetricAttributionOutput = {
     type = "structure",
+    id = "DescribeMetricAttributionOutput",
     members = {
         metricAttribution = M.MetricAttribution,
     },
@@ -2093,6 +2222,7 @@ M.DescribeMetricAttributionOutput = {
 
 M.DescribeRecipeInput = {
     type = "structure",
+    id = "DescribeRecipeInput",
     members = {
         recipeArn = {
             type = "string",
@@ -2105,6 +2235,7 @@ M.DescribeRecipeInput = {
 
 M.Recipe = {
     type = "structure",
+    id = "Recipe",
     members = {
         name = {
             type = "string",
@@ -2138,6 +2269,7 @@ M.Recipe = {
 
 M.DescribeRecipeOutput = {
     type = "structure",
+    id = "DescribeRecipeOutput",
     members = {
         recipe = M.Recipe,
     },
@@ -2145,6 +2277,7 @@ M.DescribeRecipeOutput = {
 
 M.DescribeRecommenderInput = {
     type = "structure",
+    id = "DescribeRecommenderInput",
     members = {
         recommenderArn = {
             type = "string",
@@ -2157,6 +2290,7 @@ M.DescribeRecommenderInput = {
 
 M.RecommenderUpdateSummary = {
     type = "structure",
+    id = "RecommenderUpdateSummary",
     members = {
         recommenderConfig = M.RecommenderConfig,
         creationDateTime = {
@@ -2176,6 +2310,7 @@ M.RecommenderUpdateSummary = {
 
 M.Recommender = {
     type = "structure",
+    id = "Recommender",
     members = {
         recommenderArn = {
             type = "string",
@@ -2213,6 +2348,7 @@ M.Recommender = {
 
 M.DescribeRecommenderOutput = {
     type = "structure",
+    id = "DescribeRecommenderOutput",
     members = {
         recommender = M.Recommender,
     },
@@ -2220,6 +2356,7 @@ M.DescribeRecommenderOutput = {
 
 M.DescribeSchemaInput = {
     type = "structure",
+    id = "DescribeSchemaInput",
     members = {
         schemaArn = {
             type = "string",
@@ -2232,6 +2369,7 @@ M.DescribeSchemaInput = {
 
 M.DatasetSchema = {
     type = "structure",
+    id = "DatasetSchema",
     members = {
         name = {
             type = "string",
@@ -2256,6 +2394,7 @@ M.DatasetSchema = {
 
 M.DescribeSchemaOutput = {
     type = "structure",
+    id = "DescribeSchemaOutput",
     members = {
         schema = M.DatasetSchema,
     },
@@ -2263,6 +2402,7 @@ M.DescribeSchemaOutput = {
 
 M.DescribeSolutionInput = {
     type = "structure",
+    id = "DescribeSolutionInput",
     members = {
         solutionArn = {
             type = "string",
@@ -2275,6 +2415,7 @@ M.DescribeSolutionInput = {
 
 M.AutoMLResult = {
     type = "structure",
+    id = "AutoMLResult",
     members = {
         bestRecipeArn = {
             type = "string",
@@ -2284,6 +2425,7 @@ M.AutoMLResult = {
 
 M.SolutionUpdateConfig = {
     type = "structure",
+    id = "SolutionUpdateConfig",
     members = {
         autoTrainingConfig = M.AutoTrainingConfig,
         eventsConfig = M.EventsConfig,
@@ -2292,6 +2434,7 @@ M.SolutionUpdateConfig = {
 
 M.SolutionUpdateSummary = {
     type = "structure",
+    id = "SolutionUpdateSummary",
     members = {
         solutionUpdateConfig = M.SolutionUpdateConfig,
         status = {
@@ -2322,6 +2465,7 @@ M.TrainingType = {
 
 M.SolutionVersionSummary = {
     type = "structure",
+    id = "SolutionVersionSummary",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -2349,6 +2493,7 @@ M.SolutionVersionSummary = {
 
 M.Solution = {
     type = "structure",
+    id = "Solution",
     members = {
         name = {
             type = "string",
@@ -2401,6 +2546,7 @@ M.Solution = {
 
 M.DescribeSolutionOutput = {
     type = "structure",
+    id = "DescribeSolutionOutput",
     members = {
         solution = M.Solution,
     },
@@ -2408,6 +2554,7 @@ M.DescribeSolutionOutput = {
 
 M.DescribeSolutionVersionInput = {
     type = "structure",
+    id = "DescribeSolutionVersionInput",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -2420,6 +2567,7 @@ M.DescribeSolutionVersionInput = {
 
 M.TunedHPOParams = {
     type = "structure",
+    id = "TunedHPOParams",
     members = {
         algorithmHyperParameters = {
             type = "map",
@@ -2431,6 +2579,7 @@ M.TunedHPOParams = {
 
 M.SolutionVersion = {
     type = "structure",
+    id = "SolutionVersion",
     members = {
         name = {
             type = "string",
@@ -2493,6 +2642,7 @@ M.SolutionVersion = {
 
 M.DescribeSolutionVersionOutput = {
     type = "structure",
+    id = "DescribeSolutionVersionOutput",
     members = {
         solutionVersion = M.SolutionVersion,
     },
@@ -2500,6 +2650,7 @@ M.DescribeSolutionVersionOutput = {
 
 M.GetSolutionMetricsInput = {
     type = "structure",
+    id = "GetSolutionMetricsInput",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -2512,6 +2663,7 @@ M.GetSolutionMetricsInput = {
 
 M.GetSolutionMetricsOutput = {
     type = "structure",
+    id = "GetSolutionMetricsOutput",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -2526,6 +2678,7 @@ M.GetSolutionMetricsOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -2536,6 +2689,7 @@ M.InvalidNextTokenException = {
 
 M.ListBatchInferenceJobsInput = {
     type = "structure",
+    id = "ListBatchInferenceJobsInput",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -2551,6 +2705,7 @@ M.ListBatchInferenceJobsInput = {
 
 M.BatchInferenceJobSummary = {
     type = "structure",
+    id = "BatchInferenceJobSummary",
     members = {
         batchInferenceJobArn = {
             type = "string",
@@ -2581,6 +2736,7 @@ M.BatchInferenceJobSummary = {
 
 M.ListBatchInferenceJobsOutput = {
     type = "structure",
+    id = "ListBatchInferenceJobsOutput",
     members = {
         batchInferenceJobs = {
             type = "list",
@@ -2594,6 +2750,7 @@ M.ListBatchInferenceJobsOutput = {
 
 M.ListBatchSegmentJobsInput = {
     type = "structure",
+    id = "ListBatchSegmentJobsInput",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -2609,6 +2766,7 @@ M.ListBatchSegmentJobsInput = {
 
 M.BatchSegmentJobSummary = {
     type = "structure",
+    id = "BatchSegmentJobSummary",
     members = {
         batchSegmentJobArn = {
             type = "string",
@@ -2636,6 +2794,7 @@ M.BatchSegmentJobSummary = {
 
 M.ListBatchSegmentJobsOutput = {
     type = "structure",
+    id = "ListBatchSegmentJobsOutput",
     members = {
         batchSegmentJobs = {
             type = "list",
@@ -2649,6 +2808,7 @@ M.ListBatchSegmentJobsOutput = {
 
 M.ListCampaignsInput = {
     type = "structure",
+    id = "ListCampaignsInput",
     members = {
         solutionArn = {
             type = "string",
@@ -2664,6 +2824,7 @@ M.ListCampaignsInput = {
 
 M.CampaignSummary = {
     type = "structure",
+    id = "CampaignSummary",
     members = {
         name = {
             type = "string",
@@ -2688,6 +2849,7 @@ M.CampaignSummary = {
 
 M.ListCampaignsOutput = {
     type = "structure",
+    id = "ListCampaignsOutput",
     members = {
         campaigns = {
             type = "list",
@@ -2701,6 +2863,7 @@ M.ListCampaignsOutput = {
 
 M.ListDataDeletionJobsInput = {
     type = "structure",
+    id = "ListDataDeletionJobsInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -2716,6 +2879,7 @@ M.ListDataDeletionJobsInput = {
 
 M.DataDeletionJobSummary = {
     type = "structure",
+    id = "DataDeletionJobSummary",
     members = {
         dataDeletionJobArn = {
             type = "string",
@@ -2743,6 +2907,7 @@ M.DataDeletionJobSummary = {
 
 M.ListDataDeletionJobsOutput = {
     type = "structure",
+    id = "ListDataDeletionJobsOutput",
     members = {
         dataDeletionJobs = {
             type = "list",
@@ -2756,6 +2921,7 @@ M.ListDataDeletionJobsOutput = {
 
 M.ListDatasetExportJobsInput = {
     type = "structure",
+    id = "ListDatasetExportJobsInput",
     members = {
         datasetArn = {
             type = "string",
@@ -2771,6 +2937,7 @@ M.ListDatasetExportJobsInput = {
 
 M.DatasetExportJobSummary = {
     type = "structure",
+    id = "DatasetExportJobSummary",
     members = {
         datasetExportJobArn = {
             type = "string",
@@ -2795,6 +2962,7 @@ M.DatasetExportJobSummary = {
 
 M.ListDatasetExportJobsOutput = {
     type = "structure",
+    id = "ListDatasetExportJobsOutput",
     members = {
         datasetExportJobs = {
             type = "list",
@@ -2808,6 +2976,7 @@ M.ListDatasetExportJobsOutput = {
 
 M.ListDatasetGroupsInput = {
     type = "structure",
+    id = "ListDatasetGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2820,6 +2989,7 @@ M.ListDatasetGroupsInput = {
 
 M.DatasetGroupSummary = {
     type = "structure",
+    id = "DatasetGroupSummary",
     members = {
         name = {
             type = "string",
@@ -2847,6 +3017,7 @@ M.DatasetGroupSummary = {
 
 M.ListDatasetGroupsOutput = {
     type = "structure",
+    id = "ListDatasetGroupsOutput",
     members = {
         datasetGroups = {
             type = "list",
@@ -2860,6 +3031,7 @@ M.ListDatasetGroupsOutput = {
 
 M.ListDatasetImportJobsInput = {
     type = "structure",
+    id = "ListDatasetImportJobsInput",
     members = {
         datasetArn = {
             type = "string",
@@ -2875,6 +3047,7 @@ M.ListDatasetImportJobsInput = {
 
 M.DatasetImportJobSummary = {
     type = "structure",
+    id = "DatasetImportJobSummary",
     members = {
         datasetImportJobArn = {
             type = "string",
@@ -2902,6 +3075,7 @@ M.DatasetImportJobSummary = {
 
 M.ListDatasetImportJobsOutput = {
     type = "structure",
+    id = "ListDatasetImportJobsOutput",
     members = {
         datasetImportJobs = {
             type = "list",
@@ -2915,6 +3089,7 @@ M.ListDatasetImportJobsOutput = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -2930,6 +3105,7 @@ M.ListDatasetsInput = {
 
 M.DatasetSummary = {
     type = "structure",
+    id = "DatasetSummary",
     members = {
         name = {
             type = "string",
@@ -2954,6 +3130,7 @@ M.DatasetSummary = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         datasets = {
             type = "list",
@@ -2967,6 +3144,7 @@ M.ListDatasetsOutput = {
 
 M.ListEventTrackersInput = {
     type = "structure",
+    id = "ListEventTrackersInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -2982,6 +3160,7 @@ M.ListEventTrackersInput = {
 
 M.EventTrackerSummary = {
     type = "structure",
+    id = "EventTrackerSummary",
     members = {
         name = {
             type = "string",
@@ -3003,6 +3182,7 @@ M.EventTrackerSummary = {
 
 M.ListEventTrackersOutput = {
     type = "structure",
+    id = "ListEventTrackersOutput",
     members = {
         eventTrackers = {
             type = "list",
@@ -3016,6 +3196,7 @@ M.ListEventTrackersOutput = {
 
 M.ListFiltersInput = {
     type = "structure",
+    id = "ListFiltersInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -3031,6 +3212,7 @@ M.ListFiltersInput = {
 
 M.FilterSummary = {
     type = "structure",
+    id = "FilterSummary",
     members = {
         name = {
             type = "string",
@@ -3058,6 +3240,7 @@ M.FilterSummary = {
 
 M.ListFiltersOutput = {
     type = "structure",
+    id = "ListFiltersOutput",
     members = {
         Filters = {
             type = "list",
@@ -3071,6 +3254,7 @@ M.ListFiltersOutput = {
 
 M.ListMetricAttributionMetricsInput = {
     type = "structure",
+    id = "ListMetricAttributionMetricsInput",
     members = {
         metricAttributionArn = {
             type = "string",
@@ -3086,6 +3270,7 @@ M.ListMetricAttributionMetricsInput = {
 
 M.ListMetricAttributionMetricsOutput = {
     type = "structure",
+    id = "ListMetricAttributionMetricsOutput",
     members = {
         metrics = {
             type = "list",
@@ -3099,6 +3284,7 @@ M.ListMetricAttributionMetricsOutput = {
 
 M.ListMetricAttributionsInput = {
     type = "structure",
+    id = "ListMetricAttributionsInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -3114,6 +3300,7 @@ M.ListMetricAttributionsInput = {
 
 M.MetricAttributionSummary = {
     type = "structure",
+    id = "MetricAttributionSummary",
     members = {
         name = {
             type = "string",
@@ -3138,6 +3325,7 @@ M.MetricAttributionSummary = {
 
 M.ListMetricAttributionsOutput = {
     type = "structure",
+    id = "ListMetricAttributionsOutput",
     members = {
         metricAttributions = {
             type = "list",
@@ -3155,6 +3343,7 @@ M.RecipeProvider = {
 
 M.ListRecipesInput = {
     type = "structure",
+    id = "ListRecipesInput",
     members = {
         recipeProvider = {
             type = "string",
@@ -3173,6 +3362,7 @@ M.ListRecipesInput = {
 
 M.RecipeSummary = {
     type = "structure",
+    id = "RecipeSummary",
     members = {
         name = {
             type = "string",
@@ -3197,6 +3387,7 @@ M.RecipeSummary = {
 
 M.ListRecipesOutput = {
     type = "structure",
+    id = "ListRecipesOutput",
     members = {
         recipes = {
             type = "list",
@@ -3210,6 +3401,7 @@ M.ListRecipesOutput = {
 
 M.ListRecommendersInput = {
     type = "structure",
+    id = "ListRecommendersInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -3225,6 +3417,7 @@ M.ListRecommendersInput = {
 
 M.RecommenderSummary = {
     type = "structure",
+    id = "RecommenderSummary",
     members = {
         name = {
             type = "string",
@@ -3253,6 +3446,7 @@ M.RecommenderSummary = {
 
 M.ListRecommendersOutput = {
     type = "structure",
+    id = "ListRecommendersOutput",
     members = {
         recommenders = {
             type = "list",
@@ -3266,6 +3460,7 @@ M.ListRecommendersOutput = {
 
 M.ListSchemasInput = {
     type = "structure",
+    id = "ListSchemasInput",
     members = {
         nextToken = {
             type = "string",
@@ -3278,6 +3473,7 @@ M.ListSchemasInput = {
 
 M.DatasetSchemaSummary = {
     type = "structure",
+    id = "DatasetSchemaSummary",
     members = {
         name = {
             type = "string",
@@ -3299,6 +3495,7 @@ M.DatasetSchemaSummary = {
 
 M.ListSchemasOutput = {
     type = "structure",
+    id = "ListSchemasOutput",
     members = {
         schemas = {
             type = "list",
@@ -3312,6 +3509,7 @@ M.ListSchemasOutput = {
 
 M.ListSolutionsInput = {
     type = "structure",
+    id = "ListSolutionsInput",
     members = {
         datasetGroupArn = {
             type = "string",
@@ -3327,6 +3525,7 @@ M.ListSolutionsInput = {
 
 M.SolutionSummary = {
     type = "structure",
+    id = "SolutionSummary",
     members = {
         name = {
             type = "string",
@@ -3351,6 +3550,7 @@ M.SolutionSummary = {
 
 M.ListSolutionsOutput = {
     type = "structure",
+    id = "ListSolutionsOutput",
     members = {
         solutions = {
             type = "list",
@@ -3364,6 +3564,7 @@ M.ListSolutionsOutput = {
 
 M.ListSolutionVersionsInput = {
     type = "structure",
+    id = "ListSolutionVersionsInput",
     members = {
         solutionArn = {
             type = "string",
@@ -3379,6 +3580,7 @@ M.ListSolutionVersionsInput = {
 
 M.ListSolutionVersionsOutput = {
     type = "structure",
+    id = "ListSolutionVersionsOutput",
     members = {
         solutionVersions = {
             type = "list",
@@ -3392,6 +3594,7 @@ M.ListSolutionVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3404,6 +3607,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -3414,6 +3618,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartRecommenderInput = {
     type = "structure",
+    id = "StartRecommenderInput",
     members = {
         recommenderArn = {
             type = "string",
@@ -3426,6 +3631,7 @@ M.StartRecommenderInput = {
 
 M.StartRecommenderOutput = {
     type = "structure",
+    id = "StartRecommenderOutput",
     members = {
         recommenderArn = {
             type = "string",
@@ -3435,6 +3641,7 @@ M.StartRecommenderOutput = {
 
 M.StopRecommenderInput = {
     type = "structure",
+    id = "StopRecommenderInput",
     members = {
         recommenderArn = {
             type = "string",
@@ -3447,6 +3654,7 @@ M.StopRecommenderInput = {
 
 M.StopRecommenderOutput = {
     type = "structure",
+    id = "StopRecommenderOutput",
     members = {
         recommenderArn = {
             type = "string",
@@ -3456,6 +3664,7 @@ M.StopRecommenderOutput = {
 
 M.StopSolutionVersionCreationInput = {
     type = "structure",
+    id = "StopSolutionVersionCreationInput",
     members = {
         solutionVersionArn = {
             type = "string",
@@ -3468,10 +3677,12 @@ M.StopSolutionVersionCreationInput = {
 
 M.StopSolutionVersionCreationOutput = {
     type = "structure",
+    id = "StopSolutionVersionCreationOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3491,10 +3702,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagKeysException = {
     type = "structure",
+    id = "TooManyTagKeysException",
     error = "client",
     members = {
         message = {
@@ -3505,6 +3718,7 @@ M.TooManyTagKeysException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3524,10 +3738,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCampaignInput = {
     type = "structure",
+    id = "UpdateCampaignInput",
     members = {
         campaignArn = {
             type = "string",
@@ -3547,6 +3763,7 @@ M.UpdateCampaignInput = {
 
 M.UpdateCampaignOutput = {
     type = "structure",
+    id = "UpdateCampaignOutput",
     members = {
         campaignArn = {
             type = "string",
@@ -3556,6 +3773,7 @@ M.UpdateCampaignOutput = {
 
 M.UpdateDatasetInput = {
     type = "structure",
+    id = "UpdateDatasetInput",
     members = {
         datasetArn = {
             type = "string",
@@ -3574,6 +3792,7 @@ M.UpdateDatasetInput = {
 
 M.UpdateDatasetOutput = {
     type = "structure",
+    id = "UpdateDatasetOutput",
     members = {
         datasetArn = {
             type = "string",
@@ -3583,6 +3802,7 @@ M.UpdateDatasetOutput = {
 
 M.UpdateMetricAttributionInput = {
     type = "structure",
+    id = "UpdateMetricAttributionInput",
     members = {
         addMetrics = {
             type = "list",
@@ -3601,6 +3821,7 @@ M.UpdateMetricAttributionInput = {
 
 M.UpdateMetricAttributionOutput = {
     type = "structure",
+    id = "UpdateMetricAttributionOutput",
     members = {
         metricAttributionArn = {
             type = "string",
@@ -3610,6 +3831,7 @@ M.UpdateMetricAttributionOutput = {
 
 M.UpdateRecommenderInput = {
     type = "structure",
+    id = "UpdateRecommenderInput",
     members = {
         recommenderArn = {
             type = "string",
@@ -3625,6 +3847,7 @@ M.UpdateRecommenderInput = {
 
 M.UpdateRecommenderOutput = {
     type = "structure",
+    id = "UpdateRecommenderOutput",
     members = {
         recommenderArn = {
             type = "string",
@@ -3634,6 +3857,7 @@ M.UpdateRecommenderOutput = {
 
 M.UpdateSolutionInput = {
     type = "structure",
+    id = "UpdateSolutionInput",
     members = {
         solutionArn = {
             type = "string",
@@ -3653,6 +3877,7 @@ M.UpdateSolutionInput = {
 
 M.UpdateSolutionOutput = {
     type = "structure",
+    id = "UpdateSolutionOutput",
     members = {
         solutionArn = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AttributeValue = {
     type = "structure",
+    id = "AttributeValue",
     members = {
         Value = {
             type = "string",
@@ -21,6 +23,7 @@ M.AttributeValue = {
 
 M.DescribeServicesInput = {
     type = "structure",
+    id = "DescribeServicesInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -42,6 +45,7 @@ M.DescribeServicesInput = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         ServiceCode = {
             type = "string",
@@ -58,6 +62,7 @@ M.Service = {
 
 M.DescribeServicesOutput = {
     type = "structure",
+    id = "DescribeServicesOutput",
     members = {
         Services = {
             type = "list",
@@ -74,6 +79,7 @@ M.DescribeServicesOutput = {
 
 M.ExpiredNextTokenException = {
     type = "structure",
+    id = "ExpiredNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -84,6 +90,7 @@ M.ExpiredNextTokenException = {
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         Message = {
@@ -94,6 +101,7 @@ M.InternalErrorException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -104,6 +112,7 @@ M.InvalidNextTokenException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -114,6 +123,7 @@ M.InvalidParameterException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -124,6 +134,7 @@ M.NotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -134,6 +145,7 @@ M.ThrottlingException = {
 
 M.GetAttributeValuesInput = {
     type = "structure",
+    id = "GetAttributeValuesInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -161,6 +173,7 @@ M.GetAttributeValuesInput = {
 
 M.GetAttributeValuesOutput = {
     type = "structure",
+    id = "GetAttributeValuesOutput",
     members = {
         AttributeValues = {
             type = "list",
@@ -174,6 +187,7 @@ M.GetAttributeValuesOutput = {
 
 M.GetPriceListFileUrlInput = {
     type = "structure",
+    id = "GetPriceListFileUrlInput",
     members = {
         PriceListArn = {
             type = "string",
@@ -192,6 +206,7 @@ M.GetPriceListFileUrlInput = {
 
 M.GetPriceListFileUrlOutput = {
     type = "structure",
+    id = "GetPriceListFileUrlOutput",
     members = {
         Url = {
             type = "string",
@@ -201,6 +216,7 @@ M.GetPriceListFileUrlOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -219,6 +235,7 @@ M.FilterType = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Type = {
             type = "string",
@@ -243,6 +260,7 @@ M.Filter = {
 
 M.GetProductsInput = {
     type = "structure",
+    id = "GetProductsInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -271,6 +289,7 @@ M.GetProductsInput = {
 
 M.GetProductsOutput = {
     type = "structure",
+    id = "GetProductsOutput",
     members = {
         FormatVersion = {
             type = "string",
@@ -287,6 +306,7 @@ M.GetProductsOutput = {
 
 M.ListPriceListsInput = {
     type = "structure",
+    id = "ListPriceListsInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -323,6 +343,7 @@ M.ListPriceListsInput = {
 
 M.PriceList = {
     type = "structure",
+    id = "PriceList",
     members = {
         PriceListArn = {
             type = "string",
@@ -342,6 +363,7 @@ M.PriceList = {
 
 M.ListPriceListsOutput = {
     type = "structure",
+    id = "ListPriceListsOutput",
     members = {
         PriceLists = {
             type = "list",

@@ -2,6 +2,7 @@ local M = {}
 
 M.DeletionProtectionSettings = {
     type = "structure",
+    id = "DeletionProtectionSettings",
     members = {
         Enabled = {
             type = "boolean",
@@ -17,6 +18,7 @@ M.DeletionProtectionSettings = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         Name = {
             type = "string",
@@ -35,6 +37,7 @@ M.Action = {
 
 M.ActionInvocation = {
     type = "structure",
+    id = "ActionInvocation",
     members = {
         ExtensionIdentifier = {
             type = "string",
@@ -73,6 +76,7 @@ M.ActionPoint = {
 
 M.InvalidConfigurationDetail = {
     type = "structure",
+    id = "InvalidConfigurationDetail",
     members = {
         Constraint = {
             type = "string",
@@ -94,6 +98,7 @@ M.InvalidConfigurationDetail = {
 
 M.BadRequestDetails = {
     type = "union",
+    id = "BadRequestDetails",
     members = {
         InvalidConfiguration = {
             type = "list",
@@ -108,6 +113,7 @@ M.BadRequestReason = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -122,6 +128,7 @@ M.BadRequestException = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -142,6 +149,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         Id = {
             type = "string",
@@ -157,6 +165,7 @@ M.CreateApplicationOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -167,6 +176,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -182,6 +192,7 @@ M.ValidatorType = {
 
 M.Validator = {
     type = "structure",
+    id = "Validator",
     members = {
         Type = {
             type = "string",
@@ -200,6 +211,7 @@ M.Validator = {
 
 M.CreateConfigurationProfileInput = {
     type = "structure",
+    id = "CreateConfigurationProfileInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -246,6 +258,7 @@ M.CreateConfigurationProfileInput = {
 
 M.CreateConfigurationProfileOutput = {
     type = "structure",
+    id = "CreateConfigurationProfileOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -283,6 +296,7 @@ M.CreateConfigurationProfileOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -306,6 +320,7 @@ M.ReplicateTo = {
 
 M.CreateDeploymentStrategyInput = {
     type = "structure",
+    id = "CreateDeploymentStrategyInput",
     members = {
         Name = {
             type = "string",
@@ -351,6 +366,7 @@ M.CreateDeploymentStrategyInput = {
 
 M.CreateDeploymentStrategyOutput = {
     type = "structure",
+    id = "CreateDeploymentStrategyOutput",
     members = {
         Id = {
             type = "string",
@@ -387,6 +403,7 @@ M.CreateDeploymentStrategyOutput = {
 
 M.Monitor = {
     type = "structure",
+    id = "Monitor",
     members = {
         AlarmArn = {
             type = "string",
@@ -402,6 +419,7 @@ M.Monitor = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -441,6 +459,7 @@ M.EnvironmentState = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -466,6 +485,7 @@ M.CreateEnvironmentOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -476,6 +496,7 @@ M.ConflictException = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         Description = {
             type = "string",
@@ -497,6 +518,7 @@ M.Parameter = {
 
 M.CreateExtensionInput = {
     type = "structure",
+    id = "CreateExtensionInput",
     members = {
         Name = {
             type = "string",
@@ -537,6 +559,7 @@ M.CreateExtensionInput = {
 
 M.CreateExtensionOutput = {
     type = "structure",
+    id = "CreateExtensionOutput",
     members = {
         Id = {
             type = "string",
@@ -571,6 +594,7 @@ M.CreateExtensionOutput = {
 
 M.CreateExtensionAssociationInput = {
     type = "structure",
+    id = "CreateExtensionAssociationInput",
     members = {
         ExtensionIdentifier = {
             type = "string",
@@ -605,6 +629,7 @@ M.CreateExtensionAssociationInput = {
 
 M.CreateExtensionAssociationOutput = {
     type = "structure",
+    id = "CreateExtensionAssociationOutput",
     members = {
         Id = {
             type = "string",
@@ -634,6 +659,7 @@ M.CreateExtensionAssociationOutput = {
 
 M.CreateHostedConfigurationVersionInput = {
     type = "structure",
+    id = "CreateHostedConfigurationVersionInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -687,6 +713,7 @@ M.CreateHostedConfigurationVersionInput = {
 
 M.CreateHostedConfigurationVersionOutput = {
     type = "structure",
+    id = "CreateHostedConfigurationVersionOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -746,6 +773,7 @@ M.BytesMeasure = {
 
 M.PayloadTooLargeException = {
     type = "structure",
+    id = "PayloadTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -771,6 +799,7 @@ M.PayloadTooLargeException = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -784,6 +813,7 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.DeletionProtectionCheck = {
@@ -794,6 +824,7 @@ M.DeletionProtectionCheck = {
 
 M.DeleteConfigurationProfileInput = {
     type = "structure",
+    id = "DeleteConfigurationProfileInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -820,10 +851,12 @@ M.DeleteConfigurationProfileInput = {
 
 M.DeleteConfigurationProfileOutput = {
     type = "structure",
+    id = "DeleteConfigurationProfileOutput",
 }
 
 M.DeleteDeploymentStrategyInput = {
     type = "structure",
+    id = "DeleteDeploymentStrategyInput",
     members = {
         DeploymentStrategyId = {
             type = "string",
@@ -837,10 +870,12 @@ M.DeleteDeploymentStrategyInput = {
 
 M.DeleteDeploymentStrategyOutput = {
     type = "structure",
+    id = "DeleteDeploymentStrategyOutput",
 }
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -867,10 +902,12 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
 }
 
 M.DeleteExtensionInput = {
     type = "structure",
+    id = "DeleteExtensionInput",
     members = {
         ExtensionIdentifier = {
             type = "string",
@@ -891,10 +928,12 @@ M.DeleteExtensionInput = {
 
 M.DeleteExtensionOutput = {
     type = "structure",
+    id = "DeleteExtensionOutput",
 }
 
 M.DeleteExtensionAssociationInput = {
     type = "structure",
+    id = "DeleteExtensionAssociationInput",
     members = {
         ExtensionAssociationId = {
             type = "string",
@@ -908,10 +947,12 @@ M.DeleteExtensionAssociationInput = {
 
 M.DeleteExtensionAssociationOutput = {
     type = "structure",
+    id = "DeleteExtensionAssociationOutput",
 }
 
 M.DeleteHostedConfigurationVersionInput = {
     type = "structure",
+    id = "DeleteHostedConfigurationVersionInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -940,14 +981,17 @@ M.DeleteHostedConfigurationVersionInput = {
 
 M.DeleteHostedConfigurationVersionOutput = {
     type = "structure",
+    id = "DeleteHostedConfigurationVersionOutput",
 }
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
 }
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         DeletionProtection = M.DeletionProtectionSettings,
     },
@@ -955,6 +999,7 @@ M.GetAccountSettingsOutput = {
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -968,6 +1013,7 @@ M.GetApplicationInput = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         Id = {
             type = "string",
@@ -983,6 +1029,7 @@ M.GetApplicationOutput = {
 
 M.GetConfigurationInput = {
     type = "structure",
+    id = "GetConfigurationInput",
     members = {
         Application = {
             type = "string",
@@ -1023,6 +1070,7 @@ M.GetConfigurationInput = {
 
 M.GetConfigurationOutput = {
     type = "structure",
+    id = "GetConfigurationOutput",
     members = {
         Content = {
             type = "blob",
@@ -1047,6 +1095,7 @@ M.GetConfigurationOutput = {
 
 M.GetConfigurationProfileInput = {
     type = "structure",
+    id = "GetConfigurationProfileInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1067,6 +1116,7 @@ M.GetConfigurationProfileInput = {
 
 M.GetConfigurationProfileOutput = {
     type = "structure",
+    id = "GetConfigurationProfileOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1104,6 +1154,7 @@ M.GetConfigurationProfileOutput = {
 
 M.GetDeploymentInput = {
     type = "structure",
+    id = "GetDeploymentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1132,6 +1183,7 @@ M.GetDeploymentInput = {
 
 M.AppliedExtension = {
     type = "structure",
+    id = "AppliedExtension",
     members = {
         ExtensionId = {
             type = "string",
@@ -1172,6 +1224,7 @@ M.TriggeredBy = {
 
 M.DeploymentEvent = {
     type = "structure",
+    id = "DeploymentEvent",
     members = {
         EventType = {
             type = "string",
@@ -1207,6 +1260,7 @@ M.DeploymentState = {
 
 M.GetDeploymentOutput = {
     type = "structure",
+    id = "GetDeploymentOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1296,6 +1350,7 @@ M.GetDeploymentOutput = {
 
 M.GetDeploymentStrategyInput = {
     type = "structure",
+    id = "GetDeploymentStrategyInput",
     members = {
         DeploymentStrategyId = {
             type = "string",
@@ -1309,6 +1364,7 @@ M.GetDeploymentStrategyInput = {
 
 M.GetDeploymentStrategyOutput = {
     type = "structure",
+    id = "GetDeploymentStrategyOutput",
     members = {
         Id = {
             type = "string",
@@ -1345,6 +1401,7 @@ M.GetDeploymentStrategyOutput = {
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1365,6 +1422,7 @@ M.GetEnvironmentInput = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1390,6 +1448,7 @@ M.GetEnvironmentOutput = {
 
 M.GetExtensionInput = {
     type = "structure",
+    id = "GetExtensionInput",
     members = {
         ExtensionIdentifier = {
             type = "string",
@@ -1410,6 +1469,7 @@ M.GetExtensionInput = {
 
 M.GetExtensionOutput = {
     type = "structure",
+    id = "GetExtensionOutput",
     members = {
         Id = {
             type = "string",
@@ -1444,6 +1504,7 @@ M.GetExtensionOutput = {
 
 M.GetExtensionAssociationInput = {
     type = "structure",
+    id = "GetExtensionAssociationInput",
     members = {
         ExtensionAssociationId = {
             type = "string",
@@ -1457,6 +1518,7 @@ M.GetExtensionAssociationInput = {
 
 M.GetExtensionAssociationOutput = {
     type = "structure",
+    id = "GetExtensionAssociationOutput",
     members = {
         Id = {
             type = "string",
@@ -1486,6 +1548,7 @@ M.GetExtensionAssociationOutput = {
 
 M.GetHostedConfigurationVersionInput = {
     type = "structure",
+    id = "GetHostedConfigurationVersionInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1514,6 +1577,7 @@ M.GetHostedConfigurationVersionInput = {
 
 M.GetHostedConfigurationVersionOutput = {
     type = "structure",
+    id = "GetHostedConfigurationVersionOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1569,6 +1633,7 @@ M.GetHostedConfigurationVersionOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1587,6 +1652,7 @@ M.ListApplicationsInput = {
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         Id = {
             type = "string",
@@ -1602,6 +1668,7 @@ M.Application = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         Items = {
             type = "list",
@@ -1615,6 +1682,7 @@ M.ListApplicationsOutput = {
 
 M.ListConfigurationProfilesInput = {
     type = "structure",
+    id = "ListConfigurationProfilesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1646,6 +1714,7 @@ M.ListConfigurationProfilesInput = {
 
 M.ConfigurationProfileSummary = {
     type = "structure",
+    id = "ConfigurationProfileSummary",
     members = {
         ApplicationId = {
             type = "string",
@@ -1671,6 +1740,7 @@ M.ConfigurationProfileSummary = {
 
 M.ListConfigurationProfilesOutput = {
     type = "structure",
+    id = "ListConfigurationProfilesOutput",
     members = {
         Items = {
             type = "list",
@@ -1684,6 +1754,7 @@ M.ListConfigurationProfilesOutput = {
 
 M.ListDeploymentsInput = {
     type = "structure",
+    id = "ListDeploymentsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1716,6 +1787,7 @@ M.ListDeploymentsInput = {
 
 M.DeploymentSummary = {
     type = "structure",
+    id = "DeploymentSummary",
     members = {
         DeploymentNumber = {
             type = "integer",
@@ -1773,6 +1845,7 @@ M.DeploymentSummary = {
 
 M.ListDeploymentsOutput = {
     type = "structure",
+    id = "ListDeploymentsOutput",
     members = {
         Items = {
             type = "list",
@@ -1786,6 +1859,7 @@ M.ListDeploymentsOutput = {
 
 M.ListDeploymentStrategiesInput = {
     type = "structure",
+    id = "ListDeploymentStrategiesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1804,6 +1878,7 @@ M.ListDeploymentStrategiesInput = {
 
 M.DeploymentStrategy = {
     type = "structure",
+    id = "DeploymentStrategy",
     members = {
         Id = {
             type = "string",
@@ -1840,6 +1915,7 @@ M.DeploymentStrategy = {
 
 M.ListDeploymentStrategiesOutput = {
     type = "structure",
+    id = "ListDeploymentStrategiesOutput",
     members = {
         Items = {
             type = "list",
@@ -1853,6 +1929,7 @@ M.ListDeploymentStrategiesOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1878,6 +1955,7 @@ M.ListEnvironmentsInput = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         ApplicationId = {
             type = "string",
@@ -1903,6 +1981,7 @@ M.Environment = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         Items = {
             type = "list",
@@ -1916,6 +1995,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListExtensionAssociationsInput = {
     type = "structure",
+    id = "ListExtensionAssociationsInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -1953,6 +2033,7 @@ M.ListExtensionAssociationsInput = {
 
 M.ExtensionAssociationSummary = {
     type = "structure",
+    id = "ExtensionAssociationSummary",
     members = {
         Id = {
             type = "string",
@@ -1968,6 +2049,7 @@ M.ExtensionAssociationSummary = {
 
 M.ListExtensionAssociationsOutput = {
     type = "structure",
+    id = "ListExtensionAssociationsOutput",
     members = {
         Items = {
             type = "list",
@@ -1981,6 +2063,7 @@ M.ListExtensionAssociationsOutput = {
 
 M.ListExtensionsInput = {
     type = "structure",
+    id = "ListExtensionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2005,6 +2088,7 @@ M.ListExtensionsInput = {
 
 M.ExtensionSummary = {
     type = "structure",
+    id = "ExtensionSummary",
     members = {
         Id = {
             type = "string",
@@ -2029,6 +2113,7 @@ M.ExtensionSummary = {
 
 M.ListExtensionsOutput = {
     type = "structure",
+    id = "ListExtensionsOutput",
     members = {
         Items = {
             type = "list",
@@ -2042,6 +2127,7 @@ M.ListExtensionsOutput = {
 
 M.ListHostedConfigurationVersionsInput = {
     type = "structure",
+    id = "ListHostedConfigurationVersionsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2080,6 +2166,7 @@ M.ListHostedConfigurationVersionsInput = {
 
 M.HostedConfigurationVersionSummary = {
     type = "structure",
+    id = "HostedConfigurationVersionSummary",
     members = {
         ApplicationId = {
             type = "string",
@@ -2110,6 +2197,7 @@ M.HostedConfigurationVersionSummary = {
 
 M.ListHostedConfigurationVersionsOutput = {
     type = "structure",
+    id = "ListHostedConfigurationVersionsOutput",
     members = {
         Items = {
             type = "list",
@@ -2123,6 +2211,7 @@ M.ListHostedConfigurationVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2136,6 +2225,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -2147,6 +2237,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartDeploymentInput = {
     type = "structure",
+    id = "StartDeploymentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2201,6 +2292,7 @@ M.StartDeploymentInput = {
 
 M.StartDeploymentOutput = {
     type = "structure",
+    id = "StartDeploymentOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2290,6 +2382,7 @@ M.StartDeploymentOutput = {
 
 M.StopDeploymentInput = {
     type = "structure",
+    id = "StopDeploymentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2325,6 +2418,7 @@ M.StopDeploymentInput = {
 
 M.StopDeploymentOutput = {
     type = "structure",
+    id = "StopDeploymentOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2414,6 +2508,7 @@ M.StopDeploymentOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2435,10 +2530,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2460,10 +2557,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         DeletionProtection = M.DeletionProtectionSettings,
     },
@@ -2471,6 +2570,7 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
     members = {
         DeletionProtection = M.DeletionProtectionSettings,
     },
@@ -2478,6 +2578,7 @@ M.UpdateAccountSettingsOutput = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2497,6 +2598,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         Id = {
             type = "string",
@@ -2512,6 +2614,7 @@ M.UpdateApplicationOutput = {
 
 M.UpdateConfigurationProfileInput = {
     type = "structure",
+    id = "UpdateConfigurationProfileInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2548,6 +2651,7 @@ M.UpdateConfigurationProfileInput = {
 
 M.UpdateConfigurationProfileOutput = {
     type = "structure",
+    id = "UpdateConfigurationProfileOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2585,6 +2689,7 @@ M.UpdateConfigurationProfileOutput = {
 
 M.UpdateDeploymentStrategyInput = {
     type = "structure",
+    id = "UpdateDeploymentStrategyInput",
     members = {
         DeploymentStrategyId = {
             type = "string",
@@ -2619,6 +2724,7 @@ M.UpdateDeploymentStrategyInput = {
 
 M.UpdateDeploymentStrategyOutput = {
     type = "structure",
+    id = "UpdateDeploymentStrategyOutput",
     members = {
         Id = {
             type = "string",
@@ -2655,6 +2761,7 @@ M.UpdateDeploymentStrategyOutput = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2685,6 +2792,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2710,6 +2818,7 @@ M.UpdateEnvironmentOutput = {
 
 M.UpdateExtensionInput = {
     type = "structure",
+    id = "UpdateExtensionInput",
     members = {
         ExtensionIdentifier = {
             type = "string",
@@ -2742,6 +2851,7 @@ M.UpdateExtensionInput = {
 
 M.UpdateExtensionOutput = {
     type = "structure",
+    id = "UpdateExtensionOutput",
     members = {
         Id = {
             type = "string",
@@ -2776,6 +2886,7 @@ M.UpdateExtensionOutput = {
 
 M.UpdateExtensionAssociationInput = {
     type = "structure",
+    id = "UpdateExtensionAssociationInput",
     members = {
         ExtensionAssociationId = {
             type = "string",
@@ -2794,6 +2905,7 @@ M.UpdateExtensionAssociationInput = {
 
 M.UpdateExtensionAssociationOutput = {
     type = "structure",
+    id = "UpdateExtensionAssociationOutput",
     members = {
         Id = {
             type = "string",
@@ -2823,6 +2935,7 @@ M.UpdateExtensionAssociationOutput = {
 
 M.ValidateConfigurationInput = {
     type = "structure",
+    id = "ValidateConfigurationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2850,6 +2963,7 @@ M.ValidateConfigurationInput = {
 
 M.ValidateConfigurationOutput = {
     type = "structure",
+    id = "ValidateConfigurationOutput",
 }
 
 return M

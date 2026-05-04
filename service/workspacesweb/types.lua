@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AssociateBrowserSettingsInput = {
     type = "structure",
+    id = "AssociateBrowserSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -32,6 +34,7 @@ M.AssociateBrowserSettingsInput = {
 
 M.AssociateBrowserSettingsOutput = {
     type = "structure",
+    id = "AssociateBrowserSettingsOutput",
     members = {
         portalArn = {
             type = "string",
@@ -50,6 +53,7 @@ M.AssociateBrowserSettingsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -66,6 +70,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -83,6 +88,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -99,6 +105,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -122,6 +129,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -147,6 +155,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -164,6 +173,7 @@ M.ValidationException = {
 
 M.AssociateDataProtectionSettingsInput = {
     type = "structure",
+    id = "AssociateDataProtectionSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -184,6 +194,7 @@ M.AssociateDataProtectionSettingsInput = {
 
 M.AssociateDataProtectionSettingsOutput = {
     type = "structure",
+    id = "AssociateDataProtectionSettingsOutput",
     members = {
         portalArn = {
             type = "string",
@@ -202,6 +213,7 @@ M.AssociateDataProtectionSettingsOutput = {
 
 M.AssociateIpAccessSettingsInput = {
     type = "structure",
+    id = "AssociateIpAccessSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -222,6 +234,7 @@ M.AssociateIpAccessSettingsInput = {
 
 M.AssociateIpAccessSettingsOutput = {
     type = "structure",
+    id = "AssociateIpAccessSettingsOutput",
     members = {
         portalArn = {
             type = "string",
@@ -240,6 +253,7 @@ M.AssociateIpAccessSettingsOutput = {
 
 M.AssociateNetworkSettingsInput = {
     type = "structure",
+    id = "AssociateNetworkSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -260,6 +274,7 @@ M.AssociateNetworkSettingsInput = {
 
 M.AssociateNetworkSettingsOutput = {
     type = "structure",
+    id = "AssociateNetworkSettingsOutput",
     members = {
         portalArn = {
             type = "string",
@@ -278,6 +293,7 @@ M.AssociateNetworkSettingsOutput = {
 
 M.AssociateSessionLoggerInput = {
     type = "structure",
+    id = "AssociateSessionLoggerInput",
     members = {
         portalArn = {
             type = "string",
@@ -298,6 +314,7 @@ M.AssociateSessionLoggerInput = {
 
 M.AssociateSessionLoggerOutput = {
     type = "structure",
+    id = "AssociateSessionLoggerOutput",
     members = {
         portalArn = {
             type = "string",
@@ -316,6 +333,7 @@ M.AssociateSessionLoggerOutput = {
 
 M.AssociateTrustStoreInput = {
     type = "structure",
+    id = "AssociateTrustStoreInput",
     members = {
         portalArn = {
             type = "string",
@@ -336,6 +354,7 @@ M.AssociateTrustStoreInput = {
 
 M.AssociateTrustStoreOutput = {
     type = "structure",
+    id = "AssociateTrustStoreOutput",
     members = {
         portalArn = {
             type = "string",
@@ -354,6 +373,7 @@ M.AssociateTrustStoreOutput = {
 
 M.AssociateUserAccessLoggingSettingsInput = {
     type = "structure",
+    id = "AssociateUserAccessLoggingSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -374,6 +394,7 @@ M.AssociateUserAccessLoggingSettingsInput = {
 
 M.AssociateUserAccessLoggingSettingsOutput = {
     type = "structure",
+    id = "AssociateUserAccessLoggingSettingsOutput",
     members = {
         portalArn = {
             type = "string",
@@ -392,6 +413,7 @@ M.AssociateUserAccessLoggingSettingsOutput = {
 
 M.AssociateUserSettingsInput = {
     type = "structure",
+    id = "AssociateUserSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -412,6 +434,7 @@ M.AssociateUserSettingsInput = {
 
 M.AssociateUserSettingsOutput = {
     type = "structure",
+    id = "AssociateUserSettingsOutput",
     members = {
         portalArn = {
             type = "string",
@@ -435,6 +458,7 @@ M.AuthenticationType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -483,6 +507,7 @@ M.Category = {
 
 M.WebContentFilteringPolicy = {
     type = "structure",
+    id = "WebContentFilteringPolicy",
     members = {
         blockedCategories = {
             type = "list",
@@ -501,6 +526,7 @@ M.WebContentFilteringPolicy = {
 
 M.CreateBrowserSettingsInput = {
     type = "structure",
+    id = "CreateBrowserSettingsInput",
     members = {
         tags = {
             type = "list",
@@ -529,6 +555,7 @@ M.CreateBrowserSettingsInput = {
 
 M.CreateBrowserSettingsOutput = {
     type = "structure",
+    id = "CreateBrowserSettingsOutput",
     members = {
         browserSettingsArn = {
             type = "string",
@@ -541,6 +568,7 @@ M.CreateBrowserSettingsOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -563,6 +591,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteBrowserSettingsInput = {
     type = "structure",
+    id = "DeleteBrowserSettingsInput",
     members = {
         browserSettingsArn = {
             type = "string",
@@ -576,10 +605,12 @@ M.DeleteBrowserSettingsInput = {
 
 M.DeleteBrowserSettingsOutput = {
     type = "structure",
+    id = "DeleteBrowserSettingsOutput",
 }
 
 M.GetBrowserSettingsInput = {
     type = "structure",
+    id = "GetBrowserSettingsInput",
     members = {
         browserSettingsArn = {
             type = "string",
@@ -593,6 +624,7 @@ M.GetBrowserSettingsInput = {
 
 M.BrowserSettings = {
     type = "structure",
+    id = "BrowserSettings",
     members = {
         browserSettingsArn = {
             type = "string",
@@ -621,6 +653,7 @@ M.BrowserSettings = {
 
 M.GetBrowserSettingsOutput = {
     type = "structure",
+    id = "GetBrowserSettingsOutput",
     members = {
         browserSettings = M.BrowserSettings,
     },
@@ -628,6 +661,7 @@ M.GetBrowserSettingsOutput = {
 
 M.ListBrowserSettingsInput = {
     type = "structure",
+    id = "ListBrowserSettingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -646,6 +680,7 @@ M.ListBrowserSettingsInput = {
 
 M.BrowserSettingsSummary = {
     type = "structure",
+    id = "BrowserSettingsSummary",
     members = {
         browserSettingsArn = {
             type = "string",
@@ -658,6 +693,7 @@ M.BrowserSettingsSummary = {
 
 M.ListBrowserSettingsOutput = {
     type = "structure",
+    id = "ListBrowserSettingsOutput",
     members = {
         browserSettings = {
             type = "list",
@@ -671,6 +707,7 @@ M.ListBrowserSettingsOutput = {
 
 M.UpdateBrowserSettingsInput = {
     type = "structure",
+    id = "UpdateBrowserSettingsInput",
     members = {
         browserSettingsArn = {
             type = "string",
@@ -694,6 +731,7 @@ M.UpdateBrowserSettingsInput = {
 
 M.UpdateBrowserSettingsOutput = {
     type = "structure",
+    id = "UpdateBrowserSettingsOutput",
     members = {
         browserSettings = setmetatable({ traits = {
             required = true,
@@ -703,6 +741,7 @@ M.UpdateBrowserSettingsOutput = {
 
 M.CustomPattern = {
     type = "structure",
+    id = "CustomPattern",
     members = {
         patternName = {
             type = "string",
@@ -731,6 +770,7 @@ M.RedactionPlaceHolderType = {
 
 M.RedactionPlaceHolder = {
     type = "structure",
+    id = "RedactionPlaceHolder",
     members = {
         redactionPlaceHolderType = {
             type = "string",
@@ -746,6 +786,7 @@ M.RedactionPlaceHolder = {
 
 M.InlineRedactionPattern = {
     type = "structure",
+    id = "InlineRedactionPattern",
     members = {
         builtInPatternId = {
             type = "string",
@@ -770,6 +811,7 @@ M.InlineRedactionPattern = {
 
 M.InlineRedactionConfiguration = {
     type = "structure",
+    id = "InlineRedactionConfiguration",
     members = {
         inlineRedactionPatterns = {
             type = "list",
@@ -794,6 +836,7 @@ M.InlineRedactionConfiguration = {
 
 M.CreateDataProtectionSettingsInput = {
     type = "structure",
+    id = "CreateDataProtectionSettingsInput",
     members = {
         displayName = {
             type = "string",
@@ -825,6 +868,7 @@ M.CreateDataProtectionSettingsInput = {
 
 M.CreateDataProtectionSettingsOutput = {
     type = "structure",
+    id = "CreateDataProtectionSettingsOutput",
     members = {
         dataProtectionSettingsArn = {
             type = "string",
@@ -837,6 +881,7 @@ M.CreateDataProtectionSettingsOutput = {
 
 M.DeleteDataProtectionSettingsInput = {
     type = "structure",
+    id = "DeleteDataProtectionSettingsInput",
     members = {
         dataProtectionSettingsArn = {
             type = "string",
@@ -850,10 +895,12 @@ M.DeleteDataProtectionSettingsInput = {
 
 M.DeleteDataProtectionSettingsOutput = {
     type = "structure",
+    id = "DeleteDataProtectionSettingsOutput",
 }
 
 M.GetDataProtectionSettingsInput = {
     type = "structure",
+    id = "GetDataProtectionSettingsInput",
     members = {
         dataProtectionSettingsArn = {
             type = "string",
@@ -867,6 +914,7 @@ M.GetDataProtectionSettingsInput = {
 
 M.DataProtectionSettings = {
     type = "structure",
+    id = "DataProtectionSettings",
     members = {
         dataProtectionSettingsArn = {
             type = "string",
@@ -901,6 +949,7 @@ M.DataProtectionSettings = {
 
 M.GetDataProtectionSettingsOutput = {
     type = "structure",
+    id = "GetDataProtectionSettingsOutput",
     members = {
         dataProtectionSettings = M.DataProtectionSettings,
     },
@@ -908,6 +957,7 @@ M.GetDataProtectionSettingsOutput = {
 
 M.ListDataProtectionSettingsInput = {
     type = "structure",
+    id = "ListDataProtectionSettingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -926,6 +976,7 @@ M.ListDataProtectionSettingsInput = {
 
 M.DataProtectionSettingsSummary = {
     type = "structure",
+    id = "DataProtectionSettingsSummary",
     members = {
         dataProtectionSettingsArn = {
             type = "string",
@@ -947,6 +998,7 @@ M.DataProtectionSettingsSummary = {
 
 M.ListDataProtectionSettingsOutput = {
     type = "structure",
+    id = "ListDataProtectionSettingsOutput",
     members = {
         dataProtectionSettings = {
             type = "list",
@@ -960,6 +1012,7 @@ M.ListDataProtectionSettingsOutput = {
 
 M.UpdateDataProtectionSettingsInput = {
     type = "structure",
+    id = "UpdateDataProtectionSettingsInput",
     members = {
         dataProtectionSettingsArn = {
             type = "string",
@@ -986,6 +1039,7 @@ M.UpdateDataProtectionSettingsInput = {
 
 M.UpdateDataProtectionSettingsOutput = {
     type = "structure",
+    id = "UpdateDataProtectionSettingsOutput",
     members = {
         dataProtectionSettings = setmetatable({ traits = {
             required = true,
@@ -995,6 +1049,7 @@ M.UpdateDataProtectionSettingsOutput = {
 
 M.ExpireSessionInput = {
     type = "structure",
+    id = "ExpireSessionInput",
     members = {
         portalId = {
             type = "string",
@@ -1015,10 +1070,12 @@ M.ExpireSessionInput = {
 
 M.ExpireSessionOutput = {
     type = "structure",
+    id = "ExpireSessionOutput",
 }
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         portalId = {
             type = "string",
@@ -1044,6 +1101,7 @@ M.SessionStatus = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         portalArn = {
             type = "string",
@@ -1072,6 +1130,7 @@ M.Session = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         session = M.Session,
     },
@@ -1088,6 +1147,7 @@ M.IdentityProviderType = {
 
 M.CreateIdentityProviderInput = {
     type = "structure",
+    id = "CreateIdentityProviderInput",
     members = {
         portalArn = {
             type = "string",
@@ -1130,6 +1190,7 @@ M.CreateIdentityProviderInput = {
 
 M.CreateIdentityProviderOutput = {
     type = "structure",
+    id = "CreateIdentityProviderOutput",
     members = {
         identityProviderArn = {
             type = "string",
@@ -1142,6 +1203,7 @@ M.CreateIdentityProviderOutput = {
 
 M.DeleteIdentityProviderInput = {
     type = "structure",
+    id = "DeleteIdentityProviderInput",
     members = {
         identityProviderArn = {
             type = "string",
@@ -1155,10 +1217,12 @@ M.DeleteIdentityProviderInput = {
 
 M.DeleteIdentityProviderOutput = {
     type = "structure",
+    id = "DeleteIdentityProviderOutput",
 }
 
 M.GetIdentityProviderInput = {
     type = "structure",
+    id = "GetIdentityProviderInput",
     members = {
         identityProviderArn = {
             type = "string",
@@ -1172,6 +1236,7 @@ M.GetIdentityProviderInput = {
 
 M.IdentityProvider = {
     type = "structure",
+    id = "IdentityProvider",
     members = {
         identityProviderArn = {
             type = "string",
@@ -1195,6 +1260,7 @@ M.IdentityProvider = {
 
 M.GetIdentityProviderOutput = {
     type = "structure",
+    id = "GetIdentityProviderOutput",
     members = {
         identityProvider = M.IdentityProvider,
     },
@@ -1202,6 +1268,7 @@ M.GetIdentityProviderOutput = {
 
 M.ListIdentityProvidersInput = {
     type = "structure",
+    id = "ListIdentityProvidersInput",
     members = {
         nextToken = {
             type = "string",
@@ -1227,6 +1294,7 @@ M.ListIdentityProvidersInput = {
 
 M.IdentityProviderSummary = {
     type = "structure",
+    id = "IdentityProviderSummary",
     members = {
         identityProviderArn = {
             type = "string",
@@ -1245,6 +1313,7 @@ M.IdentityProviderSummary = {
 
 M.ListIdentityProvidersOutput = {
     type = "structure",
+    id = "ListIdentityProvidersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1258,6 +1327,7 @@ M.ListIdentityProvidersOutput = {
 
 M.UpdateIdentityProviderInput = {
     type = "structure",
+    id = "UpdateIdentityProviderInput",
     members = {
         identityProviderArn = {
             type = "string",
@@ -1288,6 +1358,7 @@ M.UpdateIdentityProviderInput = {
 
 M.UpdateIdentityProviderOutput = {
     type = "structure",
+    id = "UpdateIdentityProviderOutput",
     members = {
         identityProvider = setmetatable({ traits = {
             required = true,
@@ -1297,6 +1368,7 @@ M.UpdateIdentityProviderOutput = {
 
 M.IpRule = {
     type = "structure",
+    id = "IpRule",
     members = {
         ipRange = {
             type = "string",
@@ -1312,6 +1384,7 @@ M.IpRule = {
 
 M.CreateIpAccessSettingsInput = {
     type = "structure",
+    id = "CreateIpAccessSettingsInput",
     members = {
         displayName = {
             type = "string",
@@ -1349,6 +1422,7 @@ M.CreateIpAccessSettingsInput = {
 
 M.CreateIpAccessSettingsOutput = {
     type = "structure",
+    id = "CreateIpAccessSettingsOutput",
     members = {
         ipAccessSettingsArn = {
             type = "string",
@@ -1361,6 +1435,7 @@ M.CreateIpAccessSettingsOutput = {
 
 M.DeleteIpAccessSettingsInput = {
     type = "structure",
+    id = "DeleteIpAccessSettingsInput",
     members = {
         ipAccessSettingsArn = {
             type = "string",
@@ -1374,10 +1449,12 @@ M.DeleteIpAccessSettingsInput = {
 
 M.DeleteIpAccessSettingsOutput = {
     type = "structure",
+    id = "DeleteIpAccessSettingsOutput",
 }
 
 M.GetIpAccessSettingsInput = {
     type = "structure",
+    id = "GetIpAccessSettingsInput",
     members = {
         ipAccessSettingsArn = {
             type = "string",
@@ -1391,6 +1468,7 @@ M.GetIpAccessSettingsInput = {
 
 M.IpAccessSettings = {
     type = "structure",
+    id = "IpAccessSettings",
     members = {
         ipAccessSettingsArn = {
             type = "string",
@@ -1428,6 +1506,7 @@ M.IpAccessSettings = {
 
 M.GetIpAccessSettingsOutput = {
     type = "structure",
+    id = "GetIpAccessSettingsOutput",
     members = {
         ipAccessSettings = M.IpAccessSettings,
     },
@@ -1435,6 +1514,7 @@ M.GetIpAccessSettingsOutput = {
 
 M.ListIpAccessSettingsInput = {
     type = "structure",
+    id = "ListIpAccessSettingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1453,6 +1533,7 @@ M.ListIpAccessSettingsInput = {
 
 M.IpAccessSettingsSummary = {
     type = "structure",
+    id = "IpAccessSettingsSummary",
     members = {
         ipAccessSettingsArn = {
             type = "string",
@@ -1474,6 +1555,7 @@ M.IpAccessSettingsSummary = {
 
 M.ListIpAccessSettingsOutput = {
     type = "structure",
+    id = "ListIpAccessSettingsOutput",
     members = {
         ipAccessSettings = {
             type = "list",
@@ -1487,6 +1569,7 @@ M.ListIpAccessSettingsOutput = {
 
 M.UpdateIpAccessSettingsInput = {
     type = "structure",
+    id = "UpdateIpAccessSettingsInput",
     members = {
         ipAccessSettingsArn = {
             type = "string",
@@ -1516,6 +1599,7 @@ M.UpdateIpAccessSettingsInput = {
 
 M.UpdateIpAccessSettingsOutput = {
     type = "structure",
+    id = "UpdateIpAccessSettingsOutput",
     members = {
         ipAccessSettings = setmetatable({ traits = {
             required = true,
@@ -1530,6 +1614,7 @@ M.SessionSortBy = {
 
 M.ListSessionsInput = {
     type = "structure",
+    id = "ListSessionsInput",
     members = {
         portalId = {
             type = "string",
@@ -1579,6 +1664,7 @@ M.ListSessionsInput = {
 
 M.SessionSummary = {
     type = "structure",
+    id = "SessionSummary",
     members = {
         portalArn = {
             type = "string",
@@ -1603,6 +1689,7 @@ M.SessionSummary = {
 
 M.ListSessionsOutput = {
     type = "structure",
+    id = "ListSessionsOutput",
     members = {
         sessions = {
             type = "list",
@@ -1619,6 +1706,7 @@ M.ListSessionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1632,6 +1720,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1642,6 +1731,7 @@ M.ListTagsForResourceOutput = {
 
 M.CreateNetworkSettingsInput = {
     type = "structure",
+    id = "CreateNetworkSettingsInput",
     members = {
         vpcId = {
             type = "string",
@@ -1678,6 +1768,7 @@ M.CreateNetworkSettingsInput = {
 
 M.CreateNetworkSettingsOutput = {
     type = "structure",
+    id = "CreateNetworkSettingsOutput",
     members = {
         networkSettingsArn = {
             type = "string",
@@ -1690,6 +1781,7 @@ M.CreateNetworkSettingsOutput = {
 
 M.DeleteNetworkSettingsInput = {
     type = "structure",
+    id = "DeleteNetworkSettingsInput",
     members = {
         networkSettingsArn = {
             type = "string",
@@ -1703,10 +1795,12 @@ M.DeleteNetworkSettingsInput = {
 
 M.DeleteNetworkSettingsOutput = {
     type = "structure",
+    id = "DeleteNetworkSettingsOutput",
 }
 
 M.GetNetworkSettingsInput = {
     type = "structure",
+    id = "GetNetworkSettingsInput",
     members = {
         networkSettingsArn = {
             type = "string",
@@ -1720,6 +1814,7 @@ M.GetNetworkSettingsInput = {
 
 M.NetworkSettings = {
     type = "structure",
+    id = "NetworkSettings",
     members = {
         networkSettingsArn = {
             type = "string",
@@ -1747,6 +1842,7 @@ M.NetworkSettings = {
 
 M.GetNetworkSettingsOutput = {
     type = "structure",
+    id = "GetNetworkSettingsOutput",
     members = {
         networkSettings = M.NetworkSettings,
     },
@@ -1754,6 +1850,7 @@ M.GetNetworkSettingsOutput = {
 
 M.ListNetworkSettingsInput = {
     type = "structure",
+    id = "ListNetworkSettingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1772,6 +1869,7 @@ M.ListNetworkSettingsInput = {
 
 M.NetworkSettingsSummary = {
     type = "structure",
+    id = "NetworkSettingsSummary",
     members = {
         networkSettingsArn = {
             type = "string",
@@ -1787,6 +1885,7 @@ M.NetworkSettingsSummary = {
 
 M.ListNetworkSettingsOutput = {
     type = "structure",
+    id = "ListNetworkSettingsOutput",
     members = {
         networkSettings = {
             type = "list",
@@ -1800,6 +1899,7 @@ M.ListNetworkSettingsOutput = {
 
 M.UpdateNetworkSettingsInput = {
     type = "structure",
+    id = "UpdateNetworkSettingsInput",
     members = {
         networkSettingsArn = {
             type = "string",
@@ -1830,6 +1930,7 @@ M.UpdateNetworkSettingsInput = {
 
 M.UpdateNetworkSettingsOutput = {
     type = "structure",
+    id = "UpdateNetworkSettingsOutput",
     members = {
         networkSettings = setmetatable({ traits = {
             required = true,
@@ -1849,6 +1950,7 @@ M.InstanceType = {
 
 M.CreatePortalInput = {
     type = "structure",
+    id = "CreatePortalInput",
     members = {
         displayName = {
             type = "string",
@@ -1888,6 +1990,7 @@ M.CreatePortalInput = {
 
 M.CreatePortalOutput = {
     type = "structure",
+    id = "CreatePortalOutput",
     members = {
         portalArn = {
             type = "string",
@@ -1906,6 +2009,7 @@ M.CreatePortalOutput = {
 
 M.DeletePortalInput = {
     type = "structure",
+    id = "DeletePortalInput",
     members = {
         portalArn = {
             type = "string",
@@ -1919,10 +2023,12 @@ M.DeletePortalInput = {
 
 M.DeletePortalOutput = {
     type = "structure",
+    id = "DeletePortalOutput",
 }
 
 M.DisassociateBrowserSettingsInput = {
     type = "structure",
+    id = "DisassociateBrowserSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -1936,10 +2042,12 @@ M.DisassociateBrowserSettingsInput = {
 
 M.DisassociateBrowserSettingsOutput = {
     type = "structure",
+    id = "DisassociateBrowserSettingsOutput",
 }
 
 M.DisassociateDataProtectionSettingsInput = {
     type = "structure",
+    id = "DisassociateDataProtectionSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -1953,10 +2061,12 @@ M.DisassociateDataProtectionSettingsInput = {
 
 M.DisassociateDataProtectionSettingsOutput = {
     type = "structure",
+    id = "DisassociateDataProtectionSettingsOutput",
 }
 
 M.DisassociateIpAccessSettingsInput = {
     type = "structure",
+    id = "DisassociateIpAccessSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -1970,10 +2080,12 @@ M.DisassociateIpAccessSettingsInput = {
 
 M.DisassociateIpAccessSettingsOutput = {
     type = "structure",
+    id = "DisassociateIpAccessSettingsOutput",
 }
 
 M.DisassociateNetworkSettingsInput = {
     type = "structure",
+    id = "DisassociateNetworkSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -1987,10 +2099,12 @@ M.DisassociateNetworkSettingsInput = {
 
 M.DisassociateNetworkSettingsOutput = {
     type = "structure",
+    id = "DisassociateNetworkSettingsOutput",
 }
 
 M.DisassociateSessionLoggerInput = {
     type = "structure",
+    id = "DisassociateSessionLoggerInput",
     members = {
         portalArn = {
             type = "string",
@@ -2004,10 +2118,12 @@ M.DisassociateSessionLoggerInput = {
 
 M.DisassociateSessionLoggerOutput = {
     type = "structure",
+    id = "DisassociateSessionLoggerOutput",
 }
 
 M.DisassociateTrustStoreInput = {
     type = "structure",
+    id = "DisassociateTrustStoreInput",
     members = {
         portalArn = {
             type = "string",
@@ -2021,10 +2137,12 @@ M.DisassociateTrustStoreInput = {
 
 M.DisassociateTrustStoreOutput = {
     type = "structure",
+    id = "DisassociateTrustStoreOutput",
 }
 
 M.DisassociateUserAccessLoggingSettingsInput = {
     type = "structure",
+    id = "DisassociateUserAccessLoggingSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -2038,10 +2156,12 @@ M.DisassociateUserAccessLoggingSettingsInput = {
 
 M.DisassociateUserAccessLoggingSettingsOutput = {
     type = "structure",
+    id = "DisassociateUserAccessLoggingSettingsOutput",
 }
 
 M.DisassociateUserSettingsInput = {
     type = "structure",
+    id = "DisassociateUserSettingsInput",
     members = {
         portalArn = {
             type = "string",
@@ -2055,10 +2175,12 @@ M.DisassociateUserSettingsInput = {
 
 M.DisassociateUserSettingsOutput = {
     type = "structure",
+    id = "DisassociateUserSettingsOutput",
 }
 
 M.GetPortalInput = {
     type = "structure",
+    id = "GetPortalInput",
     members = {
         portalArn = {
             type = "string",
@@ -2082,6 +2204,7 @@ M.RendererType = {
 
 M.Portal = {
     type = "structure",
+    id = "Portal",
     members = {
         portalArn = {
             type = "string",
@@ -2159,6 +2282,7 @@ M.Portal = {
 
 M.GetPortalOutput = {
     type = "structure",
+    id = "GetPortalOutput",
     members = {
         portal = M.Portal,
     },
@@ -2166,6 +2290,7 @@ M.GetPortalOutput = {
 
 M.GetPortalServiceProviderMetadataInput = {
     type = "structure",
+    id = "GetPortalServiceProviderMetadataInput",
     members = {
         portalArn = {
             type = "string",
@@ -2179,6 +2304,7 @@ M.GetPortalServiceProviderMetadataInput = {
 
 M.GetPortalServiceProviderMetadataOutput = {
     type = "structure",
+    id = "GetPortalServiceProviderMetadataOutput",
     members = {
         portalArn = {
             type = "string",
@@ -2194,6 +2320,7 @@ M.GetPortalServiceProviderMetadataOutput = {
 
 M.ListPortalsInput = {
     type = "structure",
+    id = "ListPortalsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2212,6 +2339,7 @@ M.ListPortalsInput = {
 
 M.PortalSummary = {
     type = "structure",
+    id = "PortalSummary",
     members = {
         portalArn = {
             type = "string",
@@ -2278,6 +2406,7 @@ M.PortalSummary = {
 
 M.ListPortalsOutput = {
     type = "structure",
+    id = "ListPortalsOutput",
     members = {
         portals = {
             type = "list",
@@ -2291,6 +2420,7 @@ M.ListPortalsOutput = {
 
 M.UpdatePortalInput = {
     type = "structure",
+    id = "UpdatePortalInput",
     members = {
         portalArn = {
             type = "string",
@@ -2319,6 +2449,7 @@ M.UpdatePortalInput = {
 
 M.UpdatePortalOutput = {
     type = "structure",
+    id = "UpdatePortalOutput",
     members = {
         portal = M.Portal,
     },
@@ -2326,6 +2457,7 @@ M.UpdatePortalOutput = {
 
 M.Unit = {
     type = "structure",
+    id = "Unit",
 }
 
 M.Event = {
@@ -2350,6 +2482,7 @@ M.Event = {
 
 M.EventFilter = {
     type = "union",
+    id = "EventFilter",
     members = {
         all = M.Unit,
         include = {
@@ -2371,6 +2504,7 @@ M.LogFileFormat = {
 
 M.S3LogConfiguration = {
     type = "structure",
+    id = "S3LogConfiguration",
     members = {
         bucket = {
             type = "string",
@@ -2401,6 +2535,7 @@ M.S3LogConfiguration = {
 
 M.LogConfiguration = {
     type = "structure",
+    id = "LogConfiguration",
     members = {
         s3 = M.S3LogConfiguration,
     },
@@ -2408,6 +2543,7 @@ M.LogConfiguration = {
 
 M.CreateSessionLoggerInput = {
     type = "structure",
+    id = "CreateSessionLoggerInput",
     members = {
         eventFilter = setmetatable({ traits = {
             required = true,
@@ -2441,6 +2577,7 @@ M.CreateSessionLoggerInput = {
 
 M.CreateSessionLoggerOutput = {
     type = "structure",
+    id = "CreateSessionLoggerOutput",
     members = {
         sessionLoggerArn = {
             type = "string",
@@ -2453,6 +2590,7 @@ M.CreateSessionLoggerOutput = {
 
 M.DeleteSessionLoggerInput = {
     type = "structure",
+    id = "DeleteSessionLoggerInput",
     members = {
         sessionLoggerArn = {
             type = "string",
@@ -2466,10 +2604,12 @@ M.DeleteSessionLoggerInput = {
 
 M.DeleteSessionLoggerOutput = {
     type = "structure",
+    id = "DeleteSessionLoggerOutput",
 }
 
 M.GetSessionLoggerInput = {
     type = "structure",
+    id = "GetSessionLoggerInput",
     members = {
         sessionLoggerArn = {
             type = "string",
@@ -2483,6 +2623,7 @@ M.GetSessionLoggerInput = {
 
 M.SessionLogger = {
     type = "structure",
+    id = "SessionLogger",
     members = {
         sessionLoggerArn = {
             type = "string",
@@ -2515,6 +2656,7 @@ M.SessionLogger = {
 
 M.GetSessionLoggerOutput = {
     type = "structure",
+    id = "GetSessionLoggerOutput",
     members = {
         sessionLogger = M.SessionLogger,
     },
@@ -2522,6 +2664,7 @@ M.GetSessionLoggerOutput = {
 
 M.ListSessionLoggersInput = {
     type = "structure",
+    id = "ListSessionLoggersInput",
     members = {
         nextToken = {
             type = "string",
@@ -2540,6 +2683,7 @@ M.ListSessionLoggersInput = {
 
 M.SessionLoggerSummary = {
     type = "structure",
+    id = "SessionLoggerSummary",
     members = {
         sessionLoggerArn = {
             type = "string",
@@ -2559,6 +2703,7 @@ M.SessionLoggerSummary = {
 
 M.ListSessionLoggersOutput = {
     type = "structure",
+    id = "ListSessionLoggersOutput",
     members = {
         sessionLoggers = {
             type = "list",
@@ -2572,6 +2717,7 @@ M.ListSessionLoggersOutput = {
 
 M.UpdateSessionLoggerInput = {
     type = "structure",
+    id = "UpdateSessionLoggerInput",
     members = {
         sessionLoggerArn = {
             type = "string",
@@ -2590,6 +2736,7 @@ M.UpdateSessionLoggerInput = {
 
 M.UpdateSessionLoggerOutput = {
     type = "structure",
+    id = "UpdateSessionLoggerOutput",
     members = {
         sessionLogger = setmetatable({ traits = {
             required = true,
@@ -2599,6 +2746,7 @@ M.UpdateSessionLoggerOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2625,10 +2773,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -2642,6 +2792,7 @@ M.TooManyTagsException = {
 
 M.CertificateSummary = {
     type = "structure",
+    id = "CertificateSummary",
     members = {
         thumbprint = {
             type = "string",
@@ -2663,6 +2814,7 @@ M.CertificateSummary = {
 
 M.CreateTrustStoreInput = {
     type = "structure",
+    id = "CreateTrustStoreInput",
     members = {
         certificateList = {
             type = "list",
@@ -2686,6 +2838,7 @@ M.CreateTrustStoreInput = {
 
 M.CreateTrustStoreOutput = {
     type = "structure",
+    id = "CreateTrustStoreOutput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2698,6 +2851,7 @@ M.CreateTrustStoreOutput = {
 
 M.DeleteTrustStoreInput = {
     type = "structure",
+    id = "DeleteTrustStoreInput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2711,10 +2865,12 @@ M.DeleteTrustStoreInput = {
 
 M.DeleteTrustStoreOutput = {
     type = "structure",
+    id = "DeleteTrustStoreOutput",
 }
 
 M.GetTrustStoreInput = {
     type = "structure",
+    id = "GetTrustStoreInput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2728,6 +2884,7 @@ M.GetTrustStoreInput = {
 
 M.TrustStore = {
     type = "structure",
+    id = "TrustStore",
     members = {
         associatedPortalArns = {
             type = "list",
@@ -2744,6 +2901,7 @@ M.TrustStore = {
 
 M.GetTrustStoreOutput = {
     type = "structure",
+    id = "GetTrustStoreOutput",
     members = {
         trustStore = M.TrustStore,
     },
@@ -2751,6 +2909,7 @@ M.GetTrustStoreOutput = {
 
 M.GetTrustStoreCertificateInput = {
     type = "structure",
+    id = "GetTrustStoreCertificateInput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2771,6 +2930,7 @@ M.GetTrustStoreCertificateInput = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         thumbprint = {
             type = "string",
@@ -2795,6 +2955,7 @@ M.Certificate = {
 
 M.GetTrustStoreCertificateOutput = {
     type = "structure",
+    id = "GetTrustStoreCertificateOutput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2808,6 +2969,7 @@ M.GetTrustStoreCertificateOutput = {
 
 M.ListTrustStoreCertificatesInput = {
     type = "structure",
+    id = "ListTrustStoreCertificatesInput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2833,6 +2995,7 @@ M.ListTrustStoreCertificatesInput = {
 
 M.ListTrustStoreCertificatesOutput = {
     type = "structure",
+    id = "ListTrustStoreCertificatesOutput",
     members = {
         certificateList = {
             type = "list",
@@ -2852,6 +3015,7 @@ M.ListTrustStoreCertificatesOutput = {
 
 M.ListTrustStoresInput = {
     type = "structure",
+    id = "ListTrustStoresInput",
     members = {
         nextToken = {
             type = "string",
@@ -2870,6 +3034,7 @@ M.ListTrustStoresInput = {
 
 M.TrustStoreSummary = {
     type = "structure",
+    id = "TrustStoreSummary",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2879,6 +3044,7 @@ M.TrustStoreSummary = {
 
 M.ListTrustStoresOutput = {
     type = "structure",
+    id = "ListTrustStoresOutput",
     members = {
         trustStores = {
             type = "list",
@@ -2892,6 +3058,7 @@ M.ListTrustStoresOutput = {
 
 M.UpdateTrustStoreInput = {
     type = "structure",
+    id = "UpdateTrustStoreInput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2919,6 +3086,7 @@ M.UpdateTrustStoreInput = {
 
 M.UpdateTrustStoreOutput = {
     type = "structure",
+    id = "UpdateTrustStoreOutput",
     members = {
         trustStoreArn = {
             type = "string",
@@ -2931,6 +3099,7 @@ M.UpdateTrustStoreOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2952,10 +3121,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.CreateUserAccessLoggingSettingsInput = {
     type = "structure",
+    id = "CreateUserAccessLoggingSettingsInput",
     members = {
         kinesisStreamArn = {
             type = "string",
@@ -2978,6 +3149,7 @@ M.CreateUserAccessLoggingSettingsInput = {
 
 M.CreateUserAccessLoggingSettingsOutput = {
     type = "structure",
+    id = "CreateUserAccessLoggingSettingsOutput",
     members = {
         userAccessLoggingSettingsArn = {
             type = "string",
@@ -2990,6 +3162,7 @@ M.CreateUserAccessLoggingSettingsOutput = {
 
 M.DeleteUserAccessLoggingSettingsInput = {
     type = "structure",
+    id = "DeleteUserAccessLoggingSettingsInput",
     members = {
         userAccessLoggingSettingsArn = {
             type = "string",
@@ -3003,10 +3176,12 @@ M.DeleteUserAccessLoggingSettingsInput = {
 
 M.DeleteUserAccessLoggingSettingsOutput = {
     type = "structure",
+    id = "DeleteUserAccessLoggingSettingsOutput",
 }
 
 M.GetUserAccessLoggingSettingsInput = {
     type = "structure",
+    id = "GetUserAccessLoggingSettingsInput",
     members = {
         userAccessLoggingSettingsArn = {
             type = "string",
@@ -3020,6 +3195,7 @@ M.GetUserAccessLoggingSettingsInput = {
 
 M.UserAccessLoggingSettings = {
     type = "structure",
+    id = "UserAccessLoggingSettings",
     members = {
         userAccessLoggingSettingsArn = {
             type = "string",
@@ -3039,6 +3215,7 @@ M.UserAccessLoggingSettings = {
 
 M.GetUserAccessLoggingSettingsOutput = {
     type = "structure",
+    id = "GetUserAccessLoggingSettingsOutput",
     members = {
         userAccessLoggingSettings = M.UserAccessLoggingSettings,
     },
@@ -3046,6 +3223,7 @@ M.GetUserAccessLoggingSettingsOutput = {
 
 M.ListUserAccessLoggingSettingsInput = {
     type = "structure",
+    id = "ListUserAccessLoggingSettingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3064,6 +3242,7 @@ M.ListUserAccessLoggingSettingsInput = {
 
 M.UserAccessLoggingSettingsSummary = {
     type = "structure",
+    id = "UserAccessLoggingSettingsSummary",
     members = {
         userAccessLoggingSettingsArn = {
             type = "string",
@@ -3079,6 +3258,7 @@ M.UserAccessLoggingSettingsSummary = {
 
 M.ListUserAccessLoggingSettingsOutput = {
     type = "structure",
+    id = "ListUserAccessLoggingSettingsOutput",
     members = {
         userAccessLoggingSettings = {
             type = "list",
@@ -3092,6 +3272,7 @@ M.ListUserAccessLoggingSettingsOutput = {
 
 M.UpdateUserAccessLoggingSettingsInput = {
     type = "structure",
+    id = "UpdateUserAccessLoggingSettingsInput",
     members = {
         userAccessLoggingSettingsArn = {
             type = "string",
@@ -3114,6 +3295,7 @@ M.UpdateUserAccessLoggingSettingsInput = {
 
 M.UpdateUserAccessLoggingSettingsOutput = {
     type = "structure",
+    id = "UpdateUserAccessLoggingSettingsOutput",
     members = {
         userAccessLoggingSettings = setmetatable({ traits = {
             required = true,
@@ -3134,6 +3316,7 @@ M.MimeType = {
 
 M.ImageMetadata = {
     type = "structure",
+    id = "ImageMetadata",
     members = {
         mimeType = {
             type = "string",
@@ -3172,6 +3355,7 @@ M.Locale = {
 
 M.LocalizedBrandingStrings = {
     type = "structure",
+    id = "LocalizedBrandingStrings",
     members = {
         browserTabTitle = {
             type = "string",
@@ -3208,6 +3392,7 @@ M.LocalizedBrandingStrings = {
 
 M.BrandingConfiguration = {
     type = "structure",
+    id = "BrandingConfiguration",
     members = {
         logo = setmetatable({ traits = {
             required = true,
@@ -3241,6 +3426,7 @@ M.BrandingConfiguration = {
 
 M.CookieSpecification = {
     type = "structure",
+    id = "CookieSpecification",
     members = {
         domain = {
             type = "string",
@@ -3259,6 +3445,7 @@ M.CookieSpecification = {
 
 M.CookieSynchronizationConfiguration = {
     type = "structure",
+    id = "CookieSynchronizationConfiguration",
     members = {
         allowlist = {
             type = "list",
@@ -3276,6 +3463,7 @@ M.CookieSynchronizationConfiguration = {
 
 M.IconImageInput = {
     type = "union",
+    id = "IconImageInput",
     members = {
         blob = {
             type = "blob",
@@ -3291,6 +3479,7 @@ M.IconImageInput = {
 
 M.WallpaperImageInput = {
     type = "union",
+    id = "WallpaperImageInput",
     members = {
         blob = {
             type = "blob",
@@ -3306,6 +3495,7 @@ M.WallpaperImageInput = {
 
 M.BrandingConfigurationCreateInput = {
     type = "structure",
+    id = "BrandingConfigurationCreateInput",
     members = {
         logo = setmetatable({ traits = {
             required = true,
@@ -3373,6 +3563,7 @@ M.VisualMode = {
 
 M.ToolbarConfiguration = {
     type = "structure",
+    id = "ToolbarConfiguration",
     members = {
         toolbarType = {
             type = "string",
@@ -3392,6 +3583,7 @@ M.ToolbarConfiguration = {
 
 M.CreateUserSettingsInput = {
     type = "structure",
+    id = "CreateUserSettingsInput",
     members = {
         copyAllowed = {
             type = "string",
@@ -3467,6 +3659,7 @@ M.CreateUserSettingsInput = {
 
 M.CreateUserSettingsOutput = {
     type = "structure",
+    id = "CreateUserSettingsOutput",
     members = {
         userSettingsArn = {
             type = "string",
@@ -3479,6 +3672,7 @@ M.CreateUserSettingsOutput = {
 
 M.DeleteUserSettingsInput = {
     type = "structure",
+    id = "DeleteUserSettingsInput",
     members = {
         userSettingsArn = {
             type = "string",
@@ -3492,10 +3686,12 @@ M.DeleteUserSettingsInput = {
 
 M.DeleteUserSettingsOutput = {
     type = "structure",
+    id = "DeleteUserSettingsOutput",
 }
 
 M.GetUserSettingsInput = {
     type = "structure",
+    id = "GetUserSettingsInput",
     members = {
         userSettingsArn = {
             type = "string",
@@ -3509,6 +3705,7 @@ M.GetUserSettingsInput = {
 
 M.UserSettings = {
     type = "structure",
+    id = "UserSettings",
     members = {
         userSettingsArn = {
             type = "string",
@@ -3569,6 +3766,7 @@ M.UserSettings = {
 
 M.GetUserSettingsOutput = {
     type = "structure",
+    id = "GetUserSettingsOutput",
     members = {
         userSettings = M.UserSettings,
     },
@@ -3576,6 +3774,7 @@ M.GetUserSettingsOutput = {
 
 M.ListUserSettingsInput = {
     type = "structure",
+    id = "ListUserSettingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3594,6 +3793,7 @@ M.ListUserSettingsInput = {
 
 M.UserSettingsSummary = {
     type = "structure",
+    id = "UserSettingsSummary",
     members = {
         userSettingsArn = {
             type = "string",
@@ -3642,6 +3842,7 @@ M.UserSettingsSummary = {
 
 M.ListUserSettingsOutput = {
     type = "structure",
+    id = "ListUserSettingsOutput",
     members = {
         userSettings = {
             type = "list",
@@ -3655,6 +3856,7 @@ M.ListUserSettingsOutput = {
 
 M.BrandingConfigurationUpdateInput = {
     type = "structure",
+    id = "BrandingConfigurationUpdateInput",
     members = {
         logo = M.IconImageInput,
         wallpaper = M.WallpaperImageInput,
@@ -3678,6 +3880,7 @@ M.BrandingConfigurationUpdateInput = {
 
 M.UpdateUserSettingsInput = {
     type = "structure",
+    id = "UpdateUserSettingsInput",
     members = {
         userSettingsArn = {
             type = "string",
@@ -3733,6 +3936,7 @@ M.UpdateUserSettingsInput = {
 
 M.UpdateUserSettingsOutput = {
     type = "structure",
+    id = "UpdateUserSettingsOutput",
     members = {
         userSettings = setmetatable({ traits = {
             required = true,

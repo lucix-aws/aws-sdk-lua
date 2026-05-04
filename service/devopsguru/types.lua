@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AccountInsightHealth = {
     type = "structure",
+    id = "AccountInsightHealth",
     members = {
         OpenProactiveInsights = {
             type = "integer",
@@ -33,6 +35,7 @@ M.AccountInsightHealth = {
 
 M.AccountHealth = {
     type = "structure",
+    id = "AccountHealth",
     members = {
         AccountId = {
             type = "string",
@@ -57,6 +60,7 @@ M.InsightSeverity = {
 
 M.NotificationFilterConfig = {
     type = "structure",
+    id = "NotificationFilterConfig",
     members = {
         Severities = {
             type = "list",
@@ -71,6 +75,7 @@ M.NotificationFilterConfig = {
 
 M.SnsChannelConfig = {
     type = "structure",
+    id = "SnsChannelConfig",
     members = {
         TopicArn = {
             type = "string",
@@ -80,6 +85,7 @@ M.SnsChannelConfig = {
 
 M.NotificationChannelConfig = {
     type = "structure",
+    id = "NotificationChannelConfig",
     members = {
         Sns = setmetatable({ traits = {
             required = true,
@@ -90,6 +96,7 @@ M.NotificationChannelConfig = {
 
 M.AddNotificationChannelInput = {
     type = "structure",
+    id = "AddNotificationChannelInput",
     members = {
         Config = setmetatable({ traits = {
             required = true,
@@ -99,6 +106,7 @@ M.AddNotificationChannelInput = {
 
 M.AddNotificationChannelOutput = {
     type = "structure",
+    id = "AddNotificationChannelOutput",
     members = {
         Id = {
             type = "string",
@@ -111,6 +119,7 @@ M.AddNotificationChannelOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -136,6 +145,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -156,6 +166,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -181,6 +192,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -191,6 +203,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -217,6 +230,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -244,6 +258,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -269,6 +284,7 @@ M.EventSourceOptInStatus = {
 
 M.AmazonCodeGuruProfilerIntegration = {
     type = "structure",
+    id = "AmazonCodeGuruProfilerIntegration",
     members = {
         Status = {
             type = "string",
@@ -289,6 +305,7 @@ M.LogAnomalyType = {
 
 M.LogAnomalyClass = {
     type = "structure",
+    id = "LogAnomalyClass",
     members = {
         LogStreamName = {
             type = "string",
@@ -319,6 +336,7 @@ M.LogAnomalyClass = {
 
 M.LogAnomalyShowcase = {
     type = "structure",
+    id = "LogAnomalyShowcase",
     members = {
         LogAnomalyClasses = {
             type = "list",
@@ -329,6 +347,7 @@ M.LogAnomalyShowcase = {
 
 M.AnomalousLogGroup = {
     type = "structure",
+    id = "AnomalousLogGroup",
     members = {
         LogGroupName = {
             type = "string",
@@ -354,6 +373,7 @@ M.AnomalousLogGroup = {
 
 M.AnomalyReportedTimeRange = {
     type = "structure",
+    id = "AnomalyReportedTimeRange",
     members = {
         OpenTime = {
             type = "timestamp",
@@ -369,6 +389,7 @@ M.AnomalyReportedTimeRange = {
 
 M.AnomalyResource = {
     type = "structure",
+    id = "AnomalyResource",
     members = {
         Name = {
             type = "string",
@@ -387,6 +408,7 @@ M.AnomalySeverity = {
 
 M.CloudWatchMetricsDimension = {
     type = "structure",
+    id = "CloudWatchMetricsDimension",
     members = {
         Name = {
             type = "string",
@@ -405,6 +427,7 @@ M.CloudWatchMetricDataStatusCode = {
 
 M.TimestampMetricValuePair = {
     type = "structure",
+    id = "TimestampMetricValuePair",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -417,6 +440,7 @@ M.TimestampMetricValuePair = {
 
 M.CloudWatchMetricsDataSummary = {
     type = "structure",
+    id = "CloudWatchMetricsDataSummary",
     members = {
         TimestampMetricValuePairList = {
             type = "list",
@@ -441,6 +465,7 @@ M.CloudWatchMetricsStat = {
 
 M.CloudWatchMetricsDetail = {
     type = "structure",
+    id = "CloudWatchMetricsDetail",
     members = {
         MetricName = {
             type = "string",
@@ -470,6 +495,7 @@ M.CloudWatchMetricsDetail = {
 
 M.PerformanceInsightsMetricDimensionGroup = {
     type = "structure",
+    id = "PerformanceInsightsMetricDimensionGroup",
     members = {
         Group = {
             type = "string",
@@ -486,6 +512,7 @@ M.PerformanceInsightsMetricDimensionGroup = {
 
 M.PerformanceInsightsMetricQuery = {
     type = "structure",
+    id = "PerformanceInsightsMetricQuery",
     members = {
         Metric = {
             type = "string",
@@ -501,6 +528,7 @@ M.PerformanceInsightsMetricQuery = {
 
 M.PerformanceInsightsReferenceMetric = {
     type = "structure",
+    id = "PerformanceInsightsReferenceMetric",
     members = {
         MetricQuery = M.PerformanceInsightsMetricQuery,
     },
@@ -508,6 +536,7 @@ M.PerformanceInsightsReferenceMetric = {
 
 M.PerformanceInsightsReferenceScalar = {
     type = "structure",
+    id = "PerformanceInsightsReferenceScalar",
     members = {
         Value = {
             type = "double",
@@ -517,6 +546,7 @@ M.PerformanceInsightsReferenceScalar = {
 
 M.PerformanceInsightsReferenceComparisonValues = {
     type = "structure",
+    id = "PerformanceInsightsReferenceComparisonValues",
     members = {
         ReferenceScalar = M.PerformanceInsightsReferenceScalar,
         ReferenceMetric = M.PerformanceInsightsReferenceMetric,
@@ -525,6 +555,7 @@ M.PerformanceInsightsReferenceComparisonValues = {
 
 M.PerformanceInsightsReferenceData = {
     type = "structure",
+    id = "PerformanceInsightsReferenceData",
     members = {
         Name = {
             type = "string",
@@ -535,6 +566,7 @@ M.PerformanceInsightsReferenceData = {
 
 M.PerformanceInsightsStat = {
     type = "structure",
+    id = "PerformanceInsightsStat",
     members = {
         Type = {
             type = "string",
@@ -547,6 +579,7 @@ M.PerformanceInsightsStat = {
 
 M.PerformanceInsightsMetricsDetail = {
     type = "structure",
+    id = "PerformanceInsightsMetricsDetail",
     members = {
         MetricDisplayName = {
             type = "string",
@@ -572,6 +605,7 @@ M.PerformanceInsightsMetricsDetail = {
 
 M.AnomalySourceDetails = {
     type = "structure",
+    id = "AnomalySourceDetails",
     members = {
         CloudWatchMetrics = {
             type = "list",
@@ -586,6 +620,7 @@ M.AnomalySourceDetails = {
 
 M.AnomalySourceMetadata = {
     type = "structure",
+    id = "AnomalySourceMetadata",
     members = {
         Source = {
             type = "string",
@@ -606,6 +641,7 @@ M.AnomalyStatus = {
 
 M.AnomalyTimeRange = {
     type = "structure",
+    id = "AnomalyTimeRange",
     members = {
         StartTime = {
             type = "timestamp",
@@ -626,6 +662,7 @@ M.AnomalyType = {
 
 M.DeleteInsightInput = {
     type = "structure",
+    id = "DeleteInsightInput",
     members = {
         Id = {
             type = "string",
@@ -639,14 +676,17 @@ M.DeleteInsightInput = {
 
 M.DeleteInsightOutput = {
     type = "structure",
+    id = "DeleteInsightOutput",
 }
 
 M.DescribeAccountHealthInput = {
     type = "structure",
+    id = "DescribeAccountHealthInput",
 }
 
 M.DescribeAccountHealthOutput = {
     type = "structure",
+    id = "DescribeAccountHealthOutput",
     members = {
         OpenReactiveInsights = {
             type = "integer",
@@ -683,6 +723,7 @@ M.DescribeAccountHealthOutput = {
 
 M.DescribeAccountOverviewInput = {
     type = "structure",
+    id = "DescribeAccountOverviewInput",
     members = {
         FromTime = {
             type = "timestamp",
@@ -698,6 +739,7 @@ M.DescribeAccountOverviewInput = {
 
 M.DescribeAccountOverviewOutput = {
     type = "structure",
+    id = "DescribeAccountOverviewOutput",
     members = {
         ReactiveInsights = {
             type = "integer",
@@ -724,6 +766,7 @@ M.DescribeAccountOverviewOutput = {
 
 M.DescribeAnomalyInput = {
     type = "structure",
+    id = "DescribeAnomalyInput",
     members = {
         Id = {
             type = "string",
@@ -743,6 +786,7 @@ M.DescribeAnomalyInput = {
 
 M.PredictionTimeRange = {
     type = "structure",
+    id = "PredictionTimeRange",
     members = {
         StartTime = {
             type = "timestamp",
@@ -758,6 +802,7 @@ M.PredictionTimeRange = {
 
 M.CloudFormationCollection = {
     type = "structure",
+    id = "CloudFormationCollection",
     members = {
         StackNames = {
             type = "list",
@@ -768,6 +813,7 @@ M.CloudFormationCollection = {
 
 M.TagCollection = {
     type = "structure",
+    id = "TagCollection",
     members = {
         AppBoundaryKey = {
             type = "string",
@@ -787,6 +833,7 @@ M.TagCollection = {
 
 M.ResourceCollection = {
     type = "structure",
+    id = "ResourceCollection",
     members = {
         CloudFormation = M.CloudFormationCollection,
         Tags = {
@@ -798,6 +845,7 @@ M.ResourceCollection = {
 
 M.ProactiveAnomaly = {
     type = "structure",
+    id = "ProactiveAnomaly",
     members = {
         Id = {
             type = "string",
@@ -835,6 +883,7 @@ M.ProactiveAnomaly = {
 
 M.ReactiveAnomaly = {
     type = "structure",
+    id = "ReactiveAnomaly",
     members = {
         Id = {
             type = "string",
@@ -873,6 +922,7 @@ M.ReactiveAnomaly = {
 
 M.DescribeAnomalyOutput = {
     type = "structure",
+    id = "DescribeAnomalyOutput",
     members = {
         ProactiveAnomaly = M.ProactiveAnomaly,
         ReactiveAnomaly = M.ReactiveAnomaly,
@@ -881,10 +931,12 @@ M.DescribeAnomalyOutput = {
 
 M.DescribeEventSourcesConfigInput = {
     type = "structure",
+    id = "DescribeEventSourcesConfigInput",
 }
 
 M.EventSourcesConfig = {
     type = "structure",
+    id = "EventSourcesConfig",
     members = {
         AmazonCodeGuruProfiler = M.AmazonCodeGuruProfilerIntegration,
     },
@@ -892,6 +944,7 @@ M.EventSourcesConfig = {
 
 M.DescribeEventSourcesConfigOutput = {
     type = "structure",
+    id = "DescribeEventSourcesConfigOutput",
     members = {
         EventSources = M.EventSourcesConfig,
     },
@@ -899,6 +952,7 @@ M.DescribeEventSourcesConfigOutput = {
 
 M.DescribeFeedbackInput = {
     type = "structure",
+    id = "DescribeFeedbackInput",
     members = {
         InsightId = {
             type = "string",
@@ -916,6 +970,7 @@ M.InsightFeedbackOption = {
 
 M.InsightFeedback = {
     type = "structure",
+    id = "InsightFeedback",
     members = {
         Id = {
             type = "string",
@@ -928,6 +983,7 @@ M.InsightFeedback = {
 
 M.DescribeFeedbackOutput = {
     type = "structure",
+    id = "DescribeFeedbackOutput",
     members = {
         InsightFeedback = M.InsightFeedback,
     },
@@ -935,6 +991,7 @@ M.DescribeFeedbackOutput = {
 
 M.DescribeInsightInput = {
     type = "structure",
+    id = "DescribeInsightInput",
     members = {
         Id = {
             type = "string",
@@ -954,6 +1011,7 @@ M.DescribeInsightInput = {
 
 M.InsightTimeRange = {
     type = "structure",
+    id = "InsightTimeRange",
     members = {
         StartTime = {
             type = "timestamp",
@@ -974,6 +1032,7 @@ M.InsightStatus = {
 
 M.ProactiveInsight = {
     type = "structure",
+    id = "ProactiveInsight",
     members = {
         Id = {
             type = "string",
@@ -1001,6 +1060,7 @@ M.ProactiveInsight = {
 
 M.ReactiveInsight = {
     type = "structure",
+    id = "ReactiveInsight",
     members = {
         Id = {
             type = "string",
@@ -1027,6 +1087,7 @@ M.ReactiveInsight = {
 
 M.DescribeInsightOutput = {
     type = "structure",
+    id = "DescribeInsightOutput",
     members = {
         ProactiveInsight = M.ProactiveInsight,
         ReactiveInsight = M.ReactiveInsight,
@@ -1035,6 +1096,7 @@ M.DescribeInsightOutput = {
 
 M.DescribeOrganizationHealthInput = {
     type = "structure",
+    id = "DescribeOrganizationHealthInput",
     members = {
         AccountIds = {
             type = "list",
@@ -1049,6 +1111,7 @@ M.DescribeOrganizationHealthInput = {
 
 M.DescribeOrganizationHealthOutput = {
     type = "structure",
+    id = "DescribeOrganizationHealthOutput",
     members = {
         OpenReactiveInsights = {
             type = "integer",
@@ -1082,6 +1145,7 @@ M.DescribeOrganizationHealthOutput = {
 
 M.DescribeOrganizationOverviewInput = {
     type = "structure",
+    id = "DescribeOrganizationOverviewInput",
     members = {
         FromTime = {
             type = "timestamp",
@@ -1105,6 +1169,7 @@ M.DescribeOrganizationOverviewInput = {
 
 M.DescribeOrganizationOverviewOutput = {
     type = "structure",
+    id = "DescribeOrganizationOverviewOutput",
     members = {
         ReactiveInsights = {
             type = "integer",
@@ -1132,6 +1197,7 @@ M.OrganizationResourceCollectionType = {
 
 M.DescribeOrganizationResourceCollectionHealthInput = {
     type = "structure",
+    id = "DescribeOrganizationResourceCollectionHealthInput",
     members = {
         OrganizationResourceCollectionType = {
             type = "string",
@@ -1158,6 +1224,7 @@ M.DescribeOrganizationResourceCollectionHealthInput = {
 
 M.InsightHealth = {
     type = "structure",
+    id = "InsightHealth",
     members = {
         OpenProactiveInsights = {
             type = "integer",
@@ -1179,6 +1246,7 @@ M.InsightHealth = {
 
 M.CloudFormationHealth = {
     type = "structure",
+    id = "CloudFormationHealth",
     members = {
         StackName = {
             type = "string",
@@ -1192,6 +1260,7 @@ M.CloudFormationHealth = {
 
 M.ServiceInsightHealth = {
     type = "structure",
+    id = "ServiceInsightHealth",
     members = {
         OpenProactiveInsights = {
             type = "integer",
@@ -1238,6 +1307,7 @@ M.ServiceName = {
 
 M.ServiceHealth = {
     type = "structure",
+    id = "ServiceHealth",
     members = {
         ServiceName = {
             type = "string",
@@ -1251,6 +1321,7 @@ M.ServiceHealth = {
 
 M.TagHealth = {
     type = "structure",
+    id = "TagHealth",
     members = {
         AppBoundaryKey = {
             type = "string",
@@ -1267,6 +1338,7 @@ M.TagHealth = {
 
 M.DescribeOrganizationResourceCollectionHealthOutput = {
     type = "structure",
+    id = "DescribeOrganizationResourceCollectionHealthOutput",
     members = {
         CloudFormation = {
             type = "list",
@@ -1298,6 +1370,7 @@ M.ResourceCollectionType = {
 
 M.DescribeResourceCollectionHealthInput = {
     type = "structure",
+    id = "DescribeResourceCollectionHealthInput",
     members = {
         ResourceCollectionType = {
             type = "string",
@@ -1317,6 +1390,7 @@ M.DescribeResourceCollectionHealthInput = {
 
 M.DescribeResourceCollectionHealthOutput = {
     type = "structure",
+    id = "DescribeResourceCollectionHealthOutput",
     members = {
         CloudFormation = {
             type = "list",
@@ -1338,6 +1412,7 @@ M.DescribeResourceCollectionHealthOutput = {
 
 M.DescribeServiceIntegrationInput = {
     type = "structure",
+    id = "DescribeServiceIntegrationInput",
 }
 
 M.OptInStatus = {
@@ -1352,6 +1427,7 @@ M.ServerSideEncryptionType = {
 
 M.KMSServerSideEncryptionIntegration = {
     type = "structure",
+    id = "KMSServerSideEncryptionIntegration",
     members = {
         KMSKeyId = {
             type = "string",
@@ -1367,6 +1443,7 @@ M.KMSServerSideEncryptionIntegration = {
 
 M.LogsAnomalyDetectionIntegration = {
     type = "structure",
+    id = "LogsAnomalyDetectionIntegration",
     members = {
         OptInStatus = {
             type = "string",
@@ -1376,6 +1453,7 @@ M.LogsAnomalyDetectionIntegration = {
 
 M.OpsCenterIntegration = {
     type = "structure",
+    id = "OpsCenterIntegration",
     members = {
         OptInStatus = {
             type = "string",
@@ -1385,6 +1463,7 @@ M.OpsCenterIntegration = {
 
 M.ServiceIntegrationConfig = {
     type = "structure",
+    id = "ServiceIntegrationConfig",
     members = {
         OpsCenter = M.OpsCenterIntegration,
         LogsAnomalyDetection = M.LogsAnomalyDetectionIntegration,
@@ -1394,6 +1473,7 @@ M.ServiceIntegrationConfig = {
 
 M.DescribeServiceIntegrationOutput = {
     type = "structure",
+    id = "DescribeServiceIntegrationOutput",
     members = {
         ServiceIntegration = M.ServiceIntegrationConfig,
     },
@@ -1401,6 +1481,7 @@ M.DescribeServiceIntegrationOutput = {
 
 M.GetCostEstimationInput = {
     type = "structure",
+    id = "GetCostEstimationInput",
     members = {
         NextToken = {
             type = "string",
@@ -1418,6 +1499,7 @@ M.CostEstimationServiceResourceState = {
 
 M.ServiceResourceCost = {
     type = "structure",
+    id = "ServiceResourceCost",
     members = {
         Type = {
             type = "string",
@@ -1448,6 +1530,7 @@ M.ServiceResourceCost = {
 
 M.CloudFormationCostEstimationResourceCollectionFilter = {
     type = "structure",
+    id = "CloudFormationCostEstimationResourceCollectionFilter",
     members = {
         StackNames = {
             type = "list",
@@ -1458,6 +1541,7 @@ M.CloudFormationCostEstimationResourceCollectionFilter = {
 
 M.TagCostEstimationResourceCollectionFilter = {
     type = "structure",
+    id = "TagCostEstimationResourceCollectionFilter",
     members = {
         AppBoundaryKey = {
             type = "string",
@@ -1477,6 +1561,7 @@ M.TagCostEstimationResourceCollectionFilter = {
 
 M.CostEstimationResourceCollectionFilter = {
     type = "structure",
+    id = "CostEstimationResourceCollectionFilter",
     members = {
         CloudFormation = M.CloudFormationCostEstimationResourceCollectionFilter,
         Tags = {
@@ -1493,6 +1578,7 @@ M.CostEstimationStatus = {
 
 M.CostEstimationTimeRange = {
     type = "structure",
+    id = "CostEstimationTimeRange",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1505,6 +1591,7 @@ M.CostEstimationTimeRange = {
 
 M.GetCostEstimationOutput = {
     type = "structure",
+    id = "GetCostEstimationOutput",
     members = {
         ResourceCollection = M.CostEstimationResourceCollectionFilter,
         Status = {
@@ -1529,6 +1616,7 @@ M.GetCostEstimationOutput = {
 
 M.GetResourceCollectionInput = {
     type = "structure",
+    id = "GetResourceCollectionInput",
     members = {
         ResourceCollectionType = {
             type = "string",
@@ -1548,6 +1636,7 @@ M.GetResourceCollectionInput = {
 
 M.CloudFormationCollectionFilter = {
     type = "structure",
+    id = "CloudFormationCollectionFilter",
     members = {
         StackNames = {
             type = "list",
@@ -1558,6 +1647,7 @@ M.CloudFormationCollectionFilter = {
 
 M.TagCollectionFilter = {
     type = "structure",
+    id = "TagCollectionFilter",
     members = {
         AppBoundaryKey = {
             type = "string",
@@ -1577,6 +1667,7 @@ M.TagCollectionFilter = {
 
 M.ResourceCollectionFilter = {
     type = "structure",
+    id = "ResourceCollectionFilter",
     members = {
         CloudFormation = M.CloudFormationCollectionFilter,
         Tags = {
@@ -1588,6 +1679,7 @@ M.ResourceCollectionFilter = {
 
 M.GetResourceCollectionOutput = {
     type = "structure",
+    id = "GetResourceCollectionOutput",
     members = {
         ResourceCollection = M.ResourceCollectionFilter,
         NextToken = {
@@ -1598,6 +1690,7 @@ M.GetResourceCollectionOutput = {
 
 M.ServiceCollection = {
     type = "structure",
+    id = "ServiceCollection",
     members = {
         ServiceNames = {
             type = "list",
@@ -1608,6 +1701,7 @@ M.ServiceCollection = {
 
 M.ListAnomaliesForInsightFilters = {
     type = "structure",
+    id = "ListAnomaliesForInsightFilters",
     members = {
         ServiceCollection = M.ServiceCollection,
     },
@@ -1615,6 +1709,7 @@ M.ListAnomaliesForInsightFilters = {
 
 M.StartTimeRange = {
     type = "structure",
+    id = "StartTimeRange",
     members = {
         FromTime = {
             type = "timestamp",
@@ -1627,6 +1722,7 @@ M.StartTimeRange = {
 
 M.ListAnomaliesForInsightInput = {
     type = "structure",
+    id = "ListAnomaliesForInsightInput",
     members = {
         InsightId = {
             type = "string",
@@ -1651,6 +1747,7 @@ M.ListAnomaliesForInsightInput = {
 
 M.ProactiveAnomalySummary = {
     type = "structure",
+    id = "ProactiveAnomalySummary",
     members = {
         Id = {
             type = "string",
@@ -1688,6 +1785,7 @@ M.ProactiveAnomalySummary = {
 
 M.ReactiveAnomalySummary = {
     type = "structure",
+    id = "ReactiveAnomalySummary",
     members = {
         Id = {
             type = "string",
@@ -1726,6 +1824,7 @@ M.ReactiveAnomalySummary = {
 
 M.ListAnomaliesForInsightOutput = {
     type = "structure",
+    id = "ListAnomaliesForInsightOutput",
     members = {
         ProactiveAnomalies = {
             type = "list",
@@ -1743,6 +1842,7 @@ M.ListAnomaliesForInsightOutput = {
 
 M.ListAnomalousLogGroupsInput = {
     type = "structure",
+    id = "ListAnomalousLogGroupsInput",
     members = {
         InsightId = {
             type = "string",
@@ -1761,6 +1861,7 @@ M.ListAnomalousLogGroupsInput = {
 
 M.ListAnomalousLogGroupsOutput = {
     type = "structure",
+    id = "ListAnomalousLogGroupsOutput",
     members = {
         InsightId = {
             type = "string",
@@ -1796,6 +1897,7 @@ M.EventClass = {
 
 M.EventTimeRange = {
     type = "structure",
+    id = "EventTimeRange",
     members = {
         FromTime = {
             type = "timestamp",
@@ -1814,6 +1916,7 @@ M.EventTimeRange = {
 
 M.ListEventsFilters = {
     type = "structure",
+    id = "ListEventsFilters",
     members = {
         InsightId = {
             type = "string",
@@ -1834,6 +1937,7 @@ M.ListEventsFilters = {
 
 M.ListEventsInput = {
     type = "structure",
+    id = "ListEventsInput",
     members = {
         Filters = setmetatable({ traits = {
             required = true,
@@ -1852,6 +1956,7 @@ M.ListEventsInput = {
 
 M.EventResource = {
     type = "structure",
+    id = "EventResource",
     members = {
         Type = {
             type = "string",
@@ -1867,6 +1972,7 @@ M.EventResource = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         ResourceCollection = M.ResourceCollection,
         Id = {
@@ -1896,6 +2002,7 @@ M.Event = {
 
 M.ListEventsOutput = {
     type = "structure",
+    id = "ListEventsOutput",
     members = {
         Events = {
             type = "list",
@@ -1917,6 +2024,7 @@ M.InsightType = {
 
 M.ListInsightsAnyStatusFilter = {
     type = "structure",
+    id = "ListInsightsAnyStatusFilter",
     members = {
         Type = {
             type = "string",
@@ -1932,6 +2040,7 @@ M.ListInsightsAnyStatusFilter = {
 
 M.EndTimeRange = {
     type = "structure",
+    id = "EndTimeRange",
     members = {
         FromTime = {
             type = "timestamp",
@@ -1944,6 +2053,7 @@ M.EndTimeRange = {
 
 M.ListInsightsClosedStatusFilter = {
     type = "structure",
+    id = "ListInsightsClosedStatusFilter",
     members = {
         Type = {
             type = "string",
@@ -1959,6 +2069,7 @@ M.ListInsightsClosedStatusFilter = {
 
 M.ListInsightsOngoingStatusFilter = {
     type = "structure",
+    id = "ListInsightsOngoingStatusFilter",
     members = {
         Type = {
             type = "string",
@@ -1971,6 +2082,7 @@ M.ListInsightsOngoingStatusFilter = {
 
 M.ListInsightsStatusFilter = {
     type = "structure",
+    id = "ListInsightsStatusFilter",
     members = {
         Ongoing = M.ListInsightsOngoingStatusFilter,
         Closed = M.ListInsightsClosedStatusFilter,
@@ -1980,6 +2092,7 @@ M.ListInsightsStatusFilter = {
 
 M.ListInsightsInput = {
     type = "structure",
+    id = "ListInsightsInput",
     members = {
         StatusFilter = setmetatable({ traits = {
             required = true,
@@ -1995,6 +2108,7 @@ M.ListInsightsInput = {
 
 M.ProactiveInsightSummary = {
     type = "structure",
+    id = "ProactiveInsightSummary",
     members = {
         Id = {
             type = "string",
@@ -2021,6 +2135,7 @@ M.ProactiveInsightSummary = {
 
 M.ReactiveInsightSummary = {
     type = "structure",
+    id = "ReactiveInsightSummary",
     members = {
         Id = {
             type = "string",
@@ -2046,6 +2161,7 @@ M.ReactiveInsightSummary = {
 
 M.ListInsightsOutput = {
     type = "structure",
+    id = "ListInsightsOutput",
     members = {
         ProactiveInsights = {
             type = "list",
@@ -2098,6 +2214,7 @@ M.ResourceTypeFilter = {
 
 M.ListMonitoredResourcesFilters = {
     type = "structure",
+    id = "ListMonitoredResourcesFilters",
     members = {
         ResourcePermission = {
             type = "string",
@@ -2117,6 +2234,7 @@ M.ListMonitoredResourcesFilters = {
 
 M.ListMonitoredResourcesInput = {
     type = "structure",
+    id = "ListMonitoredResourcesInput",
     members = {
         Filters = M.ListMonitoredResourcesFilters,
         MaxResults = {
@@ -2130,6 +2248,7 @@ M.ListMonitoredResourcesInput = {
 
 M.MonitoredResourceIdentifier = {
     type = "structure",
+    id = "MonitoredResourceIdentifier",
     members = {
         MonitoredResourceName = {
             type = "string",
@@ -2149,6 +2268,7 @@ M.MonitoredResourceIdentifier = {
 
 M.ListMonitoredResourcesOutput = {
     type = "structure",
+    id = "ListMonitoredResourcesOutput",
     members = {
         MonitoredResourceIdentifiers = {
             type = "list",
@@ -2165,6 +2285,7 @@ M.ListMonitoredResourcesOutput = {
 
 M.ListNotificationChannelsInput = {
     type = "structure",
+    id = "ListNotificationChannelsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2174,6 +2295,7 @@ M.ListNotificationChannelsInput = {
 
 M.NotificationChannel = {
     type = "structure",
+    id = "NotificationChannel",
     members = {
         Id = {
             type = "string",
@@ -2184,6 +2306,7 @@ M.NotificationChannel = {
 
 M.ListNotificationChannelsOutput = {
     type = "structure",
+    id = "ListNotificationChannelsOutput",
     members = {
         Channels = {
             type = "list",
@@ -2197,6 +2320,7 @@ M.ListNotificationChannelsOutput = {
 
 M.ListOrganizationInsightsInput = {
     type = "structure",
+    id = "ListOrganizationInsightsInput",
     members = {
         StatusFilter = setmetatable({ traits = {
             required = true,
@@ -2220,6 +2344,7 @@ M.ListOrganizationInsightsInput = {
 
 M.ProactiveOrganizationInsightSummary = {
     type = "structure",
+    id = "ProactiveOrganizationInsightSummary",
     members = {
         Id = {
             type = "string",
@@ -2248,6 +2373,7 @@ M.ProactiveOrganizationInsightSummary = {
 
 M.ReactiveOrganizationInsightSummary = {
     type = "structure",
+    id = "ReactiveOrganizationInsightSummary",
     members = {
         Id = {
             type = "string",
@@ -2275,6 +2401,7 @@ M.ReactiveOrganizationInsightSummary = {
 
 M.ListOrganizationInsightsOutput = {
     type = "structure",
+    id = "ListOrganizationInsightsOutput",
     members = {
         ProactiveInsights = {
             type = "list",
@@ -2306,6 +2433,7 @@ M.Locale = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         InsightId = {
             type = "string",
@@ -2327,6 +2455,7 @@ M.ListRecommendationsInput = {
 
 M.RecommendationRelatedAnomalyResource = {
     type = "structure",
+    id = "RecommendationRelatedAnomalyResource",
     members = {
         Name = {
             type = "string",
@@ -2339,6 +2468,7 @@ M.RecommendationRelatedAnomalyResource = {
 
 M.RecommendationRelatedCloudWatchMetricsSourceDetail = {
     type = "structure",
+    id = "RecommendationRelatedCloudWatchMetricsSourceDetail",
     members = {
         MetricName = {
             type = "string",
@@ -2351,6 +2481,7 @@ M.RecommendationRelatedCloudWatchMetricsSourceDetail = {
 
 M.RecommendationRelatedAnomalySourceDetail = {
     type = "structure",
+    id = "RecommendationRelatedAnomalySourceDetail",
     members = {
         CloudWatchMetrics = {
             type = "list",
@@ -2361,6 +2492,7 @@ M.RecommendationRelatedAnomalySourceDetail = {
 
 M.RecommendationRelatedAnomaly = {
     type = "structure",
+    id = "RecommendationRelatedAnomaly",
     members = {
         Resources = {
             type = "list",
@@ -2378,6 +2510,7 @@ M.RecommendationRelatedAnomaly = {
 
 M.RecommendationRelatedEventResource = {
     type = "structure",
+    id = "RecommendationRelatedEventResource",
     members = {
         Name = {
             type = "string",
@@ -2390,6 +2523,7 @@ M.RecommendationRelatedEventResource = {
 
 M.RecommendationRelatedEvent = {
     type = "structure",
+    id = "RecommendationRelatedEvent",
     members = {
         Name = {
             type = "string",
@@ -2403,6 +2537,7 @@ M.RecommendationRelatedEvent = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         Description = {
             type = "string",
@@ -2432,6 +2567,7 @@ M.Recommendation = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         Recommendations = {
             type = "list",
@@ -2445,6 +2581,7 @@ M.ListRecommendationsOutput = {
 
 M.PutFeedbackInput = {
     type = "structure",
+    id = "PutFeedbackInput",
     members = {
         InsightFeedback = M.InsightFeedback,
     },
@@ -2452,10 +2589,12 @@ M.PutFeedbackInput = {
 
 M.PutFeedbackOutput = {
     type = "structure",
+    id = "PutFeedbackOutput",
 }
 
 M.RemoveNotificationChannelInput = {
     type = "structure",
+    id = "RemoveNotificationChannelInput",
     members = {
         Id = {
             type = "string",
@@ -2469,10 +2608,12 @@ M.RemoveNotificationChannelInput = {
 
 M.RemoveNotificationChannelOutput = {
     type = "structure",
+    id = "RemoveNotificationChannelOutput",
 }
 
 M.SearchInsightsFilters = {
     type = "structure",
+    id = "SearchInsightsFilters",
     members = {
         Severities = {
             type = "list",
@@ -2489,6 +2630,7 @@ M.SearchInsightsFilters = {
 
 M.SearchInsightsInput = {
     type = "structure",
+    id = "SearchInsightsInput",
     members = {
         StartTimeRange = setmetatable({ traits = {
             required = true,
@@ -2511,6 +2653,7 @@ M.SearchInsightsInput = {
 
 M.SearchInsightsOutput = {
     type = "structure",
+    id = "SearchInsightsOutput",
     members = {
         ProactiveInsights = {
             type = "list",
@@ -2528,6 +2671,7 @@ M.SearchInsightsOutput = {
 
 M.SearchOrganizationInsightsFilters = {
     type = "structure",
+    id = "SearchOrganizationInsightsFilters",
     members = {
         Severities = {
             type = "list",
@@ -2544,6 +2688,7 @@ M.SearchOrganizationInsightsFilters = {
 
 M.SearchOrganizationInsightsInput = {
     type = "structure",
+    id = "SearchOrganizationInsightsInput",
     members = {
         AccountIds = {
             type = "list",
@@ -2573,6 +2718,7 @@ M.SearchOrganizationInsightsInput = {
 
 M.SearchOrganizationInsightsOutput = {
     type = "structure",
+    id = "SearchOrganizationInsightsOutput",
     members = {
         ProactiveInsights = {
             type = "list",
@@ -2590,6 +2736,7 @@ M.SearchOrganizationInsightsOutput = {
 
 M.StartCostEstimationInput = {
     type = "structure",
+    id = "StartCostEstimationInput",
     members = {
         ResourceCollection = setmetatable({ traits = {
             required = true,
@@ -2605,10 +2752,12 @@ M.StartCostEstimationInput = {
 
 M.StartCostEstimationOutput = {
     type = "structure",
+    id = "StartCostEstimationOutput",
 }
 
 M.UpdateEventSourcesConfigInput = {
     type = "structure",
+    id = "UpdateEventSourcesConfigInput",
     members = {
         EventSources = M.EventSourcesConfig,
     },
@@ -2616,6 +2765,7 @@ M.UpdateEventSourcesConfigInput = {
 
 M.UpdateEventSourcesConfigOutput = {
     type = "structure",
+    id = "UpdateEventSourcesConfigOutput",
 }
 
 M.UpdateResourceCollectionAction = {
@@ -2625,6 +2775,7 @@ M.UpdateResourceCollectionAction = {
 
 M.UpdateCloudFormationCollectionFilter = {
     type = "structure",
+    id = "UpdateCloudFormationCollectionFilter",
     members = {
         StackNames = {
             type = "list",
@@ -2635,6 +2786,7 @@ M.UpdateCloudFormationCollectionFilter = {
 
 M.UpdateTagCollectionFilter = {
     type = "structure",
+    id = "UpdateTagCollectionFilter",
     members = {
         AppBoundaryKey = {
             type = "string",
@@ -2654,6 +2806,7 @@ M.UpdateTagCollectionFilter = {
 
 M.UpdateResourceCollectionFilter = {
     type = "structure",
+    id = "UpdateResourceCollectionFilter",
     members = {
         CloudFormation = M.UpdateCloudFormationCollectionFilter,
         Tags = {
@@ -2665,6 +2818,7 @@ M.UpdateResourceCollectionFilter = {
 
 M.UpdateResourceCollectionInput = {
     type = "structure",
+    id = "UpdateResourceCollectionInput",
     members = {
         Action = {
             type = "string",
@@ -2680,10 +2834,12 @@ M.UpdateResourceCollectionInput = {
 
 M.UpdateResourceCollectionOutput = {
     type = "structure",
+    id = "UpdateResourceCollectionOutput",
 }
 
 M.KMSServerSideEncryptionIntegrationConfig = {
     type = "structure",
+    id = "KMSServerSideEncryptionIntegrationConfig",
     members = {
         KMSKeyId = {
             type = "string",
@@ -2699,6 +2855,7 @@ M.KMSServerSideEncryptionIntegrationConfig = {
 
 M.LogsAnomalyDetectionIntegrationConfig = {
     type = "structure",
+    id = "LogsAnomalyDetectionIntegrationConfig",
     members = {
         OptInStatus = {
             type = "string",
@@ -2708,6 +2865,7 @@ M.LogsAnomalyDetectionIntegrationConfig = {
 
 M.OpsCenterIntegrationConfig = {
     type = "structure",
+    id = "OpsCenterIntegrationConfig",
     members = {
         OptInStatus = {
             type = "string",
@@ -2717,6 +2875,7 @@ M.OpsCenterIntegrationConfig = {
 
 M.UpdateServiceIntegrationConfig = {
     type = "structure",
+    id = "UpdateServiceIntegrationConfig",
     members = {
         OpsCenter = M.OpsCenterIntegrationConfig,
         LogsAnomalyDetection = M.LogsAnomalyDetectionIntegrationConfig,
@@ -2726,6 +2885,7 @@ M.UpdateServiceIntegrationConfig = {
 
 M.UpdateServiceIntegrationInput = {
     type = "structure",
+    id = "UpdateServiceIntegrationInput",
     members = {
         ServiceIntegration = setmetatable({ traits = {
             required = true,
@@ -2735,6 +2895,7 @@ M.UpdateServiceIntegrationInput = {
 
 M.UpdateServiceIntegrationOutput = {
     type = "structure",
+    id = "UpdateServiceIntegrationOutput",
 }
 
 return M

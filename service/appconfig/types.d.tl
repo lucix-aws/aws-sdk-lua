@@ -1336,15 +1336,15 @@ local record ResourceNotFoundException
     ResourceName: string
 end
 
-local type GrowthType = "LINEAR" | "EXPONENTIAL"
-
 local type ReplicateTo = "NONE" | "SSM_DOCUMENT"
 
-local type DeletionProtectionCheck = "ACCOUNT_DEFAULT" | "APPLY" | "BYPASS"
+local type GrowthType = "LINEAR" | "EXPONENTIAL"
 
 local type EnvironmentState = "READY_FOR_DEPLOYMENT" | "DEPLOYING" | "ROLLING_BACK" | "ROLLED_BACK" | "REVERTED"
 
 local type DeploymentState = "BAKING" | "VALIDATING" | "DEPLOYING" | "COMPLETE" | "ROLLING_BACK" | "ROLLED_BACK" | "REVERTED"
+
+local type DeletionProtectionCheck = "ACCOUNT_DEFAULT" | "APPLY" | "BYPASS"
 
 local record M
     CreateApplicationInput: CreateApplicationInput

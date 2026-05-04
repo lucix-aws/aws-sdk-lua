@@ -2,6 +2,7 @@ local M = {}
 
 M.CustomAttribute = {
     type = "structure",
+    id = "CustomAttribute",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -20,6 +21,7 @@ M.CustomAttribute = {
 
 M.ASN1Subject = {
     type = "structure",
+    id = "ASN1Subject",
     members = {
         Country = {
             type = "string",
@@ -72,6 +74,7 @@ M.ASN1Subject = {
 
 M.EdiPartyName = {
     type = "structure",
+    id = "EdiPartyName",
     members = {
         PartyName = {
             type = "string",
@@ -87,6 +90,7 @@ M.EdiPartyName = {
 
 M.OtherName = {
     type = "structure",
+    id = "OtherName",
     members = {
         TypeId = {
             type = "string",
@@ -105,6 +109,7 @@ M.OtherName = {
 
 M.GeneralName = {
     type = "structure",
+    id = "GeneralName",
     members = {
         OtherName = M.OtherName,
         Rfc822Name = {
@@ -135,6 +140,7 @@ M.AccessMethodType = {
 
 M.AccessMethod = {
     type = "structure",
+    id = "AccessMethod",
     members = {
         CustomObjectIdentifier = {
             type = "string",
@@ -147,6 +153,7 @@ M.AccessMethod = {
 
 M.AccessDescription = {
     type = "structure",
+    id = "AccessDescription",
     members = {
         AccessMethod = setmetatable({ traits = {
             required = true,
@@ -159,6 +166,7 @@ M.AccessDescription = {
 
 M.KeyUsage = {
     type = "structure",
+    id = "KeyUsage",
     members = {
         DigitalSignature = {
             type = "boolean",
@@ -219,6 +227,7 @@ M.KeyUsage = {
 
 M.CsrExtensions = {
     type = "structure",
+    id = "CsrExtensions",
     members = {
         KeyUsage = M.KeyUsage,
         SubjectInformationAccess = {
@@ -256,6 +265,7 @@ M.SigningAlgorithm = {
 
 M.CertificateAuthorityConfiguration = {
     type = "structure",
+    id = "CertificateAuthorityConfiguration",
     members = {
         KeyAlgorithm = {
             type = "string",
@@ -289,6 +299,7 @@ M.KeyStorageSecurityStandard = {
 
 M.CrlDistributionPointExtensionConfiguration = {
     type = "structure",
+    id = "CrlDistributionPointExtensionConfiguration",
     members = {
         OmitExtension = {
             type = "boolean",
@@ -312,6 +323,7 @@ M.S3ObjectAcl = {
 
 M.CrlConfiguration = {
     type = "structure",
+    id = "CrlConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -344,6 +356,7 @@ M.CrlConfiguration = {
 
 M.OcspConfiguration = {
     type = "structure",
+    id = "OcspConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -360,6 +373,7 @@ M.OcspConfiguration = {
 
 M.RevocationConfiguration = {
     type = "structure",
+    id = "RevocationConfiguration",
     members = {
         CrlConfiguration = M.CrlConfiguration,
         OcspConfiguration = M.OcspConfiguration,
@@ -368,6 +382,7 @@ M.RevocationConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -388,6 +403,7 @@ M.CertificateAuthorityUsageMode = {
 
 M.CreateCertificateAuthorityInput = {
     type = "structure",
+    id = "CreateCertificateAuthorityInput",
     members = {
         CertificateAuthorityConfiguration = setmetatable({ traits = {
             required = true,
@@ -417,6 +433,7 @@ M.CreateCertificateAuthorityInput = {
 
 M.CreateCertificateAuthorityOutput = {
     type = "structure",
+    id = "CreateCertificateAuthorityOutput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -426,6 +443,7 @@ M.CreateCertificateAuthorityOutput = {
 
 M.InvalidArgsException = {
     type = "structure",
+    id = "InvalidArgsException",
     error = "client",
     members = {
         message = {
@@ -436,6 +454,7 @@ M.InvalidArgsException = {
 
 M.InvalidPolicyException = {
     type = "structure",
+    id = "InvalidPolicyException",
     error = "client",
     members = {
         message = {
@@ -446,6 +465,7 @@ M.InvalidPolicyException = {
 
 M.InvalidTagException = {
     type = "structure",
+    id = "InvalidTagException",
     error = "client",
     members = {
         message = {
@@ -456,6 +476,7 @@ M.InvalidTagException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -471,6 +492,7 @@ M.AuditReportResponseFormat = {
 
 M.CreateCertificateAuthorityAuditReportInput = {
     type = "structure",
+    id = "CreateCertificateAuthorityAuditReportInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -495,6 +517,7 @@ M.CreateCertificateAuthorityAuditReportInput = {
 
 M.CreateCertificateAuthorityAuditReportOutput = {
     type = "structure",
+    id = "CreateCertificateAuthorityAuditReportOutput",
     members = {
         AuditReportId = {
             type = "string",
@@ -507,6 +530,7 @@ M.CreateCertificateAuthorityAuditReportOutput = {
 
 M.InvalidArnException = {
     type = "structure",
+    id = "InvalidArnException",
     error = "client",
     members = {
         message = {
@@ -517,6 +541,7 @@ M.InvalidArnException = {
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         message = {
@@ -527,6 +552,7 @@ M.InvalidStateException = {
 
 M.RequestFailedException = {
     type = "structure",
+    id = "RequestFailedException",
     error = "client",
     members = {
         message = {
@@ -537,6 +563,7 @@ M.RequestFailedException = {
 
 M.RequestInProgressException = {
     type = "structure",
+    id = "RequestInProgressException",
     error = "client",
     members = {
         message = {
@@ -547,6 +574,7 @@ M.RequestInProgressException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -563,6 +591,7 @@ M.ActionType = {
 
 M.CreatePermissionInput = {
     type = "structure",
+    id = "CreatePermissionInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -591,10 +620,12 @@ M.CreatePermissionInput = {
 
 M.CreatePermissionOutput = {
     type = "structure",
+    id = "CreatePermissionOutput",
 }
 
 M.PermissionAlreadyExistsException = {
     type = "structure",
+    id = "PermissionAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -605,6 +636,7 @@ M.PermissionAlreadyExistsException = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -615,6 +647,7 @@ M.ConcurrentModificationException = {
 
 M.DeleteCertificateAuthorityInput = {
     type = "structure",
+    id = "DeleteCertificateAuthorityInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -630,10 +663,12 @@ M.DeleteCertificateAuthorityInput = {
 
 M.DeleteCertificateAuthorityOutput = {
     type = "structure",
+    id = "DeleteCertificateAuthorityOutput",
 }
 
 M.DeletePermissionInput = {
     type = "structure",
+    id = "DeletePermissionInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -655,10 +690,12 @@ M.DeletePermissionInput = {
 
 M.DeletePermissionOutput = {
     type = "structure",
+    id = "DeletePermissionOutput",
 }
 
 M.DeletePolicyInput = {
     type = "structure",
+    id = "DeletePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -671,10 +708,12 @@ M.DeletePolicyInput = {
 
 M.DeletePolicyOutput = {
     type = "structure",
+    id = "DeletePolicyOutput",
 }
 
 M.LockoutPreventedException = {
     type = "structure",
+    id = "LockoutPreventedException",
     error = "client",
     members = {
         message = {
@@ -685,6 +724,7 @@ M.LockoutPreventedException = {
 
 M.DescribeCertificateAuthorityInput = {
     type = "structure",
+    id = "DescribeCertificateAuthorityInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -713,6 +753,7 @@ M.CertificateAuthorityStatus = {
 
 M.CertificateAuthority = {
     type = "structure",
+    id = "CertificateAuthority",
     members = {
         Arn = {
             type = "string",
@@ -760,6 +801,7 @@ M.CertificateAuthority = {
 
 M.DescribeCertificateAuthorityOutput = {
     type = "structure",
+    id = "DescribeCertificateAuthorityOutput",
     members = {
         CertificateAuthority = M.CertificateAuthority,
     },
@@ -767,6 +809,7 @@ M.DescribeCertificateAuthorityOutput = {
 
 M.DescribeCertificateAuthorityAuditReportInput = {
     type = "structure",
+    id = "DescribeCertificateAuthorityAuditReportInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -791,6 +834,7 @@ M.AuditReportStatus = {
 
 M.DescribeCertificateAuthorityAuditReportOutput = {
     type = "structure",
+    id = "DescribeCertificateAuthorityAuditReportOutput",
     members = {
         AuditReportStatus = {
             type = "string",
@@ -809,6 +853,7 @@ M.DescribeCertificateAuthorityAuditReportOutput = {
 
 M.GetCertificateInput = {
     type = "structure",
+    id = "GetCertificateInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -827,6 +872,7 @@ M.GetCertificateInput = {
 
 M.GetCertificateOutput = {
     type = "structure",
+    id = "GetCertificateOutput",
     members = {
         Certificate = {
             type = "string",
@@ -839,6 +885,7 @@ M.GetCertificateOutput = {
 
 M.GetCertificateAuthorityCertificateInput = {
     type = "structure",
+    id = "GetCertificateAuthorityCertificateInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -851,6 +898,7 @@ M.GetCertificateAuthorityCertificateInput = {
 
 M.GetCertificateAuthorityCertificateOutput = {
     type = "structure",
+    id = "GetCertificateAuthorityCertificateOutput",
     members = {
         Certificate = {
             type = "string",
@@ -863,6 +911,7 @@ M.GetCertificateAuthorityCertificateOutput = {
 
 M.GetCertificateAuthorityCsrInput = {
     type = "structure",
+    id = "GetCertificateAuthorityCsrInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -875,6 +924,7 @@ M.GetCertificateAuthorityCsrInput = {
 
 M.GetCertificateAuthorityCsrOutput = {
     type = "structure",
+    id = "GetCertificateAuthorityCsrOutput",
     members = {
         Csr = {
             type = "string",
@@ -884,6 +934,7 @@ M.GetCertificateAuthorityCsrOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -896,6 +947,7 @@ M.GetPolicyInput = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -905,6 +957,7 @@ M.GetPolicyOutput = {
 
 M.CertificateMismatchException = {
     type = "structure",
+    id = "CertificateMismatchException",
     error = "client",
     members = {
         message = {
@@ -915,6 +968,7 @@ M.CertificateMismatchException = {
 
 M.ImportCertificateAuthorityCertificateInput = {
     type = "structure",
+    id = "ImportCertificateAuthorityCertificateInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -936,10 +990,12 @@ M.ImportCertificateAuthorityCertificateInput = {
 
 M.ImportCertificateAuthorityCertificateOutput = {
     type = "structure",
+    id = "ImportCertificateAuthorityCertificateOutput",
 }
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -950,6 +1006,7 @@ M.InvalidRequestException = {
 
 M.MalformedCertificateException = {
     type = "structure",
+    id = "MalformedCertificateException",
     error = "client",
     members = {
         message = {
@@ -964,6 +1021,7 @@ M.PolicyQualifierId = {
 
 M.Qualifier = {
     type = "structure",
+    id = "Qualifier",
     members = {
         CpsUri = {
             type = "string",
@@ -976,6 +1034,7 @@ M.Qualifier = {
 
 M.PolicyQualifierInfo = {
     type = "structure",
+    id = "PolicyQualifierInfo",
     members = {
         PolicyQualifierId = {
             type = "string",
@@ -991,6 +1050,7 @@ M.PolicyQualifierInfo = {
 
 M.PolicyInformation = {
     type = "structure",
+    id = "PolicyInformation",
     members = {
         CertPolicyId = {
             type = "string",
@@ -1007,6 +1067,7 @@ M.PolicyInformation = {
 
 M.CustomExtension = {
     type = "structure",
+    id = "CustomExtension",
     members = {
         ObjectIdentifier = {
             type = "string",
@@ -1043,6 +1104,7 @@ M.ExtendedKeyUsageType = {
 
 M.ExtendedKeyUsage = {
     type = "structure",
+    id = "ExtendedKeyUsage",
     members = {
         ExtendedKeyUsageType = {
             type = "string",
@@ -1055,6 +1117,7 @@ M.ExtendedKeyUsage = {
 
 M.Extensions = {
     type = "structure",
+    id = "Extensions",
     members = {
         CertificatePolicies = {
             type = "list",
@@ -1078,6 +1141,7 @@ M.Extensions = {
 
 M.ApiPassthrough = {
     type = "structure",
+    id = "ApiPassthrough",
     members = {
         Extensions = M.Extensions,
         Subject = M.ASN1Subject,
@@ -1094,6 +1158,7 @@ M.ValidityPeriodType = {
 
 M.Validity = {
     type = "structure",
+    id = "Validity",
     members = {
         Value = {
             type = "long",
@@ -1112,6 +1177,7 @@ M.Validity = {
 
 M.IssueCertificateInput = {
     type = "structure",
+    id = "IssueCertificateInput",
     members = {
         ApiPassthrough = M.ApiPassthrough,
         CertificateAuthorityArn = {
@@ -1147,6 +1213,7 @@ M.IssueCertificateInput = {
 
 M.IssueCertificateOutput = {
     type = "structure",
+    id = "IssueCertificateOutput",
     members = {
         CertificateArn = {
             type = "string",
@@ -1156,6 +1223,7 @@ M.IssueCertificateOutput = {
 
 M.MalformedCSRException = {
     type = "structure",
+    id = "MalformedCSRException",
     error = "client",
     members = {
         message = {
@@ -1166,6 +1234,7 @@ M.MalformedCSRException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -1181,6 +1250,7 @@ M.ResourceOwner = {
 
 M.ListCertificateAuthoritiesInput = {
     type = "structure",
+    id = "ListCertificateAuthoritiesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1196,6 +1266,7 @@ M.ListCertificateAuthoritiesInput = {
 
 M.ListCertificateAuthoritiesOutput = {
     type = "structure",
+    id = "ListCertificateAuthoritiesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1209,6 +1280,7 @@ M.ListCertificateAuthoritiesOutput = {
 
 M.ListPermissionsInput = {
     type = "structure",
+    id = "ListPermissionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1227,6 +1299,7 @@ M.ListPermissionsInput = {
 
 M.Permission = {
     type = "structure",
+    id = "Permission",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -1252,6 +1325,7 @@ M.Permission = {
 
 M.ListPermissionsOutput = {
     type = "structure",
+    id = "ListPermissionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1265,6 +1339,7 @@ M.ListPermissionsOutput = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1283,6 +1358,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1296,6 +1372,7 @@ M.ListTagsOutput = {
 
 M.PutPolicyInput = {
     type = "structure",
+    id = "PutPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1314,10 +1391,12 @@ M.PutPolicyInput = {
 
 M.PutPolicyOutput = {
     type = "structure",
+    id = "PutPolicyOutput",
 }
 
 M.RestoreCertificateAuthorityInput = {
     type = "structure",
+    id = "RestoreCertificateAuthorityInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -1330,10 +1409,12 @@ M.RestoreCertificateAuthorityInput = {
 
 M.RestoreCertificateAuthorityOutput = {
     type = "structure",
+    id = "RestoreCertificateAuthorityOutput",
 }
 
 M.RequestAlreadyProcessedException = {
     type = "structure",
+    id = "RequestAlreadyProcessedException",
     error = "client",
     members = {
         message = {
@@ -1355,6 +1436,7 @@ M.RevocationReason = {
 
 M.RevokeCertificateInput = {
     type = "structure",
+    id = "RevokeCertificateInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -1379,10 +1461,12 @@ M.RevokeCertificateInput = {
 
 M.RevokeCertificateOutput = {
     type = "structure",
+    id = "RevokeCertificateOutput",
 }
 
 M.TagCertificateAuthorityInput = {
     type = "structure",
+    id = "TagCertificateAuthorityInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -1402,10 +1486,12 @@ M.TagCertificateAuthorityInput = {
 
 M.TagCertificateAuthorityOutput = {
     type = "structure",
+    id = "TagCertificateAuthorityOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -1416,6 +1502,7 @@ M.TooManyTagsException = {
 
 M.UntagCertificateAuthorityInput = {
     type = "structure",
+    id = "UntagCertificateAuthorityInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -1435,10 +1522,12 @@ M.UntagCertificateAuthorityInput = {
 
 M.UntagCertificateAuthorityOutput = {
     type = "structure",
+    id = "UntagCertificateAuthorityOutput",
 }
 
 M.UpdateCertificateAuthorityInput = {
     type = "structure",
+    id = "UpdateCertificateAuthorityInput",
     members = {
         CertificateAuthorityArn = {
             type = "string",
@@ -1455,6 +1544,7 @@ M.UpdateCertificateAuthorityInput = {
 
 M.UpdateCertificateAuthorityOutput = {
     type = "structure",
+    id = "UpdateCertificateAuthorityOutput",
 }
 
 return M

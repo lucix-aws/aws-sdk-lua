@@ -8,6 +8,7 @@ M.InvalidParameterProblem = {
 
 M.InvalidParameterDetail = {
     type = "structure",
+    id = "InvalidParameterDetail",
     members = {
         Problem = {
             type = "string",
@@ -17,6 +18,7 @@ M.InvalidParameterDetail = {
 
 M.BadRequestDetails = {
     type = "union",
+    id = "BadRequestDetails",
     members = {
         InvalidParameters = {
             type = "map",
@@ -32,6 +34,7 @@ M.BadRequestReason = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -46,6 +49,7 @@ M.BadRequestException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -64,6 +68,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -82,6 +87,7 @@ M.ResourceNotFoundException = {
 
 M.StartConfigurationSessionInput = {
     type = "structure",
+    id = "StartConfigurationSessionInput",
     members = {
         ApplicationIdentifier = {
             type = "string",
@@ -109,6 +115,7 @@ M.StartConfigurationSessionInput = {
 
 M.StartConfigurationSessionOutput = {
     type = "structure",
+    id = "StartConfigurationSessionOutput",
     members = {
         InitialConfigurationToken = {
             type = "string",
@@ -118,6 +125,7 @@ M.StartConfigurationSessionOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -128,6 +136,7 @@ M.ThrottlingException = {
 
 M.GetLatestConfigurationInput = {
     type = "structure",
+    id = "GetLatestConfigurationInput",
     members = {
         ConfigurationToken = {
             type = "string",
@@ -141,6 +150,7 @@ M.GetLatestConfigurationInput = {
 
 M.GetLatestConfigurationOutput = {
     type = "structure",
+    id = "GetLatestConfigurationOutput",
     members = {
         NextPollConfigurationToken = {
             type = "string",

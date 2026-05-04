@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -16,6 +17,7 @@ M.AccessDeniedException = {
 
 M.AndroidApp = {
     type = "structure",
+    id = "AndroidApp",
     members = {
         Package = {
             type = "string",
@@ -39,6 +41,7 @@ M.Status = {
 
 M.ApiKeyFilter = {
     type = "structure",
+    id = "ApiKeyFilter",
     members = {
         KeyStatus = {
             type = "string",
@@ -48,6 +51,7 @@ M.ApiKeyFilter = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -62,6 +66,7 @@ M.ConflictException = {
 
 M.AppleApp = {
     type = "structure",
+    id = "AppleApp",
     members = {
         BundleId = {
             type = "string",
@@ -74,6 +79,7 @@ M.AppleApp = {
 
 M.ApiKeyRestrictions = {
     type = "structure",
+    id = "ApiKeyRestrictions",
     members = {
         AllowActions = {
             type = "list",
@@ -106,6 +112,7 @@ M.ApiKeyRestrictions = {
 
 M.CreateKeyInput = {
     type = "structure",
+    id = "CreateKeyInput",
     members = {
         KeyName = {
             type = "string",
@@ -138,6 +145,7 @@ M.CreateKeyInput = {
 
 M.CreateKeyOutput = {
     type = "structure",
+    id = "CreateKeyOutput",
     members = {
         Key = {
             type = "string",
@@ -169,6 +177,7 @@ M.CreateKeyOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -183,6 +192,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -197,6 +207,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -211,6 +222,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -240,6 +252,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -269,6 +282,7 @@ M.ValidationException = {
 
 M.DeleteKeyInput = {
     type = "structure",
+    id = "DeleteKeyInput",
     members = {
         KeyName = {
             type = "string",
@@ -288,10 +302,12 @@ M.DeleteKeyInput = {
 
 M.DeleteKeyOutput = {
     type = "structure",
+    id = "DeleteKeyOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -306,6 +322,7 @@ M.ResourceNotFoundException = {
 
 M.DescribeKeyInput = {
     type = "structure",
+    id = "DescribeKeyInput",
     members = {
         KeyName = {
             type = "string",
@@ -319,6 +336,7 @@ M.DescribeKeyInput = {
 
 M.DescribeKeyOutput = {
     type = "structure",
+    id = "DescribeKeyOutput",
     members = {
         Key = {
             type = "string",
@@ -375,6 +393,7 @@ M.DescribeKeyOutput = {
 
 M.ListKeysInput = {
     type = "structure",
+    id = "ListKeysInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -391,6 +410,7 @@ M.ListKeysInput = {
 
 M.ListKeysResponseEntry = {
     type = "structure",
+    id = "ListKeysResponseEntry",
     members = {
         KeyName = {
             type = "string",
@@ -430,6 +450,7 @@ M.ListKeysResponseEntry = {
 
 M.ListKeysOutput = {
     type = "structure",
+    id = "ListKeysOutput",
     members = {
         Entries = {
             type = "list",
@@ -446,6 +467,7 @@ M.ListKeysOutput = {
 
 M.UpdateKeyInput = {
     type = "structure",
+    id = "UpdateKeyInput",
     members = {
         KeyName = {
             type = "string",
@@ -475,6 +497,7 @@ M.UpdateKeyInput = {
 
 M.UpdateKeyOutput = {
     type = "structure",
+    id = "UpdateKeyOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -500,6 +523,7 @@ M.UpdateKeyOutput = {
 
 M.AssociateTrackerConsumerInput = {
     type = "structure",
+    id = "AssociateTrackerConsumerInput",
     members = {
         TrackerName = {
             type = "string",
@@ -519,10 +543,12 @@ M.AssociateTrackerConsumerInput = {
 
 M.AssociateTrackerConsumerOutput = {
     type = "structure",
+    id = "AssociateTrackerConsumerOutput",
 }
 
 M.BatchDeleteDevicePositionHistoryInput = {
     type = "structure",
+    id = "BatchDeleteDevicePositionHistoryInput",
     members = {
         TrackerName = {
             type = "string",
@@ -552,6 +578,7 @@ M.BatchItemErrorCode = {
 
 M.BatchItemError = {
     type = "structure",
+    id = "BatchItemError",
     members = {
         Code = {
             type = "string",
@@ -564,6 +591,7 @@ M.BatchItemError = {
 
 M.BatchDeleteDevicePositionHistoryError = {
     type = "structure",
+    id = "BatchDeleteDevicePositionHistoryError",
     members = {
         DeviceId = {
             type = "string",
@@ -579,6 +607,7 @@ M.BatchDeleteDevicePositionHistoryError = {
 
 M.BatchDeleteDevicePositionHistoryOutput = {
     type = "structure",
+    id = "BatchDeleteDevicePositionHistoryOutput",
     members = {
         Errors = {
             type = "list",
@@ -592,6 +621,7 @@ M.BatchDeleteDevicePositionHistoryOutput = {
 
 M.BatchDeleteGeofenceInput = {
     type = "structure",
+    id = "BatchDeleteGeofenceInput",
     members = {
         CollectionName = {
             type = "string",
@@ -612,6 +642,7 @@ M.BatchDeleteGeofenceInput = {
 
 M.BatchDeleteGeofenceError = {
     type = "structure",
+    id = "BatchDeleteGeofenceError",
     members = {
         GeofenceId = {
             type = "string",
@@ -627,6 +658,7 @@ M.BatchDeleteGeofenceError = {
 
 M.BatchDeleteGeofenceOutput = {
     type = "structure",
+    id = "BatchDeleteGeofenceOutput",
     members = {
         Errors = {
             type = "list",
@@ -640,6 +672,7 @@ M.BatchDeleteGeofenceOutput = {
 
 M.PositionalAccuracy = {
     type = "structure",
+    id = "PositionalAccuracy",
     members = {
         Horizontal = {
             type = "double",
@@ -652,6 +685,7 @@ M.PositionalAccuracy = {
 
 M.DevicePositionUpdate = {
     type = "structure",
+    id = "DevicePositionUpdate",
     members = {
         DeviceId = {
             type = "string",
@@ -684,6 +718,7 @@ M.DevicePositionUpdate = {
 
 M.BatchEvaluateGeofencesInput = {
     type = "structure",
+    id = "BatchEvaluateGeofencesInput",
     members = {
         CollectionName = {
             type = "string",
@@ -704,6 +739,7 @@ M.BatchEvaluateGeofencesInput = {
 
 M.BatchEvaluateGeofencesError = {
     type = "structure",
+    id = "BatchEvaluateGeofencesError",
     members = {
         DeviceId = {
             type = "string",
@@ -726,6 +762,7 @@ M.BatchEvaluateGeofencesError = {
 
 M.BatchEvaluateGeofencesOutput = {
     type = "structure",
+    id = "BatchEvaluateGeofencesOutput",
     members = {
         Errors = {
             type = "list",
@@ -739,6 +776,7 @@ M.BatchEvaluateGeofencesOutput = {
 
 M.BatchGetDevicePositionInput = {
     type = "structure",
+    id = "BatchGetDevicePositionInput",
     members = {
         TrackerName = {
             type = "string",
@@ -759,6 +797,7 @@ M.BatchGetDevicePositionInput = {
 
 M.DevicePosition = {
     type = "structure",
+    id = "DevicePosition",
     members = {
         DeviceId = {
             type = "string",
@@ -795,6 +834,7 @@ M.DevicePosition = {
 
 M.BatchGetDevicePositionError = {
     type = "structure",
+    id = "BatchGetDevicePositionError",
     members = {
         DeviceId = {
             type = "string",
@@ -810,6 +850,7 @@ M.BatchGetDevicePositionError = {
 
 M.BatchGetDevicePositionOutput = {
     type = "structure",
+    id = "BatchGetDevicePositionOutput",
     members = {
         Errors = {
             type = "list",
@@ -830,6 +871,7 @@ M.BatchGetDevicePositionOutput = {
 
 M.Circle = {
     type = "structure",
+    id = "Circle",
     members = {
         Center = {
             type = "list",
@@ -849,6 +891,7 @@ M.Circle = {
 
 M.GeofenceGeometry = {
     type = "structure",
+    id = "GeofenceGeometry",
     members = {
         Polygon = {
             type = "list",
@@ -867,6 +910,7 @@ M.GeofenceGeometry = {
 
 M.BatchPutGeofenceRequestEntry = {
     type = "structure",
+    id = "BatchPutGeofenceRequestEntry",
     members = {
         GeofenceId = {
             type = "string",
@@ -887,6 +931,7 @@ M.BatchPutGeofenceRequestEntry = {
 
 M.BatchPutGeofenceInput = {
     type = "structure",
+    id = "BatchPutGeofenceInput",
     members = {
         CollectionName = {
             type = "string",
@@ -907,6 +952,7 @@ M.BatchPutGeofenceInput = {
 
 M.BatchPutGeofenceError = {
     type = "structure",
+    id = "BatchPutGeofenceError",
     members = {
         GeofenceId = {
             type = "string",
@@ -922,6 +968,7 @@ M.BatchPutGeofenceError = {
 
 M.BatchPutGeofenceSuccess = {
     type = "structure",
+    id = "BatchPutGeofenceSuccess",
     members = {
         GeofenceId = {
             type = "string",
@@ -948,6 +995,7 @@ M.BatchPutGeofenceSuccess = {
 
 M.BatchPutGeofenceOutput = {
     type = "structure",
+    id = "BatchPutGeofenceOutput",
     members = {
         Successes = {
             type = "list",
@@ -968,6 +1016,7 @@ M.BatchPutGeofenceOutput = {
 
 M.BatchUpdateDevicePositionInput = {
     type = "structure",
+    id = "BatchUpdateDevicePositionInput",
     members = {
         TrackerName = {
             type = "string",
@@ -988,6 +1037,7 @@ M.BatchUpdateDevicePositionInput = {
 
 M.BatchUpdateDevicePositionError = {
     type = "structure",
+    id = "BatchUpdateDevicePositionError",
     members = {
         DeviceId = {
             type = "string",
@@ -1010,6 +1060,7 @@ M.BatchUpdateDevicePositionError = {
 
 M.BatchUpdateDevicePositionOutput = {
     type = "structure",
+    id = "BatchUpdateDevicePositionOutput",
     members = {
         Errors = {
             type = "list",
@@ -1023,6 +1074,7 @@ M.BatchUpdateDevicePositionOutput = {
 
 M.CalculateRouteCarModeOptions = {
     type = "structure",
+    id = "CalculateRouteCarModeOptions",
     members = {
         AvoidFerries = {
             type = "boolean",
@@ -1058,6 +1110,7 @@ M.DimensionUnit = {
 
 M.TruckDimensions = {
     type = "structure",
+    id = "TruckDimensions",
     members = {
         Length = {
             type = "double",
@@ -1081,6 +1134,7 @@ M.VehicleWeightUnit = {
 
 M.TruckWeight = {
     type = "structure",
+    id = "TruckWeight",
     members = {
         Total = {
             type = "double",
@@ -1093,6 +1147,7 @@ M.TruckWeight = {
 
 M.CalculateRouteTruckModeOptions = {
     type = "structure",
+    id = "CalculateRouteTruckModeOptions",
     members = {
         AvoidFerries = {
             type = "boolean",
@@ -1107,6 +1162,7 @@ M.CalculateRouteTruckModeOptions = {
 
 M.CalculateRouteInput = {
     type = "structure",
+    id = "CalculateRouteInput",
     members = {
         CalculatorName = {
             type = "string",
@@ -1173,6 +1229,7 @@ M.CalculateRouteInput = {
 
 M.LegGeometry = {
     type = "structure",
+    id = "LegGeometry",
     members = {
         LineString = {
             type = "list",
@@ -1183,6 +1240,7 @@ M.LegGeometry = {
 
 M.Step = {
     type = "structure",
+    id = "Step",
     members = {
         StartPosition = {
             type = "list",
@@ -1218,6 +1276,7 @@ M.Step = {
 
 M.Leg = {
     type = "structure",
+    id = "Leg",
     members = {
         StartPosition = {
             type = "list",
@@ -1258,6 +1317,7 @@ M.Leg = {
 
 M.CalculateRouteSummary = {
     type = "structure",
+    id = "CalculateRouteSummary",
     members = {
         RouteBBox = {
             type = "list",
@@ -1295,6 +1355,7 @@ M.CalculateRouteSummary = {
 
 M.CalculateRouteOutput = {
     type = "structure",
+    id = "CalculateRouteOutput",
     members = {
         Legs = {
             type = "list",
@@ -1311,6 +1372,7 @@ M.CalculateRouteOutput = {
 
 M.CalculateRouteMatrixInput = {
     type = "structure",
+    id = "CalculateRouteMatrixInput",
     members = {
         CalculatorName = {
             type = "string",
@@ -1370,6 +1432,7 @@ M.RouteMatrixErrorCode = {
 
 M.RouteMatrixEntryError = {
     type = "structure",
+    id = "RouteMatrixEntryError",
     members = {
         Code = {
             type = "string",
@@ -1385,6 +1448,7 @@ M.RouteMatrixEntryError = {
 
 M.RouteMatrixEntry = {
     type = "structure",
+    id = "RouteMatrixEntry",
     members = {
         Distance = {
             type = "double",
@@ -1398,6 +1462,7 @@ M.RouteMatrixEntry = {
 
 M.CalculateRouteMatrixSummary = {
     type = "structure",
+    id = "CalculateRouteMatrixSummary",
     members = {
         DataSource = {
             type = "string",
@@ -1428,6 +1493,7 @@ M.CalculateRouteMatrixSummary = {
 
 M.CalculateRouteMatrixOutput = {
     type = "structure",
+    id = "CalculateRouteMatrixOutput",
     members = {
         RouteMatrix = {
             type = "list",
@@ -1452,6 +1518,7 @@ M.CalculateRouteMatrixOutput = {
 
 M.CancelJobInput = {
     type = "structure",
+    id = "CancelJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1473,6 +1540,7 @@ M.JobStatus = {
 
 M.CancelJobOutput = {
     type = "structure",
+    id = "CancelJobOutput",
     members = {
         JobArn = {
             type = "string",
@@ -1497,6 +1565,7 @@ M.CancelJobOutput = {
 
 M.LteLocalId = {
     type = "structure",
+    id = "LteLocalId",
     members = {
         Earfcn = {
             type = "integer",
@@ -1517,6 +1586,7 @@ M.LteLocalId = {
 
 M.LteNetworkMeasurements = {
     type = "structure",
+    id = "LteNetworkMeasurements",
     members = {
         Earfcn = {
             type = "integer",
@@ -1550,6 +1620,7 @@ M.LteNetworkMeasurements = {
 
 M.LteCellDetails = {
     type = "structure",
+    id = "LteCellDetails",
     members = {
         CellId = {
             type = "integer",
@@ -1595,6 +1666,7 @@ M.LteCellDetails = {
 
 M.CellSignals = {
     type = "structure",
+    id = "CellSignals",
     members = {
         LteCellDetails = {
             type = "list",
@@ -1614,6 +1686,7 @@ M.PricingPlan = {
 
 M.CreateGeofenceCollectionInput = {
     type = "structure",
+    id = "CreateGeofenceCollectionInput",
     members = {
         CollectionName = {
             type = "string",
@@ -1643,6 +1716,7 @@ M.CreateGeofenceCollectionInput = {
 
 M.CreateGeofenceCollectionOutput = {
     type = "structure",
+    id = "CreateGeofenceCollectionOutput",
     members = {
         CollectionName = {
             type = "string",
@@ -1668,6 +1742,7 @@ M.CreateGeofenceCollectionOutput = {
 
 M.MapConfiguration = {
     type = "structure",
+    id = "MapConfiguration",
     members = {
         Style = {
             type = "string",
@@ -1687,6 +1762,7 @@ M.MapConfiguration = {
 
 M.CreateMapInput = {
     type = "structure",
+    id = "CreateMapInput",
     members = {
         MapName = {
             type = "string",
@@ -1713,6 +1789,7 @@ M.CreateMapInput = {
 
 M.CreateMapOutput = {
     type = "structure",
+    id = "CreateMapOutput",
     members = {
         MapName = {
             type = "string",
@@ -1743,6 +1820,7 @@ M.IntendedUse = {
 
 M.DataSourceConfiguration = {
     type = "structure",
+    id = "DataSourceConfiguration",
     members = {
         IntendedUse = {
             type = "string",
@@ -1752,6 +1830,7 @@ M.DataSourceConfiguration = {
 
 M.CreatePlaceIndexInput = {
     type = "structure",
+    id = "CreatePlaceIndexInput",
     members = {
         IndexName = {
             type = "string",
@@ -1782,6 +1861,7 @@ M.CreatePlaceIndexInput = {
 
 M.CreatePlaceIndexOutput = {
     type = "structure",
+    id = "CreatePlaceIndexOutput",
     members = {
         IndexName = {
             type = "string",
@@ -1807,6 +1887,7 @@ M.CreatePlaceIndexOutput = {
 
 M.CreateRouteCalculatorInput = {
     type = "structure",
+    id = "CreateRouteCalculatorInput",
     members = {
         CalculatorName = {
             type = "string",
@@ -1836,6 +1917,7 @@ M.CreateRouteCalculatorInput = {
 
 M.CreateRouteCalculatorOutput = {
     type = "structure",
+    id = "CreateRouteCalculatorOutput",
     members = {
         CalculatorName = {
             type = "string",
@@ -1867,6 +1949,7 @@ M.PositionFiltering = {
 
 M.CreateTrackerInput = {
     type = "structure",
+    id = "CreateTrackerInput",
     members = {
         TrackerName = {
             type = "string",
@@ -1905,6 +1988,7 @@ M.CreateTrackerInput = {
 
 M.CreateTrackerOutput = {
     type = "structure",
+    id = "CreateTrackerOutput",
     members = {
         TrackerName = {
             type = "string",
@@ -1930,6 +2014,7 @@ M.CreateTrackerOutput = {
 
 M.DeleteGeofenceCollectionInput = {
     type = "structure",
+    id = "DeleteGeofenceCollectionInput",
     members = {
         CollectionName = {
             type = "string",
@@ -1943,10 +2028,12 @@ M.DeleteGeofenceCollectionInput = {
 
 M.DeleteGeofenceCollectionOutput = {
     type = "structure",
+    id = "DeleteGeofenceCollectionOutput",
 }
 
 M.DeleteMapInput = {
     type = "structure",
+    id = "DeleteMapInput",
     members = {
         MapName = {
             type = "string",
@@ -1960,10 +2047,12 @@ M.DeleteMapInput = {
 
 M.DeleteMapOutput = {
     type = "structure",
+    id = "DeleteMapOutput",
 }
 
 M.DeletePlaceIndexInput = {
     type = "structure",
+    id = "DeletePlaceIndexInput",
     members = {
         IndexName = {
             type = "string",
@@ -1977,10 +2066,12 @@ M.DeletePlaceIndexInput = {
 
 M.DeletePlaceIndexOutput = {
     type = "structure",
+    id = "DeletePlaceIndexOutput",
 }
 
 M.DeleteRouteCalculatorInput = {
     type = "structure",
+    id = "DeleteRouteCalculatorInput",
     members = {
         CalculatorName = {
             type = "string",
@@ -1994,10 +2085,12 @@ M.DeleteRouteCalculatorInput = {
 
 M.DeleteRouteCalculatorOutput = {
     type = "structure",
+    id = "DeleteRouteCalculatorOutput",
 }
 
 M.DeleteTrackerInput = {
     type = "structure",
+    id = "DeleteTrackerInput",
     members = {
         TrackerName = {
             type = "string",
@@ -2011,10 +2104,12 @@ M.DeleteTrackerInput = {
 
 M.DeleteTrackerOutput = {
     type = "structure",
+    id = "DeleteTrackerOutput",
 }
 
 M.DescribeGeofenceCollectionInput = {
     type = "structure",
+    id = "DescribeGeofenceCollectionInput",
     members = {
         CollectionName = {
             type = "string",
@@ -2028,6 +2123,7 @@ M.DescribeGeofenceCollectionInput = {
 
 M.DescribeGeofenceCollectionOutput = {
     type = "structure",
+    id = "DescribeGeofenceCollectionOutput",
     members = {
         CollectionName = {
             type = "string",
@@ -2083,6 +2179,7 @@ M.DescribeGeofenceCollectionOutput = {
 
 M.DescribeMapInput = {
     type = "structure",
+    id = "DescribeMapInput",
     members = {
         MapName = {
             type = "string",
@@ -2096,6 +2193,7 @@ M.DescribeMapInput = {
 
 M.DescribeMapOutput = {
     type = "structure",
+    id = "DescribeMapOutput",
     members = {
         MapName = {
             type = "string",
@@ -2151,6 +2249,7 @@ M.DescribeMapOutput = {
 
 M.DescribePlaceIndexInput = {
     type = "structure",
+    id = "DescribePlaceIndexInput",
     members = {
         IndexName = {
             type = "string",
@@ -2164,6 +2263,7 @@ M.DescribePlaceIndexInput = {
 
 M.DescribePlaceIndexOutput = {
     type = "structure",
+    id = "DescribePlaceIndexOutput",
     members = {
         IndexName = {
             type = "string",
@@ -2219,6 +2319,7 @@ M.DescribePlaceIndexOutput = {
 
 M.DescribeRouteCalculatorInput = {
     type = "structure",
+    id = "DescribeRouteCalculatorInput",
     members = {
         CalculatorName = {
             type = "string",
@@ -2232,6 +2333,7 @@ M.DescribeRouteCalculatorInput = {
 
 M.DescribeRouteCalculatorOutput = {
     type = "structure",
+    id = "DescribeRouteCalculatorOutput",
     members = {
         CalculatorName = {
             type = "string",
@@ -2284,6 +2386,7 @@ M.DescribeRouteCalculatorOutput = {
 
 M.DescribeTrackerInput = {
     type = "structure",
+    id = "DescribeTrackerInput",
     members = {
         TrackerName = {
             type = "string",
@@ -2297,6 +2400,7 @@ M.DescribeTrackerInput = {
 
 M.DescribeTrackerOutput = {
     type = "structure",
+    id = "DescribeTrackerOutput",
     members = {
         TrackerName = {
             type = "string",
@@ -2358,6 +2462,7 @@ M.DescribeTrackerOutput = {
 
 M.WiFiAccessPoint = {
     type = "structure",
+    id = "WiFiAccessPoint",
     members = {
         MacAddress = {
             type = "string",
@@ -2376,6 +2481,7 @@ M.WiFiAccessPoint = {
 
 M.DeviceState = {
     type = "structure",
+    id = "DeviceState",
     members = {
         DeviceId = {
             type = "string",
@@ -2411,6 +2517,7 @@ M.DeviceState = {
 
 M.DisassociateTrackerConsumerInput = {
     type = "structure",
+    id = "DisassociateTrackerConsumerInput",
     members = {
         TrackerName = {
             type = "string",
@@ -2431,6 +2538,7 @@ M.DisassociateTrackerConsumerInput = {
 
 M.DisassociateTrackerConsumerOutput = {
     type = "structure",
+    id = "DisassociateTrackerConsumerOutput",
 }
 
 M.ForecastedGeofenceEventType = {
@@ -2441,6 +2549,7 @@ M.ForecastedGeofenceEventType = {
 
 M.ForecastedEvent = {
     type = "structure",
+    id = "ForecastedEvent",
     members = {
         EventId = {
             type = "string",
@@ -2489,6 +2598,7 @@ M.ForecastedEvent = {
 
 M.ForecastGeofenceEventsDeviceState = {
     type = "structure",
+    id = "ForecastGeofenceEventsDeviceState",
     members = {
         Position = {
             type = "list",
@@ -2510,6 +2620,7 @@ M.SpeedUnit = {
 
 M.ForecastGeofenceEventsInput = {
     type = "structure",
+    id = "ForecastGeofenceEventsInput",
     members = {
         CollectionName = {
             type = "string",
@@ -2544,6 +2655,7 @@ M.ForecastGeofenceEventsInput = {
 
 M.ForecastGeofenceEventsOutput = {
     type = "structure",
+    id = "ForecastGeofenceEventsOutput",
     members = {
         ForecastedEvents = {
             type = "list",
@@ -2572,6 +2684,7 @@ M.ForecastGeofenceEventsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2585,6 +2698,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -2596,6 +2710,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2617,10 +2732,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2642,10 +2759,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.GetGeofenceInput = {
     type = "structure",
+    id = "GetGeofenceInput",
     members = {
         CollectionName = {
             type = "string",
@@ -2666,6 +2785,7 @@ M.GetGeofenceInput = {
 
 M.GetGeofenceOutput = {
     type = "structure",
+    id = "GetGeofenceOutput",
     members = {
         GeofenceId = {
             type = "string",
@@ -2706,6 +2826,7 @@ M.GetGeofenceOutput = {
 
 M.ListGeofenceCollectionsInput = {
     type = "structure",
+    id = "ListGeofenceCollectionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2721,6 +2842,7 @@ M.ListGeofenceCollectionsInput = {
 
 M.ListGeofenceCollectionsResponseEntry = {
     type = "structure",
+    id = "ListGeofenceCollectionsResponseEntry",
     members = {
         CollectionName = {
             type = "string",
@@ -2759,6 +2881,7 @@ M.ListGeofenceCollectionsResponseEntry = {
 
 M.ListGeofenceCollectionsOutput = {
     type = "structure",
+    id = "ListGeofenceCollectionsOutput",
     members = {
         Entries = {
             type = "list",
@@ -2775,6 +2898,7 @@ M.ListGeofenceCollectionsOutput = {
 
 M.ListGeofencesInput = {
     type = "structure",
+    id = "ListGeofencesInput",
     members = {
         CollectionName = {
             type = "string",
@@ -2797,6 +2921,7 @@ M.ListGeofencesInput = {
 
 M.ListGeofenceResponseEntry = {
     type = "structure",
+    id = "ListGeofenceResponseEntry",
     members = {
         GeofenceId = {
             type = "string",
@@ -2837,6 +2962,7 @@ M.ListGeofenceResponseEntry = {
 
 M.ListGeofencesOutput = {
     type = "structure",
+    id = "ListGeofencesOutput",
     members = {
         Entries = {
             type = "list",
@@ -2853,6 +2979,7 @@ M.ListGeofencesOutput = {
 
 M.PutGeofenceInput = {
     type = "structure",
+    id = "PutGeofenceInput",
     members = {
         CollectionName = {
             type = "string",
@@ -2881,6 +3008,7 @@ M.PutGeofenceInput = {
 
 M.PutGeofenceOutput = {
     type = "structure",
+    id = "PutGeofenceOutput",
     members = {
         GeofenceId = {
             type = "string",
@@ -2907,6 +3035,7 @@ M.PutGeofenceOutput = {
 
 M.UpdateGeofenceCollectionInput = {
     type = "structure",
+    id = "UpdateGeofenceCollectionInput",
     members = {
         CollectionName = {
             type = "string",
@@ -2929,6 +3058,7 @@ M.UpdateGeofenceCollectionInput = {
 
 M.UpdateGeofenceCollectionOutput = {
     type = "structure",
+    id = "UpdateGeofenceCollectionOutput",
     members = {
         CollectionName = {
             type = "string",
@@ -2954,6 +3084,7 @@ M.UpdateGeofenceCollectionOutput = {
 
 M.GetDevicePositionInput = {
     type = "structure",
+    id = "GetDevicePositionInput",
     members = {
         TrackerName = {
             type = "string",
@@ -2974,6 +3105,7 @@ M.GetDevicePositionInput = {
 
 M.GetDevicePositionOutput = {
     type = "structure",
+    id = "GetDevicePositionOutput",
     members = {
         DeviceId = {
             type = "string",
@@ -3010,6 +3142,7 @@ M.GetDevicePositionOutput = {
 
 M.GetDevicePositionHistoryInput = {
     type = "structure",
+    id = "GetDevicePositionHistoryInput",
     members = {
         TrackerName = {
             type = "string",
@@ -3051,6 +3184,7 @@ M.GetDevicePositionHistoryInput = {
 
 M.GetDevicePositionHistoryOutput = {
     type = "structure",
+    id = "GetDevicePositionHistoryOutput",
     members = {
         DevicePositions = {
             type = "list",
@@ -3067,6 +3201,7 @@ M.GetDevicePositionHistoryOutput = {
 
 M.GetJobInput = {
     type = "structure",
+    id = "GetJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3089,6 +3224,7 @@ M.ValidateAddressAdditionalFeature = {
 
 M.ValidateAddressActionOptions = {
     type = "structure",
+    id = "ValidateAddressActionOptions",
     members = {
         AdditionalFeatures = {
             type = "list",
@@ -3099,6 +3235,7 @@ M.ValidateAddressActionOptions = {
 
 M.JobActionOptions = {
     type = "structure",
+    id = "JobActionOptions",
     members = {
         ValidateAddress = M.ValidateAddressActionOptions,
     },
@@ -3111,6 +3248,7 @@ M.JobErrorCode = {
 
 M.JobError = {
     type = "structure",
+    id = "JobError",
     members = {
         Code = {
             type = "string",
@@ -3131,6 +3269,7 @@ M.JobInputFormat = {
 
 M.JobInputOptions = {
     type = "structure",
+    id = "JobInputOptions",
     members = {
         Location = {
             type = "string",
@@ -3153,6 +3292,7 @@ M.JobOutputFormat = {
 
 M.JobOutputOptions = {
     type = "structure",
+    id = "JobOutputOptions",
     members = {
         Format = {
             type = "string",
@@ -3171,6 +3311,7 @@ M.JobOutputOptions = {
 
 M.GetJobOutput = {
     type = "structure",
+    id = "GetJobOutput",
     members = {
         Action = {
             type = "string",
@@ -3243,6 +3384,7 @@ M.GetJobOutput = {
 
 M.GetMapGlyphsInput = {
     type = "structure",
+    id = "GetMapGlyphsInput",
     members = {
         MapName = {
             type = "string",
@@ -3276,6 +3418,7 @@ M.GetMapGlyphsInput = {
 
 M.GetMapGlyphsOutput = {
     type = "structure",
+    id = "GetMapGlyphsOutput",
     members = {
         Blob = {
             type = "blob",
@@ -3300,6 +3443,7 @@ M.GetMapGlyphsOutput = {
 
 M.GetMapSpritesInput = {
     type = "structure",
+    id = "GetMapSpritesInput",
     members = {
         MapName = {
             type = "string",
@@ -3326,6 +3470,7 @@ M.GetMapSpritesInput = {
 
 M.GetMapSpritesOutput = {
     type = "structure",
+    id = "GetMapSpritesOutput",
     members = {
         Blob = {
             type = "blob",
@@ -3350,6 +3495,7 @@ M.GetMapSpritesOutput = {
 
 M.GetMapStyleDescriptorInput = {
     type = "structure",
+    id = "GetMapStyleDescriptorInput",
     members = {
         MapName = {
             type = "string",
@@ -3369,6 +3515,7 @@ M.GetMapStyleDescriptorInput = {
 
 M.GetMapStyleDescriptorOutput = {
     type = "structure",
+    id = "GetMapStyleDescriptorOutput",
     members = {
         Blob = {
             type = "blob",
@@ -3393,6 +3540,7 @@ M.GetMapStyleDescriptorOutput = {
 
 M.GetMapTileInput = {
     type = "structure",
+    id = "GetMapTileInput",
     members = {
         MapName = {
             type = "string",
@@ -3433,6 +3581,7 @@ M.GetMapTileInput = {
 
 M.GetMapTileOutput = {
     type = "structure",
+    id = "GetMapTileOutput",
     members = {
         Blob = {
             type = "blob",
@@ -3457,6 +3606,7 @@ M.GetMapTileOutput = {
 
 M.GetPlaceInput = {
     type = "structure",
+    id = "GetPlaceInput",
     members = {
         IndexName = {
             type = "string",
@@ -3489,6 +3639,7 @@ M.GetPlaceInput = {
 
 M.PlaceGeometry = {
     type = "structure",
+    id = "PlaceGeometry",
     members = {
         Point = {
             type = "list",
@@ -3499,6 +3650,7 @@ M.PlaceGeometry = {
 
 M.TimeZone = {
     type = "structure",
+    id = "TimeZone",
     members = {
         Name = {
             type = "string",
@@ -3514,6 +3666,7 @@ M.TimeZone = {
 
 M.Place = {
     type = "structure",
+    id = "Place",
     members = {
         Label = {
             type = "string",
@@ -3571,6 +3724,7 @@ M.Place = {
 
 M.GetPlaceOutput = {
     type = "structure",
+    id = "GetPlaceOutput",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -3580,6 +3734,7 @@ M.GetPlaceOutput = {
 
 M.InferredState = {
     type = "structure",
+    id = "InferredState",
     members = {
         Position = {
             type = "list",
@@ -3600,6 +3755,7 @@ M.InferredState = {
 
 M.JobsFilter = {
     type = "structure",
+    id = "JobsFilter",
     members = {
         JobStatus = {
             type = "string",
@@ -3609,6 +3765,7 @@ M.JobsFilter = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         Filter = M.JobsFilter,
         MaxResults = {
@@ -3625,6 +3782,7 @@ M.ListJobsInput = {
 
 M.ListJobsResponseEntry = {
     type = "structure",
+    id = "ListJobsResponseEntry",
     members = {
         Action = {
             type = "string",
@@ -3692,6 +3850,7 @@ M.ListJobsResponseEntry = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         Entries = {
             type = "list",
@@ -3708,6 +3867,7 @@ M.ListJobsOutput = {
 
 M.StartJobInput = {
     type = "structure",
+    id = "StartJobInput",
     members = {
         ClientToken = {
             type = "string",
@@ -3747,6 +3907,7 @@ M.StartJobInput = {
 
 M.StartJobOutput = {
     type = "structure",
+    id = "StartJobOutput",
     members = {
         CreatedAt = {
             type = "timestamp",
@@ -3778,6 +3939,7 @@ M.StartJobOutput = {
 
 M.TrackingFilterGeometry = {
     type = "structure",
+    id = "TrackingFilterGeometry",
     members = {
         Polygon = {
             type = "list",
@@ -3788,6 +3950,7 @@ M.TrackingFilterGeometry = {
 
 M.ListDevicePositionsInput = {
     type = "structure",
+    id = "ListDevicePositionsInput",
     members = {
         TrackerName = {
             type = "string",
@@ -3811,6 +3974,7 @@ M.ListDevicePositionsInput = {
 
 M.ListDevicePositionsResponseEntry = {
     type = "structure",
+    id = "ListDevicePositionsResponseEntry",
     members = {
         DeviceId = {
             type = "string",
@@ -3843,6 +4007,7 @@ M.ListDevicePositionsResponseEntry = {
 
 M.ListDevicePositionsOutput = {
     type = "structure",
+    id = "ListDevicePositionsOutput",
     members = {
         Entries = {
             type = "list",
@@ -3859,6 +4024,7 @@ M.ListDevicePositionsOutput = {
 
 M.ListMapsInput = {
     type = "structure",
+    id = "ListMapsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3874,6 +4040,7 @@ M.ListMapsInput = {
 
 M.ListMapsResponseEntry = {
     type = "structure",
+    id = "ListMapsResponseEntry",
     members = {
         MapName = {
             type = "string",
@@ -3915,6 +4082,7 @@ M.ListMapsResponseEntry = {
 
 M.ListMapsOutput = {
     type = "structure",
+    id = "ListMapsOutput",
     members = {
         Entries = {
             type = "list",
@@ -3931,6 +4099,7 @@ M.ListMapsOutput = {
 
 M.ListPlaceIndexesInput = {
     type = "structure",
+    id = "ListPlaceIndexesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3946,6 +4115,7 @@ M.ListPlaceIndexesInput = {
 
 M.ListPlaceIndexesResponseEntry = {
     type = "structure",
+    id = "ListPlaceIndexesResponseEntry",
     members = {
         IndexName = {
             type = "string",
@@ -3987,6 +4157,7 @@ M.ListPlaceIndexesResponseEntry = {
 
 M.ListPlaceIndexesOutput = {
     type = "structure",
+    id = "ListPlaceIndexesOutput",
     members = {
         Entries = {
             type = "list",
@@ -4003,6 +4174,7 @@ M.ListPlaceIndexesOutput = {
 
 M.ListRouteCalculatorsInput = {
     type = "structure",
+    id = "ListRouteCalculatorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4018,6 +4190,7 @@ M.ListRouteCalculatorsInput = {
 
 M.ListRouteCalculatorsResponseEntry = {
     type = "structure",
+    id = "ListRouteCalculatorsResponseEntry",
     members = {
         CalculatorName = {
             type = "string",
@@ -4059,6 +4232,7 @@ M.ListRouteCalculatorsResponseEntry = {
 
 M.ListRouteCalculatorsOutput = {
     type = "structure",
+    id = "ListRouteCalculatorsOutput",
     members = {
         Entries = {
             type = "list",
@@ -4075,6 +4249,7 @@ M.ListRouteCalculatorsOutput = {
 
 M.ListTrackerConsumersInput = {
     type = "structure",
+    id = "ListTrackerConsumersInput",
     members = {
         TrackerName = {
             type = "string",
@@ -4097,6 +4272,7 @@ M.ListTrackerConsumersInput = {
 
 M.ListTrackerConsumersOutput = {
     type = "structure",
+    id = "ListTrackerConsumersOutput",
     members = {
         ConsumerArns = {
             type = "list",
@@ -4113,6 +4289,7 @@ M.ListTrackerConsumersOutput = {
 
 M.ListTrackersInput = {
     type = "structure",
+    id = "ListTrackersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4128,6 +4305,7 @@ M.ListTrackersInput = {
 
 M.ListTrackersResponseEntry = {
     type = "structure",
+    id = "ListTrackersResponseEntry",
     members = {
         TrackerName = {
             type = "string",
@@ -4166,6 +4344,7 @@ M.ListTrackersResponseEntry = {
 
 M.ListTrackersOutput = {
     type = "structure",
+    id = "ListTrackersOutput",
     members = {
         Entries = {
             type = "list",
@@ -4182,6 +4361,7 @@ M.ListTrackersOutput = {
 
 M.MapConfigurationUpdate = {
     type = "structure",
+    id = "MapConfigurationUpdate",
     members = {
         PoliticalView = {
             type = "string",
@@ -4195,6 +4375,7 @@ M.MapConfigurationUpdate = {
 
 M.UpdateMapInput = {
     type = "structure",
+    id = "UpdateMapInput",
     members = {
         MapName = {
             type = "string",
@@ -4215,6 +4396,7 @@ M.UpdateMapInput = {
 
 M.UpdateMapOutput = {
     type = "structure",
+    id = "UpdateMapOutput",
     members = {
         MapName = {
             type = "string",
@@ -4240,6 +4422,7 @@ M.UpdateMapOutput = {
 
 M.SearchPlaceIndexForPositionInput = {
     type = "structure",
+    id = "SearchPlaceIndexForPositionInput",
     members = {
         IndexName = {
             type = "string",
@@ -4272,6 +4455,7 @@ M.SearchPlaceIndexForPositionInput = {
 
 M.SearchForPositionResult = {
     type = "structure",
+    id = "SearchForPositionResult",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -4290,6 +4474,7 @@ M.SearchForPositionResult = {
 
 M.SearchPlaceIndexForPositionSummary = {
     type = "structure",
+    id = "SearchPlaceIndexForPositionSummary",
     members = {
         Position = {
             type = "list",
@@ -4315,6 +4500,7 @@ M.SearchPlaceIndexForPositionSummary = {
 
 M.SearchPlaceIndexForPositionOutput = {
     type = "structure",
+    id = "SearchPlaceIndexForPositionOutput",
     members = {
         Summary = setmetatable({ traits = {
             required = true,
@@ -4331,6 +4517,7 @@ M.SearchPlaceIndexForPositionOutput = {
 
 M.SearchPlaceIndexForSuggestionsInput = {
     type = "structure",
+    id = "SearchPlaceIndexForSuggestionsInput",
     members = {
         IndexName = {
             type = "string",
@@ -4381,6 +4568,7 @@ M.SearchPlaceIndexForSuggestionsInput = {
 
 M.SearchForSuggestionsResult = {
     type = "structure",
+    id = "SearchForSuggestionsResult",
     members = {
         Text = {
             type = "string",
@@ -4404,6 +4592,7 @@ M.SearchForSuggestionsResult = {
 
 M.SearchPlaceIndexForSuggestionsSummary = {
     type = "structure",
+    id = "SearchPlaceIndexForSuggestionsSummary",
     members = {
         Text = {
             type = "string",
@@ -4444,6 +4633,7 @@ M.SearchPlaceIndexForSuggestionsSummary = {
 
 M.SearchPlaceIndexForSuggestionsOutput = {
     type = "structure",
+    id = "SearchPlaceIndexForSuggestionsOutput",
     members = {
         Summary = setmetatable({ traits = {
             required = true,
@@ -4460,6 +4650,7 @@ M.SearchPlaceIndexForSuggestionsOutput = {
 
 M.SearchPlaceIndexForTextInput = {
     type = "structure",
+    id = "SearchPlaceIndexForTextInput",
     members = {
         IndexName = {
             type = "string",
@@ -4507,6 +4698,7 @@ M.SearchPlaceIndexForTextInput = {
 
 M.SearchForTextResult = {
     type = "structure",
+    id = "SearchForTextResult",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -4525,6 +4717,7 @@ M.SearchForTextResult = {
 
 M.SearchPlaceIndexForTextSummary = {
     type = "structure",
+    id = "SearchPlaceIndexForTextSummary",
     members = {
         Text = {
             type = "string",
@@ -4569,6 +4762,7 @@ M.SearchPlaceIndexForTextSummary = {
 
 M.SearchPlaceIndexForTextOutput = {
     type = "structure",
+    id = "SearchPlaceIndexForTextOutput",
     members = {
         Summary = setmetatable({ traits = {
             required = true,
@@ -4585,6 +4779,7 @@ M.SearchPlaceIndexForTextOutput = {
 
 M.UpdatePlaceIndexInput = {
     type = "structure",
+    id = "UpdatePlaceIndexInput",
     members = {
         IndexName = {
             type = "string",
@@ -4605,6 +4800,7 @@ M.UpdatePlaceIndexInput = {
 
 M.UpdatePlaceIndexOutput = {
     type = "structure",
+    id = "UpdatePlaceIndexOutput",
     members = {
         IndexName = {
             type = "string",
@@ -4630,6 +4826,7 @@ M.UpdatePlaceIndexOutput = {
 
 M.UpdateRouteCalculatorInput = {
     type = "structure",
+    id = "UpdateRouteCalculatorInput",
     members = {
         CalculatorName = {
             type = "string",
@@ -4649,6 +4846,7 @@ M.UpdateRouteCalculatorInput = {
 
 M.UpdateRouteCalculatorOutput = {
     type = "structure",
+    id = "UpdateRouteCalculatorOutput",
     members = {
         CalculatorName = {
             type = "string",
@@ -4674,6 +4872,7 @@ M.UpdateRouteCalculatorOutput = {
 
 M.UpdateTrackerInput = {
     type = "structure",
+    id = "UpdateTrackerInput",
     members = {
         TrackerName = {
             type = "string",
@@ -4705,6 +4904,7 @@ M.UpdateTrackerInput = {
 
 M.UpdateTrackerOutput = {
     type = "structure",
+    id = "UpdateTrackerOutput",
     members = {
         TrackerName = {
             type = "string",
@@ -4730,6 +4930,7 @@ M.UpdateTrackerOutput = {
 
 M.VerifyDevicePositionInput = {
     type = "structure",
+    id = "VerifyDevicePositionInput",
     members = {
         TrackerName = {
             type = "string",
@@ -4749,6 +4950,7 @@ M.VerifyDevicePositionInput = {
 
 M.VerifyDevicePositionOutput = {
     type = "structure",
+    id = "VerifyDevicePositionOutput",
     members = {
         InferredState = setmetatable({ traits = {
             required = true,

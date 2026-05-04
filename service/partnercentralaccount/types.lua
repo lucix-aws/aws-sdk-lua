@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptConnectionInvitationInput = {
     type = "structure",
+    id = "AcceptConnectionInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -32,6 +33,7 @@ M.ConnectionType = {
 
 M.AccountSummary = {
     type = "structure",
+    id = "AccountSummary",
     members = {
         Name = {
             type = "string",
@@ -44,6 +46,7 @@ M.AccountSummary = {
 
 M.PartnerProfileSummary = {
     type = "structure",
+    id = "PartnerProfileSummary",
     members = {
         Id = {
             type = "string",
@@ -62,6 +65,7 @@ M.PartnerProfileSummary = {
 
 M.SellerProfileSummary = {
     type = "structure",
+    id = "SellerProfileSummary",
     members = {
         Id = {
             type = "string",
@@ -80,6 +84,7 @@ M.SellerProfileSummary = {
 
 M.Participant = {
     type = "union",
+    id = "Participant",
     members = {
         PartnerProfile = M.PartnerProfileSummary,
         SellerProfile = M.SellerProfileSummary,
@@ -94,6 +99,7 @@ M.ConnectionTypeStatus = {
 
 M.ConnectionTypeDetail = {
     type = "structure",
+    id = "ConnectionTypeDetail",
     members = {
         CreatedAt = {
             type = "timestamp",
@@ -137,6 +143,7 @@ M.ConnectionTypeDetail = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         Catalog = {
             type = "string",
@@ -182,6 +189,7 @@ M.Connection = {
 
 M.AcceptConnectionInvitationOutput = {
     type = "structure",
+    id = "AcceptConnectionInvitationOutput",
     members = {
         Connection = setmetatable({ traits = {
             required = true,
@@ -196,6 +204,7 @@ M.AccessDeniedExceptionReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -230,6 +239,7 @@ M.ConflictExceptionReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -249,6 +259,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -274,6 +285,7 @@ M.ResourceNotFoundExceptionReason = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -301,6 +313,7 @@ M.ServiceQuotaExceededExceptionReason = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -320,6 +333,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -349,6 +363,7 @@ M.BusinessValidationCode = {
 
 M.BusinessValidationError = {
     type = "structure",
+    id = "BusinessValidationError",
     members = {
         Message = {
             type = "string",
@@ -377,6 +392,7 @@ M.FieldValidationCode = {
 
 M.FieldValidationError = {
     type = "structure",
+    id = "FieldValidationError",
     members = {
         Name = {
             type = "string",
@@ -401,6 +417,7 @@ M.FieldValidationError = {
 
 M.ValidationError = {
     type = "union",
+    id = "ValidationError",
     members = {
         FieldValidationError = M.FieldValidationError,
         BusinessValidationError = M.BusinessValidationError,
@@ -414,6 +431,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -443,6 +461,7 @@ M.AccessType = {
 
 M.AllianceLeadContact = {
     type = "structure",
+    id = "AllianceLeadContact",
     members = {
         FirstName = {
             type = "string",
@@ -473,6 +492,7 @@ M.AllianceLeadContact = {
 
 M.AssociateAwsTrainingCertificationEmailDomainInput = {
     type = "structure",
+    id = "AssociateAwsTrainingCertificationEmailDomainInput",
     members = {
         Catalog = {
             type = "string",
@@ -509,10 +529,12 @@ M.AssociateAwsTrainingCertificationEmailDomainInput = {
 
 M.AssociateAwsTrainingCertificationEmailDomainOutput = {
     type = "structure",
+    id = "AssociateAwsTrainingCertificationEmailDomainOutput",
 }
 
 M.BusinessVerificationDetails = {
     type = "structure",
+    id = "BusinessVerificationDetails",
     members = {
         LegalName = {
             type = "string",
@@ -540,6 +562,7 @@ M.BusinessVerificationDetails = {
 
 M.BusinessVerificationResponse = {
     type = "structure",
+    id = "BusinessVerificationResponse",
     members = {
         BusinessVerificationDetails = setmetatable({ traits = {
             required = true,
@@ -558,6 +581,7 @@ M.BusinessVerificationResponse = {
 
 M.CancelConnectionInput = {
     type = "structure",
+    id = "CancelConnectionInput",
     members = {
         Catalog = {
             type = "string",
@@ -595,6 +619,7 @@ M.CancelConnectionInput = {
 
 M.CancelConnectionOutput = {
     type = "structure",
+    id = "CancelConnectionOutput",
     members = {
         Catalog = {
             type = "string",
@@ -640,6 +665,7 @@ M.CancelConnectionOutput = {
 
 M.CancelConnectionInvitationInput = {
     type = "structure",
+    id = "CancelConnectionInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -678,6 +704,7 @@ M.InvitationStatus = {
 
 M.CancelConnectionInvitationOutput = {
     type = "structure",
+    id = "CancelConnectionInvitationOutput",
     members = {
         Catalog = {
             type = "string",
@@ -767,6 +794,7 @@ M.CancelConnectionInvitationOutput = {
 
 M.CancelProfileUpdateTaskInput = {
     type = "structure",
+    id = "CancelProfileUpdateTaskInput",
     members = {
         Catalog = {
             type = "string",
@@ -807,6 +835,7 @@ M.ProfileValidationErrorReason = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         Locale = {
             type = "string",
@@ -878,6 +907,7 @@ M.IndustrySegment = {
 
 M.LocalizedContent = {
     type = "structure",
+    id = "LocalizedContent",
     members = {
         DisplayName = {
             type = "string",
@@ -925,6 +955,7 @@ M.PrimarySolutionType = {
 
 M.TaskDetails = {
     type = "structure",
+    id = "TaskDetails",
     members = {
         DisplayName = {
             type = "string",
@@ -978,6 +1009,7 @@ M.TaskDetails = {
 
 M.CancelProfileUpdateTaskOutput = {
     type = "structure",
+    id = "CancelProfileUpdateTaskOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1034,6 +1066,7 @@ M.CancelProfileUpdateTaskOutput = {
 
 M.CreateConnectionInvitationInput = {
     type = "structure",
+    id = "CreateConnectionInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -1083,6 +1116,7 @@ M.CreateConnectionInvitationInput = {
 
 M.CreateConnectionInvitationOutput = {
     type = "structure",
+    id = "CreateConnectionInvitationOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1172,6 +1206,7 @@ M.CreateConnectionInvitationOutput = {
 
 M.GetConnectionInvitationInput = {
     type = "structure",
+    id = "GetConnectionInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -1190,6 +1225,7 @@ M.GetConnectionInvitationInput = {
 
 M.GetConnectionInvitationOutput = {
     type = "structure",
+    id = "GetConnectionInvitationOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1279,6 +1315,7 @@ M.GetConnectionInvitationOutput = {
 
 M.ListConnectionInvitationsInput = {
     type = "structure",
+    id = "ListConnectionInvitationsInput",
     members = {
         Catalog = {
             type = "string",
@@ -1313,6 +1350,7 @@ M.ListConnectionInvitationsInput = {
 
 M.ConnectionInvitationSummary = {
     type = "structure",
+    id = "ConnectionInvitationSummary",
     members = {
         Catalog = {
             type = "string",
@@ -1384,6 +1422,7 @@ M.ConnectionInvitationSummary = {
 
 M.ListConnectionInvitationsOutput = {
     type = "structure",
+    id = "ListConnectionInvitationsOutput",
     members = {
         ConnectionInvitationSummaries = {
             type = "list",
@@ -1400,6 +1439,7 @@ M.ListConnectionInvitationsOutput = {
 
 M.RejectConnectionInvitationInput = {
     type = "structure",
+    id = "RejectConnectionInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -1428,6 +1468,7 @@ M.RejectConnectionInvitationInput = {
 
 M.RejectConnectionInvitationOutput = {
     type = "structure",
+    id = "RejectConnectionInvitationOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1517,6 +1558,7 @@ M.RejectConnectionInvitationOutput = {
 
 M.GetConnectionPreferencesInput = {
     type = "structure",
+    id = "GetConnectionPreferencesInput",
     members = {
         Catalog = {
             type = "string",
@@ -1529,6 +1571,7 @@ M.GetConnectionPreferencesInput = {
 
 M.GetConnectionPreferencesOutput = {
     type = "structure",
+    id = "GetConnectionPreferencesOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1570,6 +1613,7 @@ M.GetConnectionPreferencesOutput = {
 
 M.UpdateConnectionPreferencesInput = {
     type = "structure",
+    id = "UpdateConnectionPreferencesInput",
     members = {
         Catalog = {
             type = "string",
@@ -1598,6 +1642,7 @@ M.UpdateConnectionPreferencesInput = {
 
 M.UpdateConnectionPreferencesOutput = {
     type = "structure",
+    id = "UpdateConnectionPreferencesOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1639,6 +1684,7 @@ M.UpdateConnectionPreferencesOutput = {
 
 M.GetConnectionInput = {
     type = "structure",
+    id = "GetConnectionInput",
     members = {
         Catalog = {
             type = "string",
@@ -1657,6 +1703,7 @@ M.GetConnectionInput = {
 
 M.GetConnectionOutput = {
     type = "structure",
+    id = "GetConnectionOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1702,6 +1749,7 @@ M.GetConnectionOutput = {
 
 M.ListConnectionsInput = {
     type = "structure",
+    id = "ListConnectionsInput",
     members = {
         Catalog = {
             type = "string",
@@ -1730,6 +1778,7 @@ M.ListConnectionsInput = {
 
 M.ConnectionTypeSummary = {
     type = "structure",
+    id = "ConnectionTypeSummary",
     members = {
         Status = {
             type = "string",
@@ -1745,6 +1794,7 @@ M.ConnectionTypeSummary = {
 
 M.ConnectionSummary = {
     type = "structure",
+    id = "ConnectionSummary",
     members = {
         Catalog = {
             type = "string",
@@ -1790,6 +1840,7 @@ M.ConnectionSummary = {
 
 M.ListConnectionsOutput = {
     type = "structure",
+    id = "ListConnectionsOutput",
     members = {
         ConnectionSummaries = {
             type = "list",
@@ -1806,6 +1857,7 @@ M.ListConnectionsOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1824,6 +1876,7 @@ M.Tag = {
 
 M.CreatePartnerInput = {
     type = "structure",
+    id = "CreatePartnerInput",
     members = {
         Catalog = {
             type = "string",
@@ -1867,6 +1920,7 @@ M.CreatePartnerInput = {
 
 M.PartnerDomain = {
     type = "structure",
+    id = "PartnerDomain",
     members = {
         DomainName = {
             type = "string",
@@ -1886,6 +1940,7 @@ M.PartnerDomain = {
 
 M.PartnerProfile = {
     type = "structure",
+    id = "PartnerProfile",
     members = {
         DisplayName = {
             type = "string",
@@ -1942,6 +1997,7 @@ M.PartnerProfile = {
 
 M.CreatePartnerOutput = {
     type = "structure",
+    id = "CreatePartnerOutput",
     members = {
         Catalog = {
             type = "string",
@@ -1989,6 +2045,7 @@ M.CreatePartnerOutput = {
 
 M.DisassociateAwsTrainingCertificationEmailDomainInput = {
     type = "structure",
+    id = "DisassociateAwsTrainingCertificationEmailDomainInput",
     members = {
         Catalog = {
             type = "string",
@@ -2019,10 +2076,12 @@ M.DisassociateAwsTrainingCertificationEmailDomainInput = {
 
 M.DisassociateAwsTrainingCertificationEmailDomainOutput = {
     type = "structure",
+    id = "DisassociateAwsTrainingCertificationEmailDomainOutput",
 }
 
 M.GetAllianceLeadContactInput = {
     type = "structure",
+    id = "GetAllianceLeadContactInput",
     members = {
         Catalog = {
             type = "string",
@@ -2041,6 +2100,7 @@ M.GetAllianceLeadContactInput = {
 
 M.GetAllianceLeadContactOutput = {
     type = "structure",
+    id = "GetAllianceLeadContactOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2068,6 +2128,7 @@ M.GetAllianceLeadContactOutput = {
 
 M.GetPartnerInput = {
     type = "structure",
+    id = "GetPartnerInput",
     members = {
         Catalog = {
             type = "string",
@@ -2086,6 +2147,7 @@ M.GetPartnerInput = {
 
 M.GetPartnerOutput = {
     type = "structure",
+    id = "GetPartnerOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2130,6 +2192,7 @@ M.GetPartnerOutput = {
 
 M.GetProfileUpdateTaskInput = {
     type = "structure",
+    id = "GetProfileUpdateTaskInput",
     members = {
         Catalog = {
             type = "string",
@@ -2148,6 +2211,7 @@ M.GetProfileUpdateTaskInput = {
 
 M.GetProfileUpdateTaskOutput = {
     type = "structure",
+    id = "GetProfileUpdateTaskOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2204,6 +2268,7 @@ M.GetProfileUpdateTaskOutput = {
 
 M.GetProfileVisibilityInput = {
     type = "structure",
+    id = "GetProfileVisibilityInput",
     members = {
         Catalog = {
             type = "string",
@@ -2227,6 +2292,7 @@ M.ProfileVisibility = {
 
 M.GetProfileVisibilityOutput = {
     type = "structure",
+    id = "GetProfileVisibilityOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2268,6 +2334,7 @@ M.VerificationType = {
 
 M.GetVerificationInput = {
     type = "structure",
+    id = "GetVerificationInput",
     members = {
         VerificationType = {
             type = "string",
@@ -2280,6 +2347,7 @@ M.GetVerificationInput = {
 
 M.RegistrantVerificationResponse = {
     type = "structure",
+    id = "RegistrantVerificationResponse",
     members = {
         CompletionUrl = {
             type = "string",
@@ -2299,6 +2367,7 @@ M.RegistrantVerificationResponse = {
 
 M.VerificationResponseDetails = {
     type = "union",
+    id = "VerificationResponseDetails",
     members = {
         BusinessVerificationResponse = M.BusinessVerificationResponse,
         RegistrantVerificationResponse = M.RegistrantVerificationResponse,
@@ -2315,6 +2384,7 @@ M.VerificationStatus = {
 
 M.GetVerificationOutput = {
     type = "structure",
+    id = "GetVerificationOutput",
     members = {
         VerificationType = {
             type = "string",
@@ -2352,6 +2422,7 @@ M.GetVerificationOutput = {
 
 M.ListPartnersInput = {
     type = "structure",
+    id = "ListPartnersInput",
     members = {
         Catalog = {
             type = "string",
@@ -2367,6 +2438,7 @@ M.ListPartnersInput = {
 
 M.PartnerSummary = {
     type = "structure",
+    id = "PartnerSummary",
     members = {
         Catalog = {
             type = "string",
@@ -2404,6 +2476,7 @@ M.PartnerSummary = {
 
 M.ListPartnersOutput = {
     type = "structure",
+    id = "ListPartnersOutput",
     members = {
         PartnerSummaryList = {
             type = "list",
@@ -2420,6 +2493,7 @@ M.ListPartnersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2432,6 +2506,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2448,6 +2523,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutAllianceLeadContactInput = {
     type = "structure",
+    id = "PutAllianceLeadContactInput",
     members = {
         Catalog = {
             type = "string",
@@ -2472,6 +2548,7 @@ M.PutAllianceLeadContactInput = {
 
 M.PutAllianceLeadContactOutput = {
     type = "structure",
+    id = "PutAllianceLeadContactOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2499,6 +2576,7 @@ M.PutAllianceLeadContactOutput = {
 
 M.PutProfileVisibilityInput = {
     type = "structure",
+    id = "PutProfileVisibilityInput",
     members = {
         Catalog = {
             type = "string",
@@ -2523,6 +2601,7 @@ M.PutProfileVisibilityInput = {
 
 M.PutProfileVisibilityOutput = {
     type = "structure",
+    id = "PutProfileVisibilityOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2559,6 +2638,7 @@ M.PutProfileVisibilityOutput = {
 
 M.StartProfileUpdateTaskInput = {
     type = "structure",
+    id = "StartProfileUpdateTaskInput",
     members = {
         Catalog = {
             type = "string",
@@ -2586,6 +2666,7 @@ M.StartProfileUpdateTaskInput = {
 
 M.StartProfileUpdateTaskOutput = {
     type = "structure",
+    id = "StartProfileUpdateTaskOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2642,6 +2723,7 @@ M.StartProfileUpdateTaskOutput = {
 
 M.SendEmailVerificationCodeInput = {
     type = "structure",
+    id = "SendEmailVerificationCodeInput",
     members = {
         Catalog = {
             type = "string",
@@ -2660,14 +2742,17 @@ M.SendEmailVerificationCodeInput = {
 
 M.SendEmailVerificationCodeOutput = {
     type = "structure",
+    id = "SendEmailVerificationCodeOutput",
 }
 
 M.RegistrantVerificationDetails = {
     type = "structure",
+    id = "RegistrantVerificationDetails",
 }
 
 M.VerificationDetails = {
     type = "union",
+    id = "VerificationDetails",
     members = {
         BusinessVerificationDetails = M.BusinessVerificationDetails,
         RegistrantVerificationDetails = M.RegistrantVerificationDetails,
@@ -2676,6 +2761,7 @@ M.VerificationDetails = {
 
 M.StartVerificationInput = {
     type = "structure",
+    id = "StartVerificationInput",
     members = {
         ClientToken = {
             type = "string",
@@ -2689,6 +2775,7 @@ M.StartVerificationInput = {
 
 M.StartVerificationOutput = {
     type = "structure",
+    id = "StartVerificationOutput",
     members = {
         VerificationType = {
             type = "string",
@@ -2726,6 +2813,7 @@ M.StartVerificationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2745,10 +2833,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2768,6 +2858,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

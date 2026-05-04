@@ -1422,11 +1422,11 @@ local record ValidationException
     Code: string
 end
 
+local type AutoUpdate = "ENABLED" | "DISABLED"
+
 local type JobStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "PARTIAL_SUCCESS"
 
 local type AdapterVersionStatus = "ACTIVE" | "AT_RISK" | "DEPRECATED" | "CREATION_ERROR" | "CREATION_IN_PROGRESS"
-
-local type AutoUpdate = "ENABLED" | "DISABLED"
 
 local record M
     AnalyzeDocumentInput: AnalyzeDocumentInput

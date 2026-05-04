@@ -14,6 +14,7 @@ M.AccessBudgetType = {
 
 M.AccessBudgetDetails = {
     type = "structure",
+    id = "AccessBudgetDetails",
     members = {
         startTime = {
             type = "timestamp",
@@ -50,6 +51,7 @@ M.AccessBudgetDetails = {
 
 M.AccessBudget = {
     type = "structure",
+    id = "AccessBudget",
     members = {
         resourceArn = {
             type = "string",
@@ -75,6 +77,7 @@ M.AccessBudget = {
 
 M.BudgetParameter = {
     type = "structure",
+    id = "BudgetParameter",
     members = {
         type = {
             type = "string",
@@ -96,6 +99,7 @@ M.BudgetParameter = {
 
 M.AccessBudgetsPrivacyTemplateParametersInput = {
     type = "structure",
+    id = "AccessBudgetsPrivacyTemplateParametersInput",
     members = {
         budgetParameters = {
             type = "list",
@@ -115,6 +119,7 @@ M.AccessBudgetsPrivacyTemplateParametersInput = {
 
 M.AccessBudgetsPrivacyTemplateParametersOutput = {
     type = "structure",
+    id = "AccessBudgetsPrivacyTemplateParametersOutput",
     members = {
         budgetParameters = {
             type = "list",
@@ -134,6 +139,7 @@ M.AccessBudgetsPrivacyTemplateParametersOutput = {
 
 M.AccessBudgetsPrivacyTemplateUpdateParameters = {
     type = "structure",
+    id = "AccessBudgetsPrivacyTemplateUpdateParameters",
     members = {
         budgetParameters = {
             type = "list",
@@ -151,6 +157,7 @@ M.AccessDeniedExceptionReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -178,6 +185,7 @@ M.AggregateFunctionName = {
 
 M.AggregateColumn = {
     type = "structure",
+    id = "AggregateColumn",
     members = {
         columnNames = {
             type = "list",
@@ -201,6 +209,7 @@ M.AggregationType = {
 
 M.AggregationConstraint = {
     type = "structure",
+    id = "AggregationConstraint",
     members = {
         columnName = {
             type = "string",
@@ -303,6 +312,7 @@ M.ParameterType = {
 
 M.AnalysisParameter = {
     type = "structure",
+    id = "AnalysisParameter",
     members = {
         name = {
             type = "string",
@@ -324,6 +334,7 @@ M.AnalysisParameter = {
 
 M.ConfiguredTableAssociationAnalysisRuleAggregation = {
     type = "structure",
+    id = "ConfiguredTableAssociationAnalysisRuleAggregation",
     members = {
         allowedResultReceivers = {
             type = "list",
@@ -338,6 +349,7 @@ M.ConfiguredTableAssociationAnalysisRuleAggregation = {
 
 M.ConfiguredTableAssociationAnalysisRuleCustom = {
     type = "structure",
+    id = "ConfiguredTableAssociationAnalysisRuleCustom",
     members = {
         allowedResultReceivers = {
             type = "list",
@@ -352,6 +364,7 @@ M.ConfiguredTableAssociationAnalysisRuleCustom = {
 
 M.ConfiguredTableAssociationAnalysisRuleList = {
     type = "structure",
+    id = "ConfiguredTableAssociationAnalysisRuleList",
     members = {
         allowedResultReceivers = {
             type = "list",
@@ -366,6 +379,7 @@ M.ConfiguredTableAssociationAnalysisRuleList = {
 
 M.ConfiguredTableAssociationAnalysisRulePolicyV1 = {
     type = "union",
+    id = "ConfiguredTableAssociationAnalysisRulePolicyV1",
     members = {
         list = M.ConfiguredTableAssociationAnalysisRuleList,
         aggregation = M.ConfiguredTableAssociationAnalysisRuleAggregation,
@@ -375,6 +389,7 @@ M.ConfiguredTableAssociationAnalysisRulePolicyV1 = {
 
 M.ConfiguredTableAssociationAnalysisRulePolicy = {
     type = "union",
+    id = "ConfiguredTableAssociationAnalysisRulePolicy",
     members = {
         v1 = M.ConfiguredTableAssociationAnalysisRulePolicyV1,
     },
@@ -418,6 +433,7 @@ M.ScalarFunctions = {
 
 M.ConsolidatedPolicyAggregation = {
     type = "structure",
+    id = "ConsolidatedPolicyAggregation",
     members = {
         aggregateColumns = {
             type = "list",
@@ -477,6 +493,7 @@ M.ConsolidatedPolicyAggregation = {
 
 M.DifferentialPrivacyColumn = {
     type = "structure",
+    id = "DifferentialPrivacyColumn",
     members = {
         name = {
             type = "string",
@@ -489,6 +506,7 @@ M.DifferentialPrivacyColumn = {
 
 M.DifferentialPrivacyConfiguration = {
     type = "structure",
+    id = "DifferentialPrivacyConfiguration",
     members = {
         columns = {
             type = "list",
@@ -502,6 +520,7 @@ M.DifferentialPrivacyConfiguration = {
 
 M.ConsolidatedPolicyCustom = {
     type = "structure",
+    id = "ConsolidatedPolicyCustom",
     members = {
         allowedAnalyses = {
             type = "list",
@@ -535,6 +554,7 @@ M.ConsolidatedPolicyCustom = {
 
 M.ConsolidatedPolicyList = {
     type = "structure",
+    id = "ConsolidatedPolicyList",
     members = {
         joinColumns = {
             type = "list",
@@ -570,6 +590,7 @@ M.ConsolidatedPolicyList = {
 
 M.ConsolidatedPolicyV1 = {
     type = "union",
+    id = "ConsolidatedPolicyV1",
     members = {
         list = M.ConsolidatedPolicyList,
         aggregation = M.ConsolidatedPolicyAggregation,
@@ -579,6 +600,7 @@ M.ConsolidatedPolicyV1 = {
 
 M.ConsolidatedPolicy = {
     type = "union",
+    id = "ConsolidatedPolicy",
     members = {
         v1 = M.ConsolidatedPolicyV1,
     },
@@ -586,6 +608,7 @@ M.ConsolidatedPolicy = {
 
 M.AnalysisRuleAggregation = {
     type = "structure",
+    id = "AnalysisRuleAggregation",
     members = {
         aggregateColumns = {
             type = "list",
@@ -637,6 +660,7 @@ M.AnalysisRuleAggregation = {
 
 M.AnalysisRuleCustom = {
     type = "structure",
+    id = "AnalysisRuleCustom",
     members = {
         allowedAnalyses = {
             type = "list",
@@ -662,6 +686,7 @@ M.AnalysisRuleCustom = {
 
 M.QueryConstraintRequireOverlap = {
     type = "structure",
+    id = "QueryConstraintRequireOverlap",
     members = {
         columns = {
             type = "list",
@@ -672,6 +697,7 @@ M.QueryConstraintRequireOverlap = {
 
 M.QueryConstraint = {
     type = "union",
+    id = "QueryConstraint",
     members = {
         requireOverlap = M.QueryConstraintRequireOverlap,
     },
@@ -679,6 +705,7 @@ M.QueryConstraint = {
 
 M.AnalysisRuleIdMappingTable = {
     type = "structure",
+    id = "AnalysisRuleIdMappingTable",
     members = {
         joinColumns = {
             type = "list",
@@ -703,6 +730,7 @@ M.AnalysisRuleIdMappingTable = {
 
 M.AnalysisRuleList = {
     type = "structure",
+    id = "AnalysisRuleList",
     members = {
         joinColumns = {
             type = "list",
@@ -730,6 +758,7 @@ M.AnalysisRuleList = {
 
 M.AnalysisRulePolicyV1 = {
     type = "union",
+    id = "AnalysisRulePolicyV1",
     members = {
         list = M.AnalysisRuleList,
         aggregation = M.AnalysisRuleAggregation,
@@ -740,6 +769,7 @@ M.AnalysisRulePolicyV1 = {
 
 M.AnalysisRulePolicy = {
     type = "union",
+    id = "AnalysisRulePolicy",
     members = {
         v1 = M.AnalysisRulePolicyV1,
     },
@@ -754,6 +784,7 @@ M.AnalysisRuleType = {
 
 M.AnalysisRule = {
     type = "structure",
+    id = "AnalysisRule",
     members = {
         collaborationId = {
             type = "string",
@@ -795,6 +826,7 @@ M.AnalysisRule = {
 
 M.AnalysisSchema = {
     type = "structure",
+    id = "AnalysisSchema",
     members = {
         referencedTables = {
             type = "list",
@@ -805,6 +837,7 @@ M.AnalysisSchema = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucket = {
             type = "string",
@@ -823,6 +856,7 @@ M.S3Location = {
 
 M.AnalysisTemplateArtifact = {
     type = "structure",
+    id = "AnalysisTemplateArtifact",
     members = {
         location = setmetatable({ traits = {
             required = true,
@@ -832,6 +866,7 @@ M.AnalysisTemplateArtifact = {
 
 M.AnalysisTemplateArtifacts = {
     type = "structure",
+    id = "AnalysisTemplateArtifacts",
     members = {
         entryPoint = setmetatable({ traits = {
             required = true,
@@ -851,6 +886,7 @@ M.AnalysisTemplateArtifacts = {
 
 M.AnalysisSource = {
     type = "union",
+    id = "AnalysisSource",
     members = {
         text = {
             type = "string",
@@ -861,6 +897,7 @@ M.AnalysisSource = {
 
 M.Hash = {
     type = "structure",
+    id = "Hash",
     members = {
         sha256 = {
             type = "string",
@@ -870,6 +907,7 @@ M.Hash = {
 
 M.AnalysisTemplateArtifactMetadata = {
     type = "structure",
+    id = "AnalysisTemplateArtifactMetadata",
     members = {
         entryPointHash = setmetatable({ traits = {
             required = true,
@@ -883,6 +921,7 @@ M.AnalysisTemplateArtifactMetadata = {
 
 M.AnalysisSourceMetadata = {
     type = "union",
+    id = "AnalysisSourceMetadata",
     members = {
         artifacts = M.AnalysisTemplateArtifactMetadata,
     },
@@ -894,6 +933,7 @@ M.ErrorMessageType = {
 
 M.ErrorMessageConfiguration = {
     type = "structure",
+    id = "ErrorMessageConfiguration",
     members = {
         type = {
             type = "string",
@@ -911,6 +951,7 @@ M.SyntheticDataColumnType = {
 
 M.SyntheticDataColumnProperties = {
     type = "structure",
+    id = "SyntheticDataColumnProperties",
     members = {
         columnName = {
             type = "string",
@@ -935,6 +976,7 @@ M.SyntheticDataColumnProperties = {
 
 M.ColumnClassificationDetails = {
     type = "structure",
+    id = "ColumnClassificationDetails",
     members = {
         columnMapping = {
             type = "list",
@@ -948,6 +990,7 @@ M.ColumnClassificationDetails = {
 
 M.MLSyntheticDataParameters = {
     type = "structure",
+    id = "MLSyntheticDataParameters",
     members = {
         epsilon = {
             type = "double",
@@ -969,6 +1012,7 @@ M.MLSyntheticDataParameters = {
 
 M.SyntheticDataParameters = {
     type = "union",
+    id = "SyntheticDataParameters",
     members = {
         mlSyntheticDataParameters = M.MLSyntheticDataParameters,
     },
@@ -976,6 +1020,7 @@ M.SyntheticDataParameters = {
 
 M.AnalysisTemplateValidationStatusReason = {
     type = "structure",
+    id = "AnalysisTemplateValidationStatusReason",
     members = {
         message = {
             type = "string",
@@ -998,6 +1043,7 @@ M.AnalysisTemplateValidationType = {
 
 M.AnalysisTemplateValidationStatusDetail = {
     type = "structure",
+    id = "AnalysisTemplateValidationStatusDetail",
     members = {
         type = {
             type = "string",
@@ -1020,6 +1066,7 @@ M.AnalysisTemplateValidationStatusDetail = {
 
 M.AnalysisTemplate = {
     type = "structure",
+    id = "AnalysisTemplate",
     members = {
         id = {
             type = "string",
@@ -1119,6 +1166,7 @@ M.ResourceType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -1138,6 +1186,7 @@ M.ConflictException = {
 
 M.CreateAnalysisTemplateInput = {
     type = "structure",
+    id = "CreateAnalysisTemplateInput",
     members = {
         description = {
             type = "string",
@@ -1181,6 +1230,7 @@ M.CreateAnalysisTemplateInput = {
 
 M.CreateAnalysisTemplateOutput = {
     type = "structure",
+    id = "CreateAnalysisTemplateOutput",
     members = {
         analysisTemplate = setmetatable({ traits = {
             required = true,
@@ -1190,6 +1240,7 @@ M.CreateAnalysisTemplateOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -1200,6 +1251,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1225,6 +1277,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1250,6 +1303,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -1260,6 +1314,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -1285,6 +1340,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -1302,6 +1358,7 @@ M.ValidationException = {
 
 M.DeleteAnalysisTemplateInput = {
     type = "structure",
+    id = "DeleteAnalysisTemplateInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -1322,10 +1379,12 @@ M.DeleteAnalysisTemplateInput = {
 
 M.DeleteAnalysisTemplateOutput = {
     type = "structure",
+    id = "DeleteAnalysisTemplateOutput",
 }
 
 M.GetAnalysisTemplateInput = {
     type = "structure",
+    id = "GetAnalysisTemplateInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -1346,6 +1405,7 @@ M.GetAnalysisTemplateInput = {
 
 M.GetAnalysisTemplateOutput = {
     type = "structure",
+    id = "GetAnalysisTemplateOutput",
     members = {
         analysisTemplate = setmetatable({ traits = {
             required = true,
@@ -1355,6 +1415,7 @@ M.GetAnalysisTemplateOutput = {
 
 M.ListAnalysisTemplatesInput = {
     type = "structure",
+    id = "ListAnalysisTemplatesInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -1380,6 +1441,7 @@ M.ListAnalysisTemplatesInput = {
 
 M.AnalysisTemplateSummary = {
     type = "structure",
+    id = "AnalysisTemplateSummary",
     members = {
         arn = {
             type = "string",
@@ -1446,6 +1508,7 @@ M.AnalysisTemplateSummary = {
 
 M.ListAnalysisTemplatesOutput = {
     type = "structure",
+    id = "ListAnalysisTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1462,6 +1525,7 @@ M.ListAnalysisTemplatesOutput = {
 
 M.UpdateAnalysisTemplateInput = {
     type = "structure",
+    id = "UpdateAnalysisTemplateInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -1485,6 +1549,7 @@ M.UpdateAnalysisTemplateInput = {
 
 M.UpdateAnalysisTemplateOutput = {
     type = "structure",
+    id = "UpdateAnalysisTemplateOutput",
     members = {
         analysisTemplate = setmetatable({ traits = {
             required = true,
@@ -1510,6 +1575,7 @@ M.ApprovalStatus = {
 
 M.ApprovalStatusDetails = {
     type = "structure",
+    id = "ApprovalStatusDetails",
     members = {
         status = {
             type = "string",
@@ -1558,6 +1624,7 @@ M.CommercialRegion = {
 
 M.AthenaTableReference = {
     type = "structure",
+    id = "AthenaTableReference",
     members = {
         region = {
             type = "string",
@@ -1597,6 +1664,7 @@ M.AutoApprovedChangeType = {
 
 M.BatchGetCollaborationAnalysisTemplateInput = {
     type = "structure",
+    id = "BatchGetCollaborationAnalysisTemplateInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -1617,6 +1685,7 @@ M.BatchGetCollaborationAnalysisTemplateInput = {
 
 M.CollaborationAnalysisTemplate = {
     type = "structure",
+    id = "CollaborationAnalysisTemplate",
     members = {
         id = {
             type = "string",
@@ -1695,6 +1764,7 @@ M.CollaborationAnalysisTemplate = {
 
 M.BatchGetCollaborationAnalysisTemplateError = {
     type = "structure",
+    id = "BatchGetCollaborationAnalysisTemplateError",
     members = {
         arn = {
             type = "string",
@@ -1719,6 +1789,7 @@ M.BatchGetCollaborationAnalysisTemplateError = {
 
 M.BatchGetCollaborationAnalysisTemplateOutput = {
     type = "structure",
+    id = "BatchGetCollaborationAnalysisTemplateOutput",
     members = {
         collaborationAnalysisTemplates = {
             type = "list",
@@ -1739,6 +1810,7 @@ M.BatchGetCollaborationAnalysisTemplateOutput = {
 
 M.BatchGetSchemaInput = {
     type = "structure",
+    id = "BatchGetSchemaInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -1759,6 +1831,7 @@ M.BatchGetSchemaInput = {
 
 M.BatchGetSchemaError = {
     type = "structure",
+    id = "BatchGetSchemaError",
     members = {
         name = {
             type = "string",
@@ -1783,6 +1856,7 @@ M.BatchGetSchemaError = {
 
 M.Column = {
     type = "structure",
+    id = "Column",
     members = {
         name = {
             type = "string",
@@ -1819,6 +1893,7 @@ M.SchemaStatusReasonCode = {
 
 M.SchemaStatusReason = {
     type = "structure",
+    id = "SchemaStatusReason",
     members = {
         code = {
             type = "string",
@@ -1842,6 +1917,7 @@ M.SchemaStatus = {
 
 M.SchemaStatusDetail = {
     type = "structure",
+    id = "SchemaStatusDetail",
     members = {
         status = {
             type = "string",
@@ -1877,6 +1953,7 @@ M.IdNamespaceType = {
 
 M.IdMappingTableInputSource = {
     type = "structure",
+    id = "IdMappingTableInputSource",
     members = {
         idNamespaceAssociationId = {
             type = "string",
@@ -1895,6 +1972,7 @@ M.IdMappingTableInputSource = {
 
 M.IdMappingTableSchemaTypeProperties = {
     type = "structure",
+    id = "IdMappingTableSchemaTypeProperties",
     members = {
         idMappingTableInputSource = {
             type = "list",
@@ -1908,6 +1986,7 @@ M.IdMappingTableSchemaTypeProperties = {
 
 M.SchemaTypeProperties = {
     type = "union",
+    id = "SchemaTypeProperties",
     members = {
         idMappingTable = M.IdMappingTableSchemaTypeProperties,
     },
@@ -1925,6 +2004,7 @@ M.SchemaType = {
 
 M.Schema = {
     type = "structure",
+    id = "Schema",
     members = {
         columns = {
             type = "list",
@@ -2019,6 +2099,7 @@ M.Schema = {
 
 M.BatchGetSchemaOutput = {
     type = "structure",
+    id = "BatchGetSchemaOutput",
     members = {
         schemas = {
             type = "list",
@@ -2039,6 +2120,7 @@ M.BatchGetSchemaOutput = {
 
 M.SchemaAnalysisRuleRequest = {
     type = "structure",
+    id = "SchemaAnalysisRuleRequest",
     members = {
         name = {
             type = "string",
@@ -2057,6 +2139,7 @@ M.SchemaAnalysisRuleRequest = {
 
 M.BatchGetSchemaAnalysisRuleInput = {
     type = "structure",
+    id = "BatchGetSchemaAnalysisRuleInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2077,6 +2160,7 @@ M.BatchGetSchemaAnalysisRuleInput = {
 
 M.BatchGetSchemaAnalysisRuleError = {
     type = "structure",
+    id = "BatchGetSchemaAnalysisRuleError",
     members = {
         name = {
             type = "string",
@@ -2107,6 +2191,7 @@ M.BatchGetSchemaAnalysisRuleError = {
 
 M.BatchGetSchemaAnalysisRuleOutput = {
     type = "structure",
+    id = "BatchGetSchemaAnalysisRuleOutput",
     members = {
         analysisRules = {
             type = "list",
@@ -2138,6 +2223,7 @@ M.CustomMLMemberAbility = {
 
 M.MLMemberAbilities = {
     type = "structure",
+    id = "MLMemberAbilities",
     members = {
         customMLMemberAbilities = {
             type = "list",
@@ -2151,6 +2237,7 @@ M.MLMemberAbilities = {
 
 M.JobComputePaymentConfig = {
     type = "structure",
+    id = "JobComputePaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -2163,6 +2250,7 @@ M.JobComputePaymentConfig = {
 
 M.ModelInferencePaymentConfig = {
     type = "structure",
+    id = "ModelInferencePaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -2175,6 +2263,7 @@ M.ModelInferencePaymentConfig = {
 
 M.ModelTrainingPaymentConfig = {
     type = "structure",
+    id = "ModelTrainingPaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -2187,6 +2276,7 @@ M.ModelTrainingPaymentConfig = {
 
 M.SyntheticDataGenerationPaymentConfig = {
     type = "structure",
+    id = "SyntheticDataGenerationPaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -2199,6 +2289,7 @@ M.SyntheticDataGenerationPaymentConfig = {
 
 M.MLPaymentConfig = {
     type = "structure",
+    id = "MLPaymentConfig",
     members = {
         modelTraining = M.ModelTrainingPaymentConfig,
         modelInference = M.ModelInferencePaymentConfig,
@@ -2208,6 +2299,7 @@ M.MLPaymentConfig = {
 
 M.QueryComputePaymentConfig = {
     type = "structure",
+    id = "QueryComputePaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -2220,6 +2312,7 @@ M.QueryComputePaymentConfig = {
 
 M.PaymentConfiguration = {
     type = "structure",
+    id = "PaymentConfiguration",
     members = {
         queryCompute = setmetatable({ traits = {
             required = true,
@@ -2231,6 +2324,7 @@ M.PaymentConfiguration = {
 
 M.DataEncryptionMetadata = {
     type = "structure",
+    id = "DataEncryptionMetadata",
     members = {
         allowCleartext = {
             type = "boolean",
@@ -2266,6 +2360,7 @@ M.CollaborationJobLogStatus = {
 
 M.MemberSpecification = {
     type = "structure",
+    id = "MemberSpecification",
     members = {
         accountId = {
             type = "string",
@@ -2298,6 +2393,7 @@ M.CollaborationQueryLogStatus = {
 
 M.CreateCollaborationInput = {
     type = "structure",
+    id = "CreateCollaborationInput",
     members = {
         members = {
             type = "list",
@@ -2374,6 +2470,7 @@ M.MemberStatus = {
 
 M.Collaboration = {
     type = "structure",
+    id = "Collaboration",
     members = {
         id = {
             type = "string",
@@ -2461,6 +2558,7 @@ M.Collaboration = {
 
 M.CreateCollaborationOutput = {
     type = "structure",
+    id = "CreateCollaborationOutput",
     members = {
         collaboration = setmetatable({ traits = {
             required = true,
@@ -2470,6 +2568,7 @@ M.CreateCollaborationOutput = {
 
 M.CollaborationChangeSpecification = {
     type = "structure",
+    id = "CollaborationChangeSpecification",
     members = {
         autoApprovedChangeTypes = {
             type = "list",
@@ -2480,6 +2579,7 @@ M.CollaborationChangeSpecification = {
 
 M.MemberChangeSpecification = {
     type = "structure",
+    id = "MemberChangeSpecification",
     members = {
         accountId = {
             type = "string",
@@ -2502,6 +2602,7 @@ M.MemberChangeSpecification = {
 
 M.ChangeSpecification = {
     type = "union",
+    id = "ChangeSpecification",
     members = {
         member = M.MemberChangeSpecification,
         collaboration = M.CollaborationChangeSpecification,
@@ -2515,6 +2616,7 @@ M.ChangeSpecificationType = {
 
 M.ChangeInput = {
     type = "structure",
+    id = "ChangeInput",
     members = {
         specificationType = {
             type = "string",
@@ -2530,6 +2632,7 @@ M.ChangeInput = {
 
 M.CreateCollaborationChangeRequestInput = {
     type = "structure",
+    id = "CreateCollaborationChangeRequestInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2557,6 +2660,7 @@ M.ChangeType = {
 
 M.Change = {
     type = "structure",
+    id = "Change",
     members = {
         specificationType = {
             type = "string",
@@ -2587,6 +2691,7 @@ M.ChangeRequestStatus = {
 
 M.CollaborationChangeRequest = {
     type = "structure",
+    id = "CollaborationChangeRequest",
     members = {
         id = {
             type = "string",
@@ -2641,6 +2746,7 @@ M.CollaborationChangeRequest = {
 
 M.CreateCollaborationChangeRequestOutput = {
     type = "structure",
+    id = "CreateCollaborationChangeRequestOutput",
     members = {
         collaborationChangeRequest = setmetatable({ traits = {
             required = true,
@@ -2650,6 +2756,7 @@ M.CreateCollaborationChangeRequestOutput = {
 
 M.DeleteCollaborationInput = {
     type = "structure",
+    id = "DeleteCollaborationInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2663,10 +2770,12 @@ M.DeleteCollaborationInput = {
 
 M.DeleteCollaborationOutput = {
     type = "structure",
+    id = "DeleteCollaborationOutput",
 }
 
 M.DeleteMemberInput = {
     type = "structure",
+    id = "DeleteMemberInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2687,10 +2796,12 @@ M.DeleteMemberInput = {
 
 M.DeleteMemberOutput = {
     type = "structure",
+    id = "DeleteMemberOutput",
 }
 
 M.GetCollaborationInput = {
     type = "structure",
+    id = "GetCollaborationInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2704,6 +2815,7 @@ M.GetCollaborationInput = {
 
 M.GetCollaborationOutput = {
     type = "structure",
+    id = "GetCollaborationOutput",
     members = {
         collaboration = setmetatable({ traits = {
             required = true,
@@ -2713,6 +2825,7 @@ M.GetCollaborationOutput = {
 
 M.GetCollaborationAnalysisTemplateInput = {
     type = "structure",
+    id = "GetCollaborationAnalysisTemplateInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2733,6 +2846,7 @@ M.GetCollaborationAnalysisTemplateInput = {
 
 M.GetCollaborationAnalysisTemplateOutput = {
     type = "structure",
+    id = "GetCollaborationAnalysisTemplateOutput",
     members = {
         collaborationAnalysisTemplate = setmetatable({ traits = {
             required = true,
@@ -2742,6 +2856,7 @@ M.GetCollaborationAnalysisTemplateOutput = {
 
 M.GetCollaborationChangeRequestInput = {
     type = "structure",
+    id = "GetCollaborationChangeRequestInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2762,6 +2877,7 @@ M.GetCollaborationChangeRequestInput = {
 
 M.GetCollaborationChangeRequestOutput = {
     type = "structure",
+    id = "GetCollaborationChangeRequestOutput",
     members = {
         collaborationChangeRequest = setmetatable({ traits = {
             required = true,
@@ -2771,6 +2887,7 @@ M.GetCollaborationChangeRequestOutput = {
 
 M.GetCollaborationConfiguredAudienceModelAssociationInput = {
     type = "structure",
+    id = "GetCollaborationConfiguredAudienceModelAssociationInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2791,6 +2908,7 @@ M.GetCollaborationConfiguredAudienceModelAssociationInput = {
 
 M.CollaborationConfiguredAudienceModelAssociation = {
     type = "structure",
+    id = "CollaborationConfiguredAudienceModelAssociation",
     members = {
         id = {
             type = "string",
@@ -2854,6 +2972,7 @@ M.CollaborationConfiguredAudienceModelAssociation = {
 
 M.GetCollaborationConfiguredAudienceModelAssociationOutput = {
     type = "structure",
+    id = "GetCollaborationConfiguredAudienceModelAssociationOutput",
     members = {
         collaborationConfiguredAudienceModelAssociation = setmetatable({ traits = {
             required = true,
@@ -2863,6 +2982,7 @@ M.GetCollaborationConfiguredAudienceModelAssociationOutput = {
 
 M.GetCollaborationIdNamespaceAssociationInput = {
     type = "structure",
+    id = "GetCollaborationIdNamespaceAssociationInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -2883,6 +3003,7 @@ M.GetCollaborationIdNamespaceAssociationInput = {
 
 M.IdMappingConfig = {
     type = "structure",
+    id = "IdMappingConfig",
     members = {
         allowUseAsDimensionColumn = {
             type = "boolean",
@@ -2896,6 +3017,7 @@ M.IdMappingConfig = {
 
 M.IdNamespaceAssociationInputReferenceConfig = {
     type = "structure",
+    id = "IdNamespaceAssociationInputReferenceConfig",
     members = {
         inputReferenceArn = {
             type = "string",
@@ -2914,6 +3036,7 @@ M.IdNamespaceAssociationInputReferenceConfig = {
 
 M.IdNamespaceAssociationInputReferenceProperties = {
     type = "structure",
+    id = "IdNamespaceAssociationInputReferenceProperties",
     members = {
         idNamespaceType = {
             type = "string",
@@ -2933,6 +3056,7 @@ M.IdNamespaceAssociationInputReferenceProperties = {
 
 M.CollaborationIdNamespaceAssociation = {
     type = "structure",
+    id = "CollaborationIdNamespaceAssociation",
     members = {
         id = {
             type = "string",
@@ -2997,6 +3121,7 @@ M.CollaborationIdNamespaceAssociation = {
 
 M.GetCollaborationIdNamespaceAssociationOutput = {
     type = "structure",
+    id = "GetCollaborationIdNamespaceAssociationOutput",
     members = {
         collaborationIdNamespaceAssociation = setmetatable({ traits = {
             required = true,
@@ -3006,6 +3131,7 @@ M.GetCollaborationIdNamespaceAssociationOutput = {
 
 M.GetCollaborationPrivacyBudgetTemplateInput = {
     type = "structure",
+    id = "GetCollaborationPrivacyBudgetTemplateInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3031,6 +3157,7 @@ M.PrivacyBudgetTemplateAutoRefresh = {
 
 M.DifferentialPrivacyTemplateParametersOutput = {
     type = "structure",
+    id = "DifferentialPrivacyTemplateParametersOutput",
     members = {
         epsilon = {
             type = "integer",
@@ -3049,6 +3176,7 @@ M.DifferentialPrivacyTemplateParametersOutput = {
 
 M.PrivacyBudgetTemplateParametersOutput = {
     type = "union",
+    id = "PrivacyBudgetTemplateParametersOutput",
     members = {
         differentialPrivacy = M.DifferentialPrivacyTemplateParametersOutput,
         accessBudget = M.AccessBudgetsPrivacyTemplateParametersOutput,
@@ -3062,6 +3190,7 @@ M.PrivacyBudgetType = {
 
 M.CollaborationPrivacyBudgetTemplate = {
     type = "structure",
+    id = "CollaborationPrivacyBudgetTemplate",
     members = {
         id = {
             type = "string",
@@ -3125,6 +3254,7 @@ M.CollaborationPrivacyBudgetTemplate = {
 
 M.GetCollaborationPrivacyBudgetTemplateOutput = {
     type = "structure",
+    id = "GetCollaborationPrivacyBudgetTemplateOutput",
     members = {
         collaborationPrivacyBudgetTemplate = setmetatable({ traits = {
             required = true,
@@ -3134,6 +3264,7 @@ M.GetCollaborationPrivacyBudgetTemplateOutput = {
 
 M.GetSchemaInput = {
     type = "structure",
+    id = "GetSchemaInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3154,6 +3285,7 @@ M.GetSchemaInput = {
 
 M.GetSchemaOutput = {
     type = "structure",
+    id = "GetSchemaOutput",
     members = {
         schema = setmetatable({ traits = {
             required = true,
@@ -3163,6 +3295,7 @@ M.GetSchemaOutput = {
 
 M.GetSchemaAnalysisRuleInput = {
     type = "structure",
+    id = "GetSchemaAnalysisRuleInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3190,6 +3323,7 @@ M.GetSchemaAnalysisRuleInput = {
 
 M.GetSchemaAnalysisRuleOutput = {
     type = "structure",
+    id = "GetSchemaAnalysisRuleOutput",
     members = {
         analysisRule = setmetatable({ traits = {
             required = true,
@@ -3199,6 +3333,7 @@ M.GetSchemaAnalysisRuleOutput = {
 
 M.ListCollaborationAnalysisTemplatesInput = {
     type = "structure",
+    id = "ListCollaborationAnalysisTemplatesInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3224,6 +3359,7 @@ M.ListCollaborationAnalysisTemplatesInput = {
 
 M.CollaborationAnalysisTemplateSummary = {
     type = "structure",
+    id = "CollaborationAnalysisTemplateSummary",
     members = {
         arn = {
             type = "string",
@@ -3284,6 +3420,7 @@ M.CollaborationAnalysisTemplateSummary = {
 
 M.ListCollaborationAnalysisTemplatesOutput = {
     type = "structure",
+    id = "ListCollaborationAnalysisTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3300,6 +3437,7 @@ M.ListCollaborationAnalysisTemplatesOutput = {
 
 M.ListCollaborationChangeRequestsInput = {
     type = "structure",
+    id = "ListCollaborationChangeRequestsInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3331,6 +3469,7 @@ M.ListCollaborationChangeRequestsInput = {
 
 M.CollaborationChangeRequestSummary = {
     type = "structure",
+    id = "CollaborationChangeRequestSummary",
     members = {
         id = {
             type = "string",
@@ -3385,6 +3524,7 @@ M.CollaborationChangeRequestSummary = {
 
 M.ListCollaborationChangeRequestsOutput = {
     type = "structure",
+    id = "ListCollaborationChangeRequestsOutput",
     members = {
         collaborationChangeRequestSummaries = {
             type = "list",
@@ -3401,6 +3541,7 @@ M.ListCollaborationChangeRequestsOutput = {
 
 M.ListCollaborationConfiguredAudienceModelAssociationsInput = {
     type = "structure",
+    id = "ListCollaborationConfiguredAudienceModelAssociationsInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3426,6 +3567,7 @@ M.ListCollaborationConfiguredAudienceModelAssociationsInput = {
 
 M.CollaborationConfiguredAudienceModelAssociationSummary = {
     type = "structure",
+    id = "CollaborationConfiguredAudienceModelAssociationSummary",
     members = {
         arn = {
             type = "string",
@@ -3483,6 +3625,7 @@ M.CollaborationConfiguredAudienceModelAssociationSummary = {
 
 M.ListCollaborationConfiguredAudienceModelAssociationsOutput = {
     type = "structure",
+    id = "ListCollaborationConfiguredAudienceModelAssociationsOutput",
     members = {
         collaborationConfiguredAudienceModelAssociationSummaries = {
             type = "list",
@@ -3499,6 +3642,7 @@ M.ListCollaborationConfiguredAudienceModelAssociationsOutput = {
 
 M.ListCollaborationIdNamespaceAssociationsInput = {
     type = "structure",
+    id = "ListCollaborationIdNamespaceAssociationsInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3524,6 +3668,7 @@ M.ListCollaborationIdNamespaceAssociationsInput = {
 
 M.IdNamespaceAssociationInputReferencePropertiesSummary = {
     type = "structure",
+    id = "IdNamespaceAssociationInputReferencePropertiesSummary",
     members = {
         idNamespaceType = {
             type = "string",
@@ -3536,6 +3681,7 @@ M.IdNamespaceAssociationInputReferencePropertiesSummary = {
 
 M.CollaborationIdNamespaceAssociationSummary = {
     type = "structure",
+    id = "CollaborationIdNamespaceAssociationSummary",
     members = {
         arn = {
             type = "string",
@@ -3599,6 +3745,7 @@ M.CollaborationIdNamespaceAssociationSummary = {
 
 M.ListCollaborationIdNamespaceAssociationsOutput = {
     type = "structure",
+    id = "ListCollaborationIdNamespaceAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3615,6 +3762,7 @@ M.ListCollaborationIdNamespaceAssociationsOutput = {
 
 M.ListCollaborationPrivacyBudgetsInput = {
     type = "structure",
+    id = "ListCollaborationPrivacyBudgetsInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3661,6 +3809,7 @@ M.DifferentialPrivacyAggregationType = {
 
 M.DifferentialPrivacyPrivacyBudgetAggregation = {
     type = "structure",
+    id = "DifferentialPrivacyPrivacyBudgetAggregation",
     members = {
         type = {
             type = "string",
@@ -3685,6 +3834,7 @@ M.DifferentialPrivacyPrivacyBudgetAggregation = {
 
 M.DifferentialPrivacyPrivacyBudget = {
     type = "structure",
+    id = "DifferentialPrivacyPrivacyBudget",
     members = {
         aggregations = {
             type = "list",
@@ -3704,6 +3854,7 @@ M.DifferentialPrivacyPrivacyBudget = {
 
 M.PrivacyBudget = {
     type = "union",
+    id = "PrivacyBudget",
     members = {
         differentialPrivacy = M.DifferentialPrivacyPrivacyBudget,
         accessBudget = M.AccessBudget,
@@ -3712,6 +3863,7 @@ M.PrivacyBudget = {
 
 M.CollaborationPrivacyBudgetSummary = {
     type = "structure",
+    id = "CollaborationPrivacyBudgetSummary",
     members = {
         id = {
             type = "string",
@@ -3775,6 +3927,7 @@ M.CollaborationPrivacyBudgetSummary = {
 
 M.ListCollaborationPrivacyBudgetsOutput = {
     type = "structure",
+    id = "ListCollaborationPrivacyBudgetsOutput",
     members = {
         collaborationPrivacyBudgetSummaries = {
             type = "list",
@@ -3791,6 +3944,7 @@ M.ListCollaborationPrivacyBudgetsOutput = {
 
 M.ListCollaborationPrivacyBudgetTemplatesInput = {
     type = "structure",
+    id = "ListCollaborationPrivacyBudgetTemplatesInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -3816,6 +3970,7 @@ M.ListCollaborationPrivacyBudgetTemplatesInput = {
 
 M.CollaborationPrivacyBudgetTemplateSummary = {
     type = "structure",
+    id = "CollaborationPrivacyBudgetTemplateSummary",
     members = {
         id = {
             type = "string",
@@ -3870,6 +4025,7 @@ M.CollaborationPrivacyBudgetTemplateSummary = {
 
 M.ListCollaborationPrivacyBudgetTemplatesOutput = {
     type = "structure",
+    id = "ListCollaborationPrivacyBudgetTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3891,6 +4047,7 @@ M.FilterableMemberStatus = {
 
 M.ListCollaborationsInput = {
     type = "structure",
+    id = "ListCollaborationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3915,6 +4072,7 @@ M.ListCollaborationsInput = {
 
 M.CollaborationSummary = {
     type = "structure",
+    id = "CollaborationSummary",
     members = {
         id = {
             type = "string",
@@ -3978,6 +4136,7 @@ M.CollaborationSummary = {
 
 M.ListCollaborationsOutput = {
     type = "structure",
+    id = "ListCollaborationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3994,6 +4153,7 @@ M.ListCollaborationsOutput = {
 
 M.ListMembersInput = {
     type = "structure",
+    id = "ListMembersInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -4019,6 +4179,7 @@ M.ListMembersInput = {
 
 M.MemberSummary = {
     type = "structure",
+    id = "MemberSummary",
     members = {
         accountId = {
             type = "string",
@@ -4072,6 +4233,7 @@ M.MemberSummary = {
 
 M.ListMembersOutput = {
     type = "structure",
+    id = "ListMembersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4088,6 +4250,7 @@ M.ListMembersOutput = {
 
 M.ListSchemasInput = {
     type = "structure",
+    id = "ListSchemasInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -4119,6 +4282,7 @@ M.ListSchemasInput = {
 
 M.SchemaSummary = {
     type = "structure",
+    id = "SchemaSummary",
     members = {
         name = {
             type = "string",
@@ -4184,6 +4348,7 @@ M.SchemaSummary = {
 
 M.ListSchemasOutput = {
     type = "structure",
+    id = "ListSchemasOutput",
     members = {
         schemaSummaries = {
             type = "list",
@@ -4200,6 +4365,7 @@ M.ListSchemasOutput = {
 
 M.UpdateCollaborationInput = {
     type = "structure",
+    id = "UpdateCollaborationInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -4222,6 +4388,7 @@ M.UpdateCollaborationInput = {
 
 M.UpdateCollaborationOutput = {
     type = "structure",
+    id = "UpdateCollaborationOutput",
     members = {
         collaboration = setmetatable({ traits = {
             required = true,
@@ -4238,6 +4405,7 @@ M.ChangeRequestAction = {
 
 M.UpdateCollaborationChangeRequestInput = {
     type = "structure",
+    id = "UpdateCollaborationChangeRequestInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -4264,6 +4432,7 @@ M.UpdateCollaborationChangeRequestInput = {
 
 M.UpdateCollaborationChangeRequestOutput = {
     type = "structure",
+    id = "UpdateCollaborationChangeRequestOutput",
     members = {
         collaborationChangeRequest = setmetatable({ traits = {
             required = true,
@@ -4273,6 +4442,7 @@ M.UpdateCollaborationChangeRequestOutput = {
 
 M.CreateConfiguredAudienceModelAssociationInput = {
     type = "structure",
+    id = "CreateConfiguredAudienceModelAssociationInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4312,6 +4482,7 @@ M.CreateConfiguredAudienceModelAssociationInput = {
 
 M.ConfiguredAudienceModelAssociation = {
     type = "structure",
+    id = "ConfiguredAudienceModelAssociation",
     members = {
         id = {
             type = "string",
@@ -4387,6 +4558,7 @@ M.ConfiguredAudienceModelAssociation = {
 
 M.CreateConfiguredAudienceModelAssociationOutput = {
     type = "structure",
+    id = "CreateConfiguredAudienceModelAssociationOutput",
     members = {
         configuredAudienceModelAssociation = setmetatable({ traits = {
             required = true,
@@ -4396,6 +4568,7 @@ M.CreateConfiguredAudienceModelAssociationOutput = {
 
 M.DeleteConfiguredAudienceModelAssociationInput = {
     type = "structure",
+    id = "DeleteConfiguredAudienceModelAssociationInput",
     members = {
         configuredAudienceModelAssociationIdentifier = {
             type = "string",
@@ -4416,10 +4589,12 @@ M.DeleteConfiguredAudienceModelAssociationInput = {
 
 M.DeleteConfiguredAudienceModelAssociationOutput = {
     type = "structure",
+    id = "DeleteConfiguredAudienceModelAssociationOutput",
 }
 
 M.GetConfiguredAudienceModelAssociationInput = {
     type = "structure",
+    id = "GetConfiguredAudienceModelAssociationInput",
     members = {
         configuredAudienceModelAssociationIdentifier = {
             type = "string",
@@ -4440,6 +4615,7 @@ M.GetConfiguredAudienceModelAssociationInput = {
 
 M.GetConfiguredAudienceModelAssociationOutput = {
     type = "structure",
+    id = "GetConfiguredAudienceModelAssociationOutput",
     members = {
         configuredAudienceModelAssociation = setmetatable({ traits = {
             required = true,
@@ -4449,6 +4625,7 @@ M.GetConfiguredAudienceModelAssociationOutput = {
 
 M.ListConfiguredAudienceModelAssociationsInput = {
     type = "structure",
+    id = "ListConfiguredAudienceModelAssociationsInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4474,6 +4651,7 @@ M.ListConfiguredAudienceModelAssociationsInput = {
 
 M.ConfiguredAudienceModelAssociationSummary = {
     type = "structure",
+    id = "ConfiguredAudienceModelAssociationSummary",
     members = {
         membershipId = {
             type = "string",
@@ -4543,6 +4721,7 @@ M.ConfiguredAudienceModelAssociationSummary = {
 
 M.ListConfiguredAudienceModelAssociationsOutput = {
     type = "structure",
+    id = "ListConfiguredAudienceModelAssociationsOutput",
     members = {
         configuredAudienceModelAssociationSummaries = {
             type = "list",
@@ -4559,6 +4738,7 @@ M.ListConfiguredAudienceModelAssociationsOutput = {
 
 M.UpdateConfiguredAudienceModelAssociationInput = {
     type = "structure",
+    id = "UpdateConfiguredAudienceModelAssociationInput",
     members = {
         configuredAudienceModelAssociationIdentifier = {
             type = "string",
@@ -4585,6 +4765,7 @@ M.UpdateConfiguredAudienceModelAssociationInput = {
 
 M.UpdateConfiguredAudienceModelAssociationOutput = {
     type = "structure",
+    id = "UpdateConfiguredAudienceModelAssociationOutput",
     members = {
         configuredAudienceModelAssociation = setmetatable({ traits = {
             required = true,
@@ -4594,6 +4775,7 @@ M.UpdateConfiguredAudienceModelAssociationOutput = {
 
 M.CreateConfiguredTableAssociationInput = {
     type = "structure",
+    id = "CreateConfiguredTableAssociationInput",
     members = {
         name = {
             type = "string",
@@ -4639,6 +4821,7 @@ M.ConfiguredTableAssociationAnalysisRuleType = {
 
 M.ConfiguredTableAssociation = {
     type = "structure",
+    id = "ConfiguredTableAssociation",
     members = {
         arn = {
             type = "string",
@@ -4712,6 +4895,7 @@ M.ConfiguredTableAssociation = {
 
 M.CreateConfiguredTableAssociationOutput = {
     type = "structure",
+    id = "CreateConfiguredTableAssociationOutput",
     members = {
         configuredTableAssociation = setmetatable({ traits = {
             required = true,
@@ -4721,6 +4905,7 @@ M.CreateConfiguredTableAssociationOutput = {
 
 M.CreateConfiguredTableAssociationAnalysisRuleInput = {
     type = "structure",
+    id = "CreateConfiguredTableAssociationAnalysisRuleInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4750,6 +4935,7 @@ M.CreateConfiguredTableAssociationAnalysisRuleInput = {
 
 M.ConfiguredTableAssociationAnalysisRule = {
     type = "structure",
+    id = "ConfiguredTableAssociationAnalysisRule",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4795,6 +4981,7 @@ M.ConfiguredTableAssociationAnalysisRule = {
 
 M.CreateConfiguredTableAssociationAnalysisRuleOutput = {
     type = "structure",
+    id = "CreateConfiguredTableAssociationAnalysisRuleOutput",
     members = {
         analysisRule = setmetatable({ traits = {
             required = true,
@@ -4804,6 +4991,7 @@ M.CreateConfiguredTableAssociationAnalysisRuleOutput = {
 
 M.DeleteConfiguredTableAssociationInput = {
     type = "structure",
+    id = "DeleteConfiguredTableAssociationInput",
     members = {
         configuredTableAssociationIdentifier = {
             type = "string",
@@ -4824,10 +5012,12 @@ M.DeleteConfiguredTableAssociationInput = {
 
 M.DeleteConfiguredTableAssociationOutput = {
     type = "structure",
+    id = "DeleteConfiguredTableAssociationOutput",
 }
 
 M.DeleteConfiguredTableAssociationAnalysisRuleInput = {
     type = "structure",
+    id = "DeleteConfiguredTableAssociationAnalysisRuleInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4855,10 +5045,12 @@ M.DeleteConfiguredTableAssociationAnalysisRuleInput = {
 
 M.DeleteConfiguredTableAssociationAnalysisRuleOutput = {
     type = "structure",
+    id = "DeleteConfiguredTableAssociationAnalysisRuleOutput",
 }
 
 M.GetConfiguredTableAssociationInput = {
     type = "structure",
+    id = "GetConfiguredTableAssociationInput",
     members = {
         configuredTableAssociationIdentifier = {
             type = "string",
@@ -4879,6 +5071,7 @@ M.GetConfiguredTableAssociationInput = {
 
 M.GetConfiguredTableAssociationOutput = {
     type = "structure",
+    id = "GetConfiguredTableAssociationOutput",
     members = {
         configuredTableAssociation = setmetatable({ traits = {
             required = true,
@@ -4888,6 +5081,7 @@ M.GetConfiguredTableAssociationOutput = {
 
 M.GetConfiguredTableAssociationAnalysisRuleInput = {
     type = "structure",
+    id = "GetConfiguredTableAssociationAnalysisRuleInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4915,6 +5109,7 @@ M.GetConfiguredTableAssociationAnalysisRuleInput = {
 
 M.GetConfiguredTableAssociationAnalysisRuleOutput = {
     type = "structure",
+    id = "GetConfiguredTableAssociationAnalysisRuleOutput",
     members = {
         analysisRule = setmetatable({ traits = {
             required = true,
@@ -4924,6 +5119,7 @@ M.GetConfiguredTableAssociationAnalysisRuleOutput = {
 
 M.ListConfiguredTableAssociationsInput = {
     type = "structure",
+    id = "ListConfiguredTableAssociationsInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4949,6 +5145,7 @@ M.ListConfiguredTableAssociationsInput = {
 
 M.ConfiguredTableAssociationSummary = {
     type = "structure",
+    id = "ConfiguredTableAssociationSummary",
     members = {
         configuredTableId = {
             type = "string",
@@ -5007,6 +5204,7 @@ M.ConfiguredTableAssociationSummary = {
 
 M.ListConfiguredTableAssociationsOutput = {
     type = "structure",
+    id = "ListConfiguredTableAssociationsOutput",
     members = {
         configuredTableAssociationSummaries = {
             type = "list",
@@ -5023,6 +5221,7 @@ M.ListConfiguredTableAssociationsOutput = {
 
 M.UpdateConfiguredTableAssociationInput = {
     type = "structure",
+    id = "UpdateConfiguredTableAssociationInput",
     members = {
         configuredTableAssociationIdentifier = {
             type = "string",
@@ -5049,6 +5248,7 @@ M.UpdateConfiguredTableAssociationInput = {
 
 M.UpdateConfiguredTableAssociationOutput = {
     type = "structure",
+    id = "UpdateConfiguredTableAssociationOutput",
     members = {
         configuredTableAssociation = setmetatable({ traits = {
             required = true,
@@ -5058,6 +5258,7 @@ M.UpdateConfiguredTableAssociationOutput = {
 
 M.UpdateConfiguredTableAssociationAnalysisRuleInput = {
     type = "structure",
+    id = "UpdateConfiguredTableAssociationAnalysisRuleInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -5088,6 +5289,7 @@ M.UpdateConfiguredTableAssociationAnalysisRuleInput = {
 
 M.UpdateConfiguredTableAssociationAnalysisRuleOutput = {
     type = "structure",
+    id = "UpdateConfiguredTableAssociationAnalysisRuleOutput",
     members = {
         analysisRule = setmetatable({ traits = {
             required = true,
@@ -5097,6 +5299,7 @@ M.UpdateConfiguredTableAssociationAnalysisRuleOutput = {
 
 M.GlueTableReference = {
     type = "structure",
+    id = "GlueTableReference",
     members = {
         region = {
             type = "string",
@@ -5118,6 +5321,7 @@ M.GlueTableReference = {
 
 M.SnowflakeTableSchemaV1 = {
     type = "structure",
+    id = "SnowflakeTableSchemaV1",
     members = {
         columnName = {
             type = "string",
@@ -5136,6 +5340,7 @@ M.SnowflakeTableSchemaV1 = {
 
 M.SnowflakeTableSchema = {
     type = "union",
+    id = "SnowflakeTableSchema",
     members = {
         v1 = {
             type = "list",
@@ -5146,6 +5351,7 @@ M.SnowflakeTableSchema = {
 
 M.SnowflakeTableReference = {
     type = "structure",
+    id = "SnowflakeTableReference",
     members = {
         secretArn = {
             type = "string",
@@ -5185,6 +5391,7 @@ M.SnowflakeTableReference = {
 
 M.TableReference = {
     type = "union",
+    id = "TableReference",
     members = {
         glue = M.GlueTableReference,
         snowflake = M.SnowflakeTableReference,
@@ -5194,6 +5401,7 @@ M.TableReference = {
 
 M.CreateConfiguredTableInput = {
     type = "structure",
+    id = "CreateConfiguredTableInput",
     members = {
         name = {
             type = "string",
@@ -5240,6 +5448,7 @@ M.ConfiguredTableAnalysisRuleType = {
 
 M.ConfiguredTable = {
     type = "structure",
+    id = "ConfiguredTable",
     members = {
         id = {
             type = "string",
@@ -5306,6 +5515,7 @@ M.ConfiguredTable = {
 
 M.CreateConfiguredTableOutput = {
     type = "structure",
+    id = "CreateConfiguredTableOutput",
     members = {
         configuredTable = setmetatable({ traits = {
             required = true,
@@ -5315,6 +5525,7 @@ M.CreateConfiguredTableOutput = {
 
 M.ConfiguredTableAnalysisRulePolicyV1 = {
     type = "union",
+    id = "ConfiguredTableAnalysisRulePolicyV1",
     members = {
         list = M.AnalysisRuleList,
         aggregation = M.AnalysisRuleAggregation,
@@ -5324,6 +5535,7 @@ M.ConfiguredTableAnalysisRulePolicyV1 = {
 
 M.ConfiguredTableAnalysisRulePolicy = {
     type = "union",
+    id = "ConfiguredTableAnalysisRulePolicy",
     members = {
         v1 = M.ConfiguredTableAnalysisRulePolicyV1,
     },
@@ -5331,6 +5543,7 @@ M.ConfiguredTableAnalysisRulePolicy = {
 
 M.CreateConfiguredTableAnalysisRuleInput = {
     type = "structure",
+    id = "CreateConfiguredTableAnalysisRuleInput",
     members = {
         configuredTableIdentifier = {
             type = "string",
@@ -5353,6 +5566,7 @@ M.CreateConfiguredTableAnalysisRuleInput = {
 
 M.ConfiguredTableAnalysisRule = {
     type = "structure",
+    id = "ConfiguredTableAnalysisRule",
     members = {
         configuredTableId = {
             type = "string",
@@ -5392,6 +5606,7 @@ M.ConfiguredTableAnalysisRule = {
 
 M.CreateConfiguredTableAnalysisRuleOutput = {
     type = "structure",
+    id = "CreateConfiguredTableAnalysisRuleOutput",
     members = {
         analysisRule = setmetatable({ traits = {
             required = true,
@@ -5401,6 +5616,7 @@ M.CreateConfiguredTableAnalysisRuleOutput = {
 
 M.DeleteConfiguredTableInput = {
     type = "structure",
+    id = "DeleteConfiguredTableInput",
     members = {
         configuredTableIdentifier = {
             type = "string",
@@ -5414,10 +5630,12 @@ M.DeleteConfiguredTableInput = {
 
 M.DeleteConfiguredTableOutput = {
     type = "structure",
+    id = "DeleteConfiguredTableOutput",
 }
 
 M.DeleteConfiguredTableAnalysisRuleInput = {
     type = "structure",
+    id = "DeleteConfiguredTableAnalysisRuleInput",
     members = {
         configuredTableIdentifier = {
             type = "string",
@@ -5438,10 +5656,12 @@ M.DeleteConfiguredTableAnalysisRuleInput = {
 
 M.DeleteConfiguredTableAnalysisRuleOutput = {
     type = "structure",
+    id = "DeleteConfiguredTableAnalysisRuleOutput",
 }
 
 M.GetConfiguredTableInput = {
     type = "structure",
+    id = "GetConfiguredTableInput",
     members = {
         configuredTableIdentifier = {
             type = "string",
@@ -5455,6 +5675,7 @@ M.GetConfiguredTableInput = {
 
 M.GetConfiguredTableOutput = {
     type = "structure",
+    id = "GetConfiguredTableOutput",
     members = {
         configuredTable = setmetatable({ traits = {
             required = true,
@@ -5464,6 +5685,7 @@ M.GetConfiguredTableOutput = {
 
 M.GetConfiguredTableAnalysisRuleInput = {
     type = "structure",
+    id = "GetConfiguredTableAnalysisRuleInput",
     members = {
         configuredTableIdentifier = {
             type = "string",
@@ -5484,6 +5706,7 @@ M.GetConfiguredTableAnalysisRuleInput = {
 
 M.GetConfiguredTableAnalysisRuleOutput = {
     type = "structure",
+    id = "GetConfiguredTableAnalysisRuleOutput",
     members = {
         analysisRule = setmetatable({ traits = {
             required = true,
@@ -5493,6 +5716,7 @@ M.GetConfiguredTableAnalysisRuleOutput = {
 
 M.ListConfiguredTablesInput = {
     type = "structure",
+    id = "ListConfiguredTablesInput",
     members = {
         nextToken = {
             type = "string",
@@ -5511,6 +5735,7 @@ M.ListConfiguredTablesInput = {
 
 M.ConfiguredTableSummary = {
     type = "structure",
+    id = "ConfiguredTableSummary",
     members = {
         id = {
             type = "string",
@@ -5564,6 +5789,7 @@ M.ConfiguredTableSummary = {
 
 M.ListConfiguredTablesOutput = {
     type = "structure",
+    id = "ListConfiguredTablesOutput",
     members = {
         configuredTableSummaries = {
             type = "list",
@@ -5580,6 +5806,7 @@ M.ListConfiguredTablesOutput = {
 
 M.UpdateConfiguredTableInput = {
     type = "structure",
+    id = "UpdateConfiguredTableInput",
     members = {
         configuredTableIdentifier = {
             type = "string",
@@ -5611,6 +5838,7 @@ M.UpdateConfiguredTableInput = {
 
 M.UpdateConfiguredTableOutput = {
     type = "structure",
+    id = "UpdateConfiguredTableOutput",
     members = {
         configuredTable = setmetatable({ traits = {
             required = true,
@@ -5620,6 +5848,7 @@ M.UpdateConfiguredTableOutput = {
 
 M.UpdateConfiguredTableAnalysisRuleInput = {
     type = "structure",
+    id = "UpdateConfiguredTableAnalysisRuleInput",
     members = {
         configuredTableIdentifier = {
             type = "string",
@@ -5643,6 +5872,7 @@ M.UpdateConfiguredTableAnalysisRuleInput = {
 
 M.UpdateConfiguredTableAnalysisRuleOutput = {
     type = "structure",
+    id = "UpdateConfiguredTableAnalysisRuleOutput",
     members = {
         analysisRule = setmetatable({ traits = {
             required = true,
@@ -5652,6 +5882,7 @@ M.UpdateConfiguredTableAnalysisRuleOutput = {
 
 M.IdMappingTableInputReferenceConfig = {
     type = "structure",
+    id = "IdMappingTableInputReferenceConfig",
     members = {
         inputReferenceArn = {
             type = "string",
@@ -5670,6 +5901,7 @@ M.IdMappingTableInputReferenceConfig = {
 
 M.CreateIdMappingTableInput = {
     type = "structure",
+    id = "CreateIdMappingTableInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -5703,6 +5935,7 @@ M.CreateIdMappingTableInput = {
 
 M.IdMappingTableInputReferenceProperties = {
     type = "structure",
+    id = "IdMappingTableInputReferenceProperties",
     members = {
         idMappingTableInputSource = {
             type = "list",
@@ -5716,6 +5949,7 @@ M.IdMappingTableInputReferenceProperties = {
 
 M.IdMappingTable = {
     type = "structure",
+    id = "IdMappingTable",
     members = {
         id = {
             type = "string",
@@ -5788,6 +6022,7 @@ M.IdMappingTable = {
 
 M.CreateIdMappingTableOutput = {
     type = "structure",
+    id = "CreateIdMappingTableOutput",
     members = {
         idMappingTable = setmetatable({ traits = {
             required = true,
@@ -5797,6 +6032,7 @@ M.CreateIdMappingTableOutput = {
 
 M.DeleteIdMappingTableInput = {
     type = "structure",
+    id = "DeleteIdMappingTableInput",
     members = {
         idMappingTableIdentifier = {
             type = "string",
@@ -5817,10 +6053,12 @@ M.DeleteIdMappingTableInput = {
 
 M.DeleteIdMappingTableOutput = {
     type = "structure",
+    id = "DeleteIdMappingTableOutput",
 }
 
 M.GetIdMappingTableInput = {
     type = "structure",
+    id = "GetIdMappingTableInput",
     members = {
         idMappingTableIdentifier = {
             type = "string",
@@ -5841,6 +6079,7 @@ M.GetIdMappingTableInput = {
 
 M.GetIdMappingTableOutput = {
     type = "structure",
+    id = "GetIdMappingTableOutput",
     members = {
         idMappingTable = setmetatable({ traits = {
             required = true,
@@ -5850,6 +6089,7 @@ M.GetIdMappingTableOutput = {
 
 M.ListIdMappingTablesInput = {
     type = "structure",
+    id = "ListIdMappingTablesInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -5875,6 +6115,7 @@ M.ListIdMappingTablesInput = {
 
 M.IdMappingTableSummary = {
     type = "structure",
+    id = "IdMappingTableSummary",
     members = {
         collaborationArn = {
             type = "string",
@@ -5941,6 +6182,7 @@ M.IdMappingTableSummary = {
 
 M.ListIdMappingTablesOutput = {
     type = "structure",
+    id = "ListIdMappingTablesOutput",
     members = {
         idMappingTableSummaries = {
             type = "list",
@@ -5963,6 +6205,7 @@ M.JobType = {
 
 M.PopulateIdMappingTableInput = {
     type = "structure",
+    id = "PopulateIdMappingTableInput",
     members = {
         idMappingTableIdentifier = {
             type = "string",
@@ -5986,6 +6229,7 @@ M.PopulateIdMappingTableInput = {
 
 M.PopulateIdMappingTableOutput = {
     type = "structure",
+    id = "PopulateIdMappingTableOutput",
     members = {
         idMappingJobId = {
             type = "string",
@@ -5998,6 +6242,7 @@ M.PopulateIdMappingTableOutput = {
 
 M.UpdateIdMappingTableInput = {
     type = "structure",
+    id = "UpdateIdMappingTableInput",
     members = {
         idMappingTableIdentifier = {
             type = "string",
@@ -6024,6 +6269,7 @@ M.UpdateIdMappingTableInput = {
 
 M.UpdateIdMappingTableOutput = {
     type = "structure",
+    id = "UpdateIdMappingTableOutput",
     members = {
         idMappingTable = setmetatable({ traits = {
             required = true,
@@ -6033,6 +6279,7 @@ M.UpdateIdMappingTableOutput = {
 
 M.CreateIdNamespaceAssociationInput = {
     type = "structure",
+    id = "CreateIdNamespaceAssociationInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -6064,6 +6311,7 @@ M.CreateIdNamespaceAssociationInput = {
 
 M.IdNamespaceAssociation = {
     type = "structure",
+    id = "IdNamespaceAssociation",
     members = {
         id = {
             type = "string",
@@ -6134,6 +6382,7 @@ M.IdNamespaceAssociation = {
 
 M.CreateIdNamespaceAssociationOutput = {
     type = "structure",
+    id = "CreateIdNamespaceAssociationOutput",
     members = {
         idNamespaceAssociation = setmetatable({ traits = {
             required = true,
@@ -6143,6 +6392,7 @@ M.CreateIdNamespaceAssociationOutput = {
 
 M.DeleteIdNamespaceAssociationInput = {
     type = "structure",
+    id = "DeleteIdNamespaceAssociationInput",
     members = {
         idNamespaceAssociationIdentifier = {
             type = "string",
@@ -6163,10 +6413,12 @@ M.DeleteIdNamespaceAssociationInput = {
 
 M.DeleteIdNamespaceAssociationOutput = {
     type = "structure",
+    id = "DeleteIdNamespaceAssociationOutput",
 }
 
 M.GetIdNamespaceAssociationInput = {
     type = "structure",
+    id = "GetIdNamespaceAssociationInput",
     members = {
         idNamespaceAssociationIdentifier = {
             type = "string",
@@ -6187,6 +6439,7 @@ M.GetIdNamespaceAssociationInput = {
 
 M.GetIdNamespaceAssociationOutput = {
     type = "structure",
+    id = "GetIdNamespaceAssociationOutput",
     members = {
         idNamespaceAssociation = setmetatable({ traits = {
             required = true,
@@ -6196,6 +6449,7 @@ M.GetIdNamespaceAssociationOutput = {
 
 M.ListIdNamespaceAssociationsInput = {
     type = "structure",
+    id = "ListIdNamespaceAssociationsInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -6221,6 +6475,7 @@ M.ListIdNamespaceAssociationsInput = {
 
 M.IdNamespaceAssociationSummary = {
     type = "structure",
+    id = "IdNamespaceAssociationSummary",
     members = {
         membershipId = {
             type = "string",
@@ -6290,6 +6545,7 @@ M.IdNamespaceAssociationSummary = {
 
 M.ListIdNamespaceAssociationsOutput = {
     type = "structure",
+    id = "ListIdNamespaceAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6306,6 +6562,7 @@ M.ListIdNamespaceAssociationsOutput = {
 
 M.UpdateIdNamespaceAssociationInput = {
     type = "structure",
+    id = "UpdateIdNamespaceAssociationInput",
     members = {
         idNamespaceAssociationIdentifier = {
             type = "string",
@@ -6333,6 +6590,7 @@ M.UpdateIdNamespaceAssociationInput = {
 
 M.UpdateIdNamespaceAssociationOutput = {
     type = "structure",
+    id = "UpdateIdNamespaceAssociationOutput",
     members = {
         idNamespaceAssociation = setmetatable({ traits = {
             required = true,
@@ -6342,6 +6600,7 @@ M.UpdateIdNamespaceAssociationOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6355,6 +6614,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -6369,6 +6629,7 @@ M.ListTagsForResourceOutput = {
 
 M.ProtectedJobS3OutputConfigurationInput = {
     type = "structure",
+    id = "ProtectedJobS3OutputConfigurationInput",
     members = {
         bucket = {
             type = "string",
@@ -6384,6 +6645,7 @@ M.ProtectedJobS3OutputConfigurationInput = {
 
 M.MembershipProtectedJobOutputConfiguration = {
     type = "union",
+    id = "MembershipProtectedJobOutputConfiguration",
     members = {
         s3 = M.ProtectedJobS3OutputConfigurationInput,
     },
@@ -6391,6 +6653,7 @@ M.MembershipProtectedJobOutputConfiguration = {
 
 M.MembershipProtectedJobResultConfiguration = {
     type = "structure",
+    id = "MembershipProtectedJobResultConfiguration",
     members = {
         outputConfiguration = setmetatable({ traits = {
             required = true,
@@ -6411,6 +6674,7 @@ M.ResultFormat = {
 
 M.ProtectedQueryS3OutputConfiguration = {
     type = "structure",
+    id = "ProtectedQueryS3OutputConfiguration",
     members = {
         resultFormat = {
             type = "string",
@@ -6435,6 +6699,7 @@ M.ProtectedQueryS3OutputConfiguration = {
 
 M.MembershipProtectedQueryOutputConfiguration = {
     type = "union",
+    id = "MembershipProtectedQueryOutputConfiguration",
     members = {
         s3 = M.ProtectedQueryS3OutputConfiguration,
     },
@@ -6442,6 +6707,7 @@ M.MembershipProtectedQueryOutputConfiguration = {
 
 M.MembershipProtectedQueryResultConfiguration = {
     type = "structure",
+    id = "MembershipProtectedQueryResultConfiguration",
     members = {
         outputConfiguration = setmetatable({ traits = {
             required = true,
@@ -6459,6 +6725,7 @@ M.MembershipJobLogStatus = {
 
 M.MembershipJobComputePaymentConfig = {
     type = "structure",
+    id = "MembershipJobComputePaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -6471,6 +6738,7 @@ M.MembershipJobComputePaymentConfig = {
 
 M.MembershipModelInferencePaymentConfig = {
     type = "structure",
+    id = "MembershipModelInferencePaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -6483,6 +6751,7 @@ M.MembershipModelInferencePaymentConfig = {
 
 M.MembershipModelTrainingPaymentConfig = {
     type = "structure",
+    id = "MembershipModelTrainingPaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -6495,6 +6764,7 @@ M.MembershipModelTrainingPaymentConfig = {
 
 M.MembershipSyntheticDataGenerationPaymentConfig = {
     type = "structure",
+    id = "MembershipSyntheticDataGenerationPaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -6507,6 +6777,7 @@ M.MembershipSyntheticDataGenerationPaymentConfig = {
 
 M.MembershipMLPaymentConfig = {
     type = "structure",
+    id = "MembershipMLPaymentConfig",
     members = {
         modelTraining = M.MembershipModelTrainingPaymentConfig,
         modelInference = M.MembershipModelInferencePaymentConfig,
@@ -6516,6 +6787,7 @@ M.MembershipMLPaymentConfig = {
 
 M.MembershipQueryComputePaymentConfig = {
     type = "structure",
+    id = "MembershipQueryComputePaymentConfig",
     members = {
         isResponsible = {
             type = "boolean",
@@ -6528,6 +6800,7 @@ M.MembershipQueryComputePaymentConfig = {
 
 M.MembershipPaymentConfiguration = {
     type = "structure",
+    id = "MembershipPaymentConfiguration",
     members = {
         queryCompute = setmetatable({ traits = {
             required = true,
@@ -6544,6 +6817,7 @@ M.MembershipQueryLogStatus = {
 
 M.CreateMembershipInput = {
     type = "structure",
+    id = "CreateMembershipInput",
     members = {
         collaborationIdentifier = {
             type = "string",
@@ -6582,6 +6856,7 @@ M.MembershipStatus = {
 
 M.Membership = {
     type = "structure",
+    id = "Membership",
     members = {
         id = {
             type = "string",
@@ -6673,6 +6948,7 @@ M.Membership = {
 
 M.CreateMembershipOutput = {
     type = "structure",
+    id = "CreateMembershipOutput",
     members = {
         membership = setmetatable({ traits = {
             required = true,
@@ -6682,6 +6958,7 @@ M.CreateMembershipOutput = {
 
 M.DeleteMembershipInput = {
     type = "structure",
+    id = "DeleteMembershipInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -6695,10 +6972,12 @@ M.DeleteMembershipInput = {
 
 M.DeleteMembershipOutput = {
     type = "structure",
+    id = "DeleteMembershipOutput",
 }
 
 M.GetMembershipInput = {
     type = "structure",
+    id = "GetMembershipInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -6712,6 +6991,7 @@ M.GetMembershipInput = {
 
 M.GetMembershipOutput = {
     type = "structure",
+    id = "GetMembershipOutput",
     members = {
         membership = setmetatable({ traits = {
             required = true,
@@ -6721,6 +7001,7 @@ M.GetMembershipOutput = {
 
 M.GetProtectedJobInput = {
     type = "structure",
+    id = "GetProtectedJobInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -6741,6 +7022,7 @@ M.GetProtectedJobInput = {
 
 M.WorkerComputeConfigurationProperties = {
     type = "union",
+    id = "WorkerComputeConfigurationProperties",
     members = {
         spark = {
             type = "map",
@@ -6757,6 +7039,7 @@ M.ProtectedJobWorkerComputeType = {
 
 M.ProtectedJobWorkerComputeConfiguration = {
     type = "structure",
+    id = "ProtectedJobWorkerComputeConfiguration",
     members = {
         type = {
             type = "string",
@@ -6776,6 +7059,7 @@ M.ProtectedJobWorkerComputeConfiguration = {
 
 M.ProtectedJobComputeConfiguration = {
     type = "union",
+    id = "ProtectedJobComputeConfiguration",
     members = {
         worker = M.ProtectedJobWorkerComputeConfiguration,
     },
@@ -6783,6 +7067,7 @@ M.ProtectedJobComputeConfiguration = {
 
 M.ProtectedJobError = {
     type = "structure",
+    id = "ProtectedJobError",
     members = {
         message = {
             type = "string",
@@ -6801,6 +7086,7 @@ M.ProtectedJobError = {
 
 M.ProtectedJobParameters = {
     type = "structure",
+    id = "ProtectedJobParameters",
     members = {
         analysisTemplateArn = {
             type = "string",
@@ -6818,6 +7104,7 @@ M.ProtectedJobParameters = {
 
 M.ProtectedJobSingleMemberOutput = {
     type = "structure",
+    id = "ProtectedJobSingleMemberOutput",
     members = {
         accountId = {
             type = "string",
@@ -6830,6 +7117,7 @@ M.ProtectedJobSingleMemberOutput = {
 
 M.ProtectedJobS3Output = {
     type = "structure",
+    id = "ProtectedJobS3Output",
     members = {
         location = {
             type = "string",
@@ -6842,6 +7130,7 @@ M.ProtectedJobS3Output = {
 
 M.ProtectedJobOutput = {
     type = "union",
+    id = "ProtectedJobOutput",
     members = {
         s3 = M.ProtectedJobS3Output,
         memberList = {
@@ -6853,6 +7142,7 @@ M.ProtectedJobOutput = {
 
 M.ProtectedJobResult = {
     type = "structure",
+    id = "ProtectedJobResult",
     members = {
         output = setmetatable({ traits = {
             required = true,
@@ -6862,6 +7152,7 @@ M.ProtectedJobResult = {
 
 M.ProtectedJobMemberOutputConfigurationOutput = {
     type = "structure",
+    id = "ProtectedJobMemberOutputConfigurationOutput",
     members = {
         accountId = {
             type = "string",
@@ -6874,6 +7165,7 @@ M.ProtectedJobMemberOutputConfigurationOutput = {
 
 M.ProtectedJobS3OutputConfigurationOutput = {
     type = "structure",
+    id = "ProtectedJobS3OutputConfigurationOutput",
     members = {
         bucket = {
             type = "string",
@@ -6889,6 +7181,7 @@ M.ProtectedJobS3OutputConfigurationOutput = {
 
 M.ProtectedJobOutputConfigurationOutput = {
     type = "union",
+    id = "ProtectedJobOutputConfigurationOutput",
     members = {
         s3 = M.ProtectedJobS3OutputConfigurationOutput,
         member = M.ProtectedJobMemberOutputConfigurationOutput,
@@ -6897,6 +7190,7 @@ M.ProtectedJobOutputConfigurationOutput = {
 
 M.ProtectedJobResultConfigurationOutput = {
     type = "structure",
+    id = "ProtectedJobResultConfigurationOutput",
     members = {
         outputConfiguration = setmetatable({ traits = {
             required = true,
@@ -6906,6 +7200,7 @@ M.ProtectedJobResultConfigurationOutput = {
 
 M.BilledJobResourceUtilization = {
     type = "structure",
+    id = "BilledJobResourceUtilization",
     members = {
         units = {
             type = "double",
@@ -6918,6 +7213,7 @@ M.BilledJobResourceUtilization = {
 
 M.ProtectedJobStatistics = {
     type = "structure",
+    id = "ProtectedJobStatistics",
     members = {
         totalDurationInMillis = {
             type = "long",
@@ -6937,6 +7233,7 @@ M.ProtectedJobStatus = {
 
 M.ProtectedJob = {
     type = "structure",
+    id = "ProtectedJob",
     members = {
         id = {
             type = "string",
@@ -6979,6 +7276,7 @@ M.ProtectedJob = {
 
 M.GetProtectedJobOutput = {
     type = "structure",
+    id = "GetProtectedJobOutput",
     members = {
         protectedJob = setmetatable({ traits = {
             required = true,
@@ -6988,6 +7286,7 @@ M.GetProtectedJobOutput = {
 
 M.GetProtectedQueryInput = {
     type = "structure",
+    id = "GetProtectedQueryInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -7013,6 +7312,7 @@ M.WorkerComputeType = {
 
 M.WorkerComputeConfiguration = {
     type = "structure",
+    id = "WorkerComputeConfiguration",
     members = {
         type = {
             type = "string",
@@ -7026,6 +7326,7 @@ M.WorkerComputeConfiguration = {
 
 M.ComputeConfiguration = {
     type = "union",
+    id = "ComputeConfiguration",
     members = {
         worker = M.WorkerComputeConfiguration,
     },
@@ -7033,6 +7334,7 @@ M.ComputeConfiguration = {
 
 M.DifferentialPrivacySensitivityParameters = {
     type = "structure",
+    id = "DifferentialPrivacySensitivityParameters",
     members = {
         aggregationType = {
             type = "string",
@@ -7063,6 +7365,7 @@ M.DifferentialPrivacySensitivityParameters = {
 
 M.DifferentialPrivacyParameters = {
     type = "structure",
+    id = "DifferentialPrivacyParameters",
     members = {
         sensitivityParameters = {
             type = "list",
@@ -7076,6 +7379,7 @@ M.DifferentialPrivacyParameters = {
 
 M.ProtectedQueryError = {
     type = "structure",
+    id = "ProtectedQueryError",
     members = {
         message = {
             type = "string",
@@ -7094,6 +7398,7 @@ M.ProtectedQueryError = {
 
 M.ProtectedQuerySingleMemberOutput = {
     type = "structure",
+    id = "ProtectedQuerySingleMemberOutput",
     members = {
         accountId = {
             type = "string",
@@ -7106,6 +7411,7 @@ M.ProtectedQuerySingleMemberOutput = {
 
 M.ProtectedQueryS3Output = {
     type = "structure",
+    id = "ProtectedQueryS3Output",
     members = {
         location = {
             type = "string",
@@ -7118,6 +7424,7 @@ M.ProtectedQueryS3Output = {
 
 M.ProtectedQueryDistributeOutput = {
     type = "structure",
+    id = "ProtectedQueryDistributeOutput",
     members = {
         s3 = M.ProtectedQueryS3Output,
         memberList = {
@@ -7129,6 +7436,7 @@ M.ProtectedQueryDistributeOutput = {
 
 M.ProtectedQueryOutput = {
     type = "union",
+    id = "ProtectedQueryOutput",
     members = {
         s3 = M.ProtectedQueryS3Output,
         memberList = {
@@ -7141,6 +7449,7 @@ M.ProtectedQueryOutput = {
 
 M.ProtectedQueryResult = {
     type = "structure",
+    id = "ProtectedQueryResult",
     members = {
         output = setmetatable({ traits = {
             required = true,
@@ -7150,6 +7459,7 @@ M.ProtectedQueryResult = {
 
 M.ProtectedQueryMemberOutputConfiguration = {
     type = "structure",
+    id = "ProtectedQueryMemberOutputConfiguration",
     members = {
         accountId = {
             type = "string",
@@ -7162,6 +7472,7 @@ M.ProtectedQueryMemberOutputConfiguration = {
 
 M.ProtectedQueryDistributeOutputConfigurationLocation = {
     type = "union",
+    id = "ProtectedQueryDistributeOutputConfigurationLocation",
     members = {
         s3 = M.ProtectedQueryS3OutputConfiguration,
         member = M.ProtectedQueryMemberOutputConfiguration,
@@ -7170,6 +7481,7 @@ M.ProtectedQueryDistributeOutputConfigurationLocation = {
 
 M.ProtectedQueryDistributeOutputConfiguration = {
     type = "structure",
+    id = "ProtectedQueryDistributeOutputConfiguration",
     members = {
         locations = {
             type = "list",
@@ -7183,6 +7495,7 @@ M.ProtectedQueryDistributeOutputConfiguration = {
 
 M.ProtectedQueryOutputConfiguration = {
     type = "union",
+    id = "ProtectedQueryOutputConfiguration",
     members = {
         s3 = M.ProtectedQueryS3OutputConfiguration,
         member = M.ProtectedQueryMemberOutputConfiguration,
@@ -7192,6 +7505,7 @@ M.ProtectedQueryOutputConfiguration = {
 
 M.ProtectedQueryResultConfiguration = {
     type = "structure",
+    id = "ProtectedQueryResultConfiguration",
     members = {
         outputConfiguration = setmetatable({ traits = {
             required = true,
@@ -7201,6 +7515,7 @@ M.ProtectedQueryResultConfiguration = {
 
 M.ProtectedQuerySQLParameters = {
     type = "structure",
+    id = "ProtectedQuerySQLParameters",
     members = {
         queryString = {
             type = "string",
@@ -7218,6 +7533,7 @@ M.ProtectedQuerySQLParameters = {
 
 M.BilledResourceUtilization = {
     type = "structure",
+    id = "BilledResourceUtilization",
     members = {
         units = {
             type = "double",
@@ -7230,6 +7546,7 @@ M.BilledResourceUtilization = {
 
 M.ProtectedQueryStatistics = {
     type = "structure",
+    id = "ProtectedQueryStatistics",
     members = {
         totalDurationInMillis = {
             type = "long",
@@ -7250,6 +7567,7 @@ M.ProtectedQueryStatus = {
 
 M.ProtectedQuery = {
     type = "structure",
+    id = "ProtectedQuery",
     members = {
         id = {
             type = "string",
@@ -7293,6 +7611,7 @@ M.ProtectedQuery = {
 
 M.GetProtectedQueryOutput = {
     type = "structure",
+    id = "GetProtectedQueryOutput",
     members = {
         protectedQuery = setmetatable({ traits = {
             required = true,
@@ -7302,6 +7621,7 @@ M.GetProtectedQueryOutput = {
 
 M.ListMembershipsInput = {
     type = "structure",
+    id = "ListMembershipsInput",
     members = {
         nextToken = {
             type = "string",
@@ -7326,6 +7646,7 @@ M.ListMembershipsInput = {
 
 M.MembershipSummary = {
     type = "structure",
+    id = "MembershipSummary",
     members = {
         id = {
             type = "string",
@@ -7403,6 +7724,7 @@ M.MembershipSummary = {
 
 M.ListMembershipsOutput = {
     type = "structure",
+    id = "ListMembershipsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -7419,6 +7741,7 @@ M.ListMembershipsOutput = {
 
 M.ListPrivacyBudgetsInput = {
     type = "structure",
+    id = "ListPrivacyBudgetsInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -7457,6 +7780,7 @@ M.ListPrivacyBudgetsInput = {
 
 M.PrivacyBudgetSummary = {
     type = "structure",
+    id = "PrivacyBudgetSummary",
     members = {
         id = {
             type = "string",
@@ -7526,6 +7850,7 @@ M.PrivacyBudgetSummary = {
 
 M.ListPrivacyBudgetsOutput = {
     type = "structure",
+    id = "ListPrivacyBudgetsOutput",
     members = {
         privacyBudgetSummaries = {
             type = "list",
@@ -7542,6 +7867,7 @@ M.ListPrivacyBudgetsOutput = {
 
 M.ListProtectedJobsInput = {
     type = "structure",
+    id = "ListProtectedJobsInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -7577,6 +7903,7 @@ M.ProtectedJobAnalysisType = {
 
 M.ProtectedJobDirectAnalysisConfigurationDetails = {
     type = "structure",
+    id = "ProtectedJobDirectAnalysisConfigurationDetails",
     members = {
         receiverAccountIds = {
             type = "list",
@@ -7587,6 +7914,7 @@ M.ProtectedJobDirectAnalysisConfigurationDetails = {
 
 M.ProtectedJobConfigurationDetails = {
     type = "union",
+    id = "ProtectedJobConfigurationDetails",
     members = {
         directAnalysisConfigurationDetails = M.ProtectedJobDirectAnalysisConfigurationDetails,
     },
@@ -7594,6 +7922,7 @@ M.ProtectedJobConfigurationDetails = {
 
 M.ProtectedJobReceiverConfiguration = {
     type = "structure",
+    id = "ProtectedJobReceiverConfiguration",
     members = {
         analysisType = {
             type = "string",
@@ -7607,6 +7936,7 @@ M.ProtectedJobReceiverConfiguration = {
 
 M.ProtectedJobSummary = {
     type = "structure",
+    id = "ProtectedJobSummary",
     members = {
         id = {
             type = "string",
@@ -7651,6 +7981,7 @@ M.ProtectedJobSummary = {
 
 M.ListProtectedJobsOutput = {
     type = "structure",
+    id = "ListProtectedJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -7667,6 +7998,7 @@ M.ListProtectedJobsOutput = {
 
 M.ListProtectedQueriesInput = {
     type = "structure",
+    id = "ListProtectedQueriesInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -7698,6 +8030,7 @@ M.ListProtectedQueriesInput = {
 
 M.DirectAnalysisConfigurationDetails = {
     type = "structure",
+    id = "DirectAnalysisConfigurationDetails",
     members = {
         receiverAccountIds = {
             type = "list",
@@ -7708,6 +8041,7 @@ M.DirectAnalysisConfigurationDetails = {
 
 M.ConfigurationDetails = {
     type = "union",
+    id = "ConfigurationDetails",
     members = {
         directAnalysisConfigurationDetails = M.DirectAnalysisConfigurationDetails,
     },
@@ -7715,6 +8049,7 @@ M.ConfigurationDetails = {
 
 M.ReceiverConfiguration = {
     type = "structure",
+    id = "ReceiverConfiguration",
     members = {
         analysisType = {
             type = "string",
@@ -7728,6 +8063,7 @@ M.ReceiverConfiguration = {
 
 M.ProtectedQuerySummary = {
     type = "structure",
+    id = "ProtectedQuerySummary",
     members = {
         id = {
             type = "string",
@@ -7772,6 +8108,7 @@ M.ProtectedQuerySummary = {
 
 M.ListProtectedQueriesOutput = {
     type = "structure",
+    id = "ListProtectedQueriesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -7788,6 +8125,7 @@ M.ListProtectedQueriesOutput = {
 
 M.DifferentialPrivacyPreviewParametersInput = {
     type = "structure",
+    id = "DifferentialPrivacyPreviewParametersInput",
     members = {
         epsilon = {
             type = "integer",
@@ -7806,6 +8144,7 @@ M.DifferentialPrivacyPreviewParametersInput = {
 
 M.PreviewPrivacyImpactParametersInput = {
     type = "union",
+    id = "PreviewPrivacyImpactParametersInput",
     members = {
         differentialPrivacy = M.DifferentialPrivacyPreviewParametersInput,
     },
@@ -7813,6 +8152,7 @@ M.PreviewPrivacyImpactParametersInput = {
 
 M.PreviewPrivacyImpactInput = {
     type = "structure",
+    id = "PreviewPrivacyImpactInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -7829,6 +8169,7 @@ M.PreviewPrivacyImpactInput = {
 
 M.DifferentialPrivacyPreviewAggregation = {
     type = "structure",
+    id = "DifferentialPrivacyPreviewAggregation",
     members = {
         type = {
             type = "string",
@@ -7847,6 +8188,7 @@ M.DifferentialPrivacyPreviewAggregation = {
 
 M.DifferentialPrivacyPrivacyImpact = {
     type = "structure",
+    id = "DifferentialPrivacyPrivacyImpact",
     members = {
         aggregations = {
             type = "list",
@@ -7860,6 +8202,7 @@ M.DifferentialPrivacyPrivacyImpact = {
 
 M.PrivacyImpact = {
     type = "union",
+    id = "PrivacyImpact",
     members = {
         differentialPrivacy = M.DifferentialPrivacyPrivacyImpact,
     },
@@ -7867,6 +8210,7 @@ M.PrivacyImpact = {
 
 M.PreviewPrivacyImpactOutput = {
     type = "structure",
+    id = "PreviewPrivacyImpactOutput",
     members = {
         privacyImpact = setmetatable({ traits = {
             required = true,
@@ -7876,6 +8220,7 @@ M.PreviewPrivacyImpactOutput = {
 
 M.ProtectedJobMemberOutputConfigurationInput = {
     type = "structure",
+    id = "ProtectedJobMemberOutputConfigurationInput",
     members = {
         accountId = {
             type = "string",
@@ -7888,6 +8233,7 @@ M.ProtectedJobMemberOutputConfigurationInput = {
 
 M.ProtectedJobOutputConfigurationInput = {
     type = "union",
+    id = "ProtectedJobOutputConfigurationInput",
     members = {
         member = M.ProtectedJobMemberOutputConfigurationInput,
     },
@@ -7895,6 +8241,7 @@ M.ProtectedJobOutputConfigurationInput = {
 
 M.ProtectedJobResultConfigurationInput = {
     type = "structure",
+    id = "ProtectedJobResultConfigurationInput",
     members = {
         outputConfiguration = setmetatable({ traits = {
             required = true,
@@ -7908,6 +8255,7 @@ M.ProtectedJobType = {
 
 M.StartProtectedJobInput = {
     type = "structure",
+    id = "StartProtectedJobInput",
     members = {
         type = {
             type = "string",
@@ -7932,6 +8280,7 @@ M.StartProtectedJobInput = {
 
 M.StartProtectedJobOutput = {
     type = "structure",
+    id = "StartProtectedJobOutput",
     members = {
         protectedJob = setmetatable({ traits = {
             required = true,
@@ -7945,6 +8294,7 @@ M.ProtectedQueryType = {
 
 M.StartProtectedQueryInput = {
     type = "structure",
+    id = "StartProtectedQueryInput",
     members = {
         type = {
             type = "string",
@@ -7969,6 +8319,7 @@ M.StartProtectedQueryInput = {
 
 M.StartProtectedQueryOutput = {
     type = "structure",
+    id = "StartProtectedQueryOutput",
     members = {
         protectedQuery = setmetatable({ traits = {
             required = true,
@@ -7978,6 +8329,7 @@ M.StartProtectedQueryOutput = {
 
 M.UpdateMembershipInput = {
     type = "structure",
+    id = "UpdateMembershipInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -7999,6 +8351,7 @@ M.UpdateMembershipInput = {
 
 M.UpdateMembershipOutput = {
     type = "structure",
+    id = "UpdateMembershipOutput",
     members = {
         membership = setmetatable({ traits = {
             required = true,
@@ -8012,6 +8365,7 @@ M.TargetProtectedJobStatus = {
 
 M.UpdateProtectedJobInput = {
     type = "structure",
+    id = "UpdateProtectedJobInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -8038,6 +8392,7 @@ M.UpdateProtectedJobInput = {
 
 M.UpdateProtectedJobOutput = {
     type = "structure",
+    id = "UpdateProtectedJobOutput",
     members = {
         protectedJob = setmetatable({ traits = {
             required = true,
@@ -8051,6 +8406,7 @@ M.TargetProtectedQueryStatus = {
 
 M.UpdateProtectedQueryInput = {
     type = "structure",
+    id = "UpdateProtectedQueryInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -8077,6 +8433,7 @@ M.UpdateProtectedQueryInput = {
 
 M.UpdateProtectedQueryOutput = {
     type = "structure",
+    id = "UpdateProtectedQueryOutput",
     members = {
         protectedQuery = setmetatable({ traits = {
             required = true,
@@ -8086,6 +8443,7 @@ M.UpdateProtectedQueryOutput = {
 
 M.DifferentialPrivacyTemplateParametersInput = {
     type = "structure",
+    id = "DifferentialPrivacyTemplateParametersInput",
     members = {
         epsilon = {
             type = "integer",
@@ -8104,6 +8462,7 @@ M.DifferentialPrivacyTemplateParametersInput = {
 
 M.PrivacyBudgetTemplateParametersInput = {
     type = "union",
+    id = "PrivacyBudgetTemplateParametersInput",
     members = {
         differentialPrivacy = M.DifferentialPrivacyTemplateParametersInput,
         accessBudget = M.AccessBudgetsPrivacyTemplateParametersInput,
@@ -8112,6 +8471,7 @@ M.PrivacyBudgetTemplateParametersInput = {
 
 M.CreatePrivacyBudgetTemplateInput = {
     type = "structure",
+    id = "CreatePrivacyBudgetTemplateInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -8142,6 +8502,7 @@ M.CreatePrivacyBudgetTemplateInput = {
 
 M.PrivacyBudgetTemplate = {
     type = "structure",
+    id = "PrivacyBudgetTemplate",
     members = {
         id = {
             type = "string",
@@ -8211,6 +8572,7 @@ M.PrivacyBudgetTemplate = {
 
 M.CreatePrivacyBudgetTemplateOutput = {
     type = "structure",
+    id = "CreatePrivacyBudgetTemplateOutput",
     members = {
         privacyBudgetTemplate = setmetatable({ traits = {
             required = true,
@@ -8220,6 +8582,7 @@ M.CreatePrivacyBudgetTemplateOutput = {
 
 M.DeletePrivacyBudgetTemplateInput = {
     type = "structure",
+    id = "DeletePrivacyBudgetTemplateInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -8240,10 +8603,12 @@ M.DeletePrivacyBudgetTemplateInput = {
 
 M.DeletePrivacyBudgetTemplateOutput = {
     type = "structure",
+    id = "DeletePrivacyBudgetTemplateOutput",
 }
 
 M.GetPrivacyBudgetTemplateInput = {
     type = "structure",
+    id = "GetPrivacyBudgetTemplateInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -8264,6 +8629,7 @@ M.GetPrivacyBudgetTemplateInput = {
 
 M.GetPrivacyBudgetTemplateOutput = {
     type = "structure",
+    id = "GetPrivacyBudgetTemplateOutput",
     members = {
         privacyBudgetTemplate = setmetatable({ traits = {
             required = true,
@@ -8273,6 +8639,7 @@ M.GetPrivacyBudgetTemplateOutput = {
 
 M.ListPrivacyBudgetTemplatesInput = {
     type = "structure",
+    id = "ListPrivacyBudgetTemplatesInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -8298,6 +8665,7 @@ M.ListPrivacyBudgetTemplatesInput = {
 
 M.PrivacyBudgetTemplateSummary = {
     type = "structure",
+    id = "PrivacyBudgetTemplateSummary",
     members = {
         id = {
             type = "string",
@@ -8358,6 +8726,7 @@ M.PrivacyBudgetTemplateSummary = {
 
 M.ListPrivacyBudgetTemplatesOutput = {
     type = "structure",
+    id = "ListPrivacyBudgetTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -8374,6 +8743,7 @@ M.ListPrivacyBudgetTemplatesOutput = {
 
 M.DifferentialPrivacyTemplateUpdateParameters = {
     type = "structure",
+    id = "DifferentialPrivacyTemplateUpdateParameters",
     members = {
         epsilon = {
             type = "integer",
@@ -8386,6 +8756,7 @@ M.DifferentialPrivacyTemplateUpdateParameters = {
 
 M.PrivacyBudgetTemplateUpdateParameters = {
     type = "union",
+    id = "PrivacyBudgetTemplateUpdateParameters",
     members = {
         differentialPrivacy = M.DifferentialPrivacyTemplateUpdateParameters,
         accessBudget = M.AccessBudgetsPrivacyTemplateUpdateParameters,
@@ -8394,6 +8765,7 @@ M.PrivacyBudgetTemplateUpdateParameters = {
 
 M.UpdatePrivacyBudgetTemplateInput = {
     type = "structure",
+    id = "UpdatePrivacyBudgetTemplateInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -8421,6 +8793,7 @@ M.UpdatePrivacyBudgetTemplateInput = {
 
 M.UpdatePrivacyBudgetTemplateOutput = {
     type = "structure",
+    id = "UpdatePrivacyBudgetTemplateOutput",
     members = {
         privacyBudgetTemplate = setmetatable({ traits = {
             required = true,
@@ -8430,6 +8803,7 @@ M.UpdatePrivacyBudgetTemplateOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8451,10 +8825,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8476,6 +8852,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

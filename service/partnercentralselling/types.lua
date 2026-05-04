@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptEngagementInvitationInput = {
     type = "structure",
+    id = "AcceptEngagementInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -20,6 +21,7 @@ M.AcceptEngagementInvitationInput = {
 
 M.AcceptEngagementInvitationOutput = {
     type = "structure",
+    id = "AcceptEngagementInvitationOutput",
 }
 
 M.AccessDeniedExceptionErrorCode = {
@@ -28,6 +30,7 @@ M.AccessDeniedExceptionErrorCode = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -41,6 +44,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -51,6 +55,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -61,6 +66,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -71,6 +77,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -94,6 +101,7 @@ M.ValidationExceptionErrorCode = {
 
 M.ValidationExceptionError = {
     type = "structure",
+    id = "ValidationExceptionError",
     members = {
         FieldName = {
             type = "string",
@@ -120,6 +128,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -395,6 +404,7 @@ M.CountryCode = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         City = {
             type = "string",
@@ -447,6 +457,7 @@ M.Industry = {
 
 M.Account = {
     type = "structure",
+    id = "Account",
     members = {
         Industry = {
             type = "string",
@@ -475,6 +486,7 @@ M.Account = {
 
 M.AccountReceiver = {
     type = "structure",
+    id = "AccountReceiver",
     members = {
         Alias = {
             type = "string",
@@ -490,6 +502,7 @@ M.AccountReceiver = {
 
 M.AddressSummary = {
     type = "structure",
+    id = "AddressSummary",
     members = {
         City = {
             type = "string",
@@ -508,6 +521,7 @@ M.AddressSummary = {
 
 M.AccountSummary = {
     type = "structure",
+    id = "AccountSummary",
     members = {
         Industry = {
             type = "string",
@@ -530,6 +544,7 @@ M.AccountSummary = {
 
 M.AssigneeContact = {
     type = "structure",
+    id = "AssigneeContact",
     members = {
         Email = {
             type = "string",
@@ -563,6 +578,7 @@ M.AssigneeContact = {
 
 M.AssignOpportunityInput = {
     type = "structure",
+    id = "AssignOpportunityInput",
     members = {
         Catalog = {
             type = "string",
@@ -584,6 +600,7 @@ M.AssignOpportunityInput = {
 
 M.AssignOpportunityOutput = {
     type = "structure",
+    id = "AssignOpportunityOutput",
 }
 
 M.RelatedEntityType = {
@@ -595,6 +612,7 @@ M.RelatedEntityType = {
 
 M.AssociateOpportunityInput = {
     type = "structure",
+    id = "AssociateOpportunityInput",
     members = {
         Catalog = {
             type = "string",
@@ -625,6 +643,7 @@ M.AssociateOpportunityInput = {
 
 M.AssociateOpportunityOutput = {
     type = "structure",
+    id = "AssociateOpportunityOutput",
 }
 
 M.AwsClosedLostReason = {
@@ -694,6 +713,7 @@ M.AwsMemberBusinessTitle = {
 
 M.Contact = {
     type = "structure",
+    id = "Contact",
     members = {
         Email = {
             type = "string",
@@ -715,6 +735,7 @@ M.Contact = {
 
 M.AwsOpportunityCustomer = {
     type = "structure",
+    id = "AwsOpportunityCustomer",
     members = {
         Contacts = {
             type = "list",
@@ -725,6 +746,7 @@ M.AwsOpportunityCustomer = {
 
 M.AwsProductOptimization = {
     type = "structure",
+    id = "AwsProductOptimization",
     members = {
         Description = {
             type = "string",
@@ -743,6 +765,7 @@ M.AwsProductOptimization = {
 
 M.AwsProductDetails = {
     type = "structure",
+    id = "AwsProductDetails",
     members = {
         ProductCode = {
             type = "string",
@@ -956,6 +979,7 @@ M.PaymentFrequency = {
 
 M.AwsProductInsights = {
     type = "structure",
+    id = "AwsProductInsights",
     members = {
         CurrencyCode = {
             type = "string",
@@ -998,6 +1022,7 @@ M.AwsProductInsights = {
 
 M.AwsProductsSpendInsightsBySource = {
     type = "structure",
+    id = "AwsProductsSpendInsightsBySource",
     members = {
         Partner = M.AwsProductInsights,
         AWS = M.AwsProductInsights,
@@ -1012,6 +1037,7 @@ M.EngagementScore = {
 
 M.AwsOpportunityInsights = {
     type = "structure",
+    id = "AwsOpportunityInsights",
     members = {
         NextBestActions = {
             type = "string",
@@ -1025,6 +1051,7 @@ M.AwsOpportunityInsights = {
 
 M.ProfileNextStepsHistory = {
     type = "structure",
+    id = "ProfileNextStepsHistory",
     members = {
         Value = {
             type = "string",
@@ -1071,6 +1098,7 @@ M.AwsOpportunityStage = {
 
 M.AwsOpportunityLifeCycle = {
     type = "structure",
+    id = "AwsOpportunityLifeCycle",
     members = {
         TargetCloseDate = {
             type = "string",
@@ -1097,6 +1125,7 @@ M.AwsPartition = {
 
 M.ExpectedCustomerSpend = {
     type = "structure",
+    id = "ExpectedCustomerSpend",
     members = {
         Amount = {
             type = "string",
@@ -1130,6 +1159,7 @@ M.ExpectedCustomerSpend = {
 
 M.AwsOpportunityProject = {
     type = "structure",
+    id = "AwsOpportunityProject",
     members = {
         ExpectedCustomerSpend = {
             type = "list",
@@ -1143,6 +1173,7 @@ M.AwsOpportunityProject = {
 
 M.AwsOpportunityRelatedEntities = {
     type = "structure",
+    id = "AwsOpportunityRelatedEntities",
     members = {
         AwsProducts = {
             type = "list",
@@ -1170,6 +1201,7 @@ M.InvolvementTypeChangeReason = {
 
 M.AwsTeamMember = {
     type = "structure",
+    id = "AwsTeamMember",
     members = {
         Email = {
             type = "string",
@@ -1198,6 +1230,7 @@ M.Visibility = {
 
 M.AwsOpportunitySummaryFullView = {
     type = "structure",
+    id = "AwsOpportunitySummaryFullView",
     members = {
         RelatedOpportunityId = {
             type = "string",
@@ -1228,6 +1261,7 @@ M.AwsOpportunitySummaryFullView = {
 
 M.EngagementCustomer = {
     type = "structure",
+    id = "EngagementCustomer",
     members = {
         Industry = {
             type = "string",
@@ -1258,6 +1292,7 @@ M.EngagementCustomer = {
 
 M.EngagementCustomerProjectDetails = {
     type = "structure",
+    id = "EngagementCustomerProjectDetails",
     members = {
         Title = {
             type = "string",
@@ -1282,6 +1317,7 @@ M.EngagementCustomerProjectDetails = {
 
 M.CustomerProjectsContext = {
     type = "structure",
+    id = "CustomerProjectsContext",
     members = {
         Customer = M.EngagementCustomer,
         Project = M.EngagementCustomerProjectDetails,
@@ -1298,6 +1334,7 @@ M.MarketSegment = {
 
 M.LeadCustomer = {
     type = "structure",
+    id = "LeadCustomer",
     members = {
         Industry = {
             type = "string",
@@ -1325,6 +1362,7 @@ M.LeadCustomer = {
 
 M.LeadContact = {
     type = "structure",
+    id = "LeadContact",
     members = {
         BusinessTitle = {
             type = "string",
@@ -1358,6 +1396,7 @@ M.LeadContact = {
 
 M.LeadInteraction = {
     type = "structure",
+    id = "LeadInteraction",
     members = {
         SourceType = {
             type = "string",
@@ -1403,6 +1442,7 @@ M.LeadInteraction = {
 
 M.LeadContext = {
     type = "structure",
+    id = "LeadContext",
     members = {
         QualificationStatus = {
             type = "string",
@@ -1425,6 +1465,7 @@ M.LeadContext = {
 
 M.EngagementContextPayload = {
     type = "union",
+    id = "EngagementContextPayload",
     members = {
         CustomerProject = M.CustomerProjectsContext,
         Lead = M.LeadContext,
@@ -1438,6 +1479,7 @@ M.EngagementContextType = {
 
 M.CreateEngagementContextInput = {
     type = "structure",
+    id = "CreateEngagementContextInput",
     members = {
         Catalog = {
             type = "string",
@@ -1472,6 +1514,7 @@ M.CreateEngagementContextInput = {
 
 M.CreateEngagementContextOutput = {
     type = "structure",
+    id = "CreateEngagementContextOutput",
     members = {
         EngagementId = {
             type = "string",
@@ -1493,6 +1536,7 @@ M.CreateEngagementContextOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -1503,6 +1547,7 @@ M.ServiceQuotaExceededException = {
 
 M.EngagementContextDetails = {
     type = "structure",
+    id = "EngagementContextDetails",
     members = {
         Id = {
             type = "string",
@@ -1519,6 +1564,7 @@ M.EngagementContextDetails = {
 
 M.CreateEngagementInput = {
     type = "structure",
+    id = "CreateEngagementInput",
     members = {
         Catalog = {
             type = "string",
@@ -1554,6 +1600,7 @@ M.CreateEngagementInput = {
 
 M.CreateEngagementOutput = {
     type = "structure",
+    id = "CreateEngagementOutput",
     members = {
         Id = {
             type = "string",
@@ -1572,6 +1619,7 @@ M.CreateEngagementOutput = {
 
 M.GetEngagementInput = {
     type = "structure",
+    id = "GetEngagementInput",
     members = {
         Catalog = {
             type = "string",
@@ -1590,6 +1638,7 @@ M.GetEngagementInput = {
 
 M.GetEngagementOutput = {
     type = "structure",
+    id = "GetEngagementOutput",
     members = {
         Id = {
             type = "string",
@@ -1633,6 +1682,7 @@ M.GetEngagementOutput = {
 
 M.ListEngagementMembersInput = {
     type = "structure",
+    id = "ListEngagementMembersInput",
     members = {
         Catalog = {
             type = "string",
@@ -1660,6 +1710,7 @@ M.ListEngagementMembersInput = {
 
 M.EngagementMember = {
     type = "structure",
+    id = "EngagementMember",
     members = {
         CompanyName = {
             type = "string",
@@ -1675,6 +1726,7 @@ M.EngagementMember = {
 
 M.ListEngagementMembersOutput = {
     type = "structure",
+    id = "ListEngagementMembersOutput",
     members = {
         EngagementMemberList = {
             type = "list",
@@ -1700,6 +1752,7 @@ M.SortOrder = {
 
 M.EngagementSort = {
     type = "structure",
+    id = "EngagementSort",
     members = {
         SortOrder = {
             type = "string",
@@ -1718,6 +1771,7 @@ M.EngagementSort = {
 
 M.ListEngagementsInput = {
     type = "structure",
+    id = "ListEngagementsInput",
     members = {
         Catalog = {
             type = "string",
@@ -1760,6 +1814,7 @@ M.ListEngagementsInput = {
 
 M.EngagementSummary = {
     type = "structure",
+    id = "EngagementSummary",
     members = {
         Arn = {
             type = "string",
@@ -1800,6 +1855,7 @@ M.EngagementSummary = {
 
 M.ListEngagementsOutput = {
     type = "structure",
+    id = "ListEngagementsOutput",
     members = {
         EngagementSummaryList = {
             type = "list",
@@ -1820,6 +1876,7 @@ M.ListTasksSortName = {
 
 M.ListTasksSortBase = {
     type = "structure",
+    id = "ListTasksSortBase",
     members = {
         SortOrder = {
             type = "string",
@@ -1844,6 +1901,7 @@ M.TaskStatus = {
 
 M.ListEngagementByAcceptingInvitationTasksInput = {
     type = "structure",
+    id = "ListEngagementByAcceptingInvitationTasksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1904,6 +1962,7 @@ M.ReasonCode = {
 
 M.ListEngagementByAcceptingInvitationTaskSummary = {
     type = "structure",
+    id = "ListEngagementByAcceptingInvitationTaskSummary",
     members = {
         TaskId = {
             type = "string",
@@ -1940,6 +1999,7 @@ M.ListEngagementByAcceptingInvitationTaskSummary = {
 
 M.ListEngagementByAcceptingInvitationTasksOutput = {
     type = "structure",
+    id = "ListEngagementByAcceptingInvitationTasksOutput",
     members = {
         TaskSummaries = {
             type = "list",
@@ -1953,6 +2013,7 @@ M.ListEngagementByAcceptingInvitationTasksOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1971,6 +2032,7 @@ M.Tag = {
 
 M.StartEngagementByAcceptingInvitationTaskInput = {
     type = "structure",
+    id = "StartEngagementByAcceptingInvitationTaskInput",
     members = {
         Catalog = {
             type = "string",
@@ -2000,6 +2062,7 @@ M.StartEngagementByAcceptingInvitationTaskInput = {
 
 M.StartEngagementByAcceptingInvitationTaskOutput = {
     type = "structure",
+    id = "StartEngagementByAcceptingInvitationTaskOutput",
     members = {
         TaskId = {
             type = "string",
@@ -2036,6 +2099,7 @@ M.StartEngagementByAcceptingInvitationTaskOutput = {
 
 M.ListEngagementFromOpportunityTasksInput = {
     type = "structure",
+    id = "ListEngagementFromOpportunityTasksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2071,6 +2135,7 @@ M.ListEngagementFromOpportunityTasksInput = {
 
 M.ListEngagementFromOpportunityTaskSummary = {
     type = "structure",
+    id = "ListEngagementFromOpportunityTaskSummary",
     members = {
         TaskId = {
             type = "string",
@@ -2110,6 +2175,7 @@ M.ListEngagementFromOpportunityTaskSummary = {
 
 M.ListEngagementFromOpportunityTasksOutput = {
     type = "structure",
+    id = "ListEngagementFromOpportunityTasksOutput",
     members = {
         TaskSummaries = {
             type = "list",
@@ -2123,6 +2189,7 @@ M.ListEngagementFromOpportunityTasksOutput = {
 
 M.AwsSubmission = {
     type = "structure",
+    id = "AwsSubmission",
     members = {
         InvolvementType = {
             type = "string",
@@ -2138,6 +2205,7 @@ M.AwsSubmission = {
 
 M.StartEngagementFromOpportunityTaskInput = {
     type = "structure",
+    id = "StartEngagementFromOpportunityTaskInput",
     members = {
         Catalog = {
             type = "string",
@@ -2170,6 +2238,7 @@ M.StartEngagementFromOpportunityTaskInput = {
 
 M.StartEngagementFromOpportunityTaskOutput = {
     type = "structure",
+    id = "StartEngagementFromOpportunityTaskOutput",
     members = {
         TaskId = {
             type = "string",
@@ -2209,6 +2278,7 @@ M.StartEngagementFromOpportunityTaskOutput = {
 
 M.LeadInvitationCustomer = {
     type = "structure",
+    id = "LeadInvitationCustomer",
     members = {
         Industry = {
             type = "string",
@@ -2239,6 +2309,7 @@ M.LeadInvitationCustomer = {
 
 M.LeadInvitationInteraction = {
     type = "structure",
+    id = "LeadInvitationInteraction",
     members = {
         SourceType = {
             type = "string",
@@ -2272,6 +2343,7 @@ M.LeadInvitationInteraction = {
 
 M.LeadInvitationPayload = {
     type = "structure",
+    id = "LeadInvitationPayload",
     members = {
         Customer = setmetatable({ traits = {
             required = true,
@@ -2284,6 +2356,7 @@ M.LeadInvitationPayload = {
 
 M.ProjectDetails = {
     type = "structure",
+    id = "ProjectDetails",
     members = {
         BusinessProblem = {
             type = "string",
@@ -2327,6 +2400,7 @@ M.ReceiverResponsibility = {
 
 M.SenderContact = {
     type = "structure",
+    id = "SenderContact",
     members = {
         Email = {
             type = "string",
@@ -2351,6 +2425,7 @@ M.SenderContact = {
 
 M.OpportunityInvitationPayload = {
     type = "structure",
+    id = "OpportunityInvitationPayload",
     members = {
         SenderContacts = {
             type = "list",
@@ -2374,6 +2449,7 @@ M.OpportunityInvitationPayload = {
 
 M.Payload = {
     type = "union",
+    id = "Payload",
     members = {
         OpportunityInvitation = M.OpportunityInvitationPayload,
         LeadInvitation = M.LeadInvitationPayload,
@@ -2382,6 +2458,7 @@ M.Payload = {
 
 M.Receiver = {
     type = "union",
+    id = "Receiver",
     members = {
         Account = M.AccountReceiver,
     },
@@ -2389,6 +2466,7 @@ M.Receiver = {
 
 M.Invitation = {
     type = "structure",
+    id = "Invitation",
     members = {
         Message = {
             type = "string",
@@ -2407,6 +2485,7 @@ M.Invitation = {
 
 M.CreateEngagementInvitationInput = {
     type = "structure",
+    id = "CreateEngagementInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -2435,6 +2514,7 @@ M.CreateEngagementInvitationInput = {
 
 M.CreateEngagementInvitationOutput = {
     type = "structure",
+    id = "CreateEngagementInvitationOutput",
     members = {
         Id = {
             type = "string",
@@ -2453,6 +2533,7 @@ M.CreateEngagementInvitationOutput = {
 
 M.GetEngagementInvitationInput = {
     type = "structure",
+    id = "GetEngagementInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -2471,6 +2552,7 @@ M.GetEngagementInvitationInput = {
 
 M.EngagementMemberSummary = {
     type = "structure",
+    id = "EngagementMemberSummary",
     members = {
         CompanyName = {
             type = "string",
@@ -2495,6 +2577,7 @@ M.InvitationStatus = {
 
 M.GetEngagementInvitationOutput = {
     type = "structure",
+    id = "GetEngagementInvitationOutput",
     members = {
         Arn = {
             type = "string",
@@ -2570,6 +2653,7 @@ M.OpportunityEngagementInvitationSortName = {
 
 M.OpportunityEngagementInvitationSort = {
     type = "structure",
+    id = "OpportunityEngagementInvitationSort",
     members = {
         SortOrder = {
             type = "string",
@@ -2588,6 +2672,7 @@ M.OpportunityEngagementInvitationSort = {
 
 M.ListEngagementInvitationsInput = {
     type = "structure",
+    id = "ListEngagementInvitationsInput",
     members = {
         Catalog = {
             type = "string",
@@ -2629,6 +2714,7 @@ M.ListEngagementInvitationsInput = {
 
 M.EngagementInvitationSummary = {
     type = "structure",
+    id = "EngagementInvitationSummary",
     members = {
         Arn = {
             type = "string",
@@ -2684,6 +2770,7 @@ M.EngagementInvitationSummary = {
 
 M.ListEngagementInvitationsOutput = {
     type = "structure",
+    id = "ListEngagementInvitationsOutput",
     members = {
         EngagementInvitationSummaries = {
             type = "list",
@@ -2697,6 +2784,7 @@ M.ListEngagementInvitationsOutput = {
 
 M.RejectEngagementInvitationInput = {
     type = "structure",
+    id = "RejectEngagementInvitationInput",
     members = {
         Catalog = {
             type = "string",
@@ -2718,10 +2806,12 @@ M.RejectEngagementInvitationInput = {
 
 M.RejectEngagementInvitationOutput = {
     type = "structure",
+    id = "RejectEngagementInvitationOutput",
 }
 
 M.GetSellingSystemSettingsInput = {
     type = "structure",
+    id = "GetSellingSystemSettingsInput",
     members = {
         Catalog = {
             type = "string",
@@ -2734,6 +2824,7 @@ M.GetSellingSystemSettingsInput = {
 
 M.GetSellingSystemSettingsOutput = {
     type = "structure",
+    id = "GetSellingSystemSettingsOutput",
     members = {
         Catalog = {
             type = "string",
@@ -2749,6 +2840,7 @@ M.GetSellingSystemSettingsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2761,6 +2853,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2774,6 +2867,7 @@ M.ListTagsForResourceOutput = {
 
 M.Customer = {
     type = "structure",
+    id = "Customer",
     members = {
         Account = M.Account,
         Contacts = {
@@ -2807,6 +2901,7 @@ M.ClosedLostReason = {
 
 M.NextStepsHistory = {
     type = "structure",
+    id = "NextStepsHistory",
     members = {
         Value = {
             type = "string",
@@ -2845,6 +2940,7 @@ M.Stage = {
 
 M.LifeCycle = {
     type = "structure",
+    id = "LifeCycle",
     members = {
         Stage = {
             type = "string",
@@ -2897,6 +2993,7 @@ M.MarketingSource = {
 
 M.Marketing = {
     type = "structure",
+    id = "Marketing",
     members = {
         CampaignName = {
             type = "string",
@@ -2976,6 +3073,7 @@ M.SalesActivity = {
 
 M.Project = {
     type = "structure",
+    id = "Project",
     members = {
         DeliveryModels = {
             type = "list",
@@ -3031,6 +3129,7 @@ M.RevenueModel = {
 
 M.MonetaryValue = {
     type = "structure",
+    id = "MonetaryValue",
     members = {
         Amount = {
             type = "string",
@@ -3049,6 +3148,7 @@ M.MonetaryValue = {
 
 M.SoftwareRevenue = {
     type = "structure",
+    id = "SoftwareRevenue",
     members = {
         DeliveryModel = {
             type = "string",
@@ -3065,6 +3165,7 @@ M.SoftwareRevenue = {
 
 M.CreateOpportunityInput = {
     type = "structure",
+    id = "CreateOpportunityInput",
     members = {
         Catalog = {
             type = "string",
@@ -3113,6 +3214,7 @@ M.CreateOpportunityInput = {
 
 M.CreateOpportunityOutput = {
     type = "structure",
+    id = "CreateOpportunityOutput",
     members = {
         Id = {
             type = "string",
@@ -3134,6 +3236,7 @@ M.CreateOpportunityOutput = {
 
 M.DisassociateOpportunityInput = {
     type = "structure",
+    id = "DisassociateOpportunityInput",
     members = {
         Catalog = {
             type = "string",
@@ -3164,10 +3267,12 @@ M.DisassociateOpportunityInput = {
 
 M.DisassociateOpportunityOutput = {
     type = "structure",
+    id = "DisassociateOpportunityOutput",
 }
 
 M.GetAwsOpportunitySummaryInput = {
     type = "structure",
+    id = "GetAwsOpportunitySummaryInput",
     members = {
         Catalog = {
             type = "string",
@@ -3186,6 +3291,7 @@ M.GetAwsOpportunitySummaryInput = {
 
 M.GetAwsOpportunitySummaryOutput = {
     type = "structure",
+    id = "GetAwsOpportunitySummaryOutput",
     members = {
         RelatedOpportunityId = {
             type = "string",
@@ -3222,6 +3328,7 @@ M.GetAwsOpportunitySummaryOutput = {
 
 M.GetOpportunityInput = {
     type = "structure",
+    id = "GetOpportunityInput",
     members = {
         Catalog = {
             type = "string",
@@ -3240,6 +3347,7 @@ M.GetOpportunityInput = {
 
 M.RelatedEntityIdentifiers = {
     type = "structure",
+    id = "RelatedEntityIdentifiers",
     members = {
         AwsMarketplaceOffers = {
             type = "list",
@@ -3262,6 +3370,7 @@ M.RelatedEntityIdentifiers = {
 
 M.GetOpportunityOutput = {
     type = "structure",
+    id = "GetOpportunityOutput",
     members = {
         Catalog = {
             type = "string",
@@ -3322,6 +3431,7 @@ M.GetOpportunityOutput = {
 
 M.CreatedDateFilter = {
     type = "structure",
+    id = "CreatedDateFilter",
     members = {
         AfterCreatedDate = {
             type = "timestamp",
@@ -3340,6 +3450,7 @@ M.CreatedDateFilter = {
 
 M.LastModifiedDate = {
     type = "structure",
+    id = "LastModifiedDate",
     members = {
         AfterLastModifiedDate = {
             type = "timestamp",
@@ -3366,6 +3477,7 @@ M.OpportunitySortName = {
 
 M.OpportunitySort = {
     type = "structure",
+    id = "OpportunitySort",
     members = {
         SortOrder = {
             type = "string",
@@ -3384,6 +3496,7 @@ M.OpportunitySort = {
 
 M.TargetCloseDateFilter = {
     type = "structure",
+    id = "TargetCloseDateFilter",
     members = {
         AfterTargetCloseDate = {
             type = "string",
@@ -3396,6 +3509,7 @@ M.TargetCloseDateFilter = {
 
 M.ListOpportunitiesInput = {
     type = "structure",
+    id = "ListOpportunitiesInput",
     members = {
         Catalog = {
             type = "string",
@@ -3434,6 +3548,7 @@ M.ListOpportunitiesInput = {
 
 M.CustomerSummary = {
     type = "structure",
+    id = "CustomerSummary",
     members = {
         Account = M.AccountSummary,
     },
@@ -3441,6 +3556,7 @@ M.CustomerSummary = {
 
 M.LifeCycleSummary = {
     type = "structure",
+    id = "LifeCycleSummary",
     members = {
         Stage = {
             type = "string",
@@ -3468,6 +3584,7 @@ M.LifeCycleSummary = {
 
 M.ProjectSummary = {
     type = "structure",
+    id = "ProjectSummary",
     members = {
         DeliveryModels = {
             type = "list",
@@ -3482,6 +3599,7 @@ M.ProjectSummary = {
 
 M.OpportunitySummary = {
     type = "structure",
+    id = "OpportunitySummary",
     members = {
         Catalog = {
             type = "string",
@@ -3521,6 +3639,7 @@ M.OpportunitySummary = {
 
 M.ListOpportunitiesOutput = {
     type = "structure",
+    id = "ListOpportunitiesOutput",
     members = {
         OpportunitySummaries = {
             type = "list",
@@ -3537,6 +3656,7 @@ M.ListOpportunitiesOutput = {
 
 M.SubmitOpportunityInput = {
     type = "structure",
+    id = "SubmitOpportunityInput",
     members = {
         Catalog = {
             type = "string",
@@ -3564,10 +3684,12 @@ M.SubmitOpportunityInput = {
 
 M.SubmitOpportunityOutput = {
     type = "structure",
+    id = "SubmitOpportunityOutput",
 }
 
 M.UpdateOpportunityInput = {
     type = "structure",
+    id = "UpdateOpportunityInput",
     members = {
         Catalog = {
             type = "string",
@@ -3611,6 +3733,7 @@ M.UpdateOpportunityInput = {
 
 M.UpdateOpportunityOutput = {
     type = "structure",
+    id = "UpdateOpportunityOutput",
     members = {
         Id = {
             type = "string",
@@ -3630,6 +3753,7 @@ M.UpdateOpportunityOutput = {
 
 M.ListOpportunityFromEngagementTasksInput = {
     type = "structure",
+    id = "ListOpportunityFromEngagementTasksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3669,6 +3793,7 @@ M.ListOpportunityFromEngagementTasksInput = {
 
 M.ListOpportunityFromEngagementTaskSummary = {
     type = "structure",
+    id = "ListOpportunityFromEngagementTaskSummary",
     members = {
         TaskId = {
             type = "string",
@@ -3708,6 +3833,7 @@ M.ListOpportunityFromEngagementTaskSummary = {
 
 M.ListOpportunityFromEngagementTasksOutput = {
     type = "structure",
+    id = "ListOpportunityFromEngagementTasksOutput",
     members = {
         TaskSummaries = {
             type = "list",
@@ -3721,6 +3847,7 @@ M.ListOpportunityFromEngagementTasksOutput = {
 
 M.StartOpportunityFromEngagementTaskInput = {
     type = "structure",
+    id = "StartOpportunityFromEngagementTaskInput",
     members = {
         Catalog = {
             type = "string",
@@ -3756,6 +3883,7 @@ M.StartOpportunityFromEngagementTaskInput = {
 
 M.StartOpportunityFromEngagementTaskOutput = {
     type = "structure",
+    id = "StartOpportunityFromEngagementTaskOutput",
     members = {
         TaskId = {
             type = "string",
@@ -3795,6 +3923,7 @@ M.StartOpportunityFromEngagementTaskOutput = {
 
 M.PutSellingSystemSettingsInput = {
     type = "structure",
+    id = "PutSellingSystemSettingsInput",
     members = {
         Catalog = {
             type = "string",
@@ -3810,6 +3939,7 @@ M.PutSellingSystemSettingsInput = {
 
 M.PutSellingSystemSettingsOutput = {
     type = "structure",
+    id = "PutSellingSystemSettingsOutput",
     members = {
         Catalog = {
             type = "string",
@@ -3829,6 +3959,7 @@ M.ResourceType = {
 
 M.CreateResourceSnapshotInput = {
     type = "structure",
+    id = "CreateResourceSnapshotInput",
     members = {
         Catalog = {
             type = "string",
@@ -3872,6 +4003,7 @@ M.CreateResourceSnapshotInput = {
 
 M.CreateResourceSnapshotOutput = {
     type = "structure",
+    id = "CreateResourceSnapshotOutput",
     members = {
         Arn = {
             type = "string",
@@ -3884,6 +4016,7 @@ M.CreateResourceSnapshotOutput = {
 
 M.GetResourceSnapshotInput = {
     type = "structure",
+    id = "GetResourceSnapshotInput",
     members = {
         Catalog = {
             type = "string",
@@ -3923,6 +4056,7 @@ M.GetResourceSnapshotInput = {
 
 M.LifeCycleForView = {
     type = "structure",
+    id = "LifeCycleForView",
     members = {
         TargetCloseDate = {
             type = "string",
@@ -3941,6 +4075,7 @@ M.LifeCycleForView = {
 
 M.ProjectView = {
     type = "structure",
+    id = "ProjectView",
     members = {
         DeliveryModels = {
             type = "list",
@@ -3965,6 +4100,7 @@ M.ProjectView = {
 
 M.OpportunitySummaryView = {
     type = "structure",
+    id = "OpportunitySummaryView",
     members = {
         OpportunityType = {
             type = "string",
@@ -3986,6 +4122,7 @@ M.OpportunitySummaryView = {
 
 M.ResourceSnapshotPayload = {
     type = "union",
+    id = "ResourceSnapshotPayload",
     members = {
         OpportunitySummary = M.OpportunitySummaryView,
         AwsOpportunitySummaryFullView = M.AwsOpportunitySummaryFullView,
@@ -3994,6 +4131,7 @@ M.ResourceSnapshotPayload = {
 
 M.GetResourceSnapshotOutput = {
     type = "structure",
+    id = "GetResourceSnapshotOutput",
     members = {
         Catalog = {
             type = "string",
@@ -4038,6 +4176,7 @@ M.GetResourceSnapshotOutput = {
 
 M.ListEngagementResourceAssociationsInput = {
     type = "structure",
+    id = "ListEngagementResourceAssociationsInput",
     members = {
         Catalog = {
             type = "string",
@@ -4071,6 +4210,7 @@ M.ListEngagementResourceAssociationsInput = {
 
 M.EngagementResourceAssociationSummary = {
     type = "structure",
+    id = "EngagementResourceAssociationSummary",
     members = {
         Catalog = {
             type = "string",
@@ -4095,6 +4235,7 @@ M.EngagementResourceAssociationSummary = {
 
 M.ListEngagementResourceAssociationsOutput = {
     type = "structure",
+    id = "ListEngagementResourceAssociationsOutput",
     members = {
         EngagementResourceAssociationSummaries = {
             type = "list",
@@ -4111,6 +4252,7 @@ M.ListEngagementResourceAssociationsOutput = {
 
 M.ListResourceSnapshotsInput = {
     type = "structure",
+    id = "ListResourceSnapshotsInput",
     members = {
         Catalog = {
             type = "string",
@@ -4150,6 +4292,7 @@ M.ListResourceSnapshotsInput = {
 
 M.ResourceSnapshotSummary = {
     type = "structure",
+    id = "ResourceSnapshotSummary",
     members = {
         Arn = {
             type = "string",
@@ -4174,6 +4317,7 @@ M.ResourceSnapshotSummary = {
 
 M.ListResourceSnapshotsOutput = {
     type = "structure",
+    id = "ListResourceSnapshotsOutput",
     members = {
         ResourceSnapshotSummaries = {
             type = "list",
@@ -4190,6 +4334,7 @@ M.ListResourceSnapshotsOutput = {
 
 M.CreateResourceSnapshotJobInput = {
     type = "structure",
+    id = "CreateResourceSnapshotJobInput",
     members = {
         Catalog = {
             type = "string",
@@ -4237,6 +4382,7 @@ M.CreateResourceSnapshotJobInput = {
 
 M.CreateResourceSnapshotJobOutput = {
     type = "structure",
+    id = "CreateResourceSnapshotJobOutput",
     members = {
         Id = {
             type = "string",
@@ -4249,6 +4395,7 @@ M.CreateResourceSnapshotJobOutput = {
 
 M.DeleteResourceSnapshotJobInput = {
     type = "structure",
+    id = "DeleteResourceSnapshotJobInput",
     members = {
         Catalog = {
             type = "string",
@@ -4267,10 +4414,12 @@ M.DeleteResourceSnapshotJobInput = {
 
 M.DeleteResourceSnapshotJobOutput = {
     type = "structure",
+    id = "DeleteResourceSnapshotJobOutput",
 }
 
 M.GetResourceSnapshotJobInput = {
     type = "structure",
+    id = "GetResourceSnapshotJobInput",
     members = {
         Catalog = {
             type = "string",
@@ -4294,6 +4443,7 @@ M.ResourceSnapshotJobStatus = {
 
 M.GetResourceSnapshotJobOutput = {
     type = "structure",
+    id = "GetResourceSnapshotJobOutput",
     members = {
         Catalog = {
             type = "string",
@@ -4349,6 +4499,7 @@ M.SortBy = {
 
 M.SortObject = {
     type = "structure",
+    id = "SortObject",
     members = {
         SortBy = {
             type = "string",
@@ -4361,6 +4512,7 @@ M.SortObject = {
 
 M.ListResourceSnapshotJobsInput = {
     type = "structure",
+    id = "ListResourceSnapshotJobsInput",
     members = {
         Catalog = {
             type = "string",
@@ -4389,6 +4541,7 @@ M.ListResourceSnapshotJobsInput = {
 
 M.ResourceSnapshotJobSummary = {
     type = "structure",
+    id = "ResourceSnapshotJobSummary",
     members = {
         Id = {
             type = "string",
@@ -4407,6 +4560,7 @@ M.ResourceSnapshotJobSummary = {
 
 M.ListResourceSnapshotJobsOutput = {
     type = "structure",
+    id = "ListResourceSnapshotJobsOutput",
     members = {
         ResourceSnapshotJobSummaries = {
             type = "list",
@@ -4423,6 +4577,7 @@ M.ListResourceSnapshotJobsOutput = {
 
 M.StartResourceSnapshotJobInput = {
     type = "structure",
+    id = "StartResourceSnapshotJobInput",
     members = {
         Catalog = {
             type = "string",
@@ -4441,10 +4596,12 @@ M.StartResourceSnapshotJobInput = {
 
 M.StartResourceSnapshotJobOutput = {
     type = "structure",
+    id = "StartResourceSnapshotJobOutput",
 }
 
 M.StopResourceSnapshotJobInput = {
     type = "structure",
+    id = "StopResourceSnapshotJobInput",
     members = {
         Catalog = {
             type = "string",
@@ -4463,6 +4620,7 @@ M.StopResourceSnapshotJobInput = {
 
 M.StopResourceSnapshotJobOutput = {
     type = "structure",
+    id = "StopResourceSnapshotJobOutput",
 }
 
 M.SolutionSortName = {
@@ -4475,6 +4633,7 @@ M.SolutionSortName = {
 
 M.SolutionSort = {
     type = "structure",
+    id = "SolutionSort",
     members = {
         SortOrder = {
             type = "string",
@@ -4499,6 +4658,7 @@ M.SolutionStatus = {
 
 M.ListSolutionsInput = {
     type = "structure",
+    id = "ListSolutionsInput",
     members = {
         Catalog = {
             type = "string",
@@ -4530,6 +4690,7 @@ M.ListSolutionsInput = {
 
 M.SolutionBase = {
     type = "structure",
+    id = "SolutionBase",
     members = {
         Catalog = {
             type = "string",
@@ -4576,6 +4737,7 @@ M.SolutionBase = {
 
 M.ListSolutionsOutput = {
     type = "structure",
+    id = "ListSolutionsOutput",
     members = {
         SolutionSummaries = {
             type = "list",
@@ -4592,6 +4754,7 @@ M.ListSolutionsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4611,10 +4774,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4634,10 +4799,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateLeadContext = {
     type = "structure",
+    id = "UpdateLeadContext",
     members = {
         QualificationStatus = {
             type = "string",
@@ -4654,6 +4821,7 @@ M.UpdateLeadContext = {
 
 M.UpdateEngagementContextPayload = {
     type = "union",
+    id = "UpdateEngagementContextPayload",
     members = {
         Lead = M.UpdateLeadContext,
         CustomerProject = M.CustomerProjectsContext,
@@ -4662,6 +4830,7 @@ M.UpdateEngagementContextPayload = {
 
 M.UpdateEngagementContextInput = {
     type = "structure",
+    id = "UpdateEngagementContextInput",
     members = {
         Catalog = {
             type = "string",
@@ -4702,6 +4871,7 @@ M.UpdateEngagementContextInput = {
 
 M.UpdateEngagementContextOutput = {
     type = "structure",
+    id = "UpdateEngagementContextOutput",
     members = {
         EngagementId = {
             type = "string",

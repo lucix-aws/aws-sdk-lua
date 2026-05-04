@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -30,6 +31,7 @@ M.AccessorType = {
 
 M.Accessor = {
     type = "structure",
+    id = "Accessor",
     members = {
         Id = {
             type = "string",
@@ -65,6 +67,7 @@ M.Accessor = {
 
 M.AccessorSummary = {
     type = "structure",
+    id = "AccessorSummary",
     members = {
         Id = {
             type = "string",
@@ -97,6 +100,7 @@ M.ThresholdComparator = {
 
 M.ApprovalThresholdPolicy = {
     type = "structure",
+    id = "ApprovalThresholdPolicy",
     members = {
         ThresholdPercentage = {
             type = "integer",
@@ -112,6 +116,7 @@ M.ApprovalThresholdPolicy = {
 
 M.CreateAccessorInput = {
     type = "structure",
+    id = "CreateAccessorInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -139,6 +144,7 @@ M.CreateAccessorInput = {
 
 M.CreateAccessorOutput = {
     type = "structure",
+    id = "CreateAccessorOutput",
     members = {
         AccessorId = {
             type = "string",
@@ -154,11 +160,13 @@ M.CreateAccessorOutput = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
 }
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -169,6 +177,7 @@ M.InvalidRequestException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -179,6 +188,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -189,11 +199,13 @@ M.ResourceLimitExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -207,6 +219,7 @@ M.TooManyTagsException = {
 
 M.MemberFabricConfiguration = {
     type = "structure",
+    id = "MemberFabricConfiguration",
     members = {
         AdminUsername = {
             type = "string",
@@ -225,6 +238,7 @@ M.MemberFabricConfiguration = {
 
 M.MemberFrameworkConfiguration = {
     type = "structure",
+    id = "MemberFrameworkConfiguration",
     members = {
         Fabric = M.MemberFabricConfiguration,
     },
@@ -232,6 +246,7 @@ M.MemberFrameworkConfiguration = {
 
 M.LogConfiguration = {
     type = "structure",
+    id = "LogConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -241,6 +256,7 @@ M.LogConfiguration = {
 
 M.LogConfigurations = {
     type = "structure",
+    id = "LogConfigurations",
     members = {
         Cloudwatch = M.LogConfiguration,
     },
@@ -248,6 +264,7 @@ M.LogConfigurations = {
 
 M.MemberFabricLogPublishingConfiguration = {
     type = "structure",
+    id = "MemberFabricLogPublishingConfiguration",
     members = {
         CaLogs = M.LogConfigurations,
     },
@@ -255,6 +272,7 @@ M.MemberFabricLogPublishingConfiguration = {
 
 M.MemberLogPublishingConfiguration = {
     type = "structure",
+    id = "MemberLogPublishingConfiguration",
     members = {
         Fabric = M.MemberFabricLogPublishingConfiguration,
     },
@@ -262,6 +280,7 @@ M.MemberLogPublishingConfiguration = {
 
 M.MemberConfiguration = {
     type = "structure",
+    id = "MemberConfiguration",
     members = {
         Name = {
             type = "string",
@@ -289,6 +308,7 @@ M.MemberConfiguration = {
 
 M.CreateMemberInput = {
     type = "structure",
+    id = "CreateMemberInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -318,6 +338,7 @@ M.CreateMemberInput = {
 
 M.CreateMemberOutput = {
     type = "structure",
+    id = "CreateMemberOutput",
     members = {
         MemberId = {
             type = "string",
@@ -327,6 +348,7 @@ M.CreateMemberOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -340,6 +362,7 @@ M.ResourceNotFoundException = {
 
 M.ResourceNotReadyException = {
     type = "structure",
+    id = "ResourceNotReadyException",
     error = "client",
     members = {
         Message = {
@@ -360,6 +383,7 @@ M.Edition = {
 
 M.NetworkFabricConfiguration = {
     type = "structure",
+    id = "NetworkFabricConfiguration",
     members = {
         Edition = {
             type = "string",
@@ -372,6 +396,7 @@ M.NetworkFabricConfiguration = {
 
 M.NetworkFrameworkConfiguration = {
     type = "structure",
+    id = "NetworkFrameworkConfiguration",
     members = {
         Fabric = M.NetworkFabricConfiguration,
     },
@@ -379,6 +404,7 @@ M.NetworkFrameworkConfiguration = {
 
 M.VotingPolicy = {
     type = "structure",
+    id = "VotingPolicy",
     members = {
         ApprovalThresholdPolicy = M.ApprovalThresholdPolicy,
     },
@@ -386,6 +412,7 @@ M.VotingPolicy = {
 
 M.CreateNetworkInput = {
     type = "structure",
+    id = "CreateNetworkInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -432,6 +459,7 @@ M.CreateNetworkInput = {
 
 M.CreateNetworkOutput = {
     type = "structure",
+    id = "CreateNetworkOutput",
     members = {
         NetworkId = {
             type = "string",
@@ -444,6 +472,7 @@ M.CreateNetworkOutput = {
 
 M.NodeFabricLogPublishingConfiguration = {
     type = "structure",
+    id = "NodeFabricLogPublishingConfiguration",
     members = {
         ChaincodeLogs = M.LogConfigurations,
         PeerLogs = M.LogConfigurations,
@@ -452,6 +481,7 @@ M.NodeFabricLogPublishingConfiguration = {
 
 M.NodeLogPublishingConfiguration = {
     type = "structure",
+    id = "NodeLogPublishingConfiguration",
     members = {
         Fabric = M.NodeFabricLogPublishingConfiguration,
     },
@@ -464,6 +494,7 @@ M.StateDBType = {
 
 M.NodeConfiguration = {
     type = "structure",
+    id = "NodeConfiguration",
     members = {
         InstanceType = {
             type = "string",
@@ -483,6 +514,7 @@ M.NodeConfiguration = {
 
 M.CreateNodeInput = {
     type = "structure",
+    id = "CreateNodeInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -514,6 +546,7 @@ M.CreateNodeInput = {
 
 M.CreateNodeOutput = {
     type = "structure",
+    id = "CreateNodeOutput",
     members = {
         NodeId = {
             type = "string",
@@ -523,6 +556,7 @@ M.CreateNodeOutput = {
 
 M.InviteAction = {
     type = "structure",
+    id = "InviteAction",
     members = {
         Principal = {
             type = "string",
@@ -535,6 +569,7 @@ M.InviteAction = {
 
 M.RemoveAction = {
     type = "structure",
+    id = "RemoveAction",
     members = {
         MemberId = {
             type = "string",
@@ -547,6 +582,7 @@ M.RemoveAction = {
 
 M.ProposalActions = {
     type = "structure",
+    id = "ProposalActions",
     members = {
         Invitations = {
             type = "list",
@@ -561,6 +597,7 @@ M.ProposalActions = {
 
 M.CreateProposalInput = {
     type = "structure",
+    id = "CreateProposalInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -598,6 +635,7 @@ M.CreateProposalInput = {
 
 M.CreateProposalOutput = {
     type = "structure",
+    id = "CreateProposalOutput",
     members = {
         ProposalId = {
             type = "string",
@@ -607,6 +645,7 @@ M.CreateProposalOutput = {
 
 M.DeleteAccessorInput = {
     type = "structure",
+    id = "DeleteAccessorInput",
     members = {
         AccessorId = {
             type = "string",
@@ -620,10 +659,12 @@ M.DeleteAccessorInput = {
 
 M.DeleteAccessorOutput = {
     type = "structure",
+    id = "DeleteAccessorOutput",
 }
 
 M.DeleteMemberInput = {
     type = "structure",
+    id = "DeleteMemberInput",
     members = {
         NetworkId = {
             type = "string",
@@ -644,10 +685,12 @@ M.DeleteMemberInput = {
 
 M.DeleteMemberOutput = {
     type = "structure",
+    id = "DeleteMemberOutput",
 }
 
 M.DeleteNodeInput = {
     type = "structure",
+    id = "DeleteNodeInput",
     members = {
         NetworkId = {
             type = "string",
@@ -674,10 +717,12 @@ M.DeleteNodeInput = {
 
 M.DeleteNodeOutput = {
     type = "structure",
+    id = "DeleteNodeOutput",
 }
 
 M.GetAccessorInput = {
     type = "structure",
+    id = "GetAccessorInput",
     members = {
         AccessorId = {
             type = "string",
@@ -691,6 +736,7 @@ M.GetAccessorInput = {
 
 M.GetAccessorOutput = {
     type = "structure",
+    id = "GetAccessorOutput",
     members = {
         Accessor = M.Accessor,
     },
@@ -698,6 +744,7 @@ M.GetAccessorOutput = {
 
 M.GetMemberInput = {
     type = "structure",
+    id = "GetMemberInput",
     members = {
         NetworkId = {
             type = "string",
@@ -718,6 +765,7 @@ M.GetMemberInput = {
 
 M.MemberFabricAttributes = {
     type = "structure",
+    id = "MemberFabricAttributes",
     members = {
         AdminUsername = {
             type = "string",
@@ -730,6 +778,7 @@ M.MemberFabricAttributes = {
 
 M.MemberFrameworkAttributes = {
     type = "structure",
+    id = "MemberFrameworkAttributes",
     members = {
         Fabric = M.MemberFabricAttributes,
     },
@@ -747,6 +796,7 @@ M.MemberStatus = {
 
 M.Member = {
     type = "structure",
+    id = "Member",
     members = {
         NetworkId = {
             type = "string",
@@ -787,6 +837,7 @@ M.Member = {
 
 M.GetMemberOutput = {
     type = "structure",
+    id = "GetMemberOutput",
     members = {
         Member = M.Member,
     },
@@ -794,6 +845,7 @@ M.GetMemberOutput = {
 
 M.GetNetworkInput = {
     type = "structure",
+    id = "GetNetworkInput",
     members = {
         NetworkId = {
             type = "string",
@@ -807,6 +859,7 @@ M.GetNetworkInput = {
 
 M.NetworkEthereumAttributes = {
     type = "structure",
+    id = "NetworkEthereumAttributes",
     members = {
         ChainId = {
             type = "string",
@@ -816,6 +869,7 @@ M.NetworkEthereumAttributes = {
 
 M.NetworkFabricAttributes = {
     type = "structure",
+    id = "NetworkFabricAttributes",
     members = {
         OrderingServiceEndpoint = {
             type = "string",
@@ -828,6 +882,7 @@ M.NetworkFabricAttributes = {
 
 M.NetworkFrameworkAttributes = {
     type = "structure",
+    id = "NetworkFrameworkAttributes",
     members = {
         Fabric = M.NetworkFabricAttributes,
         Ethereum = M.NetworkEthereumAttributes,
@@ -844,6 +899,7 @@ M.NetworkStatus = {
 
 M.Network = {
     type = "structure",
+    id = "Network",
     members = {
         Id = {
             type = "string",
@@ -887,6 +943,7 @@ M.Network = {
 
 M.GetNetworkOutput = {
     type = "structure",
+    id = "GetNetworkOutput",
     members = {
         Network = M.Network,
     },
@@ -894,6 +951,7 @@ M.GetNetworkOutput = {
 
 M.GetNodeInput = {
     type = "structure",
+    id = "GetNodeInput",
     members = {
         NetworkId = {
             type = "string",
@@ -920,6 +978,7 @@ M.GetNodeInput = {
 
 M.NodeEthereumAttributes = {
     type = "structure",
+    id = "NodeEthereumAttributes",
     members = {
         HttpEndpoint = {
             type = "string",
@@ -932,6 +991,7 @@ M.NodeEthereumAttributes = {
 
 M.NodeFabricAttributes = {
     type = "structure",
+    id = "NodeFabricAttributes",
     members = {
         PeerEndpoint = {
             type = "string",
@@ -944,6 +1004,7 @@ M.NodeFabricAttributes = {
 
 M.NodeFrameworkAttributes = {
     type = "structure",
+    id = "NodeFrameworkAttributes",
     members = {
         Fabric = M.NodeFabricAttributes,
         Ethereum = M.NodeEthereumAttributes,
@@ -964,6 +1025,7 @@ M.NodeStatus = {
 
 M.Node = {
     type = "structure",
+    id = "Node",
     members = {
         NetworkId = {
             type = "string",
@@ -1010,6 +1072,7 @@ M.Node = {
 
 M.GetNodeOutput = {
     type = "structure",
+    id = "GetNodeOutput",
     members = {
         Node = M.Node,
     },
@@ -1017,6 +1080,7 @@ M.GetNodeOutput = {
 
 M.GetProposalInput = {
     type = "structure",
+    id = "GetProposalInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1045,6 +1109,7 @@ M.ProposalStatus = {
 
 M.Proposal = {
     type = "structure",
+    id = "Proposal",
     members = {
         ProposalId = {
             type = "string",
@@ -1099,6 +1164,7 @@ M.Proposal = {
 
 M.GetProposalOutput = {
     type = "structure",
+    id = "GetProposalOutput",
     members = {
         Proposal = M.Proposal,
     },
@@ -1106,6 +1172,7 @@ M.GetProposalOutput = {
 
 M.IllegalActionException = {
     type = "structure",
+    id = "IllegalActionException",
     error = "client",
     members = {
         Message = {
@@ -1116,6 +1183,7 @@ M.IllegalActionException = {
 
 M.NetworkSummary = {
     type = "structure",
+    id = "NetworkSummary",
     members = {
         Id = {
             type = "string",
@@ -1157,6 +1225,7 @@ M.InvitationStatus = {
 
 M.Invitation = {
     type = "structure",
+    id = "Invitation",
     members = {
         InvitationId = {
             type = "string",
@@ -1185,6 +1254,7 @@ M.Invitation = {
 
 M.ListAccessorsInput = {
     type = "structure",
+    id = "ListAccessorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1209,6 +1279,7 @@ M.ListAccessorsInput = {
 
 M.ListAccessorsOutput = {
     type = "structure",
+    id = "ListAccessorsOutput",
     members = {
         Accessors = {
             type = "list",
@@ -1222,6 +1293,7 @@ M.ListAccessorsOutput = {
 
 M.ListInvitationsInput = {
     type = "structure",
+    id = "ListInvitationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1240,6 +1312,7 @@ M.ListInvitationsInput = {
 
 M.ListInvitationsOutput = {
     type = "structure",
+    id = "ListInvitationsOutput",
     members = {
         Invitations = {
             type = "list",
@@ -1253,6 +1326,7 @@ M.ListInvitationsOutput = {
 
 M.ListMembersInput = {
     type = "structure",
+    id = "ListMembersInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1296,6 +1370,7 @@ M.ListMembersInput = {
 
 M.MemberSummary = {
     type = "structure",
+    id = "MemberSummary",
     members = {
         Id = {
             type = "string",
@@ -1326,6 +1401,7 @@ M.MemberSummary = {
 
 M.ListMembersOutput = {
     type = "structure",
+    id = "ListMembersOutput",
     members = {
         Members = {
             type = "list",
@@ -1339,6 +1415,7 @@ M.ListMembersOutput = {
 
 M.ListNetworksInput = {
     type = "structure",
+    id = "ListNetworksInput",
     members = {
         Name = {
             type = "string",
@@ -1375,6 +1452,7 @@ M.ListNetworksInput = {
 
 M.ListNetworksOutput = {
     type = "structure",
+    id = "ListNetworksOutput",
     members = {
         Networks = {
             type = "list",
@@ -1388,6 +1466,7 @@ M.ListNetworksOutput = {
 
 M.ListNodesInput = {
     type = "structure",
+    id = "ListNodesInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1425,6 +1504,7 @@ M.ListNodesInput = {
 
 M.NodeSummary = {
     type = "structure",
+    id = "NodeSummary",
     members = {
         Id = {
             type = "string",
@@ -1452,6 +1532,7 @@ M.NodeSummary = {
 
 M.ListNodesOutput = {
     type = "structure",
+    id = "ListNodesOutput",
     members = {
         Nodes = {
             type = "list",
@@ -1465,6 +1546,7 @@ M.ListNodesOutput = {
 
 M.ListProposalsInput = {
     type = "structure",
+    id = "ListProposalsInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1490,6 +1572,7 @@ M.ListProposalsInput = {
 
 M.ProposalSummary = {
     type = "structure",
+    id = "ProposalSummary",
     members = {
         ProposalId = {
             type = "string",
@@ -1526,6 +1609,7 @@ M.ProposalSummary = {
 
 M.ListProposalsOutput = {
     type = "structure",
+    id = "ListProposalsOutput",
     members = {
         Proposals = {
             type = "list",
@@ -1539,6 +1623,7 @@ M.ListProposalsOutput = {
 
 M.ListProposalVotesInput = {
     type = "structure",
+    id = "ListProposalVotesInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1576,6 +1661,7 @@ M.VoteValue = {
 
 M.VoteSummary = {
     type = "structure",
+    id = "VoteSummary",
     members = {
         Vote = {
             type = "string",
@@ -1591,6 +1677,7 @@ M.VoteSummary = {
 
 M.ListProposalVotesOutput = {
     type = "structure",
+    id = "ListProposalVotesOutput",
     members = {
         ProposalVotes = {
             type = "list",
@@ -1604,6 +1691,7 @@ M.ListProposalVotesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1617,6 +1705,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1628,6 +1717,7 @@ M.ListTagsForResourceOutput = {
 
 M.RejectInvitationInput = {
     type = "structure",
+    id = "RejectInvitationInput",
     members = {
         InvitationId = {
             type = "string",
@@ -1641,10 +1731,12 @@ M.RejectInvitationInput = {
 
 M.RejectInvitationOutput = {
     type = "structure",
+    id = "RejectInvitationOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1666,10 +1758,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1691,10 +1785,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateMemberInput = {
     type = "structure",
+    id = "UpdateMemberInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1716,10 +1812,12 @@ M.UpdateMemberInput = {
 
 M.UpdateMemberOutput = {
     type = "structure",
+    id = "UpdateMemberOutput",
 }
 
 M.UpdateNodeInput = {
     type = "structure",
+    id = "UpdateNodeInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1744,10 +1842,12 @@ M.UpdateNodeInput = {
 
 M.UpdateNodeOutput = {
     type = "structure",
+    id = "UpdateNodeOutput",
 }
 
 M.VoteOnProposalInput = {
     type = "structure",
+    id = "VoteOnProposalInput",
     members = {
         NetworkId = {
             type = "string",
@@ -1780,6 +1880,7 @@ M.VoteOnProposalInput = {
 
 M.VoteOnProposalOutput = {
     type = "structure",
+    id = "VoteOnProposalOutput",
 }
 
 return M

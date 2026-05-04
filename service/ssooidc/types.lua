@@ -6,6 +6,7 @@ M.AccessDeniedExceptionReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         error = {
@@ -22,6 +23,7 @@ M.AccessDeniedException = {
 
 M.AuthorizationPendingException = {
     type = "structure",
+    id = "AuthorizationPendingException",
     error = "client",
     members = {
         error = {
@@ -35,6 +37,7 @@ M.AuthorizationPendingException = {
 
 M.AwsAdditionalDetails = {
     type = "structure",
+    id = "AwsAdditionalDetails",
     members = {
         identityContext = {
             type = "string",
@@ -44,6 +47,7 @@ M.AwsAdditionalDetails = {
 
 M.CreateTokenInput = {
     type = "structure",
+    id = "CreateTokenInput",
     members = {
         clientId = {
             type = "string",
@@ -87,6 +91,7 @@ M.CreateTokenInput = {
 
 M.CreateTokenOutput = {
     type = "structure",
+    id = "CreateTokenOutput",
     members = {
         accessToken = {
             type = "string",
@@ -111,6 +116,7 @@ M.CreateTokenOutput = {
 
 M.ExpiredTokenException = {
     type = "structure",
+    id = "ExpiredTokenException",
     error = "client",
     members = {
         error = {
@@ -124,6 +130,7 @@ M.ExpiredTokenException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         error = {
@@ -137,6 +144,7 @@ M.InternalServerException = {
 
 M.InvalidClientException = {
     type = "structure",
+    id = "InvalidClientException",
     error = "client",
     members = {
         error = {
@@ -150,6 +158,7 @@ M.InvalidClientException = {
 
 M.InvalidGrantException = {
     type = "structure",
+    id = "InvalidGrantException",
     error = "client",
     members = {
         error = {
@@ -170,6 +179,7 @@ M.InvalidRequestExceptionReason = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         error = {
@@ -186,6 +196,7 @@ M.InvalidRequestException = {
 
 M.InvalidScopeException = {
     type = "structure",
+    id = "InvalidScopeException",
     error = "client",
     members = {
         error = {
@@ -199,6 +210,7 @@ M.InvalidScopeException = {
 
 M.SlowDownException = {
     type = "structure",
+    id = "SlowDownException",
     error = "client",
     members = {
         error = {
@@ -212,6 +224,7 @@ M.SlowDownException = {
 
 M.UnauthorizedClientException = {
     type = "structure",
+    id = "UnauthorizedClientException",
     error = "client",
     members = {
         error = {
@@ -225,6 +238,7 @@ M.UnauthorizedClientException = {
 
 M.UnsupportedGrantTypeException = {
     type = "structure",
+    id = "UnsupportedGrantTypeException",
     error = "client",
     members = {
         error = {
@@ -238,6 +252,7 @@ M.UnsupportedGrantTypeException = {
 
 M.CreateTokenWithIAMInput = {
     type = "structure",
+    id = "CreateTokenWithIAMInput",
     members = {
         clientId = {
             type = "string",
@@ -284,6 +299,7 @@ M.CreateTokenWithIAMInput = {
 
 M.CreateTokenWithIAMOutput = {
     type = "structure",
+    id = "CreateTokenWithIAMOutput",
     members = {
         accessToken = {
             type = "string",
@@ -316,6 +332,7 @@ M.CreateTokenWithIAMOutput = {
 
 M.InvalidRequestRegionException = {
     type = "structure",
+    id = "InvalidRequestRegionException",
     error = "client",
     members = {
         error = {
@@ -335,6 +352,7 @@ M.InvalidRequestRegionException = {
 
 M.InvalidClientMetadataException = {
     type = "structure",
+    id = "InvalidClientMetadataException",
     error = "client",
     members = {
         error = {
@@ -348,6 +366,7 @@ M.InvalidClientMetadataException = {
 
 M.InvalidRedirectUriException = {
     type = "structure",
+    id = "InvalidRedirectUriException",
     error = "client",
     members = {
         error = {
@@ -361,6 +380,7 @@ M.InvalidRedirectUriException = {
 
 M.RegisterClientInput = {
     type = "structure",
+    id = "RegisterClientInput",
     members = {
         clientName = {
             type = "string",
@@ -397,6 +417,7 @@ M.RegisterClientInput = {
 
 M.RegisterClientOutput = {
     type = "structure",
+    id = "RegisterClientOutput",
     members = {
         clientId = {
             type = "string",
@@ -427,6 +448,7 @@ M.RegisterClientOutput = {
 
 M.StartDeviceAuthorizationInput = {
     type = "structure",
+    id = "StartDeviceAuthorizationInput",
     members = {
         clientId = {
             type = "string",
@@ -451,6 +473,7 @@ M.StartDeviceAuthorizationInput = {
 
 M.StartDeviceAuthorizationOutput = {
     type = "structure",
+    id = "StartDeviceAuthorizationOutput",
     members = {
         deviceCode = {
             type = "string",

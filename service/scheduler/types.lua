@@ -12,6 +12,7 @@ M.AssignPublicIp = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -25,6 +26,7 @@ M.InternalServerException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -38,6 +40,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -56,6 +59,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -66,6 +70,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -79,6 +84,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -92,6 +98,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -105,6 +112,7 @@ M.ValidationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -123,6 +131,7 @@ M.FlexibleTimeWindowMode = {
 
 M.FlexibleTimeWindow = {
     type = "structure",
+    id = "FlexibleTimeWindow",
     members = {
         Mode = {
             type = "string",
@@ -143,6 +152,7 @@ M.ScheduleState = {
 
 M.DeadLetterConfig = {
     type = "structure",
+    id = "DeadLetterConfig",
     members = {
         Arn = {
             type = "string",
@@ -152,6 +162,7 @@ M.DeadLetterConfig = {
 
 M.CapacityProviderStrategyItem = {
     type = "structure",
+    id = "CapacityProviderStrategyItem",
     members = {
         capacityProvider = {
             type = "string",
@@ -182,6 +193,7 @@ M.LaunchType = {
 
 M.AwsVpcConfiguration = {
     type = "structure",
+    id = "AwsVpcConfiguration",
     members = {
         Subnets = {
             type = "list",
@@ -202,6 +214,7 @@ M.AwsVpcConfiguration = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         awsvpcConfiguration = M.AwsVpcConfiguration,
     },
@@ -214,6 +227,7 @@ M.PlacementConstraintType = {
 
 M.PlacementConstraint = {
     type = "structure",
+    id = "PlacementConstraint",
     members = {
         type = {
             type = "string",
@@ -232,6 +246,7 @@ M.PlacementStrategyType = {
 
 M.PlacementStrategy = {
     type = "structure",
+    id = "PlacementStrategy",
     members = {
         type = {
             type = "string",
@@ -248,6 +263,7 @@ M.PropagateTags = {
 
 M.EcsParameters = {
     type = "structure",
+    id = "EcsParameters",
     members = {
         TaskDefinitionArn = {
             type = "string",
@@ -301,6 +317,7 @@ M.EcsParameters = {
 
 M.EventBridgeParameters = {
     type = "structure",
+    id = "EventBridgeParameters",
     members = {
         DetailType = {
             type = "string",
@@ -319,6 +336,7 @@ M.EventBridgeParameters = {
 
 M.KinesisParameters = {
     type = "structure",
+    id = "KinesisParameters",
     members = {
         PartitionKey = {
             type = "string",
@@ -331,6 +349,7 @@ M.KinesisParameters = {
 
 M.RetryPolicy = {
     type = "structure",
+    id = "RetryPolicy",
     members = {
         MaximumEventAgeInSeconds = {
             type = "integer",
@@ -343,6 +362,7 @@ M.RetryPolicy = {
 
 M.SageMakerPipelineParameter = {
     type = "structure",
+    id = "SageMakerPipelineParameter",
     members = {
         Name = {
             type = "string",
@@ -361,6 +381,7 @@ M.SageMakerPipelineParameter = {
 
 M.SageMakerPipelineParameters = {
     type = "structure",
+    id = "SageMakerPipelineParameters",
     members = {
         PipelineParameterList = {
             type = "list",
@@ -371,6 +392,7 @@ M.SageMakerPipelineParameters = {
 
 M.SqsParameters = {
     type = "structure",
+    id = "SqsParameters",
     members = {
         MessageGroupId = {
             type = "string",
@@ -380,6 +402,7 @@ M.SqsParameters = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         Arn = {
             type = "string",
@@ -408,6 +431,7 @@ M.Target = {
 
 M.CreateScheduleInput = {
     type = "structure",
+    id = "CreateScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -463,6 +487,7 @@ M.CreateScheduleInput = {
 
 M.CreateScheduleOutput = {
     type = "structure",
+    id = "CreateScheduleOutput",
     members = {
         ScheduleArn = {
             type = "string",
@@ -475,6 +500,7 @@ M.CreateScheduleOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -488,6 +514,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteScheduleInput = {
     type = "structure",
+    id = "DeleteScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -514,10 +541,12 @@ M.DeleteScheduleInput = {
 
 M.DeleteScheduleOutput = {
     type = "structure",
+    id = "DeleteScheduleOutput",
 }
 
 M.GetScheduleInput = {
     type = "structure",
+    id = "GetScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -537,6 +566,7 @@ M.GetScheduleInput = {
 
 M.GetScheduleOutput = {
     type = "structure",
+    id = "GetScheduleOutput",
     members = {
         Arn = {
             type = "string",
@@ -584,6 +614,7 @@ M.GetScheduleOutput = {
 
 M.ListSchedulesInput = {
     type = "structure",
+    id = "ListSchedulesInput",
     members = {
         GroupName = {
             type = "string",
@@ -620,6 +651,7 @@ M.ListSchedulesInput = {
 
 M.TargetSummary = {
     type = "structure",
+    id = "TargetSummary",
     members = {
         Arn = {
             type = "string",
@@ -632,6 +664,7 @@ M.TargetSummary = {
 
 M.ScheduleSummary = {
     type = "structure",
+    id = "ScheduleSummary",
     members = {
         Arn = {
             type = "string",
@@ -657,6 +690,7 @@ M.ScheduleSummary = {
 
 M.ListSchedulesOutput = {
     type = "structure",
+    id = "ListSchedulesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -673,6 +707,7 @@ M.ListSchedulesOutput = {
 
 M.UpdateScheduleInput = {
     type = "structure",
+    id = "UpdateScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -728,6 +763,7 @@ M.UpdateScheduleInput = {
 
 M.UpdateScheduleOutput = {
     type = "structure",
+    id = "UpdateScheduleOutput",
     members = {
         ScheduleArn = {
             type = "string",
@@ -740,6 +776,7 @@ M.UpdateScheduleOutput = {
 
 M.CreateScheduleGroupInput = {
     type = "structure",
+    id = "CreateScheduleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -763,6 +800,7 @@ M.CreateScheduleGroupInput = {
 
 M.CreateScheduleGroupOutput = {
     type = "structure",
+    id = "CreateScheduleGroupOutput",
     members = {
         ScheduleGroupArn = {
             type = "string",
@@ -775,6 +813,7 @@ M.CreateScheduleGroupOutput = {
 
 M.DeleteScheduleGroupInput = {
     type = "structure",
+    id = "DeleteScheduleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -795,10 +834,12 @@ M.DeleteScheduleGroupInput = {
 
 M.DeleteScheduleGroupOutput = {
     type = "structure",
+    id = "DeleteScheduleGroupOutput",
 }
 
 M.GetScheduleGroupInput = {
     type = "structure",
+    id = "GetScheduleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -817,6 +858,7 @@ M.ScheduleGroupState = {
 
 M.GetScheduleGroupOutput = {
     type = "structure",
+    id = "GetScheduleGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -838,6 +880,7 @@ M.GetScheduleGroupOutput = {
 
 M.ListScheduleGroupsInput = {
     type = "structure",
+    id = "ListScheduleGroupsInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -862,6 +905,7 @@ M.ListScheduleGroupsInput = {
 
 M.ScheduleGroupSummary = {
     type = "structure",
+    id = "ScheduleGroupSummary",
     members = {
         Arn = {
             type = "string",
@@ -883,6 +927,7 @@ M.ScheduleGroupSummary = {
 
 M.ListScheduleGroupsOutput = {
     type = "structure",
+    id = "ListScheduleGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -899,6 +944,7 @@ M.ListScheduleGroupsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -919,10 +965,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -944,6 +992,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

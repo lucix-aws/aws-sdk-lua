@@ -2,6 +2,7 @@ local M = {}
 
 M.AbortMultipartUploadInput = {
     type = "structure",
+    id = "AbortMultipartUploadInput",
     members = {
         accountId = {
             type = "string",
@@ -29,10 +30,12 @@ M.AbortMultipartUploadInput = {
 
 M.AbortMultipartUploadOutput = {
     type = "structure",
+    id = "AbortMultipartUploadOutput",
 }
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         type = {
@@ -49,6 +52,7 @@ M.InvalidParameterValueException = {
 
 M.MissingParameterValueException = {
     type = "structure",
+    id = "MissingParameterValueException",
     error = "client",
     members = {
         type = {
@@ -65,6 +69,7 @@ M.MissingParameterValueException = {
 
 M.NoLongerSupportedException = {
     type = "structure",
+    id = "NoLongerSupportedException",
     error = "client",
     members = {
         type = {
@@ -81,6 +86,7 @@ M.NoLongerSupportedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         type = {
@@ -97,6 +103,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         type = {
@@ -113,6 +120,7 @@ M.ServiceUnavailableException = {
 
 M.AbortVaultLockInput = {
     type = "structure",
+    id = "AbortVaultLockInput",
     members = {
         accountId = {
             type = "string",
@@ -133,6 +141,7 @@ M.AbortVaultLockInput = {
 
 M.AbortVaultLockOutput = {
     type = "structure",
+    id = "AbortVaultLockOutput",
 }
 
 M.Type = {
@@ -143,6 +152,7 @@ M.Type = {
 
 M.Grantee = {
     type = "structure",
+    id = "Grantee",
     members = {
         Type = {
             type = "string",
@@ -175,6 +185,7 @@ M.Permission = {
 
 M.Grant = {
     type = "structure",
+    id = "Grant",
     members = {
         Grantee = M.Grantee,
         Permission = {
@@ -191,6 +202,7 @@ M.ActionCode = {
 
 M.AddTagsToVaultInput = {
     type = "structure",
+    id = "AddTagsToVaultInput",
     members = {
         accountId = {
             type = "string",
@@ -216,10 +228,12 @@ M.AddTagsToVaultInput = {
 
 M.AddTagsToVaultOutput = {
     type = "structure",
+    id = "AddTagsToVaultOutput",
 }
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         type = {
@@ -246,6 +260,7 @@ M.CannedACL = {
 
 M.CompleteMultipartUploadInput = {
     type = "structure",
+    id = "CompleteMultipartUploadInput",
     members = {
         accountId = {
             type = "string",
@@ -285,6 +300,7 @@ M.CompleteMultipartUploadInput = {
 
 M.CompleteMultipartUploadOutput = {
     type = "structure",
+    id = "CompleteMultipartUploadOutput",
     members = {
         location = {
             type = "string",
@@ -309,6 +325,7 @@ M.CompleteMultipartUploadOutput = {
 
 M.CompleteVaultLockInput = {
     type = "structure",
+    id = "CompleteVaultLockInput",
     members = {
         accountId = {
             type = "string",
@@ -336,10 +353,12 @@ M.CompleteVaultLockInput = {
 
 M.CompleteVaultLockOutput = {
     type = "structure",
+    id = "CompleteVaultLockOutput",
 }
 
 M.CreateVaultInput = {
     type = "structure",
+    id = "CreateVaultInput",
     members = {
         accountId = {
             type = "string",
@@ -360,6 +379,7 @@ M.CreateVaultInput = {
 
 M.CreateVaultOutput = {
     type = "structure",
+    id = "CreateVaultOutput",
     members = {
         location = {
             type = "string",
@@ -378,6 +398,7 @@ M.FileHeaderInfo = {
 
 M.CSVInput = {
     type = "structure",
+    id = "CSVInput",
     members = {
         FileHeaderInfo = {
             type = "string",
@@ -407,6 +428,7 @@ M.QuoteFields = {
 
 M.CSVOutput = {
     type = "structure",
+    id = "CSVOutput",
     members = {
         QuoteFields = {
             type = "string",
@@ -428,6 +450,7 @@ M.CSVOutput = {
 
 M.DataRetrievalRule = {
     type = "structure",
+    id = "DataRetrievalRule",
     members = {
         Strategy = {
             type = "string",
@@ -440,6 +463,7 @@ M.DataRetrievalRule = {
 
 M.DataRetrievalPolicy = {
     type = "structure",
+    id = "DataRetrievalPolicy",
     members = {
         Rules = {
             type = "list",
@@ -450,6 +474,7 @@ M.DataRetrievalPolicy = {
 
 M.DeleteArchiveInput = {
     type = "structure",
+    id = "DeleteArchiveInput",
     members = {
         accountId = {
             type = "string",
@@ -477,10 +502,12 @@ M.DeleteArchiveInput = {
 
 M.DeleteArchiveOutput = {
     type = "structure",
+    id = "DeleteArchiveOutput",
 }
 
 M.DeleteVaultInput = {
     type = "structure",
+    id = "DeleteVaultInput",
     members = {
         accountId = {
             type = "string",
@@ -501,10 +528,12 @@ M.DeleteVaultInput = {
 
 M.DeleteVaultOutput = {
     type = "structure",
+    id = "DeleteVaultOutput",
 }
 
 M.DeleteVaultAccessPolicyInput = {
     type = "structure",
+    id = "DeleteVaultAccessPolicyInput",
     members = {
         accountId = {
             type = "string",
@@ -525,10 +554,12 @@ M.DeleteVaultAccessPolicyInput = {
 
 M.DeleteVaultAccessPolicyOutput = {
     type = "structure",
+    id = "DeleteVaultAccessPolicyOutput",
 }
 
 M.DeleteVaultNotificationsInput = {
     type = "structure",
+    id = "DeleteVaultNotificationsInput",
     members = {
         accountId = {
             type = "string",
@@ -549,10 +580,12 @@ M.DeleteVaultNotificationsInput = {
 
 M.DeleteVaultNotificationsOutput = {
     type = "structure",
+    id = "DeleteVaultNotificationsOutput",
 }
 
 M.DescribeJobInput = {
     type = "structure",
+    id = "DescribeJobInput",
     members = {
         accountId = {
             type = "string",
@@ -580,6 +613,7 @@ M.DescribeJobInput = {
 
 M.InventoryRetrievalJobDescription = {
     type = "structure",
+    id = "InventoryRetrievalJobDescription",
     members = {
         Format = {
             type = "string",
@@ -606,6 +640,7 @@ M.EncryptionType = {
 
 M.Encryption = {
     type = "structure",
+    id = "Encryption",
     members = {
         EncryptionType = {
             type = "string",
@@ -627,6 +662,7 @@ M.StorageClass = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         BucketName = {
             type = "string",
@@ -660,6 +696,7 @@ M.S3Location = {
 
 M.OutputLocation = {
     type = "structure",
+    id = "OutputLocation",
     members = {
         S3 = M.S3Location,
     },
@@ -671,6 +708,7 @@ M.ExpressionType = {
 
 M.InputSerialization = {
     type = "structure",
+    id = "InputSerialization",
     members = {
         csv = M.CSVInput,
     },
@@ -678,6 +716,7 @@ M.InputSerialization = {
 
 M.OutputSerialization = {
     type = "structure",
+    id = "OutputSerialization",
     members = {
         csv = M.CSVOutput,
     },
@@ -685,6 +724,7 @@ M.OutputSerialization = {
 
 M.SelectParameters = {
     type = "structure",
+    id = "SelectParameters",
     members = {
         InputSerialization = M.InputSerialization,
         ExpressionType = {
@@ -705,6 +745,7 @@ M.StatusCode = {
 
 M.DescribeJobOutput = {
     type = "structure",
+    id = "DescribeJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -771,6 +812,7 @@ M.DescribeJobOutput = {
 
 M.DescribeVaultInput = {
     type = "structure",
+    id = "DescribeVaultInput",
     members = {
         accountId = {
             type = "string",
@@ -791,6 +833,7 @@ M.DescribeVaultInput = {
 
 M.DescribeVaultOperationOutput = {
     type = "structure",
+    id = "DescribeVaultOperationOutput",
     members = {
         VaultARN = {
             type = "string",
@@ -821,6 +864,7 @@ M.DescribeVaultOperationOutput = {
 
 M.DescribeVaultOutput = {
     type = "structure",
+    id = "DescribeVaultOutput",
     members = {
         VaultARN = {
             type = "string",
@@ -851,6 +895,7 @@ M.DescribeVaultOutput = {
 
 M.GetDataRetrievalPolicyInput = {
     type = "structure",
+    id = "GetDataRetrievalPolicyInput",
     members = {
         accountId = {
             type = "string",
@@ -864,6 +909,7 @@ M.GetDataRetrievalPolicyInput = {
 
 M.GetDataRetrievalPolicyOutput = {
     type = "structure",
+    id = "GetDataRetrievalPolicyOutput",
     members = {
         Policy = M.DataRetrievalPolicy,
     },
@@ -871,6 +917,7 @@ M.GetDataRetrievalPolicyOutput = {
 
 M.GetJobOutputInput = {
     type = "structure",
+    id = "GetJobOutputInput",
     members = {
         accountId = {
             type = "string",
@@ -904,6 +951,7 @@ M.GetJobOutputInput = {
 
 M.GetJobOutputOutput = {
     type = "structure",
+    id = "GetJobOutputOutput",
     members = {
         body = {
             type = "blob",
@@ -954,6 +1002,7 @@ M.GetJobOutputOutput = {
 
 M.GetVaultAccessPolicyInput = {
     type = "structure",
+    id = "GetVaultAccessPolicyInput",
     members = {
         accountId = {
             type = "string",
@@ -974,6 +1023,7 @@ M.GetVaultAccessPolicyInput = {
 
 M.VaultAccessPolicy = {
     type = "structure",
+    id = "VaultAccessPolicy",
     members = {
         Policy = {
             type = "string",
@@ -983,6 +1033,7 @@ M.VaultAccessPolicy = {
 
 M.GetVaultAccessPolicyOutput = {
     type = "structure",
+    id = "GetVaultAccessPolicyOutput",
     members = {
         policy = setmetatable({ traits = {
             http_payload = true,
@@ -992,6 +1043,7 @@ M.GetVaultAccessPolicyOutput = {
 
 M.GetVaultLockInput = {
     type = "structure",
+    id = "GetVaultLockInput",
     members = {
         accountId = {
             type = "string",
@@ -1012,6 +1064,7 @@ M.GetVaultLockInput = {
 
 M.GetVaultLockOutput = {
     type = "structure",
+    id = "GetVaultLockOutput",
     members = {
         Policy = {
             type = "string",
@@ -1030,6 +1083,7 @@ M.GetVaultLockOutput = {
 
 M.GetVaultNotificationsInput = {
     type = "structure",
+    id = "GetVaultNotificationsInput",
     members = {
         accountId = {
             type = "string",
@@ -1050,6 +1104,7 @@ M.GetVaultNotificationsInput = {
 
 M.VaultNotificationConfig = {
     type = "structure",
+    id = "VaultNotificationConfig",
     members = {
         SNSTopic = {
             type = "string",
@@ -1063,6 +1118,7 @@ M.VaultNotificationConfig = {
 
 M.GetVaultNotificationsOutput = {
     type = "structure",
+    id = "GetVaultNotificationsOutput",
     members = {
         vaultNotificationConfig = setmetatable({ traits = {
             http_payload = true,
@@ -1072,6 +1128,7 @@ M.GetVaultNotificationsOutput = {
 
 M.InventoryRetrievalJobInput = {
     type = "structure",
+    id = "InventoryRetrievalJobInput",
     members = {
         StartDate = {
             type = "string",
@@ -1090,6 +1147,7 @@ M.InventoryRetrievalJobInput = {
 
 M.JobParameters = {
     type = "structure",
+    id = "JobParameters",
     members = {
         Format = {
             type = "string",
@@ -1120,6 +1178,7 @@ M.JobParameters = {
 
 M.InitiateJobInput = {
     type = "structure",
+    id = "InitiateJobInput",
     members = {
         accountId = {
             type = "string",
@@ -1143,6 +1202,7 @@ M.InitiateJobInput = {
 
 M.InitiateJobOutput = {
     type = "structure",
+    id = "InitiateJobOutput",
     members = {
         location = {
             type = "string",
@@ -1167,6 +1227,7 @@ M.InitiateJobOutput = {
 
 M.InsufficientCapacityException = {
     type = "structure",
+    id = "InsufficientCapacityException",
     error = "client",
     members = {
         type = {
@@ -1183,6 +1244,7 @@ M.InsufficientCapacityException = {
 
 M.PolicyEnforcedException = {
     type = "structure",
+    id = "PolicyEnforcedException",
     error = "client",
     members = {
         type = {
@@ -1199,6 +1261,7 @@ M.PolicyEnforcedException = {
 
 M.InitiateMultipartUploadInput = {
     type = "structure",
+    id = "InitiateMultipartUploadInput",
     members = {
         accountId = {
             type = "string",
@@ -1231,6 +1294,7 @@ M.InitiateMultipartUploadInput = {
 
 M.InitiateMultipartUploadOutput = {
     type = "structure",
+    id = "InitiateMultipartUploadOutput",
     members = {
         location = {
             type = "string",
@@ -1249,6 +1313,7 @@ M.InitiateMultipartUploadOutput = {
 
 M.VaultLockPolicy = {
     type = "structure",
+    id = "VaultLockPolicy",
     members = {
         Policy = {
             type = "string",
@@ -1258,6 +1323,7 @@ M.VaultLockPolicy = {
 
 M.InitiateVaultLockInput = {
     type = "structure",
+    id = "InitiateVaultLockInput",
     members = {
         accountId = {
             type = "string",
@@ -1281,6 +1347,7 @@ M.InitiateVaultLockInput = {
 
 M.InitiateVaultLockOutput = {
     type = "structure",
+    id = "InitiateVaultLockOutput",
     members = {
         lockId = {
             type = "string",
@@ -1293,6 +1360,7 @@ M.InitiateVaultLockOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         accountId = {
             type = "string",
@@ -1337,6 +1405,7 @@ M.ListJobsInput = {
 
 M.GlacierJobDescription = {
     type = "structure",
+    id = "GlacierJobDescription",
     members = {
         JobId = {
             type = "string",
@@ -1403,6 +1472,7 @@ M.GlacierJobDescription = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         JobList = {
             type = "list",
@@ -1416,6 +1486,7 @@ M.ListJobsOutput = {
 
 M.ListMultipartUploadsInput = {
     type = "structure",
+    id = "ListMultipartUploadsInput",
     members = {
         accountId = {
             type = "string",
@@ -1448,6 +1519,7 @@ M.ListMultipartUploadsInput = {
 
 M.UploadListElement = {
     type = "structure",
+    id = "UploadListElement",
     members = {
         MultipartUploadId = {
             type = "string",
@@ -1472,6 +1544,7 @@ M.UploadListElement = {
 
 M.ListMultipartUploadsOutput = {
     type = "structure",
+    id = "ListMultipartUploadsOutput",
     members = {
         UploadsList = {
             type = "list",
@@ -1485,6 +1558,7 @@ M.ListMultipartUploadsOutput = {
 
 M.ListPartsInput = {
     type = "structure",
+    id = "ListPartsInput",
     members = {
         accountId = {
             type = "string",
@@ -1524,6 +1598,7 @@ M.ListPartsInput = {
 
 M.PartListElement = {
     type = "structure",
+    id = "PartListElement",
     members = {
         RangeInBytes = {
             type = "string",
@@ -1536,6 +1611,7 @@ M.PartListElement = {
 
 M.ListPartsOutput = {
     type = "structure",
+    id = "ListPartsOutput",
     members = {
         MultipartUploadId = {
             type = "string",
@@ -1567,6 +1643,7 @@ M.ListPartsOutput = {
 
 M.ListProvisionedCapacityInput = {
     type = "structure",
+    id = "ListProvisionedCapacityInput",
     members = {
         accountId = {
             type = "string",
@@ -1580,6 +1657,7 @@ M.ListProvisionedCapacityInput = {
 
 M.ProvisionedCapacityDescription = {
     type = "structure",
+    id = "ProvisionedCapacityDescription",
     members = {
         CapacityId = {
             type = "string",
@@ -1595,6 +1673,7 @@ M.ProvisionedCapacityDescription = {
 
 M.ListProvisionedCapacityOutput = {
     type = "structure",
+    id = "ListProvisionedCapacityOutput",
     members = {
         ProvisionedCapacityList = {
             type = "list",
@@ -1605,6 +1684,7 @@ M.ListProvisionedCapacityOutput = {
 
 M.ListTagsForVaultInput = {
     type = "structure",
+    id = "ListTagsForVaultInput",
     members = {
         accountId = {
             type = "string",
@@ -1625,6 +1705,7 @@ M.ListTagsForVaultInput = {
 
 M.ListTagsForVaultOutput = {
     type = "structure",
+    id = "ListTagsForVaultOutput",
     members = {
         Tags = {
             type = "map",
@@ -1636,6 +1717,7 @@ M.ListTagsForVaultOutput = {
 
 M.ListVaultsInput = {
     type = "structure",
+    id = "ListVaultsInput",
     members = {
         accountId = {
             type = "string",
@@ -1661,6 +1743,7 @@ M.ListVaultsInput = {
 
 M.ListVaultsOutput = {
     type = "structure",
+    id = "ListVaultsOutput",
     members = {
         VaultList = {
             type = "list",
@@ -1674,6 +1757,7 @@ M.ListVaultsOutput = {
 
 M.PurchaseProvisionedCapacityInput = {
     type = "structure",
+    id = "PurchaseProvisionedCapacityInput",
     members = {
         accountId = {
             type = "string",
@@ -1687,6 +1771,7 @@ M.PurchaseProvisionedCapacityInput = {
 
 M.PurchaseProvisionedCapacityOutput = {
     type = "structure",
+    id = "PurchaseProvisionedCapacityOutput",
     members = {
         capacityId = {
             type = "string",
@@ -1699,6 +1784,7 @@ M.PurchaseProvisionedCapacityOutput = {
 
 M.RemoveTagsFromVaultInput = {
     type = "structure",
+    id = "RemoveTagsFromVaultInput",
     members = {
         accountId = {
             type = "string",
@@ -1723,10 +1809,12 @@ M.RemoveTagsFromVaultInput = {
 
 M.RemoveTagsFromVaultOutput = {
     type = "structure",
+    id = "RemoveTagsFromVaultOutput",
 }
 
 M.SetDataRetrievalPolicyInput = {
     type = "structure",
+    id = "SetDataRetrievalPolicyInput",
     members = {
         accountId = {
             type = "string",
@@ -1741,10 +1829,12 @@ M.SetDataRetrievalPolicyInput = {
 
 M.SetDataRetrievalPolicyOutput = {
     type = "structure",
+    id = "SetDataRetrievalPolicyOutput",
 }
 
 M.SetVaultAccessPolicyInput = {
     type = "structure",
+    id = "SetVaultAccessPolicyInput",
     members = {
         accountId = {
             type = "string",
@@ -1768,10 +1858,12 @@ M.SetVaultAccessPolicyInput = {
 
 M.SetVaultAccessPolicyOutput = {
     type = "structure",
+    id = "SetVaultAccessPolicyOutput",
 }
 
 M.SetVaultNotificationsInput = {
     type = "structure",
+    id = "SetVaultNotificationsInput",
     members = {
         accountId = {
             type = "string",
@@ -1795,10 +1887,12 @@ M.SetVaultNotificationsInput = {
 
 M.SetVaultNotificationsOutput = {
     type = "structure",
+    id = "SetVaultNotificationsOutput",
 }
 
 M.RequestTimeoutException = {
     type = "structure",
+    id = "RequestTimeoutException",
     error = "client",
     members = {
         type = {
@@ -1815,6 +1909,7 @@ M.RequestTimeoutException = {
 
 M.UploadArchiveInput = {
     type = "structure",
+    id = "UploadArchiveInput",
     members = {
         vaultName = {
             type = "string",
@@ -1854,6 +1949,7 @@ M.UploadArchiveInput = {
 
 M.UploadArchiveOutput = {
     type = "structure",
+    id = "UploadArchiveOutput",
     members = {
         location = {
             type = "string",
@@ -1878,6 +1974,7 @@ M.UploadArchiveOutput = {
 
 M.UploadMultipartPartInput = {
     type = "structure",
+    id = "UploadMultipartPartInput",
     members = {
         accountId = {
             type = "string",
@@ -1924,6 +2021,7 @@ M.UploadMultipartPartInput = {
 
 M.UploadMultipartPartOutput = {
     type = "structure",
+    id = "UploadMultipartPartOutput",
     members = {
         checksum = {
             type = "string",

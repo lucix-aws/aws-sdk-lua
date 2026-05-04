@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         code = {
@@ -26,6 +27,7 @@ M.AccessDirection = {
 
 M.AccessKeyLastUsed = {
     type = "structure",
+    id = "AccessKeyLastUsed",
     members = {
         lastUsedDate = {
             type = "timestamp",
@@ -46,6 +48,7 @@ M.StatusType = {
 
 M.AccessKey = {
     type = "structure",
+    id = "AccessKey",
     members = {
         accessKeyId = {
             type = "string",
@@ -65,6 +68,7 @@ M.AccessKey = {
 
 M.ResourceReceivingAccess = {
     type = "structure",
+    id = "ResourceReceivingAccess",
     members = {
         name = {
             type = "string",
@@ -82,6 +86,7 @@ M.AccessType = {
 
 M.AccessRules = {
     type = "structure",
+    id = "AccessRules",
     members = {
         getObject = {
             type = "string",
@@ -108,6 +113,7 @@ M.AccountLevelBpaSyncStatus = {
 
 M.AccountLevelBpaSync = {
     type = "structure",
+    id = "AccountLevelBpaSync",
     members = {
         status = {
             type = "string",
@@ -126,6 +132,7 @@ M.AccountLevelBpaSync = {
 
 M.AccountSetupInProgressException = {
     type = "structure",
+    id = "AccountSetupInProgressException",
     error = "client",
     members = {
         code = {
@@ -145,6 +152,7 @@ M.AccountSetupInProgressException = {
 
 M.AddOn = {
     type = "structure",
+    id = "AddOn",
     members = {
         name = {
             type = "string",
@@ -174,6 +182,7 @@ M.AddOnType = {
 
 M.AutoSnapshotAddOnRequest = {
     type = "structure",
+    id = "AutoSnapshotAddOnRequest",
     members = {
         snapshotTimeOfDay = {
             type = "string",
@@ -183,6 +192,7 @@ M.AutoSnapshotAddOnRequest = {
 
 M.StopInstanceOnIdleRequest = {
     type = "structure",
+    id = "StopInstanceOnIdleRequest",
     members = {
         threshold = {
             type = "string",
@@ -195,6 +205,7 @@ M.StopInstanceOnIdleRequest = {
 
 M.AddOnRequest = {
     type = "structure",
+    id = "AddOnRequest",
     members = {
         addOnType = {
             type = "string",
@@ -241,6 +252,7 @@ M.RegionName = {
 
 M.ResourceLocation = {
     type = "structure",
+    id = "ResourceLocation",
     members = {
         availabilityZone = {
             type = "string",
@@ -304,6 +316,7 @@ M.ResourceType = {
 
 M.MonitoredResourceInfo = {
     type = "structure",
+    id = "MonitoredResourceInfo",
     members = {
         arn = {
             type = "string",
@@ -333,6 +346,7 @@ M.MetricStatistic = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -382,6 +396,7 @@ M.MetricUnit = {
 
 M.Alarm = {
     type = "structure",
+    id = "Alarm",
     members = {
         name = {
             type = "string",
@@ -450,6 +465,7 @@ M.Alarm = {
 
 M.AllocateStaticIpInput = {
     type = "structure",
+    id = "AllocateStaticIpInput",
     members = {
         staticIpName = {
             type = "string",
@@ -556,6 +572,7 @@ M.OperationStatus = {
 
 M.Operation = {
     type = "structure",
+    id = "Operation",
     members = {
         id = {
             type = "string",
@@ -596,6 +613,7 @@ M.Operation = {
 
 M.AllocateStaticIpOutput = {
     type = "structure",
+    id = "AllocateStaticIpOutput",
     members = {
         operations = {
             type = "list",
@@ -606,6 +624,7 @@ M.AllocateStaticIpOutput = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         code = {
@@ -625,6 +644,7 @@ M.InvalidInputException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         code = {
@@ -644,6 +664,7 @@ M.NotFoundException = {
 
 M.OperationFailureException = {
     type = "structure",
+    id = "OperationFailureException",
     error = "client",
     members = {
         code = {
@@ -663,6 +684,7 @@ M.OperationFailureException = {
 
 M.RegionSetupInProgressException = {
     type = "structure",
+    id = "RegionSetupInProgressException",
     error = "client",
     members = {
         code = {
@@ -682,6 +704,7 @@ M.RegionSetupInProgressException = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         code = {
@@ -701,6 +724,7 @@ M.ServiceException = {
 
 M.UnauthenticatedException = {
     type = "structure",
+    id = "UnauthenticatedException",
     error = "client",
     members = {
         code = {
@@ -724,6 +748,7 @@ M.AppCategory = {
 
 M.AttachCertificateToDistributionInput = {
     type = "structure",
+    id = "AttachCertificateToDistributionInput",
     members = {
         distributionName = {
             type = "string",
@@ -742,6 +767,7 @@ M.AttachCertificateToDistributionInput = {
 
 M.AttachCertificateToDistributionOutput = {
     type = "structure",
+    id = "AttachCertificateToDistributionOutput",
     members = {
         operation = M.Operation,
     },
@@ -749,6 +775,7 @@ M.AttachCertificateToDistributionOutput = {
 
 M.AttachDiskInput = {
     type = "structure",
+    id = "AttachDiskInput",
     members = {
         diskName = {
             type = "string",
@@ -776,6 +803,7 @@ M.AttachDiskInput = {
 
 M.AttachDiskOutput = {
     type = "structure",
+    id = "AttachDiskOutput",
     members = {
         operations = {
             type = "list",
@@ -786,6 +814,7 @@ M.AttachDiskOutput = {
 
 M.AttachedDisk = {
     type = "structure",
+    id = "AttachedDisk",
     members = {
         path = {
             type = "string",
@@ -798,6 +827,7 @@ M.AttachedDisk = {
 
 M.DiskMap = {
     type = "structure",
+    id = "DiskMap",
     members = {
         originalDiskPath = {
             type = "string",
@@ -810,6 +840,7 @@ M.DiskMap = {
 
 M.AttachInstancesToLoadBalancerInput = {
     type = "structure",
+    id = "AttachInstancesToLoadBalancerInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -829,6 +860,7 @@ M.AttachInstancesToLoadBalancerInput = {
 
 M.AttachInstancesToLoadBalancerOutput = {
     type = "structure",
+    id = "AttachInstancesToLoadBalancerOutput",
     members = {
         operations = {
             type = "list",
@@ -839,6 +871,7 @@ M.AttachInstancesToLoadBalancerOutput = {
 
 M.AttachLoadBalancerTlsCertificateInput = {
     type = "structure",
+    id = "AttachLoadBalancerTlsCertificateInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -857,6 +890,7 @@ M.AttachLoadBalancerTlsCertificateInput = {
 
 M.AttachLoadBalancerTlsCertificateOutput = {
     type = "structure",
+    id = "AttachLoadBalancerTlsCertificateOutput",
     members = {
         operations = {
             type = "list",
@@ -867,6 +901,7 @@ M.AttachLoadBalancerTlsCertificateOutput = {
 
 M.AttachStaticIpInput = {
     type = "structure",
+    id = "AttachStaticIpInput",
     members = {
         staticIpName = {
             type = "string",
@@ -885,6 +920,7 @@ M.AttachStaticIpInput = {
 
 M.AttachStaticIpOutput = {
     type = "structure",
+    id = "AttachStaticIpOutput",
     members = {
         operations = {
             type = "list",
@@ -909,6 +945,7 @@ M.AutoSnapshotStatus = {
 
 M.AutoSnapshotDetails = {
     type = "structure",
+    id = "AutoSnapshotDetails",
     members = {
         date = {
             type = "string",
@@ -928,6 +965,7 @@ M.AutoSnapshotDetails = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         zoneName = {
             type = "string",
@@ -955,6 +993,7 @@ M.BlueprintType = {
 
 M.Blueprint = {
     type = "structure",
+    id = "Blueprint",
     members = {
         blueprintId = {
             type = "string",
@@ -1000,6 +1039,7 @@ M.Blueprint = {
 
 M.BucketAccessLogConfig = {
     type = "structure",
+    id = "BucketAccessLogConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -1018,6 +1058,7 @@ M.BucketAccessLogConfig = {
 
 M.BucketCorsRule = {
     type = "structure",
+    id = "BucketCorsRule",
     members = {
         id = {
             type = "string",
@@ -1052,6 +1093,7 @@ M.BucketCorsRule = {
 
 M.BucketCorsConfig = {
     type = "structure",
+    id = "BucketCorsConfig",
     members = {
         rules = {
             type = "list",
@@ -1062,6 +1104,7 @@ M.BucketCorsConfig = {
 
 M.BucketState = {
     type = "structure",
+    id = "BucketState",
     members = {
         code = {
             type = "string",
@@ -1074,6 +1117,7 @@ M.BucketState = {
 
 M.Bucket = {
     type = "structure",
+    id = "Bucket",
     members = {
         resourceType = {
             type = "string",
@@ -1124,6 +1168,7 @@ M.Bucket = {
 
 M.BucketBundle = {
     type = "structure",
+    id = "BucketBundle",
     members = {
         bundleId = {
             type = "string",
@@ -1153,6 +1198,7 @@ M.BucketMetricName = {
 
 M.Bundle = {
     type = "structure",
+    id = "Bundle",
     members = {
         price = {
             type = "float",
@@ -1200,6 +1246,7 @@ M.Bundle = {
 
 M.CacheBehavior = {
     type = "structure",
+    id = "CacheBehavior",
     members = {
         behavior = {
             type = "string",
@@ -1209,6 +1256,7 @@ M.CacheBehavior = {
 
 M.CacheBehaviorPerPath = {
     type = "structure",
+    id = "CacheBehaviorPerPath",
     members = {
         path = {
             type = "string",
@@ -1227,6 +1275,7 @@ M.ForwardValues = {
 
 M.CookieObject = {
     type = "structure",
+    id = "CookieObject",
     members = {
         option = {
             type = "string",
@@ -1258,6 +1307,7 @@ M.HeaderEnum = {
 
 M.HeaderObject = {
     type = "structure",
+    id = "HeaderObject",
     members = {
         option = {
             type = "string",
@@ -1271,6 +1321,7 @@ M.HeaderObject = {
 
 M.QueryStringObject = {
     type = "structure",
+    id = "QueryStringObject",
     members = {
         option = {
             type = "boolean",
@@ -1284,6 +1335,7 @@ M.QueryStringObject = {
 
 M.CacheSettings = {
     type = "structure",
+    id = "CacheSettings",
     members = {
         defaultTTL = {
             type = "long",
@@ -1314,6 +1366,7 @@ M.DnsRecordCreationStateCode = {
 
 M.DnsRecordCreationState = {
     type = "structure",
+    id = "DnsRecordCreationState",
     members = {
         code = {
             type = "string",
@@ -1326,6 +1379,7 @@ M.DnsRecordCreationState = {
 
 M.ResourceRecord = {
     type = "structure",
+    id = "ResourceRecord",
     members = {
         name = {
             type = "string",
@@ -1347,6 +1401,7 @@ M.CertificateDomainValidationStatus = {
 
 M.DomainValidationRecord = {
     type = "structure",
+    id = "DomainValidationRecord",
     members = {
         domainName = {
             type = "string",
@@ -1368,6 +1423,7 @@ M.RenewalStatus = {
 
 M.RenewalSummary = {
     type = "structure",
+    id = "RenewalSummary",
     members = {
         domainValidationRecords = {
             type = "list",
@@ -1397,6 +1453,7 @@ M.CertificateStatus = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         arn = {
             type = "string",
@@ -1474,6 +1531,7 @@ M.CertificateProvider = {
 
 M.CertificateSummary = {
     type = "structure",
+    id = "CertificateSummary",
     members = {
         certificateArn = {
             type = "string",
@@ -1502,6 +1560,7 @@ M.NetworkProtocol = {
 
 M.PortInfo = {
     type = "structure",
+    id = "PortInfo",
     members = {
         fromPort = {
             type = "integer",
@@ -1535,6 +1594,7 @@ M.PortInfo = {
 
 M.CloseInstancePublicPortsInput = {
     type = "structure",
+    id = "CloseInstancePublicPortsInput",
     members = {
         portInfo = setmetatable({ traits = {
             required = true,
@@ -1550,6 +1610,7 @@ M.CloseInstancePublicPortsInput = {
 
 M.CloseInstancePublicPortsOutput = {
     type = "structure",
+    id = "CloseInstancePublicPortsOutput",
     members = {
         operation = M.Operation,
     },
@@ -1557,6 +1618,7 @@ M.CloseInstancePublicPortsOutput = {
 
 M.DestinationInfo = {
     type = "structure",
+    id = "DestinationInfo",
     members = {
         id = {
             type = "string",
@@ -1573,6 +1635,7 @@ M.CloudFormationStackRecordSourceType = {
 
 M.CloudFormationStackRecordSourceInfo = {
     type = "structure",
+    id = "CloudFormationStackRecordSourceInfo",
     members = {
         resourceType = {
             type = "string",
@@ -1594,6 +1657,7 @@ M.RecordState = {
 
 M.CloudFormationStackRecord = {
     type = "structure",
+    id = "CloudFormationStackRecord",
     members = {
         name = {
             type = "string",
@@ -1627,6 +1691,7 @@ M.ContactMethodStatus = {
 
 M.ContactMethod = {
     type = "structure",
+    id = "ContactMethod",
     members = {
         contactEndpoint = {
             type = "string",
@@ -1673,6 +1738,7 @@ M.ContainerServiceProtocol = {
 
 M.Container = {
     type = "structure",
+    id = "Container",
     members = {
         image = {
             type = "string",
@@ -1696,6 +1762,7 @@ M.Container = {
 
 M.ContainerImage = {
     type = "structure",
+    id = "ContainerImage",
     members = {
         image = {
             type = "string",
@@ -1711,6 +1778,7 @@ M.ContainerImage = {
 
 M.ContainerServiceHealthCheckConfig = {
     type = "structure",
+    id = "ContainerServiceHealthCheckConfig",
     members = {
         healthyThreshold = {
             type = "integer",
@@ -1735,6 +1803,7 @@ M.ContainerServiceHealthCheckConfig = {
 
 M.ContainerServiceEndpoint = {
     type = "structure",
+    id = "ContainerServiceEndpoint",
     members = {
         containerName = {
             type = "string",
@@ -1755,6 +1824,7 @@ M.ContainerServiceDeploymentState = {
 
 M.ContainerServiceDeployment = {
     type = "structure",
+    id = "ContainerServiceDeployment",
     members = {
         version = {
             type = "integer",
@@ -1785,6 +1855,7 @@ M.ContainerServicePowerName = {
 
 M.ContainerServiceECRImagePullerRole = {
     type = "structure",
+    id = "ContainerServiceECRImagePullerRole",
     members = {
         isActive = {
             type = "boolean",
@@ -1797,6 +1868,7 @@ M.ContainerServiceECRImagePullerRole = {
 
 M.PrivateRegistryAccess = {
     type = "structure",
+    id = "PrivateRegistryAccess",
     members = {
         ecrImagePullerRole = M.ContainerServiceECRImagePullerRole,
     },
@@ -1826,6 +1898,7 @@ M.ContainerServiceStateDetailCode = {
 
 M.ContainerServiceStateDetail = {
     type = "structure",
+    id = "ContainerServiceStateDetail",
     members = {
         code = {
             type = "string",
@@ -1838,6 +1911,7 @@ M.ContainerServiceStateDetail = {
 
 M.ContainerService = {
     type = "structure",
+    id = "ContainerService",
     members = {
         containerServiceName = {
             type = "string",
@@ -1894,6 +1968,7 @@ M.ContainerService = {
 
 M.EndpointRequest = {
     type = "structure",
+    id = "EndpointRequest",
     members = {
         containerName = {
             type = "string",
@@ -1913,6 +1988,7 @@ M.EndpointRequest = {
 
 M.ContainerServiceDeploymentRequest = {
     type = "structure",
+    id = "ContainerServiceDeploymentRequest",
     members = {
         containers = {
             type = "map",
@@ -1925,6 +2001,7 @@ M.ContainerServiceDeploymentRequest = {
 
 M.ContainerServiceECRImagePullerRoleRequest = {
     type = "structure",
+    id = "ContainerServiceECRImagePullerRoleRequest",
     members = {
         isActive = {
             type = "boolean",
@@ -1934,6 +2011,7 @@ M.ContainerServiceECRImagePullerRoleRequest = {
 
 M.ContainerServiceLogEvent = {
     type = "structure",
+    id = "ContainerServiceLogEvent",
     members = {
         createdAt = {
             type = "timestamp",
@@ -1951,6 +2029,7 @@ M.ContainerServiceMetricName = {
 
 M.ContainerServicePower = {
     type = "structure",
+    id = "ContainerServicePower",
     members = {
         powerId = {
             type = "string",
@@ -1975,6 +2054,7 @@ M.ContainerServicePower = {
 
 M.ContainerServiceRegistryLogin = {
     type = "structure",
+    id = "ContainerServiceRegistryLogin",
     members = {
         username = {
             type = "string",
@@ -1993,6 +2073,7 @@ M.ContainerServiceRegistryLogin = {
 
 M.CopySnapshotInput = {
     type = "structure",
+    id = "CopySnapshotInput",
     members = {
         sourceSnapshotName = {
             type = "string",
@@ -2023,6 +2104,7 @@ M.CopySnapshotInput = {
 
 M.CopySnapshotOutput = {
     type = "structure",
+    id = "CopySnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -2045,6 +2127,7 @@ M.PricingUnit = {
 
 M.TimePeriod = {
     type = "structure",
+    id = "TimePeriod",
     members = {
         start = {
             type = "timestamp",
@@ -2057,6 +2140,7 @@ M.TimePeriod = {
 
 M.EstimateByTime = {
     type = "structure",
+    id = "EstimateByTime",
     members = {
         usageCost = {
             type = "double",
@@ -2076,6 +2160,7 @@ M.EstimateByTime = {
 
 M.CostEstimate = {
     type = "structure",
+    id = "CostEstimate",
     members = {
         usageType = {
             type = "string",
@@ -2089,6 +2174,7 @@ M.CostEstimate = {
 
 M.CreateBucketInput = {
     type = "structure",
+    id = "CreateBucketInput",
     members = {
         bucketName = {
             type = "string",
@@ -2114,6 +2200,7 @@ M.CreateBucketInput = {
 
 M.CreateBucketOutput = {
     type = "structure",
+    id = "CreateBucketOutput",
     members = {
         bucket = M.Bucket,
         operations = {
@@ -2125,6 +2212,7 @@ M.CreateBucketOutput = {
 
 M.CreateBucketAccessKeyInput = {
     type = "structure",
+    id = "CreateBucketAccessKeyInput",
     members = {
         bucketName = {
             type = "string",
@@ -2137,6 +2225,7 @@ M.CreateBucketAccessKeyInput = {
 
 M.CreateBucketAccessKeyOutput = {
     type = "structure",
+    id = "CreateBucketAccessKeyOutput",
     members = {
         accessKey = M.AccessKey,
         operations = {
@@ -2148,6 +2237,7 @@ M.CreateBucketAccessKeyOutput = {
 
 M.CreateCertificateInput = {
     type = "structure",
+    id = "CreateCertificateInput",
     members = {
         certificateName = {
             type = "string",
@@ -2174,6 +2264,7 @@ M.CreateCertificateInput = {
 
 M.CreateCertificateOutput = {
     type = "structure",
+    id = "CreateCertificateOutput",
     members = {
         certificate = M.CertificateSummary,
         operations = {
@@ -2192,6 +2283,7 @@ M.PortInfoSourceType = {
 
 M.InstanceEntry = {
     type = "structure",
+    id = "InstanceEntry",
     members = {
         sourceName = {
             type = "string",
@@ -2225,6 +2317,7 @@ M.InstanceEntry = {
 
 M.CreateCloudFormationStackInput = {
     type = "structure",
+    id = "CreateCloudFormationStackInput",
     members = {
         instances = {
             type = "list",
@@ -2238,6 +2331,7 @@ M.CreateCloudFormationStackInput = {
 
 M.CreateCloudFormationStackOutput = {
     type = "structure",
+    id = "CreateCloudFormationStackOutput",
     members = {
         operations = {
             type = "list",
@@ -2248,6 +2342,7 @@ M.CreateCloudFormationStackOutput = {
 
 M.CreateContactMethodInput = {
     type = "structure",
+    id = "CreateContactMethodInput",
     members = {
         protocol = {
             type = "string",
@@ -2270,6 +2365,7 @@ M.CreateContactMethodInput = {
 
 M.CreateContactMethodOutput = {
     type = "structure",
+    id = "CreateContactMethodOutput",
     members = {
         operations = {
             type = "list",
@@ -2280,6 +2376,7 @@ M.CreateContactMethodOutput = {
 
 M.PrivateRegistryAccessRequest = {
     type = "structure",
+    id = "PrivateRegistryAccessRequest",
     members = {
         ecrImagePullerRole = M.ContainerServiceECRImagePullerRoleRequest,
     },
@@ -2287,6 +2384,7 @@ M.PrivateRegistryAccessRequest = {
 
 M.CreateContainerServiceInput = {
     type = "structure",
+    id = "CreateContainerServiceInput",
     members = {
         serviceName = {
             type = "string",
@@ -2322,6 +2420,7 @@ M.CreateContainerServiceInput = {
 
 M.CreateContainerServiceOutput = {
     type = "structure",
+    id = "CreateContainerServiceOutput",
     members = {
         containerService = M.ContainerService,
     },
@@ -2329,6 +2428,7 @@ M.CreateContainerServiceOutput = {
 
 M.CreateContainerServiceDeploymentInput = {
     type = "structure",
+    id = "CreateContainerServiceDeploymentInput",
     members = {
         serviceName = {
             type = "string",
@@ -2348,6 +2448,7 @@ M.CreateContainerServiceDeploymentInput = {
 
 M.CreateContainerServiceDeploymentOutput = {
     type = "structure",
+    id = "CreateContainerServiceDeploymentOutput",
     members = {
         containerService = M.ContainerService,
     },
@@ -2355,10 +2456,12 @@ M.CreateContainerServiceDeploymentOutput = {
 
 M.CreateContainerServiceRegistryLoginInput = {
     type = "structure",
+    id = "CreateContainerServiceRegistryLoginInput",
 }
 
 M.CreateContainerServiceRegistryLoginOutput = {
     type = "structure",
+    id = "CreateContainerServiceRegistryLoginOutput",
     members = {
         registryLogin = M.ContainerServiceRegistryLogin,
     },
@@ -2366,6 +2469,7 @@ M.CreateContainerServiceRegistryLoginOutput = {
 
 M.CreateDiskInput = {
     type = "structure",
+    id = "CreateDiskInput",
     members = {
         diskName = {
             type = "string",
@@ -2398,6 +2502,7 @@ M.CreateDiskInput = {
 
 M.CreateDiskOutput = {
     type = "structure",
+    id = "CreateDiskOutput",
     members = {
         operations = {
             type = "list",
@@ -2408,6 +2513,7 @@ M.CreateDiskOutput = {
 
 M.CreateDiskFromSnapshotInput = {
     type = "structure",
+    id = "CreateDiskFromSnapshotInput",
     members = {
         diskName = {
             type = "string",
@@ -2452,6 +2558,7 @@ M.CreateDiskFromSnapshotInput = {
 
 M.CreateDiskFromSnapshotOutput = {
     type = "structure",
+    id = "CreateDiskFromSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -2462,6 +2569,7 @@ M.CreateDiskFromSnapshotOutput = {
 
 M.CreateDiskSnapshotInput = {
     type = "structure",
+    id = "CreateDiskSnapshotInput",
     members = {
         diskName = {
             type = "string",
@@ -2484,6 +2592,7 @@ M.CreateDiskSnapshotInput = {
 
 M.CreateDiskSnapshotOutput = {
     type = "structure",
+    id = "CreateDiskSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -2505,6 +2614,7 @@ M.OriginProtocolPolicyEnum = {
 
 M.InputOrigin = {
     type = "structure",
+    id = "InputOrigin",
     members = {
         name = {
             type = "string",
@@ -2530,6 +2640,7 @@ M.ViewerMinimumTlsProtocolVersionEnum = {
 
 M.CreateDistributionInput = {
     type = "structure",
+    id = "CreateDistributionInput",
     members = {
         distributionName = {
             type = "string",
@@ -2572,6 +2683,7 @@ M.CreateDistributionInput = {
 
 M.Origin = {
     type = "structure",
+    id = "Origin",
     members = {
         name = {
             type = "string",
@@ -2593,6 +2705,7 @@ M.Origin = {
 
 M.LightsailDistribution = {
     type = "structure",
+    id = "LightsailDistribution",
     members = {
         name = {
             type = "string",
@@ -2657,6 +2770,7 @@ M.LightsailDistribution = {
 
 M.CreateDistributionOutput = {
     type = "structure",
+    id = "CreateDistributionOutput",
     members = {
         distribution = M.LightsailDistribution,
         operation = M.Operation,
@@ -2665,6 +2779,7 @@ M.CreateDistributionOutput = {
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         domainName = {
             type = "string",
@@ -2681,6 +2796,7 @@ M.CreateDomainInput = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         operation = M.Operation,
     },
@@ -2688,6 +2804,7 @@ M.CreateDomainOutput = {
 
 M.DomainEntry = {
     type = "structure",
+    id = "DomainEntry",
     members = {
         id = {
             type = "string",
@@ -2714,6 +2831,7 @@ M.DomainEntry = {
 
 M.CreateDomainEntryInput = {
     type = "structure",
+    id = "CreateDomainEntryInput",
     members = {
         domainName = {
             type = "string",
@@ -2729,6 +2847,7 @@ M.CreateDomainEntryInput = {
 
 M.CreateDomainEntryOutput = {
     type = "structure",
+    id = "CreateDomainEntryOutput",
     members = {
         operation = M.Operation,
     },
@@ -2736,6 +2855,7 @@ M.CreateDomainEntryOutput = {
 
 M.CreateGUISessionAccessDetailsInput = {
     type = "structure",
+    id = "CreateGUISessionAccessDetailsInput",
     members = {
         resourceName = {
             type = "string",
@@ -2748,6 +2868,7 @@ M.CreateGUISessionAccessDetailsInput = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         name = {
             type = "string",
@@ -2776,6 +2897,7 @@ M.Status = {
 
 M.CreateGUISessionAccessDetailsOutput = {
     type = "structure",
+    id = "CreateGUISessionAccessDetailsOutput",
     members = {
         resourceName = {
             type = "string",
@@ -2798,6 +2920,7 @@ M.CreateGUISessionAccessDetailsOutput = {
 
 M.CreateInstancesInput = {
     type = "structure",
+    id = "CreateInstancesInput",
     members = {
         instanceNames = {
             type = "list",
@@ -2849,6 +2972,7 @@ M.CreateInstancesInput = {
 
 M.CreateInstancesOutput = {
     type = "structure",
+    id = "CreateInstancesOutput",
     members = {
         operations = {
             type = "list",
@@ -2859,6 +2983,7 @@ M.CreateInstancesOutput = {
 
 M.CreateInstancesFromSnapshotInput = {
     type = "structure",
+    id = "CreateInstancesFromSnapshotInput",
     members = {
         instanceNames = {
             type = "list",
@@ -2918,6 +3043,7 @@ M.CreateInstancesFromSnapshotInput = {
 
 M.CreateInstancesFromSnapshotOutput = {
     type = "structure",
+    id = "CreateInstancesFromSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -2928,6 +3054,7 @@ M.CreateInstancesFromSnapshotOutput = {
 
 M.CreateInstanceSnapshotInput = {
     type = "structure",
+    id = "CreateInstanceSnapshotInput",
     members = {
         instanceSnapshotName = {
             type = "string",
@@ -2950,6 +3077,7 @@ M.CreateInstanceSnapshotInput = {
 
 M.CreateInstanceSnapshotOutput = {
     type = "structure",
+    id = "CreateInstanceSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -2960,6 +3088,7 @@ M.CreateInstanceSnapshotOutput = {
 
 M.CreateKeyPairInput = {
     type = "structure",
+    id = "CreateKeyPairInput",
     members = {
         keyPairName = {
             type = "string",
@@ -2976,6 +3105,7 @@ M.CreateKeyPairInput = {
 
 M.KeyPair = {
     type = "structure",
+    id = "KeyPair",
     members = {
         name = {
             type = "string",
@@ -3005,6 +3135,7 @@ M.KeyPair = {
 
 M.CreateKeyPairOutput = {
     type = "structure",
+    id = "CreateKeyPairOutput",
     members = {
         keyPair = M.KeyPair,
         publicKeyBase64 = {
@@ -3019,6 +3150,7 @@ M.CreateKeyPairOutput = {
 
 M.CreateLoadBalancerInput = {
     type = "structure",
+    id = "CreateLoadBalancerInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -3061,6 +3193,7 @@ M.CreateLoadBalancerInput = {
 
 M.CreateLoadBalancerOutput = {
     type = "structure",
+    id = "CreateLoadBalancerOutput",
     members = {
         operations = {
             type = "list",
@@ -3071,6 +3204,7 @@ M.CreateLoadBalancerOutput = {
 
 M.CreateLoadBalancerTlsCertificateInput = {
     type = "structure",
+    id = "CreateLoadBalancerTlsCertificateInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -3103,6 +3237,7 @@ M.CreateLoadBalancerTlsCertificateInput = {
 
 M.CreateLoadBalancerTlsCertificateOutput = {
     type = "structure",
+    id = "CreateLoadBalancerTlsCertificateOutput",
     members = {
         operations = {
             type = "list",
@@ -3113,6 +3248,7 @@ M.CreateLoadBalancerTlsCertificateOutput = {
 
 M.CreateRelationalDatabaseInput = {
     type = "structure",
+    id = "CreateRelationalDatabaseInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -3168,6 +3304,7 @@ M.CreateRelationalDatabaseInput = {
 
 M.CreateRelationalDatabaseOutput = {
     type = "structure",
+    id = "CreateRelationalDatabaseOutput",
     members = {
         operations = {
             type = "list",
@@ -3178,6 +3315,7 @@ M.CreateRelationalDatabaseOutput = {
 
 M.CreateRelationalDatabaseFromSnapshotInput = {
     type = "structure",
+    id = "CreateRelationalDatabaseFromSnapshotInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -3215,6 +3353,7 @@ M.CreateRelationalDatabaseFromSnapshotInput = {
 
 M.CreateRelationalDatabaseFromSnapshotOutput = {
     type = "structure",
+    id = "CreateRelationalDatabaseFromSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -3225,6 +3364,7 @@ M.CreateRelationalDatabaseFromSnapshotOutput = {
 
 M.CreateRelationalDatabaseSnapshotInput = {
     type = "structure",
+    id = "CreateRelationalDatabaseSnapshotInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -3247,6 +3387,7 @@ M.CreateRelationalDatabaseSnapshotInput = {
 
 M.CreateRelationalDatabaseSnapshotOutput = {
     type = "structure",
+    id = "CreateRelationalDatabaseSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -3257,6 +3398,7 @@ M.CreateRelationalDatabaseSnapshotOutput = {
 
 M.DeleteAlarmInput = {
     type = "structure",
+    id = "DeleteAlarmInput",
     members = {
         alarmName = {
             type = "string",
@@ -3270,6 +3412,7 @@ M.DeleteAlarmInput = {
 
 M.DeleteAlarmOutput = {
     type = "structure",
+    id = "DeleteAlarmOutput",
     members = {
         operations = {
             type = "list",
@@ -3280,6 +3423,7 @@ M.DeleteAlarmOutput = {
 
 M.DeleteAutoSnapshotInput = {
     type = "structure",
+    id = "DeleteAutoSnapshotInput",
     members = {
         resourceName = {
             type = "string",
@@ -3298,6 +3442,7 @@ M.DeleteAutoSnapshotInput = {
 
 M.DeleteAutoSnapshotOutput = {
     type = "structure",
+    id = "DeleteAutoSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -3308,6 +3453,7 @@ M.DeleteAutoSnapshotOutput = {
 
 M.DeleteBucketInput = {
     type = "structure",
+    id = "DeleteBucketInput",
     members = {
         bucketName = {
             type = "string",
@@ -3323,6 +3469,7 @@ M.DeleteBucketInput = {
 
 M.DeleteBucketOutput = {
     type = "structure",
+    id = "DeleteBucketOutput",
     members = {
         operations = {
             type = "list",
@@ -3333,6 +3480,7 @@ M.DeleteBucketOutput = {
 
 M.DeleteBucketAccessKeyInput = {
     type = "structure",
+    id = "DeleteBucketAccessKeyInput",
     members = {
         bucketName = {
             type = "string",
@@ -3351,6 +3499,7 @@ M.DeleteBucketAccessKeyInput = {
 
 M.DeleteBucketAccessKeyOutput = {
     type = "structure",
+    id = "DeleteBucketAccessKeyOutput",
     members = {
         operations = {
             type = "list",
@@ -3361,6 +3510,7 @@ M.DeleteBucketAccessKeyOutput = {
 
 M.DeleteCertificateInput = {
     type = "structure",
+    id = "DeleteCertificateInput",
     members = {
         certificateName = {
             type = "string",
@@ -3373,6 +3523,7 @@ M.DeleteCertificateInput = {
 
 M.DeleteCertificateOutput = {
     type = "structure",
+    id = "DeleteCertificateOutput",
     members = {
         operations = {
             type = "list",
@@ -3383,6 +3534,7 @@ M.DeleteCertificateOutput = {
 
 M.DeleteContactMethodInput = {
     type = "structure",
+    id = "DeleteContactMethodInput",
     members = {
         protocol = {
             type = "string",
@@ -3395,6 +3547,7 @@ M.DeleteContactMethodInput = {
 
 M.DeleteContactMethodOutput = {
     type = "structure",
+    id = "DeleteContactMethodOutput",
     members = {
         operations = {
             type = "list",
@@ -3405,6 +3558,7 @@ M.DeleteContactMethodOutput = {
 
 M.DeleteContainerImageInput = {
     type = "structure",
+    id = "DeleteContainerImageInput",
     members = {
         serviceName = {
             type = "string",
@@ -3425,10 +3579,12 @@ M.DeleteContainerImageInput = {
 
 M.DeleteContainerImageOutput = {
     type = "structure",
+    id = "DeleteContainerImageOutput",
 }
 
 M.DeleteContainerServiceInput = {
     type = "structure",
+    id = "DeleteContainerServiceInput",
     members = {
         serviceName = {
             type = "string",
@@ -3442,10 +3598,12 @@ M.DeleteContainerServiceInput = {
 
 M.DeleteContainerServiceOutput = {
     type = "structure",
+    id = "DeleteContainerServiceOutput",
 }
 
 M.DeleteDiskInput = {
     type = "structure",
+    id = "DeleteDiskInput",
     members = {
         diskName = {
             type = "string",
@@ -3461,6 +3619,7 @@ M.DeleteDiskInput = {
 
 M.DeleteDiskOutput = {
     type = "structure",
+    id = "DeleteDiskOutput",
     members = {
         operations = {
             type = "list",
@@ -3471,6 +3630,7 @@ M.DeleteDiskOutput = {
 
 M.DeleteDiskSnapshotInput = {
     type = "structure",
+    id = "DeleteDiskSnapshotInput",
     members = {
         diskSnapshotName = {
             type = "string",
@@ -3483,6 +3643,7 @@ M.DeleteDiskSnapshotInput = {
 
 M.DeleteDiskSnapshotOutput = {
     type = "structure",
+    id = "DeleteDiskSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -3493,6 +3654,7 @@ M.DeleteDiskSnapshotOutput = {
 
 M.DeleteDistributionInput = {
     type = "structure",
+    id = "DeleteDistributionInput",
     members = {
         distributionName = {
             type = "string",
@@ -3502,6 +3664,7 @@ M.DeleteDistributionInput = {
 
 M.DeleteDistributionOutput = {
     type = "structure",
+    id = "DeleteDistributionOutput",
     members = {
         operation = M.Operation,
     },
@@ -3509,6 +3672,7 @@ M.DeleteDistributionOutput = {
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         domainName = {
             type = "string",
@@ -3521,6 +3685,7 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
     members = {
         operation = M.Operation,
     },
@@ -3528,6 +3693,7 @@ M.DeleteDomainOutput = {
 
 M.DeleteDomainEntryInput = {
     type = "structure",
+    id = "DeleteDomainEntryInput",
     members = {
         domainName = {
             type = "string",
@@ -3543,6 +3709,7 @@ M.DeleteDomainEntryInput = {
 
 M.DeleteDomainEntryOutput = {
     type = "structure",
+    id = "DeleteDomainEntryOutput",
     members = {
         operation = M.Operation,
     },
@@ -3550,6 +3717,7 @@ M.DeleteDomainEntryOutput = {
 
 M.DeleteInstanceInput = {
     type = "structure",
+    id = "DeleteInstanceInput",
     members = {
         instanceName = {
             type = "string",
@@ -3565,6 +3733,7 @@ M.DeleteInstanceInput = {
 
 M.DeleteInstanceOutput = {
     type = "structure",
+    id = "DeleteInstanceOutput",
     members = {
         operations = {
             type = "list",
@@ -3575,6 +3744,7 @@ M.DeleteInstanceOutput = {
 
 M.DeleteInstanceSnapshotInput = {
     type = "structure",
+    id = "DeleteInstanceSnapshotInput",
     members = {
         instanceSnapshotName = {
             type = "string",
@@ -3587,6 +3757,7 @@ M.DeleteInstanceSnapshotInput = {
 
 M.DeleteInstanceSnapshotOutput = {
     type = "structure",
+    id = "DeleteInstanceSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -3597,6 +3768,7 @@ M.DeleteInstanceSnapshotOutput = {
 
 M.DeleteKeyPairInput = {
     type = "structure",
+    id = "DeleteKeyPairInput",
     members = {
         keyPairName = {
             type = "string",
@@ -3612,6 +3784,7 @@ M.DeleteKeyPairInput = {
 
 M.DeleteKeyPairOutput = {
     type = "structure",
+    id = "DeleteKeyPairOutput",
     members = {
         operation = M.Operation,
     },
@@ -3619,6 +3792,7 @@ M.DeleteKeyPairOutput = {
 
 M.DeleteKnownHostKeysInput = {
     type = "structure",
+    id = "DeleteKnownHostKeysInput",
     members = {
         instanceName = {
             type = "string",
@@ -3631,6 +3805,7 @@ M.DeleteKnownHostKeysInput = {
 
 M.DeleteKnownHostKeysOutput = {
     type = "structure",
+    id = "DeleteKnownHostKeysOutput",
     members = {
         operations = {
             type = "list",
@@ -3641,6 +3816,7 @@ M.DeleteKnownHostKeysOutput = {
 
 M.DeleteLoadBalancerInput = {
     type = "structure",
+    id = "DeleteLoadBalancerInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -3653,6 +3829,7 @@ M.DeleteLoadBalancerInput = {
 
 M.DeleteLoadBalancerOutput = {
     type = "structure",
+    id = "DeleteLoadBalancerOutput",
     members = {
         operations = {
             type = "list",
@@ -3663,6 +3840,7 @@ M.DeleteLoadBalancerOutput = {
 
 M.DeleteLoadBalancerTlsCertificateInput = {
     type = "structure",
+    id = "DeleteLoadBalancerTlsCertificateInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -3684,6 +3862,7 @@ M.DeleteLoadBalancerTlsCertificateInput = {
 
 M.DeleteLoadBalancerTlsCertificateOutput = {
     type = "structure",
+    id = "DeleteLoadBalancerTlsCertificateOutput",
     members = {
         operations = {
             type = "list",
@@ -3694,6 +3873,7 @@ M.DeleteLoadBalancerTlsCertificateOutput = {
 
 M.DeleteRelationalDatabaseInput = {
     type = "structure",
+    id = "DeleteRelationalDatabaseInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -3712,6 +3892,7 @@ M.DeleteRelationalDatabaseInput = {
 
 M.DeleteRelationalDatabaseOutput = {
     type = "structure",
+    id = "DeleteRelationalDatabaseOutput",
     members = {
         operations = {
             type = "list",
@@ -3722,6 +3903,7 @@ M.DeleteRelationalDatabaseOutput = {
 
 M.DeleteRelationalDatabaseSnapshotInput = {
     type = "structure",
+    id = "DeleteRelationalDatabaseSnapshotInput",
     members = {
         relationalDatabaseSnapshotName = {
             type = "string",
@@ -3734,6 +3916,7 @@ M.DeleteRelationalDatabaseSnapshotInput = {
 
 M.DeleteRelationalDatabaseSnapshotOutput = {
     type = "structure",
+    id = "DeleteRelationalDatabaseSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -3744,6 +3927,7 @@ M.DeleteRelationalDatabaseSnapshotOutput = {
 
 M.DetachCertificateFromDistributionInput = {
     type = "structure",
+    id = "DetachCertificateFromDistributionInput",
     members = {
         distributionName = {
             type = "string",
@@ -3756,6 +3940,7 @@ M.DetachCertificateFromDistributionInput = {
 
 M.DetachCertificateFromDistributionOutput = {
     type = "structure",
+    id = "DetachCertificateFromDistributionOutput",
     members = {
         operation = M.Operation,
     },
@@ -3763,6 +3948,7 @@ M.DetachCertificateFromDistributionOutput = {
 
 M.DetachDiskInput = {
     type = "structure",
+    id = "DetachDiskInput",
     members = {
         diskName = {
             type = "string",
@@ -3775,6 +3961,7 @@ M.DetachDiskInput = {
 
 M.DetachDiskOutput = {
     type = "structure",
+    id = "DetachDiskOutput",
     members = {
         operations = {
             type = "list",
@@ -3785,6 +3972,7 @@ M.DetachDiskOutput = {
 
 M.DetachInstancesFromLoadBalancerInput = {
     type = "structure",
+    id = "DetachInstancesFromLoadBalancerInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -3804,6 +3992,7 @@ M.DetachInstancesFromLoadBalancerInput = {
 
 M.DetachInstancesFromLoadBalancerOutput = {
     type = "structure",
+    id = "DetachInstancesFromLoadBalancerOutput",
     members = {
         operations = {
             type = "list",
@@ -3814,6 +4003,7 @@ M.DetachInstancesFromLoadBalancerOutput = {
 
 M.DetachStaticIpInput = {
     type = "structure",
+    id = "DetachStaticIpInput",
     members = {
         staticIpName = {
             type = "string",
@@ -3826,6 +4016,7 @@ M.DetachStaticIpInput = {
 
 M.DetachStaticIpOutput = {
     type = "structure",
+    id = "DetachStaticIpOutput",
     members = {
         operations = {
             type = "list",
@@ -3836,6 +4027,7 @@ M.DetachStaticIpOutput = {
 
 M.DisableAddOnInput = {
     type = "structure",
+    id = "DisableAddOnInput",
     members = {
         addOnType = {
             type = "string",
@@ -3854,6 +4046,7 @@ M.DisableAddOnInput = {
 
 M.DisableAddOnOutput = {
     type = "structure",
+    id = "DisableAddOnOutput",
     members = {
         operations = {
             type = "list",
@@ -3872,6 +4065,7 @@ M.DiskState = {
 
 M.Disk = {
     type = "structure",
+    id = "Disk",
     members = {
         name = {
             type = "string",
@@ -3932,6 +4126,7 @@ M.Disk = {
 
 M.DiskInfo = {
     type = "structure",
+    id = "DiskInfo",
     members = {
         name = {
             type = "string",
@@ -3957,6 +4152,7 @@ M.DiskSnapshotState = {
 
 M.DiskSnapshot = {
     type = "structure",
+    id = "DiskSnapshot",
     members = {
         name = {
             type = "string",
@@ -4007,6 +4203,7 @@ M.DiskSnapshot = {
 
 M.DiskSnapshotInfo = {
     type = "structure",
+    id = "DiskSnapshotInfo",
     members = {
         sizeInGb = {
             type = "integer",
@@ -4016,6 +4213,7 @@ M.DiskSnapshotInfo = {
 
 M.DistributionBundle = {
     type = "structure",
+    id = "DistributionBundle",
     members = {
         bundleId = {
             type = "string",
@@ -4053,6 +4251,7 @@ M.NameServersUpdateStateCode = {
 
 M.NameServersUpdateState = {
     type = "structure",
+    id = "NameServersUpdateState",
     members = {
         code = {
             type = "string",
@@ -4072,6 +4271,7 @@ M.R53HostedZoneDeletionStateCode = {
 
 M.R53HostedZoneDeletionState = {
     type = "structure",
+    id = "R53HostedZoneDeletionState",
     members = {
         code = {
             type = "string",
@@ -4084,6 +4284,7 @@ M.R53HostedZoneDeletionState = {
 
 M.RegisteredDomainDelegationInfo = {
     type = "structure",
+    id = "RegisteredDomainDelegationInfo",
     members = {
         nameServersUpdateState = M.NameServersUpdateState,
         r53HostedZoneDeletionState = M.R53HostedZoneDeletionState,
@@ -4092,6 +4293,7 @@ M.RegisteredDomainDelegationInfo = {
 
 M.Domain = {
     type = "structure",
+    id = "Domain",
     members = {
         name = {
             type = "string",
@@ -4123,10 +4325,12 @@ M.Domain = {
 
 M.DownloadDefaultKeyPairInput = {
     type = "structure",
+    id = "DownloadDefaultKeyPairInput",
 }
 
 M.DownloadDefaultKeyPairOutput = {
     type = "structure",
+    id = "DownloadDefaultKeyPairOutput",
     members = {
         publicKeyBase64 = {
             type = "string",
@@ -4142,6 +4346,7 @@ M.DownloadDefaultKeyPairOutput = {
 
 M.EnableAddOnInput = {
     type = "structure",
+    id = "EnableAddOnInput",
     members = {
         resourceName = {
             type = "string",
@@ -4157,6 +4362,7 @@ M.EnableAddOnInput = {
 
 M.EnableAddOnOutput = {
     type = "structure",
+    id = "EnableAddOnOutput",
     members = {
         operations = {
             type = "list",
@@ -4167,6 +4373,7 @@ M.EnableAddOnOutput = {
 
 M.ExportSnapshotInput = {
     type = "structure",
+    id = "ExportSnapshotInput",
     members = {
         sourceSnapshotName = {
             type = "string",
@@ -4179,6 +4386,7 @@ M.ExportSnapshotInput = {
 
 M.ExportSnapshotOutput = {
     type = "structure",
+    id = "ExportSnapshotOutput",
     members = {
         operations = {
             type = "list",
@@ -4189,6 +4397,7 @@ M.ExportSnapshotOutput = {
 
 M.InstanceSnapshotInfo = {
     type = "structure",
+    id = "InstanceSnapshotInfo",
     members = {
         fromBundleId = {
             type = "string",
@@ -4210,6 +4419,7 @@ M.ExportSnapshotRecordSourceType = {
 
 M.ExportSnapshotRecordSourceInfo = {
     type = "structure",
+    id = "ExportSnapshotRecordSourceInfo",
     members = {
         resourceType = {
             type = "string",
@@ -4236,6 +4446,7 @@ M.ExportSnapshotRecordSourceInfo = {
 
 M.ExportSnapshotRecord = {
     type = "structure",
+    id = "ExportSnapshotRecord",
     members = {
         name = {
             type = "string",
@@ -4260,6 +4471,7 @@ M.ExportSnapshotRecord = {
 
 M.GetActiveNamesInput = {
     type = "structure",
+    id = "GetActiveNamesInput",
     members = {
         pageToken = {
             type = "string",
@@ -4269,6 +4481,7 @@ M.GetActiveNamesInput = {
 
 M.GetActiveNamesOutput = {
     type = "structure",
+    id = "GetActiveNamesOutput",
     members = {
         activeNames = {
             type = "list",
@@ -4282,6 +4495,7 @@ M.GetActiveNamesOutput = {
 
 M.GetAlarmsInput = {
     type = "structure",
+    id = "GetAlarmsInput",
     members = {
         alarmName = {
             type = "string",
@@ -4306,6 +4520,7 @@ M.GetAlarmsInput = {
 
 M.GetAlarmsOutput = {
     type = "structure",
+    id = "GetAlarmsOutput",
     members = {
         alarms = {
             type = "list",
@@ -4319,6 +4534,7 @@ M.GetAlarmsOutput = {
 
 M.GetAutoSnapshotsInput = {
     type = "structure",
+    id = "GetAutoSnapshotsInput",
     members = {
         resourceName = {
             type = "string",
@@ -4331,6 +4547,7 @@ M.GetAutoSnapshotsInput = {
 
 M.GetAutoSnapshotsOutput = {
     type = "structure",
+    id = "GetAutoSnapshotsOutput",
     members = {
         resourceName = {
             type = "string",
@@ -4347,6 +4564,7 @@ M.GetAutoSnapshotsOutput = {
 
 M.GetBlueprintsInput = {
     type = "structure",
+    id = "GetBlueprintsInput",
     members = {
         includeInactive = {
             type = "boolean",
@@ -4362,6 +4580,7 @@ M.GetBlueprintsInput = {
 
 M.GetBlueprintsOutput = {
     type = "structure",
+    id = "GetBlueprintsOutput",
     members = {
         blueprints = {
             type = "list",
@@ -4375,6 +4594,7 @@ M.GetBlueprintsOutput = {
 
 M.GetBucketAccessKeysInput = {
     type = "structure",
+    id = "GetBucketAccessKeysInput",
     members = {
         bucketName = {
             type = "string",
@@ -4387,6 +4607,7 @@ M.GetBucketAccessKeysInput = {
 
 M.GetBucketAccessKeysOutput = {
     type = "structure",
+    id = "GetBucketAccessKeysOutput",
     members = {
         accessKeys = {
             type = "list",
@@ -4397,6 +4618,7 @@ M.GetBucketAccessKeysOutput = {
 
 M.GetBucketBundlesInput = {
     type = "structure",
+    id = "GetBucketBundlesInput",
     members = {
         includeInactive = {
             type = "boolean",
@@ -4406,6 +4628,7 @@ M.GetBucketBundlesInput = {
 
 M.GetBucketBundlesOutput = {
     type = "structure",
+    id = "GetBucketBundlesOutput",
     members = {
         bundles = {
             type = "list",
@@ -4416,6 +4639,7 @@ M.GetBucketBundlesOutput = {
 
 M.GetBucketMetricDataInput = {
     type = "structure",
+    id = "GetBucketMetricDataInput",
     members = {
         bucketName = {
             type = "string",
@@ -4465,6 +4689,7 @@ M.GetBucketMetricDataInput = {
 
 M.MetricDatapoint = {
     type = "structure",
+    id = "MetricDatapoint",
     members = {
         average = {
             type = "double",
@@ -4492,6 +4717,7 @@ M.MetricDatapoint = {
 
 M.GetBucketMetricDataOutput = {
     type = "structure",
+    id = "GetBucketMetricDataOutput",
     members = {
         metricName = {
             type = "string",
@@ -4505,6 +4731,7 @@ M.GetBucketMetricDataOutput = {
 
 M.GetBucketsInput = {
     type = "structure",
+    id = "GetBucketsInput",
     members = {
         bucketName = {
             type = "string",
@@ -4523,6 +4750,7 @@ M.GetBucketsInput = {
 
 M.GetBucketsOutput = {
     type = "structure",
+    id = "GetBucketsOutput",
     members = {
         buckets = {
             type = "list",
@@ -4537,6 +4765,7 @@ M.GetBucketsOutput = {
 
 M.GetBundlesInput = {
     type = "structure",
+    id = "GetBundlesInput",
     members = {
         includeInactive = {
             type = "boolean",
@@ -4552,6 +4781,7 @@ M.GetBundlesInput = {
 
 M.GetBundlesOutput = {
     type = "structure",
+    id = "GetBundlesOutput",
     members = {
         bundles = {
             type = "list",
@@ -4565,6 +4795,7 @@ M.GetBundlesOutput = {
 
 M.GetCertificatesInput = {
     type = "structure",
+    id = "GetCertificatesInput",
     members = {
         certificateStatuses = {
             type = "list",
@@ -4587,6 +4818,7 @@ M.GetCertificatesInput = {
 
 M.GetCertificatesOutput = {
     type = "structure",
+    id = "GetCertificatesOutput",
     members = {
         certificates = {
             type = "list",
@@ -4600,6 +4832,7 @@ M.GetCertificatesOutput = {
 
 M.GetCloudFormationStackRecordsInput = {
     type = "structure",
+    id = "GetCloudFormationStackRecordsInput",
     members = {
         pageToken = {
             type = "string",
@@ -4609,6 +4842,7 @@ M.GetCloudFormationStackRecordsInput = {
 
 M.GetCloudFormationStackRecordsOutput = {
     type = "structure",
+    id = "GetCloudFormationStackRecordsOutput",
     members = {
         cloudFormationStackRecords = {
             type = "list",
@@ -4622,6 +4856,7 @@ M.GetCloudFormationStackRecordsOutput = {
 
 M.GetContactMethodsInput = {
     type = "structure",
+    id = "GetContactMethodsInput",
     members = {
         protocols = {
             type = "list",
@@ -4635,6 +4870,7 @@ M.GetContactMethodsInput = {
 
 M.GetContactMethodsOutput = {
     type = "structure",
+    id = "GetContactMethodsOutput",
     members = {
         contactMethods = {
             type = "list",
@@ -4645,10 +4881,12 @@ M.GetContactMethodsOutput = {
 
 M.GetContainerAPIMetadataInput = {
     type = "structure",
+    id = "GetContainerAPIMetadataInput",
 }
 
 M.GetContainerAPIMetadataOutput = {
     type = "structure",
+    id = "GetContainerAPIMetadataOutput",
     members = {
         metadata = {
             type = "list",
@@ -4659,6 +4897,7 @@ M.GetContainerAPIMetadataOutput = {
 
 M.GetContainerImagesInput = {
     type = "structure",
+    id = "GetContainerImagesInput",
     members = {
         serviceName = {
             type = "string",
@@ -4672,6 +4911,7 @@ M.GetContainerImagesInput = {
 
 M.GetContainerImagesOutput = {
     type = "structure",
+    id = "GetContainerImagesOutput",
     members = {
         containerImages = {
             type = "list",
@@ -4682,6 +4922,7 @@ M.GetContainerImagesOutput = {
 
 M.GetContainerLogInput = {
     type = "structure",
+    id = "GetContainerLogInput",
     members = {
         serviceName = {
             type = "string",
@@ -4726,6 +4967,7 @@ M.GetContainerLogInput = {
 
 M.GetContainerLogOutput = {
     type = "structure",
+    id = "GetContainerLogOutput",
     members = {
         logEvents = {
             type = "list",
@@ -4739,6 +4981,7 @@ M.GetContainerLogOutput = {
 
 M.GetContainerServiceDeploymentsInput = {
     type = "structure",
+    id = "GetContainerServiceDeploymentsInput",
     members = {
         serviceName = {
             type = "string",
@@ -4752,6 +4995,7 @@ M.GetContainerServiceDeploymentsInput = {
 
 M.GetContainerServiceDeploymentsOutput = {
     type = "structure",
+    id = "GetContainerServiceDeploymentsOutput",
     members = {
         deployments = {
             type = "list",
@@ -4762,6 +5006,7 @@ M.GetContainerServiceDeploymentsOutput = {
 
 M.GetContainerServiceMetricDataInput = {
     type = "structure",
+    id = "GetContainerServiceMetricDataInput",
     members = {
         serviceName = {
             type = "string",
@@ -4811,6 +5056,7 @@ M.GetContainerServiceMetricDataInput = {
 
 M.GetContainerServiceMetricDataOutput = {
     type = "structure",
+    id = "GetContainerServiceMetricDataOutput",
     members = {
         metricName = {
             type = "string",
@@ -4824,10 +5070,12 @@ M.GetContainerServiceMetricDataOutput = {
 
 M.GetContainerServicePowersInput = {
     type = "structure",
+    id = "GetContainerServicePowersInput",
 }
 
 M.GetContainerServicePowersOutput = {
     type = "structure",
+    id = "GetContainerServicePowersOutput",
     members = {
         powers = {
             type = "list",
@@ -4838,6 +5086,7 @@ M.GetContainerServicePowersOutput = {
 
 M.GetContainerServicesInput = {
     type = "structure",
+    id = "GetContainerServicesInput",
     members = {
         serviceName = {
             type = "string",
@@ -4850,6 +5099,7 @@ M.GetContainerServicesInput = {
 
 M.GetContainerServicesOutput = {
     type = "structure",
+    id = "GetContainerServicesOutput",
     members = {
         containerServices = {
             type = "list",
@@ -4860,6 +5110,7 @@ M.GetContainerServicesOutput = {
 
 M.GetCostEstimateInput = {
     type = "structure",
+    id = "GetCostEstimateInput",
     members = {
         resourceName = {
             type = "string",
@@ -4884,6 +5135,7 @@ M.GetCostEstimateInput = {
 
 M.ResourceBudgetEstimate = {
     type = "structure",
+    id = "ResourceBudgetEstimate",
     members = {
         resourceName = {
             type = "string",
@@ -4906,6 +5158,7 @@ M.ResourceBudgetEstimate = {
 
 M.GetCostEstimateOutput = {
     type = "structure",
+    id = "GetCostEstimateOutput",
     members = {
         resourcesBudgetEstimate = {
             type = "list",
@@ -4916,6 +5169,7 @@ M.GetCostEstimateOutput = {
 
 M.GetDiskInput = {
     type = "structure",
+    id = "GetDiskInput",
     members = {
         diskName = {
             type = "string",
@@ -4928,6 +5182,7 @@ M.GetDiskInput = {
 
 M.GetDiskOutput = {
     type = "structure",
+    id = "GetDiskOutput",
     members = {
         disk = M.Disk,
     },
@@ -4935,6 +5190,7 @@ M.GetDiskOutput = {
 
 M.GetDisksInput = {
     type = "structure",
+    id = "GetDisksInput",
     members = {
         pageToken = {
             type = "string",
@@ -4944,6 +5200,7 @@ M.GetDisksInput = {
 
 M.GetDisksOutput = {
     type = "structure",
+    id = "GetDisksOutput",
     members = {
         disks = {
             type = "list",
@@ -4957,6 +5214,7 @@ M.GetDisksOutput = {
 
 M.GetDiskSnapshotInput = {
     type = "structure",
+    id = "GetDiskSnapshotInput",
     members = {
         diskSnapshotName = {
             type = "string",
@@ -4969,6 +5227,7 @@ M.GetDiskSnapshotInput = {
 
 M.GetDiskSnapshotOutput = {
     type = "structure",
+    id = "GetDiskSnapshotOutput",
     members = {
         diskSnapshot = M.DiskSnapshot,
     },
@@ -4976,6 +5235,7 @@ M.GetDiskSnapshotOutput = {
 
 M.GetDiskSnapshotsInput = {
     type = "structure",
+    id = "GetDiskSnapshotsInput",
     members = {
         pageToken = {
             type = "string",
@@ -4985,6 +5245,7 @@ M.GetDiskSnapshotsInput = {
 
 M.GetDiskSnapshotsOutput = {
     type = "structure",
+    id = "GetDiskSnapshotsOutput",
     members = {
         diskSnapshots = {
             type = "list",
@@ -4998,10 +5259,12 @@ M.GetDiskSnapshotsOutput = {
 
 M.GetDistributionBundlesInput = {
     type = "structure",
+    id = "GetDistributionBundlesInput",
 }
 
 M.GetDistributionBundlesOutput = {
     type = "structure",
+    id = "GetDistributionBundlesOutput",
     members = {
         bundles = {
             type = "list",
@@ -5012,6 +5275,7 @@ M.GetDistributionBundlesOutput = {
 
 M.GetDistributionLatestCacheResetInput = {
     type = "structure",
+    id = "GetDistributionLatestCacheResetInput",
     members = {
         distributionName = {
             type = "string",
@@ -5021,6 +5285,7 @@ M.GetDistributionLatestCacheResetInput = {
 
 M.GetDistributionLatestCacheResetOutput = {
     type = "structure",
+    id = "GetDistributionLatestCacheResetOutput",
     members = {
         status = {
             type = "string",
@@ -5033,6 +5298,7 @@ M.GetDistributionLatestCacheResetOutput = {
 
 M.GetDistributionMetricDataInput = {
     type = "structure",
+    id = "GetDistributionMetricDataInput",
     members = {
         distributionName = {
             type = "string",
@@ -5082,6 +5348,7 @@ M.GetDistributionMetricDataInput = {
 
 M.GetDistributionMetricDataOutput = {
     type = "structure",
+    id = "GetDistributionMetricDataOutput",
     members = {
         metricName = {
             type = "string",
@@ -5095,6 +5362,7 @@ M.GetDistributionMetricDataOutput = {
 
 M.GetDistributionsInput = {
     type = "structure",
+    id = "GetDistributionsInput",
     members = {
         distributionName = {
             type = "string",
@@ -5107,6 +5375,7 @@ M.GetDistributionsInput = {
 
 M.GetDistributionsOutput = {
     type = "structure",
+    id = "GetDistributionsOutput",
     members = {
         distributions = {
             type = "list",
@@ -5120,6 +5389,7 @@ M.GetDistributionsOutput = {
 
 M.GetDomainInput = {
     type = "structure",
+    id = "GetDomainInput",
     members = {
         domainName = {
             type = "string",
@@ -5132,6 +5402,7 @@ M.GetDomainInput = {
 
 M.GetDomainOutput = {
     type = "structure",
+    id = "GetDomainOutput",
     members = {
         domain = M.Domain,
     },
@@ -5139,6 +5410,7 @@ M.GetDomainOutput = {
 
 M.GetDomainsInput = {
     type = "structure",
+    id = "GetDomainsInput",
     members = {
         pageToken = {
             type = "string",
@@ -5148,6 +5420,7 @@ M.GetDomainsInput = {
 
 M.GetDomainsOutput = {
     type = "structure",
+    id = "GetDomainsOutput",
     members = {
         domains = {
             type = "list",
@@ -5161,6 +5434,7 @@ M.GetDomainsOutput = {
 
 M.GetExportSnapshotRecordsInput = {
     type = "structure",
+    id = "GetExportSnapshotRecordsInput",
     members = {
         pageToken = {
             type = "string",
@@ -5170,6 +5444,7 @@ M.GetExportSnapshotRecordsInput = {
 
 M.GetExportSnapshotRecordsOutput = {
     type = "structure",
+    id = "GetExportSnapshotRecordsOutput",
     members = {
         exportSnapshotRecords = {
             type = "list",
@@ -5183,6 +5458,7 @@ M.GetExportSnapshotRecordsOutput = {
 
 M.GetInstanceInput = {
     type = "structure",
+    id = "GetInstanceInput",
     members = {
         instanceName = {
             type = "string",
@@ -5195,6 +5471,7 @@ M.GetInstanceInput = {
 
 M.InstanceHardware = {
     type = "structure",
+    id = "InstanceHardware",
     members = {
         cpuCount = {
             type = "integer",
@@ -5231,6 +5508,7 @@ M.InstanceMetadataState = {
 
 M.InstanceMetadataOptions = {
     type = "structure",
+    id = "InstanceMetadataOptions",
     members = {
         state = {
             type = "string",
@@ -5252,6 +5530,7 @@ M.InstanceMetadataOptions = {
 
 M.MonthlyTransfer = {
     type = "structure",
+    id = "MonthlyTransfer",
     members = {
         gbPerMonthAllocated = {
             type = "integer",
@@ -5266,6 +5545,7 @@ M.PortAccessType = {
 
 M.InstancePortInfo = {
     type = "structure",
+    id = "InstancePortInfo",
     members = {
         fromPort = {
             type = "integer",
@@ -5311,6 +5591,7 @@ M.InstancePortInfo = {
 
 M.InstanceNetworking = {
     type = "structure",
+    id = "InstanceNetworking",
     members = {
         monthlyTransfer = M.MonthlyTransfer,
         ports = {
@@ -5322,6 +5603,7 @@ M.InstanceNetworking = {
 
 M.InstanceState = {
     type = "structure",
+    id = "InstanceState",
     members = {
         code = {
             type = "integer",
@@ -5334,6 +5616,7 @@ M.InstanceState = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         name = {
             type = "string",
@@ -5399,6 +5682,7 @@ M.Instance = {
 
 M.GetInstanceOutput = {
     type = "structure",
+    id = "GetInstanceOutput",
     members = {
         instance = M.Instance,
     },
@@ -5411,6 +5695,7 @@ M.InstanceAccessProtocol = {
 
 M.GetInstanceAccessDetailsInput = {
     type = "structure",
+    id = "GetInstanceAccessDetailsInput",
     members = {
         instanceName = {
             type = "string",
@@ -5426,6 +5711,7 @@ M.GetInstanceAccessDetailsInput = {
 
 M.HostKeyAttributes = {
     type = "structure",
+    id = "HostKeyAttributes",
     members = {
         algorithm = {
             type = "string",
@@ -5453,6 +5739,7 @@ M.HostKeyAttributes = {
 
 M.PasswordData = {
     type = "structure",
+    id = "PasswordData",
     members = {
         ciphertext = {
             type = "string",
@@ -5465,6 +5752,7 @@ M.PasswordData = {
 
 M.InstanceAccessDetails = {
     type = "structure",
+    id = "InstanceAccessDetails",
     members = {
         certKey = {
             type = "string",
@@ -5504,6 +5792,7 @@ M.InstanceAccessDetails = {
 
 M.GetInstanceAccessDetailsOutput = {
     type = "structure",
+    id = "GetInstanceAccessDetailsOutput",
     members = {
         accessDetails = M.InstanceAccessDetails,
     },
@@ -5523,6 +5812,7 @@ M.InstanceMetricName = {
 
 M.GetInstanceMetricDataInput = {
     type = "structure",
+    id = "GetInstanceMetricDataInput",
     members = {
         instanceName = {
             type = "string",
@@ -5572,6 +5862,7 @@ M.GetInstanceMetricDataInput = {
 
 M.GetInstanceMetricDataOutput = {
     type = "structure",
+    id = "GetInstanceMetricDataOutput",
     members = {
         metricName = {
             type = "string",
@@ -5585,6 +5876,7 @@ M.GetInstanceMetricDataOutput = {
 
 M.GetInstancePortStatesInput = {
     type = "structure",
+    id = "GetInstancePortStatesInput",
     members = {
         instanceName = {
             type = "string",
@@ -5602,6 +5894,7 @@ M.PortState = {
 
 M.InstancePortState = {
     type = "structure",
+    id = "InstancePortState",
     members = {
         fromPort = {
             type = "integer",
@@ -5638,6 +5931,7 @@ M.InstancePortState = {
 
 M.GetInstancePortStatesOutput = {
     type = "structure",
+    id = "GetInstancePortStatesOutput",
     members = {
         portStates = {
             type = "list",
@@ -5648,6 +5942,7 @@ M.GetInstancePortStatesOutput = {
 
 M.GetInstancesInput = {
     type = "structure",
+    id = "GetInstancesInput",
     members = {
         pageToken = {
             type = "string",
@@ -5657,6 +5952,7 @@ M.GetInstancesInput = {
 
 M.GetInstancesOutput = {
     type = "structure",
+    id = "GetInstancesOutput",
     members = {
         instances = {
             type = "list",
@@ -5670,6 +5966,7 @@ M.GetInstancesOutput = {
 
 M.GetInstanceSnapshotInput = {
     type = "structure",
+    id = "GetInstanceSnapshotInput",
     members = {
         instanceSnapshotName = {
             type = "string",
@@ -5688,6 +5985,7 @@ M.InstanceSnapshotState = {
 
 M.InstanceSnapshot = {
     type = "structure",
+    id = "InstanceSnapshot",
     members = {
         name = {
             type = "string",
@@ -5742,6 +6040,7 @@ M.InstanceSnapshot = {
 
 M.GetInstanceSnapshotOutput = {
     type = "structure",
+    id = "GetInstanceSnapshotOutput",
     members = {
         instanceSnapshot = M.InstanceSnapshot,
     },
@@ -5749,6 +6048,7 @@ M.GetInstanceSnapshotOutput = {
 
 M.GetInstanceSnapshotsInput = {
     type = "structure",
+    id = "GetInstanceSnapshotsInput",
     members = {
         pageToken = {
             type = "string",
@@ -5758,6 +6058,7 @@ M.GetInstanceSnapshotsInput = {
 
 M.GetInstanceSnapshotsOutput = {
     type = "structure",
+    id = "GetInstanceSnapshotsOutput",
     members = {
         instanceSnapshots = {
             type = "list",
@@ -5771,6 +6072,7 @@ M.GetInstanceSnapshotsOutput = {
 
 M.GetInstanceStateInput = {
     type = "structure",
+    id = "GetInstanceStateInput",
     members = {
         instanceName = {
             type = "string",
@@ -5783,6 +6085,7 @@ M.GetInstanceStateInput = {
 
 M.GetInstanceStateOutput = {
     type = "structure",
+    id = "GetInstanceStateOutput",
     members = {
         state = M.InstanceState,
     },
@@ -5790,6 +6093,7 @@ M.GetInstanceStateOutput = {
 
 M.GetKeyPairInput = {
     type = "structure",
+    id = "GetKeyPairInput",
     members = {
         keyPairName = {
             type = "string",
@@ -5802,6 +6106,7 @@ M.GetKeyPairInput = {
 
 M.GetKeyPairOutput = {
     type = "structure",
+    id = "GetKeyPairOutput",
     members = {
         keyPair = M.KeyPair,
     },
@@ -5809,6 +6114,7 @@ M.GetKeyPairOutput = {
 
 M.GetKeyPairsInput = {
     type = "structure",
+    id = "GetKeyPairsInput",
     members = {
         pageToken = {
             type = "string",
@@ -5821,6 +6127,7 @@ M.GetKeyPairsInput = {
 
 M.GetKeyPairsOutput = {
     type = "structure",
+    id = "GetKeyPairsOutput",
     members = {
         keyPairs = {
             type = "list",
@@ -5834,6 +6141,7 @@ M.GetKeyPairsOutput = {
 
 M.GetLoadBalancerInput = {
     type = "structure",
+    id = "GetLoadBalancerInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -5877,6 +6185,7 @@ M.InstanceHealthReason = {
 
 M.InstanceHealthSummary = {
     type = "structure",
+    id = "InstanceHealthSummary",
     members = {
         instanceName = {
             type = "string",
@@ -5905,6 +6214,7 @@ M.LoadBalancerState = {
 
 M.LoadBalancerTlsCertificateSummary = {
     type = "structure",
+    id = "LoadBalancerTlsCertificateSummary",
     members = {
         name = {
             type = "string",
@@ -5917,6 +6227,7 @@ M.LoadBalancerTlsCertificateSummary = {
 
 M.LoadBalancer = {
     type = "structure",
+    id = "LoadBalancer",
     members = {
         name = {
             type = "string",
@@ -5984,6 +6295,7 @@ M.LoadBalancer = {
 
 M.GetLoadBalancerOutput = {
     type = "structure",
+    id = "GetLoadBalancerOutput",
     members = {
         loadBalancer = M.LoadBalancer,
     },
@@ -6006,6 +6318,7 @@ M.LoadBalancerMetricName = {
 
 M.GetLoadBalancerMetricDataInput = {
     type = "structure",
+    id = "GetLoadBalancerMetricDataInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -6055,6 +6368,7 @@ M.GetLoadBalancerMetricDataInput = {
 
 M.GetLoadBalancerMetricDataOutput = {
     type = "structure",
+    id = "GetLoadBalancerMetricDataOutput",
     members = {
         metricName = {
             type = "string",
@@ -6068,6 +6382,7 @@ M.GetLoadBalancerMetricDataOutput = {
 
 M.GetLoadBalancersInput = {
     type = "structure",
+    id = "GetLoadBalancersInput",
     members = {
         pageToken = {
             type = "string",
@@ -6077,6 +6392,7 @@ M.GetLoadBalancersInput = {
 
 M.GetLoadBalancersOutput = {
     type = "structure",
+    id = "GetLoadBalancersOutput",
     members = {
         loadBalancers = {
             type = "list",
@@ -6090,6 +6406,7 @@ M.GetLoadBalancersOutput = {
 
 M.GetLoadBalancerTlsCertificatesInput = {
     type = "structure",
+    id = "GetLoadBalancerTlsCertificatesInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -6108,6 +6425,7 @@ M.LoadBalancerTlsCertificateDnsRecordCreationStateCode = {
 
 M.LoadBalancerTlsCertificateDnsRecordCreationState = {
     type = "structure",
+    id = "LoadBalancerTlsCertificateDnsRecordCreationState",
     members = {
         code = {
             type = "string",
@@ -6126,6 +6444,7 @@ M.LoadBalancerTlsCertificateDomainStatus = {
 
 M.LoadBalancerTlsCertificateDomainValidationRecord = {
     type = "structure",
+    id = "LoadBalancerTlsCertificateDomainValidationRecord",
     members = {
         name = {
             type = "string",
@@ -6156,6 +6475,7 @@ M.LoadBalancerTlsCertificateFailureReason = {
 
 M.LoadBalancerTlsCertificateDomainValidationOption = {
     type = "structure",
+    id = "LoadBalancerTlsCertificateDomainValidationOption",
     members = {
         domainName = {
             type = "string",
@@ -6175,6 +6495,7 @@ M.LoadBalancerTlsCertificateRenewalStatus = {
 
 M.LoadBalancerTlsCertificateRenewalSummary = {
     type = "structure",
+    id = "LoadBalancerTlsCertificateRenewalSummary",
     members = {
         renewalStatus = {
             type = "string",
@@ -6212,6 +6533,7 @@ M.LoadBalancerTlsCertificateStatus = {
 
 M.LoadBalancerTlsCertificate = {
     type = "structure",
+    id = "LoadBalancerTlsCertificate",
     members = {
         name = {
             type = "string",
@@ -6292,6 +6614,7 @@ M.LoadBalancerTlsCertificate = {
 
 M.GetLoadBalancerTlsCertificatesOutput = {
     type = "structure",
+    id = "GetLoadBalancerTlsCertificatesOutput",
     members = {
         tlsCertificates = {
             type = "list",
@@ -6302,6 +6625,7 @@ M.GetLoadBalancerTlsCertificatesOutput = {
 
 M.GetLoadBalancerTlsPoliciesInput = {
     type = "structure",
+    id = "GetLoadBalancerTlsPoliciesInput",
     members = {
         pageToken = {
             type = "string",
@@ -6311,6 +6635,7 @@ M.GetLoadBalancerTlsPoliciesInput = {
 
 M.LoadBalancerTlsPolicy = {
     type = "structure",
+    id = "LoadBalancerTlsPolicy",
     members = {
         name = {
             type = "string",
@@ -6334,6 +6659,7 @@ M.LoadBalancerTlsPolicy = {
 
 M.GetLoadBalancerTlsPoliciesOutput = {
     type = "structure",
+    id = "GetLoadBalancerTlsPoliciesOutput",
     members = {
         tlsPolicies = {
             type = "list",
@@ -6347,6 +6673,7 @@ M.GetLoadBalancerTlsPoliciesOutput = {
 
 M.GetOperationInput = {
     type = "structure",
+    id = "GetOperationInput",
     members = {
         operationId = {
             type = "string",
@@ -6359,6 +6686,7 @@ M.GetOperationInput = {
 
 M.GetOperationOutput = {
     type = "structure",
+    id = "GetOperationOutput",
     members = {
         operation = M.Operation,
     },
@@ -6366,6 +6694,7 @@ M.GetOperationOutput = {
 
 M.GetOperationsInput = {
     type = "structure",
+    id = "GetOperationsInput",
     members = {
         pageToken = {
             type = "string",
@@ -6375,6 +6704,7 @@ M.GetOperationsInput = {
 
 M.GetOperationsOutput = {
     type = "structure",
+    id = "GetOperationsOutput",
     members = {
         operations = {
             type = "list",
@@ -6388,6 +6718,7 @@ M.GetOperationsOutput = {
 
 M.GetOperationsForResourceInput = {
     type = "structure",
+    id = "GetOperationsForResourceInput",
     members = {
         resourceName = {
             type = "string",
@@ -6403,6 +6734,7 @@ M.GetOperationsForResourceInput = {
 
 M.GetOperationsForResourceOutput = {
     type = "structure",
+    id = "GetOperationsForResourceOutput",
     members = {
         operations = {
             type = "list",
@@ -6419,6 +6751,7 @@ M.GetOperationsForResourceOutput = {
 
 M.GetRegionsInput = {
     type = "structure",
+    id = "GetRegionsInput",
     members = {
         includeAvailabilityZones = {
             type = "boolean",
@@ -6431,6 +6764,7 @@ M.GetRegionsInput = {
 
 M.Region = {
     type = "structure",
+    id = "Region",
     members = {
         continentCode = {
             type = "string",
@@ -6457,6 +6791,7 @@ M.Region = {
 
 M.GetRegionsOutput = {
     type = "structure",
+    id = "GetRegionsOutput",
     members = {
         regions = {
             type = "list",
@@ -6467,6 +6802,7 @@ M.GetRegionsOutput = {
 
 M.GetRelationalDatabaseInput = {
     type = "structure",
+    id = "GetRelationalDatabaseInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -6479,6 +6815,7 @@ M.GetRelationalDatabaseInput = {
 
 M.RelationalDatabaseHardware = {
     type = "structure",
+    id = "RelationalDatabaseHardware",
     members = {
         cpuCount = {
             type = "integer",
@@ -6494,6 +6831,7 @@ M.RelationalDatabaseHardware = {
 
 M.RelationalDatabaseEndpoint = {
     type = "structure",
+    id = "RelationalDatabaseEndpoint",
     members = {
         port = {
             type = "integer",
@@ -6506,6 +6844,7 @@ M.RelationalDatabaseEndpoint = {
 
 M.PendingMaintenanceAction = {
     type = "structure",
+    id = "PendingMaintenanceAction",
     members = {
         action = {
             type = "string",
@@ -6521,6 +6860,7 @@ M.PendingMaintenanceAction = {
 
 M.PendingModifiedRelationalDatabaseValues = {
     type = "structure",
+    id = "PendingModifiedRelationalDatabaseValues",
     members = {
         masterUserPassword = {
             type = "string",
@@ -6536,6 +6876,7 @@ M.PendingModifiedRelationalDatabaseValues = {
 
 M.RelationalDatabase = {
     type = "structure",
+    id = "RelationalDatabase",
     members = {
         name = {
             type = "string",
@@ -6614,6 +6955,7 @@ M.RelationalDatabase = {
 
 M.GetRelationalDatabaseOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseOutput",
     members = {
         relationalDatabase = M.RelationalDatabase,
     },
@@ -6621,6 +6963,7 @@ M.GetRelationalDatabaseOutput = {
 
 M.GetRelationalDatabaseBlueprintsInput = {
     type = "structure",
+    id = "GetRelationalDatabaseBlueprintsInput",
     members = {
         pageToken = {
             type = "string",
@@ -6634,6 +6977,7 @@ M.RelationalDatabaseEngine = {
 
 M.RelationalDatabaseBlueprint = {
     type = "structure",
+    id = "RelationalDatabaseBlueprint",
     members = {
         blueprintId = {
             type = "string",
@@ -6658,6 +7002,7 @@ M.RelationalDatabaseBlueprint = {
 
 M.GetRelationalDatabaseBlueprintsOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseBlueprintsOutput",
     members = {
         blueprints = {
             type = "list",
@@ -6671,6 +7016,7 @@ M.GetRelationalDatabaseBlueprintsOutput = {
 
 M.GetRelationalDatabaseBundlesInput = {
     type = "structure",
+    id = "GetRelationalDatabaseBundlesInput",
     members = {
         pageToken = {
             type = "string",
@@ -6683,6 +7029,7 @@ M.GetRelationalDatabaseBundlesInput = {
 
 M.RelationalDatabaseBundle = {
     type = "structure",
+    id = "RelationalDatabaseBundle",
     members = {
         bundleId = {
             type = "string",
@@ -6716,6 +7063,7 @@ M.RelationalDatabaseBundle = {
 
 M.GetRelationalDatabaseBundlesOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseBundlesOutput",
     members = {
         bundles = {
             type = "list",
@@ -6729,6 +7077,7 @@ M.GetRelationalDatabaseBundlesOutput = {
 
 M.GetRelationalDatabaseEventsInput = {
     type = "structure",
+    id = "GetRelationalDatabaseEventsInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -6747,6 +7096,7 @@ M.GetRelationalDatabaseEventsInput = {
 
 M.RelationalDatabaseEvent = {
     type = "structure",
+    id = "RelationalDatabaseEvent",
     members = {
         resource = {
             type = "string",
@@ -6766,6 +7116,7 @@ M.RelationalDatabaseEvent = {
 
 M.GetRelationalDatabaseEventsOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseEventsOutput",
     members = {
         relationalDatabaseEvents = {
             type = "list",
@@ -6779,6 +7130,7 @@ M.GetRelationalDatabaseEventsOutput = {
 
 M.GetRelationalDatabaseLogEventsInput = {
     type = "structure",
+    id = "GetRelationalDatabaseLogEventsInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -6809,6 +7161,7 @@ M.GetRelationalDatabaseLogEventsInput = {
 
 M.LogEvent = {
     type = "structure",
+    id = "LogEvent",
     members = {
         createdAt = {
             type = "timestamp",
@@ -6821,6 +7174,7 @@ M.LogEvent = {
 
 M.GetRelationalDatabaseLogEventsOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseLogEventsOutput",
     members = {
         resourceLogEvents = {
             type = "list",
@@ -6837,6 +7191,7 @@ M.GetRelationalDatabaseLogEventsOutput = {
 
 M.GetRelationalDatabaseLogStreamsInput = {
     type = "structure",
+    id = "GetRelationalDatabaseLogStreamsInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -6849,6 +7204,7 @@ M.GetRelationalDatabaseLogStreamsInput = {
 
 M.GetRelationalDatabaseLogStreamsOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseLogStreamsOutput",
     members = {
         logStreams = {
             type = "list",
@@ -6865,6 +7221,7 @@ M.RelationalDatabasePasswordVersion = {
 
 M.GetRelationalDatabaseMasterUserPasswordInput = {
     type = "structure",
+    id = "GetRelationalDatabaseMasterUserPasswordInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -6880,6 +7237,7 @@ M.GetRelationalDatabaseMasterUserPasswordInput = {
 
 M.GetRelationalDatabaseMasterUserPasswordOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseMasterUserPasswordOutput",
     members = {
         masterUserPassword = {
             type = "string",
@@ -6901,6 +7259,7 @@ M.RelationalDatabaseMetricName = {
 
 M.GetRelationalDatabaseMetricDataInput = {
     type = "structure",
+    id = "GetRelationalDatabaseMetricDataInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -6950,6 +7309,7 @@ M.GetRelationalDatabaseMetricDataInput = {
 
 M.GetRelationalDatabaseMetricDataOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseMetricDataOutput",
     members = {
         metricName = {
             type = "string",
@@ -6963,6 +7323,7 @@ M.GetRelationalDatabaseMetricDataOutput = {
 
 M.GetRelationalDatabaseParametersInput = {
     type = "structure",
+    id = "GetRelationalDatabaseParametersInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -6978,6 +7339,7 @@ M.GetRelationalDatabaseParametersInput = {
 
 M.RelationalDatabaseParameter = {
     type = "structure",
+    id = "RelationalDatabaseParameter",
     members = {
         allowedValues = {
             type = "string",
@@ -7008,6 +7370,7 @@ M.RelationalDatabaseParameter = {
 
 M.GetRelationalDatabaseParametersOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseParametersOutput",
     members = {
         parameters = {
             type = "list",
@@ -7021,6 +7384,7 @@ M.GetRelationalDatabaseParametersOutput = {
 
 M.GetRelationalDatabasesInput = {
     type = "structure",
+    id = "GetRelationalDatabasesInput",
     members = {
         pageToken = {
             type = "string",
@@ -7030,6 +7394,7 @@ M.GetRelationalDatabasesInput = {
 
 M.GetRelationalDatabasesOutput = {
     type = "structure",
+    id = "GetRelationalDatabasesOutput",
     members = {
         relationalDatabases = {
             type = "list",
@@ -7043,6 +7408,7 @@ M.GetRelationalDatabasesOutput = {
 
 M.GetRelationalDatabaseSnapshotInput = {
     type = "structure",
+    id = "GetRelationalDatabaseSnapshotInput",
     members = {
         relationalDatabaseSnapshotName = {
             type = "string",
@@ -7055,6 +7421,7 @@ M.GetRelationalDatabaseSnapshotInput = {
 
 M.RelationalDatabaseSnapshot = {
     type = "structure",
+    id = "RelationalDatabaseSnapshot",
     members = {
         name = {
             type = "string",
@@ -7105,6 +7472,7 @@ M.RelationalDatabaseSnapshot = {
 
 M.GetRelationalDatabaseSnapshotOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseSnapshotOutput",
     members = {
         relationalDatabaseSnapshot = M.RelationalDatabaseSnapshot,
     },
@@ -7112,6 +7480,7 @@ M.GetRelationalDatabaseSnapshotOutput = {
 
 M.GetRelationalDatabaseSnapshotsInput = {
     type = "structure",
+    id = "GetRelationalDatabaseSnapshotsInput",
     members = {
         pageToken = {
             type = "string",
@@ -7121,6 +7490,7 @@ M.GetRelationalDatabaseSnapshotsInput = {
 
 M.GetRelationalDatabaseSnapshotsOutput = {
     type = "structure",
+    id = "GetRelationalDatabaseSnapshotsOutput",
     members = {
         relationalDatabaseSnapshots = {
             type = "list",
@@ -7134,6 +7504,7 @@ M.GetRelationalDatabaseSnapshotsOutput = {
 
 M.GetSetupHistoryInput = {
     type = "structure",
+    id = "GetSetupHistoryInput",
     members = {
         resourceName = {
             type = "string",
@@ -7155,6 +7526,7 @@ M.SetupStatus = {
 
 M.SetupExecutionDetails = {
     type = "structure",
+    id = "SetupExecutionDetails",
     members = {
         command = {
             type = "string",
@@ -7182,6 +7554,7 @@ M.SetupExecutionDetails = {
 
 M.SetupRequest = {
     type = "structure",
+    id = "SetupRequest",
     members = {
         instanceName = {
             type = "string",
@@ -7198,6 +7571,7 @@ M.SetupRequest = {
 
 M.SetupHistoryResource = {
     type = "structure",
+    id = "SetupHistoryResource",
     members = {
         name = {
             type = "string",
@@ -7217,6 +7591,7 @@ M.SetupHistoryResource = {
 
 M.SetupHistory = {
     type = "structure",
+    id = "SetupHistory",
     members = {
         operationId = {
             type = "string",
@@ -7235,6 +7610,7 @@ M.SetupHistory = {
 
 M.GetSetupHistoryOutput = {
     type = "structure",
+    id = "GetSetupHistoryOutput",
     members = {
         setupHistory = {
             type = "list",
@@ -7248,6 +7624,7 @@ M.GetSetupHistoryOutput = {
 
 M.GetStaticIpInput = {
     type = "structure",
+    id = "GetStaticIpInput",
     members = {
         staticIpName = {
             type = "string",
@@ -7260,6 +7637,7 @@ M.GetStaticIpInput = {
 
 M.StaticIp = {
     type = "structure",
+    id = "StaticIp",
     members = {
         name = {
             type = "string",
@@ -7291,6 +7669,7 @@ M.StaticIp = {
 
 M.GetStaticIpOutput = {
     type = "structure",
+    id = "GetStaticIpOutput",
     members = {
         staticIp = M.StaticIp,
     },
@@ -7298,6 +7677,7 @@ M.GetStaticIpOutput = {
 
 M.GetStaticIpsInput = {
     type = "structure",
+    id = "GetStaticIpsInput",
     members = {
         pageToken = {
             type = "string",
@@ -7307,6 +7687,7 @@ M.GetStaticIpsInput = {
 
 M.GetStaticIpsOutput = {
     type = "structure",
+    id = "GetStaticIpsOutput",
     members = {
         staticIps = {
             type = "list",
@@ -7320,6 +7701,7 @@ M.GetStaticIpsOutput = {
 
 M.ImportKeyPairInput = {
     type = "structure",
+    id = "ImportKeyPairInput",
     members = {
         keyPairName = {
             type = "string",
@@ -7338,6 +7720,7 @@ M.ImportKeyPairInput = {
 
 M.ImportKeyPairOutput = {
     type = "structure",
+    id = "ImportKeyPairOutput",
     members = {
         operation = M.Operation,
     },
@@ -7345,10 +7728,12 @@ M.ImportKeyPairOutput = {
 
 M.IsVpcPeeredInput = {
     type = "structure",
+    id = "IsVpcPeeredInput",
 }
 
 M.IsVpcPeeredOutput = {
     type = "structure",
+    id = "IsVpcPeeredOutput",
     members = {
         isPeered = {
             type = "boolean",
@@ -7358,6 +7743,7 @@ M.IsVpcPeeredOutput = {
 
 M.OpenInstancePublicPortsInput = {
     type = "structure",
+    id = "OpenInstancePublicPortsInput",
     members = {
         portInfo = setmetatable({ traits = {
             required = true,
@@ -7373,6 +7759,7 @@ M.OpenInstancePublicPortsInput = {
 
 M.OpenInstancePublicPortsOutput = {
     type = "structure",
+    id = "OpenInstancePublicPortsOutput",
     members = {
         operation = M.Operation,
     },
@@ -7380,10 +7767,12 @@ M.OpenInstancePublicPortsOutput = {
 
 M.PeerVpcInput = {
     type = "structure",
+    id = "PeerVpcInput",
 }
 
 M.PeerVpcOutput = {
     type = "structure",
+    id = "PeerVpcOutput",
     members = {
         operation = M.Operation,
     },
@@ -7391,6 +7780,7 @@ M.PeerVpcOutput = {
 
 M.PutAlarmInput = {
     type = "structure",
+    id = "PutAlarmInput",
     members = {
         alarmName = {
             type = "string",
@@ -7454,6 +7844,7 @@ M.PutAlarmInput = {
 
 M.PutAlarmOutput = {
     type = "structure",
+    id = "PutAlarmOutput",
     members = {
         operations = {
             type = "list",
@@ -7464,6 +7855,7 @@ M.PutAlarmOutput = {
 
 M.PutInstancePublicPortsInput = {
     type = "structure",
+    id = "PutInstancePublicPortsInput",
     members = {
         portInfos = {
             type = "list",
@@ -7483,6 +7875,7 @@ M.PutInstancePublicPortsInput = {
 
 M.PutInstancePublicPortsOutput = {
     type = "structure",
+    id = "PutInstancePublicPortsOutput",
     members = {
         operation = M.Operation,
     },
@@ -7490,6 +7883,7 @@ M.PutInstancePublicPortsOutput = {
 
 M.RebootInstanceInput = {
     type = "structure",
+    id = "RebootInstanceInput",
     members = {
         instanceName = {
             type = "string",
@@ -7502,6 +7896,7 @@ M.RebootInstanceInput = {
 
 M.RebootInstanceOutput = {
     type = "structure",
+    id = "RebootInstanceOutput",
     members = {
         operations = {
             type = "list",
@@ -7512,6 +7907,7 @@ M.RebootInstanceOutput = {
 
 M.RebootRelationalDatabaseInput = {
     type = "structure",
+    id = "RebootRelationalDatabaseInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -7524,6 +7920,7 @@ M.RebootRelationalDatabaseInput = {
 
 M.RebootRelationalDatabaseOutput = {
     type = "structure",
+    id = "RebootRelationalDatabaseOutput",
     members = {
         operations = {
             type = "list",
@@ -7534,6 +7931,7 @@ M.RebootRelationalDatabaseOutput = {
 
 M.RegisterContainerImageInput = {
     type = "structure",
+    id = "RegisterContainerImageInput",
     members = {
         serviceName = {
             type = "string",
@@ -7559,6 +7957,7 @@ M.RegisterContainerImageInput = {
 
 M.RegisterContainerImageOutput = {
     type = "structure",
+    id = "RegisterContainerImageOutput",
     members = {
         containerImage = M.ContainerImage,
     },
@@ -7566,6 +7965,7 @@ M.RegisterContainerImageOutput = {
 
 M.ReleaseStaticIpInput = {
     type = "structure",
+    id = "ReleaseStaticIpInput",
     members = {
         staticIpName = {
             type = "string",
@@ -7578,6 +7978,7 @@ M.ReleaseStaticIpInput = {
 
 M.ReleaseStaticIpOutput = {
     type = "structure",
+    id = "ReleaseStaticIpOutput",
     members = {
         operations = {
             type = "list",
@@ -7588,6 +7989,7 @@ M.ReleaseStaticIpOutput = {
 
 M.ResetDistributionCacheInput = {
     type = "structure",
+    id = "ResetDistributionCacheInput",
     members = {
         distributionName = {
             type = "string",
@@ -7597,6 +7999,7 @@ M.ResetDistributionCacheInput = {
 
 M.ResetDistributionCacheOutput = {
     type = "structure",
+    id = "ResetDistributionCacheOutput",
     members = {
         status = {
             type = "string",
@@ -7610,6 +8013,7 @@ M.ResetDistributionCacheOutput = {
 
 M.SendContactMethodVerificationInput = {
     type = "structure",
+    id = "SendContactMethodVerificationInput",
     members = {
         protocol = {
             type = "string",
@@ -7622,6 +8026,7 @@ M.SendContactMethodVerificationInput = {
 
 M.SendContactMethodVerificationOutput = {
     type = "structure",
+    id = "SendContactMethodVerificationOutput",
     members = {
         operations = {
             type = "list",
@@ -7632,6 +8037,7 @@ M.SendContactMethodVerificationOutput = {
 
 M.SetIpAddressTypeInput = {
     type = "structure",
+    id = "SetIpAddressTypeInput",
     members = {
         resourceType = {
             type = "string",
@@ -7659,6 +8065,7 @@ M.SetIpAddressTypeInput = {
 
 M.SetIpAddressTypeOutput = {
     type = "structure",
+    id = "SetIpAddressTypeOutput",
     members = {
         operations = {
             type = "list",
@@ -7674,6 +8081,7 @@ M.ResourceBucketAccess = {
 
 M.SetResourceAccessForBucketInput = {
     type = "structure",
+    id = "SetResourceAccessForBucketInput",
     members = {
         resourceName = {
             type = "string",
@@ -7698,6 +8106,7 @@ M.SetResourceAccessForBucketInput = {
 
 M.SetResourceAccessForBucketOutput = {
     type = "structure",
+    id = "SetResourceAccessForBucketOutput",
     members = {
         operations = {
             type = "list",
@@ -7708,6 +8117,7 @@ M.SetResourceAccessForBucketOutput = {
 
 M.SetupInstanceHttpsInput = {
     type = "structure",
+    id = "SetupInstanceHttpsInput",
     members = {
         instanceName = {
             type = "string",
@@ -7739,6 +8149,7 @@ M.SetupInstanceHttpsInput = {
 
 M.SetupInstanceHttpsOutput = {
     type = "structure",
+    id = "SetupInstanceHttpsOutput",
     members = {
         operations = {
             type = "list",
@@ -7749,6 +8160,7 @@ M.SetupInstanceHttpsOutput = {
 
 M.StartGUISessionInput = {
     type = "structure",
+    id = "StartGUISessionInput",
     members = {
         resourceName = {
             type = "string",
@@ -7761,6 +8173,7 @@ M.StartGUISessionInput = {
 
 M.StartGUISessionOutput = {
     type = "structure",
+    id = "StartGUISessionOutput",
     members = {
         operations = {
             type = "list",
@@ -7771,6 +8184,7 @@ M.StartGUISessionOutput = {
 
 M.StartInstanceInput = {
     type = "structure",
+    id = "StartInstanceInput",
     members = {
         instanceName = {
             type = "string",
@@ -7783,6 +8197,7 @@ M.StartInstanceInput = {
 
 M.StartInstanceOutput = {
     type = "structure",
+    id = "StartInstanceOutput",
     members = {
         operations = {
             type = "list",
@@ -7793,6 +8208,7 @@ M.StartInstanceOutput = {
 
 M.StartRelationalDatabaseInput = {
     type = "structure",
+    id = "StartRelationalDatabaseInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -7805,6 +8221,7 @@ M.StartRelationalDatabaseInput = {
 
 M.StartRelationalDatabaseOutput = {
     type = "structure",
+    id = "StartRelationalDatabaseOutput",
     members = {
         operations = {
             type = "list",
@@ -7815,6 +8232,7 @@ M.StartRelationalDatabaseOutput = {
 
 M.StopGUISessionInput = {
     type = "structure",
+    id = "StopGUISessionInput",
     members = {
         resourceName = {
             type = "string",
@@ -7827,6 +8245,7 @@ M.StopGUISessionInput = {
 
 M.StopGUISessionOutput = {
     type = "structure",
+    id = "StopGUISessionOutput",
     members = {
         operations = {
             type = "list",
@@ -7837,6 +8256,7 @@ M.StopGUISessionOutput = {
 
 M.StopInstanceInput = {
     type = "structure",
+    id = "StopInstanceInput",
     members = {
         instanceName = {
             type = "string",
@@ -7852,6 +8272,7 @@ M.StopInstanceInput = {
 
 M.StopInstanceOutput = {
     type = "structure",
+    id = "StopInstanceOutput",
     members = {
         operations = {
             type = "list",
@@ -7862,6 +8283,7 @@ M.StopInstanceOutput = {
 
 M.StopRelationalDatabaseInput = {
     type = "structure",
+    id = "StopRelationalDatabaseInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -7877,6 +8299,7 @@ M.StopRelationalDatabaseInput = {
 
 M.StopRelationalDatabaseOutput = {
     type = "structure",
+    id = "StopRelationalDatabaseOutput",
     members = {
         operations = {
             type = "list",
@@ -7887,6 +8310,7 @@ M.StopRelationalDatabaseOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceName = {
             type = "string",
@@ -7909,6 +8333,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
     members = {
         operations = {
             type = "list",
@@ -7919,6 +8344,7 @@ M.TagResourceOutput = {
 
 M.TestAlarmInput = {
     type = "structure",
+    id = "TestAlarmInput",
     members = {
         alarmName = {
             type = "string",
@@ -7939,6 +8365,7 @@ M.TestAlarmInput = {
 
 M.TestAlarmOutput = {
     type = "structure",
+    id = "TestAlarmOutput",
     members = {
         operations = {
             type = "list",
@@ -7949,10 +8376,12 @@ M.TestAlarmOutput = {
 
 M.UnpeerVpcInput = {
     type = "structure",
+    id = "UnpeerVpcInput",
 }
 
 M.UnpeerVpcOutput = {
     type = "structure",
+    id = "UnpeerVpcOutput",
     members = {
         operation = M.Operation,
     },
@@ -7960,6 +8389,7 @@ M.UnpeerVpcOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceName = {
             type = "string",
@@ -7982,6 +8412,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
     members = {
         operations = {
             type = "list",
@@ -7992,6 +8423,7 @@ M.UntagResourceOutput = {
 
 M.UpdateBucketInput = {
     type = "structure",
+    id = "UpdateBucketInput",
     members = {
         bucketName = {
             type = "string",
@@ -8014,6 +8446,7 @@ M.UpdateBucketInput = {
 
 M.UpdateBucketOutput = {
     type = "structure",
+    id = "UpdateBucketOutput",
     members = {
         bucket = M.Bucket,
         operations = {
@@ -8025,6 +8458,7 @@ M.UpdateBucketOutput = {
 
 M.UpdateBucketBundleInput = {
     type = "structure",
+    id = "UpdateBucketBundleInput",
     members = {
         bucketName = {
             type = "string",
@@ -8043,6 +8477,7 @@ M.UpdateBucketBundleInput = {
 
 M.UpdateBucketBundleOutput = {
     type = "structure",
+    id = "UpdateBucketBundleOutput",
     members = {
         operations = {
             type = "list",
@@ -8053,6 +8488,7 @@ M.UpdateBucketBundleOutput = {
 
 M.UpdateContainerServiceInput = {
     type = "structure",
+    id = "UpdateContainerServiceInput",
     members = {
         serviceName = {
             type = "string",
@@ -8081,6 +8517,7 @@ M.UpdateContainerServiceInput = {
 
 M.UpdateContainerServiceOutput = {
     type = "structure",
+    id = "UpdateContainerServiceOutput",
     members = {
         containerService = M.ContainerService,
     },
@@ -8088,6 +8525,7 @@ M.UpdateContainerServiceOutput = {
 
 M.UpdateDistributionInput = {
     type = "structure",
+    id = "UpdateDistributionInput",
     members = {
         distributionName = {
             type = "string",
@@ -8119,6 +8557,7 @@ M.UpdateDistributionInput = {
 
 M.UpdateDistributionOutput = {
     type = "structure",
+    id = "UpdateDistributionOutput",
     members = {
         operation = M.Operation,
     },
@@ -8126,6 +8565,7 @@ M.UpdateDistributionOutput = {
 
 M.UpdateDistributionBundleInput = {
     type = "structure",
+    id = "UpdateDistributionBundleInput",
     members = {
         distributionName = {
             type = "string",
@@ -8138,6 +8578,7 @@ M.UpdateDistributionBundleInput = {
 
 M.UpdateDistributionBundleOutput = {
     type = "structure",
+    id = "UpdateDistributionBundleOutput",
     members = {
         operation = M.Operation,
     },
@@ -8145,6 +8586,7 @@ M.UpdateDistributionBundleOutput = {
 
 M.UpdateDomainEntryInput = {
     type = "structure",
+    id = "UpdateDomainEntryInput",
     members = {
         domainName = {
             type = "string",
@@ -8160,6 +8602,7 @@ M.UpdateDomainEntryInput = {
 
 M.UpdateDomainEntryOutput = {
     type = "structure",
+    id = "UpdateDomainEntryOutput",
     members = {
         operations = {
             type = "list",
@@ -8170,6 +8613,7 @@ M.UpdateDomainEntryOutput = {
 
 M.UpdateInstanceMetadataOptionsInput = {
     type = "structure",
+    id = "UpdateInstanceMetadataOptionsInput",
     members = {
         instanceName = {
             type = "string",
@@ -8194,6 +8638,7 @@ M.UpdateInstanceMetadataOptionsInput = {
 
 M.UpdateInstanceMetadataOptionsOutput = {
     type = "structure",
+    id = "UpdateInstanceMetadataOptionsOutput",
     members = {
         operation = M.Operation,
     },
@@ -8201,6 +8646,7 @@ M.UpdateInstanceMetadataOptionsOutput = {
 
 M.UpdateLoadBalancerAttributeInput = {
     type = "structure",
+    id = "UpdateLoadBalancerAttributeInput",
     members = {
         loadBalancerName = {
             type = "string",
@@ -8225,6 +8671,7 @@ M.UpdateLoadBalancerAttributeInput = {
 
 M.UpdateLoadBalancerAttributeOutput = {
     type = "structure",
+    id = "UpdateLoadBalancerAttributeOutput",
     members = {
         operations = {
             type = "list",
@@ -8235,6 +8682,7 @@ M.UpdateLoadBalancerAttributeOutput = {
 
 M.UpdateRelationalDatabaseInput = {
     type = "structure",
+    id = "UpdateRelationalDatabaseInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -8277,6 +8725,7 @@ M.UpdateRelationalDatabaseInput = {
 
 M.UpdateRelationalDatabaseOutput = {
     type = "structure",
+    id = "UpdateRelationalDatabaseOutput",
     members = {
         operations = {
             type = "list",
@@ -8287,6 +8736,7 @@ M.UpdateRelationalDatabaseOutput = {
 
 M.UpdateRelationalDatabaseParametersInput = {
     type = "structure",
+    id = "UpdateRelationalDatabaseParametersInput",
     members = {
         relationalDatabaseName = {
             type = "string",
@@ -8306,6 +8756,7 @@ M.UpdateRelationalDatabaseParametersInput = {
 
 M.UpdateRelationalDatabaseParametersOutput = {
     type = "structure",
+    id = "UpdateRelationalDatabaseParametersOutput",
     members = {
         operations = {
             type = "list",

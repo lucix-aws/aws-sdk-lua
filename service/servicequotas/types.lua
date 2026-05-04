@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -18,14 +19,17 @@ M.AppliedLevelEnum = {
 
 M.AssociateServiceQuotaTemplateInput = {
     type = "structure",
+    id = "AssociateServiceQuotaTemplateInput",
 }
 
 M.AssociateServiceQuotaTemplateOutput = {
     type = "structure",
+    id = "AssociateServiceQuotaTemplateOutput",
 }
 
 M.AWSServiceAccessNotEnabledException = {
     type = "structure",
+    id = "AWSServiceAccessNotEnabledException",
     error = "client",
     members = {
         Message = {
@@ -36,6 +40,7 @@ M.AWSServiceAccessNotEnabledException = {
 
 M.DependencyAccessDeniedException = {
     type = "structure",
+    id = "DependencyAccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -46,6 +51,7 @@ M.DependencyAccessDeniedException = {
 
 M.NoAvailableOrganizationException = {
     type = "structure",
+    id = "NoAvailableOrganizationException",
     error = "client",
     members = {
         Message = {
@@ -56,6 +62,7 @@ M.NoAvailableOrganizationException = {
 
 M.OrganizationNotInAllFeaturesModeException = {
     type = "structure",
+    id = "OrganizationNotInAllFeaturesModeException",
     error = "client",
     members = {
         Message = {
@@ -66,6 +73,7 @@ M.OrganizationNotInAllFeaturesModeException = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         Message = {
@@ -76,6 +84,7 @@ M.ServiceException = {
 
 M.TemplatesNotAvailableInRegionException = {
     type = "structure",
+    id = "TemplatesNotAvailableInRegionException",
     error = "client",
     members = {
         Message = {
@@ -86,6 +95,7 @@ M.TemplatesNotAvailableInRegionException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -96,6 +106,7 @@ M.TooManyRequestsException = {
 
 M.CreateSupportCaseInput = {
     type = "structure",
+    id = "CreateSupportCaseInput",
     members = {
         RequestId = {
             type = "string",
@@ -108,10 +119,12 @@ M.CreateSupportCaseInput = {
 
 M.CreateSupportCaseOutput = {
     type = "structure",
+    id = "CreateSupportCaseOutput",
 }
 
 M.IllegalArgumentException = {
     type = "structure",
+    id = "IllegalArgumentException",
     error = "client",
     members = {
         Message = {
@@ -122,6 +135,7 @@ M.IllegalArgumentException = {
 
 M.InvalidResourceStateException = {
     type = "structure",
+    id = "InvalidResourceStateException",
     error = "client",
     members = {
         Message = {
@@ -132,6 +146,7 @@ M.InvalidResourceStateException = {
 
 M.NoSuchResourceException = {
     type = "structure",
+    id = "NoSuchResourceException",
     error = "client",
     members = {
         Message = {
@@ -142,6 +157,7 @@ M.NoSuchResourceException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -152,6 +168,7 @@ M.ResourceAlreadyExistsException = {
 
 M.DeleteServiceQuotaIncreaseRequestFromTemplateInput = {
     type = "structure",
+    id = "DeleteServiceQuotaIncreaseRequestFromTemplateInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -176,18 +193,22 @@ M.DeleteServiceQuotaIncreaseRequestFromTemplateInput = {
 
 M.DeleteServiceQuotaIncreaseRequestFromTemplateOutput = {
     type = "structure",
+    id = "DeleteServiceQuotaIncreaseRequestFromTemplateOutput",
 }
 
 M.DisassociateServiceQuotaTemplateInput = {
     type = "structure",
+    id = "DisassociateServiceQuotaTemplateInput",
 }
 
 M.DisassociateServiceQuotaTemplateOutput = {
     type = "structure",
+    id = "DisassociateServiceQuotaTemplateOutput",
 }
 
 M.ServiceQuotaTemplateNotInUseException = {
     type = "structure",
+    id = "ServiceQuotaTemplateNotInUseException",
     error = "client",
     members = {
         Message = {
@@ -205,6 +226,7 @@ M.ErrorCode = {
 
 M.ErrorReason = {
     type = "structure",
+    id = "ErrorReason",
     members = {
         ErrorCode = {
             type = "string",
@@ -217,6 +239,7 @@ M.ErrorReason = {
 
 M.QuotaInfo = {
     type = "structure",
+    id = "QuotaInfo",
     members = {
         QuotaCode = {
             type = "string",
@@ -229,6 +252,7 @@ M.QuotaInfo = {
 
 M.GetAssociationForServiceQuotaTemplateInput = {
     type = "structure",
+    id = "GetAssociationForServiceQuotaTemplateInput",
 }
 
 M.ServiceQuotaTemplateAssociationStatus = {
@@ -238,6 +262,7 @@ M.ServiceQuotaTemplateAssociationStatus = {
 
 M.GetAssociationForServiceQuotaTemplateOutput = {
     type = "structure",
+    id = "GetAssociationForServiceQuotaTemplateOutput",
     members = {
         ServiceQuotaTemplateAssociationStatus = {
             type = "string",
@@ -247,6 +272,7 @@ M.GetAssociationForServiceQuotaTemplateOutput = {
 
 M.GetAutoManagementConfigurationInput = {
     type = "structure",
+    id = "GetAutoManagementConfigurationInput",
 }
 
 M.OptInLevel = {
@@ -265,6 +291,7 @@ M.OptInType = {
 
 M.GetAutoManagementConfigurationOutput = {
     type = "structure",
+    id = "GetAutoManagementConfigurationOutput",
     members = {
         OptInLevel = {
             type = "string",
@@ -288,6 +315,7 @@ M.GetAutoManagementConfigurationOutput = {
 
 M.GetAWSDefaultServiceQuotaInput = {
     type = "structure",
+    id = "GetAWSDefaultServiceQuotaInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -316,6 +344,7 @@ M.PeriodUnit = {
 
 M.QuotaPeriod = {
     type = "structure",
+    id = "QuotaPeriod",
     members = {
         PeriodValue = {
             type = "integer",
@@ -333,6 +362,7 @@ M.QuotaContextScope = {
 
 M.QuotaContextInfo = {
     type = "structure",
+    id = "QuotaContextInfo",
     members = {
         ContextScope = {
             type = "string",
@@ -348,6 +378,7 @@ M.QuotaContextInfo = {
 
 M.MetricInfo = {
     type = "structure",
+    id = "MetricInfo",
     members = {
         MetricNamespace = {
             type = "string",
@@ -368,6 +399,7 @@ M.MetricInfo = {
 
 M.ServiceQuota = {
     type = "structure",
+    id = "ServiceQuota",
     members = {
         ServiceCode = {
             type = "string",
@@ -417,6 +449,7 @@ M.ServiceQuota = {
 
 M.GetAWSDefaultServiceQuotaOutput = {
     type = "structure",
+    id = "GetAWSDefaultServiceQuotaOutput",
     members = {
         Quota = M.ServiceQuota,
     },
@@ -424,6 +457,7 @@ M.GetAWSDefaultServiceQuotaOutput = {
 
 M.GetQuotaUtilizationReportInput = {
     type = "structure",
+    id = "GetQuotaUtilizationReportInput",
     members = {
         ReportId = {
             type = "string",
@@ -442,6 +476,7 @@ M.GetQuotaUtilizationReportInput = {
 
 M.QuotaUtilizationInfo = {
     type = "structure",
+    id = "QuotaUtilizationInfo",
     members = {
         QuotaCode = {
             type = "string",
@@ -485,6 +520,7 @@ M.ReportStatus = {
 
 M.GetQuotaUtilizationReportOutput = {
     type = "structure",
+    id = "GetQuotaUtilizationReportOutput",
     members = {
         ReportId = {
             type = "string",
@@ -516,6 +552,7 @@ M.GetQuotaUtilizationReportOutput = {
 
 M.GetRequestedServiceQuotaChangeInput = {
     type = "structure",
+    id = "GetRequestedServiceQuotaChangeInput",
     members = {
         RequestId = {
             type = "string",
@@ -542,6 +579,7 @@ M.RequestStatus = {
 
 M.RequestedServiceQuotaChange = {
     type = "structure",
+    id = "RequestedServiceQuotaChange",
     members = {
         Id = {
             type = "string",
@@ -600,6 +638,7 @@ M.RequestedServiceQuotaChange = {
 
 M.GetRequestedServiceQuotaChangeOutput = {
     type = "structure",
+    id = "GetRequestedServiceQuotaChangeOutput",
     members = {
         RequestedQuota = M.RequestedServiceQuotaChange,
     },
@@ -607,6 +646,7 @@ M.GetRequestedServiceQuotaChangeOutput = {
 
 M.GetServiceQuotaInput = {
     type = "structure",
+    id = "GetServiceQuotaInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -628,6 +668,7 @@ M.GetServiceQuotaInput = {
 
 M.GetServiceQuotaOutput = {
     type = "structure",
+    id = "GetServiceQuotaOutput",
     members = {
         Quota = M.ServiceQuota,
     },
@@ -635,6 +676,7 @@ M.GetServiceQuotaOutput = {
 
 M.GetServiceQuotaIncreaseRequestFromTemplateInput = {
     type = "structure",
+    id = "GetServiceQuotaIncreaseRequestFromTemplateInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -659,6 +701,7 @@ M.GetServiceQuotaIncreaseRequestFromTemplateInput = {
 
 M.ServiceQuotaIncreaseRequestInTemplate = {
     type = "structure",
+    id = "ServiceQuotaIncreaseRequestInTemplate",
     members = {
         ServiceCode = {
             type = "string",
@@ -692,6 +735,7 @@ M.ServiceQuotaIncreaseRequestInTemplate = {
 
 M.GetServiceQuotaIncreaseRequestFromTemplateOutput = {
     type = "structure",
+    id = "GetServiceQuotaIncreaseRequestFromTemplateOutput",
     members = {
         ServiceQuotaIncreaseRequestInTemplate = M.ServiceQuotaIncreaseRequestInTemplate,
     },
@@ -699,6 +743,7 @@ M.GetServiceQuotaIncreaseRequestFromTemplateOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -717,6 +762,7 @@ M.Tag = {
 
 M.InvalidPaginationTokenException = {
     type = "structure",
+    id = "InvalidPaginationTokenException",
     error = "client",
     members = {
         Message = {
@@ -727,6 +773,7 @@ M.InvalidPaginationTokenException = {
 
 M.ListAWSDefaultServiceQuotasInput = {
     type = "structure",
+    id = "ListAWSDefaultServiceQuotasInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -745,6 +792,7 @@ M.ListAWSDefaultServiceQuotasInput = {
 
 M.ListAWSDefaultServiceQuotasOutput = {
     type = "structure",
+    id = "ListAWSDefaultServiceQuotasOutput",
     members = {
         NextToken = {
             type = "string",
@@ -758,6 +806,7 @@ M.ListAWSDefaultServiceQuotasOutput = {
 
 M.ListRequestedServiceQuotaChangeHistoryInput = {
     type = "structure",
+    id = "ListRequestedServiceQuotaChangeHistoryInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -779,6 +828,7 @@ M.ListRequestedServiceQuotaChangeHistoryInput = {
 
 M.ListRequestedServiceQuotaChangeHistoryOutput = {
     type = "structure",
+    id = "ListRequestedServiceQuotaChangeHistoryOutput",
     members = {
         NextToken = {
             type = "string",
@@ -792,6 +842,7 @@ M.ListRequestedServiceQuotaChangeHistoryOutput = {
 
 M.ListRequestedServiceQuotaChangeHistoryByQuotaInput = {
     type = "structure",
+    id = "ListRequestedServiceQuotaChangeHistoryByQuotaInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -822,6 +873,7 @@ M.ListRequestedServiceQuotaChangeHistoryByQuotaInput = {
 
 M.ListRequestedServiceQuotaChangeHistoryByQuotaOutput = {
     type = "structure",
+    id = "ListRequestedServiceQuotaChangeHistoryByQuotaOutput",
     members = {
         NextToken = {
             type = "string",
@@ -835,6 +887,7 @@ M.ListRequestedServiceQuotaChangeHistoryByQuotaOutput = {
 
 M.ListServiceQuotaIncreaseRequestsInTemplateInput = {
     type = "structure",
+    id = "ListServiceQuotaIncreaseRequestsInTemplateInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -853,6 +906,7 @@ M.ListServiceQuotaIncreaseRequestsInTemplateInput = {
 
 M.ListServiceQuotaIncreaseRequestsInTemplateOutput = {
     type = "structure",
+    id = "ListServiceQuotaIncreaseRequestsInTemplateOutput",
     members = {
         ServiceQuotaIncreaseRequestInTemplateList = {
             type = "list",
@@ -866,6 +920,7 @@ M.ListServiceQuotaIncreaseRequestsInTemplateOutput = {
 
 M.ListServiceQuotasInput = {
     type = "structure",
+    id = "ListServiceQuotasInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -890,6 +945,7 @@ M.ListServiceQuotasInput = {
 
 M.ListServiceQuotasOutput = {
     type = "structure",
+    id = "ListServiceQuotasOutput",
     members = {
         NextToken = {
             type = "string",
@@ -903,6 +959,7 @@ M.ListServiceQuotasOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         NextToken = {
             type = "string",
@@ -915,6 +972,7 @@ M.ListServicesInput = {
 
 M.ServiceInfo = {
     type = "structure",
+    id = "ServiceInfo",
     members = {
         ServiceCode = {
             type = "string",
@@ -927,6 +985,7 @@ M.ServiceInfo = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -940,6 +999,7 @@ M.ListServicesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -952,6 +1012,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -962,6 +1023,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutServiceQuotaIncreaseRequestIntoTemplateInput = {
     type = "structure",
+    id = "PutServiceQuotaIncreaseRequestIntoTemplateInput",
     members = {
         QuotaCode = {
             type = "string",
@@ -992,6 +1054,7 @@ M.PutServiceQuotaIncreaseRequestIntoTemplateInput = {
 
 M.PutServiceQuotaIncreaseRequestIntoTemplateOutput = {
     type = "structure",
+    id = "PutServiceQuotaIncreaseRequestIntoTemplateOutput",
     members = {
         ServiceQuotaIncreaseRequestInTemplate = M.ServiceQuotaIncreaseRequestInTemplate,
     },
@@ -999,6 +1062,7 @@ M.PutServiceQuotaIncreaseRequestIntoTemplateOutput = {
 
 M.QuotaExceededException = {
     type = "structure",
+    id = "QuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -1009,6 +1073,7 @@ M.QuotaExceededException = {
 
 M.RequestServiceQuotaIncreaseInput = {
     type = "structure",
+    id = "RequestServiceQuotaIncreaseInput",
     members = {
         ServiceCode = {
             type = "string",
@@ -1039,6 +1104,7 @@ M.RequestServiceQuotaIncreaseInput = {
 
 M.RequestServiceQuotaIncreaseOutput = {
     type = "structure",
+    id = "RequestServiceQuotaIncreaseOutput",
     members = {
         RequestedQuota = M.RequestedServiceQuotaChange,
     },
@@ -1046,6 +1112,7 @@ M.RequestServiceQuotaIncreaseOutput = {
 
 M.StartAutoManagementInput = {
     type = "structure",
+    id = "StartAutoManagementInput",
     members = {
         OptInLevel = {
             type = "string",
@@ -1072,14 +1139,17 @@ M.StartAutoManagementInput = {
 
 M.StartAutoManagementOutput = {
     type = "structure",
+    id = "StartAutoManagementOutput",
 }
 
 M.StartQuotaUtilizationReportInput = {
     type = "structure",
+    id = "StartQuotaUtilizationReportInput",
 }
 
 M.StartQuotaUtilizationReportOutput = {
     type = "structure",
+    id = "StartQuotaUtilizationReportOutput",
     members = {
         ReportId = {
             type = "string",
@@ -1095,14 +1165,17 @@ M.StartQuotaUtilizationReportOutput = {
 
 M.StopAutoManagementInput = {
     type = "structure",
+    id = "StopAutoManagementInput",
 }
 
 M.StopAutoManagementOutput = {
     type = "structure",
+    id = "StopAutoManagementOutput",
 }
 
 M.TagPolicyViolationException = {
     type = "structure",
+    id = "TagPolicyViolationException",
     error = "client",
     members = {
         Message = {
@@ -1113,6 +1186,7 @@ M.TagPolicyViolationException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1132,10 +1206,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -1146,6 +1222,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1165,10 +1242,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAutoManagementInput = {
     type = "structure",
+    id = "UpdateAutoManagementInput",
     members = {
         OptInType = {
             type = "string",
@@ -1186,6 +1265,7 @@ M.UpdateAutoManagementInput = {
 
 M.UpdateAutoManagementOutput = {
     type = "structure",
+    id = "UpdateAutoManagementOutput",
 }
 
 return M

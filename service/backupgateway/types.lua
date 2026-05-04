@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         ErrorCode = {
@@ -18,6 +19,7 @@ M.AccessDeniedException = {
 
 M.AssociateGatewayToServerInput = {
     type = "structure",
+    id = "AssociateGatewayToServerInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -36,6 +38,7 @@ M.AssociateGatewayToServerInput = {
 
 M.AssociateGatewayToServerOutput = {
     type = "structure",
+    id = "AssociateGatewayToServerOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -45,6 +48,7 @@ M.AssociateGatewayToServerOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         ErrorCode = {
@@ -61,6 +65,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         ErrorCode = {
@@ -74,6 +79,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         ErrorCode = {
@@ -90,6 +96,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         ErrorCode = {
@@ -103,6 +110,7 @@ M.ValidationException = {
 
 M.GetBandwidthRateLimitScheduleInput = {
     type = "structure",
+    id = "GetBandwidthRateLimitScheduleInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -115,6 +123,7 @@ M.GetBandwidthRateLimitScheduleInput = {
 
 M.BandwidthRateLimitInterval = {
     type = "structure",
+    id = "BandwidthRateLimitInterval",
     members = {
         AverageUploadRateLimitInBitsPerSec = {
             type = "long",
@@ -155,6 +164,7 @@ M.BandwidthRateLimitInterval = {
 
 M.GetBandwidthRateLimitScheduleOutput = {
     type = "structure",
+    id = "GetBandwidthRateLimitScheduleOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -168,6 +178,7 @@ M.GetBandwidthRateLimitScheduleOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         ErrorCode = {
@@ -181,6 +192,7 @@ M.ResourceNotFoundException = {
 
 M.PutBandwidthRateLimitScheduleInput = {
     type = "structure",
+    id = "PutBandwidthRateLimitScheduleInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -200,6 +212,7 @@ M.PutBandwidthRateLimitScheduleInput = {
 
 M.PutBandwidthRateLimitScheduleOutput = {
     type = "structure",
+    id = "PutBandwidthRateLimitScheduleOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -213,6 +226,7 @@ M.GatewayType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -231,6 +245,7 @@ M.Tag = {
 
 M.CreateGatewayInput = {
     type = "structure",
+    id = "CreateGatewayInput",
     members = {
         ActivationKey = {
             type = "string",
@@ -259,6 +274,7 @@ M.CreateGatewayInput = {
 
 M.CreateGatewayOutput = {
     type = "structure",
+    id = "CreateGatewayOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -268,6 +284,7 @@ M.CreateGatewayOutput = {
 
 M.DeleteGatewayInput = {
     type = "structure",
+    id = "DeleteGatewayInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -280,6 +297,7 @@ M.DeleteGatewayInput = {
 
 M.DeleteGatewayOutput = {
     type = "structure",
+    id = "DeleteGatewayOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -289,6 +307,7 @@ M.DeleteGatewayOutput = {
 
 M.DisassociateGatewayFromServerInput = {
     type = "structure",
+    id = "DisassociateGatewayFromServerInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -301,6 +320,7 @@ M.DisassociateGatewayFromServerInput = {
 
 M.DisassociateGatewayFromServerOutput = {
     type = "structure",
+    id = "DisassociateGatewayFromServerOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -310,6 +330,7 @@ M.DisassociateGatewayFromServerOutput = {
 
 M.GetGatewayInput = {
     type = "structure",
+    id = "GetGatewayInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -322,6 +343,7 @@ M.GetGatewayInput = {
 
 M.MaintenanceStartTime = {
     type = "structure",
+    id = "MaintenanceStartTime",
     members = {
         DayOfMonth = {
             type = "integer",
@@ -346,6 +368,7 @@ M.MaintenanceStartTime = {
 
 M.GatewayDetails = {
     type = "structure",
+    id = "GatewayDetails",
     members = {
         GatewayArn = {
             type = "string",
@@ -380,6 +403,7 @@ M.GatewayDetails = {
 
 M.GetGatewayOutput = {
     type = "structure",
+    id = "GetGatewayOutput",
     members = {
         Gateway = M.GatewayDetails,
     },
@@ -387,6 +411,7 @@ M.GetGatewayOutput = {
 
 M.ListGatewaysInput = {
     type = "structure",
+    id = "ListGatewaysInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -399,6 +424,7 @@ M.ListGatewaysInput = {
 
 M.Gateway = {
     type = "structure",
+    id = "Gateway",
     members = {
         GatewayArn = {
             type = "string",
@@ -420,6 +446,7 @@ M.Gateway = {
 
 M.ListGatewaysOutput = {
     type = "structure",
+    id = "ListGatewaysOutput",
     members = {
         Gateways = {
             type = "list",
@@ -433,6 +460,7 @@ M.ListGatewaysOutput = {
 
 M.PutMaintenanceStartTimeInput = {
     type = "structure",
+    id = "PutMaintenanceStartTimeInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -463,6 +491,7 @@ M.PutMaintenanceStartTimeInput = {
 
 M.PutMaintenanceStartTimeOutput = {
     type = "structure",
+    id = "PutMaintenanceStartTimeOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -472,6 +501,7 @@ M.PutMaintenanceStartTimeOutput = {
 
 M.TestHypervisorConfigurationInput = {
     type = "structure",
+    id = "TestHypervisorConfigurationInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -496,10 +526,12 @@ M.TestHypervisorConfigurationInput = {
 
 M.TestHypervisorConfigurationOutput = {
     type = "structure",
+    id = "TestHypervisorConfigurationOutput",
 }
 
 M.UpdateGatewayInformationInput = {
     type = "structure",
+    id = "UpdateGatewayInformationInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -515,6 +547,7 @@ M.UpdateGatewayInformationInput = {
 
 M.UpdateGatewayInformationOutput = {
     type = "structure",
+    id = "UpdateGatewayInformationOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -524,6 +557,7 @@ M.UpdateGatewayInformationOutput = {
 
 M.UpdateGatewaySoftwareNowInput = {
     type = "structure",
+    id = "UpdateGatewaySoftwareNowInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -536,6 +570,7 @@ M.UpdateGatewaySoftwareNowInput = {
 
 M.UpdateGatewaySoftwareNowOutput = {
     type = "structure",
+    id = "UpdateGatewaySoftwareNowOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -545,6 +580,7 @@ M.UpdateGatewaySoftwareNowOutput = {
 
 M.DeleteHypervisorInput = {
     type = "structure",
+    id = "DeleteHypervisorInput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -557,6 +593,7 @@ M.DeleteHypervisorInput = {
 
 M.DeleteHypervisorOutput = {
     type = "structure",
+    id = "DeleteHypervisorOutput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -566,6 +603,7 @@ M.DeleteHypervisorOutput = {
 
 M.GetHypervisorInput = {
     type = "structure",
+    id = "GetHypervisorInput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -593,6 +631,7 @@ M.HypervisorState = {
 
 M.HypervisorDetails = {
     type = "structure",
+    id = "HypervisorDetails",
     members = {
         Host = {
             type = "string",
@@ -626,6 +665,7 @@ M.HypervisorDetails = {
 
 M.GetHypervisorOutput = {
     type = "structure",
+    id = "GetHypervisorOutput",
     members = {
         Hypervisor = M.HypervisorDetails,
     },
@@ -633,6 +673,7 @@ M.GetHypervisorOutput = {
 
 M.GetHypervisorPropertyMappingsInput = {
     type = "structure",
+    id = "GetHypervisorPropertyMappingsInput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -645,6 +686,7 @@ M.GetHypervisorPropertyMappingsInput = {
 
 M.VmwareToAwsTagMapping = {
     type = "structure",
+    id = "VmwareToAwsTagMapping",
     members = {
         VmwareCategory = {
             type = "string",
@@ -675,6 +717,7 @@ M.VmwareToAwsTagMapping = {
 
 M.GetHypervisorPropertyMappingsOutput = {
     type = "structure",
+    id = "GetHypervisorPropertyMappingsOutput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -691,6 +734,7 @@ M.GetHypervisorPropertyMappingsOutput = {
 
 M.PutHypervisorPropertyMappingsInput = {
     type = "structure",
+    id = "PutHypervisorPropertyMappingsInput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -716,6 +760,7 @@ M.PutHypervisorPropertyMappingsInput = {
 
 M.PutHypervisorPropertyMappingsOutput = {
     type = "structure",
+    id = "PutHypervisorPropertyMappingsOutput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -725,6 +770,7 @@ M.PutHypervisorPropertyMappingsOutput = {
 
 M.ImportHypervisorConfigurationInput = {
     type = "structure",
+    id = "ImportHypervisorConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -756,6 +802,7 @@ M.ImportHypervisorConfigurationInput = {
 
 M.ImportHypervisorConfigurationOutput = {
     type = "structure",
+    id = "ImportHypervisorConfigurationOutput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -765,6 +812,7 @@ M.ImportHypervisorConfigurationOutput = {
 
 M.ListHypervisorsInput = {
     type = "structure",
+    id = "ListHypervisorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -777,6 +825,7 @@ M.ListHypervisorsInput = {
 
 M.Hypervisor = {
     type = "structure",
+    id = "Hypervisor",
     members = {
         Host = {
             type = "string",
@@ -798,6 +847,7 @@ M.Hypervisor = {
 
 M.ListHypervisorsOutput = {
     type = "structure",
+    id = "ListHypervisorsOutput",
     members = {
         Hypervisors = {
             type = "list",
@@ -811,6 +861,7 @@ M.ListHypervisorsOutput = {
 
 M.StartVirtualMachinesMetadataSyncInput = {
     type = "structure",
+    id = "StartVirtualMachinesMetadataSyncInput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -823,6 +874,7 @@ M.StartVirtualMachinesMetadataSyncInput = {
 
 M.StartVirtualMachinesMetadataSyncOutput = {
     type = "structure",
+    id = "StartVirtualMachinesMetadataSyncOutput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -832,6 +884,7 @@ M.StartVirtualMachinesMetadataSyncOutput = {
 
 M.UpdateHypervisorInput = {
     type = "structure",
+    id = "UpdateHypervisorInput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -859,6 +912,7 @@ M.UpdateHypervisorInput = {
 
 M.UpdateHypervisorOutput = {
     type = "structure",
+    id = "UpdateHypervisorOutput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -868,6 +922,7 @@ M.UpdateHypervisorOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -880,6 +935,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -893,6 +949,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -912,6 +969,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -921,6 +979,7 @@ M.TagResourceOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -940,6 +999,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -949,6 +1009,7 @@ M.UntagResourceOutput = {
 
 M.GetVirtualMachineInput = {
     type = "structure",
+    id = "GetVirtualMachineInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -961,6 +1022,7 @@ M.GetVirtualMachineInput = {
 
 M.VmwareTag = {
     type = "structure",
+    id = "VmwareTag",
     members = {
         VmwareCategory = {
             type = "string",
@@ -976,6 +1038,7 @@ M.VmwareTag = {
 
 M.VirtualMachineDetails = {
     type = "structure",
+    id = "VirtualMachineDetails",
     members = {
         HostName = {
             type = "string",
@@ -1004,6 +1067,7 @@ M.VirtualMachineDetails = {
 
 M.GetVirtualMachineOutput = {
     type = "structure",
+    id = "GetVirtualMachineOutput",
     members = {
         VirtualMachine = M.VirtualMachineDetails,
     },
@@ -1011,6 +1075,7 @@ M.GetVirtualMachineOutput = {
 
 M.ListVirtualMachinesInput = {
     type = "structure",
+    id = "ListVirtualMachinesInput",
     members = {
         HypervisorArn = {
             type = "string",
@@ -1026,6 +1091,7 @@ M.ListVirtualMachinesInput = {
 
 M.VirtualMachine = {
     type = "structure",
+    id = "VirtualMachine",
     members = {
         HostName = {
             type = "string",
@@ -1050,6 +1116,7 @@ M.VirtualMachine = {
 
 M.ListVirtualMachinesOutput = {
     type = "structure",
+    id = "ListVirtualMachinesOutput",
     members = {
         VirtualMachines = {
             type = "list",

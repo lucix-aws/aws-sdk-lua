@@ -14,6 +14,7 @@ M.ClusterMode = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -32,6 +33,7 @@ M.Tag = {
 
 M.Backup = {
     type = "structure",
+    id = "Backup",
     members = {
         BackupId = {
             type = "string",
@@ -92,6 +94,7 @@ M.BackupRetentionType = {
 
 M.BackupRetentionPolicy = {
     type = "structure",
+    id = "BackupRetentionPolicy",
     members = {
         Type = {
             type = "string",
@@ -104,6 +107,7 @@ M.BackupRetentionPolicy = {
 
 M.CloudHsmAccessDeniedException = {
     type = "structure",
+    id = "CloudHsmAccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -114,6 +118,7 @@ M.CloudHsmAccessDeniedException = {
 
 M.CloudHsmInternalFailureException = {
     type = "structure",
+    id = "CloudHsmInternalFailureException",
     error = "server",
     members = {
         Message = {
@@ -124,6 +129,7 @@ M.CloudHsmInternalFailureException = {
 
 M.CloudHsmInvalidRequestException = {
     type = "structure",
+    id = "CloudHsmInvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -134,6 +140,7 @@ M.CloudHsmInvalidRequestException = {
 
 M.CloudHsmResourceNotFoundException = {
     type = "structure",
+    id = "CloudHsmResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -144,6 +151,7 @@ M.CloudHsmResourceNotFoundException = {
 
 M.CloudHsmServiceException = {
     type = "structure",
+    id = "CloudHsmServiceException",
     error = "client",
     members = {
         Message = {
@@ -154,6 +162,7 @@ M.CloudHsmServiceException = {
 
 M.CloudHsmTagException = {
     type = "structure",
+    id = "CloudHsmTagException",
     error = "client",
     members = {
         Message = {
@@ -164,6 +173,7 @@ M.CloudHsmTagException = {
 
 M.CopyBackupToRegionInput = {
     type = "structure",
+    id = "CopyBackupToRegionInput",
     members = {
         DestinationRegion = {
             type = "string",
@@ -186,6 +196,7 @@ M.CopyBackupToRegionInput = {
 
 M.DestinationBackup = {
     type = "structure",
+    id = "DestinationBackup",
     members = {
         CreateTimestamp = {
             type = "timestamp",
@@ -204,6 +215,7 @@ M.DestinationBackup = {
 
 M.CopyBackupToRegionOutput = {
     type = "structure",
+    id = "CopyBackupToRegionOutput",
     members = {
         DestinationBackup = M.DestinationBackup,
     },
@@ -216,6 +228,7 @@ M.NetworkType = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         BackupRetentionPolicy = M.BackupRetentionPolicy,
         HsmType = {
@@ -249,6 +262,7 @@ M.CreateClusterInput = {
 
 M.Certificates = {
     type = "structure",
+    id = "Certificates",
     members = {
         ClusterCsr = {
             type = "string",
@@ -278,6 +292,7 @@ M.HsmState = {
 
 M.Hsm = {
     type = "structure",
+    id = "Hsm",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -331,6 +346,7 @@ M.ClusterState = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         BackupPolicy = {
             type = "string",
@@ -391,6 +407,7 @@ M.Cluster = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -398,6 +415,7 @@ M.CreateClusterOutput = {
 
 M.CreateHsmInput = {
     type = "structure",
+    id = "CreateHsmInput",
     members = {
         ClusterId = {
             type = "string",
@@ -419,6 +437,7 @@ M.CreateHsmInput = {
 
 M.CreateHsmOutput = {
     type = "structure",
+    id = "CreateHsmOutput",
     members = {
         Hsm = M.Hsm,
     },
@@ -426,6 +445,7 @@ M.CreateHsmOutput = {
 
 M.DeleteBackupInput = {
     type = "structure",
+    id = "DeleteBackupInput",
     members = {
         BackupId = {
             type = "string",
@@ -438,6 +458,7 @@ M.DeleteBackupInput = {
 
 M.DeleteBackupOutput = {
     type = "structure",
+    id = "DeleteBackupOutput",
     members = {
         Backup = M.Backup,
     },
@@ -445,6 +466,7 @@ M.DeleteBackupOutput = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -457,6 +479,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -464,6 +487,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteHsmInput = {
     type = "structure",
+    id = "DeleteHsmInput",
     members = {
         ClusterId = {
             type = "string",
@@ -485,6 +509,7 @@ M.DeleteHsmInput = {
 
 M.DeleteHsmOutput = {
     type = "structure",
+    id = "DeleteHsmOutput",
     members = {
         HsmId = {
             type = "string",
@@ -494,6 +519,7 @@ M.DeleteHsmOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -503,6 +529,7 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -515,6 +542,7 @@ M.DeleteResourcePolicyOutput = {
 
 M.DescribeBackupsInput = {
     type = "structure",
+    id = "DescribeBackupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -538,6 +566,7 @@ M.DescribeBackupsInput = {
 
 M.DescribeBackupsOutput = {
     type = "structure",
+    id = "DescribeBackupsOutput",
     members = {
         Backups = {
             type = "list",
@@ -551,6 +580,7 @@ M.DescribeBackupsOutput = {
 
 M.DescribeClustersInput = {
     type = "structure",
+    id = "DescribeClustersInput",
     members = {
         Filters = {
             type = "map",
@@ -568,6 +598,7 @@ M.DescribeClustersInput = {
 
 M.DescribeClustersOutput = {
     type = "structure",
+    id = "DescribeClustersOutput",
     members = {
         Clusters = {
             type = "list",
@@ -581,6 +612,7 @@ M.DescribeClustersOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -590,6 +622,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -599,6 +632,7 @@ M.GetResourcePolicyOutput = {
 
 M.InitializeClusterInput = {
     type = "structure",
+    id = "InitializeClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -623,6 +657,7 @@ M.InitializeClusterInput = {
 
 M.InitializeClusterOutput = {
     type = "structure",
+    id = "InitializeClusterOutput",
     members = {
         State = {
             type = "string",
@@ -635,6 +670,7 @@ M.InitializeClusterOutput = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -653,6 +689,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         TagList = {
             type = "list",
@@ -669,6 +706,7 @@ M.ListTagsOutput = {
 
 M.ModifyBackupAttributesInput = {
     type = "structure",
+    id = "ModifyBackupAttributesInput",
     members = {
         BackupId = {
             type = "string",
@@ -687,6 +725,7 @@ M.ModifyBackupAttributesInput = {
 
 M.ModifyBackupAttributesOutput = {
     type = "structure",
+    id = "ModifyBackupAttributesOutput",
     members = {
         Backup = M.Backup,
     },
@@ -694,6 +733,7 @@ M.ModifyBackupAttributesOutput = {
 
 M.ModifyClusterInput = {
     type = "structure",
+    id = "ModifyClusterInput",
     members = {
         HsmType = {
             type = "string",
@@ -710,6 +750,7 @@ M.ModifyClusterInput = {
 
 M.ModifyClusterOutput = {
     type = "structure",
+    id = "ModifyClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -717,6 +758,7 @@ M.ModifyClusterOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -729,6 +771,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -741,6 +784,7 @@ M.PutResourcePolicyOutput = {
 
 M.RestoreBackupInput = {
     type = "structure",
+    id = "RestoreBackupInput",
     members = {
         BackupId = {
             type = "string",
@@ -753,6 +797,7 @@ M.RestoreBackupInput = {
 
 M.RestoreBackupOutput = {
     type = "structure",
+    id = "RestoreBackupOutput",
     members = {
         Backup = M.Backup,
     },
@@ -760,6 +805,7 @@ M.RestoreBackupOutput = {
 
 M.CloudHsmResourceLimitExceededException = {
     type = "structure",
+    id = "CloudHsmResourceLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -770,6 +816,7 @@ M.CloudHsmResourceLimitExceededException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -789,10 +836,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceId = {
             type = "string",
@@ -812,6 +861,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

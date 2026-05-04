@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ConfigurationDefinition = {
     type = "structure",
+    id = "ConfigurationDefinition",
     members = {
         Type = {
             type = "string",
@@ -44,6 +46,7 @@ M.ConfigurationDefinition = {
 
 M.ConfigurationDefinitionInput = {
     type = "structure",
+    id = "ConfigurationDefinitionInput",
     members = {
         Type = {
             type = "string",
@@ -73,6 +76,7 @@ M.ConfigurationDefinitionInput = {
 
 M.ConfigurationDefinitionSummary = {
     type = "structure",
+    id = "ConfigurationDefinitionSummary",
     members = {
         Id = {
             type = "string",
@@ -111,6 +115,7 @@ M.StatusType = {
 
 M.StatusSummary = {
     type = "structure",
+    id = "StatusSummary",
     members = {
         StatusType = {
             type = "string",
@@ -141,6 +146,7 @@ M.StatusSummary = {
 
 M.ConfigurationManagerSummary = {
     type = "structure",
+    id = "ConfigurationManagerSummary",
     members = {
         ManagerArn = {
             type = "string",
@@ -167,6 +173,7 @@ M.ConfigurationManagerSummary = {
 
 M.ConfigurationSummary = {
     type = "structure",
+    id = "ConfigurationSummary",
     members = {
         Id = {
             type = "string",
@@ -209,6 +216,7 @@ M.ConfigurationSummary = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -219,6 +227,7 @@ M.ConflictException = {
 
 M.CreateConfigurationManagerInput = {
     type = "structure",
+    id = "CreateConfigurationManagerInput",
     members = {
         Name = {
             type = "string",
@@ -243,6 +252,7 @@ M.CreateConfigurationManagerInput = {
 
 M.CreateConfigurationManagerOutput = {
     type = "structure",
+    id = "CreateConfigurationManagerOutput",
     members = {
         ManagerArn = {
             type = "string",
@@ -255,6 +265,7 @@ M.CreateConfigurationManagerOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -265,6 +276,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -278,6 +290,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -288,6 +301,7 @@ M.ValidationException = {
 
 M.DeleteConfigurationManagerInput = {
     type = "structure",
+    id = "DeleteConfigurationManagerInput",
     members = {
         ManagerArn = {
             type = "string",
@@ -301,10 +315,12 @@ M.DeleteConfigurationManagerInput = {
 
 M.DeleteConfigurationManagerOutput = {
     type = "structure",
+    id = "DeleteConfigurationManagerOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -315,6 +331,7 @@ M.ResourceNotFoundException = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Key = {
             type = "string",
@@ -334,6 +351,7 @@ M.Filter = {
 
 M.GetConfigurationInput = {
     type = "structure",
+    id = "GetConfigurationInput",
     members = {
         ConfigurationId = {
             type = "string",
@@ -347,6 +365,7 @@ M.GetConfigurationInput = {
 
 M.GetConfigurationOutput = {
     type = "structure",
+    id = "GetConfigurationOutput",
     members = {
         Id = {
             type = "string",
@@ -395,6 +414,7 @@ M.GetConfigurationOutput = {
 
 M.GetConfigurationManagerInput = {
     type = "structure",
+    id = "GetConfigurationManagerInput",
     members = {
         ManagerArn = {
             type = "string",
@@ -408,6 +428,7 @@ M.GetConfigurationManagerInput = {
 
 M.GetConfigurationManagerOutput = {
     type = "structure",
+    id = "GetConfigurationManagerOutput",
     members = {
         ManagerArn = {
             type = "string",
@@ -451,10 +472,12 @@ M.GetConfigurationManagerOutput = {
 
 M.GetServiceSettingsInput = {
     type = "structure",
+    id = "GetServiceSettingsInput",
 }
 
 M.ServiceSettings = {
     type = "structure",
+    id = "ServiceSettings",
     members = {
         ExplorerEnablingRoleArn = {
             type = "string",
@@ -464,6 +487,7 @@ M.ServiceSettings = {
 
 M.GetServiceSettingsOutput = {
     type = "structure",
+    id = "GetServiceSettingsOutput",
     members = {
         ServiceSettings = M.ServiceSettings,
     },
@@ -471,6 +495,7 @@ M.GetServiceSettingsOutput = {
 
 M.ListConfigurationManagersInput = {
     type = "structure",
+    id = "ListConfigurationManagersInput",
     members = {
         StartingToken = {
             type = "string",
@@ -487,6 +512,7 @@ M.ListConfigurationManagersInput = {
 
 M.ListConfigurationManagersOutput = {
     type = "structure",
+    id = "ListConfigurationManagersOutput",
     members = {
         ConfigurationManagersList = {
             type = "list",
@@ -500,6 +526,7 @@ M.ListConfigurationManagersOutput = {
 
 M.ListConfigurationsInput = {
     type = "structure",
+    id = "ListConfigurationsInput",
     members = {
         StartingToken = {
             type = "string",
@@ -522,6 +549,7 @@ M.ListConfigurationsInput = {
 
 M.ListConfigurationsOutput = {
     type = "structure",
+    id = "ListConfigurationsOutput",
     members = {
         ConfigurationsList = {
             type = "list",
@@ -535,10 +563,12 @@ M.ListConfigurationsOutput = {
 
 M.ListQuickSetupTypesInput = {
     type = "structure",
+    id = "ListQuickSetupTypesInput",
 }
 
 M.QuickSetupTypeOutput = {
     type = "structure",
+    id = "QuickSetupTypeOutput",
     members = {
         Type = {
             type = "string",
@@ -551,6 +581,7 @@ M.QuickSetupTypeOutput = {
 
 M.ListQuickSetupTypesOutput = {
     type = "structure",
+    id = "ListQuickSetupTypesOutput",
     members = {
         QuickSetupTypeList = {
             type = "list",
@@ -561,6 +592,7 @@ M.ListQuickSetupTypesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -574,6 +606,7 @@ M.ListTagsForResourceInput = {
 
 M.TagEntry = {
     type = "structure",
+    id = "TagEntry",
     members = {
         Key = {
             type = "string",
@@ -586,6 +619,7 @@ M.TagEntry = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -596,6 +630,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -617,10 +652,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -642,10 +679,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConfigurationDefinitionInput = {
     type = "structure",
+    id = "UpdateConfigurationDefinitionInput",
     members = {
         ManagerArn = {
             type = "string",
@@ -680,10 +719,12 @@ M.UpdateConfigurationDefinitionInput = {
 
 M.UpdateConfigurationDefinitionOutput = {
     type = "structure",
+    id = "UpdateConfigurationDefinitionOutput",
 }
 
 M.UpdateConfigurationManagerInput = {
     type = "structure",
+    id = "UpdateConfigurationManagerInput",
     members = {
         ManagerArn = {
             type = "string",
@@ -703,10 +744,12 @@ M.UpdateConfigurationManagerInput = {
 
 M.UpdateConfigurationManagerOutput = {
     type = "structure",
+    id = "UpdateConfigurationManagerOutput",
 }
 
 M.UpdateServiceSettingsInput = {
     type = "structure",
+    id = "UpdateServiceSettingsInput",
     members = {
         ExplorerEnablingRoleArn = {
             type = "string",
@@ -716,6 +759,7 @@ M.UpdateServiceSettingsInput = {
 
 M.UpdateServiceSettingsOutput = {
     type = "structure",
+    id = "UpdateServiceSettingsOutput",
 }
 
 return M

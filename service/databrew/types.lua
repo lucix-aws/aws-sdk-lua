@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AllowedStatistics = {
     type = "structure",
+    id = "AllowedStatistics",
     members = {
         Statistics = {
             type = "list",
@@ -30,6 +32,7 @@ M.AnalyticsMode = {
 
 M.BatchDeleteRecipeVersionInput = {
     type = "structure",
+    id = "BatchDeleteRecipeVersionInput",
     members = {
         Name = {
             type = "string",
@@ -50,6 +53,7 @@ M.BatchDeleteRecipeVersionInput = {
 
 M.RecipeVersionErrorDetail = {
     type = "structure",
+    id = "RecipeVersionErrorDetail",
     members = {
         ErrorCode = {
             type = "string",
@@ -65,6 +69,7 @@ M.RecipeVersionErrorDetail = {
 
 M.BatchDeleteRecipeVersionOutput = {
     type = "structure",
+    id = "BatchDeleteRecipeVersionOutput",
     members = {
         Name = {
             type = "string",
@@ -81,6 +86,7 @@ M.BatchDeleteRecipeVersionOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -91,6 +97,7 @@ M.ConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -101,6 +108,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -119,6 +127,7 @@ M.InputFormat = {
 
 M.CsvOptions = {
     type = "structure",
+    id = "CsvOptions",
     members = {
         Delimiter = {
             type = "string",
@@ -131,6 +140,7 @@ M.CsvOptions = {
 
 M.ExcelOptions = {
     type = "structure",
+    id = "ExcelOptions",
     members = {
         SheetNames = {
             type = "list",
@@ -148,6 +158,7 @@ M.ExcelOptions = {
 
 M.JsonOptions = {
     type = "structure",
+    id = "JsonOptions",
     members = {
         MultiLine = {
             type = "boolean",
@@ -160,6 +171,7 @@ M.JsonOptions = {
 
 M.FormatOptions = {
     type = "structure",
+    id = "FormatOptions",
     members = {
         Json = M.JsonOptions,
         Excel = M.ExcelOptions,
@@ -169,6 +181,7 @@ M.FormatOptions = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         Bucket = {
             type = "string",
@@ -187,6 +200,7 @@ M.S3Location = {
 
 M.DatabaseInputDefinition = {
     type = "structure",
+    id = "DatabaseInputDefinition",
     members = {
         GlueConnectionName = {
             type = "string",
@@ -206,6 +220,7 @@ M.DatabaseInputDefinition = {
 
 M.DataCatalogInputDefinition = {
     type = "structure",
+    id = "DataCatalogInputDefinition",
     members = {
         CatalogId = {
             type = "string",
@@ -228,6 +243,7 @@ M.DataCatalogInputDefinition = {
 
 M.Metadata = {
     type = "structure",
+    id = "Metadata",
     members = {
         SourceArn = {
             type = "string",
@@ -237,6 +253,7 @@ M.Metadata = {
 
 M.Input = {
     type = "structure",
+    id = "Input",
     members = {
         S3InputDefinition = M.S3Location,
         DataCatalogInputDefinition = M.DataCatalogInputDefinition,
@@ -256,6 +273,7 @@ M.OrderedBy = {
 
 M.FilesLimit = {
     type = "structure",
+    id = "FilesLimit",
     members = {
         MaxFiles = {
             type = "integer",
@@ -274,6 +292,7 @@ M.FilesLimit = {
 
 M.FilterExpression = {
     type = "structure",
+    id = "FilterExpression",
     members = {
         Expression = {
             type = "string",
@@ -294,6 +313,7 @@ M.FilterExpression = {
 
 M.DatetimeOptions = {
     type = "structure",
+    id = "DatetimeOptions",
     members = {
         Format = {
             type = "string",
@@ -318,6 +338,7 @@ M.ParameterType = {
 
 M.DatasetParameter = {
     type = "structure",
+    id = "DatasetParameter",
     members = {
         Name = {
             type = "string",
@@ -344,6 +365,7 @@ M.DatasetParameter = {
 
 M.PathOptions = {
     type = "structure",
+    id = "PathOptions",
     members = {
         LastModifiedDateCondition = M.FilterExpression,
         FilesLimit = M.FilesLimit,
@@ -357,6 +379,7 @@ M.PathOptions = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         Name = {
             type = "string",
@@ -382,6 +405,7 @@ M.CreateDatasetInput = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         Name = {
             type = "string",
@@ -394,6 +418,7 @@ M.CreateDatasetOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -404,6 +429,7 @@ M.ServiceQuotaExceededException = {
 
 M.ColumnSelector = {
     type = "structure",
+    id = "ColumnSelector",
     members = {
         Regex = {
             type = "string",
@@ -416,6 +442,7 @@ M.ColumnSelector = {
 
 M.StatisticOverride = {
     type = "structure",
+    id = "StatisticOverride",
     members = {
         Statistic = {
             type = "string",
@@ -436,6 +463,7 @@ M.StatisticOverride = {
 
 M.StatisticsConfiguration = {
     type = "structure",
+    id = "StatisticsConfiguration",
     members = {
         IncludedStatistics = {
             type = "list",
@@ -450,6 +478,7 @@ M.StatisticsConfiguration = {
 
 M.ColumnStatisticsConfiguration = {
     type = "structure",
+    id = "ColumnStatisticsConfiguration",
     members = {
         Selectors = {
             type = "list",
@@ -463,6 +492,7 @@ M.ColumnStatisticsConfiguration = {
 
 M.EntityDetectorConfiguration = {
     type = "structure",
+    id = "EntityDetectorConfiguration",
     members = {
         EntityTypes = {
             type = "list",
@@ -480,6 +510,7 @@ M.EntityDetectorConfiguration = {
 
 M.ProfileConfiguration = {
     type = "structure",
+    id = "ProfileConfiguration",
     members = {
         DatasetStatisticsConfiguration = M.StatisticsConfiguration,
         ProfileColumns = {
@@ -506,6 +537,7 @@ M.SampleMode = {
 
 M.JobSample = {
     type = "structure",
+    id = "JobSample",
     members = {
         Mode = {
             type = "string",
@@ -527,6 +559,7 @@ M.ValidationMode = {
 
 M.ValidationConfiguration = {
     type = "structure",
+    id = "ValidationConfiguration",
     members = {
         RulesetArn = {
             type = "string",
@@ -542,6 +575,7 @@ M.ValidationConfiguration = {
 
 M.CreateProfileJobInput = {
     type = "structure",
+    id = "CreateProfileJobInput",
     members = {
         DatasetName = {
             type = "string",
@@ -607,6 +641,7 @@ M.CreateProfileJobInput = {
 
 M.CreateProfileJobOutput = {
     type = "structure",
+    id = "CreateProfileJobOutput",
     members = {
         Name = {
             type = "string",
@@ -625,6 +660,7 @@ M.SampleType = {
 
 M.Sample = {
     type = "structure",
+    id = "Sample",
     members = {
         Size = {
             type = "integer",
@@ -640,6 +676,7 @@ M.Sample = {
 
 M.CreateProjectInput = {
     type = "structure",
+    id = "CreateProjectInput",
     members = {
         DatasetName = {
             type = "string",
@@ -676,6 +713,7 @@ M.CreateProjectInput = {
 
 M.CreateProjectOutput = {
     type = "structure",
+    id = "CreateProjectOutput",
     members = {
         Name = {
             type = "string",
@@ -688,6 +726,7 @@ M.CreateProjectOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -698,6 +737,7 @@ M.InternalServerException = {
 
 M.RecipeAction = {
     type = "structure",
+    id = "RecipeAction",
     members = {
         Operation = {
             type = "string",
@@ -715,6 +755,7 @@ M.RecipeAction = {
 
 M.ConditionExpression = {
     type = "structure",
+    id = "ConditionExpression",
     members = {
         Condition = {
             type = "string",
@@ -736,6 +777,7 @@ M.ConditionExpression = {
 
 M.RecipeStep = {
     type = "structure",
+    id = "RecipeStep",
     members = {
         Action = setmetatable({ traits = {
             required = true,
@@ -749,6 +791,7 @@ M.RecipeStep = {
 
 M.CreateRecipeInput = {
     type = "structure",
+    id = "CreateRecipeInput",
     members = {
         Description = {
             type = "string",
@@ -776,6 +819,7 @@ M.CreateRecipeInput = {
 
 M.CreateRecipeOutput = {
     type = "structure",
+    id = "CreateRecipeOutput",
     members = {
         Name = {
             type = "string",
@@ -788,6 +832,7 @@ M.CreateRecipeOutput = {
 
 M.DatabaseTableOutputOptions = {
     type = "structure",
+    id = "DatabaseTableOutputOptions",
     members = {
         TempDirectory = M.S3Location,
         TableName = {
@@ -805,6 +850,7 @@ M.DatabaseOutputMode = {
 
 M.DatabaseOutput = {
     type = "structure",
+    id = "DatabaseOutput",
     members = {
         GlueConnectionName = {
             type = "string",
@@ -823,6 +869,7 @@ M.DatabaseOutput = {
 
 M.S3TableOutputOptions = {
     type = "structure",
+    id = "S3TableOutputOptions",
     members = {
         Location = setmetatable({ traits = {
             required = true,
@@ -832,6 +879,7 @@ M.S3TableOutputOptions = {
 
 M.DataCatalogOutput = {
     type = "structure",
+    id = "DataCatalogOutput",
     members = {
         CatalogId = {
             type = "string",
@@ -884,6 +932,7 @@ M.OutputFormat = {
 
 M.CsvOutputOptions = {
     type = "structure",
+    id = "CsvOutputOptions",
     members = {
         Delimiter = {
             type = "string",
@@ -893,6 +942,7 @@ M.CsvOutputOptions = {
 
 M.OutputFormatOptions = {
     type = "structure",
+    id = "OutputFormatOptions",
     members = {
         Csv = M.CsvOutputOptions,
     },
@@ -900,6 +950,7 @@ M.OutputFormatOptions = {
 
 M.Output = {
     type = "structure",
+    id = "Output",
     members = {
         CompressionFormat = {
             type = "string",
@@ -929,6 +980,7 @@ M.Output = {
 
 M.RecipeReference = {
     type = "structure",
+    id = "RecipeReference",
     members = {
         Name = {
             type = "string",
@@ -944,6 +996,7 @@ M.RecipeReference = {
 
 M.CreateRecipeJobInput = {
     type = "structure",
+    id = "CreateRecipeJobInput",
     members = {
         DatasetName = {
             type = "string",
@@ -1013,6 +1066,7 @@ M.CreateRecipeJobInput = {
 
 M.CreateRecipeJobOutput = {
     type = "structure",
+    id = "CreateRecipeJobOutput",
     members = {
         Name = {
             type = "string",
@@ -1037,6 +1091,7 @@ M.ThresholdUnit = {
 
 M.Threshold = {
     type = "structure",
+    id = "Threshold",
     members = {
         Value = {
             type = "double",
@@ -1056,6 +1111,7 @@ M.Threshold = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         Name = {
             type = "string",
@@ -1090,6 +1146,7 @@ M.Rule = {
 
 M.CreateRulesetInput = {
     type = "structure",
+    id = "CreateRulesetInput",
     members = {
         Name = {
             type = "string",
@@ -1123,6 +1180,7 @@ M.CreateRulesetInput = {
 
 M.CreateRulesetOutput = {
     type = "structure",
+    id = "CreateRulesetOutput",
     members = {
         Name = {
             type = "string",
@@ -1135,6 +1193,7 @@ M.CreateRulesetOutput = {
 
 M.CreateScheduleInput = {
     type = "structure",
+    id = "CreateScheduleInput",
     members = {
         JobNames = {
             type = "list",
@@ -1162,6 +1221,7 @@ M.CreateScheduleInput = {
 
 M.CreateScheduleOutput = {
     type = "structure",
+    id = "CreateScheduleOutput",
     members = {
         Name = {
             type = "string",
@@ -1174,6 +1234,7 @@ M.CreateScheduleOutput = {
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         Name = {
             type = "string",
@@ -1187,6 +1248,7 @@ M.DeleteDatasetInput = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
     members = {
         Name = {
             type = "string",
@@ -1199,6 +1261,7 @@ M.DeleteDatasetOutput = {
 
 M.DeleteJobInput = {
     type = "structure",
+    id = "DeleteJobInput",
     members = {
         Name = {
             type = "string",
@@ -1212,6 +1275,7 @@ M.DeleteJobInput = {
 
 M.DeleteJobOutput = {
     type = "structure",
+    id = "DeleteJobOutput",
     members = {
         Name = {
             type = "string",
@@ -1224,6 +1288,7 @@ M.DeleteJobOutput = {
 
 M.DeleteProjectInput = {
     type = "structure",
+    id = "DeleteProjectInput",
     members = {
         Name = {
             type = "string",
@@ -1237,6 +1302,7 @@ M.DeleteProjectInput = {
 
 M.DeleteProjectOutput = {
     type = "structure",
+    id = "DeleteProjectOutput",
     members = {
         Name = {
             type = "string",
@@ -1249,6 +1315,7 @@ M.DeleteProjectOutput = {
 
 M.DeleteRecipeVersionInput = {
     type = "structure",
+    id = "DeleteRecipeVersionInput",
     members = {
         Name = {
             type = "string",
@@ -1269,6 +1336,7 @@ M.DeleteRecipeVersionInput = {
 
 M.DeleteRecipeVersionOutput = {
     type = "structure",
+    id = "DeleteRecipeVersionOutput",
     members = {
         Name = {
             type = "string",
@@ -1287,6 +1355,7 @@ M.DeleteRecipeVersionOutput = {
 
 M.DeleteRulesetInput = {
     type = "structure",
+    id = "DeleteRulesetInput",
     members = {
         Name = {
             type = "string",
@@ -1300,6 +1369,7 @@ M.DeleteRulesetInput = {
 
 M.DeleteRulesetOutput = {
     type = "structure",
+    id = "DeleteRulesetOutput",
     members = {
         Name = {
             type = "string",
@@ -1312,6 +1382,7 @@ M.DeleteRulesetOutput = {
 
 M.DeleteScheduleInput = {
     type = "structure",
+    id = "DeleteScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -1325,6 +1396,7 @@ M.DeleteScheduleInput = {
 
 M.DeleteScheduleOutput = {
     type = "structure",
+    id = "DeleteScheduleOutput",
     members = {
         Name = {
             type = "string",
@@ -1337,6 +1409,7 @@ M.DeleteScheduleOutput = {
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         Name = {
             type = "string",
@@ -1356,6 +1429,7 @@ M.Source = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         CreatedBy = {
             type = "string",
@@ -1399,6 +1473,7 @@ M.DescribeDatasetOutput = {
 
 M.DescribeJobInput = {
     type = "structure",
+    id = "DescribeJobInput",
     members = {
         Name = {
             type = "string",
@@ -1417,6 +1492,7 @@ M.JobType = {
 
 M.DescribeJobOutput = {
     type = "structure",
+    id = "DescribeJobOutput",
     members = {
         CreateDate = {
             type = "timestamp",
@@ -1507,6 +1583,7 @@ M.DescribeJobOutput = {
 
 M.DescribeJobRunInput = {
     type = "structure",
+    id = "DescribeJobRunInput",
     members = {
         Name = {
             type = "string",
@@ -1537,6 +1614,7 @@ M.JobRunState = {
 
 M.DescribeJobRunOutput = {
     type = "structure",
+    id = "DescribeJobRunOutput",
     members = {
         Attempt = {
             type = "integer",
@@ -1607,6 +1685,7 @@ M.DescribeJobRunOutput = {
 
 M.DescribeProjectInput = {
     type = "structure",
+    id = "DescribeProjectInput",
     members = {
         Name = {
             type = "string",
@@ -1633,6 +1712,7 @@ M.SessionStatus = {
 
 M.DescribeProjectOutput = {
     type = "structure",
+    id = "DescribeProjectOutput",
     members = {
         CreateDate = {
             type = "timestamp",
@@ -1684,6 +1764,7 @@ M.DescribeProjectOutput = {
 
 M.DescribeRecipeInput = {
     type = "structure",
+    id = "DescribeRecipeInput",
     members = {
         Name = {
             type = "string",
@@ -1703,6 +1784,7 @@ M.DescribeRecipeInput = {
 
 M.DescribeRecipeOutput = {
     type = "structure",
+    id = "DescribeRecipeOutput",
     members = {
         CreatedBy = {
             type = "string",
@@ -1754,6 +1836,7 @@ M.DescribeRecipeOutput = {
 
 M.DescribeRulesetInput = {
     type = "structure",
+    id = "DescribeRulesetInput",
     members = {
         Name = {
             type = "string",
@@ -1767,6 +1850,7 @@ M.DescribeRulesetInput = {
 
 M.DescribeRulesetOutput = {
     type = "structure",
+    id = "DescribeRulesetOutput",
     members = {
         Name = {
             type = "string",
@@ -1809,6 +1893,7 @@ M.DescribeRulesetOutput = {
 
 M.DescribeScheduleInput = {
     type = "structure",
+    id = "DescribeScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -1822,6 +1907,7 @@ M.DescribeScheduleInput = {
 
 M.DescribeScheduleOutput = {
     type = "structure",
+    id = "DescribeScheduleOutput",
     members = {
         CreateDate = {
             type = "timestamp",
@@ -1861,6 +1947,7 @@ M.DescribeScheduleOutput = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1879,6 +1966,7 @@ M.ListDatasetsInput = {
 
 M.Dataset = {
     type = "structure",
+    id = "Dataset",
     members = {
         AccountId = {
             type = "string",
@@ -1925,6 +2013,7 @@ M.Dataset = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         Datasets = {
             type = "list",
@@ -1941,6 +2030,7 @@ M.ListDatasetsOutput = {
 
 M.ListJobRunsInput = {
     type = "structure",
+    id = "ListJobRunsInput",
     members = {
         Name = {
             type = "string",
@@ -1966,6 +2056,7 @@ M.ListJobRunsInput = {
 
 M.JobRun = {
     type = "structure",
+    id = "JobRun",
     members = {
         Attempt = {
             type = "integer",
@@ -2032,6 +2123,7 @@ M.JobRun = {
 
 M.ListJobRunsOutput = {
     type = "structure",
+    id = "ListJobRunsOutput",
     members = {
         JobRuns = {
             type = "list",
@@ -2048,6 +2140,7 @@ M.ListJobRunsOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         DatasetName = {
             type = "string",
@@ -2078,6 +2171,7 @@ M.ListJobsInput = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         AccountId = {
             type = "string",
@@ -2170,6 +2264,7 @@ M.Job = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         Jobs = {
             type = "list",
@@ -2186,6 +2281,7 @@ M.ListJobsOutput = {
 
 M.ListProjectsInput = {
     type = "structure",
+    id = "ListProjectsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2204,6 +2300,7 @@ M.ListProjectsInput = {
 
 M.Project = {
     type = "structure",
+    id = "Project",
     members = {
         AccountId = {
             type = "string",
@@ -2258,6 +2355,7 @@ M.Project = {
 
 M.ListProjectsOutput = {
     type = "structure",
+    id = "ListProjectsOutput",
     members = {
         Projects = {
             type = "list",
@@ -2274,6 +2372,7 @@ M.ListProjectsOutput = {
 
 M.ListRecipesInput = {
     type = "structure",
+    id = "ListRecipesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2298,6 +2397,7 @@ M.ListRecipesInput = {
 
 M.Recipe = {
     type = "structure",
+    id = "Recipe",
     members = {
         CreatedBy = {
             type = "string",
@@ -2349,6 +2449,7 @@ M.Recipe = {
 
 M.ListRecipesOutput = {
     type = "structure",
+    id = "ListRecipesOutput",
     members = {
         Recipes = {
             type = "list",
@@ -2365,6 +2466,7 @@ M.ListRecipesOutput = {
 
 M.ListRecipeVersionsInput = {
     type = "structure",
+    id = "ListRecipeVersionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2390,6 +2492,7 @@ M.ListRecipeVersionsInput = {
 
 M.ListRecipeVersionsOutput = {
     type = "structure",
+    id = "ListRecipeVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2406,6 +2509,7 @@ M.ListRecipeVersionsOutput = {
 
 M.ListRulesetsInput = {
     type = "structure",
+    id = "ListRulesetsInput",
     members = {
         TargetArn = {
             type = "string",
@@ -2430,6 +2534,7 @@ M.ListRulesetsInput = {
 
 M.RulesetItem = {
     type = "structure",
+    id = "RulesetItem",
     members = {
         AccountId = {
             type = "string",
@@ -2480,6 +2585,7 @@ M.RulesetItem = {
 
 M.ListRulesetsOutput = {
     type = "structure",
+    id = "ListRulesetsOutput",
     members = {
         Rulesets = {
             type = "list",
@@ -2496,6 +2602,7 @@ M.ListRulesetsOutput = {
 
 M.ListSchedulesInput = {
     type = "structure",
+    id = "ListSchedulesInput",
     members = {
         JobName = {
             type = "string",
@@ -2520,6 +2627,7 @@ M.ListSchedulesInput = {
 
 M.Schedule = {
     type = "structure",
+    id = "Schedule",
     members = {
         AccountId = {
             type = "string",
@@ -2562,6 +2670,7 @@ M.Schedule = {
 
 M.ListSchedulesOutput = {
     type = "structure",
+    id = "ListSchedulesOutput",
     members = {
         Schedules = {
             type = "list",
@@ -2578,6 +2687,7 @@ M.ListSchedulesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2591,6 +2701,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -2602,6 +2713,7 @@ M.ListTagsForResourceOutput = {
 
 M.PublishRecipeInput = {
     type = "structure",
+    id = "PublishRecipeInput",
     members = {
         Description = {
             type = "string",
@@ -2618,6 +2730,7 @@ M.PublishRecipeInput = {
 
 M.PublishRecipeOutput = {
     type = "structure",
+    id = "PublishRecipeOutput",
     members = {
         Name = {
             type = "string",
@@ -2630,6 +2743,7 @@ M.PublishRecipeOutput = {
 
 M.ViewFrame = {
     type = "structure",
+    id = "ViewFrame",
     members = {
         StartColumnIndex = {
             type = "integer",
@@ -2658,6 +2772,7 @@ M.ViewFrame = {
 
 M.SendProjectSessionActionInput = {
     type = "structure",
+    id = "SendProjectSessionActionInput",
     members = {
         Preview = {
             type = "boolean",
@@ -2685,6 +2800,7 @@ M.SendProjectSessionActionInput = {
 
 M.SendProjectSessionActionOutput = {
     type = "structure",
+    id = "SendProjectSessionActionOutput",
     members = {
         Result = {
             type = "string",
@@ -2703,6 +2819,7 @@ M.SendProjectSessionActionOutput = {
 
 M.StartJobRunInput = {
     type = "structure",
+    id = "StartJobRunInput",
     members = {
         Name = {
             type = "string",
@@ -2716,6 +2833,7 @@ M.StartJobRunInput = {
 
 M.StartJobRunOutput = {
     type = "structure",
+    id = "StartJobRunOutput",
     members = {
         RunId = {
             type = "string",
@@ -2728,6 +2846,7 @@ M.StartJobRunOutput = {
 
 M.StartProjectSessionInput = {
     type = "structure",
+    id = "StartProjectSessionInput",
     members = {
         Name = {
             type = "string",
@@ -2747,6 +2866,7 @@ M.StartProjectSessionInput = {
 
 M.StartProjectSessionOutput = {
     type = "structure",
+    id = "StartProjectSessionOutput",
     members = {
         Name = {
             type = "string",
@@ -2762,6 +2882,7 @@ M.StartProjectSessionOutput = {
 
 M.StopJobRunInput = {
     type = "structure",
+    id = "StopJobRunInput",
     members = {
         Name = {
             type = "string",
@@ -2782,6 +2903,7 @@ M.StopJobRunInput = {
 
 M.StopJobRunOutput = {
     type = "structure",
+    id = "StopJobRunOutput",
     members = {
         RunId = {
             type = "string",
@@ -2794,6 +2916,7 @@ M.StopJobRunOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2815,10 +2938,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2840,10 +2965,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDatasetInput = {
     type = "structure",
+    id = "UpdateDatasetInput",
     members = {
         Name = {
             type = "string",
@@ -2865,6 +2992,7 @@ M.UpdateDatasetInput = {
 
 M.UpdateDatasetOutput = {
     type = "structure",
+    id = "UpdateDatasetOutput",
     members = {
         Name = {
             type = "string",
@@ -2877,6 +3005,7 @@ M.UpdateDatasetOutput = {
 
 M.UpdateProfileJobInput = {
     type = "structure",
+    id = "UpdateProfileJobInput",
     members = {
         Configuration = M.ProfileConfiguration,
         EncryptionKeyArn = {
@@ -2932,6 +3061,7 @@ M.UpdateProfileJobInput = {
 
 M.UpdateProfileJobOutput = {
     type = "structure",
+    id = "UpdateProfileJobOutput",
     members = {
         Name = {
             type = "string",
@@ -2944,6 +3074,7 @@ M.UpdateProfileJobOutput = {
 
 M.UpdateProjectInput = {
     type = "structure",
+    id = "UpdateProjectInput",
     members = {
         Sample = M.Sample,
         RoleArn = {
@@ -2964,6 +3095,7 @@ M.UpdateProjectInput = {
 
 M.UpdateProjectOutput = {
     type = "structure",
+    id = "UpdateProjectOutput",
     members = {
         LastModifiedDate = {
             type = "timestamp",
@@ -2979,6 +3111,7 @@ M.UpdateProjectOutput = {
 
 M.UpdateRecipeInput = {
     type = "structure",
+    id = "UpdateRecipeInput",
     members = {
         Description = {
             type = "string",
@@ -2999,6 +3132,7 @@ M.UpdateRecipeInput = {
 
 M.UpdateRecipeOutput = {
     type = "structure",
+    id = "UpdateRecipeOutput",
     members = {
         Name = {
             type = "string",
@@ -3011,6 +3145,7 @@ M.UpdateRecipeOutput = {
 
 M.UpdateRecipeJobInput = {
     type = "structure",
+    id = "UpdateRecipeJobInput",
     members = {
         EncryptionKeyArn = {
             type = "string",
@@ -3069,6 +3204,7 @@ M.UpdateRecipeJobInput = {
 
 M.UpdateRecipeJobOutput = {
     type = "structure",
+    id = "UpdateRecipeJobOutput",
     members = {
         Name = {
             type = "string",
@@ -3081,6 +3217,7 @@ M.UpdateRecipeJobOutput = {
 
 M.UpdateRulesetInput = {
     type = "structure",
+    id = "UpdateRulesetInput",
     members = {
         Name = {
             type = "string",
@@ -3104,6 +3241,7 @@ M.UpdateRulesetInput = {
 
 M.UpdateRulesetOutput = {
     type = "structure",
+    id = "UpdateRulesetOutput",
     members = {
         Name = {
             type = "string",
@@ -3116,6 +3254,7 @@ M.UpdateRulesetOutput = {
 
 M.UpdateScheduleInput = {
     type = "structure",
+    id = "UpdateScheduleInput",
     members = {
         JobNames = {
             type = "list",
@@ -3139,6 +3278,7 @@ M.UpdateScheduleInput = {
 
 M.UpdateScheduleOutput = {
     type = "structure",
+    id = "UpdateScheduleOutput",
     members = {
         Name = {
             type = "string",

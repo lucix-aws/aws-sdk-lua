@@ -3830,31 +3830,31 @@ local record ResourceNotFoundException
     Code: string
 end
 
-local type ConnectorProviderName = "JIRA_CLOUD" | "SERVICENOW"
-
-local type RuleStatus = "ENABLED" | "DISABLED"
-
-local type TicketCreationMode = "DRYRUN"
-
-local type RuleStatusV2 = "ENABLED" | "DISABLED"
-
-local type ControlStatus = "ENABLED" | "DISABLED"
-
-local type ConnectorStatus = "CONNECTED" | "FAILED_TO_CONNECT" | "PENDING_CONFIGURATION" | "PENDING_AUTHORIZATION"
-
-local type TargetType = "ACCOUNT" | "ORGANIZATIONAL_UNIT" | "ROOT"
-
-local type SortOrder = "asc" | "desc"
-
 local type AssociationType = "INHERITED" | "APPLIED"
-
-local type ControlFindingGenerator = "STANDARD_CONTROL" | "SECURITY_CONTROL"
-
-local type VerificationState = "UNKNOWN" | "TRUE_POSITIVE" | "FALSE_POSITIVE" | "BENIGN_POSITIVE"
 
 local type GranularityField = "Daily" | "Weekly" | "Monthly"
 
+local type ConnectorProviderName = "JIRA_CLOUD" | "SERVICENOW"
+
+local type ConnectorStatus = "CONNECTED" | "FAILED_TO_CONNECT" | "PENDING_CONFIGURATION" | "PENDING_AUTHORIZATION"
+
+local type ControlStatus = "ENABLED" | "DISABLED"
+
+local type SortOrder = "asc" | "desc"
+
+local type RuleStatus = "ENABLED" | "DISABLED"
+
+local type RuleStatusV2 = "ENABLED" | "DISABLED"
+
+local type VerificationState = "UNKNOWN" | "TRUE_POSITIVE" | "FALSE_POSITIVE" | "BENIGN_POSITIVE"
+
+local type ControlFindingGenerator = "STANDARD_CONTROL" | "SECURITY_CONTROL"
+
+local type TicketCreationMode = "DRYRUN"
+
 local type ConfigurationPolicyAssociationStatus = "PENDING" | "SUCCESS" | "FAILED"
+
+local type TargetType = "ACCOUNT" | "ORGANIZATIONAL_UNIT" | "ROOT"
 
 local type AutoEnableStandards = "NONE" | "DEFAULT"
 

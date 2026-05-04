@@ -2,6 +2,7 @@ local M = {}
 
 M.TrialMinutes = {
     type = "structure",
+    id = "TrialMinutes",
     members = {
         total = {
             type = "double",
@@ -19,6 +20,7 @@ M.DevicePlatform = {
 
 M.AccountSettings = {
     type = "structure",
+    id = "AccountSettings",
     members = {
         awsAccountNumber = {
             type = "string",
@@ -53,6 +55,7 @@ M.AccountSettings = {
 
 M.ArgumentException = {
     type = "structure",
+    id = "ArgumentException",
     error = "client",
     members = {
         message = {
@@ -94,6 +97,7 @@ M.ArtifactType = {
 
 M.Artifact = {
     type = "structure",
+    id = "Artifact",
     members = {
         arn = {
             type = "string",
@@ -126,6 +130,7 @@ M.BillingMethod = {
 
 M.CannotDeleteException = {
     type = "structure",
+    id = "CannotDeleteException",
     error = "client",
     members = {
         message = {
@@ -136,6 +141,7 @@ M.CannotDeleteException = {
 
 M.Counters = {
     type = "structure",
+    id = "Counters",
     members = {
         total = {
             type = "integer",
@@ -163,6 +169,7 @@ M.Counters = {
 
 M.CPU = {
     type = "structure",
+    id = "CPU",
     members = {
         frequency = {
             type = "string",
@@ -205,6 +212,7 @@ M.RuleOperator = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         attribute = {
             type = "string",
@@ -220,6 +228,7 @@ M.Rule = {
 
 M.CreateDevicePoolInput = {
     type = "structure",
+    id = "CreateDevicePoolInput",
     members = {
         projectArn = {
             type = "string",
@@ -256,6 +265,7 @@ M.DevicePoolType = {
 
 M.DevicePool = {
     type = "structure",
+    id = "DevicePool",
     members = {
         arn = {
             type = "string",
@@ -281,6 +291,7 @@ M.DevicePool = {
 
 M.CreateDevicePoolOutput = {
     type = "structure",
+    id = "CreateDevicePoolOutput",
     members = {
         devicePool = M.DevicePool,
     },
@@ -288,6 +299,7 @@ M.CreateDevicePoolOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -298,6 +310,7 @@ M.LimitExceededException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -308,6 +321,7 @@ M.NotFoundException = {
 
 M.ServiceAccountException = {
     type = "structure",
+    id = "ServiceAccountException",
     error = "client",
     members = {
         message = {
@@ -318,6 +332,7 @@ M.ServiceAccountException = {
 
 M.CreateInstanceProfileInput = {
     type = "structure",
+    id = "CreateInstanceProfileInput",
     members = {
         name = {
             type = "string",
@@ -343,6 +358,7 @@ M.CreateInstanceProfileInput = {
 
 M.InstanceProfile = {
     type = "structure",
+    id = "InstanceProfile",
     members = {
         arn = {
             type = "string",
@@ -368,6 +384,7 @@ M.InstanceProfile = {
 
 M.CreateInstanceProfileOutput = {
     type = "structure",
+    id = "CreateInstanceProfileOutput",
     members = {
         instanceProfile = M.InstanceProfile,
     },
@@ -380,6 +397,7 @@ M.NetworkProfileType = {
 
 M.CreateNetworkProfileInput = {
     type = "structure",
+    id = "CreateNetworkProfileInput",
     members = {
         projectArn = {
             type = "string",
@@ -434,6 +452,7 @@ M.CreateNetworkProfileInput = {
 
 M.NetworkProfile = {
     type = "structure",
+    id = "NetworkProfile",
     members = {
         arn = {
             type = "string",
@@ -482,6 +501,7 @@ M.NetworkProfile = {
 
 M.CreateNetworkProfileOutput = {
     type = "structure",
+    id = "CreateNetworkProfileOutput",
     members = {
         networkProfile = M.NetworkProfile,
     },
@@ -489,6 +509,7 @@ M.CreateNetworkProfileOutput = {
 
 M.EnvironmentVariable = {
     type = "structure",
+    id = "EnvironmentVariable",
     members = {
         name = {
             type = "string",
@@ -507,6 +528,7 @@ M.EnvironmentVariable = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         securityGroupIds = {
             type = "list",
@@ -533,6 +555,7 @@ M.VpcConfig = {
 
 M.CreateProjectInput = {
     type = "structure",
+    id = "CreateProjectInput",
     members = {
         name = {
             type = "string",
@@ -556,6 +579,7 @@ M.CreateProjectInput = {
 
 M.Project = {
     type = "structure",
+    id = "Project",
     members = {
         arn = {
             type = "string",
@@ -582,6 +606,7 @@ M.Project = {
 
 M.CreateProjectOutput = {
     type = "structure",
+    id = "CreateProjectOutput",
     members = {
         project = M.Project,
     },
@@ -589,6 +614,7 @@ M.CreateProjectOutput = {
 
 M.TagOperationException = {
     type = "structure",
+    id = "TagOperationException",
     error = "client",
     members = {
         message = {
@@ -602,6 +628,7 @@ M.TagOperationException = {
 
 M.DeviceProxy = {
     type = "structure",
+    id = "DeviceProxy",
     members = {
         host = {
             type = "string",
@@ -621,6 +648,7 @@ M.DeviceProxy = {
 
 M.CreateRemoteAccessSessionConfiguration = {
     type = "structure",
+    id = "CreateRemoteAccessSessionConfiguration",
     members = {
         auxiliaryApps = {
             type = "list",
@@ -645,6 +673,7 @@ M.InteractionMode = {
 
 M.CreateRemoteAccessSessionInput = {
     type = "structure",
+    id = "CreateRemoteAccessSessionInput",
     members = {
         projectArn = {
             type = "string",
@@ -698,6 +727,7 @@ M.InstanceStatus = {
 
 M.DeviceInstance = {
     type = "structure",
+    id = "DeviceInstance",
     members = {
         arn = {
             type = "string",
@@ -721,6 +751,7 @@ M.DeviceInstance = {
 
 M.Resolution = {
     type = "structure",
+    id = "Resolution",
     members = {
         width = {
             type = "integer",
@@ -733,6 +764,7 @@ M.Resolution = {
 
 M.Device = {
     type = "structure",
+    id = "Device",
     members = {
         arn = {
             type = "string",
@@ -799,6 +831,7 @@ M.Device = {
 
 M.DeviceMinutes = {
     type = "structure",
+    id = "DeviceMinutes",
     members = {
         total = {
             type = "double",
@@ -814,6 +847,7 @@ M.DeviceMinutes = {
 
 M.RemoteAccessEndpoints = {
     type = "structure",
+    id = "RemoteAccessEndpoints",
     members = {
         remoteDriverEndpoint = {
             type = "string",
@@ -848,6 +882,7 @@ M.ExecutionStatus = {
 
 M.RemoteAccessSession = {
     type = "structure",
+    id = "RemoteAccessSession",
     members = {
         arn = {
             type = "string",
@@ -904,6 +939,7 @@ M.RemoteAccessSession = {
 
 M.CreateRemoteAccessSessionOutput = {
     type = "structure",
+    id = "CreateRemoteAccessSessionOutput",
     members = {
         remoteAccessSession = M.RemoteAccessSession,
     },
@@ -911,6 +947,7 @@ M.CreateRemoteAccessSessionOutput = {
 
 M.TestGridVpcConfig = {
     type = "structure",
+    id = "TestGridVpcConfig",
     members = {
         securityGroupIds = {
             type = "list",
@@ -937,6 +974,7 @@ M.TestGridVpcConfig = {
 
 M.CreateTestGridProjectInput = {
     type = "structure",
+    id = "CreateTestGridProjectInput",
     members = {
         name = {
             type = "string",
@@ -953,6 +991,7 @@ M.CreateTestGridProjectInput = {
 
 M.TestGridProject = {
     type = "structure",
+    id = "TestGridProject",
     members = {
         arn = {
             type = "string",
@@ -972,6 +1011,7 @@ M.TestGridProject = {
 
 M.CreateTestGridProjectOutput = {
     type = "structure",
+    id = "CreateTestGridProjectOutput",
     members = {
         testGridProject = M.TestGridProject,
     },
@@ -979,6 +1019,7 @@ M.CreateTestGridProjectOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         message = {
@@ -989,6 +1030,7 @@ M.InternalServiceException = {
 
 M.CreateTestGridUrlInput = {
     type = "structure",
+    id = "CreateTestGridUrlInput",
     members = {
         projectArn = {
             type = "string",
@@ -1007,6 +1049,7 @@ M.CreateTestGridUrlInput = {
 
 M.CreateTestGridUrlOutput = {
     type = "structure",
+    id = "CreateTestGridUrlOutput",
     members = {
         url = {
             type = "string",
@@ -1054,6 +1097,7 @@ M.UploadType = {
 
 M.CreateUploadInput = {
     type = "structure",
+    id = "CreateUploadInput",
     members = {
         projectArn = {
             type = "string",
@@ -1093,6 +1137,7 @@ M.UploadStatus = {
 
 M.Upload = {
     type = "structure",
+    id = "Upload",
     members = {
         arn = {
             type = "string",
@@ -1129,6 +1174,7 @@ M.Upload = {
 
 M.CreateUploadOutput = {
     type = "structure",
+    id = "CreateUploadOutput",
     members = {
         upload = M.Upload,
     },
@@ -1136,6 +1182,7 @@ M.CreateUploadOutput = {
 
 M.CreateVPCEConfigurationInput = {
     type = "structure",
+    id = "CreateVPCEConfigurationInput",
     members = {
         vpceConfigurationName = {
             type = "string",
@@ -1163,6 +1210,7 @@ M.CreateVPCEConfigurationInput = {
 
 M.VPCEConfiguration = {
     type = "structure",
+    id = "VPCEConfiguration",
     members = {
         arn = {
             type = "string",
@@ -1184,6 +1232,7 @@ M.VPCEConfiguration = {
 
 M.CreateVPCEConfigurationOutput = {
     type = "structure",
+    id = "CreateVPCEConfigurationOutput",
     members = {
         vpceConfiguration = M.VPCEConfiguration,
     },
@@ -1195,6 +1244,7 @@ M.CurrencyCode = {
 
 M.CustomerArtifactPaths = {
     type = "structure",
+    id = "CustomerArtifactPaths",
     members = {
         iosPaths = {
             type = "list",
@@ -1213,6 +1263,7 @@ M.CustomerArtifactPaths = {
 
 M.DeleteDevicePoolInput = {
     type = "structure",
+    id = "DeleteDevicePoolInput",
     members = {
         arn = {
             type = "string",
@@ -1225,10 +1276,12 @@ M.DeleteDevicePoolInput = {
 
 M.DeleteDevicePoolOutput = {
     type = "structure",
+    id = "DeleteDevicePoolOutput",
 }
 
 M.DeleteInstanceProfileInput = {
     type = "structure",
+    id = "DeleteInstanceProfileInput",
     members = {
         arn = {
             type = "string",
@@ -1241,10 +1294,12 @@ M.DeleteInstanceProfileInput = {
 
 M.DeleteInstanceProfileOutput = {
     type = "structure",
+    id = "DeleteInstanceProfileOutput",
 }
 
 M.DeleteNetworkProfileInput = {
     type = "structure",
+    id = "DeleteNetworkProfileInput",
     members = {
         arn = {
             type = "string",
@@ -1257,10 +1312,12 @@ M.DeleteNetworkProfileInput = {
 
 M.DeleteNetworkProfileOutput = {
     type = "structure",
+    id = "DeleteNetworkProfileOutput",
 }
 
 M.DeleteProjectInput = {
     type = "structure",
+    id = "DeleteProjectInput",
     members = {
         arn = {
             type = "string",
@@ -1273,10 +1330,12 @@ M.DeleteProjectInput = {
 
 M.DeleteProjectOutput = {
     type = "structure",
+    id = "DeleteProjectOutput",
 }
 
 M.DeleteRemoteAccessSessionInput = {
     type = "structure",
+    id = "DeleteRemoteAccessSessionInput",
     members = {
         arn = {
             type = "string",
@@ -1289,10 +1348,12 @@ M.DeleteRemoteAccessSessionInput = {
 
 M.DeleteRemoteAccessSessionOutput = {
     type = "structure",
+    id = "DeleteRemoteAccessSessionOutput",
 }
 
 M.DeleteRunInput = {
     type = "structure",
+    id = "DeleteRunInput",
     members = {
         arn = {
             type = "string",
@@ -1305,10 +1366,12 @@ M.DeleteRunInput = {
 
 M.DeleteRunOutput = {
     type = "structure",
+    id = "DeleteRunOutput",
 }
 
 M.DeleteTestGridProjectInput = {
     type = "structure",
+    id = "DeleteTestGridProjectInput",
     members = {
         projectArn = {
             type = "string",
@@ -1321,10 +1384,12 @@ M.DeleteTestGridProjectInput = {
 
 M.DeleteTestGridProjectOutput = {
     type = "structure",
+    id = "DeleteTestGridProjectOutput",
 }
 
 M.DeleteUploadInput = {
     type = "structure",
+    id = "DeleteUploadInput",
     members = {
         arn = {
             type = "string",
@@ -1337,10 +1402,12 @@ M.DeleteUploadInput = {
 
 M.DeleteUploadOutput = {
     type = "structure",
+    id = "DeleteUploadOutput",
 }
 
 M.DeleteVPCEConfigurationInput = {
     type = "structure",
+    id = "DeleteVPCEConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1353,10 +1420,12 @@ M.DeleteVPCEConfigurationInput = {
 
 M.DeleteVPCEConfigurationOutput = {
     type = "structure",
+    id = "DeleteVPCEConfigurationOutput",
 }
 
 M.InvalidOperationException = {
     type = "structure",
+    id = "InvalidOperationException",
     error = "client",
     members = {
         message = {
@@ -1367,10 +1436,12 @@ M.InvalidOperationException = {
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
 }
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         accountSettings = M.AccountSettings,
     },
@@ -1378,6 +1449,7 @@ M.GetAccountSettingsOutput = {
 
 M.GetDeviceInput = {
     type = "structure",
+    id = "GetDeviceInput",
     members = {
         arn = {
             type = "string",
@@ -1390,6 +1462,7 @@ M.GetDeviceInput = {
 
 M.GetDeviceOutput = {
     type = "structure",
+    id = "GetDeviceOutput",
     members = {
         device = M.Device,
     },
@@ -1397,6 +1470,7 @@ M.GetDeviceOutput = {
 
 M.GetDeviceInstanceInput = {
     type = "structure",
+    id = "GetDeviceInstanceInput",
     members = {
         arn = {
             type = "string",
@@ -1409,6 +1483,7 @@ M.GetDeviceInstanceInput = {
 
 M.GetDeviceInstanceOutput = {
     type = "structure",
+    id = "GetDeviceInstanceOutput",
     members = {
         deviceInstance = M.DeviceInstance,
     },
@@ -1416,6 +1491,7 @@ M.GetDeviceInstanceOutput = {
 
 M.GetDevicePoolInput = {
     type = "structure",
+    id = "GetDevicePoolInput",
     members = {
         arn = {
             type = "string",
@@ -1428,6 +1504,7 @@ M.GetDevicePoolInput = {
 
 M.GetDevicePoolOutput = {
     type = "structure",
+    id = "GetDevicePoolOutput",
     members = {
         devicePool = M.DevicePool,
     },
@@ -1435,6 +1512,7 @@ M.GetDevicePoolOutput = {
 
 M.Location = {
     type = "structure",
+    id = "Location",
     members = {
         latitude = {
             type = "double",
@@ -1453,6 +1531,7 @@ M.Location = {
 
 M.Radios = {
     type = "structure",
+    id = "Radios",
     members = {
         wifi = {
             type = "boolean",
@@ -1471,6 +1550,7 @@ M.Radios = {
 
 M.ScheduleRunConfiguration = {
     type = "structure",
+    id = "ScheduleRunConfiguration",
     members = {
         extraDataPackageArn = {
             type = "string",
@@ -1525,6 +1605,7 @@ M.TestType = {
 
 M.ScheduleRunTest = {
     type = "structure",
+    id = "ScheduleRunTest",
     members = {
         type = {
             type = "string",
@@ -1551,6 +1632,7 @@ M.ScheduleRunTest = {
 
 M.GetDevicePoolCompatibilityInput = {
     type = "structure",
+    id = "GetDevicePoolCompatibilityInput",
     members = {
         devicePoolArn = {
             type = "string",
@@ -1574,6 +1656,7 @@ M.GetDevicePoolCompatibilityInput = {
 
 M.IncompatibilityMessage = {
     type = "structure",
+    id = "IncompatibilityMessage",
     members = {
         message = {
             type = "string",
@@ -1586,6 +1669,7 @@ M.IncompatibilityMessage = {
 
 M.DevicePoolCompatibilityResult = {
     type = "structure",
+    id = "DevicePoolCompatibilityResult",
     members = {
         device = M.Device,
         compatible = {
@@ -1600,6 +1684,7 @@ M.DevicePoolCompatibilityResult = {
 
 M.GetDevicePoolCompatibilityOutput = {
     type = "structure",
+    id = "GetDevicePoolCompatibilityOutput",
     members = {
         compatibleDevices = {
             type = "list",
@@ -1614,6 +1699,7 @@ M.GetDevicePoolCompatibilityOutput = {
 
 M.GetInstanceProfileInput = {
     type = "structure",
+    id = "GetInstanceProfileInput",
     members = {
         arn = {
             type = "string",
@@ -1626,6 +1712,7 @@ M.GetInstanceProfileInput = {
 
 M.GetInstanceProfileOutput = {
     type = "structure",
+    id = "GetInstanceProfileOutput",
     members = {
         instanceProfile = M.InstanceProfile,
     },
@@ -1633,6 +1720,7 @@ M.GetInstanceProfileOutput = {
 
 M.GetJobInput = {
     type = "structure",
+    id = "GetJobInput",
     members = {
         arn = {
             type = "string",
@@ -1645,6 +1733,7 @@ M.GetJobInput = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         arn = {
             type = "string",
@@ -1690,6 +1779,7 @@ M.Job = {
 
 M.GetJobOutput = {
     type = "structure",
+    id = "GetJobOutput",
     members = {
         job = M.Job,
     },
@@ -1697,6 +1787,7 @@ M.GetJobOutput = {
 
 M.GetNetworkProfileInput = {
     type = "structure",
+    id = "GetNetworkProfileInput",
     members = {
         arn = {
             type = "string",
@@ -1709,6 +1800,7 @@ M.GetNetworkProfileInput = {
 
 M.GetNetworkProfileOutput = {
     type = "structure",
+    id = "GetNetworkProfileOutput",
     members = {
         networkProfile = M.NetworkProfile,
     },
@@ -1716,6 +1808,7 @@ M.GetNetworkProfileOutput = {
 
 M.GetOfferingStatusInput = {
     type = "structure",
+    id = "GetOfferingStatusInput",
     members = {
         nextToken = {
             type = "string",
@@ -1725,6 +1818,7 @@ M.GetOfferingStatusInput = {
 
 M.MonetaryAmount = {
     type = "structure",
+    id = "MonetaryAmount",
     members = {
         amount = {
             type = "double",
@@ -1741,6 +1835,7 @@ M.RecurringChargeFrequency = {
 
 M.RecurringCharge = {
     type = "structure",
+    id = "RecurringCharge",
     members = {
         cost = M.MonetaryAmount,
         frequency = {
@@ -1755,6 +1850,7 @@ M.OfferingType = {
 
 M.Offering = {
     type = "structure",
+    id = "Offering",
     members = {
         id = {
             type = "string",
@@ -1783,6 +1879,7 @@ M.OfferingTransactionType = {
 
 M.OfferingStatus = {
     type = "structure",
+    id = "OfferingStatus",
     members = {
         type = {
             type = "string",
@@ -1799,6 +1896,7 @@ M.OfferingStatus = {
 
 M.GetOfferingStatusOutput = {
     type = "structure",
+    id = "GetOfferingStatusOutput",
     members = {
         current = {
             type = "map",
@@ -1818,6 +1916,7 @@ M.GetOfferingStatusOutput = {
 
 M.NotEligibleException = {
     type = "structure",
+    id = "NotEligibleException",
     error = "client",
     members = {
         message = {
@@ -1828,6 +1927,7 @@ M.NotEligibleException = {
 
 M.GetProjectInput = {
     type = "structure",
+    id = "GetProjectInput",
     members = {
         arn = {
             type = "string",
@@ -1840,6 +1940,7 @@ M.GetProjectInput = {
 
 M.GetProjectOutput = {
     type = "structure",
+    id = "GetProjectOutput",
     members = {
         project = M.Project,
     },
@@ -1847,6 +1948,7 @@ M.GetProjectOutput = {
 
 M.GetRemoteAccessSessionInput = {
     type = "structure",
+    id = "GetRemoteAccessSessionInput",
     members = {
         arn = {
             type = "string",
@@ -1859,6 +1961,7 @@ M.GetRemoteAccessSessionInput = {
 
 M.GetRemoteAccessSessionOutput = {
     type = "structure",
+    id = "GetRemoteAccessSessionOutput",
     members = {
         remoteAccessSession = M.RemoteAccessSession,
     },
@@ -1866,6 +1969,7 @@ M.GetRemoteAccessSessionOutput = {
 
 M.GetRunInput = {
     type = "structure",
+    id = "GetRunInput",
     members = {
         arn = {
             type = "string",
@@ -1893,6 +1997,7 @@ M.DeviceFilterAttribute = {
 
 M.DeviceFilter = {
     type = "structure",
+    id = "DeviceFilter",
     members = {
         attribute = {
             type = "string",
@@ -1918,6 +2023,7 @@ M.DeviceFilter = {
 
 M.DeviceSelectionResult = {
     type = "structure",
+    id = "DeviceSelectionResult",
     members = {
         filters = {
             type = "list",
@@ -1939,6 +2045,7 @@ M.ExecutionResultCode = {
 
 M.Run = {
     type = "structure",
+    id = "Run",
     members = {
         arn = {
             type = "string",
@@ -2033,6 +2140,7 @@ M.Run = {
 
 M.GetRunOutput = {
     type = "structure",
+    id = "GetRunOutput",
     members = {
         run = M.Run,
     },
@@ -2040,6 +2148,7 @@ M.GetRunOutput = {
 
 M.GetSuiteInput = {
     type = "structure",
+    id = "GetSuiteInput",
     members = {
         arn = {
             type = "string",
@@ -2052,6 +2161,7 @@ M.GetSuiteInput = {
 
 M.Suite = {
     type = "structure",
+    id = "Suite",
     members = {
         arn = {
             type = "string",
@@ -2087,6 +2197,7 @@ M.Suite = {
 
 M.GetSuiteOutput = {
     type = "structure",
+    id = "GetSuiteOutput",
     members = {
         suite = M.Suite,
     },
@@ -2094,6 +2205,7 @@ M.GetSuiteOutput = {
 
 M.GetTestInput = {
     type = "structure",
+    id = "GetTestInput",
     members = {
         arn = {
             type = "string",
@@ -2106,6 +2218,7 @@ M.GetTestInput = {
 
 M.Test = {
     type = "structure",
+    id = "Test",
     members = {
         arn = {
             type = "string",
@@ -2141,6 +2254,7 @@ M.Test = {
 
 M.GetTestOutput = {
     type = "structure",
+    id = "GetTestOutput",
     members = {
         test = M.Test,
     },
@@ -2148,6 +2262,7 @@ M.GetTestOutput = {
 
 M.GetTestGridProjectInput = {
     type = "structure",
+    id = "GetTestGridProjectInput",
     members = {
         projectArn = {
             type = "string",
@@ -2160,6 +2275,7 @@ M.GetTestGridProjectInput = {
 
 M.GetTestGridProjectOutput = {
     type = "structure",
+    id = "GetTestGridProjectOutput",
     members = {
         testGridProject = M.TestGridProject,
     },
@@ -2167,6 +2283,7 @@ M.GetTestGridProjectOutput = {
 
 M.GetTestGridSessionInput = {
     type = "structure",
+    id = "GetTestGridSessionInput",
     members = {
         projectArn = {
             type = "string",
@@ -2188,6 +2305,7 @@ M.TestGridSessionStatus = {
 
 M.TestGridSession = {
     type = "structure",
+    id = "TestGridSession",
     members = {
         arn = {
             type = "string",
@@ -2212,6 +2330,7 @@ M.TestGridSession = {
 
 M.GetTestGridSessionOutput = {
     type = "structure",
+    id = "GetTestGridSessionOutput",
     members = {
         testGridSession = M.TestGridSession,
     },
@@ -2219,6 +2338,7 @@ M.GetTestGridSessionOutput = {
 
 M.GetUploadInput = {
     type = "structure",
+    id = "GetUploadInput",
     members = {
         arn = {
             type = "string",
@@ -2231,6 +2351,7 @@ M.GetUploadInput = {
 
 M.GetUploadOutput = {
     type = "structure",
+    id = "GetUploadOutput",
     members = {
         upload = M.Upload,
     },
@@ -2238,6 +2359,7 @@ M.GetUploadOutput = {
 
 M.GetVPCEConfigurationInput = {
     type = "structure",
+    id = "GetVPCEConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -2250,6 +2372,7 @@ M.GetVPCEConfigurationInput = {
 
 M.GetVPCEConfigurationOutput = {
     type = "structure",
+    id = "GetVPCEConfigurationOutput",
     members = {
         vpceConfiguration = M.VPCEConfiguration,
     },
@@ -2257,6 +2380,7 @@ M.GetVPCEConfigurationOutput = {
 
 M.InstallToRemoteAccessSessionInput = {
     type = "structure",
+    id = "InstallToRemoteAccessSessionInput",
     members = {
         remoteAccessSessionArn = {
             type = "string",
@@ -2275,6 +2399,7 @@ M.InstallToRemoteAccessSessionInput = {
 
 M.InstallToRemoteAccessSessionOutput = {
     type = "structure",
+    id = "InstallToRemoteAccessSessionOutput",
     members = {
         appUpload = M.Upload,
     },
@@ -2282,6 +2407,7 @@ M.InstallToRemoteAccessSessionOutput = {
 
 M.ListArtifactsInput = {
     type = "structure",
+    id = "ListArtifactsInput",
     members = {
         arn = {
             type = "string",
@@ -2303,6 +2429,7 @@ M.ListArtifactsInput = {
 
 M.ListArtifactsOutput = {
     type = "structure",
+    id = "ListArtifactsOutput",
     members = {
         artifacts = {
             type = "list",
@@ -2316,6 +2443,7 @@ M.ListArtifactsOutput = {
 
 M.ListDeviceInstancesInput = {
     type = "structure",
+    id = "ListDeviceInstancesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2328,6 +2456,7 @@ M.ListDeviceInstancesInput = {
 
 M.ListDeviceInstancesOutput = {
     type = "structure",
+    id = "ListDeviceInstancesOutput",
     members = {
         deviceInstances = {
             type = "list",
@@ -2341,6 +2470,7 @@ M.ListDeviceInstancesOutput = {
 
 M.ListDevicePoolsInput = {
     type = "structure",
+    id = "ListDevicePoolsInput",
     members = {
         arn = {
             type = "string",
@@ -2359,6 +2489,7 @@ M.ListDevicePoolsInput = {
 
 M.ListDevicePoolsOutput = {
     type = "structure",
+    id = "ListDevicePoolsOutput",
     members = {
         devicePools = {
             type = "list",
@@ -2372,6 +2503,7 @@ M.ListDevicePoolsOutput = {
 
 M.ListDevicesInput = {
     type = "structure",
+    id = "ListDevicesInput",
     members = {
         arn = {
             type = "string",
@@ -2388,6 +2520,7 @@ M.ListDevicesInput = {
 
 M.ListDevicesOutput = {
     type = "structure",
+    id = "ListDevicesOutput",
     members = {
         devices = {
             type = "list",
@@ -2401,6 +2534,7 @@ M.ListDevicesOutput = {
 
 M.ListInstanceProfilesInput = {
     type = "structure",
+    id = "ListInstanceProfilesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2413,6 +2547,7 @@ M.ListInstanceProfilesInput = {
 
 M.ListInstanceProfilesOutput = {
     type = "structure",
+    id = "ListInstanceProfilesOutput",
     members = {
         instanceProfiles = {
             type = "list",
@@ -2426,6 +2561,7 @@ M.ListInstanceProfilesOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         arn = {
             type = "string",
@@ -2441,6 +2577,7 @@ M.ListJobsInput = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -2454,6 +2591,7 @@ M.ListJobsOutput = {
 
 M.ListNetworkProfilesInput = {
     type = "structure",
+    id = "ListNetworkProfilesInput",
     members = {
         arn = {
             type = "string",
@@ -2472,6 +2610,7 @@ M.ListNetworkProfilesInput = {
 
 M.ListNetworkProfilesOutput = {
     type = "structure",
+    id = "ListNetworkProfilesOutput",
     members = {
         networkProfiles = {
             type = "list",
@@ -2485,6 +2624,7 @@ M.ListNetworkProfilesOutput = {
 
 M.ListOfferingPromotionsInput = {
     type = "structure",
+    id = "ListOfferingPromotionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2494,6 +2634,7 @@ M.ListOfferingPromotionsInput = {
 
 M.OfferingPromotion = {
     type = "structure",
+    id = "OfferingPromotion",
     members = {
         id = {
             type = "string",
@@ -2506,6 +2647,7 @@ M.OfferingPromotion = {
 
 M.ListOfferingPromotionsOutput = {
     type = "structure",
+    id = "ListOfferingPromotionsOutput",
     members = {
         offeringPromotions = {
             type = "list",
@@ -2519,6 +2661,7 @@ M.ListOfferingPromotionsOutput = {
 
 M.ListOfferingsInput = {
     type = "structure",
+    id = "ListOfferingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2528,6 +2671,7 @@ M.ListOfferingsInput = {
 
 M.ListOfferingsOutput = {
     type = "structure",
+    id = "ListOfferingsOutput",
     members = {
         offerings = {
             type = "list",
@@ -2541,6 +2685,7 @@ M.ListOfferingsOutput = {
 
 M.ListOfferingTransactionsInput = {
     type = "structure",
+    id = "ListOfferingTransactionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2550,6 +2695,7 @@ M.ListOfferingTransactionsInput = {
 
 M.OfferingTransaction = {
     type = "structure",
+    id = "OfferingTransaction",
     members = {
         offeringStatus = M.OfferingStatus,
         transactionId = {
@@ -2567,6 +2713,7 @@ M.OfferingTransaction = {
 
 M.ListOfferingTransactionsOutput = {
     type = "structure",
+    id = "ListOfferingTransactionsOutput",
     members = {
         offeringTransactions = {
             type = "list",
@@ -2580,6 +2727,7 @@ M.ListOfferingTransactionsOutput = {
 
 M.ListProjectsInput = {
     type = "structure",
+    id = "ListProjectsInput",
     members = {
         arn = {
             type = "string",
@@ -2592,6 +2740,7 @@ M.ListProjectsInput = {
 
 M.ListProjectsOutput = {
     type = "structure",
+    id = "ListProjectsOutput",
     members = {
         projects = {
             type = "list",
@@ -2605,6 +2754,7 @@ M.ListProjectsOutput = {
 
 M.ListRemoteAccessSessionsInput = {
     type = "structure",
+    id = "ListRemoteAccessSessionsInput",
     members = {
         arn = {
             type = "string",
@@ -2620,6 +2770,7 @@ M.ListRemoteAccessSessionsInput = {
 
 M.ListRemoteAccessSessionsOutput = {
     type = "structure",
+    id = "ListRemoteAccessSessionsOutput",
     members = {
         remoteAccessSessions = {
             type = "list",
@@ -2633,6 +2784,7 @@ M.ListRemoteAccessSessionsOutput = {
 
 M.ListRunsInput = {
     type = "structure",
+    id = "ListRunsInput",
     members = {
         arn = {
             type = "string",
@@ -2648,6 +2800,7 @@ M.ListRunsInput = {
 
 M.ListRunsOutput = {
     type = "structure",
+    id = "ListRunsOutput",
     members = {
         runs = {
             type = "list",
@@ -2661,6 +2814,7 @@ M.ListRunsOutput = {
 
 M.ListSamplesInput = {
     type = "structure",
+    id = "ListSamplesInput",
     members = {
         arn = {
             type = "string",
@@ -2696,6 +2850,7 @@ M.SampleType = {
 
 M.Sample = {
     type = "structure",
+    id = "Sample",
     members = {
         arn = {
             type = "string",
@@ -2711,6 +2866,7 @@ M.Sample = {
 
 M.ListSamplesOutput = {
     type = "structure",
+    id = "ListSamplesOutput",
     members = {
         samples = {
             type = "list",
@@ -2724,6 +2880,7 @@ M.ListSamplesOutput = {
 
 M.ListSuitesInput = {
     type = "structure",
+    id = "ListSuitesInput",
     members = {
         arn = {
             type = "string",
@@ -2739,6 +2896,7 @@ M.ListSuitesInput = {
 
 M.ListSuitesOutput = {
     type = "structure",
+    id = "ListSuitesOutput",
     members = {
         suites = {
             type = "list",
@@ -2752,6 +2910,7 @@ M.ListSuitesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2764,6 +2923,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -2782,6 +2942,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2792,6 +2953,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTestGridProjectsInput = {
     type = "structure",
+    id = "ListTestGridProjectsInput",
     members = {
         maxResult = {
             type = "integer",
@@ -2804,6 +2966,7 @@ M.ListTestGridProjectsInput = {
 
 M.ListTestGridProjectsOutput = {
     type = "structure",
+    id = "ListTestGridProjectsOutput",
     members = {
         testGridProjects = {
             type = "list",
@@ -2817,6 +2980,7 @@ M.ListTestGridProjectsOutput = {
 
 M.ListTestGridSessionActionsInput = {
     type = "structure",
+    id = "ListTestGridSessionActionsInput",
     members = {
         sessionArn = {
             type = "string",
@@ -2835,6 +2999,7 @@ M.ListTestGridSessionActionsInput = {
 
 M.TestGridSessionAction = {
     type = "structure",
+    id = "TestGridSessionAction",
     members = {
         action = {
             type = "string",
@@ -2856,6 +3021,7 @@ M.TestGridSessionAction = {
 
 M.ListTestGridSessionActionsOutput = {
     type = "structure",
+    id = "ListTestGridSessionActionsOutput",
     members = {
         actions = {
             type = "list",
@@ -2874,6 +3040,7 @@ M.TestGridSessionArtifactCategory = {
 
 M.ListTestGridSessionArtifactsInput = {
     type = "structure",
+    id = "ListTestGridSessionArtifactsInput",
     members = {
         sessionArn = {
             type = "string",
@@ -2901,6 +3068,7 @@ M.TestGridSessionArtifactType = {
 
 M.TestGridSessionArtifact = {
     type = "structure",
+    id = "TestGridSessionArtifact",
     members = {
         filename = {
             type = "string",
@@ -2916,6 +3084,7 @@ M.TestGridSessionArtifact = {
 
 M.ListTestGridSessionArtifactsOutput = {
     type = "structure",
+    id = "ListTestGridSessionArtifactsOutput",
     members = {
         artifacts = {
             type = "list",
@@ -2929,6 +3098,7 @@ M.ListTestGridSessionArtifactsOutput = {
 
 M.ListTestGridSessionsInput = {
     type = "structure",
+    id = "ListTestGridSessionsInput",
     members = {
         projectArn = {
             type = "string",
@@ -2962,6 +3132,7 @@ M.ListTestGridSessionsInput = {
 
 M.ListTestGridSessionsOutput = {
     type = "structure",
+    id = "ListTestGridSessionsOutput",
     members = {
         testGridSessions = {
             type = "list",
@@ -2975,6 +3146,7 @@ M.ListTestGridSessionsOutput = {
 
 M.ListTestsInput = {
     type = "structure",
+    id = "ListTestsInput",
     members = {
         arn = {
             type = "string",
@@ -2990,6 +3162,7 @@ M.ListTestsInput = {
 
 M.ListTestsOutput = {
     type = "structure",
+    id = "ListTestsOutput",
     members = {
         tests = {
             type = "list",
@@ -3003,6 +3176,7 @@ M.ListTestsOutput = {
 
 M.ListUniqueProblemsInput = {
     type = "structure",
+    id = "ListUniqueProblemsInput",
     members = {
         arn = {
             type = "string",
@@ -3018,6 +3192,7 @@ M.ListUniqueProblemsInput = {
 
 M.ProblemDetail = {
     type = "structure",
+    id = "ProblemDetail",
     members = {
         arn = {
             type = "string",
@@ -3030,6 +3205,7 @@ M.ProblemDetail = {
 
 M.Problem = {
     type = "structure",
+    id = "Problem",
     members = {
         run = M.ProblemDetail,
         job = M.ProblemDetail,
@@ -3047,6 +3223,7 @@ M.Problem = {
 
 M.UniqueProblem = {
     type = "structure",
+    id = "UniqueProblem",
     members = {
         message = {
             type = "string",
@@ -3060,6 +3237,7 @@ M.UniqueProblem = {
 
 M.ListUniqueProblemsOutput = {
     type = "structure",
+    id = "ListUniqueProblemsOutput",
     members = {
         uniqueProblems = {
             type = "map",
@@ -3074,6 +3252,7 @@ M.ListUniqueProblemsOutput = {
 
 M.ListUploadsInput = {
     type = "structure",
+    id = "ListUploadsInput",
     members = {
         arn = {
             type = "string",
@@ -3092,6 +3271,7 @@ M.ListUploadsInput = {
 
 M.ListUploadsOutput = {
     type = "structure",
+    id = "ListUploadsOutput",
     members = {
         uploads = {
             type = "list",
@@ -3105,6 +3285,7 @@ M.ListUploadsOutput = {
 
 M.ListVPCEConfigurationsInput = {
     type = "structure",
+    id = "ListVPCEConfigurationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3117,6 +3298,7 @@ M.ListVPCEConfigurationsInput = {
 
 M.ListVPCEConfigurationsOutput = {
     type = "structure",
+    id = "ListVPCEConfigurationsOutput",
     members = {
         vpceConfigurations = {
             type = "list",
@@ -3130,6 +3312,7 @@ M.ListVPCEConfigurationsOutput = {
 
 M.PurchaseOfferingInput = {
     type = "structure",
+    id = "PurchaseOfferingInput",
     members = {
         offeringId = {
             type = "string",
@@ -3151,6 +3334,7 @@ M.PurchaseOfferingInput = {
 
 M.PurchaseOfferingOutput = {
     type = "structure",
+    id = "PurchaseOfferingOutput",
     members = {
         offeringTransaction = M.OfferingTransaction,
     },
@@ -3158,6 +3342,7 @@ M.PurchaseOfferingOutput = {
 
 M.RenewOfferingInput = {
     type = "structure",
+    id = "RenewOfferingInput",
     members = {
         offeringId = {
             type = "string",
@@ -3176,6 +3361,7 @@ M.RenewOfferingInput = {
 
 M.RenewOfferingOutput = {
     type = "structure",
+    id = "RenewOfferingOutput",
     members = {
         offeringTransaction = M.OfferingTransaction,
     },
@@ -3183,6 +3369,7 @@ M.RenewOfferingOutput = {
 
 M.IdempotencyException = {
     type = "structure",
+    id = "IdempotencyException",
     error = "client",
     members = {
         message = {
@@ -3193,6 +3380,7 @@ M.IdempotencyException = {
 
 M.DeviceSelectionConfiguration = {
     type = "structure",
+    id = "DeviceSelectionConfiguration",
     members = {
         filters = {
             type = "list",
@@ -3212,6 +3400,7 @@ M.DeviceSelectionConfiguration = {
 
 M.ExecutionConfiguration = {
     type = "structure",
+    id = "ExecutionConfiguration",
     members = {
         jobTimeoutMinutes = {
             type = "integer",
@@ -3233,6 +3422,7 @@ M.ExecutionConfiguration = {
 
 M.ScheduleRunInput = {
     type = "structure",
+    id = "ScheduleRunInput",
     members = {
         projectArn = {
             type = "string",
@@ -3260,6 +3450,7 @@ M.ScheduleRunInput = {
 
 M.ScheduleRunOutput = {
     type = "structure",
+    id = "ScheduleRunOutput",
     members = {
         run = M.Run,
     },
@@ -3267,6 +3458,7 @@ M.ScheduleRunOutput = {
 
 M.StopJobInput = {
     type = "structure",
+    id = "StopJobInput",
     members = {
         arn = {
             type = "string",
@@ -3279,6 +3471,7 @@ M.StopJobInput = {
 
 M.StopJobOutput = {
     type = "structure",
+    id = "StopJobOutput",
     members = {
         job = M.Job,
     },
@@ -3286,6 +3479,7 @@ M.StopJobOutput = {
 
 M.StopRemoteAccessSessionInput = {
     type = "structure",
+    id = "StopRemoteAccessSessionInput",
     members = {
         arn = {
             type = "string",
@@ -3298,6 +3492,7 @@ M.StopRemoteAccessSessionInput = {
 
 M.StopRemoteAccessSessionOutput = {
     type = "structure",
+    id = "StopRemoteAccessSessionOutput",
     members = {
         remoteAccessSession = M.RemoteAccessSession,
     },
@@ -3305,6 +3500,7 @@ M.StopRemoteAccessSessionOutput = {
 
 M.StopRunInput = {
     type = "structure",
+    id = "StopRunInput",
     members = {
         arn = {
             type = "string",
@@ -3317,6 +3513,7 @@ M.StopRunInput = {
 
 M.StopRunOutput = {
     type = "structure",
+    id = "StopRunOutput",
     members = {
         run = M.Run,
     },
@@ -3324,6 +3521,7 @@ M.StopRunOutput = {
 
 M.TagPolicyException = {
     type = "structure",
+    id = "TagPolicyException",
     error = "client",
     members = {
         message = {
@@ -3337,6 +3535,7 @@ M.TagPolicyException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3356,10 +3555,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -3373,6 +3574,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3392,10 +3594,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDeviceInstanceInput = {
     type = "structure",
+    id = "UpdateDeviceInstanceInput",
     members = {
         arn = {
             type = "string",
@@ -3415,6 +3619,7 @@ M.UpdateDeviceInstanceInput = {
 
 M.UpdateDeviceInstanceOutput = {
     type = "structure",
+    id = "UpdateDeviceInstanceOutput",
     members = {
         deviceInstance = M.DeviceInstance,
     },
@@ -3422,6 +3627,7 @@ M.UpdateDeviceInstanceOutput = {
 
 M.UpdateDevicePoolInput = {
     type = "structure",
+    id = "UpdateDevicePoolInput",
     members = {
         arn = {
             type = "string",
@@ -3450,6 +3656,7 @@ M.UpdateDevicePoolInput = {
 
 M.UpdateDevicePoolOutput = {
     type = "structure",
+    id = "UpdateDevicePoolOutput",
     members = {
         devicePool = M.DevicePool,
     },
@@ -3457,6 +3664,7 @@ M.UpdateDevicePoolOutput = {
 
 M.UpdateInstanceProfileInput = {
     type = "structure",
+    id = "UpdateInstanceProfileInput",
     members = {
         arn = {
             type = "string",
@@ -3485,6 +3693,7 @@ M.UpdateInstanceProfileInput = {
 
 M.UpdateInstanceProfileOutput = {
     type = "structure",
+    id = "UpdateInstanceProfileOutput",
     members = {
         instanceProfile = M.InstanceProfile,
     },
@@ -3492,6 +3701,7 @@ M.UpdateInstanceProfileOutput = {
 
 M.UpdateNetworkProfileInput = {
     type = "structure",
+    id = "UpdateNetworkProfileInput",
     members = {
         arn = {
             type = "string",
@@ -3543,6 +3753,7 @@ M.UpdateNetworkProfileInput = {
 
 M.UpdateNetworkProfileOutput = {
     type = "structure",
+    id = "UpdateNetworkProfileOutput",
     members = {
         networkProfile = M.NetworkProfile,
     },
@@ -3550,6 +3761,7 @@ M.UpdateNetworkProfileOutput = {
 
 M.UpdateProjectInput = {
     type = "structure",
+    id = "UpdateProjectInput",
     members = {
         arn = {
             type = "string",
@@ -3576,6 +3788,7 @@ M.UpdateProjectInput = {
 
 M.UpdateProjectOutput = {
     type = "structure",
+    id = "UpdateProjectOutput",
     members = {
         project = M.Project,
     },
@@ -3583,6 +3796,7 @@ M.UpdateProjectOutput = {
 
 M.UpdateTestGridProjectInput = {
     type = "structure",
+    id = "UpdateTestGridProjectInput",
     members = {
         projectArn = {
             type = "string",
@@ -3602,6 +3816,7 @@ M.UpdateTestGridProjectInput = {
 
 M.UpdateTestGridProjectOutput = {
     type = "structure",
+    id = "UpdateTestGridProjectOutput",
     members = {
         testGridProject = M.TestGridProject,
     },
@@ -3609,6 +3824,7 @@ M.UpdateTestGridProjectOutput = {
 
 M.UpdateUploadInput = {
     type = "structure",
+    id = "UpdateUploadInput",
     members = {
         arn = {
             type = "string",
@@ -3630,6 +3846,7 @@ M.UpdateUploadInput = {
 
 M.UpdateUploadOutput = {
     type = "structure",
+    id = "UpdateUploadOutput",
     members = {
         upload = M.Upload,
     },
@@ -3637,6 +3854,7 @@ M.UpdateUploadOutput = {
 
 M.UpdateVPCEConfigurationInput = {
     type = "structure",
+    id = "UpdateVPCEConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -3661,6 +3879,7 @@ M.UpdateVPCEConfigurationInput = {
 
 M.UpdateVPCEConfigurationOutput = {
     type = "structure",
+    id = "UpdateVPCEConfigurationOutput",
     members = {
         vpceConfiguration = M.VPCEConfiguration,
     },

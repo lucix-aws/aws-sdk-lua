@@ -2,6 +2,7 @@ local M = {}
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -20,6 +21,7 @@ M.Tag = {
 
 M.ActivateGatewayInput = {
     type = "structure",
+    id = "ActivateGatewayInput",
     members = {
         ActivationKey = {
             type = "string",
@@ -63,6 +65,7 @@ M.ActivateGatewayInput = {
 
 M.ActivateGatewayOutput = {
     type = "structure",
+    id = "ActivateGatewayOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -137,6 +140,7 @@ M.ErrorCode = {
 
 M.StorageGatewayError = {
     type = "structure",
+    id = "StorageGatewayError",
     members = {
         errorCode = {
             type = "string",
@@ -151,6 +155,7 @@ M.StorageGatewayError = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         message = {
@@ -162,6 +167,7 @@ M.InternalServerError = {
 
 M.InvalidGatewayRequestException = {
     type = "structure",
+    id = "InvalidGatewayRequestException",
     error = "client",
     members = {
         message = {
@@ -184,6 +190,7 @@ M.ActiveDirectoryStatus = {
 
 M.AddCacheInput = {
     type = "structure",
+    id = "AddCacheInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -203,6 +210,7 @@ M.AddCacheInput = {
 
 M.AddCacheOutput = {
     type = "structure",
+    id = "AddCacheOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -212,6 +220,7 @@ M.AddCacheOutput = {
 
 M.AddTagsToResourceInput = {
     type = "structure",
+    id = "AddTagsToResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -231,6 +240,7 @@ M.AddTagsToResourceInput = {
 
 M.AddTagsToResourceOutput = {
     type = "structure",
+    id = "AddTagsToResourceOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -240,6 +250,7 @@ M.AddTagsToResourceOutput = {
 
 M.AddUploadBufferInput = {
     type = "structure",
+    id = "AddUploadBufferInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -259,6 +270,7 @@ M.AddUploadBufferInput = {
 
 M.AddUploadBufferOutput = {
     type = "structure",
+    id = "AddUploadBufferOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -268,6 +280,7 @@ M.AddUploadBufferOutput = {
 
 M.AddWorkingStorageInput = {
     type = "structure",
+    id = "AddWorkingStorageInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -287,6 +300,7 @@ M.AddWorkingStorageInput = {
 
 M.AddWorkingStorageOutput = {
     type = "structure",
+    id = "AddWorkingStorageOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -296,6 +310,7 @@ M.AddWorkingStorageOutput = {
 
 M.AssignTapePoolInput = {
     type = "structure",
+    id = "AssignTapePoolInput",
     members = {
         TapeARN = {
             type = "string",
@@ -320,6 +335,7 @@ M.AssignTapePoolInput = {
 
 M.AssignTapePoolOutput = {
     type = "structure",
+    id = "AssignTapePoolOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -329,6 +345,7 @@ M.AssignTapePoolOutput = {
 
 M.CacheAttributes = {
     type = "structure",
+    id = "CacheAttributes",
     members = {
         CacheStaleTimeoutInSeconds = {
             type = "integer",
@@ -338,6 +355,7 @@ M.CacheAttributes = {
 
 M.EndpointNetworkConfiguration = {
     type = "structure",
+    id = "EndpointNetworkConfiguration",
     members = {
         IpAddresses = {
             type = "list",
@@ -348,6 +366,7 @@ M.EndpointNetworkConfiguration = {
 
 M.AssociateFileSystemInput = {
     type = "structure",
+    id = "AssociateFileSystemInput",
     members = {
         UserName = {
             type = "string",
@@ -393,6 +412,7 @@ M.AssociateFileSystemInput = {
 
 M.AssociateFileSystemOutput = {
     type = "structure",
+    id = "AssociateFileSystemOutput",
     members = {
         FileSystemAssociationARN = {
             type = "string",
@@ -402,6 +422,7 @@ M.AssociateFileSystemOutput = {
 
 M.AttachVolumeInput = {
     type = "structure",
+    id = "AttachVolumeInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -432,6 +453,7 @@ M.AttachVolumeInput = {
 
 M.AttachVolumeOutput = {
     type = "structure",
+    id = "AttachVolumeOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -444,6 +466,7 @@ M.AttachVolumeOutput = {
 
 M.AutomaticTapeCreationRule = {
     type = "structure",
+    id = "AutomaticTapeCreationRule",
     members = {
         TapeBarcodePrefix = {
             type = "string",
@@ -480,6 +503,7 @@ M.AutomaticTapeCreationRule = {
 
 M.AutomaticTapeCreationPolicyInfo = {
     type = "structure",
+    id = "AutomaticTapeCreationPolicyInfo",
     members = {
         AutomaticTapeCreationRules = {
             type = "list",
@@ -504,6 +528,7 @@ M.AvailabilityMonitorTestStatus = {
 
 M.BandwidthRateLimitInterval = {
     type = "structure",
+    id = "BandwidthRateLimitInterval",
     members = {
         StartHourOfDay = {
             type = "integer",
@@ -547,6 +572,7 @@ M.BandwidthRateLimitInterval = {
 
 M.VolumeiSCSIAttributes = {
     type = "structure",
+    id = "VolumeiSCSIAttributes",
     members = {
         TargetARN = {
             type = "string",
@@ -574,6 +600,7 @@ M.VolumeiSCSIAttributes = {
 
 M.CachediSCSIVolume = {
     type = "structure",
+    id = "CachediSCSIVolume",
     members = {
         VolumeARN = {
             type = "string",
@@ -625,6 +652,7 @@ M.CacheReportFilterName = {
 
 M.CacheReportFilter = {
     type = "structure",
+    id = "CacheReportFilter",
     members = {
         Name = {
             type = "string",
@@ -652,6 +680,7 @@ M.CacheReportStatus = {
 
 M.CacheReportInfo = {
     type = "structure",
+    id = "CacheReportInfo",
     members = {
         CacheReportARN = {
             type = "string",
@@ -697,6 +726,7 @@ M.CacheReportInfo = {
 
 M.CancelArchivalInput = {
     type = "structure",
+    id = "CancelArchivalInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -715,6 +745,7 @@ M.CancelArchivalInput = {
 
 M.CancelArchivalOutput = {
     type = "structure",
+    id = "CancelArchivalOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -724,6 +755,7 @@ M.CancelArchivalOutput = {
 
 M.CancelCacheReportInput = {
     type = "structure",
+    id = "CancelCacheReportInput",
     members = {
         CacheReportARN = {
             type = "string",
@@ -736,6 +768,7 @@ M.CancelCacheReportInput = {
 
 M.CancelCacheReportOutput = {
     type = "structure",
+    id = "CancelCacheReportOutput",
     members = {
         CacheReportARN = {
             type = "string",
@@ -745,6 +778,7 @@ M.CancelCacheReportOutput = {
 
 M.CancelRetrievalInput = {
     type = "structure",
+    id = "CancelRetrievalInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -763,6 +797,7 @@ M.CancelRetrievalInput = {
 
 M.CancelRetrievalOutput = {
     type = "structure",
+    id = "CancelRetrievalOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -777,6 +812,7 @@ M.CaseSensitivity = {
 
 M.ChapInfo = {
     type = "structure",
+    id = "ChapInfo",
     members = {
         TargetARN = {
             type = "string",
@@ -795,6 +831,7 @@ M.ChapInfo = {
 
 M.CreateCachediSCSIVolumeInput = {
     type = "structure",
+    id = "CreateCachediSCSIVolumeInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -848,6 +885,7 @@ M.CreateCachediSCSIVolumeInput = {
 
 M.CreateCachediSCSIVolumeOutput = {
     type = "structure",
+    id = "CreateCachediSCSIVolumeOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -866,6 +904,7 @@ M.EncryptionType = {
 
 M.NFSFileShareDefaults = {
     type = "structure",
+    id = "NFSFileShareDefaults",
     members = {
         FileMode = {
             type = "string",
@@ -894,6 +933,7 @@ M.ObjectACL = {
 
 M.CreateNFSFileShareInput = {
     type = "structure",
+    id = "CreateNFSFileShareInput",
     members = {
         ClientToken = {
             type = "string",
@@ -976,6 +1016,7 @@ M.CreateNFSFileShareInput = {
 
 M.CreateNFSFileShareOutput = {
     type = "structure",
+    id = "CreateNFSFileShareOutput",
     members = {
         FileShareARN = {
             type = "string",
@@ -985,6 +1026,7 @@ M.CreateNFSFileShareOutput = {
 
 M.CreateSMBFileShareInput = {
     type = "structure",
+    id = "CreateSMBFileShareInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1086,6 +1128,7 @@ M.CreateSMBFileShareInput = {
 
 M.CreateSMBFileShareOutput = {
     type = "structure",
+    id = "CreateSMBFileShareOutput",
     members = {
         FileShareARN = {
             type = "string",
@@ -1095,6 +1138,7 @@ M.CreateSMBFileShareOutput = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1117,6 +1161,7 @@ M.CreateSnapshotInput = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1129,6 +1174,7 @@ M.CreateSnapshotOutput = {
 
 M.ServiceUnavailableError = {
     type = "structure",
+    id = "ServiceUnavailableError",
     error = "server",
     members = {
         message = {
@@ -1140,6 +1186,7 @@ M.ServiceUnavailableError = {
 
 M.CreateSnapshotFromVolumeRecoveryPointInput = {
     type = "structure",
+    id = "CreateSnapshotFromVolumeRecoveryPointInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1162,6 +1209,7 @@ M.CreateSnapshotFromVolumeRecoveryPointInput = {
 
 M.CreateSnapshotFromVolumeRecoveryPointOutput = {
     type = "structure",
+    id = "CreateSnapshotFromVolumeRecoveryPointOutput",
     members = {
         SnapshotId = {
             type = "string",
@@ -1177,6 +1225,7 @@ M.CreateSnapshotFromVolumeRecoveryPointOutput = {
 
 M.CreateStorediSCSIVolumeInput = {
     type = "structure",
+    id = "CreateStorediSCSIVolumeInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1227,6 +1276,7 @@ M.CreateStorediSCSIVolumeInput = {
 
 M.CreateStorediSCSIVolumeOutput = {
     type = "structure",
+    id = "CreateStorediSCSIVolumeOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1256,6 +1306,7 @@ M.TapeStorageClass = {
 
 M.CreateTapePoolInput = {
     type = "structure",
+    id = "CreateTapePoolInput",
     members = {
         PoolName = {
             type = "string",
@@ -1284,6 +1335,7 @@ M.CreateTapePoolInput = {
 
 M.CreateTapePoolOutput = {
     type = "structure",
+    id = "CreateTapePoolOutput",
     members = {
         PoolARN = {
             type = "string",
@@ -1293,6 +1345,7 @@ M.CreateTapePoolOutput = {
 
 M.CreateTapesInput = {
     type = "structure",
+    id = "CreateTapesInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1348,6 +1401,7 @@ M.CreateTapesInput = {
 
 M.CreateTapesOutput = {
     type = "structure",
+    id = "CreateTapesOutput",
     members = {
         TapeARNs = {
             type = "list",
@@ -1358,6 +1412,7 @@ M.CreateTapesOutput = {
 
 M.CreateTapeWithBarcodeInput = {
     type = "structure",
+    id = "CreateTapeWithBarcodeInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1401,6 +1456,7 @@ M.CreateTapeWithBarcodeInput = {
 
 M.CreateTapeWithBarcodeOutput = {
     type = "structure",
+    id = "CreateTapeWithBarcodeOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -1410,6 +1466,7 @@ M.CreateTapeWithBarcodeOutput = {
 
 M.DeleteAutomaticTapeCreationPolicyInput = {
     type = "structure",
+    id = "DeleteAutomaticTapeCreationPolicyInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1422,6 +1479,7 @@ M.DeleteAutomaticTapeCreationPolicyInput = {
 
 M.DeleteAutomaticTapeCreationPolicyOutput = {
     type = "structure",
+    id = "DeleteAutomaticTapeCreationPolicyOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1431,6 +1489,7 @@ M.DeleteAutomaticTapeCreationPolicyOutput = {
 
 M.DeleteBandwidthRateLimitInput = {
     type = "structure",
+    id = "DeleteBandwidthRateLimitInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1449,6 +1508,7 @@ M.DeleteBandwidthRateLimitInput = {
 
 M.DeleteBandwidthRateLimitOutput = {
     type = "structure",
+    id = "DeleteBandwidthRateLimitOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1458,6 +1518,7 @@ M.DeleteBandwidthRateLimitOutput = {
 
 M.DeleteCacheReportInput = {
     type = "structure",
+    id = "DeleteCacheReportInput",
     members = {
         CacheReportARN = {
             type = "string",
@@ -1470,6 +1531,7 @@ M.DeleteCacheReportInput = {
 
 M.DeleteCacheReportOutput = {
     type = "structure",
+    id = "DeleteCacheReportOutput",
     members = {
         CacheReportARN = {
             type = "string",
@@ -1479,6 +1541,7 @@ M.DeleteCacheReportOutput = {
 
 M.DeleteChapCredentialsInput = {
     type = "structure",
+    id = "DeleteChapCredentialsInput",
     members = {
         TargetARN = {
             type = "string",
@@ -1497,6 +1560,7 @@ M.DeleteChapCredentialsInput = {
 
 M.DeleteChapCredentialsOutput = {
     type = "structure",
+    id = "DeleteChapCredentialsOutput",
     members = {
         TargetARN = {
             type = "string",
@@ -1509,6 +1573,7 @@ M.DeleteChapCredentialsOutput = {
 
 M.DeleteFileShareInput = {
     type = "structure",
+    id = "DeleteFileShareInput",
     members = {
         FileShareARN = {
             type = "string",
@@ -1527,6 +1592,7 @@ M.DeleteFileShareInput = {
 
 M.DeleteFileShareOutput = {
     type = "structure",
+    id = "DeleteFileShareOutput",
     members = {
         FileShareARN = {
             type = "string",
@@ -1536,6 +1602,7 @@ M.DeleteFileShareOutput = {
 
 M.DeleteGatewayInput = {
     type = "structure",
+    id = "DeleteGatewayInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1548,6 +1615,7 @@ M.DeleteGatewayInput = {
 
 M.DeleteGatewayOutput = {
     type = "structure",
+    id = "DeleteGatewayOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1557,6 +1625,7 @@ M.DeleteGatewayOutput = {
 
 M.DeleteSnapshotScheduleInput = {
     type = "structure",
+    id = "DeleteSnapshotScheduleInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1569,6 +1638,7 @@ M.DeleteSnapshotScheduleInput = {
 
 M.DeleteSnapshotScheduleOutput = {
     type = "structure",
+    id = "DeleteSnapshotScheduleOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1578,6 +1648,7 @@ M.DeleteSnapshotScheduleOutput = {
 
 M.DeleteTapeInput = {
     type = "structure",
+    id = "DeleteTapeInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1602,6 +1673,7 @@ M.DeleteTapeInput = {
 
 M.DeleteTapeOutput = {
     type = "structure",
+    id = "DeleteTapeOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -1611,6 +1683,7 @@ M.DeleteTapeOutput = {
 
 M.DeleteTapeArchiveInput = {
     type = "structure",
+    id = "DeleteTapeArchiveInput",
     members = {
         TapeARN = {
             type = "string",
@@ -1629,6 +1702,7 @@ M.DeleteTapeArchiveInput = {
 
 M.DeleteTapeArchiveOutput = {
     type = "structure",
+    id = "DeleteTapeArchiveOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -1638,6 +1712,7 @@ M.DeleteTapeArchiveOutput = {
 
 M.DeleteTapePoolInput = {
     type = "structure",
+    id = "DeleteTapePoolInput",
     members = {
         PoolARN = {
             type = "string",
@@ -1650,6 +1725,7 @@ M.DeleteTapePoolInput = {
 
 M.DeleteTapePoolOutput = {
     type = "structure",
+    id = "DeleteTapePoolOutput",
     members = {
         PoolARN = {
             type = "string",
@@ -1659,6 +1735,7 @@ M.DeleteTapePoolOutput = {
 
 M.DeleteVolumeInput = {
     type = "structure",
+    id = "DeleteVolumeInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1671,6 +1748,7 @@ M.DeleteVolumeInput = {
 
 M.DeleteVolumeOutput = {
     type = "structure",
+    id = "DeleteVolumeOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -1680,6 +1758,7 @@ M.DeleteVolumeOutput = {
 
 M.DescribeAvailabilityMonitorTestInput = {
     type = "structure",
+    id = "DescribeAvailabilityMonitorTestInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1692,6 +1771,7 @@ M.DescribeAvailabilityMonitorTestInput = {
 
 M.DescribeAvailabilityMonitorTestOutput = {
     type = "structure",
+    id = "DescribeAvailabilityMonitorTestOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1707,6 +1787,7 @@ M.DescribeAvailabilityMonitorTestOutput = {
 
 M.DescribeBandwidthRateLimitInput = {
     type = "structure",
+    id = "DescribeBandwidthRateLimitInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1719,6 +1800,7 @@ M.DescribeBandwidthRateLimitInput = {
 
 M.DescribeBandwidthRateLimitOutput = {
     type = "structure",
+    id = "DescribeBandwidthRateLimitOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1734,6 +1816,7 @@ M.DescribeBandwidthRateLimitOutput = {
 
 M.DescribeBandwidthRateLimitScheduleInput = {
     type = "structure",
+    id = "DescribeBandwidthRateLimitScheduleInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1746,6 +1829,7 @@ M.DescribeBandwidthRateLimitScheduleInput = {
 
 M.DescribeBandwidthRateLimitScheduleOutput = {
     type = "structure",
+    id = "DescribeBandwidthRateLimitScheduleOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1759,6 +1843,7 @@ M.DescribeBandwidthRateLimitScheduleOutput = {
 
 M.DescribeCacheInput = {
     type = "structure",
+    id = "DescribeCacheInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1771,6 +1856,7 @@ M.DescribeCacheInput = {
 
 M.DescribeCacheOutput = {
     type = "structure",
+    id = "DescribeCacheOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1814,6 +1900,7 @@ M.DescribeCacheOutput = {
 
 M.DescribeCachediSCSIVolumesInput = {
     type = "structure",
+    id = "DescribeCachediSCSIVolumesInput",
     members = {
         VolumeARNs = {
             type = "list",
@@ -1827,6 +1914,7 @@ M.DescribeCachediSCSIVolumesInput = {
 
 M.DescribeCachediSCSIVolumesOutput = {
     type = "structure",
+    id = "DescribeCachediSCSIVolumesOutput",
     members = {
         CachediSCSIVolumes = {
             type = "list",
@@ -1837,6 +1925,7 @@ M.DescribeCachediSCSIVolumesOutput = {
 
 M.DescribeCacheReportInput = {
     type = "structure",
+    id = "DescribeCacheReportInput",
     members = {
         CacheReportARN = {
             type = "string",
@@ -1849,6 +1938,7 @@ M.DescribeCacheReportInput = {
 
 M.DescribeCacheReportOutput = {
     type = "structure",
+    id = "DescribeCacheReportOutput",
     members = {
         CacheReportInfo = M.CacheReportInfo,
     },
@@ -1856,6 +1946,7 @@ M.DescribeCacheReportOutput = {
 
 M.DescribeChapCredentialsInput = {
     type = "structure",
+    id = "DescribeChapCredentialsInput",
     members = {
         TargetARN = {
             type = "string",
@@ -1868,6 +1959,7 @@ M.DescribeChapCredentialsInput = {
 
 M.DescribeChapCredentialsOutput = {
     type = "structure",
+    id = "DescribeChapCredentialsOutput",
     members = {
         ChapCredentials = {
             type = "list",
@@ -1878,6 +1970,7 @@ M.DescribeChapCredentialsOutput = {
 
 M.DescribeFileSystemAssociationsInput = {
     type = "structure",
+    id = "DescribeFileSystemAssociationsInput",
     members = {
         FileSystemAssociationARNList = {
             type = "list",
@@ -1891,6 +1984,7 @@ M.DescribeFileSystemAssociationsInput = {
 
 M.FileSystemAssociationStatusDetail = {
     type = "structure",
+    id = "FileSystemAssociationStatusDetail",
     members = {
         ErrorCode = {
             type = "string",
@@ -1900,6 +1994,7 @@ M.FileSystemAssociationStatusDetail = {
 
 M.FileSystemAssociationInfo = {
     type = "structure",
+    id = "FileSystemAssociationInfo",
     members = {
         FileSystemAssociationARN = {
             type = "string",
@@ -1931,6 +2026,7 @@ M.FileSystemAssociationInfo = {
 
 M.DescribeFileSystemAssociationsOutput = {
     type = "structure",
+    id = "DescribeFileSystemAssociationsOutput",
     members = {
         FileSystemAssociationInfoList = {
             type = "list",
@@ -1941,6 +2037,7 @@ M.DescribeFileSystemAssociationsOutput = {
 
 M.DescribeGatewayInformationInput = {
     type = "structure",
+    id = "DescribeGatewayInformationInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -1959,6 +2056,7 @@ M.GatewayCapacity = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         Ipv4Address = {
             type = "string",
@@ -1983,6 +2081,7 @@ M.HostEnvironment = {
 
 M.DescribeGatewayInformationOutput = {
     type = "structure",
+    id = "DescribeGatewayInformationOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2058,6 +2157,7 @@ M.DescribeGatewayInformationOutput = {
 
 M.DescribeMaintenanceStartTimeInput = {
     type = "structure",
+    id = "DescribeMaintenanceStartTimeInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2070,6 +2170,7 @@ M.DescribeMaintenanceStartTimeInput = {
 
 M.SoftwareUpdatePreferences = {
     type = "structure",
+    id = "SoftwareUpdatePreferences",
     members = {
         AutomaticUpdatePolicy = {
             type = "string",
@@ -2079,6 +2180,7 @@ M.SoftwareUpdatePreferences = {
 
 M.DescribeMaintenanceStartTimeOutput = {
     type = "structure",
+    id = "DescribeMaintenanceStartTimeOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2104,6 +2206,7 @@ M.DescribeMaintenanceStartTimeOutput = {
 
 M.DescribeNFSFileSharesInput = {
     type = "structure",
+    id = "DescribeNFSFileSharesInput",
     members = {
         FileShareARNList = {
             type = "list",
@@ -2117,6 +2220,7 @@ M.DescribeNFSFileSharesInput = {
 
 M.NFSFileShareInfo = {
     type = "structure",
+    id = "NFSFileShareInfo",
     members = {
         NFSFileShareDefaults = M.NFSFileShareDefaults,
         FileShareARN = {
@@ -2199,6 +2303,7 @@ M.NFSFileShareInfo = {
 
 M.DescribeNFSFileSharesOutput = {
     type = "structure",
+    id = "DescribeNFSFileSharesOutput",
     members = {
         NFSFileShareInfoList = {
             type = "list",
@@ -2209,6 +2314,7 @@ M.DescribeNFSFileSharesOutput = {
 
 M.DescribeSMBFileSharesInput = {
     type = "structure",
+    id = "DescribeSMBFileSharesInput",
     members = {
         FileShareARNList = {
             type = "list",
@@ -2222,6 +2328,7 @@ M.DescribeSMBFileSharesInput = {
 
 M.SMBFileShareInfo = {
     type = "structure",
+    id = "SMBFileShareInfo",
     members = {
         FileShareARN = {
             type = "string",
@@ -2323,6 +2430,7 @@ M.SMBFileShareInfo = {
 
 M.DescribeSMBFileSharesOutput = {
     type = "structure",
+    id = "DescribeSMBFileSharesOutput",
     members = {
         SMBFileShareInfoList = {
             type = "list",
@@ -2333,6 +2441,7 @@ M.DescribeSMBFileSharesOutput = {
 
 M.DescribeSMBSettingsInput = {
     type = "structure",
+    id = "DescribeSMBSettingsInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2345,6 +2454,7 @@ M.DescribeSMBSettingsInput = {
 
 M.SMBLocalGroups = {
     type = "structure",
+    id = "SMBLocalGroups",
     members = {
         GatewayAdmins = {
             type = "list",
@@ -2362,6 +2472,7 @@ M.SMBSecurityStrategy = {
 
 M.DescribeSMBSettingsOutput = {
     type = "structure",
+    id = "DescribeSMBSettingsOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2387,6 +2498,7 @@ M.DescribeSMBSettingsOutput = {
 
 M.DescribeSnapshotScheduleInput = {
     type = "structure",
+    id = "DescribeSnapshotScheduleInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -2399,6 +2511,7 @@ M.DescribeSnapshotScheduleInput = {
 
 M.DescribeSnapshotScheduleOutput = {
     type = "structure",
+    id = "DescribeSnapshotScheduleOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -2424,6 +2537,7 @@ M.DescribeSnapshotScheduleOutput = {
 
 M.DescribeStorediSCSIVolumesInput = {
     type = "structure",
+    id = "DescribeStorediSCSIVolumesInput",
     members = {
         VolumeARNs = {
             type = "list",
@@ -2437,6 +2551,7 @@ M.DescribeStorediSCSIVolumesInput = {
 
 M.StorediSCSIVolume = {
     type = "structure",
+    id = "StorediSCSIVolume",
     members = {
         VolumeARN = {
             type = "string",
@@ -2492,6 +2607,7 @@ M.StorediSCSIVolume = {
 
 M.DescribeStorediSCSIVolumesOutput = {
     type = "structure",
+    id = "DescribeStorediSCSIVolumesOutput",
     members = {
         StorediSCSIVolumes = {
             type = "list",
@@ -2502,6 +2618,7 @@ M.DescribeStorediSCSIVolumesOutput = {
 
 M.DescribeTapeArchivesInput = {
     type = "structure",
+    id = "DescribeTapeArchivesInput",
     members = {
         TapeARNs = {
             type = "list",
@@ -2518,6 +2635,7 @@ M.DescribeTapeArchivesInput = {
 
 M.TapeArchive = {
     type = "structure",
+    id = "TapeArchive",
     members = {
         TapeARN = {
             type = "string",
@@ -2566,6 +2684,7 @@ M.TapeArchive = {
 
 M.DescribeTapeArchivesOutput = {
     type = "structure",
+    id = "DescribeTapeArchivesOutput",
     members = {
         TapeArchives = {
             type = "list",
@@ -2579,6 +2698,7 @@ M.DescribeTapeArchivesOutput = {
 
 M.DescribeTapeRecoveryPointsInput = {
     type = "structure",
+    id = "DescribeTapeRecoveryPointsInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2597,6 +2717,7 @@ M.DescribeTapeRecoveryPointsInput = {
 
 M.TapeRecoveryPointInfo = {
     type = "structure",
+    id = "TapeRecoveryPointInfo",
     members = {
         TapeARN = {
             type = "string",
@@ -2615,6 +2736,7 @@ M.TapeRecoveryPointInfo = {
 
 M.DescribeTapeRecoveryPointsOutput = {
     type = "structure",
+    id = "DescribeTapeRecoveryPointsOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2631,6 +2753,7 @@ M.DescribeTapeRecoveryPointsOutput = {
 
 M.DescribeTapesInput = {
     type = "structure",
+    id = "DescribeTapesInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2653,6 +2776,7 @@ M.DescribeTapesInput = {
 
 M.Tape = {
     type = "structure",
+    id = "Tape",
     members = {
         TapeARN = {
             type = "string",
@@ -2701,6 +2825,7 @@ M.Tape = {
 
 M.DescribeTapesOutput = {
     type = "structure",
+    id = "DescribeTapesOutput",
     members = {
         Tapes = {
             type = "list",
@@ -2714,6 +2839,7 @@ M.DescribeTapesOutput = {
 
 M.DescribeUploadBufferInput = {
     type = "structure",
+    id = "DescribeUploadBufferInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2726,6 +2852,7 @@ M.DescribeUploadBufferInput = {
 
 M.DescribeUploadBufferOutput = {
     type = "structure",
+    id = "DescribeUploadBufferOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2751,6 +2878,7 @@ M.DescribeUploadBufferOutput = {
 
 M.DescribeVTLDevicesInput = {
     type = "structure",
+    id = "DescribeVTLDevicesInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2773,6 +2901,7 @@ M.DescribeVTLDevicesInput = {
 
 M.DeviceiSCSIAttributes = {
     type = "structure",
+    id = "DeviceiSCSIAttributes",
     members = {
         TargetARN = {
             type = "string",
@@ -2797,6 +2926,7 @@ M.DeviceiSCSIAttributes = {
 
 M.VTLDevice = {
     type = "structure",
+    id = "VTLDevice",
     members = {
         VTLDeviceARN = {
             type = "string",
@@ -2816,6 +2946,7 @@ M.VTLDevice = {
 
 M.DescribeVTLDevicesOutput = {
     type = "structure",
+    id = "DescribeVTLDevicesOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2832,6 +2963,7 @@ M.DescribeVTLDevicesOutput = {
 
 M.DescribeWorkingStorageInput = {
     type = "structure",
+    id = "DescribeWorkingStorageInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2844,6 +2976,7 @@ M.DescribeWorkingStorageInput = {
 
 M.DescribeWorkingStorageOutput = {
     type = "structure",
+    id = "DescribeWorkingStorageOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2869,6 +3002,7 @@ M.DescribeWorkingStorageOutput = {
 
 M.DetachVolumeInput = {
     type = "structure",
+    id = "DetachVolumeInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -2884,6 +3018,7 @@ M.DetachVolumeInput = {
 
 M.DetachVolumeOutput = {
     type = "structure",
+    id = "DetachVolumeOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -2893,6 +3028,7 @@ M.DetachVolumeOutput = {
 
 M.DisableGatewayInput = {
     type = "structure",
+    id = "DisableGatewayInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2905,6 +3041,7 @@ M.DisableGatewayInput = {
 
 M.DisableGatewayOutput = {
     type = "structure",
+    id = "DisableGatewayOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -2914,6 +3051,7 @@ M.DisableGatewayOutput = {
 
 M.DisassociateFileSystemInput = {
     type = "structure",
+    id = "DisassociateFileSystemInput",
     members = {
         FileSystemAssociationARN = {
             type = "string",
@@ -2932,6 +3070,7 @@ M.DisassociateFileSystemInput = {
 
 M.DisassociateFileSystemOutput = {
     type = "structure",
+    id = "DisassociateFileSystemOutput",
     members = {
         FileSystemAssociationARN = {
             type = "string",
@@ -2941,6 +3080,7 @@ M.DisassociateFileSystemOutput = {
 
 M.Disk = {
     type = "structure",
+    id = "Disk",
     members = {
         DiskId = {
             type = "string",
@@ -2975,6 +3115,7 @@ M.Disk = {
 
 M.EvictFilesFailingUploadInput = {
     type = "structure",
+    id = "EvictFilesFailingUploadInput",
     members = {
         FileShareARN = {
             type = "string",
@@ -2993,6 +3134,7 @@ M.EvictFilesFailingUploadInput = {
 
 M.EvictFilesFailingUploadOutput = {
     type = "structure",
+    id = "EvictFilesFailingUploadOutput",
     members = {
         NotificationId = {
             type = "string",
@@ -3007,6 +3149,7 @@ M.FileShareType = {
 
 M.FileShareInfo = {
     type = "structure",
+    id = "FileShareInfo",
     members = {
         FileShareType = {
             type = "string",
@@ -3028,6 +3171,7 @@ M.FileShareInfo = {
 
 M.FileSystemAssociationSummary = {
     type = "structure",
+    id = "FileSystemAssociationSummary",
     members = {
         FileSystemAssociationId = {
             type = "string",
@@ -3046,6 +3190,7 @@ M.FileSystemAssociationSummary = {
 
 M.GatewayInfo = {
     type = "structure",
+    id = "GatewayInfo",
     members = {
         GatewayId = {
             type = "string",
@@ -3085,6 +3230,7 @@ M.GatewayInfo = {
 
 M.JoinDomainInput = {
     type = "structure",
+    id = "JoinDomainInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3125,6 +3271,7 @@ M.JoinDomainInput = {
 
 M.JoinDomainOutput = {
     type = "structure",
+    id = "JoinDomainOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3137,6 +3284,7 @@ M.JoinDomainOutput = {
 
 M.ListAutomaticTapeCreationPoliciesInput = {
     type = "structure",
+    id = "ListAutomaticTapeCreationPoliciesInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3146,6 +3294,7 @@ M.ListAutomaticTapeCreationPoliciesInput = {
 
 M.ListAutomaticTapeCreationPoliciesOutput = {
     type = "structure",
+    id = "ListAutomaticTapeCreationPoliciesOutput",
     members = {
         AutomaticTapeCreationPolicyInfos = {
             type = "list",
@@ -3156,6 +3305,7 @@ M.ListAutomaticTapeCreationPoliciesOutput = {
 
 M.ListCacheReportsInput = {
     type = "structure",
+    id = "ListCacheReportsInput",
     members = {
         Marker = {
             type = "string",
@@ -3165,6 +3315,7 @@ M.ListCacheReportsInput = {
 
 M.ListCacheReportsOutput = {
     type = "structure",
+    id = "ListCacheReportsOutput",
     members = {
         CacheReportList = {
             type = "list",
@@ -3178,6 +3329,7 @@ M.ListCacheReportsOutput = {
 
 M.ListFileSharesInput = {
     type = "structure",
+    id = "ListFileSharesInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3193,6 +3345,7 @@ M.ListFileSharesInput = {
 
 M.ListFileSharesOutput = {
     type = "structure",
+    id = "ListFileSharesOutput",
     members = {
         Marker = {
             type = "string",
@@ -3209,6 +3362,7 @@ M.ListFileSharesOutput = {
 
 M.ListFileSystemAssociationsInput = {
     type = "structure",
+    id = "ListFileSystemAssociationsInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3224,6 +3378,7 @@ M.ListFileSystemAssociationsInput = {
 
 M.ListFileSystemAssociationsOutput = {
     type = "structure",
+    id = "ListFileSystemAssociationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -3240,6 +3395,7 @@ M.ListFileSystemAssociationsOutput = {
 
 M.ListGatewaysInput = {
     type = "structure",
+    id = "ListGatewaysInput",
     members = {
         Marker = {
             type = "string",
@@ -3252,6 +3408,7 @@ M.ListGatewaysInput = {
 
 M.ListGatewaysOutput = {
     type = "structure",
+    id = "ListGatewaysOutput",
     members = {
         Gateways = {
             type = "list",
@@ -3265,6 +3422,7 @@ M.ListGatewaysOutput = {
 
 M.ListLocalDisksInput = {
     type = "structure",
+    id = "ListLocalDisksInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3277,6 +3435,7 @@ M.ListLocalDisksInput = {
 
 M.ListLocalDisksOutput = {
     type = "structure",
+    id = "ListLocalDisksOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3290,6 +3449,7 @@ M.ListLocalDisksOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3308,6 +3468,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3324,6 +3485,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTapePoolsInput = {
     type = "structure",
+    id = "ListTapePoolsInput",
     members = {
         PoolARNs = {
             type = "list",
@@ -3345,6 +3507,7 @@ M.PoolStatus = {
 
 M.PoolInfo = {
     type = "structure",
+    id = "PoolInfo",
     members = {
         PoolARN = {
             type = "string",
@@ -3369,6 +3532,7 @@ M.PoolInfo = {
 
 M.ListTapePoolsOutput = {
     type = "structure",
+    id = "ListTapePoolsOutput",
     members = {
         PoolInfos = {
             type = "list",
@@ -3382,6 +3546,7 @@ M.ListTapePoolsOutput = {
 
 M.ListTapesInput = {
     type = "structure",
+    id = "ListTapesInput",
     members = {
         TapeARNs = {
             type = "list",
@@ -3398,6 +3563,7 @@ M.ListTapesInput = {
 
 M.TapeInfo = {
     type = "structure",
+    id = "TapeInfo",
     members = {
         TapeARN = {
             type = "string",
@@ -3428,6 +3594,7 @@ M.TapeInfo = {
 
 M.ListTapesOutput = {
     type = "structure",
+    id = "ListTapesOutput",
     members = {
         TapeInfos = {
             type = "list",
@@ -3441,6 +3608,7 @@ M.ListTapesOutput = {
 
 M.ListVolumeInitiatorsInput = {
     type = "structure",
+    id = "ListVolumeInitiatorsInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -3453,6 +3621,7 @@ M.ListVolumeInitiatorsInput = {
 
 M.ListVolumeInitiatorsOutput = {
     type = "structure",
+    id = "ListVolumeInitiatorsOutput",
     members = {
         Initiators = {
             type = "list",
@@ -3463,6 +3632,7 @@ M.ListVolumeInitiatorsOutput = {
 
 M.ListVolumeRecoveryPointsInput = {
     type = "structure",
+    id = "ListVolumeRecoveryPointsInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3475,6 +3645,7 @@ M.ListVolumeRecoveryPointsInput = {
 
 M.VolumeRecoveryPointInfo = {
     type = "structure",
+    id = "VolumeRecoveryPointInfo",
     members = {
         VolumeARN = {
             type = "string",
@@ -3499,6 +3670,7 @@ M.VolumeRecoveryPointInfo = {
 
 M.ListVolumeRecoveryPointsOutput = {
     type = "structure",
+    id = "ListVolumeRecoveryPointsOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3512,6 +3684,7 @@ M.ListVolumeRecoveryPointsOutput = {
 
 M.ListVolumesInput = {
     type = "structure",
+    id = "ListVolumesInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3527,6 +3700,7 @@ M.ListVolumesInput = {
 
 M.VolumeInfo = {
     type = "structure",
+    id = "VolumeInfo",
     members = {
         VolumeARN = {
             type = "string",
@@ -3557,6 +3731,7 @@ M.VolumeInfo = {
 
 M.ListVolumesOutput = {
     type = "structure",
+    id = "ListVolumesOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3573,6 +3748,7 @@ M.ListVolumesOutput = {
 
 M.NotifyWhenUploadedInput = {
     type = "structure",
+    id = "NotifyWhenUploadedInput",
     members = {
         FileShareARN = {
             type = "string",
@@ -3585,6 +3761,7 @@ M.NotifyWhenUploadedInput = {
 
 M.NotifyWhenUploadedOutput = {
     type = "structure",
+    id = "NotifyWhenUploadedOutput",
     members = {
         FileShareARN = {
             type = "string",
@@ -3597,6 +3774,7 @@ M.NotifyWhenUploadedOutput = {
 
 M.RefreshCacheInput = {
     type = "structure",
+    id = "RefreshCacheInput",
     members = {
         FileShareARN = {
             type = "string",
@@ -3616,6 +3794,7 @@ M.RefreshCacheInput = {
 
 M.RefreshCacheOutput = {
     type = "structure",
+    id = "RefreshCacheOutput",
     members = {
         FileShareARN = {
             type = "string",
@@ -3628,6 +3807,7 @@ M.RefreshCacheOutput = {
 
 M.RemoveTagsFromResourceInput = {
     type = "structure",
+    id = "RemoveTagsFromResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3647,6 +3827,7 @@ M.RemoveTagsFromResourceInput = {
 
 M.RemoveTagsFromResourceOutput = {
     type = "structure",
+    id = "RemoveTagsFromResourceOutput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3656,6 +3837,7 @@ M.RemoveTagsFromResourceOutput = {
 
 M.ResetCacheInput = {
     type = "structure",
+    id = "ResetCacheInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3668,6 +3850,7 @@ M.ResetCacheInput = {
 
 M.ResetCacheOutput = {
     type = "structure",
+    id = "ResetCacheOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3677,6 +3860,7 @@ M.ResetCacheOutput = {
 
 M.RetrieveTapeArchiveInput = {
     type = "structure",
+    id = "RetrieveTapeArchiveInput",
     members = {
         TapeARN = {
             type = "string",
@@ -3695,6 +3879,7 @@ M.RetrieveTapeArchiveInput = {
 
 M.RetrieveTapeArchiveOutput = {
     type = "structure",
+    id = "RetrieveTapeArchiveOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -3704,6 +3889,7 @@ M.RetrieveTapeArchiveOutput = {
 
 M.RetrieveTapeRecoveryPointInput = {
     type = "structure",
+    id = "RetrieveTapeRecoveryPointInput",
     members = {
         TapeARN = {
             type = "string",
@@ -3722,6 +3908,7 @@ M.RetrieveTapeRecoveryPointInput = {
 
 M.RetrieveTapeRecoveryPointOutput = {
     type = "structure",
+    id = "RetrieveTapeRecoveryPointOutput",
     members = {
         TapeARN = {
             type = "string",
@@ -3731,6 +3918,7 @@ M.RetrieveTapeRecoveryPointOutput = {
 
 M.SetLocalConsolePasswordInput = {
     type = "structure",
+    id = "SetLocalConsolePasswordInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3749,6 +3937,7 @@ M.SetLocalConsolePasswordInput = {
 
 M.SetLocalConsolePasswordOutput = {
     type = "structure",
+    id = "SetLocalConsolePasswordOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3758,6 +3947,7 @@ M.SetLocalConsolePasswordOutput = {
 
 M.SetSMBGuestPasswordInput = {
     type = "structure",
+    id = "SetSMBGuestPasswordInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3776,6 +3966,7 @@ M.SetSMBGuestPasswordInput = {
 
 M.SetSMBGuestPasswordOutput = {
     type = "structure",
+    id = "SetSMBGuestPasswordOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3785,6 +3976,7 @@ M.SetSMBGuestPasswordOutput = {
 
 M.ShutdownGatewayInput = {
     type = "structure",
+    id = "ShutdownGatewayInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3797,6 +3989,7 @@ M.ShutdownGatewayInput = {
 
 M.ShutdownGatewayOutput = {
     type = "structure",
+    id = "ShutdownGatewayOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3806,6 +3999,7 @@ M.ShutdownGatewayOutput = {
 
 M.StartAvailabilityMonitorTestInput = {
     type = "structure",
+    id = "StartAvailabilityMonitorTestInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3818,6 +4012,7 @@ M.StartAvailabilityMonitorTestInput = {
 
 M.StartAvailabilityMonitorTestOutput = {
     type = "structure",
+    id = "StartAvailabilityMonitorTestOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3827,6 +4022,7 @@ M.StartAvailabilityMonitorTestOutput = {
 
 M.StartCacheReportInput = {
     type = "structure",
+    id = "StartCacheReportInput",
     members = {
         FileShareARN = {
             type = "string",
@@ -3878,6 +4074,7 @@ M.StartCacheReportInput = {
 
 M.StartCacheReportOutput = {
     type = "structure",
+    id = "StartCacheReportOutput",
     members = {
         CacheReportARN = {
             type = "string",
@@ -3887,6 +4084,7 @@ M.StartCacheReportOutput = {
 
 M.StartGatewayInput = {
     type = "structure",
+    id = "StartGatewayInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3899,6 +4097,7 @@ M.StartGatewayInput = {
 
 M.StartGatewayOutput = {
     type = "structure",
+    id = "StartGatewayOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3908,6 +4107,7 @@ M.StartGatewayOutput = {
 
 M.UpdateAutomaticTapeCreationPolicyInput = {
     type = "structure",
+    id = "UpdateAutomaticTapeCreationPolicyInput",
     members = {
         AutomaticTapeCreationRules = {
             type = "list",
@@ -3927,6 +4127,7 @@ M.UpdateAutomaticTapeCreationPolicyInput = {
 
 M.UpdateAutomaticTapeCreationPolicyOutput = {
     type = "structure",
+    id = "UpdateAutomaticTapeCreationPolicyOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3936,6 +4137,7 @@ M.UpdateAutomaticTapeCreationPolicyOutput = {
 
 M.UpdateBandwidthRateLimitInput = {
     type = "structure",
+    id = "UpdateBandwidthRateLimitInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3954,6 +4156,7 @@ M.UpdateBandwidthRateLimitInput = {
 
 M.UpdateBandwidthRateLimitOutput = {
     type = "structure",
+    id = "UpdateBandwidthRateLimitOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3963,6 +4166,7 @@ M.UpdateBandwidthRateLimitOutput = {
 
 M.UpdateBandwidthRateLimitScheduleInput = {
     type = "structure",
+    id = "UpdateBandwidthRateLimitScheduleInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3982,6 +4186,7 @@ M.UpdateBandwidthRateLimitScheduleInput = {
 
 M.UpdateBandwidthRateLimitScheduleOutput = {
     type = "structure",
+    id = "UpdateBandwidthRateLimitScheduleOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -3991,6 +4196,7 @@ M.UpdateBandwidthRateLimitScheduleOutput = {
 
 M.UpdateChapCredentialsInput = {
     type = "structure",
+    id = "UpdateChapCredentialsInput",
     members = {
         TargetARN = {
             type = "string",
@@ -4018,6 +4224,7 @@ M.UpdateChapCredentialsInput = {
 
 M.UpdateChapCredentialsOutput = {
     type = "structure",
+    id = "UpdateChapCredentialsOutput",
     members = {
         TargetARN = {
             type = "string",
@@ -4030,6 +4237,7 @@ M.UpdateChapCredentialsOutput = {
 
 M.UpdateFileSystemAssociationInput = {
     type = "structure",
+    id = "UpdateFileSystemAssociationInput",
     members = {
         FileSystemAssociationARN = {
             type = "string",
@@ -4052,6 +4260,7 @@ M.UpdateFileSystemAssociationInput = {
 
 M.UpdateFileSystemAssociationOutput = {
     type = "structure",
+    id = "UpdateFileSystemAssociationOutput",
     members = {
         FileSystemAssociationARN = {
             type = "string",
@@ -4061,6 +4270,7 @@ M.UpdateFileSystemAssociationOutput = {
 
 M.UpdateGatewayInformationInput = {
     type = "structure",
+    id = "UpdateGatewayInformationInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4085,6 +4295,7 @@ M.UpdateGatewayInformationInput = {
 
 M.UpdateGatewayInformationOutput = {
     type = "structure",
+    id = "UpdateGatewayInformationOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4097,6 +4308,7 @@ M.UpdateGatewayInformationOutput = {
 
 M.UpdateGatewaySoftwareNowInput = {
     type = "structure",
+    id = "UpdateGatewaySoftwareNowInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4109,6 +4321,7 @@ M.UpdateGatewaySoftwareNowInput = {
 
 M.UpdateGatewaySoftwareNowOutput = {
     type = "structure",
+    id = "UpdateGatewaySoftwareNowOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4118,6 +4331,7 @@ M.UpdateGatewaySoftwareNowOutput = {
 
 M.UpdateMaintenanceStartTimeInput = {
     type = "structure",
+    id = "UpdateMaintenanceStartTimeInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4143,6 +4357,7 @@ M.UpdateMaintenanceStartTimeInput = {
 
 M.UpdateMaintenanceStartTimeOutput = {
     type = "structure",
+    id = "UpdateMaintenanceStartTimeOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4152,6 +4367,7 @@ M.UpdateMaintenanceStartTimeOutput = {
 
 M.UpdateNFSFileShareInput = {
     type = "structure",
+    id = "UpdateNFSFileShareInput",
     members = {
         FileShareARN = {
             type = "string",
@@ -4206,6 +4422,7 @@ M.UpdateNFSFileShareInput = {
 
 M.UpdateNFSFileShareOutput = {
     type = "structure",
+    id = "UpdateNFSFileShareOutput",
     members = {
         FileShareARN = {
             type = "string",
@@ -4215,6 +4432,7 @@ M.UpdateNFSFileShareOutput = {
 
 M.UpdateSMBFileShareInput = {
     type = "structure",
+    id = "UpdateSMBFileShareInput",
     members = {
         FileShareARN = {
             type = "string",
@@ -4285,6 +4503,7 @@ M.UpdateSMBFileShareInput = {
 
 M.UpdateSMBFileShareOutput = {
     type = "structure",
+    id = "UpdateSMBFileShareOutput",
     members = {
         FileShareARN = {
             type = "string",
@@ -4294,6 +4513,7 @@ M.UpdateSMBFileShareOutput = {
 
 M.UpdateSMBFileShareVisibilityInput = {
     type = "structure",
+    id = "UpdateSMBFileShareVisibilityInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4312,6 +4532,7 @@ M.UpdateSMBFileShareVisibilityInput = {
 
 M.UpdateSMBFileShareVisibilityOutput = {
     type = "structure",
+    id = "UpdateSMBFileShareVisibilityOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4321,6 +4542,7 @@ M.UpdateSMBFileShareVisibilityOutput = {
 
 M.UpdateSMBLocalGroupsInput = {
     type = "structure",
+    id = "UpdateSMBLocalGroupsInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4336,6 +4558,7 @@ M.UpdateSMBLocalGroupsInput = {
 
 M.UpdateSMBLocalGroupsOutput = {
     type = "structure",
+    id = "UpdateSMBLocalGroupsOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4345,6 +4568,7 @@ M.UpdateSMBLocalGroupsOutput = {
 
 M.UpdateSMBSecurityStrategyInput = {
     type = "structure",
+    id = "UpdateSMBSecurityStrategyInput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4363,6 +4587,7 @@ M.UpdateSMBSecurityStrategyInput = {
 
 M.UpdateSMBSecurityStrategyOutput = {
     type = "structure",
+    id = "UpdateSMBSecurityStrategyOutput",
     members = {
         GatewayARN = {
             type = "string",
@@ -4372,6 +4597,7 @@ M.UpdateSMBSecurityStrategyOutput = {
 
 M.UpdateSnapshotScheduleInput = {
     type = "structure",
+    id = "UpdateSnapshotScheduleInput",
     members = {
         VolumeARN = {
             type = "string",
@@ -4403,6 +4629,7 @@ M.UpdateSnapshotScheduleInput = {
 
 M.UpdateSnapshotScheduleOutput = {
     type = "structure",
+    id = "UpdateSnapshotScheduleOutput",
     members = {
         VolumeARN = {
             type = "string",
@@ -4412,6 +4639,7 @@ M.UpdateSnapshotScheduleOutput = {
 
 M.UpdateVTLDeviceTypeInput = {
     type = "structure",
+    id = "UpdateVTLDeviceTypeInput",
     members = {
         VTLDeviceARN = {
             type = "string",
@@ -4430,6 +4658,7 @@ M.UpdateVTLDeviceTypeInput = {
 
 M.UpdateVTLDeviceTypeOutput = {
     type = "structure",
+    id = "UpdateVTLDeviceTypeOutput",
     members = {
         VTLDeviceARN = {
             type = "string",

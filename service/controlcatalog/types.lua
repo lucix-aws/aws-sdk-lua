@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AssociatedDomainSummary = {
     type = "structure",
+    id = "AssociatedDomainSummary",
     members = {
         Arn = {
             type = "string",
@@ -24,6 +26,7 @@ M.AssociatedDomainSummary = {
 
 M.AssociatedObjectiveSummary = {
     type = "structure",
+    id = "AssociatedObjectiveSummary",
     members = {
         Arn = {
             type = "string",
@@ -36,6 +39,7 @@ M.AssociatedObjectiveSummary = {
 
 M.ObjectiveResourceFilter = {
     type = "structure",
+    id = "ObjectiveResourceFilter",
     members = {
         Arn = {
             type = "string",
@@ -45,6 +49,7 @@ M.ObjectiveResourceFilter = {
 
 M.CommonControlFilter = {
     type = "structure",
+    id = "CommonControlFilter",
     members = {
         Objectives = {
             type = "list",
@@ -55,6 +60,7 @@ M.CommonControlFilter = {
 
 M.CommonControlMappingDetails = {
     type = "structure",
+    id = "CommonControlMappingDetails",
     members = {
         CommonControlArn = {
             type = "string",
@@ -67,6 +73,7 @@ M.CommonControlMappingDetails = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -77,6 +84,7 @@ M.InternalServerException = {
 
 M.ListCommonControlsInput = {
     type = "structure",
+    id = "ListCommonControlsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -96,6 +104,7 @@ M.ListCommonControlsInput = {
 
 M.CommonControlSummary = {
     type = "structure",
+    id = "CommonControlSummary",
     members = {
         Arn = {
             type = "string",
@@ -138,6 +147,7 @@ M.CommonControlSummary = {
 
 M.ListCommonControlsOutput = {
     type = "structure",
+    id = "ListCommonControlsOutput",
     members = {
         CommonControls = {
             type = "list",
@@ -154,6 +164,7 @@ M.ListCommonControlsOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -164,6 +175,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -180,6 +192,7 @@ M.ControlBehavior = {
 
 M.GetControlInput = {
     type = "structure",
+    id = "GetControlInput",
     members = {
         ControlArn = {
             type = "string",
@@ -192,6 +205,7 @@ M.GetControlInput = {
 
 M.ImplementationDetails = {
     type = "structure",
+    id = "ImplementationDetails",
     members = {
         Type = {
             type = "string",
@@ -207,6 +221,7 @@ M.ImplementationDetails = {
 
 M.ControlParameter = {
     type = "structure",
+    id = "ControlParameter",
     members = {
         Name = {
             type = "string",
@@ -224,6 +239,7 @@ M.ControlScope = {
 
 M.RegionConfiguration = {
     type = "structure",
+    id = "RegionConfiguration",
     members = {
         Scope = {
             type = "string",
@@ -247,6 +263,7 @@ M.ControlSeverity = {
 
 M.GetControlOutput = {
     type = "structure",
+    id = "GetControlOutput",
     members = {
         Arn = {
             type = "string",
@@ -299,6 +316,7 @@ M.GetControlOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -309,6 +327,7 @@ M.ResourceNotFoundException = {
 
 M.ImplementationFilter = {
     type = "structure",
+    id = "ImplementationFilter",
     members = {
         Types = {
             type = "list",
@@ -323,6 +342,7 @@ M.ImplementationFilter = {
 
 M.ControlFilter = {
     type = "structure",
+    id = "ControlFilter",
     members = {
         Implementations = M.ImplementationFilter,
     },
@@ -330,6 +350,7 @@ M.ControlFilter = {
 
 M.ListControlsInput = {
     type = "structure",
+    id = "ListControlsInput",
     members = {
         NextToken = {
             type = "string",
@@ -349,6 +370,7 @@ M.ListControlsInput = {
 
 M.ImplementationSummary = {
     type = "structure",
+    id = "ImplementationSummary",
     members = {
         Type = {
             type = "string",
@@ -364,6 +386,7 @@ M.ImplementationSummary = {
 
 M.ControlSummary = {
     type = "structure",
+    id = "ControlSummary",
     members = {
         Arn = {
             type = "string",
@@ -406,6 +429,7 @@ M.ControlSummary = {
 
 M.ListControlsOutput = {
     type = "structure",
+    id = "ListControlsOutput",
     members = {
         Controls = {
             type = "list",
@@ -422,6 +446,7 @@ M.ListControlsOutput = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -440,6 +465,7 @@ M.ListDomainsInput = {
 
 M.DomainSummary = {
     type = "structure",
+    id = "DomainSummary",
     members = {
         Arn = {
             type = "string",
@@ -476,6 +502,7 @@ M.DomainSummary = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         Domains = {
             type = "list",
@@ -498,6 +525,7 @@ M.MappingType = {
 
 M.ControlMappingFilter = {
     type = "structure",
+    id = "ControlMappingFilter",
     members = {
         ControlArns = {
             type = "list",
@@ -516,6 +544,7 @@ M.ControlMappingFilter = {
 
 M.ListControlMappingsInput = {
     type = "structure",
+    id = "ListControlMappingsInput",
     members = {
         NextToken = {
             type = "string",
@@ -535,6 +564,7 @@ M.ListControlMappingsInput = {
 
 M.FrameworkMappingDetails = {
     type = "structure",
+    id = "FrameworkMappingDetails",
     members = {
         Name = {
             type = "string",
@@ -559,6 +589,7 @@ M.ControlRelationType = {
 
 M.RelatedControlMappingDetails = {
     type = "structure",
+    id = "RelatedControlMappingDetails",
     members = {
         ControlArn = {
             type = "string",
@@ -574,6 +605,7 @@ M.RelatedControlMappingDetails = {
 
 M.Mapping = {
     type = "union",
+    id = "Mapping",
     members = {
         Framework = M.FrameworkMappingDetails,
         CommonControl = M.CommonControlMappingDetails,
@@ -583,6 +615,7 @@ M.Mapping = {
 
 M.ControlMapping = {
     type = "structure",
+    id = "ControlMapping",
     members = {
         ControlArn = {
             type = "string",
@@ -604,6 +637,7 @@ M.ControlMapping = {
 
 M.ListControlMappingsOutput = {
     type = "structure",
+    id = "ListControlMappingsOutput",
     members = {
         ControlMappings = {
             type = "list",
@@ -620,6 +654,7 @@ M.ListControlMappingsOutput = {
 
 M.DomainResourceFilter = {
     type = "structure",
+    id = "DomainResourceFilter",
     members = {
         Arn = {
             type = "string",
@@ -629,6 +664,7 @@ M.DomainResourceFilter = {
 
 M.ObjectiveFilter = {
     type = "structure",
+    id = "ObjectiveFilter",
     members = {
         Domains = {
             type = "list",
@@ -639,6 +675,7 @@ M.ObjectiveFilter = {
 
 M.ListObjectivesInput = {
     type = "structure",
+    id = "ListObjectivesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -658,6 +695,7 @@ M.ListObjectivesInput = {
 
 M.ObjectiveSummary = {
     type = "structure",
+    id = "ObjectiveSummary",
     members = {
         Arn = {
             type = "string",
@@ -697,6 +735,7 @@ M.ObjectiveSummary = {
 
 M.ListObjectivesOutput = {
     type = "structure",
+    id = "ListObjectivesOutput",
     members = {
         Objectives = {
             type = "list",

@@ -2,6 +2,7 @@ local M = {}
 
 M.ClientLimitExceededException = {
     type = "structure",
+    id = "ClientLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -16,6 +17,7 @@ M.Service = {
 
 M.GetIceServerConfigInput = {
     type = "structure",
+    id = "GetIceServerConfigInput",
     members = {
         ChannelARN = {
             type = "string",
@@ -37,6 +39,7 @@ M.GetIceServerConfigInput = {
 
 M.IceServer = {
     type = "structure",
+    id = "IceServer",
     members = {
         Uris = {
             type = "list",
@@ -56,6 +59,7 @@ M.IceServer = {
 
 M.GetIceServerConfigOutput = {
     type = "structure",
+    id = "GetIceServerConfigOutput",
     members = {
         IceServerList = {
             type = "list",
@@ -66,6 +70,7 @@ M.GetIceServerConfigOutput = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -76,6 +81,7 @@ M.InvalidArgumentException = {
 
 M.InvalidClientException = {
     type = "structure",
+    id = "InvalidClientException",
     error = "client",
     members = {
         message = {
@@ -86,6 +92,7 @@ M.InvalidClientException = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         Message = {
@@ -96,6 +103,7 @@ M.NotAuthorizedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -106,6 +114,7 @@ M.ResourceNotFoundException = {
 
 M.SessionExpiredException = {
     type = "structure",
+    id = "SessionExpiredException",
     error = "client",
     members = {
         message = {
@@ -116,6 +125,7 @@ M.SessionExpiredException = {
 
 M.SendAlexaOfferToMasterInput = {
     type = "structure",
+    id = "SendAlexaOfferToMasterInput",
     members = {
         ChannelARN = {
             type = "string",
@@ -140,6 +150,7 @@ M.SendAlexaOfferToMasterInput = {
 
 M.SendAlexaOfferToMasterOutput = {
     type = "structure",
+    id = "SendAlexaOfferToMasterOutput",
     members = {
         Answer = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -27,6 +28,7 @@ M.Action = {
 
 M.ActionCondition = {
     type = "structure",
+    id = "ActionCondition",
     members = {
         Action = {
             type = "string",
@@ -36,6 +38,7 @@ M.ActionCondition = {
 
 M.AdvancedFieldSelector = {
     type = "structure",
+    id = "AdvancedFieldSelector",
     members = {
         Field = {
             type = "string",
@@ -72,6 +75,7 @@ M.AdvancedFieldSelector = {
 
 M.AdvancedEventSelector = {
     type = "structure",
+    id = "AdvancedEventSelector",
     members = {
         Name = {
             type = "string",
@@ -94,6 +98,7 @@ M.CentralizationFailureReason = {
 
 M.LogsBackupConfiguration = {
     type = "structure",
+    id = "LogsBackupConfiguration",
     members = {
         Region = {
             type = "string",
@@ -109,6 +114,7 @@ M.LogsBackupConfiguration = {
 
 M.LogGroupNameConfiguration = {
     type = "structure",
+    id = "LogGroupNameConfiguration",
     members = {
         LogGroupNamePattern = {
             type = "string",
@@ -131,6 +137,7 @@ M.EncryptionStrategy = {
 
 M.LogsEncryptionConfiguration = {
     type = "structure",
+    id = "LogsEncryptionConfiguration",
     members = {
         EncryptionStrategy = {
             type = "string",
@@ -149,6 +156,7 @@ M.LogsEncryptionConfiguration = {
 
 M.DestinationLogsConfiguration = {
     type = "structure",
+    id = "DestinationLogsConfiguration",
     members = {
         LogsEncryptionConfiguration = M.LogsEncryptionConfiguration,
         BackupConfiguration = M.LogsBackupConfiguration,
@@ -158,6 +166,7 @@ M.DestinationLogsConfiguration = {
 
 M.CentralizationRuleDestination = {
     type = "structure",
+    id = "CentralizationRuleDestination",
     members = {
         Region = {
             type = "string",
@@ -179,6 +188,7 @@ M.EncryptedLogGroupStrategy = {
 
 M.SourceLogsConfiguration = {
     type = "structure",
+    id = "SourceLogsConfiguration",
     members = {
         LogGroupSelectionCriteria = {
             type = "string",
@@ -200,6 +210,7 @@ M.SourceLogsConfiguration = {
 
 M.CentralizationRuleSource = {
     type = "structure",
+    id = "CentralizationRuleSource",
     members = {
         Regions = {
             type = "list",
@@ -217,6 +228,7 @@ M.CentralizationRuleSource = {
 
 M.CentralizationRule = {
     type = "structure",
+    id = "CentralizationRule",
     members = {
         Source = setmetatable({ traits = {
             required = true,
@@ -235,6 +247,7 @@ M.RuleHealth = {
 
 M.CentralizationRuleSummary = {
     type = "structure",
+    id = "CentralizationRuleSummary",
     members = {
         RuleName = {
             type = "string",
@@ -271,6 +284,7 @@ M.CentralizationRuleSummary = {
 
 M.CloudtrailParameters = {
     type = "structure",
+    id = "CloudtrailParameters",
     members = {
         AdvancedEventSelectors = {
             type = "list",
@@ -284,6 +298,7 @@ M.CloudtrailParameters = {
 
 M.LabelNameCondition = {
     type = "structure",
+    id = "LabelNameCondition",
     members = {
         LabelName = {
             type = "string",
@@ -293,6 +308,7 @@ M.LabelNameCondition = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         ActionCondition = M.ActionCondition,
         LabelNameCondition = M.LabelNameCondition,
@@ -301,6 +317,7 @@ M.Condition = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         Name = {
             type = "string",
@@ -313,6 +330,7 @@ M.DataSource = {
 
 M.Source = {
     type = "structure",
+    id = "Source",
     members = {
         Type = {
             type = "string",
@@ -322,6 +340,7 @@ M.Source = {
 
 M.ConfigurationSummary = {
     type = "structure",
+    id = "ConfigurationSummary",
     members = {
         Sources = {
             type = "list",
@@ -347,6 +366,7 @@ M.ConfigurationSummary = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -363,6 +383,7 @@ M.ConflictException = {
 
 M.CreateCentralizationRuleForOrganizationInput = {
     type = "structure",
+    id = "CreateCentralizationRuleForOrganizationInput",
     members = {
         RuleName = {
             type = "string",
@@ -383,6 +404,7 @@ M.CreateCentralizationRuleForOrganizationInput = {
 
 M.CreateCentralizationRuleForOrganizationOutput = {
     type = "structure",
+    id = "CreateCentralizationRuleForOrganizationOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -392,6 +414,7 @@ M.CreateCentralizationRuleForOrganizationOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -414,6 +437,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -442,6 +466,7 @@ M.ServiceQuotaExceededException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -452,6 +477,7 @@ M.TooManyRequestsException = {
 
 M.ValidationError = {
     type = "structure",
+    id = "ValidationError",
     members = {
         Message = {
             type = "string",
@@ -469,6 +495,7 @@ M.ValidationError = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -488,6 +515,7 @@ M.SSEAlgorithm = {
 
 M.Encryption = {
     type = "structure",
+    id = "Encryption",
     members = {
         SseAlgorithm = {
             type = "string",
@@ -503,6 +531,7 @@ M.Encryption = {
 
 M.CreateS3TableIntegrationInput = {
     type = "structure",
+    id = "CreateS3TableIntegrationInput",
     members = {
         Encryption = setmetatable({ traits = {
             required = true,
@@ -523,6 +552,7 @@ M.CreateS3TableIntegrationInput = {
 
 M.CreateS3TableIntegrationOutput = {
     type = "structure",
+    id = "CreateS3TableIntegrationOutput",
     members = {
         Arn = {
             type = "string",
@@ -532,6 +562,7 @@ M.CreateS3TableIntegrationOutput = {
 
 M.TelemetryPipelineConfiguration = {
     type = "structure",
+    id = "TelemetryPipelineConfiguration",
     members = {
         Body = {
             type = "string",
@@ -544,6 +575,7 @@ M.TelemetryPipelineConfiguration = {
 
 M.CreateTelemetryPipelineInput = {
     type = "structure",
+    id = "CreateTelemetryPipelineInput",
     members = {
         Name = {
             type = "string",
@@ -564,6 +596,7 @@ M.CreateTelemetryPipelineInput = {
 
 M.CreateTelemetryPipelineOutput = {
     type = "structure",
+    id = "CreateTelemetryPipelineOutput",
     members = {
         Arn = {
             type = "string",
@@ -582,6 +615,7 @@ M.OutputFormat = {
 
 M.ELBLoadBalancerLoggingParameters = {
     type = "structure",
+    id = "ELBLoadBalancerLoggingParameters",
     members = {
         OutputFormat = {
             type = "string",
@@ -602,6 +636,7 @@ M.LogType = {
 
 M.LogDeliveryParameters = {
     type = "structure",
+    id = "LogDeliveryParameters",
     members = {
         LogTypes = {
             type = "list",
@@ -619,6 +654,7 @@ M.MskEnhancedMonitoringLevel = {
 
 M.MskMonitoringParameters = {
     type = "structure",
+    id = "MskMonitoringParameters",
     members = {
         EnhancedMonitoring = {
             type = "string",
@@ -628,6 +664,7 @@ M.MskMonitoringParameters = {
 
 M.VPCFlowLogParameters = {
     type = "structure",
+    id = "VPCFlowLogParameters",
     members = {
         LogFormat = {
             type = "string",
@@ -653,6 +690,7 @@ M.FilterRequirement = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Behavior = {
             type = "string",
@@ -669,6 +707,7 @@ M.Filter = {
 
 M.LoggingFilter = {
     type = "structure",
+    id = "LoggingFilter",
     members = {
         Filters = {
             type = "list",
@@ -686,6 +725,7 @@ M.WAFLogType = {
 
 M.SingleHeader = {
     type = "structure",
+    id = "SingleHeader",
     members = {
         Name = {
             type = "string",
@@ -695,6 +735,7 @@ M.SingleHeader = {
 
 M.FieldToMatch = {
     type = "structure",
+    id = "FieldToMatch",
     members = {
         SingleHeader = M.SingleHeader,
         UriPath = {
@@ -711,6 +752,7 @@ M.FieldToMatch = {
 
 M.WAFLoggingParameters = {
     type = "structure",
+    id = "WAFLoggingParameters",
     members = {
         RedactedFields = {
             type = "list",
@@ -725,6 +767,7 @@ M.WAFLoggingParameters = {
 
 M.TelemetryDestinationConfiguration = {
     type = "structure",
+    id = "TelemetryDestinationConfiguration",
     members = {
         DestinationType = {
             type = "string",
@@ -784,6 +827,7 @@ M.TelemetryType = {
 
 M.TelemetryRule = {
     type = "structure",
+    id = "TelemetryRule",
     members = {
         ResourceType = {
             type = "string",
@@ -820,6 +864,7 @@ M.TelemetryRule = {
 
 M.CreateTelemetryRuleInput = {
     type = "structure",
+    id = "CreateTelemetryRuleInput",
     members = {
         RuleName = {
             type = "string",
@@ -840,6 +885,7 @@ M.CreateTelemetryRuleInput = {
 
 M.CreateTelemetryRuleOutput = {
     type = "structure",
+    id = "CreateTelemetryRuleOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -849,6 +895,7 @@ M.CreateTelemetryRuleOutput = {
 
 M.CreateTelemetryRuleForOrganizationInput = {
     type = "structure",
+    id = "CreateTelemetryRuleForOrganizationInput",
     members = {
         RuleName = {
             type = "string",
@@ -869,6 +916,7 @@ M.CreateTelemetryRuleForOrganizationInput = {
 
 M.CreateTelemetryRuleForOrganizationOutput = {
     type = "structure",
+    id = "CreateTelemetryRuleForOrganizationOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -878,6 +926,7 @@ M.CreateTelemetryRuleForOrganizationOutput = {
 
 M.DeleteCentralizationRuleForOrganizationInput = {
     type = "structure",
+    id = "DeleteCentralizationRuleForOrganizationInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -890,10 +939,12 @@ M.DeleteCentralizationRuleForOrganizationInput = {
 
 M.DeleteCentralizationRuleForOrganizationOutput = {
     type = "structure",
+    id = "DeleteCentralizationRuleForOrganizationOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -910,6 +961,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteS3TableIntegrationInput = {
     type = "structure",
+    id = "DeleteS3TableIntegrationInput",
     members = {
         Arn = {
             type = "string",
@@ -922,10 +974,12 @@ M.DeleteS3TableIntegrationInput = {
 
 M.DeleteS3TableIntegrationOutput = {
     type = "structure",
+    id = "DeleteS3TableIntegrationOutput",
 }
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         Message = {
@@ -936,6 +990,7 @@ M.InvalidStateException = {
 
 M.DeleteTelemetryPipelineInput = {
     type = "structure",
+    id = "DeleteTelemetryPipelineInput",
     members = {
         PipelineIdentifier = {
             type = "string",
@@ -948,10 +1003,12 @@ M.DeleteTelemetryPipelineInput = {
 
 M.DeleteTelemetryPipelineOutput = {
     type = "structure",
+    id = "DeleteTelemetryPipelineOutput",
 }
 
 M.DeleteTelemetryRuleInput = {
     type = "structure",
+    id = "DeleteTelemetryRuleInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -964,10 +1021,12 @@ M.DeleteTelemetryRuleInput = {
 
 M.DeleteTelemetryRuleOutput = {
     type = "structure",
+    id = "DeleteTelemetryRuleOutput",
 }
 
 M.DeleteTelemetryRuleForOrganizationInput = {
     type = "structure",
+    id = "DeleteTelemetryRuleForOrganizationInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -980,10 +1039,12 @@ M.DeleteTelemetryRuleForOrganizationInput = {
 
 M.DeleteTelemetryRuleForOrganizationOutput = {
     type = "structure",
+    id = "DeleteTelemetryRuleForOrganizationOutput",
 }
 
 M.GetCentralizationRuleForOrganizationInput = {
     type = "structure",
+    id = "GetCentralizationRuleForOrganizationInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -996,6 +1057,7 @@ M.GetCentralizationRuleForOrganizationInput = {
 
 M.GetCentralizationRuleForOrganizationOutput = {
     type = "structure",
+    id = "GetCentralizationRuleForOrganizationOutput",
     members = {
         RuleName = {
             type = "string",
@@ -1027,6 +1089,7 @@ M.GetCentralizationRuleForOrganizationOutput = {
 
 M.GetS3TableIntegrationInput = {
     type = "structure",
+    id = "GetS3TableIntegrationInput",
     members = {
         Arn = {
             type = "string",
@@ -1044,6 +1107,7 @@ M.IntegrationStatus = {
 
 M.GetS3TableIntegrationOutput = {
     type = "structure",
+    id = "GetS3TableIntegrationOutput",
     members = {
         Arn = {
             type = "string",
@@ -1066,6 +1130,7 @@ M.GetS3TableIntegrationOutput = {
 
 M.GetTelemetryEnrichmentStatusInput = {
     type = "structure",
+    id = "GetTelemetryEnrichmentStatusInput",
 }
 
 M.TelemetryEnrichmentStatus = {
@@ -1076,6 +1141,7 @@ M.TelemetryEnrichmentStatus = {
 
 M.GetTelemetryEnrichmentStatusOutput = {
     type = "structure",
+    id = "GetTelemetryEnrichmentStatusOutput",
     members = {
         Status = {
             type = "string",
@@ -1088,10 +1154,12 @@ M.GetTelemetryEnrichmentStatusOutput = {
 
 M.GetTelemetryEvaluationStatusInput = {
     type = "structure",
+    id = "GetTelemetryEvaluationStatusInput",
 }
 
 M.RegionStatus = {
     type = "structure",
+    id = "RegionStatus",
     members = {
         Region = {
             type = "string",
@@ -1120,6 +1188,7 @@ M.Status = {
 
 M.GetTelemetryEvaluationStatusOutput = {
     type = "structure",
+    id = "GetTelemetryEvaluationStatusOutput",
     members = {
         Status = {
             type = "string",
@@ -1139,10 +1208,12 @@ M.GetTelemetryEvaluationStatusOutput = {
 
 M.GetTelemetryEvaluationStatusForOrganizationInput = {
     type = "structure",
+    id = "GetTelemetryEvaluationStatusForOrganizationInput",
 }
 
 M.GetTelemetryEvaluationStatusForOrganizationOutput = {
     type = "structure",
+    id = "GetTelemetryEvaluationStatusForOrganizationOutput",
     members = {
         Status = {
             type = "string",
@@ -1162,6 +1233,7 @@ M.GetTelemetryEvaluationStatusForOrganizationOutput = {
 
 M.GetTelemetryPipelineInput = {
     type = "structure",
+    id = "GetTelemetryPipelineInput",
     members = {
         PipelineIdentifier = {
             type = "string",
@@ -1183,6 +1255,7 @@ M.TelemetryPipelineStatus = {
 
 M.TelemetryPipelineStatusReason = {
     type = "structure",
+    id = "TelemetryPipelineStatusReason",
     members = {
         Description = {
             type = "string",
@@ -1192,6 +1265,7 @@ M.TelemetryPipelineStatusReason = {
 
 M.TelemetryPipeline = {
     type = "structure",
+    id = "TelemetryPipeline",
     members = {
         CreatedTimeStamp = {
             type = "long",
@@ -1220,6 +1294,7 @@ M.TelemetryPipeline = {
 
 M.GetTelemetryPipelineOutput = {
     type = "structure",
+    id = "GetTelemetryPipelineOutput",
     members = {
         Pipeline = M.TelemetryPipeline,
     },
@@ -1227,6 +1302,7 @@ M.GetTelemetryPipelineOutput = {
 
 M.GetTelemetryRuleInput = {
     type = "structure",
+    id = "GetTelemetryRuleInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -1239,6 +1315,7 @@ M.GetTelemetryRuleInput = {
 
 M.GetTelemetryRuleOutput = {
     type = "structure",
+    id = "GetTelemetryRuleOutput",
     members = {
         RuleName = {
             type = "string",
@@ -1268,6 +1345,7 @@ M.GetTelemetryRuleOutput = {
 
 M.GetTelemetryRuleForOrganizationInput = {
     type = "structure",
+    id = "GetTelemetryRuleForOrganizationInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -1280,6 +1358,7 @@ M.GetTelemetryRuleForOrganizationInput = {
 
 M.GetTelemetryRuleForOrganizationOutput = {
     type = "structure",
+    id = "GetTelemetryRuleForOrganizationOutput",
     members = {
         RuleName = {
             type = "string",
@@ -1309,6 +1388,7 @@ M.GetTelemetryRuleForOrganizationOutput = {
 
 M.IntegrationSummary = {
     type = "structure",
+    id = "IntegrationSummary",
     members = {
         Arn = {
             type = "string",
@@ -1321,6 +1401,7 @@ M.IntegrationSummary = {
 
 M.ListCentralizationRulesForOrganizationInput = {
     type = "structure",
+    id = "ListCentralizationRulesForOrganizationInput",
     members = {
         RuleNamePrefix = {
             type = "string",
@@ -1342,6 +1423,7 @@ M.ListCentralizationRulesForOrganizationInput = {
 
 M.ListCentralizationRulesForOrganizationOutput = {
     type = "structure",
+    id = "ListCentralizationRulesForOrganizationOutput",
     members = {
         CentralizationRuleSummaries = {
             type = "list",
@@ -1361,6 +1443,7 @@ M.TelemetryState = {
 
 M.ListResourceTelemetryInput = {
     type = "structure",
+    id = "ListResourceTelemetryInput",
     members = {
         ResourceIdentifierPrefix = {
             type = "string",
@@ -1393,6 +1476,7 @@ M.ListResourceTelemetryInput = {
 
 M.TelemetryConfiguration = {
     type = "structure",
+    id = "TelemetryConfiguration",
     members = {
         AccountIdentifier = {
             type = "string",
@@ -1424,6 +1508,7 @@ M.TelemetryConfiguration = {
 
 M.ListResourceTelemetryOutput = {
     type = "structure",
+    id = "ListResourceTelemetryOutput",
     members = {
         TelemetryConfigurations = {
             type = "list",
@@ -1437,6 +1522,7 @@ M.ListResourceTelemetryOutput = {
 
 M.ListResourceTelemetryForOrganizationInput = {
     type = "structure",
+    id = "ListResourceTelemetryForOrganizationInput",
     members = {
         AccountIdentifiers = {
             type = "list",
@@ -1473,6 +1559,7 @@ M.ListResourceTelemetryForOrganizationInput = {
 
 M.ListResourceTelemetryForOrganizationOutput = {
     type = "structure",
+    id = "ListResourceTelemetryForOrganizationOutput",
     members = {
         TelemetryConfigurations = {
             type = "list",
@@ -1486,6 +1573,7 @@ M.ListResourceTelemetryForOrganizationOutput = {
 
 M.ListS3TableIntegrationsInput = {
     type = "structure",
+    id = "ListS3TableIntegrationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1501,6 +1589,7 @@ M.ListS3TableIntegrationsInput = {
 
 M.ListS3TableIntegrationsOutput = {
     type = "structure",
+    id = "ListS3TableIntegrationsOutput",
     members = {
         IntegrationSummaries = {
             type = "list",
@@ -1514,6 +1603,7 @@ M.ListS3TableIntegrationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1526,6 +1616,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1540,6 +1631,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTelemetryPipelinesInput = {
     type = "structure",
+    id = "ListTelemetryPipelinesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1555,6 +1647,7 @@ M.ListTelemetryPipelinesInput = {
 
 M.TelemetryPipelineSummary = {
     type = "structure",
+    id = "TelemetryPipelineSummary",
     members = {
         CreatedTimeStamp = {
             type = "long",
@@ -1582,6 +1675,7 @@ M.TelemetryPipelineSummary = {
 
 M.ListTelemetryPipelinesOutput = {
     type = "structure",
+    id = "ListTelemetryPipelinesOutput",
     members = {
         PipelineSummaries = {
             type = "list",
@@ -1595,6 +1689,7 @@ M.ListTelemetryPipelinesOutput = {
 
 M.ListTelemetryRulesInput = {
     type = "structure",
+    id = "ListTelemetryRulesInput",
     members = {
         RuleNamePrefix = {
             type = "string",
@@ -1613,6 +1708,7 @@ M.ListTelemetryRulesInput = {
 
 M.TelemetryRuleSummary = {
     type = "structure",
+    id = "TelemetryRuleSummary",
     members = {
         RuleName = {
             type = "string",
@@ -1641,6 +1737,7 @@ M.TelemetryRuleSummary = {
 
 M.ListTelemetryRulesOutput = {
     type = "structure",
+    id = "ListTelemetryRulesOutput",
     members = {
         TelemetryRuleSummaries = {
             type = "list",
@@ -1654,6 +1751,7 @@ M.ListTelemetryRulesOutput = {
 
 M.ListTelemetryRulesForOrganizationInput = {
     type = "structure",
+    id = "ListTelemetryRulesForOrganizationInput",
     members = {
         RuleNamePrefix = {
             type = "string",
@@ -1680,6 +1778,7 @@ M.ListTelemetryRulesForOrganizationInput = {
 
 M.ListTelemetryRulesForOrganizationOutput = {
     type = "structure",
+    id = "ListTelemetryRulesForOrganizationOutput",
     members = {
         TelemetryRuleSummaries = {
             type = "list",
@@ -1693,10 +1792,12 @@ M.ListTelemetryRulesForOrganizationOutput = {
 
 M.StartTelemetryEnrichmentInput = {
     type = "structure",
+    id = "StartTelemetryEnrichmentInput",
 }
 
 M.StartTelemetryEnrichmentOutput = {
     type = "structure",
+    id = "StartTelemetryEnrichmentOutput",
     members = {
         Status = {
             type = "string",
@@ -1709,6 +1810,7 @@ M.StartTelemetryEnrichmentOutput = {
 
 M.StartTelemetryEvaluationInput = {
     type = "structure",
+    id = "StartTelemetryEvaluationInput",
     members = {
         Regions = {
             type = "list",
@@ -1722,10 +1824,12 @@ M.StartTelemetryEvaluationInput = {
 
 M.StartTelemetryEvaluationOutput = {
     type = "structure",
+    id = "StartTelemetryEvaluationOutput",
 }
 
 M.StartTelemetryEvaluationForOrganizationInput = {
     type = "structure",
+    id = "StartTelemetryEvaluationForOrganizationInput",
     members = {
         Regions = {
             type = "list",
@@ -1739,14 +1843,17 @@ M.StartTelemetryEvaluationForOrganizationInput = {
 
 M.StartTelemetryEvaluationForOrganizationOutput = {
     type = "structure",
+    id = "StartTelemetryEvaluationForOrganizationOutput",
 }
 
 M.StopTelemetryEnrichmentInput = {
     type = "structure",
+    id = "StopTelemetryEnrichmentInput",
 }
 
 M.StopTelemetryEnrichmentOutput = {
     type = "structure",
+    id = "StopTelemetryEnrichmentOutput",
     members = {
         Status = {
             type = "string",
@@ -1756,22 +1863,27 @@ M.StopTelemetryEnrichmentOutput = {
 
 M.StopTelemetryEvaluationInput = {
     type = "structure",
+    id = "StopTelemetryEvaluationInput",
 }
 
 M.StopTelemetryEvaluationOutput = {
     type = "structure",
+    id = "StopTelemetryEvaluationOutput",
 }
 
 M.StopTelemetryEvaluationForOrganizationInput = {
     type = "structure",
+    id = "StopTelemetryEvaluationForOrganizationInput",
 }
 
 M.StopTelemetryEvaluationForOrganizationOutput = {
     type = "structure",
+    id = "StopTelemetryEvaluationForOrganizationOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1792,10 +1904,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UpdateTelemetryPipelineInput = {
     type = "structure",
+    id = "UpdateTelemetryPipelineInput",
     members = {
         PipelineIdentifier = {
             type = "string",
@@ -1811,6 +1925,7 @@ M.UpdateTelemetryPipelineInput = {
 
 M.UpdateTelemetryPipelineOutput = {
     type = "structure",
+    id = "UpdateTelemetryPipelineOutput",
 }
 
 M.RecordFormat = {
@@ -1820,6 +1935,7 @@ M.RecordFormat = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         Data = {
             type = "string",
@@ -1832,6 +1948,7 @@ M.Record = {
 
 M.TestTelemetryPipelineInput = {
     type = "structure",
+    id = "TestTelemetryPipelineInput",
     members = {
         Records = {
             type = "list",
@@ -1848,6 +1965,7 @@ M.TestTelemetryPipelineInput = {
 
 M.PipelineOutputError = {
     type = "structure",
+    id = "PipelineOutputError",
     members = {
         Message = {
             type = "string",
@@ -1857,6 +1975,7 @@ M.PipelineOutputError = {
 
 M.PipelineOutput = {
     type = "structure",
+    id = "PipelineOutput",
     members = {
         Record = M.Record,
         Error = M.PipelineOutputError,
@@ -1865,6 +1984,7 @@ M.PipelineOutput = {
 
 M.TestTelemetryPipelineOutput = {
     type = "structure",
+    id = "TestTelemetryPipelineOutput",
     members = {
         Results = {
             type = "list",
@@ -1875,6 +1995,7 @@ M.TestTelemetryPipelineOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1894,10 +2015,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCentralizationRuleForOrganizationInput = {
     type = "structure",
+    id = "UpdateCentralizationRuleForOrganizationInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -1913,6 +2036,7 @@ M.UpdateCentralizationRuleForOrganizationInput = {
 
 M.UpdateCentralizationRuleForOrganizationOutput = {
     type = "structure",
+    id = "UpdateCentralizationRuleForOrganizationOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -1922,6 +2046,7 @@ M.UpdateCentralizationRuleForOrganizationOutput = {
 
 M.UpdateTelemetryRuleInput = {
     type = "structure",
+    id = "UpdateTelemetryRuleInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -1937,6 +2062,7 @@ M.UpdateTelemetryRuleInput = {
 
 M.UpdateTelemetryRuleOutput = {
     type = "structure",
+    id = "UpdateTelemetryRuleOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -1946,6 +2072,7 @@ M.UpdateTelemetryRuleOutput = {
 
 M.UpdateTelemetryRuleForOrganizationInput = {
     type = "structure",
+    id = "UpdateTelemetryRuleForOrganizationInput",
     members = {
         RuleIdentifier = {
             type = "string",
@@ -1961,6 +2088,7 @@ M.UpdateTelemetryRuleForOrganizationInput = {
 
 M.UpdateTelemetryRuleForOrganizationOutput = {
     type = "structure",
+    id = "UpdateTelemetryRuleForOrganizationOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -1970,6 +2098,7 @@ M.UpdateTelemetryRuleForOrganizationOutput = {
 
 M.ValidateTelemetryPipelineConfigurationInput = {
     type = "structure",
+    id = "ValidateTelemetryPipelineConfigurationInput",
     members = {
         Configuration = setmetatable({ traits = {
             required = true,
@@ -1979,6 +2108,7 @@ M.ValidateTelemetryPipelineConfigurationInput = {
 
 M.ValidateTelemetryPipelineConfigurationOutput = {
     type = "structure",
+    id = "ValidateTelemetryPipelineConfigurationOutput",
     members = {
         Errors = {
             type = "list",

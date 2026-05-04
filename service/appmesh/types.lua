@@ -2,6 +2,7 @@ local M = {}
 
 M.JsonFormatRef = {
     type = "structure",
+    id = "JsonFormatRef",
     members = {
         key = {
             type = "string",
@@ -20,6 +21,7 @@ M.JsonFormatRef = {
 
 M.LoggingFormat = {
     type = "union",
+    id = "LoggingFormat",
     members = {
         text = {
             type = "string",
@@ -33,6 +35,7 @@ M.LoggingFormat = {
 
 M.FileAccessLog = {
     type = "structure",
+    id = "FileAccessLog",
     members = {
         path = {
             type = "string",
@@ -46,6 +49,7 @@ M.FileAccessLog = {
 
 M.AccessLog = {
     type = "union",
+    id = "AccessLog",
     members = {
         file = M.FileAccessLog,
     },
@@ -53,6 +57,7 @@ M.AccessLog = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -63,6 +68,7 @@ M.BadRequestException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -73,6 +79,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         message = {
@@ -83,6 +90,7 @@ M.InternalServerErrorException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -108,6 +116,7 @@ M.ListTagsForResourceInput = {
 
 M.TagRef = {
     type = "structure",
+    id = "TagRef",
     members = {
         key = {
             type = "string",
@@ -126,6 +135,7 @@ M.TagRef = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -142,6 +152,7 @@ M.ListTagsForResourceOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -152,6 +163,7 @@ M.NotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -162,6 +174,7 @@ M.ServiceUnavailableException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -172,6 +185,7 @@ M.TooManyRequestsException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -187,6 +201,7 @@ M.EgressFilterType = {
 
 M.EgressFilter = {
     type = "structure",
+    id = "EgressFilter",
     members = {
         type = {
             type = "string",
@@ -206,6 +221,7 @@ M.IpPreference = {
 
 M.MeshServiceDiscovery = {
     type = "structure",
+    id = "MeshServiceDiscovery",
     members = {
         ipPreference = {
             type = "string",
@@ -215,6 +231,7 @@ M.MeshServiceDiscovery = {
 
 M.MeshSpec = {
     type = "structure",
+    id = "MeshSpec",
     members = {
         egressFilter = M.EgressFilter,
         serviceDiscovery = M.MeshServiceDiscovery,
@@ -223,6 +240,7 @@ M.MeshSpec = {
 
 M.CreateMeshInput = {
     type = "structure",
+    id = "CreateMeshInput",
     members = {
         meshName = {
             type = "string",
@@ -246,6 +264,7 @@ M.CreateMeshInput = {
 
 M.ResourceMetadata = {
     type = "structure",
+    id = "ResourceMetadata",
     members = {
         arn = {
             type = "string",
@@ -300,6 +319,7 @@ M.MeshStatusCode = {
 
 M.MeshStatus = {
     type = "structure",
+    id = "MeshStatus",
     members = {
         status = {
             type = "string",
@@ -309,6 +329,7 @@ M.MeshStatus = {
 
 M.MeshData = {
     type = "structure",
+    id = "MeshData",
     members = {
         meshName = {
             type = "string",
@@ -330,6 +351,7 @@ M.MeshData = {
 
 M.CreateMeshOutput = {
     type = "structure",
+    id = "CreateMeshOutput",
     members = {
         mesh = setmetatable({ traits = {
             http_payload = true,
@@ -340,6 +362,7 @@ M.CreateMeshOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -350,6 +373,7 @@ M.LimitExceededException = {
 
 M.DeleteMeshInput = {
     type = "structure",
+    id = "DeleteMeshInput",
     members = {
         meshName = {
             type = "string",
@@ -363,6 +387,7 @@ M.DeleteMeshInput = {
 
 M.DeleteMeshOutput = {
     type = "structure",
+    id = "DeleteMeshOutput",
     members = {
         mesh = setmetatable({ traits = {
             http_payload = true,
@@ -373,6 +398,7 @@ M.DeleteMeshOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -383,6 +409,7 @@ M.ResourceInUseException = {
 
 M.DescribeMeshInput = {
     type = "structure",
+    id = "DescribeMeshInput",
     members = {
         meshName = {
             type = "string",
@@ -402,6 +429,7 @@ M.DescribeMeshInput = {
 
 M.DescribeMeshOutput = {
     type = "structure",
+    id = "DescribeMeshOutput",
     members = {
         mesh = setmetatable({ traits = {
             http_payload = true,
@@ -412,6 +440,7 @@ M.DescribeMeshOutput = {
 
 M.ListMeshesInput = {
     type = "structure",
+    id = "ListMeshesInput",
     members = {
         nextToken = {
             type = "string",
@@ -430,6 +459,7 @@ M.ListMeshesInput = {
 
 M.MeshRef = {
     type = "structure",
+    id = "MeshRef",
     members = {
         meshName = {
             type = "string",
@@ -478,6 +508,7 @@ M.MeshRef = {
 
 M.ListMeshesOutput = {
     type = "structure",
+    id = "ListMeshesOutput",
     members = {
         meshes = {
             type = "list",
@@ -494,6 +525,7 @@ M.ListMeshesOutput = {
 
 M.UpdateMeshInput = {
     type = "structure",
+    id = "UpdateMeshInput",
     members = {
         meshName = {
             type = "string",
@@ -514,6 +546,7 @@ M.UpdateMeshInput = {
 
 M.UpdateMeshOutput = {
     type = "structure",
+    id = "UpdateMeshOutput",
     members = {
         mesh = setmetatable({ traits = {
             http_payload = true,
@@ -524,6 +557,7 @@ M.UpdateMeshOutput = {
 
 M.VirtualGatewayListenerTlsFileCertificate = {
     type = "structure",
+    id = "VirtualGatewayListenerTlsFileCertificate",
     members = {
         certificateChain = {
             type = "string",
@@ -542,6 +576,7 @@ M.VirtualGatewayListenerTlsFileCertificate = {
 
 M.VirtualGatewayListenerTlsSdsCertificate = {
     type = "structure",
+    id = "VirtualGatewayListenerTlsSdsCertificate",
     members = {
         secretName = {
             type = "string",
@@ -554,6 +589,7 @@ M.VirtualGatewayListenerTlsSdsCertificate = {
 
 M.VirtualGatewayClientTlsCertificate = {
     type = "union",
+    id = "VirtualGatewayClientTlsCertificate",
     members = {
         file = M.VirtualGatewayListenerTlsFileCertificate,
         sds = M.VirtualGatewayListenerTlsSdsCertificate,
@@ -562,6 +598,7 @@ M.VirtualGatewayClientTlsCertificate = {
 
 M.SubjectAlternativeNameMatchers = {
     type = "structure",
+    id = "SubjectAlternativeNameMatchers",
     members = {
         exact = {
             type = "list",
@@ -575,6 +612,7 @@ M.SubjectAlternativeNameMatchers = {
 
 M.SubjectAlternativeNames = {
     type = "structure",
+    id = "SubjectAlternativeNames",
     members = {
         match = setmetatable({ traits = {
             required = true,
@@ -584,6 +622,7 @@ M.SubjectAlternativeNames = {
 
 M.VirtualGatewayTlsValidationContextAcmTrust = {
     type = "structure",
+    id = "VirtualGatewayTlsValidationContextAcmTrust",
     members = {
         certificateAuthorityArns = {
             type = "list",
@@ -597,6 +636,7 @@ M.VirtualGatewayTlsValidationContextAcmTrust = {
 
 M.VirtualGatewayTlsValidationContextFileTrust = {
     type = "structure",
+    id = "VirtualGatewayTlsValidationContextFileTrust",
     members = {
         certificateChain = {
             type = "string",
@@ -609,6 +649,7 @@ M.VirtualGatewayTlsValidationContextFileTrust = {
 
 M.VirtualGatewayTlsValidationContextSdsTrust = {
     type = "structure",
+    id = "VirtualGatewayTlsValidationContextSdsTrust",
     members = {
         secretName = {
             type = "string",
@@ -621,6 +662,7 @@ M.VirtualGatewayTlsValidationContextSdsTrust = {
 
 M.VirtualGatewayTlsValidationContextTrust = {
     type = "union",
+    id = "VirtualGatewayTlsValidationContextTrust",
     members = {
         acm = M.VirtualGatewayTlsValidationContextAcmTrust,
         file = M.VirtualGatewayTlsValidationContextFileTrust,
@@ -630,6 +672,7 @@ M.VirtualGatewayTlsValidationContextTrust = {
 
 M.VirtualGatewayTlsValidationContext = {
     type = "structure",
+    id = "VirtualGatewayTlsValidationContext",
     members = {
         trust = setmetatable({ traits = {
             required = true,
@@ -640,6 +683,7 @@ M.VirtualGatewayTlsValidationContext = {
 
 M.VirtualGatewayClientPolicyTls = {
     type = "structure",
+    id = "VirtualGatewayClientPolicyTls",
     members = {
         enforce = {
             type = "boolean",
@@ -660,6 +704,7 @@ M.VirtualGatewayClientPolicyTls = {
 
 M.VirtualGatewayClientPolicy = {
     type = "structure",
+    id = "VirtualGatewayClientPolicy",
     members = {
         tls = M.VirtualGatewayClientPolicyTls,
     },
@@ -667,6 +712,7 @@ M.VirtualGatewayClientPolicy = {
 
 M.VirtualGatewayBackendDefaults = {
     type = "structure",
+    id = "VirtualGatewayBackendDefaults",
     members = {
         clientPolicy = M.VirtualGatewayClientPolicy,
     },
@@ -674,6 +720,7 @@ M.VirtualGatewayBackendDefaults = {
 
 M.VirtualGatewayGrpcConnectionPool = {
     type = "structure",
+    id = "VirtualGatewayGrpcConnectionPool",
     members = {
         maxRequests = {
             type = "integer",
@@ -686,6 +733,7 @@ M.VirtualGatewayGrpcConnectionPool = {
 
 M.VirtualGatewayHttpConnectionPool = {
     type = "structure",
+    id = "VirtualGatewayHttpConnectionPool",
     members = {
         maxConnections = {
             type = "integer",
@@ -704,6 +752,7 @@ M.VirtualGatewayHttpConnectionPool = {
 
 M.VirtualGatewayHttp2ConnectionPool = {
     type = "structure",
+    id = "VirtualGatewayHttp2ConnectionPool",
     members = {
         maxRequests = {
             type = "integer",
@@ -716,6 +765,7 @@ M.VirtualGatewayHttp2ConnectionPool = {
 
 M.VirtualGatewayConnectionPool = {
     type = "union",
+    id = "VirtualGatewayConnectionPool",
     members = {
         http = M.VirtualGatewayHttpConnectionPool,
         http2 = M.VirtualGatewayHttp2ConnectionPool,
@@ -731,6 +781,7 @@ M.VirtualGatewayPortProtocol = {
 
 M.VirtualGatewayHealthCheckPolicy = {
     type = "structure",
+    id = "VirtualGatewayHealthCheckPolicy",
     members = {
         timeoutMillis = {
             type = "long",
@@ -773,6 +824,7 @@ M.VirtualGatewayHealthCheckPolicy = {
 
 M.VirtualGatewayPortMapping = {
     type = "structure",
+    id = "VirtualGatewayPortMapping",
     members = {
         port = {
             type = "integer",
@@ -791,6 +843,7 @@ M.VirtualGatewayPortMapping = {
 
 M.VirtualGatewayListenerTlsAcmCertificate = {
     type = "structure",
+    id = "VirtualGatewayListenerTlsAcmCertificate",
     members = {
         certificateArn = {
             type = "string",
@@ -803,6 +856,7 @@ M.VirtualGatewayListenerTlsAcmCertificate = {
 
 M.VirtualGatewayListenerTlsCertificate = {
     type = "union",
+    id = "VirtualGatewayListenerTlsCertificate",
     members = {
         acm = M.VirtualGatewayListenerTlsAcmCertificate,
         file = M.VirtualGatewayListenerTlsFileCertificate,
@@ -818,6 +872,7 @@ M.VirtualGatewayListenerTlsMode = {
 
 M.VirtualGatewayListenerTlsValidationContextTrust = {
     type = "union",
+    id = "VirtualGatewayListenerTlsValidationContextTrust",
     members = {
         file = M.VirtualGatewayTlsValidationContextFileTrust,
         sds = M.VirtualGatewayTlsValidationContextSdsTrust,
@@ -826,6 +881,7 @@ M.VirtualGatewayListenerTlsValidationContextTrust = {
 
 M.VirtualGatewayListenerTlsValidationContext = {
     type = "structure",
+    id = "VirtualGatewayListenerTlsValidationContext",
     members = {
         trust = setmetatable({ traits = {
             required = true,
@@ -836,6 +892,7 @@ M.VirtualGatewayListenerTlsValidationContext = {
 
 M.VirtualGatewayListenerTls = {
     type = "structure",
+    id = "VirtualGatewayListenerTls",
     members = {
         mode = {
             type = "string",
@@ -852,6 +909,7 @@ M.VirtualGatewayListenerTls = {
 
 M.VirtualGatewayListener = {
     type = "structure",
+    id = "VirtualGatewayListener",
     members = {
         healthCheck = M.VirtualGatewayHealthCheckPolicy,
         portMapping = setmetatable({ traits = {
@@ -864,6 +922,7 @@ M.VirtualGatewayListener = {
 
 M.VirtualGatewayFileAccessLog = {
     type = "structure",
+    id = "VirtualGatewayFileAccessLog",
     members = {
         path = {
             type = "string",
@@ -877,6 +936,7 @@ M.VirtualGatewayFileAccessLog = {
 
 M.VirtualGatewayAccessLog = {
     type = "union",
+    id = "VirtualGatewayAccessLog",
     members = {
         file = M.VirtualGatewayFileAccessLog,
     },
@@ -884,6 +944,7 @@ M.VirtualGatewayAccessLog = {
 
 M.VirtualGatewayLogging = {
     type = "structure",
+    id = "VirtualGatewayLogging",
     members = {
         accessLog = M.VirtualGatewayAccessLog,
     },
@@ -891,6 +952,7 @@ M.VirtualGatewayLogging = {
 
 M.VirtualGatewaySpec = {
     type = "structure",
+    id = "VirtualGatewaySpec",
     members = {
         backendDefaults = M.VirtualGatewayBackendDefaults,
         listeners = {
@@ -906,6 +968,7 @@ M.VirtualGatewaySpec = {
 
 M.CreateVirtualGatewayInput = {
     type = "structure",
+    id = "CreateVirtualGatewayInput",
     members = {
         virtualGatewayName = {
             type = "string",
@@ -950,6 +1013,7 @@ M.VirtualGatewayStatusCode = {
 
 M.VirtualGatewayStatus = {
     type = "structure",
+    id = "VirtualGatewayStatus",
     members = {
         status = {
             type = "string",
@@ -962,6 +1026,7 @@ M.VirtualGatewayStatus = {
 
 M.VirtualGatewayData = {
     type = "structure",
+    id = "VirtualGatewayData",
     members = {
         meshName = {
             type = "string",
@@ -989,6 +1054,7 @@ M.VirtualGatewayData = {
 
 M.CreateVirtualGatewayOutput = {
     type = "structure",
+    id = "CreateVirtualGatewayOutput",
     members = {
         virtualGateway = setmetatable({ traits = {
             http_payload = true,
@@ -999,6 +1065,7 @@ M.CreateVirtualGatewayOutput = {
 
 M.DeleteVirtualGatewayInput = {
     type = "structure",
+    id = "DeleteVirtualGatewayInput",
     members = {
         virtualGatewayName = {
             type = "string",
@@ -1025,6 +1092,7 @@ M.DeleteVirtualGatewayInput = {
 
 M.DeleteVirtualGatewayOutput = {
     type = "structure",
+    id = "DeleteVirtualGatewayOutput",
     members = {
         virtualGateway = setmetatable({ traits = {
             http_payload = true,
@@ -1035,6 +1103,7 @@ M.DeleteVirtualGatewayOutput = {
 
 M.DescribeVirtualGatewayInput = {
     type = "structure",
+    id = "DescribeVirtualGatewayInput",
     members = {
         virtualGatewayName = {
             type = "string",
@@ -1061,6 +1130,7 @@ M.DescribeVirtualGatewayInput = {
 
 M.DescribeVirtualGatewayOutput = {
     type = "structure",
+    id = "DescribeVirtualGatewayOutput",
     members = {
         virtualGateway = setmetatable({ traits = {
             http_payload = true,
@@ -1076,6 +1146,7 @@ M.DefaultGatewayRouteRewrite = {
 
 M.GatewayRouteHostnameRewrite = {
     type = "structure",
+    id = "GatewayRouteHostnameRewrite",
     members = {
         defaultTargetHostname = {
             type = "string",
@@ -1085,6 +1156,7 @@ M.GatewayRouteHostnameRewrite = {
 
 M.GrpcGatewayRouteRewrite = {
     type = "structure",
+    id = "GrpcGatewayRouteRewrite",
     members = {
         hostname = M.GatewayRouteHostnameRewrite,
     },
@@ -1092,6 +1164,7 @@ M.GrpcGatewayRouteRewrite = {
 
 M.GatewayRouteVirtualService = {
     type = "structure",
+    id = "GatewayRouteVirtualService",
     members = {
         virtualServiceName = {
             type = "string",
@@ -1104,6 +1177,7 @@ M.GatewayRouteVirtualService = {
 
 M.GatewayRouteTarget = {
     type = "structure",
+    id = "GatewayRouteTarget",
     members = {
         virtualService = setmetatable({ traits = {
             required = true,
@@ -1116,6 +1190,7 @@ M.GatewayRouteTarget = {
 
 M.GrpcGatewayRouteAction = {
     type = "structure",
+    id = "GrpcGatewayRouteAction",
     members = {
         target = setmetatable({ traits = {
             required = true,
@@ -1126,6 +1201,7 @@ M.GrpcGatewayRouteAction = {
 
 M.GatewayRouteHostnameMatch = {
     type = "structure",
+    id = "GatewayRouteHostnameMatch",
     members = {
         exact = {
             type = "string",
@@ -1138,6 +1214,7 @@ M.GatewayRouteHostnameMatch = {
 
 M.MatchRange = {
     type = "structure",
+    id = "MatchRange",
     members = {
         start = {
             type = "long",
@@ -1156,6 +1233,7 @@ M.MatchRange = {
 
 M.GrpcMetadataMatchMethod = {
     type = "union",
+    id = "GrpcMetadataMatchMethod",
     members = {
         exact = {
             type = "string",
@@ -1175,6 +1253,7 @@ M.GrpcMetadataMatchMethod = {
 
 M.GrpcGatewayRouteMetadata = {
     type = "structure",
+    id = "GrpcGatewayRouteMetadata",
     members = {
         name = {
             type = "string",
@@ -1191,6 +1270,7 @@ M.GrpcGatewayRouteMetadata = {
 
 M.GrpcGatewayRouteMatch = {
     type = "structure",
+    id = "GrpcGatewayRouteMatch",
     members = {
         serviceName = {
             type = "string",
@@ -1208,6 +1288,7 @@ M.GrpcGatewayRouteMatch = {
 
 M.GrpcGatewayRoute = {
     type = "structure",
+    id = "GrpcGatewayRoute",
     members = {
         match = setmetatable({ traits = {
             required = true,
@@ -1220,6 +1301,7 @@ M.GrpcGatewayRoute = {
 
 M.HttpGatewayRoutePathRewrite = {
     type = "structure",
+    id = "HttpGatewayRoutePathRewrite",
     members = {
         exact = {
             type = "string",
@@ -1229,6 +1311,7 @@ M.HttpGatewayRoutePathRewrite = {
 
 M.HttpGatewayRoutePrefixRewrite = {
     type = "structure",
+    id = "HttpGatewayRoutePrefixRewrite",
     members = {
         defaultPrefix = {
             type = "string",
@@ -1241,6 +1324,7 @@ M.HttpGatewayRoutePrefixRewrite = {
 
 M.HttpGatewayRouteRewrite = {
     type = "structure",
+    id = "HttpGatewayRouteRewrite",
     members = {
         prefix = M.HttpGatewayRoutePrefixRewrite,
         path = M.HttpGatewayRoutePathRewrite,
@@ -1250,6 +1334,7 @@ M.HttpGatewayRouteRewrite = {
 
 M.HttpGatewayRouteAction = {
     type = "structure",
+    id = "HttpGatewayRouteAction",
     members = {
         target = setmetatable({ traits = {
             required = true,
@@ -1260,6 +1345,7 @@ M.HttpGatewayRouteAction = {
 
 M.HeaderMatchMethod = {
     type = "union",
+    id = "HeaderMatchMethod",
     members = {
         exact = {
             type = "string",
@@ -1279,6 +1365,7 @@ M.HeaderMatchMethod = {
 
 M.HttpGatewayRouteHeader = {
     type = "structure",
+    id = "HttpGatewayRouteHeader",
     members = {
         name = {
             type = "string",
@@ -1307,6 +1394,7 @@ M.HttpMethod = {
 
 M.HttpPathMatch = {
     type = "structure",
+    id = "HttpPathMatch",
     members = {
         exact = {
             type = "string",
@@ -1319,6 +1407,7 @@ M.HttpPathMatch = {
 
 M.QueryParameterMatch = {
     type = "structure",
+    id = "QueryParameterMatch",
     members = {
         exact = {
             type = "string",
@@ -1328,6 +1417,7 @@ M.QueryParameterMatch = {
 
 M.HttpQueryParameter = {
     type = "structure",
+    id = "HttpQueryParameter",
     members = {
         name = {
             type = "string",
@@ -1341,6 +1431,7 @@ M.HttpQueryParameter = {
 
 M.HttpGatewayRouteMatch = {
     type = "structure",
+    id = "HttpGatewayRouteMatch",
     members = {
         prefix = {
             type = "string",
@@ -1366,6 +1457,7 @@ M.HttpGatewayRouteMatch = {
 
 M.HttpGatewayRoute = {
     type = "structure",
+    id = "HttpGatewayRoute",
     members = {
         match = setmetatable({ traits = {
             required = true,
@@ -1378,6 +1470,7 @@ M.HttpGatewayRoute = {
 
 M.GatewayRouteSpec = {
     type = "structure",
+    id = "GatewayRouteSpec",
     members = {
         priority = {
             type = "integer",
@@ -1390,6 +1483,7 @@ M.GatewayRouteSpec = {
 
 M.CreateGatewayRouteInput = {
     type = "structure",
+    id = "CreateGatewayRouteInput",
     members = {
         gatewayRouteName = {
             type = "string",
@@ -1441,6 +1535,7 @@ M.GatewayRouteStatusCode = {
 
 M.GatewayRouteStatus = {
     type = "structure",
+    id = "GatewayRouteStatus",
     members = {
         status = {
             type = "string",
@@ -1453,6 +1548,7 @@ M.GatewayRouteStatus = {
 
 M.GatewayRouteData = {
     type = "structure",
+    id = "GatewayRouteData",
     members = {
         meshName = {
             type = "string",
@@ -1486,6 +1582,7 @@ M.GatewayRouteData = {
 
 M.CreateGatewayRouteOutput = {
     type = "structure",
+    id = "CreateGatewayRouteOutput",
     members = {
         gatewayRoute = setmetatable({ traits = {
             http_payload = true,
@@ -1496,6 +1593,7 @@ M.CreateGatewayRouteOutput = {
 
 M.DeleteGatewayRouteInput = {
     type = "structure",
+    id = "DeleteGatewayRouteInput",
     members = {
         gatewayRouteName = {
             type = "string",
@@ -1529,6 +1627,7 @@ M.DeleteGatewayRouteInput = {
 
 M.DeleteGatewayRouteOutput = {
     type = "structure",
+    id = "DeleteGatewayRouteOutput",
     members = {
         gatewayRoute = setmetatable({ traits = {
             http_payload = true,
@@ -1539,6 +1638,7 @@ M.DeleteGatewayRouteOutput = {
 
 M.DescribeGatewayRouteInput = {
     type = "structure",
+    id = "DescribeGatewayRouteInput",
     members = {
         gatewayRouteName = {
             type = "string",
@@ -1572,6 +1672,7 @@ M.DescribeGatewayRouteInput = {
 
 M.DescribeGatewayRouteOutput = {
     type = "structure",
+    id = "DescribeGatewayRouteOutput",
     members = {
         gatewayRoute = setmetatable({ traits = {
             http_payload = true,
@@ -1582,6 +1683,7 @@ M.DescribeGatewayRouteOutput = {
 
 M.ListGatewayRoutesInput = {
     type = "structure",
+    id = "ListGatewayRoutesInput",
     members = {
         meshName = {
             type = "string",
@@ -1620,6 +1722,7 @@ M.ListGatewayRoutesInput = {
 
 M.GatewayRouteRef = {
     type = "structure",
+    id = "GatewayRouteRef",
     members = {
         meshName = {
             type = "string",
@@ -1680,6 +1783,7 @@ M.GatewayRouteRef = {
 
 M.ListGatewayRoutesOutput = {
     type = "structure",
+    id = "ListGatewayRoutesOutput",
     members = {
         gatewayRoutes = {
             type = "list",
@@ -1696,6 +1800,7 @@ M.ListGatewayRoutesOutput = {
 
 M.UpdateGatewayRouteInput = {
     type = "structure",
+    id = "UpdateGatewayRouteInput",
     members = {
         gatewayRouteName = {
             type = "string",
@@ -1738,6 +1843,7 @@ M.UpdateGatewayRouteInput = {
 
 M.UpdateGatewayRouteOutput = {
     type = "structure",
+    id = "UpdateGatewayRouteOutput",
     members = {
         gatewayRoute = setmetatable({ traits = {
             http_payload = true,
@@ -1748,6 +1854,7 @@ M.UpdateGatewayRouteOutput = {
 
 M.ListVirtualGatewaysInput = {
     type = "structure",
+    id = "ListVirtualGatewaysInput",
     members = {
         meshName = {
             type = "string",
@@ -1779,6 +1886,7 @@ M.ListVirtualGatewaysInput = {
 
 M.VirtualGatewayRef = {
     type = "structure",
+    id = "VirtualGatewayRef",
     members = {
         meshName = {
             type = "string",
@@ -1833,6 +1941,7 @@ M.VirtualGatewayRef = {
 
 M.ListVirtualGatewaysOutput = {
     type = "structure",
+    id = "ListVirtualGatewaysOutput",
     members = {
         virtualGateways = {
             type = "list",
@@ -1849,6 +1958,7 @@ M.ListVirtualGatewaysOutput = {
 
 M.UpdateVirtualGatewayInput = {
     type = "structure",
+    id = "UpdateVirtualGatewayInput",
     members = {
         virtualGatewayName = {
             type = "string",
@@ -1884,6 +1994,7 @@ M.UpdateVirtualGatewayInput = {
 
 M.UpdateVirtualGatewayOutput = {
     type = "structure",
+    id = "UpdateVirtualGatewayOutput",
     members = {
         virtualGateway = setmetatable({ traits = {
             http_payload = true,
@@ -1894,6 +2005,7 @@ M.UpdateVirtualGatewayOutput = {
 
 M.ListenerTlsFileCertificate = {
     type = "structure",
+    id = "ListenerTlsFileCertificate",
     members = {
         certificateChain = {
             type = "string",
@@ -1912,6 +2024,7 @@ M.ListenerTlsFileCertificate = {
 
 M.ListenerTlsSdsCertificate = {
     type = "structure",
+    id = "ListenerTlsSdsCertificate",
     members = {
         secretName = {
             type = "string",
@@ -1924,6 +2037,7 @@ M.ListenerTlsSdsCertificate = {
 
 M.ClientTlsCertificate = {
     type = "union",
+    id = "ClientTlsCertificate",
     members = {
         file = M.ListenerTlsFileCertificate,
         sds = M.ListenerTlsSdsCertificate,
@@ -1932,6 +2046,7 @@ M.ClientTlsCertificate = {
 
 M.TlsValidationContextAcmTrust = {
     type = "structure",
+    id = "TlsValidationContextAcmTrust",
     members = {
         certificateAuthorityArns = {
             type = "list",
@@ -1945,6 +2060,7 @@ M.TlsValidationContextAcmTrust = {
 
 M.TlsValidationContextFileTrust = {
     type = "structure",
+    id = "TlsValidationContextFileTrust",
     members = {
         certificateChain = {
             type = "string",
@@ -1957,6 +2073,7 @@ M.TlsValidationContextFileTrust = {
 
 M.TlsValidationContextSdsTrust = {
     type = "structure",
+    id = "TlsValidationContextSdsTrust",
     members = {
         secretName = {
             type = "string",
@@ -1969,6 +2086,7 @@ M.TlsValidationContextSdsTrust = {
 
 M.TlsValidationContextTrust = {
     type = "union",
+    id = "TlsValidationContextTrust",
     members = {
         acm = M.TlsValidationContextAcmTrust,
         file = M.TlsValidationContextFileTrust,
@@ -1978,6 +2096,7 @@ M.TlsValidationContextTrust = {
 
 M.TlsValidationContext = {
     type = "structure",
+    id = "TlsValidationContext",
     members = {
         trust = setmetatable({ traits = {
             required = true,
@@ -1988,6 +2107,7 @@ M.TlsValidationContext = {
 
 M.ClientPolicyTls = {
     type = "structure",
+    id = "ClientPolicyTls",
     members = {
         enforce = {
             type = "boolean",
@@ -2008,6 +2128,7 @@ M.ClientPolicyTls = {
 
 M.ClientPolicy = {
     type = "structure",
+    id = "ClientPolicy",
     members = {
         tls = M.ClientPolicyTls,
     },
@@ -2015,6 +2136,7 @@ M.ClientPolicy = {
 
 M.BackendDefaults = {
     type = "structure",
+    id = "BackendDefaults",
     members = {
         clientPolicy = M.ClientPolicy,
     },
@@ -2022,6 +2144,7 @@ M.BackendDefaults = {
 
 M.VirtualServiceBackend = {
     type = "structure",
+    id = "VirtualServiceBackend",
     members = {
         virtualServiceName = {
             type = "string",
@@ -2035,6 +2158,7 @@ M.VirtualServiceBackend = {
 
 M.Backend = {
     type = "union",
+    id = "Backend",
     members = {
         virtualService = M.VirtualServiceBackend,
     },
@@ -2042,6 +2166,7 @@ M.Backend = {
 
 M.VirtualNodeGrpcConnectionPool = {
     type = "structure",
+    id = "VirtualNodeGrpcConnectionPool",
     members = {
         maxRequests = {
             type = "integer",
@@ -2054,6 +2179,7 @@ M.VirtualNodeGrpcConnectionPool = {
 
 M.VirtualNodeHttpConnectionPool = {
     type = "structure",
+    id = "VirtualNodeHttpConnectionPool",
     members = {
         maxConnections = {
             type = "integer",
@@ -2072,6 +2198,7 @@ M.VirtualNodeHttpConnectionPool = {
 
 M.VirtualNodeHttp2ConnectionPool = {
     type = "structure",
+    id = "VirtualNodeHttp2ConnectionPool",
     members = {
         maxRequests = {
             type = "integer",
@@ -2084,6 +2211,7 @@ M.VirtualNodeHttp2ConnectionPool = {
 
 M.VirtualNodeTcpConnectionPool = {
     type = "structure",
+    id = "VirtualNodeTcpConnectionPool",
     members = {
         maxConnections = {
             type = "integer",
@@ -2096,6 +2224,7 @@ M.VirtualNodeTcpConnectionPool = {
 
 M.VirtualNodeConnectionPool = {
     type = "union",
+    id = "VirtualNodeConnectionPool",
     members = {
         tcp = M.VirtualNodeTcpConnectionPool,
         http = M.VirtualNodeHttpConnectionPool,
@@ -2113,6 +2242,7 @@ M.PortProtocol = {
 
 M.HealthCheckPolicy = {
     type = "structure",
+    id = "HealthCheckPolicy",
     members = {
         timeoutMillis = {
             type = "long",
@@ -2160,6 +2290,7 @@ M.DurationUnit = {
 
 M.Duration = {
     type = "structure",
+    id = "Duration",
     members = {
         value = {
             type = "long",
@@ -2172,6 +2303,7 @@ M.Duration = {
 
 M.OutlierDetection = {
     type = "structure",
+    id = "OutlierDetection",
     members = {
         maxServerErrors = {
             type = "long",
@@ -2196,6 +2328,7 @@ M.OutlierDetection = {
 
 M.PortMapping = {
     type = "structure",
+    id = "PortMapping",
     members = {
         port = {
             type = "integer",
@@ -2214,6 +2347,7 @@ M.PortMapping = {
 
 M.GrpcTimeout = {
     type = "structure",
+    id = "GrpcTimeout",
     members = {
         perRequest = M.Duration,
         idle = M.Duration,
@@ -2222,6 +2356,7 @@ M.GrpcTimeout = {
 
 M.HttpTimeout = {
     type = "structure",
+    id = "HttpTimeout",
     members = {
         perRequest = M.Duration,
         idle = M.Duration,
@@ -2230,6 +2365,7 @@ M.HttpTimeout = {
 
 M.TcpTimeout = {
     type = "structure",
+    id = "TcpTimeout",
     members = {
         idle = M.Duration,
     },
@@ -2237,6 +2373,7 @@ M.TcpTimeout = {
 
 M.ListenerTimeout = {
     type = "union",
+    id = "ListenerTimeout",
     members = {
         tcp = M.TcpTimeout,
         http = M.HttpTimeout,
@@ -2247,6 +2384,7 @@ M.ListenerTimeout = {
 
 M.ListenerTlsAcmCertificate = {
     type = "structure",
+    id = "ListenerTlsAcmCertificate",
     members = {
         certificateArn = {
             type = "string",
@@ -2259,6 +2397,7 @@ M.ListenerTlsAcmCertificate = {
 
 M.ListenerTlsCertificate = {
     type = "union",
+    id = "ListenerTlsCertificate",
     members = {
         acm = M.ListenerTlsAcmCertificate,
         file = M.ListenerTlsFileCertificate,
@@ -2274,6 +2413,7 @@ M.ListenerTlsMode = {
 
 M.ListenerTlsValidationContextTrust = {
     type = "union",
+    id = "ListenerTlsValidationContextTrust",
     members = {
         file = M.TlsValidationContextFileTrust,
         sds = M.TlsValidationContextSdsTrust,
@@ -2282,6 +2422,7 @@ M.ListenerTlsValidationContextTrust = {
 
 M.ListenerTlsValidationContext = {
     type = "structure",
+    id = "ListenerTlsValidationContext",
     members = {
         trust = setmetatable({ traits = {
             required = true,
@@ -2292,6 +2433,7 @@ M.ListenerTlsValidationContext = {
 
 M.ListenerTls = {
     type = "structure",
+    id = "ListenerTls",
     members = {
         mode = {
             type = "string",
@@ -2308,6 +2450,7 @@ M.ListenerTls = {
 
 M.Listener = {
     type = "structure",
+    id = "Listener",
     members = {
         portMapping = setmetatable({ traits = {
             required = true,
@@ -2322,6 +2465,7 @@ M.Listener = {
 
 M.Logging = {
     type = "structure",
+    id = "Logging",
     members = {
         accessLog = M.AccessLog,
     },
@@ -2329,6 +2473,7 @@ M.Logging = {
 
 M.AwsCloudMapInstanceAttribute = {
     type = "structure",
+    id = "AwsCloudMapInstanceAttribute",
     members = {
         key = {
             type = "string",
@@ -2347,6 +2492,7 @@ M.AwsCloudMapInstanceAttribute = {
 
 M.AwsCloudMapServiceDiscovery = {
     type = "structure",
+    id = "AwsCloudMapServiceDiscovery",
     members = {
         namespaceName = {
             type = "string",
@@ -2377,6 +2523,7 @@ M.DnsResponseType = {
 
 M.DnsServiceDiscovery = {
     type = "structure",
+    id = "DnsServiceDiscovery",
     members = {
         hostname = {
             type = "string",
@@ -2395,6 +2542,7 @@ M.DnsServiceDiscovery = {
 
 M.ServiceDiscovery = {
     type = "union",
+    id = "ServiceDiscovery",
     members = {
         dns = M.DnsServiceDiscovery,
         awsCloudMap = M.AwsCloudMapServiceDiscovery,
@@ -2403,6 +2551,7 @@ M.ServiceDiscovery = {
 
 M.VirtualNodeSpec = {
     type = "structure",
+    id = "VirtualNodeSpec",
     members = {
         serviceDiscovery = M.ServiceDiscovery,
         listeners = {
@@ -2420,6 +2569,7 @@ M.VirtualNodeSpec = {
 
 M.CreateVirtualNodeInput = {
     type = "structure",
+    id = "CreateVirtualNodeInput",
     members = {
         virtualNodeName = {
             type = "string",
@@ -2464,6 +2614,7 @@ M.VirtualNodeStatusCode = {
 
 M.VirtualNodeStatus = {
     type = "structure",
+    id = "VirtualNodeStatus",
     members = {
         status = {
             type = "string",
@@ -2476,6 +2627,7 @@ M.VirtualNodeStatus = {
 
 M.VirtualNodeData = {
     type = "structure",
+    id = "VirtualNodeData",
     members = {
         meshName = {
             type = "string",
@@ -2503,6 +2655,7 @@ M.VirtualNodeData = {
 
 M.CreateVirtualNodeOutput = {
     type = "structure",
+    id = "CreateVirtualNodeOutput",
     members = {
         virtualNode = setmetatable({ traits = {
             http_payload = true,
@@ -2513,6 +2666,7 @@ M.CreateVirtualNodeOutput = {
 
 M.DeleteVirtualNodeInput = {
     type = "structure",
+    id = "DeleteVirtualNodeInput",
     members = {
         virtualNodeName = {
             type = "string",
@@ -2539,6 +2693,7 @@ M.DeleteVirtualNodeInput = {
 
 M.DeleteVirtualNodeOutput = {
     type = "structure",
+    id = "DeleteVirtualNodeOutput",
     members = {
         virtualNode = setmetatable({ traits = {
             http_payload = true,
@@ -2549,6 +2704,7 @@ M.DeleteVirtualNodeOutput = {
 
 M.DescribeVirtualNodeInput = {
     type = "structure",
+    id = "DescribeVirtualNodeInput",
     members = {
         virtualNodeName = {
             type = "string",
@@ -2575,6 +2731,7 @@ M.DescribeVirtualNodeInput = {
 
 M.DescribeVirtualNodeOutput = {
     type = "structure",
+    id = "DescribeVirtualNodeOutput",
     members = {
         virtualNode = setmetatable({ traits = {
             http_payload = true,
@@ -2585,6 +2742,7 @@ M.DescribeVirtualNodeOutput = {
 
 M.ListVirtualNodesInput = {
     type = "structure",
+    id = "ListVirtualNodesInput",
     members = {
         meshName = {
             type = "string",
@@ -2616,6 +2774,7 @@ M.ListVirtualNodesInput = {
 
 M.VirtualNodeRef = {
     type = "structure",
+    id = "VirtualNodeRef",
     members = {
         meshName = {
             type = "string",
@@ -2670,6 +2829,7 @@ M.VirtualNodeRef = {
 
 M.ListVirtualNodesOutput = {
     type = "structure",
+    id = "ListVirtualNodesOutput",
     members = {
         virtualNodes = {
             type = "list",
@@ -2686,6 +2846,7 @@ M.ListVirtualNodesOutput = {
 
 M.UpdateVirtualNodeInput = {
     type = "structure",
+    id = "UpdateVirtualNodeInput",
     members = {
         virtualNodeName = {
             type = "string",
@@ -2721,6 +2882,7 @@ M.UpdateVirtualNodeInput = {
 
 M.UpdateVirtualNodeOutput = {
     type = "structure",
+    id = "UpdateVirtualNodeOutput",
     members = {
         virtualNode = setmetatable({ traits = {
             http_payload = true,
@@ -2731,6 +2893,7 @@ M.UpdateVirtualNodeOutput = {
 
 M.VirtualRouterListener = {
     type = "structure",
+    id = "VirtualRouterListener",
     members = {
         portMapping = setmetatable({ traits = {
             required = true,
@@ -2740,6 +2903,7 @@ M.VirtualRouterListener = {
 
 M.VirtualRouterSpec = {
     type = "structure",
+    id = "VirtualRouterSpec",
     members = {
         listeners = {
             type = "list",
@@ -2750,6 +2914,7 @@ M.VirtualRouterSpec = {
 
 M.CreateVirtualRouterInput = {
     type = "structure",
+    id = "CreateVirtualRouterInput",
     members = {
         virtualRouterName = {
             type = "string",
@@ -2794,6 +2959,7 @@ M.VirtualRouterStatusCode = {
 
 M.VirtualRouterStatus = {
     type = "structure",
+    id = "VirtualRouterStatus",
     members = {
         status = {
             type = "string",
@@ -2806,6 +2972,7 @@ M.VirtualRouterStatus = {
 
 M.VirtualRouterData = {
     type = "structure",
+    id = "VirtualRouterData",
     members = {
         meshName = {
             type = "string",
@@ -2833,6 +3000,7 @@ M.VirtualRouterData = {
 
 M.CreateVirtualRouterOutput = {
     type = "structure",
+    id = "CreateVirtualRouterOutput",
     members = {
         virtualRouter = setmetatable({ traits = {
             http_payload = true,
@@ -2843,6 +3011,7 @@ M.CreateVirtualRouterOutput = {
 
 M.DeleteVirtualRouterInput = {
     type = "structure",
+    id = "DeleteVirtualRouterInput",
     members = {
         virtualRouterName = {
             type = "string",
@@ -2869,6 +3038,7 @@ M.DeleteVirtualRouterInput = {
 
 M.DeleteVirtualRouterOutput = {
     type = "structure",
+    id = "DeleteVirtualRouterOutput",
     members = {
         virtualRouter = setmetatable({ traits = {
             http_payload = true,
@@ -2879,6 +3049,7 @@ M.DeleteVirtualRouterOutput = {
 
 M.DescribeVirtualRouterInput = {
     type = "structure",
+    id = "DescribeVirtualRouterInput",
     members = {
         virtualRouterName = {
             type = "string",
@@ -2905,6 +3076,7 @@ M.DescribeVirtualRouterInput = {
 
 M.DescribeVirtualRouterOutput = {
     type = "structure",
+    id = "DescribeVirtualRouterOutput",
     members = {
         virtualRouter = setmetatable({ traits = {
             http_payload = true,
@@ -2915,6 +3087,7 @@ M.DescribeVirtualRouterOutput = {
 
 M.ListVirtualRoutersInput = {
     type = "structure",
+    id = "ListVirtualRoutersInput",
     members = {
         meshName = {
             type = "string",
@@ -2946,6 +3119,7 @@ M.ListVirtualRoutersInput = {
 
 M.VirtualRouterRef = {
     type = "structure",
+    id = "VirtualRouterRef",
     members = {
         meshName = {
             type = "string",
@@ -3000,6 +3174,7 @@ M.VirtualRouterRef = {
 
 M.ListVirtualRoutersOutput = {
     type = "structure",
+    id = "ListVirtualRoutersOutput",
     members = {
         virtualRouters = {
             type = "list",
@@ -3016,6 +3191,7 @@ M.ListVirtualRoutersOutput = {
 
 M.WeightedTarget = {
     type = "structure",
+    id = "WeightedTarget",
     members = {
         virtualNode = {
             type = "string",
@@ -3038,6 +3214,7 @@ M.WeightedTarget = {
 
 M.GrpcRouteAction = {
     type = "structure",
+    id = "GrpcRouteAction",
     members = {
         weightedTargets = {
             type = "list",
@@ -3051,6 +3228,7 @@ M.GrpcRouteAction = {
 
 M.GrpcRouteMetadataMatchMethod = {
     type = "union",
+    id = "GrpcRouteMetadataMatchMethod",
     members = {
         exact = {
             type = "string",
@@ -3070,6 +3248,7 @@ M.GrpcRouteMetadataMatchMethod = {
 
 M.GrpcRouteMetadata = {
     type = "structure",
+    id = "GrpcRouteMetadata",
     members = {
         name = {
             type = "string",
@@ -3086,6 +3265,7 @@ M.GrpcRouteMetadata = {
 
 M.GrpcRouteMatch = {
     type = "structure",
+    id = "GrpcRouteMatch",
     members = {
         serviceName = {
             type = "string",
@@ -3117,6 +3297,7 @@ M.TcpRetryPolicyEvent = {
 
 M.GrpcRetryPolicy = {
     type = "structure",
+    id = "GrpcRetryPolicy",
     members = {
         perRetryTimeout = setmetatable({ traits = {
             required = true,
@@ -3144,6 +3325,7 @@ M.GrpcRetryPolicy = {
 
 M.GrpcRoute = {
     type = "structure",
+    id = "GrpcRoute",
     members = {
         action = setmetatable({ traits = {
             required = true,
@@ -3158,6 +3340,7 @@ M.GrpcRoute = {
 
 M.HttpRouteAction = {
     type = "structure",
+    id = "HttpRouteAction",
     members = {
         weightedTargets = {
             type = "list",
@@ -3171,6 +3354,7 @@ M.HttpRouteAction = {
 
 M.HttpRouteHeader = {
     type = "structure",
+    id = "HttpRouteHeader",
     members = {
         name = {
             type = "string",
@@ -3192,6 +3376,7 @@ M.HttpScheme = {
 
 M.HttpRouteMatch = {
     type = "structure",
+    id = "HttpRouteMatch",
     members = {
         prefix = {
             type = "string",
@@ -3219,6 +3404,7 @@ M.HttpRouteMatch = {
 
 M.HttpRetryPolicy = {
     type = "structure",
+    id = "HttpRetryPolicy",
     members = {
         perRetryTimeout = setmetatable({ traits = {
             required = true,
@@ -3242,6 +3428,7 @@ M.HttpRetryPolicy = {
 
 M.HttpRoute = {
     type = "structure",
+    id = "HttpRoute",
     members = {
         match = setmetatable({ traits = {
             required = true,
@@ -3256,6 +3443,7 @@ M.HttpRoute = {
 
 M.TcpRouteAction = {
     type = "structure",
+    id = "TcpRouteAction",
     members = {
         weightedTargets = {
             type = "list",
@@ -3269,6 +3457,7 @@ M.TcpRouteAction = {
 
 M.TcpRouteMatch = {
     type = "structure",
+    id = "TcpRouteMatch",
     members = {
         port = {
             type = "integer",
@@ -3278,6 +3467,7 @@ M.TcpRouteMatch = {
 
 M.TcpRoute = {
     type = "structure",
+    id = "TcpRoute",
     members = {
         action = setmetatable({ traits = {
             required = true,
@@ -3289,6 +3479,7 @@ M.TcpRoute = {
 
 M.RouteSpec = {
     type = "structure",
+    id = "RouteSpec",
     members = {
         priority = {
             type = "integer",
@@ -3302,6 +3493,7 @@ M.RouteSpec = {
 
 M.CreateRouteInput = {
     type = "structure",
+    id = "CreateRouteInput",
     members = {
         routeName = {
             type = "string",
@@ -3353,6 +3545,7 @@ M.RouteStatusCode = {
 
 M.RouteStatus = {
     type = "structure",
+    id = "RouteStatus",
     members = {
         status = {
             type = "string",
@@ -3365,6 +3558,7 @@ M.RouteStatus = {
 
 M.RouteData = {
     type = "structure",
+    id = "RouteData",
     members = {
         meshName = {
             type = "string",
@@ -3398,6 +3592,7 @@ M.RouteData = {
 
 M.CreateRouteOutput = {
     type = "structure",
+    id = "CreateRouteOutput",
     members = {
         route = setmetatable({ traits = {
             http_payload = true,
@@ -3408,6 +3603,7 @@ M.CreateRouteOutput = {
 
 M.DeleteRouteInput = {
     type = "structure",
+    id = "DeleteRouteInput",
     members = {
         routeName = {
             type = "string",
@@ -3441,6 +3637,7 @@ M.DeleteRouteInput = {
 
 M.DeleteRouteOutput = {
     type = "structure",
+    id = "DeleteRouteOutput",
     members = {
         route = setmetatable({ traits = {
             http_payload = true,
@@ -3451,6 +3648,7 @@ M.DeleteRouteOutput = {
 
 M.DescribeRouteInput = {
     type = "structure",
+    id = "DescribeRouteInput",
     members = {
         routeName = {
             type = "string",
@@ -3484,6 +3682,7 @@ M.DescribeRouteInput = {
 
 M.DescribeRouteOutput = {
     type = "structure",
+    id = "DescribeRouteOutput",
     members = {
         route = setmetatable({ traits = {
             http_payload = true,
@@ -3494,6 +3693,7 @@ M.DescribeRouteOutput = {
 
 M.ListRoutesInput = {
     type = "structure",
+    id = "ListRoutesInput",
     members = {
         meshName = {
             type = "string",
@@ -3532,6 +3732,7 @@ M.ListRoutesInput = {
 
 M.RouteRef = {
     type = "structure",
+    id = "RouteRef",
     members = {
         meshName = {
             type = "string",
@@ -3592,6 +3793,7 @@ M.RouteRef = {
 
 M.ListRoutesOutput = {
     type = "structure",
+    id = "ListRoutesOutput",
     members = {
         routes = {
             type = "list",
@@ -3608,6 +3810,7 @@ M.ListRoutesOutput = {
 
 M.UpdateRouteInput = {
     type = "structure",
+    id = "UpdateRouteInput",
     members = {
         routeName = {
             type = "string",
@@ -3650,6 +3853,7 @@ M.UpdateRouteInput = {
 
 M.UpdateRouteOutput = {
     type = "structure",
+    id = "UpdateRouteOutput",
     members = {
         route = setmetatable({ traits = {
             http_payload = true,
@@ -3660,6 +3864,7 @@ M.UpdateRouteOutput = {
 
 M.UpdateVirtualRouterInput = {
     type = "structure",
+    id = "UpdateVirtualRouterInput",
     members = {
         virtualRouterName = {
             type = "string",
@@ -3695,6 +3900,7 @@ M.UpdateVirtualRouterInput = {
 
 M.UpdateVirtualRouterOutput = {
     type = "structure",
+    id = "UpdateVirtualRouterOutput",
     members = {
         virtualRouter = setmetatable({ traits = {
             http_payload = true,
@@ -3705,6 +3911,7 @@ M.UpdateVirtualRouterOutput = {
 
 M.VirtualNodeServiceProvider = {
     type = "structure",
+    id = "VirtualNodeServiceProvider",
     members = {
         virtualNodeName = {
             type = "string",
@@ -3717,6 +3924,7 @@ M.VirtualNodeServiceProvider = {
 
 M.VirtualRouterServiceProvider = {
     type = "structure",
+    id = "VirtualRouterServiceProvider",
     members = {
         virtualRouterName = {
             type = "string",
@@ -3729,6 +3937,7 @@ M.VirtualRouterServiceProvider = {
 
 M.VirtualServiceProvider = {
     type = "union",
+    id = "VirtualServiceProvider",
     members = {
         virtualNode = M.VirtualNodeServiceProvider,
         virtualRouter = M.VirtualRouterServiceProvider,
@@ -3737,6 +3946,7 @@ M.VirtualServiceProvider = {
 
 M.VirtualServiceSpec = {
     type = "structure",
+    id = "VirtualServiceSpec",
     members = {
         provider = M.VirtualServiceProvider,
     },
@@ -3744,6 +3954,7 @@ M.VirtualServiceSpec = {
 
 M.CreateVirtualServiceInput = {
     type = "structure",
+    id = "CreateVirtualServiceInput",
     members = {
         virtualServiceName = {
             type = "string",
@@ -3788,6 +3999,7 @@ M.VirtualServiceStatusCode = {
 
 M.VirtualServiceStatus = {
     type = "structure",
+    id = "VirtualServiceStatus",
     members = {
         status = {
             type = "string",
@@ -3800,6 +4012,7 @@ M.VirtualServiceStatus = {
 
 M.VirtualServiceData = {
     type = "structure",
+    id = "VirtualServiceData",
     members = {
         meshName = {
             type = "string",
@@ -3827,6 +4040,7 @@ M.VirtualServiceData = {
 
 M.CreateVirtualServiceOutput = {
     type = "structure",
+    id = "CreateVirtualServiceOutput",
     members = {
         virtualService = setmetatable({ traits = {
             http_payload = true,
@@ -3837,6 +4051,7 @@ M.CreateVirtualServiceOutput = {
 
 M.DeleteVirtualServiceInput = {
     type = "structure",
+    id = "DeleteVirtualServiceInput",
     members = {
         virtualServiceName = {
             type = "string",
@@ -3863,6 +4078,7 @@ M.DeleteVirtualServiceInput = {
 
 M.DeleteVirtualServiceOutput = {
     type = "structure",
+    id = "DeleteVirtualServiceOutput",
     members = {
         virtualService = setmetatable({ traits = {
             http_payload = true,
@@ -3873,6 +4089,7 @@ M.DeleteVirtualServiceOutput = {
 
 M.DescribeVirtualServiceInput = {
     type = "structure",
+    id = "DescribeVirtualServiceInput",
     members = {
         virtualServiceName = {
             type = "string",
@@ -3899,6 +4116,7 @@ M.DescribeVirtualServiceInput = {
 
 M.DescribeVirtualServiceOutput = {
     type = "structure",
+    id = "DescribeVirtualServiceOutput",
     members = {
         virtualService = setmetatable({ traits = {
             http_payload = true,
@@ -3909,6 +4127,7 @@ M.DescribeVirtualServiceOutput = {
 
 M.ListVirtualServicesInput = {
     type = "structure",
+    id = "ListVirtualServicesInput",
     members = {
         meshName = {
             type = "string",
@@ -3940,6 +4159,7 @@ M.ListVirtualServicesInput = {
 
 M.VirtualServiceRef = {
     type = "structure",
+    id = "VirtualServiceRef",
     members = {
         meshName = {
             type = "string",
@@ -3994,6 +4214,7 @@ M.VirtualServiceRef = {
 
 M.ListVirtualServicesOutput = {
     type = "structure",
+    id = "ListVirtualServicesOutput",
     members = {
         virtualServices = {
             type = "list",
@@ -4010,6 +4231,7 @@ M.ListVirtualServicesOutput = {
 
 M.UpdateVirtualServiceInput = {
     type = "structure",
+    id = "UpdateVirtualServiceInput",
     members = {
         virtualServiceName = {
             type = "string",
@@ -4045,6 +4267,7 @@ M.UpdateVirtualServiceInput = {
 
 M.UpdateVirtualServiceOutput = {
     type = "structure",
+    id = "UpdateVirtualServiceOutput",
     members = {
         virtualService = setmetatable({ traits = {
             http_payload = true,
@@ -4055,6 +4278,7 @@ M.UpdateVirtualServiceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4075,10 +4299,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -4089,6 +4315,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4109,6 +4336,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

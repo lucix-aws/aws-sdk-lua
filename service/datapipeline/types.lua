@@ -2,6 +2,7 @@ local M = {}
 
 M.ParameterValue = {
     type = "structure",
+    id = "ParameterValue",
     members = {
         id = {
             type = "string",
@@ -20,6 +21,7 @@ M.ParameterValue = {
 
 M.ActivatePipelineInput = {
     type = "structure",
+    id = "ActivatePipelineInput",
     members = {
         pipelineId = {
             type = "string",
@@ -39,10 +41,12 @@ M.ActivatePipelineInput = {
 
 M.ActivatePipelineOutput = {
     type = "structure",
+    id = "ActivatePipelineOutput",
 }
 
 M.InternalServiceError = {
     type = "structure",
+    id = "InternalServiceError",
     error = "server",
     members = {
         message = {
@@ -53,6 +57,7 @@ M.InternalServiceError = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -63,6 +68,7 @@ M.InvalidRequestException = {
 
 M.PipelineDeletedException = {
     type = "structure",
+    id = "PipelineDeletedException",
     error = "client",
     members = {
         message = {
@@ -73,6 +79,7 @@ M.PipelineDeletedException = {
 
 M.PipelineNotFoundException = {
     type = "structure",
+    id = "PipelineNotFoundException",
     error = "client",
     members = {
         message = {
@@ -83,6 +90,7 @@ M.PipelineNotFoundException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -101,6 +109,7 @@ M.Tag = {
 
 M.AddTagsInput = {
     type = "structure",
+    id = "AddTagsInput",
     members = {
         pipelineId = {
             type = "string",
@@ -120,10 +129,12 @@ M.AddTagsInput = {
 
 M.AddTagsOutput = {
     type = "structure",
+    id = "AddTagsOutput",
 }
 
 M.CreatePipelineInput = {
     type = "structure",
+    id = "CreatePipelineInput",
     members = {
         name = {
             type = "string",
@@ -149,6 +160,7 @@ M.CreatePipelineInput = {
 
 M.CreatePipelineOutput = {
     type = "structure",
+    id = "CreatePipelineOutput",
     members = {
         pipelineId = {
             type = "string",
@@ -161,6 +173,7 @@ M.CreatePipelineOutput = {
 
 M.DeactivatePipelineInput = {
     type = "structure",
+    id = "DeactivatePipelineInput",
     members = {
         pipelineId = {
             type = "string",
@@ -176,10 +189,12 @@ M.DeactivatePipelineInput = {
 
 M.DeactivatePipelineOutput = {
     type = "structure",
+    id = "DeactivatePipelineOutput",
 }
 
 M.DeletePipelineInput = {
     type = "structure",
+    id = "DeletePipelineInput",
     members = {
         pipelineId = {
             type = "string",
@@ -192,10 +207,12 @@ M.DeletePipelineInput = {
 
 M.DeletePipelineOutput = {
     type = "structure",
+    id = "DeletePipelineOutput",
 }
 
 M.DescribeObjectsInput = {
     type = "structure",
+    id = "DescribeObjectsInput",
     members = {
         pipelineId = {
             type = "string",
@@ -224,6 +241,7 @@ M.DescribeObjectsInput = {
 
 M.Field = {
     type = "structure",
+    id = "Field",
     members = {
         key = {
             type = "string",
@@ -242,6 +260,7 @@ M.Field = {
 
 M.PipelineObject = {
     type = "structure",
+    id = "PipelineObject",
     members = {
         id = {
             type = "string",
@@ -267,6 +286,7 @@ M.PipelineObject = {
 
 M.DescribeObjectsOutput = {
     type = "structure",
+    id = "DescribeObjectsOutput",
     members = {
         pipelineObjects = {
             type = "list",
@@ -289,6 +309,7 @@ M.DescribeObjectsOutput = {
 
 M.DescribePipelinesInput = {
     type = "structure",
+    id = "DescribePipelinesInput",
     members = {
         pipelineIds = {
             type = "list",
@@ -302,6 +323,7 @@ M.DescribePipelinesInput = {
 
 M.PipelineDescription = {
     type = "structure",
+    id = "PipelineDescription",
     members = {
         pipelineId = {
             type = "string",
@@ -334,6 +356,7 @@ M.PipelineDescription = {
 
 M.DescribePipelinesOutput = {
     type = "structure",
+    id = "DescribePipelinesOutput",
     members = {
         pipelineDescriptionList = {
             type = "list",
@@ -347,6 +370,7 @@ M.DescribePipelinesOutput = {
 
 M.EvaluateExpressionInput = {
     type = "structure",
+    id = "EvaluateExpressionInput",
     members = {
         pipelineId = {
             type = "string",
@@ -371,6 +395,7 @@ M.EvaluateExpressionInput = {
 
 M.EvaluateExpressionOutput = {
     type = "structure",
+    id = "EvaluateExpressionOutput",
     members = {
         evaluatedExpression = {
             type = "string",
@@ -383,6 +408,7 @@ M.EvaluateExpressionOutput = {
 
 M.TaskNotFoundException = {
     type = "structure",
+    id = "TaskNotFoundException",
     error = "client",
     members = {
         message = {
@@ -393,6 +419,7 @@ M.TaskNotFoundException = {
 
 M.GetPipelineDefinitionInput = {
     type = "structure",
+    id = "GetPipelineDefinitionInput",
     members = {
         pipelineId = {
             type = "string",
@@ -408,6 +435,7 @@ M.GetPipelineDefinitionInput = {
 
 M.ParameterAttribute = {
     type = "structure",
+    id = "ParameterAttribute",
     members = {
         key = {
             type = "string",
@@ -426,6 +454,7 @@ M.ParameterAttribute = {
 
 M.ParameterObject = {
     type = "structure",
+    id = "ParameterObject",
     members = {
         id = {
             type = "string",
@@ -445,6 +474,7 @@ M.ParameterObject = {
 
 M.GetPipelineDefinitionOutput = {
     type = "structure",
+    id = "GetPipelineDefinitionOutput",
     members = {
         pipelineObjects = {
             type = "list",
@@ -463,6 +493,7 @@ M.GetPipelineDefinitionOutput = {
 
 M.ListPipelinesInput = {
     type = "structure",
+    id = "ListPipelinesInput",
     members = {
         marker = {
             type = "string",
@@ -472,6 +503,7 @@ M.ListPipelinesInput = {
 
 M.PipelineIdName = {
     type = "structure",
+    id = "PipelineIdName",
     members = {
         id = {
             type = "string",
@@ -484,6 +516,7 @@ M.PipelineIdName = {
 
 M.ListPipelinesOutput = {
     type = "structure",
+    id = "ListPipelinesOutput",
     members = {
         pipelineIdList = {
             type = "list",
@@ -506,6 +539,7 @@ M.ListPipelinesOutput = {
 
 M.InstanceIdentity = {
     type = "structure",
+    id = "InstanceIdentity",
     members = {
         document = {
             type = "string",
@@ -518,6 +552,7 @@ M.InstanceIdentity = {
 
 M.PollForTaskInput = {
     type = "structure",
+    id = "PollForTaskInput",
     members = {
         workerGroup = {
             type = "string",
@@ -534,6 +569,7 @@ M.PollForTaskInput = {
 
 M.TaskObject = {
     type = "structure",
+    id = "TaskObject",
     members = {
         taskId = {
             type = "string",
@@ -554,6 +590,7 @@ M.TaskObject = {
 
 M.PollForTaskOutput = {
     type = "structure",
+    id = "PollForTaskOutput",
     members = {
         taskObject = M.TaskObject,
     },
@@ -561,6 +598,7 @@ M.PollForTaskOutput = {
 
 M.PutPipelineDefinitionInput = {
     type = "structure",
+    id = "PutPipelineDefinitionInput",
     members = {
         pipelineId = {
             type = "string",
@@ -588,6 +626,7 @@ M.PutPipelineDefinitionInput = {
 
 M.ValidationError = {
     type = "structure",
+    id = "ValidationError",
     members = {
         id = {
             type = "string",
@@ -601,6 +640,7 @@ M.ValidationError = {
 
 M.ValidationWarning = {
     type = "structure",
+    id = "ValidationWarning",
     members = {
         id = {
             type = "string",
@@ -614,6 +654,7 @@ M.ValidationWarning = {
 
 M.PutPipelineDefinitionOutput = {
     type = "structure",
+    id = "PutPipelineDefinitionOutput",
     members = {
         validationErrors = {
             type = "list",
@@ -643,6 +684,7 @@ M.OperatorType = {
 
 M.Operator = {
     type = "structure",
+    id = "Operator",
     members = {
         type = {
             type = "string",
@@ -656,6 +698,7 @@ M.Operator = {
 
 M.Selector = {
     type = "structure",
+    id = "Selector",
     members = {
         fieldName = {
             type = "string",
@@ -666,6 +709,7 @@ M.Selector = {
 
 M.Query = {
     type = "structure",
+    id = "Query",
     members = {
         selectors = {
             type = "list",
@@ -676,6 +720,7 @@ M.Query = {
 
 M.QueryObjectsInput = {
     type = "structure",
+    id = "QueryObjectsInput",
     members = {
         pipelineId = {
             type = "string",
@@ -701,6 +746,7 @@ M.QueryObjectsInput = {
 
 M.QueryObjectsOutput = {
     type = "structure",
+    id = "QueryObjectsOutput",
     members = {
         ids = {
             type = "list",
@@ -720,6 +766,7 @@ M.QueryObjectsOutput = {
 
 M.RemoveTagsInput = {
     type = "structure",
+    id = "RemoveTagsInput",
     members = {
         pipelineId = {
             type = "string",
@@ -739,10 +786,12 @@ M.RemoveTagsInput = {
 
 M.RemoveTagsOutput = {
     type = "structure",
+    id = "RemoveTagsOutput",
 }
 
 M.ReportTaskProgressInput = {
     type = "structure",
+    id = "ReportTaskProgressInput",
     members = {
         taskId = {
             type = "string",
@@ -759,6 +808,7 @@ M.ReportTaskProgressInput = {
 
 M.ReportTaskProgressOutput = {
     type = "structure",
+    id = "ReportTaskProgressOutput",
     members = {
         canceled = {
             type = "boolean",
@@ -772,6 +822,7 @@ M.ReportTaskProgressOutput = {
 
 M.ReportTaskRunnerHeartbeatInput = {
     type = "structure",
+    id = "ReportTaskRunnerHeartbeatInput",
     members = {
         taskrunnerId = {
             type = "string",
@@ -790,6 +841,7 @@ M.ReportTaskRunnerHeartbeatInput = {
 
 M.ReportTaskRunnerHeartbeatOutput = {
     type = "structure",
+    id = "ReportTaskRunnerHeartbeatOutput",
     members = {
         terminate = {
             type = "boolean",
@@ -803,6 +855,7 @@ M.ReportTaskRunnerHeartbeatOutput = {
 
 M.SetStatusInput = {
     type = "structure",
+    id = "SetStatusInput",
     members = {
         pipelineId = {
             type = "string",
@@ -828,6 +881,7 @@ M.SetStatusInput = {
 
 M.SetStatusOutput = {
     type = "structure",
+    id = "SetStatusOutput",
 }
 
 M.TaskStatus = {
@@ -838,6 +892,7 @@ M.TaskStatus = {
 
 M.SetTaskStatusInput = {
     type = "structure",
+    id = "SetTaskStatusInput",
     members = {
         taskId = {
             type = "string",
@@ -865,10 +920,12 @@ M.SetTaskStatusInput = {
 
 M.SetTaskStatusOutput = {
     type = "structure",
+    id = "SetTaskStatusOutput",
 }
 
 M.ValidatePipelineDefinitionInput = {
     type = "structure",
+    id = "ValidatePipelineDefinitionInput",
     members = {
         pipelineId = {
             type = "string",
@@ -896,6 +953,7 @@ M.ValidatePipelineDefinitionInput = {
 
 M.ValidatePipelineDefinitionOutput = {
     type = "structure",
+    id = "ValidatePipelineDefinitionOutput",
     members = {
         validationErrors = {
             type = "list",

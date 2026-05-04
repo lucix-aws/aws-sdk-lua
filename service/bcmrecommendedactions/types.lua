@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -26,6 +27,7 @@ M.MatchOption = {
 
 M.ActionFilter = {
     type = "structure",
+    id = "ActionFilter",
     members = {
         key = {
             type = "string",
@@ -74,6 +76,7 @@ M.ActionType = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -87,6 +90,7 @@ M.InternalServerException = {
 
 M.RequestFilter = {
     type = "structure",
+    id = "RequestFilter",
     members = {
         actions = {
             type = "list",
@@ -97,6 +101,7 @@ M.RequestFilter = {
 
 M.ListRecommendedActionsInput = {
     type = "structure",
+    id = "ListRecommendedActionsInput",
     members = {
         filter = M.RequestFilter,
         maxResults = {
@@ -129,6 +134,7 @@ M.Severity = {
 
 M.RecommendedAction = {
     type = "structure",
+    id = "RecommendedAction",
     members = {
         id = {
             type = "string",
@@ -162,6 +168,7 @@ M.RecommendedAction = {
 
 M.ListRecommendedActionsOutput = {
     type = "structure",
+    id = "ListRecommendedActionsOutput",
     members = {
         recommendedActions = {
             type = "list",
@@ -178,6 +185,7 @@ M.ListRecommendedActionsOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -191,6 +199,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -216,6 +225,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {

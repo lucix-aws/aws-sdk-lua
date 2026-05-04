@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -32,6 +33,7 @@ M.Dimension = {
 
 M.FilterExpression = {
     type = "structure",
+    id = "FilterExpression",
     members = {
         Dimensions = {
             type = "map",
@@ -51,6 +53,7 @@ M.TimeGranularity = {
 
 M.GranularityConfiguration = {
     type = "structure",
+    id = "GranularityConfiguration",
     members = {
         FiscalYearStartMonth = {
             type = "integer",
@@ -63,6 +66,7 @@ M.GranularityConfiguration = {
 
 M.TimePeriod = {
     type = "structure",
+    id = "TimePeriod",
     members = {
         Start = {
             type = "timestamp",
@@ -83,6 +87,7 @@ M.TimePeriod = {
 
 M.GetEstimatedCarbonEmissionsInput = {
     type = "structure",
+    id = "GetEstimatedCarbonEmissionsInput",
     members = {
         TimePeriod = setmetatable({ traits = {
             required = true,
@@ -121,6 +126,7 @@ M.EmissionsUnit = {
 
 M.Emissions = {
     type = "structure",
+    id = "Emissions",
     members = {
         Value = {
             type = "double",
@@ -139,6 +145,7 @@ M.Emissions = {
 
 M.EstimatedCarbonEmissions = {
     type = "structure",
+    id = "EstimatedCarbonEmissions",
     members = {
         TimePeriod = setmetatable({ traits = {
             required = true,
@@ -170,6 +177,7 @@ M.EstimatedCarbonEmissions = {
 
 M.GetEstimatedCarbonEmissionsOutput = {
     type = "structure",
+    id = "GetEstimatedCarbonEmissionsOutput",
     members = {
         Results = {
             type = "list",
@@ -186,6 +194,7 @@ M.GetEstimatedCarbonEmissionsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -200,6 +209,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -214,6 +224,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -228,6 +239,7 @@ M.ValidationException = {
 
 M.GetEstimatedCarbonEmissionsDimensionValuesInput = {
     type = "structure",
+    id = "GetEstimatedCarbonEmissionsDimensionValuesInput",
     members = {
         TimePeriod = setmetatable({ traits = {
             required = true,
@@ -253,6 +265,7 @@ M.GetEstimatedCarbonEmissionsDimensionValuesInput = {
 
 M.DimensionEntry = {
     type = "structure",
+    id = "DimensionEntry",
     members = {
         Dimension = {
             type = "string",
@@ -271,6 +284,7 @@ M.DimensionEntry = {
 
 M.GetEstimatedCarbonEmissionsDimensionValuesOutput = {
     type = "structure",
+    id = "GetEstimatedCarbonEmissionsDimensionValuesOutput",
     members = {
         Results = {
             type = "list",

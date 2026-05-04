@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceleratorCountRequest = {
     type = "structure",
+    id = "AcceleratorCountRequest",
     members = {
         Min = {
             type = "integer",
@@ -31,6 +32,7 @@ M.AcceleratorName = {
 
 M.AcceleratorTotalMemoryMiBRequest = {
     type = "structure",
+    id = "AcceleratorTotalMemoryMiBRequest",
     members = {
         Min = {
             type = "integer",
@@ -49,6 +51,7 @@ M.AcceleratorType = {
 
 M.ActiveInstanceRefreshNotFoundFault = {
     type = "structure",
+    id = "ActiveInstanceRefreshNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -78,6 +81,7 @@ M.ScalingActivityStatusCode = {
 
 M.Activity = {
     type = "structure",
+    id = "Activity",
     members = {
         ActivityId = {
             type = "string",
@@ -135,6 +139,7 @@ M.Activity = {
 
 M.AdjustmentType = {
     type = "structure",
+    id = "AdjustmentType",
     members = {
         AdjustmentType = {
             type = "string",
@@ -144,6 +149,7 @@ M.AdjustmentType = {
 
 M.Alarm = {
     type = "structure",
+    id = "Alarm",
     members = {
         AlarmName = {
             type = "string",
@@ -156,6 +162,7 @@ M.Alarm = {
 
 M.AlarmSpecification = {
     type = "structure",
+    id = "AlarmSpecification",
     members = {
         Alarms = {
             type = "list",
@@ -166,6 +173,7 @@ M.AlarmSpecification = {
 
 M.AlreadyExistsFault = {
     type = "structure",
+    id = "AlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -176,6 +184,7 @@ M.AlreadyExistsFault = {
 
 M.AttachInstancesInput = {
     type = "structure",
+    id = "AttachInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -192,10 +201,12 @@ M.AttachInstancesInput = {
 
 M.AttachInstancesOutput = {
     type = "structure",
+    id = "AttachInstancesOutput",
 }
 
 M.ResourceContentionFault = {
     type = "structure",
+    id = "ResourceContentionFault",
     error = "server",
     members = {
         message = {
@@ -206,6 +217,7 @@ M.ResourceContentionFault = {
 
 M.ServiceLinkedRoleFailure = {
     type = "structure",
+    id = "ServiceLinkedRoleFailure",
     error = "server",
     members = {
         message = {
@@ -216,6 +228,7 @@ M.ServiceLinkedRoleFailure = {
 
 M.AttachLoadBalancersInput = {
     type = "structure",
+    id = "AttachLoadBalancersInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -235,10 +248,12 @@ M.AttachLoadBalancersInput = {
 
 M.AttachLoadBalancersOutput = {
     type = "structure",
+    id = "AttachLoadBalancersOutput",
 }
 
 M.InstanceRefreshInProgressFault = {
     type = "structure",
+    id = "InstanceRefreshInProgressFault",
     error = "client",
     members = {
         message = {
@@ -249,6 +264,7 @@ M.InstanceRefreshInProgressFault = {
 
 M.AttachLoadBalancerTargetGroupsInput = {
     type = "structure",
+    id = "AttachLoadBalancerTargetGroupsInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -268,10 +284,12 @@ M.AttachLoadBalancerTargetGroupsInput = {
 
 M.AttachLoadBalancerTargetGroupsOutput = {
     type = "structure",
+    id = "AttachLoadBalancerTargetGroupsOutput",
 }
 
 M.TrafficSourceIdentifier = {
     type = "structure",
+    id = "TrafficSourceIdentifier",
     members = {
         Identifier = {
             type = "string",
@@ -287,6 +305,7 @@ M.TrafficSourceIdentifier = {
 
 M.AttachTrafficSourcesInput = {
     type = "structure",
+    id = "AttachTrafficSourcesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -309,10 +328,12 @@ M.AttachTrafficSourcesInput = {
 
 M.AttachTrafficSourcesOutput = {
     type = "structure",
+    id = "AttachTrafficSourcesOutput",
 }
 
 M.BatchDeleteScheduledActionInput = {
     type = "structure",
+    id = "BatchDeleteScheduledActionInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -332,6 +353,7 @@ M.BatchDeleteScheduledActionInput = {
 
 M.FailedScheduledUpdateGroupActionRequest = {
     type = "structure",
+    id = "FailedScheduledUpdateGroupActionRequest",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -350,6 +372,7 @@ M.FailedScheduledUpdateGroupActionRequest = {
 
 M.BatchDeleteScheduledActionOutput = {
     type = "structure",
+    id = "BatchDeleteScheduledActionOutput",
     members = {
         FailedScheduledActions = {
             type = "list",
@@ -360,6 +383,7 @@ M.BatchDeleteScheduledActionOutput = {
 
 M.ScheduledUpdateGroupActionRequest = {
     type = "structure",
+    id = "ScheduledUpdateGroupActionRequest",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -393,6 +417,7 @@ M.ScheduledUpdateGroupActionRequest = {
 
 M.BatchPutScheduledUpdateGroupActionInput = {
     type = "structure",
+    id = "BatchPutScheduledUpdateGroupActionInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -412,6 +437,7 @@ M.BatchPutScheduledUpdateGroupActionInput = {
 
 M.BatchPutScheduledUpdateGroupActionOutput = {
     type = "structure",
+    id = "BatchPutScheduledUpdateGroupActionOutput",
     members = {
         FailedScheduledUpdateGroupActions = {
             type = "list",
@@ -422,6 +448,7 @@ M.BatchPutScheduledUpdateGroupActionOutput = {
 
 M.LimitExceededFault = {
     type = "structure",
+    id = "LimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -432,6 +459,7 @@ M.LimitExceededFault = {
 
 M.CancelInstanceRefreshInput = {
     type = "structure",
+    id = "CancelInstanceRefreshInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -447,6 +475,7 @@ M.CancelInstanceRefreshInput = {
 
 M.CancelInstanceRefreshOutput = {
     type = "structure",
+    id = "CancelInstanceRefreshOutput",
     members = {
         InstanceRefreshId = {
             type = "string",
@@ -456,6 +485,7 @@ M.CancelInstanceRefreshOutput = {
 
 M.CompleteLifecycleActionInput = {
     type = "structure",
+    id = "CompleteLifecycleActionInput",
     members = {
         LifecycleHookName = {
             type = "string",
@@ -486,6 +516,7 @@ M.CompleteLifecycleActionInput = {
 
 M.CompleteLifecycleActionOutput = {
     type = "structure",
+    id = "CompleteLifecycleActionOutput",
 }
 
 M.CapacityDistributionStrategy = {
@@ -495,6 +526,7 @@ M.CapacityDistributionStrategy = {
 
 M.AvailabilityZoneDistribution = {
     type = "structure",
+    id = "AvailabilityZoneDistribution",
     members = {
         CapacityDistributionStrategy = {
             type = "string",
@@ -509,6 +541,7 @@ M.ImpairedZoneHealthCheckBehavior = {
 
 M.AvailabilityZoneImpairmentPolicy = {
     type = "structure",
+    id = "AvailabilityZoneImpairmentPolicy",
     members = {
         ZonalShiftEnabled = {
             type = "boolean",
@@ -528,6 +561,7 @@ M.CapacityReservationPreference = {
 
 M.CapacityReservationTarget = {
     type = "structure",
+    id = "CapacityReservationTarget",
     members = {
         CapacityReservationIds = {
             type = "list",
@@ -542,6 +576,7 @@ M.CapacityReservationTarget = {
 
 M.CapacityReservationSpecification = {
     type = "structure",
+    id = "CapacityReservationSpecification",
     members = {
         CapacityReservationPreference = {
             type = "string",
@@ -563,6 +598,7 @@ M.RetentionAction = {
 
 M.RetentionTriggers = {
     type = "structure",
+    id = "RetentionTriggers",
     members = {
         TerminateHookAbandon = {
             type = "string",
@@ -572,6 +608,7 @@ M.RetentionTriggers = {
 
 M.InstanceLifecyclePolicy = {
     type = "structure",
+    id = "InstanceLifecyclePolicy",
     members = {
         RetentionTriggers = M.RetentionTriggers,
     },
@@ -579,6 +616,7 @@ M.InstanceLifecyclePolicy = {
 
 M.InstanceMaintenancePolicy = {
     type = "structure",
+    id = "InstanceMaintenancePolicy",
     members = {
         MinHealthyPercentage = {
             type = "integer",
@@ -591,6 +629,7 @@ M.InstanceMaintenancePolicy = {
 
 M.LaunchTemplateSpecification = {
     type = "structure",
+    id = "LaunchTemplateSpecification",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -606,6 +645,7 @@ M.LaunchTemplateSpecification = {
 
 M.LifecycleHookSpecification = {
     type = "structure",
+    id = "LifecycleHookSpecification",
     members = {
         LifecycleHookName = {
             type = "string",
@@ -639,6 +679,7 @@ M.LifecycleHookSpecification = {
 
 M.InstancesDistribution = {
     type = "structure",
+    id = "InstancesDistribution",
     members = {
         OnDemandAllocationStrategy = {
             type = "string",
@@ -669,6 +710,7 @@ M.BareMetal = {
 
 M.BaselineEbsBandwidthMbpsRequest = {
     type = "structure",
+    id = "BaselineEbsBandwidthMbpsRequest",
     members = {
         Min = {
             type = "integer",
@@ -681,6 +723,7 @@ M.BaselineEbsBandwidthMbpsRequest = {
 
 M.PerformanceFactorReferenceRequest = {
     type = "structure",
+    id = "PerformanceFactorReferenceRequest",
     members = {
         InstanceFamily = {
             type = "string",
@@ -690,6 +733,7 @@ M.PerformanceFactorReferenceRequest = {
 
 M.CpuPerformanceFactorRequest = {
     type = "structure",
+    id = "CpuPerformanceFactorRequest",
     members = {
         References = {
             type = "list",
@@ -703,6 +747,7 @@ M.CpuPerformanceFactorRequest = {
 
 M.BaselinePerformanceFactorsRequest = {
     type = "structure",
+    id = "BaselinePerformanceFactorsRequest",
     members = {
         Cpu = M.CpuPerformanceFactorRequest,
     },
@@ -739,6 +784,7 @@ M.LocalStorageType = {
 
 M.MemoryGiBPerVCpuRequest = {
     type = "structure",
+    id = "MemoryGiBPerVCpuRequest",
     members = {
         Min = {
             type = "double",
@@ -751,6 +797,7 @@ M.MemoryGiBPerVCpuRequest = {
 
 M.MemoryMiBRequest = {
     type = "structure",
+    id = "MemoryMiBRequest",
     members = {
         Min = {
             type = "integer",
@@ -766,6 +813,7 @@ M.MemoryMiBRequest = {
 
 M.NetworkBandwidthGbpsRequest = {
     type = "structure",
+    id = "NetworkBandwidthGbpsRequest",
     members = {
         Min = {
             type = "double",
@@ -778,6 +826,7 @@ M.NetworkBandwidthGbpsRequest = {
 
 M.NetworkInterfaceCountRequest = {
     type = "structure",
+    id = "NetworkInterfaceCountRequest",
     members = {
         Min = {
             type = "integer",
@@ -790,6 +839,7 @@ M.NetworkInterfaceCountRequest = {
 
 M.TotalLocalStorageGBRequest = {
     type = "structure",
+    id = "TotalLocalStorageGBRequest",
     members = {
         Min = {
             type = "double",
@@ -802,6 +852,7 @@ M.TotalLocalStorageGBRequest = {
 
 M.VCpuCountRequest = {
     type = "structure",
+    id = "VCpuCountRequest",
     members = {
         Min = {
             type = "integer",
@@ -817,6 +868,7 @@ M.VCpuCountRequest = {
 
 M.InstanceRequirements = {
     type = "structure",
+    id = "InstanceRequirements",
     members = {
         VCpuCount = setmetatable({ traits = {
             required = true,
@@ -890,6 +942,7 @@ M.InstanceRequirements = {
 
 M.LaunchTemplateOverrides = {
     type = "structure",
+    id = "LaunchTemplateOverrides",
     members = {
         InstanceType = {
             type = "string",
@@ -907,6 +960,7 @@ M.LaunchTemplateOverrides = {
 
 M.LaunchTemplate = {
     type = "structure",
+    id = "LaunchTemplate",
     members = {
         LaunchTemplateSpecification = M.LaunchTemplateSpecification,
         Overrides = {
@@ -918,6 +972,7 @@ M.LaunchTemplate = {
 
 M.MixedInstancesPolicy = {
     type = "structure",
+    id = "MixedInstancesPolicy",
     members = {
         LaunchTemplate = M.LaunchTemplate,
         InstancesDistribution = M.InstancesDistribution,
@@ -926,6 +981,7 @@ M.MixedInstancesPolicy = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         ResourceId = {
             type = "string",
@@ -950,6 +1006,7 @@ M.Tag = {
 
 M.CreateAutoScalingGroupInput = {
     type = "structure",
+    id = "CreateAutoScalingGroupInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1064,10 +1121,12 @@ M.CreateAutoScalingGroupInput = {
 
 M.CreateAutoScalingGroupOutput = {
     type = "structure",
+    id = "CreateAutoScalingGroupOutput",
 }
 
 M.Ebs = {
     type = "structure",
+    id = "Ebs",
     members = {
         SnapshotId = {
             type = "string",
@@ -1095,6 +1154,7 @@ M.Ebs = {
 
 M.BlockDeviceMapping = {
     type = "structure",
+    id = "BlockDeviceMapping",
     members = {
         VirtualName = {
             type = "string",
@@ -1114,6 +1174,7 @@ M.BlockDeviceMapping = {
 
 M.InstanceMonitoring = {
     type = "structure",
+    id = "InstanceMonitoring",
     members = {
         Enabled = {
             type = "boolean",
@@ -1133,6 +1194,7 @@ M.InstanceMetadataHttpTokensState = {
 
 M.InstanceMetadataOptions = {
     type = "structure",
+    id = "InstanceMetadataOptions",
     members = {
         HttpTokens = {
             type = "string",
@@ -1148,6 +1210,7 @@ M.InstanceMetadataOptions = {
 
 M.CreateLaunchConfigurationInput = {
     type = "structure",
+    id = "CreateLaunchConfigurationInput",
     members = {
         LaunchConfigurationName = {
             type = "string",
@@ -1213,10 +1276,12 @@ M.CreateLaunchConfigurationInput = {
 
 M.CreateLaunchConfigurationOutput = {
     type = "structure",
+    id = "CreateLaunchConfigurationOutput",
 }
 
 M.CreateOrUpdateTagsInput = {
     type = "structure",
+    id = "CreateOrUpdateTagsInput",
     members = {
         Tags = {
             type = "list",
@@ -1230,10 +1295,12 @@ M.CreateOrUpdateTagsInput = {
 
 M.CreateOrUpdateTagsOutput = {
     type = "structure",
+    id = "CreateOrUpdateTagsOutput",
 }
 
 M.ResourceInUseFault = {
     type = "structure",
+    id = "ResourceInUseFault",
     error = "client",
     members = {
         message = {
@@ -1244,6 +1311,7 @@ M.ResourceInUseFault = {
 
 M.DeleteAutoScalingGroupInput = {
     type = "structure",
+    id = "DeleteAutoScalingGroupInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1259,10 +1327,12 @@ M.DeleteAutoScalingGroupInput = {
 
 M.DeleteAutoScalingGroupOutput = {
     type = "structure",
+    id = "DeleteAutoScalingGroupOutput",
 }
 
 M.ScalingActivityInProgressFault = {
     type = "structure",
+    id = "ScalingActivityInProgressFault",
     error = "client",
     members = {
         message = {
@@ -1273,6 +1343,7 @@ M.ScalingActivityInProgressFault = {
 
 M.DeleteLaunchConfigurationInput = {
     type = "structure",
+    id = "DeleteLaunchConfigurationInput",
     members = {
         LaunchConfigurationName = {
             type = "string",
@@ -1285,10 +1356,12 @@ M.DeleteLaunchConfigurationInput = {
 
 M.DeleteLaunchConfigurationOutput = {
     type = "structure",
+    id = "DeleteLaunchConfigurationOutput",
 }
 
 M.DeleteLifecycleHookInput = {
     type = "structure",
+    id = "DeleteLifecycleHookInput",
     members = {
         LifecycleHookName = {
             type = "string",
@@ -1307,10 +1380,12 @@ M.DeleteLifecycleHookInput = {
 
 M.DeleteLifecycleHookOutput = {
     type = "structure",
+    id = "DeleteLifecycleHookOutput",
 }
 
 M.DeleteNotificationConfigurationInput = {
     type = "structure",
+    id = "DeleteNotificationConfigurationInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1329,10 +1404,12 @@ M.DeleteNotificationConfigurationInput = {
 
 M.DeleteNotificationConfigurationOutput = {
     type = "structure",
+    id = "DeleteNotificationConfigurationOutput",
 }
 
 M.DeletePolicyInput = {
     type = "structure",
+    id = "DeletePolicyInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1348,10 +1425,12 @@ M.DeletePolicyInput = {
 
 M.DeletePolicyOutput = {
     type = "structure",
+    id = "DeletePolicyOutput",
 }
 
 M.DeleteScheduledActionInput = {
     type = "structure",
+    id = "DeleteScheduledActionInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1370,10 +1449,12 @@ M.DeleteScheduledActionInput = {
 
 M.DeleteScheduledActionOutput = {
     type = "structure",
+    id = "DeleteScheduledActionOutput",
 }
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         Tags = {
             type = "list",
@@ -1387,10 +1468,12 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.DeleteWarmPoolInput = {
     type = "structure",
+    id = "DeleteWarmPoolInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1406,14 +1489,17 @@ M.DeleteWarmPoolInput = {
 
 M.DeleteWarmPoolOutput = {
     type = "structure",
+    id = "DeleteWarmPoolOutput",
 }
 
 M.DescribeAccountLimitsInput = {
     type = "structure",
+    id = "DescribeAccountLimitsInput",
 }
 
 M.DescribeAccountLimitsOutput = {
     type = "structure",
+    id = "DescribeAccountLimitsOutput",
     members = {
         MaxNumberOfAutoScalingGroups = {
             type = "integer",
@@ -1432,10 +1518,12 @@ M.DescribeAccountLimitsOutput = {
 
 M.DescribeAdjustmentTypesInput = {
     type = "structure",
+    id = "DescribeAdjustmentTypesInput",
 }
 
 M.DescribeAdjustmentTypesOutput = {
     type = "structure",
+    id = "DescribeAdjustmentTypesOutput",
     members = {
         AdjustmentTypes = {
             type = "list",
@@ -1446,6 +1534,7 @@ M.DescribeAdjustmentTypesOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -1459,6 +1548,7 @@ M.Filter = {
 
 M.DescribeAutoScalingGroupsInput = {
     type = "structure",
+    id = "DescribeAutoScalingGroupsInput",
     members = {
         AutoScalingGroupNames = {
             type = "list",
@@ -1482,6 +1572,7 @@ M.DescribeAutoScalingGroupsInput = {
 
 M.EnabledMetric = {
     type = "structure",
+    id = "EnabledMetric",
     members = {
         Metric = {
             type = "string",
@@ -1527,6 +1618,7 @@ M.LifecycleState = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         InstanceId = {
             type = "string",
@@ -1579,6 +1671,7 @@ M.Instance = {
 
 M.SuspendedProcess = {
     type = "structure",
+    id = "SuspendedProcess",
     members = {
         ProcessName = {
             type = "string",
@@ -1591,6 +1684,7 @@ M.SuspendedProcess = {
 
 M.TagDescription = {
     type = "structure",
+    id = "TagDescription",
     members = {
         ResourceId = {
             type = "string",
@@ -1612,6 +1706,7 @@ M.TagDescription = {
 
 M.InstanceReusePolicy = {
     type = "structure",
+    id = "InstanceReusePolicy",
     members = {
         ReuseOnScaleIn = {
             type = "boolean",
@@ -1631,6 +1726,7 @@ M.WarmPoolStatus = {
 
 M.WarmPoolConfiguration = {
     type = "structure",
+    id = "WarmPoolConfiguration",
     members = {
         MaxGroupPreparedCapacity = {
             type = "integer",
@@ -1650,6 +1746,7 @@ M.WarmPoolConfiguration = {
 
 M.AutoScalingGroup = {
     type = "structure",
+    id = "AutoScalingGroup",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1797,6 +1894,7 @@ M.AutoScalingGroup = {
 
 M.DescribeAutoScalingGroupsOutput = {
     type = "structure",
+    id = "DescribeAutoScalingGroupsOutput",
     members = {
         AutoScalingGroups = {
             type = "list",
@@ -1813,6 +1911,7 @@ M.DescribeAutoScalingGroupsOutput = {
 
 M.InvalidNextToken = {
     type = "structure",
+    id = "InvalidNextToken",
     error = "client",
     members = {
         message = {
@@ -1823,6 +1922,7 @@ M.InvalidNextToken = {
 
 M.DescribeAutoScalingInstancesInput = {
     type = "structure",
+    id = "DescribeAutoScalingInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -1839,6 +1939,7 @@ M.DescribeAutoScalingInstancesInput = {
 
 M.AutoScalingInstanceDetails = {
     type = "structure",
+    id = "AutoScalingInstanceDetails",
     members = {
         InstanceId = {
             type = "string",
@@ -1897,6 +1998,7 @@ M.AutoScalingInstanceDetails = {
 
 M.DescribeAutoScalingInstancesOutput = {
     type = "structure",
+    id = "DescribeAutoScalingInstancesOutput",
     members = {
         AutoScalingInstances = {
             type = "list",
@@ -1910,10 +2012,12 @@ M.DescribeAutoScalingInstancesOutput = {
 
 M.DescribeAutoScalingNotificationTypesInput = {
     type = "structure",
+    id = "DescribeAutoScalingNotificationTypesInput",
 }
 
 M.DescribeAutoScalingNotificationTypesOutput = {
     type = "structure",
+    id = "DescribeAutoScalingNotificationTypesOutput",
     members = {
         AutoScalingNotificationTypes = {
             type = "list",
@@ -1924,6 +2028,7 @@ M.DescribeAutoScalingNotificationTypesOutput = {
 
 M.DescribeInstanceRefreshesInput = {
     type = "structure",
+    id = "DescribeInstanceRefreshesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -1946,6 +2051,7 @@ M.DescribeInstanceRefreshesInput = {
 
 M.DesiredConfiguration = {
     type = "structure",
+    id = "DesiredConfiguration",
     members = {
         LaunchTemplate = M.LaunchTemplateSpecification,
         MixedInstancesPolicy = M.MixedInstancesPolicy,
@@ -1966,6 +2072,7 @@ M.StandbyInstances = {
 
 M.RefreshPreferences = {
     type = "structure",
+    id = "RefreshPreferences",
     members = {
         MinHealthyPercentage = {
             type = "integer",
@@ -2004,6 +2111,7 @@ M.RefreshPreferences = {
 
 M.InstanceRefreshLivePoolProgress = {
     type = "structure",
+    id = "InstanceRefreshLivePoolProgress",
     members = {
         PercentageComplete = {
             type = "integer",
@@ -2016,6 +2124,7 @@ M.InstanceRefreshLivePoolProgress = {
 
 M.InstanceRefreshWarmPoolProgress = {
     type = "structure",
+    id = "InstanceRefreshWarmPoolProgress",
     members = {
         PercentageComplete = {
             type = "integer",
@@ -2028,6 +2137,7 @@ M.InstanceRefreshWarmPoolProgress = {
 
 M.InstanceRefreshProgressDetails = {
     type = "structure",
+    id = "InstanceRefreshProgressDetails",
     members = {
         LivePoolProgress = M.InstanceRefreshLivePoolProgress,
         WarmPoolProgress = M.InstanceRefreshWarmPoolProgress,
@@ -2036,6 +2146,7 @@ M.InstanceRefreshProgressDetails = {
 
 M.RollbackDetails = {
     type = "structure",
+    id = "RollbackDetails",
     members = {
         RollbackReason = {
             type = "string",
@@ -2073,6 +2184,7 @@ M.RefreshStrategy = {
 
 M.InstanceRefresh = {
     type = "structure",
+    id = "InstanceRefresh",
     members = {
         InstanceRefreshId = {
             type = "string",
@@ -2110,6 +2222,7 @@ M.InstanceRefresh = {
 
 M.DescribeInstanceRefreshesOutput = {
     type = "structure",
+    id = "DescribeInstanceRefreshesOutput",
     members = {
         InstanceRefreshes = {
             type = "list",
@@ -2123,6 +2236,7 @@ M.DescribeInstanceRefreshesOutput = {
 
 M.DescribeLaunchConfigurationsInput = {
     type = "structure",
+    id = "DescribeLaunchConfigurationsInput",
     members = {
         LaunchConfigurationNames = {
             type = "list",
@@ -2139,6 +2253,7 @@ M.DescribeLaunchConfigurationsInput = {
 
 M.LaunchConfiguration = {
     type = "structure",
+    id = "LaunchConfiguration",
     members = {
         LaunchConfigurationName = {
             type = "string",
@@ -2216,6 +2331,7 @@ M.LaunchConfiguration = {
 
 M.DescribeLaunchConfigurationsOutput = {
     type = "structure",
+    id = "DescribeLaunchConfigurationsOutput",
     members = {
         LaunchConfigurations = {
             type = "list",
@@ -2232,6 +2348,7 @@ M.DescribeLaunchConfigurationsOutput = {
 
 M.DescribeLifecycleHooksInput = {
     type = "structure",
+    id = "DescribeLifecycleHooksInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -2248,6 +2365,7 @@ M.DescribeLifecycleHooksInput = {
 
 M.LifecycleHook = {
     type = "structure",
+    id = "LifecycleHook",
     members = {
         LifecycleHookName = {
             type = "string",
@@ -2281,6 +2399,7 @@ M.LifecycleHook = {
 
 M.DescribeLifecycleHooksOutput = {
     type = "structure",
+    id = "DescribeLifecycleHooksOutput",
     members = {
         LifecycleHooks = {
             type = "list",
@@ -2291,10 +2410,12 @@ M.DescribeLifecycleHooksOutput = {
 
 M.DescribeLifecycleHookTypesInput = {
     type = "structure",
+    id = "DescribeLifecycleHookTypesInput",
 }
 
 M.DescribeLifecycleHookTypesOutput = {
     type = "structure",
+    id = "DescribeLifecycleHookTypesOutput",
     members = {
         LifecycleHookTypes = {
             type = "list",
@@ -2305,6 +2426,7 @@ M.DescribeLifecycleHookTypesOutput = {
 
 M.DescribeLoadBalancersInput = {
     type = "structure",
+    id = "DescribeLoadBalancersInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -2323,6 +2445,7 @@ M.DescribeLoadBalancersInput = {
 
 M.LoadBalancerState = {
     type = "structure",
+    id = "LoadBalancerState",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -2335,6 +2458,7 @@ M.LoadBalancerState = {
 
 M.DescribeLoadBalancersOutput = {
     type = "structure",
+    id = "DescribeLoadBalancersOutput",
     members = {
         LoadBalancers = {
             type = "list",
@@ -2348,6 +2472,7 @@ M.DescribeLoadBalancersOutput = {
 
 M.DescribeLoadBalancerTargetGroupsInput = {
     type = "structure",
+    id = "DescribeLoadBalancerTargetGroupsInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -2366,6 +2491,7 @@ M.DescribeLoadBalancerTargetGroupsInput = {
 
 M.LoadBalancerTargetGroupState = {
     type = "structure",
+    id = "LoadBalancerTargetGroupState",
     members = {
         LoadBalancerTargetGroupARN = {
             type = "string",
@@ -2378,6 +2504,7 @@ M.LoadBalancerTargetGroupState = {
 
 M.DescribeLoadBalancerTargetGroupsOutput = {
     type = "structure",
+    id = "DescribeLoadBalancerTargetGroupsOutput",
     members = {
         LoadBalancerTargetGroups = {
             type = "list",
@@ -2391,10 +2518,12 @@ M.DescribeLoadBalancerTargetGroupsOutput = {
 
 M.DescribeMetricCollectionTypesInput = {
     type = "structure",
+    id = "DescribeMetricCollectionTypesInput",
 }
 
 M.MetricGranularityType = {
     type = "structure",
+    id = "MetricGranularityType",
     members = {
         Granularity = {
             type = "string",
@@ -2404,6 +2533,7 @@ M.MetricGranularityType = {
 
 M.MetricCollectionType = {
     type = "structure",
+    id = "MetricCollectionType",
     members = {
         Metric = {
             type = "string",
@@ -2413,6 +2543,7 @@ M.MetricCollectionType = {
 
 M.DescribeMetricCollectionTypesOutput = {
     type = "structure",
+    id = "DescribeMetricCollectionTypesOutput",
     members = {
         Metrics = {
             type = "list",
@@ -2427,6 +2558,7 @@ M.DescribeMetricCollectionTypesOutput = {
 
 M.DescribeNotificationConfigurationsInput = {
     type = "structure",
+    id = "DescribeNotificationConfigurationsInput",
     members = {
         AutoScalingGroupNames = {
             type = "list",
@@ -2443,6 +2575,7 @@ M.DescribeNotificationConfigurationsInput = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -2458,6 +2591,7 @@ M.NotificationConfiguration = {
 
 M.DescribeNotificationConfigurationsOutput = {
     type = "structure",
+    id = "DescribeNotificationConfigurationsOutput",
     members = {
         NotificationConfigurations = {
             type = "list",
@@ -2474,6 +2608,7 @@ M.DescribeNotificationConfigurationsOutput = {
 
 M.DescribePoliciesInput = {
     type = "structure",
+    id = "DescribePoliciesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -2502,6 +2637,7 @@ M.PredictiveScalingMaxCapacityBreachBehavior = {
 
 M.MetricDimension = {
     type = "structure",
+    id = "MetricDimension",
     members = {
         Name = {
             type = "string",
@@ -2520,6 +2656,7 @@ M.MetricDimension = {
 
 M.Metric = {
     type = "structure",
+    id = "Metric",
     members = {
         Namespace = {
             type = "string",
@@ -2542,6 +2679,7 @@ M.Metric = {
 
 M.MetricStat = {
     type = "structure",
+    id = "MetricStat",
     members = {
         Metric = setmetatable({ traits = {
             required = true,
@@ -2560,6 +2698,7 @@ M.MetricStat = {
 
 M.MetricDataQuery = {
     type = "structure",
+    id = "MetricDataQuery",
     members = {
         Id = {
             type = "string",
@@ -2582,6 +2721,7 @@ M.MetricDataQuery = {
 
 M.PredictiveScalingCustomizedCapacityMetric = {
     type = "structure",
+    id = "PredictiveScalingCustomizedCapacityMetric",
     members = {
         MetricDataQueries = {
             type = "list",
@@ -2595,6 +2735,7 @@ M.PredictiveScalingCustomizedCapacityMetric = {
 
 M.PredictiveScalingCustomizedLoadMetric = {
     type = "structure",
+    id = "PredictiveScalingCustomizedLoadMetric",
     members = {
         MetricDataQueries = {
             type = "list",
@@ -2608,6 +2749,7 @@ M.PredictiveScalingCustomizedLoadMetric = {
 
 M.PredictiveScalingCustomizedScalingMetric = {
     type = "structure",
+    id = "PredictiveScalingCustomizedScalingMetric",
     members = {
         MetricDataQueries = {
             type = "list",
@@ -2628,6 +2770,7 @@ M.PredefinedLoadMetricType = {
 
 M.PredictiveScalingPredefinedLoadMetric = {
     type = "structure",
+    id = "PredictiveScalingPredefinedLoadMetric",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -2650,6 +2793,7 @@ M.PredefinedMetricPairType = {
 
 M.PredictiveScalingPredefinedMetricPair = {
     type = "structure",
+    id = "PredictiveScalingPredefinedMetricPair",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -2672,6 +2816,7 @@ M.PredefinedScalingMetricType = {
 
 M.PredictiveScalingPredefinedScalingMetric = {
     type = "structure",
+    id = "PredictiveScalingPredefinedScalingMetric",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -2687,6 +2832,7 @@ M.PredictiveScalingPredefinedScalingMetric = {
 
 M.PredictiveScalingMetricSpecification = {
     type = "structure",
+    id = "PredictiveScalingMetricSpecification",
     members = {
         TargetValue = {
             type = "double",
@@ -2710,6 +2856,7 @@ M.PredictiveScalingMode = {
 
 M.PredictiveScalingConfiguration = {
     type = "structure",
+    id = "PredictiveScalingConfiguration",
     members = {
         MetricSpecifications = {
             type = "list",
@@ -2735,6 +2882,7 @@ M.PredictiveScalingConfiguration = {
 
 M.StepAdjustment = {
     type = "structure",
+    id = "StepAdjustment",
     members = {
         MetricIntervalLowerBound = {
             type = "double",
@@ -2753,6 +2901,7 @@ M.StepAdjustment = {
 
 M.TargetTrackingMetricStat = {
     type = "structure",
+    id = "TargetTrackingMetricStat",
     members = {
         Metric = setmetatable({ traits = {
             required = true,
@@ -2774,6 +2923,7 @@ M.TargetTrackingMetricStat = {
 
 M.TargetTrackingMetricDataQuery = {
     type = "structure",
+    id = "TargetTrackingMetricDataQuery",
     members = {
         Id = {
             type = "string",
@@ -2807,6 +2957,7 @@ M.MetricStatistic = {
 
 M.CustomizedMetricSpecification = {
     type = "structure",
+    id = "CustomizedMetricSpecification",
     members = {
         MetricName = {
             type = "string",
@@ -2843,6 +2994,7 @@ M.MetricType = {
 
 M.PredefinedMetricSpecification = {
     type = "structure",
+    id = "PredefinedMetricSpecification",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -2858,6 +3010,7 @@ M.PredefinedMetricSpecification = {
 
 M.TargetTrackingConfiguration = {
     type = "structure",
+    id = "TargetTrackingConfiguration",
     members = {
         PredefinedMetricSpecification = M.PredefinedMetricSpecification,
         CustomizedMetricSpecification = M.CustomizedMetricSpecification,
@@ -2875,6 +3028,7 @@ M.TargetTrackingConfiguration = {
 
 M.ScalingPolicy = {
     type = "structure",
+    id = "ScalingPolicy",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -2927,6 +3081,7 @@ M.ScalingPolicy = {
 
 M.DescribePoliciesOutput = {
     type = "structure",
+    id = "DescribePoliciesOutput",
     members = {
         ScalingPolicies = {
             type = "list",
@@ -2940,6 +3095,7 @@ M.DescribePoliciesOutput = {
 
 M.DescribeScalingActivitiesInput = {
     type = "structure",
+    id = "DescribeScalingActivitiesInput",
     members = {
         ActivityIds = {
             type = "list",
@@ -2966,6 +3122,7 @@ M.DescribeScalingActivitiesInput = {
 
 M.DescribeScalingActivitiesOutput = {
     type = "structure",
+    id = "DescribeScalingActivitiesOutput",
     members = {
         Activities = {
             type = "list",
@@ -2982,10 +3139,12 @@ M.DescribeScalingActivitiesOutput = {
 
 M.DescribeScalingProcessTypesInput = {
     type = "structure",
+    id = "DescribeScalingProcessTypesInput",
 }
 
 M.ProcessType = {
     type = "structure",
+    id = "ProcessType",
     members = {
         ProcessName = {
             type = "string",
@@ -2998,6 +3157,7 @@ M.ProcessType = {
 
 M.DescribeScalingProcessTypesOutput = {
     type = "structure",
+    id = "DescribeScalingProcessTypesOutput",
     members = {
         Processes = {
             type = "list",
@@ -3008,6 +3168,7 @@ M.DescribeScalingProcessTypesOutput = {
 
 M.DescribeScheduledActionsInput = {
     type = "structure",
+    id = "DescribeScheduledActionsInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3033,6 +3194,7 @@ M.DescribeScheduledActionsInput = {
 
 M.ScheduledUpdateGroupAction = {
     type = "structure",
+    id = "ScheduledUpdateGroupAction",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3072,6 +3234,7 @@ M.ScheduledUpdateGroupAction = {
 
 M.DescribeScheduledActionsOutput = {
     type = "structure",
+    id = "DescribeScheduledActionsOutput",
     members = {
         ScheduledUpdateGroupActions = {
             type = "list",
@@ -3085,6 +3248,7 @@ M.DescribeScheduledActionsOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         Filters = {
             type = "list",
@@ -3101,6 +3265,7 @@ M.DescribeTagsInput = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -3114,10 +3279,12 @@ M.DescribeTagsOutput = {
 
 M.DescribeTerminationPolicyTypesInput = {
     type = "structure",
+    id = "DescribeTerminationPolicyTypesInput",
 }
 
 M.DescribeTerminationPolicyTypesOutput = {
     type = "structure",
+    id = "DescribeTerminationPolicyTypesOutput",
     members = {
         TerminationPolicyTypes = {
             type = "list",
@@ -3128,6 +3295,7 @@ M.DescribeTerminationPolicyTypesOutput = {
 
 M.DescribeTrafficSourcesInput = {
     type = "structure",
+    id = "DescribeTrafficSourcesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3149,6 +3317,7 @@ M.DescribeTrafficSourcesInput = {
 
 M.TrafficSourceState = {
     type = "structure",
+    id = "TrafficSourceState",
     members = {
         TrafficSource = {
             type = "string",
@@ -3167,6 +3336,7 @@ M.TrafficSourceState = {
 
 M.DescribeTrafficSourcesOutput = {
     type = "structure",
+    id = "DescribeTrafficSourcesOutput",
     members = {
         TrafficSources = {
             type = "list",
@@ -3180,6 +3350,7 @@ M.DescribeTrafficSourcesOutput = {
 
 M.DescribeWarmPoolInput = {
     type = "structure",
+    id = "DescribeWarmPoolInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3198,6 +3369,7 @@ M.DescribeWarmPoolInput = {
 
 M.DescribeWarmPoolOutput = {
     type = "structure",
+    id = "DescribeWarmPoolOutput",
     members = {
         WarmPoolConfiguration = M.WarmPoolConfiguration,
         Instances = {
@@ -3212,6 +3384,7 @@ M.DescribeWarmPoolOutput = {
 
 M.DetachInstancesInput = {
     type = "structure",
+    id = "DetachInstancesInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -3234,6 +3407,7 @@ M.DetachInstancesInput = {
 
 M.DetachInstancesOutput = {
     type = "structure",
+    id = "DetachInstancesOutput",
     members = {
         Activities = {
             type = "list",
@@ -3244,6 +3418,7 @@ M.DetachInstancesOutput = {
 
 M.DetachLoadBalancersInput = {
     type = "structure",
+    id = "DetachLoadBalancersInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3263,10 +3438,12 @@ M.DetachLoadBalancersInput = {
 
 M.DetachLoadBalancersOutput = {
     type = "structure",
+    id = "DetachLoadBalancersOutput",
 }
 
 M.DetachLoadBalancerTargetGroupsInput = {
     type = "structure",
+    id = "DetachLoadBalancerTargetGroupsInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3286,10 +3463,12 @@ M.DetachLoadBalancerTargetGroupsInput = {
 
 M.DetachLoadBalancerTargetGroupsOutput = {
     type = "structure",
+    id = "DetachLoadBalancerTargetGroupsOutput",
 }
 
 M.DetachTrafficSourcesInput = {
     type = "structure",
+    id = "DetachTrafficSourcesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3309,10 +3488,12 @@ M.DetachTrafficSourcesInput = {
 
 M.DetachTrafficSourcesOutput = {
     type = "structure",
+    id = "DetachTrafficSourcesOutput",
 }
 
 M.DisableMetricsCollectionInput = {
     type = "structure",
+    id = "DisableMetricsCollectionInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3329,10 +3510,12 @@ M.DisableMetricsCollectionInput = {
 
 M.DisableMetricsCollectionOutput = {
     type = "structure",
+    id = "DisableMetricsCollectionOutput",
 }
 
 M.EnableMetricsCollectionInput = {
     type = "structure",
+    id = "EnableMetricsCollectionInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3355,10 +3538,12 @@ M.EnableMetricsCollectionInput = {
 
 M.EnableMetricsCollectionOutput = {
     type = "structure",
+    id = "EnableMetricsCollectionOutput",
 }
 
 M.EnterStandbyInput = {
     type = "structure",
+    id = "EnterStandbyInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -3381,6 +3566,7 @@ M.EnterStandbyInput = {
 
 M.EnterStandbyOutput = {
     type = "structure",
+    id = "EnterStandbyOutput",
     members = {
         Activities = {
             type = "list",
@@ -3391,6 +3577,7 @@ M.EnterStandbyOutput = {
 
 M.ExecutePolicyInput = {
     type = "structure",
+    id = "ExecutePolicyInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3415,10 +3602,12 @@ M.ExecutePolicyInput = {
 
 M.ExecutePolicyOutput = {
     type = "structure",
+    id = "ExecutePolicyOutput",
 }
 
 M.ExitStandbyInput = {
     type = "structure",
+    id = "ExitStandbyInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -3435,6 +3624,7 @@ M.ExitStandbyInput = {
 
 M.ExitStandbyOutput = {
     type = "structure",
+    id = "ExitStandbyOutput",
     members = {
         Activities = {
             type = "list",
@@ -3445,6 +3635,7 @@ M.ExitStandbyOutput = {
 
 M.GetPredictiveScalingForecastInput = {
     type = "structure",
+    id = "GetPredictiveScalingForecastInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3475,6 +3666,7 @@ M.GetPredictiveScalingForecastInput = {
 
 M.CapacityForecast = {
     type = "structure",
+    id = "CapacityForecast",
     members = {
         Timestamps = {
             type = "list",
@@ -3495,6 +3687,7 @@ M.CapacityForecast = {
 
 M.LoadForecast = {
     type = "structure",
+    id = "LoadForecast",
     members = {
         Timestamps = {
             type = "list",
@@ -3518,6 +3711,7 @@ M.LoadForecast = {
 
 M.GetPredictiveScalingForecastOutput = {
     type = "structure",
+    id = "GetPredictiveScalingForecastOutput",
     members = {
         LoadForecast = {
             type = "list",
@@ -3540,6 +3734,7 @@ M.GetPredictiveScalingForecastOutput = {
 
 M.IdempotentParameterMismatchError = {
     type = "structure",
+    id = "IdempotentParameterMismatchError",
     error = "client",
     members = {
         Message = {
@@ -3555,6 +3750,7 @@ M.RetryStrategy = {
 
 M.LaunchInstancesInput = {
     type = "structure",
+    id = "LaunchInstancesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3595,6 +3791,7 @@ M.LaunchInstancesInput = {
 
 M.LaunchInstancesError = {
     type = "structure",
+    id = "LaunchInstancesError",
     members = {
         InstanceType = {
             type = "string",
@@ -3622,6 +3819,7 @@ M.LaunchInstancesError = {
 
 M.InstanceCollection = {
     type = "structure",
+    id = "InstanceCollection",
     members = {
         InstanceType = {
             type = "string",
@@ -3647,6 +3845,7 @@ M.InstanceCollection = {
 
 M.LaunchInstancesOutput = {
     type = "structure",
+    id = "LaunchInstancesOutput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3667,6 +3866,7 @@ M.LaunchInstancesOutput = {
 
 M.PutLifecycleHookInput = {
     type = "structure",
+    id = "PutLifecycleHookInput",
     members = {
         LifecycleHookName = {
             type = "string",
@@ -3703,10 +3903,12 @@ M.PutLifecycleHookInput = {
 
 M.PutLifecycleHookOutput = {
     type = "structure",
+    id = "PutLifecycleHookOutput",
 }
 
 M.PutNotificationConfigurationInput = {
     type = "structure",
+    id = "PutNotificationConfigurationInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3732,10 +3934,12 @@ M.PutNotificationConfigurationInput = {
 
 M.PutNotificationConfigurationOutput = {
     type = "structure",
+    id = "PutNotificationConfigurationOutput",
 }
 
 M.PutScalingPolicyInput = {
     type = "structure",
+    id = "PutScalingPolicyInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3787,6 +3991,7 @@ M.PutScalingPolicyInput = {
 
 M.PutScalingPolicyOutput = {
     type = "structure",
+    id = "PutScalingPolicyOutput",
     members = {
         PolicyARN = {
             type = "string",
@@ -3800,6 +4005,7 @@ M.PutScalingPolicyOutput = {
 
 M.PutScheduledUpdateGroupActionInput = {
     type = "structure",
+    id = "PutScheduledUpdateGroupActionInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3842,10 +4048,12 @@ M.PutScheduledUpdateGroupActionInput = {
 
 M.PutScheduledUpdateGroupActionOutput = {
     type = "structure",
+    id = "PutScheduledUpdateGroupActionOutput",
 }
 
 M.PutWarmPoolInput = {
     type = "structure",
+    id = "PutWarmPoolInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3868,10 +4076,12 @@ M.PutWarmPoolInput = {
 
 M.PutWarmPoolOutput = {
     type = "structure",
+    id = "PutWarmPoolOutput",
 }
 
 M.RecordLifecycleActionHeartbeatInput = {
     type = "structure",
+    id = "RecordLifecycleActionHeartbeatInput",
     members = {
         LifecycleHookName = {
             type = "string",
@@ -3896,10 +4106,12 @@ M.RecordLifecycleActionHeartbeatInput = {
 
 M.RecordLifecycleActionHeartbeatOutput = {
     type = "structure",
+    id = "RecordLifecycleActionHeartbeatOutput",
 }
 
 M.ResumeProcessesInput = {
     type = "structure",
+    id = "ResumeProcessesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3916,10 +4128,12 @@ M.ResumeProcessesInput = {
 
 M.ResumeProcessesOutput = {
     type = "structure",
+    id = "ResumeProcessesOutput",
 }
 
 M.IrreversibleInstanceRefreshFault = {
     type = "structure",
+    id = "IrreversibleInstanceRefreshFault",
     error = "client",
     members = {
         message = {
@@ -3930,6 +4144,7 @@ M.IrreversibleInstanceRefreshFault = {
 
 M.RollbackInstanceRefreshInput = {
     type = "structure",
+    id = "RollbackInstanceRefreshInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3942,6 +4157,7 @@ M.RollbackInstanceRefreshInput = {
 
 M.RollbackInstanceRefreshOutput = {
     type = "structure",
+    id = "RollbackInstanceRefreshOutput",
     members = {
         InstanceRefreshId = {
             type = "string",
@@ -3951,6 +4167,7 @@ M.RollbackInstanceRefreshOutput = {
 
 M.SetDesiredCapacityInput = {
     type = "structure",
+    id = "SetDesiredCapacityInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -3972,10 +4189,12 @@ M.SetDesiredCapacityInput = {
 
 M.SetDesiredCapacityOutput = {
     type = "structure",
+    id = "SetDesiredCapacityOutput",
 }
 
 M.SetInstanceHealthInput = {
     type = "structure",
+    id = "SetInstanceHealthInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3997,10 +4216,12 @@ M.SetInstanceHealthInput = {
 
 M.SetInstanceHealthOutput = {
     type = "structure",
+    id = "SetInstanceHealthOutput",
 }
 
 M.SetInstanceProtectionInput = {
     type = "structure",
+    id = "SetInstanceProtectionInput",
     members = {
         InstanceIds = {
             type = "list",
@@ -4026,10 +4247,12 @@ M.SetInstanceProtectionInput = {
 
 M.SetInstanceProtectionOutput = {
     type = "structure",
+    id = "SetInstanceProtectionOutput",
 }
 
 M.StartInstanceRefreshInput = {
     type = "structure",
+    id = "StartInstanceRefreshInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -4047,6 +4270,7 @@ M.StartInstanceRefreshInput = {
 
 M.StartInstanceRefreshOutput = {
     type = "structure",
+    id = "StartInstanceRefreshOutput",
     members = {
         InstanceRefreshId = {
             type = "string",
@@ -4056,6 +4280,7 @@ M.StartInstanceRefreshOutput = {
 
 M.SuspendProcessesInput = {
     type = "structure",
+    id = "SuspendProcessesInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -4072,10 +4297,12 @@ M.SuspendProcessesInput = {
 
 M.SuspendProcessesOutput = {
     type = "structure",
+    id = "SuspendProcessesOutput",
 }
 
 M.TerminateInstanceInAutoScalingGroupInput = {
     type = "structure",
+    id = "TerminateInstanceInAutoScalingGroupInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4094,6 +4321,7 @@ M.TerminateInstanceInAutoScalingGroupInput = {
 
 M.TerminateInstanceInAutoScalingGroupOutput = {
     type = "structure",
+    id = "TerminateInstanceInAutoScalingGroupOutput",
     members = {
         Activity = M.Activity,
     },
@@ -4101,6 +4329,7 @@ M.TerminateInstanceInAutoScalingGroupOutput = {
 
 M.UpdateAutoScalingGroupInput = {
     type = "structure",
+    id = "UpdateAutoScalingGroupInput",
     members = {
         AutoScalingGroupName = {
             type = "string",
@@ -4186,6 +4415,7 @@ M.UpdateAutoScalingGroupInput = {
 
 M.UpdateAutoScalingGroupOutput = {
     type = "structure",
+    id = "UpdateAutoScalingGroupOutput",
 }
 
 return M

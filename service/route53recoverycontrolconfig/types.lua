@@ -2,6 +2,7 @@ local M = {}
 
 M.ClusterEndpoint = {
     type = "structure",
+    id = "ClusterEndpoint",
     members = {
         Endpoint = {
             type = "string",
@@ -25,6 +26,7 @@ M.Status = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         ClusterArn = {
             type = "string",
@@ -50,6 +52,7 @@ M.Cluster = {
 
 M.ControlPanel = {
     type = "structure",
+    id = "ControlPanel",
     members = {
         ClusterArn = {
             type = "string",
@@ -77,6 +80,7 @@ M.ControlPanel = {
 
 M.RoutingControl = {
     type = "structure",
+    id = "RoutingControl",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -104,6 +108,7 @@ M.RuleType = {
 
 M.RuleConfig = {
     type = "structure",
+    id = "RuleConfig",
     members = {
         Inverted = {
             type = "boolean",
@@ -128,6 +133,7 @@ M.RuleConfig = {
 
 M.AssertionRule = {
     type = "structure",
+    id = "AssertionRule",
     members = {
         AssertedControls = {
             type = "list",
@@ -177,6 +183,7 @@ M.AssertionRule = {
 
 M.GatingRule = {
     type = "structure",
+    id = "GatingRule",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -233,6 +240,7 @@ M.GatingRule = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         ASSERTION = M.AssertionRule,
         GATING = M.GatingRule,
@@ -241,6 +249,7 @@ M.Rule = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -255,6 +264,7 @@ M.AccessDeniedException = {
 
 M.AssertionRuleUpdate = {
     type = "structure",
+    id = "AssertionRuleUpdate",
     members = {
         Name = {
             type = "string",
@@ -279,6 +289,7 @@ M.AssertionRuleUpdate = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -293,6 +304,7 @@ M.ConflictException = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         ClientToken = {
             type = "string",
@@ -319,6 +331,7 @@ M.CreateClusterInput = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -326,6 +339,7 @@ M.CreateClusterOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -340,6 +354,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -354,6 +369,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -368,6 +384,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -382,6 +399,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -396,6 +414,7 @@ M.ValidationException = {
 
 M.CreateControlPanelInput = {
     type = "structure",
+    id = "CreateControlPanelInput",
     members = {
         ClientToken = {
             type = "string",
@@ -425,6 +444,7 @@ M.CreateControlPanelInput = {
 
 M.CreateControlPanelOutput = {
     type = "structure",
+    id = "CreateControlPanelOutput",
     members = {
         ControlPanel = M.ControlPanel,
     },
@@ -432,6 +452,7 @@ M.CreateControlPanelOutput = {
 
 M.CreateRoutingControlInput = {
     type = "structure",
+    id = "CreateRoutingControlInput",
     members = {
         ClientToken = {
             type = "string",
@@ -459,6 +480,7 @@ M.CreateRoutingControlInput = {
 
 M.CreateRoutingControlOutput = {
     type = "structure",
+    id = "CreateRoutingControlOutput",
     members = {
         RoutingControl = M.RoutingControl,
     },
@@ -466,6 +488,7 @@ M.CreateRoutingControlOutput = {
 
 M.NewAssertionRule = {
     type = "structure",
+    id = "NewAssertionRule",
     members = {
         AssertedControls = {
             type = "list",
@@ -500,6 +523,7 @@ M.NewAssertionRule = {
 
 M.NewGatingRule = {
     type = "structure",
+    id = "NewGatingRule",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -541,6 +565,7 @@ M.NewGatingRule = {
 
 M.CreateSafetyRuleInput = {
     type = "structure",
+    id = "CreateSafetyRuleInput",
     members = {
         AssertionRule = M.NewAssertionRule,
         ClientToken = {
@@ -560,6 +585,7 @@ M.CreateSafetyRuleInput = {
 
 M.CreateSafetyRuleOutput = {
     type = "structure",
+    id = "CreateSafetyRuleOutput",
     members = {
         AssertionRule = M.AssertionRule,
         GatingRule = M.GatingRule,
@@ -568,6 +594,7 @@ M.CreateSafetyRuleOutput = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -581,10 +608,12 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
 }
 
 M.DeleteControlPanelInput = {
     type = "structure",
+    id = "DeleteControlPanelInput",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -598,10 +627,12 @@ M.DeleteControlPanelInput = {
 
 M.DeleteControlPanelOutput = {
     type = "structure",
+    id = "DeleteControlPanelOutput",
 }
 
 M.DeleteRoutingControlInput = {
     type = "structure",
+    id = "DeleteRoutingControlInput",
     members = {
         RoutingControlArn = {
             type = "string",
@@ -615,10 +646,12 @@ M.DeleteRoutingControlInput = {
 
 M.DeleteRoutingControlOutput = {
     type = "structure",
+    id = "DeleteRoutingControlOutput",
 }
 
 M.DeleteSafetyRuleInput = {
     type = "structure",
+    id = "DeleteSafetyRuleInput",
     members = {
         SafetyRuleArn = {
             type = "string",
@@ -632,10 +665,12 @@ M.DeleteSafetyRuleInput = {
 
 M.DeleteSafetyRuleOutput = {
     type = "structure",
+    id = "DeleteSafetyRuleOutput",
 }
 
 M.DescribeClusterInput = {
     type = "structure",
+    id = "DescribeClusterInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -649,6 +684,7 @@ M.DescribeClusterInput = {
 
 M.DescribeClusterOutput = {
     type = "structure",
+    id = "DescribeClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -656,6 +692,7 @@ M.DescribeClusterOutput = {
 
 M.DescribeControlPanelInput = {
     type = "structure",
+    id = "DescribeControlPanelInput",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -669,6 +706,7 @@ M.DescribeControlPanelInput = {
 
 M.DescribeControlPanelOutput = {
     type = "structure",
+    id = "DescribeControlPanelOutput",
     members = {
         ControlPanel = M.ControlPanel,
     },
@@ -676,6 +714,7 @@ M.DescribeControlPanelOutput = {
 
 M.DescribeRoutingControlInput = {
     type = "structure",
+    id = "DescribeRoutingControlInput",
     members = {
         RoutingControlArn = {
             type = "string",
@@ -689,6 +728,7 @@ M.DescribeRoutingControlInput = {
 
 M.DescribeRoutingControlOutput = {
     type = "structure",
+    id = "DescribeRoutingControlOutput",
     members = {
         RoutingControl = M.RoutingControl,
     },
@@ -696,6 +736,7 @@ M.DescribeRoutingControlOutput = {
 
 M.DescribeSafetyRuleInput = {
     type = "structure",
+    id = "DescribeSafetyRuleInput",
     members = {
         SafetyRuleArn = {
             type = "string",
@@ -709,6 +750,7 @@ M.DescribeSafetyRuleInput = {
 
 M.DescribeSafetyRuleOutput = {
     type = "structure",
+    id = "DescribeSafetyRuleOutput",
     members = {
         AssertionRule = M.AssertionRule,
         GatingRule = M.GatingRule,
@@ -717,6 +759,7 @@ M.DescribeSafetyRuleOutput = {
 
 M.GatingRuleUpdate = {
     type = "structure",
+    id = "GatingRuleUpdate",
     members = {
         Name = {
             type = "string",
@@ -741,6 +784,7 @@ M.GatingRuleUpdate = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -754,6 +798,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -763,6 +808,7 @@ M.GetResourcePolicyOutput = {
 
 M.ListAssociatedRoute53HealthChecksInput = {
     type = "structure",
+    id = "ListAssociatedRoute53HealthChecksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -788,6 +834,7 @@ M.ListAssociatedRoute53HealthChecksInput = {
 
 M.ListAssociatedRoute53HealthChecksOutput = {
     type = "structure",
+    id = "ListAssociatedRoute53HealthChecksOutput",
     members = {
         HealthCheckIds = {
             type = "list",
@@ -801,6 +848,7 @@ M.ListAssociatedRoute53HealthChecksOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -819,6 +867,7 @@ M.ListClustersInput = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         Clusters = {
             type = "list",
@@ -832,6 +881,7 @@ M.ListClustersOutput = {
 
 M.ListControlPanelsInput = {
     type = "structure",
+    id = "ListControlPanelsInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -856,6 +906,7 @@ M.ListControlPanelsInput = {
 
 M.ListControlPanelsOutput = {
     type = "structure",
+    id = "ListControlPanelsOutput",
     members = {
         ControlPanels = {
             type = "list",
@@ -869,6 +920,7 @@ M.ListControlPanelsOutput = {
 
 M.ListRoutingControlsInput = {
     type = "structure",
+    id = "ListRoutingControlsInput",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -894,6 +946,7 @@ M.ListRoutingControlsInput = {
 
 M.ListRoutingControlsOutput = {
     type = "structure",
+    id = "ListRoutingControlsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -907,6 +960,7 @@ M.ListRoutingControlsOutput = {
 
 M.ListSafetyRulesInput = {
     type = "structure",
+    id = "ListSafetyRulesInput",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -932,6 +986,7 @@ M.ListSafetyRulesInput = {
 
 M.ListSafetyRulesOutput = {
     type = "structure",
+    id = "ListSafetyRulesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -945,6 +1000,7 @@ M.ListSafetyRulesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -958,6 +1014,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -969,6 +1026,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -990,10 +1048,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1015,10 +1075,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         ClusterArn = {
             type = "string",
@@ -1037,6 +1099,7 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -1044,6 +1107,7 @@ M.UpdateClusterOutput = {
 
 M.UpdateControlPanelInput = {
     type = "structure",
+    id = "UpdateControlPanelInput",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -1062,6 +1126,7 @@ M.UpdateControlPanelInput = {
 
 M.UpdateControlPanelOutput = {
     type = "structure",
+    id = "UpdateControlPanelOutput",
     members = {
         ControlPanel = M.ControlPanel,
     },
@@ -1069,6 +1134,7 @@ M.UpdateControlPanelOutput = {
 
 M.UpdateRoutingControlInput = {
     type = "structure",
+    id = "UpdateRoutingControlInput",
     members = {
         RoutingControlArn = {
             type = "string",
@@ -1087,6 +1153,7 @@ M.UpdateRoutingControlInput = {
 
 M.UpdateRoutingControlOutput = {
     type = "structure",
+    id = "UpdateRoutingControlOutput",
     members = {
         RoutingControl = M.RoutingControl,
     },
@@ -1094,6 +1161,7 @@ M.UpdateRoutingControlOutput = {
 
 M.UpdateSafetyRuleInput = {
     type = "structure",
+    id = "UpdateSafetyRuleInput",
     members = {
         AssertionRuleUpdate = M.AssertionRuleUpdate,
         GatingRuleUpdate = M.GatingRuleUpdate,
@@ -1102,6 +1170,7 @@ M.UpdateSafetyRuleInput = {
 
 M.UpdateSafetyRuleOutput = {
     type = "structure",
+    id = "UpdateSafetyRuleOutput",
     members = {
         AssertionRule = M.AssertionRule,
         GatingRule = M.GatingRule,

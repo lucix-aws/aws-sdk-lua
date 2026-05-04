@@ -2,6 +2,7 @@ local M = {}
 
 M.ContainerNotFoundException = {
     type = "structure",
+    id = "ContainerNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.ContainerNotFoundException = {
 
 M.DeleteObjectInput = {
     type = "structure",
+    id = "DeleteObjectInput",
     members = {
         Path = {
             type = "string",
@@ -25,10 +27,12 @@ M.DeleteObjectInput = {
 
 M.DeleteObjectOutput = {
     type = "structure",
+    id = "DeleteObjectOutput",
 }
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -39,6 +43,7 @@ M.InternalServerError = {
 
 M.ObjectNotFoundException = {
     type = "structure",
+    id = "ObjectNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -49,6 +54,7 @@ M.ObjectNotFoundException = {
 
 M.DescribeObjectInput = {
     type = "structure",
+    id = "DescribeObjectInput",
     members = {
         Path = {
             type = "string",
@@ -62,6 +68,7 @@ M.DescribeObjectInput = {
 
 M.DescribeObjectOutput = {
     type = "structure",
+    id = "DescribeObjectOutput",
     members = {
         ETag = {
             type = "string",
@@ -98,6 +105,7 @@ M.DescribeObjectOutput = {
 
 M.GetObjectInput = {
     type = "structure",
+    id = "GetObjectInput",
     members = {
         Path = {
             type = "string",
@@ -117,6 +125,7 @@ M.GetObjectInput = {
 
 M.GetObjectOutput = {
     type = "structure",
+    id = "GetObjectOutput",
     members = {
         Body = {
             type = "blob",
@@ -174,6 +183,7 @@ M.GetObjectOutput = {
 
 M.RequestedRangeNotSatisfiableException = {
     type = "structure",
+    id = "RequestedRangeNotSatisfiableException",
     error = "client",
     members = {
         Message = {
@@ -189,6 +199,7 @@ M.ItemType = {
 
 M.Item = {
     type = "structure",
+    id = "Item",
     members = {
         Name = {
             type = "string",
@@ -213,6 +224,7 @@ M.Item = {
 
 M.ListItemsInput = {
     type = "structure",
+    id = "ListItemsInput",
     members = {
         Path = {
             type = "string",
@@ -237,6 +249,7 @@ M.ListItemsInput = {
 
 M.ListItemsOutput = {
     type = "structure",
+    id = "ListItemsOutput",
     members = {
         Items = {
             type = "list",
@@ -259,6 +272,7 @@ M.UploadAvailability = {
 
 M.PutObjectInput = {
     type = "structure",
+    id = "PutObjectInput",
     members = {
         Body = {
             type = "blob",
@@ -303,6 +317,7 @@ M.PutObjectInput = {
 
 M.PutObjectOutput = {
     type = "structure",
+    id = "PutObjectOutput",
     members = {
         ContentSHA256 = {
             type = "string",

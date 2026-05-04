@@ -2,6 +2,7 @@ local M = {}
 
 M.AcknowledgeFlow = {
     type = "structure",
+    id = "AcknowledgeFlow",
     members = {
         enabled = {
             type = "boolean",
@@ -14,6 +15,7 @@ M.AcknowledgeFlow = {
 
 M.ClearTimerAction = {
     type = "structure",
+    id = "ClearTimerAction",
     members = {
         timerName = {
             type = "string",
@@ -31,6 +33,7 @@ M.PayloadType = {
 
 M.Payload = {
     type = "structure",
+    id = "Payload",
     members = {
         contentExpression = {
             type = "string",
@@ -49,6 +52,7 @@ M.Payload = {
 
 M.DynamoDBAction = {
     type = "structure",
+    id = "DynamoDBAction",
     members = {
         hashKeyType = {
             type = "string",
@@ -92,6 +96,7 @@ M.DynamoDBAction = {
 
 M.DynamoDBv2Action = {
     type = "structure",
+    id = "DynamoDBv2Action",
     members = {
         tableName = {
             type = "string",
@@ -105,6 +110,7 @@ M.DynamoDBv2Action = {
 
 M.FirehoseAction = {
     type = "structure",
+    id = "FirehoseAction",
     members = {
         deliveryStreamName = {
             type = "string",
@@ -121,6 +127,7 @@ M.FirehoseAction = {
 
 M.IotEventsAction = {
     type = "structure",
+    id = "IotEventsAction",
     members = {
         inputName = {
             type = "string",
@@ -134,6 +141,7 @@ M.IotEventsAction = {
 
 M.AssetPropertyTimestamp = {
     type = "structure",
+    id = "AssetPropertyTimestamp",
     members = {
         timeInSeconds = {
             type = "string",
@@ -149,6 +157,7 @@ M.AssetPropertyTimestamp = {
 
 M.AssetPropertyVariant = {
     type = "structure",
+    id = "AssetPropertyVariant",
     members = {
         stringValue = {
             type = "string",
@@ -167,6 +176,7 @@ M.AssetPropertyVariant = {
 
 M.AssetPropertyValue = {
     type = "structure",
+    id = "AssetPropertyValue",
     members = {
         value = M.AssetPropertyVariant,
         timestamp = M.AssetPropertyTimestamp,
@@ -178,6 +188,7 @@ M.AssetPropertyValue = {
 
 M.IotSiteWiseAction = {
     type = "structure",
+    id = "IotSiteWiseAction",
     members = {
         entryId = {
             type = "string",
@@ -197,6 +208,7 @@ M.IotSiteWiseAction = {
 
 M.IotTopicPublishAction = {
     type = "structure",
+    id = "IotTopicPublishAction",
     members = {
         mqttTopic = {
             type = "string",
@@ -210,6 +222,7 @@ M.IotTopicPublishAction = {
 
 M.LambdaAction = {
     type = "structure",
+    id = "LambdaAction",
     members = {
         functionArn = {
             type = "string",
@@ -223,6 +236,7 @@ M.LambdaAction = {
 
 M.ResetTimerAction = {
     type = "structure",
+    id = "ResetTimerAction",
     members = {
         timerName = {
             type = "string",
@@ -235,6 +249,7 @@ M.ResetTimerAction = {
 
 M.SetTimerAction = {
     type = "structure",
+    id = "SetTimerAction",
     members = {
         timerName = {
             type = "string",
@@ -253,6 +268,7 @@ M.SetTimerAction = {
 
 M.SetVariableAction = {
     type = "structure",
+    id = "SetVariableAction",
     members = {
         variableName = {
             type = "string",
@@ -271,6 +287,7 @@ M.SetVariableAction = {
 
 M.SNSTopicPublishAction = {
     type = "structure",
+    id = "SNSTopicPublishAction",
     members = {
         targetArn = {
             type = "string",
@@ -284,6 +301,7 @@ M.SNSTopicPublishAction = {
 
 M.SqsAction = {
     type = "structure",
+    id = "SqsAction",
     members = {
         queueUrl = {
             type = "string",
@@ -300,6 +318,7 @@ M.SqsAction = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         setVariable = M.SetVariableAction,
         sns = M.SNSTopicPublishAction,
@@ -319,6 +338,7 @@ M.Action = {
 
 M.AlarmAction = {
     type = "structure",
+    id = "AlarmAction",
     members = {
         sns = M.SNSTopicPublishAction,
         iotTopicPublish = M.IotTopicPublishAction,
@@ -334,6 +354,7 @@ M.AlarmAction = {
 
 M.InitializationConfiguration = {
     type = "structure",
+    id = "InitializationConfiguration",
     members = {
         disabledOnInitialization = {
             type = "boolean",
@@ -346,6 +367,7 @@ M.InitializationConfiguration = {
 
 M.AlarmCapabilities = {
     type = "structure",
+    id = "AlarmCapabilities",
     members = {
         initializationConfiguration = M.InitializationConfiguration,
         acknowledgeFlow = M.AcknowledgeFlow,
@@ -354,6 +376,7 @@ M.AlarmCapabilities = {
 
 M.AlarmEventActions = {
     type = "structure",
+    id = "AlarmEventActions",
     members = {
         alarmActions = {
             type = "list",
@@ -364,6 +387,7 @@ M.AlarmEventActions = {
 
 M.AlarmModelSummary = {
     type = "structure",
+    id = "AlarmModelSummary",
     members = {
         creationTime = {
             type = "timestamp",
@@ -386,6 +410,7 @@ M.AlarmModelVersionStatus = {
 
 M.AlarmModelVersionSummary = {
     type = "structure",
+    id = "AlarmModelVersionSummary",
     members = {
         alarmModelName = {
             type = "string",
@@ -416,6 +441,7 @@ M.AlarmModelVersionSummary = {
 
 M.NotificationTargetActions = {
     type = "structure",
+    id = "NotificationTargetActions",
     members = {
         lambdaAction = M.LambdaAction,
     },
@@ -423,6 +449,7 @@ M.NotificationTargetActions = {
 
 M.EmailContent = {
     type = "structure",
+    id = "EmailContent",
     members = {
         subject = {
             type = "string",
@@ -435,6 +462,7 @@ M.EmailContent = {
 
 M.SSOIdentity = {
     type = "structure",
+    id = "SSOIdentity",
     members = {
         identityStoreId = {
             type = "string",
@@ -450,6 +478,7 @@ M.SSOIdentity = {
 
 M.RecipientDetail = {
     type = "structure",
+    id = "RecipientDetail",
     members = {
         ssoIdentity = M.SSOIdentity,
     },
@@ -457,6 +486,7 @@ M.RecipientDetail = {
 
 M.EmailRecipients = {
     type = "structure",
+    id = "EmailRecipients",
     members = {
         to = {
             type = "list",
@@ -467,6 +497,7 @@ M.EmailRecipients = {
 
 M.EmailConfiguration = {
     type = "structure",
+    id = "EmailConfiguration",
     members = {
         from = {
             type = "string",
@@ -483,6 +514,7 @@ M.EmailConfiguration = {
 
 M.SMSConfiguration = {
     type = "structure",
+    id = "SMSConfiguration",
     members = {
         senderId = {
             type = "string",
@@ -502,6 +534,7 @@ M.SMSConfiguration = {
 
 M.NotificationAction = {
     type = "structure",
+    id = "NotificationAction",
     members = {
         action = setmetatable({ traits = {
             required = true,
@@ -519,6 +552,7 @@ M.NotificationAction = {
 
 M.AlarmNotification = {
     type = "structure",
+    id = "AlarmNotification",
     members = {
         notificationActions = {
             type = "list",
@@ -538,6 +572,7 @@ M.ComparisonOperator = {
 
 M.SimpleRule = {
     type = "structure",
+    id = "SimpleRule",
     members = {
         inputProperty = {
             type = "string",
@@ -562,6 +597,7 @@ M.SimpleRule = {
 
 M.AlarmRule = {
     type = "structure",
+    id = "AlarmRule",
     members = {
         simpleRule = M.SimpleRule,
     },
@@ -575,6 +611,7 @@ M.AnalysisResultLevel = {
 
 M.AnalysisResultLocation = {
     type = "structure",
+    id = "AnalysisResultLocation",
     members = {
         path = {
             type = "string",
@@ -584,6 +621,7 @@ M.AnalysisResultLocation = {
 
 M.AnalysisResult = {
     type = "structure",
+    id = "AnalysisResult",
     members = {
         type = {
             type = "string",
@@ -609,6 +647,7 @@ M.AnalysisStatus = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         jsonPath = {
             type = "string",
@@ -621,6 +660,7 @@ M.Attribute = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -639,6 +679,7 @@ M.Tag = {
 
 M.CreateAlarmModelInput = {
     type = "structure",
+    id = "CreateAlarmModelInput",
     members = {
         alarmModelName = {
             type = "string",
@@ -676,6 +717,7 @@ M.CreateAlarmModelInput = {
 
 M.CreateAlarmModelOutput = {
     type = "structure",
+    id = "CreateAlarmModelOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -697,6 +739,7 @@ M.CreateAlarmModelOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -707,6 +750,7 @@ M.InternalFailureException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -717,6 +761,7 @@ M.InvalidRequestException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -727,6 +772,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -743,6 +789,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -753,6 +800,7 @@ M.ResourceInUseException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -763,6 +811,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -773,6 +822,7 @@ M.ThrottlingException = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         eventName = {
             type = "string",
@@ -792,6 +842,7 @@ M.Event = {
 
 M.OnEnterLifecycle = {
     type = "structure",
+    id = "OnEnterLifecycle",
     members = {
         events = {
             type = "list",
@@ -802,6 +853,7 @@ M.OnEnterLifecycle = {
 
 M.OnExitLifecycle = {
     type = "structure",
+    id = "OnExitLifecycle",
     members = {
         events = {
             type = "list",
@@ -812,6 +864,7 @@ M.OnExitLifecycle = {
 
 M.TransitionEvent = {
     type = "structure",
+    id = "TransitionEvent",
     members = {
         eventName = {
             type = "string",
@@ -840,6 +893,7 @@ M.TransitionEvent = {
 
 M.OnInputLifecycle = {
     type = "structure",
+    id = "OnInputLifecycle",
     members = {
         events = {
             type = "list",
@@ -854,6 +908,7 @@ M.OnInputLifecycle = {
 
 M.State = {
     type = "structure",
+    id = "State",
     members = {
         stateName = {
             type = "string",
@@ -869,6 +924,7 @@ M.State = {
 
 M.DetectorModelDefinition = {
     type = "structure",
+    id = "DetectorModelDefinition",
     members = {
         states = {
             type = "list",
@@ -893,6 +949,7 @@ M.EvaluationMethod = {
 
 M.CreateDetectorModelInput = {
     type = "structure",
+    id = "CreateDetectorModelInput",
     members = {
         detectorModelName = {
             type = "string",
@@ -937,6 +994,7 @@ M.DetectorModelVersionStatus = {
 
 M.DetectorModelConfiguration = {
     type = "structure",
+    id = "DetectorModelConfiguration",
     members = {
         detectorModelName = {
             type = "string",
@@ -973,6 +1031,7 @@ M.DetectorModelConfiguration = {
 
 M.CreateDetectorModelOutput = {
     type = "structure",
+    id = "CreateDetectorModelOutput",
     members = {
         detectorModelConfiguration = M.DetectorModelConfiguration,
     },
@@ -980,6 +1039,7 @@ M.CreateDetectorModelOutput = {
 
 M.InputDefinition = {
     type = "structure",
+    id = "InputDefinition",
     members = {
         attributes = {
             type = "list",
@@ -993,6 +1053,7 @@ M.InputDefinition = {
 
 M.CreateInputInput = {
     type = "structure",
+    id = "CreateInputInput",
     members = {
         inputName = {
             type = "string",
@@ -1022,6 +1083,7 @@ M.InputStatus = {
 
 M.InputConfiguration = {
     type = "structure",
+    id = "InputConfiguration",
     members = {
         inputName = {
             type = "string",
@@ -1061,6 +1123,7 @@ M.InputConfiguration = {
 
 M.CreateInputOutput = {
     type = "structure",
+    id = "CreateInputOutput",
     members = {
         inputConfiguration = M.InputConfiguration,
     },
@@ -1068,6 +1131,7 @@ M.CreateInputOutput = {
 
 M.DeleteAlarmModelInput = {
     type = "structure",
+    id = "DeleteAlarmModelInput",
     members = {
         alarmModelName = {
             type = "string",
@@ -1081,10 +1145,12 @@ M.DeleteAlarmModelInput = {
 
 M.DeleteAlarmModelOutput = {
     type = "structure",
+    id = "DeleteAlarmModelOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1095,6 +1161,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteDetectorModelInput = {
     type = "structure",
+    id = "DeleteDetectorModelInput",
     members = {
         detectorModelName = {
             type = "string",
@@ -1108,10 +1175,12 @@ M.DeleteDetectorModelInput = {
 
 M.DeleteDetectorModelOutput = {
     type = "structure",
+    id = "DeleteDetectorModelOutput",
 }
 
 M.DeleteInputInput = {
     type = "structure",
+    id = "DeleteInputInput",
     members = {
         inputName = {
             type = "string",
@@ -1125,10 +1194,12 @@ M.DeleteInputInput = {
 
 M.DeleteInputOutput = {
     type = "structure",
+    id = "DeleteInputOutput",
 }
 
 M.DescribeAlarmModelInput = {
     type = "structure",
+    id = "DescribeAlarmModelInput",
     members = {
         alarmModelName = {
             type = "string",
@@ -1148,6 +1219,7 @@ M.DescribeAlarmModelInput = {
 
 M.DescribeAlarmModelOutput = {
     type = "structure",
+    id = "DescribeAlarmModelOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -1191,6 +1263,7 @@ M.DescribeAlarmModelOutput = {
 
 M.DescribeDetectorModelInput = {
     type = "structure",
+    id = "DescribeDetectorModelInput",
     members = {
         detectorModelName = {
             type = "string",
@@ -1210,6 +1283,7 @@ M.DescribeDetectorModelInput = {
 
 M.DetectorModel = {
     type = "structure",
+    id = "DetectorModel",
     members = {
         detectorModelDefinition = M.DetectorModelDefinition,
         detectorModelConfiguration = M.DetectorModelConfiguration,
@@ -1218,6 +1292,7 @@ M.DetectorModel = {
 
 M.DescribeDetectorModelOutput = {
     type = "structure",
+    id = "DescribeDetectorModelOutput",
     members = {
         detectorModel = M.DetectorModel,
     },
@@ -1225,6 +1300,7 @@ M.DescribeDetectorModelOutput = {
 
 M.DescribeDetectorModelAnalysisInput = {
     type = "structure",
+    id = "DescribeDetectorModelAnalysisInput",
     members = {
         analysisId = {
             type = "string",
@@ -1238,6 +1314,7 @@ M.DescribeDetectorModelAnalysisInput = {
 
 M.DescribeDetectorModelAnalysisOutput = {
     type = "structure",
+    id = "DescribeDetectorModelAnalysisOutput",
     members = {
         status = {
             type = "string",
@@ -1247,6 +1324,7 @@ M.DescribeDetectorModelAnalysisOutput = {
 
 M.DescribeInputInput = {
     type = "structure",
+    id = "DescribeInputInput",
     members = {
         inputName = {
             type = "string",
@@ -1260,6 +1338,7 @@ M.DescribeInputInput = {
 
 M.Input = {
     type = "structure",
+    id = "Input",
     members = {
         inputConfiguration = M.InputConfiguration,
         inputDefinition = M.InputDefinition,
@@ -1268,6 +1347,7 @@ M.Input = {
 
 M.DescribeInputOutput = {
     type = "structure",
+    id = "DescribeInputOutput",
     members = {
         input = M.Input,
     },
@@ -1275,10 +1355,12 @@ M.DescribeInputOutput = {
 
 M.DescribeLoggingOptionsInput = {
     type = "structure",
+    id = "DescribeLoggingOptionsInput",
 }
 
 M.DetectorDebugOption = {
     type = "structure",
+    id = "DetectorDebugOption",
     members = {
         detectorModelName = {
             type = "string",
@@ -1300,6 +1382,7 @@ M.LoggingLevel = {
 
 M.LoggingOptions = {
     type = "structure",
+    id = "LoggingOptions",
     members = {
         roleArn = {
             type = "string",
@@ -1329,6 +1412,7 @@ M.LoggingOptions = {
 
 M.DescribeLoggingOptionsOutput = {
     type = "structure",
+    id = "DescribeLoggingOptionsOutput",
     members = {
         loggingOptions = M.LoggingOptions,
     },
@@ -1336,6 +1420,7 @@ M.DescribeLoggingOptionsOutput = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "server",
     members = {
         message = {
@@ -1346,6 +1431,7 @@ M.UnsupportedOperationException = {
 
 M.DetectorModelSummary = {
     type = "structure",
+    id = "DetectorModelSummary",
     members = {
         detectorModelName = {
             type = "string",
@@ -1361,6 +1447,7 @@ M.DetectorModelSummary = {
 
 M.DetectorModelVersionSummary = {
     type = "structure",
+    id = "DetectorModelVersionSummary",
     members = {
         detectorModelName = {
             type = "string",
@@ -1391,6 +1478,7 @@ M.DetectorModelVersionSummary = {
 
 M.GetDetectorModelAnalysisResultsInput = {
     type = "structure",
+    id = "GetDetectorModelAnalysisResultsInput",
     members = {
         analysisId = {
             type = "string",
@@ -1416,6 +1504,7 @@ M.GetDetectorModelAnalysisResultsInput = {
 
 M.GetDetectorModelAnalysisResultsOutput = {
     type = "structure",
+    id = "GetDetectorModelAnalysisResultsOutput",
     members = {
         analysisResults = {
             type = "list",
@@ -1429,6 +1518,7 @@ M.GetDetectorModelAnalysisResultsOutput = {
 
 M.IotEventsInputIdentifier = {
     type = "structure",
+    id = "IotEventsInputIdentifier",
     members = {
         inputName = {
             type = "string",
@@ -1441,6 +1531,7 @@ M.IotEventsInputIdentifier = {
 
 M.IotSiteWiseAssetModelPropertyIdentifier = {
     type = "structure",
+    id = "IotSiteWiseAssetModelPropertyIdentifier",
     members = {
         assetModelId = {
             type = "string",
@@ -1459,6 +1550,7 @@ M.IotSiteWiseAssetModelPropertyIdentifier = {
 
 M.IotSiteWiseInputIdentifier = {
     type = "structure",
+    id = "IotSiteWiseInputIdentifier",
     members = {
         iotSiteWiseAssetModelPropertyIdentifier = M.IotSiteWiseAssetModelPropertyIdentifier,
     },
@@ -1466,6 +1558,7 @@ M.IotSiteWiseInputIdentifier = {
 
 M.InputIdentifier = {
     type = "structure",
+    id = "InputIdentifier",
     members = {
         iotEventsInputIdentifier = M.IotEventsInputIdentifier,
         iotSiteWiseInputIdentifier = M.IotSiteWiseInputIdentifier,
@@ -1474,6 +1567,7 @@ M.InputIdentifier = {
 
 M.InputSummary = {
     type = "structure",
+    id = "InputSummary",
     members = {
         inputName = {
             type = "string",
@@ -1498,6 +1592,7 @@ M.InputSummary = {
 
 M.ListAlarmModelsInput = {
     type = "structure",
+    id = "ListAlarmModelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1516,6 +1611,7 @@ M.ListAlarmModelsInput = {
 
 M.ListAlarmModelsOutput = {
     type = "structure",
+    id = "ListAlarmModelsOutput",
     members = {
         alarmModelSummaries = {
             type = "list",
@@ -1529,6 +1625,7 @@ M.ListAlarmModelsOutput = {
 
 M.ListAlarmModelVersionsInput = {
     type = "structure",
+    id = "ListAlarmModelVersionsInput",
     members = {
         alarmModelName = {
             type = "string",
@@ -1554,6 +1651,7 @@ M.ListAlarmModelVersionsInput = {
 
 M.ListAlarmModelVersionsOutput = {
     type = "structure",
+    id = "ListAlarmModelVersionsOutput",
     members = {
         alarmModelVersionSummaries = {
             type = "list",
@@ -1567,6 +1665,7 @@ M.ListAlarmModelVersionsOutput = {
 
 M.ListDetectorModelsInput = {
     type = "structure",
+    id = "ListDetectorModelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1585,6 +1684,7 @@ M.ListDetectorModelsInput = {
 
 M.ListDetectorModelsOutput = {
     type = "structure",
+    id = "ListDetectorModelsOutput",
     members = {
         detectorModelSummaries = {
             type = "list",
@@ -1598,6 +1698,7 @@ M.ListDetectorModelsOutput = {
 
 M.ListDetectorModelVersionsInput = {
     type = "structure",
+    id = "ListDetectorModelVersionsInput",
     members = {
         detectorModelName = {
             type = "string",
@@ -1623,6 +1724,7 @@ M.ListDetectorModelVersionsInput = {
 
 M.ListDetectorModelVersionsOutput = {
     type = "structure",
+    id = "ListDetectorModelVersionsOutput",
     members = {
         detectorModelVersionSummaries = {
             type = "list",
@@ -1636,6 +1738,7 @@ M.ListDetectorModelVersionsOutput = {
 
 M.ListInputRoutingsInput = {
     type = "structure",
+    id = "ListInputRoutingsInput",
     members = {
         inputIdentifier = setmetatable({ traits = {
             required = true,
@@ -1651,6 +1754,7 @@ M.ListInputRoutingsInput = {
 
 M.RoutedResource = {
     type = "structure",
+    id = "RoutedResource",
     members = {
         name = {
             type = "string",
@@ -1663,6 +1767,7 @@ M.RoutedResource = {
 
 M.ListInputRoutingsOutput = {
     type = "structure",
+    id = "ListInputRoutingsOutput",
     members = {
         routedResources = {
             type = "list",
@@ -1676,6 +1781,7 @@ M.ListInputRoutingsOutput = {
 
 M.ListInputsInput = {
     type = "structure",
+    id = "ListInputsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1694,6 +1800,7 @@ M.ListInputsInput = {
 
 M.ListInputsOutput = {
     type = "structure",
+    id = "ListInputsOutput",
     members = {
         inputSummaries = {
             type = "list",
@@ -1707,6 +1814,7 @@ M.ListInputsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1720,6 +1828,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1730,6 +1839,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutLoggingOptionsInput = {
     type = "structure",
+    id = "PutLoggingOptionsInput",
     members = {
         loggingOptions = setmetatable({ traits = {
             required = true,
@@ -1739,10 +1849,12 @@ M.PutLoggingOptionsInput = {
 
 M.PutLoggingOptionsOutput = {
     type = "structure",
+    id = "PutLoggingOptionsOutput",
 }
 
 M.StartDetectorModelAnalysisInput = {
     type = "structure",
+    id = "StartDetectorModelAnalysisInput",
     members = {
         detectorModelDefinition = setmetatable({ traits = {
             required = true,
@@ -1752,6 +1864,7 @@ M.StartDetectorModelAnalysisInput = {
 
 M.StartDetectorModelAnalysisOutput = {
     type = "structure",
+    id = "StartDetectorModelAnalysisOutput",
     members = {
         analysisId = {
             type = "string",
@@ -1761,6 +1874,7 @@ M.StartDetectorModelAnalysisOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1781,10 +1895,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1806,10 +1922,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAlarmModelInput = {
     type = "structure",
+    id = "UpdateAlarmModelInput",
     members = {
         alarmModelName = {
             type = "string",
@@ -1841,6 +1959,7 @@ M.UpdateAlarmModelInput = {
 
 M.UpdateAlarmModelOutput = {
     type = "structure",
+    id = "UpdateAlarmModelOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -1862,6 +1981,7 @@ M.UpdateAlarmModelOutput = {
 
 M.UpdateDetectorModelInput = {
     type = "structure",
+    id = "UpdateDetectorModelInput",
     members = {
         detectorModelName = {
             type = "string",
@@ -1890,6 +2010,7 @@ M.UpdateDetectorModelInput = {
 
 M.UpdateDetectorModelOutput = {
     type = "structure",
+    id = "UpdateDetectorModelOutput",
     members = {
         detectorModelConfiguration = M.DetectorModelConfiguration,
     },
@@ -1897,6 +2018,7 @@ M.UpdateDetectorModelOutput = {
 
 M.UpdateInputInput = {
     type = "structure",
+    id = "UpdateInputInput",
     members = {
         inputName = {
             type = "string",
@@ -1916,6 +2038,7 @@ M.UpdateInputInput = {
 
 M.UpdateInputOutput = {
     type = "structure",
+    id = "UpdateInputOutput",
     members = {
         inputConfiguration = M.InputConfiguration,
     },

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -22,6 +23,7 @@ M.ChannelRole = {
 
 M.BatchAddChannelRoleToAccessorsInput = {
     type = "structure",
+    id = "BatchAddChannelRoleToAccessorsInput",
     members = {
         spaceId = {
             type = "string",
@@ -55,6 +57,7 @@ M.BatchAddChannelRoleToAccessorsInput = {
 
 M.BatchError = {
     type = "structure",
+    id = "BatchError",
     members = {
         accessorId = {
             type = "string",
@@ -79,6 +82,7 @@ M.BatchError = {
 
 M.BatchAddChannelRoleToAccessorsOutput = {
     type = "structure",
+    id = "BatchAddChannelRoleToAccessorsOutput",
     members = {
         addedAccessorIds = {
             type = "list",
@@ -99,6 +103,7 @@ M.BatchAddChannelRoleToAccessorsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -118,6 +123,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -143,6 +149,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -168,6 +175,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -193,6 +201,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -223,6 +232,7 @@ M.Role = {
 
 M.BatchAddRoleInput = {
     type = "structure",
+    id = "BatchAddRoleInput",
     members = {
         spaceId = {
             type = "string",
@@ -249,6 +259,7 @@ M.BatchAddRoleInput = {
 
 M.BatchAddRoleOutput = {
     type = "structure",
+    id = "BatchAddRoleOutput",
     members = {
         addedAccessorIds = {
             type = "list",
@@ -269,6 +280,7 @@ M.BatchAddRoleOutput = {
 
 M.BatchRemoveChannelRoleFromAccessorsInput = {
     type = "structure",
+    id = "BatchRemoveChannelRoleFromAccessorsInput",
     members = {
         spaceId = {
             type = "string",
@@ -302,6 +314,7 @@ M.BatchRemoveChannelRoleFromAccessorsInput = {
 
 M.BatchRemoveChannelRoleFromAccessorsOutput = {
     type = "structure",
+    id = "BatchRemoveChannelRoleFromAccessorsOutput",
     members = {
         removedAccessorIds = {
             type = "list",
@@ -322,6 +335,7 @@ M.BatchRemoveChannelRoleFromAccessorsOutput = {
 
 M.BatchRemoveRoleInput = {
     type = "structure",
+    id = "BatchRemoveRoleInput",
     members = {
         spaceId = {
             type = "string",
@@ -348,6 +362,7 @@ M.BatchRemoveRoleInput = {
 
 M.BatchRemoveRoleOutput = {
     type = "structure",
+    id = "BatchRemoveRoleOutput",
     members = {
         removedAccessorIds = {
             type = "list",
@@ -377,6 +392,7 @@ M.ChannelStatus = {
 
 M.ChannelData = {
     type = "structure",
+    id = "ChannelData",
     members = {
         spaceId = {
             type = "string",
@@ -440,6 +456,7 @@ M.ConfigurationStatus = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -465,6 +482,7 @@ M.ConflictException = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         spaceId = {
             type = "string",
@@ -487,6 +505,7 @@ M.CreateChannelInput = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         channelId = {
             type = "string",
@@ -499,6 +518,7 @@ M.CreateChannelOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -541,6 +561,7 @@ M.FeatureEnableParameter = {
 
 M.SupportedEmailDomainsParameters = {
     type = "structure",
+    id = "SupportedEmailDomainsParameters",
     members = {
         enabled = {
             type = "string",
@@ -559,6 +580,7 @@ M.TierLevel = {
 
 M.CreateSpaceInput = {
     type = "structure",
+    id = "CreateSpaceInput",
     members = {
         name = {
             type = "string",
@@ -598,6 +620,7 @@ M.CreateSpaceInput = {
 
 M.CreateSpaceOutput = {
     type = "structure",
+    id = "CreateSpaceOutput",
     members = {
         spaceId = {
             type = "string",
@@ -610,6 +633,7 @@ M.CreateSpaceOutput = {
 
 M.DeleteSpaceInput = {
     type = "structure",
+    id = "DeleteSpaceInput",
     members = {
         spaceId = {
             type = "string",
@@ -623,10 +647,12 @@ M.DeleteSpaceInput = {
 
 M.DeleteSpaceOutput = {
     type = "structure",
+    id = "DeleteSpaceOutput",
 }
 
 M.DeregisterAdminInput = {
     type = "structure",
+    id = "DeregisterAdminInput",
     members = {
         spaceId = {
             type = "string",
@@ -647,6 +673,7 @@ M.DeregisterAdminInput = {
 
 M.DeregisterAdminOutput = {
     type = "structure",
+    id = "DeregisterAdminOutput",
 }
 
 M.FeatureEnableStatus = {
@@ -657,6 +684,7 @@ M.FeatureEnableStatus = {
 
 M.GetChannelInput = {
     type = "structure",
+    id = "GetChannelInput",
     members = {
         spaceId = {
             type = "string",
@@ -677,6 +705,7 @@ M.GetChannelInput = {
 
 M.GetChannelOutput = {
     type = "structure",
+    id = "GetChannelOutput",
     members = {
         spaceId = {
             type = "string",
@@ -728,6 +757,7 @@ M.GetChannelOutput = {
 
 M.GetSpaceInput = {
     type = "structure",
+    id = "GetSpaceInput",
     members = {
         spaceId = {
             type = "string",
@@ -741,6 +771,7 @@ M.GetSpaceInput = {
 
 M.SupportedEmailDomainsStatus = {
     type = "structure",
+    id = "SupportedEmailDomainsStatus",
     members = {
         enabled = {
             type = "string",
@@ -760,6 +791,7 @@ M.VanityDomainStatus = {
 
 M.GetSpaceOutput = {
     type = "structure",
+    id = "GetSpaceOutput",
     members = {
         spaceId = {
             type = "string",
@@ -880,6 +912,7 @@ M.GetSpaceOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         spaceId = {
             type = "string",
@@ -906,6 +939,7 @@ M.ListChannelsInput = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         channels = {
             type = "list",
@@ -922,6 +956,7 @@ M.ListChannelsOutput = {
 
 M.ListSpacesInput = {
     type = "structure",
+    id = "ListSpacesInput",
     members = {
         nextToken = {
             type = "string",
@@ -941,6 +976,7 @@ M.ListSpacesInput = {
 
 M.SpaceData = {
     type = "structure",
+    id = "SpaceData",
     members = {
         spaceId = {
             type = "string",
@@ -1033,6 +1069,7 @@ M.SpaceData = {
 
 M.ListSpacesOutput = {
     type = "structure",
+    id = "ListSpacesOutput",
     members = {
         spaces = {
             type = "list",
@@ -1049,6 +1086,7 @@ M.ListSpacesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1062,6 +1100,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1073,6 +1112,7 @@ M.ListTagsForResourceOutput = {
 
 M.RegisterAdminInput = {
     type = "structure",
+    id = "RegisterAdminInput",
     members = {
         spaceId = {
             type = "string",
@@ -1093,10 +1133,12 @@ M.RegisterAdminInput = {
 
 M.RegisterAdminOutput = {
     type = "structure",
+    id = "RegisterAdminOutput",
 }
 
 M.SendInvitesInput = {
     type = "structure",
+    id = "SendInvitesInput",
     members = {
         spaceId = {
             type = "string",
@@ -1129,10 +1171,12 @@ M.SendInvitesInput = {
 
 M.SendInvitesOutput = {
     type = "structure",
+    id = "SendInvitesOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1154,10 +1198,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1179,10 +1225,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         spaceId = {
             type = "string",
@@ -1212,10 +1260,12 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
 }
 
 M.UpdateSpaceInput = {
     type = "structure",
+    id = "UpdateSpaceInput",
     members = {
         spaceId = {
             type = "string",
@@ -1239,6 +1289,7 @@ M.UpdateSpaceInput = {
 
 M.UpdateSpaceOutput = {
     type = "structure",
+    id = "UpdateSpaceOutput",
 }
 
 return M

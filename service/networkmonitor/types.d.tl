@@ -434,9 +434,9 @@ local type Protocol = "TCP" | "ICMP"
 
 local type AddressFamily = "IPV4" | "IPV6"
 
-local type MonitorState = "PENDING" | "ACTIVE" | "INACTIVE" | "ERROR" | "DELETING"
-
 local type ProbeState = "PENDING" | "ACTIVE" | "INACTIVE" | "ERROR" | "DELETING" | "DELETED"
+
+local type MonitorState = "PENDING" | "ACTIVE" | "INACTIVE" | "ERROR" | "DELETING"
 
 local record M
     CreateMonitorInput: CreateMonitorInput

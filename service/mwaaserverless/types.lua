@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -34,6 +36,7 @@ M.InternalServerException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -47,6 +50,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -58,6 +62,7 @@ M.ListTagsForResourceOutput = {
 
 M.OperationTimeoutException = {
     type = "structure",
+    id = "OperationTimeoutException",
     error = "server",
     members = {
         Message = {
@@ -68,6 +73,7 @@ M.OperationTimeoutException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -93,6 +99,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -124,6 +131,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -149,6 +157,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -172,6 +181,7 @@ M.ValidationException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -193,10 +203,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.GetTaskInstanceInput = {
     type = "structure",
+    id = "GetTaskInstanceInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -241,6 +253,7 @@ M.TaskInstanceStatus = {
 
 M.GetTaskInstanceOutput = {
     type = "structure",
+    id = "GetTaskInstanceOutput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -312,6 +325,7 @@ M.GetTaskInstanceOutput = {
 
 M.ListTaskInstancesInput = {
     type = "structure",
+    id = "ListTaskInstancesInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -345,6 +359,7 @@ M.ListTaskInstancesInput = {
 
 M.TaskInstanceSummary = {
     type = "structure",
+    id = "TaskInstanceSummary",
     members = {
         WorkflowArn = {
             type = "string",
@@ -372,6 +387,7 @@ M.TaskInstanceSummary = {
 
 M.ListTaskInstancesOutput = {
     type = "structure",
+    id = "ListTaskInstancesOutput",
     members = {
         TaskInstances = {
             type = "list",
@@ -385,6 +401,7 @@ M.ListTaskInstancesOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -406,10 +423,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -435,6 +454,7 @@ M.ConflictException = {
 
 M.DefinitionS3Location = {
     type = "structure",
+    id = "DefinitionS3Location",
     members = {
         Bucket = {
             type = "string",
@@ -461,6 +481,7 @@ M.EncryptionType = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         Type = {
             type = "string",
@@ -480,6 +501,7 @@ M.EngineVersion = {
 
 M.LoggingConfiguration = {
     type = "structure",
+    id = "LoggingConfiguration",
     members = {
         LogGroupName = {
             type = "string",
@@ -492,6 +514,7 @@ M.LoggingConfiguration = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -506,6 +529,7 @@ M.NetworkConfiguration = {
 
 M.CreateWorkflowInput = {
     type = "structure",
+    id = "CreateWorkflowInput",
     members = {
         Name = {
             type = "string",
@@ -555,6 +579,7 @@ M.WorkflowStatus = {
 
 M.CreateWorkflowOutput = {
     type = "structure",
+    id = "CreateWorkflowOutput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -589,6 +614,7 @@ M.CreateWorkflowOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -626,6 +652,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteWorkflowInput = {
     type = "structure",
+    id = "DeleteWorkflowInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -645,6 +672,7 @@ M.DeleteWorkflowInput = {
 
 M.DeleteWorkflowOutput = {
     type = "structure",
+    id = "DeleteWorkflowOutput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -660,6 +688,7 @@ M.DeleteWorkflowOutput = {
 
 M.GetWorkflowInput = {
     type = "structure",
+    id = "GetWorkflowInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -679,6 +708,7 @@ M.GetWorkflowInput = {
 
 M.ScheduleConfiguration = {
     type = "structure",
+    id = "ScheduleConfiguration",
     members = {
         CronExpression = {
             type = "string",
@@ -688,6 +718,7 @@ M.ScheduleConfiguration = {
 
 M.GetWorkflowOutput = {
     type = "structure",
+    id = "GetWorkflowOutput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -741,6 +772,7 @@ M.GetWorkflowOutput = {
 
 M.ListWorkflowsInput = {
     type = "structure",
+    id = "ListWorkflowsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -760,6 +792,7 @@ M.ListWorkflowsInput = {
 
 M.WorkflowSummary = {
     type = "structure",
+    id = "WorkflowSummary",
     members = {
         WorkflowArn = {
             type = "string",
@@ -799,6 +832,7 @@ M.WorkflowSummary = {
 
 M.ListWorkflowsOutput = {
     type = "structure",
+    id = "ListWorkflowsOutput",
     members = {
         Workflows = {
             type = "list",
@@ -815,6 +849,7 @@ M.ListWorkflowsOutput = {
 
 M.UpdateWorkflowInput = {
     type = "structure",
+    id = "UpdateWorkflowInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -848,6 +883,7 @@ M.UpdateWorkflowInput = {
 
 M.UpdateWorkflowOutput = {
     type = "structure",
+    id = "UpdateWorkflowOutput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -873,6 +909,7 @@ M.UpdateWorkflowOutput = {
 
 M.GetWorkflowRunInput = {
     type = "structure",
+    id = "GetWorkflowRunInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -909,6 +946,7 @@ M.RunType = {
 
 M.WorkflowRunDetail = {
     type = "structure",
+    id = "WorkflowRunDetail",
     members = {
         WorkflowArn = {
             type = "string",
@@ -964,6 +1002,7 @@ M.WorkflowRunDetail = {
 
 M.GetWorkflowRunOutput = {
     type = "structure",
+    id = "GetWorkflowRunOutput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -988,6 +1027,7 @@ M.GetWorkflowRunOutput = {
 
 M.ListWorkflowRunsInput = {
     type = "structure",
+    id = "ListWorkflowRunsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1020,6 +1060,7 @@ M.ListWorkflowRunsInput = {
 
 M.RunDetailSummary = {
     type = "structure",
+    id = "RunDetailSummary",
     members = {
         Status = {
             type = "string",
@@ -1047,6 +1088,7 @@ M.RunDetailSummary = {
 
 M.WorkflowRunSummary = {
     type = "structure",
+    id = "WorkflowRunSummary",
     members = {
         RunId = {
             type = "string",
@@ -1066,6 +1108,7 @@ M.WorkflowRunSummary = {
 
 M.ListWorkflowRunsOutput = {
     type = "structure",
+    id = "ListWorkflowRunsOutput",
     members = {
         WorkflowRuns = {
             type = "list",
@@ -1079,6 +1122,7 @@ M.ListWorkflowRunsOutput = {
 
 M.StartWorkflowRunInput = {
     type = "structure",
+    id = "StartWorkflowRunInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -1106,6 +1150,7 @@ M.StartWorkflowRunInput = {
 
 M.StartWorkflowRunOutput = {
     type = "structure",
+    id = "StartWorkflowRunOutput",
     members = {
         RunId = {
             type = "string",
@@ -1124,6 +1169,7 @@ M.StartWorkflowRunOutput = {
 
 M.StopWorkflowRunInput = {
     type = "structure",
+    id = "StopWorkflowRunInput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -1144,6 +1190,7 @@ M.StopWorkflowRunInput = {
 
 M.StopWorkflowRunOutput = {
     type = "structure",
+    id = "StopWorkflowRunOutput",
     members = {
         WorkflowArn = {
             type = "string",
@@ -1162,6 +1209,7 @@ M.StopWorkflowRunOutput = {
 
 M.ListWorkflowVersionsInput = {
     type = "structure",
+    id = "ListWorkflowVersionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1188,6 +1236,7 @@ M.ListWorkflowVersionsInput = {
 
 M.WorkflowVersionSummary = {
     type = "structure",
+    id = "WorkflowVersionSummary",
     members = {
         WorkflowVersion = {
             type = "string",
@@ -1226,6 +1275,7 @@ M.WorkflowVersionSummary = {
 
 M.ListWorkflowVersionsOutput = {
     type = "structure",
+    id = "ListWorkflowVersionsOutput",
     members = {
         WorkflowVersions = {
             type = "list",

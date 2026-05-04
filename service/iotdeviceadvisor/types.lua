@@ -7,6 +7,7 @@ M.AuthenticationMethod = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.ConflictException = {
 
 M.DeviceUnderTest = {
     type = "structure",
+    id = "DeviceUnderTest",
     members = {
         thingArn = {
             type = "string",
@@ -39,6 +41,7 @@ M.Protocol = {
 
 M.SuiteDefinitionConfiguration = {
     type = "structure",
+    id = "SuiteDefinitionConfiguration",
     members = {
         suiteDefinitionName = {
             type = "string",
@@ -76,6 +79,7 @@ M.SuiteDefinitionConfiguration = {
 
 M.CreateSuiteDefinitionInput = {
     type = "structure",
+    id = "CreateSuiteDefinitionInput",
     members = {
         suiteDefinitionConfiguration = setmetatable({ traits = {
             required = true,
@@ -96,6 +100,7 @@ M.CreateSuiteDefinitionInput = {
 
 M.CreateSuiteDefinitionOutput = {
     type = "structure",
+    id = "CreateSuiteDefinitionOutput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -114,6 +119,7 @@ M.CreateSuiteDefinitionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -124,6 +130,7 @@ M.InternalServerException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -134,6 +141,7 @@ M.ValidationException = {
 
 M.DeleteSuiteDefinitionInput = {
     type = "structure",
+    id = "DeleteSuiteDefinitionInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -147,10 +155,12 @@ M.DeleteSuiteDefinitionInput = {
 
 M.DeleteSuiteDefinitionOutput = {
     type = "structure",
+    id = "DeleteSuiteDefinitionOutput",
 }
 
 M.GetEndpointInput = {
     type = "structure",
+    id = "GetEndpointInput",
     members = {
         thingArn = {
             type = "string",
@@ -181,6 +191,7 @@ M.GetEndpointInput = {
 
 M.GetEndpointOutput = {
     type = "structure",
+    id = "GetEndpointOutput",
     members = {
         endpoint = {
             type = "string",
@@ -190,6 +201,7 @@ M.GetEndpointOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -200,6 +212,7 @@ M.ResourceNotFoundException = {
 
 M.GetSuiteDefinitionInput = {
     type = "structure",
+    id = "GetSuiteDefinitionInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -219,6 +232,7 @@ M.GetSuiteDefinitionInput = {
 
 M.GetSuiteDefinitionOutput = {
     type = "structure",
+    id = "GetSuiteDefinitionOutput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -249,6 +263,7 @@ M.GetSuiteDefinitionOutput = {
 
 M.GetSuiteRunInput = {
     type = "structure",
+    id = "GetSuiteRunInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -281,6 +296,7 @@ M.SuiteRunStatus = {
 
 M.SuiteRunConfiguration = {
     type = "structure",
+    id = "SuiteRunConfiguration",
     members = {
         primaryDevice = setmetatable({ traits = {
             required = true,
@@ -326,6 +342,7 @@ M.TestCaseScenarioType = {
 
 M.TestCaseScenario = {
     type = "structure",
+    id = "TestCaseScenario",
     members = {
         testCaseScenarioId = {
             type = "string",
@@ -347,6 +364,7 @@ M.TestCaseScenario = {
 
 M.TestCaseRun = {
     type = "structure",
+    id = "TestCaseRun",
     members = {
         testCaseRunId = {
             type = "string",
@@ -384,6 +402,7 @@ M.TestCaseRun = {
 
 M.GroupResult = {
     type = "structure",
+    id = "GroupResult",
     members = {
         groupId = {
             type = "string",
@@ -400,6 +419,7 @@ M.GroupResult = {
 
 M.TestResult = {
     type = "structure",
+    id = "TestResult",
     members = {
         groups = {
             type = "list",
@@ -410,6 +430,7 @@ M.TestResult = {
 
 M.GetSuiteRunOutput = {
     type = "structure",
+    id = "GetSuiteRunOutput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -447,6 +468,7 @@ M.GetSuiteRunOutput = {
 
 M.GetSuiteRunReportInput = {
     type = "structure",
+    id = "GetSuiteRunReportInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -467,6 +489,7 @@ M.GetSuiteRunReportInput = {
 
 M.GetSuiteRunReportOutput = {
     type = "structure",
+    id = "GetSuiteRunReportOutput",
     members = {
         qualificationReportDownloadUrl = {
             type = "string",
@@ -476,6 +499,7 @@ M.GetSuiteRunReportOutput = {
 
 M.ListSuiteDefinitionsInput = {
     type = "structure",
+    id = "ListSuiteDefinitionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -494,6 +518,7 @@ M.ListSuiteDefinitionsInput = {
 
 M.SuiteDefinitionInformation = {
     type = "structure",
+    id = "SuiteDefinitionInformation",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -522,6 +547,7 @@ M.SuiteDefinitionInformation = {
 
 M.ListSuiteDefinitionsOutput = {
     type = "structure",
+    id = "ListSuiteDefinitionsOutput",
     members = {
         suiteDefinitionInformationList = {
             type = "list",
@@ -535,6 +561,7 @@ M.ListSuiteDefinitionsOutput = {
 
 M.ListSuiteRunsInput = {
     type = "structure",
+    id = "ListSuiteRunsInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -565,6 +592,7 @@ M.ListSuiteRunsInput = {
 
 M.SuiteRunInformation = {
     type = "structure",
+    id = "SuiteRunInformation",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -601,6 +629,7 @@ M.SuiteRunInformation = {
 
 M.ListSuiteRunsOutput = {
     type = "structure",
+    id = "ListSuiteRunsOutput",
     members = {
         suiteRunsList = {
             type = "list",
@@ -614,6 +643,7 @@ M.ListSuiteRunsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -627,6 +657,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -638,6 +669,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartSuiteRunInput = {
     type = "structure",
+    id = "StartSuiteRunInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -662,6 +694,7 @@ M.StartSuiteRunInput = {
 
 M.StartSuiteRunOutput = {
     type = "structure",
+    id = "StartSuiteRunOutput",
     members = {
         suiteRunId = {
             type = "string",
@@ -680,6 +713,7 @@ M.StartSuiteRunOutput = {
 
 M.StopSuiteRunInput = {
     type = "structure",
+    id = "StopSuiteRunInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -700,10 +734,12 @@ M.StopSuiteRunInput = {
 
 M.StopSuiteRunOutput = {
     type = "structure",
+    id = "StopSuiteRunOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -725,10 +761,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -750,10 +788,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateSuiteDefinitionInput = {
     type = "structure",
+    id = "UpdateSuiteDefinitionInput",
     members = {
         suiteDefinitionId = {
             type = "string",
@@ -770,6 +810,7 @@ M.UpdateSuiteDefinitionInput = {
 
 M.UpdateSuiteDefinitionOutput = {
     type = "structure",
+    id = "UpdateSuiteDefinitionOutput",
     members = {
         suiteDefinitionId = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -16,6 +17,7 @@ M.AccessDeniedException = {
 
 M.AccessPoint = {
     type = "structure",
+    id = "AccessPoint",
     members = {
         Position = {
             type = "list",
@@ -26,6 +28,7 @@ M.AccessPoint = {
 
 M.Category = {
     type = "structure",
+    id = "Category",
     members = {
         Id = {
             type = "string",
@@ -50,6 +53,7 @@ M.Category = {
 
 M.AccessRestriction = {
     type = "structure",
+    id = "AccessRestriction",
     members = {
         Restricted = {
             type = "boolean",
@@ -63,6 +67,7 @@ M.AccessRestriction = {
 
 M.Country = {
     type = "structure",
+    id = "Country",
     members = {
         Code2 = {
             type = "string",
@@ -78,6 +83,7 @@ M.Country = {
 
 M.Region = {
     type = "structure",
+    id = "Region",
     members = {
         Code = {
             type = "string",
@@ -90,6 +96,7 @@ M.Region = {
 
 M.SecondaryAddressComponent = {
     type = "structure",
+    id = "SecondaryAddressComponent",
     members = {
         Number = {
             type = "string",
@@ -110,6 +117,7 @@ M.TypePlacement = {
 
 M.StreetComponents = {
     type = "structure",
+    id = "StreetComponents",
     members = {
         BaseName = {
             type = "string",
@@ -140,6 +148,7 @@ M.StreetComponents = {
 
 M.SubRegion = {
     type = "structure",
+    id = "SubRegion",
     members = {
         Code = {
             type = "string",
@@ -152,6 +161,7 @@ M.SubRegion = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         Label = {
             type = "string",
@@ -203,6 +213,7 @@ M.Address = {
 
 M.SecondaryAddressComponentMatchScore = {
     type = "structure",
+    id = "SecondaryAddressComponentMatchScore",
     members = {
         Number = {
             type = "double",
@@ -215,6 +226,7 @@ M.SecondaryAddressComponentMatchScore = {
 
 M.AddressComponentMatchScores = {
     type = "structure",
+    id = "AddressComponentMatchScores",
     members = {
         Country = {
             type = "double",
@@ -295,6 +307,7 @@ M.AddressComponentMatchScores = {
 
 M.PhonemeTranscription = {
     type = "structure",
+    id = "PhonemeTranscription",
     members = {
         Value = {
             type = "string",
@@ -310,6 +323,7 @@ M.PhonemeTranscription = {
 
 M.AddressComponentPhonemes = {
     type = "structure",
+    id = "AddressComponentPhonemes",
     members = {
         Country = {
             type = "list",
@@ -356,6 +370,7 @@ M.AutocompleteAdditionalFeature = {
 
 M.FilterCircle = {
     type = "structure",
+    id = "FilterCircle",
     members = {
         Center = {
             type = "list",
@@ -381,6 +396,7 @@ M.AutocompleteFilterPlaceType = {
 
 M.AutocompleteFilter = {
     type = "structure",
+    id = "AutocompleteFilter",
     members = {
         BoundingBox = {
             type = "list",
@@ -409,6 +425,7 @@ M.PostalCodeMode = {
 
 M.AutocompleteInput = {
     type = "structure",
+    id = "AutocompleteInput",
     members = {
         QueryText = {
             type = "string",
@@ -454,6 +471,7 @@ M.AutocompleteInput = {
 
 M.Highlight = {
     type = "structure",
+    id = "Highlight",
     members = {
         StartIndex = {
             type = "integer",
@@ -469,6 +487,7 @@ M.Highlight = {
 
 M.CountryHighlights = {
     type = "structure",
+    id = "CountryHighlights",
     members = {
         Code = {
             type = "list",
@@ -483,6 +502,7 @@ M.CountryHighlights = {
 
 M.RegionHighlights = {
     type = "structure",
+    id = "RegionHighlights",
     members = {
         Code = {
             type = "list",
@@ -497,6 +517,7 @@ M.RegionHighlights = {
 
 M.SubRegionHighlights = {
     type = "structure",
+    id = "SubRegionHighlights",
     members = {
         Code = {
             type = "list",
@@ -511,6 +532,7 @@ M.SubRegionHighlights = {
 
 M.AutocompleteAddressHighlights = {
     type = "structure",
+    id = "AutocompleteAddressHighlights",
     members = {
         Label = {
             type = "list",
@@ -564,6 +586,7 @@ M.AutocompleteAddressHighlights = {
 
 M.AutocompleteHighlights = {
     type = "structure",
+    id = "AutocompleteHighlights",
     members = {
         Title = {
             type = "list",
@@ -594,6 +617,7 @@ M.PlaceType = {
 
 M.AutocompleteResultItem = {
     type = "structure",
+    id = "AutocompleteResultItem",
     members = {
         PlaceId = {
             type = "string",
@@ -632,6 +656,7 @@ M.AutocompleteResultItem = {
 
 M.AutocompleteOutput = {
     type = "structure",
+    id = "AutocompleteOutput",
     members = {
         PricingBucket = {
             type = "string",
@@ -649,6 +674,7 @@ M.AutocompleteOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -663,6 +689,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -677,6 +704,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -706,6 +734,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -735,6 +764,7 @@ M.ValidationException = {
 
 M.BusinessChain = {
     type = "structure",
+    id = "BusinessChain",
     members = {
         Name = {
             type = "string",
@@ -747,6 +777,7 @@ M.BusinessChain = {
 
 M.ComponentMatchScores = {
     type = "structure",
+    id = "ComponentMatchScores",
     members = {
         Title = {
             type = "double",
@@ -760,6 +791,7 @@ M.ComponentMatchScores = {
 
 M.ContactDetails = {
     type = "structure",
+    id = "ContactDetails",
     members = {
         Label = {
             type = "string",
@@ -776,6 +808,7 @@ M.ContactDetails = {
 
 M.Contacts = {
     type = "structure",
+    id = "Contacts",
     members = {
         Phones = {
             type = "list",
@@ -798,6 +831,7 @@ M.Contacts = {
 
 M.FoodType = {
     type = "structure",
+    id = "FoodType",
     members = {
         LocalizedName = {
             type = "string",
@@ -832,6 +866,7 @@ M.GeocodeFilterPlaceType = {
 
 M.GeocodeFilter = {
     type = "structure",
+    id = "GeocodeFilter",
     members = {
         IncludeCountries = {
             type = "list",
@@ -851,6 +886,7 @@ M.GeocodeIntendedUse = {
 
 M.GeocodeQueryComponents = {
     type = "structure",
+    id = "GeocodeQueryComponents",
     members = {
         Country = {
             type = "string",
@@ -881,6 +917,7 @@ M.GeocodeQueryComponents = {
 
 M.GeocodeInput = {
     type = "structure",
+    id = "GeocodeInput",
     members = {
         QueryText = {
             type = "string",
@@ -921,6 +958,7 @@ M.GeocodeInput = {
 
 M.Intersection = {
     type = "structure",
+    id = "Intersection",
     members = {
         PlaceId = {
             type = "string",
@@ -964,6 +1002,7 @@ M.Intersection = {
 
 M.RelatedPlace = {
     type = "structure",
+    id = "RelatedPlace",
     members = {
         PlaceId = {
             type = "string",
@@ -997,6 +1036,7 @@ M.RelatedPlace = {
 
 M.MatchScoreDetails = {
     type = "structure",
+    id = "MatchScoreDetails",
     members = {
         Overall = {
             type = "double",
@@ -1010,6 +1050,7 @@ M.MatchScoreDetails = {
 
 M.ParsedQueryComponent = {
     type = "structure",
+    id = "ParsedQueryComponent",
     members = {
         StartIndex = {
             type = "integer",
@@ -1028,6 +1069,7 @@ M.ParsedQueryComponent = {
 
 M.ParsedQuerySecondaryAddressComponent = {
     type = "structure",
+    id = "ParsedQuerySecondaryAddressComponent",
     members = {
         StartIndex = {
             type = "integer",
@@ -1064,6 +1106,7 @@ M.ParsedQuerySecondaryAddressComponent = {
 
 M.GeocodeParsedQueryAddressComponents = {
     type = "structure",
+    id = "GeocodeParsedQueryAddressComponents",
     members = {
         Country = {
             type = "list",
@@ -1122,6 +1165,7 @@ M.GeocodeParsedQueryAddressComponents = {
 
 M.GeocodeParsedQuery = {
     type = "structure",
+    id = "GeocodeParsedQuery",
     members = {
         Title = {
             type = "list",
@@ -1148,6 +1192,7 @@ M.ZipClassificationCode = {
 
 M.UspsZip = {
     type = "structure",
+    id = "UspsZip",
     members = {
         ZipClassificationCode = {
             type = "string",
@@ -1166,6 +1211,7 @@ M.RecordTypeCode = {
 
 M.UspsZipPlus4 = {
     type = "structure",
+    id = "UspsZipPlus4",
     members = {
         RecordTypeCode = {
             type = "string",
@@ -1175,6 +1221,7 @@ M.UspsZipPlus4 = {
 
 M.PostalCodeDetails = {
     type = "structure",
+    id = "PostalCodeDetails",
     members = {
         PostalCode = {
             type = "string",
@@ -1192,6 +1239,7 @@ M.PostalCodeDetails = {
 
 M.TimeZone = {
     type = "structure",
+    id = "TimeZone",
     members = {
         Name = {
             type = "string",
@@ -1213,6 +1261,7 @@ M.TimeZone = {
 
 M.GeocodeResultItem = {
     type = "structure",
+    id = "GeocodeResultItem",
     members = {
         PlaceId = {
             type = "string",
@@ -1286,6 +1335,7 @@ M.GeocodeResultItem = {
 
 M.GeocodeOutput = {
     type = "structure",
+    id = "GeocodeOutput",
     members = {
         PricingBucket = {
             type = "string",
@@ -1316,6 +1366,7 @@ M.GetPlaceIntendedUse = {
 
 M.GetPlaceInput = {
     type = "structure",
+    id = "GetPlaceInput",
     members = {
         PlaceId = {
             type = "string",
@@ -1360,6 +1411,7 @@ M.GetPlaceInput = {
 
 M.OpeningHoursComponents = {
     type = "structure",
+    id = "OpeningHoursComponents",
     members = {
         OpenTime = {
             type = "string",
@@ -1375,6 +1427,7 @@ M.OpeningHoursComponents = {
 
 M.OpeningHours = {
     type = "structure",
+    id = "OpeningHours",
     members = {
         Display = {
             type = "list",
@@ -1396,6 +1449,7 @@ M.OpeningHours = {
 
 M.PhonemeDetails = {
     type = "structure",
+    id = "PhonemeDetails",
     members = {
         Title = {
             type = "list",
@@ -1407,6 +1461,7 @@ M.PhonemeDetails = {
 
 M.GetPlaceOutput = {
     type = "structure",
+    id = "GetPlaceOutput",
     members = {
         PlaceId = {
             type = "string",
@@ -1503,6 +1558,7 @@ M.ReverseGeocodeFilterPlaceType = {
 
 M.ReverseGeocodeFilter = {
     type = "structure",
+    id = "ReverseGeocodeFilter",
     members = {
         IncludePlaceTypes = {
             type = "list",
@@ -1518,6 +1574,7 @@ M.ReverseGeocodeIntendedUse = {
 
 M.ReverseGeocodeInput = {
     type = "structure",
+    id = "ReverseGeocodeInput",
     members = {
         QueryPosition = {
             type = "list",
@@ -1569,6 +1626,7 @@ M.ReverseGeocodeInput = {
 
 M.ReverseGeocodeResultItem = {
     type = "structure",
+    id = "ReverseGeocodeResultItem",
     members = {
         PlaceId = {
             type = "string",
@@ -1635,6 +1693,7 @@ M.ReverseGeocodeResultItem = {
 
 M.ReverseGeocodeOutput = {
     type = "structure",
+    id = "ReverseGeocodeOutput",
     members = {
         PricingBucket = {
             type = "string",
@@ -1659,6 +1718,7 @@ M.SearchNearbyAdditionalFeature = {
 
 M.SearchNearbyFilter = {
     type = "structure",
+    id = "SearchNearbyFilter",
     members = {
         BoundingBox = {
             type = "list",
@@ -1702,6 +1762,7 @@ M.SearchNearbyIntendedUse = {
 
 M.SearchNearbyInput = {
     type = "structure",
+    id = "SearchNearbyInput",
     members = {
         QueryPosition = {
             type = "list",
@@ -1750,6 +1811,7 @@ M.SearchNearbyInput = {
 
 M.SearchNearbyResultItem = {
     type = "structure",
+    id = "SearchNearbyResultItem",
     members = {
         PlaceId = {
             type = "string",
@@ -1822,6 +1884,7 @@ M.SearchNearbyResultItem = {
 
 M.SearchNearbyOutput = {
     type = "structure",
+    id = "SearchNearbyOutput",
     members = {
         PricingBucket = {
             type = "string",
@@ -1849,6 +1912,7 @@ M.SearchTextAdditionalFeature = {
 
 M.SearchTextFilter = {
     type = "structure",
+    id = "SearchTextFilter",
     members = {
         BoundingBox = {
             type = "list",
@@ -1869,6 +1933,7 @@ M.SearchTextIntendedUse = {
 
 M.SearchTextInput = {
     type = "structure",
+    id = "SearchTextInput",
     members = {
         QueryText = {
             type = "string",
@@ -1914,6 +1979,7 @@ M.SearchTextInput = {
 
 M.SearchTextResultItem = {
     type = "structure",
+    id = "SearchTextResultItem",
     members = {
         PlaceId = {
             type = "string",
@@ -1986,6 +2052,7 @@ M.SearchTextResultItem = {
 
 M.SearchTextOutput = {
     type = "structure",
+    id = "SearchTextOutput",
     members = {
         PricingBucket = {
             type = "string",
@@ -2013,6 +2080,7 @@ M.SuggestAdditionalFeature = {
 
 M.SuggestFilter = {
     type = "structure",
+    id = "SuggestFilter",
     members = {
         BoundingBox = {
             type = "list",
@@ -2032,6 +2100,7 @@ M.SuggestIntendedUse = {
 
 M.SuggestInput = {
     type = "structure",
+    id = "SuggestInput",
     members = {
         QueryText = {
             type = "string",
@@ -2080,6 +2149,7 @@ M.SuggestInput = {
 
 M.QueryRefinement = {
     type = "structure",
+    id = "QueryRefinement",
     members = {
         RefinedTerm = {
             type = "string",
@@ -2110,6 +2180,7 @@ M.QueryRefinement = {
 
 M.SuggestAddressHighlights = {
     type = "structure",
+    id = "SuggestAddressHighlights",
     members = {
         Label = {
             type = "list",
@@ -2120,6 +2191,7 @@ M.SuggestAddressHighlights = {
 
 M.SuggestHighlights = {
     type = "structure",
+    id = "SuggestHighlights",
     members = {
         Title = {
             type = "list",
@@ -2131,6 +2203,7 @@ M.SuggestHighlights = {
 
 M.SuggestPlaceResult = {
     type = "structure",
+    id = "SuggestPlaceResult",
     members = {
         PlaceId = {
             type = "string",
@@ -2188,6 +2261,7 @@ M.QueryType = {
 
 M.SuggestQueryResult = {
     type = "structure",
+    id = "SuggestQueryResult",
     members = {
         QueryId = {
             type = "string",
@@ -2205,6 +2279,7 @@ M.SuggestResultItemType = {
 
 M.SuggestResultItem = {
     type = "structure",
+    id = "SuggestResultItem",
     members = {
         Title = {
             type = "string",
@@ -2226,6 +2301,7 @@ M.SuggestResultItem = {
 
 M.SuggestOutput = {
     type = "structure",
+    id = "SuggestOutput",
     members = {
         PricingBucket = {
             type = "string",

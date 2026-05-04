@@ -7,6 +7,7 @@ M.RequiredFlag = {
 
 M.AllowedRenditionSize = {
     type = "structure",
+    id = "AllowedRenditionSize",
     members = {
         Height = {
             type = "integer",
@@ -62,6 +63,7 @@ M.AudioChannelTag = {
 
 M.AudioChannelTaggingSettings = {
     type = "structure",
+    id = "AudioChannelTaggingSettings",
     members = {
         ChannelTag = {
             type = "string",
@@ -103,6 +105,7 @@ M.AudioNormalizationPeakCalculation = {
 
 M.AudioNormalizationSettings = {
     type = "structure",
+    id = "AudioNormalizationSettings",
     members = {
         Algorithm = {
             type = "string",
@@ -156,6 +159,7 @@ M.SlowPalPitchCorrection = {
 
 M.AudioPitchCorrectionSettings = {
     type = "structure",
+    id = "AudioPitchCorrectionSettings",
     members = {
         SlowPalPitchCorrection = {
             type = "string",
@@ -221,6 +225,7 @@ M.AacVbrQuality = {
 
 M.AacSettings = {
     type = "structure",
+    id = "AacSettings",
     members = {
         AudioDescriptionBroadcasterMix = {
             type = "string",
@@ -351,6 +356,7 @@ M.Ac3MetadataControl = {
 
 M.Ac3Settings = {
     type = "structure",
+    id = "Ac3Settings",
     members = {
         Bitrate = {
             type = "integer",
@@ -444,6 +450,7 @@ M.Ac4StereoDownmix = {
 
 M.Ac4Settings = {
     type = "structure",
+    id = "Ac4Settings",
     members = {
         Bitrate = {
             type = "integer",
@@ -528,6 +535,7 @@ M.Ac4Settings = {
 
 M.AiffSettings = {
     type = "structure",
+    id = "AiffSettings",
     members = {
         BitDepth = {
             type = "integer",
@@ -633,6 +641,7 @@ M.Eac3AtmosSurroundExMode = {
 
 M.Eac3AtmosSettings = {
     type = "structure",
+    id = "Eac3AtmosSettings",
     members = {
         Bitrate = {
             type = "integer",
@@ -828,6 +837,7 @@ M.Eac3SurroundMode = {
 
 M.Eac3Settings = {
     type = "structure",
+    id = "Eac3Settings",
     members = {
         AttenuationControl = {
             type = "string",
@@ -960,6 +970,7 @@ M.Eac3Settings = {
 
 M.FlacSettings = {
     type = "structure",
+    id = "FlacSettings",
     members = {
         BitDepth = {
             type = "integer",
@@ -989,6 +1000,7 @@ M.Mp2AudioDescriptionMix = {
 
 M.Mp2Settings = {
     type = "structure",
+    id = "Mp2Settings",
     members = {
         AudioDescriptionMix = {
             type = "string",
@@ -1024,6 +1036,7 @@ M.Mp3RateControlMode = {
 
 M.Mp3Settings = {
     type = "structure",
+    id = "Mp3Settings",
     members = {
         Bitrate = {
             type = "integer",
@@ -1060,6 +1073,7 @@ M.Mp3Settings = {
 
 M.OpusSettings = {
     type = "structure",
+    id = "OpusSettings",
     members = {
         Bitrate = {
             type = "integer",
@@ -1084,6 +1098,7 @@ M.OpusSettings = {
 
 M.VorbisSettings = {
     type = "structure",
+    id = "VorbisSettings",
     members = {
         Channels = {
             type = "integer",
@@ -1114,6 +1129,7 @@ M.WavFormat = {
 
 M.WavSettings = {
     type = "structure",
+    id = "WavSettings",
     members = {
         BitDepth = {
             type = "integer",
@@ -1144,6 +1160,7 @@ M.WavSettings = {
 
 M.AudioCodecSettings = {
     type = "structure",
+    id = "AudioCodecSettings",
     members = {
         AacSettings = setmetatable({ traits = {
             json_name = "aacSettings",
@@ -1392,6 +1409,7 @@ M.AudioLanguageCodeControl = {
 
 M.OutputChannelMapping = {
     type = "structure",
+    id = "OutputChannelMapping",
     members = {
         InputChannels = {
             type = "list",
@@ -1412,6 +1430,7 @@ M.OutputChannelMapping = {
 
 M.ChannelMapping = {
     type = "structure",
+    id = "ChannelMapping",
     members = {
         OutputChannels = {
             type = "list",
@@ -1425,6 +1444,7 @@ M.ChannelMapping = {
 
 M.RemixSettings = {
     type = "structure",
+    id = "RemixSettings",
     members = {
         AudioDescriptionAudioChannel = {
             type = "integer",
@@ -1458,6 +1478,7 @@ M.RemixSettings = {
 
 M.AudioDescription = {
     type = "structure",
+    id = "AudioDescription",
     members = {
         AudioChannelTaggingSettings = setmetatable({ traits = {
             json_name = "audioChannelTaggingSettings",
@@ -1521,6 +1542,7 @@ M.AudioDescription = {
 
 M.ForceIncludeRenditionSize = {
     type = "structure",
+    id = "ForceIncludeRenditionSize",
     members = {
         Height = {
             type = "integer",
@@ -1539,6 +1561,7 @@ M.ForceIncludeRenditionSize = {
 
 M.MinBottomRenditionSize = {
     type = "structure",
+    id = "MinBottomRenditionSize",
     members = {
         Height = {
             type = "integer",
@@ -1557,6 +1580,7 @@ M.MinBottomRenditionSize = {
 
 M.MinTopRenditionSize = {
     type = "structure",
+    id = "MinTopRenditionSize",
     members = {
         Height = {
             type = "integer",
@@ -1582,6 +1606,7 @@ M.RuleType = {
 
 M.AutomatedAbrRule = {
     type = "structure",
+    id = "AutomatedAbrRule",
     members = {
         AllowedRenditions = {
             type = "list",
@@ -1690,6 +1715,7 @@ M.BurninSubtitleTeletextSpacing = {
 
 M.BurninDestinationSettings = {
     type = "structure",
+    id = "BurninDestinationSettings",
     members = {
         Alignment = {
             type = "string",
@@ -1944,6 +1970,7 @@ M.DvbSubtitleTeletextSpacing = {
 
 M.DvbSubDestinationSettings = {
     type = "structure",
+    id = "DvbSubDestinationSettings",
     members = {
         Alignment = {
             type = "string",
@@ -2136,6 +2163,7 @@ M.DvbSubDestinationSettings = {
 
 M.EmbeddedDestinationSettings = {
     type = "structure",
+    id = "EmbeddedDestinationSettings",
     members = {
         Destination608ChannelNumber = {
             type = "integer",
@@ -2164,6 +2192,7 @@ M.ImscStylePassthrough = {
 
 M.ImscDestinationSettings = {
     type = "structure",
+    id = "ImscDestinationSettings",
     members = {
         Accessibility = {
             type = "string",
@@ -2190,6 +2219,7 @@ M.SccDestinationFramerate = {
 
 M.SccDestinationSettings = {
     type = "structure",
+    id = "SccDestinationSettings",
     members = {
         Framerate = {
             type = "string",
@@ -2207,6 +2237,7 @@ M.SrtStylePassthrough = {
 
 M.SrtDestinationSettings = {
     type = "structure",
+    id = "SrtDestinationSettings",
     members = {
         StylePassthrough = {
             type = "string",
@@ -2227,6 +2258,7 @@ M.TeletextPageType = {
 
 M.TeletextDestinationSettings = {
     type = "structure",
+    id = "TeletextDestinationSettings",
     members = {
         PageNumber = {
             type = "string",
@@ -2251,6 +2283,7 @@ M.TtmlStylePassthrough = {
 
 M.TtmlDestinationSettings = {
     type = "structure",
+    id = "TtmlDestinationSettings",
     members = {
         StylePassthrough = {
             type = "string",
@@ -2275,6 +2308,7 @@ M.WebvttStylePassthrough = {
 
 M.WebvttDestinationSettings = {
     type = "structure",
+    id = "WebvttDestinationSettings",
     members = {
         Accessibility = {
             type = "string",
@@ -2293,6 +2327,7 @@ M.WebvttDestinationSettings = {
 
 M.CaptionDestinationSettings = {
     type = "structure",
+    id = "CaptionDestinationSettings",
     members = {
         BurninDestinationSettings = setmetatable({ traits = {
             json_name = "burninDestinationSettings",
@@ -2332,6 +2367,7 @@ M.CaptionDestinationSettings = {
 
 M.CaptionDescription = {
     type = "structure",
+    id = "CaptionDescription",
     members = {
         CaptionSelectorName = {
             type = "string",
@@ -2365,6 +2401,7 @@ M.CaptionDescription = {
 
 M.CaptionDescriptionPreset = {
     type = "structure",
+    id = "CaptionDescriptionPreset",
     members = {
         CustomLanguageCode = {
             type = "string",
@@ -2392,6 +2429,7 @@ M.CaptionDescriptionPreset = {
 
 M.CmafAdditionalManifest = {
     type = "structure",
+    id = "CmafAdditionalManifest",
     members = {
         ManifestNameModifier = {
             type = "string",
@@ -2422,6 +2460,7 @@ M.ColorSpace = {
 
 M.ColorConversion3DLUTSetting = {
     type = "structure",
+    id = "ColorConversion3DLUTSetting",
     members = {
         FileInput = {
             type = "string",
@@ -2458,6 +2497,7 @@ M.ColorConversion3DLUTSetting = {
 
 M.DashAdditionalManifest = {
     type = "structure",
+    id = "DashAdditionalManifest",
     members = {
         ManifestNameModifier = {
             type = "string",
@@ -2488,6 +2528,7 @@ M.ElementalInferenceFeedManagementState = {
 
 M.ElementalInferenceFeed = {
     type = "structure",
+    id = "ElementalInferenceFeed",
     members = {
         Arn = {
             type = "string",
@@ -2506,6 +2547,7 @@ M.ElementalInferenceFeed = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Url = {
             type = "string",
@@ -2528,6 +2570,7 @@ M.FrameMetricType = {
 
 M.HlsAdditionalManifest = {
     type = "structure",
+    id = "HlsAdditionalManifest",
     members = {
         ManifestNameModifier = {
             type = "string",
@@ -2552,6 +2595,7 @@ M.HlsAdMarkers = {
 
 M.HlsCaptionLanguageMapping = {
     type = "structure",
+    id = "HlsCaptionLanguageMapping",
     members = {
         CaptionChannel = {
             type = "integer",
@@ -2582,6 +2626,7 @@ M.HlsCaptionLanguageMapping = {
 
 M.HopDestination = {
     type = "structure",
+    id = "HopDestination",
     members = {
         Priority = {
             type = "integer",
@@ -2606,6 +2651,7 @@ M.HopDestination = {
 
 M.Id3Insertion = {
     type = "structure",
+    id = "Id3Insertion",
     members = {
         Id3 = {
             type = "string",
@@ -2640,6 +2686,7 @@ M.AdvancedInputFilterSharpen = {
 
 M.AdvancedInputFilterSettings = {
     type = "structure",
+    id = "AdvancedInputFilterSettings",
     members = {
         AddTexture = {
             type = "string",
@@ -2658,6 +2705,7 @@ M.AdvancedInputFilterSettings = {
 
 M.AudioSelectorGroup = {
     type = "structure",
+    id = "AudioSelectorGroup",
     members = {
         AudioSelectorNames = {
             type = "list",
@@ -2684,6 +2732,7 @@ M.AudioDefaultSelection = {
 
 M.HlsRenditionGroupSettings = {
     type = "structure",
+    id = "HlsRenditionGroupSettings",
     members = {
         RenditionGroupId = {
             type = "string",
@@ -2717,6 +2766,7 @@ M.AudioSelectorType = {
 
 M.AudioSelector = {
     type = "structure",
+    id = "AudioSelector",
     members = {
         AudioDurationCorrection = {
             type = "string",
@@ -2808,6 +2858,7 @@ M.AncillaryTerminateCaptions = {
 
 M.AncillarySourceSettings = {
     type = "structure",
+    id = "AncillarySourceSettings",
     members = {
         Convert608To708 = {
             type = "string",
@@ -2832,6 +2883,7 @@ M.AncillarySourceSettings = {
 
 M.DvbSubSourceSettings = {
     type = "structure",
+    id = "DvbSubSourceSettings",
     members = {
         Pid = {
             type = "integer",
@@ -2854,6 +2906,7 @@ M.EmbeddedTerminateCaptions = {
 
 M.EmbeddedSourceSettings = {
     type = "structure",
+    id = "EmbeddedSourceSettings",
     members = {
         Convert608To708 = {
             type = "string",
@@ -2899,6 +2952,7 @@ M.CaptionSourceConvertPaintOnToPopOn = {
 
 M.CaptionSourceFramerate = {
     type = "structure",
+    id = "CaptionSourceFramerate",
     members = {
         FramerateDenominator = {
             type = "integer",
@@ -2927,6 +2981,7 @@ M.CaptionSourceUpconvertSTLToTeletext = {
 
 M.FileSourceSettings = {
     type = "structure",
+    id = "FileSourceSettings",
     members = {
         ByteRateLimit = {
             type = "string",
@@ -2996,6 +3051,7 @@ M.CaptionSourceType = {
 
 M.TeletextSourceSettings = {
     type = "structure",
+    id = "TeletextSourceSettings",
     members = {
         PageNumber = {
             type = "string",
@@ -3008,6 +3064,7 @@ M.TeletextSourceSettings = {
 
 M.TrackSourceSettings = {
     type = "structure",
+    id = "TrackSourceSettings",
     members = {
         StreamNumber = {
             type = "integer",
@@ -3026,6 +3083,7 @@ M.TrackSourceSettings = {
 
 M.WebvttHlsSourceSettings = {
     type = "structure",
+    id = "WebvttHlsSourceSettings",
     members = {
         RenditionGroupId = {
             type = "string",
@@ -3050,6 +3108,7 @@ M.WebvttHlsSourceSettings = {
 
 M.CaptionSourceSettings = {
     type = "structure",
+    id = "CaptionSourceSettings",
     members = {
         AncillarySourceSettings = setmetatable({ traits = {
             json_name = "ancillarySourceSettings",
@@ -3083,6 +3142,7 @@ M.CaptionSourceSettings = {
 
 M.CaptionSelector = {
     type = "structure",
+    id = "CaptionSelector",
     members = {
         CustomLanguageCode = {
             type = "string",
@@ -3104,6 +3164,7 @@ M.CaptionSelector = {
 
 M.Rectangle = {
     type = "structure",
+    id = "Rectangle",
     members = {
         Height = {
             type = "integer",
@@ -3145,6 +3206,7 @@ M.DecryptionMode = {
 
 M.InputDecryptionSettings = {
     type = "structure",
+    id = "InputDecryptionSettings",
     members = {
         DecryptionMode = {
             type = "string",
@@ -3185,6 +3247,7 @@ M.DynamicAudioSelectorType = {
 
 M.DynamicAudioSelector = {
     type = "structure",
+    id = "DynamicAudioSelector",
     members = {
         AudioDurationCorrection = {
             type = "string",
@@ -3227,6 +3290,7 @@ M.InputFilterEnable = {
 
 M.InsertableImage = {
     type = "structure",
+    id = "InsertableImage",
     members = {
         Duration = {
             type = "integer",
@@ -3299,6 +3363,7 @@ M.InsertableImage = {
 
 M.ImageInserter = {
     type = "structure",
+    id = "ImageInserter",
     members = {
         InsertableImages = {
             type = "list",
@@ -3318,6 +3383,7 @@ M.ImageInserter = {
 
 M.InputClipping = {
     type = "structure",
+    id = "InputClipping",
     members = {
         EndTimecode = {
             type = "string",
@@ -3341,6 +3407,7 @@ M.InputScanType = {
 
 M.MultiViewInput = {
     type = "structure",
+    id = "MultiViewInput",
     members = {
         FileInput = {
             type = "string",
@@ -3353,6 +3420,7 @@ M.MultiViewInput = {
 
 M.MultiViewSettings = {
     type = "structure",
+    id = "MultiViewSettings",
     members = {
         Input = setmetatable({ traits = {
             json_name = "input",
@@ -3373,6 +3441,7 @@ M.TamsGapHandling = {
 
 M.InputTamsSettings = {
     type = "structure",
+    id = "InputTamsSettings",
     members = {
         AuthConnectionArn = {
             type = "string",
@@ -3409,6 +3478,7 @@ M.InputTimecodeSource = {
 
 M.InputVideoGenerator = {
     type = "structure",
+    id = "InputVideoGenerator",
     members = {
         Channels = {
             type = "integer",
@@ -3468,6 +3538,7 @@ M.VideoOverlayUnit = {
 
 M.VideoOverlayCrop = {
     type = "structure",
+    id = "VideoOverlayCrop",
     members = {
         Height = {
             type = "integer",
@@ -3504,6 +3575,7 @@ M.VideoOverlayCrop = {
 
 M.VideoOverlayPosition = {
     type = "structure",
+    id = "VideoOverlayPosition",
     members = {
         Height = {
             type = "integer",
@@ -3546,6 +3618,7 @@ M.VideoOverlayPosition = {
 
 M.VideoOverlayInputClipping = {
     type = "structure",
+    id = "VideoOverlayInputClipping",
     members = {
         EndTimecode = {
             type = "string",
@@ -3564,6 +3637,7 @@ M.VideoOverlayInputClipping = {
 
 M.VideoOverlayInput = {
     type = "structure",
+    id = "VideoOverlayInput",
     members = {
         AudioSelectors = {
             type = "map",
@@ -3608,6 +3682,7 @@ M.VideoOverlayPlayBackMode = {
 
 M.VideoOverlayTransition = {
     type = "structure",
+    id = "VideoOverlayTransition",
     members = {
         EndPosition = setmetatable({ traits = {
             json_name = "endPosition",
@@ -3629,6 +3704,7 @@ M.VideoOverlayTransition = {
 
 M.VideoOverlay = {
     type = "structure",
+    id = "VideoOverlay",
     members = {
         Crop = setmetatable({ traits = {
             json_name = "crop",
@@ -3684,6 +3760,7 @@ M.EmbeddedTimecodeOverride = {
 
 M.Hdr10Metadata = {
     type = "structure",
+    id = "Hdr10Metadata",
     members = {
         BluePrimaryX = {
             type = "integer",
@@ -3786,6 +3863,7 @@ M.VideoSelectorType = {
 
 M.VideoSelector = {
     type = "structure",
+    id = "VideoSelector",
     members = {
         AlphaBehavior = {
             type = "string",
@@ -3868,6 +3946,7 @@ M.VideoSelector = {
 
 M.Input = {
     type = "structure",
+    id = "Input",
     members = {
         AdvancedInputFilter = {
             type = "string",
@@ -4030,6 +4109,7 @@ M.Input = {
 
 M.InputTemplate = {
     type = "structure",
+    id = "InputTemplate",
     members = {
         AdvancedInputFilter = {
             type = "string",
@@ -4176,6 +4256,7 @@ M.AccelerationMode = {
 
 M.AccelerationSettings = {
     type = "structure",
+    id = "AccelerationSettings",
     members = {
         Mode = {
             type = "string",
@@ -4209,6 +4290,7 @@ M.JobPhase = {
 
 M.ElementalInferenceConfiguration = {
     type = "structure",
+    id = "ElementalInferenceConfiguration",
     members = {
         Features = {
             type = "list",
@@ -4229,6 +4311,7 @@ M.ElementalInferenceConfiguration = {
 
 M.JobMessages = {
     type = "structure",
+    id = "JobMessages",
     members = {
         Info = {
             type = "list",
@@ -4249,6 +4332,7 @@ M.JobMessages = {
 
 M.VideoDetail = {
     type = "structure",
+    id = "VideoDetail",
     members = {
         HeightInPx = {
             type = "integer",
@@ -4267,6 +4351,7 @@ M.VideoDetail = {
 
 M.OutputDetail = {
     type = "structure",
+    id = "OutputDetail",
     members = {
         DurationInMs = {
             type = "integer",
@@ -4282,6 +4367,7 @@ M.OutputDetail = {
 
 M.OutputGroupDetail = {
     type = "structure",
+    id = "OutputGroupDetail",
     members = {
         OutputDetails = {
             type = "list",
@@ -4295,6 +4381,7 @@ M.OutputGroupDetail = {
 
 M.QueueTransition = {
     type = "structure",
+    id = "QueueTransition",
     members = {
         DestinationQueue = {
             type = "string",
@@ -4320,6 +4407,7 @@ M.QueueTransition = {
 
 M.AvailBlanking = {
     type = "structure",
+    id = "AvailBlanking",
     members = {
         AvailBlankingImage = {
             type = "string",
@@ -4332,6 +4420,7 @@ M.AvailBlanking = {
 
 M.EsamManifestConfirmConditionNotification = {
     type = "structure",
+    id = "EsamManifestConfirmConditionNotification",
     members = {
         MccXml = {
             type = "string",
@@ -4344,6 +4433,7 @@ M.EsamManifestConfirmConditionNotification = {
 
 M.EsamSignalProcessingNotification = {
     type = "structure",
+    id = "EsamSignalProcessingNotification",
     members = {
         SccXml = {
             type = "string",
@@ -4356,6 +4446,7 @@ M.EsamSignalProcessingNotification = {
 
 M.EsamSettings = {
     type = "structure",
+    id = "EsamSettings",
     members = {
         ManifestConfirmConditionNotification = setmetatable({ traits = {
             json_name = "manifestConfirmConditionNotification",
@@ -4384,6 +4475,7 @@ M.VchipAction = {
 
 M.ExtendedDataServices = {
     type = "structure",
+    id = "ExtendedDataServices",
     members = {
         CopyProtectionAction = {
             type = "string",
@@ -4402,6 +4494,7 @@ M.ExtendedDataServices = {
 
 M.KantarWatermarkSettings = {
     type = "structure",
+    id = "KantarWatermarkSettings",
     members = {
         ChannelName = {
             type = "string",
@@ -4486,6 +4579,7 @@ M.KantarWatermarkSettings = {
 
 M.MotionImageInsertionFramerate = {
     type = "structure",
+    id = "MotionImageInsertionFramerate",
     members = {
         FramerateDenominator = {
             type = "integer",
@@ -4509,6 +4603,7 @@ M.MotionImageInsertionMode = {
 
 M.MotionImageInsertionOffset = {
     type = "structure",
+    id = "MotionImageInsertionOffset",
     members = {
         ImageX = {
             type = "integer",
@@ -4532,6 +4627,7 @@ M.MotionImagePlayback = {
 
 M.MotionImageInserter = {
     type = "structure",
+    id = "MotionImageInserter",
     members = {
         Framerate = setmetatable({ traits = {
             json_name = "framerate",
@@ -4568,6 +4664,7 @@ M.MotionImageInserter = {
 
 M.NielsenConfiguration = {
     type = "structure",
+    id = "NielsenConfiguration",
     members = {
         BreakoutCode = {
             type = "integer",
@@ -4602,6 +4699,7 @@ M.NielsenUniqueTicPerAudioTrackType = {
 
 M.NielsenNonLinearWatermarkSettings = {
     type = "structure",
+    id = "NielsenNonLinearWatermarkSettings",
     members = {
         ActiveWatermarkProcess = {
             type = "string",
@@ -4674,6 +4772,7 @@ M.NielsenNonLinearWatermarkSettings = {
 
 M.AutomatedAbrSettings = {
     type = "structure",
+    id = "AutomatedAbrSettings",
     members = {
         MaxAbrBitrate = {
             type = "integer",
@@ -4711,6 +4810,7 @@ M.AutomatedAbrSettings = {
 
 M.AutomatedEncodingSettings = {
     type = "structure",
+    id = "AutomatedEncodingSettings",
     members = {
         AbrSettings = setmetatable({ traits = {
             json_name = "abrSettings",
@@ -4744,6 +4844,7 @@ M.S3ObjectCannedAcl = {
 
 M.S3DestinationAccessControl = {
     type = "structure",
+    id = "S3DestinationAccessControl",
     members = {
         CannedAcl = {
             type = "string",
@@ -4761,6 +4862,7 @@ M.S3ServerSideEncryptionType = {
 
 M.S3EncryptionSettings = {
     type = "structure",
+    id = "S3EncryptionSettings",
     members = {
         EncryptionType = {
             type = "string",
@@ -4795,6 +4897,7 @@ M.S3StorageClass = {
 
 M.S3DestinationSettings = {
     type = "structure",
+    id = "S3DestinationSettings",
     members = {
         AccessControl = setmetatable({ traits = {
             json_name = "accessControl",
@@ -4813,6 +4916,7 @@ M.S3DestinationSettings = {
 
 M.DestinationSettings = {
     type = "structure",
+    id = "DestinationSettings",
     members = {
         S3Settings = setmetatable({ traits = {
             json_name = "s3Settings",
@@ -4858,6 +4962,7 @@ M.PresetSpeke20Video = {
 
 M.EncryptionContractConfiguration = {
     type = "structure",
+    id = "EncryptionContractConfiguration",
     members = {
         SpekeAudioPreset = {
             type = "string",
@@ -4876,6 +4981,7 @@ M.EncryptionContractConfiguration = {
 
 M.SpekeKeyProviderCmaf = {
     type = "structure",
+    id = "SpekeKeyProviderCmaf",
     members = {
         CertificateArn = {
             type = "string",
@@ -4917,6 +5023,7 @@ M.SpekeKeyProviderCmaf = {
 
 M.StaticKeyProvider = {
     type = "structure",
+    id = "StaticKeyProvider",
     members = {
         KeyFormat = {
             type = "string",
@@ -4952,6 +5059,7 @@ M.CmafKeyProviderType = {
 
 M.CmafEncryptionSettings = {
     type = "structure",
+    id = "CmafEncryptionSettings",
     members = {
         ClearLead = {
             type = "string",
@@ -5007,6 +5115,7 @@ M.CmafIntervalCadence = {
 
 M.CmafImageBasedTrickPlaySettings = {
     type = "structure",
+    id = "CmafImageBasedTrickPlaySettings",
     members = {
         IntervalCadence = {
             type = "string",
@@ -5115,6 +5224,7 @@ M.CmafWriteSegmentTimelineInRepresentation = {
 
 M.CmafGroupSettings = {
     type = "structure",
+    id = "CmafGroupSettings",
     members = {
         AdditionalManifests = {
             type = "list",
@@ -5291,6 +5401,7 @@ M.DashIsoPlaybackDeviceCompatibility = {
 
 M.SpekeKeyProvider = {
     type = "structure",
+    id = "SpekeKeyProvider",
     members = {
         CertificateArn = {
             type = "string",
@@ -5325,6 +5436,7 @@ M.SpekeKeyProvider = {
 
 M.DashIsoEncryptionSettings = {
     type = "structure",
+    id = "DashIsoEncryptionSettings",
     members = {
         PlaybackDeviceCompatibility = {
             type = "string",
@@ -5358,6 +5470,7 @@ M.DashIsoIntervalCadence = {
 
 M.DashIsoImageBasedTrickPlaySettings = {
     type = "structure",
+    id = "DashIsoImageBasedTrickPlaySettings",
     members = {
         IntervalCadence = {
             type = "string",
@@ -5436,6 +5549,7 @@ M.DashIsoWriteSegmentTimelineInRepresentation = {
 
 M.DashIsoGroupSettings = {
     type = "structure",
+    id = "DashIsoGroupSettings",
     members = {
         AdditionalManifests = {
             type = "list",
@@ -5566,6 +5680,7 @@ M.DashIsoGroupSettings = {
 
 M.FileGroupSettings = {
     type = "structure",
+    id = "FileGroupSettings",
     members = {
         Destination = {
             type = "string",
@@ -5632,6 +5747,7 @@ M.HlsKeyProviderType = {
 
 M.HlsEncryptionSettings = {
     type = "structure",
+    id = "HlsEncryptionSettings",
     members = {
         ConstantInitializationVector = {
             type = "string",
@@ -5687,6 +5803,7 @@ M.HlsIntervalCadence = {
 
 M.HlsImageBasedTrickPlaySettings = {
     type = "structure",
+    id = "HlsImageBasedTrickPlaySettings",
     members = {
         IntervalCadence = {
             type = "string",
@@ -5781,6 +5898,7 @@ M.HlsTimedMetadataId3Frame = {
 
 M.HlsGroupSettings = {
     type = "structure",
+    id = "HlsGroupSettings",
     members = {
         AdMarkers = {
             type = "list",
@@ -5973,6 +6091,7 @@ M.HlsGroupSettings = {
 
 M.MsSmoothAdditionalManifest = {
     type = "structure",
+    id = "MsSmoothAdditionalManifest",
     members = {
         ManifestNameModifier = {
             type = "string",
@@ -5997,6 +6116,7 @@ M.MsSmoothAudioDeduplication = {
 
 M.MsSmoothEncryptionSettings = {
     type = "structure",
+    id = "MsSmoothEncryptionSettings",
     members = {
         SpekeKeyProvider = setmetatable({ traits = {
             json_name = "spekeKeyProvider",
@@ -6016,6 +6136,7 @@ M.MsSmoothManifestEncoding = {
 
 M.MsSmoothGroupSettings = {
     type = "structure",
+    id = "MsSmoothGroupSettings",
     members = {
         AdditionalManifests = {
             type = "list",
@@ -6073,6 +6194,7 @@ M.OutputGroupType = {
 
 M.OutputGroupSettings = {
     type = "structure",
+    id = "OutputGroupSettings",
     members = {
         CmafGroupSettings = setmetatable({ traits = {
             json_name = "cmafGroupSettings",
@@ -6164,6 +6286,7 @@ M.CmfcTimedMetadataBoxVersion = {
 
 M.CmfcSettings = {
     type = "structure",
+    id = "CmfcSettings",
     members = {
         AudioDuration = {
             type = "string",
@@ -6294,6 +6417,7 @@ M.F4vMoovPlacement = {
 
 M.F4vSettings = {
     type = "structure",
+    id = "F4vSettings",
     members = {
         MoovPlacement = {
             type = "string",
@@ -6326,6 +6450,7 @@ M.M2tsDataPtsControl = {
 
 M.DvbNitSettings = {
     type = "structure",
+    id = "DvbNitSettings",
     members = {
         NetworkId = {
             type = "integer",
@@ -6357,6 +6482,7 @@ M.OutputSdt = {
 
 M.DvbSdtSettings = {
     type = "structure",
+    id = "DvbSdtSettings",
     members = {
         OutputSdt = {
             type = "string",
@@ -6387,6 +6513,7 @@ M.DvbSdtSettings = {
 
 M.DvbTdtSettings = {
     type = "structure",
+    id = "DvbTdtSettings",
     members = {
         TdtInterval = {
             type = "integer",
@@ -6450,6 +6577,7 @@ M.M2tsRateMode = {
 
 M.M2tsScte35Esam = {
     type = "structure",
+    id = "M2tsScte35Esam",
     members = {
         Scte35EsamPid = {
             type = "integer",
@@ -6481,6 +6609,7 @@ M.M2tsSegmentationStyle = {
 
 M.M2tsSettings = {
     type = "structure",
+    id = "M2tsSettings",
     members = {
         AudioBufferModel = {
             type = "string",
@@ -6765,6 +6894,7 @@ M.TimedMetadata = {
 
 M.M3u8Settings = {
     type = "structure",
+    id = "M3u8Settings",
     members = {
         AudioDuration = {
             type = "string",
@@ -6929,6 +7059,7 @@ M.MovReference = {
 
 M.MovSettings = {
     type = "structure",
+    id = "MovSettings",
     members = {
         ClapAtom = {
             type = "string",
@@ -6985,6 +7116,7 @@ M.Mp4MoovPlacement = {
 
 M.Mp4Settings = {
     type = "structure",
+    id = "Mp4Settings",
     members = {
         AudioDuration = {
             type = "string",
@@ -7095,6 +7227,7 @@ M.MpdTimedMetadataBoxVersion = {
 
 M.MpdSettings = {
     type = "structure",
+    id = "MpdSettings",
     members = {
         AccessibilityCaptionHints = {
             type = "string",
@@ -7208,6 +7341,7 @@ M.MxfXavcDurationMode = {
 
 M.MxfXavcProfileSettings = {
     type = "structure",
+    id = "MxfXavcProfileSettings",
     members = {
         DurationMode = {
             type = "string",
@@ -7226,6 +7360,7 @@ M.MxfXavcProfileSettings = {
 
 M.MxfSettings = {
     type = "structure",
+    id = "MxfSettings",
     members = {
         AfdSignaling = {
             type = "string",
@@ -7253,6 +7388,7 @@ M.MxfSettings = {
 
 M.ContainerSettings = {
     type = "structure",
+    id = "ContainerSettings",
     members = {
         CmfcSettings = setmetatable({ traits = {
             json_name = "cmfcSettings",
@@ -7312,6 +7448,7 @@ M.HlsIFrameOnlyManifest = {
 
 M.HlsSettings = {
     type = "structure",
+    id = "HlsSettings",
     members = {
         AudioGroupId = {
             type = "string",
@@ -7360,6 +7497,7 @@ M.HlsSettings = {
 
 M.OutputSettings = {
     type = "structure",
+    id = "OutputSettings",
     members = {
         HlsSettings = setmetatable({ traits = {
             json_name = "hlsSettings",
@@ -7417,6 +7555,7 @@ M.Av1FramerateConversionAlgorithm = {
 
 M.Av1QvbrSettings = {
     type = "structure",
+    id = "Av1QvbrSettings",
     members = {
         QvbrQualityLevel = {
             type = "integer",
@@ -7444,6 +7583,7 @@ M.Av1SpatialAdaptiveQuantization = {
 
 M.Av1Settings = {
     type = "structure",
+    id = "Av1Settings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -7550,6 +7690,7 @@ M.AvcIntraUhdQualityTuningLevel = {
 
 M.AvcIntraUhdSettings = {
     type = "structure",
+    id = "AvcIntraUhdSettings",
     members = {
         QualityTuningLevel = {
             type = "string",
@@ -7597,6 +7738,7 @@ M.AvcIntraTelecine = {
 
 M.AvcIntraSettings = {
     type = "structure",
+    id = "AvcIntraSettings",
     members = {
         AvcIntraClass = {
             type = "string",
@@ -7684,6 +7826,7 @@ M.VideoCodec = {
 
 M.FrameCaptureSettings = {
     type = "structure",
+    id = "FrameCaptureSettings",
     members = {
         FramerateDenominator = {
             type = "integer",
@@ -7724,6 +7867,7 @@ M.GifFramerateConversionAlgorithm = {
 
 M.GifSettings = {
     type = "structure",
+    id = "GifSettings",
     members = {
         FramerateControl = {
             type = "string",
@@ -7779,6 +7923,7 @@ M.BandwidthReductionFilterStrength = {
 
 M.BandwidthReductionFilter = {
     type = "structure",
+    id = "BandwidthReductionFilter",
     members = {
         Sharpening = {
             type = "string",
@@ -7894,6 +8039,7 @@ M.H264QualityTuningLevel = {
 
 M.H264QvbrSettings = {
     type = "structure",
+    id = "H264QvbrSettings",
     members = {
         MaxAverageBitrate = {
             type = "integer",
@@ -7981,6 +8127,7 @@ M.H264WriteMp4PackagingType = {
 
 M.H264Settings = {
     type = "structure",
+    id = "H264Settings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -8373,6 +8520,7 @@ M.H265QualityTuningLevel = {
 
 M.H265QvbrSettings = {
     type = "structure",
+    id = "H265QvbrSettings",
     members = {
         MaxAverageBitrate = {
             type = "integer",
@@ -8471,6 +8619,7 @@ M.H265WriteMp4PackagingType = {
 
 M.H265Settings = {
     type = "structure",
+    id = "H265Settings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -8887,6 +9036,7 @@ M.Mpeg2TemporalAdaptiveQuantization = {
 
 M.Mpeg2Settings = {
     type = "structure",
+    id = "Mpeg2Settings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -9108,6 +9258,7 @@ M.VideoSelectorMode = {
 
 M.PassthroughSettings = {
     type = "structure",
+    id = "PassthroughSettings",
     members = {
         FrameControl = {
             type = "string",
@@ -9180,6 +9331,7 @@ M.ProresTelecine = {
 
 M.ProresSettings = {
     type = "structure",
+    id = "ProresSettings",
     members = {
         ChromaSampling = {
             type = "string",
@@ -9309,6 +9461,7 @@ M.UncompressedTelecine = {
 
 M.UncompressedSettings = {
     type = "structure",
+    id = "UncompressedSettings",
     members = {
         Fourcc = {
             type = "string",
@@ -9407,6 +9560,7 @@ M.Vc3Class = {
 
 M.Vc3Settings = {
     type = "structure",
+    id = "Vc3Settings",
     members = {
         FramerateControl = {
             type = "string",
@@ -9493,6 +9647,7 @@ M.Vp8RateControlMode = {
 
 M.Vp8Settings = {
     type = "structure",
+    id = "Vp8Settings",
     members = {
         Bitrate = {
             type = "integer",
@@ -9603,6 +9758,7 @@ M.Vp9RateControlMode = {
 
 M.Vp9Settings = {
     type = "structure",
+    id = "Vp9Settings",
     members = {
         Bitrate = {
             type = "integer",
@@ -9744,6 +9900,7 @@ M.Xavc4kIntraCbgProfileClass = {
 
 M.Xavc4kIntraCbgProfileSettings = {
     type = "structure",
+    id = "Xavc4kIntraCbgProfileSettings",
     members = {
         XavcClass = {
             type = "string",
@@ -9762,6 +9919,7 @@ M.Xavc4kIntraVbrProfileClass = {
 
 M.Xavc4kIntraVbrProfileSettings = {
     type = "structure",
+    id = "Xavc4kIntraVbrProfileSettings",
     members = {
         XavcClass = {
             type = "string",
@@ -9801,6 +9959,7 @@ M.Xavc4kProfileQualityTuningLevel = {
 
 M.Xavc4kProfileSettings = {
     type = "structure",
+    id = "Xavc4kProfileSettings",
     members = {
         BitrateClass = {
             type = "string",
@@ -9861,6 +10020,7 @@ M.XavcHdIntraCbgProfileClass = {
 
 M.XavcHdIntraCbgProfileSettings = {
     type = "structure",
+    id = "XavcHdIntraCbgProfileSettings",
     members = {
         XavcClass = {
             type = "string",
@@ -9898,6 +10058,7 @@ M.XavcHdProfileTelecine = {
 
 M.XavcHdProfileSettings = {
     type = "structure",
+    id = "XavcHdProfileSettings",
     members = {
         BitrateClass = {
             type = "string",
@@ -9958,6 +10119,7 @@ M.XavcHdProfileSettings = {
 
 M.XavcSettings = {
     type = "structure",
+    id = "XavcSettings",
     members = {
         AdaptiveQuantization = {
             type = "string",
@@ -10052,6 +10214,7 @@ M.XavcSettings = {
 
 M.VideoCodecSettings = {
     type = "structure",
+    id = "VideoCodecSettings",
     members = {
         Av1Settings = setmetatable({ traits = {
             json_name = "av1Settings",
@@ -10141,6 +10304,7 @@ M.TimecodeTrack = {
 
 M.ClipLimits = {
     type = "structure",
+    id = "ClipLimits",
     members = {
         MaximumRGBTolerance = {
             type = "integer",
@@ -10193,6 +10357,7 @@ M.SampleRangeConversion = {
 
 M.ColorCorrector = {
     type = "structure",
+    id = "ColorCorrector",
     members = {
         Brightness = {
             type = "integer",
@@ -10278,6 +10443,7 @@ M.DeinterlacerMode = {
 
 M.Deinterlacer = {
     type = "structure",
+    id = "Deinterlacer",
     members = {
         Algorithm = {
             type = "string",
@@ -10307,6 +10473,7 @@ M.DolbyVisionCompatibility = {
 
 M.DolbyVisionLevel6Metadata = {
     type = "structure",
+    id = "DolbyVisionLevel6Metadata",
     members = {
         MaxCll = {
             type = "integer",
@@ -10341,6 +10508,7 @@ M.DolbyVisionProfile = {
 
 M.DolbyVision = {
     type = "structure",
+    id = "DolbyVision",
     members = {
         Compatibility = {
             type = "string",
@@ -10374,6 +10542,7 @@ M.DolbyVision = {
 
 M.Hdr10Plus = {
     type = "structure",
+    id = "Hdr10Plus",
     members = {
         MasteringMonitorNits = {
             type = "integer",
@@ -10403,6 +10572,7 @@ M.NoiseReducerFilter = {
 
 M.NoiseReducerFilterSettings = {
     type = "structure",
+    id = "NoiseReducerFilterSettings",
     members = {
         Strength = {
             type = "integer",
@@ -10415,6 +10585,7 @@ M.NoiseReducerFilterSettings = {
 
 M.NoiseReducerSpatialFilterSettings = {
     type = "structure",
+    id = "NoiseReducerSpatialFilterSettings",
     members = {
         PostFilterSharpenStrength = {
             type = "integer",
@@ -10451,6 +10622,7 @@ M.NoiseFilterPostTemporalSharpeningStrength = {
 
 M.NoiseReducerTemporalFilterSettings = {
     type = "structure",
+    id = "NoiseReducerTemporalFilterSettings",
     members = {
         AggressiveMode = {
             type = "integer",
@@ -10487,6 +10659,7 @@ M.NoiseReducerTemporalFilterSettings = {
 
 M.NoiseReducer = {
     type = "structure",
+    id = "NoiseReducer",
     members = {
         Filter = {
             type = "string",
@@ -10516,6 +10689,7 @@ M.WatermarkingStrength = {
 
 M.NexGuardFileMarkerSettings = {
     type = "structure",
+    id = "NexGuardFileMarkerSettings",
     members = {
         License = {
             type = "string",
@@ -10546,6 +10720,7 @@ M.NexGuardFileMarkerSettings = {
 
 M.PartnerWatermarking = {
     type = "structure",
+    id = "PartnerWatermarking",
     members = {
         NexguardFileMarkerSettings = setmetatable({ traits = {
             json_name = "nexguardFileMarkerSettings",
@@ -10567,6 +10742,7 @@ M.TimecodeBurninPosition = {
 
 M.TimecodeBurnin = {
     type = "structure",
+    id = "TimecodeBurnin",
     members = {
         FontSize = {
             type = "integer",
@@ -10591,6 +10767,7 @@ M.TimecodeBurnin = {
 
 M.VideoPreprocessor = {
     type = "structure",
+    id = "VideoPreprocessor",
     members = {
         ColorCorrector = setmetatable({ traits = {
             json_name = "colorCorrector",
@@ -10621,6 +10798,7 @@ M.VideoPreprocessor = {
 
 M.VideoDescription = {
     type = "structure",
+    id = "VideoDescription",
     members = {
         AfdSignaling = {
             type = "string",
@@ -10717,6 +10895,7 @@ M.VideoDescription = {
 
 M.Output = {
     type = "structure",
+    id = "Output",
     members = {
         AudioDescriptions = {
             type = "list",
@@ -10764,6 +10943,7 @@ M.Output = {
 
 M.OutputGroup = {
     type = "structure",
+    id = "OutputGroup",
     members = {
         AutomatedEncodingSettings = setmetatable({ traits = {
             json_name = "automatedEncodingSettings",
@@ -10801,6 +10981,7 @@ M.TimecodeSource = {
 
 M.TimecodeConfig = {
     type = "structure",
+    id = "TimecodeConfig",
     members = {
         Anchor = {
             type = "string",
@@ -10831,6 +11012,7 @@ M.TimecodeConfig = {
 
 M.TimedMetadataInsertion = {
     type = "structure",
+    id = "TimedMetadataInsertion",
     members = {
         Id3Insertions = {
             type = "list",
@@ -10844,6 +11026,7 @@ M.TimedMetadataInsertion = {
 
 M.JobSettings = {
     type = "structure",
+    id = "JobSettings",
     members = {
         AdAvailOffset = {
             type = "integer",
@@ -10947,6 +11130,7 @@ M.StatusUpdateInterval = {
 
 M.Timing = {
     type = "structure",
+    id = "Timing",
     members = {
         FinishTime = {
             type = "timestamp",
@@ -10974,6 +11158,7 @@ M.Timing = {
 
 M.WarningGroup = {
     type = "structure",
+    id = "WarningGroup",
     members = {
         Code = {
             type = "integer",
@@ -10994,6 +11179,7 @@ M.WarningGroup = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         AccelerationSettings = setmetatable({ traits = {
             json_name = "accelerationSettings",
@@ -11186,6 +11372,7 @@ M.Job = {
 
 M.JobEngineVersion = {
     type = "structure",
+    id = "JobEngineVersion",
     members = {
         ExpirationDate = {
             type = "timestamp",
@@ -11215,6 +11402,7 @@ M.JobsQueryFilterKey = {
 
 M.JobsQueryFilter = {
     type = "structure",
+    id = "JobsQueryFilter",
     members = {
         Key = {
             type = "string",
@@ -11234,6 +11422,7 @@ M.JobsQueryFilter = {
 
 M.JobTemplateSettings = {
     type = "structure",
+    id = "JobTemplateSettings",
     members = {
         AdAvailOffset = {
             type = "integer",
@@ -11305,6 +11494,7 @@ M.Type = {
 
 M.JobTemplate = {
     type = "structure",
+    id = "JobTemplate",
     members = {
         AccelerationSettings = setmetatable({ traits = {
             json_name = "accelerationSettings",
@@ -11388,6 +11578,7 @@ M.JobTemplate = {
 
 M.PresetSettings = {
     type = "structure",
+    id = "PresetSettings",
     members = {
         AudioDescriptions = {
             type = "list",
@@ -11414,6 +11605,7 @@ M.PresetSettings = {
 
 M.Preset = {
     type = "structure",
+    id = "Preset",
     members = {
         Arn = {
             type = "string",
@@ -11469,6 +11661,7 @@ M.Preset = {
 
 M.ProbeInputFile = {
     type = "structure",
+    id = "ProbeInputFile",
     members = {
         FileUrl = {
             type = "string",
@@ -11492,6 +11685,7 @@ M.Format = {
 
 M.FrameRate = {
     type = "structure",
+    id = "FrameRate",
     members = {
         Denominator = {
             type = "integer",
@@ -11510,6 +11704,7 @@ M.FrameRate = {
 
 M.AudioProperties = {
     type = "structure",
+    id = "AudioProperties",
     members = {
         BitDepth = {
             type = "integer",
@@ -11579,6 +11774,7 @@ M.Codec = {
 
 M.DataProperties = {
     type = "structure",
+    id = "DataProperties",
     members = {
         LanguageCode = {
             type = "string",
@@ -11659,6 +11855,7 @@ M.TransferCharacteristics = {
 
 M.CodecMetadata = {
     type = "structure",
+    id = "CodecMetadata",
     members = {
         BitDepth = {
             type = "integer",
@@ -11728,6 +11925,7 @@ M.CodecMetadata = {
 
 M.VideoProperties = {
     type = "structure",
+    id = "VideoProperties",
     members = {
         BitDepth = {
             type = "integer",
@@ -11782,6 +11980,7 @@ M.VideoProperties = {
 
 M.Track = {
     type = "structure",
+    id = "Track",
     members = {
         AudioProperties = setmetatable({ traits = {
             json_name = "audioProperties",
@@ -11821,6 +12020,7 @@ M.Track = {
 
 M.Container = {
     type = "structure",
+    id = "Container",
     members = {
         Duration = {
             type = "double",
@@ -11852,6 +12052,7 @@ M.Container = {
 
 M.Metadata = {
     type = "structure",
+    id = "Metadata",
     members = {
         ETag = {
             type = "string",
@@ -11883,6 +12084,7 @@ M.Metadata = {
 
 M.TrackMapping = {
     type = "structure",
+    id = "TrackMapping",
     members = {
         AudioTrackIndexes = {
             type = "list",
@@ -11910,6 +12112,7 @@ M.TrackMapping = {
 
 M.ProbeResult = {
     type = "structure",
+    id = "ProbeResult",
     members = {
         Container = setmetatable({ traits = {
             json_name = "container",
@@ -11948,6 +12151,7 @@ M.ReservationPlanStatus = {
 
 M.ReservationPlan = {
     type = "structure",
+    id = "ReservationPlan",
     members = {
         Commitment = {
             type = "string",
@@ -11992,6 +12196,7 @@ M.ReservationPlan = {
 
 M.ServiceOverride = {
     type = "structure",
+    id = "ServiceOverride",
     members = {
         Message = {
             type = "string",
@@ -12027,6 +12232,7 @@ M.QueueStatus = {
 
 M.Queue = {
     type = "structure",
+    id = "Queue",
     members = {
         Arn = {
             type = "string",
@@ -12118,6 +12324,7 @@ M.Queue = {
 
 M.AssociateCertificateInput = {
     type = "structure",
+    id = "AssociateCertificateInput",
     members = {
         Arn = {
             type = "string",
@@ -12131,10 +12338,12 @@ M.AssociateCertificateInput = {
 
 M.AssociateCertificateOutput = {
     type = "structure",
+    id = "AssociateCertificateOutput",
 }
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -12148,6 +12357,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -12161,6 +12371,7 @@ M.ConflictException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Message = {
@@ -12174,6 +12385,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -12187,6 +12399,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -12200,6 +12413,7 @@ M.NotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -12213,6 +12427,7 @@ M.ServiceQuotaExceededException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -12226,6 +12441,7 @@ M.TooManyRequestsException = {
 
 M.CancelJobInput = {
     type = "structure",
+    id = "CancelJobInput",
     members = {
         Id = {
             type = "string",
@@ -12239,10 +12455,12 @@ M.CancelJobInput = {
 
 M.CancelJobOutput = {
     type = "structure",
+    id = "CancelJobOutput",
 }
 
 M.CreateJobInput = {
     type = "structure",
+    id = "CreateJobInput",
     members = {
         AccelerationSettings = setmetatable({ traits = {
             json_name = "accelerationSettings",
@@ -12335,6 +12553,7 @@ M.CreateJobInput = {
 
 M.CreateJobOutput = {
     type = "structure",
+    id = "CreateJobOutput",
     members = {
         Job = setmetatable({ traits = {
             json_name = "job",
@@ -12344,6 +12563,7 @@ M.CreateJobOutput = {
 
 M.CreateJobTemplateInput = {
     type = "structure",
+    id = "CreateJobTemplateInput",
     members = {
         AccelerationSettings = setmetatable({ traits = {
             json_name = "accelerationSettings",
@@ -12409,6 +12629,7 @@ M.CreateJobTemplateInput = {
 
 M.CreateJobTemplateOutput = {
     type = "structure",
+    id = "CreateJobTemplateOutput",
     members = {
         JobTemplate = setmetatable({ traits = {
             json_name = "jobTemplate",
@@ -12418,6 +12639,7 @@ M.CreateJobTemplateOutput = {
 
 M.CreatePresetInput = {
     type = "structure",
+    id = "CreatePresetInput",
     members = {
         Category = {
             type = "string",
@@ -12455,6 +12677,7 @@ M.CreatePresetInput = {
 
 M.CreatePresetOutput = {
     type = "structure",
+    id = "CreatePresetOutput",
     members = {
         Preset = setmetatable({ traits = {
             json_name = "preset",
@@ -12464,6 +12687,7 @@ M.CreatePresetOutput = {
 
 M.ReservationPlanSettings = {
     type = "structure",
+    id = "ReservationPlanSettings",
     members = {
         Commitment = {
             type = "string",
@@ -12491,6 +12715,7 @@ M.ReservationPlanSettings = {
 
 M.CreateQueueInput = {
     type = "structure",
+    id = "CreateQueueInput",
     members = {
         ConcurrentJobs = {
             type = "integer",
@@ -12545,6 +12770,7 @@ M.CreateQueueInput = {
 
 M.CreateQueueOutput = {
     type = "structure",
+    id = "CreateQueueOutput",
     members = {
         Queue = setmetatable({ traits = {
             json_name = "queue",
@@ -12554,6 +12780,7 @@ M.CreateQueueOutput = {
 
 M.CreateResourceShareInput = {
     type = "structure",
+    id = "CreateResourceShareInput",
     members = {
         JobId = {
             type = "string",
@@ -12574,10 +12801,12 @@ M.CreateResourceShareInput = {
 
 M.CreateResourceShareOutput = {
     type = "structure",
+    id = "CreateResourceShareOutput",
 }
 
 M.DeleteJobTemplateInput = {
     type = "structure",
+    id = "DeleteJobTemplateInput",
     members = {
         Name = {
             type = "string",
@@ -12591,18 +12820,22 @@ M.DeleteJobTemplateInput = {
 
 M.DeleteJobTemplateOutput = {
     type = "structure",
+    id = "DeleteJobTemplateOutput",
 }
 
 M.DeletePolicyInput = {
     type = "structure",
+    id = "DeletePolicyInput",
 }
 
 M.DeletePolicyOutput = {
     type = "structure",
+    id = "DeletePolicyOutput",
 }
 
 M.DeletePresetInput = {
     type = "structure",
+    id = "DeletePresetInput",
     members = {
         Name = {
             type = "string",
@@ -12616,10 +12849,12 @@ M.DeletePresetInput = {
 
 M.DeletePresetOutput = {
     type = "structure",
+    id = "DeletePresetOutput",
 }
 
 M.DeleteQueueInput = {
     type = "structure",
+    id = "DeleteQueueInput",
     members = {
         Name = {
             type = "string",
@@ -12633,6 +12868,7 @@ M.DeleteQueueInput = {
 
 M.DeleteQueueOutput = {
     type = "structure",
+    id = "DeleteQueueOutput",
 }
 
 M.DescribeEndpointsMode = {
@@ -12642,6 +12878,7 @@ M.DescribeEndpointsMode = {
 
 M.DescribeEndpointsInput = {
     type = "structure",
+    id = "DescribeEndpointsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -12666,6 +12903,7 @@ M.DescribeEndpointsInput = {
 
 M.DescribeEndpointsOutput = {
     type = "structure",
+    id = "DescribeEndpointsOutput",
     members = {
         Endpoints = {
             type = "list",
@@ -12685,6 +12923,7 @@ M.DescribeEndpointsOutput = {
 
 M.DisassociateCertificateInput = {
     type = "structure",
+    id = "DisassociateCertificateInput",
     members = {
         Arn = {
             type = "string",
@@ -12698,10 +12937,12 @@ M.DisassociateCertificateInput = {
 
 M.DisassociateCertificateOutput = {
     type = "structure",
+    id = "DisassociateCertificateOutput",
 }
 
 M.GetJobInput = {
     type = "structure",
+    id = "GetJobInput",
     members = {
         Id = {
             type = "string",
@@ -12715,6 +12956,7 @@ M.GetJobInput = {
 
 M.GetJobOutput = {
     type = "structure",
+    id = "GetJobOutput",
     members = {
         Job = setmetatable({ traits = {
             json_name = "job",
@@ -12724,6 +12966,7 @@ M.GetJobOutput = {
 
 M.GetJobsQueryResultsInput = {
     type = "structure",
+    id = "GetJobsQueryResultsInput",
     members = {
         Id = {
             type = "string",
@@ -12744,6 +12987,7 @@ M.JobsQueryStatus = {
 
 M.GetJobsQueryResultsOutput = {
     type = "structure",
+    id = "GetJobsQueryResultsOutput",
     members = {
         Jobs = {
             type = "list",
@@ -12769,6 +13013,7 @@ M.GetJobsQueryResultsOutput = {
 
 M.GetJobTemplateInput = {
     type = "structure",
+    id = "GetJobTemplateInput",
     members = {
         Name = {
             type = "string",
@@ -12782,6 +13027,7 @@ M.GetJobTemplateInput = {
 
 M.GetJobTemplateOutput = {
     type = "structure",
+    id = "GetJobTemplateOutput",
     members = {
         JobTemplate = setmetatable({ traits = {
             json_name = "jobTemplate",
@@ -12791,6 +13037,7 @@ M.GetJobTemplateOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
 }
 
 M.InputPolicy = {
@@ -12800,6 +13047,7 @@ M.InputPolicy = {
 
 M.Policy = {
     type = "structure",
+    id = "Policy",
     members = {
         HttpInputs = {
             type = "string",
@@ -12824,6 +13072,7 @@ M.Policy = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         Policy = setmetatable({ traits = {
             json_name = "policy",
@@ -12833,6 +13082,7 @@ M.GetPolicyOutput = {
 
 M.GetPresetInput = {
     type = "structure",
+    id = "GetPresetInput",
     members = {
         Name = {
             type = "string",
@@ -12846,6 +13096,7 @@ M.GetPresetInput = {
 
 M.GetPresetOutput = {
     type = "structure",
+    id = "GetPresetOutput",
     members = {
         Preset = setmetatable({ traits = {
             json_name = "preset",
@@ -12855,6 +13106,7 @@ M.GetPresetOutput = {
 
 M.GetQueueInput = {
     type = "structure",
+    id = "GetQueueInput",
     members = {
         Name = {
             type = "string",
@@ -12868,6 +13120,7 @@ M.GetQueueInput = {
 
 M.GetQueueOutput = {
     type = "structure",
+    id = "GetQueueOutput",
     members = {
         Queue = setmetatable({ traits = {
             json_name = "queue",
@@ -12888,6 +13141,7 @@ M.Order = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -12924,6 +13178,7 @@ M.ListJobsInput = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         Jobs = {
             type = "list",
@@ -12943,6 +13198,7 @@ M.ListJobsOutput = {
 
 M.ListJobTemplatesInput = {
     type = "structure",
+    id = "ListJobTemplatesInput",
     members = {
         Category = {
             type = "string",
@@ -12979,6 +13235,7 @@ M.ListJobTemplatesInput = {
 
 M.ListJobTemplatesOutput = {
     type = "structure",
+    id = "ListJobTemplatesOutput",
     members = {
         JobTemplates = {
             type = "list",
@@ -13004,6 +13261,7 @@ M.PresetListBy = {
 
 M.ListPresetsInput = {
     type = "structure",
+    id = "ListPresetsInput",
     members = {
         Category = {
             type = "string",
@@ -13040,6 +13298,7 @@ M.ListPresetsInput = {
 
 M.ListPresetsOutput = {
     type = "structure",
+    id = "ListPresetsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -13064,6 +13323,7 @@ M.QueueListBy = {
 
 M.ListQueuesInput = {
     type = "structure",
+    id = "ListQueuesInput",
     members = {
         ListBy = {
             type = "string",
@@ -13094,6 +13354,7 @@ M.ListQueuesInput = {
 
 M.ListQueuesOutput = {
     type = "structure",
+    id = "ListQueuesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -13125,6 +13386,7 @@ M.ListQueuesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -13138,6 +13400,7 @@ M.ListTagsForResourceInput = {
 
 M.ResourceTags = {
     type = "structure",
+    id = "ResourceTags",
     members = {
         Arn = {
             type = "string",
@@ -13158,6 +13421,7 @@ M.ResourceTags = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceTags = setmetatable({ traits = {
             json_name = "resourceTags",
@@ -13167,6 +13431,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVersionsInput = {
     type = "structure",
+    id = "ListVersionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -13185,6 +13450,7 @@ M.ListVersionsInput = {
 
 M.ListVersionsOutput = {
     type = "structure",
+    id = "ListVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -13204,6 +13470,7 @@ M.ListVersionsOutput = {
 
 M.ProbeInput = {
     type = "structure",
+    id = "ProbeInput",
     members = {
         InputFiles = {
             type = "list",
@@ -13217,6 +13484,7 @@ M.ProbeInput = {
 
 M.ProbeOutput = {
     type = "structure",
+    id = "ProbeOutput",
     members = {
         ProbeResults = {
             type = "list",
@@ -13230,6 +13498,7 @@ M.ProbeOutput = {
 
 M.PutPolicyInput = {
     type = "structure",
+    id = "PutPolicyInput",
     members = {
         Policy = setmetatable({ traits = {
             json_name = "policy",
@@ -13240,6 +13509,7 @@ M.PutPolicyInput = {
 
 M.PutPolicyOutput = {
     type = "structure",
+    id = "PutPolicyOutput",
     members = {
         Policy = setmetatable({ traits = {
             json_name = "policy",
@@ -13249,6 +13519,7 @@ M.PutPolicyOutput = {
 
 M.SearchJobsInput = {
     type = "structure",
+    id = "SearchJobsInput",
     members = {
         InputFile = {
             type = "string",
@@ -13291,6 +13562,7 @@ M.SearchJobsInput = {
 
 M.SearchJobsOutput = {
     type = "structure",
+    id = "SearchJobsOutput",
     members = {
         Jobs = {
             type = "list",
@@ -13310,6 +13582,7 @@ M.SearchJobsOutput = {
 
 M.StartJobsQueryInput = {
     type = "structure",
+    id = "StartJobsQueryInput",
     members = {
         FilterList = {
             type = "list",
@@ -13341,6 +13614,7 @@ M.StartJobsQueryInput = {
 
 M.StartJobsQueryOutput = {
     type = "structure",
+    id = "StartJobsQueryOutput",
     members = {
         Id = {
             type = "string",
@@ -13353,6 +13627,7 @@ M.StartJobsQueryOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -13375,10 +13650,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         Arn = {
             type = "string",
@@ -13399,10 +13676,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateJobTemplateInput = {
     type = "structure",
+    id = "UpdateJobTemplateInput",
     members = {
         AccelerationSettings = setmetatable({ traits = {
             json_name = "accelerationSettings",
@@ -13459,6 +13738,7 @@ M.UpdateJobTemplateInput = {
 
 M.UpdateJobTemplateOutput = {
     type = "structure",
+    id = "UpdateJobTemplateOutput",
     members = {
         JobTemplate = setmetatable({ traits = {
             json_name = "jobTemplate",
@@ -13468,6 +13748,7 @@ M.UpdateJobTemplateOutput = {
 
 M.UpdatePresetInput = {
     type = "structure",
+    id = "UpdatePresetInput",
     members = {
         Category = {
             type = "string",
@@ -13496,6 +13777,7 @@ M.UpdatePresetInput = {
 
 M.UpdatePresetOutput = {
     type = "structure",
+    id = "UpdatePresetOutput",
     members = {
         Preset = setmetatable({ traits = {
             json_name = "preset",
@@ -13505,6 +13787,7 @@ M.UpdatePresetOutput = {
 
 M.UpdateQueueInput = {
     type = "structure",
+    id = "UpdateQueueInput",
     members = {
         ConcurrentJobs = {
             type = "integer",
@@ -13545,6 +13828,7 @@ M.UpdateQueueInput = {
 
 M.UpdateQueueOutput = {
     type = "structure",
+    id = "UpdateQueueOutput",
     members = {
         Queue = setmetatable({ traits = {
             json_name = "queue",

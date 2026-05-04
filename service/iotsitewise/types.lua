@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.GroupIdentity = {
     type = "structure",
+    id = "GroupIdentity",
     members = {
         id = {
             type = "string",
@@ -24,6 +26,7 @@ M.GroupIdentity = {
 
 M.IAMRoleIdentity = {
     type = "structure",
+    id = "IAMRoleIdentity",
     members = {
         arn = {
             type = "string",
@@ -36,6 +39,7 @@ M.IAMRoleIdentity = {
 
 M.IAMUserIdentity = {
     type = "structure",
+    id = "IAMUserIdentity",
     members = {
         arn = {
             type = "string",
@@ -48,6 +52,7 @@ M.IAMUserIdentity = {
 
 M.UserIdentity = {
     type = "structure",
+    id = "UserIdentity",
     members = {
         id = {
             type = "string",
@@ -60,6 +65,7 @@ M.UserIdentity = {
 
 M.Identity = {
     type = "structure",
+    id = "Identity",
     members = {
         user = M.UserIdentity,
         group = M.GroupIdentity,
@@ -75,6 +81,7 @@ M.Permission = {
 
 M.PortalResource = {
     type = "structure",
+    id = "PortalResource",
     members = {
         id = {
             type = "string",
@@ -87,6 +94,7 @@ M.PortalResource = {
 
 M.ProjectResource = {
     type = "structure",
+    id = "ProjectResource",
     members = {
         id = {
             type = "string",
@@ -99,6 +107,7 @@ M.ProjectResource = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         portal = M.PortalResource,
         project = M.ProjectResource,
@@ -107,6 +116,7 @@ M.Resource = {
 
 M.AccessPolicySummary = {
     type = "structure",
+    id = "AccessPolicySummary",
     members = {
         id = {
             type = "string",
@@ -137,6 +147,7 @@ M.AccessPolicySummary = {
 
 M.ActionDefinition = {
     type = "structure",
+    id = "ActionDefinition",
     members = {
         actionDefinitionId = {
             type = "string",
@@ -161,6 +172,7 @@ M.ActionDefinition = {
 
 M.ActionPayload = {
     type = "structure",
+    id = "ActionPayload",
     members = {
         stringValue = {
             type = "string",
@@ -173,6 +185,7 @@ M.ActionPayload = {
 
 M.ResolveTo = {
     type = "structure",
+    id = "ResolveTo",
     members = {
         assetId = {
             type = "string",
@@ -185,6 +198,7 @@ M.ResolveTo = {
 
 M.TargetResource = {
     type = "structure",
+    id = "TargetResource",
     members = {
         assetId = {
             type = "string",
@@ -197,6 +211,7 @@ M.TargetResource = {
 
 M.ActionSummary = {
     type = "structure",
+    id = "ActionSummary",
     members = {
         actionId = {
             type = "string",
@@ -217,6 +232,7 @@ M.Quality = {
 
 M.Aggregates = {
     type = "structure",
+    id = "Aggregates",
     members = {
         average = {
             type = "double",
@@ -241,6 +257,7 @@ M.Aggregates = {
 
 M.AggregatedValue = {
     type = "structure",
+    id = "AggregatedValue",
     members = {
         timestamp = {
             type = "timestamp",
@@ -268,6 +285,7 @@ M.AggregateType = {
 
 M.Alarms = {
     type = "structure",
+    id = "Alarms",
     members = {
         alarmRoleArn = {
             type = "string",
@@ -283,6 +301,7 @@ M.Alarms = {
 
 M.AssetBindingValueFilter = {
     type = "structure",
+    id = "AssetBindingValueFilter",
     members = {
         assetId = {
             type = "string",
@@ -308,6 +327,7 @@ M.PropertyNotificationState = {
 
 M.PropertyNotification = {
     type = "structure",
+    id = "PropertyNotification",
     members = {
         topic = {
             type = "string",
@@ -326,6 +346,7 @@ M.PropertyNotification = {
 
 M.AssetPropertyPathSegment = {
     type = "structure",
+    id = "AssetPropertyPathSegment",
     members = {
         id = {
             type = "string",
@@ -338,6 +359,7 @@ M.AssetPropertyPathSegment = {
 
 M.AssetProperty = {
     type = "structure",
+    id = "AssetProperty",
     members = {
         id = {
             type = "string",
@@ -379,6 +401,7 @@ M.AssetProperty = {
 
 M.AssetCompositeModel = {
     type = "structure",
+    id = "AssetCompositeModel",
     members = {
         name = {
             type = "string",
@@ -413,6 +436,7 @@ M.AssetCompositeModel = {
 
 M.AssetCompositeModelPathSegment = {
     type = "structure",
+    id = "AssetCompositeModelPathSegment",
     members = {
         id = {
             type = "string",
@@ -425,6 +449,7 @@ M.AssetCompositeModelPathSegment = {
 
 M.AssetCompositeModelSummary = {
     type = "structure",
+    id = "AssetCompositeModelSummary",
     members = {
         id = {
             type = "string",
@@ -469,6 +494,7 @@ M.AssetErrorCode = {
 
 M.AssetErrorDetails = {
     type = "structure",
+    id = "AssetErrorDetails",
     members = {
         assetId = {
             type = "string",
@@ -493,6 +519,7 @@ M.AssetErrorDetails = {
 
 M.AssetHierarchy = {
     type = "structure",
+    id = "AssetHierarchy",
     members = {
         id = {
             type = "string",
@@ -511,6 +538,7 @@ M.AssetHierarchy = {
 
 M.AssetHierarchyInfo = {
     type = "structure",
+    id = "AssetHierarchyInfo",
     members = {
         parentAssetId = {
             type = "string",
@@ -523,6 +551,7 @@ M.AssetHierarchyInfo = {
 
 M.AssetModelBindingValueFilter = {
     type = "structure",
+    id = "AssetModelBindingValueFilter",
     members = {
         assetModelId = {
             type = "string",
@@ -535,6 +564,7 @@ M.AssetModelBindingValueFilter = {
 
 M.AssetModelPropertyPathSegment = {
     type = "structure",
+    id = "AssetModelPropertyPathSegment",
     members = {
         id = {
             type = "string",
@@ -547,6 +577,7 @@ M.AssetModelPropertyPathSegment = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         defaultValue = {
             type = "string",
@@ -561,6 +592,7 @@ M.ForwardingConfigState = {
 
 M.ForwardingConfig = {
     type = "structure",
+    id = "ForwardingConfig",
     members = {
         state = {
             type = "string",
@@ -573,6 +605,7 @@ M.ForwardingConfig = {
 
 M.MeasurementProcessingConfig = {
     type = "structure",
+    id = "MeasurementProcessingConfig",
     members = {
         forwardingConfig = setmetatable({ traits = {
             required = true,
@@ -582,6 +615,7 @@ M.MeasurementProcessingConfig = {
 
 M.Measurement = {
     type = "structure",
+    id = "Measurement",
     members = {
         processingConfig = M.MeasurementProcessingConfig,
     },
@@ -594,6 +628,7 @@ M.ComputeLocation = {
 
 M.MetricProcessingConfig = {
     type = "structure",
+    id = "MetricProcessingConfig",
     members = {
         computeLocation = {
             type = "string",
@@ -606,6 +641,7 @@ M.MetricProcessingConfig = {
 
 M.VariableValue = {
     type = "structure",
+    id = "VariableValue",
     members = {
         propertyId = {
             type = "string",
@@ -622,6 +658,7 @@ M.VariableValue = {
 
 M.ExpressionVariable = {
     type = "structure",
+    id = "ExpressionVariable",
     members = {
         name = {
             type = "string",
@@ -637,6 +674,7 @@ M.ExpressionVariable = {
 
 M.TumblingWindow = {
     type = "structure",
+    id = "TumblingWindow",
     members = {
         interval = {
             type = "string",
@@ -652,6 +690,7 @@ M.TumblingWindow = {
 
 M.MetricWindow = {
     type = "structure",
+    id = "MetricWindow",
     members = {
         tumbling = M.TumblingWindow,
     },
@@ -659,6 +698,7 @@ M.MetricWindow = {
 
 M.Metric = {
     type = "structure",
+    id = "Metric",
     members = {
         expression = {
             type = "string",
@@ -682,6 +722,7 @@ M.Metric = {
 
 M.TransformProcessingConfig = {
     type = "structure",
+    id = "TransformProcessingConfig",
     members = {
         computeLocation = {
             type = "string",
@@ -695,6 +736,7 @@ M.TransformProcessingConfig = {
 
 M.Transform = {
     type = "structure",
+    id = "Transform",
     members = {
         expression = {
             type = "string",
@@ -715,6 +757,7 @@ M.Transform = {
 
 M.PropertyType = {
     type = "structure",
+    id = "PropertyType",
     members = {
         attribute = M.Attribute,
         measurement = M.Measurement,
@@ -725,6 +768,7 @@ M.PropertyType = {
 
 M.AssetModelProperty = {
     type = "structure",
+    id = "AssetModelProperty",
     members = {
         id = {
             type = "string",
@@ -762,6 +806,7 @@ M.AssetModelProperty = {
 
 M.AssetModelCompositeModel = {
     type = "structure",
+    id = "AssetModelCompositeModel",
     members = {
         name = {
             type = "string",
@@ -793,6 +838,7 @@ M.AssetModelCompositeModel = {
 
 M.AssetModelPropertyDefinition = {
     type = "structure",
+    id = "AssetModelPropertyDefinition",
     members = {
         id = {
             type = "string",
@@ -826,6 +872,7 @@ M.AssetModelPropertyDefinition = {
 
 M.AssetModelCompositeModelDefinition = {
     type = "structure",
+    id = "AssetModelCompositeModelDefinition",
     members = {
         id = {
             type = "string",
@@ -857,6 +904,7 @@ M.AssetModelCompositeModelDefinition = {
 
 M.AssetModelCompositeModelPathSegment = {
     type = "structure",
+    id = "AssetModelCompositeModelPathSegment",
     members = {
         id = {
             type = "string",
@@ -869,6 +917,7 @@ M.AssetModelCompositeModelPathSegment = {
 
 M.AssetModelCompositeModelSummary = {
     type = "structure",
+    id = "AssetModelCompositeModelSummary",
     members = {
         id = {
             type = "string",
@@ -903,6 +952,7 @@ M.AssetModelCompositeModelSummary = {
 
 M.AssetModelHierarchy = {
     type = "structure",
+    id = "AssetModelHierarchy",
     members = {
         id = {
             type = "string",
@@ -927,6 +977,7 @@ M.AssetModelHierarchy = {
 
 M.AssetModelHierarchyDefinition = {
     type = "structure",
+    id = "AssetModelHierarchyDefinition",
     members = {
         id = {
             type = "string",
@@ -951,6 +1002,7 @@ M.AssetModelHierarchyDefinition = {
 
 M.AssetModelPropertyBindingValue = {
     type = "structure",
+    id = "AssetModelPropertyBindingValue",
     members = {
         assetModelId = {
             type = "string",
@@ -969,6 +1021,7 @@ M.AssetModelPropertyBindingValue = {
 
 M.AssetModelPropertyBindingValueFilter = {
     type = "structure",
+    id = "AssetModelPropertyBindingValueFilter",
     members = {
         assetModelId = {
             type = "string",
@@ -987,6 +1040,7 @@ M.AssetModelPropertyBindingValueFilter = {
 
 M.InterfaceSummary = {
     type = "structure",
+    id = "InterfaceSummary",
     members = {
         interfaceAssetModelId = {
             type = "string",
@@ -1005,6 +1059,7 @@ M.InterfaceSummary = {
 
 M.AssetModelPropertySummary = {
     type = "structure",
+    id = "AssetModelPropertySummary",
     members = {
         id = {
             type = "string",
@@ -1068,6 +1123,7 @@ M.DetailedErrorCode = {
 
 M.DetailedError = {
     type = "structure",
+    id = "DetailedError",
     members = {
         code = {
             type = "string",
@@ -1086,6 +1142,7 @@ M.DetailedError = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         code = {
             type = "string",
@@ -1108,6 +1165,7 @@ M.ErrorDetails = {
 
 M.AssetModelStatus = {
     type = "structure",
+    id = "AssetModelStatus",
     members = {
         state = {
             type = "string",
@@ -1127,6 +1185,7 @@ M.AssetModelType = {
 
 M.AssetModelSummary = {
     type = "structure",
+    id = "AssetModelSummary",
     members = {
         id = {
             type = "string",
@@ -1186,6 +1245,7 @@ M.AssetModelVersionType = {
 
 M.AssetPropertyBindingValue = {
     type = "structure",
+    id = "AssetPropertyBindingValue",
     members = {
         assetId = {
             type = "string",
@@ -1204,6 +1264,7 @@ M.AssetPropertyBindingValue = {
 
 M.AssetPropertyBindingValueFilter = {
     type = "structure",
+    id = "AssetPropertyBindingValueFilter",
     members = {
         assetId = {
             type = "string",
@@ -1222,6 +1283,7 @@ M.AssetPropertyBindingValueFilter = {
 
 M.AssetPropertySummary = {
     type = "structure",
+    id = "AssetPropertySummary",
     members = {
         id = {
             type = "string",
@@ -1251,6 +1313,7 @@ M.AssetPropertySummary = {
 
 M.TimeInNanos = {
     type = "structure",
+    id = "TimeInNanos",
     members = {
         timeInSeconds = {
             type = "long",
@@ -1274,6 +1337,7 @@ M.RawValueType = {
 
 M.PropertyValueNullValue = {
     type = "structure",
+    id = "PropertyValueNullValue",
     members = {
         valueType = {
             type = "string",
@@ -1286,6 +1350,7 @@ M.PropertyValueNullValue = {
 
 M.Variant = {
     type = "structure",
+    id = "Variant",
     members = {
         stringValue = {
             type = "string",
@@ -1305,6 +1370,7 @@ M.Variant = {
 
 M.AssetPropertyValue = {
     type = "structure",
+    id = "AssetPropertyValue",
     members = {
         value = setmetatable({ traits = {
             required = true,
@@ -1324,6 +1390,7 @@ M.AssetRelationshipType = {
 
 M.AssetRelationshipSummary = {
     type = "structure",
+    id = "AssetRelationshipSummary",
     members = {
         hierarchyInfo = M.AssetHierarchyInfo,
         relationshipType = {
@@ -1345,6 +1412,7 @@ M.AssetState = {
 
 M.AssetStatus = {
     type = "structure",
+    id = "AssetStatus",
     members = {
         state = {
             type = "string",
@@ -1358,6 +1426,7 @@ M.AssetStatus = {
 
 M.AssetSummary = {
     type = "structure",
+    id = "AssetSummary",
     members = {
         id = {
             type = "string",
@@ -1416,6 +1485,7 @@ M.AssetSummary = {
 
 M.AssociateAssetsInput = {
     type = "structure",
+    id = "AssociateAssetsInput",
     members = {
         assetId = {
             type = "string",
@@ -1447,10 +1517,12 @@ M.AssociateAssetsInput = {
 
 M.AssociateAssetsOutput = {
     type = "structure",
+    id = "AssociateAssetsOutput",
 }
 
 M.ConflictingOperationException = {
     type = "structure",
+    id = "ConflictingOperationException",
     error = "client",
     members = {
         message = {
@@ -1476,6 +1548,7 @@ M.ConflictingOperationException = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -1489,6 +1562,7 @@ M.InternalFailureException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -1502,6 +1576,7 @@ M.InvalidRequestException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1515,6 +1590,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -1540,6 +1616,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1553,6 +1630,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -1566,6 +1644,7 @@ M.ThrottlingException = {
 
 M.AssociatedAssetsSummary = {
     type = "structure",
+    id = "AssociatedAssetsSummary",
     members = {
         id = {
             type = "string",
@@ -1624,6 +1703,7 @@ M.AssociatedAssetsSummary = {
 
 M.AssociateTimeSeriesToAssetPropertyInput = {
     type = "structure",
+    id = "AssociateTimeSeriesToAssetPropertyInput",
     members = {
         alias = {
             type = "string",
@@ -1657,6 +1737,7 @@ M.AssociateTimeSeriesToAssetPropertyInput = {
 
 M.AssociateTimeSeriesToAssetPropertyOutput = {
     type = "structure",
+    id = "AssociateTimeSeriesToAssetPropertyOutput",
 }
 
 M.AuthMode = {
@@ -1666,6 +1747,7 @@ M.AuthMode = {
 
 M.BatchAssociateProjectAssetsInput = {
     type = "structure",
+    id = "BatchAssociateProjectAssetsInput",
     members = {
         projectId = {
             type = "string",
@@ -1692,6 +1774,7 @@ M.BatchAssociateProjectAssetsInput = {
 
 M.BatchAssociateProjectAssetsOutput = {
     type = "structure",
+    id = "BatchAssociateProjectAssetsOutput",
     members = {
         errors = {
             type = "list",
@@ -1702,6 +1785,7 @@ M.BatchAssociateProjectAssetsOutput = {
 
 M.BatchDisassociateProjectAssetsInput = {
     type = "structure",
+    id = "BatchDisassociateProjectAssetsInput",
     members = {
         projectId = {
             type = "string",
@@ -1728,6 +1812,7 @@ M.BatchDisassociateProjectAssetsInput = {
 
 M.BatchDisassociateProjectAssetsOutput = {
     type = "structure",
+    id = "BatchDisassociateProjectAssetsOutput",
     members = {
         errors = {
             type = "list",
@@ -1743,6 +1828,7 @@ M.TimeOrdering = {
 
 M.BatchGetAssetPropertyAggregatesEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyAggregatesEntry",
     members = {
         entryId = {
             type = "string",
@@ -1796,6 +1882,7 @@ M.BatchGetAssetPropertyAggregatesEntry = {
 
 M.BatchGetAssetPropertyAggregatesInput = {
     type = "structure",
+    id = "BatchGetAssetPropertyAggregatesInput",
     members = {
         entries = {
             type = "list",
@@ -1821,6 +1908,7 @@ M.BatchGetAssetPropertyAggregatesErrorCode = {
 
 M.BatchGetAssetPropertyAggregatesErrorEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyAggregatesErrorEntry",
     members = {
         errorCode = {
             type = "string",
@@ -1850,6 +1938,7 @@ M.BatchEntryCompletionStatus = {
 
 M.BatchGetAssetPropertyAggregatesErrorInfo = {
     type = "structure",
+    id = "BatchGetAssetPropertyAggregatesErrorInfo",
     members = {
         errorCode = {
             type = "string",
@@ -1868,6 +1957,7 @@ M.BatchGetAssetPropertyAggregatesErrorInfo = {
 
 M.BatchGetAssetPropertyAggregatesSkippedEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyAggregatesSkippedEntry",
     members = {
         entryId = {
             type = "string",
@@ -1887,6 +1977,7 @@ M.BatchGetAssetPropertyAggregatesSkippedEntry = {
 
 M.BatchGetAssetPropertyAggregatesSuccessEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyAggregatesSuccessEntry",
     members = {
         entryId = {
             type = "string",
@@ -1906,6 +1997,7 @@ M.BatchGetAssetPropertyAggregatesSuccessEntry = {
 
 M.BatchGetAssetPropertyAggregatesOutput = {
     type = "structure",
+    id = "BatchGetAssetPropertyAggregatesOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -1936,6 +2028,7 @@ M.BatchGetAssetPropertyAggregatesOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -1949,6 +2042,7 @@ M.ServiceUnavailableException = {
 
 M.BatchGetAssetPropertyValueEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueEntry",
     members = {
         entryId = {
             type = "string",
@@ -1970,6 +2064,7 @@ M.BatchGetAssetPropertyValueEntry = {
 
 M.BatchGetAssetPropertyValueInput = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueInput",
     members = {
         entries = {
             type = "list",
@@ -1992,6 +2087,7 @@ M.BatchGetAssetPropertyValueErrorCode = {
 
 M.BatchGetAssetPropertyValueErrorEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueErrorEntry",
     members = {
         errorCode = {
             type = "string",
@@ -2016,6 +2112,7 @@ M.BatchGetAssetPropertyValueErrorEntry = {
 
 M.BatchGetAssetPropertyValueErrorInfo = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueErrorInfo",
     members = {
         errorCode = {
             type = "string",
@@ -2034,6 +2131,7 @@ M.BatchGetAssetPropertyValueErrorInfo = {
 
 M.BatchGetAssetPropertyValueSkippedEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueSkippedEntry",
     members = {
         entryId = {
             type = "string",
@@ -2053,6 +2151,7 @@ M.BatchGetAssetPropertyValueSkippedEntry = {
 
 M.BatchGetAssetPropertyValueSuccessEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueSuccessEntry",
     members = {
         entryId = {
             type = "string",
@@ -2066,6 +2165,7 @@ M.BatchGetAssetPropertyValueSuccessEntry = {
 
 M.BatchGetAssetPropertyValueOutput = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -2096,6 +2196,7 @@ M.BatchGetAssetPropertyValueOutput = {
 
 M.BatchGetAssetPropertyValueHistoryEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueHistoryEntry",
     members = {
         entryId = {
             type = "string",
@@ -2130,6 +2231,7 @@ M.BatchGetAssetPropertyValueHistoryEntry = {
 
 M.BatchGetAssetPropertyValueHistoryInput = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueHistoryInput",
     members = {
         entries = {
             type = "list",
@@ -2155,6 +2257,7 @@ M.BatchGetAssetPropertyValueHistoryErrorCode = {
 
 M.BatchGetAssetPropertyValueHistoryErrorEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueHistoryErrorEntry",
     members = {
         errorCode = {
             type = "string",
@@ -2179,6 +2282,7 @@ M.BatchGetAssetPropertyValueHistoryErrorEntry = {
 
 M.BatchGetAssetPropertyValueHistoryErrorInfo = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueHistoryErrorInfo",
     members = {
         errorCode = {
             type = "string",
@@ -2197,6 +2301,7 @@ M.BatchGetAssetPropertyValueHistoryErrorInfo = {
 
 M.BatchGetAssetPropertyValueHistorySkippedEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueHistorySkippedEntry",
     members = {
         entryId = {
             type = "string",
@@ -2216,6 +2321,7 @@ M.BatchGetAssetPropertyValueHistorySkippedEntry = {
 
 M.BatchGetAssetPropertyValueHistorySuccessEntry = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueHistorySuccessEntry",
     members = {
         entryId = {
             type = "string",
@@ -2235,6 +2341,7 @@ M.BatchGetAssetPropertyValueHistorySuccessEntry = {
 
 M.BatchGetAssetPropertyValueHistoryOutput = {
     type = "structure",
+    id = "BatchGetAssetPropertyValueHistoryOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -2265,6 +2372,7 @@ M.BatchGetAssetPropertyValueHistoryOutput = {
 
 M.PutAssetPropertyValueEntry = {
     type = "structure",
+    id = "PutAssetPropertyValueEntry",
     members = {
         entryId = {
             type = "string",
@@ -2293,6 +2401,7 @@ M.PutAssetPropertyValueEntry = {
 
 M.BatchPutAssetPropertyValueInput = {
     type = "structure",
+    id = "BatchPutAssetPropertyValueInput",
     members = {
         enablePartialEntryProcessing = {
             type = "boolean",
@@ -2321,6 +2430,7 @@ M.BatchPutAssetPropertyValueErrorCode = {
 
 M.BatchPutAssetPropertyError = {
     type = "structure",
+    id = "BatchPutAssetPropertyError",
     members = {
         errorCode = {
             type = "string",
@@ -2346,6 +2456,7 @@ M.BatchPutAssetPropertyError = {
 
 M.BatchPutAssetPropertyErrorEntry = {
     type = "structure",
+    id = "BatchPutAssetPropertyErrorEntry",
     members = {
         entryId = {
             type = "string",
@@ -2365,6 +2476,7 @@ M.BatchPutAssetPropertyErrorEntry = {
 
 M.BatchPutAssetPropertyValueOutput = {
     type = "structure",
+    id = "BatchPutAssetPropertyValueOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -2378,6 +2490,7 @@ M.BatchPutAssetPropertyValueOutput = {
 
 M.CreateAccessPolicyInput = {
     type = "structure",
+    id = "CreateAccessPolicyInput",
     members = {
         accessPolicyIdentity = setmetatable({ traits = {
             required = true,
@@ -2407,6 +2520,7 @@ M.CreateAccessPolicyInput = {
 
 M.CreateAccessPolicyOutput = {
     type = "structure",
+    id = "CreateAccessPolicyOutput",
     members = {
         accessPolicyId = {
             type = "string",
@@ -2425,6 +2539,7 @@ M.CreateAccessPolicyOutput = {
 
 M.CreateAssetInput = {
     type = "structure",
+    id = "CreateAssetInput",
     members = {
         assetName = {
             type = "string",
@@ -2463,6 +2578,7 @@ M.CreateAssetInput = {
 
 M.CreateAssetOutput = {
     type = "structure",
+    id = "CreateAssetOutput",
     members = {
         assetId = {
             type = "string",
@@ -2484,6 +2600,7 @@ M.CreateAssetOutput = {
 
 M.CreateAssetModelInput = {
     type = "structure",
+    id = "CreateAssetModelInput",
     members = {
         assetModelName = {
             type = "string",
@@ -2531,6 +2648,7 @@ M.CreateAssetModelInput = {
 
 M.CreateAssetModelOutput = {
     type = "structure",
+    id = "CreateAssetModelOutput",
     members = {
         assetModelId = {
             type = "string",
@@ -2552,6 +2670,7 @@ M.CreateAssetModelOutput = {
 
 M.CreateAssetModelCompositeModelInput = {
     type = "structure",
+    id = "CreateAssetModelCompositeModelInput",
     members = {
         assetModelId = {
             type = "string",
@@ -2620,6 +2739,7 @@ M.CreateAssetModelCompositeModelInput = {
 
 M.CreateAssetModelCompositeModelOutput = {
     type = "structure",
+    id = "CreateAssetModelCompositeModelOutput",
     members = {
         assetModelCompositeModelId = {
             type = "string",
@@ -2642,6 +2762,7 @@ M.CreateAssetModelCompositeModelOutput = {
 
 M.PreconditionFailedException = {
     type = "structure",
+    id = "PreconditionFailedException",
     error = "client",
     members = {
         message = {
@@ -2667,6 +2788,7 @@ M.PreconditionFailedException = {
 
 M.ErrorReportLocation = {
     type = "structure",
+    id = "ErrorReportLocation",
     members = {
         bucket = {
             type = "string",
@@ -2685,6 +2807,7 @@ M.ErrorReportLocation = {
 
 M.File = {
     type = "structure",
+    id = "File",
     members = {
         bucket = {
             type = "string",
@@ -2717,6 +2840,7 @@ M.ColumnName = {
 
 M.Csv = {
     type = "structure",
+    id = "Csv",
     members = {
         columnNames = {
             type = "list",
@@ -2730,10 +2854,12 @@ M.Csv = {
 
 M.Parquet = {
     type = "structure",
+    id = "Parquet",
 }
 
 M.FileFormat = {
     type = "structure",
+    id = "FileFormat",
     members = {
         csv = M.Csv,
         parquet = M.Parquet,
@@ -2742,6 +2868,7 @@ M.FileFormat = {
 
 M.JobConfiguration = {
     type = "structure",
+    id = "JobConfiguration",
     members = {
         fileFormat = setmetatable({ traits = {
             required = true,
@@ -2751,6 +2878,7 @@ M.JobConfiguration = {
 
 M.CreateBulkImportJobInput = {
     type = "structure",
+    id = "CreateBulkImportJobInput",
     members = {
         jobName = {
             type = "string",
@@ -2797,6 +2925,7 @@ M.JobStatus = {
 
 M.CreateBulkImportJobOutput = {
     type = "structure",
+    id = "CreateBulkImportJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -2821,6 +2950,7 @@ M.CreateBulkImportJobOutput = {
 
 M.ComputationModelAnomalyDetectionConfiguration = {
     type = "structure",
+    id = "ComputationModelAnomalyDetectionConfiguration",
     members = {
         inputProperties = {
             type = "string",
@@ -2839,6 +2969,7 @@ M.ComputationModelAnomalyDetectionConfiguration = {
 
 M.ComputationModelConfiguration = {
     type = "structure",
+    id = "ComputationModelConfiguration",
     members = {
         anomalyDetection = M.ComputationModelAnomalyDetectionConfiguration,
     },
@@ -2854,6 +2985,7 @@ M.ComputationModelState = {
 
 M.ComputationModelStatus = {
     type = "structure",
+    id = "ComputationModelStatus",
     members = {
         state = {
             type = "string",
@@ -2867,6 +2999,7 @@ M.ComputationModelStatus = {
 
 M.CreateComputationModelOutput = {
     type = "structure",
+    id = "CreateComputationModelOutput",
     members = {
         computationModelId = {
             type = "string",
@@ -2888,6 +3021,7 @@ M.CreateComputationModelOutput = {
 
 M.CreateDashboardInput = {
     type = "structure",
+    id = "CreateDashboardInput",
     members = {
         projectId = {
             type = "string",
@@ -2926,6 +3060,7 @@ M.CreateDashboardInput = {
 
 M.CreateDashboardOutput = {
     type = "structure",
+    id = "CreateDashboardOutput",
     members = {
         dashboardId = {
             type = "string",
@@ -2944,6 +3079,7 @@ M.CreateDashboardOutput = {
 
 M.KendraSourceDetail = {
     type = "structure",
+    id = "KendraSourceDetail",
     members = {
         knowledgeBaseArn = {
             type = "string",
@@ -2962,6 +3098,7 @@ M.KendraSourceDetail = {
 
 M.SourceDetail = {
     type = "structure",
+    id = "SourceDetail",
     members = {
         kendra = M.KendraSourceDetail,
     },
@@ -2977,6 +3114,7 @@ M.DatasetSourceType = {
 
 M.DatasetSource = {
     type = "structure",
+    id = "DatasetSource",
     members = {
         sourceType = {
             type = "string",
@@ -2996,6 +3134,7 @@ M.DatasetSource = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         datasetId = {
             type = "string",
@@ -3036,6 +3175,7 @@ M.DatasetState = {
 
 M.DatasetStatus = {
     type = "structure",
+    id = "DatasetStatus",
     members = {
         state = {
             type = "string",
@@ -3049,6 +3189,7 @@ M.DatasetStatus = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -3070,6 +3211,7 @@ M.CreateDatasetOutput = {
 
 M.Greengrass = {
     type = "structure",
+    id = "Greengrass",
     members = {
         groupArn = {
             type = "string",
@@ -3088,6 +3230,7 @@ M.CoreDeviceOperatingSystem = {
 
 M.GreengrassV2 = {
     type = "structure",
+    id = "GreengrassV2",
     members = {
         coreDeviceThingName = {
             type = "string",
@@ -3103,6 +3246,7 @@ M.GreengrassV2 = {
 
 M.SiemensIE = {
     type = "structure",
+    id = "SiemensIE",
     members = {
         iotCoreThingName = {
             type = "string",
@@ -3115,6 +3259,7 @@ M.SiemensIE = {
 
 M.GatewayPlatform = {
     type = "structure",
+    id = "GatewayPlatform",
     members = {
         greengrass = M.Greengrass,
         greengrassV2 = M.GreengrassV2,
@@ -3124,6 +3269,7 @@ M.GatewayPlatform = {
 
 M.CreateGatewayInput = {
     type = "structure",
+    id = "CreateGatewayInput",
     members = {
         gatewayName = {
             type = "string",
@@ -3147,6 +3293,7 @@ M.CreateGatewayInput = {
 
 M.CreateGatewayOutput = {
     type = "structure",
+    id = "CreateGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -3169,6 +3316,7 @@ M.ImageFileType = {
 
 M.ImageFile = {
     type = "structure",
+    id = "ImageFile",
     members = {
         data = {
             type = "blob",
@@ -3192,6 +3340,7 @@ M.PortalType = {
 
 M.PortalTypeEntry = {
     type = "structure",
+    id = "PortalTypeEntry",
     members = {
         portalTools = {
             type = "list",
@@ -3202,6 +3351,7 @@ M.PortalTypeEntry = {
 
 M.CreatePortalInput = {
     type = "structure",
+    id = "CreatePortalInput",
     members = {
         portalName = {
             type = "string",
@@ -3262,6 +3412,7 @@ M.MonitorErrorCode = {
 
 M.MonitorErrorDetails = {
     type = "structure",
+    id = "MonitorErrorDetails",
     members = {
         code = {
             type = "string",
@@ -3283,6 +3434,7 @@ M.PortalState = {
 
 M.PortalStatus = {
     type = "structure",
+    id = "PortalStatus",
     members = {
         state = {
             type = "string",
@@ -3296,6 +3448,7 @@ M.PortalStatus = {
 
 M.CreatePortalOutput = {
     type = "structure",
+    id = "CreatePortalOutput",
     members = {
         portalId = {
             type = "string",
@@ -3329,6 +3482,7 @@ M.CreatePortalOutput = {
 
 M.CreateProjectInput = {
     type = "structure",
+    id = "CreateProjectInput",
     members = {
         portalId = {
             type = "string",
@@ -3361,6 +3515,7 @@ M.CreateProjectInput = {
 
 M.CreateProjectOutput = {
     type = "structure",
+    id = "CreateProjectOutput",
     members = {
         projectId = {
             type = "string",
@@ -3379,6 +3534,7 @@ M.CreateProjectOutput = {
 
 M.DeleteAccessPolicyInput = {
     type = "structure",
+    id = "DeleteAccessPolicyInput",
     members = {
         accessPolicyId = {
             type = "string",
@@ -3399,10 +3555,12 @@ M.DeleteAccessPolicyInput = {
 
 M.DeleteAccessPolicyOutput = {
     type = "structure",
+    id = "DeleteAccessPolicyOutput",
 }
 
 M.DeleteAssetInput = {
     type = "structure",
+    id = "DeleteAssetInput",
     members = {
         assetId = {
             type = "string",
@@ -3423,6 +3581,7 @@ M.DeleteAssetInput = {
 
 M.DeleteAssetOutput = {
     type = "structure",
+    id = "DeleteAssetOutput",
     members = {
         assetStatus = setmetatable({ traits = {
             required = true,
@@ -3432,6 +3591,7 @@ M.DeleteAssetOutput = {
 
 M.DeleteAssetModelInput = {
     type = "structure",
+    id = "DeleteAssetModelInput",
     members = {
         assetModelId = {
             type = "string",
@@ -3470,6 +3630,7 @@ M.DeleteAssetModelInput = {
 
 M.DeleteAssetModelOutput = {
     type = "structure",
+    id = "DeleteAssetModelOutput",
     members = {
         assetModelStatus = setmetatable({ traits = {
             required = true,
@@ -3479,6 +3640,7 @@ M.DeleteAssetModelOutput = {
 
 M.DeleteAssetModelCompositeModelInput = {
     type = "structure",
+    id = "DeleteAssetModelCompositeModelInput",
     members = {
         assetModelId = {
             type = "string",
@@ -3524,6 +3686,7 @@ M.DeleteAssetModelCompositeModelInput = {
 
 M.DeleteAssetModelCompositeModelOutput = {
     type = "structure",
+    id = "DeleteAssetModelCompositeModelOutput",
     members = {
         assetModelStatus = setmetatable({ traits = {
             required = true,
@@ -3533,6 +3696,7 @@ M.DeleteAssetModelCompositeModelOutput = {
 
 M.DeleteAssetModelInterfaceRelationshipInput = {
     type = "structure",
+    id = "DeleteAssetModelInterfaceRelationshipInput",
     members = {
         assetModelId = {
             type = "string",
@@ -3560,6 +3724,7 @@ M.DeleteAssetModelInterfaceRelationshipInput = {
 
 M.DeleteAssetModelInterfaceRelationshipOutput = {
     type = "structure",
+    id = "DeleteAssetModelInterfaceRelationshipOutput",
     members = {
         assetModelId = {
             type = "string",
@@ -3587,6 +3752,7 @@ M.DeleteAssetModelInterfaceRelationshipOutput = {
 
 M.DeleteComputationModelInput = {
     type = "structure",
+    id = "DeleteComputationModelInput",
     members = {
         computationModelId = {
             type = "string",
@@ -3607,6 +3773,7 @@ M.DeleteComputationModelInput = {
 
 M.DeleteComputationModelOutput = {
     type = "structure",
+    id = "DeleteComputationModelOutput",
     members = {
         computationModelStatus = setmetatable({ traits = {
             required = true,
@@ -3616,6 +3783,7 @@ M.DeleteComputationModelOutput = {
 
 M.DeleteDashboardInput = {
     type = "structure",
+    id = "DeleteDashboardInput",
     members = {
         dashboardId = {
             type = "string",
@@ -3636,10 +3804,12 @@ M.DeleteDashboardInput = {
 
 M.DeleteDashboardOutput = {
     type = "structure",
+    id = "DeleteDashboardOutput",
 }
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         datasetId = {
             type = "string",
@@ -3660,6 +3830,7 @@ M.DeleteDatasetInput = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
     members = {
         datasetStatus = setmetatable({ traits = {
             required = true,
@@ -3669,6 +3840,7 @@ M.DeleteDatasetOutput = {
 
 M.DeleteGatewayInput = {
     type = "structure",
+    id = "DeleteGatewayInput",
     members = {
         gatewayId = {
             type = "string",
@@ -3682,10 +3854,12 @@ M.DeleteGatewayInput = {
 
 M.DeleteGatewayOutput = {
     type = "structure",
+    id = "DeleteGatewayOutput",
 }
 
 M.DeletePortalInput = {
     type = "structure",
+    id = "DeletePortalInput",
     members = {
         portalId = {
             type = "string",
@@ -3706,6 +3880,7 @@ M.DeletePortalInput = {
 
 M.DeletePortalOutput = {
     type = "structure",
+    id = "DeletePortalOutput",
     members = {
         portalStatus = setmetatable({ traits = {
             required = true,
@@ -3715,6 +3890,7 @@ M.DeletePortalOutput = {
 
 M.DeleteProjectInput = {
     type = "structure",
+    id = "DeleteProjectInput",
     members = {
         projectId = {
             type = "string",
@@ -3735,10 +3911,12 @@ M.DeleteProjectInput = {
 
 M.DeleteProjectOutput = {
     type = "structure",
+    id = "DeleteProjectOutput",
 }
 
 M.DeleteTimeSeriesInput = {
     type = "structure",
+    id = "DeleteTimeSeriesInput",
     members = {
         alias = {
             type = "string",
@@ -3769,10 +3947,12 @@ M.DeleteTimeSeriesInput = {
 
 M.DeleteTimeSeriesOutput = {
     type = "structure",
+    id = "DeleteTimeSeriesOutput",
 }
 
 M.DescribeAccessPolicyInput = {
     type = "structure",
+    id = "DescribeAccessPolicyInput",
     members = {
         accessPolicyId = {
             type = "string",
@@ -3786,6 +3966,7 @@ M.DescribeAccessPolicyInput = {
 
 M.DescribeAccessPolicyOutput = {
     type = "structure",
+    id = "DescribeAccessPolicyOutput",
     members = {
         accessPolicyId = {
             type = "string",
@@ -3828,6 +4009,7 @@ M.DescribeAccessPolicyOutput = {
 
 M.DescribeActionInput = {
     type = "structure",
+    id = "DescribeActionInput",
     members = {
         actionId = {
             type = "string",
@@ -3841,6 +4023,7 @@ M.DescribeActionInput = {
 
 M.DescribeActionOutput = {
     type = "structure",
+    id = "DescribeActionOutput",
     members = {
         actionId = {
             type = "string",
@@ -3872,6 +4055,7 @@ M.DescribeActionOutput = {
 
 M.DescribeAssetInput = {
     type = "structure",
+    id = "DescribeAssetInput",
     members = {
         assetId = {
             type = "string",
@@ -3892,6 +4076,7 @@ M.DescribeAssetInput = {
 
 M.DescribeAssetOutput = {
     type = "structure",
+    id = "DescribeAssetOutput",
     members = {
         assetId = {
             type = "string",
@@ -3965,6 +4150,7 @@ M.DescribeAssetOutput = {
 
 M.DescribeAssetCompositeModelInput = {
     type = "structure",
+    id = "DescribeAssetCompositeModelInput",
     members = {
         assetId = {
             type = "string",
@@ -3985,6 +4171,7 @@ M.DescribeAssetCompositeModelInput = {
 
 M.DescribeAssetCompositeModelOutput = {
     type = "structure",
+    id = "DescribeAssetCompositeModelOutput",
     members = {
         assetId = {
             type = "string",
@@ -4049,6 +4236,7 @@ M.DescribeAssetCompositeModelOutput = {
 
 M.DescribeAssetModelInput = {
     type = "structure",
+    id = "DescribeAssetModelInput",
     members = {
         assetModelId = {
             type = "string",
@@ -4075,6 +4263,7 @@ M.DescribeAssetModelInput = {
 
 M.InterfaceRelationship = {
     type = "structure",
+    id = "InterfaceRelationship",
     members = {
         id = {
             type = "string",
@@ -4087,6 +4276,7 @@ M.InterfaceRelationship = {
 
 M.DescribeAssetModelOutput = {
     type = "structure",
+    id = "DescribeAssetModelOutput",
     members = {
         assetModelId = {
             type = "string",
@@ -4173,6 +4363,7 @@ M.DescribeAssetModelOutput = {
 
 M.DescribeAssetModelCompositeModelInput = {
     type = "structure",
+    id = "DescribeAssetModelCompositeModelInput",
     members = {
         assetModelId = {
             type = "string",
@@ -4199,6 +4390,7 @@ M.DescribeAssetModelCompositeModelInput = {
 
 M.CompositionRelationshipItem = {
     type = "structure",
+    id = "CompositionRelationshipItem",
     members = {
         id = {
             type = "string",
@@ -4208,6 +4400,7 @@ M.CompositionRelationshipItem = {
 
 M.CompositionDetails = {
     type = "structure",
+    id = "CompositionDetails",
     members = {
         compositionRelationship = {
             type = "list",
@@ -4218,6 +4411,7 @@ M.CompositionDetails = {
 
 M.DescribeAssetModelCompositeModelOutput = {
     type = "structure",
+    id = "DescribeAssetModelCompositeModelOutput",
     members = {
         assetModelId = {
             type = "string",
@@ -4283,6 +4477,7 @@ M.DescribeAssetModelCompositeModelOutput = {
 
 M.DescribeAssetModelInterfaceRelationshipInput = {
     type = "structure",
+    id = "DescribeAssetModelInterfaceRelationshipInput",
     members = {
         assetModelId = {
             type = "string",
@@ -4303,6 +4498,7 @@ M.DescribeAssetModelInterfaceRelationshipInput = {
 
 M.HierarchyMapping = {
     type = "structure",
+    id = "HierarchyMapping",
     members = {
         assetModelHierarchyId = {
             type = "string",
@@ -4321,6 +4517,7 @@ M.HierarchyMapping = {
 
 M.PropertyMapping = {
     type = "structure",
+    id = "PropertyMapping",
     members = {
         assetModelPropertyId = {
             type = "string",
@@ -4339,6 +4536,7 @@ M.PropertyMapping = {
 
 M.DescribeAssetModelInterfaceRelationshipOutput = {
     type = "structure",
+    id = "DescribeAssetModelInterfaceRelationshipOutput",
     members = {
         assetModelId = {
             type = "string",
@@ -4371,6 +4569,7 @@ M.DescribeAssetModelInterfaceRelationshipOutput = {
 
 M.DescribeAssetPropertyInput = {
     type = "structure",
+    id = "DescribeAssetPropertyInput",
     members = {
         assetId = {
             type = "string",
@@ -4391,6 +4590,7 @@ M.DescribeAssetPropertyInput = {
 
 M.Property = {
     type = "structure",
+    id = "Property",
     members = {
         id = {
             type = "string",
@@ -4430,6 +4630,7 @@ M.Property = {
 
 M.CompositeModelProperty = {
     type = "structure",
+    id = "CompositeModelProperty",
     members = {
         name = {
             type = "string",
@@ -4457,6 +4658,7 @@ M.CompositeModelProperty = {
 
 M.DescribeAssetPropertyOutput = {
     type = "structure",
+    id = "DescribeAssetPropertyOutput",
     members = {
         assetId = {
             type = "string",
@@ -4486,6 +4688,7 @@ M.DescribeAssetPropertyOutput = {
 
 M.DescribeBulkImportJobInput = {
     type = "structure",
+    id = "DescribeBulkImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -4499,6 +4702,7 @@ M.DescribeBulkImportJobInput = {
 
 M.DescribeBulkImportJobOutput = {
     type = "structure",
+    id = "DescribeBulkImportJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -4560,6 +4764,7 @@ M.DescribeBulkImportJobOutput = {
 
 M.DescribeComputationModelInput = {
     type = "structure",
+    id = "DescribeComputationModelInput",
     members = {
         computationModelId = {
             type = "string",
@@ -4583,6 +4788,7 @@ M.ResolveToResourceType = {
 
 M.DescribeComputationModelExecutionSummaryInput = {
     type = "structure",
+    id = "DescribeComputationModelExecutionSummaryInput",
     members = {
         computationModelId = {
             type = "string",
@@ -4608,6 +4814,7 @@ M.DescribeComputationModelExecutionSummaryInput = {
 
 M.DescribeComputationModelExecutionSummaryOutput = {
     type = "structure",
+    id = "DescribeComputationModelExecutionSummaryOutput",
     members = {
         computationModelId = {
             type = "string",
@@ -4629,6 +4836,7 @@ M.DescribeComputationModelExecutionSummaryOutput = {
 
 M.DescribeDashboardInput = {
     type = "structure",
+    id = "DescribeDashboardInput",
     members = {
         dashboardId = {
             type = "string",
@@ -4642,6 +4850,7 @@ M.DescribeDashboardInput = {
 
 M.DescribeDashboardOutput = {
     type = "structure",
+    id = "DescribeDashboardOutput",
     members = {
         dashboardId = {
             type = "string",
@@ -4693,6 +4902,7 @@ M.DescribeDashboardOutput = {
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         datasetId = {
             type = "string",
@@ -4706,6 +4916,7 @@ M.DescribeDatasetInput = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -4757,10 +4968,12 @@ M.DescribeDatasetOutput = {
 
 M.DescribeDefaultEncryptionConfigurationInput = {
     type = "structure",
+    id = "DescribeDefaultEncryptionConfigurationInput",
 }
 
 M.ConfigurationErrorDetails = {
     type = "structure",
+    id = "ConfigurationErrorDetails",
     members = {
         code = {
             type = "string",
@@ -4785,6 +4998,7 @@ M.ConfigurationState = {
 
 M.ConfigurationStatus = {
     type = "structure",
+    id = "ConfigurationStatus",
     members = {
         state = {
             type = "string",
@@ -4803,6 +5017,7 @@ M.EncryptionType = {
 
 M.DescribeDefaultEncryptionConfigurationOutput = {
     type = "structure",
+    id = "DescribeDefaultEncryptionConfigurationOutput",
     members = {
         encryptionType = {
             type = "string",
@@ -4821,6 +5036,7 @@ M.DescribeDefaultEncryptionConfigurationOutput = {
 
 M.DescribeExecutionInput = {
     type = "structure",
+    id = "DescribeExecutionInput",
     members = {
         executionId = {
             type = "string",
@@ -4840,6 +5056,7 @@ M.ExecutionState = {
 
 M.ExecutionStatus = {
     type = "structure",
+    id = "ExecutionStatus",
     members = {
         state = {
             type = "string",
@@ -4852,6 +5069,7 @@ M.ExecutionStatus = {
 
 M.DescribeExecutionOutput = {
     type = "structure",
+    id = "DescribeExecutionOutput",
     members = {
         executionId = {
             type = "string",
@@ -4902,6 +5120,7 @@ M.DescribeExecutionOutput = {
 
 M.DescribeGatewayInput = {
     type = "structure",
+    id = "DescribeGatewayInput",
     members = {
         gatewayId = {
             type = "string",
@@ -4923,6 +5142,7 @@ M.CapabilitySyncStatus = {
 
 M.GatewayCapabilitySummary = {
     type = "structure",
+    id = "GatewayCapabilitySummary",
     members = {
         capabilityNamespace = {
             type = "string",
@@ -4941,6 +5161,7 @@ M.GatewayCapabilitySummary = {
 
 M.DescribeGatewayOutput = {
     type = "structure",
+    id = "DescribeGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -4988,6 +5209,7 @@ M.DescribeGatewayOutput = {
 
 M.DescribeGatewayCapabilityConfigurationInput = {
     type = "structure",
+    id = "DescribeGatewayCapabilityConfigurationInput",
     members = {
         gatewayId = {
             type = "string",
@@ -5008,6 +5230,7 @@ M.DescribeGatewayCapabilityConfigurationInput = {
 
 M.DescribeGatewayCapabilityConfigurationOutput = {
     type = "structure",
+    id = "DescribeGatewayCapabilityConfigurationOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -5038,6 +5261,7 @@ M.DescribeGatewayCapabilityConfigurationOutput = {
 
 M.DescribeLoggingOptionsInput = {
     type = "structure",
+    id = "DescribeLoggingOptionsInput",
 }
 
 M.LoggingLevel = {
@@ -5048,6 +5272,7 @@ M.LoggingLevel = {
 
 M.LoggingOptions = {
     type = "structure",
+    id = "LoggingOptions",
     members = {
         level = {
             type = "string",
@@ -5060,6 +5285,7 @@ M.LoggingOptions = {
 
 M.DescribeLoggingOptionsOutput = {
     type = "structure",
+    id = "DescribeLoggingOptionsOutput",
     members = {
         loggingOptions = setmetatable({ traits = {
             required = true,
@@ -5069,6 +5295,7 @@ M.DescribeLoggingOptionsOutput = {
 
 M.DescribePortalInput = {
     type = "structure",
+    id = "DescribePortalInput",
     members = {
         portalId = {
             type = "string",
@@ -5082,6 +5309,7 @@ M.DescribePortalInput = {
 
 M.ImageLocation = {
     type = "structure",
+    id = "ImageLocation",
     members = {
         id = {
             type = "string",
@@ -5100,6 +5328,7 @@ M.ImageLocation = {
 
 M.DescribePortalOutput = {
     type = "structure",
+    id = "DescribePortalOutput",
     members = {
         portalId = {
             type = "string",
@@ -5179,6 +5408,7 @@ M.DescribePortalOutput = {
 
 M.DescribeProjectInput = {
     type = "structure",
+    id = "DescribeProjectInput",
     members = {
         projectId = {
             type = "string",
@@ -5192,6 +5422,7 @@ M.DescribeProjectInput = {
 
 M.DescribeProjectOutput = {
     type = "structure",
+    id = "DescribeProjectOutput",
     members = {
         projectId = {
             type = "string",
@@ -5237,6 +5468,7 @@ M.DescribeProjectOutput = {
 
 M.DescribeStorageConfigurationInput = {
     type = "structure",
+    id = "DescribeStorageConfigurationInput",
 }
 
 M.DisassociatedDataStorageState = {
@@ -5246,6 +5478,7 @@ M.DisassociatedDataStorageState = {
 
 M.CustomerManagedS3Storage = {
     type = "structure",
+    id = "CustomerManagedS3Storage",
     members = {
         s3ResourceArn = {
             type = "string",
@@ -5264,6 +5497,7 @@ M.CustomerManagedS3Storage = {
 
 M.MultiLayerStorage = {
     type = "structure",
+    id = "MultiLayerStorage",
     members = {
         customerManagedS3Storage = setmetatable({ traits = {
             required = true,
@@ -5273,6 +5507,7 @@ M.MultiLayerStorage = {
 
 M.RetentionPeriod = {
     type = "structure",
+    id = "RetentionPeriod",
     members = {
         numberOfDays = {
             type = "integer",
@@ -5295,6 +5530,7 @@ M.WarmTierState = {
 
 M.WarmTierRetentionPeriod = {
     type = "structure",
+    id = "WarmTierRetentionPeriod",
     members = {
         numberOfDays = {
             type = "integer",
@@ -5307,6 +5543,7 @@ M.WarmTierRetentionPeriod = {
 
 M.DescribeStorageConfigurationOutput = {
     type = "structure",
+    id = "DescribeStorageConfigurationOutput",
     members = {
         storageType = {
             type = "string",
@@ -5337,6 +5574,7 @@ M.DescribeStorageConfigurationOutput = {
 
 M.DescribeTimeSeriesInput = {
     type = "structure",
+    id = "DescribeTimeSeriesInput",
     members = {
         alias = {
             type = "string",
@@ -5361,6 +5599,7 @@ M.DescribeTimeSeriesInput = {
 
 M.DescribeTimeSeriesOutput = {
     type = "structure",
+    id = "DescribeTimeSeriesOutput",
     members = {
         assetId = {
             type = "string",
@@ -5409,6 +5648,7 @@ M.DescribeTimeSeriesOutput = {
 
 M.DisassociateAssetsInput = {
     type = "structure",
+    id = "DisassociateAssetsInput",
     members = {
         assetId = {
             type = "string",
@@ -5440,10 +5680,12 @@ M.DisassociateAssetsInput = {
 
 M.DisassociateAssetsOutput = {
     type = "structure",
+    id = "DisassociateAssetsOutput",
 }
 
 M.DisassociateTimeSeriesFromAssetPropertyInput = {
     type = "structure",
+    id = "DisassociateTimeSeriesFromAssetPropertyInput",
     members = {
         alias = {
             type = "string",
@@ -5477,10 +5719,12 @@ M.DisassociateTimeSeriesFromAssetPropertyInput = {
 
 M.DisassociateTimeSeriesFromAssetPropertyOutput = {
     type = "structure",
+    id = "DisassociateTimeSeriesFromAssetPropertyOutput",
 }
 
 M.ExecuteActionInput = {
     type = "structure",
+    id = "ExecuteActionInput",
     members = {
         targetResource = setmetatable({ traits = {
             required = true,
@@ -5503,6 +5747,7 @@ M.ExecuteActionInput = {
 
 M.ExecuteActionOutput = {
     type = "structure",
+    id = "ExecuteActionOutput",
     members = {
         actionId = {
             type = "string",
@@ -5515,6 +5760,7 @@ M.ExecuteActionOutput = {
 
 M.ExecuteQueryInput = {
     type = "structure",
+    id = "ExecuteQueryInput",
     members = {
         queryStatement = {
             type = "string",
@@ -5547,6 +5793,7 @@ M.ScalarType = {
 
 M.ColumnType = {
     type = "structure",
+    id = "ColumnType",
     members = {
         scalarType = {
             type = "string",
@@ -5556,6 +5803,7 @@ M.ColumnType = {
 
 M.ColumnInfo = {
     type = "structure",
+    id = "ColumnInfo",
     members = {
         name = {
             type = "string",
@@ -5566,6 +5814,7 @@ M.ColumnInfo = {
 
 M.QueryTimeoutException = {
     type = "structure",
+    id = "QueryTimeoutException",
     error = "client",
     members = {
         message = {
@@ -5576,6 +5825,7 @@ M.QueryTimeoutException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -5586,6 +5836,7 @@ M.ValidationException = {
 
 M.GetAssetPropertyAggregatesInput = {
     type = "structure",
+    id = "GetAssetPropertyAggregatesInput",
     members = {
         assetId = {
             type = "string",
@@ -5664,6 +5915,7 @@ M.GetAssetPropertyAggregatesInput = {
 
 M.GetAssetPropertyAggregatesOutput = {
     type = "structure",
+    id = "GetAssetPropertyAggregatesOutput",
     members = {
         aggregatedValues = {
             type = "list",
@@ -5680,6 +5932,7 @@ M.GetAssetPropertyAggregatesOutput = {
 
 M.GetAssetPropertyValueInput = {
     type = "structure",
+    id = "GetAssetPropertyValueInput",
     members = {
         assetId = {
             type = "string",
@@ -5704,6 +5957,7 @@ M.GetAssetPropertyValueInput = {
 
 M.GetAssetPropertyValueOutput = {
     type = "structure",
+    id = "GetAssetPropertyValueOutput",
     members = {
         propertyValue = M.AssetPropertyValue,
     },
@@ -5711,6 +5965,7 @@ M.GetAssetPropertyValueOutput = {
 
 M.GetAssetPropertyValueHistoryInput = {
     type = "structure",
+    id = "GetAssetPropertyValueHistoryInput",
     members = {
         assetId = {
             type = "string",
@@ -5772,6 +6027,7 @@ M.GetAssetPropertyValueHistoryInput = {
 
 M.GetAssetPropertyValueHistoryOutput = {
     type = "structure",
+    id = "GetAssetPropertyValueHistoryOutput",
     members = {
         assetPropertyValueHistory = {
             type = "list",
@@ -5788,6 +6044,7 @@ M.GetAssetPropertyValueHistoryOutput = {
 
 M.GetInterpolatedAssetPropertyValuesInput = {
     type = "structure",
+    id = "GetInterpolatedAssetPropertyValuesInput",
     members = {
         assetId = {
             type = "string",
@@ -5877,6 +6134,7 @@ M.GetInterpolatedAssetPropertyValuesInput = {
 
 M.InterpolatedAssetPropertyValue = {
     type = "structure",
+    id = "InterpolatedAssetPropertyValue",
     members = {
         timestamp = setmetatable({ traits = {
             required = true,
@@ -5889,6 +6147,7 @@ M.InterpolatedAssetPropertyValue = {
 
 M.GetInterpolatedAssetPropertyValuesOutput = {
     type = "structure",
+    id = "GetInterpolatedAssetPropertyValuesOutput",
     members = {
         interpolatedAssetPropertyValues = {
             type = "list",
@@ -5905,6 +6164,7 @@ M.GetInterpolatedAssetPropertyValuesOutput = {
 
 M.InvokeAssistantInput = {
     type = "structure",
+    id = "InvokeAssistantInput",
     members = {
         conversationId = {
             type = "string",
@@ -5926,6 +6186,7 @@ M.InvokeAssistantInput = {
 
 M.Content = {
     type = "structure",
+    id = "Content",
     members = {
         text = {
             type = "string",
@@ -5935,6 +6196,7 @@ M.Content = {
 
 M.Location = {
     type = "structure",
+    id = "Location",
     members = {
         uri = {
             type = "string",
@@ -5944,6 +6206,7 @@ M.Location = {
 
 M.Source = {
     type = "structure",
+    id = "Source",
     members = {
         arn = {
             type = "string",
@@ -5954,6 +6217,7 @@ M.Source = {
 
 M.DataSetReference = {
     type = "structure",
+    id = "DataSetReference",
     members = {
         datasetArn = {
             type = "string",
@@ -5964,6 +6228,7 @@ M.DataSetReference = {
 
 M.Reference = {
     type = "structure",
+    id = "Reference",
     members = {
         dataset = M.DataSetReference,
     },
@@ -5971,6 +6236,7 @@ M.Reference = {
 
 M.Citation = {
     type = "structure",
+    id = "Citation",
     members = {
         reference = M.Reference,
         content = M.Content,
@@ -5979,6 +6245,7 @@ M.Citation = {
 
 M.InvocationOutput = {
     type = "structure",
+    id = "InvocationOutput",
     members = {
         message = {
             type = "string",
@@ -5992,6 +6259,7 @@ M.InvocationOutput = {
 
 M.Trace = {
     type = "structure",
+    id = "Trace",
     members = {
         text = {
             type = "string",
@@ -6001,6 +6269,7 @@ M.Trace = {
 
 M.ResponseStream = {
     type = "union",
+    id = "ResponseStream",
     members = {
         trace = M.Trace,
         output = M.InvocationOutput,
@@ -6016,6 +6285,7 @@ M.ResponseStream = {
 
 M.InvokeAssistantOutput = {
     type = "structure",
+    id = "InvokeAssistantOutput",
     members = {
         body = setmetatable({ traits = {
             http_payload = true,
@@ -6044,6 +6314,7 @@ M.ResourceType = {
 
 M.ListAccessPoliciesInput = {
     type = "structure",
+    id = "ListAccessPoliciesInput",
     members = {
         identityType = {
             type = "string",
@@ -6092,6 +6363,7 @@ M.ListAccessPoliciesInput = {
 
 M.ListAccessPoliciesOutput = {
     type = "structure",
+    id = "ListAccessPoliciesOutput",
     members = {
         accessPolicySummaries = {
             type = "list",
@@ -6113,6 +6385,7 @@ M.TargetResourceType = {
 
 M.ListActionsInput = {
     type = "structure",
+    id = "ListActionsInput",
     members = {
         targetResourceType = {
             type = "string",
@@ -6157,6 +6430,7 @@ M.ListActionsInput = {
 
 M.ListActionsOutput = {
     type = "structure",
+    id = "ListActionsOutput",
     members = {
         actionSummaries = {
             type = "list",
@@ -6176,6 +6450,7 @@ M.ListActionsOutput = {
 
 M.ListAssetModelCompositeModelsInput = {
     type = "structure",
+    id = "ListAssetModelCompositeModelsInput",
     members = {
         assetModelId = {
             type = "string",
@@ -6207,6 +6482,7 @@ M.ListAssetModelCompositeModelsInput = {
 
 M.ListAssetModelCompositeModelsOutput = {
     type = "structure",
+    id = "ListAssetModelCompositeModelsOutput",
     members = {
         assetModelCompositeModelSummaries = {
             type = "list",
@@ -6228,6 +6504,7 @@ M.ListAssetModelPropertiesFilter = {
 
 M.ListAssetModelPropertiesInput = {
     type = "structure",
+    id = "ListAssetModelPropertiesInput",
     members = {
         assetModelId = {
             type = "string",
@@ -6265,6 +6542,7 @@ M.ListAssetModelPropertiesInput = {
 
 M.ListAssetModelPropertiesOutput = {
     type = "structure",
+    id = "ListAssetModelPropertiesOutput",
     members = {
         assetModelPropertySummaries = {
             type = "list",
@@ -6281,6 +6559,7 @@ M.ListAssetModelPropertiesOutput = {
 
 M.ListAssetModelsInput = {
     type = "structure",
+    id = "ListAssetModelsInput",
     members = {
         assetModelTypes = {
             type = "list",
@@ -6312,6 +6591,7 @@ M.ListAssetModelsInput = {
 
 M.ListAssetModelsOutput = {
     type = "structure",
+    id = "ListAssetModelsOutput",
     members = {
         assetModelSummaries = {
             type = "list",
@@ -6333,6 +6613,7 @@ M.ListAssetPropertiesFilter = {
 
 M.ListAssetPropertiesInput = {
     type = "structure",
+    id = "ListAssetPropertiesInput",
     members = {
         assetId = {
             type = "string",
@@ -6364,6 +6645,7 @@ M.ListAssetPropertiesInput = {
 
 M.ListAssetPropertiesOutput = {
     type = "structure",
+    id = "ListAssetPropertiesOutput",
     members = {
         assetPropertySummaries = {
             type = "list",
@@ -6384,6 +6666,7 @@ M.TraversalType = {
 
 M.ListAssetRelationshipsInput = {
     type = "structure",
+    id = "ListAssetRelationshipsInput",
     members = {
         assetId = {
             type = "string",
@@ -6416,6 +6699,7 @@ M.ListAssetRelationshipsInput = {
 
 M.ListAssetRelationshipsOutput = {
     type = "structure",
+    id = "ListAssetRelationshipsOutput",
     members = {
         assetRelationshipSummaries = {
             type = "list",
@@ -6437,6 +6721,7 @@ M.ListAssetsFilter = {
 
 M.ListAssetsInput = {
     type = "structure",
+    id = "ListAssetsInput",
     members = {
         nextToken = {
             type = "string",
@@ -6467,6 +6752,7 @@ M.ListAssetsInput = {
 
 M.ListAssetsOutput = {
     type = "structure",
+    id = "ListAssetsOutput",
     members = {
         assetSummaries = {
             type = "list",
@@ -6488,6 +6774,7 @@ M.TraversalDirection = {
 
 M.ListAssociatedAssetsInput = {
     type = "structure",
+    id = "ListAssociatedAssetsInput",
     members = {
         assetId = {
             type = "string",
@@ -6525,6 +6812,7 @@ M.ListAssociatedAssetsInput = {
 
 M.ListAssociatedAssetsOutput = {
     type = "structure",
+    id = "ListAssociatedAssetsOutput",
     members = {
         assetSummaries = {
             type = "list",
@@ -6551,6 +6839,7 @@ M.ListBulkImportJobsFilter = {
 
 M.ListBulkImportJobsInput = {
     type = "structure",
+    id = "ListBulkImportJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -6575,6 +6864,7 @@ M.ListBulkImportJobsInput = {
 
 M.JobSummary = {
     type = "structure",
+    id = "JobSummary",
     members = {
         id = {
             type = "string",
@@ -6599,6 +6889,7 @@ M.JobSummary = {
 
 M.ListBulkImportJobsOutput = {
     type = "structure",
+    id = "ListBulkImportJobsOutput",
     members = {
         jobSummaries = {
             type = "list",
@@ -6615,6 +6906,7 @@ M.ListBulkImportJobsOutput = {
 
 M.ListCompositionRelationshipsInput = {
     type = "structure",
+    id = "ListCompositionRelationshipsInput",
     members = {
         assetModelId = {
             type = "string",
@@ -6640,6 +6932,7 @@ M.ListCompositionRelationshipsInput = {
 
 M.CompositionRelationshipSummary = {
     type = "structure",
+    id = "CompositionRelationshipSummary",
     members = {
         assetModelId = {
             type = "string",
@@ -6664,6 +6957,7 @@ M.CompositionRelationshipSummary = {
 
 M.ListCompositionRelationshipsOutput = {
     type = "structure",
+    id = "ListCompositionRelationshipsOutput",
     members = {
         compositionRelationshipSummaries = {
             type = "list",
@@ -6680,6 +6974,7 @@ M.ListCompositionRelationshipsOutput = {
 
 M.DataBindingValueFilter = {
     type = "structure",
+    id = "DataBindingValueFilter",
     members = {
         asset = M.AssetBindingValueFilter,
         assetModel = M.AssetModelBindingValueFilter,
@@ -6690,6 +6985,7 @@ M.DataBindingValueFilter = {
 
 M.ListComputationModelDataBindingUsagesInput = {
     type = "structure",
+    id = "ListComputationModelDataBindingUsagesInput",
     members = {
         dataBindingValueFilter = setmetatable({ traits = {
             required = true,
@@ -6705,6 +7001,7 @@ M.ListComputationModelDataBindingUsagesInput = {
 
 M.DataBindingValue = {
     type = "structure",
+    id = "DataBindingValue",
     members = {
         assetModelProperty = M.AssetModelPropertyBindingValue,
         assetProperty = M.AssetPropertyBindingValue,
@@ -6713,6 +7010,7 @@ M.DataBindingValue = {
 
 M.MatchedDataBinding = {
     type = "structure",
+    id = "MatchedDataBinding",
     members = {
         value = setmetatable({ traits = {
             required = true,
@@ -6722,6 +7020,7 @@ M.MatchedDataBinding = {
 
 M.ComputationModelDataBindingUsageSummary = {
     type = "structure",
+    id = "ComputationModelDataBindingUsageSummary",
     members = {
         computationModelIds = {
             type = "list",
@@ -6738,6 +7037,7 @@ M.ComputationModelDataBindingUsageSummary = {
 
 M.ListComputationModelDataBindingUsagesOutput = {
     type = "structure",
+    id = "ListComputationModelDataBindingUsagesOutput",
     members = {
         dataBindingUsageSummaries = {
             type = "list",
@@ -6754,6 +7054,7 @@ M.ListComputationModelDataBindingUsagesOutput = {
 
 M.ListComputationModelResolveToResourcesInput = {
     type = "structure",
+    id = "ListComputationModelResolveToResourcesInput",
     members = {
         computationModelId = {
             type = "string",
@@ -6779,6 +7080,7 @@ M.ListComputationModelResolveToResourcesInput = {
 
 M.ComputationModelResolveToResourceSummary = {
     type = "structure",
+    id = "ComputationModelResolveToResourceSummary",
     members = {
         resolveTo = M.ResolveTo,
     },
@@ -6786,6 +7088,7 @@ M.ComputationModelResolveToResourceSummary = {
 
 M.ListComputationModelResolveToResourcesOutput = {
     type = "structure",
+    id = "ListComputationModelResolveToResourcesOutput",
     members = {
         computationModelResolveToResourceSummaries = {
             type = "list",
@@ -6806,6 +7109,7 @@ M.ComputationModelType = {
 
 M.ListComputationModelsInput = {
     type = "structure",
+    id = "ListComputationModelsInput",
     members = {
         computationModelType = {
             type = "string",
@@ -6830,6 +7134,7 @@ M.ListComputationModelsInput = {
 
 M.ComputationModelSummary = {
     type = "structure",
+    id = "ComputationModelSummary",
     members = {
         id = {
             type = "string",
@@ -6884,6 +7189,7 @@ M.ComputationModelSummary = {
 
 M.ListComputationModelsOutput = {
     type = "structure",
+    id = "ListComputationModelsOutput",
     members = {
         computationModelSummaries = {
             type = "list",
@@ -6900,6 +7206,7 @@ M.ListComputationModelsOutput = {
 
 M.ListDashboardsInput = {
     type = "structure",
+    id = "ListDashboardsInput",
     members = {
         projectId = {
             type = "string",
@@ -6925,6 +7232,7 @@ M.ListDashboardsInput = {
 
 M.DashboardSummary = {
     type = "structure",
+    id = "DashboardSummary",
     members = {
         id = {
             type = "string",
@@ -6952,6 +7260,7 @@ M.DashboardSummary = {
 
 M.ListDashboardsOutput = {
     type = "structure",
+    id = "ListDashboardsOutput",
     members = {
         dashboardSummaries = {
             type = "list",
@@ -6968,6 +7277,7 @@ M.ListDashboardsOutput = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         sourceType = {
             type = "string",
@@ -6993,6 +7303,7 @@ M.ListDatasetsInput = {
 
 M.DatasetSummary = {
     type = "structure",
+    id = "DatasetSummary",
     members = {
         id = {
             type = "string",
@@ -7038,6 +7349,7 @@ M.DatasetSummary = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         datasetSummaries = {
             type = "list",
@@ -7054,6 +7366,7 @@ M.ListDatasetsOutput = {
 
 M.ListExecutionsInput = {
     type = "structure",
+    id = "ListExecutionsInput",
     members = {
         targetResourceType = {
             type = "string",
@@ -7104,6 +7417,7 @@ M.ListExecutionsInput = {
 
 M.ExecutionSummary = {
     type = "structure",
+    id = "ExecutionSummary",
     members = {
         executionId = {
             type = "string",
@@ -7144,6 +7458,7 @@ M.ExecutionSummary = {
 
 M.ListExecutionsOutput = {
     type = "structure",
+    id = "ListExecutionsOutput",
     members = {
         executionSummaries = {
             type = "list",
@@ -7160,6 +7475,7 @@ M.ListExecutionsOutput = {
 
 M.ListGatewaysInput = {
     type = "structure",
+    id = "ListGatewaysInput",
     members = {
         nextToken = {
             type = "string",
@@ -7178,6 +7494,7 @@ M.ListGatewaysInput = {
 
 M.GatewaySummary = {
     type = "structure",
+    id = "GatewaySummary",
     members = {
         gatewayId = {
             type = "string",
@@ -7216,6 +7533,7 @@ M.GatewaySummary = {
 
 M.ListGatewaysOutput = {
     type = "structure",
+    id = "ListGatewaysOutput",
     members = {
         gatewaySummaries = {
             type = "list",
@@ -7232,6 +7550,7 @@ M.ListGatewaysOutput = {
 
 M.ListInterfaceRelationshipsInput = {
     type = "structure",
+    id = "ListInterfaceRelationshipsInput",
     members = {
         interfaceAssetModelId = {
             type = "string",
@@ -7257,6 +7576,7 @@ M.ListInterfaceRelationshipsInput = {
 
 M.InterfaceRelationshipSummary = {
     type = "structure",
+    id = "InterfaceRelationshipSummary",
     members = {
         id = {
             type = "string",
@@ -7269,6 +7589,7 @@ M.InterfaceRelationshipSummary = {
 
 M.ListInterfaceRelationshipsOutput = {
     type = "structure",
+    id = "ListInterfaceRelationshipsOutput",
     members = {
         interfaceRelationshipSummaries = {
             type = "list",
@@ -7285,6 +7606,7 @@ M.ListInterfaceRelationshipsOutput = {
 
 M.ListPortalsInput = {
     type = "structure",
+    id = "ListPortalsInput",
     members = {
         nextToken = {
             type = "string",
@@ -7303,6 +7625,7 @@ M.ListPortalsInput = {
 
 M.PortalSummary = {
     type = "structure",
+    id = "PortalSummary",
     members = {
         id = {
             type = "string",
@@ -7345,6 +7668,7 @@ M.PortalSummary = {
 
 M.ListPortalsOutput = {
     type = "structure",
+    id = "ListPortalsOutput",
     members = {
         portalSummaries = {
             type = "list",
@@ -7358,6 +7682,7 @@ M.ListPortalsOutput = {
 
 M.ListProjectAssetsInput = {
     type = "structure",
+    id = "ListProjectAssetsInput",
     members = {
         projectId = {
             type = "string",
@@ -7383,6 +7708,7 @@ M.ListProjectAssetsInput = {
 
 M.ListProjectAssetsOutput = {
     type = "structure",
+    id = "ListProjectAssetsOutput",
     members = {
         assetIds = {
             type = "list",
@@ -7399,6 +7725,7 @@ M.ListProjectAssetsOutput = {
 
 M.ListProjectsInput = {
     type = "structure",
+    id = "ListProjectsInput",
     members = {
         portalId = {
             type = "string",
@@ -7424,6 +7751,7 @@ M.ListProjectsInput = {
 
 M.ProjectSummary = {
     type = "structure",
+    id = "ProjectSummary",
     members = {
         id = {
             type = "string",
@@ -7451,6 +7779,7 @@ M.ProjectSummary = {
 
 M.ListProjectsOutput = {
     type = "structure",
+    id = "ListProjectsOutput",
     members = {
         projectSummaries = {
             type = "list",
@@ -7467,6 +7796,7 @@ M.ListProjectsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -7480,6 +7810,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -7491,6 +7822,7 @@ M.ListTagsForResourceOutput = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -7509,6 +7841,7 @@ M.ListTimeSeriesType = {
 
 M.ListTimeSeriesInput = {
     type = "structure",
+    id = "ListTimeSeriesInput",
     members = {
         nextToken = {
             type = "string",
@@ -7545,6 +7878,7 @@ M.ListTimeSeriesInput = {
 
 M.TimeSeriesSummary = {
     type = "structure",
+    id = "TimeSeriesSummary",
     members = {
         assetId = {
             type = "string",
@@ -7593,6 +7927,7 @@ M.TimeSeriesSummary = {
 
 M.ListTimeSeriesOutput = {
     type = "structure",
+    id = "ListTimeSeriesOutput",
     members = {
         TimeSeriesSummaries = {
             type = "list",
@@ -7609,6 +7944,7 @@ M.ListTimeSeriesOutput = {
 
 M.PropertyMappingConfiguration = {
     type = "structure",
+    id = "PropertyMappingConfiguration",
     members = {
         matchByPropertyName = {
             type = "boolean",
@@ -7631,6 +7967,7 @@ M.PropertyMappingConfiguration = {
 
 M.PutAssetModelInterfaceRelationshipInput = {
     type = "structure",
+    id = "PutAssetModelInterfaceRelationshipInput",
     members = {
         assetModelId = {
             type = "string",
@@ -7660,6 +7997,7 @@ M.PutAssetModelInterfaceRelationshipInput = {
 
 M.PutAssetModelInterfaceRelationshipOutput = {
     type = "structure",
+    id = "PutAssetModelInterfaceRelationshipOutput",
     members = {
         assetModelId = {
             type = "string",
@@ -7687,6 +8025,7 @@ M.PutAssetModelInterfaceRelationshipOutput = {
 
 M.PutDefaultEncryptionConfigurationInput = {
     type = "structure",
+    id = "PutDefaultEncryptionConfigurationInput",
     members = {
         encryptionType = {
             type = "string",
@@ -7702,6 +8041,7 @@ M.PutDefaultEncryptionConfigurationInput = {
 
 M.PutDefaultEncryptionConfigurationOutput = {
     type = "structure",
+    id = "PutDefaultEncryptionConfigurationOutput",
     members = {
         encryptionType = {
             type = "string",
@@ -7720,6 +8060,7 @@ M.PutDefaultEncryptionConfigurationOutput = {
 
 M.PutLoggingOptionsInput = {
     type = "structure",
+    id = "PutLoggingOptionsInput",
     members = {
         loggingOptions = setmetatable({ traits = {
             required = true,
@@ -7729,10 +8070,12 @@ M.PutLoggingOptionsInput = {
 
 M.PutLoggingOptionsOutput = {
     type = "structure",
+    id = "PutLoggingOptionsOutput",
 }
 
 M.PutStorageConfigurationInput = {
     type = "structure",
+    id = "PutStorageConfigurationInput",
     members = {
         storageType = {
             type = "string",
@@ -7757,6 +8100,7 @@ M.PutStorageConfigurationInput = {
 
 M.PutStorageConfigurationOutput = {
     type = "structure",
+    id = "PutStorageConfigurationOutput",
     members = {
         storageType = {
             type = "string",
@@ -7784,6 +8128,7 @@ M.PutStorageConfigurationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -7805,10 +8150,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -7822,6 +8169,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -7843,10 +8191,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccessPolicyInput = {
     type = "structure",
+    id = "UpdateAccessPolicyInput",
     members = {
         accessPolicyId = {
             type = "string",
@@ -7878,10 +8228,12 @@ M.UpdateAccessPolicyInput = {
 
 M.UpdateAccessPolicyOutput = {
     type = "structure",
+    id = "UpdateAccessPolicyOutput",
 }
 
 M.UpdateAssetInput = {
     type = "structure",
+    id = "UpdateAssetInput",
     members = {
         assetId = {
             type = "string",
@@ -7913,6 +8265,7 @@ M.UpdateAssetInput = {
 
 M.UpdateAssetOutput = {
     type = "structure",
+    id = "UpdateAssetOutput",
     members = {
         assetStatus = setmetatable({ traits = {
             required = true,
@@ -7922,6 +8275,7 @@ M.UpdateAssetOutput = {
 
 M.UpdateAssetModelInput = {
     type = "structure",
+    id = "UpdateAssetModelInput",
     members = {
         assetModelId = {
             type = "string",
@@ -7983,6 +8337,7 @@ M.UpdateAssetModelInput = {
 
 M.UpdateAssetModelOutput = {
     type = "structure",
+    id = "UpdateAssetModelOutput",
     members = {
         assetModelStatus = setmetatable({ traits = {
             required = true,
@@ -7992,6 +8347,7 @@ M.UpdateAssetModelOutput = {
 
 M.UpdateAssetModelCompositeModelInput = {
     type = "structure",
+    id = "UpdateAssetModelCompositeModelInput",
     members = {
         assetModelId = {
             type = "string",
@@ -8052,6 +8408,7 @@ M.UpdateAssetModelCompositeModelInput = {
 
 M.UpdateAssetModelCompositeModelOutput = {
     type = "structure",
+    id = "UpdateAssetModelCompositeModelOutput",
     members = {
         assetModelCompositeModelPath = {
             type = "list",
@@ -8068,6 +8425,7 @@ M.UpdateAssetModelCompositeModelOutput = {
 
 M.UpdateAssetPropertyInput = {
     type = "structure",
+    id = "UpdateAssetPropertyInput",
     members = {
         assetId = {
             type = "string",
@@ -8103,10 +8461,12 @@ M.UpdateAssetPropertyInput = {
 
 M.UpdateAssetPropertyOutput = {
     type = "structure",
+    id = "UpdateAssetPropertyOutput",
 }
 
 M.UpdateComputationModelOutput = {
     type = "structure",
+    id = "UpdateComputationModelOutput",
     members = {
         computationModelStatus = setmetatable({ traits = {
             required = true,
@@ -8116,6 +8476,7 @@ M.UpdateComputationModelOutput = {
 
 M.UpdateDashboardInput = {
     type = "structure",
+    id = "UpdateDashboardInput",
     members = {
         dashboardId = {
             type = "string",
@@ -8150,10 +8511,12 @@ M.UpdateDashboardInput = {
 
 M.UpdateDashboardOutput = {
     type = "structure",
+    id = "UpdateDashboardOutput",
 }
 
 M.UpdateDatasetInput = {
     type = "structure",
+    id = "UpdateDatasetInput",
     members = {
         datasetId = {
             type = "string",
@@ -8185,6 +8548,7 @@ M.UpdateDatasetInput = {
 
 M.UpdateDatasetOutput = {
     type = "structure",
+    id = "UpdateDatasetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -8198,6 +8562,7 @@ M.UpdateDatasetOutput = {
 
 M.UpdateGatewayInput = {
     type = "structure",
+    id = "UpdateGatewayInput",
     members = {
         gatewayId = {
             type = "string",
@@ -8217,10 +8582,12 @@ M.UpdateGatewayInput = {
 
 M.UpdateGatewayOutput = {
     type = "structure",
+    id = "UpdateGatewayOutput",
 }
 
 M.UpdateGatewayCapabilityConfigurationInput = {
     type = "structure",
+    id = "UpdateGatewayCapabilityConfigurationInput",
     members = {
         gatewayId = {
             type = "string",
@@ -8246,6 +8613,7 @@ M.UpdateGatewayCapabilityConfigurationInput = {
 
 M.UpdateGatewayCapabilityConfigurationOutput = {
     type = "structure",
+    id = "UpdateGatewayCapabilityConfigurationOutput",
     members = {
         capabilityNamespace = {
             type = "string",
@@ -8264,6 +8632,7 @@ M.UpdateGatewayCapabilityConfigurationOutput = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         id = {
             type = "string",
@@ -8274,6 +8643,7 @@ M.Image = {
 
 M.UpdatePortalInput = {
     type = "structure",
+    id = "UpdatePortalInput",
     members = {
         portalId = {
             type = "string",
@@ -8327,6 +8697,7 @@ M.UpdatePortalInput = {
 
 M.UpdatePortalOutput = {
     type = "structure",
+    id = "UpdatePortalOutput",
     members = {
         portalStatus = setmetatable({ traits = {
             required = true,
@@ -8336,6 +8707,7 @@ M.UpdatePortalOutput = {
 
 M.UpdateProjectInput = {
     type = "structure",
+    id = "UpdateProjectInput",
     members = {
         projectId = {
             type = "string",
@@ -8364,10 +8736,12 @@ M.UpdateProjectInput = {
 
 M.UpdateProjectOutput = {
     type = "structure",
+    id = "UpdateProjectOutput",
 }
 
 M.ComputationModelDataBindingValue = {
     type = "structure",
+    id = "ComputationModelDataBindingValue",
     members = {
         assetModelProperty = M.AssetModelPropertyBindingValue,
         assetProperty = M.AssetPropertyBindingValue,
@@ -8380,6 +8754,7 @@ M.ComputationModelDataBindingValue = {
 
 M.CreateComputationModelInput = {
     type = "structure",
+    id = "CreateComputationModelInput",
     members = {
         computationModelName = {
             type = "string",
@@ -8417,6 +8792,7 @@ M.CreateComputationModelInput = {
 
 M.DescribeComputationModelOutput = {
     type = "structure",
+    id = "DescribeComputationModelOutput",
     members = {
         computationModelId = {
             type = "string",
@@ -8483,6 +8859,7 @@ M.DescribeComputationModelOutput = {
 
 M.UpdateComputationModelInput = {
     type = "structure",
+    id = "UpdateComputationModelInput",
     members = {
         computationModelId = {
             type = "string",
@@ -8522,6 +8899,7 @@ M.UpdateComputationModelInput = {
 
 M.Datum = {
     type = "structure",
+    id = "Datum",
     members = {
         scalarValue = {
             type = "string",
@@ -8539,6 +8917,7 @@ M.Datum = {
 
 M.Row = {
     type = "structure",
+    id = "Row",
     members = {
         data = {
             type = "list",
@@ -8552,6 +8931,7 @@ M.Row = {
 
 M.ExecuteQueryOutput = {
     type = "structure",
+    id = "ExecuteQueryOutput",
     members = {
         columns = {
             type = "list",

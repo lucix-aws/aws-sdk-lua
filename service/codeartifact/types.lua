@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -32,6 +33,7 @@ M.HashAlgorithm = {
 
 M.AssetSummary = {
     type = "structure",
+    id = "AssetSummary",
     members = {
         name = {
             type = "string",
@@ -68,6 +70,7 @@ M.PackageFormat = {
 
 M.AssociatedPackage = {
     type = "structure",
+    id = "AssociatedPackage",
     members = {
         format = {
             type = "string",
@@ -86,6 +89,7 @@ M.AssociatedPackage = {
 
 M.AssociateExternalConnectionInput = {
     type = "structure",
+    id = "AssociateExternalConnectionInput",
     members = {
         domain = {
             type = "string",
@@ -123,6 +127,7 @@ M.ExternalConnectionStatus = {
 
 M.RepositoryExternalConnectionInfo = {
     type = "structure",
+    id = "RepositoryExternalConnectionInfo",
     members = {
         externalConnectionName = {
             type = "string",
@@ -138,6 +143,7 @@ M.RepositoryExternalConnectionInfo = {
 
 M.UpstreamRepositoryInfo = {
     type = "structure",
+    id = "UpstreamRepositoryInfo",
     members = {
         repositoryName = {
             type = "string",
@@ -147,6 +153,7 @@ M.UpstreamRepositoryInfo = {
 
 M.RepositoryDescription = {
     type = "structure",
+    id = "RepositoryDescription",
     members = {
         name = {
             type = "string",
@@ -182,6 +189,7 @@ M.RepositoryDescription = {
 
 M.AssociateExternalConnectionOutput = {
     type = "structure",
+    id = "AssociateExternalConnectionOutput",
     members = {
         repository = M.RepositoryDescription,
     },
@@ -197,6 +205,7 @@ M.ResourceType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -216,6 +225,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -229,6 +239,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -248,6 +259,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -267,6 +279,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -294,6 +307,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -310,6 +324,7 @@ M.ValidationException = {
 
 M.CopyPackageVersionsInput = {
     type = "structure",
+    id = "CopyPackageVersionsInput",
     members = {
         domain = {
             type = "string",
@@ -387,6 +402,7 @@ M.PackageVersionErrorCode = {
 
 M.PackageVersionError = {
     type = "structure",
+    id = "PackageVersionError",
     members = {
         errorCode = {
             type = "string",
@@ -408,6 +424,7 @@ M.PackageVersionStatus = {
 
 M.SuccessfulPackageVersionInfo = {
     type = "structure",
+    id = "SuccessfulPackageVersionInfo",
     members = {
         revision = {
             type = "string",
@@ -420,6 +437,7 @@ M.SuccessfulPackageVersionInfo = {
 
 M.CopyPackageVersionsOutput = {
     type = "structure",
+    id = "CopyPackageVersionsOutput",
     members = {
         successfulVersions = {
             type = "map",
@@ -436,6 +454,7 @@ M.CopyPackageVersionsOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -454,6 +473,7 @@ M.Tag = {
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         domain = {
             type = "string",
@@ -479,6 +499,7 @@ M.DomainStatus = {
 
 M.DomainDescription = {
     type = "structure",
+    id = "DomainDescription",
     members = {
         name = {
             type = "string",
@@ -518,6 +539,7 @@ M.DomainDescription = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         domain = M.DomainDescription,
     },
@@ -525,6 +547,7 @@ M.CreateDomainOutput = {
 
 M.CreatePackageGroupInput = {
     type = "structure",
+    id = "CreatePackageGroupInput",
     members = {
         domain = {
             type = "string",
@@ -573,6 +596,7 @@ M.PackageGroupOriginRestrictionMode = {
 
 M.PackageGroupReference = {
     type = "structure",
+    id = "PackageGroupReference",
     members = {
         arn = {
             type = "string",
@@ -585,6 +609,7 @@ M.PackageGroupReference = {
 
 M.PackageGroupOriginRestriction = {
     type = "structure",
+    id = "PackageGroupOriginRestriction",
     members = {
         mode = {
             type = "string",
@@ -601,6 +626,7 @@ M.PackageGroupOriginRestriction = {
 
 M.PackageGroupOriginConfiguration = {
     type = "structure",
+    id = "PackageGroupOriginConfiguration",
     members = {
         restrictions = {
             type = "map",
@@ -612,6 +638,7 @@ M.PackageGroupOriginConfiguration = {
 
 M.PackageGroupDescription = {
     type = "structure",
+    id = "PackageGroupDescription",
     members = {
         arn = {
             type = "string",
@@ -641,6 +668,7 @@ M.PackageGroupDescription = {
 
 M.CreatePackageGroupOutput = {
     type = "structure",
+    id = "CreatePackageGroupOutput",
     members = {
         packageGroup = M.PackageGroupDescription,
     },
@@ -648,6 +676,7 @@ M.CreatePackageGroupOutput = {
 
 M.UpstreamRepository = {
     type = "structure",
+    id = "UpstreamRepository",
     members = {
         repositoryName = {
             type = "string",
@@ -660,6 +689,7 @@ M.UpstreamRepository = {
 
 M.CreateRepositoryInput = {
     type = "structure",
+    id = "CreateRepositoryInput",
     members = {
         domain = {
             type = "string",
@@ -697,6 +727,7 @@ M.CreateRepositoryInput = {
 
 M.CreateRepositoryOutput = {
     type = "structure",
+    id = "CreateRepositoryOutput",
     members = {
         repository = M.RepositoryDescription,
     },
@@ -704,6 +735,7 @@ M.CreateRepositoryOutput = {
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         domain = {
             type = "string",
@@ -723,6 +755,7 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
     members = {
         domain = M.DomainDescription,
     },
@@ -730,6 +763,7 @@ M.DeleteDomainOutput = {
 
 M.DeleteDomainPermissionsPolicyInput = {
     type = "structure",
+    id = "DeleteDomainPermissionsPolicyInput",
     members = {
         domain = {
             type = "string",
@@ -755,6 +789,7 @@ M.DeleteDomainPermissionsPolicyInput = {
 
 M.ResourcePolicy = {
     type = "structure",
+    id = "ResourcePolicy",
     members = {
         resourceArn = {
             type = "string",
@@ -770,6 +805,7 @@ M.ResourcePolicy = {
 
 M.DeleteDomainPermissionsPolicyOutput = {
     type = "structure",
+    id = "DeleteDomainPermissionsPolicyOutput",
     members = {
         policy = M.ResourcePolicy,
     },
@@ -777,6 +813,7 @@ M.DeleteDomainPermissionsPolicyOutput = {
 
 M.DeletePackageInput = {
     type = "structure",
+    id = "DeletePackageInput",
     members = {
         domain = {
             type = "string",
@@ -823,6 +860,7 @@ M.DeletePackageInput = {
 
 M.PackageOriginRestrictions = {
     type = "structure",
+    id = "PackageOriginRestrictions",
     members = {
         publish = {
             type = "string",
@@ -841,6 +879,7 @@ M.PackageOriginRestrictions = {
 
 M.PackageOriginConfiguration = {
     type = "structure",
+    id = "PackageOriginConfiguration",
     members = {
         restrictions = M.PackageOriginRestrictions,
     },
@@ -848,6 +887,7 @@ M.PackageOriginConfiguration = {
 
 M.PackageSummary = {
     type = "structure",
+    id = "PackageSummary",
     members = {
         format = {
             type = "string",
@@ -864,6 +904,7 @@ M.PackageSummary = {
 
 M.DeletePackageOutput = {
     type = "structure",
+    id = "DeletePackageOutput",
     members = {
         deletedPackage = M.PackageSummary,
     },
@@ -871,6 +912,7 @@ M.DeletePackageOutput = {
 
 M.DeletePackageGroupInput = {
     type = "structure",
+    id = "DeletePackageGroupInput",
     members = {
         domain = {
             type = "string",
@@ -897,6 +939,7 @@ M.DeletePackageGroupInput = {
 
 M.DeletePackageGroupOutput = {
     type = "structure",
+    id = "DeletePackageGroupOutput",
     members = {
         packageGroup = M.PackageGroupDescription,
     },
@@ -904,6 +947,7 @@ M.DeletePackageGroupOutput = {
 
 M.DeletePackageVersionsInput = {
     type = "structure",
+    id = "DeletePackageVersionsInput",
     members = {
         domain = {
             type = "string",
@@ -960,6 +1004,7 @@ M.DeletePackageVersionsInput = {
 
 M.DeletePackageVersionsOutput = {
     type = "structure",
+    id = "DeletePackageVersionsOutput",
     members = {
         successfulVersions = {
             type = "map",
@@ -976,6 +1021,7 @@ M.DeletePackageVersionsOutput = {
 
 M.DeleteRepositoryInput = {
     type = "structure",
+    id = "DeleteRepositoryInput",
     members = {
         domain = {
             type = "string",
@@ -1002,6 +1048,7 @@ M.DeleteRepositoryInput = {
 
 M.DeleteRepositoryOutput = {
     type = "structure",
+    id = "DeleteRepositoryOutput",
     members = {
         repository = M.RepositoryDescription,
     },
@@ -1009,6 +1056,7 @@ M.DeleteRepositoryOutput = {
 
 M.DeleteRepositoryPermissionsPolicyInput = {
     type = "structure",
+    id = "DeleteRepositoryPermissionsPolicyInput",
     members = {
         domain = {
             type = "string",
@@ -1041,6 +1089,7 @@ M.DeleteRepositoryPermissionsPolicyInput = {
 
 M.DeleteRepositoryPermissionsPolicyOutput = {
     type = "structure",
+    id = "DeleteRepositoryPermissionsPolicyOutput",
     members = {
         policy = M.ResourcePolicy,
     },
@@ -1048,6 +1097,7 @@ M.DeleteRepositoryPermissionsPolicyOutput = {
 
 M.DescribeDomainInput = {
     type = "structure",
+    id = "DescribeDomainInput",
     members = {
         domain = {
             type = "string",
@@ -1067,6 +1117,7 @@ M.DescribeDomainInput = {
 
 M.DescribeDomainOutput = {
     type = "structure",
+    id = "DescribeDomainOutput",
     members = {
         domain = M.DomainDescription,
     },
@@ -1074,6 +1125,7 @@ M.DescribeDomainOutput = {
 
 M.DescribePackageInput = {
     type = "structure",
+    id = "DescribePackageInput",
     members = {
         domain = {
             type = "string",
@@ -1120,6 +1172,7 @@ M.DescribePackageInput = {
 
 M.PackageDescription = {
     type = "structure",
+    id = "PackageDescription",
     members = {
         format = {
             type = "string",
@@ -1136,6 +1189,7 @@ M.PackageDescription = {
 
 M.DescribePackageOutput = {
     type = "structure",
+    id = "DescribePackageOutput",
     members = {
         package = setmetatable({ traits = {
             required = true,
@@ -1145,6 +1199,7 @@ M.DescribePackageOutput = {
 
 M.DescribePackageGroupInput = {
     type = "structure",
+    id = "DescribePackageGroupInput",
     members = {
         domain = {
             type = "string",
@@ -1171,6 +1226,7 @@ M.DescribePackageGroupInput = {
 
 M.DescribePackageGroupOutput = {
     type = "structure",
+    id = "DescribePackageGroupOutput",
     members = {
         packageGroup = M.PackageGroupDescription,
     },
@@ -1178,6 +1234,7 @@ M.DescribePackageGroupOutput = {
 
 M.DescribePackageVersionInput = {
     type = "structure",
+    id = "DescribePackageVersionInput",
     members = {
         domain = {
             type = "string",
@@ -1231,6 +1288,7 @@ M.DescribePackageVersionInput = {
 
 M.LicenseInfo = {
     type = "structure",
+    id = "LicenseInfo",
     members = {
         name = {
             type = "string",
@@ -1243,6 +1301,7 @@ M.LicenseInfo = {
 
 M.DomainEntryPoint = {
     type = "structure",
+    id = "DomainEntryPoint",
     members = {
         repositoryName = {
             type = "string",
@@ -1261,6 +1320,7 @@ M.PackageVersionOriginType = {
 
 M.PackageVersionOrigin = {
     type = "structure",
+    id = "PackageVersionOrigin",
     members = {
         domainEntryPoint = M.DomainEntryPoint,
         originType = {
@@ -1271,6 +1331,7 @@ M.PackageVersionOrigin = {
 
 M.PackageVersionDescription = {
     type = "structure",
+    id = "PackageVersionDescription",
     members = {
         format = {
             type = "string",
@@ -1315,6 +1376,7 @@ M.PackageVersionDescription = {
 
 M.DescribePackageVersionOutput = {
     type = "structure",
+    id = "DescribePackageVersionOutput",
     members = {
         packageVersion = setmetatable({ traits = {
             required = true,
@@ -1324,6 +1386,7 @@ M.DescribePackageVersionOutput = {
 
 M.DescribeRepositoryInput = {
     type = "structure",
+    id = "DescribeRepositoryInput",
     members = {
         domain = {
             type = "string",
@@ -1350,6 +1413,7 @@ M.DescribeRepositoryInput = {
 
 M.DescribeRepositoryOutput = {
     type = "structure",
+    id = "DescribeRepositoryOutput",
     members = {
         repository = M.RepositoryDescription,
     },
@@ -1357,6 +1421,7 @@ M.DescribeRepositoryOutput = {
 
 M.DisassociateExternalConnectionInput = {
     type = "structure",
+    id = "DisassociateExternalConnectionInput",
     members = {
         domain = {
             type = "string",
@@ -1390,6 +1455,7 @@ M.DisassociateExternalConnectionInput = {
 
 M.DisassociateExternalConnectionOutput = {
     type = "structure",
+    id = "DisassociateExternalConnectionOutput",
     members = {
         repository = M.RepositoryDescription,
     },
@@ -1397,6 +1463,7 @@ M.DisassociateExternalConnectionOutput = {
 
 M.DisposePackageVersionsInput = {
     type = "structure",
+    id = "DisposePackageVersionsInput",
     members = {
         domain = {
             type = "string",
@@ -1458,6 +1525,7 @@ M.DisposePackageVersionsInput = {
 
 M.DisposePackageVersionsOutput = {
     type = "structure",
+    id = "DisposePackageVersionsOutput",
     members = {
         successfulVersions = {
             type = "map",
@@ -1474,6 +1542,7 @@ M.DisposePackageVersionsOutput = {
 
 M.GetAssociatedPackageGroupInput = {
     type = "structure",
+    id = "GetAssociatedPackageGroupInput",
     members = {
         domain = {
             type = "string",
@@ -1513,6 +1582,7 @@ M.GetAssociatedPackageGroupInput = {
 
 M.GetAssociatedPackageGroupOutput = {
     type = "structure",
+    id = "GetAssociatedPackageGroupOutput",
     members = {
         packageGroup = M.PackageGroupDescription,
         associationType = {
@@ -1523,6 +1593,7 @@ M.GetAssociatedPackageGroupOutput = {
 
 M.GetAuthorizationTokenInput = {
     type = "structure",
+    id = "GetAuthorizationTokenInput",
     members = {
         domain = {
             type = "string",
@@ -1548,6 +1619,7 @@ M.GetAuthorizationTokenInput = {
 
 M.GetAuthorizationTokenOutput = {
     type = "structure",
+    id = "GetAuthorizationTokenOutput",
     members = {
         authorizationToken = {
             type = "string",
@@ -1560,6 +1632,7 @@ M.GetAuthorizationTokenOutput = {
 
 M.GetDomainPermissionsPolicyInput = {
     type = "structure",
+    id = "GetDomainPermissionsPolicyInput",
     members = {
         domain = {
             type = "string",
@@ -1579,6 +1652,7 @@ M.GetDomainPermissionsPolicyInput = {
 
 M.GetDomainPermissionsPolicyOutput = {
     type = "structure",
+    id = "GetDomainPermissionsPolicyOutput",
     members = {
         policy = M.ResourcePolicy,
     },
@@ -1586,6 +1660,7 @@ M.GetDomainPermissionsPolicyOutput = {
 
 M.GetPackageVersionAssetInput = {
     type = "structure",
+    id = "GetPackageVersionAssetInput",
     members = {
         domain = {
             type = "string",
@@ -1652,6 +1727,7 @@ M.GetPackageVersionAssetInput = {
 
 M.GetPackageVersionAssetOutput = {
     type = "structure",
+    id = "GetPackageVersionAssetOutput",
     members = {
         asset = {
             type = "blob",
@@ -1683,6 +1759,7 @@ M.GetPackageVersionAssetOutput = {
 
 M.GetPackageVersionReadmeInput = {
     type = "structure",
+    id = "GetPackageVersionReadmeInput",
     members = {
         domain = {
             type = "string",
@@ -1736,6 +1813,7 @@ M.GetPackageVersionReadmeInput = {
 
 M.GetPackageVersionReadmeOutput = {
     type = "structure",
+    id = "GetPackageVersionReadmeOutput",
     members = {
         format = {
             type = "string",
@@ -1765,6 +1843,7 @@ M.EndpointType = {
 
 M.GetRepositoryEndpointInput = {
     type = "structure",
+    id = "GetRepositoryEndpointInput",
     members = {
         domain = {
             type = "string",
@@ -1804,6 +1883,7 @@ M.GetRepositoryEndpointInput = {
 
 M.GetRepositoryEndpointOutput = {
     type = "structure",
+    id = "GetRepositoryEndpointOutput",
     members = {
         repositoryEndpoint = {
             type = "string",
@@ -1813,6 +1893,7 @@ M.GetRepositoryEndpointOutput = {
 
 M.GetRepositoryPermissionsPolicyInput = {
     type = "structure",
+    id = "GetRepositoryPermissionsPolicyInput",
     members = {
         domain = {
             type = "string",
@@ -1839,6 +1920,7 @@ M.GetRepositoryPermissionsPolicyInput = {
 
 M.GetRepositoryPermissionsPolicyOutput = {
     type = "structure",
+    id = "GetRepositoryPermissionsPolicyOutput",
     members = {
         policy = M.ResourcePolicy,
     },
@@ -1846,6 +1928,7 @@ M.GetRepositoryPermissionsPolicyOutput = {
 
 M.ListAllowedRepositoriesForGroupInput = {
     type = "structure",
+    id = "ListAllowedRepositoriesForGroupInput",
     members = {
         domain = {
             type = "string",
@@ -1891,6 +1974,7 @@ M.ListAllowedRepositoriesForGroupInput = {
 
 M.ListAllowedRepositoriesForGroupOutput = {
     type = "structure",
+    id = "ListAllowedRepositoriesForGroupOutput",
     members = {
         allowedRepositories = {
             type = "list",
@@ -1904,6 +1988,7 @@ M.ListAllowedRepositoriesForGroupOutput = {
 
 M.ListAssociatedPackagesInput = {
     type = "structure",
+    id = "ListAssociatedPackagesInput",
     members = {
         domain = {
             type = "string",
@@ -1948,6 +2033,7 @@ M.ListAssociatedPackagesInput = {
 
 M.ListAssociatedPackagesOutput = {
     type = "structure",
+    id = "ListAssociatedPackagesOutput",
     members = {
         packages = {
             type = "list",
@@ -1961,6 +2047,7 @@ M.ListAssociatedPackagesOutput = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1973,6 +2060,7 @@ M.ListDomainsInput = {
 
 M.DomainSummary = {
     type = "structure",
+    id = "DomainSummary",
     members = {
         name = {
             type = "string",
@@ -1997,6 +2085,7 @@ M.DomainSummary = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         domains = {
             type = "list",
@@ -2010,6 +2099,7 @@ M.ListDomainsOutput = {
 
 M.ListPackageGroupsInput = {
     type = "structure",
+    id = "ListPackageGroupsInput",
     members = {
         domain = {
             type = "string",
@@ -2047,6 +2137,7 @@ M.ListPackageGroupsInput = {
 
 M.PackageGroupSummary = {
     type = "structure",
+    id = "PackageGroupSummary",
     members = {
         arn = {
             type = "string",
@@ -2076,6 +2167,7 @@ M.PackageGroupSummary = {
 
 M.ListPackageGroupsOutput = {
     type = "structure",
+    id = "ListPackageGroupsOutput",
     members = {
         packageGroups = {
             type = "list",
@@ -2089,6 +2181,7 @@ M.ListPackageGroupsOutput = {
 
 M.ListPackagesInput = {
     type = "structure",
+    id = "ListPackagesInput",
     members = {
         domain = {
             type = "string",
@@ -2157,6 +2250,7 @@ M.ListPackagesInput = {
 
 M.ListPackagesOutput = {
     type = "structure",
+    id = "ListPackagesOutput",
     members = {
         packages = {
             type = "list",
@@ -2170,6 +2264,7 @@ M.ListPackagesOutput = {
 
 M.ListPackageVersionAssetsInput = {
     type = "structure",
+    id = "ListPackageVersionAssetsInput",
     members = {
         domain = {
             type = "string",
@@ -2235,6 +2330,7 @@ M.ListPackageVersionAssetsInput = {
 
 M.ListPackageVersionAssetsOutput = {
     type = "structure",
+    id = "ListPackageVersionAssetsOutput",
     members = {
         format = {
             type = "string",
@@ -2263,6 +2359,7 @@ M.ListPackageVersionAssetsOutput = {
 
 M.ListPackageVersionDependenciesInput = {
     type = "structure",
+    id = "ListPackageVersionDependenciesInput",
     members = {
         domain = {
             type = "string",
@@ -2322,6 +2419,7 @@ M.ListPackageVersionDependenciesInput = {
 
 M.PackageDependency = {
     type = "structure",
+    id = "PackageDependency",
     members = {
         namespace = {
             type = "string",
@@ -2340,6 +2438,7 @@ M.PackageDependency = {
 
 M.ListPackageVersionDependenciesOutput = {
     type = "structure",
+    id = "ListPackageVersionDependenciesOutput",
     members = {
         format = {
             type = "string",
@@ -2372,6 +2471,7 @@ M.PackageVersionSortType = {
 
 M.ListPackageVersionsInput = {
     type = "structure",
+    id = "ListPackageVersionsInput",
     members = {
         domain = {
             type = "string",
@@ -2448,6 +2548,7 @@ M.ListPackageVersionsInput = {
 
 M.PackageVersionSummary = {
     type = "structure",
+    id = "PackageVersionSummary",
     members = {
         version = {
             type = "string",
@@ -2470,6 +2571,7 @@ M.PackageVersionSummary = {
 
 M.ListPackageVersionsOutput = {
     type = "structure",
+    id = "ListPackageVersionsOutput",
     members = {
         defaultDisplayVersion = {
             type = "string",
@@ -2495,6 +2597,7 @@ M.ListPackageVersionsOutput = {
 
 M.ListRepositoriesInput = {
     type = "structure",
+    id = "ListRepositoriesInput",
     members = {
         repositoryPrefix = {
             type = "string",
@@ -2519,6 +2622,7 @@ M.ListRepositoriesInput = {
 
 M.RepositorySummary = {
     type = "structure",
+    id = "RepositorySummary",
     members = {
         name = {
             type = "string",
@@ -2546,6 +2650,7 @@ M.RepositorySummary = {
 
 M.ListRepositoriesOutput = {
     type = "structure",
+    id = "ListRepositoriesOutput",
     members = {
         repositories = {
             type = "list",
@@ -2559,6 +2664,7 @@ M.ListRepositoriesOutput = {
 
 M.ListRepositoriesInDomainInput = {
     type = "structure",
+    id = "ListRepositoriesInDomainInput",
     members = {
         domain = {
             type = "string",
@@ -2602,6 +2708,7 @@ M.ListRepositoriesInDomainInput = {
 
 M.ListRepositoriesInDomainOutput = {
     type = "structure",
+    id = "ListRepositoriesInDomainOutput",
     members = {
         repositories = {
             type = "list",
@@ -2615,6 +2722,7 @@ M.ListRepositoriesInDomainOutput = {
 
 M.ListSubPackageGroupsInput = {
     type = "structure",
+    id = "ListSubPackageGroupsInput",
     members = {
         domain = {
             type = "string",
@@ -2653,6 +2761,7 @@ M.ListSubPackageGroupsInput = {
 
 M.ListSubPackageGroupsOutput = {
     type = "structure",
+    id = "ListSubPackageGroupsOutput",
     members = {
         packageGroups = {
             type = "list",
@@ -2666,6 +2775,7 @@ M.ListSubPackageGroupsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2679,6 +2789,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2689,6 +2800,7 @@ M.ListTagsForResourceOutput = {
 
 M.PublishPackageVersionInput = {
     type = "structure",
+    id = "PublishPackageVersionInput",
     members = {
         domain = {
             type = "string",
@@ -2769,6 +2881,7 @@ M.PublishPackageVersionInput = {
 
 M.PublishPackageVersionOutput = {
     type = "structure",
+    id = "PublishPackageVersionOutput",
     members = {
         format = {
             type = "string",
@@ -2794,6 +2907,7 @@ M.PublishPackageVersionOutput = {
 
 M.PutDomainPermissionsPolicyInput = {
     type = "structure",
+    id = "PutDomainPermissionsPolicyInput",
     members = {
         domain = {
             type = "string",
@@ -2818,6 +2932,7 @@ M.PutDomainPermissionsPolicyInput = {
 
 M.PutDomainPermissionsPolicyOutput = {
     type = "structure",
+    id = "PutDomainPermissionsPolicyOutput",
     members = {
         policy = M.ResourcePolicy,
     },
@@ -2825,6 +2940,7 @@ M.PutDomainPermissionsPolicyOutput = {
 
 M.PutPackageOriginConfigurationInput = {
     type = "structure",
+    id = "PutPackageOriginConfigurationInput",
     members = {
         domain = {
             type = "string",
@@ -2874,6 +2990,7 @@ M.PutPackageOriginConfigurationInput = {
 
 M.PutPackageOriginConfigurationOutput = {
     type = "structure",
+    id = "PutPackageOriginConfigurationOutput",
     members = {
         originConfiguration = M.PackageOriginConfiguration,
     },
@@ -2881,6 +2998,7 @@ M.PutPackageOriginConfigurationOutput = {
 
 M.PutRepositoryPermissionsPolicyInput = {
     type = "structure",
+    id = "PutRepositoryPermissionsPolicyInput",
     members = {
         domain = {
             type = "string",
@@ -2916,6 +3034,7 @@ M.PutRepositoryPermissionsPolicyInput = {
 
 M.PutRepositoryPermissionsPolicyOutput = {
     type = "structure",
+    id = "PutRepositoryPermissionsPolicyOutput",
     members = {
         policy = M.ResourcePolicy,
     },
@@ -2923,6 +3042,7 @@ M.PutRepositoryPermissionsPolicyOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2943,10 +3063,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2967,10 +3089,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdatePackageGroupInput = {
     type = "structure",
+    id = "UpdatePackageGroupInput",
     members = {
         domain = {
             type = "string",
@@ -3002,6 +3126,7 @@ M.UpdatePackageGroupInput = {
 
 M.UpdatePackageGroupOutput = {
     type = "structure",
+    id = "UpdatePackageGroupOutput",
     members = {
         packageGroup = M.PackageGroupDescription,
     },
@@ -3009,6 +3134,7 @@ M.UpdatePackageGroupOutput = {
 
 M.PackageGroupAllowedRepository = {
     type = "structure",
+    id = "PackageGroupAllowedRepository",
     members = {
         repositoryName = {
             type = "string",
@@ -3021,6 +3147,7 @@ M.PackageGroupAllowedRepository = {
 
 M.UpdatePackageGroupOriginConfigurationInput = {
     type = "structure",
+    id = "UpdatePackageGroupOriginConfigurationInput",
     members = {
         domain = {
             type = "string",
@@ -3065,6 +3192,7 @@ M.PackageGroupAllowedRepositoryUpdateType = {
 
 M.UpdatePackageGroupOriginConfigurationOutput = {
     type = "structure",
+    id = "UpdatePackageGroupOriginConfigurationOutput",
     members = {
         packageGroup = M.PackageGroupDescription,
         allowedRepositoryUpdates = {
@@ -3077,6 +3205,7 @@ M.UpdatePackageGroupOriginConfigurationOutput = {
 
 M.UpdatePackageVersionsStatusInput = {
     type = "structure",
+    id = "UpdatePackageVersionsStatusInput",
     members = {
         domain = {
             type = "string",
@@ -3144,6 +3273,7 @@ M.UpdatePackageVersionsStatusInput = {
 
 M.UpdatePackageVersionsStatusOutput = {
     type = "structure",
+    id = "UpdatePackageVersionsStatusOutput",
     members = {
         successfulVersions = {
             type = "map",
@@ -3160,6 +3290,7 @@ M.UpdatePackageVersionsStatusOutput = {
 
 M.UpdateRepositoryInput = {
     type = "structure",
+    id = "UpdateRepositoryInput",
     members = {
         domain = {
             type = "string",
@@ -3193,6 +3324,7 @@ M.UpdateRepositoryInput = {
 
 M.UpdateRepositoryOutput = {
     type = "structure",
+    id = "UpdateRepositoryOutput",
     members = {
         repository = M.RepositoryDescription,
     },

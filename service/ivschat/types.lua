@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -21,6 +22,7 @@ M.ChatTokenCapability = {
 
 M.CreateChatTokenInput = {
     type = "structure",
+    id = "CreateChatTokenInput",
     members = {
         roomIdentifier = {
             type = "string",
@@ -51,6 +53,7 @@ M.CreateChatTokenInput = {
 
 M.CreateChatTokenOutput = {
     type = "structure",
+    id = "CreateChatTokenOutput",
     members = {
         token = {
             type = "string",
@@ -72,6 +75,7 @@ M.CreateChatTokenOutput = {
 
 M.PendingVerification = {
     type = "structure",
+    id = "PendingVerification",
     error = "client",
     members = {
         message = {
@@ -89,6 +93,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -114,6 +119,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -138,6 +144,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -161,6 +168,7 @@ M.ValidationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -186,6 +194,7 @@ M.ConflictException = {
 
 M.CloudWatchLogsDestinationConfiguration = {
     type = "structure",
+    id = "CloudWatchLogsDestinationConfiguration",
     members = {
         logGroupName = {
             type = "string",
@@ -198,6 +207,7 @@ M.CloudWatchLogsDestinationConfiguration = {
 
 M.FirehoseDestinationConfiguration = {
     type = "structure",
+    id = "FirehoseDestinationConfiguration",
     members = {
         deliveryStreamName = {
             type = "string",
@@ -210,6 +220,7 @@ M.FirehoseDestinationConfiguration = {
 
 M.S3DestinationConfiguration = {
     type = "structure",
+    id = "S3DestinationConfiguration",
     members = {
         bucketName = {
             type = "string",
@@ -222,6 +233,7 @@ M.S3DestinationConfiguration = {
 
 M.DestinationConfiguration = {
     type = "union",
+    id = "DestinationConfiguration",
     members = {
         s3 = M.S3DestinationConfiguration,
         cloudWatchLogs = M.CloudWatchLogsDestinationConfiguration,
@@ -231,6 +243,7 @@ M.DestinationConfiguration = {
 
 M.CreateLoggingConfigurationInput = {
     type = "structure",
+    id = "CreateLoggingConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -252,6 +265,7 @@ M.CreateLoggingConfigurationState = {
 
 M.CreateLoggingConfigurationOutput = {
     type = "structure",
+    id = "CreateLoggingConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -288,6 +302,7 @@ M.CreateLoggingConfigurationOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -325,6 +340,7 @@ M.FallbackResult = {
 
 M.MessageReviewHandler = {
     type = "structure",
+    id = "MessageReviewHandler",
     members = {
         uri = {
             type = "string",
@@ -337,6 +353,7 @@ M.MessageReviewHandler = {
 
 M.CreateRoomInput = {
     type = "structure",
+    id = "CreateRoomInput",
     members = {
         name = {
             type = "string",
@@ -362,6 +379,7 @@ M.CreateRoomInput = {
 
 M.CreateRoomOutput = {
     type = "structure",
+    id = "CreateRoomOutput",
     members = {
         arn = {
             type = "string",
@@ -405,6 +423,7 @@ M.CreateRoomOutput = {
 
 M.DeleteLoggingConfigurationInput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationInput",
     members = {
         identifier = {
             type = "string",
@@ -417,10 +436,12 @@ M.DeleteLoggingConfigurationInput = {
 
 M.DeleteLoggingConfigurationOutput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationOutput",
 }
 
 M.DeleteMessageInput = {
     type = "structure",
+    id = "DeleteMessageInput",
     members = {
         roomIdentifier = {
             type = "string",
@@ -442,6 +463,7 @@ M.DeleteMessageInput = {
 
 M.DeleteMessageOutput = {
     type = "structure",
+    id = "DeleteMessageOutput",
     members = {
         id = {
             type = "string",
@@ -451,6 +473,7 @@ M.DeleteMessageOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -483,6 +506,7 @@ M.ThrottlingException = {
 
 M.DeleteRoomInput = {
     type = "structure",
+    id = "DeleteRoomInput",
     members = {
         identifier = {
             type = "string",
@@ -495,10 +519,12 @@ M.DeleteRoomInput = {
 
 M.DeleteRoomOutput = {
     type = "structure",
+    id = "DeleteRoomOutput",
 }
 
 M.DisconnectUserInput = {
     type = "structure",
+    id = "DisconnectUserInput",
     members = {
         roomIdentifier = {
             type = "string",
@@ -520,10 +546,12 @@ M.DisconnectUserInput = {
 
 M.DisconnectUserOutput = {
     type = "structure",
+    id = "DisconnectUserOutput",
 }
 
 M.GetLoggingConfigurationInput = {
     type = "structure",
+    id = "GetLoggingConfigurationInput",
     members = {
         identifier = {
             type = "string",
@@ -546,6 +574,7 @@ M.LoggingConfigurationState = {
 
 M.GetLoggingConfigurationOutput = {
     type = "structure",
+    id = "GetLoggingConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -582,6 +611,7 @@ M.GetLoggingConfigurationOutput = {
 
 M.GetRoomInput = {
     type = "structure",
+    id = "GetRoomInput",
     members = {
         identifier = {
             type = "string",
@@ -594,6 +624,7 @@ M.GetRoomInput = {
 
 M.GetRoomOutput = {
     type = "structure",
+    id = "GetRoomOutput",
     members = {
         arn = {
             type = "string",
@@ -637,6 +668,7 @@ M.GetRoomOutput = {
 
 M.ListLoggingConfigurationsInput = {
     type = "structure",
+    id = "ListLoggingConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -649,6 +681,7 @@ M.ListLoggingConfigurationsInput = {
 
 M.LoggingConfigurationSummary = {
     type = "structure",
+    id = "LoggingConfigurationSummary",
     members = {
         arn = {
             type = "string",
@@ -685,6 +718,7 @@ M.LoggingConfigurationSummary = {
 
 M.ListLoggingConfigurationsOutput = {
     type = "structure",
+    id = "ListLoggingConfigurationsOutput",
     members = {
         loggingConfigurations = {
             type = "list",
@@ -701,6 +735,7 @@ M.ListLoggingConfigurationsOutput = {
 
 M.ListRoomsInput = {
     type = "structure",
+    id = "ListRoomsInput",
     members = {
         name = {
             type = "string",
@@ -722,6 +757,7 @@ M.ListRoomsInput = {
 
 M.RoomSummary = {
     type = "structure",
+    id = "RoomSummary",
     members = {
         arn = {
             type = "string",
@@ -759,6 +795,7 @@ M.RoomSummary = {
 
 M.ListRoomsOutput = {
     type = "structure",
+    id = "ListRoomsOutput",
     members = {
         rooms = {
             type = "list",
@@ -775,6 +812,7 @@ M.ListRoomsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -788,6 +826,7 @@ M.InternalServerException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -801,6 +840,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -815,6 +855,7 @@ M.ListTagsForResourceOutput = {
 
 M.SendEventInput = {
     type = "structure",
+    id = "SendEventInput",
     members = {
         roomIdentifier = {
             type = "string",
@@ -838,6 +879,7 @@ M.SendEventInput = {
 
 M.SendEventOutput = {
     type = "structure",
+    id = "SendEventOutput",
     members = {
         id = {
             type = "string",
@@ -847,6 +889,7 @@ M.SendEventOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -868,10 +911,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -893,10 +938,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateLoggingConfigurationInput = {
     type = "structure",
+    id = "UpdateLoggingConfigurationInput",
     members = {
         identifier = {
             type = "string",
@@ -917,6 +964,7 @@ M.UpdateLoggingConfigurationState = {
 
 M.UpdateLoggingConfigurationOutput = {
     type = "structure",
+    id = "UpdateLoggingConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -953,6 +1001,7 @@ M.UpdateLoggingConfigurationOutput = {
 
 M.UpdateRoomInput = {
     type = "structure",
+    id = "UpdateRoomInput",
     members = {
         identifier = {
             type = "string",
@@ -979,6 +1028,7 @@ M.UpdateRoomInput = {
 
 M.UpdateRoomOutput = {
     type = "structure",
+    id = "UpdateRoomOutput",
     members = {
         arn = {
             type = "string",

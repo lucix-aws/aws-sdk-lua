@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -31,6 +33,7 @@ M.TypeHint = {
 
 M.DatabaseErrorException = {
     type = "structure",
+    id = "DatabaseErrorException",
     error = "client",
     members = {
         message = {
@@ -41,6 +44,7 @@ M.DatabaseErrorException = {
 
 M.DatabaseNotFoundException = {
     type = "structure",
+    id = "DatabaseNotFoundException",
     error = "client",
     members = {
         message = {
@@ -51,6 +55,7 @@ M.DatabaseNotFoundException = {
 
 M.DatabaseResumingException = {
     type = "structure",
+    id = "DatabaseResumingException",
     error = "client",
     members = {
         message = {
@@ -61,11 +66,13 @@ M.DatabaseResumingException = {
 
 M.DatabaseUnavailableException = {
     type = "structure",
+    id = "DatabaseUnavailableException",
     error = "server",
 }
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -76,6 +83,7 @@ M.ForbiddenException = {
 
 M.HttpEndpointNotEnabledException = {
     type = "structure",
+    id = "HttpEndpointNotEnabledException",
     error = "client",
     members = {
         message = {
@@ -86,11 +94,13 @@ M.HttpEndpointNotEnabledException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
 }
 
 M.InvalidResourceStateException = {
     type = "structure",
+    id = "InvalidResourceStateException",
     error = "client",
     members = {
         message = {
@@ -101,6 +111,7 @@ M.InvalidResourceStateException = {
 
 M.InvalidSecretException = {
     type = "structure",
+    id = "InvalidSecretException",
     error = "client",
     members = {
         message = {
@@ -111,6 +122,7 @@ M.InvalidSecretException = {
 
 M.SecretsErrorException = {
     type = "structure",
+    id = "SecretsErrorException",
     error = "client",
     members = {
         message = {
@@ -121,11 +133,13 @@ M.SecretsErrorException = {
 
 M.ServiceUnavailableError = {
     type = "structure",
+    id = "ServiceUnavailableError",
     error = "server",
 }
 
 M.StatementTimeoutException = {
     type = "structure",
+    id = "StatementTimeoutException",
     error = "client",
     members = {
         message = {
@@ -142,6 +156,7 @@ M.StatementTimeoutException = {
 
 M.TransactionNotFoundException = {
     type = "structure",
+    id = "TransactionNotFoundException",
     error = "client",
     members = {
         message = {
@@ -152,6 +167,7 @@ M.TransactionNotFoundException = {
 
 M.BeginTransactionInput = {
     type = "structure",
+    id = "BeginTransactionInput",
     members = {
         resourceArn = {
             type = "string",
@@ -176,6 +192,7 @@ M.BeginTransactionInput = {
 
 M.BeginTransactionOutput = {
     type = "structure",
+    id = "BeginTransactionOutput",
     members = {
         transactionId = {
             type = "string",
@@ -185,6 +202,7 @@ M.BeginTransactionOutput = {
 
 M.ColumnMetadata = {
     type = "structure",
+    id = "ColumnMetadata",
     members = {
         name = {
             type = "string",
@@ -260,6 +278,7 @@ M.ColumnMetadata = {
 
 M.CommitTransactionInput = {
     type = "structure",
+    id = "CommitTransactionInput",
     members = {
         resourceArn = {
             type = "string",
@@ -284,6 +303,7 @@ M.CommitTransactionInput = {
 
 M.CommitTransactionOutput = {
     type = "structure",
+    id = "CommitTransactionOutput",
     members = {
         transactionStatus = {
             type = "string",
@@ -293,6 +313,7 @@ M.CommitTransactionOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -308,6 +329,7 @@ M.DecimalReturnType = {
 
 M.ExecuteSqlInput = {
     type = "structure",
+    id = "ExecuteSqlInput",
     members = {
         dbClusterOrInstanceArn = {
             type = "string",
@@ -338,6 +360,7 @@ M.ExecuteSqlInput = {
 
 M.ResultSetMetadata = {
     type = "structure",
+    id = "ResultSetMetadata",
     members = {
         columnCount = {
             type = "long",
@@ -364,6 +387,7 @@ M.LongReturnType = {
 
 M.ResultSetOptions = {
     type = "structure",
+    id = "ResultSetOptions",
     members = {
         decimalReturnType = {
             type = "string",
@@ -376,6 +400,7 @@ M.ResultSetOptions = {
 
 M.UnsupportedResultException = {
     type = "structure",
+    id = "UnsupportedResultException",
     error = "client",
     members = {
         message = {
@@ -386,6 +411,7 @@ M.UnsupportedResultException = {
 
 M.RollbackTransactionInput = {
     type = "structure",
+    id = "RollbackTransactionInput",
     members = {
         resourceArn = {
             type = "string",
@@ -410,6 +436,7 @@ M.RollbackTransactionInput = {
 
 M.RollbackTransactionOutput = {
     type = "structure",
+    id = "RollbackTransactionOutput",
     members = {
         transactionStatus = {
             type = "string",
@@ -419,6 +446,7 @@ M.RollbackTransactionOutput = {
 
 M.ArrayValue = {
     type = "union",
+    id = "ArrayValue",
     members = {
         booleanValues = {
             type = "list",
@@ -445,6 +473,7 @@ M.ArrayValue = {
 
 M.Field = {
     type = "union",
+    id = "Field",
     members = {
         isNull = {
             type = "boolean",
@@ -470,6 +499,7 @@ M.Field = {
 
 M.SqlParameter = {
     type = "structure",
+    id = "SqlParameter",
     members = {
         name = {
             type = "string",
@@ -483,6 +513,7 @@ M.SqlParameter = {
 
 M.UpdateResult = {
     type = "structure",
+    id = "UpdateResult",
     members = {
         generatedFields = {
             type = "list",
@@ -493,6 +524,7 @@ M.UpdateResult = {
 
 M.Value = {
     type = "union",
+    id = "Value",
     members = {
         isNull = {
             type = "boolean",
@@ -528,6 +560,7 @@ M.Value = {
 
 M.ExecuteStatementInput = {
     type = "structure",
+    id = "ExecuteStatementInput",
     members = {
         resourceArn = {
             type = "string",
@@ -581,6 +614,7 @@ M.ExecuteStatementInput = {
 
 M.StructValue = {
     type = "structure",
+    id = "StructValue",
     members = {
         attributes = {
             type = "list",
@@ -591,6 +625,7 @@ M.StructValue = {
 
 M.BatchExecuteStatementInput = {
     type = "structure",
+    id = "BatchExecuteStatementInput",
     members = {
         resourceArn = {
             type = "string",
@@ -628,6 +663,7 @@ M.BatchExecuteStatementInput = {
 
 M.BatchExecuteStatementOutput = {
     type = "structure",
+    id = "BatchExecuteStatementOutput",
     members = {
         updateResults = {
             type = "list",
@@ -638,6 +674,7 @@ M.BatchExecuteStatementOutput = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         values = {
             type = "list",
@@ -648,6 +685,7 @@ M.Record = {
 
 M.ExecuteStatementOutput = {
     type = "structure",
+    id = "ExecuteStatementOutput",
     members = {
         records = {
             type = "list",
@@ -675,6 +713,7 @@ M.ExecuteStatementOutput = {
 
 M.ResultFrame = {
     type = "structure",
+    id = "ResultFrame",
     members = {
         resultSetMetadata = M.ResultSetMetadata,
         records = {
@@ -686,6 +725,7 @@ M.ResultFrame = {
 
 M.SqlStatementResult = {
     type = "structure",
+    id = "SqlStatementResult",
     members = {
         resultFrame = M.ResultFrame,
         numberOfRecordsUpdated = {
@@ -699,6 +739,7 @@ M.SqlStatementResult = {
 
 M.ExecuteSqlOutput = {
     type = "structure",
+    id = "ExecuteSqlOutput",
     members = {
         sqlStatementResults = {
             type = "list",

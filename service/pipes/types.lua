@@ -7,6 +7,7 @@ M.AssignPublicIp = {
 
 M.AwsVpcConfiguration = {
     type = "structure",
+    id = "AwsVpcConfiguration",
     members = {
         Subnets = {
             type = "list",
@@ -27,6 +28,7 @@ M.AwsVpcConfiguration = {
 
 M.BatchArrayProperties = {
     type = "structure",
+    id = "BatchArrayProperties",
     members = {
         Size = {
             type = "integer",
@@ -36,6 +38,7 @@ M.BatchArrayProperties = {
 
 M.BatchEnvironmentVariable = {
     type = "structure",
+    id = "BatchEnvironmentVariable",
     members = {
         Name = {
             type = "string",
@@ -54,6 +57,7 @@ M.BatchResourceRequirementType = {
 
 M.BatchResourceRequirement = {
     type = "structure",
+    id = "BatchResourceRequirement",
     members = {
         Type = {
             type = "string",
@@ -72,6 +76,7 @@ M.BatchResourceRequirement = {
 
 M.BatchContainerOverrides = {
     type = "structure",
+    id = "BatchContainerOverrides",
     members = {
         Command = {
             type = "list",
@@ -98,6 +103,7 @@ M.BatchJobDependencyType = {
 
 M.BatchJobDependency = {
     type = "structure",
+    id = "BatchJobDependency",
     members = {
         JobId = {
             type = "string",
@@ -110,6 +116,7 @@ M.BatchJobDependency = {
 
 M.BatchRetryStrategy = {
     type = "structure",
+    id = "BatchRetryStrategy",
     members = {
         Attempts = {
             type = "integer",
@@ -119,6 +126,7 @@ M.BatchRetryStrategy = {
 
 M.CapacityProviderStrategyItem = {
     type = "structure",
+    id = "CapacityProviderStrategyItem",
     members = {
         capacityProvider = {
             type = "string",
@@ -143,6 +151,7 @@ M.CapacityProviderStrategyItem = {
 
 M.CloudwatchLogsLogDestination = {
     type = "structure",
+    id = "CloudwatchLogsLogDestination",
     members = {
         LogGroupArn = {
             type = "string",
@@ -152,6 +161,7 @@ M.CloudwatchLogsLogDestination = {
 
 M.CloudwatchLogsLogDestinationParameters = {
     type = "structure",
+    id = "CloudwatchLogsLogDestinationParameters",
     members = {
         LogGroupArn = {
             type = "string",
@@ -164,6 +174,7 @@ M.CloudwatchLogsLogDestinationParameters = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -194,6 +205,7 @@ M.RequestedPipeState = {
 
 M.PipeEnrichmentHttpParameters = {
     type = "structure",
+    id = "PipeEnrichmentHttpParameters",
     members = {
         PathParameterValues = {
             type = "list",
@@ -214,6 +226,7 @@ M.PipeEnrichmentHttpParameters = {
 
 M.PipeEnrichmentParameters = {
     type = "structure",
+    id = "PipeEnrichmentParameters",
     members = {
         InputTemplate = {
             type = "string",
@@ -224,6 +237,7 @@ M.PipeEnrichmentParameters = {
 
 M.FirehoseLogDestinationParameters = {
     type = "structure",
+    id = "FirehoseLogDestinationParameters",
     members = {
         DeliveryStreamArn = {
             type = "string",
@@ -253,6 +267,7 @@ M.S3OutputFormat = {
 
 M.S3LogDestinationParameters = {
     type = "structure",
+    id = "S3LogDestinationParameters",
     members = {
         BucketName = {
             type = "string",
@@ -277,6 +292,7 @@ M.S3LogDestinationParameters = {
 
 M.PipeLogConfigurationParameters = {
     type = "structure",
+    id = "PipeLogConfigurationParameters",
     members = {
         S3LogDestination = M.S3LogDestinationParameters,
         FirehoseLogDestination = M.FirehoseLogDestinationParameters,
@@ -296,6 +312,7 @@ M.PipeLogConfigurationParameters = {
 
 M.MQBrokerAccessCredentials = {
     type = "union",
+    id = "MQBrokerAccessCredentials",
     members = {
         BasicAuth = {
             type = "string",
@@ -305,6 +322,7 @@ M.MQBrokerAccessCredentials = {
 
 M.PipeSourceActiveMQBrokerParameters = {
     type = "structure",
+    id = "PipeSourceActiveMQBrokerParameters",
     members = {
         Credentials = setmetatable({ traits = {
             required = true,
@@ -326,6 +344,7 @@ M.PipeSourceActiveMQBrokerParameters = {
 
 M.DeadLetterConfig = {
     type = "structure",
+    id = "DeadLetterConfig",
     members = {
         Arn = {
             type = "string",
@@ -344,6 +363,7 @@ M.DynamoDBStreamStartPosition = {
 
 M.PipeSourceDynamoDBStreamParameters = {
     type = "structure",
+    id = "PipeSourceDynamoDBStreamParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -375,6 +395,7 @@ M.PipeSourceDynamoDBStreamParameters = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Pattern = {
             type = "string",
@@ -384,6 +405,7 @@ M.Filter = {
 
 M.FilterCriteria = {
     type = "structure",
+    id = "FilterCriteria",
     members = {
         Filters = {
             type = "list",
@@ -400,6 +422,7 @@ M.KinesisStreamStartPosition = {
 
 M.PipeSourceKinesisStreamParameters = {
     type = "structure",
+    id = "PipeSourceKinesisStreamParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -434,6 +457,7 @@ M.PipeSourceKinesisStreamParameters = {
 
 M.MSKAccessCredentials = {
     type = "union",
+    id = "MSKAccessCredentials",
     members = {
         SaslScram512Auth = {
             type = "string",
@@ -451,6 +475,7 @@ M.MSKStartPosition = {
 
 M.PipeSourceManagedStreamingKafkaParameters = {
     type = "structure",
+    id = "PipeSourceManagedStreamingKafkaParameters",
     members = {
         TopicName = {
             type = "string",
@@ -476,6 +501,7 @@ M.PipeSourceManagedStreamingKafkaParameters = {
 
 M.PipeSourceRabbitMQBrokerParameters = {
     type = "structure",
+    id = "PipeSourceRabbitMQBrokerParameters",
     members = {
         Credentials = setmetatable({ traits = {
             required = true,
@@ -500,6 +526,7 @@ M.PipeSourceRabbitMQBrokerParameters = {
 
 M.SelfManagedKafkaAccessConfigurationCredentials = {
     type = "union",
+    id = "SelfManagedKafkaAccessConfigurationCredentials",
     members = {
         BasicAuth = {
             type = "string",
@@ -523,6 +550,7 @@ M.SelfManagedKafkaStartPosition = {
 
 M.SelfManagedKafkaAccessConfigurationVpc = {
     type = "structure",
+    id = "SelfManagedKafkaAccessConfigurationVpc",
     members = {
         Subnets = {
             type = "list",
@@ -537,6 +565,7 @@ M.SelfManagedKafkaAccessConfigurationVpc = {
 
 M.PipeSourceSelfManagedKafkaParameters = {
     type = "structure",
+    id = "PipeSourceSelfManagedKafkaParameters",
     members = {
         TopicName = {
             type = "string",
@@ -570,6 +599,7 @@ M.PipeSourceSelfManagedKafkaParameters = {
 
 M.PipeSourceSqsQueueParameters = {
     type = "structure",
+    id = "PipeSourceSqsQueueParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -582,6 +612,7 @@ M.PipeSourceSqsQueueParameters = {
 
 M.PipeSourceParameters = {
     type = "structure",
+    id = "PipeSourceParameters",
     members = {
         FilterCriteria = M.FilterCriteria,
         KinesisStreamParameters = M.PipeSourceKinesisStreamParameters,
@@ -596,6 +627,7 @@ M.PipeSourceParameters = {
 
 M.PipeTargetBatchJobParameters = {
     type = "structure",
+    id = "PipeTargetBatchJobParameters",
     members = {
         JobDefinition = {
             type = "string",
@@ -626,6 +658,7 @@ M.PipeTargetBatchJobParameters = {
 
 M.PipeTargetCloudWatchLogsParameters = {
     type = "structure",
+    id = "PipeTargetCloudWatchLogsParameters",
     members = {
         LogStreamName = {
             type = "string",
@@ -644,6 +677,7 @@ M.LaunchType = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         awsvpcConfiguration = M.AwsVpcConfiguration,
     },
@@ -651,6 +685,7 @@ M.NetworkConfiguration = {
 
 M.EcsEnvironmentVariable = {
     type = "structure",
+    id = "EcsEnvironmentVariable",
     members = {
         name = {
             type = "string",
@@ -667,6 +702,7 @@ M.EcsEnvironmentFileType = {
 
 M.EcsEnvironmentFile = {
     type = "structure",
+    id = "EcsEnvironmentFile",
     members = {
         type = {
             type = "string",
@@ -690,6 +726,7 @@ M.EcsResourceRequirementType = {
 
 M.EcsResourceRequirement = {
     type = "structure",
+    id = "EcsResourceRequirement",
     members = {
         type = {
             type = "string",
@@ -708,6 +745,7 @@ M.EcsResourceRequirement = {
 
 M.EcsContainerOverride = {
     type = "structure",
+    id = "EcsContainerOverride",
     members = {
         Command = {
             type = "list",
@@ -742,6 +780,7 @@ M.EcsContainerOverride = {
 
 M.EcsEphemeralStorage = {
     type = "structure",
+    id = "EcsEphemeralStorage",
     members = {
         sizeInGiB = {
             type = "integer",
@@ -754,6 +793,7 @@ M.EcsEphemeralStorage = {
 
 M.EcsInferenceAcceleratorOverride = {
     type = "structure",
+    id = "EcsInferenceAcceleratorOverride",
     members = {
         deviceName = {
             type = "string",
@@ -766,6 +806,7 @@ M.EcsInferenceAcceleratorOverride = {
 
 M.EcsTaskOverride = {
     type = "structure",
+    id = "EcsTaskOverride",
     members = {
         ContainerOverrides = {
             type = "list",
@@ -798,6 +839,7 @@ M.PlacementConstraintType = {
 
 M.PlacementConstraint = {
     type = "structure",
+    id = "PlacementConstraint",
     members = {
         type = {
             type = "string",
@@ -816,6 +858,7 @@ M.PlacementStrategyType = {
 
 M.PlacementStrategy = {
     type = "structure",
+    id = "PlacementStrategy",
     members = {
         type = {
             type = "string",
@@ -832,6 +875,7 @@ M.PropagateTags = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -850,6 +894,7 @@ M.Tag = {
 
 M.PipeTargetEcsTaskParameters = {
     type = "structure",
+    id = "PipeTargetEcsTaskParameters",
     members = {
         TaskDefinitionArn = {
             type = "string",
@@ -910,6 +955,7 @@ M.PipeTargetEcsTaskParameters = {
 
 M.PipeTargetEventBridgeEventBusParameters = {
     type = "structure",
+    id = "PipeTargetEventBridgeEventBusParameters",
     members = {
         EndpointId = {
             type = "string",
@@ -932,6 +978,7 @@ M.PipeTargetEventBridgeEventBusParameters = {
 
 M.PipeTargetHttpParameters = {
     type = "structure",
+    id = "PipeTargetHttpParameters",
     members = {
         PathParameterValues = {
             type = "list",
@@ -952,6 +999,7 @@ M.PipeTargetHttpParameters = {
 
 M.PipeTargetKinesisStreamParameters = {
     type = "structure",
+    id = "PipeTargetKinesisStreamParameters",
     members = {
         PartitionKey = {
             type = "string",
@@ -969,6 +1017,7 @@ M.PipeTargetInvocationType = {
 
 M.PipeTargetLambdaFunctionParameters = {
     type = "structure",
+    id = "PipeTargetLambdaFunctionParameters",
     members = {
         InvocationType = {
             type = "string",
@@ -978,6 +1027,7 @@ M.PipeTargetLambdaFunctionParameters = {
 
 M.PipeTargetRedshiftDataParameters = {
     type = "structure",
+    id = "PipeTargetRedshiftDataParameters",
     members = {
         SecretManagerArn = {
             type = "string",
@@ -1012,6 +1062,7 @@ M.PipeTargetRedshiftDataParameters = {
 
 M.SageMakerPipelineParameter = {
     type = "structure",
+    id = "SageMakerPipelineParameter",
     members = {
         Name = {
             type = "string",
@@ -1030,6 +1081,7 @@ M.SageMakerPipelineParameter = {
 
 M.PipeTargetSageMakerPipelineParameters = {
     type = "structure",
+    id = "PipeTargetSageMakerPipelineParameters",
     members = {
         PipelineParameterList = {
             type = "list",
@@ -1040,6 +1092,7 @@ M.PipeTargetSageMakerPipelineParameters = {
 
 M.PipeTargetSqsQueueParameters = {
     type = "structure",
+    id = "PipeTargetSqsQueueParameters",
     members = {
         MessageGroupId = {
             type = "string",
@@ -1052,6 +1105,7 @@ M.PipeTargetSqsQueueParameters = {
 
 M.PipeTargetStateMachineParameters = {
     type = "structure",
+    id = "PipeTargetStateMachineParameters",
     members = {
         InvocationType = {
             type = "string",
@@ -1065,6 +1119,7 @@ M.DimensionValueType = {
 
 M.DimensionMapping = {
     type = "structure",
+    id = "DimensionMapping",
     members = {
         DimensionValue = {
             type = "string",
@@ -1104,6 +1159,7 @@ M.MeasureValueType = {
 
 M.MultiMeasureAttributeMapping = {
     type = "structure",
+    id = "MultiMeasureAttributeMapping",
     members = {
         MeasureValue = {
             type = "string",
@@ -1128,6 +1184,7 @@ M.MultiMeasureAttributeMapping = {
 
 M.MultiMeasureMapping = {
     type = "structure",
+    id = "MultiMeasureMapping",
     members = {
         MultiMeasureName = {
             type = "string",
@@ -1147,6 +1204,7 @@ M.MultiMeasureMapping = {
 
 M.SingleMeasureMapping = {
     type = "structure",
+    id = "SingleMeasureMapping",
     members = {
         MeasureValue = {
             type = "string",
@@ -1176,6 +1234,7 @@ M.TimeFieldType = {
 
 M.PipeTargetTimestreamParameters = {
     type = "structure",
+    id = "PipeTargetTimestreamParameters",
     members = {
         TimeValue = {
             type = "string",
@@ -1218,6 +1277,7 @@ M.PipeTargetTimestreamParameters = {
 
 M.PipeTargetParameters = {
     type = "structure",
+    id = "PipeTargetParameters",
     members = {
         InputTemplate = {
             type = "string",
@@ -1239,6 +1299,7 @@ M.PipeTargetParameters = {
 
 M.CreatePipeInput = {
     type = "structure",
+    id = "CreatePipeInput",
     members = {
         Name = {
             type = "string",
@@ -1309,6 +1370,7 @@ M.PipeState = {
 
 M.CreatePipeOutput = {
     type = "structure",
+    id = "CreatePipeOutput",
     members = {
         Arn = {
             type = "string",
@@ -1333,6 +1395,7 @@ M.CreatePipeOutput = {
 
 M.InternalException = {
     type = "structure",
+    id = "InternalException",
     error = "server",
     members = {
         message = {
@@ -1352,6 +1415,7 @@ M.InternalException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -1362,6 +1426,7 @@ M.NotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1399,6 +1464,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -1424,6 +1490,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -1442,6 +1509,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -1456,6 +1524,7 @@ M.ValidationException = {
 
 M.DeletePipeInput = {
     type = "structure",
+    id = "DeletePipeInput",
     members = {
         Name = {
             type = "string",
@@ -1475,6 +1544,7 @@ M.RequestedPipeStateDescribeResponse = {
 
 M.DeletePipeOutput = {
     type = "structure",
+    id = "DeletePipeOutput",
     members = {
         Arn = {
             type = "string",
@@ -1499,6 +1569,7 @@ M.DeletePipeOutput = {
 
 M.DescribePipeInput = {
     type = "structure",
+    id = "DescribePipeInput",
     members = {
         Name = {
             type = "string",
@@ -1512,6 +1583,7 @@ M.DescribePipeInput = {
 
 M.FirehoseLogDestination = {
     type = "structure",
+    id = "FirehoseLogDestination",
     members = {
         DeliveryStreamArn = {
             type = "string",
@@ -1521,6 +1593,7 @@ M.FirehoseLogDestination = {
 
 M.S3LogDestination = {
     type = "structure",
+    id = "S3LogDestination",
     members = {
         BucketName = {
             type = "string",
@@ -1539,6 +1612,7 @@ M.S3LogDestination = {
 
 M.PipeLogConfiguration = {
     type = "structure",
+    id = "PipeLogConfiguration",
     members = {
         S3LogDestination = M.S3LogDestination,
         FirehoseLogDestination = M.FirehoseLogDestination,
@@ -1555,6 +1629,7 @@ M.PipeLogConfiguration = {
 
 M.DescribePipeOutput = {
     type = "structure",
+    id = "DescribePipeOutput",
     members = {
         Arn = {
             type = "string",
@@ -1609,6 +1684,7 @@ M.DescribePipeOutput = {
 
 M.ListPipesInput = {
     type = "structure",
+    id = "ListPipesInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1657,6 +1733,7 @@ M.ListPipesInput = {
 
 M.Pipe = {
     type = "structure",
+    id = "Pipe",
     members = {
         Name = {
             type = "string",
@@ -1693,6 +1770,7 @@ M.Pipe = {
 
 M.ListPipesOutput = {
     type = "structure",
+    id = "ListPipesOutput",
     members = {
         Pipes = {
             type = "list",
@@ -1706,6 +1784,7 @@ M.ListPipesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1719,6 +1798,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1730,6 +1810,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartPipeInput = {
     type = "structure",
+    id = "StartPipeInput",
     members = {
         Name = {
             type = "string",
@@ -1743,6 +1824,7 @@ M.StartPipeInput = {
 
 M.StartPipeOutput = {
     type = "structure",
+    id = "StartPipeOutput",
     members = {
         Arn = {
             type = "string",
@@ -1767,6 +1849,7 @@ M.StartPipeOutput = {
 
 M.StopPipeInput = {
     type = "structure",
+    id = "StopPipeInput",
     members = {
         Name = {
             type = "string",
@@ -1780,6 +1863,7 @@ M.StopPipeInput = {
 
 M.StopPipeOutput = {
     type = "structure",
+    id = "StopPipeOutput",
     members = {
         Arn = {
             type = "string",
@@ -1804,6 +1888,7 @@ M.StopPipeOutput = {
 
 M.UpdatePipeSourceActiveMQBrokerParameters = {
     type = "structure",
+    id = "UpdatePipeSourceActiveMQBrokerParameters",
     members = {
         Credentials = setmetatable({ traits = {
             required = true,
@@ -1819,6 +1904,7 @@ M.UpdatePipeSourceActiveMQBrokerParameters = {
 
 M.UpdatePipeSourceDynamoDBStreamParameters = {
     type = "structure",
+    id = "UpdatePipeSourceDynamoDBStreamParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -1844,6 +1930,7 @@ M.UpdatePipeSourceDynamoDBStreamParameters = {
 
 M.UpdatePipeSourceKinesisStreamParameters = {
     type = "structure",
+    id = "UpdatePipeSourceKinesisStreamParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -1869,6 +1956,7 @@ M.UpdatePipeSourceKinesisStreamParameters = {
 
 M.UpdatePipeSourceManagedStreamingKafkaParameters = {
     type = "structure",
+    id = "UpdatePipeSourceManagedStreamingKafkaParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -1882,6 +1970,7 @@ M.UpdatePipeSourceManagedStreamingKafkaParameters = {
 
 M.UpdatePipeSourceRabbitMQBrokerParameters = {
     type = "structure",
+    id = "UpdatePipeSourceRabbitMQBrokerParameters",
     members = {
         Credentials = setmetatable({ traits = {
             required = true,
@@ -1897,6 +1986,7 @@ M.UpdatePipeSourceRabbitMQBrokerParameters = {
 
 M.UpdatePipeSourceSelfManagedKafkaParameters = {
     type = "structure",
+    id = "UpdatePipeSourceSelfManagedKafkaParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -1914,6 +2004,7 @@ M.UpdatePipeSourceSelfManagedKafkaParameters = {
 
 M.UpdatePipeSourceSqsQueueParameters = {
     type = "structure",
+    id = "UpdatePipeSourceSqsQueueParameters",
     members = {
         BatchSize = {
             type = "integer",
@@ -1926,6 +2017,7 @@ M.UpdatePipeSourceSqsQueueParameters = {
 
 M.UpdatePipeSourceParameters = {
     type = "structure",
+    id = "UpdatePipeSourceParameters",
     members = {
         FilterCriteria = M.FilterCriteria,
         KinesisStreamParameters = M.UpdatePipeSourceKinesisStreamParameters,
@@ -1940,6 +2032,7 @@ M.UpdatePipeSourceParameters = {
 
 M.UpdatePipeInput = {
     type = "structure",
+    id = "UpdatePipeInput",
     members = {
         Name = {
             type = "string",
@@ -1978,6 +2071,7 @@ M.UpdatePipeInput = {
 
 M.UpdatePipeOutput = {
     type = "structure",
+    id = "UpdatePipeOutput",
     members = {
         Arn = {
             type = "string",
@@ -2002,6 +2096,7 @@ M.UpdatePipeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2023,10 +2118,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2048,6 +2145,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

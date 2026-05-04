@@ -1407,9 +1407,9 @@ local record ValidationException
     Message: string
 end
 
-local type TrustStoreResponseOption = "EXCLUDE" | "INCLUDE"
-
 local type ArchiveState = "ACTIVE" | "PENDING_DELETION"
+
+local type TrustStoreResponseOption = "EXCLUDE" | "INCLUDE"
 
 local type IngressPointStatusToUpdate = "ACTIVE" | "CLOSED"
 
@@ -1419,9 +1419,9 @@ local type ImportJobStatus = "CREATED" | "PROCESSING" | "COMPLETED" | "FAILED" |
 
 local type IngressPointType = "OPEN" | "AUTH" | "MTLS"
 
-local type TlsPolicy = "REQUIRED" | "OPTIONAL" | "FIPS"
-
 local type AcceptAction = "ALLOW" | "DENY"
+
+local type TlsPolicy = "REQUIRED" | "OPTIONAL" | "FIPS"
 
 local record M
     CreateAddonInstanceInput: CreateAddonInstanceInput

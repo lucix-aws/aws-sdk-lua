@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -23,6 +24,7 @@ M.AdditionalSecurityRequirement = {
 
 M.MofNApprovalStrategy = {
     type = "structure",
+    id = "MofNApprovalStrategy",
     members = {
         MinApprovalsRequired = {
             type = "integer",
@@ -35,6 +37,7 @@ M.MofNApprovalStrategy = {
 
 M.ApprovalStrategy = {
     type = "union",
+    id = "ApprovalStrategy",
     members = {
         MofN = M.MofNApprovalStrategy,
     },
@@ -42,6 +45,7 @@ M.ApprovalStrategy = {
 
 M.ApprovalStrategyResponse = {
     type = "union",
+    id = "ApprovalStrategyResponse",
     members = {
         MofN = M.MofNApprovalStrategy,
     },
@@ -49,6 +53,7 @@ M.ApprovalStrategyResponse = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -62,6 +67,7 @@ M.ConflictException = {
 
 M.ApprovalTeamRequestApprover = {
     type = "structure",
+    id = "ApprovalTeamRequestApprover",
     members = {
         PrimaryIdentityId = {
             type = "string",
@@ -80,6 +86,7 @@ M.ApprovalTeamRequestApprover = {
 
 M.PolicyReference = {
     type = "structure",
+    id = "PolicyReference",
     members = {
         PolicyArn = {
             type = "string",
@@ -92,6 +99,7 @@ M.PolicyReference = {
 
 M.CreateApprovalTeamInput = {
     type = "structure",
+    id = "CreateApprovalTeamInput",
     members = {
         ClientToken = {
             type = "string",
@@ -138,6 +146,7 @@ M.CreateApprovalTeamInput = {
 
 M.CreateApprovalTeamOutput = {
     type = "structure",
+    id = "CreateApprovalTeamOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -159,6 +168,7 @@ M.CreateApprovalTeamOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -172,6 +182,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -185,6 +196,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -198,6 +210,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -211,6 +224,7 @@ M.ValidationException = {
 
 M.DeleteInactiveApprovalTeamVersionInput = {
     type = "structure",
+    id = "DeleteInactiveApprovalTeamVersionInput",
     members = {
         Arn = {
             type = "string",
@@ -231,10 +245,12 @@ M.DeleteInactiveApprovalTeamVersionInput = {
 
 M.DeleteInactiveApprovalTeamVersionOutput = {
     type = "structure",
+    id = "DeleteInactiveApprovalTeamVersionOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -248,6 +264,7 @@ M.ResourceNotFoundException = {
 
 M.GetApprovalTeamInput = {
     type = "structure",
+    id = "GetApprovalTeamInput",
     members = {
         Arn = {
             type = "string",
@@ -276,6 +293,7 @@ M.MfaType = {
 
 M.MfaMethod = {
     type = "structure",
+    id = "MfaMethod",
     members = {
         Type = {
             type = "string",
@@ -301,6 +319,7 @@ M.IdentityStatus = {
 
 M.GetApprovalTeamResponseApprover = {
     type = "structure",
+    id = "GetApprovalTeamResponseApprover",
     members = {
         ApproverId = {
             type = "string",
@@ -363,6 +382,7 @@ M.ApprovalTeamStatusCode = {
 
 M.PendingUpdate = {
     type = "structure",
+    id = "PendingUpdate",
     members = {
         VersionId = {
             type = "string",
@@ -398,6 +418,7 @@ M.PendingUpdate = {
 
 M.GetApprovalTeamOutput = {
     type = "structure",
+    id = "GetApprovalTeamOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -453,6 +474,7 @@ M.GetApprovalTeamOutput = {
 
 M.ListApprovalTeamsInput = {
     type = "structure",
+    id = "ListApprovalTeamsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -472,6 +494,7 @@ M.ListApprovalTeamsInput = {
 
 M.ListApprovalTeamsResponseApprovalTeam = {
     type = "structure",
+    id = "ListApprovalTeamsResponseApprovalTeam",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -506,6 +529,7 @@ M.ListApprovalTeamsResponseApprovalTeam = {
 
 M.ListApprovalTeamsOutput = {
     type = "structure",
+    id = "ListApprovalTeamsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -519,6 +543,7 @@ M.ListApprovalTeamsOutput = {
 
 M.StartActiveApprovalTeamDeletionInput = {
     type = "structure",
+    id = "StartActiveApprovalTeamDeletionInput",
     members = {
         PendingWindowDays = {
             type = "integer",
@@ -535,6 +560,7 @@ M.StartActiveApprovalTeamDeletionInput = {
 
 M.StartActiveApprovalTeamDeletionOutput = {
     type = "structure",
+    id = "StartActiveApprovalTeamDeletionOutput",
     members = {
         DeletionCompletionTime = {
             type = "timestamp",
@@ -553,6 +579,7 @@ M.StartActiveApprovalTeamDeletionOutput = {
 
 M.StartApprovalTeamBaselineInput = {
     type = "structure",
+    id = "StartApprovalTeamBaselineInput",
     members = {
         Arn = {
             type = "string",
@@ -570,6 +597,7 @@ M.StartApprovalTeamBaselineInput = {
 
 M.StartApprovalTeamBaselineOutput = {
     type = "structure",
+    id = "StartApprovalTeamBaselineOutput",
     members = {
         BaselineSessionArn = {
             type = "string",
@@ -583,6 +611,7 @@ M.UpdateAction = {
 
 M.UpdateApprovalTeamInput = {
     type = "structure",
+    id = "UpdateApprovalTeamInput",
     members = {
         ApprovalStrategy = M.ApprovalStrategy,
         Approvers = {
@@ -608,6 +637,7 @@ M.UpdateApprovalTeamInput = {
 
 M.UpdateApprovalTeamOutput = {
     type = "structure",
+    id = "UpdateApprovalTeamOutput",
     members = {
         VersionId = {
             type = "string",
@@ -617,6 +647,7 @@ M.UpdateApprovalTeamOutput = {
 
 M.GetPolicyVersionInput = {
     type = "structure",
+    id = "GetPolicyVersionInput",
     members = {
         PolicyVersionArn = {
             type = "string",
@@ -640,6 +671,7 @@ M.PolicyStatus = {
 
 M.PolicyVersion = {
     type = "structure",
+    id = "PolicyVersion",
     members = {
         Arn = {
             type = "string",
@@ -708,6 +740,7 @@ M.PolicyVersion = {
 
 M.GetPolicyVersionOutput = {
     type = "structure",
+    id = "GetPolicyVersionOutput",
     members = {
         PolicyVersion = setmetatable({ traits = {
             required = true,
@@ -717,6 +750,7 @@ M.GetPolicyVersionOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -741,6 +775,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -774,6 +809,7 @@ M.GetResourcePolicyOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -787,6 +823,7 @@ M.InvalidParameterException = {
 
 M.IamIdentityCenter = {
     type = "structure",
+    id = "IamIdentityCenter",
     members = {
         InstanceArn = {
             type = "string",
@@ -805,6 +842,7 @@ M.IamIdentityCenter = {
 
 M.IdentitySourceParameters = {
     type = "structure",
+    id = "IdentitySourceParameters",
     members = {
         IamIdentityCenter = M.IamIdentityCenter,
     },
@@ -812,6 +850,7 @@ M.IdentitySourceParameters = {
 
 M.CreateIdentitySourceInput = {
     type = "structure",
+    id = "CreateIdentitySourceInput",
     members = {
         IdentitySourceParameters = setmetatable({ traits = {
             required = true,
@@ -836,6 +875,7 @@ M.IdentitySourceType = {
 
 M.CreateIdentitySourceOutput = {
     type = "structure",
+    id = "CreateIdentitySourceOutput",
     members = {
         IdentitySourceType = {
             type = "string",
@@ -854,6 +894,7 @@ M.CreateIdentitySourceOutput = {
 
 M.DeleteIdentitySourceInput = {
     type = "structure",
+    id = "DeleteIdentitySourceInput",
     members = {
         IdentitySourceArn = {
             type = "string",
@@ -867,10 +908,12 @@ M.DeleteIdentitySourceInput = {
 
 M.DeleteIdentitySourceOutput = {
     type = "structure",
+    id = "DeleteIdentitySourceOutput",
 }
 
 M.GetIdentitySourceInput = {
     type = "structure",
+    id = "GetIdentitySourceInput",
     members = {
         IdentitySourceArn = {
             type = "string",
@@ -884,6 +927,7 @@ M.GetIdentitySourceInput = {
 
 M.IamIdentityCenterForGet = {
     type = "structure",
+    id = "IamIdentityCenterForGet",
     members = {
         InstanceArn = {
             type = "string",
@@ -899,6 +943,7 @@ M.IamIdentityCenterForGet = {
 
 M.IdentitySourceParametersForGet = {
     type = "union",
+    id = "IdentitySourceParametersForGet",
     members = {
         IamIdentityCenter = M.IamIdentityCenterForGet,
     },
@@ -920,6 +965,7 @@ M.IdentitySourceStatusCode = {
 
 M.GetIdentitySourceOutput = {
     type = "structure",
+    id = "GetIdentitySourceOutput",
     members = {
         IdentitySourceType = {
             type = "string",
@@ -948,6 +994,7 @@ M.GetIdentitySourceOutput = {
 
 M.ListIdentitySourcesInput = {
     type = "structure",
+    id = "ListIdentitySourcesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -967,6 +1014,7 @@ M.ListIdentitySourcesInput = {
 
 M.IamIdentityCenterForList = {
     type = "structure",
+    id = "IamIdentityCenterForList",
     members = {
         InstanceArn = {
             type = "string",
@@ -982,6 +1030,7 @@ M.IamIdentityCenterForList = {
 
 M.IdentitySourceParametersForList = {
     type = "union",
+    id = "IdentitySourceParametersForList",
     members = {
         IamIdentityCenter = M.IamIdentityCenterForList,
     },
@@ -989,6 +1038,7 @@ M.IdentitySourceParametersForList = {
 
 M.IdentitySourceForList = {
     type = "structure",
+    id = "IdentitySourceForList",
     members = {
         IdentitySourceType = {
             type = "string",
@@ -1017,6 +1067,7 @@ M.IdentitySourceForList = {
 
 M.ListIdentitySourcesOutput = {
     type = "structure",
+    id = "ListIdentitySourcesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1030,6 +1081,7 @@ M.ListIdentitySourcesOutput = {
 
 M.ListPoliciesInput = {
     type = "structure",
+    id = "ListPoliciesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1049,6 +1101,7 @@ M.ListPoliciesInput = {
 
 M.Policy = {
     type = "structure",
+    id = "Policy",
     members = {
         Arn = {
             type = "string",
@@ -1079,6 +1132,7 @@ M.Policy = {
 
 M.ListPoliciesOutput = {
     type = "structure",
+    id = "ListPoliciesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1092,6 +1146,7 @@ M.ListPoliciesOutput = {
 
 M.ListPolicyVersionsInput = {
     type = "structure",
+    id = "ListPolicyVersionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1118,6 +1173,7 @@ M.ListPolicyVersionsInput = {
 
 M.PolicyVersionSummary = {
     type = "structure",
+    id = "PolicyVersionSummary",
     members = {
         Arn = {
             type = "string",
@@ -1180,6 +1236,7 @@ M.PolicyVersionSummary = {
 
 M.ListPolicyVersionsOutput = {
     type = "structure",
+    id = "ListPolicyVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1193,6 +1250,7 @@ M.ListPolicyVersionsOutput = {
 
 M.ListResourcePoliciesInput = {
     type = "structure",
+    id = "ListResourcePoliciesInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1219,6 +1277,7 @@ M.ListResourcePoliciesInput = {
 
 M.ListResourcePoliciesResponseResourcePolicy = {
     type = "structure",
+    id = "ListResourcePoliciesResponseResourcePolicy",
     members = {
         PolicyArn = {
             type = "string",
@@ -1234,6 +1293,7 @@ M.ListResourcePoliciesResponseResourcePolicy = {
 
 M.ListResourcePoliciesOutput = {
     type = "structure",
+    id = "ListResourcePoliciesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1247,6 +1307,7 @@ M.ListResourcePoliciesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1260,6 +1321,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1271,6 +1333,7 @@ M.ListTagsForResourceOutput = {
 
 M.CancelSessionInput = {
     type = "structure",
+    id = "CancelSessionInput",
     members = {
         SessionArn = {
             type = "string",
@@ -1284,10 +1347,12 @@ M.CancelSessionInput = {
 
 M.CancelSessionOutput = {
     type = "structure",
+    id = "CancelSessionOutput",
 }
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         SessionArn = {
             type = "string",
@@ -1307,6 +1372,7 @@ M.SessionResponse = {
 
 M.GetSessionResponseApproverResponse = {
     type = "structure",
+    id = "GetSessionResponseApproverResponse",
     members = {
         ApproverId = {
             type = "string",
@@ -1352,6 +1418,7 @@ M.SessionStatusCode = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         SessionArn = {
             type = "string",
@@ -1462,6 +1529,7 @@ M.Operator = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         FieldName = {
             type = "string",
@@ -1477,6 +1545,7 @@ M.Filter = {
 
 M.ListSessionsInput = {
     type = "structure",
+    id = "ListSessionsInput",
     members = {
         ApprovalTeamArn = {
             type = "string",
@@ -1503,6 +1572,7 @@ M.ListSessionsInput = {
 
 M.ListSessionsResponseSession = {
     type = "structure",
+    id = "ListSessionsResponseSession",
     members = {
         SessionArn = {
             type = "string",
@@ -1573,6 +1643,7 @@ M.ListSessionsResponseSession = {
 
 M.ListSessionsOutput = {
     type = "structure",
+    id = "ListSessionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1586,6 +1657,7 @@ M.ListSessionsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1607,10 +1679,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -1627,6 +1701,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1647,6 +1722,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

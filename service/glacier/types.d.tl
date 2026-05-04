@@ -1366,9 +1366,9 @@ local record ServiceUnavailableException
     message: string
 end
 
-local type ActionCode = "ArchiveRetrieval" | "InventoryRetrieval" | "Select"
-
 local type StatusCode = "InProgress" | "Succeeded" | "Failed"
+
+local type ActionCode = "ArchiveRetrieval" | "InventoryRetrieval" | "Select"
 
 local record M
     AbortMultipartUploadInput: AbortMultipartUploadInput

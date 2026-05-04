@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AddProfilePermissionInput = {
     type = "structure",
+    id = "AddProfilePermissionInput",
     members = {
         profileName = {
             type = "string",
@@ -52,6 +54,7 @@ M.AddProfilePermissionInput = {
 
 M.AddProfilePermissionOutput = {
     type = "structure",
+    id = "AddProfilePermissionOutput",
     members = {
         revisionId = {
             type = "string",
@@ -61,6 +64,7 @@ M.AddProfilePermissionOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -74,6 +78,7 @@ M.ConflictException = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         message = {
@@ -87,6 +92,7 @@ M.InternalServiceErrorException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -100,6 +106,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceLimitExceededException = {
     type = "structure",
+    id = "ServiceLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -113,6 +120,7 @@ M.ServiceLimitExceededException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -126,6 +134,7 @@ M.TooManyRequestsException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -139,6 +148,7 @@ M.ValidationException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -152,6 +162,7 @@ M.BadRequestException = {
 
 M.CancelSigningProfileInput = {
     type = "structure",
+    id = "CancelSigningProfileInput",
     members = {
         profileName = {
             type = "string",
@@ -165,6 +176,7 @@ M.CancelSigningProfileInput = {
 
 M.CancelSigningProfileOutput = {
     type = "structure",
+    id = "CancelSigningProfileOutput",
 }
 
 M.Category = {
@@ -173,6 +185,7 @@ M.Category = {
 
 M.DescribeSigningJobInput = {
     type = "structure",
+    id = "DescribeSigningJobInput",
     members = {
         jobId = {
             type = "string",
@@ -196,6 +209,7 @@ M.HashAlgorithm = {
 
 M.SigningConfigurationOverrides = {
     type = "structure",
+    id = "SigningConfigurationOverrides",
     members = {
         encryptionAlgorithm = {
             type = "string",
@@ -214,6 +228,7 @@ M.ImageFormat = {
 
 M.SigningPlatformOverrides = {
     type = "structure",
+    id = "SigningPlatformOverrides",
     members = {
         signingConfiguration = M.SigningConfigurationOverrides,
         signingImageFormat = {
@@ -224,6 +239,7 @@ M.SigningPlatformOverrides = {
 
 M.SigningJobRevocationRecord = {
     type = "structure",
+    id = "SigningJobRevocationRecord",
     members = {
         reason = {
             type = "string",
@@ -239,6 +255,7 @@ M.SigningJobRevocationRecord = {
 
 M.S3SignedObject = {
     type = "structure",
+    id = "S3SignedObject",
     members = {
         bucketName = {
             type = "string",
@@ -251,6 +268,7 @@ M.S3SignedObject = {
 
 M.SignedObject = {
     type = "structure",
+    id = "SignedObject",
     members = {
         s3 = M.S3SignedObject,
     },
@@ -258,6 +276,7 @@ M.SignedObject = {
 
 M.SigningMaterial = {
     type = "structure",
+    id = "SigningMaterial",
     members = {
         certificateArn = {
             type = "string",
@@ -270,6 +289,7 @@ M.SigningMaterial = {
 
 M.S3Source = {
     type = "structure",
+    id = "S3Source",
     members = {
         bucketName = {
             type = "string",
@@ -294,6 +314,7 @@ M.S3Source = {
 
 M.Source = {
     type = "structure",
+    id = "Source",
     members = {
         s3 = M.S3Source,
     },
@@ -307,6 +328,7 @@ M.SigningStatus = {
 
 M.DescribeSigningJobOutput = {
     type = "structure",
+    id = "DescribeSigningJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -362,6 +384,7 @@ M.DescribeSigningJobOutput = {
 
 M.S3Destination = {
     type = "structure",
+    id = "S3Destination",
     members = {
         bucketName = {
             type = "string",
@@ -374,6 +397,7 @@ M.S3Destination = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         s3 = M.S3Destination,
     },
@@ -381,6 +405,7 @@ M.Destination = {
 
 M.EncryptionAlgorithmOptions = {
     type = "structure",
+    id = "EncryptionAlgorithmOptions",
     members = {
         allowedValues = {
             type = "list",
@@ -400,6 +425,7 @@ M.EncryptionAlgorithmOptions = {
 
 M.GetRevocationStatusInput = {
     type = "structure",
+    id = "GetRevocationStatusInput",
     members = {
         signatureTimestamp = {
             type = "timestamp",
@@ -442,6 +468,7 @@ M.GetRevocationStatusInput = {
 
 M.GetRevocationStatusOutput = {
     type = "structure",
+    id = "GetRevocationStatusOutput",
     members = {
         revokedEntities = {
             type = "list",
@@ -452,6 +479,7 @@ M.GetRevocationStatusOutput = {
 
 M.GetSigningPlatformInput = {
     type = "structure",
+    id = "GetSigningPlatformInput",
     members = {
         platformId = {
             type = "string",
@@ -465,6 +493,7 @@ M.GetSigningPlatformInput = {
 
 M.HashAlgorithmOptions = {
     type = "structure",
+    id = "HashAlgorithmOptions",
     members = {
         allowedValues = {
             type = "list",
@@ -484,6 +513,7 @@ M.HashAlgorithmOptions = {
 
 M.SigningConfiguration = {
     type = "structure",
+    id = "SigningConfiguration",
     members = {
         encryptionAlgorithmOptions = setmetatable({ traits = {
             required = true,
@@ -496,6 +526,7 @@ M.SigningConfiguration = {
 
 M.SigningImageFormat = {
     type = "structure",
+    id = "SigningImageFormat",
     members = {
         supportedFormats = {
             type = "list",
@@ -515,6 +546,7 @@ M.SigningImageFormat = {
 
 M.GetSigningPlatformOutput = {
     type = "structure",
+    id = "GetSigningPlatformOutput",
     members = {
         platformId = {
             type = "string",
@@ -550,6 +582,7 @@ M.GetSigningPlatformOutput = {
 
 M.GetSigningProfileInput = {
     type = "structure",
+    id = "GetSigningProfileInput",
     members = {
         profileName = {
             type = "string",
@@ -569,6 +602,7 @@ M.GetSigningProfileInput = {
 
 M.SigningProfileRevocationRecord = {
     type = "structure",
+    id = "SigningProfileRevocationRecord",
     members = {
         revocationEffectiveFrom = {
             type = "timestamp",
@@ -590,6 +624,7 @@ M.ValidityType = {
 
 M.SignatureValidityPeriod = {
     type = "structure",
+    id = "SignatureValidityPeriod",
     members = {
         value = {
             type = "integer",
@@ -611,6 +646,7 @@ M.SigningProfileStatus = {
 
 M.GetSigningProfileOutput = {
     type = "structure",
+    id = "GetSigningProfileOutput",
     members = {
         profileName = {
             type = "string",
@@ -655,6 +691,7 @@ M.GetSigningProfileOutput = {
 
 M.ListProfilePermissionsInput = {
     type = "structure",
+    id = "ListProfilePermissionsInput",
     members = {
         profileName = {
             type = "string",
@@ -674,6 +711,7 @@ M.ListProfilePermissionsInput = {
 
 M.Permission = {
     type = "structure",
+    id = "Permission",
     members = {
         action = {
             type = "string",
@@ -692,6 +730,7 @@ M.Permission = {
 
 M.ListProfilePermissionsOutput = {
     type = "structure",
+    id = "ListProfilePermissionsOutput",
     members = {
         revisionId = {
             type = "string",
@@ -714,6 +753,7 @@ M.ListProfilePermissionsOutput = {
 
 M.ListSigningJobsInput = {
     type = "structure",
+    id = "ListSigningJobsInput",
     members = {
         status = {
             type = "string",
@@ -775,6 +815,7 @@ M.ListSigningJobsInput = {
 
 M.SigningJob = {
     type = "structure",
+    id = "SigningJob",
     members = {
         jobId = {
             type = "string",
@@ -820,6 +861,7 @@ M.SigningJob = {
 
 M.ListSigningJobsOutput = {
     type = "structure",
+    id = "ListSigningJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -833,6 +875,7 @@ M.ListSigningJobsOutput = {
 
 M.ListSigningPlatformsInput = {
     type = "structure",
+    id = "ListSigningPlatformsInput",
     members = {
         category = {
             type = "string",
@@ -869,6 +912,7 @@ M.ListSigningPlatformsInput = {
 
 M.SigningPlatform = {
     type = "structure",
+    id = "SigningPlatform",
     members = {
         platformId = {
             type = "string",
@@ -904,6 +948,7 @@ M.SigningPlatform = {
 
 M.ListSigningPlatformsOutput = {
     type = "structure",
+    id = "ListSigningPlatformsOutput",
     members = {
         platforms = {
             type = "list",
@@ -917,6 +962,7 @@ M.ListSigningPlatformsOutput = {
 
 M.ListSigningProfilesInput = {
     type = "structure",
+    id = "ListSigningProfilesInput",
     members = {
         includeCanceled = {
             type = "boolean",
@@ -955,6 +1001,7 @@ M.ListSigningProfilesInput = {
 
 M.SigningProfile = {
     type = "structure",
+    id = "SigningProfile",
     members = {
         profileName = {
             type = "string",
@@ -994,6 +1041,7 @@ M.SigningProfile = {
 
 M.ListSigningProfilesOutput = {
     type = "structure",
+    id = "ListSigningProfilesOutput",
     members = {
         profiles = {
             type = "list",
@@ -1007,6 +1055,7 @@ M.ListSigningProfilesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1020,6 +1069,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1031,6 +1081,7 @@ M.ListTagsForResourceOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -1044,6 +1095,7 @@ M.NotFoundException = {
 
 M.PutSigningProfileInput = {
     type = "structure",
+    id = "PutSigningProfileInput",
     members = {
         profileName = {
             type = "string",
@@ -1076,6 +1128,7 @@ M.PutSigningProfileInput = {
 
 M.PutSigningProfileOutput = {
     type = "structure",
+    id = "PutSigningProfileOutput",
     members = {
         arn = {
             type = "string",
@@ -1091,6 +1144,7 @@ M.PutSigningProfileOutput = {
 
 M.RemoveProfilePermissionInput = {
     type = "structure",
+    id = "RemoveProfilePermissionInput",
     members = {
         profileName = {
             type = "string",
@@ -1118,6 +1172,7 @@ M.RemoveProfilePermissionInput = {
 
 M.RemoveProfilePermissionOutput = {
     type = "structure",
+    id = "RemoveProfilePermissionOutput",
     members = {
         revisionId = {
             type = "string",
@@ -1127,6 +1182,7 @@ M.RemoveProfilePermissionOutput = {
 
 M.RevokeSignatureInput = {
     type = "structure",
+    id = "RevokeSignatureInput",
     members = {
         jobId = {
             type = "string",
@@ -1149,10 +1205,12 @@ M.RevokeSignatureInput = {
 
 M.RevokeSignatureOutput = {
     type = "structure",
+    id = "RevokeSignatureOutput",
 }
 
 M.RevokeSigningProfileInput = {
     type = "structure",
+    id = "RevokeSigningProfileInput",
     members = {
         profileName = {
             type = "string",
@@ -1184,10 +1242,12 @@ M.RevokeSigningProfileInput = {
 
 M.RevokeSigningProfileOutput = {
     type = "structure",
+    id = "RevokeSigningProfileOutput",
 }
 
 M.SignPayloadInput = {
     type = "structure",
+    id = "SignPayloadInput",
     members = {
         profileName = {
             type = "string",
@@ -1215,6 +1275,7 @@ M.SignPayloadInput = {
 
 M.SignPayloadOutput = {
     type = "structure",
+    id = "SignPayloadOutput",
     members = {
         jobId = {
             type = "string",
@@ -1235,6 +1296,7 @@ M.SignPayloadOutput = {
 
 M.StartSigningJobInput = {
     type = "structure",
+    id = "StartSigningJobInput",
     members = {
         source = setmetatable({ traits = {
             required = true,
@@ -1263,6 +1325,7 @@ M.StartSigningJobInput = {
 
 M.StartSigningJobOutput = {
     type = "structure",
+    id = "StartSigningJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -1275,6 +1338,7 @@ M.StartSigningJobOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -1288,6 +1352,7 @@ M.ThrottlingException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1309,10 +1374,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1334,6 +1401,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

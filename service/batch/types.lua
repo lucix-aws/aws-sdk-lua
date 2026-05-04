@@ -7,6 +7,7 @@ M.ArrayJobDependency = {
 
 M.ArrayProperties = {
     type = "structure",
+    id = "ArrayProperties",
     members = {
         size = {
             type = "integer",
@@ -16,6 +17,7 @@ M.ArrayProperties = {
 
 M.ArrayPropertiesDetail = {
     type = "structure",
+    id = "ArrayPropertiesDetail",
     members = {
         statusSummary = {
             type = "map",
@@ -36,6 +38,7 @@ M.ArrayPropertiesDetail = {
 
 M.ArrayPropertiesSummary = {
     type = "structure",
+    id = "ArrayPropertiesSummary",
     members = {
         size = {
             type = "integer",
@@ -61,6 +64,7 @@ M.AssignPublicIp = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         attachmentId = {
             type = "string",
@@ -76,6 +80,7 @@ M.NetworkInterface = {
 
 M.AttemptContainerDetail = {
     type = "structure",
+    id = "AttemptContainerDetail",
     members = {
         containerInstanceArn = {
             type = "string",
@@ -101,6 +106,7 @@ M.AttemptContainerDetail = {
 
 M.AttemptTaskContainerDetails = {
     type = "structure",
+    id = "AttemptTaskContainerDetails",
     members = {
         exitCode = {
             type = "integer",
@@ -123,6 +129,7 @@ M.AttemptTaskContainerDetails = {
 
 M.AttemptEcsTaskDetails = {
     type = "structure",
+    id = "AttemptEcsTaskDetails",
     members = {
         containerInstanceArn = {
             type = "string",
@@ -139,6 +146,7 @@ M.AttemptEcsTaskDetails = {
 
 M.AttemptDetail = {
     type = "structure",
+    id = "AttemptDetail",
     members = {
         container = M.AttemptContainerDetail,
         startedAt = {
@@ -159,6 +167,7 @@ M.AttemptDetail = {
 
 M.CancelJobInput = {
     type = "structure",
+    id = "CancelJobInput",
     members = {
         jobId = {
             type = "string",
@@ -177,10 +186,12 @@ M.CancelJobInput = {
 
 M.CancelJobOutput = {
     type = "structure",
+    id = "CancelJobOutput",
 }
 
 M.ClientException = {
     type = "structure",
+    id = "ClientException",
     error = "client",
     members = {
         message = {
@@ -191,6 +202,7 @@ M.ClientException = {
 
 M.ServerException = {
     type = "structure",
+    id = "ServerException",
     error = "server",
     members = {
         message = {
@@ -208,6 +220,7 @@ M.CRAllocationStrategy = {
 
 M.Ec2Configuration = {
     type = "structure",
+    id = "Ec2Configuration",
     members = {
         imageType = {
             type = "string",
@@ -234,6 +247,7 @@ M.UserdataType = {
 
 M.LaunchTemplateSpecificationOverride = {
     type = "structure",
+    id = "LaunchTemplateSpecificationOverride",
     members = {
         launchTemplateId = {
             type = "string",
@@ -256,6 +270,7 @@ M.LaunchTemplateSpecificationOverride = {
 
 M.LaunchTemplateSpecification = {
     type = "structure",
+    id = "LaunchTemplateSpecification",
     members = {
         launchTemplateId = {
             type = "string",
@@ -278,6 +293,7 @@ M.LaunchTemplateSpecification = {
 
 M.ComputeScalingPolicy = {
     type = "structure",
+    id = "ComputeScalingPolicy",
     members = {
         minScaleDownDelayMinutes = {
             type = "integer",
@@ -294,6 +310,7 @@ M.CRType = {
 
 M.ComputeResource = {
     type = "structure",
+    id = "ComputeResource",
     members = {
         type = {
             type = "string",
@@ -365,6 +382,7 @@ M.ComputeResource = {
 
 M.EksConfiguration = {
     type = "structure",
+    id = "EksConfiguration",
     members = {
         eksClusterArn = {
             type = "string",
@@ -393,6 +411,7 @@ M.CEType = {
 
 M.CreateComputeEnvironmentInput = {
     type = "structure",
+    id = "CreateComputeEnvironmentInput",
     members = {
         computeEnvironmentName = {
             type = "string",
@@ -430,6 +449,7 @@ M.CreateComputeEnvironmentInput = {
 
 M.CreateComputeEnvironmentOutput = {
     type = "structure",
+    id = "CreateComputeEnvironmentOutput",
     members = {
         computeEnvironmentName = {
             type = "string",
@@ -442,6 +462,7 @@ M.CreateComputeEnvironmentOutput = {
 
 M.CreateConsumableResourceInput = {
     type = "structure",
+    id = "CreateConsumableResourceInput",
     members = {
         consumableResourceName = {
             type = "string",
@@ -465,6 +486,7 @@ M.CreateConsumableResourceInput = {
 
 M.CreateConsumableResourceOutput = {
     type = "structure",
+    id = "CreateConsumableResourceOutput",
     members = {
         consumableResourceName = {
             type = "string",
@@ -483,6 +505,7 @@ M.CreateConsumableResourceOutput = {
 
 M.ComputeEnvironmentOrder = {
     type = "structure",
+    id = "ComputeEnvironmentOrder",
     members = {
         order = {
             type = "integer",
@@ -517,6 +540,7 @@ M.JobStateTimeLimitActionsState = {
 
 M.JobStateTimeLimitAction = {
     type = "structure",
+    id = "JobStateTimeLimitAction",
     members = {
         reason = {
             type = "string",
@@ -547,6 +571,7 @@ M.JobStateTimeLimitAction = {
 
 M.ServiceEnvironmentOrder = {
     type = "structure",
+    id = "ServiceEnvironmentOrder",
     members = {
         order = {
             type = "integer",
@@ -570,6 +595,7 @@ M.JQState = {
 
 M.CreateJobQueueInput = {
     type = "structure",
+    id = "CreateJobQueueInput",
     members = {
         jobQueueName = {
             type = "string",
@@ -614,6 +640,7 @@ M.CreateJobQueueInput = {
 
 M.CreateJobQueueOutput = {
     type = "structure",
+    id = "CreateJobQueueOutput",
     members = {
         jobQueueName = {
             type = "string",
@@ -632,6 +659,7 @@ M.CreateJobQueueOutput = {
 
 M.QuotaShareCapacityLimit = {
     type = "structure",
+    id = "QuotaShareCapacityLimit",
     members = {
         maxCapacity = {
             type = "integer",
@@ -655,6 +683,7 @@ M.QuotaShareInSharePreemptionState = {
 
 M.QuotaSharePreemptionConfiguration = {
     type = "structure",
+    id = "QuotaSharePreemptionConfiguration",
     members = {
         inSharePreemption = {
             type = "string",
@@ -673,6 +702,7 @@ M.QuotaShareResourceSharingStrategy = {
 
 M.QuotaShareResourceSharingConfiguration = {
     type = "structure",
+    id = "QuotaShareResourceSharingConfiguration",
     members = {
         strategy = {
             type = "string",
@@ -693,6 +723,7 @@ M.QuotaShareState = {
 
 M.CreateQuotaShareInput = {
     type = "structure",
+    id = "CreateQuotaShareInput",
     members = {
         quotaShareName = {
             type = "string",
@@ -732,6 +763,7 @@ M.CreateQuotaShareInput = {
 
 M.CreateQuotaShareOutput = {
     type = "structure",
+    id = "CreateQuotaShareOutput",
     members = {
         quotaShareName = {
             type = "string",
@@ -744,6 +776,7 @@ M.CreateQuotaShareOutput = {
 
 M.ShareAttributes = {
     type = "structure",
+    id = "ShareAttributes",
     members = {
         shareIdentifier = {
             type = "string",
@@ -759,6 +792,7 @@ M.ShareAttributes = {
 
 M.FairsharePolicy = {
     type = "structure",
+    id = "FairsharePolicy",
     members = {
         shareDecaySeconds = {
             type = "integer",
@@ -779,6 +813,7 @@ M.QuotaShareIdleResourceAssignmentStrategy = {
 
 M.QuotaSharePolicy = {
     type = "structure",
+    id = "QuotaSharePolicy",
     members = {
         idleResourceAssignmentStrategy = {
             type = "string",
@@ -791,6 +826,7 @@ M.QuotaSharePolicy = {
 
 M.CreateSchedulingPolicyInput = {
     type = "structure",
+    id = "CreateSchedulingPolicyInput",
     members = {
         name = {
             type = "string",
@@ -810,6 +846,7 @@ M.CreateSchedulingPolicyInput = {
 
 M.CreateSchedulingPolicyOutput = {
     type = "structure",
+    id = "CreateSchedulingPolicyOutput",
     members = {
         name = {
             type = "string",
@@ -828,6 +865,7 @@ M.CreateSchedulingPolicyOutput = {
 
 M.CapacityLimit = {
     type = "structure",
+    id = "CapacityLimit",
     members = {
         maxCapacity = {
             type = "integer",
@@ -849,6 +887,7 @@ M.ServiceEnvironmentState = {
 
 M.CreateServiceEnvironmentInput = {
     type = "structure",
+    id = "CreateServiceEnvironmentInput",
     members = {
         serviceEnvironmentName = {
             type = "string",
@@ -882,6 +921,7 @@ M.CreateServiceEnvironmentInput = {
 
 M.CreateServiceEnvironmentOutput = {
     type = "structure",
+    id = "CreateServiceEnvironmentOutput",
     members = {
         serviceEnvironmentName = {
             type = "string",
@@ -900,6 +940,7 @@ M.CreateServiceEnvironmentOutput = {
 
 M.DeleteComputeEnvironmentInput = {
     type = "structure",
+    id = "DeleteComputeEnvironmentInput",
     members = {
         computeEnvironment = {
             type = "string",
@@ -912,10 +953,12 @@ M.DeleteComputeEnvironmentInput = {
 
 M.DeleteComputeEnvironmentOutput = {
     type = "structure",
+    id = "DeleteComputeEnvironmentOutput",
 }
 
 M.DeleteConsumableResourceInput = {
     type = "structure",
+    id = "DeleteConsumableResourceInput",
     members = {
         consumableResource = {
             type = "string",
@@ -928,10 +971,12 @@ M.DeleteConsumableResourceInput = {
 
 M.DeleteConsumableResourceOutput = {
     type = "structure",
+    id = "DeleteConsumableResourceOutput",
 }
 
 M.DeleteJobQueueInput = {
     type = "structure",
+    id = "DeleteJobQueueInput",
     members = {
         jobQueue = {
             type = "string",
@@ -944,10 +989,12 @@ M.DeleteJobQueueInput = {
 
 M.DeleteJobQueueOutput = {
     type = "structure",
+    id = "DeleteJobQueueOutput",
 }
 
 M.DeleteQuotaShareInput = {
     type = "structure",
+    id = "DeleteQuotaShareInput",
     members = {
         quotaShareArn = {
             type = "string",
@@ -960,10 +1007,12 @@ M.DeleteQuotaShareInput = {
 
 M.DeleteQuotaShareOutput = {
     type = "structure",
+    id = "DeleteQuotaShareOutput",
 }
 
 M.DeleteSchedulingPolicyInput = {
     type = "structure",
+    id = "DeleteSchedulingPolicyInput",
     members = {
         arn = {
             type = "string",
@@ -976,10 +1025,12 @@ M.DeleteSchedulingPolicyInput = {
 
 M.DeleteSchedulingPolicyOutput = {
     type = "structure",
+    id = "DeleteSchedulingPolicyOutput",
 }
 
 M.DeleteServiceEnvironmentInput = {
     type = "structure",
+    id = "DeleteServiceEnvironmentInput",
     members = {
         serviceEnvironment = {
             type = "string",
@@ -992,10 +1043,12 @@ M.DeleteServiceEnvironmentInput = {
 
 M.DeleteServiceEnvironmentOutput = {
     type = "structure",
+    id = "DeleteServiceEnvironmentOutput",
 }
 
 M.DeregisterJobDefinitionInput = {
     type = "structure",
+    id = "DeregisterJobDefinitionInput",
     members = {
         jobDefinition = {
             type = "string",
@@ -1008,10 +1061,12 @@ M.DeregisterJobDefinitionInput = {
 
 M.DeregisterJobDefinitionOutput = {
     type = "structure",
+    id = "DeregisterJobDefinitionOutput",
 }
 
 M.DescribeComputeEnvironmentsInput = {
     type = "structure",
+    id = "DescribeComputeEnvironmentsInput",
     members = {
         computeEnvironments = {
             type = "list",
@@ -1042,6 +1097,7 @@ M.CEStatus = {
 
 M.UpdatePolicy = {
     type = "structure",
+    id = "UpdatePolicy",
     members = {
         terminateJobsOnUpdate = {
             type = "boolean",
@@ -1054,6 +1110,7 @@ M.UpdatePolicy = {
 
 M.ComputeEnvironmentDetail = {
     type = "structure",
+    id = "ComputeEnvironmentDetail",
     members = {
         computeEnvironmentName = {
             type = "string",
@@ -1110,6 +1167,7 @@ M.ComputeEnvironmentDetail = {
 
 M.DescribeComputeEnvironmentsOutput = {
     type = "structure",
+    id = "DescribeComputeEnvironmentsOutput",
     members = {
         computeEnvironments = {
             type = "list",
@@ -1123,6 +1181,7 @@ M.DescribeComputeEnvironmentsOutput = {
 
 M.DescribeConsumableResourceInput = {
     type = "structure",
+    id = "DescribeConsumableResourceInput",
     members = {
         consumableResource = {
             type = "string",
@@ -1135,6 +1194,7 @@ M.DescribeConsumableResourceInput = {
 
 M.DescribeConsumableResourceOutput = {
     type = "structure",
+    id = "DescribeConsumableResourceOutput",
     members = {
         consumableResourceName = {
             type = "string",
@@ -1173,6 +1233,7 @@ M.DescribeConsumableResourceOutput = {
 
 M.DescribeJobDefinitionsInput = {
     type = "structure",
+    id = "DescribeJobDefinitionsInput",
     members = {
         jobDefinitions = {
             type = "list",
@@ -1195,6 +1256,7 @@ M.DescribeJobDefinitionsInput = {
 
 M.ConsumableResourceRequirement = {
     type = "structure",
+    id = "ConsumableResourceRequirement",
     members = {
         consumableResource = {
             type = "string",
@@ -1207,6 +1269,7 @@ M.ConsumableResourceRequirement = {
 
 M.ConsumableResourceProperties = {
     type = "structure",
+    id = "ConsumableResourceProperties",
     members = {
         consumableResourceList = {
             type = "list",
@@ -1217,6 +1280,7 @@ M.ConsumableResourceProperties = {
 
 M.KeyValuePair = {
     type = "structure",
+    id = "KeyValuePair",
     members = {
         name = {
             type = "string",
@@ -1229,6 +1293,7 @@ M.KeyValuePair = {
 
 M.EphemeralStorage = {
     type = "structure",
+    id = "EphemeralStorage",
     members = {
         sizeInGiB = {
             type = "integer",
@@ -1241,6 +1306,7 @@ M.EphemeralStorage = {
 
 M.FargatePlatformConfiguration = {
     type = "structure",
+    id = "FargatePlatformConfiguration",
     members = {
         platformVersion = {
             type = "string",
@@ -1256,6 +1322,7 @@ M.DeviceCgroupPermission = {
 
 M.Device = {
     type = "structure",
+    id = "Device",
     members = {
         hostPath = {
             type = "string",
@@ -1275,6 +1342,7 @@ M.Device = {
 
 M.Tmpfs = {
     type = "structure",
+    id = "Tmpfs",
     members = {
         containerPath = {
             type = "string",
@@ -1297,6 +1365,7 @@ M.Tmpfs = {
 
 M.LinuxParameters = {
     type = "structure",
+    id = "LinuxParameters",
     members = {
         devices = {
             type = "list",
@@ -1334,6 +1403,7 @@ M.LogDriver = {
 
 M.Secret = {
     type = "structure",
+    id = "Secret",
     members = {
         name = {
             type = "string",
@@ -1352,6 +1422,7 @@ M.Secret = {
 
 M.LogConfiguration = {
     type = "structure",
+    id = "LogConfiguration",
     members = {
         logDriver = {
             type = "string",
@@ -1373,6 +1444,7 @@ M.LogConfiguration = {
 
 M.MountPoint = {
     type = "structure",
+    id = "MountPoint",
     members = {
         containerPath = {
             type = "string",
@@ -1388,6 +1460,7 @@ M.MountPoint = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         assignPublicIp = {
             type = "string",
@@ -1397,6 +1470,7 @@ M.NetworkConfiguration = {
 
 M.RepositoryCredentials = {
     type = "structure",
+    id = "RepositoryCredentials",
     members = {
         credentialsParameter = {
             type = "string",
@@ -1415,6 +1489,7 @@ M.ResourceType = {
 
 M.ResourceRequirement = {
     type = "structure",
+    id = "ResourceRequirement",
     members = {
         value = {
             type = "string",
@@ -1433,6 +1508,7 @@ M.ResourceRequirement = {
 
 M.RuntimePlatform = {
     type = "structure",
+    id = "RuntimePlatform",
     members = {
         operatingSystemFamily = {
             type = "string",
@@ -1445,6 +1521,7 @@ M.RuntimePlatform = {
 
 M.Ulimit = {
     type = "structure",
+    id = "Ulimit",
     members = {
         hardLimit = {
             type = "integer",
@@ -1474,6 +1551,7 @@ M.EFSAuthorizationConfigIAM = {
 
 M.EFSAuthorizationConfig = {
     type = "structure",
+    id = "EFSAuthorizationConfig",
     members = {
         accessPointId = {
             type = "string",
@@ -1491,6 +1569,7 @@ M.EFSTransitEncryption = {
 
 M.EFSVolumeConfiguration = {
     type = "structure",
+    id = "EFSVolumeConfiguration",
     members = {
         fileSystemId = {
             type = "string",
@@ -1513,6 +1592,7 @@ M.EFSVolumeConfiguration = {
 
 M.Host = {
     type = "structure",
+    id = "Host",
     members = {
         sourcePath = {
             type = "string",
@@ -1522,6 +1602,7 @@ M.Host = {
 
 M.S3FilesVolumeConfiguration = {
     type = "structure",
+    id = "S3FilesVolumeConfiguration",
     members = {
         fileSystemArn = {
             type = "string",
@@ -1543,6 +1624,7 @@ M.S3FilesVolumeConfiguration = {
 
 M.Volume = {
     type = "structure",
+    id = "Volume",
     members = {
         host = M.Host,
         name = {
@@ -1555,6 +1637,7 @@ M.Volume = {
 
 M.ContainerProperties = {
     type = "structure",
+    id = "ContainerProperties",
     members = {
         image = {
             type = "string",
@@ -1626,6 +1709,7 @@ M.ContainerProperties = {
 
 M.TaskContainerDependency = {
     type = "structure",
+    id = "TaskContainerDependency",
     members = {
         containerName = {
             type = "string",
@@ -1643,6 +1727,7 @@ M.FirelensConfigurationType = {
 
 M.FirelensConfiguration = {
     type = "structure",
+    id = "FirelensConfiguration",
     members = {
         type = {
             type = "string",
@@ -1660,6 +1745,7 @@ M.FirelensConfiguration = {
 
 M.TaskContainerProperties = {
     type = "structure",
+    id = "TaskContainerProperties",
     members = {
         command = {
             type = "list",
@@ -1725,6 +1811,7 @@ M.TaskContainerProperties = {
 
 M.EcsTaskProperties = {
     type = "structure",
+    id = "EcsTaskProperties",
     members = {
         containers = {
             type = "list",
@@ -1763,6 +1850,7 @@ M.EcsTaskProperties = {
 
 M.EcsProperties = {
     type = "structure",
+    id = "EcsProperties",
     members = {
         taskProperties = {
             type = "list",
@@ -1776,6 +1864,7 @@ M.EcsProperties = {
 
 M.EksContainerEnvironmentVariable = {
     type = "structure",
+    id = "EksContainerEnvironmentVariable",
     members = {
         name = {
             type = "string",
@@ -1791,6 +1880,7 @@ M.EksContainerEnvironmentVariable = {
 
 M.EksContainerResourceRequirements = {
     type = "structure",
+    id = "EksContainerResourceRequirements",
     members = {
         limits = {
             type = "map",
@@ -1807,6 +1897,7 @@ M.EksContainerResourceRequirements = {
 
 M.EksContainerSecurityContext = {
     type = "structure",
+    id = "EksContainerSecurityContext",
     members = {
         runAsUser = {
             type = "long",
@@ -1831,6 +1922,7 @@ M.EksContainerSecurityContext = {
 
 M.EksContainerVolumeMount = {
     type = "structure",
+    id = "EksContainerVolumeMount",
     members = {
         name = {
             type = "string",
@@ -1849,6 +1941,7 @@ M.EksContainerVolumeMount = {
 
 M.EksContainer = {
     type = "structure",
+    id = "EksContainer",
     members = {
         name = {
             type = "string",
@@ -1885,6 +1978,7 @@ M.EksContainer = {
 
 M.ImagePullSecret = {
     type = "structure",
+    id = "ImagePullSecret",
     members = {
         name = {
             type = "string",
@@ -1897,6 +1991,7 @@ M.ImagePullSecret = {
 
 M.EksMetadata = {
     type = "structure",
+    id = "EksMetadata",
     members = {
         labels = {
             type = "map",
@@ -1916,6 +2011,7 @@ M.EksMetadata = {
 
 M.EksEmptyDir = {
     type = "structure",
+    id = "EksEmptyDir",
     members = {
         medium = {
             type = "string",
@@ -1928,6 +2024,7 @@ M.EksEmptyDir = {
 
 M.EksHostPath = {
     type = "structure",
+    id = "EksHostPath",
     members = {
         path = {
             type = "string",
@@ -1937,6 +2034,7 @@ M.EksHostPath = {
 
 M.EksPersistentVolumeClaim = {
     type = "structure",
+    id = "EksPersistentVolumeClaim",
     members = {
         claimName = {
             type = "string",
@@ -1952,6 +2050,7 @@ M.EksPersistentVolumeClaim = {
 
 M.EksSecret = {
     type = "structure",
+    id = "EksSecret",
     members = {
         secretName = {
             type = "string",
@@ -1967,6 +2066,7 @@ M.EksSecret = {
 
 M.EksVolume = {
     type = "structure",
+    id = "EksVolume",
     members = {
         name = {
             type = "string",
@@ -1983,6 +2083,7 @@ M.EksVolume = {
 
 M.EksPodProperties = {
     type = "structure",
+    id = "EksPodProperties",
     members = {
         serviceAccountName = {
             type = "string",
@@ -2018,6 +2119,7 @@ M.EksPodProperties = {
 
 M.EksProperties = {
     type = "structure",
+    id = "EksProperties",
     members = {
         podProperties = M.EksPodProperties,
     },
@@ -2025,6 +2127,7 @@ M.EksProperties = {
 
 M.NodeRangeProperty = {
     type = "structure",
+    id = "NodeRangeProperty",
     members = {
         targetNodes = {
             type = "string",
@@ -2045,6 +2148,7 @@ M.NodeRangeProperty = {
 
 M.NodeProperties = {
     type = "structure",
+    id = "NodeProperties",
     members = {
         numNodes = {
             type = "integer",
@@ -2080,6 +2184,7 @@ M.RetryAction = {
 
 M.EvaluateOnExit = {
     type = "structure",
+    id = "EvaluateOnExit",
     members = {
         onStatusReason = {
             type = "string",
@@ -2101,6 +2206,7 @@ M.EvaluateOnExit = {
 
 M.RetryStrategy = {
     type = "structure",
+    id = "RetryStrategy",
     members = {
         attempts = {
             type = "integer",
@@ -2114,6 +2220,7 @@ M.RetryStrategy = {
 
 M.JobTimeout = {
     type = "structure",
+    id = "JobTimeout",
     members = {
         attemptDurationSeconds = {
             type = "integer",
@@ -2123,6 +2230,7 @@ M.JobTimeout = {
 
 M.JobDefinition = {
     type = "structure",
+    id = "JobDefinition",
     members = {
         jobDefinitionName = {
             type = "string",
@@ -2186,6 +2294,7 @@ M.JobDefinition = {
 
 M.DescribeJobDefinitionsOutput = {
     type = "structure",
+    id = "DescribeJobDefinitionsOutput",
     members = {
         jobDefinitions = {
             type = "list",
@@ -2199,6 +2308,7 @@ M.DescribeJobDefinitionsOutput = {
 
 M.DescribeJobQueuesInput = {
     type = "structure",
+    id = "DescribeJobQueuesInput",
     members = {
         jobQueues = {
             type = "list",
@@ -2224,6 +2334,7 @@ M.JQStatus = {
 
 M.JobQueueDetail = {
     type = "structure",
+    id = "JobQueueDetail",
     members = {
         jobQueueName = {
             type = "string",
@@ -2286,6 +2397,7 @@ M.JobQueueDetail = {
 
 M.DescribeJobQueuesOutput = {
     type = "structure",
+    id = "DescribeJobQueuesOutput",
     members = {
         jobQueues = {
             type = "list",
@@ -2299,6 +2411,7 @@ M.DescribeJobQueuesOutput = {
 
 M.DescribeJobsInput = {
     type = "structure",
+    id = "DescribeJobsInput",
     members = {
         jobs = {
             type = "list",
@@ -2312,6 +2425,7 @@ M.DescribeJobsInput = {
 
 M.ContainerDetail = {
     type = "structure",
+    id = "ContainerDetail",
     members = {
         image = {
             type = "string",
@@ -2402,6 +2516,7 @@ M.ContainerDetail = {
 
 M.JobDependency = {
     type = "structure",
+    id = "JobDependency",
     members = {
         jobId = {
             type = "string",
@@ -2414,6 +2529,7 @@ M.JobDependency = {
 
 M.TaskContainerDetails = {
     type = "structure",
+    id = "TaskContainerDetails",
     members = {
         command = {
             type = "list",
@@ -2489,6 +2605,7 @@ M.TaskContainerDetails = {
 
 M.EcsTaskDetails = {
     type = "structure",
+    id = "EcsTaskDetails",
     members = {
         containers = {
             type = "list",
@@ -2530,6 +2647,7 @@ M.EcsTaskDetails = {
 
 M.EcsPropertiesDetail = {
     type = "structure",
+    id = "EcsPropertiesDetail",
     members = {
         taskProperties = {
             type = "list",
@@ -2540,6 +2658,7 @@ M.EcsPropertiesDetail = {
 
 M.EksAttemptContainerDetail = {
     type = "structure",
+    id = "EksAttemptContainerDetail",
     members = {
         name = {
             type = "string",
@@ -2558,6 +2677,7 @@ M.EksAttemptContainerDetail = {
 
 M.EksAttemptDetail = {
     type = "structure",
+    id = "EksAttemptDetail",
     members = {
         containers = {
             type = "list",
@@ -2593,6 +2713,7 @@ M.EksAttemptDetail = {
 
 M.EksContainerDetail = {
     type = "structure",
+    id = "EksContainerDetail",
     members = {
         name = {
             type = "string",
@@ -2632,6 +2753,7 @@ M.EksContainerDetail = {
 
 M.EksPodPropertiesDetail = {
     type = "structure",
+    id = "EksPodPropertiesDetail",
     members = {
         serviceAccountName = {
             type = "string",
@@ -2673,6 +2795,7 @@ M.EksPodPropertiesDetail = {
 
 M.EksPropertiesDetail = {
     type = "structure",
+    id = "EksPropertiesDetail",
     members = {
         podProperties = M.EksPodPropertiesDetail,
     },
@@ -2680,6 +2803,7 @@ M.EksPropertiesDetail = {
 
 M.NodeDetails = {
     type = "structure",
+    id = "NodeDetails",
     members = {
         nodeIndex = {
             type = "integer",
@@ -2702,6 +2826,7 @@ M.JobStatus = {
 
 M.JobDetail = {
     type = "structure",
+    id = "JobDetail",
     members = {
         jobArn = {
             type = "string",
@@ -2806,6 +2931,7 @@ M.JobDetail = {
 
 M.DescribeJobsOutput = {
     type = "structure",
+    id = "DescribeJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -2816,6 +2942,7 @@ M.DescribeJobsOutput = {
 
 M.DescribeQuotaShareInput = {
     type = "structure",
+    id = "DescribeQuotaShareInput",
     members = {
         quotaShareArn = {
             type = "string",
@@ -2836,6 +2963,7 @@ M.QuotaShareStatus = {
 
 M.DescribeQuotaShareOutput = {
     type = "structure",
+    id = "DescribeQuotaShareOutput",
     members = {
         quotaShareName = {
             type = "string",
@@ -2868,6 +2996,7 @@ M.DescribeQuotaShareOutput = {
 
 M.DescribeSchedulingPoliciesInput = {
     type = "structure",
+    id = "DescribeSchedulingPoliciesInput",
     members = {
         arns = {
             type = "list",
@@ -2881,6 +3010,7 @@ M.DescribeSchedulingPoliciesInput = {
 
 M.SchedulingPolicyDetail = {
     type = "structure",
+    id = "SchedulingPolicyDetail",
     members = {
         name = {
             type = "string",
@@ -2906,6 +3036,7 @@ M.SchedulingPolicyDetail = {
 
 M.DescribeSchedulingPoliciesOutput = {
     type = "structure",
+    id = "DescribeSchedulingPoliciesOutput",
     members = {
         schedulingPolicies = {
             type = "list",
@@ -2916,6 +3047,7 @@ M.DescribeSchedulingPoliciesOutput = {
 
 M.DescribeServiceEnvironmentsInput = {
     type = "structure",
+    id = "DescribeServiceEnvironmentsInput",
     members = {
         serviceEnvironments = {
             type = "list",
@@ -2941,6 +3073,7 @@ M.ServiceEnvironmentStatus = {
 
 M.ServiceEnvironmentDetail = {
     type = "structure",
+    id = "ServiceEnvironmentDetail",
     members = {
         serviceEnvironmentName = {
             type = "string",
@@ -2983,6 +3116,7 @@ M.ServiceEnvironmentDetail = {
 
 M.DescribeServiceEnvironmentsOutput = {
     type = "structure",
+    id = "DescribeServiceEnvironmentsOutput",
     members = {
         serviceEnvironments = {
             type = "list",
@@ -2996,6 +3130,7 @@ M.DescribeServiceEnvironmentsOutput = {
 
 M.DescribeServiceJobInput = {
     type = "structure",
+    id = "DescribeServiceJobInput",
     members = {
         jobId = {
             type = "string",
@@ -3012,6 +3147,7 @@ M.ServiceResourceIdName = {
 
 M.ServiceResourceId = {
     type = "structure",
+    id = "ServiceResourceId",
     members = {
         name = {
             type = "string",
@@ -3030,6 +3166,7 @@ M.ServiceResourceId = {
 
 M.ServiceJobAttemptDetail = {
     type = "structure",
+    id = "ServiceJobAttemptDetail",
     members = {
         serviceResourceId = M.ServiceResourceId,
         startedAt = {
@@ -3046,6 +3183,7 @@ M.ServiceJobAttemptDetail = {
 
 M.ServiceJobCapacityUsageDetail = {
     type = "structure",
+    id = "ServiceJobCapacityUsageDetail",
     members = {
         capacityUnit = {
             type = "string",
@@ -3058,6 +3196,7 @@ M.ServiceJobCapacityUsageDetail = {
 
 M.LatestServiceJobAttempt = {
     type = "structure",
+    id = "LatestServiceJobAttempt",
     members = {
         serviceResourceId = M.ServiceResourceId,
     },
@@ -3065,6 +3204,7 @@ M.LatestServiceJobAttempt = {
 
 M.ServiceJobPreemptionConfiguration = {
     type = "structure",
+    id = "ServiceJobPreemptionConfiguration",
     members = {
         preemptionRetriesBeforeTermination = {
             type = "integer",
@@ -3074,6 +3214,7 @@ M.ServiceJobPreemptionConfiguration = {
 
 M.ServiceJobPreemptedAttempt = {
     type = "structure",
+    id = "ServiceJobPreemptedAttempt",
     members = {
         serviceResourceId = M.ServiceResourceId,
         startedAt = {
@@ -3090,6 +3231,7 @@ M.ServiceJobPreemptedAttempt = {
 
 M.ServiceJobPreemptionSummary = {
     type = "structure",
+    id = "ServiceJobPreemptionSummary",
     members = {
         preemptedAttemptCount = {
             type = "integer",
@@ -3108,6 +3250,7 @@ M.ServiceJobRetryAction = {
 
 M.ServiceJobEvaluateOnExit = {
     type = "structure",
+    id = "ServiceJobEvaluateOnExit",
     members = {
         action = {
             type = "string",
@@ -3120,6 +3263,7 @@ M.ServiceJobEvaluateOnExit = {
 
 M.ServiceJobRetryStrategy = {
     type = "structure",
+    id = "ServiceJobRetryStrategy",
     members = {
         attempts = {
             type = "integer",
@@ -3151,6 +3295,7 @@ M.ServiceJobStatus = {
 
 M.ServiceJobTimeout = {
     type = "structure",
+    id = "ServiceJobTimeout",
     members = {
         attemptDurationSeconds = {
             type = "integer",
@@ -3160,6 +3305,7 @@ M.ServiceJobTimeout = {
 
 M.DescribeServiceJobOutput = {
     type = "structure",
+    id = "DescribeServiceJobOutput",
     members = {
         attempts = {
             type = "list",
@@ -3250,6 +3396,7 @@ M.DescribeServiceJobOutput = {
 
 M.GetJobQueueSnapshotInput = {
     type = "structure",
+    id = "GetJobQueueSnapshotInput",
     members = {
         jobQueue = {
             type = "string",
@@ -3262,6 +3409,7 @@ M.GetJobQueueSnapshotInput = {
 
 M.FrontOfQueueJobSummary = {
     type = "structure",
+    id = "FrontOfQueueJobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -3274,6 +3422,7 @@ M.FrontOfQueueJobSummary = {
 
 M.FrontOfQueueDetail = {
     type = "structure",
+    id = "FrontOfQueueDetail",
     members = {
         jobs = {
             type = "list",
@@ -3287,6 +3436,7 @@ M.FrontOfQueueDetail = {
 
 M.FrontOfQuotaShareJobSummary = {
     type = "structure",
+    id = "FrontOfQuotaShareJobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -3299,6 +3449,7 @@ M.FrontOfQuotaShareJobSummary = {
 
 M.FrontOfQuotaSharesDetail = {
     type = "structure",
+    id = "FrontOfQuotaSharesDetail",
     members = {
         quotaShares = {
             type = "map",
@@ -3313,6 +3464,7 @@ M.FrontOfQuotaSharesDetail = {
 
 M.FairshareCapacityUsage = {
     type = "structure",
+    id = "FairshareCapacityUsage",
     members = {
         capacityUnit = {
             type = "string",
@@ -3325,6 +3477,7 @@ M.FairshareCapacityUsage = {
 
 M.FairshareCapacityUtilization = {
     type = "structure",
+    id = "FairshareCapacityUtilization",
     members = {
         shareIdentifier = {
             type = "string",
@@ -3338,6 +3491,7 @@ M.FairshareCapacityUtilization = {
 
 M.FairshareUtilizationDetail = {
     type = "structure",
+    id = "FairshareUtilizationDetail",
     members = {
         activeShareCount = {
             type = "long",
@@ -3351,6 +3505,7 @@ M.FairshareUtilizationDetail = {
 
 M.QuotaShareCapacityUsage = {
     type = "structure",
+    id = "QuotaShareCapacityUsage",
     members = {
         capacityUnit = {
             type = "string",
@@ -3363,6 +3518,7 @@ M.QuotaShareCapacityUsage = {
 
 M.QuotaShareCapacityUtilization = {
     type = "structure",
+    id = "QuotaShareCapacityUtilization",
     members = {
         quotaShareName = {
             type = "string",
@@ -3376,6 +3532,7 @@ M.QuotaShareCapacityUtilization = {
 
 M.QuotaShareUtilizationDetail = {
     type = "structure",
+    id = "QuotaShareUtilizationDetail",
     members = {
         topCapacityUtilization = {
             type = "list",
@@ -3386,6 +3543,7 @@ M.QuotaShareUtilizationDetail = {
 
 M.QueueSnapshotCapacityUsage = {
     type = "structure",
+    id = "QueueSnapshotCapacityUsage",
     members = {
         capacityUnit = {
             type = "string",
@@ -3398,6 +3556,7 @@ M.QueueSnapshotCapacityUsage = {
 
 M.QueueSnapshotUtilizationDetail = {
     type = "structure",
+    id = "QueueSnapshotUtilizationDetail",
     members = {
         totalCapacityUsage = {
             type = "list",
@@ -3413,6 +3572,7 @@ M.QueueSnapshotUtilizationDetail = {
 
 M.GetJobQueueSnapshotOutput = {
     type = "structure",
+    id = "GetJobQueueSnapshotOutput",
     members = {
         frontOfQueue = M.FrontOfQueueDetail,
         frontOfQuotaShares = M.FrontOfQuotaSharesDetail,
@@ -3422,6 +3582,7 @@ M.GetJobQueueSnapshotOutput = {
 
 M.KeyValuesPair = {
     type = "structure",
+    id = "KeyValuesPair",
     members = {
         name = {
             type = "string",
@@ -3435,6 +3596,7 @@ M.KeyValuesPair = {
 
 M.ListConsumableResourcesInput = {
     type = "structure",
+    id = "ListConsumableResourcesInput",
     members = {
         filters = {
             type = "list",
@@ -3451,6 +3613,7 @@ M.ListConsumableResourcesInput = {
 
 M.ConsumableResourceSummary = {
     type = "structure",
+    id = "ConsumableResourceSummary",
     members = {
         consumableResourceArn = {
             type = "string",
@@ -3478,6 +3641,7 @@ M.ConsumableResourceSummary = {
 
 M.ListConsumableResourcesOutput = {
     type = "structure",
+    id = "ListConsumableResourcesOutput",
     members = {
         consumableResources = {
             type = "list",
@@ -3494,6 +3658,7 @@ M.ListConsumableResourcesOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         jobQueue = {
             type = "string",
@@ -3522,6 +3687,7 @@ M.ListJobsInput = {
 
 M.JobCapacityUsageSummary = {
     type = "structure",
+    id = "JobCapacityUsageSummary",
     members = {
         capacityUnit = {
             type = "string",
@@ -3534,6 +3700,7 @@ M.JobCapacityUsageSummary = {
 
 M.ContainerSummary = {
     type = "structure",
+    id = "ContainerSummary",
     members = {
         exitCode = {
             type = "integer",
@@ -3546,6 +3713,7 @@ M.ContainerSummary = {
 
 M.NodePropertiesSummary = {
     type = "structure",
+    id = "NodePropertiesSummary",
     members = {
         isMainNode = {
             type = "boolean",
@@ -3561,6 +3729,7 @@ M.NodePropertiesSummary = {
 
 M.JobSummary = {
     type = "structure",
+    id = "JobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -3613,6 +3782,7 @@ M.JobSummary = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         jobSummaryList = {
             type = "list",
@@ -3629,6 +3799,7 @@ M.ListJobsOutput = {
 
 M.ListJobsByConsumableResourceInput = {
     type = "structure",
+    id = "ListJobsByConsumableResourceInput",
     members = {
         consumableResource = {
             type = "string",
@@ -3651,6 +3822,7 @@ M.ListJobsByConsumableResourceInput = {
 
 M.ListJobsByConsumableResourceSummary = {
     type = "structure",
+    id = "ListJobsByConsumableResourceSummary",
     members = {
         jobArn = {
             type = "string",
@@ -3708,6 +3880,7 @@ M.ListJobsByConsumableResourceSummary = {
 
 M.ListJobsByConsumableResourceOutput = {
     type = "structure",
+    id = "ListJobsByConsumableResourceOutput",
     members = {
         jobs = {
             type = "list",
@@ -3724,6 +3897,7 @@ M.ListJobsByConsumableResourceOutput = {
 
 M.ListQuotaSharesInput = {
     type = "structure",
+    id = "ListQuotaSharesInput",
     members = {
         jobQueue = {
             type = "string",
@@ -3742,6 +3916,7 @@ M.ListQuotaSharesInput = {
 
 M.QuotaShareDetail = {
     type = "structure",
+    id = "QuotaShareDetail",
     members = {
         quotaShareName = {
             type = "string",
@@ -3769,6 +3944,7 @@ M.QuotaShareDetail = {
 
 M.ListQuotaSharesOutput = {
     type = "structure",
+    id = "ListQuotaSharesOutput",
     members = {
         quotaShares = {
             type = "list",
@@ -3782,6 +3958,7 @@ M.ListQuotaSharesOutput = {
 
 M.ListSchedulingPoliciesInput = {
     type = "structure",
+    id = "ListSchedulingPoliciesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3794,6 +3971,7 @@ M.ListSchedulingPoliciesInput = {
 
 M.SchedulingPolicyListingDetail = {
     type = "structure",
+    id = "SchedulingPolicyListingDetail",
     members = {
         arn = {
             type = "string",
@@ -3806,6 +3984,7 @@ M.SchedulingPolicyListingDetail = {
 
 M.ListSchedulingPoliciesOutput = {
     type = "structure",
+    id = "ListSchedulingPoliciesOutput",
     members = {
         schedulingPolicies = {
             type = "list",
@@ -3819,6 +3998,7 @@ M.ListSchedulingPoliciesOutput = {
 
 M.ListServiceJobsInput = {
     type = "structure",
+    id = "ListServiceJobsInput",
     members = {
         jobQueue = {
             type = "string",
@@ -3841,6 +4021,7 @@ M.ListServiceJobsInput = {
 
 M.ServiceJobCapacityUsageSummary = {
     type = "structure",
+    id = "ServiceJobCapacityUsageSummary",
     members = {
         capacityUnit = {
             type = "string",
@@ -3853,6 +4034,7 @@ M.ServiceJobCapacityUsageSummary = {
 
 M.ServiceJobSummary = {
     type = "structure",
+    id = "ServiceJobSummary",
     members = {
         latestAttempt = M.LatestServiceJobAttempt,
         capacityUsage = {
@@ -3909,6 +4091,7 @@ M.ServiceJobSummary = {
 
 M.ListServiceJobsOutput = {
     type = "structure",
+    id = "ListServiceJobsOutput",
     members = {
         jobSummaryList = {
             type = "list",
@@ -3925,6 +4108,7 @@ M.ListServiceJobsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3938,6 +4122,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3954,6 +4139,7 @@ M.JobDefinitionType = {
 
 M.RegisterJobDefinitionInput = {
     type = "structure",
+    id = "RegisterJobDefinitionInput",
     members = {
         jobDefinitionName = {
             type = "string",
@@ -3999,6 +4185,7 @@ M.RegisterJobDefinitionInput = {
 
 M.RegisterJobDefinitionOutput = {
     type = "structure",
+    id = "RegisterJobDefinitionOutput",
     members = {
         jobDefinitionName = {
             type = "string",
@@ -4023,6 +4210,7 @@ M.RegisterJobDefinitionOutput = {
 
 M.ContainerOverrides = {
     type = "structure",
+    id = "ContainerOverrides",
     members = {
         vcpus = {
             type = "integer",
@@ -4050,6 +4238,7 @@ M.ContainerOverrides = {
 
 M.TaskContainerOverrides = {
     type = "structure",
+    id = "TaskContainerOverrides",
     members = {
         command = {
             type = "list",
@@ -4071,6 +4260,7 @@ M.TaskContainerOverrides = {
 
 M.TaskPropertiesOverride = {
     type = "structure",
+    id = "TaskPropertiesOverride",
     members = {
         containers = {
             type = "list",
@@ -4081,6 +4271,7 @@ M.TaskPropertiesOverride = {
 
 M.EcsPropertiesOverride = {
     type = "structure",
+    id = "EcsPropertiesOverride",
     members = {
         taskProperties = {
             type = "list",
@@ -4091,6 +4282,7 @@ M.EcsPropertiesOverride = {
 
 M.EksContainerOverride = {
     type = "structure",
+    id = "EksContainerOverride",
     members = {
         name = {
             type = "string",
@@ -4116,6 +4308,7 @@ M.EksContainerOverride = {
 
 M.EksPodPropertiesOverride = {
     type = "structure",
+    id = "EksPodPropertiesOverride",
     members = {
         containers = {
             type = "list",
@@ -4131,6 +4324,7 @@ M.EksPodPropertiesOverride = {
 
 M.EksPropertiesOverride = {
     type = "structure",
+    id = "EksPropertiesOverride",
     members = {
         podProperties = M.EksPodPropertiesOverride,
     },
@@ -4138,6 +4332,7 @@ M.EksPropertiesOverride = {
 
 M.NodePropertyOverride = {
     type = "structure",
+    id = "NodePropertyOverride",
     members = {
         targetNodes = {
             type = "string",
@@ -4158,6 +4353,7 @@ M.NodePropertyOverride = {
 
 M.NodeOverrides = {
     type = "structure",
+    id = "NodeOverrides",
     members = {
         numNodes = {
             type = "integer",
@@ -4171,6 +4367,7 @@ M.NodeOverrides = {
 
 M.SubmitJobInput = {
     type = "structure",
+    id = "SubmitJobInput",
     members = {
         jobName = {
             type = "string",
@@ -4226,6 +4423,7 @@ M.SubmitJobInput = {
 
 M.SubmitJobOutput = {
     type = "structure",
+    id = "SubmitJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -4247,6 +4445,7 @@ M.SubmitJobOutput = {
 
 M.SubmitServiceJobInput = {
     type = "structure",
+    id = "SubmitServiceJobInput",
     members = {
         jobName = {
             type = "string",
@@ -4300,6 +4499,7 @@ M.SubmitServiceJobInput = {
 
 M.SubmitServiceJobOutput = {
     type = "structure",
+    id = "SubmitServiceJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -4321,6 +4521,7 @@ M.SubmitServiceJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4342,10 +4543,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TerminateJobInput = {
     type = "structure",
+    id = "TerminateJobInput",
     members = {
         jobId = {
             type = "string",
@@ -4364,10 +4567,12 @@ M.TerminateJobInput = {
 
 M.TerminateJobOutput = {
     type = "structure",
+    id = "TerminateJobOutput",
 }
 
 M.TerminateServiceJobInput = {
     type = "structure",
+    id = "TerminateServiceJobInput",
     members = {
         jobId = {
             type = "string",
@@ -4386,10 +4591,12 @@ M.TerminateServiceJobInput = {
 
 M.TerminateServiceJobOutput = {
     type = "structure",
+    id = "TerminateServiceJobOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4411,6 +4618,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.CRUpdateAllocationStrategy = {
@@ -4421,6 +4629,7 @@ M.CRUpdateAllocationStrategy = {
 
 M.ComputeResourceUpdate = {
     type = "structure",
+    id = "ComputeResourceUpdate",
     members = {
         minvCpus = {
             type = "integer",
@@ -4483,6 +4692,7 @@ M.ComputeResourceUpdate = {
 
 M.UpdateComputeEnvironmentInput = {
     type = "structure",
+    id = "UpdateComputeEnvironmentInput",
     members = {
         computeEnvironment = {
             type = "string",
@@ -4509,6 +4719,7 @@ M.UpdateComputeEnvironmentInput = {
 
 M.UpdateComputeEnvironmentOutput = {
     type = "structure",
+    id = "UpdateComputeEnvironmentOutput",
     members = {
         computeEnvironmentName = {
             type = "string",
@@ -4521,6 +4732,7 @@ M.UpdateComputeEnvironmentOutput = {
 
 M.UpdateConsumableResourceInput = {
     type = "structure",
+    id = "UpdateConsumableResourceInput",
     members = {
         consumableResource = {
             type = "string",
@@ -4545,6 +4757,7 @@ M.UpdateConsumableResourceInput = {
 
 M.UpdateConsumableResourceOutput = {
     type = "structure",
+    id = "UpdateConsumableResourceOutput",
     members = {
         consumableResourceName = {
             type = "string",
@@ -4566,6 +4779,7 @@ M.UpdateConsumableResourceOutput = {
 
 M.UpdateJobQueueInput = {
     type = "structure",
+    id = "UpdateJobQueueInput",
     members = {
         jobQueue = {
             type = "string",
@@ -4599,6 +4813,7 @@ M.UpdateJobQueueInput = {
 
 M.UpdateJobQueueOutput = {
     type = "structure",
+    id = "UpdateJobQueueOutput",
     members = {
         jobQueueName = {
             type = "string",
@@ -4611,6 +4826,7 @@ M.UpdateJobQueueOutput = {
 
 M.UpdateQuotaShareInput = {
     type = "structure",
+    id = "UpdateQuotaShareInput",
     members = {
         quotaShareArn = {
             type = "string",
@@ -4632,6 +4848,7 @@ M.UpdateQuotaShareInput = {
 
 M.UpdateQuotaShareOutput = {
     type = "structure",
+    id = "UpdateQuotaShareOutput",
     members = {
         quotaShareName = {
             type = "string",
@@ -4644,6 +4861,7 @@ M.UpdateQuotaShareOutput = {
 
 M.UpdateSchedulingPolicyInput = {
     type = "structure",
+    id = "UpdateSchedulingPolicyInput",
     members = {
         arn = {
             type = "string",
@@ -4658,10 +4876,12 @@ M.UpdateSchedulingPolicyInput = {
 
 M.UpdateSchedulingPolicyOutput = {
     type = "structure",
+    id = "UpdateSchedulingPolicyOutput",
 }
 
 M.UpdateServiceEnvironmentInput = {
     type = "structure",
+    id = "UpdateServiceEnvironmentInput",
     members = {
         serviceEnvironment = {
             type = "string",
@@ -4681,6 +4901,7 @@ M.UpdateServiceEnvironmentInput = {
 
 M.UpdateServiceEnvironmentOutput = {
     type = "structure",
+    id = "UpdateServiceEnvironmentOutput",
     members = {
         serviceEnvironmentName = {
             type = "string",
@@ -4699,6 +4920,7 @@ M.UpdateServiceEnvironmentOutput = {
 
 M.UpdateServiceJobInput = {
     type = "structure",
+    id = "UpdateServiceJobInput",
     members = {
         jobId = {
             type = "string",
@@ -4717,6 +4939,7 @@ M.UpdateServiceJobInput = {
 
 M.UpdateServiceJobOutput = {
     type = "structure",
+    id = "UpdateServiceJobOutput",
     members = {
         jobArn = {
             type = "string",

@@ -8,6 +8,7 @@ M.AuthenticateCognitoActionConditionalBehaviorEnum = {
 
 M.AuthenticateCognitoActionConfig = {
     type = "structure",
+    id = "AuthenticateCognitoActionConfig",
     members = {
         UserPoolArn = {
             type = "string",
@@ -55,6 +56,7 @@ M.AuthenticateOidcActionConditionalBehaviorEnum = {
 
 M.AuthenticateOidcActionConfig = {
     type = "structure",
+    id = "AuthenticateOidcActionConfig",
     members = {
         Issuer = {
             type = "string",
@@ -114,6 +116,7 @@ M.AuthenticateOidcActionConfig = {
 
 M.FixedResponseActionConfig = {
     type = "structure",
+    id = "FixedResponseActionConfig",
     members = {
         MessageBody = {
             type = "string",
@@ -132,6 +135,7 @@ M.FixedResponseActionConfig = {
 
 M.TargetGroupTuple = {
     type = "structure",
+    id = "TargetGroupTuple",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -144,6 +148,7 @@ M.TargetGroupTuple = {
 
 M.TargetGroupStickinessConfig = {
     type = "structure",
+    id = "TargetGroupStickinessConfig",
     members = {
         Enabled = {
             type = "boolean",
@@ -156,6 +161,7 @@ M.TargetGroupStickinessConfig = {
 
 M.ForwardActionConfig = {
     type = "structure",
+    id = "ForwardActionConfig",
     members = {
         TargetGroups = {
             type = "list",
@@ -173,6 +179,7 @@ M.JwtValidationActionAdditionalClaimFormatEnum = {
 
 M.JwtValidationActionAdditionalClaim = {
     type = "structure",
+    id = "JwtValidationActionAdditionalClaim",
     members = {
         Format = {
             type = "string",
@@ -198,6 +205,7 @@ M.JwtValidationActionAdditionalClaim = {
 
 M.JwtValidationActionConfig = {
     type = "structure",
+    id = "JwtValidationActionConfig",
     members = {
         JwksEndpoint = {
             type = "string",
@@ -225,6 +233,7 @@ M.RedirectActionStatusCodeEnum = {
 
 M.RedirectActionConfig = {
     type = "structure",
+    id = "RedirectActionConfig",
     members = {
         Protocol = {
             type = "string",
@@ -261,6 +270,7 @@ M.ActionTypeEnum = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         Type = {
             type = "string",
@@ -285,6 +295,7 @@ M.Action = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         CertificateArn = {
             type = "string",
@@ -297,6 +308,7 @@ M.Certificate = {
 
 M.AddListenerCertificatesInput = {
     type = "structure",
+    id = "AddListenerCertificatesInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -316,6 +328,7 @@ M.AddListenerCertificatesInput = {
 
 M.AddListenerCertificatesOutput = {
     type = "structure",
+    id = "AddListenerCertificatesOutput",
     members = {
         Certificates = {
             type = "list",
@@ -326,6 +339,7 @@ M.AddListenerCertificatesOutput = {
 
 M.CertificateNotFoundException = {
     type = "structure",
+    id = "CertificateNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -336,6 +350,7 @@ M.CertificateNotFoundException = {
 
 M.ListenerNotFoundException = {
     type = "structure",
+    id = "ListenerNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -346,6 +361,7 @@ M.ListenerNotFoundException = {
 
 M.TooManyCertificatesException = {
     type = "structure",
+    id = "TooManyCertificatesException",
     error = "client",
     members = {
         Message = {
@@ -356,6 +372,7 @@ M.TooManyCertificatesException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -371,6 +388,7 @@ M.Tag = {
 
 M.AddTagsInput = {
     type = "structure",
+    id = "AddTagsInput",
     members = {
         ResourceArns = {
             type = "list",
@@ -391,10 +409,12 @@ M.AddTagsInput = {
 
 M.AddTagsOutput = {
     type = "structure",
+    id = "AddTagsOutput",
 }
 
 M.DuplicateTagKeysException = {
     type = "structure",
+    id = "DuplicateTagKeysException",
     error = "client",
     members = {
         Message = {
@@ -405,6 +425,7 @@ M.DuplicateTagKeysException = {
 
 M.LoadBalancerNotFoundException = {
     type = "structure",
+    id = "LoadBalancerNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -415,6 +436,7 @@ M.LoadBalancerNotFoundException = {
 
 M.RuleNotFoundException = {
     type = "structure",
+    id = "RuleNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -425,6 +447,7 @@ M.RuleNotFoundException = {
 
 M.TargetGroupNotFoundException = {
     type = "structure",
+    id = "TargetGroupNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -435,6 +458,7 @@ M.TargetGroupNotFoundException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -445,6 +469,7 @@ M.TooManyTagsException = {
 
 M.TrustStoreNotFoundException = {
     type = "structure",
+    id = "TrustStoreNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -459,6 +484,7 @@ M.RevocationType = {
 
 M.RevocationContent = {
     type = "structure",
+    id = "RevocationContent",
     members = {
         S3Bucket = {
             type = "string",
@@ -477,6 +503,7 @@ M.RevocationContent = {
 
 M.AddTrustStoreRevocationsInput = {
     type = "structure",
+    id = "AddTrustStoreRevocationsInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -493,6 +520,7 @@ M.AddTrustStoreRevocationsInput = {
 
 M.TrustStoreRevocation = {
     type = "structure",
+    id = "TrustStoreRevocation",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -511,6 +539,7 @@ M.TrustStoreRevocation = {
 
 M.AddTrustStoreRevocationsOutput = {
     type = "structure",
+    id = "AddTrustStoreRevocationsOutput",
     members = {
         TrustStoreRevocations = {
             type = "list",
@@ -521,6 +550,7 @@ M.AddTrustStoreRevocationsOutput = {
 
 M.InvalidRevocationContentException = {
     type = "structure",
+    id = "InvalidRevocationContentException",
     error = "client",
     members = {
         Message = {
@@ -531,6 +561,7 @@ M.InvalidRevocationContentException = {
 
 M.RevocationContentNotFoundException = {
     type = "structure",
+    id = "RevocationContentNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -541,6 +572,7 @@ M.RevocationContentNotFoundException = {
 
 M.TooManyTrustStoreRevocationEntriesException = {
     type = "structure",
+    id = "TooManyTrustStoreRevocationEntriesException",
     error = "client",
     members = {
         Message = {
@@ -565,6 +597,7 @@ M.TargetAdministrativeOverrideStateEnum = {
 
 M.AdministrativeOverride = {
     type = "structure",
+    id = "AdministrativeOverride",
     members = {
         State = {
             type = "string",
@@ -585,6 +618,7 @@ M.AdvertiseTrustStoreCaNamesEnum = {
 
 M.AllocationIdNotFoundException = {
     type = "structure",
+    id = "AllocationIdNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -595,6 +629,7 @@ M.AllocationIdNotFoundException = {
 
 M.ALPNPolicyNotSupportedException = {
     type = "structure",
+    id = "ALPNPolicyNotSupportedException",
     error = "client",
     members = {
         Message = {
@@ -615,6 +650,7 @@ M.AnomalyResultEnum = {
 
 M.AnomalyDetection = {
     type = "structure",
+    id = "AnomalyDetection",
     members = {
         Result = {
             type = "string",
@@ -627,6 +663,7 @@ M.AnomalyDetection = {
 
 M.LoadBalancerAddress = {
     type = "structure",
+    id = "LoadBalancerAddress",
     members = {
         IpAddress = {
             type = "string",
@@ -645,6 +682,7 @@ M.LoadBalancerAddress = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         ZoneName = {
             type = "string",
@@ -668,6 +706,7 @@ M.AvailabilityZone = {
 
 M.AvailabilityZoneNotSupportedException = {
     type = "structure",
+    id = "AvailabilityZoneNotSupportedException",
     error = "client",
     members = {
         Message = {
@@ -678,6 +717,7 @@ M.AvailabilityZoneNotSupportedException = {
 
 M.CaCertificatesBundleNotFoundException = {
     type = "structure",
+    id = "CaCertificatesBundleNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -688,6 +728,7 @@ M.CaCertificatesBundleNotFoundException = {
 
 M.CapacityDecreaseRequestsLimitExceededException = {
     type = "structure",
+    id = "CapacityDecreaseRequestsLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -698,6 +739,7 @@ M.CapacityDecreaseRequestsLimitExceededException = {
 
 M.CapacityReservationPendingException = {
     type = "structure",
+    id = "CapacityReservationPendingException",
     error = "client",
     members = {
         Message = {
@@ -715,6 +757,7 @@ M.CapacityReservationStateEnum = {
 
 M.CapacityReservationStatus = {
     type = "structure",
+    id = "CapacityReservationStatus",
     members = {
         Code = {
             type = "string",
@@ -727,6 +770,7 @@ M.CapacityReservationStatus = {
 
 M.CapacityUnitsLimitExceededException = {
     type = "structure",
+    id = "CapacityUnitsLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -737,6 +781,7 @@ M.CapacityUnitsLimitExceededException = {
 
 M.Cipher = {
     type = "structure",
+    id = "Cipher",
     members = {
         Name = {
             type = "string",
@@ -754,6 +799,7 @@ M.TrustStoreAssociationStatusEnum = {
 
 M.MutualAuthenticationAttributes = {
     type = "structure",
+    id = "MutualAuthenticationAttributes",
     members = {
         Mode = {
             type = "string",
@@ -787,6 +833,7 @@ M.ProtocolEnum = {
 
 M.CreateListenerInput = {
     type = "structure",
+    id = "CreateListenerInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -828,6 +875,7 @@ M.CreateListenerInput = {
 
 M.Listener = {
     type = "structure",
+    id = "Listener",
     members = {
         ListenerArn = {
             type = "string",
@@ -862,6 +910,7 @@ M.Listener = {
 
 M.CreateListenerOutput = {
     type = "structure",
+    id = "CreateListenerOutput",
     members = {
         Listeners = {
             type = "list",
@@ -872,6 +921,7 @@ M.CreateListenerOutput = {
 
 M.DuplicateListenerException = {
     type = "structure",
+    id = "DuplicateListenerException",
     error = "client",
     members = {
         Message = {
@@ -882,6 +932,7 @@ M.DuplicateListenerException = {
 
 M.IncompatibleProtocolsException = {
     type = "structure",
+    id = "IncompatibleProtocolsException",
     error = "client",
     members = {
         Message = {
@@ -892,6 +943,7 @@ M.IncompatibleProtocolsException = {
 
 M.InvalidConfigurationRequestException = {
     type = "structure",
+    id = "InvalidConfigurationRequestException",
     error = "client",
     members = {
         Message = {
@@ -902,6 +954,7 @@ M.InvalidConfigurationRequestException = {
 
 M.InvalidLoadBalancerActionException = {
     type = "structure",
+    id = "InvalidLoadBalancerActionException",
     error = "client",
     members = {
         Message = {
@@ -912,6 +965,7 @@ M.InvalidLoadBalancerActionException = {
 
 M.SSLPolicyNotFoundException = {
     type = "structure",
+    id = "SSLPolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -922,6 +976,7 @@ M.SSLPolicyNotFoundException = {
 
 M.TargetGroupAssociationLimitException = {
     type = "structure",
+    id = "TargetGroupAssociationLimitException",
     error = "client",
     members = {
         Message = {
@@ -932,6 +987,7 @@ M.TargetGroupAssociationLimitException = {
 
 M.TooManyActionsException = {
     type = "structure",
+    id = "TooManyActionsException",
     error = "client",
     members = {
         Message = {
@@ -942,6 +998,7 @@ M.TooManyActionsException = {
 
 M.TooManyListenersException = {
     type = "structure",
+    id = "TooManyListenersException",
     error = "client",
     members = {
         Message = {
@@ -952,6 +1009,7 @@ M.TooManyListenersException = {
 
 M.TooManyRegistrationsForTargetIdException = {
     type = "structure",
+    id = "TooManyRegistrationsForTargetIdException",
     error = "client",
     members = {
         Message = {
@@ -962,6 +1020,7 @@ M.TooManyRegistrationsForTargetIdException = {
 
 M.TooManyTargetsException = {
     type = "structure",
+    id = "TooManyTargetsException",
     error = "client",
     members = {
         Message = {
@@ -972,6 +1031,7 @@ M.TooManyTargetsException = {
 
 M.TooManyUniqueTargetGroupsPerLoadBalancerException = {
     type = "structure",
+    id = "TooManyUniqueTargetGroupsPerLoadBalancerException",
     error = "client",
     members = {
         Message = {
@@ -982,6 +1042,7 @@ M.TooManyUniqueTargetGroupsPerLoadBalancerException = {
 
 M.TrustStoreNotReadyException = {
     type = "structure",
+    id = "TrustStoreNotReadyException",
     error = "client",
     members = {
         Message = {
@@ -992,6 +1053,7 @@ M.TrustStoreNotReadyException = {
 
 M.UnsupportedProtocolException = {
     type = "structure",
+    id = "UnsupportedProtocolException",
     error = "client",
     members = {
         Message = {
@@ -1013,6 +1075,7 @@ M.IpAddressType = {
 
 M.IpamPools = {
     type = "structure",
+    id = "IpamPools",
     members = {
         Ipv4IpamPoolId = {
             type = "string",
@@ -1027,6 +1090,7 @@ M.LoadBalancerSchemeEnum = {
 
 M.SubnetMapping = {
     type = "structure",
+    id = "SubnetMapping",
     members = {
         SubnetId = {
             type = "string",
@@ -1054,6 +1118,7 @@ M.LoadBalancerTypeEnum = {
 
 M.CreateLoadBalancerInput = {
     type = "structure",
+    id = "CreateLoadBalancerInput",
     members = {
         Name = {
             type = "string",
@@ -1105,6 +1170,7 @@ M.LoadBalancerStateEnum = {
 
 M.LoadBalancerState = {
     type = "structure",
+    id = "LoadBalancerState",
     members = {
         Code = {
             type = "string",
@@ -1117,6 +1183,7 @@ M.LoadBalancerState = {
 
 M.LoadBalancer = {
     type = "structure",
+    id = "LoadBalancer",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -1169,6 +1236,7 @@ M.LoadBalancer = {
 
 M.CreateLoadBalancerOutput = {
     type = "structure",
+    id = "CreateLoadBalancerOutput",
     members = {
         LoadBalancers = {
             type = "list",
@@ -1179,6 +1247,7 @@ M.CreateLoadBalancerOutput = {
 
 M.DuplicateLoadBalancerNameException = {
     type = "structure",
+    id = "DuplicateLoadBalancerNameException",
     error = "client",
     members = {
         Message = {
@@ -1189,6 +1258,7 @@ M.DuplicateLoadBalancerNameException = {
 
 M.InvalidSchemeException = {
     type = "structure",
+    id = "InvalidSchemeException",
     error = "client",
     members = {
         Message = {
@@ -1199,6 +1269,7 @@ M.InvalidSchemeException = {
 
 M.InvalidSecurityGroupException = {
     type = "structure",
+    id = "InvalidSecurityGroupException",
     error = "client",
     members = {
         Message = {
@@ -1209,6 +1280,7 @@ M.InvalidSecurityGroupException = {
 
 M.InvalidSubnetException = {
     type = "structure",
+    id = "InvalidSubnetException",
     error = "client",
     members = {
         Message = {
@@ -1219,6 +1291,7 @@ M.InvalidSubnetException = {
 
 M.OperationNotPermittedException = {
     type = "structure",
+    id = "OperationNotPermittedException",
     error = "client",
     members = {
         Message = {
@@ -1229,6 +1302,7 @@ M.OperationNotPermittedException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -1239,6 +1313,7 @@ M.ResourceInUseException = {
 
 M.SubnetNotFoundException = {
     type = "structure",
+    id = "SubnetNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1249,6 +1324,7 @@ M.SubnetNotFoundException = {
 
 M.TooManyLoadBalancersException = {
     type = "structure",
+    id = "TooManyLoadBalancersException",
     error = "client",
     members = {
         Message = {
@@ -1259,6 +1335,7 @@ M.TooManyLoadBalancersException = {
 
 M.HostHeaderConditionConfig = {
     type = "structure",
+    id = "HostHeaderConditionConfig",
     members = {
         Values = {
             type = "list",
@@ -1273,6 +1350,7 @@ M.HostHeaderConditionConfig = {
 
 M.HttpHeaderConditionConfig = {
     type = "structure",
+    id = "HttpHeaderConditionConfig",
     members = {
         HttpHeaderName = {
             type = "string",
@@ -1290,6 +1368,7 @@ M.HttpHeaderConditionConfig = {
 
 M.HttpRequestMethodConditionConfig = {
     type = "structure",
+    id = "HttpRequestMethodConditionConfig",
     members = {
         Values = {
             type = "list",
@@ -1300,6 +1379,7 @@ M.HttpRequestMethodConditionConfig = {
 
 M.PathPatternConditionConfig = {
     type = "structure",
+    id = "PathPatternConditionConfig",
     members = {
         Values = {
             type = "list",
@@ -1314,6 +1394,7 @@ M.PathPatternConditionConfig = {
 
 M.QueryStringKeyValuePair = {
     type = "structure",
+    id = "QueryStringKeyValuePair",
     members = {
         Key = {
             type = "string",
@@ -1326,6 +1407,7 @@ M.QueryStringKeyValuePair = {
 
 M.QueryStringConditionConfig = {
     type = "structure",
+    id = "QueryStringConditionConfig",
     members = {
         Values = {
             type = "list",
@@ -1336,6 +1418,7 @@ M.QueryStringConditionConfig = {
 
 M.SourceIpConditionConfig = {
     type = "structure",
+    id = "SourceIpConditionConfig",
     members = {
         Values = {
             type = "list",
@@ -1346,6 +1429,7 @@ M.SourceIpConditionConfig = {
 
 M.RuleCondition = {
     type = "structure",
+    id = "RuleCondition",
     members = {
         Field = {
             type = "string",
@@ -1369,6 +1453,7 @@ M.RuleCondition = {
 
 M.RewriteConfig = {
     type = "structure",
+    id = "RewriteConfig",
     members = {
         Regex = {
             type = "string",
@@ -1387,6 +1472,7 @@ M.RewriteConfig = {
 
 M.HostHeaderRewriteConfig = {
     type = "structure",
+    id = "HostHeaderRewriteConfig",
     members = {
         Rewrites = {
             type = "list",
@@ -1402,6 +1488,7 @@ M.TransformTypeEnum = {
 
 M.UrlRewriteConfig = {
     type = "structure",
+    id = "UrlRewriteConfig",
     members = {
         Rewrites = {
             type = "list",
@@ -1412,6 +1499,7 @@ M.UrlRewriteConfig = {
 
 M.RuleTransform = {
     type = "structure",
+    id = "RuleTransform",
     members = {
         Type = {
             type = "string",
@@ -1426,6 +1514,7 @@ M.RuleTransform = {
 
 M.CreateRuleInput = {
     type = "structure",
+    id = "CreateRuleInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1466,6 +1555,7 @@ M.CreateRuleInput = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         RuleArn = {
             type = "string",
@@ -1493,6 +1583,7 @@ M.Rule = {
 
 M.CreateRuleOutput = {
     type = "structure",
+    id = "CreateRuleOutput",
     members = {
         Rules = {
             type = "list",
@@ -1503,6 +1594,7 @@ M.CreateRuleOutput = {
 
 M.PriorityInUseException = {
     type = "structure",
+    id = "PriorityInUseException",
     error = "client",
     members = {
         Message = {
@@ -1513,6 +1605,7 @@ M.PriorityInUseException = {
 
 M.TooManyRulesException = {
     type = "structure",
+    id = "TooManyRulesException",
     error = "client",
     members = {
         Message = {
@@ -1523,6 +1616,7 @@ M.TooManyRulesException = {
 
 M.TooManyTargetGroupsException = {
     type = "structure",
+    id = "TooManyTargetGroupsException",
     error = "client",
     members = {
         Message = {
@@ -1538,6 +1632,7 @@ M.TargetGroupIpAddressTypeEnum = {
 
 M.Matcher = {
     type = "structure",
+    id = "Matcher",
     members = {
         HttpCode = {
             type = "string",
@@ -1557,6 +1652,7 @@ M.TargetTypeEnum = {
 
 M.CreateTargetGroupInput = {
     type = "structure",
+    id = "CreateTargetGroupInput",
     members = {
         Name = {
             type = "string",
@@ -1619,6 +1715,7 @@ M.CreateTargetGroupInput = {
 
 M.TargetGroup = {
     type = "structure",
+    id = "TargetGroup",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -1681,6 +1778,7 @@ M.TargetGroup = {
 
 M.CreateTargetGroupOutput = {
     type = "structure",
+    id = "CreateTargetGroupOutput",
     members = {
         TargetGroups = {
             type = "list",
@@ -1691,6 +1789,7 @@ M.CreateTargetGroupOutput = {
 
 M.DuplicateTargetGroupNameException = {
     type = "structure",
+    id = "DuplicateTargetGroupNameException",
     error = "client",
     members = {
         Message = {
@@ -1701,6 +1800,7 @@ M.DuplicateTargetGroupNameException = {
 
 M.CreateTrustStoreInput = {
     type = "structure",
+    id = "CreateTrustStoreInput",
     members = {
         Name = {
             type = "string",
@@ -1737,6 +1837,7 @@ M.TrustStoreStatus = {
 
 M.TrustStore = {
     type = "structure",
+    id = "TrustStore",
     members = {
         Name = {
             type = "string",
@@ -1758,6 +1859,7 @@ M.TrustStore = {
 
 M.CreateTrustStoreOutput = {
     type = "structure",
+    id = "CreateTrustStoreOutput",
     members = {
         TrustStores = {
             type = "list",
@@ -1768,6 +1870,7 @@ M.CreateTrustStoreOutput = {
 
 M.DuplicateTrustStoreNameException = {
     type = "structure",
+    id = "DuplicateTrustStoreNameException",
     error = "client",
     members = {
         Message = {
@@ -1778,6 +1881,7 @@ M.DuplicateTrustStoreNameException = {
 
 M.InvalidCaCertificatesBundleException = {
     type = "structure",
+    id = "InvalidCaCertificatesBundleException",
     error = "client",
     members = {
         Message = {
@@ -1788,6 +1892,7 @@ M.InvalidCaCertificatesBundleException = {
 
 M.TooManyTrustStoresException = {
     type = "structure",
+    id = "TooManyTrustStoresException",
     error = "client",
     members = {
         Message = {
@@ -1798,6 +1903,7 @@ M.TooManyTrustStoresException = {
 
 M.DeleteAssociationSameAccountException = {
     type = "structure",
+    id = "DeleteAssociationSameAccountException",
     error = "client",
     members = {
         Message = {
@@ -1808,6 +1914,7 @@ M.DeleteAssociationSameAccountException = {
 
 M.DeleteListenerInput = {
     type = "structure",
+    id = "DeleteListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -1820,10 +1927,12 @@ M.DeleteListenerInput = {
 
 M.DeleteListenerOutput = {
     type = "structure",
+    id = "DeleteListenerOutput",
 }
 
 M.DeleteLoadBalancerInput = {
     type = "structure",
+    id = "DeleteLoadBalancerInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -1836,10 +1945,12 @@ M.DeleteLoadBalancerInput = {
 
 M.DeleteLoadBalancerOutput = {
     type = "structure",
+    id = "DeleteLoadBalancerOutput",
 }
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         RuleArn = {
             type = "string",
@@ -1852,10 +1963,12 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
 }
 
 M.DeleteSharedTrustStoreAssociationInput = {
     type = "structure",
+    id = "DeleteSharedTrustStoreAssociationInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -1874,10 +1987,12 @@ M.DeleteSharedTrustStoreAssociationInput = {
 
 M.DeleteSharedTrustStoreAssociationOutput = {
     type = "structure",
+    id = "DeleteSharedTrustStoreAssociationOutput",
 }
 
 M.TrustStoreAssociationNotFoundException = {
     type = "structure",
+    id = "TrustStoreAssociationNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1888,6 +2003,7 @@ M.TrustStoreAssociationNotFoundException = {
 
 M.DeleteTargetGroupInput = {
     type = "structure",
+    id = "DeleteTargetGroupInput",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -1900,10 +2016,12 @@ M.DeleteTargetGroupInput = {
 
 M.DeleteTargetGroupOutput = {
     type = "structure",
+    id = "DeleteTargetGroupOutput",
 }
 
 M.DeleteTrustStoreInput = {
     type = "structure",
+    id = "DeleteTrustStoreInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -1916,10 +2034,12 @@ M.DeleteTrustStoreInput = {
 
 M.DeleteTrustStoreOutput = {
     type = "structure",
+    id = "DeleteTrustStoreOutput",
 }
 
 M.TrustStoreInUseException = {
     type = "structure",
+    id = "TrustStoreInUseException",
     error = "client",
     members = {
         Message = {
@@ -1930,6 +2050,7 @@ M.TrustStoreInUseException = {
 
 M.TargetDescription = {
     type = "structure",
+    id = "TargetDescription",
     members = {
         Id = {
             type = "string",
@@ -1951,6 +2072,7 @@ M.TargetDescription = {
 
 M.DeregisterTargetsInput = {
     type = "structure",
+    id = "DeregisterTargetsInput",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -1970,10 +2092,12 @@ M.DeregisterTargetsInput = {
 
 M.DeregisterTargetsOutput = {
     type = "structure",
+    id = "DeregisterTargetsOutput",
 }
 
 M.InvalidTargetException = {
     type = "structure",
+    id = "InvalidTargetException",
     error = "client",
     members = {
         Message = {
@@ -1984,6 +2108,7 @@ M.InvalidTargetException = {
 
 M.DescribeAccountLimitsInput = {
     type = "structure",
+    id = "DescribeAccountLimitsInput",
     members = {
         Marker = {
             type = "string",
@@ -1996,6 +2121,7 @@ M.DescribeAccountLimitsInput = {
 
 M.Limit = {
     type = "structure",
+    id = "Limit",
     members = {
         Name = {
             type = "string",
@@ -2008,6 +2134,7 @@ M.Limit = {
 
 M.DescribeAccountLimitsOutput = {
     type = "structure",
+    id = "DescribeAccountLimitsOutput",
     members = {
         Limits = {
             type = "list",
@@ -2021,6 +2148,7 @@ M.DescribeAccountLimitsOutput = {
 
 M.DescribeCapacityReservationInput = {
     type = "structure",
+    id = "DescribeCapacityReservationInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -2033,6 +2161,7 @@ M.DescribeCapacityReservationInput = {
 
 M.ZonalCapacityReservationState = {
     type = "structure",
+    id = "ZonalCapacityReservationState",
     members = {
         State = M.CapacityReservationStatus,
         AvailabilityZone = {
@@ -2046,6 +2175,7 @@ M.ZonalCapacityReservationState = {
 
 M.MinimumLoadBalancerCapacity = {
     type = "structure",
+    id = "MinimumLoadBalancerCapacity",
     members = {
         CapacityUnits = {
             type = "integer",
@@ -2055,6 +2185,7 @@ M.MinimumLoadBalancerCapacity = {
 
 M.DescribeCapacityReservationOutput = {
     type = "structure",
+    id = "DescribeCapacityReservationOutput",
     members = {
         LastModifiedTime = {
             type = "timestamp",
@@ -2072,6 +2203,7 @@ M.DescribeCapacityReservationOutput = {
 
 M.DescribeListenerAttributesInput = {
     type = "structure",
+    id = "DescribeListenerAttributesInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -2084,6 +2216,7 @@ M.DescribeListenerAttributesInput = {
 
 M.ListenerAttribute = {
     type = "structure",
+    id = "ListenerAttribute",
     members = {
         Key = {
             type = "string",
@@ -2096,6 +2229,7 @@ M.ListenerAttribute = {
 
 M.DescribeListenerAttributesOutput = {
     type = "structure",
+    id = "DescribeListenerAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2106,6 +2240,7 @@ M.DescribeListenerAttributesOutput = {
 
 M.DescribeListenerCertificatesInput = {
     type = "structure",
+    id = "DescribeListenerCertificatesInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -2124,6 +2259,7 @@ M.DescribeListenerCertificatesInput = {
 
 M.DescribeListenerCertificatesOutput = {
     type = "structure",
+    id = "DescribeListenerCertificatesOutput",
     members = {
         Certificates = {
             type = "list",
@@ -2137,6 +2273,7 @@ M.DescribeListenerCertificatesOutput = {
 
 M.DescribeListenersInput = {
     type = "structure",
+    id = "DescribeListenersInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -2156,6 +2293,7 @@ M.DescribeListenersInput = {
 
 M.DescribeListenersOutput = {
     type = "structure",
+    id = "DescribeListenersOutput",
     members = {
         Listeners = {
             type = "list",
@@ -2169,6 +2307,7 @@ M.DescribeListenersOutput = {
 
 M.DescribeLoadBalancerAttributesInput = {
     type = "structure",
+    id = "DescribeLoadBalancerAttributesInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -2181,6 +2320,7 @@ M.DescribeLoadBalancerAttributesInput = {
 
 M.LoadBalancerAttribute = {
     type = "structure",
+    id = "LoadBalancerAttribute",
     members = {
         Key = {
             type = "string",
@@ -2193,6 +2333,7 @@ M.LoadBalancerAttribute = {
 
 M.DescribeLoadBalancerAttributesOutput = {
     type = "structure",
+    id = "DescribeLoadBalancerAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2203,6 +2344,7 @@ M.DescribeLoadBalancerAttributesOutput = {
 
 M.DescribeLoadBalancersInput = {
     type = "structure",
+    id = "DescribeLoadBalancersInput",
     members = {
         LoadBalancerArns = {
             type = "list",
@@ -2223,6 +2365,7 @@ M.DescribeLoadBalancersInput = {
 
 M.DescribeLoadBalancersOutput = {
     type = "structure",
+    id = "DescribeLoadBalancersOutput",
     members = {
         LoadBalancers = {
             type = "list",
@@ -2236,6 +2379,7 @@ M.DescribeLoadBalancersOutput = {
 
 M.DescribeRulesInput = {
     type = "structure",
+    id = "DescribeRulesInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -2255,6 +2399,7 @@ M.DescribeRulesInput = {
 
 M.DescribeRulesOutput = {
     type = "structure",
+    id = "DescribeRulesOutput",
     members = {
         Rules = {
             type = "list",
@@ -2268,6 +2413,7 @@ M.DescribeRulesOutput = {
 
 M.DescribeSSLPoliciesInput = {
     type = "structure",
+    id = "DescribeSSLPoliciesInput",
     members = {
         Names = {
             type = "list",
@@ -2287,6 +2433,7 @@ M.DescribeSSLPoliciesInput = {
 
 M.SslPolicy = {
     type = "structure",
+    id = "SslPolicy",
     members = {
         SslProtocols = {
             type = "list",
@@ -2308,6 +2455,7 @@ M.SslPolicy = {
 
 M.DescribeSSLPoliciesOutput = {
     type = "structure",
+    id = "DescribeSSLPoliciesOutput",
     members = {
         SslPolicies = {
             type = "list",
@@ -2321,6 +2469,7 @@ M.DescribeSSLPoliciesOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         ResourceArns = {
             type = "list",
@@ -2334,6 +2483,7 @@ M.DescribeTagsInput = {
 
 M.TagDescription = {
     type = "structure",
+    id = "TagDescription",
     members = {
         ResourceArn = {
             type = "string",
@@ -2347,6 +2497,7 @@ M.TagDescription = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         TagDescriptions = {
             type = "list",
@@ -2357,6 +2508,7 @@ M.DescribeTagsOutput = {
 
 M.DescribeTargetGroupAttributesInput = {
     type = "structure",
+    id = "DescribeTargetGroupAttributesInput",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -2369,6 +2521,7 @@ M.DescribeTargetGroupAttributesInput = {
 
 M.TargetGroupAttribute = {
     type = "structure",
+    id = "TargetGroupAttribute",
     members = {
         Key = {
             type = "string",
@@ -2381,6 +2534,7 @@ M.TargetGroupAttribute = {
 
 M.DescribeTargetGroupAttributesOutput = {
     type = "structure",
+    id = "DescribeTargetGroupAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2391,6 +2545,7 @@ M.DescribeTargetGroupAttributesOutput = {
 
 M.DescribeTargetGroupsInput = {
     type = "structure",
+    id = "DescribeTargetGroupsInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -2414,6 +2569,7 @@ M.DescribeTargetGroupsInput = {
 
 M.DescribeTargetGroupsOutput = {
     type = "structure",
+    id = "DescribeTargetGroupsOutput",
     members = {
         TargetGroups = {
             type = "list",
@@ -2432,6 +2588,7 @@ M.DescribeTargetHealthInputIncludeEnum = {
 
 M.DescribeTargetHealthInput = {
     type = "structure",
+    id = "DescribeTargetHealthInput",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -2477,6 +2634,7 @@ M.TargetHealthStateEnum = {
 
 M.TargetHealth = {
     type = "structure",
+    id = "TargetHealth",
     members = {
         State = {
             type = "string",
@@ -2492,6 +2650,7 @@ M.TargetHealth = {
 
 M.TargetHealthDescription = {
     type = "structure",
+    id = "TargetHealthDescription",
     members = {
         Target = M.TargetDescription,
         HealthCheckPort = {
@@ -2505,6 +2664,7 @@ M.TargetHealthDescription = {
 
 M.DescribeTargetHealthOutput = {
     type = "structure",
+    id = "DescribeTargetHealthOutput",
     members = {
         TargetHealthDescriptions = {
             type = "list",
@@ -2515,6 +2675,7 @@ M.DescribeTargetHealthOutput = {
 
 M.HealthUnavailableException = {
     type = "structure",
+    id = "HealthUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -2525,6 +2686,7 @@ M.HealthUnavailableException = {
 
 M.DescribeTrustStoreAssociationsInput = {
     type = "structure",
+    id = "DescribeTrustStoreAssociationsInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -2543,6 +2705,7 @@ M.DescribeTrustStoreAssociationsInput = {
 
 M.TrustStoreAssociation = {
     type = "structure",
+    id = "TrustStoreAssociation",
     members = {
         ResourceArn = {
             type = "string",
@@ -2552,6 +2715,7 @@ M.TrustStoreAssociation = {
 
 M.DescribeTrustStoreAssociationsOutput = {
     type = "structure",
+    id = "DescribeTrustStoreAssociationsOutput",
     members = {
         TrustStoreAssociations = {
             type = "list",
@@ -2565,6 +2729,7 @@ M.DescribeTrustStoreAssociationsOutput = {
 
 M.DescribeTrustStoreRevocation = {
     type = "structure",
+    id = "DescribeTrustStoreRevocation",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -2583,6 +2748,7 @@ M.DescribeTrustStoreRevocation = {
 
 M.DescribeTrustStoreRevocationsInput = {
     type = "structure",
+    id = "DescribeTrustStoreRevocationsInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -2605,6 +2771,7 @@ M.DescribeTrustStoreRevocationsInput = {
 
 M.DescribeTrustStoreRevocationsOutput = {
     type = "structure",
+    id = "DescribeTrustStoreRevocationsOutput",
     members = {
         TrustStoreRevocations = {
             type = "list",
@@ -2618,6 +2785,7 @@ M.DescribeTrustStoreRevocationsOutput = {
 
 M.RevocationIdNotFoundException = {
     type = "structure",
+    id = "RevocationIdNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2628,6 +2796,7 @@ M.RevocationIdNotFoundException = {
 
 M.DescribeTrustStoresInput = {
     type = "structure",
+    id = "DescribeTrustStoresInput",
     members = {
         TrustStoreArns = {
             type = "list",
@@ -2648,6 +2817,7 @@ M.DescribeTrustStoresInput = {
 
 M.DescribeTrustStoresOutput = {
     type = "structure",
+    id = "DescribeTrustStoresOutput",
     members = {
         TrustStores = {
             type = "list",
@@ -2661,6 +2831,7 @@ M.DescribeTrustStoresOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2673,6 +2844,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -2682,6 +2854,7 @@ M.GetResourcePolicyOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2692,6 +2865,7 @@ M.ResourceNotFoundException = {
 
 M.GetTrustStoreCaCertificatesBundleInput = {
     type = "structure",
+    id = "GetTrustStoreCaCertificatesBundleInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -2704,6 +2878,7 @@ M.GetTrustStoreCaCertificatesBundleInput = {
 
 M.GetTrustStoreCaCertificatesBundleOutput = {
     type = "structure",
+    id = "GetTrustStoreCaCertificatesBundleOutput",
     members = {
         Location = {
             type = "string",
@@ -2713,6 +2888,7 @@ M.GetTrustStoreCaCertificatesBundleOutput = {
 
 M.GetTrustStoreRevocationContentInput = {
     type = "structure",
+    id = "GetTrustStoreRevocationContentInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -2731,6 +2907,7 @@ M.GetTrustStoreRevocationContentInput = {
 
 M.GetTrustStoreRevocationContentOutput = {
     type = "structure",
+    id = "GetTrustStoreRevocationContentOutput",
     members = {
         Location = {
             type = "string",
@@ -2740,6 +2917,7 @@ M.GetTrustStoreRevocationContentOutput = {
 
 M.InsufficientCapacityException = {
     type = "structure",
+    id = "InsufficientCapacityException",
     error = "server",
     members = {
         Message = {
@@ -2750,6 +2928,7 @@ M.InsufficientCapacityException = {
 
 M.ModifyCapacityReservationInput = {
     type = "structure",
+    id = "ModifyCapacityReservationInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -2766,6 +2945,7 @@ M.ModifyCapacityReservationInput = {
 
 M.ModifyCapacityReservationOutput = {
     type = "structure",
+    id = "ModifyCapacityReservationOutput",
     members = {
         LastModifiedTime = {
             type = "timestamp",
@@ -2783,6 +2963,7 @@ M.ModifyCapacityReservationOutput = {
 
 M.PriorRequestNotCompleteException = {
     type = "structure",
+    id = "PriorRequestNotCompleteException",
     error = "client",
     members = {
         Message = {
@@ -2797,6 +2978,7 @@ M.RemoveIpamPoolEnum = {
 
 M.ModifyIpPoolsInput = {
     type = "structure",
+    id = "ModifyIpPoolsInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -2814,6 +2996,7 @@ M.ModifyIpPoolsInput = {
 
 M.ModifyIpPoolsOutput = {
     type = "structure",
+    id = "ModifyIpPoolsOutput",
     members = {
         IpamPools = M.IpamPools,
     },
@@ -2821,6 +3004,7 @@ M.ModifyIpPoolsOutput = {
 
 M.ModifyListenerInput = {
     type = "structure",
+    id = "ModifyListenerInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -2855,6 +3039,7 @@ M.ModifyListenerInput = {
 
 M.ModifyListenerOutput = {
     type = "structure",
+    id = "ModifyListenerOutput",
     members = {
         Listeners = {
             type = "list",
@@ -2865,6 +3050,7 @@ M.ModifyListenerOutput = {
 
 M.ModifyListenerAttributesInput = {
     type = "structure",
+    id = "ModifyListenerAttributesInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -2884,6 +3070,7 @@ M.ModifyListenerAttributesInput = {
 
 M.ModifyListenerAttributesOutput = {
     type = "structure",
+    id = "ModifyListenerAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2894,6 +3081,7 @@ M.ModifyListenerAttributesOutput = {
 
 M.ModifyLoadBalancerAttributesInput = {
     type = "structure",
+    id = "ModifyLoadBalancerAttributesInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -2913,6 +3101,7 @@ M.ModifyLoadBalancerAttributesInput = {
 
 M.ModifyLoadBalancerAttributesOutput = {
     type = "structure",
+    id = "ModifyLoadBalancerAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -2923,6 +3112,7 @@ M.ModifyLoadBalancerAttributesOutput = {
 
 M.ModifyRuleInput = {
     type = "structure",
+    id = "ModifyRuleInput",
     members = {
         RuleArn = {
             type = "string",
@@ -2950,6 +3140,7 @@ M.ModifyRuleInput = {
 
 M.ModifyRuleOutput = {
     type = "structure",
+    id = "ModifyRuleOutput",
     members = {
         Rules = {
             type = "list",
@@ -2960,6 +3151,7 @@ M.ModifyRuleOutput = {
 
 M.ModifyTargetGroupInput = {
     type = "structure",
+    id = "ModifyTargetGroupInput",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -2997,6 +3189,7 @@ M.ModifyTargetGroupInput = {
 
 M.ModifyTargetGroupOutput = {
     type = "structure",
+    id = "ModifyTargetGroupOutput",
     members = {
         TargetGroups = {
             type = "list",
@@ -3007,6 +3200,7 @@ M.ModifyTargetGroupOutput = {
 
 M.ModifyTargetGroupAttributesInput = {
     type = "structure",
+    id = "ModifyTargetGroupAttributesInput",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -3026,6 +3220,7 @@ M.ModifyTargetGroupAttributesInput = {
 
 M.ModifyTargetGroupAttributesOutput = {
     type = "structure",
+    id = "ModifyTargetGroupAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -3036,6 +3231,7 @@ M.ModifyTargetGroupAttributesOutput = {
 
 M.ModifyTrustStoreInput = {
     type = "structure",
+    id = "ModifyTrustStoreInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -3063,6 +3259,7 @@ M.ModifyTrustStoreInput = {
 
 M.ModifyTrustStoreOutput = {
     type = "structure",
+    id = "ModifyTrustStoreOutput",
     members = {
         TrustStores = {
             type = "list",
@@ -3073,6 +3270,7 @@ M.ModifyTrustStoreOutput = {
 
 M.RegisterTargetsInput = {
     type = "structure",
+    id = "RegisterTargetsInput",
     members = {
         TargetGroupArn = {
             type = "string",
@@ -3092,10 +3290,12 @@ M.RegisterTargetsInput = {
 
 M.RegisterTargetsOutput = {
     type = "structure",
+    id = "RegisterTargetsOutput",
 }
 
 M.RemoveListenerCertificatesInput = {
     type = "structure",
+    id = "RemoveListenerCertificatesInput",
     members = {
         ListenerArn = {
             type = "string",
@@ -3115,10 +3315,12 @@ M.RemoveListenerCertificatesInput = {
 
 M.RemoveListenerCertificatesOutput = {
     type = "structure",
+    id = "RemoveListenerCertificatesOutput",
 }
 
 M.RemoveTagsInput = {
     type = "structure",
+    id = "RemoveTagsInput",
     members = {
         ResourceArns = {
             type = "list",
@@ -3139,10 +3341,12 @@ M.RemoveTagsInput = {
 
 M.RemoveTagsOutput = {
     type = "structure",
+    id = "RemoveTagsOutput",
 }
 
 M.RemoveTrustStoreRevocationsInput = {
     type = "structure",
+    id = "RemoveTrustStoreRevocationsInput",
     members = {
         TrustStoreArn = {
             type = "string",
@@ -3162,10 +3366,12 @@ M.RemoveTrustStoreRevocationsInput = {
 
 M.RemoveTrustStoreRevocationsOutput = {
     type = "structure",
+    id = "RemoveTrustStoreRevocationsOutput",
 }
 
 M.SetIpAddressTypeInput = {
     type = "structure",
+    id = "SetIpAddressTypeInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -3184,6 +3390,7 @@ M.SetIpAddressTypeInput = {
 
 M.SetIpAddressTypeOutput = {
     type = "structure",
+    id = "SetIpAddressTypeOutput",
     members = {
         IpAddressType = {
             type = "string",
@@ -3193,6 +3400,7 @@ M.SetIpAddressTypeOutput = {
 
 M.RulePriorityPair = {
     type = "structure",
+    id = "RulePriorityPair",
     members = {
         RuleArn = {
             type = "string",
@@ -3205,6 +3413,7 @@ M.RulePriorityPair = {
 
 M.SetRulePrioritiesInput = {
     type = "structure",
+    id = "SetRulePrioritiesInput",
     members = {
         RulePriorities = {
             type = "list",
@@ -3218,6 +3427,7 @@ M.SetRulePrioritiesInput = {
 
 M.SetRulePrioritiesOutput = {
     type = "structure",
+    id = "SetRulePrioritiesOutput",
     members = {
         Rules = {
             type = "list",
@@ -3233,6 +3443,7 @@ M.EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum = {
 
 M.SetSecurityGroupsInput = {
     type = "structure",
+    id = "SetSecurityGroupsInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -3255,6 +3466,7 @@ M.SetSecurityGroupsInput = {
 
 M.SetSecurityGroupsOutput = {
     type = "structure",
+    id = "SetSecurityGroupsOutput",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -3268,6 +3480,7 @@ M.SetSecurityGroupsOutput = {
 
 M.SetSubnetsInput = {
     type = "structure",
+    id = "SetSubnetsInput",
     members = {
         LoadBalancerArn = {
             type = "string",
@@ -3294,6 +3507,7 @@ M.SetSubnetsInput = {
 
 M.SetSubnetsOutput = {
     type = "structure",
+    id = "SetSubnetsOutput",
     members = {
         AvailabilityZones = {
             type = "list",

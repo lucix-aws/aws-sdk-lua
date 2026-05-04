@@ -915,23 +915,23 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type BlueprintStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
-
-local type DataAutomationProjectStage = "DEVELOPMENT" | "LIVE"
-
-local type DataAutomationProjectStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
-
-local type ResourceOwner = "SERVICE" | "ACCOUNT"
-
-local type BlueprintStage = "DEVELOPMENT" | "LIVE"
-
 local type DataAutomationProjectType = "ASYNC" | "SYNC"
+
+local type DataAutomationProjectStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
 
 local type EntityType = "VOCABULARY"
 
+local type DataAutomationProjectStage = "DEVELOPMENT" | "LIVE"
+
 local type BlueprintOptimizationJobStatus = "Created" | "InProgress" | "Success" | "ServiceError" | "ClientError"
 
-local type DataAutomationProjectStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
+local type BlueprintStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
+
+local type DataAutomationProjectStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
+
+local type BlueprintStage = "DEVELOPMENT" | "LIVE"
+
+local type ResourceOwner = "SERVICE" | "ACCOUNT"
 
 local type LibraryIngestionJobOperationType = "UPSERT" | "DELETE"
 

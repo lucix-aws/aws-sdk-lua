@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -17,6 +18,7 @@ M.ContactHandlingScope = {
 
 M.ContactHandling = {
     type = "structure",
+    id = "ContactHandling",
     members = {
         Scope = {
             type = "string",
@@ -26,6 +28,7 @@ M.ContactHandling = {
 
 M.ApplicationConfig = {
     type = "structure",
+    id = "ApplicationConfig",
     members = {
         ContactHandling = M.ContactHandling,
     },
@@ -33,6 +36,7 @@ M.ApplicationConfig = {
 
 M.ExternalUrlConfig = {
     type = "structure",
+    id = "ExternalUrlConfig",
     members = {
         AccessUrl = {
             type = "string",
@@ -49,6 +53,7 @@ M.ExternalUrlConfig = {
 
 M.ApplicationSourceConfig = {
     type = "structure",
+    id = "ApplicationSourceConfig",
     members = {
         ExternalUrlConfig = M.ExternalUrlConfig,
     },
@@ -62,6 +67,7 @@ M.ApplicationType = {
 
 M.IframeConfig = {
     type = "structure",
+    id = "IframeConfig",
     members = {
         Allow = {
             type = "list",
@@ -76,6 +82,7 @@ M.IframeConfig = {
 
 M.Publication = {
     type = "structure",
+    id = "Publication",
     members = {
         Event = {
             type = "string",
@@ -97,6 +104,7 @@ M.Publication = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         Event = {
             type = "string",
@@ -112,6 +120,7 @@ M.Subscription = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -173,6 +182,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         Arn = {
             type = "string",
@@ -185,6 +195,7 @@ M.CreateApplicationOutput = {
 
 M.DuplicateResourceException = {
     type = "structure",
+    id = "DuplicateResourceException",
     error = "client",
     members = {
         Message = {
@@ -195,6 +206,7 @@ M.DuplicateResourceException = {
 
 M.InternalServiceError = {
     type = "structure",
+    id = "InternalServiceError",
     error = "server",
     members = {
         Message = {
@@ -205,6 +217,7 @@ M.InternalServiceError = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -215,6 +228,7 @@ M.InvalidRequestException = {
 
 M.ResourceQuotaExceededException = {
     type = "structure",
+    id = "ResourceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -225,6 +239,7 @@ M.ResourceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -235,6 +250,7 @@ M.ThrottlingException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -245,6 +261,7 @@ M.UnsupportedOperationException = {
 
 M.FileConfiguration = {
     type = "structure",
+    id = "FileConfiguration",
     members = {
         Folders = {
             type = "list",
@@ -263,6 +280,7 @@ M.FileConfiguration = {
 
 M.ScheduleConfiguration = {
     type = "structure",
+    id = "ScheduleConfiguration",
     members = {
         FirstExecutionFrom = {
             type = "string",
@@ -281,6 +299,7 @@ M.ScheduleConfiguration = {
 
 M.CreateDataIntegrationInput = {
     type = "structure",
+    id = "CreateDataIntegrationInput",
     members = {
         Name = {
             type = "string",
@@ -323,6 +342,7 @@ M.CreateDataIntegrationInput = {
 
 M.CreateDataIntegrationOutput = {
     type = "structure",
+    id = "CreateDataIntegrationOutput",
     members = {
         Arn = {
             type = "string",
@@ -367,6 +387,7 @@ M.ExecutionMode = {
 
 M.OnDemandConfiguration = {
     type = "structure",
+    id = "OnDemandConfiguration",
     members = {
         StartTime = {
             type = "string",
@@ -382,6 +403,7 @@ M.OnDemandConfiguration = {
 
 M.ExecutionConfiguration = {
     type = "structure",
+    id = "ExecutionConfiguration",
     members = {
         ExecutionMode = {
             type = "string",
@@ -396,6 +418,7 @@ M.ExecutionConfiguration = {
 
 M.CreateDataIntegrationAssociationInput = {
     type = "structure",
+    id = "CreateDataIntegrationAssociationInput",
     members = {
         DataIntegrationIdentifier = {
             type = "string",
@@ -432,6 +455,7 @@ M.CreateDataIntegrationAssociationInput = {
 
 M.CreateDataIntegrationAssociationOutput = {
     type = "structure",
+    id = "CreateDataIntegrationAssociationOutput",
     members = {
         DataIntegrationAssociationId = {
             type = "string",
@@ -444,6 +468,7 @@ M.CreateDataIntegrationAssociationOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -454,6 +479,7 @@ M.ResourceNotFoundException = {
 
 M.EventFilter = {
     type = "structure",
+    id = "EventFilter",
     members = {
         Source = {
             type = "string",
@@ -466,6 +492,7 @@ M.EventFilter = {
 
 M.CreateEventIntegrationInput = {
     type = "structure",
+    id = "CreateEventIntegrationInput",
     members = {
         Name = {
             type = "string",
@@ -501,6 +528,7 @@ M.CreateEventIntegrationInput = {
 
 M.CreateEventIntegrationOutput = {
     type = "structure",
+    id = "CreateEventIntegrationOutput",
     members = {
         EventIntegrationArn = {
             type = "string",
@@ -510,6 +538,7 @@ M.CreateEventIntegrationOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         Arn = {
             type = "string",
@@ -523,10 +552,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.DeleteDataIntegrationInput = {
     type = "structure",
+    id = "DeleteDataIntegrationInput",
     members = {
         DataIntegrationIdentifier = {
             type = "string",
@@ -540,10 +571,12 @@ M.DeleteDataIntegrationInput = {
 
 M.DeleteDataIntegrationOutput = {
     type = "structure",
+    id = "DeleteDataIntegrationOutput",
 }
 
 M.DeleteEventIntegrationInput = {
     type = "structure",
+    id = "DeleteEventIntegrationInput",
     members = {
         Name = {
             type = "string",
@@ -557,10 +590,12 @@ M.DeleteEventIntegrationInput = {
 
 M.DeleteEventIntegrationOutput = {
     type = "structure",
+    id = "DeleteEventIntegrationOutput",
 }
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         Arn = {
             type = "string",
@@ -574,6 +609,7 @@ M.GetApplicationInput = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         Arn = {
             type = "string",
@@ -633,6 +669,7 @@ M.GetApplicationOutput = {
 
 M.GetDataIntegrationInput = {
     type = "structure",
+    id = "GetDataIntegrationInput",
     members = {
         Identifier = {
             type = "string",
@@ -646,6 +683,7 @@ M.GetDataIntegrationInput = {
 
 M.GetDataIntegrationOutput = {
     type = "structure",
+    id = "GetDataIntegrationOutput",
     members = {
         Arn = {
             type = "string",
@@ -682,6 +720,7 @@ M.GetDataIntegrationOutput = {
 
 M.GetEventIntegrationInput = {
     type = "structure",
+    id = "GetEventIntegrationInput",
     members = {
         Name = {
             type = "string",
@@ -695,6 +734,7 @@ M.GetEventIntegrationInput = {
 
 M.GetEventIntegrationOutput = {
     type = "structure",
+    id = "GetEventIntegrationOutput",
     members = {
         Name = {
             type = "string",
@@ -719,6 +759,7 @@ M.GetEventIntegrationOutput = {
 
 M.ListApplicationAssociationsInput = {
     type = "structure",
+    id = "ListApplicationAssociationsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -744,6 +785,7 @@ M.ListApplicationAssociationsInput = {
 
 M.ApplicationAssociationSummary = {
     type = "structure",
+    id = "ApplicationAssociationSummary",
     members = {
         ApplicationAssociationArn = {
             type = "string",
@@ -759,6 +801,7 @@ M.ApplicationAssociationSummary = {
 
 M.ListApplicationAssociationsOutput = {
     type = "structure",
+    id = "ListApplicationAssociationsOutput",
     members = {
         ApplicationAssociations = {
             type = "list",
@@ -772,6 +815,7 @@ M.ListApplicationAssociationsOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -796,6 +840,7 @@ M.ListApplicationsInput = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         Arn = {
             type = "string",
@@ -829,6 +874,7 @@ M.ApplicationSummary = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -842,6 +888,7 @@ M.ListApplicationsOutput = {
 
 M.ListDataIntegrationAssociationsInput = {
     type = "structure",
+    id = "ListDataIntegrationAssociationsInput",
     members = {
         DataIntegrationIdentifier = {
             type = "string",
@@ -873,6 +920,7 @@ M.ExecutionStatus = {
 
 M.LastExecutionStatus = {
     type = "structure",
+    id = "LastExecutionStatus",
     members = {
         ExecutionStatus = {
             type = "string",
@@ -885,6 +933,7 @@ M.LastExecutionStatus = {
 
 M.DataIntegrationAssociationSummary = {
     type = "structure",
+    id = "DataIntegrationAssociationSummary",
     members = {
         DataIntegrationAssociationArn = {
             type = "string",
@@ -905,6 +954,7 @@ M.DataIntegrationAssociationSummary = {
 
 M.ListDataIntegrationAssociationsOutput = {
     type = "structure",
+    id = "ListDataIntegrationAssociationsOutput",
     members = {
         DataIntegrationAssociations = {
             type = "list",
@@ -918,6 +968,7 @@ M.ListDataIntegrationAssociationsOutput = {
 
 M.ListDataIntegrationsInput = {
     type = "structure",
+    id = "ListDataIntegrationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -936,6 +987,7 @@ M.ListDataIntegrationsInput = {
 
 M.DataIntegrationSummary = {
     type = "structure",
+    id = "DataIntegrationSummary",
     members = {
         Arn = {
             type = "string",
@@ -951,6 +1003,7 @@ M.DataIntegrationSummary = {
 
 M.ListDataIntegrationsOutput = {
     type = "structure",
+    id = "ListDataIntegrationsOutput",
     members = {
         DataIntegrations = {
             type = "list",
@@ -964,6 +1017,7 @@ M.ListDataIntegrationsOutput = {
 
 M.ListEventIntegrationAssociationsInput = {
     type = "structure",
+    id = "ListEventIntegrationAssociationsInput",
     members = {
         EventIntegrationName = {
             type = "string",
@@ -989,6 +1043,7 @@ M.ListEventIntegrationAssociationsInput = {
 
 M.EventIntegrationAssociation = {
     type = "structure",
+    id = "EventIntegrationAssociation",
     members = {
         EventIntegrationAssociationArn = {
             type = "string",
@@ -1015,6 +1070,7 @@ M.EventIntegrationAssociation = {
 
 M.ListEventIntegrationAssociationsOutput = {
     type = "structure",
+    id = "ListEventIntegrationAssociationsOutput",
     members = {
         EventIntegrationAssociations = {
             type = "list",
@@ -1028,6 +1084,7 @@ M.ListEventIntegrationAssociationsOutput = {
 
 M.ListEventIntegrationsInput = {
     type = "structure",
+    id = "ListEventIntegrationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1046,6 +1103,7 @@ M.ListEventIntegrationsInput = {
 
 M.EventIntegration = {
     type = "structure",
+    id = "EventIntegration",
     members = {
         EventIntegrationArn = {
             type = "string",
@@ -1070,6 +1128,7 @@ M.EventIntegration = {
 
 M.ListEventIntegrationsOutput = {
     type = "structure",
+    id = "ListEventIntegrationsOutput",
     members = {
         EventIntegrations = {
             type = "list",
@@ -1083,6 +1142,7 @@ M.ListEventIntegrationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1096,6 +1156,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1107,6 +1168,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1128,10 +1190,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1153,10 +1217,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         Arn = {
             type = "string",
@@ -1203,10 +1269,12 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
 }
 
 M.UpdateDataIntegrationInput = {
     type = "structure",
+    id = "UpdateDataIntegrationInput",
     members = {
         Identifier = {
             type = "string",
@@ -1226,10 +1294,12 @@ M.UpdateDataIntegrationInput = {
 
 M.UpdateDataIntegrationOutput = {
     type = "structure",
+    id = "UpdateDataIntegrationOutput",
 }
 
 M.UpdateDataIntegrationAssociationInput = {
     type = "structure",
+    id = "UpdateDataIntegrationAssociationInput",
     members = {
         DataIntegrationIdentifier = {
             type = "string",
@@ -1253,10 +1323,12 @@ M.UpdateDataIntegrationAssociationInput = {
 
 M.UpdateDataIntegrationAssociationOutput = {
     type = "structure",
+    id = "UpdateDataIntegrationAssociationOutput",
 }
 
 M.UpdateEventIntegrationInput = {
     type = "structure",
+    id = "UpdateEventIntegrationInput",
     members = {
         Name = {
             type = "string",
@@ -1273,6 +1345,7 @@ M.UpdateEventIntegrationInput = {
 
 M.UpdateEventIntegrationOutput = {
     type = "structure",
+    id = "UpdateEventIntegrationOutput",
 }
 
 return M

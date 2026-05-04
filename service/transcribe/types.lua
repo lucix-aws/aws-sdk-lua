@@ -2,6 +2,7 @@ local M = {}
 
 M.AbsoluteTimeRange = {
     type = "structure",
+    id = "AbsoluteTimeRange",
     members = {
         StartTime = {
             type = "long",
@@ -20,6 +21,7 @@ M.AbsoluteTimeRange = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -44,6 +46,7 @@ M.CallAnalyticsSkippedReasonCode = {
 
 M.CallAnalyticsSkippedFeature = {
     type = "structure",
+    id = "CallAnalyticsSkippedFeature",
     members = {
         Feature = {
             type = "string",
@@ -59,6 +62,7 @@ M.CallAnalyticsSkippedFeature = {
 
 M.CallAnalyticsJobDetails = {
     type = "structure",
+    id = "CallAnalyticsJobDetails",
     members = {
         Skipped = {
             type = "list",
@@ -81,6 +85,7 @@ M.ParticipantRole = {
 
 M.ChannelDefinition = {
     type = "structure",
+    id = "ChannelDefinition",
     members = {
         ChannelId = {
             type = "integer",
@@ -204,6 +209,7 @@ M.LanguageCode = {
 
 M.Media = {
     type = "structure",
+    id = "Media",
     members = {
         MediaFileUri = {
             type = "string",
@@ -251,6 +257,7 @@ M.RedactionType = {
 
 M.ContentRedaction = {
     type = "structure",
+    id = "ContentRedaction",
     members = {
         RedactionType = {
             type = "string",
@@ -273,6 +280,7 @@ M.ContentRedaction = {
 
 M.LanguageIdSettings = {
     type = "structure",
+    id = "LanguageIdSettings",
     members = {
         VocabularyName = {
             type = "string",
@@ -288,6 +296,7 @@ M.LanguageIdSettings = {
 
 M.Summarization = {
     type = "structure",
+    id = "Summarization",
     members = {
         GenerateAbstractiveSummary = {
             type = "boolean",
@@ -306,6 +315,7 @@ M.VocabularyFilterMethod = {
 
 M.CallAnalyticsJobSettings = {
     type = "structure",
+    id = "CallAnalyticsJobSettings",
     members = {
         VocabularyName = {
             type = "string",
@@ -335,6 +345,7 @@ M.CallAnalyticsJobSettings = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -353,6 +364,7 @@ M.Tag = {
 
 M.Transcript = {
     type = "structure",
+    id = "Transcript",
     members = {
         TranscriptFileUri = {
             type = "string",
@@ -365,6 +377,7 @@ M.Transcript = {
 
 M.CallAnalyticsJob = {
     type = "structure",
+    id = "CallAnalyticsJob",
     members = {
         CallAnalyticsJobName = {
             type = "string",
@@ -416,6 +429,7 @@ M.CallAnalyticsJob = {
 
 M.CallAnalyticsJobSummary = {
     type = "structure",
+    id = "CallAnalyticsJobSummary",
     members = {
         CallAnalyticsJobName = {
             type = "string",
@@ -449,6 +463,7 @@ M.InputType = {
 
 M.RelativeTimeRange = {
     type = "structure",
+    id = "RelativeTimeRange",
     members = {
         StartPercentage = {
             type = "integer",
@@ -467,6 +482,7 @@ M.RelativeTimeRange = {
 
 M.InterruptionFilter = {
     type = "structure",
+    id = "InterruptionFilter",
     members = {
         Threshold = {
             type = "long",
@@ -484,6 +500,7 @@ M.InterruptionFilter = {
 
 M.NonTalkTimeFilter = {
     type = "structure",
+    id = "NonTalkTimeFilter",
     members = {
         Threshold = {
             type = "long",
@@ -505,6 +522,7 @@ M.SentimentValue = {
 
 M.SentimentFilter = {
     type = "structure",
+    id = "SentimentFilter",
     members = {
         Sentiments = {
             type = "list",
@@ -530,6 +548,7 @@ M.TranscriptFilterType = {
 
 M.TranscriptFilter = {
     type = "structure",
+    id = "TranscriptFilter",
     members = {
         TranscriptFilterType = {
             type = "string",
@@ -557,6 +576,7 @@ M.TranscriptFilter = {
 
 M.Rule = {
     type = "union",
+    id = "Rule",
     members = {
         NonTalkTimeFilter = M.NonTalkTimeFilter,
         InterruptionFilter = M.InterruptionFilter,
@@ -567,6 +587,7 @@ M.Rule = {
 
 M.CategoryProperties = {
     type = "structure",
+    id = "CategoryProperties",
     members = {
         CategoryName = {
             type = "string",
@@ -603,6 +624,7 @@ M.MedicalScribeNoteTemplate = {
 
 M.ClinicalNoteGenerationSettings = {
     type = "structure",
+    id = "ClinicalNoteGenerationSettings",
     members = {
         NoteTemplate = {
             type = "string",
@@ -622,6 +644,7 @@ M.CLMLanguageCode = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -632,6 +655,7 @@ M.ConflictException = {
 
 M.CreateCallAnalyticsCategoryInput = {
     type = "structure",
+    id = "CreateCallAnalyticsCategoryInput",
     members = {
         CategoryName = {
             type = "string",
@@ -659,6 +683,7 @@ M.CreateCallAnalyticsCategoryInput = {
 
 M.CreateCallAnalyticsCategoryOutput = {
     type = "structure",
+    id = "CreateCallAnalyticsCategoryOutput",
     members = {
         CategoryProperties = M.CategoryProperties,
     },
@@ -666,6 +691,7 @@ M.CreateCallAnalyticsCategoryOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         Message = {
@@ -676,6 +702,7 @@ M.InternalFailureException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -686,6 +713,7 @@ M.LimitExceededException = {
 
 M.InputDataConfig = {
     type = "structure",
+    id = "InputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -707,6 +735,7 @@ M.InputDataConfig = {
 
 M.CreateLanguageModelInput = {
     type = "structure",
+    id = "CreateLanguageModelInput",
     members = {
         LanguageCode = {
             type = "string",
@@ -745,6 +774,7 @@ M.ModelStatus = {
 
 M.CreateLanguageModelOutput = {
     type = "structure",
+    id = "CreateLanguageModelOutput",
     members = {
         LanguageCode = {
             type = "string",
@@ -764,6 +794,7 @@ M.CreateLanguageModelOutput = {
 
 M.CreateMedicalVocabularyInput = {
     type = "structure",
+    id = "CreateMedicalVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -799,6 +830,7 @@ M.VocabularyState = {
 
 M.CreateMedicalVocabularyOutput = {
     type = "structure",
+    id = "CreateMedicalVocabularyOutput",
     members = {
         VocabularyName = {
             type = "string",
@@ -820,6 +852,7 @@ M.CreateMedicalVocabularyOutput = {
 
 M.CreateVocabularyInput = {
     type = "structure",
+    id = "CreateVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -853,6 +886,7 @@ M.CreateVocabularyInput = {
 
 M.CreateVocabularyOutput = {
     type = "structure",
+    id = "CreateVocabularyOutput",
     members = {
         VocabularyName = {
             type = "string",
@@ -874,6 +908,7 @@ M.CreateVocabularyOutput = {
 
 M.CreateVocabularyFilterInput = {
     type = "structure",
+    id = "CreateVocabularyFilterInput",
     members = {
         VocabularyFilterName = {
             type = "string",
@@ -907,6 +942,7 @@ M.CreateVocabularyFilterInput = {
 
 M.CreateVocabularyFilterOutput = {
     type = "structure",
+    id = "CreateVocabularyFilterOutput",
     members = {
         VocabularyFilterName = {
             type = "string",
@@ -922,6 +958,7 @@ M.CreateVocabularyFilterOutput = {
 
 M.DeleteCallAnalyticsCategoryInput = {
     type = "structure",
+    id = "DeleteCallAnalyticsCategoryInput",
     members = {
         CategoryName = {
             type = "string",
@@ -935,10 +972,12 @@ M.DeleteCallAnalyticsCategoryInput = {
 
 M.DeleteCallAnalyticsCategoryOutput = {
     type = "structure",
+    id = "DeleteCallAnalyticsCategoryOutput",
 }
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -949,6 +988,7 @@ M.NotFoundException = {
 
 M.DeleteCallAnalyticsJobInput = {
     type = "structure",
+    id = "DeleteCallAnalyticsJobInput",
     members = {
         CallAnalyticsJobName = {
             type = "string",
@@ -962,10 +1002,12 @@ M.DeleteCallAnalyticsJobInput = {
 
 M.DeleteCallAnalyticsJobOutput = {
     type = "structure",
+    id = "DeleteCallAnalyticsJobOutput",
 }
 
 M.DeleteLanguageModelInput = {
     type = "structure",
+    id = "DeleteLanguageModelInput",
     members = {
         ModelName = {
             type = "string",
@@ -979,10 +1021,12 @@ M.DeleteLanguageModelInput = {
 
 M.DeleteLanguageModelOutput = {
     type = "structure",
+    id = "DeleteLanguageModelOutput",
 }
 
 M.DeleteMedicalScribeJobInput = {
     type = "structure",
+    id = "DeleteMedicalScribeJobInput",
     members = {
         MedicalScribeJobName = {
             type = "string",
@@ -996,10 +1040,12 @@ M.DeleteMedicalScribeJobInput = {
 
 M.DeleteMedicalScribeJobOutput = {
     type = "structure",
+    id = "DeleteMedicalScribeJobOutput",
 }
 
 M.DeleteMedicalTranscriptionJobInput = {
     type = "structure",
+    id = "DeleteMedicalTranscriptionJobInput",
     members = {
         MedicalTranscriptionJobName = {
             type = "string",
@@ -1013,10 +1059,12 @@ M.DeleteMedicalTranscriptionJobInput = {
 
 M.DeleteMedicalTranscriptionJobOutput = {
     type = "structure",
+    id = "DeleteMedicalTranscriptionJobOutput",
 }
 
 M.DeleteMedicalVocabularyInput = {
     type = "structure",
+    id = "DeleteMedicalVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -1030,10 +1078,12 @@ M.DeleteMedicalVocabularyInput = {
 
 M.DeleteMedicalVocabularyOutput = {
     type = "structure",
+    id = "DeleteMedicalVocabularyOutput",
 }
 
 M.DeleteTranscriptionJobInput = {
     type = "structure",
+    id = "DeleteTranscriptionJobInput",
     members = {
         TranscriptionJobName = {
             type = "string",
@@ -1047,10 +1097,12 @@ M.DeleteTranscriptionJobInput = {
 
 M.DeleteTranscriptionJobOutput = {
     type = "structure",
+    id = "DeleteTranscriptionJobOutput",
 }
 
 M.DeleteVocabularyInput = {
     type = "structure",
+    id = "DeleteVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -1064,10 +1116,12 @@ M.DeleteVocabularyInput = {
 
 M.DeleteVocabularyOutput = {
     type = "structure",
+    id = "DeleteVocabularyOutput",
 }
 
 M.DeleteVocabularyFilterInput = {
     type = "structure",
+    id = "DeleteVocabularyFilterInput",
     members = {
         VocabularyFilterName = {
             type = "string",
@@ -1081,10 +1135,12 @@ M.DeleteVocabularyFilterInput = {
 
 M.DeleteVocabularyFilterOutput = {
     type = "structure",
+    id = "DeleteVocabularyFilterOutput",
 }
 
 M.DescribeLanguageModelInput = {
     type = "structure",
+    id = "DescribeLanguageModelInput",
     members = {
         ModelName = {
             type = "string",
@@ -1098,6 +1154,7 @@ M.DescribeLanguageModelInput = {
 
 M.LanguageModel = {
     type = "structure",
+    id = "LanguageModel",
     members = {
         ModelName = {
             type = "string",
@@ -1129,6 +1186,7 @@ M.LanguageModel = {
 
 M.DescribeLanguageModelOutput = {
     type = "structure",
+    id = "DescribeLanguageModelOutput",
     members = {
         LanguageModel = M.LanguageModel,
     },
@@ -1136,6 +1194,7 @@ M.DescribeLanguageModelOutput = {
 
 M.GetCallAnalyticsCategoryInput = {
     type = "structure",
+    id = "GetCallAnalyticsCategoryInput",
     members = {
         CategoryName = {
             type = "string",
@@ -1149,6 +1208,7 @@ M.GetCallAnalyticsCategoryInput = {
 
 M.GetCallAnalyticsCategoryOutput = {
     type = "structure",
+    id = "GetCallAnalyticsCategoryOutput",
     members = {
         CategoryProperties = M.CategoryProperties,
     },
@@ -1156,6 +1216,7 @@ M.GetCallAnalyticsCategoryOutput = {
 
 M.GetCallAnalyticsJobInput = {
     type = "structure",
+    id = "GetCallAnalyticsJobInput",
     members = {
         CallAnalyticsJobName = {
             type = "string",
@@ -1169,6 +1230,7 @@ M.GetCallAnalyticsJobInput = {
 
 M.GetCallAnalyticsJobOutput = {
     type = "structure",
+    id = "GetCallAnalyticsJobOutput",
     members = {
         CallAnalyticsJob = M.CallAnalyticsJob,
     },
@@ -1176,6 +1238,7 @@ M.GetCallAnalyticsJobOutput = {
 
 M.GetMedicalScribeJobInput = {
     type = "structure",
+    id = "GetMedicalScribeJobInput",
     members = {
         MedicalScribeJobName = {
             type = "string",
@@ -1194,6 +1257,7 @@ M.MedicalScribeParticipantRole = {
 
 M.MedicalScribeChannelDefinition = {
     type = "structure",
+    id = "MedicalScribeChannelDefinition",
     members = {
         ChannelId = {
             type = "integer",
@@ -1224,6 +1288,7 @@ M.MedicalScribeJobStatus = {
 
 M.MedicalScribeOutput = {
     type = "structure",
+    id = "MedicalScribeOutput",
     members = {
         TranscriptFileUri = {
             type = "string",
@@ -1242,6 +1307,7 @@ M.MedicalScribeOutput = {
 
 M.MedicalScribeSettings = {
     type = "structure",
+    id = "MedicalScribeSettings",
     members = {
         ShowSpeakerLabels = {
             type = "boolean",
@@ -1267,6 +1333,7 @@ M.MedicalScribeSettings = {
 
 M.MedicalScribeJob = {
     type = "structure",
+    id = "MedicalScribeJob",
     members = {
         MedicalScribeJobName = {
             type = "string",
@@ -1311,6 +1378,7 @@ M.MedicalScribeJob = {
 
 M.GetMedicalScribeJobOutput = {
     type = "structure",
+    id = "GetMedicalScribeJobOutput",
     members = {
         MedicalScribeJob = M.MedicalScribeJob,
     },
@@ -1318,6 +1386,7 @@ M.GetMedicalScribeJobOutput = {
 
 M.GetMedicalTranscriptionJobInput = {
     type = "structure",
+    id = "GetMedicalTranscriptionJobInput",
     members = {
         MedicalTranscriptionJobName = {
             type = "string",
@@ -1335,6 +1404,7 @@ M.MedicalContentIdentificationType = {
 
 M.MedicalTranscriptionSetting = {
     type = "structure",
+    id = "MedicalTranscriptionSetting",
     members = {
         ShowSpeakerLabels = {
             type = "boolean",
@@ -1363,6 +1433,7 @@ M.Specialty = {
 
 M.MedicalTranscript = {
     type = "structure",
+    id = "MedicalTranscript",
     members = {
         TranscriptFileUri = {
             type = "string",
@@ -1384,6 +1455,7 @@ M.Type = {
 
 M.MedicalTranscriptionJob = {
     type = "structure",
+    id = "MedicalTranscriptionJob",
     members = {
         MedicalTranscriptionJobName = {
             type = "string",
@@ -1433,6 +1505,7 @@ M.MedicalTranscriptionJob = {
 
 M.GetMedicalTranscriptionJobOutput = {
     type = "structure",
+    id = "GetMedicalTranscriptionJobOutput",
     members = {
         MedicalTranscriptionJob = M.MedicalTranscriptionJob,
     },
@@ -1440,6 +1513,7 @@ M.GetMedicalTranscriptionJobOutput = {
 
 M.GetMedicalVocabularyInput = {
     type = "structure",
+    id = "GetMedicalVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -1453,6 +1527,7 @@ M.GetMedicalVocabularyInput = {
 
 M.GetMedicalVocabularyOutput = {
     type = "structure",
+    id = "GetMedicalVocabularyOutput",
     members = {
         VocabularyName = {
             type = "string",
@@ -1477,6 +1552,7 @@ M.GetMedicalVocabularyOutput = {
 
 M.GetTranscriptionJobInput = {
     type = "structure",
+    id = "GetTranscriptionJobInput",
     members = {
         TranscriptionJobName = {
             type = "string",
@@ -1490,6 +1566,7 @@ M.GetTranscriptionJobInput = {
 
 M.JobExecutionSettings = {
     type = "structure",
+    id = "JobExecutionSettings",
     members = {
         AllowDeferredExecution = {
             type = "boolean",
@@ -1502,6 +1579,7 @@ M.JobExecutionSettings = {
 
 M.LanguageCodeItem = {
     type = "structure",
+    id = "LanguageCodeItem",
     members = {
         LanguageCode = {
             type = "string",
@@ -1514,6 +1592,7 @@ M.LanguageCodeItem = {
 
 M.ModelSettings = {
     type = "structure",
+    id = "ModelSettings",
     members = {
         LanguageModelName = {
             type = "string",
@@ -1523,6 +1602,7 @@ M.ModelSettings = {
 
 M.Settings = {
     type = "structure",
+    id = "Settings",
     members = {
         VocabularyName = {
             type = "string",
@@ -1558,6 +1638,7 @@ M.SubtitleFormat = {
 
 M.SubtitlesOutput = {
     type = "structure",
+    id = "SubtitlesOutput",
     members = {
         Formats = {
             type = "list",
@@ -1579,6 +1660,7 @@ M.ToxicityCategory = {
 
 M.ToxicityDetectionSettings = {
     type = "structure",
+    id = "ToxicityDetectionSettings",
     members = {
         ToxicityCategories = {
             type = "list",
@@ -1592,6 +1674,7 @@ M.ToxicityDetectionSettings = {
 
 M.TranscriptionJob = {
     type = "structure",
+    id = "TranscriptionJob",
     members = {
         TranscriptionJobName = {
             type = "string",
@@ -1662,6 +1745,7 @@ M.TranscriptionJob = {
 
 M.GetTranscriptionJobOutput = {
     type = "structure",
+    id = "GetTranscriptionJobOutput",
     members = {
         TranscriptionJob = M.TranscriptionJob,
     },
@@ -1669,6 +1753,7 @@ M.GetTranscriptionJobOutput = {
 
 M.GetVocabularyInput = {
     type = "structure",
+    id = "GetVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -1682,6 +1767,7 @@ M.GetVocabularyInput = {
 
 M.GetVocabularyOutput = {
     type = "structure",
+    id = "GetVocabularyOutput",
     members = {
         VocabularyName = {
             type = "string",
@@ -1706,6 +1792,7 @@ M.GetVocabularyOutput = {
 
 M.GetVocabularyFilterInput = {
     type = "structure",
+    id = "GetVocabularyFilterInput",
     members = {
         VocabularyFilterName = {
             type = "string",
@@ -1719,6 +1806,7 @@ M.GetVocabularyFilterInput = {
 
 M.GetVocabularyFilterOutput = {
     type = "structure",
+    id = "GetVocabularyFilterOutput",
     members = {
         VocabularyFilterName = {
             type = "string",
@@ -1737,6 +1825,7 @@ M.GetVocabularyFilterOutput = {
 
 M.ListCallAnalyticsCategoriesInput = {
     type = "structure",
+    id = "ListCallAnalyticsCategoriesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1755,6 +1844,7 @@ M.ListCallAnalyticsCategoriesInput = {
 
 M.ListCallAnalyticsCategoriesOutput = {
     type = "structure",
+    id = "ListCallAnalyticsCategoriesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1768,6 +1858,7 @@ M.ListCallAnalyticsCategoriesOutput = {
 
 M.ListCallAnalyticsJobsInput = {
     type = "structure",
+    id = "ListCallAnalyticsJobsInput",
     members = {
         Status = {
             type = "string",
@@ -1798,6 +1889,7 @@ M.ListCallAnalyticsJobsInput = {
 
 M.ListCallAnalyticsJobsOutput = {
     type = "structure",
+    id = "ListCallAnalyticsJobsOutput",
     members = {
         Status = {
             type = "string",
@@ -1814,6 +1906,7 @@ M.ListCallAnalyticsJobsOutput = {
 
 M.ListLanguageModelsInput = {
     type = "structure",
+    id = "ListLanguageModelsInput",
     members = {
         StatusEquals = {
             type = "string",
@@ -1844,6 +1937,7 @@ M.ListLanguageModelsInput = {
 
 M.ListLanguageModelsOutput = {
     type = "structure",
+    id = "ListLanguageModelsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1857,6 +1951,7 @@ M.ListLanguageModelsOutput = {
 
 M.ListMedicalScribeJobsInput = {
     type = "structure",
+    id = "ListMedicalScribeJobsInput",
     members = {
         Status = {
             type = "string",
@@ -1887,6 +1982,7 @@ M.ListMedicalScribeJobsInput = {
 
 M.MedicalScribeJobSummary = {
     type = "structure",
+    id = "MedicalScribeJobSummary",
     members = {
         MedicalScribeJobName = {
             type = "string",
@@ -1914,6 +2010,7 @@ M.MedicalScribeJobSummary = {
 
 M.ListMedicalScribeJobsOutput = {
     type = "structure",
+    id = "ListMedicalScribeJobsOutput",
     members = {
         Status = {
             type = "string",
@@ -1930,6 +2027,7 @@ M.ListMedicalScribeJobsOutput = {
 
 M.ListMedicalTranscriptionJobsInput = {
     type = "structure",
+    id = "ListMedicalTranscriptionJobsInput",
     members = {
         Status = {
             type = "string",
@@ -1965,6 +2063,7 @@ M.OutputLocationType = {
 
 M.MedicalTranscriptionJobSummary = {
     type = "structure",
+    id = "MedicalTranscriptionJobSummary",
     members = {
         MedicalTranscriptionJobName = {
             type = "string",
@@ -2004,6 +2103,7 @@ M.MedicalTranscriptionJobSummary = {
 
 M.ListMedicalTranscriptionJobsOutput = {
     type = "structure",
+    id = "ListMedicalTranscriptionJobsOutput",
     members = {
         Status = {
             type = "string",
@@ -2020,6 +2120,7 @@ M.ListMedicalTranscriptionJobsOutput = {
 
 M.ListMedicalVocabulariesInput = {
     type = "structure",
+    id = "ListMedicalVocabulariesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2050,6 +2151,7 @@ M.ListMedicalVocabulariesInput = {
 
 M.VocabularyInfo = {
     type = "structure",
+    id = "VocabularyInfo",
     members = {
         VocabularyName = {
             type = "string",
@@ -2068,6 +2170,7 @@ M.VocabularyInfo = {
 
 M.ListMedicalVocabulariesOutput = {
     type = "structure",
+    id = "ListMedicalVocabulariesOutput",
     members = {
         Status = {
             type = "string",
@@ -2084,6 +2187,7 @@ M.ListMedicalVocabulariesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2097,6 +2201,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2110,6 +2215,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTranscriptionJobsInput = {
     type = "structure",
+    id = "ListTranscriptionJobsInput",
     members = {
         Status = {
             type = "string",
@@ -2140,6 +2246,7 @@ M.ListTranscriptionJobsInput = {
 
 M.TranscriptionJobSummary = {
     type = "structure",
+    id = "TranscriptionJobSummary",
     members = {
         TranscriptionJobName = {
             type = "string",
@@ -2189,6 +2296,7 @@ M.TranscriptionJobSummary = {
 
 M.ListTranscriptionJobsOutput = {
     type = "structure",
+    id = "ListTranscriptionJobsOutput",
     members = {
         Status = {
             type = "string",
@@ -2205,6 +2313,7 @@ M.ListTranscriptionJobsOutput = {
 
 M.ListVocabulariesInput = {
     type = "structure",
+    id = "ListVocabulariesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2235,6 +2344,7 @@ M.ListVocabulariesInput = {
 
 M.ListVocabulariesOutput = {
     type = "structure",
+    id = "ListVocabulariesOutput",
     members = {
         Status = {
             type = "string",
@@ -2251,6 +2361,7 @@ M.ListVocabulariesOutput = {
 
 M.ListVocabularyFiltersInput = {
     type = "structure",
+    id = "ListVocabularyFiltersInput",
     members = {
         NextToken = {
             type = "string",
@@ -2275,6 +2386,7 @@ M.ListVocabularyFiltersInput = {
 
 M.VocabularyFilterInfo = {
     type = "structure",
+    id = "VocabularyFilterInfo",
     members = {
         VocabularyFilterName = {
             type = "string",
@@ -2290,6 +2402,7 @@ M.VocabularyFilterInfo = {
 
 M.ListVocabularyFiltersOutput = {
     type = "structure",
+    id = "ListVocabularyFiltersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2309,6 +2422,7 @@ M.Pronouns = {
 
 M.MedicalScribePatientContext = {
     type = "structure",
+    id = "MedicalScribePatientContext",
     members = {
         Pronouns = {
             type = "string",
@@ -2318,6 +2432,7 @@ M.MedicalScribePatientContext = {
 
 M.MedicalScribeContext = {
     type = "structure",
+    id = "MedicalScribeContext",
     members = {
         PatientContext = M.MedicalScribePatientContext,
     },
@@ -2325,6 +2440,7 @@ M.MedicalScribeContext = {
 
 M.StartCallAnalyticsJobInput = {
     type = "structure",
+    id = "StartCallAnalyticsJobInput",
     members = {
         CallAnalyticsJobName = {
             type = "string",
@@ -2359,6 +2475,7 @@ M.StartCallAnalyticsJobInput = {
 
 M.StartCallAnalyticsJobOutput = {
     type = "structure",
+    id = "StartCallAnalyticsJobOutput",
     members = {
         CallAnalyticsJob = M.CallAnalyticsJob,
     },
@@ -2366,6 +2483,7 @@ M.StartCallAnalyticsJobOutput = {
 
 M.StartMedicalScribeJobInput = {
     type = "structure",
+    id = "StartMedicalScribeJobInput",
     members = {
         MedicalScribeJobName = {
             type = "string",
@@ -2414,6 +2532,7 @@ M.StartMedicalScribeJobInput = {
 
 M.StartMedicalScribeJobOutput = {
     type = "structure",
+    id = "StartMedicalScribeJobOutput",
     members = {
         MedicalScribeJob = M.MedicalScribeJob,
     },
@@ -2421,6 +2540,7 @@ M.StartMedicalScribeJobOutput = {
 
 M.StartMedicalTranscriptionJobInput = {
     type = "structure",
+    id = "StartMedicalTranscriptionJobInput",
     members = {
         MedicalTranscriptionJobName = {
             type = "string",
@@ -2486,6 +2606,7 @@ M.StartMedicalTranscriptionJobInput = {
 
 M.StartMedicalTranscriptionJobOutput = {
     type = "structure",
+    id = "StartMedicalTranscriptionJobOutput",
     members = {
         MedicalTranscriptionJob = M.MedicalTranscriptionJob,
     },
@@ -2493,6 +2614,7 @@ M.StartMedicalTranscriptionJobOutput = {
 
 M.Subtitles = {
     type = "structure",
+    id = "Subtitles",
     members = {
         Formats = {
             type = "list",
@@ -2506,6 +2628,7 @@ M.Subtitles = {
 
 M.StartTranscriptionJobInput = {
     type = "structure",
+    id = "StartTranscriptionJobInput",
     members = {
         TranscriptionJobName = {
             type = "string",
@@ -2573,6 +2696,7 @@ M.StartTranscriptionJobInput = {
 
 M.StartTranscriptionJobOutput = {
     type = "structure",
+    id = "StartTranscriptionJobOutput",
     members = {
         TranscriptionJob = M.TranscriptionJob,
     },
@@ -2580,6 +2704,7 @@ M.StartTranscriptionJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2600,10 +2725,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2625,10 +2752,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCallAnalyticsCategoryInput = {
     type = "structure",
+    id = "UpdateCallAnalyticsCategoryInput",
     members = {
         CategoryName = {
             type = "string",
@@ -2652,6 +2781,7 @@ M.UpdateCallAnalyticsCategoryInput = {
 
 M.UpdateCallAnalyticsCategoryOutput = {
     type = "structure",
+    id = "UpdateCallAnalyticsCategoryOutput",
     members = {
         CategoryProperties = M.CategoryProperties,
     },
@@ -2659,6 +2789,7 @@ M.UpdateCallAnalyticsCategoryOutput = {
 
 M.UpdateMedicalVocabularyInput = {
     type = "structure",
+    id = "UpdateMedicalVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -2684,6 +2815,7 @@ M.UpdateMedicalVocabularyInput = {
 
 M.UpdateMedicalVocabularyOutput = {
     type = "structure",
+    id = "UpdateMedicalVocabularyOutput",
     members = {
         VocabularyName = {
             type = "string",
@@ -2702,6 +2834,7 @@ M.UpdateMedicalVocabularyOutput = {
 
 M.UpdateVocabularyInput = {
     type = "structure",
+    id = "UpdateVocabularyInput",
     members = {
         VocabularyName = {
             type = "string",
@@ -2731,6 +2864,7 @@ M.UpdateVocabularyInput = {
 
 M.UpdateVocabularyOutput = {
     type = "structure",
+    id = "UpdateVocabularyOutput",
     members = {
         VocabularyName = {
             type = "string",
@@ -2749,6 +2883,7 @@ M.UpdateVocabularyOutput = {
 
 M.UpdateVocabularyFilterInput = {
     type = "structure",
+    id = "UpdateVocabularyFilterInput",
     members = {
         VocabularyFilterName = {
             type = "string",
@@ -2772,6 +2907,7 @@ M.UpdateVocabularyFilterInput = {
 
 M.UpdateVocabularyFilterOutput = {
     type = "structure",
+    id = "UpdateVocabularyFilterOutput",
     members = {
         VocabularyFilterName = {
             type = "string",

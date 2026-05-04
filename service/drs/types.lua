@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.Account = {
     type = "structure",
+    id = "Account",
     members = {
         accountID = {
             type = "string",
@@ -24,6 +26,7 @@ M.Account = {
 
 M.AssociateSourceNetworkStackInput = {
     type = "structure",
+    id = "AssociateSourceNetworkStackInput",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -62,6 +65,7 @@ M.LaunchStatus = {
 
 M.ParticipatingResourceID = {
     type = "union",
+    id = "ParticipatingResourceID",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -71,6 +75,7 @@ M.ParticipatingResourceID = {
 
 M.ParticipatingResource = {
     type = "structure",
+    id = "ParticipatingResource",
     members = {
         participatingResourceID = M.ParticipatingResourceID,
         launchStatus = {
@@ -94,6 +99,7 @@ M.LaunchActionParameterType = {
 
 M.LaunchActionParameter = {
     type = "structure",
+    id = "LaunchActionParameter",
     members = {
         value = {
             type = "string",
@@ -111,6 +117,7 @@ M.LaunchActionType = {
 
 M.LaunchAction = {
     type = "structure",
+    id = "LaunchAction",
     members = {
         actionId = {
             type = "string",
@@ -158,6 +165,7 @@ M.LaunchActionRunStatus = {
 
 M.LaunchActionRun = {
     type = "structure",
+    id = "LaunchActionRun",
     members = {
         action = M.LaunchAction,
         runId = {
@@ -174,6 +182,7 @@ M.LaunchActionRun = {
 
 M.LaunchActionsStatus = {
     type = "structure",
+    id = "LaunchActionsStatus",
     members = {
         ssmAgentDiscoveryDatetime = {
             type = "string",
@@ -187,6 +196,7 @@ M.LaunchActionsStatus = {
 
 M.ParticipatingServer = {
     type = "structure",
+    id = "ParticipatingServer",
     members = {
         sourceServerID = {
             type = "string",
@@ -215,6 +225,7 @@ M.JobType = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         jobID = {
             type = "string",
@@ -258,6 +269,7 @@ M.Job = {
 
 M.AssociateSourceNetworkStackOutput = {
     type = "structure",
+    id = "AssociateSourceNetworkStackOutput",
     members = {
         job = M.Job,
     },
@@ -265,6 +277,7 @@ M.AssociateSourceNetworkStackOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -284,6 +297,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -304,6 +318,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -323,6 +338,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -348,6 +364,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -373,6 +390,7 @@ M.ThrottlingException = {
 
 M.UninitializedAccountException = {
     type = "structure",
+    id = "UninitializedAccountException",
     error = "client",
     members = {
         message = {
@@ -386,6 +404,7 @@ M.UninitializedAccountException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -405,6 +424,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -430,6 +450,7 @@ M.ProductCodeMode = {
 
 M.ProductCode = {
     type = "structure",
+    id = "ProductCode",
     members = {
         productCodeId = {
             type = "string",
@@ -442,6 +463,7 @@ M.ProductCode = {
 
 M.ConversionProperties = {
     type = "structure",
+    id = "ConversionProperties",
     members = {
         volumeToConversionMap = {
             type = "map",
@@ -472,6 +494,7 @@ M.ConversionProperties = {
 
 M.CPU = {
     type = "structure",
+    id = "CPU",
     members = {
         cores = {
             type = "long",
@@ -487,6 +510,7 @@ M.CPU = {
 
 M.CreateExtendedSourceServerInput = {
     type = "structure",
+    id = "CreateExtendedSourceServerInput",
     members = {
         sourceServerArn = {
             type = "string",
@@ -521,6 +545,7 @@ M.DataReplicationErrorString = {
 
 M.DataReplicationError = {
     type = "structure",
+    id = "DataReplicationError",
     members = {
         error = {
             type = "string",
@@ -555,6 +580,7 @@ M.DataReplicationInitiationStepStatus = {
 
 M.DataReplicationInitiationStep = {
     type = "structure",
+    id = "DataReplicationInitiationStep",
     members = {
         name = {
             type = "string",
@@ -567,6 +593,7 @@ M.DataReplicationInitiationStep = {
 
 M.DataReplicationInitiation = {
     type = "structure",
+    id = "DataReplicationInitiation",
     members = {
         startDateTime = {
             type = "string",
@@ -604,6 +631,7 @@ M.VolumeStatus = {
 
 M.DataReplicationInfoReplicatedDisk = {
     type = "structure",
+    id = "DataReplicationInfoReplicatedDisk",
     members = {
         deviceName = {
             type = "string",
@@ -640,6 +668,7 @@ M.DataReplicationInfoReplicatedDisk = {
 
 M.DataReplicationInfo = {
     type = "structure",
+    id = "DataReplicationInfo",
     members = {
         lagDuration = {
             type = "string",
@@ -679,6 +708,7 @@ M.LastLaunchType = {
 
 M.LifeCycleLastLaunchInitiated = {
     type = "structure",
+    id = "LifeCycleLastLaunchInitiated",
     members = {
         apiCallDateTime = {
             type = "string",
@@ -694,6 +724,7 @@ M.LifeCycleLastLaunchInitiated = {
 
 M.LifeCycleLastLaunch = {
     type = "structure",
+    id = "LifeCycleLastLaunch",
     members = {
         initiated = M.LifeCycleLastLaunchInitiated,
         status = {
@@ -704,6 +735,7 @@ M.LifeCycleLastLaunch = {
 
 M.LifeCycle = {
     type = "structure",
+    id = "LifeCycle",
     members = {
         addedToServiceDateTime = {
             type = "string",
@@ -728,6 +760,7 @@ M.ReplicationDirection = {
 
 M.SourceCloudProperties = {
     type = "structure",
+    id = "SourceCloudProperties",
     members = {
         originAccountID = {
             type = "string",
@@ -746,6 +779,7 @@ M.SourceCloudProperties = {
 
 M.Disk = {
     type = "structure",
+    id = "Disk",
     members = {
         deviceName = {
             type = "string",
@@ -761,6 +795,7 @@ M.Disk = {
 
 M.IdentificationHints = {
     type = "structure",
+    id = "IdentificationHints",
     members = {
         fqdn = {
             type = "string",
@@ -779,6 +814,7 @@ M.IdentificationHints = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         macAddress = {
             type = "string",
@@ -795,6 +831,7 @@ M.NetworkInterface = {
 
 M.OS = {
     type = "structure",
+    id = "OS",
     members = {
         fullString = {
             type = "string",
@@ -804,6 +841,7 @@ M.OS = {
 
 M.SourceProperties = {
     type = "structure",
+    id = "SourceProperties",
     members = {
         lastUpdatedDateTime = {
             type = "string",
@@ -845,6 +883,7 @@ M.ExtensionStatus = {
 
 M.StagingArea = {
     type = "structure",
+    id = "StagingArea",
     members = {
         status = {
             type = "string",
@@ -863,6 +902,7 @@ M.StagingArea = {
 
 M.SourceServer = {
     type = "structure",
+    id = "SourceServer",
     members = {
         sourceServerID = {
             type = "string",
@@ -903,6 +943,7 @@ M.SourceServer = {
 
 M.CreateExtendedSourceServerOutput = {
     type = "structure",
+    id = "CreateExtendedSourceServerOutput",
     members = {
         sourceServer = M.SourceServer,
     },
@@ -915,6 +956,7 @@ M.LaunchDisposition = {
 
 M.Licensing = {
     type = "structure",
+    id = "Licensing",
     members = {
         osByol = {
             type = "boolean",
@@ -930,6 +972,7 @@ M.TargetInstanceTypeRightSizingMethod = {
 
 M.CreateLaunchConfigurationTemplateInput = {
     type = "structure",
+    id = "CreateLaunchConfigurationTemplateInput",
     members = {
         tags = {
             type = "map",
@@ -963,6 +1006,7 @@ M.CreateLaunchConfigurationTemplateInput = {
 
 M.LaunchConfigurationTemplate = {
     type = "structure",
+    id = "LaunchConfigurationTemplate",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -1002,6 +1046,7 @@ M.LaunchConfigurationTemplate = {
 
 M.CreateLaunchConfigurationTemplateOutput = {
     type = "structure",
+    id = "CreateLaunchConfigurationTemplateOutput",
     members = {
         launchConfigurationTemplate = M.LaunchConfigurationTemplate,
     },
@@ -1038,6 +1083,7 @@ M.PITPolicyRuleUnits = {
 
 M.PITPolicyRule = {
     type = "structure",
+    id = "PITPolicyRule",
     members = {
         ruleID = {
             type = "long",
@@ -1071,6 +1117,7 @@ M.PITPolicyRule = {
 
 M.CreateReplicationConfigurationTemplateInput = {
     type = "structure",
+    id = "CreateReplicationConfigurationTemplateInput",
     members = {
         stagingAreaSubnetId = {
             type = "string",
@@ -1150,6 +1197,7 @@ M.CreateReplicationConfigurationTemplateInput = {
 
 M.CreateReplicationConfigurationTemplateOutput = {
     type = "structure",
+    id = "CreateReplicationConfigurationTemplateOutput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -1222,6 +1270,7 @@ M.CreateReplicationConfigurationTemplateOutput = {
 
 M.CreateSourceNetworkInput = {
     type = "structure",
+    id = "CreateSourceNetworkInput",
     members = {
         vpcID = {
             type = "string",
@@ -1251,6 +1300,7 @@ M.CreateSourceNetworkInput = {
 
 M.CreateSourceNetworkOutput = {
     type = "structure",
+    id = "CreateSourceNetworkOutput",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -1260,6 +1310,7 @@ M.CreateSourceNetworkOutput = {
 
 M.DeleteJobInput = {
     type = "structure",
+    id = "DeleteJobInput",
     members = {
         jobID = {
             type = "string",
@@ -1272,10 +1323,12 @@ M.DeleteJobInput = {
 
 M.DeleteJobOutput = {
     type = "structure",
+    id = "DeleteJobOutput",
 }
 
 M.DeleteLaunchActionInput = {
     type = "structure",
+    id = "DeleteLaunchActionInput",
     members = {
         resourceId = {
             type = "string",
@@ -1294,10 +1347,12 @@ M.DeleteLaunchActionInput = {
 
 M.DeleteLaunchActionOutput = {
     type = "structure",
+    id = "DeleteLaunchActionOutput",
 }
 
 M.DeleteLaunchConfigurationTemplateInput = {
     type = "structure",
+    id = "DeleteLaunchConfigurationTemplateInput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -1310,10 +1365,12 @@ M.DeleteLaunchConfigurationTemplateInput = {
 
 M.DeleteLaunchConfigurationTemplateOutput = {
     type = "structure",
+    id = "DeleteLaunchConfigurationTemplateOutput",
 }
 
 M.DeleteRecoveryInstanceInput = {
     type = "structure",
+    id = "DeleteRecoveryInstanceInput",
     members = {
         recoveryInstanceID = {
             type = "string",
@@ -1326,10 +1383,12 @@ M.DeleteRecoveryInstanceInput = {
 
 M.DeleteRecoveryInstanceOutput = {
     type = "structure",
+    id = "DeleteRecoveryInstanceOutput",
 }
 
 M.DeleteReplicationConfigurationTemplateInput = {
     type = "structure",
+    id = "DeleteReplicationConfigurationTemplateInput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -1342,10 +1401,12 @@ M.DeleteReplicationConfigurationTemplateInput = {
 
 M.DeleteReplicationConfigurationTemplateOutput = {
     type = "structure",
+    id = "DeleteReplicationConfigurationTemplateOutput",
 }
 
 M.DeleteSourceNetworkInput = {
     type = "structure",
+    id = "DeleteSourceNetworkInput",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -1358,10 +1419,12 @@ M.DeleteSourceNetworkInput = {
 
 M.DeleteSourceNetworkOutput = {
     type = "structure",
+    id = "DeleteSourceNetworkOutput",
 }
 
 M.DeleteSourceServerInput = {
     type = "structure",
+    id = "DeleteSourceServerInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -1374,10 +1437,12 @@ M.DeleteSourceServerInput = {
 
 M.DeleteSourceServerOutput = {
     type = "structure",
+    id = "DeleteSourceServerOutput",
 }
 
 M.DescribeJobLogItemsInput = {
     type = "structure",
+    id = "DescribeJobLogItemsInput",
     members = {
         jobID = {
             type = "string",
@@ -1426,6 +1491,7 @@ M.JobLogEvent = {
 
 M.SourceNetworkData = {
     type = "structure",
+    id = "SourceNetworkData",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -1444,6 +1510,7 @@ M.SourceNetworkData = {
 
 M.EventResourceData = {
     type = "union",
+    id = "EventResourceData",
     members = {
         sourceNetworkData = M.SourceNetworkData,
     },
@@ -1451,6 +1518,7 @@ M.EventResourceData = {
 
 M.JobLogEventData = {
     type = "structure",
+    id = "JobLogEventData",
     members = {
         sourceServerID = {
             type = "string",
@@ -1483,6 +1551,7 @@ M.JobLogEventData = {
 
 M.JobLog = {
     type = "structure",
+    id = "JobLog",
     members = {
         logDateTime = {
             type = "string",
@@ -1496,6 +1565,7 @@ M.JobLog = {
 
 M.DescribeJobLogItemsOutput = {
     type = "structure",
+    id = "DescribeJobLogItemsOutput",
     members = {
         items = {
             type = "list",
@@ -1509,6 +1579,7 @@ M.DescribeJobLogItemsOutput = {
 
 M.DescribeJobsRequestFilters = {
     type = "structure",
+    id = "DescribeJobsRequestFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -1525,6 +1596,7 @@ M.DescribeJobsRequestFilters = {
 
 M.DescribeJobsInput = {
     type = "structure",
+    id = "DescribeJobsInput",
     members = {
         filters = M.DescribeJobsRequestFilters,
         maxResults = {
@@ -1538,6 +1610,7 @@ M.DescribeJobsInput = {
 
 M.DescribeJobsOutput = {
     type = "structure",
+    id = "DescribeJobsOutput",
     members = {
         items = {
             type = "list",
@@ -1551,6 +1624,7 @@ M.DescribeJobsOutput = {
 
 M.DescribeLaunchConfigurationTemplatesInput = {
     type = "structure",
+    id = "DescribeLaunchConfigurationTemplatesInput",
     members = {
         launchConfigurationTemplateIDs = {
             type = "list",
@@ -1567,6 +1641,7 @@ M.DescribeLaunchConfigurationTemplatesInput = {
 
 M.DescribeLaunchConfigurationTemplatesOutput = {
     type = "structure",
+    id = "DescribeLaunchConfigurationTemplatesOutput",
     members = {
         items = {
             type = "list",
@@ -1580,6 +1655,7 @@ M.DescribeLaunchConfigurationTemplatesOutput = {
 
 M.DescribeRecoveryInstancesRequestFilters = {
     type = "structure",
+    id = "DescribeRecoveryInstancesRequestFilters",
     members = {
         recoveryInstanceIDs = {
             type = "list",
@@ -1594,6 +1670,7 @@ M.DescribeRecoveryInstancesRequestFilters = {
 
 M.DescribeRecoveryInstancesInput = {
     type = "structure",
+    id = "DescribeRecoveryInstancesInput",
     members = {
         filters = M.DescribeRecoveryInstancesRequestFilters,
         maxResults = {
@@ -1631,6 +1708,7 @@ M.FailbackReplicationError = {
 
 M.RecoveryInstanceDataReplicationError = {
     type = "structure",
+    id = "RecoveryInstanceDataReplicationError",
     members = {
         error = {
             type = "string",
@@ -1672,6 +1750,7 @@ M.RecoveryInstanceDataReplicationInitiationStepStatus = {
 
 M.RecoveryInstanceDataReplicationInitiationStep = {
     type = "structure",
+    id = "RecoveryInstanceDataReplicationInitiationStep",
     members = {
         name = {
             type = "string",
@@ -1684,6 +1763,7 @@ M.RecoveryInstanceDataReplicationInitiationStep = {
 
 M.RecoveryInstanceDataReplicationInitiation = {
     type = "structure",
+    id = "RecoveryInstanceDataReplicationInitiation",
     members = {
         startDateTime = {
             type = "string",
@@ -1712,6 +1792,7 @@ M.RecoveryInstanceDataReplicationState = {
 
 M.RecoveryInstanceDataReplicationInfoReplicatedDisk = {
     type = "structure",
+    id = "RecoveryInstanceDataReplicationInfoReplicatedDisk",
     members = {
         deviceName = {
             type = "string",
@@ -1745,6 +1826,7 @@ M.RecoveryInstanceDataReplicationInfoReplicatedDisk = {
 
 M.RecoveryInstanceDataReplicationInfo = {
     type = "structure",
+    id = "RecoveryInstanceDataReplicationInfo",
     members = {
         lagDuration = {
             type = "string",
@@ -1797,6 +1879,7 @@ M.FailbackState = {
 
 M.RecoveryInstanceFailback = {
     type = "structure",
+    id = "RecoveryInstanceFailback",
     members = {
         failbackClientID = {
             type = "string",
@@ -1838,6 +1921,7 @@ M.OriginEnvironment = {
 
 M.RecoveryInstanceDisk = {
     type = "structure",
+    id = "RecoveryInstanceDisk",
     members = {
         internalDeviceName = {
             type = "string",
@@ -1856,6 +1940,7 @@ M.RecoveryInstanceDisk = {
 
 M.RecoveryInstanceProperties = {
     type = "structure",
+    id = "RecoveryInstanceProperties",
     members = {
         lastUpdatedDateTime = {
             type = "string",
@@ -1885,6 +1970,7 @@ M.RecoveryInstanceProperties = {
 
 M.RecoveryInstance = {
     type = "structure",
+    id = "RecoveryInstance",
     members = {
         ec2InstanceID = {
             type = "string",
@@ -1935,6 +2021,7 @@ M.RecoveryInstance = {
 
 M.DescribeRecoveryInstancesOutput = {
     type = "structure",
+    id = "DescribeRecoveryInstancesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1948,6 +2035,7 @@ M.DescribeRecoveryInstancesOutput = {
 
 M.DescribeRecoverySnapshotsRequestFilters = {
     type = "structure",
+    id = "DescribeRecoverySnapshotsRequestFilters",
     members = {
         fromDateTime = {
             type = "string",
@@ -1965,6 +2053,7 @@ M.RecoverySnapshotsOrder = {
 
 M.DescribeRecoverySnapshotsInput = {
     type = "structure",
+    id = "DescribeRecoverySnapshotsInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -1987,6 +2076,7 @@ M.DescribeRecoverySnapshotsInput = {
 
 M.RecoverySnapshot = {
     type = "structure",
+    id = "RecoverySnapshot",
     members = {
         snapshotID = {
             type = "string",
@@ -2018,6 +2108,7 @@ M.RecoverySnapshot = {
 
 M.DescribeRecoverySnapshotsOutput = {
     type = "structure",
+    id = "DescribeRecoverySnapshotsOutput",
     members = {
         items = {
             type = "list",
@@ -2031,6 +2122,7 @@ M.DescribeRecoverySnapshotsOutput = {
 
 M.DescribeReplicationConfigurationTemplatesInput = {
     type = "structure",
+    id = "DescribeReplicationConfigurationTemplatesInput",
     members = {
         replicationConfigurationTemplateIDs = {
             type = "list",
@@ -2047,6 +2139,7 @@ M.DescribeReplicationConfigurationTemplatesInput = {
 
 M.ReplicationConfigurationTemplate = {
     type = "structure",
+    id = "ReplicationConfigurationTemplate",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -2119,6 +2212,7 @@ M.ReplicationConfigurationTemplate = {
 
 M.DescribeReplicationConfigurationTemplatesOutput = {
     type = "structure",
+    id = "DescribeReplicationConfigurationTemplatesOutput",
     members = {
         items = {
             type = "list",
@@ -2132,6 +2226,7 @@ M.DescribeReplicationConfigurationTemplatesOutput = {
 
 M.DescribeSourceNetworksRequestFilters = {
     type = "structure",
+    id = "DescribeSourceNetworksRequestFilters",
     members = {
         sourceNetworkIDs = {
             type = "list",
@@ -2148,6 +2243,7 @@ M.DescribeSourceNetworksRequestFilters = {
 
 M.DescribeSourceNetworksInput = {
     type = "structure",
+    id = "DescribeSourceNetworksInput",
     members = {
         filters = M.DescribeSourceNetworksRequestFilters,
         maxResults = {
@@ -2171,6 +2267,7 @@ M.RecoveryResult = {
 
 M.RecoveryLifeCycle = {
     type = "structure",
+    id = "RecoveryLifeCycle",
     members = {
         apiCallDateTime = {
             type = "timestamp",
@@ -2196,6 +2293,7 @@ M.ReplicationStatus = {
 
 M.SourceNetwork = {
     type = "structure",
+    id = "SourceNetwork",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -2235,6 +2333,7 @@ M.SourceNetwork = {
 
 M.DescribeSourceNetworksOutput = {
     type = "structure",
+    id = "DescribeSourceNetworksOutput",
     members = {
         items = {
             type = "list",
@@ -2248,6 +2347,7 @@ M.DescribeSourceNetworksOutput = {
 
 M.DescribeSourceServersRequestFilters = {
     type = "structure",
+    id = "DescribeSourceServersRequestFilters",
     members = {
         sourceServerIDs = {
             type = "list",
@@ -2265,6 +2365,7 @@ M.DescribeSourceServersRequestFilters = {
 
 M.DescribeSourceServersInput = {
     type = "structure",
+    id = "DescribeSourceServersInput",
     members = {
         filters = M.DescribeSourceServersRequestFilters,
         maxResults = {
@@ -2278,6 +2379,7 @@ M.DescribeSourceServersInput = {
 
 M.DescribeSourceServersOutput = {
     type = "structure",
+    id = "DescribeSourceServersOutput",
     members = {
         items = {
             type = "list",
@@ -2291,6 +2393,7 @@ M.DescribeSourceServersOutput = {
 
 M.DisconnectRecoveryInstanceInput = {
     type = "structure",
+    id = "DisconnectRecoveryInstanceInput",
     members = {
         recoveryInstanceID = {
             type = "string",
@@ -2303,10 +2406,12 @@ M.DisconnectRecoveryInstanceInput = {
 
 M.DisconnectRecoveryInstanceOutput = {
     type = "structure",
+    id = "DisconnectRecoveryInstanceOutput",
 }
 
 M.DisconnectSourceServerInput = {
     type = "structure",
+    id = "DisconnectSourceServerInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -2319,6 +2424,7 @@ M.DisconnectSourceServerInput = {
 
 M.DisconnectSourceServerOutput = {
     type = "structure",
+    id = "DisconnectSourceServerOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -2359,14 +2465,17 @@ M.DisconnectSourceServerOutput = {
 
 M.InitializeServiceInput = {
     type = "structure",
+    id = "InitializeServiceInput",
 }
 
 M.InitializeServiceOutput = {
     type = "structure",
+    id = "InitializeServiceOutput",
 }
 
 M.UpdateLaunchConfigurationTemplateInput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationTemplateInput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -2401,6 +2510,7 @@ M.UpdateLaunchConfigurationTemplateInput = {
 
 M.UpdateLaunchConfigurationTemplateOutput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationTemplateOutput",
     members = {
         launchConfigurationTemplate = M.LaunchConfigurationTemplate,
     },
@@ -2408,6 +2518,7 @@ M.UpdateLaunchConfigurationTemplateOutput = {
 
 M.ListExtensibleSourceServersInput = {
     type = "structure",
+    id = "ListExtensibleSourceServersInput",
     members = {
         stagingAccountID = {
             type = "string",
@@ -2426,6 +2537,7 @@ M.ListExtensibleSourceServersInput = {
 
 M.StagingSourceServer = {
     type = "structure",
+    id = "StagingSourceServer",
     members = {
         hostname = {
             type = "string",
@@ -2443,6 +2555,7 @@ M.StagingSourceServer = {
 
 M.ListExtensibleSourceServersOutput = {
     type = "structure",
+    id = "ListExtensibleSourceServersOutput",
     members = {
         items = {
             type = "list",
@@ -2456,6 +2569,7 @@ M.ListExtensibleSourceServersOutput = {
 
 M.LaunchActionsRequestFilters = {
     type = "structure",
+    id = "LaunchActionsRequestFilters",
     members = {
         actionIds = {
             type = "list",
@@ -2466,6 +2580,7 @@ M.LaunchActionsRequestFilters = {
 
 M.ListLaunchActionsInput = {
     type = "structure",
+    id = "ListLaunchActionsInput",
     members = {
         resourceId = {
             type = "string",
@@ -2485,6 +2600,7 @@ M.ListLaunchActionsInput = {
 
 M.ListLaunchActionsOutput = {
     type = "structure",
+    id = "ListLaunchActionsOutput",
     members = {
         items = {
             type = "list",
@@ -2498,6 +2614,7 @@ M.ListLaunchActionsOutput = {
 
 M.ListStagingAccountsInput = {
     type = "structure",
+    id = "ListStagingAccountsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2517,6 +2634,7 @@ M.ListStagingAccountsInput = {
 
 M.ListStagingAccountsOutput = {
     type = "structure",
+    id = "ListStagingAccountsOutput",
     members = {
         accounts = {
             type = "list",
@@ -2530,6 +2648,7 @@ M.ListStagingAccountsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2543,6 +2662,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2554,6 +2674,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutLaunchActionInput = {
     type = "structure",
+    id = "PutLaunchActionInput",
     members = {
         resourceId = {
             type = "string",
@@ -2625,6 +2746,7 @@ M.PutLaunchActionInput = {
 
 M.PutLaunchActionOutput = {
     type = "structure",
+    id = "PutLaunchActionOutput",
     members = {
         resourceId = {
             type = "string",
@@ -2669,6 +2791,7 @@ M.PutLaunchActionOutput = {
 
 M.GetFailbackReplicationConfigurationInput = {
     type = "structure",
+    id = "GetFailbackReplicationConfigurationInput",
     members = {
         recoveryInstanceID = {
             type = "string",
@@ -2681,6 +2804,7 @@ M.GetFailbackReplicationConfigurationInput = {
 
 M.GetFailbackReplicationConfigurationOutput = {
     type = "structure",
+    id = "GetFailbackReplicationConfigurationOutput",
     members = {
         recoveryInstanceID = {
             type = "string",
@@ -2708,6 +2832,7 @@ M.GetFailbackReplicationConfigurationOutput = {
 
 M.ReverseReplicationInput = {
     type = "structure",
+    id = "ReverseReplicationInput",
     members = {
         recoveryInstanceID = {
             type = "string",
@@ -2720,6 +2845,7 @@ M.ReverseReplicationInput = {
 
 M.ReverseReplicationOutput = {
     type = "structure",
+    id = "ReverseReplicationOutput",
     members = {
         reversedDirectionSourceServerArn = {
             type = "string",
@@ -2729,6 +2855,7 @@ M.ReverseReplicationOutput = {
 
 M.StartFailbackLaunchInput = {
     type = "structure",
+    id = "StartFailbackLaunchInput",
     members = {
         recoveryInstanceIDs = {
             type = "list",
@@ -2747,6 +2874,7 @@ M.StartFailbackLaunchInput = {
 
 M.StartFailbackLaunchOutput = {
     type = "structure",
+    id = "StartFailbackLaunchOutput",
     members = {
         job = M.Job,
     },
@@ -2754,6 +2882,7 @@ M.StartFailbackLaunchOutput = {
 
 M.StopFailbackInput = {
     type = "structure",
+    id = "StopFailbackInput",
     members = {
         recoveryInstanceID = {
             type = "string",
@@ -2766,10 +2895,12 @@ M.StopFailbackInput = {
 
 M.StopFailbackOutput = {
     type = "structure",
+    id = "StopFailbackOutput",
 }
 
 M.TerminateRecoveryInstancesInput = {
     type = "structure",
+    id = "TerminateRecoveryInstancesInput",
     members = {
         recoveryInstanceIDs = {
             type = "list",
@@ -2783,6 +2914,7 @@ M.TerminateRecoveryInstancesInput = {
 
 M.TerminateRecoveryInstancesOutput = {
     type = "structure",
+    id = "TerminateRecoveryInstancesOutput",
     members = {
         job = M.Job,
     },
@@ -2790,6 +2922,7 @@ M.TerminateRecoveryInstancesOutput = {
 
 M.UpdateFailbackReplicationConfigurationInput = {
     type = "structure",
+    id = "UpdateFailbackReplicationConfigurationInput",
     members = {
         recoveryInstanceID = {
             type = "string",
@@ -2817,10 +2950,12 @@ M.UpdateFailbackReplicationConfigurationInput = {
 
 M.UpdateFailbackReplicationConfigurationOutput = {
     type = "structure",
+    id = "UpdateFailbackReplicationConfigurationOutput",
 }
 
 M.UpdateReplicationConfigurationTemplateInput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationTemplateInput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -2888,6 +3023,7 @@ M.UpdateReplicationConfigurationTemplateInput = {
 
 M.UpdateReplicationConfigurationTemplateOutput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationTemplateOutput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -2960,6 +3096,7 @@ M.UpdateReplicationConfigurationTemplateOutput = {
 
 M.ExportSourceNetworkCfnTemplateInput = {
     type = "structure",
+    id = "ExportSourceNetworkCfnTemplateInput",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -2972,6 +3109,7 @@ M.ExportSourceNetworkCfnTemplateInput = {
 
 M.ExportSourceNetworkCfnTemplateOutput = {
     type = "structure",
+    id = "ExportSourceNetworkCfnTemplateOutput",
     members = {
         s3DestinationUrl = {
             type = "string",
@@ -2981,6 +3119,7 @@ M.ExportSourceNetworkCfnTemplateOutput = {
 
 M.StartSourceNetworkRecoveryRequestNetworkEntry = {
     type = "structure",
+    id = "StartSourceNetworkRecoveryRequestNetworkEntry",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -2996,6 +3135,7 @@ M.StartSourceNetworkRecoveryRequestNetworkEntry = {
 
 M.StartSourceNetworkRecoveryInput = {
     type = "structure",
+    id = "StartSourceNetworkRecoveryInput",
     members = {
         sourceNetworks = {
             type = "list",
@@ -3017,6 +3157,7 @@ M.StartSourceNetworkRecoveryInput = {
 
 M.StartSourceNetworkRecoveryOutput = {
     type = "structure",
+    id = "StartSourceNetworkRecoveryOutput",
     members = {
         job = M.Job,
     },
@@ -3024,6 +3165,7 @@ M.StartSourceNetworkRecoveryOutput = {
 
 M.StartSourceNetworkReplicationInput = {
     type = "structure",
+    id = "StartSourceNetworkReplicationInput",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -3036,6 +3178,7 @@ M.StartSourceNetworkReplicationInput = {
 
 M.StartSourceNetworkReplicationOutput = {
     type = "structure",
+    id = "StartSourceNetworkReplicationOutput",
     members = {
         sourceNetwork = M.SourceNetwork,
     },
@@ -3043,6 +3186,7 @@ M.StartSourceNetworkReplicationOutput = {
 
 M.StopSourceNetworkReplicationInput = {
     type = "structure",
+    id = "StopSourceNetworkReplicationInput",
     members = {
         sourceNetworkID = {
             type = "string",
@@ -3055,6 +3199,7 @@ M.StopSourceNetworkReplicationInput = {
 
 M.StopSourceNetworkReplicationOutput = {
     type = "structure",
+    id = "StopSourceNetworkReplicationOutput",
     members = {
         sourceNetwork = M.SourceNetwork,
     },
@@ -3062,6 +3207,7 @@ M.StopSourceNetworkReplicationOutput = {
 
 M.GetLaunchConfigurationInput = {
     type = "structure",
+    id = "GetLaunchConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3074,6 +3220,7 @@ M.GetLaunchConfigurationInput = {
 
 M.LaunchIntoInstanceProperties = {
     type = "structure",
+    id = "LaunchIntoInstanceProperties",
     members = {
         launchIntoEC2InstanceID = {
             type = "string",
@@ -3083,6 +3230,7 @@ M.LaunchIntoInstanceProperties = {
 
 M.GetLaunchConfigurationOutput = {
     type = "structure",
+    id = "GetLaunchConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3115,6 +3263,7 @@ M.GetLaunchConfigurationOutput = {
 
 M.GetReplicationConfigurationInput = {
     type = "structure",
+    id = "GetReplicationConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3137,6 +3286,7 @@ M.ReplicationConfigurationReplicatedDiskStagingDiskType = {
 
 M.ReplicationConfigurationReplicatedDisk = {
     type = "structure",
+    id = "ReplicationConfigurationReplicatedDisk",
     members = {
         deviceName = {
             type = "string",
@@ -3167,6 +3317,7 @@ M.ReplicationConfigurationReplicatedDisk = {
 
 M.GetReplicationConfigurationOutput = {
     type = "structure",
+    id = "GetReplicationConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3235,6 +3386,7 @@ M.GetReplicationConfigurationOutput = {
 
 M.RetryDataReplicationInput = {
     type = "structure",
+    id = "RetryDataReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3247,6 +3399,7 @@ M.RetryDataReplicationInput = {
 
 M.RetryDataReplicationOutput = {
     type = "structure",
+    id = "RetryDataReplicationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3287,6 +3440,7 @@ M.RetryDataReplicationOutput = {
 
 M.StartRecoveryRequestSourceServer = {
     type = "structure",
+    id = "StartRecoveryRequestSourceServer",
     members = {
         sourceServerID = {
             type = "string",
@@ -3302,6 +3456,7 @@ M.StartRecoveryRequestSourceServer = {
 
 M.StartRecoveryInput = {
     type = "structure",
+    id = "StartRecoveryInput",
     members = {
         sourceServers = {
             type = "list",
@@ -3323,6 +3478,7 @@ M.StartRecoveryInput = {
 
 M.StartRecoveryOutput = {
     type = "structure",
+    id = "StartRecoveryOutput",
     members = {
         job = M.Job,
     },
@@ -3330,6 +3486,7 @@ M.StartRecoveryOutput = {
 
 M.StartReplicationInput = {
     type = "structure",
+    id = "StartReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3342,6 +3499,7 @@ M.StartReplicationInput = {
 
 M.StartReplicationOutput = {
     type = "structure",
+    id = "StartReplicationOutput",
     members = {
         sourceServer = M.SourceServer,
     },
@@ -3349,6 +3507,7 @@ M.StartReplicationOutput = {
 
 M.StopReplicationInput = {
     type = "structure",
+    id = "StopReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3361,6 +3520,7 @@ M.StopReplicationInput = {
 
 M.StopReplicationOutput = {
     type = "structure",
+    id = "StopReplicationOutput",
     members = {
         sourceServer = M.SourceServer,
     },
@@ -3368,6 +3528,7 @@ M.StopReplicationOutput = {
 
 M.UpdateLaunchConfigurationInput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3400,6 +3561,7 @@ M.UpdateLaunchConfigurationInput = {
 
 M.UpdateLaunchConfigurationOutput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3432,6 +3594,7 @@ M.UpdateLaunchConfigurationOutput = {
 
 M.UpdateReplicationConfigurationInput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3503,6 +3666,7 @@ M.UpdateReplicationConfigurationInput = {
 
 M.UpdateReplicationConfigurationOutput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -3571,6 +3735,7 @@ M.UpdateReplicationConfigurationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3592,10 +3757,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3617,6 +3784,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

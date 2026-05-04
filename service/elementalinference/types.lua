@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ClippingConfig = {
     type = "structure",
+    id = "ClippingConfig",
     members = {
         callbackMetadata = {
             type = "string",
@@ -24,10 +26,12 @@ M.ClippingConfig = {
 
 M.CroppingConfig = {
     type = "structure",
+    id = "CroppingConfig",
 }
 
 M.OutputConfig = {
     type = "union",
+    id = "OutputConfig",
     members = {
         cropping = M.CroppingConfig,
         clipping = M.ClippingConfig,
@@ -41,6 +45,7 @@ M.OutputStatus = {
 
 M.CreateOutput = {
     type = "structure",
+    id = "CreateOutput",
     members = {
         name = {
             type = "string",
@@ -65,6 +70,7 @@ M.CreateOutput = {
 
 M.AssociateFeedInput = {
     type = "structure",
+    id = "AssociateFeedInput",
     members = {
         id = {
             type = "string",
@@ -98,6 +104,7 @@ M.AssociateFeedInput = {
 
 M.AssociateFeedOutput = {
     type = "structure",
+    id = "AssociateFeedOutput",
     members = {
         arn = {
             type = "string",
@@ -116,6 +123,7 @@ M.AssociateFeedOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -129,6 +137,7 @@ M.ConflictException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         message = {
@@ -142,6 +151,7 @@ M.InternalServerErrorException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -155,6 +165,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -168,6 +179,7 @@ M.ServiceQuotaExceededException = {
 
 M.TooManyRequestException = {
     type = "structure",
+    id = "TooManyRequestException",
     error = "client",
     members = {
         message = {
@@ -181,6 +193,7 @@ M.TooManyRequestException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -194,6 +207,7 @@ M.ValidationException = {
 
 M.CreateFeedInput = {
     type = "structure",
+    id = "CreateFeedInput",
     members = {
         name = {
             type = "string",
@@ -218,6 +232,7 @@ M.CreateFeedInput = {
 
 M.FeedAssociation = {
     type = "structure",
+    id = "FeedAssociation",
     members = {
         associatedResourceName = {
             type = "string",
@@ -230,6 +245,7 @@ M.FeedAssociation = {
 
 M.GetOutput = {
     type = "structure",
+    id = "GetOutput",
     members = {
         name = {
             type = "string",
@@ -267,6 +283,7 @@ M.FeedStatus = {
 
 M.CreateFeedOutput = {
     type = "structure",
+    id = "CreateFeedOutput",
     members = {
         arn = {
             type = "string",
@@ -317,6 +334,7 @@ M.CreateFeedOutput = {
 
 M.DeleteFeedInput = {
     type = "structure",
+    id = "DeleteFeedInput",
     members = {
         id = {
             type = "string",
@@ -330,6 +348,7 @@ M.DeleteFeedInput = {
 
 M.DeleteFeedOutput = {
     type = "structure",
+    id = "DeleteFeedOutput",
     members = {
         arn = {
             type = "string",
@@ -354,6 +373,7 @@ M.DeleteFeedOutput = {
 
 M.DisassociateFeedInput = {
     type = "structure",
+    id = "DisassociateFeedInput",
     members = {
         id = {
             type = "string",
@@ -380,6 +400,7 @@ M.DisassociateFeedInput = {
 
 M.DisassociateFeedOutput = {
     type = "structure",
+    id = "DisassociateFeedOutput",
     members = {
         arn = {
             type = "string",
@@ -398,6 +419,7 @@ M.DisassociateFeedOutput = {
 
 M.GetFeedInput = {
     type = "structure",
+    id = "GetFeedInput",
     members = {
         id = {
             type = "string",
@@ -411,6 +433,7 @@ M.GetFeedInput = {
 
 M.GetFeedOutput = {
     type = "structure",
+    id = "GetFeedOutput",
     members = {
         arn = {
             type = "string",
@@ -461,6 +484,7 @@ M.GetFeedOutput = {
 
 M.ListFeedsInput = {
     type = "structure",
+    id = "ListFeedsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -479,6 +503,7 @@ M.ListFeedsInput = {
 
 M.FeedSummary = {
     type = "structure",
+    id = "FeedSummary",
     members = {
         arn = {
             type = "string",
@@ -510,6 +535,7 @@ M.FeedSummary = {
 
 M.ListFeedsOutput = {
     type = "structure",
+    id = "ListFeedsOutput",
     members = {
         feeds = {
             type = "list",
@@ -526,6 +552,7 @@ M.ListFeedsOutput = {
 
 M.UpdateOutput = {
     type = "structure",
+    id = "UpdateOutput",
     members = {
         name = {
             type = "string",
@@ -553,6 +580,7 @@ M.UpdateOutput = {
 
 M.UpdateFeedInput = {
     type = "structure",
+    id = "UpdateFeedInput",
     members = {
         name = {
             type = "string",
@@ -579,6 +607,7 @@ M.UpdateFeedInput = {
 
 M.UpdateFeedOutput = {
     type = "structure",
+    id = "UpdateFeedOutput",
     members = {
         arn = {
             type = "string",
@@ -629,6 +658,7 @@ M.UpdateFeedOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -642,6 +672,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -653,6 +684,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -674,10 +706,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -699,6 +733,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

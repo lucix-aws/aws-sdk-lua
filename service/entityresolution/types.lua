@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.StatementEffect = {
 
 M.AddPolicyStatementInput = {
     type = "structure",
+    id = "AddPolicyStatementInput",
     members = {
         arn = {
             type = "string",
@@ -60,6 +62,7 @@ M.AddPolicyStatementInput = {
 
 M.AddPolicyStatementOutput = {
     type = "structure",
+    id = "AddPolicyStatementOutput",
     members = {
         arn = {
             type = "string",
@@ -81,6 +84,7 @@ M.AddPolicyStatementOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -91,6 +95,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -101,6 +106,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -111,6 +117,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -121,6 +128,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -136,6 +144,7 @@ M.AttributeMatchingModel = {
 
 M.BatchDeleteUniqueIdInput = {
     type = "structure",
+    id = "BatchDeleteUniqueIdInput",
     members = {
         workflowName = {
             type = "string",
@@ -163,6 +172,7 @@ M.BatchDeleteUniqueIdInput = {
 
 M.DeletedUniqueId = {
     type = "structure",
+    id = "DeletedUniqueId",
     members = {
         uniqueId = {
             type = "string",
@@ -180,6 +190,7 @@ M.DeleteUniqueIdErrorType = {
 
 M.DeleteUniqueIdError = {
     type = "structure",
+    id = "DeleteUniqueIdError",
     members = {
         uniqueId = {
             type = "string",
@@ -203,6 +214,7 @@ M.DeleteUniqueIdStatus = {
 
 M.BatchDeleteUniqueIdOutput = {
     type = "structure",
+    id = "BatchDeleteUniqueIdOutput",
     members = {
         status = {
             type = "string",
@@ -241,6 +253,7 @@ M.IdMappingType = {
 
 M.IntermediateSourceConfiguration = {
     type = "structure",
+    id = "IntermediateSourceConfiguration",
     members = {
         intermediateS3Path = {
             type = "string",
@@ -253,6 +266,7 @@ M.IntermediateSourceConfiguration = {
 
 M.ProviderProperties = {
     type = "structure",
+    id = "ProviderProperties",
     members = {
         providerServiceArn = {
             type = "string",
@@ -279,6 +293,7 @@ M.IdMappingWorkflowRuleDefinitionType = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         ruleName = {
             type = "string",
@@ -298,6 +313,7 @@ M.Rule = {
 
 M.IdMappingRuleBasedProperties = {
     type = "structure",
+    id = "IdMappingRuleBasedProperties",
     members = {
         rules = {
             type = "list",
@@ -326,6 +342,7 @@ M.IdMappingRuleBasedProperties = {
 
 M.IdMappingTechniques = {
     type = "structure",
+    id = "IdMappingTechniques",
     members = {
         idMappingType = {
             type = "string",
@@ -344,6 +361,7 @@ M.IdMappingIncrementalRunType = {
 
 M.IdMappingIncrementalRunConfig = {
     type = "structure",
+    id = "IdMappingIncrementalRunConfig",
     members = {
         incrementalRunType = {
             type = "string",
@@ -358,6 +376,7 @@ M.IdNamespaceType = {
 
 M.IdMappingWorkflowInputSource = {
     type = "structure",
+    id = "IdMappingWorkflowInputSource",
     members = {
         inputSourceARN = {
             type = "string",
@@ -376,6 +395,7 @@ M.IdMappingWorkflowInputSource = {
 
 M.IdMappingWorkflowOutputSource = {
     type = "structure",
+    id = "IdMappingWorkflowOutputSource",
     members = {
         KMSArn = {
             type = "string",
@@ -391,6 +411,7 @@ M.IdMappingWorkflowOutputSource = {
 
 M.CreateIdMappingWorkflowInput = {
     type = "structure",
+    id = "CreateIdMappingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -432,6 +453,7 @@ M.CreateIdMappingWorkflowInput = {
 
 M.CreateIdMappingWorkflowOutput = {
     type = "structure",
+    id = "CreateIdMappingWorkflowOutput",
     members = {
         workflowName = {
             type = "string",
@@ -474,6 +496,7 @@ M.CreateIdMappingWorkflowOutput = {
 
 M.ExceedsLimitException = {
     type = "structure",
+    id = "ExceedsLimitException",
     error = "client",
     members = {
         message = {
@@ -490,6 +513,7 @@ M.ExceedsLimitException = {
 
 M.NamespaceProviderProperties = {
     type = "structure",
+    id = "NamespaceProviderProperties",
     members = {
         providerServiceArn = {
             type = "string",
@@ -505,6 +529,7 @@ M.NamespaceProviderProperties = {
 
 M.NamespaceRuleBasedProperties = {
     type = "structure",
+    id = "NamespaceRuleBasedProperties",
     members = {
         rules = {
             type = "list",
@@ -526,6 +551,7 @@ M.NamespaceRuleBasedProperties = {
 
 M.IdNamespaceIdMappingWorkflowProperties = {
     type = "structure",
+    id = "IdNamespaceIdMappingWorkflowProperties",
     members = {
         idMappingType = {
             type = "string",
@@ -540,6 +566,7 @@ M.IdNamespaceIdMappingWorkflowProperties = {
 
 M.IdNamespaceInputSource = {
     type = "structure",
+    id = "IdNamespaceInputSource",
     members = {
         inputSourceARN = {
             type = "string",
@@ -555,6 +582,7 @@ M.IdNamespaceInputSource = {
 
 M.CreateIdNamespaceInput = {
     type = "structure",
+    id = "CreateIdNamespaceInput",
     members = {
         idNamespaceName = {
             type = "string",
@@ -592,6 +620,7 @@ M.CreateIdNamespaceInput = {
 
 M.CreateIdNamespaceOutput = {
     type = "structure",
+    id = "CreateIdNamespaceOutput",
     members = {
         idNamespaceName = {
             type = "string",
@@ -651,6 +680,7 @@ M.IncrementalRunType = {
 
 M.IncrementalRunConfig = {
     type = "structure",
+    id = "IncrementalRunConfig",
     members = {
         incrementalRunType = {
             type = "string",
@@ -660,6 +690,7 @@ M.IncrementalRunConfig = {
 
 M.InputSource = {
     type = "structure",
+    id = "InputSource",
     members = {
         inputSourceARN = {
             type = "string",
@@ -681,6 +712,7 @@ M.InputSource = {
 
 M.CustomerProfilesIntegrationConfig = {
     type = "structure",
+    id = "CustomerProfilesIntegrationConfig",
     members = {
         domainArn = {
             type = "string",
@@ -699,6 +731,7 @@ M.CustomerProfilesIntegrationConfig = {
 
 M.OutputAttribute = {
     type = "structure",
+    id = "OutputAttribute",
     members = {
         name = {
             type = "string",
@@ -714,6 +747,7 @@ M.OutputAttribute = {
 
 M.OutputSource = {
     type = "structure",
+    id = "OutputSource",
     members = {
         KMSArn = {
             type = "string",
@@ -751,6 +785,7 @@ M.MatchPurpose = {
 
 M.RuleBasedProperties = {
     type = "structure",
+    id = "RuleBasedProperties",
     members = {
         rules = {
             type = "list",
@@ -773,6 +808,7 @@ M.RuleBasedProperties = {
 
 M.MatchingConfig = {
     type = "structure",
+    id = "MatchingConfig",
     members = {
         enableTransitiveMatching = {
             type = "boolean",
@@ -782,6 +818,7 @@ M.MatchingConfig = {
 
 M.RuleCondition = {
     type = "structure",
+    id = "RuleCondition",
     members = {
         ruleName = {
             type = "string",
@@ -800,6 +837,7 @@ M.RuleCondition = {
 
 M.RuleConditionProperties = {
     type = "structure",
+    id = "RuleConditionProperties",
     members = {
         rules = {
             type = "list",
@@ -814,6 +852,7 @@ M.RuleConditionProperties = {
 
 M.ResolutionTechniques = {
     type = "structure",
+    id = "ResolutionTechniques",
     members = {
         resolutionType = {
             type = "string",
@@ -829,6 +868,7 @@ M.ResolutionTechniques = {
 
 M.CreateMatchingWorkflowInput = {
     type = "structure",
+    id = "CreateMatchingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -873,6 +913,7 @@ M.CreateMatchingWorkflowInput = {
 
 M.CreateMatchingWorkflowOutput = {
     type = "structure",
+    id = "CreateMatchingWorkflowOutput",
     members = {
         workflowName = {
             type = "string",
@@ -944,6 +985,7 @@ M.SchemaAttributeType = {
 
 M.SchemaInputAttribute = {
     type = "structure",
+    id = "SchemaInputAttribute",
     members = {
         fieldName = {
             type = "string",
@@ -974,6 +1016,7 @@ M.SchemaInputAttribute = {
 
 M.CreateSchemaMappingInput = {
     type = "structure",
+    id = "CreateSchemaMappingInput",
     members = {
         schemaName = {
             type = "string",
@@ -1001,6 +1044,7 @@ M.CreateSchemaMappingInput = {
 
 M.CreateSchemaMappingOutput = {
     type = "structure",
+    id = "CreateSchemaMappingOutput",
     members = {
         schemaName = {
             type = "string",
@@ -1032,6 +1076,7 @@ M.CreateSchemaMappingOutput = {
 
 M.DeleteIdMappingWorkflowInput = {
     type = "structure",
+    id = "DeleteIdMappingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -1045,6 +1090,7 @@ M.DeleteIdMappingWorkflowInput = {
 
 M.DeleteIdMappingWorkflowOutput = {
     type = "structure",
+    id = "DeleteIdMappingWorkflowOutput",
     members = {
         message = {
             type = "string",
@@ -1057,6 +1103,7 @@ M.DeleteIdMappingWorkflowOutput = {
 
 M.DeleteIdNamespaceInput = {
     type = "structure",
+    id = "DeleteIdNamespaceInput",
     members = {
         idNamespaceName = {
             type = "string",
@@ -1070,6 +1117,7 @@ M.DeleteIdNamespaceInput = {
 
 M.DeleteIdNamespaceOutput = {
     type = "structure",
+    id = "DeleteIdNamespaceOutput",
     members = {
         message = {
             type = "string",
@@ -1082,6 +1130,7 @@ M.DeleteIdNamespaceOutput = {
 
 M.DeleteMatchingWorkflowInput = {
     type = "structure",
+    id = "DeleteMatchingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -1095,6 +1144,7 @@ M.DeleteMatchingWorkflowInput = {
 
 M.DeleteMatchingWorkflowOutput = {
     type = "structure",
+    id = "DeleteMatchingWorkflowOutput",
     members = {
         message = {
             type = "string",
@@ -1107,6 +1157,7 @@ M.DeleteMatchingWorkflowOutput = {
 
 M.DeletePolicyStatementInput = {
     type = "structure",
+    id = "DeletePolicyStatementInput",
     members = {
         arn = {
             type = "string",
@@ -1127,6 +1178,7 @@ M.DeletePolicyStatementInput = {
 
 M.DeletePolicyStatementOutput = {
     type = "structure",
+    id = "DeletePolicyStatementOutput",
     members = {
         arn = {
             type = "string",
@@ -1148,6 +1200,7 @@ M.DeletePolicyStatementOutput = {
 
 M.DeleteSchemaMappingInput = {
     type = "structure",
+    id = "DeleteSchemaMappingInput",
     members = {
         schemaName = {
             type = "string",
@@ -1161,6 +1214,7 @@ M.DeleteSchemaMappingInput = {
 
 M.DeleteSchemaMappingOutput = {
     type = "structure",
+    id = "DeleteSchemaMappingOutput",
     members = {
         message = {
             type = "string",
@@ -1179,6 +1233,7 @@ M.ProcessingType = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         inputSourceARN = {
             type = "string",
@@ -1205,6 +1260,7 @@ M.Record = {
 
 M.GenerateMatchIdInput = {
     type = "structure",
+    id = "GenerateMatchIdInput",
     members = {
         workflowName = {
             type = "string",
@@ -1228,6 +1284,7 @@ M.GenerateMatchIdInput = {
 
 M.FailedRecord = {
     type = "structure",
+    id = "FailedRecord",
     members = {
         inputSourceARN = {
             type = "string",
@@ -1252,6 +1309,7 @@ M.FailedRecord = {
 
 M.MatchedRecord = {
     type = "structure",
+    id = "MatchedRecord",
     members = {
         inputSourceARN = {
             type = "string",
@@ -1270,6 +1328,7 @@ M.MatchedRecord = {
 
 M.MatchGroup = {
     type = "structure",
+    id = "MatchGroup",
     members = {
         records = {
             type = "list",
@@ -1295,6 +1354,7 @@ M.MatchGroup = {
 
 M.GenerateMatchIdOutput = {
     type = "structure",
+    id = "GenerateMatchIdOutput",
     members = {
         matchGroups = {
             type = "list",
@@ -1315,6 +1375,7 @@ M.GenerateMatchIdOutput = {
 
 M.GetIdMappingJobInput = {
     type = "structure",
+    id = "GetIdMappingJobInput",
     members = {
         workflowName = {
             type = "string",
@@ -1335,6 +1396,7 @@ M.GetIdMappingJobInput = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         errorMessage = {
             type = "string",
@@ -1350,6 +1412,7 @@ M.JobType = {
 
 M.IdMappingJobMetrics = {
     type = "structure",
+    id = "IdMappingJobMetrics",
     members = {
         inputRecords = {
             type = "integer",
@@ -1401,6 +1464,7 @@ M.IdMappingJobMetrics = {
 
 M.IdMappingJobOutputSource = {
     type = "structure",
+    id = "IdMappingJobOutputSource",
     members = {
         roleArn = {
             type = "string",
@@ -1429,6 +1493,7 @@ M.JobStatus = {
 
 M.GetIdMappingJobOutput = {
     type = "structure",
+    id = "GetIdMappingJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -1465,6 +1530,7 @@ M.GetIdMappingJobOutput = {
 
 M.GetIdMappingWorkflowInput = {
     type = "structure",
+    id = "GetIdMappingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -1478,6 +1544,7 @@ M.GetIdMappingWorkflowInput = {
 
 M.GetIdMappingWorkflowOutput = {
     type = "structure",
+    id = "GetIdMappingWorkflowOutput",
     members = {
         workflowName = {
             type = "string",
@@ -1537,6 +1604,7 @@ M.GetIdMappingWorkflowOutput = {
 
 M.GetIdNamespaceInput = {
     type = "structure",
+    id = "GetIdNamespaceInput",
     members = {
         idNamespaceName = {
             type = "string",
@@ -1550,6 +1618,7 @@ M.GetIdNamespaceInput = {
 
 M.GetIdNamespaceOutput = {
     type = "structure",
+    id = "GetIdNamespaceOutput",
     members = {
         idNamespaceName = {
             type = "string",
@@ -1605,6 +1674,7 @@ M.GetIdNamespaceOutput = {
 
 M.GetMatchIdInput = {
     type = "structure",
+    id = "GetMatchIdInput",
     members = {
         workflowName = {
             type = "string",
@@ -1632,6 +1702,7 @@ M.GetMatchIdInput = {
 
 M.GetMatchIdOutput = {
     type = "structure",
+    id = "GetMatchIdOutput",
     members = {
         matchId = {
             type = "string",
@@ -1644,6 +1715,7 @@ M.GetMatchIdOutput = {
 
 M.GetMatchingJobInput = {
     type = "structure",
+    id = "GetMatchingJobInput",
     members = {
         workflowName = {
             type = "string",
@@ -1664,6 +1736,7 @@ M.GetMatchingJobInput = {
 
 M.JobMetrics = {
     type = "structure",
+    id = "JobMetrics",
     members = {
         inputRecords = {
             type = "integer",
@@ -1685,6 +1758,7 @@ M.JobMetrics = {
 
 M.JobOutputSource = {
     type = "structure",
+    id = "JobOutputSource",
     members = {
         roleArn = {
             type = "string",
@@ -1706,6 +1780,7 @@ M.JobOutputSource = {
 
 M.GetMatchingJobOutput = {
     type = "structure",
+    id = "GetMatchingJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -1739,6 +1814,7 @@ M.GetMatchingJobOutput = {
 
 M.GetMatchingWorkflowInput = {
     type = "structure",
+    id = "GetMatchingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -1752,6 +1828,7 @@ M.GetMatchingWorkflowInput = {
 
 M.GetMatchingWorkflowOutput = {
     type = "structure",
+    id = "GetMatchingWorkflowOutput",
     members = {
         workflowName = {
             type = "string",
@@ -1814,6 +1891,7 @@ M.GetMatchingWorkflowOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
     members = {
         arn = {
             type = "string",
@@ -1827,6 +1905,7 @@ M.GetPolicyInput = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         arn = {
             type = "string",
@@ -1848,6 +1927,7 @@ M.GetPolicyOutput = {
 
 M.GetProviderServiceInput = {
     type = "structure",
+    id = "GetProviderServiceInput",
     members = {
         providerName = {
             type = "string",
@@ -1868,6 +1948,7 @@ M.GetProviderServiceInput = {
 
 M.ProviderSchemaAttribute = {
     type = "structure",
+    id = "ProviderSchemaAttribute",
     members = {
         fieldName = {
             type = "string",
@@ -1892,6 +1973,7 @@ M.ProviderSchemaAttribute = {
 
 M.ProviderComponentSchema = {
     type = "structure",
+    id = "ProviderComponentSchema",
     members = {
         schemas = {
             type = "list",
@@ -1906,6 +1988,7 @@ M.ProviderComponentSchema = {
 
 M.ProviderMarketplaceConfiguration = {
     type = "structure",
+    id = "ProviderMarketplaceConfiguration",
     members = {
         dataSetId = {
             type = "string",
@@ -1936,6 +2019,7 @@ M.ProviderMarketplaceConfiguration = {
 
 M.ProviderEndpointConfiguration = {
     type = "union",
+    id = "ProviderEndpointConfiguration",
     members = {
         marketplaceConfiguration = M.ProviderMarketplaceConfiguration,
     },
@@ -1943,6 +2027,7 @@ M.ProviderEndpointConfiguration = {
 
 M.ProviderIdNameSpaceConfiguration = {
     type = "structure",
+    id = "ProviderIdNameSpaceConfiguration",
     members = {
         description = {
             type = "string",
@@ -1958,6 +2043,7 @@ M.ProviderIdNameSpaceConfiguration = {
 
 M.ProviderIntermediateDataAccessConfiguration = {
     type = "structure",
+    id = "ProviderIntermediateDataAccessConfiguration",
     members = {
         awsAccountIds = {
             type = "list",
@@ -1977,6 +2063,7 @@ M.ServiceType = {
 
 M.GetProviderServiceOutput = {
     type = "structure",
+    id = "GetProviderServiceOutput",
     members = {
         providerName = {
             type = "string",
@@ -2037,6 +2124,7 @@ M.GetProviderServiceOutput = {
 
 M.GetSchemaMappingInput = {
     type = "structure",
+    id = "GetSchemaMappingInput",
     members = {
         schemaName = {
             type = "string",
@@ -2050,6 +2138,7 @@ M.GetSchemaMappingInput = {
 
 M.GetSchemaMappingOutput = {
     type = "structure",
+    id = "GetSchemaMappingOutput",
     members = {
         schemaName = {
             type = "string",
@@ -2101,6 +2190,7 @@ M.GetSchemaMappingOutput = {
 
 M.ListIdMappingJobsInput = {
     type = "structure",
+    id = "ListIdMappingJobsInput",
     members = {
         workflowName = {
             type = "string",
@@ -2126,6 +2216,7 @@ M.ListIdMappingJobsInput = {
 
 M.JobSummary = {
     type = "structure",
+    id = "JobSummary",
     members = {
         jobId = {
             type = "string",
@@ -2153,6 +2244,7 @@ M.JobSummary = {
 
 M.ListIdMappingJobsOutput = {
     type = "structure",
+    id = "ListIdMappingJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -2166,6 +2258,7 @@ M.ListIdMappingJobsOutput = {
 
 M.ListIdMappingWorkflowsInput = {
     type = "structure",
+    id = "ListIdMappingWorkflowsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2184,6 +2277,7 @@ M.ListIdMappingWorkflowsInput = {
 
 M.IdMappingWorkflowSummary = {
     type = "structure",
+    id = "IdMappingWorkflowSummary",
     members = {
         workflowName = {
             type = "string",
@@ -2214,6 +2308,7 @@ M.IdMappingWorkflowSummary = {
 
 M.ListIdMappingWorkflowsOutput = {
     type = "structure",
+    id = "ListIdMappingWorkflowsOutput",
     members = {
         workflowSummaries = {
             type = "list",
@@ -2227,6 +2322,7 @@ M.ListIdMappingWorkflowsOutput = {
 
 M.ListIdNamespacesInput = {
     type = "structure",
+    id = "ListIdNamespacesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2245,6 +2341,7 @@ M.ListIdNamespacesInput = {
 
 M.IdNamespaceIdMappingWorkflowMetadata = {
     type = "structure",
+    id = "IdNamespaceIdMappingWorkflowMetadata",
     members = {
         idMappingType = {
             type = "string",
@@ -2257,6 +2354,7 @@ M.IdNamespaceIdMappingWorkflowMetadata = {
 
 M.IdNamespaceSummary = {
     type = "structure",
+    id = "IdNamespaceSummary",
     members = {
         idNamespaceName = {
             type = "string",
@@ -2300,6 +2398,7 @@ M.IdNamespaceSummary = {
 
 M.ListIdNamespacesOutput = {
     type = "structure",
+    id = "ListIdNamespacesOutput",
     members = {
         idNamespaceSummaries = {
             type = "list",
@@ -2313,6 +2412,7 @@ M.ListIdNamespacesOutput = {
 
 M.ListMatchingJobsInput = {
     type = "structure",
+    id = "ListMatchingJobsInput",
     members = {
         workflowName = {
             type = "string",
@@ -2338,6 +2438,7 @@ M.ListMatchingJobsInput = {
 
 M.ListMatchingJobsOutput = {
     type = "structure",
+    id = "ListMatchingJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -2351,6 +2452,7 @@ M.ListMatchingJobsOutput = {
 
 M.ListMatchingWorkflowsInput = {
     type = "structure",
+    id = "ListMatchingWorkflowsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2369,6 +2471,7 @@ M.ListMatchingWorkflowsInput = {
 
 M.MatchingWorkflowSummary = {
     type = "structure",
+    id = "MatchingWorkflowSummary",
     members = {
         workflowName = {
             type = "string",
@@ -2405,6 +2508,7 @@ M.MatchingWorkflowSummary = {
 
 M.ListMatchingWorkflowsOutput = {
     type = "structure",
+    id = "ListMatchingWorkflowsOutput",
     members = {
         workflowSummaries = {
             type = "list",
@@ -2418,6 +2522,7 @@ M.ListMatchingWorkflowsOutput = {
 
 M.ListProviderServicesInput = {
     type = "structure",
+    id = "ListProviderServicesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2442,6 +2547,7 @@ M.ListProviderServicesInput = {
 
 M.ProviderServiceSummary = {
     type = "structure",
+    id = "ProviderServiceSummary",
     members = {
         providerServiceArn = {
             type = "string",
@@ -2478,6 +2584,7 @@ M.ProviderServiceSummary = {
 
 M.ListProviderServicesOutput = {
     type = "structure",
+    id = "ListProviderServicesOutput",
     members = {
         providerServiceSummaries = {
             type = "list",
@@ -2491,6 +2598,7 @@ M.ListProviderServicesOutput = {
 
 M.ListSchemaMappingsInput = {
     type = "structure",
+    id = "ListSchemaMappingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2509,6 +2617,7 @@ M.ListSchemaMappingsInput = {
 
 M.SchemaMappingSummary = {
     type = "structure",
+    id = "SchemaMappingSummary",
     members = {
         schemaName = {
             type = "string",
@@ -2545,6 +2654,7 @@ M.SchemaMappingSummary = {
 
 M.ListSchemaMappingsOutput = {
     type = "structure",
+    id = "ListSchemaMappingsOutput",
     members = {
         schemaList = {
             type = "list",
@@ -2558,6 +2668,7 @@ M.ListSchemaMappingsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2571,6 +2682,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2585,6 +2697,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutPolicyInput = {
     type = "structure",
+    id = "PutPolicyInput",
     members = {
         arn = {
             type = "string",
@@ -2607,6 +2720,7 @@ M.PutPolicyInput = {
 
 M.PutPolicyOutput = {
     type = "structure",
+    id = "PutPolicyOutput",
     members = {
         arn = {
             type = "string",
@@ -2628,6 +2742,7 @@ M.PutPolicyOutput = {
 
 M.StartIdMappingJobInput = {
     type = "structure",
+    id = "StartIdMappingJobInput",
     members = {
         workflowName = {
             type = "string",
@@ -2648,6 +2763,7 @@ M.StartIdMappingJobInput = {
 
 M.StartIdMappingJobOutput = {
     type = "structure",
+    id = "StartIdMappingJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -2667,6 +2783,7 @@ M.StartIdMappingJobOutput = {
 
 M.StartMatchingJobInput = {
     type = "structure",
+    id = "StartMatchingJobInput",
     members = {
         workflowName = {
             type = "string",
@@ -2680,6 +2797,7 @@ M.StartMatchingJobInput = {
 
 M.StartMatchingJobOutput = {
     type = "structure",
+    id = "StartMatchingJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -2692,6 +2810,7 @@ M.StartMatchingJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2713,10 +2832,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2738,10 +2859,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateIdMappingWorkflowInput = {
     type = "structure",
+    id = "UpdateIdMappingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -2779,6 +2902,7 @@ M.UpdateIdMappingWorkflowInput = {
 
 M.UpdateIdMappingWorkflowOutput = {
     type = "structure",
+    id = "UpdateIdMappingWorkflowOutput",
     members = {
         workflowName = {
             type = "string",
@@ -2821,6 +2945,7 @@ M.UpdateIdMappingWorkflowOutput = {
 
 M.UpdateIdNamespaceInput = {
     type = "structure",
+    id = "UpdateIdNamespaceInput",
     members = {
         idNamespaceName = {
             type = "string",
@@ -2848,6 +2973,7 @@ M.UpdateIdNamespaceInput = {
 
 M.UpdateIdNamespaceOutput = {
     type = "structure",
+    id = "UpdateIdNamespaceOutput",
     members = {
         idNamespaceName = {
             type = "string",
@@ -2898,6 +3024,7 @@ M.UpdateIdNamespaceOutput = {
 
 M.UpdateMatchingWorkflowInput = {
     type = "structure",
+    id = "UpdateMatchingWorkflowInput",
     members = {
         workflowName = {
             type = "string",
@@ -2938,6 +3065,7 @@ M.UpdateMatchingWorkflowInput = {
 
 M.UpdateMatchingWorkflowOutput = {
     type = "structure",
+    id = "UpdateMatchingWorkflowOutput",
     members = {
         workflowName = {
             type = "string",
@@ -2977,6 +3105,7 @@ M.UpdateMatchingWorkflowOutput = {
 
 M.UpdateSchemaMappingInput = {
     type = "structure",
+    id = "UpdateSchemaMappingInput",
     members = {
         schemaName = {
             type = "string",
@@ -3000,6 +3129,7 @@ M.UpdateSchemaMappingInput = {
 
 M.UpdateSchemaMappingOutput = {
     type = "structure",
+    id = "UpdateSchemaMappingOutput",
     members = {
         schemaName = {
             type = "string",

@@ -10,6 +10,7 @@ M.EventPublisher = {
 
 M.Channel = {
     type = "structure",
+    id = "Channel",
     members = {
         id = {
             type = "string",
@@ -32,6 +33,7 @@ M.Channel = {
 
 M.AddNotificationChannelsInput = {
     type = "structure",
+    id = "AddNotificationChannelsInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -52,6 +54,7 @@ M.AddNotificationChannelsInput = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         channels = {
             type = "list",
@@ -62,6 +65,7 @@ M.NotificationConfiguration = {
 
 M.AddNotificationChannelsOutput = {
     type = "structure",
+    id = "AddNotificationChannelsOutput",
     members = {
         notificationConfiguration = M.NotificationConfiguration,
     },
@@ -69,6 +73,7 @@ M.AddNotificationChannelsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -82,6 +87,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -95,6 +101,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -108,6 +115,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -121,6 +129,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -134,6 +143,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -155,6 +165,7 @@ M.AgentParameterField = {
 
 M.AgentConfiguration = {
     type = "structure",
+    id = "AgentConfiguration",
     members = {
         shouldProfile = {
             type = "boolean",
@@ -178,6 +189,7 @@ M.AgentConfiguration = {
 
 M.AgentOrchestrationConfig = {
     type = "structure",
+    id = "AgentOrchestrationConfig",
     members = {
         profilingEnabled = {
             type = "boolean",
@@ -196,6 +208,7 @@ M.AggregationPeriod = {
 
 M.AggregatedProfileTime = {
     type = "structure",
+    id = "AggregatedProfileTime",
     members = {
         start = {
             type = "timestamp",
@@ -216,6 +229,7 @@ M.FeedbackType = {
 
 M.UserFeedback = {
     type = "structure",
+    id = "UserFeedback",
     members = {
         type = {
             type = "string",
@@ -228,6 +242,7 @@ M.UserFeedback = {
 
 M.AnomalyInstance = {
     type = "structure",
+    id = "AnomalyInstance",
     members = {
         id = {
             type = "string",
@@ -258,6 +273,7 @@ M.MetricType = {
 
 M.Metric = {
     type = "structure",
+    id = "Metric",
     members = {
         frameName = {
             type = "string",
@@ -283,6 +299,7 @@ M.Metric = {
 
 M.Anomaly = {
     type = "structure",
+    id = "Anomaly",
     members = {
         metric = setmetatable({ traits = {
             required = true,
@@ -305,6 +322,7 @@ M.Anomaly = {
 
 M.FrameMetric = {
     type = "structure",
+    id = "FrameMetric",
     members = {
         frameName = {
             type = "string",
@@ -330,6 +348,7 @@ M.FrameMetric = {
 
 M.BatchGetFrameMetricDataInput = {
     type = "structure",
+    id = "BatchGetFrameMetricDataInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -373,6 +392,7 @@ M.BatchGetFrameMetricDataInput = {
 
 M.TimestampStructure = {
     type = "structure",
+    id = "TimestampStructure",
     members = {
         value = {
             type = "timestamp",
@@ -386,6 +406,7 @@ M.TimestampStructure = {
 
 M.FrameMetricDatum = {
     type = "structure",
+    id = "FrameMetricDatum",
     members = {
         frameMetric = setmetatable({ traits = {
             required = true,
@@ -402,6 +423,7 @@ M.FrameMetricDatum = {
 
 M.BatchGetFrameMetricDataOutput = {
     type = "structure",
+    id = "BatchGetFrameMetricDataOutput",
     members = {
         startTime = {
             type = "timestamp",
@@ -450,6 +472,7 @@ M.BatchGetFrameMetricDataOutput = {
 
 M.GetFindingsReportAccountSummaryInput = {
     type = "structure",
+    id = "GetFindingsReportAccountSummaryInput",
     members = {
         nextToken = {
             type = "string",
@@ -474,6 +497,7 @@ M.GetFindingsReportAccountSummaryInput = {
 
 M.FindingsReportSummary = {
     type = "structure",
+    id = "FindingsReportSummary",
     members = {
         id = {
             type = "string",
@@ -501,6 +525,7 @@ M.FindingsReportSummary = {
 
 M.GetFindingsReportAccountSummaryOutput = {
     type = "structure",
+    id = "GetFindingsReportAccountSummaryOutput",
     members = {
         reportSummaries = {
             type = "list",
@@ -517,6 +542,7 @@ M.GetFindingsReportAccountSummaryOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -530,6 +556,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -553,6 +580,7 @@ M.MetadataField = {
 
 M.ConfigureAgentInput = {
     type = "structure",
+    id = "ConfigureAgentInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -574,6 +602,7 @@ M.ConfigureAgentInput = {
 
 M.ConfigureAgentOutput = {
     type = "structure",
+    id = "ConfigureAgentOutput",
     members = {
         configuration = setmetatable({ traits = {
             http_payload = true,
@@ -589,6 +618,7 @@ M.ComputePlatform = {
 
 M.CreateProfilingGroupInput = {
     type = "structure",
+    id = "CreateProfilingGroupInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -618,6 +648,7 @@ M.CreateProfilingGroupInput = {
 
 M.ProfilingStatus = {
     type = "structure",
+    id = "ProfilingStatus",
     members = {
         latestAgentProfileReportedAt = {
             type = "timestamp",
@@ -637,6 +668,7 @@ M.ProfilingStatus = {
 
 M.ProfilingGroupDescription = {
     type = "structure",
+    id = "ProfilingGroupDescription",
     members = {
         name = {
             type = "string",
@@ -671,6 +703,7 @@ M.ProfilingGroupDescription = {
 
 M.CreateProfilingGroupOutput = {
     type = "structure",
+    id = "CreateProfilingGroupOutput",
     members = {
         profilingGroup = setmetatable({ traits = {
             http_payload = true,
@@ -681,6 +714,7 @@ M.CreateProfilingGroupOutput = {
 
 M.DeleteProfilingGroupInput = {
     type = "structure",
+    id = "DeleteProfilingGroupInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -694,10 +728,12 @@ M.DeleteProfilingGroupInput = {
 
 M.DeleteProfilingGroupOutput = {
     type = "structure",
+    id = "DeleteProfilingGroupOutput",
 }
 
 M.DescribeProfilingGroupInput = {
     type = "structure",
+    id = "DescribeProfilingGroupInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -711,6 +747,7 @@ M.DescribeProfilingGroupInput = {
 
 M.DescribeProfilingGroupOutput = {
     type = "structure",
+    id = "DescribeProfilingGroupOutput",
     members = {
         profilingGroup = setmetatable({ traits = {
             http_payload = true,
@@ -721,6 +758,7 @@ M.DescribeProfilingGroupOutput = {
 
 M.GetNotificationConfigurationInput = {
     type = "structure",
+    id = "GetNotificationConfigurationInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -734,6 +772,7 @@ M.GetNotificationConfigurationInput = {
 
 M.GetNotificationConfigurationOutput = {
     type = "structure",
+    id = "GetNotificationConfigurationOutput",
     members = {
         notificationConfiguration = setmetatable({ traits = {
             required = true,
@@ -743,6 +782,7 @@ M.GetNotificationConfigurationOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -756,6 +796,7 @@ M.GetPolicyInput = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         policy = {
             type = "string",
@@ -774,6 +815,7 @@ M.GetPolicyOutput = {
 
 M.GetProfileInput = {
     type = "structure",
+    id = "GetProfileInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -819,6 +861,7 @@ M.GetProfileInput = {
 
 M.GetProfileOutput = {
     type = "structure",
+    id = "GetProfileOutput",
     members = {
         profile = {
             type = "blob",
@@ -845,6 +888,7 @@ M.GetProfileOutput = {
 
 M.GetRecommendationsInput = {
     type = "structure",
+    id = "GetRecommendationsInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -880,6 +924,7 @@ M.GetRecommendationsInput = {
 
 M.Pattern = {
     type = "structure",
+    id = "Pattern",
     members = {
         id = {
             type = "string",
@@ -912,6 +957,7 @@ M.Pattern = {
 
 M.Match = {
     type = "structure",
+    id = "Match",
     members = {
         targetFramesIndex = {
             type = "integer",
@@ -927,6 +973,7 @@ M.Match = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         allMatchesCount = {
             type = "integer",
@@ -969,6 +1016,7 @@ M.Recommendation = {
 
 M.GetRecommendationsOutput = {
     type = "structure",
+    id = "GetRecommendationsOutput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1009,6 +1057,7 @@ M.GetRecommendationsOutput = {
 
 M.ListFindingsReportsInput = {
     type = "structure",
+    id = "ListFindingsReportsInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1056,6 +1105,7 @@ M.ListFindingsReportsInput = {
 
 M.ListFindingsReportsOutput = {
     type = "structure",
+    id = "ListFindingsReportsOutput",
     members = {
         findingsReportSummaries = {
             type = "list",
@@ -1077,6 +1127,7 @@ M.OrderBy = {
 
 M.ListProfileTimesInput = {
     type = "structure",
+    id = "ListProfileTimesInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1131,6 +1182,7 @@ M.ListProfileTimesInput = {
 
 M.ProfileTime = {
     type = "structure",
+    id = "ProfileTime",
     members = {
         start = {
             type = "timestamp",
@@ -1143,6 +1195,7 @@ M.ProfileTime = {
 
 M.ListProfileTimesOutput = {
     type = "structure",
+    id = "ListProfileTimesOutput",
     members = {
         profileTimes = {
             type = "list",
@@ -1159,6 +1212,7 @@ M.ListProfileTimesOutput = {
 
 M.ListProfilingGroupsInput = {
     type = "structure",
+    id = "ListProfilingGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1183,6 +1237,7 @@ M.ListProfilingGroupsInput = {
 
 M.ListProfilingGroupsOutput = {
     type = "structure",
+    id = "ListProfilingGroupsOutput",
     members = {
         profilingGroupNames = {
             type = "list",
@@ -1203,6 +1258,7 @@ M.ListProfilingGroupsOutput = {
 
 M.PostAgentProfileInput = {
     type = "structure",
+    id = "PostAgentProfileInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1237,10 +1293,12 @@ M.PostAgentProfileInput = {
 
 M.PostAgentProfileOutput = {
     type = "structure",
+    id = "PostAgentProfileOutput",
 }
 
 M.PutPermissionInput = {
     type = "structure",
+    id = "PutPermissionInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1271,6 +1329,7 @@ M.PutPermissionInput = {
 
 M.PutPermissionOutput = {
     type = "structure",
+    id = "PutPermissionOutput",
     members = {
         policy = {
             type = "string",
@@ -1289,6 +1348,7 @@ M.PutPermissionOutput = {
 
 M.RemoveNotificationChannelInput = {
     type = "structure",
+    id = "RemoveNotificationChannelInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1309,6 +1369,7 @@ M.RemoveNotificationChannelInput = {
 
 M.RemoveNotificationChannelOutput = {
     type = "structure",
+    id = "RemoveNotificationChannelOutput",
     members = {
         notificationConfiguration = M.NotificationConfiguration,
     },
@@ -1316,6 +1377,7 @@ M.RemoveNotificationChannelOutput = {
 
 M.RemovePermissionInput = {
     type = "structure",
+    id = "RemovePermissionInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1343,6 +1405,7 @@ M.RemovePermissionInput = {
 
 M.RemovePermissionOutput = {
     type = "structure",
+    id = "RemovePermissionOutput",
     members = {
         policy = {
             type = "string",
@@ -1361,6 +1424,7 @@ M.RemovePermissionOutput = {
 
 M.SubmitFeedbackInput = {
     type = "structure",
+    id = "SubmitFeedbackInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1390,10 +1454,12 @@ M.SubmitFeedbackInput = {
 
 M.SubmitFeedbackOutput = {
     type = "structure",
+    id = "SubmitFeedbackOutput",
 }
 
 M.UpdateProfilingGroupInput = {
     type = "structure",
+    id = "UpdateProfilingGroupInput",
     members = {
         profilingGroupName = {
             type = "string",
@@ -1410,6 +1476,7 @@ M.UpdateProfilingGroupInput = {
 
 M.UpdateProfilingGroupOutput = {
     type = "structure",
+    id = "UpdateProfilingGroupOutput",
     members = {
         profilingGroup = setmetatable({ traits = {
             http_payload = true,
@@ -1420,6 +1487,7 @@ M.UpdateProfilingGroupOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1441,10 +1509,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1466,6 +1536,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

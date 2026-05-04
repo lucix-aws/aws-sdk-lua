@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptPrimaryEmailUpdateInput = {
     type = "structure",
+    id = "AcceptPrimaryEmailUpdateInput",
     members = {
         AccountId = {
             type = "string",
@@ -31,6 +32,7 @@ M.PrimaryEmailUpdateStatus = {
 
 M.AcceptPrimaryEmailUpdateOutput = {
     type = "structure",
+    id = "AcceptPrimaryEmailUpdateOutput",
     members = {
         Status = {
             type = "string",
@@ -40,6 +42,7 @@ M.AcceptPrimaryEmailUpdateOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -59,6 +62,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -78,6 +82,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -97,6 +102,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -116,6 +122,7 @@ M.ResourceNotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -135,6 +142,7 @@ M.TooManyRequestsException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -158,6 +166,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -178,6 +187,7 @@ M.ValidationException = {
 
 M.GetAccountInformationInput = {
     type = "structure",
+    id = "GetAccountInformationInput",
     members = {
         AccountId = {
             type = "string",
@@ -194,6 +204,7 @@ M.AccountState = {
 
 M.GetAccountInformationOutput = {
     type = "structure",
+    id = "GetAccountInformationOutput",
     members = {
         AccountId = {
             type = "string",
@@ -215,6 +226,7 @@ M.GetAccountInformationOutput = {
 
 M.PutAccountNameInput = {
     type = "structure",
+    id = "PutAccountNameInput",
     members = {
         AccountName = {
             type = "string",
@@ -230,6 +242,7 @@ M.PutAccountNameInput = {
 
 M.PutAccountNameOutput = {
     type = "structure",
+    id = "PutAccountNameOutput",
 }
 
 M.AlternateContactType = {
@@ -240,6 +253,7 @@ M.AlternateContactType = {
 
 M.DeleteAlternateContactInput = {
     type = "structure",
+    id = "DeleteAlternateContactInput",
     members = {
         AlternateContactType = {
             type = "string",
@@ -255,10 +269,12 @@ M.DeleteAlternateContactInput = {
 
 M.DeleteAlternateContactOutput = {
     type = "structure",
+    id = "DeleteAlternateContactOutput",
 }
 
 M.GetAlternateContactInput = {
     type = "structure",
+    id = "GetAlternateContactInput",
     members = {
         AlternateContactType = {
             type = "string",
@@ -274,6 +290,7 @@ M.GetAlternateContactInput = {
 
 M.AlternateContact = {
     type = "structure",
+    id = "AlternateContact",
     members = {
         Name = {
             type = "string",
@@ -295,6 +312,7 @@ M.AlternateContact = {
 
 M.GetAlternateContactOutput = {
     type = "structure",
+    id = "GetAlternateContactOutput",
     members = {
         AlternateContact = M.AlternateContact,
     },
@@ -302,6 +320,7 @@ M.GetAlternateContactOutput = {
 
 M.PutAlternateContactInput = {
     type = "structure",
+    id = "PutAlternateContactInput",
     members = {
         Name = {
             type = "string",
@@ -341,10 +360,12 @@ M.PutAlternateContactInput = {
 
 M.PutAlternateContactOutput = {
     type = "structure",
+    id = "PutAlternateContactOutput",
 }
 
 M.GetGovCloudAccountInformationInput = {
     type = "structure",
+    id = "GetGovCloudAccountInformationInput",
     members = {
         StandardAccountId = {
             type = "string",
@@ -361,6 +382,7 @@ M.AwsAccountState = {
 
 M.GetGovCloudAccountInformationOutput = {
     type = "structure",
+    id = "GetGovCloudAccountInformationOutput",
     members = {
         GovCloudAccountId = {
             type = "string",
@@ -379,6 +401,7 @@ M.GetGovCloudAccountInformationOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         message = {
@@ -398,6 +421,7 @@ M.ResourceUnavailableException = {
 
 M.GetContactInformationInput = {
     type = "structure",
+    id = "GetContactInformationInput",
     members = {
         AccountId = {
             type = "string",
@@ -407,6 +431,7 @@ M.GetContactInformationInput = {
 
 M.ContactInformation = {
     type = "structure",
+    id = "ContactInformation",
     members = {
         FullName = {
             type = "string",
@@ -467,6 +492,7 @@ M.ContactInformation = {
 
 M.GetContactInformationOutput = {
     type = "structure",
+    id = "GetContactInformationOutput",
     members = {
         ContactInformation = M.ContactInformation,
     },
@@ -474,6 +500,7 @@ M.GetContactInformationOutput = {
 
 M.PutContactInformationInput = {
     type = "structure",
+    id = "PutContactInformationInput",
     members = {
         ContactInformation = setmetatable({ traits = {
             required = true,
@@ -486,10 +513,12 @@ M.PutContactInformationInput = {
 
 M.PutContactInformationOutput = {
     type = "structure",
+    id = "PutContactInformationOutput",
 }
 
 M.GetPrimaryEmailInput = {
     type = "structure",
+    id = "GetPrimaryEmailInput",
     members = {
         AccountId = {
             type = "string",
@@ -502,6 +531,7 @@ M.GetPrimaryEmailInput = {
 
 M.GetPrimaryEmailOutput = {
     type = "structure",
+    id = "GetPrimaryEmailOutput",
     members = {
         PrimaryEmail = {
             type = "string",
@@ -511,6 +541,7 @@ M.GetPrimaryEmailOutput = {
 
 M.StartPrimaryEmailUpdateInput = {
     type = "structure",
+    id = "StartPrimaryEmailUpdateInput",
     members = {
         AccountId = {
             type = "string",
@@ -529,6 +560,7 @@ M.StartPrimaryEmailUpdateInput = {
 
 M.StartPrimaryEmailUpdateOutput = {
     type = "structure",
+    id = "StartPrimaryEmailUpdateOutput",
     members = {
         Status = {
             type = "string",
@@ -538,6 +570,7 @@ M.StartPrimaryEmailUpdateOutput = {
 
 M.DisableRegionInput = {
     type = "structure",
+    id = "DisableRegionInput",
     members = {
         AccountId = {
             type = "string",
@@ -553,10 +586,12 @@ M.DisableRegionInput = {
 
 M.DisableRegionOutput = {
     type = "structure",
+    id = "DisableRegionOutput",
 }
 
 M.EnableRegionInput = {
     type = "structure",
+    id = "EnableRegionInput",
     members = {
         AccountId = {
             type = "string",
@@ -572,10 +607,12 @@ M.EnableRegionInput = {
 
 M.EnableRegionOutput = {
     type = "structure",
+    id = "EnableRegionOutput",
 }
 
 M.GetRegionOptStatusInput = {
     type = "structure",
+    id = "GetRegionOptStatusInput",
     members = {
         AccountId = {
             type = "string",
@@ -599,6 +636,7 @@ M.RegionOptStatus = {
 
 M.GetRegionOptStatusOutput = {
     type = "structure",
+    id = "GetRegionOptStatusOutput",
     members = {
         RegionName = {
             type = "string",
@@ -611,6 +649,7 @@ M.GetRegionOptStatusOutput = {
 
 M.ListRegionsInput = {
     type = "structure",
+    id = "ListRegionsInput",
     members = {
         AccountId = {
             type = "string",
@@ -630,6 +669,7 @@ M.ListRegionsInput = {
 
 M.Region = {
     type = "structure",
+    id = "Region",
     members = {
         RegionName = {
             type = "string",
@@ -642,6 +682,7 @@ M.Region = {
 
 M.ListRegionsOutput = {
     type = "structure",
+    id = "ListRegionsOutput",
     members = {
         NextToken = {
             type = "string",

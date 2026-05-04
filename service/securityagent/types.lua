@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -27,6 +28,7 @@ M.AuthenticationProviderType = {
 
 M.Authentication = {
     type = "structure",
+    id = "Authentication",
     members = {
         providerType = {
             type = "string",
@@ -39,6 +41,7 @@ M.Authentication = {
 
 M.Actor = {
     type = "structure",
+    id = "Actor",
     members = {
         identifier = {
             type = "string",
@@ -68,6 +71,7 @@ M.ArtifactType = {
 
 M.AddArtifactInput = {
     type = "structure",
+    id = "AddArtifactInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -98,6 +102,7 @@ M.AddArtifactInput = {
 
 M.AddArtifactOutput = {
     type = "structure",
+    id = "AddArtifactOutput",
     members = {
         artifactId = {
             type = "string",
@@ -110,6 +115,7 @@ M.AddArtifactOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -123,6 +129,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -136,6 +143,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -155,6 +163,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         path = {
             type = "string",
@@ -173,6 +182,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -190,6 +200,7 @@ M.ValidationException = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         vpcArn = {
             type = "string",
@@ -207,6 +218,7 @@ M.VpcConfig = {
 
 M.AWSResources = {
     type = "structure",
+    id = "AWSResources",
     members = {
         vpcs = {
             type = "list",
@@ -237,6 +249,7 @@ M.AWSResources = {
 
 M.CodeReviewSettings = {
     type = "structure",
+    id = "CodeReviewSettings",
     members = {
         controlsScanning = {
             type = "boolean",
@@ -255,6 +268,7 @@ M.CodeReviewSettings = {
 
 M.AgentSpace = {
     type = "structure",
+    id = "AgentSpace",
     members = {
         agentSpaceId = {
             type = "string",
@@ -297,6 +311,7 @@ M.AgentSpace = {
 
 M.BatchGetAgentSpacesInput = {
     type = "structure",
+    id = "BatchGetAgentSpacesInput",
     members = {
         agentSpaceIds = {
             type = "list",
@@ -310,6 +325,7 @@ M.BatchGetAgentSpacesInput = {
 
 M.BatchGetAgentSpacesOutput = {
     type = "structure",
+    id = "BatchGetAgentSpacesOutput",
     members = {
         agentSpaces = {
             type = "list",
@@ -324,6 +340,7 @@ M.BatchGetAgentSpacesOutput = {
 
 M.CreateAgentSpaceInput = {
     type = "structure",
+    id = "CreateAgentSpaceInput",
     members = {
         name = {
             type = "string",
@@ -353,6 +370,7 @@ M.CreateAgentSpaceInput = {
 
 M.CreateAgentSpaceOutput = {
     type = "structure",
+    id = "CreateAgentSpaceOutput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -395,6 +413,7 @@ M.CreateAgentSpaceOutput = {
 
 M.DeleteAgentSpaceInput = {
     type = "structure",
+    id = "DeleteAgentSpaceInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -407,6 +426,7 @@ M.DeleteAgentSpaceInput = {
 
 M.DeleteAgentSpaceOutput = {
     type = "structure",
+    id = "DeleteAgentSpaceOutput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -416,6 +436,7 @@ M.DeleteAgentSpaceOutput = {
 
 M.ListAgentSpacesInput = {
     type = "structure",
+    id = "ListAgentSpacesInput",
     members = {
         nextToken = {
             type = "string",
@@ -428,6 +449,7 @@ M.ListAgentSpacesInput = {
 
 M.AgentSpaceSummary = {
     type = "structure",
+    id = "AgentSpaceSummary",
     members = {
         agentSpaceId = {
             type = "string",
@@ -458,6 +480,7 @@ M.AgentSpaceSummary = {
 
 M.ListAgentSpacesOutput = {
     type = "structure",
+    id = "ListAgentSpacesOutput",
     members = {
         agentSpaceSummaries = {
             type = "list",
@@ -471,6 +494,7 @@ M.ListAgentSpacesOutput = {
 
 M.UpdateAgentSpaceInput = {
     type = "structure",
+    id = "UpdateAgentSpaceInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -495,6 +519,7 @@ M.UpdateAgentSpaceInput = {
 
 M.UpdateAgentSpaceOutput = {
     type = "structure",
+    id = "UpdateAgentSpaceOutput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -534,6 +559,7 @@ M.UpdateAgentSpaceOutput = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         idcInstanceArn = {
             type = "string",
@@ -554,6 +580,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         applicationId = {
             type = "string",
@@ -566,6 +593,7 @@ M.CreateApplicationOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -578,10 +606,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -594,6 +624,7 @@ M.GetApplicationInput = {
 
 M.IdCConfiguration = {
     type = "structure",
+    id = "IdCConfiguration",
     members = {
         idcApplicationArn = {
             type = "string",
@@ -606,6 +637,7 @@ M.IdCConfiguration = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         applicationId = {
             type = "string",
@@ -634,6 +666,7 @@ M.GetApplicationOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -646,6 +679,7 @@ M.ListApplicationsInput = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         applicationId = {
             type = "string",
@@ -673,6 +707,7 @@ M.ApplicationSummary = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         applicationSummaries = {
             type = "list",
@@ -689,6 +724,7 @@ M.ListApplicationsOutput = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -707,6 +743,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         applicationId = {
             type = "string",
@@ -719,6 +756,7 @@ M.UpdateApplicationOutput = {
 
 M.Artifact = {
     type = "structure",
+    id = "Artifact",
     members = {
         contents = {
             type = "string",
@@ -737,6 +775,7 @@ M.Artifact = {
 
 M.ArtifactMetadataItem = {
     type = "structure",
+    id = "ArtifactMetadataItem",
     members = {
         agentSpaceId = {
             type = "string",
@@ -768,6 +807,7 @@ M.ArtifactMetadataItem = {
 
 M.ArtifactSummary = {
     type = "structure",
+    id = "ArtifactSummary",
     members = {
         artifactId = {
             type = "string",
@@ -792,6 +832,7 @@ M.ArtifactSummary = {
 
 M.DocumentInfo = {
     type = "structure",
+    id = "DocumentInfo",
     members = {
         s3Location = {
             type = "string",
@@ -804,6 +845,7 @@ M.DocumentInfo = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         uri = {
             type = "string",
@@ -813,6 +855,7 @@ M.Endpoint = {
 
 M.IntegratedRepository = {
     type = "structure",
+    id = "IntegratedRepository",
     members = {
         integrationId = {
             type = "string",
@@ -831,6 +874,7 @@ M.IntegratedRepository = {
 
 M.SourceCodeRepository = {
     type = "structure",
+    id = "SourceCodeRepository",
     members = {
         s3Location = {
             type = "string",
@@ -840,6 +884,7 @@ M.SourceCodeRepository = {
 
 M.Assets = {
     type = "structure",
+    id = "Assets",
     members = {
         endpoints = {
             type = "list",
@@ -866,6 +911,7 @@ M.Assets = {
 
 M.BatchDeletePentestsInput = {
     type = "structure",
+    id = "BatchDeletePentestsInput",
     members = {
         pentestIds = {
             type = "list",
@@ -921,6 +967,7 @@ M.RiskType = {
 
 M.CloudWatchLog = {
     type = "structure",
+    id = "CloudWatchLog",
     members = {
         logGroup = {
             type = "string",
@@ -933,6 +980,7 @@ M.CloudWatchLog = {
 
 M.CustomHeader = {
     type = "structure",
+    id = "CustomHeader",
     members = {
         name = {
             type = "string",
@@ -954,6 +1002,7 @@ M.NetworkTrafficRuleType = {
 
 M.NetworkTrafficRule = {
     type = "structure",
+    id = "NetworkTrafficRule",
     members = {
         effect = {
             type = "string",
@@ -969,6 +1018,7 @@ M.NetworkTrafficRule = {
 
 M.NetworkTrafficConfig = {
     type = "structure",
+    id = "NetworkTrafficConfig",
     members = {
         rules = {
             type = "list",
@@ -983,6 +1033,7 @@ M.NetworkTrafficConfig = {
 
 M.Pentest = {
     type = "structure",
+    id = "Pentest",
     members = {
         pentestId = {
             type = "string",
@@ -1035,6 +1086,7 @@ M.Pentest = {
 
 M.DeletePentestFailure = {
     type = "structure",
+    id = "DeletePentestFailure",
     members = {
         pentestId = {
             type = "string",
@@ -1047,6 +1099,7 @@ M.DeletePentestFailure = {
 
 M.BatchDeletePentestsOutput = {
     type = "structure",
+    id = "BatchDeletePentestsOutput",
     members = {
         deleted = {
             type = "list",
@@ -1061,6 +1114,7 @@ M.BatchDeletePentestsOutput = {
 
 M.BatchGetArtifactMetadataInput = {
     type = "structure",
+    id = "BatchGetArtifactMetadataInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1080,6 +1134,7 @@ M.BatchGetArtifactMetadataInput = {
 
 M.BatchGetArtifactMetadataOutput = {
     type = "structure",
+    id = "BatchGetArtifactMetadataOutput",
     members = {
         artifactMetadataList = {
             type = "list",
@@ -1093,6 +1148,7 @@ M.BatchGetArtifactMetadataOutput = {
 
 M.BatchGetFindingsInput = {
     type = "structure",
+    id = "BatchGetFindingsInput",
     members = {
         findingIds = {
             type = "list",
@@ -1118,6 +1174,7 @@ M.CodeRemediationTaskStatus = {
 
 M.CodeRemediationTaskDetails = {
     type = "structure",
+    id = "CodeRemediationTaskDetails",
     members = {
         repoName = {
             type = "string",
@@ -1133,6 +1190,7 @@ M.CodeRemediationTaskDetails = {
 
 M.CodeRemediationTask = {
     type = "structure",
+    id = "CodeRemediationTask",
     members = {
         status = {
             type = "string",
@@ -1176,6 +1234,7 @@ M.FindingStatus = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         findingId = {
             type = "string",
@@ -1246,6 +1305,7 @@ M.Finding = {
 
 M.BatchGetFindingsOutput = {
     type = "structure",
+    id = "BatchGetFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -1260,6 +1320,7 @@ M.BatchGetFindingsOutput = {
 
 M.BatchGetPentestJobsInput = {
     type = "structure",
+    id = "BatchGetPentestJobsInput",
     members = {
         pentestJobIds = {
             type = "list",
@@ -1285,6 +1346,7 @@ M.ErrorCode = {
 
 M.ErrorInformation = {
     type = "structure",
+    id = "ErrorInformation",
     members = {
         code = {
             type = "string",
@@ -1304,6 +1366,7 @@ M.ContextType = {
 
 M.ExecutionContext = {
     type = "structure",
+    id = "ExecutionContext",
     members = {
         contextType = {
             type = "string",
@@ -1345,6 +1408,7 @@ M.StepStatus = {
 
 M.Step = {
     type = "structure",
+    id = "Step",
     members = {
         name = {
             type = "string",
@@ -1369,6 +1433,7 @@ M.Step = {
 
 M.PentestJob = {
     type = "structure",
+    id = "PentestJob",
     members = {
         pentestJobId = {
             type = "string",
@@ -1452,6 +1517,7 @@ M.PentestJob = {
 
 M.BatchGetPentestJobsOutput = {
     type = "structure",
+    id = "BatchGetPentestJobsOutput",
     members = {
         pentestJobs = {
             type = "list",
@@ -1466,6 +1532,7 @@ M.BatchGetPentestJobsOutput = {
 
 M.BatchGetPentestJobTasksInput = {
     type = "structure",
+    id = "BatchGetPentestJobTasksInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1485,6 +1552,7 @@ M.BatchGetPentestJobTasksInput = {
 
 M.Category = {
     type = "structure",
+    id = "Category",
     members = {
         name = {
             type = "string",
@@ -1509,6 +1577,7 @@ M.LogType = {
 
 M.LogLocation = {
     type = "structure",
+    id = "LogLocation",
     members = {
         logType = {
             type = "string",
@@ -1519,6 +1588,7 @@ M.LogLocation = {
 
 M.Task = {
     type = "structure",
+    id = "Task",
     members = {
         taskId = {
             type = "string",
@@ -1570,6 +1640,7 @@ M.Task = {
 
 M.BatchGetPentestJobTasksOutput = {
     type = "structure",
+    id = "BatchGetPentestJobTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -1584,6 +1655,7 @@ M.BatchGetPentestJobTasksOutput = {
 
 M.BatchGetPentestsInput = {
     type = "structure",
+    id = "BatchGetPentestsInput",
     members = {
         pentestIds = {
             type = "list",
@@ -1603,6 +1675,7 @@ M.BatchGetPentestsInput = {
 
 M.BatchGetPentestsOutput = {
     type = "structure",
+    id = "BatchGetPentestsOutput",
     members = {
         pentests = {
             type = "list",
@@ -1617,6 +1690,7 @@ M.BatchGetPentestsOutput = {
 
 M.BatchGetTargetDomainsInput = {
     type = "structure",
+    id = "BatchGetTargetDomainsInput",
     members = {
         targetDomainIds = {
             type = "list",
@@ -1634,6 +1708,7 @@ M.DNSRecordType = {
 
 M.DnsVerification = {
     type = "structure",
+    id = "DnsVerification",
     members = {
         token = {
             type = "string",
@@ -1649,6 +1724,7 @@ M.DnsVerification = {
 
 M.HttpVerification = {
     type = "structure",
+    id = "HttpVerification",
     members = {
         token = {
             type = "string",
@@ -1666,6 +1742,7 @@ M.DomainVerificationMethod = {
 
 M.VerificationDetails = {
     type = "structure",
+    id = "VerificationDetails",
     members = {
         method = {
             type = "string",
@@ -1684,6 +1761,7 @@ M.TargetDomainStatus = {
 
 M.TargetDomain = {
     type = "structure",
+    id = "TargetDomain",
     members = {
         targetDomainId = {
             type = "string",
@@ -1718,6 +1796,7 @@ M.TargetDomain = {
 
 M.BatchGetTargetDomainsOutput = {
     type = "structure",
+    id = "BatchGetTargetDomainsOutput",
     members = {
         targetDomains = {
             type = "list",
@@ -1732,6 +1811,7 @@ M.BatchGetTargetDomainsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -1745,6 +1825,7 @@ M.ConflictException = {
 
 M.GitHubIntegrationInput = {
     type = "structure",
+    id = "GitHubIntegrationInput",
     members = {
         code = {
             type = "string",
@@ -1766,6 +1847,7 @@ M.GitHubIntegrationInput = {
 
 M.ProviderInput = {
     type = "union",
+    id = "ProviderInput",
     members = {
         github = M.GitHubIntegrationInput,
     },
@@ -1777,6 +1859,7 @@ M.Provider = {
 
 M.CreateIntegrationInput = {
     type = "structure",
+    id = "CreateIntegrationInput",
     members = {
         provider = {
             type = "string",
@@ -1806,6 +1889,7 @@ M.CreateIntegrationInput = {
 
 M.CreateIntegrationOutput = {
     type = "structure",
+    id = "CreateIntegrationOutput",
     members = {
         integrationId = {
             type = "string",
@@ -1822,6 +1906,7 @@ M.UserRole = {
 
 M.UserConfig = {
     type = "structure",
+    id = "UserConfig",
     members = {
         role = {
             type = "string",
@@ -1831,6 +1916,7 @@ M.UserConfig = {
 
 M.MembershipConfig = {
     type = "union",
+    id = "MembershipConfig",
     members = {
         user = M.UserConfig,
     },
@@ -1842,6 +1928,7 @@ M.MembershipType = {
 
 M.CreateMembershipInput = {
     type = "structure",
+    id = "CreateMembershipInput",
     members = {
         applicationId = {
             type = "string",
@@ -1873,10 +1960,12 @@ M.CreateMembershipInput = {
 
 M.CreateMembershipOutput = {
     type = "structure",
+    id = "CreateMembershipOutput",
 }
 
 M.CreatePentestInput = {
     type = "structure",
+    id = "CreatePentestInput",
     members = {
         title = {
             type = "string",
@@ -1909,6 +1998,7 @@ M.CreatePentestInput = {
 
 M.CreatePentestOutput = {
     type = "structure",
+    id = "CreatePentestOutput",
     members = {
         pentestId = {
             type = "string",
@@ -1945,6 +2035,7 @@ M.CreatePentestOutput = {
 
 M.CreateTargetDomainInput = {
     type = "structure",
+    id = "CreateTargetDomainInput",
     members = {
         targetDomainName = {
             type = "string",
@@ -1968,6 +2059,7 @@ M.CreateTargetDomainInput = {
 
 M.CreateTargetDomainOutput = {
     type = "structure",
+    id = "CreateTargetDomainOutput",
     members = {
         targetDomainId = {
             type = "string",
@@ -2005,6 +2097,7 @@ M.CreateTargetDomainOutput = {
 
 M.DeleteArtifactInput = {
     type = "structure",
+    id = "DeleteArtifactInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2023,10 +2116,12 @@ M.DeleteArtifactInput = {
 
 M.DeleteArtifactOutput = {
     type = "structure",
+    id = "DeleteArtifactOutput",
 }
 
 M.DeleteIntegrationInput = {
     type = "structure",
+    id = "DeleteIntegrationInput",
     members = {
         integrationId = {
             type = "string",
@@ -2039,10 +2134,12 @@ M.DeleteIntegrationInput = {
 
 M.DeleteIntegrationOutput = {
     type = "structure",
+    id = "DeleteIntegrationOutput",
 }
 
 M.DeleteMembershipInput = {
     type = "structure",
+    id = "DeleteMembershipInput",
     members = {
         applicationId = {
             type = "string",
@@ -2070,10 +2167,12 @@ M.DeleteMembershipInput = {
 
 M.DeleteMembershipOutput = {
     type = "structure",
+    id = "DeleteMembershipOutput",
 }
 
 M.DeleteTargetDomainInput = {
     type = "structure",
+    id = "DeleteTargetDomainInput",
     members = {
         targetDomainId = {
             type = "string",
@@ -2086,6 +2185,7 @@ M.DeleteTargetDomainInput = {
 
 M.DeleteTargetDomainOutput = {
     type = "structure",
+    id = "DeleteTargetDomainOutput",
     members = {
         targetDomainId = {
             type = "string",
@@ -2095,6 +2195,7 @@ M.DeleteTargetDomainOutput = {
 
 M.DiscoveredEndpoint = {
     type = "structure",
+    id = "DiscoveredEndpoint",
     members = {
         uri = {
             type = "string",
@@ -2134,6 +2235,7 @@ M.DiscoveredEndpoint = {
 
 M.FindingSummary = {
     type = "structure",
+    id = "FindingSummary",
     members = {
         findingId = {
             type = "string",
@@ -2185,6 +2287,7 @@ M.FindingSummary = {
 
 M.GetArtifactInput = {
     type = "structure",
+    id = "GetArtifactInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2203,6 +2306,7 @@ M.GetArtifactInput = {
 
 M.GetArtifactOutput = {
     type = "structure",
+    id = "GetArtifactOutput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2237,6 +2341,7 @@ M.GetArtifactOutput = {
 
 M.GetIntegrationInput = {
     type = "structure",
+    id = "GetIntegrationInput",
     members = {
         integrationId = {
             type = "string",
@@ -2254,6 +2359,7 @@ M.ProviderType = {
 
 M.GetIntegrationOutput = {
     type = "structure",
+    id = "GetIntegrationOutput",
     members = {
         integrationId = {
             type = "string",
@@ -2290,6 +2396,7 @@ M.GetIntegrationOutput = {
 
 M.GitHubRepositoryMetadata = {
     type = "structure",
+    id = "GitHubRepositoryMetadata",
     members = {
         name = {
             type = "string",
@@ -2317,6 +2424,7 @@ M.GitHubRepositoryMetadata = {
 
 M.GitHubRepositoryResource = {
     type = "structure",
+    id = "GitHubRepositoryResource",
     members = {
         name = {
             type = "string",
@@ -2335,6 +2443,7 @@ M.GitHubRepositoryResource = {
 
 M.GitHubResourceCapabilities = {
     type = "structure",
+    id = "GitHubResourceCapabilities",
     members = {
         leaveComments = {
             type = "boolean",
@@ -2347,6 +2456,7 @@ M.GitHubResourceCapabilities = {
 
 M.InitiateProviderRegistrationInput = {
     type = "structure",
+    id = "InitiateProviderRegistrationInput",
     members = {
         provider = {
             type = "string",
@@ -2359,6 +2469,7 @@ M.InitiateProviderRegistrationInput = {
 
 M.InitiateProviderRegistrationOutput = {
     type = "structure",
+    id = "InitiateProviderRegistrationOutput",
     members = {
         redirectTo = {
             type = "string",
@@ -2377,6 +2488,7 @@ M.InitiateProviderRegistrationOutput = {
 
 M.IntegratedResource = {
     type = "union",
+    id = "IntegratedResource",
     members = {
         githubRepository = M.GitHubRepositoryResource,
     },
@@ -2384,6 +2496,7 @@ M.IntegratedResource = {
 
 M.ProviderResourceCapabilities = {
     type = "union",
+    id = "ProviderResourceCapabilities",
     members = {
         github = M.GitHubResourceCapabilities,
     },
@@ -2391,6 +2504,7 @@ M.ProviderResourceCapabilities = {
 
 M.IntegratedResourceInputItem = {
     type = "structure",
+    id = "IntegratedResourceInputItem",
     members = {
         resource = setmetatable({ traits = {
             required = true,
@@ -2401,6 +2515,7 @@ M.IntegratedResourceInputItem = {
 
 M.IntegratedResourceMetadata = {
     type = "union",
+    id = "IntegratedResourceMetadata",
     members = {
         githubRepository = M.GitHubRepositoryMetadata,
     },
@@ -2408,6 +2523,7 @@ M.IntegratedResourceMetadata = {
 
 M.IntegratedResourceSummary = {
     type = "structure",
+    id = "IntegratedResourceSummary",
     members = {
         integrationId = {
             type = "string",
@@ -2424,6 +2540,7 @@ M.IntegratedResourceSummary = {
 
 M.IntegrationFilter = {
     type = "union",
+    id = "IntegrationFilter",
     members = {
         provider = {
             type = "string",
@@ -2436,6 +2553,7 @@ M.IntegrationFilter = {
 
 M.ListIntegrationsInput = {
     type = "structure",
+    id = "ListIntegrationsInput",
     members = {
         filter = M.IntegrationFilter,
         nextToken = {
@@ -2449,6 +2567,7 @@ M.ListIntegrationsInput = {
 
 M.IntegrationSummary = {
     type = "structure",
+    id = "IntegrationSummary",
     members = {
         integrationId = {
             type = "string",
@@ -2485,6 +2604,7 @@ M.IntegrationSummary = {
 
 M.ListIntegrationsOutput = {
     type = "structure",
+    id = "ListIntegrationsOutput",
     members = {
         integrationSummaries = {
             type = "list",
@@ -2501,6 +2621,7 @@ M.ListIntegrationsOutput = {
 
 M.ListArtifactsInput = {
     type = "structure",
+    id = "ListArtifactsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2519,6 +2640,7 @@ M.ListArtifactsInput = {
 
 M.ListArtifactsOutput = {
     type = "structure",
+    id = "ListArtifactsOutput",
     members = {
         artifactSummaries = {
             type = "list",
@@ -2535,6 +2657,7 @@ M.ListArtifactsOutput = {
 
 M.ListDiscoveredEndpointsInput = {
     type = "structure",
+    id = "ListDiscoveredEndpointsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2562,6 +2685,7 @@ M.ListDiscoveredEndpointsInput = {
 
 M.ListDiscoveredEndpointsOutput = {
     type = "structure",
+    id = "ListDiscoveredEndpointsOutput",
     members = {
         discoveredEndpoints = {
             type = "list",
@@ -2575,6 +2699,7 @@ M.ListDiscoveredEndpointsOutput = {
 
 M.ListFindingsInput = {
     type = "structure",
+    id = "ListFindingsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2614,6 +2739,7 @@ M.ListFindingsInput = {
 
 M.ListFindingsOutput = {
     type = "structure",
+    id = "ListFindingsOutput",
     members = {
         findingsSummaries = {
             type = "list",
@@ -2631,6 +2757,7 @@ M.ResourceType = {
 
 M.ListIntegratedResourcesInput = {
     type = "structure",
+    id = "ListIntegratedResourcesInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2655,6 +2782,7 @@ M.ListIntegratedResourcesInput = {
 
 M.ListIntegratedResourcesOutput = {
     type = "structure",
+    id = "ListIntegratedResourcesOutput",
     members = {
         integratedResourceSummaries = {
             type = "list",
@@ -2676,6 +2804,7 @@ M.MembershipTypeFilter = {
 
 M.ListMembershipsInput = {
     type = "structure",
+    id = "ListMembershipsInput",
     members = {
         applicationId = {
             type = "string",
@@ -2703,6 +2832,7 @@ M.ListMembershipsInput = {
 
 M.UserMetadata = {
     type = "structure",
+    id = "UserMetadata",
     members = {
         username = {
             type = "string",
@@ -2721,6 +2851,7 @@ M.UserMetadata = {
 
 M.MemberMetadata = {
     type = "union",
+    id = "MemberMetadata",
     members = {
         user = M.UserMetadata,
     },
@@ -2728,6 +2859,7 @@ M.MemberMetadata = {
 
 M.MembershipSummary = {
     type = "structure",
+    id = "MembershipSummary",
     members = {
         membershipId = {
             type = "string",
@@ -2786,6 +2918,7 @@ M.MembershipSummary = {
 
 M.ListMembershipsOutput = {
     type = "structure",
+    id = "ListMembershipsOutput",
     members = {
         membershipSummaries = {
             type = "list",
@@ -2802,6 +2935,7 @@ M.ListMembershipsOutput = {
 
 M.ListPentestJobsForPentestInput = {
     type = "structure",
+    id = "ListPentestJobsForPentestInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2826,6 +2960,7 @@ M.ListPentestJobsForPentestInput = {
 
 M.PentestJobSummary = {
     type = "structure",
+    id = "PentestJobSummary",
     members = {
         pentestJobId = {
             type = "string",
@@ -2862,6 +2997,7 @@ M.PentestJobSummary = {
 
 M.ListPentestJobsForPentestOutput = {
     type = "structure",
+    id = "ListPentestJobsForPentestOutput",
     members = {
         pentestJobSummaries = {
             type = "list",
@@ -2875,6 +3011,7 @@ M.ListPentestJobsForPentestOutput = {
 
 M.ListPentestJobTasksInput = {
     type = "structure",
+    id = "ListPentestJobTasksInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2902,6 +3039,7 @@ M.ListPentestJobTasksInput = {
 
 M.TaskSummary = {
     type = "structure",
+    id = "TaskSummary",
     members = {
         taskId = {
             type = "string",
@@ -2944,6 +3082,7 @@ M.TaskSummary = {
 
 M.ListPentestJobTasksOutput = {
     type = "structure",
+    id = "ListPentestJobTasksOutput",
     members = {
         taskSummaries = {
             type = "list",
@@ -2957,6 +3096,7 @@ M.ListPentestJobTasksOutput = {
 
 M.ListPentestsInput = {
     type = "structure",
+    id = "ListPentestsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2975,6 +3115,7 @@ M.ListPentestsInput = {
 
 M.PentestSummary = {
     type = "structure",
+    id = "PentestSummary",
     members = {
         pentestId = {
             type = "string",
@@ -3011,6 +3152,7 @@ M.PentestSummary = {
 
 M.ListPentestsOutput = {
     type = "structure",
+    id = "ListPentestsOutput",
     members = {
         pentestSummaries = {
             type = "list",
@@ -3024,6 +3166,7 @@ M.ListPentestsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3037,6 +3180,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3048,6 +3192,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTargetDomainsInput = {
     type = "structure",
+    id = "ListTargetDomainsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3060,6 +3205,7 @@ M.ListTargetDomainsInput = {
 
 M.TargetDomainSummary = {
     type = "structure",
+    id = "TargetDomainSummary",
     members = {
         targetDomainId = {
             type = "string",
@@ -3081,6 +3227,7 @@ M.TargetDomainSummary = {
 
 M.ListTargetDomainsOutput = {
     type = "structure",
+    id = "ListTargetDomainsOutput",
     members = {
         targetDomainSummaries = {
             type = "list",
@@ -3094,6 +3241,7 @@ M.ListTargetDomainsOutput = {
 
 M.StartCodeRemediationInput = {
     type = "structure",
+    id = "StartCodeRemediationInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -3119,10 +3267,12 @@ M.StartCodeRemediationInput = {
 
 M.StartCodeRemediationOutput = {
     type = "structure",
+    id = "StartCodeRemediationOutput",
 }
 
 M.StartPentestJobInput = {
     type = "structure",
+    id = "StartPentestJobInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -3141,6 +3291,7 @@ M.StartPentestJobInput = {
 
 M.StartPentestJobOutput = {
     type = "structure",
+    id = "StartPentestJobOutput",
     members = {
         title = {
             type = "string",
@@ -3174,6 +3325,7 @@ M.StartPentestJobOutput = {
 
 M.StopPentestJobInput = {
     type = "structure",
+    id = "StopPentestJobInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -3192,10 +3344,12 @@ M.StopPentestJobInput = {
 
 M.StopPentestJobOutput = {
     type = "structure",
+    id = "StopPentestJobOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3217,10 +3371,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UpdateTargetDomainInput = {
     type = "structure",
+    id = "UpdateTargetDomainInput",
     members = {
         targetDomainId = {
             type = "string",
@@ -3239,6 +3395,7 @@ M.UpdateTargetDomainInput = {
 
 M.UpdateTargetDomainOutput = {
     type = "structure",
+    id = "UpdateTargetDomainOutput",
     members = {
         targetDomainId = {
             type = "string",
@@ -3276,6 +3433,7 @@ M.UpdateTargetDomainOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3297,10 +3455,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateFindingInput = {
     type = "structure",
+    id = "UpdateFindingInput",
     members = {
         findingId = {
             type = "string",
@@ -3325,10 +3485,12 @@ M.UpdateFindingInput = {
 
 M.UpdateFindingOutput = {
     type = "structure",
+    id = "UpdateFindingOutput",
 }
 
 M.UpdateIntegratedResourcesInput = {
     type = "structure",
+    id = "UpdateIntegratedResourcesInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -3354,10 +3516,12 @@ M.UpdateIntegratedResourcesInput = {
 
 M.UpdateIntegratedResourcesOutput = {
     type = "structure",
+    id = "UpdateIntegratedResourcesOutput",
 }
 
 M.UpdatePentestInput = {
     type = "structure",
+    id = "UpdatePentestInput",
     members = {
         pentestId = {
             type = "string",
@@ -3393,6 +3557,7 @@ M.UpdatePentestInput = {
 
 M.UpdatePentestOutput = {
     type = "structure",
+    id = "UpdatePentestOutput",
     members = {
         pentestId = {
             type = "string",
@@ -3429,6 +3594,7 @@ M.UpdatePentestOutput = {
 
 M.VerifyTargetDomainInput = {
     type = "structure",
+    id = "VerifyTargetDomainInput",
     members = {
         targetDomainId = {
             type = "string",
@@ -3441,6 +3607,7 @@ M.VerifyTargetDomainInput = {
 
 M.VerifyTargetDomainOutput = {
     type = "structure",
+    id = "VerifyTargetDomainOutput",
     members = {
         targetDomainId = {
             type = "string",

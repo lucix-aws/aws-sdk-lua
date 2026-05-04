@@ -11,6 +11,7 @@ M.AlgorithmSpec = {
 
 M.AliasListEntry = {
     type = "structure",
+    id = "AliasListEntry",
     members = {
         AliasName = {
             type = "string",
@@ -32,6 +33,7 @@ M.AliasListEntry = {
 
 M.AlreadyExistsException = {
     type = "structure",
+    id = "AlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -42,6 +44,7 @@ M.AlreadyExistsException = {
 
 M.CancelKeyDeletionInput = {
     type = "structure",
+    id = "CancelKeyDeletionInput",
     members = {
         KeyId = {
             type = "string",
@@ -54,6 +57,7 @@ M.CancelKeyDeletionInput = {
 
 M.CancelKeyDeletionOutput = {
     type = "structure",
+    id = "CancelKeyDeletionOutput",
     members = {
         KeyId = {
             type = "string",
@@ -63,6 +67,7 @@ M.CancelKeyDeletionOutput = {
 
 M.DependencyTimeoutException = {
     type = "structure",
+    id = "DependencyTimeoutException",
     error = "server",
     members = {
         message = {
@@ -73,6 +78,7 @@ M.DependencyTimeoutException = {
 
 M.InvalidArnException = {
     type = "structure",
+    id = "InvalidArnException",
     error = "client",
     members = {
         message = {
@@ -83,6 +89,7 @@ M.InvalidArnException = {
 
 M.KMSInternalException = {
     type = "structure",
+    id = "KMSInternalException",
     error = "server",
     members = {
         message = {
@@ -93,6 +100,7 @@ M.KMSInternalException = {
 
 M.KMSInvalidStateException = {
     type = "structure",
+    id = "KMSInvalidStateException",
     error = "client",
     members = {
         message = {
@@ -103,6 +111,7 @@ M.KMSInvalidStateException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -113,6 +122,7 @@ M.NotFoundException = {
 
 M.CloudHsmClusterInUseException = {
     type = "structure",
+    id = "CloudHsmClusterInUseException",
     error = "client",
     members = {
         message = {
@@ -123,6 +133,7 @@ M.CloudHsmClusterInUseException = {
 
 M.CloudHsmClusterInvalidConfigurationException = {
     type = "structure",
+    id = "CloudHsmClusterInvalidConfigurationException",
     error = "client",
     members = {
         message = {
@@ -133,6 +144,7 @@ M.CloudHsmClusterInvalidConfigurationException = {
 
 M.CloudHsmClusterNotActiveException = {
     type = "structure",
+    id = "CloudHsmClusterNotActiveException",
     error = "client",
     members = {
         message = {
@@ -143,6 +155,7 @@ M.CloudHsmClusterNotActiveException = {
 
 M.CloudHsmClusterNotFoundException = {
     type = "structure",
+    id = "CloudHsmClusterNotFoundException",
     error = "client",
     members = {
         message = {
@@ -153,6 +166,7 @@ M.CloudHsmClusterNotFoundException = {
 
 M.CloudHsmClusterNotRelatedException = {
     type = "structure",
+    id = "CloudHsmClusterNotRelatedException",
     error = "client",
     members = {
         message = {
@@ -163,6 +177,7 @@ M.CloudHsmClusterNotRelatedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -173,6 +188,7 @@ M.ConflictException = {
 
 M.ConnectCustomKeyStoreInput = {
     type = "structure",
+    id = "ConnectCustomKeyStoreInput",
     members = {
         CustomKeyStoreId = {
             type = "string",
@@ -185,10 +201,12 @@ M.ConnectCustomKeyStoreInput = {
 
 M.ConnectCustomKeyStoreOutput = {
     type = "structure",
+    id = "ConnectCustomKeyStoreOutput",
 }
 
 M.CustomKeyStoreInvalidStateException = {
     type = "structure",
+    id = "CustomKeyStoreInvalidStateException",
     error = "client",
     members = {
         message = {
@@ -199,6 +217,7 @@ M.CustomKeyStoreInvalidStateException = {
 
 M.CustomKeyStoreNotFoundException = {
     type = "structure",
+    id = "CustomKeyStoreNotFoundException",
     error = "client",
     members = {
         message = {
@@ -238,6 +257,7 @@ M.ConnectionStateType = {
 
 M.CreateAliasInput = {
     type = "structure",
+    id = "CreateAliasInput",
     members = {
         AliasName = {
             type = "string",
@@ -256,10 +276,12 @@ M.CreateAliasInput = {
 
 M.CreateAliasOutput = {
     type = "structure",
+    id = "CreateAliasOutput",
 }
 
 M.InvalidAliasNameException = {
     type = "structure",
+    id = "InvalidAliasNameException",
     error = "client",
     members = {
         message = {
@@ -270,6 +292,7 @@ M.InvalidAliasNameException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -285,6 +308,7 @@ M.CustomKeyStoreType = {
 
 M.XksProxyAuthenticationCredentialType = {
     type = "structure",
+    id = "XksProxyAuthenticationCredentialType",
     members = {
         AccessKeyId = {
             type = "string",
@@ -308,6 +332,7 @@ M.XksProxyConnectivityType = {
 
 M.CreateCustomKeyStoreInput = {
     type = "structure",
+    id = "CreateCustomKeyStoreInput",
     members = {
         CustomKeyStoreName = {
             type = "string",
@@ -348,6 +373,7 @@ M.CreateCustomKeyStoreInput = {
 
 M.CreateCustomKeyStoreOutput = {
     type = "structure",
+    id = "CreateCustomKeyStoreOutput",
     members = {
         CustomKeyStoreId = {
             type = "string",
@@ -357,6 +383,7 @@ M.CreateCustomKeyStoreOutput = {
 
 M.CustomKeyStoreNameInUseException = {
     type = "structure",
+    id = "CustomKeyStoreNameInUseException",
     error = "client",
     members = {
         message = {
@@ -367,6 +394,7 @@ M.CustomKeyStoreNameInUseException = {
 
 M.IncorrectTrustAnchorException = {
     type = "structure",
+    id = "IncorrectTrustAnchorException",
     error = "client",
     members = {
         message = {
@@ -377,6 +405,7 @@ M.IncorrectTrustAnchorException = {
 
 M.XksProxyIncorrectAuthenticationCredentialException = {
     type = "structure",
+    id = "XksProxyIncorrectAuthenticationCredentialException",
     error = "client",
     members = {
         message = {
@@ -387,6 +416,7 @@ M.XksProxyIncorrectAuthenticationCredentialException = {
 
 M.XksProxyInvalidConfigurationException = {
     type = "structure",
+    id = "XksProxyInvalidConfigurationException",
     error = "client",
     members = {
         message = {
@@ -397,6 +427,7 @@ M.XksProxyInvalidConfigurationException = {
 
 M.XksProxyInvalidResponseException = {
     type = "structure",
+    id = "XksProxyInvalidResponseException",
     error = "client",
     members = {
         message = {
@@ -407,6 +438,7 @@ M.XksProxyInvalidResponseException = {
 
 M.XksProxyUriEndpointInUseException = {
     type = "structure",
+    id = "XksProxyUriEndpointInUseException",
     error = "client",
     members = {
         message = {
@@ -417,6 +449,7 @@ M.XksProxyUriEndpointInUseException = {
 
 M.XksProxyUriInUseException = {
     type = "structure",
+    id = "XksProxyUriInUseException",
     error = "client",
     members = {
         message = {
@@ -427,6 +460,7 @@ M.XksProxyUriInUseException = {
 
 M.XksProxyUriUnreachableException = {
     type = "structure",
+    id = "XksProxyUriUnreachableException",
     error = "client",
     members = {
         message = {
@@ -437,6 +471,7 @@ M.XksProxyUriUnreachableException = {
 
 M.XksProxyVpcEndpointServiceInUseException = {
     type = "structure",
+    id = "XksProxyVpcEndpointServiceInUseException",
     error = "client",
     members = {
         message = {
@@ -447,6 +482,7 @@ M.XksProxyVpcEndpointServiceInUseException = {
 
 M.XksProxyVpcEndpointServiceInvalidConfigurationException = {
     type = "structure",
+    id = "XksProxyVpcEndpointServiceInvalidConfigurationException",
     error = "client",
     members = {
         message = {
@@ -457,6 +493,7 @@ M.XksProxyVpcEndpointServiceInvalidConfigurationException = {
 
 M.XksProxyVpcEndpointServiceNotFoundException = {
     type = "structure",
+    id = "XksProxyVpcEndpointServiceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -467,6 +504,7 @@ M.XksProxyVpcEndpointServiceNotFoundException = {
 
 M.GrantConstraints = {
     type = "structure",
+    id = "GrantConstraints",
     members = {
         EncryptionContextSubset = {
             type = "map",
@@ -503,6 +541,7 @@ M.GrantOperation = {
 
 M.CreateGrantInput = {
     type = "structure",
+    id = "CreateGrantInput",
     members = {
         KeyId = {
             type = "string",
@@ -542,6 +581,7 @@ M.CreateGrantInput = {
 
 M.CreateGrantOutput = {
     type = "structure",
+    id = "CreateGrantOutput",
     members = {
         GrantToken = {
             type = "string",
@@ -554,6 +594,7 @@ M.CreateGrantOutput = {
 
 M.DisabledException = {
     type = "structure",
+    id = "DisabledException",
     error = "client",
     members = {
         message = {
@@ -564,6 +605,7 @@ M.DisabledException = {
 
 M.DryRunOperationException = {
     type = "structure",
+    id = "DryRunOperationException",
     error = "client",
     members = {
         message = {
@@ -574,6 +616,7 @@ M.DryRunOperationException = {
 
 M.InvalidGrantTokenException = {
     type = "structure",
+    id = "InvalidGrantTokenException",
     error = "client",
     members = {
         message = {
@@ -634,6 +677,7 @@ M.OriginType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         TagKey = {
             type = "string",
@@ -652,6 +696,7 @@ M.Tag = {
 
 M.CreateKeyInput = {
     type = "structure",
+    id = "CreateKeyInput",
     members = {
         Policy = {
             type = "string",
@@ -739,6 +784,7 @@ M.MultiRegionKeyType = {
 
 M.MultiRegionKey = {
     type = "structure",
+    id = "MultiRegionKey",
     members = {
         Arn = {
             type = "string",
@@ -751,6 +797,7 @@ M.MultiRegionKey = {
 
 M.MultiRegionConfiguration = {
     type = "structure",
+    id = "MultiRegionConfiguration",
     members = {
         MultiRegionKeyType = {
             type = "string",
@@ -781,6 +828,7 @@ M.SigningAlgorithmSpec = {
 
 M.XksKeyConfigurationType = {
     type = "structure",
+    id = "XksKeyConfigurationType",
     members = {
         Id = {
             type = "string",
@@ -790,6 +838,7 @@ M.XksKeyConfigurationType = {
 
 M.KeyMetadata = {
     type = "structure",
+    id = "KeyMetadata",
     members = {
         AWSAccountId = {
             type = "string",
@@ -880,6 +929,7 @@ M.KeyMetadata = {
 
 M.CreateKeyOutput = {
     type = "structure",
+    id = "CreateKeyOutput",
     members = {
         KeyMetadata = M.KeyMetadata,
     },
@@ -887,6 +937,7 @@ M.CreateKeyOutput = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         message = {
@@ -897,6 +948,7 @@ M.MalformedPolicyDocumentException = {
 
 M.TagException = {
     type = "structure",
+    id = "TagException",
     error = "client",
     members = {
         message = {
@@ -907,6 +959,7 @@ M.TagException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         message = {
@@ -917,6 +970,7 @@ M.UnsupportedOperationException = {
 
 M.XksKeyAlreadyInUseException = {
     type = "structure",
+    id = "XksKeyAlreadyInUseException",
     error = "client",
     members = {
         message = {
@@ -927,6 +981,7 @@ M.XksKeyAlreadyInUseException = {
 
 M.XksKeyInvalidConfigurationException = {
     type = "structure",
+    id = "XksKeyInvalidConfigurationException",
     error = "client",
     members = {
         message = {
@@ -937,6 +992,7 @@ M.XksKeyInvalidConfigurationException = {
 
 M.XksKeyNotFoundException = {
     type = "structure",
+    id = "XksKeyNotFoundException",
     error = "client",
     members = {
         message = {
@@ -947,6 +1003,7 @@ M.XksKeyNotFoundException = {
 
 M.CustomKeyStoreHasCMKsException = {
     type = "structure",
+    id = "CustomKeyStoreHasCMKsException",
     error = "client",
     members = {
         message = {
@@ -957,6 +1014,7 @@ M.CustomKeyStoreHasCMKsException = {
 
 M.XksProxyConfigurationType = {
     type = "structure",
+    id = "XksProxyConfigurationType",
     members = {
         Connectivity = {
             type = "string",
@@ -981,6 +1039,7 @@ M.XksProxyConfigurationType = {
 
 M.CustomKeyStoresListEntry = {
     type = "structure",
+    id = "CustomKeyStoresListEntry",
     members = {
         CustomKeyStoreId = {
             type = "string",
@@ -1037,6 +1096,7 @@ M.KeyEncryptionMechanism = {
 
 M.RecipientInfo = {
     type = "structure",
+    id = "RecipientInfo",
     members = {
         KeyEncryptionAlgorithm = {
             type = "string",
@@ -1049,6 +1109,7 @@ M.RecipientInfo = {
 
 M.DecryptInput = {
     type = "structure",
+    id = "DecryptInput",
     members = {
         CiphertextBlob = {
             type = "blob",
@@ -1081,6 +1142,7 @@ M.DecryptInput = {
 
 M.DecryptOutput = {
     type = "structure",
+    id = "DecryptOutput",
     members = {
         KeyId = {
             type = "string",
@@ -1102,6 +1164,7 @@ M.DecryptOutput = {
 
 M.IncorrectKeyException = {
     type = "structure",
+    id = "IncorrectKeyException",
     error = "client",
     members = {
         message = {
@@ -1112,6 +1175,7 @@ M.IncorrectKeyException = {
 
 M.InvalidCiphertextException = {
     type = "structure",
+    id = "InvalidCiphertextException",
     error = "client",
     members = {
         message = {
@@ -1122,6 +1186,7 @@ M.InvalidCiphertextException = {
 
 M.InvalidKeyUsageException = {
     type = "structure",
+    id = "InvalidKeyUsageException",
     error = "client",
     members = {
         message = {
@@ -1132,6 +1197,7 @@ M.InvalidKeyUsageException = {
 
 M.KeyUnavailableException = {
     type = "structure",
+    id = "KeyUnavailableException",
     error = "server",
     members = {
         message = {
@@ -1142,6 +1208,7 @@ M.KeyUnavailableException = {
 
 M.DeleteAliasInput = {
     type = "structure",
+    id = "DeleteAliasInput",
     members = {
         AliasName = {
             type = "string",
@@ -1154,10 +1221,12 @@ M.DeleteAliasInput = {
 
 M.DeleteAliasOutput = {
     type = "structure",
+    id = "DeleteAliasOutput",
 }
 
 M.DeleteCustomKeyStoreInput = {
     type = "structure",
+    id = "DeleteCustomKeyStoreInput",
     members = {
         CustomKeyStoreId = {
             type = "string",
@@ -1170,10 +1239,12 @@ M.DeleteCustomKeyStoreInput = {
 
 M.DeleteCustomKeyStoreOutput = {
     type = "structure",
+    id = "DeleteCustomKeyStoreOutput",
 }
 
 M.DeleteImportedKeyMaterialInput = {
     type = "structure",
+    id = "DeleteImportedKeyMaterialInput",
     members = {
         KeyId = {
             type = "string",
@@ -1189,6 +1260,7 @@ M.DeleteImportedKeyMaterialInput = {
 
 M.DeleteImportedKeyMaterialOutput = {
     type = "structure",
+    id = "DeleteImportedKeyMaterialOutput",
     members = {
         KeyId = {
             type = "string",
@@ -1201,6 +1273,7 @@ M.DeleteImportedKeyMaterialOutput = {
 
 M.DeriveSharedSecretInput = {
     type = "structure",
+    id = "DeriveSharedSecretInput",
     members = {
         KeyId = {
             type = "string",
@@ -1233,6 +1306,7 @@ M.DeriveSharedSecretInput = {
 
 M.DeriveSharedSecretOutput = {
     type = "structure",
+    id = "DeriveSharedSecretOutput",
     members = {
         KeyId = {
             type = "string",
@@ -1254,6 +1328,7 @@ M.DeriveSharedSecretOutput = {
 
 M.DescribeCustomKeyStoresInput = {
     type = "structure",
+    id = "DescribeCustomKeyStoresInput",
     members = {
         CustomKeyStoreId = {
             type = "string",
@@ -1272,6 +1347,7 @@ M.DescribeCustomKeyStoresInput = {
 
 M.DescribeCustomKeyStoresOutput = {
     type = "structure",
+    id = "DescribeCustomKeyStoresOutput",
     members = {
         CustomKeyStores = {
             type = "list",
@@ -1291,6 +1367,7 @@ M.DescribeCustomKeyStoresOutput = {
 
 M.InvalidMarkerException = {
     type = "structure",
+    id = "InvalidMarkerException",
     error = "client",
     members = {
         message = {
@@ -1301,6 +1378,7 @@ M.InvalidMarkerException = {
 
 M.DescribeKeyInput = {
     type = "structure",
+    id = "DescribeKeyInput",
     members = {
         KeyId = {
             type = "string",
@@ -1317,6 +1395,7 @@ M.DescribeKeyInput = {
 
 M.DescribeKeyOutput = {
     type = "structure",
+    id = "DescribeKeyOutput",
     members = {
         KeyMetadata = M.KeyMetadata,
     },
@@ -1324,6 +1403,7 @@ M.DescribeKeyOutput = {
 
 M.DisableKeyInput = {
     type = "structure",
+    id = "DisableKeyInput",
     members = {
         KeyId = {
             type = "string",
@@ -1336,10 +1416,12 @@ M.DisableKeyInput = {
 
 M.DisableKeyOutput = {
     type = "structure",
+    id = "DisableKeyOutput",
 }
 
 M.DisableKeyRotationInput = {
     type = "structure",
+    id = "DisableKeyRotationInput",
     members = {
         KeyId = {
             type = "string",
@@ -1352,10 +1434,12 @@ M.DisableKeyRotationInput = {
 
 M.DisableKeyRotationOutput = {
     type = "structure",
+    id = "DisableKeyRotationOutput",
 }
 
 M.DisconnectCustomKeyStoreInput = {
     type = "structure",
+    id = "DisconnectCustomKeyStoreInput",
     members = {
         CustomKeyStoreId = {
             type = "string",
@@ -1368,10 +1452,12 @@ M.DisconnectCustomKeyStoreInput = {
 
 M.DisconnectCustomKeyStoreOutput = {
     type = "structure",
+    id = "DisconnectCustomKeyStoreOutput",
 }
 
 M.EnableKeyInput = {
     type = "structure",
+    id = "EnableKeyInput",
     members = {
         KeyId = {
             type = "string",
@@ -1384,10 +1470,12 @@ M.EnableKeyInput = {
 
 M.EnableKeyOutput = {
     type = "structure",
+    id = "EnableKeyOutput",
 }
 
 M.EnableKeyRotationInput = {
     type = "structure",
+    id = "EnableKeyRotationInput",
     members = {
         KeyId = {
             type = "string",
@@ -1403,10 +1491,12 @@ M.EnableKeyRotationInput = {
 
 M.EnableKeyRotationOutput = {
     type = "structure",
+    id = "EnableKeyRotationOutput",
 }
 
 M.EncryptInput = {
     type = "structure",
+    id = "EncryptInput",
     members = {
         KeyId = {
             type = "string",
@@ -1440,6 +1530,7 @@ M.EncryptInput = {
 
 M.EncryptOutput = {
     type = "structure",
+    id = "EncryptOutput",
     members = {
         CiphertextBlob = {
             type = "blob",
@@ -1455,6 +1546,7 @@ M.EncryptOutput = {
 
 M.ExpiredImportTokenException = {
     type = "structure",
+    id = "ExpiredImportTokenException",
     error = "client",
     members = {
         message = {
@@ -1465,6 +1557,7 @@ M.ExpiredImportTokenException = {
 
 M.GenerateDataKeyInput = {
     type = "structure",
+    id = "GenerateDataKeyInput",
     members = {
         KeyId = {
             type = "string",
@@ -1496,6 +1589,7 @@ M.GenerateDataKeyInput = {
 
 M.GenerateDataKeyOutput = {
     type = "structure",
+    id = "GenerateDataKeyOutput",
     members = {
         CiphertextBlob = {
             type = "blob",
@@ -1517,6 +1611,7 @@ M.GenerateDataKeyOutput = {
 
 M.GenerateDataKeyPairInput = {
     type = "structure",
+    id = "GenerateDataKeyPairInput",
     members = {
         EncryptionContext = {
             type = "map",
@@ -1548,6 +1643,7 @@ M.GenerateDataKeyPairInput = {
 
 M.GenerateDataKeyPairOutput = {
     type = "structure",
+    id = "GenerateDataKeyPairOutput",
     members = {
         PrivateKeyCiphertextBlob = {
             type = "blob",
@@ -1575,6 +1671,7 @@ M.GenerateDataKeyPairOutput = {
 
 M.GenerateDataKeyPairWithoutPlaintextInput = {
     type = "structure",
+    id = "GenerateDataKeyPairWithoutPlaintextInput",
     members = {
         EncryptionContext = {
             type = "map",
@@ -1605,6 +1702,7 @@ M.GenerateDataKeyPairWithoutPlaintextInput = {
 
 M.GenerateDataKeyPairWithoutPlaintextOutput = {
     type = "structure",
+    id = "GenerateDataKeyPairWithoutPlaintextOutput",
     members = {
         PrivateKeyCiphertextBlob = {
             type = "blob",
@@ -1626,6 +1724,7 @@ M.GenerateDataKeyPairWithoutPlaintextOutput = {
 
 M.GenerateDataKeyWithoutPlaintextInput = {
     type = "structure",
+    id = "GenerateDataKeyWithoutPlaintextInput",
     members = {
         KeyId = {
             type = "string",
@@ -1656,6 +1755,7 @@ M.GenerateDataKeyWithoutPlaintextInput = {
 
 M.GenerateDataKeyWithoutPlaintextOutput = {
     type = "structure",
+    id = "GenerateDataKeyWithoutPlaintextOutput",
     members = {
         CiphertextBlob = {
             type = "blob",
@@ -1671,6 +1771,7 @@ M.GenerateDataKeyWithoutPlaintextOutput = {
 
 M.GenerateMacInput = {
     type = "structure",
+    id = "GenerateMacInput",
     members = {
         Message = {
             type = "blob",
@@ -1702,6 +1803,7 @@ M.GenerateMacInput = {
 
 M.GenerateMacOutput = {
     type = "structure",
+    id = "GenerateMacOutput",
     members = {
         Mac = {
             type = "blob",
@@ -1717,6 +1819,7 @@ M.GenerateMacOutput = {
 
 M.GenerateRandomInput = {
     type = "structure",
+    id = "GenerateRandomInput",
     members = {
         NumberOfBytes = {
             type = "integer",
@@ -1730,6 +1833,7 @@ M.GenerateRandomInput = {
 
 M.GenerateRandomOutput = {
     type = "structure",
+    id = "GenerateRandomOutput",
     members = {
         Plaintext = {
             type = "blob",
@@ -1742,6 +1846,7 @@ M.GenerateRandomOutput = {
 
 M.GetKeyLastUsageInput = {
     type = "structure",
+    id = "GetKeyLastUsageInput",
     members = {
         KeyId = {
             type = "string",
@@ -1769,6 +1874,7 @@ M.KeyLastUsageTrackingOperation = {
 
 M.KeyLastUsageData = {
     type = "structure",
+    id = "KeyLastUsageData",
     members = {
         Operation = {
             type = "string",
@@ -1787,6 +1893,7 @@ M.KeyLastUsageData = {
 
 M.GetKeyLastUsageOutput = {
     type = "structure",
+    id = "GetKeyLastUsageOutput",
     members = {
         KeyId = {
             type = "string",
@@ -1803,6 +1910,7 @@ M.GetKeyLastUsageOutput = {
 
 M.GetKeyPolicyInput = {
     type = "structure",
+    id = "GetKeyPolicyInput",
     members = {
         KeyId = {
             type = "string",
@@ -1818,6 +1926,7 @@ M.GetKeyPolicyInput = {
 
 M.GetKeyPolicyOutput = {
     type = "structure",
+    id = "GetKeyPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -1830,6 +1939,7 @@ M.GetKeyPolicyOutput = {
 
 M.GetKeyRotationStatusInput = {
     type = "structure",
+    id = "GetKeyRotationStatusInput",
     members = {
         KeyId = {
             type = "string",
@@ -1842,6 +1952,7 @@ M.GetKeyRotationStatusInput = {
 
 M.GetKeyRotationStatusOutput = {
     type = "structure",
+    id = "GetKeyRotationStatusOutput",
     members = {
         KeyRotationEnabled = {
             type = "boolean",
@@ -1873,6 +1984,7 @@ M.WrappingKeySpec = {
 
 M.GetParametersForImportInput = {
     type = "structure",
+    id = "GetParametersForImportInput",
     members = {
         KeyId = {
             type = "string",
@@ -1897,6 +2009,7 @@ M.GetParametersForImportInput = {
 
 M.GetParametersForImportOutput = {
     type = "structure",
+    id = "GetParametersForImportOutput",
     members = {
         KeyId = {
             type = "string",
@@ -1915,6 +2028,7 @@ M.GetParametersForImportOutput = {
 
 M.GetPublicKeyInput = {
     type = "structure",
+    id = "GetPublicKeyInput",
     members = {
         KeyId = {
             type = "string",
@@ -1931,6 +2045,7 @@ M.GetPublicKeyInput = {
 
 M.GetPublicKeyOutput = {
     type = "structure",
+    id = "GetPublicKeyOutput",
     members = {
         KeyId = {
             type = "string",
@@ -1964,6 +2079,7 @@ M.GetPublicKeyOutput = {
 
 M.GrantListEntry = {
     type = "structure",
+    id = "GrantListEntry",
     members = {
         KeyId = {
             type = "string",
@@ -2001,6 +2117,7 @@ M.ImportType = {
 
 M.ImportKeyMaterialInput = {
     type = "structure",
+    id = "ImportKeyMaterialInput",
     members = {
         KeyId = {
             type = "string",
@@ -2040,6 +2157,7 @@ M.ImportKeyMaterialInput = {
 
 M.ImportKeyMaterialOutput = {
     type = "structure",
+    id = "ImportKeyMaterialOutput",
     members = {
         KeyId = {
             type = "string",
@@ -2052,6 +2170,7 @@ M.ImportKeyMaterialOutput = {
 
 M.IncorrectKeyMaterialException = {
     type = "structure",
+    id = "IncorrectKeyMaterialException",
     error = "client",
     members = {
         message = {
@@ -2062,6 +2181,7 @@ M.IncorrectKeyMaterialException = {
 
 M.InvalidImportTokenException = {
     type = "structure",
+    id = "InvalidImportTokenException",
     error = "client",
     members = {
         message = {
@@ -2082,6 +2202,7 @@ M.IncludeKeyMaterial = {
 
 M.InvalidGrantIdException = {
     type = "structure",
+    id = "InvalidGrantIdException",
     error = "client",
     members = {
         message = {
@@ -2092,6 +2213,7 @@ M.InvalidGrantIdException = {
 
 M.KeyListEntry = {
     type = "structure",
+    id = "KeyListEntry",
     members = {
         KeyId = {
             type = "string",
@@ -2111,6 +2233,7 @@ M.KeyMaterialState = {
 
 M.KMSInvalidMacException = {
     type = "structure",
+    id = "KMSInvalidMacException",
     error = "client",
     members = {
         message = {
@@ -2121,6 +2244,7 @@ M.KMSInvalidMacException = {
 
 M.KMSInvalidSignatureException = {
     type = "structure",
+    id = "KMSInvalidSignatureException",
     error = "client",
     members = {
         message = {
@@ -2131,6 +2255,7 @@ M.KMSInvalidSignatureException = {
 
 M.ListAliasesInput = {
     type = "structure",
+    id = "ListAliasesInput",
     members = {
         KeyId = {
             type = "string",
@@ -2146,6 +2271,7 @@ M.ListAliasesInput = {
 
 M.ListAliasesOutput = {
     type = "structure",
+    id = "ListAliasesOutput",
     members = {
         Aliases = {
             type = "list",
@@ -2165,6 +2291,7 @@ M.ListAliasesOutput = {
 
 M.ListGrantsInput = {
     type = "structure",
+    id = "ListGrantsInput",
     members = {
         Limit = {
             type = "integer",
@@ -2189,6 +2316,7 @@ M.ListGrantsInput = {
 
 M.ListGrantsOutput = {
     type = "structure",
+    id = "ListGrantsOutput",
     members = {
         Grants = {
             type = "list",
@@ -2208,6 +2336,7 @@ M.ListGrantsOutput = {
 
 M.ListKeyPoliciesInput = {
     type = "structure",
+    id = "ListKeyPoliciesInput",
     members = {
         KeyId = {
             type = "string",
@@ -2226,6 +2355,7 @@ M.ListKeyPoliciesInput = {
 
 M.ListKeyPoliciesOutput = {
     type = "structure",
+    id = "ListKeyPoliciesOutput",
     members = {
         PolicyNames = {
             type = "list",
@@ -2245,6 +2375,7 @@ M.ListKeyPoliciesOutput = {
 
 M.ListKeyRotationsInput = {
     type = "structure",
+    id = "ListKeyRotationsInput",
     members = {
         KeyId = {
             type = "string",
@@ -2271,6 +2402,7 @@ M.RotationType = {
 
 M.RotationsListEntry = {
     type = "structure",
+    id = "RotationsListEntry",
     members = {
         KeyId = {
             type = "string",
@@ -2304,6 +2436,7 @@ M.RotationsListEntry = {
 
 M.ListKeyRotationsOutput = {
     type = "structure",
+    id = "ListKeyRotationsOutput",
     members = {
         Rotations = {
             type = "list",
@@ -2323,6 +2456,7 @@ M.ListKeyRotationsOutput = {
 
 M.ListKeysInput = {
     type = "structure",
+    id = "ListKeysInput",
     members = {
         Limit = {
             type = "integer",
@@ -2335,6 +2469,7 @@ M.ListKeysInput = {
 
 M.ListKeysOutput = {
     type = "structure",
+    id = "ListKeysOutput",
     members = {
         Keys = {
             type = "list",
@@ -2354,6 +2489,7 @@ M.ListKeysOutput = {
 
 M.ListResourceTagsInput = {
     type = "structure",
+    id = "ListResourceTagsInput",
     members = {
         KeyId = {
             type = "string",
@@ -2372,6 +2508,7 @@ M.ListResourceTagsInput = {
 
 M.ListResourceTagsOutput = {
     type = "structure",
+    id = "ListResourceTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -2391,6 +2528,7 @@ M.ListResourceTagsOutput = {
 
 M.ListRetirableGrantsInput = {
     type = "structure",
+    id = "ListRetirableGrantsInput",
     members = {
         Limit = {
             type = "integer",
@@ -2409,6 +2547,7 @@ M.ListRetirableGrantsInput = {
 
 M.ListRetirableGrantsOutput = {
     type = "structure",
+    id = "ListRetirableGrantsOutput",
     members = {
         Grants = {
             type = "list",
@@ -2434,6 +2573,7 @@ M.MessageType = {
 
 M.PutKeyPolicyInput = {
     type = "structure",
+    id = "PutKeyPolicyInput",
     members = {
         KeyId = {
             type = "string",
@@ -2461,10 +2601,12 @@ M.PutKeyPolicyInput = {
 
 M.PutKeyPolicyOutput = {
     type = "structure",
+    id = "PutKeyPolicyOutput",
 }
 
 M.ReEncryptInput = {
     type = "structure",
+    id = "ReEncryptInput",
     members = {
         CiphertextBlob = {
             type = "blob",
@@ -2510,6 +2652,7 @@ M.ReEncryptInput = {
 
 M.ReEncryptOutput = {
     type = "structure",
+    id = "ReEncryptOutput",
     members = {
         CiphertextBlob = {
             type = "blob",
@@ -2537,6 +2680,7 @@ M.ReEncryptOutput = {
 
 M.ReplicateKeyInput = {
     type = "structure",
+    id = "ReplicateKeyInput",
     members = {
         KeyId = {
             type = "string",
@@ -2571,6 +2715,7 @@ M.ReplicateKeyInput = {
 
 M.ReplicateKeyOutput = {
     type = "structure",
+    id = "ReplicateKeyOutput",
     members = {
         ReplicaKeyMetadata = M.KeyMetadata,
         ReplicaPolicy = {
@@ -2585,6 +2730,7 @@ M.ReplicateKeyOutput = {
 
 M.RetireGrantInput = {
     type = "structure",
+    id = "RetireGrantInput",
     members = {
         GrantToken = {
             type = "string",
@@ -2603,10 +2749,12 @@ M.RetireGrantInput = {
 
 M.RetireGrantOutput = {
     type = "structure",
+    id = "RetireGrantOutput",
 }
 
 M.RevokeGrantInput = {
     type = "structure",
+    id = "RevokeGrantInput",
     members = {
         KeyId = {
             type = "string",
@@ -2628,10 +2776,12 @@ M.RevokeGrantInput = {
 
 M.RevokeGrantOutput = {
     type = "structure",
+    id = "RevokeGrantOutput",
 }
 
 M.RotateKeyOnDemandInput = {
     type = "structure",
+    id = "RotateKeyOnDemandInput",
     members = {
         KeyId = {
             type = "string",
@@ -2644,6 +2794,7 @@ M.RotateKeyOnDemandInput = {
 
 M.RotateKeyOnDemandOutput = {
     type = "structure",
+    id = "RotateKeyOnDemandOutput",
     members = {
         KeyId = {
             type = "string",
@@ -2653,6 +2804,7 @@ M.RotateKeyOnDemandOutput = {
 
 M.ScheduleKeyDeletionInput = {
     type = "structure",
+    id = "ScheduleKeyDeletionInput",
     members = {
         KeyId = {
             type = "string",
@@ -2668,6 +2820,7 @@ M.ScheduleKeyDeletionInput = {
 
 M.ScheduleKeyDeletionOutput = {
     type = "structure",
+    id = "ScheduleKeyDeletionOutput",
     members = {
         KeyId = {
             type = "string",
@@ -2686,6 +2839,7 @@ M.ScheduleKeyDeletionOutput = {
 
 M.SignInput = {
     type = "structure",
+    id = "SignInput",
     members = {
         KeyId = {
             type = "string",
@@ -2720,6 +2874,7 @@ M.SignInput = {
 
 M.SignOutput = {
     type = "structure",
+    id = "SignOutput",
     members = {
         KeyId = {
             type = "string",
@@ -2735,6 +2890,7 @@ M.SignOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         KeyId = {
             type = "string",
@@ -2754,10 +2910,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         KeyId = {
             type = "string",
@@ -2777,10 +2935,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAliasInput = {
     type = "structure",
+    id = "UpdateAliasInput",
     members = {
         AliasName = {
             type = "string",
@@ -2799,10 +2959,12 @@ M.UpdateAliasInput = {
 
 M.UpdateAliasOutput = {
     type = "structure",
+    id = "UpdateAliasOutput",
 }
 
 M.UpdateCustomKeyStoreInput = {
     type = "structure",
+    id = "UpdateCustomKeyStoreInput",
     members = {
         CustomKeyStoreId = {
             type = "string",
@@ -2840,10 +3002,12 @@ M.UpdateCustomKeyStoreInput = {
 
 M.UpdateCustomKeyStoreOutput = {
     type = "structure",
+    id = "UpdateCustomKeyStoreOutput",
 }
 
 M.UpdateKeyDescriptionInput = {
     type = "structure",
+    id = "UpdateKeyDescriptionInput",
     members = {
         KeyId = {
             type = "string",
@@ -2862,10 +3026,12 @@ M.UpdateKeyDescriptionInput = {
 
 M.UpdateKeyDescriptionOutput = {
     type = "structure",
+    id = "UpdateKeyDescriptionOutput",
 }
 
 M.UpdatePrimaryRegionInput = {
     type = "structure",
+    id = "UpdatePrimaryRegionInput",
     members = {
         KeyId = {
             type = "string",
@@ -2884,10 +3050,12 @@ M.UpdatePrimaryRegionInput = {
 
 M.UpdatePrimaryRegionOutput = {
     type = "structure",
+    id = "UpdatePrimaryRegionOutput",
 }
 
 M.VerifyInput = {
     type = "structure",
+    id = "VerifyInput",
     members = {
         KeyId = {
             type = "string",
@@ -2928,6 +3096,7 @@ M.VerifyInput = {
 
 M.VerifyOutput = {
     type = "structure",
+    id = "VerifyOutput",
     members = {
         KeyId = {
             type = "string",
@@ -2946,6 +3115,7 @@ M.VerifyOutput = {
 
 M.VerifyMacInput = {
     type = "structure",
+    id = "VerifyMacInput",
     members = {
         Message = {
             type = "blob",
@@ -2983,6 +3153,7 @@ M.VerifyMacInput = {
 
 M.VerifyMacOutput = {
     type = "structure",
+    id = "VerifyMacOutput",
     members = {
         KeyId = {
             type = "string",

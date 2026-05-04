@@ -7,6 +7,7 @@ M.ApproximateCreationDateTimePrecision = {
 
 M.ArchivalSummary = {
     type = "structure",
+    id = "ArchivalSummary",
     members = {
         ArchivalDateTime = {
             type = "timestamp",
@@ -34,6 +35,7 @@ M.ScalarAttributeType = {
 
 M.AttributeDefinition = {
     type = "structure",
+    id = "AttributeDefinition",
     members = {
         AttributeName = {
             type = "string",
@@ -52,6 +54,7 @@ M.AttributeDefinition = {
 
 M.AutoScalingTargetTrackingScalingPolicyConfigurationDescription = {
     type = "structure",
+    id = "AutoScalingTargetTrackingScalingPolicyConfigurationDescription",
     members = {
         DisableScaleIn = {
             type = "boolean",
@@ -73,6 +76,7 @@ M.AutoScalingTargetTrackingScalingPolicyConfigurationDescription = {
 
 M.AutoScalingPolicyDescription = {
     type = "structure",
+    id = "AutoScalingPolicyDescription",
     members = {
         PolicyName = {
             type = "string",
@@ -83,6 +87,7 @@ M.AutoScalingPolicyDescription = {
 
 M.AutoScalingTargetTrackingScalingPolicyConfigurationUpdate = {
     type = "structure",
+    id = "AutoScalingTargetTrackingScalingPolicyConfigurationUpdate",
     members = {
         DisableScaleIn = {
             type = "boolean",
@@ -104,6 +109,7 @@ M.AutoScalingTargetTrackingScalingPolicyConfigurationUpdate = {
 
 M.AutoScalingPolicyUpdate = {
     type = "structure",
+    id = "AutoScalingPolicyUpdate",
     members = {
         PolicyName = {
             type = "string",
@@ -116,6 +122,7 @@ M.AutoScalingPolicyUpdate = {
 
 M.AutoScalingSettingsDescription = {
     type = "structure",
+    id = "AutoScalingSettingsDescription",
     members = {
         MinimumUnits = {
             type = "long",
@@ -138,6 +145,7 @@ M.AutoScalingSettingsDescription = {
 
 M.AutoScalingSettingsUpdate = {
     type = "structure",
+    id = "AutoScalingSettingsUpdate",
     members = {
         MinimumUnits = {
             type = "long",
@@ -169,6 +177,7 @@ M.BackupType = {
 
 M.BackupDetails = {
     type = "structure",
+    id = "BackupDetails",
     members = {
         BackupArn = {
             type = "string",
@@ -221,6 +230,7 @@ M.KeyType = {
 
 M.KeySchemaElement = {
     type = "structure",
+    id = "KeySchemaElement",
     members = {
         AttributeName = {
             type = "string",
@@ -239,6 +249,7 @@ M.KeySchemaElement = {
 
 M.OnDemandThroughput = {
     type = "structure",
+    id = "OnDemandThroughput",
     members = {
         MaxReadRequestUnits = {
             type = "long",
@@ -251,6 +262,7 @@ M.OnDemandThroughput = {
 
 M.ProvisionedThroughput = {
     type = "structure",
+    id = "ProvisionedThroughput",
     members = {
         ReadCapacityUnits = {
             type = "long",
@@ -269,6 +281,7 @@ M.ProvisionedThroughput = {
 
 M.SourceTableDetails = {
     type = "structure",
+    id = "SourceTableDetails",
     members = {
         TableName = {
             type = "string",
@@ -322,6 +335,7 @@ M.ProjectionType = {
 
 M.Projection = {
     type = "structure",
+    id = "Projection",
     members = {
         ProjectionType = {
             type = "string",
@@ -335,6 +349,7 @@ M.Projection = {
 
 M.GlobalSecondaryIndexInfo = {
     type = "structure",
+    id = "GlobalSecondaryIndexInfo",
     members = {
         IndexName = {
             type = "string",
@@ -351,6 +366,7 @@ M.GlobalSecondaryIndexInfo = {
 
 M.LocalSecondaryIndexInfo = {
     type = "structure",
+    id = "LocalSecondaryIndexInfo",
     members = {
         IndexName = {
             type = "string",
@@ -378,6 +394,7 @@ M.SSEStatus = {
 
 M.SSEDescription = {
     type = "structure",
+    id = "SSEDescription",
     members = {
         Status = {
             type = "string",
@@ -403,6 +420,7 @@ M.StreamViewType = {
 
 M.StreamSpecification = {
     type = "structure",
+    id = "StreamSpecification",
     members = {
         StreamEnabled = {
             type = "boolean",
@@ -425,6 +443,7 @@ M.TimeToLiveStatus = {
 
 M.TimeToLiveDescription = {
     type = "structure",
+    id = "TimeToLiveDescription",
     members = {
         TimeToLiveStatus = {
             type = "string",
@@ -437,6 +456,7 @@ M.TimeToLiveDescription = {
 
 M.SourceTableFeatureDetails = {
     type = "structure",
+    id = "SourceTableFeatureDetails",
     members = {
         LocalSecondaryIndexes = {
             type = "list",
@@ -454,6 +474,7 @@ M.SourceTableFeatureDetails = {
 
 M.BackupDescription = {
     type = "structure",
+    id = "BackupDescription",
     members = {
         BackupDetails = M.BackupDetails,
         SourceTableDetails = M.SourceTableDetails,
@@ -463,6 +484,7 @@ M.BackupDescription = {
 
 M.BackupInUseException = {
     type = "structure",
+    id = "BackupInUseException",
     error = "client",
     members = {
         message = {
@@ -473,6 +495,7 @@ M.BackupInUseException = {
 
 M.BackupNotFoundException = {
     type = "structure",
+    id = "BackupNotFoundException",
     error = "client",
     members = {
         message = {
@@ -483,6 +506,7 @@ M.BackupNotFoundException = {
 
 M.BackupSummary = {
     type = "structure",
+    id = "BackupSummary",
     members = {
         TableName = {
             type = "string",
@@ -537,6 +561,7 @@ M.ReturnValuesOnConditionCheckFailure = {
 
 M.Capacity = {
     type = "structure",
+    id = "Capacity",
     members = {
         ReadCapacityUnits = {
             type = "double",
@@ -552,6 +577,7 @@ M.Capacity = {
 
 M.ConsumedCapacity = {
     type = "structure",
+    id = "ConsumedCapacity",
     members = {
         TableName = {
             type = "string",
@@ -595,6 +621,7 @@ M.BatchStatementErrorCodeEnum = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         message = {
@@ -605,6 +632,7 @@ M.InternalServerError = {
 
 M.ThrottlingReason = {
     type = "structure",
+    id = "ThrottlingReason",
     members = {
         reason = {
             type = "string",
@@ -617,6 +645,7 @@ M.ThrottlingReason = {
 
 M.RequestLimitExceeded = {
     type = "structure",
+    id = "RequestLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -631,6 +660,7 @@ M.RequestLimitExceeded = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -645,6 +675,7 @@ M.ThrottlingException = {
 
 M.InvalidEndpointException = {
     type = "structure",
+    id = "InvalidEndpointException",
     error = "client",
     members = {
         Message = {
@@ -655,6 +686,7 @@ M.InvalidEndpointException = {
 
 M.ProvisionedThroughputExceededException = {
     type = "structure",
+    id = "ProvisionedThroughputExceededException",
     error = "client",
     members = {
         message = {
@@ -669,6 +701,7 @@ M.ProvisionedThroughputExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -684,6 +717,7 @@ M.ReturnItemCollectionMetrics = {
 
 M.ItemCollectionSizeLimitExceededException = {
     type = "structure",
+    id = "ItemCollectionSizeLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -694,6 +728,7 @@ M.ItemCollectionSizeLimitExceededException = {
 
 M.ReplicatedWriteConflictException = {
     type = "structure",
+    id = "ReplicatedWriteConflictException",
     error = "client",
     members = {
         message = {
@@ -704,6 +739,7 @@ M.ReplicatedWriteConflictException = {
 
 M.BillingModeSummary = {
     type = "structure",
+    id = "BillingModeSummary",
     members = {
         BillingMode = {
             type = "string",
@@ -747,6 +783,7 @@ M.PointInTimeRecoveryStatus = {
 
 M.PointInTimeRecoveryDescription = {
     type = "structure",
+    id = "PointInTimeRecoveryDescription",
     members = {
         PointInTimeRecoveryStatus = {
             type = "string",
@@ -765,6 +802,7 @@ M.PointInTimeRecoveryDescription = {
 
 M.ContinuousBackupsDescription = {
     type = "structure",
+    id = "ContinuousBackupsDescription",
     members = {
         ContinuousBackupsStatus = {
             type = "string",
@@ -778,6 +816,7 @@ M.ContinuousBackupsDescription = {
 
 M.ContinuousBackupsUnavailableException = {
     type = "structure",
+    id = "ContinuousBackupsUnavailableException",
     error = "client",
     members = {
         message = {
@@ -806,6 +845,7 @@ M.ContributorInsightsStatus = {
 
 M.ContributorInsightsSummary = {
     type = "structure",
+    id = "ContributorInsightsSummary",
     members = {
         TableName = {
             type = "string",
@@ -824,6 +864,7 @@ M.ContributorInsightsSummary = {
 
 M.CreateBackupInput = {
     type = "structure",
+    id = "CreateBackupInput",
     members = {
         TableName = {
             type = "string",
@@ -842,6 +883,7 @@ M.CreateBackupInput = {
 
 M.CreateBackupOutput = {
     type = "structure",
+    id = "CreateBackupOutput",
     members = {
         BackupDetails = M.BackupDetails,
     },
@@ -849,6 +891,7 @@ M.CreateBackupOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -859,6 +902,7 @@ M.LimitExceededException = {
 
 M.TableInUseException = {
     type = "structure",
+    id = "TableInUseException",
     error = "client",
     members = {
         message = {
@@ -869,6 +913,7 @@ M.TableInUseException = {
 
 M.TableNotFoundException = {
     type = "structure",
+    id = "TableNotFoundException",
     error = "client",
     members = {
         message = {
@@ -879,6 +924,7 @@ M.TableNotFoundException = {
 
 M.WarmThroughput = {
     type = "structure",
+    id = "WarmThroughput",
     members = {
         ReadUnitsPerSecond = {
             type = "long",
@@ -891,6 +937,7 @@ M.WarmThroughput = {
 
 M.CreateGlobalSecondaryIndexAction = {
     type = "structure",
+    id = "CreateGlobalSecondaryIndexAction",
     members = {
         IndexName = {
             type = "string",
@@ -916,6 +963,7 @@ M.CreateGlobalSecondaryIndexAction = {
 
 M.Replica = {
     type = "structure",
+    id = "Replica",
     members = {
         RegionName = {
             type = "string",
@@ -925,6 +973,7 @@ M.Replica = {
 
 M.CreateGlobalTableInput = {
     type = "structure",
+    id = "CreateGlobalTableInput",
     members = {
         GlobalTableName = {
             type = "string",
@@ -951,6 +1000,7 @@ M.GlobalTableStatus = {
 
 M.OnDemandThroughputOverride = {
     type = "structure",
+    id = "OnDemandThroughputOverride",
     members = {
         MaxReadRequestUnits = {
             type = "long",
@@ -960,6 +1010,7 @@ M.OnDemandThroughputOverride = {
 
 M.ProvisionedThroughputOverride = {
     type = "structure",
+    id = "ProvisionedThroughputOverride",
     members = {
         ReadCapacityUnits = {
             type = "long",
@@ -976,6 +1027,7 @@ M.IndexStatus = {
 
 M.GlobalSecondaryIndexWarmThroughputDescription = {
     type = "structure",
+    id = "GlobalSecondaryIndexWarmThroughputDescription",
     members = {
         ReadUnitsPerSecond = {
             type = "long",
@@ -991,6 +1043,7 @@ M.GlobalSecondaryIndexWarmThroughputDescription = {
 
 M.ReplicaGlobalSecondaryIndexDescription = {
     type = "structure",
+    id = "ReplicaGlobalSecondaryIndexDescription",
     members = {
         IndexName = {
             type = "string",
@@ -1027,6 +1080,7 @@ M.TableClass = {
 
 M.TableClassSummary = {
     type = "structure",
+    id = "TableClassSummary",
     members = {
         TableClass = {
             type = "string",
@@ -1050,6 +1104,7 @@ M.TableStatus = {
 
 M.TableWarmThroughputDescription = {
     type = "structure",
+    id = "TableWarmThroughputDescription",
     members = {
         ReadUnitsPerSecond = {
             type = "long",
@@ -1065,6 +1120,7 @@ M.TableWarmThroughputDescription = {
 
 M.ReplicaDescription = {
     type = "structure",
+    id = "ReplicaDescription",
     members = {
         RegionName = {
             type = "string",
@@ -1103,6 +1159,7 @@ M.ReplicaDescription = {
 
 M.GlobalTableDescription = {
     type = "structure",
+    id = "GlobalTableDescription",
     members = {
         ReplicationGroup = {
             type = "list",
@@ -1125,6 +1182,7 @@ M.GlobalTableDescription = {
 
 M.CreateGlobalTableOutput = {
     type = "structure",
+    id = "CreateGlobalTableOutput",
     members = {
         GlobalTableDescription = M.GlobalTableDescription,
     },
@@ -1132,6 +1190,7 @@ M.CreateGlobalTableOutput = {
 
 M.GlobalTableAlreadyExistsException = {
     type = "structure",
+    id = "GlobalTableAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -1142,6 +1201,7 @@ M.GlobalTableAlreadyExistsException = {
 
 M.CreateGlobalTableWitnessGroupMemberAction = {
     type = "structure",
+    id = "CreateGlobalTableWitnessGroupMemberAction",
     members = {
         RegionName = {
             type = "string",
@@ -1154,6 +1214,7 @@ M.CreateGlobalTableWitnessGroupMemberAction = {
 
 M.CreateReplicaAction = {
     type = "structure",
+    id = "CreateReplicaAction",
     members = {
         RegionName = {
             type = "string",
@@ -1166,6 +1227,7 @@ M.CreateReplicaAction = {
 
 M.ReplicaGlobalSecondaryIndex = {
     type = "structure",
+    id = "ReplicaGlobalSecondaryIndex",
     members = {
         IndexName = {
             type = "string",
@@ -1180,6 +1242,7 @@ M.ReplicaGlobalSecondaryIndex = {
 
 M.CreateReplicationGroupMemberAction = {
     type = "structure",
+    id = "CreateReplicationGroupMemberAction",
     members = {
         RegionName = {
             type = "string",
@@ -1204,6 +1267,7 @@ M.CreateReplicationGroupMemberAction = {
 
 M.GlobalSecondaryIndex = {
     type = "structure",
+    id = "GlobalSecondaryIndex",
     members = {
         IndexName = {
             type = "string",
@@ -1229,6 +1293,7 @@ M.GlobalSecondaryIndex = {
 
 M.LocalSecondaryIndex = {
     type = "structure",
+    id = "LocalSecondaryIndex",
     members = {
         IndexName = {
             type = "string",
@@ -1251,6 +1316,7 @@ M.LocalSecondaryIndex = {
 
 M.SSESpecification = {
     type = "structure",
+    id = "SSESpecification",
     members = {
         Enabled = {
             type = "boolean",
@@ -1266,6 +1332,7 @@ M.SSESpecification = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1284,6 +1351,7 @@ M.Tag = {
 
 M.CreateTableInput = {
     type = "structure",
+    id = "CreateTableInput",
     members = {
         AttributeDefinitions = {
             type = "list",
@@ -1339,6 +1407,7 @@ M.CreateTableInput = {
 
 M.ProvisionedThroughputDescription = {
     type = "structure",
+    id = "ProvisionedThroughputDescription",
     members = {
         LastIncreaseDateTime = {
             type = "timestamp",
@@ -1360,6 +1429,7 @@ M.ProvisionedThroughputDescription = {
 
 M.GlobalSecondaryIndexDescription = {
     type = "structure",
+    id = "GlobalSecondaryIndexDescription",
     members = {
         IndexName = {
             type = "string",
@@ -1398,6 +1468,7 @@ M.WitnessStatus = {
 
 M.GlobalTableWitnessDescription = {
     type = "structure",
+    id = "GlobalTableWitnessDescription",
     members = {
         RegionName = {
             type = "string",
@@ -1410,6 +1481,7 @@ M.GlobalTableWitnessDescription = {
 
 M.LocalSecondaryIndexDescription = {
     type = "structure",
+    id = "LocalSecondaryIndexDescription",
     members = {
         IndexName = {
             type = "string",
@@ -1438,6 +1510,7 @@ M.MultiRegionConsistency = {
 
 M.RestoreSummary = {
     type = "structure",
+    id = "RestoreSummary",
     members = {
         SourceBackupArn = {
             type = "string",
@@ -1462,6 +1535,7 @@ M.RestoreSummary = {
 
 M.TableDescription = {
     type = "structure",
+    id = "TableDescription",
     members = {
         AttributeDefinitions = {
             type = "list",
@@ -1540,6 +1614,7 @@ M.TableDescription = {
 
 M.CreateTableOutput = {
     type = "structure",
+    id = "CreateTableOutput",
     members = {
         TableDescription = M.TableDescription,
     },
@@ -1547,6 +1622,7 @@ M.CreateTableOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -1557,6 +1633,7 @@ M.ResourceInUseException = {
 
 M.CsvOptions = {
     type = "structure",
+    id = "CsvOptions",
     members = {
         Delimiter = {
             type = "string",
@@ -1570,6 +1647,7 @@ M.CsvOptions = {
 
 M.DeleteBackupInput = {
     type = "structure",
+    id = "DeleteBackupInput",
     members = {
         BackupArn = {
             type = "string",
@@ -1582,6 +1660,7 @@ M.DeleteBackupInput = {
 
 M.DeleteBackupOutput = {
     type = "structure",
+    id = "DeleteBackupOutput",
     members = {
         BackupDescription = M.BackupDescription,
     },
@@ -1589,6 +1668,7 @@ M.DeleteBackupOutput = {
 
 M.DeleteGlobalSecondaryIndexAction = {
     type = "structure",
+    id = "DeleteGlobalSecondaryIndexAction",
     members = {
         IndexName = {
             type = "string",
@@ -1601,6 +1681,7 @@ M.DeleteGlobalSecondaryIndexAction = {
 
 M.DeleteGlobalTableWitnessGroupMemberAction = {
     type = "structure",
+    id = "DeleteGlobalTableWitnessGroupMemberAction",
     members = {
         RegionName = {
             type = "string",
@@ -1621,6 +1702,7 @@ M.ReturnValue = {
 
 M.TransactionConflictException = {
     type = "structure",
+    id = "TransactionConflictException",
     error = "client",
     members = {
         message = {
@@ -1631,6 +1713,7 @@ M.TransactionConflictException = {
 
 M.DeleteReplicaAction = {
     type = "structure",
+    id = "DeleteReplicaAction",
     members = {
         RegionName = {
             type = "string",
@@ -1643,6 +1726,7 @@ M.DeleteReplicaAction = {
 
 M.DeleteReplicationGroupMemberAction = {
     type = "structure",
+    id = "DeleteReplicationGroupMemberAction",
     members = {
         RegionName = {
             type = "string",
@@ -1655,6 +1739,7 @@ M.DeleteReplicationGroupMemberAction = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1670,6 +1755,7 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
     members = {
         RevisionId = {
             type = "string",
@@ -1679,6 +1765,7 @@ M.DeleteResourcePolicyOutput = {
 
 M.PolicyNotFoundException = {
     type = "structure",
+    id = "PolicyNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1689,6 +1776,7 @@ M.PolicyNotFoundException = {
 
 M.DeleteTableInput = {
     type = "structure",
+    id = "DeleteTableInput",
     members = {
         TableName = {
             type = "string",
@@ -1701,6 +1789,7 @@ M.DeleteTableInput = {
 
 M.DeleteTableOutput = {
     type = "structure",
+    id = "DeleteTableOutput",
     members = {
         TableDescription = M.TableDescription,
     },
@@ -1708,6 +1797,7 @@ M.DeleteTableOutput = {
 
 M.DescribeBackupInput = {
     type = "structure",
+    id = "DescribeBackupInput",
     members = {
         BackupArn = {
             type = "string",
@@ -1720,6 +1810,7 @@ M.DescribeBackupInput = {
 
 M.DescribeBackupOutput = {
     type = "structure",
+    id = "DescribeBackupOutput",
     members = {
         BackupDescription = M.BackupDescription,
     },
@@ -1727,6 +1818,7 @@ M.DescribeBackupOutput = {
 
 M.DescribeContinuousBackupsInput = {
     type = "structure",
+    id = "DescribeContinuousBackupsInput",
     members = {
         TableName = {
             type = "string",
@@ -1739,6 +1831,7 @@ M.DescribeContinuousBackupsInput = {
 
 M.DescribeContinuousBackupsOutput = {
     type = "structure",
+    id = "DescribeContinuousBackupsOutput",
     members = {
         ContinuousBackupsDescription = M.ContinuousBackupsDescription,
     },
@@ -1746,6 +1839,7 @@ M.DescribeContinuousBackupsOutput = {
 
 M.DescribeContributorInsightsInput = {
     type = "structure",
+    id = "DescribeContributorInsightsInput",
     members = {
         TableName = {
             type = "string",
@@ -1761,6 +1855,7 @@ M.DescribeContributorInsightsInput = {
 
 M.FailureException = {
     type = "structure",
+    id = "FailureException",
     members = {
         ExceptionName = {
             type = "string",
@@ -1773,6 +1868,7 @@ M.FailureException = {
 
 M.DescribeContributorInsightsOutput = {
     type = "structure",
+    id = "DescribeContributorInsightsOutput",
     members = {
         TableName = {
             type = "string",
@@ -1799,10 +1895,12 @@ M.DescribeContributorInsightsOutput = {
 
 M.DescribeEndpointsInput = {
     type = "structure",
+    id = "DescribeEndpointsInput",
 }
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -1822,6 +1920,7 @@ M.Endpoint = {
 
 M.DescribeEndpointsOutput = {
     type = "structure",
+    id = "DescribeEndpointsOutput",
     members = {
         Endpoints = {
             type = "list",
@@ -1835,6 +1934,7 @@ M.DescribeEndpointsOutput = {
 
 M.DescribeExportInput = {
     type = "structure",
+    id = "DescribeExportInput",
     members = {
         ExportArn = {
             type = "string",
@@ -1868,6 +1968,7 @@ M.ExportViewType = {
 
 M.IncrementalExportSpecification = {
     type = "structure",
+    id = "IncrementalExportSpecification",
     members = {
         ExportFromTime = {
             type = "timestamp",
@@ -1888,6 +1989,7 @@ M.S3SseAlgorithm = {
 
 M.ExportDescription = {
     type = "structure",
+    id = "ExportDescription",
     members = {
         ExportArn = {
             type = "string",
@@ -1955,6 +2057,7 @@ M.ExportDescription = {
 
 M.DescribeExportOutput = {
     type = "structure",
+    id = "DescribeExportOutput",
     members = {
         ExportDescription = M.ExportDescription,
     },
@@ -1962,6 +2065,7 @@ M.DescribeExportOutput = {
 
 M.ExportNotFoundException = {
     type = "structure",
+    id = "ExportNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1972,6 +2076,7 @@ M.ExportNotFoundException = {
 
 M.DescribeGlobalTableInput = {
     type = "structure",
+    id = "DescribeGlobalTableInput",
     members = {
         GlobalTableName = {
             type = "string",
@@ -1984,6 +2089,7 @@ M.DescribeGlobalTableInput = {
 
 M.DescribeGlobalTableOutput = {
     type = "structure",
+    id = "DescribeGlobalTableOutput",
     members = {
         GlobalTableDescription = M.GlobalTableDescription,
     },
@@ -1991,6 +2097,7 @@ M.DescribeGlobalTableOutput = {
 
 M.GlobalTableNotFoundException = {
     type = "structure",
+    id = "GlobalTableNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2001,6 +2108,7 @@ M.GlobalTableNotFoundException = {
 
 M.DescribeGlobalTableSettingsInput = {
     type = "structure",
+    id = "DescribeGlobalTableSettingsInput",
     members = {
         GlobalTableName = {
             type = "string",
@@ -2013,6 +2121,7 @@ M.DescribeGlobalTableSettingsInput = {
 
 M.ReplicaGlobalSecondaryIndexSettingsDescription = {
     type = "structure",
+    id = "ReplicaGlobalSecondaryIndexSettingsDescription",
     members = {
         IndexName = {
             type = "string",
@@ -2036,6 +2145,7 @@ M.ReplicaGlobalSecondaryIndexSettingsDescription = {
 
 M.ReplicaSettingsDescription = {
     type = "structure",
+    id = "ReplicaSettingsDescription",
     members = {
         RegionName = {
             type = "string",
@@ -2065,6 +2175,7 @@ M.ReplicaSettingsDescription = {
 
 M.DescribeGlobalTableSettingsOutput = {
     type = "structure",
+    id = "DescribeGlobalTableSettingsOutput",
     members = {
         GlobalTableName = {
             type = "string",
@@ -2078,6 +2189,7 @@ M.DescribeGlobalTableSettingsOutput = {
 
 M.DescribeImportInput = {
     type = "structure",
+    id = "DescribeImportInput",
     members = {
         ImportArn = {
             type = "string",
@@ -2110,6 +2222,7 @@ M.InputFormat = {
 
 M.InputFormatOptions = {
     type = "structure",
+    id = "InputFormatOptions",
     members = {
         Csv = M.CsvOptions,
     },
@@ -2117,6 +2230,7 @@ M.InputFormatOptions = {
 
 M.S3BucketSource = {
     type = "structure",
+    id = "S3BucketSource",
     members = {
         S3BucketOwner = {
             type = "string",
@@ -2135,6 +2249,7 @@ M.S3BucketSource = {
 
 M.TableCreationParameters = {
     type = "structure",
+    id = "TableCreationParameters",
     members = {
         TableName = {
             type = "string",
@@ -2171,6 +2286,7 @@ M.TableCreationParameters = {
 
 M.ImportTableDescription = {
     type = "structure",
+    id = "ImportTableDescription",
     members = {
         ImportArn = {
             type = "string",
@@ -2237,6 +2353,7 @@ M.ImportTableDescription = {
 
 M.DescribeImportOutput = {
     type = "structure",
+    id = "DescribeImportOutput",
     members = {
         ImportTableDescription = setmetatable({ traits = {
             required = true,
@@ -2246,6 +2363,7 @@ M.DescribeImportOutput = {
 
 M.ImportNotFoundException = {
     type = "structure",
+    id = "ImportNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2256,6 +2374,7 @@ M.ImportNotFoundException = {
 
 M.DescribeKinesisStreamingDestinationInput = {
     type = "structure",
+    id = "DescribeKinesisStreamingDestinationInput",
     members = {
         TableName = {
             type = "string",
@@ -2277,6 +2396,7 @@ M.DestinationStatus = {
 
 M.KinesisDataStreamDestination = {
     type = "structure",
+    id = "KinesisDataStreamDestination",
     members = {
         StreamArn = {
             type = "string",
@@ -2295,6 +2415,7 @@ M.KinesisDataStreamDestination = {
 
 M.DescribeKinesisStreamingDestinationOutput = {
     type = "structure",
+    id = "DescribeKinesisStreamingDestinationOutput",
     members = {
         TableName = {
             type = "string",
@@ -2308,10 +2429,12 @@ M.DescribeKinesisStreamingDestinationOutput = {
 
 M.DescribeLimitsInput = {
     type = "structure",
+    id = "DescribeLimitsInput",
 }
 
 M.DescribeLimitsOutput = {
     type = "structure",
+    id = "DescribeLimitsOutput",
     members = {
         AccountMaxReadCapacityUnits = {
             type = "long",
@@ -2330,6 +2453,7 @@ M.DescribeLimitsOutput = {
 
 M.DescribeTableInput = {
     type = "structure",
+    id = "DescribeTableInput",
     members = {
         TableName = {
             type = "string",
@@ -2342,6 +2466,7 @@ M.DescribeTableInput = {
 
 M.DescribeTableOutput = {
     type = "structure",
+    id = "DescribeTableOutput",
     members = {
         Table = M.TableDescription,
     },
@@ -2349,6 +2474,7 @@ M.DescribeTableOutput = {
 
 M.DescribeTableReplicaAutoScalingInput = {
     type = "structure",
+    id = "DescribeTableReplicaAutoScalingInput",
     members = {
         TableName = {
             type = "string",
@@ -2361,6 +2487,7 @@ M.DescribeTableReplicaAutoScalingInput = {
 
 M.ReplicaGlobalSecondaryIndexAutoScalingDescription = {
     type = "structure",
+    id = "ReplicaGlobalSecondaryIndexAutoScalingDescription",
     members = {
         IndexName = {
             type = "string",
@@ -2375,6 +2502,7 @@ M.ReplicaGlobalSecondaryIndexAutoScalingDescription = {
 
 M.ReplicaAutoScalingDescription = {
     type = "structure",
+    id = "ReplicaAutoScalingDescription",
     members = {
         RegionName = {
             type = "string",
@@ -2393,6 +2521,7 @@ M.ReplicaAutoScalingDescription = {
 
 M.TableAutoScalingDescription = {
     type = "structure",
+    id = "TableAutoScalingDescription",
     members = {
         TableName = {
             type = "string",
@@ -2409,6 +2538,7 @@ M.TableAutoScalingDescription = {
 
 M.DescribeTableReplicaAutoScalingOutput = {
     type = "structure",
+    id = "DescribeTableReplicaAutoScalingOutput",
     members = {
         TableAutoScalingDescription = M.TableAutoScalingDescription,
     },
@@ -2416,6 +2546,7 @@ M.DescribeTableReplicaAutoScalingOutput = {
 
 M.DescribeTimeToLiveInput = {
     type = "structure",
+    id = "DescribeTimeToLiveInput",
     members = {
         TableName = {
             type = "string",
@@ -2428,6 +2559,7 @@ M.DescribeTimeToLiveInput = {
 
 M.DescribeTimeToLiveOutput = {
     type = "structure",
+    id = "DescribeTimeToLiveOutput",
     members = {
         TimeToLiveDescription = M.TimeToLiveDescription,
     },
@@ -2435,6 +2567,7 @@ M.DescribeTimeToLiveOutput = {
 
 M.EnableKinesisStreamingConfiguration = {
     type = "structure",
+    id = "EnableKinesisStreamingConfiguration",
     members = {
         ApproximateCreationDateTimePrecision = {
             type = "string",
@@ -2444,6 +2577,7 @@ M.EnableKinesisStreamingConfiguration = {
 
 M.DisableKinesisStreamingDestinationInput = {
     type = "structure",
+    id = "DisableKinesisStreamingDestinationInput",
     members = {
         TableName = {
             type = "string",
@@ -2463,6 +2597,7 @@ M.DisableKinesisStreamingDestinationInput = {
 
 M.DisableKinesisStreamingDestinationOutput = {
     type = "structure",
+    id = "DisableKinesisStreamingDestinationOutput",
     members = {
         TableName = {
             type = "string",
@@ -2479,6 +2614,7 @@ M.DisableKinesisStreamingDestinationOutput = {
 
 M.DuplicateItemException = {
     type = "structure",
+    id = "DuplicateItemException",
     error = "client",
     members = {
         message = {
@@ -2489,6 +2625,7 @@ M.DuplicateItemException = {
 
 M.EnableKinesisStreamingDestinationInput = {
     type = "structure",
+    id = "EnableKinesisStreamingDestinationInput",
     members = {
         TableName = {
             type = "string",
@@ -2508,6 +2645,7 @@ M.EnableKinesisStreamingDestinationInput = {
 
 M.EnableKinesisStreamingDestinationOutput = {
     type = "structure",
+    id = "EnableKinesisStreamingDestinationOutput",
     members = {
         TableName = {
             type = "string",
@@ -2524,6 +2662,7 @@ M.EnableKinesisStreamingDestinationOutput = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         Message = {
@@ -2534,6 +2673,7 @@ M.IdempotentParameterMismatchException = {
 
 M.TransactionInProgressException = {
     type = "structure",
+    id = "TransactionInProgressException",
     error = "client",
     members = {
         Message = {
@@ -2544,6 +2684,7 @@ M.TransactionInProgressException = {
 
 M.ExportConflictException = {
     type = "structure",
+    id = "ExportConflictException",
     error = "client",
     members = {
         message = {
@@ -2554,6 +2695,7 @@ M.ExportConflictException = {
 
 M.ExportTableToPointInTimeInput = {
     type = "structure",
+    id = "ExportTableToPointInTimeInput",
     members = {
         TableArn = {
             type = "string",
@@ -2600,6 +2742,7 @@ M.ExportTableToPointInTimeInput = {
 
 M.ExportTableToPointInTimeOutput = {
     type = "structure",
+    id = "ExportTableToPointInTimeOutput",
     members = {
         ExportDescription = M.ExportDescription,
     },
@@ -2607,6 +2750,7 @@ M.ExportTableToPointInTimeOutput = {
 
 M.InvalidExportTimeException = {
     type = "structure",
+    id = "InvalidExportTimeException",
     error = "client",
     members = {
         message = {
@@ -2617,6 +2761,7 @@ M.InvalidExportTimeException = {
 
 M.PointInTimeRecoveryUnavailableException = {
     type = "structure",
+    id = "PointInTimeRecoveryUnavailableException",
     error = "client",
     members = {
         message = {
@@ -2627,6 +2772,7 @@ M.PointInTimeRecoveryUnavailableException = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2639,6 +2785,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -2651,6 +2798,7 @@ M.GetResourcePolicyOutput = {
 
 M.ImportConflictException = {
     type = "structure",
+    id = "ImportConflictException",
     error = "client",
     members = {
         message = {
@@ -2661,6 +2809,7 @@ M.ImportConflictException = {
 
 M.ImportTableInput = {
     type = "structure",
+    id = "ImportTableInput",
     members = {
         ClientToken = {
             type = "string",
@@ -2689,6 +2838,7 @@ M.ImportTableInput = {
 
 M.ImportTableOutput = {
     type = "structure",
+    id = "ImportTableOutput",
     members = {
         ImportTableDescription = setmetatable({ traits = {
             required = true,
@@ -2698,6 +2848,7 @@ M.ImportTableOutput = {
 
 M.ListBackupsInput = {
     type = "structure",
+    id = "ListBackupsInput",
     members = {
         TableName = {
             type = "string",
@@ -2722,6 +2873,7 @@ M.ListBackupsInput = {
 
 M.ListBackupsOutput = {
     type = "structure",
+    id = "ListBackupsOutput",
     members = {
         BackupSummaries = {
             type = "list",
@@ -2735,6 +2887,7 @@ M.ListBackupsOutput = {
 
 M.ListContributorInsightsInput = {
     type = "structure",
+    id = "ListContributorInsightsInput",
     members = {
         TableName = {
             type = "string",
@@ -2753,6 +2906,7 @@ M.ListContributorInsightsInput = {
 
 M.ListContributorInsightsOutput = {
     type = "structure",
+    id = "ListContributorInsightsOutput",
     members = {
         ContributorInsightsSummaries = {
             type = "list",
@@ -2766,6 +2920,7 @@ M.ListContributorInsightsOutput = {
 
 M.ListExportsInput = {
     type = "structure",
+    id = "ListExportsInput",
     members = {
         TableArn = {
             type = "string",
@@ -2781,6 +2936,7 @@ M.ListExportsInput = {
 
 M.ExportSummary = {
     type = "structure",
+    id = "ExportSummary",
     members = {
         ExportArn = {
             type = "string",
@@ -2796,6 +2952,7 @@ M.ExportSummary = {
 
 M.ListExportsOutput = {
     type = "structure",
+    id = "ListExportsOutput",
     members = {
         ExportSummaries = {
             type = "list",
@@ -2809,6 +2966,7 @@ M.ListExportsOutput = {
 
 M.ListGlobalTablesInput = {
     type = "structure",
+    id = "ListGlobalTablesInput",
     members = {
         ExclusiveStartGlobalTableName = {
             type = "string",
@@ -2824,6 +2982,7 @@ M.ListGlobalTablesInput = {
 
 M.GlobalTable = {
     type = "structure",
+    id = "GlobalTable",
     members = {
         GlobalTableName = {
             type = "string",
@@ -2837,6 +2996,7 @@ M.GlobalTable = {
 
 M.ListGlobalTablesOutput = {
     type = "structure",
+    id = "ListGlobalTablesOutput",
     members = {
         GlobalTables = {
             type = "list",
@@ -2850,6 +3010,7 @@ M.ListGlobalTablesOutput = {
 
 M.ListImportsInput = {
     type = "structure",
+    id = "ListImportsInput",
     members = {
         TableArn = {
             type = "string",
@@ -2865,6 +3026,7 @@ M.ListImportsInput = {
 
 M.ImportSummary = {
     type = "structure",
+    id = "ImportSummary",
     members = {
         ImportArn = {
             type = "string",
@@ -2893,6 +3055,7 @@ M.ImportSummary = {
 
 M.ListImportsOutput = {
     type = "structure",
+    id = "ListImportsOutput",
     members = {
         ImportSummaryList = {
             type = "list",
@@ -2906,6 +3069,7 @@ M.ListImportsOutput = {
 
 M.ListTablesInput = {
     type = "structure",
+    id = "ListTablesInput",
     members = {
         ExclusiveStartTableName = {
             type = "string",
@@ -2918,6 +3082,7 @@ M.ListTablesInput = {
 
 M.ListTablesOutput = {
     type = "structure",
+    id = "ListTablesOutput",
     members = {
         TableNames = {
             type = "list",
@@ -2931,6 +3096,7 @@ M.ListTablesOutput = {
 
 M.ListTagsOfResourceInput = {
     type = "structure",
+    id = "ListTagsOfResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2946,6 +3112,7 @@ M.ListTagsOfResourceInput = {
 
 M.ListTagsOfResourceOutput = {
     type = "structure",
+    id = "ListTagsOfResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2959,6 +3126,7 @@ M.ListTagsOfResourceOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2987,6 +3155,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         RevisionId = {
             type = "string",
@@ -3003,6 +3172,7 @@ M.Select = {
 
 M.RestoreTableFromBackupInput = {
     type = "structure",
+    id = "RestoreTableFromBackupInput",
     members = {
         TargetTableName = {
             type = "string",
@@ -3035,6 +3205,7 @@ M.RestoreTableFromBackupInput = {
 
 M.RestoreTableFromBackupOutput = {
     type = "structure",
+    id = "RestoreTableFromBackupOutput",
     members = {
         TableDescription = M.TableDescription,
     },
@@ -3042,6 +3213,7 @@ M.RestoreTableFromBackupOutput = {
 
 M.TableAlreadyExistsException = {
     type = "structure",
+    id = "TableAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -3052,6 +3224,7 @@ M.TableAlreadyExistsException = {
 
 M.InvalidRestoreTimeException = {
     type = "structure",
+    id = "InvalidRestoreTimeException",
     error = "client",
     members = {
         message = {
@@ -3062,6 +3235,7 @@ M.InvalidRestoreTimeException = {
 
 M.RestoreTableToPointInTimeInput = {
     type = "structure",
+    id = "RestoreTableToPointInTimeInput",
     members = {
         SourceTableArn = {
             type = "string",
@@ -3100,6 +3274,7 @@ M.RestoreTableToPointInTimeInput = {
 
 M.RestoreTableToPointInTimeOutput = {
     type = "structure",
+    id = "RestoreTableToPointInTimeOutput",
     members = {
         TableDescription = M.TableDescription,
     },
@@ -3107,6 +3282,7 @@ M.RestoreTableToPointInTimeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3126,10 +3302,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3149,10 +3327,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.PointInTimeRecoverySpecification = {
     type = "structure",
+    id = "PointInTimeRecoverySpecification",
     members = {
         PointInTimeRecoveryEnabled = {
             type = "boolean",
@@ -3168,6 +3348,7 @@ M.PointInTimeRecoverySpecification = {
 
 M.UpdateContinuousBackupsInput = {
     type = "structure",
+    id = "UpdateContinuousBackupsInput",
     members = {
         TableName = {
             type = "string",
@@ -3183,6 +3364,7 @@ M.UpdateContinuousBackupsInput = {
 
 M.UpdateContinuousBackupsOutput = {
     type = "structure",
+    id = "UpdateContinuousBackupsOutput",
     members = {
         ContinuousBackupsDescription = M.ContinuousBackupsDescription,
     },
@@ -3190,6 +3372,7 @@ M.UpdateContinuousBackupsOutput = {
 
 M.UpdateContributorInsightsInput = {
     type = "structure",
+    id = "UpdateContributorInsightsInput",
     members = {
         TableName = {
             type = "string",
@@ -3214,6 +3397,7 @@ M.UpdateContributorInsightsInput = {
 
 M.UpdateContributorInsightsOutput = {
     type = "structure",
+    id = "UpdateContributorInsightsOutput",
     members = {
         TableName = {
             type = "string",
@@ -3232,6 +3416,7 @@ M.UpdateContributorInsightsOutput = {
 
 M.ReplicaAlreadyExistsException = {
     type = "structure",
+    id = "ReplicaAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -3242,6 +3427,7 @@ M.ReplicaAlreadyExistsException = {
 
 M.ReplicaNotFoundException = {
     type = "structure",
+    id = "ReplicaNotFoundException",
     error = "client",
     members = {
         message = {
@@ -3252,6 +3438,7 @@ M.ReplicaNotFoundException = {
 
 M.ReplicaUpdate = {
     type = "structure",
+    id = "ReplicaUpdate",
     members = {
         Create = M.CreateReplicaAction,
         Delete = M.DeleteReplicaAction,
@@ -3260,6 +3447,7 @@ M.ReplicaUpdate = {
 
 M.UpdateGlobalTableInput = {
     type = "structure",
+    id = "UpdateGlobalTableInput",
     members = {
         GlobalTableName = {
             type = "string",
@@ -3279,6 +3467,7 @@ M.UpdateGlobalTableInput = {
 
 M.UpdateGlobalTableOutput = {
     type = "structure",
+    id = "UpdateGlobalTableOutput",
     members = {
         GlobalTableDescription = M.GlobalTableDescription,
     },
@@ -3286,6 +3475,7 @@ M.UpdateGlobalTableOutput = {
 
 M.IndexNotFoundException = {
     type = "structure",
+    id = "IndexNotFoundException",
     error = "client",
     members = {
         message = {
@@ -3296,6 +3486,7 @@ M.IndexNotFoundException = {
 
 M.GlobalTableGlobalSecondaryIndexSettingsUpdate = {
     type = "structure",
+    id = "GlobalTableGlobalSecondaryIndexSettingsUpdate",
     members = {
         IndexName = {
             type = "string",
@@ -3312,6 +3503,7 @@ M.GlobalTableGlobalSecondaryIndexSettingsUpdate = {
 
 M.ReplicaGlobalSecondaryIndexSettingsUpdate = {
     type = "structure",
+    id = "ReplicaGlobalSecondaryIndexSettingsUpdate",
     members = {
         IndexName = {
             type = "string",
@@ -3328,6 +3520,7 @@ M.ReplicaGlobalSecondaryIndexSettingsUpdate = {
 
 M.ReplicaSettingsUpdate = {
     type = "structure",
+    id = "ReplicaSettingsUpdate",
     members = {
         RegionName = {
             type = "string",
@@ -3351,6 +3544,7 @@ M.ReplicaSettingsUpdate = {
 
 M.UpdateGlobalTableSettingsInput = {
     type = "structure",
+    id = "UpdateGlobalTableSettingsInput",
     members = {
         GlobalTableName = {
             type = "string",
@@ -3378,6 +3572,7 @@ M.UpdateGlobalTableSettingsInput = {
 
 M.UpdateGlobalTableSettingsOutput = {
     type = "structure",
+    id = "UpdateGlobalTableSettingsOutput",
     members = {
         GlobalTableName = {
             type = "string",
@@ -3391,6 +3586,7 @@ M.UpdateGlobalTableSettingsOutput = {
 
 M.UpdateKinesisStreamingConfiguration = {
     type = "structure",
+    id = "UpdateKinesisStreamingConfiguration",
     members = {
         ApproximateCreationDateTimePrecision = {
             type = "string",
@@ -3400,6 +3596,7 @@ M.UpdateKinesisStreamingConfiguration = {
 
 M.UpdateKinesisStreamingDestinationInput = {
     type = "structure",
+    id = "UpdateKinesisStreamingDestinationInput",
     members = {
         TableName = {
             type = "string",
@@ -3419,6 +3616,7 @@ M.UpdateKinesisStreamingDestinationInput = {
 
 M.UpdateKinesisStreamingDestinationOutput = {
     type = "structure",
+    id = "UpdateKinesisStreamingDestinationOutput",
     members = {
         TableName = {
             type = "string",
@@ -3435,6 +3633,7 @@ M.UpdateKinesisStreamingDestinationOutput = {
 
 M.UpdateGlobalSecondaryIndexAction = {
     type = "structure",
+    id = "UpdateGlobalSecondaryIndexAction",
     members = {
         IndexName = {
             type = "string",
@@ -3450,6 +3649,7 @@ M.UpdateGlobalSecondaryIndexAction = {
 
 M.GlobalSecondaryIndexUpdate = {
     type = "structure",
+    id = "GlobalSecondaryIndexUpdate",
     members = {
         Update = M.UpdateGlobalSecondaryIndexAction,
         Create = M.CreateGlobalSecondaryIndexAction,
@@ -3459,6 +3659,7 @@ M.GlobalSecondaryIndexUpdate = {
 
 M.GlobalTableWitnessGroupUpdate = {
     type = "structure",
+    id = "GlobalTableWitnessGroupUpdate",
     members = {
         Create = M.CreateGlobalTableWitnessGroupMemberAction,
         Delete = M.DeleteGlobalTableWitnessGroupMemberAction,
@@ -3467,6 +3668,7 @@ M.GlobalTableWitnessGroupUpdate = {
 
 M.UpdateReplicationGroupMemberAction = {
     type = "structure",
+    id = "UpdateReplicationGroupMemberAction",
     members = {
         RegionName = {
             type = "string",
@@ -3491,6 +3693,7 @@ M.UpdateReplicationGroupMemberAction = {
 
 M.ReplicationGroupUpdate = {
     type = "structure",
+    id = "ReplicationGroupUpdate",
     members = {
         Create = M.CreateReplicationGroupMemberAction,
         Update = M.UpdateReplicationGroupMemberAction,
@@ -3500,6 +3703,7 @@ M.ReplicationGroupUpdate = {
 
 M.UpdateTableInput = {
     type = "structure",
+    id = "UpdateTableInput",
     members = {
         AttributeDefinitions = {
             type = "list",
@@ -3548,6 +3752,7 @@ M.UpdateTableInput = {
 
 M.UpdateTableOutput = {
     type = "structure",
+    id = "UpdateTableOutput",
     members = {
         TableDescription = M.TableDescription,
     },
@@ -3555,6 +3760,7 @@ M.UpdateTableOutput = {
 
 M.GlobalSecondaryIndexAutoScalingUpdate = {
     type = "structure",
+    id = "GlobalSecondaryIndexAutoScalingUpdate",
     members = {
         IndexName = {
             type = "string",
@@ -3565,6 +3771,7 @@ M.GlobalSecondaryIndexAutoScalingUpdate = {
 
 M.ReplicaGlobalSecondaryIndexAutoScalingUpdate = {
     type = "structure",
+    id = "ReplicaGlobalSecondaryIndexAutoScalingUpdate",
     members = {
         IndexName = {
             type = "string",
@@ -3575,6 +3782,7 @@ M.ReplicaGlobalSecondaryIndexAutoScalingUpdate = {
 
 M.ReplicaAutoScalingUpdate = {
     type = "structure",
+    id = "ReplicaAutoScalingUpdate",
     members = {
         RegionName = {
             type = "string",
@@ -3592,6 +3800,7 @@ M.ReplicaAutoScalingUpdate = {
 
 M.UpdateTableReplicaAutoScalingInput = {
     type = "structure",
+    id = "UpdateTableReplicaAutoScalingInput",
     members = {
         GlobalSecondaryIndexUpdates = {
             type = "list",
@@ -3613,6 +3822,7 @@ M.UpdateTableReplicaAutoScalingInput = {
 
 M.UpdateTableReplicaAutoScalingOutput = {
     type = "structure",
+    id = "UpdateTableReplicaAutoScalingOutput",
     members = {
         TableAutoScalingDescription = M.TableAutoScalingDescription,
     },
@@ -3620,6 +3830,7 @@ M.UpdateTableReplicaAutoScalingOutput = {
 
 M.TimeToLiveSpecification = {
     type = "structure",
+    id = "TimeToLiveSpecification",
     members = {
         Enabled = {
             type = "boolean",
@@ -3638,6 +3849,7 @@ M.TimeToLiveSpecification = {
 
 M.UpdateTimeToLiveInput = {
     type = "structure",
+    id = "UpdateTimeToLiveInput",
     members = {
         TableName = {
             type = "string",
@@ -3653,6 +3865,7 @@ M.UpdateTimeToLiveInput = {
 
 M.UpdateTimeToLiveOutput = {
     type = "structure",
+    id = "UpdateTimeToLiveOutput",
     members = {
         TimeToLiveSpecification = M.TimeToLiveSpecification,
     },
@@ -3660,6 +3873,7 @@ M.UpdateTimeToLiveOutput = {
 
 M.AttributeValue = {
     type = "union",
+    id = "AttributeValue",
     members = {
         S = {
             type = "string",
@@ -3702,6 +3916,7 @@ M.AttributeValue = {
 
 M.AttributeValueUpdate = {
     type = "structure",
+    id = "AttributeValueUpdate",
     members = {
         Value = M.AttributeValue,
         Action = {
@@ -3712,6 +3927,7 @@ M.AttributeValueUpdate = {
 
 M.BatchStatementError = {
     type = "structure",
+    id = "BatchStatementError",
     members = {
         Code = {
             type = "string",
@@ -3729,6 +3945,7 @@ M.BatchStatementError = {
 
 M.BatchStatementRequest = {
     type = "structure",
+    id = "BatchStatementRequest",
     members = {
         Statement = {
             type = "string",
@@ -3751,6 +3968,7 @@ M.BatchStatementRequest = {
 
 M.CancellationReason = {
     type = "structure",
+    id = "CancellationReason",
     members = {
         Item = {
             type = "map",
@@ -3768,6 +3986,7 @@ M.CancellationReason = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         AttributeValueList = {
             type = "list",
@@ -3784,6 +4003,7 @@ M.Condition = {
 
 M.ConditionalCheckFailedException = {
     type = "structure",
+    id = "ConditionalCheckFailedException",
     error = "client",
     members = {
         message = {
@@ -3799,6 +4019,7 @@ M.ConditionalCheckFailedException = {
 
 M.DeleteRequest = {
     type = "structure",
+    id = "DeleteRequest",
     members = {
         Key = {
             type = "map",
@@ -3813,6 +4034,7 @@ M.DeleteRequest = {
 
 M.ExecuteStatementInput = {
     type = "structure",
+    id = "ExecuteStatementInput",
     members = {
         Statement = {
             type = "string",
@@ -3844,6 +4066,7 @@ M.ExecuteStatementInput = {
 
 M.Get = {
     type = "structure",
+    id = "Get",
     members = {
         Key = {
             type = "map",
@@ -3872,6 +4095,7 @@ M.Get = {
 
 M.GetItemInput = {
     type = "structure",
+    id = "GetItemInput",
     members = {
         TableName = {
             type = "string",
@@ -3910,6 +4134,7 @@ M.GetItemInput = {
 
 M.GetItemOutput = {
     type = "structure",
+    id = "GetItemOutput",
     members = {
         Item = {
             type = "map",
@@ -3922,6 +4147,7 @@ M.GetItemOutput = {
 
 M.ItemCollectionMetrics = {
     type = "structure",
+    id = "ItemCollectionMetrics",
     members = {
         ItemCollectionKey = {
             type = "map",
@@ -3937,6 +4163,7 @@ M.ItemCollectionMetrics = {
 
 M.ItemResponse = {
     type = "structure",
+    id = "ItemResponse",
     members = {
         Item = {
             type = "map",
@@ -3948,6 +4175,7 @@ M.ItemResponse = {
 
 M.ParameterizedStatement = {
     type = "structure",
+    id = "ParameterizedStatement",
     members = {
         Statement = {
             type = "string",
@@ -3967,6 +4195,7 @@ M.ParameterizedStatement = {
 
 M.PutRequest = {
     type = "structure",
+    id = "PutRequest",
     members = {
         Item = {
             type = "map",
@@ -3981,6 +4210,7 @@ M.PutRequest = {
 
 M.KeysAndAttributes = {
     type = "structure",
+    id = "KeysAndAttributes",
     members = {
         Keys = {
             type = "list",
@@ -4009,6 +4239,7 @@ M.KeysAndAttributes = {
 
 M.TransactGetItem = {
     type = "structure",
+    id = "TransactGetItem",
     members = {
         Get = setmetatable({ traits = {
             required = true,
@@ -4018,6 +4249,7 @@ M.TransactGetItem = {
 
 M.BatchExecuteStatementInput = {
     type = "structure",
+    id = "BatchExecuteStatementInput",
     members = {
         Statements = {
             type = "list",
@@ -4034,6 +4266,7 @@ M.BatchExecuteStatementInput = {
 
 M.ExecuteTransactionInput = {
     type = "structure",
+    id = "ExecuteTransactionInput",
     members = {
         TransactStatements = {
             type = "list",
@@ -4056,6 +4289,7 @@ M.ExecuteTransactionInput = {
 
 M.ExecuteTransactionOutput = {
     type = "structure",
+    id = "ExecuteTransactionOutput",
     members = {
         Responses = {
             type = "list",
@@ -4070,6 +4304,7 @@ M.ExecuteTransactionOutput = {
 
 M.TransactGetItemsOutput = {
     type = "structure",
+    id = "TransactGetItemsOutput",
     members = {
         ConsumedCapacity = {
             type = "list",
@@ -4084,6 +4319,7 @@ M.TransactGetItemsOutput = {
 
 M.TransactionCanceledException = {
     type = "structure",
+    id = "TransactionCanceledException",
     error = "client",
     members = {
         Message = {
@@ -4098,6 +4334,7 @@ M.TransactionCanceledException = {
 
 M.BatchGetItemInput = {
     type = "structure",
+    id = "BatchGetItemInput",
     members = {
         RequestItems = {
             type = "map",
@@ -4115,6 +4352,7 @@ M.BatchGetItemInput = {
 
 M.ExpectedAttributeValue = {
     type = "structure",
+    id = "ExpectedAttributeValue",
     members = {
         Value = M.AttributeValue,
         Exists = {
@@ -4132,6 +4370,7 @@ M.ExpectedAttributeValue = {
 
 M.TransactGetItemsInput = {
     type = "structure",
+    id = "TransactGetItemsInput",
     members = {
         TransactItems = {
             type = "list",
@@ -4148,6 +4387,7 @@ M.TransactGetItemsInput = {
 
 M.TransactWriteItemsOutput = {
     type = "structure",
+    id = "TransactWriteItemsOutput",
     members = {
         ConsumedCapacity = {
             type = "list",
@@ -4163,6 +4403,7 @@ M.TransactWriteItemsOutput = {
 
 M.ConditionCheck = {
     type = "structure",
+    id = "ConditionCheck",
     members = {
         Key = {
             type = "map",
@@ -4202,6 +4443,7 @@ M.ConditionCheck = {
 
 M.Delete = {
     type = "structure",
+    id = "Delete",
     members = {
         Key = {
             type = "map",
@@ -4238,6 +4480,7 @@ M.Delete = {
 
 M.Put = {
     type = "structure",
+    id = "Put",
     members = {
         Item = {
             type = "map",
@@ -4274,6 +4517,7 @@ M.Put = {
 
 M.Update = {
     type = "structure",
+    id = "Update",
     members = {
         Key = {
             type = "map",
@@ -4316,6 +4560,7 @@ M.Update = {
 
 M.BatchStatementResponse = {
     type = "structure",
+    id = "BatchStatementResponse",
     members = {
         Error = M.BatchStatementError,
         TableName = {
@@ -4331,6 +4576,7 @@ M.BatchStatementResponse = {
 
 M.DeleteItemOutput = {
     type = "structure",
+    id = "DeleteItemOutput",
     members = {
         Attributes = {
             type = "map",
@@ -4344,6 +4590,7 @@ M.DeleteItemOutput = {
 
 M.ExecuteStatementOutput = {
     type = "structure",
+    id = "ExecuteStatementOutput",
     members = {
         Items = {
             type = "list",
@@ -4363,6 +4610,7 @@ M.ExecuteStatementOutput = {
 
 M.PutItemOutput = {
     type = "structure",
+    id = "PutItemOutput",
     members = {
         Attributes = {
             type = "map",
@@ -4376,6 +4624,7 @@ M.PutItemOutput = {
 
 M.QueryOutput = {
     type = "structure",
+    id = "QueryOutput",
     members = {
         Items = {
             type = "list",
@@ -4404,6 +4653,7 @@ M.QueryOutput = {
 
 M.ScanOutput = {
     type = "structure",
+    id = "ScanOutput",
     members = {
         Items = {
             type = "list",
@@ -4432,6 +4682,7 @@ M.ScanOutput = {
 
 M.UpdateItemOutput = {
     type = "structure",
+    id = "UpdateItemOutput",
     members = {
         Attributes = {
             type = "map",
@@ -4445,6 +4696,7 @@ M.UpdateItemOutput = {
 
 M.WriteRequest = {
     type = "structure",
+    id = "WriteRequest",
     members = {
         PutRequest = M.PutRequest,
         DeleteRequest = M.DeleteRequest,
@@ -4453,6 +4705,7 @@ M.WriteRequest = {
 
 M.BatchExecuteStatementOutput = {
     type = "structure",
+    id = "BatchExecuteStatementOutput",
     members = {
         Responses = {
             type = "list",
@@ -4467,6 +4720,7 @@ M.BatchExecuteStatementOutput = {
 
 M.BatchGetItemOutput = {
     type = "structure",
+    id = "BatchGetItemOutput",
     members = {
         Responses = {
             type = "map",
@@ -4487,6 +4741,7 @@ M.BatchGetItemOutput = {
 
 M.ScanInput = {
     type = "structure",
+    id = "ScanInput",
     members = {
         TableName = {
             type = "string",
@@ -4553,6 +4808,7 @@ M.ScanInput = {
 
 M.BatchWriteItemInput = {
     type = "structure",
+    id = "BatchWriteItemInput",
     members = {
         RequestItems = {
             type = "map",
@@ -4573,6 +4829,7 @@ M.BatchWriteItemInput = {
 
 M.DeleteItemInput = {
     type = "structure",
+    id = "DeleteItemInput",
     members = {
         TableName = {
             type = "string",
@@ -4626,6 +4883,7 @@ M.DeleteItemInput = {
 
 M.PutItemInput = {
     type = "structure",
+    id = "PutItemInput",
     members = {
         TableName = {
             type = "string",
@@ -4679,6 +4937,7 @@ M.PutItemInput = {
 
 M.QueryInput = {
     type = "structure",
+    id = "QueryInput",
     members = {
         TableName = {
             type = "string",
@@ -4750,6 +5009,7 @@ M.QueryInput = {
 
 M.BatchWriteItemOutput = {
     type = "structure",
+    id = "BatchWriteItemOutput",
     members = {
         UnprocessedItems = {
             type = "map",
@@ -4770,6 +5030,7 @@ M.BatchWriteItemOutput = {
 
 M.UpdateItemInput = {
     type = "structure",
+    id = "UpdateItemInput",
     members = {
         TableName = {
             type = "string",
@@ -4831,6 +5092,7 @@ M.UpdateItemInput = {
 
 M.TransactWriteItem = {
     type = "structure",
+    id = "TransactWriteItem",
     members = {
         ConditionCheck = M.ConditionCheck,
         Put = M.Put,
@@ -4841,6 +5103,7 @@ M.TransactWriteItem = {
 
 M.TransactWriteItemsInput = {
     type = "structure",
+    id = "TransactWriteItemsInput",
     members = {
         TransactItems = {
             type = "list",

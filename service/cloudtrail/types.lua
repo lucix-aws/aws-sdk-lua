@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AccountHasOngoingImportException = {
     type = "structure",
+    id = "AccountHasOngoingImportException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.AccountHasOngoingImportException = {
 
 M.AccountNotFoundException = {
     type = "structure",
+    id = "AccountNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -32,6 +35,7 @@ M.AccountNotFoundException = {
 
 M.AccountNotRegisteredException = {
     type = "structure",
+    id = "AccountNotRegisteredException",
     error = "client",
     members = {
         Message = {
@@ -42,6 +46,7 @@ M.AccountNotRegisteredException = {
 
 M.AccountRegisteredException = {
     type = "structure",
+    id = "AccountRegisteredException",
     error = "client",
     members = {
         Message = {
@@ -52,6 +57,7 @@ M.AccountRegisteredException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -67,6 +73,7 @@ M.Tag = {
 
 M.AddTagsInput = {
     type = "structure",
+    id = "AddTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -86,10 +93,12 @@ M.AddTagsInput = {
 
 M.AddTagsOutput = {
     type = "structure",
+    id = "AddTagsOutput",
 }
 
 M.ChannelARNInvalidException = {
     type = "structure",
+    id = "ChannelARNInvalidException",
     error = "client",
     members = {
         Message = {
@@ -100,6 +109,7 @@ M.ChannelARNInvalidException = {
 
 M.ChannelNotFoundException = {
     type = "structure",
+    id = "ChannelNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -110,6 +120,7 @@ M.ChannelNotFoundException = {
 
 M.CloudTrailARNInvalidException = {
     type = "structure",
+    id = "CloudTrailARNInvalidException",
     error = "client",
     members = {
         Message = {
@@ -120,6 +131,7 @@ M.CloudTrailARNInvalidException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -130,6 +142,7 @@ M.ConflictException = {
 
 M.EventDataStoreARNInvalidException = {
     type = "structure",
+    id = "EventDataStoreARNInvalidException",
     error = "client",
     members = {
         Message = {
@@ -140,6 +153,7 @@ M.EventDataStoreARNInvalidException = {
 
 M.EventDataStoreNotFoundException = {
     type = "structure",
+    id = "EventDataStoreNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -150,6 +164,7 @@ M.EventDataStoreNotFoundException = {
 
 M.InactiveEventDataStoreException = {
     type = "structure",
+    id = "InactiveEventDataStoreException",
     error = "client",
     members = {
         Message = {
@@ -160,6 +175,7 @@ M.InactiveEventDataStoreException = {
 
 M.InvalidTagParameterException = {
     type = "structure",
+    id = "InvalidTagParameterException",
     error = "client",
     members = {
         Message = {
@@ -170,6 +186,7 @@ M.InvalidTagParameterException = {
 
 M.InvalidTrailNameException = {
     type = "structure",
+    id = "InvalidTrailNameException",
     error = "client",
     members = {
         Message = {
@@ -180,6 +197,7 @@ M.InvalidTrailNameException = {
 
 M.NoManagementAccountSLRExistsException = {
     type = "structure",
+    id = "NoManagementAccountSLRExistsException",
     error = "client",
     members = {
         Message = {
@@ -190,6 +208,7 @@ M.NoManagementAccountSLRExistsException = {
 
 M.NotOrganizationMasterAccountException = {
     type = "structure",
+    id = "NotOrganizationMasterAccountException",
     error = "client",
     members = {
         Message = {
@@ -200,6 +219,7 @@ M.NotOrganizationMasterAccountException = {
 
 M.OperationNotPermittedException = {
     type = "structure",
+    id = "OperationNotPermittedException",
     error = "client",
     members = {
         Message = {
@@ -210,6 +230,7 @@ M.OperationNotPermittedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -220,6 +241,7 @@ M.ResourceNotFoundException = {
 
 M.ResourceTypeNotSupportedException = {
     type = "structure",
+    id = "ResourceTypeNotSupportedException",
     error = "client",
     members = {
         Message = {
@@ -230,6 +252,7 @@ M.ResourceTypeNotSupportedException = {
 
 M.TagsLimitExceededException = {
     type = "structure",
+    id = "TagsLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -240,6 +263,7 @@ M.TagsLimitExceededException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -250,6 +274,7 @@ M.UnsupportedOperationException = {
 
 M.AdvancedFieldSelector = {
     type = "structure",
+    id = "AdvancedFieldSelector",
     members = {
         Field = {
             type = "string",
@@ -286,6 +311,7 @@ M.AdvancedFieldSelector = {
 
 M.AdvancedEventSelector = {
     type = "structure",
+    id = "AdvancedEventSelector",
     members = {
         Name = {
             type = "string",
@@ -312,6 +338,7 @@ M.Template = {
 
 M.AggregationConfiguration = {
     type = "structure",
+    id = "AggregationConfiguration",
     members = {
         Templates = {
             type = "list",
@@ -336,6 +363,7 @@ M.BillingMode = {
 
 M.CancelQueryInput = {
     type = "structure",
+    id = "CancelQueryInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -363,6 +391,7 @@ M.QueryStatus = {
 
 M.CancelQueryOutput = {
     type = "structure",
+    id = "CancelQueryOutput",
     members = {
         QueryId = {
             type = "string",
@@ -384,6 +413,7 @@ M.CancelQueryOutput = {
 
 M.InactiveQueryException = {
     type = "structure",
+    id = "InactiveQueryException",
     error = "client",
     members = {
         Message = {
@@ -394,6 +424,7 @@ M.InactiveQueryException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -404,6 +435,7 @@ M.InvalidParameterException = {
 
 M.QueryIdNotFoundException = {
     type = "structure",
+    id = "QueryIdNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -414,6 +446,7 @@ M.QueryIdNotFoundException = {
 
 M.CannotDelegateManagementAccountException = {
     type = "structure",
+    id = "CannotDelegateManagementAccountException",
     error = "client",
     members = {
         Message = {
@@ -424,6 +457,7 @@ M.CannotDelegateManagementAccountException = {
 
 M.Channel = {
     type = "structure",
+    id = "Channel",
     members = {
         ChannelArn = {
             type = "string",
@@ -436,6 +470,7 @@ M.Channel = {
 
 M.ChannelAlreadyExistsException = {
     type = "structure",
+    id = "ChannelAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -446,6 +481,7 @@ M.ChannelAlreadyExistsException = {
 
 M.ChannelExistsForEDSException = {
     type = "structure",
+    id = "ChannelExistsForEDSException",
     error = "client",
     members = {
         Message = {
@@ -456,6 +492,7 @@ M.ChannelExistsForEDSException = {
 
 M.ChannelMaxLimitExceededException = {
     type = "structure",
+    id = "ChannelMaxLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -471,6 +508,7 @@ M.DestinationType = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         Type = {
             type = "string",
@@ -489,6 +527,7 @@ M.Destination = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         Name = {
             type = "string",
@@ -518,6 +557,7 @@ M.CreateChannelInput = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -541,6 +581,7 @@ M.CreateChannelOutput = {
 
 M.InvalidEventDataStoreCategoryException = {
     type = "structure",
+    id = "InvalidEventDataStoreCategoryException",
     error = "client",
     members = {
         Message = {
@@ -551,6 +592,7 @@ M.InvalidEventDataStoreCategoryException = {
 
 M.InvalidSourceException = {
     type = "structure",
+    id = "InvalidSourceException",
     error = "client",
     members = {
         Message = {
@@ -566,6 +608,7 @@ M.RefreshScheduleFrequencyUnit = {
 
 M.RefreshScheduleFrequency = {
     type = "structure",
+    id = "RefreshScheduleFrequency",
     members = {
         Unit = {
             type = "string",
@@ -583,6 +626,7 @@ M.RefreshScheduleStatus = {
 
 M.RefreshSchedule = {
     type = "structure",
+    id = "RefreshSchedule",
     members = {
         Frequency = M.RefreshScheduleFrequency,
         Status = {
@@ -596,6 +640,7 @@ M.RefreshSchedule = {
 
 M.RequestWidget = {
     type = "structure",
+    id = "RequestWidget",
     members = {
         QueryStatement = {
             type = "string",
@@ -620,6 +665,7 @@ M.RequestWidget = {
 
 M.CreateDashboardInput = {
     type = "structure",
+    id = "CreateDashboardInput",
     members = {
         Name = {
             type = "string",
@@ -649,6 +695,7 @@ M.DashboardType = {
 
 M.Widget = {
     type = "structure",
+    id = "Widget",
     members = {
         QueryAlias = {
             type = "string",
@@ -670,6 +717,7 @@ M.Widget = {
 
 M.CreateDashboardOutput = {
     type = "structure",
+    id = "CreateDashboardOutput",
     members = {
         DashboardArn = {
             type = "string",
@@ -697,6 +745,7 @@ M.CreateDashboardOutput = {
 
 M.InsufficientEncryptionPolicyException = {
     type = "structure",
+    id = "InsufficientEncryptionPolicyException",
     error = "client",
     members = {
         Message = {
@@ -707,6 +756,7 @@ M.InsufficientEncryptionPolicyException = {
 
 M.InvalidQueryStatementException = {
     type = "structure",
+    id = "InvalidQueryStatementException",
     error = "client",
     members = {
         Message = {
@@ -717,6 +767,7 @@ M.InvalidQueryStatementException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -727,6 +778,7 @@ M.ServiceQuotaExceededException = {
 
 M.CloudTrailAccessNotEnabledException = {
     type = "structure",
+    id = "CloudTrailAccessNotEnabledException",
     error = "client",
     members = {
         Message = {
@@ -737,6 +789,7 @@ M.CloudTrailAccessNotEnabledException = {
 
 M.CreateEventDataStoreInput = {
     type = "structure",
+    id = "CreateEventDataStoreInput",
     members = {
         Name = {
             type = "string",
@@ -787,6 +840,7 @@ M.EventDataStoreStatus = {
 
 M.CreateEventDataStoreOutput = {
     type = "structure",
+    id = "CreateEventDataStoreOutput",
     members = {
         EventDataStoreArn = {
             type = "string",
@@ -834,6 +888,7 @@ M.CreateEventDataStoreOutput = {
 
 M.EventDataStoreAlreadyExistsException = {
     type = "structure",
+    id = "EventDataStoreAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -844,6 +899,7 @@ M.EventDataStoreAlreadyExistsException = {
 
 M.EventDataStoreMaxLimitExceededException = {
     type = "structure",
+    id = "EventDataStoreMaxLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -854,6 +910,7 @@ M.EventDataStoreMaxLimitExceededException = {
 
 M.InsufficientDependencyServiceAccessPermissionException = {
     type = "structure",
+    id = "InsufficientDependencyServiceAccessPermissionException",
     error = "client",
     members = {
         Message = {
@@ -864,6 +921,7 @@ M.InsufficientDependencyServiceAccessPermissionException = {
 
 M.InvalidEventSelectorsException = {
     type = "structure",
+    id = "InvalidEventSelectorsException",
     error = "client",
     members = {
         Message = {
@@ -874,6 +932,7 @@ M.InvalidEventSelectorsException = {
 
 M.InvalidKmsKeyIdException = {
     type = "structure",
+    id = "InvalidKmsKeyIdException",
     error = "client",
     members = {
         Message = {
@@ -884,6 +943,7 @@ M.InvalidKmsKeyIdException = {
 
 M.KmsException = {
     type = "structure",
+    id = "KmsException",
     error = "client",
     members = {
         Message = {
@@ -894,6 +954,7 @@ M.KmsException = {
 
 M.KmsKeyNotFoundException = {
     type = "structure",
+    id = "KmsKeyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -904,6 +965,7 @@ M.KmsKeyNotFoundException = {
 
 M.OrganizationNotInAllFeaturesModeException = {
     type = "structure",
+    id = "OrganizationNotInAllFeaturesModeException",
     error = "client",
     members = {
         Message = {
@@ -914,6 +976,7 @@ M.OrganizationNotInAllFeaturesModeException = {
 
 M.OrganizationsNotInUseException = {
     type = "structure",
+    id = "OrganizationsNotInUseException",
     error = "client",
     members = {
         Message = {
@@ -924,6 +987,7 @@ M.OrganizationsNotInUseException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -934,6 +998,7 @@ M.ThrottlingException = {
 
 M.CloudTrailInvalidClientTokenIdException = {
     type = "structure",
+    id = "CloudTrailInvalidClientTokenIdException",
     error = "client",
     members = {
         Message = {
@@ -944,6 +1009,7 @@ M.CloudTrailInvalidClientTokenIdException = {
 
 M.CloudWatchLogsDeliveryUnavailableException = {
     type = "structure",
+    id = "CloudWatchLogsDeliveryUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -954,6 +1020,7 @@ M.CloudWatchLogsDeliveryUnavailableException = {
 
 M.CreateTrailInput = {
     type = "structure",
+    id = "CreateTrailInput",
     members = {
         Name = {
             type = "string",
@@ -1003,6 +1070,7 @@ M.CreateTrailInput = {
 
 M.CreateTrailOutput = {
     type = "structure",
+    id = "CreateTrailOutput",
     members = {
         Name = {
             type = "string",
@@ -1048,6 +1116,7 @@ M.CreateTrailOutput = {
 
 M.InsufficientS3BucketPolicyException = {
     type = "structure",
+    id = "InsufficientS3BucketPolicyException",
     error = "client",
     members = {
         Message = {
@@ -1058,6 +1127,7 @@ M.InsufficientS3BucketPolicyException = {
 
 M.InsufficientSnsTopicPolicyException = {
     type = "structure",
+    id = "InsufficientSnsTopicPolicyException",
     error = "client",
     members = {
         Message = {
@@ -1068,6 +1138,7 @@ M.InsufficientSnsTopicPolicyException = {
 
 M.InvalidCloudWatchLogsLogGroupArnException = {
     type = "structure",
+    id = "InvalidCloudWatchLogsLogGroupArnException",
     error = "client",
     members = {
         Message = {
@@ -1078,6 +1149,7 @@ M.InvalidCloudWatchLogsLogGroupArnException = {
 
 M.InvalidCloudWatchLogsRoleArnException = {
     type = "structure",
+    id = "InvalidCloudWatchLogsRoleArnException",
     error = "client",
     members = {
         Message = {
@@ -1088,6 +1160,7 @@ M.InvalidCloudWatchLogsRoleArnException = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         Message = {
@@ -1098,6 +1171,7 @@ M.InvalidParameterCombinationException = {
 
 M.InvalidS3BucketNameException = {
     type = "structure",
+    id = "InvalidS3BucketNameException",
     error = "client",
     members = {
         Message = {
@@ -1108,6 +1182,7 @@ M.InvalidS3BucketNameException = {
 
 M.InvalidS3PrefixException = {
     type = "structure",
+    id = "InvalidS3PrefixException",
     error = "client",
     members = {
         Message = {
@@ -1118,6 +1193,7 @@ M.InvalidS3PrefixException = {
 
 M.InvalidSnsTopicNameException = {
     type = "structure",
+    id = "InvalidSnsTopicNameException",
     error = "client",
     members = {
         Message = {
@@ -1128,6 +1204,7 @@ M.InvalidSnsTopicNameException = {
 
 M.KmsKeyDisabledException = {
     type = "structure",
+    id = "KmsKeyDisabledException",
     error = "client",
     members = {
         Message = {
@@ -1138,6 +1215,7 @@ M.KmsKeyDisabledException = {
 
 M.MaximumNumberOfTrailsExceededException = {
     type = "structure",
+    id = "MaximumNumberOfTrailsExceededException",
     error = "client",
     members = {
         Message = {
@@ -1148,6 +1226,7 @@ M.MaximumNumberOfTrailsExceededException = {
 
 M.S3BucketDoesNotExistException = {
     type = "structure",
+    id = "S3BucketDoesNotExistException",
     error = "client",
     members = {
         Message = {
@@ -1158,6 +1237,7 @@ M.S3BucketDoesNotExistException = {
 
 M.TrailAlreadyExistsException = {
     type = "structure",
+    id = "TrailAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1168,6 +1248,7 @@ M.TrailAlreadyExistsException = {
 
 M.TrailNotProvidedException = {
     type = "structure",
+    id = "TrailNotProvidedException",
     error = "client",
     members = {
         Message = {
@@ -1178,6 +1259,7 @@ M.TrailNotProvidedException = {
 
 M.DeleteChannelInput = {
     type = "structure",
+    id = "DeleteChannelInput",
     members = {
         Channel = {
             type = "string",
@@ -1190,10 +1272,12 @@ M.DeleteChannelInput = {
 
 M.DeleteChannelOutput = {
     type = "structure",
+    id = "DeleteChannelOutput",
 }
 
 M.DeleteDashboardInput = {
     type = "structure",
+    id = "DeleteDashboardInput",
     members = {
         DashboardId = {
             type = "string",
@@ -1206,10 +1290,12 @@ M.DeleteDashboardInput = {
 
 M.DeleteDashboardOutput = {
     type = "structure",
+    id = "DeleteDashboardOutput",
 }
 
 M.DeleteEventDataStoreInput = {
     type = "structure",
+    id = "DeleteEventDataStoreInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -1222,10 +1308,12 @@ M.DeleteEventDataStoreInput = {
 
 M.DeleteEventDataStoreOutput = {
     type = "structure",
+    id = "DeleteEventDataStoreOutput",
 }
 
 M.EventDataStoreFederationEnabledException = {
     type = "structure",
+    id = "EventDataStoreFederationEnabledException",
     error = "client",
     members = {
         Message = {
@@ -1236,6 +1324,7 @@ M.EventDataStoreFederationEnabledException = {
 
 M.EventDataStoreHasOngoingImportException = {
     type = "structure",
+    id = "EventDataStoreHasOngoingImportException",
     error = "client",
     members = {
         Message = {
@@ -1246,6 +1335,7 @@ M.EventDataStoreHasOngoingImportException = {
 
 M.EventDataStoreTerminationProtectedException = {
     type = "structure",
+    id = "EventDataStoreTerminationProtectedException",
     error = "client",
     members = {
         Message = {
@@ -1256,6 +1346,7 @@ M.EventDataStoreTerminationProtectedException = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1268,10 +1359,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.ResourceARNNotValidException = {
     type = "structure",
+    id = "ResourceARNNotValidException",
     error = "client",
     members = {
         Message = {
@@ -1282,6 +1375,7 @@ M.ResourceARNNotValidException = {
 
 M.ResourcePolicyNotFoundException = {
     type = "structure",
+    id = "ResourcePolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1292,6 +1386,7 @@ M.ResourcePolicyNotFoundException = {
 
 M.DeleteTrailInput = {
     type = "structure",
+    id = "DeleteTrailInput",
     members = {
         Name = {
             type = "string",
@@ -1304,10 +1399,12 @@ M.DeleteTrailInput = {
 
 M.DeleteTrailOutput = {
     type = "structure",
+    id = "DeleteTrailOutput",
 }
 
 M.InvalidHomeRegionException = {
     type = "structure",
+    id = "InvalidHomeRegionException",
     error = "client",
     members = {
         Message = {
@@ -1318,6 +1415,7 @@ M.InvalidHomeRegionException = {
 
 M.TrailNotFoundException = {
     type = "structure",
+    id = "TrailNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1328,6 +1426,7 @@ M.TrailNotFoundException = {
 
 M.DeregisterOrganizationDelegatedAdminInput = {
     type = "structure",
+    id = "DeregisterOrganizationDelegatedAdminInput",
     members = {
         DelegatedAdminAccountId = {
             type = "string",
@@ -1340,10 +1439,12 @@ M.DeregisterOrganizationDelegatedAdminInput = {
 
 M.DeregisterOrganizationDelegatedAdminOutput = {
     type = "structure",
+    id = "DeregisterOrganizationDelegatedAdminOutput",
 }
 
 M.NotOrganizationManagementAccountException = {
     type = "structure",
+    id = "NotOrganizationManagementAccountException",
     error = "client",
     members = {
         Message = {
@@ -1354,6 +1455,7 @@ M.NotOrganizationManagementAccountException = {
 
 M.DescribeQueryInput = {
     type = "structure",
+    id = "DescribeQueryInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -1387,6 +1489,7 @@ M.DeliveryStatus = {
 
 M.QueryStatisticsForDescribeQuery = {
     type = "structure",
+    id = "QueryStatisticsForDescribeQuery",
     members = {
         EventsMatched = {
             type = "long",
@@ -1408,6 +1511,7 @@ M.QueryStatisticsForDescribeQuery = {
 
 M.DescribeQueryOutput = {
     type = "structure",
+    id = "DescribeQueryOutput",
     members = {
         QueryId = {
             type = "string",
@@ -1439,6 +1543,7 @@ M.DescribeQueryOutput = {
 
 M.DescribeTrailsInput = {
     type = "structure",
+    id = "DescribeTrailsInput",
     members = {
         trailNameList = {
             type = "list",
@@ -1452,6 +1557,7 @@ M.DescribeTrailsInput = {
 
 M.Trail = {
     type = "structure",
+    id = "Trail",
     members = {
         Name = {
             type = "string",
@@ -1506,6 +1612,7 @@ M.Trail = {
 
 M.DescribeTrailsOutput = {
     type = "structure",
+    id = "DescribeTrailsOutput",
     members = {
         trailList = {
             type = "list",
@@ -1516,6 +1623,7 @@ M.DescribeTrailsOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -1526,6 +1634,7 @@ M.ConcurrentModificationException = {
 
 M.DisableFederationInput = {
     type = "structure",
+    id = "DisableFederationInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -1545,6 +1654,7 @@ M.FederationStatus = {
 
 M.DisableFederationOutput = {
     type = "structure",
+    id = "DisableFederationOutput",
     members = {
         EventDataStoreArn = {
             type = "string",
@@ -1557,6 +1667,7 @@ M.DisableFederationOutput = {
 
 M.EnableFederationInput = {
     type = "structure",
+    id = "EnableFederationInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -1575,6 +1686,7 @@ M.EnableFederationInput = {
 
 M.EnableFederationOutput = {
     type = "structure",
+    id = "EnableFederationOutput",
     members = {
         EventDataStoreArn = {
             type = "string",
@@ -1590,6 +1702,7 @@ M.EnableFederationOutput = {
 
 M.GenerateQueryInput = {
     type = "structure",
+    id = "GenerateQueryInput",
     members = {
         EventDataStores = {
             type = "list",
@@ -1609,6 +1722,7 @@ M.GenerateQueryInput = {
 
 M.GenerateQueryOutput = {
     type = "structure",
+    id = "GenerateQueryOutput",
     members = {
         QueryStatement = {
             type = "string",
@@ -1624,6 +1738,7 @@ M.GenerateQueryOutput = {
 
 M.GenerateResponseException = {
     type = "structure",
+    id = "GenerateResponseException",
     error = "client",
     members = {
         Message = {
@@ -1634,6 +1749,7 @@ M.GenerateResponseException = {
 
 M.GetChannelInput = {
     type = "structure",
+    id = "GetChannelInput",
     members = {
         Channel = {
             type = "string",
@@ -1646,6 +1762,7 @@ M.GetChannelInput = {
 
 M.IngestionStatus = {
     type = "structure",
+    id = "IngestionStatus",
     members = {
         LatestIngestionSuccessTime = {
             type = "timestamp",
@@ -1667,6 +1784,7 @@ M.IngestionStatus = {
 
 M.SourceConfig = {
     type = "structure",
+    id = "SourceConfig",
     members = {
         ApplyToAllRegions = {
             type = "boolean",
@@ -1680,6 +1798,7 @@ M.SourceConfig = {
 
 M.GetChannelOutput = {
     type = "structure",
+    id = "GetChannelOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -1701,6 +1820,7 @@ M.GetChannelOutput = {
 
 M.GetDashboardInput = {
     type = "structure",
+    id = "GetDashboardInput",
     members = {
         DashboardId = {
             type = "string",
@@ -1721,6 +1841,7 @@ M.DashboardStatus = {
 
 M.GetDashboardOutput = {
     type = "structure",
+    id = "GetDashboardOutput",
     members = {
         DashboardArn = {
             type = "string",
@@ -1756,6 +1877,7 @@ M.GetDashboardOutput = {
 
 M.GetEventConfigurationInput = {
     type = "structure",
+    id = "GetEventConfigurationInput",
     members = {
         TrailName = {
             type = "string",
@@ -1773,6 +1895,7 @@ M.Type = {
 
 M.ContextKeySelector = {
     type = "structure",
+    id = "ContextKeySelector",
     members = {
         Type = {
             type = "string",
@@ -1797,6 +1920,7 @@ M.MaxEventSize = {
 
 M.GetEventConfigurationOutput = {
     type = "structure",
+    id = "GetEventConfigurationOutput",
     members = {
         TrailARN = {
             type = "string",
@@ -1820,6 +1944,7 @@ M.GetEventConfigurationOutput = {
 
 M.InvalidEventDataStoreStatusException = {
     type = "structure",
+    id = "InvalidEventDataStoreStatusException",
     error = "client",
     members = {
         Message = {
@@ -1830,6 +1955,7 @@ M.InvalidEventDataStoreStatusException = {
 
 M.GetEventDataStoreInput = {
     type = "structure",
+    id = "GetEventDataStoreInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -1842,6 +1968,7 @@ M.GetEventDataStoreInput = {
 
 M.PartitionKey = {
     type = "structure",
+    id = "PartitionKey",
     members = {
         Name = {
             type = "string",
@@ -1860,6 +1987,7 @@ M.PartitionKey = {
 
 M.GetEventDataStoreOutput = {
     type = "structure",
+    id = "GetEventDataStoreOutput",
     members = {
         EventDataStoreArn = {
             type = "string",
@@ -1913,6 +2041,7 @@ M.GetEventDataStoreOutput = {
 
 M.GetEventSelectorsInput = {
     type = "structure",
+    id = "GetEventSelectorsInput",
     members = {
         TrailName = {
             type = "string",
@@ -1925,6 +2054,7 @@ M.GetEventSelectorsInput = {
 
 M.DataResource = {
     type = "structure",
+    id = "DataResource",
     members = {
         Type = {
             type = "string",
@@ -1944,6 +2074,7 @@ M.ReadWriteType = {
 
 M.EventSelector = {
     type = "structure",
+    id = "EventSelector",
     members = {
         ReadWriteType = {
             type = "string",
@@ -1964,6 +2095,7 @@ M.EventSelector = {
 
 M.GetEventSelectorsOutput = {
     type = "structure",
+    id = "GetEventSelectorsOutput",
     members = {
         TrailARN = {
             type = "string",
@@ -1981,6 +2113,7 @@ M.GetEventSelectorsOutput = {
 
 M.GetImportInput = {
     type = "structure",
+    id = "GetImportInput",
     members = {
         ImportId = {
             type = "string",
@@ -1993,6 +2126,7 @@ M.GetImportInput = {
 
 M.S3ImportSource = {
     type = "structure",
+    id = "S3ImportSource",
     members = {
         S3LocationUri = {
             type = "string",
@@ -2017,6 +2151,7 @@ M.S3ImportSource = {
 
 M.ImportSource = {
     type = "structure",
+    id = "ImportSource",
     members = {
         S3 = setmetatable({ traits = {
             required = true,
@@ -2026,6 +2161,7 @@ M.ImportSource = {
 
 M.ImportStatistics = {
     type = "structure",
+    id = "ImportStatistics",
     members = {
         PrefixesFound = {
             type = "long",
@@ -2055,6 +2191,7 @@ M.ImportStatus = {
 
 M.GetImportOutput = {
     type = "structure",
+    id = "GetImportOutput",
     members = {
         ImportId = {
             type = "string",
@@ -2085,6 +2222,7 @@ M.GetImportOutput = {
 
 M.ImportNotFoundException = {
     type = "structure",
+    id = "ImportNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2095,6 +2233,7 @@ M.ImportNotFoundException = {
 
 M.GetInsightSelectorsInput = {
     type = "structure",
+    id = "GetInsightSelectorsInput",
     members = {
         TrailName = {
             type = "string",
@@ -2117,6 +2256,7 @@ M.InsightType = {
 
 M.InsightSelector = {
     type = "structure",
+    id = "InsightSelector",
     members = {
         InsightType = {
             type = "string",
@@ -2130,6 +2270,7 @@ M.InsightSelector = {
 
 M.GetInsightSelectorsOutput = {
     type = "structure",
+    id = "GetInsightSelectorsOutput",
     members = {
         TrailARN = {
             type = "string",
@@ -2149,6 +2290,7 @@ M.GetInsightSelectorsOutput = {
 
 M.InsightNotEnabledException = {
     type = "structure",
+    id = "InsightNotEnabledException",
     error = "client",
     members = {
         Message = {
@@ -2159,6 +2301,7 @@ M.InsightNotEnabledException = {
 
 M.GetQueryResultsInput = {
     type = "structure",
+    id = "GetQueryResultsInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -2183,6 +2326,7 @@ M.GetQueryResultsInput = {
 
 M.QueryStatistics = {
     type = "structure",
+    id = "QueryStatistics",
     members = {
         ResultsCount = {
             type = "integer",
@@ -2198,6 +2342,7 @@ M.QueryStatistics = {
 
 M.GetQueryResultsOutput = {
     type = "structure",
+    id = "GetQueryResultsOutput",
     members = {
         QueryStatus = {
             type = "string",
@@ -2218,6 +2363,7 @@ M.GetQueryResultsOutput = {
 
 M.InvalidMaxResultsException = {
     type = "structure",
+    id = "InvalidMaxResultsException",
     error = "client",
     members = {
         Message = {
@@ -2228,6 +2374,7 @@ M.InvalidMaxResultsException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -2238,6 +2385,7 @@ M.InvalidNextTokenException = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2250,6 +2398,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2265,6 +2414,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetTrailInput = {
     type = "structure",
+    id = "GetTrailInput",
     members = {
         Name = {
             type = "string",
@@ -2277,6 +2427,7 @@ M.GetTrailInput = {
 
 M.GetTrailOutput = {
     type = "structure",
+    id = "GetTrailOutput",
     members = {
         Trail = M.Trail,
     },
@@ -2284,6 +2435,7 @@ M.GetTrailOutput = {
 
 M.GetTrailStatusInput = {
     type = "structure",
+    id = "GetTrailStatusInput",
     members = {
         Name = {
             type = "string",
@@ -2296,6 +2448,7 @@ M.GetTrailStatusInput = {
 
 M.GetTrailStatusOutput = {
     type = "structure",
+    id = "GetTrailStatusOutput",
     members = {
         IsLogging = {
             type = "boolean",
@@ -2353,6 +2506,7 @@ M.GetTrailStatusOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2365,6 +2519,7 @@ M.ListChannelsInput = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         Channels = {
             type = "list",
@@ -2378,6 +2533,7 @@ M.ListChannelsOutput = {
 
 M.ListDashboardsInput = {
     type = "structure",
+    id = "ListDashboardsInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -2396,6 +2552,7 @@ M.ListDashboardsInput = {
 
 M.DashboardDetail = {
     type = "structure",
+    id = "DashboardDetail",
     members = {
         DashboardArn = {
             type = "string",
@@ -2408,6 +2565,7 @@ M.DashboardDetail = {
 
 M.ListDashboardsOutput = {
     type = "structure",
+    id = "ListDashboardsOutput",
     members = {
         Dashboards = {
             type = "list",
@@ -2421,6 +2579,7 @@ M.ListDashboardsOutput = {
 
 M.ListEventDataStoresInput = {
     type = "structure",
+    id = "ListEventDataStoresInput",
     members = {
         NextToken = {
             type = "string",
@@ -2433,6 +2592,7 @@ M.ListEventDataStoresInput = {
 
 M.EventDataStore = {
     type = "structure",
+    id = "EventDataStore",
     members = {
         EventDataStoreArn = {
             type = "string",
@@ -2470,6 +2630,7 @@ M.EventDataStore = {
 
 M.ListEventDataStoresOutput = {
     type = "structure",
+    id = "ListEventDataStoresOutput",
     members = {
         EventDataStores = {
             type = "list",
@@ -2483,6 +2644,7 @@ M.ListEventDataStoresOutput = {
 
 M.ListImportFailuresInput = {
     type = "structure",
+    id = "ListImportFailuresInput",
     members = {
         ImportId = {
             type = "string",
@@ -2507,6 +2669,7 @@ M.ImportFailureStatus = {
 
 M.ImportFailureListItem = {
     type = "structure",
+    id = "ImportFailureListItem",
     members = {
         Location = {
             type = "string",
@@ -2528,6 +2691,7 @@ M.ImportFailureListItem = {
 
 M.ListImportFailuresOutput = {
     type = "structure",
+    id = "ListImportFailuresOutput",
     members = {
         Failures = {
             type = "list",
@@ -2541,6 +2705,7 @@ M.ListImportFailuresOutput = {
 
 M.ListImportsInput = {
     type = "structure",
+    id = "ListImportsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2559,6 +2724,7 @@ M.ListImportsInput = {
 
 M.ImportsListItem = {
     type = "structure",
+    id = "ImportsListItem",
     members = {
         ImportId = {
             type = "string",
@@ -2581,6 +2747,7 @@ M.ImportsListItem = {
 
 M.ListImportsOutput = {
     type = "structure",
+    id = "ListImportsOutput",
     members = {
         Imports = {
             type = "list",
@@ -2604,6 +2771,7 @@ M.ListInsightsDataDimensionKey = {
 
 M.ListInsightsDataInput = {
     type = "structure",
+    id = "ListInsightsDataInput",
     members = {
         InsightSource = {
             type = "string",
@@ -2639,6 +2807,7 @@ M.ListInsightsDataInput = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         ResourceType = {
             type = "string",
@@ -2651,6 +2820,7 @@ M.Resource = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         EventId = {
             type = "string",
@@ -2685,6 +2855,7 @@ M.Event = {
 
 M.ListInsightsDataOutput = {
     type = "structure",
+    id = "ListInsightsDataOutput",
     members = {
         Events = {
             type = "list",
@@ -2703,6 +2874,7 @@ M.InsightsMetricDataType = {
 
 M.ListInsightsMetricDataInput = {
     type = "structure",
+    id = "ListInsightsMetricDataInput",
     members = {
         TrailName = {
             type = "string",
@@ -2751,6 +2923,7 @@ M.ListInsightsMetricDataInput = {
 
 M.ListInsightsMetricDataOutput = {
     type = "structure",
+    id = "ListInsightsMetricDataOutput",
     members = {
         TrailARN = {
             type = "string",
@@ -2783,6 +2956,7 @@ M.ListInsightsMetricDataOutput = {
 
 M.InvalidTimeRangeException = {
     type = "structure",
+    id = "InvalidTimeRangeException",
     error = "client",
     members = {
         Message = {
@@ -2793,6 +2967,7 @@ M.InvalidTimeRangeException = {
 
 M.InvalidTokenException = {
     type = "structure",
+    id = "InvalidTokenException",
     error = "client",
     members = {
         Message = {
@@ -2803,6 +2978,7 @@ M.InvalidTokenException = {
 
 M.ListPublicKeysInput = {
     type = "structure",
+    id = "ListPublicKeysInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -2818,6 +2994,7 @@ M.ListPublicKeysInput = {
 
 M.PublicKey = {
     type = "structure",
+    id = "PublicKey",
     members = {
         Value = {
             type = "blob",
@@ -2836,6 +3013,7 @@ M.PublicKey = {
 
 M.ListPublicKeysOutput = {
     type = "structure",
+    id = "ListPublicKeysOutput",
     members = {
         PublicKeyList = {
             type = "list",
@@ -2849,6 +3027,7 @@ M.ListPublicKeysOutput = {
 
 M.InvalidDateRangeException = {
     type = "structure",
+    id = "InvalidDateRangeException",
     error = "client",
     members = {
         Message = {
@@ -2859,6 +3038,7 @@ M.InvalidDateRangeException = {
 
 M.InvalidQueryStatusException = {
     type = "structure",
+    id = "InvalidQueryStatusException",
     error = "client",
     members = {
         Message = {
@@ -2869,6 +3049,7 @@ M.InvalidQueryStatusException = {
 
 M.ListQueriesInput = {
     type = "structure",
+    id = "ListQueriesInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -2896,6 +3077,7 @@ M.ListQueriesInput = {
 
 M.Query = {
     type = "structure",
+    id = "Query",
     members = {
         QueryId = {
             type = "string",
@@ -2911,6 +3093,7 @@ M.Query = {
 
 M.ListQueriesOutput = {
     type = "structure",
+    id = "ListQueriesOutput",
     members = {
         Queries = {
             type = "list",
@@ -2924,6 +3107,7 @@ M.ListQueriesOutput = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         ResourceIdList = {
             type = "list",
@@ -2940,6 +3124,7 @@ M.ListTagsInput = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         ResourceId = {
             type = "string",
@@ -2953,6 +3138,7 @@ M.ResourceTag = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         ResourceTagList = {
             type = "list",
@@ -2966,6 +3152,7 @@ M.ListTagsOutput = {
 
 M.ListTrailsInput = {
     type = "structure",
+    id = "ListTrailsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2975,6 +3162,7 @@ M.ListTrailsInput = {
 
 M.TrailInfo = {
     type = "structure",
+    id = "TrailInfo",
     members = {
         TrailARN = {
             type = "string",
@@ -2990,6 +3178,7 @@ M.TrailInfo = {
 
 M.ListTrailsOutput = {
     type = "structure",
+    id = "ListTrailsOutput",
     members = {
         Trails = {
             type = "list",
@@ -3003,6 +3192,7 @@ M.ListTrailsOutput = {
 
 M.InvalidEventCategoryException = {
     type = "structure",
+    id = "InvalidEventCategoryException",
     error = "client",
     members = {
         Message = {
@@ -3013,6 +3203,7 @@ M.InvalidEventCategoryException = {
 
 M.InvalidLookupAttributesException = {
     type = "structure",
+    id = "InvalidLookupAttributesException",
     error = "client",
     members = {
         Message = {
@@ -3038,6 +3229,7 @@ M.LookupAttributeKey = {
 
 M.LookupAttribute = {
     type = "structure",
+    id = "LookupAttribute",
     members = {
         AttributeKey = {
             type = "string",
@@ -3056,6 +3248,7 @@ M.LookupAttribute = {
 
 M.LookupEventsInput = {
     type = "structure",
+    id = "LookupEventsInput",
     members = {
         LookupAttributes = {
             type = "list",
@@ -3081,6 +3274,7 @@ M.LookupEventsInput = {
 
 M.LookupEventsOutput = {
     type = "structure",
+    id = "LookupEventsOutput",
     members = {
         Events = {
             type = "list",
@@ -3094,6 +3288,7 @@ M.LookupEventsOutput = {
 
 M.InsufficientIAMAccessPermissionException = {
     type = "structure",
+    id = "InsufficientIAMAccessPermissionException",
     error = "client",
     members = {
         Message = {
@@ -3104,6 +3299,7 @@ M.InsufficientIAMAccessPermissionException = {
 
 M.PutEventConfigurationInput = {
     type = "structure",
+    id = "PutEventConfigurationInput",
     members = {
         TrailName = {
             type = "string",
@@ -3127,6 +3323,7 @@ M.PutEventConfigurationInput = {
 
 M.PutEventConfigurationOutput = {
     type = "structure",
+    id = "PutEventConfigurationOutput",
     members = {
         TrailARN = {
             type = "string",
@@ -3150,6 +3347,7 @@ M.PutEventConfigurationOutput = {
 
 M.PutEventSelectorsInput = {
     type = "structure",
+    id = "PutEventSelectorsInput",
     members = {
         TrailName = {
             type = "string",
@@ -3170,6 +3368,7 @@ M.PutEventSelectorsInput = {
 
 M.PutEventSelectorsOutput = {
     type = "structure",
+    id = "PutEventSelectorsOutput",
     members = {
         TrailARN = {
             type = "string",
@@ -3187,6 +3386,7 @@ M.PutEventSelectorsOutput = {
 
 M.InvalidInsightSelectorsException = {
     type = "structure",
+    id = "InvalidInsightSelectorsException",
     error = "client",
     members = {
         Message = {
@@ -3197,6 +3397,7 @@ M.InvalidInsightSelectorsException = {
 
 M.PutInsightSelectorsInput = {
     type = "structure",
+    id = "PutInsightSelectorsInput",
     members = {
         TrailName = {
             type = "string",
@@ -3219,6 +3420,7 @@ M.PutInsightSelectorsInput = {
 
 M.PutInsightSelectorsOutput = {
     type = "structure",
+    id = "PutInsightSelectorsOutput",
     members = {
         TrailARN = {
             type = "string",
@@ -3238,6 +3440,7 @@ M.PutInsightSelectorsOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3256,6 +3459,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3271,6 +3475,7 @@ M.PutResourcePolicyOutput = {
 
 M.ResourcePolicyNotValidException = {
     type = "structure",
+    id = "ResourcePolicyNotValidException",
     error = "client",
     members = {
         Message = {
@@ -3281,6 +3486,7 @@ M.ResourcePolicyNotValidException = {
 
 M.DelegatedAdminAccountLimitExceededException = {
     type = "structure",
+    id = "DelegatedAdminAccountLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -3291,6 +3497,7 @@ M.DelegatedAdminAccountLimitExceededException = {
 
 M.RegisterOrganizationDelegatedAdminInput = {
     type = "structure",
+    id = "RegisterOrganizationDelegatedAdminInput",
     members = {
         MemberAccountId = {
             type = "string",
@@ -3303,10 +3510,12 @@ M.RegisterOrganizationDelegatedAdminInput = {
 
 M.RegisterOrganizationDelegatedAdminOutput = {
     type = "structure",
+    id = "RegisterOrganizationDelegatedAdminOutput",
 }
 
 M.RemoveTagsInput = {
     type = "structure",
+    id = "RemoveTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -3326,10 +3535,12 @@ M.RemoveTagsInput = {
 
 M.RemoveTagsOutput = {
     type = "structure",
+    id = "RemoveTagsOutput",
 }
 
 M.RestoreEventDataStoreInput = {
     type = "structure",
+    id = "RestoreEventDataStoreInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -3342,6 +3553,7 @@ M.RestoreEventDataStoreInput = {
 
 M.RestoreEventDataStoreOutput = {
     type = "structure",
+    id = "RestoreEventDataStoreOutput",
     members = {
         EventDataStoreArn = {
             type = "string",
@@ -3385,6 +3597,7 @@ M.RestoreEventDataStoreOutput = {
 
 M.SearchSampleQueriesInput = {
     type = "structure",
+    id = "SearchSampleQueriesInput",
     members = {
         SearchPhrase = {
             type = "string",
@@ -3403,6 +3616,7 @@ M.SearchSampleQueriesInput = {
 
 M.SearchSampleQueriesSearchResult = {
     type = "structure",
+    id = "SearchSampleQueriesSearchResult",
     members = {
         Name = {
             type = "string",
@@ -3424,6 +3638,7 @@ M.SearchSampleQueriesSearchResult = {
 
 M.SearchSampleQueriesOutput = {
     type = "structure",
+    id = "SearchSampleQueriesOutput",
     members = {
         SearchResults = {
             type = "list",
@@ -3437,6 +3652,7 @@ M.SearchSampleQueriesOutput = {
 
 M.StartDashboardRefreshInput = {
     type = "structure",
+    id = "StartDashboardRefreshInput",
     members = {
         DashboardId = {
             type = "string",
@@ -3454,6 +3670,7 @@ M.StartDashboardRefreshInput = {
 
 M.StartDashboardRefreshOutput = {
     type = "structure",
+    id = "StartDashboardRefreshOutput",
     members = {
         RefreshId = {
             type = "string",
@@ -3463,6 +3680,7 @@ M.StartDashboardRefreshOutput = {
 
 M.StartEventDataStoreIngestionInput = {
     type = "structure",
+    id = "StartEventDataStoreIngestionInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -3475,10 +3693,12 @@ M.StartEventDataStoreIngestionInput = {
 
 M.StartEventDataStoreIngestionOutput = {
     type = "structure",
+    id = "StartEventDataStoreIngestionOutput",
 }
 
 M.InvalidImportSourceException = {
     type = "structure",
+    id = "InvalidImportSourceException",
     error = "client",
     members = {
         Message = {
@@ -3489,6 +3709,7 @@ M.InvalidImportSourceException = {
 
 M.StartImportInput = {
     type = "structure",
+    id = "StartImportInput",
     members = {
         Destinations = {
             type = "list",
@@ -3509,6 +3730,7 @@ M.StartImportInput = {
 
 M.StartImportOutput = {
     type = "structure",
+    id = "StartImportOutput",
     members = {
         ImportId = {
             type = "string",
@@ -3538,6 +3760,7 @@ M.StartImportOutput = {
 
 M.StartLoggingInput = {
     type = "structure",
+    id = "StartLoggingInput",
     members = {
         Name = {
             type = "string",
@@ -3550,10 +3773,12 @@ M.StartLoggingInput = {
 
 M.StartLoggingOutput = {
     type = "structure",
+    id = "StartLoggingOutput",
 }
 
 M.MaxConcurrentQueriesException = {
     type = "structure",
+    id = "MaxConcurrentQueriesException",
     error = "client",
     members = {
         Message = {
@@ -3564,6 +3789,7 @@ M.MaxConcurrentQueriesException = {
 
 M.StartQueryInput = {
     type = "structure",
+    id = "StartQueryInput",
     members = {
         QueryStatement = {
             type = "string",
@@ -3586,6 +3812,7 @@ M.StartQueryInput = {
 
 M.StartQueryOutput = {
     type = "structure",
+    id = "StartQueryOutput",
     members = {
         QueryId = {
             type = "string",
@@ -3598,6 +3825,7 @@ M.StartQueryOutput = {
 
 M.StopEventDataStoreIngestionInput = {
     type = "structure",
+    id = "StopEventDataStoreIngestionInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -3610,10 +3838,12 @@ M.StopEventDataStoreIngestionInput = {
 
 M.StopEventDataStoreIngestionOutput = {
     type = "structure",
+    id = "StopEventDataStoreIngestionOutput",
 }
 
 M.StopImportInput = {
     type = "structure",
+    id = "StopImportInput",
     members = {
         ImportId = {
             type = "string",
@@ -3626,6 +3856,7 @@ M.StopImportInput = {
 
 M.StopImportOutput = {
     type = "structure",
+    id = "StopImportOutput",
     members = {
         ImportId = {
             type = "string",
@@ -3656,6 +3887,7 @@ M.StopImportOutput = {
 
 M.StopLoggingInput = {
     type = "structure",
+    id = "StopLoggingInput",
     members = {
         Name = {
             type = "string",
@@ -3668,10 +3900,12 @@ M.StopLoggingInput = {
 
 M.StopLoggingOutput = {
     type = "structure",
+    id = "StopLoggingOutput",
 }
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         Channel = {
             type = "string",
@@ -3691,6 +3925,7 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
     members = {
         ChannelArn = {
             type = "string",
@@ -3710,6 +3945,7 @@ M.UpdateChannelOutput = {
 
 M.UpdateDashboardInput = {
     type = "structure",
+    id = "UpdateDashboardInput",
     members = {
         DashboardId = {
             type = "string",
@@ -3730,6 +3966,7 @@ M.UpdateDashboardInput = {
 
 M.UpdateDashboardOutput = {
     type = "structure",
+    id = "UpdateDashboardOutput",
     members = {
         DashboardArn = {
             type = "string",
@@ -3759,6 +3996,7 @@ M.UpdateDashboardOutput = {
 
 M.UpdateEventDataStoreInput = {
     type = "structure",
+    id = "UpdateEventDataStoreInput",
     members = {
         EventDataStore = {
             type = "string",
@@ -3796,6 +4034,7 @@ M.UpdateEventDataStoreInput = {
 
 M.UpdateEventDataStoreOutput = {
     type = "structure",
+    id = "UpdateEventDataStoreOutput",
     members = {
         EventDataStoreArn = {
             type = "string",
@@ -3845,6 +4084,7 @@ M.UpdateEventDataStoreOutput = {
 
 M.UpdateTrailInput = {
     type = "structure",
+    id = "UpdateTrailInput",
     members = {
         Name = {
             type = "string",
@@ -3887,6 +4127,7 @@ M.UpdateTrailInput = {
 
 M.UpdateTrailOutput = {
     type = "structure",
+    id = "UpdateTrailOutput",
     members = {
         Name = {
             type = "string",

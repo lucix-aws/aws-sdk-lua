@@ -7,6 +7,7 @@ M.AmbiguousRoleResolutionType = {
 
 M.CognitoIdentityProvider = {
     type = "structure",
+    id = "CognitoIdentityProvider",
     members = {
         ProviderName = {
             type = "string",
@@ -25,6 +26,7 @@ M.CognitoIdentityProvider = {
 
 M.CreateIdentityPoolInput = {
     type = "structure",
+    id = "CreateIdentityPoolInput",
     members = {
         IdentityPoolName = {
             type = "string",
@@ -72,6 +74,7 @@ M.CreateIdentityPoolInput = {
 
 M.CreateIdentityPoolOutput = {
     type = "structure",
+    id = "CreateIdentityPoolOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -125,6 +128,7 @@ M.CreateIdentityPoolOutput = {
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         message = {
@@ -135,6 +139,7 @@ M.InternalErrorException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -145,6 +150,7 @@ M.InvalidParameterException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -155,6 +161,7 @@ M.LimitExceededException = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         message = {
@@ -165,6 +172,7 @@ M.NotAuthorizedException = {
 
 M.ResourceConflictException = {
     type = "structure",
+    id = "ResourceConflictException",
     error = "client",
     members = {
         message = {
@@ -175,6 +183,7 @@ M.ResourceConflictException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -185,6 +194,7 @@ M.TooManyRequestsException = {
 
 M.DeleteIdentitiesInput = {
     type = "structure",
+    id = "DeleteIdentitiesInput",
     members = {
         IdentityIdsToDelete = {
             type = "list",
@@ -203,6 +213,7 @@ M.ErrorCode = {
 
 M.UnprocessedIdentityId = {
     type = "structure",
+    id = "UnprocessedIdentityId",
     members = {
         IdentityId = {
             type = "string",
@@ -215,6 +226,7 @@ M.UnprocessedIdentityId = {
 
 M.DeleteIdentitiesOutput = {
     type = "structure",
+    id = "DeleteIdentitiesOutput",
     members = {
         UnprocessedIdentityIds = {
             type = "list",
@@ -225,6 +237,7 @@ M.DeleteIdentitiesOutput = {
 
 M.DeleteIdentityPoolInput = {
     type = "structure",
+    id = "DeleteIdentityPoolInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -237,10 +250,12 @@ M.DeleteIdentityPoolInput = {
 
 M.DeleteIdentityPoolOutput = {
     type = "structure",
+    id = "DeleteIdentityPoolOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -251,6 +266,7 @@ M.ResourceNotFoundException = {
 
 M.DescribeIdentityInput = {
     type = "structure",
+    id = "DescribeIdentityInput",
     members = {
         IdentityId = {
             type = "string",
@@ -263,6 +279,7 @@ M.DescribeIdentityInput = {
 
 M.DescribeIdentityOutput = {
     type = "structure",
+    id = "DescribeIdentityOutput",
     members = {
         IdentityId = {
             type = "string",
@@ -282,6 +299,7 @@ M.DescribeIdentityOutput = {
 
 M.DescribeIdentityPoolInput = {
     type = "structure",
+    id = "DescribeIdentityPoolInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -294,6 +312,7 @@ M.DescribeIdentityPoolInput = {
 
 M.DescribeIdentityPoolOutput = {
     type = "structure",
+    id = "DescribeIdentityPoolOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -347,6 +366,7 @@ M.DescribeIdentityPoolOutput = {
 
 M.ExternalServiceException = {
     type = "structure",
+    id = "ExternalServiceException",
     error = "client",
     members = {
         message = {
@@ -357,6 +377,7 @@ M.ExternalServiceException = {
 
 M.GetCredentialsForIdentityInput = {
     type = "structure",
+    id = "GetCredentialsForIdentityInput",
     members = {
         IdentityId = {
             type = "string",
@@ -377,6 +398,7 @@ M.GetCredentialsForIdentityInput = {
 
 M.Credentials = {
     type = "structure",
+    id = "Credentials",
     members = {
         AccessKeyId = {
             type = "string",
@@ -395,6 +417,7 @@ M.Credentials = {
 
 M.GetCredentialsForIdentityOutput = {
     type = "structure",
+    id = "GetCredentialsForIdentityOutput",
     members = {
         IdentityId = {
             type = "string",
@@ -405,6 +428,7 @@ M.GetCredentialsForIdentityOutput = {
 
 M.InvalidIdentityPoolConfigurationException = {
     type = "structure",
+    id = "InvalidIdentityPoolConfigurationException",
     error = "client",
     members = {
         message = {
@@ -415,6 +439,7 @@ M.InvalidIdentityPoolConfigurationException = {
 
 M.GetIdInput = {
     type = "structure",
+    id = "GetIdInput",
     members = {
         AccountId = {
             type = "string",
@@ -435,6 +460,7 @@ M.GetIdInput = {
 
 M.GetIdOutput = {
     type = "structure",
+    id = "GetIdOutput",
     members = {
         IdentityId = {
             type = "string",
@@ -444,6 +470,7 @@ M.GetIdOutput = {
 
 M.GetIdentityPoolRolesInput = {
     type = "structure",
+    id = "GetIdentityPoolRolesInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -463,6 +490,7 @@ M.MappingRuleMatchType = {
 
 M.MappingRule = {
     type = "structure",
+    id = "MappingRule",
     members = {
         Claim = {
             type = "string",
@@ -493,6 +521,7 @@ M.MappingRule = {
 
 M.RulesConfigurationType = {
     type = "structure",
+    id = "RulesConfigurationType",
     members = {
         Rules = {
             type = "list",
@@ -511,6 +540,7 @@ M.RoleMappingType = {
 
 M.RoleMapping = {
     type = "structure",
+    id = "RoleMapping",
     members = {
         Type = {
             type = "string",
@@ -527,6 +557,7 @@ M.RoleMapping = {
 
 M.GetIdentityPoolRolesOutput = {
     type = "structure",
+    id = "GetIdentityPoolRolesOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -546,6 +577,7 @@ M.GetIdentityPoolRolesOutput = {
 
 M.GetOpenIdTokenInput = {
     type = "structure",
+    id = "GetOpenIdTokenInput",
     members = {
         IdentityId = {
             type = "string",
@@ -563,6 +595,7 @@ M.GetOpenIdTokenInput = {
 
 M.GetOpenIdTokenOutput = {
     type = "structure",
+    id = "GetOpenIdTokenOutput",
     members = {
         IdentityId = {
             type = "string",
@@ -575,6 +608,7 @@ M.GetOpenIdTokenOutput = {
 
 M.DeveloperUserAlreadyRegisteredException = {
     type = "structure",
+    id = "DeveloperUserAlreadyRegisteredException",
     error = "client",
     members = {
         message = {
@@ -585,6 +619,7 @@ M.DeveloperUserAlreadyRegisteredException = {
 
 M.GetOpenIdTokenForDeveloperIdentityInput = {
     type = "structure",
+    id = "GetOpenIdTokenForDeveloperIdentityInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -616,6 +651,7 @@ M.GetOpenIdTokenForDeveloperIdentityInput = {
 
 M.GetOpenIdTokenForDeveloperIdentityOutput = {
     type = "structure",
+    id = "GetOpenIdTokenForDeveloperIdentityOutput",
     members = {
         IdentityId = {
             type = "string",
@@ -628,6 +664,7 @@ M.GetOpenIdTokenForDeveloperIdentityOutput = {
 
 M.GetPrincipalTagAttributeMapInput = {
     type = "structure",
+    id = "GetPrincipalTagAttributeMapInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -646,6 +683,7 @@ M.GetPrincipalTagAttributeMapInput = {
 
 M.GetPrincipalTagAttributeMapOutput = {
     type = "structure",
+    id = "GetPrincipalTagAttributeMapOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -666,6 +704,7 @@ M.GetPrincipalTagAttributeMapOutput = {
 
 M.ListIdentitiesInput = {
     type = "structure",
+    id = "ListIdentitiesInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -693,6 +732,7 @@ M.ListIdentitiesInput = {
 
 M.IdentityDescription = {
     type = "structure",
+    id = "IdentityDescription",
     members = {
         IdentityId = {
             type = "string",
@@ -712,6 +752,7 @@ M.IdentityDescription = {
 
 M.ListIdentitiesOutput = {
     type = "structure",
+    id = "ListIdentitiesOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -728,6 +769,7 @@ M.ListIdentitiesOutput = {
 
 M.ListIdentityPoolsInput = {
     type = "structure",
+    id = "ListIdentityPoolsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -743,6 +785,7 @@ M.ListIdentityPoolsInput = {
 
 M.IdentityPoolShortDescription = {
     type = "structure",
+    id = "IdentityPoolShortDescription",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -755,6 +798,7 @@ M.IdentityPoolShortDescription = {
 
 M.ListIdentityPoolsOutput = {
     type = "structure",
+    id = "ListIdentityPoolsOutput",
     members = {
         IdentityPools = {
             type = "list",
@@ -768,6 +812,7 @@ M.ListIdentityPoolsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -780,6 +825,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -791,6 +837,7 @@ M.ListTagsForResourceOutput = {
 
 M.LookupDeveloperIdentityInput = {
     type = "structure",
+    id = "LookupDeveloperIdentityInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -815,6 +862,7 @@ M.LookupDeveloperIdentityInput = {
 
 M.LookupDeveloperIdentityOutput = {
     type = "structure",
+    id = "LookupDeveloperIdentityOutput",
     members = {
         IdentityId = {
             type = "string",
@@ -831,6 +879,7 @@ M.LookupDeveloperIdentityOutput = {
 
 M.MergeDeveloperIdentitiesInput = {
     type = "structure",
+    id = "MergeDeveloperIdentitiesInput",
     members = {
         SourceUserIdentifier = {
             type = "string",
@@ -861,6 +910,7 @@ M.MergeDeveloperIdentitiesInput = {
 
 M.MergeDeveloperIdentitiesOutput = {
     type = "structure",
+    id = "MergeDeveloperIdentitiesOutput",
     members = {
         IdentityId = {
             type = "string",
@@ -870,6 +920,7 @@ M.MergeDeveloperIdentitiesOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -880,6 +931,7 @@ M.ConcurrentModificationException = {
 
 M.SetIdentityPoolRolesInput = {
     type = "structure",
+    id = "SetIdentityPoolRolesInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -905,10 +957,12 @@ M.SetIdentityPoolRolesInput = {
 
 M.SetIdentityPoolRolesOutput = {
     type = "structure",
+    id = "SetIdentityPoolRolesOutput",
 }
 
 M.SetPrincipalTagAttributeMapInput = {
     type = "structure",
+    id = "SetPrincipalTagAttributeMapInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -935,6 +989,7 @@ M.SetPrincipalTagAttributeMapInput = {
 
 M.SetPrincipalTagAttributeMapOutput = {
     type = "structure",
+    id = "SetPrincipalTagAttributeMapOutput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -955,6 +1010,7 @@ M.SetPrincipalTagAttributeMapOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -975,10 +1031,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UnlinkDeveloperIdentityInput = {
     type = "structure",
+    id = "UnlinkDeveloperIdentityInput",
     members = {
         IdentityId = {
             type = "string",
@@ -1009,10 +1067,12 @@ M.UnlinkDeveloperIdentityInput = {
 
 M.UnlinkDeveloperIdentityOutput = {
     type = "structure",
+    id = "UnlinkDeveloperIdentityOutput",
 }
 
 M.UnlinkIdentityInput = {
     type = "structure",
+    id = "UnlinkIdentityInput",
     members = {
         IdentityId = {
             type = "string",
@@ -1040,10 +1100,12 @@ M.UnlinkIdentityInput = {
 
 M.UnlinkIdentityOutput = {
     type = "structure",
+    id = "UnlinkIdentityOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1063,10 +1125,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateIdentityPoolInput = {
     type = "structure",
+    id = "UpdateIdentityPoolInput",
     members = {
         IdentityPoolId = {
             type = "string",
@@ -1120,6 +1184,7 @@ M.UpdateIdentityPoolInput = {
 
 M.UpdateIdentityPoolOutput = {
     type = "structure",
+    id = "UpdateIdentityPoolOutput",
     members = {
         IdentityPoolId = {
             type = "string",

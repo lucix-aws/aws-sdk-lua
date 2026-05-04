@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -47,6 +48,7 @@ M.NodeDataType = {
 
 M.Actuator = {
     type = "structure",
+    id = "Actuator",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -93,6 +95,7 @@ M.Actuator = {
 
 M.AssociateVehicleFleetInput = {
     type = "structure",
+    id = "AssociateVehicleFleetInput",
     members = {
         vehicleName = {
             type = "string",
@@ -112,10 +115,12 @@ M.AssociateVehicleFleetInput = {
 
 M.AssociateVehicleFleetOutput = {
     type = "structure",
+    id = "AssociateVehicleFleetOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -136,6 +141,7 @@ M.InternalServerException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -161,6 +167,7 @@ M.LimitExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -186,6 +193,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -212,6 +220,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -237,6 +246,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -257,6 +267,7 @@ M.ValidationException = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -308,6 +319,7 @@ M.VehicleAssociationBehavior = {
 
 M.OnChangeStateTemplateUpdateStrategy = {
     type = "structure",
+    id = "OnChangeStateTemplateUpdateStrategy",
 }
 
 M.TimeUnit = {
@@ -319,6 +331,7 @@ M.TimeUnit = {
 
 M.TimePeriod = {
     type = "structure",
+    id = "TimePeriod",
     members = {
         unit = {
             type = "string",
@@ -337,6 +350,7 @@ M.TimePeriod = {
 
 M.PeriodicStateTemplateUpdateStrategy = {
     type = "structure",
+    id = "PeriodicStateTemplateUpdateStrategy",
     members = {
         stateTemplateUpdateRate = setmetatable({ traits = {
             required = true,
@@ -346,6 +360,7 @@ M.PeriodicStateTemplateUpdateStrategy = {
 
 M.StateTemplateUpdateStrategy = {
     type = "union",
+    id = "StateTemplateUpdateStrategy",
     members = {
         periodic = M.PeriodicStateTemplateUpdateStrategy,
         onChange = M.OnChangeStateTemplateUpdateStrategy,
@@ -354,6 +369,7 @@ M.StateTemplateUpdateStrategy = {
 
 M.StateTemplateAssociation = {
     type = "structure",
+    id = "StateTemplateAssociation",
     members = {
         identifier = {
             type = "string",
@@ -369,6 +385,7 @@ M.StateTemplateAssociation = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -387,6 +404,7 @@ M.Tag = {
 
 M.CreateVehicleRequestItem = {
     type = "structure",
+    id = "CreateVehicleRequestItem",
     members = {
         vehicleName = {
             type = "string",
@@ -427,6 +445,7 @@ M.CreateVehicleRequestItem = {
 
 M.BatchCreateVehicleInput = {
     type = "structure",
+    id = "BatchCreateVehicleInput",
     members = {
         vehicles = {
             type = "list",
@@ -440,6 +459,7 @@ M.BatchCreateVehicleInput = {
 
 M.CreateVehicleError = {
     type = "structure",
+    id = "CreateVehicleError",
     members = {
         vehicleName = {
             type = "string",
@@ -455,6 +475,7 @@ M.CreateVehicleError = {
 
 M.CreateVehicleResponseItem = {
     type = "structure",
+    id = "CreateVehicleResponseItem",
     members = {
         vehicleName = {
             type = "string",
@@ -470,6 +491,7 @@ M.CreateVehicleResponseItem = {
 
 M.BatchCreateVehicleOutput = {
     type = "structure",
+    id = "BatchCreateVehicleOutput",
     members = {
         vehicles = {
             type = "list",
@@ -489,6 +511,7 @@ M.UpdateMode = {
 
 M.UpdateVehicleRequestItem = {
     type = "structure",
+    id = "UpdateVehicleRequestItem",
     members = {
         vehicleName = {
             type = "string",
@@ -527,6 +550,7 @@ M.UpdateVehicleRequestItem = {
 
 M.BatchUpdateVehicleInput = {
     type = "structure",
+    id = "BatchUpdateVehicleInput",
     members = {
         vehicles = {
             type = "list",
@@ -540,6 +564,7 @@ M.BatchUpdateVehicleInput = {
 
 M.UpdateVehicleError = {
     type = "structure",
+    id = "UpdateVehicleError",
     members = {
         vehicleName = {
             type = "string",
@@ -558,6 +583,7 @@ M.UpdateVehicleError = {
 
 M.UpdateVehicleResponseItem = {
     type = "structure",
+    id = "UpdateVehicleResponseItem",
     members = {
         vehicleName = {
             type = "string",
@@ -570,6 +596,7 @@ M.UpdateVehicleResponseItem = {
 
 M.BatchUpdateVehicleOutput = {
     type = "structure",
+    id = "BatchUpdateVehicleOutput",
     members = {
         vehicles = {
             type = "list",
@@ -584,6 +611,7 @@ M.BatchUpdateVehicleOutput = {
 
 M.Branch = {
     type = "structure",
+    id = "Branch",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -605,6 +633,7 @@ M.Branch = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -635,6 +664,7 @@ M.TriggerMode = {
 
 M.ConditionBasedCollectionScheme = {
     type = "structure",
+    id = "ConditionBasedCollectionScheme",
     members = {
         expression = {
             type = "string",
@@ -656,6 +686,7 @@ M.ConditionBasedCollectionScheme = {
 
 M.TimeBasedCollectionScheme = {
     type = "structure",
+    id = "TimeBasedCollectionScheme",
     members = {
         periodMs = {
             type = "long",
@@ -668,6 +699,7 @@ M.TimeBasedCollectionScheme = {
 
 M.CollectionScheme = {
     type = "union",
+    id = "CollectionScheme",
     members = {
         timeBasedCollectionScheme = M.TimeBasedCollectionScheme,
         conditionBasedCollectionScheme = M.ConditionBasedCollectionScheme,
@@ -681,6 +713,7 @@ M.Compression = {
 
 M.MqttTopicConfig = {
     type = "structure",
+    id = "MqttTopicConfig",
     members = {
         mqttTopicArn = {
             type = "string",
@@ -709,6 +742,7 @@ M.StorageCompressionFormat = {
 
 M.S3Config = {
     type = "structure",
+    id = "S3Config",
     members = {
         bucketArn = {
             type = "string",
@@ -730,6 +764,7 @@ M.S3Config = {
 
 M.TimestreamConfig = {
     type = "structure",
+    id = "TimestreamConfig",
     members = {
         timestreamTableArn = {
             type = "string",
@@ -748,6 +783,7 @@ M.TimestreamConfig = {
 
 M.DataDestinationConfig = {
     type = "union",
+    id = "DataDestinationConfig",
     members = {
         s3Config = M.S3Config,
         timestreamConfig = M.TimestreamConfig,
@@ -763,6 +799,7 @@ M.StorageMaximumSizeUnit = {
 
 M.StorageMaximumSize = {
     type = "structure",
+    id = "StorageMaximumSize",
     members = {
         unit = {
             type = "string",
@@ -787,6 +824,7 @@ M.StorageMinimumTimeToLiveUnit = {
 
 M.StorageMinimumTimeToLive = {
     type = "structure",
+    id = "StorageMinimumTimeToLive",
     members = {
         unit = {
             type = "string",
@@ -805,6 +843,7 @@ M.StorageMinimumTimeToLive = {
 
 M.DataPartitionStorageOptions = {
     type = "structure",
+    id = "DataPartitionStorageOptions",
     members = {
         maximumSize = setmetatable({ traits = {
             required = true,
@@ -823,6 +862,7 @@ M.DataPartitionStorageOptions = {
 
 M.DataPartitionUploadOptions = {
     type = "structure",
+    id = "DataPartitionUploadOptions",
     members = {
         expression = {
             type = "string",
@@ -838,6 +878,7 @@ M.DataPartitionUploadOptions = {
 
 M.DataPartition = {
     type = "structure",
+    id = "DataPartition",
     members = {
         id = {
             type = "string",
@@ -859,6 +900,7 @@ M.DiagnosticsMode = {
 
 M.SignalInformation = {
     type = "structure",
+    id = "SignalInformation",
     members = {
         name = {
             type = "string",
@@ -880,6 +922,7 @@ M.SignalInformation = {
 
 M.ConditionBasedSignalFetchConfig = {
     type = "structure",
+    id = "ConditionBasedSignalFetchConfig",
     members = {
         conditionExpression = {
             type = "string",
@@ -898,6 +941,7 @@ M.ConditionBasedSignalFetchConfig = {
 
 M.TimeBasedSignalFetchConfig = {
     type = "structure",
+    id = "TimeBasedSignalFetchConfig",
     members = {
         executionFrequencyMs = {
             type = "long",
@@ -910,6 +954,7 @@ M.TimeBasedSignalFetchConfig = {
 
 M.SignalFetchConfig = {
     type = "union",
+    id = "SignalFetchConfig",
     members = {
         timeBased = M.TimeBasedSignalFetchConfig,
         conditionBased = M.ConditionBasedSignalFetchConfig,
@@ -918,6 +963,7 @@ M.SignalFetchConfig = {
 
 M.SignalFetchInformation = {
     type = "structure",
+    id = "SignalFetchInformation",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -948,6 +994,7 @@ M.SpoolingMode = {
 
 M.CreateCampaignInput = {
     type = "structure",
+    id = "CreateCampaignInput",
     members = {
         name = {
             type = "string",
@@ -1024,6 +1071,7 @@ M.CreateCampaignInput = {
 
 M.CreateCampaignOutput = {
     type = "structure",
+    id = "CreateCampaignOutput",
     members = {
         name = {
             type = "string",
@@ -1036,6 +1084,7 @@ M.CreateCampaignOutput = {
 
 M.DeleteCampaignInput = {
     type = "structure",
+    id = "DeleteCampaignInput",
     members = {
         name = {
             type = "string",
@@ -1049,6 +1098,7 @@ M.DeleteCampaignInput = {
 
 M.DeleteCampaignOutput = {
     type = "structure",
+    id = "DeleteCampaignOutput",
     members = {
         name = {
             type = "string",
@@ -1061,6 +1111,7 @@ M.DeleteCampaignOutput = {
 
 M.GetCampaignInput = {
     type = "structure",
+    id = "GetCampaignInput",
     members = {
         name = {
             type = "string",
@@ -1081,6 +1132,7 @@ M.CampaignStatus = {
 
 M.GetCampaignOutput = {
     type = "structure",
+    id = "GetCampaignOutput",
     members = {
         name = {
             type = "string",
@@ -1157,6 +1209,7 @@ M.ListResponseScope = {
 
 M.ListCampaignsInput = {
     type = "structure",
+    id = "ListCampaignsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1187,6 +1240,7 @@ M.ListCampaignsInput = {
 
 M.CampaignSummary = {
     type = "structure",
+    id = "CampaignSummary",
     members = {
         arn = {
             type = "string",
@@ -1223,6 +1277,7 @@ M.CampaignSummary = {
 
 M.ListCampaignsOutput = {
     type = "structure",
+    id = "ListCampaignsOutput",
     members = {
         campaignSummaries = {
             type = "list",
@@ -1243,6 +1298,7 @@ M.UpdateCampaignAction = {
 
 M.UpdateCampaignInput = {
     type = "structure",
+    id = "UpdateCampaignInput",
     members = {
         name = {
             type = "string",
@@ -1269,6 +1325,7 @@ M.UpdateCampaignInput = {
 
 M.UpdateCampaignOutput = {
     type = "structure",
+    id = "UpdateCampaignOutput",
     members = {
         arn = {
             type = "string",
@@ -1284,6 +1341,7 @@ M.UpdateCampaignOutput = {
 
 M.CanDbcDefinition = {
     type = "structure",
+    id = "CanDbcDefinition",
     members = {
         networkInterface = {
             type = "string",
@@ -1308,6 +1366,7 @@ M.CanDbcDefinition = {
 
 M.CanInterface = {
     type = "structure",
+    id = "CanInterface",
     members = {
         name = {
             type = "string",
@@ -1331,6 +1390,7 @@ M.SignalValueType = {
 
 M.CanSignal = {
     type = "structure",
+    id = "CanSignal",
     members = {
         messageId = {
             type = "integer",
@@ -1395,6 +1455,7 @@ M.LogType = {
 
 M.CloudWatchLogDeliveryOptions = {
     type = "structure",
+    id = "CloudWatchLogDeliveryOptions",
     members = {
         logType = {
             type = "string",
@@ -1414,6 +1475,7 @@ M.DefaultForUnmappedSignalsType = {
 
 M.CustomDecodingInterface = {
     type = "structure",
+    id = "CustomDecodingInterface",
     members = {
         name = {
             type = "string",
@@ -1426,6 +1488,7 @@ M.CustomDecodingInterface = {
 
 M.ObdInterface = {
     type = "structure",
+    id = "ObdInterface",
     members = {
         name = {
             type = "string",
@@ -1483,6 +1546,7 @@ M.VehicleMiddlewareProtocol = {
 
 M.VehicleMiddleware = {
     type = "structure",
+    id = "VehicleMiddleware",
     members = {
         name = {
             type = "string",
@@ -1501,6 +1565,7 @@ M.VehicleMiddleware = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         interfaceId = {
             type = "string",
@@ -1523,6 +1588,7 @@ M.NetworkInterface = {
 
 M.CustomDecodingSignal = {
     type = "structure",
+    id = "CustomDecodingSignal",
     members = {
         id = {
             type = "string",
@@ -1553,6 +1619,7 @@ M.ROS2PrimitiveType = {
 
 M.ROS2PrimitiveMessageDefinition = {
     type = "structure",
+    id = "ROS2PrimitiveMessageDefinition",
     members = {
         primitiveType = {
             type = "string",
@@ -1574,6 +1641,7 @@ M.ROS2PrimitiveMessageDefinition = {
 
 M.PrimitiveMessageDefinition = {
     type = "union",
+    id = "PrimitiveMessageDefinition",
     members = {
         ros2PrimitiveMessageDefinition = M.ROS2PrimitiveMessageDefinition,
     },
@@ -1587,6 +1655,7 @@ M.StructuredMessageListType = {
 
 M.ObdSignal = {
     type = "structure",
+    id = "ObdSignal",
     members = {
         pidResponseLength = {
             type = "integer",
@@ -1663,6 +1732,7 @@ M.SignalDecoderType = {
 
 M.CreateDecoderManifestOutput = {
     type = "structure",
+    id = "CreateDecoderManifestOutput",
     members = {
         name = {
             type = "string",
@@ -1692,6 +1762,7 @@ M.NetworkInterfaceFailureReason = {
 
 M.InvalidNetworkInterface = {
     type = "structure",
+    id = "InvalidNetworkInterface",
     members = {
         interfaceId = {
             type = "string",
@@ -1723,6 +1794,7 @@ M.SignalDecoderFailureReason = {
 
 M.InvalidSignalDecoder = {
     type = "structure",
+    id = "InvalidSignalDecoder",
     members = {
         name = {
             type = "string",
@@ -1738,6 +1810,7 @@ M.InvalidSignalDecoder = {
 
 M.DecoderManifestValidationException = {
     type = "structure",
+    id = "DecoderManifestValidationException",
     error = "client",
     members = {
         invalidSignals = {
@@ -1756,6 +1829,7 @@ M.DecoderManifestValidationException = {
 
 M.CreateFleetInput = {
     type = "structure",
+    id = "CreateFleetInput",
     members = {
         fleetId = {
             type = "string",
@@ -1782,6 +1856,7 @@ M.CreateFleetInput = {
 
 M.CreateFleetOutput = {
     type = "structure",
+    id = "CreateFleetOutput",
     members = {
         id = {
             type = "string",
@@ -1800,6 +1875,7 @@ M.CreateFleetOutput = {
 
 M.CreateModelManifestInput = {
     type = "structure",
+    id = "CreateModelManifestInput",
     members = {
         name = {
             type = "string",
@@ -1833,6 +1909,7 @@ M.CreateModelManifestInput = {
 
 M.CreateModelManifestOutput = {
     type = "structure",
+    id = "CreateModelManifestOutput",
     members = {
         name = {
             type = "string",
@@ -1851,6 +1928,7 @@ M.CreateModelManifestOutput = {
 
 M.InvalidSignal = {
     type = "structure",
+    id = "InvalidSignal",
     members = {
         name = {
             type = "string",
@@ -1863,6 +1941,7 @@ M.InvalidSignal = {
 
 M.InvalidSignalsException = {
     type = "structure",
+    id = "InvalidSignalsException",
     error = "client",
     members = {
         message = {
@@ -1882,6 +1961,7 @@ M.NodeDataEncoding = {
 
 M.CustomProperty = {
     type = "structure",
+    id = "CustomProperty",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -1915,6 +1995,7 @@ M.CustomProperty = {
 
 M.Sensor = {
     type = "structure",
+    id = "Sensor",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -1958,6 +2039,7 @@ M.Sensor = {
 
 M.CustomStruct = {
     type = "structure",
+    id = "CustomStruct",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -1979,6 +2061,7 @@ M.CustomStruct = {
 
 M.Node = {
     type = "union",
+    id = "Node",
     members = {
         branch = M.Branch,
         sensor = M.Sensor,
@@ -1991,6 +2074,7 @@ M.Node = {
 
 M.CreateSignalCatalogInput = {
     type = "structure",
+    id = "CreateSignalCatalogInput",
     members = {
         name = {
             type = "string",
@@ -2015,6 +2099,7 @@ M.CreateSignalCatalogInput = {
 
 M.CreateSignalCatalogOutput = {
     type = "structure",
+    id = "CreateSignalCatalogOutput",
     members = {
         name = {
             type = "string",
@@ -2033,6 +2118,7 @@ M.CreateSignalCatalogOutput = {
 
 M.InvalidNodeException = {
     type = "structure",
+    id = "InvalidNodeException",
     error = "client",
     members = {
         invalidNodes = {
@@ -2050,6 +2136,7 @@ M.InvalidNodeException = {
 
 M.CreateStateTemplateInput = {
     type = "structure",
+    id = "CreateStateTemplateInput",
     members = {
         name = {
             type = "string",
@@ -2091,6 +2178,7 @@ M.CreateStateTemplateInput = {
 
 M.CreateStateTemplateOutput = {
     type = "structure",
+    id = "CreateStateTemplateOutput",
     members = {
         name = {
             type = "string",
@@ -2106,6 +2194,7 @@ M.CreateStateTemplateOutput = {
 
 M.CreateVehicleInput = {
     type = "structure",
+    id = "CreateVehicleInput",
     members = {
         vehicleName = {
             type = "string",
@@ -2147,6 +2236,7 @@ M.CreateVehicleInput = {
 
 M.CreateVehicleOutput = {
     type = "structure",
+    id = "CreateVehicleOutput",
     members = {
         vehicleName = {
             type = "string",
@@ -2162,6 +2252,7 @@ M.CreateVehicleOutput = {
 
 M.DeleteDecoderManifestInput = {
     type = "structure",
+    id = "DeleteDecoderManifestInput",
     members = {
         name = {
             type = "string",
@@ -2175,6 +2266,7 @@ M.DeleteDecoderManifestInput = {
 
 M.DeleteDecoderManifestOutput = {
     type = "structure",
+    id = "DeleteDecoderManifestOutput",
     members = {
         name = {
             type = "string",
@@ -2193,6 +2285,7 @@ M.DeleteDecoderManifestOutput = {
 
 M.GetDecoderManifestInput = {
     type = "structure",
+    id = "GetDecoderManifestInput",
     members = {
         name = {
             type = "string",
@@ -2213,6 +2306,7 @@ M.ManifestStatus = {
 
 M.GetDecoderManifestOutput = {
     type = "structure",
+    id = "GetDecoderManifestOutput",
     members = {
         name = {
             type = "string",
@@ -2255,6 +2349,7 @@ M.GetDecoderManifestOutput = {
 
 M.NetworkFileDefinition = {
     type = "union",
+    id = "NetworkFileDefinition",
     members = {
         canDbc = M.CanDbcDefinition,
     },
@@ -2262,6 +2357,7 @@ M.NetworkFileDefinition = {
 
 M.ImportDecoderManifestInput = {
     type = "structure",
+    id = "ImportDecoderManifestInput",
     members = {
         name = {
             type = "string",
@@ -2282,6 +2378,7 @@ M.ImportDecoderManifestInput = {
 
 M.ImportDecoderManifestOutput = {
     type = "structure",
+    id = "ImportDecoderManifestOutput",
     members = {
         name = {
             type = "string",
@@ -2300,6 +2397,7 @@ M.ImportDecoderManifestOutput = {
 
 M.ListDecoderManifestNetworkInterfacesInput = {
     type = "structure",
+    id = "ListDecoderManifestNetworkInterfacesInput",
     members = {
         name = {
             type = "string",
@@ -2325,6 +2423,7 @@ M.ListDecoderManifestNetworkInterfacesInput = {
 
 M.ListDecoderManifestNetworkInterfacesOutput = {
     type = "structure",
+    id = "ListDecoderManifestNetworkInterfacesOutput",
     members = {
         networkInterfaces = {
             type = "list",
@@ -2338,6 +2437,7 @@ M.ListDecoderManifestNetworkInterfacesOutput = {
 
 M.ListDecoderManifestsInput = {
     type = "structure",
+    id = "ListDecoderManifestsInput",
     members = {
         modelManifestArn = {
             type = "string",
@@ -2368,6 +2468,7 @@ M.ListDecoderManifestsInput = {
 
 M.DecoderManifestSummary = {
     type = "structure",
+    id = "DecoderManifestSummary",
     members = {
         name = {
             type = "string",
@@ -2404,6 +2505,7 @@ M.DecoderManifestSummary = {
 
 M.ListDecoderManifestsOutput = {
     type = "structure",
+    id = "ListDecoderManifestsOutput",
     members = {
         summaries = {
             type = "list",
@@ -2417,6 +2519,7 @@ M.ListDecoderManifestsOutput = {
 
 M.ListDecoderManifestSignalsInput = {
     type = "structure",
+    id = "ListDecoderManifestSignalsInput",
     members = {
         name = {
             type = "string",
@@ -2442,6 +2545,7 @@ M.ListDecoderManifestSignalsInput = {
 
 M.UpdateDecoderManifestOutput = {
     type = "structure",
+    id = "UpdateDecoderManifestOutput",
     members = {
         name = {
             type = "string",
@@ -2460,6 +2564,7 @@ M.UpdateDecoderManifestOutput = {
 
 M.DeleteFleetInput = {
     type = "structure",
+    id = "DeleteFleetInput",
     members = {
         fleetId = {
             type = "string",
@@ -2473,6 +2578,7 @@ M.DeleteFleetInput = {
 
 M.DeleteFleetOutput = {
     type = "structure",
+    id = "DeleteFleetOutput",
     members = {
         id = {
             type = "string",
@@ -2485,6 +2591,7 @@ M.DeleteFleetOutput = {
 
 M.DeleteModelManifestInput = {
     type = "structure",
+    id = "DeleteModelManifestInput",
     members = {
         name = {
             type = "string",
@@ -2498,6 +2605,7 @@ M.DeleteModelManifestInput = {
 
 M.DeleteModelManifestOutput = {
     type = "structure",
+    id = "DeleteModelManifestOutput",
     members = {
         name = {
             type = "string",
@@ -2516,6 +2624,7 @@ M.DeleteModelManifestOutput = {
 
 M.DeleteSignalCatalogInput = {
     type = "structure",
+    id = "DeleteSignalCatalogInput",
     members = {
         name = {
             type = "string",
@@ -2529,6 +2638,7 @@ M.DeleteSignalCatalogInput = {
 
 M.DeleteSignalCatalogOutput = {
     type = "structure",
+    id = "DeleteSignalCatalogOutput",
     members = {
         name = {
             type = "string",
@@ -2547,6 +2657,7 @@ M.DeleteSignalCatalogOutput = {
 
 M.DeleteStateTemplateInput = {
     type = "structure",
+    id = "DeleteStateTemplateInput",
     members = {
         identifier = {
             type = "string",
@@ -2560,6 +2671,7 @@ M.DeleteStateTemplateInput = {
 
 M.DeleteStateTemplateOutput = {
     type = "structure",
+    id = "DeleteStateTemplateOutput",
     members = {
         name = {
             type = "string",
@@ -2575,6 +2687,7 @@ M.DeleteStateTemplateOutput = {
 
 M.DeleteVehicleInput = {
     type = "structure",
+    id = "DeleteVehicleInput",
     members = {
         vehicleName = {
             type = "string",
@@ -2588,6 +2701,7 @@ M.DeleteVehicleInput = {
 
 M.DeleteVehicleOutput = {
     type = "structure",
+    id = "DeleteVehicleOutput",
     members = {
         vehicleName = {
             type = "string",
@@ -2606,6 +2720,7 @@ M.DeleteVehicleOutput = {
 
 M.DisassociateVehicleFleetInput = {
     type = "structure",
+    id = "DisassociateVehicleFleetInput",
     members = {
         vehicleName = {
             type = "string",
@@ -2625,6 +2740,7 @@ M.DisassociateVehicleFleetInput = {
 
 M.DisassociateVehicleFleetOutput = {
     type = "structure",
+    id = "DisassociateVehicleFleetOutput",
 }
 
 M.EncryptionStatus = {
@@ -2640,6 +2756,7 @@ M.EncryptionType = {
 
 M.ListFleetsForVehicleInput = {
     type = "structure",
+    id = "ListFleetsForVehicleInput",
     members = {
         vehicleName = {
             type = "string",
@@ -2665,6 +2782,7 @@ M.ListFleetsForVehicleInput = {
 
 M.ListFleetsForVehicleOutput = {
     type = "structure",
+    id = "ListFleetsForVehicleOutput",
     members = {
         fleets = {
             type = "list",
@@ -2678,6 +2796,7 @@ M.ListFleetsForVehicleOutput = {
 
 M.GetFleetInput = {
     type = "structure",
+    id = "GetFleetInput",
     members = {
         fleetId = {
             type = "string",
@@ -2691,6 +2810,7 @@ M.GetFleetInput = {
 
 M.GetFleetOutput = {
     type = "structure",
+    id = "GetFleetOutput",
     members = {
         id = {
             type = "string",
@@ -2730,6 +2850,7 @@ M.GetFleetOutput = {
 
 M.ListFleetsInput = {
     type = "structure",
+    id = "ListFleetsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2754,6 +2875,7 @@ M.ListFleetsInput = {
 
 M.FleetSummary = {
     type = "structure",
+    id = "FleetSummary",
     members = {
         id = {
             type = "string",
@@ -2790,6 +2912,7 @@ M.FleetSummary = {
 
 M.ListFleetsOutput = {
     type = "structure",
+    id = "ListFleetsOutput",
     members = {
         fleetSummaries = {
             type = "list",
@@ -2803,6 +2926,7 @@ M.ListFleetsOutput = {
 
 M.UpdateFleetInput = {
     type = "structure",
+    id = "UpdateFleetInput",
     members = {
         fleetId = {
             type = "string",
@@ -2819,6 +2943,7 @@ M.UpdateFleetInput = {
 
 M.UpdateFleetOutput = {
     type = "structure",
+    id = "UpdateFleetOutput",
     members = {
         id = {
             type = "string",
@@ -2831,6 +2956,7 @@ M.UpdateFleetOutput = {
 
 M.ListVehiclesInFleetInput = {
     type = "structure",
+    id = "ListVehiclesInFleetInput",
     members = {
         fleetId = {
             type = "string",
@@ -2856,6 +2982,7 @@ M.ListVehiclesInFleetInput = {
 
 M.ListVehiclesInFleetOutput = {
     type = "structure",
+    id = "ListVehiclesInFleetOutput",
     members = {
         vehicles = {
             type = "list",
@@ -2869,6 +2996,7 @@ M.ListVehiclesInFleetOutput = {
 
 M.FormattedVss = {
     type = "union",
+    id = "FormattedVss",
     members = {
         vssJson = {
             type = "string",
@@ -2878,10 +3006,12 @@ M.FormattedVss = {
 
 M.GetEncryptionConfigurationInput = {
     type = "structure",
+    id = "GetEncryptionConfigurationInput",
 }
 
 M.GetEncryptionConfigurationOutput = {
     type = "structure",
+    id = "GetEncryptionConfigurationOutput",
     members = {
         kmsKeyId = {
             type = "string",
@@ -2912,10 +3042,12 @@ M.GetEncryptionConfigurationOutput = {
 
 M.GetLoggingOptionsInput = {
     type = "structure",
+    id = "GetLoggingOptionsInput",
 }
 
 M.GetLoggingOptionsOutput = {
     type = "structure",
+    id = "GetLoggingOptionsOutput",
     members = {
         cloudWatchLogDelivery = setmetatable({ traits = {
             required = true,
@@ -2925,6 +3057,7 @@ M.GetLoggingOptionsOutput = {
 
 M.GetModelManifestInput = {
     type = "structure",
+    id = "GetModelManifestInput",
     members = {
         name = {
             type = "string",
@@ -2938,6 +3071,7 @@ M.GetModelManifestInput = {
 
 M.GetModelManifestOutput = {
     type = "structure",
+    id = "GetModelManifestOutput",
     members = {
         name = {
             type = "string",
@@ -2977,6 +3111,7 @@ M.GetModelManifestOutput = {
 
 M.GetRegisterAccountStatusInput = {
     type = "structure",
+    id = "GetRegisterAccountStatusInput",
 }
 
 M.RegistrationStatus = {
@@ -2987,6 +3122,7 @@ M.RegistrationStatus = {
 
 M.IamRegistrationResponse = {
     type = "structure",
+    id = "IamRegistrationResponse",
     members = {
         roleArn = {
             type = "string",
@@ -3008,6 +3144,7 @@ M.IamRegistrationResponse = {
 
 M.TimestreamRegistrationResponse = {
     type = "structure",
+    id = "TimestreamRegistrationResponse",
     members = {
         timestreamDatabaseName = {
             type = "string",
@@ -3041,6 +3178,7 @@ M.TimestreamRegistrationResponse = {
 
 M.GetRegisterAccountStatusOutput = {
     type = "structure",
+    id = "GetRegisterAccountStatusOutput",
     members = {
         customerAccountId = {
             type = "string",
@@ -3075,6 +3213,7 @@ M.GetRegisterAccountStatusOutput = {
 
 M.GetSignalCatalogInput = {
     type = "structure",
+    id = "GetSignalCatalogInput",
     members = {
         name = {
             type = "string",
@@ -3088,6 +3227,7 @@ M.GetSignalCatalogInput = {
 
 M.NodeCounts = {
     type = "structure",
+    id = "NodeCounts",
     members = {
         totalNodes = {
             type = "integer",
@@ -3136,6 +3276,7 @@ M.NodeCounts = {
 
 M.GetSignalCatalogOutput = {
     type = "structure",
+    id = "GetSignalCatalogOutput",
     members = {
         name = {
             type = "string",
@@ -3170,6 +3311,7 @@ M.GetSignalCatalogOutput = {
 
 M.GetStateTemplateInput = {
     type = "structure",
+    id = "GetStateTemplateInput",
     members = {
         identifier = {
             type = "string",
@@ -3183,6 +3325,7 @@ M.GetStateTemplateInput = {
 
 M.GetStateTemplateOutput = {
     type = "structure",
+    id = "GetStateTemplateOutput",
     members = {
         name = {
             type = "string",
@@ -3222,6 +3365,7 @@ M.GetStateTemplateOutput = {
 
 M.GetVehicleInput = {
     type = "structure",
+    id = "GetVehicleInput",
     members = {
         vehicleName = {
             type = "string",
@@ -3235,6 +3379,7 @@ M.GetVehicleInput = {
 
 M.GetVehicleOutput = {
     type = "structure",
+    id = "GetVehicleOutput",
     members = {
         vehicleName = {
             type = "string",
@@ -3268,6 +3413,7 @@ M.GetVehicleOutput = {
 
 M.GetVehicleStatusInput = {
     type = "structure",
+    id = "GetVehicleStatusInput",
     members = {
         nextToken = {
             type = "string",
@@ -3302,6 +3448,7 @@ M.VehicleState = {
 
 M.VehicleStatus = {
     type = "structure",
+    id = "VehicleStatus",
     members = {
         campaignName = {
             type = "string",
@@ -3317,6 +3464,7 @@ M.VehicleStatus = {
 
 M.GetVehicleStatusOutput = {
     type = "structure",
+    id = "GetVehicleStatusOutput",
     members = {
         campaigns = {
             type = "list",
@@ -3330,6 +3478,7 @@ M.GetVehicleStatusOutput = {
 
 M.IamResources = {
     type = "structure",
+    id = "IamResources",
     members = {
         roleArn = {
             type = "string",
@@ -3342,6 +3491,7 @@ M.IamResources = {
 
 M.ImportSignalCatalogInput = {
     type = "structure",
+    id = "ImportSignalCatalogInput",
     members = {
         name = {
             type = "string",
@@ -3363,6 +3513,7 @@ M.ImportSignalCatalogInput = {
 
 M.ImportSignalCatalogOutput = {
     type = "structure",
+    id = "ImportSignalCatalogOutput",
     members = {
         name = {
             type = "string",
@@ -3381,6 +3532,7 @@ M.ImportSignalCatalogOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3394,6 +3546,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3404,6 +3557,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListModelManifestNodesInput = {
     type = "structure",
+    id = "ListModelManifestNodesInput",
     members = {
         name = {
             type = "string",
@@ -3429,6 +3583,7 @@ M.ListModelManifestNodesInput = {
 
 M.ListModelManifestNodesOutput = {
     type = "structure",
+    id = "ListModelManifestNodesOutput",
     members = {
         nodes = {
             type = "list",
@@ -3442,6 +3597,7 @@ M.ListModelManifestNodesOutput = {
 
 M.ListModelManifestsInput = {
     type = "structure",
+    id = "ListModelManifestsInput",
     members = {
         signalCatalogArn = {
             type = "string",
@@ -3472,6 +3628,7 @@ M.ListModelManifestsInput = {
 
 M.ModelManifestSummary = {
     type = "structure",
+    id = "ModelManifestSummary",
     members = {
         name = {
             type = "string",
@@ -3505,6 +3662,7 @@ M.ModelManifestSummary = {
 
 M.ListModelManifestsOutput = {
     type = "structure",
+    id = "ListModelManifestsOutput",
     members = {
         summaries = {
             type = "list",
@@ -3518,6 +3676,7 @@ M.ListModelManifestsOutput = {
 
 M.UpdateModelManifestInput = {
     type = "structure",
+    id = "UpdateModelManifestInput",
     members = {
         name = {
             type = "string",
@@ -3545,6 +3704,7 @@ M.UpdateModelManifestInput = {
 
 M.UpdateModelManifestOutput = {
     type = "structure",
+    id = "UpdateModelManifestOutput",
     members = {
         name = {
             type = "string",
@@ -3563,6 +3723,7 @@ M.UpdateModelManifestOutput = {
 
 M.PutEncryptionConfigurationInput = {
     type = "structure",
+    id = "PutEncryptionConfigurationInput",
     members = {
         kmsKeyId = {
             type = "string",
@@ -3578,6 +3739,7 @@ M.PutEncryptionConfigurationInput = {
 
 M.PutEncryptionConfigurationOutput = {
     type = "structure",
+    id = "PutEncryptionConfigurationOutput",
     members = {
         kmsKeyId = {
             type = "string",
@@ -3599,6 +3761,7 @@ M.PutEncryptionConfigurationOutput = {
 
 M.PutLoggingOptionsInput = {
     type = "structure",
+    id = "PutLoggingOptionsInput",
     members = {
         cloudWatchLogDelivery = setmetatable({ traits = {
             required = true,
@@ -3608,10 +3771,12 @@ M.PutLoggingOptionsInput = {
 
 M.PutLoggingOptionsOutput = {
     type = "structure",
+    id = "PutLoggingOptionsOutput",
 }
 
 M.TimestreamResources = {
     type = "structure",
+    id = "TimestreamResources",
     members = {
         timestreamDatabaseName = {
             type = "string",
@@ -3630,6 +3795,7 @@ M.TimestreamResources = {
 
 M.RegisterAccountInput = {
     type = "structure",
+    id = "RegisterAccountInput",
     members = {
         timestreamResources = M.TimestreamResources,
         iamResources = M.IamResources,
@@ -3638,6 +3804,7 @@ M.RegisterAccountInput = {
 
 M.RegisterAccountOutput = {
     type = "structure",
+    id = "RegisterAccountOutput",
     members = {
         registerAccountStatus = {
             type = "string",
@@ -3675,6 +3842,7 @@ M.SignalNodeType = {
 
 M.ListSignalCatalogNodesInput = {
     type = "structure",
+    id = "ListSignalCatalogNodesInput",
     members = {
         name = {
             type = "string",
@@ -3706,6 +3874,7 @@ M.ListSignalCatalogNodesInput = {
 
 M.ListSignalCatalogNodesOutput = {
     type = "structure",
+    id = "ListSignalCatalogNodesOutput",
     members = {
         nodes = {
             type = "list",
@@ -3719,6 +3888,7 @@ M.ListSignalCatalogNodesOutput = {
 
 M.ListSignalCatalogsInput = {
     type = "structure",
+    id = "ListSignalCatalogsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3737,6 +3907,7 @@ M.ListSignalCatalogsInput = {
 
 M.SignalCatalogSummary = {
     type = "structure",
+    id = "SignalCatalogSummary",
     members = {
         name = {
             type = "string",
@@ -3755,6 +3926,7 @@ M.SignalCatalogSummary = {
 
 M.ListSignalCatalogsOutput = {
     type = "structure",
+    id = "ListSignalCatalogsOutput",
     members = {
         summaries = {
             type = "list",
@@ -3768,6 +3940,7 @@ M.ListSignalCatalogsOutput = {
 
 M.UpdateSignalCatalogInput = {
     type = "structure",
+    id = "UpdateSignalCatalogInput",
     members = {
         name = {
             type = "string",
@@ -3796,6 +3969,7 @@ M.UpdateSignalCatalogInput = {
 
 M.UpdateSignalCatalogOutput = {
     type = "structure",
+    id = "UpdateSignalCatalogOutput",
     members = {
         name = {
             type = "string",
@@ -3814,6 +3988,7 @@ M.UpdateSignalCatalogOutput = {
 
 M.ListStateTemplatesInput = {
     type = "structure",
+    id = "ListStateTemplatesInput",
     members = {
         nextToken = {
             type = "string",
@@ -3838,6 +4013,7 @@ M.ListStateTemplatesInput = {
 
 M.StateTemplateSummary = {
     type = "structure",
+    id = "StateTemplateSummary",
     members = {
         name = {
             type = "string",
@@ -3865,6 +4041,7 @@ M.StateTemplateSummary = {
 
 M.ListStateTemplatesOutput = {
     type = "structure",
+    id = "ListStateTemplatesOutput",
     members = {
         summaries = {
             type = "list",
@@ -3878,6 +4055,7 @@ M.ListStateTemplatesOutput = {
 
 M.UpdateStateTemplateInput = {
     type = "structure",
+    id = "UpdateStateTemplateInput",
     members = {
         identifier = {
             type = "string",
@@ -3910,6 +4088,7 @@ M.UpdateStateTemplateInput = {
 
 M.UpdateStateTemplateOutput = {
     type = "structure",
+    id = "UpdateStateTemplateOutput",
     members = {
         name = {
             type = "string",
@@ -3925,6 +4104,7 @@ M.UpdateStateTemplateOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3945,10 +4125,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3970,10 +4152,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ListVehiclesInput = {
     type = "structure",
+    id = "ListVehiclesInput",
     members = {
         modelManifestArn = {
             type = "string",
@@ -4018,6 +4202,7 @@ M.ListVehiclesInput = {
 
 M.VehicleSummary = {
     type = "structure",
+    id = "VehicleSummary",
     members = {
         vehicleName = {
             type = "string",
@@ -4065,6 +4250,7 @@ M.VehicleSummary = {
 
 M.ListVehiclesOutput = {
     type = "structure",
+    id = "ListVehiclesOutput",
     members = {
         vehicleSummaries = {
             type = "list",
@@ -4078,6 +4264,7 @@ M.ListVehiclesOutput = {
 
 M.UpdateVehicleInput = {
     type = "structure",
+    id = "UpdateVehicleInput",
     members = {
         vehicleName = {
             type = "string",
@@ -4117,6 +4304,7 @@ M.UpdateVehicleInput = {
 
 M.UpdateVehicleOutput = {
     type = "structure",
+    id = "UpdateVehicleOutput",
     members = {
         vehicleName = {
             type = "string",
@@ -4129,6 +4317,7 @@ M.UpdateVehicleOutput = {
 
 M.StructuredMessage = {
     type = "union",
+    id = "StructuredMessage",
     members = {
         primitiveMessageDefinition = M.PrimitiveMessageDefinition,
         structuredMessageListDefinition = M.StructuredMessageListDefinition,
@@ -4141,6 +4330,7 @@ M.StructuredMessage = {
 
 M.StructuredMessageFieldNameAndDataTypePair = {
     type = "structure",
+    id = "StructuredMessageFieldNameAndDataTypePair",
     members = {
         fieldName = {
             type = "string",
@@ -4156,6 +4346,7 @@ M.StructuredMessageFieldNameAndDataTypePair = {
 
 M.StructuredMessageListDefinition = {
     type = "structure",
+    id = "StructuredMessageListDefinition",
     members = {
         name = {
             type = "string",
@@ -4183,6 +4374,7 @@ M.StructuredMessageListDefinition = {
 
 M.MessageSignal = {
     type = "structure",
+    id = "MessageSignal",
     members = {
         topicName = {
             type = "string",
@@ -4198,6 +4390,7 @@ M.MessageSignal = {
 
 M.SignalDecoder = {
     type = "structure",
+    id = "SignalDecoder",
     members = {
         fullyQualifiedName = {
             type = "string",
@@ -4226,6 +4419,7 @@ M.SignalDecoder = {
 
 M.CreateDecoderManifestInput = {
     type = "structure",
+    id = "CreateDecoderManifestInput",
     members = {
         name = {
             type = "string",
@@ -4263,6 +4457,7 @@ M.CreateDecoderManifestInput = {
 
 M.ListDecoderManifestSignalsOutput = {
     type = "structure",
+    id = "ListDecoderManifestSignalsOutput",
     members = {
         signalDecoders = {
             type = "list",
@@ -4276,6 +4471,7 @@ M.ListDecoderManifestSignalsOutput = {
 
 M.UpdateDecoderManifestInput = {
     type = "structure",
+    id = "UpdateDecoderManifestInput",
     members = {
         name = {
             type = "string",

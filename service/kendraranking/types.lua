@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.ConflictException = {
 
 M.CapacityUnitsConfiguration = {
     type = "structure",
+    id = "CapacityUnitsConfiguration",
     members = {
         RescoreCapacityUnits = {
             type = "integer",
@@ -34,6 +37,7 @@ M.CapacityUnitsConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -52,6 +56,7 @@ M.Tag = {
 
 M.CreateRescoreExecutionPlanInput = {
     type = "structure",
+    id = "CreateRescoreExecutionPlanInput",
     members = {
         Name = {
             type = "string",
@@ -78,6 +83,7 @@ M.CreateRescoreExecutionPlanInput = {
 
 M.CreateRescoreExecutionPlanOutput = {
     type = "structure",
+    id = "CreateRescoreExecutionPlanOutput",
     members = {
         Id = {
             type = "string",
@@ -96,6 +102,7 @@ M.CreateRescoreExecutionPlanOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -106,6 +113,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +124,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -126,6 +135,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -136,6 +146,7 @@ M.ValidationException = {
 
 M.DeleteRescoreExecutionPlanInput = {
     type = "structure",
+    id = "DeleteRescoreExecutionPlanInput",
     members = {
         Id = {
             type = "string",
@@ -149,10 +160,12 @@ M.DeleteRescoreExecutionPlanInput = {
 
 M.DeleteRescoreExecutionPlanOutput = {
     type = "structure",
+    id = "DeleteRescoreExecutionPlanOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -163,6 +176,7 @@ M.ResourceNotFoundException = {
 
 M.DescribeRescoreExecutionPlanInput = {
     type = "structure",
+    id = "DescribeRescoreExecutionPlanInput",
     members = {
         Id = {
             type = "string",
@@ -184,6 +198,7 @@ M.RescoreExecutionPlanStatus = {
 
 M.DescribeRescoreExecutionPlanOutput = {
     type = "structure",
+    id = "DescribeRescoreExecutionPlanOutput",
     members = {
         Id = {
             type = "string",
@@ -215,6 +230,7 @@ M.DescribeRescoreExecutionPlanOutput = {
 
 M.ListRescoreExecutionPlansInput = {
     type = "structure",
+    id = "ListRescoreExecutionPlansInput",
     members = {
         NextToken = {
             type = "string",
@@ -233,6 +249,7 @@ M.ListRescoreExecutionPlansInput = {
 
 M.RescoreExecutionPlanSummary = {
     type = "structure",
+    id = "RescoreExecutionPlanSummary",
     members = {
         Name = {
             type = "string",
@@ -254,6 +271,7 @@ M.RescoreExecutionPlanSummary = {
 
 M.ListRescoreExecutionPlansOutput = {
     type = "structure",
+    id = "ListRescoreExecutionPlansOutput",
     members = {
         SummaryItems = {
             type = "list",
@@ -267,6 +285,7 @@ M.ListRescoreExecutionPlansOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -279,6 +298,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -289,6 +309,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -299,6 +320,7 @@ M.ResourceUnavailableException = {
 
 M.Document = {
     type = "structure",
+    id = "Document",
     members = {
         Id = {
             type = "string",
@@ -334,6 +356,7 @@ M.Document = {
 
 M.RescoreInput = {
     type = "structure",
+    id = "RescoreInput",
     members = {
         RescoreExecutionPlanId = {
             type = "string",
@@ -360,6 +383,7 @@ M.RescoreInput = {
 
 M.RescoreResultItem = {
     type = "structure",
+    id = "RescoreResultItem",
     members = {
         DocumentId = {
             type = "string",
@@ -372,6 +396,7 @@ M.RescoreResultItem = {
 
 M.RescoreOutput = {
     type = "structure",
+    id = "RescoreOutput",
     members = {
         RescoreId = {
             type = "string",
@@ -385,6 +410,7 @@ M.RescoreOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -404,10 +430,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -427,10 +455,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateRescoreExecutionPlanInput = {
     type = "structure",
+    id = "UpdateRescoreExecutionPlanInput",
     members = {
         Id = {
             type = "string",
@@ -451,6 +481,7 @@ M.UpdateRescoreExecutionPlanInput = {
 
 M.UpdateRescoreExecutionPlanOutput = {
     type = "structure",
+    id = "UpdateRescoreExecutionPlanOutput",
 }
 
 return M

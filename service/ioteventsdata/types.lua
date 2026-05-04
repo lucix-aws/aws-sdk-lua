@@ -2,6 +2,7 @@ local M = {}
 
 M.AcknowledgeActionConfiguration = {
     type = "structure",
+    id = "AcknowledgeActionConfiguration",
     members = {
         note = {
             type = "string",
@@ -11,6 +12,7 @@ M.AcknowledgeActionConfiguration = {
 
 M.AcknowledgeAlarmActionRequest = {
     type = "structure",
+    id = "AcknowledgeAlarmActionRequest",
     members = {
         requestId = {
             type = "string",
@@ -43,6 +45,7 @@ M.CustomerActionName = {
 
 M.DisableActionConfiguration = {
     type = "structure",
+    id = "DisableActionConfiguration",
     members = {
         note = {
             type = "string",
@@ -52,6 +55,7 @@ M.DisableActionConfiguration = {
 
 M.EnableActionConfiguration = {
     type = "structure",
+    id = "EnableActionConfiguration",
     members = {
         note = {
             type = "string",
@@ -61,6 +65,7 @@ M.EnableActionConfiguration = {
 
 M.ResetActionConfiguration = {
     type = "structure",
+    id = "ResetActionConfiguration",
     members = {
         note = {
             type = "string",
@@ -70,6 +75,7 @@ M.ResetActionConfiguration = {
 
 M.SnoozeActionConfiguration = {
     type = "structure",
+    id = "SnoozeActionConfiguration",
     members = {
         snoozeDuration = {
             type = "integer",
@@ -82,6 +88,7 @@ M.SnoozeActionConfiguration = {
 
 M.CustomerAction = {
     type = "structure",
+    id = "CustomerAction",
     members = {
         actionName = {
             type = "string",
@@ -105,6 +112,7 @@ M.ComparisonOperator = {
 
 M.SimpleRuleEvaluation = {
     type = "structure",
+    id = "SimpleRuleEvaluation",
     members = {
         inputPropertyValue = {
             type = "string",
@@ -120,6 +128,7 @@ M.SimpleRuleEvaluation = {
 
 M.RuleEvaluation = {
     type = "structure",
+    id = "RuleEvaluation",
     members = {
         simpleRuleEvaluation = M.SimpleRuleEvaluation,
     },
@@ -144,6 +153,7 @@ M.TriggerType = {
 
 M.StateChangeConfiguration = {
     type = "structure",
+    id = "StateChangeConfiguration",
     members = {
         triggerType = {
             type = "string",
@@ -153,6 +163,7 @@ M.StateChangeConfiguration = {
 
 M.SystemEvent = {
     type = "structure",
+    id = "SystemEvent",
     members = {
         eventType = {
             type = "string",
@@ -163,6 +174,7 @@ M.SystemEvent = {
 
 M.AlarmState = {
     type = "structure",
+    id = "AlarmState",
     members = {
         stateName = {
             type = "string",
@@ -175,6 +187,7 @@ M.AlarmState = {
 
 M.Alarm = {
     type = "structure",
+    id = "Alarm",
     members = {
         alarmModelName = {
             type = "string",
@@ -200,6 +213,7 @@ M.Alarm = {
 
 M.AlarmSummary = {
     type = "structure",
+    id = "AlarmSummary",
     members = {
         alarmModelName = {
             type = "string",
@@ -224,6 +238,7 @@ M.AlarmSummary = {
 
 M.BatchAcknowledgeAlarmInput = {
     type = "structure",
+    id = "BatchAcknowledgeAlarmInput",
     members = {
         acknowledgeActionRequests = {
             type = "list",
@@ -245,6 +260,7 @@ M.ErrorCode = {
 
 M.BatchAlarmActionErrorEntry = {
     type = "structure",
+    id = "BatchAlarmActionErrorEntry",
     members = {
         requestId = {
             type = "string",
@@ -260,6 +276,7 @@ M.BatchAlarmActionErrorEntry = {
 
 M.BatchAcknowledgeAlarmOutput = {
     type = "structure",
+    id = "BatchAcknowledgeAlarmOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -270,6 +287,7 @@ M.BatchAcknowledgeAlarmOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -280,6 +298,7 @@ M.InternalFailureException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -290,6 +309,7 @@ M.InvalidRequestException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -300,6 +320,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -310,6 +331,7 @@ M.ThrottlingException = {
 
 M.DeleteDetectorRequest = {
     type = "structure",
+    id = "DeleteDetectorRequest",
     members = {
         messageId = {
             type = "string",
@@ -331,6 +353,7 @@ M.DeleteDetectorRequest = {
 
 M.BatchDeleteDetectorInput = {
     type = "structure",
+    id = "BatchDeleteDetectorInput",
     members = {
         detectors = {
             type = "list",
@@ -344,6 +367,7 @@ M.BatchDeleteDetectorInput = {
 
 M.BatchDeleteDetectorErrorEntry = {
     type = "structure",
+    id = "BatchDeleteDetectorErrorEntry",
     members = {
         messageId = {
             type = "string",
@@ -359,6 +383,7 @@ M.BatchDeleteDetectorErrorEntry = {
 
 M.BatchDeleteDetectorOutput = {
     type = "structure",
+    id = "BatchDeleteDetectorOutput",
     members = {
         batchDeleteDetectorErrorEntries = {
             type = "list",
@@ -369,6 +394,7 @@ M.BatchDeleteDetectorOutput = {
 
 M.DisableAlarmActionRequest = {
     type = "structure",
+    id = "DisableAlarmActionRequest",
     members = {
         requestId = {
             type = "string",
@@ -393,6 +419,7 @@ M.DisableAlarmActionRequest = {
 
 M.BatchDisableAlarmInput = {
     type = "structure",
+    id = "BatchDisableAlarmInput",
     members = {
         disableActionRequests = {
             type = "list",
@@ -406,6 +433,7 @@ M.BatchDisableAlarmInput = {
 
 M.BatchDisableAlarmOutput = {
     type = "structure",
+    id = "BatchDisableAlarmOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -416,6 +444,7 @@ M.BatchDisableAlarmOutput = {
 
 M.EnableAlarmActionRequest = {
     type = "structure",
+    id = "EnableAlarmActionRequest",
     members = {
         requestId = {
             type = "string",
@@ -440,6 +469,7 @@ M.EnableAlarmActionRequest = {
 
 M.BatchEnableAlarmInput = {
     type = "structure",
+    id = "BatchEnableAlarmInput",
     members = {
         enableActionRequests = {
             type = "list",
@@ -453,6 +483,7 @@ M.BatchEnableAlarmInput = {
 
 M.BatchEnableAlarmOutput = {
     type = "structure",
+    id = "BatchEnableAlarmOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -463,6 +494,7 @@ M.BatchEnableAlarmOutput = {
 
 M.TimestampValue = {
     type = "structure",
+    id = "TimestampValue",
     members = {
         timeInMillis = {
             type = "long",
@@ -472,6 +504,7 @@ M.TimestampValue = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         messageId = {
             type = "string",
@@ -497,6 +530,7 @@ M.Message = {
 
 M.BatchPutMessageInput = {
     type = "structure",
+    id = "BatchPutMessageInput",
     members = {
         messages = {
             type = "list",
@@ -510,6 +544,7 @@ M.BatchPutMessageInput = {
 
 M.BatchPutMessageErrorEntry = {
     type = "structure",
+    id = "BatchPutMessageErrorEntry",
     members = {
         messageId = {
             type = "string",
@@ -525,6 +560,7 @@ M.BatchPutMessageErrorEntry = {
 
 M.BatchPutMessageOutput = {
     type = "structure",
+    id = "BatchPutMessageOutput",
     members = {
         BatchPutMessageErrorEntries = {
             type = "list",
@@ -535,6 +571,7 @@ M.BatchPutMessageOutput = {
 
 M.ResetAlarmActionRequest = {
     type = "structure",
+    id = "ResetAlarmActionRequest",
     members = {
         requestId = {
             type = "string",
@@ -559,6 +596,7 @@ M.ResetAlarmActionRequest = {
 
 M.BatchResetAlarmInput = {
     type = "structure",
+    id = "BatchResetAlarmInput",
     members = {
         resetActionRequests = {
             type = "list",
@@ -572,6 +610,7 @@ M.BatchResetAlarmInput = {
 
 M.BatchResetAlarmOutput = {
     type = "structure",
+    id = "BatchResetAlarmOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -582,6 +621,7 @@ M.BatchResetAlarmOutput = {
 
 M.SnoozeAlarmActionRequest = {
     type = "structure",
+    id = "SnoozeAlarmActionRequest",
     members = {
         requestId = {
             type = "string",
@@ -612,6 +652,7 @@ M.SnoozeAlarmActionRequest = {
 
 M.BatchSnoozeAlarmInput = {
     type = "structure",
+    id = "BatchSnoozeAlarmInput",
     members = {
         snoozeActionRequests = {
             type = "list",
@@ -625,6 +666,7 @@ M.BatchSnoozeAlarmInput = {
 
 M.BatchSnoozeAlarmOutput = {
     type = "structure",
+    id = "BatchSnoozeAlarmOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -635,6 +677,7 @@ M.BatchSnoozeAlarmOutput = {
 
 M.TimerDefinition = {
     type = "structure",
+    id = "TimerDefinition",
     members = {
         name = {
             type = "string",
@@ -653,6 +696,7 @@ M.TimerDefinition = {
 
 M.VariableDefinition = {
     type = "structure",
+    id = "VariableDefinition",
     members = {
         name = {
             type = "string",
@@ -671,6 +715,7 @@ M.VariableDefinition = {
 
 M.DetectorStateDefinition = {
     type = "structure",
+    id = "DetectorStateDefinition",
     members = {
         stateName = {
             type = "string",
@@ -697,6 +742,7 @@ M.DetectorStateDefinition = {
 
 M.UpdateDetectorRequest = {
     type = "structure",
+    id = "UpdateDetectorRequest",
     members = {
         messageId = {
             type = "string",
@@ -721,6 +767,7 @@ M.UpdateDetectorRequest = {
 
 M.BatchUpdateDetectorInput = {
     type = "structure",
+    id = "BatchUpdateDetectorInput",
     members = {
         detectors = {
             type = "list",
@@ -734,6 +781,7 @@ M.BatchUpdateDetectorInput = {
 
 M.BatchUpdateDetectorErrorEntry = {
     type = "structure",
+    id = "BatchUpdateDetectorErrorEntry",
     members = {
         messageId = {
             type = "string",
@@ -749,6 +797,7 @@ M.BatchUpdateDetectorErrorEntry = {
 
 M.BatchUpdateDetectorOutput = {
     type = "structure",
+    id = "BatchUpdateDetectorOutput",
     members = {
         batchUpdateDetectorErrorEntries = {
             type = "list",
@@ -759,6 +808,7 @@ M.BatchUpdateDetectorOutput = {
 
 M.DescribeAlarmInput = {
     type = "structure",
+    id = "DescribeAlarmInput",
     members = {
         alarmModelName = {
             type = "string",
@@ -778,6 +828,7 @@ M.DescribeAlarmInput = {
 
 M.DescribeAlarmOutput = {
     type = "structure",
+    id = "DescribeAlarmOutput",
     members = {
         alarm = M.Alarm,
     },
@@ -785,6 +836,7 @@ M.DescribeAlarmOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -795,6 +847,7 @@ M.ResourceNotFoundException = {
 
 M.DescribeDetectorInput = {
     type = "structure",
+    id = "DescribeDetectorInput",
     members = {
         detectorModelName = {
             type = "string",
@@ -814,6 +867,7 @@ M.DescribeDetectorInput = {
 
 M.Timer = {
     type = "structure",
+    id = "Timer",
     members = {
         name = {
             type = "string",
@@ -832,6 +886,7 @@ M.Timer = {
 
 M.Variable = {
     type = "structure",
+    id = "Variable",
     members = {
         name = {
             type = "string",
@@ -850,6 +905,7 @@ M.Variable = {
 
 M.DetectorState = {
     type = "structure",
+    id = "DetectorState",
     members = {
         stateName = {
             type = "string",
@@ -876,6 +932,7 @@ M.DetectorState = {
 
 M.Detector = {
     type = "structure",
+    id = "Detector",
     members = {
         detectorModelName = {
             type = "string",
@@ -898,6 +955,7 @@ M.Detector = {
 
 M.DescribeDetectorOutput = {
     type = "structure",
+    id = "DescribeDetectorOutput",
     members = {
         detector = M.Detector,
     },
@@ -905,6 +963,7 @@ M.DescribeDetectorOutput = {
 
 M.DetectorStateSummary = {
     type = "structure",
+    id = "DetectorStateSummary",
     members = {
         stateName = {
             type = "string",
@@ -914,6 +973,7 @@ M.DetectorStateSummary = {
 
 M.DetectorSummary = {
     type = "structure",
+    id = "DetectorSummary",
     members = {
         detectorModelName = {
             type = "string",
@@ -936,6 +996,7 @@ M.DetectorSummary = {
 
 M.ListAlarmsInput = {
     type = "structure",
+    id = "ListAlarmsInput",
     members = {
         alarmModelName = {
             type = "string",
@@ -961,6 +1022,7 @@ M.ListAlarmsInput = {
 
 M.ListAlarmsOutput = {
     type = "structure",
+    id = "ListAlarmsOutput",
     members = {
         alarmSummaries = {
             type = "list",
@@ -974,6 +1036,7 @@ M.ListAlarmsOutput = {
 
 M.ListDetectorsInput = {
     type = "structure",
+    id = "ListDetectorsInput",
     members = {
         detectorModelName = {
             type = "string",
@@ -1005,6 +1068,7 @@ M.ListDetectorsInput = {
 
 M.ListDetectorsOutput = {
     type = "structure",
+    id = "ListDetectorsOutput",
     members = {
         detectorSummaries = {
             type = "list",

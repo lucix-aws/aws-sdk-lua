@@ -14,6 +14,7 @@ M.AccessBudgetType = {
 
 M.AccessBudgetDetails = {
     type = "structure",
+    id = "AccessBudgetDetails",
     members = {
         startTime = {
             type = "timestamp",
@@ -54,6 +55,7 @@ M.AccessBudgetDetails = {
 
 M.AccessBudget = {
     type = "structure",
+    id = "AccessBudget",
     members = {
         resourceArn = {
             type = "string",
@@ -79,6 +81,7 @@ M.AccessBudget = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -92,6 +95,7 @@ M.AccessDeniedException = {
 
 M.S3ConfigMap = {
     type = "structure",
+    id = "S3ConfigMap",
     members = {
         s3Uri = {
             type = "string",
@@ -104,6 +108,7 @@ M.S3ConfigMap = {
 
 M.AudienceDestination = {
     type = "structure",
+    id = "AudienceDestination",
     members = {
         s3Destination = setmetatable({ traits = {
             required = true,
@@ -113,6 +118,7 @@ M.AudienceDestination = {
 
 M.ListAudienceExportJobsInput = {
     type = "structure",
+    id = "ListAudienceExportJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -142,6 +148,7 @@ M.AudienceSizeType = {
 
 M.AudienceSize = {
     type = "structure",
+    id = "AudienceSize",
     members = {
         type = {
             type = "string",
@@ -167,6 +174,7 @@ M.AudienceExportJobStatus = {
 
 M.StatusDetails = {
     type = "structure",
+    id = "StatusDetails",
     members = {
         statusCode = {
             type = "string",
@@ -179,6 +187,7 @@ M.StatusDetails = {
 
 M.AudienceExportJobSummary = {
     type = "structure",
+    id = "AudienceExportJobSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -227,6 +236,7 @@ M.AudienceExportJobSummary = {
 
 M.ListAudienceExportJobsOutput = {
     type = "structure",
+    id = "ListAudienceExportJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -243,6 +253,7 @@ M.ListAudienceExportJobsOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -256,6 +267,7 @@ M.ValidationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -269,6 +281,7 @@ M.ConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -282,6 +295,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -301,6 +315,7 @@ M.ServiceQuotaExceededException = {
 
 M.StartAudienceExportJobInput = {
     type = "structure",
+    id = "StartAudienceExportJobInput",
     members = {
         name = {
             type = "string",
@@ -325,10 +340,12 @@ M.StartAudienceExportJobInput = {
 
 M.StartAudienceExportJobOutput = {
     type = "structure",
+    id = "StartAudienceExportJobOutput",
 }
 
 M.DeleteAudienceGenerationJobInput = {
     type = "structure",
+    id = "DeleteAudienceGenerationJobInput",
     members = {
         audienceGenerationJobArn = {
             type = "string",
@@ -342,10 +359,12 @@ M.DeleteAudienceGenerationJobInput = {
 
 M.DeleteAudienceGenerationJobOutput = {
     type = "structure",
+    id = "DeleteAudienceGenerationJobOutput",
 }
 
 M.GetAudienceGenerationJobInput = {
     type = "structure",
+    id = "GetAudienceGenerationJobInput",
     members = {
         audienceGenerationJobArn = {
             type = "string",
@@ -359,6 +378,7 @@ M.GetAudienceGenerationJobInput = {
 
 M.RelevanceMetric = {
     type = "structure",
+    id = "RelevanceMetric",
     members = {
         audienceSize = setmetatable({ traits = {
             required = true,
@@ -371,6 +391,7 @@ M.RelevanceMetric = {
 
 M.AudienceQualityMetrics = {
     type = "structure",
+    id = "AudienceQualityMetrics",
     members = {
         relevanceMetrics = {
             type = "list",
@@ -387,6 +408,7 @@ M.AudienceQualityMetrics = {
 
 M.WorkerComputeConfigurationProperties = {
     type = "union",
+    id = "WorkerComputeConfigurationProperties",
     members = {
         spark = {
             type = "map",
@@ -403,6 +425,7 @@ M.WorkerComputeType = {
 
 M.WorkerComputeConfiguration = {
     type = "structure",
+    id = "WorkerComputeConfiguration",
     members = {
         type = {
             type = "string",
@@ -422,6 +445,7 @@ M.WorkerComputeConfiguration = {
 
 M.ComputeConfiguration = {
     type = "union",
+    id = "ComputeConfiguration",
     members = {
         worker = M.WorkerComputeConfiguration,
     },
@@ -429,6 +453,7 @@ M.ComputeConfiguration = {
 
 M.ProtectedQuerySQLParameters = {
     type = "structure",
+    id = "ProtectedQuerySQLParameters",
     members = {
         queryString = {
             type = "string",
@@ -446,6 +471,7 @@ M.ProtectedQuerySQLParameters = {
 
 M.AudienceGenerationJobDataSource = {
     type = "structure",
+    id = "AudienceGenerationJobDataSource",
     members = {
         dataSource = M.S3ConfigMap,
         roleArn = {
@@ -471,6 +497,7 @@ M.AudienceGenerationJobStatus = {
 
 M.GetAudienceGenerationJobOutput = {
     type = "structure",
+    id = "GetAudienceGenerationJobOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -538,6 +565,7 @@ M.GetAudienceGenerationJobOutput = {
 
 M.ListAudienceGenerationJobsInput = {
     type = "structure",
+    id = "ListAudienceGenerationJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -568,6 +596,7 @@ M.ListAudienceGenerationJobsInput = {
 
 M.AudienceGenerationJobSummary = {
     type = "structure",
+    id = "AudienceGenerationJobSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -621,6 +650,7 @@ M.AudienceGenerationJobSummary = {
 
 M.ListAudienceGenerationJobsOutput = {
     type = "structure",
+    id = "ListAudienceGenerationJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -637,6 +667,7 @@ M.ListAudienceGenerationJobsOutput = {
 
 M.StartAudienceGenerationJobInput = {
     type = "structure",
+    id = "StartAudienceGenerationJobInput",
     members = {
         name = {
             type = "string",
@@ -675,6 +706,7 @@ M.StartAudienceGenerationJobInput = {
 
 M.StartAudienceGenerationJobOutput = {
     type = "structure",
+    id = "StartAudienceGenerationJobOutput",
     members = {
         audienceGenerationJobArn = {
             type = "string",
@@ -687,6 +719,7 @@ M.StartAudienceGenerationJobOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -700,6 +733,7 @@ M.ThrottlingException = {
 
 M.CreateAudienceModelInput = {
     type = "structure",
+    id = "CreateAudienceModelInput",
     members = {
         trainingDataStartTime = {
             type = "timestamp",
@@ -741,6 +775,7 @@ M.CreateAudienceModelInput = {
 
 M.CreateAudienceModelOutput = {
     type = "structure",
+    id = "CreateAudienceModelOutput",
     members = {
         audienceModelArn = {
             type = "string",
@@ -753,6 +788,7 @@ M.CreateAudienceModelOutput = {
 
 M.DeleteAudienceModelInput = {
     type = "structure",
+    id = "DeleteAudienceModelInput",
     members = {
         audienceModelArn = {
             type = "string",
@@ -766,10 +802,12 @@ M.DeleteAudienceModelInput = {
 
 M.DeleteAudienceModelOutput = {
     type = "structure",
+    id = "DeleteAudienceModelOutput",
 }
 
 M.GetAudienceModelInput = {
     type = "structure",
+    id = "GetAudienceModelInput",
     members = {
         audienceModelArn = {
             type = "string",
@@ -793,6 +831,7 @@ M.AudienceModelStatus = {
 
 M.GetAudienceModelOutput = {
     type = "structure",
+    id = "GetAudienceModelOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -861,6 +900,7 @@ M.GetAudienceModelOutput = {
 
 M.ListAudienceModelsInput = {
     type = "structure",
+    id = "ListAudienceModelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -879,6 +919,7 @@ M.ListAudienceModelsInput = {
 
 M.AudienceModelSummary = {
     type = "structure",
+    id = "AudienceModelSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -926,6 +967,7 @@ M.AudienceModelSummary = {
 
 M.ListAudienceModelsOutput = {
     type = "structure",
+    id = "ListAudienceModelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -942,6 +984,7 @@ M.ListAudienceModelsOutput = {
 
 M.AudienceSizeConfig = {
     type = "structure",
+    id = "AudienceSizeConfig",
     members = {
         audienceSizeType = {
             type = "string",
@@ -966,6 +1009,7 @@ M.TagOnCreatePolicy = {
 
 M.ConfiguredAudienceModelOutputConfig = {
     type = "structure",
+    id = "ConfiguredAudienceModelOutputConfig",
     members = {
         destination = setmetatable({ traits = {
             required = true,
@@ -986,6 +1030,7 @@ M.SharedAudienceMetrics = {
 
 M.CreateConfiguredAudienceModelInput = {
     type = "structure",
+    id = "CreateConfiguredAudienceModelInput",
     members = {
         name = {
             type = "string",
@@ -1032,6 +1077,7 @@ M.CreateConfiguredAudienceModelInput = {
 
 M.CreateConfiguredAudienceModelOutput = {
     type = "structure",
+    id = "CreateConfiguredAudienceModelOutput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1044,6 +1090,7 @@ M.CreateConfiguredAudienceModelOutput = {
 
 M.DeleteConfiguredAudienceModelInput = {
     type = "structure",
+    id = "DeleteConfiguredAudienceModelInput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1057,10 +1104,12 @@ M.DeleteConfiguredAudienceModelInput = {
 
 M.DeleteConfiguredAudienceModelOutput = {
     type = "structure",
+    id = "DeleteConfiguredAudienceModelOutput",
 }
 
 M.GetConfiguredAudienceModelInput = {
     type = "structure",
+    id = "GetConfiguredAudienceModelInput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1078,6 +1127,7 @@ M.ConfiguredAudienceModelStatus = {
 
 M.GetConfiguredAudienceModelOutput = {
     type = "structure",
+    id = "GetConfiguredAudienceModelOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -1147,6 +1197,7 @@ M.GetConfiguredAudienceModelOutput = {
 
 M.ListConfiguredAudienceModelsInput = {
     type = "structure",
+    id = "ListConfiguredAudienceModelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1165,6 +1216,7 @@ M.ListConfiguredAudienceModelsInput = {
 
 M.ConfiguredAudienceModelSummary = {
     type = "structure",
+    id = "ConfiguredAudienceModelSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -1215,6 +1267,7 @@ M.ConfiguredAudienceModelSummary = {
 
 M.ListConfiguredAudienceModelsOutput = {
     type = "structure",
+    id = "ListConfiguredAudienceModelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1231,6 +1284,7 @@ M.ListConfiguredAudienceModelsOutput = {
 
 M.UpdateConfiguredAudienceModelInput = {
     type = "structure",
+    id = "UpdateConfiguredAudienceModelInput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1259,6 +1313,7 @@ M.UpdateConfiguredAudienceModelInput = {
 
 M.UpdateConfiguredAudienceModelOutput = {
     type = "structure",
+    id = "UpdateConfiguredAudienceModelOutput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1271,6 +1326,7 @@ M.UpdateConfiguredAudienceModelOutput = {
 
 M.DeleteConfiguredAudienceModelPolicyInput = {
     type = "structure",
+    id = "DeleteConfiguredAudienceModelPolicyInput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1284,10 +1340,12 @@ M.DeleteConfiguredAudienceModelPolicyInput = {
 
 M.DeleteConfiguredAudienceModelPolicyOutput = {
     type = "structure",
+    id = "DeleteConfiguredAudienceModelPolicyOutput",
 }
 
 M.GetConfiguredAudienceModelPolicyInput = {
     type = "structure",
+    id = "GetConfiguredAudienceModelPolicyInput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1301,6 +1359,7 @@ M.GetConfiguredAudienceModelPolicyInput = {
 
 M.GetConfiguredAudienceModelPolicyOutput = {
     type = "structure",
+    id = "GetConfiguredAudienceModelPolicyOutput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1330,6 +1389,7 @@ M.PolicyExistenceCondition = {
 
 M.PutConfiguredAudienceModelPolicyInput = {
     type = "structure",
+    id = "PutConfiguredAudienceModelPolicyInput",
     members = {
         configuredAudienceModelArn = {
             type = "string",
@@ -1355,6 +1415,7 @@ M.PutConfiguredAudienceModelPolicyInput = {
 
 M.PutConfiguredAudienceModelPolicyOutput = {
     type = "structure",
+    id = "PutConfiguredAudienceModelPolicyOutput",
     members = {
         configuredAudienceModelPolicy = {
             type = "string",
@@ -1373,6 +1434,7 @@ M.PutConfiguredAudienceModelPolicyOutput = {
 
 M.InferenceContainerConfig = {
     type = "structure",
+    id = "InferenceContainerConfig",
     members = {
         imageUri = {
             type = "string",
@@ -1385,6 +1447,7 @@ M.InferenceContainerConfig = {
 
 M.MetricDefinition = {
     type = "structure",
+    id = "MetricDefinition",
     members = {
         name = {
             type = "string",
@@ -1403,6 +1466,7 @@ M.MetricDefinition = {
 
 M.ContainerConfig = {
     type = "structure",
+    id = "ContainerConfig",
     members = {
         imageUri = {
             type = "string",
@@ -1427,6 +1491,7 @@ M.ContainerConfig = {
 
 M.CreateConfiguredModelAlgorithmInput = {
     type = "structure",
+    id = "CreateConfiguredModelAlgorithmInput",
     members = {
         name = {
             type = "string",
@@ -1458,6 +1523,7 @@ M.CreateConfiguredModelAlgorithmInput = {
 
 M.CreateConfiguredModelAlgorithmOutput = {
     type = "structure",
+    id = "CreateConfiguredModelAlgorithmOutput",
     members = {
         configuredModelAlgorithmArn = {
             type = "string",
@@ -1470,6 +1536,7 @@ M.CreateConfiguredModelAlgorithmOutput = {
 
 M.DeleteConfiguredModelAlgorithmInput = {
     type = "structure",
+    id = "DeleteConfiguredModelAlgorithmInput",
     members = {
         configuredModelAlgorithmArn = {
             type = "string",
@@ -1483,10 +1550,12 @@ M.DeleteConfiguredModelAlgorithmInput = {
 
 M.DeleteConfiguredModelAlgorithmOutput = {
     type = "structure",
+    id = "DeleteConfiguredModelAlgorithmOutput",
 }
 
 M.GetConfiguredModelAlgorithmInput = {
     type = "structure",
+    id = "GetConfiguredModelAlgorithmInput",
     members = {
         configuredModelAlgorithmArn = {
             type = "string",
@@ -1500,6 +1569,7 @@ M.GetConfiguredModelAlgorithmInput = {
 
 M.GetConfiguredModelAlgorithmOutput = {
     type = "structure",
+    id = "GetConfiguredModelAlgorithmOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -1551,6 +1621,7 @@ M.GetConfiguredModelAlgorithmOutput = {
 
 M.ListConfiguredModelAlgorithmsInput = {
     type = "structure",
+    id = "ListConfiguredModelAlgorithmsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1569,6 +1640,7 @@ M.ListConfiguredModelAlgorithmsInput = {
 
 M.ConfiguredModelAlgorithmSummary = {
     type = "structure",
+    id = "ConfiguredModelAlgorithmSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -1604,6 +1676,7 @@ M.ConfiguredModelAlgorithmSummary = {
 
 M.ListConfiguredModelAlgorithmsOutput = {
     type = "structure",
+    id = "ListConfiguredModelAlgorithmsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1629,6 +1702,7 @@ M.TrainedModelExportsMaxSizeUnitType = {
 
 M.TrainedModelExportsMaxSize = {
     type = "structure",
+    id = "TrainedModelExportsMaxSize",
     members = {
         unit = {
             type = "string",
@@ -1647,6 +1721,7 @@ M.TrainedModelExportsMaxSize = {
 
 M.TrainedModelExportsConfigurationPolicy = {
     type = "structure",
+    id = "TrainedModelExportsConfigurationPolicy",
     members = {
         maxSize = setmetatable({ traits = {
             required = true,
@@ -1663,6 +1738,7 @@ M.TrainedModelExportsConfigurationPolicy = {
 
 M.CustomEntityConfig = {
     type = "structure",
+    id = "CustomEntityConfig",
     members = {
         customDataIdentifiers = {
             type = "list",
@@ -1682,6 +1758,7 @@ M.EntityType = {
 
 M.LogRedactionConfiguration = {
     type = "structure",
+    id = "LogRedactionConfiguration",
     members = {
         entitiesToRedact = {
             type = "list",
@@ -1701,6 +1778,7 @@ M.LogType = {
 
 M.LogsConfigurationPolicy = {
     type = "structure",
+    id = "LogsConfigurationPolicy",
     members = {
         allowedAccountIds = {
             type = "list",
@@ -1728,6 +1806,7 @@ M.TrainedModelInferenceMaxOutputSizeUnitType = {
 
 M.TrainedModelInferenceMaxOutputSize = {
     type = "structure",
+    id = "TrainedModelInferenceMaxOutputSize",
     members = {
         unit = {
             type = "string",
@@ -1746,6 +1825,7 @@ M.TrainedModelInferenceMaxOutputSize = {
 
 M.TrainedModelInferenceJobsConfigurationPolicy = {
     type = "structure",
+    id = "TrainedModelInferenceJobsConfigurationPolicy",
     members = {
         containerLogs = {
             type = "list",
@@ -1764,6 +1844,7 @@ M.NoiseLevelType = {
 
 M.MetricsConfigurationPolicy = {
     type = "structure",
+    id = "MetricsConfigurationPolicy",
     members = {
         noiseLevel = {
             type = "string",
@@ -1780,6 +1861,7 @@ M.TrainedModelArtifactMaxSizeUnitType = {
 
 M.TrainedModelArtifactMaxSize = {
     type = "structure",
+    id = "TrainedModelArtifactMaxSize",
     members = {
         unit = {
             type = "string",
@@ -1798,6 +1880,7 @@ M.TrainedModelArtifactMaxSize = {
 
 M.TrainedModelsConfigurationPolicy = {
     type = "structure",
+    id = "TrainedModelsConfigurationPolicy",
     members = {
         containerLogs = {
             type = "list",
@@ -1810,6 +1893,7 @@ M.TrainedModelsConfigurationPolicy = {
 
 M.PrivacyConfigurationPolicies = {
     type = "structure",
+    id = "PrivacyConfigurationPolicies",
     members = {
         trainedModels = M.TrainedModelsConfigurationPolicy,
         trainedModelExports = M.TrainedModelExportsConfigurationPolicy,
@@ -1819,6 +1903,7 @@ M.PrivacyConfigurationPolicies = {
 
 M.PrivacyConfiguration = {
     type = "structure",
+    id = "PrivacyConfiguration",
     members = {
         policies = setmetatable({ traits = {
             required = true,
@@ -1828,6 +1913,7 @@ M.PrivacyConfiguration = {
 
 M.CreateConfiguredModelAlgorithmAssociationInput = {
     type = "structure",
+    id = "CreateConfiguredModelAlgorithmAssociationInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -1862,6 +1948,7 @@ M.CreateConfiguredModelAlgorithmAssociationInput = {
 
 M.CreateConfiguredModelAlgorithmAssociationOutput = {
     type = "structure",
+    id = "CreateConfiguredModelAlgorithmAssociationOutput",
     members = {
         configuredModelAlgorithmAssociationArn = {
             type = "string",
@@ -1874,6 +1961,7 @@ M.CreateConfiguredModelAlgorithmAssociationOutput = {
 
 M.DeleteConfiguredModelAlgorithmAssociationInput = {
     type = "structure",
+    id = "DeleteConfiguredModelAlgorithmAssociationInput",
     members = {
         configuredModelAlgorithmAssociationArn = {
             type = "string",
@@ -1894,10 +1982,12 @@ M.DeleteConfiguredModelAlgorithmAssociationInput = {
 
 M.DeleteConfiguredModelAlgorithmAssociationOutput = {
     type = "structure",
+    id = "DeleteConfiguredModelAlgorithmAssociationOutput",
 }
 
 M.GetCollaborationConfiguredModelAlgorithmAssociationInput = {
     type = "structure",
+    id = "GetCollaborationConfiguredModelAlgorithmAssociationInput",
     members = {
         configuredModelAlgorithmAssociationArn = {
             type = "string",
@@ -1918,6 +2008,7 @@ M.GetCollaborationConfiguredModelAlgorithmAssociationInput = {
 
 M.GetCollaborationConfiguredModelAlgorithmAssociationOutput = {
     type = "structure",
+    id = "GetCollaborationConfiguredModelAlgorithmAssociationOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -1978,6 +2069,7 @@ M.GetCollaborationConfiguredModelAlgorithmAssociationOutput = {
 
 M.GetConfiguredModelAlgorithmAssociationInput = {
     type = "structure",
+    id = "GetConfiguredModelAlgorithmAssociationInput",
     members = {
         configuredModelAlgorithmAssociationArn = {
             type = "string",
@@ -1998,6 +2090,7 @@ M.GetConfiguredModelAlgorithmAssociationInput = {
 
 M.GetConfiguredModelAlgorithmAssociationOutput = {
     type = "structure",
+    id = "GetConfiguredModelAlgorithmAssociationOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -2057,6 +2150,7 @@ M.GetConfiguredModelAlgorithmAssociationOutput = {
 
 M.ListConfiguredModelAlgorithmAssociationsInput = {
     type = "structure",
+    id = "ListConfiguredModelAlgorithmAssociationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2082,6 +2176,7 @@ M.ListConfiguredModelAlgorithmAssociationsInput = {
 
 M.ConfiguredModelAlgorithmAssociationSummary = {
     type = "structure",
+    id = "ConfiguredModelAlgorithmAssociationSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -2135,6 +2230,7 @@ M.ConfiguredModelAlgorithmAssociationSummary = {
 
 M.ListConfiguredModelAlgorithmAssociationsOutput = {
     type = "structure",
+    id = "ListConfiguredModelAlgorithmAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2151,6 +2247,7 @@ M.ListConfiguredModelAlgorithmAssociationsOutput = {
 
 M.ListCollaborationConfiguredModelAlgorithmAssociationsInput = {
     type = "structure",
+    id = "ListCollaborationConfiguredModelAlgorithmAssociationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2176,6 +2273,7 @@ M.ListCollaborationConfiguredModelAlgorithmAssociationsInput = {
 
 M.CollaborationConfiguredModelAlgorithmAssociationSummary = {
     type = "structure",
+    id = "CollaborationConfiguredModelAlgorithmAssociationSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -2235,6 +2333,7 @@ M.CollaborationConfiguredModelAlgorithmAssociationSummary = {
 
 M.ListCollaborationConfiguredModelAlgorithmAssociationsOutput = {
     type = "structure",
+    id = "ListCollaborationConfiguredModelAlgorithmAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2251,6 +2350,7 @@ M.ListCollaborationConfiguredModelAlgorithmAssociationsOutput = {
 
 M.ListCollaborationMLInputChannelsInput = {
     type = "structure",
+    id = "ListCollaborationMLInputChannelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2287,6 +2387,7 @@ M.MLInputChannelStatus = {
 
 M.CollaborationMLInputChannelSummary = {
     type = "structure",
+    id = "CollaborationMLInputChannelSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -2353,6 +2454,7 @@ M.CollaborationMLInputChannelSummary = {
 
 M.ListCollaborationMLInputChannelsOutput = {
     type = "structure",
+    id = "ListCollaborationMLInputChannelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2369,6 +2471,7 @@ M.ListCollaborationMLInputChannelsOutput = {
 
 M.ListCollaborationTrainedModelExportJobsInput = {
     type = "structure",
+    id = "ListCollaborationTrainedModelExportJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2407,6 +2510,7 @@ M.ListCollaborationTrainedModelExportJobsInput = {
 
 M.TrainedModelExportReceiverMember = {
     type = "structure",
+    id = "TrainedModelExportReceiverMember",
     members = {
         accountId = {
             type = "string",
@@ -2419,6 +2523,7 @@ M.TrainedModelExportReceiverMember = {
 
 M.TrainedModelExportOutputConfiguration = {
     type = "structure",
+    id = "TrainedModelExportOutputConfiguration",
     members = {
         members = {
             type = "list",
@@ -2439,6 +2544,7 @@ M.TrainedModelExportJobStatus = {
 
 M.CollaborationTrainedModelExportJobSummary = {
     type = "structure",
+    id = "CollaborationTrainedModelExportJobSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -2505,6 +2611,7 @@ M.CollaborationTrainedModelExportJobSummary = {
 
 M.ListCollaborationTrainedModelExportJobsOutput = {
     type = "structure",
+    id = "ListCollaborationTrainedModelExportJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2521,6 +2628,7 @@ M.ListCollaborationTrainedModelExportJobsOutput = {
 
 M.ListCollaborationTrainedModelInferenceJobsInput = {
     type = "structure",
+    id = "ListCollaborationTrainedModelInferenceJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2568,6 +2676,7 @@ M.MetricsStatus = {
 
 M.InferenceReceiverMember = {
     type = "structure",
+    id = "InferenceReceiverMember",
     members = {
         accountId = {
             type = "string",
@@ -2580,6 +2689,7 @@ M.InferenceReceiverMember = {
 
 M.InferenceOutputConfiguration = {
     type = "structure",
+    id = "InferenceOutputConfiguration",
     members = {
         accept = {
             type = "string",
@@ -2610,6 +2720,7 @@ M.TrainedModelInferenceJobStatus = {
 
 M.CollaborationTrainedModelInferenceJobSummary = {
     type = "structure",
+    id = "CollaborationTrainedModelInferenceJobSummary",
     members = {
         trainedModelInferenceJobArn = {
             type = "string",
@@ -2696,6 +2807,7 @@ M.CollaborationTrainedModelInferenceJobSummary = {
 
 M.ListCollaborationTrainedModelInferenceJobsOutput = {
     type = "structure",
+    id = "ListCollaborationTrainedModelInferenceJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2712,6 +2824,7 @@ M.ListCollaborationTrainedModelInferenceJobsOutput = {
 
 M.ListCollaborationTrainedModelsInput = {
     type = "structure",
+    id = "ListCollaborationTrainedModelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2737,6 +2850,7 @@ M.ListCollaborationTrainedModelsInput = {
 
 M.IncrementalTrainingDataChannelOutput = {
     type = "structure",
+    id = "IncrementalTrainingDataChannelOutput",
     members = {
         channelName = {
             type = "string",
@@ -2772,6 +2886,7 @@ M.TrainedModelStatus = {
 
 M.CollaborationTrainedModelSummary = {
     type = "structure",
+    id = "CollaborationTrainedModelSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -2844,6 +2959,7 @@ M.CollaborationTrainedModelSummary = {
 
 M.ListCollaborationTrainedModelsOutput = {
     type = "structure",
+    id = "ListCollaborationTrainedModelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2860,6 +2976,7 @@ M.ListCollaborationTrainedModelsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2873,6 +2990,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2887,6 +3005,7 @@ M.ListTagsForResourceOutput = {
 
 M.DeleteMLConfigurationInput = {
     type = "structure",
+    id = "DeleteMLConfigurationInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -2900,10 +3019,12 @@ M.DeleteMLConfigurationInput = {
 
 M.DeleteMLConfigurationOutput = {
     type = "structure",
+    id = "DeleteMLConfigurationOutput",
 }
 
 M.GetMLConfigurationInput = {
     type = "structure",
+    id = "GetMLConfigurationInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -2917,6 +3038,7 @@ M.GetMLConfigurationInput = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         s3Destination = setmetatable({ traits = {
             required = true,
@@ -2926,6 +3048,7 @@ M.Destination = {
 
 M.MLOutputConfiguration = {
     type = "structure",
+    id = "MLOutputConfiguration",
     members = {
         destination = M.Destination,
         roleArn = {
@@ -2939,6 +3062,7 @@ M.MLOutputConfiguration = {
 
 M.GetMLConfigurationOutput = {
     type = "structure",
+    id = "GetMLConfigurationOutput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -2968,6 +3092,7 @@ M.GetMLConfigurationOutput = {
 
 M.PutMLConfigurationInput = {
     type = "structure",
+    id = "PutMLConfigurationInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -2984,6 +3109,7 @@ M.PutMLConfigurationInput = {
 
 M.PutMLConfigurationOutput = {
     type = "structure",
+    id = "PutMLConfigurationOutput",
 }
 
 M.ResultFormat = {
@@ -2993,6 +3119,7 @@ M.ResultFormat = {
 
 M.ProtectedQueryInputParameters = {
     type = "structure",
+    id = "ProtectedQueryInputParameters",
     members = {
         sqlParameters = setmetatable({ traits = {
             required = true,
@@ -3009,6 +3136,7 @@ M.ProtectedQueryInputParameters = {
 
 M.InputChannelDataSource = {
     type = "union",
+    id = "InputChannelDataSource",
     members = {
         protectedQueryInputParameters = M.ProtectedQueryInputParameters,
     },
@@ -3016,6 +3144,7 @@ M.InputChannelDataSource = {
 
 M.InputChannel = {
     type = "structure",
+    id = "InputChannel",
     members = {
         dataSource = setmetatable({ traits = {
             required = true,
@@ -3031,6 +3160,7 @@ M.InputChannel = {
 
 M.CreateMLInputChannelInput = {
     type = "structure",
+    id = "CreateMLInputChannelInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -3077,6 +3207,7 @@ M.CreateMLInputChannelInput = {
 
 M.CreateMLInputChannelOutput = {
     type = "structure",
+    id = "CreateMLInputChannelOutput",
     members = {
         mlInputChannelArn = {
             type = "string",
@@ -3089,6 +3220,7 @@ M.CreateMLInputChannelOutput = {
 
 M.DeleteMLInputChannelDataInput = {
     type = "structure",
+    id = "DeleteMLInputChannelDataInput",
     members = {
         mlInputChannelArn = {
             type = "string",
@@ -3109,10 +3241,12 @@ M.DeleteMLInputChannelDataInput = {
 
 M.DeleteMLInputChannelDataOutput = {
     type = "structure",
+    id = "DeleteMLInputChannelDataOutput",
 }
 
 M.GetCollaborationMLInputChannelInput = {
     type = "structure",
+    id = "GetCollaborationMLInputChannelInput",
     members = {
         mlInputChannelArn = {
             type = "string",
@@ -3133,6 +3267,7 @@ M.GetCollaborationMLInputChannelInput = {
 
 M.PrivacyBudgets = {
     type = "union",
+    id = "PrivacyBudgets",
     members = {
         accessBudgets = {
             type = "list",
@@ -3147,6 +3282,7 @@ M.MembershipInferenceAttackVersion = {
 
 M.MembershipInferenceAttackScore = {
     type = "structure",
+    id = "MembershipInferenceAttackScore",
     members = {
         attackVersion = {
             type = "string",
@@ -3165,6 +3301,7 @@ M.MembershipInferenceAttackScore = {
 
 M.DataPrivacyScores = {
     type = "structure",
+    id = "DataPrivacyScores",
     members = {
         membershipInferenceAttackScores = {
             type = "list",
@@ -3178,6 +3315,7 @@ M.DataPrivacyScores = {
 
 M.SyntheticDataEvaluationScores = {
     type = "structure",
+    id = "SyntheticDataEvaluationScores",
     members = {
         dataPrivacyScores = setmetatable({ traits = {
             required = true,
@@ -3192,6 +3330,7 @@ M.SyntheticDataColumnType = {
 
 M.SyntheticDataColumnProperties = {
     type = "structure",
+    id = "SyntheticDataColumnProperties",
     members = {
         columnName = {
             type = "string",
@@ -3216,6 +3355,7 @@ M.SyntheticDataColumnProperties = {
 
 M.ColumnClassificationDetails = {
     type = "structure",
+    id = "ColumnClassificationDetails",
     members = {
         columnMapping = {
             type = "list",
@@ -3229,6 +3369,7 @@ M.ColumnClassificationDetails = {
 
 M.MLSyntheticDataParameters = {
     type = "structure",
+    id = "MLSyntheticDataParameters",
     members = {
         epsilon = {
             type = "double",
@@ -3248,6 +3389,7 @@ M.MLSyntheticDataParameters = {
 
 M.SyntheticDataConfiguration = {
     type = "structure",
+    id = "SyntheticDataConfiguration",
     members = {
         syntheticDataParameters = setmetatable({ traits = {
             required = true,
@@ -3258,6 +3400,7 @@ M.SyntheticDataConfiguration = {
 
 M.GetCollaborationMLInputChannelOutput = {
     type = "structure",
+    id = "GetCollaborationMLInputChannelOutput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -3336,6 +3479,7 @@ M.GetCollaborationMLInputChannelOutput = {
 
 M.GetMLInputChannelInput = {
     type = "structure",
+    id = "GetMLInputChannelInput",
     members = {
         mlInputChannelArn = {
             type = "string",
@@ -3356,6 +3500,7 @@ M.GetMLInputChannelInput = {
 
 M.GetMLInputChannelOutput = {
     type = "structure",
+    id = "GetMLInputChannelOutput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -3448,6 +3593,7 @@ M.GetMLInputChannelOutput = {
 
 M.ListMLInputChannelsInput = {
     type = "structure",
+    id = "ListMLInputChannelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3473,6 +3619,7 @@ M.ListMLInputChannelsInput = {
 
 M.MLInputChannelSummary = {
     type = "structure",
+    id = "MLInputChannelSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -3536,6 +3683,7 @@ M.MLInputChannelSummary = {
 
 M.ListMLInputChannelsOutput = {
     type = "structure",
+    id = "ListMLInputChannelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3552,6 +3700,7 @@ M.ListMLInputChannelsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3573,10 +3722,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.CancelTrainedModelInput = {
     type = "structure",
+    id = "CancelTrainedModelInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -3603,6 +3754,7 @@ M.CancelTrainedModelInput = {
 
 M.CancelTrainedModelOutput = {
     type = "structure",
+    id = "CancelTrainedModelOutput",
 }
 
 M.S3DataDistributionType = {
@@ -3612,6 +3764,7 @@ M.S3DataDistributionType = {
 
 M.ModelTrainingDataChannel = {
     type = "structure",
+    id = "ModelTrainingDataChannel",
     members = {
         mlInputChannelArn = {
             type = "string",
@@ -3636,6 +3789,7 @@ M.ModelTrainingDataChannel = {
 
 M.IncrementalTrainingDataChannel = {
     type = "structure",
+    id = "IncrementalTrainingDataChannel",
     members = {
         trainedModelArn = {
             type = "string",
@@ -3793,6 +3947,7 @@ M.InstanceType = {
 
 M.ResourceConfig = {
     type = "structure",
+    id = "ResourceConfig",
     members = {
         instanceCount = {
             type = "integer",
@@ -3817,6 +3972,7 @@ M.ResourceConfig = {
 
 M.StoppingCondition = {
     type = "structure",
+    id = "StoppingCondition",
     members = {
         maxRuntimeInSeconds = {
             type = "integer",
@@ -3835,6 +3991,7 @@ M.TrainingInputMode = {
 
 M.CreateTrainedModelInput = {
     type = "structure",
+    id = "CreateTrainedModelInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -3902,6 +4059,7 @@ M.CreateTrainedModelInput = {
 
 M.CreateTrainedModelOutput = {
     type = "structure",
+    id = "CreateTrainedModelOutput",
     members = {
         trainedModelArn = {
             type = "string",
@@ -3917,6 +4075,7 @@ M.CreateTrainedModelOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         message = {
@@ -3930,6 +4089,7 @@ M.InternalServiceException = {
 
 M.DeleteTrainedModelOutputInput = {
     type = "structure",
+    id = "DeleteTrainedModelOutputInput",
     members = {
         trainedModelArn = {
             type = "string",
@@ -3956,10 +4116,12 @@ M.DeleteTrainedModelOutputInput = {
 
 M.DeleteTrainedModelOutputOutput = {
     type = "structure",
+    id = "DeleteTrainedModelOutputOutput",
 }
 
 M.GetCollaborationTrainedModelInput = {
     type = "structure",
+    id = "GetCollaborationTrainedModelInput",
     members = {
         trainedModelArn = {
             type = "string",
@@ -3986,6 +4148,7 @@ M.GetCollaborationTrainedModelInput = {
 
 M.GetCollaborationTrainedModelOutput = {
     type = "structure",
+    id = "GetCollaborationTrainedModelOutput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4079,6 +4242,7 @@ M.GetCollaborationTrainedModelOutput = {
 
 M.GetTrainedModelInput = {
     type = "structure",
+    id = "GetTrainedModelInput",
     members = {
         trainedModelArn = {
             type = "string",
@@ -4105,6 +4269,7 @@ M.GetTrainedModelInput = {
 
 M.GetTrainedModelOutput = {
     type = "structure",
+    id = "GetTrainedModelOutput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4217,6 +4382,7 @@ M.GetTrainedModelOutput = {
 
 M.ListTrainedModelsInput = {
     type = "structure",
+    id = "ListTrainedModelsInput",
     members = {
         nextToken = {
             type = "string",
@@ -4242,6 +4408,7 @@ M.ListTrainedModelsInput = {
 
 M.TrainedModelSummary = {
     type = "structure",
+    id = "TrainedModelSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -4308,6 +4475,7 @@ M.TrainedModelSummary = {
 
 M.ListTrainedModelsOutput = {
     type = "structure",
+    id = "ListTrainedModelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4324,6 +4492,7 @@ M.ListTrainedModelsOutput = {
 
 M.ListTrainedModelVersionsInput = {
     type = "structure",
+    id = "ListTrainedModelVersionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -4362,6 +4531,7 @@ M.ListTrainedModelVersionsInput = {
 
 M.ListTrainedModelVersionsOutput = {
     type = "structure",
+    id = "ListTrainedModelVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4378,6 +4548,7 @@ M.ListTrainedModelVersionsOutput = {
 
 M.StartTrainedModelExportJobInput = {
     type = "structure",
+    id = "StartTrainedModelExportJobInput",
     members = {
         name = {
             type = "string",
@@ -4413,10 +4584,12 @@ M.StartTrainedModelExportJobInput = {
 
 M.StartTrainedModelExportJobOutput = {
     type = "structure",
+    id = "StartTrainedModelExportJobOutput",
 }
 
 M.CancelTrainedModelInferenceJobInput = {
     type = "structure",
+    id = "CancelTrainedModelInferenceJobInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4437,10 +4610,12 @@ M.CancelTrainedModelInferenceJobInput = {
 
 M.CancelTrainedModelInferenceJobOutput = {
     type = "structure",
+    id = "CancelTrainedModelInferenceJobOutput",
 }
 
 M.GetTrainedModelInferenceJobInput = {
     type = "structure",
+    id = "GetTrainedModelInferenceJobInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4461,6 +4636,7 @@ M.GetTrainedModelInferenceJobInput = {
 
 M.InferenceContainerExecutionParameters = {
     type = "structure",
+    id = "InferenceContainerExecutionParameters",
     members = {
         maxPayloadInMB = {
             type = "integer",
@@ -4470,6 +4646,7 @@ M.InferenceContainerExecutionParameters = {
 
 M.ModelInferenceDataSource = {
     type = "structure",
+    id = "ModelInferenceDataSource",
     members = {
         mlInputChannelArn = {
             type = "string",
@@ -4579,6 +4756,7 @@ M.InferenceInstanceType = {
 
 M.InferenceResourceConfig = {
     type = "structure",
+    id = "InferenceResourceConfig",
     members = {
         instanceType = {
             type = "string",
@@ -4597,6 +4775,7 @@ M.InferenceResourceConfig = {
 
 M.GetTrainedModelInferenceJobOutput = {
     type = "structure",
+    id = "GetTrainedModelInferenceJobOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -4695,6 +4874,7 @@ M.GetTrainedModelInferenceJobOutput = {
 
 M.ListTrainedModelInferenceJobsInput = {
     type = "structure",
+    id = "ListTrainedModelInferenceJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -4732,6 +4912,7 @@ M.ListTrainedModelInferenceJobsInput = {
 
 M.TrainedModelInferenceJobSummary = {
     type = "structure",
+    id = "TrainedModelInferenceJobSummary",
     members = {
         trainedModelInferenceJobArn = {
             type = "string",
@@ -4812,6 +4993,7 @@ M.TrainedModelInferenceJobSummary = {
 
 M.ListTrainedModelInferenceJobsOutput = {
     type = "structure",
+    id = "ListTrainedModelInferenceJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4828,6 +5010,7 @@ M.ListTrainedModelInferenceJobsOutput = {
 
 M.StartTrainedModelInferenceJobInput = {
     type = "structure",
+    id = "StartTrainedModelInferenceJobInput",
     members = {
         membershipIdentifier = {
             type = "string",
@@ -4885,6 +5068,7 @@ M.StartTrainedModelInferenceJobInput = {
 
 M.StartTrainedModelInferenceJobOutput = {
     type = "structure",
+    id = "StartTrainedModelInferenceJobOutput",
     members = {
         trainedModelInferenceJobArn = {
             type = "string",
@@ -4897,6 +5081,7 @@ M.StartTrainedModelInferenceJobOutput = {
 
 M.GlueDataSource = {
     type = "structure",
+    id = "GlueDataSource",
     members = {
         tableName = {
             type = "string",
@@ -4918,6 +5103,7 @@ M.GlueDataSource = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         glueDataSource = setmetatable({ traits = {
             required = true,
@@ -4935,6 +5121,7 @@ M.ColumnType = {
 
 M.ColumnSchema = {
     type = "structure",
+    id = "ColumnSchema",
     members = {
         columnName = {
             type = "string",
@@ -4954,6 +5141,7 @@ M.ColumnSchema = {
 
 M.DatasetInputConfig = {
     type = "structure",
+    id = "DatasetInputConfig",
     members = {
         schema = {
             type = "list",
@@ -4974,6 +5162,7 @@ M.DatasetType = {
 
 M.Dataset = {
     type = "structure",
+    id = "Dataset",
     members = {
         type = {
             type = "string",
@@ -4989,6 +5178,7 @@ M.Dataset = {
 
 M.CreateTrainingDatasetInput = {
     type = "structure",
+    id = "CreateTrainingDatasetInput",
     members = {
         name = {
             type = "string",
@@ -5022,6 +5212,7 @@ M.CreateTrainingDatasetInput = {
 
 M.CreateTrainingDatasetOutput = {
     type = "structure",
+    id = "CreateTrainingDatasetOutput",
     members = {
         trainingDatasetArn = {
             type = "string",
@@ -5034,6 +5225,7 @@ M.CreateTrainingDatasetOutput = {
 
 M.DeleteTrainingDatasetInput = {
     type = "structure",
+    id = "DeleteTrainingDatasetInput",
     members = {
         trainingDatasetArn = {
             type = "string",
@@ -5047,10 +5239,12 @@ M.DeleteTrainingDatasetInput = {
 
 M.DeleteTrainingDatasetOutput = {
     type = "structure",
+    id = "DeleteTrainingDatasetOutput",
 }
 
 M.GetTrainingDatasetInput = {
     type = "structure",
+    id = "GetTrainingDatasetInput",
     members = {
         trainingDatasetArn = {
             type = "string",
@@ -5068,6 +5262,7 @@ M.TrainingDatasetStatus = {
 
 M.GetTrainingDatasetOutput = {
     type = "structure",
+    id = "GetTrainingDatasetOutput",
     members = {
         createTime = {
             type = "timestamp",
@@ -5127,6 +5322,7 @@ M.GetTrainingDatasetOutput = {
 
 M.ListTrainingDatasetsInput = {
     type = "structure",
+    id = "ListTrainingDatasetsInput",
     members = {
         nextToken = {
             type = "string",
@@ -5145,6 +5341,7 @@ M.ListTrainingDatasetsInput = {
 
 M.TrainingDatasetSummary = {
     type = "structure",
+    id = "TrainingDatasetSummary",
     members = {
         createTime = {
             type = "timestamp",
@@ -5186,6 +5383,7 @@ M.TrainingDatasetSummary = {
 
 M.ListTrainingDatasetsOutput = {
     type = "structure",
+    id = "ListTrainingDatasetsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -5202,6 +5400,7 @@ M.ListTrainingDatasetsOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5223,6 +5422,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

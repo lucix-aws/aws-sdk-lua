@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -16,6 +17,7 @@ M.AccessDeniedException = {
 
 M.IsolineAllowOptions = {
     type = "structure",
+    id = "IsolineAllowOptions",
     members = {
         Hot = {
             type = "boolean",
@@ -28,6 +30,7 @@ M.IsolineAllowOptions = {
 
 M.Corridor = {
     type = "structure",
+    id = "Corridor",
     members = {
         LineString = {
             type = "list",
@@ -47,6 +50,7 @@ M.Corridor = {
 
 M.PolylineCorridor = {
     type = "structure",
+    id = "PolylineCorridor",
     members = {
         Polyline = {
             type = "string",
@@ -65,6 +69,7 @@ M.PolylineCorridor = {
 
 M.IsolineAvoidanceAreaGeometry = {
     type = "structure",
+    id = "IsolineAvoidanceAreaGeometry",
     members = {
         BoundingBox = {
             type = "list",
@@ -85,6 +90,7 @@ M.IsolineAvoidanceAreaGeometry = {
 
 M.IsolineAvoidanceArea = {
     type = "structure",
+    id = "IsolineAvoidanceArea",
     members = {
         Except = {
             type = "list",
@@ -104,6 +110,7 @@ M.IsolineZoneCategory = {
 
 M.IsolineAvoidanceZoneCategory = {
     type = "structure",
+    id = "IsolineAvoidanceZoneCategory",
     members = {
         Category = {
             type = "string",
@@ -113,6 +120,7 @@ M.IsolineAvoidanceZoneCategory = {
 
 M.IsolineAvoidanceOptions = {
     type = "structure",
+    id = "IsolineAvoidanceOptions",
     members = {
         Areas = {
             type = "list",
@@ -163,6 +171,7 @@ M.MatchingStrategy = {
 
 M.IsolineMatchingOptions = {
     type = "structure",
+    id = "IsolineMatchingOptions",
     members = {
         NameHint = {
             type = "string",
@@ -192,6 +201,7 @@ M.SideOfStreetMatchingStrategy = {
 
 M.IsolineSideOfStreetOptions = {
     type = "structure",
+    id = "IsolineSideOfStreetOptions",
     members = {
         Position = {
             type = "list",
@@ -208,6 +218,7 @@ M.IsolineSideOfStreetOptions = {
 
 M.IsolineDestinationOptions = {
     type = "structure",
+    id = "IsolineDestinationOptions",
     members = {
         AvoidActionsForDistance = {
             type = "long",
@@ -233,6 +244,7 @@ M.GeometryFormat = {
 
 M.IsolineGranularityOptions = {
     type = "structure",
+    id = "IsolineGranularityOptions",
     members = {
         MaxPoints = {
             type = "integer",
@@ -262,6 +274,7 @@ M.RoutingObjective = {
 
 M.IsolineOriginOptions = {
     type = "structure",
+    id = "IsolineOriginOptions",
     members = {
         AvoidActionsForDistance = {
             type = "long",
@@ -282,6 +295,7 @@ M.IsolineOriginOptions = {
 
 M.IsolineThresholds = {
     type = "structure",
+    id = "IsolineThresholds",
     members = {
         Distance = {
             type = "list",
@@ -301,6 +315,7 @@ M.TrafficUsage = {
 
 M.IsolineTrafficOptions = {
     type = "structure",
+    id = "IsolineTrafficOptions",
     members = {
         FlowEventThresholdOverride = {
             type = "long",
@@ -329,6 +344,7 @@ M.IsolineEngineType = {
 
 M.IsolineVehicleLicensePlate = {
     type = "structure",
+    id = "IsolineVehicleLicensePlate",
     members = {
         LastCharacter = {
             type = "string",
@@ -338,6 +354,7 @@ M.IsolineVehicleLicensePlate = {
 
 M.IsolineCarOptions = {
     type = "structure",
+    id = "IsolineCarOptions",
     members = {
         EngineType = {
             type = "string",
@@ -360,6 +377,7 @@ M.IsolineCarOptions = {
 
 M.IsolineScooterOptions = {
     type = "structure",
+    id = "IsolineScooterOptions",
     members = {
         EngineType = {
             type = "string",
@@ -396,6 +414,7 @@ M.IsolineHazardousCargoType = {
 
 M.IsolineTrailerOptions = {
     type = "structure",
+    id = "IsolineTrailerOptions",
     members = {
         AxleCount = {
             type = "integer",
@@ -420,6 +439,7 @@ M.IsolineTruckType = {
 
 M.WeightPerAxleGroup = {
     type = "structure",
+    id = "WeightPerAxleGroup",
     members = {
         Single = {
             type = "long",
@@ -456,6 +476,7 @@ M.WeightPerAxleGroup = {
 
 M.IsolineTruckOptions = {
     type = "structure",
+    id = "IsolineTruckOptions",
     members = {
         AxleCount = {
             type = "integer",
@@ -550,6 +571,7 @@ M.IsolineTruckOptions = {
 
 M.IsolineTravelModeOptions = {
     type = "structure",
+    id = "IsolineTravelModeOptions",
     members = {
         Car = M.IsolineCarOptions,
         Scooter = M.IsolineScooterOptions,
@@ -559,6 +581,7 @@ M.IsolineTravelModeOptions = {
 
 M.CalculateIsolinesInput = {
     type = "structure",
+    id = "CalculateIsolinesInput",
     members = {
         Allow = M.IsolineAllowOptions,
         ArrivalTime = {
@@ -610,6 +633,7 @@ M.CalculateIsolinesInput = {
 
 M.IsolineConnectionGeometry = {
     type = "structure",
+    id = "IsolineConnectionGeometry",
     members = {
         LineString = {
             type = "list",
@@ -623,6 +647,7 @@ M.IsolineConnectionGeometry = {
 
 M.IsolineConnection = {
     type = "structure",
+    id = "IsolineConnection",
     members = {
         FromPolygonIndex = {
             type = "integer",
@@ -644,6 +669,7 @@ M.IsolineConnection = {
 
 M.IsolineShapeGeometry = {
     type = "structure",
+    id = "IsolineShapeGeometry",
     members = {
         Polygon = {
             type = "list",
@@ -658,6 +684,7 @@ M.IsolineShapeGeometry = {
 
 M.Isoline = {
     type = "structure",
+    id = "Isoline",
     members = {
         Connections = {
             type = "list",
@@ -690,6 +717,7 @@ M.Isoline = {
 
 M.CalculateIsolinesOutput = {
     type = "structure",
+    id = "CalculateIsolinesOutput",
     members = {
         ArrivalTime = {
             type = "string",
@@ -730,6 +758,7 @@ M.CalculateIsolinesOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -744,6 +773,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -758,6 +788,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -787,6 +818,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -816,6 +848,7 @@ M.ValidationException = {
 
 M.RouteMatrixAllowOptions = {
     type = "structure",
+    id = "RouteMatrixAllowOptions",
     members = {
         Hot = {
             type = "boolean",
@@ -828,6 +861,7 @@ M.RouteMatrixAllowOptions = {
 
 M.RouteMatrixAvoidanceAreaGeometry = {
     type = "structure",
+    id = "RouteMatrixAvoidanceAreaGeometry",
     members = {
         BoundingBox = {
             type = "list",
@@ -846,6 +880,7 @@ M.RouteMatrixAvoidanceAreaGeometry = {
 
 M.RouteMatrixAvoidanceArea = {
     type = "structure",
+    id = "RouteMatrixAvoidanceArea",
     members = {
         Geometry = setmetatable({ traits = {
             required = true,
@@ -861,6 +896,7 @@ M.RouteMatrixZoneCategory = {
 
 M.RouteMatrixAvoidanceZoneCategory = {
     type = "structure",
+    id = "RouteMatrixAvoidanceZoneCategory",
     members = {
         Category = {
             type = "string",
@@ -870,6 +906,7 @@ M.RouteMatrixAvoidanceZoneCategory = {
 
 M.RouteMatrixAvoidanceOptions = {
     type = "structure",
+    id = "RouteMatrixAvoidanceOptions",
     members = {
         Areas = {
             type = "list",
@@ -912,6 +949,7 @@ M.RouteMatrixAvoidanceOptions = {
 
 M.RouteMatrixMatchingOptions = {
     type = "structure",
+    id = "RouteMatrixMatchingOptions",
     members = {
         NameHint = {
             type = "string",
@@ -936,6 +974,7 @@ M.RouteMatrixMatchingOptions = {
 
 M.RouteMatrixSideOfStreetOptions = {
     type = "structure",
+    id = "RouteMatrixSideOfStreetOptions",
     members = {
         Position = {
             type = "list",
@@ -952,6 +991,7 @@ M.RouteMatrixSideOfStreetOptions = {
 
 M.RouteMatrixDestinationOptions = {
     type = "structure",
+    id = "RouteMatrixDestinationOptions",
     members = {
         AvoidActionsForDistance = {
             type = "long",
@@ -972,6 +1012,7 @@ M.RouteMatrixDestinationOptions = {
 
 M.RouteMatrixDestination = {
     type = "structure",
+    id = "RouteMatrixDestination",
     members = {
         Options = M.RouteMatrixDestinationOptions,
         Position = {
@@ -986,6 +1027,7 @@ M.RouteMatrixDestination = {
 
 M.RouteMatrixExclusionOptions = {
     type = "structure",
+    id = "RouteMatrixExclusionOptions",
     members = {
         Countries = {
             type = "list",
@@ -999,6 +1041,7 @@ M.RouteMatrixExclusionOptions = {
 
 M.RouteMatrixOriginOptions = {
     type = "structure",
+    id = "RouteMatrixOriginOptions",
     members = {
         AvoidActionsForDistance = {
             type = "long",
@@ -1019,6 +1062,7 @@ M.RouteMatrixOriginOptions = {
 
 M.RouteMatrixOrigin = {
     type = "structure",
+    id = "RouteMatrixOrigin",
     members = {
         Options = M.RouteMatrixOriginOptions,
         Position = {
@@ -1033,6 +1077,7 @@ M.RouteMatrixOrigin = {
 
 M.RouteMatrixAutoCircle = {
     type = "structure",
+    id = "RouteMatrixAutoCircle",
     members = {
         Margin = {
             type = "long",
@@ -1051,6 +1096,7 @@ M.RouteMatrixAutoCircle = {
 
 M.Circle = {
     type = "structure",
+    id = "Circle",
     members = {
         Center = {
             type = "list",
@@ -1070,6 +1116,7 @@ M.Circle = {
 
 M.RouteMatrixBoundaryGeometry = {
     type = "structure",
+    id = "RouteMatrixBoundaryGeometry",
     members = {
         AutoCircle = M.RouteMatrixAutoCircle,
         Circle = M.Circle,
@@ -1086,6 +1133,7 @@ M.RouteMatrixBoundaryGeometry = {
 
 M.RouteMatrixBoundary = {
     type = "structure",
+    id = "RouteMatrixBoundary",
     members = {
         Geometry = M.RouteMatrixBoundaryGeometry,
         Unbounded = {
@@ -1096,6 +1144,7 @@ M.RouteMatrixBoundary = {
 
 M.RouteMatrixTrafficOptions = {
     type = "structure",
+    id = "RouteMatrixTrafficOptions",
     members = {
         FlowEventThresholdOverride = {
             type = "long",
@@ -1118,6 +1167,7 @@ M.RouteMatrixTravelMode = {
 
 M.RouteMatrixVehicleLicensePlate = {
     type = "structure",
+    id = "RouteMatrixVehicleLicensePlate",
     members = {
         LastCharacter = {
             type = "string",
@@ -1127,6 +1177,7 @@ M.RouteMatrixVehicleLicensePlate = {
 
 M.RouteMatrixCarOptions = {
     type = "structure",
+    id = "RouteMatrixCarOptions",
     members = {
         LicensePlate = M.RouteMatrixVehicleLicensePlate,
         MaxSpeed = {
@@ -1146,6 +1197,7 @@ M.RouteMatrixCarOptions = {
 
 M.RouteMatrixScooterOptions = {
     type = "structure",
+    id = "RouteMatrixScooterOptions",
     members = {
         LicensePlate = M.RouteMatrixVehicleLicensePlate,
         MaxSpeed = {
@@ -1179,6 +1231,7 @@ M.RouteMatrixHazardousCargoType = {
 
 M.RouteMatrixTrailerOptions = {
     type = "structure",
+    id = "RouteMatrixTrailerOptions",
     members = {
         TrailerCount = {
             type = "integer",
@@ -1194,6 +1247,7 @@ M.RouteMatrixTruckType = {
 
 M.RouteMatrixTruckOptions = {
     type = "structure",
+    id = "RouteMatrixTruckOptions",
     members = {
         AxleCount = {
             type = "integer",
@@ -1273,6 +1327,7 @@ M.RouteMatrixTruckOptions = {
 
 M.RouteMatrixTravelModeOptions = {
     type = "structure",
+    id = "RouteMatrixTravelModeOptions",
     members = {
         Car = M.RouteMatrixCarOptions,
         Scooter = M.RouteMatrixScooterOptions,
@@ -1282,6 +1337,7 @@ M.RouteMatrixTravelModeOptions = {
 
 M.CalculateRouteMatrixInput = {
     type = "structure",
+    id = "CalculateRouteMatrixInput",
     members = {
         Allow = M.RouteMatrixAllowOptions,
         Avoid = M.RouteMatrixAvoidanceOptions,
@@ -1338,6 +1394,7 @@ M.RouteMatrixErrorCode = {
 
 M.RouteMatrixEntry = {
     type = "structure",
+    id = "RouteMatrixEntry",
     members = {
         Distance = {
             type = "long",
@@ -1361,6 +1418,7 @@ M.RouteMatrixEntry = {
 
 M.CalculateRouteMatrixOutput = {
     type = "structure",
+    id = "CalculateRouteMatrixOutput",
     members = {
         ErrorCount = {
             type = "integer",
@@ -1390,6 +1448,7 @@ M.CalculateRouteMatrixOutput = {
 
 M.RouteAllowOptions = {
     type = "structure",
+    id = "RouteAllowOptions",
     members = {
         Hot = {
             type = "boolean",
@@ -1402,6 +1461,7 @@ M.RouteAllowOptions = {
 
 M.RouteAvoidanceAreaGeometry = {
     type = "structure",
+    id = "RouteAvoidanceAreaGeometry",
     members = {
         Corridor = M.Corridor,
         BoundingBox = {
@@ -1422,6 +1482,7 @@ M.RouteAvoidanceAreaGeometry = {
 
 M.RouteAvoidanceArea = {
     type = "structure",
+    id = "RouteAvoidanceArea",
     members = {
         Except = {
             type = "list",
@@ -1441,6 +1502,7 @@ M.RouteZoneCategory = {
 
 M.RouteAvoidanceZoneCategory = {
     type = "structure",
+    id = "RouteAvoidanceZoneCategory",
     members = {
         Category = {
             type = "string",
@@ -1453,6 +1515,7 @@ M.RouteAvoidanceZoneCategory = {
 
 M.RouteAvoidanceOptions = {
     type = "structure",
+    id = "RouteAvoidanceOptions",
     members = {
         Areas = {
             type = "list",
@@ -1498,6 +1561,7 @@ M.RouteAvoidanceOptions = {
 
 M.RouteMatchingOptions = {
     type = "structure",
+    id = "RouteMatchingOptions",
     members = {
         NameHint = {
             type = "string",
@@ -1522,6 +1586,7 @@ M.RouteMatchingOptions = {
 
 M.RouteSideOfStreetOptions = {
     type = "structure",
+    id = "RouteSideOfStreetOptions",
     members = {
         Position = {
             type = "list",
@@ -1538,6 +1603,7 @@ M.RouteSideOfStreetOptions = {
 
 M.RouteDestinationOptions = {
     type = "structure",
+    id = "RouteDestinationOptions",
     members = {
         AvoidActionsForDistance = {
             type = "long",
@@ -1567,6 +1633,7 @@ M.RouteDestinationOptions = {
 
 M.RouteDriverScheduleInterval = {
     type = "structure",
+    id = "RouteDriverScheduleInterval",
     members = {
         DriveDuration = {
             type = "long",
@@ -1587,6 +1654,7 @@ M.RouteDriverScheduleInterval = {
 
 M.RouteDriverOptions = {
     type = "structure",
+    id = "RouteDriverOptions",
     members = {
         Schedule = {
             type = "list",
@@ -1597,6 +1665,7 @@ M.RouteDriverOptions = {
 
 M.RouteExclusionOptions = {
     type = "structure",
+    id = "RouteExclusionOptions",
     members = {
         Countries = {
             type = "list",
@@ -1627,6 +1696,7 @@ M.RouteLegAdditionalFeature = {
 
 M.RouteOriginOptions = {
     type = "structure",
+    id = "RouteOriginOptions",
     members = {
         AvoidActionsForDistance = {
             type = "long",
@@ -1677,6 +1747,7 @@ M.RouteSpanAdditionalFeature = {
 
 M.RouteEmissionType = {
     type = "structure",
+    id = "RouteEmissionType",
     members = {
         Co2EmissionClass = {
             type = "string",
@@ -1696,6 +1767,7 @@ M.RouteTollVehicleCategory = {
 
 M.RouteTollOptions = {
     type = "structure",
+    id = "RouteTollOptions",
     members = {
         AllTransponders = {
             type = "boolean",
@@ -1715,6 +1787,7 @@ M.RouteTollOptions = {
 
 M.RouteTrafficOptions = {
     type = "structure",
+    id = "RouteTrafficOptions",
     members = {
         FlowEventThresholdOverride = {
             type = "long",
@@ -1743,6 +1816,7 @@ M.RouteEngineType = {
 
 M.RouteVehicleLicensePlate = {
     type = "structure",
+    id = "RouteVehicleLicensePlate",
     members = {
         LastCharacter = {
             type = "string",
@@ -1752,6 +1826,7 @@ M.RouteVehicleLicensePlate = {
 
 M.RouteCarOptions = {
     type = "structure",
+    id = "RouteCarOptions",
     members = {
         EngineType = {
             type = "string",
@@ -1774,6 +1849,7 @@ M.RouteCarOptions = {
 
 M.RoutePedestrianOptions = {
     type = "structure",
+    id = "RoutePedestrianOptions",
     members = {
         Speed = {
             type = "double",
@@ -1786,6 +1862,7 @@ M.RoutePedestrianOptions = {
 
 M.RouteScooterOptions = {
     type = "structure",
+    id = "RouteScooterOptions",
     members = {
         EngineType = {
             type = "string",
@@ -1822,6 +1899,7 @@ M.RouteHazardousCargoType = {
 
 M.RouteTrailerOptions = {
     type = "structure",
+    id = "RouteTrailerOptions",
     members = {
         AxleCount = {
             type = "integer",
@@ -1846,6 +1924,7 @@ M.RouteTruckType = {
 
 M.RouteTruckOptions = {
     type = "structure",
+    id = "RouteTruckOptions",
     members = {
         AxleCount = {
             type = "integer",
@@ -1940,6 +2019,7 @@ M.RouteTruckOptions = {
 
 M.RouteTravelModeOptions = {
     type = "structure",
+    id = "RouteTravelModeOptions",
     members = {
         Car = M.RouteCarOptions,
         Pedestrian = M.RoutePedestrianOptions,
@@ -1955,6 +2035,7 @@ M.RouteTravelStepType = {
 
 M.RouteWaypoint = {
     type = "structure",
+    id = "RouteWaypoint",
     members = {
         AvoidActionsForDistance = {
             type = "long",
@@ -1994,6 +2075,7 @@ M.RouteWaypoint = {
 
 M.CalculateRoutesInput = {
     type = "structure",
+    id = "CalculateRoutesInput",
     members = {
         Allow = M.RouteAllowOptions,
         ArrivalTime = {
@@ -2083,6 +2165,7 @@ M.RouteNoticeImpact = {
 
 M.RouteResponseNotice = {
     type = "structure",
+    id = "RouteResponseNotice",
     members = {
         Code = {
             type = "string",
@@ -2102,6 +2185,7 @@ M.RouteFerryAfterTravelStepType = {
 
 M.RouteFerryAfterTravelStep = {
     type = "structure",
+    id = "RouteFerryAfterTravelStep",
     members = {
         Duration = {
             type = "long",
@@ -2124,6 +2208,7 @@ M.RouteFerryAfterTravelStep = {
 
 M.RouteFerryPlace = {
     type = "structure",
+    id = "RouteFerryPlace",
     members = {
         Name = {
             type = "string",
@@ -2147,6 +2232,7 @@ M.RouteFerryPlace = {
 
 M.RouteFerryArrival = {
     type = "structure",
+    id = "RouteFerryArrival",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -2163,6 +2249,7 @@ M.RouteFerryBeforeTravelStepType = {
 
 M.RouteFerryBeforeTravelStep = {
     type = "structure",
+    id = "RouteFerryBeforeTravelStep",
     members = {
         Duration = {
             type = "long",
@@ -2185,6 +2272,7 @@ M.RouteFerryBeforeTravelStep = {
 
 M.RouteFerryDeparture = {
     type = "structure",
+    id = "RouteFerryDeparture",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -2207,6 +2295,7 @@ M.RouteFerryNoticeCode = {
 
 M.RouteFerryNotice = {
     type = "structure",
+    id = "RouteFerryNotice",
     members = {
         Code = {
             type = "string",
@@ -2222,6 +2311,7 @@ M.RouteFerryNotice = {
 
 M.RoutePassThroughPlace = {
     type = "structure",
+    id = "RoutePassThroughPlace",
     members = {
         OriginalPosition = {
             type = "list",
@@ -2242,6 +2332,7 @@ M.RoutePassThroughPlace = {
 
 M.RoutePassThroughWaypoint = {
     type = "structure",
+    id = "RoutePassThroughWaypoint",
     members = {
         GeometryOffset = {
             type = "integer",
@@ -2254,6 +2345,7 @@ M.RoutePassThroughWaypoint = {
 
 M.LocalizedString = {
     type = "structure",
+    id = "LocalizedString",
     members = {
         Language = {
             type = "string",
@@ -2269,6 +2361,7 @@ M.LocalizedString = {
 
 M.RouteFerrySpan = {
     type = "structure",
+    id = "RouteFerrySpan",
     members = {
         Country = {
             type = "string",
@@ -2300,6 +2393,7 @@ M.RouteFerrySpan = {
 
 M.RouteFerryOverviewSummary = {
     type = "structure",
+    id = "RouteFerryOverviewSummary",
     members = {
         Distance = {
             type = "long",
@@ -2320,6 +2414,7 @@ M.RouteFerryOverviewSummary = {
 
 M.RouteFerryTravelOnlySummary = {
     type = "structure",
+    id = "RouteFerryTravelOnlySummary",
     members = {
         Duration = {
             type = "long",
@@ -2333,6 +2428,7 @@ M.RouteFerryTravelOnlySummary = {
 
 M.RouteFerrySummary = {
     type = "structure",
+    id = "RouteFerrySummary",
     members = {
         Overview = M.RouteFerryOverviewSummary,
         TravelOnly = M.RouteFerryTravelOnlySummary,
@@ -2347,6 +2443,7 @@ M.RouteFerryTravelStepType = {
 
 M.RouteFerryTravelStep = {
     type = "structure",
+    id = "RouteFerryTravelStep",
     members = {
         Distance = {
             type = "long",
@@ -2378,6 +2475,7 @@ M.RouteFerryTravelStep = {
 
 M.RouteFerryLegDetails = {
     type = "structure",
+    id = "RouteFerryLegDetails",
     members = {
         AfterTravelSteps = {
             type = "list",
@@ -2436,6 +2534,7 @@ M.RouteFerryLegDetails = {
 
 M.RouteLegGeometry = {
     type = "structure",
+    id = "RouteLegGeometry",
     members = {
         LineString = {
             type = "list",
@@ -2454,6 +2553,7 @@ M.RouteSideOfStreet = {
 
 M.RoutePedestrianPlace = {
     type = "structure",
+    id = "RoutePedestrianPlace",
     members = {
         Name = {
             type = "string",
@@ -2480,6 +2580,7 @@ M.RoutePedestrianPlace = {
 
 M.RoutePedestrianArrival = {
     type = "structure",
+    id = "RoutePedestrianArrival",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -2492,6 +2593,7 @@ M.RoutePedestrianArrival = {
 
 M.RoutePedestrianDeparture = {
     type = "structure",
+    id = "RoutePedestrianDeparture",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -2512,6 +2614,7 @@ M.RoutePedestrianNoticeCode = {
 
 M.RoutePedestrianNotice = {
     type = "structure",
+    id = "RoutePedestrianNotice",
     members = {
         Code = {
             type = "string",
@@ -2527,6 +2630,7 @@ M.RoutePedestrianNotice = {
 
 M.RouteSpanDynamicSpeedDetails = {
     type = "structure",
+    id = "RouteSpanDynamicSpeedDetails",
     members = {
         BestCaseSpeed = {
             type = "double",
@@ -2582,6 +2686,7 @@ M.RouteDirection = {
 
 M.RouteNumber = {
     type = "structure",
+    id = "RouteNumber",
     members = {
         Direction = {
             type = "string",
@@ -2600,6 +2705,7 @@ M.RouteNumber = {
 
 M.RouteSpanSpeedLimitDetails = {
     type = "structure",
+    id = "RouteSpanSpeedLimitDetails",
     members = {
         MaxSpeed = {
             type = "double",
@@ -2615,6 +2721,7 @@ M.RouteSpanSpeedLimitDetails = {
 
 M.RoutePedestrianSpan = {
     type = "structure",
+    id = "RoutePedestrianSpan",
     members = {
         BestCaseDuration = {
             type = "long",
@@ -2679,6 +2786,7 @@ M.RoutePedestrianSpan = {
 
 M.RoutePedestrianOverviewSummary = {
     type = "structure",
+    id = "RoutePedestrianOverviewSummary",
     members = {
         Distance = {
             type = "long",
@@ -2699,6 +2807,7 @@ M.RoutePedestrianOverviewSummary = {
 
 M.RoutePedestrianTravelOnlySummary = {
     type = "structure",
+    id = "RoutePedestrianTravelOnlySummary",
     members = {
         Duration = {
             type = "long",
@@ -2712,6 +2821,7 @@ M.RoutePedestrianTravelOnlySummary = {
 
 M.RoutePedestrianSummary = {
     type = "structure",
+    id = "RoutePedestrianSummary",
     members = {
         Overview = M.RoutePedestrianOverviewSummary,
         TravelOnly = M.RoutePedestrianTravelOnlySummary,
@@ -2720,6 +2830,7 @@ M.RoutePedestrianSummary = {
 
 M.RouteContinueStepDetails = {
     type = "structure",
+    id = "RouteContinueStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -2739,6 +2850,7 @@ M.RouteRoadType = {
 
 M.RouteRoad = {
     type = "structure",
+    id = "RouteRoad",
     members = {
         RoadName = {
             type = "list",
@@ -2781,6 +2893,7 @@ M.RouteTurnIntensity = {
 
 M.RouteKeepStepDetails = {
     type = "structure",
+    id = "RouteKeepStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -2806,6 +2919,7 @@ M.RouteKeepStepDetails = {
 
 M.RouteRoundaboutEnterStepDetails = {
     type = "structure",
+    id = "RouteRoundaboutEnterStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -2831,6 +2945,7 @@ M.RouteRoundaboutEnterStepDetails = {
 
 M.RouteRoundaboutExitStepDetails = {
     type = "structure",
+    id = "RouteRoundaboutExitStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -2859,6 +2974,7 @@ M.RouteRoundaboutExitStepDetails = {
 
 M.RouteRoundaboutPassStepDetails = {
     type = "structure",
+    id = "RouteRoundaboutPassStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -2884,6 +3000,7 @@ M.RouteRoundaboutPassStepDetails = {
 
 M.RouteSignpostLabel = {
     type = "structure",
+    id = "RouteSignpostLabel",
     members = {
         RouteNumber = M.RouteNumber,
         Text = M.LocalizedString,
@@ -2892,6 +3009,7 @@ M.RouteSignpostLabel = {
 
 M.RouteSignpost = {
     type = "structure",
+    id = "RouteSignpost",
     members = {
         Labels = {
             type = "list",
@@ -2905,6 +3023,7 @@ M.RouteSignpost = {
 
 M.RouteTurnStepDetails = {
     type = "structure",
+    id = "RouteTurnStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -2941,6 +3060,7 @@ M.RoutePedestrianTravelStepType = {
 
 M.RoutePedestrianTravelStep = {
     type = "structure",
+    id = "RoutePedestrianTravelStep",
     members = {
         ContinueStepDetails = M.RouteContinueStepDetails,
         CurrentRoad = M.RouteRoad,
@@ -2985,6 +3105,7 @@ M.RoutePedestrianTravelStep = {
 
 M.RoutePedestrianLegDetails = {
     type = "structure",
+    id = "RoutePedestrianLegDetails",
     members = {
         Arrival = setmetatable({ traits = {
             required = true,
@@ -3041,6 +3162,7 @@ M.RouteLegType = {
 
 M.RouteVehiclePlace = {
     type = "structure",
+    id = "RouteVehiclePlace",
     members = {
         Name = {
             type = "string",
@@ -3067,6 +3189,7 @@ M.RouteVehiclePlace = {
 
 M.RouteVehicleArrival = {
     type = "structure",
+    id = "RouteVehicleArrival",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -3079,6 +3202,7 @@ M.RouteVehicleArrival = {
 
 M.RouteVehicleDeparture = {
     type = "structure",
+    id = "RouteVehicleDeparture",
     members = {
         Place = setmetatable({ traits = {
             required = true,
@@ -3112,6 +3236,7 @@ M.RouteVehicleIncidentType = {
 
 M.RouteVehicleIncident = {
     type = "structure",
+    id = "RouteVehicleIncident",
     members = {
         Description = {
             type = "string",
@@ -3163,6 +3288,7 @@ M.RouteVehicleNoticeCode = {
 
 M.RouteNoticeDetailRange = {
     type = "structure",
+    id = "RouteNoticeDetailRange",
     members = {
         Min = {
             type = "integer",
@@ -3181,6 +3307,7 @@ M.RouteWeightConstraintType = {
 
 M.RouteWeightConstraint = {
     type = "structure",
+    id = "RouteWeightConstraint",
     members = {
         Type = {
             type = "string",
@@ -3200,6 +3327,7 @@ M.RouteWeightConstraint = {
 
 M.RouteViolatedConstraints = {
     type = "structure",
+    id = "RouteViolatedConstraints",
     members = {
         AllHazardsRestricted = {
             type = "boolean",
@@ -3275,6 +3403,7 @@ M.RouteViolatedConstraints = {
 
 M.RouteVehicleNoticeDetail = {
     type = "structure",
+    id = "RouteVehicleNoticeDetail",
     members = {
         Title = {
             type = "string",
@@ -3285,6 +3414,7 @@ M.RouteVehicleNoticeDetail = {
 
 M.RouteVehicleNotice = {
     type = "structure",
+    id = "RouteVehicleNotice",
     members = {
         Code = {
             type = "string",
@@ -3336,6 +3466,7 @@ M.RouteSpanTruckAccessAttribute = {
 
 M.RouteVehicleSpan = {
     type = "structure",
+    id = "RouteVehicleSpan",
     members = {
         BestCaseDuration = {
             type = "long",
@@ -3430,6 +3561,7 @@ M.RouteVehicleSpan = {
 
 M.RouteVehicleOverviewSummary = {
     type = "structure",
+    id = "RouteVehicleOverviewSummary",
     members = {
         BestCaseDuration = {
             type = "long",
@@ -3462,6 +3594,7 @@ M.RouteVehicleOverviewSummary = {
 
 M.RouteVehicleTravelOnlySummary = {
     type = "structure",
+    id = "RouteVehicleTravelOnlySummary",
     members = {
         BestCaseDuration = {
             type = "long",
@@ -3487,6 +3620,7 @@ M.RouteVehicleTravelOnlySummary = {
 
 M.RouteVehicleSummary = {
     type = "structure",
+    id = "RouteVehicleSummary",
     members = {
         Overview = M.RouteVehicleOverviewSummary,
         TravelOnly = M.RouteVehicleTravelOnlySummary,
@@ -3495,6 +3629,7 @@ M.RouteVehicleSummary = {
 
 M.RouteTollPaymentSite = {
     type = "structure",
+    id = "RouteTollPaymentSite",
     members = {
         Name = {
             type = "string",
@@ -3511,6 +3646,7 @@ M.RouteTollPaymentSite = {
 
 M.RouteTollPriceValueRange = {
     type = "structure",
+    id = "RouteTollPriceValueRange",
     members = {
         Min = {
             type = "double",
@@ -3529,6 +3665,7 @@ M.RouteTollPriceValueRange = {
 
 M.RouteTollPrice = {
     type = "structure",
+    id = "RouteTollPrice",
     members = {
         Currency = {
             type = "string",
@@ -3574,6 +3711,7 @@ M.RouteTollPassValidityPeriodType = {
 
 M.RouteTollPassValidityPeriod = {
     type = "structure",
+    id = "RouteTollPassValidityPeriod",
     members = {
         Period = {
             type = "string",
@@ -3589,6 +3727,7 @@ M.RouteTollPassValidityPeriod = {
 
 M.RouteTollPass = {
     type = "structure",
+    id = "RouteTollPass",
     members = {
         IncludesReturnTrip = {
             type = "boolean",
@@ -3619,6 +3758,7 @@ M.RouteTollPaymentMethod = {
 
 M.RouteTransponder = {
     type = "structure",
+    id = "RouteTransponder",
     members = {
         SystemName = {
             type = "string",
@@ -3628,6 +3768,7 @@ M.RouteTransponder = {
 
 M.RouteTollRate = {
     type = "structure",
+    id = "RouteTollRate",
     members = {
         ApplicableTimes = {
             type = "string",
@@ -3668,6 +3809,7 @@ M.RouteTollRate = {
 
 M.RouteToll = {
     type = "structure",
+    id = "RouteToll",
     members = {
         Country = {
             type = "string",
@@ -3698,6 +3840,7 @@ M.RouteToll = {
 
 M.RouteTollSystem = {
     type = "structure",
+    id = "RouteTollSystem",
     members = {
         Name = {
             type = "string",
@@ -3707,6 +3850,7 @@ M.RouteTollSystem = {
 
 M.RouteContinueHighwayStepDetails = {
     type = "structure",
+    id = "RouteContinueHighwayStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -3732,6 +3876,7 @@ M.RouteContinueHighwayStepDetails = {
 
 M.RouteEnterHighwayStepDetails = {
     type = "structure",
+    id = "RouteEnterHighwayStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -3757,6 +3902,7 @@ M.RouteEnterHighwayStepDetails = {
 
 M.RouteExitStepDetails = {
     type = "structure",
+    id = "RouteExitStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -3788,6 +3934,7 @@ M.RouteExitStepDetails = {
 
 M.RouteRampStepDetails = {
     type = "structure",
+    id = "RouteRampStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -3829,6 +3976,7 @@ M.RouteVehicleTravelStepType = {
 
 M.RouteUTurnStepDetails = {
     type = "structure",
+    id = "RouteUTurnStepDetails",
     members = {
         Intersection = {
             type = "list",
@@ -3854,6 +4002,7 @@ M.RouteUTurnStepDetails = {
 
 M.RouteVehicleTravelStep = {
     type = "structure",
+    id = "RouteVehicleTravelStep",
     members = {
         ContinueHighwayStepDetails = M.RouteContinueHighwayStepDetails,
         ContinueStepDetails = M.RouteContinueStepDetails,
@@ -3903,6 +4052,7 @@ M.RouteVehicleTravelStep = {
 
 M.RouteZone = {
     type = "structure",
+    id = "RouteZone",
     members = {
         Category = {
             type = "string",
@@ -3915,6 +4065,7 @@ M.RouteZone = {
 
 M.RouteVehicleLegDetails = {
     type = "structure",
+    id = "RouteVehicleLegDetails",
     members = {
         Arrival = setmetatable({ traits = {
             required = true,
@@ -3991,6 +4142,7 @@ M.RouteVehicleLegDetails = {
 
 M.RouteLeg = {
     type = "structure",
+    id = "RouteLeg",
     members = {
         FerryLegDetails = M.RouteFerryLegDetails,
         Geometry = setmetatable({ traits = {
@@ -4018,6 +4170,7 @@ M.RouteLeg = {
 
 M.RouteMajorRoadLabel = {
     type = "structure",
+    id = "RouteMajorRoadLabel",
     members = {
         RoadName = M.LocalizedString,
         RouteNumber = M.RouteNumber,
@@ -4026,6 +4179,7 @@ M.RouteMajorRoadLabel = {
 
 M.RouteTollPriceSummary = {
     type = "structure",
+    id = "RouteTollPriceSummary",
     members = {
         Currency = {
             type = "string",
@@ -4057,6 +4211,7 @@ M.RouteTollPriceSummary = {
 
 M.RouteTollSummary = {
     type = "structure",
+    id = "RouteTollSummary",
     members = {
         Total = M.RouteTollPriceSummary,
     },
@@ -4064,6 +4219,7 @@ M.RouteTollSummary = {
 
 M.RouteSummary = {
     type = "structure",
+    id = "RouteSummary",
     members = {
         Distance = {
             type = "long",
@@ -4083,6 +4239,7 @@ M.RouteSummary = {
 
 M.Route = {
     type = "structure",
+    id = "Route",
     members = {
         Legs = {
             type = "list",
@@ -4104,6 +4261,7 @@ M.Route = {
 
 M.CalculateRoutesOutput = {
     type = "structure",
+    id = "CalculateRoutesOutput",
     members = {
         LegGeometryFormat = {
             type = "string",
@@ -4147,6 +4305,7 @@ M.DayOfWeek = {
 
 M.WaypointOptimizationAvoidanceAreaGeometry = {
     type = "structure",
+    id = "WaypointOptimizationAvoidanceAreaGeometry",
     members = {
         BoundingBox = {
             type = "list",
@@ -4157,6 +4316,7 @@ M.WaypointOptimizationAvoidanceAreaGeometry = {
 
 M.WaypointOptimizationAvoidanceArea = {
     type = "structure",
+    id = "WaypointOptimizationAvoidanceArea",
     members = {
         Geometry = setmetatable({ traits = {
             required = true,
@@ -4166,6 +4326,7 @@ M.WaypointOptimizationAvoidanceArea = {
 
 M.WaypointOptimizationAvoidanceOptions = {
     type = "structure",
+    id = "WaypointOptimizationAvoidanceOptions",
     members = {
         Areas = {
             type = "list",
@@ -4202,6 +4363,7 @@ M.WaypointOptimizationClusteringAlgorithm = {
 
 M.WaypointOptimizationDrivingDistanceOptions = {
     type = "structure",
+    id = "WaypointOptimizationDrivingDistanceOptions",
     members = {
         DrivingDistance = {
             type = "long",
@@ -4215,6 +4377,7 @@ M.WaypointOptimizationDrivingDistanceOptions = {
 
 M.WaypointOptimizationClusteringOptions = {
     type = "structure",
+    id = "WaypointOptimizationClusteringOptions",
     members = {
         Algorithm = {
             type = "string",
@@ -4228,6 +4391,7 @@ M.WaypointOptimizationClusteringOptions = {
 
 M.WaypointOptimizationAccessHoursEntry = {
     type = "structure",
+    id = "WaypointOptimizationAccessHoursEntry",
     members = {
         DayOfWeek = {
             type = "string",
@@ -4246,6 +4410,7 @@ M.WaypointOptimizationAccessHoursEntry = {
 
 M.WaypointOptimizationAccessHours = {
     type = "structure",
+    id = "WaypointOptimizationAccessHours",
     members = {
         From = setmetatable({ traits = {
             required = true,
@@ -4258,6 +4423,7 @@ M.WaypointOptimizationAccessHours = {
 
 M.WaypointOptimizationSideOfStreetOptions = {
     type = "structure",
+    id = "WaypointOptimizationSideOfStreetOptions",
     members = {
         Position = {
             type = "list",
@@ -4274,6 +4440,7 @@ M.WaypointOptimizationSideOfStreetOptions = {
 
 M.WaypointOptimizationDestinationOptions = {
     type = "structure",
+    id = "WaypointOptimizationDestinationOptions",
     members = {
         AccessHours = M.WaypointOptimizationAccessHours,
         AppointmentTime = {
@@ -4300,6 +4467,7 @@ M.WaypointOptimizationDestinationOptions = {
 
 M.WaypointOptimizationRestCycleDurations = {
     type = "structure",
+    id = "WaypointOptimizationRestCycleDurations",
     members = {
         RestDuration = {
             type = "long",
@@ -4320,6 +4488,7 @@ M.WaypointOptimizationRestCycleDurations = {
 
 M.WaypointOptimizationRestCycles = {
     type = "structure",
+    id = "WaypointOptimizationRestCycles",
     members = {
         LongCycle = setmetatable({ traits = {
             required = true,
@@ -4332,6 +4501,7 @@ M.WaypointOptimizationRestCycles = {
 
 M.WaypointOptimizationRestProfile = {
     type = "structure",
+    id = "WaypointOptimizationRestProfile",
     members = {
         Profile = {
             type = "string",
@@ -4349,6 +4519,7 @@ M.WaypointOptimizationServiceTimeTreatment = {
 
 M.WaypointOptimizationDriverOptions = {
     type = "structure",
+    id = "WaypointOptimizationDriverOptions",
     members = {
         RestCycles = M.WaypointOptimizationRestCycles,
         RestProfile = M.WaypointOptimizationRestProfile,
@@ -4360,6 +4531,7 @@ M.WaypointOptimizationDriverOptions = {
 
 M.WaypointOptimizationExclusionOptions = {
     type = "structure",
+    id = "WaypointOptimizationExclusionOptions",
     members = {
         Countries = {
             type = "list",
@@ -4378,6 +4550,7 @@ M.WaypointOptimizationSequencingObjective = {
 
 M.WaypointOptimizationOriginOptions = {
     type = "structure",
+    id = "WaypointOptimizationOriginOptions",
     members = {
         Id = {
             type = "string",
@@ -4387,6 +4560,7 @@ M.WaypointOptimizationOriginOptions = {
 
 M.WaypointOptimizationTrafficOptions = {
     type = "structure",
+    id = "WaypointOptimizationTrafficOptions",
     members = {
         Usage = {
             type = "string",
@@ -4403,6 +4577,7 @@ M.WaypointOptimizationTravelMode = {
 
 M.WaypointOptimizationPedestrianOptions = {
     type = "structure",
+    id = "WaypointOptimizationPedestrianOptions",
     members = {
         Speed = {
             type = "double",
@@ -4429,6 +4604,7 @@ M.WaypointOptimizationHazardousCargoType = {
 
 M.WaypointOptimizationTrailerOptions = {
     type = "structure",
+    id = "WaypointOptimizationTrailerOptions",
     members = {
         TrailerCount = {
             type = "integer",
@@ -4443,6 +4619,7 @@ M.WaypointOptimizationTruckType = {
 
 M.WaypointOptimizationTruckOptions = {
     type = "structure",
+    id = "WaypointOptimizationTruckOptions",
     members = {
         GrossWeight = {
             type = "long",
@@ -4490,6 +4667,7 @@ M.WaypointOptimizationTruckOptions = {
 
 M.WaypointOptimizationTravelModeOptions = {
     type = "structure",
+    id = "WaypointOptimizationTravelModeOptions",
     members = {
         Pedestrian = M.WaypointOptimizationPedestrianOptions,
         Truck = M.WaypointOptimizationTruckOptions,
@@ -4498,6 +4676,7 @@ M.WaypointOptimizationTravelModeOptions = {
 
 M.WaypointOptimizationWaypoint = {
     type = "structure",
+    id = "WaypointOptimizationWaypoint",
     members = {
         AccessHours = M.WaypointOptimizationAccessHours,
         AppointmentTime = {
@@ -4535,6 +4714,7 @@ M.WaypointOptimizationWaypoint = {
 
 M.OptimizeWaypointsInput = {
     type = "structure",
+    id = "OptimizeWaypointsInput",
     members = {
         Avoid = M.WaypointOptimizationAvoidanceOptions,
         Clustering = M.WaypointOptimizationClusteringOptions,
@@ -4579,6 +4759,7 @@ M.OptimizeWaypointsInput = {
 
 M.WaypointOptimizationConnection = {
     type = "structure",
+    id = "WaypointOptimizationConnection",
     members = {
         Distance = {
             type = "long",
@@ -4634,6 +4815,7 @@ M.WaypointOptimizationConstraint = {
 
 M.WaypointOptimizationFailedConstraint = {
     type = "structure",
+    id = "WaypointOptimizationFailedConstraint",
     members = {
         Constraint = {
             type = "string",
@@ -4646,6 +4828,7 @@ M.WaypointOptimizationFailedConstraint = {
 
 M.WaypointOptimizationImpedingWaypoint = {
     type = "structure",
+    id = "WaypointOptimizationImpedingWaypoint",
     members = {
         FailedConstraints = {
             type = "list",
@@ -4672,6 +4855,7 @@ M.WaypointOptimizationImpedingWaypoint = {
 
 M.WaypointOptimizationOptimizedWaypoint = {
     type = "structure",
+    id = "WaypointOptimizationOptimizedWaypoint",
     members = {
         ArrivalTime = {
             type = "string",
@@ -4703,6 +4887,7 @@ M.WaypointOptimizationOptimizedWaypoint = {
 
 M.WaypointOptimizationTimeBreakdown = {
     type = "structure",
+    id = "WaypointOptimizationTimeBreakdown",
     members = {
         RestDuration = {
             type = "long",
@@ -4737,6 +4922,7 @@ M.WaypointOptimizationTimeBreakdown = {
 
 M.OptimizeWaypointsOutput = {
     type = "structure",
+    id = "OptimizeWaypointsOutput",
     members = {
         Connections = {
             type = "list",
@@ -4788,6 +4974,7 @@ M.OptimizeWaypointsOutput = {
 
 M.RoadSnapTracePoint = {
     type = "structure",
+    id = "RoadSnapTracePoint",
     members = {
         Heading = {
             type = "double",
@@ -4837,6 +5024,7 @@ M.RoadSnapHazardousCargoType = {
 
 M.RoadSnapTrailerOptions = {
     type = "structure",
+    id = "RoadSnapTrailerOptions",
     members = {
         TrailerCount = {
             type = "integer",
@@ -4846,6 +5034,7 @@ M.RoadSnapTrailerOptions = {
 
 M.RoadSnapTruckOptions = {
     type = "structure",
+    id = "RoadSnapTruckOptions",
     members = {
         GrossWeight = {
             type = "long",
@@ -4884,6 +5073,7 @@ M.RoadSnapTruckOptions = {
 
 M.RoadSnapTravelModeOptions = {
     type = "structure",
+    id = "RoadSnapTravelModeOptions",
     members = {
         Truck = M.RoadSnapTruckOptions,
     },
@@ -4891,6 +5081,7 @@ M.RoadSnapTravelModeOptions = {
 
 M.SnapToRoadsInput = {
     type = "structure",
+    id = "SnapToRoadsInput",
     members = {
         Key = {
             type = "string",
@@ -4933,6 +5124,7 @@ M.RoadSnapNoticeCode = {
 
 M.RoadSnapNotice = {
     type = "structure",
+    id = "RoadSnapNotice",
     members = {
         Code = {
             type = "string",
@@ -4958,6 +5150,7 @@ M.RoadSnapNotice = {
 
 M.RoadSnapSnappedGeometry = {
     type = "structure",
+    id = "RoadSnapSnappedGeometry",
     members = {
         LineString = {
             type = "list",
@@ -4971,6 +5164,7 @@ M.RoadSnapSnappedGeometry = {
 
 M.RoadSnapSnappedTracePoint = {
     type = "structure",
+    id = "RoadSnapSnappedTracePoint",
     members = {
         Confidence = {
             type = "double",
@@ -4997,6 +5191,7 @@ M.RoadSnapSnappedTracePoint = {
 
 M.SnapToRoadsOutput = {
     type = "structure",
+    id = "SnapToRoadsOutput",
     members = {
         Notices = {
             type = "list",

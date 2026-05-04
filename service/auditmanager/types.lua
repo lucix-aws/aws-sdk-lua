@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -32,6 +33,7 @@ M.ActionEnum = {
 
 M.AWSAccount = {
     type = "structure",
+    id = "AWSAccount",
     members = {
         id = {
             type = "string",
@@ -47,6 +49,7 @@ M.AWSAccount = {
 
 M.ControlComment = {
     type = "structure",
+    id = "ControlComment",
     members = {
         authorName = {
             type = "string",
@@ -75,6 +78,7 @@ M.ControlStatus = {
 
 M.AssessmentControl = {
     type = "structure",
+    id = "AssessmentControl",
     members = {
         id = {
             type = "string",
@@ -127,6 +131,7 @@ M.DelegationStatus = {
 
 M.Delegation = {
     type = "structure",
+    id = "Delegation",
     members = {
         id = {
             type = "string",
@@ -166,6 +171,7 @@ M.Delegation = {
 
 M.Role = {
     type = "structure",
+    id = "Role",
     members = {
         roleType = {
             type = "string",
@@ -190,6 +196,7 @@ M.ControlSetStatus = {
 
 M.AssessmentControlSet = {
     type = "structure",
+    id = "AssessmentControlSet",
     members = {
         id = {
             type = "string",
@@ -229,6 +236,7 @@ M.AssessmentControlSet = {
 
 M.FrameworkMetadata = {
     type = "structure",
+    id = "FrameworkMetadata",
     members = {
         name = {
             type = "string",
@@ -247,6 +255,7 @@ M.FrameworkMetadata = {
 
 M.AssessmentFramework = {
     type = "structure",
+    id = "AssessmentFramework",
     members = {
         id = {
             type = "string",
@@ -268,6 +277,7 @@ M.AssessmentReportDestinationType = {
 
 M.AssessmentReportsDestination = {
     type = "structure",
+    id = "AssessmentReportsDestination",
     members = {
         destinationType = {
             type = "string",
@@ -280,6 +290,7 @@ M.AssessmentReportsDestination = {
 
 M.AWSService = {
     type = "structure",
+    id = "AWSService",
     members = {
         serviceName = {
             type = "string",
@@ -289,6 +300,7 @@ M.AWSService = {
 
 M.Scope = {
     type = "structure",
+    id = "Scope",
     members = {
         awsAccounts = {
             type = "list",
@@ -308,6 +320,7 @@ M.AssessmentStatus = {
 
 M.AssessmentMetadata = {
     type = "structure",
+    id = "AssessmentMetadata",
     members = {
         name = {
             type = "string",
@@ -345,6 +358,7 @@ M.AssessmentMetadata = {
 
 M.Assessment = {
     type = "structure",
+    id = "Assessment",
     members = {
         arn = {
             type = "string",
@@ -362,6 +376,7 @@ M.Assessment = {
 
 M.AssessmentEvidenceFolder = {
     type = "structure",
+    id = "AssessmentEvidenceFolder",
     members = {
         name = {
             type = "string",
@@ -454,6 +469,7 @@ M.FrameworkType = {
 
 M.AssessmentFrameworkMetadata = {
     type = "structure",
+    id = "AssessmentFrameworkMetadata",
     members = {
         arn = {
             type = "string",
@@ -510,6 +526,7 @@ M.ShareRequestStatus = {
 
 M.AssessmentFrameworkShareRequest = {
     type = "structure",
+    id = "AssessmentFrameworkShareRequest",
     members = {
         id = {
             type = "string",
@@ -561,6 +578,7 @@ M.AssessmentFrameworkShareRequest = {
 
 M.AssessmentMetadataItem = {
     type = "structure",
+    id = "AssessmentMetadataItem",
     members = {
         name = {
             type = "string",
@@ -599,6 +617,7 @@ M.AssessmentReportStatus = {
 
 M.AssessmentReport = {
     type = "structure",
+    id = "AssessmentReport",
     members = {
         id = {
             type = "string",
@@ -632,6 +651,7 @@ M.AssessmentReport = {
 
 M.AssessmentReportEvidenceError = {
     type = "structure",
+    id = "AssessmentReportEvidenceError",
     members = {
         evidenceId = {
             type = "string",
@@ -647,6 +667,7 @@ M.AssessmentReportEvidenceError = {
 
 M.AssessmentReportMetadata = {
     type = "structure",
+    id = "AssessmentReportMetadata",
     members = {
         id = {
             type = "string",
@@ -677,6 +698,7 @@ M.AssessmentReportMetadata = {
 
 M.AssociateAssessmentReportEvidenceFolderInput = {
     type = "structure",
+    id = "AssociateAssessmentReportEvidenceFolderInput",
     members = {
         assessmentId = {
             type = "string",
@@ -696,10 +718,12 @@ M.AssociateAssessmentReportEvidenceFolderInput = {
 
 M.AssociateAssessmentReportEvidenceFolderOutput = {
     type = "structure",
+    id = "AssociateAssessmentReportEvidenceFolderOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -713,6 +737,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -738,6 +763,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -763,6 +789,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -783,6 +810,7 @@ M.ValidationException = {
 
 M.BatchAssociateAssessmentReportEvidenceInput = {
     type = "structure",
+    id = "BatchAssociateAssessmentReportEvidenceInput",
     members = {
         assessmentId = {
             type = "string",
@@ -809,6 +837,7 @@ M.BatchAssociateAssessmentReportEvidenceInput = {
 
 M.BatchAssociateAssessmentReportEvidenceOutput = {
     type = "structure",
+    id = "BatchAssociateAssessmentReportEvidenceOutput",
     members = {
         evidenceIds = {
             type = "list",
@@ -823,6 +852,7 @@ M.BatchAssociateAssessmentReportEvidenceOutput = {
 
 M.CreateDelegationRequest = {
     type = "structure",
+    id = "CreateDelegationRequest",
     members = {
         comment = {
             type = "string",
@@ -841,6 +871,7 @@ M.CreateDelegationRequest = {
 
 M.BatchCreateDelegationByAssessmentInput = {
     type = "structure",
+    id = "BatchCreateDelegationByAssessmentInput",
     members = {
         createDelegationRequests = {
             type = "list",
@@ -861,6 +892,7 @@ M.BatchCreateDelegationByAssessmentInput = {
 
 M.BatchCreateDelegationByAssessmentError = {
     type = "structure",
+    id = "BatchCreateDelegationByAssessmentError",
     members = {
         createDelegationRequest = M.CreateDelegationRequest,
         errorCode = {
@@ -874,6 +906,7 @@ M.BatchCreateDelegationByAssessmentError = {
 
 M.BatchCreateDelegationByAssessmentOutput = {
     type = "structure",
+    id = "BatchCreateDelegationByAssessmentOutput",
     members = {
         delegations = {
             type = "list",
@@ -888,6 +921,7 @@ M.BatchCreateDelegationByAssessmentOutput = {
 
 M.BatchDeleteDelegationByAssessmentInput = {
     type = "structure",
+    id = "BatchDeleteDelegationByAssessmentInput",
     members = {
         delegationIds = {
             type = "list",
@@ -908,6 +942,7 @@ M.BatchDeleteDelegationByAssessmentInput = {
 
 M.BatchDeleteDelegationByAssessmentError = {
     type = "structure",
+    id = "BatchDeleteDelegationByAssessmentError",
     members = {
         delegationId = {
             type = "string",
@@ -923,6 +958,7 @@ M.BatchDeleteDelegationByAssessmentError = {
 
 M.BatchDeleteDelegationByAssessmentOutput = {
     type = "structure",
+    id = "BatchDeleteDelegationByAssessmentOutput",
     members = {
         errors = {
             type = "list",
@@ -933,6 +969,7 @@ M.BatchDeleteDelegationByAssessmentOutput = {
 
 M.BatchDisassociateAssessmentReportEvidenceInput = {
     type = "structure",
+    id = "BatchDisassociateAssessmentReportEvidenceInput",
     members = {
         assessmentId = {
             type = "string",
@@ -959,6 +996,7 @@ M.BatchDisassociateAssessmentReportEvidenceInput = {
 
 M.BatchDisassociateAssessmentReportEvidenceOutput = {
     type = "structure",
+    id = "BatchDisassociateAssessmentReportEvidenceOutput",
     members = {
         evidenceIds = {
             type = "list",
@@ -973,6 +1011,7 @@ M.BatchDisassociateAssessmentReportEvidenceOutput = {
 
 M.ManualEvidence = {
     type = "structure",
+    id = "ManualEvidence",
     members = {
         s3ResourcePath = {
             type = "string",
@@ -988,6 +1027,7 @@ M.ManualEvidence = {
 
 M.BatchImportEvidenceToAssessmentControlInput = {
     type = "structure",
+    id = "BatchImportEvidenceToAssessmentControlInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1022,6 +1062,7 @@ M.BatchImportEvidenceToAssessmentControlInput = {
 
 M.BatchImportEvidenceToAssessmentControlError = {
     type = "structure",
+    id = "BatchImportEvidenceToAssessmentControlError",
     members = {
         manualEvidence = M.ManualEvidence,
         errorCode = {
@@ -1035,6 +1076,7 @@ M.BatchImportEvidenceToAssessmentControlError = {
 
 M.BatchImportEvidenceToAssessmentControlOutput = {
     type = "structure",
+    id = "BatchImportEvidenceToAssessmentControlOutput",
     members = {
         errors = {
             type = "list",
@@ -1045,6 +1087,7 @@ M.BatchImportEvidenceToAssessmentControlOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -1058,6 +1101,7 @@ M.ThrottlingException = {
 
 M.CreateAssessmentInput = {
     type = "structure",
+    id = "CreateAssessmentInput",
     members = {
         name = {
             type = "string",
@@ -1097,6 +1141,7 @@ M.CreateAssessmentInput = {
 
 M.CreateAssessmentOutput = {
     type = "structure",
+    id = "CreateAssessmentOutput",
     members = {
         assessment = M.Assessment,
     },
@@ -1104,6 +1149,7 @@ M.CreateAssessmentOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1117,6 +1163,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateAssessmentFrameworkControl = {
     type = "structure",
+    id = "CreateAssessmentFrameworkControl",
     members = {
         id = {
             type = "string",
@@ -1129,6 +1176,7 @@ M.CreateAssessmentFrameworkControl = {
 
 M.CreateAssessmentFrameworkControlSet = {
     type = "structure",
+    id = "CreateAssessmentFrameworkControlSet",
     members = {
         name = {
             type = "string",
@@ -1145,6 +1193,7 @@ M.CreateAssessmentFrameworkControlSet = {
 
 M.CreateAssessmentFrameworkInput = {
     type = "structure",
+    id = "CreateAssessmentFrameworkInput",
     members = {
         name = {
             type = "string",
@@ -1187,6 +1236,7 @@ M.KeywordInputType = {
 
 M.SourceKeyword = {
     type = "structure",
+    id = "SourceKeyword",
     members = {
         keywordInputType = {
             type = "string",
@@ -1214,6 +1264,7 @@ M.SourceType = {
 
 M.ControlMappingSource = {
     type = "structure",
+    id = "ControlMappingSource",
     members = {
         sourceId = {
             type = "string",
@@ -1253,6 +1304,7 @@ M.ControlType = {
 
 M.Control = {
     type = "structure",
+    id = "Control",
     members = {
         arn = {
             type = "string",
@@ -1310,6 +1362,7 @@ M.Control = {
 
 M.ControlSet = {
     type = "structure",
+    id = "ControlSet",
     members = {
         id = {
             type = "string",
@@ -1326,6 +1379,7 @@ M.ControlSet = {
 
 M.Framework = {
     type = "structure",
+    id = "Framework",
     members = {
         arn = {
             type = "string",
@@ -1377,6 +1431,7 @@ M.Framework = {
 
 M.CreateAssessmentFrameworkOutput = {
     type = "structure",
+    id = "CreateAssessmentFrameworkOutput",
     members = {
         framework = M.Framework,
     },
@@ -1384,6 +1439,7 @@ M.CreateAssessmentFrameworkOutput = {
 
 M.CreateAssessmentReportInput = {
     type = "structure",
+    id = "CreateAssessmentReportInput",
     members = {
         name = {
             type = "string",
@@ -1409,6 +1465,7 @@ M.CreateAssessmentReportInput = {
 
 M.CreateAssessmentReportOutput = {
     type = "structure",
+    id = "CreateAssessmentReportOutput",
     members = {
         assessmentReport = M.AssessmentReport,
     },
@@ -1416,6 +1473,7 @@ M.CreateAssessmentReportOutput = {
 
 M.CreateControlMappingSource = {
     type = "structure",
+    id = "CreateControlMappingSource",
     members = {
         sourceName = {
             type = "string",
@@ -1441,6 +1499,7 @@ M.CreateControlMappingSource = {
 
 M.CreateControlInput = {
     type = "structure",
+    id = "CreateControlInput",
     members = {
         name = {
             type = "string",
@@ -1477,6 +1536,7 @@ M.CreateControlInput = {
 
 M.CreateControlOutput = {
     type = "structure",
+    id = "CreateControlOutput",
     members = {
         control = M.Control,
     },
@@ -1484,6 +1544,7 @@ M.CreateControlOutput = {
 
 M.DeleteAssessmentInput = {
     type = "structure",
+    id = "DeleteAssessmentInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1497,10 +1558,12 @@ M.DeleteAssessmentInput = {
 
 M.DeleteAssessmentOutput = {
     type = "structure",
+    id = "DeleteAssessmentOutput",
 }
 
 M.DeleteAssessmentFrameworkInput = {
     type = "structure",
+    id = "DeleteAssessmentFrameworkInput",
     members = {
         frameworkId = {
             type = "string",
@@ -1514,6 +1577,7 @@ M.DeleteAssessmentFrameworkInput = {
 
 M.DeleteAssessmentFrameworkOutput = {
     type = "structure",
+    id = "DeleteAssessmentFrameworkOutput",
 }
 
 M.ShareRequestType = {
@@ -1523,6 +1587,7 @@ M.ShareRequestType = {
 
 M.DeleteAssessmentFrameworkShareInput = {
     type = "structure",
+    id = "DeleteAssessmentFrameworkShareInput",
     members = {
         requestId = {
             type = "string",
@@ -1543,10 +1608,12 @@ M.DeleteAssessmentFrameworkShareInput = {
 
 M.DeleteAssessmentFrameworkShareOutput = {
     type = "structure",
+    id = "DeleteAssessmentFrameworkShareOutput",
 }
 
 M.DeleteAssessmentReportInput = {
     type = "structure",
+    id = "DeleteAssessmentReportInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1567,10 +1634,12 @@ M.DeleteAssessmentReportInput = {
 
 M.DeleteAssessmentReportOutput = {
     type = "structure",
+    id = "DeleteAssessmentReportOutput",
 }
 
 M.DeleteControlInput = {
     type = "structure",
+    id = "DeleteControlInput",
     members = {
         controlId = {
             type = "string",
@@ -1584,14 +1653,17 @@ M.DeleteControlInput = {
 
 M.DeleteControlOutput = {
     type = "structure",
+    id = "DeleteControlOutput",
 }
 
 M.DeregisterAccountInput = {
     type = "structure",
+    id = "DeregisterAccountInput",
 }
 
 M.DeregisterAccountOutput = {
     type = "structure",
+    id = "DeregisterAccountOutput",
     members = {
         status = {
             type = "string",
@@ -1601,6 +1673,7 @@ M.DeregisterAccountOutput = {
 
 M.DeregisterOrganizationAdminAccountInput = {
     type = "structure",
+    id = "DeregisterOrganizationAdminAccountInput",
     members = {
         adminAccountId = {
             type = "string",
@@ -1610,10 +1683,12 @@ M.DeregisterOrganizationAdminAccountInput = {
 
 M.DeregisterOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "DeregisterOrganizationAdminAccountOutput",
 }
 
 M.DisassociateAssessmentReportEvidenceFolderInput = {
     type = "structure",
+    id = "DisassociateAssessmentReportEvidenceFolderInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1633,14 +1708,17 @@ M.DisassociateAssessmentReportEvidenceFolderInput = {
 
 M.DisassociateAssessmentReportEvidenceFolderOutput = {
     type = "structure",
+    id = "DisassociateAssessmentReportEvidenceFolderOutput",
 }
 
 M.GetAccountStatusInput = {
     type = "structure",
+    id = "GetAccountStatusInput",
 }
 
 M.GetAccountStatusOutput = {
     type = "structure",
+    id = "GetAccountStatusOutput",
     members = {
         status = {
             type = "string",
@@ -1650,6 +1728,7 @@ M.GetAccountStatusOutput = {
 
 M.GetAssessmentInput = {
     type = "structure",
+    id = "GetAssessmentInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1663,6 +1742,7 @@ M.GetAssessmentInput = {
 
 M.GetAssessmentOutput = {
     type = "structure",
+    id = "GetAssessmentOutput",
     members = {
         assessment = M.Assessment,
         userRole = M.Role,
@@ -1671,6 +1751,7 @@ M.GetAssessmentOutput = {
 
 M.GetAssessmentFrameworkInput = {
     type = "structure",
+    id = "GetAssessmentFrameworkInput",
     members = {
         frameworkId = {
             type = "string",
@@ -1684,6 +1765,7 @@ M.GetAssessmentFrameworkInput = {
 
 M.GetAssessmentFrameworkOutput = {
     type = "structure",
+    id = "GetAssessmentFrameworkOutput",
     members = {
         framework = M.Framework,
     },
@@ -1691,6 +1773,7 @@ M.GetAssessmentFrameworkOutput = {
 
 M.GetAssessmentReportUrlInput = {
     type = "structure",
+    id = "GetAssessmentReportUrlInput",
     members = {
         assessmentReportId = {
             type = "string",
@@ -1711,6 +1794,7 @@ M.GetAssessmentReportUrlInput = {
 
 M.URL = {
     type = "structure",
+    id = "URL",
     members = {
         hyperlinkName = {
             type = "string",
@@ -1723,6 +1807,7 @@ M.URL = {
 
 M.GetAssessmentReportUrlOutput = {
     type = "structure",
+    id = "GetAssessmentReportUrlOutput",
     members = {
         preSignedUrl = M.URL,
     },
@@ -1730,6 +1815,7 @@ M.GetAssessmentReportUrlOutput = {
 
 M.GetChangeLogsInput = {
     type = "structure",
+    id = "GetChangeLogsInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1775,6 +1861,7 @@ M.ObjectTypeEnum = {
 
 M.ChangeLog = {
     type = "structure",
+    id = "ChangeLog",
     members = {
         objectType = {
             type = "string",
@@ -1796,6 +1883,7 @@ M.ChangeLog = {
 
 M.GetChangeLogsOutput = {
     type = "structure",
+    id = "GetChangeLogsOutput",
     members = {
         changeLogs = {
             type = "list",
@@ -1809,6 +1897,7 @@ M.GetChangeLogsOutput = {
 
 M.GetControlInput = {
     type = "structure",
+    id = "GetControlInput",
     members = {
         controlId = {
             type = "string",
@@ -1822,6 +1911,7 @@ M.GetControlInput = {
 
 M.GetControlOutput = {
     type = "structure",
+    id = "GetControlOutput",
     members = {
         control = M.Control,
     },
@@ -1829,6 +1919,7 @@ M.GetControlOutput = {
 
 M.GetDelegationsInput = {
     type = "structure",
+    id = "GetDelegationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1847,6 +1938,7 @@ M.GetDelegationsInput = {
 
 M.DelegationMetadata = {
     type = "structure",
+    id = "DelegationMetadata",
     members = {
         id = {
             type = "string",
@@ -1874,6 +1966,7 @@ M.DelegationMetadata = {
 
 M.GetDelegationsOutput = {
     type = "structure",
+    id = "GetDelegationsOutput",
     members = {
         delegations = {
             type = "list",
@@ -1887,6 +1980,7 @@ M.GetDelegationsOutput = {
 
 M.GetEvidenceInput = {
     type = "structure",
+    id = "GetEvidenceInput",
     members = {
         assessmentId = {
             type = "string",
@@ -1921,6 +2015,7 @@ M.GetEvidenceInput = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         arn = {
             type = "string",
@@ -1936,6 +2031,7 @@ M.Resource = {
 
 M.Evidence = {
     type = "structure",
+    id = "Evidence",
     members = {
         dataSource = {
             type = "string",
@@ -1990,6 +2086,7 @@ M.Evidence = {
 
 M.GetEvidenceOutput = {
     type = "structure",
+    id = "GetEvidenceOutput",
     members = {
         evidence = M.Evidence,
     },
@@ -1997,6 +2094,7 @@ M.GetEvidenceOutput = {
 
 M.GetEvidenceByEvidenceFolderInput = {
     type = "structure",
+    id = "GetEvidenceByEvidenceFolderInput",
     members = {
         assessmentId = {
             type = "string",
@@ -2036,6 +2134,7 @@ M.GetEvidenceByEvidenceFolderInput = {
 
 M.GetEvidenceByEvidenceFolderOutput = {
     type = "structure",
+    id = "GetEvidenceByEvidenceFolderOutput",
     members = {
         evidence = {
             type = "list",
@@ -2049,6 +2148,7 @@ M.GetEvidenceByEvidenceFolderOutput = {
 
 M.GetEvidenceFileUploadUrlInput = {
     type = "structure",
+    id = "GetEvidenceFileUploadUrlInput",
     members = {
         fileName = {
             type = "string",
@@ -2062,6 +2162,7 @@ M.GetEvidenceFileUploadUrlInput = {
 
 M.GetEvidenceFileUploadUrlOutput = {
     type = "structure",
+    id = "GetEvidenceFileUploadUrlOutput",
     members = {
         evidenceFileName = {
             type = "string",
@@ -2074,6 +2175,7 @@ M.GetEvidenceFileUploadUrlOutput = {
 
 M.GetEvidenceFolderInput = {
     type = "structure",
+    id = "GetEvidenceFolderInput",
     members = {
         assessmentId = {
             type = "string",
@@ -2101,6 +2203,7 @@ M.GetEvidenceFolderInput = {
 
 M.GetEvidenceFolderOutput = {
     type = "structure",
+    id = "GetEvidenceFolderOutput",
     members = {
         evidenceFolder = M.AssessmentEvidenceFolder,
     },
@@ -2108,6 +2211,7 @@ M.GetEvidenceFolderOutput = {
 
 M.GetEvidenceFoldersByAssessmentInput = {
     type = "structure",
+    id = "GetEvidenceFoldersByAssessmentInput",
     members = {
         assessmentId = {
             type = "string",
@@ -2133,6 +2237,7 @@ M.GetEvidenceFoldersByAssessmentInput = {
 
 M.GetEvidenceFoldersByAssessmentOutput = {
     type = "structure",
+    id = "GetEvidenceFoldersByAssessmentOutput",
     members = {
         evidenceFolders = {
             type = "list",
@@ -2146,6 +2251,7 @@ M.GetEvidenceFoldersByAssessmentOutput = {
 
 M.GetEvidenceFoldersByAssessmentControlInput = {
     type = "structure",
+    id = "GetEvidenceFoldersByAssessmentControlInput",
     members = {
         assessmentId = {
             type = "string",
@@ -2185,6 +2291,7 @@ M.GetEvidenceFoldersByAssessmentControlInput = {
 
 M.GetEvidenceFoldersByAssessmentControlOutput = {
     type = "structure",
+    id = "GetEvidenceFoldersByAssessmentControlOutput",
     members = {
         evidenceFolders = {
             type = "list",
@@ -2198,10 +2305,12 @@ M.GetEvidenceFoldersByAssessmentControlOutput = {
 
 M.GetInsightsInput = {
     type = "structure",
+    id = "GetInsightsInput",
 }
 
 M.Insights = {
     type = "structure",
+    id = "Insights",
     members = {
         activeAssessmentsCount = {
             type = "integer",
@@ -2229,6 +2338,7 @@ M.Insights = {
 
 M.GetInsightsOutput = {
     type = "structure",
+    id = "GetInsightsOutput",
     members = {
         insights = M.Insights,
     },
@@ -2236,6 +2346,7 @@ M.GetInsightsOutput = {
 
 M.GetInsightsByAssessmentInput = {
     type = "structure",
+    id = "GetInsightsByAssessmentInput",
     members = {
         assessmentId = {
             type = "string",
@@ -2249,6 +2360,7 @@ M.GetInsightsByAssessmentInput = {
 
 M.InsightsByAssessment = {
     type = "structure",
+    id = "InsightsByAssessment",
     members = {
         noncompliantEvidenceCount = {
             type = "integer",
@@ -2273,6 +2385,7 @@ M.InsightsByAssessment = {
 
 M.GetInsightsByAssessmentOutput = {
     type = "structure",
+    id = "GetInsightsByAssessmentOutput",
     members = {
         insights = M.InsightsByAssessment,
     },
@@ -2280,10 +2393,12 @@ M.GetInsightsByAssessmentOutput = {
 
 M.GetOrganizationAdminAccountInput = {
     type = "structure",
+    id = "GetOrganizationAdminAccountInput",
 }
 
 M.GetOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "GetOrganizationAdminAccountOutput",
     members = {
         adminAccountId = {
             type = "string",
@@ -2296,10 +2411,12 @@ M.GetOrganizationAdminAccountOutput = {
 
 M.GetServicesInScopeInput = {
     type = "structure",
+    id = "GetServicesInScopeInput",
 }
 
 M.ServiceMetadata = {
     type = "structure",
+    id = "ServiceMetadata",
     members = {
         name = {
             type = "string",
@@ -2318,6 +2435,7 @@ M.ServiceMetadata = {
 
 M.GetServicesInScopeOutput = {
     type = "structure",
+    id = "GetServicesInScopeOutput",
     members = {
         serviceMetadata = {
             type = "list",
@@ -2339,6 +2457,7 @@ M.SettingAttribute = {
 
 M.GetSettingsInput = {
     type = "structure",
+    id = "GetSettingsInput",
     members = {
         attribute = {
             type = "string",
@@ -2356,6 +2475,7 @@ M.ExportDestinationType = {
 
 M.DefaultExportDestination = {
     type = "structure",
+    id = "DefaultExportDestination",
     members = {
         destinationType = {
             type = "string",
@@ -2373,6 +2493,7 @@ M.DeleteResources = {
 
 M.DeregistrationPolicy = {
     type = "structure",
+    id = "DeregistrationPolicy",
     members = {
         deleteResources = {
             type = "string",
@@ -2395,6 +2516,7 @@ M.EvidenceFinderEnablementStatus = {
 
 M.EvidenceFinderEnablement = {
     type = "structure",
+    id = "EvidenceFinderEnablement",
     members = {
         eventDataStoreArn = {
             type = "string",
@@ -2413,6 +2535,7 @@ M.EvidenceFinderEnablement = {
 
 M.Settings = {
     type = "structure",
+    id = "Settings",
     members = {
         isAwsOrgEnabled = {
             type = "boolean",
@@ -2436,6 +2559,7 @@ M.Settings = {
 
 M.GetSettingsOutput = {
     type = "structure",
+    id = "GetSettingsOutput",
     members = {
         settings = M.Settings,
     },
@@ -2443,6 +2567,7 @@ M.GetSettingsOutput = {
 
 M.ListAssessmentControlInsightsByControlDomainInput = {
     type = "structure",
+    id = "ListAssessmentControlInsightsByControlDomainInput",
     members = {
         controlDomainId = {
             type = "string",
@@ -2475,6 +2600,7 @@ M.ListAssessmentControlInsightsByControlDomainInput = {
 
 M.EvidenceInsights = {
     type = "structure",
+    id = "EvidenceInsights",
     members = {
         noncompliantEvidenceCount = {
             type = "integer",
@@ -2490,6 +2616,7 @@ M.EvidenceInsights = {
 
 M.ControlInsightsMetadataByAssessmentItem = {
     type = "structure",
+    id = "ControlInsightsMetadataByAssessmentItem",
     members = {
         name = {
             type = "string",
@@ -2509,6 +2636,7 @@ M.ControlInsightsMetadataByAssessmentItem = {
 
 M.ListAssessmentControlInsightsByControlDomainOutput = {
     type = "structure",
+    id = "ListAssessmentControlInsightsByControlDomainOutput",
     members = {
         controlInsightsByAssessment = {
             type = "list",
@@ -2522,6 +2650,7 @@ M.ListAssessmentControlInsightsByControlDomainOutput = {
 
 M.ListAssessmentFrameworksInput = {
     type = "structure",
+    id = "ListAssessmentFrameworksInput",
     members = {
         frameworkType = {
             type = "string",
@@ -2547,6 +2676,7 @@ M.ListAssessmentFrameworksInput = {
 
 M.ListAssessmentFrameworksOutput = {
     type = "structure",
+    id = "ListAssessmentFrameworksOutput",
     members = {
         frameworkMetadataList = {
             type = "list",
@@ -2560,6 +2690,7 @@ M.ListAssessmentFrameworksOutput = {
 
 M.ListAssessmentFrameworkShareRequestsInput = {
     type = "structure",
+    id = "ListAssessmentFrameworkShareRequestsInput",
     members = {
         requestType = {
             type = "string",
@@ -2585,6 +2716,7 @@ M.ListAssessmentFrameworkShareRequestsInput = {
 
 M.ListAssessmentFrameworkShareRequestsOutput = {
     type = "structure",
+    id = "ListAssessmentFrameworkShareRequestsOutput",
     members = {
         assessmentFrameworkShareRequests = {
             type = "list",
@@ -2598,6 +2730,7 @@ M.ListAssessmentFrameworkShareRequestsOutput = {
 
 M.ListAssessmentReportsInput = {
     type = "structure",
+    id = "ListAssessmentReportsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2616,6 +2749,7 @@ M.ListAssessmentReportsInput = {
 
 M.ListAssessmentReportsOutput = {
     type = "structure",
+    id = "ListAssessmentReportsOutput",
     members = {
         assessmentReports = {
             type = "list",
@@ -2629,6 +2763,7 @@ M.ListAssessmentReportsOutput = {
 
 M.ListAssessmentsInput = {
     type = "structure",
+    id = "ListAssessmentsInput",
     members = {
         status = {
             type = "string",
@@ -2653,6 +2788,7 @@ M.ListAssessmentsInput = {
 
 M.ListAssessmentsOutput = {
     type = "structure",
+    id = "ListAssessmentsOutput",
     members = {
         assessmentMetadata = {
             type = "list",
@@ -2666,6 +2802,7 @@ M.ListAssessmentsOutput = {
 
 M.ListControlDomainInsightsInput = {
     type = "structure",
+    id = "ListControlDomainInsightsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2684,6 +2821,7 @@ M.ListControlDomainInsightsInput = {
 
 M.ControlDomainInsights = {
     type = "structure",
+    id = "ControlDomainInsights",
     members = {
         name = {
             type = "string",
@@ -2706,6 +2844,7 @@ M.ControlDomainInsights = {
 
 M.ListControlDomainInsightsOutput = {
     type = "structure",
+    id = "ListControlDomainInsightsOutput",
     members = {
         controlDomainInsights = {
             type = "list",
@@ -2719,6 +2858,7 @@ M.ListControlDomainInsightsOutput = {
 
 M.ListControlDomainInsightsByAssessmentInput = {
     type = "structure",
+    id = "ListControlDomainInsightsByAssessmentInput",
     members = {
         assessmentId = {
             type = "string",
@@ -2744,6 +2884,7 @@ M.ListControlDomainInsightsByAssessmentInput = {
 
 M.ListControlDomainInsightsByAssessmentOutput = {
     type = "structure",
+    id = "ListControlDomainInsightsByAssessmentOutput",
     members = {
         controlDomainInsights = {
             type = "list",
@@ -2757,6 +2898,7 @@ M.ListControlDomainInsightsByAssessmentOutput = {
 
 M.ListControlInsightsByControlDomainInput = {
     type = "structure",
+    id = "ListControlInsightsByControlDomainInput",
     members = {
         controlDomainId = {
             type = "string",
@@ -2782,6 +2924,7 @@ M.ListControlInsightsByControlDomainInput = {
 
 M.ControlInsightsMetadataItem = {
     type = "structure",
+    id = "ControlInsightsMetadataItem",
     members = {
         name = {
             type = "string",
@@ -2798,6 +2941,7 @@ M.ControlInsightsMetadataItem = {
 
 M.ListControlInsightsByControlDomainOutput = {
     type = "structure",
+    id = "ListControlInsightsByControlDomainOutput",
     members = {
         controlInsightsMetadata = {
             type = "list",
@@ -2811,6 +2955,7 @@ M.ListControlInsightsByControlDomainOutput = {
 
 M.ListControlsInput = {
     type = "structure",
+    id = "ListControlsInput",
     members = {
         controlType = {
             type = "string",
@@ -2842,6 +2987,7 @@ M.ListControlsInput = {
 
 M.ControlMetadata = {
     type = "structure",
+    id = "ControlMetadata",
     members = {
         arn = {
             type = "string",
@@ -2866,6 +3012,7 @@ M.ControlMetadata = {
 
 M.ListControlsOutput = {
     type = "structure",
+    id = "ListControlsOutput",
     members = {
         controlMetadataList = {
             type = "list",
@@ -2887,6 +3034,7 @@ M.DataSourceType = {
 
 M.ListKeywordsForDataSourceInput = {
     type = "structure",
+    id = "ListKeywordsForDataSourceInput",
     members = {
         source = {
             type = "string",
@@ -2912,6 +3060,7 @@ M.ListKeywordsForDataSourceInput = {
 
 M.ListKeywordsForDataSourceOutput = {
     type = "structure",
+    id = "ListKeywordsForDataSourceOutput",
     members = {
         keywords = {
             type = "list",
@@ -2925,6 +3074,7 @@ M.ListKeywordsForDataSourceOutput = {
 
 M.ListNotificationsInput = {
     type = "structure",
+    id = "ListNotificationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2943,6 +3093,7 @@ M.ListNotificationsInput = {
 
 M.Notification = {
     type = "structure",
+    id = "Notification",
     members = {
         id = {
             type = "string",
@@ -2973,6 +3124,7 @@ M.Notification = {
 
 M.ListNotificationsOutput = {
     type = "structure",
+    id = "ListNotificationsOutput",
     members = {
         notifications = {
             type = "list",
@@ -2986,6 +3138,7 @@ M.ListNotificationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2999,6 +3152,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3010,6 +3164,7 @@ M.ListTagsForResourceOutput = {
 
 M.RegisterAccountInput = {
     type = "structure",
+    id = "RegisterAccountInput",
     members = {
         kmsKey = {
             type = "string",
@@ -3022,6 +3177,7 @@ M.RegisterAccountInput = {
 
 M.RegisterAccountOutput = {
     type = "structure",
+    id = "RegisterAccountOutput",
     members = {
         status = {
             type = "string",
@@ -3031,6 +3187,7 @@ M.RegisterAccountOutput = {
 
 M.RegisterOrganizationAdminAccountInput = {
     type = "structure",
+    id = "RegisterOrganizationAdminAccountInput",
     members = {
         adminAccountId = {
             type = "string",
@@ -3043,6 +3200,7 @@ M.RegisterOrganizationAdminAccountInput = {
 
 M.RegisterOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "RegisterOrganizationAdminAccountOutput",
     members = {
         adminAccountId = {
             type = "string",
@@ -3055,6 +3213,7 @@ M.RegisterOrganizationAdminAccountOutput = {
 
 M.StartAssessmentFrameworkShareInput = {
     type = "structure",
+    id = "StartAssessmentFrameworkShareInput",
     members = {
         frameworkId = {
             type = "string",
@@ -3083,6 +3242,7 @@ M.StartAssessmentFrameworkShareInput = {
 
 M.StartAssessmentFrameworkShareOutput = {
     type = "structure",
+    id = "StartAssessmentFrameworkShareOutput",
     members = {
         assessmentFrameworkShareRequest = M.AssessmentFrameworkShareRequest,
     },
@@ -3090,6 +3250,7 @@ M.StartAssessmentFrameworkShareOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3111,10 +3272,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3136,10 +3299,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAssessmentInput = {
     type = "structure",
+    id = "UpdateAssessmentInput",
     members = {
         assessmentId = {
             type = "string",
@@ -3167,6 +3332,7 @@ M.UpdateAssessmentInput = {
 
 M.UpdateAssessmentOutput = {
     type = "structure",
+    id = "UpdateAssessmentOutput",
     members = {
         assessment = M.Assessment,
     },
@@ -3174,6 +3340,7 @@ M.UpdateAssessmentOutput = {
 
 M.UpdateAssessmentControlInput = {
     type = "structure",
+    id = "UpdateAssessmentControlInput",
     members = {
         assessmentId = {
             type = "string",
@@ -3207,6 +3374,7 @@ M.UpdateAssessmentControlInput = {
 
 M.UpdateAssessmentControlOutput = {
     type = "structure",
+    id = "UpdateAssessmentControlOutput",
     members = {
         control = M.AssessmentControl,
     },
@@ -3214,6 +3382,7 @@ M.UpdateAssessmentControlOutput = {
 
 M.UpdateAssessmentControlSetStatusInput = {
     type = "structure",
+    id = "UpdateAssessmentControlSetStatusInput",
     members = {
         assessmentId = {
             type = "string",
@@ -3246,6 +3415,7 @@ M.UpdateAssessmentControlSetStatusInput = {
 
 M.UpdateAssessmentControlSetStatusOutput = {
     type = "structure",
+    id = "UpdateAssessmentControlSetStatusOutput",
     members = {
         controlSet = M.AssessmentControlSet,
     },
@@ -3253,6 +3423,7 @@ M.UpdateAssessmentControlSetStatusOutput = {
 
 M.UpdateAssessmentFrameworkControlSet = {
     type = "structure",
+    id = "UpdateAssessmentFrameworkControlSet",
     members = {
         id = {
             type = "string",
@@ -3275,6 +3446,7 @@ M.UpdateAssessmentFrameworkControlSet = {
 
 M.UpdateAssessmentFrameworkInput = {
     type = "structure",
+    id = "UpdateAssessmentFrameworkInput",
     members = {
         frameworkId = {
             type = "string",
@@ -3307,6 +3479,7 @@ M.UpdateAssessmentFrameworkInput = {
 
 M.UpdateAssessmentFrameworkOutput = {
     type = "structure",
+    id = "UpdateAssessmentFrameworkOutput",
     members = {
         framework = M.Framework,
     },
@@ -3320,6 +3493,7 @@ M.ShareRequestAction = {
 
 M.UpdateAssessmentFrameworkShareInput = {
     type = "structure",
+    id = "UpdateAssessmentFrameworkShareInput",
     members = {
         requestId = {
             type = "string",
@@ -3345,6 +3519,7 @@ M.UpdateAssessmentFrameworkShareInput = {
 
 M.UpdateAssessmentFrameworkShareOutput = {
     type = "structure",
+    id = "UpdateAssessmentFrameworkShareOutput",
     members = {
         assessmentFrameworkShareRequest = M.AssessmentFrameworkShareRequest,
     },
@@ -3352,6 +3527,7 @@ M.UpdateAssessmentFrameworkShareOutput = {
 
 M.UpdateAssessmentStatusInput = {
     type = "structure",
+    id = "UpdateAssessmentStatusInput",
     members = {
         assessmentId = {
             type = "string",
@@ -3371,6 +3547,7 @@ M.UpdateAssessmentStatusInput = {
 
 M.UpdateAssessmentStatusOutput = {
     type = "structure",
+    id = "UpdateAssessmentStatusOutput",
     members = {
         assessment = M.Assessment,
     },
@@ -3378,6 +3555,7 @@ M.UpdateAssessmentStatusOutput = {
 
 M.UpdateControlInput = {
     type = "structure",
+    id = "UpdateControlInput",
     members = {
         controlId = {
             type = "string",
@@ -3416,6 +3594,7 @@ M.UpdateControlInput = {
 
 M.UpdateControlOutput = {
     type = "structure",
+    id = "UpdateControlOutput",
     members = {
         control = M.Control,
     },
@@ -3423,6 +3602,7 @@ M.UpdateControlOutput = {
 
 M.UpdateSettingsInput = {
     type = "structure",
+    id = "UpdateSettingsInput",
     members = {
         snsTopic = {
             type = "string",
@@ -3445,6 +3625,7 @@ M.UpdateSettingsInput = {
 
 M.UpdateSettingsOutput = {
     type = "structure",
+    id = "UpdateSettingsOutput",
     members = {
         settings = M.Settings,
     },
@@ -3452,6 +3633,7 @@ M.UpdateSettingsOutput = {
 
 M.ValidateAssessmentReportIntegrityInput = {
     type = "structure",
+    id = "ValidateAssessmentReportIntegrityInput",
     members = {
         s3RelativePath = {
             type = "string",
@@ -3464,6 +3646,7 @@ M.ValidateAssessmentReportIntegrityInput = {
 
 M.ValidateAssessmentReportIntegrityOutput = {
     type = "structure",
+    id = "ValidateAssessmentReportIntegrityOutput",
     members = {
         signatureValid = {
             type = "boolean",

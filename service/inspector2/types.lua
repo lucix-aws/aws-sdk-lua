@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -24,6 +25,7 @@ M.Status = {
 
 M.ResourceStatus = {
     type = "structure",
+    id = "ResourceStatus",
     members = {
         ec2 = {
             type = "string",
@@ -51,6 +53,7 @@ M.ResourceStatus = {
 
 M.Account = {
     type = "structure",
+    id = "Account",
     members = {
         accountId = {
             type = "string",
@@ -96,6 +99,7 @@ M.SortOrder = {
 
 M.AccountAggregation = {
     type = "structure",
+    id = "AccountAggregation",
     members = {
         findingType = {
             type = "string",
@@ -114,6 +118,7 @@ M.AccountAggregation = {
 
 M.SeverityCounts = {
     type = "structure",
+    id = "SeverityCounts",
     members = {
         all = {
             type = "long",
@@ -132,6 +137,7 @@ M.SeverityCounts = {
 
 M.AccountAggregationResponse = {
     type = "structure",
+    id = "AccountAggregationResponse",
     members = {
         accountId = {
             type = "string",
@@ -154,6 +160,7 @@ M.CisStringComparison = {
 
 M.CisStringFilter = {
     type = "structure",
+    id = "CisStringFilter",
     members = {
         comparison = {
             type = "string",
@@ -192,6 +199,7 @@ M.ErrorCode = {
 
 M.State = {
     type = "structure",
+    id = "State",
     members = {
         status = {
             type = "string",
@@ -216,6 +224,7 @@ M.State = {
 
 M.ResourceState = {
     type = "structure",
+    id = "ResourceState",
     members = {
         ec2 = setmetatable({ traits = {
             required = true,
@@ -231,6 +240,7 @@ M.ResourceState = {
 
 M.AccountState = {
     type = "structure",
+    id = "AccountState",
     members = {
         accountId = {
             type = "string",
@@ -255,6 +265,7 @@ M.StringComparison = {
 
 M.StringFilter = {
     type = "structure",
+    id = "StringFilter",
     members = {
         comparison = {
             type = "string",
@@ -280,6 +291,7 @@ M.AmiSortBy = {
 
 M.AmiAggregation = {
     type = "structure",
+    id = "AmiAggregation",
     members = {
         amis = {
             type = "list",
@@ -296,6 +308,7 @@ M.AmiAggregation = {
 
 M.NumberFilter = {
     type = "structure",
+    id = "NumberFilter",
     members = {
         upperInclusive = {
             type = "double",
@@ -308,6 +321,7 @@ M.NumberFilter = {
 
 M.DateFilter = {
     type = "structure",
+    id = "DateFilter",
     members = {
         startInclusive = {
             type = "timestamp",
@@ -326,6 +340,7 @@ M.AwsEcrContainerSortBy = {
 
 M.AwsEcrContainerAggregation = {
     type = "structure",
+    id = "AwsEcrContainerAggregation",
     members = {
         resourceIds = {
             type = "list",
@@ -372,6 +387,7 @@ M.CodeRepositorySortBy = {
 
 M.CodeRepositoryAggregation = {
     type = "structure",
+    id = "CodeRepositoryAggregation",
     members = {
         projectNames = {
             type = "list",
@@ -400,6 +416,7 @@ M.MapComparison = {
 
 M.MapFilter = {
     type = "structure",
+    id = "MapFilter",
     members = {
         comparison = {
             type = "string",
@@ -428,6 +445,7 @@ M.Ec2InstanceSortBy = {
 
 M.Ec2InstanceAggregation = {
     type = "structure",
+    id = "Ec2InstanceAggregation",
     members = {
         amis = {
             type = "list",
@@ -462,6 +480,7 @@ M.FindingTypeSortBy = {
 
 M.FindingTypeAggregation = {
     type = "structure",
+    id = "FindingTypeAggregation",
     members = {
         findingType = {
             type = "string",
@@ -486,6 +505,7 @@ M.ImageLayerSortBy = {
 
 M.ImageLayerAggregation = {
     type = "structure",
+    id = "ImageLayerAggregation",
     members = {
         repositories = {
             type = "list",
@@ -516,6 +536,7 @@ M.LambdaFunctionSortBy = {
 
 M.LambdaFunctionAggregation = {
     type = "structure",
+    id = "LambdaFunctionAggregation",
     members = {
         resourceIds = {
             type = "list",
@@ -550,6 +571,7 @@ M.LambdaLayerSortBy = {
 
 M.LambdaLayerAggregation = {
     type = "structure",
+    id = "LambdaLayerAggregation",
     members = {
         functionNames = {
             type = "list",
@@ -580,6 +602,7 @@ M.PackageSortBy = {
 
 M.PackageAggregation = {
     type = "structure",
+    id = "PackageAggregation",
     members = {
         packageNames = {
             type = "list",
@@ -603,6 +626,7 @@ M.RepositorySortBy = {
 
 M.RepositoryAggregation = {
     type = "structure",
+    id = "RepositoryAggregation",
     members = {
         repositories = {
             type = "list",
@@ -625,6 +649,7 @@ M.TitleSortBy = {
 
 M.TitleAggregation = {
     type = "structure",
+    id = "TitleAggregation",
     members = {
         titles = {
             type = "list",
@@ -651,6 +676,7 @@ M.TitleAggregation = {
 
 M.AggregationRequest = {
     type = "union",
+    id = "AggregationRequest",
     members = {
         accountAggregation = M.AccountAggregation,
         amiAggregation = M.AmiAggregation,
@@ -669,6 +695,7 @@ M.AggregationRequest = {
 
 M.AmiAggregationResponse = {
     type = "structure",
+    id = "AmiAggregationResponse",
     members = {
         ami = {
             type = "string",
@@ -688,6 +715,7 @@ M.AmiAggregationResponse = {
 
 M.AwsEcrContainerAggregationResponse = {
     type = "structure",
+    id = "AwsEcrContainerAggregationResponse",
     members = {
         resourceId = {
             type = "string",
@@ -723,6 +751,7 @@ M.AwsEcrContainerAggregationResponse = {
 
 M.CodeRepositoryAggregationResponse = {
     type = "structure",
+    id = "CodeRepositoryAggregationResponse",
     members = {
         projectNames = {
             type = "string",
@@ -751,6 +780,7 @@ M.CodeRepositoryAggregationResponse = {
 
 M.Ec2InstanceAggregationResponse = {
     type = "structure",
+    id = "Ec2InstanceAggregationResponse",
     members = {
         instanceId = {
             type = "string",
@@ -781,6 +811,7 @@ M.Ec2InstanceAggregationResponse = {
 
 M.FindingTypeAggregationResponse = {
     type = "structure",
+    id = "FindingTypeAggregationResponse",
     members = {
         accountId = {
             type = "string",
@@ -797,6 +828,7 @@ M.FindingTypeAggregationResponse = {
 
 M.ImageLayerAggregationResponse = {
     type = "structure",
+    id = "ImageLayerAggregationResponse",
     members = {
         repository = {
             type = "string",
@@ -828,6 +860,7 @@ M.ImageLayerAggregationResponse = {
 
 M.LambdaFunctionAggregationResponse = {
     type = "structure",
+    id = "LambdaFunctionAggregationResponse",
     members = {
         resourceId = {
             type = "string",
@@ -858,6 +891,7 @@ M.LambdaFunctionAggregationResponse = {
 
 M.LambdaLayerAggregationResponse = {
     type = "structure",
+    id = "LambdaLayerAggregationResponse",
     members = {
         functionName = {
             type = "string",
@@ -889,6 +923,7 @@ M.LambdaLayerAggregationResponse = {
 
 M.PackageAggregationResponse = {
     type = "structure",
+    id = "PackageAggregationResponse",
     members = {
         packageName = {
             type = "string",
@@ -905,6 +940,7 @@ M.PackageAggregationResponse = {
 
 M.RepositoryAggregationResponse = {
     type = "structure",
+    id = "RepositoryAggregationResponse",
     members = {
         repository = {
             type = "string",
@@ -924,6 +960,7 @@ M.RepositoryAggregationResponse = {
 
 M.TitleAggregationResponse = {
     type = "structure",
+    id = "TitleAggregationResponse",
     members = {
         title = {
             type = "string",
@@ -943,6 +980,7 @@ M.TitleAggregationResponse = {
 
 M.AggregationResponse = {
     type = "union",
+    id = "AggregationResponse",
     members = {
         accountAggregation = M.AccountAggregationResponse,
         amiAggregation = M.AmiAggregationResponse,
@@ -981,6 +1019,7 @@ M.Architecture = {
 
 M.CodeSecurityResource = {
     type = "union",
+    id = "CodeSecurityResource",
     members = {
         projectId = {
             type = "string",
@@ -990,6 +1029,7 @@ M.CodeSecurityResource = {
 
 M.AssociateConfigurationRequest = {
     type = "structure",
+    id = "AssociateConfigurationRequest",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -1005,6 +1045,7 @@ M.AssociateConfigurationRequest = {
 
 M.AssociateMemberInput = {
     type = "structure",
+    id = "AssociateMemberInput",
     members = {
         accountId = {
             type = "string",
@@ -1017,6 +1058,7 @@ M.AssociateMemberInput = {
 
 M.AssociateMemberOutput = {
     type = "structure",
+    id = "AssociateMemberOutput",
     members = {
         accountId = {
             type = "string",
@@ -1029,6 +1071,7 @@ M.AssociateMemberOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -1048,6 +1091,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1067,6 +1111,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -1086,6 +1131,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -1110,6 +1156,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -1142,6 +1189,7 @@ M.AssociationResultStatusCode = {
 
 M.AtigData = {
     type = "structure",
+    id = "AtigData",
     members = {
         firstSeen = {
             type = "timestamp",
@@ -1162,6 +1210,7 @@ M.AtigData = {
 
 M.AutoEnable = {
     type = "structure",
+    id = "AutoEnable",
     members = {
         ec2 = {
             type = "boolean",
@@ -1189,6 +1238,7 @@ M.AutoEnable = {
 
 M.AwsEc2InstanceDetails = {
     type = "structure",
+    id = "AwsEc2InstanceDetails",
     members = {
         type = {
             type = "string",
@@ -1227,6 +1277,7 @@ M.AwsEc2InstanceDetails = {
 
 M.AwsEcrContainerImageDetails = {
     type = "structure",
+    id = "AwsEcrContainerImageDetails",
     members = {
         repositoryName = {
             type = "string",
@@ -1273,6 +1324,7 @@ M.AwsEcrContainerImageDetails = {
 
 M.AwsEcsMetadataDetails = {
     type = "structure",
+    id = "AwsEcsMetadataDetails",
     members = {
         detailsGroup = {
             type = "string",
@@ -1291,6 +1343,7 @@ M.AwsEcsMetadataDetails = {
 
 M.AwsEksWorkloadInfo = {
     type = "structure",
+    id = "AwsEksWorkloadInfo",
     members = {
         name = {
             type = "string",
@@ -1309,6 +1362,7 @@ M.AwsEksWorkloadInfo = {
 
 M.AwsEksMetadataDetails = {
     type = "structure",
+    id = "AwsEksMetadataDetails",
     members = {
         namespace = {
             type = "string",
@@ -1353,6 +1407,7 @@ M.Runtime = {
 
 M.LambdaVpcConfig = {
     type = "structure",
+    id = "LambdaVpcConfig",
     members = {
         subnetIds = {
             type = "list",
@@ -1370,6 +1425,7 @@ M.LambdaVpcConfig = {
 
 M.AwsLambdaFunctionDetails = {
     type = "structure",
+    id = "AwsLambdaFunctionDetails",
     members = {
         functionName = {
             type = "string",
@@ -1421,6 +1477,7 @@ M.AwsLambdaFunctionDetails = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -1434,6 +1491,7 @@ M.BadRequestException = {
 
 M.BatchAssociateCodeSecurityScanConfigurationInput = {
     type = "structure",
+    id = "BatchAssociateCodeSecurityScanConfigurationInput",
     members = {
         associateConfigurationRequests = {
             type = "list",
@@ -1447,6 +1505,7 @@ M.BatchAssociateCodeSecurityScanConfigurationInput = {
 
 M.FailedAssociationResult = {
     type = "structure",
+    id = "FailedAssociationResult",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -1463,6 +1522,7 @@ M.FailedAssociationResult = {
 
 M.SuccessfulAssociationResult = {
     type = "structure",
+    id = "SuccessfulAssociationResult",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -1473,6 +1533,7 @@ M.SuccessfulAssociationResult = {
 
 M.BatchAssociateCodeSecurityScanConfigurationOutput = {
     type = "structure",
+    id = "BatchAssociateCodeSecurityScanConfigurationOutput",
     members = {
         failedAssociations = {
             type = "list",
@@ -1487,6 +1548,7 @@ M.BatchAssociateCodeSecurityScanConfigurationOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -1512,6 +1574,7 @@ M.ConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1525,6 +1588,7 @@ M.ResourceNotFoundException = {
 
 M.DisassociateConfigurationRequest = {
     type = "structure",
+    id = "DisassociateConfigurationRequest",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -1540,6 +1604,7 @@ M.DisassociateConfigurationRequest = {
 
 M.BatchDisassociateCodeSecurityScanConfigurationInput = {
     type = "structure",
+    id = "BatchDisassociateCodeSecurityScanConfigurationInput",
     members = {
         disassociateConfigurationRequests = {
             type = "list",
@@ -1553,6 +1618,7 @@ M.BatchDisassociateCodeSecurityScanConfigurationInput = {
 
 M.BatchDisassociateCodeSecurityScanConfigurationOutput = {
     type = "structure",
+    id = "BatchDisassociateCodeSecurityScanConfigurationOutput",
     members = {
         failedAssociations = {
             type = "list",
@@ -1567,6 +1633,7 @@ M.BatchDisassociateCodeSecurityScanConfigurationOutput = {
 
 M.BatchGetAccountStatusInput = {
     type = "structure",
+    id = "BatchGetAccountStatusInput",
     members = {
         accountIds = {
             type = "list",
@@ -1577,6 +1644,7 @@ M.BatchGetAccountStatusInput = {
 
 M.FailedAccount = {
     type = "structure",
+    id = "FailedAccount",
     members = {
         accountId = {
             type = "string",
@@ -1605,6 +1673,7 @@ M.FailedAccount = {
 
 M.BatchGetAccountStatusOutput = {
     type = "structure",
+    id = "BatchGetAccountStatusOutput",
     members = {
         accounts = {
             type = "list",
@@ -1622,6 +1691,7 @@ M.BatchGetAccountStatusOutput = {
 
 M.BatchGetCodeSnippetInput = {
     type = "structure",
+    id = "BatchGetCodeSnippetInput",
     members = {
         findingArns = {
             type = "list",
@@ -1635,6 +1705,7 @@ M.BatchGetCodeSnippetInput = {
 
 M.CodeLine = {
     type = "structure",
+    id = "CodeLine",
     members = {
         content = {
             type = "string",
@@ -1653,6 +1724,7 @@ M.CodeLine = {
 
 M.SuggestedFix = {
     type = "structure",
+    id = "SuggestedFix",
     members = {
         description = {
             type = "string",
@@ -1665,6 +1737,7 @@ M.SuggestedFix = {
 
 M.CodeSnippetResult = {
     type = "structure",
+    id = "CodeSnippetResult",
     members = {
         findingArn = {
             type = "string",
@@ -1695,6 +1768,7 @@ M.CodeSnippetErrorCode = {
 
 M.CodeSnippetError = {
     type = "structure",
+    id = "CodeSnippetError",
     members = {
         findingArn = {
             type = "string",
@@ -1719,6 +1793,7 @@ M.CodeSnippetError = {
 
 M.BatchGetCodeSnippetOutput = {
     type = "structure",
+    id = "BatchGetCodeSnippetOutput",
     members = {
         codeSnippetResults = {
             type = "list",
@@ -1733,6 +1808,7 @@ M.BatchGetCodeSnippetOutput = {
 
 M.BatchGetFindingDetailsInput = {
     type = "structure",
+    id = "BatchGetFindingDetailsInput",
     members = {
         findingArns = {
             type = "list",
@@ -1753,6 +1829,7 @@ M.FindingDetailsErrorCode = {
 
 M.FindingDetailsError = {
     type = "structure",
+    id = "FindingDetailsError",
     members = {
         findingArn = {
             type = "string",
@@ -1777,6 +1854,7 @@ M.FindingDetailsError = {
 
 M.CisaData = {
     type = "structure",
+    id = "CisaData",
     members = {
         dateAdded = {
             type = "timestamp",
@@ -1792,6 +1870,7 @@ M.CisaData = {
 
 M.Evidence = {
     type = "structure",
+    id = "Evidence",
     members = {
         evidenceRule = {
             type = "string",
@@ -1807,6 +1886,7 @@ M.Evidence = {
 
 M.ExploitObserved = {
     type = "structure",
+    id = "ExploitObserved",
     members = {
         lastSeen = {
             type = "timestamp",
@@ -1819,6 +1899,7 @@ M.ExploitObserved = {
 
 M.FindingDetail = {
     type = "structure",
+    id = "FindingDetail",
     members = {
         findingArn = {
             type = "string",
@@ -1856,6 +1937,7 @@ M.FindingDetail = {
 
 M.BatchGetFindingDetailsOutput = {
     type = "structure",
+    id = "BatchGetFindingDetailsOutput",
     members = {
         findingDetails = {
             type = "list",
@@ -1870,6 +1952,7 @@ M.BatchGetFindingDetailsOutput = {
 
 M.BatchGetFreeTrialInfoInput = {
     type = "structure",
+    id = "BatchGetFreeTrialInfoInput",
     members = {
         accountIds = {
             type = "list",
@@ -1896,6 +1979,7 @@ M.FreeTrialType = {
 
 M.FreeTrialInfo = {
     type = "structure",
+    id = "FreeTrialInfo",
     members = {
         type = {
             type = "string",
@@ -1926,6 +2010,7 @@ M.FreeTrialInfo = {
 
 M.FreeTrialAccountInfo = {
     type = "structure",
+    id = "FreeTrialAccountInfo",
     members = {
         accountId = {
             type = "string",
@@ -1950,6 +2035,7 @@ M.FreeTrialInfoErrorCode = {
 
 M.FreeTrialInfoError = {
     type = "structure",
+    id = "FreeTrialInfoError",
     members = {
         accountId = {
             type = "string",
@@ -1974,6 +2060,7 @@ M.FreeTrialInfoError = {
 
 M.BatchGetFreeTrialInfoOutput = {
     type = "structure",
+    id = "BatchGetFreeTrialInfoOutput",
     members = {
         accounts = {
             type = "list",
@@ -1994,6 +2081,7 @@ M.BatchGetFreeTrialInfoOutput = {
 
 M.BatchGetMemberEc2DeepInspectionStatusInput = {
     type = "structure",
+    id = "BatchGetMemberEc2DeepInspectionStatusInput",
     members = {
         accountIds = {
             type = "list",
@@ -2011,6 +2099,7 @@ M.Ec2DeepInspectionStatus = {
 
 M.MemberAccountEc2DeepInspectionStatusState = {
     type = "structure",
+    id = "MemberAccountEc2DeepInspectionStatusState",
     members = {
         accountId = {
             type = "string",
@@ -2029,6 +2118,7 @@ M.MemberAccountEc2DeepInspectionStatusState = {
 
 M.FailedMemberAccountEc2DeepInspectionStatusState = {
     type = "structure",
+    id = "FailedMemberAccountEc2DeepInspectionStatusState",
     members = {
         accountId = {
             type = "string",
@@ -2047,6 +2137,7 @@ M.FailedMemberAccountEc2DeepInspectionStatusState = {
 
 M.BatchGetMemberEc2DeepInspectionStatusOutput = {
     type = "structure",
+    id = "BatchGetMemberEc2DeepInspectionStatusOutput",
     members = {
         accountIds = {
             type = "list",
@@ -2061,6 +2152,7 @@ M.BatchGetMemberEc2DeepInspectionStatusOutput = {
 
 M.MemberAccountEc2DeepInspectionStatus = {
     type = "structure",
+    id = "MemberAccountEc2DeepInspectionStatus",
     members = {
         accountId = {
             type = "string",
@@ -2079,6 +2171,7 @@ M.MemberAccountEc2DeepInspectionStatus = {
 
 M.BatchUpdateMemberEc2DeepInspectionStatusInput = {
     type = "structure",
+    id = "BatchUpdateMemberEc2DeepInspectionStatusInput",
     members = {
         accountIds = {
             type = "list",
@@ -2092,6 +2185,7 @@ M.BatchUpdateMemberEc2DeepInspectionStatusInput = {
 
 M.BatchUpdateMemberEc2DeepInspectionStatusOutput = {
     type = "structure",
+    id = "BatchUpdateMemberEc2DeepInspectionStatusOutput",
     members = {
         accountIds = {
             type = "list",
@@ -2106,6 +2200,7 @@ M.BatchUpdateMemberEc2DeepInspectionStatusOutput = {
 
 M.CancelFindingsReportInput = {
     type = "structure",
+    id = "CancelFindingsReportInput",
     members = {
         reportId = {
             type = "string",
@@ -2118,6 +2213,7 @@ M.CancelFindingsReportInput = {
 
 M.CancelFindingsReportOutput = {
     type = "structure",
+    id = "CancelFindingsReportOutput",
     members = {
         reportId = {
             type = "string",
@@ -2130,6 +2226,7 @@ M.CancelFindingsReportOutput = {
 
 M.CancelSbomExportInput = {
     type = "structure",
+    id = "CancelSbomExportInput",
     members = {
         reportId = {
             type = "string",
@@ -2142,6 +2239,7 @@ M.CancelSbomExportInput = {
 
 M.CancelSbomExportOutput = {
     type = "structure",
+    id = "CancelSbomExportOutput",
     members = {
         reportId = {
             type = "string",
@@ -2156,6 +2254,7 @@ M.CisSecurityLevel = {
 
 M.StatusCounts = {
     type = "structure",
+    id = "StatusCounts",
     members = {
         failed = {
             type = "integer",
@@ -2171,6 +2270,7 @@ M.StatusCounts = {
 
 M.CisCheckAggregation = {
     type = "structure",
+    id = "CisCheckAggregation",
     members = {
         scanArn = {
             type = "string",
@@ -2202,6 +2302,7 @@ M.CisCheckAggregation = {
 
 M.CisDateFilter = {
     type = "structure",
+    id = "CisDateFilter",
     members = {
         earliestScanStartTime = {
             type = "timestamp",
@@ -2224,6 +2325,7 @@ M.CisFindingStatusComparison = {
 
 M.CisFindingStatusFilter = {
     type = "structure",
+    id = "CisFindingStatusFilter",
     members = {
         comparison = {
             type = "string",
@@ -2242,6 +2344,7 @@ M.CisFindingStatusFilter = {
 
 M.CisNumberFilter = {
     type = "structure",
+    id = "CisNumberFilter",
     members = {
         upperInclusive = {
             type = "integer",
@@ -2275,6 +2378,7 @@ M.CisResultStatusComparison = {
 
 M.CisResultStatusFilter = {
     type = "structure",
+    id = "CisResultStatusFilter",
     members = {
         comparison = {
             type = "string",
@@ -2310,6 +2414,7 @@ M.CisScanStatus = {
 
 M.CisTargets = {
     type = "structure",
+    id = "CisTargets",
     members = {
         accountIds = {
             type = "list",
@@ -2325,6 +2430,7 @@ M.CisTargets = {
 
 M.CisScan = {
     type = "structure",
+    id = "CisScan",
     members = {
         scanArn = {
             type = "string",
@@ -2365,6 +2471,7 @@ M.CisScan = {
 
 M.Time = {
     type = "structure",
+    id = "Time",
     members = {
         timeOfDay = {
             type = "string",
@@ -2383,6 +2490,7 @@ M.Time = {
 
 M.DailySchedule = {
     type = "structure",
+    id = "DailySchedule",
     members = {
         startTime = setmetatable({ traits = {
             required = true,
@@ -2402,6 +2510,7 @@ M.Day = {
 
 M.MonthlySchedule = {
     type = "structure",
+    id = "MonthlySchedule",
     members = {
         startTime = setmetatable({ traits = {
             required = true,
@@ -2417,10 +2526,12 @@ M.MonthlySchedule = {
 
 M.OneTimeSchedule = {
     type = "structure",
+    id = "OneTimeSchedule",
 }
 
 M.WeeklySchedule = {
     type = "structure",
+    id = "WeeklySchedule",
     members = {
         startTime = setmetatable({ traits = {
             required = true,
@@ -2437,6 +2548,7 @@ M.WeeklySchedule = {
 
 M.Schedule = {
     type = "union",
+    id = "Schedule",
     members = {
         oneTime = M.OneTimeSchedule,
         daily = M.DailySchedule,
@@ -2447,6 +2559,7 @@ M.Schedule = {
 
 M.CisScanConfiguration = {
     type = "structure",
+    id = "CisScanConfiguration",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -2480,6 +2593,7 @@ M.CisScanConfigurationsSortBy = {
 
 M.CisScanResultDetails = {
     type = "structure",
+    id = "CisScanResultDetails",
     members = {
         scanArn = {
             type = "string",
@@ -2529,6 +2643,7 @@ M.CisSecurityLevelComparison = {
 
 M.CisSecurityLevelFilter = {
     type = "structure",
+    id = "CisSecurityLevelFilter",
     members = {
         comparison = {
             type = "string",
@@ -2547,6 +2662,7 @@ M.CisSecurityLevelFilter = {
 
 M.CisScanResultDetailsFilterCriteria = {
     type = "structure",
+    id = "CisScanResultDetailsFilterCriteria",
     members = {
         findingStatusFilters = {
             type = "list",
@@ -2578,6 +2694,7 @@ M.CisScanResultDetailsSortBy = {
 
 M.CisScanResultsAggregatedByChecksFilterCriteria = {
     type = "structure",
+    id = "CisScanResultsAggregatedByChecksFilterCriteria",
     members = {
         accountIdFilters = {
             type = "list",
@@ -2620,6 +2737,7 @@ M.TagComparison = {
 
 M.TagFilter = {
     type = "structure",
+    id = "TagFilter",
     members = {
         comparison = {
             type = "string",
@@ -2654,6 +2772,7 @@ M.CisTargetStatus = {
 
 M.CisTargetStatusFilter = {
     type = "structure",
+    id = "CisTargetStatusFilter",
     members = {
         comparison = {
             type = "string",
@@ -2678,6 +2797,7 @@ M.CisTargetStatusReason = {
 
 M.CisTargetStatusReasonFilter = {
     type = "structure",
+    id = "CisTargetStatusReasonFilter",
     members = {
         comparison = {
             type = "string",
@@ -2696,6 +2816,7 @@ M.CisTargetStatusReasonFilter = {
 
 M.CisScanResultsAggregatedByTargetResourceFilterCriteria = {
     type = "structure",
+    id = "CisScanResultsAggregatedByTargetResourceFilterCriteria",
     members = {
         accountIdFilters = {
             type = "list",
@@ -2751,6 +2872,7 @@ M.CisScanStatusComparison = {
 
 M.CisScanStatusFilter = {
     type = "structure",
+    id = "CisScanStatusFilter",
     members = {
         comparison = {
             type = "string",
@@ -2769,6 +2891,7 @@ M.CisScanStatusFilter = {
 
 M.CisSessionMessage = {
     type = "structure",
+    id = "CisSessionMessage",
     members = {
         ruleId = {
             type = "string",
@@ -2798,6 +2921,7 @@ M.CisSortOrder = {
 
 M.CisTargetResourceAggregation = {
     type = "structure",
+    id = "CisTargetResourceAggregation",
     members = {
         scanArn = {
             type = "string",
@@ -2831,6 +2955,7 @@ M.CisTargetResourceAggregation = {
 
 M.ClusterMetadata = {
     type = "union",
+    id = "ClusterMetadata",
     members = {
         awsEcsMetadataDetails = M.AwsEcsMetadataDetails,
         awsEksMetadataDetails = M.AwsEksMetadataDetails,
@@ -2839,6 +2964,7 @@ M.ClusterMetadata = {
 
 M.ClusterDetails = {
     type = "structure",
+    id = "ClusterDetails",
     members = {
         lastInUse = {
             type = "timestamp",
@@ -2860,6 +2986,7 @@ M.ClusterDetails = {
 
 M.ClusterForImageFilterCriteria = {
     type = "structure",
+    id = "ClusterForImageFilterCriteria",
     members = {
         resourceId = {
             type = "string",
@@ -2872,6 +2999,7 @@ M.ClusterForImageFilterCriteria = {
 
 M.ClusterInformation = {
     type = "structure",
+    id = "ClusterInformation",
     members = {
         clusterArn = {
             type = "string",
@@ -2888,6 +3016,7 @@ M.ClusterInformation = {
 
 M.CodeFilePath = {
     type = "structure",
+    id = "CodeFilePath",
     members = {
         fileName = {
             type = "string",
@@ -2925,6 +3054,7 @@ M.CodeRepositoryProviderType = {
 
 M.CodeRepositoryDetails = {
     type = "structure",
+    id = "CodeRepositoryDetails",
     members = {
         projectName = {
             type = "string",
@@ -2982,6 +3112,7 @@ M.ScanStatusCode = {
 
 M.ScanStatus = {
     type = "structure",
+    id = "ScanStatus",
     members = {
         statusCode = {
             type = "string",
@@ -3000,6 +3131,7 @@ M.ScanStatus = {
 
 M.CodeRepositoryOnDemandScan = {
     type = "structure",
+    id = "CodeRepositoryOnDemandScan",
     members = {
         lastScannedCommitId = {
             type = "string",
@@ -3024,6 +3156,7 @@ M.ContinuousIntegrationScanEvent = {
 
 M.ProjectContinuousIntegrationScanConfiguration = {
     type = "structure",
+    id = "ProjectContinuousIntegrationScanConfiguration",
     members = {
         supportedEvent = {
             type = "string",
@@ -3037,6 +3170,7 @@ M.ProjectContinuousIntegrationScanConfiguration = {
 
 M.ProjectPeriodicScanConfiguration = {
     type = "structure",
+    id = "ProjectPeriodicScanConfiguration",
     members = {
         frequencyExpression = {
             type = "string",
@@ -3050,6 +3184,7 @@ M.ProjectPeriodicScanConfiguration = {
 
 M.ProjectCodeSecurityScanConfiguration = {
     type = "structure",
+    id = "ProjectCodeSecurityScanConfiguration",
     members = {
         periodicScanConfigurations = {
             type = "list",
@@ -3064,6 +3199,7 @@ M.ProjectCodeSecurityScanConfiguration = {
 
 M.CodeRepositoryMetadata = {
     type = "structure",
+    id = "CodeRepositoryMetadata",
     members = {
         projectName = {
             type = "string",
@@ -3116,6 +3252,7 @@ M.IntegrationType = {
 
 M.CodeSecurityIntegrationSummary = {
     type = "structure",
+    id = "CodeSecurityIntegrationSummary",
     members = {
         integrationArn = {
             type = "string",
@@ -3169,6 +3306,7 @@ M.CodeSecurityIntegrationSummary = {
 
 M.ContinuousIntegrationScanConfiguration = {
     type = "structure",
+    id = "ContinuousIntegrationScanConfiguration",
     members = {
         supportedEvents = {
             type = "list",
@@ -3188,6 +3326,7 @@ M.PeriodicScanFrequency = {
 
 M.PeriodicScanConfiguration = {
     type = "structure",
+    id = "PeriodicScanConfiguration",
     members = {
         frequency = {
             type = "string",
@@ -3200,6 +3339,7 @@ M.PeriodicScanConfiguration = {
 
 M.CodeSecurityScanConfiguration = {
     type = "structure",
+    id = "CodeSecurityScanConfiguration",
     members = {
         periodicScanConfiguration = M.PeriodicScanConfiguration,
         continuousIntegrationScanConfiguration = M.ContinuousIntegrationScanConfiguration,
@@ -3215,6 +3355,7 @@ M.CodeSecurityScanConfiguration = {
 
 M.CodeSecurityScanConfigurationAssociationSummary = {
     type = "structure",
+    id = "CodeSecurityScanConfigurationAssociationSummary",
     members = {
         resource = M.CodeSecurityResource,
     },
@@ -3226,6 +3367,7 @@ M.ProjectSelectionScope = {
 
 M.ScopeSettings = {
     type = "structure",
+    id = "ScopeSettings",
     members = {
         projectSelectionScope = {
             type = "string",
@@ -3235,6 +3377,7 @@ M.ScopeSettings = {
 
 M.CodeSecurityScanConfigurationSummary = {
     type = "structure",
+    id = "CodeSecurityScanConfigurationSummary",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -3282,6 +3425,7 @@ M.CodeSecurityScanConfigurationSummary = {
 
 M.CodeVulnerabilityDetails = {
     type = "structure",
+    id = "CodeVulnerabilityDetails",
     members = {
         filePath = setmetatable({ traits = {
             required = true,
@@ -3324,6 +3468,7 @@ M.CodeVulnerabilityDetails = {
 
 M.ComputePlatform = {
     type = "structure",
+    id = "ComputePlatform",
     members = {
         vendor = {
             type = "string",
@@ -3352,6 +3497,7 @@ M.GroupKey = {
 
 M.Counts = {
     type = "structure",
+    id = "Counts",
     members = {
         count = {
             type = "long",
@@ -3367,6 +3513,7 @@ M.Counts = {
 
 M.CoverageDateFilter = {
     type = "structure",
+    id = "CoverageDateFilter",
     members = {
         startInclusive = {
             type = "timestamp",
@@ -3384,6 +3531,7 @@ M.CoverageStringComparison = {
 
 M.CoverageStringFilter = {
     type = "structure",
+    id = "CoverageStringFilter",
     members = {
         comparison = {
             type = "string",
@@ -3406,6 +3554,7 @@ M.CoverageMapComparison = {
 
 M.CoverageMapFilter = {
     type = "structure",
+    id = "CoverageMapFilter",
     members = {
         comparison = {
             type = "string",
@@ -3427,6 +3576,7 @@ M.CoverageMapFilter = {
 
 M.CoverageNumberFilter = {
     type = "structure",
+    id = "CoverageNumberFilter",
     members = {
         upperInclusive = {
             type = "long",
@@ -3439,6 +3589,7 @@ M.CoverageNumberFilter = {
 
 M.CoverageFilterCriteria = {
     type = "structure",
+    id = "CoverageFilterCriteria",
     members = {
         scanStatusCode = {
             type = "list",
@@ -3544,6 +3695,7 @@ M.Ec2Platform = {
 
 M.Ec2Metadata = {
     type = "structure",
+    id = "Ec2Metadata",
     members = {
         tags = {
             type = "map",
@@ -3561,6 +3713,7 @@ M.Ec2Metadata = {
 
 M.EcrContainerImageMetadata = {
     type = "structure",
+    id = "EcrContainerImageMetadata",
     members = {
         tags = {
             type = "list",
@@ -3586,6 +3739,7 @@ M.EcrScanFrequency = {
 
 M.EcrRepositoryMetadata = {
     type = "structure",
+    id = "EcrRepositoryMetadata",
     members = {
         name = {
             type = "string",
@@ -3598,6 +3752,7 @@ M.EcrRepositoryMetadata = {
 
 M.LambdaFunctionMetadata = {
     type = "structure",
+    id = "LambdaFunctionMetadata",
     members = {
         functionTags = {
             type = "map",
@@ -3619,6 +3774,7 @@ M.LambdaFunctionMetadata = {
 
 M.ResourceScanMetadata = {
     type = "structure",
+    id = "ResourceScanMetadata",
     members = {
         ecrRepository = M.EcrRepositoryMetadata,
         ecrImage = M.EcrContainerImageMetadata,
@@ -3641,6 +3797,7 @@ M.ScanType = {
 
 M.CoveredResource = {
     type = "structure",
+    id = "CoveredResource",
     members = {
         resourceType = {
             type = "string",
@@ -3679,6 +3836,7 @@ M.CoveredResource = {
 
 M.CreateCisTargets = {
     type = "structure",
+    id = "CreateCisTargets",
     members = {
         accountIds = {
             type = "list",
@@ -3700,6 +3858,7 @@ M.CreateCisTargets = {
 
 M.CreateCisScanConfigurationInput = {
     type = "structure",
+    id = "CreateCisScanConfigurationInput",
     members = {
         scanName = {
             type = "string",
@@ -3729,6 +3888,7 @@ M.CreateCisScanConfigurationInput = {
 
 M.CreateCisScanConfigurationOutput = {
     type = "structure",
+    id = "CreateCisScanConfigurationOutput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -3738,6 +3898,7 @@ M.CreateCisScanConfigurationOutput = {
 
 M.CreateGitLabSelfManagedIntegrationDetail = {
     type = "structure",
+    id = "CreateGitLabSelfManagedIntegrationDetail",
     members = {
         instanceUrl = {
             type = "string",
@@ -3756,6 +3917,7 @@ M.CreateGitLabSelfManagedIntegrationDetail = {
 
 M.CreateIntegrationDetail = {
     type = "union",
+    id = "CreateIntegrationDetail",
     members = {
         gitlabSelfManaged = M.CreateGitLabSelfManagedIntegrationDetail,
     },
@@ -3763,6 +3925,7 @@ M.CreateIntegrationDetail = {
 
 M.CreateCodeSecurityIntegrationInput = {
     type = "structure",
+    id = "CreateCodeSecurityIntegrationInput",
     members = {
         name = {
             type = "string",
@@ -3787,6 +3950,7 @@ M.CreateCodeSecurityIntegrationInput = {
 
 M.CreateCodeSecurityIntegrationOutput = {
     type = "structure",
+    id = "CreateCodeSecurityIntegrationOutput",
     members = {
         integrationArn = {
             type = "string",
@@ -3808,6 +3972,7 @@ M.CreateCodeSecurityIntegrationOutput = {
 
 M.CreateCodeSecurityScanConfigurationInput = {
     type = "structure",
+    id = "CreateCodeSecurityScanConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -3835,6 +4000,7 @@ M.CreateCodeSecurityScanConfigurationInput = {
 
 M.CreateCodeSecurityScanConfigurationOutput = {
     type = "structure",
+    id = "CreateCodeSecurityScanConfigurationOutput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -3852,6 +4018,7 @@ M.FilterAction = {
 
 M.PortRangeFilter = {
     type = "structure",
+    id = "PortRangeFilter",
     members = {
         beginInclusive = {
             type = "integer",
@@ -3864,6 +4031,7 @@ M.PortRangeFilter = {
 
 M.PackageFilter = {
     type = "structure",
+    id = "PackageFilter",
     members = {
         name = M.StringFilter,
         version = M.StringFilter,
@@ -3878,6 +4046,7 @@ M.PackageFilter = {
 
 M.FilterCriteria = {
     type = "structure",
+    id = "FilterCriteria",
     members = {
         findingArn = {
             type = "list",
@@ -4068,6 +4237,7 @@ M.FilterCriteria = {
 
 M.CreateFilterInput = {
     type = "structure",
+    id = "CreateFilterInput",
     members = {
         action = {
             type = "string",
@@ -4100,6 +4270,7 @@ M.CreateFilterInput = {
 
 M.CreateFilterOutput = {
     type = "structure",
+    id = "CreateFilterOutput",
     members = {
         arn = {
             type = "string",
@@ -4117,6 +4288,7 @@ M.ReportFormat = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         bucketName = {
             type = "string",
@@ -4138,6 +4310,7 @@ M.Destination = {
 
 M.CreateFindingsReportInput = {
     type = "structure",
+    id = "CreateFindingsReportInput",
     members = {
         filterCriteria = M.FilterCriteria,
         reportFormat = {
@@ -4154,6 +4327,7 @@ M.CreateFindingsReportInput = {
 
 M.CreateFindingsReportOutput = {
     type = "structure",
+    id = "CreateFindingsReportOutput",
     members = {
         reportId = {
             type = "string",
@@ -4173,6 +4347,7 @@ M.ResourceStringComparison = {
 
 M.ResourceStringFilter = {
     type = "structure",
+    id = "ResourceStringFilter",
     members = {
         comparison = {
             type = "string",
@@ -4195,6 +4370,7 @@ M.ResourceMapComparison = {
 
 M.ResourceMapFilter = {
     type = "structure",
+    id = "ResourceMapFilter",
     members = {
         comparison = {
             type = "string",
@@ -4216,6 +4392,7 @@ M.ResourceMapFilter = {
 
 M.ResourceFilterCriteria = {
     type = "structure",
+    id = "ResourceFilterCriteria",
     members = {
         accountId = {
             type = "list",
@@ -4254,6 +4431,7 @@ M.ResourceFilterCriteria = {
 
 M.CreateSbomExportInput = {
     type = "structure",
+    id = "CreateSbomExportInput",
     members = {
         resourceFilterCriteria = M.ResourceFilterCriteria,
         reportFormat = {
@@ -4270,6 +4448,7 @@ M.CreateSbomExportInput = {
 
 M.CreateSbomExportOutput = {
     type = "structure",
+    id = "CreateSbomExportOutput",
     members = {
         reportId = {
             type = "string",
@@ -4283,6 +4462,7 @@ M.Currency = {
 
 M.Cvss2 = {
     type = "structure",
+    id = "Cvss2",
     members = {
         baseScore = {
             type = "double",
@@ -4298,6 +4478,7 @@ M.Cvss2 = {
 
 M.Cvss3 = {
     type = "structure",
+    id = "Cvss3",
     members = {
         baseScore = {
             type = "double",
@@ -4313,6 +4494,7 @@ M.Cvss3 = {
 
 M.Cvss4 = {
     type = "structure",
+    id = "Cvss4",
     members = {
         baseScore = {
             type = "double",
@@ -4328,6 +4510,7 @@ M.Cvss4 = {
 
 M.CvssScore = {
     type = "structure",
+    id = "CvssScore",
     members = {
         baseScore = {
             type = "double",
@@ -4358,6 +4541,7 @@ M.CvssScore = {
 
 M.CvssScoreAdjustment = {
     type = "structure",
+    id = "CvssScoreAdjustment",
     members = {
         metric = {
             type = "string",
@@ -4376,6 +4560,7 @@ M.CvssScoreAdjustment = {
 
 M.CvssScoreDetails = {
     type = "structure",
+    id = "CvssScoreDetails",
     members = {
         scoreSource = {
             type = "string",
@@ -4428,6 +4613,7 @@ M.RelationshipStatus = {
 
 M.DelegatedAdmin = {
     type = "structure",
+    id = "DelegatedAdmin",
     members = {
         accountId = {
             type = "string",
@@ -4445,6 +4631,7 @@ M.DelegatedAdminStatus = {
 
 M.DelegatedAdminAccount = {
     type = "structure",
+    id = "DelegatedAdminAccount",
     members = {
         accountId = {
             type = "string",
@@ -4457,6 +4644,7 @@ M.DelegatedAdminAccount = {
 
 M.DeleteCisScanConfigurationInput = {
     type = "structure",
+    id = "DeleteCisScanConfigurationInput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -4469,6 +4657,7 @@ M.DeleteCisScanConfigurationInput = {
 
 M.DeleteCisScanConfigurationOutput = {
     type = "structure",
+    id = "DeleteCisScanConfigurationOutput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -4481,6 +4670,7 @@ M.DeleteCisScanConfigurationOutput = {
 
 M.DeleteCodeSecurityIntegrationInput = {
     type = "structure",
+    id = "DeleteCodeSecurityIntegrationInput",
     members = {
         integrationArn = {
             type = "string",
@@ -4493,6 +4683,7 @@ M.DeleteCodeSecurityIntegrationInput = {
 
 M.DeleteCodeSecurityIntegrationOutput = {
     type = "structure",
+    id = "DeleteCodeSecurityIntegrationOutput",
     members = {
         integrationArn = {
             type = "string",
@@ -4502,6 +4693,7 @@ M.DeleteCodeSecurityIntegrationOutput = {
 
 M.DeleteCodeSecurityScanConfigurationInput = {
     type = "structure",
+    id = "DeleteCodeSecurityScanConfigurationInput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -4514,6 +4706,7 @@ M.DeleteCodeSecurityScanConfigurationInput = {
 
 M.DeleteCodeSecurityScanConfigurationOutput = {
     type = "structure",
+    id = "DeleteCodeSecurityScanConfigurationOutput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -4523,6 +4716,7 @@ M.DeleteCodeSecurityScanConfigurationOutput = {
 
 M.DeleteFilterInput = {
     type = "structure",
+    id = "DeleteFilterInput",
     members = {
         arn = {
             type = "string",
@@ -4535,6 +4729,7 @@ M.DeleteFilterInput = {
 
 M.DeleteFilterOutput = {
     type = "structure",
+    id = "DeleteFilterOutput",
     members = {
         arn = {
             type = "string",
@@ -4547,10 +4742,12 @@ M.DeleteFilterOutput = {
 
 M.DescribeOrganizationConfigurationInput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationInput",
 }
 
 M.DescribeOrganizationConfigurationOutput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationOutput",
     members = {
         autoEnable = M.AutoEnable,
         maxAccountLimitReached = {
@@ -4569,6 +4766,7 @@ M.ResourceScanType = {
 
 M.DisableInput = {
     type = "structure",
+    id = "DisableInput",
     members = {
         accountIds = {
             type = "list",
@@ -4583,6 +4781,7 @@ M.DisableInput = {
 
 M.DisableOutput = {
     type = "structure",
+    id = "DisableOutput",
     members = {
         accounts = {
             type = "list",
@@ -4600,6 +4799,7 @@ M.DisableOutput = {
 
 M.DisableDelegatedAdminAccountInput = {
     type = "structure",
+    id = "DisableDelegatedAdminAccountInput",
     members = {
         delegatedAdminAccountId = {
             type = "string",
@@ -4612,6 +4812,7 @@ M.DisableDelegatedAdminAccountInput = {
 
 M.DisableDelegatedAdminAccountOutput = {
     type = "structure",
+    id = "DisableDelegatedAdminAccountOutput",
     members = {
         delegatedAdminAccountId = {
             type = "string",
@@ -4624,6 +4825,7 @@ M.DisableDelegatedAdminAccountOutput = {
 
 M.DisassociateMemberInput = {
     type = "structure",
+    id = "DisassociateMemberInput",
     members = {
         accountId = {
             type = "string",
@@ -4636,6 +4838,7 @@ M.DisassociateMemberInput = {
 
 M.DisassociateMemberOutput = {
     type = "structure",
+    id = "DisassociateMemberOutput",
     members = {
         accountId = {
             type = "string",
@@ -4653,6 +4856,7 @@ M.Ec2ScanMode = {
 
 M.Ec2Configuration = {
     type = "structure",
+    id = "Ec2Configuration",
     members = {
         scanMode = {
             type = "string",
@@ -4670,6 +4874,7 @@ M.Ec2ScanModeStatus = {
 
 M.Ec2ScanModeState = {
     type = "structure",
+    id = "Ec2ScanModeState",
     members = {
         scanMode = {
             type = "string",
@@ -4682,6 +4887,7 @@ M.Ec2ScanModeState = {
 
 M.Ec2ConfigurationState = {
     type = "structure",
+    id = "Ec2ConfigurationState",
     members = {
         scanModeState = M.Ec2ScanModeState,
     },
@@ -4711,6 +4917,7 @@ M.EcrRescanDuration = {
 
 M.EcrConfiguration = {
     type = "structure",
+    id = "EcrConfiguration",
     members = {
         rescanDuration = {
             type = "string",
@@ -4735,6 +4942,7 @@ M.EcrRescanDurationStatus = {
 
 M.EcrRescanDurationState = {
     type = "structure",
+    id = "EcrRescanDurationState",
     members = {
         rescanDuration = {
             type = "string",
@@ -4756,6 +4964,7 @@ M.EcrRescanDurationState = {
 
 M.EcrConfigurationState = {
     type = "structure",
+    id = "EcrConfigurationState",
     members = {
         rescanDurationState = M.EcrRescanDurationState,
     },
@@ -4763,6 +4972,7 @@ M.EcrConfigurationState = {
 
 M.EnableInput = {
     type = "structure",
+    id = "EnableInput",
     members = {
         accountIds = {
             type = "list",
@@ -4786,6 +4996,7 @@ M.EnableInput = {
 
 M.EnableOutput = {
     type = "structure",
+    id = "EnableOutput",
     members = {
         accounts = {
             type = "list",
@@ -4803,6 +5014,7 @@ M.EnableOutput = {
 
 M.EnableDelegatedAdminAccountInput = {
     type = "structure",
+    id = "EnableDelegatedAdminAccountInput",
     members = {
         delegatedAdminAccountId = {
             type = "string",
@@ -4821,6 +5033,7 @@ M.EnableDelegatedAdminAccountInput = {
 
 M.EnableDelegatedAdminAccountOutput = {
     type = "structure",
+    id = "EnableDelegatedAdminAccountOutput",
     members = {
         delegatedAdminAccountId = {
             type = "string",
@@ -4833,6 +5046,7 @@ M.EnableDelegatedAdminAccountOutput = {
 
 M.Epss = {
     type = "structure",
+    id = "Epss",
     members = {
         score = {
             type = "double",
@@ -4845,6 +5059,7 @@ M.Epss = {
 
 M.EpssDetails = {
     type = "structure",
+    id = "EpssDetails",
     members = {
         score = {
             type = "double",
@@ -4857,6 +5072,7 @@ M.EpssDetails = {
 
 M.ExploitabilityDetails = {
     type = "structure",
+    id = "ExploitabilityDetails",
     members = {
         lastKnownExploitAt = {
             type = "timestamp",
@@ -4878,6 +5094,7 @@ M.ExternalReportStatus = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         arn = {
             type = "string",
@@ -4940,6 +5157,7 @@ M.FixAvailable = {
 
 M.InspectorScoreDetails = {
     type = "structure",
+    id = "InspectorScoreDetails",
     members = {
         adjustedCvss = M.CvssScoreDetails,
     },
@@ -4947,6 +5165,7 @@ M.InspectorScoreDetails = {
 
 M.Step = {
     type = "structure",
+    id = "Step",
     members = {
         componentId = {
             type = "string",
@@ -4968,6 +5187,7 @@ M.Step = {
 
 M.NetworkPath = {
     type = "structure",
+    id = "NetworkPath",
     members = {
         steps = {
             type = "list",
@@ -4978,6 +5198,7 @@ M.NetworkPath = {
 
 M.PortRange = {
     type = "structure",
+    id = "PortRange",
     members = {
         begin = {
             type = "integer",
@@ -5001,6 +5222,7 @@ M.NetworkProtocol = {
 
 M.NetworkReachabilityDetails = {
     type = "structure",
+    id = "NetworkReachabilityDetails",
     members = {
         openPortRange = setmetatable({ traits = {
             required = true,
@@ -5040,6 +5262,7 @@ M.PackageManager = {
 
 M.VulnerablePackage = {
     type = "structure",
+    id = "VulnerablePackage",
     members = {
         name = {
             type = "string",
@@ -5088,6 +5311,7 @@ M.VulnerablePackage = {
 
 M.PackageVulnerabilityDetails = {
     type = "structure",
+    id = "PackageVulnerabilityDetails",
     members = {
         vulnerabilityId = {
             type = "string",
@@ -5134,6 +5358,7 @@ M.PackageVulnerabilityDetails = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         text = {
             type = "string",
@@ -5146,6 +5371,7 @@ M.Recommendation = {
 
 M.Remediation = {
     type = "structure",
+    id = "Remediation",
     members = {
         recommendation = M.Recommendation,
     },
@@ -5153,6 +5379,7 @@ M.Remediation = {
 
 M.ResourceDetails = {
     type = "structure",
+    id = "ResourceDetails",
     members = {
         awsEc2Instance = M.AwsEc2InstanceDetails,
         awsEcrContainerImage = M.AwsEcrContainerImageDetails,
@@ -5171,6 +5398,7 @@ M.ResourceType = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         type = {
             type = "string",
@@ -5222,6 +5450,7 @@ M.FindingType = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         findingArn = {
             type = "string",
@@ -5307,6 +5536,7 @@ M.Finding = {
 
 M.GetCisScanReportInput = {
     type = "structure",
+    id = "GetCisScanReportInput",
     members = {
         scanArn = {
             type = "string",
@@ -5329,6 +5559,7 @@ M.GetCisScanReportInput = {
 
 M.GetCisScanReportOutput = {
     type = "structure",
+    id = "GetCisScanReportOutput",
     members = {
         url = {
             type = "string",
@@ -5341,6 +5572,7 @@ M.GetCisScanReportOutput = {
 
 M.GetCisScanResultDetailsInput = {
     type = "structure",
+    id = "GetCisScanResultDetailsInput",
     members = {
         scanArn = {
             type = "string",
@@ -5384,6 +5616,7 @@ M.GetCisScanResultDetailsInput = {
 
 M.GetCisScanResultDetailsOutput = {
     type = "structure",
+    id = "GetCisScanResultDetailsOutput",
     members = {
         scanResultDetails = {
             type = "list",
@@ -5397,6 +5630,7 @@ M.GetCisScanResultDetailsOutput = {
 
 M.GetClustersForImageInput = {
     type = "structure",
+    id = "GetClustersForImageInput",
     members = {
         filter = setmetatable({ traits = {
             required = true,
@@ -5412,6 +5646,7 @@ M.GetClustersForImageInput = {
 
 M.GetClustersForImageOutput = {
     type = "structure",
+    id = "GetClustersForImageOutput",
     members = {
         cluster = {
             type = "list",
@@ -5428,6 +5663,7 @@ M.GetClustersForImageOutput = {
 
 M.GetCodeSecurityIntegrationInput = {
     type = "structure",
+    id = "GetCodeSecurityIntegrationInput",
     members = {
         integrationArn = {
             type = "string",
@@ -5445,6 +5681,7 @@ M.GetCodeSecurityIntegrationInput = {
 
 M.GetCodeSecurityIntegrationOutput = {
     type = "structure",
+    id = "GetCodeSecurityIntegrationOutput",
     members = {
         integrationArn = {
             type = "string",
@@ -5501,6 +5738,7 @@ M.GetCodeSecurityIntegrationOutput = {
 
 M.GetCodeSecurityScanInput = {
     type = "structure",
+    id = "GetCodeSecurityScanInput",
     members = {
         resource = setmetatable({ traits = {
             required = true,
@@ -5516,6 +5754,7 @@ M.GetCodeSecurityScanInput = {
 
 M.GetCodeSecurityScanOutput = {
     type = "structure",
+    id = "GetCodeSecurityScanOutput",
     members = {
         scanId = {
             type = "string",
@@ -5544,6 +5783,7 @@ M.GetCodeSecurityScanOutput = {
 
 M.GetCodeSecurityScanConfigurationInput = {
     type = "structure",
+    id = "GetCodeSecurityScanConfigurationInput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -5556,6 +5796,7 @@ M.GetCodeSecurityScanConfigurationInput = {
 
 M.GetCodeSecurityScanConfigurationOutput = {
     type = "structure",
+    id = "GetCodeSecurityScanConfigurationOutput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -5584,10 +5825,12 @@ M.GetCodeSecurityScanConfigurationOutput = {
 
 M.GetConfigurationInput = {
     type = "structure",
+    id = "GetConfigurationInput",
 }
 
 M.GetConfigurationOutput = {
     type = "structure",
+    id = "GetConfigurationOutput",
     members = {
         ecrConfiguration = M.EcrConfigurationState,
         ec2Configuration = M.Ec2ConfigurationState,
@@ -5596,10 +5839,12 @@ M.GetConfigurationOutput = {
 
 M.GetDelegatedAdminAccountInput = {
     type = "structure",
+    id = "GetDelegatedAdminAccountInput",
 }
 
 M.GetDelegatedAdminAccountOutput = {
     type = "structure",
+    id = "GetDelegatedAdminAccountOutput",
     members = {
         delegatedAdmin = M.DelegatedAdmin,
     },
@@ -5607,10 +5852,12 @@ M.GetDelegatedAdminAccountOutput = {
 
 M.GetEc2DeepInspectionConfigurationInput = {
     type = "structure",
+    id = "GetEc2DeepInspectionConfigurationInput",
 }
 
 M.GetEc2DeepInspectionConfigurationOutput = {
     type = "structure",
+    id = "GetEc2DeepInspectionConfigurationOutput",
     members = {
         packagePaths = {
             type = "list",
@@ -5631,6 +5878,7 @@ M.GetEc2DeepInspectionConfigurationOutput = {
 
 M.GetEncryptionKeyInput = {
     type = "structure",
+    id = "GetEncryptionKeyInput",
     members = {
         scanType = {
             type = "string",
@@ -5651,6 +5899,7 @@ M.GetEncryptionKeyInput = {
 
 M.GetEncryptionKeyOutput = {
     type = "structure",
+    id = "GetEncryptionKeyOutput",
     members = {
         kmsKeyId = {
             type = "string",
@@ -5663,6 +5912,7 @@ M.GetEncryptionKeyOutput = {
 
 M.GetFindingsReportStatusInput = {
     type = "structure",
+    id = "GetFindingsReportStatusInput",
     members = {
         reportId = {
             type = "string",
@@ -5681,6 +5931,7 @@ M.ReportingErrorCode = {
 
 M.GetFindingsReportStatusOutput = {
     type = "structure",
+    id = "GetFindingsReportStatusOutput",
     members = {
         reportId = {
             type = "string",
@@ -5701,6 +5952,7 @@ M.GetFindingsReportStatusOutput = {
 
 M.GetMemberInput = {
     type = "structure",
+    id = "GetMemberInput",
     members = {
         accountId = {
             type = "string",
@@ -5713,6 +5965,7 @@ M.GetMemberInput = {
 
 M.Member = {
     type = "structure",
+    id = "Member",
     members = {
         accountId = {
             type = "string",
@@ -5731,6 +5984,7 @@ M.Member = {
 
 M.GetMemberOutput = {
     type = "structure",
+    id = "GetMemberOutput",
     members = {
         member = M.Member,
     },
@@ -5738,6 +5992,7 @@ M.GetMemberOutput = {
 
 M.GetSbomExportInput = {
     type = "structure",
+    id = "GetSbomExportInput",
     members = {
         reportId = {
             type = "string",
@@ -5750,6 +6005,7 @@ M.GetSbomExportInput = {
 
 M.GetSbomExportOutput = {
     type = "structure",
+    id = "GetSbomExportOutput",
     members = {
         reportId = {
             type = "string",
@@ -5779,6 +6035,7 @@ M.Service = {
 
 M.ListAccountPermissionsInput = {
     type = "structure",
+    id = "ListAccountPermissionsInput",
     members = {
         service = {
             type = "string",
@@ -5801,6 +6058,7 @@ M.Operation = {
 
 M.Permission = {
     type = "structure",
+    id = "Permission",
     members = {
         service = {
             type = "string",
@@ -5819,6 +6077,7 @@ M.Permission = {
 
 M.ListAccountPermissionsOutput = {
     type = "structure",
+    id = "ListAccountPermissionsOutput",
     members = {
         permissions = {
             type = "list",
@@ -5835,6 +6094,7 @@ M.ListAccountPermissionsOutput = {
 
 M.ListCisScanConfigurationsFilterCriteria = {
     type = "structure",
+    id = "ListCisScanConfigurationsFilterCriteria",
     members = {
         scanNameFilters = {
             type = "list",
@@ -5853,6 +6113,7 @@ M.ListCisScanConfigurationsFilterCriteria = {
 
 M.ListCisScanConfigurationsInput = {
     type = "structure",
+    id = "ListCisScanConfigurationsInput",
     members = {
         filterCriteria = M.ListCisScanConfigurationsFilterCriteria,
         sortBy = {
@@ -5878,6 +6139,7 @@ M.ListCisScanConfigurationsInput = {
 
 M.ListCisScanConfigurationsOutput = {
     type = "structure",
+    id = "ListCisScanConfigurationsOutput",
     members = {
         scanConfigurations = {
             type = "list",
@@ -5891,6 +6153,7 @@ M.ListCisScanConfigurationsOutput = {
 
 M.ListCisScanResultsAggregatedByChecksInput = {
     type = "structure",
+    id = "ListCisScanResultsAggregatedByChecksInput",
     members = {
         scanArn = {
             type = "string",
@@ -5922,6 +6185,7 @@ M.ListCisScanResultsAggregatedByChecksInput = {
 
 M.ListCisScanResultsAggregatedByChecksOutput = {
     type = "structure",
+    id = "ListCisScanResultsAggregatedByChecksOutput",
     members = {
         checkAggregations = {
             type = "list",
@@ -5935,6 +6199,7 @@ M.ListCisScanResultsAggregatedByChecksOutput = {
 
 M.ListCisScanResultsAggregatedByTargetResourceInput = {
     type = "structure",
+    id = "ListCisScanResultsAggregatedByTargetResourceInput",
     members = {
         scanArn = {
             type = "string",
@@ -5966,6 +6231,7 @@ M.ListCisScanResultsAggregatedByTargetResourceInput = {
 
 M.ListCisScanResultsAggregatedByTargetResourceOutput = {
     type = "structure",
+    id = "ListCisScanResultsAggregatedByTargetResourceOutput",
     members = {
         targetResourceAggregations = {
             type = "list",
@@ -5984,6 +6250,7 @@ M.ListCisScansDetailLevel = {
 
 M.ListCisScansFilterCriteria = {
     type = "structure",
+    id = "ListCisScansFilterCriteria",
     members = {
         scanNameFilters = {
             type = "list",
@@ -6037,6 +6304,7 @@ M.ListCisScansSortBy = {
 
 M.ListCisScansInput = {
     type = "structure",
+    id = "ListCisScansInput",
     members = {
         filterCriteria = M.ListCisScansFilterCriteria,
         detailLevel = {
@@ -6065,6 +6333,7 @@ M.ListCisScansInput = {
 
 M.ListCisScansOutput = {
     type = "structure",
+    id = "ListCisScansOutput",
     members = {
         scans = {
             type = "list",
@@ -6078,6 +6347,7 @@ M.ListCisScansOutput = {
 
 M.ListCodeSecurityIntegrationsInput = {
     type = "structure",
+    id = "ListCodeSecurityIntegrationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -6096,6 +6366,7 @@ M.ListCodeSecurityIntegrationsInput = {
 
 M.ListCodeSecurityIntegrationsOutput = {
     type = "structure",
+    id = "ListCodeSecurityIntegrationsOutput",
     members = {
         integrations = {
             type = "list",
@@ -6109,6 +6380,7 @@ M.ListCodeSecurityIntegrationsOutput = {
 
 M.ListCodeSecurityScanConfigurationAssociationsInput = {
     type = "structure",
+    id = "ListCodeSecurityScanConfigurationAssociationsInput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -6133,6 +6405,7 @@ M.ListCodeSecurityScanConfigurationAssociationsInput = {
 
 M.ListCodeSecurityScanConfigurationAssociationsOutput = {
     type = "structure",
+    id = "ListCodeSecurityScanConfigurationAssociationsOutput",
     members = {
         associations = {
             type = "list",
@@ -6146,6 +6419,7 @@ M.ListCodeSecurityScanConfigurationAssociationsOutput = {
 
 M.ListCodeSecurityScanConfigurationsInput = {
     type = "structure",
+    id = "ListCodeSecurityScanConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -6164,6 +6438,7 @@ M.ListCodeSecurityScanConfigurationsInput = {
 
 M.ListCodeSecurityScanConfigurationsOutput = {
     type = "structure",
+    id = "ListCodeSecurityScanConfigurationsOutput",
     members = {
         configurations = {
             type = "list",
@@ -6177,6 +6452,7 @@ M.ListCodeSecurityScanConfigurationsOutput = {
 
 M.ListCoverageInput = {
     type = "structure",
+    id = "ListCoverageInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6190,6 +6466,7 @@ M.ListCoverageInput = {
 
 M.ListCoverageOutput = {
     type = "structure",
+    id = "ListCoverageOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6203,6 +6480,7 @@ M.ListCoverageOutput = {
 
 M.ListCoverageStatisticsInput = {
     type = "structure",
+    id = "ListCoverageStatisticsInput",
     members = {
         filterCriteria = M.CoverageFilterCriteria,
         groupBy = {
@@ -6216,6 +6494,7 @@ M.ListCoverageStatisticsInput = {
 
 M.ListCoverageStatisticsOutput = {
     type = "structure",
+    id = "ListCoverageStatisticsOutput",
     members = {
         countsByGroup = {
             type = "list",
@@ -6235,6 +6514,7 @@ M.ListCoverageStatisticsOutput = {
 
 M.ListDelegatedAdminAccountsInput = {
     type = "structure",
+    id = "ListDelegatedAdminAccountsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6247,6 +6527,7 @@ M.ListDelegatedAdminAccountsInput = {
 
 M.ListDelegatedAdminAccountsOutput = {
     type = "structure",
+    id = "ListDelegatedAdminAccountsOutput",
     members = {
         delegatedAdminAccounts = {
             type = "list",
@@ -6260,6 +6541,7 @@ M.ListDelegatedAdminAccountsOutput = {
 
 M.ListFiltersInput = {
     type = "structure",
+    id = "ListFiltersInput",
     members = {
         arns = {
             type = "list",
@@ -6279,6 +6561,7 @@ M.ListFiltersInput = {
 
 M.ListFiltersOutput = {
     type = "structure",
+    id = "ListFiltersOutput",
     members = {
         filters = {
             type = "list",
@@ -6295,6 +6578,7 @@ M.ListFiltersOutput = {
 
 M.ListFindingAggregationsInput = {
     type = "structure",
+    id = "ListFindingAggregationsInput",
     members = {
         aggregationType = {
             type = "string",
@@ -6318,6 +6602,7 @@ M.ListFindingAggregationsInput = {
 
 M.ListFindingAggregationsOutput = {
     type = "structure",
+    id = "ListFindingAggregationsOutput",
     members = {
         aggregationType = {
             type = "string",
@@ -6357,6 +6642,7 @@ M.SortField = {
 
 M.SortCriteria = {
     type = "structure",
+    id = "SortCriteria",
     members = {
         field = {
             type = "string",
@@ -6375,6 +6661,7 @@ M.SortCriteria = {
 
 M.ListFindingsInput = {
     type = "structure",
+    id = "ListFindingsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6389,6 +6676,7 @@ M.ListFindingsInput = {
 
 M.ListFindingsOutput = {
     type = "structure",
+    id = "ListFindingsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6402,6 +6690,7 @@ M.ListFindingsOutput = {
 
 M.ListMembersInput = {
     type = "structure",
+    id = "ListMembersInput",
     members = {
         onlyAssociated = {
             type = "boolean",
@@ -6417,6 +6706,7 @@ M.ListMembersInput = {
 
 M.ListMembersOutput = {
     type = "structure",
+    id = "ListMembersOutput",
     members = {
         members = {
             type = "list",
@@ -6430,6 +6720,7 @@ M.ListMembersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6443,6 +6734,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -6454,6 +6746,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListUsageTotalsInput = {
     type = "structure",
+    id = "ListUsageTotalsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6482,6 +6775,7 @@ M.UsageType = {
 
 M.Usage = {
     type = "structure",
+    id = "Usage",
     members = {
         type = {
             type = "string",
@@ -6506,6 +6800,7 @@ M.Usage = {
 
 M.UsageTotal = {
     type = "structure",
+    id = "UsageTotal",
     members = {
         accountId = {
             type = "string",
@@ -6519,6 +6814,7 @@ M.UsageTotal = {
 
 M.ListUsageTotalsOutput = {
     type = "structure",
+    id = "ListUsageTotalsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6532,6 +6828,7 @@ M.ListUsageTotalsOutput = {
 
 M.ResetEncryptionKeyInput = {
     type = "structure",
+    id = "ResetEncryptionKeyInput",
     members = {
         scanType = {
             type = "string",
@@ -6550,10 +6847,12 @@ M.ResetEncryptionKeyInput = {
 
 M.ResetEncryptionKeyOutput = {
     type = "structure",
+    id = "ResetEncryptionKeyOutput",
 }
 
 M.SearchVulnerabilitiesFilterCriteria = {
     type = "structure",
+    id = "SearchVulnerabilitiesFilterCriteria",
     members = {
         vulnerabilityIds = {
             type = "list",
@@ -6567,6 +6866,7 @@ M.SearchVulnerabilitiesFilterCriteria = {
 
 M.SearchVulnerabilitiesInput = {
     type = "structure",
+    id = "SearchVulnerabilitiesInput",
     members = {
         filterCriteria = setmetatable({ traits = {
             required = true,
@@ -6583,6 +6883,7 @@ M.VulnerabilitySource = {
 
 M.Vulnerability = {
     type = "structure",
+    id = "Vulnerability",
     members = {
         id = {
             type = "string",
@@ -6636,6 +6937,7 @@ M.Vulnerability = {
 
 M.SearchVulnerabilitiesOutput = {
     type = "structure",
+    id = "SearchVulnerabilitiesOutput",
     members = {
         vulnerabilities = {
             type = "list",
@@ -6652,6 +6954,7 @@ M.SearchVulnerabilitiesOutput = {
 
 M.SendCisSessionHealthInput = {
     type = "structure",
+    id = "SendCisSessionHealthInput",
     members = {
         scanJobId = {
             type = "string",
@@ -6670,10 +6973,12 @@ M.SendCisSessionHealthInput = {
 
 M.SendCisSessionHealthOutput = {
     type = "structure",
+    id = "SendCisSessionHealthOutput",
 }
 
 M.SendCisSessionTelemetryInput = {
     type = "structure",
+    id = "SendCisSessionTelemetryInput",
     members = {
         scanJobId = {
             type = "string",
@@ -6699,10 +7004,12 @@ M.SendCisSessionTelemetryInput = {
 
 M.SendCisSessionTelemetryOutput = {
     type = "structure",
+    id = "SendCisSessionTelemetryOutput",
 }
 
 M.StartCisSessionMessage = {
     type = "structure",
+    id = "StartCisSessionMessage",
     members = {
         sessionToken = {
             type = "string",
@@ -6715,6 +7022,7 @@ M.StartCisSessionMessage = {
 
 M.StartCisSessionInput = {
     type = "structure",
+    id = "StartCisSessionInput",
     members = {
         scanJobId = {
             type = "string",
@@ -6730,10 +7038,12 @@ M.StartCisSessionInput = {
 
 M.StartCisSessionOutput = {
     type = "structure",
+    id = "StartCisSessionOutput",
 }
 
 M.StartCodeSecurityScanInput = {
     type = "structure",
+    id = "StartCodeSecurityScanInput",
     members = {
         clientToken = {
             type = "string",
@@ -6749,6 +7059,7 @@ M.StartCodeSecurityScanInput = {
 
 M.StartCodeSecurityScanOutput = {
     type = "structure",
+    id = "StartCodeSecurityScanOutput",
     members = {
         scanId = {
             type = "string",
@@ -6761,6 +7072,7 @@ M.StartCodeSecurityScanOutput = {
 
 M.StopCisMessageProgress = {
     type = "structure",
+    id = "StopCisMessageProgress",
     members = {
         totalChecks = {
             type = "integer",
@@ -6822,6 +7134,7 @@ M.StopCisSessionStatus = {
 
 M.StopCisSessionMessage = {
     type = "structure",
+    id = "StopCisSessionMessage",
     members = {
         status = {
             type = "string",
@@ -6847,6 +7160,7 @@ M.StopCisSessionMessage = {
 
 M.StopCisSessionInput = {
     type = "structure",
+    id = "StopCisSessionInput",
     members = {
         scanJobId = {
             type = "string",
@@ -6868,10 +7182,12 @@ M.StopCisSessionInput = {
 
 M.StopCisSessionOutput = {
     type = "structure",
+    id = "StopCisSessionOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6893,10 +7209,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6918,10 +7236,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCisTargets = {
     type = "structure",
+    id = "UpdateCisTargets",
     members = {
         accountIds = {
             type = "list",
@@ -6937,6 +7257,7 @@ M.UpdateCisTargets = {
 
 M.UpdateCisScanConfigurationInput = {
     type = "structure",
+    id = "UpdateCisScanConfigurationInput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -6957,6 +7278,7 @@ M.UpdateCisScanConfigurationInput = {
 
 M.UpdateCisScanConfigurationOutput = {
     type = "structure",
+    id = "UpdateCisScanConfigurationOutput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -6969,6 +7291,7 @@ M.UpdateCisScanConfigurationOutput = {
 
 M.UpdateGitHubIntegrationDetail = {
     type = "structure",
+    id = "UpdateGitHubIntegrationDetail",
     members = {
         code = {
             type = "string",
@@ -6987,6 +7310,7 @@ M.UpdateGitHubIntegrationDetail = {
 
 M.UpdateGitLabSelfManagedIntegrationDetail = {
     type = "structure",
+    id = "UpdateGitLabSelfManagedIntegrationDetail",
     members = {
         authCode = {
             type = "string",
@@ -6999,6 +7323,7 @@ M.UpdateGitLabSelfManagedIntegrationDetail = {
 
 M.UpdateIntegrationDetails = {
     type = "union",
+    id = "UpdateIntegrationDetails",
     members = {
         gitlabSelfManaged = M.UpdateGitLabSelfManagedIntegrationDetail,
         github = M.UpdateGitHubIntegrationDetail,
@@ -7007,6 +7332,7 @@ M.UpdateIntegrationDetails = {
 
 M.UpdateCodeSecurityIntegrationInput = {
     type = "structure",
+    id = "UpdateCodeSecurityIntegrationInput",
     members = {
         integrationArn = {
             type = "string",
@@ -7022,6 +7348,7 @@ M.UpdateCodeSecurityIntegrationInput = {
 
 M.UpdateCodeSecurityIntegrationOutput = {
     type = "structure",
+    id = "UpdateCodeSecurityIntegrationOutput",
     members = {
         integrationArn = {
             type = "string",
@@ -7040,6 +7367,7 @@ M.UpdateCodeSecurityIntegrationOutput = {
 
 M.UpdateCodeSecurityScanConfigurationInput = {
     type = "structure",
+    id = "UpdateCodeSecurityScanConfigurationInput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -7055,6 +7383,7 @@ M.UpdateCodeSecurityScanConfigurationInput = {
 
 M.UpdateCodeSecurityScanConfigurationOutput = {
     type = "structure",
+    id = "UpdateCodeSecurityScanConfigurationOutput",
     members = {
         scanConfigurationArn = {
             type = "string",
@@ -7064,6 +7393,7 @@ M.UpdateCodeSecurityScanConfigurationOutput = {
 
 M.UpdateConfigurationInput = {
     type = "structure",
+    id = "UpdateConfigurationInput",
     members = {
         ecrConfiguration = M.EcrConfiguration,
         ec2Configuration = M.Ec2Configuration,
@@ -7072,10 +7402,12 @@ M.UpdateConfigurationInput = {
 
 M.UpdateConfigurationOutput = {
     type = "structure",
+    id = "UpdateConfigurationOutput",
 }
 
 M.UpdateEc2DeepInspectionConfigurationInput = {
     type = "structure",
+    id = "UpdateEc2DeepInspectionConfigurationInput",
     members = {
         activateDeepInspection = {
             type = "boolean",
@@ -7089,6 +7421,7 @@ M.UpdateEc2DeepInspectionConfigurationInput = {
 
 M.UpdateEc2DeepInspectionConfigurationOutput = {
     type = "structure",
+    id = "UpdateEc2DeepInspectionConfigurationOutput",
     members = {
         packagePaths = {
             type = "list",
@@ -7109,6 +7442,7 @@ M.UpdateEc2DeepInspectionConfigurationOutput = {
 
 M.UpdateEncryptionKeyInput = {
     type = "structure",
+    id = "UpdateEncryptionKeyInput",
     members = {
         kmsKeyId = {
             type = "string",
@@ -7133,10 +7467,12 @@ M.UpdateEncryptionKeyInput = {
 
 M.UpdateEncryptionKeyOutput = {
     type = "structure",
+    id = "UpdateEncryptionKeyOutput",
 }
 
 M.UpdateFilterInput = {
     type = "structure",
+    id = "UpdateFilterInput",
     members = {
         action = {
             type = "string",
@@ -7162,6 +7498,7 @@ M.UpdateFilterInput = {
 
 M.UpdateFilterOutput = {
     type = "structure",
+    id = "UpdateFilterOutput",
     members = {
         arn = {
             type = "string",
@@ -7174,6 +7511,7 @@ M.UpdateFilterOutput = {
 
 M.UpdateOrganizationConfigurationInput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationInput",
     members = {
         autoEnable = setmetatable({ traits = {
             required = true,
@@ -7183,6 +7521,7 @@ M.UpdateOrganizationConfigurationInput = {
 
 M.UpdateOrganizationConfigurationOutput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationOutput",
     members = {
         autoEnable = setmetatable({ traits = {
             required = true,
@@ -7192,6 +7531,7 @@ M.UpdateOrganizationConfigurationOutput = {
 
 M.UpdateOrgEc2DeepInspectionConfigurationInput = {
     type = "structure",
+    id = "UpdateOrgEc2DeepInspectionConfigurationInput",
     members = {
         orgPackagePaths = {
             type = "list",
@@ -7205,6 +7545,7 @@ M.UpdateOrgEc2DeepInspectionConfigurationInput = {
 
 M.UpdateOrgEc2DeepInspectionConfigurationOutput = {
     type = "structure",
+    id = "UpdateOrgEc2DeepInspectionConfigurationOutput",
 }
 
 return M

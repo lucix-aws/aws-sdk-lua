@@ -2,6 +2,7 @@ local M = {}
 
 M.ClientLimitExceededException = {
     type = "structure",
+    id = "ClientLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -17,6 +18,7 @@ M.ClipFragmentSelectorType = {
 
 M.ClipTimestampRange = {
     type = "structure",
+    id = "ClipTimestampRange",
     members = {
         StartTimestamp = {
             type = "timestamp",
@@ -35,6 +37,7 @@ M.ClipTimestampRange = {
 
 M.ClipFragmentSelector = {
     type = "structure",
+    id = "ClipFragmentSelector",
     members = {
         FragmentSelectorType = {
             type = "string",
@@ -50,6 +53,7 @@ M.ClipFragmentSelector = {
 
 M.GetClipInput = {
     type = "structure",
+    id = "GetClipInput",
     members = {
         StreamName = {
             type = "string",
@@ -65,6 +69,7 @@ M.GetClipInput = {
 
 M.GetClipOutput = {
     type = "structure",
+    id = "GetClipOutput",
     members = {
         ContentType = {
             type = "string",
@@ -84,6 +89,7 @@ M.GetClipOutput = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -94,6 +100,7 @@ M.InvalidArgumentException = {
 
 M.InvalidCodecPrivateDataException = {
     type = "structure",
+    id = "InvalidCodecPrivateDataException",
     error = "client",
     members = {
         Message = {
@@ -104,6 +111,7 @@ M.InvalidCodecPrivateDataException = {
 
 M.InvalidMediaFrameException = {
     type = "structure",
+    id = "InvalidMediaFrameException",
     error = "client",
     members = {
         Message = {
@@ -114,6 +122,7 @@ M.InvalidMediaFrameException = {
 
 M.MissingCodecPrivateDataException = {
     type = "structure",
+    id = "MissingCodecPrivateDataException",
     error = "client",
     members = {
         Message = {
@@ -124,6 +133,7 @@ M.MissingCodecPrivateDataException = {
 
 M.NoDataRetentionException = {
     type = "structure",
+    id = "NoDataRetentionException",
     error = "client",
     members = {
         Message = {
@@ -134,6 +144,7 @@ M.NoDataRetentionException = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         Message = {
@@ -144,6 +155,7 @@ M.NotAuthorizedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -154,6 +166,7 @@ M.ResourceNotFoundException = {
 
 M.UnsupportedStreamMediaTypeException = {
     type = "structure",
+    id = "UnsupportedStreamMediaTypeException",
     error = "client",
     members = {
         Message = {
@@ -169,6 +182,7 @@ M.DASHFragmentSelectorType = {
 
 M.DASHTimestampRange = {
     type = "structure",
+    id = "DASHTimestampRange",
     members = {
         StartTimestamp = {
             type = "timestamp",
@@ -181,6 +195,7 @@ M.DASHTimestampRange = {
 
 M.DASHFragmentSelector = {
     type = "structure",
+    id = "DASHFragmentSelector",
     members = {
         FragmentSelectorType = {
             type = "string",
@@ -207,6 +222,7 @@ M.DASHPlaybackMode = {
 
 M.GetDASHStreamingSessionURLInput = {
     type = "structure",
+    id = "GetDASHStreamingSessionURLInput",
     members = {
         StreamName = {
             type = "string",
@@ -235,6 +251,7 @@ M.GetDASHStreamingSessionURLInput = {
 
 M.GetDASHStreamingSessionURLOutput = {
     type = "structure",
+    id = "GetDASHStreamingSessionURLOutput",
     members = {
         DASHStreamingSessionURL = {
             type = "string",
@@ -265,6 +282,7 @@ M.HLSFragmentSelectorType = {
 
 M.HLSTimestampRange = {
     type = "structure",
+    id = "HLSTimestampRange",
     members = {
         StartTimestamp = {
             type = "timestamp",
@@ -277,6 +295,7 @@ M.HLSTimestampRange = {
 
 M.HLSFragmentSelector = {
     type = "structure",
+    id = "HLSFragmentSelector",
     members = {
         FragmentSelectorType = {
             type = "string",
@@ -293,6 +312,7 @@ M.HLSPlaybackMode = {
 
 M.GetHLSStreamingSessionURLInput = {
     type = "structure",
+    id = "GetHLSStreamingSessionURLInput",
     members = {
         StreamName = {
             type = "string",
@@ -324,6 +344,7 @@ M.GetHLSStreamingSessionURLInput = {
 
 M.GetHLSStreamingSessionURLOutput = {
     type = "structure",
+    id = "GetHLSStreamingSessionURLOutput",
     members = {
         HLSStreamingSessionURL = {
             type = "string",
@@ -347,6 +368,7 @@ M.ImageSelectorType = {
 
 M.GetImagesInput = {
     type = "structure",
+    id = "GetImagesInput",
     members = {
         StreamName = {
             type = "string",
@@ -408,6 +430,7 @@ M.ImageError = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         TimeStamp = {
             type = "timestamp",
@@ -423,6 +446,7 @@ M.Image = {
 
 M.GetImagesOutput = {
     type = "structure",
+    id = "GetImagesOutput",
     members = {
         Images = {
             type = "list",
@@ -436,6 +460,7 @@ M.GetImagesOutput = {
 
 M.GetMediaForFragmentListInput = {
     type = "structure",
+    id = "GetMediaForFragmentListInput",
     members = {
         StreamName = {
             type = "string",
@@ -455,6 +480,7 @@ M.GetMediaForFragmentListInput = {
 
 M.GetMediaForFragmentListOutput = {
     type = "structure",
+    id = "GetMediaForFragmentListOutput",
     members = {
         ContentType = {
             type = "string",
@@ -479,6 +505,7 @@ M.FragmentSelectorType = {
 
 M.TimestampRange = {
     type = "structure",
+    id = "TimestampRange",
     members = {
         StartTimestamp = {
             type = "timestamp",
@@ -497,6 +524,7 @@ M.TimestampRange = {
 
 M.FragmentSelector = {
     type = "structure",
+    id = "FragmentSelector",
     members = {
         FragmentSelectorType = {
             type = "string",
@@ -512,6 +540,7 @@ M.FragmentSelector = {
 
 M.ListFragmentsInput = {
     type = "structure",
+    id = "ListFragmentsInput",
     members = {
         StreamName = {
             type = "string",
@@ -531,6 +560,7 @@ M.ListFragmentsInput = {
 
 M.Fragment = {
     type = "structure",
+    id = "Fragment",
     members = {
         FragmentNumber = {
             type = "string",
@@ -558,6 +588,7 @@ M.Fragment = {
 
 M.ListFragmentsOutput = {
     type = "structure",
+    id = "ListFragmentsOutput",
     members = {
         Fragments = {
             type = "list",

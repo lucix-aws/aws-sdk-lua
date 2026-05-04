@@ -7,6 +7,7 @@ M.Architecture = {
 
 M.AutoStartConfig = {
     type = "structure",
+    id = "AutoStartConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -16,6 +17,7 @@ M.AutoStartConfig = {
 
 M.AutoStopConfig = {
     type = "structure",
+    id = "AutoStopConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -31,6 +33,7 @@ M.AutoStopConfig = {
 
 M.DiskEncryptionConfiguration = {
     type = "structure",
+    id = "DiskEncryptionConfiguration",
     members = {
         encryptionContext = {
             type = "map",
@@ -45,6 +48,7 @@ M.DiskEncryptionConfiguration = {
 
 M.IdentityCenterConfiguration = {
     type = "structure",
+    id = "IdentityCenterConfiguration",
     members = {
         identityCenterInstanceArn = {
             type = "string",
@@ -60,6 +64,7 @@ M.IdentityCenterConfiguration = {
 
 M.ImageConfiguration = {
     type = "structure",
+    id = "ImageConfiguration",
     members = {
         imageUri = {
             type = "string",
@@ -75,6 +80,7 @@ M.ImageConfiguration = {
 
 M.WorkerResourceConfig = {
     type = "structure",
+    id = "WorkerResourceConfig",
     members = {
         cpu = {
             type = "string",
@@ -99,6 +105,7 @@ M.WorkerResourceConfig = {
 
 M.InitialCapacityConfig = {
     type = "structure",
+    id = "InitialCapacityConfig",
     members = {
         workerCount = {
             type = "long",
@@ -113,6 +120,7 @@ M.InitialCapacityConfig = {
 
 M.InteractiveConfiguration = {
     type = "structure",
+    id = "InteractiveConfiguration",
     members = {
         studioEnabled = {
             type = "boolean",
@@ -128,6 +136,7 @@ M.InteractiveConfiguration = {
 
 M.JobLevelCostAllocationConfiguration = {
     type = "structure",
+    id = "JobLevelCostAllocationConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -137,6 +146,7 @@ M.JobLevelCostAllocationConfiguration = {
 
 M.MaximumAllowedResources = {
     type = "structure",
+    id = "MaximumAllowedResources",
     members = {
         cpu = {
             type = "string",
@@ -158,6 +168,7 @@ M.MaximumAllowedResources = {
 
 M.CloudWatchLoggingConfiguration = {
     type = "structure",
+    id = "CloudWatchLoggingConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -184,6 +195,7 @@ M.CloudWatchLoggingConfiguration = {
 
 M.ManagedPersistenceMonitoringConfiguration = {
     type = "structure",
+    id = "ManagedPersistenceMonitoringConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -196,6 +208,7 @@ M.ManagedPersistenceMonitoringConfiguration = {
 
 M.PrometheusMonitoringConfiguration = {
     type = "structure",
+    id = "PrometheusMonitoringConfiguration",
     members = {
         remoteWriteUrl = {
             type = "string",
@@ -205,6 +218,7 @@ M.PrometheusMonitoringConfiguration = {
 
 M.S3MonitoringConfiguration = {
     type = "structure",
+    id = "S3MonitoringConfiguration",
     members = {
         logUri = {
             type = "string",
@@ -217,6 +231,7 @@ M.S3MonitoringConfiguration = {
 
 M.MonitoringConfiguration = {
     type = "structure",
+    id = "MonitoringConfiguration",
     members = {
         s3MonitoringConfiguration = M.S3MonitoringConfiguration,
         managedPersistenceMonitoringConfiguration = M.ManagedPersistenceMonitoringConfiguration,
@@ -227,6 +242,7 @@ M.MonitoringConfiguration = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         subnetIds = {
             type = "list",
@@ -241,6 +257,7 @@ M.NetworkConfiguration = {
 
 M.SchedulerConfiguration = {
     type = "structure",
+    id = "SchedulerConfiguration",
     members = {
         queueTimeoutMinutes = {
             type = "integer",
@@ -263,6 +280,7 @@ M.ApplicationState = {
 
 M.WorkerTypeSpecification = {
     type = "structure",
+    id = "WorkerTypeSpecification",
     members = {
         imageConfiguration = M.ImageConfiguration,
     },
@@ -270,6 +288,7 @@ M.WorkerTypeSpecification = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         id = {
             type = "string",
@@ -327,6 +346,7 @@ M.ApplicationSummary = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -340,6 +360,7 @@ M.ConflictException = {
 
 M.IdentityCenterConfigurationInput = {
     type = "structure",
+    id = "IdentityCenterConfigurationInput",
     members = {
         identityCenterInstanceArn = {
             type = "string",
@@ -352,6 +373,7 @@ M.IdentityCenterConfigurationInput = {
 
 M.ImageConfigurationInput = {
     type = "structure",
+    id = "ImageConfigurationInput",
     members = {
         imageUri = {
             type = "string",
@@ -361,6 +383,7 @@ M.ImageConfigurationInput = {
 
 M.WorkerTypeSpecificationInput = {
     type = "structure",
+    id = "WorkerTypeSpecificationInput",
     members = {
         imageConfiguration = M.ImageConfigurationInput,
     },
@@ -368,6 +391,7 @@ M.WorkerTypeSpecificationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         applicationId = {
             type = "string",
@@ -389,6 +413,7 @@ M.CreateApplicationOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -402,6 +427,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -415,6 +441,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -428,6 +455,7 @@ M.ValidationException = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -441,10 +469,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -462,6 +492,7 @@ M.ResourceType = {
 
 M.GetResourceDashboardInput = {
     type = "structure",
+    id = "GetResourceDashboardInput",
     members = {
         applicationId = {
             type = "string",
@@ -489,6 +520,7 @@ M.GetResourceDashboardInput = {
 
 M.GetResourceDashboardOutput = {
     type = "structure",
+    id = "GetResourceDashboardOutput",
     members = {
         url = {
             type = "string",
@@ -498,6 +530,7 @@ M.GetResourceDashboardOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -524,6 +557,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         applications = {
             type = "list",
@@ -540,6 +574,7 @@ M.ListApplicationsOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -553,6 +588,7 @@ M.ServiceQuotaExceededException = {
 
 M.StartApplicationInput = {
     type = "structure",
+    id = "StartApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -566,10 +602,12 @@ M.StartApplicationInput = {
 
 M.StartApplicationOutput = {
     type = "structure",
+    id = "StartApplicationOutput",
 }
 
 M.StopApplicationInput = {
     type = "structure",
+    id = "StopApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -583,10 +621,12 @@ M.StopApplicationInput = {
 
 M.StopApplicationOutput = {
     type = "structure",
+    id = "StopApplicationOutput",
 }
 
 M.CancelJobRunInput = {
     type = "structure",
+    id = "CancelJobRunInput",
     members = {
         applicationId = {
             type = "string",
@@ -614,6 +654,7 @@ M.CancelJobRunInput = {
 
 M.CancelJobRunOutput = {
     type = "structure",
+    id = "CancelJobRunOutput",
     members = {
         applicationId = {
             type = "string",
@@ -632,6 +673,7 @@ M.CancelJobRunOutput = {
 
 M.GetDashboardForJobRunInput = {
     type = "structure",
+    id = "GetDashboardForJobRunInput",
     members = {
         applicationId = {
             type = "string",
@@ -664,6 +706,7 @@ M.GetDashboardForJobRunInput = {
 
 M.GetDashboardForJobRunOutput = {
     type = "structure",
+    id = "GetDashboardForJobRunOutput",
     members = {
         url = {
             type = "string",
@@ -673,6 +716,7 @@ M.GetDashboardForJobRunOutput = {
 
 M.GetJobRunInput = {
     type = "structure",
+    id = "GetJobRunInput",
     members = {
         applicationId = {
             type = "string",
@@ -699,6 +743,7 @@ M.GetJobRunInput = {
 
 M.ResourceUtilization = {
     type = "structure",
+    id = "ResourceUtilization",
     members = {
         vCPUHour = {
             type = "double",
@@ -714,6 +759,7 @@ M.ResourceUtilization = {
 
 M.JobRunExecutionIamPolicy = {
     type = "structure",
+    id = "JobRunExecutionIamPolicy",
     members = {
         policy = {
             type = "string",
@@ -727,6 +773,7 @@ M.JobRunExecutionIamPolicy = {
 
 M.Hive = {
     type = "structure",
+    id = "Hive",
     members = {
         query = {
             type = "string",
@@ -745,6 +792,7 @@ M.Hive = {
 
 M.SparkSubmit = {
     type = "structure",
+    id = "SparkSubmit",
     members = {
         entryPoint = {
             type = "string",
@@ -764,6 +812,7 @@ M.SparkSubmit = {
 
 M.JobDriver = {
     type = "union",
+    id = "JobDriver",
     members = {
         sparkSubmit = M.SparkSubmit,
         hive = M.Hive,
@@ -777,6 +826,7 @@ M.JobRunMode = {
 
 M.RetryPolicy = {
     type = "structure",
+    id = "RetryPolicy",
     members = {
         maxAttempts = {
             type = "integer",
@@ -804,6 +854,7 @@ M.JobRunState = {
 
 M.TotalResourceUtilization = {
     type = "structure",
+    id = "TotalResourceUtilization",
     members = {
         vCPUHour = {
             type = "double",
@@ -819,6 +870,7 @@ M.TotalResourceUtilization = {
 
 M.ListJobRunAttemptsInput = {
     type = "structure",
+    id = "ListJobRunAttemptsInput",
     members = {
         applicationId = {
             type = "string",
@@ -852,6 +904,7 @@ M.ListJobRunAttemptsInput = {
 
 M.JobRunAttemptSummary = {
     type = "structure",
+    id = "JobRunAttemptSummary",
     members = {
         applicationId = {
             type = "string",
@@ -936,6 +989,7 @@ M.JobRunAttemptSummary = {
 
 M.ListJobRunAttemptsOutput = {
     type = "structure",
+    id = "ListJobRunAttemptsOutput",
     members = {
         jobRunAttempts = {
             type = "list",
@@ -952,6 +1006,7 @@ M.ListJobRunAttemptsOutput = {
 
 M.ListJobRunsInput = {
     type = "structure",
+    id = "ListJobRunsInput",
     members = {
         applicationId = {
             type = "string",
@@ -1003,6 +1058,7 @@ M.ListJobRunsInput = {
 
 M.JobRunSummary = {
     type = "structure",
+    id = "JobRunSummary",
     members = {
         applicationId = {
             type = "string",
@@ -1087,6 +1143,7 @@ M.JobRunSummary = {
 
 M.ListJobRunsOutput = {
     type = "structure",
+    id = "ListJobRunsOutput",
     members = {
         jobRuns = {
             type = "list",
@@ -1103,6 +1160,7 @@ M.ListJobRunsOutput = {
 
 M.StartJobRunOutput = {
     type = "structure",
+    id = "StartJobRunOutput",
     members = {
         applicationId = {
             type = "string",
@@ -1127,6 +1185,7 @@ M.StartJobRunOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1140,6 +1199,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1151,6 +1211,7 @@ M.ListTagsForResourceOutput = {
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         applicationId = {
             type = "string",
@@ -1182,6 +1243,7 @@ M.SessionState = {
 
 M.GetSessionEndpointInput = {
     type = "structure",
+    id = "GetSessionEndpointInput",
     members = {
         applicationId = {
             type = "string",
@@ -1202,6 +1264,7 @@ M.GetSessionEndpointInput = {
 
 M.GetSessionEndpointOutput = {
     type = "structure",
+    id = "GetSessionEndpointOutput",
     members = {
         applicationId = {
             type = "string",
@@ -1238,6 +1301,7 @@ M.GetSessionEndpointOutput = {
 
 M.ListSessionsInput = {
     type = "structure",
+    id = "ListSessionsInput",
     members = {
         applicationId = {
             type = "string",
@@ -1283,6 +1347,7 @@ M.ListSessionsInput = {
 
 M.SessionSummary = {
     type = "structure",
+    id = "SessionSummary",
     members = {
         applicationId = {
             type = "string",
@@ -1352,6 +1417,7 @@ M.SessionSummary = {
 
 M.ListSessionsOutput = {
     type = "structure",
+    id = "ListSessionsOutput",
     members = {
         sessions = {
             type = "list",
@@ -1368,6 +1434,7 @@ M.ListSessionsOutput = {
 
 M.StartSessionOutput = {
     type = "structure",
+    id = "StartSessionOutput",
     members = {
         applicationId = {
             type = "string",
@@ -1392,6 +1459,7 @@ M.StartSessionOutput = {
 
 M.TerminateSessionInput = {
     type = "structure",
+    id = "TerminateSessionInput",
     members = {
         applicationId = {
             type = "string",
@@ -1412,6 +1480,7 @@ M.TerminateSessionInput = {
 
 M.TerminateSessionOutput = {
     type = "structure",
+    id = "TerminateSessionOutput",
     members = {
         applicationId = {
             type = "string",
@@ -1430,6 +1499,7 @@ M.TerminateSessionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1451,10 +1521,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1476,10 +1548,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.Configuration = {
     type = "structure",
+    id = "Configuration",
     members = {
         classification = {
             type = "string",
@@ -1501,6 +1575,7 @@ M.Configuration = {
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         applicationId = {
             type = "string",
@@ -1588,6 +1663,7 @@ M.Application = {
 
 M.ConfigurationOverrides = {
     type = "structure",
+    id = "ConfigurationOverrides",
     members = {
         applicationConfiguration = {
             type = "list",
@@ -1600,6 +1676,7 @@ M.ConfigurationOverrides = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         name = {
             type = "string",
@@ -1661,6 +1738,7 @@ M.CreateApplicationInput = {
 
 M.SessionConfigurationOverrides = {
     type = "structure",
+    id = "SessionConfigurationOverrides",
     members = {
         runtimeConfiguration = {
             type = "list",
@@ -1671,6 +1749,7 @@ M.SessionConfigurationOverrides = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -1722,6 +1801,7 @@ M.UpdateApplicationInput = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         application = setmetatable({ traits = {
             required = true,
@@ -1731,6 +1811,7 @@ M.GetApplicationOutput = {
 
 M.JobRun = {
     type = "structure",
+    id = "JobRun",
     members = {
         applicationId = {
             type = "string",
@@ -1844,6 +1925,7 @@ M.JobRun = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         applicationId = {
             type = "string",
@@ -1940,6 +2022,7 @@ M.Session = {
 
 M.StartJobRunInput = {
     type = "structure",
+    id = "StartJobRunInput",
     members = {
         applicationId = {
             type = "string",
@@ -1987,6 +2070,7 @@ M.StartJobRunInput = {
 
 M.StartSessionInput = {
     type = "structure",
+    id = "StartSessionInput",
     members = {
         applicationId = {
             type = "string",
@@ -2028,6 +2112,7 @@ M.StartSessionInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         application = setmetatable({ traits = {
             required = true,
@@ -2037,6 +2122,7 @@ M.UpdateApplicationOutput = {
 
 M.GetJobRunOutput = {
     type = "structure",
+    id = "GetJobRunOutput",
     members = {
         jobRun = setmetatable({ traits = {
             required = true,
@@ -2046,6 +2132,7 @@ M.GetJobRunOutput = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         session = setmetatable({ traits = {
             required = true,

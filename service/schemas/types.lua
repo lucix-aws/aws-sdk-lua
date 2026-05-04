@@ -7,6 +7,7 @@ M.DiscovererState = {
 
 M.DiscovererSummary = {
     type = "structure",
+    id = "DiscovererSummary",
     members = {
         DiscovererArn = {
             type = "string",
@@ -36,6 +37,7 @@ M.DiscovererSummary = {
 
 M.RegistrySummary = {
     type = "structure",
+    id = "RegistrySummary",
     members = {
         RegistryArn = {
             type = "string",
@@ -56,6 +58,7 @@ M.RegistrySummary = {
 
 M.SchemaSummary = {
     type = "structure",
+    id = "SchemaSummary",
     members = {
         LastModified = {
             type = "timestamp",
@@ -90,6 +93,7 @@ M.Type = {
 
 M.SchemaVersionSummary = {
     type = "structure",
+    id = "SchemaVersionSummary",
     members = {
         SchemaArn = {
             type = "string",
@@ -108,6 +112,7 @@ M.SchemaVersionSummary = {
 
 M.SearchSchemaVersionSummary = {
     type = "structure",
+    id = "SearchSchemaVersionSummary",
     members = {
         CreatedDate = {
             type = "timestamp",
@@ -126,6 +131,7 @@ M.SearchSchemaVersionSummary = {
 
 M.SearchSchemaSummary = {
     type = "structure",
+    id = "SearchSchemaSummary",
     members = {
         RegistryName = {
             type = "string",
@@ -145,6 +151,7 @@ M.SearchSchemaSummary = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Code = {
@@ -170,6 +177,7 @@ M.CodeGenerationStatus = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Code = {
@@ -189,6 +197,7 @@ M.ConflictException = {
 
 M.CreateDiscovererInput = {
     type = "structure",
+    id = "CreateDiscovererInput",
     members = {
         Description = {
             type = "string",
@@ -215,6 +224,7 @@ M.CreateDiscovererInput = {
 
 M.CreateDiscovererOutput = {
     type = "structure",
+    id = "CreateDiscovererOutput",
     members = {
         Description = {
             type = "string",
@@ -247,6 +257,7 @@ M.CreateDiscovererOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Code = {
@@ -266,6 +277,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Code = {
@@ -285,6 +297,7 @@ M.InternalServerErrorException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Code = {
@@ -304,6 +317,7 @@ M.ServiceUnavailableException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         Code = {
@@ -323,6 +337,7 @@ M.UnauthorizedException = {
 
 M.CreateRegistryInput = {
     type = "structure",
+    id = "CreateRegistryInput",
     members = {
         Description = {
             type = "string",
@@ -347,6 +362,7 @@ M.CreateRegistryInput = {
 
 M.CreateRegistryOutput = {
     type = "structure",
+    id = "CreateRegistryOutput",
     members = {
         Description = {
             type = "string",
@@ -370,6 +386,7 @@ M.CreateRegistryOutput = {
 
 M.CreateSchemaInput = {
     type = "structure",
+    id = "CreateSchemaInput",
     members = {
         Content = {
             type = "string",
@@ -413,6 +430,7 @@ M.CreateSchemaInput = {
 
 M.CreateSchemaOutput = {
     type = "structure",
+    id = "CreateSchemaOutput",
     members = {
         Description = {
             type = "string",
@@ -454,6 +472,7 @@ M.CreateSchemaOutput = {
 
 M.DeleteDiscovererInput = {
     type = "structure",
+    id = "DeleteDiscovererInput",
     members = {
         DiscovererId = {
             type = "string",
@@ -467,10 +486,12 @@ M.DeleteDiscovererInput = {
 
 M.DeleteDiscovererOutput = {
     type = "structure",
+    id = "DeleteDiscovererOutput",
 }
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Code = {
@@ -490,6 +511,7 @@ M.NotFoundException = {
 
 M.DeleteRegistryInput = {
     type = "structure",
+    id = "DeleteRegistryInput",
     members = {
         RegistryName = {
             type = "string",
@@ -503,10 +525,12 @@ M.DeleteRegistryInput = {
 
 M.DeleteRegistryOutput = {
     type = "structure",
+    id = "DeleteRegistryOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         RegistryName = {
             type = "string",
@@ -519,10 +543,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteSchemaInput = {
     type = "structure",
+    id = "DeleteSchemaInput",
     members = {
         RegistryName = {
             type = "string",
@@ -543,10 +569,12 @@ M.DeleteSchemaInput = {
 
 M.DeleteSchemaOutput = {
     type = "structure",
+    id = "DeleteSchemaOutput",
 }
 
 M.DeleteSchemaVersionInput = {
     type = "structure",
+    id = "DeleteSchemaVersionInput",
     members = {
         RegistryName = {
             type = "string",
@@ -574,10 +602,12 @@ M.DeleteSchemaVersionInput = {
 
 M.DeleteSchemaVersionOutput = {
     type = "structure",
+    id = "DeleteSchemaVersionOutput",
 }
 
 M.DescribeCodeBindingInput = {
     type = "structure",
+    id = "DescribeCodeBindingInput",
     members = {
         Language = {
             type = "string",
@@ -611,6 +641,7 @@ M.DescribeCodeBindingInput = {
 
 M.DescribeCodeBindingOutput = {
     type = "structure",
+    id = "DescribeCodeBindingOutput",
     members = {
         CreationDate = {
             type = "timestamp",
@@ -635,6 +666,7 @@ M.DescribeCodeBindingOutput = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Code = {
@@ -654,6 +686,7 @@ M.TooManyRequestsException = {
 
 M.DescribeDiscovererInput = {
     type = "structure",
+    id = "DescribeDiscovererInput",
     members = {
         DiscovererId = {
             type = "string",
@@ -667,6 +700,7 @@ M.DescribeDiscovererInput = {
 
 M.DescribeDiscovererOutput = {
     type = "structure",
+    id = "DescribeDiscovererOutput",
     members = {
         Description = {
             type = "string",
@@ -699,6 +733,7 @@ M.DescribeDiscovererOutput = {
 
 M.DescribeRegistryInput = {
     type = "structure",
+    id = "DescribeRegistryInput",
     members = {
         RegistryName = {
             type = "string",
@@ -712,6 +747,7 @@ M.DescribeRegistryInput = {
 
 M.DescribeRegistryOutput = {
     type = "structure",
+    id = "DescribeRegistryOutput",
     members = {
         Description = {
             type = "string",
@@ -735,6 +771,7 @@ M.DescribeRegistryOutput = {
 
 M.DescribeSchemaInput = {
     type = "structure",
+    id = "DescribeSchemaInput",
     members = {
         RegistryName = {
             type = "string",
@@ -761,6 +798,7 @@ M.DescribeSchemaInput = {
 
 M.DescribeSchemaOutput = {
     type = "structure",
+    id = "DescribeSchemaOutput",
     members = {
         Content = {
             type = "string",
@@ -805,6 +843,7 @@ M.DescribeSchemaOutput = {
 
 M.ExportSchemaInput = {
     type = "structure",
+    id = "ExportSchemaInput",
     members = {
         RegistryName = {
             type = "string",
@@ -838,6 +877,7 @@ M.ExportSchemaInput = {
 
 M.ExportSchemaOutput = {
     type = "structure",
+    id = "ExportSchemaOutput",
     members = {
         Content = {
             type = "string",
@@ -859,6 +899,7 @@ M.ExportSchemaOutput = {
 
 M.GetCodeBindingSourceInput = {
     type = "structure",
+    id = "GetCodeBindingSourceInput",
     members = {
         Language = {
             type = "string",
@@ -892,6 +933,7 @@ M.GetCodeBindingSourceInput = {
 
 M.GetCodeBindingSourceOutput = {
     type = "structure",
+    id = "GetCodeBindingSourceOutput",
     members = {
         Body = {
             type = "blob",
@@ -904,6 +946,7 @@ M.GetCodeBindingSourceOutput = {
 
 M.GetDiscoveredSchemaInput = {
     type = "structure",
+    id = "GetDiscoveredSchemaInput",
     members = {
         Events = {
             type = "list",
@@ -923,6 +966,7 @@ M.GetDiscoveredSchemaInput = {
 
 M.GetDiscoveredSchemaOutput = {
     type = "structure",
+    id = "GetDiscoveredSchemaOutput",
     members = {
         Content = {
             type = "string",
@@ -932,6 +976,7 @@ M.GetDiscoveredSchemaOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         RegistryName = {
             type = "string",
@@ -944,6 +989,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -959,6 +1005,7 @@ M.GetResourcePolicyOutput = {
 
 M.GoneException = {
     type = "structure",
+    id = "GoneException",
     error = "client",
     members = {
         Code = {
@@ -978,6 +1025,7 @@ M.GoneException = {
 
 M.ListDiscoverersInput = {
     type = "structure",
+    id = "ListDiscoverersInput",
     members = {
         DiscovererIdPrefix = {
             type = "string",
@@ -1008,6 +1056,7 @@ M.ListDiscoverersInput = {
 
 M.ListDiscoverersOutput = {
     type = "structure",
+    id = "ListDiscoverersOutput",
     members = {
         Discoverers = {
             type = "list",
@@ -1021,6 +1070,7 @@ M.ListDiscoverersOutput = {
 
 M.ListRegistriesInput = {
     type = "structure",
+    id = "ListRegistriesInput",
     members = {
         Limit = {
             type = "integer",
@@ -1051,6 +1101,7 @@ M.ListRegistriesInput = {
 
 M.ListRegistriesOutput = {
     type = "structure",
+    id = "ListRegistriesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1064,6 +1115,7 @@ M.ListRegistriesOutput = {
 
 M.ListSchemasInput = {
     type = "structure",
+    id = "ListSchemasInput",
     members = {
         Limit = {
             type = "integer",
@@ -1095,6 +1147,7 @@ M.ListSchemasInput = {
 
 M.ListSchemasOutput = {
     type = "structure",
+    id = "ListSchemasOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1108,6 +1161,7 @@ M.ListSchemasOutput = {
 
 M.ListSchemaVersionsInput = {
     type = "structure",
+    id = "ListSchemaVersionsInput",
     members = {
         Limit = {
             type = "integer",
@@ -1140,6 +1194,7 @@ M.ListSchemaVersionsInput = {
 
 M.ListSchemaVersionsOutput = {
     type = "structure",
+    id = "ListSchemaVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1153,6 +1208,7 @@ M.ListSchemaVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1166,6 +1222,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1180,6 +1237,7 @@ M.ListTagsForResourceOutput = {
 
 M.PreconditionFailedException = {
     type = "structure",
+    id = "PreconditionFailedException",
     error = "client",
     members = {
         Code = {
@@ -1199,6 +1257,7 @@ M.PreconditionFailedException = {
 
 M.PutCodeBindingInput = {
     type = "structure",
+    id = "PutCodeBindingInput",
     members = {
         Language = {
             type = "string",
@@ -1232,6 +1291,7 @@ M.PutCodeBindingInput = {
 
 M.PutCodeBindingOutput = {
     type = "structure",
+    id = "PutCodeBindingOutput",
     members = {
         CreationDate = {
             type = "timestamp",
@@ -1256,6 +1316,7 @@ M.PutCodeBindingOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         Policy = {
             type = "string",
@@ -1278,6 +1339,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -1293,6 +1355,7 @@ M.PutResourcePolicyOutput = {
 
 M.SearchSchemasInput = {
     type = "structure",
+    id = "SearchSchemasInput",
     members = {
         Keywords = {
             type = "string",
@@ -1325,6 +1388,7 @@ M.SearchSchemasInput = {
 
 M.SearchSchemasOutput = {
     type = "structure",
+    id = "SearchSchemasOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1338,6 +1402,7 @@ M.SearchSchemasOutput = {
 
 M.StartDiscovererInput = {
     type = "structure",
+    id = "StartDiscovererInput",
     members = {
         DiscovererId = {
             type = "string",
@@ -1351,6 +1416,7 @@ M.StartDiscovererInput = {
 
 M.StartDiscovererOutput = {
     type = "structure",
+    id = "StartDiscovererOutput",
     members = {
         DiscovererId = {
             type = "string",
@@ -1363,6 +1429,7 @@ M.StartDiscovererOutput = {
 
 M.StopDiscovererInput = {
     type = "structure",
+    id = "StopDiscovererInput",
     members = {
         DiscovererId = {
             type = "string",
@@ -1376,6 +1443,7 @@ M.StopDiscovererInput = {
 
 M.StopDiscovererOutput = {
     type = "structure",
+    id = "StopDiscovererOutput",
     members = {
         DiscovererId = {
             type = "string",
@@ -1388,6 +1456,7 @@ M.StopDiscovererOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1410,10 +1479,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1435,10 +1506,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDiscovererInput = {
     type = "structure",
+    id = "UpdateDiscovererInput",
     members = {
         Description = {
             type = "string",
@@ -1458,6 +1531,7 @@ M.UpdateDiscovererInput = {
 
 M.UpdateDiscovererOutput = {
     type = "structure",
+    id = "UpdateDiscovererOutput",
     members = {
         Description = {
             type = "string",
@@ -1490,6 +1564,7 @@ M.UpdateDiscovererOutput = {
 
 M.UpdateRegistryInput = {
     type = "structure",
+    id = "UpdateRegistryInput",
     members = {
         Description = {
             type = "string",
@@ -1506,6 +1581,7 @@ M.UpdateRegistryInput = {
 
 M.UpdateRegistryOutput = {
     type = "structure",
+    id = "UpdateRegistryOutput",
     members = {
         Description = {
             type = "string",
@@ -1529,6 +1605,7 @@ M.UpdateRegistryOutput = {
 
 M.UpdateSchemaInput = {
     type = "structure",
+    id = "UpdateSchemaInput",
     members = {
         ClientTokenId = {
             type = "string",
@@ -1564,6 +1641,7 @@ M.UpdateSchemaInput = {
 
 M.UpdateSchemaOutput = {
     type = "structure",
+    id = "UpdateSchemaOutput",
     members = {
         Description = {
             type = "string",

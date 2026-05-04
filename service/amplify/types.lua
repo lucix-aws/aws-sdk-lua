@@ -2,6 +2,7 @@ local M = {}
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.Stage = {
 
 M.AutoBranchCreationConfig = {
     type = "structure",
+    id = "AutoBranchCreationConfig",
     members = {
         stage = {
             type = "string",
@@ -63,6 +65,7 @@ M.CacheConfigType = {
 
 M.CacheConfig = {
     type = "structure",
+    id = "CacheConfig",
     members = {
         type = {
             type = "string",
@@ -75,6 +78,7 @@ M.CacheConfig = {
 
 M.CustomRule = {
     type = "structure",
+    id = "CustomRule",
     members = {
         source = {
             type = "string",
@@ -105,6 +109,7 @@ M.BuildComputeType = {
 
 M.JobConfig = {
     type = "structure",
+    id = "JobConfig",
     members = {
         buildComputeType = {
             type = "string",
@@ -123,6 +128,7 @@ M.Platform = {
 
 M.CreateAppInput = {
     type = "structure",
+    id = "CreateAppInput",
     members = {
         name = {
             type = "string",
@@ -198,6 +204,7 @@ M.CreateAppInput = {
 
 M.ProductionBranch = {
     type = "structure",
+    id = "ProductionBranch",
     members = {
         lastDeployTime = {
             type = "timestamp",
@@ -230,6 +237,7 @@ M.WafStatus = {
 
 M.WafConfiguration = {
     type = "structure",
+    id = "WafConfiguration",
     members = {
         webAclArn = {
             type = "string",
@@ -245,6 +253,7 @@ M.WafConfiguration = {
 
 M.App = {
     type = "structure",
+    id = "App",
     members = {
         appId = {
             type = "string",
@@ -370,6 +379,7 @@ M.App = {
 
 M.CreateAppOutput = {
     type = "structure",
+    id = "CreateAppOutput",
     members = {
         app = setmetatable({ traits = {
             required = true,
@@ -379,6 +389,7 @@ M.CreateAppOutput = {
 
 M.DependentServiceFailureException = {
     type = "structure",
+    id = "DependentServiceFailureException",
     error = "server",
     members = {
         message = {
@@ -389,6 +400,7 @@ M.DependentServiceFailureException = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -399,6 +411,7 @@ M.InternalFailureException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -409,6 +422,7 @@ M.LimitExceededException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -419,6 +433,7 @@ M.UnauthorizedException = {
 
 M.CreateBackendEnvironmentInput = {
     type = "structure",
+    id = "CreateBackendEnvironmentInput",
     members = {
         appId = {
             type = "string",
@@ -444,6 +459,7 @@ M.CreateBackendEnvironmentInput = {
 
 M.BackendEnvironment = {
     type = "structure",
+    id = "BackendEnvironment",
     members = {
         backendEnvironmentArn = {
             type = "string",
@@ -480,6 +496,7 @@ M.BackendEnvironment = {
 
 M.CreateBackendEnvironmentOutput = {
     type = "structure",
+    id = "CreateBackendEnvironmentOutput",
     members = {
         backendEnvironment = setmetatable({ traits = {
             required = true,
@@ -489,6 +506,7 @@ M.CreateBackendEnvironmentOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -499,6 +517,7 @@ M.NotFoundException = {
 
 M.Backend = {
     type = "structure",
+    id = "Backend",
     members = {
         stackArn = {
             type = "string",
@@ -508,6 +527,7 @@ M.Backend = {
 
 M.CreateBranchInput = {
     type = "structure",
+    id = "CreateBranchInput",
     members = {
         appId = {
             type = "string",
@@ -586,6 +606,7 @@ M.CreateBranchInput = {
 
 M.Branch = {
     type = "structure",
+    id = "Branch",
     members = {
         branchArn = {
             type = "string",
@@ -737,6 +758,7 @@ M.Branch = {
 
 M.CreateBranchOutput = {
     type = "structure",
+    id = "CreateBranchOutput",
     members = {
         branch = setmetatable({ traits = {
             required = true,
@@ -746,6 +768,7 @@ M.CreateBranchOutput = {
 
 M.CreateDeploymentInput = {
     type = "structure",
+    id = "CreateDeploymentInput",
     members = {
         appId = {
             type = "string",
@@ -771,6 +794,7 @@ M.CreateDeploymentInput = {
 
 M.CreateDeploymentOutput = {
     type = "structure",
+    id = "CreateDeploymentOutput",
     members = {
         jobId = {
             type = "string",
@@ -799,6 +823,7 @@ M.CertificateType = {
 
 M.CertificateSettings = {
     type = "structure",
+    id = "CertificateSettings",
     members = {
         type = {
             type = "string",
@@ -814,6 +839,7 @@ M.CertificateSettings = {
 
 M.SubDomainSetting = {
     type = "structure",
+    id = "SubDomainSetting",
     members = {
         prefix = {
             type = "string",
@@ -832,6 +858,7 @@ M.SubDomainSetting = {
 
 M.CreateDomainAssociationInput = {
     type = "structure",
+    id = "CreateDomainAssociationInput",
     members = {
         appId = {
             type = "string",
@@ -869,6 +896,7 @@ M.CreateDomainAssociationInput = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         type = {
             type = "string",
@@ -900,6 +928,7 @@ M.DomainStatus = {
 
 M.SubDomain = {
     type = "structure",
+    id = "SubDomain",
     members = {
         subDomainSetting = setmetatable({ traits = {
             required = true,
@@ -931,6 +960,7 @@ M.UpdateStatus = {
 
 M.DomainAssociation = {
     type = "structure",
+    id = "DomainAssociation",
     members = {
         domainAssociationArn = {
             type = "string",
@@ -988,6 +1018,7 @@ M.DomainAssociation = {
 
 M.CreateDomainAssociationOutput = {
     type = "structure",
+    id = "CreateDomainAssociationOutput",
     members = {
         domainAssociation = setmetatable({ traits = {
             required = true,
@@ -997,6 +1028,7 @@ M.CreateDomainAssociationOutput = {
 
 M.CreateWebhookInput = {
     type = "structure",
+    id = "CreateWebhookInput",
     members = {
         appId = {
             type = "string",
@@ -1019,6 +1051,7 @@ M.CreateWebhookInput = {
 
 M.Webhook = {
     type = "structure",
+    id = "Webhook",
     members = {
         webhookArn = {
             type = "string",
@@ -1070,6 +1103,7 @@ M.Webhook = {
 
 M.CreateWebhookOutput = {
     type = "structure",
+    id = "CreateWebhookOutput",
     members = {
         webhook = setmetatable({ traits = {
             required = true,
@@ -1079,6 +1113,7 @@ M.CreateWebhookOutput = {
 
 M.DeleteAppInput = {
     type = "structure",
+    id = "DeleteAppInput",
     members = {
         appId = {
             type = "string",
@@ -1092,6 +1127,7 @@ M.DeleteAppInput = {
 
 M.DeleteAppOutput = {
     type = "structure",
+    id = "DeleteAppOutput",
     members = {
         app = setmetatable({ traits = {
             required = true,
@@ -1101,6 +1137,7 @@ M.DeleteAppOutput = {
 
 M.DeleteBackendEnvironmentInput = {
     type = "structure",
+    id = "DeleteBackendEnvironmentInput",
     members = {
         appId = {
             type = "string",
@@ -1121,6 +1158,7 @@ M.DeleteBackendEnvironmentInput = {
 
 M.DeleteBackendEnvironmentOutput = {
     type = "structure",
+    id = "DeleteBackendEnvironmentOutput",
     members = {
         backendEnvironment = setmetatable({ traits = {
             required = true,
@@ -1130,6 +1168,7 @@ M.DeleteBackendEnvironmentOutput = {
 
 M.DeleteBranchInput = {
     type = "structure",
+    id = "DeleteBranchInput",
     members = {
         appId = {
             type = "string",
@@ -1150,6 +1189,7 @@ M.DeleteBranchInput = {
 
 M.DeleteBranchOutput = {
     type = "structure",
+    id = "DeleteBranchOutput",
     members = {
         branch = setmetatable({ traits = {
             required = true,
@@ -1159,6 +1199,7 @@ M.DeleteBranchOutput = {
 
 M.DeleteDomainAssociationInput = {
     type = "structure",
+    id = "DeleteDomainAssociationInput",
     members = {
         appId = {
             type = "string",
@@ -1179,6 +1220,7 @@ M.DeleteDomainAssociationInput = {
 
 M.DeleteDomainAssociationOutput = {
     type = "structure",
+    id = "DeleteDomainAssociationOutput",
     members = {
         domainAssociation = setmetatable({ traits = {
             required = true,
@@ -1188,6 +1230,7 @@ M.DeleteDomainAssociationOutput = {
 
 M.DeleteJobInput = {
     type = "structure",
+    id = "DeleteJobInput",
     members = {
         appId = {
             type = "string",
@@ -1238,6 +1281,7 @@ M.JobStatus = {
 
 M.JobSummary = {
     type = "structure",
+    id = "JobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -1301,6 +1345,7 @@ M.JobSummary = {
 
 M.DeleteJobOutput = {
     type = "structure",
+    id = "DeleteJobOutput",
     members = {
         jobSummary = setmetatable({ traits = {
             required = true,
@@ -1310,6 +1355,7 @@ M.DeleteJobOutput = {
 
 M.DeleteWebhookInput = {
     type = "structure",
+    id = "DeleteWebhookInput",
     members = {
         webhookId = {
             type = "string",
@@ -1323,6 +1369,7 @@ M.DeleteWebhookInput = {
 
 M.DeleteWebhookOutput = {
     type = "structure",
+    id = "DeleteWebhookOutput",
     members = {
         webhook = setmetatable({ traits = {
             required = true,
@@ -1332,6 +1379,7 @@ M.DeleteWebhookOutput = {
 
 M.GenerateAccessLogsInput = {
     type = "structure",
+    id = "GenerateAccessLogsInput",
     members = {
         startTime = {
             type = "timestamp",
@@ -1357,6 +1405,7 @@ M.GenerateAccessLogsInput = {
 
 M.GenerateAccessLogsOutput = {
     type = "structure",
+    id = "GenerateAccessLogsOutput",
     members = {
         logUrl = {
             type = "string",
@@ -1366,6 +1415,7 @@ M.GenerateAccessLogsOutput = {
 
 M.GetAppInput = {
     type = "structure",
+    id = "GetAppInput",
     members = {
         appId = {
             type = "string",
@@ -1379,6 +1429,7 @@ M.GetAppInput = {
 
 M.GetAppOutput = {
     type = "structure",
+    id = "GetAppOutput",
     members = {
         app = setmetatable({ traits = {
             required = true,
@@ -1388,6 +1439,7 @@ M.GetAppOutput = {
 
 M.GetArtifactUrlInput = {
     type = "structure",
+    id = "GetArtifactUrlInput",
     members = {
         artifactId = {
             type = "string",
@@ -1401,6 +1453,7 @@ M.GetArtifactUrlInput = {
 
 M.GetArtifactUrlOutput = {
     type = "structure",
+    id = "GetArtifactUrlOutput",
     members = {
         artifactId = {
             type = "string",
@@ -1419,6 +1472,7 @@ M.GetArtifactUrlOutput = {
 
 M.GetBackendEnvironmentInput = {
     type = "structure",
+    id = "GetBackendEnvironmentInput",
     members = {
         appId = {
             type = "string",
@@ -1439,6 +1493,7 @@ M.GetBackendEnvironmentInput = {
 
 M.GetBackendEnvironmentOutput = {
     type = "structure",
+    id = "GetBackendEnvironmentOutput",
     members = {
         backendEnvironment = setmetatable({ traits = {
             required = true,
@@ -1448,6 +1503,7 @@ M.GetBackendEnvironmentOutput = {
 
 M.GetBranchInput = {
     type = "structure",
+    id = "GetBranchInput",
     members = {
         appId = {
             type = "string",
@@ -1468,6 +1524,7 @@ M.GetBranchInput = {
 
 M.GetBranchOutput = {
     type = "structure",
+    id = "GetBranchOutput",
     members = {
         branch = setmetatable({ traits = {
             required = true,
@@ -1477,6 +1534,7 @@ M.GetBranchOutput = {
 
 M.GetDomainAssociationInput = {
     type = "structure",
+    id = "GetDomainAssociationInput",
     members = {
         appId = {
             type = "string",
@@ -1497,6 +1555,7 @@ M.GetDomainAssociationInput = {
 
 M.GetDomainAssociationOutput = {
     type = "structure",
+    id = "GetDomainAssociationOutput",
     members = {
         domainAssociation = setmetatable({ traits = {
             required = true,
@@ -1506,6 +1565,7 @@ M.GetDomainAssociationOutput = {
 
 M.GetJobInput = {
     type = "structure",
+    id = "GetJobInput",
     members = {
         appId = {
             type = "string",
@@ -1533,6 +1593,7 @@ M.GetJobInput = {
 
 M.Step = {
     type = "structure",
+    id = "Step",
     members = {
         stepName = {
             type = "string",
@@ -1586,6 +1647,7 @@ M.Step = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         summary = setmetatable({ traits = {
             required = true,
@@ -1602,6 +1664,7 @@ M.Job = {
 
 M.GetJobOutput = {
     type = "structure",
+    id = "GetJobOutput",
     members = {
         job = setmetatable({ traits = {
             required = true,
@@ -1611,6 +1674,7 @@ M.GetJobOutput = {
 
 M.GetWebhookInput = {
     type = "structure",
+    id = "GetWebhookInput",
     members = {
         webhookId = {
             type = "string",
@@ -1624,6 +1688,7 @@ M.GetWebhookInput = {
 
 M.GetWebhookOutput = {
     type = "structure",
+    id = "GetWebhookOutput",
     members = {
         webhook = setmetatable({ traits = {
             required = true,
@@ -1633,6 +1698,7 @@ M.GetWebhookOutput = {
 
 M.ListAppsInput = {
     type = "structure",
+    id = "ListAppsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1652,6 +1718,7 @@ M.ListAppsInput = {
 
 M.ListAppsOutput = {
     type = "structure",
+    id = "ListAppsOutput",
     members = {
         apps = {
             type = "list",
@@ -1668,6 +1735,7 @@ M.ListAppsOutput = {
 
 M.ListArtifactsInput = {
     type = "structure",
+    id = "ListArtifactsInput",
     members = {
         appId = {
             type = "string",
@@ -1708,6 +1776,7 @@ M.ListArtifactsInput = {
 
 M.Artifact = {
     type = "structure",
+    id = "Artifact",
     members = {
         artifactFileName = {
             type = "string",
@@ -1726,6 +1795,7 @@ M.Artifact = {
 
 M.ListArtifactsOutput = {
     type = "structure",
+    id = "ListArtifactsOutput",
     members = {
         artifacts = {
             type = "list",
@@ -1742,6 +1812,7 @@ M.ListArtifactsOutput = {
 
 M.ListBackendEnvironmentsInput = {
     type = "structure",
+    id = "ListBackendEnvironmentsInput",
     members = {
         appId = {
             type = "string",
@@ -1774,6 +1845,7 @@ M.ListBackendEnvironmentsInput = {
 
 M.ListBackendEnvironmentsOutput = {
     type = "structure",
+    id = "ListBackendEnvironmentsOutput",
     members = {
         backendEnvironments = {
             type = "list",
@@ -1790,6 +1862,7 @@ M.ListBackendEnvironmentsOutput = {
 
 M.ListBranchesInput = {
     type = "structure",
+    id = "ListBranchesInput",
     members = {
         appId = {
             type = "string",
@@ -1816,6 +1889,7 @@ M.ListBranchesInput = {
 
 M.ListBranchesOutput = {
     type = "structure",
+    id = "ListBranchesOutput",
     members = {
         branches = {
             type = "list",
@@ -1832,6 +1906,7 @@ M.ListBranchesOutput = {
 
 M.ListDomainAssociationsInput = {
     type = "structure",
+    id = "ListDomainAssociationsInput",
     members = {
         appId = {
             type = "string",
@@ -1858,6 +1933,7 @@ M.ListDomainAssociationsInput = {
 
 M.ListDomainAssociationsOutput = {
     type = "structure",
+    id = "ListDomainAssociationsOutput",
     members = {
         domainAssociations = {
             type = "list",
@@ -1874,6 +1950,7 @@ M.ListDomainAssociationsOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         appId = {
             type = "string",
@@ -1907,6 +1984,7 @@ M.ListJobsInput = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         jobSummaries = {
             type = "list",
@@ -1923,6 +2001,7 @@ M.ListJobsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1936,6 +2015,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1947,6 +2027,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         code = {
@@ -1966,6 +2047,7 @@ M.ResourceNotFoundException = {
 
 M.ListWebhooksInput = {
     type = "structure",
+    id = "ListWebhooksInput",
     members = {
         appId = {
             type = "string",
@@ -1992,6 +2074,7 @@ M.ListWebhooksInput = {
 
 M.ListWebhooksOutput = {
     type = "structure",
+    id = "ListWebhooksOutput",
     members = {
         webhooks = {
             type = "list",
@@ -2008,6 +2091,7 @@ M.ListWebhooksOutput = {
 
 M.StartDeploymentInput = {
     type = "structure",
+    id = "StartDeploymentInput",
     members = {
         appId = {
             type = "string",
@@ -2037,6 +2121,7 @@ M.StartDeploymentInput = {
 
 M.StartDeploymentOutput = {
     type = "structure",
+    id = "StartDeploymentOutput",
     members = {
         jobSummary = setmetatable({ traits = {
             required = true,
@@ -2046,6 +2131,7 @@ M.StartDeploymentOutput = {
 
 M.StartJobInput = {
     type = "structure",
+    id = "StartJobInput",
     members = {
         appId = {
             type = "string",
@@ -2087,6 +2173,7 @@ M.StartJobInput = {
 
 M.StartJobOutput = {
     type = "structure",
+    id = "StartJobOutput",
     members = {
         jobSummary = setmetatable({ traits = {
             required = true,
@@ -2096,6 +2183,7 @@ M.StartJobOutput = {
 
 M.StopJobInput = {
     type = "structure",
+    id = "StopJobInput",
     members = {
         appId = {
             type = "string",
@@ -2123,6 +2211,7 @@ M.StopJobInput = {
 
 M.StopJobOutput = {
     type = "structure",
+    id = "StopJobOutput",
     members = {
         jobSummary = setmetatable({ traits = {
             required = true,
@@ -2132,6 +2221,7 @@ M.StopJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2153,10 +2243,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2178,10 +2270,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAppInput = {
     type = "structure",
+    id = "UpdateAppInput",
     members = {
         appId = {
             type = "string",
@@ -2256,6 +2350,7 @@ M.UpdateAppInput = {
 
 M.UpdateAppOutput = {
     type = "structure",
+    id = "UpdateAppOutput",
     members = {
         app = setmetatable({ traits = {
             required = true,
@@ -2265,6 +2360,7 @@ M.UpdateAppOutput = {
 
 M.UpdateBranchInput = {
     type = "structure",
+    id = "UpdateBranchInput",
     members = {
         appId = {
             type = "string",
@@ -2339,6 +2435,7 @@ M.UpdateBranchInput = {
 
 M.UpdateBranchOutput = {
     type = "structure",
+    id = "UpdateBranchOutput",
     members = {
         branch = setmetatable({ traits = {
             required = true,
@@ -2348,6 +2445,7 @@ M.UpdateBranchOutput = {
 
 M.UpdateDomainAssociationInput = {
     type = "structure",
+    id = "UpdateDomainAssociationInput",
     members = {
         appId = {
             type = "string",
@@ -2383,6 +2481,7 @@ M.UpdateDomainAssociationInput = {
 
 M.UpdateDomainAssociationOutput = {
     type = "structure",
+    id = "UpdateDomainAssociationOutput",
     members = {
         domainAssociation = setmetatable({ traits = {
             required = true,
@@ -2392,6 +2491,7 @@ M.UpdateDomainAssociationOutput = {
 
 M.UpdateWebhookInput = {
     type = "structure",
+    id = "UpdateWebhookInput",
     members = {
         webhookId = {
             type = "string",
@@ -2411,6 +2511,7 @@ M.UpdateWebhookInput = {
 
 M.UpdateWebhookOutput = {
     type = "structure",
+    id = "UpdateWebhookOutput",
     members = {
         webhook = setmetatable({ traits = {
             required = true,

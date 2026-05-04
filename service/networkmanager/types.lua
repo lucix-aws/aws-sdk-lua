@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptAttachmentInput = {
     type = "structure",
+    id = "AcceptAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -39,6 +40,7 @@ M.AttachmentErrorCode = {
 
 M.AttachmentError = {
     type = "structure",
+    id = "AttachmentError",
     members = {
         Code = {
             type = "string",
@@ -57,6 +59,7 @@ M.AttachmentError = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -69,6 +72,7 @@ M.Tag = {
 
 M.ProposedNetworkFunctionGroupChange = {
     type = "structure",
+    id = "ProposedNetworkFunctionGroupChange",
     members = {
         Tags = {
             type = "list",
@@ -85,6 +89,7 @@ M.ProposedNetworkFunctionGroupChange = {
 
 M.ProposedSegmentChange = {
     type = "structure",
+    id = "ProposedSegmentChange",
     members = {
         Tags = {
             type = "list",
@@ -113,6 +118,7 @@ M.AttachmentState = {
 
 M.Attachment = {
     type = "structure",
+    id = "Attachment",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -172,6 +178,7 @@ M.Attachment = {
 
 M.AcceptAttachmentOutput = {
     type = "structure",
+    id = "AcceptAttachmentOutput",
     members = {
         Attachment = M.Attachment,
     },
@@ -179,6 +186,7 @@ M.AcceptAttachmentOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -192,6 +200,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -217,6 +226,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -236,6 +246,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -266,6 +277,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -285,6 +297,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -310,6 +323,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -330,6 +344,7 @@ M.ValidationException = {
 
 M.AccountStatus = {
     type = "structure",
+    id = "AccountStatus",
     members = {
         AccountId = {
             type = "string",
@@ -342,6 +357,7 @@ M.AccountStatus = {
 
 M.AssociateConnectPeerInput = {
     type = "structure",
+    id = "AssociateConnectPeerInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -377,6 +393,7 @@ M.ConnectPeerAssociationState = {
 
 M.ConnectPeerAssociation = {
     type = "structure",
+    id = "ConnectPeerAssociation",
     members = {
         ConnectPeerId = {
             type = "string",
@@ -398,6 +415,7 @@ M.ConnectPeerAssociation = {
 
 M.AssociateConnectPeerOutput = {
     type = "structure",
+    id = "AssociateConnectPeerOutput",
     members = {
         ConnectPeerAssociation = M.ConnectPeerAssociation,
     },
@@ -405,6 +423,7 @@ M.AssociateConnectPeerOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -436,6 +455,7 @@ M.ServiceQuotaExceededException = {
 
 M.AssociateCustomerGatewayInput = {
     type = "structure",
+    id = "AssociateCustomerGatewayInput",
     members = {
         CustomerGatewayArn = {
             type = "string",
@@ -471,6 +491,7 @@ M.CustomerGatewayAssociationState = {
 
 M.CustomerGatewayAssociation = {
     type = "structure",
+    id = "CustomerGatewayAssociation",
     members = {
         CustomerGatewayArn = {
             type = "string",
@@ -492,6 +513,7 @@ M.CustomerGatewayAssociation = {
 
 M.AssociateCustomerGatewayOutput = {
     type = "structure",
+    id = "AssociateCustomerGatewayOutput",
     members = {
         CustomerGatewayAssociation = M.CustomerGatewayAssociation,
     },
@@ -499,6 +521,7 @@ M.AssociateCustomerGatewayOutput = {
 
 M.AssociateLinkInput = {
     type = "structure",
+    id = "AssociateLinkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -531,6 +554,7 @@ M.LinkAssociationState = {
 
 M.LinkAssociation = {
     type = "structure",
+    id = "LinkAssociation",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -549,6 +573,7 @@ M.LinkAssociation = {
 
 M.AssociateLinkOutput = {
     type = "structure",
+    id = "AssociateLinkOutput",
     members = {
         LinkAssociation = M.LinkAssociation,
     },
@@ -556,6 +581,7 @@ M.AssociateLinkOutput = {
 
 M.AssociateTransitGatewayConnectPeerInput = {
     type = "structure",
+    id = "AssociateTransitGatewayConnectPeerInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -591,6 +617,7 @@ M.TransitGatewayConnectPeerAssociationState = {
 
 M.TransitGatewayConnectPeerAssociation = {
     type = "structure",
+    id = "TransitGatewayConnectPeerAssociation",
     members = {
         TransitGatewayConnectPeerArn = {
             type = "string",
@@ -612,6 +639,7 @@ M.TransitGatewayConnectPeerAssociation = {
 
 M.AssociateTransitGatewayConnectPeerOutput = {
     type = "structure",
+    id = "AssociateTransitGatewayConnectPeerOutput",
     members = {
         TransitGatewayConnectPeerAssociation = M.TransitGatewayConnectPeerAssociation,
     },
@@ -619,6 +647,7 @@ M.AssociateTransitGatewayConnectPeerOutput = {
 
 M.AttachmentRoutingPolicyAssociationSummary = {
     type = "structure",
+    id = "AttachmentRoutingPolicyAssociationSummary",
     members = {
         AttachmentId = {
             type = "string",
@@ -639,6 +668,7 @@ M.AttachmentRoutingPolicyAssociationSummary = {
 
 M.AWSLocation = {
     type = "structure",
+    id = "AWSLocation",
     members = {
         Zone = {
             type = "string",
@@ -651,6 +681,7 @@ M.AWSLocation = {
 
 M.Bandwidth = {
     type = "structure",
+    id = "Bandwidth",
     members = {
         UploadSpeed = {
             type = "integer",
@@ -663,6 +694,7 @@ M.Bandwidth = {
 
 M.BgpOptions = {
     type = "structure",
+    id = "BgpOptions",
     members = {
         PeerAsn = {
             type = "long",
@@ -716,6 +748,7 @@ M.TunnelProtocol = {
 
 M.ConnectAttachmentOptions = {
     type = "structure",
+    id = "ConnectAttachmentOptions",
     members = {
         Protocol = {
             type = "string",
@@ -725,6 +758,7 @@ M.ConnectAttachmentOptions = {
 
 M.ConnectAttachment = {
     type = "structure",
+    id = "ConnectAttachment",
     members = {
         Attachment = M.Attachment,
         TransportAttachmentId = {
@@ -743,6 +777,7 @@ M.ConnectionState = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         ConnectionId = {
             type = "string",
@@ -793,6 +828,7 @@ M.ConnectionType = {
 
 M.ConnectionHealth = {
     type = "structure",
+    id = "ConnectionHealth",
     members = {
         Type = {
             type = "string",
@@ -808,6 +844,7 @@ M.ConnectionHealth = {
 
 M.ConnectPeerBgpConfiguration = {
     type = "structure",
+    id = "ConnectPeerBgpConfiguration",
     members = {
         CoreNetworkAsn = {
             type = "long",
@@ -826,6 +863,7 @@ M.ConnectPeerBgpConfiguration = {
 
 M.ConnectPeerConfiguration = {
     type = "structure",
+    id = "ConnectPeerConfiguration",
     members = {
         CoreNetworkAddress = {
             type = "string",
@@ -858,6 +896,7 @@ M.ConnectPeerErrorCode = {
 
 M.ConnectPeerError = {
     type = "structure",
+    id = "ConnectPeerError",
     members = {
         Code = {
             type = "string",
@@ -883,6 +922,7 @@ M.ConnectPeerState = {
 
 M.ConnectPeer = {
     type = "structure",
+    id = "ConnectPeer",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -919,6 +959,7 @@ M.ConnectPeer = {
 
 M.ConnectPeerSummary = {
     type = "structure",
+    id = "ConnectPeerSummary",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -950,6 +991,7 @@ M.ConnectPeerSummary = {
 
 M.CoreNetworkEdge = {
     type = "structure",
+    id = "CoreNetworkEdge",
     members = {
         EdgeLocation = {
             type = "string",
@@ -966,6 +1008,7 @@ M.CoreNetworkEdge = {
 
 M.ServiceInsertionSegments = {
     type = "structure",
+    id = "ServiceInsertionSegments",
     members = {
         SendVia = {
             type = "list",
@@ -980,6 +1023,7 @@ M.ServiceInsertionSegments = {
 
 M.CoreNetworkNetworkFunctionGroup = {
     type = "structure",
+    id = "CoreNetworkNetworkFunctionGroup",
     members = {
         Name = {
             type = "string",
@@ -994,6 +1038,7 @@ M.CoreNetworkNetworkFunctionGroup = {
 
 M.CoreNetworkSegment = {
     type = "structure",
+    id = "CoreNetworkSegment",
     members = {
         Name = {
             type = "string",
@@ -1018,6 +1063,7 @@ M.CoreNetworkState = {
 
 M.CoreNetwork = {
     type = "structure",
+    id = "CoreNetwork",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -1058,6 +1104,7 @@ M.CoreNetwork = {
 
 M.RoutingPolicyAssociationDetail = {
     type = "structure",
+    id = "RoutingPolicyAssociationDetail",
     members = {
         RoutingPolicyNames = {
             type = "list",
@@ -1087,6 +1134,7 @@ M.SendViaMode = {
 
 M.NetworkFunctionGroup = {
     type = "structure",
+    id = "NetworkFunctionGroup",
     members = {
         Name = {
             type = "string",
@@ -1096,6 +1144,7 @@ M.NetworkFunctionGroup = {
 
 M.EdgeOverride = {
     type = "structure",
+    id = "EdgeOverride",
     members = {
         EdgeSets = {
             type = "list",
@@ -1109,6 +1158,7 @@ M.EdgeOverride = {
 
 M.Via = {
     type = "structure",
+    id = "Via",
     members = {
         NetworkFunctionGroups = {
             type = "list",
@@ -1123,6 +1173,7 @@ M.Via = {
 
 M.WhenSentTo = {
     type = "structure",
+    id = "WhenSentTo",
     members = {
         WhenSentToSegmentsList = {
             type = "list",
@@ -1133,6 +1184,7 @@ M.WhenSentTo = {
 
 M.ServiceInsertionAction = {
     type = "structure",
+    id = "ServiceInsertionAction",
     members = {
         Action = {
             type = "string",
@@ -1147,6 +1199,7 @@ M.ServiceInsertionAction = {
 
 M.CoreNetworkChangeValues = {
     type = "structure",
+    id = "CoreNetworkChangeValues",
     members = {
         SegmentName = {
             type = "string",
@@ -1219,6 +1272,7 @@ M.CoreNetworkChangeValues = {
 
 M.CoreNetworkChange = {
     type = "structure",
+    id = "CoreNetworkChange",
     members = {
         Type = {
             type = "string",
@@ -1239,6 +1293,7 @@ M.CoreNetworkChange = {
 
 M.CoreNetworkChangeEventValues = {
     type = "structure",
+    id = "CoreNetworkChangeEventValues",
     members = {
         EdgeLocation = {
             type = "string",
@@ -1270,6 +1325,7 @@ M.CoreNetworkChangeEventValues = {
 
 M.CoreNetworkChangeEvent = {
     type = "structure",
+    id = "CoreNetworkChangeEvent",
     members = {
         Type = {
             type = "string",
@@ -1292,6 +1348,7 @@ M.CoreNetworkChangeEvent = {
 
 M.CoreNetworkNetworkFunctionGroupIdentifier = {
     type = "structure",
+    id = "CoreNetworkNetworkFunctionGroupIdentifier",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1312,6 +1369,7 @@ M.CoreNetworkPolicyAlias = {
 
 M.CoreNetworkPolicyError = {
     type = "structure",
+    id = "CoreNetworkPolicyError",
     members = {
         ErrorCode = {
             type = "string",
@@ -1333,6 +1391,7 @@ M.CoreNetworkPolicyError = {
 
 M.CoreNetworkPolicy = {
     type = "structure",
+    id = "CoreNetworkPolicy",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1367,6 +1426,7 @@ M.CoreNetworkPolicy = {
 
 M.CoreNetworkPolicyException = {
     type = "structure",
+    id = "CoreNetworkPolicyException",
     error = "client",
     members = {
         Message = {
@@ -1384,6 +1444,7 @@ M.CoreNetworkPolicyException = {
 
 M.CoreNetworkPolicyVersion = {
     type = "structure",
+    id = "CoreNetworkPolicyVersion",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1408,6 +1469,7 @@ M.CoreNetworkPolicyVersion = {
 
 M.RoutingInformationNextHop = {
     type = "structure",
+    id = "RoutingInformationNextHop",
     members = {
         IpAddress = {
             type = "string",
@@ -1432,6 +1494,7 @@ M.RoutingInformationNextHop = {
 
 M.CoreNetworkRoutingInformation = {
     type = "structure",
+    id = "CoreNetworkRoutingInformation",
     members = {
         Prefix = {
             type = "string",
@@ -1456,6 +1519,7 @@ M.CoreNetworkRoutingInformation = {
 
 M.CoreNetworkSegmentEdgeIdentifier = {
     type = "structure",
+    id = "CoreNetworkSegmentEdgeIdentifier",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1471,6 +1535,7 @@ M.CoreNetworkSegmentEdgeIdentifier = {
 
 M.CoreNetworkSummary = {
     type = "structure",
+    id = "CoreNetworkSummary",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1499,6 +1564,7 @@ M.CoreNetworkSummary = {
 
 M.CreateConnectAttachmentInput = {
     type = "structure",
+    id = "CreateConnectAttachmentInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1539,6 +1605,7 @@ M.CreateConnectAttachmentInput = {
 
 M.CreateConnectAttachmentOutput = {
     type = "structure",
+    id = "CreateConnectAttachmentOutput",
     members = {
         ConnectAttachment = M.ConnectAttachment,
     },
@@ -1546,6 +1613,7 @@ M.CreateConnectAttachmentOutput = {
 
 M.CreateConnectionInput = {
     type = "structure",
+    id = "CreateConnectionInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -1584,6 +1652,7 @@ M.CreateConnectionInput = {
 
 M.CreateConnectionOutput = {
     type = "structure",
+    id = "CreateConnectionOutput",
     members = {
         Connection = M.Connection,
     },
@@ -1591,6 +1660,7 @@ M.CreateConnectionOutput = {
 
 M.CreateConnectPeerInput = {
     type = "structure",
+    id = "CreateConnectPeerInput",
     members = {
         ConnectAttachmentId = {
             type = "string",
@@ -1630,6 +1700,7 @@ M.CreateConnectPeerInput = {
 
 M.CreateConnectPeerOutput = {
     type = "structure",
+    id = "CreateConnectPeerOutput",
     members = {
         ConnectPeer = M.ConnectPeer,
     },
@@ -1637,6 +1708,7 @@ M.CreateConnectPeerOutput = {
 
 M.CreateCoreNetworkInput = {
     type = "structure",
+    id = "CreateCoreNetworkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -1665,6 +1737,7 @@ M.CreateCoreNetworkInput = {
 
 M.CreateCoreNetworkOutput = {
     type = "structure",
+    id = "CreateCoreNetworkOutput",
     members = {
         CoreNetwork = M.CoreNetwork,
     },
@@ -1672,6 +1745,7 @@ M.CreateCoreNetworkOutput = {
 
 M.CreateCoreNetworkPrefixListAssociationInput = {
     type = "structure",
+    id = "CreateCoreNetworkPrefixListAssociationInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1702,6 +1776,7 @@ M.CreateCoreNetworkPrefixListAssociationInput = {
 
 M.CreateCoreNetworkPrefixListAssociationOutput = {
     type = "structure",
+    id = "CreateCoreNetworkPrefixListAssociationOutput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1717,6 +1792,7 @@ M.CreateCoreNetworkPrefixListAssociationOutput = {
 
 M.Location = {
     type = "structure",
+    id = "Location",
     members = {
         Address = {
             type = "string",
@@ -1732,6 +1808,7 @@ M.Location = {
 
 M.CreateDeviceInput = {
     type = "structure",
+    id = "CreateDeviceInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -1776,6 +1853,7 @@ M.DeviceState = {
 
 M.Device = {
     type = "structure",
+    id = "Device",
     members = {
         DeviceId = {
             type = "string",
@@ -1821,6 +1899,7 @@ M.Device = {
 
 M.CreateDeviceOutput = {
     type = "structure",
+    id = "CreateDeviceOutput",
     members = {
         Device = M.Device,
     },
@@ -1828,6 +1907,7 @@ M.CreateDeviceOutput = {
 
 M.CreateDirectConnectGatewayAttachmentInput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayAttachmentInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -1866,6 +1946,7 @@ M.CreateDirectConnectGatewayAttachmentInput = {
 
 M.DirectConnectGatewayAttachment = {
     type = "structure",
+    id = "DirectConnectGatewayAttachment",
     members = {
         Attachment = M.Attachment,
         DirectConnectGatewayArn = {
@@ -1876,6 +1957,7 @@ M.DirectConnectGatewayAttachment = {
 
 M.CreateDirectConnectGatewayAttachmentOutput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayAttachmentOutput",
     members = {
         DirectConnectGatewayAttachment = M.DirectConnectGatewayAttachment,
     },
@@ -1883,6 +1965,7 @@ M.CreateDirectConnectGatewayAttachmentOutput = {
 
 M.CreateGlobalNetworkInput = {
     type = "structure",
+    id = "CreateGlobalNetworkInput",
     members = {
         Description = {
             type = "string",
@@ -1903,6 +1986,7 @@ M.GlobalNetworkState = {
 
 M.GlobalNetwork = {
     type = "structure",
+    id = "GlobalNetwork",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -1928,6 +2012,7 @@ M.GlobalNetwork = {
 
 M.CreateGlobalNetworkOutput = {
     type = "structure",
+    id = "CreateGlobalNetworkOutput",
     members = {
         GlobalNetwork = M.GlobalNetwork,
     },
@@ -1935,6 +2020,7 @@ M.CreateGlobalNetworkOutput = {
 
 M.CreateLinkInput = {
     type = "structure",
+    id = "CreateLinkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -1977,6 +2063,7 @@ M.LinkState = {
 
 M.Link = {
     type = "structure",
+    id = "Link",
     members = {
         LinkId = {
             type = "string",
@@ -2015,6 +2102,7 @@ M.Link = {
 
 M.CreateLinkOutput = {
     type = "structure",
+    id = "CreateLinkOutput",
     members = {
         Link = M.Link,
     },
@@ -2022,6 +2110,7 @@ M.CreateLinkOutput = {
 
 M.CreateSiteInput = {
     type = "structure",
+    id = "CreateSiteInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2050,6 +2139,7 @@ M.SiteState = {
 
 M.Site = {
     type = "structure",
+    id = "Site",
     members = {
         SiteId = {
             type = "string",
@@ -2079,6 +2169,7 @@ M.Site = {
 
 M.CreateSiteOutput = {
     type = "structure",
+    id = "CreateSiteOutput",
     members = {
         Site = M.Site,
     },
@@ -2086,6 +2177,7 @@ M.CreateSiteOutput = {
 
 M.CreateSiteToSiteVpnAttachmentInput = {
     type = "structure",
+    id = "CreateSiteToSiteVpnAttachmentInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2117,6 +2209,7 @@ M.CreateSiteToSiteVpnAttachmentInput = {
 
 M.SiteToSiteVpnAttachment = {
     type = "structure",
+    id = "SiteToSiteVpnAttachment",
     members = {
         Attachment = M.Attachment,
         VpnConnectionArn = {
@@ -2127,6 +2220,7 @@ M.SiteToSiteVpnAttachment = {
 
 M.CreateSiteToSiteVpnAttachmentOutput = {
     type = "structure",
+    id = "CreateSiteToSiteVpnAttachmentOutput",
     members = {
         SiteToSiteVpnAttachment = M.SiteToSiteVpnAttachment,
     },
@@ -2134,6 +2228,7 @@ M.CreateSiteToSiteVpnAttachmentOutput = {
 
 M.CreateTransitGatewayPeeringInput = {
     type = "structure",
+    id = "CreateTransitGatewayPeeringInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2171,6 +2266,7 @@ M.PeeringErrorCode = {
 
 M.PermissionsErrorContext = {
     type = "structure",
+    id = "PermissionsErrorContext",
     members = {
         MissingPermission = {
             type = "string",
@@ -2180,6 +2276,7 @@ M.PermissionsErrorContext = {
 
 M.PeeringError = {
     type = "structure",
+    id = "PeeringError",
     members = {
         Code = {
             type = "string",
@@ -2210,6 +2307,7 @@ M.PeeringState = {
 
 M.Peering = {
     type = "structure",
+    id = "Peering",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2251,6 +2349,7 @@ M.Peering = {
 
 M.TransitGatewayPeering = {
     type = "structure",
+    id = "TransitGatewayPeering",
     members = {
         Peering = M.Peering,
         TransitGatewayArn = {
@@ -2264,6 +2363,7 @@ M.TransitGatewayPeering = {
 
 M.CreateTransitGatewayPeeringOutput = {
     type = "structure",
+    id = "CreateTransitGatewayPeeringOutput",
     members = {
         TransitGatewayPeering = M.TransitGatewayPeering,
     },
@@ -2271,6 +2371,7 @@ M.CreateTransitGatewayPeeringOutput = {
 
 M.CreateTransitGatewayRouteTableAttachmentInput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteTableAttachmentInput",
     members = {
         PeeringId = {
             type = "string",
@@ -2302,6 +2403,7 @@ M.CreateTransitGatewayRouteTableAttachmentInput = {
 
 M.TransitGatewayRouteTableAttachment = {
     type = "structure",
+    id = "TransitGatewayRouteTableAttachment",
     members = {
         Attachment = M.Attachment,
         PeeringId = {
@@ -2315,6 +2417,7 @@ M.TransitGatewayRouteTableAttachment = {
 
 M.CreateTransitGatewayRouteTableAttachmentOutput = {
     type = "structure",
+    id = "CreateTransitGatewayRouteTableAttachmentOutput",
     members = {
         TransitGatewayRouteTableAttachment = M.TransitGatewayRouteTableAttachment,
     },
@@ -2322,6 +2425,7 @@ M.CreateTransitGatewayRouteTableAttachmentOutput = {
 
 M.VpcOptions = {
     type = "structure",
+    id = "VpcOptions",
     members = {
         Ipv6Support = {
             type = "boolean",
@@ -2352,6 +2456,7 @@ M.VpcOptions = {
 
 M.CreateVpcAttachmentInput = {
     type = "structure",
+    id = "CreateVpcAttachmentInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2391,6 +2496,7 @@ M.CreateVpcAttachmentInput = {
 
 M.VpcAttachment = {
     type = "structure",
+    id = "VpcAttachment",
     members = {
         Attachment = M.Attachment,
         SubnetArns = {
@@ -2403,6 +2509,7 @@ M.VpcAttachment = {
 
 M.CreateVpcAttachmentOutput = {
     type = "structure",
+    id = "CreateVpcAttachmentOutput",
     members = {
         VpcAttachment = M.VpcAttachment,
     },
@@ -2410,6 +2517,7 @@ M.CreateVpcAttachmentOutput = {
 
 M.DeleteAttachmentInput = {
     type = "structure",
+    id = "DeleteAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -2423,6 +2531,7 @@ M.DeleteAttachmentInput = {
 
 M.DeleteAttachmentOutput = {
     type = "structure",
+    id = "DeleteAttachmentOutput",
     members = {
         Attachment = M.Attachment,
     },
@@ -2430,6 +2539,7 @@ M.DeleteAttachmentOutput = {
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2450,6 +2560,7 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
     members = {
         Connection = M.Connection,
     },
@@ -2457,6 +2568,7 @@ M.DeleteConnectionOutput = {
 
 M.DeleteConnectPeerInput = {
     type = "structure",
+    id = "DeleteConnectPeerInput",
     members = {
         ConnectPeerId = {
             type = "string",
@@ -2470,6 +2582,7 @@ M.DeleteConnectPeerInput = {
 
 M.DeleteConnectPeerOutput = {
     type = "structure",
+    id = "DeleteConnectPeerOutput",
     members = {
         ConnectPeer = M.ConnectPeer,
     },
@@ -2477,6 +2590,7 @@ M.DeleteConnectPeerOutput = {
 
 M.DeleteCoreNetworkInput = {
     type = "structure",
+    id = "DeleteCoreNetworkInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2490,6 +2604,7 @@ M.DeleteCoreNetworkInput = {
 
 M.DeleteCoreNetworkOutput = {
     type = "structure",
+    id = "DeleteCoreNetworkOutput",
     members = {
         CoreNetwork = M.CoreNetwork,
     },
@@ -2497,6 +2612,7 @@ M.DeleteCoreNetworkOutput = {
 
 M.DeleteCoreNetworkPolicyVersionInput = {
     type = "structure",
+    id = "DeleteCoreNetworkPolicyVersionInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2517,6 +2633,7 @@ M.DeleteCoreNetworkPolicyVersionInput = {
 
 M.DeleteCoreNetworkPolicyVersionOutput = {
     type = "structure",
+    id = "DeleteCoreNetworkPolicyVersionOutput",
     members = {
         CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
@@ -2524,6 +2641,7 @@ M.DeleteCoreNetworkPolicyVersionOutput = {
 
 M.DeleteCoreNetworkPrefixListAssociationInput = {
     type = "structure",
+    id = "DeleteCoreNetworkPrefixListAssociationInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2544,6 +2662,7 @@ M.DeleteCoreNetworkPrefixListAssociationInput = {
 
 M.DeleteCoreNetworkPrefixListAssociationOutput = {
     type = "structure",
+    id = "DeleteCoreNetworkPrefixListAssociationOutput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2556,6 +2675,7 @@ M.DeleteCoreNetworkPrefixListAssociationOutput = {
 
 M.DeleteDeviceInput = {
     type = "structure",
+    id = "DeleteDeviceInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2576,6 +2696,7 @@ M.DeleteDeviceInput = {
 
 M.DeleteDeviceOutput = {
     type = "structure",
+    id = "DeleteDeviceOutput",
     members = {
         Device = M.Device,
     },
@@ -2583,6 +2704,7 @@ M.DeleteDeviceOutput = {
 
 M.DeleteGlobalNetworkInput = {
     type = "structure",
+    id = "DeleteGlobalNetworkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2596,6 +2718,7 @@ M.DeleteGlobalNetworkInput = {
 
 M.DeleteGlobalNetworkOutput = {
     type = "structure",
+    id = "DeleteGlobalNetworkOutput",
     members = {
         GlobalNetwork = M.GlobalNetwork,
     },
@@ -2603,6 +2726,7 @@ M.DeleteGlobalNetworkOutput = {
 
 M.DeleteLinkInput = {
     type = "structure",
+    id = "DeleteLinkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2623,6 +2747,7 @@ M.DeleteLinkInput = {
 
 M.DeleteLinkOutput = {
     type = "structure",
+    id = "DeleteLinkOutput",
     members = {
         Link = M.Link,
     },
@@ -2630,6 +2755,7 @@ M.DeleteLinkOutput = {
 
 M.DeletePeeringInput = {
     type = "structure",
+    id = "DeletePeeringInput",
     members = {
         PeeringId = {
             type = "string",
@@ -2643,6 +2769,7 @@ M.DeletePeeringInput = {
 
 M.DeletePeeringOutput = {
     type = "structure",
+    id = "DeletePeeringOutput",
     members = {
         Peering = M.Peering,
     },
@@ -2650,6 +2777,7 @@ M.DeletePeeringOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2663,10 +2791,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteSiteInput = {
     type = "structure",
+    id = "DeleteSiteInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2687,6 +2817,7 @@ M.DeleteSiteInput = {
 
 M.DeleteSiteOutput = {
     type = "structure",
+    id = "DeleteSiteOutput",
     members = {
         Site = M.Site,
     },
@@ -2694,6 +2825,7 @@ M.DeleteSiteOutput = {
 
 M.DeregisterTransitGatewayInput = {
     type = "structure",
+    id = "DeregisterTransitGatewayInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2722,6 +2854,7 @@ M.TransitGatewayRegistrationState = {
 
 M.TransitGatewayRegistrationStateReason = {
     type = "structure",
+    id = "TransitGatewayRegistrationStateReason",
     members = {
         Code = {
             type = "string",
@@ -2734,6 +2867,7 @@ M.TransitGatewayRegistrationStateReason = {
 
 M.TransitGatewayRegistration = {
     type = "structure",
+    id = "TransitGatewayRegistration",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2747,6 +2881,7 @@ M.TransitGatewayRegistration = {
 
 M.DeregisterTransitGatewayOutput = {
     type = "structure",
+    id = "DeregisterTransitGatewayOutput",
     members = {
         TransitGatewayRegistration = M.TransitGatewayRegistration,
     },
@@ -2754,6 +2889,7 @@ M.DeregisterTransitGatewayOutput = {
 
 M.DescribeGlobalNetworksInput = {
     type = "structure",
+    id = "DescribeGlobalNetworksInput",
     members = {
         GlobalNetworkIds = {
             type = "list",
@@ -2779,6 +2915,7 @@ M.DescribeGlobalNetworksInput = {
 
 M.DescribeGlobalNetworksOutput = {
     type = "structure",
+    id = "DescribeGlobalNetworksOutput",
     members = {
         GlobalNetworks = {
             type = "list",
@@ -2792,6 +2929,7 @@ M.DescribeGlobalNetworksOutput = {
 
 M.DisassociateConnectPeerInput = {
     type = "structure",
+    id = "DisassociateConnectPeerInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2812,6 +2950,7 @@ M.DisassociateConnectPeerInput = {
 
 M.DisassociateConnectPeerOutput = {
     type = "structure",
+    id = "DisassociateConnectPeerOutput",
     members = {
         ConnectPeerAssociation = M.ConnectPeerAssociation,
     },
@@ -2819,6 +2958,7 @@ M.DisassociateConnectPeerOutput = {
 
 M.DisassociateCustomerGatewayInput = {
     type = "structure",
+    id = "DisassociateCustomerGatewayInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2839,6 +2979,7 @@ M.DisassociateCustomerGatewayInput = {
 
 M.DisassociateCustomerGatewayOutput = {
     type = "structure",
+    id = "DisassociateCustomerGatewayOutput",
     members = {
         CustomerGatewayAssociation = M.CustomerGatewayAssociation,
     },
@@ -2846,6 +2987,7 @@ M.DisassociateCustomerGatewayOutput = {
 
 M.DisassociateLinkInput = {
     type = "structure",
+    id = "DisassociateLinkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2873,6 +3015,7 @@ M.DisassociateLinkInput = {
 
 M.DisassociateLinkOutput = {
     type = "structure",
+    id = "DisassociateLinkOutput",
     members = {
         LinkAssociation = M.LinkAssociation,
     },
@@ -2880,6 +3023,7 @@ M.DisassociateLinkOutput = {
 
 M.DisassociateTransitGatewayConnectPeerInput = {
     type = "structure",
+    id = "DisassociateTransitGatewayConnectPeerInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2900,6 +3044,7 @@ M.DisassociateTransitGatewayConnectPeerInput = {
 
 M.DisassociateTransitGatewayConnectPeerOutput = {
     type = "structure",
+    id = "DisassociateTransitGatewayConnectPeerOutput",
     members = {
         TransitGatewayConnectPeerAssociation = M.TransitGatewayConnectPeerAssociation,
     },
@@ -2907,6 +3052,7 @@ M.DisassociateTransitGatewayConnectPeerOutput = {
 
 M.ExecuteCoreNetworkChangeSetInput = {
     type = "structure",
+    id = "ExecuteCoreNetworkChangeSetInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -2927,10 +3073,12 @@ M.ExecuteCoreNetworkChangeSetInput = {
 
 M.ExecuteCoreNetworkChangeSetOutput = {
     type = "structure",
+    id = "ExecuteCoreNetworkChangeSetOutput",
 }
 
 M.GetConnectAttachmentInput = {
     type = "structure",
+    id = "GetConnectAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -2944,6 +3092,7 @@ M.GetConnectAttachmentInput = {
 
 M.GetConnectAttachmentOutput = {
     type = "structure",
+    id = "GetConnectAttachmentOutput",
     members = {
         ConnectAttachment = M.ConnectAttachment,
     },
@@ -2951,6 +3100,7 @@ M.GetConnectAttachmentOutput = {
 
 M.GetConnectionsInput = {
     type = "structure",
+    id = "GetConnectionsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -2989,6 +3139,7 @@ M.GetConnectionsInput = {
 
 M.GetConnectionsOutput = {
     type = "structure",
+    id = "GetConnectionsOutput",
     members = {
         Connections = {
             type = "list",
@@ -3002,6 +3153,7 @@ M.GetConnectionsOutput = {
 
 M.GetConnectPeerInput = {
     type = "structure",
+    id = "GetConnectPeerInput",
     members = {
         ConnectPeerId = {
             type = "string",
@@ -3015,6 +3167,7 @@ M.GetConnectPeerInput = {
 
 M.GetConnectPeerOutput = {
     type = "structure",
+    id = "GetConnectPeerOutput",
     members = {
         ConnectPeer = M.ConnectPeer,
     },
@@ -3022,6 +3175,7 @@ M.GetConnectPeerOutput = {
 
 M.GetConnectPeerAssociationsInput = {
     type = "structure",
+    id = "GetConnectPeerAssociationsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3054,6 +3208,7 @@ M.GetConnectPeerAssociationsInput = {
 
 M.GetConnectPeerAssociationsOutput = {
     type = "structure",
+    id = "GetConnectPeerAssociationsOutput",
     members = {
         ConnectPeerAssociations = {
             type = "list",
@@ -3067,6 +3222,7 @@ M.GetConnectPeerAssociationsOutput = {
 
 M.GetCoreNetworkInput = {
     type = "structure",
+    id = "GetCoreNetworkInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -3080,6 +3236,7 @@ M.GetCoreNetworkInput = {
 
 M.GetCoreNetworkOutput = {
     type = "structure",
+    id = "GetCoreNetworkOutput",
     members = {
         CoreNetwork = M.CoreNetwork,
     },
@@ -3087,6 +3244,7 @@ M.GetCoreNetworkOutput = {
 
 M.GetCoreNetworkChangeEventsInput = {
     type = "structure",
+    id = "GetCoreNetworkChangeEventsInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -3119,6 +3277,7 @@ M.GetCoreNetworkChangeEventsInput = {
 
 M.GetCoreNetworkChangeEventsOutput = {
     type = "structure",
+    id = "GetCoreNetworkChangeEventsOutput",
     members = {
         CoreNetworkChangeEvents = {
             type = "list",
@@ -3132,6 +3291,7 @@ M.GetCoreNetworkChangeEventsOutput = {
 
 M.GetCoreNetworkChangeSetInput = {
     type = "structure",
+    id = "GetCoreNetworkChangeSetInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -3164,6 +3324,7 @@ M.GetCoreNetworkChangeSetInput = {
 
 M.GetCoreNetworkChangeSetOutput = {
     type = "structure",
+    id = "GetCoreNetworkChangeSetOutput",
     members = {
         CoreNetworkChanges = {
             type = "list",
@@ -3177,6 +3338,7 @@ M.GetCoreNetworkChangeSetOutput = {
 
 M.GetCoreNetworkPolicyInput = {
     type = "structure",
+    id = "GetCoreNetworkPolicyInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -3202,6 +3364,7 @@ M.GetCoreNetworkPolicyInput = {
 
 M.GetCoreNetworkPolicyOutput = {
     type = "structure",
+    id = "GetCoreNetworkPolicyOutput",
     members = {
         CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
@@ -3209,6 +3372,7 @@ M.GetCoreNetworkPolicyOutput = {
 
 M.GetCustomerGatewayAssociationsInput = {
     type = "structure",
+    id = "GetCustomerGatewayAssociationsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3241,6 +3405,7 @@ M.GetCustomerGatewayAssociationsInput = {
 
 M.GetCustomerGatewayAssociationsOutput = {
     type = "structure",
+    id = "GetCustomerGatewayAssociationsOutput",
     members = {
         CustomerGatewayAssociations = {
             type = "list",
@@ -3254,6 +3419,7 @@ M.GetCustomerGatewayAssociationsOutput = {
 
 M.GetDevicesInput = {
     type = "structure",
+    id = "GetDevicesInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3292,6 +3458,7 @@ M.GetDevicesInput = {
 
 M.GetDevicesOutput = {
     type = "structure",
+    id = "GetDevicesOutput",
     members = {
         Devices = {
             type = "list",
@@ -3305,6 +3472,7 @@ M.GetDevicesOutput = {
 
 M.GetDirectConnectGatewayAttachmentInput = {
     type = "structure",
+    id = "GetDirectConnectGatewayAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -3318,6 +3486,7 @@ M.GetDirectConnectGatewayAttachmentInput = {
 
 M.GetDirectConnectGatewayAttachmentOutput = {
     type = "structure",
+    id = "GetDirectConnectGatewayAttachmentOutput",
     members = {
         DirectConnectGatewayAttachment = M.DirectConnectGatewayAttachment,
     },
@@ -3325,6 +3494,7 @@ M.GetDirectConnectGatewayAttachmentOutput = {
 
 M.GetLinkAssociationsInput = {
     type = "structure",
+    id = "GetLinkAssociationsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3362,6 +3532,7 @@ M.GetLinkAssociationsInput = {
 
 M.GetLinkAssociationsOutput = {
     type = "structure",
+    id = "GetLinkAssociationsOutput",
     members = {
         LinkAssociations = {
             type = "list",
@@ -3375,6 +3546,7 @@ M.GetLinkAssociationsOutput = {
 
 M.GetLinksInput = {
     type = "structure",
+    id = "GetLinksInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3425,6 +3597,7 @@ M.GetLinksInput = {
 
 M.GetLinksOutput = {
     type = "structure",
+    id = "GetLinksOutput",
     members = {
         Links = {
             type = "list",
@@ -3438,6 +3611,7 @@ M.GetLinksOutput = {
 
 M.GetNetworkResourceCountsInput = {
     type = "structure",
+    id = "GetNetworkResourceCountsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3469,6 +3643,7 @@ M.GetNetworkResourceCountsInput = {
 
 M.NetworkResourceCount = {
     type = "structure",
+    id = "NetworkResourceCount",
     members = {
         ResourceType = {
             type = "string",
@@ -3481,6 +3656,7 @@ M.NetworkResourceCount = {
 
 M.GetNetworkResourceCountsOutput = {
     type = "structure",
+    id = "GetNetworkResourceCountsOutput",
     members = {
         NetworkResourceCounts = {
             type = "list",
@@ -3494,6 +3670,7 @@ M.GetNetworkResourceCountsOutput = {
 
 M.GetNetworkResourceRelationshipsInput = {
     type = "structure",
+    id = "GetNetworkResourceRelationshipsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3555,6 +3732,7 @@ M.GetNetworkResourceRelationshipsInput = {
 
 M.Relationship = {
     type = "structure",
+    id = "Relationship",
     members = {
         From = {
             type = "string",
@@ -3567,6 +3745,7 @@ M.Relationship = {
 
 M.GetNetworkResourceRelationshipsOutput = {
     type = "structure",
+    id = "GetNetworkResourceRelationshipsOutput",
     members = {
         Relationships = {
             type = "list",
@@ -3580,6 +3759,7 @@ M.GetNetworkResourceRelationshipsOutput = {
 
 M.GetNetworkResourcesInput = {
     type = "structure",
+    id = "GetNetworkResourcesInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3641,6 +3821,7 @@ M.GetNetworkResourcesInput = {
 
 M.NetworkResource = {
     type = "structure",
+    id = "NetworkResource",
     members = {
         RegisteredGatewayArn = {
             type = "string",
@@ -3683,6 +3864,7 @@ M.NetworkResource = {
 
 M.GetNetworkResourcesOutput = {
     type = "structure",
+    id = "GetNetworkResourcesOutput",
     members = {
         NetworkResources = {
             type = "list",
@@ -3696,6 +3878,7 @@ M.GetNetworkResourcesOutput = {
 
 M.RouteTableIdentifier = {
     type = "structure",
+    id = "RouteTableIdentifier",
     members = {
         TransitGatewayRouteTableArn = {
             type = "string",
@@ -3717,6 +3900,7 @@ M.RouteType = {
 
 M.GetNetworkRoutesInput = {
     type = "structure",
+    id = "GetNetworkRoutesInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3766,6 +3950,7 @@ M.GetNetworkRoutesInput = {
 
 M.NetworkRouteDestination = {
     type = "structure",
+    id = "NetworkRouteDestination",
     members = {
         CoreNetworkAttachmentId = {
             type = "string",
@@ -3793,6 +3978,7 @@ M.NetworkRouteDestination = {
 
 M.NetworkRoute = {
     type = "structure",
+    id = "NetworkRoute",
     members = {
         DestinationCidrBlock = {
             type = "string",
@@ -3821,6 +4007,7 @@ M.RouteTableType = {
 
 M.GetNetworkRoutesOutput = {
     type = "structure",
+    id = "GetNetworkRoutesOutput",
     members = {
         RouteTableArn = {
             type = "string",
@@ -3841,6 +4028,7 @@ M.GetNetworkRoutesOutput = {
 
 M.GetNetworkTelemetryInput = {
     type = "structure",
+    id = "GetNetworkTelemetryInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3902,6 +4090,7 @@ M.GetNetworkTelemetryInput = {
 
 M.NetworkTelemetry = {
     type = "structure",
+    id = "NetworkTelemetry",
     members = {
         RegisteredGatewayArn = {
             type = "string",
@@ -3933,6 +4122,7 @@ M.NetworkTelemetry = {
 
 M.GetNetworkTelemetryOutput = {
     type = "structure",
+    id = "GetNetworkTelemetryOutput",
     members = {
         NetworkTelemetry = {
             type = "list",
@@ -3946,6 +4136,7 @@ M.GetNetworkTelemetryOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3959,6 +4150,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         PolicyDocument = {
             type = "string",
@@ -3971,6 +4163,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetRouteAnalysisInput = {
     type = "structure",
+    id = "GetRouteAnalysisInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -3991,6 +4184,7 @@ M.GetRouteAnalysisInput = {
 
 M.RouteAnalysisEndpointOptions = {
     type = "structure",
+    id = "RouteAnalysisEndpointOptions",
     members = {
         TransitGatewayAttachmentArn = {
             type = "string",
@@ -4025,6 +4219,7 @@ M.RouteAnalysisCompletionResultCode = {
 
 M.RouteAnalysisCompletion = {
     type = "structure",
+    id = "RouteAnalysisCompletion",
     members = {
         ResultCode = {
             type = "string",
@@ -4042,6 +4237,7 @@ M.RouteAnalysisCompletion = {
 
 M.NetworkResourceSummary = {
     type = "structure",
+    id = "NetworkResourceSummary",
     members = {
         RegisteredGatewayArn = {
             type = "string",
@@ -4069,6 +4265,7 @@ M.NetworkResourceSummary = {
 
 M.PathComponent = {
     type = "structure",
+    id = "PathComponent",
     members = {
         Sequence = {
             type = "integer",
@@ -4082,6 +4279,7 @@ M.PathComponent = {
 
 M.RouteAnalysisPath = {
     type = "structure",
+    id = "RouteAnalysisPath",
     members = {
         CompletionStatus = M.RouteAnalysisCompletion,
         Path = {
@@ -4099,6 +4297,7 @@ M.RouteAnalysisStatus = {
 
 M.RouteAnalysis = {
     type = "structure",
+    id = "RouteAnalysis",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -4136,6 +4335,7 @@ M.RouteAnalysis = {
 
 M.GetRouteAnalysisOutput = {
     type = "structure",
+    id = "GetRouteAnalysisOutput",
     members = {
         RouteAnalysis = M.RouteAnalysis,
     },
@@ -4143,6 +4343,7 @@ M.GetRouteAnalysisOutput = {
 
 M.GetSitesInput = {
     type = "structure",
+    id = "GetSitesInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -4175,6 +4376,7 @@ M.GetSitesInput = {
 
 M.GetSitesOutput = {
     type = "structure",
+    id = "GetSitesOutput",
     members = {
         Sites = {
             type = "list",
@@ -4188,6 +4390,7 @@ M.GetSitesOutput = {
 
 M.GetSiteToSiteVpnAttachmentInput = {
     type = "structure",
+    id = "GetSiteToSiteVpnAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -4201,6 +4404,7 @@ M.GetSiteToSiteVpnAttachmentInput = {
 
 M.GetSiteToSiteVpnAttachmentOutput = {
     type = "structure",
+    id = "GetSiteToSiteVpnAttachmentOutput",
     members = {
         SiteToSiteVpnAttachment = M.SiteToSiteVpnAttachment,
     },
@@ -4208,6 +4412,7 @@ M.GetSiteToSiteVpnAttachmentOutput = {
 
 M.GetTransitGatewayConnectPeerAssociationsInput = {
     type = "structure",
+    id = "GetTransitGatewayConnectPeerAssociationsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -4240,6 +4445,7 @@ M.GetTransitGatewayConnectPeerAssociationsInput = {
 
 M.GetTransitGatewayConnectPeerAssociationsOutput = {
     type = "structure",
+    id = "GetTransitGatewayConnectPeerAssociationsOutput",
     members = {
         TransitGatewayConnectPeerAssociations = {
             type = "list",
@@ -4253,6 +4459,7 @@ M.GetTransitGatewayConnectPeerAssociationsOutput = {
 
 M.GetTransitGatewayPeeringInput = {
     type = "structure",
+    id = "GetTransitGatewayPeeringInput",
     members = {
         PeeringId = {
             type = "string",
@@ -4266,6 +4473,7 @@ M.GetTransitGatewayPeeringInput = {
 
 M.GetTransitGatewayPeeringOutput = {
     type = "structure",
+    id = "GetTransitGatewayPeeringOutput",
     members = {
         TransitGatewayPeering = M.TransitGatewayPeering,
     },
@@ -4273,6 +4481,7 @@ M.GetTransitGatewayPeeringOutput = {
 
 M.GetTransitGatewayRegistrationsInput = {
     type = "structure",
+    id = "GetTransitGatewayRegistrationsInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -4305,6 +4514,7 @@ M.GetTransitGatewayRegistrationsInput = {
 
 M.GetTransitGatewayRegistrationsOutput = {
     type = "structure",
+    id = "GetTransitGatewayRegistrationsOutput",
     members = {
         TransitGatewayRegistrations = {
             type = "list",
@@ -4318,6 +4528,7 @@ M.GetTransitGatewayRegistrationsOutput = {
 
 M.GetTransitGatewayRouteTableAttachmentInput = {
     type = "structure",
+    id = "GetTransitGatewayRouteTableAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -4331,6 +4542,7 @@ M.GetTransitGatewayRouteTableAttachmentInput = {
 
 M.GetTransitGatewayRouteTableAttachmentOutput = {
     type = "structure",
+    id = "GetTransitGatewayRouteTableAttachmentOutput",
     members = {
         TransitGatewayRouteTableAttachment = M.TransitGatewayRouteTableAttachment,
     },
@@ -4338,6 +4550,7 @@ M.GetTransitGatewayRouteTableAttachmentOutput = {
 
 M.GetVpcAttachmentInput = {
     type = "structure",
+    id = "GetVpcAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -4351,6 +4564,7 @@ M.GetVpcAttachmentInput = {
 
 M.GetVpcAttachmentOutput = {
     type = "structure",
+    id = "GetVpcAttachmentOutput",
     members = {
         VpcAttachment = M.VpcAttachment,
     },
@@ -4358,6 +4572,7 @@ M.GetVpcAttachmentOutput = {
 
 M.ListAttachmentRoutingPolicyAssociationsInput = {
     type = "structure",
+    id = "ListAttachmentRoutingPolicyAssociationsInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4389,6 +4604,7 @@ M.ListAttachmentRoutingPolicyAssociationsInput = {
 
 M.ListAttachmentRoutingPolicyAssociationsOutput = {
     type = "structure",
+    id = "ListAttachmentRoutingPolicyAssociationsOutput",
     members = {
         AttachmentRoutingPolicyAssociations = {
             type = "list",
@@ -4402,6 +4618,7 @@ M.ListAttachmentRoutingPolicyAssociationsOutput = {
 
 M.ListAttachmentsInput = {
     type = "structure",
+    id = "ListAttachmentsInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4444,6 +4661,7 @@ M.ListAttachmentsInput = {
 
 M.ListAttachmentsOutput = {
     type = "structure",
+    id = "ListAttachmentsOutput",
     members = {
         Attachments = {
             type = "list",
@@ -4457,6 +4675,7 @@ M.ListAttachmentsOutput = {
 
 M.ListConnectPeersInput = {
     type = "structure",
+    id = "ListConnectPeersInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4487,6 +4706,7 @@ M.ListConnectPeersInput = {
 
 M.ListConnectPeersOutput = {
     type = "structure",
+    id = "ListConnectPeersOutput",
     members = {
         ConnectPeers = {
             type = "list",
@@ -4500,6 +4720,7 @@ M.ListConnectPeersOutput = {
 
 M.ListCoreNetworkPolicyVersionsInput = {
     type = "structure",
+    id = "ListCoreNetworkPolicyVersionsInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4525,6 +4746,7 @@ M.ListCoreNetworkPolicyVersionsInput = {
 
 M.ListCoreNetworkPolicyVersionsOutput = {
     type = "structure",
+    id = "ListCoreNetworkPolicyVersionsOutput",
     members = {
         CoreNetworkPolicyVersions = {
             type = "list",
@@ -4538,6 +4760,7 @@ M.ListCoreNetworkPolicyVersionsOutput = {
 
 M.ListCoreNetworkPrefixListAssociationsInput = {
     type = "structure",
+    id = "ListCoreNetworkPrefixListAssociationsInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4569,6 +4792,7 @@ M.ListCoreNetworkPrefixListAssociationsInput = {
 
 M.PrefixListAssociation = {
     type = "structure",
+    id = "PrefixListAssociation",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4584,6 +4808,7 @@ M.PrefixListAssociation = {
 
 M.ListCoreNetworkPrefixListAssociationsOutput = {
     type = "structure",
+    id = "ListCoreNetworkPrefixListAssociationsOutput",
     members = {
         PrefixListAssociations = {
             type = "list",
@@ -4597,6 +4822,7 @@ M.ListCoreNetworkPrefixListAssociationsOutput = {
 
 M.ListCoreNetworkRoutingInformationInput = {
     type = "structure",
+    id = "ListCoreNetworkRoutingInformationInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4655,6 +4881,7 @@ M.ListCoreNetworkRoutingInformationInput = {
 
 M.ListCoreNetworkRoutingInformationOutput = {
     type = "structure",
+    id = "ListCoreNetworkRoutingInformationOutput",
     members = {
         CoreNetworkRoutingInformation = {
             type = "list",
@@ -4668,6 +4895,7 @@ M.ListCoreNetworkRoutingInformationOutput = {
 
 M.ListCoreNetworksInput = {
     type = "structure",
+    id = "ListCoreNetworksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4686,6 +4914,7 @@ M.ListCoreNetworksInput = {
 
 M.ListCoreNetworksOutput = {
     type = "structure",
+    id = "ListCoreNetworksOutput",
     members = {
         CoreNetworks = {
             type = "list",
@@ -4699,6 +4928,7 @@ M.ListCoreNetworksOutput = {
 
 M.ListOrganizationServiceAccessStatusInput = {
     type = "structure",
+    id = "ListOrganizationServiceAccessStatusInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4717,6 +4947,7 @@ M.ListOrganizationServiceAccessStatusInput = {
 
 M.OrganizationStatus = {
     type = "structure",
+    id = "OrganizationStatus",
     members = {
         OrganizationId = {
             type = "string",
@@ -4739,6 +4970,7 @@ M.OrganizationStatus = {
 
 M.ListOrganizationServiceAccessStatusOutput = {
     type = "structure",
+    id = "ListOrganizationServiceAccessStatusOutput",
     members = {
         OrganizationStatus = M.OrganizationStatus,
         NextToken = {
@@ -4749,6 +4981,7 @@ M.ListOrganizationServiceAccessStatusOutput = {
 
 M.ListPeeringsInput = {
     type = "structure",
+    id = "ListPeeringsInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4791,6 +5024,7 @@ M.ListPeeringsInput = {
 
 M.ListPeeringsOutput = {
     type = "structure",
+    id = "ListPeeringsOutput",
     members = {
         Peerings = {
             type = "list",
@@ -4804,6 +5038,7 @@ M.ListPeeringsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4817,6 +5052,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -4827,6 +5063,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutAttachmentRoutingPolicyLabelInput = {
     type = "structure",
+    id = "PutAttachmentRoutingPolicyLabelInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4857,6 +5094,7 @@ M.PutAttachmentRoutingPolicyLabelInput = {
 
 M.PutAttachmentRoutingPolicyLabelOutput = {
     type = "structure",
+    id = "PutAttachmentRoutingPolicyLabelOutput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4872,6 +5110,7 @@ M.PutAttachmentRoutingPolicyLabelOutput = {
 
 M.PutCoreNetworkPolicyInput = {
     type = "structure",
+    id = "PutCoreNetworkPolicyInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -4904,6 +5143,7 @@ M.PutCoreNetworkPolicyInput = {
 
 M.PutCoreNetworkPolicyOutput = {
     type = "structure",
+    id = "PutCoreNetworkPolicyOutput",
     members = {
         CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
@@ -4911,6 +5151,7 @@ M.PutCoreNetworkPolicyOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         PolicyDocument = {
             type = "string",
@@ -4931,10 +5172,12 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
 }
 
 M.RegisterTransitGatewayInput = {
     type = "structure",
+    id = "RegisterTransitGatewayInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -4954,6 +5197,7 @@ M.RegisterTransitGatewayInput = {
 
 M.RegisterTransitGatewayOutput = {
     type = "structure",
+    id = "RegisterTransitGatewayOutput",
     members = {
         TransitGatewayRegistration = M.TransitGatewayRegistration,
     },
@@ -4961,6 +5205,7 @@ M.RegisterTransitGatewayOutput = {
 
 M.RejectAttachmentInput = {
     type = "structure",
+    id = "RejectAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -4974,6 +5219,7 @@ M.RejectAttachmentInput = {
 
 M.RejectAttachmentOutput = {
     type = "structure",
+    id = "RejectAttachmentOutput",
     members = {
         Attachment = M.Attachment,
     },
@@ -4981,6 +5227,7 @@ M.RejectAttachmentOutput = {
 
 M.RemoveAttachmentRoutingPolicyLabelInput = {
     type = "structure",
+    id = "RemoveAttachmentRoutingPolicyLabelInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -5001,6 +5248,7 @@ M.RemoveAttachmentRoutingPolicyLabelInput = {
 
 M.RemoveAttachmentRoutingPolicyLabelOutput = {
     type = "structure",
+    id = "RemoveAttachmentRoutingPolicyLabelOutput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -5016,6 +5264,7 @@ M.RemoveAttachmentRoutingPolicyLabelOutput = {
 
 M.RestoreCoreNetworkPolicyVersionInput = {
     type = "structure",
+    id = "RestoreCoreNetworkPolicyVersionInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -5036,6 +5285,7 @@ M.RestoreCoreNetworkPolicyVersionInput = {
 
 M.RestoreCoreNetworkPolicyVersionOutput = {
     type = "structure",
+    id = "RestoreCoreNetworkPolicyVersionOutput",
     members = {
         CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
@@ -5043,6 +5293,7 @@ M.RestoreCoreNetworkPolicyVersionOutput = {
 
 M.StartOrganizationServiceAccessUpdateInput = {
     type = "structure",
+    id = "StartOrganizationServiceAccessUpdateInput",
     members = {
         Action = {
             type = "string",
@@ -5055,6 +5306,7 @@ M.StartOrganizationServiceAccessUpdateInput = {
 
 M.StartOrganizationServiceAccessUpdateOutput = {
     type = "structure",
+    id = "StartOrganizationServiceAccessUpdateOutput",
     members = {
         OrganizationStatus = M.OrganizationStatus,
     },
@@ -5062,6 +5314,7 @@ M.StartOrganizationServiceAccessUpdateOutput = {
 
 M.RouteAnalysisEndpointOptionsSpecification = {
     type = "structure",
+    id = "RouteAnalysisEndpointOptionsSpecification",
     members = {
         TransitGatewayAttachmentArn = {
             type = "string",
@@ -5074,6 +5327,7 @@ M.RouteAnalysisEndpointOptionsSpecification = {
 
 M.StartRouteAnalysisInput = {
     type = "structure",
+    id = "StartRouteAnalysisInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -5105,6 +5359,7 @@ M.StartRouteAnalysisInput = {
 
 M.StartRouteAnalysisOutput = {
     type = "structure",
+    id = "StartRouteAnalysisOutput",
     members = {
         RouteAnalysis = M.RouteAnalysis,
     },
@@ -5112,6 +5367,7 @@ M.StartRouteAnalysisOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5132,10 +5388,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5157,10 +5415,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConnectionInput = {
     type = "structure",
+    id = "UpdateConnectionInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -5190,6 +5450,7 @@ M.UpdateConnectionInput = {
 
 M.UpdateConnectionOutput = {
     type = "structure",
+    id = "UpdateConnectionOutput",
     members = {
         Connection = M.Connection,
     },
@@ -5197,6 +5458,7 @@ M.UpdateConnectionOutput = {
 
 M.UpdateCoreNetworkInput = {
     type = "structure",
+    id = "UpdateCoreNetworkInput",
     members = {
         CoreNetworkId = {
             type = "string",
@@ -5213,6 +5475,7 @@ M.UpdateCoreNetworkInput = {
 
 M.UpdateCoreNetworkOutput = {
     type = "structure",
+    id = "UpdateCoreNetworkOutput",
     members = {
         CoreNetwork = M.CoreNetwork,
     },
@@ -5220,6 +5483,7 @@ M.UpdateCoreNetworkOutput = {
 
 M.UpdateDeviceInput = {
     type = "structure",
+    id = "UpdateDeviceInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -5260,6 +5524,7 @@ M.UpdateDeviceInput = {
 
 M.UpdateDeviceOutput = {
     type = "structure",
+    id = "UpdateDeviceOutput",
     members = {
         Device = M.Device,
     },
@@ -5267,6 +5532,7 @@ M.UpdateDeviceOutput = {
 
 M.UpdateDirectConnectGatewayAttachmentInput = {
     type = "structure",
+    id = "UpdateDirectConnectGatewayAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -5284,6 +5550,7 @@ M.UpdateDirectConnectGatewayAttachmentInput = {
 
 M.UpdateDirectConnectGatewayAttachmentOutput = {
     type = "structure",
+    id = "UpdateDirectConnectGatewayAttachmentOutput",
     members = {
         DirectConnectGatewayAttachment = M.DirectConnectGatewayAttachment,
     },
@@ -5291,6 +5558,7 @@ M.UpdateDirectConnectGatewayAttachmentOutput = {
 
 M.UpdateGlobalNetworkInput = {
     type = "structure",
+    id = "UpdateGlobalNetworkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -5307,6 +5575,7 @@ M.UpdateGlobalNetworkInput = {
 
 M.UpdateGlobalNetworkOutput = {
     type = "structure",
+    id = "UpdateGlobalNetworkOutput",
     members = {
         GlobalNetwork = M.GlobalNetwork,
     },
@@ -5314,6 +5583,7 @@ M.UpdateGlobalNetworkOutput = {
 
 M.UpdateLinkInput = {
     type = "structure",
+    id = "UpdateLinkInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -5344,6 +5614,7 @@ M.UpdateLinkInput = {
 
 M.UpdateLinkOutput = {
     type = "structure",
+    id = "UpdateLinkOutput",
     members = {
         Link = M.Link,
     },
@@ -5351,6 +5622,7 @@ M.UpdateLinkOutput = {
 
 M.UpdateNetworkResourceMetadataInput = {
     type = "structure",
+    id = "UpdateNetworkResourceMetadataInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -5379,6 +5651,7 @@ M.UpdateNetworkResourceMetadataInput = {
 
 M.UpdateNetworkResourceMetadataOutput = {
     type = "structure",
+    id = "UpdateNetworkResourceMetadataOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5393,6 +5666,7 @@ M.UpdateNetworkResourceMetadataOutput = {
 
 M.UpdateSiteInput = {
     type = "structure",
+    id = "UpdateSiteInput",
     members = {
         GlobalNetworkId = {
             type = "string",
@@ -5417,6 +5691,7 @@ M.UpdateSiteInput = {
 
 M.UpdateSiteOutput = {
     type = "structure",
+    id = "UpdateSiteOutput",
     members = {
         Site = M.Site,
     },
@@ -5424,6 +5699,7 @@ M.UpdateSiteOutput = {
 
 M.UpdateVpcAttachmentInput = {
     type = "structure",
+    id = "UpdateVpcAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -5446,6 +5722,7 @@ M.UpdateVpcAttachmentInput = {
 
 M.UpdateVpcAttachmentOutput = {
     type = "structure",
+    id = "UpdateVpcAttachmentOutput",
     members = {
         VpcAttachment = M.VpcAttachment,
     },

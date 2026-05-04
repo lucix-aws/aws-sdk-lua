@@ -2436,25 +2436,25 @@ local record ThrottlingException
     Message: string
 end
 
-local type FirewallStatusValue = "PROVISIONING" | "DELETING" | "READY"
-
-local type RuleGroupType = "STATELESS" | "STATEFUL" | "STATEFUL_DOMAIN"
+local type ResourceManagedStatus = "MANAGED" | "ACCOUNT"
 
 local type ResourceManagedType = "AWS_MANAGED_THREAT_SIGNATURES" | "AWS_MANAGED_DOMAIN_LISTS" | "ACTIVE_THREAT_DEFENSE" | "PARTNER_MANAGED"
 
 local type TransitGatewayAttachmentStatus = "CREATING" | "DELETING" | "DELETED" | "FAILED" | "ERROR" | "READY" | "PENDING_ACCEPTANCE" | "REJECTING" | "REJECTED"
 
-local type ResourceManagedStatus = "MANAGED" | "ACCOUNT"
+local type FirewallStatusValue = "PROVISIONING" | "DELETING" | "READY"
 
-local type RuleGroupRequestPhase = "PRE_DNS" | "PRE_REQ" | "POST_RES"
-
-local type FlowOperationStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED" | "COMPLETED_WITH_ERRORS"
-
-local type SubscriptionStatus = "NOT_SUBSCRIBED" | "SUBSCRIBED"
+local type EnabledAnalysisType = "TLS_SNI" | "HTTP_HOST"
 
 local type ProxyRulePhaseAction = "ALLOW" | "DENY" | "ALERT"
 
-local type EnabledAnalysisType = "TLS_SNI" | "HTTP_HOST"
+local type FlowOperationStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED" | "COMPLETED_WITH_ERRORS"
+
+local type RuleGroupRequestPhase = "PRE_DNS" | "PRE_REQ" | "POST_RES"
+
+local type SubscriptionStatus = "NOT_SUBSCRIBED" | "SUBSCRIBED"
+
+local type RuleGroupType = "STATELESS" | "STATEFUL" | "STATEFUL_DOMAIN"
 
 local type FlowOperationType = "FLOW_FLUSH" | "FLOW_CAPTURE"
 

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AccountCustomization = {
     type = "structure",
+    id = "AccountCustomization",
     members = {
         DefaultTheme = {
             type = "string",
@@ -33,6 +35,7 @@ M.Edition = {
 
 M.AccountInfo = {
     type = "structure",
+    id = "AccountInfo",
     members = {
         AccountName = {
             type = "string",
@@ -57,6 +60,7 @@ M.AccountInfo = {
 
 M.AccountSettings = {
     type = "structure",
+    id = "AccountSettings",
     members = {
         AccountName = {
             type = "string",
@@ -87,6 +91,7 @@ M.AccountSettings = {
 
 M.ReadAPIKeyConnectionMetadata = {
     type = "structure",
+    id = "ReadAPIKeyConnectionMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -106,6 +111,7 @@ M.AuthorizationCodeGrantCredentialsSource = {
 
 M.ReadAuthorizationCodeGrantDetails = {
     type = "structure",
+    id = "ReadAuthorizationCodeGrantDetails",
     members = {
         ClientId = {
             type = "string",
@@ -130,6 +136,7 @@ M.ReadAuthorizationCodeGrantDetails = {
 
 M.ReadAuthorizationCodeGrantCredentialsDetails = {
     type = "union",
+    id = "ReadAuthorizationCodeGrantCredentialsDetails",
     members = {
         ReadAuthorizationCodeGrantDetails = M.ReadAuthorizationCodeGrantDetails,
     },
@@ -137,6 +144,7 @@ M.ReadAuthorizationCodeGrantCredentialsDetails = {
 
 M.ReadAuthorizationCodeGrantMetadata = {
     type = "structure",
+    id = "ReadAuthorizationCodeGrantMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -159,6 +167,7 @@ M.ReadAuthorizationCodeGrantMetadata = {
 
 M.ReadBasicAuthConnectionMetadata = {
     type = "structure",
+    id = "ReadBasicAuthConnectionMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -181,6 +190,7 @@ M.ClientCredentialsSource = {
 
 M.ReadClientCredentialsGrantDetails = {
     type = "structure",
+    id = "ReadClientCredentialsGrantDetails",
     members = {
         ClientId = {
             type = "string",
@@ -199,6 +209,7 @@ M.ReadClientCredentialsGrantDetails = {
 
 M.ReadClientCredentialsDetails = {
     type = "union",
+    id = "ReadClientCredentialsDetails",
     members = {
         ReadClientCredentialsGrantDetails = M.ReadClientCredentialsGrantDetails,
     },
@@ -206,6 +217,7 @@ M.ReadClientCredentialsDetails = {
 
 M.ReadClientCredentialsGrantMetadata = {
     type = "structure",
+    id = "ReadClientCredentialsGrantMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -222,6 +234,7 @@ M.ReadClientCredentialsGrantMetadata = {
 
 M.ReadIamConnectionMetadata = {
     type = "structure",
+    id = "ReadIamConnectionMetadata",
     members = {
         RoleArn = {
             type = "string",
@@ -240,6 +253,7 @@ M.ReadIamConnectionMetadata = {
 
 M.ReadNoneConnectionMetadata = {
     type = "structure",
+    id = "ReadNoneConnectionMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -252,6 +266,7 @@ M.ReadNoneConnectionMetadata = {
 
 M.ReadAuthenticationMetadata = {
     type = "union",
+    id = "ReadAuthenticationMetadata",
     members = {
         AuthorizationCodeGrantMetadata = M.ReadAuthorizationCodeGrantMetadata,
         ClientCredentialsGrantMetadata = M.ReadClientCredentialsGrantMetadata,
@@ -273,6 +288,7 @@ M.ConnectionAuthType = {
 
 M.ReadAuthConfig = {
     type = "structure",
+    id = "ReadAuthConfig",
     members = {
         AuthenticationType = {
             type = "string",
@@ -292,6 +308,7 @@ M.ActionConnectorErrorType = {
 
 M.ActionConnectorError = {
     type = "structure",
+    id = "ActionConnectorError",
     members = {
         Message = {
             type = "string",
@@ -344,6 +361,7 @@ M.ActionConnectorType = {
 
 M.ActionConnector = {
     type = "structure",
+    id = "ActionConnector",
     members = {
         Arn = {
             type = "string",
@@ -413,6 +431,7 @@ M.FilterOperator = {
 
 M.ActionConnectorSearchFilter = {
     type = "structure",
+    id = "ActionConnectorSearchFilter",
     members = {
         Name = {
             type = "string",
@@ -437,6 +456,7 @@ M.ActionConnectorSearchFilter = {
 
 M.ActionConnectorSummary = {
     type = "structure",
+    id = "ActionConnectorSummary",
     members = {
         Arn = {
             type = "string",
@@ -480,6 +500,7 @@ M.ActionConnectorSummary = {
 
 M.ActiveIAMPolicyAssignment = {
     type = "structure",
+    id = "ActiveIAMPolicyAssignment",
     members = {
         AssignmentName = {
             type = "string",
@@ -497,6 +518,7 @@ M.DashboardBehavior = {
 
 M.AdHocFilteringOption = {
     type = "structure",
+    id = "AdHocFilteringOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -540,6 +562,7 @@ M.TopicTimeGranularity = {
 
 M.AggFunction = {
     type = "structure",
+    id = "AggFunction",
     members = {
         Aggregation = {
             type = "string",
@@ -560,6 +583,7 @@ M.AggFunction = {
 
 M.DataPrepListAggregationFunction = {
     type = "structure",
+    id = "DataPrepListAggregationFunction",
     members = {
         InputColumnName = {
             type = "string",
@@ -591,6 +615,7 @@ M.DataPrepSimpleAggregationFunctionType = {
 
 M.DataPrepSimpleAggregationFunction = {
     type = "structure",
+    id = "DataPrepSimpleAggregationFunction",
     members = {
         InputColumnName = {
             type = "string",
@@ -606,6 +631,7 @@ M.DataPrepSimpleAggregationFunction = {
 
 M.DataPrepAggregationFunction = {
     type = "structure",
+    id = "DataPrepAggregationFunction",
     members = {
         SimpleAggregation = M.DataPrepSimpleAggregationFunction,
         ListAggregation = M.DataPrepListAggregationFunction,
@@ -614,6 +640,7 @@ M.DataPrepAggregationFunction = {
 
 M.Aggregation = {
     type = "structure",
+    id = "Aggregation",
     members = {
         AggregationFunction = setmetatable({ traits = {
             required = true,
@@ -635,6 +662,7 @@ M.Aggregation = {
 
 M.DataSetColumnIdMapping = {
     type = "structure",
+    id = "DataSetColumnIdMapping",
     members = {
         SourceColumnId = {
             type = "string",
@@ -653,6 +681,7 @@ M.DataSetColumnIdMapping = {
 
 M.TransformOperationSource = {
     type = "structure",
+    id = "TransformOperationSource",
     members = {
         TransformOperationId = {
             type = "string",
@@ -669,6 +698,7 @@ M.TransformOperationSource = {
 
 M.AggregateOperation = {
     type = "structure",
+    id = "AggregateOperation",
     members = {
         Alias = {
             type = "string",
@@ -699,6 +729,7 @@ M.SimpleAttributeAggregationFunction = {
 
 M.AttributeAggregationFunction = {
     type = "structure",
+    id = "AttributeAggregationFunction",
     members = {
         SimpleAttributeAggregation = {
             type = "string",
@@ -723,6 +754,7 @@ M.DateAggregationFunction = {
 
 M.PercentileAggregation = {
     type = "structure",
+    id = "PercentileAggregation",
     members = {
         PercentileValue = {
             type = "double",
@@ -746,6 +778,7 @@ M.SimpleNumericalAggregationFunction = {
 
 M.NumericalAggregationFunction = {
     type = "structure",
+    id = "NumericalAggregationFunction",
     members = {
         SimpleNumericalAggregation = {
             type = "string",
@@ -756,6 +789,7 @@ M.NumericalAggregationFunction = {
 
 M.AggregationFunction = {
     type = "structure",
+    id = "AggregationFunction",
     members = {
         NumericalAggregationFunction = M.NumericalAggregationFunction,
         CategoricalAggregationFunction = {
@@ -782,6 +816,7 @@ M.TimeGranularity = {
 
 M.AggregationPartitionBy = {
     type = "structure",
+    id = "AggregationPartitionBy",
     members = {
         FieldName = {
             type = "string",
@@ -794,6 +829,7 @@ M.AggregationPartitionBy = {
 
 M.ColumnIdentifier = {
     type = "structure",
+    id = "ColumnIdentifier",
     members = {
         DataSetIdentifier = {
             type = "string",
@@ -817,6 +853,7 @@ M.SortDirection = {
 
 M.AggregationSortConfiguration = {
     type = "structure",
+    id = "AggregationSortConfiguration",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -833,10 +870,12 @@ M.AggregationSortConfiguration = {
 
 M.AllSheetsFilterScopeConfiguration = {
     type = "structure",
+    id = "AllSheetsFilterScopeConfiguration",
 }
 
 M.AmazonElasticsearchParameters = {
     type = "structure",
+    id = "AmazonElasticsearchParameters",
     members = {
         Domain = {
             type = "string",
@@ -849,6 +888,7 @@ M.AmazonElasticsearchParameters = {
 
 M.AmazonOpenSearchParameters = {
     type = "structure",
+    id = "AmazonOpenSearchParameters",
     members = {
         Domain = {
             type = "string",
@@ -861,6 +901,7 @@ M.AmazonOpenSearchParameters = {
 
 M.DataQnAConfigurations = {
     type = "structure",
+    id = "DataQnAConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -874,6 +915,7 @@ M.DataQnAConfigurations = {
 
 M.DataStoriesConfigurations = {
     type = "structure",
+    id = "DataStoriesConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -887,6 +929,7 @@ M.DataStoriesConfigurations = {
 
 M.ExecutiveSummaryConfigurations = {
     type = "structure",
+    id = "ExecutiveSummaryConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -900,6 +943,7 @@ M.ExecutiveSummaryConfigurations = {
 
 M.GenerativeAuthoringConfigurations = {
     type = "structure",
+    id = "GenerativeAuthoringConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -913,6 +957,7 @@ M.GenerativeAuthoringConfigurations = {
 
 M.AmazonQInQuickSightConsoleConfigurations = {
     type = "structure",
+    id = "AmazonQInQuickSightConsoleConfigurations",
     members = {
         DataQnA = M.DataQnAConfigurations,
         GenerativeAuthoring = M.GenerativeAuthoringConfigurations,
@@ -923,6 +968,7 @@ M.AmazonQInQuickSightConsoleConfigurations = {
 
 M.AmazonQInQuickSightDashboardConfigurations = {
     type = "structure",
+    id = "AmazonQInQuickSightDashboardConfigurations",
     members = {
         ExecutiveSummary = M.ExecutiveSummaryConfigurations,
     },
@@ -943,6 +989,7 @@ M.AnalysisErrorType = {
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         Path = {
             type = "string",
@@ -952,6 +999,7 @@ M.Entity = {
 
 M.AnalysisError = {
     type = "structure",
+    id = "AnalysisError",
     members = {
         Type = {
             type = "string",
@@ -968,6 +1016,7 @@ M.AnalysisError = {
 
 M.LocalNavigationConfiguration = {
     type = "structure",
+    id = "LocalNavigationConfiguration",
     members = {
         TargetSheetId = {
             type = "string",
@@ -980,6 +1029,7 @@ M.LocalNavigationConfiguration = {
 
 M.CustomActionNavigationOperation = {
     type = "structure",
+    id = "CustomActionNavigationOperation",
     members = {
         LocalNavigationConfiguration = M.LocalNavigationConfiguration,
     },
@@ -987,6 +1037,7 @@ M.CustomActionNavigationOperation = {
 
 M.CustomParameterValues = {
     type = "structure",
+    id = "CustomParameterValues",
     members = {
         StringValues = {
             type = "list",
@@ -1009,6 +1060,7 @@ M.CustomParameterValues = {
 
 M.CustomValuesConfiguration = {
     type = "structure",
+    id = "CustomValuesConfiguration",
     members = {
         IncludeNullValue = {
             type = "boolean",
@@ -1025,6 +1077,7 @@ M.SelectAllValueOptions = {
 
 M.DestinationParameterValueConfiguration = {
     type = "structure",
+    id = "DestinationParameterValueConfiguration",
     members = {
         CustomValuesConfiguration = M.CustomValuesConfiguration,
         SelectAllValueOptions = {
@@ -1042,6 +1095,7 @@ M.DestinationParameterValueConfiguration = {
 
 M.SetParameterValueConfiguration = {
     type = "structure",
+    id = "SetParameterValueConfiguration",
     members = {
         DestinationParameterName = {
             type = "string",
@@ -1057,6 +1111,7 @@ M.SetParameterValueConfiguration = {
 
 M.CustomActionSetParametersOperation = {
     type = "structure",
+    id = "CustomActionSetParametersOperation",
     members = {
         ParameterValueConfigurations = {
             type = "list",
@@ -1076,6 +1131,7 @@ M.URLTargetConfiguration = {
 
 M.CustomActionURLOperation = {
     type = "structure",
+    id = "CustomActionURLOperation",
     members = {
         URLTemplate = {
             type = "string",
@@ -1094,6 +1150,7 @@ M.CustomActionURLOperation = {
 
 M.ImageCustomActionOperation = {
     type = "structure",
+    id = "ImageCustomActionOperation",
     members = {
         NavigationOperation = M.CustomActionNavigationOperation,
         URLOperation = M.CustomActionURLOperation,
@@ -1113,6 +1170,7 @@ M.ImageCustomActionTrigger = {
 
 M.ImageCustomAction = {
     type = "structure",
+    id = "ImageCustomAction",
     members = {
         CustomActionId = {
             type = "string",
@@ -1147,6 +1205,7 @@ M.ImageCustomAction = {
 
 M.ImageMenuOption = {
     type = "structure",
+    id = "ImageMenuOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -1156,6 +1215,7 @@ M.ImageMenuOption = {
 
 M.ImageInteractionOptions = {
     type = "structure",
+    id = "ImageInteractionOptions",
     members = {
         ImageMenuOption = M.ImageMenuOption,
     },
@@ -1170,6 +1230,7 @@ M.SheetImageScalingType = {
 
 M.SheetImageScalingConfiguration = {
     type = "structure",
+    id = "SheetImageScalingConfiguration",
     members = {
         ScalingType = {
             type = "string",
@@ -1179,6 +1240,7 @@ M.SheetImageScalingConfiguration = {
 
 M.SheetImageStaticFileSource = {
     type = "structure",
+    id = "SheetImageStaticFileSource",
     members = {
         StaticFileId = {
             type = "string",
@@ -1191,6 +1253,7 @@ M.SheetImageStaticFileSource = {
 
 M.SheetImageSource = {
     type = "structure",
+    id = "SheetImageSource",
     members = {
         SheetImageStaticFileSource = M.SheetImageStaticFileSource,
     },
@@ -1198,6 +1261,7 @@ M.SheetImageSource = {
 
 M.SheetImageTooltipText = {
     type = "structure",
+    id = "SheetImageTooltipText",
     members = {
         PlainText = {
             type = "string",
@@ -1212,6 +1276,7 @@ M.Visibility = {
 
 M.SheetImageTooltipConfiguration = {
     type = "structure",
+    id = "SheetImageTooltipConfiguration",
     members = {
         TooltipText = M.SheetImageTooltipText,
         Visibility = {
@@ -1222,6 +1287,7 @@ M.SheetImageTooltipConfiguration = {
 
 M.SheetImage = {
     type = "structure",
+    id = "SheetImage",
     members = {
         SheetImageId = {
             type = "string",
@@ -1247,6 +1313,7 @@ M.SheetImage = {
 
 M.Sheet = {
     type = "structure",
+    id = "Sheet",
     members = {
         SheetId = {
             type = "string",
@@ -1263,6 +1330,7 @@ M.Sheet = {
 
 M.Analysis = {
     type = "structure",
+    id = "Analysis",
     members = {
         AnalysisId = {
             type = "string",
@@ -1302,6 +1370,7 @@ M.Analysis = {
 
 M.FreeFormLayoutScreenCanvasSizeOptions = {
     type = "structure",
+    id = "FreeFormLayoutScreenCanvasSizeOptions",
     members = {
         OptimizedViewPortWidth = {
             type = "string",
@@ -1314,6 +1383,7 @@ M.FreeFormLayoutScreenCanvasSizeOptions = {
 
 M.FreeFormLayoutCanvasSizeOptions = {
     type = "structure",
+    id = "FreeFormLayoutCanvasSizeOptions",
     members = {
         ScreenCanvasSizeOptions = M.FreeFormLayoutScreenCanvasSizeOptions,
     },
@@ -1321,6 +1391,7 @@ M.FreeFormLayoutCanvasSizeOptions = {
 
 M.DefaultFreeFormLayoutConfiguration = {
     type = "structure",
+    id = "DefaultFreeFormLayoutConfiguration",
     members = {
         CanvasSizeOptions = setmetatable({ traits = {
             required = true,
@@ -1335,6 +1406,7 @@ M.ResizeOption = {
 
 M.GridLayoutScreenCanvasSizeOptions = {
     type = "structure",
+    id = "GridLayoutScreenCanvasSizeOptions",
     members = {
         ResizeOption = {
             type = "string",
@@ -1350,6 +1422,7 @@ M.GridLayoutScreenCanvasSizeOptions = {
 
 M.GridLayoutCanvasSizeOptions = {
     type = "structure",
+    id = "GridLayoutCanvasSizeOptions",
     members = {
         ScreenCanvasSizeOptions = M.GridLayoutScreenCanvasSizeOptions,
     },
@@ -1357,6 +1430,7 @@ M.GridLayoutCanvasSizeOptions = {
 
 M.DefaultGridLayoutConfiguration = {
     type = "structure",
+    id = "DefaultGridLayoutConfiguration",
     members = {
         CanvasSizeOptions = setmetatable({ traits = {
             required = true,
@@ -1366,6 +1440,7 @@ M.DefaultGridLayoutConfiguration = {
 
 M.DefaultInteractiveLayoutConfiguration = {
     type = "structure",
+    id = "DefaultInteractiveLayoutConfiguration",
     members = {
         Grid = M.DefaultGridLayoutConfiguration,
         FreeForm = M.DefaultFreeFormLayoutConfiguration,
@@ -1374,6 +1449,7 @@ M.DefaultInteractiveLayoutConfiguration = {
 
 M.Spacing = {
     type = "structure",
+    id = "Spacing",
     members = {
         Top = {
             type = "string",
@@ -1411,6 +1487,7 @@ M.PaperSize = {
 
 M.SectionBasedLayoutPaperCanvasSizeOptions = {
     type = "structure",
+    id = "SectionBasedLayoutPaperCanvasSizeOptions",
     members = {
         PaperSize = {
             type = "string",
@@ -1424,6 +1501,7 @@ M.SectionBasedLayoutPaperCanvasSizeOptions = {
 
 M.SectionBasedLayoutCanvasSizeOptions = {
     type = "structure",
+    id = "SectionBasedLayoutCanvasSizeOptions",
     members = {
         PaperCanvasSizeOptions = M.SectionBasedLayoutPaperCanvasSizeOptions,
     },
@@ -1431,6 +1509,7 @@ M.SectionBasedLayoutCanvasSizeOptions = {
 
 M.DefaultSectionBasedLayoutConfiguration = {
     type = "structure",
+    id = "DefaultSectionBasedLayoutConfiguration",
     members = {
         CanvasSizeOptions = setmetatable({ traits = {
             required = true,
@@ -1440,6 +1519,7 @@ M.DefaultSectionBasedLayoutConfiguration = {
 
 M.DefaultPaginatedLayoutConfiguration = {
     type = "structure",
+    id = "DefaultPaginatedLayoutConfiguration",
     members = {
         SectionBased = M.DefaultSectionBasedLayoutConfiguration,
     },
@@ -1452,6 +1532,7 @@ M.SheetContentType = {
 
 M.DefaultNewSheetConfiguration = {
     type = "structure",
+    id = "DefaultNewSheetConfiguration",
     members = {
         InteractiveLayoutConfiguration = M.DefaultInteractiveLayoutConfiguration,
         PaginatedLayoutConfiguration = M.DefaultPaginatedLayoutConfiguration,
@@ -1463,6 +1544,7 @@ M.DefaultNewSheetConfiguration = {
 
 M.AnalysisDefaults = {
     type = "structure",
+    id = "AnalysisDefaults",
     members = {
         DefaultNewSheetConfiguration = setmetatable({ traits = {
             required = true,
@@ -1472,6 +1554,7 @@ M.AnalysisDefaults = {
 
 M.CalculatedField = {
     type = "structure",
+    id = "CalculatedField",
     members = {
         DataSetIdentifier = {
             type = "string",
@@ -1502,6 +1585,7 @@ M.SpecialValue = {
 
 M.CustomColor = {
     type = "structure",
+    id = "CustomColor",
     members = {
         FieldValue = {
             type = "string",
@@ -1520,6 +1604,7 @@ M.CustomColor = {
 
 M.ColorsConfiguration = {
     type = "structure",
+    id = "ColorsConfiguration",
     members = {
         CustomColors = {
             type = "list",
@@ -1560,6 +1645,7 @@ M.DecalStyleType = {
 
 M.DecalSettings = {
     type = "structure",
+    id = "DecalSettings",
     members = {
         ElementValue = {
             type = "string",
@@ -1581,6 +1667,7 @@ M.DecalSettings = {
 
 M.DecalSettingsConfiguration = {
     type = "structure",
+    id = "DecalSettingsConfiguration",
     members = {
         CustomDecalSettings = {
             type = "list",
@@ -1591,6 +1678,7 @@ M.DecalSettingsConfiguration = {
 
 M.NullValueFormatConfiguration = {
     type = "structure",
+    id = "NullValueFormatConfiguration",
     members = {
         NullString = {
             type = "string",
@@ -1603,6 +1691,7 @@ M.NullValueFormatConfiguration = {
 
 M.DecimalPlacesConfiguration = {
     type = "structure",
+    id = "DecimalPlacesConfiguration",
     members = {
         DecimalPlaces = {
             type = "long",
@@ -1620,6 +1709,7 @@ M.NegativeValueDisplayMode = {
 
 M.NegativeValueConfiguration = {
     type = "structure",
+    id = "NegativeValueConfiguration",
     members = {
         DisplayMode = {
             type = "string",
@@ -1654,6 +1744,7 @@ M.DigitGroupingStyle = {
 
 M.ThousandSeparatorOptions = {
     type = "structure",
+    id = "ThousandSeparatorOptions",
     members = {
         Symbol = {
             type = "string",
@@ -1669,6 +1760,7 @@ M.ThousandSeparatorOptions = {
 
 M.NumericSeparatorConfiguration = {
     type = "structure",
+    id = "NumericSeparatorConfiguration",
     members = {
         DecimalSeparator = {
             type = "string",
@@ -1679,6 +1771,7 @@ M.NumericSeparatorConfiguration = {
 
 M.CurrencyDisplayFormatConfiguration = {
     type = "structure",
+    id = "CurrencyDisplayFormatConfiguration",
     members = {
         Prefix = {
             type = "string",
@@ -1701,6 +1794,7 @@ M.CurrencyDisplayFormatConfiguration = {
 
 M.NumberDisplayFormatConfiguration = {
     type = "structure",
+    id = "NumberDisplayFormatConfiguration",
     members = {
         Prefix = {
             type = "string",
@@ -1720,6 +1814,7 @@ M.NumberDisplayFormatConfiguration = {
 
 M.PercentageDisplayFormatConfiguration = {
     type = "structure",
+    id = "PercentageDisplayFormatConfiguration",
     members = {
         Prefix = {
             type = "string",
@@ -1736,6 +1831,7 @@ M.PercentageDisplayFormatConfiguration = {
 
 M.NumericFormatConfiguration = {
     type = "structure",
+    id = "NumericFormatConfiguration",
     members = {
         NumberDisplayFormatConfiguration = M.NumberDisplayFormatConfiguration,
         CurrencyDisplayFormatConfiguration = M.CurrencyDisplayFormatConfiguration,
@@ -1745,6 +1841,7 @@ M.NumericFormatConfiguration = {
 
 M.DateTimeFormatConfiguration = {
     type = "structure",
+    id = "DateTimeFormatConfiguration",
     members = {
         DateTimeFormat = {
             type = "string",
@@ -1756,6 +1853,7 @@ M.DateTimeFormatConfiguration = {
 
 M.NumberFormatConfiguration = {
     type = "structure",
+    id = "NumberFormatConfiguration",
     members = {
         FormatConfiguration = M.NumericFormatConfiguration,
     },
@@ -1763,6 +1861,7 @@ M.NumberFormatConfiguration = {
 
 M.StringFormatConfiguration = {
     type = "structure",
+    id = "StringFormatConfiguration",
     members = {
         NullValueFormatConfiguration = M.NullValueFormatConfiguration,
         NumericFormatConfiguration = M.NumericFormatConfiguration,
@@ -1771,6 +1870,7 @@ M.StringFormatConfiguration = {
 
 M.FormatConfiguration = {
     type = "structure",
+    id = "FormatConfiguration",
     members = {
         StringFormatConfiguration = M.StringFormatConfiguration,
         NumberFormatConfiguration = M.NumberFormatConfiguration,
@@ -1785,6 +1885,7 @@ M.ColumnRole = {
 
 M.ColumnConfiguration = {
     type = "structure",
+    id = "ColumnConfiguration",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -1800,6 +1901,7 @@ M.ColumnConfiguration = {
 
 M.DataSetIdentifierDeclaration = {
     type = "structure",
+    id = "DataSetIdentifierDeclaration",
     members = {
         Identifier = {
             type = "string",
@@ -1842,6 +1944,7 @@ M.CategoryFilterSelectAllOptions = {
 
 M.CustomFilterConfiguration = {
     type = "structure",
+    id = "CustomFilterConfiguration",
     members = {
         MatchOperator = {
             type = "string",
@@ -1869,6 +1972,7 @@ M.CustomFilterConfiguration = {
 
 M.CustomFilterListConfiguration = {
     type = "structure",
+    id = "CustomFilterListConfiguration",
     members = {
         MatchOperator = {
             type = "string",
@@ -1894,6 +1998,7 @@ M.CustomFilterListConfiguration = {
 
 M.FilterListConfiguration = {
     type = "structure",
+    id = "FilterListConfiguration",
     members = {
         MatchOperator = {
             type = "string",
@@ -1916,6 +2021,7 @@ M.FilterListConfiguration = {
 
 M.CategoryFilterConfiguration = {
     type = "structure",
+    id = "CategoryFilterConfiguration",
     members = {
         FilterListConfiguration = M.FilterListConfiguration,
         CustomFilterListConfiguration = M.CustomFilterListConfiguration,
@@ -1930,6 +2036,7 @@ M.CommitMode = {
 
 M.SheetControlInfoIconLabelOptions = {
     type = "structure",
+    id = "SheetControlInfoIconLabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -1955,6 +2062,7 @@ M.RelativeFontSize = {
 
 M.FontSize = {
     type = "structure",
+    id = "FontSize",
     members = {
         Relative = {
             type = "string",
@@ -1977,6 +2085,7 @@ M.FontWeightName = {
 
 M.FontWeight = {
     type = "structure",
+    id = "FontWeight",
     members = {
         Name = {
             type = "string",
@@ -1986,6 +2095,7 @@ M.FontWeight = {
 
 M.FontConfiguration = {
     type = "structure",
+    id = "FontConfiguration",
     members = {
         FontSize = M.FontSize,
         FontDecoration = {
@@ -2006,6 +2116,7 @@ M.FontConfiguration = {
 
 M.LabelOptions = {
     type = "structure",
+    id = "LabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -2019,6 +2130,7 @@ M.LabelOptions = {
 
 M.DateTimePickerControlDisplayOptions = {
     type = "structure",
+    id = "DateTimePickerControlDisplayOptions",
     members = {
         TitleOptions = M.LabelOptions,
         DateTimeFormat = {
@@ -2041,6 +2153,7 @@ M.SheetControlDateTimePickerType = {
 
 M.DefaultDateTimePickerControlOptions = {
     type = "structure",
+    id = "DefaultDateTimePickerControlOptions",
     members = {
         Type = {
             type = "string",
@@ -2060,6 +2173,7 @@ M.ControlSortDirection = {
 
 M.SelectableValuesSort = {
     type = "structure",
+    id = "SelectableValuesSort",
     members = {
         Direction = {
             type = "string",
@@ -2072,6 +2186,7 @@ M.SelectableValuesSort = {
 
 M.ControlSortConfiguration = {
     type = "structure",
+    id = "ControlSortConfiguration",
     members = {
         SelectableValuesSort = M.SelectableValuesSort,
         ControlColumnSort = M.AggregationSortConfiguration,
@@ -2080,6 +2195,7 @@ M.ControlSortConfiguration = {
 
 M.ListControlSelectAllOptions = {
     type = "structure",
+    id = "ListControlSelectAllOptions",
     members = {
         Visibility = {
             type = "string",
@@ -2089,6 +2205,7 @@ M.ListControlSelectAllOptions = {
 
 M.DropDownControlDisplayOptions = {
     type = "structure",
+    id = "DropDownControlDisplayOptions",
     members = {
         SelectAllOptions = M.ListControlSelectAllOptions,
         TitleOptions = M.LabelOptions,
@@ -2098,6 +2215,7 @@ M.DropDownControlDisplayOptions = {
 
 M.FilterSelectableValues = {
     type = "structure",
+    id = "FilterSelectableValues",
     members = {
         Values = {
             type = "list",
@@ -2113,6 +2231,7 @@ M.SheetControlListType = {
 
 M.DefaultFilterDropDownControlOptions = {
     type = "structure",
+    id = "DefaultFilterDropDownControlOptions",
     members = {
         DisplayOptions = M.DropDownControlDisplayOptions,
         Type = {
@@ -2131,6 +2250,7 @@ M.DefaultFilterDropDownControlOptions = {
 
 M.ListControlSearchOptions = {
     type = "structure",
+    id = "ListControlSearchOptions",
     members = {
         Visibility = {
             type = "string",
@@ -2140,6 +2260,7 @@ M.ListControlSearchOptions = {
 
 M.ListControlDisplayOptions = {
     type = "structure",
+    id = "ListControlDisplayOptions",
     members = {
         SearchOptions = M.ListControlSearchOptions,
         SelectAllOptions = M.ListControlSelectAllOptions,
@@ -2150,6 +2271,7 @@ M.ListControlDisplayOptions = {
 
 M.DefaultFilterListControlOptions = {
     type = "structure",
+    id = "DefaultFilterListControlOptions",
     members = {
         DisplayOptions = M.ListControlDisplayOptions,
         Type = {
@@ -2165,6 +2287,7 @@ M.DefaultFilterListControlOptions = {
 
 M.RelativeDateTimeControlDisplayOptions = {
     type = "structure",
+    id = "RelativeDateTimeControlDisplayOptions",
     members = {
         TitleOptions = M.LabelOptions,
         DateTimeFormat = {
@@ -2176,6 +2299,7 @@ M.RelativeDateTimeControlDisplayOptions = {
 
 M.DefaultRelativeDateTimeControlOptions = {
     type = "structure",
+    id = "DefaultRelativeDateTimeControlOptions",
     members = {
         DisplayOptions = M.RelativeDateTimeControlDisplayOptions,
         CommitMode = {
@@ -2186,6 +2310,7 @@ M.DefaultRelativeDateTimeControlOptions = {
 
 M.SliderControlDisplayOptions = {
     type = "structure",
+    id = "SliderControlDisplayOptions",
     members = {
         TitleOptions = M.LabelOptions,
         InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
@@ -2199,6 +2324,7 @@ M.SheetControlSliderType = {
 
 M.DefaultSliderControlOptions = {
     type = "structure",
+    id = "DefaultSliderControlOptions",
     members = {
         DisplayOptions = M.SliderControlDisplayOptions,
         Type = {
@@ -2230,6 +2356,7 @@ M.DefaultSliderControlOptions = {
 
 M.TextControlPlaceholderOptions = {
     type = "structure",
+    id = "TextControlPlaceholderOptions",
     members = {
         Visibility = {
             type = "string",
@@ -2239,6 +2366,7 @@ M.TextControlPlaceholderOptions = {
 
 M.TextAreaControlDisplayOptions = {
     type = "structure",
+    id = "TextAreaControlDisplayOptions",
     members = {
         TitleOptions = M.LabelOptions,
         PlaceholderOptions = M.TextControlPlaceholderOptions,
@@ -2248,6 +2376,7 @@ M.TextAreaControlDisplayOptions = {
 
 M.DefaultTextAreaControlOptions = {
     type = "structure",
+    id = "DefaultTextAreaControlOptions",
     members = {
         Delimiter = {
             type = "string",
@@ -2258,6 +2387,7 @@ M.DefaultTextAreaControlOptions = {
 
 M.TextFieldControlDisplayOptions = {
     type = "structure",
+    id = "TextFieldControlDisplayOptions",
     members = {
         TitleOptions = M.LabelOptions,
         PlaceholderOptions = M.TextControlPlaceholderOptions,
@@ -2267,6 +2397,7 @@ M.TextFieldControlDisplayOptions = {
 
 M.DefaultTextFieldControlOptions = {
     type = "structure",
+    id = "DefaultTextFieldControlOptions",
     members = {
         DisplayOptions = M.TextFieldControlDisplayOptions,
     },
@@ -2274,6 +2405,7 @@ M.DefaultTextFieldControlOptions = {
 
 M.DefaultFilterControlOptions = {
     type = "structure",
+    id = "DefaultFilterControlOptions",
     members = {
         DefaultDateTimePickerOptions = M.DefaultDateTimePickerControlOptions,
         DefaultListOptions = M.DefaultFilterListControlOptions,
@@ -2287,6 +2419,7 @@ M.DefaultFilterControlOptions = {
 
 M.ControlTitleFormatText = {
     type = "structure",
+    id = "ControlTitleFormatText",
     members = {
         PlainText = {
             type = "string",
@@ -2299,6 +2432,7 @@ M.ControlTitleFormatText = {
 
 M.DefaultFilterControlConfiguration = {
     type = "structure",
+    id = "DefaultFilterControlConfiguration",
     members = {
         Title = {
             type = "string",
@@ -2315,6 +2449,7 @@ M.DefaultFilterControlConfiguration = {
 
 M.CategoryFilter = {
     type = "structure",
+    id = "CategoryFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2334,6 +2469,7 @@ M.CategoryFilter = {
 
 M.CategoryInnerFilter = {
     type = "structure",
+    id = "CategoryInnerFilter",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -2347,6 +2483,7 @@ M.CategoryInnerFilter = {
 
 M.InnerFilter = {
     type = "structure",
+    id = "InnerFilter",
     members = {
         CategoryInnerFilter = M.CategoryInnerFilter,
     },
@@ -2354,6 +2491,7 @@ M.InnerFilter = {
 
 M.NestedFilter = {
     type = "structure",
+    id = "NestedFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2388,6 +2526,7 @@ M.NumericFilterSelectAllOptions = {
 
 M.NumericEqualityFilter = {
     type = "structure",
+    id = "NumericEqualityFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2429,6 +2568,7 @@ M.NumericEqualityFilter = {
 
 M.NumericRangeFilterValue = {
     type = "structure",
+    id = "NumericRangeFilterValue",
     members = {
         StaticValue = {
             type = "double",
@@ -2444,6 +2584,7 @@ M.NumericRangeFilterValue = {
 
 M.NumericRangeFilter = {
     type = "structure",
+    id = "NumericRangeFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2488,6 +2629,7 @@ M.AnchorOption = {
 
 M.AnchorDateConfiguration = {
     type = "structure",
+    id = "AnchorDateConfiguration",
     members = {
         AnchorOption = {
             type = "string",
@@ -2500,6 +2642,7 @@ M.AnchorDateConfiguration = {
 
 M.ExcludePeriodConfiguration = {
     type = "structure",
+    id = "ExcludePeriodConfiguration",
     members = {
         Amount = {
             type = "integer",
@@ -2530,6 +2673,7 @@ M.RelativeDateType = {
 
 M.RelativeDatesFilter = {
     type = "structure",
+    id = "RelativeDatesFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2580,6 +2724,7 @@ M.RelativeDatesFilter = {
 
 M.RollingDateConfiguration = {
     type = "structure",
+    id = "RollingDateConfiguration",
     members = {
         DataSetIdentifier = {
             type = "string",
@@ -2595,6 +2740,7 @@ M.RollingDateConfiguration = {
 
 M.TimeEqualityFilter = {
     type = "structure",
+    id = "TimeEqualityFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2621,6 +2767,7 @@ M.TimeEqualityFilter = {
 
 M.TimeRangeFilterValue = {
     type = "structure",
+    id = "TimeRangeFilterValue",
     members = {
         StaticValue = {
             type = "timestamp",
@@ -2634,6 +2781,7 @@ M.TimeRangeFilterValue = {
 
 M.TimeRangeFilter = {
     type = "structure",
+    id = "TimeRangeFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2674,6 +2822,7 @@ M.TimeRangeFilter = {
 
 M.TopBottomFilter = {
     type = "structure",
+    id = "TopBottomFilter",
     members = {
         FilterId = {
             type = "string",
@@ -2709,6 +2858,7 @@ M.TopBottomFilter = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         CategoryFilter = M.CategoryFilter,
         NumericRangeFilter = M.NumericRangeFilter,
@@ -2728,6 +2878,7 @@ M.FilterVisualScope = {
 
 M.SheetVisualScopingConfiguration = {
     type = "structure",
+    id = "SheetVisualScopingConfiguration",
     members = {
         SheetId = {
             type = "string",
@@ -2750,6 +2901,7 @@ M.SheetVisualScopingConfiguration = {
 
 M.SelectedSheetsFilterScopeConfiguration = {
     type = "structure",
+    id = "SelectedSheetsFilterScopeConfiguration",
     members = {
         SheetVisualScopingConfigurations = {
             type = "list",
@@ -2760,6 +2912,7 @@ M.SelectedSheetsFilterScopeConfiguration = {
 
 M.FilterScopeConfiguration = {
     type = "structure",
+    id = "FilterScopeConfiguration",
     members = {
         SelectedSheets = M.SelectedSheetsFilterScopeConfiguration,
         AllSheets = M.AllSheetsFilterScopeConfiguration,
@@ -2768,6 +2921,7 @@ M.FilterScopeConfiguration = {
 
 M.FilterGroup = {
     type = "structure",
+    id = "FilterGroup",
     members = {
         FilterGroupId = {
             type = "string",
@@ -2805,6 +2959,7 @@ M.VisualHighlightTrigger = {
 
 M.VisualHighlightOperation = {
     type = "structure",
+    id = "VisualHighlightOperation",
     members = {
         Trigger = {
             type = "string",
@@ -2817,6 +2972,7 @@ M.VisualHighlightOperation = {
 
 M.VisualCustomActionDefaults = {
     type = "structure",
+    id = "VisualCustomActionDefaults",
     members = {
         highlightOperation = M.VisualHighlightOperation,
     },
@@ -2839,6 +2995,7 @@ M.DayOfTheWeek = {
 
 M.AssetOptions = {
     type = "structure",
+    id = "AssetOptions",
     members = {
         Timezone = {
             type = "string",
@@ -2859,6 +3016,7 @@ M.AssetOptions = {
 
 M.DynamicDefaultValue = {
     type = "structure",
+    id = "DynamicDefaultValue",
     members = {
         UserNameColumn = M.ColumnIdentifier,
         GroupNameColumn = M.ColumnIdentifier,
@@ -2870,6 +3028,7 @@ M.DynamicDefaultValue = {
 
 M.DateTimeDefaultValues = {
     type = "structure",
+    id = "DateTimeDefaultValues",
     members = {
         DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
@@ -2882,6 +3041,7 @@ M.DateTimeDefaultValues = {
 
 M.MappedDataSetParameter = {
     type = "structure",
+    id = "MappedDataSetParameter",
     members = {
         DataSetIdentifier = {
             type = "string",
@@ -2905,6 +3065,7 @@ M.ValueWhenUnsetOption = {
 
 M.DateTimeValueWhenUnsetConfiguration = {
     type = "structure",
+    id = "DateTimeValueWhenUnsetConfiguration",
     members = {
         ValueWhenUnsetOption = {
             type = "string",
@@ -2917,6 +3078,7 @@ M.DateTimeValueWhenUnsetConfiguration = {
 
 M.DateTimeParameterDeclaration = {
     type = "structure",
+    id = "DateTimeParameterDeclaration",
     members = {
         Name = {
             type = "string",
@@ -2938,6 +3100,7 @@ M.DateTimeParameterDeclaration = {
 
 M.DecimalDefaultValues = {
     type = "structure",
+    id = "DecimalDefaultValues",
     members = {
         DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
@@ -2954,6 +3117,7 @@ M.ParameterValueType = {
 
 M.DecimalValueWhenUnsetConfiguration = {
     type = "structure",
+    id = "DecimalValueWhenUnsetConfiguration",
     members = {
         ValueWhenUnsetOption = {
             type = "string",
@@ -2969,6 +3133,7 @@ M.DecimalValueWhenUnsetConfiguration = {
 
 M.DecimalParameterDeclaration = {
     type = "structure",
+    id = "DecimalParameterDeclaration",
     members = {
         ParameterValueType = {
             type = "string",
@@ -2993,6 +3158,7 @@ M.DecimalParameterDeclaration = {
 
 M.IntegerDefaultValues = {
     type = "structure",
+    id = "IntegerDefaultValues",
     members = {
         DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
@@ -3004,6 +3170,7 @@ M.IntegerDefaultValues = {
 
 M.IntegerValueWhenUnsetConfiguration = {
     type = "structure",
+    id = "IntegerValueWhenUnsetConfiguration",
     members = {
         ValueWhenUnsetOption = {
             type = "string",
@@ -3019,6 +3186,7 @@ M.IntegerValueWhenUnsetConfiguration = {
 
 M.IntegerParameterDeclaration = {
     type = "structure",
+    id = "IntegerParameterDeclaration",
     members = {
         ParameterValueType = {
             type = "string",
@@ -3043,6 +3211,7 @@ M.IntegerParameterDeclaration = {
 
 M.StringDefaultValues = {
     type = "structure",
+    id = "StringDefaultValues",
     members = {
         DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
@@ -3054,6 +3223,7 @@ M.StringDefaultValues = {
 
 M.StringValueWhenUnsetConfiguration = {
     type = "structure",
+    id = "StringValueWhenUnsetConfiguration",
     members = {
         ValueWhenUnsetOption = {
             type = "string",
@@ -3066,6 +3236,7 @@ M.StringValueWhenUnsetConfiguration = {
 
 M.StringParameterDeclaration = {
     type = "structure",
+    id = "StringParameterDeclaration",
     members = {
         ParameterValueType = {
             type = "string",
@@ -3090,6 +3261,7 @@ M.StringParameterDeclaration = {
 
 M.ParameterDeclaration = {
     type = "structure",
+    id = "ParameterDeclaration",
     members = {
         StringParameterDeclaration = M.StringParameterDeclaration,
         DecimalParameterDeclaration = M.DecimalParameterDeclaration,
@@ -3105,6 +3277,7 @@ M.QueryExecutionMode = {
 
 M.QueryExecutionOptions = {
     type = "structure",
+    id = "QueryExecutionOptions",
     members = {
         QueryExecutionMode = {
             type = "string",
@@ -3114,6 +3287,7 @@ M.QueryExecutionOptions = {
 
 M.CascadingControlSource = {
     type = "structure",
+    id = "CascadingControlSource",
     members = {
         SourceSheetControlId = {
             type = "string",
@@ -3124,6 +3298,7 @@ M.CascadingControlSource = {
 
 M.CascadingControlConfiguration = {
     type = "structure",
+    id = "CascadingControlConfiguration",
     members = {
         SourceControls = {
             type = "list",
@@ -3134,6 +3309,7 @@ M.CascadingControlConfiguration = {
 
 M.FilterCrossSheetControl = {
     type = "structure",
+    id = "FilterCrossSheetControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3153,6 +3329,7 @@ M.FilterCrossSheetControl = {
 
 M.FilterDateTimePickerControl = {
     type = "structure",
+    id = "FilterDateTimePickerControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3185,6 +3362,7 @@ M.FilterDateTimePickerControl = {
 
 M.FilterDropDownControl = {
     type = "structure",
+    id = "FilterDropDownControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3223,6 +3401,7 @@ M.FilterDropDownControl = {
 
 M.FilterListControl = {
     type = "structure",
+    id = "FilterListControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3258,6 +3437,7 @@ M.FilterListControl = {
 
 M.FilterRelativeDateTimeControl = {
     type = "structure",
+    id = "FilterRelativeDateTimeControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3287,6 +3467,7 @@ M.FilterRelativeDateTimeControl = {
 
 M.FilterSliderControl = {
     type = "structure",
+    id = "FilterSliderControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3337,6 +3518,7 @@ M.FilterSliderControl = {
 
 M.FilterTextAreaControl = {
     type = "structure",
+    id = "FilterTextAreaControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3366,6 +3548,7 @@ M.FilterTextAreaControl = {
 
 M.FilterTextFieldControl = {
     type = "structure",
+    id = "FilterTextFieldControl",
     members = {
         FilterControlId = {
             type = "string",
@@ -3392,6 +3575,7 @@ M.FilterTextFieldControl = {
 
 M.FilterControl = {
     type = "structure",
+    id = "FilterControl",
     members = {
         DateTimePicker = M.FilterDateTimePickerControl,
         List = M.FilterListControl,
@@ -3406,6 +3590,7 @@ M.FilterControl = {
 
 M.FreeFormLayoutElementBackgroundStyle = {
     type = "structure",
+    id = "FreeFormLayoutElementBackgroundStyle",
     members = {
         Visibility = {
             type = "string",
@@ -3418,6 +3603,7 @@ M.FreeFormLayoutElementBackgroundStyle = {
 
 M.FreeFormLayoutElementBorderStyle = {
     type = "structure",
+    id = "FreeFormLayoutElementBorderStyle",
     members = {
         Visibility = {
             type = "string",
@@ -3441,6 +3627,7 @@ M.LayoutElementType = {
 
 M.LoadingAnimation = {
     type = "structure",
+    id = "LoadingAnimation",
     members = {
         Visibility = {
             type = "string",
@@ -3450,6 +3637,7 @@ M.LoadingAnimation = {
 
 M.SheetElementConfigurationOverrides = {
     type = "structure",
+    id = "SheetElementConfigurationOverrides",
     members = {
         Visibility = {
             type = "string",
@@ -3459,6 +3647,7 @@ M.SheetElementConfigurationOverrides = {
 
 M.SheetElementRenderingRule = {
     type = "structure",
+    id = "SheetElementRenderingRule",
     members = {
         Expression = {
             type = "string",
@@ -3474,6 +3663,7 @@ M.SheetElementRenderingRule = {
 
 M.FreeFormLayoutElement = {
     type = "structure",
+    id = "FreeFormLayoutElement",
     members = {
         ElementId = {
             type = "string",
@@ -3538,6 +3728,7 @@ M.SheetLayoutGroupMemberType = {
 
 M.SheetLayoutGroupMember = {
     type = "structure",
+    id = "SheetLayoutGroupMember",
     members = {
         Id = {
             type = "string",
@@ -3556,6 +3747,7 @@ M.SheetLayoutGroupMember = {
 
 M.SheetLayoutGroup = {
     type = "structure",
+    id = "SheetLayoutGroup",
     members = {
         Id = {
             type = "string",
@@ -3575,6 +3767,7 @@ M.SheetLayoutGroup = {
 
 M.FreeFormLayoutConfiguration = {
     type = "structure",
+    id = "FreeFormLayoutConfiguration",
     members = {
         Elements = {
             type = "list",
@@ -3593,6 +3786,7 @@ M.FreeFormLayoutConfiguration = {
 
 M.GridLayoutElementBackgroundStyle = {
     type = "structure",
+    id = "GridLayoutElementBackgroundStyle",
     members = {
         Visibility = {
             type = "string",
@@ -3605,6 +3799,7 @@ M.GridLayoutElementBackgroundStyle = {
 
 M.GridLayoutElementBorderStyle = {
     type = "structure",
+    id = "GridLayoutElementBorderStyle",
     members = {
         Visibility = {
             type = "string",
@@ -3620,6 +3815,7 @@ M.GridLayoutElementBorderStyle = {
 
 M.GridLayoutElement = {
     type = "structure",
+    id = "GridLayoutElement",
     members = {
         ElementId = {
             type = "string",
@@ -3666,6 +3862,7 @@ M.GridLayoutElement = {
 
 M.GridLayoutConfiguration = {
     type = "structure",
+    id = "GridLayoutConfiguration",
     members = {
         Elements = {
             type = "list",
@@ -3680,6 +3877,7 @@ M.GridLayoutConfiguration = {
 
 M.FreeFormSectionLayoutConfiguration = {
     type = "structure",
+    id = "FreeFormSectionLayoutConfiguration",
     members = {
         Elements = {
             type = "list",
@@ -3693,6 +3891,7 @@ M.FreeFormSectionLayoutConfiguration = {
 
 M.SectionLayoutConfiguration = {
     type = "structure",
+    id = "SectionLayoutConfiguration",
     members = {
         FreeFormLayout = setmetatable({ traits = {
             required = true,
@@ -3702,6 +3901,7 @@ M.SectionLayoutConfiguration = {
 
 M.BodySectionContent = {
     type = "structure",
+    id = "BodySectionContent",
     members = {
         Layout = M.SectionLayoutConfiguration,
     },
@@ -3714,6 +3914,7 @@ M.SectionPageBreakStatus = {
 
 M.SectionAfterPageBreak = {
     type = "structure",
+    id = "SectionAfterPageBreak",
     members = {
         Status = {
             type = "string",
@@ -3723,6 +3924,7 @@ M.SectionAfterPageBreak = {
 
 M.SectionPageBreakConfiguration = {
     type = "structure",
+    id = "SectionPageBreakConfiguration",
     members = {
         After = M.SectionAfterPageBreak,
     },
@@ -3730,6 +3932,7 @@ M.SectionPageBreakConfiguration = {
 
 M.ColumnSort = {
     type = "structure",
+    id = "ColumnSort",
     members = {
         SortBy = setmetatable({ traits = {
             required = true,
@@ -3746,6 +3949,7 @@ M.ColumnSort = {
 
 M.BodySectionDynamicCategoryDimensionConfiguration = {
     type = "structure",
+    id = "BodySectionDynamicCategoryDimensionConfiguration",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -3762,6 +3966,7 @@ M.BodySectionDynamicCategoryDimensionConfiguration = {
 
 M.BodySectionDynamicNumericDimensionConfiguration = {
     type = "structure",
+    id = "BodySectionDynamicNumericDimensionConfiguration",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -3778,6 +3983,7 @@ M.BodySectionDynamicNumericDimensionConfiguration = {
 
 M.BodySectionRepeatDimensionConfiguration = {
     type = "structure",
+    id = "BodySectionRepeatDimensionConfiguration",
     members = {
         DynamicCategoryDimensionConfiguration = M.BodySectionDynamicCategoryDimensionConfiguration,
         DynamicNumericDimensionConfiguration = M.BodySectionDynamicNumericDimensionConfiguration,
@@ -3786,6 +3992,7 @@ M.BodySectionRepeatDimensionConfiguration = {
 
 M.BodySectionRepeatPageBreakConfiguration = {
     type = "structure",
+    id = "BodySectionRepeatPageBreakConfiguration",
     members = {
         After = M.SectionAfterPageBreak,
     },
@@ -3793,6 +4000,7 @@ M.BodySectionRepeatPageBreakConfiguration = {
 
 M.BodySectionRepeatConfiguration = {
     type = "structure",
+    id = "BodySectionRepeatConfiguration",
     members = {
         DimensionConfigurations = {
             type = "list",
@@ -3808,6 +4016,7 @@ M.BodySectionRepeatConfiguration = {
 
 M.SectionStyle = {
     type = "structure",
+    id = "SectionStyle",
     members = {
         Height = {
             type = "string",
@@ -3818,6 +4027,7 @@ M.SectionStyle = {
 
 M.BodySectionConfiguration = {
     type = "structure",
+    id = "BodySectionConfiguration",
     members = {
         SectionId = {
             type = "string",
@@ -3836,6 +4046,7 @@ M.BodySectionConfiguration = {
 
 M.HeaderFooterSectionConfiguration = {
     type = "structure",
+    id = "HeaderFooterSectionConfiguration",
     members = {
         SectionId = {
             type = "string",
@@ -3852,6 +4063,7 @@ M.HeaderFooterSectionConfiguration = {
 
 M.SectionBasedLayoutConfiguration = {
     type = "structure",
+    id = "SectionBasedLayoutConfiguration",
     members = {
         HeaderSections = {
             type = "list",
@@ -3882,6 +4094,7 @@ M.SectionBasedLayoutConfiguration = {
 
 M.LayoutConfiguration = {
     type = "structure",
+    id = "LayoutConfiguration",
     members = {
         GridLayout = M.GridLayoutConfiguration,
         FreeFormLayout = M.FreeFormLayoutConfiguration,
@@ -3891,6 +4104,7 @@ M.LayoutConfiguration = {
 
 M.Layout = {
     type = "structure",
+    id = "Layout",
     members = {
         Configuration = setmetatable({ traits = {
             required = true,
@@ -3900,6 +4114,7 @@ M.Layout = {
 
 M.ParameterDateTimePickerControl = {
     type = "structure",
+    id = "ParameterDateTimePickerControl",
     members = {
         ParameterControlId = {
             type = "string",
@@ -3926,6 +4141,7 @@ M.ParameterDateTimePickerControl = {
 
 M.ParameterSelectableValues = {
     type = "structure",
+    id = "ParameterSelectableValues",
     members = {
         Values = {
             type = "list",
@@ -3937,6 +4153,7 @@ M.ParameterSelectableValues = {
 
 M.ParameterDropDownControl = {
     type = "structure",
+    id = "ParameterDropDownControl",
     members = {
         ParameterControlId = {
             type = "string",
@@ -3975,6 +4192,7 @@ M.ParameterDropDownControl = {
 
 M.ParameterListControl = {
     type = "structure",
+    id = "ParameterListControl",
     members = {
         ParameterControlId = {
             type = "string",
@@ -4010,6 +4228,7 @@ M.ParameterListControl = {
 
 M.ParameterSliderControl = {
     type = "structure",
+    id = "ParameterSliderControl",
     members = {
         ParameterControlId = {
             type = "string",
@@ -4057,6 +4276,7 @@ M.ParameterSliderControl = {
 
 M.ParameterTextAreaControl = {
     type = "structure",
+    id = "ParameterTextAreaControl",
     members = {
         ParameterControlId = {
             type = "string",
@@ -4086,6 +4306,7 @@ M.ParameterTextAreaControl = {
 
 M.ParameterTextFieldControl = {
     type = "structure",
+    id = "ParameterTextFieldControl",
     members = {
         ParameterControlId = {
             type = "string",
@@ -4112,6 +4333,7 @@ M.ParameterTextFieldControl = {
 
 M.ParameterControl = {
     type = "structure",
+    id = "ParameterControl",
     members = {
         DateTimePicker = M.ParameterDateTimePickerControl,
         List = M.ParameterListControl,
@@ -4124,6 +4346,7 @@ M.ParameterControl = {
 
 M.SheetControlLayoutConfiguration = {
     type = "structure",
+    id = "SheetControlLayoutConfiguration",
     members = {
         GridLayout = M.GridLayoutConfiguration,
     },
@@ -4131,6 +4354,7 @@ M.SheetControlLayoutConfiguration = {
 
 M.SheetControlLayout = {
     type = "structure",
+    id = "SheetControlLayout",
     members = {
         Configuration = setmetatable({ traits = {
             required = true,
@@ -4140,6 +4364,7 @@ M.SheetControlLayout = {
 
 M.TextBoxMenuOption = {
     type = "structure",
+    id = "TextBoxMenuOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -4149,6 +4374,7 @@ M.TextBoxMenuOption = {
 
 M.TextBoxInteractionOptions = {
     type = "structure",
+    id = "TextBoxInteractionOptions",
     members = {
         TextBoxMenuOption = M.TextBoxMenuOption,
     },
@@ -4156,6 +4382,7 @@ M.TextBoxInteractionOptions = {
 
 M.SheetTextBox = {
     type = "structure",
+    id = "SheetTextBox",
     members = {
         SheetTextBoxId = {
             type = "string",
@@ -4176,6 +4403,7 @@ M.SelectedFieldOptions = {
 
 M.FilterOperationSelectedFieldsConfiguration = {
     type = "structure",
+    id = "FilterOperationSelectedFieldsConfiguration",
     members = {
         SelectedFields = {
             type = "list",
@@ -4197,6 +4425,7 @@ M.TargetVisualOptions = {
 
 M.SameSheetTargetVisualConfiguration = {
     type = "structure",
+    id = "SameSheetTargetVisualConfiguration",
     members = {
         TargetVisuals = {
             type = "list",
@@ -4210,6 +4439,7 @@ M.SameSheetTargetVisualConfiguration = {
 
 M.FilterOperationTargetVisualsConfiguration = {
     type = "structure",
+    id = "FilterOperationTargetVisualsConfiguration",
     members = {
         SameSheetTargetVisualConfiguration = M.SameSheetTargetVisualConfiguration,
     },
@@ -4217,6 +4447,7 @@ M.FilterOperationTargetVisualsConfiguration = {
 
 M.CustomActionFilterOperation = {
     type = "structure",
+    id = "CustomActionFilterOperation",
     members = {
         SelectedFieldsConfiguration = setmetatable({ traits = {
             required = true,
@@ -4229,6 +4460,7 @@ M.CustomActionFilterOperation = {
 
 M.VisualCustomActionOperation = {
     type = "structure",
+    id = "VisualCustomActionOperation",
     members = {
         FilterOperation = M.CustomActionFilterOperation,
         NavigationOperation = M.CustomActionNavigationOperation,
@@ -4244,6 +4476,7 @@ M.VisualCustomActionTrigger = {
 
 M.VisualCustomAction = {
     type = "structure",
+    id = "VisualCustomAction",
     members = {
         CustomActionId = {
             type = "string",
@@ -4284,6 +4517,7 @@ M.BarsArrangement = {
 
 M.DateAxisOptions = {
     type = "structure",
+    id = "DateAxisOptions",
     members = {
         MissingDateVisibility = {
             type = "string",
@@ -4293,10 +4527,12 @@ M.DateAxisOptions = {
 
 M.AxisDisplayDataDrivenRange = {
     type = "structure",
+    id = "AxisDisplayDataDrivenRange",
 }
 
 M.AxisDisplayMinMaxRange = {
     type = "structure",
+    id = "AxisDisplayMinMaxRange",
     members = {
         Minimum = {
             type = "double",
@@ -4315,6 +4551,7 @@ M.AxisDisplayMinMaxRange = {
 
 M.AxisDisplayRange = {
     type = "structure",
+    id = "AxisDisplayRange",
     members = {
         MinMax = M.AxisDisplayMinMaxRange,
         DataDriven = M.AxisDisplayDataDrivenRange,
@@ -4323,6 +4560,7 @@ M.AxisDisplayRange = {
 
 M.AxisLinearScale = {
     type = "structure",
+    id = "AxisLinearScale",
     members = {
         StepCount = {
             type = "integer",
@@ -4341,6 +4579,7 @@ M.AxisLinearScale = {
 
 M.AxisLogarithmicScale = {
     type = "structure",
+    id = "AxisLogarithmicScale",
     members = {
         Base = {
             type = "double",
@@ -4353,6 +4592,7 @@ M.AxisLogarithmicScale = {
 
 M.AxisScale = {
     type = "structure",
+    id = "AxisScale",
     members = {
         Linear = M.AxisLinearScale,
         Logarithmic = M.AxisLogarithmicScale,
@@ -4361,6 +4601,7 @@ M.AxisScale = {
 
 M.NumericAxisOptions = {
     type = "structure",
+    id = "NumericAxisOptions",
     members = {
         Scale = M.AxisScale,
         Range = M.AxisDisplayRange,
@@ -4369,6 +4610,7 @@ M.NumericAxisOptions = {
 
 M.AxisDataOptions = {
     type = "structure",
+    id = "AxisDataOptions",
     members = {
         NumericAxisOptions = M.NumericAxisOptions,
         DateAxisOptions = M.DateAxisOptions,
@@ -4377,6 +4619,7 @@ M.AxisDataOptions = {
 
 M.PercentVisibleRange = {
     type = "structure",
+    id = "PercentVisibleRange",
     members = {
         From = {
             type = "double",
@@ -4395,6 +4638,7 @@ M.PercentVisibleRange = {
 
 M.VisibleRangeOptions = {
     type = "structure",
+    id = "VisibleRangeOptions",
     members = {
         PercentRange = M.PercentVisibleRange,
     },
@@ -4402,6 +4646,7 @@ M.VisibleRangeOptions = {
 
 M.ScrollBarOptions = {
     type = "structure",
+    id = "ScrollBarOptions",
     members = {
         Visibility = {
             type = "string",
@@ -4412,6 +4657,7 @@ M.ScrollBarOptions = {
 
 M.AxisTickLabelOptions = {
     type = "structure",
+    id = "AxisTickLabelOptions",
     members = {
         LabelOptions = M.LabelOptions,
         RotationAngle = {
@@ -4425,6 +4671,7 @@ M.AxisTickLabelOptions = {
 
 M.AxisDisplayOptions = {
     type = "structure",
+    id = "AxisDisplayOptions",
     members = {
         TickLabelOptions = M.AxisTickLabelOptions,
         AxisLineVisibility = {
@@ -4443,6 +4690,7 @@ M.AxisDisplayOptions = {
 
 M.AxisLabelReferenceOptions = {
     type = "structure",
+    id = "AxisLabelReferenceOptions",
     members = {
         FieldId = {
             type = "string",
@@ -4458,6 +4706,7 @@ M.AxisLabelReferenceOptions = {
 
 M.AxisLabelOptions = {
     type = "structure",
+    id = "AxisLabelOptions",
     members = {
         FontConfiguration = M.FontConfiguration,
         CustomLabel = {
@@ -4469,6 +4718,7 @@ M.AxisLabelOptions = {
 
 M.ChartAxisLabelOptions = {
     type = "structure",
+    id = "ChartAxisLabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -4485,6 +4735,7 @@ M.ChartAxisLabelOptions = {
 
 M.ContributionAnalysisDefault = {
     type = "structure",
+    id = "ContributionAnalysisDefault",
     members = {
         MeasureFieldId = {
             type = "string",
@@ -4504,6 +4755,7 @@ M.ContributionAnalysisDefault = {
 
 M.DataPathLabelType = {
     type = "structure",
+    id = "DataPathLabelType",
     members = {
         FieldId = {
             type = "string",
@@ -4519,6 +4771,7 @@ M.DataPathLabelType = {
 
 M.FieldLabelType = {
     type = "structure",
+    id = "FieldLabelType",
     members = {
         FieldId = {
             type = "string",
@@ -4531,6 +4784,7 @@ M.FieldLabelType = {
 
 M.MaximumLabelType = {
     type = "structure",
+    id = "MaximumLabelType",
     members = {
         Visibility = {
             type = "string",
@@ -4540,6 +4794,7 @@ M.MaximumLabelType = {
 
 M.MinimumLabelType = {
     type = "structure",
+    id = "MinimumLabelType",
     members = {
         Visibility = {
             type = "string",
@@ -4549,6 +4804,7 @@ M.MinimumLabelType = {
 
 M.RangeEndsLabelType = {
     type = "structure",
+    id = "RangeEndsLabelType",
     members = {
         Visibility = {
             type = "string",
@@ -4558,6 +4814,7 @@ M.RangeEndsLabelType = {
 
 M.DataLabelType = {
     type = "structure",
+    id = "DataLabelType",
     members = {
         FieldLabelType = M.FieldLabelType,
         DataPathLabelType = M.DataPathLabelType,
@@ -4589,6 +4846,7 @@ M.DataLabelPosition = {
 
 M.DataLabelOptions = {
     type = "structure",
+    id = "DataLabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -4624,6 +4882,7 @@ M.DataLabelOptions = {
 
 M.BorderSettings = {
     type = "structure",
+    id = "BorderSettings",
     members = {
         BorderVisibility = {
             type = "string",
@@ -4639,6 +4898,7 @@ M.BorderSettings = {
 
 M.BarChartDefaultSeriesSettings = {
     type = "structure",
+    id = "BarChartDefaultSeriesSettings",
     members = {
         DecalSettings = M.DecalSettings,
         BorderSettings = M.BorderSettings,
@@ -4647,6 +4907,7 @@ M.BarChartDefaultSeriesSettings = {
 
 M.CategoricalDimensionField = {
     type = "structure",
+    id = "CategoricalDimensionField",
     members = {
         FieldId = {
             type = "string",
@@ -4666,6 +4927,7 @@ M.CategoricalDimensionField = {
 
 M.DateDimensionField = {
     type = "structure",
+    id = "DateDimensionField",
     members = {
         FieldId = {
             type = "string",
@@ -4688,6 +4950,7 @@ M.DateDimensionField = {
 
 M.NumericalDimensionField = {
     type = "structure",
+    id = "NumericalDimensionField",
     members = {
         FieldId = {
             type = "string",
@@ -4707,6 +4970,7 @@ M.NumericalDimensionField = {
 
 M.DimensionField = {
     type = "structure",
+    id = "DimensionField",
     members = {
         NumericalDimensionField = M.NumericalDimensionField,
         CategoricalDimensionField = M.CategoricalDimensionField,
@@ -4716,6 +4980,7 @@ M.DimensionField = {
 
 M.CalculatedMeasureField = {
     type = "structure",
+    id = "CalculatedMeasureField",
     members = {
         FieldId = {
             type = "string",
@@ -4734,6 +4999,7 @@ M.CalculatedMeasureField = {
 
 M.CategoricalMeasureField = {
     type = "structure",
+    id = "CategoricalMeasureField",
     members = {
         FieldId = {
             type = "string",
@@ -4753,6 +5019,7 @@ M.CategoricalMeasureField = {
 
 M.DateMeasureField = {
     type = "structure",
+    id = "DateMeasureField",
     members = {
         FieldId = {
             type = "string",
@@ -4772,6 +5039,7 @@ M.DateMeasureField = {
 
 M.NumericalMeasureField = {
     type = "structure",
+    id = "NumericalMeasureField",
     members = {
         FieldId = {
             type = "string",
@@ -4789,6 +5057,7 @@ M.NumericalMeasureField = {
 
 M.MeasureField = {
     type = "structure",
+    id = "MeasureField",
     members = {
         NumericalMeasureField = M.NumericalMeasureField,
         CategoricalMeasureField = M.CategoricalMeasureField,
@@ -4799,6 +5068,7 @@ M.MeasureField = {
 
 M.BarChartAggregatedFieldWells = {
     type = "structure",
+    id = "BarChartAggregatedFieldWells",
     members = {
         Category = {
             type = "list",
@@ -4821,6 +5091,7 @@ M.BarChartAggregatedFieldWells = {
 
 M.BarChartFieldWells = {
     type = "structure",
+    id = "BarChartFieldWells",
     members = {
         BarChartAggregatedFieldWells = M.BarChartAggregatedFieldWells,
     },
@@ -4828,6 +5099,7 @@ M.BarChartFieldWells = {
 
 M.ContextMenuOption = {
     type = "structure",
+    id = "ContextMenuOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -4837,6 +5109,7 @@ M.ContextMenuOption = {
 
 M.VisualMenuOption = {
     type = "structure",
+    id = "VisualMenuOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -4846,6 +5119,7 @@ M.VisualMenuOption = {
 
 M.VisualInteractionOptions = {
     type = "structure",
+    id = "VisualInteractionOptions",
     members = {
         VisualMenuOption = M.VisualMenuOption,
         ContextMenuOption = M.ContextMenuOption,
@@ -4861,6 +5135,7 @@ M.LegendPosition = {
 
 M.LegendOptions = {
     type = "structure",
+    id = "LegendOptions",
     members = {
         Visibility = {
             type = "string",
@@ -4891,6 +5166,7 @@ M.AxisBinding = {
 
 M.ReferenceLineDynamicDataConfiguration = {
     type = "structure",
+    id = "ReferenceLineDynamicDataConfiguration",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -4909,6 +5185,7 @@ M.ReferenceLineSeriesType = {
 
 M.ReferenceLineStaticDataConfiguration = {
     type = "structure",
+    id = "ReferenceLineStaticDataConfiguration",
     members = {
         Value = {
             type = "double",
@@ -4922,6 +5199,7 @@ M.ReferenceLineStaticDataConfiguration = {
 
 M.ReferenceLineDataConfiguration = {
     type = "structure",
+    id = "ReferenceLineDataConfiguration",
     members = {
         StaticConfiguration = M.ReferenceLineStaticDataConfiguration,
         DynamicConfiguration = M.ReferenceLineDynamicDataConfiguration,
@@ -4936,6 +5214,7 @@ M.ReferenceLineDataConfiguration = {
 
 M.ReferenceLineCustomLabelConfiguration = {
     type = "structure",
+    id = "ReferenceLineCustomLabelConfiguration",
     members = {
         CustomLabel = {
             type = "string",
@@ -4959,6 +5238,7 @@ M.ReferenceLineValueLabelRelativePosition = {
 
 M.ReferenceLineValueLabelConfiguration = {
     type = "structure",
+    id = "ReferenceLineValueLabelConfiguration",
     members = {
         RelativePosition = {
             type = "string",
@@ -4974,6 +5254,7 @@ M.ReferenceLineLabelVerticalPosition = {
 
 M.ReferenceLineLabelConfiguration = {
     type = "structure",
+    id = "ReferenceLineLabelConfiguration",
     members = {
         ValueLabelConfiguration = M.ReferenceLineValueLabelConfiguration,
         CustomLabelConfiguration = M.ReferenceLineCustomLabelConfiguration,
@@ -4998,6 +5279,7 @@ M.ReferenceLinePatternType = {
 
 M.ReferenceLineStyleConfiguration = {
     type = "structure",
+    id = "ReferenceLineStyleConfiguration",
     members = {
         Pattern = {
             type = "string",
@@ -5010,6 +5292,7 @@ M.ReferenceLineStyleConfiguration = {
 
 M.ReferenceLine = {
     type = "structure",
+    id = "ReferenceLine",
     members = {
         Status = {
             type = "string",
@@ -5024,6 +5307,7 @@ M.ReferenceLine = {
 
 M.BarChartSeriesSettings = {
     type = "structure",
+    id = "BarChartSeriesSettings",
     members = {
         DecalSettings = M.DecalSettings,
         BorderSettings = M.BorderSettings,
@@ -5032,6 +5316,7 @@ M.BarChartSeriesSettings = {
 
 M.DataFieldBarSeriesItem = {
     type = "structure",
+    id = "DataFieldBarSeriesItem",
     members = {
         FieldId = {
             type = "string",
@@ -5048,6 +5333,7 @@ M.DataFieldBarSeriesItem = {
 
 M.FieldBarSeriesItem = {
     type = "structure",
+    id = "FieldBarSeriesItem",
     members = {
         FieldId = {
             type = "string",
@@ -5061,6 +5347,7 @@ M.FieldBarSeriesItem = {
 
 M.BarSeriesItem = {
     type = "structure",
+    id = "BarSeriesItem",
     members = {
         FieldBarSeriesItem = M.FieldBarSeriesItem,
         DataFieldBarSeriesItem = M.DataFieldBarSeriesItem,
@@ -5082,6 +5369,7 @@ M.HorizontalTextAlignment = {
 
 M.PanelTitleOptions = {
     type = "structure",
+    id = "PanelTitleOptions",
     members = {
         Visibility = {
             type = "string",
@@ -5095,6 +5383,7 @@ M.PanelTitleOptions = {
 
 M.PanelConfiguration = {
     type = "structure",
+    id = "PanelConfiguration",
     members = {
         Title = M.PanelTitleOptions,
         BorderVisibility = {
@@ -5136,6 +5425,7 @@ M.SmallMultiplesAxisScale = {
 
 M.SmallMultiplesAxisProperties = {
     type = "structure",
+    id = "SmallMultiplesAxisProperties",
     members = {
         Scale = {
             type = "string",
@@ -5148,6 +5438,7 @@ M.SmallMultiplesAxisProperties = {
 
 M.SmallMultiplesOptions = {
     type = "structure",
+    id = "SmallMultiplesOptions",
     members = {
         MaxVisibleRows = {
             type = "long",
@@ -5168,6 +5459,7 @@ M.OtherCategories = {
 
 M.ItemsLimitConfiguration = {
     type = "structure",
+    id = "ItemsLimitConfiguration",
     members = {
         ItemsLimit = {
             type = "long",
@@ -5183,6 +5475,7 @@ M.ItemsLimitConfiguration = {
 
 M.FieldSort = {
     type = "structure",
+    id = "FieldSort",
     members = {
         FieldId = {
             type = "string",
@@ -5201,6 +5494,7 @@ M.FieldSort = {
 
 M.FieldSortOptions = {
     type = "structure",
+    id = "FieldSortOptions",
     members = {
         FieldSort = M.FieldSort,
         ColumnSort = M.ColumnSort,
@@ -5209,6 +5503,7 @@ M.FieldSortOptions = {
 
 M.BarChartSortConfiguration = {
     type = "structure",
+    id = "BarChartSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -5236,6 +5531,7 @@ M.TooltipTarget = {
 
 M.ColumnTooltipItem = {
     type = "structure",
+    id = "ColumnTooltipItem",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -5255,6 +5551,7 @@ M.ColumnTooltipItem = {
 
 M.FieldTooltipItem = {
     type = "structure",
+    id = "FieldTooltipItem",
     members = {
         FieldId = {
             type = "string",
@@ -5276,6 +5573,7 @@ M.FieldTooltipItem = {
 
 M.TooltipItem = {
     type = "structure",
+    id = "TooltipItem",
     members = {
         FieldTooltipItem = M.FieldTooltipItem,
         ColumnTooltipItem = M.ColumnTooltipItem,
@@ -5289,6 +5587,7 @@ M.TooltipTitleType = {
 
 M.FieldBasedTooltip = {
     type = "structure",
+    id = "FieldBasedTooltip",
     members = {
         AggregationVisibility = {
             type = "string",
@@ -5311,6 +5610,7 @@ M.SelectedTooltipType = {
 
 M.SheetTooltip = {
     type = "structure",
+    id = "SheetTooltip",
     members = {
         SheetId = {
             type = "string",
@@ -5320,6 +5620,7 @@ M.SheetTooltip = {
 
 M.TooltipOptions = {
     type = "structure",
+    id = "TooltipOptions",
     members = {
         TooltipVisibility = {
             type = "string",
@@ -5341,6 +5642,7 @@ M.PivotTableDataPathType = {
 
 M.DataPathType = {
     type = "structure",
+    id = "DataPathType",
     members = {
         PivotTableDataPathType = {
             type = "string",
@@ -5350,6 +5652,7 @@ M.DataPathType = {
 
 M.DataPathValue = {
     type = "structure",
+    id = "DataPathValue",
     members = {
         FieldId = {
             type = "string",
@@ -5363,6 +5666,7 @@ M.DataPathValue = {
 
 M.DataPathColor = {
     type = "structure",
+    id = "DataPathColor",
     members = {
         Element = setmetatable({ traits = {
             required = true,
@@ -5381,6 +5685,7 @@ M.DataPathColor = {
 
 M.VisualPalette = {
     type = "structure",
+    id = "VisualPalette",
     members = {
         ChartColor = {
             type = "string",
@@ -5394,6 +5699,7 @@ M.VisualPalette = {
 
 M.BarChartConfiguration = {
     type = "structure",
+    id = "BarChartConfiguration",
     members = {
         FieldWells = M.BarChartFieldWells,
         SortConfiguration = M.BarChartSortConfiguration,
@@ -5432,6 +5738,7 @@ M.BarChartConfiguration = {
 
 M.CategoryDrillDownFilter = {
     type = "structure",
+    id = "CategoryDrillDownFilter",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -5448,6 +5755,7 @@ M.CategoryDrillDownFilter = {
 
 M.NumericEqualityDrillDownFilter = {
     type = "structure",
+    id = "NumericEqualityDrillDownFilter",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -5464,6 +5772,7 @@ M.NumericEqualityDrillDownFilter = {
 
 M.TimeRangeDrillDownFilter = {
     type = "structure",
+    id = "TimeRangeDrillDownFilter",
     members = {
         Column = setmetatable({ traits = {
             required = true,
@@ -5491,6 +5800,7 @@ M.TimeRangeDrillDownFilter = {
 
 M.DrillDownFilter = {
     type = "structure",
+    id = "DrillDownFilter",
     members = {
         NumericEqualityFilter = M.NumericEqualityDrillDownFilter,
         CategoryFilter = M.CategoryDrillDownFilter,
@@ -5500,6 +5810,7 @@ M.DrillDownFilter = {
 
 M.DateTimeHierarchy = {
     type = "structure",
+    id = "DateTimeHierarchy",
     members = {
         HierarchyId = {
             type = "string",
@@ -5516,6 +5827,7 @@ M.DateTimeHierarchy = {
 
 M.ExplicitHierarchy = {
     type = "structure",
+    id = "ExplicitHierarchy",
     members = {
         HierarchyId = {
             type = "string",
@@ -5539,6 +5851,7 @@ M.ExplicitHierarchy = {
 
 M.PredefinedHierarchy = {
     type = "structure",
+    id = "PredefinedHierarchy",
     members = {
         HierarchyId = {
             type = "string",
@@ -5562,6 +5875,7 @@ M.PredefinedHierarchy = {
 
 M.ColumnHierarchy = {
     type = "structure",
+    id = "ColumnHierarchy",
     members = {
         ExplicitHierarchy = M.ExplicitHierarchy,
         DateTimeHierarchy = M.DateTimeHierarchy,
@@ -5571,6 +5885,7 @@ M.ColumnHierarchy = {
 
 M.LongFormatText = {
     type = "structure",
+    id = "LongFormatText",
     members = {
         PlainText = {
             type = "string",
@@ -5583,6 +5898,7 @@ M.LongFormatText = {
 
 M.VisualSubtitleLabelOptions = {
     type = "structure",
+    id = "VisualSubtitleLabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -5593,6 +5909,7 @@ M.VisualSubtitleLabelOptions = {
 
 M.ShortFormatText = {
     type = "structure",
+    id = "ShortFormatText",
     members = {
         PlainText = {
             type = "string",
@@ -5605,6 +5922,7 @@ M.ShortFormatText = {
 
 M.VisualTitleLabelOptions = {
     type = "structure",
+    id = "VisualTitleLabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -5615,6 +5933,7 @@ M.VisualTitleLabelOptions = {
 
 M.BarChartVisual = {
     type = "structure",
+    id = "BarChartVisual",
     members = {
         VisualId = {
             type = "string",
@@ -5646,6 +5965,7 @@ M.BoxPlotFillStyle = {
 
 M.BoxPlotStyleOptions = {
     type = "structure",
+    id = "BoxPlotStyleOptions",
     members = {
         FillStyle = {
             type = "string",
@@ -5655,6 +5975,7 @@ M.BoxPlotStyleOptions = {
 
 M.BoxPlotOptions = {
     type = "structure",
+    id = "BoxPlotOptions",
     members = {
         StyleOptions = M.BoxPlotStyleOptions,
         OutlierVisibility = {
@@ -5668,6 +5989,7 @@ M.BoxPlotOptions = {
 
 M.BoxPlotAggregatedFieldWells = {
     type = "structure",
+    id = "BoxPlotAggregatedFieldWells",
     members = {
         GroupBy = {
             type = "list",
@@ -5682,6 +6004,7 @@ M.BoxPlotAggregatedFieldWells = {
 
 M.BoxPlotFieldWells = {
     type = "structure",
+    id = "BoxPlotFieldWells",
     members = {
         BoxPlotAggregatedFieldWells = M.BoxPlotAggregatedFieldWells,
     },
@@ -5689,6 +6012,7 @@ M.BoxPlotFieldWells = {
 
 M.PaginationConfiguration = {
     type = "structure",
+    id = "PaginationConfiguration",
     members = {
         PageSize = {
             type = "long",
@@ -5708,6 +6032,7 @@ M.PaginationConfiguration = {
 
 M.BoxPlotSortConfiguration = {
     type = "structure",
+    id = "BoxPlotSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -5719,6 +6044,7 @@ M.BoxPlotSortConfiguration = {
 
 M.BoxPlotChartConfiguration = {
     type = "structure",
+    id = "BoxPlotChartConfiguration",
     members = {
         FieldWells = M.BoxPlotFieldWells,
         SortConfiguration = M.BoxPlotSortConfiguration,
@@ -5740,6 +6066,7 @@ M.BoxPlotChartConfiguration = {
 
 M.BoxPlotVisual = {
     type = "structure",
+    id = "BoxPlotVisual",
     members = {
         VisualId = {
             type = "string",
@@ -5778,6 +6105,7 @@ M.LineChartLineStyle = {
 
 M.LineChartLineStyleSettings = {
     type = "structure",
+    id = "LineChartLineStyleSettings",
     members = {
         LineVisibility = {
             type = "string",
@@ -5804,6 +6132,7 @@ M.LineChartMarkerShape = {
 
 M.LineChartMarkerStyleSettings = {
     type = "structure",
+    id = "LineChartMarkerStyleSettings",
     members = {
         MarkerVisibility = {
             type = "string",
@@ -5822,6 +6151,7 @@ M.LineChartMarkerStyleSettings = {
 
 M.ComboChartDefaultSeriesSettings = {
     type = "structure",
+    id = "ComboChartDefaultSeriesSettings",
     members = {
         LineStyleSettings = M.LineChartLineStyleSettings,
         MarkerStyleSettings = M.LineChartMarkerStyleSettings,
@@ -5832,6 +6162,7 @@ M.ComboChartDefaultSeriesSettings = {
 
 M.ComboChartAggregatedFieldWells = {
     type = "structure",
+    id = "ComboChartAggregatedFieldWells",
     members = {
         Category = {
             type = "list",
@@ -5854,6 +6185,7 @@ M.ComboChartAggregatedFieldWells = {
 
 M.ComboChartFieldWells = {
     type = "structure",
+    id = "ComboChartFieldWells",
     members = {
         ComboChartAggregatedFieldWells = M.ComboChartAggregatedFieldWells,
     },
@@ -5861,6 +6193,7 @@ M.ComboChartFieldWells = {
 
 M.ComboChartSeriesSettings = {
     type = "structure",
+    id = "ComboChartSeriesSettings",
     members = {
         LineStyleSettings = M.LineChartLineStyleSettings,
         MarkerStyleSettings = M.LineChartMarkerStyleSettings,
@@ -5871,6 +6204,7 @@ M.ComboChartSeriesSettings = {
 
 M.DataFieldComboSeriesItem = {
     type = "structure",
+    id = "DataFieldComboSeriesItem",
     members = {
         FieldId = {
             type = "string",
@@ -5887,6 +6221,7 @@ M.DataFieldComboSeriesItem = {
 
 M.FieldComboSeriesItem = {
     type = "structure",
+    id = "FieldComboSeriesItem",
     members = {
         FieldId = {
             type = "string",
@@ -5900,6 +6235,7 @@ M.FieldComboSeriesItem = {
 
 M.ComboSeriesItem = {
     type = "structure",
+    id = "ComboSeriesItem",
     members = {
         FieldComboSeriesItem = M.FieldComboSeriesItem,
         DataFieldComboSeriesItem = M.DataFieldComboSeriesItem,
@@ -5912,6 +6248,7 @@ M.SingleYAxisOption = {
 
 M.YAxisOptions = {
     type = "structure",
+    id = "YAxisOptions",
     members = {
         YAxis = {
             type = "string",
@@ -5924,6 +6261,7 @@ M.YAxisOptions = {
 
 M.SingleAxisOptions = {
     type = "structure",
+    id = "SingleAxisOptions",
     members = {
         YAxisOptions = M.YAxisOptions,
     },
@@ -5931,6 +6269,7 @@ M.SingleAxisOptions = {
 
 M.ComboChartSortConfiguration = {
     type = "structure",
+    id = "ComboChartSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -5947,6 +6286,7 @@ M.ComboChartSortConfiguration = {
 
 M.ComboChartConfiguration = {
     type = "structure",
+    id = "ComboChartConfiguration",
     members = {
         FieldWells = M.ComboChartFieldWells,
         SortConfiguration = M.ComboChartSortConfiguration,
@@ -5981,6 +6321,7 @@ M.ComboChartConfiguration = {
 
 M.ComboChartVisual = {
     type = "structure",
+    id = "ComboChartVisual",
     members = {
         VisualId = {
             type = "string",
@@ -6019,6 +6360,7 @@ M.CustomContentImageScalingConfiguration = {
 
 M.CustomContentConfiguration = {
     type = "structure",
+    id = "CustomContentConfiguration",
     members = {
         ContentUrl = {
             type = "string",
@@ -6035,6 +6377,7 @@ M.CustomContentConfiguration = {
 
 M.CustomContentVisual = {
     type = "structure",
+    id = "CustomContentVisual",
     members = {
         VisualId = {
             type = "string",
@@ -6063,6 +6406,7 @@ M.CustomContentVisual = {
 
 M.EmptyVisual = {
     type = "structure",
+    id = "EmptyVisual",
     members = {
         VisualId = {
             type = "string",
@@ -6085,6 +6429,7 @@ M.EmptyVisual = {
 
 M.FilledMapAggregatedFieldWells = {
     type = "structure",
+    id = "FilledMapAggregatedFieldWells",
     members = {
         Geospatial = {
             type = "list",
@@ -6099,6 +6444,7 @@ M.FilledMapAggregatedFieldWells = {
 
 M.FilledMapFieldWells = {
     type = "structure",
+    id = "FilledMapFieldWells",
     members = {
         FilledMapAggregatedFieldWells = M.FilledMapAggregatedFieldWells,
     },
@@ -6113,6 +6459,7 @@ M.BaseMapStyleType = {
 
 M.GeospatialMapStyleOptions = {
     type = "structure",
+    id = "GeospatialMapStyleOptions",
     members = {
         BaseMapStyle = {
             type = "string",
@@ -6122,6 +6469,7 @@ M.GeospatialMapStyleOptions = {
 
 M.FilledMapSortConfiguration = {
     type = "structure",
+    id = "FilledMapSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -6132,6 +6480,7 @@ M.FilledMapSortConfiguration = {
 
 M.GeospatialCoordinateBounds = {
     type = "structure",
+    id = "GeospatialCoordinateBounds",
     members = {
         North = {
             type = "double",
@@ -6167,6 +6516,7 @@ M.MapZoomMode = {
 
 M.GeospatialWindowOptions = {
     type = "structure",
+    id = "GeospatialWindowOptions",
     members = {
         Bounds = M.GeospatialCoordinateBounds,
         MapZoomMode = {
@@ -6177,6 +6527,7 @@ M.GeospatialWindowOptions = {
 
 M.FilledMapConfiguration = {
     type = "structure",
+    id = "FilledMapConfiguration",
     members = {
         FieldWells = M.FilledMapFieldWells,
         SortConfiguration = M.FilledMapSortConfiguration,
@@ -6190,6 +6541,7 @@ M.FilledMapConfiguration = {
 
 M.GradientStop = {
     type = "structure",
+    id = "GradientStop",
     members = {
         GradientOffset = {
             type = "double",
@@ -6212,6 +6564,7 @@ M.GradientStop = {
 
 M.GradientColor = {
     type = "structure",
+    id = "GradientColor",
     members = {
         Stops = {
             type = "list",
@@ -6222,6 +6575,7 @@ M.GradientColor = {
 
 M.ConditionalFormattingGradientColor = {
     type = "structure",
+    id = "ConditionalFormattingGradientColor",
     members = {
         Expression = {
             type = "string",
@@ -6237,6 +6591,7 @@ M.ConditionalFormattingGradientColor = {
 
 M.ConditionalFormattingSolidColor = {
     type = "structure",
+    id = "ConditionalFormattingSolidColor",
     members = {
         Expression = {
             type = "string",
@@ -6252,6 +6607,7 @@ M.ConditionalFormattingSolidColor = {
 
 M.ConditionalFormattingColor = {
     type = "structure",
+    id = "ConditionalFormattingColor",
     members = {
         Solid = M.ConditionalFormattingSolidColor,
         Gradient = M.ConditionalFormattingGradientColor,
@@ -6260,6 +6616,7 @@ M.ConditionalFormattingColor = {
 
 M.ShapeConditionalFormat = {
     type = "structure",
+    id = "ShapeConditionalFormat",
     members = {
         BackgroundColor = setmetatable({ traits = {
             required = true,
@@ -6269,6 +6626,7 @@ M.ShapeConditionalFormat = {
 
 M.FilledMapShapeConditionalFormatting = {
     type = "structure",
+    id = "FilledMapShapeConditionalFormatting",
     members = {
         FieldId = {
             type = "string",
@@ -6282,6 +6640,7 @@ M.FilledMapShapeConditionalFormatting = {
 
 M.FilledMapConditionalFormattingOption = {
     type = "structure",
+    id = "FilledMapConditionalFormattingOption",
     members = {
         Shape = setmetatable({ traits = {
             required = true,
@@ -6291,6 +6650,7 @@ M.FilledMapConditionalFormattingOption = {
 
 M.FilledMapConditionalFormatting = {
     type = "structure",
+    id = "FilledMapConditionalFormatting",
     members = {
         ConditionalFormattingOptions = {
             type = "list",
@@ -6304,6 +6664,7 @@ M.FilledMapConditionalFormatting = {
 
 M.Coordinate = {
     type = "structure",
+    id = "Coordinate",
     members = {
         Latitude = {
             type = "double",
@@ -6322,6 +6683,7 @@ M.Coordinate = {
 
 M.GeocoderHierarchy = {
     type = "structure",
+    id = "GeocoderHierarchy",
     members = {
         Country = {
             type = "string",
@@ -6343,6 +6705,7 @@ M.GeocoderHierarchy = {
 
 M.GeocodePreferenceValue = {
     type = "union",
+    id = "GeocodePreferenceValue",
     members = {
         GeocoderHierarchy = M.GeocoderHierarchy,
         Coordinate = M.Coordinate,
@@ -6351,6 +6714,7 @@ M.GeocodePreferenceValue = {
 
 M.GeocodePreference = {
     type = "structure",
+    id = "GeocodePreference",
     members = {
         RequestKey = setmetatable({ traits = {
             required = true,
@@ -6363,6 +6727,7 @@ M.GeocodePreference = {
 
 M.FilledMapVisual = {
     type = "structure",
+    id = "FilledMapVisual",
     members = {
         VisualId = {
             type = "string",
@@ -6402,6 +6767,7 @@ M.FunnelChartMeasureDataLabelStyle = {
 
 M.FunnelChartDataLabelOptions = {
     type = "structure",
+    id = "FunnelChartDataLabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -6427,6 +6793,7 @@ M.FunnelChartDataLabelOptions = {
 
 M.FunnelChartAggregatedFieldWells = {
     type = "structure",
+    id = "FunnelChartAggregatedFieldWells",
     members = {
         Category = {
             type = "list",
@@ -6441,6 +6808,7 @@ M.FunnelChartAggregatedFieldWells = {
 
 M.FunnelChartFieldWells = {
     type = "structure",
+    id = "FunnelChartFieldWells",
     members = {
         FunnelChartAggregatedFieldWells = M.FunnelChartAggregatedFieldWells,
     },
@@ -6448,6 +6816,7 @@ M.FunnelChartFieldWells = {
 
 M.FunnelChartSortConfiguration = {
     type = "structure",
+    id = "FunnelChartSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -6459,6 +6828,7 @@ M.FunnelChartSortConfiguration = {
 
 M.FunnelChartConfiguration = {
     type = "structure",
+    id = "FunnelChartConfiguration",
     members = {
         FieldWells = M.FunnelChartFieldWells,
         SortConfiguration = M.FunnelChartSortConfiguration,
@@ -6473,6 +6843,7 @@ M.FunnelChartConfiguration = {
 
 M.FunnelChartVisual = {
     type = "structure",
+    id = "FunnelChartVisual",
     members = {
         VisualId = {
             type = "string",
@@ -6499,6 +6870,7 @@ M.FunnelChartVisual = {
 
 M.GaugeChartColorConfiguration = {
     type = "structure",
+    id = "GaugeChartColorConfiguration",
     members = {
         ForegroundColor = {
             type = "string",
@@ -6511,6 +6883,7 @@ M.GaugeChartColorConfiguration = {
 
 M.GaugeChartFieldWells = {
     type = "structure",
+    id = "GaugeChartFieldWells",
     members = {
         Values = {
             type = "list",
@@ -6531,6 +6904,7 @@ M.ArcThicknessOptions = {
 
 M.ArcConfiguration = {
     type = "structure",
+    id = "ArcConfiguration",
     members = {
         ArcAngle = {
             type = "double",
@@ -6546,6 +6920,7 @@ M.ArcConfiguration = {
 
 M.ArcAxisDisplayRange = {
     type = "structure",
+    id = "ArcAxisDisplayRange",
     members = {
         Min = {
             type = "double",
@@ -6564,6 +6939,7 @@ M.ArcAxisDisplayRange = {
 
 M.ArcAxisConfiguration = {
     type = "structure",
+    id = "ArcAxisConfiguration",
     members = {
         Range = M.ArcAxisDisplayRange,
         ReserveRange = {
@@ -6577,6 +6953,7 @@ M.ArcAxisConfiguration = {
 
 M.ComparisonFormatConfiguration = {
     type = "structure",
+    id = "ComparisonFormatConfiguration",
     members = {
         NumberDisplayFormatConfiguration = M.NumberDisplayFormatConfiguration,
         PercentageDisplayFormatConfiguration = M.PercentageDisplayFormatConfiguration,
@@ -6591,6 +6968,7 @@ M.ComparisonMethod = {
 
 M.ComparisonConfiguration = {
     type = "structure",
+    id = "ComparisonConfiguration",
     members = {
         ComparisonMethod = {
             type = "string",
@@ -6607,6 +6985,7 @@ M.PrimaryValueDisplayType = {
 
 M.GaugeChartOptions = {
     type = "structure",
+    id = "GaugeChartOptions",
     members = {
         PrimaryValueDisplayType = {
             type = "string",
@@ -6620,6 +6999,7 @@ M.GaugeChartOptions = {
 
 M.GaugeChartConfiguration = {
     type = "structure",
+    id = "GaugeChartConfiguration",
     members = {
         FieldWells = M.GaugeChartFieldWells,
         GaugeChartOptions = M.GaugeChartOptions,
@@ -6633,6 +7013,7 @@ M.GaugeChartConfiguration = {
 
 M.GaugeChartArcConditionalFormatting = {
     type = "structure",
+    id = "GaugeChartArcConditionalFormatting",
     members = {
         ForegroundColor = M.ConditionalFormattingColor,
     },
@@ -6644,6 +7025,7 @@ M.ConditionalFormattingIconDisplayOption = {
 
 M.ConditionalFormattingIconDisplayConfiguration = {
     type = "structure",
+    id = "ConditionalFormattingIconDisplayConfiguration",
     members = {
         IconDisplayOption = {
             type = "string",
@@ -6682,6 +7064,7 @@ M.Icon = {
 
 M.ConditionalFormattingCustomIconOptions = {
     type = "structure",
+    id = "ConditionalFormattingCustomIconOptions",
     members = {
         Icon = {
             type = "string",
@@ -6694,6 +7077,7 @@ M.ConditionalFormattingCustomIconOptions = {
 
 M.ConditionalFormattingCustomIconCondition = {
     type = "structure",
+    id = "ConditionalFormattingCustomIconCondition",
     members = {
         Expression = {
             type = "string",
@@ -6727,6 +7111,7 @@ M.ConditionalFormattingIconSetType = {
 
 M.ConditionalFormattingIconSet = {
     type = "structure",
+    id = "ConditionalFormattingIconSet",
     members = {
         Expression = {
             type = "string",
@@ -6742,6 +7127,7 @@ M.ConditionalFormattingIconSet = {
 
 M.ConditionalFormattingIcon = {
     type = "structure",
+    id = "ConditionalFormattingIcon",
     members = {
         IconSet = M.ConditionalFormattingIconSet,
         CustomCondition = M.ConditionalFormattingCustomIconCondition,
@@ -6750,6 +7136,7 @@ M.ConditionalFormattingIcon = {
 
 M.GaugeChartPrimaryValueConditionalFormatting = {
     type = "structure",
+    id = "GaugeChartPrimaryValueConditionalFormatting",
     members = {
         TextColor = M.ConditionalFormattingColor,
         Icon = M.ConditionalFormattingIcon,
@@ -6758,6 +7145,7 @@ M.GaugeChartPrimaryValueConditionalFormatting = {
 
 M.GaugeChartConditionalFormattingOption = {
     type = "structure",
+    id = "GaugeChartConditionalFormattingOption",
     members = {
         PrimaryValue = M.GaugeChartPrimaryValueConditionalFormatting,
         Arc = M.GaugeChartArcConditionalFormatting,
@@ -6766,6 +7154,7 @@ M.GaugeChartConditionalFormattingOption = {
 
 M.GaugeChartConditionalFormatting = {
     type = "structure",
+    id = "GaugeChartConditionalFormatting",
     members = {
         ConditionalFormattingOptions = {
             type = "list",
@@ -6776,6 +7165,7 @@ M.GaugeChartConditionalFormatting = {
 
 M.GaugeChartVisual = {
     type = "structure",
+    id = "GaugeChartVisual",
     members = {
         VisualId = {
             type = "string",
@@ -6799,6 +7189,7 @@ M.GaugeChartVisual = {
 
 M.GeospatialMapAggregatedFieldWells = {
     type = "structure",
+    id = "GeospatialMapAggregatedFieldWells",
     members = {
         Geospatial = {
             type = "list",
@@ -6817,6 +7208,7 @@ M.GeospatialMapAggregatedFieldWells = {
 
 M.GeospatialMapFieldWells = {
     type = "structure",
+    id = "GeospatialMapFieldWells",
     members = {
         GeospatialMapAggregatedFieldWells = M.GeospatialMapAggregatedFieldWells,
     },
@@ -6824,6 +7216,7 @@ M.GeospatialMapFieldWells = {
 
 M.SimpleClusterMarker = {
     type = "structure",
+    id = "SimpleClusterMarker",
     members = {
         Color = {
             type = "string",
@@ -6833,6 +7226,7 @@ M.SimpleClusterMarker = {
 
 M.ClusterMarker = {
     type = "structure",
+    id = "ClusterMarker",
     members = {
         SimpleClusterMarker = M.SimpleClusterMarker,
     },
@@ -6840,6 +7234,7 @@ M.ClusterMarker = {
 
 M.ClusterMarkerConfiguration = {
     type = "structure",
+    id = "ClusterMarkerConfiguration",
     members = {
         ClusterMarker = M.ClusterMarker,
     },
@@ -6847,6 +7242,7 @@ M.ClusterMarkerConfiguration = {
 
 M.GeospatialHeatmapDataColor = {
     type = "structure",
+    id = "GeospatialHeatmapDataColor",
     members = {
         Color = {
             type = "string",
@@ -6859,6 +7255,7 @@ M.GeospatialHeatmapDataColor = {
 
 M.GeospatialHeatmapColorScale = {
     type = "structure",
+    id = "GeospatialHeatmapColorScale",
     members = {
         Colors = {
             type = "list",
@@ -6869,6 +7266,7 @@ M.GeospatialHeatmapColorScale = {
 
 M.GeospatialHeatmapConfiguration = {
     type = "structure",
+    id = "GeospatialHeatmapConfiguration",
     members = {
         HeatmapColor = M.GeospatialHeatmapColorScale,
     },
@@ -6882,6 +7280,7 @@ M.GeospatialSelectedPointStyle = {
 
 M.GeospatialPointStyleOptions = {
     type = "structure",
+    id = "GeospatialPointStyleOptions",
     members = {
         SelectedPointStyle = {
             type = "string",
@@ -6893,6 +7292,7 @@ M.GeospatialPointStyleOptions = {
 
 M.GeospatialMapConfiguration = {
     type = "structure",
+    id = "GeospatialMapConfiguration",
     members = {
         FieldWells = M.GeospatialMapFieldWells,
         Legend = M.LegendOptions,
@@ -6907,6 +7307,7 @@ M.GeospatialMapConfiguration = {
 
 M.GeospatialMapVisual = {
     type = "structure",
+    id = "GeospatialMapVisual",
     members = {
         VisualId = {
             type = "string",
@@ -6942,6 +7343,7 @@ M.ColorFillType = {
 
 M.DataColor = {
     type = "structure",
+    id = "DataColor",
     members = {
         Color = {
             type = "string",
@@ -6957,6 +7359,7 @@ M.DataColor = {
 
 M.ColorScale = {
     type = "structure",
+    id = "ColorScale",
     members = {
         Colors = {
             type = "list",
@@ -6977,6 +7380,7 @@ M.ColorScale = {
 
 M.HeatMapAggregatedFieldWells = {
     type = "structure",
+    id = "HeatMapAggregatedFieldWells",
     members = {
         Rows = {
             type = "list",
@@ -6995,6 +7399,7 @@ M.HeatMapAggregatedFieldWells = {
 
 M.HeatMapFieldWells = {
     type = "structure",
+    id = "HeatMapFieldWells",
     members = {
         HeatMapAggregatedFieldWells = M.HeatMapAggregatedFieldWells,
     },
@@ -7002,6 +7407,7 @@ M.HeatMapFieldWells = {
 
 M.HeatMapSortConfiguration = {
     type = "structure",
+    id = "HeatMapSortConfiguration",
     members = {
         HeatMapRowSort = {
             type = "list",
@@ -7018,6 +7424,7 @@ M.HeatMapSortConfiguration = {
 
 M.HeatMapConfiguration = {
     type = "structure",
+    id = "HeatMapConfiguration",
     members = {
         FieldWells = M.HeatMapFieldWells,
         SortConfiguration = M.HeatMapSortConfiguration,
@@ -7035,6 +7442,7 @@ M.HeatMapConfiguration = {
 
 M.HeatMapVisual = {
     type = "structure",
+    id = "HeatMapVisual",
     members = {
         VisualId = {
             type = "string",
@@ -7061,6 +7469,7 @@ M.HeatMapVisual = {
 
 M.BinCountOptions = {
     type = "structure",
+    id = "BinCountOptions",
     members = {
         Value = {
             type = "integer",
@@ -7070,6 +7479,7 @@ M.BinCountOptions = {
 
 M.BinWidthOptions = {
     type = "structure",
+    id = "BinWidthOptions",
     members = {
         Value = {
             type = "double",
@@ -7087,6 +7497,7 @@ M.HistogramBinType = {
 
 M.HistogramBinOptions = {
     type = "structure",
+    id = "HistogramBinOptions",
     members = {
         SelectedBinType = {
             type = "string",
@@ -7104,6 +7515,7 @@ M.HistogramBinOptions = {
 
 M.HistogramAggregatedFieldWells = {
     type = "structure",
+    id = "HistogramAggregatedFieldWells",
     members = {
         Values = {
             type = "list",
@@ -7114,6 +7526,7 @@ M.HistogramAggregatedFieldWells = {
 
 M.HistogramFieldWells = {
     type = "structure",
+    id = "HistogramFieldWells",
     members = {
         HistogramAggregatedFieldWells = M.HistogramAggregatedFieldWells,
     },
@@ -7121,6 +7534,7 @@ M.HistogramFieldWells = {
 
 M.HistogramConfiguration = {
     type = "structure",
+    id = "HistogramConfiguration",
     members = {
         FieldWells = M.HistogramFieldWells,
         XAxisDisplayOptions = M.AxisDisplayOptions,
@@ -7136,6 +7550,7 @@ M.HistogramConfiguration = {
 
 M.HistogramVisual = {
     type = "structure",
+    id = "HistogramVisual",
     members = {
         VisualId = {
             type = "string",
@@ -7163,6 +7578,7 @@ M.ForecastComputationSeasonality = {
 
 M.ForecastComputation = {
     type = "structure",
+    id = "ForecastComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7207,6 +7623,7 @@ M.ForecastComputation = {
 
 M.GrowthRateComputation = {
     type = "structure",
+    id = "GrowthRateComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7232,6 +7649,7 @@ M.MaximumMinimumComputationType = {
 
 M.MaximumMinimumComputation = {
     type = "structure",
+    id = "MaximumMinimumComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7255,6 +7673,7 @@ M.MaximumMinimumComputation = {
 
 M.MetricComparisonComputation = {
     type = "structure",
+    id = "MetricComparisonComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7273,6 +7692,7 @@ M.MetricComparisonComputation = {
 
 M.PeriodOverPeriodComputation = {
     type = "structure",
+    id = "PeriodOverPeriodComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7290,6 +7710,7 @@ M.PeriodOverPeriodComputation = {
 
 M.PeriodToDateComputation = {
     type = "structure",
+    id = "PeriodToDateComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7320,6 +7741,7 @@ M.TopBottomComputationType = {
 
 M.TopBottomMoversComputation = {
     type = "structure",
+    id = "TopBottomMoversComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7350,6 +7772,7 @@ M.TopBottomMoversComputation = {
 
 M.TopBottomRankedComputation = {
     type = "structure",
+    id = "TopBottomRankedComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7376,6 +7799,7 @@ M.TopBottomRankedComputation = {
 
 M.TotalAggregationComputation = {
     type = "structure",
+    id = "TotalAggregationComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7392,6 +7816,7 @@ M.TotalAggregationComputation = {
 
 M.UniqueValuesComputation = {
     type = "structure",
+    id = "UniqueValuesComputation",
     members = {
         ComputationId = {
             type = "string",
@@ -7408,6 +7833,7 @@ M.UniqueValuesComputation = {
 
 M.Computation = {
     type = "structure",
+    id = "Computation",
     members = {
         TopBottomRanked = M.TopBottomRankedComputation,
         TopBottomMovers = M.TopBottomMoversComputation,
@@ -7424,6 +7850,7 @@ M.Computation = {
 
 M.CustomNarrativeOptions = {
     type = "structure",
+    id = "CustomNarrativeOptions",
     members = {
         Narrative = {
             type = "string",
@@ -7436,6 +7863,7 @@ M.CustomNarrativeOptions = {
 
 M.InsightConfiguration = {
     type = "structure",
+    id = "InsightConfiguration",
     members = {
         Computations = {
             type = "list",
@@ -7448,6 +7876,7 @@ M.InsightConfiguration = {
 
 M.InsightVisual = {
     type = "structure",
+    id = "InsightVisual",
     members = {
         VisualId = {
             type = "string",
@@ -7476,6 +7905,7 @@ M.InsightVisual = {
 
 M.KPIFieldWells = {
     type = "structure",
+    id = "KPIFieldWells",
     members = {
         Values = {
             type = "list",
@@ -7494,6 +7924,7 @@ M.KPIFieldWells = {
 
 M.ProgressBarOptions = {
     type = "structure",
+    id = "ProgressBarOptions",
     members = {
         Visibility = {
             type = "string",
@@ -7503,6 +7934,7 @@ M.ProgressBarOptions = {
 
 M.SecondaryValueOptions = {
     type = "structure",
+    id = "SecondaryValueOptions",
     members = {
         Visibility = {
             type = "string",
@@ -7517,6 +7949,7 @@ M.KPISparklineType = {
 
 M.KPISparklineOptions = {
     type = "structure",
+    id = "KPISparklineOptions",
     members = {
         Visibility = {
             type = "string",
@@ -7538,6 +7971,7 @@ M.KPISparklineOptions = {
 
 M.TrendArrowOptions = {
     type = "structure",
+    id = "TrendArrowOptions",
     members = {
         Visibility = {
             type = "string",
@@ -7552,6 +7986,7 @@ M.KPIVisualStandardLayoutType = {
 
 M.KPIVisualStandardLayout = {
     type = "structure",
+    id = "KPIVisualStandardLayout",
     members = {
         Type = {
             type = "string",
@@ -7564,6 +7999,7 @@ M.KPIVisualStandardLayout = {
 
 M.KPIVisualLayoutOptions = {
     type = "structure",
+    id = "KPIVisualLayoutOptions",
     members = {
         StandardLayout = M.KPIVisualStandardLayout,
     },
@@ -7571,6 +8007,7 @@ M.KPIVisualLayoutOptions = {
 
 M.KPIOptions = {
     type = "structure",
+    id = "KPIOptions",
     members = {
         ProgressBar = M.ProgressBarOptions,
         TrendArrows = M.TrendArrowOptions,
@@ -7588,6 +8025,7 @@ M.KPIOptions = {
 
 M.KPISortConfiguration = {
     type = "structure",
+    id = "KPISortConfiguration",
     members = {
         TrendGroupSort = {
             type = "list",
@@ -7598,6 +8036,7 @@ M.KPISortConfiguration = {
 
 M.KPIConfiguration = {
     type = "structure",
+    id = "KPIConfiguration",
     members = {
         FieldWells = M.KPIFieldWells,
         SortConfiguration = M.KPISortConfiguration,
@@ -7608,6 +8047,7 @@ M.KPIConfiguration = {
 
 M.KPIActualValueConditionalFormatting = {
     type = "structure",
+    id = "KPIActualValueConditionalFormatting",
     members = {
         TextColor = M.ConditionalFormattingColor,
         Icon = M.ConditionalFormattingIcon,
@@ -7616,6 +8056,7 @@ M.KPIActualValueConditionalFormatting = {
 
 M.KPIComparisonValueConditionalFormatting = {
     type = "structure",
+    id = "KPIComparisonValueConditionalFormatting",
     members = {
         TextColor = M.ConditionalFormattingColor,
         Icon = M.ConditionalFormattingIcon,
@@ -7624,6 +8065,7 @@ M.KPIComparisonValueConditionalFormatting = {
 
 M.KPIPrimaryValueConditionalFormatting = {
     type = "structure",
+    id = "KPIPrimaryValueConditionalFormatting",
     members = {
         TextColor = M.ConditionalFormattingColor,
         Icon = M.ConditionalFormattingIcon,
@@ -7632,6 +8074,7 @@ M.KPIPrimaryValueConditionalFormatting = {
 
 M.KPIProgressBarConditionalFormatting = {
     type = "structure",
+    id = "KPIProgressBarConditionalFormatting",
     members = {
         ForegroundColor = M.ConditionalFormattingColor,
     },
@@ -7639,6 +8082,7 @@ M.KPIProgressBarConditionalFormatting = {
 
 M.KPIConditionalFormattingOption = {
     type = "structure",
+    id = "KPIConditionalFormattingOption",
     members = {
         PrimaryValue = M.KPIPrimaryValueConditionalFormatting,
         ProgressBar = M.KPIProgressBarConditionalFormatting,
@@ -7649,6 +8093,7 @@ M.KPIConditionalFormattingOption = {
 
 M.KPIConditionalFormatting = {
     type = "structure",
+    id = "KPIConditionalFormatting",
     members = {
         ConditionalFormattingOptions = {
             type = "list",
@@ -7659,6 +8104,7 @@ M.KPIConditionalFormatting = {
 
 M.KPIVisual = {
     type = "structure",
+    id = "KPIVisual",
     members = {
         VisualId = {
             type = "string",
@@ -7686,6 +8132,7 @@ M.KPIVisual = {
 
 M.LayerCustomActionOperation = {
     type = "structure",
+    id = "LayerCustomActionOperation",
     members = {
         FilterOperation = M.CustomActionFilterOperation,
         NavigationOperation = M.CustomActionNavigationOperation,
@@ -7701,6 +8148,7 @@ M.LayerCustomActionTrigger = {
 
 M.LayerCustomAction = {
     type = "structure",
+    id = "LayerCustomAction",
     members = {
         CustomActionId = {
             type = "string",
@@ -7735,6 +8183,7 @@ M.LayerCustomAction = {
 
 M.GeospatialStaticFileSource = {
     type = "structure",
+    id = "GeospatialStaticFileSource",
     members = {
         StaticFileId = {
             type = "string",
@@ -7747,6 +8196,7 @@ M.GeospatialStaticFileSource = {
 
 M.GeospatialDataSourceItem = {
     type = "structure",
+    id = "GeospatialDataSourceItem",
     members = {
         StaticFileDataSource = M.GeospatialStaticFileSource,
     },
@@ -7754,6 +8204,7 @@ M.GeospatialDataSourceItem = {
 
 M.GeospatialLayerColorField = {
     type = "structure",
+    id = "GeospatialLayerColorField",
     members = {
         ColorDimensionsFields = {
             type = "list",
@@ -7768,6 +8219,7 @@ M.GeospatialLayerColorField = {
 
 M.UnaggregatedField = {
     type = "structure",
+    id = "UnaggregatedField",
     members = {
         FieldId = {
             type = "string",
@@ -7784,6 +8236,7 @@ M.UnaggregatedField = {
 
 M.GeospatialLayerJoinDefinition = {
     type = "structure",
+    id = "GeospatialLayerJoinDefinition",
     members = {
         ShapeKeyField = {
             type = "string",
@@ -7795,6 +8248,7 @@ M.GeospatialLayerJoinDefinition = {
 
 M.GeospatialCategoricalDataColor = {
     type = "structure",
+    id = "GeospatialCategoricalDataColor",
     members = {
         Color = {
             type = "string",
@@ -7813,6 +8267,7 @@ M.GeospatialCategoricalDataColor = {
 
 M.GeospatialNullSymbolStyle = {
     type = "structure",
+    id = "GeospatialNullSymbolStyle",
     members = {
         FillColor = {
             type = "string",
@@ -7828,6 +8283,7 @@ M.GeospatialNullSymbolStyle = {
 
 M.GeospatialNullDataSettings = {
     type = "structure",
+    id = "GeospatialNullDataSettings",
     members = {
         SymbolStyle = setmetatable({ traits = {
             required = true,
@@ -7837,6 +8293,7 @@ M.GeospatialNullDataSettings = {
 
 M.GeospatialCategoricalColor = {
     type = "structure",
+    id = "GeospatialCategoricalColor",
     members = {
         CategoryDataColors = {
             type = "list",
@@ -7857,6 +8314,7 @@ M.GeospatialCategoricalColor = {
 
 M.GeospatialGradientStepColor = {
     type = "structure",
+    id = "GeospatialGradientStepColor",
     members = {
         Color = {
             type = "string",
@@ -7876,6 +8334,7 @@ M.GeospatialGradientStepColor = {
 
 M.GeospatialGradientColor = {
     type = "structure",
+    id = "GeospatialGradientColor",
     members = {
         StepColors = {
             type = "list",
@@ -7901,6 +8360,7 @@ M.GeospatialColorState = {
 
 M.GeospatialSolidColor = {
     type = "structure",
+    id = "GeospatialSolidColor",
     members = {
         Color = {
             type = "string",
@@ -7916,6 +8376,7 @@ M.GeospatialSolidColor = {
 
 M.GeospatialColor = {
     type = "structure",
+    id = "GeospatialColor",
     members = {
         Solid = M.GeospatialSolidColor,
         Gradient = M.GeospatialGradientColor,
@@ -7925,6 +8386,7 @@ M.GeospatialColor = {
 
 M.GeospatialLineWidth = {
     type = "structure",
+    id = "GeospatialLineWidth",
     members = {
         LineWidth = {
             type = "double",
@@ -7934,6 +8396,7 @@ M.GeospatialLineWidth = {
 
 M.GeospatialLineSymbolStyle = {
     type = "structure",
+    id = "GeospatialLineSymbolStyle",
     members = {
         FillColor = M.GeospatialColor,
         LineWidth = M.GeospatialLineWidth,
@@ -7942,6 +8405,7 @@ M.GeospatialLineSymbolStyle = {
 
 M.GeospatialLineStyle = {
     type = "structure",
+    id = "GeospatialLineStyle",
     members = {
         LineSymbolStyle = M.GeospatialLineSymbolStyle,
     },
@@ -7949,6 +8413,7 @@ M.GeospatialLineStyle = {
 
 M.GeospatialLineLayer = {
     type = "structure",
+    id = "GeospatialLineLayer",
     members = {
         Style = setmetatable({ traits = {
             required = true,
@@ -7958,6 +8423,7 @@ M.GeospatialLineLayer = {
 
 M.GeospatialCircleRadius = {
     type = "structure",
+    id = "GeospatialCircleRadius",
     members = {
         Radius = {
             type = "double",
@@ -7967,6 +8433,7 @@ M.GeospatialCircleRadius = {
 
 M.GeospatialCircleSymbolStyle = {
     type = "structure",
+    id = "GeospatialCircleSymbolStyle",
     members = {
         FillColor = M.GeospatialColor,
         StrokeColor = M.GeospatialColor,
@@ -7977,6 +8444,7 @@ M.GeospatialCircleSymbolStyle = {
 
 M.GeospatialPointStyle = {
     type = "structure",
+    id = "GeospatialPointStyle",
     members = {
         CircleSymbolStyle = M.GeospatialCircleSymbolStyle,
     },
@@ -7984,6 +8452,7 @@ M.GeospatialPointStyle = {
 
 M.GeospatialPointLayer = {
     type = "structure",
+    id = "GeospatialPointLayer",
     members = {
         Style = setmetatable({ traits = {
             required = true,
@@ -7993,6 +8462,7 @@ M.GeospatialPointLayer = {
 
 M.GeospatialPolygonSymbolStyle = {
     type = "structure",
+    id = "GeospatialPolygonSymbolStyle",
     members = {
         FillColor = M.GeospatialColor,
         StrokeColor = M.GeospatialColor,
@@ -8002,6 +8472,7 @@ M.GeospatialPolygonSymbolStyle = {
 
 M.GeospatialPolygonStyle = {
     type = "structure",
+    id = "GeospatialPolygonStyle",
     members = {
         PolygonSymbolStyle = M.GeospatialPolygonSymbolStyle,
     },
@@ -8009,6 +8480,7 @@ M.GeospatialPolygonStyle = {
 
 M.GeospatialPolygonLayer = {
     type = "structure",
+    id = "GeospatialPolygonLayer",
     members = {
         Style = setmetatable({ traits = {
             required = true,
@@ -8018,6 +8490,7 @@ M.GeospatialPolygonLayer = {
 
 M.GeospatialLayerDefinition = {
     type = "structure",
+    id = "GeospatialLayerDefinition",
     members = {
         PointLayer = M.GeospatialPointLayer,
         LineLayer = M.GeospatialLineLayer,
@@ -8033,6 +8506,7 @@ M.GeospatialLayerType = {
 
 M.GeospatialLayerItem = {
     type = "structure",
+    id = "GeospatialLayerItem",
     members = {
         LayerId = {
             type = "string",
@@ -8067,6 +8541,7 @@ M.GeospatialMapNavigation = {
 
 M.GeospatialMapState = {
     type = "structure",
+    id = "GeospatialMapState",
     members = {
         Bounds = M.GeospatialCoordinateBounds,
         MapNavigation = {
@@ -8077,6 +8552,7 @@ M.GeospatialMapState = {
 
 M.GeospatialMapStyle = {
     type = "structure",
+    id = "GeospatialMapStyle",
     members = {
         BaseMapStyle = {
             type = "string",
@@ -8092,6 +8568,7 @@ M.GeospatialMapStyle = {
 
 M.GeospatialLayerMapConfiguration = {
     type = "structure",
+    id = "GeospatialLayerMapConfiguration",
     members = {
         Legend = M.LegendOptions,
         MapLayers = {
@@ -8106,6 +8583,7 @@ M.GeospatialLayerMapConfiguration = {
 
 M.LayerMapVisual = {
     type = "structure",
+    id = "LayerMapVisual",
     members = {
         VisualId = {
             type = "string",
@@ -8130,6 +8608,7 @@ M.LayerMapVisual = {
 
 M.LineChartDefaultSeriesSettings = {
     type = "structure",
+    id = "LineChartDefaultSeriesSettings",
     members = {
         AxisBinding = {
             type = "string",
@@ -8142,6 +8621,7 @@ M.LineChartDefaultSeriesSettings = {
 
 M.LineChartAggregatedFieldWells = {
     type = "structure",
+    id = "LineChartAggregatedFieldWells",
     members = {
         Category = {
             type = "list",
@@ -8164,6 +8644,7 @@ M.LineChartAggregatedFieldWells = {
 
 M.LineChartFieldWells = {
     type = "structure",
+    id = "LineChartFieldWells",
     members = {
         LineChartAggregatedFieldWells = M.LineChartAggregatedFieldWells,
     },
@@ -8171,6 +8652,7 @@ M.LineChartFieldWells = {
 
 M.TimeBasedForecastProperties = {
     type = "structure",
+    id = "TimeBasedForecastProperties",
     members = {
         PeriodsForward = {
             type = "integer",
@@ -8201,6 +8683,7 @@ M.TimeBasedForecastProperties = {
 
 M.WhatIfPointScenario = {
     type = "structure",
+    id = "WhatIfPointScenario",
     members = {
         Date = {
             type = "timestamp",
@@ -8220,6 +8703,7 @@ M.WhatIfPointScenario = {
 
 M.WhatIfRangeScenario = {
     type = "structure",
+    id = "WhatIfRangeScenario",
     members = {
         StartDate = {
             type = "timestamp",
@@ -8245,6 +8729,7 @@ M.WhatIfRangeScenario = {
 
 M.ForecastScenario = {
     type = "structure",
+    id = "ForecastScenario",
     members = {
         WhatIfPointScenario = M.WhatIfPointScenario,
         WhatIfRangeScenario = M.WhatIfRangeScenario,
@@ -8253,6 +8738,7 @@ M.ForecastScenario = {
 
 M.ForecastConfiguration = {
     type = "structure",
+    id = "ForecastConfiguration",
     members = {
         ForecastProperties = M.TimeBasedForecastProperties,
         Scenario = M.ForecastScenario,
@@ -8267,6 +8753,7 @@ M.MissingDataTreatmentOption = {
 
 M.MissingDataConfiguration = {
     type = "structure",
+    id = "MissingDataConfiguration",
     members = {
         TreatmentOption = {
             type = "string",
@@ -8276,6 +8763,7 @@ M.MissingDataConfiguration = {
 
 M.LineSeriesAxisDisplayOptions = {
     type = "structure",
+    id = "LineSeriesAxisDisplayOptions",
     members = {
         AxisOptions = M.AxisDisplayOptions,
         MissingDataConfigurations = {
@@ -8287,6 +8775,7 @@ M.LineSeriesAxisDisplayOptions = {
 
 M.LineChartSeriesSettings = {
     type = "structure",
+    id = "LineChartSeriesSettings",
     members = {
         LineStyleSettings = M.LineChartLineStyleSettings,
         MarkerStyleSettings = M.LineChartMarkerStyleSettings,
@@ -8296,6 +8785,7 @@ M.LineChartSeriesSettings = {
 
 M.DataFieldSeriesItem = {
     type = "structure",
+    id = "DataFieldSeriesItem",
     members = {
         FieldId = {
             type = "string",
@@ -8318,6 +8808,7 @@ M.DataFieldSeriesItem = {
 
 M.FieldSeriesItem = {
     type = "structure",
+    id = "FieldSeriesItem",
     members = {
         FieldId = {
             type = "string",
@@ -8337,6 +8828,7 @@ M.FieldSeriesItem = {
 
 M.SeriesItem = {
     type = "structure",
+    id = "SeriesItem",
     members = {
         FieldSeriesItem = M.FieldSeriesItem,
         DataFieldSeriesItem = M.DataFieldSeriesItem,
@@ -8345,6 +8837,7 @@ M.SeriesItem = {
 
 M.LineChartSortConfiguration = {
     type = "structure",
+    id = "LineChartSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -8368,6 +8861,7 @@ M.LineChartType = {
 
 M.LineChartConfiguration = {
     type = "structure",
+    id = "LineChartConfiguration",
     members = {
         FieldWells = M.LineChartFieldWells,
         SortConfiguration = M.LineChartSortConfiguration,
@@ -8409,6 +8903,7 @@ M.LineChartConfiguration = {
 
 M.LineChartVisual = {
     type = "structure",
+    id = "LineChartVisual",
     members = {
         VisualId = {
             type = "string",
@@ -8442,6 +8937,7 @@ M.ArcThickness = {
 
 M.ArcOptions = {
     type = "structure",
+    id = "ArcOptions",
     members = {
         ArcThickness = {
             type = "string",
@@ -8451,6 +8947,7 @@ M.ArcOptions = {
 
 M.DonutCenterOptions = {
     type = "structure",
+    id = "DonutCenterOptions",
     members = {
         LabelVisibility = {
             type = "string",
@@ -8460,6 +8957,7 @@ M.DonutCenterOptions = {
 
 M.DonutOptions = {
     type = "structure",
+    id = "DonutOptions",
     members = {
         ArcOptions = M.ArcOptions,
         DonutCenterOptions = M.DonutCenterOptions,
@@ -8468,6 +8966,7 @@ M.DonutOptions = {
 
 M.PieChartAggregatedFieldWells = {
     type = "structure",
+    id = "PieChartAggregatedFieldWells",
     members = {
         Category = {
             type = "list",
@@ -8486,6 +8985,7 @@ M.PieChartAggregatedFieldWells = {
 
 M.PieChartFieldWells = {
     type = "structure",
+    id = "PieChartFieldWells",
     members = {
         PieChartAggregatedFieldWells = M.PieChartAggregatedFieldWells,
     },
@@ -8493,6 +8993,7 @@ M.PieChartFieldWells = {
 
 M.PieChartSortConfiguration = {
     type = "structure",
+    id = "PieChartSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -8509,6 +9010,7 @@ M.PieChartSortConfiguration = {
 
 M.PieChartConfiguration = {
     type = "structure",
+    id = "PieChartConfiguration",
     members = {
         FieldWells = M.PieChartFieldWells,
         SortConfiguration = M.PieChartSortConfiguration,
@@ -8530,6 +9032,7 @@ M.PieChartConfiguration = {
 
 M.PieChartVisual = {
     type = "structure",
+    id = "PieChartVisual",
     members = {
         VisualId = {
             type = "string",
@@ -8561,6 +9064,7 @@ M.DashboardCustomizationStatus = {
 
 M.VisualCustomizationFieldsConfiguration = {
     type = "structure",
+    id = "VisualCustomizationFieldsConfiguration",
     members = {
         Status = {
             type = "string",
@@ -8574,6 +9078,7 @@ M.VisualCustomizationFieldsConfiguration = {
 
 M.DashboardCustomizationVisualOptions = {
     type = "structure",
+    id = "DashboardCustomizationVisualOptions",
     members = {
         FieldsConfiguration = M.VisualCustomizationFieldsConfiguration,
     },
@@ -8586,6 +9091,7 @@ M.PivotTableFieldCollapseState = {
 
 M.PivotTableFieldCollapseStateTarget = {
     type = "structure",
+    id = "PivotTableFieldCollapseStateTarget",
     members = {
         FieldId = {
             type = "string",
@@ -8599,6 +9105,7 @@ M.PivotTableFieldCollapseStateTarget = {
 
 M.PivotTableFieldCollapseStateOption = {
     type = "structure",
+    id = "PivotTableFieldCollapseStateOption",
     members = {
         Target = setmetatable({ traits = {
             required = true,
@@ -8611,6 +9118,7 @@ M.PivotTableFieldCollapseStateOption = {
 
 M.PivotTableDataPathOption = {
     type = "structure",
+    id = "PivotTableDataPathOption",
     members = {
         DataPathList = {
             type = "list",
@@ -8627,6 +9135,7 @@ M.PivotTableDataPathOption = {
 
 M.PivotTableFieldOption = {
     type = "structure",
+    id = "PivotTableFieldOption",
     members = {
         FieldId = {
             type = "string",
@@ -8645,6 +9154,7 @@ M.PivotTableFieldOption = {
 
 M.PivotTableFieldOptions = {
     type = "structure",
+    id = "PivotTableFieldOptions",
     members = {
         SelectedFieldOptions = {
             type = "list",
@@ -8663,6 +9173,7 @@ M.PivotTableFieldOptions = {
 
 M.PivotTableAggregatedFieldWells = {
     type = "structure",
+    id = "PivotTableAggregatedFieldWells",
     members = {
         Rows = {
             type = "list",
@@ -8681,6 +9192,7 @@ M.PivotTableAggregatedFieldWells = {
 
 M.PivotTableFieldWells = {
     type = "structure",
+    id = "PivotTableFieldWells",
     members = {
         PivotTableAggregatedFieldWells = M.PivotTableAggregatedFieldWells,
     },
@@ -8688,6 +9200,7 @@ M.PivotTableFieldWells = {
 
 M.PivotTablePaginatedReportOptions = {
     type = "structure",
+    id = "PivotTablePaginatedReportOptions",
     members = {
         VerticalOverflowVisibility = {
             type = "string",
@@ -8700,6 +9213,7 @@ M.PivotTablePaginatedReportOptions = {
 
 M.DataPathSort = {
     type = "structure",
+    id = "DataPathSort",
     members = {
         Direction = {
             type = "string",
@@ -8719,6 +9233,7 @@ M.DataPathSort = {
 
 M.PivotTableSortBy = {
     type = "structure",
+    id = "PivotTableSortBy",
     members = {
         Field = M.FieldSort,
         Column = M.ColumnSort,
@@ -8728,6 +9243,7 @@ M.PivotTableSortBy = {
 
 M.PivotFieldSortOptions = {
     type = "structure",
+    id = "PivotFieldSortOptions",
     members = {
         FieldId = {
             type = "string",
@@ -8743,6 +9259,7 @@ M.PivotFieldSortOptions = {
 
 M.PivotTableSortConfiguration = {
     type = "structure",
+    id = "PivotTableSortConfiguration",
     members = {
         FieldSortOptions = {
             type = "list",
@@ -8758,6 +9275,7 @@ M.TableBorderStyle = {
 
 M.TableBorderOptions = {
     type = "structure",
+    id = "TableBorderOptions",
     members = {
         Color = {
             type = "string",
@@ -8773,6 +9291,7 @@ M.TableBorderOptions = {
 
 M.TableSideBorderOptions = {
     type = "structure",
+    id = "TableSideBorderOptions",
     members = {
         InnerVertical = M.TableBorderOptions,
         InnerHorizontal = M.TableBorderOptions,
@@ -8785,6 +9304,7 @@ M.TableSideBorderOptions = {
 
 M.GlobalTableBorderOptions = {
     type = "structure",
+    id = "GlobalTableBorderOptions",
     members = {
         UniformBorder = M.TableBorderOptions,
         SideSpecificBorder = M.TableSideBorderOptions,
@@ -8805,6 +9325,7 @@ M.VerticalTextAlignment = {
 
 M.TableCellStyle = {
     type = "structure",
+    id = "TableCellStyle",
     members = {
         Visibility = {
             type = "string",
@@ -8836,6 +9357,7 @@ M.PivotTableMetricPlacement = {
 
 M.RowAlternateColorOptions = {
     type = "structure",
+    id = "RowAlternateColorOptions",
     members = {
         Status = {
             type = "string",
@@ -8852,6 +9374,7 @@ M.RowAlternateColorOptions = {
 
 M.PivotTableRowsLabelOptions = {
     type = "structure",
+    id = "PivotTableRowsLabelOptions",
     members = {
         Visibility = {
             type = "string",
@@ -8869,6 +9392,7 @@ M.PivotTableRowsLayout = {
 
 M.PivotTableOptions = {
     type = "structure",
+    id = "PivotTableOptions",
     members = {
         MetricPlacement = {
             type = "string",
@@ -8908,6 +9432,7 @@ M.PivotTableSubtotalLevel = {
 
 M.PivotTableFieldSubtotalOptions = {
     type = "structure",
+    id = "PivotTableFieldSubtotalOptions",
     members = {
         FieldId = {
             type = "string",
@@ -8923,6 +9448,7 @@ M.StyledCellType = {
 
 M.TableStyleTarget = {
     type = "structure",
+    id = "TableStyleTarget",
     members = {
         CellType = {
             type = "string",
@@ -8935,6 +9461,7 @@ M.TableStyleTarget = {
 
 M.SubtotalOptions = {
     type = "structure",
+    id = "SubtotalOptions",
     members = {
         TotalsVisibility = {
             type = "string",
@@ -8981,6 +9508,7 @@ M.SimpleTotalAggregationFunction = {
 
 M.TotalAggregationFunction = {
     type = "structure",
+    id = "TotalAggregationFunction",
     members = {
         SimpleTotalAggregationFunction = {
             type = "string",
@@ -8990,6 +9518,7 @@ M.TotalAggregationFunction = {
 
 M.TotalAggregationOption = {
     type = "structure",
+    id = "TotalAggregationOption",
     members = {
         FieldId = {
             type = "string",
@@ -9005,6 +9534,7 @@ M.TotalAggregationOption = {
 
 M.PivotTotalOptions = {
     type = "structure",
+    id = "PivotTotalOptions",
     members = {
         TotalsVisibility = {
             type = "string",
@@ -9030,6 +9560,7 @@ M.PivotTotalOptions = {
 
 M.PivotTableTotalOptions = {
     type = "structure",
+    id = "PivotTableTotalOptions",
     members = {
         RowSubtotalOptions = M.SubtotalOptions,
         ColumnSubtotalOptions = M.SubtotalOptions,
@@ -9040,6 +9571,7 @@ M.PivotTableTotalOptions = {
 
 M.PivotTableConfiguration = {
     type = "structure",
+    id = "PivotTableConfiguration",
     members = {
         FieldWells = M.PivotTableFieldWells,
         SortConfiguration = M.PivotTableSortConfiguration,
@@ -9061,6 +9593,7 @@ M.PivotTableConditionalFormattingScopeRole = {
 
 M.PivotTableConditionalFormattingScope = {
     type = "structure",
+    id = "PivotTableConditionalFormattingScope",
     members = {
         Role = {
             type = "string",
@@ -9070,6 +9603,7 @@ M.PivotTableConditionalFormattingScope = {
 
 M.TextConditionalFormat = {
     type = "structure",
+    id = "TextConditionalFormat",
     members = {
         BackgroundColor = M.ConditionalFormattingColor,
         TextColor = M.ConditionalFormattingColor,
@@ -9079,6 +9613,7 @@ M.TextConditionalFormat = {
 
 M.PivotTableCellConditionalFormatting = {
     type = "structure",
+    id = "PivotTableCellConditionalFormatting",
     members = {
         FieldId = {
             type = "string",
@@ -9097,6 +9632,7 @@ M.PivotTableCellConditionalFormatting = {
 
 M.PivotTableConditionalFormattingOption = {
     type = "structure",
+    id = "PivotTableConditionalFormattingOption",
     members = {
         Cell = M.PivotTableCellConditionalFormatting,
     },
@@ -9104,6 +9640,7 @@ M.PivotTableConditionalFormattingOption = {
 
 M.PivotTableConditionalFormatting = {
     type = "structure",
+    id = "PivotTableConditionalFormatting",
     members = {
         ConditionalFormattingOptions = {
             type = "list",
@@ -9114,6 +9651,7 @@ M.PivotTableConditionalFormatting = {
 
 M.PivotTableVisual = {
     type = "structure",
+    id = "PivotTableVisual",
     members = {
         VisualId = {
             type = "string",
@@ -9142,6 +9680,7 @@ M.PluginVisualAxisName = {
 
 M.PluginVisualFieldWell = {
     type = "structure",
+    id = "PluginVisualFieldWell",
     members = {
         AxisName = {
             type = "string",
@@ -9163,6 +9702,7 @@ M.PluginVisualFieldWell = {
 
 M.PluginVisualItemsLimitConfiguration = {
     type = "structure",
+    id = "PluginVisualItemsLimitConfiguration",
     members = {
         ItemsLimit = {
             type = "long",
@@ -9175,6 +9715,7 @@ M.PluginVisualItemsLimitConfiguration = {
 
 M.PluginVisualTableQuerySort = {
     type = "structure",
+    id = "PluginVisualTableQuerySort",
     members = {
         RowSort = {
             type = "list",
@@ -9186,6 +9727,7 @@ M.PluginVisualTableQuerySort = {
 
 M.PluginVisualSortConfiguration = {
     type = "structure",
+    id = "PluginVisualSortConfiguration",
     members = {
         PluginVisualTableQuerySort = M.PluginVisualTableQuerySort,
     },
@@ -9193,6 +9735,7 @@ M.PluginVisualSortConfiguration = {
 
 M.PluginVisualProperty = {
     type = "structure",
+    id = "PluginVisualProperty",
     members = {
         Name = {
             type = "string",
@@ -9205,6 +9748,7 @@ M.PluginVisualProperty = {
 
 M.PluginVisualOptions = {
     type = "structure",
+    id = "PluginVisualOptions",
     members = {
         VisualProperties = {
             type = "list",
@@ -9215,6 +9759,7 @@ M.PluginVisualOptions = {
 
 M.PluginVisualConfiguration = {
     type = "structure",
+    id = "PluginVisualConfiguration",
     members = {
         FieldWells = {
             type = "list",
@@ -9227,6 +9772,7 @@ M.PluginVisualConfiguration = {
 
 M.PluginVisual = {
     type = "structure",
+    id = "PluginVisual",
     members = {
         VisualId = {
             type = "string",
@@ -9261,6 +9807,7 @@ M.RadarChartAxesRangeScale = {
 
 M.RadarChartAreaStyleSettings = {
     type = "structure",
+    id = "RadarChartAreaStyleSettings",
     members = {
         Visibility = {
             type = "string",
@@ -9270,6 +9817,7 @@ M.RadarChartAreaStyleSettings = {
 
 M.RadarChartSeriesSettings = {
     type = "structure",
+    id = "RadarChartSeriesSettings",
     members = {
         AreaStyleSettings = M.RadarChartAreaStyleSettings,
     },
@@ -9277,6 +9825,7 @@ M.RadarChartSeriesSettings = {
 
 M.RadarChartAggregatedFieldWells = {
     type = "structure",
+    id = "RadarChartAggregatedFieldWells",
     members = {
         Category = {
             type = "list",
@@ -9295,6 +9844,7 @@ M.RadarChartAggregatedFieldWells = {
 
 M.RadarChartFieldWells = {
     type = "structure",
+    id = "RadarChartFieldWells",
     members = {
         RadarChartAggregatedFieldWells = M.RadarChartAggregatedFieldWells,
     },
@@ -9307,6 +9857,7 @@ M.RadarChartShape = {
 
 M.RadarChartSortConfiguration = {
     type = "structure",
+    id = "RadarChartSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -9323,6 +9874,7 @@ M.RadarChartSortConfiguration = {
 
 M.RadarChartConfiguration = {
     type = "structure",
+    id = "RadarChartConfiguration",
     members = {
         FieldWells = M.RadarChartFieldWells,
         SortConfiguration = M.RadarChartSortConfiguration,
@@ -9357,6 +9909,7 @@ M.RadarChartConfiguration = {
 
 M.RadarChartVisual = {
     type = "structure",
+    id = "RadarChartVisual",
     members = {
         VisualId = {
             type = "string",
@@ -9383,6 +9936,7 @@ M.RadarChartVisual = {
 
 M.SankeyDiagramAggregatedFieldWells = {
     type = "structure",
+    id = "SankeyDiagramAggregatedFieldWells",
     members = {
         Source = {
             type = "list",
@@ -9401,6 +9955,7 @@ M.SankeyDiagramAggregatedFieldWells = {
 
 M.SankeyDiagramFieldWells = {
     type = "structure",
+    id = "SankeyDiagramFieldWells",
     members = {
         SankeyDiagramAggregatedFieldWells = M.SankeyDiagramAggregatedFieldWells,
     },
@@ -9408,6 +9963,7 @@ M.SankeyDiagramFieldWells = {
 
 M.SankeyDiagramSortConfiguration = {
     type = "structure",
+    id = "SankeyDiagramSortConfiguration",
     members = {
         WeightSort = {
             type = "list",
@@ -9420,6 +9976,7 @@ M.SankeyDiagramSortConfiguration = {
 
 M.SankeyDiagramChartConfiguration = {
     type = "structure",
+    id = "SankeyDiagramChartConfiguration",
     members = {
         FieldWells = M.SankeyDiagramFieldWells,
         SortConfiguration = M.SankeyDiagramSortConfiguration,
@@ -9430,6 +9987,7 @@ M.SankeyDiagramChartConfiguration = {
 
 M.SankeyDiagramVisual = {
     type = "structure",
+    id = "SankeyDiagramVisual",
     members = {
         VisualId = {
             type = "string",
@@ -9452,6 +10010,7 @@ M.SankeyDiagramVisual = {
 
 M.ScatterPlotCategoricallyAggregatedFieldWells = {
     type = "structure",
+    id = "ScatterPlotCategoricallyAggregatedFieldWells",
     members = {
         XAxis = {
             type = "list",
@@ -9478,6 +10037,7 @@ M.ScatterPlotCategoricallyAggregatedFieldWells = {
 
 M.ScatterPlotUnaggregatedFieldWells = {
     type = "structure",
+    id = "ScatterPlotUnaggregatedFieldWells",
     members = {
         XAxis = {
             type = "list",
@@ -9504,6 +10064,7 @@ M.ScatterPlotUnaggregatedFieldWells = {
 
 M.ScatterPlotFieldWells = {
     type = "structure",
+    id = "ScatterPlotFieldWells",
     members = {
         ScatterPlotCategoricallyAggregatedFieldWells = M.ScatterPlotCategoricallyAggregatedFieldWells,
         ScatterPlotUnaggregatedFieldWells = M.ScatterPlotUnaggregatedFieldWells,
@@ -9512,6 +10073,7 @@ M.ScatterPlotFieldWells = {
 
 M.ScatterPlotSortConfiguration = {
     type = "structure",
+    id = "ScatterPlotSortConfiguration",
     members = {
         ScatterPlotLimitConfiguration = M.ItemsLimitConfiguration,
     },
@@ -9519,6 +10081,7 @@ M.ScatterPlotSortConfiguration = {
 
 M.ScatterPlotConfiguration = {
     type = "structure",
+    id = "ScatterPlotConfiguration",
     members = {
         FieldWells = M.ScatterPlotFieldWells,
         SortConfiguration = M.ScatterPlotSortConfiguration,
@@ -9536,6 +10099,7 @@ M.ScatterPlotConfiguration = {
 
 M.ScatterPlotVisual = {
     type = "structure",
+    id = "ScatterPlotVisual",
     members = {
         VisualId = {
             type = "string",
@@ -9562,6 +10126,7 @@ M.ScatterPlotVisual = {
 
 M.TablePinnedFieldOptions = {
     type = "structure",
+    id = "TablePinnedFieldOptions",
     members = {
         PinnedLeftFields = {
             type = "list",
@@ -9578,6 +10143,7 @@ M.TableCellImageScalingConfiguration = {
 
 M.TableCellImageSizingConfiguration = {
     type = "structure",
+    id = "TableCellImageSizingConfiguration",
     members = {
         TableCellImageScalingConfiguration = {
             type = "string",
@@ -9587,6 +10153,7 @@ M.TableCellImageSizingConfiguration = {
 
 M.TableFieldImageConfiguration = {
     type = "structure",
+    id = "TableFieldImageConfiguration",
     members = {
         SizingOptions = M.TableCellImageSizingConfiguration,
     },
@@ -9598,6 +10165,7 @@ M.TableFieldIconSetType = {
 
 M.TableFieldCustomIconContent = {
     type = "structure",
+    id = "TableFieldCustomIconContent",
     members = {
         Icon = {
             type = "string",
@@ -9607,6 +10175,7 @@ M.TableFieldCustomIconContent = {
 
 M.TableFieldCustomTextContent = {
     type = "structure",
+    id = "TableFieldCustomTextContent",
     members = {
         Value = {
             type = "string",
@@ -9619,6 +10188,7 @@ M.TableFieldCustomTextContent = {
 
 M.TableFieldLinkContentConfiguration = {
     type = "structure",
+    id = "TableFieldLinkContentConfiguration",
     members = {
         CustomTextContent = M.TableFieldCustomTextContent,
         CustomIconContent = M.TableFieldCustomIconContent,
@@ -9627,6 +10197,7 @@ M.TableFieldLinkContentConfiguration = {
 
 M.TableFieldLinkConfiguration = {
     type = "structure",
+    id = "TableFieldLinkConfiguration",
     members = {
         Target = {
             type = "string",
@@ -9642,6 +10213,7 @@ M.TableFieldLinkConfiguration = {
 
 M.TableFieldURLConfiguration = {
     type = "structure",
+    id = "TableFieldURLConfiguration",
     members = {
         LinkConfiguration = M.TableFieldLinkConfiguration,
         ImageConfiguration = M.TableFieldImageConfiguration,
@@ -9650,6 +10222,7 @@ M.TableFieldURLConfiguration = {
 
 M.TableFieldOption = {
     type = "structure",
+    id = "TableFieldOption",
     members = {
         FieldId = {
             type = "string",
@@ -9677,6 +10250,7 @@ M.TransposedColumnType = {
 
 M.TransposedTableOption = {
     type = "structure",
+    id = "TransposedTableOption",
     members = {
         ColumnIndex = {
             type = "integer",
@@ -9695,6 +10269,7 @@ M.TransposedTableOption = {
 
 M.TableFieldOptions = {
     type = "structure",
+    id = "TableFieldOptions",
     members = {
         SelectedFieldOptions = {
             type = "list",
@@ -9714,6 +10289,7 @@ M.TableFieldOptions = {
 
 M.TableAggregatedFieldWells = {
     type = "structure",
+    id = "TableAggregatedFieldWells",
     members = {
         GroupBy = {
             type = "list",
@@ -9728,6 +10304,7 @@ M.TableAggregatedFieldWells = {
 
 M.TableUnaggregatedFieldWells = {
     type = "structure",
+    id = "TableUnaggregatedFieldWells",
     members = {
         Values = {
             type = "list",
@@ -9738,6 +10315,7 @@ M.TableUnaggregatedFieldWells = {
 
 M.TableFieldWells = {
     type = "structure",
+    id = "TableFieldWells",
     members = {
         TableAggregatedFieldWells = M.TableAggregatedFieldWells,
         TableUnaggregatedFieldWells = M.TableUnaggregatedFieldWells,
@@ -9746,6 +10324,7 @@ M.TableFieldWells = {
 
 M.TablePaginatedReportOptions = {
     type = "structure",
+    id = "TablePaginatedReportOptions",
     members = {
         VerticalOverflowVisibility = {
             type = "string",
@@ -9758,6 +10337,7 @@ M.TablePaginatedReportOptions = {
 
 M.TableSortConfiguration = {
     type = "structure",
+    id = "TableSortConfiguration",
     members = {
         RowSort = {
             type = "list",
@@ -9769,6 +10349,7 @@ M.TableSortConfiguration = {
 
 M.DataBarsOptions = {
     type = "structure",
+    id = "DataBarsOptions",
     members = {
         FieldId = {
             type = "string",
@@ -9797,6 +10378,7 @@ M.SparklineAxisBehavior = {
 
 M.SparklinesOptions = {
     type = "structure",
+    id = "SparklinesOptions",
     members = {
         FieldId = {
             type = "string",
@@ -9827,6 +10409,7 @@ M.SparklinesOptions = {
 
 M.TableInlineVisualization = {
     type = "structure",
+    id = "TableInlineVisualization",
     members = {
         DataBars = M.DataBarsOptions,
         Sparklines = M.SparklinesOptions,
@@ -9840,6 +10423,7 @@ M.TableOrientation = {
 
 M.TableOptions = {
     type = "structure",
+    id = "TableOptions",
     members = {
         Orientation = {
             type = "string",
@@ -9852,6 +10436,7 @@ M.TableOptions = {
 
 M.TotalOptions = {
     type = "structure",
+    id = "TotalOptions",
     members = {
         TotalsVisibility = {
             type = "string",
@@ -9875,6 +10460,7 @@ M.TotalOptions = {
 
 M.TableConfiguration = {
     type = "structure",
+    id = "TableConfiguration",
     members = {
         FieldWells = M.TableFieldWells,
         SortConfiguration = M.TableSortConfiguration,
@@ -9894,6 +10480,7 @@ M.TableConfiguration = {
 
 M.TableCellConditionalFormatting = {
     type = "structure",
+    id = "TableCellConditionalFormatting",
     members = {
         FieldId = {
             type = "string",
@@ -9907,6 +10494,7 @@ M.TableCellConditionalFormatting = {
 
 M.TableRowConditionalFormatting = {
     type = "structure",
+    id = "TableRowConditionalFormatting",
     members = {
         BackgroundColor = M.ConditionalFormattingColor,
         TextColor = M.ConditionalFormattingColor,
@@ -9915,6 +10503,7 @@ M.TableRowConditionalFormatting = {
 
 M.TableConditionalFormattingOption = {
     type = "structure",
+    id = "TableConditionalFormattingOption",
     members = {
         Cell = M.TableCellConditionalFormatting,
         Row = M.TableRowConditionalFormatting,
@@ -9923,6 +10512,7 @@ M.TableConditionalFormattingOption = {
 
 M.TableConditionalFormatting = {
     type = "structure",
+    id = "TableConditionalFormatting",
     members = {
         ConditionalFormattingOptions = {
             type = "list",
@@ -9933,6 +10523,7 @@ M.TableConditionalFormatting = {
 
 M.TableVisual = {
     type = "structure",
+    id = "TableVisual",
     members = {
         VisualId = {
             type = "string",
@@ -9956,6 +10547,7 @@ M.TableVisual = {
 
 M.TreeMapAggregatedFieldWells = {
     type = "structure",
+    id = "TreeMapAggregatedFieldWells",
     members = {
         Groups = {
             type = "list",
@@ -9974,6 +10566,7 @@ M.TreeMapAggregatedFieldWells = {
 
 M.TreeMapFieldWells = {
     type = "structure",
+    id = "TreeMapFieldWells",
     members = {
         TreeMapAggregatedFieldWells = M.TreeMapAggregatedFieldWells,
     },
@@ -9981,6 +10574,7 @@ M.TreeMapFieldWells = {
 
 M.TreeMapSortConfiguration = {
     type = "structure",
+    id = "TreeMapSortConfiguration",
     members = {
         TreeMapSort = {
             type = "list",
@@ -9992,6 +10586,7 @@ M.TreeMapSortConfiguration = {
 
 M.TreeMapConfiguration = {
     type = "structure",
+    id = "TreeMapConfiguration",
     members = {
         FieldWells = M.TreeMapFieldWells,
         SortConfiguration = M.TreeMapSortConfiguration,
@@ -10008,6 +10603,7 @@ M.TreeMapConfiguration = {
 
 M.TreeMapVisual = {
     type = "structure",
+    id = "TreeMapVisual",
     members = {
         VisualId = {
             type = "string",
@@ -10034,6 +10630,7 @@ M.TreeMapVisual = {
 
 M.WaterfallChartGroupColorConfiguration = {
     type = "structure",
+    id = "WaterfallChartGroupColorConfiguration",
     members = {
         PositiveBarColor = {
             type = "string",
@@ -10049,6 +10646,7 @@ M.WaterfallChartGroupColorConfiguration = {
 
 M.WaterfallChartColorConfiguration = {
     type = "structure",
+    id = "WaterfallChartColorConfiguration",
     members = {
         GroupColorConfiguration = M.WaterfallChartGroupColorConfiguration,
     },
@@ -10056,6 +10654,7 @@ M.WaterfallChartColorConfiguration = {
 
 M.WaterfallChartAggregatedFieldWells = {
     type = "structure",
+    id = "WaterfallChartAggregatedFieldWells",
     members = {
         Categories = {
             type = "list",
@@ -10074,6 +10673,7 @@ M.WaterfallChartAggregatedFieldWells = {
 
 M.WaterfallChartFieldWells = {
     type = "structure",
+    id = "WaterfallChartFieldWells",
     members = {
         WaterfallChartAggregatedFieldWells = M.WaterfallChartAggregatedFieldWells,
     },
@@ -10081,6 +10681,7 @@ M.WaterfallChartFieldWells = {
 
 M.WaterfallChartSortConfiguration = {
     type = "structure",
+    id = "WaterfallChartSortConfiguration",
     members = {
         CategorySort = {
             type = "list",
@@ -10092,6 +10693,7 @@ M.WaterfallChartSortConfiguration = {
 
 M.WaterfallChartOptions = {
     type = "structure",
+    id = "WaterfallChartOptions",
     members = {
         TotalBarLabel = {
             type = "string",
@@ -10101,6 +10703,7 @@ M.WaterfallChartOptions = {
 
 M.WaterfallChartConfiguration = {
     type = "structure",
+    id = "WaterfallChartConfiguration",
     members = {
         FieldWells = M.WaterfallChartFieldWells,
         SortConfiguration = M.WaterfallChartSortConfiguration,
@@ -10119,6 +10722,7 @@ M.WaterfallChartConfiguration = {
 
 M.WaterfallVisual = {
     type = "structure",
+    id = "WaterfallVisual",
     members = {
         VisualId = {
             type = "string",
@@ -10145,6 +10749,7 @@ M.WaterfallVisual = {
 
 M.WordCloudAggregatedFieldWells = {
     type = "structure",
+    id = "WordCloudAggregatedFieldWells",
     members = {
         GroupBy = {
             type = "list",
@@ -10159,6 +10764,7 @@ M.WordCloudAggregatedFieldWells = {
 
 M.WordCloudFieldWells = {
     type = "structure",
+    id = "WordCloudFieldWells",
     members = {
         WordCloudAggregatedFieldWells = M.WordCloudAggregatedFieldWells,
     },
@@ -10166,6 +10772,7 @@ M.WordCloudFieldWells = {
 
 M.WordCloudSortConfiguration = {
     type = "structure",
+    id = "WordCloudSortConfiguration",
     members = {
         CategoryItemsLimit = M.ItemsLimitConfiguration,
         CategorySort = {
@@ -10204,6 +10811,7 @@ M.WordCloudWordScaling = {
 
 M.WordCloudOptions = {
     type = "structure",
+    id = "WordCloudOptions",
     members = {
         WordOrientation = {
             type = "string",
@@ -10228,6 +10836,7 @@ M.WordCloudOptions = {
 
 M.WordCloudChartConfiguration = {
     type = "structure",
+    id = "WordCloudChartConfiguration",
     members = {
         FieldWells = M.WordCloudFieldWells,
         SortConfiguration = M.WordCloudSortConfiguration,
@@ -10239,6 +10848,7 @@ M.WordCloudChartConfiguration = {
 
 M.WordCloudVisual = {
     type = "structure",
+    id = "WordCloudVisual",
     members = {
         VisualId = {
             type = "string",
@@ -10265,6 +10875,7 @@ M.WordCloudVisual = {
 
 M.Visual = {
     type = "structure",
+    id = "Visual",
     members = {
         TableVisual = M.TableVisual,
         PivotTableVisual = M.PivotTableVisual,
@@ -10296,6 +10907,7 @@ M.Visual = {
 
 M.SheetDefinition = {
     type = "structure",
+    id = "SheetDefinition",
     members = {
         SheetId = {
             type = "string",
@@ -10349,6 +10961,7 @@ M.SheetDefinition = {
 
 M.StaticFileS3SourceOptions = {
     type = "structure",
+    id = "StaticFileS3SourceOptions",
     members = {
         BucketName = {
             type = "string",
@@ -10373,6 +10986,7 @@ M.StaticFileS3SourceOptions = {
 
 M.StaticFileUrlSourceOptions = {
     type = "structure",
+    id = "StaticFileUrlSourceOptions",
     members = {
         Url = {
             type = "string",
@@ -10385,6 +10999,7 @@ M.StaticFileUrlSourceOptions = {
 
 M.StaticFileSource = {
     type = "structure",
+    id = "StaticFileSource",
     members = {
         UrlOptions = M.StaticFileUrlSourceOptions,
         S3Options = M.StaticFileS3SourceOptions,
@@ -10393,6 +11008,7 @@ M.StaticFileSource = {
 
 M.ImageStaticFile = {
     type = "structure",
+    id = "ImageStaticFile",
     members = {
         StaticFileId = {
             type = "string",
@@ -10406,6 +11022,7 @@ M.ImageStaticFile = {
 
 M.SpatialStaticFile = {
     type = "structure",
+    id = "SpatialStaticFile",
     members = {
         StaticFileId = {
             type = "string",
@@ -10419,6 +11036,7 @@ M.SpatialStaticFile = {
 
 M.StaticFile = {
     type = "structure",
+    id = "StaticFile",
     members = {
         ImageStaticFile = M.ImageStaticFile,
         SpatialStaticFile = M.SpatialStaticFile,
@@ -10427,6 +11045,7 @@ M.StaticFile = {
 
 M.TooltipSheetDefinition = {
     type = "structure",
+    id = "TooltipSheetDefinition",
     members = {
         SheetId = {
             type = "string",
@@ -10458,6 +11077,7 @@ M.TooltipSheetDefinition = {
 
 M.AnalysisDefinition = {
     type = "structure",
+    id = "AnalysisDefinition",
     members = {
         DataSetIdentifierDeclarations = {
             type = "list",
@@ -10512,6 +11132,7 @@ M.AnalysisFilterAttribute = {
 
 M.AnalysisSearchFilter = {
     type = "structure",
+    id = "AnalysisSearchFilter",
     members = {
         Operator = {
             type = "string",
@@ -10527,6 +11148,7 @@ M.AnalysisSearchFilter = {
 
 M.DataSetReference = {
     type = "structure",
+    id = "DataSetReference",
     members = {
         DataSetPlaceholder = {
             type = "string",
@@ -10545,6 +11167,7 @@ M.DataSetReference = {
 
 M.AnalysisSourceTemplate = {
     type = "structure",
+    id = "AnalysisSourceTemplate",
     members = {
         DataSetReferences = {
             type = "list",
@@ -10564,6 +11187,7 @@ M.AnalysisSourceTemplate = {
 
 M.AnalysisSourceEntity = {
     type = "structure",
+    id = "AnalysisSourceEntity",
     members = {
         SourceTemplate = M.AnalysisSourceTemplate,
     },
@@ -10571,6 +11195,7 @@ M.AnalysisSourceEntity = {
 
 M.AnalysisSummary = {
     type = "structure",
+    id = "AnalysisSummary",
     members = {
         Arn = {
             type = "string",
@@ -10599,6 +11224,7 @@ M.AnchorType = {
 
 M.Anchor = {
     type = "structure",
+    id = "Anchor",
     members = {
         AnchorType = {
             type = "string",
@@ -10625,6 +11251,7 @@ M.AnonymousUserDashboardEmbeddingConfigurationEnabledFeature = {
 
 M.SharedViewConfigurations = {
     type = "structure",
+    id = "SharedViewConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -10638,6 +11265,7 @@ M.SharedViewConfigurations = {
 
 M.AnonymousUserDashboardFeatureConfigurations = {
     type = "structure",
+    id = "AnonymousUserDashboardFeatureConfigurations",
     members = {
         SharedView = M.SharedViewConfigurations,
     },
@@ -10645,6 +11273,7 @@ M.AnonymousUserDashboardFeatureConfigurations = {
 
 M.AnonymousUserDashboardEmbeddingConfiguration = {
     type = "structure",
+    id = "AnonymousUserDashboardEmbeddingConfiguration",
     members = {
         InitialDashboardId = {
             type = "string",
@@ -10666,6 +11295,7 @@ M.AnonymousUserDashboardEmbeddingConfiguration = {
 
 M.DashboardVisualId = {
     type = "structure",
+    id = "DashboardVisualId",
     members = {
         DashboardId = {
             type = "string",
@@ -10690,6 +11320,7 @@ M.DashboardVisualId = {
 
 M.AnonymousUserDashboardVisualEmbeddingConfiguration = {
     type = "structure",
+    id = "AnonymousUserDashboardVisualEmbeddingConfiguration",
     members = {
         InitialDashboardVisualId = setmetatable({ traits = {
             required = true,
@@ -10699,6 +11330,7 @@ M.AnonymousUserDashboardVisualEmbeddingConfiguration = {
 
 M.AnonymousUserGenerativeQnAEmbeddingConfiguration = {
     type = "structure",
+    id = "AnonymousUserGenerativeQnAEmbeddingConfiguration",
     members = {
         InitialTopicId = {
             type = "string",
@@ -10711,6 +11343,7 @@ M.AnonymousUserGenerativeQnAEmbeddingConfiguration = {
 
 M.AnonymousUserQSearchBarEmbeddingConfiguration = {
     type = "structure",
+    id = "AnonymousUserQSearchBarEmbeddingConfiguration",
     members = {
         InitialTopicId = {
             type = "string",
@@ -10723,6 +11356,7 @@ M.AnonymousUserQSearchBarEmbeddingConfiguration = {
 
 M.AnonymousUserEmbeddingExperienceConfiguration = {
     type = "structure",
+    id = "AnonymousUserEmbeddingExperienceConfiguration",
     members = {
         Dashboard = M.AnonymousUserDashboardEmbeddingConfiguration,
         DashboardVisual = M.AnonymousUserDashboardVisualEmbeddingConfiguration,
@@ -10744,6 +11378,7 @@ M.SnapshotFileSheetSelectionScope = {
 
 M.SnapshotFileSheetSelection = {
     type = "structure",
+    id = "SnapshotFileSheetSelection",
     members = {
         SheetId = {
             type = "string",
@@ -10766,6 +11401,7 @@ M.SnapshotFileSheetSelection = {
 
 M.SnapshotFile = {
     type = "structure",
+    id = "SnapshotFile",
     members = {
         SheetSelections = {
             type = "list",
@@ -10785,6 +11421,7 @@ M.SnapshotFile = {
 
 M.SnapshotJobResultErrorInfo = {
     type = "structure",
+    id = "SnapshotJobResultErrorInfo",
     members = {
         ErrorMessage = {
             type = "string",
@@ -10797,6 +11434,7 @@ M.SnapshotJobResultErrorInfo = {
 
 M.S3BucketConfiguration = {
     type = "structure",
+    id = "S3BucketConfiguration",
     members = {
         BucketName = {
             type = "string",
@@ -10821,6 +11459,7 @@ M.S3BucketConfiguration = {
 
 M.SnapshotS3DestinationConfiguration = {
     type = "structure",
+    id = "SnapshotS3DestinationConfiguration",
     members = {
         BucketConfiguration = setmetatable({ traits = {
             required = true,
@@ -10830,6 +11469,7 @@ M.SnapshotS3DestinationConfiguration = {
 
 M.SnapshotJobS3Result = {
     type = "structure",
+    id = "SnapshotJobS3Result",
     members = {
         S3DestinationConfiguration = M.SnapshotS3DestinationConfiguration,
         S3Uri = {
@@ -10844,6 +11484,7 @@ M.SnapshotJobS3Result = {
 
 M.SnapshotJobResultFileGroup = {
     type = "structure",
+    id = "SnapshotJobResultFileGroup",
     members = {
         Files = {
             type = "list",
@@ -10858,6 +11499,7 @@ M.SnapshotJobResultFileGroup = {
 
 M.AnonymousUserSnapshotJobResult = {
     type = "structure",
+    id = "AnonymousUserSnapshotJobResult",
     members = {
         FileGroups = {
             type = "list",
@@ -10868,6 +11510,7 @@ M.AnonymousUserSnapshotJobResult = {
 
 M.APIKeyConnectionMetadata = {
     type = "structure",
+    id = "APIKeyConnectionMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -10889,6 +11532,7 @@ M.APIKeyConnectionMetadata = {
 
 M.AppendedColumn = {
     type = "structure",
+    id = "AppendedColumn",
     members = {
         ColumnName = {
             type = "string",
@@ -10907,6 +11551,7 @@ M.AppendedColumn = {
 
 M.AppendOperation = {
     type = "structure",
+    id = "AppendOperation",
     members = {
         Alias = {
             type = "string",
@@ -10928,6 +11573,7 @@ M.AppendOperation = {
 
 M.Palette = {
     type = "structure",
+    id = "Palette",
     members = {
         Foreground = {
             type = "string",
@@ -10940,6 +11586,7 @@ M.Palette = {
 
 M.BrandColorPalette = {
     type = "structure",
+    id = "BrandColorPalette",
     members = {
         Primary = M.Palette,
         Secondary = M.Palette,
@@ -10955,6 +11602,7 @@ M.BrandColorPalette = {
 
 M.NavbarStyle = {
     type = "structure",
+    id = "NavbarStyle",
     members = {
         GlobalNavbar = M.Palette,
         ContextualNavbar = M.Palette,
@@ -10963,6 +11611,7 @@ M.NavbarStyle = {
 
 M.BrandElementStyle = {
     type = "structure",
+    id = "BrandElementStyle",
     members = {
         NavbarStyle = M.NavbarStyle,
     },
@@ -10970,6 +11619,7 @@ M.BrandElementStyle = {
 
 M.ContextualAccentPalette = {
     type = "structure",
+    id = "ContextualAccentPalette",
     members = {
         Connection = M.Palette,
         Visualization = M.Palette,
@@ -10980,6 +11630,7 @@ M.ContextualAccentPalette = {
 
 M.ApplicationTheme = {
     type = "structure",
+    id = "ApplicationTheme",
     members = {
         BrandColorPalette = M.BrandColorPalette,
         ContextualAccentPalette = M.ContextualAccentPalette,
@@ -10993,6 +11644,7 @@ M.AssetBundleExportJobAnalysisPropertyToOverride = {
 
 M.AssetBundleExportJobAnalysisOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobAnalysisOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11016,6 +11668,7 @@ M.AssetBundleExportJobDashboardPropertyToOverride = {
 
 M.AssetBundleExportJobDashboardOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobDashboardOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11040,6 +11693,7 @@ M.AssetBundleExportJobDataSetPropertyToOverride = {
 
 M.AssetBundleExportJobDataSetOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobDataSetOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11080,6 +11734,7 @@ M.AssetBundleExportJobDataSourcePropertyToOverride = {
 
 M.AssetBundleExportJobDataSourceOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobDataSourceOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11104,6 +11759,7 @@ M.AssetBundleExportJobFolderPropertyToOverride = {
 
 M.AssetBundleExportJobFolderOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobFolderOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11127,6 +11783,7 @@ M.AssetBundleExportJobRefreshSchedulePropertyToOverride = {
 
 M.AssetBundleExportJobRefreshScheduleOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobRefreshScheduleOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11146,6 +11803,7 @@ M.AssetBundleExportJobRefreshScheduleOverrideProperties = {
 
 M.AssetBundleExportJobResourceIdOverrideConfiguration = {
     type = "structure",
+    id = "AssetBundleExportJobResourceIdOverrideConfiguration",
     members = {
         PrefixForAllResources = {
             type = "boolean",
@@ -11162,6 +11820,7 @@ M.AssetBundleExportJobThemePropertyToOverride = {
 
 M.AssetBundleExportJobThemeOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobThemeOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11187,6 +11846,7 @@ M.AssetBundleExportJobVPCConnectionPropertyToOverride = {
 
 M.AssetBundleExportJobVPCConnectionOverrideProperties = {
     type = "structure",
+    id = "AssetBundleExportJobVPCConnectionOverrideProperties",
     members = {
         Arn = {
             type = "string",
@@ -11206,6 +11866,7 @@ M.AssetBundleExportJobVPCConnectionOverrideProperties = {
 
 M.AssetBundleCloudFormationOverridePropertyConfiguration = {
     type = "structure",
+    id = "AssetBundleCloudFormationOverridePropertyConfiguration",
     members = {
         ResourceIdOverrideConfiguration = M.AssetBundleExportJobResourceIdOverrideConfiguration,
         VPCConnections = {
@@ -11250,6 +11911,7 @@ M.AssetBundleExportFormat = {
 
 M.AssetBundleExportJobError = {
     type = "structure",
+    id = "AssetBundleExportJobError",
     members = {
         Arn = {
             type = "string",
@@ -11272,6 +11934,7 @@ M.AssetBundleExportJobStatus = {
 
 M.AssetBundleExportJobSummary = {
     type = "structure",
+    id = "AssetBundleExportJobSummary",
     members = {
         JobStatus = {
             type = "string",
@@ -11311,6 +11974,7 @@ M.AssetBundleExportJobSummary = {
 
 M.AssetBundleExportJobValidationStrategy = {
     type = "structure",
+    id = "AssetBundleExportJobValidationStrategy",
     members = {
         StrictModeForAllResources = {
             type = "boolean",
@@ -11323,6 +11987,7 @@ M.AssetBundleExportJobValidationStrategy = {
 
 M.AssetBundleExportJobWarning = {
     type = "structure",
+    id = "AssetBundleExportJobWarning",
     members = {
         Arn = {
             type = "string",
@@ -11340,6 +12005,7 @@ M.AssetBundleImportFailureAction = {
 
 M.AssetBundleImportJobAnalysisOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobAnalysisOverrideParameters",
     members = {
         AnalysisId = {
             type = "string",
@@ -11355,6 +12021,7 @@ M.AssetBundleImportJobAnalysisOverrideParameters = {
 
 M.AssetBundleResourcePermissions = {
     type = "structure",
+    id = "AssetBundleResourcePermissions",
     members = {
         Principals = {
             type = "list",
@@ -11375,6 +12042,7 @@ M.AssetBundleResourcePermissions = {
 
 M.AssetBundleImportJobAnalysisOverridePermissions = {
     type = "structure",
+    id = "AssetBundleImportJobAnalysisOverridePermissions",
     members = {
         AnalysisIds = {
             type = "list",
@@ -11391,6 +12059,7 @@ M.AssetBundleImportJobAnalysisOverridePermissions = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -11409,6 +12078,7 @@ M.Tag = {
 
 M.AssetBundleImportJobAnalysisOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobAnalysisOverrideTags",
     members = {
         AnalysisIds = {
             type = "list",
@@ -11429,6 +12099,7 @@ M.AssetBundleImportJobAnalysisOverrideTags = {
 
 M.AssetBundleImportJobDashboardOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobDashboardOverrideParameters",
     members = {
         DashboardId = {
             type = "string",
@@ -11444,6 +12115,7 @@ M.AssetBundleImportJobDashboardOverrideParameters = {
 
 M.AssetBundleResourceLinkSharingConfiguration = {
     type = "structure",
+    id = "AssetBundleResourceLinkSharingConfiguration",
     members = {
         Permissions = M.AssetBundleResourcePermissions,
     },
@@ -11451,6 +12123,7 @@ M.AssetBundleResourceLinkSharingConfiguration = {
 
 M.AssetBundleImportJobDashboardOverridePermissions = {
     type = "structure",
+    id = "AssetBundleImportJobDashboardOverridePermissions",
     members = {
         DashboardIds = {
             type = "list",
@@ -11466,6 +12139,7 @@ M.AssetBundleImportJobDashboardOverridePermissions = {
 
 M.AssetBundleImportJobDashboardOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobDashboardOverrideTags",
     members = {
         DashboardIds = {
             type = "list",
@@ -11491,6 +12165,7 @@ M.RefreshFailureAlertStatus = {
 
 M.RefreshFailureEmailAlert = {
     type = "structure",
+    id = "RefreshFailureEmailAlert",
     members = {
         AlertStatus = {
             type = "string",
@@ -11500,6 +12175,7 @@ M.RefreshFailureEmailAlert = {
 
 M.RefreshFailureConfiguration = {
     type = "structure",
+    id = "RefreshFailureConfiguration",
     members = {
         EmailAlert = M.RefreshFailureEmailAlert,
     },
@@ -11513,6 +12189,7 @@ M.LookbackWindowSizeUnit = {
 
 M.LookbackWindow = {
     type = "structure",
+    id = "LookbackWindow",
     members = {
         ColumnName = {
             type = "string",
@@ -11537,6 +12214,7 @@ M.LookbackWindow = {
 
 M.IncrementalRefresh = {
     type = "structure",
+    id = "IncrementalRefresh",
     members = {
         LookbackWindow = setmetatable({ traits = {
             required = true,
@@ -11546,6 +12224,7 @@ M.IncrementalRefresh = {
 
 M.RefreshConfiguration = {
     type = "structure",
+    id = "RefreshConfiguration",
     members = {
         IncrementalRefresh = setmetatable({ traits = {
             required = true,
@@ -11555,6 +12234,7 @@ M.RefreshConfiguration = {
 
 M.DataSetRefreshProperties = {
     type = "structure",
+    id = "DataSetRefreshProperties",
     members = {
         RefreshConfiguration = M.RefreshConfiguration,
         FailureConfiguration = M.RefreshFailureConfiguration,
@@ -11563,6 +12243,7 @@ M.DataSetRefreshProperties = {
 
 M.AssetBundleImportJobDataSetOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobDataSetOverrideParameters",
     members = {
         DataSetId = {
             type = "string",
@@ -11579,6 +12260,7 @@ M.AssetBundleImportJobDataSetOverrideParameters = {
 
 M.AssetBundleImportJobDataSetOverridePermissions = {
     type = "structure",
+    id = "AssetBundleImportJobDataSetOverridePermissions",
     members = {
         DataSetIds = {
             type = "list",
@@ -11595,6 +12277,7 @@ M.AssetBundleImportJobDataSetOverridePermissions = {
 
 M.AssetBundleImportJobDataSetOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobDataSetOverrideTags",
     members = {
         DataSetIds = {
             type = "list",
@@ -11615,6 +12298,7 @@ M.AssetBundleImportJobDataSetOverrideTags = {
 
 M.AssetBundleImportJobDataSourceCredentialPair = {
     type = "structure",
+    id = "AssetBundleImportJobDataSourceCredentialPair",
     members = {
         Username = {
             type = "string",
@@ -11633,6 +12317,7 @@ M.AssetBundleImportJobDataSourceCredentialPair = {
 
 M.AssetBundleImportJobDataSourceCredentials = {
     type = "structure",
+    id = "AssetBundleImportJobDataSourceCredentials",
     members = {
         CredentialPair = M.AssetBundleImportJobDataSourceCredentialPair,
         SecretArn = {
@@ -11643,6 +12328,7 @@ M.AssetBundleImportJobDataSourceCredentials = {
 
 M.IdentityCenterConfiguration = {
     type = "structure",
+    id = "IdentityCenterConfiguration",
     members = {
         EnableIdentityPropagation = {
             type = "boolean",
@@ -11655,6 +12341,7 @@ M.IdentityCenterConfiguration = {
 
 M.AthenaParameters = {
     type = "structure",
+    id = "AthenaParameters",
     members = {
         WorkGroup = {
             type = "string",
@@ -11671,6 +12358,7 @@ M.AthenaParameters = {
 
 M.AuroraParameters = {
     type = "structure",
+    id = "AuroraParameters",
     members = {
         Host = {
             type = "string",
@@ -11695,6 +12383,7 @@ M.AuroraParameters = {
 
 M.AuroraPostgreSqlParameters = {
     type = "structure",
+    id = "AuroraPostgreSqlParameters",
     members = {
         Host = {
             type = "string",
@@ -11719,6 +12408,7 @@ M.AuroraPostgreSqlParameters = {
 
 M.AwsIotAnalyticsParameters = {
     type = "structure",
+    id = "AwsIotAnalyticsParameters",
     members = {
         DataSetName = {
             type = "string",
@@ -11731,6 +12421,7 @@ M.AwsIotAnalyticsParameters = {
 
 M.BigQueryParameters = {
     type = "structure",
+    id = "BigQueryParameters",
     members = {
         ProjectId = {
             type = "string",
@@ -11746,6 +12437,7 @@ M.BigQueryParameters = {
 
 M.ConfluenceParameters = {
     type = "structure",
+    id = "ConfluenceParameters",
     members = {
         ConfluenceUrl = {
             type = "string",
@@ -11758,6 +12450,7 @@ M.ConfluenceParameters = {
 
 M.CustomConnectionParameters = {
     type = "structure",
+    id = "CustomConnectionParameters",
     members = {
         ConnectionType = {
             type = "string",
@@ -11767,6 +12460,7 @@ M.CustomConnectionParameters = {
 
 M.DatabricksParameters = {
     type = "structure",
+    id = "DatabricksParameters",
     members = {
         Host = {
             type = "string",
@@ -11791,6 +12485,7 @@ M.DatabricksParameters = {
 
 M.ExasolParameters = {
     type = "structure",
+    id = "ExasolParameters",
     members = {
         Host = {
             type = "string",
@@ -11809,6 +12504,7 @@ M.ExasolParameters = {
 
 M.ImpalaParameters = {
     type = "structure",
+    id = "ImpalaParameters",
     members = {
         Host = {
             type = "string",
@@ -11836,6 +12532,7 @@ M.ImpalaParameters = {
 
 M.JiraParameters = {
     type = "structure",
+    id = "JiraParameters",
     members = {
         SiteBaseUrl = {
             type = "string",
@@ -11848,6 +12545,7 @@ M.JiraParameters = {
 
 M.MariaDbParameters = {
     type = "structure",
+    id = "MariaDbParameters",
     members = {
         Host = {
             type = "string",
@@ -11872,6 +12570,7 @@ M.MariaDbParameters = {
 
 M.MySqlParameters = {
     type = "structure",
+    id = "MySqlParameters",
     members = {
         Host = {
             type = "string",
@@ -11896,6 +12595,7 @@ M.MySqlParameters = {
 
 M.OracleParameters = {
     type = "structure",
+    id = "OracleParameters",
     members = {
         Host = {
             type = "string",
@@ -11926,6 +12626,7 @@ M.OracleParameters = {
 
 M.PostgreSqlParameters = {
     type = "structure",
+    id = "PostgreSqlParameters",
     members = {
         Host = {
             type = "string",
@@ -11950,6 +12651,7 @@ M.PostgreSqlParameters = {
 
 M.PrestoParameters = {
     type = "structure",
+    id = "PrestoParameters",
     members = {
         Host = {
             type = "string",
@@ -11974,6 +12676,7 @@ M.PrestoParameters = {
 
 M.QBusinessParameters = {
     type = "structure",
+    id = "QBusinessParameters",
     members = {
         ApplicationArn = {
             type = "string",
@@ -11986,6 +12689,7 @@ M.QBusinessParameters = {
 
 M.RdsParameters = {
     type = "structure",
+    id = "RdsParameters",
     members = {
         InstanceId = {
             type = "string",
@@ -12004,6 +12708,7 @@ M.RdsParameters = {
 
 M.RedshiftIAMParameters = {
     type = "structure",
+    id = "RedshiftIAMParameters",
     members = {
         RoleArn = {
             type = "string",
@@ -12029,6 +12734,7 @@ M.RedshiftIAMParameters = {
 
 M.RedshiftParameters = {
     type = "structure",
+    id = "RedshiftParameters",
     members = {
         Host = {
             type = "string",
@@ -12055,6 +12761,7 @@ M.RedshiftParameters = {
 
 M.S3KnowledgeBaseParameters = {
     type = "structure",
+    id = "S3KnowledgeBaseParameters",
     members = {
         RoleArn = {
             type = "string",
@@ -12073,6 +12780,7 @@ M.S3KnowledgeBaseParameters = {
 
 M.ManifestFileLocation = {
     type = "structure",
+    id = "ManifestFileLocation",
     members = {
         Bucket = {
             type = "string",
@@ -12091,6 +12799,7 @@ M.ManifestFileLocation = {
 
 M.S3Parameters = {
     type = "structure",
+    id = "S3Parameters",
     members = {
         ManifestFileLocation = setmetatable({ traits = {
             required = true,
@@ -12103,6 +12812,7 @@ M.S3Parameters = {
 
 M.S3TablesParameters = {
     type = "structure",
+    id = "S3TablesParameters",
     members = {
         TableBucketArn = {
             type = "string",
@@ -12112,6 +12822,7 @@ M.S3TablesParameters = {
 
 M.ServiceNowParameters = {
     type = "structure",
+    id = "ServiceNowParameters",
     members = {
         SiteBaseUrl = {
             type = "string",
@@ -12131,6 +12842,7 @@ M.AuthenticationType = {
 
 M.VpcConnectionProperties = {
     type = "structure",
+    id = "VpcConnectionProperties",
     members = {
         VpcConnectionArn = {
             type = "string",
@@ -12143,6 +12855,7 @@ M.VpcConnectionProperties = {
 
 M.OAuthParameters = {
     type = "structure",
+    id = "OAuthParameters",
     members = {
         TokenProviderUrl = {
             type = "string",
@@ -12165,6 +12878,7 @@ M.OAuthParameters = {
 
 M.SnowflakeParameters = {
     type = "structure",
+    id = "SnowflakeParameters",
     members = {
         Host = {
             type = "string",
@@ -12196,6 +12910,7 @@ M.SnowflakeParameters = {
 
 M.SparkParameters = {
     type = "structure",
+    id = "SparkParameters",
     members = {
         Host = {
             type = "string",
@@ -12214,6 +12929,7 @@ M.SparkParameters = {
 
 M.SqlServerParameters = {
     type = "structure",
+    id = "SqlServerParameters",
     members = {
         Host = {
             type = "string",
@@ -12243,6 +12959,7 @@ M.StarburstProductType = {
 
 M.StarburstParameters = {
     type = "structure",
+    id = "StarburstParameters",
     members = {
         Host = {
             type = "string",
@@ -12277,6 +12994,7 @@ M.StarburstParameters = {
 
 M.TeradataParameters = {
     type = "structure",
+    id = "TeradataParameters",
     members = {
         Host = {
             type = "string",
@@ -12301,6 +13019,7 @@ M.TeradataParameters = {
 
 M.TrinoParameters = {
     type = "structure",
+    id = "TrinoParameters",
     members = {
         Host = {
             type = "string",
@@ -12325,6 +13044,7 @@ M.TrinoParameters = {
 
 M.TwitterParameters = {
     type = "structure",
+    id = "TwitterParameters",
     members = {
         Query = {
             type = "string",
@@ -12350,6 +13070,7 @@ M.WebCrawlerAuthType = {
 
 M.WebCrawlerParameters = {
     type = "structure",
+    id = "WebCrawlerParameters",
     members = {
         WebCrawlerAuthType = {
             type = "string",
@@ -12386,6 +13107,7 @@ M.WebCrawlerParameters = {
 
 M.DataSourceParameters = {
     type = "union",
+    id = "DataSourceParameters",
     members = {
         AmazonElasticsearchParameters = M.AmazonElasticsearchParameters,
         AthenaParameters = M.AthenaParameters,
@@ -12425,6 +13147,7 @@ M.DataSourceParameters = {
 
 M.SslProperties = {
     type = "structure",
+    id = "SslProperties",
     members = {
         DisableSsl = {
             type = "boolean",
@@ -12437,6 +13160,7 @@ M.SslProperties = {
 
 M.AssetBundleImportJobDataSourceOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobDataSourceOverrideParameters",
     members = {
         DataSourceId = {
             type = "string",
@@ -12456,6 +13180,7 @@ M.AssetBundleImportJobDataSourceOverrideParameters = {
 
 M.AssetBundleImportJobDataSourceOverridePermissions = {
     type = "structure",
+    id = "AssetBundleImportJobDataSourceOverridePermissions",
     members = {
         DataSourceIds = {
             type = "list",
@@ -12472,6 +13197,7 @@ M.AssetBundleImportJobDataSourceOverridePermissions = {
 
 M.AssetBundleImportJobDataSourceOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobDataSourceOverrideTags",
     members = {
         DataSourceIds = {
             type = "list",
@@ -12492,6 +13218,7 @@ M.AssetBundleImportJobDataSourceOverrideTags = {
 
 M.AssetBundleImportJobError = {
     type = "structure",
+    id = "AssetBundleImportJobError",
     members = {
         Arn = {
             type = "string",
@@ -12507,6 +13234,7 @@ M.AssetBundleImportJobError = {
 
 M.AssetBundleImportJobFolderOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobFolderOverrideParameters",
     members = {
         FolderId = {
             type = "string",
@@ -12525,6 +13253,7 @@ M.AssetBundleImportJobFolderOverrideParameters = {
 
 M.AssetBundleImportJobFolderOverridePermissions = {
     type = "structure",
+    id = "AssetBundleImportJobFolderOverridePermissions",
     members = {
         FolderIds = {
             type = "list",
@@ -12539,6 +13268,7 @@ M.AssetBundleImportJobFolderOverridePermissions = {
 
 M.AssetBundleImportJobFolderOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobFolderOverrideTags",
     members = {
         FolderIds = {
             type = "list",
@@ -12559,6 +13289,7 @@ M.AssetBundleImportJobFolderOverrideTags = {
 
 M.AssetBundleImportJobRefreshScheduleOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobRefreshScheduleOverrideParameters",
     members = {
         DataSetId = {
             type = "string",
@@ -12580,6 +13311,7 @@ M.AssetBundleImportJobRefreshScheduleOverrideParameters = {
 
 M.AssetBundleImportJobResourceIdOverrideConfiguration = {
     type = "structure",
+    id = "AssetBundleImportJobResourceIdOverrideConfiguration",
     members = {
         PrefixForAllResources = {
             type = "string",
@@ -12589,6 +13321,7 @@ M.AssetBundleImportJobResourceIdOverrideConfiguration = {
 
 M.AssetBundleImportJobThemeOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobThemeOverrideParameters",
     members = {
         ThemeId = {
             type = "string",
@@ -12604,6 +13337,7 @@ M.AssetBundleImportJobThemeOverrideParameters = {
 
 M.AssetBundleImportJobVPCConnectionOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobVPCConnectionOverrideParameters",
     members = {
         VPCConnectionId = {
             type = "string",
@@ -12634,6 +13368,7 @@ M.AssetBundleImportJobVPCConnectionOverrideParameters = {
 
 M.AssetBundleImportJobOverrideParameters = {
     type = "structure",
+    id = "AssetBundleImportJobOverrideParameters",
     members = {
         ResourceIdOverrideConfiguration = M.AssetBundleImportJobResourceIdOverrideConfiguration,
         VPCConnections = {
@@ -12673,6 +13408,7 @@ M.AssetBundleImportJobOverrideParameters = {
 
 M.AssetBundleImportJobThemeOverridePermissions = {
     type = "structure",
+    id = "AssetBundleImportJobThemeOverridePermissions",
     members = {
         ThemeIds = {
             type = "list",
@@ -12689,6 +13425,7 @@ M.AssetBundleImportJobThemeOverridePermissions = {
 
 M.AssetBundleImportJobOverridePermissions = {
     type = "structure",
+    id = "AssetBundleImportJobOverridePermissions",
     members = {
         DataSources = {
             type = "list",
@@ -12719,6 +13456,7 @@ M.AssetBundleImportJobOverridePermissions = {
 
 M.AssetBundleImportJobThemeOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobThemeOverrideTags",
     members = {
         ThemeIds = {
             type = "list",
@@ -12739,6 +13477,7 @@ M.AssetBundleImportJobThemeOverrideTags = {
 
 M.AssetBundleImportJobVPCConnectionOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobVPCConnectionOverrideTags",
     members = {
         VPCConnectionIds = {
             type = "list",
@@ -12759,6 +13498,7 @@ M.AssetBundleImportJobVPCConnectionOverrideTags = {
 
 M.AssetBundleImportJobOverrideTags = {
     type = "structure",
+    id = "AssetBundleImportJobOverrideTags",
     members = {
         VPCConnections = {
             type = "list",
@@ -12793,6 +13533,7 @@ M.AssetBundleImportJobOverrideTags = {
 
 M.AssetBundleImportJobOverrideValidationStrategy = {
     type = "structure",
+    id = "AssetBundleImportJobOverrideValidationStrategy",
     members = {
         StrictModeForAllResources = {
             type = "boolean",
@@ -12815,6 +13556,7 @@ M.AssetBundleImportJobStatus = {
 
 M.AssetBundleImportJobSummary = {
     type = "structure",
+    id = "AssetBundleImportJobSummary",
     members = {
         JobStatus = {
             type = "string",
@@ -12836,6 +13578,7 @@ M.AssetBundleImportJobSummary = {
 
 M.AssetBundleImportJobWarning = {
     type = "structure",
+    id = "AssetBundleImportJobWarning",
     members = {
         Arn = {
             type = "string",
@@ -12848,6 +13591,7 @@ M.AssetBundleImportJobWarning = {
 
 M.AssetBundleImportSource = {
     type = "structure",
+    id = "AssetBundleImportSource",
     members = {
         Body = {
             type = "blob",
@@ -12860,6 +13604,7 @@ M.AssetBundleImportSource = {
 
 M.AssetBundleImportSourceDescription = {
     type = "structure",
+    id = "AssetBundleImportSourceDescription",
     members = {
         Body = {
             type = "string",
@@ -12878,6 +13623,7 @@ M.AssignmentStatus = {
 
 M.AuthorizationCodeGrantDetails = {
     type = "structure",
+    id = "AuthorizationCodeGrantDetails",
     members = {
         ClientId = {
             type = "string",
@@ -12908,6 +13654,7 @@ M.AuthorizationCodeGrantDetails = {
 
 M.AuthorizationCodeGrantCredentialsDetails = {
     type = "union",
+    id = "AuthorizationCodeGrantCredentialsDetails",
     members = {
         AuthorizationCodeGrantDetails = M.AuthorizationCodeGrantDetails,
     },
@@ -12915,6 +13662,7 @@ M.AuthorizationCodeGrantCredentialsDetails = {
 
 M.AuthorizationCodeGrantMetadata = {
     type = "structure",
+    id = "AuthorizationCodeGrantMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -12937,6 +13685,7 @@ M.AuthorizationCodeGrantMetadata = {
 
 M.BasicAuthConnectionMetadata = {
     type = "structure",
+    id = "BasicAuthConnectionMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -12961,6 +13710,7 @@ M.BasicAuthConnectionMetadata = {
 
 M.ClientCredentialsGrantDetails = {
     type = "structure",
+    id = "ClientCredentialsGrantDetails",
     members = {
         ClientId = {
             type = "string",
@@ -12985,6 +13735,7 @@ M.ClientCredentialsGrantDetails = {
 
 M.ClientCredentialsDetails = {
     type = "union",
+    id = "ClientCredentialsDetails",
     members = {
         ClientCredentialsGrantDetails = M.ClientCredentialsGrantDetails,
     },
@@ -12992,6 +13743,7 @@ M.ClientCredentialsDetails = {
 
 M.ClientCredentialsGrantMetadata = {
     type = "structure",
+    id = "ClientCredentialsGrantMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -13008,6 +13760,7 @@ M.ClientCredentialsGrantMetadata = {
 
 M.IAMConnectionMetadata = {
     type = "structure",
+    id = "IAMConnectionMetadata",
     members = {
         RoleArn = {
             type = "string",
@@ -13020,6 +13773,7 @@ M.IAMConnectionMetadata = {
 
 M.NoneConnectionMetadata = {
     type = "structure",
+    id = "NoneConnectionMetadata",
     members = {
         BaseEndpoint = {
             type = "string",
@@ -13032,6 +13786,7 @@ M.NoneConnectionMetadata = {
 
 M.AuthenticationMetadata = {
     type = "union",
+    id = "AuthenticationMetadata",
     members = {
         AuthorizationCodeGrantMetadata = M.AuthorizationCodeGrantMetadata,
         ClientCredentialsGrantMetadata = M.ClientCredentialsGrantMetadata,
@@ -13044,6 +13799,7 @@ M.AuthenticationMetadata = {
 
 M.AuthConfig = {
     type = "structure",
+    id = "AuthConfig",
     members = {
         AuthenticationType = {
             type = "string",
@@ -13072,6 +13828,7 @@ M.ServiceType = {
 
 M.AuthorizedTargetsByService = {
     type = "structure",
+    id = "AuthorizedTargetsByService",
     members = {
         Service = {
             type = "string",
@@ -13114,6 +13871,7 @@ M.ContributionAnalysisDirection = {
 
 M.ContributionAnalysisFactor = {
     type = "structure",
+    id = "ContributionAnalysisFactor",
     members = {
         FieldName = {
             type = "string",
@@ -13130,6 +13888,7 @@ M.ContributionAnalysisSortType = {
 
 M.Identifier = {
     type = "structure",
+    id = "Identifier",
     members = {
         Identity = {
             type = "string",
@@ -13147,6 +13906,7 @@ M.TopicSortDirection = {
 
 M.FilterAggMetrics = {
     type = "structure",
+    id = "FilterAggMetrics",
     members = {
         MetricOperand = M.Identifier,
         Function = {
@@ -13166,6 +13926,7 @@ M.ConstantType = {
 
 M.CollectiveConstantEntry = {
     type = "structure",
+    id = "CollectiveConstantEntry",
     members = {
         ConstantType = {
             type = "string",
@@ -13178,6 +13939,7 @@ M.CollectiveConstantEntry = {
 
 M.TopicConstantValue = {
     type = "structure",
+    id = "TopicConstantValue",
     members = {
         ConstantType = {
             type = "string",
@@ -13237,6 +13999,7 @@ M.NullFilterOption = {
 
 M.TopicIRFilterOption = {
     type = "structure",
+    id = "TopicIRFilterOption",
     members = {
         FilterType = {
             type = "string",
@@ -13295,6 +14058,7 @@ M.TopicIRFilterOption = {
 
 M.ContributionAnalysisTimeRanges = {
     type = "structure",
+    id = "ContributionAnalysisTimeRanges",
     members = {
         StartRange = M.TopicIRFilterOption,
         EndRange = M.TopicIRFilterOption,
@@ -13303,6 +14067,7 @@ M.ContributionAnalysisTimeRanges = {
 
 M.TopicIRContributionAnalysis = {
     type = "structure",
+    id = "TopicIRContributionAnalysis",
     members = {
         Factors = {
             type = "list",
@@ -13334,6 +14099,7 @@ M.TopicNumericSeparatorSymbol = {
 
 M.NegativeFormat = {
     type = "structure",
+    id = "NegativeFormat",
     members = {
         Prefix = {
             type = "string",
@@ -13346,6 +14112,7 @@ M.NegativeFormat = {
 
 M.DisplayFormatOptions = {
     type = "structure",
+    id = "DisplayFormatOptions",
     members = {
         UseBlankCellFormat = {
             type = "boolean",
@@ -13395,6 +14162,7 @@ M.DisplayFormatOptions = {
 
 M.NamedEntityRef = {
     type = "structure",
+    id = "NamedEntityRef",
     members = {
         NamedEntityName = {
             type = "string",
@@ -13404,6 +14172,7 @@ M.NamedEntityRef = {
 
 M.TopicSortClause = {
     type = "structure",
+    id = "TopicSortClause",
     members = {
         Operand = M.Identifier,
         SortDirection = {
@@ -13414,6 +14183,7 @@ M.TopicSortClause = {
 
 M.TopicIRGroupBy = {
     type = "structure",
+    id = "TopicIRGroupBy",
     members = {
         FieldName = M.Identifier,
         TimeGranularity = {
@@ -13443,6 +14213,7 @@ M.ComparisonMethodType = {
 
 M.TopicIRComparisonMethod = {
     type = "structure",
+    id = "TopicIRComparisonMethod",
     members = {
         Type = {
             type = "string",
@@ -13461,6 +14232,7 @@ M.TopicIRComparisonMethod = {
 
 M.TopicIRMetric = {
     type = "structure",
+    id = "TopicIRMetric",
     members = {
         MetricId = M.Identifier,
         Function = M.AggFunction,
@@ -13486,6 +14258,7 @@ M.TopicIRMetric = {
 
 M.VisualOptions = {
     type = "structure",
+    id = "VisualOptions",
     members = {
         type = {
             type = "string",
@@ -13495,6 +14268,7 @@ M.VisualOptions = {
 
 M.TopicIR = {
     type = "structure",
+    id = "TopicIR",
     members = {
         Metrics = {
             type = "list",
@@ -13524,6 +14298,7 @@ M.VisualRole = {
 
 M.Slot = {
     type = "structure",
+    id = "Slot",
     members = {
         SlotId = {
             type = "string",
@@ -13536,6 +14311,7 @@ M.Slot = {
 
 M.TopicTemplate = {
     type = "structure",
+    id = "TopicTemplate",
     members = {
         TemplateType = {
             type = "string",
@@ -13559,6 +14335,7 @@ M.ReviewedAnswerErrorCode = {
 
 M.InvalidTopicReviewedAnswer = {
     type = "structure",
+    id = "InvalidTopicReviewedAnswer",
     members = {
         AnswerId = {
             type = "string",
@@ -13571,6 +14348,7 @@ M.InvalidTopicReviewedAnswer = {
 
 M.SucceededTopicReviewedAnswer = {
     type = "structure",
+    id = "SucceededTopicReviewedAnswer",
     members = {
         AnswerId = {
             type = "string",
@@ -13580,6 +14358,7 @@ M.SucceededTopicReviewedAnswer = {
 
 M.BatchCreateTopicReviewedAnswerOutput = {
     type = "structure",
+    id = "BatchCreateTopicReviewedAnswerOutput",
     members = {
         TopicId = {
             type = "string",
@@ -13610,6 +14389,7 @@ M.BatchCreateTopicReviewedAnswerOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         Message = {
@@ -13623,6 +14403,7 @@ M.InternalFailureException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         Message = {
@@ -13648,6 +14429,7 @@ M.ExceptionResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -13664,6 +14446,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -13677,6 +14460,7 @@ M.ThrottlingException = {
 
 M.BatchDeleteTopicReviewedAnswerInput = {
     type = "structure",
+    id = "BatchDeleteTopicReviewedAnswerInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -13701,6 +14485,7 @@ M.BatchDeleteTopicReviewedAnswerInput = {
 
 M.BatchDeleteTopicReviewedAnswerOutput = {
     type = "structure",
+    id = "BatchDeleteTopicReviewedAnswerOutput",
     members = {
         TopicId = {
             type = "string",
@@ -13731,6 +14516,7 @@ M.BatchDeleteTopicReviewedAnswerOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -13744,6 +14530,7 @@ M.ConflictException = {
 
 M.BookmarksConfigurations = {
     type = "structure",
+    id = "BookmarksConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -13757,6 +14544,7 @@ M.BookmarksConfigurations = {
 
 M.BorderStyle = {
     type = "structure",
+    id = "BorderStyle",
     members = {
         Color = {
             type = "string",
@@ -13775,6 +14563,7 @@ M.BorderStyle = {
 
 M.ImageSource = {
     type = "union",
+    id = "ImageSource",
     members = {
         PublicUrl = {
             type = "string",
@@ -13787,6 +14576,7 @@ M.ImageSource = {
 
 M.ImageConfiguration = {
     type = "structure",
+    id = "ImageConfiguration",
     members = {
         Source = M.ImageSource,
     },
@@ -13794,6 +14584,7 @@ M.ImageConfiguration = {
 
 M.ImageSetConfiguration = {
     type = "structure",
+    id = "ImageSetConfiguration",
     members = {
         Original = setmetatable({ traits = {
             required = true,
@@ -13803,6 +14594,7 @@ M.ImageSetConfiguration = {
 
 M.LogoSetConfiguration = {
     type = "structure",
+    id = "LogoSetConfiguration",
     members = {
         Primary = setmetatable({ traits = {
             required = true,
@@ -13813,6 +14605,7 @@ M.LogoSetConfiguration = {
 
 M.LogoConfiguration = {
     type = "structure",
+    id = "LogoConfiguration",
     members = {
         AltText = {
             type = "string",
@@ -13828,6 +14621,7 @@ M.LogoConfiguration = {
 
 M.BrandDefinition = {
     type = "structure",
+    id = "BrandDefinition",
     members = {
         BrandName = {
             type = "string",
@@ -13853,6 +14647,7 @@ M.BrandStatus = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         Source = M.ImageSource,
         GeneratedImageUrl = {
@@ -13863,6 +14658,7 @@ M.Image = {
 
 M.ImageSet = {
     type = "structure",
+    id = "ImageSet",
     members = {
         Original = setmetatable({ traits = {
             required = true,
@@ -13874,6 +14670,7 @@ M.ImageSet = {
 
 M.LogoSet = {
     type = "structure",
+    id = "LogoSet",
     members = {
         Primary = setmetatable({ traits = {
             required = true,
@@ -13884,6 +14681,7 @@ M.LogoSet = {
 
 M.Logo = {
     type = "structure",
+    id = "Logo",
     members = {
         AltText = {
             type = "string",
@@ -13905,6 +14703,7 @@ M.BrandVersionStatus = {
 
 M.BrandDetail = {
     type = "structure",
+    id = "BrandDetail",
     members = {
         BrandId = {
             type = "string",
@@ -13940,6 +14739,7 @@ M.BrandDetail = {
 
 M.BrandSummary = {
     type = "structure",
+    id = "BrandSummary",
     members = {
         Arn = {
             type = "string",
@@ -13967,6 +14767,7 @@ M.BrandSummary = {
 
 M.CalculatedColumn = {
     type = "structure",
+    id = "CalculatedColumn",
     members = {
         ColumnName = {
             type = "string",
@@ -13991,6 +14792,7 @@ M.CalculatedColumn = {
 
 M.CancelIngestionInput = {
     type = "structure",
+    id = "CancelIngestionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -14018,6 +14820,7 @@ M.CancelIngestionInput = {
 
 M.CancelIngestionOutput = {
     type = "structure",
+    id = "CancelIngestionOutput",
     members = {
         Arn = {
             type = "string",
@@ -14040,6 +14843,7 @@ M.CancelIngestionOutput = {
 
 M.ResourceExistsException = {
     type = "structure",
+    id = "ResourceExistsException",
     error = "client",
     members = {
         Message = {
@@ -14060,6 +14864,7 @@ M.CapabilityState = {
 
 M.Capabilities = {
     type = "structure",
+    id = "Capabilities",
     members = {
         ExportToCsv = {
             type = "string",
@@ -14747,6 +15552,7 @@ M.ColumnDataSubType = {
 
 M.CastColumnTypeOperation = {
     type = "structure",
+    id = "CastColumnTypeOperation",
     members = {
         ColumnName = {
             type = "string",
@@ -14771,6 +15577,7 @@ M.CastColumnTypeOperation = {
 
 M.CastColumnTypesOperation = {
     type = "structure",
+    id = "CastColumnTypesOperation",
     members = {
         Alias = {
             type = "string",
@@ -14804,6 +15611,7 @@ M.CategoryFilterType = {
 
 M.CellValueSynonym = {
     type = "structure",
+    id = "CellValueSynonym",
     members = {
         CellValue = {
             type = "string",
@@ -14817,6 +15625,7 @@ M.CellValueSynonym = {
 
 M.CollectiveConstant = {
     type = "structure",
+    id = "CollectiveConstant",
     members = {
         ValueList = {
             type = "list",
@@ -14832,6 +15641,7 @@ M.ColumnDataRole = {
 
 M.ColumnDescription = {
     type = "structure",
+    id = "ColumnDescription",
     members = {
         Text = {
             type = "string",
@@ -14845,6 +15655,7 @@ M.GeoSpatialCountryCode = {
 
 M.GeoSpatialColumnGroup = {
     type = "structure",
+    id = "GeoSpatialColumnGroup",
     members = {
         Name = {
             type = "string",
@@ -14867,6 +15678,7 @@ M.GeoSpatialColumnGroup = {
 
 M.ColumnGroup = {
     type = "structure",
+    id = "ColumnGroup",
     members = {
         GeoSpatialColumnGroup = M.GeoSpatialColumnGroup,
     },
@@ -14874,6 +15686,7 @@ M.ColumnGroup = {
 
 M.ColumnGroupColumnSchema = {
     type = "structure",
+    id = "ColumnGroupColumnSchema",
     members = {
         Name = {
             type = "string",
@@ -14883,6 +15696,7 @@ M.ColumnGroupColumnSchema = {
 
 M.ColumnGroupSchema = {
     type = "structure",
+    id = "ColumnGroupSchema",
     members = {
         Name = {
             type = "string",
@@ -14896,6 +15710,7 @@ M.ColumnGroupSchema = {
 
 M.ColumnLevelPermissionRule = {
     type = "structure",
+    id = "ColumnLevelPermissionRule",
     members = {
         Principals = {
             type = "list",
@@ -14916,6 +15731,7 @@ M.ColumnOrderingType = {
 
 M.ColumnSchema = {
     type = "structure",
+    id = "ColumnSchema",
     members = {
         Name = {
             type = "string",
@@ -14941,6 +15757,7 @@ M.GeoSpatialDataRole = {
 
 M.ColumnTag = {
     type = "structure",
+    id = "ColumnTag",
     members = {
         ColumnGeographicRole = {
             type = "string",
@@ -14956,6 +15773,7 @@ M.ColumnTagName = {
 
 M.ColumnToUnpivot = {
     type = "structure",
+    id = "ColumnToUnpivot",
     members = {
         ColumnName = {
             type = "string",
@@ -14973,6 +15791,7 @@ M.UndefinedSpecifiedValueType = {
 
 M.ComparativeOrder = {
     type = "structure",
+    id = "ComparativeOrder",
     members = {
         UseOrdering = {
             type = "string",
@@ -14989,6 +15808,7 @@ M.ComparativeOrder = {
 
 M.ConcurrentUpdatingException = {
     type = "structure",
+    id = "ConcurrentUpdatingException",
     error = "server",
     members = {
         Message = {
@@ -15002,6 +15822,7 @@ M.ConcurrentUpdatingException = {
 
 M.ControlTitleFontConfiguration = {
     type = "structure",
+    id = "ControlTitleFontConfiguration",
     members = {
         FontConfiguration = M.FontConfiguration,
         TextAlignment = {
@@ -15012,6 +15833,7 @@ M.ControlTitleFontConfiguration = {
 
 M.CreateAccountCustomizationInput = {
     type = "structure",
+    id = "CreateAccountCustomizationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -15038,6 +15860,7 @@ M.CreateAccountCustomizationInput = {
 
 M.CreateAccountCustomizationOutput = {
     type = "structure",
+    id = "CreateAccountCustomizationOutput",
     members = {
         Arn = {
             type = "string",
@@ -15064,6 +15887,7 @@ M.CreateAccountCustomizationOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -15080,6 +15904,7 @@ M.ResourceUnavailableException = {
 
 M.CreateAccountSubscriptionInput = {
     type = "structure",
+    id = "CreateAccountSubscriptionInput",
     members = {
         Edition = {
             type = "string",
@@ -15162,6 +15987,7 @@ M.CreateAccountSubscriptionInput = {
 
 M.SignupResponse = {
     type = "structure",
+    id = "SignupResponse",
     members = {
         IAMUser = {
             type = "boolean",
@@ -15183,6 +16009,7 @@ M.SignupResponse = {
 
 M.CreateAccountSubscriptionOutput = {
     type = "structure",
+    id = "CreateAccountSubscriptionOutput",
     members = {
         SignupResponse = M.SignupResponse,
         Status = {
@@ -15200,6 +16027,7 @@ M.CreateAccountSubscriptionOutput = {
 
 M.PreconditionNotMetException = {
     type = "structure",
+    id = "PreconditionNotMetException",
     error = "client",
     members = {
         Message = {
@@ -15213,6 +16041,7 @@ M.PreconditionNotMetException = {
 
 M.ResourcePermission = {
     type = "structure",
+    id = "ResourcePermission",
     members = {
         Principal = {
             type = "string",
@@ -15232,6 +16061,7 @@ M.ResourcePermission = {
 
 M.CreateActionConnectorInput = {
     type = "structure",
+    id = "CreateActionConnectorInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -15280,6 +16110,7 @@ M.CreateActionConnectorInput = {
 
 M.CreateActionConnectorOutput = {
     type = "structure",
+    id = "CreateActionConnectorOutput",
     members = {
         Arn = {
             type = "string",
@@ -15305,6 +16136,7 @@ M.CreateActionConnectorOutput = {
 
 M.DateTimeParameter = {
     type = "structure",
+    id = "DateTimeParameter",
     members = {
         Name = {
             type = "string",
@@ -15324,6 +16156,7 @@ M.DateTimeParameter = {
 
 M.DecimalParameter = {
     type = "structure",
+    id = "DecimalParameter",
     members = {
         Name = {
             type = "string",
@@ -15343,6 +16176,7 @@ M.DecimalParameter = {
 
 M.IntegerParameter = {
     type = "structure",
+    id = "IntegerParameter",
     members = {
         Name = {
             type = "string",
@@ -15362,6 +16196,7 @@ M.IntegerParameter = {
 
 M.StringParameter = {
     type = "structure",
+    id = "StringParameter",
     members = {
         Name = {
             type = "string",
@@ -15381,6 +16216,7 @@ M.StringParameter = {
 
 M.Parameters = {
     type = "structure",
+    id = "Parameters",
     members = {
         StringParameters = {
             type = "list",
@@ -15408,6 +16244,7 @@ M.ValidationStrategyMode = {
 
 M.ValidationStrategy = {
     type = "structure",
+    id = "ValidationStrategy",
     members = {
         Mode = {
             type = "string",
@@ -15420,6 +16257,7 @@ M.ValidationStrategy = {
 
 M.CreateAnalysisInput = {
     type = "structure",
+    id = "CreateAnalysisInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -15465,6 +16303,7 @@ M.CreateAnalysisInput = {
 
 M.CreateAnalysisOutput = {
     type = "structure",
+    id = "CreateAnalysisOutput",
     members = {
         Arn = {
             type = "string",
@@ -15490,6 +16329,7 @@ M.CreateAnalysisOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -15506,6 +16346,7 @@ M.LimitExceededException = {
 
 M.UnsupportedUserEditionException = {
     type = "structure",
+    id = "UnsupportedUserEditionException",
     error = "client",
     members = {
         Message = {
@@ -15519,6 +16360,7 @@ M.UnsupportedUserEditionException = {
 
 M.CreateBrandInput = {
     type = "structure",
+    id = "CreateBrandInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -15544,6 +16386,7 @@ M.CreateBrandInput = {
 
 M.CreateBrandOutput = {
     type = "structure",
+    id = "CreateBrandOutput",
     members = {
         RequestId = {
             type = "string",
@@ -15555,6 +16398,7 @@ M.CreateBrandOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -15568,6 +16412,7 @@ M.InternalServerException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -15581,6 +16426,7 @@ M.InvalidRequestException = {
 
 M.CreateColumnsOperation = {
     type = "structure",
+    id = "CreateColumnsOperation",
     members = {
         Alias = {
             type = "string",
@@ -15598,6 +16444,7 @@ M.CreateColumnsOperation = {
 
 M.CreateCustomPermissionsInput = {
     type = "structure",
+    id = "CreateCustomPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -15622,6 +16469,7 @@ M.CreateCustomPermissionsInput = {
 
 M.CreateCustomPermissionsOutput = {
     type = "structure",
+    id = "CreateCustomPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -15640,6 +16488,7 @@ M.CreateCustomPermissionsOutput = {
 
 M.DataPointDrillUpDownOption = {
     type = "structure",
+    id = "DataPointDrillUpDownOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15649,6 +16498,7 @@ M.DataPointDrillUpDownOption = {
 
 M.DataPointMenuLabelOption = {
     type = "structure",
+    id = "DataPointMenuLabelOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15658,6 +16508,7 @@ M.DataPointMenuLabelOption = {
 
 M.DataPointTooltipOption = {
     type = "structure",
+    id = "DataPointTooltipOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15667,6 +16518,7 @@ M.DataPointTooltipOption = {
 
 M.DataQAEnabledOption = {
     type = "structure",
+    id = "DataQAEnabledOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15676,6 +16528,7 @@ M.DataQAEnabledOption = {
 
 M.DataStoriesSharingOption = {
     type = "structure",
+    id = "DataStoriesSharingOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15685,6 +16538,7 @@ M.DataStoriesSharingOption = {
 
 M.ExecutiveSummaryOption = {
     type = "structure",
+    id = "ExecutiveSummaryOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15694,6 +16548,7 @@ M.ExecutiveSummaryOption = {
 
 M.ExportToCSVOption = {
     type = "structure",
+    id = "ExportToCSVOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15703,6 +16558,7 @@ M.ExportToCSVOption = {
 
 M.ExportWithHiddenFieldsOption = {
     type = "structure",
+    id = "ExportWithHiddenFieldsOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15712,6 +16568,7 @@ M.ExportWithHiddenFieldsOption = {
 
 M.QuickSuiteActionsOption = {
     type = "structure",
+    id = "QuickSuiteActionsOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15726,6 +16583,7 @@ M.DashboardUIState = {
 
 M.SheetControlsOption = {
     type = "structure",
+    id = "SheetControlsOption",
     members = {
         VisibilityState = {
             type = "string",
@@ -15735,6 +16593,7 @@ M.SheetControlsOption = {
 
 M.SheetLayoutElementMaximizationOption = {
     type = "structure",
+    id = "SheetLayoutElementMaximizationOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15744,6 +16603,7 @@ M.SheetLayoutElementMaximizationOption = {
 
 M.VisualAxisSortOption = {
     type = "structure",
+    id = "VisualAxisSortOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15753,6 +16613,7 @@ M.VisualAxisSortOption = {
 
 M.ExportHiddenFieldsOption = {
     type = "structure",
+    id = "ExportHiddenFieldsOption",
     members = {
         AvailabilityStatus = {
             type = "string",
@@ -15762,6 +16623,7 @@ M.ExportHiddenFieldsOption = {
 
 M.DashboardVisualPublishOptions = {
     type = "structure",
+    id = "DashboardVisualPublishOptions",
     members = {
         ExportHiddenFieldsOption = M.ExportHiddenFieldsOption,
     },
@@ -15769,6 +16631,7 @@ M.DashboardVisualPublishOptions = {
 
 M.DashboardPublishOptions = {
     type = "structure",
+    id = "DashboardPublishOptions",
     members = {
         AdHocFilteringOption = M.AdHocFilteringOption,
         ExportToCSVOption = M.ExportToCSVOption,
@@ -15790,6 +16653,7 @@ M.DashboardPublishOptions = {
 
 M.DashboardVersionDefinition = {
     type = "structure",
+    id = "DashboardVersionDefinition",
     members = {
         DataSetIdentifierDeclarations = {
             type = "list",
@@ -15833,6 +16697,7 @@ M.DashboardVersionDefinition = {
 
 M.LinkSharingConfiguration = {
     type = "structure",
+    id = "LinkSharingConfiguration",
     members = {
         Permissions = {
             type = "list",
@@ -15843,6 +16708,7 @@ M.LinkSharingConfiguration = {
 
 M.DashboardSourceTemplate = {
     type = "structure",
+    id = "DashboardSourceTemplate",
     members = {
         DataSetReferences = {
             type = "list",
@@ -15862,6 +16728,7 @@ M.DashboardSourceTemplate = {
 
 M.DashboardSourceEntity = {
     type = "structure",
+    id = "DashboardSourceEntity",
     members = {
         SourceTemplate = M.DashboardSourceTemplate,
     },
@@ -15869,6 +16736,7 @@ M.DashboardSourceEntity = {
 
 M.CreateDashboardInput = {
     type = "structure",
+    id = "CreateDashboardInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -15923,6 +16791,7 @@ M.CreateDashboardInput = {
 
 M.CreateDashboardOutput = {
     type = "structure",
+    id = "CreateDashboardOutput",
     members = {
         Arn = {
             type = "string",
@@ -15951,6 +16820,7 @@ M.CreateDashboardOutput = {
 
 M.DestinationTableSource = {
     type = "structure",
+    id = "DestinationTableSource",
     members = {
         TransformOperationId = {
             type = "string",
@@ -15963,6 +16833,7 @@ M.DestinationTableSource = {
 
 M.DestinationTable = {
     type = "structure",
+    id = "DestinationTable",
     members = {
         Alias = {
             type = "string",
@@ -15989,6 +16860,7 @@ M.InputColumnDataType = {
 
 M.InputColumn = {
     type = "structure",
+    id = "InputColumn",
     members = {
         Name = {
             type = "string",
@@ -16013,6 +16885,7 @@ M.InputColumn = {
 
 M.ParentDataSet = {
     type = "structure",
+    id = "ParentDataSet",
     members = {
         DataSetArn = {
             type = "string",
@@ -16032,6 +16905,7 @@ M.ParentDataSet = {
 
 M.SourceTable = {
     type = "structure",
+    id = "SourceTable",
     members = {
         PhysicalTableId = {
             type = "string",
@@ -16049,6 +16923,7 @@ M.DataSetDateComparisonFilterOperator = {
 
 M.DataSetDateFilterValue = {
     type = "structure",
+    id = "DataSetDateFilterValue",
     members = {
         StaticValue = {
             type = "timestamp",
@@ -16058,6 +16933,7 @@ M.DataSetDateFilterValue = {
 
 M.DataSetDateComparisonFilterCondition = {
     type = "structure",
+    id = "DataSetDateComparisonFilterCondition",
     members = {
         Operator = {
             type = "string",
@@ -16071,6 +16947,7 @@ M.DataSetDateComparisonFilterCondition = {
 
 M.DataSetDateRangeFilterCondition = {
     type = "structure",
+    id = "DataSetDateRangeFilterCondition",
     members = {
         RangeMinimum = M.DataSetDateFilterValue,
         RangeMaximum = M.DataSetDateFilterValue,
@@ -16091,6 +16968,7 @@ M.DataSetDateRangeFilterCondition = {
 
 M.DataSetDateFilterCondition = {
     type = "structure",
+    id = "DataSetDateFilterCondition",
     members = {
         ColumnName = {
             type = "string",
@@ -16111,6 +16989,7 @@ M.DataSetNumericComparisonFilterOperator = {
 
 M.DataSetNumericFilterValue = {
     type = "structure",
+    id = "DataSetNumericFilterValue",
     members = {
         StaticValue = {
             type = "double",
@@ -16123,6 +17002,7 @@ M.DataSetNumericFilterValue = {
 
 M.DataSetNumericComparisonFilterCondition = {
     type = "structure",
+    id = "DataSetNumericComparisonFilterCondition",
     members = {
         Operator = {
             type = "string",
@@ -16136,6 +17016,7 @@ M.DataSetNumericComparisonFilterCondition = {
 
 M.DataSetNumericRangeFilterCondition = {
     type = "structure",
+    id = "DataSetNumericRangeFilterCondition",
     members = {
         RangeMinimum = M.DataSetNumericFilterValue,
         RangeMaximum = M.DataSetNumericFilterValue,
@@ -16156,6 +17037,7 @@ M.DataSetNumericRangeFilterCondition = {
 
 M.DataSetNumericFilterCondition = {
     type = "structure",
+    id = "DataSetNumericFilterCondition",
     members = {
         ColumnName = {
             type = "string",
@@ -16176,6 +17058,7 @@ M.DataSetStringComparisonFilterOperator = {
 
 M.DataSetStringFilterValue = {
     type = "structure",
+    id = "DataSetStringFilterValue",
     members = {
         StaticValue = {
             type = "string",
@@ -16185,6 +17068,7 @@ M.DataSetStringFilterValue = {
 
 M.DataSetStringComparisonFilterCondition = {
     type = "structure",
+    id = "DataSetStringComparisonFilterCondition",
     members = {
         Operator = {
             type = "string",
@@ -16203,6 +17087,7 @@ M.DataSetStringListFilterOperator = {
 
 M.DataSetStringListFilterValue = {
     type = "structure",
+    id = "DataSetStringListFilterValue",
     members = {
         StaticValues = {
             type = "list",
@@ -16213,6 +17098,7 @@ M.DataSetStringListFilterValue = {
 
 M.DataSetStringListFilterCondition = {
     type = "structure",
+    id = "DataSetStringListFilterCondition",
     members = {
         Operator = {
             type = "string",
@@ -16226,6 +17112,7 @@ M.DataSetStringListFilterCondition = {
 
 M.DataSetStringFilterCondition = {
     type = "structure",
+    id = "DataSetStringFilterCondition",
     members = {
         ColumnName = {
             type = "string",
@@ -16237,6 +17124,7 @@ M.DataSetStringFilterCondition = {
 
 M.FilterOperation = {
     type = "structure",
+    id = "FilterOperation",
     members = {
         ConditionExpression = {
             type = "string",
@@ -16249,6 +17137,7 @@ M.FilterOperation = {
 
 M.FiltersOperation = {
     type = "structure",
+    id = "FiltersOperation",
     members = {
         Alias = {
             type = "string",
@@ -16271,6 +17160,7 @@ M.FiltersOperation = {
 
 M.ImportTableOperationSource = {
     type = "structure",
+    id = "ImportTableOperationSource",
     members = {
         SourceTableId = {
             type = "string",
@@ -16287,6 +17177,7 @@ M.ImportTableOperationSource = {
 
 M.ImportTableOperation = {
     type = "structure",
+    id = "ImportTableOperation",
     members = {
         Alias = {
             type = "string",
@@ -16302,6 +17193,7 @@ M.ImportTableOperation = {
 
 M.OutputColumnNameOverride = {
     type = "structure",
+    id = "OutputColumnNameOverride",
     members = {
         SourceColumnName = {
             type = "string",
@@ -16317,6 +17209,7 @@ M.OutputColumnNameOverride = {
 
 M.JoinOperandProperties = {
     type = "structure",
+    id = "JoinOperandProperties",
     members = {
         OutputColumnNameOverrides = {
             type = "list",
@@ -16337,6 +17230,7 @@ M.JoinOperationType = {
 
 M.JoinOperation = {
     type = "structure",
+    id = "JoinOperation",
     members = {
         Alias = {
             type = "string",
@@ -16369,6 +17263,7 @@ M.JoinOperation = {
 
 M.PivotedLabel = {
     type = "structure",
+    id = "PivotedLabel",
     members = {
         LabelName = {
             type = "string",
@@ -16393,6 +17288,7 @@ M.PivotedLabel = {
 
 M.PivotConfiguration = {
     type = "structure",
+    id = "PivotConfiguration",
     members = {
         LabelColumnName = {
             type = "string",
@@ -16409,6 +17305,7 @@ M.PivotConfiguration = {
 
 M.ValueColumnConfiguration = {
     type = "structure",
+    id = "ValueColumnConfiguration",
     members = {
         AggregationFunction = M.DataPrepAggregationFunction,
     },
@@ -16416,6 +17313,7 @@ M.ValueColumnConfiguration = {
 
 M.PivotOperation = {
     type = "structure",
+    id = "PivotOperation",
     members = {
         Alias = {
             type = "string",
@@ -16441,6 +17339,7 @@ M.PivotOperation = {
 
 M.ProjectOperation = {
     type = "structure",
+    id = "ProjectOperation",
     members = {
         Alias = {
             type = "string",
@@ -16458,6 +17357,7 @@ M.ProjectOperation = {
 
 M.RenameColumnOperation = {
     type = "structure",
+    id = "RenameColumnOperation",
     members = {
         ColumnName = {
             type = "string",
@@ -16476,6 +17376,7 @@ M.RenameColumnOperation = {
 
 M.RenameColumnsOperation = {
     type = "structure",
+    id = "RenameColumnsOperation",
     members = {
         Alias = {
             type = "string",
@@ -16498,6 +17399,7 @@ M.RenameColumnsOperation = {
 
 M.UnpivotOperation = {
     type = "structure",
+    id = "UnpivotOperation",
     members = {
         Alias = {
             type = "string",
@@ -16544,6 +17446,7 @@ M.UnpivotOperation = {
 
 M.TransformStep = {
     type = "structure",
+    id = "TransformStep",
     members = {
         ImportTableStep = M.ImportTableOperation,
         ProjectStep = M.ProjectOperation,
@@ -16561,6 +17464,7 @@ M.TransformStep = {
 
 M.DataPrepConfiguration = {
     type = "structure",
+    id = "DataPrepConfiguration",
     members = {
         SourceTableMap = {
             type = "map",
@@ -16591,6 +17495,7 @@ M.DataPrepConfiguration = {
 
 M.DateTimeDatasetParameterDefaultValues = {
     type = "structure",
+    id = "DateTimeDatasetParameterDefaultValues",
     members = {
         StaticValues = {
             type = "list",
@@ -16606,6 +17511,7 @@ M.DatasetParameterValueType = {
 
 M.DateTimeDatasetParameter = {
     type = "structure",
+    id = "DateTimeDatasetParameter",
     members = {
         Id = {
             type = "string",
@@ -16634,6 +17540,7 @@ M.DateTimeDatasetParameter = {
 
 M.DecimalDatasetParameterDefaultValues = {
     type = "structure",
+    id = "DecimalDatasetParameterDefaultValues",
     members = {
         StaticValues = {
             type = "list",
@@ -16644,6 +17551,7 @@ M.DecimalDatasetParameterDefaultValues = {
 
 M.DecimalDatasetParameter = {
     type = "structure",
+    id = "DecimalDatasetParameter",
     members = {
         Id = {
             type = "string",
@@ -16669,6 +17577,7 @@ M.DecimalDatasetParameter = {
 
 M.IntegerDatasetParameterDefaultValues = {
     type = "structure",
+    id = "IntegerDatasetParameterDefaultValues",
     members = {
         StaticValues = {
             type = "list",
@@ -16679,6 +17588,7 @@ M.IntegerDatasetParameterDefaultValues = {
 
 M.IntegerDatasetParameter = {
     type = "structure",
+    id = "IntegerDatasetParameter",
     members = {
         Id = {
             type = "string",
@@ -16704,6 +17614,7 @@ M.IntegerDatasetParameter = {
 
 M.StringDatasetParameterDefaultValues = {
     type = "structure",
+    id = "StringDatasetParameterDefaultValues",
     members = {
         StaticValues = {
             type = "list",
@@ -16714,6 +17625,7 @@ M.StringDatasetParameterDefaultValues = {
 
 M.StringDatasetParameter = {
     type = "structure",
+    id = "StringDatasetParameter",
     members = {
         Id = {
             type = "string",
@@ -16739,6 +17651,7 @@ M.StringDatasetParameter = {
 
 M.DatasetParameter = {
     type = "structure",
+    id = "DatasetParameter",
     members = {
         StringDatasetParameter = M.StringDatasetParameter,
         DecimalDatasetParameter = M.DecimalDatasetParameter,
@@ -16749,6 +17662,7 @@ M.DatasetParameter = {
 
 M.DataSetUsageConfiguration = {
     type = "structure",
+    id = "DataSetUsageConfiguration",
     members = {
         DisableUseAsDirectQuerySource = {
             type = "boolean",
@@ -16767,6 +17681,7 @@ M.DataSetUsageConfiguration = {
 
 M.FieldFolder = {
     type = "structure",
+    id = "FieldFolder",
     members = {
         description = {
             type = "string",
@@ -16785,6 +17700,7 @@ M.DataSetImportMode = {
 
 M.NewDefaultValues = {
     type = "structure",
+    id = "NewDefaultValues",
     members = {
         StringStaticValues = {
             type = "list",
@@ -16807,6 +17723,7 @@ M.NewDefaultValues = {
 
 M.OverrideDatasetParameterOperation = {
     type = "structure",
+    id = "OverrideDatasetParameterOperation",
     members = {
         ParameterName = {
             type = "string",
@@ -16823,6 +17740,7 @@ M.OverrideDatasetParameterOperation = {
 
 M.TagColumnOperation = {
     type = "structure",
+    id = "TagColumnOperation",
     members = {
         ColumnName = {
             type = "string",
@@ -16842,6 +17760,7 @@ M.TagColumnOperation = {
 
 M.UntagColumnOperation = {
     type = "structure",
+    id = "UntagColumnOperation",
     members = {
         ColumnName = {
             type = "string",
@@ -16861,6 +17780,7 @@ M.UntagColumnOperation = {
 
 M.TransformOperation = {
     type = "union",
+    id = "TransformOperation",
     members = {
         ProjectOperation = M.ProjectOperation,
         FilterOperation = M.FilterOperation,
@@ -16875,6 +17795,7 @@ M.TransformOperation = {
 
 M.JoinKeyProperties = {
     type = "structure",
+    id = "JoinKeyProperties",
     members = {
         UniqueKey = {
             type = "boolean",
@@ -16894,6 +17815,7 @@ M.JoinType = {
 
 M.JoinInstruction = {
     type = "structure",
+    id = "JoinInstruction",
     members = {
         LeftOperand = {
             type = "string",
@@ -16926,6 +17848,7 @@ M.JoinInstruction = {
 
 M.LogicalTableSource = {
     type = "structure",
+    id = "LogicalTableSource",
     members = {
         JoinInstruction = M.JoinInstruction,
         PhysicalTableId = {
@@ -16939,6 +17862,7 @@ M.LogicalTableSource = {
 
 M.LogicalTable = {
     type = "structure",
+    id = "LogicalTable",
     members = {
         Alias = {
             type = "string",
@@ -16958,6 +17882,7 @@ M.LogicalTable = {
 
 M.UniqueKey = {
     type = "structure",
+    id = "UniqueKey",
     members = {
         ColumnNames = {
             type = "list",
@@ -16971,6 +17896,7 @@ M.UniqueKey = {
 
 M.PerformanceConfiguration = {
     type = "structure",
+    id = "PerformanceConfiguration",
     members = {
         UniqueKeys = {
             type = "list",
@@ -16981,6 +17907,7 @@ M.PerformanceConfiguration = {
 
 M.CustomSql = {
     type = "structure",
+    id = "CustomSql",
     members = {
         DataSourceArn = {
             type = "string",
@@ -17009,6 +17936,7 @@ M.CustomSql = {
 
 M.RelationalTable = {
     type = "structure",
+    id = "RelationalTable",
     members = {
         DataSourceArn = {
             type = "string",
@@ -17054,6 +17982,7 @@ M.TextQualifier = {
 
 M.UploadSettings = {
     type = "structure",
+    id = "UploadSettings",
     members = {
         Format = {
             type = "string",
@@ -17081,6 +18010,7 @@ M.UploadSettings = {
 
 M.S3Source = {
     type = "structure",
+    id = "S3Source",
     members = {
         DataSourceArn = {
             type = "string",
@@ -17101,6 +18031,7 @@ M.S3Source = {
 
 M.TablePathElement = {
     type = "structure",
+    id = "TablePathElement",
     members = {
         Name = {
             type = "string",
@@ -17113,6 +18044,7 @@ M.TablePathElement = {
 
 M.SaaSTable = {
     type = "structure",
+    id = "SaaSTable",
     members = {
         DataSourceArn = {
             type = "string",
@@ -17139,6 +18071,7 @@ M.SaaSTable = {
 
 M.PhysicalTable = {
     type = "union",
+    id = "PhysicalTable",
     members = {
         RelationalTable = M.RelationalTable,
         CustomSql = M.CustomSql,
@@ -17164,6 +18097,7 @@ M.Status = {
 
 M.RowLevelPermissionDataSet = {
     type = "structure",
+    id = "RowLevelPermissionDataSet",
     members = {
         Namespace = {
             type = "string",
@@ -17191,6 +18125,7 @@ M.RowLevelPermissionDataSet = {
 
 M.RowLevelPermissionTagRule = {
     type = "structure",
+    id = "RowLevelPermissionTagRule",
     members = {
         TagKey = {
             type = "string",
@@ -17215,6 +18150,7 @@ M.RowLevelPermissionTagRule = {
 
 M.RowLevelPermissionTagConfiguration = {
     type = "structure",
+    id = "RowLevelPermissionTagConfiguration",
     members = {
         Status = {
             type = "string",
@@ -17235,6 +18171,7 @@ M.RowLevelPermissionTagConfiguration = {
 
 M.RowLevelPermissionConfiguration = {
     type = "structure",
+    id = "RowLevelPermissionConfiguration",
     members = {
         TagConfiguration = M.RowLevelPermissionTagConfiguration,
         RowLevelPermissionDataSet = M.RowLevelPermissionDataSet,
@@ -17243,6 +18180,7 @@ M.RowLevelPermissionConfiguration = {
 
 M.SemanticTable = {
     type = "structure",
+    id = "SemanticTable",
     members = {
         Alias = {
             type = "string",
@@ -17262,6 +18200,7 @@ M.SemanticTable = {
 
 M.SemanticModelConfiguration = {
     type = "structure",
+    id = "SemanticModelConfiguration",
     members = {
         TableMap = {
             type = "map",
@@ -17277,6 +18216,7 @@ M.DataSetUseAs = {
 
 M.CreateDataSetInput = {
     type = "structure",
+    id = "CreateDataSetInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -17359,6 +18299,7 @@ M.CreateDataSetInput = {
 
 M.CreateDataSetOutput = {
     type = "structure",
+    id = "CreateDataSetOutput",
     members = {
         Arn = {
             type = "string",
@@ -17387,6 +18328,7 @@ M.CreateDataSetOutput = {
 
 M.InvalidDataSetParameterValueException = {
     type = "structure",
+    id = "InvalidDataSetParameterValueException",
     error = "client",
     members = {
         Message = {
@@ -17400,6 +18342,7 @@ M.InvalidDataSetParameterValueException = {
 
 M.CredentialPair = {
     type = "structure",
+    id = "CredentialPair",
     members = {
         Username = {
             type = "string",
@@ -17422,6 +18365,7 @@ M.CredentialPair = {
 
 M.KeyPairCredentials = {
     type = "structure",
+    id = "KeyPairCredentials",
     members = {
         KeyPairUsername = {
             type = "string",
@@ -17443,6 +18387,7 @@ M.KeyPairCredentials = {
 
 M.OAuthClientCredentials = {
     type = "structure",
+    id = "OAuthClientCredentials",
     members = {
         ClientId = {
             type = "string",
@@ -17458,6 +18403,7 @@ M.OAuthClientCredentials = {
 
 M.WebProxyCredentials = {
     type = "structure",
+    id = "WebProxyCredentials",
     members = {
         WebProxyUsername = {
             type = "string",
@@ -17476,6 +18422,7 @@ M.WebProxyCredentials = {
 
 M.DataSourceCredentials = {
     type = "structure",
+    id = "DataSourceCredentials",
     members = {
         CredentialPair = M.CredentialPair,
         CopySourceArn = {
@@ -17533,6 +18480,7 @@ M.DataSourceType = {
 
 M.CreateDataSourceInput = {
     type = "structure",
+    id = "CreateDataSourceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -17580,6 +18528,7 @@ M.CreateDataSourceInput = {
 
 M.CreateDataSourceOutput = {
     type = "structure",
+    id = "CreateDataSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -17605,6 +18554,7 @@ M.CreateDataSourceOutput = {
 
 M.CustomerManagedKeyUnavailableException = {
     type = "structure",
+    id = "CustomerManagedKeyUnavailableException",
     error = "client",
     members = {
         Message = {
@@ -17628,6 +18578,7 @@ M.SharingModel = {
 
 M.CreateFolderInput = {
     type = "structure",
+    id = "CreateFolderInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -17668,6 +18619,7 @@ M.CreateFolderInput = {
 
 M.CreateFolderOutput = {
     type = "structure",
+    id = "CreateFolderOutput",
     members = {
         Status = {
             type = "integer",
@@ -17698,6 +18650,7 @@ M.MemberType = {
 
 M.CreateFolderMembershipInput = {
     type = "structure",
+    id = "CreateFolderMembershipInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -17732,6 +18685,7 @@ M.CreateFolderMembershipInput = {
 
 M.FolderMember = {
     type = "structure",
+    id = "FolderMember",
     members = {
         MemberId = {
             type = "string",
@@ -17744,6 +18698,7 @@ M.FolderMember = {
 
 M.CreateFolderMembershipOutput = {
     type = "structure",
+    id = "CreateFolderMembershipOutput",
     members = {
         Status = {
             type = "integer",
@@ -17760,6 +18715,7 @@ M.CreateFolderMembershipOutput = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -17789,6 +18745,7 @@ M.CreateGroupInput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         Arn = {
             type = "string",
@@ -17807,6 +18764,7 @@ M.Group = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         Group = M.Group,
         RequestId = {
@@ -17824,6 +18782,7 @@ M.CreateGroupOutput = {
 
 M.CreateGroupMembershipInput = {
     type = "structure",
+    id = "CreateGroupMembershipInput",
     members = {
         MemberName = {
             type = "string",
@@ -17858,6 +18817,7 @@ M.CreateGroupMembershipInput = {
 
 M.GroupMember = {
     type = "structure",
+    id = "GroupMember",
     members = {
         Arn = {
             type = "string",
@@ -17870,6 +18830,7 @@ M.GroupMember = {
 
 M.CreateGroupMembershipOutput = {
     type = "structure",
+    id = "CreateGroupMembershipOutput",
     members = {
         GroupMember = M.GroupMember,
         RequestId = {
@@ -17887,6 +18848,7 @@ M.CreateGroupMembershipOutput = {
 
 M.CreateIAMPolicyAssignmentInput = {
     type = "structure",
+    id = "CreateIAMPolicyAssignmentInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -17927,6 +18889,7 @@ M.CreateIAMPolicyAssignmentInput = {
 
 M.CreateIAMPolicyAssignmentOutput = {
     type = "structure",
+    id = "CreateIAMPolicyAssignmentOutput",
     members = {
         AssignmentName = {
             type = "string",
@@ -17965,6 +18928,7 @@ M.IngestionType = {
 
 M.CreateIngestionInput = {
     type = "structure",
+    id = "CreateIngestionInput",
     members = {
         DataSetId = {
             type = "string",
@@ -18004,6 +18968,7 @@ M.IngestionStatus = {
 
 M.CreateIngestionOutput = {
     type = "structure",
+    id = "CreateIngestionOutput",
     members = {
         Arn = {
             type = "string",
@@ -18033,6 +18998,7 @@ M.IdentityStore = {
 
 M.CreateNamespaceInput = {
     type = "structure",
+    id = "CreateNamespaceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -18070,6 +19036,7 @@ M.NamespaceStatus = {
 
 M.CreateNamespaceOutput = {
     type = "structure",
+    id = "CreateNamespaceOutput",
     members = {
         Arn = {
             type = "string",
@@ -18120,6 +19087,7 @@ M.DayOfWeek = {
 
 M.ScheduleRefreshOnEntity = {
     type = "structure",
+    id = "ScheduleRefreshOnEntity",
     members = {
         DayOfWeek = {
             type = "string",
@@ -18132,6 +19100,7 @@ M.ScheduleRefreshOnEntity = {
 
 M.RefreshFrequency = {
     type = "structure",
+    id = "RefreshFrequency",
     members = {
         Interval = {
             type = "string",
@@ -18151,6 +19120,7 @@ M.RefreshFrequency = {
 
 M.RefreshSchedule = {
     type = "structure",
+    id = "RefreshSchedule",
     members = {
         ScheduleId = {
             type = "string",
@@ -18178,6 +19148,7 @@ M.RefreshSchedule = {
 
 M.CreateRefreshScheduleInput = {
     type = "structure",
+    id = "CreateRefreshScheduleInput",
     members = {
         DataSetId = {
             type = "string",
@@ -18201,6 +19172,7 @@ M.CreateRefreshScheduleInput = {
 
 M.CreateRefreshScheduleOutput = {
     type = "structure",
+    id = "CreateRefreshScheduleOutput",
     members = {
         Status = {
             type = "integer",
@@ -18232,6 +19204,7 @@ M.Role = {
 
 M.CreateRoleMembershipInput = {
     type = "structure",
+    id = "CreateRoleMembershipInput",
     members = {
         MemberName = {
             type = "string",
@@ -18266,6 +19239,7 @@ M.CreateRoleMembershipInput = {
 
 M.CreateRoleMembershipOutput = {
     type = "structure",
+    id = "CreateRoleMembershipOutput",
     members = {
         RequestId = {
             type = "string",
@@ -18282,6 +19256,7 @@ M.CreateRoleMembershipOutput = {
 
 M.DataSetSchema = {
     type = "structure",
+    id = "DataSetSchema",
     members = {
         ColumnSchemaList = {
             type = "list",
@@ -18292,6 +19267,7 @@ M.DataSetSchema = {
 
 M.DataSetConfiguration = {
     type = "structure",
+    id = "DataSetConfiguration",
     members = {
         Placeholder = {
             type = "string",
@@ -18306,6 +19282,7 @@ M.DataSetConfiguration = {
 
 M.TemplateVersionDefinition = {
     type = "structure",
+    id = "TemplateVersionDefinition",
     members = {
         DataSetConfigurations = {
             type = "list",
@@ -18350,6 +19327,7 @@ M.TemplateVersionDefinition = {
 
 M.TemplateSourceAnalysis = {
     type = "structure",
+    id = "TemplateSourceAnalysis",
     members = {
         Arn = {
             type = "string",
@@ -18369,6 +19347,7 @@ M.TemplateSourceAnalysis = {
 
 M.TemplateSourceTemplate = {
     type = "structure",
+    id = "TemplateSourceTemplate",
     members = {
         Arn = {
             type = "string",
@@ -18381,6 +19360,7 @@ M.TemplateSourceTemplate = {
 
 M.TemplateSourceEntity = {
     type = "structure",
+    id = "TemplateSourceEntity",
     members = {
         SourceAnalysis = M.TemplateSourceAnalysis,
         SourceTemplate = M.TemplateSourceTemplate,
@@ -18389,6 +19369,7 @@ M.TemplateSourceEntity = {
 
 M.CreateTemplateInput = {
     type = "structure",
+    id = "CreateTemplateInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -18426,6 +19407,7 @@ M.CreateTemplateInput = {
 
 M.CreateTemplateOutput = {
     type = "structure",
+    id = "CreateTemplateOutput",
     members = {
         Arn = {
             type = "string",
@@ -18454,6 +19436,7 @@ M.CreateTemplateOutput = {
 
 M.CreateTemplateAliasInput = {
     type = "structure",
+    id = "CreateTemplateAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -18487,6 +19470,7 @@ M.CreateTemplateAliasInput = {
 
 M.TemplateAlias = {
     type = "structure",
+    id = "TemplateAlias",
     members = {
         AliasName = {
             type = "string",
@@ -18502,6 +19486,7 @@ M.TemplateAlias = {
 
 M.CreateTemplateAliasOutput = {
     type = "structure",
+    id = "CreateTemplateAliasOutput",
     members = {
         TemplateAlias = M.TemplateAlias,
         Status = {
@@ -18519,6 +19504,7 @@ M.CreateTemplateAliasOutput = {
 
 M.DataColorPalette = {
     type = "structure",
+    id = "DataColorPalette",
     members = {
         Colors = {
             type = "list",
@@ -18536,6 +19522,7 @@ M.DataColorPalette = {
 
 M.SheetBackgroundStyle = {
     type = "structure",
+    id = "SheetBackgroundStyle",
     members = {
         Color = {
             type = "string",
@@ -18548,6 +19535,7 @@ M.SheetBackgroundStyle = {
 
 M.TileStyle = {
     type = "structure",
+    id = "TileStyle",
     members = {
         BackgroundColor = {
             type = "string",
@@ -18564,6 +19552,7 @@ M.TileStyle = {
 
 M.GutterStyle = {
     type = "structure",
+    id = "GutterStyle",
     members = {
         Show = {
             type = "boolean",
@@ -18576,6 +19565,7 @@ M.GutterStyle = {
 
 M.MarginStyle = {
     type = "structure",
+    id = "MarginStyle",
     members = {
         Show = {
             type = "boolean",
@@ -18588,6 +19578,7 @@ M.MarginStyle = {
 
 M.TileLayoutStyle = {
     type = "structure",
+    id = "TileLayoutStyle",
     members = {
         Gutter = M.GutterStyle,
         Margin = M.MarginStyle,
@@ -18596,6 +19587,7 @@ M.TileLayoutStyle = {
 
 M.SheetStyle = {
     type = "structure",
+    id = "SheetStyle",
     members = {
         Tile = M.TileStyle,
         TileLayout = M.TileLayoutStyle,
@@ -18605,6 +19597,7 @@ M.SheetStyle = {
 
 M.Font = {
     type = "structure",
+    id = "Font",
     members = {
         FontFamily = {
             type = "string",
@@ -18618,6 +19611,7 @@ M.TextTransform = {
 
 M.VisualSubtitleFontConfiguration = {
     type = "structure",
+    id = "VisualSubtitleFontConfiguration",
     members = {
         FontConfiguration = M.FontConfiguration,
         TextAlignment = {
@@ -18631,6 +19625,7 @@ M.VisualSubtitleFontConfiguration = {
 
 M.VisualTitleFontConfiguration = {
     type = "structure",
+    id = "VisualTitleFontConfiguration",
     members = {
         FontConfiguration = M.FontConfiguration,
         TextAlignment = {
@@ -18644,6 +19639,7 @@ M.VisualTitleFontConfiguration = {
 
 M.Typography = {
     type = "structure",
+    id = "Typography",
     members = {
         FontFamilies = {
             type = "list",
@@ -18662,6 +19658,7 @@ M.Typography = {
 
 M.UIColorPalette = {
     type = "structure",
+    id = "UIColorPalette",
     members = {
         PrimaryForeground = {
             type = "string",
@@ -18716,6 +19713,7 @@ M.UIColorPalette = {
 
 M.ThemeConfiguration = {
     type = "structure",
+    id = "ThemeConfiguration",
     members = {
         DataColorPalette = M.DataColorPalette,
         UIColorPalette = M.UIColorPalette,
@@ -18726,6 +19724,7 @@ M.ThemeConfiguration = {
 
 M.CreateThemeInput = {
     type = "structure",
+    id = "CreateThemeInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -18772,6 +19771,7 @@ M.CreateThemeInput = {
 
 M.CreateThemeOutput = {
     type = "structure",
+    id = "CreateThemeOutput",
     members = {
         Arn = {
             type = "string",
@@ -18800,6 +19800,7 @@ M.CreateThemeOutput = {
 
 M.CreateThemeAliasInput = {
     type = "structure",
+    id = "CreateThemeAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -18833,6 +19834,7 @@ M.CreateThemeAliasInput = {
 
 M.ThemeAlias = {
     type = "structure",
+    id = "ThemeAlias",
     members = {
         Arn = {
             type = "string",
@@ -18848,6 +19850,7 @@ M.ThemeAlias = {
 
 M.CreateThemeAliasOutput = {
     type = "structure",
+    id = "CreateThemeAliasOutput",
     members = {
         ThemeAlias = M.ThemeAlias,
         Status = {
@@ -18865,6 +19868,7 @@ M.CreateThemeAliasOutput = {
 
 M.CustomInstructions = {
     type = "structure",
+    id = "CustomInstructions",
     members = {
         CustomInstructionsString = {
             type = "string",
@@ -18877,6 +19881,7 @@ M.CustomInstructions = {
 
 M.TopicConfigOptions = {
     type = "structure",
+    id = "TopicConfigOptions",
     members = {
         QBusinessInsightsEnabled = {
             type = "boolean",
@@ -18900,6 +19905,7 @@ M.DefaultAggregation = {
 
 M.DefaultFormatting = {
     type = "structure",
+    id = "DefaultFormatting",
     members = {
         DisplayFormat = {
             type = "string",
@@ -18910,6 +19916,7 @@ M.DefaultFormatting = {
 
 M.SemanticType = {
     type = "structure",
+    id = "SemanticType",
     members = {
         TypeName = {
             type = "string",
@@ -18941,6 +19948,7 @@ M.SemanticType = {
 
 M.TopicCalculatedField = {
     type = "structure",
+    id = "TopicCalculatedField",
     members = {
         CalculatedFieldName = {
             type = "string",
@@ -19008,6 +20016,7 @@ M.TopicCalculatedField = {
 
 M.TopicColumn = {
     type = "structure",
+    id = "TopicColumn",
     members = {
         ColumnName = {
             type = "string",
@@ -19072,6 +20081,7 @@ M.TopicColumn = {
 
 M.DataAggregation = {
     type = "structure",
+    id = "DataAggregation",
     members = {
         DatasetRowDateGranularity = {
             type = "string",
@@ -19084,6 +20094,7 @@ M.DataAggregation = {
 
 M.TopicCategoryFilterConstant = {
     type = "structure",
+    id = "TopicCategoryFilterConstant",
     members = {
         ConstantType = {
             type = "string",
@@ -19097,6 +20108,7 @@ M.TopicCategoryFilterConstant = {
 
 M.TopicCategoryFilter = {
     type = "structure",
+    id = "TopicCategoryFilter",
     members = {
         CategoryFilterFunction = {
             type = "string",
@@ -19116,6 +20128,7 @@ M.TopicCategoryFilter = {
 
 M.RangeConstant = {
     type = "structure",
+    id = "RangeConstant",
     members = {
         Minimum = {
             type = "string",
@@ -19128,6 +20141,7 @@ M.RangeConstant = {
 
 M.TopicRangeFilterConstant = {
     type = "structure",
+    id = "TopicRangeFilterConstant",
     members = {
         ConstantType = {
             type = "string",
@@ -19138,6 +20152,7 @@ M.TopicRangeFilterConstant = {
 
 M.TopicDateRangeFilter = {
     type = "structure",
+    id = "TopicDateRangeFilter",
     members = {
         Inclusive = {
             type = "boolean",
@@ -19160,6 +20175,7 @@ M.NamedFilterType = {
 
 M.TopicSingularFilterConstant = {
     type = "structure",
+    id = "TopicSingularFilterConstant",
     members = {
         ConstantType = {
             type = "string",
@@ -19178,6 +20194,7 @@ M.NullFilterType = {
 
 M.TopicNullFilter = {
     type = "structure",
+    id = "TopicNullFilter",
     members = {
         NullFilterType = {
             type = "string",
@@ -19209,6 +20226,7 @@ M.NamedFilterAggType = {
 
 M.TopicNumericEqualityFilter = {
     type = "structure",
+    id = "TopicNumericEqualityFilter",
     members = {
         Constant = M.TopicSingularFilterConstant,
         Aggregation = {
@@ -19219,6 +20237,7 @@ M.TopicNumericEqualityFilter = {
 
 M.TopicNumericRangeFilter = {
     type = "structure",
+    id = "TopicNumericRangeFilter",
     members = {
         Inclusive = {
             type = "boolean",
@@ -19243,6 +20262,7 @@ M.TopicRelativeDateFilterFunction = {
 
 M.TopicRelativeDateFilter = {
     type = "structure",
+    id = "TopicRelativeDateFilter",
     members = {
         TimeGranularity = {
             type = "string",
@@ -19256,6 +20276,7 @@ M.TopicRelativeDateFilter = {
 
 M.TopicFilter = {
     type = "structure",
+    id = "TopicFilter",
     members = {
         FilterDescription = {
             type = "string",
@@ -19309,6 +20330,7 @@ M.NamedEntityAggType = {
 
 M.NamedEntityDefinitionMetric = {
     type = "structure",
+    id = "NamedEntityDefinitionMetric",
     members = {
         Aggregation = {
             type = "string",
@@ -19334,6 +20356,7 @@ M.PropertyUsage = {
 
 M.NamedEntityDefinition = {
     type = "structure",
+    id = "NamedEntityDefinition",
     members = {
         FieldName = {
             type = "string",
@@ -19353,6 +20376,7 @@ M.NamedEntityDefinition = {
 
 M.SemanticEntityType = {
     type = "structure",
+    id = "SemanticEntityType",
     members = {
         TypeName = {
             type = "string",
@@ -19370,6 +20394,7 @@ M.SemanticEntityType = {
 
 M.TopicNamedEntity = {
     type = "structure",
+    id = "TopicNamedEntity",
     members = {
         EntityName = {
             type = "string",
@@ -19394,6 +20419,7 @@ M.TopicNamedEntity = {
 
 M.DatasetMetadata = {
     type = "structure",
+    id = "DatasetMetadata",
     members = {
         DatasetArn = {
             type = "string",
@@ -19434,6 +20460,7 @@ M.TopicUserExperienceVersion = {
 
 M.TopicDetails = {
     type = "structure",
+    id = "TopicDetails",
     members = {
         Name = {
             type = "string",
@@ -19454,6 +20481,7 @@ M.TopicDetails = {
 
 M.CreateTopicInput = {
     type = "structure",
+    id = "CreateTopicInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -19485,6 +20513,7 @@ M.CreateTopicInput = {
 
 M.CreateTopicOutput = {
     type = "structure",
+    id = "CreateTopicOutput",
     members = {
         Arn = {
             type = "string",
@@ -19517,6 +20546,7 @@ M.TopicScheduleType = {
 
 M.TopicRefreshSchedule = {
     type = "structure",
+    id = "TopicRefreshSchedule",
     members = {
         IsEnabled = {
             type = "boolean",
@@ -19548,6 +20578,7 @@ M.TopicRefreshSchedule = {
 
 M.CreateTopicRefreshScheduleInput = {
     type = "structure",
+    id = "CreateTopicRefreshScheduleInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -19580,6 +20611,7 @@ M.CreateTopicRefreshScheduleInput = {
 
 M.CreateTopicRefreshScheduleOutput = {
     type = "structure",
+    id = "CreateTopicRefreshScheduleOutput",
     members = {
         TopicId = {
             type = "string",
@@ -19605,6 +20637,7 @@ M.CreateTopicRefreshScheduleOutput = {
 
 M.CreateVPCConnectionInput = {
     type = "structure",
+    id = "CreateVPCConnectionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -19676,6 +20709,7 @@ M.VPCConnectionResourceStatus = {
 
 M.CreateVPCConnectionOutput = {
     type = "structure",
+    id = "CreateVPCConnectionOutput",
     members = {
         Arn = {
             type = "string",
@@ -19704,6 +20738,7 @@ M.CreateVPCConnectionOutput = {
 
 M.CustomPermissions = {
     type = "structure",
+    id = "CustomPermissions",
     members = {
         Arn = {
             type = "string",
@@ -19730,6 +20765,7 @@ M.DashboardErrorType = {
 
 M.DashboardError = {
     type = "structure",
+    id = "DashboardError",
     members = {
         Type = {
             type = "string",
@@ -19746,6 +20782,7 @@ M.DashboardError = {
 
 M.DashboardVersion = {
     type = "structure",
+    id = "DashboardVersion",
     members = {
         CreatedTime = {
             type = "timestamp",
@@ -19785,6 +20822,7 @@ M.DashboardVersion = {
 
 M.Dashboard = {
     type = "structure",
+    id = "Dashboard",
     members = {
         DashboardId = {
             type = "string",
@@ -19814,6 +20852,7 @@ M.Dashboard = {
 
 M.DashboardCustomizationSummaryConfigurations = {
     type = "structure",
+    id = "DashboardCustomizationSummaryConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -19837,6 +20876,7 @@ M.DashboardFilterAttribute = {
 
 M.DashboardSearchFilter = {
     type = "structure",
+    id = "DashboardSearchFilter",
     members = {
         Operator = {
             type = "string",
@@ -19860,6 +20900,7 @@ M.DashboardsQAStatus = {
 
 M.DashboardSummary = {
     type = "structure",
+    id = "DashboardSummary",
     members = {
         Arn = {
             type = "string",
@@ -19887,6 +20928,7 @@ M.DashboardSummary = {
 
 M.DashboardVersionSummary = {
     type = "structure",
+    id = "DashboardVersionSummary",
     members = {
         Arn = {
             type = "string",
@@ -19911,6 +20953,7 @@ M.DashboardVersionSummary = {
 
 M.DashboardVisualResult = {
     type = "structure",
+    id = "DashboardVisualResult",
     members = {
         DashboardId = {
             type = "string",
@@ -19941,6 +20984,7 @@ M.DashboardVisualResult = {
 
 M.OutputColumn = {
     type = "structure",
+    id = "OutputColumn",
     members = {
         Name = {
             type = "string",
@@ -19962,6 +21006,7 @@ M.OutputColumn = {
 
 M.DataSet = {
     type = "structure",
+    id = "DataSet",
     members = {
         Arn = {
             type = "string",
@@ -20041,6 +21086,7 @@ M.DataSetFilterAttribute = {
 
 M.DataSetSearchFilter = {
     type = "structure",
+    id = "DataSetSearchFilter",
     members = {
         Operator = {
             type = "string",
@@ -20065,6 +21111,7 @@ M.DataSetSearchFilter = {
 
 M.DataSetSummary = {
     type = "structure",
+    id = "DataSetSummary",
     members = {
         Arn = {
             type = "string",
@@ -20121,6 +21168,7 @@ M.DataSourceErrorInfoType = {
 
 M.DataSourceErrorInfo = {
     type = "structure",
+    id = "DataSourceErrorInfo",
     members = {
         Type = {
             type = "string",
@@ -20133,6 +21181,7 @@ M.DataSourceErrorInfo = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         Arn = {
             type = "string",
@@ -20178,6 +21227,7 @@ M.DataSourceFilterAttribute = {
 
 M.DataSourceSearchFilter = {
     type = "structure",
+    id = "DataSourceSearchFilter",
     members = {
         Operator = {
             type = "string",
@@ -20202,6 +21252,7 @@ M.DataSourceSearchFilter = {
 
 M.DataSourceSummary = {
     type = "structure",
+    id = "DataSourceSummary",
     members = {
         Arn = {
             type = "string",
@@ -20226,6 +21277,7 @@ M.DataSourceSummary = {
 
 M.DeleteAccountCustomizationInput = {
     type = "structure",
+    id = "DeleteAccountCustomizationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20245,6 +21297,7 @@ M.DeleteAccountCustomizationInput = {
 
 M.DeleteAccountCustomizationOutput = {
     type = "structure",
+    id = "DeleteAccountCustomizationOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20261,6 +21314,7 @@ M.DeleteAccountCustomizationOutput = {
 
 M.DeleteAccountCustomPermissionInput = {
     type = "structure",
+    id = "DeleteAccountCustomPermissionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20274,6 +21328,7 @@ M.DeleteAccountCustomPermissionInput = {
 
 M.DeleteAccountCustomPermissionOutput = {
     type = "structure",
+    id = "DeleteAccountCustomPermissionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20289,6 +21344,7 @@ M.DeleteAccountCustomPermissionOutput = {
 
 M.DeleteAccountSubscriptionInput = {
     type = "structure",
+    id = "DeleteAccountSubscriptionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20302,6 +21358,7 @@ M.DeleteAccountSubscriptionInput = {
 
 M.DeleteAccountSubscriptionOutput = {
     type = "structure",
+    id = "DeleteAccountSubscriptionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20318,6 +21375,7 @@ M.DeleteAccountSubscriptionOutput = {
 
 M.DeleteActionConnectorInput = {
     type = "structure",
+    id = "DeleteActionConnectorInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20338,6 +21396,7 @@ M.DeleteActionConnectorInput = {
 
 M.DeleteActionConnectorOutput = {
     type = "structure",
+    id = "DeleteActionConnectorOutput",
     members = {
         Arn = {
             type = "string",
@@ -20360,6 +21419,7 @@ M.DeleteActionConnectorOutput = {
 
 M.DeleteAnalysisInput = {
     type = "structure",
+    id = "DeleteAnalysisInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20393,6 +21453,7 @@ M.DeleteAnalysisInput = {
 
 M.DeleteAnalysisOutput = {
     type = "structure",
+    id = "DeleteAnalysisOutput",
     members = {
         Status = {
             type = "integer",
@@ -20418,6 +21479,7 @@ M.DeleteAnalysisOutput = {
 
 M.DeleteBrandInput = {
     type = "structure",
+    id = "DeleteBrandInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20438,6 +21500,7 @@ M.DeleteBrandInput = {
 
 M.DeleteBrandOutput = {
     type = "structure",
+    id = "DeleteBrandOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20447,6 +21510,7 @@ M.DeleteBrandOutput = {
 
 M.DeleteBrandAssignmentInput = {
     type = "structure",
+    id = "DeleteBrandAssignmentInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20460,6 +21524,7 @@ M.DeleteBrandAssignmentInput = {
 
 M.DeleteBrandAssignmentOutput = {
     type = "structure",
+    id = "DeleteBrandAssignmentOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20469,6 +21534,7 @@ M.DeleteBrandAssignmentOutput = {
 
 M.DeleteCustomPermissionsInput = {
     type = "structure",
+    id = "DeleteCustomPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20489,6 +21555,7 @@ M.DeleteCustomPermissionsInput = {
 
 M.DeleteCustomPermissionsOutput = {
     type = "structure",
+    id = "DeleteCustomPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -20507,6 +21574,7 @@ M.DeleteCustomPermissionsOutput = {
 
 M.DeleteDashboardInput = {
     type = "structure",
+    id = "DeleteDashboardInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20533,6 +21601,7 @@ M.DeleteDashboardInput = {
 
 M.DeleteDashboardOutput = {
     type = "structure",
+    id = "DeleteDashboardOutput",
     members = {
         Status = {
             type = "integer",
@@ -20555,6 +21624,7 @@ M.DeleteDashboardOutput = {
 
 M.DeleteDataSetInput = {
     type = "structure",
+    id = "DeleteDataSetInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20575,6 +21645,7 @@ M.DeleteDataSetInput = {
 
 M.DeleteDataSetOutput = {
     type = "structure",
+    id = "DeleteDataSetOutput",
     members = {
         Arn = {
             type = "string",
@@ -20597,6 +21668,7 @@ M.DeleteDataSetOutput = {
 
 M.DeleteDataSetRefreshPropertiesInput = {
     type = "structure",
+    id = "DeleteDataSetRefreshPropertiesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20617,6 +21689,7 @@ M.DeleteDataSetRefreshPropertiesInput = {
 
 M.DeleteDataSetRefreshPropertiesOutput = {
     type = "structure",
+    id = "DeleteDataSetRefreshPropertiesOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20633,6 +21706,7 @@ M.DeleteDataSetRefreshPropertiesOutput = {
 
 M.DeleteDataSourceInput = {
     type = "structure",
+    id = "DeleteDataSourceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20653,6 +21727,7 @@ M.DeleteDataSourceInput = {
 
 M.DeleteDataSourceOutput = {
     type = "structure",
+    id = "DeleteDataSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -20675,6 +21750,7 @@ M.DeleteDataSourceOutput = {
 
 M.DeleteDefaultQBusinessApplicationInput = {
     type = "structure",
+    id = "DeleteDefaultQBusinessApplicationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20694,6 +21770,7 @@ M.DeleteDefaultQBusinessApplicationInput = {
 
 M.DeleteDefaultQBusinessApplicationOutput = {
     type = "structure",
+    id = "DeleteDefaultQBusinessApplicationOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20710,6 +21787,7 @@ M.DeleteDefaultQBusinessApplicationOutput = {
 
 M.DeleteFolderInput = {
     type = "structure",
+    id = "DeleteFolderInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20730,6 +21808,7 @@ M.DeleteFolderInput = {
 
 M.DeleteFolderOutput = {
     type = "structure",
+    id = "DeleteFolderOutput",
     members = {
         Status = {
             type = "integer",
@@ -20752,6 +21831,7 @@ M.DeleteFolderOutput = {
 
 M.DeleteFolderMembershipInput = {
     type = "structure",
+    id = "DeleteFolderMembershipInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20786,6 +21866,7 @@ M.DeleteFolderMembershipInput = {
 
 M.DeleteFolderMembershipOutput = {
     type = "structure",
+    id = "DeleteFolderMembershipOutput",
     members = {
         Status = {
             type = "integer",
@@ -20801,6 +21882,7 @@ M.DeleteFolderMembershipOutput = {
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -20828,6 +21910,7 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20844,6 +21927,7 @@ M.DeleteGroupOutput = {
 
 M.DeleteGroupMembershipInput = {
     type = "structure",
+    id = "DeleteGroupMembershipInput",
     members = {
         MemberName = {
             type = "string",
@@ -20878,6 +21962,7 @@ M.DeleteGroupMembershipInput = {
 
 M.DeleteGroupMembershipOutput = {
     type = "structure",
+    id = "DeleteGroupMembershipOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20894,6 +21979,7 @@ M.DeleteGroupMembershipOutput = {
 
 M.DeleteIAMPolicyAssignmentInput = {
     type = "structure",
+    id = "DeleteIAMPolicyAssignmentInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20921,6 +22007,7 @@ M.DeleteIAMPolicyAssignmentInput = {
 
 M.DeleteIAMPolicyAssignmentOutput = {
     type = "structure",
+    id = "DeleteIAMPolicyAssignmentOutput",
     members = {
         AssignmentName = {
             type = "string",
@@ -20940,6 +22027,7 @@ M.DeleteIAMPolicyAssignmentOutput = {
 
 M.DeleteIdentityPropagationConfigInput = {
     type = "structure",
+    id = "DeleteIdentityPropagationConfigInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20960,6 +22048,7 @@ M.DeleteIdentityPropagationConfigInput = {
 
 M.DeleteIdentityPropagationConfigOutput = {
     type = "structure",
+    id = "DeleteIdentityPropagationConfigOutput",
     members = {
         RequestId = {
             type = "string",
@@ -20976,6 +22065,7 @@ M.DeleteIdentityPropagationConfigOutput = {
 
 M.DeleteNamespaceInput = {
     type = "structure",
+    id = "DeleteNamespaceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -20996,6 +22086,7 @@ M.DeleteNamespaceInput = {
 
 M.DeleteNamespaceOutput = {
     type = "structure",
+    id = "DeleteNamespaceOutput",
     members = {
         RequestId = {
             type = "string",
@@ -21012,6 +22103,7 @@ M.DeleteNamespaceOutput = {
 
 M.DeleteRefreshScheduleInput = {
     type = "structure",
+    id = "DeleteRefreshScheduleInput",
     members = {
         DataSetId = {
             type = "string",
@@ -21039,6 +22131,7 @@ M.DeleteRefreshScheduleInput = {
 
 M.DeleteRefreshScheduleOutput = {
     type = "structure",
+    id = "DeleteRefreshScheduleOutput",
     members = {
         Status = {
             type = "integer",
@@ -21061,6 +22154,7 @@ M.DeleteRefreshScheduleOutput = {
 
 M.DeleteRoleCustomPermissionInput = {
     type = "structure",
+    id = "DeleteRoleCustomPermissionInput",
     members = {
         Role = {
             type = "string",
@@ -21088,6 +22182,7 @@ M.DeleteRoleCustomPermissionInput = {
 
 M.DeleteRoleCustomPermissionOutput = {
     type = "structure",
+    id = "DeleteRoleCustomPermissionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -21103,6 +22198,7 @@ M.DeleteRoleCustomPermissionOutput = {
 
 M.DeleteRoleMembershipInput = {
     type = "structure",
+    id = "DeleteRoleMembershipInput",
     members = {
         MemberName = {
             type = "string",
@@ -21137,6 +22233,7 @@ M.DeleteRoleMembershipInput = {
 
 M.DeleteRoleMembershipOutput = {
     type = "structure",
+    id = "DeleteRoleMembershipOutput",
     members = {
         RequestId = {
             type = "string",
@@ -21153,6 +22250,7 @@ M.DeleteRoleMembershipOutput = {
 
 M.DeleteTemplateInput = {
     type = "structure",
+    id = "DeleteTemplateInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21179,6 +22277,7 @@ M.DeleteTemplateInput = {
 
 M.DeleteTemplateOutput = {
     type = "structure",
+    id = "DeleteTemplateOutput",
     members = {
         RequestId = {
             type = "string",
@@ -21201,6 +22300,7 @@ M.DeleteTemplateOutput = {
 
 M.DeleteTemplateAliasInput = {
     type = "structure",
+    id = "DeleteTemplateAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21228,6 +22328,7 @@ M.DeleteTemplateAliasInput = {
 
 M.DeleteTemplateAliasOutput = {
     type = "structure",
+    id = "DeleteTemplateAliasOutput",
     members = {
         Status = {
             type = "integer",
@@ -21253,6 +22354,7 @@ M.DeleteTemplateAliasOutput = {
 
 M.DeleteThemeInput = {
     type = "structure",
+    id = "DeleteThemeInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21279,6 +22381,7 @@ M.DeleteThemeInput = {
 
 M.DeleteThemeOutput = {
     type = "structure",
+    id = "DeleteThemeOutput",
     members = {
         Arn = {
             type = "string",
@@ -21301,6 +22404,7 @@ M.DeleteThemeOutput = {
 
 M.DeleteThemeAliasInput = {
     type = "structure",
+    id = "DeleteThemeAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21328,6 +22432,7 @@ M.DeleteThemeAliasInput = {
 
 M.DeleteThemeAliasOutput = {
     type = "structure",
+    id = "DeleteThemeAliasOutput",
     members = {
         AliasName = {
             type = "string",
@@ -21353,6 +22458,7 @@ M.DeleteThemeAliasOutput = {
 
 M.DeleteTopicInput = {
     type = "structure",
+    id = "DeleteTopicInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21373,6 +22479,7 @@ M.DeleteTopicInput = {
 
 M.DeleteTopicOutput = {
     type = "structure",
+    id = "DeleteTopicOutput",
     members = {
         Arn = {
             type = "string",
@@ -21395,6 +22502,7 @@ M.DeleteTopicOutput = {
 
 M.DeleteTopicRefreshScheduleInput = {
     type = "structure",
+    id = "DeleteTopicRefreshScheduleInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21422,6 +22530,7 @@ M.DeleteTopicRefreshScheduleInput = {
 
 M.DeleteTopicRefreshScheduleOutput = {
     type = "structure",
+    id = "DeleteTopicRefreshScheduleOutput",
     members = {
         TopicId = {
             type = "string",
@@ -21447,6 +22556,7 @@ M.DeleteTopicRefreshScheduleOutput = {
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         UserName = {
             type = "string",
@@ -21474,6 +22584,7 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
     members = {
         RequestId = {
             type = "string",
@@ -21490,6 +22601,7 @@ M.DeleteUserOutput = {
 
 M.DeleteUserByPrincipalIdInput = {
     type = "structure",
+    id = "DeleteUserByPrincipalIdInput",
     members = {
         PrincipalId = {
             type = "string",
@@ -21517,6 +22629,7 @@ M.DeleteUserByPrincipalIdInput = {
 
 M.DeleteUserByPrincipalIdOutput = {
     type = "structure",
+    id = "DeleteUserByPrincipalIdOutput",
     members = {
         RequestId = {
             type = "string",
@@ -21533,6 +22646,7 @@ M.DeleteUserByPrincipalIdOutput = {
 
 M.DeleteUserCustomPermissionInput = {
     type = "structure",
+    id = "DeleteUserCustomPermissionInput",
     members = {
         UserName = {
             type = "string",
@@ -21560,6 +22674,7 @@ M.DeleteUserCustomPermissionInput = {
 
 M.DeleteUserCustomPermissionOutput = {
     type = "structure",
+    id = "DeleteUserCustomPermissionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -21576,6 +22691,7 @@ M.DeleteUserCustomPermissionOutput = {
 
 M.DeleteVPCConnectionInput = {
     type = "structure",
+    id = "DeleteVPCConnectionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21596,6 +22712,7 @@ M.DeleteVPCConnectionInput = {
 
 M.DeleteVPCConnectionOutput = {
     type = "structure",
+    id = "DeleteVPCConnectionOutput",
     members = {
         Arn = {
             type = "string",
@@ -21624,6 +22741,7 @@ M.DeleteVPCConnectionOutput = {
 
 M.DescribeAccountCustomizationInput = {
     type = "structure",
+    id = "DescribeAccountCustomizationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21650,6 +22768,7 @@ M.DescribeAccountCustomizationInput = {
 
 M.DescribeAccountCustomizationOutput = {
     type = "structure",
+    id = "DescribeAccountCustomizationOutput",
     members = {
         Arn = {
             type = "string",
@@ -21676,6 +22795,7 @@ M.DescribeAccountCustomizationOutput = {
 
 M.DescribeAccountCustomPermissionInput = {
     type = "structure",
+    id = "DescribeAccountCustomPermissionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21689,6 +22809,7 @@ M.DescribeAccountCustomPermissionInput = {
 
 M.DescribeAccountCustomPermissionOutput = {
     type = "structure",
+    id = "DescribeAccountCustomPermissionOutput",
     members = {
         CustomPermissionsName = {
             type = "string",
@@ -21707,6 +22828,7 @@ M.DescribeAccountCustomPermissionOutput = {
 
 M.DescribeAccountSettingsInput = {
     type = "structure",
+    id = "DescribeAccountSettingsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21720,6 +22842,7 @@ M.DescribeAccountSettingsInput = {
 
 M.DescribeAccountSettingsOutput = {
     type = "structure",
+    id = "DescribeAccountSettingsOutput",
     members = {
         AccountSettings = M.AccountSettings,
         RequestId = {
@@ -21737,6 +22860,7 @@ M.DescribeAccountSettingsOutput = {
 
 M.DescribeAccountSubscriptionInput = {
     type = "structure",
+    id = "DescribeAccountSubscriptionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21750,6 +22874,7 @@ M.DescribeAccountSubscriptionInput = {
 
 M.DescribeAccountSubscriptionOutput = {
     type = "structure",
+    id = "DescribeAccountSubscriptionOutput",
     members = {
         AccountInfo = M.AccountInfo,
         Status = {
@@ -21767,6 +22892,7 @@ M.DescribeAccountSubscriptionOutput = {
 
 M.DescribeActionConnectorInput = {
     type = "structure",
+    id = "DescribeActionConnectorInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21787,6 +22913,7 @@ M.DescribeActionConnectorInput = {
 
 M.DescribeActionConnectorOutput = {
     type = "structure",
+    id = "DescribeActionConnectorOutput",
     members = {
         ActionConnector = M.ActionConnector,
         RequestId = {
@@ -21804,6 +22931,7 @@ M.DescribeActionConnectorOutput = {
 
 M.DescribeActionConnectorPermissionsInput = {
     type = "structure",
+    id = "DescribeActionConnectorPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21824,6 +22952,7 @@ M.DescribeActionConnectorPermissionsInput = {
 
 M.DescribeActionConnectorPermissionsOutput = {
     type = "structure",
+    id = "DescribeActionConnectorPermissionsOutput",
     members = {
         Arn = {
             type = "string",
@@ -21850,6 +22979,7 @@ M.DescribeActionConnectorPermissionsOutput = {
 
 M.DescribeAnalysisInput = {
     type = "structure",
+    id = "DescribeAnalysisInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21870,6 +23000,7 @@ M.DescribeAnalysisInput = {
 
 M.DescribeAnalysisOutput = {
     type = "structure",
+    id = "DescribeAnalysisOutput",
     members = {
         Analysis = M.Analysis,
         Status = {
@@ -21887,6 +23018,7 @@ M.DescribeAnalysisOutput = {
 
 M.DescribeAnalysisDefinitionInput = {
     type = "structure",
+    id = "DescribeAnalysisDefinitionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21907,6 +23039,7 @@ M.DescribeAnalysisDefinitionInput = {
 
 M.DescribeAnalysisDefinitionOutput = {
     type = "structure",
+    id = "DescribeAnalysisDefinitionOutput",
     members = {
         AnalysisId = {
             type = "string",
@@ -21940,6 +23073,7 @@ M.DescribeAnalysisDefinitionOutput = {
 
 M.DescribeAnalysisPermissionsInput = {
     type = "structure",
+    id = "DescribeAnalysisPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -21960,6 +23094,7 @@ M.DescribeAnalysisPermissionsInput = {
 
 M.DescribeAnalysisPermissionsOutput = {
     type = "structure",
+    id = "DescribeAnalysisPermissionsOutput",
     members = {
         AnalysisId = {
             type = "string",
@@ -21986,6 +23121,7 @@ M.DescribeAnalysisPermissionsOutput = {
 
 M.DescribeAssetBundleExportJobInput = {
     type = "structure",
+    id = "DescribeAssetBundleExportJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22012,6 +23148,7 @@ M.IncludeFolderMembers = {
 
 M.DescribeAssetBundleExportJobOutput = {
     type = "structure",
+    id = "DescribeAssetBundleExportJobOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -22090,6 +23227,7 @@ M.DescribeAssetBundleExportJobOutput = {
 
 M.DescribeAssetBundleImportJobInput = {
     type = "structure",
+    id = "DescribeAssetBundleImportJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22110,6 +23248,7 @@ M.DescribeAssetBundleImportJobInput = {
 
 M.DescribeAssetBundleImportJobOutput = {
     type = "structure",
+    id = "DescribeAssetBundleImportJobOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -22161,6 +23300,7 @@ M.DescribeAssetBundleImportJobOutput = {
 
 M.DescribeAutomationJobInput = {
     type = "structure",
+    id = "DescribeAutomationJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22209,6 +23349,7 @@ M.DescribeAutomationJobInput = {
 
 M.DescribeAutomationJobOutput = {
     type = "structure",
+    id = "DescribeAutomationJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -22245,6 +23386,7 @@ M.DescribeAutomationJobOutput = {
 
 M.DescribeBrandInput = {
     type = "structure",
+    id = "DescribeBrandInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22271,6 +23413,7 @@ M.DescribeBrandInput = {
 
 M.DescribeBrandOutput = {
     type = "structure",
+    id = "DescribeBrandOutput",
     members = {
         RequestId = {
             type = "string",
@@ -22282,6 +23425,7 @@ M.DescribeBrandOutput = {
 
 M.DescribeBrandAssignmentInput = {
     type = "structure",
+    id = "DescribeBrandAssignmentInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22295,6 +23439,7 @@ M.DescribeBrandAssignmentInput = {
 
 M.DescribeBrandAssignmentOutput = {
     type = "structure",
+    id = "DescribeBrandAssignmentOutput",
     members = {
         RequestId = {
             type = "string",
@@ -22307,6 +23452,7 @@ M.DescribeBrandAssignmentOutput = {
 
 M.DescribeBrandPublishedVersionInput = {
     type = "structure",
+    id = "DescribeBrandPublishedVersionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22327,6 +23473,7 @@ M.DescribeBrandPublishedVersionInput = {
 
 M.DescribeBrandPublishedVersionOutput = {
     type = "structure",
+    id = "DescribeBrandPublishedVersionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -22338,6 +23485,7 @@ M.DescribeBrandPublishedVersionOutput = {
 
 M.DescribeCustomPermissionsInput = {
     type = "structure",
+    id = "DescribeCustomPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22358,6 +23506,7 @@ M.DescribeCustomPermissionsInput = {
 
 M.DescribeCustomPermissionsOutput = {
     type = "structure",
+    id = "DescribeCustomPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -22374,6 +23523,7 @@ M.DescribeCustomPermissionsOutput = {
 
 M.DescribeDashboardInput = {
     type = "structure",
+    id = "DescribeDashboardInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22406,6 +23556,7 @@ M.DescribeDashboardInput = {
 
 M.DescribeDashboardOutput = {
     type = "structure",
+    id = "DescribeDashboardOutput",
     members = {
         Dashboard = M.Dashboard,
         Status = {
@@ -22423,6 +23574,7 @@ M.DescribeDashboardOutput = {
 
 M.DescribeDashboardDefinitionInput = {
     type = "structure",
+    id = "DescribeDashboardDefinitionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22455,6 +23607,7 @@ M.DescribeDashboardDefinitionInput = {
 
 M.DescribeDashboardDefinitionOutput = {
     type = "structure",
+    id = "DescribeDashboardDefinitionOutput",
     members = {
         DashboardId = {
             type = "string",
@@ -22489,6 +23642,7 @@ M.DescribeDashboardDefinitionOutput = {
 
 M.DescribeDashboardPermissionsInput = {
     type = "structure",
+    id = "DescribeDashboardPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22509,6 +23663,7 @@ M.DescribeDashboardPermissionsInput = {
 
 M.DescribeDashboardPermissionsOutput = {
     type = "structure",
+    id = "DescribeDashboardPermissionsOutput",
     members = {
         DashboardId = {
             type = "string",
@@ -22536,6 +23691,7 @@ M.DescribeDashboardPermissionsOutput = {
 
 M.DescribeDashboardSnapshotJobInput = {
     type = "structure",
+    id = "DescribeDashboardSnapshotJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22570,6 +23726,7 @@ M.SnapshotJobStatus = {
 
 M.SnapshotDestinationConfiguration = {
     type = "structure",
+    id = "SnapshotDestinationConfiguration",
     members = {
         S3Destinations = {
             type = "list",
@@ -22580,6 +23737,7 @@ M.SnapshotDestinationConfiguration = {
 
 M.SnapshotFileGroup = {
     type = "structure",
+    id = "SnapshotFileGroup",
     members = {
         Files = {
             type = "list",
@@ -22590,6 +23748,7 @@ M.SnapshotFileGroup = {
 
 M.SnapshotConfiguration = {
     type = "structure",
+    id = "SnapshotConfiguration",
     members = {
         FileGroups = {
             type = "list",
@@ -22605,6 +23764,7 @@ M.SnapshotConfiguration = {
 
 M.SnapshotAnonymousUserRedacted = {
     type = "structure",
+    id = "SnapshotAnonymousUserRedacted",
     members = {
         RowLevelPermissionTagKeys = {
             type = "list",
@@ -22615,6 +23775,7 @@ M.SnapshotAnonymousUserRedacted = {
 
 M.SnapshotUserConfigurationRedacted = {
     type = "structure",
+    id = "SnapshotUserConfigurationRedacted",
     members = {
         AnonymousUsers = {
             type = "list",
@@ -22625,6 +23786,7 @@ M.SnapshotUserConfigurationRedacted = {
 
 M.DescribeDashboardSnapshotJobOutput = {
     type = "structure",
+    id = "DescribeDashboardSnapshotJobOutput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22663,6 +23825,7 @@ M.DescribeDashboardSnapshotJobOutput = {
 
 M.DescribeDashboardSnapshotJobResultInput = {
     type = "structure",
+    id = "DescribeDashboardSnapshotJobResultInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22690,6 +23853,7 @@ M.DescribeDashboardSnapshotJobResultInput = {
 
 M.SnapshotJobErrorInfo = {
     type = "structure",
+    id = "SnapshotJobErrorInfo",
     members = {
         ErrorMessage = {
             type = "string",
@@ -22702,6 +23866,7 @@ M.SnapshotJobErrorInfo = {
 
 M.RegisteredUserSnapshotJobResult = {
     type = "structure",
+    id = "RegisteredUserSnapshotJobResult",
     members = {
         FileGroups = {
             type = "list",
@@ -22712,6 +23877,7 @@ M.RegisteredUserSnapshotJobResult = {
 
 M.SnapshotJobResult = {
     type = "structure",
+    id = "SnapshotJobResult",
     members = {
         AnonymousUsers = {
             type = "list",
@@ -22726,6 +23892,7 @@ M.SnapshotJobResult = {
 
 M.DescribeDashboardSnapshotJobResultOutput = {
     type = "structure",
+    id = "DescribeDashboardSnapshotJobResultOutput",
     members = {
         Arn = {
             type = "string",
@@ -22756,6 +23923,7 @@ M.DescribeDashboardSnapshotJobResultOutput = {
 
 M.DescribeDashboardsQAConfigurationInput = {
     type = "structure",
+    id = "DescribeDashboardsQAConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22769,6 +23937,7 @@ M.DescribeDashboardsQAConfigurationInput = {
 
 M.DescribeDashboardsQAConfigurationOutput = {
     type = "structure",
+    id = "DescribeDashboardsQAConfigurationOutput",
     members = {
         DashboardsQAStatus = {
             type = "string",
@@ -22788,6 +23957,7 @@ M.DescribeDashboardsQAConfigurationOutput = {
 
 M.DescribeDataSetInput = {
     type = "structure",
+    id = "DescribeDataSetInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22808,6 +23978,7 @@ M.DescribeDataSetInput = {
 
 M.DescribeDataSetOutput = {
     type = "structure",
+    id = "DescribeDataSetOutput",
     members = {
         DataSet = M.DataSet,
         RequestId = {
@@ -22825,6 +23996,7 @@ M.DescribeDataSetOutput = {
 
 M.DescribeDataSetPermissionsInput = {
     type = "structure",
+    id = "DescribeDataSetPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22845,6 +24017,7 @@ M.DescribeDataSetPermissionsInput = {
 
 M.DescribeDataSetPermissionsOutput = {
     type = "structure",
+    id = "DescribeDataSetPermissionsOutput",
     members = {
         DataSetArn = {
             type = "string",
@@ -22871,6 +24044,7 @@ M.DescribeDataSetPermissionsOutput = {
 
 M.DescribeDataSetRefreshPropertiesInput = {
     type = "structure",
+    id = "DescribeDataSetRefreshPropertiesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22891,6 +24065,7 @@ M.DescribeDataSetRefreshPropertiesInput = {
 
 M.DescribeDataSetRefreshPropertiesOutput = {
     type = "structure",
+    id = "DescribeDataSetRefreshPropertiesOutput",
     members = {
         RequestId = {
             type = "string",
@@ -22908,6 +24083,7 @@ M.DescribeDataSetRefreshPropertiesOutput = {
 
 M.DescribeDataSourceInput = {
     type = "structure",
+    id = "DescribeDataSourceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22928,6 +24104,7 @@ M.DescribeDataSourceInput = {
 
 M.DescribeDataSourceOutput = {
     type = "structure",
+    id = "DescribeDataSourceOutput",
     members = {
         DataSource = M.DataSource,
         RequestId = {
@@ -22945,6 +24122,7 @@ M.DescribeDataSourceOutput = {
 
 M.DescribeDataSourcePermissionsInput = {
     type = "structure",
+    id = "DescribeDataSourcePermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -22965,6 +24143,7 @@ M.DescribeDataSourcePermissionsInput = {
 
 M.DescribeDataSourcePermissionsOutput = {
     type = "structure",
+    id = "DescribeDataSourcePermissionsOutput",
     members = {
         DataSourceArn = {
             type = "string",
@@ -22991,6 +24170,7 @@ M.DescribeDataSourcePermissionsOutput = {
 
 M.DescribeDefaultQBusinessApplicationInput = {
     type = "structure",
+    id = "DescribeDefaultQBusinessApplicationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23010,6 +24190,7 @@ M.DescribeDefaultQBusinessApplicationInput = {
 
 M.DescribeDefaultQBusinessApplicationOutput = {
     type = "structure",
+    id = "DescribeDefaultQBusinessApplicationOutput",
     members = {
         RequestId = {
             type = "string",
@@ -23029,6 +24210,7 @@ M.DescribeDefaultQBusinessApplicationOutput = {
 
 M.DescribeFolderInput = {
     type = "structure",
+    id = "DescribeFolderInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23049,6 +24231,7 @@ M.DescribeFolderInput = {
 
 M.Folder = {
     type = "structure",
+    id = "Folder",
     members = {
         FolderId = {
             type = "string",
@@ -23080,6 +24263,7 @@ M.Folder = {
 
 M.DescribeFolderOutput = {
     type = "structure",
+    id = "DescribeFolderOutput",
     members = {
         Status = {
             type = "integer",
@@ -23097,6 +24281,7 @@ M.DescribeFolderOutput = {
 
 M.DescribeFolderPermissionsInput = {
     type = "structure",
+    id = "DescribeFolderPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23135,6 +24320,7 @@ M.DescribeFolderPermissionsInput = {
 
 M.DescribeFolderPermissionsOutput = {
     type = "structure",
+    id = "DescribeFolderPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -23164,6 +24350,7 @@ M.DescribeFolderPermissionsOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -23177,6 +24364,7 @@ M.InvalidNextTokenException = {
 
 M.DescribeFolderResolvedPermissionsInput = {
     type = "structure",
+    id = "DescribeFolderResolvedPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23215,6 +24403,7 @@ M.DescribeFolderResolvedPermissionsInput = {
 
 M.DescribeFolderResolvedPermissionsOutput = {
     type = "structure",
+    id = "DescribeFolderResolvedPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -23244,6 +24433,7 @@ M.DescribeFolderResolvedPermissionsOutput = {
 
 M.DescribeGroupInput = {
     type = "structure",
+    id = "DescribeGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -23271,6 +24461,7 @@ M.DescribeGroupInput = {
 
 M.DescribeGroupOutput = {
     type = "structure",
+    id = "DescribeGroupOutput",
     members = {
         Group = M.Group,
         RequestId = {
@@ -23288,6 +24479,7 @@ M.DescribeGroupOutput = {
 
 M.DescribeGroupMembershipInput = {
     type = "structure",
+    id = "DescribeGroupMembershipInput",
     members = {
         MemberName = {
             type = "string",
@@ -23322,6 +24514,7 @@ M.DescribeGroupMembershipInput = {
 
 M.DescribeGroupMembershipOutput = {
     type = "structure",
+    id = "DescribeGroupMembershipOutput",
     members = {
         GroupMember = M.GroupMember,
         RequestId = {
@@ -23339,6 +24532,7 @@ M.DescribeGroupMembershipOutput = {
 
 M.DescribeIAMPolicyAssignmentInput = {
     type = "structure",
+    id = "DescribeIAMPolicyAssignmentInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23366,6 +24560,7 @@ M.DescribeIAMPolicyAssignmentInput = {
 
 M.IAMPolicyAssignment = {
     type = "structure",
+    id = "IAMPolicyAssignment",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23392,6 +24587,7 @@ M.IAMPolicyAssignment = {
 
 M.DescribeIAMPolicyAssignmentOutput = {
     type = "structure",
+    id = "DescribeIAMPolicyAssignmentOutput",
     members = {
         IAMPolicyAssignment = M.IAMPolicyAssignment,
         RequestId = {
@@ -23409,6 +24605,7 @@ M.DescribeIAMPolicyAssignmentOutput = {
 
 M.DescribeIngestionInput = {
     type = "structure",
+    id = "DescribeIngestionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23484,6 +24681,7 @@ M.IngestionErrorType = {
 
 M.ErrorInfo = {
     type = "structure",
+    id = "ErrorInfo",
     members = {
         Type = {
             type = "string",
@@ -23496,6 +24694,7 @@ M.ErrorInfo = {
 
 M.QueueInfo = {
     type = "structure",
+    id = "QueueInfo",
     members = {
         WaitingOnIngestion = {
             type = "string",
@@ -23526,6 +24725,7 @@ M.IngestionRequestType = {
 
 M.RowInfo = {
     type = "structure",
+    id = "RowInfo",
     members = {
         RowsIngested = {
             type = "long",
@@ -23550,6 +24750,7 @@ M.RowInfo = {
 
 M.Ingestion = {
     type = "structure",
+    id = "Ingestion",
     members = {
         Arn = {
             type = "string",
@@ -23598,6 +24799,7 @@ M.Ingestion = {
 
 M.DescribeIngestionOutput = {
     type = "structure",
+    id = "DescribeIngestionOutput",
     members = {
         Ingestion = M.Ingestion,
         RequestId = {
@@ -23615,6 +24817,7 @@ M.DescribeIngestionOutput = {
 
 M.DescribeIpRestrictionInput = {
     type = "structure",
+    id = "DescribeIpRestrictionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23628,6 +24831,7 @@ M.DescribeIpRestrictionInput = {
 
 M.DescribeIpRestrictionOutput = {
     type = "structure",
+    id = "DescribeIpRestrictionOutput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23665,6 +24869,7 @@ M.DescribeIpRestrictionOutput = {
 
 M.DescribeKeyRegistrationInput = {
     type = "structure",
+    id = "DescribeKeyRegistrationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23685,6 +24890,7 @@ M.DescribeKeyRegistrationInput = {
 
 M.RegisteredCustomerManagedKey = {
     type = "structure",
+    id = "RegisteredCustomerManagedKey",
     members = {
         KeyArn = {
             type = "string",
@@ -23705,6 +24911,7 @@ M.QDataKeyType = {
 
 M.QDataKey = {
     type = "structure",
+    id = "QDataKey",
     members = {
         QDataKeyArn = {
             type = "string",
@@ -23717,6 +24924,7 @@ M.QDataKey = {
 
 M.DescribeKeyRegistrationOutput = {
     type = "structure",
+    id = "DescribeKeyRegistrationOutput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23740,6 +24948,7 @@ M.DescribeKeyRegistrationOutput = {
 
 M.DescribeNamespaceInput = {
     type = "structure",
+    id = "DescribeNamespaceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23765,6 +24974,7 @@ M.NamespaceErrorType = {
 
 M.NamespaceError = {
     type = "structure",
+    id = "NamespaceError",
     members = {
         Type = {
             type = "string",
@@ -23777,6 +24987,7 @@ M.NamespaceError = {
 
 M.NamespaceInfoV2 = {
     type = "structure",
+    id = "NamespaceInfoV2",
     members = {
         Name = {
             type = "string",
@@ -23805,6 +25016,7 @@ M.NamespaceInfoV2 = {
 
 M.DescribeNamespaceOutput = {
     type = "structure",
+    id = "DescribeNamespaceOutput",
     members = {
         Namespace = M.NamespaceInfoV2,
         RequestId = {
@@ -23822,6 +25034,7 @@ M.DescribeNamespaceOutput = {
 
 M.DescribeQPersonalizationConfigurationInput = {
     type = "structure",
+    id = "DescribeQPersonalizationConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23840,6 +25053,7 @@ M.PersonalizationMode = {
 
 M.DescribeQPersonalizationConfigurationOutput = {
     type = "structure",
+    id = "DescribeQPersonalizationConfigurationOutput",
     members = {
         PersonalizationMode = {
             type = "string",
@@ -23859,6 +25073,7 @@ M.DescribeQPersonalizationConfigurationOutput = {
 
 M.DescribeQuickSightQSearchConfigurationInput = {
     type = "structure",
+    id = "DescribeQuickSightQSearchConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23877,6 +25092,7 @@ M.QSearchStatus = {
 
 M.DescribeQuickSightQSearchConfigurationOutput = {
     type = "structure",
+    id = "DescribeQuickSightQSearchConfigurationOutput",
     members = {
         QSearchStatus = {
             type = "string",
@@ -23896,6 +25112,7 @@ M.DescribeQuickSightQSearchConfigurationOutput = {
 
 M.DescribeRefreshScheduleInput = {
     type = "structure",
+    id = "DescribeRefreshScheduleInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -23923,6 +25140,7 @@ M.DescribeRefreshScheduleInput = {
 
 M.DescribeRefreshScheduleOutput = {
     type = "structure",
+    id = "DescribeRefreshScheduleOutput",
     members = {
         RefreshSchedule = M.RefreshSchedule,
         Status = {
@@ -23943,6 +25161,7 @@ M.DescribeRefreshScheduleOutput = {
 
 M.DescribeRoleCustomPermissionInput = {
     type = "structure",
+    id = "DescribeRoleCustomPermissionInput",
     members = {
         Role = {
             type = "string",
@@ -23970,6 +25189,7 @@ M.DescribeRoleCustomPermissionInput = {
 
 M.DescribeRoleCustomPermissionOutput = {
     type = "structure",
+    id = "DescribeRoleCustomPermissionOutput",
     members = {
         CustomPermissionsName = {
             type = "string",
@@ -23988,6 +25208,7 @@ M.DescribeRoleCustomPermissionOutput = {
 
 M.DescribeSelfUpgradeConfigurationInput = {
     type = "structure",
+    id = "DescribeSelfUpgradeConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24013,6 +25234,7 @@ M.SelfUpgradeStatus = {
 
 M.SelfUpgradeConfiguration = {
     type = "structure",
+    id = "SelfUpgradeConfiguration",
     members = {
         SelfUpgradeStatus = {
             type = "string",
@@ -24022,6 +25244,7 @@ M.SelfUpgradeConfiguration = {
 
 M.DescribeSelfUpgradeConfigurationOutput = {
     type = "structure",
+    id = "DescribeSelfUpgradeConfigurationOutput",
     members = {
         SelfUpgradeConfiguration = M.SelfUpgradeConfiguration,
         RequestId = {
@@ -24039,6 +25262,7 @@ M.DescribeSelfUpgradeConfigurationOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -24052,6 +25276,7 @@ M.InvalidParameterException = {
 
 M.DescribeTemplateInput = {
     type = "structure",
+    id = "DescribeTemplateInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24091,6 +25316,7 @@ M.TemplateErrorType = {
 
 M.TemplateError = {
     type = "structure",
+    id = "TemplateError",
     members = {
         Type = {
             type = "string",
@@ -24107,6 +25333,7 @@ M.TemplateError = {
 
 M.TemplateVersion = {
     type = "structure",
+    id = "TemplateVersion",
     members = {
         CreatedTime = {
             type = "timestamp",
@@ -24143,6 +25370,7 @@ M.TemplateVersion = {
 
 M.Template = {
     type = "structure",
+    id = "Template",
     members = {
         Arn = {
             type = "string",
@@ -24165,6 +25393,7 @@ M.Template = {
 
 M.DescribeTemplateOutput = {
     type = "structure",
+    id = "DescribeTemplateOutput",
     members = {
         Template = M.Template,
         Status = {
@@ -24182,6 +25411,7 @@ M.DescribeTemplateOutput = {
 
 M.DescribeTemplateAliasInput = {
     type = "structure",
+    id = "DescribeTemplateAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24209,6 +25439,7 @@ M.DescribeTemplateAliasInput = {
 
 M.DescribeTemplateAliasOutput = {
     type = "structure",
+    id = "DescribeTemplateAliasOutput",
     members = {
         TemplateAlias = M.TemplateAlias,
         Status = {
@@ -24226,6 +25457,7 @@ M.DescribeTemplateAliasOutput = {
 
 M.DescribeTemplateDefinitionInput = {
     type = "structure",
+    id = "DescribeTemplateDefinitionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24258,6 +25490,7 @@ M.DescribeTemplateDefinitionInput = {
 
 M.DescribeTemplateDefinitionOutput = {
     type = "structure",
+    id = "DescribeTemplateDefinitionOutput",
     members = {
         Name = {
             type = "string",
@@ -24291,6 +25524,7 @@ M.DescribeTemplateDefinitionOutput = {
 
 M.DescribeTemplatePermissionsInput = {
     type = "structure",
+    id = "DescribeTemplatePermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24311,6 +25545,7 @@ M.DescribeTemplatePermissionsInput = {
 
 M.DescribeTemplatePermissionsOutput = {
     type = "structure",
+    id = "DescribeTemplatePermissionsOutput",
     members = {
         TemplateId = {
             type = "string",
@@ -24337,6 +25572,7 @@ M.DescribeTemplatePermissionsOutput = {
 
 M.DescribeThemeInput = {
     type = "structure",
+    id = "DescribeThemeInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24379,6 +25615,7 @@ M.ThemeErrorType = {
 
 M.ThemeError = {
     type = "structure",
+    id = "ThemeError",
     members = {
         Type = {
             type = "string",
@@ -24391,6 +25628,7 @@ M.ThemeError = {
 
 M.ThemeVersion = {
     type = "structure",
+    id = "ThemeVersion",
     members = {
         VersionNumber = {
             type = "long",
@@ -24420,6 +25658,7 @@ M.ThemeVersion = {
 
 M.Theme = {
     type = "structure",
+    id = "Theme",
     members = {
         Arn = {
             type = "string",
@@ -24445,6 +25684,7 @@ M.Theme = {
 
 M.DescribeThemeOutput = {
     type = "structure",
+    id = "DescribeThemeOutput",
     members = {
         Theme = M.Theme,
         Status = {
@@ -24462,6 +25702,7 @@ M.DescribeThemeOutput = {
 
 M.DescribeThemeAliasInput = {
     type = "structure",
+    id = "DescribeThemeAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24489,6 +25730,7 @@ M.DescribeThemeAliasInput = {
 
 M.DescribeThemeAliasOutput = {
     type = "structure",
+    id = "DescribeThemeAliasOutput",
     members = {
         ThemeAlias = M.ThemeAlias,
         Status = {
@@ -24506,6 +25748,7 @@ M.DescribeThemeAliasOutput = {
 
 M.DescribeThemePermissionsInput = {
     type = "structure",
+    id = "DescribeThemePermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24526,6 +25769,7 @@ M.DescribeThemePermissionsInput = {
 
 M.DescribeThemePermissionsOutput = {
     type = "structure",
+    id = "DescribeThemePermissionsOutput",
     members = {
         ThemeId = {
             type = "string",
@@ -24552,6 +25796,7 @@ M.DescribeThemePermissionsOutput = {
 
 M.DescribeTopicInput = {
     type = "structure",
+    id = "DescribeTopicInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24572,6 +25817,7 @@ M.DescribeTopicInput = {
 
 M.DescribeTopicOutput = {
     type = "structure",
+    id = "DescribeTopicOutput",
     members = {
         Arn = {
             type = "string",
@@ -24596,6 +25842,7 @@ M.DescribeTopicOutput = {
 
 M.DescribeTopicPermissionsInput = {
     type = "structure",
+    id = "DescribeTopicPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24616,6 +25863,7 @@ M.DescribeTopicPermissionsInput = {
 
 M.DescribeTopicPermissionsOutput = {
     type = "structure",
+    id = "DescribeTopicPermissionsOutput",
     members = {
         TopicId = {
             type = "string",
@@ -24642,6 +25890,7 @@ M.DescribeTopicPermissionsOutput = {
 
 M.DescribeTopicRefreshInput = {
     type = "structure",
+    id = "DescribeTopicRefreshInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24677,6 +25926,7 @@ M.TopicRefreshStatus = {
 
 M.TopicRefreshDetails = {
     type = "structure",
+    id = "TopicRefreshDetails",
     members = {
         RefreshArn = {
             type = "string",
@@ -24692,6 +25942,7 @@ M.TopicRefreshDetails = {
 
 M.DescribeTopicRefreshOutput = {
     type = "structure",
+    id = "DescribeTopicRefreshOutput",
     members = {
         RefreshDetails = M.TopicRefreshDetails,
         RequestId = {
@@ -24709,6 +25960,7 @@ M.DescribeTopicRefreshOutput = {
 
 M.DescribeTopicRefreshScheduleInput = {
     type = "structure",
+    id = "DescribeTopicRefreshScheduleInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24736,6 +25988,7 @@ M.DescribeTopicRefreshScheduleInput = {
 
 M.DescribeTopicRefreshScheduleOutput = {
     type = "structure",
+    id = "DescribeTopicRefreshScheduleOutput",
     members = {
         TopicId = {
             type = "string",
@@ -24762,6 +26015,7 @@ M.DescribeTopicRefreshScheduleOutput = {
 
 M.DescribeUserInput = {
     type = "structure",
+    id = "DescribeUserInput",
     members = {
         UserName = {
             type = "string",
@@ -24806,6 +26060,7 @@ M.UserRole = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Arn = {
             type = "string",
@@ -24848,6 +26103,7 @@ M.User = {
 
 M.DescribeUserOutput = {
     type = "structure",
+    id = "DescribeUserOutput",
     members = {
         User = M.User,
         RequestId = {
@@ -24865,6 +26121,7 @@ M.DescribeUserOutput = {
 
 M.DescribeVPCConnectionInput = {
     type = "structure",
+    id = "DescribeVPCConnectionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -24898,6 +26155,7 @@ M.NetworkInterfaceStatus = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         SubnetId = {
             type = "string",
@@ -24919,6 +26177,7 @@ M.NetworkInterface = {
 
 M.VPCConnection = {
     type = "structure",
+    id = "VPCConnection",
     members = {
         VPCConnectionId = {
             type = "string",
@@ -24964,6 +26223,7 @@ M.VPCConnection = {
 
 M.DescribeVPCConnectionOutput = {
     type = "structure",
+    id = "DescribeVPCConnectionOutput",
     members = {
         VPCConnection = M.VPCConnection,
         RequestId = {
@@ -24980,6 +26240,7 @@ M.DescribeVPCConnectionOutput = {
 
 M.DomainNotWhitelistedException = {
     type = "structure",
+    id = "DomainNotWhitelistedException",
     error = "client",
     members = {
         Message = {
@@ -24999,6 +26260,7 @@ M.EmbeddingIdentityType = {
 
 M.FailedKeyRegistrationEntry = {
     type = "structure",
+    id = "FailedKeyRegistrationEntry",
     members = {
         KeyArn = {
             type = "string",
@@ -25042,6 +26304,7 @@ M.FlowPublishState = {
 
 M.FlowSummary = {
     type = "structure",
+    id = "FlowSummary",
     members = {
         Arn = {
             type = "string",
@@ -25115,6 +26378,7 @@ M.FolderFilterAttribute = {
 
 M.MemberIdArnPair = {
     type = "structure",
+    id = "MemberIdArnPair",
     members = {
         MemberId = {
             type = "string",
@@ -25127,6 +26391,7 @@ M.MemberIdArnPair = {
 
 M.FolderSearchFilter = {
     type = "structure",
+    id = "FolderSearchFilter",
     members = {
         Operator = {
             type = "string",
@@ -25142,6 +26407,7 @@ M.FolderSearchFilter = {
 
 M.FolderSummary = {
     type = "structure",
+    id = "FolderSummary",
     members = {
         Arn = {
             type = "string",
@@ -25175,6 +26441,7 @@ M.GeneratedAnswerStatus = {
 
 M.GeneratedAnswerResult = {
     type = "structure",
+    id = "GeneratedAnswerResult",
     members = {
         QuestionText = {
             type = "string",
@@ -25205,6 +26472,7 @@ M.GeneratedAnswerResult = {
 
 M.SessionTag = {
     type = "structure",
+    id = "SessionTag",
     members = {
         Key = {
             type = "string",
@@ -25223,6 +26491,7 @@ M.SessionTag = {
 
 M.GenerateEmbedUrlForAnonymousUserInput = {
     type = "structure",
+    id = "GenerateEmbedUrlForAnonymousUserInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25263,6 +26532,7 @@ M.GenerateEmbedUrlForAnonymousUserInput = {
 
 M.GenerateEmbedUrlForAnonymousUserOutput = {
     type = "structure",
+    id = "GenerateEmbedUrlForAnonymousUserOutput",
     members = {
         EmbedUrl = {
             type = "string",
@@ -25295,6 +26565,7 @@ M.GenerateEmbedUrlForAnonymousUserOutput = {
 
 M.SessionLifetimeInMinutesInvalidException = {
     type = "structure",
+    id = "SessionLifetimeInMinutesInvalidException",
     error = "client",
     members = {
         Message = {
@@ -25308,6 +26579,7 @@ M.SessionLifetimeInMinutesInvalidException = {
 
 M.UnsupportedPricingPlanException = {
     type = "structure",
+    id = "UnsupportedPricingPlanException",
     error = "client",
     members = {
         Message = {
@@ -25321,6 +26593,7 @@ M.UnsupportedPricingPlanException = {
 
 M.RecentSnapshotsConfigurations = {
     type = "structure",
+    id = "RecentSnapshotsConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -25334,6 +26607,7 @@ M.RecentSnapshotsConfigurations = {
 
 M.SchedulesConfigurations = {
     type = "structure",
+    id = "SchedulesConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -25347,6 +26621,7 @@ M.SchedulesConfigurations = {
 
 M.StatePersistenceConfigurations = {
     type = "structure",
+    id = "StatePersistenceConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -25360,6 +26635,7 @@ M.StatePersistenceConfigurations = {
 
 M.ThresholdAlertsConfigurations = {
     type = "structure",
+    id = "ThresholdAlertsConfigurations",
     members = {
         Enabled = {
             type = "boolean",
@@ -25373,6 +26649,7 @@ M.ThresholdAlertsConfigurations = {
 
 M.RegisteredUserDashboardFeatureConfigurations = {
     type = "structure",
+    id = "RegisteredUserDashboardFeatureConfigurations",
     members = {
         StatePersistence = M.StatePersistenceConfigurations,
         Bookmarks = M.BookmarksConfigurations,
@@ -25387,6 +26664,7 @@ M.RegisteredUserDashboardFeatureConfigurations = {
 
 M.RegisteredUserDashboardEmbeddingConfiguration = {
     type = "structure",
+    id = "RegisteredUserDashboardEmbeddingConfiguration",
     members = {
         InitialDashboardId = {
             type = "string",
@@ -25400,6 +26678,7 @@ M.RegisteredUserDashboardEmbeddingConfiguration = {
 
 M.RegisteredUserDashboardVisualEmbeddingConfiguration = {
     type = "structure",
+    id = "RegisteredUserDashboardVisualEmbeddingConfiguration",
     members = {
         InitialDashboardVisualId = setmetatable({ traits = {
             required = true,
@@ -25409,6 +26688,7 @@ M.RegisteredUserDashboardVisualEmbeddingConfiguration = {
 
 M.RegisteredUserGenerativeQnAEmbeddingConfiguration = {
     type = "structure",
+    id = "RegisteredUserGenerativeQnAEmbeddingConfiguration",
     members = {
         InitialTopicId = {
             type = "string",
@@ -25418,6 +26698,7 @@ M.RegisteredUserGenerativeQnAEmbeddingConfiguration = {
 
 M.RegisteredUserQSearchBarEmbeddingConfiguration = {
     type = "structure",
+    id = "RegisteredUserQSearchBarEmbeddingConfiguration",
     members = {
         InitialTopicId = {
             type = "string",
@@ -25427,10 +26708,12 @@ M.RegisteredUserQSearchBarEmbeddingConfiguration = {
 
 M.RegisteredUserQuickChatEmbeddingConfiguration = {
     type = "structure",
+    id = "RegisteredUserQuickChatEmbeddingConfiguration",
 }
 
 M.RegisteredUserConsoleFeatureConfigurations = {
     type = "structure",
+    id = "RegisteredUserConsoleFeatureConfigurations",
     members = {
         StatePersistence = M.StatePersistenceConfigurations,
         SharedView = M.SharedViewConfigurations,
@@ -25444,6 +26727,7 @@ M.RegisteredUserConsoleFeatureConfigurations = {
 
 M.RegisteredUserQuickSightConsoleEmbeddingConfiguration = {
     type = "structure",
+    id = "RegisteredUserQuickSightConsoleEmbeddingConfiguration",
     members = {
         InitialPath = {
             type = "string",
@@ -25454,6 +26738,7 @@ M.RegisteredUserQuickSightConsoleEmbeddingConfiguration = {
 
 M.RegisteredUserEmbeddingExperienceConfiguration = {
     type = "structure",
+    id = "RegisteredUserEmbeddingExperienceConfiguration",
     members = {
         Dashboard = M.RegisteredUserDashboardEmbeddingConfiguration,
         QuickSightConsole = M.RegisteredUserQuickSightConsoleEmbeddingConfiguration,
@@ -25466,6 +26751,7 @@ M.RegisteredUserEmbeddingExperienceConfiguration = {
 
 M.GenerateEmbedUrlForRegisteredUserInput = {
     type = "structure",
+    id = "GenerateEmbedUrlForRegisteredUserInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25495,6 +26781,7 @@ M.GenerateEmbedUrlForRegisteredUserInput = {
 
 M.GenerateEmbedUrlForRegisteredUserOutput = {
     type = "structure",
+    id = "GenerateEmbedUrlForRegisteredUserOutput",
     members = {
         EmbedUrl = {
             type = "string",
@@ -25521,6 +26808,7 @@ M.GenerateEmbedUrlForRegisteredUserOutput = {
 
 M.QuickSightUserNotFoundException = {
     type = "structure",
+    id = "QuickSightUserNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -25534,6 +26822,7 @@ M.QuickSightUserNotFoundException = {
 
 M.GenerateEmbedUrlForRegisteredUserWithIdentityInput = {
     type = "structure",
+    id = "GenerateEmbedUrlForRegisteredUserWithIdentityInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25557,6 +26846,7 @@ M.GenerateEmbedUrlForRegisteredUserWithIdentityInput = {
 
 M.GenerateEmbedUrlForRegisteredUserWithIdentityOutput = {
     type = "structure",
+    id = "GenerateEmbedUrlForRegisteredUserWithIdentityOutput",
     members = {
         EmbedUrl = {
             type = "string",
@@ -25583,6 +26873,7 @@ M.GenerateEmbedUrlForRegisteredUserWithIdentityOutput = {
 
 M.GetDashboardEmbedUrlInput = {
     type = "structure",
+    id = "GetDashboardEmbedUrlInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25656,6 +26947,7 @@ M.GetDashboardEmbedUrlInput = {
 
 M.GetDashboardEmbedUrlOutput = {
     type = "structure",
+    id = "GetDashboardEmbedUrlOutput",
     members = {
         EmbedUrl = {
             type = "string",
@@ -25675,6 +26967,7 @@ M.GetDashboardEmbedUrlOutput = {
 
 M.IdentityTypeNotSupportedException = {
     type = "structure",
+    id = "IdentityTypeNotSupportedException",
     error = "client",
     members = {
         Message = {
@@ -25688,6 +26981,7 @@ M.IdentityTypeNotSupportedException = {
 
 M.GetFlowMetadataInput = {
     type = "structure",
+    id = "GetFlowMetadataInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25708,6 +27002,7 @@ M.GetFlowMetadataInput = {
 
 M.GetFlowMetadataOutput = {
     type = "structure",
+    id = "GetFlowMetadataOutput",
     members = {
         Arn = {
             type = "string",
@@ -25769,6 +27064,7 @@ M.GetFlowMetadataOutput = {
 
 M.GetFlowPermissionsInput = {
     type = "structure",
+    id = "GetFlowPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25789,6 +27085,7 @@ M.GetFlowPermissionsInput = {
 
 M.Permission = {
     type = "structure",
+    id = "Permission",
     members = {
         Actions = {
             type = "list",
@@ -25808,6 +27105,7 @@ M.Permission = {
 
 M.GetFlowPermissionsOutput = {
     type = "structure",
+    id = "GetFlowPermissionsOutput",
     members = {
         Arn = {
             type = "string",
@@ -25843,6 +27141,7 @@ M.GetFlowPermissionsOutput = {
 
 M.UserIdentifier = {
     type = "union",
+    id = "UserIdentifier",
     members = {
         UserName = {
             type = "string",
@@ -25858,6 +27157,7 @@ M.UserIdentifier = {
 
 M.GetIdentityContextInput = {
     type = "structure",
+    id = "GetIdentityContextInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25883,6 +27183,7 @@ M.GetIdentityContextInput = {
 
 M.GetIdentityContextOutput = {
     type = "structure",
+    id = "GetIdentityContextOutput",
     members = {
         Status = {
             type = "integer",
@@ -25905,6 +27206,7 @@ M.GetIdentityContextOutput = {
 
 M.GetSessionEmbedUrlInput = {
     type = "structure",
+    id = "GetSessionEmbedUrlInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -25936,6 +27238,7 @@ M.GetSessionEmbedUrlInput = {
 
 M.GetSessionEmbedUrlOutput = {
     type = "structure",
+    id = "GetSessionEmbedUrlOutput",
     members = {
         EmbedUrl = {
             type = "string",
@@ -25963,6 +27266,7 @@ M.GroupFilterOperator = {
 
 M.GroupSearchFilter = {
     type = "structure",
+    id = "GroupSearchFilter",
     members = {
         Operator = {
             type = "string",
@@ -25987,6 +27291,7 @@ M.GroupSearchFilter = {
 
 M.IAMPolicyAssignmentSummary = {
     type = "structure",
+    id = "IAMPolicyAssignmentSummary",
     members = {
         AssignmentName = {
             type = "string",
@@ -26009,6 +27314,7 @@ M.IncludeQuickSightQIndex = {
 
 M.ListActionConnectorsInput = {
     type = "structure",
+    id = "ListActionConnectorsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26034,6 +27340,7 @@ M.ListActionConnectorsInput = {
 
 M.ListActionConnectorsOutput = {
     type = "structure",
+    id = "ListActionConnectorsOutput",
     members = {
         ActionConnectorSummaries = {
             type = "list",
@@ -26060,6 +27367,7 @@ M.ListActionConnectorsOutput = {
 
 M.ListAnalysesInput = {
     type = "structure",
+    id = "ListAnalysesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26085,6 +27393,7 @@ M.ListAnalysesInput = {
 
 M.ListAnalysesOutput = {
     type = "structure",
+    id = "ListAnalysesOutput",
     members = {
         AnalysisSummaryList = {
             type = "list",
@@ -26108,6 +27417,7 @@ M.ListAnalysesOutput = {
 
 M.ListAssetBundleExportJobsInput = {
     type = "structure",
+    id = "ListAssetBundleExportJobsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26133,6 +27443,7 @@ M.ListAssetBundleExportJobsInput = {
 
 M.ListAssetBundleExportJobsOutput = {
     type = "structure",
+    id = "ListAssetBundleExportJobsOutput",
     members = {
         AssetBundleExportJobSummaryList = {
             type = "list",
@@ -26156,6 +27467,7 @@ M.ListAssetBundleExportJobsOutput = {
 
 M.ListAssetBundleImportJobsInput = {
     type = "structure",
+    id = "ListAssetBundleImportJobsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26181,6 +27493,7 @@ M.ListAssetBundleImportJobsInput = {
 
 M.ListAssetBundleImportJobsOutput = {
     type = "structure",
+    id = "ListAssetBundleImportJobsOutput",
     members = {
         AssetBundleImportJobSummaryList = {
             type = "list",
@@ -26204,6 +27517,7 @@ M.ListAssetBundleImportJobsOutput = {
 
 M.ListBrandsInput = {
     type = "structure",
+    id = "ListBrandsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26229,6 +27543,7 @@ M.ListBrandsInput = {
 
 M.ListBrandsOutput = {
     type = "structure",
+    id = "ListBrandsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -26242,6 +27557,7 @@ M.ListBrandsOutput = {
 
 M.ListCustomPermissionsInput = {
     type = "structure",
+    id = "ListCustomPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26267,6 +27583,7 @@ M.ListCustomPermissionsInput = {
 
 M.ListCustomPermissionsOutput = {
     type = "structure",
+    id = "ListCustomPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -26290,6 +27607,7 @@ M.ListCustomPermissionsOutput = {
 
 M.ListDashboardsInput = {
     type = "structure",
+    id = "ListDashboardsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26315,6 +27633,7 @@ M.ListDashboardsInput = {
 
 M.ListDashboardsOutput = {
     type = "structure",
+    id = "ListDashboardsOutput",
     members = {
         DashboardSummaryList = {
             type = "list",
@@ -26338,6 +27657,7 @@ M.ListDashboardsOutput = {
 
 M.ListDashboardVersionsInput = {
     type = "structure",
+    id = "ListDashboardVersionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26370,6 +27690,7 @@ M.ListDashboardVersionsInput = {
 
 M.ListDashboardVersionsOutput = {
     type = "structure",
+    id = "ListDashboardVersionsOutput",
     members = {
         DashboardVersionSummaryList = {
             type = "list",
@@ -26393,6 +27714,7 @@ M.ListDashboardVersionsOutput = {
 
 M.ListDataSetsInput = {
     type = "structure",
+    id = "ListDataSetsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26418,6 +27740,7 @@ M.ListDataSetsInput = {
 
 M.ListDataSetsOutput = {
     type = "structure",
+    id = "ListDataSetsOutput",
     members = {
         DataSetSummaries = {
             type = "list",
@@ -26441,6 +27764,7 @@ M.ListDataSetsOutput = {
 
 M.ListDataSourcesInput = {
     type = "structure",
+    id = "ListDataSourcesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26466,6 +27790,7 @@ M.ListDataSourcesInput = {
 
 M.ListDataSourcesOutput = {
     type = "structure",
+    id = "ListDataSourcesOutput",
     members = {
         DataSources = {
             type = "list",
@@ -26489,6 +27814,7 @@ M.ListDataSourcesOutput = {
 
 M.ListFlowsInput = {
     type = "structure",
+    id = "ListFlowsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26514,6 +27840,7 @@ M.ListFlowsInput = {
 
 M.ListFlowsOutput = {
     type = "structure",
+    id = "ListFlowsOutput",
     members = {
         FlowSummaryList = {
             type = "list",
@@ -26537,6 +27864,7 @@ M.ListFlowsOutput = {
 
 M.ListFolderMembersInput = {
     type = "structure",
+    id = "ListFolderMembersInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26569,6 +27897,7 @@ M.ListFolderMembersInput = {
 
 M.ListFolderMembersOutput = {
     type = "structure",
+    id = "ListFolderMembersOutput",
     members = {
         Status = {
             type = "integer",
@@ -26592,6 +27921,7 @@ M.ListFolderMembersOutput = {
 
 M.ListFoldersInput = {
     type = "structure",
+    id = "ListFoldersInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26617,6 +27947,7 @@ M.ListFoldersInput = {
 
 M.ListFoldersOutput = {
     type = "structure",
+    id = "ListFoldersOutput",
     members = {
         Status = {
             type = "integer",
@@ -26640,6 +27971,7 @@ M.ListFoldersOutput = {
 
 M.ListFoldersForResourceInput = {
     type = "structure",
+    id = "ListFoldersForResourceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26672,6 +28004,7 @@ M.ListFoldersForResourceInput = {
 
 M.ListFoldersForResourceOutput = {
     type = "structure",
+    id = "ListFoldersForResourceOutput",
     members = {
         Status = {
             type = "integer",
@@ -26695,6 +28028,7 @@ M.ListFoldersForResourceOutput = {
 
 M.ListGroupMembershipsInput = {
     type = "structure",
+    id = "ListGroupMembershipsInput",
     members = {
         GroupName = {
             type = "string",
@@ -26734,6 +28068,7 @@ M.ListGroupMembershipsInput = {
 
 M.ListGroupMembershipsOutput = {
     type = "structure",
+    id = "ListGroupMembershipsOutput",
     members = {
         GroupMemberList = {
             type = "list",
@@ -26757,6 +28092,7 @@ M.ListGroupMembershipsOutput = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26789,6 +28125,7 @@ M.ListGroupsInput = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         GroupList = {
             type = "list",
@@ -26812,6 +28149,7 @@ M.ListGroupsOutput = {
 
 M.ListIAMPolicyAssignmentsInput = {
     type = "structure",
+    id = "ListIAMPolicyAssignmentsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26850,6 +28188,7 @@ M.ListIAMPolicyAssignmentsInput = {
 
 M.ListIAMPolicyAssignmentsOutput = {
     type = "structure",
+    id = "ListIAMPolicyAssignmentsOutput",
     members = {
         IAMPolicyAssignments = {
             type = "list",
@@ -26873,6 +28212,7 @@ M.ListIAMPolicyAssignmentsOutput = {
 
 M.ListIAMPolicyAssignmentsForUserInput = {
     type = "structure",
+    id = "ListIAMPolicyAssignmentsForUserInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26912,6 +28252,7 @@ M.ListIAMPolicyAssignmentsForUserInput = {
 
 M.ListIAMPolicyAssignmentsForUserOutput = {
     type = "structure",
+    id = "ListIAMPolicyAssignmentsForUserOutput",
     members = {
         ActiveAssignments = {
             type = "list",
@@ -26935,6 +28276,7 @@ M.ListIAMPolicyAssignmentsForUserOutput = {
 
 M.ListIdentityPropagationConfigsInput = {
     type = "structure",
+    id = "ListIdentityPropagationConfigsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -26961,6 +28303,7 @@ M.ListIdentityPropagationConfigsInput = {
 
 M.ListIdentityPropagationConfigsOutput = {
     type = "structure",
+    id = "ListIdentityPropagationConfigsOutput",
     members = {
         Services = {
             type = "list",
@@ -26984,6 +28327,7 @@ M.ListIdentityPropagationConfigsOutput = {
 
 M.ListIngestionsInput = {
     type = "structure",
+    id = "ListIngestionsInput",
     members = {
         DataSetId = {
             type = "string",
@@ -27016,6 +28360,7 @@ M.ListIngestionsInput = {
 
 M.ListIngestionsOutput = {
     type = "structure",
+    id = "ListIngestionsOutput",
     members = {
         Ingestions = {
             type = "list",
@@ -27039,6 +28384,7 @@ M.ListIngestionsOutput = {
 
 M.ListNamespacesInput = {
     type = "structure",
+    id = "ListNamespacesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27064,6 +28410,7 @@ M.ListNamespacesInput = {
 
 M.ListNamespacesOutput = {
     type = "structure",
+    id = "ListNamespacesOutput",
     members = {
         Namespaces = {
             type = "list",
@@ -27087,6 +28434,7 @@ M.ListNamespacesOutput = {
 
 M.ListRefreshSchedulesInput = {
     type = "structure",
+    id = "ListRefreshSchedulesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27107,6 +28455,7 @@ M.ListRefreshSchedulesInput = {
 
 M.ListRefreshSchedulesOutput = {
     type = "structure",
+    id = "ListRefreshSchedulesOutput",
     members = {
         RefreshSchedules = {
             type = "list",
@@ -27127,6 +28476,7 @@ M.ListRefreshSchedulesOutput = {
 
 M.ListRoleMembershipsInput = {
     type = "structure",
+    id = "ListRoleMembershipsInput",
     members = {
         Role = {
             type = "string",
@@ -27166,6 +28516,7 @@ M.ListRoleMembershipsInput = {
 
 M.ListRoleMembershipsOutput = {
     type = "structure",
+    id = "ListRoleMembershipsOutput",
     members = {
         MembersList = {
             type = "list",
@@ -27189,6 +28540,7 @@ M.ListRoleMembershipsOutput = {
 
 M.ListSelfUpgradesInput = {
     type = "structure",
+    id = "ListSelfUpgradesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27229,6 +28581,7 @@ M.SelfUpgradeRequestStatus = {
 
 M.SelfUpgradeRequestDetail = {
     type = "structure",
+    id = "SelfUpgradeRequestDetail",
     members = {
         UpgradeRequestId = {
             type = "string",
@@ -27268,6 +28621,7 @@ M.SelfUpgradeRequestDetail = {
 
 M.ListSelfUpgradesOutput = {
     type = "structure",
+    id = "ListSelfUpgradesOutput",
     members = {
         SelfUpgradeRequestDetails = {
             type = "list",
@@ -27291,6 +28645,7 @@ M.ListSelfUpgradesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -27304,6 +28659,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -27324,6 +28680,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTemplateAliasesInput = {
     type = "structure",
+    id = "ListTemplateAliasesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27356,6 +28713,7 @@ M.ListTemplateAliasesInput = {
 
 M.ListTemplateAliasesOutput = {
     type = "structure",
+    id = "ListTemplateAliasesOutput",
     members = {
         TemplateAliasList = {
             type = "list",
@@ -27379,6 +28737,7 @@ M.ListTemplateAliasesOutput = {
 
 M.ListTemplatesInput = {
     type = "structure",
+    id = "ListTemplatesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27404,6 +28763,7 @@ M.ListTemplatesInput = {
 
 M.TemplateSummary = {
     type = "structure",
+    id = "TemplateSummary",
     members = {
         Arn = {
             type = "string",
@@ -27428,6 +28788,7 @@ M.TemplateSummary = {
 
 M.ListTemplatesOutput = {
     type = "structure",
+    id = "ListTemplatesOutput",
     members = {
         TemplateSummaryList = {
             type = "list",
@@ -27451,6 +28812,7 @@ M.ListTemplatesOutput = {
 
 M.ListTemplateVersionsInput = {
     type = "structure",
+    id = "ListTemplateVersionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27483,6 +28845,7 @@ M.ListTemplateVersionsInput = {
 
 M.TemplateVersionSummary = {
     type = "structure",
+    id = "TemplateVersionSummary",
     members = {
         Arn = {
             type = "string",
@@ -27504,6 +28867,7 @@ M.TemplateVersionSummary = {
 
 M.ListTemplateVersionsOutput = {
     type = "structure",
+    id = "ListTemplateVersionsOutput",
     members = {
         TemplateVersionSummaryList = {
             type = "list",
@@ -27527,6 +28891,7 @@ M.ListTemplateVersionsOutput = {
 
 M.ListThemeAliasesInput = {
     type = "structure",
+    id = "ListThemeAliasesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27559,6 +28924,7 @@ M.ListThemeAliasesInput = {
 
 M.ListThemeAliasesOutput = {
     type = "structure",
+    id = "ListThemeAliasesOutput",
     members = {
         ThemeAliasList = {
             type = "list",
@@ -27582,6 +28948,7 @@ M.ListThemeAliasesOutput = {
 
 M.ListThemesInput = {
     type = "structure",
+    id = "ListThemesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27613,6 +28980,7 @@ M.ListThemesInput = {
 
 M.ThemeSummary = {
     type = "structure",
+    id = "ThemeSummary",
     members = {
         Arn = {
             type = "string",
@@ -27637,6 +29005,7 @@ M.ThemeSummary = {
 
 M.ListThemesOutput = {
     type = "structure",
+    id = "ListThemesOutput",
     members = {
         ThemeSummaryList = {
             type = "list",
@@ -27660,6 +29029,7 @@ M.ListThemesOutput = {
 
 M.ListThemeVersionsInput = {
     type = "structure",
+    id = "ListThemeVersionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27692,6 +29062,7 @@ M.ListThemeVersionsInput = {
 
 M.ThemeVersionSummary = {
     type = "structure",
+    id = "ThemeVersionSummary",
     members = {
         VersionNumber = {
             type = "long",
@@ -27713,6 +29084,7 @@ M.ThemeVersionSummary = {
 
 M.ListThemeVersionsOutput = {
     type = "structure",
+    id = "ListThemeVersionsOutput",
     members = {
         ThemeVersionSummaryList = {
             type = "list",
@@ -27736,6 +29108,7 @@ M.ListThemeVersionsOutput = {
 
 M.ListTopicRefreshSchedulesInput = {
     type = "structure",
+    id = "ListTopicRefreshSchedulesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27756,6 +29129,7 @@ M.ListTopicRefreshSchedulesInput = {
 
 M.TopicRefreshScheduleSummary = {
     type = "structure",
+    id = "TopicRefreshScheduleSummary",
     members = {
         DatasetId = {
             type = "string",
@@ -27772,6 +29146,7 @@ M.TopicRefreshScheduleSummary = {
 
 M.ListTopicRefreshSchedulesOutput = {
     type = "structure",
+    id = "ListTopicRefreshSchedulesOutput",
     members = {
         TopicId = {
             type = "string",
@@ -27798,6 +29173,7 @@ M.ListTopicRefreshSchedulesOutput = {
 
 M.ListTopicReviewedAnswersInput = {
     type = "structure",
+    id = "ListTopicReviewedAnswersInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27818,6 +29194,7 @@ M.ListTopicReviewedAnswersInput = {
 
 M.ListTopicsInput = {
     type = "structure",
+    id = "ListTopicsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27843,6 +29220,7 @@ M.ListTopicsInput = {
 
 M.TopicSummary = {
     type = "structure",
+    id = "TopicSummary",
     members = {
         Arn = {
             type = "string",
@@ -27861,6 +29239,7 @@ M.TopicSummary = {
 
 M.ListTopicsOutput = {
     type = "structure",
+    id = "ListTopicsOutput",
     members = {
         TopicsSummaries = {
             type = "list",
@@ -27884,6 +29263,7 @@ M.ListTopicsOutput = {
 
 M.ListUserGroupsInput = {
     type = "structure",
+    id = "ListUserGroupsInput",
     members = {
         UserName = {
             type = "string",
@@ -27923,6 +29303,7 @@ M.ListUserGroupsInput = {
 
 M.ListUserGroupsOutput = {
     type = "structure",
+    id = "ListUserGroupsOutput",
     members = {
         GroupList = {
             type = "list",
@@ -27946,6 +29327,7 @@ M.ListUserGroupsOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -27978,6 +29360,7 @@ M.ListUsersInput = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         UserList = {
             type = "list",
@@ -28001,6 +29384,7 @@ M.ListUsersOutput = {
 
 M.ListVPCConnectionsInput = {
     type = "structure",
+    id = "ListVPCConnectionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28026,6 +29410,7 @@ M.ListVPCConnectionsInput = {
 
 M.VPCConnectionSummary = {
     type = "structure",
+    id = "VPCConnectionSummary",
     members = {
         VPCConnectionId = {
             type = "string",
@@ -28071,6 +29456,7 @@ M.VPCConnectionSummary = {
 
 M.ListVPCConnectionsOutput = {
     type = "structure",
+    id = "ListVPCConnectionsOutput",
     members = {
         VPCConnectionSummaries = {
             type = "list",
@@ -28094,6 +29480,7 @@ M.ListVPCConnectionsOutput = {
 
 M.PredictQAResultsInput = {
     type = "structure",
+    id = "PredictQAResultsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28128,6 +29515,7 @@ M.QAResultType = {
 
 M.QAResult = {
     type = "structure",
+    id = "QAResult",
     members = {
         ResultType = {
             type = "string",
@@ -28139,6 +29527,7 @@ M.QAResult = {
 
 M.PredictQAResultsOutput = {
     type = "structure",
+    id = "PredictQAResultsOutput",
     members = {
         PrimaryResult = M.QAResult,
         AdditionalResults = {
@@ -28165,6 +29554,7 @@ M.PurchaseMode = {
 
 M.PutDataSetRefreshPropertiesInput = {
     type = "structure",
+    id = "PutDataSetRefreshPropertiesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28188,6 +29578,7 @@ M.PutDataSetRefreshPropertiesInput = {
 
 M.PutDataSetRefreshPropertiesOutput = {
     type = "structure",
+    id = "PutDataSetRefreshPropertiesOutput",
     members = {
         RequestId = {
             type = "string",
@@ -28204,6 +29595,7 @@ M.PutDataSetRefreshPropertiesOutput = {
 
 M.RegisterUserInput = {
     type = "structure",
+    id = "RegisterUserInput",
     members = {
         IdentityType = {
             type = "string",
@@ -28267,6 +29659,7 @@ M.RegisterUserInput = {
 
 M.RegisterUserOutput = {
     type = "structure",
+    id = "RegisterUserOutput",
     members = {
         User = M.User,
         UserInvitationUrl = {
@@ -28287,6 +29680,7 @@ M.RegisterUserOutput = {
 
 M.RestoreAnalysisInput = {
     type = "structure",
+    id = "RestoreAnalysisInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28314,6 +29708,7 @@ M.RestoreAnalysisInput = {
 
 M.RestoreAnalysisOutput = {
     type = "structure",
+    id = "RestoreAnalysisOutput",
     members = {
         Status = {
             type = "integer",
@@ -28340,6 +29735,7 @@ M.RestoreAnalysisOutput = {
 
 M.SearchActionConnectorsInput = {
     type = "structure",
+    id = "SearchActionConnectorsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28373,6 +29769,7 @@ M.SearchActionConnectorsInput = {
 
 M.SearchActionConnectorsOutput = {
     type = "structure",
+    id = "SearchActionConnectorsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -28396,6 +29793,7 @@ M.SearchActionConnectorsOutput = {
 
 M.SearchAnalysesInput = {
     type = "structure",
+    id = "SearchAnalysesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28422,6 +29820,7 @@ M.SearchAnalysesInput = {
 
 M.SearchAnalysesOutput = {
     type = "structure",
+    id = "SearchAnalysesOutput",
     members = {
         AnalysisSummaryList = {
             type = "list",
@@ -28445,6 +29844,7 @@ M.SearchAnalysesOutput = {
 
 M.SearchDashboardsInput = {
     type = "structure",
+    id = "SearchDashboardsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28471,6 +29871,7 @@ M.SearchDashboardsInput = {
 
 M.SearchDashboardsOutput = {
     type = "structure",
+    id = "SearchDashboardsOutput",
     members = {
         DashboardSummaryList = {
             type = "list",
@@ -28494,6 +29895,7 @@ M.SearchDashboardsOutput = {
 
 M.SearchDataSetsInput = {
     type = "structure",
+    id = "SearchDataSetsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28520,6 +29922,7 @@ M.SearchDataSetsInput = {
 
 M.SearchDataSetsOutput = {
     type = "structure",
+    id = "SearchDataSetsOutput",
     members = {
         DataSetSummaries = {
             type = "list",
@@ -28543,6 +29946,7 @@ M.SearchDataSetsOutput = {
 
 M.SearchDataSourcesInput = {
     type = "structure",
+    id = "SearchDataSourcesInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28569,6 +29973,7 @@ M.SearchDataSourcesInput = {
 
 M.SearchDataSourcesOutput = {
     type = "structure",
+    id = "SearchDataSourcesOutput",
     members = {
         DataSourceSummaries = {
             type = "list",
@@ -28597,6 +30002,7 @@ M.SearchFilterOperator = {
 
 M.SearchFlowsFilter = {
     type = "structure",
+    id = "SearchFlowsFilter",
     members = {
         Name = {
             type = "string",
@@ -28621,6 +30027,7 @@ M.SearchFlowsFilter = {
 
 M.SearchFlowsInput = {
     type = "structure",
+    id = "SearchFlowsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28647,6 +30054,7 @@ M.SearchFlowsInput = {
 
 M.SearchFlowsOutput = {
     type = "structure",
+    id = "SearchFlowsOutput",
     members = {
         FlowSummaryList = {
             type = "list",
@@ -28673,6 +30081,7 @@ M.SearchFlowsOutput = {
 
 M.SearchFoldersInput = {
     type = "structure",
+    id = "SearchFoldersInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28699,6 +30108,7 @@ M.SearchFoldersInput = {
 
 M.SearchFoldersOutput = {
     type = "structure",
+    id = "SearchFoldersOutput",
     members = {
         Status = {
             type = "integer",
@@ -28722,6 +30132,7 @@ M.SearchFoldersOutput = {
 
 M.SearchGroupsInput = {
     type = "structure",
+    id = "SearchGroupsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28761,6 +30172,7 @@ M.SearchGroupsInput = {
 
 M.SearchGroupsOutput = {
     type = "structure",
+    id = "SearchGroupsOutput",
     members = {
         GroupList = {
             type = "list",
@@ -28799,6 +30211,7 @@ M.TopicFilterOperator = {
 
 M.TopicSearchFilter = {
     type = "structure",
+    id = "TopicSearchFilter",
     members = {
         Operator = {
             type = "string",
@@ -28823,6 +30236,7 @@ M.TopicSearchFilter = {
 
 M.SearchTopicsInput = {
     type = "structure",
+    id = "SearchTopicsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28849,6 +30263,7 @@ M.SearchTopicsInput = {
 
 M.SearchTopicsOutput = {
     type = "structure",
+    id = "SearchTopicsOutput",
     members = {
         TopicSummaryList = {
             type = "list",
@@ -28872,6 +30287,7 @@ M.SearchTopicsOutput = {
 
 M.StartAssetBundleExportJobInput = {
     type = "structure",
+    id = "StartAssetBundleExportJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28933,6 +30349,7 @@ M.StartAssetBundleExportJobInput = {
 
 M.StartAssetBundleExportJobOutput = {
     type = "structure",
+    id = "StartAssetBundleExportJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -28955,6 +30372,7 @@ M.StartAssetBundleExportJobOutput = {
 
 M.StartAssetBundleImportJobInput = {
     type = "structure",
+    id = "StartAssetBundleImportJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -28984,6 +30402,7 @@ M.StartAssetBundleImportJobInput = {
 
 M.StartAssetBundleImportJobOutput = {
     type = "structure",
+    id = "StartAssetBundleImportJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -29006,6 +30425,7 @@ M.StartAssetBundleImportJobOutput = {
 
 M.StartAutomationJobInput = {
     type = "structure",
+    id = "StartAutomationJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29036,6 +30456,7 @@ M.StartAutomationJobInput = {
 
 M.StartAutomationJobOutput = {
     type = "structure",
+    id = "StartAutomationJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -29064,6 +30485,7 @@ M.StartAutomationJobOutput = {
 
 M.SnapshotAnonymousUser = {
     type = "structure",
+    id = "SnapshotAnonymousUser",
     members = {
         RowLevelPermissionTags = {
             type = "list",
@@ -29074,6 +30496,7 @@ M.SnapshotAnonymousUser = {
 
 M.SnapshotUserConfiguration = {
     type = "structure",
+    id = "SnapshotUserConfiguration",
     members = {
         AnonymousUsers = {
             type = "list",
@@ -29084,6 +30507,7 @@ M.SnapshotUserConfiguration = {
 
 M.StartDashboardSnapshotJobInput = {
     type = "structure",
+    id = "StartDashboardSnapshotJobInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29114,6 +30538,7 @@ M.StartDashboardSnapshotJobInput = {
 
 M.StartDashboardSnapshotJobOutput = {
     type = "structure",
+    id = "StartDashboardSnapshotJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -29136,6 +30561,7 @@ M.StartDashboardSnapshotJobOutput = {
 
 M.StartDashboardSnapshotJobScheduleInput = {
     type = "structure",
+    id = "StartDashboardSnapshotJobScheduleInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29163,6 +30589,7 @@ M.StartDashboardSnapshotJobScheduleInput = {
 
 M.StartDashboardSnapshotJobScheduleOutput = {
     type = "structure",
+    id = "StartDashboardSnapshotJobScheduleOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29179,6 +30606,7 @@ M.StartDashboardSnapshotJobScheduleOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -29199,6 +30627,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29215,6 +30644,7 @@ M.TagResourceOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -29236,6 +30666,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29252,6 +30683,7 @@ M.UntagResourceOutput = {
 
 M.UpdateAccountCustomizationInput = {
     type = "structure",
+    id = "UpdateAccountCustomizationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29274,6 +30706,7 @@ M.UpdateAccountCustomizationInput = {
 
 M.UpdateAccountCustomizationOutput = {
     type = "structure",
+    id = "UpdateAccountCustomizationOutput",
     members = {
         Arn = {
             type = "string",
@@ -29300,6 +30733,7 @@ M.UpdateAccountCustomizationOutput = {
 
 M.UpdateAccountCustomPermissionInput = {
     type = "structure",
+    id = "UpdateAccountCustomPermissionInput",
     members = {
         CustomPermissionsName = {
             type = "string",
@@ -29319,6 +30753,7 @@ M.UpdateAccountCustomPermissionInput = {
 
 M.UpdateAccountCustomPermissionOutput = {
     type = "structure",
+    id = "UpdateAccountCustomPermissionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29334,6 +30769,7 @@ M.UpdateAccountCustomPermissionOutput = {
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29362,6 +30798,7 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29378,6 +30815,7 @@ M.UpdateAccountSettingsOutput = {
 
 M.UpdateActionConnectorInput = {
     type = "structure",
+    id = "UpdateActionConnectorInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29413,6 +30851,7 @@ M.UpdateActionConnectorInput = {
 
 M.UpdateActionConnectorOutput = {
     type = "structure",
+    id = "UpdateActionConnectorOutput",
     members = {
         Arn = {
             type = "string",
@@ -29438,6 +30877,7 @@ M.UpdateActionConnectorOutput = {
 
 M.UpdateActionConnectorPermissionsInput = {
     type = "structure",
+    id = "UpdateActionConnectorPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29466,6 +30906,7 @@ M.UpdateActionConnectorPermissionsInput = {
 
 M.UpdateActionConnectorPermissionsOutput = {
     type = "structure",
+    id = "UpdateActionConnectorPermissionsOutput",
     members = {
         Arn = {
             type = "string",
@@ -29492,6 +30933,7 @@ M.UpdateActionConnectorPermissionsOutput = {
 
 M.UpdateAnalysisInput = {
     type = "structure",
+    id = "UpdateAnalysisInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29525,6 +30967,7 @@ M.UpdateAnalysisInput = {
 
 M.UpdateAnalysisOutput = {
     type = "structure",
+    id = "UpdateAnalysisOutput",
     members = {
         Arn = {
             type = "string",
@@ -29550,6 +30993,7 @@ M.UpdateAnalysisOutput = {
 
 M.UpdateAnalysisPermissionsInput = {
     type = "structure",
+    id = "UpdateAnalysisPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29578,6 +31022,7 @@ M.UpdateAnalysisPermissionsInput = {
 
 M.UpdateAnalysisPermissionsOutput = {
     type = "structure",
+    id = "UpdateAnalysisPermissionsOutput",
     members = {
         AnalysisArn = {
             type = "string",
@@ -29604,6 +31049,7 @@ M.UpdateAnalysisPermissionsOutput = {
 
 M.UpdateApplicationWithTokenExchangeGrantInput = {
     type = "structure",
+    id = "UpdateApplicationWithTokenExchangeGrantInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29624,6 +31070,7 @@ M.UpdateApplicationWithTokenExchangeGrantInput = {
 
 M.UpdateApplicationWithTokenExchangeGrantOutput = {
     type = "structure",
+    id = "UpdateApplicationWithTokenExchangeGrantOutput",
     members = {
         Status = {
             type = "integer",
@@ -29640,6 +31087,7 @@ M.UpdateApplicationWithTokenExchangeGrantOutput = {
 
 M.UpdateBrandInput = {
     type = "structure",
+    id = "UpdateBrandInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29661,6 +31109,7 @@ M.UpdateBrandInput = {
 
 M.UpdateBrandOutput = {
     type = "structure",
+    id = "UpdateBrandOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29672,6 +31121,7 @@ M.UpdateBrandOutput = {
 
 M.UpdateBrandAssignmentInput = {
     type = "structure",
+    id = "UpdateBrandAssignmentInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29691,6 +31141,7 @@ M.UpdateBrandAssignmentInput = {
 
 M.UpdateBrandAssignmentOutput = {
     type = "structure",
+    id = "UpdateBrandAssignmentOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29703,6 +31154,7 @@ M.UpdateBrandAssignmentOutput = {
 
 M.UpdateBrandPublishedVersionInput = {
     type = "structure",
+    id = "UpdateBrandPublishedVersionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29729,6 +31181,7 @@ M.UpdateBrandPublishedVersionInput = {
 
 M.UpdateBrandPublishedVersionOutput = {
     type = "structure",
+    id = "UpdateBrandPublishedVersionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29741,6 +31194,7 @@ M.UpdateBrandPublishedVersionOutput = {
 
 M.UpdateCustomPermissionsInput = {
     type = "structure",
+    id = "UpdateCustomPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29762,6 +31216,7 @@ M.UpdateCustomPermissionsInput = {
 
 M.UpdateCustomPermissionsOutput = {
     type = "structure",
+    id = "UpdateCustomPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -29780,6 +31235,7 @@ M.UpdateCustomPermissionsOutput = {
 
 M.UpdateDashboardInput = {
     type = "structure",
+    id = "UpdateDashboardInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29817,6 +31273,7 @@ M.UpdateDashboardInput = {
 
 M.UpdateDashboardOutput = {
     type = "structure",
+    id = "UpdateDashboardOutput",
     members = {
         Arn = {
             type = "string",
@@ -29844,6 +31301,7 @@ M.UpdateDashboardOutput = {
 
 M.UpdateDashboardLinksInput = {
     type = "structure",
+    id = "UpdateDashboardLinksInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29871,6 +31329,7 @@ M.UpdateDashboardLinksInput = {
 
 M.UpdateDashboardLinksOutput = {
     type = "structure",
+    id = "UpdateDashboardLinksOutput",
     members = {
         RequestId = {
             type = "string",
@@ -29894,6 +31353,7 @@ M.UpdateDashboardLinksOutput = {
 
 M.UpdateDashboardPermissionsInput = {
     type = "structure",
+    id = "UpdateDashboardPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29930,6 +31390,7 @@ M.UpdateDashboardPermissionsInput = {
 
 M.UpdateDashboardPermissionsOutput = {
     type = "structure",
+    id = "UpdateDashboardPermissionsOutput",
     members = {
         DashboardArn = {
             type = "string",
@@ -29957,6 +31418,7 @@ M.UpdateDashboardPermissionsOutput = {
 
 M.UpdateDashboardPublishedVersionInput = {
     type = "structure",
+    id = "UpdateDashboardPublishedVersionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -29984,6 +31446,7 @@ M.UpdateDashboardPublishedVersionInput = {
 
 M.UpdateDashboardPublishedVersionOutput = {
     type = "structure",
+    id = "UpdateDashboardPublishedVersionOutput",
     members = {
         DashboardId = {
             type = "string",
@@ -30006,6 +31469,7 @@ M.UpdateDashboardPublishedVersionOutput = {
 
 M.UpdateDashboardsQAConfigurationInput = {
     type = "structure",
+    id = "UpdateDashboardsQAConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30025,6 +31489,7 @@ M.UpdateDashboardsQAConfigurationInput = {
 
 M.UpdateDashboardsQAConfigurationOutput = {
     type = "structure",
+    id = "UpdateDashboardsQAConfigurationOutput",
     members = {
         DashboardsQAStatus = {
             type = "string",
@@ -30044,6 +31509,7 @@ M.UpdateDashboardsQAConfigurationOutput = {
 
 M.UpdateDataSetInput = {
     type = "structure",
+    id = "UpdateDataSetInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30112,6 +31578,7 @@ M.UpdateDataSetInput = {
 
 M.UpdateDataSetOutput = {
     type = "structure",
+    id = "UpdateDataSetOutput",
     members = {
         Arn = {
             type = "string",
@@ -30140,6 +31607,7 @@ M.UpdateDataSetOutput = {
 
 M.UpdateDataSetPermissionsInput = {
     type = "structure",
+    id = "UpdateDataSetPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30168,6 +31636,7 @@ M.UpdateDataSetPermissionsInput = {
 
 M.UpdateDataSetPermissionsOutput = {
     type = "structure",
+    id = "UpdateDataSetPermissionsOutput",
     members = {
         DataSetArn = {
             type = "string",
@@ -30190,6 +31659,7 @@ M.UpdateDataSetPermissionsOutput = {
 
 M.UpdateDataSourceInput = {
     type = "structure",
+    id = "UpdateDataSourceInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30220,6 +31690,7 @@ M.UpdateDataSourceInput = {
 
 M.UpdateDataSourceOutput = {
     type = "structure",
+    id = "UpdateDataSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -30245,6 +31716,7 @@ M.UpdateDataSourceOutput = {
 
 M.UpdateDataSourcePermissionsInput = {
     type = "structure",
+    id = "UpdateDataSourcePermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30273,6 +31745,7 @@ M.UpdateDataSourcePermissionsInput = {
 
 M.UpdateDataSourcePermissionsOutput = {
     type = "structure",
+    id = "UpdateDataSourcePermissionsOutput",
     members = {
         DataSourceArn = {
             type = "string",
@@ -30295,6 +31768,7 @@ M.UpdateDataSourcePermissionsOutput = {
 
 M.UpdateDefaultQBusinessApplicationInput = {
     type = "structure",
+    id = "UpdateDefaultQBusinessApplicationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30320,6 +31794,7 @@ M.UpdateDefaultQBusinessApplicationInput = {
 
 M.UpdateDefaultQBusinessApplicationOutput = {
     type = "structure",
+    id = "UpdateDefaultQBusinessApplicationOutput",
     members = {
         RequestId = {
             type = "string",
@@ -30336,6 +31811,7 @@ M.UpdateDefaultQBusinessApplicationOutput = {
 
 M.UpdateFlowPermissionsInput = {
     type = "structure",
+    id = "UpdateFlowPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30364,6 +31840,7 @@ M.UpdateFlowPermissionsInput = {
 
 M.UpdateFlowPermissionsOutput = {
     type = "structure",
+    id = "UpdateFlowPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -30402,6 +31879,7 @@ M.UpdateFlowPermissionsOutput = {
 
 M.UpdateFolderInput = {
     type = "structure",
+    id = "UpdateFolderInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30428,6 +31906,7 @@ M.UpdateFolderInput = {
 
 M.UpdateFolderOutput = {
     type = "structure",
+    id = "UpdateFolderOutput",
     members = {
         Status = {
             type = "integer",
@@ -30450,6 +31929,7 @@ M.UpdateFolderOutput = {
 
 M.UpdateFolderPermissionsInput = {
     type = "structure",
+    id = "UpdateFolderPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30478,6 +31958,7 @@ M.UpdateFolderPermissionsInput = {
 
 M.UpdateFolderPermissionsOutput = {
     type = "structure",
+    id = "UpdateFolderPermissionsOutput",
     members = {
         Status = {
             type = "integer",
@@ -30503,6 +31984,7 @@ M.UpdateFolderPermissionsOutput = {
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -30533,6 +32015,7 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
     members = {
         Group = M.Group,
         RequestId = {
@@ -30550,6 +32033,7 @@ M.UpdateGroupOutput = {
 
 M.UpdateIAMPolicyAssignmentInput = {
     type = "structure",
+    id = "UpdateIAMPolicyAssignmentInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30588,6 +32072,7 @@ M.UpdateIAMPolicyAssignmentInput = {
 
 M.UpdateIAMPolicyAssignmentOutput = {
     type = "structure",
+    id = "UpdateIAMPolicyAssignmentOutput",
     members = {
         AssignmentName = {
             type = "string",
@@ -30621,6 +32106,7 @@ M.UpdateIAMPolicyAssignmentOutput = {
 
 M.UpdateIdentityPropagationConfigInput = {
     type = "structure",
+    id = "UpdateIdentityPropagationConfigInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30645,6 +32131,7 @@ M.UpdateIdentityPropagationConfigInput = {
 
 M.UpdateIdentityPropagationConfigOutput = {
     type = "structure",
+    id = "UpdateIdentityPropagationConfigOutput",
     members = {
         RequestId = {
             type = "string",
@@ -30661,6 +32148,7 @@ M.UpdateIdentityPropagationConfigOutput = {
 
 M.UpdateIpRestrictionInput = {
     type = "structure",
+    id = "UpdateIpRestrictionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30692,6 +32180,7 @@ M.UpdateIpRestrictionInput = {
 
 M.UpdateIpRestrictionOutput = {
     type = "structure",
+    id = "UpdateIpRestrictionOutput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30711,6 +32200,7 @@ M.UpdateIpRestrictionOutput = {
 
 M.UpdateKeyRegistrationInput = {
     type = "structure",
+    id = "UpdateKeyRegistrationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30731,6 +32221,7 @@ M.UpdateKeyRegistrationInput = {
 
 M.SuccessfulKeyRegistrationEntry = {
     type = "structure",
+    id = "SuccessfulKeyRegistrationEntry",
     members = {
         KeyArn = {
             type = "string",
@@ -30750,6 +32241,7 @@ M.SuccessfulKeyRegistrationEntry = {
 
 M.UpdateKeyRegistrationOutput = {
     type = "structure",
+    id = "UpdateKeyRegistrationOutput",
     members = {
         FailedKeyRegistration = {
             type = "list",
@@ -30767,6 +32259,7 @@ M.UpdateKeyRegistrationOutput = {
 
 M.UpdatePublicSharingSettingsInput = {
     type = "structure",
+    id = "UpdatePublicSharingSettingsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30786,6 +32279,7 @@ M.UpdatePublicSharingSettingsInput = {
 
 M.UpdatePublicSharingSettingsOutput = {
     type = "structure",
+    id = "UpdatePublicSharingSettingsOutput",
     members = {
         RequestId = {
             type = "string",
@@ -30802,6 +32296,7 @@ M.UpdatePublicSharingSettingsOutput = {
 
 M.UpdateQPersonalizationConfigurationInput = {
     type = "structure",
+    id = "UpdateQPersonalizationConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30821,6 +32316,7 @@ M.UpdateQPersonalizationConfigurationInput = {
 
 M.UpdateQPersonalizationConfigurationOutput = {
     type = "structure",
+    id = "UpdateQPersonalizationConfigurationOutput",
     members = {
         PersonalizationMode = {
             type = "string",
@@ -30840,6 +32336,7 @@ M.UpdateQPersonalizationConfigurationOutput = {
 
 M.UpdateQuickSightQSearchConfigurationInput = {
     type = "structure",
+    id = "UpdateQuickSightQSearchConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -30859,6 +32356,7 @@ M.UpdateQuickSightQSearchConfigurationInput = {
 
 M.UpdateQuickSightQSearchConfigurationOutput = {
     type = "structure",
+    id = "UpdateQuickSightQSearchConfigurationOutput",
     members = {
         QSearchStatus = {
             type = "string",
@@ -30878,6 +32376,7 @@ M.UpdateQuickSightQSearchConfigurationOutput = {
 
 M.UpdateRefreshScheduleInput = {
     type = "structure",
+    id = "UpdateRefreshScheduleInput",
     members = {
         DataSetId = {
             type = "string",
@@ -30901,6 +32400,7 @@ M.UpdateRefreshScheduleInput = {
 
 M.UpdateRefreshScheduleOutput = {
     type = "structure",
+    id = "UpdateRefreshScheduleOutput",
     members = {
         Status = {
             type = "integer",
@@ -30923,6 +32423,7 @@ M.UpdateRefreshScheduleOutput = {
 
 M.UpdateRoleCustomPermissionInput = {
     type = "structure",
+    id = "UpdateRoleCustomPermissionInput",
     members = {
         CustomPermissionsName = {
             type = "string",
@@ -30956,6 +32457,7 @@ M.UpdateRoleCustomPermissionInput = {
 
 M.UpdateRoleCustomPermissionOutput = {
     type = "structure",
+    id = "UpdateRoleCustomPermissionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -30977,6 +32479,7 @@ M.SelfUpgradeAdminAction = {
 
 M.UpdateSelfUpgradeInput = {
     type = "structure",
+    id = "UpdateSelfUpgradeInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31009,6 +32512,7 @@ M.UpdateSelfUpgradeInput = {
 
 M.UpdateSelfUpgradeOutput = {
     type = "structure",
+    id = "UpdateSelfUpgradeOutput",
     members = {
         SelfUpgradeRequestDetail = M.SelfUpgradeRequestDetail,
         RequestId = {
@@ -31026,6 +32530,7 @@ M.UpdateSelfUpgradeOutput = {
 
 M.UpdateSelfUpgradeConfigurationInput = {
     type = "structure",
+    id = "UpdateSelfUpgradeConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31052,6 +32557,7 @@ M.UpdateSelfUpgradeConfigurationInput = {
 
 M.UpdateSelfUpgradeConfigurationOutput = {
     type = "structure",
+    id = "UpdateSelfUpgradeConfigurationOutput",
     members = {
         RequestId = {
             type = "string",
@@ -31068,6 +32574,7 @@ M.UpdateSelfUpgradeConfigurationOutput = {
 
 M.UpdateSPICECapacityConfigurationInput = {
     type = "structure",
+    id = "UpdateSPICECapacityConfigurationInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31087,6 +32594,7 @@ M.UpdateSPICECapacityConfigurationInput = {
 
 M.UpdateSPICECapacityConfigurationOutput = {
     type = "structure",
+    id = "UpdateSPICECapacityConfigurationOutput",
     members = {
         RequestId = {
             type = "string",
@@ -31103,6 +32611,7 @@ M.UpdateSPICECapacityConfigurationOutput = {
 
 M.UpdateTemplateInput = {
     type = "structure",
+    id = "UpdateTemplateInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31132,6 +32641,7 @@ M.UpdateTemplateInput = {
 
 M.UpdateTemplateOutput = {
     type = "structure",
+    id = "UpdateTemplateOutput",
     members = {
         TemplateId = {
             type = "string",
@@ -31160,6 +32670,7 @@ M.UpdateTemplateOutput = {
 
 M.UpdateTemplateAliasInput = {
     type = "structure",
+    id = "UpdateTemplateAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31193,6 +32704,7 @@ M.UpdateTemplateAliasInput = {
 
 M.UpdateTemplateAliasOutput = {
     type = "structure",
+    id = "UpdateTemplateAliasOutput",
     members = {
         TemplateAlias = M.TemplateAlias,
         Status = {
@@ -31210,6 +32722,7 @@ M.UpdateTemplateAliasOutput = {
 
 M.UpdateTemplatePermissionsInput = {
     type = "structure",
+    id = "UpdateTemplatePermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31238,6 +32751,7 @@ M.UpdateTemplatePermissionsInput = {
 
 M.UpdateTemplatePermissionsOutput = {
     type = "structure",
+    id = "UpdateTemplatePermissionsOutput",
     members = {
         TemplateId = {
             type = "string",
@@ -31264,6 +32778,7 @@ M.UpdateTemplatePermissionsOutput = {
 
 M.UpdateThemeInput = {
     type = "structure",
+    id = "UpdateThemeInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31297,6 +32812,7 @@ M.UpdateThemeInput = {
 
 M.UpdateThemeOutput = {
     type = "structure",
+    id = "UpdateThemeOutput",
     members = {
         ThemeId = {
             type = "string",
@@ -31325,6 +32841,7 @@ M.UpdateThemeOutput = {
 
 M.UpdateThemeAliasInput = {
     type = "structure",
+    id = "UpdateThemeAliasInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31358,6 +32875,7 @@ M.UpdateThemeAliasInput = {
 
 M.UpdateThemeAliasOutput = {
     type = "structure",
+    id = "UpdateThemeAliasOutput",
     members = {
         ThemeAlias = M.ThemeAlias,
         Status = {
@@ -31375,6 +32893,7 @@ M.UpdateThemeAliasOutput = {
 
 M.UpdateThemePermissionsInput = {
     type = "structure",
+    id = "UpdateThemePermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31403,6 +32922,7 @@ M.UpdateThemePermissionsInput = {
 
 M.UpdateThemePermissionsOutput = {
     type = "structure",
+    id = "UpdateThemePermissionsOutput",
     members = {
         ThemeId = {
             type = "string",
@@ -31429,6 +32949,7 @@ M.UpdateThemePermissionsOutput = {
 
 M.UpdateTopicInput = {
     type = "structure",
+    id = "UpdateTopicInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31453,6 +32974,7 @@ M.UpdateTopicInput = {
 
 M.UpdateTopicOutput = {
     type = "structure",
+    id = "UpdateTopicOutput",
     members = {
         TopicId = {
             type = "string",
@@ -31478,6 +33000,7 @@ M.UpdateTopicOutput = {
 
 M.UpdateTopicPermissionsInput = {
     type = "structure",
+    id = "UpdateTopicPermissionsInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31506,6 +33029,7 @@ M.UpdateTopicPermissionsInput = {
 
 M.UpdateTopicPermissionsOutput = {
     type = "structure",
+    id = "UpdateTopicPermissionsOutput",
     members = {
         TopicId = {
             type = "string",
@@ -31532,6 +33056,7 @@ M.UpdateTopicPermissionsOutput = {
 
 M.UpdateTopicRefreshScheduleInput = {
     type = "structure",
+    id = "UpdateTopicRefreshScheduleInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31562,6 +33087,7 @@ M.UpdateTopicRefreshScheduleInput = {
 
 M.UpdateTopicRefreshScheduleOutput = {
     type = "structure",
+    id = "UpdateTopicRefreshScheduleOutput",
     members = {
         TopicId = {
             type = "string",
@@ -31587,6 +33113,7 @@ M.UpdateTopicRefreshScheduleOutput = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         UserName = {
             type = "string",
@@ -31644,6 +33171,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
     members = {
         User = M.User,
         RequestId = {
@@ -31661,6 +33189,7 @@ M.UpdateUserOutput = {
 
 M.UpdateUserCustomPermissionInput = {
     type = "structure",
+    id = "UpdateUserCustomPermissionInput",
     members = {
         UserName = {
             type = "string",
@@ -31694,6 +33223,7 @@ M.UpdateUserCustomPermissionInput = {
 
 M.UpdateUserCustomPermissionOutput = {
     type = "structure",
+    id = "UpdateUserCustomPermissionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -31710,6 +33240,7 @@ M.UpdateUserCustomPermissionOutput = {
 
 M.UpdateVPCConnectionInput = {
     type = "structure",
+    id = "UpdateVPCConnectionInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31760,6 +33291,7 @@ M.UpdateVPCConnectionInput = {
 
 M.UpdateVPCConnectionOutput = {
     type = "structure",
+    id = "UpdateVPCConnectionOutput",
     members = {
         Arn = {
             type = "string",
@@ -31788,6 +33320,7 @@ M.UpdateVPCConnectionOutput = {
 
 M.TopicVisual = {
     type = "structure",
+    id = "TopicVisual",
     members = {
         VisualId = {
             type = "string",
@@ -31805,6 +33338,7 @@ M.TopicVisual = {
 
 M.CreateTopicReviewedAnswer = {
     type = "structure",
+    id = "CreateTopicReviewedAnswer",
     members = {
         AnswerId = {
             type = "string",
@@ -31832,6 +33366,7 @@ M.CreateTopicReviewedAnswer = {
 
 M.TopicReviewedAnswer = {
     type = "structure",
+    id = "TopicReviewedAnswer",
     members = {
         Arn = {
             type = "string",
@@ -31862,6 +33397,7 @@ M.TopicReviewedAnswer = {
 
 M.BatchCreateTopicReviewedAnswerInput = {
     type = "structure",
+    id = "BatchCreateTopicReviewedAnswerInput",
     members = {
         AwsAccountId = {
             type = "string",
@@ -31889,6 +33425,7 @@ M.BatchCreateTopicReviewedAnswerInput = {
 
 M.ListTopicReviewedAnswersOutput = {
     type = "structure",
+    id = "ListTopicReviewedAnswersOutput",
     members = {
         TopicId = {
             type = "string",

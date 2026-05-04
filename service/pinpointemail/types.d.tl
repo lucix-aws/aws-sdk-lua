@@ -973,11 +973,11 @@ local record TooManyRequestsException
     message: string
 end
 
-local type DeliverabilityTestStatus = "IN_PROGRESS" | "COMPLETED"
-
 local type TlsPolicy = "REQUIRE" | "OPTIONAL"
 
 local type DeliverabilityDashboardAccountStatus = "ACTIVE" | "PENDING_EXPIRATION" | "DISABLED"
+
+local type DeliverabilityTestStatus = "IN_PROGRESS" | "COMPLETED"
 
 local type IdentityType = "EMAIL_ADDRESS" | "DOMAIN" | "MANAGED_DOMAIN"
 

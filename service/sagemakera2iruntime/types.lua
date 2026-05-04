@@ -2,6 +2,7 @@ local M = {}
 
 M.DeleteHumanLoopInput = {
     type = "structure",
+    id = "DeleteHumanLoopInput",
     members = {
         HumanLoopName = {
             type = "string",
@@ -15,10 +16,12 @@ M.DeleteHumanLoopInput = {
 
 M.DeleteHumanLoopOutput = {
     type = "structure",
+    id = "DeleteHumanLoopOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -29,6 +32,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -39,6 +43,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -49,6 +54,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -59,6 +65,7 @@ M.ValidationException = {
 
 M.DescribeHumanLoopInput = {
     type = "structure",
+    id = "DescribeHumanLoopInput",
     members = {
         HumanLoopName = {
             type = "string",
@@ -72,6 +79,7 @@ M.DescribeHumanLoopInput = {
 
 M.HumanLoopOutput = {
     type = "structure",
+    id = "HumanLoopOutput",
     members = {
         OutputS3Uri = {
             type = "string",
@@ -92,6 +100,7 @@ M.HumanLoopStatus = {
 
 M.DescribeHumanLoopOutput = {
     type = "structure",
+    id = "DescribeHumanLoopOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -141,6 +150,7 @@ M.SortOrder = {
 
 M.ListHumanLoopsInput = {
     type = "structure",
+    id = "ListHumanLoopsInput",
     members = {
         CreationTimeAfter = {
             type = "timestamp",
@@ -186,6 +196,7 @@ M.ListHumanLoopsInput = {
 
 M.HumanLoopSummary = {
     type = "structure",
+    id = "HumanLoopSummary",
     members = {
         HumanLoopName = {
             type = "string",
@@ -210,6 +221,7 @@ M.HumanLoopSummary = {
 
 M.ListHumanLoopsOutput = {
     type = "structure",
+    id = "ListHumanLoopsOutput",
     members = {
         HumanLoopSummaries = {
             type = "list",
@@ -226,6 +238,7 @@ M.ListHumanLoopsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -236,6 +249,7 @@ M.ConflictException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -251,6 +265,7 @@ M.ContentClassifier = {
 
 M.HumanLoopDataAttributes = {
     type = "structure",
+    id = "HumanLoopDataAttributes",
     members = {
         ContentClassifiers = {
             type = "list",
@@ -264,6 +279,7 @@ M.HumanLoopDataAttributes = {
 
 M.HumanLoopInput = {
     type = "structure",
+    id = "HumanLoopInput",
     members = {
         InputContent = {
             type = "string",
@@ -276,6 +292,7 @@ M.HumanLoopInput = {
 
 M.StartHumanLoopInput = {
     type = "structure",
+    id = "StartHumanLoopInput",
     members = {
         HumanLoopName = {
             type = "string",
@@ -298,6 +315,7 @@ M.StartHumanLoopInput = {
 
 M.StartHumanLoopOutput = {
     type = "structure",
+    id = "StartHumanLoopOutput",
     members = {
         HumanLoopArn = {
             type = "string",
@@ -307,6 +325,7 @@ M.StartHumanLoopOutput = {
 
 M.StopHumanLoopInput = {
     type = "structure",
+    id = "StopHumanLoopInput",
     members = {
         HumanLoopName = {
             type = "string",
@@ -319,6 +338,7 @@ M.StopHumanLoopInput = {
 
 M.StopHumanLoopOutput = {
     type = "structure",
+    id = "StopHumanLoopOutput",
 }
 
 return M

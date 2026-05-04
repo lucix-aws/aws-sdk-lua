@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -27,6 +28,7 @@ M.ApplicationPermission = {
 
 M.AssociateUserToPermissionGroupInput = {
     type = "structure",
+    id = "AssociateUserToPermissionGroupInput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -53,6 +55,7 @@ M.AssociateUserToPermissionGroupInput = {
 
 M.AssociateUserToPermissionGroupOutput = {
     type = "structure",
+    id = "AssociateUserToPermissionGroupOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -66,6 +69,7 @@ M.AssociateUserToPermissionGroupOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -79,6 +83,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -89,6 +94,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -102,11 +108,13 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
 }
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -120,6 +128,7 @@ M.ValidationException = {
 
 M.AwsCredentials = {
     type = "structure",
+    id = "AwsCredentials",
     members = {
         accessKeyId = {
             type = "string",
@@ -147,6 +156,7 @@ M.ChangeType = {
 
 M.CreateChangesetInput = {
     type = "structure",
+    id = "CreateChangesetInput",
     members = {
         clientToken = {
             type = "string",
@@ -188,6 +198,7 @@ M.CreateChangesetInput = {
 
 M.CreateChangesetOutput = {
     type = "structure",
+    id = "CreateChangesetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -200,6 +211,7 @@ M.CreateChangesetOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -215,6 +227,7 @@ M.DatasetKind = {
 
 M.DatasetOwnerInfo = {
     type = "structure",
+    id = "DatasetOwnerInfo",
     members = {
         name = {
             type = "string",
@@ -230,6 +243,7 @@ M.DatasetOwnerInfo = {
 
 M.ResourcePermission = {
     type = "structure",
+    id = "ResourcePermission",
     members = {
         permission = {
             type = "string",
@@ -239,6 +253,7 @@ M.ResourcePermission = {
 
 M.PermissionGroupParams = {
     type = "structure",
+    id = "PermissionGroupParams",
     members = {
         permissionGroupId = {
             type = "string",
@@ -267,6 +282,7 @@ M.ColumnDataType = {
 
 M.ColumnDefinition = {
     type = "structure",
+    id = "ColumnDefinition",
     members = {
         dataType = {
             type = "string",
@@ -282,6 +298,7 @@ M.ColumnDefinition = {
 
 M.SchemaDefinition = {
     type = "structure",
+    id = "SchemaDefinition",
     members = {
         columns = {
             type = "list",
@@ -296,6 +313,7 @@ M.SchemaDefinition = {
 
 M.SchemaUnion = {
     type = "structure",
+    id = "SchemaUnion",
     members = {
         tabularSchemaConfig = M.SchemaDefinition,
     },
@@ -303,6 +321,7 @@ M.SchemaUnion = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         clientToken = {
             type = "string",
@@ -338,6 +357,7 @@ M.CreateDatasetInput = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -352,6 +372,7 @@ M.ExportFileFormat = {
 
 M.DataViewDestinationTypeParams = {
     type = "structure",
+    id = "DataViewDestinationTypeParams",
     members = {
         destinationType = {
             type = "string",
@@ -372,6 +393,7 @@ M.DataViewDestinationTypeParams = {
 
 M.CreateDataViewInput = {
     type = "structure",
+    id = "CreateDataViewInput",
     members = {
         clientToken = {
             type = "string",
@@ -414,6 +436,7 @@ M.CreateDataViewInput = {
 
 M.CreateDataViewOutput = {
     type = "structure",
+    id = "CreateDataViewOutput",
     members = {
         datasetId = {
             type = "string",
@@ -426,6 +449,7 @@ M.CreateDataViewOutput = {
 
 M.CreatePermissionGroupInput = {
     type = "structure",
+    id = "CreatePermissionGroupInput",
     members = {
         name = {
             type = "string",
@@ -454,6 +478,7 @@ M.CreatePermissionGroupInput = {
 
 M.CreatePermissionGroupOutput = {
     type = "structure",
+    id = "CreatePermissionGroupOutput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -468,6 +493,7 @@ M.UserType = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         emailAddress = {
             type = "string",
@@ -504,6 +530,7 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         userId = {
             type = "string",
@@ -513,6 +540,7 @@ M.CreateUserOutput = {
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         clientToken = {
             type = "string",
@@ -533,6 +561,7 @@ M.DeleteDatasetInput = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -542,6 +571,7 @@ M.DeleteDatasetOutput = {
 
 M.DeletePermissionGroupInput = {
     type = "structure",
+    id = "DeletePermissionGroupInput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -562,6 +592,7 @@ M.DeletePermissionGroupInput = {
 
 M.DeletePermissionGroupOutput = {
     type = "structure",
+    id = "DeletePermissionGroupOutput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -571,6 +602,7 @@ M.DeletePermissionGroupOutput = {
 
 M.DisableUserInput = {
     type = "structure",
+    id = "DisableUserInput",
     members = {
         userId = {
             type = "string",
@@ -590,6 +622,7 @@ M.DisableUserInput = {
 
 M.DisableUserOutput = {
     type = "structure",
+    id = "DisableUserOutput",
     members = {
         userId = {
             type = "string",
@@ -599,6 +632,7 @@ M.DisableUserOutput = {
 
 M.DisassociateUserFromPermissionGroupInput = {
     type = "structure",
+    id = "DisassociateUserFromPermissionGroupInput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -626,6 +660,7 @@ M.DisassociateUserFromPermissionGroupInput = {
 
 M.DisassociateUserFromPermissionGroupOutput = {
     type = "structure",
+    id = "DisassociateUserFromPermissionGroupOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -639,6 +674,7 @@ M.DisassociateUserFromPermissionGroupOutput = {
 
 M.EnableUserInput = {
     type = "structure",
+    id = "EnableUserInput",
     members = {
         userId = {
             type = "string",
@@ -658,6 +694,7 @@ M.EnableUserInput = {
 
 M.EnableUserOutput = {
     type = "structure",
+    id = "EnableUserOutput",
     members = {
         userId = {
             type = "string",
@@ -667,6 +704,7 @@ M.EnableUserOutput = {
 
 M.GetChangesetInput = {
     type = "structure",
+    id = "GetChangesetInput",
     members = {
         datasetId = {
             type = "string",
@@ -698,6 +736,7 @@ M.ErrorCategory = {
 
 M.ChangesetErrorInfo = {
     type = "structure",
+    id = "ChangesetErrorInfo",
     members = {
         errorMessage = {
             type = "string",
@@ -718,6 +757,7 @@ M.IngestionStatus = {
 
 M.GetChangesetOutput = {
     type = "structure",
+    id = "GetChangesetOutput",
     members = {
         changesetId = {
             type = "string",
@@ -774,6 +814,7 @@ M.GetChangesetOutput = {
 
 M.GetDatasetInput = {
     type = "structure",
+    id = "GetDatasetInput",
     members = {
         datasetId = {
             type = "string",
@@ -794,6 +835,7 @@ M.DatasetStatus = {
 
 M.GetDatasetOutput = {
     type = "structure",
+    id = "GetDatasetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -834,6 +876,7 @@ M.GetDatasetOutput = {
 
 M.GetDataViewInput = {
     type = "structure",
+    id = "GetDataViewInput",
     members = {
         dataViewId = {
             type = "string",
@@ -854,6 +897,7 @@ M.GetDataViewInput = {
 
 M.DataViewErrorInfo = {
     type = "structure",
+    id = "DataViewErrorInfo",
     members = {
         errorMessage = {
             type = "string",
@@ -877,6 +921,7 @@ M.DataViewStatus = {
 
 M.GetDataViewOutput = {
     type = "structure",
+    id = "GetDataViewOutput",
     members = {
         autoUpdate = {
             type = "boolean",
@@ -929,6 +974,7 @@ M.GetDataViewOutput = {
 
 M.GetExternalDataViewAccessDetailsInput = {
     type = "structure",
+    id = "GetExternalDataViewAccessDetailsInput",
     members = {
         dataViewId = {
             type = "string",
@@ -949,6 +995,7 @@ M.GetExternalDataViewAccessDetailsInput = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucket = {
             type = "string",
@@ -967,6 +1014,7 @@ M.S3Location = {
 
 M.GetExternalDataViewAccessDetailsOutput = {
     type = "structure",
+    id = "GetExternalDataViewAccessDetailsOutput",
     members = {
         credentials = M.AwsCredentials,
         s3Location = M.S3Location,
@@ -975,6 +1023,7 @@ M.GetExternalDataViewAccessDetailsOutput = {
 
 M.GetPermissionGroupInput = {
     type = "structure",
+    id = "GetPermissionGroupInput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -994,6 +1043,7 @@ M.PermissionGroupMembershipStatus = {
 
 M.PermissionGroup = {
     type = "structure",
+    id = "PermissionGroup",
     members = {
         permissionGroupId = {
             type = "string",
@@ -1028,6 +1078,7 @@ M.PermissionGroup = {
 
 M.GetPermissionGroupOutput = {
     type = "structure",
+    id = "GetPermissionGroupOutput",
     members = {
         permissionGroup = M.PermissionGroup,
     },
@@ -1035,6 +1086,7 @@ M.GetPermissionGroupOutput = {
 
 M.GetProgrammaticAccessCredentialsInput = {
     type = "structure",
+    id = "GetProgrammaticAccessCredentialsInput",
     members = {
         durationInMinutes = {
             type = "long",
@@ -1054,6 +1106,7 @@ M.GetProgrammaticAccessCredentialsInput = {
 
 M.Credentials = {
     type = "structure",
+    id = "Credentials",
     members = {
         accessKeyId = {
             type = "string",
@@ -1069,6 +1122,7 @@ M.Credentials = {
 
 M.GetProgrammaticAccessCredentialsOutput = {
     type = "structure",
+    id = "GetProgrammaticAccessCredentialsOutput",
     members = {
         credentials = M.Credentials,
         durationInMinutes = {
@@ -1079,6 +1133,7 @@ M.GetProgrammaticAccessCredentialsOutput = {
 
 M.GetUserInput = {
     type = "structure",
+    id = "GetUserInput",
     members = {
         userId = {
             type = "string",
@@ -1098,6 +1153,7 @@ M.UserStatus = {
 
 M.GetUserOutput = {
     type = "structure",
+    id = "GetUserOutput",
     members = {
         userId = {
             type = "string",
@@ -1163,6 +1219,7 @@ M.locationType = {
 
 M.GetWorkingLocationInput = {
     type = "structure",
+    id = "GetWorkingLocationInput",
     members = {
         locationType = {
             type = "string",
@@ -1172,6 +1229,7 @@ M.GetWorkingLocationInput = {
 
 M.GetWorkingLocationOutput = {
     type = "structure",
+    id = "GetWorkingLocationOutput",
     members = {
         s3Uri = {
             type = "string",
@@ -1187,6 +1245,7 @@ M.GetWorkingLocationOutput = {
 
 M.ListChangesetsInput = {
     type = "structure",
+    id = "ListChangesetsInput",
     members = {
         datasetId = {
             type = "string",
@@ -1212,6 +1271,7 @@ M.ListChangesetsInput = {
 
 M.ChangesetSummary = {
     type = "structure",
+    id = "ChangesetSummary",
     members = {
         changesetId = {
             type = "string",
@@ -1268,6 +1328,7 @@ M.ChangesetSummary = {
 
 M.ListChangesetsOutput = {
     type = "structure",
+    id = "ListChangesetsOutput",
     members = {
         changesets = {
             type = "list",
@@ -1281,6 +1342,7 @@ M.ListChangesetsOutput = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1299,6 +1361,7 @@ M.ListDatasetsInput = {
 
 M.Dataset = {
     type = "structure",
+    id = "Dataset",
     members = {
         datasetId = {
             type = "string",
@@ -1337,6 +1400,7 @@ M.Dataset = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         datasets = {
             type = "list",
@@ -1350,6 +1414,7 @@ M.ListDatasetsOutput = {
 
 M.ListDataViewsInput = {
     type = "structure",
+    id = "ListDataViewsInput",
     members = {
         datasetId = {
             type = "string",
@@ -1375,6 +1440,7 @@ M.ListDataViewsInput = {
 
 M.DataViewSummary = {
     type = "structure",
+    id = "DataViewSummary",
     members = {
         dataViewId = {
             type = "string",
@@ -1427,6 +1493,7 @@ M.DataViewSummary = {
 
 M.ListDataViewsOutput = {
     type = "structure",
+    id = "ListDataViewsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1440,6 +1507,7 @@ M.ListDataViewsOutput = {
 
 M.ListPermissionGroupsInput = {
     type = "structure",
+    id = "ListPermissionGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1459,6 +1527,7 @@ M.ListPermissionGroupsInput = {
 
 M.ListPermissionGroupsOutput = {
     type = "structure",
+    id = "ListPermissionGroupsOutput",
     members = {
         permissionGroups = {
             type = "list",
@@ -1472,6 +1541,7 @@ M.ListPermissionGroupsOutput = {
 
 M.ListPermissionGroupsByUserInput = {
     type = "structure",
+    id = "ListPermissionGroupsByUserInput",
     members = {
         userId = {
             type = "string",
@@ -1498,6 +1568,7 @@ M.ListPermissionGroupsByUserInput = {
 
 M.PermissionGroupByUser = {
     type = "structure",
+    id = "PermissionGroupByUser",
     members = {
         permissionGroupId = {
             type = "string",
@@ -1513,6 +1584,7 @@ M.PermissionGroupByUser = {
 
 M.ListPermissionGroupsByUserOutput = {
     type = "structure",
+    id = "ListPermissionGroupsByUserOutput",
     members = {
         permissionGroups = {
             type = "list",
@@ -1526,6 +1598,7 @@ M.ListPermissionGroupsByUserOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         nextToken = {
             type = "string",
@@ -1545,6 +1618,7 @@ M.ListUsersInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         userId = {
             type = "string",
@@ -1605,6 +1679,7 @@ M.User = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         users = {
             type = "list",
@@ -1618,6 +1693,7 @@ M.ListUsersOutput = {
 
 M.ListUsersByPermissionGroupInput = {
     type = "structure",
+    id = "ListUsersByPermissionGroupInput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -1644,6 +1720,7 @@ M.ListUsersByPermissionGroupInput = {
 
 M.UserByPermissionGroup = {
     type = "structure",
+    id = "UserByPermissionGroup",
     members = {
         userId = {
             type = "string",
@@ -1677,6 +1754,7 @@ M.UserByPermissionGroup = {
 
 M.ListUsersByPermissionGroupOutput = {
     type = "structure",
+    id = "ListUsersByPermissionGroupOutput",
     members = {
         users = {
             type = "list",
@@ -1690,6 +1768,7 @@ M.ListUsersByPermissionGroupOutput = {
 
 M.ResetUserPasswordInput = {
     type = "structure",
+    id = "ResetUserPasswordInput",
     members = {
         userId = {
             type = "string",
@@ -1709,6 +1788,7 @@ M.ResetUserPasswordInput = {
 
 M.ResetUserPasswordOutput = {
     type = "structure",
+    id = "ResetUserPasswordOutput",
     members = {
         userId = {
             type = "string",
@@ -1721,6 +1801,7 @@ M.ResetUserPasswordOutput = {
 
 M.UpdateChangesetInput = {
     type = "structure",
+    id = "UpdateChangesetInput",
     members = {
         clientToken = {
             type = "string",
@@ -1763,6 +1844,7 @@ M.UpdateChangesetInput = {
 
 M.UpdateChangesetOutput = {
     type = "structure",
+    id = "UpdateChangesetOutput",
     members = {
         changesetId = {
             type = "string",
@@ -1775,6 +1857,7 @@ M.UpdateChangesetOutput = {
 
 M.UpdateDatasetInput = {
     type = "structure",
+    id = "UpdateDatasetInput",
     members = {
         clientToken = {
             type = "string",
@@ -1813,6 +1896,7 @@ M.UpdateDatasetInput = {
 
 M.UpdateDatasetOutput = {
     type = "structure",
+    id = "UpdateDatasetOutput",
     members = {
         datasetId = {
             type = "string",
@@ -1822,6 +1906,7 @@ M.UpdateDatasetOutput = {
 
 M.UpdatePermissionGroupInput = {
     type = "structure",
+    id = "UpdatePermissionGroupInput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -1851,6 +1936,7 @@ M.UpdatePermissionGroupInput = {
 
 M.UpdatePermissionGroupOutput = {
     type = "structure",
+    id = "UpdatePermissionGroupOutput",
     members = {
         permissionGroupId = {
             type = "string",
@@ -1860,6 +1946,7 @@ M.UpdatePermissionGroupOutput = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         userId = {
             type = "string",
@@ -1894,6 +1981,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
     members = {
         userId = {
             type = "string",

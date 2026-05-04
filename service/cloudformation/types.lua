@@ -15,6 +15,7 @@ M.AccountGateStatus = {
 
 M.AccountGateResult = {
     type = "structure",
+    id = "AccountGateResult",
     members = {
         Status = {
             type = "string",
@@ -27,6 +28,7 @@ M.AccountGateResult = {
 
 M.AccountLimit = {
     type = "structure",
+    id = "AccountLimit",
     members = {
         Name = {
             type = "string",
@@ -39,14 +41,17 @@ M.AccountLimit = {
 
 M.ActivateOrganizationsAccessInput = {
     type = "structure",
+    id = "ActivateOrganizationsAccessInput",
 }
 
 M.ActivateOrganizationsAccessOutput = {
     type = "structure",
+    id = "ActivateOrganizationsAccessOutput",
 }
 
 M.InvalidOperationException = {
     type = "structure",
+    id = "InvalidOperationException",
     error = "client",
     members = {
         Message = {
@@ -57,6 +62,7 @@ M.InvalidOperationException = {
 
 M.OperationNotFoundException = {
     type = "structure",
+    id = "OperationNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -67,6 +73,7 @@ M.OperationNotFoundException = {
 
 M.LoggingConfig = {
     type = "structure",
+    id = "LoggingConfig",
     members = {
         LogRoleArn = {
             type = "string",
@@ -96,6 +103,7 @@ M.VersionBump = {
 
 M.ActivateTypeInput = {
     type = "structure",
+    id = "ActivateTypeInput",
     members = {
         Type = {
             type = "string",
@@ -130,6 +138,7 @@ M.ActivateTypeInput = {
 
 M.ActivateTypeOutput = {
     type = "structure",
+    id = "ActivateTypeOutput",
     members = {
         Arn = {
             type = "string",
@@ -139,6 +148,7 @@ M.ActivateTypeOutput = {
 
 M.CFNRegistryException = {
     type = "structure",
+    id = "CFNRegistryException",
     error = "client",
     members = {
         Message = {
@@ -149,6 +159,7 @@ M.CFNRegistryException = {
 
 M.TypeNotFoundException = {
     type = "structure",
+    id = "TypeNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -163,6 +174,7 @@ M.AfterValueFrom = {
 
 M.AlreadyExistsException = {
     type = "structure",
+    id = "AlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -187,6 +199,7 @@ M.AnnotationStatus = {
 
 M.Annotation = {
     type = "structure",
+    id = "Annotation",
     members = {
         AnnotationName = {
             type = "string",
@@ -218,6 +231,7 @@ M.AttributeChangeType = {
 
 M.AutoDeployment = {
     type = "structure",
+    id = "AutoDeployment",
     members = {
         Enabled = {
             type = "boolean",
@@ -234,6 +248,7 @@ M.AutoDeployment = {
 
 M.TypeConfigurationIdentifier = {
     type = "structure",
+    id = "TypeConfigurationIdentifier",
     members = {
         TypeArn = {
             type = "string",
@@ -255,6 +270,7 @@ M.TypeConfigurationIdentifier = {
 
 M.BatchDescribeTypeConfigurationsInput = {
     type = "structure",
+    id = "BatchDescribeTypeConfigurationsInput",
     members = {
         TypeConfigurationIdentifiers = {
             type = "list",
@@ -268,6 +284,7 @@ M.BatchDescribeTypeConfigurationsInput = {
 
 M.BatchDescribeTypeConfigurationsError = {
     type = "structure",
+    id = "BatchDescribeTypeConfigurationsError",
     members = {
         ErrorCode = {
             type = "string",
@@ -281,6 +298,7 @@ M.BatchDescribeTypeConfigurationsError = {
 
 M.TypeConfigurationDetails = {
     type = "structure",
+    id = "TypeConfigurationDetails",
     members = {
         Arn = {
             type = "string",
@@ -308,6 +326,7 @@ M.TypeConfigurationDetails = {
 
 M.BatchDescribeTypeConfigurationsOutput = {
     type = "structure",
+    id = "BatchDescribeTypeConfigurationsOutput",
     members = {
         Errors = {
             type = "list",
@@ -326,6 +345,7 @@ M.BatchDescribeTypeConfigurationsOutput = {
 
 M.TypeConfigurationNotFoundException = {
     type = "structure",
+    id = "TypeConfigurationNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -352,6 +372,7 @@ M.CallAs = {
 
 M.CancelUpdateStackInput = {
     type = "structure",
+    id = "CancelUpdateStackInput",
     members = {
         StackName = {
             type = "string",
@@ -367,10 +388,12 @@ M.CancelUpdateStackInput = {
 
 M.CancelUpdateStackOutput = {
     type = "structure",
+    id = "CancelUpdateStackOutput",
 }
 
 M.TokenAlreadyExistsException = {
     type = "structure",
+    id = "TokenAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -427,6 +450,7 @@ M.ResourceAttribute = {
 
 M.LiveResourceDrift = {
     type = "structure",
+    id = "LiveResourceDrift",
     members = {
         PreviousValue = {
             type = "string",
@@ -448,6 +472,7 @@ M.RequiresRecreation = {
 
 M.ResourceTargetDefinition = {
     type = "structure",
+    id = "ResourceTargetDefinition",
     members = {
         Attribute = {
             type = "string",
@@ -482,6 +507,7 @@ M.ResourceTargetDefinition = {
 
 M.ResourceChangeDetail = {
     type = "structure",
+    id = "ResourceChangeDetail",
     members = {
         Target = M.ResourceTargetDefinition,
         Evaluation = {
@@ -498,6 +524,7 @@ M.ResourceChangeDetail = {
 
 M.ModuleInfo = {
     type = "structure",
+    id = "ModuleInfo",
     members = {
         TypeHierarchy = {
             type = "string",
@@ -530,6 +557,7 @@ M.DriftIgnoredReason = {
 
 M.ResourceDriftIgnoredAttribute = {
     type = "structure",
+    id = "ResourceDriftIgnoredAttribute",
     members = {
         Path = {
             type = "string",
@@ -551,6 +579,7 @@ M.StackResourceDriftStatus = {
 
 M.ResourceChange = {
     type = "structure",
+    id = "ResourceChange",
     members = {
         PolicyAction = {
             type = "string",
@@ -607,6 +636,7 @@ M.ChangeType = {
 
 M.Change = {
     type = "structure",
+    id = "Change",
     members = {
         Type = {
             type = "string",
@@ -629,6 +659,7 @@ M.HookInvocationPoint = {
 
 M.ChangeSetHookResourceTargetDetails = {
     type = "structure",
+    id = "ChangeSetHookResourceTargetDetails",
     members = {
         LogicalResourceId = {
             type = "string",
@@ -648,6 +679,7 @@ M.HookTargetType = {
 
 M.ChangeSetHookTargetDetails = {
     type = "structure",
+    id = "ChangeSetHookTargetDetails",
     members = {
         TargetType = {
             type = "string",
@@ -658,6 +690,7 @@ M.ChangeSetHookTargetDetails = {
 
 M.ChangeSetHook = {
     type = "structure",
+    id = "ChangeSetHook",
     members = {
         InvocationPoint = {
             type = "string",
@@ -686,6 +719,7 @@ M.ChangeSetHooksStatus = {
 
 M.ChangeSetNotFoundException = {
     type = "structure",
+    id = "ChangeSetNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -716,6 +750,7 @@ M.ExecutionStatus = {
 
 M.ChangeSetSummary = {
     type = "structure",
+    id = "ChangeSetSummary",
     members = {
         StackId = {
             type = "string",
@@ -767,6 +802,7 @@ M.ChangeSetType = {
 
 M.ContinueUpdateRollbackInput = {
     type = "structure",
+    id = "ContinueUpdateRollbackInput",
     members = {
         StackName = {
             type = "string",
@@ -789,6 +825,7 @@ M.ContinueUpdateRollbackInput = {
 
 M.ContinueUpdateRollbackOutput = {
     type = "structure",
+    id = "ContinueUpdateRollbackOutput",
 }
 
 M.DeploymentMode = {
@@ -803,6 +840,7 @@ M.OnStackFailure = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         ParameterKey = {
             type = "string",
@@ -821,6 +859,7 @@ M.Parameter = {
 
 M.ResourceToImport = {
     type = "structure",
+    id = "ResourceToImport",
     members = {
         ResourceType = {
             type = "string",
@@ -847,6 +886,7 @@ M.ResourceToImport = {
 
 M.RollbackTrigger = {
     type = "structure",
+    id = "RollbackTrigger",
     members = {
         Arn = {
             type = "string",
@@ -865,6 +905,7 @@ M.RollbackTrigger = {
 
 M.RollbackConfiguration = {
     type = "structure",
+    id = "RollbackConfiguration",
     members = {
         RollbackTriggers = {
             type = "list",
@@ -878,6 +919,7 @@ M.RollbackConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -896,6 +938,7 @@ M.Tag = {
 
 M.CreateChangeSetInput = {
     type = "structure",
+    id = "CreateChangeSetInput",
     members = {
         StackName = {
             type = "string",
@@ -972,6 +1015,7 @@ M.CreateChangeSetInput = {
 
 M.CreateChangeSetOutput = {
     type = "structure",
+    id = "CreateChangeSetOutput",
     members = {
         Id = {
             type = "string",
@@ -984,6 +1028,7 @@ M.CreateChangeSetOutput = {
 
 M.InsufficientCapabilitiesException = {
     type = "structure",
+    id = "InsufficientCapabilitiesException",
     error = "client",
     members = {
         Message = {
@@ -994,6 +1039,7 @@ M.InsufficientCapabilitiesException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1004,6 +1050,7 @@ M.LimitExceededException = {
 
 M.ConcurrentResourcesLimitExceededException = {
     type = "structure",
+    id = "ConcurrentResourcesLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1014,6 +1061,7 @@ M.ConcurrentResourcesLimitExceededException = {
 
 M.ResourceDefinition = {
     type = "structure",
+    id = "ResourceDefinition",
     members = {
         ResourceType = {
             type = "string",
@@ -1047,6 +1095,7 @@ M.GeneratedTemplateUpdateReplacePolicy = {
 
 M.TemplateConfiguration = {
     type = "structure",
+    id = "TemplateConfiguration",
     members = {
         DeletionPolicy = {
             type = "string",
@@ -1059,6 +1108,7 @@ M.TemplateConfiguration = {
 
 M.CreateGeneratedTemplateInput = {
     type = "structure",
+    id = "CreateGeneratedTemplateInput",
     members = {
         Resources = {
             type = "list",
@@ -1079,6 +1129,7 @@ M.CreateGeneratedTemplateInput = {
 
 M.CreateGeneratedTemplateOutput = {
     type = "structure",
+    id = "CreateGeneratedTemplateOutput",
     members = {
         GeneratedTemplateId = {
             type = "string",
@@ -1094,6 +1145,7 @@ M.OnFailure = {
 
 M.CreateStackInput = {
     type = "structure",
+    id = "CreateStackInput",
     members = {
         StackName = {
             type = "string",
@@ -1160,6 +1212,7 @@ M.CreateStackInput = {
 
 M.CreateStackOutput = {
     type = "structure",
+    id = "CreateStackOutput",
     members = {
         StackId = {
             type = "string",
@@ -1172,6 +1225,7 @@ M.CreateStackOutput = {
 
 M.DeploymentTargets = {
     type = "structure",
+    id = "DeploymentTargets",
     members = {
         Accounts = {
             type = "list",
@@ -1202,6 +1256,7 @@ M.RegionConcurrencyType = {
 
 M.StackSetOperationPreferences = {
     type = "structure",
+    id = "StackSetOperationPreferences",
     members = {
         RegionConcurrencyType = {
             type = "string",
@@ -1230,6 +1285,7 @@ M.StackSetOperationPreferences = {
 
 M.CreateStackInstancesInput = {
     type = "structure",
+    id = "CreateStackInstancesInput",
     members = {
         StackSetName = {
             type = "string",
@@ -1268,6 +1324,7 @@ M.CreateStackInstancesInput = {
 
 M.CreateStackInstancesOutput = {
     type = "structure",
+    id = "CreateStackInstancesOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1277,6 +1334,7 @@ M.CreateStackInstancesOutput = {
 
 M.OperationIdAlreadyExistsException = {
     type = "structure",
+    id = "OperationIdAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1287,6 +1345,7 @@ M.OperationIdAlreadyExistsException = {
 
 M.OperationInProgressException = {
     type = "structure",
+    id = "OperationInProgressException",
     error = "client",
     members = {
         Message = {
@@ -1297,6 +1356,7 @@ M.OperationInProgressException = {
 
 M.StackSetNotFoundException = {
     type = "structure",
+    id = "StackSetNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1307,6 +1367,7 @@ M.StackSetNotFoundException = {
 
 M.StaleRequestException = {
     type = "structure",
+    id = "StaleRequestException",
     error = "client",
     members = {
         Message = {
@@ -1317,6 +1378,7 @@ M.StaleRequestException = {
 
 M.ResourceLocation = {
     type = "structure",
+    id = "ResourceLocation",
     members = {
         StackName = {
             type = "string",
@@ -1335,6 +1397,7 @@ M.ResourceLocation = {
 
 M.ResourceMapping = {
     type = "structure",
+    id = "ResourceMapping",
     members = {
         Source = setmetatable({ traits = {
             required = true,
@@ -1347,6 +1410,7 @@ M.ResourceMapping = {
 
 M.StackDefinition = {
     type = "structure",
+    id = "StackDefinition",
     members = {
         StackName = {
             type = "string",
@@ -1362,6 +1426,7 @@ M.StackDefinition = {
 
 M.CreateStackRefactorInput = {
     type = "structure",
+    id = "CreateStackRefactorInput",
     members = {
         Description = {
             type = "string",
@@ -1385,6 +1450,7 @@ M.CreateStackRefactorInput = {
 
 M.CreateStackRefactorOutput = {
     type = "structure",
+    id = "CreateStackRefactorOutput",
     members = {
         StackRefactorId = {
             type = "string",
@@ -1397,6 +1463,7 @@ M.CreateStackRefactorOutput = {
 
 M.CreatedButModifiedException = {
     type = "structure",
+    id = "CreatedButModifiedException",
     error = "client",
     members = {
         Message = {
@@ -1407,6 +1474,7 @@ M.CreatedButModifiedException = {
 
 M.ManagedExecution = {
     type = "structure",
+    id = "ManagedExecution",
     members = {
         Active = {
             type = "boolean",
@@ -1421,6 +1489,7 @@ M.PermissionModels = {
 
 M.CreateStackSetInput = {
     type = "structure",
+    id = "CreateStackSetInput",
     members = {
         StackSetName = {
             type = "string",
@@ -1477,6 +1546,7 @@ M.CreateStackSetInput = {
 
 M.CreateStackSetOutput = {
     type = "structure",
+    id = "CreateStackSetOutput",
     members = {
         StackSetId = {
             type = "string",
@@ -1486,6 +1556,7 @@ M.CreateStackSetOutput = {
 
 M.NameAlreadyExistsException = {
     type = "structure",
+    id = "NameAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1496,14 +1567,17 @@ M.NameAlreadyExistsException = {
 
 M.DeactivateOrganizationsAccessInput = {
     type = "structure",
+    id = "DeactivateOrganizationsAccessInput",
 }
 
 M.DeactivateOrganizationsAccessOutput = {
     type = "structure",
+    id = "DeactivateOrganizationsAccessOutput",
 }
 
 M.DeactivateTypeInput = {
     type = "structure",
+    id = "DeactivateTypeInput",
     members = {
         TypeName = {
             type = "string",
@@ -1519,10 +1593,12 @@ M.DeactivateTypeInput = {
 
 M.DeactivateTypeOutput = {
     type = "structure",
+    id = "DeactivateTypeOutput",
 }
 
 M.DeleteChangeSetInput = {
     type = "structure",
+    id = "DeleteChangeSetInput",
     members = {
         ChangeSetName = {
             type = "string",
@@ -1538,10 +1614,12 @@ M.DeleteChangeSetInput = {
 
 M.DeleteChangeSetOutput = {
     type = "structure",
+    id = "DeleteChangeSetOutput",
 }
 
 M.InvalidChangeSetStatusException = {
     type = "structure",
+    id = "InvalidChangeSetStatusException",
     error = "client",
     members = {
         Message = {
@@ -1552,6 +1630,7 @@ M.InvalidChangeSetStatusException = {
 
 M.DeleteGeneratedTemplateInput = {
     type = "structure",
+    id = "DeleteGeneratedTemplateInput",
     members = {
         GeneratedTemplateName = {
             type = "string",
@@ -1564,10 +1643,12 @@ M.DeleteGeneratedTemplateInput = {
 
 M.DeleteGeneratedTemplateOutput = {
     type = "structure",
+    id = "DeleteGeneratedTemplateOutput",
 }
 
 M.GeneratedTemplateNotFoundException = {
     type = "structure",
+    id = "GeneratedTemplateNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1583,6 +1664,7 @@ M.DeletionMode = {
 
 M.DeleteStackInput = {
     type = "structure",
+    id = "DeleteStackInput",
     members = {
         StackName = {
             type = "string",
@@ -1608,10 +1690,12 @@ M.DeleteStackInput = {
 
 M.DeleteStackOutput = {
     type = "structure",
+    id = "DeleteStackOutput",
 }
 
 M.DeleteStackInstancesInput = {
     type = "structure",
+    id = "DeleteStackInstancesInput",
     members = {
         StackSetName = {
             type = "string",
@@ -1652,6 +1736,7 @@ M.DeleteStackInstancesInput = {
 
 M.DeleteStackInstancesOutput = {
     type = "structure",
+    id = "DeleteStackInstancesOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1661,6 +1746,7 @@ M.DeleteStackInstancesOutput = {
 
 M.DeleteStackSetInput = {
     type = "structure",
+    id = "DeleteStackSetInput",
     members = {
         StackSetName = {
             type = "string",
@@ -1676,10 +1762,12 @@ M.DeleteStackSetInput = {
 
 M.DeleteStackSetOutput = {
     type = "structure",
+    id = "DeleteStackSetOutput",
 }
 
 M.StackSetNotEmptyException = {
     type = "structure",
+    id = "StackSetNotEmptyException",
     error = "client",
     members = {
         Message = {
@@ -1696,6 +1784,7 @@ M.RegistryType = {
 
 M.DeregisterTypeInput = {
     type = "structure",
+    id = "DeregisterTypeInput",
     members = {
         Arn = {
             type = "string",
@@ -1714,10 +1803,12 @@ M.DeregisterTypeInput = {
 
 M.DeregisterTypeOutput = {
     type = "structure",
+    id = "DeregisterTypeOutput",
 }
 
 M.DescribeAccountLimitsInput = {
     type = "structure",
+    id = "DescribeAccountLimitsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1727,6 +1818,7 @@ M.DescribeAccountLimitsInput = {
 
 M.DescribeAccountLimitsOutput = {
     type = "structure",
+    id = "DescribeAccountLimitsOutput",
     members = {
         AccountLimits = {
             type = "list",
@@ -1740,6 +1832,7 @@ M.DescribeAccountLimitsOutput = {
 
 M.DescribeChangeSetInput = {
     type = "structure",
+    id = "DescribeChangeSetInput",
     members = {
         ChangeSetName = {
             type = "string",
@@ -1768,6 +1861,7 @@ M.StackDriftStatus = {
 
 M.DescribeChangeSetOutput = {
     type = "structure",
+    id = "DescribeChangeSetOutput",
     members = {
         ChangeSetName = {
             type = "string",
@@ -1846,6 +1940,7 @@ M.DescribeChangeSetOutput = {
 
 M.DescribeChangeSetHooksInput = {
     type = "structure",
+    id = "DescribeChangeSetHooksInput",
     members = {
         ChangeSetName = {
             type = "string",
@@ -1867,6 +1962,7 @@ M.DescribeChangeSetHooksInput = {
 
 M.DescribeChangeSetHooksOutput = {
     type = "structure",
+    id = "DescribeChangeSetHooksOutput",
     members = {
         ChangeSetId = {
             type = "string",
@@ -1895,6 +1991,7 @@ M.DescribeChangeSetHooksOutput = {
 
 M.EventFilter = {
     type = "structure",
+    id = "EventFilter",
     members = {
         FailedEvents = {
             type = "boolean",
@@ -1904,6 +2001,7 @@ M.EventFilter = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         StackName = {
             type = "string",
@@ -1988,6 +2086,7 @@ M.ValidationStatus = {
 
 M.OperationEvent = {
     type = "structure",
+    id = "OperationEvent",
     members = {
         EventId = {
             type = "string",
@@ -2075,6 +2174,7 @@ M.OperationEvent = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         OperationEvents = {
             type = "list",
@@ -2088,6 +2188,7 @@ M.DescribeEventsOutput = {
 
 M.DescribeGeneratedTemplateInput = {
     type = "structure",
+    id = "DescribeGeneratedTemplateInput",
     members = {
         GeneratedTemplateName = {
             type = "string",
@@ -2100,6 +2201,7 @@ M.DescribeGeneratedTemplateInput = {
 
 M.TemplateProgress = {
     type = "structure",
+    id = "TemplateProgress",
     members = {
         ResourcesSucceeded = {
             type = "integer",
@@ -2125,6 +2227,7 @@ M.GeneratedTemplateResourceStatus = {
 
 M.WarningProperty = {
     type = "structure",
+    id = "WarningProperty",
     members = {
         PropertyPath = {
             type = "string",
@@ -2148,6 +2251,7 @@ M.WarningType = {
 
 M.WarningDetail = {
     type = "structure",
+    id = "WarningDetail",
     members = {
         Type = {
             type = "string",
@@ -2161,6 +2265,7 @@ M.WarningDetail = {
 
 M.ResourceDetail = {
     type = "structure",
+    id = "ResourceDetail",
     members = {
         ResourceType = {
             type = "string",
@@ -2199,6 +2304,7 @@ M.GeneratedTemplateStatus = {
 
 M.DescribeGeneratedTemplateOutput = {
     type = "structure",
+    id = "DescribeGeneratedTemplateOutput",
     members = {
         GeneratedTemplateId = {
             type = "string",
@@ -2235,6 +2341,7 @@ M.DescribeGeneratedTemplateOutput = {
 
 M.DescribeOrganizationsAccessInput = {
     type = "structure",
+    id = "DescribeOrganizationsAccessInput",
     members = {
         CallAs = {
             type = "string",
@@ -2250,6 +2357,7 @@ M.OrganizationStatus = {
 
 M.DescribeOrganizationsAccessOutput = {
     type = "structure",
+    id = "DescribeOrganizationsAccessOutput",
     members = {
         Status = {
             type = "string",
@@ -2259,6 +2367,7 @@ M.DescribeOrganizationsAccessOutput = {
 
 M.DescribePublisherInput = {
     type = "structure",
+    id = "DescribePublisherInput",
     members = {
         PublisherId = {
             type = "string",
@@ -2279,6 +2388,7 @@ M.PublisherStatus = {
 
 M.DescribePublisherOutput = {
     type = "structure",
+    id = "DescribePublisherOutput",
     members = {
         PublisherId = {
             type = "string",
@@ -2297,6 +2407,7 @@ M.DescribePublisherOutput = {
 
 M.DescribeResourceScanInput = {
     type = "structure",
+    id = "DescribeResourceScanInput",
     members = {
         ResourceScanId = {
             type = "string",
@@ -2309,6 +2420,7 @@ M.DescribeResourceScanInput = {
 
 M.ScanFilter = {
     type = "structure",
+    id = "ScanFilter",
     members = {
         Types = {
             type = "list",
@@ -2326,6 +2438,7 @@ M.ResourceScanStatus = {
 
 M.DescribeResourceScanOutput = {
     type = "structure",
+    id = "DescribeResourceScanOutput",
     members = {
         ResourceScanId = {
             type = "string",
@@ -2364,6 +2477,7 @@ M.DescribeResourceScanOutput = {
 
 M.ResourceScanNotFoundException = {
     type = "structure",
+    id = "ResourceScanNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2374,6 +2488,7 @@ M.ResourceScanNotFoundException = {
 
 M.DescribeStackDriftDetectionStatusInput = {
     type = "structure",
+    id = "DescribeStackDriftDetectionStatusInput",
     members = {
         StackDriftDetectionId = {
             type = "string",
@@ -2392,6 +2507,7 @@ M.StackDriftDetectionStatus = {
 
 M.DescribeStackDriftDetectionStatusOutput = {
     type = "structure",
+    id = "DescribeStackDriftDetectionStatusOutput",
     members = {
         StackId = {
             type = "string",
@@ -2431,6 +2547,7 @@ M.DescribeStackDriftDetectionStatusOutput = {
 
 M.DescribeStackEventsInput = {
     type = "structure",
+    id = "DescribeStackEventsInput",
     members = {
         StackName = {
             type = "string",
@@ -2446,6 +2563,7 @@ M.DescribeStackEventsInput = {
 
 M.StackEvent = {
     type = "structure",
+    id = "StackEvent",
     members = {
         StackId = {
             type = "string",
@@ -2521,6 +2639,7 @@ M.StackEvent = {
 
 M.DescribeStackEventsOutput = {
     type = "structure",
+    id = "DescribeStackEventsOutput",
     members = {
         StackEvents = {
             type = "list",
@@ -2534,6 +2653,7 @@ M.DescribeStackEventsOutput = {
 
 M.DescribeStackInstanceInput = {
     type = "structure",
+    id = "DescribeStackInstanceInput",
     members = {
         StackSetName = {
             type = "string",
@@ -2572,6 +2692,7 @@ M.StackInstanceDetailedStatus = {
 
 M.StackInstanceComprehensiveStatus = {
     type = "structure",
+    id = "StackInstanceComprehensiveStatus",
     members = {
         DetailedStatus = {
             type = "string",
@@ -2587,6 +2708,7 @@ M.StackInstanceStatus = {
 
 M.StackInstance = {
     type = "structure",
+    id = "StackInstance",
     members = {
         StackSetId = {
             type = "string",
@@ -2628,6 +2750,7 @@ M.StackInstance = {
 
 M.DescribeStackInstanceOutput = {
     type = "structure",
+    id = "DescribeStackInstanceOutput",
     members = {
         StackInstance = M.StackInstance,
     },
@@ -2635,6 +2758,7 @@ M.DescribeStackInstanceOutput = {
 
 M.StackInstanceNotFoundException = {
     type = "structure",
+    id = "StackInstanceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2645,6 +2769,7 @@ M.StackInstanceNotFoundException = {
 
 M.DescribeStackRefactorInput = {
     type = "structure",
+    id = "DescribeStackRefactorInput",
     members = {
         StackRefactorId = {
             type = "string",
@@ -2678,6 +2803,7 @@ M.StackRefactorStatus = {
 
 M.DescribeStackRefactorOutput = {
     type = "structure",
+    id = "DescribeStackRefactorOutput",
     members = {
         Description = {
             type = "string",
@@ -2706,6 +2832,7 @@ M.DescribeStackRefactorOutput = {
 
 M.StackRefactorNotFoundException = {
     type = "structure",
+    id = "StackRefactorNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2716,6 +2843,7 @@ M.StackRefactorNotFoundException = {
 
 M.DescribeStackResourceInput = {
     type = "structure",
+    id = "DescribeStackResourceInput",
     members = {
         StackName = {
             type = "string",
@@ -2734,6 +2862,7 @@ M.DescribeStackResourceInput = {
 
 M.StackResourceDriftInformation = {
     type = "structure",
+    id = "StackResourceDriftInformation",
     members = {
         StackResourceDriftStatus = {
             type = "string",
@@ -2749,6 +2878,7 @@ M.StackResourceDriftInformation = {
 
 M.StackResourceDetail = {
     type = "structure",
+    id = "StackResourceDetail",
     members = {
         StackName = {
             type = "string",
@@ -2799,6 +2929,7 @@ M.StackResourceDetail = {
 
 M.DescribeStackResourceOutput = {
     type = "structure",
+    id = "DescribeStackResourceOutput",
     members = {
         StackResourceDetail = M.StackResourceDetail,
     },
@@ -2806,6 +2937,7 @@ M.DescribeStackResourceOutput = {
 
 M.DescribeStackResourceDriftsInput = {
     type = "structure",
+    id = "DescribeStackResourceDriftsInput",
     members = {
         StackName = {
             type = "string",
@@ -2828,6 +2960,7 @@ M.DescribeStackResourceDriftsInput = {
 
 M.PhysicalResourceIdContextKeyValuePair = {
     type = "structure",
+    id = "PhysicalResourceIdContextKeyValuePair",
     members = {
         Key = {
             type = "string",
@@ -2852,6 +2985,7 @@ M.DifferenceType = {
 
 M.PropertyDifference = {
     type = "structure",
+    id = "PropertyDifference",
     members = {
         PropertyPath = {
             type = "string",
@@ -2882,6 +3016,7 @@ M.PropertyDifference = {
 
 M.StackResourceDrift = {
     type = "structure",
+    id = "StackResourceDrift",
     members = {
         StackId = {
             type = "string",
@@ -2939,6 +3074,7 @@ M.StackResourceDrift = {
 
 M.DescribeStackResourceDriftsOutput = {
     type = "structure",
+    id = "DescribeStackResourceDriftsOutput",
     members = {
         StackResourceDrifts = {
             type = "list",
@@ -2955,6 +3091,7 @@ M.DescribeStackResourceDriftsOutput = {
 
 M.DescribeStackResourcesInput = {
     type = "structure",
+    id = "DescribeStackResourcesInput",
     members = {
         StackName = {
             type = "string",
@@ -2970,6 +3107,7 @@ M.DescribeStackResourcesInput = {
 
 M.StackResource = {
     type = "structure",
+    id = "StackResource",
     members = {
         StackName = {
             type = "string",
@@ -3017,6 +3155,7 @@ M.StackResource = {
 
 M.DescribeStackResourcesOutput = {
     type = "structure",
+    id = "DescribeStackResourcesOutput",
     members = {
         StackResources = {
             type = "list",
@@ -3027,6 +3166,7 @@ M.DescribeStackResourcesOutput = {
 
 M.DescribeStacksInput = {
     type = "structure",
+    id = "DescribeStacksInput",
     members = {
         StackName = {
             type = "string",
@@ -3039,6 +3179,7 @@ M.DescribeStacksInput = {
 
 M.StackDriftInformation = {
     type = "structure",
+    id = "StackDriftInformation",
     members = {
         StackDriftStatus = {
             type = "string",
@@ -3054,6 +3195,7 @@ M.StackDriftInformation = {
 
 M.OperationEntry = {
     type = "structure",
+    id = "OperationEntry",
     members = {
         OperationType = {
             type = "string",
@@ -3066,6 +3208,7 @@ M.OperationEntry = {
 
 M.Output = {
     type = "structure",
+    id = "Output",
     members = {
         OutputKey = {
             type = "string",
@@ -3110,6 +3253,7 @@ M.StackStatus = {
 
 M.Stack = {
     type = "structure",
+    id = "Stack",
     members = {
         StackId = {
             type = "string",
@@ -3205,6 +3349,7 @@ M.Stack = {
 
 M.DescribeStacksOutput = {
     type = "structure",
+    id = "DescribeStacksOutput",
     members = {
         Stacks = {
             type = "list",
@@ -3218,6 +3363,7 @@ M.DescribeStacksOutput = {
 
 M.DescribeStackSetInput = {
     type = "structure",
+    id = "DescribeStackSetInput",
     members = {
         StackSetName = {
             type = "string",
@@ -3247,6 +3393,7 @@ M.StackSetDriftStatus = {
 
 M.StackSetDriftDetectionDetails = {
     type = "structure",
+    id = "StackSetDriftDetectionDetails",
     members = {
         DriftStatus = {
             type = "string",
@@ -3282,6 +3429,7 @@ M.StackSetStatus = {
 
 M.StackSet = {
     type = "structure",
+    id = "StackSet",
     members = {
         StackSetName = {
             type = "string",
@@ -3338,6 +3486,7 @@ M.StackSet = {
 
 M.DescribeStackSetOutput = {
     type = "structure",
+    id = "DescribeStackSetOutput",
     members = {
         StackSet = M.StackSet,
     },
@@ -3345,6 +3494,7 @@ M.DescribeStackSetOutput = {
 
 M.DescribeStackSetOperationInput = {
     type = "structure",
+    id = "DescribeStackSetOperationInput",
     members = {
         StackSetName = {
             type = "string",
@@ -3382,6 +3532,7 @@ M.StackSetOperationStatus = {
 
 M.StackSetOperationStatusDetails = {
     type = "structure",
+    id = "StackSetOperationStatusDetails",
     members = {
         FailedStackInstancesCount = {
             type = "integer",
@@ -3391,6 +3542,7 @@ M.StackSetOperationStatusDetails = {
 
 M.StackSetOperation = {
     type = "structure",
+    id = "StackSetOperation",
     members = {
         OperationId = {
             type = "string",
@@ -3431,6 +3583,7 @@ M.StackSetOperation = {
 
 M.DescribeStackSetOperationOutput = {
     type = "structure",
+    id = "DescribeStackSetOperationOutput",
     members = {
         StackSetOperation = M.StackSetOperation,
     },
@@ -3438,6 +3591,7 @@ M.DescribeStackSetOperationOutput = {
 
 M.DescribeTypeInput = {
     type = "structure",
+    id = "DescribeTypeInput",
     members = {
         Type = {
             type = "string",
@@ -3473,6 +3627,7 @@ M.ProvisioningType = {
 
 M.RequiredActivatedType = {
     type = "structure",
+    id = "RequiredActivatedType",
     members = {
         TypeNameAlias = {
             type = "string",
@@ -3504,6 +3659,7 @@ M.Visibility = {
 
 M.DescribeTypeOutput = {
     type = "structure",
+    id = "DescribeTypeOutput",
     members = {
         Arn = {
             type = "string",
@@ -3590,6 +3746,7 @@ M.DescribeTypeOutput = {
 
 M.DescribeTypeRegistrationInput = {
     type = "structure",
+    id = "DescribeTypeRegistrationInput",
     members = {
         RegistrationToken = {
             type = "string",
@@ -3608,6 +3765,7 @@ M.RegistrationStatus = {
 
 M.DescribeTypeRegistrationOutput = {
     type = "structure",
+    id = "DescribeTypeRegistrationOutput",
     members = {
         ProgressStatus = {
             type = "string",
@@ -3626,6 +3784,7 @@ M.DescribeTypeRegistrationOutput = {
 
 M.DetectStackDriftInput = {
     type = "structure",
+    id = "DetectStackDriftInput",
     members = {
         StackName = {
             type = "string",
@@ -3642,6 +3801,7 @@ M.DetectStackDriftInput = {
 
 M.DetectStackDriftOutput = {
     type = "structure",
+    id = "DetectStackDriftOutput",
     members = {
         StackDriftDetectionId = {
             type = "string",
@@ -3654,6 +3814,7 @@ M.DetectStackDriftOutput = {
 
 M.DetectStackResourceDriftInput = {
     type = "structure",
+    id = "DetectStackResourceDriftInput",
     members = {
         StackName = {
             type = "string",
@@ -3672,6 +3833,7 @@ M.DetectStackResourceDriftInput = {
 
 M.DetectStackResourceDriftOutput = {
     type = "structure",
+    id = "DetectStackResourceDriftOutput",
     members = {
         StackResourceDrift = setmetatable({ traits = {
             required = true,
@@ -3681,6 +3843,7 @@ M.DetectStackResourceDriftOutput = {
 
 M.DetectStackSetDriftInput = {
     type = "structure",
+    id = "DetectStackSetDriftInput",
     members = {
         StackSetName = {
             type = "string",
@@ -3703,6 +3866,7 @@ M.DetectStackSetDriftInput = {
 
 M.DetectStackSetDriftOutput = {
     type = "structure",
+    id = "DetectStackSetDriftOutput",
     members = {
         OperationId = {
             type = "string",
@@ -3712,6 +3876,7 @@ M.DetectStackSetDriftOutput = {
 
 M.EstimateTemplateCostInput = {
     type = "structure",
+    id = "EstimateTemplateCostInput",
     members = {
         TemplateBody = {
             type = "string",
@@ -3728,6 +3893,7 @@ M.EstimateTemplateCostInput = {
 
 M.EstimateTemplateCostOutput = {
     type = "structure",
+    id = "EstimateTemplateCostOutput",
     members = {
         Url = {
             type = "string",
@@ -3737,6 +3903,7 @@ M.EstimateTemplateCostOutput = {
 
 M.ExecuteChangeSetInput = {
     type = "structure",
+    id = "ExecuteChangeSetInput",
     members = {
         ChangeSetName = {
             type = "string",
@@ -3761,10 +3928,12 @@ M.ExecuteChangeSetInput = {
 
 M.ExecuteChangeSetOutput = {
     type = "structure",
+    id = "ExecuteChangeSetOutput",
 }
 
 M.ExecuteStackRefactorInput = {
     type = "structure",
+    id = "ExecuteStackRefactorInput",
     members = {
         StackRefactorId = {
             type = "string",
@@ -3777,6 +3946,7 @@ M.ExecuteStackRefactorInput = {
 
 M.ExecuteStackRefactorOutput = {
     type = "structure",
+    id = "ExecuteStackRefactorOutput",
 }
 
 M.TemplateFormat = {
@@ -3786,6 +3956,7 @@ M.TemplateFormat = {
 
 M.GetGeneratedTemplateInput = {
     type = "structure",
+    id = "GetGeneratedTemplateInput",
     members = {
         Format = {
             type = "string",
@@ -3801,6 +3972,7 @@ M.GetGeneratedTemplateInput = {
 
 M.GetGeneratedTemplateOutput = {
     type = "structure",
+    id = "GetGeneratedTemplateOutput",
     members = {
         Status = {
             type = "string",
@@ -3813,6 +3985,7 @@ M.GetGeneratedTemplateOutput = {
 
 M.GetHookResultInput = {
     type = "structure",
+    id = "GetHookResultInput",
     members = {
         HookResultId = {
             type = "string",
@@ -3829,6 +4002,7 @@ M.HookTargetAction = {
 
 M.HookTarget = {
     type = "structure",
+    id = "HookTarget",
     members = {
         TargetType = {
             type = "string",
@@ -3859,6 +4033,7 @@ M.HookTarget = {
 
 M.GetHookResultOutput = {
     type = "structure",
+    id = "GetHookResultOutput",
     members = {
         HookResultId = {
             type = "string",
@@ -3903,6 +4078,7 @@ M.GetHookResultOutput = {
 
 M.HookResultNotFoundException = {
     type = "structure",
+    id = "HookResultNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -3913,6 +4089,7 @@ M.HookResultNotFoundException = {
 
 M.GetStackPolicyInput = {
     type = "structure",
+    id = "GetStackPolicyInput",
     members = {
         StackName = {
             type = "string",
@@ -3925,6 +4102,7 @@ M.GetStackPolicyInput = {
 
 M.GetStackPolicyOutput = {
     type = "structure",
+    id = "GetStackPolicyOutput",
     members = {
         StackPolicyBody = {
             type = "string",
@@ -3939,6 +4117,7 @@ M.TemplateStage = {
 
 M.GetTemplateInput = {
     type = "structure",
+    id = "GetTemplateInput",
     members = {
         StackName = {
             type = "string",
@@ -3954,6 +4133,7 @@ M.GetTemplateInput = {
 
 M.GetTemplateOutput = {
     type = "structure",
+    id = "GetTemplateOutput",
     members = {
         TemplateBody = {
             type = "string",
@@ -3967,6 +4147,7 @@ M.GetTemplateOutput = {
 
 M.TemplateSummaryConfig = {
     type = "structure",
+    id = "TemplateSummaryConfig",
     members = {
         TreatUnrecognizedResourceTypesAsWarnings = {
             type = "boolean",
@@ -3976,6 +4157,7 @@ M.TemplateSummaryConfig = {
 
 M.GetTemplateSummaryInput = {
     type = "structure",
+    id = "GetTemplateSummaryInput",
     members = {
         TemplateBody = {
             type = "string",
@@ -3998,6 +4180,7 @@ M.GetTemplateSummaryInput = {
 
 M.ParameterConstraints = {
     type = "structure",
+    id = "ParameterConstraints",
     members = {
         AllowedValues = {
             type = "list",
@@ -4008,6 +4191,7 @@ M.ParameterConstraints = {
 
 M.ParameterDeclaration = {
     type = "structure",
+    id = "ParameterDeclaration",
     members = {
         ParameterKey = {
             type = "string",
@@ -4030,6 +4214,7 @@ M.ParameterDeclaration = {
 
 M.ResourceIdentifierSummary = {
     type = "structure",
+    id = "ResourceIdentifierSummary",
     members = {
         ResourceType = {
             type = "string",
@@ -4047,6 +4232,7 @@ M.ResourceIdentifierSummary = {
 
 M.Warnings = {
     type = "structure",
+    id = "Warnings",
     members = {
         UnrecognizedResourceTypes = {
             type = "list",
@@ -4057,6 +4243,7 @@ M.Warnings = {
 
 M.GetTemplateSummaryOutput = {
     type = "structure",
+    id = "GetTemplateSummaryOutput",
     members = {
         Parameters = {
             type = "list",
@@ -4096,6 +4283,7 @@ M.GetTemplateSummaryOutput = {
 
 M.ImportStacksToStackSetInput = {
     type = "structure",
+    id = "ImportStacksToStackSetInput",
     members = {
         StackSetName = {
             type = "string",
@@ -4129,6 +4317,7 @@ M.ImportStacksToStackSetInput = {
 
 M.ImportStacksToStackSetOutput = {
     type = "structure",
+    id = "ImportStacksToStackSetOutput",
     members = {
         OperationId = {
             type = "string",
@@ -4138,6 +4327,7 @@ M.ImportStacksToStackSetOutput = {
 
 M.StackNotFoundException = {
     type = "structure",
+    id = "StackNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -4148,6 +4338,7 @@ M.StackNotFoundException = {
 
 M.ListChangeSetsInput = {
     type = "structure",
+    id = "ListChangeSetsInput",
     members = {
         StackName = {
             type = "string",
@@ -4163,6 +4354,7 @@ M.ListChangeSetsInput = {
 
 M.ListChangeSetsOutput = {
     type = "structure",
+    id = "ListChangeSetsOutput",
     members = {
         Summaries = {
             type = "list",
@@ -4176,6 +4368,7 @@ M.ListChangeSetsOutput = {
 
 M.ListExportsInput = {
     type = "structure",
+    id = "ListExportsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4185,6 +4378,7 @@ M.ListExportsInput = {
 
 M.Export = {
     type = "structure",
+    id = "Export",
     members = {
         ExportingStackId = {
             type = "string",
@@ -4200,6 +4394,7 @@ M.Export = {
 
 M.ListExportsOutput = {
     type = "structure",
+    id = "ListExportsOutput",
     members = {
         Exports = {
             type = "list",
@@ -4213,6 +4408,7 @@ M.ListExportsOutput = {
 
 M.ListGeneratedTemplatesInput = {
     type = "structure",
+    id = "ListGeneratedTemplatesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4225,6 +4421,7 @@ M.ListGeneratedTemplatesInput = {
 
 M.TemplateSummary = {
     type = "structure",
+    id = "TemplateSummary",
     members = {
         GeneratedTemplateId = {
             type = "string",
@@ -4252,6 +4449,7 @@ M.TemplateSummary = {
 
 M.ListGeneratedTemplatesOutput = {
     type = "structure",
+    id = "ListGeneratedTemplatesOutput",
     members = {
         Summaries = {
             type = "list",
@@ -4272,6 +4470,7 @@ M.ListHookResultsTargetType = {
 
 M.ListHookResultsInput = {
     type = "structure",
+    id = "ListHookResultsInput",
     members = {
         TargetType = {
             type = "string",
@@ -4293,6 +4492,7 @@ M.ListHookResultsInput = {
 
 M.HookResultSummary = {
     type = "structure",
+    id = "HookResultSummary",
     members = {
         HookResultId = {
             type = "string",
@@ -4338,6 +4538,7 @@ M.HookResultSummary = {
 
 M.ListHookResultsOutput = {
     type = "structure",
+    id = "ListHookResultsOutput",
     members = {
         TargetType = {
             type = "string",
@@ -4357,6 +4558,7 @@ M.ListHookResultsOutput = {
 
 M.ListImportsInput = {
     type = "structure",
+    id = "ListImportsInput",
     members = {
         ExportName = {
             type = "string",
@@ -4372,6 +4574,7 @@ M.ListImportsInput = {
 
 M.ListImportsOutput = {
     type = "structure",
+    id = "ListImportsOutput",
     members = {
         Imports = {
             type = "list",
@@ -4385,6 +4588,7 @@ M.ListImportsOutput = {
 
 M.ScannedResourceIdentifier = {
     type = "structure",
+    id = "ScannedResourceIdentifier",
     members = {
         ResourceType = {
             type = "string",
@@ -4405,6 +4609,7 @@ M.ScannedResourceIdentifier = {
 
 M.ListResourceScanRelatedResourcesInput = {
     type = "structure",
+    id = "ListResourceScanRelatedResourcesInput",
     members = {
         ResourceScanId = {
             type = "string",
@@ -4430,6 +4635,7 @@ M.ListResourceScanRelatedResourcesInput = {
 
 M.ScannedResource = {
     type = "structure",
+    id = "ScannedResource",
     members = {
         ResourceType = {
             type = "string",
@@ -4447,6 +4653,7 @@ M.ScannedResource = {
 
 M.ListResourceScanRelatedResourcesOutput = {
     type = "structure",
+    id = "ListResourceScanRelatedResourcesOutput",
     members = {
         RelatedResources = {
             type = "list",
@@ -4460,6 +4667,7 @@ M.ListResourceScanRelatedResourcesOutput = {
 
 M.ResourceScanInProgressException = {
     type = "structure",
+    id = "ResourceScanInProgressException",
     error = "client",
     members = {
         Message = {
@@ -4470,6 +4678,7 @@ M.ResourceScanInProgressException = {
 
 M.ListResourceScanResourcesInput = {
     type = "structure",
+    id = "ListResourceScanResourcesInput",
     members = {
         ResourceScanId = {
             type = "string",
@@ -4500,6 +4709,7 @@ M.ListResourceScanResourcesInput = {
 
 M.ListResourceScanResourcesOutput = {
     type = "structure",
+    id = "ListResourceScanResourcesOutput",
     members = {
         Resources = {
             type = "list",
@@ -4518,6 +4728,7 @@ M.ScanType = {
 
 M.ListResourceScansInput = {
     type = "structure",
+    id = "ListResourceScansInput",
     members = {
         NextToken = {
             type = "string",
@@ -4533,6 +4744,7 @@ M.ListResourceScansInput = {
 
 M.ResourceScanSummary = {
     type = "structure",
+    id = "ResourceScanSummary",
     members = {
         ResourceScanId = {
             type = "string",
@@ -4560,6 +4772,7 @@ M.ResourceScanSummary = {
 
 M.ListResourceScansOutput = {
     type = "structure",
+    id = "ListResourceScansOutput",
     members = {
         ResourceScanSummaries = {
             type = "list",
@@ -4573,6 +4786,7 @@ M.ListResourceScansOutput = {
 
 M.ListStackInstanceResourceDriftsInput = {
     type = "structure",
+    id = "ListStackInstanceResourceDriftsInput",
     members = {
         StackSetName = {
             type = "string",
@@ -4616,6 +4830,7 @@ M.ListStackInstanceResourceDriftsInput = {
 
 M.StackInstanceResourceDriftsSummary = {
     type = "structure",
+    id = "StackInstanceResourceDriftsSummary",
     members = {
         StackId = {
             type = "string",
@@ -4663,6 +4878,7 @@ M.StackInstanceResourceDriftsSummary = {
 
 M.ListStackInstanceResourceDriftsOutput = {
     type = "structure",
+    id = "ListStackInstanceResourceDriftsOutput",
     members = {
         Summaries = {
             type = "list",
@@ -4682,6 +4898,7 @@ M.StackInstanceFilterName = {
 
 M.StackInstanceFilter = {
     type = "structure",
+    id = "StackInstanceFilter",
     members = {
         Name = {
             type = "string",
@@ -4694,6 +4911,7 @@ M.StackInstanceFilter = {
 
 M.ListStackInstancesInput = {
     type = "structure",
+    id = "ListStackInstancesInput",
     members = {
         StackSetName = {
             type = "string",
@@ -4725,6 +4943,7 @@ M.ListStackInstancesInput = {
 
 M.StackInstanceSummary = {
     type = "structure",
+    id = "StackInstanceSummary",
     members = {
         StackSetId = {
             type = "string",
@@ -4762,6 +4981,7 @@ M.StackInstanceSummary = {
 
 M.ListStackInstancesOutput = {
     type = "structure",
+    id = "ListStackInstancesOutput",
     members = {
         Summaries = {
             type = "list",
@@ -4775,6 +4995,7 @@ M.ListStackInstancesOutput = {
 
 M.ListStackRefactorActionsInput = {
     type = "structure",
+    id = "ListStackRefactorActionsInput",
     members = {
         StackRefactorId = {
             type = "string",
@@ -4808,6 +5029,7 @@ M.StackRefactorActionEntity = {
 
 M.StackRefactorAction = {
     type = "structure",
+    id = "StackRefactorAction",
     members = {
         Action = {
             type = "string",
@@ -4844,6 +5066,7 @@ M.StackRefactorAction = {
 
 M.ListStackRefactorActionsOutput = {
     type = "structure",
+    id = "ListStackRefactorActionsOutput",
     members = {
         StackRefactorActions = {
             type = "list",
@@ -4860,6 +5083,7 @@ M.ListStackRefactorActionsOutput = {
 
 M.ListStackRefactorsInput = {
     type = "structure",
+    id = "ListStackRefactorsInput",
     members = {
         ExecutionStatusFilter = {
             type = "list",
@@ -4876,6 +5100,7 @@ M.ListStackRefactorsInput = {
 
 M.StackRefactorSummary = {
     type = "structure",
+    id = "StackRefactorSummary",
     members = {
         StackRefactorId = {
             type = "string",
@@ -4900,6 +5125,7 @@ M.StackRefactorSummary = {
 
 M.ListStackRefactorsOutput = {
     type = "structure",
+    id = "ListStackRefactorsOutput",
     members = {
         StackRefactorSummaries = {
             type = "list",
@@ -4916,6 +5142,7 @@ M.ListStackRefactorsOutput = {
 
 M.ListStackResourcesInput = {
     type = "structure",
+    id = "ListStackResourcesInput",
     members = {
         StackName = {
             type = "string",
@@ -4931,6 +5158,7 @@ M.ListStackResourcesInput = {
 
 M.StackResourceDriftInformationSummary = {
     type = "structure",
+    id = "StackResourceDriftInformationSummary",
     members = {
         StackResourceDriftStatus = {
             type = "string",
@@ -4946,6 +5174,7 @@ M.StackResourceDriftInformationSummary = {
 
 M.StackResourceSummary = {
     type = "structure",
+    id = "StackResourceSummary",
     members = {
         LogicalResourceId = {
             type = "string",
@@ -4984,6 +5213,7 @@ M.StackResourceSummary = {
 
 M.ListStackResourcesOutput = {
     type = "structure",
+    id = "ListStackResourcesOutput",
     members = {
         StackResourceSummaries = {
             type = "list",
@@ -4997,6 +5227,7 @@ M.ListStackResourcesOutput = {
 
 M.ListStacksInput = {
     type = "structure",
+    id = "ListStacksInput",
     members = {
         NextToken = {
             type = "string",
@@ -5010,6 +5241,7 @@ M.ListStacksInput = {
 
 M.StackDriftInformationSummary = {
     type = "structure",
+    id = "StackDriftInformationSummary",
     members = {
         StackDriftStatus = {
             type = "string",
@@ -5025,6 +5257,7 @@ M.StackDriftInformationSummary = {
 
 M.StackSummary = {
     type = "structure",
+    id = "StackSummary",
     members = {
         StackId = {
             type = "string",
@@ -5075,6 +5308,7 @@ M.StackSummary = {
 
 M.ListStacksOutput = {
     type = "structure",
+    id = "ListStacksOutput",
     members = {
         StackSummaries = {
             type = "list",
@@ -5088,6 +5322,7 @@ M.ListStacksOutput = {
 
 M.ListStackSetAutoDeploymentTargetsInput = {
     type = "structure",
+    id = "ListStackSetAutoDeploymentTargetsInput",
     members = {
         StackSetName = {
             type = "string",
@@ -5109,6 +5344,7 @@ M.ListStackSetAutoDeploymentTargetsInput = {
 
 M.StackSetAutoDeploymentTargetSummary = {
     type = "structure",
+    id = "StackSetAutoDeploymentTargetSummary",
     members = {
         OrganizationalUnitId = {
             type = "string",
@@ -5122,6 +5358,7 @@ M.StackSetAutoDeploymentTargetSummary = {
 
 M.ListStackSetAutoDeploymentTargetsOutput = {
     type = "structure",
+    id = "ListStackSetAutoDeploymentTargetsOutput",
     members = {
         Summaries = {
             type = "list",
@@ -5139,6 +5376,7 @@ M.OperationResultFilterName = {
 
 M.OperationResultFilter = {
     type = "structure",
+    id = "OperationResultFilter",
     members = {
         Name = {
             type = "string",
@@ -5151,6 +5389,7 @@ M.OperationResultFilter = {
 
 M.ListStackSetOperationResultsInput = {
     type = "structure",
+    id = "ListStackSetOperationResultsInput",
     members = {
         StackSetName = {
             type = "string",
@@ -5190,6 +5429,7 @@ M.StackSetOperationResultStatus = {
 
 M.StackSetOperationResultSummary = {
     type = "structure",
+    id = "StackSetOperationResultSummary",
     members = {
         Account = {
             type = "string",
@@ -5212,6 +5452,7 @@ M.StackSetOperationResultSummary = {
 
 M.ListStackSetOperationResultsOutput = {
     type = "structure",
+    id = "ListStackSetOperationResultsOutput",
     members = {
         Summaries = {
             type = "list",
@@ -5225,6 +5466,7 @@ M.ListStackSetOperationResultsOutput = {
 
 M.ListStackSetOperationsInput = {
     type = "structure",
+    id = "ListStackSetOperationsInput",
     members = {
         StackSetName = {
             type = "string",
@@ -5246,6 +5488,7 @@ M.ListStackSetOperationsInput = {
 
 M.StackSetOperationSummary = {
     type = "structure",
+    id = "StackSetOperationSummary",
     members = {
         OperationId = {
             type = "string",
@@ -5272,6 +5515,7 @@ M.StackSetOperationSummary = {
 
 M.ListStackSetOperationsOutput = {
     type = "structure",
+    id = "ListStackSetOperationsOutput",
     members = {
         Summaries = {
             type = "list",
@@ -5285,6 +5529,7 @@ M.ListStackSetOperationsOutput = {
 
 M.ListStackSetsInput = {
     type = "structure",
+    id = "ListStackSetsInput",
     members = {
         NextToken = {
             type = "string",
@@ -5303,6 +5548,7 @@ M.ListStackSetsInput = {
 
 M.StackSetSummary = {
     type = "structure",
+    id = "StackSetSummary",
     members = {
         StackSetName = {
             type = "string",
@@ -5332,6 +5578,7 @@ M.StackSetSummary = {
 
 M.ListStackSetsOutput = {
     type = "structure",
+    id = "ListStackSetsOutput",
     members = {
         Summaries = {
             type = "list",
@@ -5345,6 +5592,7 @@ M.ListStackSetsOutput = {
 
 M.ListTypeRegistrationsInput = {
     type = "structure",
+    id = "ListTypeRegistrationsInput",
     members = {
         Type = {
             type = "string",
@@ -5369,6 +5617,7 @@ M.ListTypeRegistrationsInput = {
 
 M.ListTypeRegistrationsOutput = {
     type = "structure",
+    id = "ListTypeRegistrationsOutput",
     members = {
         RegistrationTokenList = {
             type = "list",
@@ -5382,6 +5631,7 @@ M.ListTypeRegistrationsOutput = {
 
 M.TypeFilters = {
     type = "structure",
+    id = "TypeFilters",
     members = {
         Category = {
             type = "string",
@@ -5397,6 +5647,7 @@ M.TypeFilters = {
 
 M.ListTypesInput = {
     type = "structure",
+    id = "ListTypesInput",
     members = {
         Visibility = {
             type = "string",
@@ -5422,6 +5673,7 @@ M.ListTypesInput = {
 
 M.TypeSummary = {
     type = "structure",
+    id = "TypeSummary",
     members = {
         Type = {
             type = "string",
@@ -5467,6 +5719,7 @@ M.TypeSummary = {
 
 M.ListTypesOutput = {
     type = "structure",
+    id = "ListTypesOutput",
     members = {
         TypeSummaries = {
             type = "list",
@@ -5480,6 +5733,7 @@ M.ListTypesOutput = {
 
 M.ListTypeVersionsInput = {
     type = "structure",
+    id = "ListTypeVersionsInput",
     members = {
         Type = {
             type = "string",
@@ -5507,6 +5761,7 @@ M.ListTypeVersionsInput = {
 
 M.TypeVersionSummary = {
     type = "structure",
+    id = "TypeVersionSummary",
     members = {
         Type = {
             type = "string",
@@ -5537,6 +5792,7 @@ M.TypeVersionSummary = {
 
 M.ListTypeVersionsOutput = {
     type = "structure",
+    id = "ListTypeVersionsOutput",
     members = {
         TypeVersionSummaries = {
             type = "list",
@@ -5550,6 +5806,7 @@ M.ListTypeVersionsOutput = {
 
 M.PublishTypeInput = {
     type = "structure",
+    id = "PublishTypeInput",
     members = {
         Type = {
             type = "string",
@@ -5568,6 +5825,7 @@ M.PublishTypeInput = {
 
 M.PublishTypeOutput = {
     type = "structure",
+    id = "PublishTypeOutput",
     members = {
         PublicTypeArn = {
             type = "string",
@@ -5577,6 +5835,7 @@ M.PublishTypeOutput = {
 
 M.InvalidStateTransitionException = {
     type = "structure",
+    id = "InvalidStateTransitionException",
     error = "client",
     members = {
         Message = {
@@ -5587,6 +5846,7 @@ M.InvalidStateTransitionException = {
 
 M.OperationStatusCheckFailedException = {
     type = "structure",
+    id = "OperationStatusCheckFailedException",
     error = "client",
     members = {
         Message = {
@@ -5626,6 +5886,7 @@ M.HandlerErrorCode = {
 
 M.RecordHandlerProgressInput = {
     type = "structure",
+    id = "RecordHandlerProgressInput",
     members = {
         BearerToken = {
             type = "string",
@@ -5659,10 +5920,12 @@ M.RecordHandlerProgressInput = {
 
 M.RecordHandlerProgressOutput = {
     type = "structure",
+    id = "RecordHandlerProgressOutput",
 }
 
 M.RegisterPublisherInput = {
     type = "structure",
+    id = "RegisterPublisherInput",
     members = {
         AcceptTermsAndConditions = {
             type = "boolean",
@@ -5675,6 +5938,7 @@ M.RegisterPublisherInput = {
 
 M.RegisterPublisherOutput = {
     type = "structure",
+    id = "RegisterPublisherOutput",
     members = {
         PublisherId = {
             type = "string",
@@ -5684,6 +5948,7 @@ M.RegisterPublisherOutput = {
 
 M.RegisterTypeInput = {
     type = "structure",
+    id = "RegisterTypeInput",
     members = {
         Type = {
             type = "string",
@@ -5712,6 +5977,7 @@ M.RegisterTypeInput = {
 
 M.RegisterTypeOutput = {
     type = "structure",
+    id = "RegisterTypeOutput",
     members = {
         RegistrationToken = {
             type = "string",
@@ -5721,6 +5987,7 @@ M.RegisterTypeOutput = {
 
 M.RollbackStackInput = {
     type = "structure",
+    id = "RollbackStackInput",
     members = {
         StackName = {
             type = "string",
@@ -5742,6 +6009,7 @@ M.RollbackStackInput = {
 
 M.RollbackStackOutput = {
     type = "structure",
+    id = "RollbackStackOutput",
     members = {
         StackId = {
             type = "string",
@@ -5754,6 +6022,7 @@ M.RollbackStackOutput = {
 
 M.SetStackPolicyInput = {
     type = "structure",
+    id = "SetStackPolicyInput",
     members = {
         StackName = {
             type = "string",
@@ -5772,10 +6041,12 @@ M.SetStackPolicyInput = {
 
 M.SetStackPolicyOutput = {
     type = "structure",
+    id = "SetStackPolicyOutput",
 }
 
 M.SetTypeConfigurationInput = {
     type = "structure",
+    id = "SetTypeConfigurationInput",
     members = {
         TypeArn = {
             type = "string",
@@ -5800,6 +6071,7 @@ M.SetTypeConfigurationInput = {
 
 M.SetTypeConfigurationOutput = {
     type = "structure",
+    id = "SetTypeConfigurationOutput",
     members = {
         ConfigurationArn = {
             type = "string",
@@ -5809,6 +6081,7 @@ M.SetTypeConfigurationOutput = {
 
 M.SetTypeDefaultVersionInput = {
     type = "structure",
+    id = "SetTypeDefaultVersionInput",
     members = {
         Arn = {
             type = "string",
@@ -5827,6 +6100,7 @@ M.SetTypeDefaultVersionInput = {
 
 M.SetTypeDefaultVersionOutput = {
     type = "structure",
+    id = "SetTypeDefaultVersionOutput",
 }
 
 M.ResourceSignalStatus = {
@@ -5836,6 +6110,7 @@ M.ResourceSignalStatus = {
 
 M.SignalResourceInput = {
     type = "structure",
+    id = "SignalResourceInput",
     members = {
         StackName = {
             type = "string",
@@ -5866,10 +6141,12 @@ M.SignalResourceInput = {
 
 M.SignalResourceOutput = {
     type = "structure",
+    id = "SignalResourceOutput",
 }
 
 M.ResourceScanLimitExceededException = {
     type = "structure",
+    id = "ResourceScanLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -5880,6 +6157,7 @@ M.ResourceScanLimitExceededException = {
 
 M.StartResourceScanInput = {
     type = "structure",
+    id = "StartResourceScanInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -5893,6 +6171,7 @@ M.StartResourceScanInput = {
 
 M.StartResourceScanOutput = {
     type = "structure",
+    id = "StartResourceScanOutput",
     members = {
         ResourceScanId = {
             type = "string",
@@ -5902,6 +6181,7 @@ M.StartResourceScanOutput = {
 
 M.StopStackSetOperationInput = {
     type = "structure",
+    id = "StopStackSetOperationInput",
     members = {
         StackSetName = {
             type = "string",
@@ -5923,10 +6203,12 @@ M.StopStackSetOperationInput = {
 
 M.StopStackSetOperationOutput = {
     type = "structure",
+    id = "StopStackSetOperationOutput",
 }
 
 M.TestTypeInput = {
     type = "structure",
+    id = "TestTypeInput",
     members = {
         Arn = {
             type = "string",
@@ -5948,6 +6230,7 @@ M.TestTypeInput = {
 
 M.TestTypeOutput = {
     type = "structure",
+    id = "TestTypeOutput",
     members = {
         TypeVersionArn = {
             type = "string",
@@ -5957,6 +6240,7 @@ M.TestTypeOutput = {
 
 M.UpdateGeneratedTemplateInput = {
     type = "structure",
+    id = "UpdateGeneratedTemplateInput",
     members = {
         GeneratedTemplateName = {
             type = "string",
@@ -5984,6 +6268,7 @@ M.UpdateGeneratedTemplateInput = {
 
 M.UpdateGeneratedTemplateOutput = {
     type = "structure",
+    id = "UpdateGeneratedTemplateOutput",
     members = {
         GeneratedTemplateId = {
             type = "string",
@@ -5993,6 +6278,7 @@ M.UpdateGeneratedTemplateOutput = {
 
 M.UpdateStackInput = {
     type = "structure",
+    id = "UpdateStackInput",
     members = {
         StackName = {
             type = "string",
@@ -6059,6 +6345,7 @@ M.UpdateStackInput = {
 
 M.UpdateStackOutput = {
     type = "structure",
+    id = "UpdateStackOutput",
     members = {
         StackId = {
             type = "string",
@@ -6071,6 +6358,7 @@ M.UpdateStackOutput = {
 
 M.UpdateStackInstancesInput = {
     type = "structure",
+    id = "UpdateStackInstancesInput",
     members = {
         StackSetName = {
             type = "string",
@@ -6109,6 +6397,7 @@ M.UpdateStackInstancesInput = {
 
 M.UpdateStackInstancesOutput = {
     type = "structure",
+    id = "UpdateStackInstancesOutput",
     members = {
         OperationId = {
             type = "string",
@@ -6118,6 +6407,7 @@ M.UpdateStackInstancesOutput = {
 
 M.UpdateStackSetInput = {
     type = "structure",
+    id = "UpdateStackSetInput",
     members = {
         StackSetName = {
             type = "string",
@@ -6184,6 +6474,7 @@ M.UpdateStackSetInput = {
 
 M.UpdateStackSetOutput = {
     type = "structure",
+    id = "UpdateStackSetOutput",
     members = {
         OperationId = {
             type = "string",
@@ -6193,6 +6484,7 @@ M.UpdateStackSetOutput = {
 
 M.UpdateTerminationProtectionInput = {
     type = "structure",
+    id = "UpdateTerminationProtectionInput",
     members = {
         EnableTerminationProtection = {
             type = "boolean",
@@ -6211,6 +6503,7 @@ M.UpdateTerminationProtectionInput = {
 
 M.UpdateTerminationProtectionOutput = {
     type = "structure",
+    id = "UpdateTerminationProtectionOutput",
     members = {
         StackId = {
             type = "string",
@@ -6220,6 +6513,7 @@ M.UpdateTerminationProtectionOutput = {
 
 M.ValidateTemplateInput = {
     type = "structure",
+    id = "ValidateTemplateInput",
     members = {
         TemplateBody = {
             type = "string",
@@ -6232,6 +6526,7 @@ M.ValidateTemplateInput = {
 
 M.TemplateParameter = {
     type = "structure",
+    id = "TemplateParameter",
     members = {
         ParameterKey = {
             type = "string",
@@ -6250,6 +6545,7 @@ M.TemplateParameter = {
 
 M.ValidateTemplateOutput = {
     type = "structure",
+    id = "ValidateTemplateOutput",
     members = {
         Parameters = {
             type = "list",

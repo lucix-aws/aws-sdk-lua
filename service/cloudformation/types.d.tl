@@ -1669,27 +1669,25 @@ local record StaleRequestException
     Message: string
 end
 
-local type ThirdPartyType = "RESOURCE" | "MODULE" | "HOOK"
-
-local type HookFailureMode = "FAIL" | "WARN"
-
-local type ChangeSetType = "CREATE" | "UPDATE" | "IMPORT"
-
-local type DeletionMode = "STANDARD" | "FORCE_DELETE_STACK"
-
-local type OnFailure = "DO_NOTHING" | "ROLLBACK" | "DELETE"
-
-local type ScanType = "FULL" | "PARTIAL"
+local type TemplateStage = "Original" | "Processed"
 
 local type GeneratedTemplateStatus = "CREATE_PENDING" | "UPDATE_PENDING" | "DELETE_PENDING" | "CREATE_IN_PROGRESS" | "UPDATE_IN_PROGRESS" | "DELETE_IN_PROGRESS" | "FAILED" | "COMPLETE"
 
-local type DeploymentMode = "REVERT_DRIFT"
+local type RegistryType = "RESOURCE" | "MODULE" | "HOOK"
 
-local type CallAs = "SELF" | "DELEGATED_ADMIN"
+local type ChangeSetType = "CREATE" | "UPDATE" | "IMPORT"
 
-local type ChangeSetStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_COMPLETE" | "DELETE_FAILED" | "FAILED"
+local type ThirdPartyType = "RESOURCE" | "MODULE" | "HOOK"
+
+local type ChangeSetHooksStatus = "PLANNING" | "PLANNED" | "UNAVAILABLE"
+
+local type HandlerErrorCode = "NotUpdatable" | "InvalidRequest" | "AccessDenied" | "InvalidCredentials" | "AlreadyExists" | "NotFound" | "ResourceConflict" | "Throttling" | "ServiceLimitExceeded" | "NotStabilized" | "GeneralServiceException" | "ServiceInternalError" | "NetworkFailure" | "InternalFailure" | "InvalidTypeConfiguration" | "HandlerInternalFailure" | "NonCompliant" | "Unknown" | "UnsupportedTarget"
+
+local type ScanType = "FULL" | "PARTIAL"
 
 local type RegistrationStatus = "COMPLETE" | "IN_PROGRESS" | "FAILED"
+
+local type ListHookResultsTargetType = "CHANGE_SET" | "STACK" | "RESOURCE" | "CLOUD_CONTROL"
 
 local type StackDriftDetectionStatus = "DETECTION_IN_PROGRESS" | "DETECTION_FAILED" | "DETECTION_COMPLETE"
 
@@ -1697,53 +1695,55 @@ local type PublisherStatus = "VERIFIED" | "UNVERIFIED"
 
 local type HookStatus = "HOOK_IN_PROGRESS" | "HOOK_COMPLETE_SUCCEEDED" | "HOOK_COMPLETE_FAILED" | "HOOK_FAILED"
 
-local type ProvisioningType = "NON_PROVISIONABLE" | "IMMUTABLE" | "FULLY_MUTABLE"
+local type CallAs = "SELF" | "DELEGATED_ADMIN"
 
-local type ChangeSetHooksStatus = "PLANNING" | "PLANNED" | "UNAVAILABLE"
+local type IdentityProvider = "AWS_Marketplace" | "GitHub" | "Bitbucket"
 
-local type HandlerErrorCode = "NotUpdatable" | "InvalidRequest" | "AccessDenied" | "InvalidCredentials" | "AlreadyExists" | "NotFound" | "ResourceConflict" | "Throttling" | "ServiceLimitExceeded" | "NotStabilized" | "GeneralServiceException" | "ServiceInternalError" | "NetworkFailure" | "InternalFailure" | "InvalidTypeConfiguration" | "HandlerInternalFailure" | "NonCompliant" | "Unknown" | "UnsupportedTarget"
+local type StackRefactorStatus = "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_COMPLETE" | "DELETE_FAILED"
 
-local type OnStackFailure = "DO_NOTHING" | "ROLLBACK" | "DELETE"
+local type DeprecatedStatus = "LIVE" | "DEPRECATED"
+
+local type PermissionModels = "SERVICE_MANAGED" | "SELF_MANAGED"
+
+local type TemplateFormat = "JSON" | "YAML"
+
+local type StackDriftStatus = "DRIFTED" | "IN_SYNC" | "UNKNOWN" | "NOT_CHECKED"
+
+local type Visibility = "PUBLIC" | "PRIVATE"
+
+local type OrganizationStatus = "ENABLED" | "DISABLED" | "DISABLED_PERMANENTLY"
+
+local type TypeTestsStatus = "PASSED" | "FAILED" | "IN_PROGRESS" | "NOT_TESTED"
+
+local type VersionBump = "MAJOR" | "MINOR"
+
+local type ResourceScanStatus = "IN_PROGRESS" | "FAILED" | "COMPLETE" | "EXPIRED"
+
+local type HookInvocationPoint = "PRE_PROVISION"
+
+local type ChangeSetStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_COMPLETE" | "DELETE_FAILED" | "FAILED"
 
 local type StackSetStatus = "ACTIVE" | "DELETED"
 
 local type OperationStatus = "PENDING" | "IN_PROGRESS" | "SUCCESS" | "FAILED"
 
-local type TemplateStage = "Original" | "Processed"
-
-local type ExecutionStatus = "UNAVAILABLE" | "AVAILABLE" | "EXECUTE_IN_PROGRESS" | "EXECUTE_COMPLETE" | "EXECUTE_FAILED" | "OBSOLETE"
-
-local type TemplateFormat = "JSON" | "YAML"
-
-local type StackRefactorStatus = "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_COMPLETE" | "DELETE_FAILED"
-
 local type ResourceSignalStatus = "SUCCESS" | "FAILURE"
-
-local type VersionBump = "MAJOR" | "MINOR"
-
-local type OrganizationStatus = "ENABLED" | "DISABLED" | "DISABLED_PERMANENTLY"
 
 local type StackRefactorExecutionStatus = "UNAVAILABLE" | "AVAILABLE" | "OBSOLETE" | "EXECUTE_IN_PROGRESS" | "EXECUTE_COMPLETE" | "EXECUTE_FAILED" | "ROLLBACK_IN_PROGRESS" | "ROLLBACK_COMPLETE" | "ROLLBACK_FAILED"
 
-local type ListHookResultsTargetType = "CHANGE_SET" | "STACK" | "RESOURCE" | "CLOUD_CONTROL"
+local type DeploymentMode = "REVERT_DRIFT"
 
-local type StackDriftStatus = "DRIFTED" | "IN_SYNC" | "UNKNOWN" | "NOT_CHECKED"
+local type HookFailureMode = "FAIL" | "WARN"
 
-local type HookInvocationPoint = "PRE_PROVISION"
+local type ProvisioningType = "NON_PROVISIONABLE" | "IMMUTABLE" | "FULLY_MUTABLE"
 
-local type ResourceScanStatus = "IN_PROGRESS" | "FAILED" | "COMPLETE" | "EXPIRED"
+local type OnFailure = "DO_NOTHING" | "ROLLBACK" | "DELETE"
 
-local type PermissionModels = "SERVICE_MANAGED" | "SELF_MANAGED"
+local type OnStackFailure = "DO_NOTHING" | "ROLLBACK" | "DELETE"
 
-local type DeprecatedStatus = "LIVE" | "DEPRECATED"
+local type DeletionMode = "STANDARD" | "FORCE_DELETE_STACK"
 
-local type RegistryType = "RESOURCE" | "MODULE" | "HOOK"
-
-local type Visibility = "PUBLIC" | "PRIVATE"
-
-local type IdentityProvider = "AWS_Marketplace" | "GitHub" | "Bitbucket"
-
-local type TypeTestsStatus = "PASSED" | "FAILED" | "IN_PROGRESS" | "NOT_TESTED"
+local type ExecutionStatus = "UNAVAILABLE" | "AVAILABLE" | "EXECUTE_IN_PROGRESS" | "EXECUTE_COMPLETE" | "EXECUTE_FAILED" | "OBSOLETE"
 
 local record M
     ActivateOrganizationsAccessInput: ActivateOrganizationsAccessInput

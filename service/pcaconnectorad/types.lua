@@ -7,6 +7,7 @@ M.AccessRight = {
 
 M.AccessRights = {
     type = "structure",
+    id = "AccessRights",
     members = {
         Enroll = {
             type = "string",
@@ -19,6 +20,7 @@ M.AccessRights = {
 
 M.AccessControlEntry = {
     type = "structure",
+    id = "AccessControlEntry",
     members = {
         GroupDisplayName = {
             type = "string",
@@ -41,6 +43,7 @@ M.AccessControlEntry = {
 
 M.AccessControlEntrySummary = {
     type = "structure",
+    id = "AccessControlEntrySummary",
     members = {
         GroupDisplayName = {
             type = "string",
@@ -63,6 +66,7 @@ M.AccessControlEntrySummary = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -146,6 +150,7 @@ M.ApplicationPolicyType = {
 
 M.ApplicationPolicy = {
     type = "union",
+    id = "ApplicationPolicy",
     members = {
         PolicyType = {
             type = "string",
@@ -158,6 +163,7 @@ M.ApplicationPolicy = {
 
 M.ApplicationPolicies = {
     type = "structure",
+    id = "ApplicationPolicies",
     members = {
         Critical = {
             type = "boolean",
@@ -182,6 +188,7 @@ M.ValidityPeriodType = {
 
 M.ValidityPeriod = {
     type = "structure",
+    id = "ValidityPeriod",
     members = {
         PeriodType = {
             type = "string",
@@ -200,6 +207,7 @@ M.ValidityPeriod = {
 
 M.CertificateValidity = {
     type = "structure",
+    id = "CertificateValidity",
     members = {
         ValidityPeriod = setmetatable({ traits = {
             required = true,
@@ -235,6 +243,7 @@ M.ClientCompatibilityV4 = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -286,6 +295,7 @@ M.IpAddressType = {
 
 M.VpcInformation = {
     type = "structure",
+    id = "VpcInformation",
     members = {
         IpAddressType = {
             type = "string",
@@ -302,6 +312,7 @@ M.VpcInformation = {
 
 M.Connector = {
     type = "structure",
+    id = "Connector",
     members = {
         Arn = {
             type = "string",
@@ -333,6 +344,7 @@ M.Connector = {
 
 M.ConnectorSummary = {
     type = "structure",
+    id = "ConnectorSummary",
     members = {
         Arn = {
             type = "string",
@@ -364,6 +376,7 @@ M.ConnectorSummary = {
 
 M.CreateConnectorInput = {
     type = "structure",
+    id = "CreateConnectorInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -396,6 +409,7 @@ M.CreateConnectorInput = {
 
 M.CreateConnectorOutput = {
     type = "structure",
+    id = "CreateConnectorOutput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -405,6 +419,7 @@ M.CreateConnectorOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -418,6 +433,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -443,6 +459,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -480,6 +497,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -511,6 +529,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -527,6 +546,7 @@ M.ValidationException = {
 
 M.DeleteConnectorInput = {
     type = "structure",
+    id = "DeleteConnectorInput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -540,10 +560,12 @@ M.DeleteConnectorInput = {
 
 M.DeleteConnectorOutput = {
     type = "structure",
+    id = "DeleteConnectorOutput",
 }
 
 M.GetConnectorInput = {
     type = "structure",
+    id = "GetConnectorInput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -557,6 +579,7 @@ M.GetConnectorInput = {
 
 M.GetConnectorOutput = {
     type = "structure",
+    id = "GetConnectorOutput",
     members = {
         Connector = M.Connector,
     },
@@ -564,6 +587,7 @@ M.GetConnectorOutput = {
 
 M.ListConnectorsInput = {
     type = "structure",
+    id = "ListConnectorsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -582,6 +606,7 @@ M.ListConnectorsInput = {
 
 M.ListConnectorsOutput = {
     type = "structure",
+    id = "ListConnectorsOutput",
     members = {
         Connectors = {
             type = "list",
@@ -595,6 +620,7 @@ M.ListConnectorsOutput = {
 
 M.CreateDirectoryRegistrationInput = {
     type = "structure",
+    id = "CreateDirectoryRegistrationInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -618,6 +644,7 @@ M.CreateDirectoryRegistrationInput = {
 
 M.CreateDirectoryRegistrationOutput = {
     type = "structure",
+    id = "CreateDirectoryRegistrationOutput",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -627,6 +654,7 @@ M.CreateDirectoryRegistrationOutput = {
 
 M.CreateServicePrincipalNameInput = {
     type = "structure",
+    id = "CreateServicePrincipalNameInput",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -653,10 +681,12 @@ M.CreateServicePrincipalNameInput = {
 
 M.CreateServicePrincipalNameOutput = {
     type = "structure",
+    id = "CreateServicePrincipalNameOutput",
 }
 
 M.EnrollmentFlagsV2 = {
     type = "structure",
+    id = "EnrollmentFlagsV2",
     members = {
         IncludeSymmetricAlgorithms = {
             type = "boolean",
@@ -678,6 +708,7 @@ M.EnrollmentFlagsV2 = {
 
 M.KeyUsageFlags = {
     type = "structure",
+    id = "KeyUsageFlags",
     members = {
         DigitalSignature = {
             type = "boolean",
@@ -699,6 +730,7 @@ M.KeyUsageFlags = {
 
 M.KeyUsage = {
     type = "structure",
+    id = "KeyUsage",
     members = {
         Critical = {
             type = "boolean",
@@ -711,6 +743,7 @@ M.KeyUsage = {
 
 M.ExtensionsV2 = {
     type = "structure",
+    id = "ExtensionsV2",
     members = {
         KeyUsage = setmetatable({ traits = {
             required = true,
@@ -721,6 +754,7 @@ M.ExtensionsV2 = {
 
 M.GeneralFlagsV2 = {
     type = "structure",
+    id = "GeneralFlagsV2",
     members = {
         AutoEnrollment = {
             type = "boolean",
@@ -738,6 +772,7 @@ M.KeySpec = {
 
 M.PrivateKeyAttributesV2 = {
     type = "structure",
+    id = "PrivateKeyAttributesV2",
     members = {
         MinimalKeyLength = {
             type = "integer",
@@ -760,6 +795,7 @@ M.PrivateKeyAttributesV2 = {
 
 M.PrivateKeyFlagsV2 = {
     type = "structure",
+    id = "PrivateKeyFlagsV2",
     members = {
         ExportableKey = {
             type = "boolean",
@@ -778,6 +814,7 @@ M.PrivateKeyFlagsV2 = {
 
 M.SubjectNameFlagsV2 = {
     type = "structure",
+    id = "SubjectNameFlagsV2",
     members = {
         SanRequireDomainDns = {
             type = "boolean",
@@ -814,6 +851,7 @@ M.SubjectNameFlagsV2 = {
 
 M.TemplateV2 = {
     type = "structure",
+    id = "TemplateV2",
     members = {
         CertificateValidity = setmetatable({ traits = {
             required = true,
@@ -845,6 +883,7 @@ M.TemplateV2 = {
 
 M.EnrollmentFlagsV3 = {
     type = "structure",
+    id = "EnrollmentFlagsV3",
     members = {
         IncludeSymmetricAlgorithms = {
             type = "boolean",
@@ -866,6 +905,7 @@ M.EnrollmentFlagsV3 = {
 
 M.ExtensionsV3 = {
     type = "structure",
+    id = "ExtensionsV3",
     members = {
         KeyUsage = setmetatable({ traits = {
             required = true,
@@ -876,6 +916,7 @@ M.ExtensionsV3 = {
 
 M.GeneralFlagsV3 = {
     type = "structure",
+    id = "GeneralFlagsV3",
     members = {
         AutoEnrollment = {
             type = "boolean",
@@ -901,6 +942,7 @@ M.PrivateKeyAlgorithm = {
 
 M.KeyUsagePropertyFlags = {
     type = "structure",
+    id = "KeyUsagePropertyFlags",
     members = {
         Decrypt = {
             type = "boolean",
@@ -920,6 +962,7 @@ M.KeyUsagePropertyType = {
 
 M.KeyUsageProperty = {
     type = "union",
+    id = "KeyUsageProperty",
     members = {
         PropertyType = {
             type = "string",
@@ -930,6 +973,7 @@ M.KeyUsageProperty = {
 
 M.PrivateKeyAttributesV3 = {
     type = "structure",
+    id = "PrivateKeyAttributesV3",
     members = {
         MinimalKeyLength = {
             type = "integer",
@@ -961,6 +1005,7 @@ M.PrivateKeyAttributesV3 = {
 
 M.PrivateKeyFlagsV3 = {
     type = "structure",
+    id = "PrivateKeyFlagsV3",
     members = {
         ExportableKey = {
             type = "boolean",
@@ -982,6 +1027,7 @@ M.PrivateKeyFlagsV3 = {
 
 M.SubjectNameFlagsV3 = {
     type = "structure",
+    id = "SubjectNameFlagsV3",
     members = {
         SanRequireDomainDns = {
             type = "boolean",
@@ -1018,6 +1064,7 @@ M.SubjectNameFlagsV3 = {
 
 M.TemplateV3 = {
     type = "structure",
+    id = "TemplateV3",
     members = {
         CertificateValidity = setmetatable({ traits = {
             required = true,
@@ -1055,6 +1102,7 @@ M.TemplateV3 = {
 
 M.EnrollmentFlagsV4 = {
     type = "structure",
+    id = "EnrollmentFlagsV4",
     members = {
         IncludeSymmetricAlgorithms = {
             type = "boolean",
@@ -1076,6 +1124,7 @@ M.EnrollmentFlagsV4 = {
 
 M.ExtensionsV4 = {
     type = "structure",
+    id = "ExtensionsV4",
     members = {
         KeyUsage = setmetatable({ traits = {
             required = true,
@@ -1086,6 +1135,7 @@ M.ExtensionsV4 = {
 
 M.GeneralFlagsV4 = {
     type = "structure",
+    id = "GeneralFlagsV4",
     members = {
         AutoEnrollment = {
             type = "boolean",
@@ -1098,6 +1148,7 @@ M.GeneralFlagsV4 = {
 
 M.PrivateKeyAttributesV4 = {
     type = "structure",
+    id = "PrivateKeyAttributesV4",
     members = {
         MinimalKeyLength = {
             type = "integer",
@@ -1124,6 +1175,7 @@ M.PrivateKeyAttributesV4 = {
 
 M.PrivateKeyFlagsV4 = {
     type = "structure",
+    id = "PrivateKeyFlagsV4",
     members = {
         ExportableKey = {
             type = "boolean",
@@ -1151,6 +1203,7 @@ M.PrivateKeyFlagsV4 = {
 
 M.SubjectNameFlagsV4 = {
     type = "structure",
+    id = "SubjectNameFlagsV4",
     members = {
         SanRequireDomainDns = {
             type = "boolean",
@@ -1187,6 +1240,7 @@ M.SubjectNameFlagsV4 = {
 
 M.TemplateV4 = {
     type = "structure",
+    id = "TemplateV4",
     members = {
         CertificateValidity = setmetatable({ traits = {
             required = true,
@@ -1221,6 +1275,7 @@ M.TemplateV4 = {
 
 M.TemplateDefinition = {
     type = "union",
+    id = "TemplateDefinition",
     members = {
         TemplateV2 = M.TemplateV2,
         TemplateV3 = M.TemplateV3,
@@ -1230,6 +1285,7 @@ M.TemplateDefinition = {
 
 M.CreateTemplateInput = {
     type = "structure",
+    id = "CreateTemplateInput",
     members = {
         ConnectorArn = {
             type = "string",
@@ -1262,6 +1318,7 @@ M.CreateTemplateInput = {
 
 M.CreateTemplateOutput = {
     type = "structure",
+    id = "CreateTemplateOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1271,6 +1328,7 @@ M.CreateTemplateOutput = {
 
 M.CreateTemplateGroupAccessControlEntryInput = {
     type = "structure",
+    id = "CreateTemplateGroupAccessControlEntryInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1305,10 +1363,12 @@ M.CreateTemplateGroupAccessControlEntryInput = {
 
 M.CreateTemplateGroupAccessControlEntryOutput = {
     type = "structure",
+    id = "CreateTemplateGroupAccessControlEntryOutput",
 }
 
 M.DeleteDirectoryRegistrationInput = {
     type = "structure",
+    id = "DeleteDirectoryRegistrationInput",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -1322,10 +1382,12 @@ M.DeleteDirectoryRegistrationInput = {
 
 M.DeleteDirectoryRegistrationOutput = {
     type = "structure",
+    id = "DeleteDirectoryRegistrationOutput",
 }
 
 M.DeleteServicePrincipalNameInput = {
     type = "structure",
+    id = "DeleteServicePrincipalNameInput",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -1346,10 +1408,12 @@ M.DeleteServicePrincipalNameInput = {
 
 M.DeleteServicePrincipalNameOutput = {
     type = "structure",
+    id = "DeleteServicePrincipalNameOutput",
 }
 
 M.DeleteTemplateInput = {
     type = "structure",
+    id = "DeleteTemplateInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1363,10 +1427,12 @@ M.DeleteTemplateInput = {
 
 M.DeleteTemplateOutput = {
     type = "structure",
+    id = "DeleteTemplateOutput",
 }
 
 M.DeleteTemplateGroupAccessControlEntryInput = {
     type = "structure",
+    id = "DeleteTemplateGroupAccessControlEntryInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1387,6 +1453,7 @@ M.DeleteTemplateGroupAccessControlEntryInput = {
 
 M.DeleteTemplateGroupAccessControlEntryOutput = {
     type = "structure",
+    id = "DeleteTemplateGroupAccessControlEntryOutput",
 }
 
 M.DirectoryRegistrationStatus = {
@@ -1407,6 +1474,7 @@ M.DirectoryRegistrationStatusReason = {
 
 M.DirectoryRegistration = {
     type = "structure",
+    id = "DirectoryRegistration",
     members = {
         Arn = {
             type = "string",
@@ -1431,6 +1499,7 @@ M.DirectoryRegistration = {
 
 M.DirectoryRegistrationSummary = {
     type = "structure",
+    id = "DirectoryRegistrationSummary",
     members = {
         Arn = {
             type = "string",
@@ -1455,6 +1524,7 @@ M.DirectoryRegistrationSummary = {
 
 M.GetDirectoryRegistrationInput = {
     type = "structure",
+    id = "GetDirectoryRegistrationInput",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -1468,6 +1538,7 @@ M.GetDirectoryRegistrationInput = {
 
 M.GetDirectoryRegistrationOutput = {
     type = "structure",
+    id = "GetDirectoryRegistrationOutput",
     members = {
         DirectoryRegistration = M.DirectoryRegistration,
     },
@@ -1475,6 +1546,7 @@ M.GetDirectoryRegistrationOutput = {
 
 M.ListDirectoryRegistrationsInput = {
     type = "structure",
+    id = "ListDirectoryRegistrationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1493,6 +1565,7 @@ M.ListDirectoryRegistrationsInput = {
 
 M.ListDirectoryRegistrationsOutput = {
     type = "structure",
+    id = "ListDirectoryRegistrationsOutput",
     members = {
         DirectoryRegistrations = {
             type = "list",
@@ -1506,6 +1579,7 @@ M.ListDirectoryRegistrationsOutput = {
 
 M.GetServicePrincipalNameInput = {
     type = "structure",
+    id = "GetServicePrincipalNameInput",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -1542,6 +1616,7 @@ M.ServicePrincipalNameStatusReason = {
 
 M.ServicePrincipalName = {
     type = "structure",
+    id = "ServicePrincipalName",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -1566,6 +1641,7 @@ M.ServicePrincipalName = {
 
 M.GetServicePrincipalNameOutput = {
     type = "structure",
+    id = "GetServicePrincipalNameOutput",
     members = {
         ServicePrincipalName = M.ServicePrincipalName,
     },
@@ -1573,6 +1649,7 @@ M.GetServicePrincipalNameOutput = {
 
 M.GetTemplateInput = {
     type = "structure",
+    id = "GetTemplateInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1586,6 +1663,7 @@ M.GetTemplateInput = {
 
 M.TemplateRevision = {
     type = "structure",
+    id = "TemplateRevision",
     members = {
         MajorRevision = {
             type = "integer",
@@ -1609,6 +1687,7 @@ M.TemplateStatus = {
 
 M.Template = {
     type = "structure",
+    id = "Template",
     members = {
         Arn = {
             type = "string",
@@ -1641,6 +1720,7 @@ M.Template = {
 
 M.GetTemplateOutput = {
     type = "structure",
+    id = "GetTemplateOutput",
     members = {
         Template = M.Template,
     },
@@ -1648,6 +1728,7 @@ M.GetTemplateOutput = {
 
 M.GetTemplateGroupAccessControlEntryInput = {
     type = "structure",
+    id = "GetTemplateGroupAccessControlEntryInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1668,6 +1749,7 @@ M.GetTemplateGroupAccessControlEntryInput = {
 
 M.GetTemplateGroupAccessControlEntryOutput = {
     type = "structure",
+    id = "GetTemplateGroupAccessControlEntryOutput",
     members = {
         AccessControlEntry = M.AccessControlEntry,
     },
@@ -1675,6 +1757,7 @@ M.GetTemplateGroupAccessControlEntryOutput = {
 
 M.ListServicePrincipalNamesInput = {
     type = "structure",
+    id = "ListServicePrincipalNamesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1700,6 +1783,7 @@ M.ListServicePrincipalNamesInput = {
 
 M.ServicePrincipalNameSummary = {
     type = "structure",
+    id = "ServicePrincipalNameSummary",
     members = {
         DirectoryRegistrationArn = {
             type = "string",
@@ -1724,6 +1808,7 @@ M.ServicePrincipalNameSummary = {
 
 M.ListServicePrincipalNamesOutput = {
     type = "structure",
+    id = "ListServicePrincipalNamesOutput",
     members = {
         ServicePrincipalNames = {
             type = "list",
@@ -1737,6 +1822,7 @@ M.ListServicePrincipalNamesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1750,6 +1836,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1761,6 +1848,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTemplateGroupAccessControlEntriesInput = {
     type = "structure",
+    id = "ListTemplateGroupAccessControlEntriesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1786,6 +1874,7 @@ M.ListTemplateGroupAccessControlEntriesInput = {
 
 M.ListTemplateGroupAccessControlEntriesOutput = {
     type = "structure",
+    id = "ListTemplateGroupAccessControlEntriesOutput",
     members = {
         AccessControlEntries = {
             type = "list",
@@ -1799,6 +1888,7 @@ M.ListTemplateGroupAccessControlEntriesOutput = {
 
 M.ListTemplatesInput = {
     type = "structure",
+    id = "ListTemplatesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1824,6 +1914,7 @@ M.ListTemplatesInput = {
 
 M.TemplateSummary = {
     type = "structure",
+    id = "TemplateSummary",
     members = {
         Arn = {
             type = "string",
@@ -1856,6 +1947,7 @@ M.TemplateSummary = {
 
 M.ListTemplatesOutput = {
     type = "structure",
+    id = "ListTemplatesOutput",
     members = {
         Templates = {
             type = "list",
@@ -1869,6 +1961,7 @@ M.ListTemplatesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1890,10 +1983,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UpdateTemplateGroupAccessControlEntryInput = {
     type = "structure",
+    id = "UpdateTemplateGroupAccessControlEntryInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1918,10 +2013,12 @@ M.UpdateTemplateGroupAccessControlEntryInput = {
 
 M.UpdateTemplateGroupAccessControlEntryOutput = {
     type = "structure",
+    id = "UpdateTemplateGroupAccessControlEntryOutput",
 }
 
 M.UpdateTemplateInput = {
     type = "structure",
+    id = "UpdateTemplateInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1939,10 +2036,12 @@ M.UpdateTemplateInput = {
 
 M.UpdateTemplateOutput = {
     type = "structure",
+    id = "UpdateTemplateOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1964,6 +2063,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

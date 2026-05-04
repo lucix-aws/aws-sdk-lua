@@ -2,6 +2,7 @@ local M = {}
 
 M.ActorDoesNotExistException = {
     type = "structure",
+    id = "ActorDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.ApprovalState = {
 
 M.Approval = {
     type = "structure",
+    id = "Approval",
     members = {
         userArn = {
             type = "string",
@@ -29,6 +31,7 @@ M.Approval = {
 
 M.OriginApprovalRuleTemplate = {
     type = "structure",
+    id = "OriginApprovalRuleTemplate",
     members = {
         approvalRuleTemplateId = {
             type = "string",
@@ -41,6 +44,7 @@ M.OriginApprovalRuleTemplate = {
 
 M.ApprovalRule = {
     type = "structure",
+    id = "ApprovalRule",
     members = {
         approvalRuleId = {
             type = "string",
@@ -69,6 +73,7 @@ M.ApprovalRule = {
 
 M.ApprovalRuleContentRequiredException = {
     type = "structure",
+    id = "ApprovalRuleContentRequiredException",
     error = "client",
     members = {
         message = {
@@ -79,6 +84,7 @@ M.ApprovalRuleContentRequiredException = {
 
 M.ApprovalRuleDoesNotExistException = {
     type = "structure",
+    id = "ApprovalRuleDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -89,6 +95,7 @@ M.ApprovalRuleDoesNotExistException = {
 
 M.ApprovalRuleEventMetadata = {
     type = "structure",
+    id = "ApprovalRuleEventMetadata",
     members = {
         approvalRuleName = {
             type = "string",
@@ -104,6 +111,7 @@ M.ApprovalRuleEventMetadata = {
 
 M.ApprovalRuleNameAlreadyExistsException = {
     type = "structure",
+    id = "ApprovalRuleNameAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -114,6 +122,7 @@ M.ApprovalRuleNameAlreadyExistsException = {
 
 M.ApprovalRuleNameRequiredException = {
     type = "structure",
+    id = "ApprovalRuleNameRequiredException",
     error = "client",
     members = {
         message = {
@@ -129,6 +138,7 @@ M.OverrideStatus = {
 
 M.ApprovalRuleOverriddenEventMetadata = {
     type = "structure",
+    id = "ApprovalRuleOverriddenEventMetadata",
     members = {
         revisionId = {
             type = "string",
@@ -141,6 +151,7 @@ M.ApprovalRuleOverriddenEventMetadata = {
 
 M.ApprovalRuleTemplate = {
     type = "structure",
+    id = "ApprovalRuleTemplate",
     members = {
         approvalRuleTemplateId = {
             type = "string",
@@ -171,6 +182,7 @@ M.ApprovalRuleTemplate = {
 
 M.ApprovalRuleTemplateContentRequiredException = {
     type = "structure",
+    id = "ApprovalRuleTemplateContentRequiredException",
     error = "client",
     members = {
         message = {
@@ -181,6 +193,7 @@ M.ApprovalRuleTemplateContentRequiredException = {
 
 M.ApprovalRuleTemplateDoesNotExistException = {
     type = "structure",
+    id = "ApprovalRuleTemplateDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -191,6 +204,7 @@ M.ApprovalRuleTemplateDoesNotExistException = {
 
 M.ApprovalRuleTemplateInUseException = {
     type = "structure",
+    id = "ApprovalRuleTemplateInUseException",
     error = "client",
     members = {
         message = {
@@ -201,6 +215,7 @@ M.ApprovalRuleTemplateInUseException = {
 
 M.ApprovalRuleTemplateNameAlreadyExistsException = {
     type = "structure",
+    id = "ApprovalRuleTemplateNameAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -211,6 +226,7 @@ M.ApprovalRuleTemplateNameAlreadyExistsException = {
 
 M.ApprovalRuleTemplateNameRequiredException = {
     type = "structure",
+    id = "ApprovalRuleTemplateNameRequiredException",
     error = "client",
     members = {
         message = {
@@ -221,6 +237,7 @@ M.ApprovalRuleTemplateNameRequiredException = {
 
 M.ApprovalStateChangedEventMetadata = {
     type = "structure",
+    id = "ApprovalStateChangedEventMetadata",
     members = {
         revisionId = {
             type = "string",
@@ -233,6 +250,7 @@ M.ApprovalStateChangedEventMetadata = {
 
 M.ApprovalStateRequiredException = {
     type = "structure",
+    id = "ApprovalStateRequiredException",
     error = "client",
     members = {
         message = {
@@ -243,6 +261,7 @@ M.ApprovalStateRequiredException = {
 
 M.AssociateApprovalRuleTemplateWithRepositoryInput = {
     type = "structure",
+    id = "AssociateApprovalRuleTemplateWithRepositoryInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -261,10 +280,12 @@ M.AssociateApprovalRuleTemplateWithRepositoryInput = {
 
 M.AssociateApprovalRuleTemplateWithRepositoryOutput = {
     type = "structure",
+    id = "AssociateApprovalRuleTemplateWithRepositoryOutput",
 }
 
 M.EncryptionIntegrityChecksFailedException = {
     type = "structure",
+    id = "EncryptionIntegrityChecksFailedException",
     error = "server",
     members = {
         message = {
@@ -275,6 +296,7 @@ M.EncryptionIntegrityChecksFailedException = {
 
 M.EncryptionKeyAccessDeniedException = {
     type = "structure",
+    id = "EncryptionKeyAccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -285,6 +307,7 @@ M.EncryptionKeyAccessDeniedException = {
 
 M.EncryptionKeyDisabledException = {
     type = "structure",
+    id = "EncryptionKeyDisabledException",
     error = "client",
     members = {
         message = {
@@ -295,6 +318,7 @@ M.EncryptionKeyDisabledException = {
 
 M.EncryptionKeyNotFoundException = {
     type = "structure",
+    id = "EncryptionKeyNotFoundException",
     error = "client",
     members = {
         message = {
@@ -305,6 +329,7 @@ M.EncryptionKeyNotFoundException = {
 
 M.EncryptionKeyUnavailableException = {
     type = "structure",
+    id = "EncryptionKeyUnavailableException",
     error = "client",
     members = {
         message = {
@@ -315,6 +340,7 @@ M.EncryptionKeyUnavailableException = {
 
 M.InvalidApprovalRuleTemplateNameException = {
     type = "structure",
+    id = "InvalidApprovalRuleTemplateNameException",
     error = "client",
     members = {
         message = {
@@ -325,6 +351,7 @@ M.InvalidApprovalRuleTemplateNameException = {
 
 M.InvalidRepositoryNameException = {
     type = "structure",
+    id = "InvalidRepositoryNameException",
     error = "client",
     members = {
         message = {
@@ -335,6 +362,7 @@ M.InvalidRepositoryNameException = {
 
 M.MaximumRuleTemplatesAssociatedWithRepositoryException = {
     type = "structure",
+    id = "MaximumRuleTemplatesAssociatedWithRepositoryException",
     error = "client",
     members = {
         message = {
@@ -345,6 +373,7 @@ M.MaximumRuleTemplatesAssociatedWithRepositoryException = {
 
 M.RepositoryDoesNotExistException = {
     type = "structure",
+    id = "RepositoryDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -355,6 +384,7 @@ M.RepositoryDoesNotExistException = {
 
 M.RepositoryNameRequiredException = {
     type = "structure",
+    id = "RepositoryNameRequiredException",
     error = "client",
     members = {
         message = {
@@ -365,6 +395,7 @@ M.RepositoryNameRequiredException = {
 
 M.AuthorDoesNotExistException = {
     type = "structure",
+    id = "AuthorDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -375,6 +406,7 @@ M.AuthorDoesNotExistException = {
 
 M.BatchAssociateApprovalRuleTemplateWithRepositoriesInput = {
     type = "structure",
+    id = "BatchAssociateApprovalRuleTemplateWithRepositoriesInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -394,6 +426,7 @@ M.BatchAssociateApprovalRuleTemplateWithRepositoriesInput = {
 
 M.BatchAssociateApprovalRuleTemplateWithRepositoriesError = {
     type = "structure",
+    id = "BatchAssociateApprovalRuleTemplateWithRepositoriesError",
     members = {
         repositoryName = {
             type = "string",
@@ -409,6 +442,7 @@ M.BatchAssociateApprovalRuleTemplateWithRepositoriesError = {
 
 M.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput = {
     type = "structure",
+    id = "BatchAssociateApprovalRuleTemplateWithRepositoriesOutput",
     members = {
         associatedRepositoryNames = {
             type = "list",
@@ -429,6 +463,7 @@ M.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput = {
 
 M.MaximumRepositoryNamesExceededException = {
     type = "structure",
+    id = "MaximumRepositoryNamesExceededException",
     error = "client",
     members = {
         message = {
@@ -439,6 +474,7 @@ M.MaximumRepositoryNamesExceededException = {
 
 M.RepositoryNamesRequiredException = {
     type = "structure",
+    id = "RepositoryNamesRequiredException",
     error = "client",
     members = {
         message = {
@@ -467,6 +503,7 @@ M.MergeOptionTypeEnum = {
 
 M.BatchDescribeMergeConflictsInput = {
     type = "structure",
+    id = "BatchDescribeMergeConflictsInput",
     members = {
         repositoryName = {
             type = "string",
@@ -522,6 +559,7 @@ M.FileModeTypeEnum = {
 
 M.FileModes = {
     type = "structure",
+    id = "FileModes",
     members = {
         source = {
             type = "string",
@@ -537,6 +575,7 @@ M.FileModes = {
 
 M.FileSizes = {
     type = "structure",
+    id = "FileSizes",
     members = {
         source = {
             type = "long",
@@ -561,6 +600,7 @@ M.FileSizes = {
 
 M.IsBinaryFile = {
     type = "structure",
+    id = "IsBinaryFile",
     members = {
         source = {
             type = "boolean",
@@ -582,6 +622,7 @@ M.ChangeTypeEnum = {
 
 M.MergeOperations = {
     type = "structure",
+    id = "MergeOperations",
     members = {
         source = {
             type = "string",
@@ -601,6 +642,7 @@ M.ObjectTypeEnum = {
 
 M.ObjectTypes = {
     type = "structure",
+    id = "ObjectTypes",
     members = {
         source = {
             type = "string",
@@ -616,6 +658,7 @@ M.ObjectTypes = {
 
 M.ConflictMetadata = {
     type = "structure",
+    id = "ConflictMetadata",
     members = {
         filePath = {
             type = "string",
@@ -654,6 +697,7 @@ M.ConflictMetadata = {
 
 M.MergeHunkDetail = {
     type = "structure",
+    id = "MergeHunkDetail",
     members = {
         startLine = {
             type = "integer",
@@ -669,6 +713,7 @@ M.MergeHunkDetail = {
 
 M.MergeHunk = {
     type = "structure",
+    id = "MergeHunk",
     members = {
         isConflict = {
             type = "boolean",
@@ -684,6 +729,7 @@ M.MergeHunk = {
 
 M.Conflict = {
     type = "structure",
+    id = "Conflict",
     members = {
         conflictMetadata = M.ConflictMetadata,
         mergeHunks = {
@@ -695,6 +741,7 @@ M.Conflict = {
 
 M.BatchDescribeMergeConflictsError = {
     type = "structure",
+    id = "BatchDescribeMergeConflictsError",
     members = {
         filePath = {
             type = "string",
@@ -719,6 +766,7 @@ M.BatchDescribeMergeConflictsError = {
 
 M.BatchDescribeMergeConflictsOutput = {
     type = "structure",
+    id = "BatchDescribeMergeConflictsOutput",
     members = {
         conflicts = {
             type = "list",
@@ -754,6 +802,7 @@ M.BatchDescribeMergeConflictsOutput = {
 
 M.CommitDoesNotExistException = {
     type = "structure",
+    id = "CommitDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -764,6 +813,7 @@ M.CommitDoesNotExistException = {
 
 M.CommitRequiredException = {
     type = "structure",
+    id = "CommitRequiredException",
     error = "client",
     members = {
         message = {
@@ -774,6 +824,7 @@ M.CommitRequiredException = {
 
 M.InvalidCommitException = {
     type = "structure",
+    id = "InvalidCommitException",
     error = "client",
     members = {
         message = {
@@ -784,6 +835,7 @@ M.InvalidCommitException = {
 
 M.InvalidConflictDetailLevelException = {
     type = "structure",
+    id = "InvalidConflictDetailLevelException",
     error = "client",
     members = {
         message = {
@@ -794,6 +846,7 @@ M.InvalidConflictDetailLevelException = {
 
 M.InvalidConflictResolutionStrategyException = {
     type = "structure",
+    id = "InvalidConflictResolutionStrategyException",
     error = "client",
     members = {
         message = {
@@ -804,6 +857,7 @@ M.InvalidConflictResolutionStrategyException = {
 
 M.InvalidContinuationTokenException = {
     type = "structure",
+    id = "InvalidContinuationTokenException",
     error = "client",
     members = {
         message = {
@@ -814,6 +868,7 @@ M.InvalidContinuationTokenException = {
 
 M.InvalidMaxConflictFilesException = {
     type = "structure",
+    id = "InvalidMaxConflictFilesException",
     error = "client",
     members = {
         message = {
@@ -824,6 +879,7 @@ M.InvalidMaxConflictFilesException = {
 
 M.InvalidMaxMergeHunksException = {
     type = "structure",
+    id = "InvalidMaxMergeHunksException",
     error = "client",
     members = {
         message = {
@@ -834,6 +890,7 @@ M.InvalidMaxMergeHunksException = {
 
 M.InvalidMergeOptionException = {
     type = "structure",
+    id = "InvalidMergeOptionException",
     error = "client",
     members = {
         message = {
@@ -844,6 +901,7 @@ M.InvalidMergeOptionException = {
 
 M.MaximumFileContentToLoadExceededException = {
     type = "structure",
+    id = "MaximumFileContentToLoadExceededException",
     error = "client",
     members = {
         message = {
@@ -854,6 +912,7 @@ M.MaximumFileContentToLoadExceededException = {
 
 M.MaximumItemsToCompareExceededException = {
     type = "structure",
+    id = "MaximumItemsToCompareExceededException",
     error = "client",
     members = {
         message = {
@@ -864,6 +923,7 @@ M.MaximumItemsToCompareExceededException = {
 
 M.MergeOptionRequiredException = {
     type = "structure",
+    id = "MergeOptionRequiredException",
     error = "client",
     members = {
         message = {
@@ -874,6 +934,7 @@ M.MergeOptionRequiredException = {
 
 M.TipsDivergenceExceededException = {
     type = "structure",
+    id = "TipsDivergenceExceededException",
     error = "client",
     members = {
         message = {
@@ -884,6 +945,7 @@ M.TipsDivergenceExceededException = {
 
 M.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput = {
     type = "structure",
+    id = "BatchDisassociateApprovalRuleTemplateFromRepositoriesInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -903,6 +965,7 @@ M.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput = {
 
 M.BatchDisassociateApprovalRuleTemplateFromRepositoriesError = {
     type = "structure",
+    id = "BatchDisassociateApprovalRuleTemplateFromRepositoriesError",
     members = {
         repositoryName = {
             type = "string",
@@ -918,6 +981,7 @@ M.BatchDisassociateApprovalRuleTemplateFromRepositoriesError = {
 
 M.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput = {
     type = "structure",
+    id = "BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput",
     members = {
         disassociatedRepositoryNames = {
             type = "list",
@@ -938,6 +1002,7 @@ M.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput = {
 
 M.BatchGetCommitsInput = {
     type = "structure",
+    id = "BatchGetCommitsInput",
     members = {
         commitIds = {
             type = "list",
@@ -957,6 +1022,7 @@ M.BatchGetCommitsInput = {
 
 M.UserInfo = {
     type = "structure",
+    id = "UserInfo",
     members = {
         name = {
             type = "string",
@@ -972,6 +1038,7 @@ M.UserInfo = {
 
 M.Commit = {
     type = "structure",
+    id = "Commit",
     members = {
         commitId = {
             type = "string",
@@ -996,6 +1063,7 @@ M.Commit = {
 
 M.BatchGetCommitsError = {
     type = "structure",
+    id = "BatchGetCommitsError",
     members = {
         commitId = {
             type = "string",
@@ -1011,6 +1079,7 @@ M.BatchGetCommitsError = {
 
 M.BatchGetCommitsOutput = {
     type = "structure",
+    id = "BatchGetCommitsOutput",
     members = {
         commits = {
             type = "list",
@@ -1025,6 +1094,7 @@ M.BatchGetCommitsOutput = {
 
 M.CommitIdsLimitExceededException = {
     type = "structure",
+    id = "CommitIdsLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1035,6 +1105,7 @@ M.CommitIdsLimitExceededException = {
 
 M.CommitIdsListRequiredException = {
     type = "structure",
+    id = "CommitIdsListRequiredException",
     error = "client",
     members = {
         message = {
@@ -1045,6 +1116,7 @@ M.CommitIdsListRequiredException = {
 
 M.BatchGetRepositoriesInput = {
     type = "structure",
+    id = "BatchGetRepositoriesInput",
     members = {
         repositoryNames = {
             type = "list",
@@ -1067,6 +1139,7 @@ M.BatchGetRepositoriesErrorCodeEnum = {
 
 M.BatchGetRepositoriesError = {
     type = "structure",
+    id = "BatchGetRepositoriesError",
     members = {
         repositoryId = {
             type = "string",
@@ -1085,6 +1158,7 @@ M.BatchGetRepositoriesError = {
 
 M.RepositoryMetadata = {
     type = "structure",
+    id = "RepositoryMetadata",
     members = {
         accountId = {
             type = "string",
@@ -1124,6 +1198,7 @@ M.RepositoryMetadata = {
 
 M.BatchGetRepositoriesOutput = {
     type = "structure",
+    id = "BatchGetRepositoriesOutput",
     members = {
         repositories = {
             type = "list",
@@ -1142,6 +1217,7 @@ M.BatchGetRepositoriesOutput = {
 
 M.BeforeCommitIdAndAfterCommitIdAreSameException = {
     type = "structure",
+    id = "BeforeCommitIdAndAfterCommitIdAreSameException",
     error = "client",
     members = {
         message = {
@@ -1152,6 +1228,7 @@ M.BeforeCommitIdAndAfterCommitIdAreSameException = {
 
 M.BlobIdDoesNotExistException = {
     type = "structure",
+    id = "BlobIdDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -1162,6 +1239,7 @@ M.BlobIdDoesNotExistException = {
 
 M.BlobIdRequiredException = {
     type = "structure",
+    id = "BlobIdRequiredException",
     error = "client",
     members = {
         message = {
@@ -1172,6 +1250,7 @@ M.BlobIdRequiredException = {
 
 M.BlobMetadata = {
     type = "structure",
+    id = "BlobMetadata",
     members = {
         blobId = {
             type = "string",
@@ -1187,6 +1266,7 @@ M.BlobMetadata = {
 
 M.BranchDoesNotExistException = {
     type = "structure",
+    id = "BranchDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -1197,6 +1277,7 @@ M.BranchDoesNotExistException = {
 
 M.BranchInfo = {
     type = "structure",
+    id = "BranchInfo",
     members = {
         branchName = {
             type = "string",
@@ -1209,6 +1290,7 @@ M.BranchInfo = {
 
 M.BranchNameExistsException = {
     type = "structure",
+    id = "BranchNameExistsException",
     error = "client",
     members = {
         message = {
@@ -1219,6 +1301,7 @@ M.BranchNameExistsException = {
 
 M.BranchNameIsTagNameException = {
     type = "structure",
+    id = "BranchNameIsTagNameException",
     error = "client",
     members = {
         message = {
@@ -1229,6 +1312,7 @@ M.BranchNameIsTagNameException = {
 
 M.BranchNameRequiredException = {
     type = "structure",
+    id = "BranchNameRequiredException",
     error = "client",
     members = {
         message = {
@@ -1239,6 +1323,7 @@ M.BranchNameRequiredException = {
 
 M.CannotDeleteApprovalRuleFromTemplateException = {
     type = "structure",
+    id = "CannotDeleteApprovalRuleFromTemplateException",
     error = "client",
     members = {
         message = {
@@ -1249,6 +1334,7 @@ M.CannotDeleteApprovalRuleFromTemplateException = {
 
 M.CannotModifyApprovalRuleFromTemplateException = {
     type = "structure",
+    id = "CannotModifyApprovalRuleFromTemplateException",
     error = "client",
     members = {
         message = {
@@ -1259,6 +1345,7 @@ M.CannotModifyApprovalRuleFromTemplateException = {
 
 M.ClientRequestTokenRequiredException = {
     type = "structure",
+    id = "ClientRequestTokenRequiredException",
     error = "client",
     members = {
         message = {
@@ -1269,6 +1356,7 @@ M.ClientRequestTokenRequiredException = {
 
 M.CreateApprovalRuleTemplateInput = {
     type = "structure",
+    id = "CreateApprovalRuleTemplateInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -1290,6 +1378,7 @@ M.CreateApprovalRuleTemplateInput = {
 
 M.CreateApprovalRuleTemplateOutput = {
     type = "structure",
+    id = "CreateApprovalRuleTemplateOutput",
     members = {
         approvalRuleTemplate = setmetatable({ traits = {
             required = true,
@@ -1299,6 +1388,7 @@ M.CreateApprovalRuleTemplateOutput = {
 
 M.InvalidApprovalRuleTemplateContentException = {
     type = "structure",
+    id = "InvalidApprovalRuleTemplateContentException",
     error = "client",
     members = {
         message = {
@@ -1309,6 +1399,7 @@ M.InvalidApprovalRuleTemplateContentException = {
 
 M.InvalidApprovalRuleTemplateDescriptionException = {
     type = "structure",
+    id = "InvalidApprovalRuleTemplateDescriptionException",
     error = "client",
     members = {
         message = {
@@ -1319,6 +1410,7 @@ M.InvalidApprovalRuleTemplateDescriptionException = {
 
 M.NumberOfRuleTemplatesExceededException = {
     type = "structure",
+    id = "NumberOfRuleTemplatesExceededException",
     error = "client",
     members = {
         message = {
@@ -1329,6 +1421,7 @@ M.NumberOfRuleTemplatesExceededException = {
 
 M.CommitIdRequiredException = {
     type = "structure",
+    id = "CommitIdRequiredException",
     error = "client",
     members = {
         message = {
@@ -1339,6 +1432,7 @@ M.CommitIdRequiredException = {
 
 M.CreateBranchInput = {
     type = "structure",
+    id = "CreateBranchInput",
     members = {
         repositoryName = {
             type = "string",
@@ -1363,10 +1457,12 @@ M.CreateBranchInput = {
 
 M.CreateBranchOutput = {
     type = "structure",
+    id = "CreateBranchOutput",
 }
 
 M.InvalidBranchNameException = {
     type = "structure",
+    id = "InvalidBranchNameException",
     error = "client",
     members = {
         message = {
@@ -1377,6 +1473,7 @@ M.InvalidBranchNameException = {
 
 M.InvalidCommitIdException = {
     type = "structure",
+    id = "InvalidCommitIdException",
     error = "client",
     members = {
         message = {
@@ -1387,6 +1484,7 @@ M.InvalidCommitIdException = {
 
 M.CommitMessageLengthExceededException = {
     type = "structure",
+    id = "CommitMessageLengthExceededException",
     error = "client",
     members = {
         message = {
@@ -1397,6 +1495,7 @@ M.CommitMessageLengthExceededException = {
 
 M.DeleteFileEntry = {
     type = "structure",
+    id = "DeleteFileEntry",
     members = {
         filePath = {
             type = "string",
@@ -1409,6 +1508,7 @@ M.DeleteFileEntry = {
 
 M.SourceFileSpecifier = {
     type = "structure",
+    id = "SourceFileSpecifier",
     members = {
         filePath = {
             type = "string",
@@ -1427,6 +1527,7 @@ M.SourceFileSpecifier = {
 
 M.PutFileEntry = {
     type = "structure",
+    id = "PutFileEntry",
     members = {
         filePath = {
             type = "string",
@@ -1446,6 +1547,7 @@ M.PutFileEntry = {
 
 M.SetFileModeEntry = {
     type = "structure",
+    id = "SetFileModeEntry",
     members = {
         filePath = {
             type = "string",
@@ -1464,6 +1566,7 @@ M.SetFileModeEntry = {
 
 M.CreateCommitInput = {
     type = "structure",
+    id = "CreateCommitInput",
     members = {
         repositoryName = {
             type = "string",
@@ -1512,6 +1615,7 @@ M.CreateCommitInput = {
 
 M.FileMetadata = {
     type = "structure",
+    id = "FileMetadata",
     members = {
         absolutePath = {
             type = "string",
@@ -1527,6 +1631,7 @@ M.FileMetadata = {
 
 M.CreateCommitOutput = {
     type = "structure",
+    id = "CreateCommitOutput",
     members = {
         commitId = {
             type = "string",
@@ -1551,6 +1656,7 @@ M.CreateCommitOutput = {
 
 M.DirectoryNameConflictsWithFileNameException = {
     type = "structure",
+    id = "DirectoryNameConflictsWithFileNameException",
     error = "client",
     members = {
         message = {
@@ -1561,6 +1667,7 @@ M.DirectoryNameConflictsWithFileNameException = {
 
 M.FileContentAndSourceFileSpecifiedException = {
     type = "structure",
+    id = "FileContentAndSourceFileSpecifiedException",
     error = "client",
     members = {
         message = {
@@ -1571,6 +1678,7 @@ M.FileContentAndSourceFileSpecifiedException = {
 
 M.FileContentSizeLimitExceededException = {
     type = "structure",
+    id = "FileContentSizeLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1581,6 +1689,7 @@ M.FileContentSizeLimitExceededException = {
 
 M.FileDoesNotExistException = {
     type = "structure",
+    id = "FileDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -1591,6 +1700,7 @@ M.FileDoesNotExistException = {
 
 M.FileEntryRequiredException = {
     type = "structure",
+    id = "FileEntryRequiredException",
     error = "client",
     members = {
         message = {
@@ -1601,6 +1711,7 @@ M.FileEntryRequiredException = {
 
 M.FileModeRequiredException = {
     type = "structure",
+    id = "FileModeRequiredException",
     error = "client",
     members = {
         message = {
@@ -1611,6 +1722,7 @@ M.FileModeRequiredException = {
 
 M.FileNameConflictsWithDirectoryNameException = {
     type = "structure",
+    id = "FileNameConflictsWithDirectoryNameException",
     error = "client",
     members = {
         message = {
@@ -1621,6 +1733,7 @@ M.FileNameConflictsWithDirectoryNameException = {
 
 M.FilePathConflictsWithSubmodulePathException = {
     type = "structure",
+    id = "FilePathConflictsWithSubmodulePathException",
     error = "client",
     members = {
         message = {
@@ -1631,6 +1744,7 @@ M.FilePathConflictsWithSubmodulePathException = {
 
 M.FolderContentSizeLimitExceededException = {
     type = "structure",
+    id = "FolderContentSizeLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1641,6 +1755,7 @@ M.FolderContentSizeLimitExceededException = {
 
 M.InvalidDeletionParameterException = {
     type = "structure",
+    id = "InvalidDeletionParameterException",
     error = "client",
     members = {
         message = {
@@ -1651,6 +1766,7 @@ M.InvalidDeletionParameterException = {
 
 M.InvalidEmailException = {
     type = "structure",
+    id = "InvalidEmailException",
     error = "client",
     members = {
         message = {
@@ -1661,6 +1777,7 @@ M.InvalidEmailException = {
 
 M.InvalidFileModeException = {
     type = "structure",
+    id = "InvalidFileModeException",
     error = "client",
     members = {
         message = {
@@ -1671,6 +1788,7 @@ M.InvalidFileModeException = {
 
 M.InvalidParentCommitIdException = {
     type = "structure",
+    id = "InvalidParentCommitIdException",
     error = "client",
     members = {
         message = {
@@ -1681,6 +1799,7 @@ M.InvalidParentCommitIdException = {
 
 M.InvalidPathException = {
     type = "structure",
+    id = "InvalidPathException",
     error = "client",
     members = {
         message = {
@@ -1691,6 +1810,7 @@ M.InvalidPathException = {
 
 M.MaximumFileEntriesExceededException = {
     type = "structure",
+    id = "MaximumFileEntriesExceededException",
     error = "client",
     members = {
         message = {
@@ -1701,6 +1821,7 @@ M.MaximumFileEntriesExceededException = {
 
 M.NameLengthExceededException = {
     type = "structure",
+    id = "NameLengthExceededException",
     error = "client",
     members = {
         message = {
@@ -1711,6 +1832,7 @@ M.NameLengthExceededException = {
 
 M.NoChangeException = {
     type = "structure",
+    id = "NoChangeException",
     error = "client",
     members = {
         message = {
@@ -1721,6 +1843,7 @@ M.NoChangeException = {
 
 M.ParentCommitDoesNotExistException = {
     type = "structure",
+    id = "ParentCommitDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -1731,6 +1854,7 @@ M.ParentCommitDoesNotExistException = {
 
 M.ParentCommitIdOutdatedException = {
     type = "structure",
+    id = "ParentCommitIdOutdatedException",
     error = "client",
     members = {
         message = {
@@ -1741,6 +1865,7 @@ M.ParentCommitIdOutdatedException = {
 
 M.ParentCommitIdRequiredException = {
     type = "structure",
+    id = "ParentCommitIdRequiredException",
     error = "client",
     members = {
         message = {
@@ -1751,6 +1876,7 @@ M.ParentCommitIdRequiredException = {
 
 M.PathRequiredException = {
     type = "structure",
+    id = "PathRequiredException",
     error = "client",
     members = {
         message = {
@@ -1761,6 +1887,7 @@ M.PathRequiredException = {
 
 M.PutFileEntryConflictException = {
     type = "structure",
+    id = "PutFileEntryConflictException",
     error = "client",
     members = {
         message = {
@@ -1771,6 +1898,7 @@ M.PutFileEntryConflictException = {
 
 M.RestrictedSourceFileException = {
     type = "structure",
+    id = "RestrictedSourceFileException",
     error = "client",
     members = {
         message = {
@@ -1781,6 +1909,7 @@ M.RestrictedSourceFileException = {
 
 M.SamePathRequestException = {
     type = "structure",
+    id = "SamePathRequestException",
     error = "client",
     members = {
         message = {
@@ -1791,6 +1920,7 @@ M.SamePathRequestException = {
 
 M.SourceFileOrContentRequiredException = {
     type = "structure",
+    id = "SourceFileOrContentRequiredException",
     error = "client",
     members = {
         message = {
@@ -1801,6 +1931,7 @@ M.SourceFileOrContentRequiredException = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         repositoryName = {
             type = "string",
@@ -1822,6 +1953,7 @@ M.Target = {
 
 M.CreatePullRequestInput = {
     type = "structure",
+    id = "CreatePullRequestInput",
     members = {
         title = {
             type = "string",
@@ -1855,6 +1987,7 @@ M.PullRequestStatusEnum = {
 
 M.MergeMetadata = {
     type = "structure",
+    id = "MergeMetadata",
     members = {
         isMerged = {
             type = "boolean",
@@ -1876,6 +2009,7 @@ M.MergeMetadata = {
 
 M.PullRequestTarget = {
     type = "structure",
+    id = "PullRequestTarget",
     members = {
         repositoryName = {
             type = "string",
@@ -1901,6 +2035,7 @@ M.PullRequestTarget = {
 
 M.PullRequest = {
     type = "structure",
+    id = "PullRequest",
     members = {
         pullRequestId = {
             type = "string",
@@ -1942,6 +2077,7 @@ M.PullRequest = {
 
 M.CreatePullRequestOutput = {
     type = "structure",
+    id = "CreatePullRequestOutput",
     members = {
         pullRequest = setmetatable({ traits = {
             required = true,
@@ -1951,6 +2087,7 @@ M.CreatePullRequestOutput = {
 
 M.IdempotencyParameterMismatchException = {
     type = "structure",
+    id = "IdempotencyParameterMismatchException",
     error = "client",
     members = {
         message = {
@@ -1961,6 +2098,7 @@ M.IdempotencyParameterMismatchException = {
 
 M.InvalidClientRequestTokenException = {
     type = "structure",
+    id = "InvalidClientRequestTokenException",
     error = "client",
     members = {
         message = {
@@ -1971,6 +2109,7 @@ M.InvalidClientRequestTokenException = {
 
 M.InvalidDescriptionException = {
     type = "structure",
+    id = "InvalidDescriptionException",
     error = "client",
     members = {
         message = {
@@ -1981,6 +2120,7 @@ M.InvalidDescriptionException = {
 
 M.InvalidReferenceNameException = {
     type = "structure",
+    id = "InvalidReferenceNameException",
     error = "client",
     members = {
         message = {
@@ -1991,6 +2131,7 @@ M.InvalidReferenceNameException = {
 
 M.InvalidTargetException = {
     type = "structure",
+    id = "InvalidTargetException",
     error = "client",
     members = {
         message = {
@@ -2001,6 +2142,7 @@ M.InvalidTargetException = {
 
 M.InvalidTargetsException = {
     type = "structure",
+    id = "InvalidTargetsException",
     error = "client",
     members = {
         message = {
@@ -2011,6 +2153,7 @@ M.InvalidTargetsException = {
 
 M.InvalidTitleException = {
     type = "structure",
+    id = "InvalidTitleException",
     error = "client",
     members = {
         message = {
@@ -2021,6 +2164,7 @@ M.InvalidTitleException = {
 
 M.MaximumOpenPullRequestsExceededException = {
     type = "structure",
+    id = "MaximumOpenPullRequestsExceededException",
     error = "client",
     members = {
         message = {
@@ -2031,6 +2175,7 @@ M.MaximumOpenPullRequestsExceededException = {
 
 M.MultipleRepositoriesInPullRequestException = {
     type = "structure",
+    id = "MultipleRepositoriesInPullRequestException",
     error = "client",
     members = {
         message = {
@@ -2041,6 +2186,7 @@ M.MultipleRepositoriesInPullRequestException = {
 
 M.ReferenceDoesNotExistException = {
     type = "structure",
+    id = "ReferenceDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -2051,6 +2197,7 @@ M.ReferenceDoesNotExistException = {
 
 M.ReferenceNameRequiredException = {
     type = "structure",
+    id = "ReferenceNameRequiredException",
     error = "client",
     members = {
         message = {
@@ -2061,6 +2208,7 @@ M.ReferenceNameRequiredException = {
 
 M.ReferenceTypeNotSupportedException = {
     type = "structure",
+    id = "ReferenceTypeNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -2071,6 +2219,7 @@ M.ReferenceTypeNotSupportedException = {
 
 M.SourceAndDestinationAreSameException = {
     type = "structure",
+    id = "SourceAndDestinationAreSameException",
     error = "client",
     members = {
         message = {
@@ -2081,6 +2230,7 @@ M.SourceAndDestinationAreSameException = {
 
 M.TargetRequiredException = {
     type = "structure",
+    id = "TargetRequiredException",
     error = "client",
     members = {
         message = {
@@ -2091,6 +2241,7 @@ M.TargetRequiredException = {
 
 M.TargetsRequiredException = {
     type = "structure",
+    id = "TargetsRequiredException",
     error = "client",
     members = {
         message = {
@@ -2101,6 +2252,7 @@ M.TargetsRequiredException = {
 
 M.TitleRequiredException = {
     type = "structure",
+    id = "TitleRequiredException",
     error = "client",
     members = {
         message = {
@@ -2111,6 +2263,7 @@ M.TitleRequiredException = {
 
 M.CreatePullRequestApprovalRuleInput = {
     type = "structure",
+    id = "CreatePullRequestApprovalRuleInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -2135,6 +2288,7 @@ M.CreatePullRequestApprovalRuleInput = {
 
 M.CreatePullRequestApprovalRuleOutput = {
     type = "structure",
+    id = "CreatePullRequestApprovalRuleOutput",
     members = {
         approvalRule = setmetatable({ traits = {
             required = true,
@@ -2144,6 +2298,7 @@ M.CreatePullRequestApprovalRuleOutput = {
 
 M.InvalidApprovalRuleContentException = {
     type = "structure",
+    id = "InvalidApprovalRuleContentException",
     error = "client",
     members = {
         message = {
@@ -2154,6 +2309,7 @@ M.InvalidApprovalRuleContentException = {
 
 M.InvalidApprovalRuleNameException = {
     type = "structure",
+    id = "InvalidApprovalRuleNameException",
     error = "client",
     members = {
         message = {
@@ -2164,6 +2320,7 @@ M.InvalidApprovalRuleNameException = {
 
 M.InvalidPullRequestIdException = {
     type = "structure",
+    id = "InvalidPullRequestIdException",
     error = "client",
     members = {
         message = {
@@ -2174,6 +2331,7 @@ M.InvalidPullRequestIdException = {
 
 M.NumberOfRulesExceededException = {
     type = "structure",
+    id = "NumberOfRulesExceededException",
     error = "client",
     members = {
         message = {
@@ -2184,6 +2342,7 @@ M.NumberOfRulesExceededException = {
 
 M.PullRequestAlreadyClosedException = {
     type = "structure",
+    id = "PullRequestAlreadyClosedException",
     error = "client",
     members = {
         message = {
@@ -2194,6 +2353,7 @@ M.PullRequestAlreadyClosedException = {
 
 M.PullRequestDoesNotExistException = {
     type = "structure",
+    id = "PullRequestDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -2204,6 +2364,7 @@ M.PullRequestDoesNotExistException = {
 
 M.PullRequestIdRequiredException = {
     type = "structure",
+    id = "PullRequestIdRequiredException",
     error = "client",
     members = {
         message = {
@@ -2214,6 +2375,7 @@ M.PullRequestIdRequiredException = {
 
 M.CreateRepositoryInput = {
     type = "structure",
+    id = "CreateRepositoryInput",
     members = {
         repositoryName = {
             type = "string",
@@ -2237,6 +2399,7 @@ M.CreateRepositoryInput = {
 
 M.CreateRepositoryOutput = {
     type = "structure",
+    id = "CreateRepositoryOutput",
     members = {
         repositoryMetadata = M.RepositoryMetadata,
     },
@@ -2244,6 +2407,7 @@ M.CreateRepositoryOutput = {
 
 M.EncryptionKeyInvalidIdException = {
     type = "structure",
+    id = "EncryptionKeyInvalidIdException",
     error = "client",
     members = {
         message = {
@@ -2254,6 +2418,7 @@ M.EncryptionKeyInvalidIdException = {
 
 M.EncryptionKeyInvalidUsageException = {
     type = "structure",
+    id = "EncryptionKeyInvalidUsageException",
     error = "client",
     members = {
         message = {
@@ -2264,6 +2429,7 @@ M.EncryptionKeyInvalidUsageException = {
 
 M.InvalidRepositoryDescriptionException = {
     type = "structure",
+    id = "InvalidRepositoryDescriptionException",
     error = "client",
     members = {
         message = {
@@ -2274,6 +2440,7 @@ M.InvalidRepositoryDescriptionException = {
 
 M.InvalidSystemTagUsageException = {
     type = "structure",
+    id = "InvalidSystemTagUsageException",
     error = "client",
     members = {
         message = {
@@ -2284,6 +2451,7 @@ M.InvalidSystemTagUsageException = {
 
 M.InvalidTagsMapException = {
     type = "structure",
+    id = "InvalidTagsMapException",
     error = "client",
     members = {
         message = {
@@ -2294,6 +2462,7 @@ M.InvalidTagsMapException = {
 
 M.OperationNotAllowedException = {
     type = "structure",
+    id = "OperationNotAllowedException",
     error = "client",
     members = {
         message = {
@@ -2304,6 +2473,7 @@ M.OperationNotAllowedException = {
 
 M.RepositoryLimitExceededException = {
     type = "structure",
+    id = "RepositoryLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -2314,6 +2484,7 @@ M.RepositoryLimitExceededException = {
 
 M.RepositoryNameExistsException = {
     type = "structure",
+    id = "RepositoryNameExistsException",
     error = "client",
     members = {
         message = {
@@ -2324,6 +2495,7 @@ M.RepositoryNameExistsException = {
 
 M.TagPolicyException = {
     type = "structure",
+    id = "TagPolicyException",
     error = "client",
     members = {
         message = {
@@ -2334,6 +2506,7 @@ M.TagPolicyException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -2344,6 +2517,7 @@ M.TooManyTagsException = {
 
 M.ConcurrentReferenceUpdateException = {
     type = "structure",
+    id = "ConcurrentReferenceUpdateException",
     error = "client",
     members = {
         message = {
@@ -2361,6 +2535,7 @@ M.ReplacementTypeEnum = {
 
 M.ReplaceContentEntry = {
     type = "structure",
+    id = "ReplaceContentEntry",
     members = {
         filePath = {
             type = "string",
@@ -2385,6 +2560,7 @@ M.ReplaceContentEntry = {
 
 M.ConflictResolution = {
     type = "structure",
+    id = "ConflictResolution",
     members = {
         replaceContents = {
             type = "list",
@@ -2403,6 +2579,7 @@ M.ConflictResolution = {
 
 M.CreateUnreferencedMergeCommitInput = {
     type = "structure",
+    id = "CreateUnreferencedMergeCommitInput",
     members = {
         repositoryName = {
             type = "string",
@@ -2455,6 +2632,7 @@ M.CreateUnreferencedMergeCommitInput = {
 
 M.CreateUnreferencedMergeCommitOutput = {
     type = "structure",
+    id = "CreateUnreferencedMergeCommitOutput",
     members = {
         commitId = {
             type = "string",
@@ -2467,6 +2645,7 @@ M.CreateUnreferencedMergeCommitOutput = {
 
 M.InvalidConflictResolutionException = {
     type = "structure",
+    id = "InvalidConflictResolutionException",
     error = "client",
     members = {
         message = {
@@ -2477,6 +2656,7 @@ M.InvalidConflictResolutionException = {
 
 M.InvalidReplacementContentException = {
     type = "structure",
+    id = "InvalidReplacementContentException",
     error = "client",
     members = {
         message = {
@@ -2487,6 +2667,7 @@ M.InvalidReplacementContentException = {
 
 M.InvalidReplacementTypeException = {
     type = "structure",
+    id = "InvalidReplacementTypeException",
     error = "client",
     members = {
         message = {
@@ -2497,6 +2678,7 @@ M.InvalidReplacementTypeException = {
 
 M.ManualMergeRequiredException = {
     type = "structure",
+    id = "ManualMergeRequiredException",
     error = "client",
     members = {
         message = {
@@ -2507,6 +2689,7 @@ M.ManualMergeRequiredException = {
 
 M.MaximumConflictResolutionEntriesExceededException = {
     type = "structure",
+    id = "MaximumConflictResolutionEntriesExceededException",
     error = "client",
     members = {
         message = {
@@ -2517,6 +2700,7 @@ M.MaximumConflictResolutionEntriesExceededException = {
 
 M.MultipleConflictResolutionEntriesException = {
     type = "structure",
+    id = "MultipleConflictResolutionEntriesException",
     error = "client",
     members = {
         message = {
@@ -2527,6 +2711,7 @@ M.MultipleConflictResolutionEntriesException = {
 
 M.ReplacementContentRequiredException = {
     type = "structure",
+    id = "ReplacementContentRequiredException",
     error = "client",
     members = {
         message = {
@@ -2537,6 +2722,7 @@ M.ReplacementContentRequiredException = {
 
 M.ReplacementTypeRequiredException = {
     type = "structure",
+    id = "ReplacementTypeRequiredException",
     error = "client",
     members = {
         message = {
@@ -2547,6 +2733,7 @@ M.ReplacementTypeRequiredException = {
 
 M.DeleteApprovalRuleTemplateInput = {
     type = "structure",
+    id = "DeleteApprovalRuleTemplateInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -2559,6 +2746,7 @@ M.DeleteApprovalRuleTemplateInput = {
 
 M.DeleteApprovalRuleTemplateOutput = {
     type = "structure",
+    id = "DeleteApprovalRuleTemplateOutput",
     members = {
         approvalRuleTemplateId = {
             type = "string",
@@ -2571,6 +2759,7 @@ M.DeleteApprovalRuleTemplateOutput = {
 
 M.DefaultBranchCannotBeDeletedException = {
     type = "structure",
+    id = "DefaultBranchCannotBeDeletedException",
     error = "client",
     members = {
         message = {
@@ -2581,6 +2770,7 @@ M.DefaultBranchCannotBeDeletedException = {
 
 M.DeleteBranchInput = {
     type = "structure",
+    id = "DeleteBranchInput",
     members = {
         repositoryName = {
             type = "string",
@@ -2599,6 +2789,7 @@ M.DeleteBranchInput = {
 
 M.DeleteBranchOutput = {
     type = "structure",
+    id = "DeleteBranchOutput",
     members = {
         deletedBranch = M.BranchInfo,
     },
@@ -2606,6 +2797,7 @@ M.DeleteBranchOutput = {
 
 M.CommentDeletedException = {
     type = "structure",
+    id = "CommentDeletedException",
     error = "client",
     members = {
         message = {
@@ -2616,6 +2808,7 @@ M.CommentDeletedException = {
 
 M.CommentDoesNotExistException = {
     type = "structure",
+    id = "CommentDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -2626,6 +2819,7 @@ M.CommentDoesNotExistException = {
 
 M.CommentIdRequiredException = {
     type = "structure",
+    id = "CommentIdRequiredException",
     error = "client",
     members = {
         message = {
@@ -2636,6 +2830,7 @@ M.CommentIdRequiredException = {
 
 M.DeleteCommentContentInput = {
     type = "structure",
+    id = "DeleteCommentContentInput",
     members = {
         commentId = {
             type = "string",
@@ -2648,6 +2843,7 @@ M.DeleteCommentContentInput = {
 
 M.Comment = {
     type = "structure",
+    id = "Comment",
     members = {
         commentId = {
             type = "string",
@@ -2690,6 +2886,7 @@ M.Comment = {
 
 M.DeleteCommentContentOutput = {
     type = "structure",
+    id = "DeleteCommentContentOutput",
     members = {
         comment = M.Comment,
     },
@@ -2697,6 +2894,7 @@ M.DeleteCommentContentOutput = {
 
 M.InvalidCommentIdException = {
     type = "structure",
+    id = "InvalidCommentIdException",
     error = "client",
     members = {
         message = {
@@ -2707,6 +2905,7 @@ M.InvalidCommentIdException = {
 
 M.DeleteFileInput = {
     type = "structure",
+    id = "DeleteFileInput",
     members = {
         repositoryName = {
             type = "string",
@@ -2752,6 +2951,7 @@ M.DeleteFileInput = {
 
 M.DeleteFileOutput = {
     type = "structure",
+    id = "DeleteFileOutput",
     members = {
         commitId = {
             type = "string",
@@ -2782,6 +2982,7 @@ M.DeleteFileOutput = {
 
 M.DeletePullRequestApprovalRuleInput = {
     type = "structure",
+    id = "DeletePullRequestApprovalRuleInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -2800,6 +3001,7 @@ M.DeletePullRequestApprovalRuleInput = {
 
 M.DeletePullRequestApprovalRuleOutput = {
     type = "structure",
+    id = "DeletePullRequestApprovalRuleOutput",
     members = {
         approvalRuleId = {
             type = "string",
@@ -2812,6 +3014,7 @@ M.DeletePullRequestApprovalRuleOutput = {
 
 M.DeleteRepositoryInput = {
     type = "structure",
+    id = "DeleteRepositoryInput",
     members = {
         repositoryName = {
             type = "string",
@@ -2824,6 +3027,7 @@ M.DeleteRepositoryInput = {
 
 M.DeleteRepositoryOutput = {
     type = "structure",
+    id = "DeleteRepositoryOutput",
     members = {
         repositoryId = {
             type = "string",
@@ -2833,6 +3037,7 @@ M.DeleteRepositoryOutput = {
 
 M.DescribeMergeConflictsInput = {
     type = "structure",
+    id = "DescribeMergeConflictsInput",
     members = {
         repositoryName = {
             type = "string",
@@ -2881,6 +3086,7 @@ M.DescribeMergeConflictsInput = {
 
 M.DescribeMergeConflictsOutput = {
     type = "structure",
+    id = "DescribeMergeConflictsOutput",
     members = {
         conflictMetadata = setmetatable({ traits = {
             required = true,
@@ -2927,6 +3133,7 @@ M.PullRequestEventType = {
 
 M.DescribePullRequestEventsInput = {
     type = "structure",
+    id = "DescribePullRequestEventsInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -2951,6 +3158,7 @@ M.DescribePullRequestEventsInput = {
 
 M.PullRequestCreatedEventMetadata = {
     type = "structure",
+    id = "PullRequestCreatedEventMetadata",
     members = {
         repositoryName = {
             type = "string",
@@ -2969,6 +3177,7 @@ M.PullRequestCreatedEventMetadata = {
 
 M.PullRequestMergedStateChangedEventMetadata = {
     type = "structure",
+    id = "PullRequestMergedStateChangedEventMetadata",
     members = {
         repositoryName = {
             type = "string",
@@ -2982,6 +3191,7 @@ M.PullRequestMergedStateChangedEventMetadata = {
 
 M.PullRequestSourceReferenceUpdatedEventMetadata = {
     type = "structure",
+    id = "PullRequestSourceReferenceUpdatedEventMetadata",
     members = {
         repositoryName = {
             type = "string",
@@ -3000,6 +3210,7 @@ M.PullRequestSourceReferenceUpdatedEventMetadata = {
 
 M.PullRequestStatusChangedEventMetadata = {
     type = "structure",
+    id = "PullRequestStatusChangedEventMetadata",
     members = {
         pullRequestStatus = {
             type = "string",
@@ -3009,6 +3220,7 @@ M.PullRequestStatusChangedEventMetadata = {
 
 M.PullRequestEvent = {
     type = "structure",
+    id = "PullRequestEvent",
     members = {
         pullRequestId = {
             type = "string",
@@ -3034,6 +3246,7 @@ M.PullRequestEvent = {
 
 M.DescribePullRequestEventsOutput = {
     type = "structure",
+    id = "DescribePullRequestEventsOutput",
     members = {
         pullRequestEvents = {
             type = "list",
@@ -3050,6 +3263,7 @@ M.DescribePullRequestEventsOutput = {
 
 M.InvalidActorArnException = {
     type = "structure",
+    id = "InvalidActorArnException",
     error = "client",
     members = {
         message = {
@@ -3060,6 +3274,7 @@ M.InvalidActorArnException = {
 
 M.InvalidMaxResultsException = {
     type = "structure",
+    id = "InvalidMaxResultsException",
     error = "client",
     members = {
         message = {
@@ -3070,6 +3285,7 @@ M.InvalidMaxResultsException = {
 
 M.InvalidPullRequestEventTypeException = {
     type = "structure",
+    id = "InvalidPullRequestEventTypeException",
     error = "client",
     members = {
         message = {
@@ -3080,6 +3296,7 @@ M.InvalidPullRequestEventTypeException = {
 
 M.DisassociateApprovalRuleTemplateFromRepositoryInput = {
     type = "structure",
+    id = "DisassociateApprovalRuleTemplateFromRepositoryInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -3098,10 +3315,12 @@ M.DisassociateApprovalRuleTemplateFromRepositoryInput = {
 
 M.DisassociateApprovalRuleTemplateFromRepositoryOutput = {
     type = "structure",
+    id = "DisassociateApprovalRuleTemplateFromRepositoryOutput",
 }
 
 M.EvaluatePullRequestApprovalRulesInput = {
     type = "structure",
+    id = "EvaluatePullRequestApprovalRulesInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -3120,6 +3339,7 @@ M.EvaluatePullRequestApprovalRulesInput = {
 
 M.Evaluation = {
     type = "structure",
+    id = "Evaluation",
     members = {
         approved = {
             type = "boolean",
@@ -3146,6 +3366,7 @@ M.Evaluation = {
 
 M.EvaluatePullRequestApprovalRulesOutput = {
     type = "structure",
+    id = "EvaluatePullRequestApprovalRulesOutput",
     members = {
         evaluation = setmetatable({ traits = {
             required = true,
@@ -3155,6 +3376,7 @@ M.EvaluatePullRequestApprovalRulesOutput = {
 
 M.InvalidRevisionIdException = {
     type = "structure",
+    id = "InvalidRevisionIdException",
     error = "client",
     members = {
         message = {
@@ -3165,6 +3387,7 @@ M.InvalidRevisionIdException = {
 
 M.RevisionIdRequiredException = {
     type = "structure",
+    id = "RevisionIdRequiredException",
     error = "client",
     members = {
         message = {
@@ -3175,6 +3398,7 @@ M.RevisionIdRequiredException = {
 
 M.RevisionNotCurrentException = {
     type = "structure",
+    id = "RevisionNotCurrentException",
     error = "client",
     members = {
         message = {
@@ -3185,6 +3409,7 @@ M.RevisionNotCurrentException = {
 
 M.GetApprovalRuleTemplateInput = {
     type = "structure",
+    id = "GetApprovalRuleTemplateInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -3197,6 +3422,7 @@ M.GetApprovalRuleTemplateInput = {
 
 M.GetApprovalRuleTemplateOutput = {
     type = "structure",
+    id = "GetApprovalRuleTemplateOutput",
     members = {
         approvalRuleTemplate = setmetatable({ traits = {
             required = true,
@@ -3206,6 +3432,7 @@ M.GetApprovalRuleTemplateOutput = {
 
 M.FileTooLargeException = {
     type = "structure",
+    id = "FileTooLargeException",
     error = "client",
     members = {
         message = {
@@ -3216,6 +3443,7 @@ M.FileTooLargeException = {
 
 M.GetBlobInput = {
     type = "structure",
+    id = "GetBlobInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3234,6 +3462,7 @@ M.GetBlobInput = {
 
 M.GetBlobOutput = {
     type = "structure",
+    id = "GetBlobOutput",
     members = {
         content = {
             type = "blob",
@@ -3246,6 +3475,7 @@ M.GetBlobOutput = {
 
 M.InvalidBlobIdException = {
     type = "structure",
+    id = "InvalidBlobIdException",
     error = "client",
     members = {
         message = {
@@ -3256,6 +3486,7 @@ M.InvalidBlobIdException = {
 
 M.GetBranchInput = {
     type = "structure",
+    id = "GetBranchInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3268,6 +3499,7 @@ M.GetBranchInput = {
 
 M.GetBranchOutput = {
     type = "structure",
+    id = "GetBranchOutput",
     members = {
         branch = M.BranchInfo,
     },
@@ -3275,6 +3507,7 @@ M.GetBranchOutput = {
 
 M.GetCommentInput = {
     type = "structure",
+    id = "GetCommentInput",
     members = {
         commentId = {
             type = "string",
@@ -3287,6 +3520,7 @@ M.GetCommentInput = {
 
 M.GetCommentOutput = {
     type = "structure",
+    id = "GetCommentOutput",
     members = {
         comment = M.Comment,
     },
@@ -3294,6 +3528,7 @@ M.GetCommentOutput = {
 
 M.GetCommentReactionsInput = {
     type = "structure",
+    id = "GetCommentReactionsInput",
     members = {
         commentId = {
             type = "string",
@@ -3315,6 +3550,7 @@ M.GetCommentReactionsInput = {
 
 M.ReactionValueFormats = {
     type = "structure",
+    id = "ReactionValueFormats",
     members = {
         emoji = {
             type = "string",
@@ -3330,6 +3566,7 @@ M.ReactionValueFormats = {
 
 M.ReactionForComment = {
     type = "structure",
+    id = "ReactionForComment",
     members = {
         reaction = M.ReactionValueFormats,
         reactionUsers = {
@@ -3344,6 +3581,7 @@ M.ReactionForComment = {
 
 M.GetCommentReactionsOutput = {
     type = "structure",
+    id = "GetCommentReactionsOutput",
     members = {
         reactionsForComment = {
             type = "list",
@@ -3360,6 +3598,7 @@ M.GetCommentReactionsOutput = {
 
 M.InvalidReactionUserArnException = {
     type = "structure",
+    id = "InvalidReactionUserArnException",
     error = "client",
     members = {
         message = {
@@ -3370,6 +3609,7 @@ M.InvalidReactionUserArnException = {
 
 M.GetCommentsForComparedCommitInput = {
     type = "structure",
+    id = "GetCommentsForComparedCommitInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3402,6 +3642,7 @@ M.RelativeFileVersionEnum = {
 
 M.Location = {
     type = "structure",
+    id = "Location",
     members = {
         filePath = {
             type = "string",
@@ -3417,6 +3658,7 @@ M.Location = {
 
 M.CommentsForComparedCommit = {
     type = "structure",
+    id = "CommentsForComparedCommit",
     members = {
         repositoryName = {
             type = "string",
@@ -3443,6 +3685,7 @@ M.CommentsForComparedCommit = {
 
 M.GetCommentsForComparedCommitOutput = {
     type = "structure",
+    id = "GetCommentsForComparedCommitOutput",
     members = {
         commentsForComparedCommitData = {
             type = "list",
@@ -3456,6 +3699,7 @@ M.GetCommentsForComparedCommitOutput = {
 
 M.GetCommentsForPullRequestInput = {
     type = "structure",
+    id = "GetCommentsForPullRequestInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -3483,6 +3727,7 @@ M.GetCommentsForPullRequestInput = {
 
 M.CommentsForPullRequest = {
     type = "structure",
+    id = "CommentsForPullRequest",
     members = {
         pullRequestId = {
             type = "string",
@@ -3512,6 +3757,7 @@ M.CommentsForPullRequest = {
 
 M.GetCommentsForPullRequestOutput = {
     type = "structure",
+    id = "GetCommentsForPullRequestOutput",
     members = {
         commentsForPullRequestData = {
             type = "list",
@@ -3525,6 +3771,7 @@ M.GetCommentsForPullRequestOutput = {
 
 M.RepositoryNotAssociatedWithPullRequestException = {
     type = "structure",
+    id = "RepositoryNotAssociatedWithPullRequestException",
     error = "client",
     members = {
         message = {
@@ -3535,6 +3782,7 @@ M.RepositoryNotAssociatedWithPullRequestException = {
 
 M.CommitIdDoesNotExistException = {
     type = "structure",
+    id = "CommitIdDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -3545,6 +3793,7 @@ M.CommitIdDoesNotExistException = {
 
 M.GetCommitInput = {
     type = "structure",
+    id = "GetCommitInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3563,6 +3812,7 @@ M.GetCommitInput = {
 
 M.GetCommitOutput = {
     type = "structure",
+    id = "GetCommitOutput",
     members = {
         commit = setmetatable({ traits = {
             required = true,
@@ -3572,6 +3822,7 @@ M.GetCommitOutput = {
 
 M.GetDifferencesInput = {
     type = "structure",
+    id = "GetDifferencesInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3605,6 +3856,7 @@ M.GetDifferencesInput = {
 
 M.Difference = {
     type = "structure",
+    id = "Difference",
     members = {
         beforeBlob = M.BlobMetadata,
         afterBlob = M.BlobMetadata,
@@ -3616,6 +3868,7 @@ M.Difference = {
 
 M.GetDifferencesOutput = {
     type = "structure",
+    id = "GetDifferencesOutput",
     members = {
         differences = {
             type = "list",
@@ -3629,6 +3882,7 @@ M.GetDifferencesOutput = {
 
 M.PathDoesNotExistException = {
     type = "structure",
+    id = "PathDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -3639,6 +3893,7 @@ M.PathDoesNotExistException = {
 
 M.GetFileInput = {
     type = "structure",
+    id = "GetFileInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3660,6 +3915,7 @@ M.GetFileInput = {
 
 M.GetFileOutput = {
     type = "structure",
+    id = "GetFileOutput",
     members = {
         commitId = {
             type = "string",
@@ -3703,6 +3959,7 @@ M.GetFileOutput = {
 
 M.FolderDoesNotExistException = {
     type = "structure",
+    id = "FolderDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -3713,6 +3970,7 @@ M.FolderDoesNotExistException = {
 
 M.GetFolderInput = {
     type = "structure",
+    id = "GetFolderInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3734,6 +3992,7 @@ M.GetFolderInput = {
 
 M.File = {
     type = "structure",
+    id = "File",
     members = {
         blobId = {
             type = "string",
@@ -3752,6 +4011,7 @@ M.File = {
 
 M.Folder = {
     type = "structure",
+    id = "Folder",
     members = {
         treeId = {
             type = "string",
@@ -3767,6 +4027,7 @@ M.Folder = {
 
 M.SubModule = {
     type = "structure",
+    id = "SubModule",
     members = {
         commitId = {
             type = "string",
@@ -3782,6 +4043,7 @@ M.SubModule = {
 
 M.SymbolicLink = {
     type = "structure",
+    id = "SymbolicLink",
     members = {
         blobId = {
             type = "string",
@@ -3800,6 +4062,7 @@ M.SymbolicLink = {
 
 M.GetFolderOutput = {
     type = "structure",
+    id = "GetFolderOutput",
     members = {
         commitId = {
             type = "string",
@@ -3837,6 +4100,7 @@ M.GetFolderOutput = {
 
 M.GetMergeCommitInput = {
     type = "structure",
+    id = "GetMergeCommitInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3867,6 +4131,7 @@ M.GetMergeCommitInput = {
 
 M.GetMergeCommitOutput = {
     type = "structure",
+    id = "GetMergeCommitOutput",
     members = {
         sourceCommitId = {
             type = "string",
@@ -3885,6 +4150,7 @@ M.GetMergeCommitOutput = {
 
 M.GetMergeConflictsInput = {
     type = "structure",
+    id = "GetMergeConflictsInput",
     members = {
         repositoryName = {
             type = "string",
@@ -3927,6 +4193,7 @@ M.GetMergeConflictsInput = {
 
 M.GetMergeConflictsOutput = {
     type = "structure",
+    id = "GetMergeConflictsOutput",
     members = {
         mergeable = {
             type = "boolean",
@@ -3965,6 +4232,7 @@ M.GetMergeConflictsOutput = {
 
 M.InvalidDestinationCommitSpecifierException = {
     type = "structure",
+    id = "InvalidDestinationCommitSpecifierException",
     error = "client",
     members = {
         message = {
@@ -3975,6 +4243,7 @@ M.InvalidDestinationCommitSpecifierException = {
 
 M.InvalidSourceCommitSpecifierException = {
     type = "structure",
+    id = "InvalidSourceCommitSpecifierException",
     error = "client",
     members = {
         message = {
@@ -3985,6 +4254,7 @@ M.InvalidSourceCommitSpecifierException = {
 
 M.GetMergeOptionsInput = {
     type = "structure",
+    id = "GetMergeOptionsInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4015,6 +4285,7 @@ M.GetMergeOptionsInput = {
 
 M.GetMergeOptionsOutput = {
     type = "structure",
+    id = "GetMergeOptionsOutput",
     members = {
         mergeOptions = {
             type = "list",
@@ -4046,6 +4317,7 @@ M.GetMergeOptionsOutput = {
 
 M.GetPullRequestInput = {
     type = "structure",
+    id = "GetPullRequestInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -4058,6 +4330,7 @@ M.GetPullRequestInput = {
 
 M.GetPullRequestOutput = {
     type = "structure",
+    id = "GetPullRequestOutput",
     members = {
         pullRequest = setmetatable({ traits = {
             required = true,
@@ -4067,6 +4340,7 @@ M.GetPullRequestOutput = {
 
 M.GetPullRequestApprovalStatesInput = {
     type = "structure",
+    id = "GetPullRequestApprovalStatesInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -4085,6 +4359,7 @@ M.GetPullRequestApprovalStatesInput = {
 
 M.GetPullRequestApprovalStatesOutput = {
     type = "structure",
+    id = "GetPullRequestApprovalStatesOutput",
     members = {
         approvals = {
             type = "list",
@@ -4095,6 +4370,7 @@ M.GetPullRequestApprovalStatesOutput = {
 
 M.GetPullRequestOverrideStateInput = {
     type = "structure",
+    id = "GetPullRequestOverrideStateInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -4113,6 +4389,7 @@ M.GetPullRequestOverrideStateInput = {
 
 M.GetPullRequestOverrideStateOutput = {
     type = "structure",
+    id = "GetPullRequestOverrideStateOutput",
     members = {
         overridden = {
             type = "boolean",
@@ -4128,6 +4405,7 @@ M.GetPullRequestOverrideStateOutput = {
 
 M.GetRepositoryInput = {
     type = "structure",
+    id = "GetRepositoryInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4140,6 +4418,7 @@ M.GetRepositoryInput = {
 
 M.GetRepositoryOutput = {
     type = "structure",
+    id = "GetRepositoryOutput",
     members = {
         repositoryMetadata = M.RepositoryMetadata,
     },
@@ -4147,6 +4426,7 @@ M.GetRepositoryOutput = {
 
 M.GetRepositoryTriggersInput = {
     type = "structure",
+    id = "GetRepositoryTriggersInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4166,6 +4446,7 @@ M.RepositoryTriggerEventEnum = {
 
 M.RepositoryTrigger = {
     type = "structure",
+    id = "RepositoryTrigger",
     members = {
         name = {
             type = "string",
@@ -4198,6 +4479,7 @@ M.RepositoryTrigger = {
 
 M.GetRepositoryTriggersOutput = {
     type = "structure",
+    id = "GetRepositoryTriggersOutput",
     members = {
         configurationId = {
             type = "string",
@@ -4211,6 +4493,7 @@ M.GetRepositoryTriggersOutput = {
 
 M.ListApprovalRuleTemplatesInput = {
     type = "structure",
+    id = "ListApprovalRuleTemplatesInput",
     members = {
         nextToken = {
             type = "string",
@@ -4223,6 +4506,7 @@ M.ListApprovalRuleTemplatesInput = {
 
 M.ListApprovalRuleTemplatesOutput = {
     type = "structure",
+    id = "ListApprovalRuleTemplatesOutput",
     members = {
         approvalRuleTemplateNames = {
             type = "list",
@@ -4236,6 +4520,7 @@ M.ListApprovalRuleTemplatesOutput = {
 
 M.ListAssociatedApprovalRuleTemplatesForRepositoryInput = {
     type = "structure",
+    id = "ListAssociatedApprovalRuleTemplatesForRepositoryInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4254,6 +4539,7 @@ M.ListAssociatedApprovalRuleTemplatesForRepositoryInput = {
 
 M.ListAssociatedApprovalRuleTemplatesForRepositoryOutput = {
     type = "structure",
+    id = "ListAssociatedApprovalRuleTemplatesForRepositoryOutput",
     members = {
         approvalRuleTemplateNames = {
             type = "list",
@@ -4267,6 +4553,7 @@ M.ListAssociatedApprovalRuleTemplatesForRepositoryOutput = {
 
 M.ListBranchesInput = {
     type = "structure",
+    id = "ListBranchesInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4282,6 +4569,7 @@ M.ListBranchesInput = {
 
 M.ListBranchesOutput = {
     type = "structure",
+    id = "ListBranchesOutput",
     members = {
         branches = {
             type = "list",
@@ -4295,6 +4583,7 @@ M.ListBranchesOutput = {
 
 M.ListFileCommitHistoryInput = {
     type = "structure",
+    id = "ListFileCommitHistoryInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4322,6 +4611,7 @@ M.ListFileCommitHistoryInput = {
 
 M.FileVersion = {
     type = "structure",
+    id = "FileVersion",
     members = {
         commit = M.Commit,
         blobId = {
@@ -4339,6 +4629,7 @@ M.FileVersion = {
 
 M.ListFileCommitHistoryOutput = {
     type = "structure",
+    id = "ListFileCommitHistoryOutput",
     members = {
         revisionDag = {
             type = "list",
@@ -4355,6 +4646,7 @@ M.ListFileCommitHistoryOutput = {
 
 M.InvalidAuthorArnException = {
     type = "structure",
+    id = "InvalidAuthorArnException",
     error = "client",
     members = {
         message = {
@@ -4365,6 +4657,7 @@ M.InvalidAuthorArnException = {
 
 M.InvalidPullRequestStatusException = {
     type = "structure",
+    id = "InvalidPullRequestStatusException",
     error = "client",
     members = {
         message = {
@@ -4375,6 +4668,7 @@ M.InvalidPullRequestStatusException = {
 
 M.ListPullRequestsInput = {
     type = "structure",
+    id = "ListPullRequestsInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4399,6 +4693,7 @@ M.ListPullRequestsInput = {
 
 M.ListPullRequestsOutput = {
     type = "structure",
+    id = "ListPullRequestsOutput",
     members = {
         pullRequestIds = {
             type = "list",
@@ -4415,6 +4710,7 @@ M.ListPullRequestsOutput = {
 
 M.InvalidOrderException = {
     type = "structure",
+    id = "InvalidOrderException",
     error = "client",
     members = {
         message = {
@@ -4425,6 +4721,7 @@ M.InvalidOrderException = {
 
 M.InvalidSortByException = {
     type = "structure",
+    id = "InvalidSortByException",
     error = "client",
     members = {
         message = {
@@ -4445,6 +4742,7 @@ M.SortByEnum = {
 
 M.ListRepositoriesInput = {
     type = "structure",
+    id = "ListRepositoriesInput",
     members = {
         nextToken = {
             type = "string",
@@ -4460,6 +4758,7 @@ M.ListRepositoriesInput = {
 
 M.RepositoryNameIdPair = {
     type = "structure",
+    id = "RepositoryNameIdPair",
     members = {
         repositoryName = {
             type = "string",
@@ -4472,6 +4771,7 @@ M.RepositoryNameIdPair = {
 
 M.ListRepositoriesOutput = {
     type = "structure",
+    id = "ListRepositoriesOutput",
     members = {
         repositories = {
             type = "list",
@@ -4485,6 +4785,7 @@ M.ListRepositoriesOutput = {
 
 M.ListRepositoriesForApprovalRuleTemplateInput = {
     type = "structure",
+    id = "ListRepositoriesForApprovalRuleTemplateInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -4503,6 +4804,7 @@ M.ListRepositoriesForApprovalRuleTemplateInput = {
 
 M.ListRepositoriesForApprovalRuleTemplateOutput = {
     type = "structure",
+    id = "ListRepositoriesForApprovalRuleTemplateOutput",
     members = {
         repositoryNames = {
             type = "list",
@@ -4516,6 +4818,7 @@ M.ListRepositoriesForApprovalRuleTemplateOutput = {
 
 M.InvalidResourceArnException = {
     type = "structure",
+    id = "InvalidResourceArnException",
     error = "client",
     members = {
         message = {
@@ -4526,6 +4829,7 @@ M.InvalidResourceArnException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4541,6 +4845,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -4555,6 +4860,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceArnRequiredException = {
     type = "structure",
+    id = "ResourceArnRequiredException",
     error = "client",
     members = {
         message = {
@@ -4565,6 +4871,7 @@ M.ResourceArnRequiredException = {
 
 M.InvalidTargetBranchException = {
     type = "structure",
+    id = "InvalidTargetBranchException",
     error = "client",
     members = {
         message = {
@@ -4575,6 +4882,7 @@ M.InvalidTargetBranchException = {
 
 M.MergeBranchesByFastForwardInput = {
     type = "structure",
+    id = "MergeBranchesByFastForwardInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4602,6 +4910,7 @@ M.MergeBranchesByFastForwardInput = {
 
 M.MergeBranchesByFastForwardOutput = {
     type = "structure",
+    id = "MergeBranchesByFastForwardOutput",
     members = {
         commitId = {
             type = "string",
@@ -4614,6 +4923,7 @@ M.MergeBranchesByFastForwardOutput = {
 
 M.MergeBranchesBySquashInput = {
     type = "structure",
+    id = "MergeBranchesBySquashInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4663,6 +4973,7 @@ M.MergeBranchesBySquashInput = {
 
 M.MergeBranchesBySquashOutput = {
     type = "structure",
+    id = "MergeBranchesBySquashOutput",
     members = {
         commitId = {
             type = "string",
@@ -4675,6 +4986,7 @@ M.MergeBranchesBySquashOutput = {
 
 M.MergeBranchesByThreeWayInput = {
     type = "structure",
+    id = "MergeBranchesByThreeWayInput",
     members = {
         repositoryName = {
             type = "string",
@@ -4724,6 +5036,7 @@ M.MergeBranchesByThreeWayInput = {
 
 M.MergeBranchesByThreeWayOutput = {
     type = "structure",
+    id = "MergeBranchesByThreeWayOutput",
     members = {
         commitId = {
             type = "string",
@@ -4736,6 +5049,7 @@ M.MergeBranchesByThreeWayOutput = {
 
 M.MergePullRequestByFastForwardInput = {
     type = "structure",
+    id = "MergePullRequestByFastForwardInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -4757,6 +5071,7 @@ M.MergePullRequestByFastForwardInput = {
 
 M.MergePullRequestByFastForwardOutput = {
     type = "structure",
+    id = "MergePullRequestByFastForwardOutput",
     members = {
         pullRequest = M.PullRequest,
     },
@@ -4764,6 +5079,7 @@ M.MergePullRequestByFastForwardOutput = {
 
 M.PullRequestApprovalRulesNotSatisfiedException = {
     type = "structure",
+    id = "PullRequestApprovalRulesNotSatisfiedException",
     error = "client",
     members = {
         message = {
@@ -4774,6 +5090,7 @@ M.PullRequestApprovalRulesNotSatisfiedException = {
 
 M.TipOfSourceReferenceIsDifferentException = {
     type = "structure",
+    id = "TipOfSourceReferenceIsDifferentException",
     error = "client",
     members = {
         message = {
@@ -4784,6 +5101,7 @@ M.TipOfSourceReferenceIsDifferentException = {
 
 M.MergePullRequestBySquashInput = {
     type = "structure",
+    id = "MergePullRequestBySquashInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -4827,6 +5145,7 @@ M.MergePullRequestBySquashInput = {
 
 M.MergePullRequestBySquashOutput = {
     type = "structure",
+    id = "MergePullRequestBySquashOutput",
     members = {
         pullRequest = M.PullRequest,
     },
@@ -4834,6 +5153,7 @@ M.MergePullRequestBySquashOutput = {
 
 M.MergePullRequestByThreeWayInput = {
     type = "structure",
+    id = "MergePullRequestByThreeWayInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -4877,6 +5197,7 @@ M.MergePullRequestByThreeWayInput = {
 
 M.MergePullRequestByThreeWayOutput = {
     type = "structure",
+    id = "MergePullRequestByThreeWayOutput",
     members = {
         pullRequest = M.PullRequest,
     },
@@ -4884,6 +5205,7 @@ M.MergePullRequestByThreeWayOutput = {
 
 M.InvalidOverrideStatusException = {
     type = "structure",
+    id = "InvalidOverrideStatusException",
     error = "client",
     members = {
         message = {
@@ -4894,6 +5216,7 @@ M.InvalidOverrideStatusException = {
 
 M.OverrideAlreadySetException = {
     type = "structure",
+    id = "OverrideAlreadySetException",
     error = "client",
     members = {
         message = {
@@ -4904,6 +5227,7 @@ M.OverrideAlreadySetException = {
 
 M.OverridePullRequestApprovalRulesInput = {
     type = "structure",
+    id = "OverridePullRequestApprovalRulesInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -4928,10 +5252,12 @@ M.OverridePullRequestApprovalRulesInput = {
 
 M.OverridePullRequestApprovalRulesOutput = {
     type = "structure",
+    id = "OverridePullRequestApprovalRulesOutput",
 }
 
 M.OverrideStatusRequiredException = {
     type = "structure",
+    id = "OverrideStatusRequiredException",
     error = "client",
     members = {
         message = {
@@ -4942,6 +5268,7 @@ M.OverrideStatusRequiredException = {
 
 M.CommentContentRequiredException = {
     type = "structure",
+    id = "CommentContentRequiredException",
     error = "client",
     members = {
         message = {
@@ -4952,6 +5279,7 @@ M.CommentContentRequiredException = {
 
 M.CommentContentSizeLimitExceededException = {
     type = "structure",
+    id = "CommentContentSizeLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -4962,6 +5290,7 @@ M.CommentContentSizeLimitExceededException = {
 
 M.InvalidFileLocationException = {
     type = "structure",
+    id = "InvalidFileLocationException",
     error = "client",
     members = {
         message = {
@@ -4972,6 +5301,7 @@ M.InvalidFileLocationException = {
 
 M.InvalidFilePositionException = {
     type = "structure",
+    id = "InvalidFilePositionException",
     error = "client",
     members = {
         message = {
@@ -4982,6 +5312,7 @@ M.InvalidFilePositionException = {
 
 M.InvalidRelativeFileVersionEnumException = {
     type = "structure",
+    id = "InvalidRelativeFileVersionEnumException",
     error = "client",
     members = {
         message = {
@@ -4992,6 +5323,7 @@ M.InvalidRelativeFileVersionEnumException = {
 
 M.PostCommentForComparedCommitInput = {
     type = "structure",
+    id = "PostCommentForComparedCommitInput",
     members = {
         repositoryName = {
             type = "string",
@@ -5026,6 +5358,7 @@ M.PostCommentForComparedCommitInput = {
 
 M.PostCommentForComparedCommitOutput = {
     type = "structure",
+    id = "PostCommentForComparedCommitOutput",
     members = {
         repositoryName = {
             type = "string",
@@ -5049,6 +5382,7 @@ M.PostCommentForComparedCommitOutput = {
 
 M.PostCommentForPullRequestInput = {
     type = "structure",
+    id = "PostCommentForPullRequestInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -5092,6 +5426,7 @@ M.PostCommentForPullRequestInput = {
 
 M.PostCommentForPullRequestOutput = {
     type = "structure",
+    id = "PostCommentForPullRequestOutput",
     members = {
         repositoryName = {
             type = "string",
@@ -5118,6 +5453,7 @@ M.PostCommentForPullRequestOutput = {
 
 M.PostCommentReplyInput = {
     type = "structure",
+    id = "PostCommentReplyInput",
     members = {
         inReplyTo = {
             type = "string",
@@ -5142,6 +5478,7 @@ M.PostCommentReplyInput = {
 
 M.PostCommentReplyOutput = {
     type = "structure",
+    id = "PostCommentReplyOutput",
     members = {
         comment = M.Comment,
     },
@@ -5149,6 +5486,7 @@ M.PostCommentReplyOutput = {
 
 M.InvalidReactionValueException = {
     type = "structure",
+    id = "InvalidReactionValueException",
     error = "client",
     members = {
         message = {
@@ -5159,6 +5497,7 @@ M.InvalidReactionValueException = {
 
 M.PutCommentReactionInput = {
     type = "structure",
+    id = "PutCommentReactionInput",
     members = {
         commentId = {
             type = "string",
@@ -5177,10 +5516,12 @@ M.PutCommentReactionInput = {
 
 M.PutCommentReactionOutput = {
     type = "structure",
+    id = "PutCommentReactionOutput",
 }
 
 M.ReactionLimitExceededException = {
     type = "structure",
+    id = "ReactionLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -5191,6 +5532,7 @@ M.ReactionLimitExceededException = {
 
 M.ReactionValueRequiredException = {
     type = "structure",
+    id = "ReactionValueRequiredException",
     error = "client",
     members = {
         message = {
@@ -5201,6 +5543,7 @@ M.ReactionValueRequiredException = {
 
 M.FileContentRequiredException = {
     type = "structure",
+    id = "FileContentRequiredException",
     error = "client",
     members = {
         message = {
@@ -5211,6 +5554,7 @@ M.FileContentRequiredException = {
 
 M.PutFileInput = {
     type = "structure",
+    id = "PutFileInput",
     members = {
         repositoryName = {
             type = "string",
@@ -5256,6 +5600,7 @@ M.PutFileInput = {
 
 M.PutFileOutput = {
     type = "structure",
+    id = "PutFileOutput",
     members = {
         commitId = {
             type = "string",
@@ -5280,6 +5625,7 @@ M.PutFileOutput = {
 
 M.SameFileContentException = {
     type = "structure",
+    id = "SameFileContentException",
     error = "client",
     members = {
         message = {
@@ -5290,6 +5636,7 @@ M.SameFileContentException = {
 
 M.InvalidRepositoryTriggerBranchNameException = {
     type = "structure",
+    id = "InvalidRepositoryTriggerBranchNameException",
     error = "client",
     members = {
         message = {
@@ -5300,6 +5647,7 @@ M.InvalidRepositoryTriggerBranchNameException = {
 
 M.InvalidRepositoryTriggerCustomDataException = {
     type = "structure",
+    id = "InvalidRepositoryTriggerCustomDataException",
     error = "client",
     members = {
         message = {
@@ -5310,6 +5658,7 @@ M.InvalidRepositoryTriggerCustomDataException = {
 
 M.InvalidRepositoryTriggerDestinationArnException = {
     type = "structure",
+    id = "InvalidRepositoryTriggerDestinationArnException",
     error = "client",
     members = {
         message = {
@@ -5320,6 +5669,7 @@ M.InvalidRepositoryTriggerDestinationArnException = {
 
 M.InvalidRepositoryTriggerEventsException = {
     type = "structure",
+    id = "InvalidRepositoryTriggerEventsException",
     error = "client",
     members = {
         message = {
@@ -5330,6 +5680,7 @@ M.InvalidRepositoryTriggerEventsException = {
 
 M.InvalidRepositoryTriggerNameException = {
     type = "structure",
+    id = "InvalidRepositoryTriggerNameException",
     error = "client",
     members = {
         message = {
@@ -5340,6 +5691,7 @@ M.InvalidRepositoryTriggerNameException = {
 
 M.InvalidRepositoryTriggerRegionException = {
     type = "structure",
+    id = "InvalidRepositoryTriggerRegionException",
     error = "client",
     members = {
         message = {
@@ -5350,6 +5702,7 @@ M.InvalidRepositoryTriggerRegionException = {
 
 M.MaximumBranchesExceededException = {
     type = "structure",
+    id = "MaximumBranchesExceededException",
     error = "client",
     members = {
         message = {
@@ -5360,6 +5713,7 @@ M.MaximumBranchesExceededException = {
 
 M.MaximumRepositoryTriggersExceededException = {
     type = "structure",
+    id = "MaximumRepositoryTriggersExceededException",
     error = "client",
     members = {
         message = {
@@ -5370,6 +5724,7 @@ M.MaximumRepositoryTriggersExceededException = {
 
 M.PutRepositoryTriggersInput = {
     type = "structure",
+    id = "PutRepositoryTriggersInput",
     members = {
         repositoryName = {
             type = "string",
@@ -5389,6 +5744,7 @@ M.PutRepositoryTriggersInput = {
 
 M.PutRepositoryTriggersOutput = {
     type = "structure",
+    id = "PutRepositoryTriggersOutput",
     members = {
         configurationId = {
             type = "string",
@@ -5398,6 +5754,7 @@ M.PutRepositoryTriggersOutput = {
 
 M.RepositoryTriggerBranchNameListRequiredException = {
     type = "structure",
+    id = "RepositoryTriggerBranchNameListRequiredException",
     error = "client",
     members = {
         message = {
@@ -5408,6 +5765,7 @@ M.RepositoryTriggerBranchNameListRequiredException = {
 
 M.RepositoryTriggerDestinationArnRequiredException = {
     type = "structure",
+    id = "RepositoryTriggerDestinationArnRequiredException",
     error = "client",
     members = {
         message = {
@@ -5418,6 +5776,7 @@ M.RepositoryTriggerDestinationArnRequiredException = {
 
 M.RepositoryTriggerEventsListRequiredException = {
     type = "structure",
+    id = "RepositoryTriggerEventsListRequiredException",
     error = "client",
     members = {
         message = {
@@ -5428,6 +5787,7 @@ M.RepositoryTriggerEventsListRequiredException = {
 
 M.RepositoryTriggerNameRequiredException = {
     type = "structure",
+    id = "RepositoryTriggerNameRequiredException",
     error = "client",
     members = {
         message = {
@@ -5438,6 +5798,7 @@ M.RepositoryTriggerNameRequiredException = {
 
 M.RepositoryTriggersListRequiredException = {
     type = "structure",
+    id = "RepositoryTriggersListRequiredException",
     error = "client",
     members = {
         message = {
@@ -5448,6 +5809,7 @@ M.RepositoryTriggersListRequiredException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5468,10 +5830,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TagsMapRequiredException = {
     type = "structure",
+    id = "TagsMapRequiredException",
     error = "client",
     members = {
         message = {
@@ -5482,6 +5846,7 @@ M.TagsMapRequiredException = {
 
 M.TestRepositoryTriggersInput = {
     type = "structure",
+    id = "TestRepositoryTriggersInput",
     members = {
         repositoryName = {
             type = "string",
@@ -5501,6 +5866,7 @@ M.TestRepositoryTriggersInput = {
 
 M.RepositoryTriggerExecutionFailure = {
     type = "structure",
+    id = "RepositoryTriggerExecutionFailure",
     members = {
         trigger = {
             type = "string",
@@ -5513,6 +5879,7 @@ M.RepositoryTriggerExecutionFailure = {
 
 M.TestRepositoryTriggersOutput = {
     type = "structure",
+    id = "TestRepositoryTriggersOutput",
     members = {
         successfulExecutions = {
             type = "list",
@@ -5527,6 +5894,7 @@ M.TestRepositoryTriggersOutput = {
 
 M.InvalidTagKeysListException = {
     type = "structure",
+    id = "InvalidTagKeysListException",
     error = "client",
     members = {
         message = {
@@ -5537,6 +5905,7 @@ M.InvalidTagKeysListException = {
 
 M.TagKeysListRequiredException = {
     type = "structure",
+    id = "TagKeysListRequiredException",
     error = "client",
     members = {
         message = {
@@ -5547,6 +5916,7 @@ M.TagKeysListRequiredException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5566,10 +5936,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.InvalidRuleContentSha256Exception = {
     type = "structure",
+    id = "InvalidRuleContentSha256Exception",
     error = "client",
     members = {
         message = {
@@ -5580,6 +5952,7 @@ M.InvalidRuleContentSha256Exception = {
 
 M.UpdateApprovalRuleTemplateContentInput = {
     type = "structure",
+    id = "UpdateApprovalRuleTemplateContentInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -5601,6 +5974,7 @@ M.UpdateApprovalRuleTemplateContentInput = {
 
 M.UpdateApprovalRuleTemplateContentOutput = {
     type = "structure",
+    id = "UpdateApprovalRuleTemplateContentOutput",
     members = {
         approvalRuleTemplate = setmetatable({ traits = {
             required = true,
@@ -5610,6 +5984,7 @@ M.UpdateApprovalRuleTemplateContentOutput = {
 
 M.UpdateApprovalRuleTemplateDescriptionInput = {
     type = "structure",
+    id = "UpdateApprovalRuleTemplateDescriptionInput",
     members = {
         approvalRuleTemplateName = {
             type = "string",
@@ -5628,6 +6003,7 @@ M.UpdateApprovalRuleTemplateDescriptionInput = {
 
 M.UpdateApprovalRuleTemplateDescriptionOutput = {
     type = "structure",
+    id = "UpdateApprovalRuleTemplateDescriptionOutput",
     members = {
         approvalRuleTemplate = setmetatable({ traits = {
             required = true,
@@ -5637,6 +6013,7 @@ M.UpdateApprovalRuleTemplateDescriptionOutput = {
 
 M.UpdateApprovalRuleTemplateNameInput = {
     type = "structure",
+    id = "UpdateApprovalRuleTemplateNameInput",
     members = {
         oldApprovalRuleTemplateName = {
             type = "string",
@@ -5655,6 +6032,7 @@ M.UpdateApprovalRuleTemplateNameInput = {
 
 M.UpdateApprovalRuleTemplateNameOutput = {
     type = "structure",
+    id = "UpdateApprovalRuleTemplateNameOutput",
     members = {
         approvalRuleTemplate = setmetatable({ traits = {
             required = true,
@@ -5664,6 +6042,7 @@ M.UpdateApprovalRuleTemplateNameOutput = {
 
 M.CommentNotCreatedByCallerException = {
     type = "structure",
+    id = "CommentNotCreatedByCallerException",
     error = "client",
     members = {
         message = {
@@ -5674,6 +6053,7 @@ M.CommentNotCreatedByCallerException = {
 
 M.UpdateCommentInput = {
     type = "structure",
+    id = "UpdateCommentInput",
     members = {
         commentId = {
             type = "string",
@@ -5692,6 +6072,7 @@ M.UpdateCommentInput = {
 
 M.UpdateCommentOutput = {
     type = "structure",
+    id = "UpdateCommentOutput",
     members = {
         comment = M.Comment,
     },
@@ -5699,6 +6080,7 @@ M.UpdateCommentOutput = {
 
 M.UpdateDefaultBranchInput = {
     type = "structure",
+    id = "UpdateDefaultBranchInput",
     members = {
         repositoryName = {
             type = "string",
@@ -5717,10 +6099,12 @@ M.UpdateDefaultBranchInput = {
 
 M.UpdateDefaultBranchOutput = {
     type = "structure",
+    id = "UpdateDefaultBranchOutput",
 }
 
 M.UpdatePullRequestApprovalRuleContentInput = {
     type = "structure",
+    id = "UpdatePullRequestApprovalRuleContentInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -5748,6 +6132,7 @@ M.UpdatePullRequestApprovalRuleContentInput = {
 
 M.UpdatePullRequestApprovalRuleContentOutput = {
     type = "structure",
+    id = "UpdatePullRequestApprovalRuleContentOutput",
     members = {
         approvalRule = setmetatable({ traits = {
             required = true,
@@ -5757,6 +6142,7 @@ M.UpdatePullRequestApprovalRuleContentOutput = {
 
 M.InvalidApprovalStateException = {
     type = "structure",
+    id = "InvalidApprovalStateException",
     error = "client",
     members = {
         message = {
@@ -5767,6 +6153,7 @@ M.InvalidApprovalStateException = {
 
 M.MaximumNumberOfApprovalsExceededException = {
     type = "structure",
+    id = "MaximumNumberOfApprovalsExceededException",
     error = "client",
     members = {
         message = {
@@ -5777,6 +6164,7 @@ M.MaximumNumberOfApprovalsExceededException = {
 
 M.PullRequestCannotBeApprovedByAuthorException = {
     type = "structure",
+    id = "PullRequestCannotBeApprovedByAuthorException",
     error = "client",
     members = {
         message = {
@@ -5787,6 +6175,7 @@ M.PullRequestCannotBeApprovedByAuthorException = {
 
 M.UpdatePullRequestApprovalStateInput = {
     type = "structure",
+    id = "UpdatePullRequestApprovalStateInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -5811,10 +6200,12 @@ M.UpdatePullRequestApprovalStateInput = {
 
 M.UpdatePullRequestApprovalStateOutput = {
     type = "structure",
+    id = "UpdatePullRequestApprovalStateOutput",
 }
 
 M.UpdatePullRequestDescriptionInput = {
     type = "structure",
+    id = "UpdatePullRequestDescriptionInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -5833,6 +6224,7 @@ M.UpdatePullRequestDescriptionInput = {
 
 M.UpdatePullRequestDescriptionOutput = {
     type = "structure",
+    id = "UpdatePullRequestDescriptionOutput",
     members = {
         pullRequest = setmetatable({ traits = {
             required = true,
@@ -5842,6 +6234,7 @@ M.UpdatePullRequestDescriptionOutput = {
 
 M.InvalidPullRequestStatusUpdateException = {
     type = "structure",
+    id = "InvalidPullRequestStatusUpdateException",
     error = "client",
     members = {
         message = {
@@ -5852,6 +6245,7 @@ M.InvalidPullRequestStatusUpdateException = {
 
 M.PullRequestStatusRequiredException = {
     type = "structure",
+    id = "PullRequestStatusRequiredException",
     error = "client",
     members = {
         message = {
@@ -5862,6 +6256,7 @@ M.PullRequestStatusRequiredException = {
 
 M.UpdatePullRequestStatusInput = {
     type = "structure",
+    id = "UpdatePullRequestStatusInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -5880,6 +6275,7 @@ M.UpdatePullRequestStatusInput = {
 
 M.UpdatePullRequestStatusOutput = {
     type = "structure",
+    id = "UpdatePullRequestStatusOutput",
     members = {
         pullRequest = setmetatable({ traits = {
             required = true,
@@ -5889,6 +6285,7 @@ M.UpdatePullRequestStatusOutput = {
 
 M.UpdatePullRequestTitleInput = {
     type = "structure",
+    id = "UpdatePullRequestTitleInput",
     members = {
         pullRequestId = {
             type = "string",
@@ -5907,6 +6304,7 @@ M.UpdatePullRequestTitleInput = {
 
 M.UpdatePullRequestTitleOutput = {
     type = "structure",
+    id = "UpdatePullRequestTitleOutput",
     members = {
         pullRequest = setmetatable({ traits = {
             required = true,
@@ -5916,6 +6314,7 @@ M.UpdatePullRequestTitleOutput = {
 
 M.UpdateRepositoryDescriptionInput = {
     type = "structure",
+    id = "UpdateRepositoryDescriptionInput",
     members = {
         repositoryName = {
             type = "string",
@@ -5931,10 +6330,12 @@ M.UpdateRepositoryDescriptionInput = {
 
 M.UpdateRepositoryDescriptionOutput = {
     type = "structure",
+    id = "UpdateRepositoryDescriptionOutput",
 }
 
 M.EncryptionKeyRequiredException = {
     type = "structure",
+    id = "EncryptionKeyRequiredException",
     error = "client",
     members = {
         message = {
@@ -5945,6 +6346,7 @@ M.EncryptionKeyRequiredException = {
 
 M.UpdateRepositoryEncryptionKeyInput = {
     type = "structure",
+    id = "UpdateRepositoryEncryptionKeyInput",
     members = {
         repositoryName = {
             type = "string",
@@ -5963,6 +6365,7 @@ M.UpdateRepositoryEncryptionKeyInput = {
 
 M.UpdateRepositoryEncryptionKeyOutput = {
     type = "structure",
+    id = "UpdateRepositoryEncryptionKeyOutput",
     members = {
         repositoryId = {
             type = "string",
@@ -5978,6 +6381,7 @@ M.UpdateRepositoryEncryptionKeyOutput = {
 
 M.UpdateRepositoryNameInput = {
     type = "structure",
+    id = "UpdateRepositoryNameInput",
     members = {
         oldName = {
             type = "string",
@@ -5996,6 +6400,7 @@ M.UpdateRepositoryNameInput = {
 
 M.UpdateRepositoryNameOutput = {
     type = "structure",
+    id = "UpdateRepositoryNameOutput",
 }
 
 return M

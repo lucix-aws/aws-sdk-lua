@@ -1747,13 +1747,13 @@ local record ValidationException
     message: string
 end
 
-local type TargetStorageClass = "STANDARD" | "ARCHIVE"
+local type UpstreamRegistry = "ecr" | "ecr-public" | "quay" | "k8s" | "docker-hub" | "github-container-registry" | "azure-container-registry" | "gitlab-container-registry" | "chainguard"
 
 local type ImageTagMutability = "MUTABLE" | "IMMUTABLE" | "IMMUTABLE_WITH_EXCLUSION" | "MUTABLE_WITH_EXCLUSION"
 
-local type UpstreamRegistry = "ecr" | "ecr-public" | "quay" | "k8s" | "docker-hub" | "github-container-registry" | "azure-container-registry" | "gitlab-container-registry" | "chainguard"
-
 local type LifecyclePolicyPreviewStatus = "IN_PROGRESS" | "COMPLETE" | "EXPIRED" | "FAILED"
+
+local type TargetStorageClass = "STANDARD" | "ARCHIVE"
 
 local type ImageStatus = "ACTIVE" | "ARCHIVED" | "ACTIVATING"
 

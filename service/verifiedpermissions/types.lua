@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ActionIdentifier = {
     type = "structure",
+    id = "ActionIdentifier",
     members = {
         actionType = {
             type = "string",
@@ -38,6 +40,7 @@ M.AliasState = {
 
 M.EntityIdentifier = {
     type = "structure",
+    id = "EntityIdentifier",
     members = {
         entityType = {
             type = "string",
@@ -56,6 +59,7 @@ M.EntityIdentifier = {
 
 M.BatchGetPolicyInputItem = {
     type = "structure",
+    id = "BatchGetPolicyInputItem",
     members = {
         policyStoreId = {
             type = "string",
@@ -74,6 +78,7 @@ M.BatchGetPolicyInputItem = {
 
 M.BatchGetPolicyInput = {
     type = "structure",
+    id = "BatchGetPolicyInput",
     members = {
         requests = {
             type = "list",
@@ -93,6 +98,7 @@ M.BatchGetPolicyErrorCode = {
 
 M.BatchGetPolicyErrorItem = {
     type = "structure",
+    id = "BatchGetPolicyErrorItem",
     members = {
         code = {
             type = "string",
@@ -123,6 +129,7 @@ M.BatchGetPolicyErrorItem = {
 
 M.StaticPolicyDefinitionDetail = {
     type = "structure",
+    id = "StaticPolicyDefinitionDetail",
     members = {
         description = {
             type = "string",
@@ -138,6 +145,7 @@ M.StaticPolicyDefinitionDetail = {
 
 M.TemplateLinkedPolicyDefinitionDetail = {
     type = "structure",
+    id = "TemplateLinkedPolicyDefinitionDetail",
     members = {
         policyTemplateId = {
             type = "string",
@@ -152,6 +160,7 @@ M.TemplateLinkedPolicyDefinitionDetail = {
 
 M.PolicyDefinitionDetail = {
     type = "union",
+    id = "PolicyDefinitionDetail",
     members = {
         static = M.StaticPolicyDefinitionDetail,
         templateLinked = M.TemplateLinkedPolicyDefinitionDetail,
@@ -165,6 +174,7 @@ M.PolicyType = {
 
 M.BatchGetPolicyOutputItem = {
     type = "structure",
+    id = "BatchGetPolicyOutputItem",
     members = {
         policyStoreId = {
             type = "string",
@@ -209,6 +219,7 @@ M.BatchGetPolicyOutputItem = {
 
 M.BatchGetPolicyOutput = {
     type = "structure",
+    id = "BatchGetPolicyOutput",
     members = {
         results = {
             type = "list",
@@ -229,6 +240,7 @@ M.BatchGetPolicyOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -242,6 +254,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -261,6 +274,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         path = {
             type = "string",
@@ -279,6 +293,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -301,6 +316,7 @@ M.Decision = {
 
 M.DeterminingPolicyItem = {
     type = "structure",
+    id = "DeterminingPolicyItem",
     members = {
         policyId = {
             type = "string",
@@ -313,6 +329,7 @@ M.DeterminingPolicyItem = {
 
 M.EvaluationErrorItem = {
     type = "structure",
+    id = "EvaluationErrorItem",
     members = {
         errorDescription = {
             type = "string",
@@ -334,6 +351,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -364,6 +382,7 @@ M.CedarVersion = {
 
 M.CognitoGroupConfiguration = {
     type = "structure",
+    id = "CognitoGroupConfiguration",
     members = {
         groupEntityType = {
             type = "string",
@@ -376,6 +395,7 @@ M.CognitoGroupConfiguration = {
 
 M.CognitoGroupConfigurationDetail = {
     type = "structure",
+    id = "CognitoGroupConfigurationDetail",
     members = {
         groupEntityType = {
             type = "string",
@@ -385,6 +405,7 @@ M.CognitoGroupConfigurationDetail = {
 
 M.CognitoGroupConfigurationItem = {
     type = "structure",
+    id = "CognitoGroupConfigurationItem",
     members = {
         groupEntityType = {
             type = "string",
@@ -394,6 +415,7 @@ M.CognitoGroupConfigurationItem = {
 
 M.CognitoUserPoolConfiguration = {
     type = "structure",
+    id = "CognitoUserPoolConfiguration",
     members = {
         userPoolArn = {
             type = "string",
@@ -411,6 +433,7 @@ M.CognitoUserPoolConfiguration = {
 
 M.CognitoUserPoolConfigurationDetail = {
     type = "structure",
+    id = "CognitoUserPoolConfigurationDetail",
     members = {
         userPoolArn = {
             type = "string",
@@ -437,6 +460,7 @@ M.CognitoUserPoolConfigurationDetail = {
 
 M.CognitoUserPoolConfigurationItem = {
     type = "structure",
+    id = "CognitoUserPoolConfigurationItem",
     members = {
         userPoolArn = {
             type = "string",
@@ -463,6 +487,7 @@ M.CognitoUserPoolConfigurationItem = {
 
 M.OpenIdConnectGroupConfiguration = {
     type = "structure",
+    id = "OpenIdConnectGroupConfiguration",
     members = {
         groupClaim = {
             type = "string",
@@ -481,6 +506,7 @@ M.OpenIdConnectGroupConfiguration = {
 
 M.OpenIdConnectAccessTokenConfiguration = {
     type = "structure",
+    id = "OpenIdConnectAccessTokenConfiguration",
     members = {
         principalIdClaim = {
             type = "string",
@@ -497,6 +523,7 @@ M.OpenIdConnectAccessTokenConfiguration = {
 
 M.OpenIdConnectIdentityTokenConfiguration = {
     type = "structure",
+    id = "OpenIdConnectIdentityTokenConfiguration",
     members = {
         principalIdClaim = {
             type = "string",
@@ -513,6 +540,7 @@ M.OpenIdConnectIdentityTokenConfiguration = {
 
 M.OpenIdConnectTokenSelection = {
     type = "union",
+    id = "OpenIdConnectTokenSelection",
     members = {
         accessTokenOnly = M.OpenIdConnectAccessTokenConfiguration,
         identityTokenOnly = M.OpenIdConnectIdentityTokenConfiguration,
@@ -521,6 +549,7 @@ M.OpenIdConnectTokenSelection = {
 
 M.OpenIdConnectConfiguration = {
     type = "structure",
+    id = "OpenIdConnectConfiguration",
     members = {
         issuer = {
             type = "string",
@@ -540,6 +569,7 @@ M.OpenIdConnectConfiguration = {
 
 M.Configuration = {
     type = "union",
+    id = "Configuration",
     members = {
         cognitoUserPoolConfiguration = M.CognitoUserPoolConfiguration,
         openIdConnectConfiguration = M.OpenIdConnectConfiguration,
@@ -548,6 +578,7 @@ M.Configuration = {
 
 M.OpenIdConnectGroupConfigurationDetail = {
     type = "structure",
+    id = "OpenIdConnectGroupConfigurationDetail",
     members = {
         groupClaim = {
             type = "string",
@@ -566,6 +597,7 @@ M.OpenIdConnectGroupConfigurationDetail = {
 
 M.OpenIdConnectAccessTokenConfigurationDetail = {
     type = "structure",
+    id = "OpenIdConnectAccessTokenConfigurationDetail",
     members = {
         principalIdClaim = {
             type = "string",
@@ -582,6 +614,7 @@ M.OpenIdConnectAccessTokenConfigurationDetail = {
 
 M.OpenIdConnectIdentityTokenConfigurationDetail = {
     type = "structure",
+    id = "OpenIdConnectIdentityTokenConfigurationDetail",
     members = {
         principalIdClaim = {
             type = "string",
@@ -598,6 +631,7 @@ M.OpenIdConnectIdentityTokenConfigurationDetail = {
 
 M.OpenIdConnectTokenSelectionDetail = {
     type = "union",
+    id = "OpenIdConnectTokenSelectionDetail",
     members = {
         accessTokenOnly = M.OpenIdConnectAccessTokenConfigurationDetail,
         identityTokenOnly = M.OpenIdConnectIdentityTokenConfigurationDetail,
@@ -606,6 +640,7 @@ M.OpenIdConnectTokenSelectionDetail = {
 
 M.OpenIdConnectConfigurationDetail = {
     type = "structure",
+    id = "OpenIdConnectConfigurationDetail",
     members = {
         issuer = {
             type = "string",
@@ -625,6 +660,7 @@ M.OpenIdConnectConfigurationDetail = {
 
 M.ConfigurationDetail = {
     type = "union",
+    id = "ConfigurationDetail",
     members = {
         cognitoUserPoolConfiguration = M.CognitoUserPoolConfigurationDetail,
         openIdConnectConfiguration = M.OpenIdConnectConfigurationDetail,
@@ -633,6 +669,7 @@ M.ConfigurationDetail = {
 
 M.OpenIdConnectGroupConfigurationItem = {
     type = "structure",
+    id = "OpenIdConnectGroupConfigurationItem",
     members = {
         groupClaim = {
             type = "string",
@@ -651,6 +688,7 @@ M.OpenIdConnectGroupConfigurationItem = {
 
 M.OpenIdConnectAccessTokenConfigurationItem = {
     type = "structure",
+    id = "OpenIdConnectAccessTokenConfigurationItem",
     members = {
         principalIdClaim = {
             type = "string",
@@ -667,6 +705,7 @@ M.OpenIdConnectAccessTokenConfigurationItem = {
 
 M.OpenIdConnectIdentityTokenConfigurationItem = {
     type = "structure",
+    id = "OpenIdConnectIdentityTokenConfigurationItem",
     members = {
         principalIdClaim = {
             type = "string",
@@ -683,6 +722,7 @@ M.OpenIdConnectIdentityTokenConfigurationItem = {
 
 M.OpenIdConnectTokenSelectionItem = {
     type = "union",
+    id = "OpenIdConnectTokenSelectionItem",
     members = {
         accessTokenOnly = M.OpenIdConnectAccessTokenConfigurationItem,
         identityTokenOnly = M.OpenIdConnectIdentityTokenConfigurationItem,
@@ -691,6 +731,7 @@ M.OpenIdConnectTokenSelectionItem = {
 
 M.OpenIdConnectConfigurationItem = {
     type = "structure",
+    id = "OpenIdConnectConfigurationItem",
     members = {
         issuer = {
             type = "string",
@@ -710,6 +751,7 @@ M.OpenIdConnectConfigurationItem = {
 
 M.ConfigurationItem = {
     type = "union",
+    id = "ConfigurationItem",
     members = {
         cognitoUserPoolConfiguration = M.CognitoUserPoolConfigurationItem,
         openIdConnectConfiguration = M.OpenIdConnectConfigurationItem,
@@ -718,6 +760,7 @@ M.ConfigurationItem = {
 
 M.ResourceConflict = {
     type = "structure",
+    id = "ResourceConflict",
     members = {
         resourceId = {
             type = "string",
@@ -736,6 +779,7 @@ M.ResourceConflict = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -756,6 +800,7 @@ M.ConflictException = {
 
 M.CreateIdentitySourceInput = {
     type = "structure",
+    id = "CreateIdentitySourceInput",
     members = {
         clientToken = {
             type = "string",
@@ -780,6 +825,7 @@ M.CreateIdentitySourceInput = {
 
 M.CreateIdentitySourceOutput = {
     type = "structure",
+    id = "CreateIdentitySourceOutput",
     members = {
         createdDate = {
             type = "timestamp",
@@ -812,6 +858,7 @@ M.CreateIdentitySourceOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -840,6 +887,7 @@ M.ServiceQuotaExceededException = {
 
 M.StaticPolicyDefinition = {
     type = "structure",
+    id = "StaticPolicyDefinition",
     members = {
         description = {
             type = "string",
@@ -855,6 +903,7 @@ M.StaticPolicyDefinition = {
 
 M.TemplateLinkedPolicyDefinition = {
     type = "structure",
+    id = "TemplateLinkedPolicyDefinition",
     members = {
         policyTemplateId = {
             type = "string",
@@ -869,6 +918,7 @@ M.TemplateLinkedPolicyDefinition = {
 
 M.PolicyDefinition = {
     type = "union",
+    id = "PolicyDefinition",
     members = {
         static = M.StaticPolicyDefinition,
         templateLinked = M.TemplateLinkedPolicyDefinition,
@@ -877,6 +927,7 @@ M.PolicyDefinition = {
 
 M.CreatePolicyInput = {
     type = "structure",
+    id = "CreatePolicyInput",
     members = {
         clientToken = {
             type = "string",
@@ -906,6 +957,7 @@ M.PolicyEffect = {
 
 M.CreatePolicyOutput = {
     type = "structure",
+    id = "CreatePolicyOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -958,10 +1010,12 @@ M.DeletionProtection = {
 
 M.Unit = {
     type = "structure",
+    id = "Unit",
 }
 
 M.KmsEncryptionSettings = {
     type = "structure",
+    id = "KmsEncryptionSettings",
     members = {
         key = {
             type = "string",
@@ -979,6 +1033,7 @@ M.KmsEncryptionSettings = {
 
 M.EncryptionSettings = {
     type = "union",
+    id = "EncryptionSettings",
     members = {
         kmsEncryptionSettings = M.KmsEncryptionSettings,
         default = M.Unit,
@@ -992,6 +1047,7 @@ M.ValidationMode = {
 
 M.ValidationSettings = {
     type = "structure",
+    id = "ValidationSettings",
     members = {
         mode = {
             type = "string",
@@ -1004,6 +1060,7 @@ M.ValidationSettings = {
 
 M.CreatePolicyStoreInput = {
     type = "structure",
+    id = "CreatePolicyStoreInput",
     members = {
         clientToken = {
             type = "string",
@@ -1031,6 +1088,7 @@ M.CreatePolicyStoreInput = {
 
 M.CreatePolicyStoreOutput = {
     type = "structure",
+    id = "CreatePolicyStoreOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1063,6 +1121,7 @@ M.CreatePolicyStoreOutput = {
 
 M.CreatePolicyStoreAliasInput = {
     type = "structure",
+    id = "CreatePolicyStoreAliasInput",
     members = {
         aliasName = {
             type = "string",
@@ -1081,6 +1140,7 @@ M.CreatePolicyStoreAliasInput = {
 
 M.CreatePolicyStoreAliasOutput = {
     type = "structure",
+    id = "CreatePolicyStoreAliasOutput",
     members = {
         aliasName = {
             type = "string",
@@ -1112,6 +1172,7 @@ M.CreatePolicyStoreAliasOutput = {
 
 M.CreatePolicyTemplateInput = {
     type = "structure",
+    id = "CreatePolicyTemplateInput",
     members = {
         clientToken = {
             type = "string",
@@ -1142,6 +1203,7 @@ M.CreatePolicyTemplateInput = {
 
 M.CreatePolicyTemplateOutput = {
     type = "structure",
+    id = "CreatePolicyTemplateOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1174,6 +1236,7 @@ M.CreatePolicyTemplateOutput = {
 
 M.DeleteIdentitySourceInput = {
     type = "structure",
+    id = "DeleteIdentitySourceInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1192,10 +1255,12 @@ M.DeleteIdentitySourceInput = {
 
 M.DeleteIdentitySourceOutput = {
     type = "structure",
+    id = "DeleteIdentitySourceOutput",
 }
 
 M.DeletePolicyInput = {
     type = "structure",
+    id = "DeletePolicyInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1214,10 +1279,12 @@ M.DeletePolicyInput = {
 
 M.DeletePolicyOutput = {
     type = "structure",
+    id = "DeletePolicyOutput",
 }
 
 M.DeletePolicyStoreInput = {
     type = "structure",
+    id = "DeletePolicyStoreInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1230,10 +1297,12 @@ M.DeletePolicyStoreInput = {
 
 M.DeletePolicyStoreOutput = {
     type = "structure",
+    id = "DeletePolicyStoreOutput",
 }
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         message = {
@@ -1247,6 +1316,7 @@ M.InvalidStateException = {
 
 M.DeletePolicyStoreAliasInput = {
     type = "structure",
+    id = "DeletePolicyStoreAliasInput",
     members = {
         aliasName = {
             type = "string",
@@ -1259,10 +1329,12 @@ M.DeletePolicyStoreAliasInput = {
 
 M.DeletePolicyStoreAliasOutput = {
     type = "structure",
+    id = "DeletePolicyStoreAliasOutput",
 }
 
 M.DeletePolicyTemplateInput = {
     type = "structure",
+    id = "DeletePolicyTemplateInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1281,10 +1353,12 @@ M.DeletePolicyTemplateInput = {
 
 M.DeletePolicyTemplateOutput = {
     type = "structure",
+    id = "DeletePolicyTemplateOutput",
 }
 
 M.KmsEncryptionState = {
     type = "structure",
+    id = "KmsEncryptionState",
     members = {
         key = {
             type = "string",
@@ -1305,6 +1379,7 @@ M.KmsEncryptionState = {
 
 M.EncryptionState = {
     type = "union",
+    id = "EncryptionState",
     members = {
         kmsEncryptionState = M.KmsEncryptionState,
         default = M.Unit,
@@ -1313,6 +1388,7 @@ M.EncryptionState = {
 
 M.EntityReference = {
     type = "union",
+    id = "EntityReference",
     members = {
         unspecified = {
             type = "boolean",
@@ -1323,6 +1399,7 @@ M.EntityReference = {
 
 M.GetIdentitySourceInput = {
     type = "structure",
+    id = "GetIdentitySourceInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1345,6 +1422,7 @@ M.OpenIdIssuer = {
 
 M.IdentitySourceDetails = {
     type = "structure",
+    id = "IdentitySourceDetails",
     members = {
         clientIds = {
             type = "list",
@@ -1364,6 +1442,7 @@ M.IdentitySourceDetails = {
 
 M.GetIdentitySourceOutput = {
     type = "structure",
+    id = "GetIdentitySourceOutput",
     members = {
         createdDate = {
             type = "timestamp",
@@ -1404,6 +1483,7 @@ M.GetIdentitySourceOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1422,6 +1502,7 @@ M.GetPolicyInput = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1475,6 +1556,7 @@ M.GetPolicyOutput = {
 
 M.GetPolicyStoreInput = {
     type = "structure",
+    id = "GetPolicyStoreInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1493,6 +1575,7 @@ M.GetPolicyStoreInput = {
 
 M.GetPolicyStoreOutput = {
     type = "structure",
+    id = "GetPolicyStoreOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1543,6 +1626,7 @@ M.GetPolicyStoreOutput = {
 
 M.GetPolicyStoreAliasInput = {
     type = "structure",
+    id = "GetPolicyStoreAliasInput",
     members = {
         aliasName = {
             type = "string",
@@ -1555,6 +1639,7 @@ M.GetPolicyStoreAliasInput = {
 
 M.GetPolicyStoreAliasOutput = {
     type = "structure",
+    id = "GetPolicyStoreAliasOutput",
     members = {
         aliasName = {
             type = "string",
@@ -1592,6 +1677,7 @@ M.GetPolicyStoreAliasOutput = {
 
 M.GetPolicyTemplateInput = {
     type = "structure",
+    id = "GetPolicyTemplateInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1610,6 +1696,7 @@ M.GetPolicyTemplateInput = {
 
 M.GetPolicyTemplateOutput = {
     type = "structure",
+    id = "GetPolicyTemplateOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1654,6 +1741,7 @@ M.GetPolicyTemplateOutput = {
 
 M.GetSchemaInput = {
     type = "structure",
+    id = "GetSchemaInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1666,6 +1754,7 @@ M.GetSchemaInput = {
 
 M.GetSchemaOutput = {
     type = "structure",
+    id = "GetSchemaOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1702,6 +1791,7 @@ M.GetSchemaOutput = {
 
 M.IdentitySourceFilter = {
     type = "structure",
+    id = "IdentitySourceFilter",
     members = {
         principalEntityType = {
             type = "string",
@@ -1711,6 +1801,7 @@ M.IdentitySourceFilter = {
 
 M.ListIdentitySourcesInput = {
     type = "structure",
+    id = "ListIdentitySourcesInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1733,6 +1824,7 @@ M.ListIdentitySourcesInput = {
 
 M.IdentitySourceItemDetails = {
     type = "structure",
+    id = "IdentitySourceItemDetails",
     members = {
         clientIds = {
             type = "list",
@@ -1752,6 +1844,7 @@ M.IdentitySourceItemDetails = {
 
 M.IdentitySourceItem = {
     type = "structure",
+    id = "IdentitySourceItem",
     members = {
         createdDate = {
             type = "timestamp",
@@ -1792,6 +1885,7 @@ M.IdentitySourceItem = {
 
 M.ListIdentitySourcesOutput = {
     type = "structure",
+    id = "ListIdentitySourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1808,6 +1902,7 @@ M.ListIdentitySourcesOutput = {
 
 M.UpdateCognitoGroupConfiguration = {
     type = "structure",
+    id = "UpdateCognitoGroupConfiguration",
     members = {
         groupEntityType = {
             type = "string",
@@ -1820,6 +1915,7 @@ M.UpdateCognitoGroupConfiguration = {
 
 M.UpdateCognitoUserPoolConfiguration = {
     type = "structure",
+    id = "UpdateCognitoUserPoolConfiguration",
     members = {
         userPoolArn = {
             type = "string",
@@ -1837,6 +1933,7 @@ M.UpdateCognitoUserPoolConfiguration = {
 
 M.UpdateOpenIdConnectGroupConfiguration = {
     type = "structure",
+    id = "UpdateOpenIdConnectGroupConfiguration",
     members = {
         groupClaim = {
             type = "string",
@@ -1855,6 +1952,7 @@ M.UpdateOpenIdConnectGroupConfiguration = {
 
 M.UpdateOpenIdConnectAccessTokenConfiguration = {
     type = "structure",
+    id = "UpdateOpenIdConnectAccessTokenConfiguration",
     members = {
         principalIdClaim = {
             type = "string",
@@ -1871,6 +1969,7 @@ M.UpdateOpenIdConnectAccessTokenConfiguration = {
 
 M.UpdateOpenIdConnectIdentityTokenConfiguration = {
     type = "structure",
+    id = "UpdateOpenIdConnectIdentityTokenConfiguration",
     members = {
         principalIdClaim = {
             type = "string",
@@ -1887,6 +1986,7 @@ M.UpdateOpenIdConnectIdentityTokenConfiguration = {
 
 M.UpdateOpenIdConnectTokenSelection = {
     type = "union",
+    id = "UpdateOpenIdConnectTokenSelection",
     members = {
         accessTokenOnly = M.UpdateOpenIdConnectAccessTokenConfiguration,
         identityTokenOnly = M.UpdateOpenIdConnectIdentityTokenConfiguration,
@@ -1895,6 +1995,7 @@ M.UpdateOpenIdConnectTokenSelection = {
 
 M.UpdateOpenIdConnectConfiguration = {
     type = "structure",
+    id = "UpdateOpenIdConnectConfiguration",
     members = {
         issuer = {
             type = "string",
@@ -1914,6 +2015,7 @@ M.UpdateOpenIdConnectConfiguration = {
 
 M.UpdateConfiguration = {
     type = "union",
+    id = "UpdateConfiguration",
     members = {
         cognitoUserPoolConfiguration = M.UpdateCognitoUserPoolConfiguration,
         openIdConnectConfiguration = M.UpdateOpenIdConnectConfiguration,
@@ -1922,6 +2024,7 @@ M.UpdateConfiguration = {
 
 M.UpdateIdentitySourceInput = {
     type = "structure",
+    id = "UpdateIdentitySourceInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -1946,6 +2049,7 @@ M.UpdateIdentitySourceInput = {
 
 M.UpdateIdentitySourceOutput = {
     type = "structure",
+    id = "UpdateIdentitySourceOutput",
     members = {
         createdDate = {
             type = "timestamp",
@@ -1978,6 +2082,7 @@ M.UpdateIdentitySourceOutput = {
 
 M.IsAuthorizedOutput = {
     type = "structure",
+    id = "IsAuthorizedOutput",
     members = {
         decision = {
             type = "string",
@@ -2004,6 +2109,7 @@ M.IsAuthorizedOutput = {
 
 M.IsAuthorizedWithTokenOutput = {
     type = "structure",
+    id = "IsAuthorizedWithTokenOutput",
     members = {
         decision = {
             type = "string",
@@ -2031,6 +2137,7 @@ M.IsAuthorizedWithTokenOutput = {
 
 M.PolicyFilter = {
     type = "structure",
+    id = "PolicyFilter",
     members = {
         principal = M.EntityReference,
         resource = M.EntityReference,
@@ -2045,6 +2152,7 @@ M.PolicyFilter = {
 
 M.ListPoliciesInput = {
     type = "structure",
+    id = "ListPoliciesInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2064,6 +2172,7 @@ M.ListPoliciesInput = {
 
 M.StaticPolicyDefinitionItem = {
     type = "structure",
+    id = "StaticPolicyDefinitionItem",
     members = {
         description = {
             type = "string",
@@ -2073,6 +2182,7 @@ M.StaticPolicyDefinitionItem = {
 
 M.TemplateLinkedPolicyDefinitionItem = {
     type = "structure",
+    id = "TemplateLinkedPolicyDefinitionItem",
     members = {
         policyTemplateId = {
             type = "string",
@@ -2087,6 +2197,7 @@ M.TemplateLinkedPolicyDefinitionItem = {
 
 M.PolicyDefinitionItem = {
     type = "union",
+    id = "PolicyDefinitionItem",
     members = {
         static = M.StaticPolicyDefinitionItem,
         templateLinked = M.TemplateLinkedPolicyDefinitionItem,
@@ -2095,6 +2206,7 @@ M.PolicyDefinitionItem = {
 
 M.PolicyItem = {
     type = "structure",
+    id = "PolicyItem",
     members = {
         policyStoreId = {
             type = "string",
@@ -2148,6 +2260,7 @@ M.PolicyItem = {
 
 M.ListPoliciesOutput = {
     type = "structure",
+    id = "ListPoliciesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2164,6 +2277,7 @@ M.ListPoliciesOutput = {
 
 M.PolicyStoreAliasFilter = {
     type = "structure",
+    id = "PolicyStoreAliasFilter",
     members = {
         policyStoreId = {
             type = "string",
@@ -2173,6 +2287,7 @@ M.PolicyStoreAliasFilter = {
 
 M.ListPolicyStoreAliasesInput = {
     type = "structure",
+    id = "ListPolicyStoreAliasesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2189,6 +2304,7 @@ M.ListPolicyStoreAliasesInput = {
 
 M.PolicyStoreAliasItem = {
     type = "structure",
+    id = "PolicyStoreAliasItem",
     members = {
         aliasName = {
             type = "string",
@@ -2226,6 +2342,7 @@ M.PolicyStoreAliasItem = {
 
 M.ListPolicyStoreAliasesOutput = {
     type = "structure",
+    id = "ListPolicyStoreAliasesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2242,6 +2359,7 @@ M.ListPolicyStoreAliasesOutput = {
 
 M.ListPolicyStoresInput = {
     type = "structure",
+    id = "ListPolicyStoresInput",
     members = {
         nextToken = {
             type = "string",
@@ -2254,6 +2372,7 @@ M.ListPolicyStoresInput = {
 
 M.PolicyStoreItem = {
     type = "structure",
+    id = "PolicyStoreItem",
     members = {
         policyStoreId = {
             type = "string",
@@ -2288,6 +2407,7 @@ M.PolicyStoreItem = {
 
 M.ListPolicyStoresOutput = {
     type = "structure",
+    id = "ListPolicyStoresOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2304,6 +2424,7 @@ M.ListPolicyStoresOutput = {
 
 M.ListPolicyTemplatesInput = {
     type = "structure",
+    id = "ListPolicyTemplatesInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2322,6 +2443,7 @@ M.ListPolicyTemplatesInput = {
 
 M.PolicyTemplateItem = {
     type = "structure",
+    id = "PolicyTemplateItem",
     members = {
         policyStoreId = {
             type = "string",
@@ -2360,6 +2482,7 @@ M.PolicyTemplateItem = {
 
 M.ListPolicyTemplatesOutput = {
     type = "structure",
+    id = "ListPolicyTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2376,6 +2499,7 @@ M.ListPolicyTemplatesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2388,6 +2512,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2399,6 +2524,7 @@ M.ListTagsForResourceOutput = {
 
 M.UpdateStaticPolicyDefinition = {
     type = "structure",
+    id = "UpdateStaticPolicyDefinition",
     members = {
         description = {
             type = "string",
@@ -2414,6 +2540,7 @@ M.UpdateStaticPolicyDefinition = {
 
 M.UpdatePolicyDefinition = {
     type = "union",
+    id = "UpdatePolicyDefinition",
     members = {
         static = M.UpdateStaticPolicyDefinition,
     },
@@ -2421,6 +2548,7 @@ M.UpdatePolicyDefinition = {
 
 M.UpdatePolicyInput = {
     type = "structure",
+    id = "UpdatePolicyInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2443,6 +2571,7 @@ M.UpdatePolicyInput = {
 
 M.UpdatePolicyOutput = {
     type = "structure",
+    id = "UpdatePolicyOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2490,6 +2619,7 @@ M.UpdatePolicyOutput = {
 
 M.UpdatePolicyTemplateInput = {
     type = "structure",
+    id = "UpdatePolicyTemplateInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2520,6 +2650,7 @@ M.UpdatePolicyTemplateInput = {
 
 M.UpdatePolicyTemplateOutput = {
     type = "structure",
+    id = "UpdatePolicyTemplateOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2552,6 +2683,7 @@ M.UpdatePolicyTemplateOutput = {
 
 M.SchemaDefinition = {
     type = "union",
+    id = "SchemaDefinition",
     members = {
         cedarJson = {
             type = "string",
@@ -2561,6 +2693,7 @@ M.SchemaDefinition = {
 
 M.PutSchemaInput = {
     type = "structure",
+    id = "PutSchemaInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2576,6 +2709,7 @@ M.PutSchemaInput = {
 
 M.PutSchemaOutput = {
     type = "structure",
+    id = "PutSchemaOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2609,6 +2743,7 @@ M.PutSchemaOutput = {
 
 M.UpdatePolicyStoreInput = {
     type = "structure",
+    id = "UpdatePolicyStoreInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2630,6 +2765,7 @@ M.UpdatePolicyStoreInput = {
 
 M.UpdatePolicyStoreOutput = {
     type = "structure",
+    id = "UpdatePolicyStoreOutput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2662,6 +2798,7 @@ M.UpdatePolicyStoreOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2682,10 +2819,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -2699,6 +2838,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2718,10 +2858,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.AttributeValue = {
     type = "union",
+    id = "AttributeValue",
     members = {
         boolean = {
             type = "boolean",
@@ -2759,6 +2901,7 @@ M.AttributeValue = {
 
 M.CedarTagValue = {
     type = "union",
+    id = "CedarTagValue",
     members = {
         boolean = {
             type = "boolean",
@@ -2796,6 +2939,7 @@ M.CedarTagValue = {
 
 M.ContextDefinition = {
     type = "union",
+    id = "ContextDefinition",
     members = {
         contextMap = {
             type = "map",
@@ -2810,6 +2954,7 @@ M.ContextDefinition = {
 
 M.BatchIsAuthorizedInputItem = {
     type = "structure",
+    id = "BatchIsAuthorizedInputItem",
     members = {
         principal = M.EntityIdentifier,
         action = M.ActionIdentifier,
@@ -2820,6 +2965,7 @@ M.BatchIsAuthorizedInputItem = {
 
 M.BatchIsAuthorizedWithTokenInputItem = {
     type = "structure",
+    id = "BatchIsAuthorizedWithTokenInputItem",
     members = {
         action = M.ActionIdentifier,
         resource = M.EntityIdentifier,
@@ -2829,6 +2975,7 @@ M.BatchIsAuthorizedWithTokenInputItem = {
 
 M.BatchIsAuthorizedOutputItem = {
     type = "structure",
+    id = "BatchIsAuthorizedOutputItem",
     members = {
         request = setmetatable({ traits = {
             required = true,
@@ -2858,6 +3005,7 @@ M.BatchIsAuthorizedOutputItem = {
 
 M.BatchIsAuthorizedWithTokenOutputItem = {
     type = "structure",
+    id = "BatchIsAuthorizedWithTokenOutputItem",
     members = {
         request = setmetatable({ traits = {
             required = true,
@@ -2887,6 +3035,7 @@ M.BatchIsAuthorizedWithTokenOutputItem = {
 
 M.BatchIsAuthorizedOutput = {
     type = "structure",
+    id = "BatchIsAuthorizedOutput",
     members = {
         results = {
             type = "list",
@@ -2900,6 +3049,7 @@ M.BatchIsAuthorizedOutput = {
 
 M.BatchIsAuthorizedWithTokenOutput = {
     type = "structure",
+    id = "BatchIsAuthorizedWithTokenOutput",
     members = {
         principal = M.EntityIdentifier,
         results = {
@@ -2914,6 +3064,7 @@ M.BatchIsAuthorizedWithTokenOutput = {
 
 M.EntityItem = {
     type = "structure",
+    id = "EntityItem",
     members = {
         identifier = setmetatable({ traits = {
             required = true,
@@ -2937,6 +3088,7 @@ M.EntityItem = {
 
 M.EntitiesDefinition = {
     type = "union",
+    id = "EntitiesDefinition",
     members = {
         entityList = {
             type = "list",
@@ -2950,6 +3102,7 @@ M.EntitiesDefinition = {
 
 M.IsAuthorizedInput = {
     type = "structure",
+    id = "IsAuthorizedInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2967,6 +3120,7 @@ M.IsAuthorizedInput = {
 
 M.IsAuthorizedWithTokenInput = {
     type = "structure",
+    id = "IsAuthorizedWithTokenInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -2989,6 +3143,7 @@ M.IsAuthorizedWithTokenInput = {
 
 M.BatchIsAuthorizedInput = {
     type = "structure",
+    id = "BatchIsAuthorizedInput",
     members = {
         policyStoreId = {
             type = "string",
@@ -3009,6 +3164,7 @@ M.BatchIsAuthorizedInput = {
 
 M.BatchIsAuthorizedWithTokenInput = {
     type = "structure",
+    id = "BatchIsAuthorizedWithTokenInput",
     members = {
         policyStoreId = {
             type = "string",

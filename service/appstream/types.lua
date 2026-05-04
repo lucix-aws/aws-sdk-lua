@@ -6,6 +6,7 @@ M.AccessEndpointType = {
 
 M.AccessEndpoint = {
     type = "structure",
+    id = "AccessEndpoint",
     members = {
         EndpointType = {
             type = "string",
@@ -32,6 +33,7 @@ M.Action = {
 
 M.AdminAppLicenseUsageRecord = {
     type = "structure",
+    id = "AdminAppLicenseUsageRecord",
     members = {
         UserArn = {
             type = "string",
@@ -99,6 +101,7 @@ M.Permission = {
 
 M.AgentAccessSetting = {
     type = "structure",
+    id = "AgentAccessSetting",
     members = {
         AgentAction = {
             type = "string",
@@ -117,6 +120,7 @@ M.AgentAccessSetting = {
 
 M.AgentAccessConfig = {
     type = "structure",
+    id = "AgentAccessConfig",
     members = {
         Settings = {
             type = "list",
@@ -148,6 +152,7 @@ M.AgentAccessConfig = {
 
 M.AgentAccessConfigForUpdate = {
     type = "structure",
+    id = "AgentAccessConfigForUpdate",
     members = {
         Settings = {
             type = "list",
@@ -175,6 +180,7 @@ M.AgentSoftwareVersion = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         ErrorCode = {
             type = "string",
@@ -192,6 +198,7 @@ M.PackagingType = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         S3Bucket = {
             type = "string",
@@ -207,6 +214,7 @@ M.S3Location = {
 
 M.ScriptDetails = {
     type = "structure",
+    id = "ScriptDetails",
     members = {
         ScriptS3Location = setmetatable({ traits = {
             required = true,
@@ -236,6 +244,7 @@ M.AppBlockState = {
 
 M.AppBlock = {
     type = "structure",
+    id = "AppBlock",
     members = {
         Name = {
             type = "string",
@@ -310,6 +319,7 @@ M.FleetErrorCode = {
 
 M.ResourceError = {
     type = "structure",
+    id = "ResourceError",
     members = {
         ErrorCode = {
             type = "string",
@@ -340,6 +350,7 @@ M.AppBlockBuilderStateChangeReasonCode = {
 
 M.AppBlockBuilderStateChangeReason = {
     type = "structure",
+    id = "AppBlockBuilderStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -352,6 +363,7 @@ M.AppBlockBuilderStateChangeReason = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         SubnetIds = {
             type = "list",
@@ -366,6 +378,7 @@ M.VpcConfig = {
 
 M.AppBlockBuilder = {
     type = "structure",
+    id = "AppBlockBuilder",
     members = {
         Arn = {
             type = "string",
@@ -432,6 +445,7 @@ M.AppBlockBuilder = {
 
 M.AppBlockBuilderAppBlockAssociation = {
     type = "structure",
+    id = "AppBlockBuilderAppBlockAssociation",
     members = {
         AppBlockArn = {
             type = "string",
@@ -456,6 +470,7 @@ M.AppBlockBuilderAttribute = {
 
 M.ApplicationConfig = {
     type = "structure",
+    id = "ApplicationConfig",
     members = {
         Name = {
             type = "string",
@@ -501,6 +516,7 @@ M.PlatformType = {
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         Name = {
             type = "string",
@@ -559,6 +575,7 @@ M.ApplicationAttribute = {
 
 M.ApplicationFleetAssociation = {
     type = "structure",
+    id = "ApplicationFleetAssociation",
     members = {
         FleetName = {
             type = "string",
@@ -577,6 +594,7 @@ M.ApplicationFleetAssociation = {
 
 M.ApplicationSettings = {
     type = "structure",
+    id = "ApplicationSettings",
     members = {
         Enabled = {
             type = "boolean",
@@ -592,6 +610,7 @@ M.ApplicationSettings = {
 
 M.ApplicationSettingsResponse = {
     type = "structure",
+    id = "ApplicationSettingsResponse",
     members = {
         Enabled = {
             type = "boolean",
@@ -612,6 +631,7 @@ M.AppVisibility = {
 
 M.AssociateAppBlockBuilderAppBlockInput = {
     type = "structure",
+    id = "AssociateAppBlockBuilderAppBlockInput",
     members = {
         AppBlockArn = {
             type = "string",
@@ -630,6 +650,7 @@ M.AssociateAppBlockBuilderAppBlockInput = {
 
 M.AssociateAppBlockBuilderAppBlockOutput = {
     type = "structure",
+    id = "AssociateAppBlockBuilderAppBlockOutput",
     members = {
         AppBlockBuilderAppBlockAssociation = M.AppBlockBuilderAppBlockAssociation,
     },
@@ -637,6 +658,7 @@ M.AssociateAppBlockBuilderAppBlockOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -647,6 +669,7 @@ M.ConcurrentModificationException = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         Message = {
@@ -657,6 +680,7 @@ M.InvalidParameterCombinationException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -667,6 +691,7 @@ M.LimitExceededException = {
 
 M.OperationNotPermittedException = {
     type = "structure",
+    id = "OperationNotPermittedException",
     error = "client",
     members = {
         Message = {
@@ -677,6 +702,7 @@ M.OperationNotPermittedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -687,6 +713,7 @@ M.ResourceNotFoundException = {
 
 M.AssociateApplicationFleetInput = {
     type = "structure",
+    id = "AssociateApplicationFleetInput",
     members = {
         FleetName = {
             type = "string",
@@ -705,6 +732,7 @@ M.AssociateApplicationFleetInput = {
 
 M.AssociateApplicationFleetOutput = {
     type = "structure",
+    id = "AssociateApplicationFleetOutput",
     members = {
         ApplicationFleetAssociation = M.ApplicationFleetAssociation,
     },
@@ -712,6 +740,7 @@ M.AssociateApplicationFleetOutput = {
 
 M.AssociateApplicationToEntitlementInput = {
     type = "structure",
+    id = "AssociateApplicationToEntitlementInput",
     members = {
         StackName = {
             type = "string",
@@ -736,10 +765,12 @@ M.AssociateApplicationToEntitlementInput = {
 
 M.AssociateApplicationToEntitlementOutput = {
     type = "structure",
+    id = "AssociateApplicationToEntitlementOutput",
 }
 
 M.EntitlementNotFoundException = {
     type = "structure",
+    id = "EntitlementNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -750,6 +781,7 @@ M.EntitlementNotFoundException = {
 
 M.AssociateFleetInput = {
     type = "structure",
+    id = "AssociateFleetInput",
     members = {
         FleetName = {
             type = "string",
@@ -768,10 +800,12 @@ M.AssociateFleetInput = {
 
 M.AssociateFleetOutput = {
     type = "structure",
+    id = "AssociateFleetOutput",
 }
 
 M.IncompatibleImageException = {
     type = "structure",
+    id = "IncompatibleImageException",
     error = "client",
     members = {
         Message = {
@@ -782,6 +816,7 @@ M.IncompatibleImageException = {
 
 M.InvalidAccountStatusException = {
     type = "structure",
+    id = "InvalidAccountStatusException",
     error = "client",
     members = {
         Message = {
@@ -792,6 +827,7 @@ M.InvalidAccountStatusException = {
 
 M.AssociateSoftwareToImageBuilderInput = {
     type = "structure",
+    id = "AssociateSoftwareToImageBuilderInput",
     members = {
         ImageBuilderName = {
             type = "string",
@@ -811,6 +847,7 @@ M.AssociateSoftwareToImageBuilderInput = {
 
 M.AssociateSoftwareToImageBuilderOutput = {
     type = "structure",
+    id = "AssociateSoftwareToImageBuilderOutput",
 }
 
 M.AuthenticationType = {
@@ -822,6 +859,7 @@ M.AuthenticationType = {
 
 M.UserStackAssociation = {
     type = "structure",
+    id = "UserStackAssociation",
     members = {
         StackName = {
             type = "string",
@@ -849,6 +887,7 @@ M.UserStackAssociation = {
 
 M.BatchAssociateUserStackInput = {
     type = "structure",
+    id = "BatchAssociateUserStackInput",
     members = {
         UserStackAssociations = {
             type = "list",
@@ -869,6 +908,7 @@ M.UserStackAssociationErrorCode = {
 
 M.UserStackAssociationError = {
     type = "structure",
+    id = "UserStackAssociationError",
     members = {
         UserStackAssociation = M.UserStackAssociation,
         ErrorCode = {
@@ -882,6 +922,7 @@ M.UserStackAssociationError = {
 
 M.BatchAssociateUserStackOutput = {
     type = "structure",
+    id = "BatchAssociateUserStackOutput",
     members = {
         errors = {
             type = "list",
@@ -892,6 +933,7 @@ M.BatchAssociateUserStackOutput = {
 
 M.BatchDisassociateUserStackInput = {
     type = "structure",
+    id = "BatchDisassociateUserStackInput",
     members = {
         UserStackAssociations = {
             type = "list",
@@ -905,6 +947,7 @@ M.BatchDisassociateUserStackInput = {
 
 M.BatchDisassociateUserStackOutput = {
     type = "structure",
+    id = "BatchDisassociateUserStackOutput",
     members = {
         errors = {
             type = "list",
@@ -921,6 +964,7 @@ M.CertificateBasedAuthStatus = {
 
 M.CertificateBasedAuthProperties = {
     type = "structure",
+    id = "CertificateBasedAuthProperties",
     members = {
         Status = {
             type = "string",
@@ -933,6 +977,7 @@ M.CertificateBasedAuthProperties = {
 
 M.ComputeCapacity = {
     type = "structure",
+    id = "ComputeCapacity",
     members = {
         DesiredInstances = {
             type = "integer",
@@ -945,6 +990,7 @@ M.ComputeCapacity = {
 
 M.ComputeCapacityStatus = {
     type = "structure",
+    id = "ComputeCapacityStatus",
     members = {
         Desired = {
             type = "integer",
@@ -987,6 +1033,7 @@ M.ComputeCapacityStatus = {
 
 M.UrlRedirectionConfig = {
     type = "structure",
+    id = "UrlRedirectionConfig",
     members = {
         Enabled = {
             type = "boolean",
@@ -1007,6 +1054,7 @@ M.UrlRedirectionConfig = {
 
 M.ContentRedirection = {
     type = "structure",
+    id = "ContentRedirection",
     members = {
         HostToClient = M.UrlRedirectionConfig,
     },
@@ -1014,6 +1062,7 @@ M.ContentRedirection = {
 
 M.CopyImageInput = {
     type = "structure",
+    id = "CopyImageInput",
     members = {
         SourceImageName = {
             type = "string",
@@ -1041,6 +1090,7 @@ M.CopyImageInput = {
 
 M.CopyImageOutput = {
     type = "structure",
+    id = "CopyImageOutput",
     members = {
         DestinationImageName = {
             type = "string",
@@ -1050,6 +1100,7 @@ M.CopyImageOutput = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1060,6 +1111,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceNotAvailableException = {
     type = "structure",
+    id = "ResourceNotAvailableException",
     error = "client",
     members = {
         Message = {
@@ -1070,6 +1122,7 @@ M.ResourceNotAvailableException = {
 
 M.CreateAppBlockInput = {
     type = "structure",
+    id = "CreateAppBlockInput",
     members = {
         Name = {
             type = "string",
@@ -1101,6 +1154,7 @@ M.CreateAppBlockInput = {
 
 M.CreateAppBlockOutput = {
     type = "structure",
+    id = "CreateAppBlockOutput",
     members = {
         AppBlock = M.AppBlock,
     },
@@ -1108,6 +1162,7 @@ M.CreateAppBlockOutput = {
 
 M.CreateAppBlockBuilderInput = {
     type = "structure",
+    id = "CreateAppBlockBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -1159,6 +1214,7 @@ M.CreateAppBlockBuilderInput = {
 
 M.CreateAppBlockBuilderOutput = {
     type = "structure",
+    id = "CreateAppBlockBuilderOutput",
     members = {
         AppBlockBuilder = M.AppBlockBuilder,
     },
@@ -1166,6 +1222,7 @@ M.CreateAppBlockBuilderOutput = {
 
 M.InvalidRoleException = {
     type = "structure",
+    id = "InvalidRoleException",
     error = "client",
     members = {
         Message = {
@@ -1176,6 +1233,7 @@ M.InvalidRoleException = {
 
 M.RequestLimitExceededException = {
     type = "structure",
+    id = "RequestLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1186,6 +1244,7 @@ M.RequestLimitExceededException = {
 
 M.CreateAppBlockBuilderStreamingURLInput = {
     type = "structure",
+    id = "CreateAppBlockBuilderStreamingURLInput",
     members = {
         AppBlockBuilderName = {
             type = "string",
@@ -1201,6 +1260,7 @@ M.CreateAppBlockBuilderStreamingURLInput = {
 
 M.CreateAppBlockBuilderStreamingURLOutput = {
     type = "structure",
+    id = "CreateAppBlockBuilderStreamingURLOutput",
     members = {
         StreamingURL = {
             type = "string",
@@ -1213,6 +1273,7 @@ M.CreateAppBlockBuilderStreamingURLOutput = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -1271,6 +1332,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         Application = M.Application,
     },
@@ -1278,6 +1340,7 @@ M.CreateApplicationOutput = {
 
 M.ServiceAccountCredentials = {
     type = "structure",
+    id = "ServiceAccountCredentials",
     members = {
         AccountName = {
             type = "string",
@@ -1296,6 +1359,7 @@ M.ServiceAccountCredentials = {
 
 M.CreateDirectoryConfigInput = {
     type = "structure",
+    id = "CreateDirectoryConfigInput",
     members = {
         DirectoryName = {
             type = "string",
@@ -1317,6 +1381,7 @@ M.CreateDirectoryConfigInput = {
 
 M.DirectoryConfig = {
     type = "structure",
+    id = "DirectoryConfig",
     members = {
         DirectoryName = {
             type = "string",
@@ -1338,6 +1403,7 @@ M.DirectoryConfig = {
 
 M.CreateDirectoryConfigOutput = {
     type = "structure",
+    id = "CreateDirectoryConfigOutput",
     members = {
         DirectoryConfig = M.DirectoryConfig,
     },
@@ -1345,6 +1411,7 @@ M.CreateDirectoryConfigOutput = {
 
 M.EntitlementAttribute = {
     type = "structure",
+    id = "EntitlementAttribute",
     members = {
         Name = {
             type = "string",
@@ -1363,6 +1430,7 @@ M.EntitlementAttribute = {
 
 M.CreateEntitlementInput = {
     type = "structure",
+    id = "CreateEntitlementInput",
     members = {
         Name = {
             type = "string",
@@ -1397,6 +1465,7 @@ M.CreateEntitlementInput = {
 
 M.Entitlement = {
     type = "structure",
+    id = "Entitlement",
     members = {
         Name = {
             type = "string",
@@ -1437,6 +1506,7 @@ M.Entitlement = {
 
 M.CreateEntitlementOutput = {
     type = "structure",
+    id = "CreateEntitlementOutput",
     members = {
         Entitlement = M.Entitlement,
     },
@@ -1444,6 +1514,7 @@ M.CreateEntitlementOutput = {
 
 M.EntitlementAlreadyExistsException = {
     type = "structure",
+    id = "EntitlementAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1454,6 +1525,7 @@ M.EntitlementAlreadyExistsException = {
 
 M.CreateExportImageTaskInput = {
     type = "structure",
+    id = "CreateExportImageTaskInput",
     members = {
         ImageName = {
             type = "string",
@@ -1492,6 +1564,7 @@ M.ExportImageTaskState = {
 
 M.ExportImageTask = {
     type = "structure",
+    id = "ExportImageTask",
     members = {
         TaskId = {
             type = "string",
@@ -1540,6 +1613,7 @@ M.ExportImageTask = {
 
 M.CreateExportImageTaskOutput = {
     type = "structure",
+    id = "CreateExportImageTaskOutput",
     members = {
         ExportImageTask = M.ExportImageTask,
     },
@@ -1547,6 +1621,7 @@ M.CreateExportImageTaskOutput = {
 
 M.DomainJoinInfo = {
     type = "structure",
+    id = "DomainJoinInfo",
     members = {
         DirectoryName = {
             type = "string",
@@ -1565,6 +1640,7 @@ M.FleetType = {
 
 M.VolumeConfig = {
     type = "structure",
+    id = "VolumeConfig",
     members = {
         VolumeSizeInGb = {
             type = "integer",
@@ -1579,6 +1655,7 @@ M.StreamView = {
 
 M.CreateFleetInput = {
     type = "structure",
+    id = "CreateFleetInput",
     members = {
         Name = {
             type = "string",
@@ -1656,6 +1733,7 @@ M.CreateFleetInput = {
 
 M.FleetError = {
     type = "structure",
+    id = "FleetError",
     members = {
         ErrorCode = {
             type = "string",
@@ -1675,6 +1753,7 @@ M.FleetState = {
 
 M.Fleet = {
     type = "structure",
+    id = "Fleet",
     members = {
         Arn = {
             type = "string",
@@ -1768,6 +1847,7 @@ M.Fleet = {
 
 M.CreateFleetOutput = {
     type = "structure",
+    id = "CreateFleetOutput",
     members = {
         Fleet = M.Fleet,
     },
@@ -1775,6 +1855,7 @@ M.CreateFleetOutput = {
 
 M.CreateImageBuilderInput = {
     type = "structure",
+    id = "CreateImageBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -1842,6 +1923,7 @@ M.LatestAppstreamAgentVersion = {
 
 M.NetworkAccessConfiguration = {
     type = "structure",
+    id = "NetworkAccessConfiguration",
     members = {
         EniPrivateIpAddress = {
             type = "string",
@@ -1880,6 +1962,7 @@ M.ImageBuilderStateChangeReasonCode = {
 
 M.ImageBuilderStateChangeReason = {
     type = "structure",
+    id = "ImageBuilderStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -1892,6 +1975,7 @@ M.ImageBuilderStateChangeReason = {
 
 M.ImageBuilder = {
     type = "structure",
+    id = "ImageBuilder",
     members = {
         Name = {
             type = "string",
@@ -1956,6 +2040,7 @@ M.ImageBuilder = {
 
 M.CreateImageBuilderOutput = {
     type = "structure",
+    id = "CreateImageBuilderOutput",
     members = {
         ImageBuilder = M.ImageBuilder,
     },
@@ -1963,6 +2048,7 @@ M.CreateImageBuilderOutput = {
 
 M.CreateImageBuilderStreamingURLInput = {
     type = "structure",
+    id = "CreateImageBuilderStreamingURLInput",
     members = {
         Name = {
             type = "string",
@@ -1978,6 +2064,7 @@ M.CreateImageBuilderStreamingURLInput = {
 
 M.CreateImageBuilderStreamingURLOutput = {
     type = "structure",
+    id = "CreateImageBuilderStreamingURLOutput",
     members = {
         StreamingURL = {
             type = "string",
@@ -1990,6 +2077,7 @@ M.CreateImageBuilderStreamingURLOutput = {
 
 M.RuntimeValidationConfig = {
     type = "structure",
+    id = "RuntimeValidationConfig",
     members = {
         IntendedInstanceType = {
             type = "string",
@@ -1999,6 +2087,7 @@ M.RuntimeValidationConfig = {
 
 M.CreateImportedImageInput = {
     type = "structure",
+    id = "CreateImportedImageInput",
     members = {
         Name = {
             type = "string",
@@ -2050,6 +2139,7 @@ M.DynamicAppProvidersEnabled = {
 
 M.ImagePermissions = {
     type = "structure",
+    id = "ImagePermissions",
     members = {
         allowFleet = {
             type = "boolean",
@@ -2091,6 +2181,7 @@ M.ImageStateChangeReasonCode = {
 
 M.ImageStateChangeReason = {
     type = "structure",
+    id = "ImageStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -2109,6 +2200,7 @@ M.VisibilityType = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         Name = {
             type = "string",
@@ -2186,6 +2278,7 @@ M.Image = {
 
 M.CreateImportedImageOutput = {
     type = "structure",
+    id = "CreateImportedImageOutput",
     members = {
         Image = M.Image,
     },
@@ -2193,6 +2286,7 @@ M.CreateImportedImageOutput = {
 
 M.DryRunOperationException = {
     type = "structure",
+    id = "DryRunOperationException",
     error = "client",
     members = {
         Message = {
@@ -2209,6 +2303,7 @@ M.StorageConnectorType = {
 
 M.StorageConnector = {
     type = "structure",
+    id = "StorageConnector",
     members = {
         ConnectorType = {
             type = "string",
@@ -2237,6 +2332,7 @@ M.PreferredProtocol = {
 
 M.StreamingExperienceSettings = {
     type = "structure",
+    id = "StreamingExperienceSettings",
     members = {
         PreferredProtocol = {
             type = "string",
@@ -2246,6 +2342,7 @@ M.StreamingExperienceSettings = {
 
 M.UserSetting = {
     type = "structure",
+    id = "UserSetting",
     members = {
         Action = {
             type = "string",
@@ -2267,6 +2364,7 @@ M.UserSetting = {
 
 M.CreateStackInput = {
     type = "structure",
+    id = "CreateStackInput",
     members = {
         Name = {
             type = "string",
@@ -2321,6 +2419,7 @@ M.StackErrorCode = {
 
 M.StackError = {
     type = "structure",
+    id = "StackError",
     members = {
         ErrorCode = {
             type = "string",
@@ -2333,6 +2432,7 @@ M.StackError = {
 
 M.Stack = {
     type = "structure",
+    id = "Stack",
     members = {
         Arn = {
             type = "string",
@@ -2387,6 +2487,7 @@ M.Stack = {
 
 M.CreateStackOutput = {
     type = "structure",
+    id = "CreateStackOutput",
     members = {
         Stack = M.Stack,
     },
@@ -2394,6 +2495,7 @@ M.CreateStackOutput = {
 
 M.CreateStreamingURLInput = {
     type = "structure",
+    id = "CreateStreamingURLInput",
     members = {
         StackName = {
             type = "string",
@@ -2427,6 +2529,7 @@ M.CreateStreamingURLInput = {
 
 M.CreateStreamingURLOutput = {
     type = "structure",
+    id = "CreateStreamingURLOutput",
     members = {
         StreamingURL = {
             type = "string",
@@ -2439,6 +2542,7 @@ M.CreateStreamingURLOutput = {
 
 M.ThemeFooterLink = {
     type = "structure",
+    id = "ThemeFooterLink",
     members = {
         DisplayName = {
             type = "string",
@@ -2458,6 +2562,7 @@ M.ThemeStyling = {
 
 M.CreateThemeForStackInput = {
     type = "structure",
+    id = "CreateThemeForStackInput",
     members = {
         StackName = {
             type = "string",
@@ -2497,6 +2602,7 @@ M.ThemeState = {
 
 M.Theme = {
     type = "structure",
+    id = "Theme",
     members = {
         StackName = {
             type = "string",
@@ -2528,6 +2634,7 @@ M.Theme = {
 
 M.CreateThemeForStackOutput = {
     type = "structure",
+    id = "CreateThemeForStackOutput",
     members = {
         Theme = M.Theme,
     },
@@ -2535,6 +2642,7 @@ M.CreateThemeForStackOutput = {
 
 M.CreateUpdatedImageInput = {
     type = "structure",
+    id = "CreateUpdatedImageInput",
     members = {
         existingImageName = {
             type = "string",
@@ -2567,6 +2675,7 @@ M.CreateUpdatedImageInput = {
 
 M.CreateUpdatedImageOutput = {
     type = "structure",
+    id = "CreateUpdatedImageOutput",
     members = {
         image = M.Image,
         canUpdateImage = {
@@ -2577,6 +2686,7 @@ M.CreateUpdatedImageOutput = {
 
 M.CreateUsageReportSubscriptionInput = {
     type = "structure",
+    id = "CreateUsageReportSubscriptionInput",
 }
 
 M.UsageReportSchedule = {
@@ -2585,6 +2695,7 @@ M.UsageReportSchedule = {
 
 M.CreateUsageReportSubscriptionOutput = {
     type = "structure",
+    id = "CreateUsageReportSubscriptionOutput",
     members = {
         S3BucketName = {
             type = "string",
@@ -2602,6 +2713,7 @@ M.MessageAction = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         UserName = {
             type = "string",
@@ -2629,10 +2741,12 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
 }
 
 M.DeleteAppBlockInput = {
     type = "structure",
+    id = "DeleteAppBlockInput",
     members = {
         Name = {
             type = "string",
@@ -2645,10 +2759,12 @@ M.DeleteAppBlockInput = {
 
 M.DeleteAppBlockOutput = {
     type = "structure",
+    id = "DeleteAppBlockOutput",
 }
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -2659,6 +2775,7 @@ M.ResourceInUseException = {
 
 M.DeleteAppBlockBuilderInput = {
     type = "structure",
+    id = "DeleteAppBlockBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -2671,10 +2788,12 @@ M.DeleteAppBlockBuilderInput = {
 
 M.DeleteAppBlockBuilderOutput = {
     type = "structure",
+    id = "DeleteAppBlockBuilderOutput",
 }
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -2687,10 +2806,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.DeleteDirectoryConfigInput = {
     type = "structure",
+    id = "DeleteDirectoryConfigInput",
     members = {
         DirectoryName = {
             type = "string",
@@ -2703,10 +2824,12 @@ M.DeleteDirectoryConfigInput = {
 
 M.DeleteDirectoryConfigOutput = {
     type = "structure",
+    id = "DeleteDirectoryConfigOutput",
 }
 
 M.DeleteEntitlementInput = {
     type = "structure",
+    id = "DeleteEntitlementInput",
     members = {
         Name = {
             type = "string",
@@ -2725,10 +2848,12 @@ M.DeleteEntitlementInput = {
 
 M.DeleteEntitlementOutput = {
     type = "structure",
+    id = "DeleteEntitlementOutput",
 }
 
 M.DeleteFleetInput = {
     type = "structure",
+    id = "DeleteFleetInput",
     members = {
         Name = {
             type = "string",
@@ -2741,10 +2866,12 @@ M.DeleteFleetInput = {
 
 M.DeleteFleetOutput = {
     type = "structure",
+    id = "DeleteFleetOutput",
 }
 
 M.DeleteImageInput = {
     type = "structure",
+    id = "DeleteImageInput",
     members = {
         Name = {
             type = "string",
@@ -2757,6 +2884,7 @@ M.DeleteImageInput = {
 
 M.DeleteImageOutput = {
     type = "structure",
+    id = "DeleteImageOutput",
     members = {
         Image = M.Image,
     },
@@ -2764,6 +2892,7 @@ M.DeleteImageOutput = {
 
 M.DeleteImageBuilderInput = {
     type = "structure",
+    id = "DeleteImageBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -2776,6 +2905,7 @@ M.DeleteImageBuilderInput = {
 
 M.DeleteImageBuilderOutput = {
     type = "structure",
+    id = "DeleteImageBuilderOutput",
     members = {
         ImageBuilder = M.ImageBuilder,
     },
@@ -2783,6 +2913,7 @@ M.DeleteImageBuilderOutput = {
 
 M.DeleteImagePermissionsInput = {
     type = "structure",
+    id = "DeleteImagePermissionsInput",
     members = {
         Name = {
             type = "string",
@@ -2801,10 +2932,12 @@ M.DeleteImagePermissionsInput = {
 
 M.DeleteImagePermissionsOutput = {
     type = "structure",
+    id = "DeleteImagePermissionsOutput",
 }
 
 M.DeleteStackInput = {
     type = "structure",
+    id = "DeleteStackInput",
     members = {
         Name = {
             type = "string",
@@ -2817,10 +2950,12 @@ M.DeleteStackInput = {
 
 M.DeleteStackOutput = {
     type = "structure",
+    id = "DeleteStackOutput",
 }
 
 M.DeleteThemeForStackInput = {
     type = "structure",
+    id = "DeleteThemeForStackInput",
     members = {
         StackName = {
             type = "string",
@@ -2833,18 +2968,22 @@ M.DeleteThemeForStackInput = {
 
 M.DeleteThemeForStackOutput = {
     type = "structure",
+    id = "DeleteThemeForStackOutput",
 }
 
 M.DeleteUsageReportSubscriptionInput = {
     type = "structure",
+    id = "DeleteUsageReportSubscriptionInput",
 }
 
 M.DeleteUsageReportSubscriptionOutput = {
     type = "structure",
+    id = "DeleteUsageReportSubscriptionOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         UserName = {
             type = "string",
@@ -2863,10 +3002,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DescribeAppBlockBuilderAppBlockAssociationsInput = {
     type = "structure",
+    id = "DescribeAppBlockBuilderAppBlockAssociationsInput",
     members = {
         AppBlockArn = {
             type = "string",
@@ -2885,6 +3026,7 @@ M.DescribeAppBlockBuilderAppBlockAssociationsInput = {
 
 M.DescribeAppBlockBuilderAppBlockAssociationsOutput = {
     type = "structure",
+    id = "DescribeAppBlockBuilderAppBlockAssociationsOutput",
     members = {
         AppBlockBuilderAppBlockAssociations = {
             type = "list",
@@ -2898,6 +3040,7 @@ M.DescribeAppBlockBuilderAppBlockAssociationsOutput = {
 
 M.DescribeAppBlockBuildersInput = {
     type = "structure",
+    id = "DescribeAppBlockBuildersInput",
     members = {
         Names = {
             type = "list",
@@ -2914,6 +3057,7 @@ M.DescribeAppBlockBuildersInput = {
 
 M.DescribeAppBlockBuildersOutput = {
     type = "structure",
+    id = "DescribeAppBlockBuildersOutput",
     members = {
         AppBlockBuilders = {
             type = "list",
@@ -2927,6 +3071,7 @@ M.DescribeAppBlockBuildersOutput = {
 
 M.DescribeAppBlocksInput = {
     type = "structure",
+    id = "DescribeAppBlocksInput",
     members = {
         Arns = {
             type = "list",
@@ -2943,6 +3088,7 @@ M.DescribeAppBlocksInput = {
 
 M.DescribeAppBlocksOutput = {
     type = "structure",
+    id = "DescribeAppBlocksOutput",
     members = {
         AppBlocks = {
             type = "list",
@@ -2956,6 +3102,7 @@ M.DescribeAppBlocksOutput = {
 
 M.DescribeApplicationFleetAssociationsInput = {
     type = "structure",
+    id = "DescribeApplicationFleetAssociationsInput",
     members = {
         FleetName = {
             type = "string",
@@ -2974,6 +3121,7 @@ M.DescribeApplicationFleetAssociationsInput = {
 
 M.DescribeApplicationFleetAssociationsOutput = {
     type = "structure",
+    id = "DescribeApplicationFleetAssociationsOutput",
     members = {
         ApplicationFleetAssociations = {
             type = "list",
@@ -2987,6 +3135,7 @@ M.DescribeApplicationFleetAssociationsOutput = {
 
 M.DescribeApplicationsInput = {
     type = "structure",
+    id = "DescribeApplicationsInput",
     members = {
         Arns = {
             type = "list",
@@ -3003,6 +3152,7 @@ M.DescribeApplicationsInput = {
 
 M.DescribeApplicationsOutput = {
     type = "structure",
+    id = "DescribeApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -3016,6 +3166,7 @@ M.DescribeApplicationsOutput = {
 
 M.DescribeAppLicenseUsageInput = {
     type = "structure",
+    id = "DescribeAppLicenseUsageInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -3034,6 +3185,7 @@ M.DescribeAppLicenseUsageInput = {
 
 M.DescribeAppLicenseUsageOutput = {
     type = "structure",
+    id = "DescribeAppLicenseUsageOutput",
     members = {
         AppLicenseUsages = {
             type = "list",
@@ -3047,6 +3199,7 @@ M.DescribeAppLicenseUsageOutput = {
 
 M.DescribeDirectoryConfigsInput = {
     type = "structure",
+    id = "DescribeDirectoryConfigsInput",
     members = {
         DirectoryNames = {
             type = "list",
@@ -3063,6 +3216,7 @@ M.DescribeDirectoryConfigsInput = {
 
 M.DescribeDirectoryConfigsOutput = {
     type = "structure",
+    id = "DescribeDirectoryConfigsOutput",
     members = {
         DirectoryConfigs = {
             type = "list",
@@ -3076,6 +3230,7 @@ M.DescribeDirectoryConfigsOutput = {
 
 M.DescribeEntitlementsInput = {
     type = "structure",
+    id = "DescribeEntitlementsInput",
     members = {
         Name = {
             type = "string",
@@ -3097,6 +3252,7 @@ M.DescribeEntitlementsInput = {
 
 M.DescribeEntitlementsOutput = {
     type = "structure",
+    id = "DescribeEntitlementsOutput",
     members = {
         Entitlements = {
             type = "list",
@@ -3110,6 +3266,7 @@ M.DescribeEntitlementsOutput = {
 
 M.DescribeFleetsInput = {
     type = "structure",
+    id = "DescribeFleetsInput",
     members = {
         Names = {
             type = "list",
@@ -3123,6 +3280,7 @@ M.DescribeFleetsInput = {
 
 M.DescribeFleetsOutput = {
     type = "structure",
+    id = "DescribeFleetsOutput",
     members = {
         Fleets = {
             type = "list",
@@ -3136,6 +3294,7 @@ M.DescribeFleetsOutput = {
 
 M.DescribeImageBuildersInput = {
     type = "structure",
+    id = "DescribeImageBuildersInput",
     members = {
         Names = {
             type = "list",
@@ -3152,6 +3311,7 @@ M.DescribeImageBuildersInput = {
 
 M.DescribeImageBuildersOutput = {
     type = "structure",
+    id = "DescribeImageBuildersOutput",
     members = {
         ImageBuilders = {
             type = "list",
@@ -3165,6 +3325,7 @@ M.DescribeImageBuildersOutput = {
 
 M.DescribeImagePermissionsInput = {
     type = "structure",
+    id = "DescribeImagePermissionsInput",
     members = {
         Name = {
             type = "string",
@@ -3187,6 +3348,7 @@ M.DescribeImagePermissionsInput = {
 
 M.SharedImagePermissions = {
     type = "structure",
+    id = "SharedImagePermissions",
     members = {
         sharedAccountId = {
             type = "string",
@@ -3202,6 +3364,7 @@ M.SharedImagePermissions = {
 
 M.DescribeImagePermissionsOutput = {
     type = "structure",
+    id = "DescribeImagePermissionsOutput",
     members = {
         Name = {
             type = "string",
@@ -3218,6 +3381,7 @@ M.DescribeImagePermissionsOutput = {
 
 M.DescribeImagesInput = {
     type = "structure",
+    id = "DescribeImagesInput",
     members = {
         Names = {
             type = "list",
@@ -3241,6 +3405,7 @@ M.DescribeImagesInput = {
 
 M.DescribeImagesOutput = {
     type = "structure",
+    id = "DescribeImagesOutput",
     members = {
         Images = {
             type = "list",
@@ -3254,6 +3419,7 @@ M.DescribeImagesOutput = {
 
 M.DescribeSessionsInput = {
     type = "structure",
+    id = "DescribeSessionsInput",
     members = {
         StackName = {
             type = "string",
@@ -3304,6 +3470,7 @@ M.SessionState = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         Id = {
             type = "string",
@@ -3359,6 +3526,7 @@ M.Session = {
 
 M.DescribeSessionsOutput = {
     type = "structure",
+    id = "DescribeSessionsOutput",
     members = {
         Sessions = {
             type = "list",
@@ -3372,6 +3540,7 @@ M.DescribeSessionsOutput = {
 
 M.DescribeSoftwareAssociationsInput = {
     type = "structure",
+    id = "DescribeSoftwareAssociationsInput",
     members = {
         AssociatedResource = {
             type = "string",
@@ -3400,6 +3569,7 @@ M.SoftwareDeploymentStatus = {
 
 M.SoftwareAssociations = {
     type = "structure",
+    id = "SoftwareAssociations",
     members = {
         SoftwareName = {
             type = "string",
@@ -3416,6 +3586,7 @@ M.SoftwareAssociations = {
 
 M.DescribeSoftwareAssociationsOutput = {
     type = "structure",
+    id = "DescribeSoftwareAssociationsOutput",
     members = {
         AssociatedResource = {
             type = "string",
@@ -3432,6 +3603,7 @@ M.DescribeSoftwareAssociationsOutput = {
 
 M.DescribeStacksInput = {
     type = "structure",
+    id = "DescribeStacksInput",
     members = {
         Names = {
             type = "list",
@@ -3445,6 +3617,7 @@ M.DescribeStacksInput = {
 
 M.DescribeStacksOutput = {
     type = "structure",
+    id = "DescribeStacksOutput",
     members = {
         Stacks = {
             type = "list",
@@ -3458,6 +3631,7 @@ M.DescribeStacksOutput = {
 
 M.DescribeThemeForStackInput = {
     type = "structure",
+    id = "DescribeThemeForStackInput",
     members = {
         StackName = {
             type = "string",
@@ -3470,6 +3644,7 @@ M.DescribeThemeForStackInput = {
 
 M.DescribeThemeForStackOutput = {
     type = "structure",
+    id = "DescribeThemeForStackOutput",
     members = {
         Theme = M.Theme,
     },
@@ -3477,6 +3652,7 @@ M.DescribeThemeForStackOutput = {
 
 M.DescribeUsageReportSubscriptionsInput = {
     type = "structure",
+    id = "DescribeUsageReportSubscriptionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3495,6 +3671,7 @@ M.UsageReportExecutionErrorCode = {
 
 M.LastReportGenerationExecutionError = {
     type = "structure",
+    id = "LastReportGenerationExecutionError",
     members = {
         ErrorCode = {
             type = "string",
@@ -3507,6 +3684,7 @@ M.LastReportGenerationExecutionError = {
 
 M.UsageReportSubscription = {
     type = "structure",
+    id = "UsageReportSubscription",
     members = {
         S3BucketName = {
             type = "string",
@@ -3526,6 +3704,7 @@ M.UsageReportSubscription = {
 
 M.DescribeUsageReportSubscriptionsOutput = {
     type = "structure",
+    id = "DescribeUsageReportSubscriptionsOutput",
     members = {
         UsageReportSubscriptions = {
             type = "list",
@@ -3539,6 +3718,7 @@ M.DescribeUsageReportSubscriptionsOutput = {
 
 M.DescribeUsersInput = {
     type = "structure",
+    id = "DescribeUsersInput",
     members = {
         AuthenticationType = {
             type = "string",
@@ -3557,6 +3737,7 @@ M.DescribeUsersInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Arn = {
             type = "string",
@@ -3590,6 +3771,7 @@ M.User = {
 
 M.DescribeUsersOutput = {
     type = "structure",
+    id = "DescribeUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -3603,6 +3785,7 @@ M.DescribeUsersOutput = {
 
 M.DescribeUserStackAssociationsInput = {
     type = "structure",
+    id = "DescribeUserStackAssociationsInput",
     members = {
         StackName = {
             type = "string",
@@ -3624,6 +3807,7 @@ M.DescribeUserStackAssociationsInput = {
 
 M.DescribeUserStackAssociationsOutput = {
     type = "structure",
+    id = "DescribeUserStackAssociationsOutput",
     members = {
         UserStackAssociations = {
             type = "list",
@@ -3637,6 +3821,7 @@ M.DescribeUserStackAssociationsOutput = {
 
 M.DisableUserInput = {
     type = "structure",
+    id = "DisableUserInput",
     members = {
         UserName = {
             type = "string",
@@ -3655,10 +3840,12 @@ M.DisableUserInput = {
 
 M.DisableUserOutput = {
     type = "structure",
+    id = "DisableUserOutput",
 }
 
 M.DisassociateAppBlockBuilderAppBlockInput = {
     type = "structure",
+    id = "DisassociateAppBlockBuilderAppBlockInput",
     members = {
         AppBlockArn = {
             type = "string",
@@ -3677,10 +3864,12 @@ M.DisassociateAppBlockBuilderAppBlockInput = {
 
 M.DisassociateAppBlockBuilderAppBlockOutput = {
     type = "structure",
+    id = "DisassociateAppBlockBuilderAppBlockOutput",
 }
 
 M.DisassociateApplicationFleetInput = {
     type = "structure",
+    id = "DisassociateApplicationFleetInput",
     members = {
         FleetName = {
             type = "string",
@@ -3699,10 +3888,12 @@ M.DisassociateApplicationFleetInput = {
 
 M.DisassociateApplicationFleetOutput = {
     type = "structure",
+    id = "DisassociateApplicationFleetOutput",
 }
 
 M.DisassociateApplicationFromEntitlementInput = {
     type = "structure",
+    id = "DisassociateApplicationFromEntitlementInput",
     members = {
         StackName = {
             type = "string",
@@ -3727,10 +3918,12 @@ M.DisassociateApplicationFromEntitlementInput = {
 
 M.DisassociateApplicationFromEntitlementOutput = {
     type = "structure",
+    id = "DisassociateApplicationFromEntitlementOutput",
 }
 
 M.DisassociateFleetInput = {
     type = "structure",
+    id = "DisassociateFleetInput",
     members = {
         FleetName = {
             type = "string",
@@ -3749,10 +3942,12 @@ M.DisassociateFleetInput = {
 
 M.DisassociateFleetOutput = {
     type = "structure",
+    id = "DisassociateFleetOutput",
 }
 
 M.DisassociateSoftwareFromImageBuilderInput = {
     type = "structure",
+    id = "DisassociateSoftwareFromImageBuilderInput",
     members = {
         ImageBuilderName = {
             type = "string",
@@ -3772,10 +3967,12 @@ M.DisassociateSoftwareFromImageBuilderInput = {
 
 M.DisassociateSoftwareFromImageBuilderOutput = {
     type = "structure",
+    id = "DisassociateSoftwareFromImageBuilderOutput",
 }
 
 M.DrainSessionInstanceInput = {
     type = "structure",
+    id = "DrainSessionInstanceInput",
     members = {
         SessionId = {
             type = "string",
@@ -3788,10 +3985,12 @@ M.DrainSessionInstanceInput = {
 
 M.DrainSessionInstanceOutput = {
     type = "structure",
+    id = "DrainSessionInstanceOutput",
 }
 
 M.EnableUserInput = {
     type = "structure",
+    id = "EnableUserInput",
     members = {
         UserName = {
             type = "string",
@@ -3810,10 +4009,12 @@ M.EnableUserInput = {
 
 M.EnableUserOutput = {
     type = "structure",
+    id = "EnableUserOutput",
 }
 
 M.EntitledApplication = {
     type = "structure",
+    id = "EntitledApplication",
     members = {
         ApplicationIdentifier = {
             type = "string",
@@ -3826,6 +4027,7 @@ M.EntitledApplication = {
 
 M.ExpireSessionInput = {
     type = "structure",
+    id = "ExpireSessionInput",
     members = {
         SessionId = {
             type = "string",
@@ -3838,10 +4040,12 @@ M.ExpireSessionInput = {
 
 M.ExpireSessionOutput = {
     type = "structure",
+    id = "ExpireSessionOutput",
 }
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -3872,6 +4076,7 @@ M.FleetAttribute = {
 
 M.GetExportImageTaskInput = {
     type = "structure",
+    id = "GetExportImageTaskInput",
     members = {
         TaskId = {
             type = "string",
@@ -3881,6 +4086,7 @@ M.GetExportImageTaskInput = {
 
 M.GetExportImageTaskOutput = {
     type = "structure",
+    id = "GetExportImageTaskOutput",
     members = {
         ExportImageTask = M.ExportImageTask,
     },
@@ -3888,6 +4094,7 @@ M.GetExportImageTaskOutput = {
 
 M.ListAssociatedFleetsInput = {
     type = "structure",
+    id = "ListAssociatedFleetsInput",
     members = {
         StackName = {
             type = "string",
@@ -3903,6 +4110,7 @@ M.ListAssociatedFleetsInput = {
 
 M.ListAssociatedFleetsOutput = {
     type = "structure",
+    id = "ListAssociatedFleetsOutput",
     members = {
         Names = {
             type = "list",
@@ -3916,6 +4124,7 @@ M.ListAssociatedFleetsOutput = {
 
 M.ListAssociatedStacksInput = {
     type = "structure",
+    id = "ListAssociatedStacksInput",
     members = {
         FleetName = {
             type = "string",
@@ -3931,6 +4140,7 @@ M.ListAssociatedStacksInput = {
 
 M.ListAssociatedStacksOutput = {
     type = "structure",
+    id = "ListAssociatedStacksOutput",
     members = {
         Names = {
             type = "list",
@@ -3944,6 +4154,7 @@ M.ListAssociatedStacksOutput = {
 
 M.ListEntitledApplicationsInput = {
     type = "structure",
+    id = "ListEntitledApplicationsInput",
     members = {
         StackName = {
             type = "string",
@@ -3968,6 +4179,7 @@ M.ListEntitledApplicationsInput = {
 
 M.ListEntitledApplicationsOutput = {
     type = "structure",
+    id = "ListEntitledApplicationsOutput",
     members = {
         EntitledApplications = {
             type = "list",
@@ -3981,6 +4193,7 @@ M.ListEntitledApplicationsOutput = {
 
 M.ListExportImageTasksInput = {
     type = "structure",
+    id = "ListExportImageTasksInput",
     members = {
         Filters = {
             type = "list",
@@ -3997,6 +4210,7 @@ M.ListExportImageTasksInput = {
 
 M.ListExportImageTasksOutput = {
     type = "structure",
+    id = "ListExportImageTasksOutput",
     members = {
         ExportImageTasks = {
             type = "list",
@@ -4010,6 +4224,7 @@ M.ListExportImageTasksOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4022,6 +4237,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -4033,6 +4249,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartAppBlockBuilderInput = {
     type = "structure",
+    id = "StartAppBlockBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -4045,6 +4262,7 @@ M.StartAppBlockBuilderInput = {
 
 M.StartAppBlockBuilderOutput = {
     type = "structure",
+    id = "StartAppBlockBuilderOutput",
     members = {
         AppBlockBuilder = M.AppBlockBuilder,
     },
@@ -4052,6 +4270,7 @@ M.StartAppBlockBuilderOutput = {
 
 M.StartFleetInput = {
     type = "structure",
+    id = "StartFleetInput",
     members = {
         Name = {
             type = "string",
@@ -4064,10 +4283,12 @@ M.StartFleetInput = {
 
 M.StartFleetOutput = {
     type = "structure",
+    id = "StartFleetOutput",
 }
 
 M.StartImageBuilderInput = {
     type = "structure",
+    id = "StartImageBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -4083,6 +4304,7 @@ M.StartImageBuilderInput = {
 
 M.StartImageBuilderOutput = {
     type = "structure",
+    id = "StartImageBuilderOutput",
     members = {
         ImageBuilder = M.ImageBuilder,
     },
@@ -4090,6 +4312,7 @@ M.StartImageBuilderOutput = {
 
 M.StartSoftwareDeploymentToImageBuilderInput = {
     type = "structure",
+    id = "StartSoftwareDeploymentToImageBuilderInput",
     members = {
         ImageBuilderName = {
             type = "string",
@@ -4105,10 +4328,12 @@ M.StartSoftwareDeploymentToImageBuilderInput = {
 
 M.StartSoftwareDeploymentToImageBuilderOutput = {
     type = "structure",
+    id = "StartSoftwareDeploymentToImageBuilderOutput",
 }
 
 M.StopAppBlockBuilderInput = {
     type = "structure",
+    id = "StopAppBlockBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -4121,6 +4346,7 @@ M.StopAppBlockBuilderInput = {
 
 M.StopAppBlockBuilderOutput = {
     type = "structure",
+    id = "StopAppBlockBuilderOutput",
     members = {
         AppBlockBuilder = M.AppBlockBuilder,
     },
@@ -4128,6 +4354,7 @@ M.StopAppBlockBuilderOutput = {
 
 M.StopFleetInput = {
     type = "structure",
+    id = "StopFleetInput",
     members = {
         Name = {
             type = "string",
@@ -4140,10 +4367,12 @@ M.StopFleetInput = {
 
 M.StopFleetOutput = {
     type = "structure",
+    id = "StopFleetOutput",
 }
 
 M.StopImageBuilderInput = {
     type = "structure",
+    id = "StopImageBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -4156,6 +4385,7 @@ M.StopImageBuilderInput = {
 
 M.StopImageBuilderOutput = {
     type = "structure",
+    id = "StopImageBuilderOutput",
     members = {
         ImageBuilder = M.ImageBuilder,
     },
@@ -4163,6 +4393,7 @@ M.StopImageBuilderOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4183,10 +4414,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4206,10 +4439,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAppBlockBuilderInput = {
     type = "structure",
+    id = "UpdateAppBlockBuilderInput",
     members = {
         Name = {
             type = "string",
@@ -4252,6 +4487,7 @@ M.UpdateAppBlockBuilderInput = {
 
 M.UpdateAppBlockBuilderOutput = {
     type = "structure",
+    id = "UpdateAppBlockBuilderOutput",
     members = {
         AppBlockBuilder = M.AppBlockBuilder,
     },
@@ -4259,6 +4495,7 @@ M.UpdateAppBlockBuilderOutput = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         Name = {
             type = "string",
@@ -4294,6 +4531,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         Application = M.Application,
     },
@@ -4301,6 +4539,7 @@ M.UpdateApplicationOutput = {
 
 M.UpdateDirectoryConfigInput = {
     type = "structure",
+    id = "UpdateDirectoryConfigInput",
     members = {
         DirectoryName = {
             type = "string",
@@ -4319,6 +4558,7 @@ M.UpdateDirectoryConfigInput = {
 
 M.UpdateDirectoryConfigOutput = {
     type = "structure",
+    id = "UpdateDirectoryConfigOutput",
     members = {
         DirectoryConfig = M.DirectoryConfig,
     },
@@ -4326,6 +4566,7 @@ M.UpdateDirectoryConfigOutput = {
 
 M.UpdateEntitlementInput = {
     type = "structure",
+    id = "UpdateEntitlementInput",
     members = {
         Name = {
             type = "string",
@@ -4354,6 +4595,7 @@ M.UpdateEntitlementInput = {
 
 M.UpdateEntitlementOutput = {
     type = "structure",
+    id = "UpdateEntitlementOutput",
     members = {
         Entitlement = M.Entitlement,
     },
@@ -4361,6 +4603,7 @@ M.UpdateEntitlementOutput = {
 
 M.UpdateFleetInput = {
     type = "structure",
+    id = "UpdateFleetInput",
     members = {
         ImageName = {
             type = "string",
@@ -4431,6 +4674,7 @@ M.UpdateFleetInput = {
 
 M.UpdateFleetOutput = {
     type = "structure",
+    id = "UpdateFleetOutput",
     members = {
         Fleet = M.Fleet,
     },
@@ -4438,6 +4682,7 @@ M.UpdateFleetOutput = {
 
 M.UpdateImagePermissionsInput = {
     type = "structure",
+    id = "UpdateImagePermissionsInput",
     members = {
         Name = {
             type = "string",
@@ -4459,6 +4704,7 @@ M.UpdateImagePermissionsInput = {
 
 M.UpdateImagePermissionsOutput = {
     type = "structure",
+    id = "UpdateImagePermissionsOutput",
 }
 
 M.StackAttribute = {
@@ -4480,6 +4726,7 @@ M.StackAttribute = {
 
 M.UpdateStackInput = {
     type = "structure",
+    id = "UpdateStackInput",
     members = {
         DisplayName = {
             type = "string",
@@ -4531,6 +4778,7 @@ M.UpdateStackInput = {
 
 M.UpdateStackOutput = {
     type = "structure",
+    id = "UpdateStackOutput",
     members = {
         Stack = M.Stack,
     },
@@ -4542,6 +4790,7 @@ M.ThemeAttribute = {
 
 M.UpdateThemeForStackInput = {
     type = "structure",
+    id = "UpdateThemeForStackInput",
     members = {
         StackName = {
             type = "string",
@@ -4573,6 +4822,7 @@ M.UpdateThemeForStackInput = {
 
 M.UpdateThemeForStackOutput = {
     type = "structure",
+    id = "UpdateThemeForStackOutput",
     members = {
         Theme = M.Theme,
     },

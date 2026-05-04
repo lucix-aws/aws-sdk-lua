@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +23,7 @@ M.EncryptionOption = {
 
 M.KMSKeyDetails = {
     type = "structure",
+    id = "KMSKeyDetails",
     members = {
         KMSKeyId = {
             type = "string",
@@ -34,6 +36,7 @@ M.KMSKeyDetails = {
 
 M.ThirdPartySourceRepository = {
     type = "structure",
+    id = "ThirdPartySourceRepository",
     members = {
         Name = {
             type = "string",
@@ -58,6 +61,7 @@ M.ThirdPartySourceRepository = {
 
 M.CodeCommitRepository = {
     type = "structure",
+    id = "CodeCommitRepository",
     members = {
         Name = {
             type = "string",
@@ -70,6 +74,7 @@ M.CodeCommitRepository = {
 
 M.S3Repository = {
     type = "structure",
+    id = "S3Repository",
     members = {
         Name = {
             type = "string",
@@ -88,6 +93,7 @@ M.S3Repository = {
 
 M.Repository = {
     type = "structure",
+    id = "Repository",
     members = {
         CodeCommit = M.CodeCommitRepository,
         Bitbucket = M.ThirdPartySourceRepository,
@@ -98,6 +104,7 @@ M.Repository = {
 
 M.AssociateRepositoryInput = {
     type = "structure",
+    id = "AssociateRepositoryInput",
     members = {
         Repository = setmetatable({ traits = {
             required = true,
@@ -127,6 +134,7 @@ M.ProviderType = {
 
 M.CodeArtifacts = {
     type = "structure",
+    id = "CodeArtifacts",
     members = {
         SourceCodeArtifactsObjectKey = {
             type = "string",
@@ -142,6 +150,7 @@ M.CodeArtifacts = {
 
 M.S3RepositoryDetails = {
     type = "structure",
+    id = "S3RepositoryDetails",
     members = {
         BucketName = {
             type = "string",
@@ -160,6 +169,7 @@ M.RepositoryAssociationState = {
 
 M.RepositoryAssociation = {
     type = "structure",
+    id = "RepositoryAssociation",
     members = {
         AssociationId = {
             type = "string",
@@ -198,6 +208,7 @@ M.RepositoryAssociation = {
 
 M.AssociateRepositoryOutput = {
     type = "structure",
+    id = "AssociateRepositoryOutput",
     members = {
         RepositoryAssociation = M.RepositoryAssociation,
         Tags = {
@@ -210,6 +221,7 @@ M.AssociateRepositoryOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -220,6 +232,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -230,6 +243,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -240,6 +254,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -250,6 +265,7 @@ M.ValidationException = {
 
 M.RepositoryHeadSourceCodeType = {
     type = "structure",
+    id = "RepositoryHeadSourceCodeType",
     members = {
         BranchName = {
             type = "string",
@@ -262,6 +278,7 @@ M.RepositoryHeadSourceCodeType = {
 
 M.BranchDiffSourceCodeType = {
     type = "structure",
+    id = "BranchDiffSourceCodeType",
     members = {
         SourceBranchName = {
             type = "string",
@@ -280,6 +297,7 @@ M.BranchDiffSourceCodeType = {
 
 M.CommitDiffSourceCodeType = {
     type = "structure",
+    id = "CommitDiffSourceCodeType",
     members = {
         SourceCommit = {
             type = "string",
@@ -295,6 +313,7 @@ M.CommitDiffSourceCodeType = {
 
 M.EventInfo = {
     type = "structure",
+    id = "EventInfo",
     members = {
         Name = {
             type = "string",
@@ -313,6 +332,7 @@ M.VendorName = {
 
 M.RequestMetadata = {
     type = "structure",
+    id = "RequestMetadata",
     members = {
         RequestId = {
             type = "string",
@@ -329,6 +349,7 @@ M.RequestMetadata = {
 
 M.S3BucketRepository = {
     type = "structure",
+    id = "S3BucketRepository",
     members = {
         Name = {
             type = "string",
@@ -342,6 +363,7 @@ M.S3BucketRepository = {
 
 M.SourceCodeType = {
     type = "structure",
+    id = "SourceCodeType",
     members = {
         CommitDiff = M.CommitDiffSourceCodeType,
         RepositoryHead = M.RepositoryHeadSourceCodeType,
@@ -353,6 +375,7 @@ M.SourceCodeType = {
 
 M.RepositoryAnalysis = {
     type = "structure",
+    id = "RepositoryAnalysis",
     members = {
         RepositoryHead = M.RepositoryHeadSourceCodeType,
         SourceCodeType = M.SourceCodeType,
@@ -361,6 +384,7 @@ M.RepositoryAnalysis = {
 
 M.CodeReviewType = {
     type = "structure",
+    id = "CodeReviewType",
     members = {
         RepositoryAnalysis = setmetatable({ traits = {
             required = true,
@@ -374,6 +398,7 @@ M.CodeReviewType = {
 
 M.CreateCodeReviewInput = {
     type = "structure",
+    id = "CreateCodeReviewInput",
     members = {
         Name = {
             type = "string",
@@ -407,6 +432,7 @@ M.ConfigFileState = {
 
 M.Metrics = {
     type = "structure",
+    id = "Metrics",
     members = {
         MeteredLinesOfCodeCount = {
             type = "long",
@@ -434,6 +460,7 @@ M.Type = {
 
 M.CodeReview = {
     type = "structure",
+    id = "CodeReview",
     members = {
         Name = {
             type = "string",
@@ -485,6 +512,7 @@ M.CodeReview = {
 
 M.CreateCodeReviewOutput = {
     type = "structure",
+    id = "CreateCodeReviewOutput",
     members = {
         CodeReview = M.CodeReview,
     },
@@ -492,6 +520,7 @@ M.CreateCodeReviewOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -502,6 +531,7 @@ M.ResourceNotFoundException = {
 
 M.DescribeCodeReviewInput = {
     type = "structure",
+    id = "DescribeCodeReviewInput",
     members = {
         CodeReviewArn = {
             type = "string",
@@ -515,6 +545,7 @@ M.DescribeCodeReviewInput = {
 
 M.DescribeCodeReviewOutput = {
     type = "structure",
+    id = "DescribeCodeReviewOutput",
     members = {
         CodeReview = M.CodeReview,
     },
@@ -522,6 +553,7 @@ M.DescribeCodeReviewOutput = {
 
 M.DescribeRecommendationFeedbackInput = {
     type = "structure",
+    id = "DescribeRecommendationFeedbackInput",
     members = {
         CodeReviewArn = {
             type = "string",
@@ -553,6 +585,7 @@ M.Reaction = {
 
 M.RecommendationFeedback = {
     type = "structure",
+    id = "RecommendationFeedback",
     members = {
         CodeReviewArn = {
             type = "string",
@@ -578,6 +611,7 @@ M.RecommendationFeedback = {
 
 M.DescribeRecommendationFeedbackOutput = {
     type = "structure",
+    id = "DescribeRecommendationFeedbackOutput",
     members = {
         RecommendationFeedback = M.RecommendationFeedback,
     },
@@ -585,6 +619,7 @@ M.DescribeRecommendationFeedbackOutput = {
 
 M.DescribeRepositoryAssociationInput = {
     type = "structure",
+    id = "DescribeRepositoryAssociationInput",
     members = {
         AssociationArn = {
             type = "string",
@@ -598,6 +633,7 @@ M.DescribeRepositoryAssociationInput = {
 
 M.DescribeRepositoryAssociationOutput = {
     type = "structure",
+    id = "DescribeRepositoryAssociationOutput",
     members = {
         RepositoryAssociation = M.RepositoryAssociation,
         Tags = {
@@ -610,6 +646,7 @@ M.DescribeRepositoryAssociationOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -620,6 +657,7 @@ M.NotFoundException = {
 
 M.DisassociateRepositoryInput = {
     type = "structure",
+    id = "DisassociateRepositoryInput",
     members = {
         AssociationArn = {
             type = "string",
@@ -633,6 +671,7 @@ M.DisassociateRepositoryInput = {
 
 M.DisassociateRepositoryOutput = {
     type = "structure",
+    id = "DisassociateRepositoryOutput",
     members = {
         RepositoryAssociation = M.RepositoryAssociation,
         Tags = {
@@ -645,6 +684,7 @@ M.DisassociateRepositoryOutput = {
 
 M.ListCodeReviewsInput = {
     type = "structure",
+    id = "ListCodeReviewsInput",
     members = {
         ProviderTypes = {
             type = "list",
@@ -691,6 +731,7 @@ M.ListCodeReviewsInput = {
 
 M.MetricsSummary = {
     type = "structure",
+    id = "MetricsSummary",
     members = {
         MeteredLinesOfCodeCount = {
             type = "long",
@@ -706,6 +747,7 @@ M.MetricsSummary = {
 
 M.CodeReviewSummary = {
     type = "structure",
+    id = "CodeReviewSummary",
     members = {
         Name = {
             type = "string",
@@ -744,6 +786,7 @@ M.CodeReviewSummary = {
 
 M.ListCodeReviewsOutput = {
     type = "structure",
+    id = "ListCodeReviewsOutput",
     members = {
         CodeReviewSummaries = {
             type = "list",
@@ -757,6 +800,7 @@ M.ListCodeReviewsOutput = {
 
 M.ListRecommendationFeedbackInput = {
     type = "structure",
+    id = "ListRecommendationFeedbackInput",
     members = {
         NextToken = {
             type = "string",
@@ -796,6 +840,7 @@ M.ListRecommendationFeedbackInput = {
 
 M.RecommendationFeedbackSummary = {
     type = "structure",
+    id = "RecommendationFeedbackSummary",
     members = {
         RecommendationId = {
             type = "string",
@@ -812,6 +857,7 @@ M.RecommendationFeedbackSummary = {
 
 M.ListRecommendationFeedbackOutput = {
     type = "structure",
+    id = "ListRecommendationFeedbackOutput",
     members = {
         RecommendationFeedbackSummaries = {
             type = "list",
@@ -825,6 +871,7 @@ M.ListRecommendationFeedbackOutput = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -864,6 +911,7 @@ M.RecommendationCategory = {
 
 M.RuleMetadata = {
     type = "structure",
+    id = "RuleMetadata",
     members = {
         RuleId = {
             type = "string",
@@ -894,6 +942,7 @@ M.Severity = {
 
 M.RecommendationSummary = {
     type = "structure",
+    id = "RecommendationSummary",
     members = {
         FilePath = {
             type = "string",
@@ -922,6 +971,7 @@ M.RecommendationSummary = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         RecommendationSummaries = {
             type = "list",
@@ -935,6 +985,7 @@ M.ListRecommendationsOutput = {
 
 M.ListRepositoryAssociationsInput = {
     type = "structure",
+    id = "ListRepositoryAssociationsInput",
     members = {
         ProviderTypes = {
             type = "list",
@@ -981,6 +1032,7 @@ M.ListRepositoryAssociationsInput = {
 
 M.RepositoryAssociationSummary = {
     type = "structure",
+    id = "RepositoryAssociationSummary",
     members = {
         AssociationArn = {
             type = "string",
@@ -1011,6 +1063,7 @@ M.RepositoryAssociationSummary = {
 
 M.ListRepositoryAssociationsOutput = {
     type = "structure",
+    id = "ListRepositoryAssociationsOutput",
     members = {
         RepositoryAssociationSummaries = {
             type = "list",
@@ -1024,6 +1077,7 @@ M.ListRepositoryAssociationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1037,6 +1091,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1048,6 +1103,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutRecommendationFeedbackInput = {
     type = "structure",
+    id = "PutRecommendationFeedbackInput",
     members = {
         CodeReviewArn = {
             type = "string",
@@ -1073,10 +1129,12 @@ M.PutRecommendationFeedbackInput = {
 
 M.PutRecommendationFeedbackOutput = {
     type = "structure",
+    id = "PutRecommendationFeedbackOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1098,10 +1156,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1123,6 +1183,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

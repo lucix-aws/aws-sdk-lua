@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AssociateFraudsterInput = {
     type = "structure",
+    id = "AssociateFraudsterInput",
     members = {
         DomainId = {
             type = "string",
@@ -36,6 +38,7 @@ M.AssociateFraudsterInput = {
 
 M.Fraudster = {
     type = "structure",
+    id = "Fraudster",
     members = {
         DomainId = {
             type = "string",
@@ -55,6 +58,7 @@ M.Fraudster = {
 
 M.AssociateFraudsterOutput = {
     type = "structure",
+    id = "AssociateFraudsterOutput",
     members = {
         Fraudster = M.Fraudster,
     },
@@ -75,6 +79,7 @@ M.ConflictType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -88,6 +93,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -108,6 +114,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -121,6 +128,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -131,6 +139,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -141,6 +150,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -151,6 +161,7 @@ M.ValidationException = {
 
 M.AuthenticationConfiguration = {
     type = "structure",
+    id = "AuthenticationConfiguration",
     members = {
         AcceptanceThreshold = {
             type = "integer",
@@ -173,6 +184,7 @@ M.AuthenticationDecision = {
 
 M.AuthenticationResult = {
     type = "structure",
+    id = "AuthenticationResult",
     members = {
         AuthenticationResultId = {
             type = "string",
@@ -201,6 +213,7 @@ M.AuthenticationResult = {
 
 M.ServerSideEncryptionConfiguration = {
     type = "structure",
+    id = "ServerSideEncryptionConfiguration",
     members = {
         KmsKeyId = {
             type = "string",
@@ -213,6 +226,7 @@ M.ServerSideEncryptionConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -231,6 +245,7 @@ M.Tag = {
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         Name = {
             type = "string",
@@ -271,6 +286,7 @@ M.ServerSideEncryptionUpdateStatus = {
 
 M.ServerSideEncryptionUpdateDetails = {
     type = "structure",
+    id = "ServerSideEncryptionUpdateDetails",
     members = {
         OldKmsKeyId = {
             type = "string",
@@ -286,6 +302,7 @@ M.ServerSideEncryptionUpdateDetails = {
 
 M.WatchlistDetails = {
     type = "structure",
+    id = "WatchlistDetails",
     members = {
         DefaultWatchlistId = {
             type = "string",
@@ -298,6 +315,7 @@ M.WatchlistDetails = {
 
 M.Domain = {
     type = "structure",
+    id = "Domain",
     members = {
         DomainId = {
             type = "string",
@@ -328,6 +346,7 @@ M.Domain = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         Domain = M.Domain,
     },
@@ -335,6 +354,7 @@ M.CreateDomainOutput = {
 
 M.CreateWatchlistInput = {
     type = "structure",
+    id = "CreateWatchlistInput",
     members = {
         DomainId = {
             type = "string",
@@ -362,6 +382,7 @@ M.CreateWatchlistInput = {
 
 M.Watchlist = {
     type = "structure",
+    id = "Watchlist",
     members = {
         DomainId = {
             type = "string",
@@ -392,6 +413,7 @@ M.Watchlist = {
 
 M.CreateWatchlistOutput = {
     type = "structure",
+    id = "CreateWatchlistOutput",
     members = {
         Watchlist = M.Watchlist,
     },
@@ -399,6 +421,7 @@ M.CreateWatchlistOutput = {
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         DomainId = {
             type = "string",
@@ -411,10 +434,12 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
 }
 
 M.DeleteFraudsterInput = {
     type = "structure",
+    id = "DeleteFraudsterInput",
     members = {
         DomainId = {
             type = "string",
@@ -433,10 +458,12 @@ M.DeleteFraudsterInput = {
 
 M.DeleteFraudsterOutput = {
     type = "structure",
+    id = "DeleteFraudsterOutput",
 }
 
 M.DeleteSpeakerInput = {
     type = "structure",
+    id = "DeleteSpeakerInput",
     members = {
         DomainId = {
             type = "string",
@@ -455,10 +482,12 @@ M.DeleteSpeakerInput = {
 
 M.DeleteSpeakerOutput = {
     type = "structure",
+    id = "DeleteSpeakerOutput",
 }
 
 M.DeleteWatchlistInput = {
     type = "structure",
+    id = "DeleteWatchlistInput",
     members = {
         DomainId = {
             type = "string",
@@ -477,10 +506,12 @@ M.DeleteWatchlistInput = {
 
 M.DeleteWatchlistOutput = {
     type = "structure",
+    id = "DeleteWatchlistOutput",
 }
 
 M.DescribeDomainInput = {
     type = "structure",
+    id = "DescribeDomainInput",
     members = {
         DomainId = {
             type = "string",
@@ -493,6 +524,7 @@ M.DescribeDomainInput = {
 
 M.DescribeDomainOutput = {
     type = "structure",
+    id = "DescribeDomainOutput",
     members = {
         Domain = M.Domain,
     },
@@ -500,6 +532,7 @@ M.DescribeDomainOutput = {
 
 M.DescribeFraudsterInput = {
     type = "structure",
+    id = "DescribeFraudsterInput",
     members = {
         DomainId = {
             type = "string",
@@ -518,6 +551,7 @@ M.DescribeFraudsterInput = {
 
 M.DescribeFraudsterOutput = {
     type = "structure",
+    id = "DescribeFraudsterOutput",
     members = {
         Fraudster = M.Fraudster,
     },
@@ -525,6 +559,7 @@ M.DescribeFraudsterOutput = {
 
 M.DescribeFraudsterRegistrationJobInput = {
     type = "structure",
+    id = "DescribeFraudsterRegistrationJobInput",
     members = {
         DomainId = {
             type = "string",
@@ -543,6 +578,7 @@ M.DescribeFraudsterRegistrationJobInput = {
 
 M.FailureDetails = {
     type = "structure",
+    id = "FailureDetails",
     members = {
         StatusCode = {
             type = "integer",
@@ -555,6 +591,7 @@ M.FailureDetails = {
 
 M.InputDataConfig = {
     type = "structure",
+    id = "InputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -567,6 +604,7 @@ M.InputDataConfig = {
 
 M.JobProgress = {
     type = "structure",
+    id = "JobProgress",
     members = {
         PercentComplete = {
             type = "integer",
@@ -584,6 +622,7 @@ M.FraudsterRegistrationJobStatus = {
 
 M.OutputDataConfig = {
     type = "structure",
+    id = "OutputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -604,6 +643,7 @@ M.DuplicateRegistrationAction = {
 
 M.RegistrationConfig = {
     type = "structure",
+    id = "RegistrationConfig",
     members = {
         DuplicateRegistrationAction = {
             type = "string",
@@ -620,6 +660,7 @@ M.RegistrationConfig = {
 
 M.FraudsterRegistrationJob = {
     type = "structure",
+    id = "FraudsterRegistrationJob",
     members = {
         JobName = {
             type = "string",
@@ -652,6 +693,7 @@ M.FraudsterRegistrationJob = {
 
 M.DescribeFraudsterRegistrationJobOutput = {
     type = "structure",
+    id = "DescribeFraudsterRegistrationJobOutput",
     members = {
         Job = M.FraudsterRegistrationJob,
     },
@@ -659,6 +701,7 @@ M.DescribeFraudsterRegistrationJobOutput = {
 
 M.DescribeSpeakerInput = {
     type = "structure",
+    id = "DescribeSpeakerInput",
     members = {
         DomainId = {
             type = "string",
@@ -684,6 +727,7 @@ M.SpeakerStatus = {
 
 M.Speaker = {
     type = "structure",
+    id = "Speaker",
     members = {
         DomainId = {
             type = "string",
@@ -711,6 +755,7 @@ M.Speaker = {
 
 M.DescribeSpeakerOutput = {
     type = "structure",
+    id = "DescribeSpeakerOutput",
     members = {
         Speaker = M.Speaker,
     },
@@ -718,6 +763,7 @@ M.DescribeSpeakerOutput = {
 
 M.DescribeSpeakerEnrollmentJobInput = {
     type = "structure",
+    id = "DescribeSpeakerEnrollmentJobInput",
     members = {
         DomainId = {
             type = "string",
@@ -746,6 +792,7 @@ M.FraudDetectionAction = {
 
 M.EnrollmentJobFraudDetectionConfig = {
     type = "structure",
+    id = "EnrollmentJobFraudDetectionConfig",
     members = {
         FraudDetectionAction = {
             type = "string",
@@ -762,6 +809,7 @@ M.EnrollmentJobFraudDetectionConfig = {
 
 M.EnrollmentConfig = {
     type = "structure",
+    id = "EnrollmentConfig",
     members = {
         ExistingEnrollmentAction = {
             type = "string",
@@ -780,6 +828,7 @@ M.SpeakerEnrollmentJobStatus = {
 
 M.SpeakerEnrollmentJob = {
     type = "structure",
+    id = "SpeakerEnrollmentJob",
     members = {
         JobName = {
             type = "string",
@@ -812,6 +861,7 @@ M.SpeakerEnrollmentJob = {
 
 M.DescribeSpeakerEnrollmentJobOutput = {
     type = "structure",
+    id = "DescribeSpeakerEnrollmentJobOutput",
     members = {
         Job = M.SpeakerEnrollmentJob,
     },
@@ -819,6 +869,7 @@ M.DescribeSpeakerEnrollmentJobOutput = {
 
 M.DescribeWatchlistInput = {
     type = "structure",
+    id = "DescribeWatchlistInput",
     members = {
         DomainId = {
             type = "string",
@@ -837,6 +888,7 @@ M.DescribeWatchlistInput = {
 
 M.DescribeWatchlistOutput = {
     type = "structure",
+    id = "DescribeWatchlistOutput",
     members = {
         Watchlist = M.Watchlist,
     },
@@ -844,6 +896,7 @@ M.DescribeWatchlistOutput = {
 
 M.DisassociateFraudsterInput = {
     type = "structure",
+    id = "DisassociateFraudsterInput",
     members = {
         DomainId = {
             type = "string",
@@ -868,6 +921,7 @@ M.DisassociateFraudsterInput = {
 
 M.DisassociateFraudsterOutput = {
     type = "structure",
+    id = "DisassociateFraudsterOutput",
     members = {
         Fraudster = M.Fraudster,
     },
@@ -875,6 +929,7 @@ M.DisassociateFraudsterOutput = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -887,6 +942,7 @@ M.ListDomainsInput = {
 
 M.DomainSummary = {
     type = "structure",
+    id = "DomainSummary",
     members = {
         DomainId = {
             type = "string",
@@ -917,6 +973,7 @@ M.DomainSummary = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         DomainSummaries = {
             type = "list",
@@ -930,6 +987,7 @@ M.ListDomainsOutput = {
 
 M.UpdateDomainInput = {
     type = "structure",
+    id = "UpdateDomainInput",
     members = {
         DomainId = {
             type = "string",
@@ -954,6 +1012,7 @@ M.UpdateDomainInput = {
 
 M.UpdateDomainOutput = {
     type = "structure",
+    id = "UpdateDomainOutput",
     members = {
         Domain = M.Domain,
     },
@@ -961,6 +1020,7 @@ M.UpdateDomainOutput = {
 
 M.EvaluateSessionInput = {
     type = "structure",
+    id = "EvaluateSessionInput",
     members = {
         DomainId = {
             type = "string",
@@ -979,6 +1039,7 @@ M.EvaluateSessionInput = {
 
 M.FraudDetectionConfiguration = {
     type = "structure",
+    id = "FraudDetectionConfiguration",
     members = {
         RiskThreshold = {
             type = "integer",
@@ -1002,6 +1063,7 @@ M.FraudDetectionReason = {
 
 M.KnownFraudsterRisk = {
     type = "structure",
+    id = "KnownFraudsterRisk",
     members = {
         RiskScore = {
             type = "integer",
@@ -1017,6 +1079,7 @@ M.KnownFraudsterRisk = {
 
 M.VoiceSpoofingRisk = {
     type = "structure",
+    id = "VoiceSpoofingRisk",
     members = {
         RiskScore = {
             type = "integer",
@@ -1029,6 +1092,7 @@ M.VoiceSpoofingRisk = {
 
 M.FraudRiskDetails = {
     type = "structure",
+    id = "FraudRiskDetails",
     members = {
         KnownFraudsterRisk = setmetatable({ traits = {
             required = true,
@@ -1041,6 +1105,7 @@ M.FraudRiskDetails = {
 
 M.FraudDetectionResult = {
     type = "structure",
+    id = "FraudDetectionResult",
     members = {
         FraudDetectionResultId = {
             type = "string",
@@ -1071,6 +1136,7 @@ M.StreamingStatus = {
 
 M.EvaluateSessionOutput = {
     type = "structure",
+    id = "EvaluateSessionOutput",
     members = {
         DomainId = {
             type = "string",
@@ -1091,6 +1157,7 @@ M.EvaluateSessionOutput = {
 
 M.FraudsterRegistrationJobSummary = {
     type = "structure",
+    id = "FraudsterRegistrationJobSummary",
     members = {
         JobName = {
             type = "string",
@@ -1117,6 +1184,7 @@ M.FraudsterRegistrationJobSummary = {
 
 M.FraudsterSummary = {
     type = "structure",
+    id = "FraudsterSummary",
     members = {
         DomainId = {
             type = "string",
@@ -1136,6 +1204,7 @@ M.FraudsterSummary = {
 
 M.ListFraudsterRegistrationJobsInput = {
     type = "structure",
+    id = "ListFraudsterRegistrationJobsInput",
     members = {
         DomainId = {
             type = "string",
@@ -1157,6 +1226,7 @@ M.ListFraudsterRegistrationJobsInput = {
 
 M.ListFraudsterRegistrationJobsOutput = {
     type = "structure",
+    id = "ListFraudsterRegistrationJobsOutput",
     members = {
         JobSummaries = {
             type = "list",
@@ -1170,6 +1240,7 @@ M.ListFraudsterRegistrationJobsOutput = {
 
 M.ListFraudstersInput = {
     type = "structure",
+    id = "ListFraudstersInput",
     members = {
         DomainId = {
             type = "string",
@@ -1191,6 +1262,7 @@ M.ListFraudstersInput = {
 
 M.ListFraudstersOutput = {
     type = "structure",
+    id = "ListFraudstersOutput",
     members = {
         FraudsterSummaries = {
             type = "list",
@@ -1204,6 +1276,7 @@ M.ListFraudstersOutput = {
 
 M.ListSpeakerEnrollmentJobsInput = {
     type = "structure",
+    id = "ListSpeakerEnrollmentJobsInput",
     members = {
         DomainId = {
             type = "string",
@@ -1225,6 +1298,7 @@ M.ListSpeakerEnrollmentJobsInput = {
 
 M.SpeakerEnrollmentJobSummary = {
     type = "structure",
+    id = "SpeakerEnrollmentJobSummary",
     members = {
         JobName = {
             type = "string",
@@ -1251,6 +1325,7 @@ M.SpeakerEnrollmentJobSummary = {
 
 M.ListSpeakerEnrollmentJobsOutput = {
     type = "structure",
+    id = "ListSpeakerEnrollmentJobsOutput",
     members = {
         JobSummaries = {
             type = "list",
@@ -1264,6 +1339,7 @@ M.ListSpeakerEnrollmentJobsOutput = {
 
 M.ListSpeakersInput = {
     type = "structure",
+    id = "ListSpeakersInput",
     members = {
         DomainId = {
             type = "string",
@@ -1282,6 +1358,7 @@ M.ListSpeakersInput = {
 
 M.SpeakerSummary = {
     type = "structure",
+    id = "SpeakerSummary",
     members = {
         DomainId = {
             type = "string",
@@ -1309,6 +1386,7 @@ M.SpeakerSummary = {
 
 M.ListSpeakersOutput = {
     type = "structure",
+    id = "ListSpeakersOutput",
     members = {
         SpeakerSummaries = {
             type = "list",
@@ -1322,6 +1400,7 @@ M.ListSpeakersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1334,6 +1413,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1344,6 +1424,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWatchlistsInput = {
     type = "structure",
+    id = "ListWatchlistsInput",
     members = {
         DomainId = {
             type = "string",
@@ -1362,6 +1443,7 @@ M.ListWatchlistsInput = {
 
 M.WatchlistSummary = {
     type = "structure",
+    id = "WatchlistSummary",
     members = {
         DomainId = {
             type = "string",
@@ -1392,6 +1474,7 @@ M.WatchlistSummary = {
 
 M.ListWatchlistsOutput = {
     type = "structure",
+    id = "ListWatchlistsOutput",
     members = {
         WatchlistSummaries = {
             type = "list",
@@ -1405,6 +1488,7 @@ M.ListWatchlistsOutput = {
 
 M.OptOutSpeakerInput = {
     type = "structure",
+    id = "OptOutSpeakerInput",
     members = {
         DomainId = {
             type = "string",
@@ -1423,6 +1507,7 @@ M.OptOutSpeakerInput = {
 
 M.OptOutSpeakerOutput = {
     type = "structure",
+    id = "OptOutSpeakerOutput",
     members = {
         Speaker = M.Speaker,
     },
@@ -1430,6 +1515,7 @@ M.OptOutSpeakerOutput = {
 
 M.StartFraudsterRegistrationJobInput = {
     type = "structure",
+    id = "StartFraudsterRegistrationJobInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1464,6 +1550,7 @@ M.StartFraudsterRegistrationJobInput = {
 
 M.StartFraudsterRegistrationJobOutput = {
     type = "structure",
+    id = "StartFraudsterRegistrationJobOutput",
     members = {
         Job = M.FraudsterRegistrationJob,
     },
@@ -1471,6 +1558,7 @@ M.StartFraudsterRegistrationJobOutput = {
 
 M.StartSpeakerEnrollmentJobInput = {
     type = "structure",
+    id = "StartSpeakerEnrollmentJobInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1505,6 +1593,7 @@ M.StartSpeakerEnrollmentJobInput = {
 
 M.StartSpeakerEnrollmentJobOutput = {
     type = "structure",
+    id = "StartSpeakerEnrollmentJobOutput",
     members = {
         Job = M.SpeakerEnrollmentJob,
     },
@@ -1512,6 +1601,7 @@ M.StartSpeakerEnrollmentJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1531,10 +1621,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1554,10 +1646,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateWatchlistInput = {
     type = "structure",
+    id = "UpdateWatchlistInput",
     members = {
         DomainId = {
             type = "string",
@@ -1582,6 +1676,7 @@ M.UpdateWatchlistInput = {
 
 M.UpdateWatchlistOutput = {
     type = "structure",
+    id = "UpdateWatchlistOutput",
     members = {
         Watchlist = M.Watchlist,
     },

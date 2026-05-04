@@ -13,6 +13,7 @@ M.ResponseHeadersPolicyAccessControlAllowMethodsValues = {
 
 M.AccessDenied = {
     type = "structure",
+    id = "AccessDenied",
     error = "client",
     members = {
         Message = {
@@ -23,6 +24,7 @@ M.AccessDenied = {
 
 M.KeyPairIds = {
     type = "structure",
+    id = "KeyPairIds",
     members = {
         Quantity = {
             type = "integer",
@@ -39,6 +41,7 @@ M.KeyPairIds = {
 
 M.KGKeyPairIds = {
     type = "structure",
+    id = "KGKeyPairIds",
     members = {
         KeyGroupId = {
             type = "string",
@@ -49,6 +52,7 @@ M.KGKeyPairIds = {
 
 M.ActiveTrustedKeyGroups = {
     type = "structure",
+    id = "ActiveTrustedKeyGroups",
     members = {
         Enabled = {
             type = "boolean",
@@ -71,6 +75,7 @@ M.ActiveTrustedKeyGroups = {
 
 M.Signer = {
     type = "structure",
+    id = "Signer",
     members = {
         AwsAccountNumber = {
             type = "string",
@@ -81,6 +86,7 @@ M.Signer = {
 
 M.ActiveTrustedSigners = {
     type = "structure",
+    id = "ActiveTrustedSigners",
     members = {
         Enabled = {
             type = "boolean",
@@ -103,6 +109,7 @@ M.ActiveTrustedSigners = {
 
 M.Aliases = {
     type = "structure",
+    id = "Aliases",
     members = {
         Quantity = {
             type = "integer",
@@ -125,6 +132,7 @@ M.ICPRecordalStatus = {
 
 M.AliasICPRecordal = {
     type = "structure",
+    id = "AliasICPRecordal",
     members = {
         CNAME = {
             type = "string",
@@ -147,6 +155,7 @@ M.Method = {
 
 M.CachedMethods = {
     type = "structure",
+    id = "CachedMethods",
     members = {
         Quantity = {
             type = "integer",
@@ -166,6 +175,7 @@ M.CachedMethods = {
 
 M.AllowedMethods = {
     type = "structure",
+    id = "AllowedMethods",
     members = {
         Quantity = {
             type = "integer",
@@ -207,6 +217,7 @@ M.IpamCidrStatus = {
 
 M.IpamCidrConfig = {
     type = "structure",
+    id = "IpamCidrConfig",
     members = {
         Cidr = {
             type = "string",
@@ -231,6 +242,7 @@ M.IpamCidrConfig = {
 
 M.IpamConfig = {
     type = "structure",
+    id = "IpamConfig",
     members = {
         Quantity = {
             type = "integer",
@@ -250,6 +262,7 @@ M.IpamConfig = {
 
 M.AnycastIpList = {
     type = "structure",
+    id = "AnycastIpList",
     members = {
         Id = {
             type = "string",
@@ -303,6 +316,7 @@ M.AnycastIpList = {
 
 M.AnycastIpListSummary = {
     type = "structure",
+    id = "AnycastIpListSummary",
     members = {
         Id = {
             type = "string",
@@ -352,6 +366,7 @@ M.AnycastIpListSummary = {
 
 M.AnycastIpListCollection = {
     type = "structure",
+    id = "AnycastIpListCollection",
     members = {
         Items = {
             type = "list",
@@ -389,6 +404,7 @@ M.AnycastIpListCollection = {
 
 M.AssociateAliasInput = {
     type = "structure",
+    id = "AssociateAliasInput",
     members = {
         TargetDistributionId = {
             type = "string",
@@ -409,10 +425,12 @@ M.AssociateAliasInput = {
 
 M.AssociateAliasOutput = {
     type = "structure",
+    id = "AssociateAliasOutput",
 }
 
 M.IllegalUpdate = {
     type = "structure",
+    id = "IllegalUpdate",
     error = "client",
     members = {
         Message = {
@@ -423,6 +441,7 @@ M.IllegalUpdate = {
 
 M.InvalidArgument = {
     type = "structure",
+    id = "InvalidArgument",
     error = "client",
     members = {
         Message = {
@@ -433,6 +452,7 @@ M.InvalidArgument = {
 
 M.NoSuchDistribution = {
     type = "structure",
+    id = "NoSuchDistribution",
     error = "client",
     members = {
         Message = {
@@ -443,6 +463,7 @@ M.NoSuchDistribution = {
 
 M.TooManyDistributionCNAMEs = {
     type = "structure",
+    id = "TooManyDistributionCNAMEs",
     error = "client",
     members = {
         Message = {
@@ -453,6 +474,7 @@ M.TooManyDistributionCNAMEs = {
 
 M.AssociateDistributionTenantWebACLInput = {
     type = "structure",
+    id = "AssociateDistributionTenantWebACLInput",
     members = {
         Id = {
             type = "string",
@@ -478,6 +500,7 @@ M.AssociateDistributionTenantWebACLInput = {
 
 M.AssociateDistributionTenantWebACLOutput = {
     type = "structure",
+    id = "AssociateDistributionTenantWebACLOutput",
     members = {
         Id = {
             type = "string",
@@ -496,6 +519,7 @@ M.AssociateDistributionTenantWebACLOutput = {
 
 M.EntityLimitExceeded = {
     type = "structure",
+    id = "EntityLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -506,6 +530,7 @@ M.EntityLimitExceeded = {
 
 M.EntityNotFound = {
     type = "structure",
+    id = "EntityNotFound",
     error = "client",
     members = {
         Message = {
@@ -516,6 +541,7 @@ M.EntityNotFound = {
 
 M.InvalidIfMatchVersion = {
     type = "structure",
+    id = "InvalidIfMatchVersion",
     error = "client",
     members = {
         Message = {
@@ -526,6 +552,7 @@ M.InvalidIfMatchVersion = {
 
 M.PreconditionFailed = {
     type = "structure",
+    id = "PreconditionFailed",
     error = "client",
     members = {
         Message = {
@@ -536,6 +563,7 @@ M.PreconditionFailed = {
 
 M.AssociateDistributionWebACLInput = {
     type = "structure",
+    id = "AssociateDistributionWebACLInput",
     members = {
         Id = {
             type = "string",
@@ -561,6 +589,7 @@ M.AssociateDistributionWebACLInput = {
 
 M.AssociateDistributionWebACLOutput = {
     type = "structure",
+    id = "AssociateDistributionWebACLOutput",
     members = {
         Id = {
             type = "string",
@@ -579,6 +608,7 @@ M.AssociateDistributionWebACLOutput = {
 
 M.BatchTooLarge = {
     type = "structure",
+    id = "BatchTooLarge",
     error = "client",
     members = {
         Message = {
@@ -589,6 +619,7 @@ M.BatchTooLarge = {
 
 M.CaCertificatesBundleS3Location = {
     type = "structure",
+    id = "CaCertificatesBundleS3Location",
     members = {
         Bucket = {
             type = "string",
@@ -616,6 +647,7 @@ M.CaCertificatesBundleS3Location = {
 
 M.CaCertificatesBundleSource = {
     type = "union",
+    id = "CaCertificatesBundleSource",
     members = {
         CaCertificatesBundleS3Location = M.CaCertificatesBundleS3Location,
     },
@@ -629,6 +661,7 @@ M.ItemSelection = {
 
 M.CookieNames = {
     type = "structure",
+    id = "CookieNames",
     members = {
         Quantity = {
             type = "integer",
@@ -645,6 +678,7 @@ M.CookieNames = {
 
 M.CookiePreference = {
     type = "structure",
+    id = "CookiePreference",
     members = {
         Forward = {
             type = "string",
@@ -658,6 +692,7 @@ M.CookiePreference = {
 
 M.Headers = {
     type = "structure",
+    id = "Headers",
     members = {
         Quantity = {
             type = "integer",
@@ -674,6 +709,7 @@ M.Headers = {
 
 M.QueryStringCacheKeys = {
     type = "structure",
+    id = "QueryStringCacheKeys",
     members = {
         Quantity = {
             type = "integer",
@@ -690,6 +726,7 @@ M.QueryStringCacheKeys = {
 
 M.ForwardedValues = {
     type = "structure",
+    id = "ForwardedValues",
     members = {
         QueryString = {
             type = "boolean",
@@ -714,6 +751,7 @@ M.EventType = {
 
 M.FunctionAssociation = {
     type = "structure",
+    id = "FunctionAssociation",
     members = {
         FunctionARN = {
             type = "string",
@@ -732,6 +770,7 @@ M.FunctionAssociation = {
 
 M.FunctionAssociations = {
     type = "structure",
+    id = "FunctionAssociations",
     members = {
         Quantity = {
             type = "integer",
@@ -748,6 +787,7 @@ M.FunctionAssociations = {
 
 M.GrpcConfig = {
     type = "structure",
+    id = "GrpcConfig",
     members = {
         Enabled = {
             type = "boolean",
@@ -760,6 +800,7 @@ M.GrpcConfig = {
 
 M.LambdaFunctionAssociation = {
     type = "structure",
+    id = "LambdaFunctionAssociation",
     members = {
         LambdaFunctionARN = {
             type = "string",
@@ -781,6 +822,7 @@ M.LambdaFunctionAssociation = {
 
 M.LambdaFunctionAssociations = {
     type = "structure",
+    id = "LambdaFunctionAssociations",
     members = {
         Quantity = {
             type = "integer",
@@ -797,6 +839,7 @@ M.LambdaFunctionAssociations = {
 
 M.TrustedKeyGroups = {
     type = "structure",
+    id = "TrustedKeyGroups",
     members = {
         Enabled = {
             type = "boolean",
@@ -819,6 +862,7 @@ M.TrustedKeyGroups = {
 
 M.TrustedSigners = {
     type = "structure",
+    id = "TrustedSigners",
     members = {
         Enabled = {
             type = "boolean",
@@ -847,6 +891,7 @@ M.ViewerProtocolPolicy = {
 
 M.CacheBehavior = {
     type = "structure",
+    id = "CacheBehavior",
     members = {
         PathPattern = {
             type = "string",
@@ -908,6 +953,7 @@ M.CacheBehavior = {
 
 M.CacheBehaviors = {
     type = "structure",
+    id = "CacheBehaviors",
     members = {
         Quantity = {
             type = "integer",
@@ -931,6 +977,7 @@ M.CachePolicyCookieBehavior = {
 
 M.CachePolicyCookiesConfig = {
     type = "structure",
+    id = "CachePolicyCookiesConfig",
     members = {
         CookieBehavior = {
             type = "string",
@@ -949,6 +996,7 @@ M.CachePolicyHeaderBehavior = {
 
 M.CachePolicyHeadersConfig = {
     type = "structure",
+    id = "CachePolicyHeadersConfig",
     members = {
         HeaderBehavior = {
             type = "string",
@@ -969,6 +1017,7 @@ M.CachePolicyQueryStringBehavior = {
 
 M.QueryStringNames = {
     type = "structure",
+    id = "QueryStringNames",
     members = {
         Quantity = {
             type = "integer",
@@ -985,6 +1034,7 @@ M.QueryStringNames = {
 
 M.CachePolicyQueryStringsConfig = {
     type = "structure",
+    id = "CachePolicyQueryStringsConfig",
     members = {
         QueryStringBehavior = {
             type = "string",
@@ -998,6 +1048,7 @@ M.CachePolicyQueryStringsConfig = {
 
 M.ParametersInCacheKeyAndForwardedToOrigin = {
     type = "structure",
+    id = "ParametersInCacheKeyAndForwardedToOrigin",
     members = {
         EnableAcceptEncodingGzip = {
             type = "boolean",
@@ -1022,6 +1073,7 @@ M.ParametersInCacheKeyAndForwardedToOrigin = {
 
 M.CachePolicyConfig = {
     type = "structure",
+    id = "CachePolicyConfig",
     members = {
         Comment = {
             type = "string",
@@ -1050,6 +1102,7 @@ M.CachePolicyConfig = {
 
 M.CachePolicy = {
     type = "structure",
+    id = "CachePolicy",
     members = {
         Id = {
             type = "string",
@@ -1071,6 +1124,7 @@ M.CachePolicy = {
 
 M.CachePolicyAlreadyExists = {
     type = "structure",
+    id = "CachePolicyAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -1081,6 +1135,7 @@ M.CachePolicyAlreadyExists = {
 
 M.CachePolicyInUse = {
     type = "structure",
+    id = "CachePolicyInUse",
     error = "client",
     members = {
         Message = {
@@ -1096,6 +1151,7 @@ M.CachePolicyType = {
 
 M.CachePolicySummary = {
     type = "structure",
+    id = "CachePolicySummary",
     members = {
         Type = {
             type = "string",
@@ -1111,6 +1167,7 @@ M.CachePolicySummary = {
 
 M.CachePolicyList = {
     type = "structure",
+    id = "CachePolicyList",
     members = {
         NextMarker = {
             type = "string",
@@ -1136,6 +1193,7 @@ M.CachePolicyList = {
 
 M.CacheTagConfig = {
     type = "structure",
+    id = "CacheTagConfig",
     members = {
         HeaderName = {
             type = "string",
@@ -1148,6 +1206,7 @@ M.CacheTagConfig = {
 
 M.CannotChangeImmutablePublicKeyFields = {
     type = "structure",
+    id = "CannotChangeImmutablePublicKeyFields",
     error = "client",
     members = {
         Message = {
@@ -1158,6 +1217,7 @@ M.CannotChangeImmutablePublicKeyFields = {
 
 M.CannotDeleteEntityWhileInUse = {
     type = "structure",
+    id = "CannotDeleteEntityWhileInUse",
     error = "client",
     members = {
         Message = {
@@ -1168,6 +1228,7 @@ M.CannotDeleteEntityWhileInUse = {
 
 M.CannotUpdateEntityWhileInUse = {
     type = "structure",
+    id = "CannotUpdateEntityWhileInUse",
     error = "client",
     members = {
         Message = {
@@ -1178,6 +1239,7 @@ M.CannotUpdateEntityWhileInUse = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         Arn = {
             type = "string",
@@ -1201,6 +1263,7 @@ M.CertificateTransparencyLoggingPreference = {
 
 M.CNAMEAlreadyExists = {
     type = "structure",
+    id = "CNAMEAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -1211,6 +1274,7 @@ M.CNAMEAlreadyExists = {
 
 M.CopyDistributionInput = {
     type = "structure",
+    id = "CopyDistributionInput",
     members = {
         PrimaryDistributionId = {
             type = "string",
@@ -1245,6 +1309,7 @@ M.CopyDistributionInput = {
 
 M.ConnectionFunctionAssociation = {
     type = "structure",
+    id = "ConnectionFunctionAssociation",
     members = {
         Id = {
             type = "string",
@@ -1262,6 +1327,7 @@ M.ConnectionMode = {
 
 M.CustomErrorResponse = {
     type = "structure",
+    id = "CustomErrorResponse",
     members = {
         ErrorCode = {
             type = "integer",
@@ -1283,6 +1349,7 @@ M.CustomErrorResponse = {
 
 M.CustomErrorResponses = {
     type = "structure",
+    id = "CustomErrorResponses",
     members = {
         Quantity = {
             type = "integer",
@@ -1299,6 +1366,7 @@ M.CustomErrorResponses = {
 
 M.DefaultCacheBehavior = {
     type = "structure",
+    id = "DefaultCacheBehavior",
     members = {
         TargetOriginId = {
             type = "string",
@@ -1361,6 +1429,7 @@ M.HttpVersion = {
 
 M.LoggingConfig = {
     type = "structure",
+    id = "LoggingConfig",
     members = {
         Enabled = {
             type = "boolean",
@@ -1391,6 +1460,7 @@ M.LoggingConfig = {
 
 M.StatusCodes = {
     type = "structure",
+    id = "StatusCodes",
     members = {
         Quantity = {
             type = "integer",
@@ -1410,6 +1480,7 @@ M.StatusCodes = {
 
 M.OriginGroupFailoverCriteria = {
     type = "structure",
+    id = "OriginGroupFailoverCriteria",
     members = {
         StatusCodes = setmetatable({ traits = {
             required = true,
@@ -1419,6 +1490,7 @@ M.OriginGroupFailoverCriteria = {
 
 M.OriginGroupMember = {
     type = "structure",
+    id = "OriginGroupMember",
     members = {
         OriginId = {
             type = "string",
@@ -1431,6 +1503,7 @@ M.OriginGroupMember = {
 
 M.OriginGroupMembers = {
     type = "structure",
+    id = "OriginGroupMembers",
     members = {
         Quantity = {
             type = "integer",
@@ -1455,6 +1528,7 @@ M.OriginGroupSelectionCriteria = {
 
 M.OriginGroup = {
     type = "structure",
+    id = "OriginGroup",
     members = {
         Id = {
             type = "string",
@@ -1476,6 +1550,7 @@ M.OriginGroup = {
 
 M.OriginGroups = {
     type = "structure",
+    id = "OriginGroups",
     members = {
         Quantity = {
             type = "integer",
@@ -1492,6 +1567,7 @@ M.OriginGroups = {
 
 M.OriginCustomHeader = {
     type = "structure",
+    id = "OriginCustomHeader",
     members = {
         HeaderName = {
             type = "string",
@@ -1510,6 +1586,7 @@ M.OriginCustomHeader = {
 
 M.CustomHeaders = {
     type = "structure",
+    id = "CustomHeaders",
     members = {
         Quantity = {
             type = "integer",
@@ -1526,6 +1603,7 @@ M.CustomHeaders = {
 
 M.OriginMtlsConfig = {
     type = "structure",
+    id = "OriginMtlsConfig",
     members = {
         ClientCertificateArn = {
             type = "string",
@@ -1551,6 +1629,7 @@ M.SslProtocol = {
 
 M.OriginSslProtocols = {
     type = "structure",
+    id = "OriginSslProtocols",
     members = {
         Quantity = {
             type = "integer",
@@ -1570,6 +1649,7 @@ M.OriginSslProtocols = {
 
 M.CustomOriginConfig = {
     type = "structure",
+    id = "CustomOriginConfig",
     members = {
         HTTPPort = {
             type = "integer",
@@ -1605,6 +1685,7 @@ M.CustomOriginConfig = {
 
 M.OriginShield = {
     type = "structure",
+    id = "OriginShield",
     members = {
         Enabled = {
             type = "boolean",
@@ -1620,6 +1701,7 @@ M.OriginShield = {
 
 M.S3OriginConfig = {
     type = "structure",
+    id = "S3OriginConfig",
     members = {
         OriginAccessIdentity = {
             type = "string",
@@ -1636,6 +1718,7 @@ M.S3OriginConfig = {
 
 M.VpcOriginConfig = {
     type = "structure",
+    id = "VpcOriginConfig",
     members = {
         VpcOriginId = {
             type = "string",
@@ -1657,6 +1740,7 @@ M.VpcOriginConfig = {
 
 M.Origin = {
     type = "structure",
+    id = "Origin",
     members = {
         Id = {
             type = "string",
@@ -1695,6 +1779,7 @@ M.Origin = {
 
 M.Origins = {
     type = "structure",
+    id = "Origins",
     members = {
         Quantity = {
             type = "integer",
@@ -1727,6 +1812,7 @@ M.GeoRestrictionType = {
 
 M.GeoRestriction = {
     type = "structure",
+    id = "GeoRestriction",
     members = {
         RestrictionType = {
             type = "string",
@@ -1749,6 +1835,7 @@ M.GeoRestriction = {
 
 M.Restrictions = {
     type = "structure",
+    id = "Restrictions",
     members = {
         GeoRestriction = setmetatable({ traits = {
             required = true,
@@ -1758,6 +1845,7 @@ M.Restrictions = {
 
 M.StringSchemaConfig = {
     type = "structure",
+    id = "StringSchemaConfig",
     members = {
         Comment = {
             type = "string",
@@ -1776,6 +1864,7 @@ M.StringSchemaConfig = {
 
 M.ParameterDefinitionSchema = {
     type = "structure",
+    id = "ParameterDefinitionSchema",
     members = {
         StringSchema = M.StringSchemaConfig,
     },
@@ -1783,6 +1872,7 @@ M.ParameterDefinitionSchema = {
 
 M.ParameterDefinition = {
     type = "structure",
+    id = "ParameterDefinition",
     members = {
         Name = {
             type = "string",
@@ -1798,6 +1888,7 @@ M.ParameterDefinition = {
 
 M.TenantConfig = {
     type = "structure",
+    id = "TenantConfig",
     members = {
         ParameterDefinitions = {
             type = "list",
@@ -1826,6 +1917,7 @@ M.SSLSupportMethod = {
 
 M.ViewerCertificate = {
     type = "structure",
+    id = "ViewerCertificate",
     members = {
         CloudFrontDefaultCertificate = {
             type = "boolean",
@@ -1858,6 +1950,7 @@ M.ViewerMtlsMode = {
 
 M.TrustStoreConfig = {
     type = "structure",
+    id = "TrustStoreConfig",
     members = {
         TrustStoreId = {
             type = "string",
@@ -1876,6 +1969,7 @@ M.TrustStoreConfig = {
 
 M.ViewerMtlsConfig = {
     type = "structure",
+    id = "ViewerMtlsConfig",
     members = {
         Mode = {
             type = "string",
@@ -1889,6 +1983,7 @@ M.ViewerMtlsConfig = {
 
 M.DistributionConfig = {
     type = "structure",
+    id = "DistributionConfig",
     members = {
         CallerReference = {
             type = "string",
@@ -1957,6 +2052,7 @@ M.DistributionConfig = {
 
 M.Distribution = {
     type = "structure",
+    id = "Distribution",
     members = {
         Id = {
             type = "string",
@@ -2008,6 +2104,7 @@ M.Distribution = {
 
 M.CopyDistributionOutput = {
     type = "structure",
+    id = "CopyDistributionOutput",
     members = {
         Distribution = setmetatable({ traits = {
             http_payload = true,
@@ -2029,6 +2126,7 @@ M.CopyDistributionOutput = {
 
 M.DistributionAlreadyExists = {
     type = "structure",
+    id = "DistributionAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -2039,6 +2137,7 @@ M.DistributionAlreadyExists = {
 
 M.IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior = {
     type = "structure",
+    id = "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior",
     error = "client",
     members = {
         Message = {
@@ -2049,6 +2148,7 @@ M.IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior = {
 
 M.InconsistentQuantities = {
     type = "structure",
+    id = "InconsistentQuantities",
     error = "client",
     members = {
         Message = {
@@ -2059,6 +2159,7 @@ M.InconsistentQuantities = {
 
 M.InvalidDefaultRootObject = {
     type = "structure",
+    id = "InvalidDefaultRootObject",
     error = "client",
     members = {
         Message = {
@@ -2069,6 +2170,7 @@ M.InvalidDefaultRootObject = {
 
 M.InvalidErrorCode = {
     type = "structure",
+    id = "InvalidErrorCode",
     error = "client",
     members = {
         Message = {
@@ -2079,6 +2181,7 @@ M.InvalidErrorCode = {
 
 M.InvalidForwardCookies = {
     type = "structure",
+    id = "InvalidForwardCookies",
     error = "client",
     members = {
         Message = {
@@ -2089,6 +2192,7 @@ M.InvalidForwardCookies = {
 
 M.InvalidFunctionAssociation = {
     type = "structure",
+    id = "InvalidFunctionAssociation",
     error = "client",
     members = {
         Message = {
@@ -2099,6 +2203,7 @@ M.InvalidFunctionAssociation = {
 
 M.InvalidGeoRestrictionParameter = {
     type = "structure",
+    id = "InvalidGeoRestrictionParameter",
     error = "client",
     members = {
         Message = {
@@ -2109,6 +2214,7 @@ M.InvalidGeoRestrictionParameter = {
 
 M.InvalidHeadersForS3Origin = {
     type = "structure",
+    id = "InvalidHeadersForS3Origin",
     error = "client",
     members = {
         Message = {
@@ -2119,6 +2225,7 @@ M.InvalidHeadersForS3Origin = {
 
 M.InvalidLambdaFunctionAssociation = {
     type = "structure",
+    id = "InvalidLambdaFunctionAssociation",
     error = "client",
     members = {
         Message = {
@@ -2129,6 +2236,7 @@ M.InvalidLambdaFunctionAssociation = {
 
 M.InvalidLocationCode = {
     type = "structure",
+    id = "InvalidLocationCode",
     error = "client",
     members = {
         Message = {
@@ -2139,6 +2247,7 @@ M.InvalidLocationCode = {
 
 M.InvalidMinimumProtocolVersion = {
     type = "structure",
+    id = "InvalidMinimumProtocolVersion",
     error = "client",
     members = {
         Message = {
@@ -2149,6 +2258,7 @@ M.InvalidMinimumProtocolVersion = {
 
 M.InvalidOrigin = {
     type = "structure",
+    id = "InvalidOrigin",
     error = "client",
     members = {
         Message = {
@@ -2159,6 +2269,7 @@ M.InvalidOrigin = {
 
 M.InvalidOriginAccessControl = {
     type = "structure",
+    id = "InvalidOriginAccessControl",
     error = "client",
     members = {
         Message = {
@@ -2169,6 +2280,7 @@ M.InvalidOriginAccessControl = {
 
 M.InvalidOriginAccessIdentity = {
     type = "structure",
+    id = "InvalidOriginAccessIdentity",
     error = "client",
     members = {
         Message = {
@@ -2179,6 +2291,7 @@ M.InvalidOriginAccessIdentity = {
 
 M.InvalidOriginKeepaliveTimeout = {
     type = "structure",
+    id = "InvalidOriginKeepaliveTimeout",
     error = "client",
     members = {
         Message = {
@@ -2189,6 +2302,7 @@ M.InvalidOriginKeepaliveTimeout = {
 
 M.InvalidOriginReadTimeout = {
     type = "structure",
+    id = "InvalidOriginReadTimeout",
     error = "client",
     members = {
         Message = {
@@ -2199,6 +2313,7 @@ M.InvalidOriginReadTimeout = {
 
 M.InvalidProtocolSettings = {
     type = "structure",
+    id = "InvalidProtocolSettings",
     error = "client",
     members = {
         Message = {
@@ -2209,6 +2324,7 @@ M.InvalidProtocolSettings = {
 
 M.InvalidQueryStringParameters = {
     type = "structure",
+    id = "InvalidQueryStringParameters",
     error = "client",
     members = {
         Message = {
@@ -2219,6 +2335,7 @@ M.InvalidQueryStringParameters = {
 
 M.InvalidRelativePath = {
     type = "structure",
+    id = "InvalidRelativePath",
     error = "client",
     members = {
         Message = {
@@ -2229,6 +2346,7 @@ M.InvalidRelativePath = {
 
 M.InvalidRequiredProtocol = {
     type = "structure",
+    id = "InvalidRequiredProtocol",
     error = "client",
     members = {
         Message = {
@@ -2239,6 +2357,7 @@ M.InvalidRequiredProtocol = {
 
 M.InvalidResponseCode = {
     type = "structure",
+    id = "InvalidResponseCode",
     error = "client",
     members = {
         Message = {
@@ -2249,6 +2368,7 @@ M.InvalidResponseCode = {
 
 M.InvalidTTLOrder = {
     type = "structure",
+    id = "InvalidTTLOrder",
     error = "client",
     members = {
         Message = {
@@ -2259,6 +2379,7 @@ M.InvalidTTLOrder = {
 
 M.InvalidViewerCertificate = {
     type = "structure",
+    id = "InvalidViewerCertificate",
     error = "client",
     members = {
         Message = {
@@ -2269,6 +2390,7 @@ M.InvalidViewerCertificate = {
 
 M.InvalidWebACLId = {
     type = "structure",
+    id = "InvalidWebACLId",
     error = "client",
     members = {
         Message = {
@@ -2279,6 +2401,7 @@ M.InvalidWebACLId = {
 
 M.MissingBody = {
     type = "structure",
+    id = "MissingBody",
     error = "client",
     members = {
         Message = {
@@ -2289,6 +2412,7 @@ M.MissingBody = {
 
 M.NoSuchCachePolicy = {
     type = "structure",
+    id = "NoSuchCachePolicy",
     error = "client",
     members = {
         Message = {
@@ -2299,6 +2423,7 @@ M.NoSuchCachePolicy = {
 
 M.NoSuchFieldLevelEncryptionConfig = {
     type = "structure",
+    id = "NoSuchFieldLevelEncryptionConfig",
     error = "client",
     members = {
         Message = {
@@ -2309,6 +2434,7 @@ M.NoSuchFieldLevelEncryptionConfig = {
 
 M.NoSuchOrigin = {
     type = "structure",
+    id = "NoSuchOrigin",
     error = "client",
     members = {
         Message = {
@@ -2319,6 +2445,7 @@ M.NoSuchOrigin = {
 
 M.NoSuchOriginRequestPolicy = {
     type = "structure",
+    id = "NoSuchOriginRequestPolicy",
     error = "client",
     members = {
         Message = {
@@ -2329,6 +2456,7 @@ M.NoSuchOriginRequestPolicy = {
 
 M.NoSuchRealtimeLogConfig = {
     type = "structure",
+    id = "NoSuchRealtimeLogConfig",
     error = "client",
     members = {
         Message = {
@@ -2339,6 +2467,7 @@ M.NoSuchRealtimeLogConfig = {
 
 M.NoSuchResponseHeadersPolicy = {
     type = "structure",
+    id = "NoSuchResponseHeadersPolicy",
     error = "client",
     members = {
         Message = {
@@ -2349,6 +2478,7 @@ M.NoSuchResponseHeadersPolicy = {
 
 M.RealtimeLogConfigOwnerMismatch = {
     type = "structure",
+    id = "RealtimeLogConfigOwnerMismatch",
     error = "client",
     members = {
         Message = {
@@ -2359,6 +2489,7 @@ M.RealtimeLogConfigOwnerMismatch = {
 
 M.TooManyCacheBehaviors = {
     type = "structure",
+    id = "TooManyCacheBehaviors",
     error = "client",
     members = {
         Message = {
@@ -2369,6 +2500,7 @@ M.TooManyCacheBehaviors = {
 
 M.TooManyCertificates = {
     type = "structure",
+    id = "TooManyCertificates",
     error = "client",
     members = {
         Message = {
@@ -2379,6 +2511,7 @@ M.TooManyCertificates = {
 
 M.TooManyCookieNamesInWhiteList = {
     type = "structure",
+    id = "TooManyCookieNamesInWhiteList",
     error = "client",
     members = {
         Message = {
@@ -2389,6 +2522,7 @@ M.TooManyCookieNamesInWhiteList = {
 
 M.TooManyDistributions = {
     type = "structure",
+    id = "TooManyDistributions",
     error = "client",
     members = {
         Message = {
@@ -2399,6 +2533,7 @@ M.TooManyDistributions = {
 
 M.TooManyDistributionsAssociatedToCachePolicy = {
     type = "structure",
+    id = "TooManyDistributionsAssociatedToCachePolicy",
     error = "client",
     members = {
         Message = {
@@ -2409,6 +2544,7 @@ M.TooManyDistributionsAssociatedToCachePolicy = {
 
 M.TooManyDistributionsAssociatedToFieldLevelEncryptionConfig = {
     type = "structure",
+    id = "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig",
     error = "client",
     members = {
         Message = {
@@ -2419,6 +2555,7 @@ M.TooManyDistributionsAssociatedToFieldLevelEncryptionConfig = {
 
 M.TooManyDistributionsAssociatedToKeyGroup = {
     type = "structure",
+    id = "TooManyDistributionsAssociatedToKeyGroup",
     error = "client",
     members = {
         Message = {
@@ -2429,6 +2566,7 @@ M.TooManyDistributionsAssociatedToKeyGroup = {
 
 M.TooManyDistributionsAssociatedToOriginAccessControl = {
     type = "structure",
+    id = "TooManyDistributionsAssociatedToOriginAccessControl",
     error = "client",
     members = {
         Message = {
@@ -2439,6 +2577,7 @@ M.TooManyDistributionsAssociatedToOriginAccessControl = {
 
 M.TooManyDistributionsAssociatedToOriginRequestPolicy = {
     type = "structure",
+    id = "TooManyDistributionsAssociatedToOriginRequestPolicy",
     error = "client",
     members = {
         Message = {
@@ -2449,6 +2588,7 @@ M.TooManyDistributionsAssociatedToOriginRequestPolicy = {
 
 M.TooManyDistributionsAssociatedToResponseHeadersPolicy = {
     type = "structure",
+    id = "TooManyDistributionsAssociatedToResponseHeadersPolicy",
     error = "client",
     members = {
         Message = {
@@ -2459,6 +2599,7 @@ M.TooManyDistributionsAssociatedToResponseHeadersPolicy = {
 
 M.TooManyDistributionsWithFunctionAssociations = {
     type = "structure",
+    id = "TooManyDistributionsWithFunctionAssociations",
     error = "client",
     members = {
         Message = {
@@ -2469,6 +2610,7 @@ M.TooManyDistributionsWithFunctionAssociations = {
 
 M.TooManyDistributionsWithLambdaAssociations = {
     type = "structure",
+    id = "TooManyDistributionsWithLambdaAssociations",
     error = "client",
     members = {
         Message = {
@@ -2479,6 +2621,7 @@ M.TooManyDistributionsWithLambdaAssociations = {
 
 M.TooManyDistributionsWithSingleFunctionARN = {
     type = "structure",
+    id = "TooManyDistributionsWithSingleFunctionARN",
     error = "client",
     members = {
         Message = {
@@ -2489,6 +2632,7 @@ M.TooManyDistributionsWithSingleFunctionARN = {
 
 M.TooManyFunctionAssociations = {
     type = "structure",
+    id = "TooManyFunctionAssociations",
     error = "client",
     members = {
         Message = {
@@ -2499,6 +2643,7 @@ M.TooManyFunctionAssociations = {
 
 M.TooManyHeadersInForwardedValues = {
     type = "structure",
+    id = "TooManyHeadersInForwardedValues",
     error = "client",
     members = {
         Message = {
@@ -2509,6 +2654,7 @@ M.TooManyHeadersInForwardedValues = {
 
 M.TooManyKeyGroupsAssociatedToDistribution = {
     type = "structure",
+    id = "TooManyKeyGroupsAssociatedToDistribution",
     error = "client",
     members = {
         Message = {
@@ -2519,6 +2665,7 @@ M.TooManyKeyGroupsAssociatedToDistribution = {
 
 M.TooManyLambdaFunctionAssociations = {
     type = "structure",
+    id = "TooManyLambdaFunctionAssociations",
     error = "client",
     members = {
         Message = {
@@ -2529,6 +2676,7 @@ M.TooManyLambdaFunctionAssociations = {
 
 M.TooManyOriginCustomHeaders = {
     type = "structure",
+    id = "TooManyOriginCustomHeaders",
     error = "client",
     members = {
         Message = {
@@ -2539,6 +2687,7 @@ M.TooManyOriginCustomHeaders = {
 
 M.TooManyOriginGroupsPerDistribution = {
     type = "structure",
+    id = "TooManyOriginGroupsPerDistribution",
     error = "client",
     members = {
         Message = {
@@ -2549,6 +2698,7 @@ M.TooManyOriginGroupsPerDistribution = {
 
 M.TooManyOrigins = {
     type = "structure",
+    id = "TooManyOrigins",
     error = "client",
     members = {
         Message = {
@@ -2559,6 +2709,7 @@ M.TooManyOrigins = {
 
 M.TooManyQueryStringParameters = {
     type = "structure",
+    id = "TooManyQueryStringParameters",
     error = "client",
     members = {
         Message = {
@@ -2569,6 +2720,7 @@ M.TooManyQueryStringParameters = {
 
 M.TooManyTrustedSigners = {
     type = "structure",
+    id = "TooManyTrustedSigners",
     error = "client",
     members = {
         Message = {
@@ -2579,6 +2731,7 @@ M.TooManyTrustedSigners = {
 
 M.TrustedKeyGroupDoesNotExist = {
     type = "structure",
+    id = "TrustedKeyGroupDoesNotExist",
     error = "client",
     members = {
         Message = {
@@ -2589,6 +2742,7 @@ M.TrustedKeyGroupDoesNotExist = {
 
 M.TrustedSignerDoesNotExist = {
     type = "structure",
+    id = "TrustedSignerDoesNotExist",
     error = "client",
     members = {
         Message = {
@@ -2599,6 +2753,7 @@ M.TrustedSignerDoesNotExist = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -2614,6 +2769,7 @@ M.Tag = {
 
 M.Tags = {
     type = "structure",
+    id = "Tags",
     members = {
         Items = {
             type = "list",
@@ -2624,6 +2780,7 @@ M.Tags = {
 
 M.CreateAnycastIpListInput = {
     type = "structure",
+    id = "CreateAnycastIpListInput",
     members = {
         Name = {
             type = "string",
@@ -2650,6 +2807,7 @@ M.CreateAnycastIpListInput = {
 
 M.CreateAnycastIpListOutput = {
     type = "structure",
+    id = "CreateAnycastIpListOutput",
     members = {
         AnycastIpList = setmetatable({ traits = {
             http_payload = true,
@@ -2665,6 +2823,7 @@ M.CreateAnycastIpListOutput = {
 
 M.EntityAlreadyExists = {
     type = "structure",
+    id = "EntityAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -2675,6 +2834,7 @@ M.EntityAlreadyExists = {
 
 M.InvalidTagging = {
     type = "structure",
+    id = "InvalidTagging",
     error = "client",
     members = {
         Message = {
@@ -2685,6 +2845,7 @@ M.InvalidTagging = {
 
 M.UnsupportedOperation = {
     type = "structure",
+    id = "UnsupportedOperation",
     error = "client",
     members = {
         Message = {
@@ -2695,6 +2856,7 @@ M.UnsupportedOperation = {
 
 M.CreateCachePolicyInput = {
     type = "structure",
+    id = "CreateCachePolicyInput",
     members = {
         CachePolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -2706,6 +2868,7 @@ M.CreateCachePolicyInput = {
 
 M.CreateCachePolicyOutput = {
     type = "structure",
+    id = "CreateCachePolicyOutput",
     members = {
         CachePolicy = setmetatable({ traits = {
             http_payload = true,
@@ -2727,6 +2890,7 @@ M.CreateCachePolicyOutput = {
 
 M.TooManyCachePolicies = {
     type = "structure",
+    id = "TooManyCachePolicies",
     error = "client",
     members = {
         Message = {
@@ -2737,6 +2901,7 @@ M.TooManyCachePolicies = {
 
 M.TooManyCookiesInCachePolicy = {
     type = "structure",
+    id = "TooManyCookiesInCachePolicy",
     error = "client",
     members = {
         Message = {
@@ -2747,6 +2912,7 @@ M.TooManyCookiesInCachePolicy = {
 
 M.TooManyHeadersInCachePolicy = {
     type = "structure",
+    id = "TooManyHeadersInCachePolicy",
     error = "client",
     members = {
         Message = {
@@ -2757,6 +2923,7 @@ M.TooManyHeadersInCachePolicy = {
 
 M.TooManyQueryStringsInCachePolicy = {
     type = "structure",
+    id = "TooManyQueryStringsInCachePolicy",
     error = "client",
     members = {
         Message = {
@@ -2767,6 +2934,7 @@ M.TooManyQueryStringsInCachePolicy = {
 
 M.CloudFrontOriginAccessIdentityAlreadyExists = {
     type = "structure",
+    id = "CloudFrontOriginAccessIdentityAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -2777,6 +2945,7 @@ M.CloudFrontOriginAccessIdentityAlreadyExists = {
 
 M.CloudFrontOriginAccessIdentityConfig = {
     type = "structure",
+    id = "CloudFrontOriginAccessIdentityConfig",
     members = {
         CallerReference = {
             type = "string",
@@ -2795,6 +2964,7 @@ M.CloudFrontOriginAccessIdentityConfig = {
 
 M.CreateCloudFrontOriginAccessIdentityInput = {
     type = "structure",
+    id = "CreateCloudFrontOriginAccessIdentityInput",
     members = {
         CloudFrontOriginAccessIdentityConfig = setmetatable({ traits = {
             http_payload = true,
@@ -2806,6 +2976,7 @@ M.CreateCloudFrontOriginAccessIdentityInput = {
 
 M.CloudFrontOriginAccessIdentity = {
     type = "structure",
+    id = "CloudFrontOriginAccessIdentity",
     members = {
         Id = {
             type = "string",
@@ -2825,6 +2996,7 @@ M.CloudFrontOriginAccessIdentity = {
 
 M.CreateCloudFrontOriginAccessIdentityOutput = {
     type = "structure",
+    id = "CreateCloudFrontOriginAccessIdentityOutput",
     members = {
         CloudFrontOriginAccessIdentity = setmetatable({ traits = {
             http_payload = true,
@@ -2846,6 +3018,7 @@ M.CreateCloudFrontOriginAccessIdentityOutput = {
 
 M.TooManyCloudFrontOriginAccessIdentities = {
     type = "structure",
+    id = "TooManyCloudFrontOriginAccessIdentities",
     error = "client",
     members = {
         Message = {
@@ -2856,6 +3029,7 @@ M.TooManyCloudFrontOriginAccessIdentities = {
 
 M.KeyValueStoreAssociation = {
     type = "structure",
+    id = "KeyValueStoreAssociation",
     members = {
         KeyValueStoreARN = {
             type = "string",
@@ -2868,6 +3042,7 @@ M.KeyValueStoreAssociation = {
 
 M.KeyValueStoreAssociations = {
     type = "structure",
+    id = "KeyValueStoreAssociations",
     members = {
         Quantity = {
             type = "integer",
@@ -2889,6 +3064,7 @@ M.FunctionRuntime = {
 
 M.FunctionConfig = {
     type = "structure",
+    id = "FunctionConfig",
     members = {
         Comment = {
             type = "string",
@@ -2908,6 +3084,7 @@ M.FunctionConfig = {
 
 M.CreateConnectionFunctionInput = {
     type = "structure",
+    id = "CreateConnectionFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -2935,6 +3112,7 @@ M.FunctionStage = {
 
 M.ConnectionFunctionSummary = {
     type = "structure",
+    id = "ConnectionFunctionSummary",
     members = {
         Name = {
             type = "string",
@@ -2986,6 +3164,7 @@ M.ConnectionFunctionSummary = {
 
 M.CreateConnectionFunctionOutput = {
     type = "structure",
+    id = "CreateConnectionFunctionOutput",
     members = {
         ConnectionFunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -3007,6 +3186,7 @@ M.CreateConnectionFunctionOutput = {
 
 M.EntitySizeLimitExceeded = {
     type = "structure",
+    id = "EntitySizeLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -3017,6 +3197,7 @@ M.EntitySizeLimitExceeded = {
 
 M.CreateConnectionGroupInput = {
     type = "structure",
+    id = "CreateConnectionGroupInput",
     members = {
         Name = {
             type = "string",
@@ -3039,6 +3220,7 @@ M.CreateConnectionGroupInput = {
 
 M.ConnectionGroup = {
     type = "structure",
+    id = "ConnectionGroup",
     members = {
         Id = {
             type = "string",
@@ -3079,6 +3261,7 @@ M.ConnectionGroup = {
 
 M.CreateConnectionGroupOutput = {
     type = "structure",
+    id = "CreateConnectionGroupOutput",
     members = {
         ConnectionGroup = setmetatable({ traits = {
             http_payload = true,
@@ -3094,6 +3277,7 @@ M.CreateConnectionGroupOutput = {
 
 M.ContinuousDeploymentPolicyAlreadyExists = {
     type = "structure",
+    id = "ContinuousDeploymentPolicyAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -3104,6 +3288,7 @@ M.ContinuousDeploymentPolicyAlreadyExists = {
 
 M.StagingDistributionDnsNames = {
     type = "structure",
+    id = "StagingDistributionDnsNames",
     members = {
         Quantity = {
             type = "integer",
@@ -3120,6 +3305,7 @@ M.StagingDistributionDnsNames = {
 
 M.ContinuousDeploymentSingleHeaderConfig = {
     type = "structure",
+    id = "ContinuousDeploymentSingleHeaderConfig",
     members = {
         Header = {
             type = "string",
@@ -3138,6 +3324,7 @@ M.ContinuousDeploymentSingleHeaderConfig = {
 
 M.SessionStickinessConfig = {
     type = "structure",
+    id = "SessionStickinessConfig",
     members = {
         IdleTTL = {
             type = "integer",
@@ -3156,6 +3343,7 @@ M.SessionStickinessConfig = {
 
 M.ContinuousDeploymentSingleWeightConfig = {
     type = "structure",
+    id = "ContinuousDeploymentSingleWeightConfig",
     members = {
         Weight = {
             type = "float",
@@ -3174,6 +3362,7 @@ M.ContinuousDeploymentPolicyType = {
 
 M.TrafficConfig = {
     type = "structure",
+    id = "TrafficConfig",
     members = {
         SingleWeightConfig = M.ContinuousDeploymentSingleWeightConfig,
         SingleHeaderConfig = M.ContinuousDeploymentSingleHeaderConfig,
@@ -3188,6 +3377,7 @@ M.TrafficConfig = {
 
 M.ContinuousDeploymentPolicyConfig = {
     type = "structure",
+    id = "ContinuousDeploymentPolicyConfig",
     members = {
         StagingDistributionDnsNames = setmetatable({ traits = {
             required = true,
@@ -3204,6 +3394,7 @@ M.ContinuousDeploymentPolicyConfig = {
 
 M.CreateContinuousDeploymentPolicyInput = {
     type = "structure",
+    id = "CreateContinuousDeploymentPolicyInput",
     members = {
         ContinuousDeploymentPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -3215,6 +3406,7 @@ M.CreateContinuousDeploymentPolicyInput = {
 
 M.ContinuousDeploymentPolicy = {
     type = "structure",
+    id = "ContinuousDeploymentPolicy",
     members = {
         Id = {
             type = "string",
@@ -3236,6 +3428,7 @@ M.ContinuousDeploymentPolicy = {
 
 M.CreateContinuousDeploymentPolicyOutput = {
     type = "structure",
+    id = "CreateContinuousDeploymentPolicyOutput",
     members = {
         ContinuousDeploymentPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -3257,6 +3450,7 @@ M.CreateContinuousDeploymentPolicyOutput = {
 
 M.StagingDistributionInUse = {
     type = "structure",
+    id = "StagingDistributionInUse",
     error = "client",
     members = {
         Message = {
@@ -3267,6 +3461,7 @@ M.StagingDistributionInUse = {
 
 M.TooManyContinuousDeploymentPolicies = {
     type = "structure",
+    id = "TooManyContinuousDeploymentPolicies",
     error = "client",
     members = {
         Message = {
@@ -3277,6 +3472,7 @@ M.TooManyContinuousDeploymentPolicies = {
 
 M.ContinuousDeploymentPolicyInUse = {
     type = "structure",
+    id = "ContinuousDeploymentPolicyInUse",
     error = "client",
     members = {
         Message = {
@@ -3287,6 +3483,7 @@ M.ContinuousDeploymentPolicyInUse = {
 
 M.CreateDistributionInput = {
     type = "structure",
+    id = "CreateDistributionInput",
     members = {
         DistributionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -3298,6 +3495,7 @@ M.CreateDistributionInput = {
 
 M.CreateDistributionOutput = {
     type = "structure",
+    id = "CreateDistributionOutput",
     members = {
         Distribution = setmetatable({ traits = {
             http_payload = true,
@@ -3319,6 +3517,7 @@ M.CreateDistributionOutput = {
 
 M.IllegalOriginAccessConfiguration = {
     type = "structure",
+    id = "IllegalOriginAccessConfiguration",
     error = "client",
     members = {
         Message = {
@@ -3329,6 +3528,7 @@ M.IllegalOriginAccessConfiguration = {
 
 M.InvalidDomainNameForOriginAccessControl = {
     type = "structure",
+    id = "InvalidDomainNameForOriginAccessControl",
     error = "client",
     members = {
         Message = {
@@ -3339,6 +3539,7 @@ M.InvalidDomainNameForOriginAccessControl = {
 
 M.NoSuchContinuousDeploymentPolicy = {
     type = "structure",
+    id = "NoSuchContinuousDeploymentPolicy",
     error = "client",
     members = {
         Message = {
@@ -3349,6 +3550,7 @@ M.NoSuchContinuousDeploymentPolicy = {
 
 M.GeoRestrictionCustomization = {
     type = "structure",
+    id = "GeoRestrictionCustomization",
     members = {
         RestrictionType = {
             type = "string",
@@ -3370,6 +3572,7 @@ M.CustomizationActionType = {
 
 M.WebAclCustomization = {
     type = "structure",
+    id = "WebAclCustomization",
     members = {
         Action = {
             type = "string",
@@ -3385,6 +3588,7 @@ M.WebAclCustomization = {
 
 M.Customizations = {
     type = "structure",
+    id = "Customizations",
     members = {
         WebAcl = M.WebAclCustomization,
         Certificate = M.Certificate,
@@ -3394,6 +3598,7 @@ M.Customizations = {
 
 M.DomainItem = {
     type = "structure",
+    id = "DomainItem",
     members = {
         Domain = {
             type = "string",
@@ -3411,6 +3616,7 @@ M.ValidationTokenHost = {
 
 M.ManagedCertificateRequest = {
     type = "structure",
+    id = "ManagedCertificateRequest",
     members = {
         ValidationTokenHost = {
             type = "string",
@@ -3429,6 +3635,7 @@ M.ManagedCertificateRequest = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         Name = {
             type = "string",
@@ -3447,6 +3654,7 @@ M.Parameter = {
 
 M.CreateDistributionTenantInput = {
     type = "structure",
+    id = "CreateDistributionTenantInput",
     members = {
         DistributionId = {
             type = "string",
@@ -3490,6 +3698,7 @@ M.DomainStatus = {
 
 M.DomainResult = {
     type = "structure",
+    id = "DomainResult",
     members = {
         Domain = {
             type = "string",
@@ -3505,6 +3714,7 @@ M.DomainResult = {
 
 M.DistributionTenant = {
     type = "structure",
+    id = "DistributionTenant",
     members = {
         Id = {
             type = "string",
@@ -3548,6 +3758,7 @@ M.DistributionTenant = {
 
 M.CreateDistributionTenantOutput = {
     type = "structure",
+    id = "CreateDistributionTenantOutput",
     members = {
         DistributionTenant = setmetatable({ traits = {
             http_payload = true,
@@ -3563,6 +3774,7 @@ M.CreateDistributionTenantOutput = {
 
 M.InvalidAssociation = {
     type = "structure",
+    id = "InvalidAssociation",
     error = "client",
     members = {
         Message = {
@@ -3573,6 +3785,7 @@ M.InvalidAssociation = {
 
 M.DistributionConfigWithTags = {
     type = "structure",
+    id = "DistributionConfigWithTags",
     members = {
         DistributionConfig = setmetatable({ traits = {
             required = true,
@@ -3585,6 +3798,7 @@ M.DistributionConfigWithTags = {
 
 M.CreateDistributionWithTagsInput = {
     type = "structure",
+    id = "CreateDistributionWithTagsInput",
     members = {
         DistributionConfigWithTags = setmetatable({ traits = {
             http_payload = true,
@@ -3596,6 +3810,7 @@ M.CreateDistributionWithTagsInput = {
 
 M.CreateDistributionWithTagsOutput = {
     type = "structure",
+    id = "CreateDistributionWithTagsOutput",
     members = {
         Distribution = setmetatable({ traits = {
             http_payload = true,
@@ -3621,6 +3836,7 @@ M.Format = {
 
 M.ContentTypeProfile = {
     type = "structure",
+    id = "ContentTypeProfile",
     members = {
         Format = {
             type = "string",
@@ -3642,6 +3858,7 @@ M.ContentTypeProfile = {
 
 M.ContentTypeProfiles = {
     type = "structure",
+    id = "ContentTypeProfiles",
     members = {
         Quantity = {
             type = "integer",
@@ -3658,6 +3875,7 @@ M.ContentTypeProfiles = {
 
 M.ContentTypeProfileConfig = {
     type = "structure",
+    id = "ContentTypeProfileConfig",
     members = {
         ForwardWhenContentTypeIsUnknown = {
             type = "boolean",
@@ -3671,6 +3889,7 @@ M.ContentTypeProfileConfig = {
 
 M.QueryArgProfile = {
     type = "structure",
+    id = "QueryArgProfile",
     members = {
         QueryArg = {
             type = "string",
@@ -3689,6 +3908,7 @@ M.QueryArgProfile = {
 
 M.QueryArgProfiles = {
     type = "structure",
+    id = "QueryArgProfiles",
     members = {
         Quantity = {
             type = "integer",
@@ -3705,6 +3925,7 @@ M.QueryArgProfiles = {
 
 M.QueryArgProfileConfig = {
     type = "structure",
+    id = "QueryArgProfileConfig",
     members = {
         ForwardWhenQueryArgProfileIsUnknown = {
             type = "boolean",
@@ -3718,6 +3939,7 @@ M.QueryArgProfileConfig = {
 
 M.FieldLevelEncryptionConfig = {
     type = "structure",
+    id = "FieldLevelEncryptionConfig",
     members = {
         CallerReference = {
             type = "string",
@@ -3735,6 +3957,7 @@ M.FieldLevelEncryptionConfig = {
 
 M.CreateFieldLevelEncryptionConfigInput = {
     type = "structure",
+    id = "CreateFieldLevelEncryptionConfigInput",
     members = {
         FieldLevelEncryptionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -3746,6 +3969,7 @@ M.CreateFieldLevelEncryptionConfigInput = {
 
 M.FieldLevelEncryption = {
     type = "structure",
+    id = "FieldLevelEncryption",
     members = {
         Id = {
             type = "string",
@@ -3767,6 +3991,7 @@ M.FieldLevelEncryption = {
 
 M.CreateFieldLevelEncryptionConfigOutput = {
     type = "structure",
+    id = "CreateFieldLevelEncryptionConfigOutput",
     members = {
         FieldLevelEncryption = setmetatable({ traits = {
             http_payload = true,
@@ -3788,6 +4013,7 @@ M.CreateFieldLevelEncryptionConfigOutput = {
 
 M.FieldLevelEncryptionConfigAlreadyExists = {
     type = "structure",
+    id = "FieldLevelEncryptionConfigAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -3798,6 +4024,7 @@ M.FieldLevelEncryptionConfigAlreadyExists = {
 
 M.NoSuchFieldLevelEncryptionProfile = {
     type = "structure",
+    id = "NoSuchFieldLevelEncryptionProfile",
     error = "client",
     members = {
         Message = {
@@ -3808,6 +4035,7 @@ M.NoSuchFieldLevelEncryptionProfile = {
 
 M.QueryArgProfileEmpty = {
     type = "structure",
+    id = "QueryArgProfileEmpty",
     error = "client",
     members = {
         Message = {
@@ -3818,6 +4046,7 @@ M.QueryArgProfileEmpty = {
 
 M.TooManyFieldLevelEncryptionConfigs = {
     type = "structure",
+    id = "TooManyFieldLevelEncryptionConfigs",
     error = "client",
     members = {
         Message = {
@@ -3828,6 +4057,7 @@ M.TooManyFieldLevelEncryptionConfigs = {
 
 M.TooManyFieldLevelEncryptionContentTypeProfiles = {
     type = "structure",
+    id = "TooManyFieldLevelEncryptionContentTypeProfiles",
     error = "client",
     members = {
         Message = {
@@ -3838,6 +4068,7 @@ M.TooManyFieldLevelEncryptionContentTypeProfiles = {
 
 M.TooManyFieldLevelEncryptionQueryArgProfiles = {
     type = "structure",
+    id = "TooManyFieldLevelEncryptionQueryArgProfiles",
     error = "client",
     members = {
         Message = {
@@ -3848,6 +4079,7 @@ M.TooManyFieldLevelEncryptionQueryArgProfiles = {
 
 M.FieldPatterns = {
     type = "structure",
+    id = "FieldPatterns",
     members = {
         Quantity = {
             type = "integer",
@@ -3864,6 +4096,7 @@ M.FieldPatterns = {
 
 M.EncryptionEntity = {
     type = "structure",
+    id = "EncryptionEntity",
     members = {
         PublicKeyId = {
             type = "string",
@@ -3885,6 +4118,7 @@ M.EncryptionEntity = {
 
 M.EncryptionEntities = {
     type = "structure",
+    id = "EncryptionEntities",
     members = {
         Quantity = {
             type = "integer",
@@ -3901,6 +4135,7 @@ M.EncryptionEntities = {
 
 M.FieldLevelEncryptionProfileConfig = {
     type = "structure",
+    id = "FieldLevelEncryptionProfileConfig",
     members = {
         Name = {
             type = "string",
@@ -3925,6 +4160,7 @@ M.FieldLevelEncryptionProfileConfig = {
 
 M.CreateFieldLevelEncryptionProfileInput = {
     type = "structure",
+    id = "CreateFieldLevelEncryptionProfileInput",
     members = {
         FieldLevelEncryptionProfileConfig = setmetatable({ traits = {
             http_payload = true,
@@ -3936,6 +4172,7 @@ M.CreateFieldLevelEncryptionProfileInput = {
 
 M.FieldLevelEncryptionProfile = {
     type = "structure",
+    id = "FieldLevelEncryptionProfile",
     members = {
         Id = {
             type = "string",
@@ -3957,6 +4194,7 @@ M.FieldLevelEncryptionProfile = {
 
 M.CreateFieldLevelEncryptionProfileOutput = {
     type = "structure",
+    id = "CreateFieldLevelEncryptionProfileOutput",
     members = {
         FieldLevelEncryptionProfile = setmetatable({ traits = {
             http_payload = true,
@@ -3978,6 +4216,7 @@ M.CreateFieldLevelEncryptionProfileOutput = {
 
 M.FieldLevelEncryptionProfileAlreadyExists = {
     type = "structure",
+    id = "FieldLevelEncryptionProfileAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -3988,6 +4227,7 @@ M.FieldLevelEncryptionProfileAlreadyExists = {
 
 M.FieldLevelEncryptionProfileSizeExceeded = {
     type = "structure",
+    id = "FieldLevelEncryptionProfileSizeExceeded",
     error = "client",
     members = {
         Message = {
@@ -3998,6 +4238,7 @@ M.FieldLevelEncryptionProfileSizeExceeded = {
 
 M.NoSuchPublicKey = {
     type = "structure",
+    id = "NoSuchPublicKey",
     error = "client",
     members = {
         Message = {
@@ -4008,6 +4249,7 @@ M.NoSuchPublicKey = {
 
 M.TooManyFieldLevelEncryptionEncryptionEntities = {
     type = "structure",
+    id = "TooManyFieldLevelEncryptionEncryptionEntities",
     error = "client",
     members = {
         Message = {
@@ -4018,6 +4260,7 @@ M.TooManyFieldLevelEncryptionEncryptionEntities = {
 
 M.TooManyFieldLevelEncryptionFieldPatterns = {
     type = "structure",
+    id = "TooManyFieldLevelEncryptionFieldPatterns",
     error = "client",
     members = {
         Message = {
@@ -4028,6 +4271,7 @@ M.TooManyFieldLevelEncryptionFieldPatterns = {
 
 M.TooManyFieldLevelEncryptionProfiles = {
     type = "structure",
+    id = "TooManyFieldLevelEncryptionProfiles",
     error = "client",
     members = {
         Message = {
@@ -4038,6 +4282,7 @@ M.TooManyFieldLevelEncryptionProfiles = {
 
 M.CreateFunctionInput = {
     type = "structure",
+    id = "CreateFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -4059,6 +4304,7 @@ M.CreateFunctionInput = {
 
 M.FunctionMetadata = {
     type = "structure",
+    id = "FunctionMetadata",
     members = {
         FunctionARN = {
             type = "string",
@@ -4083,6 +4329,7 @@ M.FunctionMetadata = {
 
 M.FunctionSummary = {
     type = "structure",
+    id = "FunctionSummary",
     members = {
         Name = {
             type = "string",
@@ -4104,6 +4351,7 @@ M.FunctionSummary = {
 
 M.CreateFunctionOutput = {
     type = "structure",
+    id = "CreateFunctionOutput",
     members = {
         FunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -4125,6 +4373,7 @@ M.CreateFunctionOutput = {
 
 M.FunctionAlreadyExists = {
     type = "structure",
+    id = "FunctionAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -4135,6 +4384,7 @@ M.FunctionAlreadyExists = {
 
 M.FunctionSizeLimitExceeded = {
     type = "structure",
+    id = "FunctionSizeLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -4145,6 +4395,7 @@ M.FunctionSizeLimitExceeded = {
 
 M.TooManyFunctions = {
     type = "structure",
+    id = "TooManyFunctions",
     error = "client",
     members = {
         Message = {
@@ -4155,6 +4406,7 @@ M.TooManyFunctions = {
 
 M.Paths = {
     type = "structure",
+    id = "Paths",
     members = {
         Quantity = {
             type = "integer",
@@ -4171,6 +4423,7 @@ M.Paths = {
 
 M.InvalidationBatch = {
     type = "structure",
+    id = "InvalidationBatch",
     members = {
         Paths = setmetatable({ traits = {
             required = true,
@@ -4186,6 +4439,7 @@ M.InvalidationBatch = {
 
 M.CreateInvalidationInput = {
     type = "structure",
+    id = "CreateInvalidationInput",
     members = {
         DistributionId = {
             type = "string",
@@ -4204,6 +4458,7 @@ M.CreateInvalidationInput = {
 
 M.Invalidation = {
     type = "structure",
+    id = "Invalidation",
     members = {
         Id = {
             type = "string",
@@ -4231,6 +4486,7 @@ M.Invalidation = {
 
 M.CreateInvalidationOutput = {
     type = "structure",
+    id = "CreateInvalidationOutput",
     members = {
         Location = {
             type = "string",
@@ -4246,6 +4502,7 @@ M.CreateInvalidationOutput = {
 
 M.TooManyInvalidationsInProgress = {
     type = "structure",
+    id = "TooManyInvalidationsInProgress",
     error = "client",
     members = {
         Message = {
@@ -4256,6 +4513,7 @@ M.TooManyInvalidationsInProgress = {
 
 M.CreateInvalidationForDistributionTenantInput = {
     type = "structure",
+    id = "CreateInvalidationForDistributionTenantInput",
     members = {
         Id = {
             type = "string",
@@ -4274,6 +4532,7 @@ M.CreateInvalidationForDistributionTenantInput = {
 
 M.CreateInvalidationForDistributionTenantOutput = {
     type = "structure",
+    id = "CreateInvalidationForDistributionTenantOutput",
     members = {
         Location = {
             type = "string",
@@ -4289,6 +4548,7 @@ M.CreateInvalidationForDistributionTenantOutput = {
 
 M.KeyGroupConfig = {
     type = "structure",
+    id = "KeyGroupConfig",
     members = {
         Name = {
             type = "string",
@@ -4311,6 +4571,7 @@ M.KeyGroupConfig = {
 
 M.CreateKeyGroupInput = {
     type = "structure",
+    id = "CreateKeyGroupInput",
     members = {
         KeyGroupConfig = setmetatable({ traits = {
             http_payload = true,
@@ -4322,6 +4583,7 @@ M.CreateKeyGroupInput = {
 
 M.KeyGroup = {
     type = "structure",
+    id = "KeyGroup",
     members = {
         Id = {
             type = "string",
@@ -4343,6 +4605,7 @@ M.KeyGroup = {
 
 M.CreateKeyGroupOutput = {
     type = "structure",
+    id = "CreateKeyGroupOutput",
     members = {
         KeyGroup = setmetatable({ traits = {
             http_payload = true,
@@ -4364,6 +4627,7 @@ M.CreateKeyGroupOutput = {
 
 M.KeyGroupAlreadyExists = {
     type = "structure",
+    id = "KeyGroupAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -4374,6 +4638,7 @@ M.KeyGroupAlreadyExists = {
 
 M.TooManyKeyGroups = {
     type = "structure",
+    id = "TooManyKeyGroups",
     error = "client",
     members = {
         Message = {
@@ -4384,6 +4649,7 @@ M.TooManyKeyGroups = {
 
 M.TooManyPublicKeysInKeyGroup = {
     type = "structure",
+    id = "TooManyPublicKeysInKeyGroup",
     error = "client",
     members = {
         Message = {
@@ -4398,6 +4664,7 @@ M.ImportSourceType = {
 
 M.ImportSource = {
     type = "structure",
+    id = "ImportSource",
     members = {
         SourceType = {
             type = "string",
@@ -4416,6 +4683,7 @@ M.ImportSource = {
 
 M.CreateKeyValueStoreInput = {
     type = "structure",
+    id = "CreateKeyValueStoreInput",
     members = {
         Name = {
             type = "string",
@@ -4432,6 +4700,7 @@ M.CreateKeyValueStoreInput = {
 
 M.KeyValueStore = {
     type = "structure",
+    id = "KeyValueStore",
     members = {
         Name = {
             type = "string",
@@ -4471,6 +4740,7 @@ M.KeyValueStore = {
 
 M.CreateKeyValueStoreOutput = {
     type = "structure",
+    id = "CreateKeyValueStoreOutput",
     members = {
         KeyValueStore = setmetatable({ traits = {
             http_payload = true,
@@ -4497,6 +4767,7 @@ M.RealtimeMetricsSubscriptionStatus = {
 
 M.RealtimeMetricsSubscriptionConfig = {
     type = "structure",
+    id = "RealtimeMetricsSubscriptionConfig",
     members = {
         RealtimeMetricsSubscriptionStatus = {
             type = "string",
@@ -4509,6 +4780,7 @@ M.RealtimeMetricsSubscriptionConfig = {
 
 M.MonitoringSubscription = {
     type = "structure",
+    id = "MonitoringSubscription",
     members = {
         RealtimeMetricsSubscriptionConfig = M.RealtimeMetricsSubscriptionConfig,
     },
@@ -4516,6 +4788,7 @@ M.MonitoringSubscription = {
 
 M.CreateMonitoringSubscriptionInput = {
     type = "structure",
+    id = "CreateMonitoringSubscriptionInput",
     members = {
         DistributionId = {
             type = "string",
@@ -4534,6 +4807,7 @@ M.CreateMonitoringSubscriptionInput = {
 
 M.CreateMonitoringSubscriptionOutput = {
     type = "structure",
+    id = "CreateMonitoringSubscriptionOutput",
     members = {
         MonitoringSubscription = setmetatable({ traits = {
             http_payload = true,
@@ -4543,6 +4817,7 @@ M.CreateMonitoringSubscriptionOutput = {
 
 M.MonitoringSubscriptionAlreadyExists = {
     type = "structure",
+    id = "MonitoringSubscriptionAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -4570,6 +4845,7 @@ M.OriginAccessControlSigningProtocols = {
 
 M.OriginAccessControlConfig = {
     type = "structure",
+    id = "OriginAccessControlConfig",
     members = {
         Name = {
             type = "string",
@@ -4603,6 +4879,7 @@ M.OriginAccessControlConfig = {
 
 M.CreateOriginAccessControlInput = {
     type = "structure",
+    id = "CreateOriginAccessControlInput",
     members = {
         OriginAccessControlConfig = setmetatable({ traits = {
             http_payload = true,
@@ -4614,6 +4891,7 @@ M.CreateOriginAccessControlInput = {
 
 M.OriginAccessControl = {
     type = "structure",
+    id = "OriginAccessControl",
     members = {
         Id = {
             type = "string",
@@ -4627,6 +4905,7 @@ M.OriginAccessControl = {
 
 M.CreateOriginAccessControlOutput = {
     type = "structure",
+    id = "CreateOriginAccessControlOutput",
     members = {
         OriginAccessControl = setmetatable({ traits = {
             http_payload = true,
@@ -4648,6 +4927,7 @@ M.CreateOriginAccessControlOutput = {
 
 M.OriginAccessControlAlreadyExists = {
     type = "structure",
+    id = "OriginAccessControlAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -4658,6 +4938,7 @@ M.OriginAccessControlAlreadyExists = {
 
 M.TooManyOriginAccessControls = {
     type = "structure",
+    id = "TooManyOriginAccessControls",
     error = "client",
     members = {
         Message = {
@@ -4675,6 +4956,7 @@ M.OriginRequestPolicyCookieBehavior = {
 
 M.OriginRequestPolicyCookiesConfig = {
     type = "structure",
+    id = "OriginRequestPolicyCookiesConfig",
     members = {
         CookieBehavior = {
             type = "string",
@@ -4696,6 +4978,7 @@ M.OriginRequestPolicyHeaderBehavior = {
 
 M.OriginRequestPolicyHeadersConfig = {
     type = "structure",
+    id = "OriginRequestPolicyHeadersConfig",
     members = {
         HeaderBehavior = {
             type = "string",
@@ -4716,6 +4999,7 @@ M.OriginRequestPolicyQueryStringBehavior = {
 
 M.OriginRequestPolicyQueryStringsConfig = {
     type = "structure",
+    id = "OriginRequestPolicyQueryStringsConfig",
     members = {
         QueryStringBehavior = {
             type = "string",
@@ -4729,6 +5013,7 @@ M.OriginRequestPolicyQueryStringsConfig = {
 
 M.OriginRequestPolicyConfig = {
     type = "structure",
+    id = "OriginRequestPolicyConfig",
     members = {
         Comment = {
             type = "string",
@@ -4753,6 +5038,7 @@ M.OriginRequestPolicyConfig = {
 
 M.CreateOriginRequestPolicyInput = {
     type = "structure",
+    id = "CreateOriginRequestPolicyInput",
     members = {
         OriginRequestPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -4764,6 +5050,7 @@ M.CreateOriginRequestPolicyInput = {
 
 M.OriginRequestPolicy = {
     type = "structure",
+    id = "OriginRequestPolicy",
     members = {
         Id = {
             type = "string",
@@ -4785,6 +5072,7 @@ M.OriginRequestPolicy = {
 
 M.CreateOriginRequestPolicyOutput = {
     type = "structure",
+    id = "CreateOriginRequestPolicyOutput",
     members = {
         OriginRequestPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -4806,6 +5094,7 @@ M.CreateOriginRequestPolicyOutput = {
 
 M.OriginRequestPolicyAlreadyExists = {
     type = "structure",
+    id = "OriginRequestPolicyAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -4816,6 +5105,7 @@ M.OriginRequestPolicyAlreadyExists = {
 
 M.TooManyCookiesInOriginRequestPolicy = {
     type = "structure",
+    id = "TooManyCookiesInOriginRequestPolicy",
     error = "client",
     members = {
         Message = {
@@ -4826,6 +5116,7 @@ M.TooManyCookiesInOriginRequestPolicy = {
 
 M.TooManyHeadersInOriginRequestPolicy = {
     type = "structure",
+    id = "TooManyHeadersInOriginRequestPolicy",
     error = "client",
     members = {
         Message = {
@@ -4836,6 +5127,7 @@ M.TooManyHeadersInOriginRequestPolicy = {
 
 M.TooManyOriginRequestPolicies = {
     type = "structure",
+    id = "TooManyOriginRequestPolicies",
     error = "client",
     members = {
         Message = {
@@ -4846,6 +5138,7 @@ M.TooManyOriginRequestPolicies = {
 
 M.TooManyQueryStringsInOriginRequestPolicy = {
     type = "structure",
+    id = "TooManyQueryStringsInOriginRequestPolicy",
     error = "client",
     members = {
         Message = {
@@ -4856,6 +5149,7 @@ M.TooManyQueryStringsInOriginRequestPolicy = {
 
 M.PublicKeyConfig = {
     type = "structure",
+    id = "PublicKeyConfig",
     members = {
         CallerReference = {
             type = "string",
@@ -4883,6 +5177,7 @@ M.PublicKeyConfig = {
 
 M.CreatePublicKeyInput = {
     type = "structure",
+    id = "CreatePublicKeyInput",
     members = {
         PublicKeyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -4894,6 +5189,7 @@ M.CreatePublicKeyInput = {
 
 M.PublicKey = {
     type = "structure",
+    id = "PublicKey",
     members = {
         Id = {
             type = "string",
@@ -4915,6 +5211,7 @@ M.PublicKey = {
 
 M.CreatePublicKeyOutput = {
     type = "structure",
+    id = "CreatePublicKeyOutput",
     members = {
         PublicKey = setmetatable({ traits = {
             http_payload = true,
@@ -4936,6 +5233,7 @@ M.CreatePublicKeyOutput = {
 
 M.PublicKeyAlreadyExists = {
     type = "structure",
+    id = "PublicKeyAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -4946,6 +5244,7 @@ M.PublicKeyAlreadyExists = {
 
 M.TooManyPublicKeys = {
     type = "structure",
+    id = "TooManyPublicKeys",
     error = "client",
     members = {
         Message = {
@@ -4956,6 +5255,7 @@ M.TooManyPublicKeys = {
 
 M.KinesisStreamConfig = {
     type = "structure",
+    id = "KinesisStreamConfig",
     members = {
         RoleARN = {
             type = "string",
@@ -4974,6 +5274,7 @@ M.KinesisStreamConfig = {
 
 M.EndPoint = {
     type = "structure",
+    id = "EndPoint",
     members = {
         StreamType = {
             type = "string",
@@ -4987,6 +5288,7 @@ M.EndPoint = {
 
 M.CreateRealtimeLogConfigInput = {
     type = "structure",
+    id = "CreateRealtimeLogConfigInput",
     members = {
         EndPoints = {
             type = "list",
@@ -5019,6 +5321,7 @@ M.CreateRealtimeLogConfigInput = {
 
 M.RealtimeLogConfig = {
     type = "structure",
+    id = "RealtimeLogConfig",
     members = {
         ARN = {
             type = "string",
@@ -5057,6 +5360,7 @@ M.RealtimeLogConfig = {
 
 M.CreateRealtimeLogConfigOutput = {
     type = "structure",
+    id = "CreateRealtimeLogConfigOutput",
     members = {
         RealtimeLogConfig = M.RealtimeLogConfig,
     },
@@ -5064,6 +5368,7 @@ M.CreateRealtimeLogConfigOutput = {
 
 M.RealtimeLogConfigAlreadyExists = {
     type = "structure",
+    id = "RealtimeLogConfigAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -5074,6 +5379,7 @@ M.RealtimeLogConfigAlreadyExists = {
 
 M.TooManyRealtimeLogConfigs = {
     type = "structure",
+    id = "TooManyRealtimeLogConfigs",
     error = "client",
     members = {
         Message = {
@@ -5084,6 +5390,7 @@ M.TooManyRealtimeLogConfigs = {
 
 M.ResponseHeadersPolicyAccessControlAllowHeaders = {
     type = "structure",
+    id = "ResponseHeadersPolicyAccessControlAllowHeaders",
     members = {
         Quantity = {
             type = "integer",
@@ -5103,6 +5410,7 @@ M.ResponseHeadersPolicyAccessControlAllowHeaders = {
 
 M.ResponseHeadersPolicyAccessControlAllowMethods = {
     type = "structure",
+    id = "ResponseHeadersPolicyAccessControlAllowMethods",
     members = {
         Quantity = {
             type = "integer",
@@ -5122,6 +5430,7 @@ M.ResponseHeadersPolicyAccessControlAllowMethods = {
 
 M.ResponseHeadersPolicyAccessControlAllowOrigins = {
     type = "structure",
+    id = "ResponseHeadersPolicyAccessControlAllowOrigins",
     members = {
         Quantity = {
             type = "integer",
@@ -5141,6 +5450,7 @@ M.ResponseHeadersPolicyAccessControlAllowOrigins = {
 
 M.ResponseHeadersPolicyAccessControlExposeHeaders = {
     type = "structure",
+    id = "ResponseHeadersPolicyAccessControlExposeHeaders",
     members = {
         Quantity = {
             type = "integer",
@@ -5157,6 +5467,7 @@ M.ResponseHeadersPolicyAccessControlExposeHeaders = {
 
 M.ResponseHeadersPolicyCorsConfig = {
     type = "structure",
+    id = "ResponseHeadersPolicyCorsConfig",
     members = {
         AccessControlAllowOrigins = setmetatable({ traits = {
             required = true,
@@ -5188,6 +5499,7 @@ M.ResponseHeadersPolicyCorsConfig = {
 
 M.ResponseHeadersPolicyCustomHeader = {
     type = "structure",
+    id = "ResponseHeadersPolicyCustomHeader",
     members = {
         Header = {
             type = "string",
@@ -5212,6 +5524,7 @@ M.ResponseHeadersPolicyCustomHeader = {
 
 M.ResponseHeadersPolicyCustomHeadersConfig = {
     type = "structure",
+    id = "ResponseHeadersPolicyCustomHeadersConfig",
     members = {
         Quantity = {
             type = "integer",
@@ -5228,6 +5541,7 @@ M.ResponseHeadersPolicyCustomHeadersConfig = {
 
 M.ResponseHeadersPolicyRemoveHeader = {
     type = "structure",
+    id = "ResponseHeadersPolicyRemoveHeader",
     members = {
         Header = {
             type = "string",
@@ -5240,6 +5554,7 @@ M.ResponseHeadersPolicyRemoveHeader = {
 
 M.ResponseHeadersPolicyRemoveHeadersConfig = {
     type = "structure",
+    id = "ResponseHeadersPolicyRemoveHeadersConfig",
     members = {
         Quantity = {
             type = "integer",
@@ -5256,6 +5571,7 @@ M.ResponseHeadersPolicyRemoveHeadersConfig = {
 
 M.ResponseHeadersPolicyContentSecurityPolicy = {
     type = "structure",
+    id = "ResponseHeadersPolicyContentSecurityPolicy",
     members = {
         Override = {
             type = "boolean",
@@ -5274,6 +5590,7 @@ M.ResponseHeadersPolicyContentSecurityPolicy = {
 
 M.ResponseHeadersPolicyContentTypeOptions = {
     type = "structure",
+    id = "ResponseHeadersPolicyContentTypeOptions",
     members = {
         Override = {
             type = "boolean",
@@ -5291,6 +5608,7 @@ M.FrameOptionsList = {
 
 M.ResponseHeadersPolicyFrameOptions = {
     type = "structure",
+    id = "ResponseHeadersPolicyFrameOptions",
     members = {
         Override = {
             type = "boolean",
@@ -5320,6 +5638,7 @@ M.ReferrerPolicyList = {
 
 M.ResponseHeadersPolicyReferrerPolicy = {
     type = "structure",
+    id = "ResponseHeadersPolicyReferrerPolicy",
     members = {
         Override = {
             type = "boolean",
@@ -5338,6 +5657,7 @@ M.ResponseHeadersPolicyReferrerPolicy = {
 
 M.ResponseHeadersPolicyStrictTransportSecurity = {
     type = "structure",
+    id = "ResponseHeadersPolicyStrictTransportSecurity",
     members = {
         Override = {
             type = "boolean",
@@ -5362,6 +5682,7 @@ M.ResponseHeadersPolicyStrictTransportSecurity = {
 
 M.ResponseHeadersPolicyXSSProtection = {
     type = "structure",
+    id = "ResponseHeadersPolicyXSSProtection",
     members = {
         Override = {
             type = "boolean",
@@ -5386,6 +5707,7 @@ M.ResponseHeadersPolicyXSSProtection = {
 
 M.ResponseHeadersPolicySecurityHeadersConfig = {
     type = "structure",
+    id = "ResponseHeadersPolicySecurityHeadersConfig",
     members = {
         XSSProtection = M.ResponseHeadersPolicyXSSProtection,
         FrameOptions = M.ResponseHeadersPolicyFrameOptions,
@@ -5398,6 +5720,7 @@ M.ResponseHeadersPolicySecurityHeadersConfig = {
 
 M.ResponseHeadersPolicyServerTimingHeadersConfig = {
     type = "structure",
+    id = "ResponseHeadersPolicyServerTimingHeadersConfig",
     members = {
         Enabled = {
             type = "boolean",
@@ -5413,6 +5736,7 @@ M.ResponseHeadersPolicyServerTimingHeadersConfig = {
 
 M.ResponseHeadersPolicyConfig = {
     type = "structure",
+    id = "ResponseHeadersPolicyConfig",
     members = {
         Comment = {
             type = "string",
@@ -5433,6 +5757,7 @@ M.ResponseHeadersPolicyConfig = {
 
 M.CreateResponseHeadersPolicyInput = {
     type = "structure",
+    id = "CreateResponseHeadersPolicyInput",
     members = {
         ResponseHeadersPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -5444,6 +5769,7 @@ M.CreateResponseHeadersPolicyInput = {
 
 M.ResponseHeadersPolicy = {
     type = "structure",
+    id = "ResponseHeadersPolicy",
     members = {
         Id = {
             type = "string",
@@ -5465,6 +5791,7 @@ M.ResponseHeadersPolicy = {
 
 M.CreateResponseHeadersPolicyOutput = {
     type = "structure",
+    id = "CreateResponseHeadersPolicyOutput",
     members = {
         ResponseHeadersPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -5486,6 +5813,7 @@ M.CreateResponseHeadersPolicyOutput = {
 
 M.ResponseHeadersPolicyAlreadyExists = {
     type = "structure",
+    id = "ResponseHeadersPolicyAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -5496,6 +5824,7 @@ M.ResponseHeadersPolicyAlreadyExists = {
 
 M.TooLongCSPInResponseHeadersPolicy = {
     type = "structure",
+    id = "TooLongCSPInResponseHeadersPolicy",
     error = "client",
     members = {
         Message = {
@@ -5506,6 +5835,7 @@ M.TooLongCSPInResponseHeadersPolicy = {
 
 M.TooManyCustomHeadersInResponseHeadersPolicy = {
     type = "structure",
+    id = "TooManyCustomHeadersInResponseHeadersPolicy",
     error = "client",
     members = {
         Message = {
@@ -5516,6 +5846,7 @@ M.TooManyCustomHeadersInResponseHeadersPolicy = {
 
 M.TooManyRemoveHeadersInResponseHeadersPolicy = {
     type = "structure",
+    id = "TooManyRemoveHeadersInResponseHeadersPolicy",
     error = "client",
     members = {
         Message = {
@@ -5526,6 +5857,7 @@ M.TooManyRemoveHeadersInResponseHeadersPolicy = {
 
 M.TooManyResponseHeadersPolicies = {
     type = "structure",
+    id = "TooManyResponseHeadersPolicies",
     error = "client",
     members = {
         Message = {
@@ -5536,6 +5868,7 @@ M.TooManyResponseHeadersPolicies = {
 
 M.StreamingLoggingConfig = {
     type = "structure",
+    id = "StreamingLoggingConfig",
     members = {
         Enabled = {
             type = "boolean",
@@ -5560,6 +5893,7 @@ M.StreamingLoggingConfig = {
 
 M.S3Origin = {
     type = "structure",
+    id = "S3Origin",
     members = {
         DomainName = {
             type = "string",
@@ -5578,6 +5912,7 @@ M.S3Origin = {
 
 M.StreamingDistributionConfig = {
     type = "structure",
+    id = "StreamingDistributionConfig",
     members = {
         CallerReference = {
             type = "string",
@@ -5613,6 +5948,7 @@ M.StreamingDistributionConfig = {
 
 M.CreateStreamingDistributionInput = {
     type = "structure",
+    id = "CreateStreamingDistributionInput",
     members = {
         StreamingDistributionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -5624,6 +5960,7 @@ M.CreateStreamingDistributionInput = {
 
 M.StreamingDistribution = {
     type = "structure",
+    id = "StreamingDistribution",
     members = {
         Id = {
             type = "string",
@@ -5663,6 +6000,7 @@ M.StreamingDistribution = {
 
 M.CreateStreamingDistributionOutput = {
     type = "structure",
+    id = "CreateStreamingDistributionOutput",
     members = {
         StreamingDistribution = setmetatable({ traits = {
             http_payload = true,
@@ -5684,6 +6022,7 @@ M.CreateStreamingDistributionOutput = {
 
 M.StreamingDistributionAlreadyExists = {
     type = "structure",
+    id = "StreamingDistributionAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -5694,6 +6033,7 @@ M.StreamingDistributionAlreadyExists = {
 
 M.TooManyStreamingDistributionCNAMEs = {
     type = "structure",
+    id = "TooManyStreamingDistributionCNAMEs",
     error = "client",
     members = {
         Message = {
@@ -5704,6 +6044,7 @@ M.TooManyStreamingDistributionCNAMEs = {
 
 M.TooManyStreamingDistributions = {
     type = "structure",
+    id = "TooManyStreamingDistributions",
     error = "client",
     members = {
         Message = {
@@ -5714,6 +6055,7 @@ M.TooManyStreamingDistributions = {
 
 M.StreamingDistributionConfigWithTags = {
     type = "structure",
+    id = "StreamingDistributionConfigWithTags",
     members = {
         StreamingDistributionConfig = setmetatable({ traits = {
             required = true,
@@ -5726,6 +6068,7 @@ M.StreamingDistributionConfigWithTags = {
 
 M.CreateStreamingDistributionWithTagsInput = {
     type = "structure",
+    id = "CreateStreamingDistributionWithTagsInput",
     members = {
         StreamingDistributionConfigWithTags = setmetatable({ traits = {
             http_payload = true,
@@ -5737,6 +6080,7 @@ M.CreateStreamingDistributionWithTagsInput = {
 
 M.CreateStreamingDistributionWithTagsOutput = {
     type = "structure",
+    id = "CreateStreamingDistributionWithTagsOutput",
     members = {
         StreamingDistribution = setmetatable({ traits = {
             http_payload = true,
@@ -5758,6 +6102,7 @@ M.CreateStreamingDistributionWithTagsOutput = {
 
 M.CreateTrustStoreInput = {
     type = "structure",
+    id = "CreateTrustStoreInput",
     members = {
         Name = {
             type = "string",
@@ -5780,6 +6125,7 @@ M.TrustStoreStatus = {
 
 M.TrustStore = {
     type = "structure",
+    id = "TrustStore",
     members = {
         Id = {
             type = "string",
@@ -5807,6 +6153,7 @@ M.TrustStore = {
 
 M.CreateTrustStoreOutput = {
     type = "structure",
+    id = "CreateTrustStoreOutput",
     members = {
         TrustStore = setmetatable({ traits = {
             http_payload = true,
@@ -5822,6 +6169,7 @@ M.CreateTrustStoreOutput = {
 
 M.VpcOriginEndpointConfig = {
     type = "structure",
+    id = "VpcOriginEndpointConfig",
     members = {
         Name = {
             type = "string",
@@ -5859,6 +6207,7 @@ M.VpcOriginEndpointConfig = {
 
 M.CreateVpcOriginInput = {
     type = "structure",
+    id = "CreateVpcOriginInput",
     members = {
         VpcOriginEndpointConfig = setmetatable({ traits = {
             required = true,
@@ -5869,6 +6218,7 @@ M.CreateVpcOriginInput = {
 
 M.VpcOrigin = {
     type = "structure",
+    id = "VpcOrigin",
     members = {
         Id = {
             type = "string",
@@ -5911,6 +6261,7 @@ M.VpcOrigin = {
 
 M.CreateVpcOriginOutput = {
     type = "structure",
+    id = "CreateVpcOriginOutput",
     members = {
         VpcOrigin = setmetatable({ traits = {
             http_payload = true,
@@ -5932,6 +6283,7 @@ M.CreateVpcOriginOutput = {
 
 M.DeleteAnycastIpListInput = {
     type = "structure",
+    id = "DeleteAnycastIpListInput",
     members = {
         Id = {
             type = "string",
@@ -5952,10 +6304,12 @@ M.DeleteAnycastIpListInput = {
 
 M.DeleteAnycastIpListOutput = {
     type = "structure",
+    id = "DeleteAnycastIpListOutput",
 }
 
 M.IllegalDelete = {
     type = "structure",
+    id = "IllegalDelete",
     error = "client",
     members = {
         Message = {
@@ -5966,6 +6320,7 @@ M.IllegalDelete = {
 
 M.DeleteCachePolicyInput = {
     type = "structure",
+    id = "DeleteCachePolicyInput",
     members = {
         Id = {
             type = "string",
@@ -5985,10 +6340,12 @@ M.DeleteCachePolicyInput = {
 
 M.DeleteCachePolicyOutput = {
     type = "structure",
+    id = "DeleteCachePolicyOutput",
 }
 
 M.CloudFrontOriginAccessIdentityInUse = {
     type = "structure",
+    id = "CloudFrontOriginAccessIdentityInUse",
     error = "client",
     members = {
         Message = {
@@ -5999,6 +6356,7 @@ M.CloudFrontOriginAccessIdentityInUse = {
 
 M.DeleteCloudFrontOriginAccessIdentityInput = {
     type = "structure",
+    id = "DeleteCloudFrontOriginAccessIdentityInput",
     members = {
         Id = {
             type = "string",
@@ -6018,10 +6376,12 @@ M.DeleteCloudFrontOriginAccessIdentityInput = {
 
 M.DeleteCloudFrontOriginAccessIdentityOutput = {
     type = "structure",
+    id = "DeleteCloudFrontOriginAccessIdentityOutput",
 }
 
 M.NoSuchCloudFrontOriginAccessIdentity = {
     type = "structure",
+    id = "NoSuchCloudFrontOriginAccessIdentity",
     error = "client",
     members = {
         Message = {
@@ -6032,6 +6392,7 @@ M.NoSuchCloudFrontOriginAccessIdentity = {
 
 M.DeleteConnectionFunctionInput = {
     type = "structure",
+    id = "DeleteConnectionFunctionInput",
     members = {
         Id = {
             type = "string",
@@ -6052,10 +6413,12 @@ M.DeleteConnectionFunctionInput = {
 
 M.DeleteConnectionFunctionOutput = {
     type = "structure",
+    id = "DeleteConnectionFunctionOutput",
 }
 
 M.DeleteConnectionGroupInput = {
     type = "structure",
+    id = "DeleteConnectionGroupInput",
     members = {
         Id = {
             type = "string",
@@ -6076,10 +6439,12 @@ M.DeleteConnectionGroupInput = {
 
 M.DeleteConnectionGroupOutput = {
     type = "structure",
+    id = "DeleteConnectionGroupOutput",
 }
 
 M.ResourceNotDisabled = {
     type = "structure",
+    id = "ResourceNotDisabled",
     error = "client",
     members = {
         Message = {
@@ -6090,6 +6455,7 @@ M.ResourceNotDisabled = {
 
 M.DeleteContinuousDeploymentPolicyInput = {
     type = "structure",
+    id = "DeleteContinuousDeploymentPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -6109,10 +6475,12 @@ M.DeleteContinuousDeploymentPolicyInput = {
 
 M.DeleteContinuousDeploymentPolicyOutput = {
     type = "structure",
+    id = "DeleteContinuousDeploymentPolicyOutput",
 }
 
 M.DeleteDistributionInput = {
     type = "structure",
+    id = "DeleteDistributionInput",
     members = {
         Id = {
             type = "string",
@@ -6132,10 +6500,12 @@ M.DeleteDistributionInput = {
 
 M.DeleteDistributionOutput = {
     type = "structure",
+    id = "DeleteDistributionOutput",
 }
 
 M.DistributionNotDisabled = {
     type = "structure",
+    id = "DistributionNotDisabled",
     error = "client",
     members = {
         Message = {
@@ -6146,6 +6516,7 @@ M.DistributionNotDisabled = {
 
 M.ResourceInUse = {
     type = "structure",
+    id = "ResourceInUse",
     error = "client",
     members = {
         Message = {
@@ -6156,6 +6527,7 @@ M.ResourceInUse = {
 
 M.DeleteDistributionTenantInput = {
     type = "structure",
+    id = "DeleteDistributionTenantInput",
     members = {
         Id = {
             type = "string",
@@ -6176,10 +6548,12 @@ M.DeleteDistributionTenantInput = {
 
 M.DeleteDistributionTenantOutput = {
     type = "structure",
+    id = "DeleteDistributionTenantOutput",
 }
 
 M.DeleteFieldLevelEncryptionConfigInput = {
     type = "structure",
+    id = "DeleteFieldLevelEncryptionConfigInput",
     members = {
         Id = {
             type = "string",
@@ -6199,10 +6573,12 @@ M.DeleteFieldLevelEncryptionConfigInput = {
 
 M.DeleteFieldLevelEncryptionConfigOutput = {
     type = "structure",
+    id = "DeleteFieldLevelEncryptionConfigOutput",
 }
 
 M.FieldLevelEncryptionConfigInUse = {
     type = "structure",
+    id = "FieldLevelEncryptionConfigInUse",
     error = "client",
     members = {
         Message = {
@@ -6213,6 +6589,7 @@ M.FieldLevelEncryptionConfigInUse = {
 
 M.DeleteFieldLevelEncryptionProfileInput = {
     type = "structure",
+    id = "DeleteFieldLevelEncryptionProfileInput",
     members = {
         Id = {
             type = "string",
@@ -6232,10 +6609,12 @@ M.DeleteFieldLevelEncryptionProfileInput = {
 
 M.DeleteFieldLevelEncryptionProfileOutput = {
     type = "structure",
+    id = "DeleteFieldLevelEncryptionProfileOutput",
 }
 
 M.FieldLevelEncryptionProfileInUse = {
     type = "structure",
+    id = "FieldLevelEncryptionProfileInUse",
     error = "client",
     members = {
         Message = {
@@ -6246,6 +6625,7 @@ M.FieldLevelEncryptionProfileInUse = {
 
 M.DeleteFunctionInput = {
     type = "structure",
+    id = "DeleteFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -6266,10 +6646,12 @@ M.DeleteFunctionInput = {
 
 M.DeleteFunctionOutput = {
     type = "structure",
+    id = "DeleteFunctionOutput",
 }
 
 M.FunctionInUse = {
     type = "structure",
+    id = "FunctionInUse",
     error = "client",
     members = {
         Message = {
@@ -6280,6 +6662,7 @@ M.FunctionInUse = {
 
 M.NoSuchFunctionExists = {
     type = "structure",
+    id = "NoSuchFunctionExists",
     error = "client",
     members = {
         Message = {
@@ -6290,6 +6673,7 @@ M.NoSuchFunctionExists = {
 
 M.DeleteKeyGroupInput = {
     type = "structure",
+    id = "DeleteKeyGroupInput",
     members = {
         Id = {
             type = "string",
@@ -6309,10 +6693,12 @@ M.DeleteKeyGroupInput = {
 
 M.DeleteKeyGroupOutput = {
     type = "structure",
+    id = "DeleteKeyGroupOutput",
 }
 
 M.NoSuchResource = {
     type = "structure",
+    id = "NoSuchResource",
     error = "client",
     members = {
         Message = {
@@ -6323,6 +6709,7 @@ M.NoSuchResource = {
 
 M.DeleteKeyValueStoreInput = {
     type = "structure",
+    id = "DeleteKeyValueStoreInput",
     members = {
         Name = {
             type = "string",
@@ -6343,10 +6730,12 @@ M.DeleteKeyValueStoreInput = {
 
 M.DeleteKeyValueStoreOutput = {
     type = "structure",
+    id = "DeleteKeyValueStoreOutput",
 }
 
 M.DeleteMonitoringSubscriptionInput = {
     type = "structure",
+    id = "DeleteMonitoringSubscriptionInput",
     members = {
         DistributionId = {
             type = "string",
@@ -6360,10 +6749,12 @@ M.DeleteMonitoringSubscriptionInput = {
 
 M.DeleteMonitoringSubscriptionOutput = {
     type = "structure",
+    id = "DeleteMonitoringSubscriptionOutput",
 }
 
 M.NoSuchMonitoringSubscription = {
     type = "structure",
+    id = "NoSuchMonitoringSubscription",
     error = "client",
     members = {
         Message = {
@@ -6374,6 +6765,7 @@ M.NoSuchMonitoringSubscription = {
 
 M.DeleteOriginAccessControlInput = {
     type = "structure",
+    id = "DeleteOriginAccessControlInput",
     members = {
         Id = {
             type = "string",
@@ -6393,10 +6785,12 @@ M.DeleteOriginAccessControlInput = {
 
 M.DeleteOriginAccessControlOutput = {
     type = "structure",
+    id = "DeleteOriginAccessControlOutput",
 }
 
 M.NoSuchOriginAccessControl = {
     type = "structure",
+    id = "NoSuchOriginAccessControl",
     error = "client",
     members = {
         Message = {
@@ -6407,6 +6801,7 @@ M.NoSuchOriginAccessControl = {
 
 M.OriginAccessControlInUse = {
     type = "structure",
+    id = "OriginAccessControlInUse",
     error = "client",
     members = {
         Message = {
@@ -6417,6 +6812,7 @@ M.OriginAccessControlInUse = {
 
 M.DeleteOriginRequestPolicyInput = {
     type = "structure",
+    id = "DeleteOriginRequestPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -6436,10 +6832,12 @@ M.DeleteOriginRequestPolicyInput = {
 
 M.DeleteOriginRequestPolicyOutput = {
     type = "structure",
+    id = "DeleteOriginRequestPolicyOutput",
 }
 
 M.OriginRequestPolicyInUse = {
     type = "structure",
+    id = "OriginRequestPolicyInUse",
     error = "client",
     members = {
         Message = {
@@ -6450,6 +6848,7 @@ M.OriginRequestPolicyInUse = {
 
 M.DeletePublicKeyInput = {
     type = "structure",
+    id = "DeletePublicKeyInput",
     members = {
         Id = {
             type = "string",
@@ -6469,10 +6868,12 @@ M.DeletePublicKeyInput = {
 
 M.DeletePublicKeyOutput = {
     type = "structure",
+    id = "DeletePublicKeyOutput",
 }
 
 M.PublicKeyInUse = {
     type = "structure",
+    id = "PublicKeyInUse",
     error = "client",
     members = {
         Message = {
@@ -6483,6 +6884,7 @@ M.PublicKeyInUse = {
 
 M.DeleteRealtimeLogConfigInput = {
     type = "structure",
+    id = "DeleteRealtimeLogConfigInput",
     members = {
         Name = {
             type = "string",
@@ -6495,10 +6897,12 @@ M.DeleteRealtimeLogConfigInput = {
 
 M.DeleteRealtimeLogConfigOutput = {
     type = "structure",
+    id = "DeleteRealtimeLogConfigOutput",
 }
 
 M.RealtimeLogConfigInUse = {
     type = "structure",
+    id = "RealtimeLogConfigInUse",
     error = "client",
     members = {
         Message = {
@@ -6509,6 +6913,7 @@ M.RealtimeLogConfigInUse = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6521,10 +6926,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteResponseHeadersPolicyInput = {
     type = "structure",
+    id = "DeleteResponseHeadersPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -6544,10 +6951,12 @@ M.DeleteResponseHeadersPolicyInput = {
 
 M.DeleteResponseHeadersPolicyOutput = {
     type = "structure",
+    id = "DeleteResponseHeadersPolicyOutput",
 }
 
 M.ResponseHeadersPolicyInUse = {
     type = "structure",
+    id = "ResponseHeadersPolicyInUse",
     error = "client",
     members = {
         Message = {
@@ -6558,6 +6967,7 @@ M.ResponseHeadersPolicyInUse = {
 
 M.DeleteStreamingDistributionInput = {
     type = "structure",
+    id = "DeleteStreamingDistributionInput",
     members = {
         Id = {
             type = "string",
@@ -6577,10 +6987,12 @@ M.DeleteStreamingDistributionInput = {
 
 M.DeleteStreamingDistributionOutput = {
     type = "structure",
+    id = "DeleteStreamingDistributionOutput",
 }
 
 M.NoSuchStreamingDistribution = {
     type = "structure",
+    id = "NoSuchStreamingDistribution",
     error = "client",
     members = {
         Message = {
@@ -6591,6 +7003,7 @@ M.NoSuchStreamingDistribution = {
 
 M.StreamingDistributionNotDisabled = {
     type = "structure",
+    id = "StreamingDistributionNotDisabled",
     error = "client",
     members = {
         Message = {
@@ -6601,6 +7014,7 @@ M.StreamingDistributionNotDisabled = {
 
 M.DeleteTrustStoreInput = {
     type = "structure",
+    id = "DeleteTrustStoreInput",
     members = {
         Id = {
             type = "string",
@@ -6621,10 +7035,12 @@ M.DeleteTrustStoreInput = {
 
 M.DeleteTrustStoreOutput = {
     type = "structure",
+    id = "DeleteTrustStoreOutput",
 }
 
 M.DeleteVpcOriginInput = {
     type = "structure",
+    id = "DeleteVpcOriginInput",
     members = {
         Id = {
             type = "string",
@@ -6645,6 +7061,7 @@ M.DeleteVpcOriginInput = {
 
 M.DeleteVpcOriginOutput = {
     type = "structure",
+    id = "DeleteVpcOriginOutput",
     members = {
         VpcOrigin = setmetatable({ traits = {
             http_payload = true,
@@ -6660,6 +7077,7 @@ M.DeleteVpcOriginOutput = {
 
 M.DescribeConnectionFunctionInput = {
     type = "structure",
+    id = "DescribeConnectionFunctionInput",
     members = {
         Identifier = {
             type = "string",
@@ -6679,6 +7097,7 @@ M.DescribeConnectionFunctionInput = {
 
 M.DescribeConnectionFunctionOutput = {
     type = "structure",
+    id = "DescribeConnectionFunctionOutput",
     members = {
         ConnectionFunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -6694,6 +7113,7 @@ M.DescribeConnectionFunctionOutput = {
 
 M.DescribeFunctionInput = {
     type = "structure",
+    id = "DescribeFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -6713,6 +7133,7 @@ M.DescribeFunctionInput = {
 
 M.DescribeFunctionOutput = {
     type = "structure",
+    id = "DescribeFunctionOutput",
     members = {
         FunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -6728,6 +7149,7 @@ M.DescribeFunctionOutput = {
 
 M.DescribeKeyValueStoreInput = {
     type = "structure",
+    id = "DescribeKeyValueStoreInput",
     members = {
         Name = {
             type = "string",
@@ -6741,6 +7163,7 @@ M.DescribeKeyValueStoreInput = {
 
 M.DescribeKeyValueStoreOutput = {
     type = "structure",
+    id = "DescribeKeyValueStoreOutput",
     members = {
         KeyValueStore = setmetatable({ traits = {
             http_payload = true,
@@ -6756,6 +7179,7 @@ M.DescribeKeyValueStoreOutput = {
 
 M.DisassociateDistributionTenantWebACLInput = {
     type = "structure",
+    id = "DisassociateDistributionTenantWebACLInput",
     members = {
         Id = {
             type = "string",
@@ -6775,6 +7199,7 @@ M.DisassociateDistributionTenantWebACLInput = {
 
 M.DisassociateDistributionTenantWebACLOutput = {
     type = "structure",
+    id = "DisassociateDistributionTenantWebACLOutput",
     members = {
         Id = {
             type = "string",
@@ -6790,6 +7215,7 @@ M.DisassociateDistributionTenantWebACLOutput = {
 
 M.DisassociateDistributionWebACLInput = {
     type = "structure",
+    id = "DisassociateDistributionWebACLInput",
     members = {
         Id = {
             type = "string",
@@ -6809,6 +7235,7 @@ M.DisassociateDistributionWebACLInput = {
 
 M.DisassociateDistributionWebACLOutput = {
     type = "structure",
+    id = "DisassociateDistributionWebACLOutput",
     members = {
         Id = {
             type = "string",
@@ -6824,6 +7251,7 @@ M.DisassociateDistributionWebACLOutput = {
 
 M.GetAnycastIpListInput = {
     type = "structure",
+    id = "GetAnycastIpListInput",
     members = {
         Id = {
             type = "string",
@@ -6837,6 +7265,7 @@ M.GetAnycastIpListInput = {
 
 M.GetAnycastIpListOutput = {
     type = "structure",
+    id = "GetAnycastIpListOutput",
     members = {
         AnycastIpList = setmetatable({ traits = {
             http_payload = true,
@@ -6852,6 +7281,7 @@ M.GetAnycastIpListOutput = {
 
 M.GetCachePolicyInput = {
     type = "structure",
+    id = "GetCachePolicyInput",
     members = {
         Id = {
             type = "string",
@@ -6865,6 +7295,7 @@ M.GetCachePolicyInput = {
 
 M.GetCachePolicyOutput = {
     type = "structure",
+    id = "GetCachePolicyOutput",
     members = {
         CachePolicy = setmetatable({ traits = {
             http_payload = true,
@@ -6880,6 +7311,7 @@ M.GetCachePolicyOutput = {
 
 M.GetCachePolicyConfigInput = {
     type = "structure",
+    id = "GetCachePolicyConfigInput",
     members = {
         Id = {
             type = "string",
@@ -6893,6 +7325,7 @@ M.GetCachePolicyConfigInput = {
 
 M.GetCachePolicyConfigOutput = {
     type = "structure",
+    id = "GetCachePolicyConfigOutput",
     members = {
         CachePolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -6908,6 +7341,7 @@ M.GetCachePolicyConfigOutput = {
 
 M.GetCloudFrontOriginAccessIdentityInput = {
     type = "structure",
+    id = "GetCloudFrontOriginAccessIdentityInput",
     members = {
         Id = {
             type = "string",
@@ -6921,6 +7355,7 @@ M.GetCloudFrontOriginAccessIdentityInput = {
 
 M.GetCloudFrontOriginAccessIdentityOutput = {
     type = "structure",
+    id = "GetCloudFrontOriginAccessIdentityOutput",
     members = {
         CloudFrontOriginAccessIdentity = setmetatable({ traits = {
             http_payload = true,
@@ -6936,6 +7371,7 @@ M.GetCloudFrontOriginAccessIdentityOutput = {
 
 M.GetCloudFrontOriginAccessIdentityConfigInput = {
     type = "structure",
+    id = "GetCloudFrontOriginAccessIdentityConfigInput",
     members = {
         Id = {
             type = "string",
@@ -6949,6 +7385,7 @@ M.GetCloudFrontOriginAccessIdentityConfigInput = {
 
 M.GetCloudFrontOriginAccessIdentityConfigOutput = {
     type = "structure",
+    id = "GetCloudFrontOriginAccessIdentityConfigOutput",
     members = {
         CloudFrontOriginAccessIdentityConfig = setmetatable({ traits = {
             http_payload = true,
@@ -6964,6 +7401,7 @@ M.GetCloudFrontOriginAccessIdentityConfigOutput = {
 
 M.GetConnectionFunctionInput = {
     type = "structure",
+    id = "GetConnectionFunctionInput",
     members = {
         Identifier = {
             type = "string",
@@ -6983,6 +7421,7 @@ M.GetConnectionFunctionInput = {
 
 M.GetConnectionFunctionOutput = {
     type = "structure",
+    id = "GetConnectionFunctionOutput",
     members = {
         ConnectionFunctionCode = {
             type = "blob",
@@ -7007,6 +7446,7 @@ M.GetConnectionFunctionOutput = {
 
 M.GetConnectionGroupInput = {
     type = "structure",
+    id = "GetConnectionGroupInput",
     members = {
         Identifier = {
             type = "string",
@@ -7020,6 +7460,7 @@ M.GetConnectionGroupInput = {
 
 M.GetConnectionGroupOutput = {
     type = "structure",
+    id = "GetConnectionGroupOutput",
     members = {
         ConnectionGroup = setmetatable({ traits = {
             http_payload = true,
@@ -7035,6 +7476,7 @@ M.GetConnectionGroupOutput = {
 
 M.GetConnectionGroupByRoutingEndpointInput = {
     type = "structure",
+    id = "GetConnectionGroupByRoutingEndpointInput",
     members = {
         RoutingEndpoint = {
             type = "string",
@@ -7048,6 +7490,7 @@ M.GetConnectionGroupByRoutingEndpointInput = {
 
 M.GetConnectionGroupByRoutingEndpointOutput = {
     type = "structure",
+    id = "GetConnectionGroupByRoutingEndpointOutput",
     members = {
         ConnectionGroup = setmetatable({ traits = {
             http_payload = true,
@@ -7063,6 +7506,7 @@ M.GetConnectionGroupByRoutingEndpointOutput = {
 
 M.GetContinuousDeploymentPolicyInput = {
     type = "structure",
+    id = "GetContinuousDeploymentPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -7076,6 +7520,7 @@ M.GetContinuousDeploymentPolicyInput = {
 
 M.GetContinuousDeploymentPolicyOutput = {
     type = "structure",
+    id = "GetContinuousDeploymentPolicyOutput",
     members = {
         ContinuousDeploymentPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -7091,6 +7536,7 @@ M.GetContinuousDeploymentPolicyOutput = {
 
 M.GetContinuousDeploymentPolicyConfigInput = {
     type = "structure",
+    id = "GetContinuousDeploymentPolicyConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7104,6 +7550,7 @@ M.GetContinuousDeploymentPolicyConfigInput = {
 
 M.GetContinuousDeploymentPolicyConfigOutput = {
     type = "structure",
+    id = "GetContinuousDeploymentPolicyConfigOutput",
     members = {
         ContinuousDeploymentPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7119,6 +7566,7 @@ M.GetContinuousDeploymentPolicyConfigOutput = {
 
 M.GetDistributionInput = {
     type = "structure",
+    id = "GetDistributionInput",
     members = {
         Id = {
             type = "string",
@@ -7132,6 +7580,7 @@ M.GetDistributionInput = {
 
 M.GetDistributionOutput = {
     type = "structure",
+    id = "GetDistributionOutput",
     members = {
         Distribution = setmetatable({ traits = {
             http_payload = true,
@@ -7147,6 +7596,7 @@ M.GetDistributionOutput = {
 
 M.GetDistributionConfigInput = {
     type = "structure",
+    id = "GetDistributionConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7160,6 +7610,7 @@ M.GetDistributionConfigInput = {
 
 M.GetDistributionConfigOutput = {
     type = "structure",
+    id = "GetDistributionConfigOutput",
     members = {
         DistributionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7175,6 +7626,7 @@ M.GetDistributionConfigOutput = {
 
 M.GetDistributionTenantInput = {
     type = "structure",
+    id = "GetDistributionTenantInput",
     members = {
         Identifier = {
             type = "string",
@@ -7188,6 +7640,7 @@ M.GetDistributionTenantInput = {
 
 M.GetDistributionTenantOutput = {
     type = "structure",
+    id = "GetDistributionTenantOutput",
     members = {
         DistributionTenant = setmetatable({ traits = {
             http_payload = true,
@@ -7203,6 +7656,7 @@ M.GetDistributionTenantOutput = {
 
 M.GetDistributionTenantByDomainInput = {
     type = "structure",
+    id = "GetDistributionTenantByDomainInput",
     members = {
         Domain = {
             type = "string",
@@ -7216,6 +7670,7 @@ M.GetDistributionTenantByDomainInput = {
 
 M.GetDistributionTenantByDomainOutput = {
     type = "structure",
+    id = "GetDistributionTenantByDomainOutput",
     members = {
         DistributionTenant = setmetatable({ traits = {
             http_payload = true,
@@ -7231,6 +7686,7 @@ M.GetDistributionTenantByDomainOutput = {
 
 M.GetFieldLevelEncryptionInput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionInput",
     members = {
         Id = {
             type = "string",
@@ -7244,6 +7700,7 @@ M.GetFieldLevelEncryptionInput = {
 
 M.GetFieldLevelEncryptionOutput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionOutput",
     members = {
         FieldLevelEncryption = setmetatable({ traits = {
             http_payload = true,
@@ -7259,6 +7716,7 @@ M.GetFieldLevelEncryptionOutput = {
 
 M.GetFieldLevelEncryptionConfigInput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7272,6 +7730,7 @@ M.GetFieldLevelEncryptionConfigInput = {
 
 M.GetFieldLevelEncryptionConfigOutput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionConfigOutput",
     members = {
         FieldLevelEncryptionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7287,6 +7746,7 @@ M.GetFieldLevelEncryptionConfigOutput = {
 
 M.GetFieldLevelEncryptionProfileInput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionProfileInput",
     members = {
         Id = {
             type = "string",
@@ -7300,6 +7760,7 @@ M.GetFieldLevelEncryptionProfileInput = {
 
 M.GetFieldLevelEncryptionProfileOutput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionProfileOutput",
     members = {
         FieldLevelEncryptionProfile = setmetatable({ traits = {
             http_payload = true,
@@ -7315,6 +7776,7 @@ M.GetFieldLevelEncryptionProfileOutput = {
 
 M.GetFieldLevelEncryptionProfileConfigInput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionProfileConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7328,6 +7790,7 @@ M.GetFieldLevelEncryptionProfileConfigInput = {
 
 M.GetFieldLevelEncryptionProfileConfigOutput = {
     type = "structure",
+    id = "GetFieldLevelEncryptionProfileConfigOutput",
     members = {
         FieldLevelEncryptionProfileConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7343,6 +7806,7 @@ M.GetFieldLevelEncryptionProfileConfigOutput = {
 
 M.GetFunctionInput = {
     type = "structure",
+    id = "GetFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -7362,6 +7826,7 @@ M.GetFunctionInput = {
 
 M.GetFunctionOutput = {
     type = "structure",
+    id = "GetFunctionOutput",
     members = {
         FunctionCode = {
             type = "blob",
@@ -7386,6 +7851,7 @@ M.GetFunctionOutput = {
 
 M.GetInvalidationInput = {
     type = "structure",
+    id = "GetInvalidationInput",
     members = {
         DistributionId = {
             type = "string",
@@ -7406,6 +7872,7 @@ M.GetInvalidationInput = {
 
 M.GetInvalidationOutput = {
     type = "structure",
+    id = "GetInvalidationOutput",
     members = {
         Invalidation = setmetatable({ traits = {
             http_payload = true,
@@ -7415,6 +7882,7 @@ M.GetInvalidationOutput = {
 
 M.NoSuchInvalidation = {
     type = "structure",
+    id = "NoSuchInvalidation",
     error = "client",
     members = {
         Message = {
@@ -7425,6 +7893,7 @@ M.NoSuchInvalidation = {
 
 M.GetInvalidationForDistributionTenantInput = {
     type = "structure",
+    id = "GetInvalidationForDistributionTenantInput",
     members = {
         DistributionTenantId = {
             type = "string",
@@ -7445,6 +7914,7 @@ M.GetInvalidationForDistributionTenantInput = {
 
 M.GetInvalidationForDistributionTenantOutput = {
     type = "structure",
+    id = "GetInvalidationForDistributionTenantOutput",
     members = {
         Invalidation = setmetatable({ traits = {
             http_payload = true,
@@ -7454,6 +7924,7 @@ M.GetInvalidationForDistributionTenantOutput = {
 
 M.GetKeyGroupInput = {
     type = "structure",
+    id = "GetKeyGroupInput",
     members = {
         Id = {
             type = "string",
@@ -7467,6 +7938,7 @@ M.GetKeyGroupInput = {
 
 M.GetKeyGroupOutput = {
     type = "structure",
+    id = "GetKeyGroupOutput",
     members = {
         KeyGroup = setmetatable({ traits = {
             http_payload = true,
@@ -7482,6 +7954,7 @@ M.GetKeyGroupOutput = {
 
 M.GetKeyGroupConfigInput = {
     type = "structure",
+    id = "GetKeyGroupConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7495,6 +7968,7 @@ M.GetKeyGroupConfigInput = {
 
 M.GetKeyGroupConfigOutput = {
     type = "structure",
+    id = "GetKeyGroupConfigOutput",
     members = {
         KeyGroupConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7510,6 +7984,7 @@ M.GetKeyGroupConfigOutput = {
 
 M.GetManagedCertificateDetailsInput = {
     type = "structure",
+    id = "GetManagedCertificateDetailsInput",
     members = {
         Identifier = {
             type = "string",
@@ -7533,6 +8008,7 @@ M.ManagedCertificateStatus = {
 
 M.ValidationTokenDetail = {
     type = "structure",
+    id = "ValidationTokenDetail",
     members = {
         Domain = {
             type = "string",
@@ -7551,6 +8027,7 @@ M.ValidationTokenDetail = {
 
 M.ManagedCertificateDetails = {
     type = "structure",
+    id = "ManagedCertificateDetails",
     members = {
         CertificateArn = {
             type = "string",
@@ -7570,6 +8047,7 @@ M.ManagedCertificateDetails = {
 
 M.GetManagedCertificateDetailsOutput = {
     type = "structure",
+    id = "GetManagedCertificateDetailsOutput",
     members = {
         ManagedCertificateDetails = setmetatable({ traits = {
             http_payload = true,
@@ -7579,6 +8057,7 @@ M.GetManagedCertificateDetailsOutput = {
 
 M.GetMonitoringSubscriptionInput = {
     type = "structure",
+    id = "GetMonitoringSubscriptionInput",
     members = {
         DistributionId = {
             type = "string",
@@ -7592,6 +8071,7 @@ M.GetMonitoringSubscriptionInput = {
 
 M.GetMonitoringSubscriptionOutput = {
     type = "structure",
+    id = "GetMonitoringSubscriptionOutput",
     members = {
         MonitoringSubscription = setmetatable({ traits = {
             http_payload = true,
@@ -7601,6 +8081,7 @@ M.GetMonitoringSubscriptionOutput = {
 
 M.GetOriginAccessControlInput = {
     type = "structure",
+    id = "GetOriginAccessControlInput",
     members = {
         Id = {
             type = "string",
@@ -7614,6 +8095,7 @@ M.GetOriginAccessControlInput = {
 
 M.GetOriginAccessControlOutput = {
     type = "structure",
+    id = "GetOriginAccessControlOutput",
     members = {
         OriginAccessControl = setmetatable({ traits = {
             http_payload = true,
@@ -7629,6 +8111,7 @@ M.GetOriginAccessControlOutput = {
 
 M.GetOriginAccessControlConfigInput = {
     type = "structure",
+    id = "GetOriginAccessControlConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7642,6 +8125,7 @@ M.GetOriginAccessControlConfigInput = {
 
 M.GetOriginAccessControlConfigOutput = {
     type = "structure",
+    id = "GetOriginAccessControlConfigOutput",
     members = {
         OriginAccessControlConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7657,6 +8141,7 @@ M.GetOriginAccessControlConfigOutput = {
 
 M.GetOriginRequestPolicyInput = {
     type = "structure",
+    id = "GetOriginRequestPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -7670,6 +8155,7 @@ M.GetOriginRequestPolicyInput = {
 
 M.GetOriginRequestPolicyOutput = {
     type = "structure",
+    id = "GetOriginRequestPolicyOutput",
     members = {
         OriginRequestPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -7685,6 +8171,7 @@ M.GetOriginRequestPolicyOutput = {
 
 M.GetOriginRequestPolicyConfigInput = {
     type = "structure",
+    id = "GetOriginRequestPolicyConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7698,6 +8185,7 @@ M.GetOriginRequestPolicyConfigInput = {
 
 M.GetOriginRequestPolicyConfigOutput = {
     type = "structure",
+    id = "GetOriginRequestPolicyConfigOutput",
     members = {
         OriginRequestPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7713,6 +8201,7 @@ M.GetOriginRequestPolicyConfigOutput = {
 
 M.GetPublicKeyInput = {
     type = "structure",
+    id = "GetPublicKeyInput",
     members = {
         Id = {
             type = "string",
@@ -7726,6 +8215,7 @@ M.GetPublicKeyInput = {
 
 M.GetPublicKeyOutput = {
     type = "structure",
+    id = "GetPublicKeyOutput",
     members = {
         PublicKey = setmetatable({ traits = {
             http_payload = true,
@@ -7741,6 +8231,7 @@ M.GetPublicKeyOutput = {
 
 M.GetPublicKeyConfigInput = {
     type = "structure",
+    id = "GetPublicKeyConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7754,6 +8245,7 @@ M.GetPublicKeyConfigInput = {
 
 M.GetPublicKeyConfigOutput = {
     type = "structure",
+    id = "GetPublicKeyConfigOutput",
     members = {
         PublicKeyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7769,6 +8261,7 @@ M.GetPublicKeyConfigOutput = {
 
 M.GetRealtimeLogConfigInput = {
     type = "structure",
+    id = "GetRealtimeLogConfigInput",
     members = {
         Name = {
             type = "string",
@@ -7781,6 +8274,7 @@ M.GetRealtimeLogConfigInput = {
 
 M.GetRealtimeLogConfigOutput = {
     type = "structure",
+    id = "GetRealtimeLogConfigOutput",
     members = {
         RealtimeLogConfig = M.RealtimeLogConfig,
     },
@@ -7788,6 +8282,7 @@ M.GetRealtimeLogConfigOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7800,6 +8295,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7812,6 +8308,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetResponseHeadersPolicyInput = {
     type = "structure",
+    id = "GetResponseHeadersPolicyInput",
     members = {
         Id = {
             type = "string",
@@ -7825,6 +8322,7 @@ M.GetResponseHeadersPolicyInput = {
 
 M.GetResponseHeadersPolicyOutput = {
     type = "structure",
+    id = "GetResponseHeadersPolicyOutput",
     members = {
         ResponseHeadersPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -7840,6 +8338,7 @@ M.GetResponseHeadersPolicyOutput = {
 
 M.GetResponseHeadersPolicyConfigInput = {
     type = "structure",
+    id = "GetResponseHeadersPolicyConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7853,6 +8352,7 @@ M.GetResponseHeadersPolicyConfigInput = {
 
 M.GetResponseHeadersPolicyConfigOutput = {
     type = "structure",
+    id = "GetResponseHeadersPolicyConfigOutput",
     members = {
         ResponseHeadersPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7868,6 +8368,7 @@ M.GetResponseHeadersPolicyConfigOutput = {
 
 M.GetStreamingDistributionInput = {
     type = "structure",
+    id = "GetStreamingDistributionInput",
     members = {
         Id = {
             type = "string",
@@ -7881,6 +8382,7 @@ M.GetStreamingDistributionInput = {
 
 M.GetStreamingDistributionOutput = {
     type = "structure",
+    id = "GetStreamingDistributionOutput",
     members = {
         StreamingDistribution = setmetatable({ traits = {
             http_payload = true,
@@ -7896,6 +8398,7 @@ M.GetStreamingDistributionOutput = {
 
 M.GetStreamingDistributionConfigInput = {
     type = "structure",
+    id = "GetStreamingDistributionConfigInput",
     members = {
         Id = {
             type = "string",
@@ -7909,6 +8412,7 @@ M.GetStreamingDistributionConfigInput = {
 
 M.GetStreamingDistributionConfigOutput = {
     type = "structure",
+    id = "GetStreamingDistributionConfigOutput",
     members = {
         StreamingDistributionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -7924,6 +8428,7 @@ M.GetStreamingDistributionConfigOutput = {
 
 M.GetTrustStoreInput = {
     type = "structure",
+    id = "GetTrustStoreInput",
     members = {
         Identifier = {
             type = "string",
@@ -7937,6 +8442,7 @@ M.GetTrustStoreInput = {
 
 M.GetTrustStoreOutput = {
     type = "structure",
+    id = "GetTrustStoreOutput",
     members = {
         TrustStore = setmetatable({ traits = {
             http_payload = true,
@@ -7952,6 +8458,7 @@ M.GetTrustStoreOutput = {
 
 M.GetVpcOriginInput = {
     type = "structure",
+    id = "GetVpcOriginInput",
     members = {
         Id = {
             type = "string",
@@ -7965,6 +8472,7 @@ M.GetVpcOriginInput = {
 
 M.GetVpcOriginOutput = {
     type = "structure",
+    id = "GetVpcOriginOutput",
     members = {
         VpcOrigin = setmetatable({ traits = {
             http_payload = true,
@@ -7980,6 +8488,7 @@ M.GetVpcOriginOutput = {
 
 M.ListAnycastIpListsInput = {
     type = "structure",
+    id = "ListAnycastIpListsInput",
     members = {
         Marker = {
             type = "string",
@@ -7998,6 +8507,7 @@ M.ListAnycastIpListsInput = {
 
 M.ListAnycastIpListsOutput = {
     type = "structure",
+    id = "ListAnycastIpListsOutput",
     members = {
         AnycastIpLists = setmetatable({ traits = {
             http_payload = true,
@@ -8008,6 +8518,7 @@ M.ListAnycastIpListsOutput = {
 
 M.ListCachePoliciesInput = {
     type = "structure",
+    id = "ListCachePoliciesInput",
     members = {
         Type = {
             type = "string",
@@ -8032,6 +8543,7 @@ M.ListCachePoliciesInput = {
 
 M.ListCachePoliciesOutput = {
     type = "structure",
+    id = "ListCachePoliciesOutput",
     members = {
         CachePolicyList = setmetatable({ traits = {
             http_payload = true,
@@ -8041,6 +8553,7 @@ M.ListCachePoliciesOutput = {
 
 M.ListCloudFrontOriginAccessIdentitiesInput = {
     type = "structure",
+    id = "ListCloudFrontOriginAccessIdentitiesInput",
     members = {
         Marker = {
             type = "string",
@@ -8059,6 +8572,7 @@ M.ListCloudFrontOriginAccessIdentitiesInput = {
 
 M.CloudFrontOriginAccessIdentitySummary = {
     type = "structure",
+    id = "CloudFrontOriginAccessIdentitySummary",
     members = {
         Id = {
             type = "string",
@@ -8083,6 +8597,7 @@ M.CloudFrontOriginAccessIdentitySummary = {
 
 M.CloudFrontOriginAccessIdentityList = {
     type = "structure",
+    id = "CloudFrontOriginAccessIdentityList",
     members = {
         Marker = {
             type = "string",
@@ -8120,6 +8635,7 @@ M.CloudFrontOriginAccessIdentityList = {
 
 M.ListCloudFrontOriginAccessIdentitiesOutput = {
     type = "structure",
+    id = "ListCloudFrontOriginAccessIdentitiesOutput",
     members = {
         CloudFrontOriginAccessIdentityList = setmetatable({ traits = {
             http_payload = true,
@@ -8129,6 +8645,7 @@ M.ListCloudFrontOriginAccessIdentitiesOutput = {
 
 M.ListConflictingAliasesInput = {
     type = "structure",
+    id = "ListConflictingAliasesInput",
     members = {
         DistributionId = {
             type = "string",
@@ -8161,6 +8678,7 @@ M.ListConflictingAliasesInput = {
 
 M.ConflictingAlias = {
     type = "structure",
+    id = "ConflictingAlias",
     members = {
         Alias = {
             type = "string",
@@ -8176,6 +8694,7 @@ M.ConflictingAlias = {
 
 M.ConflictingAliasesList = {
     type = "structure",
+    id = "ConflictingAliasesList",
     members = {
         NextMarker = {
             type = "string",
@@ -8195,6 +8714,7 @@ M.ConflictingAliasesList = {
 
 M.ListConflictingAliasesOutput = {
     type = "structure",
+    id = "ListConflictingAliasesOutput",
     members = {
         ConflictingAliasesList = setmetatable({ traits = {
             http_payload = true,
@@ -8204,6 +8724,7 @@ M.ListConflictingAliasesOutput = {
 
 M.ListConnectionFunctionsInput = {
     type = "structure",
+    id = "ListConnectionFunctionsInput",
     members = {
         Marker = {
             type = "string",
@@ -8219,6 +8740,7 @@ M.ListConnectionFunctionsInput = {
 
 M.ListConnectionFunctionsOutput = {
     type = "structure",
+    id = "ListConnectionFunctionsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -8232,6 +8754,7 @@ M.ListConnectionFunctionsOutput = {
 
 M.ConnectionGroupAssociationFilter = {
     type = "structure",
+    id = "ConnectionGroupAssociationFilter",
     members = {
         AnycastIpListId = {
             type = "string",
@@ -8241,6 +8764,7 @@ M.ConnectionGroupAssociationFilter = {
 
 M.ListConnectionGroupsInput = {
     type = "structure",
+    id = "ListConnectionGroupsInput",
     members = {
         AssociationFilter = M.ConnectionGroupAssociationFilter,
         Marker = {
@@ -8254,6 +8778,7 @@ M.ListConnectionGroupsInput = {
 
 M.ConnectionGroupSummary = {
     type = "structure",
+    id = "ConnectionGroupSummary",
     members = {
         Id = {
             type = "string",
@@ -8314,6 +8839,7 @@ M.ConnectionGroupSummary = {
 
 M.ListConnectionGroupsOutput = {
     type = "structure",
+    id = "ListConnectionGroupsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -8327,6 +8853,7 @@ M.ListConnectionGroupsOutput = {
 
 M.ListContinuousDeploymentPoliciesInput = {
     type = "structure",
+    id = "ListContinuousDeploymentPoliciesInput",
     members = {
         Marker = {
             type = "string",
@@ -8345,6 +8872,7 @@ M.ListContinuousDeploymentPoliciesInput = {
 
 M.ContinuousDeploymentPolicySummary = {
     type = "structure",
+    id = "ContinuousDeploymentPolicySummary",
     members = {
         ContinuousDeploymentPolicy = setmetatable({ traits = {
             required = true,
@@ -8354,6 +8882,7 @@ M.ContinuousDeploymentPolicySummary = {
 
 M.ContinuousDeploymentPolicyList = {
     type = "structure",
+    id = "ContinuousDeploymentPolicyList",
     members = {
         NextMarker = {
             type = "string",
@@ -8379,6 +8908,7 @@ M.ContinuousDeploymentPolicyList = {
 
 M.ListContinuousDeploymentPoliciesOutput = {
     type = "structure",
+    id = "ListContinuousDeploymentPoliciesOutput",
     members = {
         ContinuousDeploymentPolicyList = setmetatable({ traits = {
             http_payload = true,
@@ -8388,6 +8918,7 @@ M.ListContinuousDeploymentPoliciesOutput = {
 
 M.ListDistributionsInput = {
     type = "structure",
+    id = "ListDistributionsInput",
     members = {
         Marker = {
             type = "string",
@@ -8406,6 +8937,7 @@ M.ListDistributionsInput = {
 
 M.DistributionSummary = {
     type = "structure",
+    id = "DistributionSummary",
     members = {
         Id = {
             type = "string",
@@ -8521,6 +9053,7 @@ M.DistributionSummary = {
 
 M.DistributionList = {
     type = "structure",
+    id = "DistributionList",
     members = {
         Marker = {
             type = "string",
@@ -8558,6 +9091,7 @@ M.DistributionList = {
 
 M.ListDistributionsOutput = {
     type = "structure",
+    id = "ListDistributionsOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -8567,6 +9101,7 @@ M.ListDistributionsOutput = {
 
 M.ListDistributionsByAnycastIpListIdInput = {
     type = "structure",
+    id = "ListDistributionsByAnycastIpListIdInput",
     members = {
         Marker = {
             type = "string",
@@ -8592,6 +9127,7 @@ M.ListDistributionsByAnycastIpListIdInput = {
 
 M.ListDistributionsByAnycastIpListIdOutput = {
     type = "structure",
+    id = "ListDistributionsByAnycastIpListIdOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -8601,6 +9137,7 @@ M.ListDistributionsByAnycastIpListIdOutput = {
 
 M.ListDistributionsByCachePolicyIdInput = {
     type = "structure",
+    id = "ListDistributionsByCachePolicyIdInput",
     members = {
         Marker = {
             type = "string",
@@ -8626,6 +9163,7 @@ M.ListDistributionsByCachePolicyIdInput = {
 
 M.DistributionIdList = {
     type = "structure",
+    id = "DistributionIdList",
     members = {
         Marker = {
             type = "string",
@@ -8663,6 +9201,7 @@ M.DistributionIdList = {
 
 M.ListDistributionsByCachePolicyIdOutput = {
     type = "structure",
+    id = "ListDistributionsByCachePolicyIdOutput",
     members = {
         DistributionIdList = setmetatable({ traits = {
             http_payload = true,
@@ -8672,6 +9211,7 @@ M.ListDistributionsByCachePolicyIdOutput = {
 
 M.ListDistributionsByConnectionFunctionInput = {
     type = "structure",
+    id = "ListDistributionsByConnectionFunctionInput",
     members = {
         Marker = {
             type = "string",
@@ -8697,6 +9237,7 @@ M.ListDistributionsByConnectionFunctionInput = {
 
 M.ListDistributionsByConnectionFunctionOutput = {
     type = "structure",
+    id = "ListDistributionsByConnectionFunctionOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -8706,6 +9247,7 @@ M.ListDistributionsByConnectionFunctionOutput = {
 
 M.ListDistributionsByConnectionModeInput = {
     type = "structure",
+    id = "ListDistributionsByConnectionModeInput",
     members = {
         Marker = {
             type = "string",
@@ -8731,6 +9273,7 @@ M.ListDistributionsByConnectionModeInput = {
 
 M.ListDistributionsByConnectionModeOutput = {
     type = "structure",
+    id = "ListDistributionsByConnectionModeOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -8740,6 +9283,7 @@ M.ListDistributionsByConnectionModeOutput = {
 
 M.ListDistributionsByKeyGroupInput = {
     type = "structure",
+    id = "ListDistributionsByKeyGroupInput",
     members = {
         Marker = {
             type = "string",
@@ -8765,6 +9309,7 @@ M.ListDistributionsByKeyGroupInput = {
 
 M.ListDistributionsByKeyGroupOutput = {
     type = "structure",
+    id = "ListDistributionsByKeyGroupOutput",
     members = {
         DistributionIdList = setmetatable({ traits = {
             http_payload = true,
@@ -8774,6 +9319,7 @@ M.ListDistributionsByKeyGroupOutput = {
 
 M.ListDistributionsByOriginRequestPolicyIdInput = {
     type = "structure",
+    id = "ListDistributionsByOriginRequestPolicyIdInput",
     members = {
         Marker = {
             type = "string",
@@ -8799,6 +9345,7 @@ M.ListDistributionsByOriginRequestPolicyIdInput = {
 
 M.ListDistributionsByOriginRequestPolicyIdOutput = {
     type = "structure",
+    id = "ListDistributionsByOriginRequestPolicyIdOutput",
     members = {
         DistributionIdList = setmetatable({ traits = {
             http_payload = true,
@@ -8808,6 +9355,7 @@ M.ListDistributionsByOriginRequestPolicyIdOutput = {
 
 M.ListDistributionsByOwnedResourceInput = {
     type = "structure",
+    id = "ListDistributionsByOwnedResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -8833,6 +9381,7 @@ M.ListDistributionsByOwnedResourceInput = {
 
 M.DistributionIdOwner = {
     type = "structure",
+    id = "DistributionIdOwner",
     members = {
         DistributionId = {
             type = "string",
@@ -8851,6 +9400,7 @@ M.DistributionIdOwner = {
 
 M.DistributionIdOwnerList = {
     type = "structure",
+    id = "DistributionIdOwnerList",
     members = {
         Marker = {
             type = "string",
@@ -8888,6 +9438,7 @@ M.DistributionIdOwnerList = {
 
 M.ListDistributionsByOwnedResourceOutput = {
     type = "structure",
+    id = "ListDistributionsByOwnedResourceOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -8897,6 +9448,7 @@ M.ListDistributionsByOwnedResourceOutput = {
 
 M.ListDistributionsByRealtimeLogConfigInput = {
     type = "structure",
+    id = "ListDistributionsByRealtimeLogConfigInput",
     members = {
         Marker = {
             type = "string",
@@ -8915,6 +9467,7 @@ M.ListDistributionsByRealtimeLogConfigInput = {
 
 M.ListDistributionsByRealtimeLogConfigOutput = {
     type = "structure",
+    id = "ListDistributionsByRealtimeLogConfigOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -8924,6 +9477,7 @@ M.ListDistributionsByRealtimeLogConfigOutput = {
 
 M.ListDistributionsByResponseHeadersPolicyIdInput = {
     type = "structure",
+    id = "ListDistributionsByResponseHeadersPolicyIdInput",
     members = {
         Marker = {
             type = "string",
@@ -8949,6 +9503,7 @@ M.ListDistributionsByResponseHeadersPolicyIdInput = {
 
 M.ListDistributionsByResponseHeadersPolicyIdOutput = {
     type = "structure",
+    id = "ListDistributionsByResponseHeadersPolicyIdOutput",
     members = {
         DistributionIdList = setmetatable({ traits = {
             http_payload = true,
@@ -8958,6 +9513,7 @@ M.ListDistributionsByResponseHeadersPolicyIdOutput = {
 
 M.ListDistributionsByTrustStoreInput = {
     type = "structure",
+    id = "ListDistributionsByTrustStoreInput",
     members = {
         TrustStoreIdentifier = {
             type = "string",
@@ -8983,6 +9539,7 @@ M.ListDistributionsByTrustStoreInput = {
 
 M.ListDistributionsByTrustStoreOutput = {
     type = "structure",
+    id = "ListDistributionsByTrustStoreOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -8992,6 +9549,7 @@ M.ListDistributionsByTrustStoreOutput = {
 
 M.ListDistributionsByVpcOriginIdInput = {
     type = "structure",
+    id = "ListDistributionsByVpcOriginIdInput",
     members = {
         Marker = {
             type = "string",
@@ -9017,6 +9575,7 @@ M.ListDistributionsByVpcOriginIdInput = {
 
 M.ListDistributionsByVpcOriginIdOutput = {
     type = "structure",
+    id = "ListDistributionsByVpcOriginIdOutput",
     members = {
         DistributionIdList = setmetatable({ traits = {
             http_payload = true,
@@ -9026,6 +9585,7 @@ M.ListDistributionsByVpcOriginIdOutput = {
 
 M.ListDistributionsByWebACLIdInput = {
     type = "structure",
+    id = "ListDistributionsByWebACLIdInput",
     members = {
         Marker = {
             type = "string",
@@ -9051,6 +9611,7 @@ M.ListDistributionsByWebACLIdInput = {
 
 M.ListDistributionsByWebACLIdOutput = {
     type = "structure",
+    id = "ListDistributionsByWebACLIdOutput",
     members = {
         DistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -9060,6 +9621,7 @@ M.ListDistributionsByWebACLIdOutput = {
 
 M.DistributionTenantAssociationFilter = {
     type = "structure",
+    id = "DistributionTenantAssociationFilter",
     members = {
         DistributionId = {
             type = "string",
@@ -9072,6 +9634,7 @@ M.DistributionTenantAssociationFilter = {
 
 M.ListDistributionTenantsInput = {
     type = "structure",
+    id = "ListDistributionTenantsInput",
     members = {
         AssociationFilter = M.DistributionTenantAssociationFilter,
         Marker = {
@@ -9085,6 +9648,7 @@ M.ListDistributionTenantsInput = {
 
 M.DistributionTenantSummary = {
     type = "structure",
+    id = "DistributionTenantSummary",
     members = {
         Id = {
             type = "string",
@@ -9150,6 +9714,7 @@ M.DistributionTenantSummary = {
 
 M.ListDistributionTenantsOutput = {
     type = "structure",
+    id = "ListDistributionTenantsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -9163,6 +9728,7 @@ M.ListDistributionTenantsOutput = {
 
 M.ListDistributionTenantsByCustomizationInput = {
     type = "structure",
+    id = "ListDistributionTenantsByCustomizationInput",
     members = {
         WebACLArn = {
             type = "string",
@@ -9181,6 +9747,7 @@ M.ListDistributionTenantsByCustomizationInput = {
 
 M.ListDistributionTenantsByCustomizationOutput = {
     type = "structure",
+    id = "ListDistributionTenantsByCustomizationOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -9194,6 +9761,7 @@ M.ListDistributionTenantsByCustomizationOutput = {
 
 M.DistributionResourceId = {
     type = "structure",
+    id = "DistributionResourceId",
     members = {
         DistributionId = {
             type = "string",
@@ -9206,6 +9774,7 @@ M.DistributionResourceId = {
 
 M.ListDomainConflictsInput = {
     type = "structure",
+    id = "ListDomainConflictsInput",
     members = {
         Domain = {
             type = "string",
@@ -9232,6 +9801,7 @@ M.DistributionResourceType = {
 
 M.DomainConflict = {
     type = "structure",
+    id = "DomainConflict",
     members = {
         Domain = {
             type = "string",
@@ -9262,6 +9832,7 @@ M.DomainConflict = {
 
 M.ListDomainConflictsOutput = {
     type = "structure",
+    id = "ListDomainConflictsOutput",
     members = {
         DomainConflicts = {
             type = "list",
@@ -9275,6 +9846,7 @@ M.ListDomainConflictsOutput = {
 
 M.ListFieldLevelEncryptionConfigsInput = {
     type = "structure",
+    id = "ListFieldLevelEncryptionConfigsInput",
     members = {
         Marker = {
             type = "string",
@@ -9293,6 +9865,7 @@ M.ListFieldLevelEncryptionConfigsInput = {
 
 M.FieldLevelEncryptionSummary = {
     type = "structure",
+    id = "FieldLevelEncryptionSummary",
     members = {
         Id = {
             type = "string",
@@ -9316,6 +9889,7 @@ M.FieldLevelEncryptionSummary = {
 
 M.FieldLevelEncryptionList = {
     type = "structure",
+    id = "FieldLevelEncryptionList",
     members = {
         NextMarker = {
             type = "string",
@@ -9341,6 +9915,7 @@ M.FieldLevelEncryptionList = {
 
 M.ListFieldLevelEncryptionConfigsOutput = {
     type = "structure",
+    id = "ListFieldLevelEncryptionConfigsOutput",
     members = {
         FieldLevelEncryptionList = setmetatable({ traits = {
             http_payload = true,
@@ -9350,6 +9925,7 @@ M.ListFieldLevelEncryptionConfigsOutput = {
 
 M.ListFieldLevelEncryptionProfilesInput = {
     type = "structure",
+    id = "ListFieldLevelEncryptionProfilesInput",
     members = {
         Marker = {
             type = "string",
@@ -9368,6 +9944,7 @@ M.ListFieldLevelEncryptionProfilesInput = {
 
 M.FieldLevelEncryptionProfileSummary = {
     type = "structure",
+    id = "FieldLevelEncryptionProfileSummary",
     members = {
         Id = {
             type = "string",
@@ -9398,6 +9975,7 @@ M.FieldLevelEncryptionProfileSummary = {
 
 M.FieldLevelEncryptionProfileList = {
     type = "structure",
+    id = "FieldLevelEncryptionProfileList",
     members = {
         NextMarker = {
             type = "string",
@@ -9423,6 +10001,7 @@ M.FieldLevelEncryptionProfileList = {
 
 M.ListFieldLevelEncryptionProfilesOutput = {
     type = "structure",
+    id = "ListFieldLevelEncryptionProfilesOutput",
     members = {
         FieldLevelEncryptionProfileList = setmetatable({ traits = {
             http_payload = true,
@@ -9432,6 +10011,7 @@ M.ListFieldLevelEncryptionProfilesOutput = {
 
 M.ListFunctionsInput = {
     type = "structure",
+    id = "ListFunctionsInput",
     members = {
         Marker = {
             type = "string",
@@ -9456,6 +10036,7 @@ M.ListFunctionsInput = {
 
 M.FunctionList = {
     type = "structure",
+    id = "FunctionList",
     members = {
         NextMarker = {
             type = "string",
@@ -9481,6 +10062,7 @@ M.FunctionList = {
 
 M.ListFunctionsOutput = {
     type = "structure",
+    id = "ListFunctionsOutput",
     members = {
         FunctionList = setmetatable({ traits = {
             http_payload = true,
@@ -9490,6 +10072,7 @@ M.ListFunctionsOutput = {
 
 M.ListInvalidationsInput = {
     type = "structure",
+    id = "ListInvalidationsInput",
     members = {
         DistributionId = {
             type = "string",
@@ -9515,6 +10098,7 @@ M.ListInvalidationsInput = {
 
 M.InvalidationSummary = {
     type = "structure",
+    id = "InvalidationSummary",
     members = {
         Id = {
             type = "string",
@@ -9539,6 +10123,7 @@ M.InvalidationSummary = {
 
 M.InvalidationList = {
     type = "structure",
+    id = "InvalidationList",
     members = {
         Marker = {
             type = "string",
@@ -9576,6 +10161,7 @@ M.InvalidationList = {
 
 M.ListInvalidationsOutput = {
     type = "structure",
+    id = "ListInvalidationsOutput",
     members = {
         InvalidationList = setmetatable({ traits = {
             http_payload = true,
@@ -9585,6 +10171,7 @@ M.ListInvalidationsOutput = {
 
 M.ListInvalidationsForDistributionTenantInput = {
     type = "structure",
+    id = "ListInvalidationsForDistributionTenantInput",
     members = {
         Id = {
             type = "string",
@@ -9610,6 +10197,7 @@ M.ListInvalidationsForDistributionTenantInput = {
 
 M.ListInvalidationsForDistributionTenantOutput = {
     type = "structure",
+    id = "ListInvalidationsForDistributionTenantOutput",
     members = {
         InvalidationList = setmetatable({ traits = {
             http_payload = true,
@@ -9619,6 +10207,7 @@ M.ListInvalidationsForDistributionTenantOutput = {
 
 M.ListKeyGroupsInput = {
     type = "structure",
+    id = "ListKeyGroupsInput",
     members = {
         Marker = {
             type = "string",
@@ -9637,6 +10226,7 @@ M.ListKeyGroupsInput = {
 
 M.KeyGroupSummary = {
     type = "structure",
+    id = "KeyGroupSummary",
     members = {
         KeyGroup = setmetatable({ traits = {
             required = true,
@@ -9646,6 +10236,7 @@ M.KeyGroupSummary = {
 
 M.KeyGroupList = {
     type = "structure",
+    id = "KeyGroupList",
     members = {
         NextMarker = {
             type = "string",
@@ -9671,6 +10262,7 @@ M.KeyGroupList = {
 
 M.ListKeyGroupsOutput = {
     type = "structure",
+    id = "ListKeyGroupsOutput",
     members = {
         KeyGroupList = setmetatable({ traits = {
             http_payload = true,
@@ -9680,6 +10272,7 @@ M.ListKeyGroupsOutput = {
 
 M.ListKeyValueStoresInput = {
     type = "structure",
+    id = "ListKeyValueStoresInput",
     members = {
         Marker = {
             type = "string",
@@ -9704,6 +10297,7 @@ M.ListKeyValueStoresInput = {
 
 M.KeyValueStoreList = {
     type = "structure",
+    id = "KeyValueStoreList",
     members = {
         NextMarker = {
             type = "string",
@@ -9729,6 +10323,7 @@ M.KeyValueStoreList = {
 
 M.ListKeyValueStoresOutput = {
     type = "structure",
+    id = "ListKeyValueStoresOutput",
     members = {
         KeyValueStoreList = setmetatable({ traits = {
             http_payload = true,
@@ -9738,6 +10333,7 @@ M.ListKeyValueStoresOutput = {
 
 M.ListOriginAccessControlsInput = {
     type = "structure",
+    id = "ListOriginAccessControlsInput",
     members = {
         Marker = {
             type = "string",
@@ -9756,6 +10352,7 @@ M.ListOriginAccessControlsInput = {
 
 M.OriginAccessControlSummary = {
     type = "structure",
+    id = "OriginAccessControlSummary",
     members = {
         Id = {
             type = "string",
@@ -9798,6 +10395,7 @@ M.OriginAccessControlSummary = {
 
 M.OriginAccessControlList = {
     type = "structure",
+    id = "OriginAccessControlList",
     members = {
         Marker = {
             type = "string",
@@ -9835,6 +10433,7 @@ M.OriginAccessControlList = {
 
 M.ListOriginAccessControlsOutput = {
     type = "structure",
+    id = "ListOriginAccessControlsOutput",
     members = {
         OriginAccessControlList = setmetatable({ traits = {
             http_payload = true,
@@ -9849,6 +10448,7 @@ M.OriginRequestPolicyType = {
 
 M.ListOriginRequestPoliciesInput = {
     type = "structure",
+    id = "ListOriginRequestPoliciesInput",
     members = {
         Type = {
             type = "string",
@@ -9873,6 +10473,7 @@ M.ListOriginRequestPoliciesInput = {
 
 M.OriginRequestPolicySummary = {
     type = "structure",
+    id = "OriginRequestPolicySummary",
     members = {
         Type = {
             type = "string",
@@ -9888,6 +10489,7 @@ M.OriginRequestPolicySummary = {
 
 M.OriginRequestPolicyList = {
     type = "structure",
+    id = "OriginRequestPolicyList",
     members = {
         NextMarker = {
             type = "string",
@@ -9913,6 +10515,7 @@ M.OriginRequestPolicyList = {
 
 M.ListOriginRequestPoliciesOutput = {
     type = "structure",
+    id = "ListOriginRequestPoliciesOutput",
     members = {
         OriginRequestPolicyList = setmetatable({ traits = {
             http_payload = true,
@@ -9922,6 +10525,7 @@ M.ListOriginRequestPoliciesOutput = {
 
 M.ListPublicKeysInput = {
     type = "structure",
+    id = "ListPublicKeysInput",
     members = {
         Marker = {
             type = "string",
@@ -9940,6 +10544,7 @@ M.ListPublicKeysInput = {
 
 M.PublicKeySummary = {
     type = "structure",
+    id = "PublicKeySummary",
     members = {
         Id = {
             type = "string",
@@ -9973,6 +10578,7 @@ M.PublicKeySummary = {
 
 M.PublicKeyList = {
     type = "structure",
+    id = "PublicKeyList",
     members = {
         NextMarker = {
             type = "string",
@@ -9998,6 +10604,7 @@ M.PublicKeyList = {
 
 M.ListPublicKeysOutput = {
     type = "structure",
+    id = "ListPublicKeysOutput",
     members = {
         PublicKeyList = setmetatable({ traits = {
             http_payload = true,
@@ -10007,6 +10614,7 @@ M.ListPublicKeysOutput = {
 
 M.ListRealtimeLogConfigsInput = {
     type = "structure",
+    id = "ListRealtimeLogConfigsInput",
     members = {
         MaxItems = {
             type = "integer",
@@ -10025,6 +10633,7 @@ M.ListRealtimeLogConfigsInput = {
 
 M.RealtimeLogConfigs = {
     type = "structure",
+    id = "RealtimeLogConfigs",
     members = {
         MaxItems = {
             type = "integer",
@@ -10056,6 +10665,7 @@ M.RealtimeLogConfigs = {
 
 M.ListRealtimeLogConfigsOutput = {
     type = "structure",
+    id = "ListRealtimeLogConfigsOutput",
     members = {
         RealtimeLogConfigs = setmetatable({ traits = {
             http_payload = true,
@@ -10070,6 +10680,7 @@ M.ResponseHeadersPolicyType = {
 
 M.ListResponseHeadersPoliciesInput = {
     type = "structure",
+    id = "ListResponseHeadersPoliciesInput",
     members = {
         Type = {
             type = "string",
@@ -10094,6 +10705,7 @@ M.ListResponseHeadersPoliciesInput = {
 
 M.ResponseHeadersPolicySummary = {
     type = "structure",
+    id = "ResponseHeadersPolicySummary",
     members = {
         Type = {
             type = "string",
@@ -10109,6 +10721,7 @@ M.ResponseHeadersPolicySummary = {
 
 M.ResponseHeadersPolicyList = {
     type = "structure",
+    id = "ResponseHeadersPolicyList",
     members = {
         NextMarker = {
             type = "string",
@@ -10134,6 +10747,7 @@ M.ResponseHeadersPolicyList = {
 
 M.ListResponseHeadersPoliciesOutput = {
     type = "structure",
+    id = "ListResponseHeadersPoliciesOutput",
     members = {
         ResponseHeadersPolicyList = setmetatable({ traits = {
             http_payload = true,
@@ -10143,6 +10757,7 @@ M.ListResponseHeadersPoliciesOutput = {
 
 M.ListStreamingDistributionsInput = {
     type = "structure",
+    id = "ListStreamingDistributionsInput",
     members = {
         Marker = {
             type = "string",
@@ -10161,6 +10776,7 @@ M.ListStreamingDistributionsInput = {
 
 M.StreamingDistributionSummary = {
     type = "structure",
+    id = "StreamingDistributionSummary",
     members = {
         Id = {
             type = "string",
@@ -10224,6 +10840,7 @@ M.StreamingDistributionSummary = {
 
 M.StreamingDistributionList = {
     type = "structure",
+    id = "StreamingDistributionList",
     members = {
         Marker = {
             type = "string",
@@ -10261,6 +10878,7 @@ M.StreamingDistributionList = {
 
 M.ListStreamingDistributionsOutput = {
     type = "structure",
+    id = "ListStreamingDistributionsOutput",
     members = {
         StreamingDistributionList = setmetatable({ traits = {
             http_payload = true,
@@ -10270,6 +10888,7 @@ M.ListStreamingDistributionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -10283,6 +10902,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = setmetatable({ traits = {
             http_payload = true,
@@ -10293,6 +10913,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTrustStoresInput = {
     type = "structure",
+    id = "ListTrustStoresInput",
     members = {
         Marker = {
             type = "string",
@@ -10305,6 +10926,7 @@ M.ListTrustStoresInput = {
 
 M.TrustStoreSummary = {
     type = "structure",
+    id = "TrustStoreSummary",
     members = {
         Id = {
             type = "string",
@@ -10356,6 +10978,7 @@ M.TrustStoreSummary = {
 
 M.ListTrustStoresOutput = {
     type = "structure",
+    id = "ListTrustStoresOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -10369,6 +10992,7 @@ M.ListTrustStoresOutput = {
 
 M.ListVpcOriginsInput = {
     type = "structure",
+    id = "ListVpcOriginsInput",
     members = {
         Marker = {
             type = "string",
@@ -10387,6 +11011,7 @@ M.ListVpcOriginsInput = {
 
 M.VpcOriginSummary = {
     type = "structure",
+    id = "VpcOriginSummary",
     members = {
         Id = {
             type = "string",
@@ -10438,6 +11063,7 @@ M.VpcOriginSummary = {
 
 M.VpcOriginList = {
     type = "structure",
+    id = "VpcOriginList",
     members = {
         Marker = {
             type = "string",
@@ -10475,6 +11101,7 @@ M.VpcOriginList = {
 
 M.ListVpcOriginsOutput = {
     type = "structure",
+    id = "ListVpcOriginsOutput",
     members = {
         VpcOriginList = setmetatable({ traits = {
             http_payload = true,
@@ -10484,6 +11111,7 @@ M.ListVpcOriginsOutput = {
 
 M.PublishConnectionFunctionInput = {
     type = "structure",
+    id = "PublishConnectionFunctionInput",
     members = {
         Id = {
             type = "string",
@@ -10504,6 +11132,7 @@ M.PublishConnectionFunctionInput = {
 
 M.PublishConnectionFunctionOutput = {
     type = "structure",
+    id = "PublishConnectionFunctionOutput",
     members = {
         ConnectionFunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -10513,6 +11142,7 @@ M.PublishConnectionFunctionOutput = {
 
 M.PublishFunctionInput = {
     type = "structure",
+    id = "PublishFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -10533,6 +11163,7 @@ M.PublishFunctionInput = {
 
 M.PublishFunctionOutput = {
     type = "structure",
+    id = "PublishFunctionOutput",
     members = {
         FunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -10542,6 +11173,7 @@ M.PublishFunctionOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -10560,6 +11192,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -10569,6 +11202,7 @@ M.PutResourcePolicyOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -10587,10 +11221,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TestConnectionFunctionInput = {
     type = "structure",
+    id = "TestConnectionFunctionInput",
     members = {
         Id = {
             type = "string",
@@ -10620,6 +11256,7 @@ M.TestConnectionFunctionInput = {
 
 M.ConnectionFunctionTestResult = {
     type = "structure",
+    id = "ConnectionFunctionTestResult",
     members = {
         ConnectionFunctionSummary = M.ConnectionFunctionSummary,
         ComputeUtilization = {
@@ -10640,6 +11277,7 @@ M.ConnectionFunctionTestResult = {
 
 M.TestConnectionFunctionOutput = {
     type = "structure",
+    id = "TestConnectionFunctionOutput",
     members = {
         ConnectionFunctionTestResult = setmetatable({ traits = {
             http_payload = true,
@@ -10649,6 +11287,7 @@ M.TestConnectionFunctionOutput = {
 
 M.TestFunctionFailed = {
     type = "structure",
+    id = "TestFunctionFailed",
     error = "server",
     members = {
         Message = {
@@ -10659,6 +11298,7 @@ M.TestFunctionFailed = {
 
 M.TestFunctionInput = {
     type = "structure",
+    id = "TestFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -10688,6 +11328,7 @@ M.TestFunctionInput = {
 
 M.TestResult = {
     type = "structure",
+    id = "TestResult",
     members = {
         FunctionSummary = M.FunctionSummary,
         ComputeUtilization = {
@@ -10708,6 +11349,7 @@ M.TestResult = {
 
 M.TestFunctionOutput = {
     type = "structure",
+    id = "TestFunctionOutput",
     members = {
         TestResult = setmetatable({ traits = {
             http_payload = true,
@@ -10717,6 +11359,7 @@ M.TestFunctionOutput = {
 
 M.TagKeys = {
     type = "structure",
+    id = "TagKeys",
     members = {
         Items = {
             type = "list",
@@ -10727,6 +11370,7 @@ M.TagKeys = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -10745,10 +11389,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAnycastIpListInput = {
     type = "structure",
+    id = "UpdateAnycastIpListInput",
     members = {
         Id = {
             type = "string",
@@ -10776,6 +11422,7 @@ M.UpdateAnycastIpListInput = {
 
 M.UpdateAnycastIpListOutput = {
     type = "structure",
+    id = "UpdateAnycastIpListOutput",
     members = {
         AnycastIpList = setmetatable({ traits = {
             http_payload = true,
@@ -10791,6 +11438,7 @@ M.UpdateAnycastIpListOutput = {
 
 M.UpdateCachePolicyInput = {
     type = "structure",
+    id = "UpdateCachePolicyInput",
     members = {
         CachePolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -10815,6 +11463,7 @@ M.UpdateCachePolicyInput = {
 
 M.UpdateCachePolicyOutput = {
     type = "structure",
+    id = "UpdateCachePolicyOutput",
     members = {
         CachePolicy = setmetatable({ traits = {
             http_payload = true,
@@ -10830,6 +11479,7 @@ M.UpdateCachePolicyOutput = {
 
 M.UpdateCloudFrontOriginAccessIdentityInput = {
     type = "structure",
+    id = "UpdateCloudFrontOriginAccessIdentityInput",
     members = {
         CloudFrontOriginAccessIdentityConfig = setmetatable({ traits = {
             http_payload = true,
@@ -10854,6 +11504,7 @@ M.UpdateCloudFrontOriginAccessIdentityInput = {
 
 M.UpdateCloudFrontOriginAccessIdentityOutput = {
     type = "structure",
+    id = "UpdateCloudFrontOriginAccessIdentityOutput",
     members = {
         CloudFrontOriginAccessIdentity = setmetatable({ traits = {
             http_payload = true,
@@ -10869,6 +11520,7 @@ M.UpdateCloudFrontOriginAccessIdentityOutput = {
 
 M.UpdateConnectionFunctionInput = {
     type = "structure",
+    id = "UpdateConnectionFunctionInput",
     members = {
         Id = {
             type = "string",
@@ -10898,6 +11550,7 @@ M.UpdateConnectionFunctionInput = {
 
 M.UpdateConnectionFunctionOutput = {
     type = "structure",
+    id = "UpdateConnectionFunctionOutput",
     members = {
         ConnectionFunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -10913,6 +11566,7 @@ M.UpdateConnectionFunctionOutput = {
 
 M.UpdateConnectionGroupInput = {
     type = "structure",
+    id = "UpdateConnectionGroupInput",
     members = {
         Id = {
             type = "string",
@@ -10942,6 +11596,7 @@ M.UpdateConnectionGroupInput = {
 
 M.UpdateConnectionGroupOutput = {
     type = "structure",
+    id = "UpdateConnectionGroupOutput",
     members = {
         ConnectionGroup = setmetatable({ traits = {
             http_payload = true,
@@ -10957,6 +11612,7 @@ M.UpdateConnectionGroupOutput = {
 
 M.UpdateContinuousDeploymentPolicyInput = {
     type = "structure",
+    id = "UpdateContinuousDeploymentPolicyInput",
     members = {
         ContinuousDeploymentPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -10981,6 +11637,7 @@ M.UpdateContinuousDeploymentPolicyInput = {
 
 M.UpdateContinuousDeploymentPolicyOutput = {
     type = "structure",
+    id = "UpdateContinuousDeploymentPolicyOutput",
     members = {
         ContinuousDeploymentPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -10996,6 +11653,7 @@ M.UpdateContinuousDeploymentPolicyOutput = {
 
 M.UpdateDistributionInput = {
     type = "structure",
+    id = "UpdateDistributionInput",
     members = {
         DistributionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11020,6 +11678,7 @@ M.UpdateDistributionInput = {
 
 M.UpdateDistributionOutput = {
     type = "structure",
+    id = "UpdateDistributionOutput",
     members = {
         Distribution = setmetatable({ traits = {
             http_payload = true,
@@ -11035,6 +11694,7 @@ M.UpdateDistributionOutput = {
 
 M.UpdateDistributionTenantInput = {
     type = "structure",
+    id = "UpdateDistributionTenantInput",
     members = {
         Id = {
             type = "string",
@@ -11074,6 +11734,7 @@ M.UpdateDistributionTenantInput = {
 
 M.UpdateDistributionTenantOutput = {
     type = "structure",
+    id = "UpdateDistributionTenantOutput",
     members = {
         DistributionTenant = setmetatable({ traits = {
             http_payload = true,
@@ -11089,6 +11750,7 @@ M.UpdateDistributionTenantOutput = {
 
 M.UpdateDistributionWithStagingConfigInput = {
     type = "structure",
+    id = "UpdateDistributionWithStagingConfigInput",
     members = {
         Id = {
             type = "string",
@@ -11114,6 +11776,7 @@ M.UpdateDistributionWithStagingConfigInput = {
 
 M.UpdateDistributionWithStagingConfigOutput = {
     type = "structure",
+    id = "UpdateDistributionWithStagingConfigOutput",
     members = {
         Distribution = setmetatable({ traits = {
             http_payload = true,
@@ -11129,6 +11792,7 @@ M.UpdateDistributionWithStagingConfigOutput = {
 
 M.UpdateDomainAssociationInput = {
     type = "structure",
+    id = "UpdateDomainAssociationInput",
     members = {
         Domain = {
             type = "string",
@@ -11150,6 +11814,7 @@ M.UpdateDomainAssociationInput = {
 
 M.UpdateDomainAssociationOutput = {
     type = "structure",
+    id = "UpdateDomainAssociationOutput",
     members = {
         Domain = {
             type = "string",
@@ -11168,6 +11833,7 @@ M.UpdateDomainAssociationOutput = {
 
 M.UpdateFieldLevelEncryptionConfigInput = {
     type = "structure",
+    id = "UpdateFieldLevelEncryptionConfigInput",
     members = {
         FieldLevelEncryptionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11192,6 +11858,7 @@ M.UpdateFieldLevelEncryptionConfigInput = {
 
 M.UpdateFieldLevelEncryptionConfigOutput = {
     type = "structure",
+    id = "UpdateFieldLevelEncryptionConfigOutput",
     members = {
         FieldLevelEncryption = setmetatable({ traits = {
             http_payload = true,
@@ -11207,6 +11874,7 @@ M.UpdateFieldLevelEncryptionConfigOutput = {
 
 M.UpdateFieldLevelEncryptionProfileInput = {
     type = "structure",
+    id = "UpdateFieldLevelEncryptionProfileInput",
     members = {
         FieldLevelEncryptionProfileConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11231,6 +11899,7 @@ M.UpdateFieldLevelEncryptionProfileInput = {
 
 M.UpdateFieldLevelEncryptionProfileOutput = {
     type = "structure",
+    id = "UpdateFieldLevelEncryptionProfileOutput",
     members = {
         FieldLevelEncryptionProfile = setmetatable({ traits = {
             http_payload = true,
@@ -11246,6 +11915,7 @@ M.UpdateFieldLevelEncryptionProfileOutput = {
 
 M.UpdateFunctionInput = {
     type = "structure",
+    id = "UpdateFunctionInput",
     members = {
         Name = {
             type = "string",
@@ -11275,6 +11945,7 @@ M.UpdateFunctionInput = {
 
 M.UpdateFunctionOutput = {
     type = "structure",
+    id = "UpdateFunctionOutput",
     members = {
         FunctionSummary = setmetatable({ traits = {
             http_payload = true,
@@ -11290,6 +11961,7 @@ M.UpdateFunctionOutput = {
 
 M.UpdateKeyGroupInput = {
     type = "structure",
+    id = "UpdateKeyGroupInput",
     members = {
         KeyGroupConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11314,6 +11986,7 @@ M.UpdateKeyGroupInput = {
 
 M.UpdateKeyGroupOutput = {
     type = "structure",
+    id = "UpdateKeyGroupOutput",
     members = {
         KeyGroup = setmetatable({ traits = {
             http_payload = true,
@@ -11329,6 +12002,7 @@ M.UpdateKeyGroupOutput = {
 
 M.UpdateKeyValueStoreInput = {
     type = "structure",
+    id = "UpdateKeyValueStoreInput",
     members = {
         Name = {
             type = "string",
@@ -11355,6 +12029,7 @@ M.UpdateKeyValueStoreInput = {
 
 M.UpdateKeyValueStoreOutput = {
     type = "structure",
+    id = "UpdateKeyValueStoreOutput",
     members = {
         KeyValueStore = setmetatable({ traits = {
             http_payload = true,
@@ -11370,6 +12045,7 @@ M.UpdateKeyValueStoreOutput = {
 
 M.UpdateOriginAccessControlInput = {
     type = "structure",
+    id = "UpdateOriginAccessControlInput",
     members = {
         OriginAccessControlConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11394,6 +12070,7 @@ M.UpdateOriginAccessControlInput = {
 
 M.UpdateOriginAccessControlOutput = {
     type = "structure",
+    id = "UpdateOriginAccessControlOutput",
     members = {
         OriginAccessControl = setmetatable({ traits = {
             http_payload = true,
@@ -11409,6 +12086,7 @@ M.UpdateOriginAccessControlOutput = {
 
 M.UpdateOriginRequestPolicyInput = {
     type = "structure",
+    id = "UpdateOriginRequestPolicyInput",
     members = {
         OriginRequestPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11433,6 +12111,7 @@ M.UpdateOriginRequestPolicyInput = {
 
 M.UpdateOriginRequestPolicyOutput = {
     type = "structure",
+    id = "UpdateOriginRequestPolicyOutput",
     members = {
         OriginRequestPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -11448,6 +12127,7 @@ M.UpdateOriginRequestPolicyOutput = {
 
 M.UpdatePublicKeyInput = {
     type = "structure",
+    id = "UpdatePublicKeyInput",
     members = {
         PublicKeyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11472,6 +12152,7 @@ M.UpdatePublicKeyInput = {
 
 M.UpdatePublicKeyOutput = {
     type = "structure",
+    id = "UpdatePublicKeyOutput",
     members = {
         PublicKey = setmetatable({ traits = {
             http_payload = true,
@@ -11487,6 +12168,7 @@ M.UpdatePublicKeyOutput = {
 
 M.UpdateRealtimeLogConfigInput = {
     type = "structure",
+    id = "UpdateRealtimeLogConfigInput",
     members = {
         EndPoints = {
             type = "list",
@@ -11510,6 +12192,7 @@ M.UpdateRealtimeLogConfigInput = {
 
 M.UpdateRealtimeLogConfigOutput = {
     type = "structure",
+    id = "UpdateRealtimeLogConfigOutput",
     members = {
         RealtimeLogConfig = M.RealtimeLogConfig,
     },
@@ -11517,6 +12200,7 @@ M.UpdateRealtimeLogConfigOutput = {
 
 M.UpdateResponseHeadersPolicyInput = {
     type = "structure",
+    id = "UpdateResponseHeadersPolicyInput",
     members = {
         ResponseHeadersPolicyConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11541,6 +12225,7 @@ M.UpdateResponseHeadersPolicyInput = {
 
 M.UpdateResponseHeadersPolicyOutput = {
     type = "structure",
+    id = "UpdateResponseHeadersPolicyOutput",
     members = {
         ResponseHeadersPolicy = setmetatable({ traits = {
             http_payload = true,
@@ -11556,6 +12241,7 @@ M.UpdateResponseHeadersPolicyOutput = {
 
 M.UpdateStreamingDistributionInput = {
     type = "structure",
+    id = "UpdateStreamingDistributionInput",
     members = {
         StreamingDistributionConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11580,6 +12266,7 @@ M.UpdateStreamingDistributionInput = {
 
 M.UpdateStreamingDistributionOutput = {
     type = "structure",
+    id = "UpdateStreamingDistributionOutput",
     members = {
         StreamingDistribution = setmetatable({ traits = {
             http_payload = true,
@@ -11595,6 +12282,7 @@ M.UpdateStreamingDistributionOutput = {
 
 M.UpdateTrustStoreInput = {
     type = "structure",
+    id = "UpdateTrustStoreInput",
     members = {
         Id = {
             type = "string",
@@ -11619,6 +12307,7 @@ M.UpdateTrustStoreInput = {
 
 M.UpdateTrustStoreOutput = {
     type = "structure",
+    id = "UpdateTrustStoreOutput",
     members = {
         TrustStore = setmetatable({ traits = {
             http_payload = true,
@@ -11634,6 +12323,7 @@ M.UpdateTrustStoreOutput = {
 
 M.UpdateVpcOriginInput = {
     type = "structure",
+    id = "UpdateVpcOriginInput",
     members = {
         VpcOriginEndpointConfig = setmetatable({ traits = {
             http_payload = true,
@@ -11659,6 +12349,7 @@ M.UpdateVpcOriginInput = {
 
 M.UpdateVpcOriginOutput = {
     type = "structure",
+    id = "UpdateVpcOriginOutput",
     members = {
         VpcOrigin = setmetatable({ traits = {
             http_payload = true,
@@ -11674,6 +12365,7 @@ M.UpdateVpcOriginOutput = {
 
 M.VerifyDnsConfigurationInput = {
     type = "structure",
+    id = "VerifyDnsConfigurationInput",
     members = {
         Domain = {
             type = "string",
@@ -11695,6 +12387,7 @@ M.DnsConfigurationStatus = {
 
 M.DnsConfiguration = {
     type = "structure",
+    id = "DnsConfiguration",
     members = {
         Domain = {
             type = "string",
@@ -11716,6 +12409,7 @@ M.DnsConfiguration = {
 
 M.VerifyDnsConfigurationOutput = {
     type = "structure",
+    id = "VerifyDnsConfigurationOutput",
     members = {
         DnsConfigurationList = {
             type = "list",

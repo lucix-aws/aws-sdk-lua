@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ActiveContextTimeToLive = {
     type = "structure",
+    id = "ActiveContextTimeToLive",
     members = {
         timeToLiveInSeconds = {
             type = "integer",
@@ -33,6 +35,7 @@ M.ActiveContextTimeToLive = {
 
 M.ActiveContext = {
     type = "structure",
+    id = "ActiveContext",
     members = {
         name = {
             type = "string",
@@ -56,6 +59,7 @@ M.ActiveContext = {
 
 M.AudioInputEvent = {
     type = "structure",
+    id = "AudioInputEvent",
     members = {
         audioChunk = {
             type = "blob",
@@ -80,6 +84,7 @@ M.AudioInputEvent = {
 
 M.AudioResponseEvent = {
     type = "structure",
+    id = "AudioResponseEvent",
     members = {
         audioChunk = {
             type = "blob",
@@ -95,6 +100,7 @@ M.AudioResponseEvent = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -108,6 +114,7 @@ M.ConflictException = {
 
 M.DeleteSessionInput = {
     type = "structure",
+    id = "DeleteSessionInput",
     members = {
         botId = {
             type = "string",
@@ -142,6 +149,7 @@ M.DeleteSessionInput = {
 
 M.DeleteSessionOutput = {
     type = "structure",
+    id = "DeleteSessionOutput",
     members = {
         botId = {
             type = "string",
@@ -160,6 +168,7 @@ M.DeleteSessionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -173,6 +182,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -186,6 +196,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -199,6 +210,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -212,6 +224,7 @@ M.ValidationException = {
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         botId = {
             type = "string",
@@ -258,6 +271,7 @@ M.Shape = {
 
 M.Value = {
     type = "structure",
+    id = "Value",
     members = {
         originalValue = {
             type = "string",
@@ -291,6 +305,7 @@ M.InterpretationSource = {
 
 M.ConfidenceScore = {
     type = "structure",
+    id = "ConfidenceScore",
     members = {
         score = {
             type = "double",
@@ -310,6 +325,7 @@ M.SentimentType = {
 
 M.SentimentScore = {
     type = "structure",
+    id = "SentimentScore",
     members = {
         positive = {
             type = "double",
@@ -340,6 +356,7 @@ M.SentimentScore = {
 
 M.SentimentResponse = {
     type = "structure",
+    id = "SentimentResponse",
     members = {
         sentiment = {
             type = "string",
@@ -357,6 +374,7 @@ M.MessageContentType = {
 
 M.Button = {
     type = "structure",
+    id = "Button",
     members = {
         text = {
             type = "string",
@@ -375,6 +393,7 @@ M.Button = {
 
 M.ImageResponseCard = {
     type = "structure",
+    id = "ImageResponseCard",
     members = {
         title = {
             type = "string",
@@ -397,6 +416,7 @@ M.ImageResponseCard = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         content = {
             type = "string",
@@ -428,6 +448,7 @@ M.DialogActionType = {
 
 M.RuntimeHintValue = {
     type = "structure",
+    id = "RuntimeHintValue",
     members = {
         phrase = {
             type = "string",
@@ -440,6 +461,7 @@ M.RuntimeHintValue = {
 
 M.BadGatewayException = {
     type = "structure",
+    id = "BadGatewayException",
     error = "server",
     members = {
         message = {
@@ -453,6 +475,7 @@ M.BadGatewayException = {
 
 M.DependencyFailedException = {
     type = "structure",
+    id = "DependencyFailedException",
     error = "client",
     members = {
         message = {
@@ -466,6 +489,7 @@ M.DependencyFailedException = {
 
 M.PutSessionOutput = {
     type = "structure",
+    id = "PutSessionOutput",
     members = {
         contentType = {
             type = "string",
@@ -509,6 +533,7 @@ M.PutSessionOutput = {
 
 M.RecognizedBotMember = {
     type = "structure",
+    id = "RecognizedBotMember",
     members = {
         botId = {
             type = "string",
@@ -524,6 +549,7 @@ M.RecognizedBotMember = {
 
 M.RecognizeUtteranceInput = {
     type = "structure",
+    id = "RecognizeUtteranceInput",
     members = {
         botId = {
             type = "string",
@@ -590,6 +616,7 @@ M.RecognizeUtteranceInput = {
 
 M.RecognizeUtteranceOutput = {
     type = "structure",
+    id = "RecognizeUtteranceOutput",
     members = {
         inputMode = {
             type = "string",
@@ -662,6 +689,7 @@ M.ConversationMode = {
 
 M.DisconnectionEvent = {
     type = "structure",
+    id = "DisconnectionEvent",
     members = {
         eventId = {
             type = "string",
@@ -677,6 +705,7 @@ M.DisconnectionEvent = {
 
 M.DTMFInputEvent = {
     type = "structure",
+    id = "DTMFInputEvent",
     members = {
         inputCharacter = {
             type = "string",
@@ -698,6 +727,7 @@ M.DTMFInputEvent = {
 
 M.PlaybackCompletionEvent = {
     type = "structure",
+    id = "PlaybackCompletionEvent",
     members = {
         eventId = {
             type = "string",
@@ -713,6 +743,7 @@ M.PlaybackCompletionEvent = {
 
 M.TextInputEvent = {
     type = "structure",
+    id = "TextInputEvent",
     members = {
         text = {
             type = "string",
@@ -734,6 +765,7 @@ M.TextInputEvent = {
 
 M.HeartbeatEvent = {
     type = "structure",
+    id = "HeartbeatEvent",
     members = {
         eventId = {
             type = "string",
@@ -755,6 +787,7 @@ M.PlaybackInterruptionReason = {
 
 M.PlaybackInterruptionEvent = {
     type = "structure",
+    id = "PlaybackInterruptionEvent",
     members = {
         eventReason = {
             type = "string",
@@ -770,6 +803,7 @@ M.PlaybackInterruptionEvent = {
 
 M.TextResponseEvent = {
     type = "structure",
+    id = "TextResponseEvent",
     members = {
         messages = {
             type = "list",
@@ -783,6 +817,7 @@ M.TextResponseEvent = {
 
 M.TranscriptEvent = {
     type = "structure",
+    id = "TranscriptEvent",
     members = {
         transcript = {
             type = "string",
@@ -795,6 +830,7 @@ M.TranscriptEvent = {
 
 M.ElicitSubSlot = {
     type = "structure",
+    id = "ElicitSubSlot",
     members = {
         name = {
             type = "string",
@@ -808,6 +844,7 @@ M.ElicitSubSlot = {
 
 M.DialogAction = {
     type = "structure",
+    id = "DialogAction",
     members = {
         type = {
             type = "string",
@@ -827,6 +864,7 @@ M.DialogAction = {
 
 M.RuntimeHintDetails = {
     type = "structure",
+    id = "RuntimeHintDetails",
     members = {
         runtimeHintValues = {
             type = "list",
@@ -842,6 +880,7 @@ M.RuntimeHintDetails = {
 
 M.RuntimeHints = {
     type = "structure",
+    id = "RuntimeHints",
     members = {
         slotHints = {
             type = "map",
@@ -853,6 +892,7 @@ M.RuntimeHints = {
 
 M.Slot = {
     type = "structure",
+    id = "Slot",
     members = {
         value = M.Value,
         shape = {
@@ -872,6 +912,7 @@ M.Slot = {
 
 M.Intent = {
     type = "structure",
+    id = "Intent",
     members = {
         name = {
             type = "string",
@@ -895,6 +936,7 @@ M.Intent = {
 
 M.Interpretation = {
     type = "structure",
+    id = "Interpretation",
     members = {
         nluConfidence = M.ConfidenceScore,
         sentimentResponse = M.SentimentResponse,
@@ -907,6 +949,7 @@ M.Interpretation = {
 
 M.SessionState = {
     type = "structure",
+    id = "SessionState",
     members = {
         dialogAction = M.DialogAction,
         intent = M.Intent,
@@ -928,6 +971,7 @@ M.SessionState = {
 
 M.ConfigurationEvent = {
     type = "structure",
+    id = "ConfigurationEvent",
     members = {
         requestAttributes = {
             type = "map",
@@ -965,6 +1009,7 @@ M.ConfigurationEvent = {
 
 M.PutSessionInput = {
     type = "structure",
+    id = "PutSessionInput",
     members = {
         botId = {
             type = "string",
@@ -1017,6 +1062,7 @@ M.PutSessionInput = {
 
 M.RecognizeTextInput = {
     type = "structure",
+    id = "RecognizeTextInput",
     members = {
         botId = {
             type = "string",
@@ -1063,6 +1109,7 @@ M.RecognizeTextInput = {
 
 M.StartConversationRequestEventStream = {
     type = "union",
+    id = "StartConversationRequestEventStream",
     members = {
         ConfigurationEvent = M.ConfigurationEvent,
         AudioInputEvent = M.AudioInputEvent,
@@ -1075,6 +1122,7 @@ M.StartConversationRequestEventStream = {
 
 M.StartConversationInput = {
     type = "structure",
+    id = "StartConversationInput",
     members = {
         botId = {
             type = "string",
@@ -1119,6 +1167,7 @@ M.StartConversationInput = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         sessionId = {
             type = "string",
@@ -1137,6 +1186,7 @@ M.GetSessionOutput = {
 
 M.IntentResultEvent = {
     type = "structure",
+    id = "IntentResultEvent",
     members = {
         inputMode = {
             type = "string",
@@ -1163,6 +1213,7 @@ M.IntentResultEvent = {
 
 M.RecognizeTextOutput = {
     type = "structure",
+    id = "RecognizeTextOutput",
     members = {
         messages = {
             type = "list",
@@ -1187,6 +1238,7 @@ M.RecognizeTextOutput = {
 
 M.StartConversationResponseEventStream = {
     type = "union",
+    id = "StartConversationResponseEventStream",
     members = {
         PlaybackInterruptionEvent = M.PlaybackInterruptionEvent,
         TranscriptEvent = M.TranscriptEvent,
@@ -1207,6 +1259,7 @@ M.StartConversationResponseEventStream = {
 
 M.StartConversationOutput = {
     type = "structure",
+    id = "StartConversationOutput",
     members = {
         responseEventStream = setmetatable({ traits = {
             http_payload = true,

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.SimulationAppPortMapping = {
     type = "structure",
+    id = "SimulationAppPortMapping",
     members = {
         Declared = {
             type = "integer",
@@ -38,6 +40,7 @@ M.ClockTargetStatus = {
 
 M.CloudWatchLogsLogGroup = {
     type = "structure",
+    id = "CloudWatchLogsLogGroup",
     members = {
         LogGroupArn = {
             type = "string",
@@ -47,6 +50,7 @@ M.CloudWatchLogsLogGroup = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -57,6 +61,7 @@ M.ConflictException = {
 
 M.S3Destination = {
     type = "structure",
+    id = "S3Destination",
     members = {
         BucketName = {
             type = "string",
@@ -72,6 +77,7 @@ M.S3Destination = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         Simulation = {
             type = "string",
@@ -87,10 +93,12 @@ M.CreateSnapshotInput = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -101,6 +109,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -111,6 +120,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -121,6 +131,7 @@ M.ValidationException = {
 
 M.DeleteAppInput = {
     type = "structure",
+    id = "DeleteAppInput",
     members = {
         Simulation = {
             type = "string",
@@ -148,10 +159,12 @@ M.DeleteAppInput = {
 
 M.DeleteAppOutput = {
     type = "structure",
+    id = "DeleteAppOutput",
 }
 
 M.DeleteSimulationInput = {
     type = "structure",
+    id = "DeleteSimulationInput",
     members = {
         Simulation = {
             type = "string",
@@ -165,10 +178,12 @@ M.DeleteSimulationInput = {
 
 M.DeleteSimulationOutput = {
     type = "structure",
+    id = "DeleteSimulationOutput",
 }
 
 M.DescribeAppInput = {
     type = "structure",
+    id = "DescribeAppInput",
     members = {
         Simulation = {
             type = "string",
@@ -196,6 +211,7 @@ M.DescribeAppInput = {
 
 M.SimulationAppEndpointInfo = {
     type = "structure",
+    id = "SimulationAppEndpointInfo",
     members = {
         Address = {
             type = "string",
@@ -209,6 +225,7 @@ M.SimulationAppEndpointInfo = {
 
 M.LaunchOverrides = {
     type = "structure",
+    id = "LaunchOverrides",
     members = {
         LaunchCommands = {
             type = "list",
@@ -234,6 +251,7 @@ M.SimulationAppTargetStatus = {
 
 M.DescribeAppOutput = {
     type = "structure",
+    id = "DescribeAppOutput",
     members = {
         Name = {
             type = "string",
@@ -260,6 +278,7 @@ M.DescribeAppOutput = {
 
 M.DescribeSimulationInput = {
     type = "structure",
+    id = "DescribeSimulationInput",
     members = {
         Simulation = {
             type = "string",
@@ -273,6 +292,7 @@ M.DescribeSimulationInput = {
 
 M.SimulationClock = {
     type = "structure",
+    id = "SimulationClock",
     members = {
         Status = {
             type = "string",
@@ -292,6 +312,7 @@ M.LifecycleManagementStrategy = {
 
 M.Domain = {
     type = "structure",
+    id = "Domain",
     members = {
         Name = {
             type = "string",
@@ -304,6 +325,7 @@ M.Domain = {
 
 M.LiveSimulationState = {
     type = "structure",
+    id = "LiveSimulationState",
     members = {
         Domains = {
             type = "list",
@@ -318,6 +340,7 @@ M.LiveSimulationState = {
 
 M.LogDestination = {
     type = "structure",
+    id = "LogDestination",
     members = {
         CloudWatchLogsLogGroup = M.CloudWatchLogsLogGroup,
     },
@@ -325,6 +348,7 @@ M.LogDestination = {
 
 M.LoggingConfiguration = {
     type = "structure",
+    id = "LoggingConfiguration",
     members = {
         Destinations = {
             type = "list",
@@ -335,6 +359,7 @@ M.LoggingConfiguration = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         BucketName = {
             type = "string",
@@ -372,6 +397,7 @@ M.SimulationTargetStatus = {
 
 M.DescribeSimulationOutput = {
     type = "structure",
+    id = "DescribeSimulationOutput",
     members = {
         Name = {
             type = "string",
@@ -415,6 +441,7 @@ M.DescribeSimulationOutput = {
 
 M.ListAppsInput = {
     type = "structure",
+    id = "ListAppsInput",
     members = {
         Simulation = {
             type = "string",
@@ -446,6 +473,7 @@ M.ListAppsInput = {
 
 M.SimulationAppMetadata = {
     type = "structure",
+    id = "SimulationAppMetadata",
     members = {
         Name = {
             type = "string",
@@ -467,6 +495,7 @@ M.SimulationAppMetadata = {
 
 M.ListAppsOutput = {
     type = "structure",
+    id = "ListAppsOutput",
     members = {
         Apps = {
             type = "list",
@@ -480,6 +509,7 @@ M.ListAppsOutput = {
 
 M.ListSimulationsInput = {
     type = "structure",
+    id = "ListSimulationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -498,6 +528,7 @@ M.ListSimulationsInput = {
 
 M.SimulationMetadata = {
     type = "structure",
+    id = "SimulationMetadata",
     members = {
         Name = {
             type = "string",
@@ -519,6 +550,7 @@ M.SimulationMetadata = {
 
 M.ListSimulationsOutput = {
     type = "structure",
+    id = "ListSimulationsOutput",
     members = {
         Simulations = {
             type = "list",
@@ -532,6 +564,7 @@ M.ListSimulationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -545,6 +578,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -556,6 +590,7 @@ M.ListTagsForResourceOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -566,6 +601,7 @@ M.ServiceQuotaExceededException = {
 
 M.StartAppInput = {
     type = "structure",
+    id = "StartAppInput",
     members = {
         ClientToken = {
             type = "string",
@@ -600,6 +636,7 @@ M.StartAppInput = {
 
 M.StartAppOutput = {
     type = "structure",
+    id = "StartAppOutput",
     members = {
         Name = {
             type = "string",
@@ -615,6 +652,7 @@ M.StartAppOutput = {
 
 M.StartClockInput = {
     type = "structure",
+    id = "StartClockInput",
     members = {
         Simulation = {
             type = "string",
@@ -627,10 +665,12 @@ M.StartClockInput = {
 
 M.StartClockOutput = {
     type = "structure",
+    id = "StartClockOutput",
 }
 
 M.StartSimulationInput = {
     type = "structure",
+    id = "StartSimulationInput",
     members = {
         ClientToken = {
             type = "string",
@@ -668,6 +708,7 @@ M.StartSimulationInput = {
 
 M.StartSimulationOutput = {
     type = "structure",
+    id = "StartSimulationOutput",
     members = {
         Arn = {
             type = "string",
@@ -683,6 +724,7 @@ M.StartSimulationOutput = {
 
 M.StopAppInput = {
     type = "structure",
+    id = "StopAppInput",
     members = {
         Simulation = {
             type = "string",
@@ -707,10 +749,12 @@ M.StopAppInput = {
 
 M.StopAppOutput = {
     type = "structure",
+    id = "StopAppOutput",
 }
 
 M.StopClockInput = {
     type = "structure",
+    id = "StopClockInput",
     members = {
         Simulation = {
             type = "string",
@@ -723,10 +767,12 @@ M.StopClockInput = {
 
 M.StopClockOutput = {
     type = "structure",
+    id = "StopClockOutput",
 }
 
 M.StopSimulationInput = {
     type = "structure",
+    id = "StopSimulationInput",
     members = {
         Simulation = {
             type = "string",
@@ -739,10 +785,12 @@ M.StopSimulationInput = {
 
 M.StopSimulationOutput = {
     type = "structure",
+    id = "StopSimulationOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -764,10 +812,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -778,6 +828,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -799,6 +850,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

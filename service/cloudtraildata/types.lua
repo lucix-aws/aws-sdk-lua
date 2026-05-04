@@ -2,6 +2,7 @@ local M = {}
 
 M.AuditEvent = {
     type = "structure",
+    id = "AuditEvent",
     members = {
         id = {
             type = "string",
@@ -23,6 +24,7 @@ M.AuditEvent = {
 
 M.AuditEventResultEntry = {
     type = "structure",
+    id = "AuditEventResultEntry",
     members = {
         id = {
             type = "string",
@@ -41,6 +43,7 @@ M.AuditEventResultEntry = {
 
 M.ChannelInsufficientPermission = {
     type = "structure",
+    id = "ChannelInsufficientPermission",
     error = "client",
     members = {
         message = {
@@ -51,6 +54,7 @@ M.ChannelInsufficientPermission = {
 
 M.ChannelNotFound = {
     type = "structure",
+    id = "ChannelNotFound",
     error = "client",
     members = {
         message = {
@@ -61,6 +65,7 @@ M.ChannelNotFound = {
 
 M.ChannelUnsupportedSchema = {
     type = "structure",
+    id = "ChannelUnsupportedSchema",
     error = "client",
     members = {
         message = {
@@ -71,6 +76,7 @@ M.ChannelUnsupportedSchema = {
 
 M.DuplicatedAuditEventId = {
     type = "structure",
+    id = "DuplicatedAuditEventId",
     error = "client",
     members = {
         message = {
@@ -81,6 +87,7 @@ M.DuplicatedAuditEventId = {
 
 M.InvalidChannelARN = {
     type = "structure",
+    id = "InvalidChannelARN",
     error = "client",
     members = {
         message = {
@@ -91,6 +98,7 @@ M.InvalidChannelARN = {
 
 M.PutAuditEventsInput = {
     type = "structure",
+    id = "PutAuditEventsInput",
     members = {
         auditEvents = {
             type = "list",
@@ -117,6 +125,7 @@ M.PutAuditEventsInput = {
 
 M.ResultErrorEntry = {
     type = "structure",
+    id = "ResultErrorEntry",
     members = {
         id = {
             type = "string",
@@ -141,6 +150,7 @@ M.ResultErrorEntry = {
 
 M.PutAuditEventsOutput = {
     type = "structure",
+    id = "PutAuditEventsOutput",
     members = {
         successful = {
             type = "list",
@@ -161,6 +171,7 @@ M.PutAuditEventsOutput = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         message = {

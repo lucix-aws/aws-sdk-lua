@@ -2,6 +2,7 @@ local M = {}
 
 M.SessionKeysAbpV1_0_x = {
     type = "structure",
+    id = "SessionKeysAbpV1_0_x",
     members = {
         NwkSKey = {
             type = "string",
@@ -14,6 +15,7 @@ M.SessionKeysAbpV1_0_x = {
 
 M.AbpV1_0_x = {
     type = "structure",
+    id = "AbpV1_0_x",
     members = {
         DevAddr = {
             type = "string",
@@ -27,6 +29,7 @@ M.AbpV1_0_x = {
 
 M.SessionKeysAbpV1_1 = {
     type = "structure",
+    id = "SessionKeysAbpV1_1",
     members = {
         FNwkSIntKey = {
             type = "string",
@@ -45,6 +48,7 @@ M.SessionKeysAbpV1_1 = {
 
 M.AbpV1_1 = {
     type = "structure",
+    id = "AbpV1_1",
     members = {
         DevAddr = {
             type = "string",
@@ -58,6 +62,7 @@ M.AbpV1_1 = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -68,6 +73,7 @@ M.AccessDeniedException = {
 
 M.Accuracy = {
     type = "structure",
+    id = "Accuracy",
     members = {
         HorizontalAccuracy = {
             type = "float",
@@ -80,6 +86,7 @@ M.Accuracy = {
 
 M.WiFiCellular = {
     type = "structure",
+    id = "WiFiCellular",
     members = {
         ConfidencePercent = {
             type = "integer",
@@ -92,6 +99,7 @@ M.WiFiCellular = {
 
 M.AdvancedConfiguration = {
     type = "structure",
+    id = "AdvancedConfiguration",
     members = {
         WiFiCellular = M.WiFiCellular,
     },
@@ -109,6 +117,7 @@ M.ApplicationConfigType = {
 
 M.ApplicationConfig = {
     type = "structure",
+    id = "ApplicationConfig",
     members = {
         FPort = {
             type = "integer",
@@ -124,6 +133,7 @@ M.ApplicationConfig = {
 
 M.SidewalkAccountInfo = {
     type = "structure",
+    id = "SidewalkAccountInfo",
     members = {
         AmazonId = {
             type = "string",
@@ -136,6 +146,7 @@ M.SidewalkAccountInfo = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -154,6 +165,7 @@ M.Tag = {
 
 M.AssociateAwsAccountWithPartnerAccountInput = {
     type = "structure",
+    id = "AssociateAwsAccountWithPartnerAccountInput",
     members = {
         Sidewalk = setmetatable({ traits = {
             required = true,
@@ -173,6 +185,7 @@ M.AssociateAwsAccountWithPartnerAccountInput = {
 
 M.AssociateAwsAccountWithPartnerAccountOutput = {
     type = "structure",
+    id = "AssociateAwsAccountWithPartnerAccountOutput",
     members = {
         Sidewalk = M.SidewalkAccountInfo,
         Arn = {
@@ -183,6 +196,7 @@ M.AssociateAwsAccountWithPartnerAccountOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -199,6 +213,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -209,6 +224,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -225,6 +241,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -235,6 +252,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -245,6 +263,7 @@ M.ValidationException = {
 
 M.AssociateMulticastGroupWithFuotaTaskInput = {
     type = "structure",
+    id = "AssociateMulticastGroupWithFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -264,10 +283,12 @@ M.AssociateMulticastGroupWithFuotaTaskInput = {
 
 M.AssociateMulticastGroupWithFuotaTaskOutput = {
     type = "structure",
+    id = "AssociateMulticastGroupWithFuotaTaskOutput",
 }
 
 M.AssociateWirelessDeviceWithFuotaTaskInput = {
     type = "structure",
+    id = "AssociateWirelessDeviceWithFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -287,10 +308,12 @@ M.AssociateWirelessDeviceWithFuotaTaskInput = {
 
 M.AssociateWirelessDeviceWithFuotaTaskOutput = {
     type = "structure",
+    id = "AssociateWirelessDeviceWithFuotaTaskOutput",
 }
 
 M.AssociateWirelessDeviceWithMulticastGroupInput = {
     type = "structure",
+    id = "AssociateWirelessDeviceWithMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -310,10 +333,12 @@ M.AssociateWirelessDeviceWithMulticastGroupInput = {
 
 M.AssociateWirelessDeviceWithMulticastGroupOutput = {
     type = "structure",
+    id = "AssociateWirelessDeviceWithMulticastGroupOutput",
 }
 
 M.AssociateWirelessDeviceWithThingInput = {
     type = "structure",
+    id = "AssociateWirelessDeviceWithThingInput",
     members = {
         Id = {
             type = "string",
@@ -333,10 +358,12 @@ M.AssociateWirelessDeviceWithThingInput = {
 
 M.AssociateWirelessDeviceWithThingOutput = {
     type = "structure",
+    id = "AssociateWirelessDeviceWithThingOutput",
 }
 
 M.AssociateWirelessGatewayWithCertificateInput = {
     type = "structure",
+    id = "AssociateWirelessGatewayWithCertificateInput",
     members = {
         Id = {
             type = "string",
@@ -356,6 +383,7 @@ M.AssociateWirelessGatewayWithCertificateInput = {
 
 M.AssociateWirelessGatewayWithCertificateOutput = {
     type = "structure",
+    id = "AssociateWirelessGatewayWithCertificateOutput",
     members = {
         IotCertificateId = {
             type = "string",
@@ -365,6 +393,7 @@ M.AssociateWirelessGatewayWithCertificateOutput = {
 
 M.AssociateWirelessGatewayWithThingInput = {
     type = "structure",
+    id = "AssociateWirelessGatewayWithThingInput",
     members = {
         Id = {
             type = "string",
@@ -384,6 +413,7 @@ M.AssociateWirelessGatewayWithThingInput = {
 
 M.AssociateWirelessGatewayWithThingOutput = {
     type = "structure",
+    id = "AssociateWirelessGatewayWithThingOutput",
 }
 
 M.BatteryLevel = {
@@ -394,6 +424,7 @@ M.BatteryLevel = {
 
 M.Beaconing = {
     type = "structure",
+    id = "Beaconing",
     members = {
         DataRate = {
             type = "integer",
@@ -407,6 +438,7 @@ M.Beaconing = {
 
 M.CancelMulticastGroupSessionInput = {
     type = "structure",
+    id = "CancelMulticastGroupSessionInput",
     members = {
         Id = {
             type = "string",
@@ -420,10 +452,12 @@ M.CancelMulticastGroupSessionInput = {
 
 M.CancelMulticastGroupSessionOutput = {
     type = "structure",
+    id = "CancelMulticastGroupSessionOutput",
 }
 
 M.CdmaLocalId = {
     type = "structure",
+    id = "CdmaLocalId",
     members = {
         PnOffset = {
             type = "integer",
@@ -442,6 +476,7 @@ M.CdmaLocalId = {
 
 M.CdmaNmrObj = {
     type = "structure",
+    id = "CdmaNmrObj",
     members = {
         PnOffset = {
             type = "integer",
@@ -466,6 +501,7 @@ M.CdmaNmrObj = {
 
 M.CdmaObj = {
     type = "structure",
+    id = "CdmaObj",
     members = {
         SystemId = {
             type = "integer",
@@ -507,6 +543,7 @@ M.CdmaObj = {
 
 M.GsmLocalId = {
     type = "structure",
+    id = "GsmLocalId",
     members = {
         Bsic = {
             type = "integer",
@@ -525,6 +562,7 @@ M.GsmLocalId = {
 
 M.GlobalIdentity = {
     type = "structure",
+    id = "GlobalIdentity",
     members = {
         Lac = {
             type = "integer",
@@ -543,6 +581,7 @@ M.GlobalIdentity = {
 
 M.GsmNmrObj = {
     type = "structure",
+    id = "GsmNmrObj",
     members = {
         Bsic = {
             type = "integer",
@@ -565,6 +604,7 @@ M.GsmNmrObj = {
 
 M.GsmObj = {
     type = "structure",
+    id = "GsmObj",
     members = {
         Mcc = {
             type = "integer",
@@ -606,6 +646,7 @@ M.GsmObj = {
 
 M.LteLocalId = {
     type = "structure",
+    id = "LteLocalId",
     members = {
         Pci = {
             type = "integer",
@@ -624,6 +665,7 @@ M.LteLocalId = {
 
 M.LteNmrObj = {
     type = "structure",
+    id = "LteNmrObj",
     members = {
         Pci = {
             type = "integer",
@@ -654,6 +696,7 @@ M.LteNmrObj = {
 
 M.LteObj = {
     type = "structure",
+    id = "LteObj",
     members = {
         Mcc = {
             type = "integer",
@@ -701,6 +744,7 @@ M.LteObj = {
 
 M.TdscdmaLocalId = {
     type = "structure",
+    id = "TdscdmaLocalId",
     members = {
         Uarfcn = {
             type = "integer",
@@ -719,6 +763,7 @@ M.TdscdmaLocalId = {
 
 M.TdscdmaNmrObj = {
     type = "structure",
+    id = "TdscdmaNmrObj",
     members = {
         Uarfcn = {
             type = "integer",
@@ -746,6 +791,7 @@ M.TdscdmaNmrObj = {
 
 M.TdscdmaObj = {
     type = "structure",
+    id = "TdscdmaObj",
     members = {
         Mcc = {
             type = "integer",
@@ -787,6 +833,7 @@ M.TdscdmaObj = {
 
 M.WcdmaLocalId = {
     type = "structure",
+    id = "WcdmaLocalId",
     members = {
         Uarfcndl = {
             type = "integer",
@@ -805,6 +852,7 @@ M.WcdmaLocalId = {
 
 M.WcdmaNmrObj = {
     type = "structure",
+    id = "WcdmaNmrObj",
     members = {
         Uarfcndl = {
             type = "integer",
@@ -835,6 +883,7 @@ M.WcdmaNmrObj = {
 
 M.WcdmaObj = {
     type = "structure",
+    id = "WcdmaObj",
     members = {
         Mcc = {
             type = "integer",
@@ -873,6 +922,7 @@ M.WcdmaObj = {
 
 M.CellTowers = {
     type = "structure",
+    id = "CellTowers",
     members = {
         Gsm = {
             type = "list",
@@ -904,6 +954,7 @@ M.SigningAlg = {
 
 M.CertificateList = {
     type = "structure",
+    id = "CertificateList",
     members = {
         SigningAlg = {
             type = "string",
@@ -932,6 +983,7 @@ M.EventNotificationTopicStatus = {
 
 M.LoRaWANConnectionStatusEventNotificationConfigurations = {
     type = "structure",
+    id = "LoRaWANConnectionStatusEventNotificationConfigurations",
     members = {
         GatewayEuiEventTopic = {
             type = "string",
@@ -941,6 +993,7 @@ M.LoRaWANConnectionStatusEventNotificationConfigurations = {
 
 M.ConnectionStatusEventConfiguration = {
     type = "structure",
+    id = "ConnectionStatusEventConfiguration",
     members = {
         LoRaWAN = M.LoRaWANConnectionStatusEventNotificationConfigurations,
         WirelessGatewayIdEventTopic = {
@@ -951,6 +1004,7 @@ M.ConnectionStatusEventConfiguration = {
 
 M.LoRaWANConnectionStatusResourceTypeEventConfiguration = {
     type = "structure",
+    id = "LoRaWANConnectionStatusResourceTypeEventConfiguration",
     members = {
         WirelessGatewayEventTopic = {
             type = "string",
@@ -960,6 +1014,7 @@ M.LoRaWANConnectionStatusResourceTypeEventConfiguration = {
 
 M.ConnectionStatusResourceTypeEventConfiguration = {
     type = "structure",
+    id = "ConnectionStatusResourceTypeEventConfiguration",
     members = {
         LoRaWAN = M.LoRaWANConnectionStatusResourceTypeEventConfiguration,
     },
@@ -972,6 +1027,7 @@ M.ExpressionType = {
 
 M.CreateDestinationInput = {
     type = "structure",
+    id = "CreateDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -1015,6 +1071,7 @@ M.CreateDestinationInput = {
 
 M.CreateDestinationOutput = {
     type = "structure",
+    id = "CreateDestinationOutput",
     members = {
         Arn = {
             type = "string",
@@ -1027,6 +1084,7 @@ M.CreateDestinationOutput = {
 
 M.LoRaWANDeviceProfile = {
     type = "structure",
+    id = "LoRaWANDeviceProfile",
     members = {
         SupportsClassB = {
             type = "boolean",
@@ -1100,10 +1158,12 @@ M.LoRaWANDeviceProfile = {
 
 M.SidewalkCreateDeviceProfile = {
     type = "structure",
+    id = "SidewalkCreateDeviceProfile",
 }
 
 M.CreateDeviceProfileInput = {
     type = "structure",
+    id = "CreateDeviceProfileInput",
     members = {
         Name = {
             type = "string",
@@ -1125,6 +1185,7 @@ M.CreateDeviceProfileInput = {
 
 M.CreateDeviceProfileOutput = {
     type = "structure",
+    id = "CreateDeviceProfileOutput",
     members = {
         Arn = {
             type = "string",
@@ -1153,6 +1214,7 @@ M.SupportedRfRegion = {
 
 M.LoRaWANFuotaTask = {
     type = "structure",
+    id = "LoRaWANFuotaTask",
     members = {
         RfRegion = {
             type = "string",
@@ -1162,6 +1224,7 @@ M.LoRaWANFuotaTask = {
 
 M.CreateFuotaTaskInput = {
     type = "structure",
+    id = "CreateFuotaTaskInput",
     members = {
         Name = {
             type = "string",
@@ -1209,6 +1272,7 @@ M.CreateFuotaTaskInput = {
 
 M.CreateFuotaTaskOutput = {
     type = "structure",
+    id = "CreateFuotaTaskOutput",
     members = {
         Arn = {
             type = "string",
@@ -1226,6 +1290,7 @@ M.DlClass = {
 
 M.ParticipatingGatewaysMulticast = {
     type = "structure",
+    id = "ParticipatingGatewaysMulticast",
     members = {
         GatewayList = {
             type = "list",
@@ -1239,6 +1304,7 @@ M.ParticipatingGatewaysMulticast = {
 
 M.LoRaWANMulticast = {
     type = "structure",
+    id = "LoRaWANMulticast",
     members = {
         RfRegion = {
             type = "string",
@@ -1252,6 +1318,7 @@ M.LoRaWANMulticast = {
 
 M.CreateMulticastGroupInput = {
     type = "structure",
+    id = "CreateMulticastGroupInput",
     members = {
         Name = {
             type = "string",
@@ -1277,6 +1344,7 @@ M.CreateMulticastGroupInput = {
 
 M.CreateMulticastGroupOutput = {
     type = "structure",
+    id = "CreateMulticastGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -1305,6 +1373,7 @@ M.WirelessDeviceFrameInfo = {
 
 M.TraceContent = {
     type = "structure",
+    id = "TraceContent",
     members = {
         WirelessDeviceFrameInfo = {
             type = "string",
@@ -1320,6 +1389,7 @@ M.TraceContent = {
 
 M.CreateNetworkAnalyzerConfigurationInput = {
     type = "structure",
+    id = "CreateNetworkAnalyzerConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -1358,6 +1428,7 @@ M.CreateNetworkAnalyzerConfigurationInput = {
 
 M.CreateNetworkAnalyzerConfigurationOutput = {
     type = "structure",
+    id = "CreateNetworkAnalyzerConfigurationOutput",
     members = {
         Arn = {
             type = "string",
@@ -1370,6 +1441,7 @@ M.CreateNetworkAnalyzerConfigurationOutput = {
 
 M.LoRaWANServiceProfile = {
     type = "structure",
+    id = "LoRaWANServiceProfile",
     members = {
         AddGwMetadata = {
             type = "boolean",
@@ -1412,6 +1484,7 @@ M.LoRaWANServiceProfile = {
 
 M.CreateServiceProfileInput = {
     type = "structure",
+    id = "CreateServiceProfileInput",
     members = {
         Name = {
             type = "string",
@@ -1432,6 +1505,7 @@ M.CreateServiceProfileInput = {
 
 M.CreateServiceProfileOutput = {
     type = "structure",
+    id = "CreateServiceProfileOutput",
     members = {
         Arn = {
             type = "string",
@@ -1444,6 +1518,7 @@ M.CreateServiceProfileOutput = {
 
 M.Positioning = {
     type = "structure",
+    id = "Positioning",
     members = {
         ClockSync = {
             type = "integer",
@@ -1459,6 +1534,7 @@ M.Positioning = {
 
 M.FPorts = {
     type = "structure",
+    id = "FPorts",
     members = {
         Fuota = {
             type = "integer",
@@ -1479,6 +1555,7 @@ M.FPorts = {
 
 M.OtaaV1_0_x = {
     type = "structure",
+    id = "OtaaV1_0_x",
     members = {
         AppKey = {
             type = "string",
@@ -1497,6 +1574,7 @@ M.OtaaV1_0_x = {
 
 M.OtaaV1_1 = {
     type = "structure",
+    id = "OtaaV1_1",
     members = {
         AppKey = {
             type = "string",
@@ -1512,6 +1590,7 @@ M.OtaaV1_1 = {
 
 M.LoRaWANDevice = {
     type = "structure",
+    id = "LoRaWANDevice",
     members = {
         DevEui = {
             type = "string",
@@ -1537,6 +1616,7 @@ M.PositioningConfigStatus = {
 
 M.SidewalkPositioning = {
     type = "structure",
+    id = "SidewalkPositioning",
     members = {
         DestinationName = {
             type = "string",
@@ -1546,6 +1626,7 @@ M.SidewalkPositioning = {
 
 M.SidewalkCreateWirelessDevice = {
     type = "structure",
+    id = "SidewalkCreateWirelessDevice",
     members = {
         DeviceProfileId = {
             type = "string",
@@ -1564,6 +1645,7 @@ M.WirelessDeviceType = {
 
 M.CreateWirelessDeviceInput = {
     type = "structure",
+    id = "CreateWirelessDeviceInput",
     members = {
         Type = {
             type = "string",
@@ -1603,6 +1685,7 @@ M.CreateWirelessDeviceInput = {
 
 M.CreateWirelessDeviceOutput = {
     type = "structure",
+    id = "CreateWirelessDeviceOutput",
     members = {
         Arn = {
             type = "string",
@@ -1615,6 +1698,7 @@ M.CreateWirelessDeviceOutput = {
 
 M.LoRaWANGateway = {
     type = "structure",
+    id = "LoRaWANGateway",
     members = {
         GatewayEui = {
             type = "string",
@@ -1643,6 +1727,7 @@ M.LoRaWANGateway = {
 
 M.CreateWirelessGatewayInput = {
     type = "structure",
+    id = "CreateWirelessGatewayInput",
     members = {
         Name = {
             type = "string",
@@ -1668,6 +1753,7 @@ M.CreateWirelessGatewayInput = {
 
 M.CreateWirelessGatewayOutput = {
     type = "structure",
+    id = "CreateWirelessGatewayOutput",
     members = {
         Arn = {
             type = "string",
@@ -1680,6 +1766,7 @@ M.CreateWirelessGatewayOutput = {
 
 M.CreateWirelessGatewayTaskInput = {
     type = "structure",
+    id = "CreateWirelessGatewayTaskInput",
     members = {
         Id = {
             type = "string",
@@ -1708,6 +1795,7 @@ M.WirelessGatewayTaskStatus = {
 
 M.CreateWirelessGatewayTaskOutput = {
     type = "structure",
+    id = "CreateWirelessGatewayTaskOutput",
     members = {
         WirelessGatewayTaskDefinitionId = {
             type = "string",
@@ -1720,6 +1808,7 @@ M.CreateWirelessGatewayTaskOutput = {
 
 M.LoRaWANGatewayVersion = {
     type = "structure",
+    id = "LoRaWANGatewayVersion",
     members = {
         PackageVersion = {
             type = "string",
@@ -1735,6 +1824,7 @@ M.LoRaWANGatewayVersion = {
 
 M.LoRaWANUpdateGatewayTaskCreate = {
     type = "structure",
+    id = "LoRaWANUpdateGatewayTaskCreate",
     members = {
         UpdateSignature = {
             type = "string",
@@ -1749,6 +1839,7 @@ M.LoRaWANUpdateGatewayTaskCreate = {
 
 M.UpdateWirelessGatewayTaskCreate = {
     type = "structure",
+    id = "UpdateWirelessGatewayTaskCreate",
     members = {
         UpdateDataSource = {
             type = "string",
@@ -1762,6 +1853,7 @@ M.UpdateWirelessGatewayTaskCreate = {
 
 M.CreateWirelessGatewayTaskDefinitionInput = {
     type = "structure",
+    id = "CreateWirelessGatewayTaskDefinitionInput",
     members = {
         AutoCreateTasks = {
             type = "boolean",
@@ -1789,6 +1881,7 @@ M.CreateWirelessGatewayTaskDefinitionInput = {
 
 M.CreateWirelessGatewayTaskDefinitionOutput = {
     type = "structure",
+    id = "CreateWirelessGatewayTaskDefinitionOutput",
     members = {
         Id = {
             type = "string",
@@ -1801,6 +1894,7 @@ M.CreateWirelessGatewayTaskDefinitionOutput = {
 
 M.DakCertificateMetadata = {
     type = "structure",
+    id = "DakCertificateMetadata",
     members = {
         CertificateId = {
             type = "string",
@@ -1825,6 +1919,7 @@ M.DakCertificateMetadata = {
 
 M.DeleteDestinationInput = {
     type = "structure",
+    id = "DeleteDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -1838,10 +1933,12 @@ M.DeleteDestinationInput = {
 
 M.DeleteDestinationOutput = {
     type = "structure",
+    id = "DeleteDestinationOutput",
 }
 
 M.DeleteDeviceProfileInput = {
     type = "structure",
+    id = "DeleteDeviceProfileInput",
     members = {
         Id = {
             type = "string",
@@ -1855,10 +1952,12 @@ M.DeleteDeviceProfileInput = {
 
 M.DeleteDeviceProfileOutput = {
     type = "structure",
+    id = "DeleteDeviceProfileOutput",
 }
 
 M.DeleteFuotaTaskInput = {
     type = "structure",
+    id = "DeleteFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -1872,10 +1971,12 @@ M.DeleteFuotaTaskInput = {
 
 M.DeleteFuotaTaskOutput = {
     type = "structure",
+    id = "DeleteFuotaTaskOutput",
 }
 
 M.DeleteMulticastGroupInput = {
     type = "structure",
+    id = "DeleteMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -1889,10 +1990,12 @@ M.DeleteMulticastGroupInput = {
 
 M.DeleteMulticastGroupOutput = {
     type = "structure",
+    id = "DeleteMulticastGroupOutput",
 }
 
 M.DeleteNetworkAnalyzerConfigurationInput = {
     type = "structure",
+    id = "DeleteNetworkAnalyzerConfigurationInput",
     members = {
         ConfigurationName = {
             type = "string",
@@ -1906,10 +2009,12 @@ M.DeleteNetworkAnalyzerConfigurationInput = {
 
 M.DeleteNetworkAnalyzerConfigurationOutput = {
     type = "structure",
+    id = "DeleteNetworkAnalyzerConfigurationOutput",
 }
 
 M.DeleteQueuedMessagesInput = {
     type = "structure",
+    id = "DeleteQueuedMessagesInput",
     members = {
         Id = {
             type = "string",
@@ -1936,10 +2041,12 @@ M.DeleteQueuedMessagesInput = {
 
 M.DeleteQueuedMessagesOutput = {
     type = "structure",
+    id = "DeleteQueuedMessagesOutput",
 }
 
 M.DeleteServiceProfileInput = {
     type = "structure",
+    id = "DeleteServiceProfileInput",
     members = {
         Id = {
             type = "string",
@@ -1953,10 +2060,12 @@ M.DeleteServiceProfileInput = {
 
 M.DeleteServiceProfileOutput = {
     type = "structure",
+    id = "DeleteServiceProfileOutput",
 }
 
 M.DeleteWirelessDeviceInput = {
     type = "structure",
+    id = "DeleteWirelessDeviceInput",
     members = {
         Id = {
             type = "string",
@@ -1970,10 +2079,12 @@ M.DeleteWirelessDeviceInput = {
 
 M.DeleteWirelessDeviceOutput = {
     type = "structure",
+    id = "DeleteWirelessDeviceOutput",
 }
 
 M.DeleteWirelessDeviceImportTaskInput = {
     type = "structure",
+    id = "DeleteWirelessDeviceImportTaskInput",
     members = {
         Id = {
             type = "string",
@@ -1987,10 +2098,12 @@ M.DeleteWirelessDeviceImportTaskInput = {
 
 M.DeleteWirelessDeviceImportTaskOutput = {
     type = "structure",
+    id = "DeleteWirelessDeviceImportTaskOutput",
 }
 
 M.DeleteWirelessGatewayInput = {
     type = "structure",
+    id = "DeleteWirelessGatewayInput",
     members = {
         Id = {
             type = "string",
@@ -2004,10 +2117,12 @@ M.DeleteWirelessGatewayInput = {
 
 M.DeleteWirelessGatewayOutput = {
     type = "structure",
+    id = "DeleteWirelessGatewayOutput",
 }
 
 M.DeleteWirelessGatewayTaskInput = {
     type = "structure",
+    id = "DeleteWirelessGatewayTaskInput",
     members = {
         Id = {
             type = "string",
@@ -2021,10 +2136,12 @@ M.DeleteWirelessGatewayTaskInput = {
 
 M.DeleteWirelessGatewayTaskOutput = {
     type = "structure",
+    id = "DeleteWirelessGatewayTaskOutput",
 }
 
 M.DeleteWirelessGatewayTaskDefinitionInput = {
     type = "structure",
+    id = "DeleteWirelessGatewayTaskDefinitionInput",
     members = {
         Id = {
             type = "string",
@@ -2038,10 +2155,12 @@ M.DeleteWirelessGatewayTaskDefinitionInput = {
 
 M.DeleteWirelessGatewayTaskDefinitionOutput = {
     type = "structure",
+    id = "DeleteWirelessGatewayTaskDefinitionOutput",
 }
 
 M.DeregisterWirelessDeviceInput = {
     type = "structure",
+    id = "DeregisterWirelessDeviceInput",
     members = {
         Identifier = {
             type = "string",
@@ -2061,10 +2180,12 @@ M.DeregisterWirelessDeviceInput = {
 
 M.DeregisterWirelessDeviceOutput = {
     type = "structure",
+    id = "DeregisterWirelessDeviceOutput",
 }
 
 M.Destinations = {
     type = "structure",
+    id = "Destinations",
     members = {
         Arn = {
             type = "string",
@@ -2089,6 +2210,7 @@ M.Destinations = {
 
 M.DeviceProfile = {
     type = "structure",
+    id = "DeviceProfile",
     members = {
         Arn = {
             type = "string",
@@ -2109,6 +2231,7 @@ M.DeviceProfileType = {
 
 M.SidewalkEventNotificationConfigurations = {
     type = "structure",
+    id = "SidewalkEventNotificationConfigurations",
     members = {
         AmazonIdEventTopic = {
             type = "string",
@@ -2118,6 +2241,7 @@ M.SidewalkEventNotificationConfigurations = {
 
 M.DeviceRegistrationStateEventConfiguration = {
     type = "structure",
+    id = "DeviceRegistrationStateEventConfiguration",
     members = {
         Sidewalk = M.SidewalkEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
@@ -2128,6 +2252,7 @@ M.DeviceRegistrationStateEventConfiguration = {
 
 M.SidewalkResourceTypeEventConfiguration = {
     type = "structure",
+    id = "SidewalkResourceTypeEventConfiguration",
     members = {
         WirelessDeviceEventTopic = {
             type = "string",
@@ -2137,6 +2262,7 @@ M.SidewalkResourceTypeEventConfiguration = {
 
 M.DeviceRegistrationStateResourceTypeEventConfiguration = {
     type = "structure",
+    id = "DeviceRegistrationStateResourceTypeEventConfiguration",
     members = {
         Sidewalk = M.SidewalkResourceTypeEventConfiguration,
     },
@@ -2156,6 +2282,7 @@ M.DimensionName = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         name = {
             type = "string",
@@ -2172,6 +2299,7 @@ M.PartnerType = {
 
 M.DisassociateAwsAccountFromPartnerAccountInput = {
     type = "structure",
+    id = "DisassociateAwsAccountFromPartnerAccountInput",
     members = {
         PartnerAccountId = {
             type = "string",
@@ -2192,10 +2320,12 @@ M.DisassociateAwsAccountFromPartnerAccountInput = {
 
 M.DisassociateAwsAccountFromPartnerAccountOutput = {
     type = "structure",
+    id = "DisassociateAwsAccountFromPartnerAccountOutput",
 }
 
 M.DisassociateMulticastGroupFromFuotaTaskInput = {
     type = "structure",
+    id = "DisassociateMulticastGroupFromFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -2216,10 +2346,12 @@ M.DisassociateMulticastGroupFromFuotaTaskInput = {
 
 M.DisassociateMulticastGroupFromFuotaTaskOutput = {
     type = "structure",
+    id = "DisassociateMulticastGroupFromFuotaTaskOutput",
 }
 
 M.DisassociateWirelessDeviceFromFuotaTaskInput = {
     type = "structure",
+    id = "DisassociateWirelessDeviceFromFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -2240,10 +2372,12 @@ M.DisassociateWirelessDeviceFromFuotaTaskInput = {
 
 M.DisassociateWirelessDeviceFromFuotaTaskOutput = {
     type = "structure",
+    id = "DisassociateWirelessDeviceFromFuotaTaskOutput",
 }
 
 M.DisassociateWirelessDeviceFromMulticastGroupInput = {
     type = "structure",
+    id = "DisassociateWirelessDeviceFromMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -2264,10 +2398,12 @@ M.DisassociateWirelessDeviceFromMulticastGroupInput = {
 
 M.DisassociateWirelessDeviceFromMulticastGroupOutput = {
     type = "structure",
+    id = "DisassociateWirelessDeviceFromMulticastGroupOutput",
 }
 
 M.DisassociateWirelessDeviceFromThingInput = {
     type = "structure",
+    id = "DisassociateWirelessDeviceFromThingInput",
     members = {
         Id = {
             type = "string",
@@ -2281,10 +2417,12 @@ M.DisassociateWirelessDeviceFromThingInput = {
 
 M.DisassociateWirelessDeviceFromThingOutput = {
     type = "structure",
+    id = "DisassociateWirelessDeviceFromThingOutput",
 }
 
 M.DisassociateWirelessGatewayFromCertificateInput = {
     type = "structure",
+    id = "DisassociateWirelessGatewayFromCertificateInput",
     members = {
         Id = {
             type = "string",
@@ -2298,10 +2436,12 @@ M.DisassociateWirelessGatewayFromCertificateInput = {
 
 M.DisassociateWirelessGatewayFromCertificateOutput = {
     type = "structure",
+    id = "DisassociateWirelessGatewayFromCertificateOutput",
 }
 
 M.DisassociateWirelessGatewayFromThingInput = {
     type = "structure",
+    id = "DisassociateWirelessGatewayFromThingInput",
     members = {
         Id = {
             type = "string",
@@ -2315,6 +2455,7 @@ M.DisassociateWirelessGatewayFromThingInput = {
 
 M.DisassociateWirelessGatewayFromThingOutput = {
     type = "structure",
+    id = "DisassociateWirelessGatewayFromThingOutput",
 }
 
 M.DownlinkMode = {
@@ -2325,6 +2466,7 @@ M.DownlinkMode = {
 
 M.GatewayListItem = {
     type = "structure",
+    id = "GatewayListItem",
     members = {
         GatewayId = {
             type = "string",
@@ -2343,6 +2485,7 @@ M.GatewayListItem = {
 
 M.ParticipatingGateways = {
     type = "structure",
+    id = "ParticipatingGateways",
     members = {
         DownlinkMode = {
             type = "string",
@@ -2368,6 +2511,7 @@ M.ParticipatingGateways = {
 
 M.LoRaWANSendDataToDevice = {
     type = "structure",
+    id = "LoRaWANSendDataToDevice",
     members = {
         FPort = {
             type = "integer",
@@ -2378,6 +2522,7 @@ M.LoRaWANSendDataToDevice = {
 
 M.DownlinkQueueMessage = {
     type = "structure",
+    id = "DownlinkQueueMessage",
     members = {
         MessageId = {
             type = "string",
@@ -2402,6 +2547,7 @@ M.Event = {
 
 M.LoRaWANJoinEventNotificationConfigurations = {
     type = "structure",
+    id = "LoRaWANJoinEventNotificationConfigurations",
     members = {
         DevEuiEventTopic = {
             type = "string",
@@ -2411,6 +2557,7 @@ M.LoRaWANJoinEventNotificationConfigurations = {
 
 M.JoinEventConfiguration = {
     type = "structure",
+    id = "JoinEventConfiguration",
     members = {
         LoRaWAN = M.LoRaWANJoinEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
@@ -2421,6 +2568,7 @@ M.JoinEventConfiguration = {
 
 M.MessageDeliveryStatusEventConfiguration = {
     type = "structure",
+    id = "MessageDeliveryStatusEventConfiguration",
     members = {
         Sidewalk = M.SidewalkEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
@@ -2431,6 +2579,7 @@ M.MessageDeliveryStatusEventConfiguration = {
 
 M.ProximityEventConfiguration = {
     type = "structure",
+    id = "ProximityEventConfiguration",
     members = {
         Sidewalk = M.SidewalkEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
@@ -2441,6 +2590,7 @@ M.ProximityEventConfiguration = {
 
 M.EventNotificationItemConfigurations = {
     type = "structure",
+    id = "EventNotificationItemConfigurations",
     members = {
         DeviceRegistrationState = M.DeviceRegistrationStateEventConfiguration,
         Proximity = M.ProximityEventConfiguration,
@@ -2464,6 +2614,7 @@ M.EventNotificationPartnerType = {
 
 M.EventConfigurationItem = {
     type = "structure",
+    id = "EventConfigurationItem",
     members = {
         Identifier = {
             type = "string",
@@ -2501,6 +2652,7 @@ M.FuotaDeviceStatus = {
 
 M.FuotaTask = {
     type = "structure",
+    id = "FuotaTask",
     members = {
         Id = {
             type = "string",
@@ -2520,6 +2672,7 @@ M.FuotaTaskEvent = {
 
 M.FuotaTaskEventLogOption = {
     type = "structure",
+    id = "FuotaTaskEventLogOption",
     members = {
         Event = {
             type = "string",
@@ -2542,6 +2695,7 @@ M.FuotaTaskType = {
 
 M.FuotaTaskLogOption = {
     type = "structure",
+    id = "FuotaTaskLogOption",
     members = {
         Type = {
             type = "string",
@@ -2572,6 +2726,7 @@ M.FuotaTaskStatus = {
 
 M.GetDestinationInput = {
     type = "structure",
+    id = "GetDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -2585,6 +2740,7 @@ M.GetDestinationInput = {
 
 M.GetDestinationOutput = {
     type = "structure",
+    id = "GetDestinationOutput",
     members = {
         Arn = {
             type = "string",
@@ -2609,6 +2765,7 @@ M.GetDestinationOutput = {
 
 M.GetDeviceProfileInput = {
     type = "structure",
+    id = "GetDeviceProfileInput",
     members = {
         Id = {
             type = "string",
@@ -2622,6 +2779,7 @@ M.GetDeviceProfileInput = {
 
 M.SidewalkGetDeviceProfile = {
     type = "structure",
+    id = "SidewalkGetDeviceProfile",
     members = {
         ApplicationServerPublicKey = {
             type = "string",
@@ -2638,6 +2796,7 @@ M.SidewalkGetDeviceProfile = {
 
 M.GetDeviceProfileOutput = {
     type = "structure",
+    id = "GetDeviceProfileOutput",
     members = {
         Arn = {
             type = "string",
@@ -2655,10 +2814,12 @@ M.GetDeviceProfileOutput = {
 
 M.GetEventConfigurationByResourceTypesInput = {
     type = "structure",
+    id = "GetEventConfigurationByResourceTypesInput",
 }
 
 M.LoRaWANJoinResourceTypeEventConfiguration = {
     type = "structure",
+    id = "LoRaWANJoinResourceTypeEventConfiguration",
     members = {
         WirelessDeviceEventTopic = {
             type = "string",
@@ -2668,6 +2829,7 @@ M.LoRaWANJoinResourceTypeEventConfiguration = {
 
 M.JoinResourceTypeEventConfiguration = {
     type = "structure",
+    id = "JoinResourceTypeEventConfiguration",
     members = {
         LoRaWAN = M.LoRaWANJoinResourceTypeEventConfiguration,
     },
@@ -2675,6 +2837,7 @@ M.JoinResourceTypeEventConfiguration = {
 
 M.MessageDeliveryStatusResourceTypeEventConfiguration = {
     type = "structure",
+    id = "MessageDeliveryStatusResourceTypeEventConfiguration",
     members = {
         Sidewalk = M.SidewalkResourceTypeEventConfiguration,
     },
@@ -2682,6 +2845,7 @@ M.MessageDeliveryStatusResourceTypeEventConfiguration = {
 
 M.ProximityResourceTypeEventConfiguration = {
     type = "structure",
+    id = "ProximityResourceTypeEventConfiguration",
     members = {
         Sidewalk = M.SidewalkResourceTypeEventConfiguration,
     },
@@ -2689,6 +2853,7 @@ M.ProximityResourceTypeEventConfiguration = {
 
 M.GetEventConfigurationByResourceTypesOutput = {
     type = "structure",
+    id = "GetEventConfigurationByResourceTypesOutput",
     members = {
         DeviceRegistrationState = M.DeviceRegistrationStateResourceTypeEventConfiguration,
         Proximity = M.ProximityResourceTypeEventConfiguration,
@@ -2700,6 +2865,7 @@ M.GetEventConfigurationByResourceTypesOutput = {
 
 M.GetFuotaTaskInput = {
     type = "structure",
+    id = "GetFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -2713,6 +2879,7 @@ M.GetFuotaTaskInput = {
 
 M.LoRaWANFuotaTaskGetInfo = {
     type = "structure",
+    id = "LoRaWANFuotaTaskGetInfo",
     members = {
         RfRegion = {
             type = "string",
@@ -2728,6 +2895,7 @@ M.LoRaWANFuotaTaskGetInfo = {
 
 M.GetFuotaTaskOutput = {
     type = "structure",
+    id = "GetFuotaTaskOutput",
     members = {
         Arn = {
             type = "string",
@@ -2771,6 +2939,7 @@ M.GetFuotaTaskOutput = {
 
 M.GetLogLevelsByResourceTypesInput = {
     type = "structure",
+    id = "GetLogLevelsByResourceTypesInput",
 }
 
 M.WirelessDeviceEvent = {
@@ -2783,6 +2952,7 @@ M.WirelessDeviceEvent = {
 
 M.WirelessDeviceEventLogOption = {
     type = "structure",
+    id = "WirelessDeviceEventLogOption",
     members = {
         Event = {
             type = "string",
@@ -2801,6 +2971,7 @@ M.WirelessDeviceEventLogOption = {
 
 M.WirelessDeviceLogOption = {
     type = "structure",
+    id = "WirelessDeviceLogOption",
     members = {
         Type = {
             type = "string",
@@ -2828,6 +2999,7 @@ M.WirelessGatewayEvent = {
 
 M.WirelessGatewayEventLogOption = {
     type = "structure",
+    id = "WirelessGatewayEventLogOption",
     members = {
         Event = {
             type = "string",
@@ -2850,6 +3022,7 @@ M.WirelessGatewayType = {
 
 M.WirelessGatewayLogOption = {
     type = "structure",
+    id = "WirelessGatewayLogOption",
     members = {
         Type = {
             type = "string",
@@ -2872,6 +3045,7 @@ M.WirelessGatewayLogOption = {
 
 M.GetLogLevelsByResourceTypesOutput = {
     type = "structure",
+    id = "GetLogLevelsByResourceTypesOutput",
     members = {
         DefaultLogLevel = {
             type = "string",
@@ -2893,6 +3067,7 @@ M.GetLogLevelsByResourceTypesOutput = {
 
 M.GetMetricConfigurationInput = {
     type = "structure",
+    id = "GetMetricConfigurationInput",
 }
 
 M.SummaryMetricConfigurationStatus = {
@@ -2902,6 +3077,7 @@ M.SummaryMetricConfigurationStatus = {
 
 M.SummaryMetricConfiguration = {
     type = "structure",
+    id = "SummaryMetricConfiguration",
     members = {
         Status = {
             type = "string",
@@ -2911,6 +3087,7 @@ M.SummaryMetricConfiguration = {
 
 M.GetMetricConfigurationOutput = {
     type = "structure",
+    id = "GetMetricConfigurationOutput",
     members = {
         SummaryMetric = M.SummaryMetricConfiguration,
     },
@@ -2953,6 +3130,7 @@ M.MetricName = {
 
 M.SummaryMetricQuery = {
     type = "structure",
+    id = "SummaryMetricQuery",
     members = {
         QueryId = {
             type = "string",
@@ -2978,6 +3156,7 @@ M.SummaryMetricQuery = {
 
 M.GetMetricsInput = {
     type = "structure",
+    id = "GetMetricsInput",
     members = {
         SummaryMetricQueries = {
             type = "list",
@@ -2993,6 +3172,7 @@ M.MetricQueryStatus = {
 
 M.MetricQueryValue = {
     type = "structure",
+    id = "MetricQueryValue",
     members = {
         Min = {
             type = "double",
@@ -3017,6 +3197,7 @@ M.MetricQueryValue = {
 
 M.SummaryMetricQueryResult = {
     type = "structure",
+    id = "SummaryMetricQueryResult",
     members = {
         QueryId = {
             type = "string",
@@ -3059,6 +3240,7 @@ M.SummaryMetricQueryResult = {
 
 M.GetMetricsOutput = {
     type = "structure",
+    id = "GetMetricsOutput",
     members = {
         SummaryMetricQueryResults = {
             type = "list",
@@ -3069,6 +3251,7 @@ M.GetMetricsOutput = {
 
 M.GetMulticastGroupInput = {
     type = "structure",
+    id = "GetMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -3082,6 +3265,7 @@ M.GetMulticastGroupInput = {
 
 M.LoRaWANMulticastGet = {
     type = "structure",
+    id = "LoRaWANMulticastGet",
     members = {
         RfRegion = {
             type = "string",
@@ -3101,6 +3285,7 @@ M.LoRaWANMulticastGet = {
 
 M.GetMulticastGroupOutput = {
     type = "structure",
+    id = "GetMulticastGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -3126,6 +3311,7 @@ M.GetMulticastGroupOutput = {
 
 M.GetMulticastGroupSessionInput = {
     type = "structure",
+    id = "GetMulticastGroupSessionInput",
     members = {
         Id = {
             type = "string",
@@ -3139,6 +3325,7 @@ M.GetMulticastGroupSessionInput = {
 
 M.LoRaWANMulticastSession = {
     type = "structure",
+    id = "LoRaWANMulticastSession",
     members = {
         DlDr = {
             type = "integer",
@@ -3163,6 +3350,7 @@ M.LoRaWANMulticastSession = {
 
 M.GetMulticastGroupSessionOutput = {
     type = "structure",
+    id = "GetMulticastGroupSessionOutput",
     members = {
         LoRaWAN = M.LoRaWANMulticastSession,
     },
@@ -3170,6 +3358,7 @@ M.GetMulticastGroupSessionOutput = {
 
 M.GetNetworkAnalyzerConfigurationInput = {
     type = "structure",
+    id = "GetNetworkAnalyzerConfigurationInput",
     members = {
         ConfigurationName = {
             type = "string",
@@ -3183,6 +3372,7 @@ M.GetNetworkAnalyzerConfigurationInput = {
 
 M.GetNetworkAnalyzerConfigurationOutput = {
     type = "structure",
+    id = "GetNetworkAnalyzerConfigurationOutput",
     members = {
         TraceContent = M.TraceContent,
         WirelessDevices = {
@@ -3211,6 +3401,7 @@ M.GetNetworkAnalyzerConfigurationOutput = {
 
 M.GetPartnerAccountInput = {
     type = "structure",
+    id = "GetPartnerAccountInput",
     members = {
         PartnerAccountId = {
             type = "string",
@@ -3231,6 +3422,7 @@ M.GetPartnerAccountInput = {
 
 M.SidewalkAccountInfoWithFingerprint = {
     type = "structure",
+    id = "SidewalkAccountInfoWithFingerprint",
     members = {
         AmazonId = {
             type = "string",
@@ -3246,6 +3438,7 @@ M.SidewalkAccountInfoWithFingerprint = {
 
 M.GetPartnerAccountOutput = {
     type = "structure",
+    id = "GetPartnerAccountOutput",
     members = {
         Sidewalk = M.SidewalkAccountInfoWithFingerprint,
         AccountLinked = {
@@ -3264,6 +3457,7 @@ M.PositionResourceType = {
 
 M.GetPositionInput = {
     type = "structure",
+    id = "GetPositionInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -3292,6 +3486,7 @@ M.PositionSolverType = {
 
 M.GetPositionOutput = {
     type = "structure",
+    id = "GetPositionOutput",
     members = {
         Position = {
             type = "list",
@@ -3315,6 +3510,7 @@ M.GetPositionOutput = {
 
 M.GetPositionConfigurationInput = {
     type = "structure",
+    id = "GetPositionConfigurationInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -3345,6 +3541,7 @@ M.PositionConfigurationStatus = {
 
 M.SemtechGnssDetail = {
     type = "structure",
+    id = "SemtechGnssDetail",
     members = {
         Provider = {
             type = "string",
@@ -3363,6 +3560,7 @@ M.SemtechGnssDetail = {
 
 M.PositionSolverDetails = {
     type = "structure",
+    id = "PositionSolverDetails",
     members = {
         SemtechGnss = M.SemtechGnssDetail,
     },
@@ -3370,6 +3568,7 @@ M.PositionSolverDetails = {
 
 M.GetPositionConfigurationOutput = {
     type = "structure",
+    id = "GetPositionConfigurationOutput",
     members = {
         Solvers = M.PositionSolverDetails,
         Destination = {
@@ -3380,6 +3579,7 @@ M.GetPositionConfigurationOutput = {
 
 M.Gnss = {
     type = "structure",
+    id = "Gnss",
     members = {
         Payload = {
             type = "string",
@@ -3411,6 +3611,7 @@ M.Gnss = {
 
 M.Ip = {
     type = "structure",
+    id = "Ip",
     members = {
         IpAddress = {
             type = "string",
@@ -3423,6 +3624,7 @@ M.Ip = {
 
 M.WiFiAccessPoint = {
     type = "structure",
+    id = "WiFiAccessPoint",
     members = {
         MacAddress = {
             type = "string",
@@ -3441,6 +3643,7 @@ M.WiFiAccessPoint = {
 
 M.GetPositionEstimateInput = {
     type = "structure",
+    id = "GetPositionEstimateInput",
     members = {
         WiFiAccessPoints = {
             type = "list",
@@ -3458,6 +3661,7 @@ M.GetPositionEstimateInput = {
 
 M.GetPositionEstimateOutput = {
     type = "structure",
+    id = "GetPositionEstimateOutput",
     members = {
         GeoJsonPayload = {
             type = "blob",
@@ -3470,6 +3674,7 @@ M.GetPositionEstimateOutput = {
 
 M.GetResourceEventConfigurationInput = {
     type = "structure",
+    id = "GetResourceEventConfigurationInput",
     members = {
         Identifier = {
             type = "string",
@@ -3496,6 +3701,7 @@ M.GetResourceEventConfigurationInput = {
 
 M.GetResourceEventConfigurationOutput = {
     type = "structure",
+    id = "GetResourceEventConfigurationOutput",
     members = {
         DeviceRegistrationState = M.DeviceRegistrationStateEventConfiguration,
         Proximity = M.ProximityEventConfiguration,
@@ -3507,6 +3713,7 @@ M.GetResourceEventConfigurationOutput = {
 
 M.GetResourceLogLevelInput = {
     type = "structure",
+    id = "GetResourceLogLevelInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -3527,6 +3734,7 @@ M.GetResourceLogLevelInput = {
 
 M.GetResourceLogLevelOutput = {
     type = "structure",
+    id = "GetResourceLogLevelOutput",
     members = {
         LogLevel = {
             type = "string",
@@ -3536,6 +3744,7 @@ M.GetResourceLogLevelOutput = {
 
 M.GetResourcePositionInput = {
     type = "structure",
+    id = "GetResourcePositionInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -3556,6 +3765,7 @@ M.GetResourcePositionInput = {
 
 M.GetResourcePositionOutput = {
     type = "structure",
+    id = "GetResourcePositionOutput",
     members = {
         GeoJsonPayload = {
             type = "blob",
@@ -3573,6 +3783,7 @@ M.WirelessGatewayServiceType = {
 
 M.GetServiceEndpointInput = {
     type = "structure",
+    id = "GetServiceEndpointInput",
     members = {
         ServiceType = {
             type = "string",
@@ -3585,6 +3796,7 @@ M.GetServiceEndpointInput = {
 
 M.GetServiceEndpointOutput = {
     type = "structure",
+    id = "GetServiceEndpointOutput",
     members = {
         ServiceType = {
             type = "string",
@@ -3600,6 +3812,7 @@ M.GetServiceEndpointOutput = {
 
 M.GetServiceProfileInput = {
     type = "structure",
+    id = "GetServiceProfileInput",
     members = {
         Id = {
             type = "string",
@@ -3613,6 +3826,7 @@ M.GetServiceProfileInput = {
 
 M.LoRaWANGetServiceProfileInfo = {
     type = "structure",
+    id = "LoRaWANGetServiceProfileInfo",
     members = {
         UlRate = {
             type = "integer",
@@ -3718,6 +3932,7 @@ M.LoRaWANGetServiceProfileInfo = {
 
 M.GetServiceProfileOutput = {
     type = "structure",
+    id = "GetServiceProfileOutput",
     members = {
         Arn = {
             type = "string",
@@ -3741,6 +3956,7 @@ M.WirelessDeviceIdType = {
 
 M.GetWirelessDeviceInput = {
     type = "structure",
+    id = "GetWirelessDeviceInput",
     members = {
         Identifier = {
             type = "string",
@@ -3768,6 +3984,7 @@ M.WirelessDeviceSidewalkStatus = {
 
 M.SidewalkDevice = {
     type = "structure",
+    id = "SidewalkDevice",
     members = {
         AmazonId = {
             type = "string",
@@ -3801,6 +4018,7 @@ M.SidewalkDevice = {
 
 M.GetWirelessDeviceOutput = {
     type = "structure",
+    id = "GetWirelessDeviceOutput",
     members = {
         Type = {
             type = "string",
@@ -3836,6 +4054,7 @@ M.GetWirelessDeviceOutput = {
 
 M.GetWirelessDeviceImportTaskInput = {
     type = "structure",
+    id = "GetWirelessDeviceImportTaskInput",
     members = {
         Id = {
             type = "string",
@@ -3849,6 +4068,7 @@ M.GetWirelessDeviceImportTaskInput = {
 
 M.SidewalkGetStartImportInfo = {
     type = "structure",
+    id = "SidewalkGetStartImportInfo",
     members = {
         DeviceCreationFileList = {
             type = "list",
@@ -3872,6 +4092,7 @@ M.ImportTaskStatus = {
 
 M.GetWirelessDeviceImportTaskOutput = {
     type = "structure",
+    id = "GetWirelessDeviceImportTaskOutput",
     members = {
         Id = {
             type = "string",
@@ -3915,6 +4136,7 @@ M.GetWirelessDeviceImportTaskOutput = {
 
 M.GetWirelessDeviceStatisticsInput = {
     type = "structure",
+    id = "GetWirelessDeviceStatisticsInput",
     members = {
         WirelessDeviceId = {
             type = "string",
@@ -3928,6 +4150,7 @@ M.GetWirelessDeviceStatisticsInput = {
 
 M.LoRaWANGatewayMetadata = {
     type = "structure",
+    id = "LoRaWANGatewayMetadata",
     members = {
         GatewayEui = {
             type = "string",
@@ -3943,6 +4166,7 @@ M.LoRaWANGatewayMetadata = {
 
 M.LoRaWANPublicGatewayMetadata = {
     type = "structure",
+    id = "LoRaWANPublicGatewayMetadata",
     members = {
         ProviderNetId = {
             type = "string",
@@ -3967,6 +4191,7 @@ M.LoRaWANPublicGatewayMetadata = {
 
 M.LoRaWANDeviceMetadata = {
     type = "structure",
+    id = "LoRaWANDeviceMetadata",
     members = {
         DevEui = {
             type = "string",
@@ -3996,6 +4221,7 @@ M.LoRaWANDeviceMetadata = {
 
 M.SidewalkDeviceMetadata = {
     type = "structure",
+    id = "SidewalkDeviceMetadata",
     members = {
         Rssi = {
             type = "integer",
@@ -4014,6 +4240,7 @@ M.SidewalkDeviceMetadata = {
 
 M.GetWirelessDeviceStatisticsOutput = {
     type = "structure",
+    id = "GetWirelessDeviceStatisticsOutput",
     members = {
         WirelessDeviceId = {
             type = "string",
@@ -4034,6 +4261,7 @@ M.WirelessGatewayIdType = {
 
 M.GetWirelessGatewayInput = {
     type = "structure",
+    id = "GetWirelessGatewayInput",
     members = {
         Identifier = {
             type = "string",
@@ -4054,6 +4282,7 @@ M.GetWirelessGatewayInput = {
 
 M.GetWirelessGatewayOutput = {
     type = "structure",
+    id = "GetWirelessGatewayOutput",
     members = {
         Name = {
             type = "string",
@@ -4079,6 +4308,7 @@ M.GetWirelessGatewayOutput = {
 
 M.GetWirelessGatewayCertificateInput = {
     type = "structure",
+    id = "GetWirelessGatewayCertificateInput",
     members = {
         Id = {
             type = "string",
@@ -4092,6 +4322,7 @@ M.GetWirelessGatewayCertificateInput = {
 
 M.GetWirelessGatewayCertificateOutput = {
     type = "structure",
+    id = "GetWirelessGatewayCertificateOutput",
     members = {
         IotCertificateId = {
             type = "string",
@@ -4104,6 +4335,7 @@ M.GetWirelessGatewayCertificateOutput = {
 
 M.GetWirelessGatewayFirmwareInformationInput = {
     type = "structure",
+    id = "GetWirelessGatewayFirmwareInformationInput",
     members = {
         Id = {
             type = "string",
@@ -4117,6 +4349,7 @@ M.GetWirelessGatewayFirmwareInformationInput = {
 
 M.LoRaWANGatewayCurrentVersion = {
     type = "structure",
+    id = "LoRaWANGatewayCurrentVersion",
     members = {
         CurrentVersion = M.LoRaWANGatewayVersion,
     },
@@ -4124,6 +4357,7 @@ M.LoRaWANGatewayCurrentVersion = {
 
 M.GetWirelessGatewayFirmwareInformationOutput = {
     type = "structure",
+    id = "GetWirelessGatewayFirmwareInformationOutput",
     members = {
         LoRaWAN = M.LoRaWANGatewayCurrentVersion,
     },
@@ -4131,6 +4365,7 @@ M.GetWirelessGatewayFirmwareInformationOutput = {
 
 M.GetWirelessGatewayStatisticsInput = {
     type = "structure",
+    id = "GetWirelessGatewayStatisticsInput",
     members = {
         WirelessGatewayId = {
             type = "string",
@@ -4144,6 +4379,7 @@ M.GetWirelessGatewayStatisticsInput = {
 
 M.GetWirelessGatewayStatisticsOutput = {
     type = "structure",
+    id = "GetWirelessGatewayStatisticsOutput",
     members = {
         WirelessGatewayId = {
             type = "string",
@@ -4159,6 +4395,7 @@ M.GetWirelessGatewayStatisticsOutput = {
 
 M.GetWirelessGatewayTaskInput = {
     type = "structure",
+    id = "GetWirelessGatewayTaskInput",
     members = {
         Id = {
             type = "string",
@@ -4172,6 +4409,7 @@ M.GetWirelessGatewayTaskInput = {
 
 M.GetWirelessGatewayTaskOutput = {
     type = "structure",
+    id = "GetWirelessGatewayTaskOutput",
     members = {
         WirelessGatewayId = {
             type = "string",
@@ -4193,6 +4431,7 @@ M.GetWirelessGatewayTaskOutput = {
 
 M.GetWirelessGatewayTaskDefinitionInput = {
     type = "structure",
+    id = "GetWirelessGatewayTaskDefinitionInput",
     members = {
         Id = {
             type = "string",
@@ -4206,6 +4445,7 @@ M.GetWirelessGatewayTaskDefinitionInput = {
 
 M.GetWirelessGatewayTaskDefinitionOutput = {
     type = "structure",
+    id = "GetWirelessGatewayTaskDefinitionOutput",
     members = {
         AutoCreateTasks = {
             type = "boolean",
@@ -4232,6 +4472,7 @@ M.OnboardStatus = {
 
 M.ImportedSidewalkDevice = {
     type = "structure",
+    id = "ImportedSidewalkDevice",
     members = {
         SidewalkManufacturingSn = {
             type = "string",
@@ -4253,6 +4494,7 @@ M.ImportedSidewalkDevice = {
 
 M.ImportedWirelessDevice = {
     type = "structure",
+    id = "ImportedWirelessDevice",
     members = {
         Sidewalk = M.ImportedSidewalkDevice,
     },
@@ -4260,6 +4502,7 @@ M.ImportedWirelessDevice = {
 
 M.ListDestinationsInput = {
     type = "structure",
+    id = "ListDestinationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4279,6 +4522,7 @@ M.ListDestinationsInput = {
 
 M.ListDestinationsOutput = {
     type = "structure",
+    id = "ListDestinationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4292,6 +4536,7 @@ M.ListDestinationsOutput = {
 
 M.ListDeviceProfilesInput = {
     type = "structure",
+    id = "ListDeviceProfilesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4317,6 +4562,7 @@ M.ListDeviceProfilesInput = {
 
 M.ListDeviceProfilesOutput = {
     type = "structure",
+    id = "ListDeviceProfilesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4330,6 +4576,7 @@ M.ListDeviceProfilesOutput = {
 
 M.ListDevicesForWirelessDeviceImportTaskInput = {
     type = "structure",
+    id = "ListDevicesForWirelessDeviceImportTaskInput",
     members = {
         Id = {
             type = "string",
@@ -4362,6 +4609,7 @@ M.ListDevicesForWirelessDeviceImportTaskInput = {
 
 M.SidewalkListDevicesForImportInfo = {
     type = "structure",
+    id = "SidewalkListDevicesForImportInfo",
     members = {
         Positioning = M.SidewalkPositioning,
     },
@@ -4369,6 +4617,7 @@ M.SidewalkListDevicesForImportInfo = {
 
 M.ListDevicesForWirelessDeviceImportTaskOutput = {
     type = "structure",
+    id = "ListDevicesForWirelessDeviceImportTaskOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4389,6 +4638,7 @@ M.ListDevicesForWirelessDeviceImportTaskOutput = {
 
 M.ListEventConfigurationsInput = {
     type = "structure",
+    id = "ListEventConfigurationsInput",
     members = {
         ResourceType = {
             type = "string",
@@ -4415,6 +4665,7 @@ M.ListEventConfigurationsInput = {
 
 M.ListEventConfigurationsOutput = {
     type = "structure",
+    id = "ListEventConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4428,6 +4679,7 @@ M.ListEventConfigurationsOutput = {
 
 M.ListFuotaTasksInput = {
     type = "structure",
+    id = "ListFuotaTasksInput",
     members = {
         NextToken = {
             type = "string",
@@ -4447,6 +4699,7 @@ M.ListFuotaTasksInput = {
 
 M.ListFuotaTasksOutput = {
     type = "structure",
+    id = "ListFuotaTasksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4460,6 +4713,7 @@ M.ListFuotaTasksOutput = {
 
 M.ListMulticastGroupsInput = {
     type = "structure",
+    id = "ListMulticastGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4479,6 +4733,7 @@ M.ListMulticastGroupsInput = {
 
 M.MulticastGroup = {
     type = "structure",
+    id = "MulticastGroup",
     members = {
         Id = {
             type = "string",
@@ -4494,6 +4749,7 @@ M.MulticastGroup = {
 
 M.ListMulticastGroupsOutput = {
     type = "structure",
+    id = "ListMulticastGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4507,6 +4763,7 @@ M.ListMulticastGroupsOutput = {
 
 M.ListMulticastGroupsByFuotaTaskInput = {
     type = "structure",
+    id = "ListMulticastGroupsByFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -4533,6 +4790,7 @@ M.ListMulticastGroupsByFuotaTaskInput = {
 
 M.MulticastGroupByFuotaTask = {
     type = "structure",
+    id = "MulticastGroupByFuotaTask",
     members = {
         Id = {
             type = "string",
@@ -4542,6 +4800,7 @@ M.MulticastGroupByFuotaTask = {
 
 M.ListMulticastGroupsByFuotaTaskOutput = {
     type = "structure",
+    id = "ListMulticastGroupsByFuotaTaskOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4555,6 +4814,7 @@ M.ListMulticastGroupsByFuotaTaskOutput = {
 
 M.ListNetworkAnalyzerConfigurationsInput = {
     type = "structure",
+    id = "ListNetworkAnalyzerConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4574,6 +4834,7 @@ M.ListNetworkAnalyzerConfigurationsInput = {
 
 M.NetworkAnalyzerConfigurations = {
     type = "structure",
+    id = "NetworkAnalyzerConfigurations",
     members = {
         Arn = {
             type = "string",
@@ -4586,6 +4847,7 @@ M.NetworkAnalyzerConfigurations = {
 
 M.ListNetworkAnalyzerConfigurationsOutput = {
     type = "structure",
+    id = "ListNetworkAnalyzerConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4599,6 +4861,7 @@ M.ListNetworkAnalyzerConfigurationsOutput = {
 
 M.ListPartnerAccountsInput = {
     type = "structure",
+    id = "ListPartnerAccountsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4618,6 +4881,7 @@ M.ListPartnerAccountsInput = {
 
 M.ListPartnerAccountsOutput = {
     type = "structure",
+    id = "ListPartnerAccountsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4631,6 +4895,7 @@ M.ListPartnerAccountsOutput = {
 
 M.ListPositionConfigurationsInput = {
     type = "structure",
+    id = "ListPositionConfigurationsInput",
     members = {
         ResourceType = {
             type = "string",
@@ -4656,6 +4921,7 @@ M.ListPositionConfigurationsInput = {
 
 M.PositionConfigurationItem = {
     type = "structure",
+    id = "PositionConfigurationItem",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -4672,6 +4938,7 @@ M.PositionConfigurationItem = {
 
 M.ListPositionConfigurationsOutput = {
     type = "structure",
+    id = "ListPositionConfigurationsOutput",
     members = {
         PositionConfigurationList = {
             type = "list",
@@ -4685,6 +4952,7 @@ M.ListPositionConfigurationsOutput = {
 
 M.ListQueuedMessagesInput = {
     type = "structure",
+    id = "ListQueuedMessagesInput",
     members = {
         Id = {
             type = "string",
@@ -4717,6 +4985,7 @@ M.ListQueuedMessagesInput = {
 
 M.ListQueuedMessagesOutput = {
     type = "structure",
+    id = "ListQueuedMessagesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4730,6 +4999,7 @@ M.ListQueuedMessagesOutput = {
 
 M.ListServiceProfilesInput = {
     type = "structure",
+    id = "ListServiceProfilesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4749,6 +5019,7 @@ M.ListServiceProfilesInput = {
 
 M.ServiceProfile = {
     type = "structure",
+    id = "ServiceProfile",
     members = {
         Arn = {
             type = "string",
@@ -4764,6 +5035,7 @@ M.ServiceProfile = {
 
 M.ListServiceProfilesOutput = {
     type = "structure",
+    id = "ListServiceProfilesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4777,6 +5049,7 @@ M.ListServiceProfilesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4790,6 +5063,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -4800,6 +5074,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWirelessDeviceImportTasksInput = {
     type = "structure",
+    id = "ListWirelessDeviceImportTasksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4819,6 +5094,7 @@ M.ListWirelessDeviceImportTasksInput = {
 
 M.WirelessDeviceImportTask = {
     type = "structure",
+    id = "WirelessDeviceImportTask",
     members = {
         Id = {
             type = "string",
@@ -4862,6 +5138,7 @@ M.WirelessDeviceImportTask = {
 
 M.ListWirelessDeviceImportTasksOutput = {
     type = "structure",
+    id = "ListWirelessDeviceImportTasksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4875,6 +5152,7 @@ M.ListWirelessDeviceImportTasksOutput = {
 
 M.ListWirelessDevicesInput = {
     type = "structure",
+    id = "ListWirelessDevicesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4930,6 +5208,7 @@ M.ListWirelessDevicesInput = {
 
 M.LoRaWANListDevice = {
     type = "structure",
+    id = "LoRaWANListDevice",
     members = {
         DevEui = {
             type = "string",
@@ -4939,6 +5218,7 @@ M.LoRaWANListDevice = {
 
 M.SidewalkListDevice = {
     type = "structure",
+    id = "SidewalkListDevice",
     members = {
         AmazonId = {
             type = "string",
@@ -4965,6 +5245,7 @@ M.SidewalkListDevice = {
 
 M.WirelessDeviceStatistics = {
     type = "structure",
+    id = "WirelessDeviceStatistics",
     members = {
         Arn = {
             type = "string",
@@ -5003,6 +5284,7 @@ M.WirelessDeviceStatistics = {
 
 M.ListWirelessDevicesOutput = {
     type = "structure",
+    id = "ListWirelessDevicesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5016,6 +5298,7 @@ M.ListWirelessDevicesOutput = {
 
 M.ListWirelessGatewaysInput = {
     type = "structure",
+    id = "ListWirelessGatewaysInput",
     members = {
         NextToken = {
             type = "string",
@@ -5035,6 +5318,7 @@ M.ListWirelessGatewaysInput = {
 
 M.WirelessGatewayStatistics = {
     type = "structure",
+    id = "WirelessGatewayStatistics",
     members = {
         Arn = {
             type = "string",
@@ -5057,6 +5341,7 @@ M.WirelessGatewayStatistics = {
 
 M.ListWirelessGatewaysOutput = {
     type = "structure",
+    id = "ListWirelessGatewaysOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5074,6 +5359,7 @@ M.WirelessGatewayTaskDefinitionType = {
 
 M.ListWirelessGatewayTaskDefinitionsInput = {
     type = "structure",
+    id = "ListWirelessGatewayTaskDefinitionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -5099,6 +5385,7 @@ M.ListWirelessGatewayTaskDefinitionsInput = {
 
 M.LoRaWANUpdateGatewayTaskEntry = {
     type = "structure",
+    id = "LoRaWANUpdateGatewayTaskEntry",
     members = {
         CurrentVersion = M.LoRaWANGatewayVersion,
         UpdateVersion = M.LoRaWANGatewayVersion,
@@ -5107,6 +5394,7 @@ M.LoRaWANUpdateGatewayTaskEntry = {
 
 M.UpdateWirelessGatewayTaskEntry = {
     type = "structure",
+    id = "UpdateWirelessGatewayTaskEntry",
     members = {
         Id = {
             type = "string",
@@ -5120,6 +5408,7 @@ M.UpdateWirelessGatewayTaskEntry = {
 
 M.ListWirelessGatewayTaskDefinitionsOutput = {
     type = "structure",
+    id = "ListWirelessGatewayTaskDefinitionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5133,6 +5422,7 @@ M.ListWirelessGatewayTaskDefinitionsOutput = {
 
 M.SemtechGnssConfiguration = {
     type = "structure",
+    id = "SemtechGnssConfiguration",
     members = {
         Status = {
             type = "string",
@@ -5151,6 +5441,7 @@ M.SemtechGnssConfiguration = {
 
 M.PositionSolverConfigurations = {
     type = "structure",
+    id = "PositionSolverConfigurations",
     members = {
         SemtechGnss = M.SemtechGnssConfiguration,
     },
@@ -5158,6 +5449,7 @@ M.PositionSolverConfigurations = {
 
 M.PutPositionConfigurationInput = {
     type = "structure",
+    id = "PutPositionConfigurationInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -5182,10 +5474,12 @@ M.PutPositionConfigurationInput = {
 
 M.PutPositionConfigurationOutput = {
     type = "structure",
+    id = "PutPositionConfigurationOutput",
 }
 
 M.PutResourceLogLevelInput = {
     type = "structure",
+    id = "PutResourceLogLevelInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -5212,18 +5506,22 @@ M.PutResourceLogLevelInput = {
 
 M.PutResourceLogLevelOutput = {
     type = "structure",
+    id = "PutResourceLogLevelOutput",
 }
 
 M.ResetAllResourceLogLevelsInput = {
     type = "structure",
+    id = "ResetAllResourceLogLevelsInput",
 }
 
 M.ResetAllResourceLogLevelsOutput = {
     type = "structure",
+    id = "ResetAllResourceLogLevelsOutput",
 }
 
 M.ResetResourceLogLevelInput = {
     type = "structure",
+    id = "ResetResourceLogLevelInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -5244,10 +5542,12 @@ M.ResetResourceLogLevelInput = {
 
 M.ResetResourceLogLevelOutput = {
     type = "structure",
+    id = "ResetResourceLogLevelOutput",
 }
 
 M.LoRaWANMulticastMetadata = {
     type = "structure",
+    id = "LoRaWANMulticastMetadata",
     members = {
         FPort = {
             type = "integer",
@@ -5257,6 +5557,7 @@ M.LoRaWANMulticastMetadata = {
 
 M.MulticastWirelessMetadata = {
     type = "structure",
+    id = "MulticastWirelessMetadata",
     members = {
         LoRaWAN = M.LoRaWANMulticastMetadata,
     },
@@ -5264,6 +5565,7 @@ M.MulticastWirelessMetadata = {
 
 M.SendDataToMulticastGroupInput = {
     type = "structure",
+    id = "SendDataToMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -5286,6 +5588,7 @@ M.SendDataToMulticastGroupInput = {
 
 M.SendDataToMulticastGroupOutput = {
     type = "structure",
+    id = "SendDataToMulticastGroupOutput",
     members = {
         MessageId = {
             type = "string",
@@ -5302,6 +5605,7 @@ M.MessageType = {
 
 M.SidewalkSendDataToDevice = {
     type = "structure",
+    id = "SidewalkSendDataToDevice",
     members = {
         Seq = {
             type = "integer",
@@ -5317,6 +5621,7 @@ M.SidewalkSendDataToDevice = {
 
 M.WirelessMetadata = {
     type = "structure",
+    id = "WirelessMetadata",
     members = {
         LoRaWAN = M.LoRaWANSendDataToDevice,
         Sidewalk = M.SidewalkSendDataToDevice,
@@ -5325,6 +5630,7 @@ M.WirelessMetadata = {
 
 M.SendDataToWirelessDeviceInput = {
     type = "structure",
+    id = "SendDataToWirelessDeviceInput",
     members = {
         Id = {
             type = "string",
@@ -5351,6 +5657,7 @@ M.SendDataToWirelessDeviceInput = {
 
 M.SendDataToWirelessDeviceOutput = {
     type = "structure",
+    id = "SendDataToWirelessDeviceOutput",
     members = {
         MessageId = {
             type = "string",
@@ -5360,6 +5667,7 @@ M.SendDataToWirelessDeviceOutput = {
 
 M.StartBulkAssociateWirelessDeviceWithMulticastGroupInput = {
     type = "structure",
+    id = "StartBulkAssociateWirelessDeviceWithMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -5380,10 +5688,12 @@ M.StartBulkAssociateWirelessDeviceWithMulticastGroupInput = {
 
 M.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput = {
     type = "structure",
+    id = "StartBulkAssociateWirelessDeviceWithMulticastGroupOutput",
 }
 
 M.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput = {
     type = "structure",
+    id = "StartBulkDisassociateWirelessDeviceFromMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -5404,10 +5714,12 @@ M.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput = {
 
 M.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput = {
     type = "structure",
+    id = "StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput",
 }
 
 M.LoRaWANStartFuotaTask = {
     type = "structure",
+    id = "LoRaWANStartFuotaTask",
     members = {
         StartTime = {
             type = "timestamp",
@@ -5420,6 +5732,7 @@ M.LoRaWANStartFuotaTask = {
 
 M.StartFuotaTaskInput = {
     type = "structure",
+    id = "StartFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -5434,10 +5747,12 @@ M.StartFuotaTaskInput = {
 
 M.StartFuotaTaskOutput = {
     type = "structure",
+    id = "StartFuotaTaskOutput",
 }
 
 M.StartMulticastGroupSessionInput = {
     type = "structure",
+    id = "StartMulticastGroupSessionInput",
     members = {
         Id = {
             type = "string",
@@ -5454,10 +5769,12 @@ M.StartMulticastGroupSessionInput = {
 
 M.StartMulticastGroupSessionOutput = {
     type = "structure",
+    id = "StartMulticastGroupSessionOutput",
 }
 
 M.SidewalkSingleStartImportInfo = {
     type = "structure",
+    id = "SidewalkSingleStartImportInfo",
     members = {
         SidewalkManufacturingSn = {
             type = "string",
@@ -5468,6 +5785,7 @@ M.SidewalkSingleStartImportInfo = {
 
 M.StartSingleWirelessDeviceImportTaskInput = {
     type = "structure",
+    id = "StartSingleWirelessDeviceImportTaskInput",
     members = {
         DestinationName = {
             type = "string",
@@ -5499,6 +5817,7 @@ M.StartSingleWirelessDeviceImportTaskInput = {
 
 M.StartSingleWirelessDeviceImportTaskOutput = {
     type = "structure",
+    id = "StartSingleWirelessDeviceImportTaskOutput",
     members = {
         Id = {
             type = "string",
@@ -5511,6 +5830,7 @@ M.StartSingleWirelessDeviceImportTaskOutput = {
 
 M.SidewalkStartImportInfo = {
     type = "structure",
+    id = "SidewalkStartImportInfo",
     members = {
         DeviceCreationFile = {
             type = "string",
@@ -5524,6 +5844,7 @@ M.SidewalkStartImportInfo = {
 
 M.StartWirelessDeviceImportTaskInput = {
     type = "structure",
+    id = "StartWirelessDeviceImportTaskInput",
     members = {
         DestinationName = {
             type = "string",
@@ -5552,6 +5873,7 @@ M.StartWirelessDeviceImportTaskInput = {
 
 M.StartWirelessDeviceImportTaskOutput = {
     type = "structure",
+    id = "StartWirelessDeviceImportTaskOutput",
     members = {
         Id = {
             type = "string",
@@ -5564,6 +5886,7 @@ M.StartWirelessDeviceImportTaskOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5584,10 +5907,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -5601,6 +5926,7 @@ M.TooManyTagsException = {
 
 M.TestWirelessDeviceInput = {
     type = "structure",
+    id = "TestWirelessDeviceInput",
     members = {
         Id = {
             type = "string",
@@ -5614,6 +5940,7 @@ M.TestWirelessDeviceInput = {
 
 M.TestWirelessDeviceOutput = {
     type = "structure",
+    id = "TestWirelessDeviceOutput",
     members = {
         Result = {
             type = "string",
@@ -5623,6 +5950,7 @@ M.TestWirelessDeviceOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5644,10 +5972,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDestinationInput = {
     type = "structure",
+    id = "UpdateDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -5673,10 +6003,12 @@ M.UpdateDestinationInput = {
 
 M.UpdateDestinationOutput = {
     type = "structure",
+    id = "UpdateDestinationOutput",
 }
 
 M.UpdateEventConfigurationByResourceTypesInput = {
     type = "structure",
+    id = "UpdateEventConfigurationByResourceTypesInput",
     members = {
         DeviceRegistrationState = M.DeviceRegistrationStateResourceTypeEventConfiguration,
         Proximity = M.ProximityResourceTypeEventConfiguration,
@@ -5688,10 +6020,12 @@ M.UpdateEventConfigurationByResourceTypesInput = {
 
 M.UpdateEventConfigurationByResourceTypesOutput = {
     type = "structure",
+    id = "UpdateEventConfigurationByResourceTypesOutput",
 }
 
 M.UpdateFuotaTaskInput = {
     type = "structure",
+    id = "UpdateFuotaTaskInput",
     members = {
         Id = {
             type = "string",
@@ -5730,10 +6064,12 @@ M.UpdateFuotaTaskInput = {
 
 M.UpdateFuotaTaskOutput = {
     type = "structure",
+    id = "UpdateFuotaTaskOutput",
 }
 
 M.UpdateLogLevelsByResourceTypesInput = {
     type = "structure",
+    id = "UpdateLogLevelsByResourceTypesInput",
     members = {
         DefaultLogLevel = {
             type = "string",
@@ -5755,10 +6091,12 @@ M.UpdateLogLevelsByResourceTypesInput = {
 
 M.UpdateLogLevelsByResourceTypesOutput = {
     type = "structure",
+    id = "UpdateLogLevelsByResourceTypesOutput",
 }
 
 M.UpdateMetricConfigurationInput = {
     type = "structure",
+    id = "UpdateMetricConfigurationInput",
     members = {
         SummaryMetric = M.SummaryMetricConfiguration,
     },
@@ -5766,10 +6104,12 @@ M.UpdateMetricConfigurationInput = {
 
 M.UpdateMetricConfigurationOutput = {
     type = "structure",
+    id = "UpdateMetricConfigurationOutput",
 }
 
 M.UpdateMulticastGroupInput = {
     type = "structure",
+    id = "UpdateMulticastGroupInput",
     members = {
         Id = {
             type = "string",
@@ -5790,10 +6130,12 @@ M.UpdateMulticastGroupInput = {
 
 M.UpdateMulticastGroupOutput = {
     type = "structure",
+    id = "UpdateMulticastGroupOutput",
 }
 
 M.UpdateNetworkAnalyzerConfigurationInput = {
     type = "structure",
+    id = "UpdateNetworkAnalyzerConfigurationInput",
     members = {
         ConfigurationName = {
             type = "string",
@@ -5835,10 +6177,12 @@ M.UpdateNetworkAnalyzerConfigurationInput = {
 
 M.UpdateNetworkAnalyzerConfigurationOutput = {
     type = "structure",
+    id = "UpdateNetworkAnalyzerConfigurationOutput",
 }
 
 M.SidewalkUpdateAccount = {
     type = "structure",
+    id = "SidewalkUpdateAccount",
     members = {
         AppServerPrivateKey = {
             type = "string",
@@ -5848,6 +6192,7 @@ M.SidewalkUpdateAccount = {
 
 M.UpdatePartnerAccountInput = {
     type = "structure",
+    id = "UpdatePartnerAccountInput",
     members = {
         Sidewalk = setmetatable({ traits = {
             required = true,
@@ -5871,10 +6216,12 @@ M.UpdatePartnerAccountInput = {
 
 M.UpdatePartnerAccountOutput = {
     type = "structure",
+    id = "UpdatePartnerAccountOutput",
 }
 
 M.UpdatePositionInput = {
     type = "structure",
+    id = "UpdatePositionInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -5902,10 +6249,12 @@ M.UpdatePositionInput = {
 
 M.UpdatePositionOutput = {
     type = "structure",
+    id = "UpdatePositionOutput",
 }
 
 M.UpdateResourceEventConfigurationInput = {
     type = "structure",
+    id = "UpdateResourceEventConfigurationInput",
     members = {
         Identifier = {
             type = "string",
@@ -5937,10 +6286,12 @@ M.UpdateResourceEventConfigurationInput = {
 
 M.UpdateResourceEventConfigurationOutput = {
     type = "structure",
+    id = "UpdateResourceEventConfigurationOutput",
 }
 
 M.UpdateResourcePositionInput = {
     type = "structure",
+    id = "UpdateResourcePositionInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -5967,10 +6318,12 @@ M.UpdateResourcePositionInput = {
 
 M.UpdateResourcePositionOutput = {
     type = "structure",
+    id = "UpdateResourcePositionOutput",
 }
 
 M.UpdateAbpV1_0_x = {
     type = "structure",
+    id = "UpdateAbpV1_0_x",
     members = {
         FCntStart = {
             type = "integer",
@@ -5980,6 +6333,7 @@ M.UpdateAbpV1_0_x = {
 
 M.UpdateAbpV1_1 = {
     type = "structure",
+    id = "UpdateAbpV1_1",
     members = {
         FCntStart = {
             type = "integer",
@@ -5989,6 +6343,7 @@ M.UpdateAbpV1_1 = {
 
 M.UpdateFPorts = {
     type = "structure",
+    id = "UpdateFPorts",
     members = {
         Positioning = M.Positioning,
         Applications = {
@@ -6000,6 +6355,7 @@ M.UpdateFPorts = {
 
 M.LoRaWANUpdateDevice = {
     type = "structure",
+    id = "LoRaWANUpdateDevice",
     members = {
         DeviceProfileId = {
             type = "string",
@@ -6015,6 +6371,7 @@ M.LoRaWANUpdateDevice = {
 
 M.SidewalkUpdateWirelessDevice = {
     type = "structure",
+    id = "SidewalkUpdateWirelessDevice",
     members = {
         Positioning = M.SidewalkPositioning,
     },
@@ -6022,6 +6379,7 @@ M.SidewalkUpdateWirelessDevice = {
 
 M.UpdateWirelessDeviceInput = {
     type = "structure",
+    id = "UpdateWirelessDeviceInput",
     members = {
         Id = {
             type = "string",
@@ -6049,10 +6407,12 @@ M.UpdateWirelessDeviceInput = {
 
 M.UpdateWirelessDeviceOutput = {
     type = "structure",
+    id = "UpdateWirelessDeviceOutput",
 }
 
 M.SidewalkUpdateImportInfo = {
     type = "structure",
+    id = "SidewalkUpdateImportInfo",
     members = {
         DeviceCreationFile = {
             type = "string",
@@ -6062,6 +6422,7 @@ M.SidewalkUpdateImportInfo = {
 
 M.UpdateWirelessDeviceImportTaskInput = {
     type = "structure",
+    id = "UpdateWirelessDeviceImportTaskInput",
     members = {
         Id = {
             type = "string",
@@ -6078,10 +6439,12 @@ M.UpdateWirelessDeviceImportTaskInput = {
 
 M.UpdateWirelessDeviceImportTaskOutput = {
     type = "structure",
+    id = "UpdateWirelessDeviceImportTaskOutput",
 }
 
 M.UpdateWirelessGatewayInput = {
     type = "structure",
+    id = "UpdateWirelessGatewayInput",
     members = {
         Id = {
             type = "string",
@@ -6112,6 +6475,7 @@ M.UpdateWirelessGatewayInput = {
 
 M.UpdateWirelessGatewayOutput = {
     type = "structure",
+    id = "UpdateWirelessGatewayOutput",
 }
 
 return M

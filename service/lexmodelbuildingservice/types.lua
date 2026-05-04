@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -22,6 +24,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -32,6 +35,7 @@ M.ConflictException = {
 
 M.CreateBotVersionInput = {
     type = "structure",
+    id = "CreateBotVersionInput",
     members = {
         name = {
             type = "string",
@@ -54,6 +58,7 @@ M.ContentType = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         contentType = {
             type = "string",
@@ -75,6 +80,7 @@ M.Message = {
 
 M.Statement = {
     type = "structure",
+    id = "Statement",
     members = {
         messages = {
             type = "list",
@@ -91,6 +97,7 @@ M.Statement = {
 
 M.Prompt = {
     type = "structure",
+    id = "Prompt",
     members = {
         messages = {
             type = "list",
@@ -113,6 +120,7 @@ M.Prompt = {
 
 M.Intent = {
     type = "structure",
+    id = "Intent",
     members = {
         intentName = {
             type = "string",
@@ -155,6 +163,7 @@ M.Status = {
 
 M.CreateBotVersionOutput = {
     type = "structure",
+    id = "CreateBotVersionOutput",
     members = {
         name = {
             type = "string",
@@ -209,6 +218,7 @@ M.CreateBotVersionOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -219,6 +229,7 @@ M.InternalFailureException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         retryAfterSeconds = {
@@ -235,6 +246,7 @@ M.LimitExceededException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -245,6 +257,7 @@ M.NotFoundException = {
 
 M.PreconditionFailedException = {
     type = "structure",
+    id = "PreconditionFailedException",
     error = "client",
     members = {
         message = {
@@ -255,6 +268,7 @@ M.PreconditionFailedException = {
 
 M.CreateIntentVersionInput = {
     type = "structure",
+    id = "CreateIntentVersionInput",
     members = {
         name = {
             type = "string",
@@ -271,6 +285,7 @@ M.CreateIntentVersionInput = {
 
 M.CodeHook = {
     type = "structure",
+    id = "CodeHook",
     members = {
         uri = {
             type = "string",
@@ -289,6 +304,7 @@ M.CodeHook = {
 
 M.FollowUpPrompt = {
     type = "structure",
+    id = "FollowUpPrompt",
     members = {
         prompt = setmetatable({ traits = {
             required = true,
@@ -306,6 +322,7 @@ M.FulfillmentActivityType = {
 
 M.FulfillmentActivity = {
     type = "structure",
+    id = "FulfillmentActivity",
     members = {
         type = {
             type = "string",
@@ -319,6 +336,7 @@ M.FulfillmentActivity = {
 
 M.InputContext = {
     type = "structure",
+    id = "InputContext",
     members = {
         name = {
             type = "string",
@@ -331,6 +349,7 @@ M.InputContext = {
 
 M.KendraConfiguration = {
     type = "structure",
+    id = "KendraConfiguration",
     members = {
         kendraIndex = {
             type = "string",
@@ -352,6 +371,7 @@ M.KendraConfiguration = {
 
 M.OutputContext = {
     type = "structure",
+    id = "OutputContext",
     members = {
         name = {
             type = "string",
@@ -376,6 +396,7 @@ M.OutputContext = {
 
 M.SlotDefaultValue = {
     type = "structure",
+    id = "SlotDefaultValue",
     members = {
         defaultValue = {
             type = "string",
@@ -388,6 +409,7 @@ M.SlotDefaultValue = {
 
 M.SlotDefaultValueSpec = {
     type = "structure",
+    id = "SlotDefaultValueSpec",
     members = {
         defaultValueList = {
             type = "list",
@@ -411,6 +433,7 @@ M.SlotConstraint = {
 
 M.Slot = {
     type = "structure",
+    id = "Slot",
     members = {
         name = {
             type = "string",
@@ -453,6 +476,7 @@ M.Slot = {
 
 M.CreateIntentVersionOutput = {
     type = "structure",
+    id = "CreateIntentVersionOutput",
     members = {
         name = {
             type = "string",
@@ -503,6 +527,7 @@ M.CreateIntentVersionOutput = {
 
 M.CreateSlotTypeVersionInput = {
     type = "structure",
+    id = "CreateSlotTypeVersionInput",
     members = {
         name = {
             type = "string",
@@ -519,6 +544,7 @@ M.CreateSlotTypeVersionInput = {
 
 M.EnumerationValue = {
     type = "structure",
+    id = "EnumerationValue",
     members = {
         value = {
             type = "string",
@@ -535,6 +561,7 @@ M.EnumerationValue = {
 
 M.SlotTypeRegexConfiguration = {
     type = "structure",
+    id = "SlotTypeRegexConfiguration",
     members = {
         pattern = {
             type = "string",
@@ -547,6 +574,7 @@ M.SlotTypeRegexConfiguration = {
 
 M.SlotTypeConfiguration = {
     type = "structure",
+    id = "SlotTypeConfiguration",
     members = {
         regexConfiguration = M.SlotTypeRegexConfiguration,
     },
@@ -559,6 +587,7 @@ M.SlotValueSelectionStrategy = {
 
 M.CreateSlotTypeVersionOutput = {
     type = "structure",
+    id = "CreateSlotTypeVersionOutput",
     members = {
         name = {
             type = "string",
@@ -597,6 +626,7 @@ M.CreateSlotTypeVersionOutput = {
 
 M.DeleteBotInput = {
     type = "structure",
+    id = "DeleteBotInput",
     members = {
         name = {
             type = "string",
@@ -610,10 +640,12 @@ M.DeleteBotInput = {
 
 M.DeleteBotOutput = {
     type = "structure",
+    id = "DeleteBotOutput",
 }
 
 M.ResourceReference = {
     type = "structure",
+    id = "ResourceReference",
     members = {
         name = {
             type = "string",
@@ -633,6 +665,7 @@ M.ReferenceType = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         referenceType = {
@@ -644,6 +677,7 @@ M.ResourceInUseException = {
 
 M.DeleteBotAliasInput = {
     type = "structure",
+    id = "DeleteBotAliasInput",
     members = {
         name = {
             type = "string",
@@ -664,10 +698,12 @@ M.DeleteBotAliasInput = {
 
 M.DeleteBotAliasOutput = {
     type = "structure",
+    id = "DeleteBotAliasOutput",
 }
 
 M.DeleteBotChannelAssociationInput = {
     type = "structure",
+    id = "DeleteBotChannelAssociationInput",
     members = {
         name = {
             type = "string",
@@ -695,10 +731,12 @@ M.DeleteBotChannelAssociationInput = {
 
 M.DeleteBotChannelAssociationOutput = {
     type = "structure",
+    id = "DeleteBotChannelAssociationOutput",
 }
 
 M.DeleteBotVersionInput = {
     type = "structure",
+    id = "DeleteBotVersionInput",
     members = {
         name = {
             type = "string",
@@ -719,10 +757,12 @@ M.DeleteBotVersionInput = {
 
 M.DeleteBotVersionOutput = {
     type = "structure",
+    id = "DeleteBotVersionOutput",
 }
 
 M.DeleteIntentInput = {
     type = "structure",
+    id = "DeleteIntentInput",
     members = {
         name = {
             type = "string",
@@ -736,10 +776,12 @@ M.DeleteIntentInput = {
 
 M.DeleteIntentOutput = {
     type = "structure",
+    id = "DeleteIntentOutput",
 }
 
 M.DeleteIntentVersionInput = {
     type = "structure",
+    id = "DeleteIntentVersionInput",
     members = {
         name = {
             type = "string",
@@ -760,10 +802,12 @@ M.DeleteIntentVersionInput = {
 
 M.DeleteIntentVersionOutput = {
     type = "structure",
+    id = "DeleteIntentVersionOutput",
 }
 
 M.DeleteSlotTypeInput = {
     type = "structure",
+    id = "DeleteSlotTypeInput",
     members = {
         name = {
             type = "string",
@@ -777,10 +821,12 @@ M.DeleteSlotTypeInput = {
 
 M.DeleteSlotTypeOutput = {
     type = "structure",
+    id = "DeleteSlotTypeOutput",
 }
 
 M.DeleteSlotTypeVersionInput = {
     type = "structure",
+    id = "DeleteSlotTypeVersionInput",
     members = {
         name = {
             type = "string",
@@ -801,10 +847,12 @@ M.DeleteSlotTypeVersionInput = {
 
 M.DeleteSlotTypeVersionOutput = {
     type = "structure",
+    id = "DeleteSlotTypeVersionOutput",
 }
 
 M.DeleteUtterancesInput = {
     type = "structure",
+    id = "DeleteUtterancesInput",
     members = {
         botName = {
             type = "string",
@@ -825,10 +873,12 @@ M.DeleteUtterancesInput = {
 
 M.DeleteUtterancesOutput = {
     type = "structure",
+    id = "DeleteUtterancesOutput",
 }
 
 M.GetBotInput = {
     type = "structure",
+    id = "GetBotInput",
     members = {
         name = {
             type = "string",
@@ -849,6 +899,7 @@ M.GetBotInput = {
 
 M.GetBotOutput = {
     type = "structure",
+    id = "GetBotOutput",
     members = {
         name = {
             type = "string",
@@ -906,6 +957,7 @@ M.GetBotOutput = {
 
 M.GetBotAliasInput = {
     type = "structure",
+    id = "GetBotAliasInput",
     members = {
         name = {
             type = "string",
@@ -936,6 +988,7 @@ M.LogType = {
 
 M.LogSettingsResponse = {
     type = "structure",
+    id = "LogSettingsResponse",
     members = {
         logType = {
             type = "string",
@@ -957,6 +1010,7 @@ M.LogSettingsResponse = {
 
 M.ConversationLogsResponse = {
     type = "structure",
+    id = "ConversationLogsResponse",
     members = {
         logSettings = {
             type = "list",
@@ -970,6 +1024,7 @@ M.ConversationLogsResponse = {
 
 M.GetBotAliasOutput = {
     type = "structure",
+    id = "GetBotAliasOutput",
     members = {
         name = {
             type = "string",
@@ -998,6 +1053,7 @@ M.GetBotAliasOutput = {
 
 M.GetBotAliasesInput = {
     type = "structure",
+    id = "GetBotAliasesInput",
     members = {
         botName = {
             type = "string",
@@ -1029,6 +1085,7 @@ M.GetBotAliasesInput = {
 
 M.BotAliasMetadata = {
     type = "structure",
+    id = "BotAliasMetadata",
     members = {
         name = {
             type = "string",
@@ -1057,6 +1114,7 @@ M.BotAliasMetadata = {
 
 M.GetBotAliasesOutput = {
     type = "structure",
+    id = "GetBotAliasesOutput",
     members = {
         BotAliases = {
             type = "list",
@@ -1070,6 +1128,7 @@ M.GetBotAliasesOutput = {
 
 M.GetBotChannelAssociationInput = {
     type = "structure",
+    id = "GetBotChannelAssociationInput",
     members = {
         name = {
             type = "string",
@@ -1110,6 +1169,7 @@ M.ChannelType = {
 
 M.GetBotChannelAssociationOutput = {
     type = "structure",
+    id = "GetBotChannelAssociationOutput",
     members = {
         name = {
             type = "string",
@@ -1145,6 +1205,7 @@ M.GetBotChannelAssociationOutput = {
 
 M.GetBotChannelAssociationsInput = {
     type = "structure",
+    id = "GetBotChannelAssociationsInput",
     members = {
         botName = {
             type = "string",
@@ -1183,6 +1244,7 @@ M.GetBotChannelAssociationsInput = {
 
 M.BotChannelAssociation = {
     type = "structure",
+    id = "BotChannelAssociation",
     members = {
         name = {
             type = "string",
@@ -1218,6 +1280,7 @@ M.BotChannelAssociation = {
 
 M.GetBotChannelAssociationsOutput = {
     type = "structure",
+    id = "GetBotChannelAssociationsOutput",
     members = {
         botChannelAssociations = {
             type = "list",
@@ -1231,6 +1294,7 @@ M.GetBotChannelAssociationsOutput = {
 
 M.GetBotsInput = {
     type = "structure",
+    id = "GetBotsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1255,6 +1319,7 @@ M.GetBotsInput = {
 
 M.BotMetadata = {
     type = "structure",
+    id = "BotMetadata",
     members = {
         name = {
             type = "string",
@@ -1279,6 +1344,7 @@ M.BotMetadata = {
 
 M.GetBotsOutput = {
     type = "structure",
+    id = "GetBotsOutput",
     members = {
         bots = {
             type = "list",
@@ -1292,6 +1358,7 @@ M.GetBotsOutput = {
 
 M.GetBotVersionsInput = {
     type = "structure",
+    id = "GetBotVersionsInput",
     members = {
         name = {
             type = "string",
@@ -1317,6 +1384,7 @@ M.GetBotVersionsInput = {
 
 M.GetBotVersionsOutput = {
     type = "structure",
+    id = "GetBotVersionsOutput",
     members = {
         bots = {
             type = "list",
@@ -1330,6 +1398,7 @@ M.GetBotVersionsOutput = {
 
 M.GetBuiltinIntentInput = {
     type = "structure",
+    id = "GetBuiltinIntentInput",
     members = {
         signature = {
             type = "string",
@@ -1343,6 +1412,7 @@ M.GetBuiltinIntentInput = {
 
 M.BuiltinIntentSlot = {
     type = "structure",
+    id = "BuiltinIntentSlot",
     members = {
         name = {
             type = "string",
@@ -1352,6 +1422,7 @@ M.BuiltinIntentSlot = {
 
 M.GetBuiltinIntentOutput = {
     type = "structure",
+    id = "GetBuiltinIntentOutput",
     members = {
         signature = {
             type = "string",
@@ -1369,6 +1440,7 @@ M.GetBuiltinIntentOutput = {
 
 M.GetBuiltinIntentsInput = {
     type = "structure",
+    id = "GetBuiltinIntentsInput",
     members = {
         locale = {
             type = "string",
@@ -1399,6 +1471,7 @@ M.GetBuiltinIntentsInput = {
 
 M.BuiltinIntentMetadata = {
     type = "structure",
+    id = "BuiltinIntentMetadata",
     members = {
         signature = {
             type = "string",
@@ -1412,6 +1485,7 @@ M.BuiltinIntentMetadata = {
 
 M.GetBuiltinIntentsOutput = {
     type = "structure",
+    id = "GetBuiltinIntentsOutput",
     members = {
         intents = {
             type = "list",
@@ -1425,6 +1499,7 @@ M.GetBuiltinIntentsOutput = {
 
 M.GetBuiltinSlotTypesInput = {
     type = "structure",
+    id = "GetBuiltinSlotTypesInput",
     members = {
         locale = {
             type = "string",
@@ -1455,6 +1530,7 @@ M.GetBuiltinSlotTypesInput = {
 
 M.BuiltinSlotTypeMetadata = {
     type = "structure",
+    id = "BuiltinSlotTypeMetadata",
     members = {
         signature = {
             type = "string",
@@ -1468,6 +1544,7 @@ M.BuiltinSlotTypeMetadata = {
 
 M.GetBuiltinSlotTypesOutput = {
     type = "structure",
+    id = "GetBuiltinSlotTypesOutput",
     members = {
         slotTypes = {
             type = "list",
@@ -1492,6 +1569,7 @@ M.ResourceType = {
 
 M.GetExportInput = {
     type = "structure",
+    id = "GetExportInput",
     members = {
         name = {
             type = "string",
@@ -1532,6 +1610,7 @@ M.ExportStatus = {
 
 M.GetExportOutput = {
     type = "structure",
+    id = "GetExportOutput",
     members = {
         name = {
             type = "string",
@@ -1559,6 +1638,7 @@ M.GetExportOutput = {
 
 M.GetImportInput = {
     type = "structure",
+    id = "GetImportInput",
     members = {
         importId = {
             type = "string",
@@ -1583,6 +1663,7 @@ M.MergeStrategy = {
 
 M.GetImportOutput = {
     type = "structure",
+    id = "GetImportOutput",
     members = {
         name = {
             type = "string",
@@ -1611,6 +1692,7 @@ M.GetImportOutput = {
 
 M.GetIntentInput = {
     type = "structure",
+    id = "GetIntentInput",
     members = {
         name = {
             type = "string",
@@ -1631,6 +1713,7 @@ M.GetIntentInput = {
 
 M.GetIntentOutput = {
     type = "structure",
+    id = "GetIntentOutput",
     members = {
         name = {
             type = "string",
@@ -1681,6 +1764,7 @@ M.GetIntentOutput = {
 
 M.GetIntentsInput = {
     type = "structure",
+    id = "GetIntentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1705,6 +1789,7 @@ M.GetIntentsInput = {
 
 M.IntentMetadata = {
     type = "structure",
+    id = "IntentMetadata",
     members = {
         name = {
             type = "string",
@@ -1726,6 +1811,7 @@ M.IntentMetadata = {
 
 M.GetIntentsOutput = {
     type = "structure",
+    id = "GetIntentsOutput",
     members = {
         intents = {
             type = "list",
@@ -1739,6 +1825,7 @@ M.GetIntentsOutput = {
 
 M.GetIntentVersionsInput = {
     type = "structure",
+    id = "GetIntentVersionsInput",
     members = {
         name = {
             type = "string",
@@ -1764,6 +1851,7 @@ M.GetIntentVersionsInput = {
 
 M.GetIntentVersionsOutput = {
     type = "structure",
+    id = "GetIntentVersionsOutput",
     members = {
         intents = {
             type = "list",
@@ -1777,6 +1865,7 @@ M.GetIntentVersionsOutput = {
 
 M.GetMigrationInput = {
     type = "structure",
+    id = "GetMigrationInput",
     members = {
         migrationId = {
             type = "string",
@@ -1795,6 +1884,7 @@ M.MigrationAlertType = {
 
 M.MigrationAlert = {
     type = "structure",
+    id = "MigrationAlert",
     members = {
         type = {
             type = "string",
@@ -1826,6 +1916,7 @@ M.MigrationStrategy = {
 
 M.GetMigrationOutput = {
     type = "structure",
+    id = "GetMigrationOutput",
     members = {
         migrationId = {
             type = "string",
@@ -1873,6 +1964,7 @@ M.SortOrder = {
 
 M.GetMigrationsInput = {
     type = "structure",
+    id = "GetMigrationsInput",
     members = {
         sortByAttribute = {
             type = "string",
@@ -1915,6 +2007,7 @@ M.GetMigrationsInput = {
 
 M.MigrationSummary = {
     type = "structure",
+    id = "MigrationSummary",
     members = {
         migrationId = {
             type = "string",
@@ -1948,6 +2041,7 @@ M.MigrationSummary = {
 
 M.GetMigrationsOutput = {
     type = "structure",
+    id = "GetMigrationsOutput",
     members = {
         migrationSummaries = {
             type = "list",
@@ -1961,6 +2055,7 @@ M.GetMigrationsOutput = {
 
 M.GetSlotTypeInput = {
     type = "structure",
+    id = "GetSlotTypeInput",
     members = {
         name = {
             type = "string",
@@ -1981,6 +2076,7 @@ M.GetSlotTypeInput = {
 
 M.GetSlotTypeOutput = {
     type = "structure",
+    id = "GetSlotTypeOutput",
     members = {
         name = {
             type = "string",
@@ -2019,6 +2115,7 @@ M.GetSlotTypeOutput = {
 
 M.GetSlotTypesInput = {
     type = "structure",
+    id = "GetSlotTypesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2043,6 +2140,7 @@ M.GetSlotTypesInput = {
 
 M.SlotTypeMetadata = {
     type = "structure",
+    id = "SlotTypeMetadata",
     members = {
         name = {
             type = "string",
@@ -2064,6 +2162,7 @@ M.SlotTypeMetadata = {
 
 M.GetSlotTypesOutput = {
     type = "structure",
+    id = "GetSlotTypesOutput",
     members = {
         slotTypes = {
             type = "list",
@@ -2077,6 +2176,7 @@ M.GetSlotTypesOutput = {
 
 M.GetSlotTypeVersionsInput = {
     type = "structure",
+    id = "GetSlotTypeVersionsInput",
     members = {
         name = {
             type = "string",
@@ -2102,6 +2202,7 @@ M.GetSlotTypeVersionsInput = {
 
 M.GetSlotTypeVersionsOutput = {
     type = "structure",
+    id = "GetSlotTypeVersionsOutput",
     members = {
         slotTypes = {
             type = "list",
@@ -2120,6 +2221,7 @@ M.StatusType = {
 
 M.GetUtterancesViewInput = {
     type = "structure",
+    id = "GetUtterancesViewInput",
     members = {
         botName = {
             type = "string",
@@ -2148,6 +2250,7 @@ M.GetUtterancesViewInput = {
 
 M.UtteranceData = {
     type = "structure",
+    id = "UtteranceData",
     members = {
         utteranceString = {
             type = "string",
@@ -2169,6 +2272,7 @@ M.UtteranceData = {
 
 M.UtteranceList = {
     type = "structure",
+    id = "UtteranceList",
     members = {
         botVersion = {
             type = "string",
@@ -2182,6 +2286,7 @@ M.UtteranceList = {
 
 M.GetUtterancesViewOutput = {
     type = "structure",
+    id = "GetUtterancesViewOutput",
     members = {
         botName = {
             type = "string",
@@ -2195,6 +2300,7 @@ M.GetUtterancesViewOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2208,6 +2314,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -2226,6 +2333,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2241,6 +2349,7 @@ M.ProcessBehavior = {
 
 M.PutBotInput = {
     type = "structure",
+    id = "PutBotInput",
     members = {
         name = {
             type = "string",
@@ -2303,6 +2412,7 @@ M.PutBotInput = {
 
 M.PutBotOutput = {
     type = "structure",
+    id = "PutBotOutput",
     members = {
         name = {
             type = "string",
@@ -2367,6 +2477,7 @@ M.PutBotOutput = {
 
 M.LogSettingsRequest = {
     type = "structure",
+    id = "LogSettingsRequest",
     members = {
         logType = {
             type = "string",
@@ -2394,6 +2505,7 @@ M.LogSettingsRequest = {
 
 M.ConversationLogsRequest = {
     type = "structure",
+    id = "ConversationLogsRequest",
     members = {
         logSettings = {
             type = "list",
@@ -2413,6 +2525,7 @@ M.ConversationLogsRequest = {
 
 M.PutBotAliasInput = {
     type = "structure",
+    id = "PutBotAliasInput",
     members = {
         name = {
             type = "string",
@@ -2450,6 +2563,7 @@ M.PutBotAliasInput = {
 
 M.PutBotAliasOutput = {
     type = "structure",
+    id = "PutBotAliasOutput",
     members = {
         name = {
             type = "string",
@@ -2482,6 +2596,7 @@ M.PutBotAliasOutput = {
 
 M.PutIntentInput = {
     type = "structure",
+    id = "PutIntentInput",
     members = {
         name = {
             type = "string",
@@ -2530,6 +2645,7 @@ M.PutIntentInput = {
 
 M.PutIntentOutput = {
     type = "structure",
+    id = "PutIntentOutput",
     members = {
         name = {
             type = "string",
@@ -2583,6 +2699,7 @@ M.PutIntentOutput = {
 
 M.PutSlotTypeInput = {
     type = "structure",
+    id = "PutSlotTypeInput",
     members = {
         name = {
             type = "string",
@@ -2619,6 +2736,7 @@ M.PutSlotTypeInput = {
 
 M.PutSlotTypeOutput = {
     type = "structure",
+    id = "PutSlotTypeOutput",
     members = {
         name = {
             type = "string",
@@ -2660,6 +2778,7 @@ M.PutSlotTypeOutput = {
 
 M.StartImportInput = {
     type = "structure",
+    id = "StartImportInput",
     members = {
         payload = {
             type = "blob",
@@ -2688,6 +2807,7 @@ M.StartImportInput = {
 
 M.StartImportOutput = {
     type = "structure",
+    id = "StartImportOutput",
     members = {
         name = {
             type = "string",
@@ -2716,6 +2836,7 @@ M.StartImportOutput = {
 
 M.StartMigrationInput = {
     type = "structure",
+    id = "StartMigrationInput",
     members = {
         v1BotName = {
             type = "string",
@@ -2752,6 +2873,7 @@ M.StartMigrationInput = {
 
 M.StartMigrationOutput = {
     type = "structure",
+    id = "StartMigrationOutput",
     members = {
         v1BotName = {
             type = "string",
@@ -2782,6 +2904,7 @@ M.StartMigrationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2802,10 +2925,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2827,6 +2952,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

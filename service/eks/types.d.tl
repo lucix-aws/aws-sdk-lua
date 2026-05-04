@@ -3070,17 +3070,17 @@ local record ServerException
     message: string
 end
 
+local type VersionStatus = "UNSUPPORTED" | "STANDARD_SUPPORT" | "EXTENDED_SUPPORT"
+
+local type InsightsRefreshStatus = "IN_PROGRESS" | "FAILED" | "COMPLETED"
+
+local type ResolveConflicts = "OVERWRITE" | "NONE" | "PRESERVE"
+
 local type ClusterVersionStatus = "unsupported" | "standard-support" | "extended-support"
 
 local type CapabilityType = "ACK" | "KRO" | "ARGOCD"
 
-local type ResolveConflicts = "OVERWRITE" | "NONE" | "PRESERVE"
-
 local type CapacityTypes = "ON_DEMAND" | "SPOT" | "CAPACITY_BLOCK"
-
-local type InsightsRefreshStatus = "IN_PROGRESS" | "FAILED" | "COMPLETED"
-
-local type VersionStatus = "UNSUPPORTED" | "STANDARD_SUPPORT" | "EXTENDED_SUPPORT"
 
 local type CapabilityDeletePropagationPolicy = "RETAIN"
 

@@ -2,6 +2,7 @@ local M = {}
 
 M.InternalDependencyException = {
     type = "structure",
+    id = "InternalDependencyException",
     error = "server",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.InternalDependencyException = {
 
 M.InternalFailure = {
     type = "structure",
+    id = "InternalFailure",
     error = "server",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.InternalFailure = {
 
 M.InvokeEndpointInput = {
     type = "structure",
+    id = "InvokeEndpointInput",
     members = {
         EndpointName = {
             type = "string",
@@ -102,6 +105,7 @@ M.InvokeEndpointInput = {
 
 M.InvokeEndpointOutput = {
     type = "structure",
+    id = "InvokeEndpointOutput",
     members = {
         Body = {
             type = "blob",
@@ -145,6 +149,7 @@ M.InvokeEndpointOutput = {
 
 M.ModelError = {
     type = "structure",
+    id = "ModelError",
     error = "client",
     members = {
         Message = {
@@ -164,6 +169,7 @@ M.ModelError = {
 
 M.ModelNotReadyException = {
     type = "structure",
+    id = "ModelNotReadyException",
     error = "client",
     members = {
         Message = {
@@ -174,6 +180,7 @@ M.ModelNotReadyException = {
 
 M.ServiceUnavailable = {
     type = "structure",
+    id = "ServiceUnavailable",
     error = "server",
     members = {
         Message = {
@@ -184,6 +191,7 @@ M.ServiceUnavailable = {
 
 M.ValidationError = {
     type = "structure",
+    id = "ValidationError",
     error = "client",
     members = {
         Message = {
@@ -194,6 +202,7 @@ M.ValidationError = {
 
 M.InvokeEndpointAsyncInput = {
     type = "structure",
+    id = "InvokeEndpointAsyncInput",
     members = {
         EndpointName = {
             type = "string",
@@ -262,6 +271,7 @@ M.InvokeEndpointAsyncInput = {
 
 M.InvokeEndpointAsyncOutput = {
     type = "structure",
+    id = "InvokeEndpointAsyncOutput",
     members = {
         InferenceId = {
             type = "string",
@@ -283,6 +293,7 @@ M.InvokeEndpointAsyncOutput = {
 
 M.InternalStreamFailure = {
     type = "structure",
+    id = "InternalStreamFailure",
     error = "server",
     members = {
         Message = {
@@ -293,6 +304,7 @@ M.InternalStreamFailure = {
 
 M.InvokeEndpointWithResponseStreamInput = {
     type = "structure",
+    id = "InvokeEndpointWithResponseStreamInput",
     members = {
         EndpointName = {
             type = "string",
@@ -361,6 +373,7 @@ M.InvokeEndpointWithResponseStreamInput = {
 
 M.ModelStreamError = {
     type = "structure",
+    id = "ModelStreamError",
     error = "client",
     members = {
         Message = {
@@ -374,6 +387,7 @@ M.ModelStreamError = {
 
 M.PayloadPart = {
     type = "structure",
+    id = "PayloadPart",
     members = {
         Bytes = {
             type = "blob",
@@ -383,6 +397,7 @@ M.PayloadPart = {
 
 M.ResponseStream = {
     type = "union",
+    id = "ResponseStream",
     members = {
         PayloadPart = M.PayloadPart,
         ModelStreamError = M.ModelStreamError,
@@ -392,6 +407,7 @@ M.ResponseStream = {
 
 M.InvokeEndpointWithResponseStreamOutput = {
     type = "structure",
+    id = "InvokeEndpointWithResponseStreamOutput",
     members = {
         Body = setmetatable({ traits = {
             http_payload = true,

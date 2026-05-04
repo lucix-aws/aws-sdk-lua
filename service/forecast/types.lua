@@ -9,6 +9,7 @@ M.Operation = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         AttributeName = {
             type = "string",
@@ -33,6 +34,7 @@ M.Action = {
 
 M.AdditionalDataset = {
     type = "structure",
+    id = "AdditionalDataset",
     members = {
         Name = {
             type = "string",
@@ -50,6 +52,7 @@ M.AdditionalDataset = {
 
 M.AttributeConfig = {
     type = "structure",
+    id = "AttributeConfig",
     members = {
         AttributeName = {
             type = "string",
@@ -70,6 +73,7 @@ M.AttributeConfig = {
 
 M.DataConfig = {
     type = "structure",
+    id = "DataConfig",
     members = {
         DatasetGroupArn = {
             type = "string",
@@ -90,6 +94,7 @@ M.DataConfig = {
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         RoleArn = {
             type = "string",
@@ -108,6 +113,7 @@ M.EncryptionConfig = {
 
 M.MonitorConfig = {
     type = "structure",
+    id = "MonitorConfig",
     members = {
         MonitorName = {
             type = "string",
@@ -128,6 +134,7 @@ M.OptimizationMetric = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -171,6 +178,7 @@ M.Month = {
 
 M.TimeAlignmentBoundary = {
     type = "structure",
+    id = "TimeAlignmentBoundary",
     members = {
         Month = {
             type = "string",
@@ -189,6 +197,7 @@ M.TimeAlignmentBoundary = {
 
 M.CreateAutoPredictorInput = {
     type = "structure",
+    id = "CreateAutoPredictorInput",
     members = {
         PredictorName = {
             type = "string",
@@ -232,6 +241,7 @@ M.CreateAutoPredictorInput = {
 
 M.CreateAutoPredictorOutput = {
     type = "structure",
+    id = "CreateAutoPredictorOutput",
     members = {
         PredictorArn = {
             type = "string",
@@ -241,6 +251,7 @@ M.CreateAutoPredictorOutput = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         Message = {
@@ -251,6 +262,7 @@ M.InvalidInputException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -261,6 +273,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -271,6 +284,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -281,6 +295,7 @@ M.ResourceInUseException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -315,6 +330,7 @@ M.AttributeType = {
 
 M.SchemaAttribute = {
     type = "structure",
+    id = "SchemaAttribute",
     members = {
         AttributeName = {
             type = "string",
@@ -327,6 +343,7 @@ M.SchemaAttribute = {
 
 M.Schema = {
     type = "structure",
+    id = "Schema",
     members = {
         Attributes = {
             type = "list",
@@ -337,6 +354,7 @@ M.Schema = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         DatasetName = {
             type = "string",
@@ -372,6 +390,7 @@ M.CreateDatasetInput = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         DatasetArn = {
             type = "string",
@@ -381,6 +400,7 @@ M.CreateDatasetOutput = {
 
 M.CreateDatasetGroupInput = {
     type = "structure",
+    id = "CreateDatasetGroupInput",
     members = {
         DatasetGroupName = {
             type = "string",
@@ -407,6 +427,7 @@ M.CreateDatasetGroupInput = {
 
 M.CreateDatasetGroupOutput = {
     type = "structure",
+    id = "CreateDatasetGroupOutput",
     members = {
         DatasetGroupArn = {
             type = "string",
@@ -416,6 +437,7 @@ M.CreateDatasetGroupOutput = {
 
 M.S3Config = {
     type = "structure",
+    id = "S3Config",
     members = {
         Path = {
             type = "string",
@@ -437,6 +459,7 @@ M.S3Config = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         S3Config = setmetatable({ traits = {
             required = true,
@@ -451,6 +474,7 @@ M.ImportMode = {
 
 M.CreateDatasetImportJobInput = {
     type = "structure",
+    id = "CreateDatasetImportJobInput",
     members = {
         DatasetImportJobName = {
             type = "string",
@@ -497,6 +521,7 @@ M.CreateDatasetImportJobInput = {
 
 M.CreateDatasetImportJobOutput = {
     type = "structure",
+    id = "CreateDatasetImportJobOutput",
     members = {
         DatasetImportJobArn = {
             type = "string",
@@ -516,6 +541,7 @@ M.TimeSeriesGranularity = {
 
 M.ExplainabilityConfig = {
     type = "structure",
+    id = "ExplainabilityConfig",
     members = {
         TimeSeriesGranularity = {
             type = "string",
@@ -534,6 +560,7 @@ M.ExplainabilityConfig = {
 
 M.CreateExplainabilityInput = {
     type = "structure",
+    id = "CreateExplainabilityInput",
     members = {
         ExplainabilityName = {
             type = "string",
@@ -570,6 +597,7 @@ M.CreateExplainabilityInput = {
 
 M.CreateExplainabilityOutput = {
     type = "structure",
+    id = "CreateExplainabilityOutput",
     members = {
         ExplainabilityArn = {
             type = "string",
@@ -579,6 +607,7 @@ M.CreateExplainabilityOutput = {
 
 M.DataDestination = {
     type = "structure",
+    id = "DataDestination",
     members = {
         S3Config = setmetatable({ traits = {
             required = true,
@@ -588,6 +617,7 @@ M.DataDestination = {
 
 M.CreateExplainabilityExportInput = {
     type = "structure",
+    id = "CreateExplainabilityExportInput",
     members = {
         ExplainabilityExportName = {
             type = "string",
@@ -616,6 +646,7 @@ M.CreateExplainabilityExportInput = {
 
 M.CreateExplainabilityExportOutput = {
     type = "structure",
+    id = "CreateExplainabilityExportOutput",
     members = {
         ExplainabilityExportArn = {
             type = "string",
@@ -625,6 +656,7 @@ M.CreateExplainabilityExportOutput = {
 
 M.TimeSeriesIdentifiers = {
     type = "structure",
+    id = "TimeSeriesIdentifiers",
     members = {
         DataSource = M.DataSource,
         Schema = M.Schema,
@@ -636,6 +668,7 @@ M.TimeSeriesIdentifiers = {
 
 M.TimeSeriesSelector = {
     type = "structure",
+    id = "TimeSeriesSelector",
     members = {
         TimeSeriesIdentifiers = M.TimeSeriesIdentifiers,
     },
@@ -643,6 +676,7 @@ M.TimeSeriesSelector = {
 
 M.CreateForecastInput = {
     type = "structure",
+    id = "CreateForecastInput",
     members = {
         ForecastName = {
             type = "string",
@@ -670,6 +704,7 @@ M.CreateForecastInput = {
 
 M.CreateForecastOutput = {
     type = "structure",
+    id = "CreateForecastOutput",
     members = {
         ForecastArn = {
             type = "string",
@@ -679,6 +714,7 @@ M.CreateForecastOutput = {
 
 M.CreateForecastExportJobInput = {
     type = "structure",
+    id = "CreateForecastExportJobInput",
     members = {
         ForecastExportJobName = {
             type = "string",
@@ -707,6 +743,7 @@ M.CreateForecastExportJobInput = {
 
 M.CreateForecastExportJobOutput = {
     type = "structure",
+    id = "CreateForecastExportJobOutput",
     members = {
         ForecastExportJobArn = {
             type = "string",
@@ -716,6 +753,7 @@ M.CreateForecastExportJobOutput = {
 
 M.CreateMonitorInput = {
     type = "structure",
+    id = "CreateMonitorInput",
     members = {
         MonitorName = {
             type = "string",
@@ -738,6 +776,7 @@ M.CreateMonitorInput = {
 
 M.CreateMonitorOutput = {
     type = "structure",
+    id = "CreateMonitorOutput",
     members = {
         MonitorArn = {
             type = "string",
@@ -752,6 +791,7 @@ M.AutoMLOverrideStrategy = {
 
 M.EvaluationParameters = {
     type = "structure",
+    id = "EvaluationParameters",
     members = {
         NumberOfBacktestWindows = {
             type = "integer",
@@ -768,6 +808,7 @@ M.FeaturizationMethodName = {
 
 M.FeaturizationMethod = {
     type = "structure",
+    id = "FeaturizationMethod",
     members = {
         FeaturizationMethodName = {
             type = "string",
@@ -785,6 +826,7 @@ M.FeaturizationMethod = {
 
 M.Featurization = {
     type = "structure",
+    id = "Featurization",
     members = {
         AttributeName = {
             type = "string",
@@ -801,6 +843,7 @@ M.Featurization = {
 
 M.FeaturizationConfig = {
     type = "structure",
+    id = "FeaturizationConfig",
     members = {
         ForecastFrequency = {
             type = "string",
@@ -821,6 +864,7 @@ M.FeaturizationConfig = {
 
 M.CategoricalParameterRange = {
     type = "structure",
+    id = "CategoricalParameterRange",
     members = {
         Name = {
             type = "string",
@@ -847,6 +891,7 @@ M.ScalingType = {
 
 M.ContinuousParameterRange = {
     type = "structure",
+    id = "ContinuousParameterRange",
     members = {
         Name = {
             type = "string",
@@ -874,6 +919,7 @@ M.ContinuousParameterRange = {
 
 M.IntegerParameterRange = {
     type = "structure",
+    id = "IntegerParameterRange",
     members = {
         Name = {
             type = "string",
@@ -901,6 +947,7 @@ M.IntegerParameterRange = {
 
 M.ParameterRanges = {
     type = "structure",
+    id = "ParameterRanges",
     members = {
         CategoricalParameterRanges = {
             type = "list",
@@ -919,6 +966,7 @@ M.ParameterRanges = {
 
 M.HyperParameterTuningJobConfig = {
     type = "structure",
+    id = "HyperParameterTuningJobConfig",
     members = {
         ParameterRanges = M.ParameterRanges,
     },
@@ -926,6 +974,7 @@ M.HyperParameterTuningJobConfig = {
 
 M.SupplementaryFeature = {
     type = "structure",
+    id = "SupplementaryFeature",
     members = {
         Name = {
             type = "string",
@@ -944,6 +993,7 @@ M.SupplementaryFeature = {
 
 M.InputDataConfig = {
     type = "structure",
+    id = "InputDataConfig",
     members = {
         DatasetGroupArn = {
             type = "string",
@@ -960,6 +1010,7 @@ M.InputDataConfig = {
 
 M.CreatePredictorInput = {
     type = "structure",
+    id = "CreatePredictorInput",
     members = {
         PredictorName = {
             type = "string",
@@ -1015,6 +1066,7 @@ M.CreatePredictorInput = {
 
 M.CreatePredictorOutput = {
     type = "structure",
+    id = "CreatePredictorOutput",
     members = {
         PredictorArn = {
             type = "string",
@@ -1024,6 +1076,7 @@ M.CreatePredictorOutput = {
 
 M.CreatePredictorBacktestExportJobInput = {
     type = "structure",
+    id = "CreatePredictorBacktestExportJobInput",
     members = {
         PredictorBacktestExportJobName = {
             type = "string",
@@ -1052,6 +1105,7 @@ M.CreatePredictorBacktestExportJobInput = {
 
 M.CreatePredictorBacktestExportJobOutput = {
     type = "structure",
+    id = "CreatePredictorBacktestExportJobOutput",
     members = {
         PredictorBacktestExportJobArn = {
             type = "string",
@@ -1061,6 +1115,7 @@ M.CreatePredictorBacktestExportJobOutput = {
 
 M.CreateWhatIfAnalysisInput = {
     type = "structure",
+    id = "CreateWhatIfAnalysisInput",
     members = {
         WhatIfAnalysisName = {
             type = "string",
@@ -1084,6 +1139,7 @@ M.CreateWhatIfAnalysisInput = {
 
 M.CreateWhatIfAnalysisOutput = {
     type = "structure",
+    id = "CreateWhatIfAnalysisOutput",
     members = {
         WhatIfAnalysisArn = {
             type = "string",
@@ -1093,6 +1149,7 @@ M.CreateWhatIfAnalysisOutput = {
 
 M.TimeSeriesReplacementsDataSource = {
     type = "structure",
+    id = "TimeSeriesReplacementsDataSource",
     members = {
         S3Config = setmetatable({ traits = {
             required = true,
@@ -1118,6 +1175,7 @@ M.Condition = {
 
 M.TimeSeriesCondition = {
     type = "structure",
+    id = "TimeSeriesCondition",
     members = {
         AttributeName = {
             type = "string",
@@ -1142,6 +1200,7 @@ M.TimeSeriesCondition = {
 
 M.TimeSeriesTransformation = {
     type = "structure",
+    id = "TimeSeriesTransformation",
     members = {
         Action = M.Action,
         TimeSeriesConditions = {
@@ -1153,6 +1212,7 @@ M.TimeSeriesTransformation = {
 
 M.CreateWhatIfForecastInput = {
     type = "structure",
+    id = "CreateWhatIfForecastInput",
     members = {
         WhatIfForecastName = {
             type = "string",
@@ -1180,6 +1240,7 @@ M.CreateWhatIfForecastInput = {
 
 M.CreateWhatIfForecastOutput = {
     type = "structure",
+    id = "CreateWhatIfForecastOutput",
     members = {
         WhatIfForecastArn = {
             type = "string",
@@ -1189,6 +1250,7 @@ M.CreateWhatIfForecastOutput = {
 
 M.CreateWhatIfForecastExportInput = {
     type = "structure",
+    id = "CreateWhatIfForecastExportInput",
     members = {
         WhatIfForecastExportName = {
             type = "string",
@@ -1218,6 +1280,7 @@ M.CreateWhatIfForecastExportInput = {
 
 M.CreateWhatIfForecastExportOutput = {
     type = "structure",
+    id = "CreateWhatIfForecastExportOutput",
     members = {
         WhatIfForecastExportArn = {
             type = "string",
@@ -1227,6 +1290,7 @@ M.CreateWhatIfForecastExportOutput = {
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -1239,10 +1303,12 @@ M.DeleteDatasetInput = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
 }
 
 M.DeleteDatasetGroupInput = {
     type = "structure",
+    id = "DeleteDatasetGroupInput",
     members = {
         DatasetGroupArn = {
             type = "string",
@@ -1255,10 +1321,12 @@ M.DeleteDatasetGroupInput = {
 
 M.DeleteDatasetGroupOutput = {
     type = "structure",
+    id = "DeleteDatasetGroupOutput",
 }
 
 M.DeleteDatasetImportJobInput = {
     type = "structure",
+    id = "DeleteDatasetImportJobInput",
     members = {
         DatasetImportJobArn = {
             type = "string",
@@ -1271,10 +1339,12 @@ M.DeleteDatasetImportJobInput = {
 
 M.DeleteDatasetImportJobOutput = {
     type = "structure",
+    id = "DeleteDatasetImportJobOutput",
 }
 
 M.DeleteExplainabilityInput = {
     type = "structure",
+    id = "DeleteExplainabilityInput",
     members = {
         ExplainabilityArn = {
             type = "string",
@@ -1287,10 +1357,12 @@ M.DeleteExplainabilityInput = {
 
 M.DeleteExplainabilityOutput = {
     type = "structure",
+    id = "DeleteExplainabilityOutput",
 }
 
 M.DeleteExplainabilityExportInput = {
     type = "structure",
+    id = "DeleteExplainabilityExportInput",
     members = {
         ExplainabilityExportArn = {
             type = "string",
@@ -1303,10 +1375,12 @@ M.DeleteExplainabilityExportInput = {
 
 M.DeleteExplainabilityExportOutput = {
     type = "structure",
+    id = "DeleteExplainabilityExportOutput",
 }
 
 M.DeleteForecastInput = {
     type = "structure",
+    id = "DeleteForecastInput",
     members = {
         ForecastArn = {
             type = "string",
@@ -1319,10 +1393,12 @@ M.DeleteForecastInput = {
 
 M.DeleteForecastOutput = {
     type = "structure",
+    id = "DeleteForecastOutput",
 }
 
 M.DeleteForecastExportJobInput = {
     type = "structure",
+    id = "DeleteForecastExportJobInput",
     members = {
         ForecastExportJobArn = {
             type = "string",
@@ -1335,10 +1411,12 @@ M.DeleteForecastExportJobInput = {
 
 M.DeleteForecastExportJobOutput = {
     type = "structure",
+    id = "DeleteForecastExportJobOutput",
 }
 
 M.DeleteMonitorInput = {
     type = "structure",
+    id = "DeleteMonitorInput",
     members = {
         MonitorArn = {
             type = "string",
@@ -1351,10 +1429,12 @@ M.DeleteMonitorInput = {
 
 M.DeleteMonitorOutput = {
     type = "structure",
+    id = "DeleteMonitorOutput",
 }
 
 M.DeletePredictorInput = {
     type = "structure",
+    id = "DeletePredictorInput",
     members = {
         PredictorArn = {
             type = "string",
@@ -1367,10 +1447,12 @@ M.DeletePredictorInput = {
 
 M.DeletePredictorOutput = {
     type = "structure",
+    id = "DeletePredictorOutput",
 }
 
 M.DeletePredictorBacktestExportJobInput = {
     type = "structure",
+    id = "DeletePredictorBacktestExportJobInput",
     members = {
         PredictorBacktestExportJobArn = {
             type = "string",
@@ -1383,10 +1465,12 @@ M.DeletePredictorBacktestExportJobInput = {
 
 M.DeletePredictorBacktestExportJobOutput = {
     type = "structure",
+    id = "DeletePredictorBacktestExportJobOutput",
 }
 
 M.DeleteResourceTreeInput = {
     type = "structure",
+    id = "DeleteResourceTreeInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1399,10 +1483,12 @@ M.DeleteResourceTreeInput = {
 
 M.DeleteResourceTreeOutput = {
     type = "structure",
+    id = "DeleteResourceTreeOutput",
 }
 
 M.DeleteWhatIfAnalysisInput = {
     type = "structure",
+    id = "DeleteWhatIfAnalysisInput",
     members = {
         WhatIfAnalysisArn = {
             type = "string",
@@ -1415,10 +1501,12 @@ M.DeleteWhatIfAnalysisInput = {
 
 M.DeleteWhatIfAnalysisOutput = {
     type = "structure",
+    id = "DeleteWhatIfAnalysisOutput",
 }
 
 M.DeleteWhatIfForecastInput = {
     type = "structure",
+    id = "DeleteWhatIfForecastInput",
     members = {
         WhatIfForecastArn = {
             type = "string",
@@ -1431,10 +1519,12 @@ M.DeleteWhatIfForecastInput = {
 
 M.DeleteWhatIfForecastOutput = {
     type = "structure",
+    id = "DeleteWhatIfForecastOutput",
 }
 
 M.DeleteWhatIfForecastExportInput = {
     type = "structure",
+    id = "DeleteWhatIfForecastExportInput",
     members = {
         WhatIfForecastExportArn = {
             type = "string",
@@ -1447,10 +1537,12 @@ M.DeleteWhatIfForecastExportInput = {
 
 M.DeleteWhatIfForecastExportOutput = {
     type = "structure",
+    id = "DeleteWhatIfForecastExportOutput",
 }
 
 M.DescribeAutoPredictorInput = {
     type = "structure",
+    id = "DescribeAutoPredictorInput",
     members = {
         PredictorArn = {
             type = "string",
@@ -1463,6 +1555,7 @@ M.DescribeAutoPredictorInput = {
 
 M.ExplainabilityInfo = {
     type = "structure",
+    id = "ExplainabilityInfo",
     members = {
         ExplainabilityArn = {
             type = "string",
@@ -1475,6 +1568,7 @@ M.ExplainabilityInfo = {
 
 M.MonitorInfo = {
     type = "structure",
+    id = "MonitorInfo",
     members = {
         MonitorArn = {
             type = "string",
@@ -1492,6 +1586,7 @@ M.State = {
 
 M.ReferencePredictorSummary = {
     type = "structure",
+    id = "ReferencePredictorSummary",
     members = {
         Arn = {
             type = "string",
@@ -1504,6 +1599,7 @@ M.ReferencePredictorSummary = {
 
 M.DescribeAutoPredictorOutput = {
     type = "structure",
+    id = "DescribeAutoPredictorOutput",
     members = {
         PredictorArn = {
             type = "string",
@@ -1558,6 +1654,7 @@ M.DescribeAutoPredictorOutput = {
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -1570,6 +1667,7 @@ M.DescribeDatasetInput = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         DatasetArn = {
             type = "string",
@@ -1602,6 +1700,7 @@ M.DescribeDatasetOutput = {
 
 M.DescribeDatasetGroupInput = {
     type = "structure",
+    id = "DescribeDatasetGroupInput",
     members = {
         DatasetGroupArn = {
             type = "string",
@@ -1614,6 +1713,7 @@ M.DescribeDatasetGroupInput = {
 
 M.DescribeDatasetGroupOutput = {
     type = "structure",
+    id = "DescribeDatasetGroupOutput",
     members = {
         DatasetGroupName = {
             type = "string",
@@ -1642,6 +1742,7 @@ M.DescribeDatasetGroupOutput = {
 
 M.DescribeDatasetImportJobInput = {
     type = "structure",
+    id = "DescribeDatasetImportJobInput",
     members = {
         DatasetImportJobArn = {
             type = "string",
@@ -1654,6 +1755,7 @@ M.DescribeDatasetImportJobInput = {
 
 M.Statistics = {
     type = "structure",
+    id = "Statistics",
     members = {
         Count = {
             type = "integer",
@@ -1696,6 +1798,7 @@ M.Statistics = {
 
 M.DescribeDatasetImportJobOutput = {
     type = "structure",
+    id = "DescribeDatasetImportJobOutput",
     members = {
         DatasetImportJobName = {
             type = "string",
@@ -1756,6 +1859,7 @@ M.DescribeDatasetImportJobOutput = {
 
 M.DescribeExplainabilityInput = {
     type = "structure",
+    id = "DescribeExplainabilityInput",
     members = {
         ExplainabilityArn = {
             type = "string",
@@ -1768,6 +1872,7 @@ M.DescribeExplainabilityInput = {
 
 M.DescribeExplainabilityOutput = {
     type = "structure",
+    id = "DescribeExplainabilityOutput",
     members = {
         ExplainabilityArn = {
             type = "string",
@@ -1810,6 +1915,7 @@ M.DescribeExplainabilityOutput = {
 
 M.DescribeExplainabilityExportInput = {
     type = "structure",
+    id = "DescribeExplainabilityExportInput",
     members = {
         ExplainabilityExportArn = {
             type = "string",
@@ -1822,6 +1928,7 @@ M.DescribeExplainabilityExportInput = {
 
 M.DescribeExplainabilityExportOutput = {
     type = "structure",
+    id = "DescribeExplainabilityExportOutput",
     members = {
         ExplainabilityExportArn = {
             type = "string",
@@ -1853,6 +1960,7 @@ M.DescribeExplainabilityExportOutput = {
 
 M.DescribeForecastInput = {
     type = "structure",
+    id = "DescribeForecastInput",
     members = {
         ForecastArn = {
             type = "string",
@@ -1865,6 +1973,7 @@ M.DescribeForecastInput = {
 
 M.DescribeForecastOutput = {
     type = "structure",
+    id = "DescribeForecastOutput",
     members = {
         ForecastArn = {
             type = "string",
@@ -1903,6 +2012,7 @@ M.DescribeForecastOutput = {
 
 M.DescribeForecastExportJobInput = {
     type = "structure",
+    id = "DescribeForecastExportJobInput",
     members = {
         ForecastExportJobArn = {
             type = "string",
@@ -1915,6 +2025,7 @@ M.DescribeForecastExportJobInput = {
 
 M.DescribeForecastExportJobOutput = {
     type = "structure",
+    id = "DescribeForecastExportJobOutput",
     members = {
         ForecastExportJobArn = {
             type = "string",
@@ -1946,6 +2057,7 @@ M.DescribeForecastExportJobOutput = {
 
 M.DescribeMonitorInput = {
     type = "structure",
+    id = "DescribeMonitorInput",
     members = {
         MonitorArn = {
             type = "string",
@@ -1958,6 +2070,7 @@ M.DescribeMonitorInput = {
 
 M.BaselineMetric = {
     type = "structure",
+    id = "BaselineMetric",
     members = {
         Name = {
             type = "string",
@@ -1970,6 +2083,7 @@ M.BaselineMetric = {
 
 M.PredictorBaseline = {
     type = "structure",
+    id = "PredictorBaseline",
     members = {
         BaselineMetrics = {
             type = "list",
@@ -1980,6 +2094,7 @@ M.PredictorBaseline = {
 
 M.Baseline = {
     type = "structure",
+    id = "Baseline",
     members = {
         PredictorBaseline = M.PredictorBaseline,
     },
@@ -1987,6 +2102,7 @@ M.Baseline = {
 
 M.DescribeMonitorOutput = {
     type = "structure",
+    id = "DescribeMonitorOutput",
     members = {
         MonitorName = {
             type = "string",
@@ -2024,6 +2140,7 @@ M.DescribeMonitorOutput = {
 
 M.DescribePredictorInput = {
     type = "structure",
+    id = "DescribePredictorInput",
     members = {
         PredictorArn = {
             type = "string",
@@ -2036,6 +2153,7 @@ M.DescribePredictorInput = {
 
 M.TestWindowSummary = {
     type = "structure",
+    id = "TestWindowSummary",
     members = {
         TestWindowStart = {
             type = "timestamp",
@@ -2054,6 +2172,7 @@ M.TestWindowSummary = {
 
 M.PredictorExecution = {
     type = "structure",
+    id = "PredictorExecution",
     members = {
         AlgorithmArn = {
             type = "string",
@@ -2067,6 +2186,7 @@ M.PredictorExecution = {
 
 M.PredictorExecutionDetails = {
     type = "structure",
+    id = "PredictorExecutionDetails",
     members = {
         PredictorExecutions = {
             type = "list",
@@ -2077,6 +2197,7 @@ M.PredictorExecutionDetails = {
 
 M.DescribePredictorOutput = {
     type = "structure",
+    id = "DescribePredictorOutput",
     members = {
         PredictorArn = {
             type = "string",
@@ -2148,6 +2269,7 @@ M.DescribePredictorOutput = {
 
 M.DescribePredictorBacktestExportJobInput = {
     type = "structure",
+    id = "DescribePredictorBacktestExportJobInput",
     members = {
         PredictorBacktestExportJobArn = {
             type = "string",
@@ -2160,6 +2282,7 @@ M.DescribePredictorBacktestExportJobInput = {
 
 M.DescribePredictorBacktestExportJobOutput = {
     type = "structure",
+    id = "DescribePredictorBacktestExportJobOutput",
     members = {
         PredictorBacktestExportJobArn = {
             type = "string",
@@ -2191,6 +2314,7 @@ M.DescribePredictorBacktestExportJobOutput = {
 
 M.DescribeWhatIfAnalysisInput = {
     type = "structure",
+    id = "DescribeWhatIfAnalysisInput",
     members = {
         WhatIfAnalysisArn = {
             type = "string",
@@ -2203,6 +2327,7 @@ M.DescribeWhatIfAnalysisInput = {
 
 M.DescribeWhatIfAnalysisOutput = {
     type = "structure",
+    id = "DescribeWhatIfAnalysisOutput",
     members = {
         WhatIfAnalysisName = {
             type = "string",
@@ -2234,6 +2359,7 @@ M.DescribeWhatIfAnalysisOutput = {
 
 M.DescribeWhatIfForecastInput = {
     type = "structure",
+    id = "DescribeWhatIfForecastInput",
     members = {
         WhatIfForecastArn = {
             type = "string",
@@ -2246,6 +2372,7 @@ M.DescribeWhatIfForecastInput = {
 
 M.DescribeWhatIfForecastOutput = {
     type = "structure",
+    id = "DescribeWhatIfForecastOutput",
     members = {
         WhatIfForecastName = {
             type = "string",
@@ -2285,6 +2412,7 @@ M.DescribeWhatIfForecastOutput = {
 
 M.DescribeWhatIfForecastExportInput = {
     type = "structure",
+    id = "DescribeWhatIfForecastExportInput",
     members = {
         WhatIfForecastExportArn = {
             type = "string",
@@ -2297,6 +2425,7 @@ M.DescribeWhatIfForecastExportInput = {
 
 M.DescribeWhatIfForecastExportOutput = {
     type = "structure",
+    id = "DescribeWhatIfForecastExportOutput",
     members = {
         WhatIfForecastExportArn = {
             type = "string",
@@ -2332,6 +2461,7 @@ M.DescribeWhatIfForecastExportOutput = {
 
 M.GetAccuracyMetricsInput = {
     type = "structure",
+    id = "GetAccuracyMetricsInput",
     members = {
         PredictorArn = {
             type = "string",
@@ -2349,6 +2479,7 @@ M.EvaluationType = {
 
 M.ErrorMetric = {
     type = "structure",
+    id = "ErrorMetric",
     members = {
         ForecastType = {
             type = "string",
@@ -2370,6 +2501,7 @@ M.ErrorMetric = {
 
 M.WeightedQuantileLoss = {
     type = "structure",
+    id = "WeightedQuantileLoss",
     members = {
         Quantile = {
             type = "double",
@@ -2382,6 +2514,7 @@ M.WeightedQuantileLoss = {
 
 M.Metrics = {
     type = "structure",
+    id = "Metrics",
     members = {
         RMSE = {
             type = "double",
@@ -2402,6 +2535,7 @@ M.Metrics = {
 
 M.WindowSummary = {
     type = "structure",
+    id = "WindowSummary",
     members = {
         TestWindowStart = {
             type = "timestamp",
@@ -2421,6 +2555,7 @@ M.WindowSummary = {
 
 M.EvaluationResult = {
     type = "structure",
+    id = "EvaluationResult",
     members = {
         AlgorithmArn = {
             type = "string",
@@ -2434,6 +2569,7 @@ M.EvaluationResult = {
 
 M.GetAccuracyMetricsOutput = {
     type = "structure",
+    id = "GetAccuracyMetricsOutput",
     members = {
         PredictorEvaluationResults = {
             type = "list",
@@ -2453,6 +2589,7 @@ M.GetAccuracyMetricsOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -2463,6 +2600,7 @@ M.InvalidNextTokenException = {
 
 M.ListDatasetGroupsInput = {
     type = "structure",
+    id = "ListDatasetGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2475,6 +2613,7 @@ M.ListDatasetGroupsInput = {
 
 M.DatasetGroupSummary = {
     type = "structure",
+    id = "DatasetGroupSummary",
     members = {
         DatasetGroupArn = {
             type = "string",
@@ -2493,6 +2632,7 @@ M.DatasetGroupSummary = {
 
 M.ListDatasetGroupsOutput = {
     type = "structure",
+    id = "ListDatasetGroupsOutput",
     members = {
         DatasetGroups = {
             type = "list",
@@ -2511,6 +2651,7 @@ M.FilterConditionString = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Key = {
             type = "string",
@@ -2535,6 +2676,7 @@ M.Filter = {
 
 M.ListDatasetImportJobsInput = {
     type = "structure",
+    id = "ListDatasetImportJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2551,6 +2693,7 @@ M.ListDatasetImportJobsInput = {
 
 M.DatasetImportJobSummary = {
     type = "structure",
+    id = "DatasetImportJobSummary",
     members = {
         DatasetImportJobArn = {
             type = "string",
@@ -2579,6 +2722,7 @@ M.DatasetImportJobSummary = {
 
 M.ListDatasetImportJobsOutput = {
     type = "structure",
+    id = "ListDatasetImportJobsOutput",
     members = {
         DatasetImportJobs = {
             type = "list",
@@ -2592,6 +2736,7 @@ M.ListDatasetImportJobsOutput = {
 
 M.ListDatasetsInput = {
     type = "structure",
+    id = "ListDatasetsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2604,6 +2749,7 @@ M.ListDatasetsInput = {
 
 M.DatasetSummary = {
     type = "structure",
+    id = "DatasetSummary",
     members = {
         DatasetArn = {
             type = "string",
@@ -2628,6 +2774,7 @@ M.DatasetSummary = {
 
 M.ListDatasetsOutput = {
     type = "structure",
+    id = "ListDatasetsOutput",
     members = {
         Datasets = {
             type = "list",
@@ -2641,6 +2788,7 @@ M.ListDatasetsOutput = {
 
 M.ListExplainabilitiesInput = {
     type = "structure",
+    id = "ListExplainabilitiesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2657,6 +2805,7 @@ M.ListExplainabilitiesInput = {
 
 M.ExplainabilitySummary = {
     type = "structure",
+    id = "ExplainabilitySummary",
     members = {
         ExplainabilityArn = {
             type = "string",
@@ -2685,6 +2834,7 @@ M.ExplainabilitySummary = {
 
 M.ListExplainabilitiesOutput = {
     type = "structure",
+    id = "ListExplainabilitiesOutput",
     members = {
         Explainabilities = {
             type = "list",
@@ -2698,6 +2848,7 @@ M.ListExplainabilitiesOutput = {
 
 M.ListExplainabilityExportsInput = {
     type = "structure",
+    id = "ListExplainabilityExportsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2714,6 +2865,7 @@ M.ListExplainabilityExportsInput = {
 
 M.ExplainabilityExportSummary = {
     type = "structure",
+    id = "ExplainabilityExportSummary",
     members = {
         ExplainabilityExportArn = {
             type = "string",
@@ -2739,6 +2891,7 @@ M.ExplainabilityExportSummary = {
 
 M.ListExplainabilityExportsOutput = {
     type = "structure",
+    id = "ListExplainabilityExportsOutput",
     members = {
         ExplainabilityExports = {
             type = "list",
@@ -2752,6 +2905,7 @@ M.ListExplainabilityExportsOutput = {
 
 M.ListForecastExportJobsInput = {
     type = "structure",
+    id = "ListForecastExportJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2768,6 +2922,7 @@ M.ListForecastExportJobsInput = {
 
 M.ForecastExportJobSummary = {
     type = "structure",
+    id = "ForecastExportJobSummary",
     members = {
         ForecastExportJobArn = {
             type = "string",
@@ -2793,6 +2948,7 @@ M.ForecastExportJobSummary = {
 
 M.ListForecastExportJobsOutput = {
     type = "structure",
+    id = "ListForecastExportJobsOutput",
     members = {
         ForecastExportJobs = {
             type = "list",
@@ -2806,6 +2962,7 @@ M.ListForecastExportJobsOutput = {
 
 M.ListForecastsInput = {
     type = "structure",
+    id = "ListForecastsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2822,6 +2979,7 @@ M.ListForecastsInput = {
 
 M.ForecastSummary = {
     type = "structure",
+    id = "ForecastSummary",
     members = {
         ForecastArn = {
             type = "string",
@@ -2855,6 +3013,7 @@ M.ForecastSummary = {
 
 M.ListForecastsOutput = {
     type = "structure",
+    id = "ListForecastsOutput",
     members = {
         Forecasts = {
             type = "list",
@@ -2868,6 +3027,7 @@ M.ListForecastsOutput = {
 
 M.ListMonitorEvaluationsInput = {
     type = "structure",
+    id = "ListMonitorEvaluationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2890,6 +3050,7 @@ M.ListMonitorEvaluationsInput = {
 
 M.MetricResult = {
     type = "structure",
+    id = "MetricResult",
     members = {
         MetricName = {
             type = "string",
@@ -2902,6 +3063,7 @@ M.MetricResult = {
 
 M.MonitorDataSource = {
     type = "structure",
+    id = "MonitorDataSource",
     members = {
         DatasetImportJobArn = {
             type = "string",
@@ -2917,6 +3079,7 @@ M.MonitorDataSource = {
 
 M.PredictorEvent = {
     type = "structure",
+    id = "PredictorEvent",
     members = {
         Detail = {
             type = "string",
@@ -2929,6 +3092,7 @@ M.PredictorEvent = {
 
 M.PredictorMonitorEvaluation = {
     type = "structure",
+    id = "PredictorMonitorEvaluation",
     members = {
         ResourceArn = {
             type = "string",
@@ -2965,6 +3129,7 @@ M.PredictorMonitorEvaluation = {
 
 M.ListMonitorEvaluationsOutput = {
     type = "structure",
+    id = "ListMonitorEvaluationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2978,6 +3143,7 @@ M.ListMonitorEvaluationsOutput = {
 
 M.ListMonitorsInput = {
     type = "structure",
+    id = "ListMonitorsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2994,6 +3160,7 @@ M.ListMonitorsInput = {
 
 M.MonitorSummary = {
     type = "structure",
+    id = "MonitorSummary",
     members = {
         MonitorArn = {
             type = "string",
@@ -3018,6 +3185,7 @@ M.MonitorSummary = {
 
 M.ListMonitorsOutput = {
     type = "structure",
+    id = "ListMonitorsOutput",
     members = {
         Monitors = {
             type = "list",
@@ -3031,6 +3199,7 @@ M.ListMonitorsOutput = {
 
 M.ListPredictorBacktestExportJobsInput = {
     type = "structure",
+    id = "ListPredictorBacktestExportJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3047,6 +3216,7 @@ M.ListPredictorBacktestExportJobsInput = {
 
 M.PredictorBacktestExportJobSummary = {
     type = "structure",
+    id = "PredictorBacktestExportJobSummary",
     members = {
         PredictorBacktestExportJobArn = {
             type = "string",
@@ -3072,6 +3242,7 @@ M.PredictorBacktestExportJobSummary = {
 
 M.ListPredictorBacktestExportJobsOutput = {
     type = "structure",
+    id = "ListPredictorBacktestExportJobsOutput",
     members = {
         PredictorBacktestExportJobs = {
             type = "list",
@@ -3085,6 +3256,7 @@ M.ListPredictorBacktestExportJobsOutput = {
 
 M.ListPredictorsInput = {
     type = "structure",
+    id = "ListPredictorsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3101,6 +3273,7 @@ M.ListPredictorsInput = {
 
 M.PredictorSummary = {
     type = "structure",
+    id = "PredictorSummary",
     members = {
         PredictorArn = {
             type = "string",
@@ -3132,6 +3305,7 @@ M.PredictorSummary = {
 
 M.ListPredictorsOutput = {
     type = "structure",
+    id = "ListPredictorsOutput",
     members = {
         Predictors = {
             type = "list",
@@ -3145,6 +3319,7 @@ M.ListPredictorsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3157,6 +3332,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -3167,6 +3343,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWhatIfAnalysesInput = {
     type = "structure",
+    id = "ListWhatIfAnalysesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3183,6 +3360,7 @@ M.ListWhatIfAnalysesInput = {
 
 M.WhatIfAnalysisSummary = {
     type = "structure",
+    id = "WhatIfAnalysisSummary",
     members = {
         WhatIfAnalysisArn = {
             type = "string",
@@ -3210,6 +3388,7 @@ M.WhatIfAnalysisSummary = {
 
 M.ListWhatIfAnalysesOutput = {
     type = "structure",
+    id = "ListWhatIfAnalysesOutput",
     members = {
         WhatIfAnalyses = {
             type = "list",
@@ -3223,6 +3402,7 @@ M.ListWhatIfAnalysesOutput = {
 
 M.ListWhatIfForecastExportsInput = {
     type = "structure",
+    id = "ListWhatIfForecastExportsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3239,6 +3419,7 @@ M.ListWhatIfForecastExportsInput = {
 
 M.WhatIfForecastExportSummary = {
     type = "structure",
+    id = "WhatIfForecastExportSummary",
     members = {
         WhatIfForecastExportArn = {
             type = "string",
@@ -3268,6 +3449,7 @@ M.WhatIfForecastExportSummary = {
 
 M.ListWhatIfForecastExportsOutput = {
     type = "structure",
+    id = "ListWhatIfForecastExportsOutput",
     members = {
         WhatIfForecastExports = {
             type = "list",
@@ -3281,6 +3463,7 @@ M.ListWhatIfForecastExportsOutput = {
 
 M.ListWhatIfForecastsInput = {
     type = "structure",
+    id = "ListWhatIfForecastsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3297,6 +3480,7 @@ M.ListWhatIfForecastsInput = {
 
 M.WhatIfForecastSummary = {
     type = "structure",
+    id = "WhatIfForecastSummary",
     members = {
         WhatIfForecastArn = {
             type = "string",
@@ -3324,6 +3508,7 @@ M.WhatIfForecastSummary = {
 
 M.ListWhatIfForecastsOutput = {
     type = "structure",
+    id = "ListWhatIfForecastsOutput",
     members = {
         WhatIfForecasts = {
             type = "list",
@@ -3337,6 +3522,7 @@ M.ListWhatIfForecastsOutput = {
 
 M.ResumeResourceInput = {
     type = "structure",
+    id = "ResumeResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3349,10 +3535,12 @@ M.ResumeResourceInput = {
 
 M.ResumeResourceOutput = {
     type = "structure",
+    id = "ResumeResourceOutput",
 }
 
 M.StopResourceInput = {
     type = "structure",
+    id = "StopResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3365,10 +3553,12 @@ M.StopResourceInput = {
 
 M.StopResourceOutput = {
     type = "structure",
+    id = "StopResourceOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3388,10 +3578,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3411,10 +3603,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDatasetGroupInput = {
     type = "structure",
+    id = "UpdateDatasetGroupInput",
     members = {
         DatasetGroupArn = {
             type = "string",
@@ -3434,6 +3628,7 @@ M.UpdateDatasetGroupInput = {
 
 M.UpdateDatasetGroupOutput = {
     type = "structure",
+    id = "UpdateDatasetGroupOutput",
 }
 
 return M

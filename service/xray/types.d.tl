@@ -761,13 +761,13 @@ local record ThrottledException
     Message: string
 end
 
-local type TraceFormatType = "XRAY" | "OTEL"
-
-local type EncryptionType = "NONE" | "KMS"
-
 local type RetrievalStatus = "SCHEDULED" | "RUNNING" | "COMPLETE" | "FAILED" | "CANCELLED" | "TIMEOUT"
 
 local type TraceSegmentDestination = "XRay" | "CloudWatchLogs"
+
+local type EncryptionType = "NONE" | "KMS"
+
+local type TraceFormatType = "XRAY" | "OTEL"
 
 local type TimeRangeType = "TraceId" | "Event" | "Service"
 

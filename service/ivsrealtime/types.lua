@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -60,6 +61,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -118,6 +120,7 @@ M.ConflictException = {
 
 M.Video = {
     type = "structure",
+    id = "Video",
     members = {
         width = {
             type = "integer",
@@ -136,6 +139,7 @@ M.Video = {
 
 M.CreateEncoderConfigurationInput = {
     type = "structure",
+    id = "CreateEncoderConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -151,6 +155,7 @@ M.CreateEncoderConfigurationInput = {
 
 M.EncoderConfiguration = {
     type = "structure",
+    id = "EncoderConfiguration",
     members = {
         arn = {
             type = "string",
@@ -172,6 +177,7 @@ M.EncoderConfiguration = {
 
 M.CreateEncoderConfigurationOutput = {
     type = "structure",
+    id = "CreateEncoderConfigurationOutput",
     members = {
         encoderConfiguration = M.EncoderConfiguration,
     },
@@ -179,6 +185,7 @@ M.CreateEncoderConfigurationOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         accessControlAllowOrigin = {
@@ -237,6 +244,7 @@ M.InternalServerException = {
 
 M.PendingVerification = {
     type = "structure",
+    id = "PendingVerification",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -295,6 +303,7 @@ M.PendingVerification = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -353,6 +362,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -411,6 +421,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         accessControlAllowOrigin = {
@@ -474,6 +485,7 @@ M.IngestProtocol = {
 
 M.CreateIngestConfigurationInput = {
     type = "structure",
+    id = "CreateIngestConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -517,6 +529,7 @@ M.CreateIngestConfigurationInput = {
 
 M.RedundantIngestCredential = {
     type = "structure",
+    id = "RedundantIngestCredential",
     members = {
         participantId = {
             type = "string",
@@ -534,6 +547,7 @@ M.IngestConfigurationState = {
 
 M.IngestConfiguration = {
     type = "structure",
+    id = "IngestConfiguration",
     members = {
         name = {
             type = "string",
@@ -602,6 +616,7 @@ M.IngestConfiguration = {
 
 M.CreateIngestConfigurationOutput = {
     type = "structure",
+    id = "CreateIngestConfigurationOutput",
     members = {
         ingestConfiguration = M.IngestConfiguration,
     },
@@ -614,6 +629,7 @@ M.ParticipantTokenCapability = {
 
 M.CreateParticipantTokenInput = {
     type = "structure",
+    id = "CreateParticipantTokenInput",
     members = {
         stageArn = {
             type = "string",
@@ -641,6 +657,7 @@ M.CreateParticipantTokenInput = {
 
 M.ParticipantToken = {
     type = "structure",
+    id = "ParticipantToken",
     members = {
         participantId = {
             type = "string",
@@ -674,6 +691,7 @@ M.ParticipantToken = {
 
 M.CreateParticipantTokenOutput = {
     type = "structure",
+    id = "CreateParticipantTokenOutput",
     members = {
         participantToken = M.ParticipantToken,
     },
@@ -681,6 +699,7 @@ M.CreateParticipantTokenOutput = {
 
 M.ParticipantRecordingHlsConfiguration = {
     type = "structure",
+    id = "ParticipantRecordingHlsConfiguration",
     members = {
         targetSegmentDurationSeconds = {
             type = "integer",
@@ -709,6 +728,7 @@ M.ThumbnailStorageType = {
 
 M.ParticipantThumbnailConfiguration = {
     type = "structure",
+    id = "ParticipantThumbnailConfiguration",
     members = {
         targetIntervalSeconds = {
             type = "integer",
@@ -725,6 +745,7 @@ M.ParticipantThumbnailConfiguration = {
 
 M.AutoParticipantRecordingConfiguration = {
     type = "structure",
+    id = "AutoParticipantRecordingConfiguration",
     members = {
         storageConfigurationArn = {
             type = "string",
@@ -755,6 +776,7 @@ M.AutoParticipantRecordingConfiguration = {
 
 M.ParticipantTokenConfiguration = {
     type = "structure",
+    id = "ParticipantTokenConfiguration",
     members = {
         duration = {
             type = "integer",
@@ -776,6 +798,7 @@ M.ParticipantTokenConfiguration = {
 
 M.CreateStageInput = {
     type = "structure",
+    id = "CreateStageInput",
     members = {
         name = {
             type = "string",
@@ -795,6 +818,7 @@ M.CreateStageInput = {
 
 M.StageEndpoints = {
     type = "structure",
+    id = "StageEndpoints",
     members = {
         events = {
             type = "string",
@@ -813,6 +837,7 @@ M.StageEndpoints = {
 
 M.Stage = {
     type = "structure",
+    id = "Stage",
     members = {
         arn = {
             type = "string",
@@ -838,6 +863,7 @@ M.Stage = {
 
 M.CreateStageOutput = {
     type = "structure",
+    id = "CreateStageOutput",
     members = {
         stage = M.Stage,
         participantTokens = {
@@ -849,6 +875,7 @@ M.CreateStageOutput = {
 
 M.S3StorageConfiguration = {
     type = "structure",
+    id = "S3StorageConfiguration",
     members = {
         bucketName = {
             type = "string",
@@ -861,6 +888,7 @@ M.S3StorageConfiguration = {
 
 M.CreateStorageConfigurationInput = {
     type = "structure",
+    id = "CreateStorageConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -878,6 +906,7 @@ M.CreateStorageConfigurationInput = {
 
 M.StorageConfiguration = {
     type = "structure",
+    id = "StorageConfiguration",
     members = {
         arn = {
             type = "string",
@@ -899,6 +928,7 @@ M.StorageConfiguration = {
 
 M.CreateStorageConfigurationOutput = {
     type = "structure",
+    id = "CreateStorageConfigurationOutput",
     members = {
         storageConfiguration = M.StorageConfiguration,
     },
@@ -906,6 +936,7 @@ M.CreateStorageConfigurationOutput = {
 
 M.DeleteEncoderConfigurationInput = {
     type = "structure",
+    id = "DeleteEncoderConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -918,10 +949,12 @@ M.DeleteEncoderConfigurationInput = {
 
 M.DeleteEncoderConfigurationOutput = {
     type = "structure",
+    id = "DeleteEncoderConfigurationOutput",
 }
 
 M.DeleteIngestConfigurationInput = {
     type = "structure",
+    id = "DeleteIngestConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -940,10 +973,12 @@ M.DeleteIngestConfigurationInput = {
 
 M.DeleteIngestConfigurationOutput = {
     type = "structure",
+    id = "DeleteIngestConfigurationOutput",
 }
 
 M.DeletePublicKeyInput = {
     type = "structure",
+    id = "DeletePublicKeyInput",
     members = {
         arn = {
             type = "string",
@@ -956,10 +991,12 @@ M.DeletePublicKeyInput = {
 
 M.DeletePublicKeyOutput = {
     type = "structure",
+    id = "DeletePublicKeyOutput",
 }
 
 M.DeleteStageInput = {
     type = "structure",
+    id = "DeleteStageInput",
     members = {
         arn = {
             type = "string",
@@ -972,10 +1009,12 @@ M.DeleteStageInput = {
 
 M.DeleteStageOutput = {
     type = "structure",
+    id = "DeleteStageOutput",
 }
 
 M.DeleteStorageConfigurationInput = {
     type = "structure",
+    id = "DeleteStorageConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -988,10 +1027,12 @@ M.DeleteStorageConfigurationInput = {
 
 M.DeleteStorageConfigurationOutput = {
     type = "structure",
+    id = "DeleteStorageConfigurationOutput",
 }
 
 M.DisconnectParticipantInput = {
     type = "structure",
+    id = "DisconnectParticipantInput",
     members = {
         stageArn = {
             type = "string",
@@ -1013,10 +1054,12 @@ M.DisconnectParticipantInput = {
 
 M.DisconnectParticipantOutput = {
     type = "structure",
+    id = "DisconnectParticipantOutput",
 }
 
 M.GetCompositionInput = {
     type = "structure",
+    id = "GetCompositionInput",
     members = {
         arn = {
             type = "string",
@@ -1029,6 +1072,7 @@ M.GetCompositionInput = {
 
 M.ChannelDestinationConfiguration = {
     type = "structure",
+    id = "ChannelDestinationConfiguration",
     members = {
         channelArn = {
             type = "string",
@@ -1048,6 +1092,7 @@ M.RecordingConfigurationFormat = {
 
 M.CompositionRecordingHlsConfiguration = {
     type = "structure",
+    id = "CompositionRecordingHlsConfiguration",
     members = {
         targetSegmentDurationSeconds = {
             type = "integer",
@@ -1060,6 +1105,7 @@ M.CompositionRecordingHlsConfiguration = {
 
 M.RecordingConfiguration = {
     type = "structure",
+    id = "RecordingConfiguration",
     members = {
         hlsConfiguration = M.CompositionRecordingHlsConfiguration,
         format = {
@@ -1070,6 +1116,7 @@ M.RecordingConfiguration = {
 
 M.CompositionThumbnailConfiguration = {
     type = "structure",
+    id = "CompositionThumbnailConfiguration",
     members = {
         targetIntervalSeconds = {
             type = "integer",
@@ -1083,6 +1130,7 @@ M.CompositionThumbnailConfiguration = {
 
 M.S3DestinationConfiguration = {
     type = "structure",
+    id = "S3DestinationConfiguration",
     members = {
         storageConfigurationArn = {
             type = "string",
@@ -1107,6 +1155,7 @@ M.S3DestinationConfiguration = {
 
 M.DestinationConfiguration = {
     type = "structure",
+    id = "DestinationConfiguration",
     members = {
         name = {
             type = "string",
@@ -1118,6 +1167,7 @@ M.DestinationConfiguration = {
 
 M.S3Detail = {
     type = "structure",
+    id = "S3Detail",
     members = {
         recordingPrefix = {
             type = "string",
@@ -1130,6 +1180,7 @@ M.S3Detail = {
 
 M.DestinationDetail = {
     type = "structure",
+    id = "DestinationDetail",
     members = {
         s3 = M.S3Detail,
     },
@@ -1146,6 +1197,7 @@ M.DestinationState = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         id = {
             type = "string",
@@ -1193,6 +1245,7 @@ M.VideoFillMode = {
 
 M.GridConfiguration = {
     type = "structure",
+    id = "GridConfiguration",
     members = {
         featuredParticipantAttribute = {
             type = "string",
@@ -1235,6 +1288,7 @@ M.PipPosition = {
 
 M.PipConfiguration = {
     type = "structure",
+    id = "PipConfiguration",
     members = {
         featuredParticipantAttribute = {
             type = "string",
@@ -1283,6 +1337,7 @@ M.PipConfiguration = {
 
 M.LayoutConfiguration = {
     type = "structure",
+    id = "LayoutConfiguration",
     members = {
         grid = M.GridConfiguration,
         pip = M.PipConfiguration,
@@ -1299,6 +1354,7 @@ M.CompositionState = {
 
 M.Composition = {
     type = "structure",
+    id = "Composition",
     members = {
         arn = {
             type = "string",
@@ -1350,6 +1406,7 @@ M.Composition = {
 
 M.GetCompositionOutput = {
     type = "structure",
+    id = "GetCompositionOutput",
     members = {
         composition = M.Composition,
     },
@@ -1357,6 +1414,7 @@ M.GetCompositionOutput = {
 
 M.GetEncoderConfigurationInput = {
     type = "structure",
+    id = "GetEncoderConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1369,6 +1427,7 @@ M.GetEncoderConfigurationInput = {
 
 M.GetEncoderConfigurationOutput = {
     type = "structure",
+    id = "GetEncoderConfigurationOutput",
     members = {
         encoderConfiguration = M.EncoderConfiguration,
     },
@@ -1376,6 +1435,7 @@ M.GetEncoderConfigurationOutput = {
 
 M.GetIngestConfigurationInput = {
     type = "structure",
+    id = "GetIngestConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1388,6 +1448,7 @@ M.GetIngestConfigurationInput = {
 
 M.GetIngestConfigurationOutput = {
     type = "structure",
+    id = "GetIngestConfigurationOutput",
     members = {
         ingestConfiguration = M.IngestConfiguration,
     },
@@ -1395,6 +1456,7 @@ M.GetIngestConfigurationOutput = {
 
 M.GetParticipantInput = {
     type = "structure",
+    id = "GetParticipantInput",
     members = {
         stageArn = {
             type = "string",
@@ -1451,6 +1513,7 @@ M.ParticipantState = {
 
 M.Participant = {
     type = "structure",
+    id = "Participant",
     members = {
         participantId = {
             type = "string",
@@ -1534,6 +1597,7 @@ M.Participant = {
 
 M.GetParticipantOutput = {
     type = "structure",
+    id = "GetParticipantOutput",
     members = {
         participant = M.Participant,
     },
@@ -1541,6 +1605,7 @@ M.GetParticipantOutput = {
 
 M.GetPublicKeyInput = {
     type = "structure",
+    id = "GetPublicKeyInput",
     members = {
         arn = {
             type = "string",
@@ -1553,6 +1618,7 @@ M.GetPublicKeyInput = {
 
 M.PublicKey = {
     type = "structure",
+    id = "PublicKey",
     members = {
         arn = {
             type = "string",
@@ -1576,6 +1642,7 @@ M.PublicKey = {
 
 M.GetPublicKeyOutput = {
     type = "structure",
+    id = "GetPublicKeyOutput",
     members = {
         publicKey = M.PublicKey,
     },
@@ -1583,6 +1650,7 @@ M.GetPublicKeyOutput = {
 
 M.GetStageInput = {
     type = "structure",
+    id = "GetStageInput",
     members = {
         arn = {
             type = "string",
@@ -1595,6 +1663,7 @@ M.GetStageInput = {
 
 M.GetStageOutput = {
     type = "structure",
+    id = "GetStageOutput",
     members = {
         stage = M.Stage,
     },
@@ -1602,6 +1671,7 @@ M.GetStageOutput = {
 
 M.GetStageSessionInput = {
     type = "structure",
+    id = "GetStageSessionInput",
     members = {
         stageArn = {
             type = "string",
@@ -1620,6 +1690,7 @@ M.GetStageSessionInput = {
 
 M.StageSession = {
     type = "structure",
+    id = "StageSession",
     members = {
         sessionId = {
             type = "string",
@@ -1641,6 +1712,7 @@ M.StageSession = {
 
 M.GetStageSessionOutput = {
     type = "structure",
+    id = "GetStageSessionOutput",
     members = {
         stageSession = M.StageSession,
     },
@@ -1648,6 +1720,7 @@ M.GetStageSessionOutput = {
 
 M.GetStorageConfigurationInput = {
     type = "structure",
+    id = "GetStorageConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1660,6 +1733,7 @@ M.GetStorageConfigurationInput = {
 
 M.GetStorageConfigurationOutput = {
     type = "structure",
+    id = "GetStorageConfigurationOutput",
     members = {
         storageConfiguration = M.StorageConfiguration,
     },
@@ -1667,6 +1741,7 @@ M.GetStorageConfigurationOutput = {
 
 M.ImportPublicKeyInput = {
     type = "structure",
+    id = "ImportPublicKeyInput",
     members = {
         publicKeyMaterial = {
             type = "string",
@@ -1687,6 +1762,7 @@ M.ImportPublicKeyInput = {
 
 M.ImportPublicKeyOutput = {
     type = "structure",
+    id = "ImportPublicKeyOutput",
     members = {
         publicKey = M.PublicKey,
     },
@@ -1694,6 +1770,7 @@ M.ImportPublicKeyOutput = {
 
 M.ListCompositionsInput = {
     type = "structure",
+    id = "ListCompositionsInput",
     members = {
         filterByStageArn = {
             type = "string",
@@ -1712,6 +1789,7 @@ M.ListCompositionsInput = {
 
 M.DestinationSummary = {
     type = "structure",
+    id = "DestinationSummary",
     members = {
         id = {
             type = "string",
@@ -1742,6 +1820,7 @@ M.DestinationSummary = {
 
 M.CompositionSummary = {
     type = "structure",
+    id = "CompositionSummary",
     members = {
         arn = {
             type = "string",
@@ -1790,6 +1869,7 @@ M.CompositionSummary = {
 
 M.ListCompositionsOutput = {
     type = "structure",
+    id = "ListCompositionsOutput",
     members = {
         compositions = {
             type = "list",
@@ -1806,6 +1886,7 @@ M.ListCompositionsOutput = {
 
 M.ListEncoderConfigurationsInput = {
     type = "structure",
+    id = "ListEncoderConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1818,6 +1899,7 @@ M.ListEncoderConfigurationsInput = {
 
 M.EncoderConfigurationSummary = {
     type = "structure",
+    id = "EncoderConfigurationSummary",
     members = {
         arn = {
             type = "string",
@@ -1838,6 +1920,7 @@ M.EncoderConfigurationSummary = {
 
 M.ListEncoderConfigurationsOutput = {
     type = "structure",
+    id = "ListEncoderConfigurationsOutput",
     members = {
         encoderConfigurations = {
             type = "list",
@@ -1854,6 +1937,7 @@ M.ListEncoderConfigurationsOutput = {
 
 M.ListIngestConfigurationsInput = {
     type = "structure",
+    id = "ListIngestConfigurationsInput",
     members = {
         filterByStageArn = {
             type = "string",
@@ -1872,6 +1956,7 @@ M.ListIngestConfigurationsInput = {
 
 M.IngestConfigurationSummary = {
     type = "structure",
+    id = "IngestConfigurationSummary",
     members = {
         name = {
             type = "string",
@@ -1920,6 +2005,7 @@ M.IngestConfigurationSummary = {
 
 M.ListIngestConfigurationsOutput = {
     type = "structure",
+    id = "ListIngestConfigurationsOutput",
     members = {
         ingestConfigurations = {
             type = "list",
@@ -1936,6 +2022,7 @@ M.ListIngestConfigurationsOutput = {
 
 M.ListParticipantEventsInput = {
     type = "structure",
+    id = "ListParticipantEventsInput",
     members = {
         stageArn = {
             type = "string",
@@ -1998,6 +2085,7 @@ M.EventName = {
 
 M.ExchangedParticipantToken = {
     type = "structure",
+    id = "ExchangedParticipantToken",
     members = {
         capabilities = {
             type = "list",
@@ -2022,6 +2110,7 @@ M.ExchangedParticipantToken = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         name = {
             type = "string",
@@ -2060,6 +2149,7 @@ M.Event = {
 
 M.ListParticipantEventsOutput = {
     type = "structure",
+    id = "ListParticipantEventsOutput",
     members = {
         events = {
             type = "list",
@@ -2076,6 +2166,7 @@ M.ListParticipantEventsOutput = {
 
 M.ListParticipantReplicasInput = {
     type = "structure",
+    id = "ListParticipantReplicasInput",
     members = {
         sourceStageArn = {
             type = "string",
@@ -2100,6 +2191,7 @@ M.ListParticipantReplicasInput = {
 
 M.ParticipantReplica = {
     type = "structure",
+    id = "ParticipantReplica",
     members = {
         sourceStageArn = {
             type = "string",
@@ -2142,6 +2234,7 @@ M.ParticipantReplica = {
 
 M.ListParticipantReplicasOutput = {
     type = "structure",
+    id = "ListParticipantReplicasOutput",
     members = {
         replicas = {
             type = "list",
@@ -2166,6 +2259,7 @@ M.ParticipantRecordingFilterByRecordingState = {
 
 M.ListParticipantsInput = {
     type = "structure",
+    id = "ListParticipantsInput",
     members = {
         stageArn = {
             type = "string",
@@ -2205,6 +2299,7 @@ M.ListParticipantsInput = {
 
 M.ParticipantSummary = {
     type = "structure",
+    id = "ParticipantSummary",
     members = {
         participantId = {
             type = "string",
@@ -2256,6 +2351,7 @@ M.ParticipantSummary = {
 
 M.ListParticipantsOutput = {
     type = "structure",
+    id = "ListParticipantsOutput",
     members = {
         participants = {
             type = "list",
@@ -2272,6 +2368,7 @@ M.ListParticipantsOutput = {
 
 M.ListPublicKeysInput = {
     type = "structure",
+    id = "ListPublicKeysInput",
     members = {
         nextToken = {
             type = "string",
@@ -2284,6 +2381,7 @@ M.ListPublicKeysInput = {
 
 M.PublicKeySummary = {
     type = "structure",
+    id = "PublicKeySummary",
     members = {
         arn = {
             type = "string",
@@ -2301,6 +2399,7 @@ M.PublicKeySummary = {
 
 M.ListPublicKeysOutput = {
     type = "structure",
+    id = "ListPublicKeysOutput",
     members = {
         publicKeys = {
             type = "list",
@@ -2317,6 +2416,7 @@ M.ListPublicKeysOutput = {
 
 M.ListStagesInput = {
     type = "structure",
+    id = "ListStagesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2329,6 +2429,7 @@ M.ListStagesInput = {
 
 M.StageSummary = {
     type = "structure",
+    id = "StageSummary",
     members = {
         arn = {
             type = "string",
@@ -2352,6 +2453,7 @@ M.StageSummary = {
 
 M.ListStagesOutput = {
     type = "structure",
+    id = "ListStagesOutput",
     members = {
         stages = {
             type = "list",
@@ -2368,6 +2470,7 @@ M.ListStagesOutput = {
 
 M.ListStageSessionsInput = {
     type = "structure",
+    id = "ListStageSessionsInput",
     members = {
         stageArn = {
             type = "string",
@@ -2386,6 +2489,7 @@ M.ListStageSessionsInput = {
 
 M.StageSessionSummary = {
     type = "structure",
+    id = "StageSessionSummary",
     members = {
         sessionId = {
             type = "string",
@@ -2407,6 +2511,7 @@ M.StageSessionSummary = {
 
 M.ListStageSessionsOutput = {
     type = "structure",
+    id = "ListStageSessionsOutput",
     members = {
         stageSessions = {
             type = "list",
@@ -2423,6 +2528,7 @@ M.ListStageSessionsOutput = {
 
 M.ListStorageConfigurationsInput = {
     type = "structure",
+    id = "ListStorageConfigurationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2435,6 +2541,7 @@ M.ListStorageConfigurationsInput = {
 
 M.StorageConfigurationSummary = {
     type = "structure",
+    id = "StorageConfigurationSummary",
     members = {
         arn = {
             type = "string",
@@ -2456,6 +2563,7 @@ M.StorageConfigurationSummary = {
 
 M.ListStorageConfigurationsOutput = {
     type = "structure",
+    id = "ListStorageConfigurationsOutput",
     members = {
         storageConfigurations = {
             type = "list",
@@ -2472,6 +2580,7 @@ M.ListStorageConfigurationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2485,6 +2594,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2499,6 +2609,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartCompositionInput = {
     type = "structure",
+    id = "StartCompositionInput",
     members = {
         stageArn = {
             type = "string",
@@ -2530,6 +2641,7 @@ M.StartCompositionInput = {
 
 M.StartCompositionOutput = {
     type = "structure",
+    id = "StartCompositionOutput",
     members = {
         composition = M.Composition,
     },
@@ -2537,6 +2649,7 @@ M.StartCompositionOutput = {
 
 M.StartParticipantReplicationInput = {
     type = "structure",
+    id = "StartParticipantReplicationInput",
     members = {
         sourceStageArn = {
             type = "string",
@@ -2569,6 +2682,7 @@ M.StartParticipantReplicationInput = {
 
 M.StartParticipantReplicationOutput = {
     type = "structure",
+    id = "StartParticipantReplicationOutput",
     members = {
         accessControlAllowOrigin = {
             type = "string",
@@ -2617,6 +2731,7 @@ M.StartParticipantReplicationOutput = {
 
 M.StopCompositionInput = {
     type = "structure",
+    id = "StopCompositionInput",
     members = {
         arn = {
             type = "string",
@@ -2629,10 +2744,12 @@ M.StopCompositionInput = {
 
 M.StopCompositionOutput = {
     type = "structure",
+    id = "StopCompositionOutput",
 }
 
 M.StopParticipantReplicationInput = {
     type = "structure",
+    id = "StopParticipantReplicationInput",
     members = {
         sourceStageArn = {
             type = "string",
@@ -2657,6 +2774,7 @@ M.StopParticipantReplicationInput = {
 
 M.StopParticipantReplicationOutput = {
     type = "structure",
+    id = "StopParticipantReplicationOutput",
     members = {
         accessControlAllowOrigin = {
             type = "string",
@@ -2705,6 +2823,7 @@ M.StopParticipantReplicationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2726,10 +2845,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2751,10 +2872,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateIngestConfigurationInput = {
     type = "structure",
+    id = "UpdateIngestConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -2776,6 +2899,7 @@ M.UpdateIngestConfigurationInput = {
 
 M.UpdateIngestConfigurationOutput = {
     type = "structure",
+    id = "UpdateIngestConfigurationOutput",
     members = {
         ingestConfiguration = M.IngestConfiguration,
     },
@@ -2783,6 +2907,7 @@ M.UpdateIngestConfigurationOutput = {
 
 M.UpdateStageInput = {
     type = "structure",
+    id = "UpdateStageInput",
     members = {
         arn = {
             type = "string",
@@ -2799,6 +2924,7 @@ M.UpdateStageInput = {
 
 M.UpdateStageOutput = {
     type = "structure",
+    id = "UpdateStageOutput",
     members = {
         stage = M.Stage,
     },

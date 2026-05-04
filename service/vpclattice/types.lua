@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -45,6 +47,7 @@ M.ServiceNetworkLogType = {
 
 M.CreateAccessLogSubscriptionInput = {
     type = "structure",
+    id = "CreateAccessLogSubscriptionInput",
     members = {
         clientToken = {
             type = "string",
@@ -77,6 +80,7 @@ M.CreateAccessLogSubscriptionInput = {
 
 M.CreateAccessLogSubscriptionOutput = {
     type = "structure",
+    id = "CreateAccessLogSubscriptionOutput",
     members = {
         id = {
             type = "string",
@@ -116,6 +120,7 @@ M.CreateAccessLogSubscriptionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -135,6 +140,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -160,6 +166,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -185,6 +192,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -210,6 +218,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -233,6 +242,7 @@ M.ValidationException = {
 
 M.DeleteAccessLogSubscriptionInput = {
     type = "structure",
+    id = "DeleteAccessLogSubscriptionInput",
     members = {
         accessLogSubscriptionIdentifier = {
             type = "string",
@@ -246,10 +256,12 @@ M.DeleteAccessLogSubscriptionInput = {
 
 M.DeleteAccessLogSubscriptionOutput = {
     type = "structure",
+    id = "DeleteAccessLogSubscriptionOutput",
 }
 
 M.GetAccessLogSubscriptionInput = {
     type = "structure",
+    id = "GetAccessLogSubscriptionInput",
     members = {
         accessLogSubscriptionIdentifier = {
             type = "string",
@@ -263,6 +275,7 @@ M.GetAccessLogSubscriptionInput = {
 
 M.GetAccessLogSubscriptionOutput = {
     type = "structure",
+    id = "GetAccessLogSubscriptionOutput",
     members = {
         id = {
             type = "string",
@@ -316,6 +329,7 @@ M.GetAccessLogSubscriptionOutput = {
 
 M.ListAccessLogSubscriptionsInput = {
     type = "structure",
+    id = "ListAccessLogSubscriptionsInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -341,6 +355,7 @@ M.ListAccessLogSubscriptionsInput = {
 
 M.AccessLogSubscriptionSummary = {
     type = "structure",
+    id = "AccessLogSubscriptionSummary",
     members = {
         id = {
             type = "string",
@@ -394,6 +409,7 @@ M.AccessLogSubscriptionSummary = {
 
 M.ListAccessLogSubscriptionsOutput = {
     type = "structure",
+    id = "ListAccessLogSubscriptionsOutput",
     members = {
         items = {
             type = "list",
@@ -410,6 +426,7 @@ M.ListAccessLogSubscriptionsOutput = {
 
 M.UpdateAccessLogSubscriptionInput = {
     type = "structure",
+    id = "UpdateAccessLogSubscriptionInput",
     members = {
         accessLogSubscriptionIdentifier = {
             type = "string",
@@ -429,6 +446,7 @@ M.UpdateAccessLogSubscriptionInput = {
 
 M.UpdateAccessLogSubscriptionOutput = {
     type = "structure",
+    id = "UpdateAccessLogSubscriptionOutput",
     members = {
         id = {
             type = "string",
@@ -465,6 +483,7 @@ M.UpdateAccessLogSubscriptionOutput = {
 
 M.ArnResource = {
     type = "structure",
+    id = "ArnResource",
     members = {
         arn = {
             type = "string",
@@ -484,6 +503,7 @@ M.AuthType = {
 
 M.FixedResponseAction = {
     type = "structure",
+    id = "FixedResponseAction",
     members = {
         statusCode = {
             type = "integer",
@@ -496,6 +516,7 @@ M.FixedResponseAction = {
 
 M.WeightedTargetGroup = {
     type = "structure",
+    id = "WeightedTargetGroup",
     members = {
         targetGroupIdentifier = {
             type = "string",
@@ -511,6 +532,7 @@ M.WeightedTargetGroup = {
 
 M.ForwardAction = {
     type = "structure",
+    id = "ForwardAction",
     members = {
         targetGroups = {
             type = "list",
@@ -524,6 +546,7 @@ M.ForwardAction = {
 
 M.RuleAction = {
     type = "union",
+    id = "RuleAction",
     members = {
         forward = M.ForwardAction,
         fixedResponse = M.FixedResponseAction,
@@ -532,6 +555,7 @@ M.RuleAction = {
 
 M.HeaderMatchType = {
     type = "union",
+    id = "HeaderMatchType",
     members = {
         exact = {
             type = "string",
@@ -547,6 +571,7 @@ M.HeaderMatchType = {
 
 M.HeaderMatch = {
     type = "structure",
+    id = "HeaderMatch",
     members = {
         name = {
             type = "string",
@@ -565,6 +590,7 @@ M.HeaderMatch = {
 
 M.PathMatchType = {
     type = "union",
+    id = "PathMatchType",
     members = {
         exact = {
             type = "string",
@@ -577,6 +603,7 @@ M.PathMatchType = {
 
 M.PathMatch = {
     type = "structure",
+    id = "PathMatch",
     members = {
         match = setmetatable({ traits = {
             required = true,
@@ -589,6 +616,7 @@ M.PathMatch = {
 
 M.HttpMatch = {
     type = "structure",
+    id = "HttpMatch",
     members = {
         method = {
             type = "string",
@@ -603,6 +631,7 @@ M.HttpMatch = {
 
 M.RuleMatch = {
     type = "union",
+    id = "RuleMatch",
     members = {
         httpMatch = M.HttpMatch,
     },
@@ -610,6 +639,7 @@ M.RuleMatch = {
 
 M.RuleUpdate = {
     type = "structure",
+    id = "RuleUpdate",
     members = {
         ruleIdentifier = {
             type = "string",
@@ -627,6 +657,7 @@ M.RuleUpdate = {
 
 M.BatchUpdateRuleInput = {
     type = "structure",
+    id = "BatchUpdateRuleInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -654,6 +685,7 @@ M.BatchUpdateRuleInput = {
 
 M.RuleUpdateSuccess = {
     type = "structure",
+    id = "RuleUpdateSuccess",
     members = {
         arn = {
             type = "string",
@@ -677,6 +709,7 @@ M.RuleUpdateSuccess = {
 
 M.RuleUpdateFailure = {
     type = "structure",
+    id = "RuleUpdateFailure",
     members = {
         ruleIdentifier = {
             type = "string",
@@ -692,6 +725,7 @@ M.RuleUpdateFailure = {
 
 M.BatchUpdateRuleOutput = {
     type = "structure",
+    id = "BatchUpdateRuleOutput",
     members = {
         successful = {
             type = "list",
@@ -712,6 +746,7 @@ M.ListenerProtocol = {
 
 M.CreateListenerInput = {
     type = "structure",
+    id = "CreateListenerInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -754,6 +789,7 @@ M.CreateListenerInput = {
 
 M.CreateListenerOutput = {
     type = "structure",
+    id = "CreateListenerOutput",
     members = {
         arn = {
             type = "string",
@@ -782,6 +818,7 @@ M.CreateListenerOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -826,6 +863,7 @@ M.ResourceConfigurationIpAddressType = {
 
 M.DnsResource = {
     type = "structure",
+    id = "DnsResource",
     members = {
         domainName = {
             type = "string",
@@ -838,6 +876,7 @@ M.DnsResource = {
 
 M.IpResource = {
     type = "structure",
+    id = "IpResource",
     members = {
         ipAddress = {
             type = "string",
@@ -847,6 +886,7 @@ M.IpResource = {
 
 M.ResourceConfigurationDefinition = {
     type = "union",
+    id = "ResourceConfigurationDefinition",
     members = {
         dnsResource = M.DnsResource,
         ipResource = M.IpResource,
@@ -863,6 +903,7 @@ M.ResourceConfigurationType = {
 
 M.CreateResourceConfigurationInput = {
     type = "structure",
+    id = "CreateResourceConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -928,6 +969,7 @@ M.ResourceConfigurationStatus = {
 
 M.CreateResourceConfigurationOutput = {
     type = "structure",
+    id = "CreateResourceConfigurationOutput",
     members = {
         id = {
             type = "string",
@@ -993,6 +1035,7 @@ M.ResourceGatewayIpAddressType = {
 
 M.CreateResourceGatewayInput = {
     type = "structure",
+    id = "CreateResourceGatewayInput",
     members = {
         clientToken = {
             type = "string",
@@ -1043,6 +1086,7 @@ M.ResourceGatewayStatus = {
 
 M.CreateResourceGatewayOutput = {
     type = "structure",
+    id = "CreateResourceGatewayOutput",
     members = {
         name = {
             type = "string",
@@ -1078,6 +1122,7 @@ M.CreateResourceGatewayOutput = {
 
 M.CreateRuleInput = {
     type = "structure",
+    id = "CreateRuleInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -1127,6 +1172,7 @@ M.CreateRuleInput = {
 
 M.CreateRuleOutput = {
     type = "structure",
+    id = "CreateRuleOutput",
     members = {
         arn = {
             type = "string",
@@ -1147,6 +1193,7 @@ M.CreateRuleOutput = {
 
 M.CreateServiceInput = {
     type = "structure",
+    id = "CreateServiceInput",
     members = {
         clientToken = {
             type = "string",
@@ -1179,6 +1226,7 @@ M.CreateServiceInput = {
 
 M.DnsEntry = {
     type = "structure",
+    id = "DnsEntry",
     members = {
         domainName = {
             type = "string",
@@ -1199,6 +1247,7 @@ M.ServiceStatus = {
 
 M.CreateServiceOutput = {
     type = "structure",
+    id = "CreateServiceOutput",
     members = {
         id = {
             type = "string",
@@ -1227,6 +1276,7 @@ M.CreateServiceOutput = {
 
 M.SharingConfig = {
     type = "structure",
+    id = "SharingConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -1236,6 +1286,7 @@ M.SharingConfig = {
 
 M.CreateServiceNetworkInput = {
     type = "structure",
+    id = "CreateServiceNetworkInput",
     members = {
         clientToken = {
             type = "string",
@@ -1263,6 +1314,7 @@ M.CreateServiceNetworkInput = {
 
 M.CreateServiceNetworkOutput = {
     type = "structure",
+    id = "CreateServiceNetworkOutput",
     members = {
         id = {
             type = "string",
@@ -1282,6 +1334,7 @@ M.CreateServiceNetworkOutput = {
 
 M.CreateServiceNetworkResourceAssociationInput = {
     type = "structure",
+    id = "CreateServiceNetworkResourceAssociationInput",
     members = {
         clientToken = {
             type = "string",
@@ -1323,6 +1376,7 @@ M.ServiceNetworkResourceAssociationStatus = {
 
 M.CreateServiceNetworkResourceAssociationOutput = {
     type = "structure",
+    id = "CreateServiceNetworkResourceAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -1344,6 +1398,7 @@ M.CreateServiceNetworkResourceAssociationOutput = {
 
 M.CreateServiceNetworkServiceAssociationInput = {
     type = "structure",
+    id = "CreateServiceNetworkServiceAssociationInput",
     members = {
         clientToken = {
             type = "string",
@@ -1381,6 +1436,7 @@ M.ServiceNetworkServiceAssociationStatus = {
 
 M.CreateServiceNetworkServiceAssociationOutput = {
     type = "structure",
+    id = "CreateServiceNetworkServiceAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -1410,6 +1466,7 @@ M.PrivateDnsPreference = {
 
 M.DnsOptions = {
     type = "structure",
+    id = "DnsOptions",
     members = {
         privateDnsPreference = {
             type = "string",
@@ -1423,6 +1480,7 @@ M.DnsOptions = {
 
 M.CreateServiceNetworkVpcAssociationInput = {
     type = "structure",
+    id = "CreateServiceNetworkVpcAssociationInput",
     members = {
         clientToken = {
             type = "string",
@@ -1470,6 +1528,7 @@ M.ServiceNetworkVpcAssociationStatus = {
 
 M.CreateServiceNetworkVpcAssociationOutput = {
     type = "structure",
+    id = "CreateServiceNetworkVpcAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -1496,6 +1555,7 @@ M.CreateServiceNetworkVpcAssociationOutput = {
 
 M.Matcher = {
     type = "union",
+    id = "Matcher",
     members = {
         httpCode = {
             type = "string",
@@ -1516,6 +1576,7 @@ M.HealthCheckProtocolVersion = {
 
 M.HealthCheckConfig = {
     type = "structure",
+    id = "HealthCheckConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -1566,6 +1627,7 @@ M.TargetGroupProtocolVersion = {
 
 M.TargetGroupConfig = {
     type = "structure",
+    id = "TargetGroupConfig",
     members = {
         port = {
             type = "integer",
@@ -1598,6 +1660,7 @@ M.TargetGroupType = {
 
 M.CreateTargetGroupInput = {
     type = "structure",
+    id = "CreateTargetGroupInput",
     members = {
         name = {
             type = "string",
@@ -1636,6 +1699,7 @@ M.TargetGroupStatus = {
 
 M.CreateTargetGroupOutput = {
     type = "structure",
+    id = "CreateTargetGroupOutput",
     members = {
         id = {
             type = "string",
@@ -1658,6 +1722,7 @@ M.CreateTargetGroupOutput = {
 
 M.DeleteAuthPolicyInput = {
     type = "structure",
+    id = "DeleteAuthPolicyInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -1671,10 +1736,12 @@ M.DeleteAuthPolicyInput = {
 
 M.DeleteAuthPolicyOutput = {
     type = "structure",
+    id = "DeleteAuthPolicyOutput",
 }
 
 M.DeleteDomainVerificationInput = {
     type = "structure",
+    id = "DeleteDomainVerificationInput",
     members = {
         domainVerificationIdentifier = {
             type = "string",
@@ -1688,10 +1755,12 @@ M.DeleteDomainVerificationInput = {
 
 M.DeleteDomainVerificationOutput = {
     type = "structure",
+    id = "DeleteDomainVerificationOutput",
 }
 
 M.DeleteListenerInput = {
     type = "structure",
+    id = "DeleteListenerInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -1712,10 +1781,12 @@ M.DeleteListenerInput = {
 
 M.DeleteListenerOutput = {
     type = "structure",
+    id = "DeleteListenerOutput",
 }
 
 M.DeleteResourceConfigurationInput = {
     type = "structure",
+    id = "DeleteResourceConfigurationInput",
     members = {
         resourceConfigurationIdentifier = {
             type = "string",
@@ -1729,10 +1800,12 @@ M.DeleteResourceConfigurationInput = {
 
 M.DeleteResourceConfigurationOutput = {
     type = "structure",
+    id = "DeleteResourceConfigurationOutput",
 }
 
 M.DeleteResourceEndpointAssociationInput = {
     type = "structure",
+    id = "DeleteResourceEndpointAssociationInput",
     members = {
         resourceEndpointAssociationIdentifier = {
             type = "string",
@@ -1746,6 +1819,7 @@ M.DeleteResourceEndpointAssociationInput = {
 
 M.DeleteResourceEndpointAssociationOutput = {
     type = "structure",
+    id = "DeleteResourceEndpointAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -1767,6 +1841,7 @@ M.DeleteResourceEndpointAssociationOutput = {
 
 M.DeleteResourceGatewayInput = {
     type = "structure",
+    id = "DeleteResourceGatewayInput",
     members = {
         resourceGatewayIdentifier = {
             type = "string",
@@ -1780,6 +1855,7 @@ M.DeleteResourceGatewayInput = {
 
 M.DeleteResourceGatewayOutput = {
     type = "structure",
+    id = "DeleteResourceGatewayOutput",
     members = {
         id = {
             type = "string",
@@ -1798,6 +1874,7 @@ M.DeleteResourceGatewayOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1811,10 +1888,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -1842,10 +1921,12 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
 }
 
 M.DeleteServiceInput = {
     type = "structure",
+    id = "DeleteServiceInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -1859,6 +1940,7 @@ M.DeleteServiceInput = {
 
 M.DeleteServiceOutput = {
     type = "structure",
+    id = "DeleteServiceOutput",
     members = {
         id = {
             type = "string",
@@ -1877,6 +1959,7 @@ M.DeleteServiceOutput = {
 
 M.DeleteServiceNetworkInput = {
     type = "structure",
+    id = "DeleteServiceNetworkInput",
     members = {
         serviceNetworkIdentifier = {
             type = "string",
@@ -1890,10 +1973,12 @@ M.DeleteServiceNetworkInput = {
 
 M.DeleteServiceNetworkOutput = {
     type = "structure",
+    id = "DeleteServiceNetworkOutput",
 }
 
 M.DeleteServiceNetworkResourceAssociationInput = {
     type = "structure",
+    id = "DeleteServiceNetworkResourceAssociationInput",
     members = {
         serviceNetworkResourceAssociationIdentifier = {
             type = "string",
@@ -1907,6 +1992,7 @@ M.DeleteServiceNetworkResourceAssociationInput = {
 
 M.DeleteServiceNetworkResourceAssociationOutput = {
     type = "structure",
+    id = "DeleteServiceNetworkResourceAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -1922,6 +2008,7 @@ M.DeleteServiceNetworkResourceAssociationOutput = {
 
 M.DeleteServiceNetworkServiceAssociationInput = {
     type = "structure",
+    id = "DeleteServiceNetworkServiceAssociationInput",
     members = {
         serviceNetworkServiceAssociationIdentifier = {
             type = "string",
@@ -1935,6 +2022,7 @@ M.DeleteServiceNetworkServiceAssociationInput = {
 
 M.DeleteServiceNetworkServiceAssociationOutput = {
     type = "structure",
+    id = "DeleteServiceNetworkServiceAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -1950,6 +2038,7 @@ M.DeleteServiceNetworkServiceAssociationOutput = {
 
 M.DeleteServiceNetworkVpcAssociationInput = {
     type = "structure",
+    id = "DeleteServiceNetworkVpcAssociationInput",
     members = {
         serviceNetworkVpcAssociationIdentifier = {
             type = "string",
@@ -1963,6 +2052,7 @@ M.DeleteServiceNetworkVpcAssociationInput = {
 
 M.DeleteServiceNetworkVpcAssociationOutput = {
     type = "structure",
+    id = "DeleteServiceNetworkVpcAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -1978,6 +2068,7 @@ M.DeleteServiceNetworkVpcAssociationOutput = {
 
 M.DeleteTargetGroupInput = {
     type = "structure",
+    id = "DeleteTargetGroupInput",
     members = {
         targetGroupIdentifier = {
             type = "string",
@@ -1991,6 +2082,7 @@ M.DeleteTargetGroupInput = {
 
 M.DeleteTargetGroupOutput = {
     type = "structure",
+    id = "DeleteTargetGroupOutput",
     members = {
         id = {
             type = "string",
@@ -2006,6 +2098,7 @@ M.DeleteTargetGroupOutput = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         id = {
             type = "string",
@@ -2021,6 +2114,7 @@ M.Target = {
 
 M.DeregisterTargetsInput = {
     type = "structure",
+    id = "DeregisterTargetsInput",
     members = {
         targetGroupIdentifier = {
             type = "string",
@@ -2041,6 +2135,7 @@ M.DeregisterTargetsInput = {
 
 M.TargetFailure = {
     type = "structure",
+    id = "TargetFailure",
     members = {
         id = {
             type = "string",
@@ -2059,6 +2154,7 @@ M.TargetFailure = {
 
 M.DeregisterTargetsOutput = {
     type = "structure",
+    id = "DeregisterTargetsOutput",
     members = {
         successful = {
             type = "list",
@@ -2073,6 +2169,7 @@ M.DeregisterTargetsOutput = {
 
 M.GetDomainVerificationInput = {
     type = "structure",
+    id = "GetDomainVerificationInput",
     members = {
         domainVerificationIdentifier = {
             type = "string",
@@ -2092,6 +2189,7 @@ M.VerificationStatus = {
 
 M.TxtMethodConfig = {
     type = "structure",
+    id = "TxtMethodConfig",
     members = {
         value = {
             type = "string",
@@ -2110,6 +2208,7 @@ M.TxtMethodConfig = {
 
 M.GetDomainVerificationOutput = {
     type = "structure",
+    id = "GetDomainVerificationOutput",
     members = {
         id = {
             type = "string",
@@ -2159,6 +2258,7 @@ M.GetDomainVerificationOutput = {
 
 M.ListDomainVerificationsInput = {
     type = "structure",
+    id = "ListDomainVerificationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2177,6 +2277,7 @@ M.ListDomainVerificationsInput = {
 
 M.DomainVerificationSummary = {
     type = "structure",
+    id = "DomainVerificationSummary",
     members = {
         id = {
             type = "string",
@@ -2226,6 +2327,7 @@ M.DomainVerificationSummary = {
 
 M.ListDomainVerificationsOutput = {
     type = "structure",
+    id = "ListDomainVerificationsOutput",
     members = {
         items = {
             type = "list",
@@ -2242,6 +2344,7 @@ M.ListDomainVerificationsOutput = {
 
 M.StartDomainVerificationInput = {
     type = "structure",
+    id = "StartDomainVerificationInput",
     members = {
         clientToken = {
             type = "string",
@@ -2265,6 +2368,7 @@ M.StartDomainVerificationInput = {
 
 M.StartDomainVerificationOutput = {
     type = "structure",
+    id = "StartDomainVerificationOutput",
     members = {
         id = {
             type = "string",
@@ -2296,6 +2400,7 @@ M.StartDomainVerificationOutput = {
 
 M.GetAuthPolicyInput = {
     type = "structure",
+    id = "GetAuthPolicyInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -2309,6 +2414,7 @@ M.GetAuthPolicyInput = {
 
 M.GetAuthPolicyOutput = {
     type = "structure",
+    id = "GetAuthPolicyOutput",
     members = {
         policy = {
             type = "string",
@@ -2333,6 +2439,7 @@ M.GetAuthPolicyOutput = {
 
 M.GetListenerInput = {
     type = "structure",
+    id = "GetListenerInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -2353,6 +2460,7 @@ M.GetListenerInput = {
 
 M.GetListenerOutput = {
     type = "structure",
+    id = "GetListenerOutput",
     members = {
         arn = {
             type = "string",
@@ -2393,6 +2501,7 @@ M.GetListenerOutput = {
 
 M.GetResourceConfigurationInput = {
     type = "structure",
+    id = "GetResourceConfigurationInput",
     members = {
         resourceConfigurationIdentifier = {
             type = "string",
@@ -2406,6 +2515,7 @@ M.GetResourceConfigurationInput = {
 
 M.GetResourceConfigurationOutput = {
     type = "structure",
+    id = "GetResourceConfigurationOutput",
     members = {
         id = {
             type = "string",
@@ -2477,6 +2587,7 @@ M.GetResourceConfigurationOutput = {
 
 M.GetResourceGatewayInput = {
     type = "structure",
+    id = "GetResourceGatewayInput",
     members = {
         resourceGatewayIdentifier = {
             type = "string",
@@ -2490,6 +2601,7 @@ M.GetResourceGatewayInput = {
 
 M.GetResourceGatewayOutput = {
     type = "structure",
+    id = "GetResourceGatewayOutput",
     members = {
         name = {
             type = "string",
@@ -2537,6 +2649,7 @@ M.GetResourceGatewayOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2550,6 +2663,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         policy = {
             type = "string",
@@ -2559,6 +2673,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetRuleInput = {
     type = "structure",
+    id = "GetRuleInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -2586,6 +2701,7 @@ M.GetRuleInput = {
 
 M.GetRuleOutput = {
     type = "structure",
+    id = "GetRuleOutput",
     members = {
         arn = {
             type = "string",
@@ -2621,6 +2737,7 @@ M.GetRuleOutput = {
 
 M.GetServiceInput = {
     type = "structure",
+    id = "GetServiceInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -2634,6 +2751,7 @@ M.GetServiceInput = {
 
 M.GetServiceOutput = {
     type = "structure",
+    id = "GetServiceOutput",
     members = {
         id = {
             type = "string",
@@ -2680,6 +2798,7 @@ M.GetServiceOutput = {
 
 M.GetServiceNetworkInput = {
     type = "structure",
+    id = "GetServiceNetworkInput",
     members = {
         serviceNetworkIdentifier = {
             type = "string",
@@ -2693,6 +2812,7 @@ M.GetServiceNetworkInput = {
 
 M.GetServiceNetworkOutput = {
     type = "structure",
+    id = "GetServiceNetworkOutput",
     members = {
         id = {
             type = "string",
@@ -2730,6 +2850,7 @@ M.GetServiceNetworkOutput = {
 
 M.GetServiceNetworkResourceAssociationInput = {
     type = "structure",
+    id = "GetServiceNetworkResourceAssociationInput",
     members = {
         serviceNetworkResourceAssociationIdentifier = {
             type = "string",
@@ -2743,6 +2864,7 @@ M.GetServiceNetworkResourceAssociationInput = {
 
 M.GetServiceNetworkResourceAssociationOutput = {
     type = "structure",
+    id = "GetServiceNetworkResourceAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -2808,6 +2930,7 @@ M.GetServiceNetworkResourceAssociationOutput = {
 
 M.GetServiceNetworkServiceAssociationInput = {
     type = "structure",
+    id = "GetServiceNetworkServiceAssociationInput",
     members = {
         serviceNetworkServiceAssociationIdentifier = {
             type = "string",
@@ -2821,6 +2944,7 @@ M.GetServiceNetworkServiceAssociationInput = {
 
 M.GetServiceNetworkServiceAssociationOutput = {
     type = "structure",
+    id = "GetServiceNetworkServiceAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -2873,6 +2997,7 @@ M.GetServiceNetworkServiceAssociationOutput = {
 
 M.GetServiceNetworkVpcAssociationInput = {
     type = "structure",
+    id = "GetServiceNetworkVpcAssociationInput",
     members = {
         serviceNetworkVpcAssociationIdentifier = {
             type = "string",
@@ -2886,6 +3011,7 @@ M.GetServiceNetworkVpcAssociationInput = {
 
 M.GetServiceNetworkVpcAssociationOutput = {
     type = "structure",
+    id = "GetServiceNetworkVpcAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -2942,6 +3068,7 @@ M.GetServiceNetworkVpcAssociationOutput = {
 
 M.GetTargetGroupInput = {
     type = "structure",
+    id = "GetTargetGroupInput",
     members = {
         targetGroupIdentifier = {
             type = "string",
@@ -2955,6 +3082,7 @@ M.GetTargetGroupInput = {
 
 M.GetTargetGroupOutput = {
     type = "structure",
+    id = "GetTargetGroupOutput",
     members = {
         id = {
             type = "string",
@@ -2999,6 +3127,7 @@ M.GetTargetGroupOutput = {
 
 M.ListListenersInput = {
     type = "structure",
+    id = "ListListenersInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -3024,6 +3153,7 @@ M.ListListenersInput = {
 
 M.ListenerSummary = {
     type = "structure",
+    id = "ListenerSummary",
     members = {
         arn = {
             type = "string",
@@ -3057,6 +3187,7 @@ M.ListenerSummary = {
 
 M.ListListenersOutput = {
     type = "structure",
+    id = "ListListenersOutput",
     members = {
         items = {
             type = "list",
@@ -3073,6 +3204,7 @@ M.ListListenersOutput = {
 
 M.UpdateListenerInput = {
     type = "structure",
+    id = "UpdateListenerInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -3096,6 +3228,7 @@ M.UpdateListenerInput = {
 
 M.UpdateListenerOutput = {
     type = "structure",
+    id = "UpdateListenerOutput",
     members = {
         arn = {
             type = "string",
@@ -3124,6 +3257,7 @@ M.UpdateListenerOutput = {
 
 M.ListResourceConfigurationsInput = {
     type = "structure",
+    id = "ListResourceConfigurationsInput",
     members = {
         resourceGatewayIdentifier = {
             type = "string",
@@ -3160,6 +3294,7 @@ M.ListResourceConfigurationsInput = {
 
 M.ResourceConfigurationSummary = {
     type = "structure",
+    id = "ResourceConfigurationSummary",
     members = {
         id = {
             type = "string",
@@ -3211,6 +3346,7 @@ M.ResourceConfigurationSummary = {
 
 M.ListResourceConfigurationsOutput = {
     type = "structure",
+    id = "ListResourceConfigurationsOutput",
     members = {
         items = {
             type = "list",
@@ -3224,6 +3360,7 @@ M.ListResourceConfigurationsOutput = {
 
 M.ListResourceEndpointAssociationsInput = {
     type = "structure",
+    id = "ListResourceEndpointAssociationsInput",
     members = {
         resourceConfigurationIdentifier = {
             type = "string",
@@ -3267,6 +3404,7 @@ M.ListResourceEndpointAssociationsInput = {
 
 M.ResourceEndpointAssociationSummary = {
     type = "structure",
+    id = "ResourceEndpointAssociationSummary",
     members = {
         id = {
             type = "string",
@@ -3303,6 +3441,7 @@ M.ResourceEndpointAssociationSummary = {
 
 M.ListResourceEndpointAssociationsOutput = {
     type = "structure",
+    id = "ListResourceEndpointAssociationsOutput",
     members = {
         items = {
             type = "list",
@@ -3319,6 +3458,7 @@ M.ListResourceEndpointAssociationsOutput = {
 
 M.ListResourceGatewaysInput = {
     type = "structure",
+    id = "ListResourceGatewaysInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3337,6 +3477,7 @@ M.ListResourceGatewaysInput = {
 
 M.ResourceGatewaySummary = {
     type = "structure",
+    id = "ResourceGatewaySummary",
     members = {
         name = {
             type = "string",
@@ -3384,6 +3525,7 @@ M.ResourceGatewaySummary = {
 
 M.ListResourceGatewaysOutput = {
     type = "structure",
+    id = "ListResourceGatewaysOutput",
     members = {
         items = {
             type = "list",
@@ -3397,6 +3539,7 @@ M.ListResourceGatewaysOutput = {
 
 M.ListRulesInput = {
     type = "structure",
+    id = "ListRulesInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -3429,6 +3572,7 @@ M.ListRulesInput = {
 
 M.RuleSummary = {
     type = "structure",
+    id = "RuleSummary",
     members = {
         arn = {
             type = "string",
@@ -3462,6 +3606,7 @@ M.RuleSummary = {
 
 M.ListRulesOutput = {
     type = "structure",
+    id = "ListRulesOutput",
     members = {
         items = {
             type = "list",
@@ -3478,6 +3623,7 @@ M.ListRulesOutput = {
 
 M.ListServiceNetworkResourceAssociationsInput = {
     type = "structure",
+    id = "ListServiceNetworkResourceAssociationsInput",
     members = {
         serviceNetworkIdentifier = {
             type = "string",
@@ -3514,6 +3660,7 @@ M.ListServiceNetworkResourceAssociationsInput = {
 
 M.ServiceNetworkResourceAssociationSummary = {
     type = "structure",
+    id = "ServiceNetworkResourceAssociationSummary",
     members = {
         id = {
             type = "string",
@@ -3567,6 +3714,7 @@ M.ServiceNetworkResourceAssociationSummary = {
 
 M.ListServiceNetworkResourceAssociationsOutput = {
     type = "structure",
+    id = "ListServiceNetworkResourceAssociationsOutput",
     members = {
         items = {
             type = "list",
@@ -3583,6 +3731,7 @@ M.ListServiceNetworkResourceAssociationsOutput = {
 
 M.ListServiceNetworksInput = {
     type = "structure",
+    id = "ListServiceNetworksInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3601,6 +3750,7 @@ M.ListServiceNetworksInput = {
 
 M.ServiceNetworkSummary = {
     type = "structure",
+    id = "ServiceNetworkSummary",
     members = {
         id = {
             type = "string",
@@ -3637,6 +3787,7 @@ M.ServiceNetworkSummary = {
 
 M.ListServiceNetworksOutput = {
     type = "structure",
+    id = "ListServiceNetworksOutput",
     members = {
         items = {
             type = "list",
@@ -3653,6 +3804,7 @@ M.ListServiceNetworksOutput = {
 
 M.ListServiceNetworkServiceAssociationsInput = {
     type = "structure",
+    id = "ListServiceNetworkServiceAssociationsInput",
     members = {
         serviceNetworkIdentifier = {
             type = "string",
@@ -3683,6 +3835,7 @@ M.ListServiceNetworkServiceAssociationsInput = {
 
 M.ServiceNetworkServiceAssociationSummary = {
     type = "structure",
+    id = "ServiceNetworkServiceAssociationSummary",
     members = {
         id = {
             type = "string",
@@ -3729,6 +3882,7 @@ M.ServiceNetworkServiceAssociationSummary = {
 
 M.ListServiceNetworkServiceAssociationsOutput = {
     type = "structure",
+    id = "ListServiceNetworkServiceAssociationsOutput",
     members = {
         items = {
             type = "list",
@@ -3745,6 +3899,7 @@ M.ListServiceNetworkServiceAssociationsOutput = {
 
 M.ListServiceNetworkVpcAssociationsInput = {
     type = "structure",
+    id = "ListServiceNetworkVpcAssociationsInput",
     members = {
         serviceNetworkIdentifier = {
             type = "string",
@@ -3775,6 +3930,7 @@ M.ListServiceNetworkVpcAssociationsInput = {
 
 M.ServiceNetworkVpcAssociationSummary = {
     type = "structure",
+    id = "ServiceNetworkVpcAssociationSummary",
     members = {
         id = {
             type = "string",
@@ -3821,6 +3977,7 @@ M.ServiceNetworkVpcAssociationSummary = {
 
 M.ListServiceNetworkVpcAssociationsOutput = {
     type = "structure",
+    id = "ListServiceNetworkVpcAssociationsOutput",
     members = {
         items = {
             type = "list",
@@ -3837,6 +3994,7 @@ M.ListServiceNetworkVpcAssociationsOutput = {
 
 M.ListServiceNetworkVpcEndpointAssociationsInput = {
     type = "structure",
+    id = "ListServiceNetworkVpcEndpointAssociationsInput",
     members = {
         serviceNetworkIdentifier = {
             type = "string",
@@ -3862,6 +4020,7 @@ M.ListServiceNetworkVpcEndpointAssociationsInput = {
 
 M.ServiceNetworkEndpointAssociation = {
     type = "structure",
+    id = "ServiceNetworkEndpointAssociation",
     members = {
         vpcEndpointId = {
             type = "string",
@@ -3892,6 +4051,7 @@ M.ServiceNetworkEndpointAssociation = {
 
 M.ListServiceNetworkVpcEndpointAssociationsOutput = {
     type = "structure",
+    id = "ListServiceNetworkVpcEndpointAssociationsOutput",
     members = {
         items = {
             type = "list",
@@ -3908,6 +4068,7 @@ M.ListServiceNetworkVpcEndpointAssociationsOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3926,6 +4087,7 @@ M.ListServicesInput = {
 
 M.ServiceSummary = {
     type = "structure",
+    id = "ServiceSummary",
     members = {
         id = {
             type = "string",
@@ -3960,6 +4122,7 @@ M.ServiceSummary = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         items = {
             type = "list",
@@ -3973,6 +4136,7 @@ M.ListServicesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3986,6 +4150,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3997,6 +4162,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTargetGroupsInput = {
     type = "structure",
+    id = "ListTargetGroupsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4027,6 +4193,7 @@ M.ListTargetGroupsInput = {
 
 M.TargetGroupSummary = {
     type = "structure",
+    id = "TargetGroupSummary",
     members = {
         id = {
             type = "string",
@@ -4079,6 +4246,7 @@ M.TargetGroupSummary = {
 
 M.ListTargetGroupsOutput = {
     type = "structure",
+    id = "ListTargetGroupsOutput",
     members = {
         items = {
             type = "list",
@@ -4092,6 +4260,7 @@ M.ListTargetGroupsOutput = {
 
 M.ListTargetsInput = {
     type = "structure",
+    id = "ListTargetsInput",
     members = {
         targetGroupIdentifier = {
             type = "string",
@@ -4130,6 +4299,7 @@ M.TargetStatus = {
 
 M.TargetSummary = {
     type = "structure",
+    id = "TargetSummary",
     members = {
         id = {
             type = "string",
@@ -4148,6 +4318,7 @@ M.TargetSummary = {
 
 M.ListTargetsOutput = {
     type = "structure",
+    id = "ListTargetsOutput",
     members = {
         items = {
             type = "list",
@@ -4164,6 +4335,7 @@ M.ListTargetsOutput = {
 
 M.PutAuthPolicyInput = {
     type = "structure",
+    id = "PutAuthPolicyInput",
     members = {
         resourceIdentifier = {
             type = "string",
@@ -4183,6 +4355,7 @@ M.PutAuthPolicyInput = {
 
 M.PutAuthPolicyOutput = {
     type = "structure",
+    id = "PutAuthPolicyOutput",
     members = {
         policy = {
             type = "string",
@@ -4195,6 +4368,7 @@ M.PutAuthPolicyOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4214,10 +4388,12 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
 }
 
 M.UpdateResourceConfigurationInput = {
     type = "structure",
+    id = "UpdateResourceConfigurationInput",
     members = {
         resourceConfigurationIdentifier = {
             type = "string",
@@ -4239,6 +4415,7 @@ M.UpdateResourceConfigurationInput = {
 
 M.UpdateResourceConfigurationOutput = {
     type = "structure",
+    id = "UpdateResourceConfigurationOutput",
     members = {
         id = {
             type = "string",
@@ -4277,6 +4454,7 @@ M.UpdateResourceConfigurationOutput = {
 
 M.UpdateResourceGatewayInput = {
     type = "structure",
+    id = "UpdateResourceGatewayInput",
     members = {
         resourceGatewayIdentifier = {
             type = "string",
@@ -4294,6 +4472,7 @@ M.UpdateResourceGatewayInput = {
 
 M.UpdateResourceGatewayOutput = {
     type = "structure",
+    id = "UpdateResourceGatewayOutput",
     members = {
         name = {
             type = "string",
@@ -4326,6 +4505,7 @@ M.UpdateResourceGatewayOutput = {
 
 M.UpdateRuleInput = {
     type = "structure",
+    id = "UpdateRuleInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -4358,6 +4538,7 @@ M.UpdateRuleInput = {
 
 M.UpdateRuleOutput = {
     type = "structure",
+    id = "UpdateRuleOutput",
     members = {
         arn = {
             type = "string",
@@ -4381,6 +4562,7 @@ M.UpdateRuleOutput = {
 
 M.UpdateServiceInput = {
     type = "structure",
+    id = "UpdateServiceInput",
     members = {
         serviceIdentifier = {
             type = "string",
@@ -4400,6 +4582,7 @@ M.UpdateServiceInput = {
 
 M.UpdateServiceOutput = {
     type = "structure",
+    id = "UpdateServiceOutput",
     members = {
         id = {
             type = "string",
@@ -4424,6 +4607,7 @@ M.UpdateServiceOutput = {
 
 M.UpdateServiceNetworkInput = {
     type = "structure",
+    id = "UpdateServiceNetworkInput",
     members = {
         serviceNetworkIdentifier = {
             type = "string",
@@ -4443,6 +4627,7 @@ M.UpdateServiceNetworkInput = {
 
 M.UpdateServiceNetworkOutput = {
     type = "structure",
+    id = "UpdateServiceNetworkOutput",
     members = {
         id = {
             type = "string",
@@ -4461,6 +4646,7 @@ M.UpdateServiceNetworkOutput = {
 
 M.UpdateServiceNetworkVpcAssociationInput = {
     type = "structure",
+    id = "UpdateServiceNetworkVpcAssociationInput",
     members = {
         serviceNetworkVpcAssociationIdentifier = {
             type = "string",
@@ -4481,6 +4667,7 @@ M.UpdateServiceNetworkVpcAssociationInput = {
 
 M.UpdateServiceNetworkVpcAssociationOutput = {
     type = "structure",
+    id = "UpdateServiceNetworkVpcAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -4503,6 +4690,7 @@ M.UpdateServiceNetworkVpcAssociationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4524,10 +4712,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.RegisterTargetsInput = {
     type = "structure",
+    id = "RegisterTargetsInput",
     members = {
         targetGroupIdentifier = {
             type = "string",
@@ -4548,6 +4738,7 @@ M.RegisterTargetsInput = {
 
 M.RegisterTargetsOutput = {
     type = "structure",
+    id = "RegisterTargetsOutput",
     members = {
         successful = {
             type = "list",
@@ -4562,6 +4753,7 @@ M.RegisterTargetsOutput = {
 
 M.UpdateTargetGroupInput = {
     type = "structure",
+    id = "UpdateTargetGroupInput",
     members = {
         targetGroupIdentifier = {
             type = "string",
@@ -4578,6 +4770,7 @@ M.UpdateTargetGroupInput = {
 
 M.UpdateTargetGroupOutput = {
     type = "structure",
+    id = "UpdateTargetGroupOutput",
     members = {
         id = {
             type = "string",
@@ -4600,6 +4793,7 @@ M.UpdateTargetGroupOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4621,6 +4815,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

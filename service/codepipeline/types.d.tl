@@ -1109,13 +1109,13 @@ end
 
 local type ConditionType = "BEFORE_ENTRY" | "ON_SUCCESS"
 
-local type JobStatus = "Created" | "Queued" | "Dispatched" | "InProgress" | "TimedOut" | "Succeeded" | "Failed"
+local type ActionOwner = "AWS" | "ThirdParty" | "Custom"
 
 local type StageRetryMode = "FAILED_ACTIONS" | "ALL_ACTIONS"
 
-local type ActionCategory = "Source" | "Build" | "Deploy" | "Test" | "Invoke" | "Approval" | "Compute"
+local type JobStatus = "Created" | "Queued" | "Dispatched" | "InProgress" | "TimedOut" | "Succeeded" | "Failed"
 
-local type ActionOwner = "AWS" | "ThirdParty" | "Custom"
+local type ActionCategory = "Source" | "Build" | "Deploy" | "Test" | "Invoke" | "Approval" | "Compute"
 
 local type StageTransitionType = "Inbound" | "Outbound"
 

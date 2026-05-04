@@ -2,6 +2,7 @@ local M = {}
 
 M.SearchException = {
     type = "structure",
+    id = "SearchException",
     error = "client",
     members = {
         message = {
@@ -19,6 +20,7 @@ M.QueryParser = {
 
 M.SearchInput = {
     type = "structure",
+    id = "SearchInput",
     members = {
         cursor = {
             type = "string",
@@ -113,6 +115,7 @@ M.SearchInput = {
 
 M.Bucket = {
     type = "structure",
+    id = "Bucket",
     members = {
         value = {
             type = "string",
@@ -128,6 +131,7 @@ M.Bucket = {
 
 M.BucketInfo = {
     type = "structure",
+    id = "BucketInfo",
     members = {
         buckets = {
             type = "list",
@@ -138,6 +142,7 @@ M.BucketInfo = {
 
 M.Hit = {
     type = "structure",
+    id = "Hit",
     members = {
         id = {
             type = "string",
@@ -162,6 +167,7 @@ M.Hit = {
 
 M.Hits = {
     type = "structure",
+    id = "Hits",
     members = {
         found = {
             type = "long",
@@ -187,6 +193,7 @@ M.Hits = {
 
 M.FieldStats = {
     type = "structure",
+    id = "FieldStats",
     members = {
         min = {
             type = "string",
@@ -232,6 +239,7 @@ M.FieldStats = {
 
 M.SearchStatus = {
     type = "structure",
+    id = "SearchStatus",
     members = {
         timems = {
             type = "long",
@@ -247,6 +255,7 @@ M.SearchStatus = {
 
 M.SearchOutput = {
     type = "structure",
+    id = "SearchOutput",
     members = {
         status = M.SearchStatus,
         hits = M.Hits,
@@ -265,6 +274,7 @@ M.SearchOutput = {
 
 M.SuggestInput = {
     type = "structure",
+    id = "SuggestInput",
     members = {
         query = {
             type = "string",
@@ -292,6 +302,7 @@ M.SuggestInput = {
 
 M.SuggestStatus = {
     type = "structure",
+    id = "SuggestStatus",
     members = {
         timems = {
             type = "long",
@@ -307,6 +318,7 @@ M.SuggestStatus = {
 
 M.SuggestionMatch = {
     type = "structure",
+    id = "SuggestionMatch",
     members = {
         suggestion = {
             type = "string",
@@ -325,6 +337,7 @@ M.SuggestionMatch = {
 
 M.SuggestModel = {
     type = "structure",
+    id = "SuggestModel",
     members = {
         query = {
             type = "string",
@@ -344,6 +357,7 @@ M.SuggestModel = {
 
 M.SuggestOutput = {
     type = "structure",
+    id = "SuggestOutput",
     members = {
         status = M.SuggestStatus,
         suggest = M.SuggestModel,
@@ -352,6 +366,7 @@ M.SuggestOutput = {
 
 M.DocumentServiceException = {
     type = "structure",
+    id = "DocumentServiceException",
     error = "client",
     members = {
         status = {
@@ -370,6 +385,7 @@ M.ContentType = {
 
 M.UploadDocumentsInput = {
     type = "structure",
+    id = "UploadDocumentsInput",
     members = {
         documents = {
             type = "blob",
@@ -390,6 +406,7 @@ M.UploadDocumentsInput = {
 
 M.DocumentServiceWarning = {
     type = "structure",
+    id = "DocumentServiceWarning",
     members = {
         message = {
             type = "string",
@@ -399,6 +416,7 @@ M.DocumentServiceWarning = {
 
 M.UploadDocumentsOutput = {
     type = "structure",
+    id = "UploadDocumentsOutput",
     members = {
         status = {
             type = "string",

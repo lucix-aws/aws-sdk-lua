@@ -11,6 +11,7 @@ M.OAuth2ErrorCode = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         error = {
@@ -30,6 +31,7 @@ M.AccessDeniedException = {
 
 M.AccessToken = {
     type = "structure",
+    id = "AccessToken",
     members = {
         accessKeyId = {
             type = "string",
@@ -57,6 +59,7 @@ M.AccessToken = {
 
 M.CreateOAuth2TokenRequestBody = {
     type = "structure",
+    id = "CreateOAuth2TokenRequestBody",
     members = {
         clientId = {
             type = "string",
@@ -98,6 +101,7 @@ M.CreateOAuth2TokenRequestBody = {
 
 M.CreateOAuth2TokenInput = {
     type = "structure",
+    id = "CreateOAuth2TokenInput",
     members = {
         tokenInput = setmetatable({ traits = {
             http_payload = true,
@@ -108,6 +112,7 @@ M.CreateOAuth2TokenInput = {
 
 M.CreateOAuth2TokenResponseBody = {
     type = "structure",
+    id = "CreateOAuth2TokenResponseBody",
     members = {
         accessToken = setmetatable({ traits = {
             json_name = "accessToken",
@@ -145,6 +150,7 @@ M.CreateOAuth2TokenResponseBody = {
 
 M.CreateOAuth2TokenOutput = {
     type = "structure",
+    id = "CreateOAuth2TokenOutput",
     members = {
         tokenOutput = setmetatable({ traits = {
             http_payload = true,
@@ -155,6 +161,7 @@ M.CreateOAuth2TokenOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         error = {
@@ -174,6 +181,7 @@ M.InternalServerException = {
 
 M.TooManyRequestsError = {
     type = "structure",
+    id = "TooManyRequestsError",
     error = "client",
     members = {
         error = {
@@ -193,6 +201,7 @@ M.TooManyRequestsError = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         error = {

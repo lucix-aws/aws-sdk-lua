@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.ConflictException = {
 
 M.DeleteKeyInput = {
     type = "structure",
+    id = "DeleteKeyInput",
     members = {
         KvsARN = {
             type = "string",
@@ -49,6 +52,7 @@ M.DeleteKeyInput = {
 
 M.DeleteKeyOutput = {
     type = "structure",
+    id = "DeleteKeyOutput",
     members = {
         ItemCount = {
             type = "integer",
@@ -74,6 +78,7 @@ M.DeleteKeyOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -84,6 +89,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -94,6 +100,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -104,6 +111,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -114,6 +122,7 @@ M.ValidationException = {
 
 M.DescribeKeyValueStoreInput = {
     type = "structure",
+    id = "DescribeKeyValueStoreInput",
     members = {
         KvsARN = {
             type = "string",
@@ -127,6 +136,7 @@ M.DescribeKeyValueStoreInput = {
 
 M.DescribeKeyValueStoreOutput = {
     type = "structure",
+    id = "DescribeKeyValueStoreOutput",
     members = {
         ItemCount = {
             type = "integer",
@@ -173,6 +183,7 @@ M.DescribeKeyValueStoreOutput = {
 
 M.GetKeyInput = {
     type = "structure",
+    id = "GetKeyInput",
     members = {
         KvsARN = {
             type = "string",
@@ -193,6 +204,7 @@ M.GetKeyInput = {
 
 M.GetKeyOutput = {
     type = "structure",
+    id = "GetKeyOutput",
     members = {
         Key = {
             type = "string",
@@ -223,6 +235,7 @@ M.GetKeyOutput = {
 
 M.ListKeysInput = {
     type = "structure",
+    id = "ListKeysInput",
     members = {
         KvsARN = {
             type = "string",
@@ -249,6 +262,7 @@ M.ListKeysInput = {
 
 M.ListKeysResponseListItem = {
     type = "structure",
+    id = "ListKeysResponseListItem",
     members = {
         Key = {
             type = "string",
@@ -267,6 +281,7 @@ M.ListKeysResponseListItem = {
 
 M.ListKeysOutput = {
     type = "structure",
+    id = "ListKeysOutput",
     members = {
         NextToken = {
             type = "string",
@@ -280,6 +295,7 @@ M.ListKeysOutput = {
 
 M.PutKeyInput = {
     type = "structure",
+    id = "PutKeyInput",
     members = {
         Key = {
             type = "string",
@@ -313,6 +329,7 @@ M.PutKeyInput = {
 
 M.PutKeyOutput = {
     type = "structure",
+    id = "PutKeyOutput",
     members = {
         ItemCount = {
             type = "integer",
@@ -338,6 +355,7 @@ M.PutKeyOutput = {
 
 M.DeleteKeyRequestListItem = {
     type = "structure",
+    id = "DeleteKeyRequestListItem",
     members = {
         Key = {
             type = "string",
@@ -350,6 +368,7 @@ M.DeleteKeyRequestListItem = {
 
 M.PutKeyRequestListItem = {
     type = "structure",
+    id = "PutKeyRequestListItem",
     members = {
         Key = {
             type = "string",
@@ -368,6 +387,7 @@ M.PutKeyRequestListItem = {
 
 M.UpdateKeysInput = {
     type = "structure",
+    id = "UpdateKeysInput",
     members = {
         KvsARN = {
             type = "string",
@@ -396,6 +416,7 @@ M.UpdateKeysInput = {
 
 M.UpdateKeysOutput = {
     type = "structure",
+    id = "UpdateKeysOutput",
     members = {
         ItemCount = {
             type = "integer",

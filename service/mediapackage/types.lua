@@ -17,6 +17,7 @@ M.__PeriodTriggersElement = {
 
 M.EgressAccessLogs = {
     type = "structure",
+    id = "EgressAccessLogs",
     members = {
         LogGroupName = {
             type = "string",
@@ -29,6 +30,7 @@ M.EgressAccessLogs = {
 
 M.IngestEndpoint = {
     type = "structure",
+    id = "IngestEndpoint",
     members = {
         Id = {
             type = "string",
@@ -59,6 +61,7 @@ M.IngestEndpoint = {
 
 M.HlsIngest = {
     type = "structure",
+    id = "HlsIngest",
     members = {
         IngestEndpoints = {
             type = "list",
@@ -72,6 +75,7 @@ M.HlsIngest = {
 
 M.IngressAccessLogs = {
     type = "structure",
+    id = "IngressAccessLogs",
     members = {
         LogGroupName = {
             type = "string",
@@ -84,6 +88,7 @@ M.IngressAccessLogs = {
 
 M.Channel = {
     type = "structure",
+    id = "Channel",
     members = {
         Arn = {
             type = "string",
@@ -131,6 +136,7 @@ M.Channel = {
 
 M.S3Destination = {
     type = "structure",
+    id = "S3Destination",
     members = {
         BucketName = {
             type = "string",
@@ -164,6 +170,7 @@ M.Status = {
 
 M.HarvestJob = {
     type = "structure",
+    id = "HarvestJob",
     members = {
         Arn = {
             type = "string",
@@ -241,6 +248,7 @@ M.PlaylistType = {
 
 M.HlsManifest = {
     type = "structure",
+    id = "HlsManifest",
     members = {
         AdMarkers = {
             type = "string",
@@ -309,6 +317,7 @@ M.HlsManifest = {
 
 M.HlsManifestCreateOrUpdateParameters = {
     type = "structure",
+    id = "HlsManifestCreateOrUpdateParameters",
     members = {
         AdMarkers = {
             type = "string",
@@ -371,6 +380,7 @@ M.HlsManifestCreateOrUpdateParameters = {
 
 M.Authorization = {
     type = "structure",
+    id = "Authorization",
     members = {
         CdnIdentifierSecret = {
             type = "string",
@@ -417,6 +427,7 @@ M.PresetSpeke20Video = {
 
 M.EncryptionContractConfiguration = {
     type = "structure",
+    id = "EncryptionContractConfiguration",
     members = {
         PresetSpeke20Audio = {
             type = "string",
@@ -437,6 +448,7 @@ M.EncryptionContractConfiguration = {
 
 M.SpekeKeyProvider = {
     type = "structure",
+    id = "SpekeKeyProvider",
     members = {
         CertificateArn = {
             type = "string",
@@ -481,6 +493,7 @@ M.SpekeKeyProvider = {
 
 M.CmafEncryption = {
     type = "structure",
+    id = "CmafEncryption",
     members = {
         ConstantInitializationVector = {
             type = "string",
@@ -515,6 +528,7 @@ M.StreamOrder = {
 
 M.StreamSelection = {
     type = "structure",
+    id = "StreamSelection",
     members = {
         MaxVideoBitsPerSecond = {
             type = "integer",
@@ -539,6 +553,7 @@ M.StreamSelection = {
 
 M.CmafPackage = {
     type = "structure",
+    id = "CmafPackage",
     members = {
         Encryption = setmetatable({ traits = {
             json_name = "encryption",
@@ -570,6 +585,7 @@ M.CmafPackage = {
 
 M.DashEncryption = {
     type = "structure",
+    id = "DashEncryption",
     members = {
         KeyRotationIntervalSeconds = {
             type = "integer",
@@ -612,6 +628,7 @@ M.UtcTiming = {
 
 M.DashPackage = {
     type = "structure",
+    id = "DashPackage",
     members = {
         AdTriggers = {
             type = "list",
@@ -715,6 +732,7 @@ M.EncryptionMethod = {
 
 M.HlsEncryption = {
     type = "structure",
+    id = "HlsEncryption",
     members = {
         ConstantInitializationVector = {
             type = "string",
@@ -749,6 +767,7 @@ M.HlsEncryption = {
 
 M.HlsPackage = {
     type = "structure",
+    id = "HlsPackage",
     members = {
         AdMarkers = {
             type = "string",
@@ -822,6 +841,7 @@ M.HlsPackage = {
 
 M.MssEncryption = {
     type = "structure",
+    id = "MssEncryption",
     members = {
         SpekeKeyProvider = setmetatable({ traits = {
             json_name = "spekeKeyProvider",
@@ -832,6 +852,7 @@ M.MssEncryption = {
 
 M.MssPackage = {
     type = "structure",
+    id = "MssPackage",
     members = {
         Encryption = setmetatable({ traits = {
             json_name = "encryption",
@@ -861,6 +882,7 @@ M.Origination = {
 
 M.OriginEndpoint = {
     type = "structure",
+    id = "OriginEndpoint",
     members = {
         Arn = {
             type = "string",
@@ -957,6 +979,7 @@ M.OriginEndpoint = {
 
 M.CmafPackageCreateOrUpdateParameters = {
     type = "structure",
+    id = "CmafPackageCreateOrUpdateParameters",
     members = {
         Encryption = setmetatable({ traits = {
             json_name = "encryption",
@@ -988,6 +1011,7 @@ M.CmafPackageCreateOrUpdateParameters = {
 
 M.ConfigureLogsInput = {
     type = "structure",
+    id = "ConfigureLogsInput",
     members = {
         EgressAccessLogs = setmetatable({ traits = {
             json_name = "egressAccessLogs",
@@ -1007,6 +1031,7 @@ M.ConfigureLogsInput = {
 
 M.ConfigureLogsOutput = {
     type = "structure",
+    id = "ConfigureLogsOutput",
     members = {
         Arn = {
             type = "string",
@@ -1054,6 +1079,7 @@ M.ConfigureLogsOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Message = {
@@ -1067,6 +1093,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -1080,6 +1107,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1093,6 +1121,7 @@ M.NotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -1106,6 +1135,7 @@ M.ServiceUnavailableException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -1119,6 +1149,7 @@ M.TooManyRequestsException = {
 
 M.UnprocessableEntityException = {
     type = "structure",
+    id = "UnprocessableEntityException",
     error = "client",
     members = {
         Message = {
@@ -1132,6 +1163,7 @@ M.UnprocessableEntityException = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         Description = {
             type = "string",
@@ -1159,6 +1191,7 @@ M.CreateChannelInput = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -1206,6 +1239,7 @@ M.CreateChannelOutput = {
 
 M.CreateHarvestJobInput = {
     type = "structure",
+    id = "CreateHarvestJobInput",
     members = {
         EndTime = {
             type = "string",
@@ -1244,6 +1278,7 @@ M.CreateHarvestJobInput = {
 
 M.CreateHarvestJobOutput = {
     type = "structure",
+    id = "CreateHarvestJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -1301,6 +1336,7 @@ M.CreateHarvestJobOutput = {
 
 M.CreateOriginEndpointInput = {
     type = "structure",
+    id = "CreateOriginEndpointInput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -1381,6 +1417,7 @@ M.CreateOriginEndpointInput = {
 
 M.CreateOriginEndpointOutput = {
     type = "structure",
+    id = "CreateOriginEndpointOutput",
     members = {
         Arn = {
             type = "string",
@@ -1477,6 +1514,7 @@ M.CreateOriginEndpointOutput = {
 
 M.DeleteChannelInput = {
     type = "structure",
+    id = "DeleteChannelInput",
     members = {
         Id = {
             type = "string",
@@ -1490,10 +1528,12 @@ M.DeleteChannelInput = {
 
 M.DeleteChannelOutput = {
     type = "structure",
+    id = "DeleteChannelOutput",
 }
 
 M.DeleteOriginEndpointInput = {
     type = "structure",
+    id = "DeleteOriginEndpointInput",
     members = {
         Id = {
             type = "string",
@@ -1507,10 +1547,12 @@ M.DeleteOriginEndpointInput = {
 
 M.DeleteOriginEndpointOutput = {
     type = "structure",
+    id = "DeleteOriginEndpointOutput",
 }
 
 M.DescribeChannelInput = {
     type = "structure",
+    id = "DescribeChannelInput",
     members = {
         Id = {
             type = "string",
@@ -1524,6 +1566,7 @@ M.DescribeChannelInput = {
 
 M.DescribeChannelOutput = {
     type = "structure",
+    id = "DescribeChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -1571,6 +1614,7 @@ M.DescribeChannelOutput = {
 
 M.DescribeHarvestJobInput = {
     type = "structure",
+    id = "DescribeHarvestJobInput",
     members = {
         Id = {
             type = "string",
@@ -1584,6 +1628,7 @@ M.DescribeHarvestJobInput = {
 
 M.DescribeHarvestJobOutput = {
     type = "structure",
+    id = "DescribeHarvestJobOutput",
     members = {
         Arn = {
             type = "string",
@@ -1641,6 +1686,7 @@ M.DescribeHarvestJobOutput = {
 
 M.DescribeOriginEndpointInput = {
     type = "structure",
+    id = "DescribeOriginEndpointInput",
     members = {
         Id = {
             type = "string",
@@ -1654,6 +1700,7 @@ M.DescribeOriginEndpointInput = {
 
 M.DescribeOriginEndpointOutput = {
     type = "structure",
+    id = "DescribeOriginEndpointOutput",
     members = {
         Arn = {
             type = "string",
@@ -1750,6 +1797,7 @@ M.DescribeOriginEndpointOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1768,6 +1816,7 @@ M.ListChannelsInput = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         Channels = {
             type = "list",
@@ -1787,6 +1836,7 @@ M.ListChannelsOutput = {
 
 M.ListHarvestJobsInput = {
     type = "structure",
+    id = "ListHarvestJobsInput",
     members = {
         IncludeChannelId = {
             type = "string",
@@ -1817,6 +1867,7 @@ M.ListHarvestJobsInput = {
 
 M.ListHarvestJobsOutput = {
     type = "structure",
+    id = "ListHarvestJobsOutput",
     members = {
         HarvestJobs = {
             type = "list",
@@ -1836,6 +1887,7 @@ M.ListHarvestJobsOutput = {
 
 M.ListOriginEndpointsInput = {
     type = "structure",
+    id = "ListOriginEndpointsInput",
     members = {
         ChannelId = {
             type = "string",
@@ -1860,6 +1912,7 @@ M.ListOriginEndpointsInput = {
 
 M.ListOriginEndpointsOutput = {
     type = "structure",
+    id = "ListOriginEndpointsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1879,6 +1932,7 @@ M.ListOriginEndpointsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1892,6 +1946,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1906,6 +1961,7 @@ M.ListTagsForResourceOutput = {
 
 M.RotateChannelCredentialsInput = {
     type = "structure",
+    id = "RotateChannelCredentialsInput",
     members = {
         Id = {
             type = "string",
@@ -1919,6 +1975,7 @@ M.RotateChannelCredentialsInput = {
 
 M.RotateChannelCredentialsOutput = {
     type = "structure",
+    id = "RotateChannelCredentialsOutput",
     members = {
         Arn = {
             type = "string",
@@ -1966,6 +2023,7 @@ M.RotateChannelCredentialsOutput = {
 
 M.RotateIngestEndpointCredentialsInput = {
     type = "structure",
+    id = "RotateIngestEndpointCredentialsInput",
     members = {
         Id = {
             type = "string",
@@ -1986,6 +2044,7 @@ M.RotateIngestEndpointCredentialsInput = {
 
 M.RotateIngestEndpointCredentialsOutput = {
     type = "structure",
+    id = "RotateIngestEndpointCredentialsOutput",
     members = {
         Arn = {
             type = "string",
@@ -2033,6 +2092,7 @@ M.RotateIngestEndpointCredentialsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2055,10 +2115,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2080,10 +2142,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         Description = {
             type = "string",
@@ -2103,6 +2167,7 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -2150,6 +2215,7 @@ M.UpdateChannelOutput = {
 
 M.UpdateOriginEndpointInput = {
     type = "structure",
+    id = "UpdateOriginEndpointInput",
     members = {
         Authorization = setmetatable({ traits = {
             json_name = "authorization",
@@ -2215,6 +2281,7 @@ M.UpdateOriginEndpointInput = {
 
 M.UpdateOriginEndpointOutput = {
     type = "structure",
+    id = "UpdateOriginEndpointOutput",
     members = {
         Arn = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AcknowledgeJobInput = {
     type = "structure",
+    id = "AcknowledgeJobInput",
     members = {
         jobId = {
             type = "string",
@@ -30,6 +31,7 @@ M.JobStatus = {
 
 M.AcknowledgeJobOutput = {
     type = "structure",
+    id = "AcknowledgeJobOutput",
     members = {
         status = {
             type = "string",
@@ -39,6 +41,7 @@ M.AcknowledgeJobOutput = {
 
 M.InvalidNonceException = {
     type = "structure",
+    id = "InvalidNonceException",
     error = "client",
     members = {
         message = {
@@ -49,6 +52,7 @@ M.InvalidNonceException = {
 
 M.JobNotFoundException = {
     type = "structure",
+    id = "JobNotFoundException",
     error = "client",
     members = {
         message = {
@@ -59,6 +63,7 @@ M.JobNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -69,6 +74,7 @@ M.ValidationException = {
 
 M.AcknowledgeThirdPartyJobInput = {
     type = "structure",
+    id = "AcknowledgeThirdPartyJobInput",
     members = {
         jobId = {
             type = "string",
@@ -93,6 +99,7 @@ M.AcknowledgeThirdPartyJobInput = {
 
 M.AcknowledgeThirdPartyJobOutput = {
     type = "structure",
+    id = "AcknowledgeThirdPartyJobOutput",
     members = {
         status = {
             type = "string",
@@ -102,6 +109,7 @@ M.AcknowledgeThirdPartyJobOutput = {
 
 M.InvalidClientTokenException = {
     type = "structure",
+    id = "InvalidClientTokenException",
     error = "client",
     members = {
         message = {
@@ -122,6 +130,7 @@ M.ActionCategory = {
 
 M.ActionConfiguration = {
     type = "structure",
+    id = "ActionConfiguration",
     members = {
         configuration = {
             type = "map",
@@ -139,6 +148,7 @@ M.ActionConfigurationPropertyType = {
 
 M.ActionConfigurationProperty = {
     type = "structure",
+    id = "ActionConfigurationProperty",
     members = {
         name = {
             type = "string",
@@ -184,6 +194,7 @@ M.ActionConfigurationProperty = {
 
 M.ActionContext = {
     type = "structure",
+    id = "ActionContext",
     members = {
         name = {
             type = "string",
@@ -202,6 +213,7 @@ M.ActionOwner = {
 
 M.ActionTypeId = {
     type = "structure",
+    id = "ActionTypeId",
     members = {
         category = {
             type = "string",
@@ -237,6 +249,7 @@ M.EnvironmentVariableType = {
 
 M.EnvironmentVariable = {
     type = "structure",
+    id = "EnvironmentVariable",
     members = {
         name = {
             type = "string",
@@ -258,6 +271,7 @@ M.EnvironmentVariable = {
 
 M.InputArtifact = {
     type = "structure",
+    id = "InputArtifact",
     members = {
         name = {
             type = "string",
@@ -270,6 +284,7 @@ M.InputArtifact = {
 
 M.OutputArtifact = {
     type = "structure",
+    id = "OutputArtifact",
     members = {
         name = {
             type = "string",
@@ -286,6 +301,7 @@ M.OutputArtifact = {
 
 M.ActionDeclaration = {
     type = "structure",
+    id = "ActionDeclaration",
     members = {
         name = {
             type = "string",
@@ -341,6 +357,7 @@ M.ActionDeclaration = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         code = {
             type = "string",
@@ -360,6 +377,7 @@ M.ActionExecutionStatus = {
 
 M.ActionExecution = {
     type = "structure",
+    id = "ActionExecution",
     members = {
         actionExecutionId = {
             type = "string",
@@ -397,6 +415,7 @@ M.ActionExecution = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucket = {
             type = "string",
@@ -409,6 +428,7 @@ M.S3Location = {
 
 M.ArtifactDetail = {
     type = "structure",
+    id = "ArtifactDetail",
     members = {
         name = {
             type = "string",
@@ -419,6 +439,7 @@ M.ArtifactDetail = {
 
 M.ActionExecutionInput = {
     type = "structure",
+    id = "ActionExecutionInput",
     members = {
         actionTypeId = M.ActionTypeId,
         configuration = {
@@ -449,6 +470,7 @@ M.ActionExecutionInput = {
 
 M.ActionExecutionResult = {
     type = "structure",
+    id = "ActionExecutionResult",
     members = {
         externalExecutionId = {
             type = "string",
@@ -468,6 +490,7 @@ M.ActionExecutionResult = {
 
 M.ActionExecutionOutput = {
     type = "structure",
+    id = "ActionExecutionOutput",
     members = {
         outputArtifacts = {
             type = "list",
@@ -484,6 +507,7 @@ M.ActionExecutionOutput = {
 
 M.ActionExecutionDetail = {
     type = "structure",
+    id = "ActionExecutionDetail",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -524,6 +548,7 @@ M.StartTimeRange = {
 
 M.LatestInPipelineExecutionFilter = {
     type = "structure",
+    id = "LatestInPipelineExecutionFilter",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -542,6 +567,7 @@ M.LatestInPipelineExecutionFilter = {
 
 M.ActionExecutionFilter = {
     type = "structure",
+    id = "ActionExecutionFilter",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -552,6 +578,7 @@ M.ActionExecutionFilter = {
 
 M.ActionExecutionNotFoundException = {
     type = "structure",
+    id = "ActionExecutionNotFoundException",
     error = "client",
     members = {
         message = {
@@ -562,6 +589,7 @@ M.ActionExecutionNotFoundException = {
 
 M.ActionNotFoundException = {
     type = "structure",
+    id = "ActionNotFoundException",
     error = "client",
     members = {
         message = {
@@ -572,6 +600,7 @@ M.ActionNotFoundException = {
 
 M.ActionRevision = {
     type = "structure",
+    id = "ActionRevision",
     members = {
         revisionId = {
             type = "string",
@@ -596,6 +625,7 @@ M.ActionRevision = {
 
 M.ActionState = {
     type = "structure",
+    id = "ActionState",
     members = {
         actionName = {
             type = "string",
@@ -613,6 +643,7 @@ M.ActionState = {
 
 M.ArtifactDetails = {
     type = "structure",
+    id = "ArtifactDetails",
     members = {
         minimumCount = {
             type = "integer",
@@ -633,6 +664,7 @@ M.ArtifactDetails = {
 
 M.ActionTypeSettings = {
     type = "structure",
+    id = "ActionTypeSettings",
     members = {
         thirdPartyConfigurationUrl = {
             type = "string",
@@ -651,6 +683,7 @@ M.ActionTypeSettings = {
 
 M.ActionType = {
     type = "structure",
+    id = "ActionType",
     members = {
         id = setmetatable({ traits = {
             required = true,
@@ -671,6 +704,7 @@ M.ActionType = {
 
 M.ActionTypeArtifactDetails = {
     type = "structure",
+    id = "ActionTypeArtifactDetails",
     members = {
         minimumCount = {
             type = "integer",
@@ -691,6 +725,7 @@ M.ActionTypeArtifactDetails = {
 
 M.JobWorkerExecutorConfiguration = {
     type = "structure",
+    id = "JobWorkerExecutorConfiguration",
     members = {
         pollingAccounts = {
             type = "list",
@@ -705,6 +740,7 @@ M.JobWorkerExecutorConfiguration = {
 
 M.LambdaExecutorConfiguration = {
     type = "structure",
+    id = "LambdaExecutorConfiguration",
     members = {
         lambdaFunctionArn = {
             type = "string",
@@ -717,6 +753,7 @@ M.LambdaExecutorConfiguration = {
 
 M.ExecutorConfiguration = {
     type = "structure",
+    id = "ExecutorConfiguration",
     members = {
         lambdaExecutorConfiguration = M.LambdaExecutorConfiguration,
         jobWorkerExecutorConfiguration = M.JobWorkerExecutorConfiguration,
@@ -730,6 +767,7 @@ M.ExecutorType = {
 
 M.ActionTypeExecutor = {
     type = "structure",
+    id = "ActionTypeExecutor",
     members = {
         configuration = setmetatable({ traits = {
             required = true,
@@ -751,6 +789,7 @@ M.ActionTypeExecutor = {
 
 M.ActionTypeIdentifier = {
     type = "structure",
+    id = "ActionTypeIdentifier",
     members = {
         category = {
             type = "string",
@@ -781,6 +820,7 @@ M.ActionTypeIdentifier = {
 
 M.ActionTypePermissions = {
     type = "structure",
+    id = "ActionTypePermissions",
     members = {
         allowedAccounts = {
             type = "list",
@@ -794,6 +834,7 @@ M.ActionTypePermissions = {
 
 M.ActionTypeProperty = {
     type = "structure",
+    id = "ActionTypeProperty",
     members = {
         name = {
             type = "string",
@@ -836,6 +877,7 @@ M.ActionTypeProperty = {
 
 M.ActionTypeUrls = {
     type = "structure",
+    id = "ActionTypeUrls",
     members = {
         configurationUrl = {
             type = "string",
@@ -854,6 +896,7 @@ M.ActionTypeUrls = {
 
 M.ActionTypeDeclaration = {
     type = "structure",
+    id = "ActionTypeDeclaration",
     members = {
         description = {
             type = "string",
@@ -881,6 +924,7 @@ M.ActionTypeDeclaration = {
 
 M.ActionTypeNotFoundException = {
     type = "structure",
+    id = "ActionTypeNotFoundException",
     error = "client",
     members = {
         message = {
@@ -891,6 +935,7 @@ M.ActionTypeNotFoundException = {
 
 M.ApprovalAlreadyCompletedException = {
     type = "structure",
+    id = "ApprovalAlreadyCompletedException",
     error = "client",
     members = {
         message = {
@@ -906,6 +951,7 @@ M.ApprovalStatus = {
 
 M.ApprovalResult = {
     type = "structure",
+    id = "ApprovalResult",
     members = {
         summary = {
             type = "string",
@@ -924,6 +970,7 @@ M.ApprovalResult = {
 
 M.S3ArtifactLocation = {
     type = "structure",
+    id = "S3ArtifactLocation",
     members = {
         bucketName = {
             type = "string",
@@ -946,6 +993,7 @@ M.ArtifactLocationType = {
 
 M.ArtifactLocation = {
     type = "structure",
+    id = "ArtifactLocation",
     members = {
         type = {
             type = "string",
@@ -956,6 +1004,7 @@ M.ArtifactLocation = {
 
 M.Artifact = {
     type = "structure",
+    id = "Artifact",
     members = {
         name = {
             type = "string",
@@ -969,6 +1018,7 @@ M.Artifact = {
 
 M.ArtifactRevision = {
     type = "structure",
+    id = "ArtifactRevision",
     members = {
         name = {
             type = "string",
@@ -997,6 +1047,7 @@ M.EncryptionKeyType = {
 
 M.EncryptionKey = {
     type = "structure",
+    id = "EncryptionKey",
     members = {
         id = {
             type = "string",
@@ -1019,6 +1070,7 @@ M.ArtifactStoreType = {
 
 M.ArtifactStore = {
     type = "structure",
+    id = "ArtifactStore",
     members = {
         type = {
             type = "string",
@@ -1038,6 +1090,7 @@ M.ArtifactStore = {
 
 M.AWSSessionCredentials = {
     type = "structure",
+    id = "AWSSessionCredentials",
     members = {
         accessKeyId = {
             type = "string",
@@ -1077,6 +1130,7 @@ M.RuleOwner = {
 
 M.RuleTypeId = {
     type = "structure",
+    id = "RuleTypeId",
     members = {
         category = {
             type = "string",
@@ -1101,6 +1155,7 @@ M.RuleTypeId = {
 
 M.RuleDeclaration = {
     type = "structure",
+    id = "RuleDeclaration",
     members = {
         name = {
             type = "string",
@@ -1138,6 +1193,7 @@ M.RuleDeclaration = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         result = {
             type = "string",
@@ -1151,6 +1207,7 @@ M.Condition = {
 
 M.BeforeEntryConditions = {
     type = "structure",
+    id = "BeforeEntryConditions",
     members = {
         conditions = {
             type = "list",
@@ -1168,6 +1225,7 @@ M.BlockerType = {
 
 M.BlockerDeclaration = {
     type = "structure",
+    id = "BlockerDeclaration",
     members = {
         name = {
             type = "string",
@@ -1186,6 +1244,7 @@ M.BlockerDeclaration = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -1196,6 +1255,7 @@ M.ConcurrentModificationException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -1214,6 +1274,7 @@ M.Tag = {
 
 M.CreateCustomActionTypeInput = {
     type = "structure",
+    id = "CreateCustomActionTypeInput",
     members = {
         category = {
             type = "string",
@@ -1253,6 +1314,7 @@ M.CreateCustomActionTypeInput = {
 
 M.CreateCustomActionTypeOutput = {
     type = "structure",
+    id = "CreateCustomActionTypeOutput",
     members = {
         actionType = setmetatable({ traits = {
             required = true,
@@ -1266,6 +1328,7 @@ M.CreateCustomActionTypeOutput = {
 
 M.InvalidTagsException = {
     type = "structure",
+    id = "InvalidTagsException",
     error = "client",
     members = {
         message = {
@@ -1276,6 +1339,7 @@ M.InvalidTagsException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -1286,6 +1350,7 @@ M.LimitExceededException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -1312,6 +1377,7 @@ M.StageRetryMode = {
 
 M.RetryConfiguration = {
     type = "structure",
+    id = "RetryConfiguration",
     members = {
         retryMode = {
             type = "string",
@@ -1321,6 +1387,7 @@ M.RetryConfiguration = {
 
 M.FailureConditions = {
     type = "structure",
+    id = "FailureConditions",
     members = {
         result = {
             type = "string",
@@ -1335,6 +1402,7 @@ M.FailureConditions = {
 
 M.SuccessConditions = {
     type = "structure",
+    id = "SuccessConditions",
     members = {
         conditions = {
             type = "list",
@@ -1348,6 +1416,7 @@ M.SuccessConditions = {
 
 M.StageDeclaration = {
     type = "structure",
+    id = "StageDeclaration",
     members = {
         name = {
             type = "string",
@@ -1374,6 +1443,7 @@ M.StageDeclaration = {
 
 M.GitBranchFilterCriteria = {
     type = "structure",
+    id = "GitBranchFilterCriteria",
     members = {
         includes = {
             type = "list",
@@ -1394,6 +1464,7 @@ M.GitPullRequestEventType = {
 
 M.GitFilePathFilterCriteria = {
     type = "structure",
+    id = "GitFilePathFilterCriteria",
     members = {
         includes = {
             type = "list",
@@ -1408,6 +1479,7 @@ M.GitFilePathFilterCriteria = {
 
 M.GitPullRequestFilter = {
     type = "structure",
+    id = "GitPullRequestFilter",
     members = {
         events = {
             type = "list",
@@ -1420,6 +1492,7 @@ M.GitPullRequestFilter = {
 
 M.GitTagFilterCriteria = {
     type = "structure",
+    id = "GitTagFilterCriteria",
     members = {
         includes = {
             type = "list",
@@ -1434,6 +1507,7 @@ M.GitTagFilterCriteria = {
 
 M.GitPushFilter = {
     type = "structure",
+    id = "GitPushFilter",
     members = {
         tags = M.GitTagFilterCriteria,
         branches = M.GitBranchFilterCriteria,
@@ -1443,6 +1517,7 @@ M.GitPushFilter = {
 
 M.GitConfiguration = {
     type = "structure",
+    id = "GitConfiguration",
     members = {
         sourceActionName = {
             type = "string",
@@ -1467,6 +1542,7 @@ M.PipelineTriggerProviderType = {
 
 M.PipelineTriggerDeclaration = {
     type = "structure",
+    id = "PipelineTriggerDeclaration",
     members = {
         providerType = {
             type = "string",
@@ -1482,6 +1558,7 @@ M.PipelineTriggerDeclaration = {
 
 M.PipelineVariableDeclaration = {
     type = "structure",
+    id = "PipelineVariableDeclaration",
     members = {
         name = {
             type = "string",
@@ -1500,6 +1577,7 @@ M.PipelineVariableDeclaration = {
 
 M.PipelineDeclaration = {
     type = "structure",
+    id = "PipelineDeclaration",
     members = {
         name = {
             type = "string",
@@ -1548,6 +1626,7 @@ M.PipelineDeclaration = {
 
 M.CreatePipelineInput = {
     type = "structure",
+    id = "CreatePipelineInput",
     members = {
         pipeline = setmetatable({ traits = {
             required = true,
@@ -1561,6 +1640,7 @@ M.CreatePipelineInput = {
 
 M.CreatePipelineOutput = {
     type = "structure",
+    id = "CreatePipelineOutput",
     members = {
         pipeline = M.PipelineDeclaration,
         tags = {
@@ -1572,6 +1652,7 @@ M.CreatePipelineOutput = {
 
 M.InvalidActionDeclarationException = {
     type = "structure",
+    id = "InvalidActionDeclarationException",
     error = "client",
     members = {
         message = {
@@ -1582,6 +1663,7 @@ M.InvalidActionDeclarationException = {
 
 M.InvalidBlockerDeclarationException = {
     type = "structure",
+    id = "InvalidBlockerDeclarationException",
     error = "client",
     members = {
         message = {
@@ -1592,6 +1674,7 @@ M.InvalidBlockerDeclarationException = {
 
 M.InvalidStageDeclarationException = {
     type = "structure",
+    id = "InvalidStageDeclarationException",
     error = "client",
     members = {
         message = {
@@ -1602,6 +1685,7 @@ M.InvalidStageDeclarationException = {
 
 M.InvalidStructureException = {
     type = "structure",
+    id = "InvalidStructureException",
     error = "client",
     members = {
         message = {
@@ -1612,6 +1696,7 @@ M.InvalidStructureException = {
 
 M.PipelineNameInUseException = {
     type = "structure",
+    id = "PipelineNameInUseException",
     error = "client",
     members = {
         message = {
@@ -1622,6 +1707,7 @@ M.PipelineNameInUseException = {
 
 M.DeleteCustomActionTypeInput = {
     type = "structure",
+    id = "DeleteCustomActionTypeInput",
     members = {
         category = {
             type = "string",
@@ -1646,10 +1732,12 @@ M.DeleteCustomActionTypeInput = {
 
 M.DeleteCustomActionTypeOutput = {
     type = "structure",
+    id = "DeleteCustomActionTypeOutput",
 }
 
 M.DeletePipelineInput = {
     type = "structure",
+    id = "DeletePipelineInput",
     members = {
         name = {
             type = "string",
@@ -1662,10 +1750,12 @@ M.DeletePipelineInput = {
 
 M.DeletePipelineOutput = {
     type = "structure",
+    id = "DeletePipelineOutput",
 }
 
 M.DeleteWebhookInput = {
     type = "structure",
+    id = "DeleteWebhookInput",
     members = {
         name = {
             type = "string",
@@ -1678,10 +1768,12 @@ M.DeleteWebhookInput = {
 
 M.DeleteWebhookOutput = {
     type = "structure",
+    id = "DeleteWebhookOutput",
 }
 
 M.DeregisterWebhookWithThirdPartyInput = {
     type = "structure",
+    id = "DeregisterWebhookWithThirdPartyInput",
     members = {
         webhookName = {
             type = "string",
@@ -1691,10 +1783,12 @@ M.DeregisterWebhookWithThirdPartyInput = {
 
 M.DeregisterWebhookWithThirdPartyOutput = {
     type = "structure",
+    id = "DeregisterWebhookWithThirdPartyOutput",
 }
 
 M.WebhookNotFoundException = {
     type = "structure",
+    id = "WebhookNotFoundException",
     error = "client",
 }
 
@@ -1705,6 +1799,7 @@ M.StageTransitionType = {
 
 M.DisableStageTransitionInput = {
     type = "structure",
+    id = "DisableStageTransitionInput",
     members = {
         pipelineName = {
             type = "string",
@@ -1735,10 +1830,12 @@ M.DisableStageTransitionInput = {
 
 M.DisableStageTransitionOutput = {
     type = "structure",
+    id = "DisableStageTransitionOutput",
 }
 
 M.PipelineNotFoundException = {
     type = "structure",
+    id = "PipelineNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1749,6 +1846,7 @@ M.PipelineNotFoundException = {
 
 M.StageNotFoundException = {
     type = "structure",
+    id = "StageNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1759,6 +1857,7 @@ M.StageNotFoundException = {
 
 M.EnableStageTransitionInput = {
     type = "structure",
+    id = "EnableStageTransitionInput",
     members = {
         pipelineName = {
             type = "string",
@@ -1783,10 +1882,12 @@ M.EnableStageTransitionInput = {
 
 M.EnableStageTransitionOutput = {
     type = "structure",
+    id = "EnableStageTransitionOutput",
 }
 
 M.GetActionTypeInput = {
     type = "structure",
+    id = "GetActionTypeInput",
     members = {
         category = {
             type = "string",
@@ -1817,6 +1918,7 @@ M.GetActionTypeInput = {
 
 M.GetActionTypeOutput = {
     type = "structure",
+    id = "GetActionTypeOutput",
     members = {
         actionType = M.ActionTypeDeclaration,
     },
@@ -1824,6 +1926,7 @@ M.GetActionTypeOutput = {
 
 M.GetJobDetailsInput = {
     type = "structure",
+    id = "GetJobDetailsInput",
     members = {
         jobId = {
             type = "string",
@@ -1836,6 +1939,7 @@ M.GetJobDetailsInput = {
 
 M.StageContext = {
     type = "structure",
+    id = "StageContext",
     members = {
         name = {
             type = "string",
@@ -1845,6 +1949,7 @@ M.StageContext = {
 
 M.PipelineContext = {
     type = "structure",
+    id = "PipelineContext",
     members = {
         pipelineName = {
             type = "string",
@@ -1862,6 +1967,7 @@ M.PipelineContext = {
 
 M.JobData = {
     type = "structure",
+    id = "JobData",
     members = {
         actionTypeId = M.ActionTypeId,
         actionConfiguration = M.ActionConfiguration,
@@ -1884,6 +1990,7 @@ M.JobData = {
 
 M.JobDetails = {
     type = "structure",
+    id = "JobDetails",
     members = {
         id = {
             type = "string",
@@ -1897,6 +2004,7 @@ M.JobDetails = {
 
 M.GetJobDetailsOutput = {
     type = "structure",
+    id = "GetJobDetailsOutput",
     members = {
         jobDetails = M.JobDetails,
     },
@@ -1904,6 +2012,7 @@ M.GetJobDetailsOutput = {
 
 M.GetPipelineInput = {
     type = "structure",
+    id = "GetPipelineInput",
     members = {
         name = {
             type = "string",
@@ -1919,6 +2028,7 @@ M.GetPipelineInput = {
 
 M.PipelineMetadata = {
     type = "structure",
+    id = "PipelineMetadata",
     members = {
         pipelineArn = {
             type = "string",
@@ -1937,6 +2047,7 @@ M.PipelineMetadata = {
 
 M.GetPipelineOutput = {
     type = "structure",
+    id = "GetPipelineOutput",
     members = {
         pipeline = M.PipelineDeclaration,
         metadata = M.PipelineMetadata,
@@ -1945,6 +2056,7 @@ M.GetPipelineOutput = {
 
 M.PipelineVersionNotFoundException = {
     type = "structure",
+    id = "PipelineVersionNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1955,6 +2067,7 @@ M.PipelineVersionNotFoundException = {
 
 M.GetPipelineExecutionInput = {
     type = "structure",
+    id = "GetPipelineExecutionInput",
     members = {
         pipelineName = {
             type = "string",
@@ -1978,6 +2091,7 @@ M.ExecutionType = {
 
 M.PipelineRollbackMetadata = {
     type = "structure",
+    id = "PipelineRollbackMetadata",
     members = {
         rollbackTargetPipelineExecutionId = {
             type = "string",
@@ -2009,6 +2123,7 @@ M.TriggerType = {
 
 M.ExecutionTrigger = {
     type = "structure",
+    id = "ExecutionTrigger",
     members = {
         triggerType = {
             type = "string",
@@ -2021,6 +2136,7 @@ M.ExecutionTrigger = {
 
 M.ResolvedPipelineVariable = {
     type = "structure",
+    id = "ResolvedPipelineVariable",
     members = {
         name = {
             type = "string",
@@ -2033,6 +2149,7 @@ M.ResolvedPipelineVariable = {
 
 M.PipelineExecution = {
     type = "structure",
+    id = "PipelineExecution",
     members = {
         pipelineName = {
             type = "string",
@@ -2070,6 +2187,7 @@ M.PipelineExecution = {
 
 M.GetPipelineExecutionOutput = {
     type = "structure",
+    id = "GetPipelineExecutionOutput",
     members = {
         pipelineExecution = M.PipelineExecution,
     },
@@ -2077,6 +2195,7 @@ M.GetPipelineExecutionOutput = {
 
 M.PipelineExecutionNotFoundException = {
     type = "structure",
+    id = "PipelineExecutionNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2087,6 +2206,7 @@ M.PipelineExecutionNotFoundException = {
 
 M.GetPipelineStateInput = {
     type = "structure",
+    id = "GetPipelineStateInput",
     members = {
         name = {
             type = "string",
@@ -2109,6 +2229,7 @@ M.ConditionExecutionStatus = {
 
 M.ConditionExecution = {
     type = "structure",
+    id = "ConditionExecution",
     members = {
         status = {
             type = "string",
@@ -2124,6 +2245,7 @@ M.ConditionExecution = {
 
 M.RuleRevision = {
     type = "structure",
+    id = "RuleRevision",
     members = {
         revisionId = {
             type = "string",
@@ -2155,6 +2277,7 @@ M.RuleExecutionStatus = {
 
 M.RuleExecution = {
     type = "structure",
+    id = "RuleExecution",
     members = {
         ruleExecutionId = {
             type = "string",
@@ -2186,6 +2309,7 @@ M.RuleExecution = {
 
 M.RuleState = {
     type = "structure",
+    id = "RuleState",
     members = {
         ruleName = {
             type = "string",
@@ -2203,6 +2327,7 @@ M.RuleState = {
 
 M.ConditionState = {
     type = "structure",
+    id = "ConditionState",
     members = {
         latestExecution = M.ConditionExecution,
         ruleStates = {
@@ -2214,6 +2339,7 @@ M.ConditionState = {
 
 M.StageConditionsExecution = {
     type = "structure",
+    id = "StageConditionsExecution",
     members = {
         status = {
             type = "string",
@@ -2226,6 +2352,7 @@ M.StageConditionsExecution = {
 
 M.StageConditionState = {
     type = "structure",
+    id = "StageConditionState",
     members = {
         latestExecution = M.StageConditionsExecution,
         conditionStates = {
@@ -2247,6 +2374,7 @@ M.StageExecutionStatus = {
 
 M.StageExecution = {
     type = "structure",
+    id = "StageExecution",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -2268,6 +2396,7 @@ M.StageExecution = {
 
 M.TransitionState = {
     type = "structure",
+    id = "TransitionState",
     members = {
         enabled = {
             type = "boolean",
@@ -2294,6 +2423,7 @@ M.RetryTrigger = {
 
 M.RetryStageMetadata = {
     type = "structure",
+    id = "RetryStageMetadata",
     members = {
         autoStageRetryAttempt = {
             type = "integer",
@@ -2309,6 +2439,7 @@ M.RetryStageMetadata = {
 
 M.StageState = {
     type = "structure",
+    id = "StageState",
     members = {
         stageName = {
             type = "string",
@@ -2333,6 +2464,7 @@ M.StageState = {
 
 M.GetPipelineStateOutput = {
     type = "structure",
+    id = "GetPipelineStateOutput",
     members = {
         pipelineName = {
             type = "string",
@@ -2355,6 +2487,7 @@ M.GetPipelineStateOutput = {
 
 M.GetThirdPartyJobDetailsInput = {
     type = "structure",
+    id = "GetThirdPartyJobDetailsInput",
     members = {
         jobId = {
             type = "string",
@@ -2373,6 +2506,7 @@ M.GetThirdPartyJobDetailsInput = {
 
 M.ThirdPartyJobData = {
     type = "structure",
+    id = "ThirdPartyJobData",
     members = {
         actionTypeId = M.ActionTypeId,
         actionConfiguration = M.ActionConfiguration,
@@ -2395,6 +2529,7 @@ M.ThirdPartyJobData = {
 
 M.ThirdPartyJobDetails = {
     type = "structure",
+    id = "ThirdPartyJobDetails",
     members = {
         id = {
             type = "string",
@@ -2408,6 +2543,7 @@ M.ThirdPartyJobDetails = {
 
 M.GetThirdPartyJobDetailsOutput = {
     type = "structure",
+    id = "GetThirdPartyJobDetailsOutput",
     members = {
         jobDetails = M.ThirdPartyJobDetails,
     },
@@ -2415,6 +2551,7 @@ M.GetThirdPartyJobDetailsOutput = {
 
 M.InvalidJobException = {
     type = "structure",
+    id = "InvalidJobException",
     error = "client",
     members = {
         message = {
@@ -2425,6 +2562,7 @@ M.InvalidJobException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -2435,6 +2573,7 @@ M.InvalidNextTokenException = {
 
 M.ListActionExecutionsInput = {
     type = "structure",
+    id = "ListActionExecutionsInput",
     members = {
         pipelineName = {
             type = "string",
@@ -2454,6 +2593,7 @@ M.ListActionExecutionsInput = {
 
 M.ListActionExecutionsOutput = {
     type = "structure",
+    id = "ListActionExecutionsOutput",
     members = {
         actionExecutionDetails = {
             type = "list",
@@ -2467,6 +2607,7 @@ M.ListActionExecutionsOutput = {
 
 M.ListActionTypesInput = {
     type = "structure",
+    id = "ListActionTypesInput",
     members = {
         actionOwnerFilter = {
             type = "string",
@@ -2482,6 +2623,7 @@ M.ListActionTypesInput = {
 
 M.ListActionTypesOutput = {
     type = "structure",
+    id = "ListActionTypesOutput",
     members = {
         actionTypes = {
             type = "list",
@@ -2502,6 +2644,7 @@ M.TargetFilterName = {
 
 M.TargetFilter = {
     type = "structure",
+    id = "TargetFilter",
     members = {
         name = {
             type = "string",
@@ -2515,6 +2658,7 @@ M.TargetFilter = {
 
 M.ListDeployActionExecutionTargetsInput = {
     type = "structure",
+    id = "ListDeployActionExecutionTargetsInput",
     members = {
         pipelineName = {
             type = "string",
@@ -2540,6 +2684,7 @@ M.ListDeployActionExecutionTargetsInput = {
 
 M.DeployTargetEventContext = {
     type = "structure",
+    id = "DeployTargetEventContext",
     members = {
         ssmCommandId = {
             type = "string",
@@ -2552,6 +2697,7 @@ M.DeployTargetEventContext = {
 
 M.DeployTargetEvent = {
     type = "structure",
+    id = "DeployTargetEvent",
     members = {
         name = {
             type = "string",
@@ -2571,6 +2717,7 @@ M.DeployTargetEvent = {
 
 M.DeployActionExecutionTarget = {
     type = "structure",
+    id = "DeployActionExecutionTarget",
     members = {
         targetId = {
             type = "string",
@@ -2596,6 +2743,7 @@ M.DeployActionExecutionTarget = {
 
 M.ListDeployActionExecutionTargetsOutput = {
     type = "structure",
+    id = "ListDeployActionExecutionTargetsOutput",
     members = {
         targets = {
             type = "list",
@@ -2609,6 +2757,7 @@ M.ListDeployActionExecutionTargetsOutput = {
 
 M.SucceededInStageFilter = {
     type = "structure",
+    id = "SucceededInStageFilter",
     members = {
         stageName = {
             type = "string",
@@ -2618,6 +2767,7 @@ M.SucceededInStageFilter = {
 
 M.PipelineExecutionFilter = {
     type = "structure",
+    id = "PipelineExecutionFilter",
     members = {
         succeededInStage = M.SucceededInStageFilter,
     },
@@ -2625,6 +2775,7 @@ M.PipelineExecutionFilter = {
 
 M.ListPipelineExecutionsInput = {
     type = "structure",
+    id = "ListPipelineExecutionsInput",
     members = {
         pipelineName = {
             type = "string",
@@ -2644,6 +2795,7 @@ M.ListPipelineExecutionsInput = {
 
 M.SourceRevision = {
     type = "structure",
+    id = "SourceRevision",
     members = {
         actionName = {
             type = "string",
@@ -2665,6 +2817,7 @@ M.SourceRevision = {
 
 M.StopExecutionTrigger = {
     type = "structure",
+    id = "StopExecutionTrigger",
     members = {
         reason = {
             type = "string",
@@ -2674,6 +2827,7 @@ M.StopExecutionTrigger = {
 
 M.PipelineExecutionSummary = {
     type = "structure",
+    id = "PipelineExecutionSummary",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -2708,6 +2862,7 @@ M.PipelineExecutionSummary = {
 
 M.ListPipelineExecutionsOutput = {
     type = "structure",
+    id = "ListPipelineExecutionsOutput",
     members = {
         pipelineExecutionSummaries = {
             type = "list",
@@ -2721,6 +2876,7 @@ M.ListPipelineExecutionsOutput = {
 
 M.ListPipelinesInput = {
     type = "structure",
+    id = "ListPipelinesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2733,6 +2889,7 @@ M.ListPipelinesInput = {
 
 M.PipelineSummary = {
     type = "structure",
+    id = "PipelineSummary",
     members = {
         name = {
             type = "string",
@@ -2757,6 +2914,7 @@ M.PipelineSummary = {
 
 M.ListPipelinesOutput = {
     type = "structure",
+    id = "ListPipelinesOutput",
     members = {
         pipelines = {
             type = "list",
@@ -2770,6 +2928,7 @@ M.ListPipelinesOutput = {
 
 M.RuleExecutionFilter = {
     type = "structure",
+    id = "RuleExecutionFilter",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -2780,6 +2939,7 @@ M.RuleExecutionFilter = {
 
 M.ListRuleExecutionsInput = {
     type = "structure",
+    id = "ListRuleExecutionsInput",
     members = {
         pipelineName = {
             type = "string",
@@ -2799,6 +2959,7 @@ M.ListRuleExecutionsInput = {
 
 M.RuleExecutionInput = {
     type = "structure",
+    id = "RuleExecutionInput",
     members = {
         ruleTypeId = M.RuleTypeId,
         configuration = {
@@ -2826,6 +2987,7 @@ M.RuleExecutionInput = {
 
 M.RuleExecutionResult = {
     type = "structure",
+    id = "RuleExecutionResult",
     members = {
         externalExecutionId = {
             type = "string",
@@ -2842,6 +3004,7 @@ M.RuleExecutionResult = {
 
 M.RuleExecutionOutput = {
     type = "structure",
+    id = "RuleExecutionOutput",
     members = {
         executionResult = M.RuleExecutionResult,
     },
@@ -2849,6 +3012,7 @@ M.RuleExecutionOutput = {
 
 M.RuleExecutionDetail = {
     type = "structure",
+    id = "RuleExecutionDetail",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -2884,6 +3048,7 @@ M.RuleExecutionDetail = {
 
 M.ListRuleExecutionsOutput = {
     type = "structure",
+    id = "ListRuleExecutionsOutput",
     members = {
         ruleExecutionDetails = {
             type = "list",
@@ -2897,6 +3062,7 @@ M.ListRuleExecutionsOutput = {
 
 M.ListRuleTypesInput = {
     type = "structure",
+    id = "ListRuleTypesInput",
     members = {
         ruleOwnerFilter = {
             type = "string",
@@ -2915,6 +3081,7 @@ M.RuleConfigurationPropertyType = {
 
 M.RuleConfigurationProperty = {
     type = "structure",
+    id = "RuleConfigurationProperty",
     members = {
         name = {
             type = "string",
@@ -2960,6 +3127,7 @@ M.RuleConfigurationProperty = {
 
 M.RuleTypeSettings = {
     type = "structure",
+    id = "RuleTypeSettings",
     members = {
         thirdPartyConfigurationUrl = {
             type = "string",
@@ -2978,6 +3146,7 @@ M.RuleTypeSettings = {
 
 M.RuleType = {
     type = "structure",
+    id = "RuleType",
     members = {
         id = setmetatable({ traits = {
             required = true,
@@ -2995,6 +3164,7 @@ M.RuleType = {
 
 M.ListRuleTypesOutput = {
     type = "structure",
+    id = "ListRuleTypesOutput",
     members = {
         ruleTypes = {
             type = "list",
@@ -3008,6 +3178,7 @@ M.ListRuleTypesOutput = {
 
 M.InvalidArnException = {
     type = "structure",
+    id = "InvalidArnException",
     error = "client",
     members = {
         message = {
@@ -3018,6 +3189,7 @@ M.InvalidArnException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3036,6 +3208,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -3049,6 +3222,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -3059,6 +3233,7 @@ M.ResourceNotFoundException = {
 
 M.ListWebhooksInput = {
     type = "structure",
+    id = "ListWebhooksInput",
     members = {
         NextToken = {
             type = "string",
@@ -3077,6 +3252,7 @@ M.WebhookAuthenticationType = {
 
 M.WebhookAuthConfiguration = {
     type = "structure",
+    id = "WebhookAuthConfiguration",
     members = {
         AllowedIPRange = {
             type = "string",
@@ -3089,6 +3265,7 @@ M.WebhookAuthConfiguration = {
 
 M.WebhookFilterRule = {
     type = "structure",
+    id = "WebhookFilterRule",
     members = {
         jsonPath = {
             type = "string",
@@ -3104,6 +3281,7 @@ M.WebhookFilterRule = {
 
 M.WebhookDefinition = {
     type = "structure",
+    id = "WebhookDefinition",
     members = {
         name = {
             type = "string",
@@ -3144,6 +3322,7 @@ M.WebhookDefinition = {
 
 M.ListWebhookItem = {
     type = "structure",
+    id = "ListWebhookItem",
     members = {
         definition = setmetatable({ traits = {
             required = true,
@@ -3175,6 +3354,7 @@ M.ListWebhookItem = {
 
 M.ListWebhooksOutput = {
     type = "structure",
+    id = "ListWebhooksOutput",
     members = {
         webhooks = {
             type = "list",
@@ -3188,6 +3368,7 @@ M.ListWebhooksOutput = {
 
 M.ConcurrentPipelineExecutionsLimitExceededException = {
     type = "structure",
+    id = "ConcurrentPipelineExecutionsLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -3198,6 +3379,7 @@ M.ConcurrentPipelineExecutionsLimitExceededException = {
 
 M.ConditionNotOverridableException = {
     type = "structure",
+    id = "ConditionNotOverridableException",
     error = "client",
     members = {
         message = {
@@ -3208,6 +3390,7 @@ M.ConditionNotOverridableException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -3218,6 +3401,7 @@ M.ConflictException = {
 
 M.NotLatestPipelineExecutionException = {
     type = "structure",
+    id = "NotLatestPipelineExecutionException",
     error = "client",
     members = {
         message = {
@@ -3233,6 +3417,7 @@ M.ConditionType = {
 
 M.OverrideStageConditionInput = {
     type = "structure",
+    id = "OverrideStageConditionInput",
     members = {
         pipelineName = {
             type = "string",
@@ -3263,10 +3448,12 @@ M.OverrideStageConditionInput = {
 
 M.OverrideStageConditionOutput = {
     type = "structure",
+    id = "OverrideStageConditionOutput",
 }
 
 M.PollForJobsInput = {
     type = "structure",
+    id = "PollForJobsInput",
     members = {
         actionTypeId = setmetatable({ traits = {
             required = true,
@@ -3284,6 +3471,7 @@ M.PollForJobsInput = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         id = {
             type = "string",
@@ -3300,6 +3488,7 @@ M.Job = {
 
 M.PollForJobsOutput = {
     type = "structure",
+    id = "PollForJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -3310,6 +3499,7 @@ M.PollForJobsOutput = {
 
 M.PollForThirdPartyJobsInput = {
     type = "structure",
+    id = "PollForThirdPartyJobsInput",
     members = {
         actionTypeId = setmetatable({ traits = {
             required = true,
@@ -3322,6 +3512,7 @@ M.PollForThirdPartyJobsInput = {
 
 M.ThirdPartyJob = {
     type = "structure",
+    id = "ThirdPartyJob",
     members = {
         clientId = {
             type = "string",
@@ -3334,6 +3525,7 @@ M.ThirdPartyJob = {
 
 M.PollForThirdPartyJobsOutput = {
     type = "structure",
+    id = "PollForThirdPartyJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -3344,6 +3536,7 @@ M.PollForThirdPartyJobsOutput = {
 
 M.PutActionRevisionInput = {
     type = "structure",
+    id = "PutActionRevisionInput",
     members = {
         pipelineName = {
             type = "string",
@@ -3371,6 +3564,7 @@ M.PutActionRevisionInput = {
 
 M.PutActionRevisionOutput = {
     type = "structure",
+    id = "PutActionRevisionOutput",
     members = {
         newRevision = {
             type = "boolean",
@@ -3386,6 +3580,7 @@ M.PutActionRevisionOutput = {
 
 M.InvalidApprovalTokenException = {
     type = "structure",
+    id = "InvalidApprovalTokenException",
     error = "client",
     members = {
         message = {
@@ -3396,6 +3591,7 @@ M.InvalidApprovalTokenException = {
 
 M.PutApprovalResultInput = {
     type = "structure",
+    id = "PutApprovalResultInput",
     members = {
         pipelineName = {
             type = "string",
@@ -3429,6 +3625,7 @@ M.PutApprovalResultInput = {
 
 M.PutApprovalResultOutput = {
     type = "structure",
+    id = "PutApprovalResultOutput",
     members = {
         approvedAt = {
             type = "timestamp",
@@ -3438,6 +3635,7 @@ M.PutApprovalResultOutput = {
 
 M.InvalidJobStateException = {
     type = "structure",
+    id = "InvalidJobStateException",
     error = "client",
     members = {
         message = {
@@ -3457,6 +3655,7 @@ M.FailureType = {
 
 M.FailureDetails = {
     type = "structure",
+    id = "FailureDetails",
     members = {
         type = {
             type = "string",
@@ -3478,6 +3677,7 @@ M.FailureDetails = {
 
 M.PutJobFailureResultInput = {
     type = "structure",
+    id = "PutJobFailureResultInput",
     members = {
         jobId = {
             type = "string",
@@ -3493,10 +3693,12 @@ M.PutJobFailureResultInput = {
 
 M.PutJobFailureResultOutput = {
     type = "structure",
+    id = "PutJobFailureResultOutput",
 }
 
 M.OutputVariablesSizeExceededException = {
     type = "structure",
+    id = "OutputVariablesSizeExceededException",
     error = "client",
     members = {
         message = {
@@ -3507,6 +3709,7 @@ M.OutputVariablesSizeExceededException = {
 
 M.CurrentRevision = {
     type = "structure",
+    id = "CurrentRevision",
     members = {
         revision = {
             type = "string",
@@ -3531,6 +3734,7 @@ M.CurrentRevision = {
 
 M.ExecutionDetails = {
     type = "structure",
+    id = "ExecutionDetails",
     members = {
         summary = {
             type = "string",
@@ -3546,6 +3750,7 @@ M.ExecutionDetails = {
 
 M.PutJobSuccessResultInput = {
     type = "structure",
+    id = "PutJobSuccessResultInput",
     members = {
         jobId = {
             type = "string",
@@ -3568,10 +3773,12 @@ M.PutJobSuccessResultInput = {
 
 M.PutJobSuccessResultOutput = {
     type = "structure",
+    id = "PutJobSuccessResultOutput",
 }
 
 M.PutThirdPartyJobFailureResultInput = {
     type = "structure",
+    id = "PutThirdPartyJobFailureResultInput",
     members = {
         jobId = {
             type = "string",
@@ -3593,10 +3800,12 @@ M.PutThirdPartyJobFailureResultInput = {
 
 M.PutThirdPartyJobFailureResultOutput = {
     type = "structure",
+    id = "PutThirdPartyJobFailureResultOutput",
 }
 
 M.PutThirdPartyJobSuccessResultInput = {
     type = "structure",
+    id = "PutThirdPartyJobSuccessResultInput",
     members = {
         jobId = {
             type = "string",
@@ -3620,10 +3829,12 @@ M.PutThirdPartyJobSuccessResultInput = {
 
 M.PutThirdPartyJobSuccessResultOutput = {
     type = "structure",
+    id = "PutThirdPartyJobSuccessResultOutput",
 }
 
 M.InvalidWebhookAuthenticationParametersException = {
     type = "structure",
+    id = "InvalidWebhookAuthenticationParametersException",
     error = "client",
     members = {
         message = {
@@ -3634,6 +3845,7 @@ M.InvalidWebhookAuthenticationParametersException = {
 
 M.InvalidWebhookFilterPatternException = {
     type = "structure",
+    id = "InvalidWebhookFilterPatternException",
     error = "client",
     members = {
         message = {
@@ -3644,6 +3856,7 @@ M.InvalidWebhookFilterPatternException = {
 
 M.PutWebhookInput = {
     type = "structure",
+    id = "PutWebhookInput",
     members = {
         webhook = setmetatable({ traits = {
             required = true,
@@ -3657,6 +3870,7 @@ M.PutWebhookInput = {
 
 M.PutWebhookOutput = {
     type = "structure",
+    id = "PutWebhookOutput",
     members = {
         webhook = M.ListWebhookItem,
     },
@@ -3664,6 +3878,7 @@ M.PutWebhookOutput = {
 
 M.RegisterWebhookWithThirdPartyInput = {
     type = "structure",
+    id = "RegisterWebhookWithThirdPartyInput",
     members = {
         webhookName = {
             type = "string",
@@ -3673,10 +3888,12 @@ M.RegisterWebhookWithThirdPartyInput = {
 
 M.RegisterWebhookWithThirdPartyOutput = {
     type = "structure",
+    id = "RegisterWebhookWithThirdPartyOutput",
 }
 
 M.RetryStageExecutionInput = {
     type = "structure",
+    id = "RetryStageExecutionInput",
     members = {
         pipelineName = {
             type = "string",
@@ -3707,6 +3924,7 @@ M.RetryStageExecutionInput = {
 
 M.RetryStageExecutionOutput = {
     type = "structure",
+    id = "RetryStageExecutionOutput",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -3716,6 +3934,7 @@ M.RetryStageExecutionOutput = {
 
 M.StageNotRetryableException = {
     type = "structure",
+    id = "StageNotRetryableException",
     error = "client",
     members = {
         message = {
@@ -3726,6 +3945,7 @@ M.StageNotRetryableException = {
 
 M.PipelineExecutionOutdatedException = {
     type = "structure",
+    id = "PipelineExecutionOutdatedException",
     error = "client",
     members = {
         message = {
@@ -3736,6 +3956,7 @@ M.PipelineExecutionOutdatedException = {
 
 M.RollbackStageInput = {
     type = "structure",
+    id = "RollbackStageInput",
     members = {
         pipelineName = {
             type = "string",
@@ -3760,6 +3981,7 @@ M.RollbackStageInput = {
 
 M.RollbackStageOutput = {
     type = "structure",
+    id = "RollbackStageOutput",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -3772,6 +3994,7 @@ M.RollbackStageOutput = {
 
 M.UnableToRollbackStageException = {
     type = "structure",
+    id = "UnableToRollbackStageException",
     error = "client",
     members = {
         message = {
@@ -3789,6 +4012,7 @@ M.SourceRevisionType = {
 
 M.SourceRevisionOverride = {
     type = "structure",
+    id = "SourceRevisionOverride",
     members = {
         actionName = {
             type = "string",
@@ -3813,6 +4037,7 @@ M.SourceRevisionOverride = {
 
 M.PipelineVariable = {
     type = "structure",
+    id = "PipelineVariable",
     members = {
         name = {
             type = "string",
@@ -3831,6 +4056,7 @@ M.PipelineVariable = {
 
 M.StartPipelineExecutionInput = {
     type = "structure",
+    id = "StartPipelineExecutionInput",
     members = {
         name = {
             type = "string",
@@ -3857,6 +4083,7 @@ M.StartPipelineExecutionInput = {
 
 M.StartPipelineExecutionOutput = {
     type = "structure",
+    id = "StartPipelineExecutionOutput",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -3866,6 +4093,7 @@ M.StartPipelineExecutionOutput = {
 
 M.DuplicatedStopRequestException = {
     type = "structure",
+    id = "DuplicatedStopRequestException",
     error = "client",
     members = {
         message = {
@@ -3876,6 +4104,7 @@ M.DuplicatedStopRequestException = {
 
 M.PipelineExecutionNotStoppableException = {
     type = "structure",
+    id = "PipelineExecutionNotStoppableException",
     error = "client",
     members = {
         message = {
@@ -3886,6 +4115,7 @@ M.PipelineExecutionNotStoppableException = {
 
 M.StopPipelineExecutionInput = {
     type = "structure",
+    id = "StopPipelineExecutionInput",
     members = {
         pipelineName = {
             type = "string",
@@ -3913,6 +4143,7 @@ M.StopPipelineExecutionInput = {
 
 M.StopPipelineExecutionOutput = {
     type = "structure",
+    id = "StopPipelineExecutionOutput",
     members = {
         pipelineExecutionId = {
             type = "string",
@@ -3922,6 +4153,7 @@ M.StopPipelineExecutionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3941,10 +4173,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3964,10 +4198,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.RequestFailedException = {
     type = "structure",
+    id = "RequestFailedException",
     error = "client",
     members = {
         message = {
@@ -3978,6 +4214,7 @@ M.RequestFailedException = {
 
 M.UpdateActionTypeInput = {
     type = "structure",
+    id = "UpdateActionTypeInput",
     members = {
         actionType = setmetatable({ traits = {
             required = true,
@@ -3987,10 +4224,12 @@ M.UpdateActionTypeInput = {
 
 M.UpdateActionTypeOutput = {
     type = "structure",
+    id = "UpdateActionTypeOutput",
 }
 
 M.UpdatePipelineInput = {
     type = "structure",
+    id = "UpdatePipelineInput",
     members = {
         pipeline = setmetatable({ traits = {
             required = true,
@@ -4000,6 +4239,7 @@ M.UpdatePipelineInput = {
 
 M.UpdatePipelineOutput = {
     type = "structure",
+    id = "UpdatePipelineOutput",
     members = {
         pipeline = M.PipelineDeclaration,
     },

@@ -885,13 +885,13 @@ local record ThrottlingException
     message: string
 end
 
-local type NamespaceDeletionStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
-
-local type DeploymentTarget = "GREENGRASS" | "CLOUD"
+local type UploadStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
 
 local type NamespaceDeletionStatusErrorCodes = "VALIDATION_FAILED"
 
-local type UploadStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
+local type DeploymentTarget = "GREENGRASS" | "CLOUD"
+
+local type NamespaceDeletionStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
 
 local type EntityType = "DEVICE" | "SERVICE" | "DEVICE_MODEL" | "CAPABILITY" | "STATE" | "ACTION" | "EVENT" | "PROPERTY" | "MAPPING" | "ENUM"
 

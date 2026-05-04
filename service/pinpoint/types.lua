@@ -29,6 +29,7 @@ M.Action = {
 
 M.ActivityResponse = {
     type = "structure",
+    id = "ActivityResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -88,6 +89,7 @@ M.ActivityResponse = {
 
 M.ActivitiesResponse = {
     type = "structure",
+    id = "ActivitiesResponse",
     members = {
         Item = {
             type = "list",
@@ -114,6 +116,7 @@ M.AttributeType = {
 
 M.AttributeDimension = {
     type = "structure",
+    id = "AttributeDimension",
     members = {
         AttributeType = {
             type = "string",
@@ -135,6 +138,7 @@ M.DimensionType = {
 
 M.SetDimension = {
     type = "structure",
+    id = "SetDimension",
     members = {
         DimensionType = {
             type = "string",
@@ -151,6 +155,7 @@ M.SetDimension = {
 
 M.MetricDimension = {
     type = "structure",
+    id = "MetricDimension",
     members = {
         ComparisonOperator = {
             type = "string",
@@ -169,6 +174,7 @@ M.MetricDimension = {
 
 M.EventDimensions = {
     type = "structure",
+    id = "EventDimensions",
     members = {
         Attributes = {
             type = "map",
@@ -186,6 +192,7 @@ M.EventDimensions = {
 
 M.EventCondition = {
     type = "structure",
+    id = "EventCondition",
     members = {
         Dimensions = M.EventDimensions,
         MessageActivity = {
@@ -196,6 +203,7 @@ M.EventCondition = {
 
 M.SegmentCondition = {
     type = "structure",
+    id = "SegmentCondition",
     members = {
         SegmentId = {
             type = "string",
@@ -220,6 +228,7 @@ M.RecencyType = {
 
 M.RecencyDimension = {
     type = "structure",
+    id = "RecencyDimension",
     members = {
         Duration = {
             type = "string",
@@ -238,6 +247,7 @@ M.RecencyDimension = {
 
 M.SegmentBehaviors = {
     type = "structure",
+    id = "SegmentBehaviors",
     members = {
         Recency = M.RecencyDimension,
     },
@@ -245,6 +255,7 @@ M.SegmentBehaviors = {
 
 M.SegmentDemographics = {
     type = "structure",
+    id = "SegmentDemographics",
     members = {
         AppVersion = M.SetDimension,
         Channel = M.SetDimension,
@@ -257,6 +268,7 @@ M.SegmentDemographics = {
 
 M.GPSCoordinates = {
     type = "structure",
+    id = "GPSCoordinates",
     members = {
         Latitude = {
             type = "double",
@@ -275,6 +287,7 @@ M.GPSCoordinates = {
 
 M.GPSPointDimension = {
     type = "structure",
+    id = "GPSPointDimension",
     members = {
         Coordinates = setmetatable({ traits = {
             required = true,
@@ -287,6 +300,7 @@ M.GPSPointDimension = {
 
 M.SegmentLocation = {
     type = "structure",
+    id = "SegmentLocation",
     members = {
         Country = M.SetDimension,
         GPSPoint = M.GPSPointDimension,
@@ -295,6 +309,7 @@ M.SegmentLocation = {
 
 M.SegmentDimensions = {
     type = "structure",
+    id = "SegmentDimensions",
     members = {
         Attributes = {
             type = "map",
@@ -319,6 +334,7 @@ M.SegmentDimensions = {
 
 M.SimpleCondition = {
     type = "structure",
+    id = "SimpleCondition",
     members = {
         EventCondition = M.EventCondition,
         SegmentCondition = M.SegmentCondition,
@@ -335,6 +351,7 @@ M.Operator = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         Conditions = {
             type = "list",
@@ -348,6 +365,7 @@ M.Condition = {
 
 M.WaitTime = {
     type = "structure",
+    id = "WaitTime",
     members = {
         WaitFor = {
             type = "string",
@@ -360,6 +378,7 @@ M.WaitTime = {
 
 M.ConditionalSplitActivity = {
     type = "structure",
+    id = "ConditionalSplitActivity",
     members = {
         Condition = M.Condition,
         EvaluationWaitTime = M.WaitTime,
@@ -374,6 +393,7 @@ M.ConditionalSplitActivity = {
 
 M.ContactCenterActivity = {
     type = "structure",
+    id = "ContactCenterActivity",
     members = {
         NextActivity = {
             type = "string",
@@ -383,6 +403,7 @@ M.ContactCenterActivity = {
 
 M.JourneyCustomMessage = {
     type = "structure",
+    id = "JourneyCustomMessage",
     members = {
         Data = {
             type = "string",
@@ -392,6 +413,7 @@ M.JourneyCustomMessage = {
 
 M.CustomMessageActivity = {
     type = "structure",
+    id = "CustomMessageActivity",
     members = {
         DeliveryUri = {
             type = "string",
@@ -415,6 +437,7 @@ M.CustomMessageActivity = {
 
 M.JourneyEmailMessage = {
     type = "structure",
+    id = "JourneyEmailMessage",
     members = {
         FromAddress = {
             type = "string",
@@ -424,6 +447,7 @@ M.JourneyEmailMessage = {
 
 M.EmailMessageActivity = {
     type = "structure",
+    id = "EmailMessageActivity",
     members = {
         MessageConfig = M.JourneyEmailMessage,
         NextActivity = {
@@ -440,6 +464,7 @@ M.EmailMessageActivity = {
 
 M.HoldoutActivity = {
     type = "structure",
+    id = "HoldoutActivity",
     members = {
         NextActivity = {
             type = "string",
@@ -455,6 +480,7 @@ M.HoldoutActivity = {
 
 M.MultiConditionalBranch = {
     type = "structure",
+    id = "MultiConditionalBranch",
     members = {
         Condition = M.SimpleCondition,
         NextActivity = {
@@ -465,6 +491,7 @@ M.MultiConditionalBranch = {
 
 M.MultiConditionalSplitActivity = {
     type = "structure",
+    id = "MultiConditionalSplitActivity",
     members = {
         Branches = {
             type = "list",
@@ -479,6 +506,7 @@ M.MultiConditionalSplitActivity = {
 
 M.JourneyPushMessage = {
     type = "structure",
+    id = "JourneyPushMessage",
     members = {
         TimeToLive = {
             type = "string",
@@ -488,6 +516,7 @@ M.JourneyPushMessage = {
 
 M.PushMessageActivity = {
     type = "structure",
+    id = "PushMessageActivity",
     members = {
         MessageConfig = M.JourneyPushMessage,
         NextActivity = {
@@ -504,6 +533,7 @@ M.PushMessageActivity = {
 
 M.RandomSplitEntry = {
     type = "structure",
+    id = "RandomSplitEntry",
     members = {
         NextActivity = {
             type = "string",
@@ -516,6 +546,7 @@ M.RandomSplitEntry = {
 
 M.RandomSplitActivity = {
     type = "structure",
+    id = "RandomSplitActivity",
     members = {
         Branches = {
             type = "list",
@@ -531,6 +562,7 @@ M.MessageType = {
 
 M.JourneySMSMessage = {
     type = "structure",
+    id = "JourneySMSMessage",
     members = {
         MessageType = {
             type = "string",
@@ -552,6 +584,7 @@ M.JourneySMSMessage = {
 
 M.SMSMessageActivity = {
     type = "structure",
+    id = "SMSMessageActivity",
     members = {
         MessageConfig = M.JourneySMSMessage,
         NextActivity = {
@@ -568,6 +601,7 @@ M.SMSMessageActivity = {
 
 M.WaitActivity = {
     type = "structure",
+    id = "WaitActivity",
     members = {
         NextActivity = {
             type = "string",
@@ -578,6 +612,7 @@ M.WaitActivity = {
 
 M.Activity = {
     type = "structure",
+    id = "Activity",
     members = {
         CUSTOM = M.CustomMessageActivity,
         ConditionalSplit = M.ConditionalSplitActivity,
@@ -613,6 +648,7 @@ M.ChannelType = {
 
 M.AddressConfiguration = {
     type = "structure",
+    id = "AddressConfiguration",
     members = {
         BodyOverride = {
             type = "string",
@@ -641,6 +677,7 @@ M.AddressConfiguration = {
 
 M.ADMChannelRequest = {
     type = "structure",
+    id = "ADMChannelRequest",
     members = {
         ClientId = {
             type = "string",
@@ -662,6 +699,7 @@ M.ADMChannelRequest = {
 
 M.ADMChannelResponse = {
     type = "structure",
+    id = "ADMChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -701,6 +739,7 @@ M.ADMChannelResponse = {
 
 M.ADMMessage = {
     type = "structure",
+    id = "ADMMessage",
     members = {
         Action = {
             type = "string",
@@ -765,6 +804,7 @@ M.Alignment = {
 
 M.AndroidPushNotificationTemplate = {
     type = "structure",
+    id = "AndroidPushNotificationTemplate",
     members = {
         Action = {
             type = "string",
@@ -798,6 +838,7 @@ M.AndroidPushNotificationTemplate = {
 
 M.APNSChannelRequest = {
     type = "structure",
+    id = "APNSChannelRequest",
     members = {
         BundleId = {
             type = "string",
@@ -828,6 +869,7 @@ M.APNSChannelRequest = {
 
 M.APNSChannelResponse = {
     type = "structure",
+    id = "APNSChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -873,6 +915,7 @@ M.APNSChannelResponse = {
 
 M.APNSMessage = {
     type = "structure",
+    id = "APNSMessage",
     members = {
         APNSPushType = {
             type = "string",
@@ -937,6 +980,7 @@ M.APNSMessage = {
 
 M.APNSPushNotificationTemplate = {
     type = "structure",
+    id = "APNSPushNotificationTemplate",
     members = {
         Action = {
             type = "string",
@@ -964,6 +1008,7 @@ M.APNSPushNotificationTemplate = {
 
 M.APNSSandboxChannelRequest = {
     type = "structure",
+    id = "APNSSandboxChannelRequest",
     members = {
         BundleId = {
             type = "string",
@@ -994,6 +1039,7 @@ M.APNSSandboxChannelRequest = {
 
 M.APNSSandboxChannelResponse = {
     type = "structure",
+    id = "APNSSandboxChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -1039,6 +1085,7 @@ M.APNSSandboxChannelResponse = {
 
 M.APNSVoipChannelRequest = {
     type = "structure",
+    id = "APNSVoipChannelRequest",
     members = {
         BundleId = {
             type = "string",
@@ -1069,6 +1116,7 @@ M.APNSVoipChannelRequest = {
 
 M.APNSVoipChannelResponse = {
     type = "structure",
+    id = "APNSVoipChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -1114,6 +1162,7 @@ M.APNSVoipChannelResponse = {
 
 M.APNSVoipSandboxChannelRequest = {
     type = "structure",
+    id = "APNSVoipSandboxChannelRequest",
     members = {
         BundleId = {
             type = "string",
@@ -1144,6 +1193,7 @@ M.APNSVoipSandboxChannelRequest = {
 
 M.APNSVoipSandboxChannelResponse = {
     type = "structure",
+    id = "APNSVoipSandboxChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -1189,6 +1239,7 @@ M.APNSVoipSandboxChannelResponse = {
 
 M.ResultRowValue = {
     type = "structure",
+    id = "ResultRowValue",
     members = {
         Key = {
             type = "string",
@@ -1213,6 +1264,7 @@ M.ResultRowValue = {
 
 M.ResultRow = {
     type = "structure",
+    id = "ResultRow",
     members = {
         GroupedBys = {
             type = "list",
@@ -1233,6 +1285,7 @@ M.ResultRow = {
 
 M.BaseKpiResult = {
     type = "structure",
+    id = "BaseKpiResult",
     members = {
         Rows = {
             type = "list",
@@ -1246,6 +1299,7 @@ M.BaseKpiResult = {
 
 M.ApplicationDateRangeKpiResponse = {
     type = "structure",
+    id = "ApplicationDateRangeKpiResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -1284,6 +1338,7 @@ M.ApplicationDateRangeKpiResponse = {
 
 M.ApplicationResponse = {
     type = "structure",
+    id = "ApplicationResponse",
     members = {
         Arn = {
             type = "string",
@@ -1319,6 +1374,7 @@ M.ApplicationResponse = {
 
 M.JourneyTimeframeCap = {
     type = "structure",
+    id = "JourneyTimeframeCap",
     members = {
         Cap = {
             type = "integer",
@@ -1331,6 +1387,7 @@ M.JourneyTimeframeCap = {
 
 M.ApplicationSettingsJourneyLimits = {
     type = "structure",
+    id = "ApplicationSettingsJourneyLimits",
     members = {
         DailyCap = {
             type = "integer",
@@ -1349,6 +1406,7 @@ M.Mode = {
 
 M.CampaignHook = {
     type = "structure",
+    id = "CampaignHook",
     members = {
         LambdaFunctionName = {
             type = "string",
@@ -1364,6 +1422,7 @@ M.CampaignHook = {
 
 M.CampaignLimits = {
     type = "structure",
+    id = "CampaignLimits",
     members = {
         Daily = {
             type = "integer",
@@ -1385,6 +1444,7 @@ M.CampaignLimits = {
 
 M.QuietTime = {
     type = "structure",
+    id = "QuietTime",
     members = {
         End = {
             type = "string",
@@ -1397,6 +1457,7 @@ M.QuietTime = {
 
 M.ApplicationSettingsResource = {
     type = "structure",
+    id = "ApplicationSettingsResource",
     members = {
         ApplicationId = {
             type = "string",
@@ -1416,6 +1477,7 @@ M.ApplicationSettingsResource = {
 
 M.ApplicationsResponse = {
     type = "structure",
+    id = "ApplicationsResponse",
     members = {
         Item = {
             type = "list",
@@ -1429,6 +1491,7 @@ M.ApplicationsResponse = {
 
 M.AttributesResource = {
     type = "structure",
+    id = "AttributesResource",
     members = {
         ApplicationId = {
             type = "string",
@@ -1451,6 +1514,7 @@ M.AttributesResource = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -1464,6 +1528,7 @@ M.BadRequestException = {
 
 M.BaiduChannelRequest = {
     type = "structure",
+    id = "BaiduChannelRequest",
     members = {
         ApiKey = {
             type = "string",
@@ -1485,6 +1550,7 @@ M.BaiduChannelRequest = {
 
 M.BaiduChannelResponse = {
     type = "structure",
+    id = "BaiduChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -1530,6 +1596,7 @@ M.BaiduChannelResponse = {
 
 M.BaiduMessage = {
     type = "structure",
+    id = "BaiduMessage",
     members = {
         Action = {
             type = "string",
@@ -1588,6 +1655,7 @@ M.ButtonAction = {
 
 M.CampaignCustomMessage = {
     type = "structure",
+    id = "CampaignCustomMessage",
     members = {
         Data = {
             type = "string",
@@ -1597,6 +1665,7 @@ M.CampaignCustomMessage = {
 
 M.CampaignDateRangeKpiResponse = {
     type = "structure",
+    id = "CampaignDateRangeKpiResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -1641,6 +1710,7 @@ M.CampaignDateRangeKpiResponse = {
 
 M.MessageHeader = {
     type = "structure",
+    id = "MessageHeader",
     members = {
         Name = {
             type = "string",
@@ -1653,6 +1723,7 @@ M.MessageHeader = {
 
 M.CampaignEmailMessage = {
     type = "structure",
+    id = "CampaignEmailMessage",
     members = {
         Body = {
             type = "string",
@@ -1680,6 +1751,7 @@ M.FilterType = {
 
 M.CampaignEventFilter = {
     type = "structure",
+    id = "CampaignEventFilter",
     members = {
         Dimensions = setmetatable({ traits = {
             required = true,
@@ -1695,6 +1767,7 @@ M.CampaignEventFilter = {
 
 M.InAppMessageBodyConfig = {
     type = "structure",
+    id = "InAppMessageBodyConfig",
     members = {
         Alignment = {
             type = "string",
@@ -1719,6 +1792,7 @@ M.InAppMessageBodyConfig = {
 
 M.InAppMessageHeaderConfig = {
     type = "structure",
+    id = "InAppMessageHeaderConfig",
     members = {
         Alignment = {
             type = "string",
@@ -1743,6 +1817,7 @@ M.InAppMessageHeaderConfig = {
 
 M.OverrideButtonConfiguration = {
     type = "structure",
+    id = "OverrideButtonConfiguration",
     members = {
         ButtonAction = {
             type = "string",
@@ -1758,6 +1833,7 @@ M.OverrideButtonConfiguration = {
 
 M.DefaultButtonConfiguration = {
     type = "structure",
+    id = "DefaultButtonConfiguration",
     members = {
         BackgroundColor = {
             type = "string",
@@ -1788,6 +1864,7 @@ M.DefaultButtonConfiguration = {
 
 M.InAppMessageButton = {
     type = "structure",
+    id = "InAppMessageButton",
     members = {
         Android = M.OverrideButtonConfiguration,
         DefaultConfig = M.DefaultButtonConfiguration,
@@ -1798,6 +1875,7 @@ M.InAppMessageButton = {
 
 M.InAppMessageContent = {
     type = "structure",
+    id = "InAppMessageContent",
     members = {
         BackgroundColor = {
             type = "string",
@@ -1823,6 +1901,7 @@ M.Layout = {
 
 M.CampaignInAppMessage = {
     type = "structure",
+    id = "CampaignInAppMessage",
     members = {
         Body = {
             type = "string",
@@ -1844,6 +1923,7 @@ M.CampaignInAppMessage = {
 
 M.CustomDeliveryConfiguration = {
     type = "structure",
+    id = "CustomDeliveryConfiguration",
     members = {
         DeliveryUri = {
             type = "string",
@@ -1860,6 +1940,7 @@ M.CustomDeliveryConfiguration = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         Action = {
             type = "string",
@@ -1902,6 +1983,7 @@ M.Message = {
 
 M.CampaignSmsMessage = {
     type = "structure",
+    id = "CampaignSmsMessage",
     members = {
         Body = {
             type = "string",
@@ -1926,6 +2008,7 @@ M.CampaignSmsMessage = {
 
 M.MessageConfiguration = {
     type = "structure",
+    id = "MessageConfiguration",
     members = {
         ADMMessage = M.Message,
         APNSMessage = M.Message,
@@ -1951,6 +2034,7 @@ M.Frequency = {
 
 M.Schedule = {
     type = "structure",
+    id = "Schedule",
     members = {
         EndTime = {
             type = "string",
@@ -1987,6 +2071,7 @@ M.CampaignStatus = {
 
 M.CampaignState = {
     type = "structure",
+    id = "CampaignState",
     members = {
         CampaignStatus = {
             type = "string",
@@ -1996,6 +2081,7 @@ M.CampaignState = {
 
 M.Template = {
     type = "structure",
+    id = "Template",
     members = {
         Name = {
             type = "string",
@@ -2008,6 +2094,7 @@ M.Template = {
 
 M.TemplateConfiguration = {
     type = "structure",
+    id = "TemplateConfiguration",
     members = {
         EmailTemplate = M.Template,
         PushTemplate = M.Template,
@@ -2019,6 +2106,7 @@ M.TemplateConfiguration = {
 
 M.TreatmentResource = {
     type = "structure",
+    id = "TreatmentResource",
     members = {
         CustomDeliveryConfiguration = M.CustomDeliveryConfiguration,
         Id = {
@@ -2048,6 +2136,7 @@ M.TreatmentResource = {
 
 M.CampaignResponse = {
     type = "structure",
+    id = "CampaignResponse",
     members = {
         AdditionalTreatments = {
             type = "list",
@@ -2140,6 +2229,7 @@ M.CampaignResponse = {
 
 M.CampaignsResponse = {
     type = "structure",
+    id = "CampaignsResponse",
     members = {
         Item = {
             type = "list",
@@ -2156,6 +2246,7 @@ M.CampaignsResponse = {
 
 M.ChannelResponse = {
     type = "structure",
+    id = "ChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -2189,6 +2280,7 @@ M.ChannelResponse = {
 
 M.ChannelsResponse = {
     type = "structure",
+    id = "ChannelsResponse",
     members = {
         Channels = {
             type = "map",
@@ -2203,6 +2295,7 @@ M.ChannelsResponse = {
 
 M.ClosedDaysRule = {
     type = "structure",
+    id = "ClosedDaysRule",
     members = {
         Name = {
             type = "string",
@@ -2218,6 +2311,7 @@ M.ClosedDaysRule = {
 
 M.ClosedDays = {
     type = "structure",
+    id = "ClosedDays",
     members = {
         EMAIL = {
             type = "list",
@@ -2244,6 +2338,7 @@ M.ClosedDays = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -2257,6 +2352,7 @@ M.ConflictException = {
 
 M.CreateApplicationRequest = {
     type = "structure",
+    id = "CreateApplicationRequest",
     members = {
         Name = {
             type = "string",
@@ -2277,6 +2373,7 @@ M.CreateApplicationRequest = {
 
 M.CreateAppInput = {
     type = "structure",
+    id = "CreateAppInput",
     members = {
         CreateApplicationRequest = setmetatable({ traits = {
             http_payload = true,
@@ -2287,6 +2384,7 @@ M.CreateAppInput = {
 
 M.CreateAppOutput = {
     type = "structure",
+    id = "CreateAppOutput",
     members = {
         ApplicationResponse = setmetatable({ traits = {
             http_payload = true,
@@ -2297,6 +2395,7 @@ M.CreateAppOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Message = {
@@ -2310,6 +2409,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -2323,6 +2423,7 @@ M.InternalServerErrorException = {
 
 M.MethodNotAllowedException = {
     type = "structure",
+    id = "MethodNotAllowedException",
     error = "client",
     members = {
         Message = {
@@ -2336,6 +2437,7 @@ M.MethodNotAllowedException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2349,6 +2451,7 @@ M.NotFoundException = {
 
 M.PayloadTooLargeException = {
     type = "structure",
+    id = "PayloadTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -2362,6 +2465,7 @@ M.PayloadTooLargeException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -2375,6 +2479,7 @@ M.TooManyRequestsException = {
 
 M.WriteTreatmentResource = {
     type = "structure",
+    id = "WriteTreatmentResource",
     members = {
         CustomDeliveryConfiguration = M.CustomDeliveryConfiguration,
         MessageConfiguration = M.MessageConfiguration,
@@ -2397,6 +2502,7 @@ M.WriteTreatmentResource = {
 
 M.WriteCampaignRequest = {
     type = "structure",
+    id = "WriteCampaignRequest",
     members = {
         AdditionalTreatments = {
             type = "list",
@@ -2448,6 +2554,7 @@ M.WriteCampaignRequest = {
 
 M.CreateCampaignInput = {
     type = "structure",
+    id = "CreateCampaignInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2465,6 +2572,7 @@ M.CreateCampaignInput = {
 
 M.CreateCampaignOutput = {
     type = "structure",
+    id = "CreateCampaignOutput",
     members = {
         CampaignResponse = setmetatable({ traits = {
             http_payload = true,
@@ -2475,6 +2583,7 @@ M.CreateCampaignOutput = {
 
 M.EmailTemplateRequest = {
     type = "structure",
+    id = "EmailTemplateRequest",
     members = {
         DefaultSubstitutions = {
             type = "string",
@@ -2511,6 +2620,7 @@ M.EmailTemplateRequest = {
 
 M.CreateEmailTemplateInput = {
     type = "structure",
+    id = "CreateEmailTemplateInput",
     members = {
         EmailTemplateRequest = setmetatable({ traits = {
             http_payload = true,
@@ -2528,6 +2638,7 @@ M.CreateEmailTemplateInput = {
 
 M.CreateTemplateMessageBody = {
     type = "structure",
+    id = "CreateTemplateMessageBody",
     members = {
         Arn = {
             type = "string",
@@ -2543,6 +2654,7 @@ M.CreateTemplateMessageBody = {
 
 M.CreateEmailTemplateOutput = {
     type = "structure",
+    id = "CreateEmailTemplateOutput",
     members = {
         CreateTemplateMessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -2553,6 +2665,7 @@ M.CreateEmailTemplateOutput = {
 
 M.ExportJobRequest = {
     type = "structure",
+    id = "ExportJobRequest",
     members = {
         RoleArn = {
             type = "string",
@@ -2577,6 +2690,7 @@ M.ExportJobRequest = {
 
 M.CreateExportJobInput = {
     type = "structure",
+    id = "CreateExportJobInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2594,6 +2708,7 @@ M.CreateExportJobInput = {
 
 M.ExportJobResource = {
     type = "structure",
+    id = "ExportJobResource",
     members = {
         RoleArn = {
             type = "string",
@@ -2630,6 +2745,7 @@ M.JobStatus = {
 
 M.ExportJobResponse = {
     type = "structure",
+    id = "ExportJobResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -2691,6 +2807,7 @@ M.ExportJobResponse = {
 
 M.CreateExportJobOutput = {
     type = "structure",
+    id = "CreateExportJobOutput",
     members = {
         ExportJobResponse = setmetatable({ traits = {
             http_payload = true,
@@ -2706,6 +2823,7 @@ M.Format = {
 
 M.ImportJobRequest = {
     type = "structure",
+    id = "ImportJobRequest",
     members = {
         DefineSegment = {
             type = "boolean",
@@ -2745,6 +2863,7 @@ M.ImportJobRequest = {
 
 M.CreateImportJobInput = {
     type = "structure",
+    id = "CreateImportJobInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -2762,6 +2881,7 @@ M.CreateImportJobInput = {
 
 M.ImportJobResource = {
     type = "structure",
+    id = "ImportJobResource",
     members = {
         DefineSegment = {
             type = "boolean",
@@ -2801,6 +2921,7 @@ M.ImportJobResource = {
 
 M.ImportJobResponse = {
     type = "structure",
+    id = "ImportJobResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -2862,6 +2983,7 @@ M.ImportJobResponse = {
 
 M.CreateImportJobOutput = {
     type = "structure",
+    id = "CreateImportJobOutput",
     members = {
         ImportJobResponse = setmetatable({ traits = {
             http_payload = true,
@@ -2872,6 +2994,7 @@ M.CreateImportJobOutput = {
 
 M.InAppTemplateRequest = {
     type = "structure",
+    id = "InAppTemplateRequest",
     members = {
         Content = {
             type = "list",
@@ -2901,6 +3024,7 @@ M.InAppTemplateRequest = {
 
 M.CreateInAppTemplateInput = {
     type = "structure",
+    id = "CreateInAppTemplateInput",
     members = {
         InAppTemplateRequest = setmetatable({ traits = {
             http_payload = true,
@@ -2918,6 +3042,7 @@ M.CreateInAppTemplateInput = {
 
 M.TemplateCreateMessageBody = {
     type = "structure",
+    id = "TemplateCreateMessageBody",
     members = {
         Arn = {
             type = "string",
@@ -2933,6 +3058,7 @@ M.TemplateCreateMessageBody = {
 
 M.CreateInAppTemplateOutput = {
     type = "structure",
+    id = "CreateInAppTemplateOutput",
     members = {
         TemplateCreateMessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -2943,6 +3069,7 @@ M.CreateInAppTemplateOutput = {
 
 M.JourneyChannelSettings = {
     type = "structure",
+    id = "JourneyChannelSettings",
     members = {
         ConnectCampaignArn = {
             type = "string",
@@ -2955,6 +3082,7 @@ M.JourneyChannelSettings = {
 
 M.JourneyLimits = {
     type = "structure",
+    id = "JourneyLimits",
     members = {
         DailyCap = {
             type = "integer",
@@ -2987,6 +3115,7 @@ M.DayOfWeek = {
 
 M.OpenHoursRule = {
     type = "structure",
+    id = "OpenHoursRule",
     members = {
         StartTime = {
             type = "string",
@@ -2999,6 +3128,7 @@ M.OpenHoursRule = {
 
 M.OpenHours = {
     type = "structure",
+    id = "OpenHours",
     members = {
         EMAIL = {
             type = "map",
@@ -3030,6 +3160,7 @@ M.OpenHours = {
 
 M.JourneySchedule = {
     type = "structure",
+    id = "JourneySchedule",
     members = {
         EndTime = {
             type = "timestamp",
@@ -3051,6 +3182,7 @@ M.JourneySchedule = {
 
 M.EventFilter = {
     type = "structure",
+    id = "EventFilter",
     members = {
         Dimensions = setmetatable({ traits = {
             required = true,
@@ -3066,6 +3198,7 @@ M.EventFilter = {
 
 M.EventStartCondition = {
     type = "structure",
+    id = "EventStartCondition",
     members = {
         EventFilter = M.EventFilter,
         SegmentId = {
@@ -3076,6 +3209,7 @@ M.EventStartCondition = {
 
 M.StartCondition = {
     type = "structure",
+    id = "StartCondition",
     members = {
         Description = {
             type = "string",
@@ -3096,6 +3230,7 @@ M.State = {
 
 M.WriteJourneyRequest = {
     type = "structure",
+    id = "WriteJourneyRequest",
     members = {
         Activities = {
             type = "map",
@@ -3151,6 +3286,7 @@ M.WriteJourneyRequest = {
 
 M.CreateJourneyInput = {
     type = "structure",
+    id = "CreateJourneyInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3168,6 +3304,7 @@ M.CreateJourneyInput = {
 
 M.JourneyResponse = {
     type = "structure",
+    id = "JourneyResponse",
     members = {
         Activities = {
             type = "map",
@@ -3243,6 +3380,7 @@ M.JourneyResponse = {
 
 M.CreateJourneyOutput = {
     type = "structure",
+    id = "CreateJourneyOutput",
     members = {
         JourneyResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3253,6 +3391,7 @@ M.CreateJourneyOutput = {
 
 M.DefaultPushNotificationTemplate = {
     type = "structure",
+    id = "DefaultPushNotificationTemplate",
     members = {
         Action = {
             type = "string",
@@ -3274,6 +3413,7 @@ M.DefaultPushNotificationTemplate = {
 
 M.PushNotificationTemplateRequest = {
     type = "structure",
+    id = "PushNotificationTemplateRequest",
     members = {
         ADM = M.AndroidPushNotificationTemplate,
         APNS = M.APNSPushNotificationTemplate,
@@ -3302,6 +3442,7 @@ M.PushNotificationTemplateRequest = {
 
 M.CreatePushTemplateInput = {
     type = "structure",
+    id = "CreatePushTemplateInput",
     members = {
         PushNotificationTemplateRequest = setmetatable({ traits = {
             http_payload = true,
@@ -3319,6 +3460,7 @@ M.CreatePushTemplateInput = {
 
 M.CreatePushTemplateOutput = {
     type = "structure",
+    id = "CreatePushTemplateOutput",
     members = {
         CreateTemplateMessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -3329,6 +3471,7 @@ M.CreatePushTemplateOutput = {
 
 M.CreateRecommenderConfigurationShape = {
     type = "structure",
+    id = "CreateRecommenderConfigurationShape",
     members = {
         Attributes = {
             type = "map",
@@ -3370,6 +3513,7 @@ M.CreateRecommenderConfigurationShape = {
 
 M.CreateRecommenderConfigurationInput = {
     type = "structure",
+    id = "CreateRecommenderConfigurationInput",
     members = {
         CreateRecommenderConfiguration = setmetatable({ traits = {
             http_payload = true,
@@ -3380,6 +3524,7 @@ M.CreateRecommenderConfigurationInput = {
 
 M.RecommenderConfigurationResponse = {
     type = "structure",
+    id = "RecommenderConfigurationResponse",
     members = {
         Attributes = {
             type = "map",
@@ -3439,6 +3584,7 @@ M.RecommenderConfigurationResponse = {
 
 M.CreateRecommenderConfigurationOutput = {
     type = "structure",
+    id = "CreateRecommenderConfigurationOutput",
     members = {
         RecommenderConfigurationResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3449,6 +3595,7 @@ M.CreateRecommenderConfigurationOutput = {
 
 M.SegmentReference = {
     type = "structure",
+    id = "SegmentReference",
     members = {
         Id = {
             type = "string",
@@ -3476,6 +3623,7 @@ M.Type = {
 
 M.SegmentGroup = {
     type = "structure",
+    id = "SegmentGroup",
     members = {
         Dimensions = {
             type = "list",
@@ -3502,6 +3650,7 @@ M.Include = {
 
 M.SegmentGroupList = {
     type = "structure",
+    id = "SegmentGroupList",
     members = {
         Groups = {
             type = "list",
@@ -3515,6 +3664,7 @@ M.SegmentGroupList = {
 
 M.WriteSegmentRequest = {
     type = "structure",
+    id = "WriteSegmentRequest",
     members = {
         Dimensions = M.SegmentDimensions,
         Name = {
@@ -3534,6 +3684,7 @@ M.WriteSegmentRequest = {
 
 M.CreateSegmentInput = {
     type = "structure",
+    id = "CreateSegmentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3551,6 +3702,7 @@ M.CreateSegmentInput = {
 
 M.SegmentImportResource = {
     type = "structure",
+    id = "SegmentImportResource",
     members = {
         ChannelCounts = {
             type = "map",
@@ -3597,6 +3749,7 @@ M.SegmentType = {
 
 M.SegmentResponse = {
     type = "structure",
+    id = "SegmentResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -3653,6 +3806,7 @@ M.SegmentResponse = {
 
 M.CreateSegmentOutput = {
     type = "structure",
+    id = "CreateSegmentOutput",
     members = {
         SegmentResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3663,6 +3817,7 @@ M.CreateSegmentOutput = {
 
 M.SMSTemplateRequest = {
     type = "structure",
+    id = "SMSTemplateRequest",
     members = {
         Body = {
             type = "string",
@@ -3689,6 +3844,7 @@ M.SMSTemplateRequest = {
 
 M.CreateSmsTemplateInput = {
     type = "structure",
+    id = "CreateSmsTemplateInput",
     members = {
         SMSTemplateRequest = setmetatable({ traits = {
             http_payload = true,
@@ -3706,6 +3862,7 @@ M.CreateSmsTemplateInput = {
 
 M.CreateSmsTemplateOutput = {
     type = "structure",
+    id = "CreateSmsTemplateOutput",
     members = {
         CreateTemplateMessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -3716,6 +3873,7 @@ M.CreateSmsTemplateOutput = {
 
 M.VoiceTemplateRequest = {
     type = "structure",
+    id = "VoiceTemplateRequest",
     members = {
         Body = {
             type = "string",
@@ -3745,6 +3903,7 @@ M.VoiceTemplateRequest = {
 
 M.CreateVoiceTemplateInput = {
     type = "structure",
+    id = "CreateVoiceTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -3762,6 +3921,7 @@ M.CreateVoiceTemplateInput = {
 
 M.CreateVoiceTemplateOutput = {
     type = "structure",
+    id = "CreateVoiceTemplateOutput",
     members = {
         CreateTemplateMessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -3772,6 +3932,7 @@ M.CreateVoiceTemplateOutput = {
 
 M.DefaultMessage = {
     type = "structure",
+    id = "DefaultMessage",
     members = {
         Body = {
             type = "string",
@@ -3786,6 +3947,7 @@ M.DefaultMessage = {
 
 M.DefaultPushNotificationMessage = {
     type = "structure",
+    id = "DefaultPushNotificationMessage",
     members = {
         Action = {
             type = "string",
@@ -3817,6 +3979,7 @@ M.DefaultPushNotificationMessage = {
 
 M.DeleteAdmChannelInput = {
     type = "structure",
+    id = "DeleteAdmChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3830,6 +3993,7 @@ M.DeleteAdmChannelInput = {
 
 M.DeleteAdmChannelOutput = {
     type = "structure",
+    id = "DeleteAdmChannelOutput",
     members = {
         ADMChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3840,6 +4004,7 @@ M.DeleteAdmChannelOutput = {
 
 M.DeleteApnsChannelInput = {
     type = "structure",
+    id = "DeleteApnsChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3853,6 +4018,7 @@ M.DeleteApnsChannelInput = {
 
 M.DeleteApnsChannelOutput = {
     type = "structure",
+    id = "DeleteApnsChannelOutput",
     members = {
         APNSChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3863,6 +4029,7 @@ M.DeleteApnsChannelOutput = {
 
 M.DeleteApnsSandboxChannelInput = {
     type = "structure",
+    id = "DeleteApnsSandboxChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3876,6 +4043,7 @@ M.DeleteApnsSandboxChannelInput = {
 
 M.DeleteApnsSandboxChannelOutput = {
     type = "structure",
+    id = "DeleteApnsSandboxChannelOutput",
     members = {
         APNSSandboxChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3886,6 +4054,7 @@ M.DeleteApnsSandboxChannelOutput = {
 
 M.DeleteApnsVoipChannelInput = {
     type = "structure",
+    id = "DeleteApnsVoipChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3899,6 +4068,7 @@ M.DeleteApnsVoipChannelInput = {
 
 M.DeleteApnsVoipChannelOutput = {
     type = "structure",
+    id = "DeleteApnsVoipChannelOutput",
     members = {
         APNSVoipChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3909,6 +4079,7 @@ M.DeleteApnsVoipChannelOutput = {
 
 M.DeleteApnsVoipSandboxChannelInput = {
     type = "structure",
+    id = "DeleteApnsVoipSandboxChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3922,6 +4093,7 @@ M.DeleteApnsVoipSandboxChannelInput = {
 
 M.DeleteApnsVoipSandboxChannelOutput = {
     type = "structure",
+    id = "DeleteApnsVoipSandboxChannelOutput",
     members = {
         APNSVoipSandboxChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3932,6 +4104,7 @@ M.DeleteApnsVoipSandboxChannelOutput = {
 
 M.DeleteAppInput = {
     type = "structure",
+    id = "DeleteAppInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3945,6 +4118,7 @@ M.DeleteAppInput = {
 
 M.DeleteAppOutput = {
     type = "structure",
+    id = "DeleteAppOutput",
     members = {
         ApplicationResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3955,6 +4129,7 @@ M.DeleteAppOutput = {
 
 M.DeleteBaiduChannelInput = {
     type = "structure",
+    id = "DeleteBaiduChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3968,6 +4143,7 @@ M.DeleteBaiduChannelInput = {
 
 M.DeleteBaiduChannelOutput = {
     type = "structure",
+    id = "DeleteBaiduChannelOutput",
     members = {
         BaiduChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -3978,6 +4154,7 @@ M.DeleteBaiduChannelOutput = {
 
 M.DeleteCampaignInput = {
     type = "structure",
+    id = "DeleteCampaignInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -3998,6 +4175,7 @@ M.DeleteCampaignInput = {
 
 M.DeleteCampaignOutput = {
     type = "structure",
+    id = "DeleteCampaignOutput",
     members = {
         CampaignResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4008,6 +4186,7 @@ M.DeleteCampaignOutput = {
 
 M.DeleteEmailChannelInput = {
     type = "structure",
+    id = "DeleteEmailChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4021,6 +4200,7 @@ M.DeleteEmailChannelInput = {
 
 M.EmailChannelResponse = {
     type = "structure",
+    id = "EmailChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -4078,6 +4258,7 @@ M.EmailChannelResponse = {
 
 M.DeleteEmailChannelOutput = {
     type = "structure",
+    id = "DeleteEmailChannelOutput",
     members = {
         EmailChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4088,6 +4269,7 @@ M.DeleteEmailChannelOutput = {
 
 M.DeleteEmailTemplateInput = {
     type = "structure",
+    id = "DeleteEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -4107,6 +4289,7 @@ M.DeleteEmailTemplateInput = {
 
 M.MessageBody = {
     type = "structure",
+    id = "MessageBody",
     members = {
         Message = {
             type = "string",
@@ -4119,6 +4302,7 @@ M.MessageBody = {
 
 M.DeleteEmailTemplateOutput = {
     type = "structure",
+    id = "DeleteEmailTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -4129,6 +4313,7 @@ M.DeleteEmailTemplateOutput = {
 
 M.DeleteEndpointInput = {
     type = "structure",
+    id = "DeleteEndpointInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4149,6 +4334,7 @@ M.DeleteEndpointInput = {
 
 M.EndpointDemographic = {
     type = "structure",
+    id = "EndpointDemographic",
     members = {
         AppVersion = {
             type = "string",
@@ -4179,6 +4365,7 @@ M.EndpointDemographic = {
 
 M.EndpointLocation = {
     type = "structure",
+    id = "EndpointLocation",
     members = {
         City = {
             type = "string",
@@ -4203,6 +4390,7 @@ M.EndpointLocation = {
 
 M.EndpointUser = {
     type = "structure",
+    id = "EndpointUser",
     members = {
         UserAttributes = {
             type = "map",
@@ -4217,6 +4405,7 @@ M.EndpointUser = {
 
 M.EndpointResponse = {
     type = "structure",
+    id = "EndpointResponse",
     members = {
         Address = {
             type = "string",
@@ -4266,6 +4455,7 @@ M.EndpointResponse = {
 
 M.DeleteEndpointOutput = {
     type = "structure",
+    id = "DeleteEndpointOutput",
     members = {
         EndpointResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4276,6 +4466,7 @@ M.DeleteEndpointOutput = {
 
 M.DeleteEventStreamInput = {
     type = "structure",
+    id = "DeleteEventStreamInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4289,6 +4480,7 @@ M.DeleteEventStreamInput = {
 
 M.EventStream = {
     type = "structure",
+    id = "EventStream",
     members = {
         ApplicationId = {
             type = "string",
@@ -4322,6 +4514,7 @@ M.EventStream = {
 
 M.DeleteEventStreamOutput = {
     type = "structure",
+    id = "DeleteEventStreamOutput",
     members = {
         EventStream = setmetatable({ traits = {
             http_payload = true,
@@ -4332,6 +4525,7 @@ M.DeleteEventStreamOutput = {
 
 M.DeleteGcmChannelInput = {
     type = "structure",
+    id = "DeleteGcmChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4345,6 +4539,7 @@ M.DeleteGcmChannelInput = {
 
 M.GCMChannelResponse = {
     type = "structure",
+    id = "GCMChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -4393,6 +4588,7 @@ M.GCMChannelResponse = {
 
 M.DeleteGcmChannelOutput = {
     type = "structure",
+    id = "DeleteGcmChannelOutput",
     members = {
         GCMChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4403,6 +4599,7 @@ M.DeleteGcmChannelOutput = {
 
 M.DeleteInAppTemplateInput = {
     type = "structure",
+    id = "DeleteInAppTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -4422,6 +4619,7 @@ M.DeleteInAppTemplateInput = {
 
 M.DeleteInAppTemplateOutput = {
     type = "structure",
+    id = "DeleteInAppTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -4432,6 +4630,7 @@ M.DeleteInAppTemplateOutput = {
 
 M.DeleteJourneyInput = {
     type = "structure",
+    id = "DeleteJourneyInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4452,6 +4651,7 @@ M.DeleteJourneyInput = {
 
 M.DeleteJourneyOutput = {
     type = "structure",
+    id = "DeleteJourneyOutput",
     members = {
         JourneyResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4462,6 +4662,7 @@ M.DeleteJourneyOutput = {
 
 M.DeletePushTemplateInput = {
     type = "structure",
+    id = "DeletePushTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -4481,6 +4682,7 @@ M.DeletePushTemplateInput = {
 
 M.DeletePushTemplateOutput = {
     type = "structure",
+    id = "DeletePushTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -4491,6 +4693,7 @@ M.DeletePushTemplateOutput = {
 
 M.DeleteRecommenderConfigurationInput = {
     type = "structure",
+    id = "DeleteRecommenderConfigurationInput",
     members = {
         RecommenderId = {
             type = "string",
@@ -4504,6 +4707,7 @@ M.DeleteRecommenderConfigurationInput = {
 
 M.DeleteRecommenderConfigurationOutput = {
     type = "structure",
+    id = "DeleteRecommenderConfigurationOutput",
     members = {
         RecommenderConfigurationResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4514,6 +4718,7 @@ M.DeleteRecommenderConfigurationOutput = {
 
 M.DeleteSegmentInput = {
     type = "structure",
+    id = "DeleteSegmentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4534,6 +4739,7 @@ M.DeleteSegmentInput = {
 
 M.DeleteSegmentOutput = {
     type = "structure",
+    id = "DeleteSegmentOutput",
     members = {
         SegmentResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4544,6 +4750,7 @@ M.DeleteSegmentOutput = {
 
 M.DeleteSmsChannelInput = {
     type = "structure",
+    id = "DeleteSmsChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4557,6 +4764,7 @@ M.DeleteSmsChannelInput = {
 
 M.SMSChannelResponse = {
     type = "structure",
+    id = "SMSChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -4608,6 +4816,7 @@ M.SMSChannelResponse = {
 
 M.DeleteSmsChannelOutput = {
     type = "structure",
+    id = "DeleteSmsChannelOutput",
     members = {
         SMSChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4618,6 +4827,7 @@ M.DeleteSmsChannelOutput = {
 
 M.DeleteSmsTemplateInput = {
     type = "structure",
+    id = "DeleteSmsTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -4637,6 +4847,7 @@ M.DeleteSmsTemplateInput = {
 
 M.DeleteSmsTemplateOutput = {
     type = "structure",
+    id = "DeleteSmsTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -4647,6 +4858,7 @@ M.DeleteSmsTemplateOutput = {
 
 M.DeleteUserEndpointsInput = {
     type = "structure",
+    id = "DeleteUserEndpointsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4667,6 +4879,7 @@ M.DeleteUserEndpointsInput = {
 
 M.EndpointsResponse = {
     type = "structure",
+    id = "EndpointsResponse",
     members = {
         Item = {
             type = "list",
@@ -4680,6 +4893,7 @@ M.EndpointsResponse = {
 
 M.DeleteUserEndpointsOutput = {
     type = "structure",
+    id = "DeleteUserEndpointsOutput",
     members = {
         EndpointsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4690,6 +4904,7 @@ M.DeleteUserEndpointsOutput = {
 
 M.DeleteVoiceChannelInput = {
     type = "structure",
+    id = "DeleteVoiceChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -4703,6 +4918,7 @@ M.DeleteVoiceChannelInput = {
 
 M.VoiceChannelResponse = {
     type = "structure",
+    id = "VoiceChannelResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -4742,6 +4958,7 @@ M.VoiceChannelResponse = {
 
 M.DeleteVoiceChannelOutput = {
     type = "structure",
+    id = "DeleteVoiceChannelOutput",
     members = {
         VoiceChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -4752,6 +4969,7 @@ M.DeleteVoiceChannelOutput = {
 
 M.DeleteVoiceTemplateInput = {
     type = "structure",
+    id = "DeleteVoiceTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -4771,6 +4989,7 @@ M.DeleteVoiceTemplateInput = {
 
 M.DeleteVoiceTemplateOutput = {
     type = "structure",
+    id = "DeleteVoiceTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -4791,6 +5010,7 @@ M.DeliveryStatus = {
 
 M.RawEmail = {
     type = "structure",
+    id = "RawEmail",
     members = {
         Data = {
             type = "blob",
@@ -4800,6 +5020,7 @@ M.RawEmail = {
 
 M.SimpleEmailPart = {
     type = "structure",
+    id = "SimpleEmailPart",
     members = {
         Charset = {
             type = "string",
@@ -4812,6 +5033,7 @@ M.SimpleEmailPart = {
 
 M.SimpleEmail = {
     type = "structure",
+    id = "SimpleEmail",
     members = {
         HtmlPart = M.SimpleEmailPart,
         Subject = M.SimpleEmailPart,
@@ -4825,6 +5047,7 @@ M.SimpleEmail = {
 
 M.EmailMessage = {
     type = "structure",
+    id = "EmailMessage",
     members = {
         Body = {
             type = "string",
@@ -4851,6 +5074,7 @@ M.EmailMessage = {
 
 M.GCMMessage = {
     type = "structure",
+    id = "GCMMessage",
     members = {
         Action = {
             type = "string",
@@ -4915,6 +5139,7 @@ M.GCMMessage = {
 
 M.SMSMessage = {
     type = "structure",
+    id = "SMSMessage",
     members = {
         Body = {
             type = "string",
@@ -4950,6 +5175,7 @@ M.SMSMessage = {
 
 M.VoiceMessage = {
     type = "structure",
+    id = "VoiceMessage",
     members = {
         Body = {
             type = "string",
@@ -4973,6 +5199,7 @@ M.VoiceMessage = {
 
 M.DirectMessageConfiguration = {
     type = "structure",
+    id = "DirectMessageConfiguration",
     members = {
         ADMMessage = M.ADMMessage,
         APNSMessage = M.APNSMessage,
@@ -4988,6 +5215,7 @@ M.DirectMessageConfiguration = {
 
 M.EmailChannelRequest = {
     type = "structure",
+    id = "EmailChannelRequest",
     members = {
         ConfigurationSet = {
             type = "string",
@@ -5026,6 +5254,7 @@ M.TemplateType = {
 
 M.EmailTemplateResponse = {
     type = "structure",
+    id = "EmailTemplateResponse",
     members = {
         Arn = {
             type = "string",
@@ -5092,6 +5321,7 @@ M.EmailTemplateResponse = {
 
 M.EndpointBatchItem = {
     type = "structure",
+    id = "EndpointBatchItem",
     members = {
         Address = {
             type = "string",
@@ -5132,6 +5362,7 @@ M.EndpointBatchItem = {
 
 M.EndpointBatchRequest = {
     type = "structure",
+    id = "EndpointBatchRequest",
     members = {
         Item = {
             type = "list",
@@ -5145,6 +5376,7 @@ M.EndpointBatchRequest = {
 
 M.EndpointItemResponse = {
     type = "structure",
+    id = "EndpointItemResponse",
     members = {
         Message = {
             type = "string",
@@ -5157,6 +5389,7 @@ M.EndpointItemResponse = {
 
 M.EndpointMessageResult = {
     type = "structure",
+    id = "EndpointMessageResult",
     members = {
         Address = {
             type = "string",
@@ -5187,6 +5420,7 @@ M.EndpointMessageResult = {
 
 M.EndpointRequest = {
     type = "structure",
+    id = "EndpointRequest",
     members = {
         Address = {
             type = "string",
@@ -5224,6 +5458,7 @@ M.EndpointRequest = {
 
 M.EndpointSendConfiguration = {
     type = "structure",
+    id = "EndpointSendConfiguration",
     members = {
         BodyOverride = {
             type = "string",
@@ -5249,6 +5484,7 @@ M.EndpointSendConfiguration = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         Duration = {
             type = "integer",
@@ -5273,6 +5509,7 @@ M.Session = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         AppPackageName = {
             type = "string",
@@ -5317,6 +5554,7 @@ M.Event = {
 
 M.EventItemResponse = {
     type = "structure",
+    id = "EventItemResponse",
     members = {
         Message = {
             type = "string",
@@ -5329,6 +5567,7 @@ M.EventItemResponse = {
 
 M.PublicEndpoint = {
     type = "structure",
+    id = "PublicEndpoint",
     members = {
         Address = {
             type = "string",
@@ -5366,6 +5605,7 @@ M.PublicEndpoint = {
 
 M.EventsBatch = {
     type = "structure",
+    id = "EventsBatch",
     members = {
         Endpoint = setmetatable({ traits = {
             required = true,
@@ -5383,6 +5623,7 @@ M.EventsBatch = {
 
 M.EventsRequest = {
     type = "structure",
+    id = "EventsRequest",
     members = {
         BatchItem = {
             type = "map",
@@ -5397,6 +5638,7 @@ M.EventsRequest = {
 
 M.ItemResponse = {
     type = "structure",
+    id = "ItemResponse",
     members = {
         EndpointItemResponse = M.EndpointItemResponse,
         EventsItemResponse = {
@@ -5409,6 +5651,7 @@ M.ItemResponse = {
 
 M.EventsResponse = {
     type = "structure",
+    id = "EventsResponse",
     members = {
         Results = {
             type = "map",
@@ -5420,6 +5663,7 @@ M.EventsResponse = {
 
 M.ExportJobsResponse = {
     type = "structure",
+    id = "ExportJobsResponse",
     members = {
         Item = {
             type = "list",
@@ -5436,6 +5680,7 @@ M.ExportJobsResponse = {
 
 M.GCMChannelRequest = {
     type = "structure",
+    id = "GCMChannelRequest",
     members = {
         ApiKey = {
             type = "string",
@@ -5454,6 +5699,7 @@ M.GCMChannelRequest = {
 
 M.GetAdmChannelInput = {
     type = "structure",
+    id = "GetAdmChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5467,6 +5713,7 @@ M.GetAdmChannelInput = {
 
 M.GetAdmChannelOutput = {
     type = "structure",
+    id = "GetAdmChannelOutput",
     members = {
         ADMChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5477,6 +5724,7 @@ M.GetAdmChannelOutput = {
 
 M.GetApnsChannelInput = {
     type = "structure",
+    id = "GetApnsChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5490,6 +5738,7 @@ M.GetApnsChannelInput = {
 
 M.GetApnsChannelOutput = {
     type = "structure",
+    id = "GetApnsChannelOutput",
     members = {
         APNSChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5500,6 +5749,7 @@ M.GetApnsChannelOutput = {
 
 M.GetApnsSandboxChannelInput = {
     type = "structure",
+    id = "GetApnsSandboxChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5513,6 +5763,7 @@ M.GetApnsSandboxChannelInput = {
 
 M.GetApnsSandboxChannelOutput = {
     type = "structure",
+    id = "GetApnsSandboxChannelOutput",
     members = {
         APNSSandboxChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5523,6 +5774,7 @@ M.GetApnsSandboxChannelOutput = {
 
 M.GetApnsVoipChannelInput = {
     type = "structure",
+    id = "GetApnsVoipChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5536,6 +5788,7 @@ M.GetApnsVoipChannelInput = {
 
 M.GetApnsVoipChannelOutput = {
     type = "structure",
+    id = "GetApnsVoipChannelOutput",
     members = {
         APNSVoipChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5546,6 +5799,7 @@ M.GetApnsVoipChannelOutput = {
 
 M.GetApnsVoipSandboxChannelInput = {
     type = "structure",
+    id = "GetApnsVoipSandboxChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5559,6 +5813,7 @@ M.GetApnsVoipSandboxChannelInput = {
 
 M.GetApnsVoipSandboxChannelOutput = {
     type = "structure",
+    id = "GetApnsVoipSandboxChannelOutput",
     members = {
         APNSVoipSandboxChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5569,6 +5824,7 @@ M.GetApnsVoipSandboxChannelOutput = {
 
 M.GetAppInput = {
     type = "structure",
+    id = "GetAppInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5582,6 +5838,7 @@ M.GetAppInput = {
 
 M.GetAppOutput = {
     type = "structure",
+    id = "GetAppOutput",
     members = {
         ApplicationResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5592,6 +5849,7 @@ M.GetAppOutput = {
 
 M.GetApplicationDateRangeKpiInput = {
     type = "structure",
+    id = "GetApplicationDateRangeKpiInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5638,6 +5896,7 @@ M.GetApplicationDateRangeKpiInput = {
 
 M.GetApplicationDateRangeKpiOutput = {
     type = "structure",
+    id = "GetApplicationDateRangeKpiOutput",
     members = {
         ApplicationDateRangeKpiResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5648,6 +5907,7 @@ M.GetApplicationDateRangeKpiOutput = {
 
 M.GetApplicationSettingsInput = {
     type = "structure",
+    id = "GetApplicationSettingsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5661,6 +5921,7 @@ M.GetApplicationSettingsInput = {
 
 M.GetApplicationSettingsOutput = {
     type = "structure",
+    id = "GetApplicationSettingsOutput",
     members = {
         ApplicationSettingsResource = setmetatable({ traits = {
             http_payload = true,
@@ -5671,6 +5932,7 @@ M.GetApplicationSettingsOutput = {
 
 M.GetAppsInput = {
     type = "structure",
+    id = "GetAppsInput",
     members = {
         PageSize = {
             type = "string",
@@ -5689,6 +5951,7 @@ M.GetAppsInput = {
 
 M.GetAppsOutput = {
     type = "structure",
+    id = "GetAppsOutput",
     members = {
         ApplicationsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5699,6 +5962,7 @@ M.GetAppsOutput = {
 
 M.GetBaiduChannelInput = {
     type = "structure",
+    id = "GetBaiduChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5712,6 +5976,7 @@ M.GetBaiduChannelInput = {
 
 M.GetBaiduChannelOutput = {
     type = "structure",
+    id = "GetBaiduChannelOutput",
     members = {
         BaiduChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5722,6 +5987,7 @@ M.GetBaiduChannelOutput = {
 
 M.GetCampaignInput = {
     type = "structure",
+    id = "GetCampaignInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5742,6 +6008,7 @@ M.GetCampaignInput = {
 
 M.GetCampaignOutput = {
     type = "structure",
+    id = "GetCampaignOutput",
     members = {
         CampaignResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5752,6 +6019,7 @@ M.GetCampaignOutput = {
 
 M.GetCampaignActivitiesInput = {
     type = "structure",
+    id = "GetCampaignActivitiesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5784,6 +6052,7 @@ M.GetCampaignActivitiesInput = {
 
 M.GetCampaignActivitiesOutput = {
     type = "structure",
+    id = "GetCampaignActivitiesOutput",
     members = {
         ActivitiesResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5794,6 +6063,7 @@ M.GetCampaignActivitiesOutput = {
 
 M.GetCampaignDateRangeKpiInput = {
     type = "structure",
+    id = "GetCampaignDateRangeKpiInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5847,6 +6117,7 @@ M.GetCampaignDateRangeKpiInput = {
 
 M.GetCampaignDateRangeKpiOutput = {
     type = "structure",
+    id = "GetCampaignDateRangeKpiOutput",
     members = {
         CampaignDateRangeKpiResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5857,6 +6128,7 @@ M.GetCampaignDateRangeKpiOutput = {
 
 M.GetCampaignsInput = {
     type = "structure",
+    id = "GetCampaignsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5882,6 +6154,7 @@ M.GetCampaignsInput = {
 
 M.GetCampaignsOutput = {
     type = "structure",
+    id = "GetCampaignsOutput",
     members = {
         CampaignsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5892,6 +6165,7 @@ M.GetCampaignsOutput = {
 
 M.GetCampaignVersionInput = {
     type = "structure",
+    id = "GetCampaignVersionInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5919,6 +6193,7 @@ M.GetCampaignVersionInput = {
 
 M.GetCampaignVersionOutput = {
     type = "structure",
+    id = "GetCampaignVersionOutput",
     members = {
         CampaignResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5929,6 +6204,7 @@ M.GetCampaignVersionOutput = {
 
 M.GetCampaignVersionsInput = {
     type = "structure",
+    id = "GetCampaignVersionsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5961,6 +6237,7 @@ M.GetCampaignVersionsInput = {
 
 M.GetCampaignVersionsOutput = {
     type = "structure",
+    id = "GetCampaignVersionsOutput",
     members = {
         CampaignsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5971,6 +6248,7 @@ M.GetCampaignVersionsOutput = {
 
 M.GetChannelsInput = {
     type = "structure",
+    id = "GetChannelsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -5984,6 +6262,7 @@ M.GetChannelsInput = {
 
 M.GetChannelsOutput = {
     type = "structure",
+    id = "GetChannelsOutput",
     members = {
         ChannelsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -5994,6 +6273,7 @@ M.GetChannelsOutput = {
 
 M.GetEmailChannelInput = {
     type = "structure",
+    id = "GetEmailChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6007,6 +6287,7 @@ M.GetEmailChannelInput = {
 
 M.GetEmailChannelOutput = {
     type = "structure",
+    id = "GetEmailChannelOutput",
     members = {
         EmailChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6017,6 +6298,7 @@ M.GetEmailChannelOutput = {
 
 M.GetEmailTemplateInput = {
     type = "structure",
+    id = "GetEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -6036,6 +6318,7 @@ M.GetEmailTemplateInput = {
 
 M.GetEmailTemplateOutput = {
     type = "structure",
+    id = "GetEmailTemplateOutput",
     members = {
         EmailTemplateResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6046,6 +6329,7 @@ M.GetEmailTemplateOutput = {
 
 M.GetEndpointInput = {
     type = "structure",
+    id = "GetEndpointInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6066,6 +6350,7 @@ M.GetEndpointInput = {
 
 M.GetEndpointOutput = {
     type = "structure",
+    id = "GetEndpointOutput",
     members = {
         EndpointResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6076,6 +6361,7 @@ M.GetEndpointOutput = {
 
 M.GetEventStreamInput = {
     type = "structure",
+    id = "GetEventStreamInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6089,6 +6375,7 @@ M.GetEventStreamInput = {
 
 M.GetEventStreamOutput = {
     type = "structure",
+    id = "GetEventStreamOutput",
     members = {
         EventStream = setmetatable({ traits = {
             http_payload = true,
@@ -6099,6 +6386,7 @@ M.GetEventStreamOutput = {
 
 M.GetExportJobInput = {
     type = "structure",
+    id = "GetExportJobInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6119,6 +6407,7 @@ M.GetExportJobInput = {
 
 M.GetExportJobOutput = {
     type = "structure",
+    id = "GetExportJobOutput",
     members = {
         ExportJobResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6129,6 +6418,7 @@ M.GetExportJobOutput = {
 
 M.GetExportJobsInput = {
     type = "structure",
+    id = "GetExportJobsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6154,6 +6444,7 @@ M.GetExportJobsInput = {
 
 M.GetExportJobsOutput = {
     type = "structure",
+    id = "GetExportJobsOutput",
     members = {
         ExportJobsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6164,6 +6455,7 @@ M.GetExportJobsOutput = {
 
 M.GetGcmChannelInput = {
     type = "structure",
+    id = "GetGcmChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6177,6 +6469,7 @@ M.GetGcmChannelInput = {
 
 M.GetGcmChannelOutput = {
     type = "structure",
+    id = "GetGcmChannelOutput",
     members = {
         GCMChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6187,6 +6480,7 @@ M.GetGcmChannelOutput = {
 
 M.GetImportJobInput = {
     type = "structure",
+    id = "GetImportJobInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6207,6 +6501,7 @@ M.GetImportJobInput = {
 
 M.GetImportJobOutput = {
     type = "structure",
+    id = "GetImportJobOutput",
     members = {
         ImportJobResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6217,6 +6512,7 @@ M.GetImportJobOutput = {
 
 M.GetImportJobsInput = {
     type = "structure",
+    id = "GetImportJobsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6242,6 +6538,7 @@ M.GetImportJobsInput = {
 
 M.ImportJobsResponse = {
     type = "structure",
+    id = "ImportJobsResponse",
     members = {
         Item = {
             type = "list",
@@ -6258,6 +6555,7 @@ M.ImportJobsResponse = {
 
 M.GetImportJobsOutput = {
     type = "structure",
+    id = "GetImportJobsOutput",
     members = {
         ImportJobsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6268,6 +6566,7 @@ M.GetImportJobsOutput = {
 
 M.GetInAppMessagesInput = {
     type = "structure",
+    id = "GetInAppMessagesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6288,6 +6587,7 @@ M.GetInAppMessagesInput = {
 
 M.InAppMessage = {
     type = "structure",
+    id = "InAppMessage",
     members = {
         Content = {
             type = "list",
@@ -6306,6 +6606,7 @@ M.InAppMessage = {
 
 M.InAppCampaignSchedule = {
     type = "structure",
+    id = "InAppCampaignSchedule",
     members = {
         EndDate = {
             type = "string",
@@ -6317,6 +6618,7 @@ M.InAppCampaignSchedule = {
 
 M.InAppMessageCampaign = {
     type = "structure",
+    id = "InAppMessageCampaign",
     members = {
         CampaignId = {
             type = "string",
@@ -6343,6 +6645,7 @@ M.InAppMessageCampaign = {
 
 M.InAppMessagesResponse = {
     type = "structure",
+    id = "InAppMessagesResponse",
     members = {
         InAppMessageCampaigns = {
             type = "list",
@@ -6353,6 +6656,7 @@ M.InAppMessagesResponse = {
 
 M.GetInAppMessagesOutput = {
     type = "structure",
+    id = "GetInAppMessagesOutput",
     members = {
         InAppMessagesResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6363,6 +6667,7 @@ M.GetInAppMessagesOutput = {
 
 M.GetInAppTemplateInput = {
     type = "structure",
+    id = "GetInAppTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -6382,6 +6687,7 @@ M.GetInAppTemplateInput = {
 
 M.InAppTemplateResponse = {
     type = "structure",
+    id = "InAppTemplateResponse",
     members = {
         Arn = {
             type = "string",
@@ -6441,6 +6747,7 @@ M.InAppTemplateResponse = {
 
 M.GetInAppTemplateOutput = {
     type = "structure",
+    id = "GetInAppTemplateOutput",
     members = {
         InAppTemplateResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6451,6 +6758,7 @@ M.GetInAppTemplateOutput = {
 
 M.GetJourneyInput = {
     type = "structure",
+    id = "GetJourneyInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6471,6 +6779,7 @@ M.GetJourneyInput = {
 
 M.GetJourneyOutput = {
     type = "structure",
+    id = "GetJourneyOutput",
     members = {
         JourneyResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6481,6 +6790,7 @@ M.GetJourneyOutput = {
 
 M.GetJourneyDateRangeKpiInput = {
     type = "structure",
+    id = "GetJourneyDateRangeKpiInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6534,6 +6844,7 @@ M.GetJourneyDateRangeKpiInput = {
 
 M.JourneyDateRangeKpiResponse = {
     type = "structure",
+    id = "JourneyDateRangeKpiResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -6578,6 +6889,7 @@ M.JourneyDateRangeKpiResponse = {
 
 M.GetJourneyDateRangeKpiOutput = {
     type = "structure",
+    id = "GetJourneyDateRangeKpiOutput",
     members = {
         JourneyDateRangeKpiResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6588,6 +6900,7 @@ M.GetJourneyDateRangeKpiOutput = {
 
 M.GetJourneyExecutionActivityMetricsInput = {
     type = "structure",
+    id = "GetJourneyExecutionActivityMetricsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6627,6 +6940,7 @@ M.GetJourneyExecutionActivityMetricsInput = {
 
 M.JourneyExecutionActivityMetricsResponse = {
     type = "structure",
+    id = "JourneyExecutionActivityMetricsResponse",
     members = {
         ActivityType = {
             type = "string",
@@ -6671,6 +6985,7 @@ M.JourneyExecutionActivityMetricsResponse = {
 
 M.GetJourneyExecutionActivityMetricsOutput = {
     type = "structure",
+    id = "GetJourneyExecutionActivityMetricsOutput",
     members = {
         JourneyExecutionActivityMetricsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6681,6 +6996,7 @@ M.GetJourneyExecutionActivityMetricsOutput = {
 
 M.GetJourneyExecutionMetricsInput = {
     type = "structure",
+    id = "GetJourneyExecutionMetricsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6713,6 +7029,7 @@ M.GetJourneyExecutionMetricsInput = {
 
 M.JourneyExecutionMetricsResponse = {
     type = "structure",
+    id = "JourneyExecutionMetricsResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -6745,6 +7062,7 @@ M.JourneyExecutionMetricsResponse = {
 
 M.GetJourneyExecutionMetricsOutput = {
     type = "structure",
+    id = "GetJourneyExecutionMetricsOutput",
     members = {
         JourneyExecutionMetricsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6755,6 +7073,7 @@ M.GetJourneyExecutionMetricsOutput = {
 
 M.GetJourneyRunExecutionActivityMetricsInput = {
     type = "structure",
+    id = "GetJourneyRunExecutionActivityMetricsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6801,6 +7120,7 @@ M.GetJourneyRunExecutionActivityMetricsInput = {
 
 M.JourneyRunExecutionActivityMetricsResponse = {
     type = "structure",
+    id = "JourneyRunExecutionActivityMetricsResponse",
     members = {
         ActivityType = {
             type = "string",
@@ -6851,6 +7171,7 @@ M.JourneyRunExecutionActivityMetricsResponse = {
 
 M.GetJourneyRunExecutionActivityMetricsOutput = {
     type = "structure",
+    id = "GetJourneyRunExecutionActivityMetricsOutput",
     members = {
         JourneyRunExecutionActivityMetricsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6861,6 +7182,7 @@ M.GetJourneyRunExecutionActivityMetricsOutput = {
 
 M.GetJourneyRunExecutionMetricsInput = {
     type = "structure",
+    id = "GetJourneyRunExecutionMetricsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6900,6 +7222,7 @@ M.GetJourneyRunExecutionMetricsInput = {
 
 M.JourneyRunExecutionMetricsResponse = {
     type = "structure",
+    id = "JourneyRunExecutionMetricsResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -6938,6 +7261,7 @@ M.JourneyRunExecutionMetricsResponse = {
 
 M.GetJourneyRunExecutionMetricsOutput = {
     type = "structure",
+    id = "GetJourneyRunExecutionMetricsOutput",
     members = {
         JourneyRunExecutionMetricsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -6948,6 +7272,7 @@ M.GetJourneyRunExecutionMetricsOutput = {
 
 M.GetJourneyRunsInput = {
     type = "structure",
+    id = "GetJourneyRunsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -6987,6 +7312,7 @@ M.JourneyRunStatus = {
 
 M.JourneyRunResponse = {
     type = "structure",
+    id = "JourneyRunResponse",
     members = {
         CreationTime = {
             type = "string",
@@ -7017,6 +7343,7 @@ M.JourneyRunResponse = {
 
 M.JourneyRunsResponse = {
     type = "structure",
+    id = "JourneyRunsResponse",
     members = {
         Item = {
             type = "list",
@@ -7033,6 +7360,7 @@ M.JourneyRunsResponse = {
 
 M.GetJourneyRunsOutput = {
     type = "structure",
+    id = "GetJourneyRunsOutput",
     members = {
         JourneyRunsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7043,6 +7371,7 @@ M.GetJourneyRunsOutput = {
 
 M.GetPushTemplateInput = {
     type = "structure",
+    id = "GetPushTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -7062,6 +7391,7 @@ M.GetPushTemplateInput = {
 
 M.PushNotificationTemplateResponse = {
     type = "structure",
+    id = "PushNotificationTemplateResponse",
     members = {
         ADM = M.AndroidPushNotificationTemplate,
         APNS = M.APNSPushNotificationTemplate,
@@ -7120,6 +7450,7 @@ M.PushNotificationTemplateResponse = {
 
 M.GetPushTemplateOutput = {
     type = "structure",
+    id = "GetPushTemplateOutput",
     members = {
         PushNotificationTemplateResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7130,6 +7461,7 @@ M.GetPushTemplateOutput = {
 
 M.GetRecommenderConfigurationInput = {
     type = "structure",
+    id = "GetRecommenderConfigurationInput",
     members = {
         RecommenderId = {
             type = "string",
@@ -7143,6 +7475,7 @@ M.GetRecommenderConfigurationInput = {
 
 M.GetRecommenderConfigurationOutput = {
     type = "structure",
+    id = "GetRecommenderConfigurationOutput",
     members = {
         RecommenderConfigurationResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7153,6 +7486,7 @@ M.GetRecommenderConfigurationOutput = {
 
 M.GetRecommenderConfigurationsInput = {
     type = "structure",
+    id = "GetRecommenderConfigurationsInput",
     members = {
         PageSize = {
             type = "string",
@@ -7171,6 +7505,7 @@ M.GetRecommenderConfigurationsInput = {
 
 M.ListRecommenderConfigurationsResponse = {
     type = "structure",
+    id = "ListRecommenderConfigurationsResponse",
     members = {
         Item = {
             type = "list",
@@ -7187,6 +7522,7 @@ M.ListRecommenderConfigurationsResponse = {
 
 M.GetRecommenderConfigurationsOutput = {
     type = "structure",
+    id = "GetRecommenderConfigurationsOutput",
     members = {
         ListRecommenderConfigurationsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7197,6 +7533,7 @@ M.GetRecommenderConfigurationsOutput = {
 
 M.GetSegmentInput = {
     type = "structure",
+    id = "GetSegmentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7217,6 +7554,7 @@ M.GetSegmentInput = {
 
 M.GetSegmentOutput = {
     type = "structure",
+    id = "GetSegmentOutput",
     members = {
         SegmentResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7227,6 +7565,7 @@ M.GetSegmentOutput = {
 
 M.GetSegmentExportJobsInput = {
     type = "structure",
+    id = "GetSegmentExportJobsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7259,6 +7598,7 @@ M.GetSegmentExportJobsInput = {
 
 M.GetSegmentExportJobsOutput = {
     type = "structure",
+    id = "GetSegmentExportJobsOutput",
     members = {
         ExportJobsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7269,6 +7609,7 @@ M.GetSegmentExportJobsOutput = {
 
 M.GetSegmentImportJobsInput = {
     type = "structure",
+    id = "GetSegmentImportJobsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7301,6 +7642,7 @@ M.GetSegmentImportJobsInput = {
 
 M.GetSegmentImportJobsOutput = {
     type = "structure",
+    id = "GetSegmentImportJobsOutput",
     members = {
         ImportJobsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7311,6 +7653,7 @@ M.GetSegmentImportJobsOutput = {
 
 M.GetSegmentsInput = {
     type = "structure",
+    id = "GetSegmentsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7336,6 +7679,7 @@ M.GetSegmentsInput = {
 
 M.SegmentsResponse = {
     type = "structure",
+    id = "SegmentsResponse",
     members = {
         Item = {
             type = "list",
@@ -7352,6 +7696,7 @@ M.SegmentsResponse = {
 
 M.GetSegmentsOutput = {
     type = "structure",
+    id = "GetSegmentsOutput",
     members = {
         SegmentsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7362,6 +7707,7 @@ M.GetSegmentsOutput = {
 
 M.GetSegmentVersionInput = {
     type = "structure",
+    id = "GetSegmentVersionInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7389,6 +7735,7 @@ M.GetSegmentVersionInput = {
 
 M.GetSegmentVersionOutput = {
     type = "structure",
+    id = "GetSegmentVersionOutput",
     members = {
         SegmentResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7399,6 +7746,7 @@ M.GetSegmentVersionOutput = {
 
 M.GetSegmentVersionsInput = {
     type = "structure",
+    id = "GetSegmentVersionsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7431,6 +7779,7 @@ M.GetSegmentVersionsInput = {
 
 M.GetSegmentVersionsOutput = {
     type = "structure",
+    id = "GetSegmentVersionsOutput",
     members = {
         SegmentsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7441,6 +7790,7 @@ M.GetSegmentVersionsOutput = {
 
 M.GetSmsChannelInput = {
     type = "structure",
+    id = "GetSmsChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7454,6 +7804,7 @@ M.GetSmsChannelInput = {
 
 M.GetSmsChannelOutput = {
     type = "structure",
+    id = "GetSmsChannelOutput",
     members = {
         SMSChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7464,6 +7815,7 @@ M.GetSmsChannelOutput = {
 
 M.GetSmsTemplateInput = {
     type = "structure",
+    id = "GetSmsTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -7483,6 +7835,7 @@ M.GetSmsTemplateInput = {
 
 M.SMSTemplateResponse = {
     type = "structure",
+    id = "SMSTemplateResponse",
     members = {
         Arn = {
             type = "string",
@@ -7539,6 +7892,7 @@ M.SMSTemplateResponse = {
 
 M.GetSmsTemplateOutput = {
     type = "structure",
+    id = "GetSmsTemplateOutput",
     members = {
         SMSTemplateResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7549,6 +7903,7 @@ M.GetSmsTemplateOutput = {
 
 M.GetUserEndpointsInput = {
     type = "structure",
+    id = "GetUserEndpointsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7569,6 +7924,7 @@ M.GetUserEndpointsInput = {
 
 M.GetUserEndpointsOutput = {
     type = "structure",
+    id = "GetUserEndpointsOutput",
     members = {
         EndpointsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7579,6 +7935,7 @@ M.GetUserEndpointsOutput = {
 
 M.GetVoiceChannelInput = {
     type = "structure",
+    id = "GetVoiceChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7592,6 +7949,7 @@ M.GetVoiceChannelInput = {
 
 M.GetVoiceChannelOutput = {
     type = "structure",
+    id = "GetVoiceChannelOutput",
     members = {
         VoiceChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7602,6 +7960,7 @@ M.GetVoiceChannelOutput = {
 
 M.GetVoiceTemplateInput = {
     type = "structure",
+    id = "GetVoiceTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -7621,6 +7980,7 @@ M.GetVoiceTemplateInput = {
 
 M.VoiceTemplateResponse = {
     type = "structure",
+    id = "VoiceTemplateResponse",
     members = {
         Arn = {
             type = "string",
@@ -7680,6 +8040,7 @@ M.VoiceTemplateResponse = {
 
 M.GetVoiceTemplateOutput = {
     type = "structure",
+    id = "GetVoiceTemplateOutput",
     members = {
         VoiceTemplateResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7690,6 +8051,7 @@ M.GetVoiceTemplateOutput = {
 
 M.JourneysResponse = {
     type = "structure",
+    id = "JourneysResponse",
     members = {
         Item = {
             type = "list",
@@ -7706,6 +8068,7 @@ M.JourneysResponse = {
 
 M.JourneyStateRequest = {
     type = "structure",
+    id = "JourneyStateRequest",
     members = {
         State = {
             type = "string",
@@ -7715,6 +8078,7 @@ M.JourneyStateRequest = {
 
 M.ListJourneysInput = {
     type = "structure",
+    id = "ListJourneysInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -7740,6 +8104,7 @@ M.ListJourneysInput = {
 
 M.ListJourneysOutput = {
     type = "structure",
+    id = "ListJourneysOutput",
     members = {
         JourneysResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7750,6 +8115,7 @@ M.ListJourneysOutput = {
 
 M.TemplateResponse = {
     type = "structure",
+    id = "TemplateResponse",
     members = {
         Arn = {
             type = "string",
@@ -7800,6 +8166,7 @@ M.TemplateResponse = {
 
 M.TemplateVersionResponse = {
     type = "structure",
+    id = "TemplateVersionResponse",
     members = {
         CreationDate = {
             type = "string",
@@ -7839,6 +8206,7 @@ M.TemplateVersionResponse = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -7852,6 +8220,7 @@ M.ListTagsForResourceInput = {
 
 M.TagsModel = {
     type = "structure",
+    id = "TagsModel",
     members = {
         tags = {
             type = "map",
@@ -7867,6 +8236,7 @@ M.TagsModel = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagsModel = setmetatable({ traits = {
             http_payload = true,
@@ -7877,6 +8247,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTemplatesInput = {
     type = "structure",
+    id = "ListTemplatesInput",
     members = {
         NextToken = {
             type = "string",
@@ -7907,6 +8278,7 @@ M.ListTemplatesInput = {
 
 M.TemplatesResponse = {
     type = "structure",
+    id = "TemplatesResponse",
     members = {
         Item = {
             type = "list",
@@ -7923,6 +8295,7 @@ M.TemplatesResponse = {
 
 M.ListTemplatesOutput = {
     type = "structure",
+    id = "ListTemplatesOutput",
     members = {
         TemplatesResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7933,6 +8306,7 @@ M.ListTemplatesOutput = {
 
 M.ListTemplateVersionsInput = {
     type = "structure",
+    id = "ListTemplateVersionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -7965,6 +8339,7 @@ M.ListTemplateVersionsInput = {
 
 M.TemplateVersionsResponse = {
     type = "structure",
+    id = "TemplateVersionsResponse",
     members = {
         Item = {
             type = "list",
@@ -7987,6 +8362,7 @@ M.TemplateVersionsResponse = {
 
 M.ListTemplateVersionsOutput = {
     type = "structure",
+    id = "ListTemplateVersionsOutput",
     members = {
         TemplateVersionsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -7997,6 +8373,7 @@ M.ListTemplateVersionsOutput = {
 
 M.MessageResult = {
     type = "structure",
+    id = "MessageResult",
     members = {
         DeliveryStatus = {
             type = "string",
@@ -8024,6 +8401,7 @@ M.MessageResult = {
 
 M.MessageRequest = {
     type = "structure",
+    id = "MessageRequest",
     members = {
         Addresses = {
             type = "map",
@@ -8052,6 +8430,7 @@ M.MessageRequest = {
 
 M.MessageResponse = {
     type = "structure",
+    id = "MessageResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -8077,6 +8456,7 @@ M.MessageResponse = {
 
 M.NumberValidateRequest = {
     type = "structure",
+    id = "NumberValidateRequest",
     members = {
         IsoCountryCode = {
             type = "string",
@@ -8089,6 +8469,7 @@ M.NumberValidateRequest = {
 
 M.NumberValidateResponse = {
     type = "structure",
+    id = "NumberValidateResponse",
     members = {
         Carrier = {
             type = "string",
@@ -8137,6 +8518,7 @@ M.NumberValidateResponse = {
 
 M.PhoneNumberValidateInput = {
     type = "structure",
+    id = "PhoneNumberValidateInput",
     members = {
         NumberValidateRequest = setmetatable({ traits = {
             http_payload = true,
@@ -8147,6 +8529,7 @@ M.PhoneNumberValidateInput = {
 
 M.PhoneNumberValidateOutput = {
     type = "structure",
+    id = "PhoneNumberValidateOutput",
     members = {
         NumberValidateResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8157,6 +8540,7 @@ M.PhoneNumberValidateOutput = {
 
 M.PutEventsInput = {
     type = "structure",
+    id = "PutEventsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8174,6 +8558,7 @@ M.PutEventsInput = {
 
 M.PutEventsOutput = {
     type = "structure",
+    id = "PutEventsOutput",
     members = {
         EventsResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8184,6 +8569,7 @@ M.PutEventsOutput = {
 
 M.WriteEventStream = {
     type = "structure",
+    id = "WriteEventStream",
     members = {
         DestinationStreamArn = {
             type = "string",
@@ -8202,6 +8588,7 @@ M.WriteEventStream = {
 
 M.PutEventStreamInput = {
     type = "structure",
+    id = "PutEventStreamInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8219,6 +8606,7 @@ M.PutEventStreamInput = {
 
 M.PutEventStreamOutput = {
     type = "structure",
+    id = "PutEventStreamOutput",
     members = {
         EventStream = setmetatable({ traits = {
             http_payload = true,
@@ -8229,6 +8617,7 @@ M.PutEventStreamOutput = {
 
 M.UpdateAttributesRequest = {
     type = "structure",
+    id = "UpdateAttributesRequest",
     members = {
         Blacklist = {
             type = "list",
@@ -8239,6 +8628,7 @@ M.UpdateAttributesRequest = {
 
 M.RemoveAttributesInput = {
     type = "structure",
+    id = "RemoveAttributesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8263,6 +8653,7 @@ M.RemoveAttributesInput = {
 
 M.RemoveAttributesOutput = {
     type = "structure",
+    id = "RemoveAttributesOutput",
     members = {
         AttributesResource = setmetatable({ traits = {
             http_payload = true,
@@ -8273,6 +8664,7 @@ M.RemoveAttributesOutput = {
 
 M.SendMessagesInput = {
     type = "structure",
+    id = "SendMessagesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8290,6 +8682,7 @@ M.SendMessagesInput = {
 
 M.SendMessagesOutput = {
     type = "structure",
+    id = "SendMessagesOutput",
     members = {
         MessageResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8300,6 +8693,7 @@ M.SendMessagesOutput = {
 
 M.SendOTPMessageRequestParameters = {
     type = "structure",
+    id = "SendOTPMessageRequestParameters",
     members = {
         AllowedAttempts = {
             type = "integer",
@@ -8354,6 +8748,7 @@ M.SendOTPMessageRequestParameters = {
 
 M.SendOTPMessageInput = {
     type = "structure",
+    id = "SendOTPMessageInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8371,6 +8766,7 @@ M.SendOTPMessageInput = {
 
 M.SendOTPMessageOutput = {
     type = "structure",
+    id = "SendOTPMessageOutput",
     members = {
         MessageResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8381,6 +8777,7 @@ M.SendOTPMessageOutput = {
 
 M.SendUsersMessageRequest = {
     type = "structure",
+    id = "SendUsersMessageRequest",
     members = {
         Context = {
             type = "map",
@@ -8407,6 +8804,7 @@ M.SendUsersMessageRequest = {
 
 M.SendUsersMessagesInput = {
     type = "structure",
+    id = "SendUsersMessagesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8424,6 +8822,7 @@ M.SendUsersMessagesInput = {
 
 M.SendUsersMessageResponse = {
     type = "structure",
+    id = "SendUsersMessageResponse",
     members = {
         ApplicationId = {
             type = "string",
@@ -8444,6 +8843,7 @@ M.SendUsersMessageResponse = {
 
 M.SendUsersMessagesOutput = {
     type = "structure",
+    id = "SendUsersMessagesOutput",
     members = {
         SendUsersMessageResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8454,6 +8854,7 @@ M.SendUsersMessagesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -8471,10 +8872,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -8496,10 +8899,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAdmChannelInput = {
     type = "structure",
+    id = "UpdateAdmChannelInput",
     members = {
         ADMChannelRequest = setmetatable({ traits = {
             http_payload = true,
@@ -8517,6 +8922,7 @@ M.UpdateAdmChannelInput = {
 
 M.UpdateAdmChannelOutput = {
     type = "structure",
+    id = "UpdateAdmChannelOutput",
     members = {
         ADMChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8527,6 +8933,7 @@ M.UpdateAdmChannelOutput = {
 
 M.UpdateApnsChannelInput = {
     type = "structure",
+    id = "UpdateApnsChannelInput",
     members = {
         APNSChannelRequest = setmetatable({ traits = {
             http_payload = true,
@@ -8544,6 +8951,7 @@ M.UpdateApnsChannelInput = {
 
 M.UpdateApnsChannelOutput = {
     type = "structure",
+    id = "UpdateApnsChannelOutput",
     members = {
         APNSChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8554,6 +8962,7 @@ M.UpdateApnsChannelOutput = {
 
 M.UpdateApnsSandboxChannelInput = {
     type = "structure",
+    id = "UpdateApnsSandboxChannelInput",
     members = {
         APNSSandboxChannelRequest = setmetatable({ traits = {
             http_payload = true,
@@ -8571,6 +8980,7 @@ M.UpdateApnsSandboxChannelInput = {
 
 M.UpdateApnsSandboxChannelOutput = {
     type = "structure",
+    id = "UpdateApnsSandboxChannelOutput",
     members = {
         APNSSandboxChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8581,6 +8991,7 @@ M.UpdateApnsSandboxChannelOutput = {
 
 M.UpdateApnsVoipChannelInput = {
     type = "structure",
+    id = "UpdateApnsVoipChannelInput",
     members = {
         APNSVoipChannelRequest = setmetatable({ traits = {
             http_payload = true,
@@ -8598,6 +9009,7 @@ M.UpdateApnsVoipChannelInput = {
 
 M.UpdateApnsVoipChannelOutput = {
     type = "structure",
+    id = "UpdateApnsVoipChannelOutput",
     members = {
         APNSVoipChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8608,6 +9020,7 @@ M.UpdateApnsVoipChannelOutput = {
 
 M.UpdateApnsVoipSandboxChannelInput = {
     type = "structure",
+    id = "UpdateApnsVoipSandboxChannelInput",
     members = {
         APNSVoipSandboxChannelRequest = setmetatable({ traits = {
             http_payload = true,
@@ -8625,6 +9038,7 @@ M.UpdateApnsVoipSandboxChannelInput = {
 
 M.UpdateApnsVoipSandboxChannelOutput = {
     type = "structure",
+    id = "UpdateApnsVoipSandboxChannelOutput",
     members = {
         APNSVoipSandboxChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8635,6 +9049,7 @@ M.UpdateApnsVoipSandboxChannelOutput = {
 
 M.WriteApplicationSettingsRequest = {
     type = "structure",
+    id = "WriteApplicationSettingsRequest",
     members = {
         CampaignHook = M.CampaignHook,
         CloudWatchMetricsEnabled = {
@@ -8651,6 +9066,7 @@ M.WriteApplicationSettingsRequest = {
 
 M.UpdateApplicationSettingsInput = {
     type = "structure",
+    id = "UpdateApplicationSettingsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8668,6 +9084,7 @@ M.UpdateApplicationSettingsInput = {
 
 M.UpdateApplicationSettingsOutput = {
     type = "structure",
+    id = "UpdateApplicationSettingsOutput",
     members = {
         ApplicationSettingsResource = setmetatable({ traits = {
             http_payload = true,
@@ -8678,6 +9095,7 @@ M.UpdateApplicationSettingsOutput = {
 
 M.UpdateBaiduChannelInput = {
     type = "structure",
+    id = "UpdateBaiduChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8695,6 +9113,7 @@ M.UpdateBaiduChannelInput = {
 
 M.UpdateBaiduChannelOutput = {
     type = "structure",
+    id = "UpdateBaiduChannelOutput",
     members = {
         BaiduChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8705,6 +9124,7 @@ M.UpdateBaiduChannelOutput = {
 
 M.UpdateCampaignInput = {
     type = "structure",
+    id = "UpdateCampaignInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8729,6 +9149,7 @@ M.UpdateCampaignInput = {
 
 M.UpdateCampaignOutput = {
     type = "structure",
+    id = "UpdateCampaignOutput",
     members = {
         CampaignResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8739,6 +9160,7 @@ M.UpdateCampaignOutput = {
 
 M.UpdateEmailChannelInput = {
     type = "structure",
+    id = "UpdateEmailChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8756,6 +9178,7 @@ M.UpdateEmailChannelInput = {
 
 M.UpdateEmailChannelOutput = {
     type = "structure",
+    id = "UpdateEmailChannelOutput",
     members = {
         EmailChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8766,6 +9189,7 @@ M.UpdateEmailChannelOutput = {
 
 M.UpdateEmailTemplateInput = {
     type = "structure",
+    id = "UpdateEmailTemplateInput",
     members = {
         CreateNewVersion = {
             type = "boolean",
@@ -8795,6 +9219,7 @@ M.UpdateEmailTemplateInput = {
 
 M.UpdateEmailTemplateOutput = {
     type = "structure",
+    id = "UpdateEmailTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -8805,6 +9230,7 @@ M.UpdateEmailTemplateOutput = {
 
 M.UpdateEndpointInput = {
     type = "structure",
+    id = "UpdateEndpointInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8829,6 +9255,7 @@ M.UpdateEndpointInput = {
 
 M.UpdateEndpointOutput = {
     type = "structure",
+    id = "UpdateEndpointOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -8839,6 +9266,7 @@ M.UpdateEndpointOutput = {
 
 M.UpdateEndpointsBatchInput = {
     type = "structure",
+    id = "UpdateEndpointsBatchInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8856,6 +9284,7 @@ M.UpdateEndpointsBatchInput = {
 
 M.UpdateEndpointsBatchOutput = {
     type = "structure",
+    id = "UpdateEndpointsBatchOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -8866,6 +9295,7 @@ M.UpdateEndpointsBatchOutput = {
 
 M.UpdateGcmChannelInput = {
     type = "structure",
+    id = "UpdateGcmChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8883,6 +9313,7 @@ M.UpdateGcmChannelInput = {
 
 M.UpdateGcmChannelOutput = {
     type = "structure",
+    id = "UpdateGcmChannelOutput",
     members = {
         GCMChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8893,6 +9324,7 @@ M.UpdateGcmChannelOutput = {
 
 M.UpdateInAppTemplateInput = {
     type = "structure",
+    id = "UpdateInAppTemplateInput",
     members = {
         CreateNewVersion = {
             type = "boolean",
@@ -8922,6 +9354,7 @@ M.UpdateInAppTemplateInput = {
 
 M.UpdateInAppTemplateOutput = {
     type = "structure",
+    id = "UpdateInAppTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -8932,6 +9365,7 @@ M.UpdateInAppTemplateOutput = {
 
 M.UpdateJourneyInput = {
     type = "structure",
+    id = "UpdateJourneyInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8956,6 +9390,7 @@ M.UpdateJourneyInput = {
 
 M.UpdateJourneyOutput = {
     type = "structure",
+    id = "UpdateJourneyOutput",
     members = {
         JourneyResponse = setmetatable({ traits = {
             http_payload = true,
@@ -8966,6 +9401,7 @@ M.UpdateJourneyOutput = {
 
 M.UpdateJourneyStateInput = {
     type = "structure",
+    id = "UpdateJourneyStateInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -8990,6 +9426,7 @@ M.UpdateJourneyStateInput = {
 
 M.UpdateJourneyStateOutput = {
     type = "structure",
+    id = "UpdateJourneyStateOutput",
     members = {
         JourneyResponse = setmetatable({ traits = {
             http_payload = true,
@@ -9000,6 +9437,7 @@ M.UpdateJourneyStateOutput = {
 
 M.UpdatePushTemplateInput = {
     type = "structure",
+    id = "UpdatePushTemplateInput",
     members = {
         CreateNewVersion = {
             type = "boolean",
@@ -9029,6 +9467,7 @@ M.UpdatePushTemplateInput = {
 
 M.UpdatePushTemplateOutput = {
     type = "structure",
+    id = "UpdatePushTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -9039,6 +9478,7 @@ M.UpdatePushTemplateOutput = {
 
 M.UpdateRecommenderConfigurationShape = {
     type = "structure",
+    id = "UpdateRecommenderConfigurationShape",
     members = {
         Attributes = {
             type = "map",
@@ -9080,6 +9520,7 @@ M.UpdateRecommenderConfigurationShape = {
 
 M.UpdateRecommenderConfigurationInput = {
     type = "structure",
+    id = "UpdateRecommenderConfigurationInput",
     members = {
         RecommenderId = {
             type = "string",
@@ -9097,6 +9538,7 @@ M.UpdateRecommenderConfigurationInput = {
 
 M.UpdateRecommenderConfigurationOutput = {
     type = "structure",
+    id = "UpdateRecommenderConfigurationOutput",
     members = {
         RecommenderConfigurationResponse = setmetatable({ traits = {
             http_payload = true,
@@ -9107,6 +9549,7 @@ M.UpdateRecommenderConfigurationOutput = {
 
 M.UpdateSegmentInput = {
     type = "structure",
+    id = "UpdateSegmentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -9131,6 +9574,7 @@ M.UpdateSegmentInput = {
 
 M.UpdateSegmentOutput = {
     type = "structure",
+    id = "UpdateSegmentOutput",
     members = {
         SegmentResponse = setmetatable({ traits = {
             http_payload = true,
@@ -9141,6 +9585,7 @@ M.UpdateSegmentOutput = {
 
 M.SMSChannelRequest = {
     type = "structure",
+    id = "SMSChannelRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -9156,6 +9601,7 @@ M.SMSChannelRequest = {
 
 M.UpdateSmsChannelInput = {
     type = "structure",
+    id = "UpdateSmsChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -9173,6 +9619,7 @@ M.UpdateSmsChannelInput = {
 
 M.UpdateSmsChannelOutput = {
     type = "structure",
+    id = "UpdateSmsChannelOutput",
     members = {
         SMSChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -9183,6 +9630,7 @@ M.UpdateSmsChannelOutput = {
 
 M.UpdateSmsTemplateInput = {
     type = "structure",
+    id = "UpdateSmsTemplateInput",
     members = {
         CreateNewVersion = {
             type = "boolean",
@@ -9212,6 +9660,7 @@ M.UpdateSmsTemplateInput = {
 
 M.UpdateSmsTemplateOutput = {
     type = "structure",
+    id = "UpdateSmsTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -9222,6 +9671,7 @@ M.UpdateSmsTemplateOutput = {
 
 M.TemplateActiveVersionRequest = {
     type = "structure",
+    id = "TemplateActiveVersionRequest",
     members = {
         Version = {
             type = "string",
@@ -9231,6 +9681,7 @@ M.TemplateActiveVersionRequest = {
 
 M.UpdateTemplateActiveVersionInput = {
     type = "structure",
+    id = "UpdateTemplateActiveVersionInput",
     members = {
         TemplateActiveVersionRequest = setmetatable({ traits = {
             http_payload = true,
@@ -9255,6 +9706,7 @@ M.UpdateTemplateActiveVersionInput = {
 
 M.UpdateTemplateActiveVersionOutput = {
     type = "structure",
+    id = "UpdateTemplateActiveVersionOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -9265,6 +9717,7 @@ M.UpdateTemplateActiveVersionOutput = {
 
 M.VoiceChannelRequest = {
     type = "structure",
+    id = "VoiceChannelRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -9274,6 +9727,7 @@ M.VoiceChannelRequest = {
 
 M.UpdateVoiceChannelInput = {
     type = "structure",
+    id = "UpdateVoiceChannelInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -9291,6 +9745,7 @@ M.UpdateVoiceChannelInput = {
 
 M.UpdateVoiceChannelOutput = {
     type = "structure",
+    id = "UpdateVoiceChannelOutput",
     members = {
         VoiceChannelResponse = setmetatable({ traits = {
             http_payload = true,
@@ -9301,6 +9756,7 @@ M.UpdateVoiceChannelOutput = {
 
 M.UpdateVoiceTemplateInput = {
     type = "structure",
+    id = "UpdateVoiceTemplateInput",
     members = {
         CreateNewVersion = {
             type = "boolean",
@@ -9330,6 +9786,7 @@ M.UpdateVoiceTemplateInput = {
 
 M.UpdateVoiceTemplateOutput = {
     type = "structure",
+    id = "UpdateVoiceTemplateOutput",
     members = {
         MessageBody = setmetatable({ traits = {
             http_payload = true,
@@ -9340,6 +9797,7 @@ M.UpdateVoiceTemplateOutput = {
 
 M.VerifyOTPMessageRequestParameters = {
     type = "structure",
+    id = "VerifyOTPMessageRequestParameters",
     members = {
         DestinationIdentity = {
             type = "string",
@@ -9364,6 +9822,7 @@ M.VerifyOTPMessageRequestParameters = {
 
 M.VerifyOTPMessageInput = {
     type = "structure",
+    id = "VerifyOTPMessageInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -9381,6 +9840,7 @@ M.VerifyOTPMessageInput = {
 
 M.VerificationResponse = {
     type = "structure",
+    id = "VerificationResponse",
     members = {
         Valid = {
             type = "boolean",
@@ -9390,6 +9850,7 @@ M.VerificationResponse = {
 
 M.VerifyOTPMessageOutput = {
     type = "structure",
+    id = "VerifyOTPMessageOutput",
     members = {
         VerificationResponse = setmetatable({ traits = {
             http_payload = true,

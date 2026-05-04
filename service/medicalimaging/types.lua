@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -28,6 +30,7 @@ M.ConflictException = {
 
 M.CopyDestinationImageSet = {
     type = "structure",
+    id = "CopyDestinationImageSet",
     members = {
         imageSetId = {
             type = "string",
@@ -46,6 +49,7 @@ M.CopyDestinationImageSet = {
 
 M.MetadataCopies = {
     type = "structure",
+    id = "MetadataCopies",
     members = {
         copiableAttributes = {
             type = "string",
@@ -58,6 +62,7 @@ M.MetadataCopies = {
 
 M.CopySourceImageSetInformation = {
     type = "structure",
+    id = "CopySourceImageSetInformation",
     members = {
         latestVersionId = {
             type = "string",
@@ -71,6 +76,7 @@ M.CopySourceImageSetInformation = {
 
 M.CopyImageSetInformation = {
     type = "structure",
+    id = "CopyImageSetInformation",
     members = {
         sourceImageSet = setmetatable({ traits = {
             required = true,
@@ -81,6 +87,7 @@ M.CopyImageSetInformation = {
 
 M.CopyImageSetInput = {
     type = "structure",
+    id = "CopyImageSetInput",
     members = {
         datastoreId = {
             type = "string",
@@ -140,6 +147,7 @@ M.ImageSetWorkflowStatus = {
 
 M.CopyDestinationImageSetProperties = {
     type = "structure",
+    id = "CopyDestinationImageSetProperties",
     members = {
         imageSetId = {
             type = "string",
@@ -173,6 +181,7 @@ M.CopyDestinationImageSetProperties = {
 
 M.CopySourceImageSetProperties = {
     type = "structure",
+    id = "CopySourceImageSetProperties",
     members = {
         imageSetId = {
             type = "string",
@@ -206,6 +215,7 @@ M.CopySourceImageSetProperties = {
 
 M.CopyImageSetOutput = {
     type = "structure",
+    id = "CopyImageSetOutput",
     members = {
         datastoreId = {
             type = "string",
@@ -224,6 +234,7 @@ M.CopyImageSetOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -237,6 +248,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -250,6 +262,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -263,6 +276,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -276,6 +290,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -294,6 +309,7 @@ M.LosslessStorageFormat = {
 
 M.CreateDatastoreInput = {
     type = "structure",
+    id = "CreateDatastoreInput",
     members = {
         datastoreName = {
             type = "string",
@@ -332,6 +348,7 @@ M.DatastoreStatus = {
 
 M.CreateDatastoreOutput = {
     type = "structure",
+    id = "CreateDatastoreOutput",
     members = {
         datastoreId = {
             type = "string",
@@ -350,6 +367,7 @@ M.CreateDatastoreOutput = {
 
 M.DeleteDatastoreInput = {
     type = "structure",
+    id = "DeleteDatastoreInput",
     members = {
         datastoreId = {
             type = "string",
@@ -363,6 +381,7 @@ M.DeleteDatastoreInput = {
 
 M.DeleteDatastoreOutput = {
     type = "structure",
+    id = "DeleteDatastoreOutput",
     members = {
         datastoreId = {
             type = "string",
@@ -381,6 +400,7 @@ M.DeleteDatastoreOutput = {
 
 M.GetDatastoreInput = {
     type = "structure",
+    id = "GetDatastoreInput",
     members = {
         datastoreId = {
             type = "string",
@@ -394,6 +414,7 @@ M.GetDatastoreInput = {
 
 M.DatastoreProperties = {
     type = "structure",
+    id = "DatastoreProperties",
     members = {
         datastoreId = {
             type = "string",
@@ -436,6 +457,7 @@ M.DatastoreProperties = {
 
 M.GetDatastoreOutput = {
     type = "structure",
+    id = "GetDatastoreOutput",
     members = {
         datastoreProperties = setmetatable({ traits = {
             required = true,
@@ -445,6 +467,7 @@ M.GetDatastoreOutput = {
 
 M.ListDatastoresInput = {
     type = "structure",
+    id = "ListDatastoresInput",
     members = {
         datastoreStatus = {
             type = "string",
@@ -469,6 +492,7 @@ M.ListDatastoresInput = {
 
 M.DatastoreSummary = {
     type = "structure",
+    id = "DatastoreSummary",
     members = {
         datastoreId = {
             type = "string",
@@ -502,6 +526,7 @@ M.DatastoreSummary = {
 
 M.ListDatastoresOutput = {
     type = "structure",
+    id = "ListDatastoresOutput",
     members = {
         datastoreSummaries = {
             type = "list",
@@ -515,6 +540,7 @@ M.ListDatastoresOutput = {
 
 M.DeleteImageSetInput = {
     type = "structure",
+    id = "DeleteImageSetInput",
     members = {
         datastoreId = {
             type = "string",
@@ -535,6 +561,7 @@ M.DeleteImageSetInput = {
 
 M.DeleteImageSetOutput = {
     type = "structure",
+    id = "DeleteImageSetOutput",
     members = {
         datastoreId = {
             type = "string",
@@ -565,6 +592,7 @@ M.DeleteImageSetOutput = {
 
 M.GetDICOMImportJobInput = {
     type = "structure",
+    id = "GetDICOMImportJobInput",
     members = {
         datastoreId = {
             type = "string",
@@ -592,6 +620,7 @@ M.JobStatus = {
 
 M.DICOMImportJobProperties = {
     type = "structure",
+    id = "DICOMImportJobProperties",
     members = {
         jobId = {
             type = "string",
@@ -649,6 +678,7 @@ M.DICOMImportJobProperties = {
 
 M.GetDICOMImportJobOutput = {
     type = "structure",
+    id = "GetDICOMImportJobOutput",
     members = {
         jobProperties = setmetatable({ traits = {
             required = true,
@@ -658,6 +688,7 @@ M.GetDICOMImportJobOutput = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -671,6 +702,7 @@ M.BadRequestException = {
 
 M.ImageFrameInformation = {
     type = "structure",
+    id = "ImageFrameInformation",
     members = {
         imageFrameId = {
             type = "string",
@@ -683,6 +715,7 @@ M.ImageFrameInformation = {
 
 M.GetImageFrameInput = {
     type = "structure",
+    id = "GetImageFrameInput",
     members = {
         datastoreId = {
             type = "string",
@@ -707,6 +740,7 @@ M.GetImageFrameInput = {
 
 M.GetImageFrameOutput = {
     type = "structure",
+    id = "GetImageFrameOutput",
     members = {
         imageFrameBlob = {
             type = "blob",
@@ -726,6 +760,7 @@ M.GetImageFrameOutput = {
 
 M.NotAcceptableException = {
     type = "structure",
+    id = "NotAcceptableException",
     error = "client",
     members = {
         message = {
@@ -739,6 +774,7 @@ M.NotAcceptableException = {
 
 M.GetImageSetInput = {
     type = "structure",
+    id = "GetImageSetInput",
     members = {
         datastoreId = {
             type = "string",
@@ -765,6 +801,7 @@ M.GetImageSetInput = {
 
 M.Overrides = {
     type = "structure",
+    id = "Overrides",
     members = {
         forced = {
             type = "boolean",
@@ -779,6 +816,7 @@ M.StorageTier = {
 
 M.GetImageSetOutput = {
     type = "structure",
+    id = "GetImageSetOutput",
     members = {
         datastoreId = {
             type = "string",
@@ -837,6 +875,7 @@ M.GetImageSetOutput = {
 
 M.GetImageSetMetadataInput = {
     type = "structure",
+    id = "GetImageSetMetadataInput",
     members = {
         datastoreId = {
             type = "string",
@@ -863,6 +902,7 @@ M.GetImageSetMetadataInput = {
 
 M.GetImageSetMetadataOutput = {
     type = "structure",
+    id = "GetImageSetMetadataOutput",
     members = {
         imageSetMetadataBlob = {
             type = "blob",
@@ -888,6 +928,7 @@ M.GetImageSetMetadataOutput = {
 
 M.ListDICOMImportJobsInput = {
     type = "structure",
+    id = "ListDICOMImportJobsInput",
     members = {
         datastoreId = {
             type = "string",
@@ -919,6 +960,7 @@ M.ListDICOMImportJobsInput = {
 
 M.DICOMImportJobSummary = {
     type = "structure",
+    id = "DICOMImportJobSummary",
     members = {
         jobId = {
             type = "string",
@@ -961,6 +1003,7 @@ M.DICOMImportJobSummary = {
 
 M.ListDICOMImportJobsOutput = {
     type = "structure",
+    id = "ListDICOMImportJobsOutput",
     members = {
         jobSummaries = {
             type = "list",
@@ -977,6 +1020,7 @@ M.ListDICOMImportJobsOutput = {
 
 M.ListImageSetVersionsInput = {
     type = "structure",
+    id = "ListImageSetVersionsInput",
     members = {
         datastoreId = {
             type = "string",
@@ -1009,6 +1053,7 @@ M.ListImageSetVersionsInput = {
 
 M.ImageSetProperties = {
     type = "structure",
+    id = "ImageSetProperties",
     members = {
         imageSetId = {
             type = "string",
@@ -1052,6 +1097,7 @@ M.ImageSetProperties = {
 
 M.ListImageSetVersionsOutput = {
     type = "structure",
+    id = "ListImageSetVersionsOutput",
     members = {
         imageSetPropertiesList = {
             type = "list",
@@ -1068,6 +1114,7 @@ M.ListImageSetVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1081,6 +1128,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1100,6 +1148,7 @@ M.Operator = {
 
 M.DICOMStudyDateAndTime = {
     type = "structure",
+    id = "DICOMStudyDateAndTime",
     members = {
         DICOMStudyDate = {
             type = "string",
@@ -1115,6 +1164,7 @@ M.DICOMStudyDateAndTime = {
 
 M.SearchByAttributeValue = {
     type = "union",
+    id = "SearchByAttributeValue",
     members = {
         DICOMPatientId = {
             type = "string",
@@ -1146,6 +1196,7 @@ M.SearchByAttributeValue = {
 
 M.SearchFilter = {
     type = "structure",
+    id = "SearchFilter",
     members = {
         values = {
             type = "list",
@@ -1176,6 +1227,7 @@ M.SortOrder = {
 
 M.Sort = {
     type = "structure",
+    id = "Sort",
     members = {
         sortOrder = {
             type = "string",
@@ -1194,6 +1246,7 @@ M.Sort = {
 
 M.SearchCriteria = {
     type = "structure",
+    id = "SearchCriteria",
     members = {
         filters = {
             type = "list",
@@ -1205,6 +1258,7 @@ M.SearchCriteria = {
 
 M.SearchImageSetsInput = {
     type = "structure",
+    id = "SearchImageSetsInput",
     members = {
         datastoreId = {
             type = "string",
@@ -1233,6 +1287,7 @@ M.SearchImageSetsInput = {
 
 M.DICOMTags = {
     type = "structure",
+    id = "DICOMTags",
     members = {
         DICOMPatientId = {
             type = "string",
@@ -1293,6 +1348,7 @@ M.DICOMTags = {
 
 M.ImageSetsMetadataSummary = {
     type = "structure",
+    id = "ImageSetsMetadataSummary",
     members = {
         imageSetId = {
             type = "string",
@@ -1324,6 +1380,7 @@ M.ImageSetsMetadataSummary = {
 
 M.SearchImageSetsOutput = {
     type = "structure",
+    id = "SearchImageSetsOutput",
     members = {
         imageSetsMetadataSummaries = {
             type = "list",
@@ -1341,6 +1398,7 @@ M.SearchImageSetsOutput = {
 
 M.StartDICOMImportJobInput = {
     type = "structure",
+    id = "StartDICOMImportJobInput",
     members = {
         jobName = {
             type = "string",
@@ -1385,6 +1443,7 @@ M.StartDICOMImportJobInput = {
 
 M.StartDICOMImportJobOutput = {
     type = "structure",
+    id = "StartDICOMImportJobOutput",
     members = {
         datastoreId = {
             type = "string",
@@ -1415,6 +1474,7 @@ M.StartDICOMImportJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1436,10 +1496,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1461,10 +1523,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.DICOMUpdates = {
     type = "structure",
+    id = "DICOMUpdates",
     members = {
         removableAttributes = {
             type = "blob",
@@ -1477,6 +1541,7 @@ M.DICOMUpdates = {
 
 M.MetadataUpdates = {
     type = "union",
+    id = "MetadataUpdates",
     members = {
         DICOMUpdates = M.DICOMUpdates,
         revertToVersionId = {
@@ -1487,6 +1552,7 @@ M.MetadataUpdates = {
 
 M.UpdateImageSetMetadataInput = {
     type = "structure",
+    id = "UpdateImageSetMetadataInput",
     members = {
         datastoreId = {
             type = "string",
@@ -1530,6 +1596,7 @@ M.UpdateImageSetMetadataInput = {
 
 M.UpdateImageSetMetadataOutput = {
     type = "structure",
+    id = "UpdateImageSetMetadataOutput",
     members = {
         datastoreId = {
             type = "string",

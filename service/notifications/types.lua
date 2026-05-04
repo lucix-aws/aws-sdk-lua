@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -29,6 +30,7 @@ M.AccountContactType = {
 
 M.SummarizationDimensionDetail = {
     type = "structure",
+    id = "SummarizationDimensionDetail",
     members = {
         name = {
             type = "string",
@@ -47,6 +49,7 @@ M.SummarizationDimensionDetail = {
 
 M.AggregationDetail = {
     type = "structure",
+    id = "AggregationDetail",
     members = {
         summarizationDimensions = {
             type = "list",
@@ -69,6 +72,7 @@ M.AggregationEventType = {
 
 M.AggregationKey = {
     type = "structure",
+    id = "AggregationKey",
     members = {
         name = {
             type = "string",
@@ -87,6 +91,7 @@ M.AggregationKey = {
 
 M.SummarizationDimensionOverview = {
     type = "structure",
+    id = "SummarizationDimensionOverview",
     members = {
         name = {
             type = "string",
@@ -109,6 +114,7 @@ M.SummarizationDimensionOverview = {
 
 M.AggregationSummary = {
     type = "structure",
+    id = "AggregationSummary",
     members = {
         eventCount = {
             type = "integer",
@@ -139,6 +145,7 @@ M.AggregationSummary = {
 
 M.AssociateChannelInput = {
     type = "structure",
+    id = "AssociateChannelInput",
     members = {
         arn = {
             type = "string",
@@ -158,10 +165,12 @@ M.AssociateChannelInput = {
 
 M.AssociateChannelOutput = {
     type = "structure",
+    id = "AssociateChannelOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -181,6 +190,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -194,6 +204,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -213,6 +224,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -241,6 +253,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -266,6 +279,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -289,6 +303,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -309,6 +324,7 @@ M.ValidationException = {
 
 M.AssociateManagedNotificationAccountContactInput = {
     type = "structure",
+    id = "AssociateManagedNotificationAccountContactInput",
     members = {
         contactIdentifier = {
             type = "string",
@@ -328,10 +344,12 @@ M.AssociateManagedNotificationAccountContactInput = {
 
 M.AssociateManagedNotificationAccountContactOutput = {
     type = "structure",
+    id = "AssociateManagedNotificationAccountContactOutput",
 }
 
 M.AssociateManagedNotificationAdditionalChannelInput = {
     type = "structure",
+    id = "AssociateManagedNotificationAdditionalChannelInput",
     members = {
         channelArn = {
             type = "string",
@@ -351,10 +369,12 @@ M.AssociateManagedNotificationAdditionalChannelInput = {
 
 M.AssociateManagedNotificationAdditionalChannelOutput = {
     type = "structure",
+    id = "AssociateManagedNotificationAdditionalChannelOutput",
 }
 
 M.AssociateOrganizationalUnitInput = {
     type = "structure",
+    id = "AssociateOrganizationalUnitInput",
     members = {
         organizationalUnitId = {
             type = "string",
@@ -374,10 +394,12 @@ M.AssociateOrganizationalUnitInput = {
 
 M.AssociateOrganizationalUnitOutput = {
     type = "structure",
+    id = "AssociateOrganizationalUnitOutput",
 }
 
 M.DisassociateChannelInput = {
     type = "structure",
+    id = "DisassociateChannelInput",
     members = {
         arn = {
             type = "string",
@@ -397,10 +419,12 @@ M.DisassociateChannelInput = {
 
 M.DisassociateChannelOutput = {
     type = "structure",
+    id = "DisassociateChannelOutput",
 }
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         notificationConfigurationArn = {
             type = "string",
@@ -426,6 +450,7 @@ M.ListChannelsInput = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -454,6 +479,7 @@ M.ChannelType = {
 
 M.CreateEventRuleInput = {
     type = "structure",
+    id = "CreateEventRuleInput",
     members = {
         notificationConfigurationArn = {
             type = "string",
@@ -496,6 +522,7 @@ M.EventRuleStatus = {
 
 M.EventRuleStatusSummary = {
     type = "structure",
+    id = "EventRuleStatusSummary",
     members = {
         status = {
             type = "string",
@@ -514,6 +541,7 @@ M.EventRuleStatusSummary = {
 
 M.CreateEventRuleOutput = {
     type = "structure",
+    id = "CreateEventRuleOutput",
     members = {
         arn = {
             type = "string",
@@ -540,6 +568,7 @@ M.CreateEventRuleOutput = {
 
 M.CreateNotificationConfigurationInput = {
     type = "structure",
+    id = "CreateNotificationConfigurationInput",
     members = {
         name = {
             type = "string",
@@ -573,6 +602,7 @@ M.NotificationConfigurationStatus = {
 
 M.CreateNotificationConfigurationOutput = {
     type = "structure",
+    id = "CreateNotificationConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -591,6 +621,7 @@ M.CreateNotificationConfigurationOutput = {
 
 M.DeleteEventRuleInput = {
     type = "structure",
+    id = "DeleteEventRuleInput",
     members = {
         arn = {
             type = "string",
@@ -604,10 +635,12 @@ M.DeleteEventRuleInput = {
 
 M.DeleteEventRuleOutput = {
     type = "structure",
+    id = "DeleteEventRuleOutput",
 }
 
 M.DeleteNotificationConfigurationInput = {
     type = "structure",
+    id = "DeleteNotificationConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -621,10 +654,12 @@ M.DeleteNotificationConfigurationInput = {
 
 M.DeleteNotificationConfigurationOutput = {
     type = "structure",
+    id = "DeleteNotificationConfigurationOutput",
 }
 
 M.DeregisterNotificationHubInput = {
     type = "structure",
+    id = "DeregisterNotificationHubInput",
     members = {
         notificationHubRegion = {
             type = "string",
@@ -645,6 +680,7 @@ M.NotificationHubStatus = {
 
 M.NotificationHubStatusSummary = {
     type = "structure",
+    id = "NotificationHubStatusSummary",
     members = {
         status = {
             type = "string",
@@ -663,6 +699,7 @@ M.NotificationHubStatusSummary = {
 
 M.DeregisterNotificationHubOutput = {
     type = "structure",
+    id = "DeregisterNotificationHubOutput",
     members = {
         notificationHubRegion = {
             type = "string",
@@ -678,6 +715,7 @@ M.DeregisterNotificationHubOutput = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         name = {
             type = "string",
@@ -696,14 +734,17 @@ M.Dimension = {
 
 M.DisableNotificationsAccessForOrganizationInput = {
     type = "structure",
+    id = "DisableNotificationsAccessForOrganizationInput",
 }
 
 M.DisableNotificationsAccessForOrganizationOutput = {
     type = "structure",
+    id = "DisableNotificationsAccessForOrganizationOutput",
 }
 
 M.DisassociateManagedNotificationAccountContactInput = {
     type = "structure",
+    id = "DisassociateManagedNotificationAccountContactInput",
     members = {
         contactIdentifier = {
             type = "string",
@@ -723,10 +764,12 @@ M.DisassociateManagedNotificationAccountContactInput = {
 
 M.DisassociateManagedNotificationAccountContactOutput = {
     type = "structure",
+    id = "DisassociateManagedNotificationAccountContactOutput",
 }
 
 M.DisassociateManagedNotificationAdditionalChannelInput = {
     type = "structure",
+    id = "DisassociateManagedNotificationAdditionalChannelInput",
     members = {
         channelArn = {
             type = "string",
@@ -746,10 +789,12 @@ M.DisassociateManagedNotificationAdditionalChannelInput = {
 
 M.DisassociateManagedNotificationAdditionalChannelOutput = {
     type = "structure",
+    id = "DisassociateManagedNotificationAdditionalChannelOutput",
 }
 
 M.DisassociateOrganizationalUnitInput = {
     type = "structure",
+    id = "DisassociateOrganizationalUnitInput",
     members = {
         organizationalUnitId = {
             type = "string",
@@ -769,18 +814,22 @@ M.DisassociateOrganizationalUnitInput = {
 
 M.DisassociateOrganizationalUnitOutput = {
     type = "structure",
+    id = "DisassociateOrganizationalUnitOutput",
 }
 
 M.EnableNotificationsAccessForOrganizationInput = {
     type = "structure",
+    id = "EnableNotificationsAccessForOrganizationInput",
 }
 
 M.EnableNotificationsAccessForOrganizationOutput = {
     type = "structure",
+    id = "EnableNotificationsAccessForOrganizationOutput",
 }
 
 M.GetEventRuleInput = {
     type = "structure",
+    id = "GetEventRuleInput",
     members = {
         arn = {
             type = "string",
@@ -794,6 +843,7 @@ M.GetEventRuleInput = {
 
 M.GetEventRuleOutput = {
     type = "structure",
+    id = "GetEventRuleOutput",
     members = {
         arn = {
             type = "string",
@@ -859,6 +909,7 @@ M.GetEventRuleOutput = {
 
 M.ListEventRulesInput = {
     type = "structure",
+    id = "ListEventRulesInput",
     members = {
         notificationConfigurationArn = {
             type = "string",
@@ -884,6 +935,7 @@ M.ListEventRulesInput = {
 
 M.EventRuleStructure = {
     type = "structure",
+    id = "EventRuleStructure",
     members = {
         arn = {
             type = "string",
@@ -949,6 +1001,7 @@ M.EventRuleStructure = {
 
 M.ListEventRulesOutput = {
     type = "structure",
+    id = "ListEventRulesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -965,6 +1018,7 @@ M.ListEventRulesOutput = {
 
 M.UpdateEventRuleInput = {
     type = "structure",
+    id = "UpdateEventRuleInput",
     members = {
         arn = {
             type = "string",
@@ -985,6 +1039,7 @@ M.UpdateEventRuleInput = {
 
 M.UpdateEventRuleOutput = {
     type = "structure",
+    id = "UpdateEventRuleOutput",
     members = {
         arn = {
             type = "string",
@@ -1034,6 +1089,7 @@ M.LocaleCode = {
 
 M.GetManagedNotificationChildEventInput = {
     type = "structure",
+    id = "GetManagedNotificationChildEventInput",
     members = {
         arn = {
             type = "string",
@@ -1053,6 +1109,7 @@ M.GetManagedNotificationChildEventInput = {
 
 M.MessageComponents = {
     type = "structure",
+    id = "MessageComponents",
     members = {
         headline = {
             type = "string",
@@ -1089,6 +1146,7 @@ M.TextPartType = {
 
 M.TextPartValue = {
     type = "structure",
+    id = "TextPartValue",
     members = {
         type = {
             type = "string",
@@ -1112,6 +1170,7 @@ M.TextPartValue = {
 
 M.ManagedNotificationChildEvent = {
     type = "structure",
+    id = "ManagedNotificationChildEvent",
     members = {
         schemaVersion = {
             type = "string",
@@ -1178,6 +1237,7 @@ M.ManagedNotificationChildEvent = {
 
 M.GetManagedNotificationChildEventOutput = {
     type = "structure",
+    id = "GetManagedNotificationChildEventOutput",
     members = {
         arn = {
             type = "string",
@@ -1206,6 +1266,7 @@ M.GetManagedNotificationChildEventOutput = {
 
 M.GetManagedNotificationConfigurationInput = {
     type = "structure",
+    id = "GetManagedNotificationConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1219,6 +1280,7 @@ M.GetManagedNotificationConfigurationInput = {
 
 M.GetManagedNotificationConfigurationOutput = {
     type = "structure",
+    id = "GetManagedNotificationConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -1255,6 +1317,7 @@ M.GetManagedNotificationConfigurationOutput = {
 
 M.GetManagedNotificationEventInput = {
     type = "structure",
+    id = "GetManagedNotificationEventInput",
     members = {
         arn = {
             type = "string",
@@ -1274,6 +1337,7 @@ M.GetManagedNotificationEventInput = {
 
 M.ManagedNotificationEvent = {
     type = "structure",
+    id = "ManagedNotificationEvent",
     members = {
         schemaVersion = {
             type = "string",
@@ -1337,6 +1401,7 @@ M.ManagedNotificationEvent = {
 
 M.GetManagedNotificationEventOutput = {
     type = "structure",
+    id = "GetManagedNotificationEventOutput",
     members = {
         arn = {
             type = "string",
@@ -1365,6 +1430,7 @@ M.GetManagedNotificationEventOutput = {
 
 M.GetNotificationConfigurationInput = {
     type = "structure",
+    id = "GetNotificationConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -1383,6 +1449,7 @@ M.NotificationConfigurationSubtype = {
 
 M.GetNotificationConfigurationOutput = {
     type = "structure",
+    id = "GetNotificationConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -1426,6 +1493,7 @@ M.GetNotificationConfigurationOutput = {
 
 M.GetNotificationEventInput = {
     type = "structure",
+    id = "GetNotificationEventInput",
     members = {
         arn = {
             type = "string",
@@ -1449,6 +1517,7 @@ M.MediaElementType = {
 
 M.MediaElement = {
     type = "structure",
+    id = "MediaElement",
     members = {
         mediaId = {
             type = "string",
@@ -1479,6 +1548,7 @@ M.MediaElement = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         id = {
             type = "string",
@@ -1498,6 +1568,7 @@ M.Resource = {
 
 M.SourceEventMetadata = {
     type = "structure",
+    id = "SourceEventMetadata",
     members = {
         eventTypeVersion = {
             type = "string",
@@ -1551,6 +1622,7 @@ M.SourceEventMetadata = {
 
 M.NotificationEventSchema = {
     type = "structure",
+    id = "NotificationEventSchema",
     members = {
         schemaVersion = {
             type = "string",
@@ -1627,6 +1699,7 @@ M.NotificationEventSchema = {
 
 M.GetNotificationEventOutput = {
     type = "structure",
+    id = "GetNotificationEventOutput",
     members = {
         arn = {
             type = "string",
@@ -1655,10 +1728,12 @@ M.GetNotificationEventOutput = {
 
 M.GetNotificationsAccessForOrganizationInput = {
     type = "structure",
+    id = "GetNotificationsAccessForOrganizationInput",
 }
 
 M.NotificationsAccessForOrganization = {
     type = "structure",
+    id = "NotificationsAccessForOrganization",
     members = {
         accessStatus = {
             type = "string",
@@ -1671,6 +1746,7 @@ M.NotificationsAccessForOrganization = {
 
 M.GetNotificationsAccessForOrganizationOutput = {
     type = "structure",
+    id = "GetNotificationsAccessForOrganizationOutput",
     members = {
         notificationsAccessForOrganization = setmetatable({ traits = {
             required = true,
@@ -1680,6 +1756,7 @@ M.GetNotificationsAccessForOrganizationOutput = {
 
 M.ListManagedNotificationChannelAssociationsInput = {
     type = "structure",
+    id = "ListManagedNotificationChannelAssociationsInput",
     members = {
         managedNotificationConfigurationArn = {
             type = "string",
@@ -1705,6 +1782,7 @@ M.ListManagedNotificationChannelAssociationsInput = {
 
 M.ManagedNotificationChannelAssociationSummary = {
     type = "structure",
+    id = "ManagedNotificationChannelAssociationSummary",
     members = {
         channelIdentifier = {
             type = "string",
@@ -1726,6 +1804,7 @@ M.ManagedNotificationChannelAssociationSummary = {
 
 M.ListManagedNotificationChannelAssociationsOutput = {
     type = "structure",
+    id = "ListManagedNotificationChannelAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1742,6 +1821,7 @@ M.ListManagedNotificationChannelAssociationsOutput = {
 
 M.ListManagedNotificationChildEventsInput = {
     type = "structure",
+    id = "ListManagedNotificationChildEventsInput",
     members = {
         aggregateManagedNotificationEventArn = {
             type = "string",
@@ -1799,6 +1879,7 @@ M.ListManagedNotificationChildEventsInput = {
 
 M.MessageComponentsSummary = {
     type = "structure",
+    id = "MessageComponentsSummary",
     members = {
         headline = {
             type = "string",
@@ -1811,6 +1892,7 @@ M.MessageComponentsSummary = {
 
 M.ManagedSourceEventMetadataSummary = {
     type = "structure",
+    id = "ManagedSourceEventMetadataSummary",
     members = {
         eventOriginRegion = {
             type = "string",
@@ -1832,6 +1914,7 @@ M.ManagedSourceEventMetadataSummary = {
 
 M.ManagedNotificationChildEventSummary = {
     type = "structure",
+    id = "ManagedNotificationChildEventSummary",
     members = {
         schemaVersion = {
             type = "string",
@@ -1865,6 +1948,7 @@ M.ManagedNotificationChildEventSummary = {
 
 M.ManagedNotificationChildEventOverview = {
     type = "structure",
+    id = "ManagedNotificationChildEventOverview",
     members = {
         arn = {
             type = "string",
@@ -1908,6 +1992,7 @@ M.ManagedNotificationChildEventOverview = {
 
 M.ListManagedNotificationChildEventsOutput = {
     type = "structure",
+    id = "ListManagedNotificationChildEventsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1924,6 +2009,7 @@ M.ListManagedNotificationChildEventsOutput = {
 
 M.ListManagedNotificationConfigurationsInput = {
     type = "structure",
+    id = "ListManagedNotificationConfigurationsInput",
     members = {
         channelIdentifier = {
             type = "string",
@@ -1948,6 +2034,7 @@ M.ListManagedNotificationConfigurationsInput = {
 
 M.ManagedNotificationConfigurationStructure = {
     type = "structure",
+    id = "ManagedNotificationConfigurationStructure",
     members = {
         arn = {
             type = "string",
@@ -1972,6 +2059,7 @@ M.ManagedNotificationConfigurationStructure = {
 
 M.ListManagedNotificationConfigurationsOutput = {
     type = "structure",
+    id = "ListManagedNotificationConfigurationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1988,6 +2076,7 @@ M.ListManagedNotificationConfigurationsOutput = {
 
 M.ListManagedNotificationEventsInput = {
     type = "structure",
+    id = "ListManagedNotificationEventsInput",
     members = {
         startTime = {
             type = "timestamp",
@@ -2044,6 +2133,7 @@ M.ListManagedNotificationEventsInput = {
 
 M.ManagedNotificationEventSummary = {
     type = "structure",
+    id = "ManagedNotificationEventSummary",
     members = {
         schemaVersion = {
             type = "string",
@@ -2074,6 +2164,7 @@ M.ManagedNotificationEventSummary = {
 
 M.ManagedNotificationEventOverview = {
     type = "structure",
+    id = "ManagedNotificationEventOverview",
     members = {
         arn = {
             type = "string",
@@ -2119,6 +2210,7 @@ M.ManagedNotificationEventOverview = {
 
 M.ListManagedNotificationEventsOutput = {
     type = "structure",
+    id = "ListManagedNotificationEventsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2143,6 +2235,7 @@ M.MemberAccountNotificationConfigurationStatus = {
 
 M.ListMemberAccountsInput = {
     type = "structure",
+    id = "ListMemberAccountsInput",
     members = {
         notificationConfigurationArn = {
             type = "string",
@@ -2186,6 +2279,7 @@ M.ListMemberAccountsInput = {
 
 M.MemberAccount = {
     type = "structure",
+    id = "MemberAccount",
     members = {
         notificationConfigurationArn = {
             type = "string",
@@ -2219,6 +2313,7 @@ M.MemberAccount = {
 
 M.ListMemberAccountsOutput = {
     type = "structure",
+    id = "ListMemberAccountsOutput",
     members = {
         memberAccounts = {
             type = "list",
@@ -2235,6 +2330,7 @@ M.ListMemberAccountsOutput = {
 
 M.ListNotificationConfigurationsInput = {
     type = "structure",
+    id = "ListNotificationConfigurationsInput",
     members = {
         eventRuleSource = {
             type = "string",
@@ -2277,6 +2373,7 @@ M.ListNotificationConfigurationsInput = {
 
 M.NotificationConfigurationStructure = {
     type = "structure",
+    id = "NotificationConfigurationStructure",
     members = {
         arn = {
             type = "string",
@@ -2320,6 +2417,7 @@ M.NotificationConfigurationStructure = {
 
 M.ListNotificationConfigurationsOutput = {
     type = "structure",
+    id = "ListNotificationConfigurationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2336,6 +2434,7 @@ M.ListNotificationConfigurationsOutput = {
 
 M.ListNotificationEventsInput = {
     type = "structure",
+    id = "ListNotificationEventsInput",
     members = {
         startTime = {
             type = "timestamp",
@@ -2398,6 +2497,7 @@ M.ListNotificationEventsInput = {
 
 M.SourceEventMetadataSummary = {
     type = "structure",
+    id = "SourceEventMetadataSummary",
     members = {
         eventOriginRegion = {
             type = "string",
@@ -2419,6 +2519,7 @@ M.SourceEventMetadataSummary = {
 
 M.NotificationEventSummary = {
     type = "structure",
+    id = "NotificationEventSummary",
     members = {
         schemaVersion = {
             type = "string",
@@ -2449,6 +2550,7 @@ M.NotificationEventSummary = {
 
 M.NotificationEventOverview = {
     type = "structure",
+    id = "NotificationEventOverview",
     members = {
         arn = {
             type = "string",
@@ -2493,6 +2595,7 @@ M.NotificationEventOverview = {
 
 M.ListNotificationEventsOutput = {
     type = "structure",
+    id = "ListNotificationEventsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2509,6 +2612,7 @@ M.ListNotificationEventsOutput = {
 
 M.ListNotificationHubsInput = {
     type = "structure",
+    id = "ListNotificationHubsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2527,6 +2631,7 @@ M.ListNotificationHubsInput = {
 
 M.NotificationHubOverview = {
     type = "structure",
+    id = "NotificationHubOverview",
     members = {
         notificationHubRegion = {
             type = "string",
@@ -2555,6 +2660,7 @@ M.NotificationHubOverview = {
 
 M.ListNotificationHubsOutput = {
     type = "structure",
+    id = "ListNotificationHubsOutput",
     members = {
         notificationHubs = {
             type = "list",
@@ -2571,6 +2677,7 @@ M.ListNotificationHubsOutput = {
 
 M.ListOrganizationalUnitsInput = {
     type = "structure",
+    id = "ListOrganizationalUnitsInput",
     members = {
         notificationConfigurationArn = {
             type = "string",
@@ -2596,6 +2703,7 @@ M.ListOrganizationalUnitsInput = {
 
 M.ListOrganizationalUnitsOutput = {
     type = "structure",
+    id = "ListOrganizationalUnitsOutput",
     members = {
         organizationalUnits = {
             type = "list",
@@ -2612,6 +2720,7 @@ M.ListOrganizationalUnitsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -2625,6 +2734,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2636,6 +2746,7 @@ M.ListTagsForResourceOutput = {
 
 M.UpdateNotificationConfigurationInput = {
     type = "structure",
+    id = "UpdateNotificationConfigurationInput",
     members = {
         arn = {
             type = "string",
@@ -2658,6 +2769,7 @@ M.UpdateNotificationConfigurationInput = {
 
 M.UpdateNotificationConfigurationOutput = {
     type = "structure",
+    id = "UpdateNotificationConfigurationOutput",
     members = {
         arn = {
             type = "string",
@@ -2670,6 +2782,7 @@ M.UpdateNotificationConfigurationOutput = {
 
 M.RegisterNotificationHubInput = {
     type = "structure",
+    id = "RegisterNotificationHubInput",
     members = {
         notificationHubRegion = {
             type = "string",
@@ -2682,6 +2795,7 @@ M.RegisterNotificationHubInput = {
 
 M.RegisterNotificationHubOutput = {
     type = "structure",
+    id = "RegisterNotificationHubOutput",
     members = {
         notificationHubRegion = {
             type = "string",
@@ -2710,6 +2824,7 @@ M.RegisterNotificationHubOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -2731,10 +2846,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -2756,6 +2873,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

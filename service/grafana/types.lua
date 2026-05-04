@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.AccountAccessType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -45,6 +47,7 @@ M.ConflictException = {
 
 M.CreateWorkspaceApiKeyInput = {
     type = "structure",
+    id = "CreateWorkspaceApiKeyInput",
     members = {
         keyName = {
             type = "string",
@@ -76,6 +79,7 @@ M.CreateWorkspaceApiKeyInput = {
 
 M.CreateWorkspaceApiKeyOutput = {
     type = "structure",
+    id = "CreateWorkspaceApiKeyOutput",
     members = {
         keyName = {
             type = "string",
@@ -100,6 +104,7 @@ M.CreateWorkspaceApiKeyOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -119,6 +124,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -144,6 +150,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -181,6 +188,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -206,6 +214,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -231,6 +240,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -254,6 +264,7 @@ M.ValidationException = {
 
 M.DeleteWorkspaceApiKeyInput = {
     type = "structure",
+    id = "DeleteWorkspaceApiKeyInput",
     members = {
         keyName = {
             type = "string",
@@ -274,6 +285,7 @@ M.DeleteWorkspaceApiKeyInput = {
 
 M.DeleteWorkspaceApiKeyOutput = {
     type = "structure",
+    id = "DeleteWorkspaceApiKeyOutput",
     members = {
         keyName = {
             type = "string",
@@ -292,6 +304,7 @@ M.DeleteWorkspaceApiKeyOutput = {
 
 M.AssertionAttributes = {
     type = "structure",
+    id = "AssertionAttributes",
     members = {
         name = {
             type = "string",
@@ -321,6 +334,7 @@ M.LicenseType = {
 
 M.AssociateLicenseInput = {
     type = "structure",
+    id = "AssociateLicenseInput",
     members = {
         workspaceId = {
             type = "string",
@@ -357,6 +371,7 @@ M.SamlConfigurationStatus = {
 
 M.AuthenticationSummary = {
     type = "structure",
+    id = "AuthenticationSummary",
     members = {
         providers = {
             type = "list",
@@ -385,6 +400,7 @@ M.DataSourceType = {
 
 M.NetworkAccessConfiguration = {
     type = "structure",
+    id = "NetworkAccessConfiguration",
     members = {
         prefixListIds = {
             type = "list",
@@ -430,6 +446,7 @@ M.WorkspaceStatus = {
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         securityGroupIds = {
             type = "list",
@@ -450,6 +467,7 @@ M.VpcConfiguration = {
 
 M.WorkspaceDescription = {
     type = "structure",
+    id = "WorkspaceDescription",
     members = {
         accountAccessType = {
             type = "string",
@@ -556,6 +574,7 @@ M.WorkspaceDescription = {
 
 M.AssociateLicenseOutput = {
     type = "structure",
+    id = "AssociateLicenseOutput",
     members = {
         workspace = setmetatable({ traits = {
             required = true,
@@ -565,6 +584,7 @@ M.AssociateLicenseOutput = {
 
 M.DescribeWorkspaceAuthenticationInput = {
     type = "structure",
+    id = "DescribeWorkspaceAuthenticationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -578,6 +598,7 @@ M.DescribeWorkspaceAuthenticationInput = {
 
 M.AwsSsoAuthentication = {
     type = "structure",
+    id = "AwsSsoAuthentication",
     members = {
         ssoClientId = {
             type = "string",
@@ -587,6 +608,7 @@ M.AwsSsoAuthentication = {
 
 M.IdpMetadata = {
     type = "union",
+    id = "IdpMetadata",
     members = {
         url = {
             type = "string",
@@ -599,6 +621,7 @@ M.IdpMetadata = {
 
 M.RoleValues = {
     type = "structure",
+    id = "RoleValues",
     members = {
         editor = {
             type = "list",
@@ -613,6 +636,7 @@ M.RoleValues = {
 
 M.SamlConfiguration = {
     type = "structure",
+    id = "SamlConfiguration",
     members = {
         idpMetadata = setmetatable({ traits = {
             required = true,
@@ -634,6 +658,7 @@ M.SamlConfiguration = {
 
 M.SamlAuthentication = {
     type = "structure",
+    id = "SamlAuthentication",
     members = {
         status = {
             type = "string",
@@ -647,6 +672,7 @@ M.SamlAuthentication = {
 
 M.AuthenticationDescription = {
     type = "structure",
+    id = "AuthenticationDescription",
     members = {
         providers = {
             type = "list",
@@ -662,6 +688,7 @@ M.AuthenticationDescription = {
 
 M.DescribeWorkspaceAuthenticationOutput = {
     type = "structure",
+    id = "DescribeWorkspaceAuthenticationOutput",
     members = {
         authentication = setmetatable({ traits = {
             required = true,
@@ -671,6 +698,7 @@ M.DescribeWorkspaceAuthenticationOutput = {
 
 M.UpdateWorkspaceAuthenticationInput = {
     type = "structure",
+    id = "UpdateWorkspaceAuthenticationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -692,6 +720,7 @@ M.UpdateWorkspaceAuthenticationInput = {
 
 M.UpdateWorkspaceAuthenticationOutput = {
     type = "structure",
+    id = "UpdateWorkspaceAuthenticationOutput",
     members = {
         authentication = setmetatable({ traits = {
             required = true,
@@ -701,6 +730,7 @@ M.UpdateWorkspaceAuthenticationOutput = {
 
 M.DescribeWorkspaceConfigurationInput = {
     type = "structure",
+    id = "DescribeWorkspaceConfigurationInput",
     members = {
         workspaceId = {
             type = "string",
@@ -714,6 +744,7 @@ M.DescribeWorkspaceConfigurationInput = {
 
 M.DescribeWorkspaceConfigurationOutput = {
     type = "structure",
+    id = "DescribeWorkspaceConfigurationOutput",
     members = {
         configuration = {
             type = "string",
@@ -730,6 +761,7 @@ M.DescribeWorkspaceConfigurationOutput = {
 
 M.UpdateWorkspaceConfigurationInput = {
     type = "structure",
+    id = "UpdateWorkspaceConfigurationInput",
     members = {
         configuration = {
             type = "string",
@@ -753,10 +785,12 @@ M.UpdateWorkspaceConfigurationInput = {
 
 M.UpdateWorkspaceConfigurationOutput = {
     type = "structure",
+    id = "UpdateWorkspaceConfigurationOutput",
 }
 
 M.DisassociateLicenseInput = {
     type = "structure",
+    id = "DisassociateLicenseInput",
     members = {
         workspaceId = {
             type = "string",
@@ -777,6 +811,7 @@ M.DisassociateLicenseInput = {
 
 M.DisassociateLicenseOutput = {
     type = "structure",
+    id = "DisassociateLicenseOutput",
     members = {
         workspace = setmetatable({ traits = {
             required = true,
@@ -786,6 +821,7 @@ M.DisassociateLicenseOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -799,6 +835,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -810,6 +847,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVersionsInput = {
     type = "structure",
+    id = "ListVersionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -834,6 +872,7 @@ M.ListVersionsInput = {
 
 M.ListVersionsOutput = {
     type = "structure",
+    id = "ListVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -852,6 +891,7 @@ M.UserType = {
 
 M.ListPermissionsInput = {
     type = "structure",
+    id = "ListPermissionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -901,6 +941,7 @@ M.Role = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         id = {
             type = "string",
@@ -919,6 +960,7 @@ M.User = {
 
 M.PermissionEntry = {
     type = "structure",
+    id = "PermissionEntry",
     members = {
         user = setmetatable({ traits = {
             required = true,
@@ -934,6 +976,7 @@ M.PermissionEntry = {
 
 M.ListPermissionsOutput = {
     type = "structure",
+    id = "ListPermissionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -955,6 +998,7 @@ M.UpdateAction = {
 
 M.UpdateInstruction = {
     type = "structure",
+    id = "UpdateInstruction",
     members = {
         action = {
             type = "string",
@@ -980,6 +1024,7 @@ M.UpdateInstruction = {
 
 M.UpdatePermissionsInput = {
     type = "structure",
+    id = "UpdatePermissionsInput",
     members = {
         updateInstructionBatch = {
             type = "list",
@@ -1000,6 +1045,7 @@ M.UpdatePermissionsInput = {
 
 M.UpdateError = {
     type = "structure",
+    id = "UpdateError",
     members = {
         code = {
             type = "integer",
@@ -1021,6 +1067,7 @@ M.UpdateError = {
 
 M.UpdatePermissionsOutput = {
     type = "structure",
+    id = "UpdatePermissionsOutput",
     members = {
         errors = {
             type = "list",
@@ -1034,6 +1081,7 @@ M.UpdatePermissionsOutput = {
 
 M.CreateWorkspaceServiceAccountInput = {
     type = "structure",
+    id = "CreateWorkspaceServiceAccountInput",
     members = {
         name = {
             type = "string",
@@ -1059,6 +1107,7 @@ M.CreateWorkspaceServiceAccountInput = {
 
 M.CreateWorkspaceServiceAccountOutput = {
     type = "structure",
+    id = "CreateWorkspaceServiceAccountOutput",
     members = {
         id = {
             type = "string",
@@ -1089,6 +1138,7 @@ M.CreateWorkspaceServiceAccountOutput = {
 
 M.DeleteWorkspaceServiceAccountInput = {
     type = "structure",
+    id = "DeleteWorkspaceServiceAccountInput",
     members = {
         serviceAccountId = {
             type = "string",
@@ -1109,6 +1159,7 @@ M.DeleteWorkspaceServiceAccountInput = {
 
 M.DeleteWorkspaceServiceAccountOutput = {
     type = "structure",
+    id = "DeleteWorkspaceServiceAccountOutput",
     members = {
         serviceAccountId = {
             type = "string",
@@ -1127,6 +1178,7 @@ M.DeleteWorkspaceServiceAccountOutput = {
 
 M.ListWorkspaceServiceAccountsInput = {
     type = "structure",
+    id = "ListWorkspaceServiceAccountsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1152,6 +1204,7 @@ M.ListWorkspaceServiceAccountsInput = {
 
 M.ServiceAccountSummary = {
     type = "structure",
+    id = "ServiceAccountSummary",
     members = {
         id = {
             type = "string",
@@ -1182,6 +1235,7 @@ M.ServiceAccountSummary = {
 
 M.ListWorkspaceServiceAccountsOutput = {
     type = "structure",
+    id = "ListWorkspaceServiceAccountsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1204,6 +1258,7 @@ M.ListWorkspaceServiceAccountsOutput = {
 
 M.CreateWorkspaceServiceAccountTokenInput = {
     type = "structure",
+    id = "CreateWorkspaceServiceAccountTokenInput",
     members = {
         name = {
             type = "string",
@@ -1236,6 +1291,7 @@ M.CreateWorkspaceServiceAccountTokenInput = {
 
 M.ServiceAccountTokenSummaryWithKey = {
     type = "structure",
+    id = "ServiceAccountTokenSummaryWithKey",
     members = {
         id = {
             type = "string",
@@ -1260,6 +1316,7 @@ M.ServiceAccountTokenSummaryWithKey = {
 
 M.CreateWorkspaceServiceAccountTokenOutput = {
     type = "structure",
+    id = "CreateWorkspaceServiceAccountTokenOutput",
     members = {
         serviceAccountToken = setmetatable({ traits = {
             required = true,
@@ -1281,6 +1338,7 @@ M.CreateWorkspaceServiceAccountTokenOutput = {
 
 M.DeleteWorkspaceServiceAccountTokenInput = {
     type = "structure",
+    id = "DeleteWorkspaceServiceAccountTokenInput",
     members = {
         tokenId = {
             type = "string",
@@ -1308,6 +1366,7 @@ M.DeleteWorkspaceServiceAccountTokenInput = {
 
 M.DeleteWorkspaceServiceAccountTokenOutput = {
     type = "structure",
+    id = "DeleteWorkspaceServiceAccountTokenOutput",
     members = {
         tokenId = {
             type = "string",
@@ -1332,6 +1391,7 @@ M.DeleteWorkspaceServiceAccountTokenOutput = {
 
 M.ListWorkspaceServiceAccountTokensInput = {
     type = "structure",
+    id = "ListWorkspaceServiceAccountTokensInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1364,6 +1424,7 @@ M.ListWorkspaceServiceAccountTokensInput = {
 
 M.ServiceAccountTokenSummary = {
     type = "structure",
+    id = "ServiceAccountTokenSummary",
     members = {
         id = {
             type = "string",
@@ -1397,6 +1458,7 @@ M.ServiceAccountTokenSummary = {
 
 M.ListWorkspaceServiceAccountTokensOutput = {
     type = "structure",
+    id = "ListWorkspaceServiceAccountTokensOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1425,6 +1487,7 @@ M.ListWorkspaceServiceAccountTokensOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1446,10 +1509,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1471,10 +1536,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.CreateWorkspaceInput = {
     type = "structure",
+    id = "CreateWorkspaceInput",
     members = {
         accountAccessType = {
             type = "string",
@@ -1552,6 +1619,7 @@ M.CreateWorkspaceInput = {
 
 M.CreateWorkspaceOutput = {
     type = "structure",
+    id = "CreateWorkspaceOutput",
     members = {
         workspace = setmetatable({ traits = {
             required = true,
@@ -1561,6 +1629,7 @@ M.CreateWorkspaceOutput = {
 
 M.DeleteWorkspaceInput = {
     type = "structure",
+    id = "DeleteWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1574,6 +1643,7 @@ M.DeleteWorkspaceInput = {
 
 M.DeleteWorkspaceOutput = {
     type = "structure",
+    id = "DeleteWorkspaceOutput",
     members = {
         workspace = setmetatable({ traits = {
             required = true,
@@ -1583,6 +1653,7 @@ M.DeleteWorkspaceOutput = {
 
 M.DescribeWorkspaceInput = {
     type = "structure",
+    id = "DescribeWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1596,6 +1667,7 @@ M.DescribeWorkspaceInput = {
 
 M.DescribeWorkspaceOutput = {
     type = "structure",
+    id = "DescribeWorkspaceOutput",
     members = {
         workspace = setmetatable({ traits = {
             required = true,
@@ -1605,6 +1677,7 @@ M.DescribeWorkspaceOutput = {
 
 M.ListWorkspacesInput = {
     type = "structure",
+    id = "ListWorkspacesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1623,6 +1696,7 @@ M.ListWorkspacesInput = {
 
 M.WorkspaceSummary = {
     type = "structure",
+    id = "WorkspaceSummary",
     members = {
         created = {
             type = "timestamp",
@@ -1689,6 +1763,7 @@ M.WorkspaceSummary = {
 
 M.ListWorkspacesOutput = {
     type = "structure",
+    id = "ListWorkspacesOutput",
     members = {
         workspaces = {
             type = "list",
@@ -1705,6 +1780,7 @@ M.ListWorkspacesOutput = {
 
 M.UpdateWorkspaceInput = {
     type = "structure",
+    id = "UpdateWorkspaceInput",
     members = {
         accountAccessType = {
             type = "string",
@@ -1759,6 +1835,7 @@ M.UpdateWorkspaceInput = {
 
 M.UpdateWorkspaceOutput = {
     type = "structure",
+    id = "UpdateWorkspaceOutput",
     members = {
         workspace = setmetatable({ traits = {
             required = true,

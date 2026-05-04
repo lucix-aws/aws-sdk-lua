@@ -12,6 +12,7 @@ M.AcceptType = {
 
 M.AcceptPageInput = {
     type = "structure",
+    id = "AcceptPageInput",
     members = {
         PageId = {
             type = "string",
@@ -45,10 +46,12 @@ M.AcceptPageInput = {
 
 M.AcceptPageOutput = {
     type = "structure",
+    id = "AcceptPageOutput",
 }
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -62,6 +65,7 @@ M.AccessDeniedException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -82,6 +86,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -107,6 +112,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -133,6 +139,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -158,6 +165,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -178,6 +186,7 @@ M.ValidationException = {
 
 M.ActivateContactChannelInput = {
     type = "structure",
+    id = "ActivateContactChannelInput",
     members = {
         ContactChannelId = {
             type = "string",
@@ -196,6 +205,7 @@ M.ActivateContactChannelInput = {
 
 M.ActivateContactChannelOutput = {
     type = "structure",
+    id = "ActivateContactChannelOutput",
 }
 
 M.ActivationStatus = {
@@ -205,6 +215,7 @@ M.ActivationStatus = {
 
 M.ChannelTargetInfo = {
     type = "structure",
+    id = "ChannelTargetInfo",
     members = {
         ContactChannelId = {
             type = "string",
@@ -226,6 +237,7 @@ M.ChannelType = {
 
 M.DependentEntity = {
     type = "structure",
+    id = "DependentEntity",
     members = {
         RelationType = {
             type = "string",
@@ -245,6 +257,7 @@ M.DependentEntity = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -280,6 +293,7 @@ M.ContactType = {
 
 M.Contact = {
     type = "structure",
+    id = "Contact",
     members = {
         ContactArn = {
             type = "string",
@@ -307,6 +321,7 @@ M.Contact = {
 
 M.ContactChannelAddress = {
     type = "structure",
+    id = "ContactChannelAddress",
     members = {
         SimpleAddress = {
             type = "string",
@@ -316,6 +331,7 @@ M.ContactChannelAddress = {
 
 M.ContactChannel = {
     type = "structure",
+    id = "ContactChannel",
     members = {
         ContactChannelArn = {
             type = "string",
@@ -352,6 +368,7 @@ M.ContactChannel = {
 
 M.ContactTargetInfo = {
     type = "structure",
+    id = "ContactTargetInfo",
     members = {
         ContactId = {
             type = "string",
@@ -367,6 +384,7 @@ M.ContactTargetInfo = {
 
 M.HandOffTime = {
     type = "structure",
+    id = "HandOffTime",
     members = {
         HourOfDay = {
             type = "integer",
@@ -387,6 +405,7 @@ M.HandOffTime = {
 
 M.CoverageTime = {
     type = "structure",
+    id = "CoverageTime",
     members = {
         Start = M.HandOffTime,
         End = M.HandOffTime,
@@ -395,6 +414,7 @@ M.CoverageTime = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         ChannelTargetInfo = M.ChannelTargetInfo,
         ContactTargetInfo = M.ContactTargetInfo,
@@ -403,6 +423,7 @@ M.Target = {
 
 M.Stage = {
     type = "structure",
+    id = "Stage",
     members = {
         DurationInMinutes = {
             type = "integer",
@@ -422,6 +443,7 @@ M.Stage = {
 
 M.Plan = {
     type = "structure",
+    id = "Plan",
     members = {
         Stages = {
             type = "list",
@@ -436,6 +458,7 @@ M.Plan = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -448,6 +471,7 @@ M.Tag = {
 
 M.CreateContactInput = {
     type = "structure",
+    id = "CreateContactInput",
     members = {
         Alias = {
             type = "string",
@@ -482,6 +506,7 @@ M.CreateContactInput = {
 
 M.CreateContactOutput = {
     type = "structure",
+    id = "CreateContactOutput",
     members = {
         ContactArn = {
             type = "string",
@@ -494,6 +519,7 @@ M.CreateContactOutput = {
 
 M.DataEncryptionException = {
     type = "structure",
+    id = "DataEncryptionException",
     error = "client",
     members = {
         Message = {
@@ -507,6 +533,7 @@ M.DataEncryptionException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -538,6 +565,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateContactChannelInput = {
     type = "structure",
+    id = "CreateContactChannelInput",
     members = {
         ContactId = {
             type = "string",
@@ -574,6 +602,7 @@ M.CreateContactChannelInput = {
 
 M.CreateContactChannelOutput = {
     type = "structure",
+    id = "CreateContactChannelOutput",
     members = {
         ContactChannelArn = {
             type = "string",
@@ -586,6 +615,7 @@ M.CreateContactChannelOutput = {
 
 M.MonthlySetting = {
     type = "structure",
+    id = "MonthlySetting",
     members = {
         DayOfMonth = {
             type = "integer",
@@ -611,6 +641,7 @@ M.DayOfWeek = {
 
 M.WeeklySetting = {
     type = "structure",
+    id = "WeeklySetting",
     members = {
         DayOfWeek = {
             type = "string",
@@ -626,6 +657,7 @@ M.WeeklySetting = {
 
 M.RecurrenceSettings = {
     type = "structure",
+    id = "RecurrenceSettings",
     members = {
         MonthlySettings = {
             type = "list",
@@ -661,6 +693,7 @@ M.RecurrenceSettings = {
 
 M.CreateRotationInput = {
     type = "structure",
+    id = "CreateRotationInput",
     members = {
         Name = {
             type = "string",
@@ -699,6 +732,7 @@ M.CreateRotationInput = {
 
 M.CreateRotationOutput = {
     type = "structure",
+    id = "CreateRotationOutput",
     members = {
         RotationArn = {
             type = "string",
@@ -711,6 +745,7 @@ M.CreateRotationOutput = {
 
 M.CreateRotationOverrideInput = {
     type = "structure",
+    id = "CreateRotationOverrideInput",
     members = {
         RotationId = {
             type = "string",
@@ -745,6 +780,7 @@ M.CreateRotationOverrideInput = {
 
 M.CreateRotationOverrideOutput = {
     type = "structure",
+    id = "CreateRotationOverrideOutput",
     members = {
         RotationOverrideId = {
             type = "string",
@@ -757,6 +793,7 @@ M.CreateRotationOverrideOutput = {
 
 M.DeactivateContactChannelInput = {
     type = "structure",
+    id = "DeactivateContactChannelInput",
     members = {
         ContactChannelId = {
             type = "string",
@@ -769,10 +806,12 @@ M.DeactivateContactChannelInput = {
 
 M.DeactivateContactChannelOutput = {
     type = "structure",
+    id = "DeactivateContactChannelOutput",
 }
 
 M.DeleteContactInput = {
     type = "structure",
+    id = "DeleteContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -785,10 +824,12 @@ M.DeleteContactInput = {
 
 M.DeleteContactOutput = {
     type = "structure",
+    id = "DeleteContactOutput",
 }
 
 M.DeleteContactChannelInput = {
     type = "structure",
+    id = "DeleteContactChannelInput",
     members = {
         ContactChannelId = {
             type = "string",
@@ -801,10 +842,12 @@ M.DeleteContactChannelInput = {
 
 M.DeleteContactChannelOutput = {
     type = "structure",
+    id = "DeleteContactChannelOutput",
 }
 
 M.DeleteRotationInput = {
     type = "structure",
+    id = "DeleteRotationInput",
     members = {
         RotationId = {
             type = "string",
@@ -817,10 +860,12 @@ M.DeleteRotationInput = {
 
 M.DeleteRotationOutput = {
     type = "structure",
+    id = "DeleteRotationOutput",
 }
 
 M.DeleteRotationOverrideInput = {
     type = "structure",
+    id = "DeleteRotationOverrideInput",
     members = {
         RotationId = {
             type = "string",
@@ -839,10 +884,12 @@ M.DeleteRotationOverrideInput = {
 
 M.DeleteRotationOverrideOutput = {
     type = "structure",
+    id = "DeleteRotationOverrideOutput",
 }
 
 M.DescribeEngagementInput = {
     type = "structure",
+    id = "DescribeEngagementInput",
     members = {
         EngagementId = {
             type = "string",
@@ -855,6 +902,7 @@ M.DescribeEngagementInput = {
 
 M.DescribeEngagementOutput = {
     type = "structure",
+    id = "DescribeEngagementOutput",
     members = {
         ContactArn = {
             type = "string",
@@ -906,6 +954,7 @@ M.DescribeEngagementOutput = {
 
 M.DescribePageInput = {
     type = "structure",
+    id = "DescribePageInput",
     members = {
         PageId = {
             type = "string",
@@ -918,6 +967,7 @@ M.DescribePageInput = {
 
 M.DescribePageOutput = {
     type = "structure",
+    id = "DescribePageOutput",
     members = {
         PageArn = {
             type = "string",
@@ -978,6 +1028,7 @@ M.DescribePageOutput = {
 
 M.Engagement = {
     type = "structure",
+    id = "Engagement",
     members = {
         EngagementArn = {
             type = "string",
@@ -1011,6 +1062,7 @@ M.Engagement = {
 
 M.GetContactInput = {
     type = "structure",
+    id = "GetContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -1023,6 +1075,7 @@ M.GetContactInput = {
 
 M.GetContactOutput = {
     type = "structure",
+    id = "GetContactOutput",
     members = {
         ContactArn = {
             type = "string",
@@ -1053,6 +1106,7 @@ M.GetContactOutput = {
 
 M.GetContactChannelInput = {
     type = "structure",
+    id = "GetContactChannelInput",
     members = {
         ContactChannelId = {
             type = "string",
@@ -1065,6 +1119,7 @@ M.GetContactChannelInput = {
 
 M.GetContactChannelOutput = {
     type = "structure",
+    id = "GetContactChannelOutput",
     members = {
         ContactArn = {
             type = "string",
@@ -1101,6 +1156,7 @@ M.GetContactChannelOutput = {
 
 M.GetContactPolicyInput = {
     type = "structure",
+    id = "GetContactPolicyInput",
     members = {
         ContactArn = {
             type = "string",
@@ -1113,6 +1169,7 @@ M.GetContactPolicyInput = {
 
 M.GetContactPolicyOutput = {
     type = "structure",
+    id = "GetContactPolicyOutput",
     members = {
         ContactArn = {
             type = "string",
@@ -1125,6 +1182,7 @@ M.GetContactPolicyOutput = {
 
 M.GetRotationInput = {
     type = "structure",
+    id = "GetRotationInput",
     members = {
         RotationId = {
             type = "string",
@@ -1137,6 +1195,7 @@ M.GetRotationInput = {
 
 M.GetRotationOutput = {
     type = "structure",
+    id = "GetRotationOutput",
     members = {
         RotationArn = {
             type = "string",
@@ -1177,6 +1236,7 @@ M.GetRotationOutput = {
 
 M.GetRotationOverrideInput = {
     type = "structure",
+    id = "GetRotationOverrideInput",
     members = {
         RotationId = {
             type = "string",
@@ -1195,6 +1255,7 @@ M.GetRotationOverrideInput = {
 
 M.GetRotationOverrideOutput = {
     type = "structure",
+    id = "GetRotationOverrideOutput",
     members = {
         RotationOverrideId = {
             type = "string",
@@ -1220,6 +1281,7 @@ M.GetRotationOverrideOutput = {
 
 M.ListContactChannelsInput = {
     type = "structure",
+    id = "ListContactChannelsInput",
     members = {
         ContactId = {
             type = "string",
@@ -1238,6 +1300,7 @@ M.ListContactChannelsInput = {
 
 M.ListContactChannelsOutput = {
     type = "structure",
+    id = "ListContactChannelsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1254,6 +1317,7 @@ M.ListContactChannelsOutput = {
 
 M.ListContactsInput = {
     type = "structure",
+    id = "ListContactsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1272,6 +1336,7 @@ M.ListContactsInput = {
 
 M.ListContactsOutput = {
     type = "structure",
+    id = "ListContactsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1285,6 +1350,7 @@ M.ListContactsOutput = {
 
 M.TimeRange = {
     type = "structure",
+    id = "TimeRange",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1297,6 +1363,7 @@ M.TimeRange = {
 
 M.ListEngagementsInput = {
     type = "structure",
+    id = "ListEngagementsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1313,6 +1380,7 @@ M.ListEngagementsInput = {
 
 M.ListEngagementsOutput = {
     type = "structure",
+    id = "ListEngagementsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1329,6 +1397,7 @@ M.ListEngagementsOutput = {
 
 M.ListPageReceiptsInput = {
     type = "structure",
+    id = "ListPageReceiptsInput",
     members = {
         PageId = {
             type = "string",
@@ -1355,6 +1424,7 @@ M.ReceiptType = {
 
 M.Receipt = {
     type = "structure",
+    id = "Receipt",
     members = {
         ContactChannelArn = {
             type = "string",
@@ -1379,6 +1449,7 @@ M.Receipt = {
 
 M.ListPageReceiptsOutput = {
     type = "structure",
+    id = "ListPageReceiptsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1392,6 +1463,7 @@ M.ListPageReceiptsOutput = {
 
 M.ListPageResolutionsInput = {
     type = "structure",
+    id = "ListPageResolutionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1407,6 +1479,7 @@ M.ListPageResolutionsInput = {
 
 M.ResolutionContact = {
     type = "structure",
+    id = "ResolutionContact",
     members = {
         ContactArn = {
             type = "string",
@@ -1431,6 +1504,7 @@ M.ResolutionContact = {
 
 M.ListPageResolutionsOutput = {
     type = "structure",
+    id = "ListPageResolutionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1447,6 +1521,7 @@ M.ListPageResolutionsOutput = {
 
 M.ListPagesByContactInput = {
     type = "structure",
+    id = "ListPagesByContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -1465,6 +1540,7 @@ M.ListPagesByContactInput = {
 
 M.Page = {
     type = "structure",
+    id = "Page",
     members = {
         PageArn = {
             type = "string",
@@ -1507,6 +1583,7 @@ M.Page = {
 
 M.ListPagesByContactOutput = {
     type = "structure",
+    id = "ListPagesByContactOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1523,6 +1600,7 @@ M.ListPagesByContactOutput = {
 
 M.ListPagesByEngagementInput = {
     type = "structure",
+    id = "ListPagesByEngagementInput",
     members = {
         EngagementId = {
             type = "string",
@@ -1541,6 +1619,7 @@ M.ListPagesByEngagementInput = {
 
 M.ListPagesByEngagementOutput = {
     type = "structure",
+    id = "ListPagesByEngagementOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1557,6 +1636,7 @@ M.ListPagesByEngagementOutput = {
 
 M.PreviewOverride = {
     type = "structure",
+    id = "PreviewOverride",
     members = {
         NewMembers = {
             type = "list",
@@ -1573,6 +1653,7 @@ M.PreviewOverride = {
 
 M.ListPreviewRotationShiftsInput = {
     type = "structure",
+    id = "ListPreviewRotationShiftsInput",
     members = {
         RotationStartTime = {
             type = "timestamp",
@@ -1617,6 +1698,7 @@ M.ListPreviewRotationShiftsInput = {
 
 M.ShiftDetails = {
     type = "structure",
+    id = "ShiftDetails",
     members = {
         OverriddenContactIds = {
             type = "list",
@@ -1635,6 +1717,7 @@ M.ShiftType = {
 
 M.RotationShift = {
     type = "structure",
+    id = "RotationShift",
     members = {
         ContactIds = {
             type = "list",
@@ -1661,6 +1744,7 @@ M.RotationShift = {
 
 M.ListPreviewRotationShiftsOutput = {
     type = "structure",
+    id = "ListPreviewRotationShiftsOutput",
     members = {
         RotationShifts = {
             type = "list",
@@ -1674,6 +1758,7 @@ M.ListPreviewRotationShiftsOutput = {
 
 M.ListRotationOverridesInput = {
     type = "structure",
+    id = "ListRotationOverridesInput",
     members = {
         RotationId = {
             type = "string",
@@ -1704,6 +1789,7 @@ M.ListRotationOverridesInput = {
 
 M.RotationOverride = {
     type = "structure",
+    id = "RotationOverride",
     members = {
         RotationOverrideId = {
             type = "string",
@@ -1741,6 +1827,7 @@ M.RotationOverride = {
 
 M.ListRotationOverridesOutput = {
     type = "structure",
+    id = "ListRotationOverridesOutput",
     members = {
         RotationOverrides = {
             type = "list",
@@ -1754,6 +1841,7 @@ M.ListRotationOverridesOutput = {
 
 M.ListRotationsInput = {
     type = "structure",
+    id = "ListRotationsInput",
     members = {
         RotationNamePrefix = {
             type = "string",
@@ -1769,6 +1857,7 @@ M.ListRotationsInput = {
 
 M.Rotation = {
     type = "structure",
+    id = "Rotation",
     members = {
         RotationArn = {
             type = "string",
@@ -1798,6 +1887,7 @@ M.Rotation = {
 
 M.ListRotationsOutput = {
     type = "structure",
+    id = "ListRotationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1814,6 +1904,7 @@ M.ListRotationsOutput = {
 
 M.ListRotationShiftsInput = {
     type = "structure",
+    id = "ListRotationShiftsInput",
     members = {
         RotationId = {
             type = "string",
@@ -1841,6 +1932,7 @@ M.ListRotationShiftsInput = {
 
 M.ListRotationShiftsOutput = {
     type = "structure",
+    id = "ListRotationShiftsOutput",
     members = {
         RotationShifts = {
             type = "list",
@@ -1854,6 +1946,7 @@ M.ListRotationShiftsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1866,6 +1959,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1876,6 +1970,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutContactPolicyInput = {
     type = "structure",
+    id = "PutContactPolicyInput",
     members = {
         ContactArn = {
             type = "string",
@@ -1894,10 +1989,12 @@ M.PutContactPolicyInput = {
 
 M.PutContactPolicyOutput = {
     type = "structure",
+    id = "PutContactPolicyOutput",
 }
 
 M.SendActivationCodeInput = {
     type = "structure",
+    id = "SendActivationCodeInput",
     members = {
         ContactChannelId = {
             type = "string",
@@ -1910,10 +2007,12 @@ M.SendActivationCodeInput = {
 
 M.SendActivationCodeOutput = {
     type = "structure",
+    id = "SendActivationCodeOutput",
 }
 
 M.StartEngagementInput = {
     type = "structure",
+    id = "StartEngagementInput",
     members = {
         ContactId = {
             type = "string",
@@ -1959,6 +2058,7 @@ M.StartEngagementInput = {
 
 M.StartEngagementOutput = {
     type = "structure",
+    id = "StartEngagementOutput",
     members = {
         EngagementArn = {
             type = "string",
@@ -1971,6 +2071,7 @@ M.StartEngagementOutput = {
 
 M.StopEngagementInput = {
     type = "structure",
+    id = "StopEngagementInput",
     members = {
         EngagementId = {
             type = "string",
@@ -1986,10 +2087,12 @@ M.StopEngagementInput = {
 
 M.StopEngagementOutput = {
     type = "structure",
+    id = "StopEngagementOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2009,10 +2112,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2032,10 +2137,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateContactInput = {
     type = "structure",
+    id = "UpdateContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -2052,10 +2159,12 @@ M.UpdateContactInput = {
 
 M.UpdateContactOutput = {
     type = "structure",
+    id = "UpdateContactOutput",
 }
 
 M.UpdateContactChannelInput = {
     type = "structure",
+    id = "UpdateContactChannelInput",
     members = {
         ContactChannelId = {
             type = "string",
@@ -2072,10 +2181,12 @@ M.UpdateContactChannelInput = {
 
 M.UpdateContactChannelOutput = {
     type = "structure",
+    id = "UpdateContactChannelOutput",
 }
 
 M.UpdateRotationInput = {
     type = "structure",
+    id = "UpdateRotationInput",
     members = {
         RotationId = {
             type = "string",
@@ -2101,6 +2212,7 @@ M.UpdateRotationInput = {
 
 M.UpdateRotationOutput = {
     type = "structure",
+    id = "UpdateRotationOutput",
 }
 
 return M

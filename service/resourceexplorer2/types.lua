@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AssociateDefaultViewInput = {
     type = "structure",
+    id = "AssociateDefaultViewInput",
     members = {
         ViewArn = {
             type = "string",
@@ -24,6 +26,7 @@ M.AssociateDefaultViewInput = {
 
 M.AssociateDefaultViewOutput = {
     type = "structure",
+    id = "AssociateDefaultViewOutput",
     members = {
         ViewArn = {
             type = "string",
@@ -33,6 +36,7 @@ M.AssociateDefaultViewOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -43,6 +47,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -53,6 +58,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -63,6 +69,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -81,6 +88,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -103,6 +111,7 @@ M.AWSServiceAccessStatus = {
 
 M.BatchGetViewInput = {
     type = "structure",
+    id = "BatchGetViewInput",
     members = {
         ViewArns = {
             type = "list",
@@ -113,6 +122,7 @@ M.BatchGetViewInput = {
 
 M.BatchGetViewError = {
     type = "structure",
+    id = "BatchGetViewError",
     members = {
         ViewArn = {
             type = "string",
@@ -131,6 +141,7 @@ M.BatchGetViewError = {
 
 M.SearchFilter = {
     type = "structure",
+    id = "SearchFilter",
     members = {
         FilterString = {
             type = "string",
@@ -143,6 +154,7 @@ M.SearchFilter = {
 
 M.IncludedProperty = {
     type = "structure",
+    id = "IncludedProperty",
     members = {
         Name = {
             type = "string",
@@ -155,6 +167,7 @@ M.IncludedProperty = {
 
 M.View = {
     type = "structure",
+    id = "View",
     members = {
         ViewArn = {
             type = "string",
@@ -184,6 +197,7 @@ M.View = {
 
 M.BatchGetViewOutput = {
     type = "structure",
+    id = "BatchGetViewOutput",
     members = {
         Views = {
             type = "list",
@@ -198,6 +212,7 @@ M.BatchGetViewOutput = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         Message = {
@@ -208,6 +223,7 @@ M.UnauthorizedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -221,6 +237,7 @@ M.ConflictException = {
 
 M.CreateIndexInput = {
     type = "structure",
+    id = "CreateIndexInput",
     members = {
         ClientToken = {
             type = "string",
@@ -246,6 +263,7 @@ M.IndexState = {
 
 M.CreateIndexOutput = {
     type = "structure",
+    id = "CreateIndexOutput",
     members = {
         Arn = {
             type = "string",
@@ -264,6 +282,7 @@ M.CreateIndexOutput = {
 
 M.DeleteIndexInput = {
     type = "structure",
+    id = "DeleteIndexInput",
     members = {
         Arn = {
             type = "string",
@@ -276,6 +295,7 @@ M.DeleteIndexInput = {
 
 M.DeleteIndexOutput = {
     type = "structure",
+    id = "DeleteIndexOutput",
     members = {
         Arn = {
             type = "string",
@@ -299,6 +319,7 @@ M.IndexType = {
 
 M.ListIndexesInput = {
     type = "structure",
+    id = "ListIndexesInput",
     members = {
         Type = {
             type = "string",
@@ -318,6 +339,7 @@ M.ListIndexesInput = {
 
 M.Index = {
     type = "structure",
+    id = "Index",
     members = {
         Region = {
             type = "string",
@@ -333,6 +355,7 @@ M.Index = {
 
 M.ListIndexesOutput = {
     type = "structure",
+    id = "ListIndexesOutput",
     members = {
         Indexes = {
             type = "list",
@@ -346,6 +369,7 @@ M.ListIndexesOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -371,6 +395,7 @@ M.ServiceQuotaExceededException = {
 
 M.UpdateIndexTypeInput = {
     type = "structure",
+    id = "UpdateIndexTypeInput",
     members = {
         Arn = {
             type = "string",
@@ -389,6 +414,7 @@ M.UpdateIndexTypeInput = {
 
 M.UpdateIndexTypeOutput = {
     type = "structure",
+    id = "UpdateIndexTypeOutput",
     members = {
         Arn = {
             type = "string",
@@ -410,6 +436,7 @@ M.UpdateIndexTypeOutput = {
 
 M.CreateViewInput = {
     type = "structure",
+    id = "CreateViewInput",
     members = {
         ClientToken = {
             type = "string",
@@ -441,6 +468,7 @@ M.CreateViewInput = {
 
 M.CreateViewOutput = {
     type = "structure",
+    id = "CreateViewOutput",
     members = {
         View = M.View,
     },
@@ -448,6 +476,7 @@ M.CreateViewOutput = {
 
 M.DeleteViewInput = {
     type = "structure",
+    id = "DeleteViewInput",
     members = {
         ViewArn = {
             type = "string",
@@ -460,6 +489,7 @@ M.DeleteViewInput = {
 
 M.DeleteViewOutput = {
     type = "structure",
+    id = "DeleteViewOutput",
     members = {
         ViewArn = {
             type = "string",
@@ -469,6 +499,7 @@ M.DeleteViewOutput = {
 
 M.GetViewInput = {
     type = "structure",
+    id = "GetViewInput",
     members = {
         ViewArn = {
             type = "string",
@@ -481,6 +512,7 @@ M.GetViewInput = {
 
 M.GetViewOutput = {
     type = "structure",
+    id = "GetViewOutput",
     members = {
         View = M.View,
         Tags = {
@@ -493,6 +525,7 @@ M.GetViewOutput = {
 
 M.ListViewsInput = {
     type = "structure",
+    id = "ListViewsInput",
     members = {
         NextToken = {
             type = "string",
@@ -505,6 +538,7 @@ M.ListViewsInput = {
 
 M.ListViewsOutput = {
     type = "structure",
+    id = "ListViewsOutput",
     members = {
         Views = {
             type = "list",
@@ -518,6 +552,7 @@ M.ListViewsOutput = {
 
 M.UpdateViewInput = {
     type = "structure",
+    id = "UpdateViewInput",
     members = {
         ViewArn = {
             type = "string",
@@ -535,6 +570,7 @@ M.UpdateViewInput = {
 
 M.UpdateViewOutput = {
     type = "structure",
+    id = "UpdateViewOutput",
     members = {
         View = M.View,
     },
@@ -542,6 +578,7 @@ M.UpdateViewOutput = {
 
 M.CreateResourceExplorerSetupInput = {
     type = "structure",
+    id = "CreateResourceExplorerSetupInput",
     members = {
         RegionList = {
             type = "list",
@@ -565,6 +602,7 @@ M.CreateResourceExplorerSetupInput = {
 
 M.CreateResourceExplorerSetupOutput = {
     type = "structure",
+    id = "CreateResourceExplorerSetupOutput",
     members = {
         TaskId = {
             type = "string",
@@ -577,6 +615,7 @@ M.CreateResourceExplorerSetupOutput = {
 
 M.DeleteResourceExplorerSetupInput = {
     type = "structure",
+    id = "DeleteResourceExplorerSetupInput",
     members = {
         RegionList = {
             type = "list",
@@ -590,6 +629,7 @@ M.DeleteResourceExplorerSetupInput = {
 
 M.DeleteResourceExplorerSetupOutput = {
     type = "structure",
+    id = "DeleteResourceExplorerSetupOutput",
     members = {
         TaskId = {
             type = "string",
@@ -602,14 +642,17 @@ M.DeleteResourceExplorerSetupOutput = {
 
 M.DisassociateDefaultViewInput = {
     type = "structure",
+    id = "DisassociateDefaultViewInput",
 }
 
 M.DisassociateDefaultViewOutput = {
     type = "structure",
+    id = "DisassociateDefaultViewOutput",
 }
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         Code = {
             type = "string",
@@ -622,10 +665,12 @@ M.ErrorDetails = {
 
 M.GetAccountLevelServiceConfigurationInput = {
     type = "structure",
+    id = "GetAccountLevelServiceConfigurationInput",
 }
 
 M.OrgConfiguration = {
     type = "structure",
+    id = "OrgConfiguration",
     members = {
         AWSServiceAccessStatus = {
             type = "string",
@@ -641,6 +686,7 @@ M.OrgConfiguration = {
 
 M.GetAccountLevelServiceConfigurationOutput = {
     type = "structure",
+    id = "GetAccountLevelServiceConfigurationOutput",
     members = {
         OrgConfiguration = M.OrgConfiguration,
     },
@@ -648,10 +694,12 @@ M.GetAccountLevelServiceConfigurationOutput = {
 
 M.GetDefaultViewInput = {
     type = "structure",
+    id = "GetDefaultViewInput",
 }
 
 M.GetDefaultViewOutput = {
     type = "structure",
+    id = "GetDefaultViewOutput",
     members = {
         ViewArn = {
             type = "string",
@@ -661,10 +709,12 @@ M.GetDefaultViewOutput = {
 
 M.GetIndexInput = {
     type = "structure",
+    id = "GetIndexInput",
 }
 
 M.GetIndexOutput = {
     type = "structure",
+    id = "GetIndexOutput",
     members = {
         Arn = {
             type = "string",
@@ -705,6 +755,7 @@ M.GetIndexOutput = {
 
 M.GetManagedViewInput = {
     type = "structure",
+    id = "GetManagedViewInput",
     members = {
         ManagedViewArn = {
             type = "string",
@@ -717,6 +768,7 @@ M.GetManagedViewInput = {
 
 M.ManagedView = {
     type = "structure",
+    id = "ManagedView",
     members = {
         ManagedViewArn = {
             type = "string",
@@ -755,6 +807,7 @@ M.ManagedView = {
 
 M.GetManagedViewOutput = {
     type = "structure",
+    id = "GetManagedViewOutput",
     members = {
         ManagedView = M.ManagedView,
     },
@@ -762,6 +815,7 @@ M.GetManagedViewOutput = {
 
 M.GetResourceExplorerSetupInput = {
     type = "structure",
+    id = "GetResourceExplorerSetupInput",
     members = {
         TaskId = {
             type = "string",
@@ -787,6 +841,7 @@ M.OperationStatus = {
 
 M.IndexStatus = {
     type = "structure",
+    id = "IndexStatus",
     members = {
         Status = {
             type = "string",
@@ -798,6 +853,7 @@ M.IndexStatus = {
 
 M.ViewStatus = {
     type = "structure",
+    id = "ViewStatus",
     members = {
         Status = {
             type = "string",
@@ -809,6 +865,7 @@ M.ViewStatus = {
 
 M.RegionStatus = {
     type = "structure",
+    id = "RegionStatus",
     members = {
         Region = {
             type = "string",
@@ -820,6 +877,7 @@ M.RegionStatus = {
 
 M.GetResourceExplorerSetupOutput = {
     type = "structure",
+    id = "GetResourceExplorerSetupOutput",
     members = {
         Regions = {
             type = "list",
@@ -833,10 +891,12 @@ M.GetResourceExplorerSetupOutput = {
 
 M.GetServiceIndexInput = {
     type = "structure",
+    id = "GetServiceIndexInput",
 }
 
 M.GetServiceIndexOutput = {
     type = "structure",
+    id = "GetServiceIndexOutput",
     members = {
         Arn = {
             type = "string",
@@ -849,6 +909,7 @@ M.GetServiceIndexOutput = {
 
 M.GetServiceViewInput = {
     type = "structure",
+    id = "GetServiceViewInput",
     members = {
         ServiceViewArn = {
             type = "string",
@@ -861,6 +922,7 @@ M.GetServiceViewInput = {
 
 M.ServiceView = {
     type = "structure",
+    id = "ServiceView",
     members = {
         ServiceViewArn = {
             type = "string",
@@ -887,6 +949,7 @@ M.ServiceView = {
 
 M.GetServiceViewOutput = {
     type = "structure",
+    id = "GetServiceViewOutput",
     members = {
         View = setmetatable({ traits = {
             required = true,
@@ -896,6 +959,7 @@ M.GetServiceViewOutput = {
 
 M.ListIndexesForMembersInput = {
     type = "structure",
+    id = "ListIndexesForMembersInput",
     members = {
         AccountIdList = {
             type = "list",
@@ -915,6 +979,7 @@ M.ListIndexesForMembersInput = {
 
 M.MemberIndex = {
     type = "structure",
+    id = "MemberIndex",
     members = {
         AccountId = {
             type = "string",
@@ -933,6 +998,7 @@ M.MemberIndex = {
 
 M.ListIndexesForMembersOutput = {
     type = "structure",
+    id = "ListIndexesForMembersOutput",
     members = {
         Indexes = {
             type = "list",
@@ -946,6 +1012,7 @@ M.ListIndexesForMembersOutput = {
 
 M.ListManagedViewsInput = {
     type = "structure",
+    id = "ListManagedViewsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -961,6 +1028,7 @@ M.ListManagedViewsInput = {
 
 M.ListManagedViewsOutput = {
     type = "structure",
+    id = "ListManagedViewsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -974,6 +1042,7 @@ M.ListManagedViewsOutput = {
 
 M.ListResourcesInput = {
     type = "structure",
+    id = "ListResourcesInput",
     members = {
         Filters = M.SearchFilter,
         MaxResults = {
@@ -990,6 +1059,7 @@ M.ListResourcesInput = {
 
 M.ResourceProperty = {
     type = "structure",
+    id = "ResourceProperty",
     members = {
         Name = {
             type = "string",
@@ -1008,6 +1078,7 @@ M.ResourceProperty = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         Arn = {
             type = "string",
@@ -1039,6 +1110,7 @@ M.Resource = {
 
 M.ListResourcesOutput = {
     type = "structure",
+    id = "ListResourcesOutput",
     members = {
         Resources = {
             type = "list",
@@ -1055,6 +1127,7 @@ M.ListResourcesOutput = {
 
 M.ListServiceIndexesInput = {
     type = "structure",
+    id = "ListServiceIndexesInput",
     members = {
         Regions = {
             type = "list",
@@ -1071,6 +1144,7 @@ M.ListServiceIndexesInput = {
 
 M.ListServiceIndexesOutput = {
     type = "structure",
+    id = "ListServiceIndexesOutput",
     members = {
         Indexes = {
             type = "list",
@@ -1084,6 +1158,7 @@ M.ListServiceIndexesOutput = {
 
 M.ListServiceViewsInput = {
     type = "structure",
+    id = "ListServiceViewsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1096,6 +1171,7 @@ M.ListServiceViewsInput = {
 
 M.ListServiceViewsOutput = {
     type = "structure",
+    id = "ListServiceViewsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1109,6 +1185,7 @@ M.ListServiceViewsOutput = {
 
 M.ListStreamingAccessForServicesInput = {
     type = "structure",
+    id = "ListStreamingAccessForServicesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1121,6 +1198,7 @@ M.ListStreamingAccessForServicesInput = {
 
 M.StreamingAccessDetails = {
     type = "structure",
+    id = "StreamingAccessDetails",
     members = {
         ServicePrincipal = {
             type = "string",
@@ -1140,6 +1218,7 @@ M.StreamingAccessDetails = {
 
 M.ListStreamingAccessForServicesOutput = {
     type = "structure",
+    id = "ListStreamingAccessForServicesOutput",
     members = {
         StreamingAccessForServices = {
             type = "list",
@@ -1156,6 +1235,7 @@ M.ListStreamingAccessForServicesOutput = {
 
 M.ListSupportedResourceTypesInput = {
     type = "structure",
+    id = "ListSupportedResourceTypesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1168,6 +1248,7 @@ M.ListSupportedResourceTypesInput = {
 
 M.SupportedResourceType = {
     type = "structure",
+    id = "SupportedResourceType",
     members = {
         Service = {
             type = "string",
@@ -1180,6 +1261,7 @@ M.SupportedResourceType = {
 
 M.ListSupportedResourceTypesOutput = {
     type = "structure",
+    id = "ListSupportedResourceTypesOutput",
     members = {
         ResourceTypes = {
             type = "list",
@@ -1193,6 +1275,7 @@ M.ListSupportedResourceTypesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1206,6 +1289,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1217,6 +1301,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceCount = {
     type = "structure",
+    id = "ResourceCount",
     members = {
         TotalResources = {
             type = "long",
@@ -1229,6 +1314,7 @@ M.ResourceCount = {
 
 M.SearchInput = {
     type = "structure",
+    id = "SearchInput",
     members = {
         QueryString = {
             type = "string",
@@ -1250,6 +1336,7 @@ M.SearchInput = {
 
 M.SearchOutput = {
     type = "structure",
+    id = "SearchOutput",
     members = {
         Resources = {
             type = "list",
@@ -1267,6 +1354,7 @@ M.SearchOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1285,10 +1373,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1310,6 +1400,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

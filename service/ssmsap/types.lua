@@ -33,6 +33,7 @@ M.ApplicationType = {
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         Id = {
             type = "string",
@@ -75,6 +76,7 @@ M.CredentialType = {
 
 M.ApplicationCredential = {
     type = "structure",
+    id = "ApplicationCredential",
     members = {
         DatabaseName = {
             type = "string",
@@ -99,6 +101,7 @@ M.ApplicationCredential = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         Id = {
             type = "string",
@@ -122,6 +125,7 @@ M.ApplicationSummary = {
 
 M.IpAddressMember = {
     type = "structure",
+    id = "IpAddressMember",
     members = {
         IpAddress = {
             type = "string",
@@ -137,6 +141,7 @@ M.IpAddressMember = {
 
 M.AssociatedHost = {
     type = "structure",
+    id = "AssociatedHost",
     members = {
         Hostname = {
             type = "string",
@@ -160,6 +165,7 @@ M.BackintMode = {
 
 M.BackintConfig = {
     type = "structure",
+    id = "BackintConfig",
     members = {
         BackintMode = {
             type = "string",
@@ -202,6 +208,7 @@ M.DatabaseConnectionMethod = {
 
 M.DatabaseConnection = {
     type = "structure",
+    id = "DatabaseConnection",
     members = {
         DatabaseConnectionMethod = {
             type = "string",
@@ -224,6 +231,7 @@ M.HostRole = {
 
 M.Host = {
     type = "structure",
+    id = "Host",
     members = {
         HostName = {
             type = "string",
@@ -264,6 +272,7 @@ M.ReplicationMode = {
 
 M.Resilience = {
     type = "structure",
+    id = "Resilience",
     members = {
         HsrTier = {
             type = "string",
@@ -295,6 +304,7 @@ M.ComponentStatus = {
 
 M.Component = {
     type = "structure",
+    id = "Component",
     members = {
         ComponentId = {
             type = "string",
@@ -358,6 +368,7 @@ M.Component = {
 
 M.ComponentInfo = {
     type = "structure",
+    id = "ComponentInfo",
     members = {
         ComponentType = {
             type = "string",
@@ -382,6 +393,7 @@ M.ComponentInfo = {
 
 M.ComponentSummary = {
     type = "structure",
+    id = "ComponentSummary",
     members = {
         ApplicationId = {
             type = "string",
@@ -411,6 +423,7 @@ M.ConfigurationCheckType = {
 
 M.ConfigurationCheckDefinition = {
     type = "structure",
+    id = "ConfigurationCheckDefinition",
     members = {
         Id = {
             type = "string",
@@ -430,6 +443,7 @@ M.ConfigurationCheckDefinition = {
 
 M.RuleStatusCounts = {
     type = "structure",
+    id = "RuleStatusCounts",
     members = {
         Failed = {
             type = "integer",
@@ -457,6 +471,7 @@ M.OperationStatus = {
 
 M.ConfigurationCheckOperation = {
     type = "structure",
+    id = "ConfigurationCheckOperation",
     members = {
         Id = {
             type = "string",
@@ -496,6 +511,7 @@ M.ConfigurationCheckOperationListingMode = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -525,6 +541,7 @@ M.DatabaseStatus = {
 
 M.Database = {
     type = "structure",
+    id = "Database",
     members = {
         ApplicationId = {
             type = "string",
@@ -569,6 +586,7 @@ M.Database = {
 
 M.DatabaseSummary = {
     type = "structure",
+    id = "DatabaseSummary",
     members = {
         ApplicationId = {
             type = "string",
@@ -599,6 +617,7 @@ M.PermissionActionType = {
 
 M.DeleteResourcePermissionInput = {
     type = "structure",
+    id = "DeleteResourcePermissionInput",
     members = {
         ActionType = {
             type = "string",
@@ -617,6 +636,7 @@ M.DeleteResourcePermissionInput = {
 
 M.DeleteResourcePermissionOutput = {
     type = "structure",
+    id = "DeleteResourcePermissionOutput",
     members = {
         Policy = {
             type = "string",
@@ -626,6 +646,7 @@ M.DeleteResourcePermissionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -636,6 +657,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -646,6 +668,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -656,6 +679,7 @@ M.ValidationException = {
 
 M.DeregisterApplicationInput = {
     type = "structure",
+    id = "DeregisterApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -668,10 +692,12 @@ M.DeregisterApplicationInput = {
 
 M.DeregisterApplicationOutput = {
     type = "structure",
+    id = "DeregisterApplicationOutput",
 }
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         Message = {
@@ -688,6 +714,7 @@ M.FilterOperator = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -712,6 +739,7 @@ M.Filter = {
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -727,6 +755,7 @@ M.GetApplicationInput = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         Application = M.Application,
         Tags = {
@@ -739,6 +768,7 @@ M.GetApplicationOutput = {
 
 M.GetComponentInput = {
     type = "structure",
+    id = "GetComponentInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -757,6 +787,7 @@ M.GetComponentInput = {
 
 M.GetComponentOutput = {
     type = "structure",
+    id = "GetComponentOutput",
     members = {
         Component = M.Component,
         Tags = {
@@ -769,6 +800,7 @@ M.GetComponentOutput = {
 
 M.GetConfigurationCheckOperationInput = {
     type = "structure",
+    id = "GetConfigurationCheckOperationInput",
     members = {
         OperationId = {
             type = "string",
@@ -781,6 +813,7 @@ M.GetConfigurationCheckOperationInput = {
 
 M.GetConfigurationCheckOperationOutput = {
     type = "structure",
+    id = "GetConfigurationCheckOperationOutput",
     members = {
         ConfigurationCheckOperation = M.ConfigurationCheckOperation,
     },
@@ -788,6 +821,7 @@ M.GetConfigurationCheckOperationOutput = {
 
 M.GetDatabaseInput = {
     type = "structure",
+    id = "GetDatabaseInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -806,6 +840,7 @@ M.GetDatabaseInput = {
 
 M.GetDatabaseOutput = {
     type = "structure",
+    id = "GetDatabaseOutput",
     members = {
         Database = M.Database,
         Tags = {
@@ -818,6 +853,7 @@ M.GetDatabaseOutput = {
 
 M.GetOperationInput = {
     type = "structure",
+    id = "GetOperationInput",
     members = {
         OperationId = {
             type = "string",
@@ -830,6 +866,7 @@ M.GetOperationInput = {
 
 M.Operation = {
     type = "structure",
+    id = "Operation",
     members = {
         Id = {
             type = "string",
@@ -871,6 +908,7 @@ M.Operation = {
 
 M.GetOperationOutput = {
     type = "structure",
+    id = "GetOperationOutput",
     members = {
         Operation = M.Operation,
     },
@@ -878,6 +916,7 @@ M.GetOperationOutput = {
 
 M.GetResourcePermissionInput = {
     type = "structure",
+    id = "GetResourcePermissionInput",
     members = {
         ActionType = {
             type = "string",
@@ -893,6 +932,7 @@ M.GetResourcePermissionInput = {
 
 M.GetResourcePermissionOutput = {
     type = "structure",
+    id = "GetResourcePermissionOutput",
     members = {
         Policy = {
             type = "string",
@@ -902,6 +942,7 @@ M.GetResourcePermissionOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -921,6 +962,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -934,6 +976,7 @@ M.ListApplicationsOutput = {
 
 M.ListComponentsInput = {
     type = "structure",
+    id = "ListComponentsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -952,6 +995,7 @@ M.ListComponentsInput = {
 
 M.ListComponentsOutput = {
     type = "structure",
+    id = "ListComponentsOutput",
     members = {
         Components = {
             type = "list",
@@ -965,6 +1009,7 @@ M.ListComponentsOutput = {
 
 M.ListConfigurationCheckDefinitionsInput = {
     type = "structure",
+    id = "ListConfigurationCheckDefinitionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -980,6 +1025,7 @@ M.ListConfigurationCheckDefinitionsInput = {
 
 M.ListConfigurationCheckDefinitionsOutput = {
     type = "structure",
+    id = "ListConfigurationCheckDefinitionsOutput",
     members = {
         ConfigurationChecks = {
             type = "list",
@@ -993,6 +1039,7 @@ M.ListConfigurationCheckDefinitionsOutput = {
 
 M.ListConfigurationCheckOperationsInput = {
     type = "structure",
+    id = "ListConfigurationCheckOperationsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1024,6 +1071,7 @@ M.ListConfigurationCheckOperationsInput = {
 
 M.ListConfigurationCheckOperationsOutput = {
     type = "structure",
+    id = "ListConfigurationCheckOperationsOutput",
     members = {
         ConfigurationCheckOperations = {
             type = "list",
@@ -1037,6 +1085,7 @@ M.ListConfigurationCheckOperationsOutput = {
 
 M.ListDatabasesInput = {
     type = "structure",
+    id = "ListDatabasesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1058,6 +1107,7 @@ M.ListDatabasesInput = {
 
 M.ListDatabasesOutput = {
     type = "structure",
+    id = "ListDatabasesOutput",
     members = {
         Databases = {
             type = "list",
@@ -1071,6 +1121,7 @@ M.ListDatabasesOutput = {
 
 M.ListOperationEventsInput = {
     type = "structure",
+    id = "ListOperationEventsInput",
     members = {
         OperationId = {
             type = "string",
@@ -1096,6 +1147,7 @@ M.ListOperationEventsInput = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         ResourceArn = {
             type = "string",
@@ -1114,6 +1166,7 @@ M.OperationEventStatus = {
 
 M.OperationEvent = {
     type = "structure",
+    id = "OperationEvent",
     members = {
         Description = {
             type = "string",
@@ -1133,6 +1186,7 @@ M.OperationEvent = {
 
 M.ListOperationEventsOutput = {
     type = "structure",
+    id = "ListOperationEventsOutput",
     members = {
         OperationEvents = {
             type = "list",
@@ -1146,6 +1200,7 @@ M.ListOperationEventsOutput = {
 
 M.ListOperationsInput = {
     type = "structure",
+    id = "ListOperationsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1171,6 +1226,7 @@ M.ListOperationsInput = {
 
 M.ListOperationsOutput = {
     type = "structure",
+    id = "ListOperationsOutput",
     members = {
         Operations = {
             type = "list",
@@ -1184,6 +1240,7 @@ M.ListOperationsOutput = {
 
 M.ListSubCheckResultsInput = {
     type = "structure",
+    id = "ListSubCheckResultsInput",
     members = {
         OperationId = {
             type = "string",
@@ -1205,6 +1262,7 @@ M.ListSubCheckResultsInput = {
 
 M.SubCheckResult = {
     type = "structure",
+    id = "SubCheckResult",
     members = {
         Id = {
             type = "string",
@@ -1224,6 +1282,7 @@ M.SubCheckResult = {
 
 M.ListSubCheckResultsOutput = {
     type = "structure",
+    id = "ListSubCheckResultsOutput",
     members = {
         SubCheckResults = {
             type = "list",
@@ -1237,6 +1296,7 @@ M.ListSubCheckResultsOutput = {
 
 M.ListSubCheckRuleResultsInput = {
     type = "structure",
+    id = "ListSubCheckRuleResultsInput",
     members = {
         SubCheckResultId = {
             type = "string",
@@ -1266,6 +1326,7 @@ M.RuleResultStatus = {
 
 M.RuleResult = {
     type = "structure",
+    id = "RuleResult",
     members = {
         Id = {
             type = "string",
@@ -1289,6 +1350,7 @@ M.RuleResult = {
 
 M.ListSubCheckRuleResultsOutput = {
     type = "structure",
+    id = "ListSubCheckRuleResultsOutput",
     members = {
         RuleResults = {
             type = "list",
@@ -1302,6 +1364,7 @@ M.ListSubCheckRuleResultsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1315,6 +1378,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1326,6 +1390,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutResourcePermissionInput = {
     type = "structure",
+    id = "PutResourcePermissionInput",
     members = {
         ActionType = {
             type = "string",
@@ -1350,6 +1415,7 @@ M.PutResourcePermissionInput = {
 
 M.PutResourcePermissionOutput = {
     type = "structure",
+    id = "PutResourcePermissionOutput",
     members = {
         Policy = {
             type = "string",
@@ -1359,6 +1425,7 @@ M.PutResourcePermissionOutput = {
 
 M.RegisterApplicationInput = {
     type = "structure",
+    id = "RegisterApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1409,6 +1476,7 @@ M.RegisterApplicationInput = {
 
 M.RegisterApplicationOutput = {
     type = "structure",
+    id = "RegisterApplicationOutput",
     members = {
         Application = M.Application,
         OperationId = {
@@ -1419,6 +1487,7 @@ M.RegisterApplicationOutput = {
 
 M.StartApplicationInput = {
     type = "structure",
+    id = "StartApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1431,6 +1500,7 @@ M.StartApplicationInput = {
 
 M.StartApplicationOutput = {
     type = "structure",
+    id = "StartApplicationOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1440,6 +1510,7 @@ M.StartApplicationOutput = {
 
 M.StartApplicationRefreshInput = {
     type = "structure",
+    id = "StartApplicationRefreshInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1452,6 +1523,7 @@ M.StartApplicationRefreshInput = {
 
 M.StartApplicationRefreshOutput = {
     type = "structure",
+    id = "StartApplicationRefreshOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1461,6 +1533,7 @@ M.StartApplicationRefreshOutput = {
 
 M.StartConfigurationChecksInput = {
     type = "structure",
+    id = "StartConfigurationChecksInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1477,6 +1550,7 @@ M.StartConfigurationChecksInput = {
 
 M.StartConfigurationChecksOutput = {
     type = "structure",
+    id = "StartConfigurationChecksOutput",
     members = {
         ConfigurationCheckOperations = {
             type = "list",
@@ -1487,6 +1561,7 @@ M.StartConfigurationChecksOutput = {
 
 M.StopApplicationInput = {
     type = "structure",
+    id = "StopApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1505,6 +1580,7 @@ M.StopApplicationInput = {
 
 M.StopApplicationOutput = {
     type = "structure",
+    id = "StopApplicationOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1514,6 +1590,7 @@ M.StopApplicationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1535,10 +1612,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1560,10 +1639,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApplicationSettingsInput = {
     type = "structure",
+    id = "UpdateApplicationSettingsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1588,6 +1669,7 @@ M.UpdateApplicationSettingsInput = {
 
 M.UpdateApplicationSettingsOutput = {
     type = "structure",
+    id = "UpdateApplicationSettingsOutput",
     members = {
         Message = {
             type = "string",

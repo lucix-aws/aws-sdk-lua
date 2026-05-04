@@ -2,6 +2,7 @@ local M = {}
 
 M.ApplicationDependencySummary = {
     type = "structure",
+    id = "ApplicationDependencySummary",
     members = {
         ApplicationId = {
             type = "string",
@@ -22,6 +23,7 @@ M.ApplicationDependencySummary = {
 
 M.ApplicationPolicyStatement = {
     type = "structure",
+    id = "ApplicationPolicyStatement",
     members = {
         Actions = {
             type = "list",
@@ -57,6 +59,7 @@ M.ApplicationPolicyStatement = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         ApplicationId = {
             type = "string",
@@ -123,6 +126,7 @@ M.Capability = {
 
 M.ParameterDefinition = {
     type = "structure",
+    id = "ParameterDefinition",
     members = {
         AllowedPattern = {
             type = "string",
@@ -211,6 +215,7 @@ M.ParameterDefinition = {
 
 M.ParameterValue = {
     type = "structure",
+    id = "ParameterValue",
     members = {
         Name = {
             type = "string",
@@ -231,6 +236,7 @@ M.ParameterValue = {
 
 M.RollbackTrigger = {
     type = "structure",
+    id = "RollbackTrigger",
     members = {
         Arn = {
             type = "string",
@@ -251,6 +257,7 @@ M.RollbackTrigger = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -271,6 +278,7 @@ M.Tag = {
 
 M.VersionSummary = {
     type = "structure",
+    id = "VersionSummary",
     members = {
         ApplicationId = {
             type = "string",
@@ -304,6 +312,7 @@ M.VersionSummary = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         ErrorCode = {
@@ -323,6 +332,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         ErrorCode = {
@@ -342,6 +352,7 @@ M.ConflictException = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         Author = {
             type = "string",
@@ -442,6 +453,7 @@ M.CreateApplicationInput = {
 
 M.Version = {
     type = "structure",
+    id = "Version",
     members = {
         ApplicationId = {
             type = "string",
@@ -511,6 +523,7 @@ M.Version = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -593,6 +606,7 @@ M.CreateApplicationOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         ErrorCode = {
@@ -612,6 +626,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         ErrorCode = {
@@ -631,6 +646,7 @@ M.InternalServerErrorException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         ErrorCode = {
@@ -650,6 +666,7 @@ M.TooManyRequestsException = {
 
 M.CreateApplicationVersionInput = {
     type = "structure",
+    id = "CreateApplicationVersionInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -694,6 +711,7 @@ M.CreateApplicationVersionInput = {
 
 M.CreateApplicationVersionOutput = {
     type = "structure",
+    id = "CreateApplicationVersionOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -756,6 +774,7 @@ M.CreateApplicationVersionOutput = {
 
 M.RollbackConfiguration = {
     type = "structure",
+    id = "RollbackConfiguration",
     members = {
         MonitoringTimeInMinutes = {
             type = "integer",
@@ -775,6 +794,7 @@ M.RollbackConfiguration = {
 
 M.CreateCloudFormationChangeSetInput = {
     type = "structure",
+    id = "CreateCloudFormationChangeSetInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -863,6 +883,7 @@ M.CreateCloudFormationChangeSetInput = {
 
 M.CreateCloudFormationChangeSetOutput = {
     type = "structure",
+    id = "CreateCloudFormationChangeSetOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -893,6 +914,7 @@ M.CreateCloudFormationChangeSetOutput = {
 
 M.CreateCloudFormationTemplateInput = {
     type = "structure",
+    id = "CreateCloudFormationTemplateInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -918,6 +940,7 @@ M.Status = {
 
 M.CreateCloudFormationTemplateOutput = {
     type = "structure",
+    id = "CreateCloudFormationTemplateOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -966,6 +989,7 @@ M.CreateCloudFormationTemplateOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         ErrorCode = {
@@ -985,6 +1009,7 @@ M.NotFoundException = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -998,10 +1023,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1021,6 +1048,7 @@ M.GetApplicationInput = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1103,6 +1131,7 @@ M.GetApplicationOutput = {
 
 M.GetApplicationPolicyInput = {
     type = "structure",
+    id = "GetApplicationPolicyInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1116,6 +1145,7 @@ M.GetApplicationPolicyInput = {
 
 M.GetApplicationPolicyOutput = {
     type = "structure",
+    id = "GetApplicationPolicyOutput",
     members = {
         Statements = {
             type = "list",
@@ -1129,6 +1159,7 @@ M.GetApplicationPolicyOutput = {
 
 M.GetCloudFormationTemplateInput = {
     type = "structure",
+    id = "GetCloudFormationTemplateInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1149,6 +1180,7 @@ M.GetCloudFormationTemplateInput = {
 
 M.GetCloudFormationTemplateOutput = {
     type = "structure",
+    id = "GetCloudFormationTemplateOutput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1197,6 +1229,7 @@ M.GetCloudFormationTemplateOutput = {
 
 M.ListApplicationDependenciesInput = {
     type = "structure",
+    id = "ListApplicationDependenciesInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1228,6 +1261,7 @@ M.ListApplicationDependenciesInput = {
 
 M.ListApplicationDependenciesOutput = {
     type = "structure",
+    id = "ListApplicationDependenciesOutput",
     members = {
         Dependencies = {
             type = "list",
@@ -1247,6 +1281,7 @@ M.ListApplicationDependenciesOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         MaxItems = {
             type = "integer",
@@ -1265,6 +1300,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -1284,6 +1320,7 @@ M.ListApplicationsOutput = {
 
 M.ListApplicationVersionsInput = {
     type = "structure",
+    id = "ListApplicationVersionsInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1309,6 +1346,7 @@ M.ListApplicationVersionsInput = {
 
 M.ListApplicationVersionsOutput = {
     type = "structure",
+    id = "ListApplicationVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1328,6 +1366,7 @@ M.ListApplicationVersionsOutput = {
 
 M.PutApplicationPolicyInput = {
     type = "structure",
+    id = "PutApplicationPolicyInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1349,6 +1388,7 @@ M.PutApplicationPolicyInput = {
 
 M.PutApplicationPolicyOutput = {
     type = "structure",
+    id = "PutApplicationPolicyOutput",
     members = {
         Statements = {
             type = "list",
@@ -1362,6 +1402,7 @@ M.PutApplicationPolicyOutput = {
 
 M.UnshareApplicationInput = {
     type = "structure",
+    id = "UnshareApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1382,10 +1423,12 @@ M.UnshareApplicationInput = {
 
 M.UnshareApplicationOutput = {
     type = "structure",
+    id = "UnshareApplicationOutput",
 }
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -1436,6 +1479,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         ApplicationId = {
             type = "string",

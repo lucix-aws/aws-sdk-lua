@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedByMetaException = {
     type = "structure",
+    id = "AccessDeniedByMetaException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedByMetaException = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -22,6 +24,7 @@ M.AccessDeniedException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -37,6 +40,7 @@ M.Tag = {
 
 M.WabaPhoneNumberSetupFinalization = {
     type = "structure",
+    id = "WabaPhoneNumberSetupFinalization",
     members = {
         id = {
             type = "string",
@@ -62,6 +66,7 @@ M.WabaPhoneNumberSetupFinalization = {
 
 M.WhatsAppBusinessAccountEventDestination = {
     type = "structure",
+    id = "WhatsAppBusinessAccountEventDestination",
     members = {
         eventDestinationArn = {
             type = "string",
@@ -77,6 +82,7 @@ M.WhatsAppBusinessAccountEventDestination = {
 
 M.WabaSetupFinalization = {
     type = "structure",
+    id = "WabaSetupFinalization",
     members = {
         id = {
             type = "string",
@@ -94,6 +100,7 @@ M.WabaSetupFinalization = {
 
 M.WhatsAppSetupFinalization = {
     type = "structure",
+    id = "WhatsAppSetupFinalization",
     members = {
         associateInProgressToken = {
             type = "string",
@@ -117,6 +124,7 @@ M.WhatsAppSetupFinalization = {
 
 M.WhatsAppSignupCallback = {
     type = "structure",
+    id = "WhatsAppSignupCallback",
     members = {
         accessToken = {
             type = "string",
@@ -132,6 +140,7 @@ M.WhatsAppSignupCallback = {
 
 M.AssociateWhatsAppBusinessAccountInput = {
     type = "structure",
+    id = "AssociateWhatsAppBusinessAccountInput",
     members = {
         signupCallback = M.WhatsAppSignupCallback,
         setupFinalization = M.WhatsAppSetupFinalization,
@@ -145,6 +154,7 @@ M.RegistrationStatus = {
 
 M.WhatsAppPhoneNumberDetail = {
     type = "structure",
+    id = "WhatsAppPhoneNumberDetail",
     members = {
         arn = {
             type = "string",
@@ -196,6 +206,7 @@ M.WhatsAppPhoneNumberDetail = {
 
 M.LinkedWhatsAppBusinessAccountIdMetaData = {
     type = "structure",
+    id = "LinkedWhatsAppBusinessAccountIdMetaData",
     members = {
         accountName = {
             type = "string",
@@ -215,6 +226,7 @@ M.LinkedWhatsAppBusinessAccountIdMetaData = {
 
 M.WhatsAppSignupCallbackResult = {
     type = "structure",
+    id = "WhatsAppSignupCallbackResult",
     members = {
         associateInProgressToken = {
             type = "string",
@@ -229,6 +241,7 @@ M.WhatsAppSignupCallbackResult = {
 
 M.AssociateWhatsAppBusinessAccountOutput = {
     type = "structure",
+    id = "AssociateWhatsAppBusinessAccountOutput",
     members = {
         signupCallbackResult = M.WhatsAppSignupCallbackResult,
         statusCode = {
@@ -239,6 +252,7 @@ M.AssociateWhatsAppBusinessAccountOutput = {
 
 M.DependencyException = {
     type = "structure",
+    id = "DependencyException",
     error = "server",
     members = {
         message = {
@@ -249,6 +263,7 @@ M.DependencyException = {
 
 M.InvalidParametersException = {
     type = "structure",
+    id = "InvalidParametersException",
     error = "client",
     members = {
         message = {
@@ -259,6 +274,7 @@ M.InvalidParametersException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -269,6 +285,7 @@ M.LimitExceededException = {
 
 M.ThrottledRequestException = {
     type = "structure",
+    id = "ThrottledRequestException",
     error = "client",
     members = {
         message = {
@@ -279,6 +296,7 @@ M.ThrottledRequestException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -289,6 +307,7 @@ M.ValidationException = {
 
 M.CreateWhatsAppMessageTemplateInput = {
     type = "structure",
+    id = "CreateWhatsAppMessageTemplateInput",
     members = {
         templateDefinition = {
             type = "blob",
@@ -307,6 +326,7 @@ M.CreateWhatsAppMessageTemplateInput = {
 
 M.CreateWhatsAppMessageTemplateOutput = {
     type = "structure",
+    id = "CreateWhatsAppMessageTemplateOutput",
     members = {
         metaTemplateId = {
             type = "string",
@@ -322,6 +342,7 @@ M.CreateWhatsAppMessageTemplateOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         message = {
@@ -332,6 +353,7 @@ M.InternalServiceException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -342,6 +364,7 @@ M.ResourceNotFoundException = {
 
 M.LibraryTemplateBodyInputs = {
     type = "structure",
+    id = "LibraryTemplateBodyInputs",
     members = {
         addContactNumber = {
             type = "boolean",
@@ -363,6 +386,7 @@ M.LibraryTemplateBodyInputs = {
 
 M.LibraryTemplateButtonInput = {
     type = "structure",
+    id = "LibraryTemplateButtonInput",
     members = {
         type = {
             type = "string",
@@ -390,6 +414,7 @@ M.LibraryTemplateButtonInput = {
 
 M.MetaLibraryTemplate = {
     type = "structure",
+    id = "MetaLibraryTemplate",
     members = {
         templateName = {
             type = "string",
@@ -425,6 +450,7 @@ M.MetaLibraryTemplate = {
 
 M.CreateWhatsAppMessageTemplateFromLibraryInput = {
     type = "structure",
+    id = "CreateWhatsAppMessageTemplateFromLibraryInput",
     members = {
         metaLibraryTemplate = setmetatable({ traits = {
             required = true,
@@ -440,6 +466,7 @@ M.CreateWhatsAppMessageTemplateFromLibraryInput = {
 
 M.CreateWhatsAppMessageTemplateFromLibraryOutput = {
     type = "structure",
+    id = "CreateWhatsAppMessageTemplateFromLibraryOutput",
     members = {
         metaTemplateId = {
             type = "string",
@@ -455,6 +482,7 @@ M.CreateWhatsAppMessageTemplateFromLibraryOutput = {
 
 M.S3File = {
     type = "structure",
+    id = "S3File",
     members = {
         bucketName = {
             type = "string",
@@ -473,6 +501,7 @@ M.S3File = {
 
 M.CreateWhatsAppMessageTemplateMediaInput = {
     type = "structure",
+    id = "CreateWhatsAppMessageTemplateMediaInput",
     members = {
         id = {
             type = "string",
@@ -486,6 +515,7 @@ M.CreateWhatsAppMessageTemplateMediaInput = {
 
 M.CreateWhatsAppMessageTemplateMediaOutput = {
     type = "structure",
+    id = "CreateWhatsAppMessageTemplateMediaOutput",
     members = {
         metaHeaderHandle = {
             type = "string",
@@ -495,6 +525,7 @@ M.CreateWhatsAppMessageTemplateMediaOutput = {
 
 M.DeleteWhatsAppMessageMediaInput = {
     type = "structure",
+    id = "DeleteWhatsAppMessageMediaInput",
     members = {
         mediaId = {
             type = "string",
@@ -515,6 +546,7 @@ M.DeleteWhatsAppMessageMediaInput = {
 
 M.DeleteWhatsAppMessageMediaOutput = {
     type = "structure",
+    id = "DeleteWhatsAppMessageMediaOutput",
     members = {
         success = {
             type = "boolean",
@@ -524,6 +556,7 @@ M.DeleteWhatsAppMessageMediaOutput = {
 
 M.DeleteWhatsAppMessageTemplateInput = {
     type = "structure",
+    id = "DeleteWhatsAppMessageTemplateInput",
     members = {
         metaTemplateId = {
             type = "string",
@@ -556,10 +589,12 @@ M.DeleteWhatsAppMessageTemplateInput = {
 
 M.DeleteWhatsAppMessageTemplateOutput = {
     type = "structure",
+    id = "DeleteWhatsAppMessageTemplateOutput",
 }
 
 M.DisassociateWhatsAppBusinessAccountInput = {
     type = "structure",
+    id = "DisassociateWhatsAppBusinessAccountInput",
     members = {
         id = {
             type = "string",
@@ -573,10 +608,12 @@ M.DisassociateWhatsAppBusinessAccountInput = {
 
 M.DisassociateWhatsAppBusinessAccountOutput = {
     type = "structure",
+    id = "DisassociateWhatsAppBusinessAccountOutput",
 }
 
 M.GetLinkedWhatsAppBusinessAccountInput = {
     type = "structure",
+    id = "GetLinkedWhatsAppBusinessAccountInput",
     members = {
         id = {
             type = "string",
@@ -590,6 +627,7 @@ M.GetLinkedWhatsAppBusinessAccountInput = {
 
 M.WhatsAppPhoneNumberSummary = {
     type = "structure",
+    id = "WhatsAppPhoneNumberSummary",
     members = {
         arn = {
             type = "string",
@@ -641,6 +679,7 @@ M.WhatsAppPhoneNumberSummary = {
 
 M.LinkedWhatsAppBusinessAccount = {
     type = "structure",
+    id = "LinkedWhatsAppBusinessAccount",
     members = {
         arn = {
             type = "string",
@@ -697,6 +736,7 @@ M.LinkedWhatsAppBusinessAccount = {
 
 M.GetLinkedWhatsAppBusinessAccountOutput = {
     type = "structure",
+    id = "GetLinkedWhatsAppBusinessAccountOutput",
     members = {
         account = M.LinkedWhatsAppBusinessAccount,
     },
@@ -704,6 +744,7 @@ M.GetLinkedWhatsAppBusinessAccountOutput = {
 
 M.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = {
     type = "structure",
+    id = "GetLinkedWhatsAppBusinessAccountPhoneNumberInput",
     members = {
         id = {
             type = "string",
@@ -717,6 +758,7 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = {
 
 M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = {
     type = "structure",
+    id = "GetLinkedWhatsAppBusinessAccountPhoneNumberOutput",
     members = {
         phoneNumber = M.WhatsAppPhoneNumberDetail,
         linkedWhatsAppBusinessAccountId = {
@@ -727,6 +769,7 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = {
 
 M.S3PresignedUrl = {
     type = "structure",
+    id = "S3PresignedUrl",
     members = {
         url = {
             type = "string",
@@ -747,6 +790,7 @@ M.S3PresignedUrl = {
 
 M.GetWhatsAppMessageMediaInput = {
     type = "structure",
+    id = "GetWhatsAppMessageMediaInput",
     members = {
         mediaId = {
             type = "string",
@@ -770,6 +814,7 @@ M.GetWhatsAppMessageMediaInput = {
 
 M.GetWhatsAppMessageMediaOutput = {
     type = "structure",
+    id = "GetWhatsAppMessageMediaOutput",
     members = {
         mimeType = {
             type = "string",
@@ -782,6 +827,7 @@ M.GetWhatsAppMessageMediaOutput = {
 
 M.GetWhatsAppMessageTemplateInput = {
     type = "structure",
+    id = "GetWhatsAppMessageTemplateInput",
     members = {
         metaTemplateId = {
             type = "string",
@@ -802,6 +848,7 @@ M.GetWhatsAppMessageTemplateInput = {
 
 M.GetWhatsAppMessageTemplateOutput = {
     type = "structure",
+    id = "GetWhatsAppMessageTemplateOutput",
     members = {
         template = {
             type = "string",
@@ -811,6 +858,7 @@ M.GetWhatsAppMessageTemplateOutput = {
 
 M.LibraryTemplateButtonList = {
     type = "structure",
+    id = "LibraryTemplateButtonList",
     members = {
         type = {
             type = "string",
@@ -839,6 +887,7 @@ M.LibraryTemplateButtonList = {
 
 M.ListLinkedWhatsAppBusinessAccountsInput = {
     type = "structure",
+    id = "ListLinkedWhatsAppBusinessAccountsInput",
     members = {
         nextToken = {
             type = "string",
@@ -857,6 +906,7 @@ M.ListLinkedWhatsAppBusinessAccountsInput = {
 
 M.LinkedWhatsAppBusinessAccountSummary = {
     type = "structure",
+    id = "LinkedWhatsAppBusinessAccountSummary",
     members = {
         arn = {
             type = "string",
@@ -906,6 +956,7 @@ M.LinkedWhatsAppBusinessAccountSummary = {
 
 M.ListLinkedWhatsAppBusinessAccountsOutput = {
     type = "structure",
+    id = "ListLinkedWhatsAppBusinessAccountsOutput",
     members = {
         linkedAccounts = {
             type = "list",
@@ -919,6 +970,7 @@ M.ListLinkedWhatsAppBusinessAccountsOutput = {
 
 M.ListWhatsAppMessageTemplatesInput = {
     type = "structure",
+    id = "ListWhatsAppMessageTemplatesInput",
     members = {
         id = {
             type = "string",
@@ -944,6 +996,7 @@ M.ListWhatsAppMessageTemplatesInput = {
 
 M.TemplateSummary = {
     type = "structure",
+    id = "TemplateSummary",
     members = {
         templateName = {
             type = "string",
@@ -968,6 +1021,7 @@ M.TemplateSummary = {
 
 M.ListWhatsAppMessageTemplatesOutput = {
     type = "structure",
+    id = "ListWhatsAppMessageTemplatesOutput",
     members = {
         templates = {
             type = "list",
@@ -981,6 +1035,7 @@ M.ListWhatsAppMessageTemplatesOutput = {
 
 M.ListWhatsAppTemplateLibraryInput = {
     type = "structure",
+    id = "ListWhatsAppTemplateLibraryInput",
     members = {
         nextToken = {
             type = "string",
@@ -1005,6 +1060,7 @@ M.ListWhatsAppTemplateLibraryInput = {
 
 M.MetaLibraryTemplateDefinition = {
     type = "structure",
+    id = "MetaLibraryTemplateDefinition",
     members = {
         templateName = {
             type = "string",
@@ -1047,6 +1103,7 @@ M.MetaLibraryTemplateDefinition = {
 
 M.ListWhatsAppTemplateLibraryOutput = {
     type = "structure",
+    id = "ListWhatsAppTemplateLibraryOutput",
     members = {
         metaLibraryTemplates = {
             type = "list",
@@ -1060,6 +1117,7 @@ M.ListWhatsAppTemplateLibraryOutput = {
 
 M.PutWhatsAppBusinessAccountEventDestinationsInput = {
     type = "structure",
+    id = "PutWhatsAppBusinessAccountEventDestinationsInput",
     members = {
         id = {
             type = "string",
@@ -1079,10 +1137,12 @@ M.PutWhatsAppBusinessAccountEventDestinationsInput = {
 
 M.PutWhatsAppBusinessAccountEventDestinationsOutput = {
     type = "structure",
+    id = "PutWhatsAppBusinessAccountEventDestinationsOutput",
 }
 
 M.UpdateWhatsAppMessageTemplateInput = {
     type = "structure",
+    id = "UpdateWhatsAppMessageTemplateInput",
     members = {
         id = {
             type = "string",
@@ -1113,10 +1173,12 @@ M.UpdateWhatsAppMessageTemplateInput = {
 
 M.UpdateWhatsAppMessageTemplateOutput = {
     type = "structure",
+    id = "UpdateWhatsAppMessageTemplateOutput",
 }
 
 M.PostWhatsAppMessageMediaInput = {
     type = "structure",
+    id = "PostWhatsAppMessageMediaInput",
     members = {
         originationPhoneNumberId = {
             type = "string",
@@ -1131,6 +1193,7 @@ M.PostWhatsAppMessageMediaInput = {
 
 M.PostWhatsAppMessageMediaOutput = {
     type = "structure",
+    id = "PostWhatsAppMessageMediaOutput",
     members = {
         mediaId = {
             type = "string",
@@ -1140,6 +1203,7 @@ M.PostWhatsAppMessageMediaOutput = {
 
 M.SendWhatsAppMessageInput = {
     type = "structure",
+    id = "SendWhatsAppMessageInput",
     members = {
         originationPhoneNumberId = {
             type = "string",
@@ -1164,6 +1228,7 @@ M.SendWhatsAppMessageInput = {
 
 M.SendWhatsAppMessageOutput = {
     type = "structure",
+    id = "SendWhatsAppMessageOutput",
     members = {
         messageId = {
             type = "string",
@@ -1173,6 +1238,7 @@ M.SendWhatsAppMessageOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1186,6 +1252,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -1199,6 +1266,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1218,6 +1286,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -1227,6 +1296,7 @@ M.TagResourceOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1246,6 +1316,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
     members = {
         statusCode = {
             type = "integer",

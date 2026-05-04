@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.CreateCliTokenInput = {
     type = "structure",
+    id = "CreateCliTokenInput",
     members = {
         Name = {
             type = "string",
@@ -25,6 +27,7 @@ M.CreateCliTokenInput = {
 
 M.CreateCliTokenOutput = {
     type = "structure",
+    id = "CreateCliTokenOutput",
     members = {
         CliToken = {
             type = "string",
@@ -37,6 +40,7 @@ M.CreateCliTokenOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -60,6 +64,7 @@ M.LoggingLevel = {
 
 M.ModuleLoggingConfigurationInput = {
     type = "structure",
+    id = "ModuleLoggingConfigurationInput",
     members = {
         Enabled = {
             type = "boolean",
@@ -78,6 +83,7 @@ M.ModuleLoggingConfigurationInput = {
 
 M.LoggingConfigurationInput = {
     type = "structure",
+    id = "LoggingConfigurationInput",
     members = {
         DagProcessingLogs = M.ModuleLoggingConfigurationInput,
         SchedulerLogs = M.ModuleLoggingConfigurationInput,
@@ -89,6 +95,7 @@ M.LoggingConfigurationInput = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         SubnetIds = {
             type = "list",
@@ -108,6 +115,7 @@ M.WebserverAccessMode = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         Name = {
             type = "string",
@@ -204,6 +212,7 @@ M.CreateEnvironmentInput = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         Arn = {
             type = "string",
@@ -213,6 +222,7 @@ M.CreateEnvironmentOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -223,6 +233,7 @@ M.InternalServerException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -233,6 +244,7 @@ M.ValidationException = {
 
 M.CreateWebLoginTokenInput = {
     type = "structure",
+    id = "CreateWebLoginTokenInput",
     members = {
         Name = {
             type = "string",
@@ -246,6 +258,7 @@ M.CreateWebLoginTokenInput = {
 
 M.CreateWebLoginTokenOutput = {
     type = "structure",
+    id = "CreateWebLoginTokenOutput",
     members = {
         WebToken = {
             type = "string",
@@ -264,6 +277,7 @@ M.CreateWebLoginTokenOutput = {
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         Name = {
             type = "string",
@@ -277,10 +291,12 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
 }
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         Name = {
             type = "string",
@@ -294,6 +310,7 @@ M.GetEnvironmentInput = {
 
 M.UpdateError = {
     type = "structure",
+    id = "UpdateError",
     members = {
         ErrorCode = {
             type = "string",
@@ -317,6 +334,7 @@ M.WorkerReplacementStrategy = {
 
 M.LastUpdate = {
     type = "structure",
+    id = "LastUpdate",
     members = {
         Status = {
             type = "string",
@@ -336,6 +354,7 @@ M.LastUpdate = {
 
 M.ModuleLoggingConfiguration = {
     type = "structure",
+    id = "ModuleLoggingConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -351,6 +370,7 @@ M.ModuleLoggingConfiguration = {
 
 M.LoggingConfiguration = {
     type = "structure",
+    id = "LoggingConfiguration",
     members = {
         DagProcessingLogs = M.ModuleLoggingConfiguration,
         SchedulerLogs = M.ModuleLoggingConfiguration,
@@ -377,6 +397,7 @@ M.EnvironmentStatus = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         Name = {
             type = "string",
@@ -483,6 +504,7 @@ M.Environment = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         Environment = M.Environment,
     },
@@ -498,6 +520,7 @@ M.RestApiMethod = {
 
 M.InvokeRestApiInput = {
     type = "structure",
+    id = "InvokeRestApiInput",
     members = {
         Name = {
             type = "string",
@@ -529,6 +552,7 @@ M.InvokeRestApiInput = {
 
 M.InvokeRestApiOutput = {
     type = "structure",
+    id = "InvokeRestApiOutput",
     members = {
         RestApiStatusCode = {
             type = "integer",
@@ -541,6 +565,7 @@ M.InvokeRestApiOutput = {
 
 M.RestApiClientException = {
     type = "structure",
+    id = "RestApiClientException",
     error = "client",
     members = {
         RestApiStatusCode = {
@@ -554,6 +579,7 @@ M.RestApiClientException = {
 
 M.RestApiServerException = {
     type = "structure",
+    id = "RestApiServerException",
     error = "client",
     members = {
         RestApiStatusCode = {
@@ -567,6 +593,7 @@ M.RestApiServerException = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         NextToken = {
             type = "string",
@@ -585,6 +612,7 @@ M.ListEnvironmentsInput = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         Environments = {
             type = "list",
@@ -601,6 +629,7 @@ M.ListEnvironmentsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -614,6 +643,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -625,6 +655,7 @@ M.ListTagsForResourceOutput = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         Name = {
             type = "string",
@@ -643,6 +674,7 @@ M.Dimension = {
 
 M.StatisticSet = {
     type = "structure",
+    id = "StatisticSet",
     members = {
         SampleCount = {
             type = "integer",
@@ -691,6 +723,7 @@ M.Unit = {
 
 M.MetricDatum = {
     type = "structure",
+    id = "MetricDatum",
     members = {
         MetricName = {
             type = "string",
@@ -720,6 +753,7 @@ M.MetricDatum = {
 
 M.PublishMetricsInput = {
     type = "structure",
+    id = "PublishMetricsInput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -740,10 +774,12 @@ M.PublishMetricsInput = {
 
 M.PublishMetricsOutput = {
     type = "structure",
+    id = "PublishMetricsOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -765,10 +801,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -790,10 +828,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateNetworkConfigurationInput = {
     type = "structure",
+    id = "UpdateNetworkConfigurationInput",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -807,6 +847,7 @@ M.UpdateNetworkConfigurationInput = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         Name = {
             type = "string",
@@ -884,6 +925,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         Arn = {
             type = "string",

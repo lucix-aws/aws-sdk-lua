@@ -2,6 +2,7 @@ local M = {}
 
 M.ActivityAlreadyExists = {
     type = "structure",
+    id = "ActivityAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.ActivityAlreadyExists = {
 
 M.ActivityDoesNotExist = {
     type = "structure",
+    id = "ActivityDoesNotExist",
     error = "client",
     members = {
         message = {
@@ -22,6 +24,7 @@ M.ActivityDoesNotExist = {
 
 M.ActivityFailedEventDetails = {
     type = "structure",
+    id = "ActivityFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -34,6 +37,7 @@ M.ActivityFailedEventDetails = {
 
 M.ActivityLimitExceeded = {
     type = "structure",
+    id = "ActivityLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -44,6 +48,7 @@ M.ActivityLimitExceeded = {
 
 M.ActivityListItem = {
     type = "structure",
+    id = "ActivityListItem",
     members = {
         activityArn = {
             type = "string",
@@ -68,6 +73,7 @@ M.ActivityListItem = {
 
 M.HistoryEventExecutionDataDetails = {
     type = "structure",
+    id = "HistoryEventExecutionDataDetails",
     members = {
         truncated = {
             type = "boolean",
@@ -80,6 +86,7 @@ M.HistoryEventExecutionDataDetails = {
 
 M.ActivityScheduledEventDetails = {
     type = "structure",
+    id = "ActivityScheduledEventDetails",
     members = {
         resource = {
             type = "string",
@@ -108,6 +115,7 @@ M.ActivityScheduledEventDetails = {
 
 M.ActivityScheduleFailedEventDetails = {
     type = "structure",
+    id = "ActivityScheduleFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -120,6 +128,7 @@ M.ActivityScheduleFailedEventDetails = {
 
 M.ActivityStartedEventDetails = {
     type = "structure",
+    id = "ActivityStartedEventDetails",
     members = {
         workerName = {
             type = "string",
@@ -129,6 +138,7 @@ M.ActivityStartedEventDetails = {
 
 M.ActivitySucceededEventDetails = {
     type = "structure",
+    id = "ActivitySucceededEventDetails",
     members = {
         output = {
             type = "string",
@@ -139,6 +149,7 @@ M.ActivitySucceededEventDetails = {
 
 M.ActivityTimedOutEventDetails = {
     type = "structure",
+    id = "ActivityTimedOutEventDetails",
     members = {
         error = {
             type = "string",
@@ -151,6 +162,7 @@ M.ActivityTimedOutEventDetails = {
 
 M.ActivityWorkerLimitExceeded = {
     type = "structure",
+    id = "ActivityWorkerLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -161,6 +173,7 @@ M.ActivityWorkerLimitExceeded = {
 
 M.AssignedVariablesDetails = {
     type = "structure",
+    id = "AssignedVariablesDetails",
     members = {
         truncated = {
             type = "boolean",
@@ -178,6 +191,7 @@ M.EncryptionType = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -196,6 +210,7 @@ M.EncryptionConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -208,6 +223,7 @@ M.Tag = {
 
 M.CreateActivityInput = {
     type = "structure",
+    id = "CreateActivityInput",
     members = {
         name = {
             type = "string",
@@ -225,6 +241,7 @@ M.CreateActivityInput = {
 
 M.CreateActivityOutput = {
     type = "structure",
+    id = "CreateActivityOutput",
     members = {
         activityArn = {
             type = "string",
@@ -243,6 +260,7 @@ M.CreateActivityOutput = {
 
 M.InvalidEncryptionConfiguration = {
     type = "structure",
+    id = "InvalidEncryptionConfiguration",
     error = "client",
     members = {
         message = {
@@ -253,6 +271,7 @@ M.InvalidEncryptionConfiguration = {
 
 M.InvalidName = {
     type = "structure",
+    id = "InvalidName",
     error = "client",
     members = {
         message = {
@@ -263,6 +282,7 @@ M.InvalidName = {
 
 M.KmsAccessDeniedException = {
     type = "structure",
+    id = "KmsAccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -273,6 +293,7 @@ M.KmsAccessDeniedException = {
 
 M.KmsThrottlingException = {
     type = "structure",
+    id = "KmsThrottlingException",
     error = "client",
     members = {
         message = {
@@ -283,6 +304,7 @@ M.KmsThrottlingException = {
 
 M.TooManyTags = {
     type = "structure",
+    id = "TooManyTags",
     error = "client",
     members = {
         message = {
@@ -296,6 +318,7 @@ M.TooManyTags = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -306,6 +329,7 @@ M.ConflictException = {
 
 M.CloudWatchLogsLogGroup = {
     type = "structure",
+    id = "CloudWatchLogsLogGroup",
     members = {
         logGroupArn = {
             type = "string",
@@ -315,6 +339,7 @@ M.CloudWatchLogsLogGroup = {
 
 M.LogDestination = {
     type = "structure",
+    id = "LogDestination",
     members = {
         cloudWatchLogsLogGroup = M.CloudWatchLogsLogGroup,
     },
@@ -329,6 +354,7 @@ M.LogLevel = {
 
 M.LoggingConfiguration = {
     type = "structure",
+    id = "LoggingConfiguration",
     members = {
         level = {
             type = "string",
@@ -348,6 +374,7 @@ M.LoggingConfiguration = {
 
 M.TracingConfiguration = {
     type = "structure",
+    id = "TracingConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -365,6 +392,7 @@ M.StateMachineType = {
 
 M.CreateStateMachineInput = {
     type = "structure",
+    id = "CreateStateMachineInput",
     members = {
         name = {
             type = "string",
@@ -408,6 +436,7 @@ M.CreateStateMachineInput = {
 
 M.CreateStateMachineOutput = {
     type = "structure",
+    id = "CreateStateMachineOutput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -429,6 +458,7 @@ M.CreateStateMachineOutput = {
 
 M.InvalidArn = {
     type = "structure",
+    id = "InvalidArn",
     error = "client",
     members = {
         message = {
@@ -439,6 +469,7 @@ M.InvalidArn = {
 
 M.InvalidDefinition = {
     type = "structure",
+    id = "InvalidDefinition",
     error = "client",
     members = {
         message = {
@@ -449,6 +480,7 @@ M.InvalidDefinition = {
 
 M.InvalidLoggingConfiguration = {
     type = "structure",
+    id = "InvalidLoggingConfiguration",
     error = "client",
     members = {
         message = {
@@ -459,6 +491,7 @@ M.InvalidLoggingConfiguration = {
 
 M.InvalidTracingConfiguration = {
     type = "structure",
+    id = "InvalidTracingConfiguration",
     error = "client",
     members = {
         message = {
@@ -469,6 +502,7 @@ M.InvalidTracingConfiguration = {
 
 M.StateMachineAlreadyExists = {
     type = "structure",
+    id = "StateMachineAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -479,6 +513,7 @@ M.StateMachineAlreadyExists = {
 
 M.StateMachineDeleting = {
     type = "structure",
+    id = "StateMachineDeleting",
     error = "client",
     members = {
         message = {
@@ -489,6 +524,7 @@ M.StateMachineDeleting = {
 
 M.StateMachineLimitExceeded = {
     type = "structure",
+    id = "StateMachineLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -499,6 +535,7 @@ M.StateMachineLimitExceeded = {
 
 M.StateMachineTypeNotSupported = {
     type = "structure",
+    id = "StateMachineTypeNotSupported",
     error = "client",
     members = {
         message = {
@@ -516,6 +553,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -529,6 +567,7 @@ M.ValidationException = {
 
 M.RoutingConfigurationListItem = {
     type = "structure",
+    id = "RoutingConfigurationListItem",
     members = {
         stateMachineVersionArn = {
             type = "string",
@@ -548,6 +587,7 @@ M.RoutingConfigurationListItem = {
 
 M.CreateStateMachineAliasInput = {
     type = "structure",
+    id = "CreateStateMachineAliasInput",
     members = {
         description = {
             type = "string",
@@ -570,6 +610,7 @@ M.CreateStateMachineAliasInput = {
 
 M.CreateStateMachineAliasOutput = {
     type = "structure",
+    id = "CreateStateMachineAliasOutput",
     members = {
         stateMachineAliasArn = {
             type = "string",
@@ -588,6 +629,7 @@ M.CreateStateMachineAliasOutput = {
 
 M.ResourceNotFound = {
     type = "structure",
+    id = "ResourceNotFound",
     error = "client",
     members = {
         message = {
@@ -601,6 +643,7 @@ M.ResourceNotFound = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -611,6 +654,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteActivityInput = {
     type = "structure",
+    id = "DeleteActivityInput",
     members = {
         activityArn = {
             type = "string",
@@ -623,10 +667,12 @@ M.DeleteActivityInput = {
 
 M.DeleteActivityOutput = {
     type = "structure",
+    id = "DeleteActivityOutput",
 }
 
 M.DeleteStateMachineInput = {
     type = "structure",
+    id = "DeleteStateMachineInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -639,10 +685,12 @@ M.DeleteStateMachineInput = {
 
 M.DeleteStateMachineOutput = {
     type = "structure",
+    id = "DeleteStateMachineOutput",
 }
 
 M.DeleteStateMachineAliasInput = {
     type = "structure",
+    id = "DeleteStateMachineAliasInput",
     members = {
         stateMachineAliasArn = {
             type = "string",
@@ -655,10 +703,12 @@ M.DeleteStateMachineAliasInput = {
 
 M.DeleteStateMachineAliasOutput = {
     type = "structure",
+    id = "DeleteStateMachineAliasOutput",
 }
 
 M.DeleteStateMachineVersionInput = {
     type = "structure",
+    id = "DeleteStateMachineVersionInput",
     members = {
         stateMachineVersionArn = {
             type = "string",
@@ -671,10 +721,12 @@ M.DeleteStateMachineVersionInput = {
 
 M.DeleteStateMachineVersionOutput = {
     type = "structure",
+    id = "DeleteStateMachineVersionOutput",
 }
 
 M.DescribeActivityInput = {
     type = "structure",
+    id = "DescribeActivityInput",
     members = {
         activityArn = {
             type = "string",
@@ -687,6 +739,7 @@ M.DescribeActivityInput = {
 
 M.DescribeActivityOutput = {
     type = "structure",
+    id = "DescribeActivityOutput",
     members = {
         activityArn = {
             type = "string",
@@ -717,6 +770,7 @@ M.IncludedData = {
 
 M.DescribeExecutionInput = {
     type = "structure",
+    id = "DescribeExecutionInput",
     members = {
         executionArn = {
             type = "string",
@@ -732,6 +786,7 @@ M.DescribeExecutionInput = {
 
 M.CloudWatchEventsExecutionDataDetails = {
     type = "structure",
+    id = "CloudWatchEventsExecutionDataDetails",
     members = {
         included = {
             type = "boolean",
@@ -759,6 +814,7 @@ M.ExecutionStatus = {
 
 M.DescribeExecutionOutput = {
     type = "structure",
+    id = "DescribeExecutionOutput",
     members = {
         executionArn = {
             type = "string",
@@ -833,6 +889,7 @@ M.DescribeExecutionOutput = {
 
 M.ExecutionDoesNotExist = {
     type = "structure",
+    id = "ExecutionDoesNotExist",
     error = "client",
     members = {
         message = {
@@ -851,6 +908,7 @@ M.KmsKeyState = {
 
 M.KmsInvalidStateException = {
     type = "structure",
+    id = "KmsInvalidStateException",
     error = "client",
     members = {
         kmsKeyState = {
@@ -864,6 +922,7 @@ M.KmsInvalidStateException = {
 
 M.DescribeMapRunInput = {
     type = "structure",
+    id = "DescribeMapRunInput",
     members = {
         mapRunArn = {
             type = "string",
@@ -876,6 +935,7 @@ M.DescribeMapRunInput = {
 
 M.MapRunExecutionCounts = {
     type = "structure",
+    id = "MapRunExecutionCounts",
     members = {
         pending = {
             type = "long",
@@ -944,6 +1004,7 @@ M.MapRunExecutionCounts = {
 
 M.MapRunItemCounts = {
     type = "structure",
+    id = "MapRunItemCounts",
     members = {
         pending = {
             type = "long",
@@ -1019,6 +1080,7 @@ M.MapRunStatus = {
 
 M.DescribeMapRunOutput = {
     type = "structure",
+    id = "DescribeMapRunOutput",
     members = {
         mapRunArn = {
             type = "string",
@@ -1085,6 +1147,7 @@ M.DescribeMapRunOutput = {
 
 M.DescribeStateMachineInput = {
     type = "structure",
+    id = "DescribeStateMachineInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -1105,6 +1168,7 @@ M.StateMachineStatus = {
 
 M.DescribeStateMachineOutput = {
     type = "structure",
+    id = "DescribeStateMachineOutput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -1167,6 +1231,7 @@ M.DescribeStateMachineOutput = {
 
 M.StateMachineDoesNotExist = {
     type = "structure",
+    id = "StateMachineDoesNotExist",
     error = "client",
     members = {
         message = {
@@ -1177,6 +1242,7 @@ M.StateMachineDoesNotExist = {
 
 M.DescribeStateMachineAliasInput = {
     type = "structure",
+    id = "DescribeStateMachineAliasInput",
     members = {
         stateMachineAliasArn = {
             type = "string",
@@ -1189,6 +1255,7 @@ M.DescribeStateMachineAliasInput = {
 
 M.DescribeStateMachineAliasOutput = {
     type = "structure",
+    id = "DescribeStateMachineAliasOutput",
     members = {
         stateMachineAliasArn = {
             type = "string",
@@ -1214,6 +1281,7 @@ M.DescribeStateMachineAliasOutput = {
 
 M.DescribeStateMachineForExecutionInput = {
     type = "structure",
+    id = "DescribeStateMachineForExecutionInput",
     members = {
         executionArn = {
             type = "string",
@@ -1229,6 +1297,7 @@ M.DescribeStateMachineForExecutionInput = {
 
 M.DescribeStateMachineForExecutionOutput = {
     type = "structure",
+    id = "DescribeStateMachineForExecutionOutput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -1282,6 +1351,7 @@ M.DescribeStateMachineForExecutionOutput = {
 
 M.GetActivityTaskInput = {
     type = "structure",
+    id = "GetActivityTaskInput",
     members = {
         activityArn = {
             type = "string",
@@ -1297,6 +1367,7 @@ M.GetActivityTaskInput = {
 
 M.GetActivityTaskOutput = {
     type = "structure",
+    id = "GetActivityTaskOutput",
     members = {
         taskToken = {
             type = "string",
@@ -1309,6 +1380,7 @@ M.GetActivityTaskOutput = {
 
 M.GetExecutionHistoryInput = {
     type = "structure",
+    id = "GetExecutionHistoryInput",
     members = {
         executionArn = {
             type = "string",
@@ -1339,6 +1411,7 @@ M.GetExecutionHistoryInput = {
 
 M.EvaluationFailedEventDetails = {
     type = "structure",
+    id = "EvaluationFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -1360,6 +1433,7 @@ M.EvaluationFailedEventDetails = {
 
 M.ExecutionAbortedEventDetails = {
     type = "structure",
+    id = "ExecutionAbortedEventDetails",
     members = {
         error = {
             type = "string",
@@ -1372,6 +1446,7 @@ M.ExecutionAbortedEventDetails = {
 
 M.ExecutionFailedEventDetails = {
     type = "structure",
+    id = "ExecutionFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -1384,6 +1459,7 @@ M.ExecutionFailedEventDetails = {
 
 M.ExecutionRedrivenEventDetails = {
     type = "structure",
+    id = "ExecutionRedrivenEventDetails",
     members = {
         redriveCount = {
             type = "integer",
@@ -1393,6 +1469,7 @@ M.ExecutionRedrivenEventDetails = {
 
 M.ExecutionStartedEventDetails = {
     type = "structure",
+    id = "ExecutionStartedEventDetails",
     members = {
         input = {
             type = "string",
@@ -1412,6 +1489,7 @@ M.ExecutionStartedEventDetails = {
 
 M.ExecutionSucceededEventDetails = {
     type = "structure",
+    id = "ExecutionSucceededEventDetails",
     members = {
         output = {
             type = "string",
@@ -1422,6 +1500,7 @@ M.ExecutionSucceededEventDetails = {
 
 M.ExecutionTimedOutEventDetails = {
     type = "structure",
+    id = "ExecutionTimedOutEventDetails",
     members = {
         error = {
             type = "string",
@@ -1434,6 +1513,7 @@ M.ExecutionTimedOutEventDetails = {
 
 M.LambdaFunctionFailedEventDetails = {
     type = "structure",
+    id = "LambdaFunctionFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -1446,6 +1526,7 @@ M.LambdaFunctionFailedEventDetails = {
 
 M.TaskCredentials = {
     type = "structure",
+    id = "TaskCredentials",
     members = {
         roleArn = {
             type = "string",
@@ -1455,6 +1536,7 @@ M.TaskCredentials = {
 
 M.LambdaFunctionScheduledEventDetails = {
     type = "structure",
+    id = "LambdaFunctionScheduledEventDetails",
     members = {
         resource = {
             type = "string",
@@ -1478,6 +1560,7 @@ M.LambdaFunctionScheduledEventDetails = {
 
 M.LambdaFunctionScheduleFailedEventDetails = {
     type = "structure",
+    id = "LambdaFunctionScheduleFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -1490,6 +1573,7 @@ M.LambdaFunctionScheduleFailedEventDetails = {
 
 M.LambdaFunctionStartFailedEventDetails = {
     type = "structure",
+    id = "LambdaFunctionStartFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -1502,6 +1586,7 @@ M.LambdaFunctionStartFailedEventDetails = {
 
 M.LambdaFunctionSucceededEventDetails = {
     type = "structure",
+    id = "LambdaFunctionSucceededEventDetails",
     members = {
         output = {
             type = "string",
@@ -1512,6 +1597,7 @@ M.LambdaFunctionSucceededEventDetails = {
 
 M.LambdaFunctionTimedOutEventDetails = {
     type = "structure",
+    id = "LambdaFunctionTimedOutEventDetails",
     members = {
         error = {
             type = "string",
@@ -1524,6 +1610,7 @@ M.LambdaFunctionTimedOutEventDetails = {
 
 M.MapIterationEventDetails = {
     type = "structure",
+    id = "MapIterationEventDetails",
     members = {
         name = {
             type = "string",
@@ -1539,6 +1626,7 @@ M.MapIterationEventDetails = {
 
 M.MapRunFailedEventDetails = {
     type = "structure",
+    id = "MapRunFailedEventDetails",
     members = {
         error = {
             type = "string",
@@ -1551,6 +1639,7 @@ M.MapRunFailedEventDetails = {
 
 M.MapRunRedrivenEventDetails = {
     type = "structure",
+    id = "MapRunRedrivenEventDetails",
     members = {
         mapRunArn = {
             type = "string",
@@ -1563,6 +1652,7 @@ M.MapRunRedrivenEventDetails = {
 
 M.MapRunStartedEventDetails = {
     type = "structure",
+    id = "MapRunStartedEventDetails",
     members = {
         mapRunArn = {
             type = "string",
@@ -1572,6 +1662,7 @@ M.MapRunStartedEventDetails = {
 
 M.MapStateStartedEventDetails = {
     type = "structure",
+    id = "MapStateStartedEventDetails",
     members = {
         length = {
             type = "integer",
@@ -1584,6 +1675,7 @@ M.MapStateStartedEventDetails = {
 
 M.StateEnteredEventDetails = {
     type = "structure",
+    id = "StateEnteredEventDetails",
     members = {
         name = {
             type = "string",
@@ -1600,6 +1692,7 @@ M.StateEnteredEventDetails = {
 
 M.StateExitedEventDetails = {
     type = "structure",
+    id = "StateExitedEventDetails",
     members = {
         name = {
             type = "string",
@@ -1622,6 +1715,7 @@ M.StateExitedEventDetails = {
 
 M.TaskFailedEventDetails = {
     type = "structure",
+    id = "TaskFailedEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1646,6 +1740,7 @@ M.TaskFailedEventDetails = {
 
 M.TaskScheduledEventDetails = {
     type = "structure",
+    id = "TaskScheduledEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1689,6 +1784,7 @@ M.TaskScheduledEventDetails = {
 
 M.TaskStartedEventDetails = {
     type = "structure",
+    id = "TaskStartedEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1707,6 +1803,7 @@ M.TaskStartedEventDetails = {
 
 M.TaskStartFailedEventDetails = {
     type = "structure",
+    id = "TaskStartFailedEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1731,6 +1828,7 @@ M.TaskStartFailedEventDetails = {
 
 M.TaskSubmitFailedEventDetails = {
     type = "structure",
+    id = "TaskSubmitFailedEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1755,6 +1853,7 @@ M.TaskSubmitFailedEventDetails = {
 
 M.TaskSubmittedEventDetails = {
     type = "structure",
+    id = "TaskSubmittedEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1777,6 +1876,7 @@ M.TaskSubmittedEventDetails = {
 
 M.TaskSucceededEventDetails = {
     type = "structure",
+    id = "TaskSucceededEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1799,6 +1899,7 @@ M.TaskSucceededEventDetails = {
 
 M.TaskTimedOutEventDetails = {
     type = "structure",
+    id = "TaskTimedOutEventDetails",
     members = {
         resourceType = {
             type = "string",
@@ -1888,6 +1989,7 @@ M.HistoryEventType = {
 
 M.HistoryEvent = {
     type = "structure",
+    id = "HistoryEvent",
     members = {
         timestamp = {
             type = "timestamp",
@@ -1956,6 +2058,7 @@ M.HistoryEvent = {
 
 M.GetExecutionHistoryOutput = {
     type = "structure",
+    id = "GetExecutionHistoryOutput",
     members = {
         events = {
             type = "list",
@@ -1972,6 +2075,7 @@ M.GetExecutionHistoryOutput = {
 
 M.InvalidToken = {
     type = "structure",
+    id = "InvalidToken",
     error = "client",
     members = {
         message = {
@@ -1982,6 +2086,7 @@ M.InvalidToken = {
 
 M.ListActivitiesInput = {
     type = "structure",
+    id = "ListActivitiesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1997,6 +2102,7 @@ M.ListActivitiesInput = {
 
 M.ListActivitiesOutput = {
     type = "structure",
+    id = "ListActivitiesOutput",
     members = {
         activities = {
             type = "list",
@@ -2018,6 +2124,7 @@ M.ExecutionRedriveFilter = {
 
 M.ListExecutionsInput = {
     type = "structure",
+    id = "ListExecutionsInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -2045,6 +2152,7 @@ M.ListExecutionsInput = {
 
 M.ExecutionListItem = {
     type = "structure",
+    id = "ExecutionListItem",
     members = {
         executionArn = {
             type = "string",
@@ -2105,6 +2213,7 @@ M.ExecutionListItem = {
 
 M.ListExecutionsOutput = {
     type = "structure",
+    id = "ListExecutionsOutput",
     members = {
         executions = {
             type = "list",
@@ -2121,6 +2230,7 @@ M.ListExecutionsOutput = {
 
 M.ListMapRunsInput = {
     type = "structure",
+    id = "ListMapRunsInput",
     members = {
         executionArn = {
             type = "string",
@@ -2142,6 +2252,7 @@ M.ListMapRunsInput = {
 
 M.MapRunListItem = {
     type = "structure",
+    id = "MapRunListItem",
     members = {
         executionArn = {
             type = "string",
@@ -2175,6 +2286,7 @@ M.MapRunListItem = {
 
 M.ListMapRunsOutput = {
     type = "structure",
+    id = "ListMapRunsOutput",
     members = {
         mapRuns = {
             type = "list",
@@ -2191,6 +2303,7 @@ M.ListMapRunsOutput = {
 
 M.ListStateMachineAliasesInput = {
     type = "structure",
+    id = "ListStateMachineAliasesInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -2212,6 +2325,7 @@ M.ListStateMachineAliasesInput = {
 
 M.StateMachineAliasListItem = {
     type = "structure",
+    id = "StateMachineAliasListItem",
     members = {
         stateMachineAliasArn = {
             type = "string",
@@ -2230,6 +2344,7 @@ M.StateMachineAliasListItem = {
 
 M.ListStateMachineAliasesOutput = {
     type = "structure",
+    id = "ListStateMachineAliasesOutput",
     members = {
         stateMachineAliases = {
             type = "list",
@@ -2246,6 +2361,7 @@ M.ListStateMachineAliasesOutput = {
 
 M.ListStateMachinesInput = {
     type = "structure",
+    id = "ListStateMachinesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2261,6 +2377,7 @@ M.ListStateMachinesInput = {
 
 M.StateMachineListItem = {
     type = "structure",
+    id = "StateMachineListItem",
     members = {
         stateMachineArn = {
             type = "string",
@@ -2291,6 +2408,7 @@ M.StateMachineListItem = {
 
 M.ListStateMachinesOutput = {
     type = "structure",
+    id = "ListStateMachinesOutput",
     members = {
         stateMachines = {
             type = "list",
@@ -2307,6 +2425,7 @@ M.ListStateMachinesOutput = {
 
 M.ListStateMachineVersionsInput = {
     type = "structure",
+    id = "ListStateMachineVersionsInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -2328,6 +2447,7 @@ M.ListStateMachineVersionsInput = {
 
 M.StateMachineVersionListItem = {
     type = "structure",
+    id = "StateMachineVersionListItem",
     members = {
         stateMachineVersionArn = {
             type = "string",
@@ -2346,6 +2466,7 @@ M.StateMachineVersionListItem = {
 
 M.ListStateMachineVersionsOutput = {
     type = "structure",
+    id = "ListStateMachineVersionsOutput",
     members = {
         stateMachineVersions = {
             type = "list",
@@ -2362,6 +2483,7 @@ M.ListStateMachineVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2374,6 +2496,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2384,6 +2507,7 @@ M.ListTagsForResourceOutput = {
 
 M.PublishStateMachineVersionInput = {
     type = "structure",
+    id = "PublishStateMachineVersionInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -2402,6 +2526,7 @@ M.PublishStateMachineVersionInput = {
 
 M.PublishStateMachineVersionOutput = {
     type = "structure",
+    id = "PublishStateMachineVersionOutput",
     members = {
         creationDate = {
             type = "timestamp",
@@ -2420,6 +2545,7 @@ M.PublishStateMachineVersionOutput = {
 
 M.ExecutionLimitExceeded = {
     type = "structure",
+    id = "ExecutionLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -2430,6 +2556,7 @@ M.ExecutionLimitExceeded = {
 
 M.ExecutionNotRedrivable = {
     type = "structure",
+    id = "ExecutionNotRedrivable",
     error = "client",
     members = {
         message = {
@@ -2440,6 +2567,7 @@ M.ExecutionNotRedrivable = {
 
 M.RedriveExecutionInput = {
     type = "structure",
+    id = "RedriveExecutionInput",
     members = {
         executionArn = {
             type = "string",
@@ -2458,6 +2586,7 @@ M.RedriveExecutionInput = {
 
 M.RedriveExecutionOutput = {
     type = "structure",
+    id = "RedriveExecutionOutput",
     members = {
         redriveDate = {
             type = "timestamp",
@@ -2470,6 +2599,7 @@ M.RedriveExecutionOutput = {
 
 M.SendTaskFailureInput = {
     type = "structure",
+    id = "SendTaskFailureInput",
     members = {
         taskToken = {
             type = "string",
@@ -2488,10 +2618,12 @@ M.SendTaskFailureInput = {
 
 M.SendTaskFailureOutput = {
     type = "structure",
+    id = "SendTaskFailureOutput",
 }
 
 M.TaskDoesNotExist = {
     type = "structure",
+    id = "TaskDoesNotExist",
     error = "client",
     members = {
         message = {
@@ -2502,6 +2634,7 @@ M.TaskDoesNotExist = {
 
 M.TaskTimedOut = {
     type = "structure",
+    id = "TaskTimedOut",
     error = "client",
     members = {
         message = {
@@ -2512,6 +2645,7 @@ M.TaskTimedOut = {
 
 M.SendTaskHeartbeatInput = {
     type = "structure",
+    id = "SendTaskHeartbeatInput",
     members = {
         taskToken = {
             type = "string",
@@ -2524,10 +2658,12 @@ M.SendTaskHeartbeatInput = {
 
 M.SendTaskHeartbeatOutput = {
     type = "structure",
+    id = "SendTaskHeartbeatOutput",
 }
 
 M.InvalidOutput = {
     type = "structure",
+    id = "InvalidOutput",
     error = "client",
     members = {
         message = {
@@ -2538,6 +2674,7 @@ M.InvalidOutput = {
 
 M.SendTaskSuccessInput = {
     type = "structure",
+    id = "SendTaskSuccessInput",
     members = {
         taskToken = {
             type = "string",
@@ -2556,10 +2693,12 @@ M.SendTaskSuccessInput = {
 
 M.SendTaskSuccessOutput = {
     type = "structure",
+    id = "SendTaskSuccessOutput",
 }
 
 M.ExecutionAlreadyExists = {
     type = "structure",
+    id = "ExecutionAlreadyExists",
     error = "client",
     members = {
         message = {
@@ -2570,6 +2709,7 @@ M.ExecutionAlreadyExists = {
 
 M.InvalidExecutionInput = {
     type = "structure",
+    id = "InvalidExecutionInput",
     error = "client",
     members = {
         message = {
@@ -2580,6 +2720,7 @@ M.InvalidExecutionInput = {
 
 M.StartExecutionInput = {
     type = "structure",
+    id = "StartExecutionInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -2601,6 +2742,7 @@ M.StartExecutionInput = {
 
 M.StartExecutionOutput = {
     type = "structure",
+    id = "StartExecutionOutput",
     members = {
         executionArn = {
             type = "string",
@@ -2619,6 +2761,7 @@ M.StartExecutionOutput = {
 
 M.StartSyncExecutionInput = {
     type = "structure",
+    id = "StartSyncExecutionInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -2643,6 +2786,7 @@ M.StartSyncExecutionInput = {
 
 M.BillingDetails = {
     type = "structure",
+    id = "BillingDetails",
     members = {
         billedMemoryUsedInMB = {
             type = "long",
@@ -2667,6 +2811,7 @@ M.SyncExecutionStatus = {
 
 M.StartSyncExecutionOutput = {
     type = "structure",
+    id = "StartSyncExecutionOutput",
     members = {
         executionArn = {
             type = "string",
@@ -2721,6 +2866,7 @@ M.StartSyncExecutionOutput = {
 
 M.StopExecutionInput = {
     type = "structure",
+    id = "StopExecutionInput",
     members = {
         executionArn = {
             type = "string",
@@ -2739,6 +2885,7 @@ M.StopExecutionInput = {
 
 M.StopExecutionOutput = {
     type = "structure",
+    id = "StopExecutionOutput",
     members = {
         stopDate = {
             type = "timestamp",
@@ -2751,6 +2898,7 @@ M.StopExecutionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2770,6 +2918,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.InspectionLevel = {
@@ -2780,6 +2929,7 @@ M.InspectionLevel = {
 
 M.MockErrorOutput = {
     type = "structure",
+    id = "MockErrorOutput",
     members = {
         error = {
             type = "string",
@@ -2798,6 +2948,7 @@ M.MockResponseValidationMode = {
 
 M.MockInput = {
     type = "structure",
+    id = "MockInput",
     members = {
         result = {
             type = "string",
@@ -2811,6 +2962,7 @@ M.MockInput = {
 
 M.TestStateConfiguration = {
     type = "structure",
+    id = "TestStateConfiguration",
     members = {
         retrierRetryCount = {
             type = "integer",
@@ -2829,6 +2981,7 @@ M.TestStateConfiguration = {
 
 M.TestStateInput = {
     type = "structure",
+    id = "TestStateInput",
     members = {
         definition = {
             type = "string",
@@ -2867,6 +3020,7 @@ M.TestStateInput = {
 
 M.InspectionErrorDetails = {
     type = "structure",
+    id = "InspectionErrorDetails",
     members = {
         catchIndex = {
             type = "integer",
@@ -2882,6 +3036,7 @@ M.InspectionErrorDetails = {
 
 M.InspectionDataRequest = {
     type = "structure",
+    id = "InspectionDataRequest",
     members = {
         protocol = {
             type = "string",
@@ -2903,6 +3058,7 @@ M.InspectionDataRequest = {
 
 M.InspectionDataResponse = {
     type = "structure",
+    id = "InspectionDataResponse",
     members = {
         protocol = {
             type = "string",
@@ -2924,6 +3080,7 @@ M.InspectionDataResponse = {
 
 M.InspectionData = {
     type = "structure",
+    id = "InspectionData",
     members = {
         input = {
             type = "string",
@@ -2985,6 +3142,7 @@ M.TestExecutionStatus = {
 
 M.TestStateOutput = {
     type = "structure",
+    id = "TestStateOutput",
     members = {
         output = {
             type = "string",
@@ -3007,6 +3165,7 @@ M.TestStateOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3026,10 +3185,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateMapRunInput = {
     type = "structure",
+    id = "UpdateMapRunInput",
     members = {
         mapRunArn = {
             type = "string",
@@ -3060,10 +3221,12 @@ M.UpdateMapRunInput = {
 
 M.UpdateMapRunOutput = {
     type = "structure",
+    id = "UpdateMapRunOutput",
 }
 
 M.MissingRequiredParameter = {
     type = "structure",
+    id = "MissingRequiredParameter",
     error = "client",
     members = {
         message = {
@@ -3074,6 +3237,7 @@ M.MissingRequiredParameter = {
 
 M.UpdateStateMachineInput = {
     type = "structure",
+    id = "UpdateStateMachineInput",
     members = {
         stateMachineArn = {
             type = "string",
@@ -3104,6 +3268,7 @@ M.UpdateStateMachineInput = {
 
 M.UpdateStateMachineOutput = {
     type = "structure",
+    id = "UpdateStateMachineOutput",
     members = {
         updateDate = {
             type = "timestamp",
@@ -3122,6 +3287,7 @@ M.UpdateStateMachineOutput = {
 
 M.UpdateStateMachineAliasInput = {
     type = "structure",
+    id = "UpdateStateMachineAliasInput",
     members = {
         stateMachineAliasArn = {
             type = "string",
@@ -3141,6 +3307,7 @@ M.UpdateStateMachineAliasInput = {
 
 M.UpdateStateMachineAliasOutput = {
     type = "structure",
+    id = "UpdateStateMachineAliasOutput",
     members = {
         updateDate = {
             type = "timestamp",
@@ -3158,6 +3325,7 @@ M.ValidateStateMachineDefinitionSeverity = {
 
 M.ValidateStateMachineDefinitionInput = {
     type = "structure",
+    id = "ValidateStateMachineDefinitionInput",
     members = {
         definition = {
             type = "string",
@@ -3182,6 +3350,7 @@ M.ValidateStateMachineDefinitionInput = {
 
 M.ValidateStateMachineDefinitionDiagnostic = {
     type = "structure",
+    id = "ValidateStateMachineDefinitionDiagnostic",
     members = {
         severity = {
             type = "string",
@@ -3214,6 +3383,7 @@ M.ValidateStateMachineDefinitionResultCode = {
 
 M.ValidateStateMachineDefinitionOutput = {
     type = "structure",
+    id = "ValidateStateMachineDefinitionOutput",
     members = {
         result = {
             type = "string",

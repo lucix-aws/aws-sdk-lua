@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ActionMetadata = {
     type = "structure",
+    id = "ActionMetadata",
     members = {
         actionType = {
             type = "string",
@@ -30,6 +32,7 @@ M.ActionMetadata = {
 
 M.ContainerImage = {
     type = "structure",
+    id = "ContainerImage",
     members = {
         uri = {
             type = "string",
@@ -47,6 +50,7 @@ M.CompressionType = {
 
 M.ScriptModeConfig = {
     type = "structure",
+    id = "ScriptModeConfig",
     members = {
         entryPoint = {
             type = "string",
@@ -68,6 +72,7 @@ M.ScriptModeConfig = {
 
 M.AlgorithmSpecification = {
     type = "structure",
+    id = "AlgorithmSpecification",
     members = {
         scriptModeConfig = M.ScriptModeConfig,
         containerImage = M.ContainerImage,
@@ -80,6 +85,7 @@ M.AssociationType = {
 
 M.Association = {
     type = "structure",
+    id = "Association",
     members = {
         arn = {
             type = "string",
@@ -98,6 +104,7 @@ M.Association = {
 
 M.GetDeviceInput = {
     type = "structure",
+    id = "GetDeviceInput",
     members = {
         deviceArn = {
             type = "string",
@@ -121,6 +128,7 @@ M.QueuePriority = {
 
 M.DeviceQueueInfo = {
     type = "structure",
+    id = "DeviceQueueInfo",
     members = {
         queue = {
             type = "string",
@@ -153,6 +161,7 @@ M.DeviceType = {
 
 M.GetDeviceOutput = {
     type = "structure",
+    id = "GetDeviceOutput",
     members = {
         deviceArn = {
             type = "string",
@@ -200,6 +209,7 @@ M.GetDeviceOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         message = {
@@ -210,6 +220,7 @@ M.InternalServiceException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -220,6 +231,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -230,6 +242,7 @@ M.ThrottlingException = {
 
 M.ProgramSetValidationFailure = {
     type = "structure",
+    id = "ProgramSetValidationFailure",
     members = {
         programIndex = {
             type = "long",
@@ -253,6 +266,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -270,6 +284,7 @@ M.ValidationException = {
 
 M.SearchDevicesFilter = {
     type = "structure",
+    id = "SearchDevicesFilter",
     members = {
         name = {
             type = "string",
@@ -289,6 +304,7 @@ M.SearchDevicesFilter = {
 
 M.SearchDevicesInput = {
     type = "structure",
+    id = "SearchDevicesInput",
     members = {
         nextToken = {
             type = "string",
@@ -308,6 +324,7 @@ M.SearchDevicesInput = {
 
 M.DeviceSummary = {
     type = "structure",
+    id = "DeviceSummary",
     members = {
         deviceArn = {
             type = "string",
@@ -344,6 +361,7 @@ M.DeviceSummary = {
 
 M.SearchDevicesOutput = {
     type = "structure",
+    id = "SearchDevicesOutput",
     members = {
         devices = {
             type = "list",
@@ -360,6 +378,7 @@ M.SearchDevicesOutput = {
 
 M.CancelJobInput = {
     type = "structure",
+    id = "CancelJobInput",
     members = {
         jobArn = {
             type = "string",
@@ -378,6 +397,7 @@ M.CancellationStatus = {
 
 M.CancelJobOutput = {
     type = "structure",
+    id = "CancelJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -396,6 +416,7 @@ M.CancelJobOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -406,6 +427,7 @@ M.ConflictException = {
 
 M.JobCheckpointConfig = {
     type = "structure",
+    id = "JobCheckpointConfig",
     members = {
         localPath = {
             type = "string",
@@ -421,6 +443,7 @@ M.JobCheckpointConfig = {
 
 M.DeviceConfig = {
     type = "structure",
+    id = "DeviceConfig",
     members = {
         device = {
             type = "string",
@@ -433,6 +456,7 @@ M.DeviceConfig = {
 
 M.S3DataSource = {
     type = "structure",
+    id = "S3DataSource",
     members = {
         s3Uri = {
             type = "string",
@@ -445,6 +469,7 @@ M.S3DataSource = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         s3DataSource = setmetatable({ traits = {
             required = true,
@@ -454,6 +479,7 @@ M.DataSource = {
 
 M.InputFileConfig = {
     type = "structure",
+    id = "InputFileConfig",
     members = {
         channelName = {
             type = "string",
@@ -533,6 +559,7 @@ M.InstanceType = {
 
 M.InstanceConfig = {
     type = "structure",
+    id = "InstanceConfig",
     members = {
         instanceType = {
             type = "string",
@@ -554,6 +581,7 @@ M.InstanceConfig = {
 
 M.JobOutputDataConfig = {
     type = "structure",
+    id = "JobOutputDataConfig",
     members = {
         kmsKeyId = {
             type = "string",
@@ -569,6 +597,7 @@ M.JobOutputDataConfig = {
 
 M.JobStoppingCondition = {
     type = "structure",
+    id = "JobStoppingCondition",
     members = {
         maxRuntimeInSeconds = {
             type = "integer",
@@ -578,6 +607,7 @@ M.JobStoppingCondition = {
 
 M.CreateJobInput = {
     type = "structure",
+    id = "CreateJobInput",
     members = {
         clientToken = {
             type = "string",
@@ -635,6 +665,7 @@ M.CreateJobInput = {
 
 M.CreateJobOutput = {
     type = "structure",
+    id = "CreateJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -647,6 +678,7 @@ M.CreateJobOutput = {
 
 M.DeviceOfflineException = {
     type = "structure",
+    id = "DeviceOfflineException",
     error = "client",
     members = {
         message = {
@@ -657,6 +689,7 @@ M.DeviceOfflineException = {
 
 M.DeviceRetiredException = {
     type = "structure",
+    id = "DeviceRetiredException",
     error = "client",
     members = {
         message = {
@@ -667,6 +700,7 @@ M.DeviceRetiredException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -681,6 +715,7 @@ M.HybridJobAdditionalAttributeName = {
 
 M.GetJobInput = {
     type = "structure",
+    id = "GetJobInput",
     members = {
         jobArn = {
             type = "string",
@@ -715,6 +750,7 @@ M.JobEventType = {
 
 M.JobEventDetails = {
     type = "structure",
+    id = "JobEventDetails",
     members = {
         eventType = {
             type = "string",
@@ -733,6 +769,7 @@ M.JobEventDetails = {
 
 M.HybridJobQueueInfo = {
     type = "structure",
+    id = "HybridJobQueueInfo",
     members = {
         queue = {
             type = "string",
@@ -763,6 +800,7 @@ M.JobPrimaryStatus = {
 
 M.GetJobOutput = {
     type = "structure",
+    id = "GetJobOutput",
     members = {
         status = {
             type = "string",
@@ -863,6 +901,7 @@ M.SearchJobsFilterOperator = {
 
 M.SearchJobsFilter = {
     type = "structure",
+    id = "SearchJobsFilter",
     members = {
         name = {
             type = "string",
@@ -888,6 +927,7 @@ M.SearchJobsFilter = {
 
 M.SearchJobsInput = {
     type = "structure",
+    id = "SearchJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -907,6 +947,7 @@ M.SearchJobsInput = {
 
 M.JobSummary = {
     type = "structure",
+    id = "JobSummary",
     members = {
         status = {
             type = "string",
@@ -961,6 +1002,7 @@ M.JobSummary = {
 
 M.SearchJobsOutput = {
     type = "structure",
+    id = "SearchJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -977,6 +1019,7 @@ M.SearchJobsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -990,6 +1033,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1001,6 +1045,7 @@ M.ListTagsForResourceOutput = {
 
 M.CancelQuantumTaskInput = {
     type = "structure",
+    id = "CancelQuantumTaskInput",
     members = {
         quantumTaskArn = {
             type = "string",
@@ -1021,6 +1066,7 @@ M.CancelQuantumTaskInput = {
 
 M.CancelQuantumTaskOutput = {
     type = "structure",
+    id = "CancelQuantumTaskOutput",
     members = {
         quantumTaskArn = {
             type = "string",
@@ -1044,6 +1090,7 @@ M.ExperimentalCapabilitiesEnablementType = {
 
 M.ExperimentalCapabilities = {
     type = "union",
+    id = "ExperimentalCapabilities",
     members = {
         enabled = {
             type = "string",
@@ -1053,6 +1100,7 @@ M.ExperimentalCapabilities = {
 
 M.CreateQuantumTaskInput = {
     type = "structure",
+    id = "CreateQuantumTaskInput",
     members = {
         clientToken = {
             type = "string",
@@ -1116,6 +1164,7 @@ M.CreateQuantumTaskInput = {
 
 M.CreateQuantumTaskOutput = {
     type = "structure",
+    id = "CreateQuantumTaskOutput",
     members = {
         quantumTaskArn = {
             type = "string",
@@ -1132,6 +1181,7 @@ M.QuantumTaskAdditionalAttributeName = {
 
 M.GetQuantumTaskInput = {
     type = "structure",
+    id = "GetQuantumTaskInput",
     members = {
         quantumTaskArn = {
             type = "string",
@@ -1152,6 +1202,7 @@ M.GetQuantumTaskInput = {
 
 M.QuantumTaskQueueInfo = {
     type = "structure",
+    id = "QuantumTaskQueueInfo",
     members = {
         queue = {
             type = "string",
@@ -1186,6 +1237,7 @@ M.QuantumTaskStatus = {
 
 M.GetQuantumTaskOutput = {
     type = "structure",
+    id = "GetQuantumTaskOutput",
     members = {
         quantumTaskArn = {
             type = "string",
@@ -1278,6 +1330,7 @@ M.SearchQuantumTasksFilterOperator = {
 
 M.SearchQuantumTasksFilter = {
     type = "structure",
+    id = "SearchQuantumTasksFilter",
     members = {
         name = {
             type = "string",
@@ -1303,6 +1356,7 @@ M.SearchQuantumTasksFilter = {
 
 M.SearchQuantumTasksInput = {
     type = "structure",
+    id = "SearchQuantumTasksInput",
     members = {
         nextToken = {
             type = "string",
@@ -1322,6 +1376,7 @@ M.SearchQuantumTasksInput = {
 
 M.QuantumTaskSummary = {
     type = "structure",
+    id = "QuantumTaskSummary",
     members = {
         quantumTaskArn = {
             type = "string",
@@ -1382,6 +1437,7 @@ M.QuantumTaskSummary = {
 
 M.SearchQuantumTasksOutput = {
     type = "structure",
+    id = "SearchQuantumTasksOutput",
     members = {
         quantumTasks = {
             type = "list",
@@ -1398,6 +1454,7 @@ M.SearchQuantumTasksOutput = {
 
 M.TimePeriod = {
     type = "structure",
+    id = "TimePeriod",
     members = {
         startAt = {
             type = "timestamp",
@@ -1418,6 +1475,7 @@ M.TimePeriod = {
 
 M.CreateSpendingLimitInput = {
     type = "structure",
+    id = "CreateSpendingLimitInput",
     members = {
         clientToken = {
             type = "string",
@@ -1449,6 +1507,7 @@ M.CreateSpendingLimitInput = {
 
 M.CreateSpendingLimitOutput = {
     type = "structure",
+    id = "CreateSpendingLimitOutput",
     members = {
         spendingLimitArn = {
             type = "string",
@@ -1461,6 +1520,7 @@ M.CreateSpendingLimitOutput = {
 
 M.DeleteSpendingLimitInput = {
     type = "structure",
+    id = "DeleteSpendingLimitInput",
     members = {
         spendingLimitArn = {
             type = "string",
@@ -1474,6 +1534,7 @@ M.DeleteSpendingLimitInput = {
 
 M.DeleteSpendingLimitOutput = {
     type = "structure",
+    id = "DeleteSpendingLimitOutput",
 }
 
 M.SearchSpendingLimitsFilterOperator = {
@@ -1482,6 +1543,7 @@ M.SearchSpendingLimitsFilterOperator = {
 
 M.SearchSpendingLimitsFilter = {
     type = "structure",
+    id = "SearchSpendingLimitsFilter",
     members = {
         name = {
             type = "string",
@@ -1507,6 +1569,7 @@ M.SearchSpendingLimitsFilter = {
 
 M.SearchSpendingLimitsInput = {
     type = "structure",
+    id = "SearchSpendingLimitsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1523,6 +1586,7 @@ M.SearchSpendingLimitsInput = {
 
 M.SpendingLimitSummary = {
     type = "structure",
+    id = "SpendingLimitSummary",
     members = {
         spendingLimitArn = {
             type = "string",
@@ -1581,6 +1645,7 @@ M.SpendingLimitSummary = {
 
 M.SearchSpendingLimitsOutput = {
     type = "structure",
+    id = "SearchSpendingLimitsOutput",
     members = {
         spendingLimits = {
             type = "list",
@@ -1597,6 +1662,7 @@ M.SearchSpendingLimitsOutput = {
 
 M.UpdateSpendingLimitInput = {
     type = "structure",
+    id = "UpdateSpendingLimitInput",
     members = {
         spendingLimitArn = {
             type = "string",
@@ -1621,10 +1687,12 @@ M.UpdateSpendingLimitInput = {
 
 M.UpdateSpendingLimitOutput = {
     type = "structure",
+    id = "UpdateSpendingLimitOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1646,10 +1714,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1671,6 +1741,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

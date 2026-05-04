@@ -7,6 +7,7 @@ M.AccessDeniedExceptionReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -23,6 +24,7 @@ M.AccessDeniedException = {
 
 M.Block = {
     type = "structure",
+    id = "Block",
     members = {
         BlockIndex = {
             type = "integer",
@@ -35,6 +37,7 @@ M.Block = {
 
 M.ChangedBlock = {
     type = "structure",
+    id = "ChangedBlock",
     members = {
         BlockIndex = {
             type = "integer",
@@ -58,6 +61,7 @@ M.ChecksumAlgorithm = {
 
 M.CompleteSnapshotInput = {
     type = "structure",
+    id = "CompleteSnapshotInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -102,6 +106,7 @@ M.Status = {
 
 M.CompleteSnapshotOutput = {
     type = "structure",
+    id = "CompleteSnapshotOutput",
     members = {
         Status = {
             type = "string",
@@ -111,6 +116,7 @@ M.CompleteSnapshotOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -127,6 +133,7 @@ M.RequestThrottledExceptionReason = {
 
 M.RequestThrottledException = {
     type = "structure",
+    id = "RequestThrottledException",
     error = "client",
     members = {
         Message = {
@@ -147,6 +154,7 @@ M.ResourceNotFoundExceptionReason = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -164,6 +172,7 @@ M.ServiceQuotaExceededExceptionReason = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -195,6 +204,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -208,6 +218,7 @@ M.ValidationException = {
 
 M.ConcurrentLimitExceededException = {
     type = "structure",
+    id = "ConcurrentLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -218,6 +229,7 @@ M.ConcurrentLimitExceededException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -228,6 +240,7 @@ M.ConflictException = {
 
 M.GetSnapshotBlockInput = {
     type = "structure",
+    id = "GetSnapshotBlockInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -255,6 +268,7 @@ M.GetSnapshotBlockInput = {
 
 M.GetSnapshotBlockOutput = {
     type = "structure",
+    id = "GetSnapshotBlockOutput",
     members = {
         DataLength = {
             type = "integer",
@@ -286,6 +300,7 @@ M.GetSnapshotBlockOutput = {
 
 M.ListChangedBlocksInput = {
     type = "structure",
+    id = "ListChangedBlocksInput",
     members = {
         FirstSnapshotId = {
             type = "string",
@@ -323,6 +338,7 @@ M.ListChangedBlocksInput = {
 
 M.ListChangedBlocksOutput = {
     type = "structure",
+    id = "ListChangedBlocksOutput",
     members = {
         ChangedBlocks = {
             type = "list",
@@ -345,6 +361,7 @@ M.ListChangedBlocksOutput = {
 
 M.ListSnapshotBlocksInput = {
     type = "structure",
+    id = "ListSnapshotBlocksInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -376,6 +393,7 @@ M.ListSnapshotBlocksInput = {
 
 M.ListSnapshotBlocksOutput = {
     type = "structure",
+    id = "ListSnapshotBlocksOutput",
     members = {
         Blocks = {
             type = "list",
@@ -398,6 +416,7 @@ M.ListSnapshotBlocksOutput = {
 
 M.PutSnapshotBlockInput = {
     type = "structure",
+    id = "PutSnapshotBlockInput",
     members = {
         SnapshotId = {
             type = "string",
@@ -452,6 +471,7 @@ M.PutSnapshotBlockInput = {
 
 M.PutSnapshotBlockOutput = {
     type = "structure",
+    id = "PutSnapshotBlockOutput",
     members = {
         Checksum = {
             type = "string",
@@ -470,6 +490,7 @@ M.PutSnapshotBlockOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -482,6 +503,7 @@ M.Tag = {
 
 M.StartSnapshotInput = {
     type = "structure",
+    id = "StartSnapshotInput",
     members = {
         VolumeSize = {
             type = "long",
@@ -525,6 +547,7 @@ M.SSEType = {
 
 M.StartSnapshotOutput = {
     type = "structure",
+    id = "StartSnapshotOutput",
     members = {
         Description = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.AuthenticationType = {
 
 M.LambdaAuthorizerConfig = {
     type = "structure",
+    id = "LambdaAuthorizerConfig",
     members = {
         authorizerResultTtlInSeconds = {
             type = "integer",
@@ -41,6 +43,7 @@ M.LambdaAuthorizerConfig = {
 
 M.OpenIDConnectConfig = {
     type = "structure",
+    id = "OpenIDConnectConfig",
     members = {
         issuer = {
             type = "string",
@@ -68,6 +71,7 @@ M.OpenIDConnectConfig = {
 
 M.CognitoUserPoolConfig = {
     type = "structure",
+    id = "CognitoUserPoolConfig",
     members = {
         userPoolId = {
             type = "string",
@@ -89,6 +93,7 @@ M.CognitoUserPoolConfig = {
 
 M.AdditionalAuthenticationProvider = {
     type = "structure",
+    id = "AdditionalAuthenticationProvider",
     members = {
         authenticationType = {
             type = "string",
@@ -101,6 +106,7 @@ M.AdditionalAuthenticationProvider = {
 
 M.CognitoConfig = {
     type = "structure",
+    id = "CognitoConfig",
     members = {
         userPoolId = {
             type = "string",
@@ -122,6 +128,7 @@ M.CognitoConfig = {
 
 M.AuthProvider = {
     type = "structure",
+    id = "AuthProvider",
     members = {
         authType = {
             type = "string",
@@ -137,6 +144,7 @@ M.AuthProvider = {
 
 M.AuthMode = {
     type = "structure",
+    id = "AuthMode",
     members = {
         authType = {
             type = "string",
@@ -157,6 +165,7 @@ M.EventLogLevel = {
 
 M.EventLogConfig = {
     type = "structure",
+    id = "EventLogConfig",
     members = {
         logLevel = {
             type = "string",
@@ -175,6 +184,7 @@ M.EventLogConfig = {
 
 M.EventConfig = {
     type = "structure",
+    id = "EventConfig",
     members = {
         authProviders = {
             type = "list",
@@ -210,6 +220,7 @@ M.EventConfig = {
 
 M.Api = {
     type = "structure",
+    id = "Api",
     members = {
         apiId = {
             type = "string",
@@ -257,6 +268,7 @@ M.AssociationStatus = {
 
 M.ApiAssociation = {
     type = "structure",
+    id = "ApiAssociation",
     members = {
         domainName = {
             type = "string",
@@ -312,6 +324,7 @@ M.ApiCacheType = {
 
 M.ApiCache = {
     type = "structure",
+    id = "ApiCache",
     members = {
         ttl = {
             type = "long",
@@ -348,6 +361,7 @@ M.ApiCache = {
 
 M.ApiKey = {
     type = "structure",
+    id = "ApiKey",
     members = {
         id = {
             type = "string",
@@ -372,6 +386,7 @@ M.ApiKey = {
 
 M.ApiKeyLimitExceededException = {
     type = "structure",
+    id = "ApiKeyLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -382,6 +397,7 @@ M.ApiKeyLimitExceededException = {
 
 M.ApiKeyValidityOutOfBoundsException = {
     type = "structure",
+    id = "ApiKeyValidityOutOfBoundsException",
     error = "client",
     members = {
         message = {
@@ -392,6 +408,7 @@ M.ApiKeyValidityOutOfBoundsException = {
 
 M.ApiLimitExceededException = {
     type = "structure",
+    id = "ApiLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -406,6 +423,7 @@ M.RuntimeName = {
 
 M.AppSyncRuntime = {
     type = "structure",
+    id = "AppSyncRuntime",
     members = {
         name = {
             type = "string",
@@ -424,6 +442,7 @@ M.AppSyncRuntime = {
 
 M.AssociateApiInput = {
     type = "structure",
+    id = "AssociateApiInput",
     members = {
         domainName = {
             type = "string",
@@ -443,6 +462,7 @@ M.AssociateApiInput = {
 
 M.AssociateApiOutput = {
     type = "structure",
+    id = "AssociateApiOutput",
     members = {
         apiAssociation = M.ApiAssociation,
     },
@@ -450,6 +470,7 @@ M.AssociateApiOutput = {
 
 M.CodeErrorLocation = {
     type = "structure",
+    id = "CodeErrorLocation",
     members = {
         line = {
             type = "integer",
@@ -474,6 +495,7 @@ M.CodeErrorLocation = {
 
 M.CodeError = {
     type = "structure",
+    id = "CodeError",
     members = {
         errorType = {
             type = "string",
@@ -487,6 +509,7 @@ M.CodeError = {
 
 M.BadRequestDetail = {
     type = "structure",
+    id = "BadRequestDetail",
     members = {
         codeErrors = {
             type = "list",
@@ -501,6 +524,7 @@ M.BadRequestReason = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -515,6 +539,7 @@ M.BadRequestException = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -525,6 +550,7 @@ M.InternalFailureException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -540,6 +566,7 @@ M.MergeType = {
 
 M.SourceApiAssociationConfig = {
     type = "structure",
+    id = "SourceApiAssociationConfig",
     members = {
         mergeType = {
             type = "string",
@@ -549,6 +576,7 @@ M.SourceApiAssociationConfig = {
 
 M.AssociateMergedGraphqlApiInput = {
     type = "structure",
+    id = "AssociateMergedGraphqlApiInput",
     members = {
         sourceApiIdentifier = {
             type = "string",
@@ -583,6 +611,7 @@ M.SourceApiAssociationStatus = {
 
 M.SourceApiAssociation = {
     type = "structure",
+    id = "SourceApiAssociation",
     members = {
         associationId = {
             type = "string",
@@ -620,6 +649,7 @@ M.SourceApiAssociation = {
 
 M.AssociateMergedGraphqlApiOutput = {
     type = "structure",
+    id = "AssociateMergedGraphqlApiOutput",
     members = {
         sourceApiAssociation = M.SourceApiAssociation,
     },
@@ -627,6 +657,7 @@ M.AssociateMergedGraphqlApiOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -637,6 +668,7 @@ M.ConcurrentModificationException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -647,6 +679,7 @@ M.LimitExceededException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -657,6 +690,7 @@ M.UnauthorizedException = {
 
 M.AssociateSourceGraphqlApiInput = {
     type = "structure",
+    id = "AssociateSourceGraphqlApiInput",
     members = {
         mergedApiIdentifier = {
             type = "string",
@@ -680,6 +714,7 @@ M.AssociateSourceGraphqlApiInput = {
 
 M.AssociateSourceGraphqlApiOutput = {
     type = "structure",
+    id = "AssociateSourceGraphqlApiOutput",
     members = {
         sourceApiAssociation = M.SourceApiAssociation,
     },
@@ -691,6 +726,7 @@ M.AuthorizationType = {
 
 M.AwsIamConfig = {
     type = "structure",
+    id = "AwsIamConfig",
     members = {
         signingRegion = {
             type = "string",
@@ -703,6 +739,7 @@ M.AwsIamConfig = {
 
 M.AuthorizationConfig = {
     type = "structure",
+    id = "AuthorizationConfig",
     members = {
         authorizationType = {
             type = "string",
@@ -716,6 +753,7 @@ M.AuthorizationConfig = {
 
 M.CreateApiInput = {
     type = "structure",
+    id = "CreateApiInput",
     members = {
         name = {
             type = "string",
@@ -739,6 +777,7 @@ M.CreateApiInput = {
 
 M.CreateApiOutput = {
     type = "structure",
+    id = "CreateApiOutput",
     members = {
         api = M.Api,
     },
@@ -746,6 +785,7 @@ M.CreateApiOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -756,6 +796,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateApiCacheInput = {
     type = "structure",
+    id = "CreateApiCacheInput",
     members = {
         apiId = {
             type = "string",
@@ -803,6 +844,7 @@ M.CreateApiCacheInput = {
 
 M.CreateApiCacheOutput = {
     type = "structure",
+    id = "CreateApiCacheOutput",
     members = {
         apiCache = M.ApiCache,
     },
@@ -810,6 +852,7 @@ M.CreateApiCacheOutput = {
 
 M.CreateApiKeyInput = {
     type = "structure",
+    id = "CreateApiKeyInput",
     members = {
         apiId = {
             type = "string",
@@ -832,6 +875,7 @@ M.CreateApiKeyInput = {
 
 M.CreateApiKeyOutput = {
     type = "structure",
+    id = "CreateApiKeyOutput",
     members = {
         apiKey = M.ApiKey,
     },
@@ -839,6 +883,7 @@ M.CreateApiKeyOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -859,6 +904,7 @@ M.InvokeType = {
 
 M.LambdaConfig = {
     type = "structure",
+    id = "LambdaConfig",
     members = {
         invokeType = {
             type = "string",
@@ -868,6 +914,7 @@ M.LambdaConfig = {
 
 M.Integration = {
     type = "structure",
+    id = "Integration",
     members = {
         dataSourceName = {
             type = "string",
@@ -881,6 +928,7 @@ M.Integration = {
 
 M.HandlerConfig = {
     type = "structure",
+    id = "HandlerConfig",
     members = {
         behavior = {
             type = "string",
@@ -896,6 +944,7 @@ M.HandlerConfig = {
 
 M.HandlerConfigs = {
     type = "structure",
+    id = "HandlerConfigs",
     members = {
         onPublish = M.HandlerConfig,
         onSubscribe = M.HandlerConfig,
@@ -904,6 +953,7 @@ M.HandlerConfigs = {
 
 M.CreateChannelNamespaceInput = {
     type = "structure",
+    id = "CreateChannelNamespaceInput",
     members = {
         apiId = {
             type = "string",
@@ -940,6 +990,7 @@ M.CreateChannelNamespaceInput = {
 
 M.ChannelNamespace = {
     type = "structure",
+    id = "ChannelNamespace",
     members = {
         apiId = {
             type = "string",
@@ -978,6 +1029,7 @@ M.ChannelNamespace = {
 
 M.CreateChannelNamespaceOutput = {
     type = "structure",
+    id = "CreateChannelNamespaceOutput",
     members = {
         channelNamespace = M.ChannelNamespace,
     },
@@ -985,6 +1037,7 @@ M.CreateChannelNamespaceOutput = {
 
 M.DeltaSyncConfig = {
     type = "structure",
+    id = "DeltaSyncConfig",
     members = {
         baseTableTTL = {
             type = "long",
@@ -1006,6 +1059,7 @@ M.DeltaSyncConfig = {
 
 M.DynamodbDataSourceConfig = {
     type = "structure",
+    id = "DynamodbDataSourceConfig",
     members = {
         tableName = {
             type = "string",
@@ -1037,6 +1091,7 @@ M.DynamodbDataSourceConfig = {
 
 M.ElasticsearchDataSourceConfig = {
     type = "structure",
+    id = "ElasticsearchDataSourceConfig",
     members = {
         endpoint = {
             type = "string",
@@ -1055,6 +1110,7 @@ M.ElasticsearchDataSourceConfig = {
 
 M.EventBridgeDataSourceConfig = {
     type = "structure",
+    id = "EventBridgeDataSourceConfig",
     members = {
         eventBusArn = {
             type = "string",
@@ -1067,6 +1123,7 @@ M.EventBridgeDataSourceConfig = {
 
 M.HttpDataSourceConfig = {
     type = "structure",
+    id = "HttpDataSourceConfig",
     members = {
         endpoint = {
             type = "string",
@@ -1077,6 +1134,7 @@ M.HttpDataSourceConfig = {
 
 M.LambdaDataSourceConfig = {
     type = "structure",
+    id = "LambdaDataSourceConfig",
     members = {
         lambdaFunctionArn = {
             type = "string",
@@ -1094,6 +1152,7 @@ M.DataSourceLevelMetricsConfig = {
 
 M.OpenSearchServiceDataSourceConfig = {
     type = "structure",
+    id = "OpenSearchServiceDataSourceConfig",
     members = {
         endpoint = {
             type = "string",
@@ -1112,6 +1171,7 @@ M.OpenSearchServiceDataSourceConfig = {
 
 M.RdsHttpEndpointConfig = {
     type = "structure",
+    id = "RdsHttpEndpointConfig",
     members = {
         awsRegion = {
             type = "string",
@@ -1137,6 +1197,7 @@ M.RelationalDatabaseSourceType = {
 
 M.RelationalDatabaseDataSourceConfig = {
     type = "structure",
+    id = "RelationalDatabaseDataSourceConfig",
     members = {
         relationalDatabaseSourceType = {
             type = "string",
@@ -1159,6 +1220,7 @@ M.DataSourceType = {
 
 M.CreateDataSourceInput = {
     type = "structure",
+    id = "CreateDataSourceInput",
     members = {
         apiId = {
             type = "string",
@@ -1200,6 +1262,7 @@ M.CreateDataSourceInput = {
 
 M.DataSource = {
     type = "structure",
+    id = "DataSource",
     members = {
         dataSourceArn = {
             type = "string",
@@ -1231,6 +1294,7 @@ M.DataSource = {
 
 M.CreateDataSourceOutput = {
     type = "structure",
+    id = "CreateDataSourceOutput",
     members = {
         dataSource = M.DataSource,
     },
@@ -1238,6 +1302,7 @@ M.CreateDataSourceOutput = {
 
 M.CreateDomainNameInput = {
     type = "structure",
+    id = "CreateDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -1264,6 +1329,7 @@ M.CreateDomainNameInput = {
 
 M.DomainNameConfig = {
     type = "structure",
+    id = "DomainNameConfig",
     members = {
         domainName = {
             type = "string",
@@ -1293,6 +1359,7 @@ M.DomainNameConfig = {
 
 M.CreateDomainNameOutput = {
     type = "structure",
+    id = "CreateDomainNameOutput",
     members = {
         domainNameConfig = M.DomainNameConfig,
     },
@@ -1312,6 +1379,7 @@ M.ConflictHandlerType = {
 
 M.LambdaConflictHandlerConfig = {
     type = "structure",
+    id = "LambdaConflictHandlerConfig",
     members = {
         lambdaConflictHandlerArn = {
             type = "string",
@@ -1321,6 +1389,7 @@ M.LambdaConflictHandlerConfig = {
 
 M.SyncConfig = {
     type = "structure",
+    id = "SyncConfig",
     members = {
         conflictHandler = {
             type = "string",
@@ -1334,6 +1403,7 @@ M.SyncConfig = {
 
 M.CreateFunctionInput = {
     type = "structure",
+    id = "CreateFunctionInput",
     members = {
         apiId = {
             type = "string",
@@ -1382,6 +1452,7 @@ M.CreateFunctionInput = {
 
 M.FunctionConfiguration = {
     type = "structure",
+    id = "FunctionConfiguration",
     members = {
         functionId = {
             type = "string",
@@ -1423,6 +1494,7 @@ M.FunctionConfiguration = {
 
 M.CreateFunctionOutput = {
     type = "structure",
+    id = "CreateFunctionOutput",
     members = {
         functionConfiguration = M.FunctionConfiguration,
     },
@@ -1450,6 +1522,7 @@ M.ResolverLevelMetricsBehavior = {
 
 M.EnhancedMetricsConfig = {
     type = "structure",
+    id = "EnhancedMetricsConfig",
     members = {
         resolverLevelMetricsBehavior = {
             type = "string",
@@ -1487,6 +1560,7 @@ M.FieldLogLevel = {
 
 M.LogConfig = {
     type = "structure",
+    id = "LogConfig",
     members = {
         fieldLogLevel = {
             type = "string",
@@ -1516,6 +1590,7 @@ M.DefaultAction = {
 
 M.UserPoolConfig = {
     type = "structure",
+    id = "UserPoolConfig",
     members = {
         userPoolId = {
             type = "string",
@@ -1548,6 +1623,7 @@ M.GraphQLApiVisibility = {
 
 M.CreateGraphqlApiInput = {
     type = "structure",
+    id = "CreateGraphqlApiInput",
     members = {
         name = {
             type = "string",
@@ -1613,6 +1689,7 @@ M.CreateGraphqlApiInput = {
 
 M.GraphqlApi = {
     type = "structure",
+    id = "GraphqlApi",
     members = {
         name = {
             type = "string",
@@ -1694,6 +1771,7 @@ M.GraphqlApi = {
 
 M.CreateGraphqlApiOutput = {
     type = "structure",
+    id = "CreateGraphqlApiOutput",
     members = {
         graphqlApi = M.GraphqlApi,
     },
@@ -1701,6 +1779,7 @@ M.CreateGraphqlApiOutput = {
 
 M.CachingConfig = {
     type = "structure",
+    id = "CachingConfig",
     members = {
         ttl = {
             type = "long",
@@ -1728,6 +1807,7 @@ M.ResolverLevelMetricsConfig = {
 
 M.PipelineConfig = {
     type = "structure",
+    id = "PipelineConfig",
     members = {
         functions = {
             type = "list",
@@ -1738,6 +1818,7 @@ M.PipelineConfig = {
 
 M.CreateResolverInput = {
     type = "structure",
+    id = "CreateResolverInput",
     members = {
         apiId = {
             type = "string",
@@ -1792,6 +1873,7 @@ M.CreateResolverInput = {
 
 M.Resolver = {
     type = "structure",
+    id = "Resolver",
     members = {
         typeName = {
             type = "string",
@@ -1835,6 +1917,7 @@ M.Resolver = {
 
 M.CreateResolverOutput = {
     type = "structure",
+    id = "CreateResolverOutput",
     members = {
         resolver = M.Resolver,
     },
@@ -1847,6 +1930,7 @@ M.TypeDefinitionFormat = {
 
 M.CreateTypeInput = {
     type = "structure",
+    id = "CreateTypeInput",
     members = {
         apiId = {
             type = "string",
@@ -1872,6 +1956,7 @@ M.CreateTypeInput = {
 
 M.Type = {
     type = "structure",
+    id = "Type",
     members = {
         name = {
             type = "string",
@@ -1893,6 +1978,7 @@ M.Type = {
 
 M.CreateTypeOutput = {
     type = "structure",
+    id = "CreateTypeOutput",
     members = {
         type = M.Type,
     },
@@ -1900,6 +1986,7 @@ M.CreateTypeOutput = {
 
 M.DeleteApiInput = {
     type = "structure",
+    id = "DeleteApiInput",
     members = {
         apiId = {
             type = "string",
@@ -1913,10 +2000,12 @@ M.DeleteApiInput = {
 
 M.DeleteApiOutput = {
     type = "structure",
+    id = "DeleteApiOutput",
 }
 
 M.DeleteApiCacheInput = {
     type = "structure",
+    id = "DeleteApiCacheInput",
     members = {
         apiId = {
             type = "string",
@@ -1930,10 +2019,12 @@ M.DeleteApiCacheInput = {
 
 M.DeleteApiCacheOutput = {
     type = "structure",
+    id = "DeleteApiCacheOutput",
 }
 
 M.DeleteApiKeyInput = {
     type = "structure",
+    id = "DeleteApiKeyInput",
     members = {
         apiId = {
             type = "string",
@@ -1954,10 +2045,12 @@ M.DeleteApiKeyInput = {
 
 M.DeleteApiKeyOutput = {
     type = "structure",
+    id = "DeleteApiKeyOutput",
 }
 
 M.DeleteChannelNamespaceInput = {
     type = "structure",
+    id = "DeleteChannelNamespaceInput",
     members = {
         apiId = {
             type = "string",
@@ -1978,10 +2071,12 @@ M.DeleteChannelNamespaceInput = {
 
 M.DeleteChannelNamespaceOutput = {
     type = "structure",
+    id = "DeleteChannelNamespaceOutput",
 }
 
 M.DeleteDataSourceInput = {
     type = "structure",
+    id = "DeleteDataSourceInput",
     members = {
         apiId = {
             type = "string",
@@ -2002,10 +2097,12 @@ M.DeleteDataSourceInput = {
 
 M.DeleteDataSourceOutput = {
     type = "structure",
+    id = "DeleteDataSourceOutput",
 }
 
 M.DeleteDomainNameInput = {
     type = "structure",
+    id = "DeleteDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -2019,10 +2116,12 @@ M.DeleteDomainNameInput = {
 
 M.DeleteDomainNameOutput = {
     type = "structure",
+    id = "DeleteDomainNameOutput",
 }
 
 M.DeleteFunctionInput = {
     type = "structure",
+    id = "DeleteFunctionInput",
     members = {
         apiId = {
             type = "string",
@@ -2043,10 +2142,12 @@ M.DeleteFunctionInput = {
 
 M.DeleteFunctionOutput = {
     type = "structure",
+    id = "DeleteFunctionOutput",
 }
 
 M.DeleteGraphqlApiInput = {
     type = "structure",
+    id = "DeleteGraphqlApiInput",
     members = {
         apiId = {
             type = "string",
@@ -2060,10 +2161,12 @@ M.DeleteGraphqlApiInput = {
 
 M.DeleteGraphqlApiOutput = {
     type = "structure",
+    id = "DeleteGraphqlApiOutput",
 }
 
 M.DeleteResolverInput = {
     type = "structure",
+    id = "DeleteResolverInput",
     members = {
         apiId = {
             type = "string",
@@ -2091,10 +2194,12 @@ M.DeleteResolverInput = {
 
 M.DeleteResolverOutput = {
     type = "structure",
+    id = "DeleteResolverOutput",
 }
 
 M.DeleteTypeInput = {
     type = "structure",
+    id = "DeleteTypeInput",
     members = {
         apiId = {
             type = "string",
@@ -2115,10 +2220,12 @@ M.DeleteTypeInput = {
 
 M.DeleteTypeOutput = {
     type = "structure",
+    id = "DeleteTypeOutput",
 }
 
 M.DisassociateApiInput = {
     type = "structure",
+    id = "DisassociateApiInput",
     members = {
         domainName = {
             type = "string",
@@ -2132,10 +2239,12 @@ M.DisassociateApiInput = {
 
 M.DisassociateApiOutput = {
     type = "structure",
+    id = "DisassociateApiOutput",
 }
 
 M.DisassociateMergedGraphqlApiInput = {
     type = "structure",
+    id = "DisassociateMergedGraphqlApiInput",
     members = {
         sourceApiIdentifier = {
             type = "string",
@@ -2156,6 +2265,7 @@ M.DisassociateMergedGraphqlApiInput = {
 
 M.DisassociateMergedGraphqlApiOutput = {
     type = "structure",
+    id = "DisassociateMergedGraphqlApiOutput",
     members = {
         sourceApiAssociationStatus = {
             type = "string",
@@ -2165,6 +2275,7 @@ M.DisassociateMergedGraphqlApiOutput = {
 
 M.DisassociateSourceGraphqlApiInput = {
     type = "structure",
+    id = "DisassociateSourceGraphqlApiInput",
     members = {
         mergedApiIdentifier = {
             type = "string",
@@ -2185,6 +2296,7 @@ M.DisassociateSourceGraphqlApiInput = {
 
 M.DisassociateSourceGraphqlApiOutput = {
     type = "structure",
+    id = "DisassociateSourceGraphqlApiOutput",
     members = {
         sourceApiAssociationStatus = {
             type = "string",
@@ -2194,6 +2306,7 @@ M.DisassociateSourceGraphqlApiOutput = {
 
 M.EvaluateCodeInput = {
     type = "structure",
+    id = "EvaluateCodeInput",
     members = {
         runtime = setmetatable({ traits = {
             required = true,
@@ -2218,6 +2331,7 @@ M.EvaluateCodeInput = {
 
 M.EvaluateCodeErrorDetail = {
     type = "structure",
+    id = "EvaluateCodeErrorDetail",
     members = {
         message = {
             type = "string",
@@ -2231,6 +2345,7 @@ M.EvaluateCodeErrorDetail = {
 
 M.EvaluateCodeOutput = {
     type = "structure",
+    id = "EvaluateCodeOutput",
     members = {
         evaluationResult = {
             type = "string",
@@ -2251,6 +2366,7 @@ M.EvaluateCodeOutput = {
 
 M.EvaluateMappingTemplateInput = {
     type = "structure",
+    id = "EvaluateMappingTemplateInput",
     members = {
         template = {
             type = "string",
@@ -2269,6 +2385,7 @@ M.EvaluateMappingTemplateInput = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         message = {
             type = "string",
@@ -2278,6 +2395,7 @@ M.ErrorDetail = {
 
 M.EvaluateMappingTemplateOutput = {
     type = "structure",
+    id = "EvaluateMappingTemplateOutput",
     members = {
         evaluationResult = {
             type = "string",
@@ -2298,6 +2416,7 @@ M.EvaluateMappingTemplateOutput = {
 
 M.FlushApiCacheInput = {
     type = "structure",
+    id = "FlushApiCacheInput",
     members = {
         apiId = {
             type = "string",
@@ -2311,10 +2430,12 @@ M.FlushApiCacheInput = {
 
 M.FlushApiCacheOutput = {
     type = "structure",
+    id = "FlushApiCacheOutput",
 }
 
 M.GetApiInput = {
     type = "structure",
+    id = "GetApiInput",
     members = {
         apiId = {
             type = "string",
@@ -2328,6 +2449,7 @@ M.GetApiInput = {
 
 M.GetApiOutput = {
     type = "structure",
+    id = "GetApiOutput",
     members = {
         api = M.Api,
     },
@@ -2335,6 +2457,7 @@ M.GetApiOutput = {
 
 M.GetApiAssociationInput = {
     type = "structure",
+    id = "GetApiAssociationInput",
     members = {
         domainName = {
             type = "string",
@@ -2348,6 +2471,7 @@ M.GetApiAssociationInput = {
 
 M.GetApiAssociationOutput = {
     type = "structure",
+    id = "GetApiAssociationOutput",
     members = {
         apiAssociation = M.ApiAssociation,
     },
@@ -2355,6 +2479,7 @@ M.GetApiAssociationOutput = {
 
 M.GetApiCacheInput = {
     type = "structure",
+    id = "GetApiCacheInput",
     members = {
         apiId = {
             type = "string",
@@ -2368,6 +2493,7 @@ M.GetApiCacheInput = {
 
 M.GetApiCacheOutput = {
     type = "structure",
+    id = "GetApiCacheOutput",
     members = {
         apiCache = M.ApiCache,
     },
@@ -2375,6 +2501,7 @@ M.GetApiCacheOutput = {
 
 M.GetChannelNamespaceInput = {
     type = "structure",
+    id = "GetChannelNamespaceInput",
     members = {
         apiId = {
             type = "string",
@@ -2395,6 +2522,7 @@ M.GetChannelNamespaceInput = {
 
 M.GetChannelNamespaceOutput = {
     type = "structure",
+    id = "GetChannelNamespaceOutput",
     members = {
         channelNamespace = M.ChannelNamespace,
     },
@@ -2402,6 +2530,7 @@ M.GetChannelNamespaceOutput = {
 
 M.GetDataSourceInput = {
     type = "structure",
+    id = "GetDataSourceInput",
     members = {
         apiId = {
             type = "string",
@@ -2422,6 +2551,7 @@ M.GetDataSourceInput = {
 
 M.GetDataSourceOutput = {
     type = "structure",
+    id = "GetDataSourceOutput",
     members = {
         dataSource = M.DataSource,
     },
@@ -2429,6 +2559,7 @@ M.GetDataSourceOutput = {
 
 M.GetDataSourceIntrospectionInput = {
     type = "structure",
+    id = "GetDataSourceIntrospectionInput",
     members = {
         introspectionId = {
             type = "string",
@@ -2462,6 +2593,7 @@ M.GetDataSourceIntrospectionInput = {
 
 M.DataSourceIntrospectionModelIndex = {
     type = "structure",
+    id = "DataSourceIntrospectionModelIndex",
     members = {
         name = {
             type = "string",
@@ -2481,6 +2613,7 @@ M.DataSourceIntrospectionStatus = {
 
 M.GetDomainNameInput = {
     type = "structure",
+    id = "GetDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -2494,6 +2627,7 @@ M.GetDomainNameInput = {
 
 M.GetDomainNameOutput = {
     type = "structure",
+    id = "GetDomainNameOutput",
     members = {
         domainNameConfig = M.DomainNameConfig,
     },
@@ -2501,6 +2635,7 @@ M.GetDomainNameOutput = {
 
 M.GetFunctionInput = {
     type = "structure",
+    id = "GetFunctionInput",
     members = {
         apiId = {
             type = "string",
@@ -2521,6 +2656,7 @@ M.GetFunctionInput = {
 
 M.GetFunctionOutput = {
     type = "structure",
+    id = "GetFunctionOutput",
     members = {
         functionConfiguration = M.FunctionConfiguration,
     },
@@ -2528,6 +2664,7 @@ M.GetFunctionOutput = {
 
 M.GetGraphqlApiInput = {
     type = "structure",
+    id = "GetGraphqlApiInput",
     members = {
         apiId = {
             type = "string",
@@ -2541,6 +2678,7 @@ M.GetGraphqlApiInput = {
 
 M.GetGraphqlApiOutput = {
     type = "structure",
+    id = "GetGraphqlApiOutput",
     members = {
         graphqlApi = M.GraphqlApi,
     },
@@ -2548,6 +2686,7 @@ M.GetGraphqlApiOutput = {
 
 M.GetGraphqlApiEnvironmentVariablesInput = {
     type = "structure",
+    id = "GetGraphqlApiEnvironmentVariablesInput",
     members = {
         apiId = {
             type = "string",
@@ -2561,6 +2700,7 @@ M.GetGraphqlApiEnvironmentVariablesInput = {
 
 M.GetGraphqlApiEnvironmentVariablesOutput = {
     type = "structure",
+    id = "GetGraphqlApiEnvironmentVariablesOutput",
     members = {
         environmentVariables = {
             type = "map",
@@ -2577,6 +2717,7 @@ M.OutputType = {
 
 M.GetIntrospectionSchemaInput = {
     type = "structure",
+    id = "GetIntrospectionSchemaInput",
     members = {
         apiId = {
             type = "string",
@@ -2603,6 +2744,7 @@ M.GetIntrospectionSchemaInput = {
 
 M.GetIntrospectionSchemaOutput = {
     type = "structure",
+    id = "GetIntrospectionSchemaOutput",
     members = {
         schema = {
             type = "blob",
@@ -2615,6 +2757,7 @@ M.GetIntrospectionSchemaOutput = {
 
 M.GraphQLSchemaException = {
     type = "structure",
+    id = "GraphQLSchemaException",
     error = "client",
     members = {
         message = {
@@ -2625,6 +2768,7 @@ M.GraphQLSchemaException = {
 
 M.GetResolverInput = {
     type = "structure",
+    id = "GetResolverInput",
     members = {
         apiId = {
             type = "string",
@@ -2652,6 +2796,7 @@ M.GetResolverInput = {
 
 M.GetResolverOutput = {
     type = "structure",
+    id = "GetResolverOutput",
     members = {
         resolver = M.Resolver,
     },
@@ -2659,6 +2804,7 @@ M.GetResolverOutput = {
 
 M.GetSchemaCreationStatusInput = {
     type = "structure",
+    id = "GetSchemaCreationStatusInput",
     members = {
         apiId = {
             type = "string",
@@ -2681,6 +2827,7 @@ M.SchemaStatus = {
 
 M.GetSchemaCreationStatusOutput = {
     type = "structure",
+    id = "GetSchemaCreationStatusOutput",
     members = {
         status = {
             type = "string",
@@ -2693,6 +2840,7 @@ M.GetSchemaCreationStatusOutput = {
 
 M.GetSourceApiAssociationInput = {
     type = "structure",
+    id = "GetSourceApiAssociationInput",
     members = {
         mergedApiIdentifier = {
             type = "string",
@@ -2713,6 +2861,7 @@ M.GetSourceApiAssociationInput = {
 
 M.GetSourceApiAssociationOutput = {
     type = "structure",
+    id = "GetSourceApiAssociationOutput",
     members = {
         sourceApiAssociation = M.SourceApiAssociation,
     },
@@ -2720,6 +2869,7 @@ M.GetSourceApiAssociationOutput = {
 
 M.GetTypeInput = {
     type = "structure",
+    id = "GetTypeInput",
     members = {
         apiId = {
             type = "string",
@@ -2747,6 +2897,7 @@ M.GetTypeInput = {
 
 M.GetTypeOutput = {
     type = "structure",
+    id = "GetTypeOutput",
     members = {
         type = M.Type,
     },
@@ -2754,6 +2905,7 @@ M.GetTypeOutput = {
 
 M.ListApiKeysInput = {
     type = "structure",
+    id = "ListApiKeysInput",
     members = {
         apiId = {
             type = "string",
@@ -2780,6 +2932,7 @@ M.ListApiKeysInput = {
 
 M.ListApiKeysOutput = {
     type = "structure",
+    id = "ListApiKeysOutput",
     members = {
         apiKeys = {
             type = "list",
@@ -2793,6 +2946,7 @@ M.ListApiKeysOutput = {
 
 M.ListApisInput = {
     type = "structure",
+    id = "ListApisInput",
     members = {
         nextToken = {
             type = "string",
@@ -2812,6 +2966,7 @@ M.ListApisInput = {
 
 M.ListApisOutput = {
     type = "structure",
+    id = "ListApisOutput",
     members = {
         apis = {
             type = "list",
@@ -2825,6 +2980,7 @@ M.ListApisOutput = {
 
 M.ListChannelNamespacesInput = {
     type = "structure",
+    id = "ListChannelNamespacesInput",
     members = {
         apiId = {
             type = "string",
@@ -2851,6 +3007,7 @@ M.ListChannelNamespacesInput = {
 
 M.ListChannelNamespacesOutput = {
     type = "structure",
+    id = "ListChannelNamespacesOutput",
     members = {
         channelNamespaces = {
             type = "list",
@@ -2864,6 +3021,7 @@ M.ListChannelNamespacesOutput = {
 
 M.ListDataSourcesInput = {
     type = "structure",
+    id = "ListDataSourcesInput",
     members = {
         apiId = {
             type = "string",
@@ -2890,6 +3048,7 @@ M.ListDataSourcesInput = {
 
 M.ListDataSourcesOutput = {
     type = "structure",
+    id = "ListDataSourcesOutput",
     members = {
         dataSources = {
             type = "list",
@@ -2903,6 +3062,7 @@ M.ListDataSourcesOutput = {
 
 M.ListDomainNamesInput = {
     type = "structure",
+    id = "ListDomainNamesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2922,6 +3082,7 @@ M.ListDomainNamesInput = {
 
 M.ListDomainNamesOutput = {
     type = "structure",
+    id = "ListDomainNamesOutput",
     members = {
         domainNameConfigs = {
             type = "list",
@@ -2935,6 +3096,7 @@ M.ListDomainNamesOutput = {
 
 M.ListFunctionsInput = {
     type = "structure",
+    id = "ListFunctionsInput",
     members = {
         apiId = {
             type = "string",
@@ -2961,6 +3123,7 @@ M.ListFunctionsInput = {
 
 M.ListFunctionsOutput = {
     type = "structure",
+    id = "ListFunctionsOutput",
     members = {
         functions = {
             type = "list",
@@ -2979,6 +3142,7 @@ M.Ownership = {
 
 M.ListGraphqlApisInput = {
     type = "structure",
+    id = "ListGraphqlApisInput",
     members = {
         nextToken = {
             type = "string",
@@ -3010,6 +3174,7 @@ M.ListGraphqlApisInput = {
 
 M.ListGraphqlApisOutput = {
     type = "structure",
+    id = "ListGraphqlApisOutput",
     members = {
         graphqlApis = {
             type = "list",
@@ -3023,6 +3188,7 @@ M.ListGraphqlApisOutput = {
 
 M.ListResolversInput = {
     type = "structure",
+    id = "ListResolversInput",
     members = {
         apiId = {
             type = "string",
@@ -3056,6 +3222,7 @@ M.ListResolversInput = {
 
 M.ListResolversOutput = {
     type = "structure",
+    id = "ListResolversOutput",
     members = {
         resolvers = {
             type = "list",
@@ -3069,6 +3236,7 @@ M.ListResolversOutput = {
 
 M.ListResolversByFunctionInput = {
     type = "structure",
+    id = "ListResolversByFunctionInput",
     members = {
         apiId = {
             type = "string",
@@ -3102,6 +3270,7 @@ M.ListResolversByFunctionInput = {
 
 M.ListResolversByFunctionOutput = {
     type = "structure",
+    id = "ListResolversByFunctionOutput",
     members = {
         resolvers = {
             type = "list",
@@ -3115,6 +3284,7 @@ M.ListResolversByFunctionOutput = {
 
 M.ListSourceApiAssociationsInput = {
     type = "structure",
+    id = "ListSourceApiAssociationsInput",
     members = {
         apiId = {
             type = "string",
@@ -3141,6 +3311,7 @@ M.ListSourceApiAssociationsInput = {
 
 M.SourceApiAssociationSummary = {
     type = "structure",
+    id = "SourceApiAssociationSummary",
     members = {
         associationId = {
             type = "string",
@@ -3168,6 +3339,7 @@ M.SourceApiAssociationSummary = {
 
 M.ListSourceApiAssociationsOutput = {
     type = "structure",
+    id = "ListSourceApiAssociationsOutput",
     members = {
         sourceApiAssociationSummaries = {
             type = "list",
@@ -3181,6 +3353,7 @@ M.ListSourceApiAssociationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3194,6 +3367,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3205,6 +3379,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTypesInput = {
     type = "structure",
+    id = "ListTypesInput",
     members = {
         apiId = {
             type = "string",
@@ -3238,6 +3413,7 @@ M.ListTypesInput = {
 
 M.ListTypesOutput = {
     type = "structure",
+    id = "ListTypesOutput",
     members = {
         types = {
             type = "list",
@@ -3251,6 +3427,7 @@ M.ListTypesOutput = {
 
 M.ListTypesByAssociationInput = {
     type = "structure",
+    id = "ListTypesByAssociationInput",
     members = {
         mergedApiIdentifier = {
             type = "string",
@@ -3291,6 +3468,7 @@ M.ListTypesByAssociationInput = {
 
 M.ListTypesByAssociationOutput = {
     type = "structure",
+    id = "ListTypesByAssociationOutput",
     members = {
         types = {
             type = "list",
@@ -3304,6 +3482,7 @@ M.ListTypesByAssociationOutput = {
 
 M.PutGraphqlApiEnvironmentVariablesInput = {
     type = "structure",
+    id = "PutGraphqlApiEnvironmentVariablesInput",
     members = {
         apiId = {
             type = "string",
@@ -3325,6 +3504,7 @@ M.PutGraphqlApiEnvironmentVariablesInput = {
 
 M.PutGraphqlApiEnvironmentVariablesOutput = {
     type = "structure",
+    id = "PutGraphqlApiEnvironmentVariablesOutput",
     members = {
         environmentVariables = {
             type = "map",
@@ -3336,6 +3516,7 @@ M.PutGraphqlApiEnvironmentVariablesOutput = {
 
 M.RdsDataApiConfig = {
     type = "structure",
+    id = "RdsDataApiConfig",
     members = {
         resourceArn = {
             type = "string",
@@ -3360,6 +3541,7 @@ M.RdsDataApiConfig = {
 
 M.StartDataSourceIntrospectionInput = {
     type = "structure",
+    id = "StartDataSourceIntrospectionInput",
     members = {
         rdsDataApiConfig = M.RdsDataApiConfig,
     },
@@ -3367,6 +3549,7 @@ M.StartDataSourceIntrospectionInput = {
 
 M.StartDataSourceIntrospectionOutput = {
     type = "structure",
+    id = "StartDataSourceIntrospectionOutput",
     members = {
         introspectionId = {
             type = "string",
@@ -3382,6 +3565,7 @@ M.StartDataSourceIntrospectionOutput = {
 
 M.StartSchemaCreationInput = {
     type = "structure",
+    id = "StartSchemaCreationInput",
     members = {
         apiId = {
             type = "string",
@@ -3401,6 +3585,7 @@ M.StartSchemaCreationInput = {
 
 M.StartSchemaCreationOutput = {
     type = "structure",
+    id = "StartSchemaCreationOutput",
     members = {
         status = {
             type = "string",
@@ -3410,6 +3595,7 @@ M.StartSchemaCreationOutput = {
 
 M.StartSchemaMergeInput = {
     type = "structure",
+    id = "StartSchemaMergeInput",
     members = {
         associationId = {
             type = "string",
@@ -3430,6 +3616,7 @@ M.StartSchemaMergeInput = {
 
 M.StartSchemaMergeOutput = {
     type = "structure",
+    id = "StartSchemaMergeOutput",
     members = {
         sourceApiAssociationStatus = {
             type = "string",
@@ -3439,6 +3626,7 @@ M.StartSchemaMergeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3460,10 +3648,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3485,10 +3675,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApiInput = {
     type = "structure",
+    id = "UpdateApiInput",
     members = {
         apiId = {
             type = "string",
@@ -3514,6 +3706,7 @@ M.UpdateApiInput = {
 
 M.UpdateApiOutput = {
     type = "structure",
+    id = "UpdateApiOutput",
     members = {
         api = M.Api,
     },
@@ -3521,6 +3714,7 @@ M.UpdateApiOutput = {
 
 M.UpdateApiCacheInput = {
     type = "structure",
+    id = "UpdateApiCacheInput",
     members = {
         apiId = {
             type = "string",
@@ -3556,6 +3750,7 @@ M.UpdateApiCacheInput = {
 
 M.UpdateApiCacheOutput = {
     type = "structure",
+    id = "UpdateApiCacheOutput",
     members = {
         apiCache = M.ApiCache,
     },
@@ -3563,6 +3758,7 @@ M.UpdateApiCacheOutput = {
 
 M.UpdateApiKeyInput = {
     type = "structure",
+    id = "UpdateApiKeyInput",
     members = {
         apiId = {
             type = "string",
@@ -3592,6 +3788,7 @@ M.UpdateApiKeyInput = {
 
 M.UpdateApiKeyOutput = {
     type = "structure",
+    id = "UpdateApiKeyOutput",
     members = {
         apiKey = M.ApiKey,
     },
@@ -3599,6 +3796,7 @@ M.UpdateApiKeyOutput = {
 
 M.UpdateChannelNamespaceInput = {
     type = "structure",
+    id = "UpdateChannelNamespaceInput",
     members = {
         apiId = {
             type = "string",
@@ -3631,6 +3829,7 @@ M.UpdateChannelNamespaceInput = {
 
 M.UpdateChannelNamespaceOutput = {
     type = "structure",
+    id = "UpdateChannelNamespaceOutput",
     members = {
         channelNamespace = M.ChannelNamespace,
     },
@@ -3638,6 +3837,7 @@ M.UpdateChannelNamespaceOutput = {
 
 M.UpdateDataSourceInput = {
     type = "structure",
+    id = "UpdateDataSourceInput",
     members = {
         apiId = {
             type = "string",
@@ -3680,6 +3880,7 @@ M.UpdateDataSourceInput = {
 
 M.UpdateDataSourceOutput = {
     type = "structure",
+    id = "UpdateDataSourceOutput",
     members = {
         dataSource = M.DataSource,
     },
@@ -3687,6 +3888,7 @@ M.UpdateDataSourceOutput = {
 
 M.UpdateDomainNameInput = {
     type = "structure",
+    id = "UpdateDomainNameInput",
     members = {
         domainName = {
             type = "string",
@@ -3703,6 +3905,7 @@ M.UpdateDomainNameInput = {
 
 M.UpdateDomainNameOutput = {
     type = "structure",
+    id = "UpdateDomainNameOutput",
     members = {
         domainNameConfig = M.DomainNameConfig,
     },
@@ -3710,6 +3913,7 @@ M.UpdateDomainNameOutput = {
 
 M.UpdateFunctionInput = {
     type = "structure",
+    id = "UpdateFunctionInput",
     members = {
         apiId = {
             type = "string",
@@ -3765,6 +3969,7 @@ M.UpdateFunctionInput = {
 
 M.UpdateFunctionOutput = {
     type = "structure",
+    id = "UpdateFunctionOutput",
     members = {
         functionConfiguration = M.FunctionConfiguration,
     },
@@ -3772,6 +3977,7 @@ M.UpdateFunctionOutput = {
 
 M.UpdateGraphqlApiInput = {
     type = "structure",
+    id = "UpdateGraphqlApiInput",
     members = {
         apiId = {
             type = "string",
@@ -3833,6 +4039,7 @@ M.UpdateGraphqlApiInput = {
 
 M.UpdateGraphqlApiOutput = {
     type = "structure",
+    id = "UpdateGraphqlApiOutput",
     members = {
         graphqlApi = M.GraphqlApi,
     },
@@ -3840,6 +4047,7 @@ M.UpdateGraphqlApiOutput = {
 
 M.UpdateResolverInput = {
     type = "structure",
+    id = "UpdateResolverInput",
     members = {
         apiId = {
             type = "string",
@@ -3895,6 +4103,7 @@ M.UpdateResolverInput = {
 
 M.UpdateResolverOutput = {
     type = "structure",
+    id = "UpdateResolverOutput",
     members = {
         resolver = M.Resolver,
     },
@@ -3902,6 +4111,7 @@ M.UpdateResolverOutput = {
 
 M.UpdateSourceApiAssociationInput = {
     type = "structure",
+    id = "UpdateSourceApiAssociationInput",
     members = {
         associationId = {
             type = "string",
@@ -3926,6 +4136,7 @@ M.UpdateSourceApiAssociationInput = {
 
 M.UpdateSourceApiAssociationOutput = {
     type = "structure",
+    id = "UpdateSourceApiAssociationOutput",
     members = {
         sourceApiAssociation = M.SourceApiAssociation,
     },
@@ -3933,6 +4144,7 @@ M.UpdateSourceApiAssociationOutput = {
 
 M.UpdateTypeInput = {
     type = "structure",
+    id = "UpdateTypeInput",
     members = {
         apiId = {
             type = "string",
@@ -3962,6 +4174,7 @@ M.UpdateTypeInput = {
 
 M.UpdateTypeOutput = {
     type = "structure",
+    id = "UpdateTypeOutput",
     members = {
         type = M.Type,
     },
@@ -3969,6 +4182,7 @@ M.UpdateTypeOutput = {
 
 M.DataSourceIntrospectionModelFieldType = {
     type = "structure",
+    id = "DataSourceIntrospectionModelFieldType",
     members = {
         kind = {
             type = "string",
@@ -3986,6 +4200,7 @@ M.DataSourceIntrospectionModelFieldType = {
 
 M.DataSourceIntrospectionModelField = {
     type = "structure",
+    id = "DataSourceIntrospectionModelField",
     members = {
         name = {
             type = "string",
@@ -4002,6 +4217,7 @@ M.DataSourceIntrospectionModelField = {
 
 M.DataSourceIntrospectionModel = {
     type = "structure",
+    id = "DataSourceIntrospectionModel",
     members = {
         name = {
             type = "string",
@@ -4023,6 +4239,7 @@ M.DataSourceIntrospectionModel = {
 
 M.DataSourceIntrospectionResult = {
     type = "structure",
+    id = "DataSourceIntrospectionResult",
     members = {
         models = {
             type = "list",
@@ -4036,6 +4253,7 @@ M.DataSourceIntrospectionResult = {
 
 M.GetDataSourceIntrospectionOutput = {
     type = "structure",
+    id = "GetDataSourceIntrospectionOutput",
     members = {
         introspectionId = {
             type = "string",

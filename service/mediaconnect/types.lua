@@ -17,6 +17,7 @@ M.Protocol = {
 
 M.AddBridgeNetworkOutputRequest = {
     type = "structure",
+    id = "AddBridgeNetworkOutputRequest",
     members = {
         IpAddress = {
             type = "string",
@@ -65,6 +66,7 @@ M.AddBridgeNetworkOutputRequest = {
 
 M.AddBridgeOutputRequest = {
     type = "structure",
+    id = "AddBridgeOutputRequest",
     members = {
         NetworkOutput = setmetatable({ traits = {
             json_name = "networkOutput",
@@ -74,6 +76,7 @@ M.AddBridgeOutputRequest = {
 
 M.VpcInterfaceAttachment = {
     type = "structure",
+    id = "VpcInterfaceAttachment",
     members = {
         VpcInterfaceName = {
             type = "string",
@@ -86,6 +89,7 @@ M.VpcInterfaceAttachment = {
 
 M.AddBridgeFlowSourceRequest = {
     type = "structure",
+    id = "AddBridgeFlowSourceRequest",
     members = {
         FlowArn = {
             type = "string",
@@ -109,6 +113,7 @@ M.AddBridgeFlowSourceRequest = {
 
 M.MulticastSourceSettings = {
     type = "structure",
+    id = "MulticastSourceSettings",
     members = {
         MulticastSourceIp = {
             type = "string",
@@ -121,6 +126,7 @@ M.MulticastSourceSettings = {
 
 M.AddBridgeNetworkSourceRequest = {
     type = "structure",
+    id = "AddBridgeNetworkSourceRequest",
     members = {
         MulticastIp = {
             type = "string",
@@ -165,6 +171,7 @@ M.AddBridgeNetworkSourceRequest = {
 
 M.AddBridgeSourceRequest = {
     type = "structure",
+    id = "AddBridgeSourceRequest",
     members = {
         FlowSource = setmetatable({ traits = {
             json_name = "flowSource",
@@ -211,6 +218,7 @@ M.Tcs = {
 
 M.FmtpRequest = {
     type = "structure",
+    id = "FmtpRequest",
     members = {
         ChannelOrder = {
             type = "string",
@@ -259,6 +267,7 @@ M.FmtpRequest = {
 
 M.MediaStreamAttributesRequest = {
     type = "structure",
+    id = "MediaStreamAttributesRequest",
     members = {
         Fmtp = setmetatable({ traits = {
             json_name = "fmtp",
@@ -280,6 +289,7 @@ M.MediaStreamType = {
 
 M.AddMediaStreamRequest = {
     type = "structure",
+    id = "AddMediaStreamRequest",
     members = {
         Attributes = setmetatable({ traits = {
             json_name = "attributes",
@@ -348,6 +358,7 @@ M.KeyType = {
 
 M.Encryption = {
     type = "structure",
+    id = "Encryption",
     members = {
         Algorithm = {
             type = "string",
@@ -409,6 +420,7 @@ M.Encryption = {
 
 M.InterfaceRequest = {
     type = "structure",
+    id = "InterfaceRequest",
     members = {
         Name = {
             type = "string",
@@ -422,6 +434,7 @@ M.InterfaceRequest = {
 
 M.DestinationConfigurationRequest = {
     type = "structure",
+    id = "DestinationConfigurationRequest",
     members = {
         DestinationIp = {
             type = "string",
@@ -458,6 +471,7 @@ M.EncoderProfile = {
 
 M.EncodingParametersRequest = {
     type = "structure",
+    id = "EncodingParametersRequest",
     members = {
         CompressionFactor = {
             type = "double",
@@ -478,6 +492,7 @@ M.EncodingParametersRequest = {
 
 M.MediaStreamOutputConfigurationRequest = {
     type = "structure",
+    id = "MediaStreamOutputConfigurationRequest",
     members = {
         DestinationConfigurations = {
             type = "list",
@@ -518,10 +533,12 @@ M.State = {
 
 M.AutomaticEncryptionKeyConfiguration = {
     type = "structure",
+    id = "AutomaticEncryptionKeyConfiguration",
 }
 
 M.SecretsManagerEncryptionKeyConfiguration = {
     type = "structure",
+    id = "SecretsManagerEncryptionKeyConfiguration",
     members = {
         SecretArn = {
             type = "string",
@@ -542,6 +559,7 @@ M.SecretsManagerEncryptionKeyConfiguration = {
 
 M.FlowTransitEncryptionKeyConfiguration = {
     type = "union",
+    id = "FlowTransitEncryptionKeyConfiguration",
     members = {
         SecretsManager = setmetatable({ traits = {
             json_name = "secretsManager",
@@ -559,6 +577,7 @@ M.FlowTransitEncryptionKeyType = {
 
 M.FlowTransitEncryption = {
     type = "structure",
+    id = "FlowTransitEncryption",
     members = {
         EncryptionKeyType = {
             type = "string",
@@ -575,6 +594,7 @@ M.FlowTransitEncryption = {
 
 M.AddOutputRequest = {
     type = "structure",
+    id = "AddOutputRequest",
     members = {
         CidrAllowList = {
             type = "list",
@@ -702,6 +722,7 @@ M.AddOutputRequest = {
 
 M.SilentAudio = {
     type = "structure",
+    id = "SilentAudio",
     members = {
         State = {
             type = "string",
@@ -720,6 +741,7 @@ M.SilentAudio = {
 
 M.AudioMonitoringSetting = {
     type = "structure",
+    id = "AudioMonitoringSetting",
     members = {
         SilentAudio = setmetatable({ traits = {
             json_name = "silentAudio",
@@ -729,6 +751,7 @@ M.AudioMonitoringSetting = {
 
 M.BridgeFlowOutput = {
     type = "structure",
+    id = "BridgeFlowOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -756,6 +779,7 @@ M.BridgeFlowOutput = {
 
 M.BridgeNetworkOutput = {
     type = "structure",
+    id = "BridgeNetworkOutput",
     members = {
         IpAddress = {
             type = "string",
@@ -804,6 +828,7 @@ M.BridgeNetworkOutput = {
 
 M.BridgeOutput = {
     type = "structure",
+    id = "BridgeOutput",
     members = {
         FlowOutput = setmetatable({ traits = {
             json_name = "flowOutput",
@@ -816,6 +841,7 @@ M.BridgeOutput = {
 
 M.BridgeFlowSource = {
     type = "structure",
+    id = "BridgeFlowSource",
     members = {
         FlowArn = {
             type = "string",
@@ -845,6 +871,7 @@ M.BridgeFlowSource = {
 
 M.BridgeNetworkSource = {
     type = "structure",
+    id = "BridgeNetworkSource",
     members = {
         MulticastIp = {
             type = "string",
@@ -889,6 +916,7 @@ M.BridgeNetworkSource = {
 
 M.BridgeSource = {
     type = "structure",
+    id = "BridgeSource",
     members = {
         FlowSource = setmetatable({ traits = {
             json_name = "flowSource",
@@ -901,6 +929,7 @@ M.BridgeSource = {
 
 M.Interface = {
     type = "structure",
+    id = "Interface",
     members = {
         Name = {
             type = "string",
@@ -914,6 +943,7 @@ M.Interface = {
 
 M.DestinationConfiguration = {
     type = "structure",
+    id = "DestinationConfiguration",
     members = {
         DestinationIp = {
             type = "string",
@@ -950,6 +980,7 @@ M.EntitlementStatus = {
 
 M.Entitlement = {
     type = "structure",
+    id = "Entitlement",
     members = {
         DataTransferSubscriberFeePercent = {
             type = "integer",
@@ -999,6 +1030,7 @@ M.Entitlement = {
 
 M.GatewayNetwork = {
     type = "structure",
+    id = "GatewayNetwork",
     members = {
         CidrBlock = {
             type = "string",
@@ -1019,6 +1051,7 @@ M.GatewayNetwork = {
 
 M.GrantEntitlementRequest = {
     type = "structure",
+    id = "GrantEntitlementRequest",
     members = {
         DataTransferSubscriberFeePercent = {
             type = "integer",
@@ -1068,6 +1101,7 @@ M.GrantEntitlementRequest = {
 
 M.InputConfiguration = {
     type = "structure",
+    id = "InputConfiguration",
     members = {
         InputIp = {
             type = "string",
@@ -1092,6 +1126,7 @@ M.InputConfiguration = {
 
 M.InputConfigurationRequest = {
     type = "structure",
+    id = "InputConfigurationRequest",
     members = {
         InputPort = {
             type = "integer",
@@ -1124,6 +1159,7 @@ M.BridgeState = {
 
 M.ListedBridge = {
     type = "structure",
+    id = "ListedBridge",
     members = {
         BridgeArn = {
             type = "string",
@@ -1165,6 +1201,7 @@ M.ListedBridge = {
 
 M.ListedEntitlement = {
     type = "structure",
+    id = "ListedEntitlement",
     members = {
         DataTransferSubscriberFeePercent = {
             type = "integer",
@@ -1201,6 +1238,7 @@ M.MaintenanceDay = {
 
 M.Maintenance = {
     type = "structure",
+    id = "Maintenance",
     members = {
         MaintenanceDay = {
             type = "string",
@@ -1246,6 +1284,7 @@ M.Status = {
 
 M.ListedFlow = {
     type = "structure",
+    id = "ListedFlow",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -1306,6 +1345,7 @@ M.GatewayState = {
 
 M.ListedGateway = {
     type = "structure",
+    id = "ListedGateway",
     members = {
         GatewayArn = {
             type = "string",
@@ -1342,6 +1382,7 @@ M.InstanceState = {
 
 M.ListedGatewayInstance = {
     type = "structure",
+    id = "ListedGatewayInstance",
     members = {
         GatewayArn = {
             type = "string",
@@ -1375,6 +1416,7 @@ M.ListedGatewayInstance = {
 
 M.Fmtp = {
     type = "structure",
+    id = "Fmtp",
     members = {
         ChannelOrder = {
             type = "string",
@@ -1423,6 +1465,7 @@ M.Fmtp = {
 
 M.MediaStreamAttributes = {
     type = "structure",
+    id = "MediaStreamAttributes",
     members = {
         Fmtp = setmetatable({ traits = {
             json_name = "fmtp",
@@ -1439,6 +1482,7 @@ M.MediaStreamAttributes = {
 
 M.MediaStream = {
     type = "structure",
+    id = "MediaStream",
     members = {
         Attributes = setmetatable({ traits = {
             json_name = "attributes",
@@ -1494,6 +1538,7 @@ M.MediaStream = {
 
 M.EncodingParameters = {
     type = "structure",
+    id = "EncodingParameters",
     members = {
         CompressionFactor = {
             type = "double",
@@ -1514,6 +1559,7 @@ M.EncodingParameters = {
 
 M.MediaStreamOutputConfiguration = {
     type = "structure",
+    id = "MediaStreamOutputConfiguration",
     members = {
         DestinationConfigurations = {
             type = "list",
@@ -1544,6 +1590,7 @@ M.MediaStreamOutputConfiguration = {
 
 M.MediaStreamSourceConfiguration = {
     type = "structure",
+    id = "MediaStreamSourceConfiguration",
     members = {
         EncodingName = {
             type = "string",
@@ -1571,6 +1618,7 @@ M.MediaStreamSourceConfiguration = {
 
 M.MediaStreamSourceConfigurationRequest = {
     type = "structure",
+    id = "MediaStreamSourceConfigurationRequest",
     members = {
         EncodingName = {
             type = "string",
@@ -1598,6 +1646,7 @@ M.MediaStreamSourceConfigurationRequest = {
 
 M.MessageDetail = {
     type = "structure",
+    id = "MessageDetail",
     members = {
         Code = {
             type = "string",
@@ -1624,6 +1673,7 @@ M.MessageDetail = {
 
 M.NdiDiscoveryServerConfig = {
     type = "structure",
+    id = "NdiDiscoveryServerConfig",
     members = {
         DiscoveryServerAddress = {
             type = "string",
@@ -1650,6 +1700,7 @@ M.NdiDiscoveryServerConfig = {
 
 M.FrameResolution = {
     type = "structure",
+    id = "FrameResolution",
     members = {
         FrameHeight = {
             type = "integer",
@@ -1670,6 +1721,7 @@ M.FrameResolution = {
 
 M.NdiMediaStreamInfo = {
     type = "structure",
+    id = "NdiMediaStreamInfo",
     members = {
         StreamType = {
             type = "string",
@@ -1724,6 +1776,7 @@ M.NdiMediaStreamInfo = {
 
 M.NdiSourceInfo = {
     type = "structure",
+    id = "NdiSourceInfo",
     members = {
         SourceName = {
             type = "string",
@@ -1749,6 +1802,7 @@ M.ResourceType = {
 
 M.ResourceSpecification = {
     type = "structure",
+    id = "ResourceSpecification",
     members = {
         ReservedBitrate = {
             type = "integer",
@@ -1768,6 +1822,7 @@ M.ResourceSpecification = {
 
 M.Offering = {
     type = "structure",
+    id = "Offering",
     members = {
         CurrencyCode = {
             type = "string",
@@ -1827,6 +1882,7 @@ M.Offering = {
 
 M.NdiSourceSettings = {
     type = "structure",
+    id = "NdiSourceSettings",
     members = {
         SourceName = {
             type = "string",
@@ -1839,6 +1895,7 @@ M.NdiSourceSettings = {
 
 M.Transport = {
     type = "structure",
+    id = "Transport",
     members = {
         CidrAllowList = {
             type = "list",
@@ -1940,6 +1997,7 @@ M.Transport = {
 
 M.Output = {
     type = "structure",
+    id = "Output",
     members = {
         DataTransferSubscriberFeePercent = {
             type = "integer",
@@ -2065,6 +2123,7 @@ M.ReservationState = {
 
 M.Reservation = {
     type = "structure",
+    id = "Reservation",
     members = {
         CurrencyCode = {
             type = "string",
@@ -2159,6 +2218,7 @@ M.Reservation = {
 
 M.SetGatewayBridgeSourceRequest = {
     type = "structure",
+    id = "SetGatewayBridgeSourceRequest",
     members = {
         BridgeArn = {
             type = "string",
@@ -2175,6 +2235,7 @@ M.SetGatewayBridgeSourceRequest = {
 
 M.SetSourceRequest = {
     type = "structure",
+    id = "SetSourceRequest",
     members = {
         Decryption = setmetatable({ traits = {
             json_name = "decryption",
@@ -2310,6 +2371,7 @@ M.SetSourceRequest = {
 
 M.GatewayBridgeSource = {
     type = "structure",
+    id = "GatewayBridgeSource",
     members = {
         BridgeArn = {
             type = "string",
@@ -2326,6 +2388,7 @@ M.GatewayBridgeSource = {
 
 M.Source = {
     type = "structure",
+    id = "Source",
     members = {
         DataTransferSubscriberFeePercent = {
             type = "integer",
@@ -2437,6 +2500,7 @@ M.Source = {
 
 M.TransportStream = {
     type = "structure",
+    id = "TransportStream",
     members = {
         Channels = {
             type = "integer",
@@ -2490,6 +2554,7 @@ M.TransportStream = {
 
 M.TransportStreamProgram = {
     type = "structure",
+    id = "TransportStreamProgram",
     members = {
         PcrPid = {
             type = "integer",
@@ -2531,6 +2596,7 @@ M.TransportStreamProgram = {
 
 M.BlackFrames = {
     type = "structure",
+    id = "BlackFrames",
     members = {
         State = {
             type = "string",
@@ -2549,6 +2615,7 @@ M.BlackFrames = {
 
 M.FrozenFrames = {
     type = "structure",
+    id = "FrozenFrames",
     members = {
         State = {
             type = "string",
@@ -2567,6 +2634,7 @@ M.FrozenFrames = {
 
 M.VideoMonitoringSetting = {
     type = "structure",
+    id = "VideoMonitoringSetting",
     members = {
         BlackFrames = setmetatable({ traits = {
             json_name = "blackFrames",
@@ -2584,6 +2652,7 @@ M.NetworkInterfaceType = {
 
 M.VpcInterface = {
     type = "structure",
+    id = "VpcInterface",
     members = {
         Name = {
             type = "string",
@@ -2634,6 +2703,7 @@ M.VpcInterface = {
 
 M.VpcInterfaceRequest = {
     type = "structure",
+    id = "VpcInterfaceRequest",
     members = {
         Name = {
             type = "string",
@@ -2683,6 +2753,7 @@ M.VpcInterfaceRequest = {
 
 M.AddBridgeOutputsInput = {
     type = "structure",
+    id = "AddBridgeOutputsInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -2704,6 +2775,7 @@ M.AddBridgeOutputsInput = {
 
 M.AddBridgeOutputsOutput = {
     type = "structure",
+    id = "AddBridgeOutputsOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -2723,6 +2795,7 @@ M.AddBridgeOutputsOutput = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -2737,6 +2810,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -2751,6 +2825,7 @@ M.ConflictException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Message = {
@@ -2765,6 +2840,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         Message = {
@@ -2779,6 +2855,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -2793,6 +2870,7 @@ M.NotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -2807,6 +2885,7 @@ M.ServiceUnavailableException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -2821,6 +2900,7 @@ M.TooManyRequestsException = {
 
 M.AddBridgeSourcesInput = {
     type = "structure",
+    id = "AddBridgeSourcesInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -2842,6 +2922,7 @@ M.AddBridgeSourcesInput = {
 
 M.AddBridgeSourcesOutput = {
     type = "structure",
+    id = "AddBridgeSourcesOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -2861,6 +2942,7 @@ M.AddBridgeSourcesOutput = {
 
 M.AddEgressGatewayBridgeRequest = {
     type = "structure",
+    id = "AddEgressGatewayBridgeRequest",
     members = {
         MaxBitrate = {
             type = "integer",
@@ -2874,6 +2956,7 @@ M.AddEgressGatewayBridgeRequest = {
 
 M.AddFlowMediaStreamsInput = {
     type = "structure",
+    id = "AddFlowMediaStreamsInput",
     members = {
         FlowArn = {
             type = "string",
@@ -2895,6 +2978,7 @@ M.AddFlowMediaStreamsInput = {
 
 M.AddFlowMediaStreamsOutput = {
     type = "structure",
+    id = "AddFlowMediaStreamsOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -2914,6 +2998,7 @@ M.AddFlowMediaStreamsOutput = {
 
 M.AddFlowOutputs420Exception = {
     type = "structure",
+    id = "AddFlowOutputs420Exception",
     error = "client",
     members = {
         Message = {
@@ -2928,6 +3013,7 @@ M.AddFlowOutputs420Exception = {
 
 M.AddFlowOutputsInput = {
     type = "structure",
+    id = "AddFlowOutputsInput",
     members = {
         FlowArn = {
             type = "string",
@@ -2949,6 +3035,7 @@ M.AddFlowOutputsInput = {
 
 M.AddFlowOutputsOutput = {
     type = "structure",
+    id = "AddFlowOutputsOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -2968,6 +3055,7 @@ M.AddFlowOutputsOutput = {
 
 M.AddFlowSourcesInput = {
     type = "structure",
+    id = "AddFlowSourcesInput",
     members = {
         FlowArn = {
             type = "string",
@@ -2989,6 +3077,7 @@ M.AddFlowSourcesInput = {
 
 M.AddFlowSourcesOutput = {
     type = "structure",
+    id = "AddFlowSourcesOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -3008,6 +3097,7 @@ M.AddFlowSourcesOutput = {
 
 M.AddFlowVpcInterfacesInput = {
     type = "structure",
+    id = "AddFlowVpcInterfacesInput",
     members = {
         FlowArn = {
             type = "string",
@@ -3029,6 +3119,7 @@ M.AddFlowVpcInterfacesInput = {
 
 M.AddFlowVpcInterfacesOutput = {
     type = "structure",
+    id = "AddFlowVpcInterfacesOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -3048,6 +3139,7 @@ M.AddFlowVpcInterfacesOutput = {
 
 M.AddIngressGatewayBridgeRequest = {
     type = "structure",
+    id = "AddIngressGatewayBridgeRequest",
     members = {
         MaxBitrate = {
             type = "integer",
@@ -3068,6 +3160,7 @@ M.AddIngressGatewayBridgeRequest = {
 
 M.AddMaintenance = {
     type = "structure",
+    id = "AddMaintenance",
     members = {
         MaintenanceDay = {
             type = "string",
@@ -3088,6 +3181,7 @@ M.AddMaintenance = {
 
 M.BatchGetRouterInputInput = {
     type = "structure",
+    id = "BatchGetRouterInputInput",
     members = {
         Arns = {
             type = "list",
@@ -3102,6 +3196,7 @@ M.BatchGetRouterInputInput = {
 
 M.BatchGetRouterInputError = {
     type = "structure",
+    id = "BatchGetRouterInputError",
     members = {
         Arn = {
             type = "string",
@@ -3129,6 +3224,7 @@ M.BatchGetRouterInputError = {
 
 M.RistRouterInputConfiguration = {
     type = "structure",
+    id = "RistRouterInputConfiguration",
     members = {
         Port = {
             type = "integer",
@@ -3154,6 +3250,7 @@ M.ForwardErrorCorrectionState = {
 
 M.RtpRouterInputConfiguration = {
     type = "structure",
+    id = "RtpRouterInputConfiguration",
     members = {
         Port = {
             type = "integer",
@@ -3173,6 +3270,7 @@ M.RtpRouterInputConfiguration = {
 
 M.SrtDecryptionConfiguration = {
     type = "structure",
+    id = "SrtDecryptionConfiguration",
     members = {
         EncryptionKey = setmetatable({ traits = {
             json_name = "encryptionKey",
@@ -3183,6 +3281,7 @@ M.SrtDecryptionConfiguration = {
 
 M.SrtCallerRouterInputConfiguration = {
     type = "structure",
+    id = "SrtCallerRouterInputConfiguration",
     members = {
         SourceAddress = {
             type = "string",
@@ -3219,6 +3318,7 @@ M.SrtCallerRouterInputConfiguration = {
 
 M.SrtListenerRouterInputConfiguration = {
     type = "structure",
+    id = "SrtListenerRouterInputConfiguration",
     members = {
         Port = {
             type = "integer",
@@ -3242,6 +3342,7 @@ M.SrtListenerRouterInputConfiguration = {
 
 M.FailoverRouterInputProtocolConfiguration = {
     type = "union",
+    id = "FailoverRouterInputProtocolConfiguration",
     members = {
         Rist = setmetatable({ traits = {
             json_name = "rist",
@@ -3265,6 +3366,7 @@ M.FailoverInputSourcePriorityMode = {
 
 M.FailoverRouterInputConfiguration = {
     type = "structure",
+    id = "FailoverRouterInputConfiguration",
     members = {
         NetworkInterfaceArn = {
             type = "string",
@@ -3299,6 +3401,7 @@ M.FailoverRouterInputConfiguration = {
 
 M.MediaConnectFlowRouterInputConfiguration = {
     type = "structure",
+    id = "MediaConnectFlowRouterInputConfiguration",
     members = {
         FlowArn = {
             type = "string",
@@ -3326,6 +3429,7 @@ M.MediaLiveChannelPipelineId = {
 
 M.MediaLiveTransitEncryptionKeyConfiguration = {
     type = "union",
+    id = "MediaLiveTransitEncryptionKeyConfiguration",
     members = {
         SecretsManager = setmetatable({ traits = {
             json_name = "secretsManager",
@@ -3343,6 +3447,7 @@ M.MediaLiveTransitEncryptionKeyType = {
 
 M.MediaLiveTransitEncryption = {
     type = "structure",
+    id = "MediaLiveTransitEncryption",
     members = {
         EncryptionKeyType = {
             type = "string",
@@ -3359,6 +3464,7 @@ M.MediaLiveTransitEncryption = {
 
 M.MediaLiveChannelRouterInputConfiguration = {
     type = "structure",
+    id = "MediaLiveChannelRouterInputConfiguration",
     members = {
         MediaLiveChannelArn = {
             type = "string",
@@ -3387,6 +3493,7 @@ M.MediaLiveChannelRouterInputConfiguration = {
 
 M.MergeRouterInputProtocolConfiguration = {
     type = "union",
+    id = "MergeRouterInputProtocolConfiguration",
     members = {
         Rtp = setmetatable({ traits = {
             json_name = "rtp",
@@ -3399,6 +3506,7 @@ M.MergeRouterInputProtocolConfiguration = {
 
 M.MergeRouterInputConfiguration = {
     type = "structure",
+    id = "MergeRouterInputConfiguration",
     members = {
         NetworkInterfaceArn = {
             type = "string",
@@ -3434,6 +3542,7 @@ M.RouterInputProtocol = {
 
 M.RouterInputProtocolConfiguration = {
     type = "union",
+    id = "RouterInputProtocolConfiguration",
     members = {
         Rist = setmetatable({ traits = {
             json_name = "rist",
@@ -3452,6 +3561,7 @@ M.RouterInputProtocolConfiguration = {
 
 M.StandardRouterInputConfiguration = {
     type = "structure",
+    id = "StandardRouterInputConfiguration",
     members = {
         NetworkInterfaceArn = {
             type = "string",
@@ -3475,6 +3585,7 @@ M.StandardRouterInputConfiguration = {
 
 M.RouterInputConfiguration = {
     type = "union",
+    id = "RouterInputConfiguration",
     members = {
         Standard = setmetatable({ traits = {
             json_name = "standard",
@@ -3504,6 +3615,7 @@ M.RouterInputType = {
 
 M.DefaultMaintenanceConfiguration = {
     type = "structure",
+    id = "DefaultMaintenanceConfiguration",
 }
 
 M.Day = {
@@ -3518,6 +3630,7 @@ M.Day = {
 
 M.PreferredDayTimeMaintenanceConfiguration = {
     type = "structure",
+    id = "PreferredDayTimeMaintenanceConfiguration",
     members = {
         Day = {
             type = "string",
@@ -3538,6 +3651,7 @@ M.PreferredDayTimeMaintenanceConfiguration = {
 
 M.MaintenanceConfiguration = {
     type = "union",
+    id = "MaintenanceConfiguration",
     members = {
         PreferredDayTime = setmetatable({ traits = {
             json_name = "preferredDayTime",
@@ -3550,6 +3664,7 @@ M.MaintenanceConfiguration = {
 
 M.WindowMaintenanceSchedule = {
     type = "structure",
+    id = "WindowMaintenanceSchedule",
     members = {
         Start = {
             type = "timestamp",
@@ -3580,6 +3695,7 @@ M.WindowMaintenanceSchedule = {
 
 M.MaintenanceSchedule = {
     type = "union",
+    id = "MaintenanceSchedule",
     members = {
         Window = setmetatable({ traits = {
             json_name = "window",
@@ -3598,6 +3714,7 @@ M.MaintenanceType = {
 
 M.RouterInputMessage = {
     type = "structure",
+    id = "RouterInputMessage",
     members = {
         Code = {
             type = "string",
@@ -3636,6 +3753,7 @@ M.RouterInputState = {
 
 M.FailoverRouterInputIndexedStreamDetails = {
     type = "structure",
+    id = "FailoverRouterInputIndexedStreamDetails",
     members = {
         SourceIndex = {
             type = "integer",
@@ -3655,6 +3773,7 @@ M.FailoverRouterInputIndexedStreamDetails = {
 
 M.FailoverRouterInputStreamDetails = {
     type = "structure",
+    id = "FailoverRouterInputStreamDetails",
     members = {
         SourceIndexZeroStreamDetails = setmetatable({ traits = {
             json_name = "sourceIndexZeroStreamDetails",
@@ -3669,14 +3788,17 @@ M.FailoverRouterInputStreamDetails = {
 
 M.MediaConnectFlowRouterInputStreamDetails = {
     type = "structure",
+    id = "MediaConnectFlowRouterInputStreamDetails",
 }
 
 M.MediaLiveChannelRouterInputStreamDetails = {
     type = "structure",
+    id = "MediaLiveChannelRouterInputStreamDetails",
 }
 
 M.MergeRouterInputIndexedStreamDetails = {
     type = "structure",
+    id = "MergeRouterInputIndexedStreamDetails",
     members = {
         SourceIndex = {
             type = "integer",
@@ -3696,6 +3818,7 @@ M.MergeRouterInputIndexedStreamDetails = {
 
 M.MergeRouterInputStreamDetails = {
     type = "structure",
+    id = "MergeRouterInputStreamDetails",
     members = {
         SourceIndexZeroStreamDetails = setmetatable({ traits = {
             json_name = "sourceIndexZeroStreamDetails",
@@ -3710,6 +3833,7 @@ M.MergeRouterInputStreamDetails = {
 
 M.StandardRouterInputStreamDetails = {
     type = "structure",
+    id = "StandardRouterInputStreamDetails",
     members = {
         SourceIpAddress = {
             type = "string",
@@ -3722,6 +3846,7 @@ M.StandardRouterInputStreamDetails = {
 
 M.RouterInputStreamDetails = {
     type = "union",
+    id = "RouterInputStreamDetails",
     members = {
         Standard = setmetatable({ traits = {
             json_name = "standard",
@@ -3749,6 +3874,7 @@ M.RouterInputTier = {
 
 M.RouterInputTransitEncryptionKeyConfiguration = {
     type = "union",
+    id = "RouterInputTransitEncryptionKeyConfiguration",
     members = {
         SecretsManager = setmetatable({ traits = {
             json_name = "secretsManager",
@@ -3766,6 +3892,7 @@ M.RouterInputTransitEncryptionKeyType = {
 
 M.RouterInputTransitEncryption = {
     type = "structure",
+    id = "RouterInputTransitEncryption",
     members = {
         EncryptionKeyType = {
             type = "string",
@@ -3782,6 +3909,7 @@ M.RouterInputTransitEncryption = {
 
 M.RouterInput = {
     type = "structure",
+    id = "RouterInput",
     members = {
         Name = {
             type = "string",
@@ -3942,6 +4070,7 @@ M.RouterInput = {
 
 M.BatchGetRouterInputOutput = {
     type = "structure",
+    id = "BatchGetRouterInputOutput",
     members = {
         RouterInputs = {
             type = "list",
@@ -3964,6 +4093,7 @@ M.BatchGetRouterInputOutput = {
 
 M.BatchGetRouterNetworkInterfaceInput = {
     type = "structure",
+    id = "BatchGetRouterNetworkInterfaceInput",
     members = {
         Arns = {
             type = "list",
@@ -3978,6 +4108,7 @@ M.BatchGetRouterNetworkInterfaceInput = {
 
 M.BatchGetRouterNetworkInterfaceError = {
     type = "structure",
+    id = "BatchGetRouterNetworkInterfaceError",
     members = {
         Arn = {
             type = "string",
@@ -4005,6 +4136,7 @@ M.BatchGetRouterNetworkInterfaceError = {
 
 M.PublicRouterNetworkInterfaceRule = {
     type = "structure",
+    id = "PublicRouterNetworkInterfaceRule",
     members = {
         Cidr = {
             type = "string",
@@ -4018,6 +4150,7 @@ M.PublicRouterNetworkInterfaceRule = {
 
 M.PublicRouterNetworkInterfaceConfiguration = {
     type = "structure",
+    id = "PublicRouterNetworkInterfaceConfiguration",
     members = {
         AllowRules = {
             type = "list",
@@ -4032,6 +4165,7 @@ M.PublicRouterNetworkInterfaceConfiguration = {
 
 M.VpcRouterNetworkInterfaceConfiguration = {
     type = "structure",
+    id = "VpcRouterNetworkInterfaceConfiguration",
     members = {
         SecurityGroupIds = {
             type = "list",
@@ -4053,6 +4187,7 @@ M.VpcRouterNetworkInterfaceConfiguration = {
 
 M.RouterNetworkInterfaceConfiguration = {
     type = "union",
+    id = "RouterNetworkInterfaceConfiguration",
     members = {
         Public = setmetatable({ traits = {
             json_name = "public",
@@ -4079,6 +4214,7 @@ M.RouterNetworkInterfaceState = {
 
 M.RouterNetworkInterface = {
     type = "structure",
+    id = "RouterNetworkInterface",
     members = {
         Name = {
             type = "string",
@@ -4170,6 +4306,7 @@ M.RouterNetworkInterface = {
 
 M.BatchGetRouterNetworkInterfaceOutput = {
     type = "structure",
+    id = "BatchGetRouterNetworkInterfaceOutput",
     members = {
         RouterNetworkInterfaces = {
             type = "list",
@@ -4192,6 +4329,7 @@ M.BatchGetRouterNetworkInterfaceOutput = {
 
 M.BatchGetRouterOutputInput = {
     type = "structure",
+    id = "BatchGetRouterOutputInput",
     members = {
         Arns = {
             type = "list",
@@ -4206,6 +4344,7 @@ M.BatchGetRouterOutputInput = {
 
 M.BatchGetRouterOutputError = {
     type = "structure",
+    id = "BatchGetRouterOutputError",
     members = {
         Arn = {
             type = "string",
@@ -4233,6 +4372,7 @@ M.BatchGetRouterOutputError = {
 
 M.MediaConnectFlowRouterOutputConfiguration = {
     type = "structure",
+    id = "MediaConnectFlowRouterOutputConfiguration",
     members = {
         FlowArn = {
             type = "string",
@@ -4260,6 +4400,7 @@ M.MediaLiveInputPipelineId = {
 
 M.MediaLiveInputRouterOutputConfiguration = {
     type = "structure",
+    id = "MediaLiveInputRouterOutputConfiguration",
     members = {
         MediaLiveInputArn = {
             type = "string",
@@ -4289,6 +4430,7 @@ M.RouterOutputProtocol = {
 
 M.RistRouterOutputConfiguration = {
     type = "structure",
+    id = "RistRouterOutputConfiguration",
     members = {
         DestinationAddress = {
             type = "string",
@@ -4309,6 +4451,7 @@ M.RistRouterOutputConfiguration = {
 
 M.RtpRouterOutputConfiguration = {
     type = "structure",
+    id = "RtpRouterOutputConfiguration",
     members = {
         DestinationAddress = {
             type = "string",
@@ -4335,6 +4478,7 @@ M.RtpRouterOutputConfiguration = {
 
 M.SrtEncryptionConfiguration = {
     type = "structure",
+    id = "SrtEncryptionConfiguration",
     members = {
         EncryptionKey = setmetatable({ traits = {
             json_name = "encryptionKey",
@@ -4345,6 +4489,7 @@ M.SrtEncryptionConfiguration = {
 
 M.SrtCallerRouterOutputConfiguration = {
     type = "structure",
+    id = "SrtCallerRouterOutputConfiguration",
     members = {
         DestinationAddress = {
             type = "string",
@@ -4381,6 +4526,7 @@ M.SrtCallerRouterOutputConfiguration = {
 
 M.SrtListenerRouterOutputConfiguration = {
     type = "structure",
+    id = "SrtListenerRouterOutputConfiguration",
     members = {
         Port = {
             type = "integer",
@@ -4404,6 +4550,7 @@ M.SrtListenerRouterOutputConfiguration = {
 
 M.RouterOutputProtocolConfiguration = {
     type = "union",
+    id = "RouterOutputProtocolConfiguration",
     members = {
         Rist = setmetatable({ traits = {
             json_name = "rist",
@@ -4422,6 +4569,7 @@ M.RouterOutputProtocolConfiguration = {
 
 M.StandardRouterOutputConfiguration = {
     type = "structure",
+    id = "StandardRouterOutputConfiguration",
     members = {
         NetworkInterfaceArn = {
             type = "string",
@@ -4445,6 +4593,7 @@ M.StandardRouterOutputConfiguration = {
 
 M.RouterOutputConfiguration = {
     type = "union",
+    id = "RouterOutputConfiguration",
     members = {
         Standard = setmetatable({ traits = {
             json_name = "standard",
@@ -4460,6 +4609,7 @@ M.RouterOutputConfiguration = {
 
 M.RouterOutputMessage = {
     type = "structure",
+    id = "RouterOutputMessage",
     members = {
         Code = {
             type = "string",
@@ -4505,14 +4655,17 @@ M.RouterOutputState = {
 
 M.MediaConnectFlowRouterOutputStreamDetails = {
     type = "structure",
+    id = "MediaConnectFlowRouterOutputStreamDetails",
 }
 
 M.MediaLiveInputRouterOutputStreamDetails = {
     type = "structure",
+    id = "MediaLiveInputRouterOutputStreamDetails",
 }
 
 M.StandardRouterOutputStreamDetails = {
     type = "structure",
+    id = "StandardRouterOutputStreamDetails",
     members = {
         DestinationIpAddress = {
             type = "string",
@@ -4525,6 +4678,7 @@ M.StandardRouterOutputStreamDetails = {
 
 M.RouterOutputStreamDetails = {
     type = "union",
+    id = "RouterOutputStreamDetails",
     members = {
         Standard = setmetatable({ traits = {
             json_name = "standard",
@@ -4546,6 +4700,7 @@ M.RouterOutputTier = {
 
 M.RouterOutput = {
     type = "structure",
+    id = "RouterOutput",
     members = {
         Name = {
             type = "string",
@@ -4702,6 +4857,7 @@ M.RouterOutput = {
 
 M.BatchGetRouterOutputOutput = {
     type = "structure",
+    id = "BatchGetRouterOutputOutput",
     members = {
         RouterOutputs = {
             type = "list",
@@ -4724,6 +4880,7 @@ M.BatchGetRouterOutputOutput = {
 
 M.EgressGatewayBridge = {
     type = "structure",
+    id = "EgressGatewayBridge",
     members = {
         InstanceId = {
             type = "string",
@@ -4743,6 +4900,7 @@ M.EgressGatewayBridge = {
 
 M.IngressGatewayBridge = {
     type = "structure",
+    id = "IngressGatewayBridge",
     members = {
         InstanceId = {
             type = "string",
@@ -4774,6 +4932,7 @@ M.FailoverMode = {
 
 M.SourcePriority = {
     type = "structure",
+    id = "SourcePriority",
     members = {
         PrimarySource = {
             type = "string",
@@ -4786,6 +4945,7 @@ M.SourcePriority = {
 
 M.FailoverConfig = {
     type = "structure",
+    id = "FailoverConfig",
     members = {
         FailoverMode = {
             type = "string",
@@ -4813,6 +4973,7 @@ M.FailoverConfig = {
 
 M.Bridge = {
     type = "structure",
+    id = "Bridge",
     members = {
         BridgeArn = {
             type = "string",
@@ -4882,6 +5043,7 @@ M.BridgePlacement = {
 
 M.CreateBridge420Exception = {
     type = "structure",
+    id = "CreateBridge420Exception",
     error = "client",
     members = {
         Message = {
@@ -4896,6 +5058,7 @@ M.CreateBridge420Exception = {
 
 M.CreateBridgeInput = {
     type = "structure",
+    id = "CreateBridgeInput",
     members = {
         EgressGatewayBridge = setmetatable({ traits = {
             json_name = "egressGatewayBridge",
@@ -4940,6 +5103,7 @@ M.CreateBridgeInput = {
 
 M.CreateBridgeOutput = {
     type = "structure",
+    id = "CreateBridgeOutput",
     members = {
         Bridge = setmetatable({ traits = {
             json_name = "bridge",
@@ -4949,6 +5113,7 @@ M.CreateBridgeOutput = {
 
 M.DeleteBridgeInput = {
     type = "structure",
+    id = "DeleteBridgeInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -4962,6 +5127,7 @@ M.DeleteBridgeInput = {
 
 M.DeleteBridgeOutput = {
     type = "structure",
+    id = "DeleteBridgeOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -4974,6 +5140,7 @@ M.DeleteBridgeOutput = {
 
 M.DescribeBridgeInput = {
     type = "structure",
+    id = "DescribeBridgeInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -4987,6 +5154,7 @@ M.DescribeBridgeInput = {
 
 M.DescribeBridgeOutput = {
     type = "structure",
+    id = "DescribeBridgeOutput",
     members = {
         Bridge = setmetatable({ traits = {
             json_name = "bridge",
@@ -4996,6 +5164,7 @@ M.DescribeBridgeOutput = {
 
 M.ListBridgesInput = {
     type = "structure",
+    id = "ListBridgesInput",
     members = {
         FilterArn = {
             type = "string",
@@ -5020,6 +5189,7 @@ M.ListBridgesInput = {
 
 M.ListBridgesOutput = {
     type = "structure",
+    id = "ListBridgesOutput",
     members = {
         Bridges = {
             type = "list",
@@ -5039,6 +5209,7 @@ M.ListBridgesOutput = {
 
 M.RemoveBridgeOutputInput = {
     type = "structure",
+    id = "RemoveBridgeOutputInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5059,6 +5230,7 @@ M.RemoveBridgeOutputInput = {
 
 M.RemoveBridgeOutputOutput = {
     type = "structure",
+    id = "RemoveBridgeOutputOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5077,6 +5249,7 @@ M.RemoveBridgeOutputOutput = {
 
 M.RemoveBridgeSourceInput = {
     type = "structure",
+    id = "RemoveBridgeSourceInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5097,6 +5270,7 @@ M.RemoveBridgeSourceInput = {
 
 M.RemoveBridgeSourceOutput = {
     type = "structure",
+    id = "RemoveBridgeSourceOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5115,6 +5289,7 @@ M.RemoveBridgeSourceOutput = {
 
 M.UpdateEgressGatewayBridgeRequest = {
     type = "structure",
+    id = "UpdateEgressGatewayBridgeRequest",
     members = {
         MaxBitrate = {
             type = "integer",
@@ -5127,6 +5302,7 @@ M.UpdateEgressGatewayBridgeRequest = {
 
 M.UpdateIngressGatewayBridgeRequest = {
     type = "structure",
+    id = "UpdateIngressGatewayBridgeRequest",
     members = {
         MaxBitrate = {
             type = "integer",
@@ -5145,6 +5321,7 @@ M.UpdateIngressGatewayBridgeRequest = {
 
 M.UpdateFailoverConfig = {
     type = "structure",
+    id = "UpdateFailoverConfig",
     members = {
         FailoverMode = {
             type = "string",
@@ -5172,6 +5349,7 @@ M.UpdateFailoverConfig = {
 
 M.UpdateBridgeInput = {
     type = "structure",
+    id = "UpdateBridgeInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5194,6 +5372,7 @@ M.UpdateBridgeInput = {
 
 M.UpdateBridgeOperationOutput = {
     type = "structure",
+    id = "UpdateBridgeOperationOutput",
     members = {
         Bridge = setmetatable({ traits = {
             json_name = "bridge",
@@ -5203,6 +5382,7 @@ M.UpdateBridgeOperationOutput = {
 
 M.UpdateBridgeNetworkOutputRequest = {
     type = "structure",
+    id = "UpdateBridgeNetworkOutputRequest",
     members = {
         IpAddress = {
             type = "string",
@@ -5239,6 +5419,7 @@ M.UpdateBridgeNetworkOutputRequest = {
 
 M.UpdateBridgeOutputInput = {
     type = "structure",
+    id = "UpdateBridgeOutputInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5262,6 +5443,7 @@ M.UpdateBridgeOutputInput = {
 
 M.UpdateBridgeOutputOutput = {
     type = "structure",
+    id = "UpdateBridgeOutputOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5277,6 +5459,7 @@ M.UpdateBridgeOutputOutput = {
 
 M.UpdateBridgeFlowSourceRequest = {
     type = "structure",
+    id = "UpdateBridgeFlowSourceRequest",
     members = {
         FlowArn = {
             type = "string",
@@ -5292,6 +5475,7 @@ M.UpdateBridgeFlowSourceRequest = {
 
 M.UpdateBridgeNetworkSourceRequest = {
     type = "structure",
+    id = "UpdateBridgeNetworkSourceRequest",
     members = {
         MulticastIp = {
             type = "string",
@@ -5325,6 +5509,7 @@ M.UpdateBridgeNetworkSourceRequest = {
 
 M.UpdateBridgeSourceInput = {
     type = "structure",
+    id = "UpdateBridgeSourceInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5351,6 +5536,7 @@ M.UpdateBridgeSourceInput = {
 
 M.UpdateBridgeSourceOutput = {
     type = "structure",
+    id = "UpdateBridgeSourceOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5372,6 +5558,7 @@ M.DesiredState = {
 
 M.UpdateBridgeStateInput = {
     type = "structure",
+    id = "UpdateBridgeStateInput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5392,6 +5579,7 @@ M.UpdateBridgeStateInput = {
 
 M.UpdateBridgeStateOutput = {
     type = "structure",
+    id = "UpdateBridgeStateOutput",
     members = {
         BridgeArn = {
             type = "string",
@@ -5420,6 +5608,7 @@ M.ContentQualityAnalysisState = {
 
 M.CreateFlow420Exception = {
     type = "structure",
+    id = "CreateFlow420Exception",
     error = "client",
     members = {
         Message = {
@@ -5439,6 +5628,7 @@ M.EncodingProfile = {
 
 M.EncodingConfig = {
     type = "structure",
+    id = "EncodingConfig",
     members = {
         EncodingProfile = {
             type = "string",
@@ -5468,6 +5658,7 @@ M.NdiState = {
 
 M.NdiConfig = {
     type = "structure",
+    id = "NdiConfig",
     members = {
         NdiState = {
             type = "string",
@@ -5498,6 +5689,7 @@ M.ThumbnailState = {
 
 M.MonitoringConfig = {
     type = "structure",
+    id = "MonitoringConfig",
     members = {
         ThumbnailState = {
             type = "string",
@@ -5530,6 +5722,7 @@ M.MonitoringConfig = {
 
 M.CreateFlowInput = {
     type = "structure",
+    id = "CreateFlowInput",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -5616,6 +5809,7 @@ M.CreateFlowInput = {
 
 M.Flow = {
     type = "structure",
+    id = "Flow",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -5724,6 +5918,7 @@ M.Flow = {
 
 M.CreateFlowOutput = {
     type = "structure",
+    id = "CreateFlowOutput",
     members = {
         Flow = setmetatable({ traits = {
             json_name = "flow",
@@ -5733,6 +5928,7 @@ M.CreateFlowOutput = {
 
 M.CreateGateway420Exception = {
     type = "structure",
+    id = "CreateGateway420Exception",
     error = "client",
     members = {
         Message = {
@@ -5747,6 +5943,7 @@ M.CreateGateway420Exception = {
 
 M.CreateGatewayInput = {
     type = "structure",
+    id = "CreateGatewayInput",
     members = {
         EgressCidrBlocks = {
             type = "list",
@@ -5776,6 +5973,7 @@ M.CreateGatewayInput = {
 
 M.Gateway = {
     type = "structure",
+    id = "Gateway",
     members = {
         EgressCidrBlocks = {
             type = "list",
@@ -5825,6 +6023,7 @@ M.Gateway = {
 
 M.CreateGatewayOutput = {
     type = "structure",
+    id = "CreateGatewayOutput",
     members = {
         Gateway = setmetatable({ traits = {
             json_name = "gateway",
@@ -5834,6 +6033,7 @@ M.CreateGatewayOutput = {
 
 M.CreateRouterInputInput = {
     type = "structure",
+    id = "CreateRouterInputInput",
     members = {
         Name = {
             type = "string",
@@ -5905,6 +6105,7 @@ M.CreateRouterInputInput = {
 
 M.CreateRouterInputOutput = {
     type = "structure",
+    id = "CreateRouterInputOutput",
     members = {
         RouterInput = setmetatable({ traits = {
             json_name = "routerInput",
@@ -5915,6 +6116,7 @@ M.CreateRouterInputOutput = {
 
 M.RouterInputServiceQuotaExceededException = {
     type = "structure",
+    id = "RouterInputServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -5929,6 +6131,7 @@ M.RouterInputServiceQuotaExceededException = {
 
 M.CreateRouterNetworkInterfaceInput = {
     type = "structure",
+    id = "CreateRouterNetworkInterfaceInput",
     members = {
         Name = {
             type = "string",
@@ -5967,6 +6170,7 @@ M.CreateRouterNetworkInterfaceInput = {
 
 M.CreateRouterNetworkInterfaceOutput = {
     type = "structure",
+    id = "CreateRouterNetworkInterfaceOutput",
     members = {
         RouterNetworkInterface = setmetatable({ traits = {
             json_name = "routerNetworkInterface",
@@ -5977,6 +6181,7 @@ M.CreateRouterNetworkInterfaceOutput = {
 
 M.RouterNetworkInterfaceServiceQuotaExceededException = {
     type = "structure",
+    id = "RouterNetworkInterfaceServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -5991,6 +6196,7 @@ M.RouterNetworkInterfaceServiceQuotaExceededException = {
 
 M.CreateRouterOutputInput = {
     type = "structure",
+    id = "CreateRouterOutputInput",
     members = {
         Name = {
             type = "string",
@@ -6059,6 +6265,7 @@ M.CreateRouterOutputInput = {
 
 M.CreateRouterOutputOutput = {
     type = "structure",
+    id = "CreateRouterOutputOutput",
     members = {
         RouterOutput = setmetatable({ traits = {
             json_name = "routerOutput",
@@ -6069,6 +6276,7 @@ M.CreateRouterOutputOutput = {
 
 M.RouterOutputServiceQuotaExceededException = {
     type = "structure",
+    id = "RouterOutputServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -6083,6 +6291,7 @@ M.RouterOutputServiceQuotaExceededException = {
 
 M.DeleteFlowInput = {
     type = "structure",
+    id = "DeleteFlowInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6096,6 +6305,7 @@ M.DeleteFlowInput = {
 
 M.DeleteFlowOutput = {
     type = "structure",
+    id = "DeleteFlowOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6114,6 +6324,7 @@ M.DeleteFlowOutput = {
 
 M.DeleteGatewayInput = {
     type = "structure",
+    id = "DeleteGatewayInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -6127,6 +6338,7 @@ M.DeleteGatewayInput = {
 
 M.DeleteGatewayOutput = {
     type = "structure",
+    id = "DeleteGatewayOutput",
     members = {
         GatewayArn = {
             type = "string",
@@ -6139,6 +6351,7 @@ M.DeleteGatewayOutput = {
 
 M.DeleteRouterInputInput = {
     type = "structure",
+    id = "DeleteRouterInputInput",
     members = {
         Arn = {
             type = "string",
@@ -6152,6 +6365,7 @@ M.DeleteRouterInputInput = {
 
 M.DeleteRouterInputOutput = {
     type = "structure",
+    id = "DeleteRouterInputOutput",
     members = {
         Arn = {
             type = "string",
@@ -6179,6 +6393,7 @@ M.DeleteRouterInputOutput = {
 
 M.DeleteRouterNetworkInterfaceInput = {
     type = "structure",
+    id = "DeleteRouterNetworkInterfaceInput",
     members = {
         Arn = {
             type = "string",
@@ -6192,6 +6407,7 @@ M.DeleteRouterNetworkInterfaceInput = {
 
 M.DeleteRouterNetworkInterfaceOutput = {
     type = "structure",
+    id = "DeleteRouterNetworkInterfaceOutput",
     members = {
         Arn = {
             type = "string",
@@ -6219,6 +6435,7 @@ M.DeleteRouterNetworkInterfaceOutput = {
 
 M.DeleteRouterOutputInput = {
     type = "structure",
+    id = "DeleteRouterOutputInput",
     members = {
         Arn = {
             type = "string",
@@ -6232,6 +6449,7 @@ M.DeleteRouterOutputInput = {
 
 M.DeleteRouterOutputOutput = {
     type = "structure",
+    id = "DeleteRouterOutputOutput",
     members = {
         Arn = {
             type = "string",
@@ -6259,6 +6477,7 @@ M.DeleteRouterOutputOutput = {
 
 M.DeregisterGatewayInstanceInput = {
     type = "structure",
+    id = "DeregisterGatewayInstanceInput",
     members = {
         Force = {
             type = "boolean",
@@ -6278,6 +6497,7 @@ M.DeregisterGatewayInstanceInput = {
 
 M.DeregisterGatewayInstanceOutput = {
     type = "structure",
+    id = "DeregisterGatewayInstanceOutput",
     members = {
         GatewayInstanceArn = {
             type = "string",
@@ -6296,6 +6516,7 @@ M.DeregisterGatewayInstanceOutput = {
 
 M.DescribeFlowInput = {
     type = "structure",
+    id = "DescribeFlowInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6309,6 +6530,7 @@ M.DescribeFlowInput = {
 
 M.Messages = {
     type = "structure",
+    id = "Messages",
     members = {
         Errors = {
             type = "list",
@@ -6323,6 +6545,7 @@ M.Messages = {
 
 M.DescribeFlowOutput = {
     type = "structure",
+    id = "DescribeFlowOutput",
     members = {
         Flow = setmetatable({ traits = {
             json_name = "flow",
@@ -6335,6 +6558,7 @@ M.DescribeFlowOutput = {
 
 M.DescribeFlowSourceMetadataInput = {
     type = "structure",
+    id = "DescribeFlowSourceMetadataInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6348,6 +6572,7 @@ M.DescribeFlowSourceMetadataInput = {
 
 M.NdiMediaInfo = {
     type = "structure",
+    id = "NdiMediaInfo",
     members = {
         Streams = {
             type = "list",
@@ -6362,6 +6587,7 @@ M.NdiMediaInfo = {
 
 M.NdiSourceMetadataInfo = {
     type = "structure",
+    id = "NdiSourceMetadataInfo",
     members = {
         ActiveSource = setmetatable({ traits = {
             json_name = "activeSource",
@@ -6391,6 +6617,7 @@ M.NdiSourceMetadataInfo = {
 
 M.TransportMediaInfo = {
     type = "structure",
+    id = "TransportMediaInfo",
     members = {
         Programs = {
             type = "list",
@@ -6405,6 +6632,7 @@ M.TransportMediaInfo = {
 
 M.DescribeFlowSourceMetadataOutput = {
     type = "structure",
+    id = "DescribeFlowSourceMetadataOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6437,6 +6665,7 @@ M.DescribeFlowSourceMetadataOutput = {
 
 M.DescribeFlowSourceThumbnailInput = {
     type = "structure",
+    id = "DescribeFlowSourceThumbnailInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6450,6 +6679,7 @@ M.DescribeFlowSourceThumbnailInput = {
 
 M.ThumbnailDetails = {
     type = "structure",
+    id = "ThumbnailDetails",
     members = {
         FlowArn = {
             type = "string",
@@ -6490,6 +6720,7 @@ M.ThumbnailDetails = {
 
 M.DescribeFlowSourceThumbnailOutput = {
     type = "structure",
+    id = "DescribeFlowSourceThumbnailOutput",
     members = {
         ThumbnailDetails = setmetatable({ traits = {
             json_name = "thumbnailDetails",
@@ -6499,6 +6730,7 @@ M.DescribeFlowSourceThumbnailOutput = {
 
 M.DescribeGatewayInput = {
     type = "structure",
+    id = "DescribeGatewayInput",
     members = {
         GatewayArn = {
             type = "string",
@@ -6512,6 +6744,7 @@ M.DescribeGatewayInput = {
 
 M.DescribeGatewayOutput = {
     type = "structure",
+    id = "DescribeGatewayOutput",
     members = {
         Gateway = setmetatable({ traits = {
             json_name = "gateway",
@@ -6521,6 +6754,7 @@ M.DescribeGatewayOutput = {
 
 M.DescribeGatewayInstanceInput = {
     type = "structure",
+    id = "DescribeGatewayInstanceInput",
     members = {
         GatewayInstanceArn = {
             type = "string",
@@ -6534,6 +6768,7 @@ M.DescribeGatewayInstanceInput = {
 
 M.GatewayInstance = {
     type = "structure",
+    id = "GatewayInstance",
     members = {
         BridgePlacement = {
             type = "string",
@@ -6596,6 +6831,7 @@ M.GatewayInstance = {
 
 M.DescribeGatewayInstanceOutput = {
     type = "structure",
+    id = "DescribeGatewayInstanceOutput",
     members = {
         GatewayInstance = setmetatable({ traits = {
             json_name = "gatewayInstance",
@@ -6605,6 +6841,7 @@ M.DescribeGatewayInstanceOutput = {
 
 M.DescribeOfferingInput = {
     type = "structure",
+    id = "DescribeOfferingInput",
     members = {
         OfferingArn = {
             type = "string",
@@ -6618,6 +6855,7 @@ M.DescribeOfferingInput = {
 
 M.DescribeOfferingOutput = {
     type = "structure",
+    id = "DescribeOfferingOutput",
     members = {
         Offering = setmetatable({ traits = {
             json_name = "offering",
@@ -6627,6 +6865,7 @@ M.DescribeOfferingOutput = {
 
 M.DescribeReservationInput = {
     type = "structure",
+    id = "DescribeReservationInput",
     members = {
         ReservationArn = {
             type = "string",
@@ -6640,6 +6879,7 @@ M.DescribeReservationInput = {
 
 M.DescribeReservationOutput = {
     type = "structure",
+    id = "DescribeReservationOutput",
     members = {
         Reservation = setmetatable({ traits = {
             json_name = "reservation",
@@ -6649,6 +6889,7 @@ M.DescribeReservationOutput = {
 
 M.GrantFlowEntitlements420Exception = {
     type = "structure",
+    id = "GrantFlowEntitlements420Exception",
     error = "client",
     members = {
         Message = {
@@ -6663,6 +6904,7 @@ M.GrantFlowEntitlements420Exception = {
 
 M.GrantFlowEntitlementsInput = {
     type = "structure",
+    id = "GrantFlowEntitlementsInput",
     members = {
         Entitlements = {
             type = "list",
@@ -6684,6 +6926,7 @@ M.GrantFlowEntitlementsInput = {
 
 M.GrantFlowEntitlementsOutput = {
     type = "structure",
+    id = "GrantFlowEntitlementsOutput",
     members = {
         Entitlements = {
             type = "list",
@@ -6703,6 +6946,7 @@ M.GrantFlowEntitlementsOutput = {
 
 M.ListFlowsInput = {
     type = "structure",
+    id = "ListFlowsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -6721,6 +6965,7 @@ M.ListFlowsInput = {
 
 M.ListFlowsOutput = {
     type = "structure",
+    id = "ListFlowsOutput",
     members = {
         Flows = {
             type = "list",
@@ -6740,6 +6985,7 @@ M.ListFlowsOutput = {
 
 M.RemoveFlowMediaStreamInput = {
     type = "structure",
+    id = "RemoveFlowMediaStreamInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6760,6 +7006,7 @@ M.RemoveFlowMediaStreamInput = {
 
 M.RemoveFlowMediaStreamOutput = {
     type = "structure",
+    id = "RemoveFlowMediaStreamOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6778,6 +7025,7 @@ M.RemoveFlowMediaStreamOutput = {
 
 M.RemoveFlowOutputInput = {
     type = "structure",
+    id = "RemoveFlowOutputInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6798,6 +7046,7 @@ M.RemoveFlowOutputInput = {
 
 M.RemoveFlowOutputOutput = {
     type = "structure",
+    id = "RemoveFlowOutputOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6816,6 +7065,7 @@ M.RemoveFlowOutputOutput = {
 
 M.RemoveFlowSourceInput = {
     type = "structure",
+    id = "RemoveFlowSourceInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6836,6 +7086,7 @@ M.RemoveFlowSourceInput = {
 
 M.RemoveFlowSourceOutput = {
     type = "structure",
+    id = "RemoveFlowSourceOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6854,6 +7105,7 @@ M.RemoveFlowSourceOutput = {
 
 M.RemoveFlowVpcInterfaceInput = {
     type = "structure",
+    id = "RemoveFlowVpcInterfaceInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6874,6 +7126,7 @@ M.RemoveFlowVpcInterfaceInput = {
 
 M.RemoveFlowVpcInterfaceOutput = {
     type = "structure",
+    id = "RemoveFlowVpcInterfaceOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6899,6 +7152,7 @@ M.RemoveFlowVpcInterfaceOutput = {
 
 M.RevokeFlowEntitlementInput = {
     type = "structure",
+    id = "RevokeFlowEntitlementInput",
     members = {
         EntitlementArn = {
             type = "string",
@@ -6919,6 +7173,7 @@ M.RevokeFlowEntitlementInput = {
 
 M.RevokeFlowEntitlementOutput = {
     type = "structure",
+    id = "RevokeFlowEntitlementOutput",
     members = {
         EntitlementArn = {
             type = "string",
@@ -6937,6 +7192,7 @@ M.RevokeFlowEntitlementOutput = {
 
 M.StartFlowInput = {
     type = "structure",
+    id = "StartFlowInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6950,6 +7206,7 @@ M.StartFlowInput = {
 
 M.StartFlowOutput = {
     type = "structure",
+    id = "StartFlowOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6968,6 +7225,7 @@ M.StartFlowOutput = {
 
 M.StopFlowInput = {
     type = "structure",
+    id = "StopFlowInput",
     members = {
         FlowArn = {
             type = "string",
@@ -6981,6 +7239,7 @@ M.StopFlowInput = {
 
 M.StopFlowOutput = {
     type = "structure",
+    id = "StopFlowOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -6999,6 +7258,7 @@ M.StopFlowOutput = {
 
 M.UpdateMaintenance = {
     type = "structure",
+    id = "UpdateMaintenance",
     members = {
         MaintenanceDay = {
             type = "string",
@@ -7023,6 +7283,7 @@ M.UpdateMaintenance = {
 
 M.UpdateFlowInput = {
     type = "structure",
+    id = "UpdateFlowInput",
     members = {
         FlowArn = {
             type = "string",
@@ -7057,6 +7318,7 @@ M.UpdateFlowInput = {
 
 M.UpdateFlowOperationOutput = {
     type = "structure",
+    id = "UpdateFlowOperationOutput",
     members = {
         Flow = setmetatable({ traits = {
             json_name = "flow",
@@ -7066,6 +7328,7 @@ M.UpdateFlowOperationOutput = {
 
 M.UpdateEncryption = {
     type = "structure",
+    id = "UpdateEncryption",
     members = {
         Algorithm = {
             type = "string",
@@ -7126,6 +7389,7 @@ M.UpdateEncryption = {
 
 M.UpdateFlowEntitlementInput = {
     type = "structure",
+    id = "UpdateFlowEntitlementInput",
     members = {
         Description = {
             type = "string",
@@ -7168,6 +7432,7 @@ M.UpdateFlowEntitlementInput = {
 
 M.UpdateFlowEntitlementOutput = {
     type = "structure",
+    id = "UpdateFlowEntitlementOutput",
     members = {
         Entitlement = setmetatable({ traits = {
             json_name = "entitlement",
@@ -7183,6 +7448,7 @@ M.UpdateFlowEntitlementOutput = {
 
 M.UpdateFlowMediaStreamInput = {
     type = "structure",
+    id = "UpdateFlowMediaStreamInput",
     members = {
         Attributes = setmetatable({ traits = {
             json_name = "attributes",
@@ -7230,6 +7496,7 @@ M.UpdateFlowMediaStreamInput = {
 
 M.UpdateFlowMediaStreamOutput = {
     type = "structure",
+    id = "UpdateFlowMediaStreamOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -7245,6 +7512,7 @@ M.UpdateFlowMediaStreamOutput = {
 
 M.UpdateFlowOutputInput = {
     type = "structure",
+    id = "UpdateFlowOutputInput",
     members = {
         CidrAllowList = {
             type = "list",
@@ -7378,6 +7646,7 @@ M.UpdateFlowOutputInput = {
 
 M.UpdateFlowOutputOutput = {
     type = "structure",
+    id = "UpdateFlowOutputOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -7393,6 +7662,7 @@ M.UpdateFlowOutputOutput = {
 
 M.UpdateGatewayBridgeSourceRequest = {
     type = "structure",
+    id = "UpdateGatewayBridgeSourceRequest",
     members = {
         BridgeArn = {
             type = "string",
@@ -7408,6 +7678,7 @@ M.UpdateGatewayBridgeSourceRequest = {
 
 M.UpdateFlowSourceInput = {
     type = "structure",
+    id = "UpdateFlowSourceInput",
     members = {
         Decryption = setmetatable({ traits = {
             json_name = "decryption",
@@ -7543,6 +7814,7 @@ M.UpdateFlowSourceInput = {
 
 M.UpdateFlowSourceOutput = {
     type = "structure",
+    id = "UpdateFlowSourceOutput",
     members = {
         FlowArn = {
             type = "string",
@@ -7558,6 +7830,7 @@ M.UpdateFlowSourceOutput = {
 
 M.ListGatewayInstancesInput = {
     type = "structure",
+    id = "ListGatewayInstancesInput",
     members = {
         FilterArn = {
             type = "string",
@@ -7582,6 +7855,7 @@ M.ListGatewayInstancesInput = {
 
 M.ListGatewayInstancesOutput = {
     type = "structure",
+    id = "ListGatewayInstancesOutput",
     members = {
         Instances = {
             type = "list",
@@ -7601,6 +7875,7 @@ M.ListGatewayInstancesOutput = {
 
 M.UpdateGatewayInstanceInput = {
     type = "structure",
+    id = "UpdateGatewayInstanceInput",
     members = {
         BridgePlacement = {
             type = "string",
@@ -7620,6 +7895,7 @@ M.UpdateGatewayInstanceInput = {
 
 M.UpdateGatewayInstanceOutput = {
     type = "structure",
+    id = "UpdateGatewayInstanceOutput",
     members = {
         BridgePlacement = {
             type = "string",
@@ -7638,6 +7914,7 @@ M.UpdateGatewayInstanceOutput = {
 
 M.ListGatewaysInput = {
     type = "structure",
+    id = "ListGatewaysInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -7656,6 +7933,7 @@ M.ListGatewaysInput = {
 
 M.ListGatewaysOutput = {
     type = "structure",
+    id = "ListGatewaysOutput",
     members = {
         Gateways = {
             type = "list",
@@ -7675,6 +7953,7 @@ M.ListGatewaysOutput = {
 
 M.GetRouterInputInput = {
     type = "structure",
+    id = "GetRouterInputInput",
     members = {
         Arn = {
             type = "string",
@@ -7688,6 +7967,7 @@ M.GetRouterInputInput = {
 
 M.GetRouterInputOutput = {
     type = "structure",
+    id = "GetRouterInputOutput",
     members = {
         RouterInput = setmetatable({ traits = {
             json_name = "routerInput",
@@ -7698,6 +7978,7 @@ M.GetRouterInputOutput = {
 
 M.GetRouterInputSourceMetadataInput = {
     type = "structure",
+    id = "GetRouterInputSourceMetadataInput",
     members = {
         Arn = {
             type = "string",
@@ -7711,6 +7992,7 @@ M.GetRouterInputSourceMetadataInput = {
 
 M.RouterInputMetadata = {
     type = "union",
+    id = "RouterInputMetadata",
     members = {
         TransportStreamMediaInfo = setmetatable({ traits = {
             json_name = "transportStreamMediaInfo",
@@ -7720,6 +8002,7 @@ M.RouterInputMetadata = {
 
 M.RouterInputSourceMetadataDetails = {
     type = "structure",
+    id = "RouterInputSourceMetadataDetails",
     members = {
         SourceMetadataMessages = {
             type = "list",
@@ -7745,6 +8028,7 @@ M.RouterInputSourceMetadataDetails = {
 
 M.GetRouterInputSourceMetadataOutput = {
     type = "structure",
+    id = "GetRouterInputSourceMetadataOutput",
     members = {
         Arn = {
             type = "string",
@@ -7769,6 +8053,7 @@ M.GetRouterInputSourceMetadataOutput = {
 
 M.GetRouterInputThumbnailInput = {
     type = "structure",
+    id = "GetRouterInputThumbnailInput",
     members = {
         Arn = {
             type = "string",
@@ -7782,6 +8067,7 @@ M.GetRouterInputThumbnailInput = {
 
 M.RouterInputThumbnailDetails = {
     type = "structure",
+    id = "RouterInputThumbnailDetails",
     members = {
         ThumbnailMessages = {
             type = "list",
@@ -7815,6 +8101,7 @@ M.RouterInputThumbnailDetails = {
 
 M.GetRouterInputThumbnailOutput = {
     type = "structure",
+    id = "GetRouterInputThumbnailOutput",
     members = {
         Arn = {
             type = "string",
@@ -7839,6 +8126,7 @@ M.GetRouterInputThumbnailOutput = {
 
 M.GetRouterNetworkInterfaceInput = {
     type = "structure",
+    id = "GetRouterNetworkInterfaceInput",
     members = {
         Arn = {
             type = "string",
@@ -7852,6 +8140,7 @@ M.GetRouterNetworkInterfaceInput = {
 
 M.GetRouterNetworkInterfaceOutput = {
     type = "structure",
+    id = "GetRouterNetworkInterfaceOutput",
     members = {
         RouterNetworkInterface = setmetatable({ traits = {
             json_name = "routerNetworkInterface",
@@ -7862,6 +8151,7 @@ M.GetRouterNetworkInterfaceOutput = {
 
 M.GetRouterOutputInput = {
     type = "structure",
+    id = "GetRouterOutputInput",
     members = {
         Arn = {
             type = "string",
@@ -7875,6 +8165,7 @@ M.GetRouterOutputInput = {
 
 M.GetRouterOutputOutput = {
     type = "structure",
+    id = "GetRouterOutputOutput",
     members = {
         RouterOutput = setmetatable({ traits = {
             json_name = "routerOutput",
@@ -7885,6 +8176,7 @@ M.GetRouterOutputOutput = {
 
 M.ListedRouterInput = {
     type = "structure",
+    id = "ListedRouterInput",
     members = {
         Name = {
             type = "string",
@@ -7999,6 +8291,7 @@ M.ListedRouterInput = {
 
 M.ListedRouterNetworkInterface = {
     type = "structure",
+    id = "ListedRouterNetworkInterface",
     members = {
         Name = {
             type = "string",
@@ -8077,6 +8370,7 @@ M.ListedRouterNetworkInterface = {
 
 M.ListedRouterOutput = {
     type = "structure",
+    id = "ListedRouterOutput",
     members = {
         Name = {
             type = "string",
@@ -8197,6 +8491,7 @@ M.ListedRouterOutput = {
 
 M.ListEntitlementsInput = {
     type = "structure",
+    id = "ListEntitlementsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -8215,6 +8510,7 @@ M.ListEntitlementsInput = {
 
 M.ListEntitlementsOutput = {
     type = "structure",
+    id = "ListEntitlementsOutput",
     members = {
         Entitlements = {
             type = "list",
@@ -8234,6 +8530,7 @@ M.ListEntitlementsOutput = {
 
 M.ListOfferingsInput = {
     type = "structure",
+    id = "ListOfferingsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -8252,6 +8549,7 @@ M.ListOfferingsInput = {
 
 M.ListOfferingsOutput = {
     type = "structure",
+    id = "ListOfferingsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -8271,6 +8569,7 @@ M.ListOfferingsOutput = {
 
 M.ListReservationsInput = {
     type = "structure",
+    id = "ListReservationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -8289,6 +8588,7 @@ M.ListReservationsInput = {
 
 M.ListReservationsOutput = {
     type = "structure",
+    id = "ListReservationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -8308,6 +8608,7 @@ M.ListReservationsOutput = {
 
 M.RouterInputFilter = {
     type = "union",
+    id = "RouterInputFilter",
     members = {
         NameContains = {
             type = "list",
@@ -8349,6 +8650,7 @@ M.RouterInputFilter = {
 
 M.ListRouterInputsInput = {
     type = "structure",
+    id = "ListRouterInputsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -8374,6 +8676,7 @@ M.ListRouterInputsInput = {
 
 M.ListRouterInputsOutput = {
     type = "structure",
+    id = "ListRouterInputsOutput",
     members = {
         RouterInputs = {
             type = "list",
@@ -8394,6 +8697,7 @@ M.ListRouterInputsOutput = {
 
 M.RouterNetworkInterfaceFilter = {
     type = "union",
+    id = "RouterNetworkInterfaceFilter",
     members = {
         RegionNames = {
             type = "list",
@@ -8421,6 +8725,7 @@ M.RouterNetworkInterfaceFilter = {
 
 M.ListRouterNetworkInterfacesInput = {
     type = "structure",
+    id = "ListRouterNetworkInterfacesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -8446,6 +8751,7 @@ M.ListRouterNetworkInterfacesInput = {
 
 M.ListRouterNetworkInterfacesOutput = {
     type = "structure",
+    id = "ListRouterNetworkInterfacesOutput",
     members = {
         RouterNetworkInterfaces = {
             type = "list",
@@ -8466,6 +8772,7 @@ M.ListRouterNetworkInterfacesOutput = {
 
 M.RouterOutputFilter = {
     type = "union",
+    id = "RouterOutputFilter",
     members = {
         RegionNames = {
             type = "list",
@@ -8514,6 +8821,7 @@ M.RouterOutputFilter = {
 
 M.ListRouterOutputsInput = {
     type = "structure",
+    id = "ListRouterOutputsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -8539,6 +8847,7 @@ M.ListRouterOutputsInput = {
 
 M.ListRouterOutputsOutput = {
     type = "structure",
+    id = "ListRouterOutputsOutput",
     members = {
         RouterOutputs = {
             type = "list",
@@ -8559,6 +8868,7 @@ M.ListRouterOutputsOutput = {
 
 M.ListTagsForGlobalResourceInput = {
     type = "structure",
+    id = "ListTagsForGlobalResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -8572,6 +8882,7 @@ M.ListTagsForGlobalResourceInput = {
 
 M.ListTagsForGlobalResourceOutput = {
     type = "structure",
+    id = "ListTagsForGlobalResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -8586,6 +8897,7 @@ M.ListTagsForGlobalResourceOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -8599,6 +8911,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -8613,6 +8926,7 @@ M.ListTagsForResourceOutput = {
 
 M.PurchaseOfferingInput = {
     type = "structure",
+    id = "PurchaseOfferingInput",
     members = {
         OfferingArn = {
             type = "string",
@@ -8640,6 +8954,7 @@ M.PurchaseOfferingInput = {
 
 M.PurchaseOfferingOutput = {
     type = "structure",
+    id = "PurchaseOfferingOutput",
     members = {
         Reservation = setmetatable({ traits = {
             json_name = "reservation",
@@ -8649,6 +8964,7 @@ M.PurchaseOfferingOutput = {
 
 M.RestartRouterInputInput = {
     type = "structure",
+    id = "RestartRouterInputInput",
     members = {
         Arn = {
             type = "string",
@@ -8662,6 +8978,7 @@ M.RestartRouterInputInput = {
 
 M.RestartRouterInputOutput = {
     type = "structure",
+    id = "RestartRouterInputOutput",
     members = {
         Arn = {
             type = "string",
@@ -8689,6 +9006,7 @@ M.RestartRouterInputOutput = {
 
 M.StartRouterInputInput = {
     type = "structure",
+    id = "StartRouterInputInput",
     members = {
         Arn = {
             type = "string",
@@ -8702,6 +9020,7 @@ M.StartRouterInputInput = {
 
 M.StartRouterInputOutput = {
     type = "structure",
+    id = "StartRouterInputOutput",
     members = {
         Arn = {
             type = "string",
@@ -8740,6 +9059,7 @@ M.StartRouterInputOutput = {
 
 M.StopRouterInputInput = {
     type = "structure",
+    id = "StopRouterInputInput",
     members = {
         Arn = {
             type = "string",
@@ -8753,6 +9073,7 @@ M.StopRouterInputInput = {
 
 M.StopRouterInputOutput = {
     type = "structure",
+    id = "StopRouterInputOutput",
     members = {
         Arn = {
             type = "string",
@@ -8780,6 +9101,7 @@ M.StopRouterInputOutput = {
 
 M.UpdateRouterInputInput = {
     type = "structure",
+    id = "UpdateRouterInputInput",
     members = {
         Arn = {
             type = "string",
@@ -8826,6 +9148,7 @@ M.UpdateRouterInputInput = {
 
 M.UpdateRouterInputOutput = {
     type = "structure",
+    id = "UpdateRouterInputOutput",
     members = {
         RouterInput = setmetatable({ traits = {
             json_name = "routerInput",
@@ -8836,6 +9159,7 @@ M.UpdateRouterInputOutput = {
 
 M.UpdateRouterNetworkInterfaceInput = {
     type = "structure",
+    id = "UpdateRouterNetworkInterfaceInput",
     members = {
         Arn = {
             type = "string",
@@ -8858,6 +9182,7 @@ M.UpdateRouterNetworkInterfaceInput = {
 
 M.UpdateRouterNetworkInterfaceOutput = {
     type = "structure",
+    id = "UpdateRouterNetworkInterfaceOutput",
     members = {
         RouterNetworkInterface = setmetatable({ traits = {
             json_name = "routerNetworkInterface",
@@ -8868,6 +9193,7 @@ M.UpdateRouterNetworkInterfaceOutput = {
 
 M.RestartRouterOutputInput = {
     type = "structure",
+    id = "RestartRouterOutputInput",
     members = {
         Arn = {
             type = "string",
@@ -8881,6 +9207,7 @@ M.RestartRouterOutputInput = {
 
 M.RestartRouterOutputOutput = {
     type = "structure",
+    id = "RestartRouterOutputOutput",
     members = {
         Arn = {
             type = "string",
@@ -8908,6 +9235,7 @@ M.RestartRouterOutputOutput = {
 
 M.StartRouterOutputInput = {
     type = "structure",
+    id = "StartRouterOutputInput",
     members = {
         Arn = {
             type = "string",
@@ -8921,6 +9249,7 @@ M.StartRouterOutputInput = {
 
 M.StartRouterOutputOutput = {
     type = "structure",
+    id = "StartRouterOutputOutput",
     members = {
         Arn = {
             type = "string",
@@ -8959,6 +9288,7 @@ M.StartRouterOutputOutput = {
 
 M.StopRouterOutputInput = {
     type = "structure",
+    id = "StopRouterOutputInput",
     members = {
         Arn = {
             type = "string",
@@ -8972,6 +9302,7 @@ M.StopRouterOutputInput = {
 
 M.StopRouterOutputOutput = {
     type = "structure",
+    id = "StopRouterOutputOutput",
     members = {
         Arn = {
             type = "string",
@@ -8999,6 +9330,7 @@ M.StopRouterOutputOutput = {
 
 M.TakeRouterInputInput = {
     type = "structure",
+    id = "TakeRouterInputInput",
     members = {
         RouterOutputArn = {
             type = "string",
@@ -9018,6 +9350,7 @@ M.TakeRouterInputInput = {
 
 M.TakeRouterInputOutput = {
     type = "structure",
+    id = "TakeRouterInputOutput",
     members = {
         RoutedState = {
             type = "string",
@@ -9057,6 +9390,7 @@ M.TakeRouterInputOutput = {
 
 M.UpdateRouterOutputInput = {
     type = "structure",
+    id = "UpdateRouterOutputInput",
     members = {
         Arn = {
             type = "string",
@@ -9100,6 +9434,7 @@ M.UpdateRouterOutputInput = {
 
 M.UpdateRouterOutputOutput = {
     type = "structure",
+    id = "UpdateRouterOutputOutput",
     members = {
         RouterOutput = setmetatable({ traits = {
             json_name = "routerOutput",
@@ -9110,6 +9445,7 @@ M.UpdateRouterOutputOutput = {
 
 M.TagGlobalResourceInput = {
     type = "structure",
+    id = "TagGlobalResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9132,10 +9468,12 @@ M.TagGlobalResourceInput = {
 
 M.TagGlobalResourceOutput = {
     type = "structure",
+    id = "TagGlobalResourceOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9158,10 +9496,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagGlobalResourceInput = {
     type = "structure",
+    id = "UntagGlobalResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9183,10 +9523,12 @@ M.UntagGlobalResourceInput = {
 
 M.UntagGlobalResourceOutput = {
     type = "structure",
+    id = "UntagGlobalResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9208,6 +9550,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

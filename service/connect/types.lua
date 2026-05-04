@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -28,6 +29,7 @@ M.ActionType = {
 
 M.ActionSummary = {
     type = "structure",
+    id = "ActionSummary",
     members = {
         ActionType = {
             type = "string",
@@ -40,6 +42,7 @@ M.ActionSummary = {
 
 M.ActivateEvaluationFormInput = {
     type = "structure",
+    id = "ActivateEvaluationFormInput",
     members = {
         InstanceId = {
             type = "string",
@@ -67,6 +70,7 @@ M.ActivateEvaluationFormInput = {
 
 M.ActivateEvaluationFormOutput = {
     type = "structure",
+    id = "ActivateEvaluationFormOutput",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -92,6 +96,7 @@ M.ActivateEvaluationFormOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -102,6 +107,7 @@ M.InternalServiceException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -112,6 +118,7 @@ M.InvalidParameterException = {
 
 M.ResourceConflictException = {
     type = "structure",
+    id = "ResourceConflictException",
     error = "client",
     members = {
         Message = {
@@ -122,6 +129,7 @@ M.ResourceConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -132,6 +140,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -142,6 +151,7 @@ M.ThrottlingException = {
 
 M.EmailRecipient = {
     type = "structure",
+    id = "EmailRecipient",
     members = {
         Address = {
             type = "string",
@@ -154,6 +164,7 @@ M.EmailRecipient = {
 
 M.AdditionalEmailRecipients = {
     type = "structure",
+    id = "AdditionalEmailRecipients",
     members = {
         ToList = {
             type = "list",
@@ -168,6 +179,7 @@ M.AdditionalEmailRecipients = {
 
 M.AfterContactWorkConfig = {
     type = "structure",
+    id = "AfterContactWorkConfig",
     members = {
         AfterContactWorkTimeLimit = {
             type = "integer",
@@ -187,6 +199,7 @@ M.Channel = {
 
 M.AfterContactWorkConfigPerChannel = {
     type = "structure",
+    id = "AfterContactWorkConfigPerChannel",
     members = {
         Channel = {
             type = "string",
@@ -208,6 +221,7 @@ M.AgentAvailabilityTimer = {
 
 M.Distribution = {
     type = "structure",
+    id = "Distribution",
     members = {
         Region = {
             type = "string",
@@ -227,6 +241,7 @@ M.Distribution = {
 
 M.AgentConfig = {
     type = "structure",
+    id = "AgentConfig",
     members = {
         Distributions = {
             type = "list",
@@ -267,6 +282,7 @@ M.ContactInitiationMethod = {
 
 M.QueueReference = {
     type = "structure",
+    id = "QueueReference",
     members = {
         Id = {
             type = "string",
@@ -279,6 +295,7 @@ M.QueueReference = {
 
 M.AgentContactReference = {
     type = "structure",
+    id = "AgentContactReference",
     members = {
         ContactId = {
             type = "string",
@@ -309,6 +326,7 @@ M.AllowedUserAction = {
 
 M.PostAcceptTimeoutConfig = {
     type = "structure",
+    id = "PostAcceptTimeoutConfig",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -321,6 +339,7 @@ M.PostAcceptTimeoutConfig = {
 
 M.Preview = {
     type = "structure",
+    id = "Preview",
     members = {
         PostAcceptTimeoutConfig = setmetatable({ traits = {
             required = true,
@@ -337,6 +356,7 @@ M.Preview = {
 
 M.AgentFirst = {
     type = "structure",
+    id = "AgentFirst",
     members = {
         Preview = M.Preview,
     },
@@ -344,6 +364,7 @@ M.AgentFirst = {
 
 M.AgentHierarchyGroup = {
     type = "structure",
+    id = "AgentHierarchyGroup",
     members = {
         Arn = {
             type = "string",
@@ -353,6 +374,7 @@ M.AgentHierarchyGroup = {
 
 M.AgentHierarchyGroups = {
     type = "structure",
+    id = "AgentHierarchyGroups",
     members = {
         L1Ids = {
             type = "list",
@@ -387,6 +409,7 @@ M.VideoCapability = {
 
 M.ParticipantCapabilities = {
     type = "structure",
+    id = "ParticipantCapabilities",
     members = {
         Video = {
             type = "string",
@@ -399,6 +422,7 @@ M.ParticipantCapabilities = {
 
 M.DeviceInfo = {
     type = "structure",
+    id = "DeviceInfo",
     members = {
         PlatformName = {
             type = "string",
@@ -414,6 +438,7 @@ M.DeviceInfo = {
 
 M.HierarchyGroups = {
     type = "structure",
+    id = "HierarchyGroups",
     members = {
         Level1 = M.AgentHierarchyGroup,
         Level2 = M.AgentHierarchyGroup,
@@ -432,6 +457,7 @@ M.ParticipantState = {
 
 M.StateTransition = {
     type = "structure",
+    id = "StateTransition",
     members = {
         State = {
             type = "string",
@@ -453,6 +479,7 @@ M.VoiceEnhancementMode = {
 
 M.AgentInfo = {
     type = "structure",
+    id = "AgentInfo",
     members = {
         Id = {
             type = "string",
@@ -496,6 +523,7 @@ M.AgentInfo = {
 
 M.AudioQualityMetricsInfo = {
     type = "structure",
+    id = "AudioQualityMetricsInfo",
     members = {
         QualityScore = {
             type = "float",
@@ -512,6 +540,7 @@ M.AudioQualityMetricsInfo = {
 
 M.AgentQualityMetrics = {
     type = "structure",
+    id = "AgentQualityMetrics",
     members = {
         Audio = M.AudioQualityMetricsInfo,
     },
@@ -519,6 +548,7 @@ M.AgentQualityMetrics = {
 
 M.AgentsCriteria = {
     type = "structure",
+    id = "AgentsCriteria",
     members = {
         AgentIds = {
             type = "list",
@@ -540,6 +570,7 @@ M.AgentStatusType = {
 
 M.AgentStatus = {
     type = "structure",
+    id = "AgentStatus",
     members = {
         AgentStatusARN = {
             type = "string",
@@ -578,6 +609,7 @@ M.AgentStatus = {
 
 M.AgentStatusIdentifier = {
     type = "structure",
+    id = "AgentStatusIdentifier",
     members = {
         Arn = {
             type = "string",
@@ -590,6 +622,7 @@ M.AgentStatusIdentifier = {
 
 M.AgentStatusReference = {
     type = "structure",
+    id = "AgentStatusReference",
     members = {
         StatusStartTimestamp = {
             type = "timestamp",
@@ -611,6 +644,7 @@ M.StringComparisonType = {
 
 M.StringCondition = {
     type = "structure",
+    id = "StringCondition",
     members = {
         FieldName = {
             type = "string",
@@ -626,6 +660,7 @@ M.StringCondition = {
 
 M.TagCondition = {
     type = "structure",
+    id = "TagCondition",
     members = {
         TagKey = {
             type = "string",
@@ -638,6 +673,7 @@ M.TagCondition = {
 
 M.CommonAttributeAndCondition = {
     type = "structure",
+    id = "CommonAttributeAndCondition",
     members = {
         TagConditions = {
             type = "list",
@@ -648,6 +684,7 @@ M.CommonAttributeAndCondition = {
 
 M.ControlPlaneAttributeFilter = {
     type = "structure",
+    id = "ControlPlaneAttributeFilter",
     members = {
         OrConditions = {
             type = "list",
@@ -660,6 +697,7 @@ M.ControlPlaneAttributeFilter = {
 
 M.AgentStatusSearchFilter = {
     type = "structure",
+    id = "AgentStatusSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -667,6 +705,7 @@ M.AgentStatusSearchFilter = {
 
 M.AgentStatusSummary = {
     type = "structure",
+    id = "AgentStatusSummary",
     members = {
         Id = {
             type = "string",
@@ -696,6 +735,7 @@ M.AiUseCase = {
 
 M.AiAgentInfo = {
     type = "structure",
+    id = "AiAgentInfo",
     members = {
         AiUseCase = {
             type = "string",
@@ -714,6 +754,7 @@ M.AiAgentInfo = {
 
 M.AliasConfiguration = {
     type = "structure",
+    id = "AliasConfiguration",
     members = {
         EmailAddressId = {
             type = "string",
@@ -726,6 +767,7 @@ M.AliasConfiguration = {
 
 M.AllowedCapabilities = {
     type = "structure",
+    id = "AllowedCapabilities",
     members = {
         Customer = M.ParticipantCapabilities,
         Agent = M.ParticipantCapabilities,
@@ -734,6 +776,7 @@ M.AllowedCapabilities = {
 
 M.AllowedExtension = {
     type = "structure",
+    id = "AllowedExtension",
     members = {
         Extension = {
             type = "string",
@@ -750,6 +793,7 @@ M.FlowModuleType = {
 
 M.FlowModule = {
     type = "structure",
+    id = "FlowModule",
     members = {
         Type = {
             type = "string",
@@ -767,6 +811,7 @@ M.MonitorCapability = {
 
 M.AssociateAnalyticsDataSetInput = {
     type = "structure",
+    id = "AssociateAnalyticsDataSetInput",
     members = {
         InstanceId = {
             type = "string",
@@ -789,6 +834,7 @@ M.AssociateAnalyticsDataSetInput = {
 
 M.AssociateAnalyticsDataSetOutput = {
     type = "structure",
+    id = "AssociateAnalyticsDataSetOutput",
     members = {
         DataSetId = {
             type = "string",
@@ -813,6 +859,7 @@ M.AttachedFileInvalidRequestExceptionReason = {
 
 M.InvalidRequestExceptionReason = {
     type = "union",
+    id = "InvalidRequestExceptionReason",
     members = {
         AttachedFileInvalidRequestExceptionReason = {
             type = "string",
@@ -822,6 +869,7 @@ M.InvalidRequestExceptionReason = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -833,6 +881,7 @@ M.InvalidRequestException = {
 
 M.AssociateApprovedOriginInput = {
     type = "structure",
+    id = "AssociateApprovedOriginInput",
     members = {
         InstanceId = {
             type = "string",
@@ -858,6 +907,7 @@ M.AssociateApprovedOriginInput = {
 
 M.AssociateApprovedOriginOutput = {
     type = "structure",
+    id = "AssociateApprovedOriginOutput",
 }
 
 M.AttachedFileServiceQuotaExceededExceptionReason = {
@@ -867,6 +917,7 @@ M.AttachedFileServiceQuotaExceededExceptionReason = {
 
 M.ServiceQuotaExceededExceptionReason = {
     type = "union",
+    id = "ServiceQuotaExceededExceptionReason",
     members = {
         AttachedFileServiceQuotaExceededExceptionReason = {
             type = "string",
@@ -876,6 +927,7 @@ M.ServiceQuotaExceededExceptionReason = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -887,6 +939,7 @@ M.ServiceQuotaExceededException = {
 
 M.LexBot = {
     type = "structure",
+    id = "LexBot",
     members = {
         Name = {
             type = "string",
@@ -905,6 +958,7 @@ M.LexBot = {
 
 M.LexV2Bot = {
     type = "structure",
+    id = "LexV2Bot",
     members = {
         AliasArn = {
             type = "string",
@@ -914,6 +968,7 @@ M.LexV2Bot = {
 
 M.AssociateBotInput = {
     type = "structure",
+    id = "AssociateBotInput",
     members = {
         InstanceId = {
             type = "string",
@@ -935,10 +990,12 @@ M.AssociateBotInput = {
 
 M.AssociateBotOutput = {
     type = "structure",
+    id = "AssociateBotOutput",
 }
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -949,6 +1006,7 @@ M.LimitExceededException = {
 
 M.AssociateContactWithUserInput = {
     type = "structure",
+    id = "AssociateContactWithUserInput",
     members = {
         InstanceId = {
             type = "string",
@@ -975,6 +1033,7 @@ M.AssociateContactWithUserInput = {
 
 M.AssociateContactWithUserOutput = {
     type = "structure",
+    id = "AssociateContactWithUserOutput",
 }
 
 M.VocabularyLanguageCode = {
@@ -1015,6 +1074,7 @@ M.VocabularyLanguageCode = {
 
 M.AssociateDefaultVocabularyInput = {
     type = "structure",
+    id = "AssociateDefaultVocabularyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1038,10 +1098,12 @@ M.AssociateDefaultVocabularyInput = {
 
 M.AssociateDefaultVocabularyOutput = {
     type = "structure",
+    id = "AssociateDefaultVocabularyOutput",
 }
 
 M.AssociateEmailAddressAliasInput = {
     type = "structure",
+    id = "AssociateEmailAddressAliasInput",
     members = {
         EmailAddressId = {
             type = "string",
@@ -1071,10 +1133,12 @@ M.AssociateEmailAddressAliasInput = {
 
 M.AssociateEmailAddressAliasOutput = {
     type = "structure",
+    id = "AssociateEmailAddressAliasOutput",
 }
 
 M.IdempotencyException = {
     type = "structure",
+    id = "IdempotencyException",
     error = "client",
     members = {
         Message = {
@@ -1093,6 +1157,7 @@ M.FlowAssociationResourceType = {
 
 M.AssociateFlowInput = {
     type = "structure",
+    id = "AssociateFlowInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1124,10 +1189,12 @@ M.AssociateFlowInput = {
 
 M.AssociateFlowOutput = {
     type = "structure",
+    id = "AssociateFlowOutput",
 }
 
 M.ParentHoursOfOperationConfig = {
     type = "structure",
+    id = "ParentHoursOfOperationConfig",
     members = {
         HoursOfOperationId = {
             type = "string",
@@ -1137,6 +1204,7 @@ M.ParentHoursOfOperationConfig = {
 
 M.AssociateHoursOfOperationsInput = {
     type = "structure",
+    id = "AssociateHoursOfOperationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1164,10 +1232,12 @@ M.AssociateHoursOfOperationsInput = {
 
 M.AssociateHoursOfOperationsOutput = {
     type = "structure",
+    id = "AssociateHoursOfOperationsOutput",
 }
 
 M.ConditionalOperationFailedException = {
     type = "structure",
+    id = "ConditionalOperationFailedException",
     error = "client",
     members = {
         Message = {
@@ -1194,6 +1264,7 @@ M.InstanceStorageResourceType = {
 
 M.KinesisFirehoseConfig = {
     type = "structure",
+    id = "KinesisFirehoseConfig",
     members = {
         FirehoseArn = {
             type = "string",
@@ -1206,6 +1277,7 @@ M.KinesisFirehoseConfig = {
 
 M.KinesisStreamConfig = {
     type = "structure",
+    id = "KinesisStreamConfig",
     members = {
         StreamArn = {
             type = "string",
@@ -1222,6 +1294,7 @@ M.EncryptionType = {
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         EncryptionType = {
             type = "string",
@@ -1240,6 +1313,7 @@ M.EncryptionConfig = {
 
 M.KinesisVideoStreamConfig = {
     type = "structure",
+    id = "KinesisVideoStreamConfig",
     members = {
         Prefix = {
             type = "string",
@@ -1262,6 +1336,7 @@ M.KinesisVideoStreamConfig = {
 
 M.S3Config = {
     type = "structure",
+    id = "S3Config",
     members = {
         BucketName = {
             type = "string",
@@ -1288,6 +1363,7 @@ M.StorageType = {
 
 M.InstanceStorageConfig = {
     type = "structure",
+    id = "InstanceStorageConfig",
     members = {
         AssociationId = {
             type = "string",
@@ -1307,6 +1383,7 @@ M.InstanceStorageConfig = {
 
 M.AssociateInstanceStorageConfigInput = {
     type = "structure",
+    id = "AssociateInstanceStorageConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1335,6 +1412,7 @@ M.AssociateInstanceStorageConfigInput = {
 
 M.AssociateInstanceStorageConfigOutput = {
     type = "structure",
+    id = "AssociateInstanceStorageConfigOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -1344,6 +1422,7 @@ M.AssociateInstanceStorageConfigOutput = {
 
 M.AssociateLambdaFunctionInput = {
     type = "structure",
+    id = "AssociateLambdaFunctionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1369,10 +1448,12 @@ M.AssociateLambdaFunctionInput = {
 
 M.AssociateLambdaFunctionOutput = {
     type = "structure",
+    id = "AssociateLambdaFunctionOutput",
 }
 
 M.AssociateLexBotInput = {
     type = "structure",
+    id = "AssociateLexBotInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1395,10 +1476,12 @@ M.AssociateLexBotInput = {
 
 M.AssociateLexBotOutput = {
     type = "structure",
+    id = "AssociateLexBotOutput",
 }
 
 M.AssociatePhoneNumberContactFlowInput = {
     type = "structure",
+    id = "AssociatePhoneNumberContactFlowInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -1424,10 +1507,12 @@ M.AssociatePhoneNumberContactFlowInput = {
 
 M.AssociatePhoneNumberContactFlowOutput = {
     type = "structure",
+    id = "AssociatePhoneNumberContactFlowOutput",
 }
 
 M.EmailAddressConfig = {
     type = "structure",
+    id = "EmailAddressConfig",
     members = {
         EmailAddressId = {
             type = "string",
@@ -1440,6 +1525,7 @@ M.EmailAddressConfig = {
 
 M.AssociateQueueEmailAddressesInput = {
     type = "structure",
+    id = "AssociateQueueEmailAddressesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1473,10 +1559,12 @@ M.AssociateQueueEmailAddressesInput = {
 
 M.AssociateQueueEmailAddressesOutput = {
     type = "structure",
+    id = "AssociateQueueEmailAddressesOutput",
 }
 
 M.AssociateQueueQuickConnectsInput = {
     type = "structure",
+    id = "AssociateQueueQuickConnectsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1504,10 +1592,12 @@ M.AssociateQueueQuickConnectsInput = {
 
 M.AssociateQueueQuickConnectsOutput = {
     type = "structure",
+    id = "AssociateQueueQuickConnectsOutput",
 }
 
 M.RoutingProfileQueueReference = {
     type = "structure",
+    id = "RoutingProfileQueueReference",
     members = {
         QueueId = {
             type = "string",
@@ -1526,6 +1616,7 @@ M.RoutingProfileQueueReference = {
 
 M.RoutingProfileManualAssignmentQueueConfig = {
     type = "structure",
+    id = "RoutingProfileManualAssignmentQueueConfig",
     members = {
         QueueReference = setmetatable({ traits = {
             required = true,
@@ -1535,6 +1626,7 @@ M.RoutingProfileManualAssignmentQueueConfig = {
 
 M.RoutingProfileQueueConfig = {
     type = "structure",
+    id = "RoutingProfileQueueConfig",
     members = {
         QueueReference = setmetatable({ traits = {
             required = true,
@@ -1557,6 +1649,7 @@ M.RoutingProfileQueueConfig = {
 
 M.AssociateRoutingProfileQueuesInput = {
     type = "structure",
+    id = "AssociateRoutingProfileQueuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1585,10 +1678,12 @@ M.AssociateRoutingProfileQueuesInput = {
 
 M.AssociateRoutingProfileQueuesOutput = {
     type = "structure",
+    id = "AssociateRoutingProfileQueuesOutput",
 }
 
 M.AssociateSecurityKeyInput = {
     type = "structure",
+    id = "AssociateSecurityKeyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1614,6 +1709,7 @@ M.AssociateSecurityKeyInput = {
 
 M.AssociateSecurityKeyOutput = {
     type = "structure",
+    id = "AssociateSecurityKeyOutput",
     members = {
         AssociationId = {
             type = "string",
@@ -1628,6 +1724,7 @@ M.EntityType = {
 
 M.SecurityProfileItem = {
     type = "structure",
+    id = "SecurityProfileItem",
     members = {
         Id = {
             type = "string",
@@ -1637,6 +1734,7 @@ M.SecurityProfileItem = {
 
 M.AssociateSecurityProfilesInput = {
     type = "structure",
+    id = "AssociateSecurityProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1669,10 +1767,12 @@ M.AssociateSecurityProfilesInput = {
 
 M.AssociateSecurityProfilesOutput = {
     type = "structure",
+    id = "AssociateSecurityProfilesOutput",
 }
 
 M.AssociateTrafficDistributionGroupUserInput = {
     type = "structure",
+    id = "AssociateTrafficDistributionGroupUserInput",
     members = {
         TrafficDistributionGroupId = {
             type = "string",
@@ -1698,10 +1798,12 @@ M.AssociateTrafficDistributionGroupUserInput = {
 
 M.AssociateTrafficDistributionGroupUserOutput = {
     type = "structure",
+    id = "AssociateTrafficDistributionGroupUserOutput",
 }
 
 M.UserProficiency = {
     type = "structure",
+    id = "UserProficiency",
     members = {
         AttributeName = {
             type = "string",
@@ -1727,6 +1829,7 @@ M.UserProficiency = {
 
 M.AssociateUserProficienciesInput = {
     type = "structure",
+    id = "AssociateUserProficienciesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1754,10 +1857,12 @@ M.AssociateUserProficienciesInput = {
 
 M.AssociateUserProficienciesOutput = {
     type = "structure",
+    id = "AssociateUserProficienciesOutput",
 }
 
 M.AssociateWorkspaceInput = {
     type = "structure",
+    id = "AssociateWorkspaceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1785,6 +1890,7 @@ M.AssociateWorkspaceInput = {
 
 M.FailedBatchAssociationSummary = {
     type = "structure",
+    id = "FailedBatchAssociationSummary",
     members = {
         ResourceArn = {
             type = "string",
@@ -1800,6 +1906,7 @@ M.FailedBatchAssociationSummary = {
 
 M.SuccessfulBatchAssociationSummary = {
     type = "structure",
+    id = "SuccessfulBatchAssociationSummary",
     members = {
         ResourceArn = {
             type = "string",
@@ -1809,6 +1916,7 @@ M.SuccessfulBatchAssociationSummary = {
 
 M.AssociateWorkspaceOutput = {
     type = "structure",
+    id = "AssociateWorkspaceOutput",
     members = {
         SuccessfulList = {
             type = "list",
@@ -1823,6 +1931,7 @@ M.AssociateWorkspaceOutput = {
 
 M.DuplicateResourceException = {
     type = "structure",
+    id = "DuplicateResourceException",
     error = "client",
     members = {
         Message = {
@@ -1833,6 +1942,7 @@ M.DuplicateResourceException = {
 
 M.BatchAssociateAnalyticsDataSetInput = {
     type = "structure",
+    id = "BatchAssociateAnalyticsDataSetInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1856,6 +1966,7 @@ M.BatchAssociateAnalyticsDataSetInput = {
 
 M.AnalyticsDataAssociationResult = {
     type = "structure",
+    id = "AnalyticsDataAssociationResult",
     members = {
         DataSetId = {
             type = "string",
@@ -1877,6 +1988,7 @@ M.AnalyticsDataAssociationResult = {
 
 M.ErrorResult = {
     type = "structure",
+    id = "ErrorResult",
     members = {
         ErrorCode = {
             type = "string",
@@ -1889,6 +2001,7 @@ M.ErrorResult = {
 
 M.BatchAssociateAnalyticsDataSetOutput = {
     type = "structure",
+    id = "BatchAssociateAnalyticsDataSetOutput",
     members = {
         Created = {
             type = "list",
@@ -1903,6 +2016,7 @@ M.BatchAssociateAnalyticsDataSetOutput = {
 
 M.DataTableLockVersion = {
     type = "structure",
+    id = "DataTableLockVersion",
     members = {
         DataTable = {
             type = "string",
@@ -1921,6 +2035,7 @@ M.DataTableLockVersion = {
 
 M.PrimaryValue = {
     type = "structure",
+    id = "PrimaryValue",
     members = {
         AttributeName = {
             type = "string",
@@ -1939,6 +2054,7 @@ M.PrimaryValue = {
 
 M.DataTableValue = {
     type = "structure",
+    id = "DataTableValue",
     members = {
         PrimaryValues = {
             type = "list",
@@ -1968,6 +2084,7 @@ M.DataTableValue = {
 
 M.BatchCreateDataTableValueInput = {
     type = "structure",
+    id = "BatchCreateDataTableValueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -1995,6 +2112,7 @@ M.BatchCreateDataTableValueInput = {
 
 M.BatchCreateDataTableValueFailureResult = {
     type = "structure",
+    id = "BatchCreateDataTableValueFailureResult",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2020,6 +2138,7 @@ M.BatchCreateDataTableValueFailureResult = {
 
 M.BatchCreateDataTableValueSuccessResult = {
     type = "structure",
+    id = "BatchCreateDataTableValueSuccessResult",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2048,6 +2167,7 @@ M.BatchCreateDataTableValueSuccessResult = {
 
 M.BatchCreateDataTableValueOutput = {
     type = "structure",
+    id = "BatchCreateDataTableValueOutput",
     members = {
         Successful = {
             type = "list",
@@ -2068,6 +2188,7 @@ M.BatchCreateDataTableValueOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -2078,6 +2199,7 @@ M.ConflictException = {
 
 M.DataTableDeleteValueIdentifier = {
     type = "structure",
+    id = "DataTableDeleteValueIdentifier",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2097,6 +2219,7 @@ M.DataTableDeleteValueIdentifier = {
 
 M.BatchDeleteDataTableValueInput = {
     type = "structure",
+    id = "BatchDeleteDataTableValueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2124,6 +2247,7 @@ M.BatchDeleteDataTableValueInput = {
 
 M.BatchDeleteDataTableValueFailureResult = {
     type = "structure",
+    id = "BatchDeleteDataTableValueFailureResult",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2149,6 +2273,7 @@ M.BatchDeleteDataTableValueFailureResult = {
 
 M.BatchDeleteDataTableValueSuccessResult = {
     type = "structure",
+    id = "BatchDeleteDataTableValueSuccessResult",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2171,6 +2296,7 @@ M.BatchDeleteDataTableValueSuccessResult = {
 
 M.BatchDeleteDataTableValueOutput = {
     type = "structure",
+    id = "BatchDeleteDataTableValueOutput",
     members = {
         Successful = {
             type = "list",
@@ -2191,6 +2317,7 @@ M.BatchDeleteDataTableValueOutput = {
 
 M.DataTableValueIdentifier = {
     type = "structure",
+    id = "DataTableValueIdentifier",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2207,6 +2334,7 @@ M.DataTableValueIdentifier = {
 
 M.BatchDescribeDataTableValueInput = {
     type = "structure",
+    id = "BatchDescribeDataTableValueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2234,6 +2362,7 @@ M.BatchDescribeDataTableValueInput = {
 
 M.BatchDescribeDataTableValueFailureResult = {
     type = "structure",
+    id = "BatchDescribeDataTableValueFailureResult",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2259,6 +2388,7 @@ M.BatchDescribeDataTableValueFailureResult = {
 
 M.PrimaryValueResponse = {
     type = "structure",
+    id = "PrimaryValueResponse",
     members = {
         AttributeName = {
             type = "string",
@@ -2274,6 +2404,7 @@ M.PrimaryValueResponse = {
 
 M.BatchDescribeDataTableValueSuccessResult = {
     type = "structure",
+    id = "BatchDescribeDataTableValueSuccessResult",
     members = {
         RecordId = {
             type = "string",
@@ -2317,6 +2448,7 @@ M.BatchDescribeDataTableValueSuccessResult = {
 
 M.BatchDescribeDataTableValueOutput = {
     type = "structure",
+    id = "BatchDescribeDataTableValueOutput",
     members = {
         Successful = {
             type = "list",
@@ -2337,6 +2469,7 @@ M.BatchDescribeDataTableValueOutput = {
 
 M.BatchDisassociateAnalyticsDataSetInput = {
     type = "structure",
+    id = "BatchDisassociateAnalyticsDataSetInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2360,6 +2493,7 @@ M.BatchDisassociateAnalyticsDataSetInput = {
 
 M.BatchDisassociateAnalyticsDataSetOutput = {
     type = "structure",
+    id = "BatchDisassociateAnalyticsDataSetOutput",
     members = {
         Deleted = {
             type = "list",
@@ -2374,6 +2508,7 @@ M.BatchDisassociateAnalyticsDataSetOutput = {
 
 M.BatchGetAttachedFileMetadataInput = {
     type = "structure",
+    id = "BatchGetAttachedFileMetadataInput",
     members = {
         FileIds = {
             type = "list",
@@ -2401,6 +2536,7 @@ M.BatchGetAttachedFileMetadataInput = {
 
 M.AttachedFileError = {
     type = "structure",
+    id = "AttachedFileError",
     members = {
         ErrorCode = {
             type = "string",
@@ -2416,6 +2552,7 @@ M.AttachedFileError = {
 
 M.CreatedByInfo = {
     type = "union",
+    id = "CreatedByInfo",
     members = {
         ConnectUserArn = {
             type = "string",
@@ -2444,6 +2581,7 @@ M.FileUseCaseType = {
 
 M.AttachedFile = {
     type = "structure",
+    id = "AttachedFile",
     members = {
         CreationTime = {
             type = "string",
@@ -2498,6 +2636,7 @@ M.AttachedFile = {
 
 M.BatchGetAttachedFileMetadataOutput = {
     type = "structure",
+    id = "BatchGetAttachedFileMetadataOutput",
     members = {
         Files = {
             type = "list",
@@ -2520,6 +2659,7 @@ M.ListFlowAssociationResourceType = {
 
 M.BatchGetFlowAssociationInput = {
     type = "structure",
+    id = "BatchGetFlowAssociationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2543,6 +2683,7 @@ M.BatchGetFlowAssociationInput = {
 
 M.FlowAssociationSummary = {
     type = "structure",
+    id = "FlowAssociationSummary",
     members = {
         ResourceId = {
             type = "string",
@@ -2558,6 +2699,7 @@ M.FlowAssociationSummary = {
 
 M.BatchGetFlowAssociationOutput = {
     type = "structure",
+    id = "BatchGetFlowAssociationOutput",
     members = {
         FlowAssociationSummaryList = {
             type = "list",
@@ -2568,6 +2710,7 @@ M.BatchGetFlowAssociationOutput = {
 
 M.Campaign = {
     type = "structure",
+    id = "Campaign",
     members = {
         CampaignId = {
             type = "string",
@@ -2585,6 +2728,7 @@ M.EndpointType = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Type = {
             type = "string",
@@ -2597,6 +2741,7 @@ M.Endpoint = {
 
 M.OutboundStrategyConfig = {
     type = "structure",
+    id = "OutboundStrategyConfig",
     members = {
         AgentFirst = M.AgentFirst,
     },
@@ -2608,6 +2753,7 @@ M.OutboundStrategyType = {
 
 M.OutboundStrategy = {
     type = "structure",
+    id = "OutboundStrategy",
     members = {
         Type = {
             type = "string",
@@ -2621,6 +2767,7 @@ M.OutboundStrategy = {
 
 M.ContactDataRequest = {
     type = "structure",
+    id = "ContactDataRequest",
     members = {
         SystemEndpoint = M.Endpoint,
         CustomerEndpoint = M.Endpoint,
@@ -2642,6 +2789,7 @@ M.ContactDataRequest = {
 
 M.BatchPutContactInput = {
     type = "structure",
+    id = "BatchPutContactInput",
     members = {
         ClientToken = {
             type = "string",
@@ -2682,6 +2830,7 @@ M.FailureReasonCode = {
 
 M.FailedRequest = {
     type = "structure",
+    id = "FailedRequest",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -2697,6 +2846,7 @@ M.FailedRequest = {
 
 M.SuccessfulRequest = {
     type = "structure",
+    id = "SuccessfulRequest",
     members = {
         RequestIdentifier = {
             type = "string",
@@ -2709,6 +2859,7 @@ M.SuccessfulRequest = {
 
 M.BatchPutContactOutput = {
     type = "structure",
+    id = "BatchPutContactOutput",
     members = {
         SuccessfulRequestList = {
             type = "list",
@@ -2723,6 +2874,7 @@ M.BatchPutContactOutput = {
 
 M.BatchUpdateDataTableValueInput = {
     type = "structure",
+    id = "BatchUpdateDataTableValueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2750,6 +2902,7 @@ M.BatchUpdateDataTableValueInput = {
 
 M.BatchUpdateDataTableValueFailureResult = {
     type = "structure",
+    id = "BatchUpdateDataTableValueFailureResult",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2775,6 +2928,7 @@ M.BatchUpdateDataTableValueFailureResult = {
 
 M.BatchUpdateDataTableValueSuccessResult = {
     type = "structure",
+    id = "BatchUpdateDataTableValueSuccessResult",
     members = {
         PrimaryValues = {
             type = "list",
@@ -2797,6 +2951,7 @@ M.BatchUpdateDataTableValueSuccessResult = {
 
 M.BatchUpdateDataTableValueOutput = {
     type = "structure",
+    id = "BatchUpdateDataTableValueOutput",
     members = {
         Successful = {
             type = "list",
@@ -2817,6 +2972,7 @@ M.BatchUpdateDataTableValueOutput = {
 
 M.ClaimPhoneNumberInput = {
     type = "structure",
+    id = "ClaimPhoneNumberInput",
     members = {
         TargetArn = {
             type = "string",
@@ -2849,6 +3005,7 @@ M.ClaimPhoneNumberInput = {
 
 M.ClaimPhoneNumberOutput = {
     type = "structure",
+    id = "ClaimPhoneNumberOutput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -2861,6 +3018,7 @@ M.ClaimPhoneNumberOutput = {
 
 M.CompleteAttachedFileUploadInput = {
     type = "structure",
+    id = "CompleteAttachedFileUploadInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2888,10 +3046,12 @@ M.CompleteAttachedFileUploadInput = {
 
 M.CompleteAttachedFileUploadOutput = {
     type = "structure",
+    id = "CompleteAttachedFileUploadOutput",
 }
 
 M.CreateAgentStatusInput = {
     type = "structure",
+    id = "CreateAgentStatusInput",
     members = {
         InstanceId = {
             type = "string",
@@ -2928,6 +3088,7 @@ M.CreateAgentStatusInput = {
 
 M.CreateAgentStatusOutput = {
     type = "structure",
+    id = "CreateAgentStatusOutput",
     members = {
         AgentStatusARN = {
             type = "string",
@@ -2968,6 +3129,7 @@ M.ReferenceType = {
 
 M.Reference = {
     type = "structure",
+    id = "Reference",
     members = {
         Value = {
             type = "string",
@@ -2995,6 +3157,7 @@ M.Reference = {
 
 M.UserInfo = {
     type = "structure",
+    id = "UserInfo",
     members = {
         UserId = {
             type = "string",
@@ -3004,6 +3167,7 @@ M.UserInfo = {
 
 M.CreateContactOutput = {
     type = "structure",
+    id = "CreateContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -3034,6 +3198,7 @@ M.ContactFlowType = {
 
 M.CreateContactFlowInput = {
     type = "structure",
+    id = "CreateContactFlowInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3076,6 +3241,7 @@ M.CreateContactFlowInput = {
 
 M.CreateContactFlowOutput = {
     type = "structure",
+    id = "CreateContactFlowOutput",
     members = {
         ContactFlowId = {
             type = "string",
@@ -3091,6 +3257,7 @@ M.CreateContactFlowOutput = {
 
 M.ProblemDetail = {
     type = "structure",
+    id = "ProblemDetail",
     members = {
         message = {
             type = "string",
@@ -3100,6 +3267,7 @@ M.ProblemDetail = {
 
 M.InvalidContactFlowException = {
     type = "structure",
+    id = "InvalidContactFlowException",
     error = "client",
     members = {
         problems = {
@@ -3111,6 +3279,7 @@ M.InvalidContactFlowException = {
 
 M.ExternalInvocationConfiguration = {
     type = "structure",
+    id = "ExternalInvocationConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -3123,6 +3292,7 @@ M.ExternalInvocationConfiguration = {
 
 M.CreateContactFlowModuleInput = {
     type = "structure",
+    id = "CreateContactFlowModuleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3166,6 +3336,7 @@ M.CreateContactFlowModuleInput = {
 
 M.CreateContactFlowModuleOutput = {
     type = "structure",
+    id = "CreateContactFlowModuleOutput",
     members = {
         Id = {
             type = "string",
@@ -3178,6 +3349,7 @@ M.CreateContactFlowModuleOutput = {
 
 M.InvalidContactFlowModuleException = {
     type = "structure",
+    id = "InvalidContactFlowModuleException",
     error = "client",
     members = {
         Problems = {
@@ -3189,6 +3361,7 @@ M.InvalidContactFlowModuleException = {
 
 M.CreateContactFlowModuleAliasInput = {
     type = "structure",
+    id = "CreateContactFlowModuleAliasInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3224,6 +3397,7 @@ M.CreateContactFlowModuleAliasInput = {
 
 M.CreateContactFlowModuleAliasOutput = {
     type = "structure",
+    id = "CreateContactFlowModuleAliasOutput",
     members = {
         ContactFlowModuleArn = {
             type = "string",
@@ -3236,6 +3410,7 @@ M.CreateContactFlowModuleAliasOutput = {
 
 M.CreateContactFlowModuleVersionInput = {
     type = "structure",
+    id = "CreateContactFlowModuleVersionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3262,6 +3437,7 @@ M.CreateContactFlowModuleVersionInput = {
 
 M.CreateContactFlowModuleVersionOutput = {
     type = "structure",
+    id = "CreateContactFlowModuleVersionOutput",
     members = {
         ContactFlowModuleArn = {
             type = "string",
@@ -3274,6 +3450,7 @@ M.CreateContactFlowModuleVersionOutput = {
 
 M.CreateContactFlowVersionInput = {
     type = "structure",
+    id = "CreateContactFlowVersionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3309,6 +3486,7 @@ M.CreateContactFlowVersionInput = {
 
 M.CreateContactFlowVersionOutput = {
     type = "structure",
+    id = "CreateContactFlowVersionOutput",
     members = {
         ContactFlowArn = {
             type = "string",
@@ -3333,6 +3511,7 @@ M.DataTableLockLevel = {
 
 M.CreateDataTableInput = {
     type = "structure",
+    id = "CreateDataTableInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3378,6 +3557,7 @@ M.CreateDataTableInput = {
 
 M.CreateDataTableOutput = {
     type = "structure",
+    id = "CreateDataTableOutput",
     members = {
         Id = {
             type = "string",
@@ -3399,6 +3579,7 @@ M.CreateDataTableOutput = {
 
 M.ValidationEnum = {
     type = "structure",
+    id = "ValidationEnum",
     members = {
         Strict = {
             type = "boolean",
@@ -3415,6 +3596,7 @@ M.ValidationEnum = {
 
 M.Validation = {
     type = "structure",
+    id = "Validation",
     members = {
         MinLength = {
             type = "integer",
@@ -3490,6 +3672,7 @@ M.DataTableAttributeValueType = {
 
 M.CreateDataTableAttributeInput = {
     type = "structure",
+    id = "CreateDataTableAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -3532,6 +3715,7 @@ M.CreateDataTableAttributeInput = {
 
 M.CreateDataTableAttributeOutput = {
     type = "structure",
+    id = "CreateDataTableAttributeOutput",
     members = {
         Name = {
             type = "string",
@@ -3550,6 +3734,7 @@ M.CreateDataTableAttributeOutput = {
 
 M.CreateEmailAddressInput = {
     type = "structure",
+    id = "CreateEmailAddressInput",
     members = {
         Description = {
             type = "string",
@@ -3583,6 +3768,7 @@ M.CreateEmailAddressInput = {
 
 M.CreateEmailAddressOutput = {
     type = "structure",
+    id = "CreateEmailAddressOutput",
     members = {
         EmailAddressId = {
             type = "string",
@@ -3595,6 +3781,7 @@ M.CreateEmailAddressOutput = {
 
 M.EvaluationFormAutoEvaluationConfiguration = {
     type = "structure",
+    id = "EvaluationFormAutoEvaluationConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -3624,6 +3811,7 @@ M.EvaluationFormItemEnablementSourceType = {
 
 M.EvaluationFormItemEnablementSource = {
     type = "structure",
+    id = "EvaluationFormItemEnablementSource",
     members = {
         Type = {
             type = "string",
@@ -3643,6 +3831,7 @@ M.EvaluationFormItemEnablementSourceValueType = {
 
 M.EvaluationFormItemEnablementSourceValue = {
     type = "structure",
+    id = "EvaluationFormItemEnablementSourceValue",
     members = {
         Type = {
             type = "string",
@@ -3658,6 +3847,7 @@ M.EvaluationFormItemEnablementSourceValue = {
 
 M.EvaluationFormItemEnablementExpression = {
     type = "structure",
+    id = "EvaluationFormItemEnablementExpression",
     members = {
         Source = setmetatable({ traits = {
             required = true,
@@ -3698,6 +3888,7 @@ M.EvaluationFormQuestionAutomationAnswerSourceType = {
 
 M.EvaluationFormQuestionAutomationAnswerSource = {
     type = "structure",
+    id = "EvaluationFormQuestionAutomationAnswerSource",
     members = {
         SourceType = {
             type = "string",
@@ -3715,6 +3906,7 @@ M.MultiSelectQuestionRuleCategoryAutomationCondition = {
 
 M.MultiSelectQuestionRuleCategoryAutomation = {
     type = "structure",
+    id = "MultiSelectQuestionRuleCategoryAutomation",
     members = {
         Category = {
             type = "string",
@@ -3740,6 +3932,7 @@ M.MultiSelectQuestionRuleCategoryAutomation = {
 
 M.EvaluationFormMultiSelectQuestionAutomationOption = {
     type = "union",
+    id = "EvaluationFormMultiSelectQuestionAutomationOption",
     members = {
         RuleCategory = M.MultiSelectQuestionRuleCategoryAutomation,
     },
@@ -3747,6 +3940,7 @@ M.EvaluationFormMultiSelectQuestionAutomationOption = {
 
 M.EvaluationFormMultiSelectQuestionAutomation = {
     type = "structure",
+    id = "EvaluationFormMultiSelectQuestionAutomation",
     members = {
         Options = {
             type = "list",
@@ -3767,6 +3961,7 @@ M.EvaluationFormMultiSelectQuestionDisplayMode = {
 
 M.EvaluationFormMultiSelectQuestionOption = {
     type = "structure",
+    id = "EvaluationFormMultiSelectQuestionOption",
     members = {
         RefId = {
             type = "string",
@@ -3785,6 +3980,7 @@ M.EvaluationFormMultiSelectQuestionOption = {
 
 M.EvaluationFormMultiSelectQuestionProperties = {
     type = "structure",
+    id = "EvaluationFormMultiSelectQuestionProperties",
     members = {
         Options = {
             type = "list",
@@ -3818,6 +4014,7 @@ M.NumericQuestionPropertyAutomationLabel = {
 
 M.NumericQuestionPropertyValueAutomation = {
     type = "structure",
+    id = "NumericQuestionPropertyValueAutomation",
     members = {
         Label = {
             type = "string",
@@ -3830,6 +4027,7 @@ M.NumericQuestionPropertyValueAutomation = {
 
 M.EvaluationFormNumericQuestionAutomation = {
     type = "union",
+    id = "EvaluationFormNumericQuestionAutomation",
     members = {
         PropertyValue = M.NumericQuestionPropertyValueAutomation,
         AnswerSource = M.EvaluationFormQuestionAutomationAnswerSource,
@@ -3838,6 +4036,7 @@ M.EvaluationFormNumericQuestionAutomation = {
 
 M.AutomaticFailConfiguration = {
     type = "structure",
+    id = "AutomaticFailConfiguration",
     members = {
         TargetSection = {
             type = "string",
@@ -3847,6 +4046,7 @@ M.AutomaticFailConfiguration = {
 
 M.EvaluationFormNumericQuestionOption = {
     type = "structure",
+    id = "EvaluationFormNumericQuestionOption",
     members = {
         MinValue = {
             type = "integer",
@@ -3880,6 +4080,7 @@ M.EvaluationFormNumericQuestionOption = {
 
 M.EvaluationFormNumericQuestionProperties = {
     type = "structure",
+    id = "EvaluationFormNumericQuestionProperties",
     members = {
         MinValue = {
             type = "integer",
@@ -3910,6 +4111,7 @@ M.SingleSelectQuestionRuleCategoryAutomationCondition = {
 
 M.SingleSelectQuestionRuleCategoryAutomation = {
     type = "structure",
+    id = "SingleSelectQuestionRuleCategoryAutomation",
     members = {
         Category = {
             type = "string",
@@ -3934,6 +4136,7 @@ M.SingleSelectQuestionRuleCategoryAutomation = {
 
 M.EvaluationFormSingleSelectQuestionAutomationOption = {
     type = "union",
+    id = "EvaluationFormSingleSelectQuestionAutomationOption",
     members = {
         RuleCategory = M.SingleSelectQuestionRuleCategoryAutomation,
     },
@@ -3941,6 +4144,7 @@ M.EvaluationFormSingleSelectQuestionAutomationOption = {
 
 M.EvaluationFormSingleSelectQuestionAutomation = {
     type = "structure",
+    id = "EvaluationFormSingleSelectQuestionAutomation",
     members = {
         Options = {
             type = "list",
@@ -3963,6 +4167,7 @@ M.EvaluationFormSingleSelectQuestionDisplayMode = {
 
 M.EvaluationFormSingleSelectQuestionOption = {
     type = "structure",
+    id = "EvaluationFormSingleSelectQuestionOption",
     members = {
         RefId = {
             type = "string",
@@ -3994,6 +4199,7 @@ M.EvaluationFormSingleSelectQuestionOption = {
 
 M.EvaluationFormSingleSelectQuestionProperties = {
     type = "structure",
+    id = "EvaluationFormSingleSelectQuestionProperties",
     members = {
         Options = {
             type = "list",
@@ -4011,6 +4217,7 @@ M.EvaluationFormSingleSelectQuestionProperties = {
 
 M.EvaluationFormTextQuestionAutomation = {
     type = "structure",
+    id = "EvaluationFormTextQuestionAutomation",
     members = {
         AnswerSource = M.EvaluationFormQuestionAutomationAnswerSource,
     },
@@ -4018,6 +4225,7 @@ M.EvaluationFormTextQuestionAutomation = {
 
 M.EvaluationFormTextQuestionProperties = {
     type = "structure",
+    id = "EvaluationFormTextQuestionProperties",
     members = {
         Automation = M.EvaluationFormTextQuestionAutomation,
     },
@@ -4025,6 +4233,7 @@ M.EvaluationFormTextQuestionProperties = {
 
 M.EvaluationFormQuestionTypeProperties = {
     type = "union",
+    id = "EvaluationFormQuestionTypeProperties",
     members = {
         Numeric = M.EvaluationFormNumericQuestionProperties,
         SingleSelect = M.EvaluationFormSingleSelectQuestionProperties,
@@ -4047,6 +4256,7 @@ M.EvaluationFormLanguageCode = {
 
 M.EvaluationFormLanguageConfiguration = {
     type = "structure",
+    id = "EvaluationFormLanguageConfiguration",
     members = {
         FormLanguage = {
             type = "string",
@@ -4060,6 +4270,7 @@ M.EvaluationReviewNotificationRecipientType = {
 
 M.EvaluationReviewNotificationRecipientValue = {
     type = "structure",
+    id = "EvaluationReviewNotificationRecipientValue",
     members = {
         UserId = {
             type = "string",
@@ -4069,6 +4280,7 @@ M.EvaluationReviewNotificationRecipientValue = {
 
 M.EvaluationReviewNotificationRecipient = {
     type = "structure",
+    id = "EvaluationReviewNotificationRecipient",
     members = {
         Type = {
             type = "string",
@@ -4084,6 +4296,7 @@ M.EvaluationReviewNotificationRecipient = {
 
 M.EvaluationReviewConfiguration = {
     type = "structure",
+    id = "EvaluationReviewConfiguration",
     members = {
         ReviewNotificationRecipients = {
             type = "list",
@@ -4113,6 +4326,7 @@ M.EvaluationFormScoringStatus = {
 
 M.EvaluationFormScoringStrategy = {
     type = "structure",
+    id = "EvaluationFormScoringStrategy",
     members = {
         Mode = {
             type = "string",
@@ -4137,6 +4351,7 @@ M.ContactInteractionType = {
 
 M.EvaluationFormTargetConfiguration = {
     type = "structure",
+    id = "EvaluationFormTargetConfiguration",
     members = {
         ContactInteractionType = {
             type = "string",
@@ -4149,6 +4364,7 @@ M.EvaluationFormTargetConfiguration = {
 
 M.CreateEvaluationFormOutput = {
     type = "structure",
+    id = "CreateEvaluationFormOutput",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -4177,6 +4393,7 @@ M.HoursOfOperationDays = {
 
 M.HoursOfOperationTimeSlice = {
     type = "structure",
+    id = "HoursOfOperationTimeSlice",
     members = {
         Hours = {
             type = "integer",
@@ -4197,6 +4414,7 @@ M.HoursOfOperationTimeSlice = {
 
 M.HoursOfOperationConfig = {
     type = "structure",
+    id = "HoursOfOperationConfig",
     members = {
         Day = {
             type = "string",
@@ -4215,6 +4433,7 @@ M.HoursOfOperationConfig = {
 
 M.CreateHoursOfOperationInput = {
     type = "structure",
+    id = "CreateHoursOfOperationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4259,6 +4478,7 @@ M.CreateHoursOfOperationInput = {
 
 M.CreateHoursOfOperationOutput = {
     type = "structure",
+    id = "CreateHoursOfOperationOutput",
     members = {
         HoursOfOperationId = {
             type = "string",
@@ -4281,6 +4501,7 @@ M.OverrideDays = {
 
 M.OverrideTimeSlice = {
     type = "structure",
+    id = "OverrideTimeSlice",
     members = {
         Hours = {
             type = "integer",
@@ -4301,6 +4522,7 @@ M.OverrideTimeSlice = {
 
 M.HoursOfOperationOverrideConfig = {
     type = "structure",
+    id = "HoursOfOperationOverrideConfig",
     members = {
         Day = {
             type = "string",
@@ -4324,6 +4546,7 @@ M.RecurrenceFrequency = {
 
 M.RecurrencePattern = {
     type = "structure",
+    id = "RecurrencePattern",
     members = {
         Frequency = {
             type = "string",
@@ -4354,6 +4577,7 @@ M.RecurrencePattern = {
 
 M.RecurrenceConfig = {
     type = "structure",
+    id = "RecurrenceConfig",
     members = {
         RecurrencePattern = setmetatable({ traits = {
             required = true,
@@ -4363,6 +4587,7 @@ M.RecurrenceConfig = {
 
 M.CreateHoursOfOperationOverrideInput = {
     type = "structure",
+    id = "CreateHoursOfOperationOverrideInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4415,6 +4640,7 @@ M.CreateHoursOfOperationOverrideInput = {
 
 M.CreateHoursOfOperationOverrideOutput = {
     type = "structure",
+    id = "CreateHoursOfOperationOverrideOutput",
     members = {
         HoursOfOperationOverrideId = {
             type = "string",
@@ -4430,6 +4656,7 @@ M.DirectoryType = {
 
 M.CreateInstanceInput = {
     type = "structure",
+    id = "CreateInstanceInput",
     members = {
         ClientToken = {
             type = "string",
@@ -4471,6 +4698,7 @@ M.CreateInstanceInput = {
 
 M.CreateInstanceOutput = {
     type = "structure",
+    id = "CreateInstanceOutput",
     members = {
         Id = {
             type = "string",
@@ -4507,6 +4735,7 @@ M.SourceType = {
 
 M.CreateIntegrationAssociationInput = {
     type = "structure",
+    id = "CreateIntegrationAssociationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4546,6 +4775,7 @@ M.CreateIntegrationAssociationInput = {
 
 M.CreateIntegrationAssociationOutput = {
     type = "structure",
+    id = "CreateIntegrationAssociationOutput",
     members = {
         IntegrationAssociationId = {
             type = "string",
@@ -4577,6 +4807,7 @@ M.ConfigurableNotificationPriority = {
 
 M.CreateNotificationInput = {
     type = "structure",
+    id = "CreateNotificationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4625,6 +4856,7 @@ M.CreateNotificationInput = {
 
 M.CreateNotificationOutput = {
     type = "structure",
+    id = "CreateNotificationOutput",
     members = {
         NotificationId = {
             type = "string",
@@ -4651,6 +4883,7 @@ M.ParticipantRole = {
 
 M.ParticipantDetailsToAdd = {
     type = "structure",
+    id = "ParticipantDetailsToAdd",
     members = {
         ParticipantRole = {
             type = "string",
@@ -4664,6 +4897,7 @@ M.ParticipantDetailsToAdd = {
 
 M.CreateParticipantInput = {
     type = "structure",
+    id = "CreateParticipantInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4691,6 +4925,7 @@ M.CreateParticipantInput = {
 
 M.ParticipantTokenCredentials = {
     type = "structure",
+    id = "ParticipantTokenCredentials",
     members = {
         ParticipantToken = {
             type = "string",
@@ -4703,6 +4938,7 @@ M.ParticipantTokenCredentials = {
 
 M.CreateParticipantOutput = {
     type = "structure",
+    id = "CreateParticipantOutput",
     members = {
         ParticipantCredentials = M.ParticipantTokenCredentials,
         ParticipantId = {
@@ -4718,6 +4954,7 @@ M.RehydrationType = {
 
 M.CreatePersistentContactAssociationInput = {
     type = "structure",
+    id = "CreatePersistentContactAssociationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4753,6 +4990,7 @@ M.CreatePersistentContactAssociationInput = {
 
 M.CreatePersistentContactAssociationOutput = {
     type = "structure",
+    id = "CreatePersistentContactAssociationOutput",
     members = {
         ContinuedFromContactId = {
             type = "string",
@@ -4762,6 +5000,7 @@ M.CreatePersistentContactAssociationOutput = {
 
 M.InputPredefinedAttributeConfiguration = {
     type = "structure",
+    id = "InputPredefinedAttributeConfiguration",
     members = {
         EnableValueValidationOnAssociation = {
             type = "boolean",
@@ -4774,6 +5013,7 @@ M.InputPredefinedAttributeConfiguration = {
 
 M.PredefinedAttributeValues = {
     type = "union",
+    id = "PredefinedAttributeValues",
     members = {
         StringList = {
             type = "list",
@@ -4784,6 +5024,7 @@ M.PredefinedAttributeValues = {
 
 M.CreatePredefinedAttributeInput = {
     type = "structure",
+    id = "CreatePredefinedAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4809,10 +5050,12 @@ M.CreatePredefinedAttributeInput = {
 
 M.CreatePredefinedAttributeOutput = {
     type = "structure",
+    id = "CreatePredefinedAttributeOutput",
 }
 
 M.CreatePromptInput = {
     type = "structure",
+    id = "CreatePromptInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4846,6 +5089,7 @@ M.CreatePromptInput = {
 
 M.CreatePromptOutput = {
     type = "structure",
+    id = "CreatePromptOutput",
     members = {
         PromptARN = {
             type = "string",
@@ -4858,6 +5102,7 @@ M.CreatePromptOutput = {
 
 M.ContactConfiguration = {
     type = "structure",
+    id = "ContactConfiguration",
     members = {
         ContactId = {
             type = "string",
@@ -4885,6 +5130,7 @@ M.DeviceType = {
 
 M.CreatePushNotificationRegistrationInput = {
     type = "structure",
+    id = "CreatePushNotificationRegistrationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -4925,6 +5171,7 @@ M.CreatePushNotificationRegistrationInput = {
 
 M.CreatePushNotificationRegistrationOutput = {
     type = "structure",
+    id = "CreatePushNotificationRegistrationOutput",
     members = {
         RegistrationId = {
             type = "string",
@@ -4937,6 +5184,7 @@ M.CreatePushNotificationRegistrationOutput = {
 
 M.OutboundCallerConfig = {
     type = "structure",
+    id = "OutboundCallerConfig",
     members = {
         OutboundCallerIdName = {
             type = "string",
@@ -4952,6 +5200,7 @@ M.OutboundCallerConfig = {
 
 M.OutboundEmailConfig = {
     type = "structure",
+    id = "OutboundEmailConfig",
     members = {
         OutboundEmailAddressId = {
             type = "string",
@@ -4961,6 +5210,7 @@ M.OutboundEmailConfig = {
 
 M.CreateQueueInput = {
     type = "structure",
+    id = "CreateQueueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -5010,6 +5260,7 @@ M.CreateQueueInput = {
 
 M.CreateQueueOutput = {
     type = "structure",
+    id = "CreateQueueOutput",
     members = {
         QueueArn = {
             type = "string",
@@ -5022,6 +5273,7 @@ M.CreateQueueOutput = {
 
 M.FlowQuickConnectConfig = {
     type = "structure",
+    id = "FlowQuickConnectConfig",
     members = {
         ContactFlowId = {
             type = "string",
@@ -5034,6 +5286,7 @@ M.FlowQuickConnectConfig = {
 
 M.PhoneNumberQuickConnectConfig = {
     type = "structure",
+    id = "PhoneNumberQuickConnectConfig",
     members = {
         PhoneNumber = {
             type = "string",
@@ -5046,6 +5299,7 @@ M.PhoneNumberQuickConnectConfig = {
 
 M.QueueQuickConnectConfig = {
     type = "structure",
+    id = "QueueQuickConnectConfig",
     members = {
         QueueId = {
             type = "string",
@@ -5071,6 +5325,7 @@ M.QuickConnectType = {
 
 M.UserQuickConnectConfig = {
     type = "structure",
+    id = "UserQuickConnectConfig",
     members = {
         UserId = {
             type = "string",
@@ -5089,6 +5344,7 @@ M.UserQuickConnectConfig = {
 
 M.QuickConnectConfig = {
     type = "structure",
+    id = "QuickConnectConfig",
     members = {
         QuickConnectType = {
             type = "string",
@@ -5105,6 +5361,7 @@ M.QuickConnectConfig = {
 
 M.CreateQuickConnectInput = {
     type = "structure",
+    id = "CreateQuickConnectInput",
     members = {
         InstanceId = {
             type = "string",
@@ -5135,6 +5392,7 @@ M.CreateQuickConnectInput = {
 
 M.CreateQuickConnectOutput = {
     type = "structure",
+    id = "CreateQuickConnectOutput",
     members = {
         QuickConnectARN = {
             type = "string",
@@ -5152,6 +5410,7 @@ M.BehaviorType = {
 
 M.CrossChannelBehavior = {
     type = "structure",
+    id = "CrossChannelBehavior",
     members = {
         BehaviorType = {
             type = "string",
@@ -5164,6 +5423,7 @@ M.CrossChannelBehavior = {
 
 M.MediaConcurrency = {
     type = "structure",
+    id = "MediaConcurrency",
     members = {
         Channel = {
             type = "string",
@@ -5183,6 +5443,7 @@ M.MediaConcurrency = {
 
 M.CreateRoutingProfileInput = {
     type = "structure",
+    id = "CreateRoutingProfileInput",
     members = {
         InstanceId = {
             type = "string",
@@ -5237,6 +5498,7 @@ M.CreateRoutingProfileInput = {
 
 M.CreateRoutingProfileOutput = {
     type = "structure",
+    id = "CreateRoutingProfileOutput",
     members = {
         RoutingProfileArn = {
             type = "string",
@@ -5249,14 +5511,17 @@ M.CreateRoutingProfileOutput = {
 
 M.AssignContactCategoryActionDefinition = {
     type = "structure",
+    id = "AssignContactCategoryActionDefinition",
 }
 
 M.EmptyFieldValue = {
     type = "structure",
+    id = "EmptyFieldValue",
 }
 
 M.FieldValueUnion = {
     type = "structure",
+    id = "FieldValueUnion",
     members = {
         BooleanValue = {
             type = "boolean",
@@ -5280,6 +5545,7 @@ M.SlaType = {
 
 M.CaseSlaConfiguration = {
     type = "structure",
+    id = "CaseSlaConfiguration",
     members = {
         Name = {
             type = "string",
@@ -5315,6 +5581,7 @@ M.SlaAssignmentType = {
 
 M.AssignSlaActionDefinition = {
     type = "structure",
+    id = "AssignSlaActionDefinition",
     members = {
         SlaAssignmentType = {
             type = "string",
@@ -5328,6 +5595,7 @@ M.AssignSlaActionDefinition = {
 
 M.FieldValue = {
     type = "structure",
+    id = "FieldValue",
     members = {
         Id = {
             type = "string",
@@ -5343,6 +5611,7 @@ M.FieldValue = {
 
 M.CreateCaseActionDefinition = {
     type = "structure",
+    id = "CreateCaseActionDefinition",
     members = {
         Fields = {
             type = "list",
@@ -5362,10 +5631,12 @@ M.CreateCaseActionDefinition = {
 
 M.EndAssociatedTasksActionDefinition = {
     type = "structure",
+    id = "EndAssociatedTasksActionDefinition",
 }
 
 M.EventBridgeActionDefinition = {
     type = "structure",
+    id = "EventBridgeActionDefinition",
     members = {
         Name = {
             type = "string",
@@ -5386,6 +5657,7 @@ M.NotificationDeliveryType = {
 
 M.NotificationRecipientType = {
     type = "structure",
+    id = "NotificationRecipientType",
     members = {
         UserTags = {
             type = "map",
@@ -5401,6 +5673,7 @@ M.NotificationRecipientType = {
 
 M.SendNotificationActionDefinition = {
     type = "structure",
+    id = "SendNotificationActionDefinition",
     members = {
         DeliveryMethod = {
             type = "string",
@@ -5432,6 +5705,7 @@ M.SendNotificationActionDefinition = {
 
 M.SubmitAutoEvaluationActionDefinition = {
     type = "structure",
+    id = "SubmitAutoEvaluationActionDefinition",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -5444,6 +5718,7 @@ M.SubmitAutoEvaluationActionDefinition = {
 
 M.TaskActionDefinition = {
     type = "structure",
+    id = "TaskActionDefinition",
     members = {
         Name = {
             type = "string",
@@ -5470,6 +5745,7 @@ M.TaskActionDefinition = {
 
 M.UpdateCaseActionDefinition = {
     type = "structure",
+    id = "UpdateCaseActionDefinition",
     members = {
         Fields = {
             type = "list",
@@ -5483,6 +5759,7 @@ M.UpdateCaseActionDefinition = {
 
 M.RuleAction = {
     type = "structure",
+    id = "RuleAction",
     members = {
         ActionType = {
             type = "string",
@@ -5525,6 +5802,7 @@ M.EventSourceName = {
 
 M.RuleTriggerEventSource = {
     type = "structure",
+    id = "RuleTriggerEventSource",
     members = {
         EventSourceName = {
             type = "string",
@@ -5540,6 +5818,7 @@ M.RuleTriggerEventSource = {
 
 M.CreateRuleInput = {
     type = "structure",
+    id = "CreateRuleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -5587,6 +5866,7 @@ M.CreateRuleInput = {
 
 M.CreateRuleOutput = {
     type = "structure",
+    id = "CreateRuleOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -5610,6 +5890,7 @@ M.ApplicationType = {
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         Namespace = {
             type = "string",
@@ -5626,6 +5907,7 @@ M.Application = {
 
 M.PrimaryAttributeValue = {
     type = "structure",
+    id = "PrimaryAttributeValue",
     members = {
         AccessType = {
             type = "string",
@@ -5642,6 +5924,7 @@ M.PrimaryAttributeValue = {
 
 M.PrimaryAttributeAccessControlConfigurationItem = {
     type = "structure",
+    id = "PrimaryAttributeAccessControlConfigurationItem",
     members = {
         PrimaryAttributeValues = {
             type = "list",
@@ -5652,6 +5935,7 @@ M.PrimaryAttributeAccessControlConfigurationItem = {
 
 M.DataTableAccessControlConfiguration = {
     type = "structure",
+    id = "DataTableAccessControlConfiguration",
     members = {
         PrimaryAttributeAccessControlConfiguration = M.PrimaryAttributeAccessControlConfigurationItem,
     },
@@ -5659,6 +5943,7 @@ M.DataTableAccessControlConfiguration = {
 
 M.GranularAccessControlConfiguration = {
     type = "structure",
+    id = "GranularAccessControlConfiguration",
     members = {
         DataTableAccessControlConfiguration = M.DataTableAccessControlConfiguration,
     },
@@ -5666,6 +5951,7 @@ M.GranularAccessControlConfiguration = {
 
 M.CreateSecurityProfileInput = {
     type = "structure",
+    id = "CreateSecurityProfileInput",
     members = {
         SecurityProfileName = {
             type = "string",
@@ -5722,6 +6008,7 @@ M.CreateSecurityProfileInput = {
 
 M.CreateSecurityProfileOutput = {
     type = "structure",
+    id = "CreateSecurityProfileOutput",
     members = {
         SecurityProfileId = {
             type = "string",
@@ -5734,6 +6021,7 @@ M.CreateSecurityProfileOutput = {
 
 M.TaskTemplateFieldIdentifier = {
     type = "structure",
+    id = "TaskTemplateFieldIdentifier",
     members = {
         Name = {
             type = "string",
@@ -5743,6 +6031,7 @@ M.TaskTemplateFieldIdentifier = {
 
 M.InvisibleFieldInfo = {
     type = "structure",
+    id = "InvisibleFieldInfo",
     members = {
         Id = M.TaskTemplateFieldIdentifier,
     },
@@ -5750,6 +6039,7 @@ M.InvisibleFieldInfo = {
 
 M.ReadOnlyFieldInfo = {
     type = "structure",
+    id = "ReadOnlyFieldInfo",
     members = {
         Id = M.TaskTemplateFieldIdentifier,
     },
@@ -5757,6 +6047,7 @@ M.ReadOnlyFieldInfo = {
 
 M.RequiredFieldInfo = {
     type = "structure",
+    id = "RequiredFieldInfo",
     members = {
         Id = M.TaskTemplateFieldIdentifier,
     },
@@ -5764,6 +6055,7 @@ M.RequiredFieldInfo = {
 
 M.TaskTemplateConstraints = {
     type = "structure",
+    id = "TaskTemplateConstraints",
     members = {
         RequiredFields = {
             type = "list",
@@ -5782,6 +6074,7 @@ M.TaskTemplateConstraints = {
 
 M.TaskTemplateDefaultFieldValue = {
     type = "structure",
+    id = "TaskTemplateDefaultFieldValue",
     members = {
         Id = M.TaskTemplateFieldIdentifier,
         DefaultValue = {
@@ -5792,6 +6085,7 @@ M.TaskTemplateDefaultFieldValue = {
 
 M.TaskTemplateDefaults = {
     type = "structure",
+    id = "TaskTemplateDefaults",
     members = {
         DefaultFieldValues = {
             type = "list",
@@ -5819,6 +6113,7 @@ M.TaskTemplateFieldType = {
 
 M.TaskTemplateField = {
     type = "structure",
+    id = "TaskTemplateField",
     members = {
         Id = setmetatable({ traits = {
             required = true,
@@ -5843,6 +6138,7 @@ M.TaskTemplateStatus = {
 
 M.CreateTaskTemplateInput = {
     type = "structure",
+    id = "CreateTaskTemplateInput",
     members = {
         InstanceId = {
             type = "string",
@@ -5889,6 +6185,7 @@ M.CreateTaskTemplateInput = {
 
 M.CreateTaskTemplateOutput = {
     type = "structure",
+    id = "CreateTaskTemplateOutput",
     members = {
         Id = {
             type = "string",
@@ -5916,6 +6213,7 @@ M.PropertyValidationExceptionReason = {
 
 M.PropertyValidationExceptionProperty = {
     type = "structure",
+    id = "PropertyValidationExceptionProperty",
     members = {
         PropertyPath = {
             type = "string",
@@ -5940,6 +6238,7 @@ M.PropertyValidationExceptionProperty = {
 
 M.PropertyValidationException = {
     type = "structure",
+    id = "PropertyValidationException",
     error = "client",
     members = {
         Message = {
@@ -5957,6 +6256,7 @@ M.PropertyValidationException = {
 
 M.ChatEntryPointParameters = {
     type = "structure",
+    id = "ChatEntryPointParameters",
     members = {
         FlowId = {
             type = "string",
@@ -5971,6 +6271,7 @@ M.TestCaseEntryPointType = {
 
 M.VoiceCallEntryPointParameters = {
     type = "structure",
+    id = "VoiceCallEntryPointParameters",
     members = {
         SourcePhoneNumber = {
             type = "string",
@@ -5986,6 +6287,7 @@ M.VoiceCallEntryPointParameters = {
 
 M.TestCaseEntryPoint = {
     type = "structure",
+    id = "TestCaseEntryPoint",
     members = {
         Type = {
             type = "string",
@@ -6002,6 +6304,7 @@ M.TestCaseStatus = {
 
 M.CreateTestCaseInput = {
     type = "structure",
+    id = "CreateTestCaseInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6060,6 +6363,7 @@ M.CreateTestCaseInput = {
 
 M.CreateTestCaseOutput = {
     type = "structure",
+    id = "CreateTestCaseOutput",
     members = {
         TestCaseId = {
             type = "string",
@@ -6072,6 +6376,7 @@ M.CreateTestCaseOutput = {
 
 M.InvalidTestCaseException = {
     type = "structure",
+    id = "InvalidTestCaseException",
     error = "client",
     members = {
         Problems = {
@@ -6083,6 +6388,7 @@ M.InvalidTestCaseException = {
 
 M.CreateTrafficDistributionGroupInput = {
     type = "structure",
+    id = "CreateTrafficDistributionGroupInput",
     members = {
         Name = {
             type = "string",
@@ -6115,6 +6421,7 @@ M.CreateTrafficDistributionGroupInput = {
 
 M.CreateTrafficDistributionGroupOutput = {
     type = "structure",
+    id = "CreateTrafficDistributionGroupOutput",
     members = {
         Id = {
             type = "string",
@@ -6127,6 +6434,7 @@ M.CreateTrafficDistributionGroupOutput = {
 
 M.ResourceNotReadyException = {
     type = "structure",
+    id = "ResourceNotReadyException",
     error = "client",
     members = {
         Message = {
@@ -6142,6 +6450,7 @@ M.UseCaseType = {
 
 M.CreateUseCaseInput = {
     type = "structure",
+    id = "CreateUseCaseInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6173,6 +6482,7 @@ M.CreateUseCaseInput = {
 
 M.CreateUseCaseOutput = {
     type = "structure",
+    id = "CreateUseCaseOutput",
     members = {
         UseCaseId = {
             type = "string",
@@ -6185,6 +6495,7 @@ M.CreateUseCaseOutput = {
 
 M.AutoAcceptConfig = {
     type = "structure",
+    id = "AutoAcceptConfig",
     members = {
         Channel = {
             type = "string",
@@ -6207,6 +6518,7 @@ M.AutoAcceptConfig = {
 
 M.UserIdentityInfo = {
     type = "structure",
+    id = "UserIdentityInfo",
     members = {
         FirstName = {
             type = "string",
@@ -6228,6 +6540,7 @@ M.UserIdentityInfo = {
 
 M.PersistentConnectionConfig = {
     type = "structure",
+    id = "PersistentConnectionConfig",
     members = {
         Channel = {
             type = "string",
@@ -6252,6 +6565,7 @@ M.PhoneType = {
 
 M.UserPhoneConfig = {
     type = "structure",
+    id = "UserPhoneConfig",
     members = {
         PhoneType = {
             type = "string",
@@ -6285,6 +6599,7 @@ M.UserPhoneConfig = {
 
 M.PhoneNumberConfig = {
     type = "structure",
+    id = "PhoneNumberConfig",
     members = {
         Channel = {
             type = "string",
@@ -6306,6 +6621,7 @@ M.PhoneNumberConfig = {
 
 M.VoiceEnhancementConfig = {
     type = "structure",
+    id = "VoiceEnhancementConfig",
     members = {
         Channel = {
             type = "string",
@@ -6324,6 +6640,7 @@ M.VoiceEnhancementConfig = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         Username = {
             type = "string",
@@ -6392,6 +6709,7 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         UserId = {
             type = "string",
@@ -6404,6 +6722,7 @@ M.CreateUserOutput = {
 
 M.CreateUserHierarchyGroupInput = {
     type = "structure",
+    id = "CreateUserHierarchyGroupInput",
     members = {
         Name = {
             type = "string",
@@ -6431,6 +6750,7 @@ M.CreateUserHierarchyGroupInput = {
 
 M.CreateUserHierarchyGroupOutput = {
     type = "structure",
+    id = "CreateUserHierarchyGroupOutput",
     members = {
         HierarchyGroupId = {
             type = "string",
@@ -6443,6 +6763,7 @@ M.CreateUserHierarchyGroupOutput = {
 
 M.ViewInputContent = {
     type = "structure",
+    id = "ViewInputContent",
     members = {
         Template = {
             type = "string",
@@ -6461,6 +6782,7 @@ M.ViewStatus = {
 
 M.CreateViewInput = {
     type = "structure",
+    id = "CreateViewInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6500,6 +6822,7 @@ M.CreateViewInput = {
 
 M.ViewContent = {
     type = "structure",
+    id = "ViewContent",
     members = {
         InputSchema = {
             type = "string",
@@ -6521,6 +6844,7 @@ M.ViewType = {
 
 M.View = {
     type = "structure",
+    id = "View",
     members = {
         Id = {
             type = "string",
@@ -6569,6 +6893,7 @@ M.View = {
 
 M.CreateViewOutput = {
     type = "structure",
+    id = "CreateViewOutput",
     members = {
         View = M.View,
     },
@@ -6587,6 +6912,7 @@ M.ResourceType = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -6603,6 +6929,7 @@ M.ResourceInUseException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -6613,6 +6940,7 @@ M.TooManyRequestsException = {
 
 M.CreateViewVersionInput = {
     type = "structure",
+    id = "CreateViewVersionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6639,6 +6967,7 @@ M.CreateViewVersionInput = {
 
 M.CreateViewVersionOutput = {
     type = "structure",
+    id = "CreateViewVersionOutput",
     members = {
         View = M.View,
     },
@@ -6646,6 +6975,7 @@ M.CreateViewVersionOutput = {
 
 M.CreateVocabularyInput = {
     type = "structure",
+    id = "CreateVocabularyInput",
     members = {
         ClientToken = {
             type = "string",
@@ -6695,6 +7025,7 @@ M.VocabularyState = {
 
 M.CreateVocabularyOutput = {
     type = "structure",
+    id = "CreateVocabularyOutput",
     members = {
         VocabularyArn = {
             type = "string",
@@ -6719,6 +7050,7 @@ M.CreateVocabularyOutput = {
 
 M.ImagesLogo = {
     type = "structure",
+    id = "ImagesLogo",
     members = {
         Default = {
             type = "string",
@@ -6731,6 +7063,7 @@ M.ImagesLogo = {
 
 M.WorkspaceThemeImages = {
     type = "structure",
+    id = "WorkspaceThemeImages",
     members = {
         Logo = M.ImagesLogo,
     },
@@ -6738,6 +7071,7 @@ M.WorkspaceThemeImages = {
 
 M.PaletteCanvas = {
     type = "structure",
+    id = "PaletteCanvas",
     members = {
         ContainerBackground = {
             type = "string",
@@ -6753,6 +7087,7 @@ M.PaletteCanvas = {
 
 M.PaletteHeader = {
     type = "structure",
+    id = "PaletteHeader",
     members = {
         Background = {
             type = "string",
@@ -6774,6 +7109,7 @@ M.PaletteHeader = {
 
 M.PaletteNavigation = {
     type = "structure",
+    id = "PaletteNavigation",
     members = {
         Background = {
             type = "string",
@@ -6804,6 +7140,7 @@ M.PaletteNavigation = {
 
 M.PalettePrimary = {
     type = "structure",
+    id = "PalettePrimary",
     members = {
         Default = {
             type = "string",
@@ -6819,6 +7156,7 @@ M.PalettePrimary = {
 
 M.WorkspaceThemePalette = {
     type = "structure",
+    id = "WorkspaceThemePalette",
     members = {
         Header = M.PaletteHeader,
         Navigation = M.PaletteNavigation,
@@ -6838,6 +7176,7 @@ M.WorkspaceFontFamily = {
 
 M.FontFamily = {
     type = "structure",
+    id = "FontFamily",
     members = {
         Default = {
             type = "string",
@@ -6847,6 +7186,7 @@ M.FontFamily = {
 
 M.WorkspaceThemeTypography = {
     type = "structure",
+    id = "WorkspaceThemeTypography",
     members = {
         FontFamily = M.FontFamily,
     },
@@ -6854,6 +7194,7 @@ M.WorkspaceThemeTypography = {
 
 M.WorkspaceThemeConfig = {
     type = "structure",
+    id = "WorkspaceThemeConfig",
     members = {
         Palette = M.WorkspaceThemePalette,
         Images = M.WorkspaceThemeImages,
@@ -6863,6 +7204,7 @@ M.WorkspaceThemeConfig = {
 
 M.WorkspaceTheme = {
     type = "structure",
+    id = "WorkspaceTheme",
     members = {
         Light = M.WorkspaceThemeConfig,
         Dark = M.WorkspaceThemeConfig,
@@ -6871,6 +7213,7 @@ M.WorkspaceTheme = {
 
 M.CreateWorkspaceInput = {
     type = "structure",
+    id = "CreateWorkspaceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6902,6 +7245,7 @@ M.CreateWorkspaceInput = {
 
 M.CreateWorkspaceOutput = {
     type = "structure",
+    id = "CreateWorkspaceOutput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -6920,6 +7264,7 @@ M.CreateWorkspaceOutput = {
 
 M.CreateWorkspacePageInput = {
     type = "structure",
+    id = "CreateWorkspacePageInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6958,10 +7303,12 @@ M.CreateWorkspacePageInput = {
 
 M.CreateWorkspacePageOutput = {
     type = "structure",
+    id = "CreateWorkspacePageOutput",
 }
 
 M.DeactivateEvaluationFormInput = {
     type = "structure",
+    id = "DeactivateEvaluationFormInput",
     members = {
         InstanceId = {
             type = "string",
@@ -6989,6 +7336,7 @@ M.DeactivateEvaluationFormInput = {
 
 M.DeactivateEvaluationFormOutput = {
     type = "structure",
+    id = "DeactivateEvaluationFormOutput",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -7014,6 +7362,7 @@ M.DeactivateEvaluationFormOutput = {
 
 M.DeleteAttachedFileInput = {
     type = "structure",
+    id = "DeleteAttachedFileInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7041,10 +7390,12 @@ M.DeleteAttachedFileInput = {
 
 M.DeleteAttachedFileOutput = {
     type = "structure",
+    id = "DeleteAttachedFileOutput",
 }
 
 M.DeleteContactEvaluationInput = {
     type = "structure",
+    id = "DeleteContactEvaluationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7065,10 +7416,12 @@ M.DeleteContactEvaluationInput = {
 
 M.DeleteContactEvaluationOutput = {
     type = "structure",
+    id = "DeleteContactEvaluationOutput",
 }
 
 M.DeleteContactFlowInput = {
     type = "structure",
+    id = "DeleteContactFlowInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7089,10 +7442,12 @@ M.DeleteContactFlowInput = {
 
 M.DeleteContactFlowOutput = {
     type = "structure",
+    id = "DeleteContactFlowOutput",
 }
 
 M.DeleteContactFlowModuleInput = {
     type = "structure",
+    id = "DeleteContactFlowModuleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7113,10 +7468,12 @@ M.DeleteContactFlowModuleInput = {
 
 M.DeleteContactFlowModuleOutput = {
     type = "structure",
+    id = "DeleteContactFlowModuleOutput",
 }
 
 M.DeleteContactFlowModuleAliasInput = {
     type = "structure",
+    id = "DeleteContactFlowModuleAliasInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7144,10 +7501,12 @@ M.DeleteContactFlowModuleAliasInput = {
 
 M.DeleteContactFlowModuleAliasOutput = {
     type = "structure",
+    id = "DeleteContactFlowModuleAliasOutput",
 }
 
 M.DeleteContactFlowModuleVersionInput = {
     type = "structure",
+    id = "DeleteContactFlowModuleVersionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7175,10 +7534,12 @@ M.DeleteContactFlowModuleVersionInput = {
 
 M.DeleteContactFlowModuleVersionOutput = {
     type = "structure",
+    id = "DeleteContactFlowModuleVersionOutput",
 }
 
 M.DeleteContactFlowVersionInput = {
     type = "structure",
+    id = "DeleteContactFlowVersionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7206,10 +7567,12 @@ M.DeleteContactFlowVersionInput = {
 
 M.DeleteContactFlowVersionOutput = {
     type = "structure",
+    id = "DeleteContactFlowVersionOutput",
 }
 
 M.DeleteDataTableInput = {
     type = "structure",
+    id = "DeleteDataTableInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7230,10 +7593,12 @@ M.DeleteDataTableInput = {
 
 M.DeleteDataTableOutput = {
     type = "structure",
+    id = "DeleteDataTableOutput",
 }
 
 M.DeleteDataTableAttributeInput = {
     type = "structure",
+    id = "DeleteDataTableAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7261,6 +7626,7 @@ M.DeleteDataTableAttributeInput = {
 
 M.DeleteDataTableAttributeOutput = {
     type = "structure",
+    id = "DeleteDataTableAttributeOutput",
     members = {
         LockVersion = setmetatable({ traits = {
             required = true,
@@ -7270,6 +7636,7 @@ M.DeleteDataTableAttributeOutput = {
 
 M.DeleteEmailAddressInput = {
     type = "structure",
+    id = "DeleteEmailAddressInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7290,10 +7657,12 @@ M.DeleteEmailAddressInput = {
 
 M.DeleteEmailAddressOutput = {
     type = "structure",
+    id = "DeleteEmailAddressOutput",
 }
 
 M.DeleteEvaluationFormInput = {
     type = "structure",
+    id = "DeleteEvaluationFormInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7321,10 +7690,12 @@ M.DeleteEvaluationFormInput = {
 
 M.DeleteEvaluationFormOutput = {
     type = "structure",
+    id = "DeleteEvaluationFormOutput",
 }
 
 M.DeleteHoursOfOperationInput = {
     type = "structure",
+    id = "DeleteHoursOfOperationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7345,10 +7716,12 @@ M.DeleteHoursOfOperationInput = {
 
 M.DeleteHoursOfOperationOutput = {
     type = "structure",
+    id = "DeleteHoursOfOperationOutput",
 }
 
 M.DeleteHoursOfOperationOverrideInput = {
     type = "structure",
+    id = "DeleteHoursOfOperationOverrideInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7376,10 +7749,12 @@ M.DeleteHoursOfOperationOverrideInput = {
 
 M.DeleteHoursOfOperationOverrideOutput = {
     type = "structure",
+    id = "DeleteHoursOfOperationOverrideOutput",
 }
 
 M.DeleteInstanceInput = {
     type = "structure",
+    id = "DeleteInstanceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7400,10 +7775,12 @@ M.DeleteInstanceInput = {
 
 M.DeleteInstanceOutput = {
     type = "structure",
+    id = "DeleteInstanceOutput",
 }
 
 M.DeleteIntegrationAssociationInput = {
     type = "structure",
+    id = "DeleteIntegrationAssociationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7424,10 +7801,12 @@ M.DeleteIntegrationAssociationInput = {
 
 M.DeleteIntegrationAssociationOutput = {
     type = "structure",
+    id = "DeleteIntegrationAssociationOutput",
 }
 
 M.DeleteNotificationInput = {
     type = "structure",
+    id = "DeleteNotificationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7448,10 +7827,12 @@ M.DeleteNotificationInput = {
 
 M.DeleteNotificationOutput = {
     type = "structure",
+    id = "DeleteNotificationOutput",
 }
 
 M.DeletePredefinedAttributeInput = {
     type = "structure",
+    id = "DeletePredefinedAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7472,10 +7853,12 @@ M.DeletePredefinedAttributeInput = {
 
 M.DeletePredefinedAttributeOutput = {
     type = "structure",
+    id = "DeletePredefinedAttributeOutput",
 }
 
 M.DeletePromptInput = {
     type = "structure",
+    id = "DeletePromptInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7496,10 +7879,12 @@ M.DeletePromptInput = {
 
 M.DeletePromptOutput = {
     type = "structure",
+    id = "DeletePromptOutput",
 }
 
 M.DeletePushNotificationRegistrationInput = {
     type = "structure",
+    id = "DeletePushNotificationRegistrationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7527,10 +7912,12 @@ M.DeletePushNotificationRegistrationInput = {
 
 M.DeletePushNotificationRegistrationOutput = {
     type = "structure",
+    id = "DeletePushNotificationRegistrationOutput",
 }
 
 M.DeleteQueueInput = {
     type = "structure",
+    id = "DeleteQueueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7551,10 +7938,12 @@ M.DeleteQueueInput = {
 
 M.DeleteQueueOutput = {
     type = "structure",
+    id = "DeleteQueueOutput",
 }
 
 M.DeleteQuickConnectInput = {
     type = "structure",
+    id = "DeleteQuickConnectInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7575,10 +7964,12 @@ M.DeleteQuickConnectInput = {
 
 M.DeleteQuickConnectOutput = {
     type = "structure",
+    id = "DeleteQuickConnectOutput",
 }
 
 M.DeleteRoutingProfileInput = {
     type = "structure",
+    id = "DeleteRoutingProfileInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7599,10 +7990,12 @@ M.DeleteRoutingProfileInput = {
 
 M.DeleteRoutingProfileOutput = {
     type = "structure",
+    id = "DeleteRoutingProfileOutput",
 }
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7623,10 +8016,12 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
 }
 
 M.DeleteSecurityProfileInput = {
     type = "structure",
+    id = "DeleteSecurityProfileInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7647,10 +8042,12 @@ M.DeleteSecurityProfileInput = {
 
 M.DeleteSecurityProfileOutput = {
     type = "structure",
+    id = "DeleteSecurityProfileOutput",
 }
 
 M.DeleteTaskTemplateInput = {
     type = "structure",
+    id = "DeleteTaskTemplateInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7671,10 +8068,12 @@ M.DeleteTaskTemplateInput = {
 
 M.DeleteTaskTemplateOutput = {
     type = "structure",
+    id = "DeleteTaskTemplateOutput",
 }
 
 M.DeleteTestCaseInput = {
     type = "structure",
+    id = "DeleteTestCaseInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7695,10 +8094,12 @@ M.DeleteTestCaseInput = {
 
 M.DeleteTestCaseOutput = {
     type = "structure",
+    id = "DeleteTestCaseOutput",
 }
 
 M.DeleteTrafficDistributionGroupInput = {
     type = "structure",
+    id = "DeleteTrafficDistributionGroupInput",
     members = {
         TrafficDistributionGroupId = {
             type = "string",
@@ -7712,10 +8113,12 @@ M.DeleteTrafficDistributionGroupInput = {
 
 M.DeleteTrafficDistributionGroupOutput = {
     type = "structure",
+    id = "DeleteTrafficDistributionGroupOutput",
 }
 
 M.DeleteUseCaseInput = {
     type = "structure",
+    id = "DeleteUseCaseInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7743,10 +8146,12 @@ M.DeleteUseCaseInput = {
 
 M.DeleteUseCaseOutput = {
     type = "structure",
+    id = "DeleteUseCaseOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7767,10 +8172,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DeleteUserHierarchyGroupInput = {
     type = "structure",
+    id = "DeleteUserHierarchyGroupInput",
     members = {
         HierarchyGroupId = {
             type = "string",
@@ -7791,10 +8198,12 @@ M.DeleteUserHierarchyGroupInput = {
 
 M.DeleteUserHierarchyGroupOutput = {
     type = "structure",
+    id = "DeleteUserHierarchyGroupOutput",
 }
 
 M.DeleteViewInput = {
     type = "structure",
+    id = "DeleteViewInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7815,10 +8224,12 @@ M.DeleteViewInput = {
 
 M.DeleteViewOutput = {
     type = "structure",
+    id = "DeleteViewOutput",
 }
 
 M.DeleteViewVersionInput = {
     type = "structure",
+    id = "DeleteViewVersionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7847,10 +8258,12 @@ M.DeleteViewVersionInput = {
 
 M.DeleteViewVersionOutput = {
     type = "structure",
+    id = "DeleteViewVersionOutput",
 }
 
 M.DeleteVocabularyInput = {
     type = "structure",
+    id = "DeleteVocabularyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7871,6 +8284,7 @@ M.DeleteVocabularyInput = {
 
 M.DeleteVocabularyOutput = {
     type = "structure",
+    id = "DeleteVocabularyOutput",
     members = {
         VocabularyArn = {
             type = "string",
@@ -7895,6 +8309,7 @@ M.DeleteVocabularyOutput = {
 
 M.DeleteWorkspaceInput = {
     type = "structure",
+    id = "DeleteWorkspaceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7915,6 +8330,7 @@ M.DeleteWorkspaceInput = {
 
 M.DeleteWorkspaceOutput = {
     type = "structure",
+    id = "DeleteWorkspaceOutput",
 }
 
 M.MediaType = {
@@ -7926,6 +8342,7 @@ M.MediaType = {
 
 M.DeleteWorkspaceMediaInput = {
     type = "structure",
+    id = "DeleteWorkspaceMediaInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7953,10 +8370,12 @@ M.DeleteWorkspaceMediaInput = {
 
 M.DeleteWorkspaceMediaOutput = {
     type = "structure",
+    id = "DeleteWorkspaceMediaOutput",
 }
 
 M.DeleteWorkspacePageInput = {
     type = "structure",
+    id = "DeleteWorkspacePageInput",
     members = {
         InstanceId = {
             type = "string",
@@ -7984,10 +8403,12 @@ M.DeleteWorkspacePageInput = {
 
 M.DeleteWorkspacePageOutput = {
     type = "structure",
+    id = "DeleteWorkspacePageOutput",
 }
 
 M.DescribeAgentStatusInput = {
     type = "structure",
+    id = "DescribeAgentStatusInput",
     members = {
         InstanceId = {
             type = "string",
@@ -8008,6 +8429,7 @@ M.DescribeAgentStatusInput = {
 
 M.DescribeAgentStatusOutput = {
     type = "structure",
+    id = "DescribeAgentStatusOutput",
     members = {
         AgentStatus = M.AgentStatus,
     },
@@ -8022,6 +8444,7 @@ M.AttachmentScope = {
 
 M.DescribeAttachedFilesConfigurationInput = {
     type = "structure",
+    id = "DescribeAttachedFilesConfigurationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -8042,6 +8465,7 @@ M.DescribeAttachedFilesConfigurationInput = {
 
 M.ExtensionConfiguration = {
     type = "structure",
+    id = "ExtensionConfiguration",
     members = {
         AllowedExtensions = {
             type = "list",
@@ -8055,6 +8479,7 @@ M.ExtensionConfiguration = {
 
 M.AttachedFilesConfiguration = {
     type = "structure",
+    id = "AttachedFilesConfiguration",
     members = {
         InstanceId = {
             type = "string",
@@ -8080,6 +8505,7 @@ M.AttachedFilesConfiguration = {
 
 M.DescribeAttachedFilesConfigurationOutput = {
     type = "structure",
+    id = "DescribeAttachedFilesConfigurationOutput",
     members = {
         AttachedFilesConfiguration = setmetatable({ traits = {
             required = true,
@@ -8089,6 +8515,7 @@ M.DescribeAttachedFilesConfigurationOutput = {
 
 M.DescribeAuthenticationProfileInput = {
     type = "structure",
+    id = "DescribeAuthenticationProfileInput",
     members = {
         AuthenticationProfileId = {
             type = "string",
@@ -8109,6 +8536,7 @@ M.DescribeAuthenticationProfileInput = {
 
 M.AuthenticationProfile = {
     type = "structure",
+    id = "AuthenticationProfile",
     members = {
         Id = {
             type = "string",
@@ -8165,6 +8593,7 @@ M.AuthenticationProfile = {
 
 M.DescribeAuthenticationProfileOutput = {
     type = "structure",
+    id = "DescribeAuthenticationProfileOutput",
     members = {
         AuthenticationProfile = M.AuthenticationProfile,
     },
@@ -8172,6 +8601,7 @@ M.DescribeAuthenticationProfileOutput = {
 
 M.DescribeContactInput = {
     type = "structure",
+    id = "DescribeContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -8217,6 +8647,7 @@ M.ParticipantType = {
 
 M.ParticipantMetrics = {
     type = "structure",
+    id = "ParticipantMetrics",
     members = {
         ParticipantId = {
             type = "string",
@@ -8250,6 +8681,7 @@ M.ParticipantMetrics = {
 
 M.ChatContactMetrics = {
     type = "structure",
+    id = "ChatContactMetrics",
     members = {
         MultiParty = {
             type = "boolean",
@@ -8280,6 +8712,7 @@ M.ChatContactMetrics = {
 
 M.ChatMetrics = {
     type = "structure",
+    id = "ChatMetrics",
     members = {
         ChatContactMetrics = M.ChatContactMetrics,
         AgentMetrics = M.ParticipantMetrics,
@@ -8289,6 +8722,7 @@ M.ChatMetrics = {
 
 M.ContactDetails = {
     type = "structure",
+    id = "ContactDetails",
     members = {
         Name = {
             type = "string",
@@ -8307,6 +8741,7 @@ M.Status = {
 
 M.ContactEvaluation = {
     type = "structure",
+    id = "ContactEvaluation",
     members = {
         FormId = {
             type = "string",
@@ -8334,6 +8769,7 @@ M.ContactEvaluation = {
 
 M.Customer = {
     type = "structure",
+    id = "Customer",
     members = {
         DeviceInfo = M.DeviceInfo,
         Capabilities = M.ParticipantCapabilities,
@@ -8342,6 +8778,7 @@ M.Customer = {
 
 M.EndpointInfo = {
     type = "structure",
+    id = "EndpointInfo",
     members = {
         Type = {
             type = "string",
@@ -8357,6 +8794,7 @@ M.EndpointInfo = {
 
 M.CustomerVoiceActivity = {
     type = "structure",
+    id = "CustomerVoiceActivity",
     members = {
         GreetingStartTimestamp = {
             type = "timestamp",
@@ -8369,6 +8807,7 @@ M.CustomerVoiceActivity = {
 
 M.DisconnectDetails = {
     type = "structure",
+    id = "DisconnectDetails",
     members = {
         PotentialDisconnectIssue = {
             type = "string",
@@ -8378,6 +8817,7 @@ M.DisconnectDetails = {
 
 M.GlobalResiliencyMetadata = {
     type = "structure",
+    id = "GlobalResiliencyMetadata",
     members = {
         ActiveRegion = {
             type = "string",
@@ -8393,6 +8833,7 @@ M.GlobalResiliencyMetadata = {
 
 M.QuickConnectContactData = {
     type = "structure",
+    id = "QuickConnectContactData",
     members = {
         ContactId = {
             type = "string",
@@ -8414,6 +8855,7 @@ M.QuickConnectContactData = {
 
 M.NextContactMetadata = {
     type = "union",
+    id = "NextContactMetadata",
     members = {
         QuickConnectContactData = M.QuickConnectContactData,
     },
@@ -8425,6 +8867,7 @@ M.NextContactType = {
 
 M.NextContactEntry = {
     type = "structure",
+    id = "NextContactEntry",
     members = {
         Type = {
             type = "string",
@@ -8435,6 +8878,7 @@ M.NextContactEntry = {
 
 M.CustomerQualityMetrics = {
     type = "structure",
+    id = "CustomerQualityMetrics",
     members = {
         Audio = M.AudioQualityMetricsInfo,
     },
@@ -8442,6 +8886,7 @@ M.CustomerQualityMetrics = {
 
 M.QualityMetrics = {
     type = "structure",
+    id = "QualityMetrics",
     members = {
         Agent = M.AgentQualityMetrics,
         Customer = M.CustomerQualityMetrics,
@@ -8450,6 +8895,7 @@ M.QualityMetrics = {
 
 M.QueueInfo = {
     type = "structure",
+    id = "QueueInfo",
     members = {
         Id = {
             type = "string",
@@ -8472,6 +8918,7 @@ M.RecordingStatus = {
 
 M.RecordingInfo = {
     type = "structure",
+    id = "RecordingInfo",
     members = {
         StorageType = {
             type = "string",
@@ -8511,6 +8958,7 @@ M.RecordingInfo = {
 
 M.Expiry = {
     type = "structure",
+    id = "Expiry",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -8523,6 +8971,7 @@ M.Expiry = {
 
 M.MatchCriteria = {
     type = "structure",
+    id = "MatchCriteria",
     members = {
         AgentsCriteria = M.AgentsCriteria,
     },
@@ -8530,6 +8979,7 @@ M.MatchCriteria = {
 
 M.Range = {
     type = "structure",
+    id = "Range",
     members = {
         MinProficiencyLevel = {
             type = "float",
@@ -8542,6 +8992,7 @@ M.Range = {
 
 M.AttributeCondition = {
     type = "structure",
+    id = "AttributeCondition",
     members = {
         Name = {
             type = "string",
@@ -8569,6 +9020,7 @@ M.RoutingCriteriaStepStatus = {
 
 M.TaskTemplateInfoV2 = {
     type = "structure",
+    id = "TaskTemplateInfoV2",
     members = {
         Arn = {
             type = "string",
@@ -8581,6 +9033,7 @@ M.TaskTemplateInfoV2 = {
 
 M.WisdomInfo = {
     type = "structure",
+    id = "WisdomInfo",
     members = {
         SessionArn = {
             type = "string",
@@ -8594,6 +9047,7 @@ M.WisdomInfo = {
 
 M.DescribeContactEvaluationInput = {
     type = "structure",
+    id = "DescribeContactEvaluationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -8619,6 +9073,7 @@ M.QuestionRuleCategoryAutomationCondition = {
 
 M.EvaluationSuggestedAnswerTranscriptMillisecondOffsets = {
     type = "structure",
+    id = "EvaluationSuggestedAnswerTranscriptMillisecondOffsets",
     members = {
         BeginOffsetMillis = {
             type = "integer",
@@ -8632,6 +9087,7 @@ M.EvaluationSuggestedAnswerTranscriptMillisecondOffsets = {
 
 M.EvaluationTranscriptPointOfInterest = {
     type = "structure",
+    id = "EvaluationTranscriptPointOfInterest",
     members = {
         MillisecondOffsets = M.EvaluationSuggestedAnswerTranscriptMillisecondOffsets,
         TranscriptSegment = {
@@ -8642,6 +9098,7 @@ M.EvaluationTranscriptPointOfInterest = {
 
 M.EvaluationAutomationRuleCategory = {
     type = "structure",
+    id = "EvaluationAutomationRuleCategory",
     members = {
         Category = {
             type = "string",
@@ -8664,6 +9121,7 @@ M.EvaluationAutomationRuleCategory = {
 
 M.EvaluationContactLensAnswerAnalysisDetails = {
     type = "structure",
+    id = "EvaluationContactLensAnswerAnalysisDetails",
     members = {
         MatchedRuleCategories = {
             type = "list",
@@ -8674,6 +9132,7 @@ M.EvaluationContactLensAnswerAnalysisDetails = {
 
 M.EvaluationGenAIAnswerAnalysisDetails = {
     type = "structure",
+    id = "EvaluationGenAIAnswerAnalysisDetails",
     members = {
         Justification = {
             type = "string",
@@ -8687,6 +9146,7 @@ M.EvaluationGenAIAnswerAnalysisDetails = {
 
 M.EvaluationQuestionAnswerAnalysisDetails = {
     type = "union",
+    id = "EvaluationQuestionAnswerAnalysisDetails",
     members = {
         GenAI = M.EvaluationGenAIAnswerAnalysisDetails,
         ContactLens = M.EvaluationContactLensAnswerAnalysisDetails,
@@ -8705,6 +9165,7 @@ M.EvaluationTranscriptType = {
 
 M.EvaluationQuestionInputDetails = {
     type = "structure",
+    id = "EvaluationQuestionInputDetails",
     members = {
         TranscriptType = {
             type = "string",
@@ -8720,6 +9181,7 @@ M.EvaluationSuggestedAnswerStatus = {
 
 M.EvaluationAnswerData = {
     type = "union",
+    id = "EvaluationAnswerData",
     members = {
         StringValue = {
             type = "string",
@@ -8742,6 +9204,7 @@ M.EvaluationAnswerData = {
 
 M.EvaluationSuggestedAnswer = {
     type = "structure",
+    id = "EvaluationSuggestedAnswer",
     members = {
         Value = M.EvaluationAnswerData,
         Status = {
@@ -8763,6 +9226,7 @@ M.EvaluationSuggestedAnswer = {
 
 M.EvaluationAnswerOutput = {
     type = "structure",
+    id = "EvaluationAnswerOutput",
     members = {
         Value = M.EvaluationAnswerData,
         SystemSuggestedValue = M.EvaluationAnswerData,
@@ -8780,6 +9244,7 @@ M.EvaluationType = {
 
 M.EvaluationAcknowledgement = {
     type = "structure",
+    id = "EvaluationAcknowledgement",
     members = {
         AcknowledgedTime = {
             type = "timestamp",
@@ -8807,6 +9272,7 @@ M.AutoEvaluationStatus = {
 
 M.AutoEvaluationDetails = {
     type = "structure",
+    id = "AutoEvaluationDetails",
     members = {
         AutoEvaluationEnabled = {
             type = "boolean",
@@ -8830,6 +9296,7 @@ M.ContactParticipantRole = {
 
 M.EvaluationContactParticipant = {
     type = "structure",
+    id = "EvaluationContactParticipant",
     members = {
         ContactParticipantRole = {
             type = "string",
@@ -8842,6 +9309,7 @@ M.EvaluationContactParticipant = {
 
 M.EvaluationReviewRequestComment = {
     type = "structure",
+    id = "EvaluationReviewRequestComment",
     members = {
         Comment = {
             type = "string",
@@ -8857,6 +9325,7 @@ M.EvaluationReviewRequestComment = {
 
 M.EvaluationReviewMetadata = {
     type = "structure",
+    id = "EvaluationReviewMetadata",
     members = {
         ReviewId = {
             type = "string",
@@ -8891,6 +9360,7 @@ M.EvaluationReviewMetadata = {
 
 M.EvaluationScore = {
     type = "structure",
+    id = "EvaluationScore",
     members = {
         Percentage = {
             type = "double",
@@ -8918,6 +9388,7 @@ M.EvaluationScore = {
 
 M.EvaluationMetadata = {
     type = "structure",
+    id = "EvaluationMetadata",
     members = {
         ContactId = {
             type = "string",
@@ -8950,6 +9421,7 @@ M.EvaluationMetadata = {
 
 M.EvaluationNote = {
     type = "structure",
+    id = "EvaluationNote",
     members = {
         Value = {
             type = "string",
@@ -8966,6 +9438,7 @@ M.EvaluationStatus = {
 
 M.Evaluation = {
     type = "structure",
+    id = "Evaluation",
     members = {
         EvaluationId = {
             type = "string",
@@ -9034,6 +9507,7 @@ M.Evaluation = {
 
 M.ContactFlowNotPublishedException = {
     type = "structure",
+    id = "ContactFlowNotPublishedException",
     error = "client",
     members = {
         Message = {
@@ -9044,6 +9518,7 @@ M.ContactFlowNotPublishedException = {
 
 M.DescribeContactFlowInput = {
     type = "structure",
+    id = "DescribeContactFlowInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9069,6 +9544,7 @@ M.ContactFlowState = {
 
 M.ContactFlow = {
     type = "structure",
+    id = "ContactFlow",
     members = {
         Arn = {
             type = "string",
@@ -9119,6 +9595,7 @@ M.ContactFlow = {
 
 M.DescribeContactFlowOutput = {
     type = "structure",
+    id = "DescribeContactFlowOutput",
     members = {
         ContactFlow = M.ContactFlow,
     },
@@ -9126,6 +9603,7 @@ M.DescribeContactFlowOutput = {
 
 M.DescribeContactFlowModuleInput = {
     type = "structure",
+    id = "DescribeContactFlowModuleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9156,6 +9634,7 @@ M.ContactFlowModuleStatus = {
 
 M.ContactFlowModule = {
     type = "structure",
+    id = "ContactFlowModule",
     members = {
         Arn = {
             type = "string",
@@ -9201,6 +9680,7 @@ M.ContactFlowModule = {
 
 M.DescribeContactFlowModuleOutput = {
     type = "structure",
+    id = "DescribeContactFlowModuleOutput",
     members = {
         ContactFlowModule = M.ContactFlowModule,
     },
@@ -9208,6 +9688,7 @@ M.DescribeContactFlowModuleOutput = {
 
 M.DescribeContactFlowModuleAliasInput = {
     type = "structure",
+    id = "DescribeContactFlowModuleAliasInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9235,6 +9716,7 @@ M.DescribeContactFlowModuleAliasInput = {
 
 M.ContactFlowModuleAliasInfo = {
     type = "structure",
+    id = "ContactFlowModuleAliasInfo",
     members = {
         ContactFlowModuleId = {
             type = "string",
@@ -9265,6 +9747,7 @@ M.ContactFlowModuleAliasInfo = {
 
 M.DescribeContactFlowModuleAliasOutput = {
     type = "structure",
+    id = "DescribeContactFlowModuleAliasOutput",
     members = {
         ContactFlowModuleAlias = M.ContactFlowModuleAliasInfo,
     },
@@ -9272,6 +9755,7 @@ M.DescribeContactFlowModuleAliasOutput = {
 
 M.DescribeDataTableInput = {
     type = "structure",
+    id = "DescribeDataTableInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9292,6 +9776,7 @@ M.DescribeDataTableInput = {
 
 M.DataTable = {
     type = "structure",
+    id = "DataTable",
     members = {
         Name = {
             type = "string",
@@ -9355,6 +9840,7 @@ M.DataTable = {
 
 M.DescribeDataTableOutput = {
     type = "structure",
+    id = "DescribeDataTableOutput",
     members = {
         DataTable = setmetatable({ traits = {
             required = true,
@@ -9364,6 +9850,7 @@ M.DescribeDataTableOutput = {
 
 M.DescribeDataTableAttributeInput = {
     type = "structure",
+    id = "DescribeDataTableAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9391,6 +9878,7 @@ M.DescribeDataTableAttributeInput = {
 
 M.DataTableAttribute = {
     type = "structure",
+    id = "DataTableAttribute",
     members = {
         AttributeId = {
             type = "string",
@@ -9438,6 +9926,7 @@ M.DataTableAttribute = {
 
 M.DescribeDataTableAttributeOutput = {
     type = "structure",
+    id = "DescribeDataTableAttributeOutput",
     members = {
         Attribute = setmetatable({ traits = {
             required = true,
@@ -9447,6 +9936,7 @@ M.DescribeDataTableAttributeOutput = {
 
 M.DescribeEmailAddressInput = {
     type = "structure",
+    id = "DescribeEmailAddressInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9467,6 +9957,7 @@ M.DescribeEmailAddressInput = {
 
 M.DescribeEmailAddressOutput = {
     type = "structure",
+    id = "DescribeEmailAddressOutput",
     members = {
         EmailAddressId = {
             type = "string",
@@ -9503,6 +9994,7 @@ M.DescribeEmailAddressOutput = {
 
 M.DescribeEvaluationFormInput = {
     type = "structure",
+    id = "DescribeEvaluationFormInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9535,6 +10027,7 @@ M.EvaluationFormVersionStatus = {
 
 M.DescribeHoursOfOperationInput = {
     type = "structure",
+    id = "DescribeHoursOfOperationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9555,6 +10048,7 @@ M.DescribeHoursOfOperationInput = {
 
 M.HoursOfOperationsIdentifier = {
     type = "structure",
+    id = "HoursOfOperationsIdentifier",
     members = {
         Name = {
             type = "string",
@@ -9576,6 +10070,7 @@ M.HoursOfOperationsIdentifier = {
 
 M.HoursOfOperation = {
     type = "structure",
+    id = "HoursOfOperation",
     members = {
         HoursOfOperationId = {
             type = "string",
@@ -9616,6 +10111,7 @@ M.HoursOfOperation = {
 
 M.DescribeHoursOfOperationOutput = {
     type = "structure",
+    id = "DescribeHoursOfOperationOutput",
     members = {
         HoursOfOperation = M.HoursOfOperation,
     },
@@ -9623,6 +10119,7 @@ M.DescribeHoursOfOperationOutput = {
 
 M.DescribeHoursOfOperationOverrideInput = {
     type = "structure",
+    id = "DescribeHoursOfOperationOverrideInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9650,6 +10147,7 @@ M.DescribeHoursOfOperationOverrideInput = {
 
 M.HoursOfOperationOverride = {
     type = "structure",
+    id = "HoursOfOperationOverride",
     members = {
         HoursOfOperationOverrideId = {
             type = "string",
@@ -9685,6 +10183,7 @@ M.HoursOfOperationOverride = {
 
 M.DescribeHoursOfOperationOverrideOutput = {
     type = "structure",
+    id = "DescribeHoursOfOperationOverrideOutput",
     members = {
         HoursOfOperationOverride = M.HoursOfOperationOverride,
     },
@@ -9692,6 +10191,7 @@ M.DescribeHoursOfOperationOverrideOutput = {
 
 M.DescribeInstanceInput = {
     type = "structure",
+    id = "DescribeInstanceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9711,6 +10211,7 @@ M.InstanceStatus = {
 
 M.InstanceStatusReason = {
     type = "structure",
+    id = "InstanceStatusReason",
     members = {
         Message = {
             type = "string",
@@ -9720,6 +10221,7 @@ M.InstanceStatusReason = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         Id = {
             type = "string",
@@ -9771,6 +10273,7 @@ M.InstanceReplicationStatus = {
 
 M.ReplicationStatusSummary = {
     type = "structure",
+    id = "ReplicationStatusSummary",
     members = {
         Region = {
             type = "string",
@@ -9786,6 +10289,7 @@ M.ReplicationStatusSummary = {
 
 M.ReplicationConfiguration = {
     type = "structure",
+    id = "ReplicationConfiguration",
     members = {
         ReplicationStatusSummaryList = {
             type = "list",
@@ -9802,6 +10306,7 @@ M.ReplicationConfiguration = {
 
 M.DescribeInstanceOutput = {
     type = "structure",
+    id = "DescribeInstanceOutput",
     members = {
         Instance = M.Instance,
         ReplicationConfiguration = M.ReplicationConfiguration,
@@ -9826,6 +10331,7 @@ M.InstanceAttributeType = {
 
 M.DescribeInstanceAttributeInput = {
     type = "structure",
+    id = "DescribeInstanceAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9846,6 +10352,7 @@ M.DescribeInstanceAttributeInput = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         AttributeType = {
             type = "string",
@@ -9858,6 +10365,7 @@ M.Attribute = {
 
 M.DescribeInstanceAttributeOutput = {
     type = "structure",
+    id = "DescribeInstanceAttributeOutput",
     members = {
         Attribute = M.Attribute,
     },
@@ -9865,6 +10373,7 @@ M.DescribeInstanceAttributeOutput = {
 
 M.DescribeInstanceStorageConfigInput = {
     type = "structure",
+    id = "DescribeInstanceStorageConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9892,6 +10401,7 @@ M.DescribeInstanceStorageConfigInput = {
 
 M.DescribeInstanceStorageConfigOutput = {
     type = "structure",
+    id = "DescribeInstanceStorageConfigOutput",
     members = {
         StorageConfig = M.InstanceStorageConfig,
     },
@@ -9899,6 +10409,7 @@ M.DescribeInstanceStorageConfigOutput = {
 
 M.DescribeNotificationInput = {
     type = "structure",
+    id = "DescribeNotificationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -9925,6 +10436,7 @@ M.NotificationPriority = {
 
 M.Notification = {
     type = "structure",
+    id = "Notification",
     members = {
         Content = {
             type = "map",
@@ -9975,6 +10487,7 @@ M.Notification = {
 
 M.DescribeNotificationOutput = {
     type = "structure",
+    id = "DescribeNotificationOutput",
     members = {
         Notification = setmetatable({ traits = {
             required = true,
@@ -9984,6 +10497,7 @@ M.DescribeNotificationOutput = {
 
 M.DescribePhoneNumberInput = {
     type = "structure",
+    id = "DescribePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -10243,6 +10757,7 @@ M.PhoneNumberWorkflowStatus = {
 
 M.PhoneNumberStatus = {
     type = "structure",
+    id = "PhoneNumberStatus",
     members = {
         Status = {
             type = "string",
@@ -10265,6 +10780,7 @@ M.PhoneNumberType = {
 
 M.ClaimedPhoneNumberSummary = {
     type = "structure",
+    id = "ClaimedPhoneNumberSummary",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -10304,6 +10820,7 @@ M.ClaimedPhoneNumberSummary = {
 
 M.DescribePhoneNumberOutput = {
     type = "structure",
+    id = "DescribePhoneNumberOutput",
     members = {
         ClaimedPhoneNumberSummary = M.ClaimedPhoneNumberSummary,
     },
@@ -10311,6 +10828,7 @@ M.DescribePhoneNumberOutput = {
 
 M.DescribePredefinedAttributeInput = {
     type = "structure",
+    id = "DescribePredefinedAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10331,6 +10849,7 @@ M.DescribePredefinedAttributeInput = {
 
 M.PredefinedAttributeConfiguration = {
     type = "structure",
+    id = "PredefinedAttributeConfiguration",
     members = {
         EnableValueValidationOnAssociation = {
             type = "boolean",
@@ -10349,6 +10868,7 @@ M.PredefinedAttributeConfiguration = {
 
 M.PredefinedAttribute = {
     type = "structure",
+    id = "PredefinedAttribute",
     members = {
         Name = {
             type = "string",
@@ -10370,6 +10890,7 @@ M.PredefinedAttribute = {
 
 M.DescribePredefinedAttributeOutput = {
     type = "structure",
+    id = "DescribePredefinedAttributeOutput",
     members = {
         PredefinedAttribute = M.PredefinedAttribute,
     },
@@ -10377,6 +10898,7 @@ M.DescribePredefinedAttributeOutput = {
 
 M.DescribePromptInput = {
     type = "structure",
+    id = "DescribePromptInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10397,6 +10919,7 @@ M.DescribePromptInput = {
 
 M.Prompt = {
     type = "structure",
+    id = "Prompt",
     members = {
         PromptARN = {
             type = "string",
@@ -10426,6 +10949,7 @@ M.Prompt = {
 
 M.DescribePromptOutput = {
     type = "structure",
+    id = "DescribePromptOutput",
     members = {
         Prompt = M.Prompt,
     },
@@ -10433,6 +10957,7 @@ M.DescribePromptOutput = {
 
 M.DescribeQueueInput = {
     type = "structure",
+    id = "DescribeQueueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10458,6 +10983,7 @@ M.QueueStatus = {
 
 M.Queue = {
     type = "structure",
+    id = "Queue",
     members = {
         Name = {
             type = "string",
@@ -10501,6 +11027,7 @@ M.Queue = {
 
 M.DescribeQueueOutput = {
     type = "structure",
+    id = "DescribeQueueOutput",
     members = {
         Queue = M.Queue,
     },
@@ -10508,6 +11035,7 @@ M.DescribeQueueOutput = {
 
 M.DescribeQuickConnectInput = {
     type = "structure",
+    id = "DescribeQuickConnectInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10528,6 +11056,7 @@ M.DescribeQuickConnectInput = {
 
 M.QuickConnect = {
     type = "structure",
+    id = "QuickConnect",
     members = {
         QuickConnectARN = {
             type = "string",
@@ -10558,6 +11087,7 @@ M.QuickConnect = {
 
 M.DescribeQuickConnectOutput = {
     type = "structure",
+    id = "DescribeQuickConnectOutput",
     members = {
         QuickConnect = M.QuickConnect,
     },
@@ -10565,6 +11095,7 @@ M.DescribeQuickConnectOutput = {
 
 M.DescribeRoutingProfileInput = {
     type = "structure",
+    id = "DescribeRoutingProfileInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10585,6 +11116,7 @@ M.DescribeRoutingProfileInput = {
 
 M.RoutingProfile = {
     type = "structure",
+    id = "RoutingProfile",
     members = {
         InstanceId = {
             type = "string",
@@ -10650,6 +11182,7 @@ M.RoutingProfile = {
 
 M.DescribeRoutingProfileOutput = {
     type = "structure",
+    id = "DescribeRoutingProfileOutput",
     members = {
         RoutingProfile = M.RoutingProfile,
     },
@@ -10657,6 +11190,7 @@ M.DescribeRoutingProfileOutput = {
 
 M.DescribeRuleInput = {
     type = "structure",
+    id = "DescribeRuleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10677,6 +11211,7 @@ M.DescribeRuleInput = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         Name = {
             type = "string",
@@ -10746,6 +11281,7 @@ M.Rule = {
 
 M.DescribeRuleOutput = {
     type = "structure",
+    id = "DescribeRuleOutput",
     members = {
         Rule = setmetatable({ traits = {
             required = true,
@@ -10755,6 +11291,7 @@ M.DescribeRuleOutput = {
 
 M.DescribeSecurityProfileInput = {
     type = "structure",
+    id = "DescribeSecurityProfileInput",
     members = {
         SecurityProfileId = {
             type = "string",
@@ -10775,6 +11312,7 @@ M.DescribeSecurityProfileInput = {
 
 M.SecurityProfile = {
     type = "structure",
+    id = "SecurityProfile",
     members = {
         Id = {
             type = "string",
@@ -10824,6 +11362,7 @@ M.SecurityProfile = {
 
 M.DescribeSecurityProfileOutput = {
     type = "structure",
+    id = "DescribeSecurityProfileOutput",
     members = {
         SecurityProfile = M.SecurityProfile,
     },
@@ -10831,6 +11370,7 @@ M.DescribeSecurityProfileOutput = {
 
 M.DescribeTestCaseInput = {
     type = "structure",
+    id = "DescribeTestCaseInput",
     members = {
         InstanceId = {
             type = "string",
@@ -10857,6 +11397,7 @@ M.DescribeTestCaseInput = {
 
 M.TestCase = {
     type = "structure",
+    id = "TestCase",
     members = {
         Arn = {
             type = "string",
@@ -10899,6 +11440,7 @@ M.TestCase = {
 
 M.DescribeTestCaseOutput = {
     type = "structure",
+    id = "DescribeTestCaseOutput",
     members = {
         TestCase = M.TestCase,
     },
@@ -10906,6 +11448,7 @@ M.DescribeTestCaseOutput = {
 
 M.DescribeTrafficDistributionGroupInput = {
     type = "structure",
+    id = "DescribeTrafficDistributionGroupInput",
     members = {
         TrafficDistributionGroupId = {
             type = "string",
@@ -10928,6 +11471,7 @@ M.TrafficDistributionGroupStatus = {
 
 M.TrafficDistributionGroup = {
     type = "structure",
+    id = "TrafficDistributionGroup",
     members = {
         Id = {
             type = "string",
@@ -10963,6 +11507,7 @@ M.TrafficDistributionGroup = {
 
 M.DescribeTrafficDistributionGroupOutput = {
     type = "structure",
+    id = "DescribeTrafficDistributionGroupOutput",
     members = {
         TrafficDistributionGroup = M.TrafficDistributionGroup,
     },
@@ -10970,6 +11515,7 @@ M.DescribeTrafficDistributionGroupOutput = {
 
 M.DescribeUserInput = {
     type = "structure",
+    id = "DescribeUserInput",
     members = {
         UserId = {
             type = "string",
@@ -10990,6 +11536,7 @@ M.DescribeUserInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Id = {
             type = "string",
@@ -11051,6 +11598,7 @@ M.User = {
 
 M.DescribeUserOutput = {
     type = "structure",
+    id = "DescribeUserOutput",
     members = {
         User = M.User,
     },
@@ -11058,6 +11606,7 @@ M.DescribeUserOutput = {
 
 M.DescribeUserHierarchyGroupInput = {
     type = "structure",
+    id = "DescribeUserHierarchyGroupInput",
     members = {
         HierarchyGroupId = {
             type = "string",
@@ -11078,6 +11627,7 @@ M.DescribeUserHierarchyGroupInput = {
 
 M.HierarchyGroupSummary = {
     type = "structure",
+    id = "HierarchyGroupSummary",
     members = {
         Id = {
             type = "string",
@@ -11099,6 +11649,7 @@ M.HierarchyGroupSummary = {
 
 M.HierarchyPath = {
     type = "structure",
+    id = "HierarchyPath",
     members = {
         LevelOne = M.HierarchyGroupSummary,
         LevelTwo = M.HierarchyGroupSummary,
@@ -11110,6 +11661,7 @@ M.HierarchyPath = {
 
 M.HierarchyGroup = {
     type = "structure",
+    id = "HierarchyGroup",
     members = {
         Id = {
             type = "string",
@@ -11140,6 +11692,7 @@ M.HierarchyGroup = {
 
 M.DescribeUserHierarchyGroupOutput = {
     type = "structure",
+    id = "DescribeUserHierarchyGroupOutput",
     members = {
         HierarchyGroup = M.HierarchyGroup,
     },
@@ -11147,6 +11700,7 @@ M.DescribeUserHierarchyGroupOutput = {
 
 M.DescribeUserHierarchyStructureInput = {
     type = "structure",
+    id = "DescribeUserHierarchyStructureInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11160,6 +11714,7 @@ M.DescribeUserHierarchyStructureInput = {
 
 M.HierarchyLevel = {
     type = "structure",
+    id = "HierarchyLevel",
     members = {
         Id = {
             type = "string",
@@ -11181,6 +11736,7 @@ M.HierarchyLevel = {
 
 M.HierarchyStructure = {
     type = "structure",
+    id = "HierarchyStructure",
     members = {
         LevelOne = M.HierarchyLevel,
         LevelTwo = M.HierarchyLevel,
@@ -11192,6 +11748,7 @@ M.HierarchyStructure = {
 
 M.DescribeUserHierarchyStructureOutput = {
     type = "structure",
+    id = "DescribeUserHierarchyStructureOutput",
     members = {
         HierarchyStructure = M.HierarchyStructure,
     },
@@ -11199,6 +11756,7 @@ M.DescribeUserHierarchyStructureOutput = {
 
 M.DescribeViewInput = {
     type = "structure",
+    id = "DescribeViewInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11219,6 +11777,7 @@ M.DescribeViewInput = {
 
 M.DescribeViewOutput = {
     type = "structure",
+    id = "DescribeViewOutput",
     members = {
         View = M.View,
     },
@@ -11226,6 +11785,7 @@ M.DescribeViewOutput = {
 
 M.DescribeVocabularyInput = {
     type = "structure",
+    id = "DescribeVocabularyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11246,6 +11806,7 @@ M.DescribeVocabularyInput = {
 
 M.Vocabulary = {
     type = "structure",
+    id = "Vocabulary",
     members = {
         Name = {
             type = "string",
@@ -11299,6 +11860,7 @@ M.Vocabulary = {
 
 M.DescribeVocabularyOutput = {
     type = "structure",
+    id = "DescribeVocabularyOutput",
     members = {
         Vocabulary = setmetatable({ traits = {
             required = true,
@@ -11308,6 +11870,7 @@ M.DescribeVocabularyOutput = {
 
 M.DescribeWorkspaceInput = {
     type = "structure",
+    id = "DescribeWorkspaceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11334,6 +11897,7 @@ M.Visibility = {
 
 M.Workspace = {
     type = "structure",
+    id = "Workspace",
     members = {
         Visibility = {
             type = "string",
@@ -11382,6 +11946,7 @@ M.Workspace = {
 
 M.DescribeWorkspaceOutput = {
     type = "structure",
+    id = "DescribeWorkspaceOutput",
     members = {
         Workspace = setmetatable({ traits = {
             required = true,
@@ -11391,6 +11956,7 @@ M.DescribeWorkspaceOutput = {
 
 M.DisassociateAnalyticsDataSetInput = {
     type = "structure",
+    id = "DisassociateAnalyticsDataSetInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11413,10 +11979,12 @@ M.DisassociateAnalyticsDataSetInput = {
 
 M.DisassociateAnalyticsDataSetOutput = {
     type = "structure",
+    id = "DisassociateAnalyticsDataSetOutput",
 }
 
 M.DisassociateApprovedOriginInput = {
     type = "structure",
+    id = "DisassociateApprovedOriginInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11444,10 +12012,12 @@ M.DisassociateApprovedOriginInput = {
 
 M.DisassociateApprovedOriginOutput = {
     type = "structure",
+    id = "DisassociateApprovedOriginOutput",
 }
 
 M.DisassociateBotInput = {
     type = "structure",
+    id = "DisassociateBotInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11469,10 +12039,12 @@ M.DisassociateBotInput = {
 
 M.DisassociateBotOutput = {
     type = "structure",
+    id = "DisassociateBotOutput",
 }
 
 M.DisassociateEmailAddressAliasInput = {
     type = "structure",
+    id = "DisassociateEmailAddressAliasInput",
     members = {
         EmailAddressId = {
             type = "string",
@@ -11502,10 +12074,12 @@ M.DisassociateEmailAddressAliasInput = {
 
 M.DisassociateEmailAddressAliasOutput = {
     type = "structure",
+    id = "DisassociateEmailAddressAliasOutput",
 }
 
 M.DisassociateFlowInput = {
     type = "structure",
+    id = "DisassociateFlowInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11533,10 +12107,12 @@ M.DisassociateFlowInput = {
 
 M.DisassociateFlowOutput = {
     type = "structure",
+    id = "DisassociateFlowOutput",
 }
 
 M.DisassociateHoursOfOperationsInput = {
     type = "structure",
+    id = "DisassociateHoursOfOperationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11564,10 +12140,12 @@ M.DisassociateHoursOfOperationsInput = {
 
 M.DisassociateHoursOfOperationsOutput = {
     type = "structure",
+    id = "DisassociateHoursOfOperationsOutput",
 }
 
 M.DisassociateInstanceStorageConfigInput = {
     type = "structure",
+    id = "DisassociateInstanceStorageConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11602,10 +12180,12 @@ M.DisassociateInstanceStorageConfigInput = {
 
 M.DisassociateInstanceStorageConfigOutput = {
     type = "structure",
+    id = "DisassociateInstanceStorageConfigOutput",
 }
 
 M.DisassociateLambdaFunctionInput = {
     type = "structure",
+    id = "DisassociateLambdaFunctionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11633,10 +12213,12 @@ M.DisassociateLambdaFunctionInput = {
 
 M.DisassociateLambdaFunctionOutput = {
     type = "structure",
+    id = "DisassociateLambdaFunctionOutput",
 }
 
 M.DisassociateLexBotInput = {
     type = "structure",
+    id = "DisassociateLexBotInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11671,10 +12253,12 @@ M.DisassociateLexBotInput = {
 
 M.DisassociateLexBotOutput = {
     type = "structure",
+    id = "DisassociateLexBotOutput",
 }
 
 M.DisassociatePhoneNumberContactFlowInput = {
     type = "structure",
+    id = "DisassociatePhoneNumberContactFlowInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -11695,10 +12279,12 @@ M.DisassociatePhoneNumberContactFlowInput = {
 
 M.DisassociatePhoneNumberContactFlowOutput = {
     type = "structure",
+    id = "DisassociatePhoneNumberContactFlowOutput",
 }
 
 M.DisassociateQueueEmailAddressesInput = {
     type = "structure",
+    id = "DisassociateQueueEmailAddressesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11732,10 +12318,12 @@ M.DisassociateQueueEmailAddressesInput = {
 
 M.DisassociateQueueEmailAddressesOutput = {
     type = "structure",
+    id = "DisassociateQueueEmailAddressesOutput",
 }
 
 M.DisassociateQueueQuickConnectsInput = {
     type = "structure",
+    id = "DisassociateQueueQuickConnectsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11763,10 +12351,12 @@ M.DisassociateQueueQuickConnectsInput = {
 
 M.DisassociateQueueQuickConnectsOutput = {
     type = "structure",
+    id = "DisassociateQueueQuickConnectsOutput",
 }
 
 M.DisassociateRoutingProfileQueuesInput = {
     type = "structure",
+    id = "DisassociateRoutingProfileQueuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11795,10 +12385,12 @@ M.DisassociateRoutingProfileQueuesInput = {
 
 M.DisassociateRoutingProfileQueuesOutput = {
     type = "structure",
+    id = "DisassociateRoutingProfileQueuesOutput",
 }
 
 M.DisassociateSecurityKeyInput = {
     type = "structure",
+    id = "DisassociateSecurityKeyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11826,10 +12418,12 @@ M.DisassociateSecurityKeyInput = {
 
 M.DisassociateSecurityKeyOutput = {
     type = "structure",
+    id = "DisassociateSecurityKeyOutput",
 }
 
 M.DisassociateSecurityProfilesInput = {
     type = "structure",
+    id = "DisassociateSecurityProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11862,10 +12456,12 @@ M.DisassociateSecurityProfilesInput = {
 
 M.DisassociateSecurityProfilesOutput = {
     type = "structure",
+    id = "DisassociateSecurityProfilesOutput",
 }
 
 M.DisassociateTrafficDistributionGroupUserInput = {
     type = "structure",
+    id = "DisassociateTrafficDistributionGroupUserInput",
     members = {
         TrafficDistributionGroupId = {
             type = "string",
@@ -11893,10 +12489,12 @@ M.DisassociateTrafficDistributionGroupUserInput = {
 
 M.DisassociateTrafficDistributionGroupUserOutput = {
     type = "structure",
+    id = "DisassociateTrafficDistributionGroupUserOutput",
 }
 
 M.UserProficiencyDisassociate = {
     type = "structure",
+    id = "UserProficiencyDisassociate",
     members = {
         AttributeName = {
             type = "string",
@@ -11915,6 +12513,7 @@ M.UserProficiencyDisassociate = {
 
 M.DisassociateUserProficienciesInput = {
     type = "structure",
+    id = "DisassociateUserProficienciesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11942,10 +12541,12 @@ M.DisassociateUserProficienciesInput = {
 
 M.DisassociateUserProficienciesOutput = {
     type = "structure",
+    id = "DisassociateUserProficienciesOutput",
 }
 
 M.DisassociateWorkspaceInput = {
     type = "structure",
+    id = "DisassociateWorkspaceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -11973,6 +12574,7 @@ M.DisassociateWorkspaceInput = {
 
 M.DisassociateWorkspaceOutput = {
     type = "structure",
+    id = "DisassociateWorkspaceOutput",
     members = {
         SuccessfulList = {
             type = "list",
@@ -11987,6 +12589,7 @@ M.DisassociateWorkspaceOutput = {
 
 M.DismissUserContactInput = {
     type = "structure",
+    id = "DismissUserContactInput",
     members = {
         UserId = {
             type = "string",
@@ -12013,10 +12616,12 @@ M.DismissUserContactInput = {
 
 M.DismissUserContactOutput = {
     type = "structure",
+    id = "DismissUserContactOutput",
 }
 
 M.DataTableValueEvaluationSet = {
     type = "structure",
+    id = "DataTableValueEvaluationSet",
     members = {
         PrimaryValues = {
             type = "list",
@@ -12034,6 +12639,7 @@ M.DataTableValueEvaluationSet = {
 
 M.EvaluateDataTableValuesInput = {
     type = "structure",
+    id = "EvaluateDataTableValuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12076,6 +12682,7 @@ M.EvaluateDataTableValuesInput = {
 
 M.DataTableEvaluatedValue = {
     type = "structure",
+    id = "DataTableEvaluatedValue",
     members = {
         RecordId = {
             type = "string",
@@ -12127,6 +12734,7 @@ M.DataTableEvaluatedValue = {
 
 M.EvaluateDataTableValuesOutput = {
     type = "structure",
+    id = "EvaluateDataTableValuesOutput",
     members = {
         Values = {
             type = "list",
@@ -12143,6 +12751,7 @@ M.EvaluateDataTableValuesOutput = {
 
 M.GetAttachedFileInput = {
     type = "structure",
+    id = "GetAttachedFileInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12176,6 +12785,7 @@ M.GetAttachedFileInput = {
 
 M.DownloadUrlMetadata = {
     type = "structure",
+    id = "DownloadUrlMetadata",
     members = {
         Url = {
             type = "string",
@@ -12188,6 +12798,7 @@ M.DownloadUrlMetadata = {
 
 M.GetAttachedFileOutput = {
     type = "structure",
+    id = "GetAttachedFileOutput",
     members = {
         FileArn = {
             type = "string",
@@ -12228,6 +12839,7 @@ M.GetAttachedFileOutput = {
 
 M.GetContactAttributesInput = {
     type = "structure",
+    id = "GetContactAttributesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12248,6 +12860,7 @@ M.GetContactAttributesInput = {
 
 M.GetContactAttributesOutput = {
     type = "structure",
+    id = "GetContactAttributesOutput",
     members = {
         Attributes = {
             type = "map",
@@ -12264,6 +12877,7 @@ M.ContactMetricName = {
 
 M.ContactMetricInfo = {
     type = "structure",
+    id = "ContactMetricInfo",
     members = {
         Name = {
             type = "string",
@@ -12276,6 +12890,7 @@ M.ContactMetricInfo = {
 
 M.GetContactMetricsInput = {
     type = "structure",
+    id = "GetContactMetricsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12301,6 +12916,7 @@ M.GetContactMetricsInput = {
 
 M.ContactMetricValue = {
     type = "union",
+    id = "ContactMetricValue",
     members = {
         Number = {
             type = "double",
@@ -12310,6 +12926,7 @@ M.ContactMetricValue = {
 
 M.ContactMetricResult = {
     type = "structure",
+    id = "ContactMetricResult",
     members = {
         Name = {
             type = "string",
@@ -12325,6 +12942,7 @@ M.ContactMetricResult = {
 
 M.GetContactMetricsOutput = {
     type = "structure",
+    id = "GetContactMetricsOutput",
     members = {
         MetricResults = {
             type = "list",
@@ -12364,6 +12982,7 @@ M.Unit = {
 
 M.CurrentMetric = {
     type = "structure",
+    id = "CurrentMetric",
     members = {
         Name = {
             type = "string",
@@ -12379,6 +12998,7 @@ M.CurrentMetric = {
 
 M.Filters = {
     type = "structure",
+    id = "Filters",
     members = {
         Queues = {
             type = "list",
@@ -12428,6 +13048,7 @@ M.SortOrder = {
 
 M.CurrentMetricSortCriteria = {
     type = "structure",
+    id = "CurrentMetricSortCriteria",
     members = {
         SortByMetric = {
             type = "string",
@@ -12440,6 +13061,7 @@ M.CurrentMetricSortCriteria = {
 
 M.GetCurrentMetricDataInput = {
     type = "structure",
+    id = "GetCurrentMetricDataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12477,6 +13099,7 @@ M.GetCurrentMetricDataInput = {
 
 M.CurrentMetricData = {
     type = "structure",
+    id = "CurrentMetricData",
     members = {
         Metric = M.CurrentMetric,
         Value = {
@@ -12487,6 +13110,7 @@ M.CurrentMetricData = {
 
 M.RoutingProfileReference = {
     type = "structure",
+    id = "RoutingProfileReference",
     members = {
         Id = {
             type = "string",
@@ -12499,6 +13123,7 @@ M.RoutingProfileReference = {
 
 M.Dimensions = {
     type = "structure",
+    id = "Dimensions",
     members = {
         Queue = M.QueueReference,
         Channel = {
@@ -12520,6 +13145,7 @@ M.Dimensions = {
 
 M.CurrentMetricResult = {
     type = "structure",
+    id = "CurrentMetricResult",
     members = {
         Dimensions = M.Dimensions,
         Collections = {
@@ -12531,6 +13157,7 @@ M.CurrentMetricResult = {
 
 M.GetCurrentMetricDataOutput = {
     type = "structure",
+    id = "GetCurrentMetricDataOutput",
     members = {
         NextToken = {
             type = "string",
@@ -12550,6 +13177,7 @@ M.GetCurrentMetricDataOutput = {
 
 M.ContactFilter = {
     type = "structure",
+    id = "ContactFilter",
     members = {
         ContactStates = {
             type = "list",
@@ -12560,6 +13188,7 @@ M.ContactFilter = {
 
 M.UserDataFilters = {
     type = "structure",
+    id = "UserDataFilters",
     members = {
         Queues = {
             type = "list",
@@ -12583,6 +13212,7 @@ M.UserDataFilters = {
 
 M.GetCurrentUserDataInput = {
     type = "structure",
+    id = "GetCurrentUserDataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12605,6 +13235,7 @@ M.GetCurrentUserDataInput = {
 
 M.HierarchyGroupSummaryReference = {
     type = "structure",
+    id = "HierarchyGroupSummaryReference",
     members = {
         Id = {
             type = "string",
@@ -12617,6 +13248,7 @@ M.HierarchyGroupSummaryReference = {
 
 M.HierarchyPathReference = {
     type = "structure",
+    id = "HierarchyPathReference",
     members = {
         LevelOne = M.HierarchyGroupSummaryReference,
         LevelTwo = M.HierarchyGroupSummaryReference,
@@ -12628,6 +13260,7 @@ M.HierarchyPathReference = {
 
 M.UserReference = {
     type = "structure",
+    id = "UserReference",
     members = {
         Id = {
             type = "string",
@@ -12640,6 +13273,7 @@ M.UserReference = {
 
 M.UserData = {
     type = "structure",
+    id = "UserData",
     members = {
         User = M.UserReference,
         RoutingProfile = M.RoutingProfileReference,
@@ -12672,6 +13306,7 @@ M.UserData = {
 
 M.GetCurrentUserDataOutput = {
     type = "structure",
+    id = "GetCurrentUserDataOutput",
     members = {
         NextToken = {
             type = "string",
@@ -12688,6 +13323,7 @@ M.GetCurrentUserDataOutput = {
 
 M.GetEffectiveHoursOfOperationsInput = {
     type = "structure",
+    id = "GetEffectiveHoursOfOperationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12722,6 +13358,7 @@ M.GetEffectiveHoursOfOperationsInput = {
 
 M.OperationalHour = {
     type = "structure",
+    id = "OperationalHour",
     members = {
         Start = M.OverrideTimeSlice,
         End = M.OverrideTimeSlice,
@@ -12730,6 +13367,7 @@ M.OperationalHour = {
 
 M.EffectiveHoursOfOperations = {
     type = "structure",
+    id = "EffectiveHoursOfOperations",
     members = {
         Date = {
             type = "string",
@@ -12748,6 +13386,7 @@ M.OperationalStatus = {
 
 M.OverrideHour = {
     type = "structure",
+    id = "OverrideHour",
     members = {
         Start = M.OverrideTimeSlice,
         End = M.OverrideTimeSlice,
@@ -12762,6 +13401,7 @@ M.OverrideHour = {
 
 M.EffectiveOverrideHours = {
     type = "structure",
+    id = "EffectiveOverrideHours",
     members = {
         Date = {
             type = "string",
@@ -12775,6 +13415,7 @@ M.EffectiveOverrideHours = {
 
 M.GetEffectiveHoursOfOperationsOutput = {
     type = "structure",
+    id = "GetEffectiveHoursOfOperationsOutput",
     members = {
         EffectiveHoursOfOperationList = {
             type = "list",
@@ -12792,6 +13433,7 @@ M.GetEffectiveHoursOfOperationsOutput = {
 
 M.GetFederationTokenInput = {
     type = "structure",
+    id = "GetFederationTokenInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12805,6 +13447,7 @@ M.GetFederationTokenInput = {
 
 M.Credentials = {
     type = "structure",
+    id = "Credentials",
     members = {
         AccessToken = {
             type = "string",
@@ -12823,6 +13466,7 @@ M.Credentials = {
 
 M.GetFederationTokenOutput = {
     type = "structure",
+    id = "GetFederationTokenOutput",
     members = {
         Credentials = M.Credentials,
         SignInUrl = {
@@ -12839,6 +13483,7 @@ M.GetFederationTokenOutput = {
 
 M.UserNotFoundException = {
     type = "structure",
+    id = "UserNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -12849,6 +13494,7 @@ M.UserNotFoundException = {
 
 M.GetFlowAssociationInput = {
     type = "structure",
+    id = "GetFlowAssociationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -12876,6 +13522,7 @@ M.GetFlowAssociationInput = {
 
 M.GetFlowAssociationOutput = {
     type = "structure",
+    id = "GetFlowAssociationOutput",
     members = {
         ResourceId = {
             type = "string",
@@ -12929,6 +13576,7 @@ M.Comparison = {
 
 M.Threshold = {
     type = "structure",
+    id = "Threshold",
     members = {
         Comparison = {
             type = "string",
@@ -12941,6 +13589,7 @@ M.Threshold = {
 
 M.HistoricalMetric = {
     type = "structure",
+    id = "HistoricalMetric",
     members = {
         Name = {
             type = "string",
@@ -12957,6 +13606,7 @@ M.HistoricalMetric = {
 
 M.GetMetricDataInput = {
     type = "structure",
+    id = "GetMetricDataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13002,6 +13652,7 @@ M.GetMetricDataInput = {
 
 M.HistoricalMetricData = {
     type = "structure",
+    id = "HistoricalMetricData",
     members = {
         Metric = M.HistoricalMetric,
         Value = {
@@ -13012,6 +13663,7 @@ M.HistoricalMetricData = {
 
 M.HistoricalMetricResult = {
     type = "structure",
+    id = "HistoricalMetricResult",
     members = {
         Dimensions = M.Dimensions,
         Collections = {
@@ -13023,6 +13675,7 @@ M.HistoricalMetricResult = {
 
 M.GetMetricDataOutput = {
     type = "structure",
+    id = "GetMetricDataOutput",
     members = {
         NextToken = {
             type = "string",
@@ -13040,6 +13693,7 @@ M.FilterV2StringConditionComparisonOperator = {
 
 M.FilterV2StringCondition = {
     type = "structure",
+    id = "FilterV2StringCondition",
     members = {
         Comparison = {
             type = "string",
@@ -13049,6 +13703,7 @@ M.FilterV2StringCondition = {
 
 M.FilterV2 = {
     type = "structure",
+    id = "FilterV2",
     members = {
         FilterKey = {
             type = "string",
@@ -13072,6 +13727,7 @@ M.IntervalPeriod = {
 
 M.IntervalDetails = {
     type = "structure",
+    id = "IntervalDetails",
     members = {
         TimeZone = {
             type = "string",
@@ -13084,6 +13740,7 @@ M.IntervalDetails = {
 
 M.MetricFilterV2 = {
     type = "structure",
+    id = "MetricFilterV2",
     members = {
         MetricFilterKey = {
             type = "string",
@@ -13103,6 +13760,7 @@ M.MetricFilterV2 = {
 
 M.ThresholdV2 = {
     type = "structure",
+    id = "ThresholdV2",
     members = {
         Comparison = {
             type = "string",
@@ -13115,6 +13773,7 @@ M.ThresholdV2 = {
 
 M.MetricV2 = {
     type = "structure",
+    id = "MetricV2",
     members = {
         Name = {
             type = "string",
@@ -13135,6 +13794,7 @@ M.MetricV2 = {
 
 M.GetMetricDataV2Input = {
     type = "structure",
+    id = "GetMetricDataV2Input",
     members = {
         ResourceArn = {
             type = "string",
@@ -13184,6 +13844,7 @@ M.GetMetricDataV2Input = {
 
 M.MetricDataV2 = {
     type = "structure",
+    id = "MetricDataV2",
     members = {
         Metric = M.MetricV2,
         Value = {
@@ -13194,6 +13855,7 @@ M.MetricDataV2 = {
 
 M.MetricInterval = {
     type = "structure",
+    id = "MetricInterval",
     members = {
         Interval = {
             type = "string",
@@ -13209,6 +13871,7 @@ M.MetricInterval = {
 
 M.MetricResultV2 = {
     type = "structure",
+    id = "MetricResultV2",
     members = {
         Dimensions = {
             type = "map",
@@ -13225,6 +13888,7 @@ M.MetricResultV2 = {
 
 M.GetMetricDataV2Output = {
     type = "structure",
+    id = "GetMetricDataV2Output",
     members = {
         NextToken = {
             type = "string",
@@ -13238,6 +13902,7 @@ M.GetMetricDataV2Output = {
 
 M.GetPromptFileInput = {
     type = "structure",
+    id = "GetPromptFileInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13258,6 +13923,7 @@ M.GetPromptFileInput = {
 
 M.GetPromptFileOutput = {
     type = "structure",
+    id = "GetPromptFileOutput",
     members = {
         PromptPresignedUrl = {
             type = "string",
@@ -13273,6 +13939,7 @@ M.GetPromptFileOutput = {
 
 M.GetTaskTemplateInput = {
     type = "structure",
+    id = "GetTaskTemplateInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13299,6 +13966,7 @@ M.GetTaskTemplateInput = {
 
 M.GetTaskTemplateOutput = {
     type = "structure",
+    id = "GetTaskTemplateOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -13355,6 +14023,7 @@ M.GetTaskTemplateOutput = {
 
 M.GetTestCaseExecutionSummaryInput = {
     type = "structure",
+    id = "GetTestCaseExecutionSummaryInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13382,6 +14051,7 @@ M.GetTestCaseExecutionSummaryInput = {
 
 M.ObservationSummary = {
     type = "structure",
+    id = "ObservationSummary",
     members = {
         TotalObservations = {
             type = "integer",
@@ -13405,6 +14075,7 @@ M.TestCaseExecutionStatus = {
 
 M.GetTestCaseExecutionSummaryOutput = {
     type = "structure",
+    id = "GetTestCaseExecutionSummaryOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -13421,6 +14092,7 @@ M.GetTestCaseExecutionSummaryOutput = {
 
 M.GetTrafficDistributionInput = {
     type = "structure",
+    id = "GetTrafficDistributionInput",
     members = {
         Id = {
             type = "string",
@@ -13434,6 +14106,7 @@ M.GetTrafficDistributionInput = {
 
 M.SignInDistribution = {
     type = "structure",
+    id = "SignInDistribution",
     members = {
         Region = {
             type = "string",
@@ -13453,6 +14126,7 @@ M.SignInDistribution = {
 
 M.SignInConfig = {
     type = "structure",
+    id = "SignInConfig",
     members = {
         Distributions = {
             type = "list",
@@ -13466,6 +14140,7 @@ M.SignInConfig = {
 
 M.TelephonyConfig = {
     type = "structure",
+    id = "TelephonyConfig",
     members = {
         Distributions = {
             type = "list",
@@ -13479,6 +14154,7 @@ M.TelephonyConfig = {
 
 M.GetTrafficDistributionOutput = {
     type = "structure",
+    id = "GetTrafficDistributionOutput",
     members = {
         TelephonyConfig = M.TelephonyConfig,
         Id = {
@@ -13494,6 +14170,7 @@ M.GetTrafficDistributionOutput = {
 
 M.ImportPhoneNumberInput = {
     type = "structure",
+    id = "ImportPhoneNumberInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13526,6 +14203,7 @@ M.ImportPhoneNumberInput = {
 
 M.ImportPhoneNumberOutput = {
     type = "structure",
+    id = "ImportPhoneNumberOutput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -13538,6 +14216,7 @@ M.ImportPhoneNumberOutput = {
 
 M.ImportWorkspaceMediaInput = {
     type = "structure",
+    id = "ImportWorkspaceMediaInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13570,10 +14249,12 @@ M.ImportWorkspaceMediaInput = {
 
 M.ImportWorkspaceMediaOutput = {
     type = "structure",
+    id = "ImportWorkspaceMediaOutput",
 }
 
 M.ListAgentStatusesInput = {
     type = "structure",
+    id = "ListAgentStatusesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13606,6 +14287,7 @@ M.ListAgentStatusesInput = {
 
 M.ListAgentStatusesOutput = {
     type = "structure",
+    id = "ListAgentStatusesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -13619,6 +14301,7 @@ M.ListAgentStatusesOutput = {
 
 M.ListAnalyticsDataAssociationsInput = {
     type = "structure",
+    id = "ListAnalyticsDataAssociationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13650,6 +14333,7 @@ M.ListAnalyticsDataAssociationsInput = {
 
 M.ListAnalyticsDataAssociationsOutput = {
     type = "structure",
+    id = "ListAnalyticsDataAssociationsOutput",
     members = {
         Results = {
             type = "list",
@@ -13663,6 +14347,7 @@ M.ListAnalyticsDataAssociationsOutput = {
 
 M.ListAnalyticsDataLakeDataSetsInput = {
     type = "structure",
+    id = "ListAnalyticsDataLakeDataSetsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13688,6 +14373,7 @@ M.ListAnalyticsDataLakeDataSetsInput = {
 
 M.AnalyticsDataSetsResult = {
     type = "structure",
+    id = "AnalyticsDataSetsResult",
     members = {
         DataSetId = {
             type = "string",
@@ -13700,6 +14386,7 @@ M.AnalyticsDataSetsResult = {
 
 M.ListAnalyticsDataLakeDataSetsOutput = {
     type = "structure",
+    id = "ListAnalyticsDataLakeDataSetsOutput",
     members = {
         Results = {
             type = "list",
@@ -13713,6 +14400,7 @@ M.ListAnalyticsDataLakeDataSetsOutput = {
 
 M.ListApprovedOriginsInput = {
     type = "structure",
+    id = "ListApprovedOriginsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13738,6 +14426,7 @@ M.ListApprovedOriginsInput = {
 
 M.ListApprovedOriginsOutput = {
     type = "structure",
+    id = "ListApprovedOriginsOutput",
     members = {
         Origins = {
             type = "list",
@@ -13751,6 +14440,7 @@ M.ListApprovedOriginsOutput = {
 
 M.ListAssociatedContactsInput = {
     type = "structure",
+    id = "ListAssociatedContactsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13783,6 +14473,7 @@ M.ListAssociatedContactsInput = {
 
 M.AssociatedContactSummary = {
     type = "structure",
+    id = "AssociatedContactSummary",
     members = {
         ContactId = {
             type = "string",
@@ -13816,6 +14507,7 @@ M.AssociatedContactSummary = {
 
 M.ListAssociatedContactsOutput = {
     type = "structure",
+    id = "ListAssociatedContactsOutput",
     members = {
         ContactSummaryList = {
             type = "list",
@@ -13829,6 +14521,7 @@ M.ListAssociatedContactsOutput = {
 
 M.ListAttachedFilesConfigurationsInput = {
     type = "structure",
+    id = "ListAttachedFilesConfigurationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13854,6 +14547,7 @@ M.ListAttachedFilesConfigurationsInput = {
 
 M.AttachedFilesConfigurationSummary = {
     type = "structure",
+    id = "AttachedFilesConfigurationSummary",
     members = {
         InstanceId = {
             type = "string",
@@ -13876,6 +14570,7 @@ M.AttachedFilesConfigurationSummary = {
 
 M.ListAttachedFilesConfigurationsOutput = {
     type = "structure",
+    id = "ListAttachedFilesConfigurationsOutput",
     members = {
         AttachedFilesConfigurations = {
             type = "list",
@@ -13889,6 +14584,7 @@ M.ListAttachedFilesConfigurationsOutput = {
 
 M.ListAuthenticationProfilesInput = {
     type = "structure",
+    id = "ListAuthenticationProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13914,6 +14610,7 @@ M.ListAuthenticationProfilesInput = {
 
 M.AuthenticationProfileSummary = {
     type = "structure",
+    id = "AuthenticationProfileSummary",
     members = {
         Id = {
             type = "string",
@@ -13941,6 +14638,7 @@ M.AuthenticationProfileSummary = {
 
 M.ListAuthenticationProfilesOutput = {
     type = "structure",
+    id = "ListAuthenticationProfilesOutput",
     members = {
         AuthenticationProfileSummaryList = {
             type = "list",
@@ -13959,6 +14657,7 @@ M.LexVersion = {
 
 M.ListBotsInput = {
     type = "structure",
+    id = "ListBotsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -13991,6 +14690,7 @@ M.ListBotsInput = {
 
 M.LexBotConfig = {
     type = "structure",
+    id = "LexBotConfig",
     members = {
         LexBot = M.LexBot,
         LexV2Bot = M.LexV2Bot,
@@ -13999,6 +14699,7 @@ M.LexBotConfig = {
 
 M.ListBotsOutput = {
     type = "structure",
+    id = "ListBotsOutput",
     members = {
         LexBots = {
             type = "list",
@@ -14012,6 +14713,7 @@ M.ListBotsOutput = {
 
 M.ListChildHoursOfOperationsInput = {
     type = "structure",
+    id = "ListChildHoursOfOperationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14044,6 +14746,7 @@ M.ListChildHoursOfOperationsInput = {
 
 M.ListChildHoursOfOperationsOutput = {
     type = "structure",
+    id = "ListChildHoursOfOperationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -14063,6 +14766,7 @@ M.ListChildHoursOfOperationsOutput = {
 
 M.ListContactEvaluationsInput = {
     type = "structure",
+    id = "ListContactEvaluationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14089,6 +14793,7 @@ M.ListContactEvaluationsInput = {
 
 M.EvaluationAcknowledgementSummary = {
     type = "structure",
+    id = "EvaluationAcknowledgementSummary",
     members = {
         AcknowledgedTime = {
             type = "timestamp",
@@ -14104,6 +14809,7 @@ M.EvaluationAcknowledgementSummary = {
 
 M.EvaluationSummary = {
     type = "structure",
+    id = "EvaluationSummary",
     members = {
         EvaluationId = {
             type = "string",
@@ -14176,6 +14882,7 @@ M.EvaluationSummary = {
 
 M.ListContactEvaluationsOutput = {
     type = "structure",
+    id = "ListContactEvaluationsOutput",
     members = {
         EvaluationSummaryList = {
             type = "list",
@@ -14192,6 +14899,7 @@ M.ListContactEvaluationsOutput = {
 
 M.ListContactFlowModuleAliasesInput = {
     type = "structure",
+    id = "ListContactFlowModuleAliasesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14224,6 +14932,7 @@ M.ListContactFlowModuleAliasesInput = {
 
 M.ContactFlowModuleAliasSummary = {
     type = "structure",
+    id = "ContactFlowModuleAliasSummary",
     members = {
         Arn = {
             type = "string",
@@ -14248,6 +14957,7 @@ M.ContactFlowModuleAliasSummary = {
 
 M.ListContactFlowModuleAliasesOutput = {
     type = "structure",
+    id = "ListContactFlowModuleAliasesOutput",
     members = {
         ContactFlowModuleAliasSummaryList = {
             type = "list",
@@ -14261,6 +14971,7 @@ M.ListContactFlowModuleAliasesOutput = {
 
 M.ListContactFlowModulesInput = {
     type = "structure",
+    id = "ListContactFlowModulesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14292,6 +15003,7 @@ M.ListContactFlowModulesInput = {
 
 M.ContactFlowModuleSummary = {
     type = "structure",
+    id = "ContactFlowModuleSummary",
     members = {
         Id = {
             type = "string",
@@ -14310,6 +15022,7 @@ M.ContactFlowModuleSummary = {
 
 M.ListContactFlowModulesOutput = {
     type = "structure",
+    id = "ListContactFlowModulesOutput",
     members = {
         ContactFlowModulesSummaryList = {
             type = "list",
@@ -14323,6 +15036,7 @@ M.ListContactFlowModulesOutput = {
 
 M.ListContactFlowModuleVersionsInput = {
     type = "structure",
+    id = "ListContactFlowModuleVersionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14355,6 +15069,7 @@ M.ListContactFlowModuleVersionsInput = {
 
 M.ContactFlowModuleVersionSummary = {
     type = "structure",
+    id = "ContactFlowModuleVersionSummary",
     members = {
         Arn = {
             type = "string",
@@ -14370,6 +15085,7 @@ M.ContactFlowModuleVersionSummary = {
 
 M.ListContactFlowModuleVersionsOutput = {
     type = "structure",
+    id = "ListContactFlowModuleVersionsOutput",
     members = {
         ContactFlowModuleVersionSummaryList = {
             type = "list",
@@ -14383,6 +15099,7 @@ M.ListContactFlowModuleVersionsOutput = {
 
 M.ListContactFlowsInput = {
     type = "structure",
+    id = "ListContactFlowsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14415,6 +15132,7 @@ M.ListContactFlowsInput = {
 
 M.ContactFlowSummary = {
     type = "structure",
+    id = "ContactFlowSummary",
     members = {
         Id = {
             type = "string",
@@ -14439,6 +15157,7 @@ M.ContactFlowSummary = {
 
 M.ListContactFlowsOutput = {
     type = "structure",
+    id = "ListContactFlowsOutput",
     members = {
         ContactFlowSummaryList = {
             type = "list",
@@ -14452,6 +15171,7 @@ M.ListContactFlowsOutput = {
 
 M.ListContactFlowVersionsInput = {
     type = "structure",
+    id = "ListContactFlowVersionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14484,6 +15204,7 @@ M.ListContactFlowVersionsInput = {
 
 M.ContactFlowVersionSummary = {
     type = "structure",
+    id = "ContactFlowVersionSummary",
     members = {
         Arn = {
             type = "string",
@@ -14499,6 +15220,7 @@ M.ContactFlowVersionSummary = {
 
 M.ListContactFlowVersionsOutput = {
     type = "structure",
+    id = "ListContactFlowVersionsOutput",
     members = {
         ContactFlowVersionSummaryList = {
             type = "list",
@@ -14512,6 +15234,7 @@ M.ListContactFlowVersionsOutput = {
 
 M.ListContactReferencesInput = {
     type = "structure",
+    id = "ListContactReferencesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14546,6 +15269,7 @@ M.ListContactReferencesInput = {
 
 M.AttachmentReference = {
     type = "structure",
+    id = "AttachmentReference",
     members = {
         Name = {
             type = "string",
@@ -14564,6 +15288,7 @@ M.AttachmentReference = {
 
 M.DateReference = {
     type = "structure",
+    id = "DateReference",
     members = {
         Name = {
             type = "string",
@@ -14576,6 +15301,7 @@ M.DateReference = {
 
 M.EmailReference = {
     type = "structure",
+    id = "EmailReference",
     members = {
         Name = {
             type = "string",
@@ -14588,6 +15314,7 @@ M.EmailReference = {
 
 M.EmailMessageReference = {
     type = "structure",
+    id = "EmailMessageReference",
     members = {
         Name = {
             type = "string",
@@ -14600,6 +15327,7 @@ M.EmailMessageReference = {
 
 M.NumberReference = {
     type = "structure",
+    id = "NumberReference",
     members = {
         Name = {
             type = "string",
@@ -14612,6 +15340,7 @@ M.NumberReference = {
 
 M.StringReference = {
     type = "structure",
+    id = "StringReference",
     members = {
         Name = {
             type = "string",
@@ -14624,6 +15353,7 @@ M.StringReference = {
 
 M.UrlReference = {
     type = "structure",
+    id = "UrlReference",
     members = {
         Name = {
             type = "string",
@@ -14636,6 +15366,7 @@ M.UrlReference = {
 
 M.ReferenceSummary = {
     type = "union",
+    id = "ReferenceSummary",
     members = {
         Url = M.UrlReference,
         Attachment = M.AttachmentReference,
@@ -14652,6 +15383,7 @@ M.ReferenceSummary = {
 
 M.ListContactReferencesOutput = {
     type = "structure",
+    id = "ListContactReferencesOutput",
     members = {
         ReferenceSummaryList = {
             type = "list",
@@ -14665,6 +15397,7 @@ M.ListContactReferencesOutput = {
 
 M.ListDataTableAttributesInput = {
     type = "structure",
+    id = "ListDataTableAttributesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14701,6 +15434,7 @@ M.ListDataTableAttributesInput = {
 
 M.ListDataTableAttributesOutput = {
     type = "structure",
+    id = "ListDataTableAttributesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -14717,6 +15451,7 @@ M.ListDataTableAttributesOutput = {
 
 M.PrimaryAttributeValueFilter = {
     type = "structure",
+    id = "PrimaryAttributeValueFilter",
     members = {
         AttributeName = {
             type = "string",
@@ -14736,6 +15471,7 @@ M.PrimaryAttributeValueFilter = {
 
 M.ListDataTablePrimaryValuesInput = {
     type = "structure",
+    id = "ListDataTablePrimaryValuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14776,6 +15512,7 @@ M.ListDataTablePrimaryValuesInput = {
 
 M.RecordPrimaryValue = {
     type = "structure",
+    id = "RecordPrimaryValue",
     members = {
         RecordId = {
             type = "string",
@@ -14795,6 +15532,7 @@ M.RecordPrimaryValue = {
 
 M.ListDataTablePrimaryValuesOutput = {
     type = "structure",
+    id = "ListDataTablePrimaryValuesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -14811,6 +15549,7 @@ M.ListDataTablePrimaryValuesOutput = {
 
 M.ListDataTablesInput = {
     type = "structure",
+    id = "ListDataTablesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14836,6 +15575,7 @@ M.ListDataTablesInput = {
 
 M.DataTableSummary = {
     type = "structure",
+    id = "DataTableSummary",
     members = {
         Name = {
             type = "string",
@@ -14857,6 +15597,7 @@ M.DataTableSummary = {
 
 M.ListDataTablesOutput = {
     type = "structure",
+    id = "ListDataTablesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -14873,6 +15614,7 @@ M.ListDataTablesOutput = {
 
 M.ListDataTableValuesInput = {
     type = "structure",
+    id = "ListDataTableValuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14913,6 +15655,7 @@ M.ListDataTableValuesInput = {
 
 M.DataTableValueSummary = {
     type = "structure",
+    id = "DataTableValueSummary",
     members = {
         RecordId = {
             type = "string",
@@ -14957,6 +15700,7 @@ M.DataTableValueSummary = {
 
 M.ListDataTableValuesOutput = {
     type = "structure",
+    id = "ListDataTableValuesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -14973,6 +15717,7 @@ M.ListDataTableValuesOutput = {
 
 M.ListDefaultVocabulariesInput = {
     type = "structure",
+    id = "ListDefaultVocabulariesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -14995,6 +15740,7 @@ M.ListDefaultVocabulariesInput = {
 
 M.DefaultVocabulary = {
     type = "structure",
+    id = "DefaultVocabulary",
     members = {
         InstanceId = {
             type = "string",
@@ -15025,6 +15771,7 @@ M.DefaultVocabulary = {
 
 M.ListDefaultVocabulariesOutput = {
     type = "structure",
+    id = "ListDefaultVocabulariesOutput",
     members = {
         DefaultVocabularyList = {
             type = "list",
@@ -15041,6 +15788,7 @@ M.ListDefaultVocabulariesOutput = {
 
 M.ListEntitySecurityProfilesInput = {
     type = "structure",
+    id = "ListEntitySecurityProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15072,6 +15820,7 @@ M.ListEntitySecurityProfilesInput = {
 
 M.ListEntitySecurityProfilesOutput = {
     type = "structure",
+    id = "ListEntitySecurityProfilesOutput",
     members = {
         SecurityProfiles = {
             type = "list",
@@ -15085,6 +15834,7 @@ M.ListEntitySecurityProfilesOutput = {
 
 M.ListEvaluationFormsInput = {
     type = "structure",
+    id = "ListEvaluationFormsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15110,6 +15860,7 @@ M.ListEvaluationFormsInput = {
 
 M.EvaluationFormSummary = {
     type = "structure",
+    id = "EvaluationFormSummary",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -15177,6 +15928,7 @@ M.EvaluationFormSummary = {
 
 M.ListEvaluationFormsOutput = {
     type = "structure",
+    id = "ListEvaluationFormsOutput",
     members = {
         EvaluationFormSummaryList = {
             type = "list",
@@ -15193,6 +15945,7 @@ M.ListEvaluationFormsOutput = {
 
 M.ListEvaluationFormVersionsInput = {
     type = "structure",
+    id = "ListEvaluationFormVersionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15225,6 +15978,7 @@ M.ListEvaluationFormVersionsInput = {
 
 M.EvaluationFormVersionSummary = {
     type = "structure",
+    id = "EvaluationFormVersionSummary",
     members = {
         EvaluationFormArn = {
             type = "string",
@@ -15287,6 +16041,7 @@ M.EvaluationFormVersionSummary = {
 
 M.ListEvaluationFormVersionsOutput = {
     type = "structure",
+    id = "ListEvaluationFormVersionsOutput",
     members = {
         EvaluationFormVersionSummaryList = {
             type = "list",
@@ -15303,6 +16058,7 @@ M.ListEvaluationFormVersionsOutput = {
 
 M.ListFlowAssociationsInput = {
     type = "structure",
+    id = "ListFlowAssociationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15334,6 +16090,7 @@ M.ListFlowAssociationsInput = {
 
 M.ListFlowAssociationsOutput = {
     type = "structure",
+    id = "ListFlowAssociationsOutput",
     members = {
         FlowAssociationSummaryList = {
             type = "list",
@@ -15347,6 +16104,7 @@ M.ListFlowAssociationsOutput = {
 
 M.ListHoursOfOperationOverridesInput = {
     type = "structure",
+    id = "ListHoursOfOperationOverridesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15379,6 +16137,7 @@ M.ListHoursOfOperationOverridesInput = {
 
 M.ListHoursOfOperationOverridesOutput = {
     type = "structure",
+    id = "ListHoursOfOperationOverridesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -15398,6 +16157,7 @@ M.ListHoursOfOperationOverridesOutput = {
 
 M.ListHoursOfOperationsInput = {
     type = "structure",
+    id = "ListHoursOfOperationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15423,6 +16183,7 @@ M.ListHoursOfOperationsInput = {
 
 M.HoursOfOperationSummary = {
     type = "structure",
+    id = "HoursOfOperationSummary",
     members = {
         Id = {
             type = "string",
@@ -15444,6 +16205,7 @@ M.HoursOfOperationSummary = {
 
 M.ListHoursOfOperationsOutput = {
     type = "structure",
+    id = "ListHoursOfOperationsOutput",
     members = {
         HoursOfOperationSummaryList = {
             type = "list",
@@ -15457,6 +16219,7 @@ M.ListHoursOfOperationsOutput = {
 
 M.ListInstanceAttributesInput = {
     type = "structure",
+    id = "ListInstanceAttributesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15482,6 +16245,7 @@ M.ListInstanceAttributesInput = {
 
 M.ListInstanceAttributesOutput = {
     type = "structure",
+    id = "ListInstanceAttributesOutput",
     members = {
         Attributes = {
             type = "list",
@@ -15495,6 +16259,7 @@ M.ListInstanceAttributesOutput = {
 
 M.ListInstancesInput = {
     type = "structure",
+    id = "ListInstancesInput",
     members = {
         NextToken = {
             type = "string",
@@ -15513,6 +16278,7 @@ M.ListInstancesInput = {
 
 M.InstanceSummary = {
     type = "structure",
+    id = "InstanceSummary",
     members = {
         Id = {
             type = "string",
@@ -15549,6 +16315,7 @@ M.InstanceSummary = {
 
 M.ListInstancesOutput = {
     type = "structure",
+    id = "ListInstancesOutput",
     members = {
         InstanceSummaryList = {
             type = "list",
@@ -15562,6 +16329,7 @@ M.ListInstancesOutput = {
 
 M.ListInstanceStorageConfigsInput = {
     type = "structure",
+    id = "ListInstanceStorageConfigsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15594,6 +16362,7 @@ M.ListInstanceStorageConfigsInput = {
 
 M.ListInstanceStorageConfigsOutput = {
     type = "structure",
+    id = "ListInstanceStorageConfigsOutput",
     members = {
         StorageConfigs = {
             type = "list",
@@ -15607,6 +16376,7 @@ M.ListInstanceStorageConfigsOutput = {
 
 M.ListIntegrationAssociationsInput = {
     type = "structure",
+    id = "ListIntegrationAssociationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15644,6 +16414,7 @@ M.ListIntegrationAssociationsInput = {
 
 M.IntegrationAssociationSummary = {
     type = "structure",
+    id = "IntegrationAssociationSummary",
     members = {
         IntegrationAssociationId = {
             type = "string",
@@ -15674,6 +16445,7 @@ M.IntegrationAssociationSummary = {
 
 M.ListIntegrationAssociationsOutput = {
     type = "structure",
+    id = "ListIntegrationAssociationsOutput",
     members = {
         IntegrationAssociationSummaryList = {
             type = "list",
@@ -15687,6 +16459,7 @@ M.ListIntegrationAssociationsOutput = {
 
 M.ListLambdaFunctionsInput = {
     type = "structure",
+    id = "ListLambdaFunctionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15712,6 +16485,7 @@ M.ListLambdaFunctionsInput = {
 
 M.ListLambdaFunctionsOutput = {
     type = "structure",
+    id = "ListLambdaFunctionsOutput",
     members = {
         LambdaFunctions = {
             type = "list",
@@ -15725,6 +16499,7 @@ M.ListLambdaFunctionsOutput = {
 
 M.ListLexBotsInput = {
     type = "structure",
+    id = "ListLexBotsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15750,6 +16525,7 @@ M.ListLexBotsInput = {
 
 M.ListLexBotsOutput = {
     type = "structure",
+    id = "ListLexBotsOutput",
     members = {
         LexBots = {
             type = "list",
@@ -15763,6 +16539,7 @@ M.ListLexBotsOutput = {
 
 M.ListNotificationsInput = {
     type = "structure",
+    id = "ListNotificationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15788,6 +16565,7 @@ M.ListNotificationsInput = {
 
 M.ListNotificationsOutput = {
     type = "structure",
+    id = "ListNotificationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -15804,6 +16582,7 @@ M.ListNotificationsOutput = {
 
 M.ListPhoneNumbersInput = {
     type = "structure",
+    id = "ListPhoneNumbersInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15843,6 +16622,7 @@ M.ListPhoneNumbersInput = {
 
 M.PhoneNumberSummary = {
     type = "structure",
+    id = "PhoneNumberSummary",
     members = {
         Id = {
             type = "string",
@@ -15864,6 +16644,7 @@ M.PhoneNumberSummary = {
 
 M.ListPhoneNumbersOutput = {
     type = "structure",
+    id = "ListPhoneNumbersOutput",
     members = {
         PhoneNumberSummaryList = {
             type = "list",
@@ -15877,6 +16658,7 @@ M.ListPhoneNumbersOutput = {
 
 M.ListPhoneNumbersV2Input = {
     type = "structure",
+    id = "ListPhoneNumbersV2Input",
     members = {
         TargetArn = {
             type = "string",
@@ -15906,6 +16688,7 @@ M.ListPhoneNumbersV2Input = {
 
 M.ListPhoneNumbersSummary = {
     type = "structure",
+    id = "ListPhoneNumbersSummary",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -15939,6 +16722,7 @@ M.ListPhoneNumbersSummary = {
 
 M.ListPhoneNumbersV2Output = {
     type = "structure",
+    id = "ListPhoneNumbersV2Output",
     members = {
         NextToken = {
             type = "string",
@@ -15952,6 +16736,7 @@ M.ListPhoneNumbersV2Output = {
 
 M.ListPredefinedAttributesInput = {
     type = "structure",
+    id = "ListPredefinedAttributesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -15977,6 +16762,7 @@ M.ListPredefinedAttributesInput = {
 
 M.PredefinedAttributeSummary = {
     type = "structure",
+    id = "PredefinedAttributeSummary",
     members = {
         Name = {
             type = "string",
@@ -15992,6 +16778,7 @@ M.PredefinedAttributeSummary = {
 
 M.ListPredefinedAttributesOutput = {
     type = "structure",
+    id = "ListPredefinedAttributesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -16005,6 +16792,7 @@ M.ListPredefinedAttributesOutput = {
 
 M.ListPromptsInput = {
     type = "structure",
+    id = "ListPromptsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16030,6 +16818,7 @@ M.ListPromptsInput = {
 
 M.PromptSummary = {
     type = "structure",
+    id = "PromptSummary",
     members = {
         Id = {
             type = "string",
@@ -16051,6 +16840,7 @@ M.PromptSummary = {
 
 M.ListPromptsOutput = {
     type = "structure",
+    id = "ListPromptsOutput",
     members = {
         PromptSummaryList = {
             type = "list",
@@ -16064,6 +16854,7 @@ M.ListPromptsOutput = {
 
 M.ListQueueEmailAddressesInput = {
     type = "structure",
+    id = "ListQueueEmailAddressesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16096,6 +16887,7 @@ M.ListQueueEmailAddressesInput = {
 
 M.EmailAddressSummary = {
     type = "structure",
+    id = "EmailAddressSummary",
     members = {
         Id = {
             type = "string",
@@ -16114,6 +16906,7 @@ M.EmailAddressSummary = {
 
 M.ListQueueEmailAddressesOutput = {
     type = "structure",
+    id = "ListQueueEmailAddressesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -16133,6 +16926,7 @@ M.ListQueueEmailAddressesOutput = {
 
 M.ListQueueQuickConnectsInput = {
     type = "structure",
+    id = "ListQueueQuickConnectsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16165,6 +16959,7 @@ M.ListQueueQuickConnectsInput = {
 
 M.QuickConnectSummary = {
     type = "structure",
+    id = "QuickConnectSummary",
     members = {
         Id = {
             type = "string",
@@ -16189,6 +16984,7 @@ M.QuickConnectSummary = {
 
 M.ListQueueQuickConnectsOutput = {
     type = "structure",
+    id = "ListQueueQuickConnectsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -16213,6 +17009,7 @@ M.QueueType = {
 
 M.ListQueuesInput = {
     type = "structure",
+    id = "ListQueuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16245,6 +17042,7 @@ M.ListQueuesInput = {
 
 M.QueueSummary = {
     type = "structure",
+    id = "QueueSummary",
     members = {
         Id = {
             type = "string",
@@ -16269,6 +17067,7 @@ M.QueueSummary = {
 
 M.ListQueuesOutput = {
     type = "structure",
+    id = "ListQueuesOutput",
     members = {
         QueueSummaryList = {
             type = "list",
@@ -16282,6 +17081,7 @@ M.ListQueuesOutput = {
 
 M.ListQuickConnectsInput = {
     type = "structure",
+    id = "ListQuickConnectsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16314,6 +17114,7 @@ M.ListQuickConnectsInput = {
 
 M.ListQuickConnectsOutput = {
     type = "structure",
+    id = "ListQuickConnectsOutput",
     members = {
         QuickConnectSummaryList = {
             type = "list",
@@ -16341,6 +17142,7 @@ M.RealTimeContactAnalysisSegmentType = {
 
 M.ListRealtimeContactAnalysisSegmentsV2Input = {
     type = "structure",
+    id = "ListRealtimeContactAnalysisSegmentsV2Input",
     members = {
         InstanceId = {
             type = "string",
@@ -16391,6 +17193,7 @@ M.ArtifactStatus = {
 
 M.RealTimeContactAnalysisAttachment = {
     type = "structure",
+    id = "RealTimeContactAnalysisAttachment",
     members = {
         AttachmentName = {
             type = "string",
@@ -16415,6 +17218,7 @@ M.RealTimeContactAnalysisAttachment = {
 
 M.RealTimeContactAnalysisTimeData = {
     type = "union",
+    id = "RealTimeContactAnalysisTimeData",
     members = {
         AbsoluteTime = {
             type = "timestamp",
@@ -16427,6 +17231,7 @@ M.RealTimeContactAnalysisTimeData = {
 
 M.RealTimeContactAnalysisSegmentAttachments = {
     type = "structure",
+    id = "RealTimeContactAnalysisSegmentAttachments",
     members = {
         Id = {
             type = "string",
@@ -16464,6 +17269,7 @@ M.RealTimeContactAnalysisSegmentAttachments = {
 
 M.RealTimeContactAnalysisCharacterInterval = {
     type = "structure",
+    id = "RealTimeContactAnalysisCharacterInterval",
     members = {
         BeginOffsetChar = {
             type = "integer",
@@ -16484,6 +17290,7 @@ M.RealTimeContactAnalysisCharacterInterval = {
 
 M.RealTimeContactAnalysisTranscriptItemWithCharacterOffsets = {
     type = "structure",
+    id = "RealTimeContactAnalysisTranscriptItemWithCharacterOffsets",
     members = {
         Id = {
             type = "string",
@@ -16497,6 +17304,7 @@ M.RealTimeContactAnalysisTranscriptItemWithCharacterOffsets = {
 
 M.RealTimeContactAnalysisPointOfInterest = {
     type = "structure",
+    id = "RealTimeContactAnalysisPointOfInterest",
     members = {
         TranscriptItems = {
             type = "list",
@@ -16507,6 +17315,7 @@ M.RealTimeContactAnalysisPointOfInterest = {
 
 M.RealTimeContactAnalysisCategoryDetails = {
     type = "structure",
+    id = "RealTimeContactAnalysisCategoryDetails",
     members = {
         PointsOfInterest = {
             type = "list",
@@ -16520,6 +17329,7 @@ M.RealTimeContactAnalysisCategoryDetails = {
 
 M.RealTimeContactAnalysisSegmentCategories = {
     type = "structure",
+    id = "RealTimeContactAnalysisSegmentCategories",
     members = {
         MatchedDetails = {
             type = "map",
@@ -16534,6 +17344,7 @@ M.RealTimeContactAnalysisSegmentCategories = {
 
 M.RealTimeContactAnalysisSegmentEvent = {
     type = "structure",
+    id = "RealTimeContactAnalysisSegmentEvent",
     members = {
         Id = {
             type = "string",
@@ -16564,6 +17375,7 @@ M.RealTimeContactAnalysisSegmentEvent = {
 
 M.RealTimeContactAnalysisTranscriptItemWithContent = {
     type = "structure",
+    id = "RealTimeContactAnalysisTranscriptItemWithContent",
     members = {
         Content = {
             type = "string",
@@ -16580,6 +17392,7 @@ M.RealTimeContactAnalysisTranscriptItemWithContent = {
 
 M.RealTimeContactAnalysisIssueDetected = {
     type = "structure",
+    id = "RealTimeContactAnalysisIssueDetected",
     members = {
         TranscriptItems = {
             type = "list",
@@ -16593,6 +17406,7 @@ M.RealTimeContactAnalysisIssueDetected = {
 
 M.RealTimeContactAnalysisSegmentIssues = {
     type = "structure",
+    id = "RealTimeContactAnalysisSegmentIssues",
     members = {
         IssuesDetected = {
             type = "list",
@@ -16619,6 +17433,7 @@ M.RealTimeContactAnalysisPostContactSummaryStatus = {
 
 M.RealTimeContactAnalysisSegmentPostContactSummary = {
     type = "structure",
+    id = "RealTimeContactAnalysisSegmentPostContactSummary",
     members = {
         Content = {
             type = "string",
@@ -16637,6 +17452,7 @@ M.RealTimeContactAnalysisSegmentPostContactSummary = {
 
 M.RealTimeContactAnalysisTranscriptItemRedaction = {
     type = "structure",
+    id = "RealTimeContactAnalysisTranscriptItemRedaction",
     members = {
         CharacterOffsets = {
             type = "list",
@@ -16653,6 +17469,7 @@ M.RealTimeContactAnalysisSentimentLabel = {
 
 M.RealTimeContactAnalysisSegmentTranscript = {
     type = "structure",
+    id = "RealTimeContactAnalysisSegmentTranscript",
     members = {
         Id = {
             type = "string",
@@ -16696,6 +17513,7 @@ M.RealTimeContactAnalysisSegmentTranscript = {
 
 M.RealtimeContactAnalysisSegment = {
     type = "union",
+    id = "RealtimeContactAnalysisSegment",
     members = {
         Transcript = M.RealTimeContactAnalysisSegmentTranscript,
         Categories = M.RealTimeContactAnalysisSegmentCategories,
@@ -16714,6 +17532,7 @@ M.RealTimeContactAnalysisStatus = {
 
 M.ListRealtimeContactAnalysisSegmentsV2Output = {
     type = "structure",
+    id = "ListRealtimeContactAnalysisSegmentsV2Output",
     members = {
         Channel = {
             type = "string",
@@ -16742,6 +17561,7 @@ M.ListRealtimeContactAnalysisSegmentsV2Output = {
 
 M.OutputTypeNotFoundException = {
     type = "structure",
+    id = "OutputTypeNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -16752,6 +17572,7 @@ M.OutputTypeNotFoundException = {
 
 M.ListRoutingProfileManualAssignmentQueuesInput = {
     type = "structure",
+    id = "ListRoutingProfileManualAssignmentQueuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16784,6 +17605,7 @@ M.ListRoutingProfileManualAssignmentQueuesInput = {
 
 M.RoutingProfileManualAssignmentQueueConfigSummary = {
     type = "structure",
+    id = "RoutingProfileManualAssignmentQueueConfigSummary",
     members = {
         QueueId = {
             type = "string",
@@ -16814,6 +17636,7 @@ M.RoutingProfileManualAssignmentQueueConfigSummary = {
 
 M.ListRoutingProfileManualAssignmentQueuesOutput = {
     type = "structure",
+    id = "ListRoutingProfileManualAssignmentQueuesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -16833,6 +17656,7 @@ M.ListRoutingProfileManualAssignmentQueuesOutput = {
 
 M.ListRoutingProfileQueuesInput = {
     type = "structure",
+    id = "ListRoutingProfileQueuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16865,6 +17689,7 @@ M.ListRoutingProfileQueuesInput = {
 
 M.RoutingProfileQueueConfigSummary = {
     type = "structure",
+    id = "RoutingProfileQueueConfigSummary",
     members = {
         QueueId = {
             type = "string",
@@ -16908,6 +17733,7 @@ M.RoutingProfileQueueConfigSummary = {
 
 M.ListRoutingProfileQueuesOutput = {
     type = "structure",
+    id = "ListRoutingProfileQueuesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -16927,6 +17753,7 @@ M.ListRoutingProfileQueuesOutput = {
 
 M.ListRoutingProfilesInput = {
     type = "structure",
+    id = "ListRoutingProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -16952,6 +17779,7 @@ M.ListRoutingProfilesInput = {
 
 M.RoutingProfileSummary = {
     type = "structure",
+    id = "RoutingProfileSummary",
     members = {
         Id = {
             type = "string",
@@ -16973,6 +17801,7 @@ M.RoutingProfileSummary = {
 
 M.ListRoutingProfilesOutput = {
     type = "structure",
+    id = "ListRoutingProfilesOutput",
     members = {
         RoutingProfileSummaryList = {
             type = "list",
@@ -16986,6 +17815,7 @@ M.ListRoutingProfilesOutput = {
 
 M.ListRulesInput = {
     type = "structure",
+    id = "ListRulesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17023,6 +17853,7 @@ M.ListRulesInput = {
 
 M.RuleSummary = {
     type = "structure",
+    id = "RuleSummary",
     members = {
         Name = {
             type = "string",
@@ -17078,6 +17909,7 @@ M.RuleSummary = {
 
 M.ListRulesOutput = {
     type = "structure",
+    id = "ListRulesOutput",
     members = {
         RuleSummaryList = {
             type = "list",
@@ -17094,6 +17926,7 @@ M.ListRulesOutput = {
 
 M.ListSecurityKeysInput = {
     type = "structure",
+    id = "ListSecurityKeysInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17119,6 +17952,7 @@ M.ListSecurityKeysInput = {
 
 M.SecurityKey = {
     type = "structure",
+    id = "SecurityKey",
     members = {
         AssociationId = {
             type = "string",
@@ -17134,6 +17968,7 @@ M.SecurityKey = {
 
 M.ListSecurityKeysOutput = {
     type = "structure",
+    id = "ListSecurityKeysOutput",
     members = {
         SecurityKeys = {
             type = "list",
@@ -17147,6 +17982,7 @@ M.ListSecurityKeysOutput = {
 
 M.ListSecurityProfileApplicationsInput = {
     type = "structure",
+    id = "ListSecurityProfileApplicationsInput",
     members = {
         SecurityProfileId = {
             type = "string",
@@ -17179,6 +18015,7 @@ M.ListSecurityProfileApplicationsInput = {
 
 M.ListSecurityProfileApplicationsOutput = {
     type = "structure",
+    id = "ListSecurityProfileApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -17198,6 +18035,7 @@ M.ListSecurityProfileApplicationsOutput = {
 
 M.ListSecurityProfileFlowModulesInput = {
     type = "structure",
+    id = "ListSecurityProfileFlowModulesInput",
     members = {
         SecurityProfileId = {
             type = "string",
@@ -17230,6 +18068,7 @@ M.ListSecurityProfileFlowModulesInput = {
 
 M.ListSecurityProfileFlowModulesOutput = {
     type = "structure",
+    id = "ListSecurityProfileFlowModulesOutput",
     members = {
         AllowedFlowModules = {
             type = "list",
@@ -17249,6 +18088,7 @@ M.ListSecurityProfileFlowModulesOutput = {
 
 M.ListSecurityProfilePermissionsInput = {
     type = "structure",
+    id = "ListSecurityProfilePermissionsInput",
     members = {
         SecurityProfileId = {
             type = "string",
@@ -17281,6 +18121,7 @@ M.ListSecurityProfilePermissionsInput = {
 
 M.ListSecurityProfilePermissionsOutput = {
     type = "structure",
+    id = "ListSecurityProfilePermissionsOutput",
     members = {
         Permissions = {
             type = "list",
@@ -17300,6 +18141,7 @@ M.ListSecurityProfilePermissionsOutput = {
 
 M.ListSecurityProfilesInput = {
     type = "structure",
+    id = "ListSecurityProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17325,6 +18167,7 @@ M.ListSecurityProfilesInput = {
 
 M.SecurityProfileSummary = {
     type = "structure",
+    id = "SecurityProfileSummary",
     members = {
         Id = {
             type = "string",
@@ -17346,6 +18189,7 @@ M.SecurityProfileSummary = {
 
 M.ListSecurityProfilesOutput = {
     type = "structure",
+    id = "ListSecurityProfilesOutput",
     members = {
         SecurityProfileSummaryList = {
             type = "list",
@@ -17359,6 +18203,7 @@ M.ListSecurityProfilesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -17372,6 +18217,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -17383,6 +18229,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTaskTemplatesInput = {
     type = "structure",
+    id = "ListTaskTemplatesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17420,6 +18267,7 @@ M.ListTaskTemplatesInput = {
 
 M.TaskTemplateMetadata = {
     type = "structure",
+    id = "TaskTemplateMetadata",
     members = {
         Id = {
             type = "string",
@@ -17447,6 +18295,7 @@ M.TaskTemplateMetadata = {
 
 M.ListTaskTemplatesOutput = {
     type = "structure",
+    id = "ListTaskTemplatesOutput",
     members = {
         TaskTemplates = {
             type = "list",
@@ -17460,6 +18309,7 @@ M.ListTaskTemplatesOutput = {
 
 M.ListTestCaseExecutionRecordsInput = {
     type = "structure",
+    id = "ListTestCaseExecutionRecordsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17512,6 +18362,7 @@ M.ExecutionRecordStatus = {
 
 M.ExecutionRecord = {
     type = "structure",
+    id = "ExecutionRecord",
     members = {
         ObservationId = {
             type = "string",
@@ -17530,6 +18381,7 @@ M.ExecutionRecord = {
 
 M.ListTestCaseExecutionRecordsOutput = {
     type = "structure",
+    id = "ListTestCaseExecutionRecordsOutput",
     members = {
         ExecutionRecords = {
             type = "list",
@@ -17543,6 +18395,7 @@ M.ListTestCaseExecutionRecordsOutput = {
 
 M.ListTestCaseExecutionsInput = {
     type = "structure",
+    id = "ListTestCaseExecutionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17598,6 +18451,7 @@ M.ListTestCaseExecutionsInput = {
 
 M.TestCaseExecution = {
     type = "structure",
+    id = "TestCaseExecution",
     members = {
         StartTime = {
             type = "timestamp",
@@ -17624,6 +18478,7 @@ M.TestCaseExecution = {
 
 M.ListTestCaseExecutionsOutput = {
     type = "structure",
+    id = "ListTestCaseExecutionsOutput",
     members = {
         TestCaseExecutions = {
             type = "list",
@@ -17637,6 +18492,7 @@ M.ListTestCaseExecutionsOutput = {
 
 M.ListTestCasesInput = {
     type = "structure",
+    id = "ListTestCasesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17662,6 +18518,7 @@ M.ListTestCasesInput = {
 
 M.TestCaseSummary = {
     type = "structure",
+    id = "TestCaseSummary",
     members = {
         Id = {
             type = "string",
@@ -17686,6 +18543,7 @@ M.TestCaseSummary = {
 
 M.ListTestCasesOutput = {
     type = "structure",
+    id = "ListTestCasesOutput",
     members = {
         TestCaseSummaryList = {
             type = "list",
@@ -17699,6 +18557,7 @@ M.ListTestCasesOutput = {
 
 M.ListTrafficDistributionGroupsInput = {
     type = "structure",
+    id = "ListTrafficDistributionGroupsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -17723,6 +18582,7 @@ M.ListTrafficDistributionGroupsInput = {
 
 M.TrafficDistributionGroupSummary = {
     type = "structure",
+    id = "TrafficDistributionGroupSummary",
     members = {
         Id = {
             type = "string",
@@ -17750,6 +18610,7 @@ M.TrafficDistributionGroupSummary = {
 
 M.ListTrafficDistributionGroupsOutput = {
     type = "structure",
+    id = "ListTrafficDistributionGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -17763,6 +18624,7 @@ M.ListTrafficDistributionGroupsOutput = {
 
 M.ListTrafficDistributionGroupUsersInput = {
     type = "structure",
+    id = "ListTrafficDistributionGroupUsersInput",
     members = {
         TrafficDistributionGroupId = {
             type = "string",
@@ -17788,6 +18650,7 @@ M.ListTrafficDistributionGroupUsersInput = {
 
 M.TrafficDistributionGroupUserSummary = {
     type = "structure",
+    id = "TrafficDistributionGroupUserSummary",
     members = {
         UserId = {
             type = "string",
@@ -17797,6 +18660,7 @@ M.TrafficDistributionGroupUserSummary = {
 
 M.ListTrafficDistributionGroupUsersOutput = {
     type = "structure",
+    id = "ListTrafficDistributionGroupUsersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -17810,6 +18674,7 @@ M.ListTrafficDistributionGroupUsersOutput = {
 
 M.ListUseCasesInput = {
     type = "structure",
+    id = "ListUseCasesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17842,6 +18707,7 @@ M.ListUseCasesInput = {
 
 M.UseCase = {
     type = "structure",
+    id = "UseCase",
     members = {
         UseCaseId = {
             type = "string",
@@ -17857,6 +18723,7 @@ M.UseCase = {
 
 M.ListUseCasesOutput = {
     type = "structure",
+    id = "ListUseCasesOutput",
     members = {
         UseCaseSummaryList = {
             type = "list",
@@ -17870,6 +18737,7 @@ M.ListUseCasesOutput = {
 
 M.ListUserHierarchyGroupsInput = {
     type = "structure",
+    id = "ListUserHierarchyGroupsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17895,6 +18763,7 @@ M.ListUserHierarchyGroupsInput = {
 
 M.ListUserHierarchyGroupsOutput = {
     type = "structure",
+    id = "ListUserHierarchyGroupsOutput",
     members = {
         UserHierarchyGroupSummaryList = {
             type = "list",
@@ -17908,6 +18777,7 @@ M.ListUserHierarchyGroupsOutput = {
 
 M.ListUserNotificationsInput = {
     type = "structure",
+    id = "ListUserNotificationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -17952,6 +18822,7 @@ M.NotificationSource = {
 
 M.UserNotificationSummary = {
     type = "structure",
+    id = "UserNotificationSummary",
     members = {
         NotificationId = {
             type = "string",
@@ -17987,6 +18858,7 @@ M.UserNotificationSummary = {
 
 M.ListUserNotificationsOutput = {
     type = "structure",
+    id = "ListUserNotificationsOutput",
     members = {
         UserNotifications = {
             type = "list",
@@ -18000,6 +18872,7 @@ M.ListUserNotificationsOutput = {
 
 M.ListUserProficienciesInput = {
     type = "structure",
+    id = "ListUserProficienciesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18032,6 +18905,7 @@ M.ListUserProficienciesInput = {
 
 M.ListUserProficienciesOutput = {
     type = "structure",
+    id = "ListUserProficienciesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18051,6 +18925,7 @@ M.ListUserProficienciesOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18076,6 +18951,7 @@ M.ListUsersInput = {
 
 M.UserSummary = {
     type = "structure",
+    id = "UserSummary",
     members = {
         Id = {
             type = "string",
@@ -18097,6 +18973,7 @@ M.UserSummary = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         UserSummaryList = {
             type = "list",
@@ -18110,6 +18987,7 @@ M.ListUsersOutput = {
 
 M.ListViewsInput = {
     type = "structure",
+    id = "ListViewsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18142,6 +19020,7 @@ M.ListViewsInput = {
 
 M.ViewSummary = {
     type = "structure",
+    id = "ViewSummary",
     members = {
         Id = {
             type = "string",
@@ -18166,6 +19045,7 @@ M.ViewSummary = {
 
 M.ListViewsOutput = {
     type = "structure",
+    id = "ListViewsOutput",
     members = {
         ViewsSummaryList = {
             type = "list",
@@ -18179,6 +19059,7 @@ M.ListViewsOutput = {
 
 M.ListViewVersionsInput = {
     type = "structure",
+    id = "ListViewVersionsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18212,6 +19093,7 @@ M.ListViewVersionsInput = {
 
 M.ViewVersionSummary = {
     type = "structure",
+    id = "ViewVersionSummary",
     members = {
         Id = {
             type = "string",
@@ -18242,6 +19124,7 @@ M.ViewVersionSummary = {
 
 M.ListViewVersionsOutput = {
     type = "structure",
+    id = "ListViewVersionsOutput",
     members = {
         ViewVersionSummaryList = {
             type = "list",
@@ -18255,6 +19138,7 @@ M.ListViewVersionsOutput = {
 
 M.ListWorkspaceMediaInput = {
     type = "structure",
+    id = "ListWorkspaceMediaInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18275,6 +19159,7 @@ M.ListWorkspaceMediaInput = {
 
 M.MediaItem = {
     type = "structure",
+    id = "MediaItem",
     members = {
         Type = {
             type = "string",
@@ -18287,6 +19172,7 @@ M.MediaItem = {
 
 M.ListWorkspaceMediaOutput = {
     type = "structure",
+    id = "ListWorkspaceMediaOutput",
     members = {
         Media = {
             type = "list",
@@ -18297,6 +19183,7 @@ M.ListWorkspaceMediaOutput = {
 
 M.ListWorkspacePagesInput = {
     type = "structure",
+    id = "ListWorkspacePagesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18329,6 +19216,7 @@ M.ListWorkspacePagesInput = {
 
 M.WorkspacePage = {
     type = "structure",
+    id = "WorkspacePage",
     members = {
         ResourceArn = {
             type = "string",
@@ -18347,6 +19235,7 @@ M.WorkspacePage = {
 
 M.ListWorkspacePagesOutput = {
     type = "structure",
+    id = "ListWorkspacePagesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18363,6 +19252,7 @@ M.ListWorkspacePagesOutput = {
 
 M.ListWorkspacesInput = {
     type = "structure",
+    id = "ListWorkspacesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18388,6 +19278,7 @@ M.ListWorkspacesInput = {
 
 M.WorkspaceSummary = {
     type = "structure",
+    id = "WorkspaceSummary",
     members = {
         Id = {
             type = "string",
@@ -18409,6 +19300,7 @@ M.WorkspaceSummary = {
 
 M.ListWorkspacesOutput = {
     type = "structure",
+    id = "ListWorkspacesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18425,6 +19317,7 @@ M.ListWorkspacesOutput = {
 
 M.MonitorContactInput = {
     type = "structure",
+    id = "MonitorContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18459,6 +19352,7 @@ M.MonitorContactInput = {
 
 M.MonitorContactOutput = {
     type = "structure",
+    id = "MonitorContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -18471,6 +19365,7 @@ M.MonitorContactOutput = {
 
 M.PauseContactInput = {
     type = "structure",
+    id = "PauseContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -18492,10 +19387,12 @@ M.PauseContactInput = {
 
 M.PauseContactOutput = {
     type = "structure",
+    id = "PauseContactOutput",
 }
 
 M.PutUserStatusInput = {
     type = "structure",
+    id = "PutUserStatusInput",
     members = {
         UserId = {
             type = "string",
@@ -18522,10 +19419,12 @@ M.PutUserStatusInput = {
 
 M.PutUserStatusOutput = {
     type = "structure",
+    id = "PutUserStatusOutput",
 }
 
 M.ReleasePhoneNumberInput = {
     type = "structure",
+    id = "ReleasePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -18546,10 +19445,12 @@ M.ReleasePhoneNumberInput = {
 
 M.ReleasePhoneNumberOutput = {
     type = "structure",
+    id = "ReleasePhoneNumberOutput",
 }
 
 M.ReplicateInstanceInput = {
     type = "structure",
+    id = "ReplicateInstanceInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18581,6 +19482,7 @@ M.ReplicateInstanceInput = {
 
 M.ReplicateInstanceOutput = {
     type = "structure",
+    id = "ReplicateInstanceOutput",
     members = {
         Id = {
             type = "string",
@@ -18593,6 +19495,7 @@ M.ReplicateInstanceOutput = {
 
 M.ResumeContactInput = {
     type = "structure",
+    id = "ResumeContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -18614,10 +19517,12 @@ M.ResumeContactInput = {
 
 M.ResumeContactOutput = {
     type = "structure",
+    id = "ResumeContactOutput",
 }
 
 M.InvalidActiveRegionException = {
     type = "structure",
+    id = "InvalidActiveRegionException",
     error = "client",
     members = {
         Message = {
@@ -18634,6 +19539,7 @@ M.ContactRecordingType = {
 
 M.ResumeContactRecordingInput = {
     type = "structure",
+    id = "ResumeContactRecordingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -18661,10 +19567,12 @@ M.ResumeContactRecordingInput = {
 
 M.ResumeContactRecordingOutput = {
     type = "structure",
+    id = "ResumeContactRecordingOutput",
 }
 
 M.SearchAgentStatusesOutput = {
     type = "structure",
+    id = "SearchAgentStatusesOutput",
     members = {
         AgentStatuses = {
             type = "list",
@@ -18681,6 +19589,7 @@ M.SearchAgentStatusesOutput = {
 
 M.SearchAvailablePhoneNumbersInput = {
     type = "structure",
+    id = "SearchAvailablePhoneNumbersInput",
     members = {
         TargetArn = {
             type = "string",
@@ -18714,6 +19623,7 @@ M.SearchAvailablePhoneNumbersInput = {
 
 M.AvailableNumberSummary = {
     type = "structure",
+    id = "AvailableNumberSummary",
     members = {
         PhoneNumber = {
             type = "string",
@@ -18729,6 +19639,7 @@ M.AvailableNumberSummary = {
 
 M.SearchAvailablePhoneNumbersOutput = {
     type = "structure",
+    id = "SearchAvailablePhoneNumbersOutput",
     members = {
         NextToken = {
             type = "string",
@@ -18747,6 +19658,7 @@ M.BooleanComparisonType = {
 
 M.BooleanCondition = {
     type = "structure",
+    id = "BooleanCondition",
     members = {
         FieldName = {
             type = "string",
@@ -18768,6 +19680,7 @@ M.DateTimeComparisonType = {
 
 M.DateTimeCondition = {
     type = "structure",
+    id = "DateTimeCondition",
     members = {
         FieldName = {
             type = "string",
@@ -18796,6 +19709,7 @@ M.DecimalComparisonType = {
 
 M.DecimalCondition = {
     type = "structure",
+    id = "DecimalCondition",
     members = {
         FieldName = {
             type = "string",
@@ -18824,6 +19738,7 @@ M.NumberComparisonType = {
 
 M.NumberCondition = {
     type = "structure",
+    id = "NumberCondition",
     members = {
         FieldName = {
             type = "string",
@@ -18842,6 +19757,7 @@ M.NumberCondition = {
 
 M.EvaluationSearchFilter = {
     type = "structure",
+    id = "EvaluationSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -18849,6 +19765,7 @@ M.EvaluationSearchFilter = {
 
 M.EvaluationSearchMetadata = {
     type = "structure",
+    id = "EvaluationSearchMetadata",
     members = {
         ContactId = {
             type = "string",
@@ -18921,6 +19838,7 @@ M.EvaluationSearchMetadata = {
 
 M.EvaluationSearchSummary = {
     type = "structure",
+    id = "EvaluationSearchSummary",
     members = {
         EvaluationId = {
             type = "string",
@@ -18981,6 +19899,7 @@ M.EvaluationSearchSummary = {
 
 M.SearchContactEvaluationsOutput = {
     type = "structure",
+    id = "SearchContactEvaluationsOutput",
     members = {
         EvaluationSearchSummaryList = {
             type = "list",
@@ -18997,6 +19916,7 @@ M.SearchContactEvaluationsOutput = {
 
 M.ControlPlaneTagFilter = {
     type = "structure",
+    id = "ControlPlaneTagFilter",
     members = {
         OrConditions = {
             type = "list",
@@ -19012,6 +19932,7 @@ M.ControlPlaneTagFilter = {
 
 M.ContactFlowModuleSearchFilter = {
     type = "structure",
+    id = "ContactFlowModuleSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19019,6 +19940,7 @@ M.ContactFlowModuleSearchFilter = {
 
 M.SearchContactFlowModulesOutput = {
     type = "structure",
+    id = "SearchContactFlowModulesOutput",
     members = {
         ContactFlowModules = {
             type = "list",
@@ -19035,6 +19957,7 @@ M.SearchContactFlowModulesOutput = {
 
 M.ContactFlowTypeCondition = {
     type = "structure",
+    id = "ContactFlowTypeCondition",
     members = {
         ContactFlowType = {
             type = "string",
@@ -19044,6 +19967,7 @@ M.ContactFlowTypeCondition = {
 
 M.ContactFlowAttributeAndCondition = {
     type = "structure",
+    id = "ContactFlowAttributeAndCondition",
     members = {
         TagConditions = {
             type = "list",
@@ -19055,6 +19979,7 @@ M.ContactFlowAttributeAndCondition = {
 
 M.ContactFlowAttributeFilter = {
     type = "structure",
+    id = "ContactFlowAttributeFilter",
     members = {
         OrConditions = {
             type = "list",
@@ -19068,6 +19993,7 @@ M.ContactFlowAttributeFilter = {
 
 M.ContactFlowSearchFilter = {
     type = "structure",
+    id = "ContactFlowSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
         FlowAttributeFilter = M.ContactFlowAttributeFilter,
@@ -19076,6 +20002,7 @@ M.ContactFlowSearchFilter = {
 
 M.SearchContactFlowsOutput = {
     type = "structure",
+    id = "SearchContactFlowsOutput",
     members = {
         ContactFlows = {
             type = "list",
@@ -19100,6 +20027,7 @@ M.SearchContactsTimeRangeType = {
 
 M.SearchContactsTimeRange = {
     type = "structure",
+    id = "SearchContactsTimeRange",
     members = {
         Type = {
             type = "string",
@@ -19128,6 +20056,7 @@ M.SearchContactsTimeRangeConditionType = {
 
 M.SearchContactsTimestampCondition = {
     type = "structure",
+    id = "SearchContactsTimestampCondition",
     members = {
         Type = {
             type = "string",
@@ -19146,6 +20075,7 @@ M.SearchContactsTimestampCondition = {
 
 M.SearchContactsAdditionalTimeRangeCriteria = {
     type = "structure",
+    id = "SearchContactsAdditionalTimeRangeCriteria",
     members = {
         TimeRange = M.SearchContactsTimeRange,
         TimestampCondition = M.SearchContactsTimestampCondition,
@@ -19161,6 +20091,7 @@ M.SearchContactsMatchType = {
 
 M.SearchContactsAdditionalTimeRange = {
     type = "structure",
+    id = "SearchContactsAdditionalTimeRange",
     members = {
         Criteria = {
             type = "list",
@@ -19180,6 +20111,7 @@ M.SearchContactsAdditionalTimeRange = {
 
 M.TranscriptCriteria = {
     type = "structure",
+    id = "TranscriptCriteria",
     members = {
         ParticipantRole = {
             type = "string",
@@ -19205,6 +20137,7 @@ M.TranscriptCriteria = {
 
 M.Transcript = {
     type = "structure",
+    id = "Transcript",
     members = {
         Criteria = {
             type = "list",
@@ -19221,6 +20154,7 @@ M.Transcript = {
 
 M.ContactAnalysis = {
     type = "structure",
+    id = "ContactAnalysis",
     members = {
         Transcript = M.Transcript,
     },
@@ -19228,6 +20162,7 @@ M.ContactAnalysis = {
 
 M.NameCriteria = {
     type = "structure",
+    id = "NameCriteria",
     members = {
         SearchText = {
             type = "list",
@@ -19247,6 +20182,7 @@ M.NameCriteria = {
 
 M.SearchableAgentCriteriaStep = {
     type = "structure",
+    id = "SearchableAgentCriteriaStep",
     members = {
         AgentIds = {
             type = "list",
@@ -19260,6 +20196,7 @@ M.SearchableAgentCriteriaStep = {
 
 M.SearchableRoutingCriteriaStep = {
     type = "structure",
+    id = "SearchableRoutingCriteriaStep",
     members = {
         AgentCriteria = M.SearchableAgentCriteriaStep,
     },
@@ -19267,6 +20204,7 @@ M.SearchableRoutingCriteriaStep = {
 
 M.SearchableRoutingCriteria = {
     type = "structure",
+    id = "SearchableRoutingCriteria",
     members = {
         Steps = {
             type = "list",
@@ -19277,6 +20215,7 @@ M.SearchableRoutingCriteria = {
 
 M.SearchableContactAttributesCriteria = {
     type = "structure",
+    id = "SearchableContactAttributesCriteria",
     members = {
         Key = {
             type = "string",
@@ -19296,6 +20235,7 @@ M.SearchableContactAttributesCriteria = {
 
 M.SearchableContactAttributes = {
     type = "structure",
+    id = "SearchableContactAttributes",
     members = {
         Criteria = {
             type = "list",
@@ -19312,6 +20252,7 @@ M.SearchableContactAttributes = {
 
 M.SearchableSegmentAttributesCriteria = {
     type = "structure",
+    id = "SearchableSegmentAttributesCriteria",
     members = {
         Key = {
             type = "string",
@@ -19331,6 +20272,7 @@ M.SearchableSegmentAttributesCriteria = {
 
 M.SearchableSegmentAttributes = {
     type = "structure",
+    id = "SearchableSegmentAttributes",
     members = {
         Criteria = {
             type = "list",
@@ -19347,6 +20289,7 @@ M.SearchableSegmentAttributes = {
 
 M.SearchCriteria = {
     type = "structure",
+    id = "SearchCriteria",
     members = {
         Name = M.NameCriteria,
         AgentIds = {
@@ -19391,6 +20334,7 @@ M.SortableFieldName = {
 
 M.Sort = {
     type = "structure",
+    id = "Sort",
     members = {
         FieldName = {
             type = "string",
@@ -19409,6 +20353,7 @@ M.Sort = {
 
 M.SearchContactsInput = {
     type = "structure",
+    id = "SearchContactsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -19432,6 +20377,7 @@ M.SearchContactsInput = {
 
 M.ContactSearchSummaryAgentInfo = {
     type = "structure",
+    id = "ContactSearchSummaryAgentInfo",
     members = {
         Id = {
             type = "string",
@@ -19444,6 +20390,7 @@ M.ContactSearchSummaryAgentInfo = {
 
 M.ContactSearchSummaryQueueInfo = {
     type = "structure",
+    id = "ContactSearchSummaryQueueInfo",
     members = {
         Id = {
             type = "string",
@@ -19456,6 +20403,7 @@ M.ContactSearchSummaryQueueInfo = {
 
 M.DataTableSearchFilter = {
     type = "structure",
+    id = "DataTableSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -19463,6 +20411,7 @@ M.DataTableSearchFilter = {
 
 M.SearchDataTablesOutput = {
     type = "structure",
+    id = "SearchDataTablesOutput",
     members = {
         DataTables = {
             type = "list",
@@ -19479,6 +20428,7 @@ M.SearchDataTablesOutput = {
 
 M.EmailAddressSearchFilter = {
     type = "structure",
+    id = "EmailAddressSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19486,6 +20436,7 @@ M.EmailAddressSearchFilter = {
 
 M.EmailAddressMetadata = {
     type = "structure",
+    id = "EmailAddressMetadata",
     members = {
         EmailAddressId = {
             type = "string",
@@ -19511,6 +20462,7 @@ M.EmailAddressMetadata = {
 
 M.SearchEmailAddressesOutput = {
     type = "structure",
+    id = "SearchEmailAddressesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -19527,6 +20479,7 @@ M.SearchEmailAddressesOutput = {
 
 M.EvaluationFormSearchFilter = {
     type = "structure",
+    id = "EvaluationFormSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -19534,6 +20487,7 @@ M.EvaluationFormSearchFilter = {
 
 M.EvaluationFormSearchSummary = {
     type = "structure",
+    id = "EvaluationFormSearchSummary",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -19627,6 +20581,7 @@ M.EvaluationFormSearchSummary = {
 
 M.SearchEvaluationFormsOutput = {
     type = "structure",
+    id = "SearchEvaluationFormsOutput",
     members = {
         EvaluationFormSearchSummaryList = {
             type = "list",
@@ -19651,6 +20606,7 @@ M.DateComparisonType = {
 
 M.DateCondition = {
     type = "structure",
+    id = "DateCondition",
     members = {
         FieldName = {
             type = "string",
@@ -19666,6 +20622,7 @@ M.DateCondition = {
 
 M.HoursOfOperationSearchFilter = {
     type = "structure",
+    id = "HoursOfOperationSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19673,6 +20630,7 @@ M.HoursOfOperationSearchFilter = {
 
 M.SearchHoursOfOperationOverridesOutput = {
     type = "structure",
+    id = "SearchHoursOfOperationOverridesOutput",
     members = {
         HoursOfOperationOverrides = {
             type = "list",
@@ -19689,6 +20647,7 @@ M.SearchHoursOfOperationOverridesOutput = {
 
 M.SearchHoursOfOperationsOutput = {
     type = "structure",
+    id = "SearchHoursOfOperationsOutput",
     members = {
         HoursOfOperations = {
             type = "list",
@@ -19705,6 +20664,7 @@ M.SearchHoursOfOperationsOutput = {
 
 M.NotificationSearchFilter = {
     type = "structure",
+    id = "NotificationSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -19712,6 +20672,7 @@ M.NotificationSearchFilter = {
 
 M.NotificationSearchSummary = {
     type = "structure",
+    id = "NotificationSearchSummary",
     members = {
         Id = {
             type = "string",
@@ -19756,6 +20717,7 @@ M.NotificationSearchSummary = {
 
 M.SearchNotificationsOutput = {
     type = "structure",
+    id = "SearchNotificationsOutput",
     members = {
         Notifications = {
             type = "list",
@@ -19772,6 +20734,7 @@ M.SearchNotificationsOutput = {
 
 M.SearchPredefinedAttributesOutput = {
     type = "structure",
+    id = "SearchPredefinedAttributesOutput",
     members = {
         PredefinedAttributes = {
             type = "list",
@@ -19788,6 +20751,7 @@ M.SearchPredefinedAttributesOutput = {
 
 M.PromptSearchFilter = {
     type = "structure",
+    id = "PromptSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19795,6 +20759,7 @@ M.PromptSearchFilter = {
 
 M.SearchPromptsOutput = {
     type = "structure",
+    id = "SearchPromptsOutput",
     members = {
         Prompts = {
             type = "list",
@@ -19815,6 +20780,7 @@ M.SearchableQueueType = {
 
 M.QueueSearchFilter = {
     type = "structure",
+    id = "QueueSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19822,6 +20788,7 @@ M.QueueSearchFilter = {
 
 M.SearchQueuesOutput = {
     type = "structure",
+    id = "SearchQueuesOutput",
     members = {
         Queues = {
             type = "list",
@@ -19838,6 +20805,7 @@ M.SearchQueuesOutput = {
 
 M.QuickConnectSearchFilter = {
     type = "structure",
+    id = "QuickConnectSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19845,6 +20813,7 @@ M.QuickConnectSearchFilter = {
 
 M.SearchQuickConnectsOutput = {
     type = "structure",
+    id = "SearchQuickConnectsOutput",
     members = {
         QuickConnects = {
             type = "list",
@@ -19861,6 +20830,7 @@ M.SearchQuickConnectsOutput = {
 
 M.MaximumResultReturnedException = {
     type = "structure",
+    id = "MaximumResultReturnedException",
     error = "client",
     members = {
         Message = {
@@ -19871,6 +20841,7 @@ M.MaximumResultReturnedException = {
 
 M.TagSearchCondition = {
     type = "structure",
+    id = "TagSearchCondition",
     members = {
         tagKey = {
             type = "string",
@@ -19889,6 +20860,7 @@ M.TagSearchCondition = {
 
 M.ResourceTagsSearchCriteria = {
     type = "structure",
+    id = "ResourceTagsSearchCriteria",
     members = {
         TagSearchCondition = M.TagSearchCondition,
     },
@@ -19896,6 +20868,7 @@ M.ResourceTagsSearchCriteria = {
 
 M.SearchResourceTagsInput = {
     type = "structure",
+    id = "SearchResourceTagsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -19919,6 +20892,7 @@ M.SearchResourceTagsInput = {
 
 M.TagSet = {
     type = "structure",
+    id = "TagSet",
     members = {
         key = {
             type = "string",
@@ -19931,6 +20905,7 @@ M.TagSet = {
 
 M.SearchResourceTagsOutput = {
     type = "structure",
+    id = "SearchResourceTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -19944,6 +20919,7 @@ M.SearchResourceTagsOutput = {
 
 M.RoutingProfileSearchFilter = {
     type = "structure",
+    id = "RoutingProfileSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19951,6 +20927,7 @@ M.RoutingProfileSearchFilter = {
 
 M.SearchRoutingProfilesOutput = {
     type = "structure",
+    id = "SearchRoutingProfilesOutput",
     members = {
         RoutingProfiles = {
             type = "list",
@@ -19967,6 +20944,7 @@ M.SearchRoutingProfilesOutput = {
 
 M.SecurityProfilesSearchFilter = {
     type = "structure",
+    id = "SecurityProfilesSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -19974,6 +20952,7 @@ M.SecurityProfilesSearchFilter = {
 
 M.SecurityProfileSearchSummary = {
     type = "structure",
+    id = "SecurityProfileSearchSummary",
     members = {
         Id = {
             type = "string",
@@ -20000,6 +20979,7 @@ M.SecurityProfileSearchSummary = {
 
 M.SearchSecurityProfilesOutput = {
     type = "structure",
+    id = "SearchSecurityProfilesOutput",
     members = {
         SecurityProfiles = {
             type = "list",
@@ -20016,6 +20996,7 @@ M.SearchSecurityProfilesOutput = {
 
 M.TestCaseSearchFilter = {
     type = "structure",
+    id = "TestCaseSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
     },
@@ -20023,6 +21004,7 @@ M.TestCaseSearchFilter = {
 
 M.SearchTestCasesOutput = {
     type = "structure",
+    id = "SearchTestCasesOutput",
     members = {
         TestCases = {
             type = "list",
@@ -20039,6 +21021,7 @@ M.SearchTestCasesOutput = {
 
 M.UserHierarchyGroupSearchFilter = {
     type = "structure",
+    id = "UserHierarchyGroupSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -20046,6 +21029,7 @@ M.UserHierarchyGroupSearchFilter = {
 
 M.SearchUserHierarchyGroupsOutput = {
     type = "structure",
+    id = "SearchUserHierarchyGroupsOutput",
     members = {
         UserHierarchyGroups = {
             type = "list",
@@ -20067,6 +21051,7 @@ M.HierarchyGroupMatchType = {
 
 M.HierarchyGroupCondition = {
     type = "structure",
+    id = "HierarchyGroupCondition",
     members = {
         Value = {
             type = "string",
@@ -20079,6 +21064,7 @@ M.HierarchyGroupCondition = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         StringCondition = M.StringCondition,
         NumberCondition = M.NumberCondition,
@@ -20091,6 +21077,7 @@ M.TargetListType = {
 
 M.ListCondition = {
     type = "structure",
+    id = "ListCondition",
     members = {
         TargetListType = {
             type = "string",
@@ -20104,6 +21091,7 @@ M.ListCondition = {
 
 M.AttributeAndCondition = {
     type = "structure",
+    id = "AttributeAndCondition",
     members = {
         TagConditions = {
             type = "list",
@@ -20115,6 +21103,7 @@ M.AttributeAndCondition = {
 
 M.ControlPlaneUserAttributeFilter = {
     type = "structure",
+    id = "ControlPlaneUserAttributeFilter",
     members = {
         OrConditions = {
             type = "list",
@@ -20128,6 +21117,7 @@ M.ControlPlaneUserAttributeFilter = {
 
 M.UserSearchFilter = {
     type = "structure",
+    id = "UserSearchFilter",
     members = {
         TagFilter = M.ControlPlaneTagFilter,
         UserAttributeFilter = M.ControlPlaneUserAttributeFilter,
@@ -20136,6 +21126,7 @@ M.UserSearchFilter = {
 
 M.UserIdentityInfoLite = {
     type = "structure",
+    id = "UserIdentityInfoLite",
     members = {
         FirstName = {
             type = "string",
@@ -20148,6 +21139,7 @@ M.UserIdentityInfoLite = {
 
 M.UserSearchSummary = {
     type = "structure",
+    id = "UserSearchSummary",
     members = {
         Arn = {
             type = "string",
@@ -20203,6 +21195,7 @@ M.UserSearchSummary = {
 
 M.SearchUsersOutput = {
     type = "structure",
+    id = "SearchUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -20219,6 +21212,7 @@ M.SearchUsersOutput = {
 
 M.ViewSearchFilter = {
     type = "structure",
+    id = "ViewSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -20226,6 +21220,7 @@ M.ViewSearchFilter = {
 
 M.SearchViewsOutput = {
     type = "structure",
+    id = "SearchViewsOutput",
     members = {
         Views = {
             type = "list",
@@ -20242,6 +21237,7 @@ M.SearchViewsOutput = {
 
 M.SearchVocabulariesInput = {
     type = "structure",
+    id = "SearchVocabulariesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -20270,6 +21266,7 @@ M.SearchVocabulariesInput = {
 
 M.VocabularySummary = {
     type = "structure",
+    id = "VocabularySummary",
     members = {
         Name = {
             type = "string",
@@ -20315,6 +21312,7 @@ M.VocabularySummary = {
 
 M.SearchVocabulariesOutput = {
     type = "structure",
+    id = "SearchVocabulariesOutput",
     members = {
         VocabularySummaryList = {
             type = "list",
@@ -20328,6 +21326,7 @@ M.SearchVocabulariesOutput = {
 
 M.WorkspaceAssociationSearchFilter = {
     type = "structure",
+    id = "WorkspaceAssociationSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -20335,6 +21334,7 @@ M.WorkspaceAssociationSearchFilter = {
 
 M.WorkspaceAssociationSearchSummary = {
     type = "structure",
+    id = "WorkspaceAssociationSearchSummary",
     members = {
         WorkspaceId = {
             type = "string",
@@ -20359,6 +21359,7 @@ M.WorkspaceAssociationSearchSummary = {
 
 M.SearchWorkspaceAssociationsOutput = {
     type = "structure",
+    id = "SearchWorkspaceAssociationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -20375,6 +21376,7 @@ M.SearchWorkspaceAssociationsOutput = {
 
 M.WorkspaceSearchFilter = {
     type = "structure",
+    id = "WorkspaceSearchFilter",
     members = {
         AttributeFilter = M.ControlPlaneAttributeFilter,
     },
@@ -20382,6 +21384,7 @@ M.WorkspaceSearchFilter = {
 
 M.WorkspaceSearchSummary = {
     type = "structure",
+    id = "WorkspaceSearchSummary",
     members = {
         Id = {
             type = "string",
@@ -20414,6 +21417,7 @@ M.WorkspaceSearchSummary = {
 
 M.SearchWorkspacesOutput = {
     type = "structure",
+    id = "SearchWorkspacesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -20436,6 +21440,7 @@ M.ChatEventType = {
 
 M.ChatEvent = {
     type = "structure",
+    id = "ChatEvent",
     members = {
         Type = {
             type = "string",
@@ -20454,6 +21459,7 @@ M.ChatEvent = {
 
 M.ParticipantDetails = {
     type = "structure",
+    id = "ParticipantDetails",
     members = {
         DisplayName = {
             type = "string",
@@ -20466,6 +21472,7 @@ M.ParticipantDetails = {
 
 M.ChatStreamingConfiguration = {
     type = "structure",
+    id = "ChatStreamingConfiguration",
     members = {
         StreamingEndpointArn = {
             type = "string",
@@ -20478,6 +21485,7 @@ M.ChatStreamingConfiguration = {
 
 M.NewSessionDetails = {
     type = "structure",
+    id = "NewSessionDetails",
     members = {
         SupportedMessagingContentTypes = {
             type = "list",
@@ -20495,6 +21503,7 @@ M.NewSessionDetails = {
 
 M.SendChatIntegrationEventInput = {
     type = "structure",
+    id = "SendChatIntegrationEventInput",
     members = {
         SourceId = {
             type = "string",
@@ -20520,6 +21529,7 @@ M.SendChatIntegrationEventInput = {
 
 M.SendChatIntegrationEventOutput = {
     type = "structure",
+    id = "SendChatIntegrationEventOutput",
     members = {
         InitialContactId = {
             type = "string",
@@ -20532,6 +21542,7 @@ M.SendChatIntegrationEventOutput = {
 
 M.EmailAddressInfo = {
     type = "structure",
+    id = "EmailAddressInfo",
     members = {
         EmailAddress = {
             type = "string",
@@ -20547,6 +21558,7 @@ M.EmailAddressInfo = {
 
 M.OutboundAdditionalRecipients = {
     type = "structure",
+    id = "OutboundAdditionalRecipients",
     members = {
         CcEmailAddresses = {
             type = "list",
@@ -20562,6 +21574,7 @@ M.OutboundMessageSourceType = {
 
 M.OutboundRawMessage = {
     type = "structure",
+    id = "OutboundRawMessage",
     members = {
         Subject = {
             type = "string",
@@ -20586,6 +21599,7 @@ M.OutboundRawMessage = {
 
 M.TemplateAttributes = {
     type = "structure",
+    id = "TemplateAttributes",
     members = {
         CustomAttributes = {
             type = "map",
@@ -20600,6 +21614,7 @@ M.TemplateAttributes = {
 
 M.TemplatedMessageConfig = {
     type = "structure",
+    id = "TemplatedMessageConfig",
     members = {
         KnowledgeBaseId = {
             type = "string",
@@ -20621,6 +21636,7 @@ M.TemplatedMessageConfig = {
 
 M.OutboundEmailContent = {
     type = "structure",
+    id = "OutboundEmailContent",
     members = {
         MessageSourceType = {
             type = "string",
@@ -20635,6 +21651,7 @@ M.OutboundEmailContent = {
 
 M.SourceCampaign = {
     type = "structure",
+    id = "SourceCampaign",
     members = {
         CampaignId = {
             type = "string",
@@ -20652,6 +21669,7 @@ M.TrafficType = {
 
 M.SendOutboundEmailInput = {
     type = "structure",
+    id = "SendOutboundEmailInput",
     members = {
         InstanceId = {
             type = "string",
@@ -20688,10 +21706,12 @@ M.SendOutboundEmailInput = {
 
 M.SendOutboundEmailOutput = {
     type = "structure",
+    id = "SendOutboundEmailOutput",
 }
 
 M.StartAttachedFileUploadInput = {
     type = "structure",
+    id = "StartAttachedFileUploadInput",
     members = {
         ClientToken = {
             type = "string",
@@ -20745,6 +21765,7 @@ M.StartAttachedFileUploadInput = {
 
 M.UploadUrlMetadata = {
     type = "structure",
+    id = "UploadUrlMetadata",
     members = {
         Url = {
             type = "string",
@@ -20762,6 +21783,7 @@ M.UploadUrlMetadata = {
 
 M.StartAttachedFileUploadOutput = {
     type = "structure",
+    id = "StartAttachedFileUploadOutput",
     members = {
         FileArn = {
             type = "string",
@@ -20786,6 +21808,7 @@ M.DisconnectOnCustomerExitParticipantType = {
 
 M.ChatMessage = {
     type = "structure",
+    id = "ChatMessage",
     members = {
         ContentType = {
             type = "string",
@@ -20809,6 +21832,7 @@ M.ResponseMode = {
 
 M.ParticipantConfiguration = {
     type = "structure",
+    id = "ParticipantConfiguration",
     members = {
         ResponseMode = {
             type = "string",
@@ -20818,6 +21842,7 @@ M.ParticipantConfiguration = {
 
 M.PersistentChat = {
     type = "structure",
+    id = "PersistentChat",
     members = {
         RehydrationType = {
             type = "string",
@@ -20830,6 +21855,7 @@ M.PersistentChat = {
 
 M.StartChatContactOutput = {
     type = "structure",
+    id = "StartChatContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -20848,6 +21874,7 @@ M.StartChatContactOutput = {
 
 M.AutoEvaluationConfiguration = {
     type = "structure",
+    id = "AutoEvaluationConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -20861,6 +21888,7 @@ M.AutoEvaluationConfiguration = {
 
 M.StartContactEvaluationInput = {
     type = "structure",
+    id = "StartContactEvaluationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -20898,6 +21926,7 @@ M.StartContactEvaluationInput = {
 
 M.StartContactEvaluationOutput = {
     type = "structure",
+    id = "StartContactEvaluationOutput",
     members = {
         EvaluationId = {
             type = "string",
@@ -20921,6 +21950,7 @@ M.ContactMediaProcessingFailureMode = {
 
 M.StartContactMediaProcessingInput = {
     type = "structure",
+    id = "StartContactMediaProcessingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -20939,6 +21969,7 @@ M.StartContactMediaProcessingInput = {
 
 M.StartContactMediaProcessingOutput = {
     type = "structure",
+    id = "StartContactMediaProcessingOutput",
 }
 
 M.IvrRecordingTrack = {
@@ -20953,6 +21984,7 @@ M.VoiceRecordingTrack = {
 
 M.VoiceRecordingConfiguration = {
     type = "structure",
+    id = "VoiceRecordingConfiguration",
     members = {
         VoiceRecordingTrack = {
             type = "string",
@@ -20965,6 +21997,7 @@ M.VoiceRecordingConfiguration = {
 
 M.StartContactRecordingInput = {
     type = "structure",
+    id = "StartContactRecordingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -20992,10 +22025,12 @@ M.StartContactRecordingInput = {
 
 M.StartContactRecordingOutput = {
     type = "structure",
+    id = "StartContactRecordingOutput",
 }
 
 M.StartContactStreamingInput = {
     type = "structure",
+    id = "StartContactStreamingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21024,6 +22059,7 @@ M.StartContactStreamingInput = {
 
 M.StartContactStreamingOutput = {
     type = "structure",
+    id = "StartContactStreamingOutput",
     members = {
         StreamingId = {
             type = "string",
@@ -21036,6 +22072,7 @@ M.StartContactStreamingOutput = {
 
 M.InboundAdditionalRecipients = {
     type = "structure",
+    id = "InboundAdditionalRecipients",
     members = {
         ToAddresses = {
             type = "list",
@@ -21050,6 +22087,7 @@ M.InboundAdditionalRecipients = {
 
 M.EmailAttachment = {
     type = "structure",
+    id = "EmailAttachment",
     members = {
         FileName = {
             type = "string",
@@ -21080,6 +22118,7 @@ M.EmailHeaderType = {
 
 M.InboundRawMessage = {
     type = "structure",
+    id = "InboundRawMessage",
     members = {
         Subject = {
             type = "string",
@@ -21109,6 +22148,7 @@ M.InboundRawMessage = {
 
 M.InboundEmailContent = {
     type = "structure",
+    id = "InboundEmailContent",
     members = {
         MessageSourceType = {
             type = "string",
@@ -21122,6 +22162,7 @@ M.InboundEmailContent = {
 
 M.StartEmailContactOutput = {
     type = "structure",
+    id = "StartEmailContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -21131,6 +22172,7 @@ M.StartEmailContactOutput = {
 
 M.StartOutboundChatContactOutput = {
     type = "structure",
+    id = "StartOutboundChatContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -21140,6 +22182,7 @@ M.StartOutboundChatContactOutput = {
 
 M.StartOutboundEmailContactInput = {
     type = "structure",
+    id = "StartOutboundEmailContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21172,6 +22215,7 @@ M.StartOutboundEmailContactInput = {
 
 M.StartOutboundEmailContactOutput = {
     type = "structure",
+    id = "StartOutboundEmailContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -21181,6 +22225,7 @@ M.StartOutboundEmailContactOutput = {
 
 M.DestinationNotAllowedException = {
     type = "structure",
+    id = "DestinationNotAllowedException",
     error = "client",
     members = {
         Message = {
@@ -21191,6 +22236,7 @@ M.DestinationNotAllowedException = {
 
 M.OutboundContactNotPermittedException = {
     type = "structure",
+    id = "OutboundContactNotPermittedException",
     error = "client",
     members = {
         Message = {
@@ -21201,6 +22247,7 @@ M.OutboundContactNotPermittedException = {
 
 M.AnswerMachineDetectionConfig = {
     type = "structure",
+    id = "AnswerMachineDetectionConfig",
     members = {
         EnableAnswerMachineDetection = {
             type = "boolean",
@@ -21219,6 +22266,7 @@ M.AnswerMachineDetectionConfig = {
 
 M.StartOutboundVoiceContactInput = {
     type = "structure",
+    id = "StartOutboundVoiceContactInput",
     members = {
         Name = {
             type = "string",
@@ -21285,6 +22333,7 @@ M.StartOutboundVoiceContactInput = {
 
 M.StartOutboundVoiceContactOutput = {
     type = "structure",
+    id = "StartOutboundVoiceContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -21294,6 +22343,7 @@ M.StartOutboundVoiceContactOutput = {
 
 M.StartScreenSharingInput = {
     type = "structure",
+    id = "StartScreenSharingInput",
     members = {
         ClientToken = {
             type = "string",
@@ -21318,10 +22368,12 @@ M.StartScreenSharingInput = {
 
 M.StartScreenSharingOutput = {
     type = "structure",
+    id = "StartScreenSharingOutput",
 }
 
 M.TaskAttachment = {
     type = "structure",
+    id = "TaskAttachment",
     members = {
         FileName = {
             type = "string",
@@ -21340,6 +22392,7 @@ M.TaskAttachment = {
 
 M.StartTaskContactOutput = {
     type = "structure",
+    id = "StartTaskContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -21349,6 +22402,7 @@ M.StartTaskContactOutput = {
 
 M.StartTestCaseExecutionInput = {
     type = "structure",
+    id = "StartTestCaseExecutionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21375,6 +22429,7 @@ M.StartTestCaseExecutionInput = {
 
 M.StartTestCaseExecutionOutput = {
     type = "structure",
+    id = "StartTestCaseExecutionOutput",
     members = {
         TestCaseExecutionId = {
             type = "string",
@@ -21390,6 +22445,7 @@ M.StartTestCaseExecutionOutput = {
 
 M.StartWebRTCContactInput = {
     type = "structure",
+    id = "StartWebRTCContactInput",
     members = {
         Attributes = {
             type = "map",
@@ -21434,6 +22490,7 @@ M.StartWebRTCContactInput = {
 
 M.Attendee = {
     type = "structure",
+    id = "Attendee",
     members = {
         AttendeeId = {
             type = "string",
@@ -21446,6 +22503,7 @@ M.Attendee = {
 
 M.MediaPlacement = {
     type = "structure",
+    id = "MediaPlacement",
     members = {
         AudioHostUrl = {
             type = "string",
@@ -21472,6 +22530,7 @@ M.MeetingFeatureStatus = {
 
 M.AudioFeatures = {
     type = "structure",
+    id = "AudioFeatures",
     members = {
         EchoReduction = {
             type = "string",
@@ -21481,6 +22540,7 @@ M.AudioFeatures = {
 
 M.MeetingFeaturesConfiguration = {
     type = "structure",
+    id = "MeetingFeaturesConfiguration",
     members = {
         Audio = M.AudioFeatures,
     },
@@ -21488,6 +22548,7 @@ M.MeetingFeaturesConfiguration = {
 
 M.Meeting = {
     type = "structure",
+    id = "Meeting",
     members = {
         MediaRegion = {
             type = "string",
@@ -21502,6 +22563,7 @@ M.Meeting = {
 
 M.ConnectionData = {
     type = "structure",
+    id = "ConnectionData",
     members = {
         Attendee = M.Attendee,
         Meeting = M.Meeting,
@@ -21510,6 +22572,7 @@ M.ConnectionData = {
 
 M.StartWebRTCContactOutput = {
     type = "structure",
+    id = "StartWebRTCContactOutput",
     members = {
         ConnectionData = M.ConnectionData,
         ContactId = {
@@ -21526,6 +22589,7 @@ M.StartWebRTCContactOutput = {
 
 M.ContactNotFoundException = {
     type = "structure",
+    id = "ContactNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -21536,6 +22600,7 @@ M.ContactNotFoundException = {
 
 M.DisconnectReason = {
     type = "structure",
+    id = "DisconnectReason",
     members = {
         Code = {
             type = "string",
@@ -21545,6 +22610,7 @@ M.DisconnectReason = {
 
 M.StopContactInput = {
     type = "structure",
+    id = "StopContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -21564,10 +22630,12 @@ M.StopContactInput = {
 
 M.StopContactOutput = {
     type = "structure",
+    id = "StopContactOutput",
 }
 
 M.StopContactMediaProcessingInput = {
     type = "structure",
+    id = "StopContactMediaProcessingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21580,10 +22648,12 @@ M.StopContactMediaProcessingInput = {
 
 M.StopContactMediaProcessingOutput = {
     type = "structure",
+    id = "StopContactMediaProcessingOutput",
 }
 
 M.StopContactRecordingInput = {
     type = "structure",
+    id = "StopContactRecordingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21611,10 +22681,12 @@ M.StopContactRecordingInput = {
 
 M.StopContactRecordingOutput = {
     type = "structure",
+    id = "StopContactRecordingOutput",
 }
 
 M.StopContactStreamingInput = {
     type = "structure",
+    id = "StopContactStreamingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21639,10 +22711,12 @@ M.StopContactStreamingInput = {
 
 M.StopContactStreamingOutput = {
     type = "structure",
+    id = "StopContactStreamingOutput",
 }
 
 M.StopTestCaseExecutionInput = {
     type = "structure",
+    id = "StopTestCaseExecutionInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21676,10 +22750,12 @@ M.StopTestCaseExecutionInput = {
 
 M.StopTestCaseExecutionOutput = {
     type = "structure",
+    id = "StopTestCaseExecutionOutput",
 }
 
 M.EvaluationAnswerInput = {
     type = "structure",
+    id = "EvaluationAnswerInput",
     members = {
         Value = M.EvaluationAnswerData,
     },
@@ -21687,6 +22763,7 @@ M.EvaluationAnswerInput = {
 
 M.EvaluatorUserUnion = {
     type = "union",
+    id = "EvaluatorUserUnion",
     members = {
         ConnectUserArn = {
             type = "string",
@@ -21696,6 +22773,7 @@ M.EvaluatorUserUnion = {
 
 M.SubmitContactEvaluationInput = {
     type = "structure",
+    id = "SubmitContactEvaluationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21727,6 +22805,7 @@ M.SubmitContactEvaluationInput = {
 
 M.SubmitContactEvaluationOutput = {
     type = "structure",
+    id = "SubmitContactEvaluationOutput",
     members = {
         EvaluationId = {
             type = "string",
@@ -21745,6 +22824,7 @@ M.SubmitContactEvaluationOutput = {
 
 M.SuspendContactRecordingInput = {
     type = "structure",
+    id = "SuspendContactRecordingInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21772,10 +22852,12 @@ M.SuspendContactRecordingInput = {
 
 M.SuspendContactRecordingOutput = {
     type = "structure",
+    id = "SuspendContactRecordingOutput",
 }
 
 M.TagContactInput = {
     type = "structure",
+    id = "TagContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -21802,10 +22884,12 @@ M.TagContactInput = {
 
 M.TagContactOutput = {
     type = "structure",
+    id = "TagContactOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -21827,10 +22911,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TransferContactInput = {
     type = "structure",
+    id = "TransferContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21867,6 +22953,7 @@ M.TransferContactInput = {
 
 M.TransferContactOutput = {
     type = "structure",
+    id = "TransferContactOutput",
     members = {
         ContactId = {
             type = "string",
@@ -21879,6 +22966,7 @@ M.TransferContactOutput = {
 
 M.UntagContactInput = {
     type = "structure",
+    id = "UntagContactInput",
     members = {
         ContactId = {
             type = "string",
@@ -21907,10 +22995,12 @@ M.UntagContactInput = {
 
 M.UntagContactOutput = {
     type = "structure",
+    id = "UntagContactOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -21932,10 +23022,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAgentStatusInput = {
     type = "structure",
+    id = "UpdateAgentStatusInput",
     members = {
         InstanceId = {
             type = "string",
@@ -21974,10 +23066,12 @@ M.UpdateAgentStatusInput = {
 
 M.UpdateAgentStatusOutput = {
     type = "structure",
+    id = "UpdateAgentStatusOutput",
 }
 
 M.UpdateAttachedFilesConfigurationInput = {
     type = "structure",
+    id = "UpdateAttachedFilesConfigurationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22002,6 +23096,7 @@ M.UpdateAttachedFilesConfigurationInput = {
 
 M.UpdateAttachedFilesConfigurationOutput = {
     type = "structure",
+    id = "UpdateAttachedFilesConfigurationOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -22027,6 +23122,7 @@ M.UpdateAttachedFilesConfigurationOutput = {
 
 M.UpdateAuthenticationProfileInput = {
     type = "structure",
+    id = "UpdateAuthenticationProfileInput",
     members = {
         AuthenticationProfileId = {
             type = "string",
@@ -22073,10 +23169,12 @@ M.UpdateAuthenticationProfileInput = {
 
 M.UpdateAuthenticationProfileOutput = {
     type = "structure",
+    id = "UpdateAuthenticationProfileOutput",
 }
 
 M.QueueInfoInput = {
     type = "structure",
+    id = "QueueInfoInput",
     members = {
         Id = {
             type = "string",
@@ -22086,10 +23184,12 @@ M.QueueInfoInput = {
 
 M.UpdateContactOutput = {
     type = "structure",
+    id = "UpdateContactOutput",
 }
 
 M.UpdateContactAttributesInput = {
     type = "structure",
+    id = "UpdateContactAttributesInput",
     members = {
         InitialContactId = {
             type = "string",
@@ -22116,10 +23216,12 @@ M.UpdateContactAttributesInput = {
 
 M.UpdateContactAttributesOutput = {
     type = "structure",
+    id = "UpdateContactAttributesOutput",
 }
 
 M.UpdateContactEvaluationInput = {
     type = "structure",
+    id = "UpdateContactEvaluationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22151,6 +23253,7 @@ M.UpdateContactEvaluationInput = {
 
 M.UpdateContactEvaluationOutput = {
     type = "structure",
+    id = "UpdateContactEvaluationOutput",
     members = {
         EvaluationId = {
             type = "string",
@@ -22169,6 +23272,7 @@ M.UpdateContactEvaluationOutput = {
 
 M.UpdateContactFlowContentInput = {
     type = "structure",
+    id = "UpdateContactFlowContentInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22195,10 +23299,12 @@ M.UpdateContactFlowContentInput = {
 
 M.UpdateContactFlowContentOutput = {
     type = "structure",
+    id = "UpdateContactFlowContentOutput",
 }
 
 M.UpdateContactFlowMetadataInput = {
     type = "structure",
+    id = "UpdateContactFlowMetadataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22228,10 +23334,12 @@ M.UpdateContactFlowMetadataInput = {
 
 M.UpdateContactFlowMetadataOutput = {
     type = "structure",
+    id = "UpdateContactFlowMetadataOutput",
 }
 
 M.UpdateContactFlowModuleAliasInput = {
     type = "structure",
+    id = "UpdateContactFlowModuleAliasInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22268,10 +23376,12 @@ M.UpdateContactFlowModuleAliasInput = {
 
 M.UpdateContactFlowModuleAliasOutput = {
     type = "structure",
+    id = "UpdateContactFlowModuleAliasOutput",
 }
 
 M.UpdateContactFlowModuleContentInput = {
     type = "structure",
+    id = "UpdateContactFlowModuleContentInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22298,10 +23408,12 @@ M.UpdateContactFlowModuleContentInput = {
 
 M.UpdateContactFlowModuleContentOutput = {
     type = "structure",
+    id = "UpdateContactFlowModuleContentOutput",
 }
 
 M.UpdateContactFlowModuleMetadataInput = {
     type = "structure",
+    id = "UpdateContactFlowModuleMetadataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22331,10 +23443,12 @@ M.UpdateContactFlowModuleMetadataInput = {
 
 M.UpdateContactFlowModuleMetadataOutput = {
     type = "structure",
+    id = "UpdateContactFlowModuleMetadataOutput",
 }
 
 M.UpdateContactFlowNameInput = {
     type = "structure",
+    id = "UpdateContactFlowNameInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22361,10 +23475,12 @@ M.UpdateContactFlowNameInput = {
 
 M.UpdateContactFlowNameOutput = {
     type = "structure",
+    id = "UpdateContactFlowNameOutput",
 }
 
 M.RoutingCriteriaInputStepExpiry = {
     type = "structure",
+    id = "RoutingCriteriaInputStepExpiry",
     members = {
         DurationInSeconds = {
             type = "integer",
@@ -22374,10 +23490,12 @@ M.RoutingCriteriaInputStepExpiry = {
 
 M.UpdateContactRoutingDataOutput = {
     type = "structure",
+    id = "UpdateContactRoutingDataOutput",
 }
 
 M.UpdateContactScheduleInput = {
     type = "structure",
+    id = "UpdateContactScheduleInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22402,10 +23520,12 @@ M.UpdateContactScheduleInput = {
 
 M.UpdateContactScheduleOutput = {
     type = "structure",
+    id = "UpdateContactScheduleOutput",
 }
 
 M.UpdateDataTableAttributeInput = {
     type = "structure",
+    id = "UpdateDataTableAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22455,6 +23575,7 @@ M.UpdateDataTableAttributeInput = {
 
 M.UpdateDataTableAttributeOutput = {
     type = "structure",
+    id = "UpdateDataTableAttributeOutput",
     members = {
         Name = {
             type = "string",
@@ -22470,6 +23591,7 @@ M.UpdateDataTableAttributeOutput = {
 
 M.UpdateDataTableMetadataInput = {
     type = "structure",
+    id = "UpdateDataTableMetadataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22511,6 +23633,7 @@ M.UpdateDataTableMetadataInput = {
 
 M.UpdateDataTableMetadataOutput = {
     type = "structure",
+    id = "UpdateDataTableMetadataOutput",
     members = {
         LockVersion = setmetatable({ traits = {
             required = true,
@@ -22520,6 +23643,7 @@ M.UpdateDataTableMetadataOutput = {
 
 M.UpdateDataTablePrimaryValuesInput = {
     type = "structure",
+    id = "UpdateDataTablePrimaryValuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22557,6 +23681,7 @@ M.UpdateDataTablePrimaryValuesInput = {
 
 M.UpdateDataTablePrimaryValuesOutput = {
     type = "structure",
+    id = "UpdateDataTablePrimaryValuesOutput",
     members = {
         LockVersion = setmetatable({ traits = {
             required = true,
@@ -22566,6 +23691,7 @@ M.UpdateDataTablePrimaryValuesOutput = {
 
 M.UpdateEmailAddressMetadataInput = {
     type = "structure",
+    id = "UpdateEmailAddressMetadataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22595,6 +23721,7 @@ M.UpdateEmailAddressMetadataInput = {
 
 M.UpdateEmailAddressMetadataOutput = {
     type = "structure",
+    id = "UpdateEmailAddressMetadataOutput",
     members = {
         EmailAddressId = {
             type = "string",
@@ -22607,6 +23734,7 @@ M.UpdateEmailAddressMetadataOutput = {
 
 M.UpdateEvaluationFormOutput = {
     type = "structure",
+    id = "UpdateEvaluationFormOutput",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -22632,6 +23760,7 @@ M.UpdateEvaluationFormOutput = {
 
 M.UpdateHoursOfOperationInput = {
     type = "structure",
+    id = "UpdateHoursOfOperationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22665,10 +23794,12 @@ M.UpdateHoursOfOperationInput = {
 
 M.UpdateHoursOfOperationOutput = {
     type = "structure",
+    id = "UpdateHoursOfOperationOutput",
 }
 
 M.UpdateHoursOfOperationOverrideInput = {
     type = "structure",
+    id = "UpdateHoursOfOperationOverrideInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22716,10 +23847,12 @@ M.UpdateHoursOfOperationOverrideInput = {
 
 M.UpdateHoursOfOperationOverrideOutput = {
     type = "structure",
+    id = "UpdateHoursOfOperationOverrideOutput",
 }
 
 M.UpdateInstanceAttributeInput = {
     type = "structure",
+    id = "UpdateInstanceAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22752,10 +23885,12 @@ M.UpdateInstanceAttributeInput = {
 
 M.UpdateInstanceAttributeOutput = {
     type = "structure",
+    id = "UpdateInstanceAttributeOutput",
 }
 
 M.UpdateInstanceStorageConfigInput = {
     type = "structure",
+    id = "UpdateInstanceStorageConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22792,10 +23927,12 @@ M.UpdateInstanceStorageConfigInput = {
 
 M.UpdateInstanceStorageConfigOutput = {
     type = "structure",
+    id = "UpdateInstanceStorageConfigOutput",
 }
 
 M.UpdateNotificationContentInput = {
     type = "structure",
+    id = "UpdateNotificationContentInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22824,10 +23961,12 @@ M.UpdateNotificationContentInput = {
 
 M.UpdateNotificationContentOutput = {
     type = "structure",
+    id = "UpdateNotificationContentOutput",
 }
 
 M.UpdateParticipantAuthenticationInput = {
     type = "structure",
+    id = "UpdateParticipantAuthenticationInput",
     members = {
         State = {
             type = "string",
@@ -22855,6 +23994,7 @@ M.UpdateParticipantAuthenticationInput = {
 
 M.UpdateParticipantAuthenticationOutput = {
     type = "structure",
+    id = "UpdateParticipantAuthenticationOutput",
 }
 
 M.TimerEligibleParticipantRoles = {
@@ -22873,6 +24013,7 @@ M.ParticipantTimerAction = {
 
 M.ParticipantTimerValue = {
     type = "union",
+    id = "ParticipantTimerValue",
     members = {
         ParticipantTimerAction = {
             type = "string",
@@ -22885,6 +24026,7 @@ M.ParticipantTimerValue = {
 
 M.ParticipantTimerConfiguration = {
     type = "structure",
+    id = "ParticipantTimerConfiguration",
     members = {
         ParticipantRole = {
             type = "string",
@@ -22906,6 +24048,7 @@ M.ParticipantTimerConfiguration = {
 
 M.ChatParticipantRoleConfig = {
     type = "structure",
+    id = "ChatParticipantRoleConfig",
     members = {
         ParticipantTimerConfigList = {
             type = "list",
@@ -22919,6 +24062,7 @@ M.ChatParticipantRoleConfig = {
 
 M.UpdateParticipantRoleConfigChannelInfo = {
     type = "union",
+    id = "UpdateParticipantRoleConfigChannelInfo",
     members = {
         Chat = M.ChatParticipantRoleConfig,
     },
@@ -22926,6 +24070,7 @@ M.UpdateParticipantRoleConfigChannelInfo = {
 
 M.UpdateParticipantRoleConfigInput = {
     type = "structure",
+    id = "UpdateParticipantRoleConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -22949,10 +24094,12 @@ M.UpdateParticipantRoleConfigInput = {
 
 M.UpdateParticipantRoleConfigOutput = {
     type = "structure",
+    id = "UpdateParticipantRoleConfigOutput",
 }
 
 M.UpdatePhoneNumberInput = {
     type = "structure",
+    id = "UpdatePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -22978,6 +24125,7 @@ M.UpdatePhoneNumberInput = {
 
 M.UpdatePhoneNumberOutput = {
     type = "structure",
+    id = "UpdatePhoneNumberOutput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -22990,6 +24138,7 @@ M.UpdatePhoneNumberOutput = {
 
 M.UpdatePhoneNumberMetadataInput = {
     type = "structure",
+    id = "UpdatePhoneNumberMetadataInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -23012,10 +24161,12 @@ M.UpdatePhoneNumberMetadataInput = {
 
 M.UpdatePhoneNumberMetadataOutput = {
     type = "structure",
+    id = "UpdatePhoneNumberMetadataOutput",
 }
 
 M.UpdatePredefinedAttributeInput = {
     type = "structure",
+    id = "UpdatePredefinedAttributeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23042,10 +24193,12 @@ M.UpdatePredefinedAttributeInput = {
 
 M.UpdatePredefinedAttributeOutput = {
     type = "structure",
+    id = "UpdatePredefinedAttributeOutput",
 }
 
 M.UpdatePromptInput = {
     type = "structure",
+    id = "UpdatePromptInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23075,6 +24228,7 @@ M.UpdatePromptInput = {
 
 M.UpdatePromptOutput = {
     type = "structure",
+    id = "UpdatePromptOutput",
     members = {
         PromptARN = {
             type = "string",
@@ -23087,6 +24241,7 @@ M.UpdatePromptOutput = {
 
 M.UpdateQueueHoursOfOperationInput = {
     type = "structure",
+    id = "UpdateQueueHoursOfOperationInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23113,10 +24268,12 @@ M.UpdateQueueHoursOfOperationInput = {
 
 M.UpdateQueueHoursOfOperationOutput = {
     type = "structure",
+    id = "UpdateQueueHoursOfOperationOutput",
 }
 
 M.UpdateQueueMaxContactsInput = {
     type = "structure",
+    id = "UpdateQueueMaxContactsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23143,10 +24300,12 @@ M.UpdateQueueMaxContactsInput = {
 
 M.UpdateQueueMaxContactsOutput = {
     type = "structure",
+    id = "UpdateQueueMaxContactsOutput",
 }
 
 M.UpdateQueueNameInput = {
     type = "structure",
+    id = "UpdateQueueNameInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23173,10 +24332,12 @@ M.UpdateQueueNameInput = {
 
 M.UpdateQueueNameOutput = {
     type = "structure",
+    id = "UpdateQueueNameOutput",
 }
 
 M.UpdateQueueOutboundCallerConfigInput = {
     type = "structure",
+    id = "UpdateQueueOutboundCallerConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23200,10 +24361,12 @@ M.UpdateQueueOutboundCallerConfigInput = {
 
 M.UpdateQueueOutboundCallerConfigOutput = {
     type = "structure",
+    id = "UpdateQueueOutboundCallerConfigOutput",
 }
 
 M.UpdateQueueOutboundEmailConfigInput = {
     type = "structure",
+    id = "UpdateQueueOutboundEmailConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23227,10 +24390,12 @@ M.UpdateQueueOutboundEmailConfigInput = {
 
 M.UpdateQueueOutboundEmailConfigOutput = {
     type = "structure",
+    id = "UpdateQueueOutboundEmailConfigOutput",
 }
 
 M.UpdateQueueStatusInput = {
     type = "structure",
+    id = "UpdateQueueStatusInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23257,10 +24422,12 @@ M.UpdateQueueStatusInput = {
 
 M.UpdateQueueStatusOutput = {
     type = "structure",
+    id = "UpdateQueueStatusOutput",
 }
 
 M.UpdateQuickConnectConfigInput = {
     type = "structure",
+    id = "UpdateQuickConnectConfigInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23284,10 +24451,12 @@ M.UpdateQuickConnectConfigInput = {
 
 M.UpdateQuickConnectConfigOutput = {
     type = "structure",
+    id = "UpdateQuickConnectConfigOutput",
 }
 
 M.UpdateQuickConnectNameInput = {
     type = "structure",
+    id = "UpdateQuickConnectNameInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23314,10 +24483,12 @@ M.UpdateQuickConnectNameInput = {
 
 M.UpdateQuickConnectNameOutput = {
     type = "structure",
+    id = "UpdateQuickConnectNameOutput",
 }
 
 M.UpdateRoutingProfileAgentAvailabilityTimerInput = {
     type = "structure",
+    id = "UpdateRoutingProfileAgentAvailabilityTimerInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23344,10 +24515,12 @@ M.UpdateRoutingProfileAgentAvailabilityTimerInput = {
 
 M.UpdateRoutingProfileAgentAvailabilityTimerOutput = {
     type = "structure",
+    id = "UpdateRoutingProfileAgentAvailabilityTimerOutput",
 }
 
 M.UpdateRoutingProfileConcurrencyInput = {
     type = "structure",
+    id = "UpdateRoutingProfileConcurrencyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23375,10 +24548,12 @@ M.UpdateRoutingProfileConcurrencyInput = {
 
 M.UpdateRoutingProfileConcurrencyOutput = {
     type = "structure",
+    id = "UpdateRoutingProfileConcurrencyOutput",
 }
 
 M.UpdateRoutingProfileDefaultOutboundQueueInput = {
     type = "structure",
+    id = "UpdateRoutingProfileDefaultOutboundQueueInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23405,10 +24580,12 @@ M.UpdateRoutingProfileDefaultOutboundQueueInput = {
 
 M.UpdateRoutingProfileDefaultOutboundQueueOutput = {
     type = "structure",
+    id = "UpdateRoutingProfileDefaultOutboundQueueOutput",
 }
 
 M.UpdateRoutingProfileNameInput = {
     type = "structure",
+    id = "UpdateRoutingProfileNameInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23435,10 +24612,12 @@ M.UpdateRoutingProfileNameInput = {
 
 M.UpdateRoutingProfileNameOutput = {
     type = "structure",
+    id = "UpdateRoutingProfileNameOutput",
 }
 
 M.UpdateRoutingProfileQueuesInput = {
     type = "structure",
+    id = "UpdateRoutingProfileQueuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23466,10 +24645,12 @@ M.UpdateRoutingProfileQueuesInput = {
 
 M.UpdateRoutingProfileQueuesOutput = {
     type = "structure",
+    id = "UpdateRoutingProfileQueuesOutput",
 }
 
 M.UpdateRuleInput = {
     type = "structure",
+    id = "UpdateRuleInput",
     members = {
         RuleId = {
             type = "string",
@@ -23515,10 +24696,12 @@ M.UpdateRuleInput = {
 
 M.UpdateRuleOutput = {
     type = "structure",
+    id = "UpdateRuleOutput",
 }
 
 M.UpdateSecurityProfileInput = {
     type = "structure",
+    id = "UpdateSecurityProfileInput",
     members = {
         Description = {
             type = "string",
@@ -23571,10 +24754,12 @@ M.UpdateSecurityProfileInput = {
 
 M.UpdateSecurityProfileOutput = {
     type = "structure",
+    id = "UpdateSecurityProfileOutput",
 }
 
 M.UpdateTaskTemplateInput = {
     type = "structure",
+    id = "UpdateTaskTemplateInput",
     members = {
         TaskTemplateId = {
             type = "string",
@@ -23616,6 +24801,7 @@ M.UpdateTaskTemplateInput = {
 
 M.UpdateTaskTemplateOutput = {
     type = "structure",
+    id = "UpdateTaskTemplateOutput",
     members = {
         InstanceId = {
             type = "string",
@@ -23658,6 +24844,7 @@ M.UpdateTaskTemplateOutput = {
 
 M.UpdateTestCaseInput = {
     type = "structure",
+    id = "UpdateTestCaseInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23706,10 +24893,12 @@ M.UpdateTestCaseInput = {
 
 M.UpdateTestCaseOutput = {
     type = "structure",
+    id = "UpdateTestCaseOutput",
 }
 
 M.UpdateTrafficDistributionInput = {
     type = "structure",
+    id = "UpdateTrafficDistributionInput",
     members = {
         Id = {
             type = "string",
@@ -23726,10 +24915,12 @@ M.UpdateTrafficDistributionInput = {
 
 M.UpdateTrafficDistributionOutput = {
     type = "structure",
+    id = "UpdateTrafficDistributionOutput",
 }
 
 M.UpdateUserConfigInput = {
     type = "structure",
+    id = "UpdateUserConfigInput",
     members = {
         AutoAcceptConfigs = {
             type = "list",
@@ -23770,10 +24961,12 @@ M.UpdateUserConfigInput = {
 
 M.UpdateUserConfigOutput = {
     type = "structure",
+    id = "UpdateUserConfigOutput",
 }
 
 M.UpdateUserHierarchyInput = {
     type = "structure",
+    id = "UpdateUserHierarchyInput",
     members = {
         HierarchyGroupId = {
             type = "string",
@@ -23797,10 +24990,12 @@ M.UpdateUserHierarchyInput = {
 
 M.UpdateUserHierarchyOutput = {
     type = "structure",
+    id = "UpdateUserHierarchyOutput",
 }
 
 M.UpdateUserHierarchyGroupNameInput = {
     type = "structure",
+    id = "UpdateUserHierarchyGroupNameInput",
     members = {
         Name = {
             type = "string",
@@ -23827,10 +25022,12 @@ M.UpdateUserHierarchyGroupNameInput = {
 
 M.UpdateUserHierarchyGroupNameOutput = {
     type = "structure",
+    id = "UpdateUserHierarchyGroupNameOutput",
 }
 
 M.HierarchyLevelUpdate = {
     type = "structure",
+    id = "HierarchyLevelUpdate",
     members = {
         Name = {
             type = "string",
@@ -23843,6 +25040,7 @@ M.HierarchyLevelUpdate = {
 
 M.HierarchyStructureUpdate = {
     type = "structure",
+    id = "HierarchyStructureUpdate",
     members = {
         LevelOne = M.HierarchyLevelUpdate,
         LevelTwo = M.HierarchyLevelUpdate,
@@ -23854,6 +25052,7 @@ M.HierarchyStructureUpdate = {
 
 M.UpdateUserHierarchyStructureInput = {
     type = "structure",
+    id = "UpdateUserHierarchyStructureInput",
     members = {
         HierarchyStructure = setmetatable({ traits = {
             required = true,
@@ -23870,10 +25069,12 @@ M.UpdateUserHierarchyStructureInput = {
 
 M.UpdateUserHierarchyStructureOutput = {
     type = "structure",
+    id = "UpdateUserHierarchyStructureOutput",
 }
 
 M.UpdateUserIdentityInfoInput = {
     type = "structure",
+    id = "UpdateUserIdentityInfoInput",
     members = {
         IdentityInfo = setmetatable({ traits = {
             required = true,
@@ -23897,10 +25098,12 @@ M.UpdateUserIdentityInfoInput = {
 
 M.UpdateUserIdentityInfoOutput = {
     type = "structure",
+    id = "UpdateUserIdentityInfoOutput",
 }
 
 M.UpdateUserNotificationStatusInput = {
     type = "structure",
+    id = "UpdateUserNotificationStatusInput",
     members = {
         InstanceId = {
             type = "string",
@@ -23946,10 +25149,12 @@ M.UpdateUserNotificationStatusInput = {
 
 M.UpdateUserNotificationStatusOutput = {
     type = "structure",
+    id = "UpdateUserNotificationStatusOutput",
 }
 
 M.UpdateUserPhoneConfigInput = {
     type = "structure",
+    id = "UpdateUserPhoneConfigInput",
     members = {
         PhoneConfig = setmetatable({ traits = {
             required = true,
@@ -23973,10 +25178,12 @@ M.UpdateUserPhoneConfigInput = {
 
 M.UpdateUserPhoneConfigOutput = {
     type = "structure",
+    id = "UpdateUserPhoneConfigOutput",
 }
 
 M.UpdateUserProficienciesInput = {
     type = "structure",
+    id = "UpdateUserProficienciesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24004,10 +25211,12 @@ M.UpdateUserProficienciesInput = {
 
 M.UpdateUserProficienciesOutput = {
     type = "structure",
+    id = "UpdateUserProficienciesOutput",
 }
 
 M.UpdateUserRoutingProfileInput = {
     type = "structure",
+    id = "UpdateUserRoutingProfileInput",
     members = {
         RoutingProfileId = {
             type = "string",
@@ -24034,10 +25243,12 @@ M.UpdateUserRoutingProfileInput = {
 
 M.UpdateUserRoutingProfileOutput = {
     type = "structure",
+    id = "UpdateUserRoutingProfileOutput",
 }
 
 M.UpdateUserSecurityProfilesInput = {
     type = "structure",
+    id = "UpdateUserSecurityProfilesInput",
     members = {
         SecurityProfileIds = {
             type = "list",
@@ -24065,10 +25276,12 @@ M.UpdateUserSecurityProfilesInput = {
 
 M.UpdateUserSecurityProfilesOutput = {
     type = "structure",
+    id = "UpdateUserSecurityProfilesOutput",
 }
 
 M.UpdateViewContentInput = {
     type = "structure",
+    id = "UpdateViewContentInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24098,6 +25311,7 @@ M.UpdateViewContentInput = {
 
 M.UpdateViewContentOutput = {
     type = "structure",
+    id = "UpdateViewContentOutput",
     members = {
         View = M.View,
     },
@@ -24105,6 +25319,7 @@ M.UpdateViewContentOutput = {
 
 M.UpdateViewMetadataInput = {
     type = "structure",
+    id = "UpdateViewMetadataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24131,10 +25346,12 @@ M.UpdateViewMetadataInput = {
 
 M.UpdateViewMetadataOutput = {
     type = "structure",
+    id = "UpdateViewMetadataOutput",
 }
 
 M.UpdateWorkspaceMetadataInput = {
     type = "structure",
+    id = "UpdateWorkspaceMetadataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24164,10 +25381,12 @@ M.UpdateWorkspaceMetadataInput = {
 
 M.UpdateWorkspaceMetadataOutput = {
     type = "structure",
+    id = "UpdateWorkspaceMetadataOutput",
 }
 
 M.UpdateWorkspacePageInput = {
     type = "structure",
+    id = "UpdateWorkspacePageInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24207,10 +25426,12 @@ M.UpdateWorkspacePageInput = {
 
 M.UpdateWorkspacePageOutput = {
     type = "structure",
+    id = "UpdateWorkspacePageOutput",
 }
 
 M.UpdateWorkspaceThemeInput = {
     type = "structure",
+    id = "UpdateWorkspaceThemeInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24232,10 +25453,12 @@ M.UpdateWorkspaceThemeInput = {
 
 M.UpdateWorkspaceThemeOutput = {
     type = "structure",
+    id = "UpdateWorkspaceThemeOutput",
 }
 
 M.UpdateWorkspaceVisibilityInput = {
     type = "structure",
+    id = "UpdateWorkspaceVisibilityInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24262,10 +25485,12 @@ M.UpdateWorkspaceVisibilityInput = {
 
 M.UpdateWorkspaceVisibilityOutput = {
     type = "structure",
+    id = "UpdateWorkspaceVisibilityOutput",
 }
 
 M.EvaluationFormItemEnablementCondition = {
     type = "structure",
+    id = "EvaluationFormItemEnablementCondition",
     members = {
         Operands = {
             type = "list",
@@ -24282,6 +25507,7 @@ M.EvaluationFormItemEnablementCondition = {
 
 M.EvaluationFormItemEnablementConditionOperand = {
     type = "union",
+    id = "EvaluationFormItemEnablementConditionOperand",
     members = {
         Expression = M.EvaluationFormItemEnablementExpression,
         Condition = M.EvaluationFormItemEnablementCondition,
@@ -24290,6 +25516,7 @@ M.EvaluationFormItemEnablementConditionOperand = {
 
 M.AgentStatusSearchCriteria = {
     type = "structure",
+    id = "AgentStatusSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24305,6 +25532,7 @@ M.AgentStatusSearchCriteria = {
 
 M.ContactFlowModuleSearchCriteria = {
     type = "structure",
+    id = "ContactFlowModuleSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24326,6 +25554,7 @@ M.ContactFlowModuleSearchCriteria = {
 
 M.ContactFlowSearchCriteria = {
     type = "structure",
+    id = "ContactFlowSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24350,6 +25579,7 @@ M.ContactFlowSearchCriteria = {
 
 M.DataTableSearchCriteria = {
     type = "structure",
+    id = "DataTableSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24365,6 +25595,7 @@ M.DataTableSearchCriteria = {
 
 M.EmailAddressSearchCriteria = {
     type = "structure",
+    id = "EmailAddressSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24380,6 +25611,7 @@ M.EmailAddressSearchCriteria = {
 
 M.EvaluationFormItemEnablementConfiguration = {
     type = "structure",
+    id = "EvaluationFormItemEnablementConfiguration",
     members = {
         Condition = setmetatable({ traits = {
             required = true,
@@ -24398,6 +25630,7 @@ M.EvaluationFormItemEnablementConfiguration = {
 
 M.EvaluationFormSearchCriteria = {
     type = "structure",
+    id = "EvaluationFormSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24416,6 +25649,7 @@ M.EvaluationFormSearchCriteria = {
 
 M.EvaluationSearchCriteria = {
     type = "structure",
+    id = "EvaluationSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24435,6 +25669,7 @@ M.EvaluationSearchCriteria = {
 
 M.Expression = {
     type = "structure",
+    id = "Expression",
     members = {
         AttributeCondition = M.AttributeCondition,
         AndExpression = {
@@ -24451,6 +25686,7 @@ M.Expression = {
 
 M.HoursOfOperationOverrideSearchCriteria = {
     type = "structure",
+    id = "HoursOfOperationOverrideSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24467,6 +25703,7 @@ M.HoursOfOperationOverrideSearchCriteria = {
 
 M.HoursOfOperationSearchCriteria = {
     type = "structure",
+    id = "HoursOfOperationSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24482,6 +25719,7 @@ M.HoursOfOperationSearchCriteria = {
 
 M.NotificationSearchCriteria = {
     type = "structure",
+    id = "NotificationSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24497,6 +25735,7 @@ M.NotificationSearchCriteria = {
 
 M.PredefinedAttributeSearchCriteria = {
     type = "structure",
+    id = "PredefinedAttributeSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24512,6 +25751,7 @@ M.PredefinedAttributeSearchCriteria = {
 
 M.PromptSearchCriteria = {
     type = "structure",
+    id = "PromptSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24527,6 +25767,7 @@ M.PromptSearchCriteria = {
 
 M.QueueSearchCriteria = {
     type = "structure",
+    id = "QueueSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24545,6 +25786,7 @@ M.QueueSearchCriteria = {
 
 M.QuickConnectSearchCriteria = {
     type = "structure",
+    id = "QuickConnectSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24560,6 +25802,7 @@ M.QuickConnectSearchCriteria = {
 
 M.RoutingProfileSearchCriteria = {
     type = "structure",
+    id = "RoutingProfileSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24575,6 +25818,7 @@ M.RoutingProfileSearchCriteria = {
 
 M.SecurityProfileSearchCriteria = {
     type = "structure",
+    id = "SecurityProfileSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24590,6 +25834,7 @@ M.SecurityProfileSearchCriteria = {
 
 M.SegmentAttributeValue = {
     type = "structure",
+    id = "SegmentAttributeValue",
     members = {
         ValueString = {
             type = "string",
@@ -24614,6 +25859,7 @@ M.SegmentAttributeValue = {
 
 M.TestCaseSearchCriteria = {
     type = "structure",
+    id = "TestCaseSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24632,6 +25878,7 @@ M.TestCaseSearchCriteria = {
 
 M.UserHierarchyGroupSearchCriteria = {
     type = "structure",
+    id = "UserHierarchyGroupSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24647,6 +25894,7 @@ M.UserHierarchyGroupSearchCriteria = {
 
 M.UserSearchCriteria = {
     type = "structure",
+    id = "UserSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24664,6 +25912,7 @@ M.UserSearchCriteria = {
 
 M.ViewSearchCriteria = {
     type = "structure",
+    id = "ViewSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24685,6 +25934,7 @@ M.ViewSearchCriteria = {
 
 M.WorkspaceAssociationSearchCriteria = {
     type = "structure",
+    id = "WorkspaceAssociationSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24700,6 +25950,7 @@ M.WorkspaceAssociationSearchCriteria = {
 
 M.WorkspaceSearchCriteria = {
     type = "structure",
+    id = "WorkspaceSearchCriteria",
     members = {
         OrConditions = {
             type = "list",
@@ -24715,6 +25966,7 @@ M.WorkspaceSearchCriteria = {
 
 M.EvaluationFormQuestion = {
     type = "structure",
+    id = "EvaluationFormQuestion",
     members = {
         Title = {
             type = "string",
@@ -24756,6 +26008,7 @@ M.EvaluationFormQuestion = {
 
 M.RoutingCriteriaInputStep = {
     type = "structure",
+    id = "RoutingCriteriaInputStep",
     members = {
         Expiry = M.RoutingCriteriaInputStepExpiry,
         Expression = M.Expression,
@@ -24764,6 +26017,7 @@ M.RoutingCriteriaInputStep = {
 
 M.SearchAgentStatusesInput = {
     type = "structure",
+    id = "SearchAgentStatusesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24784,6 +26038,7 @@ M.SearchAgentStatusesInput = {
 
 M.SearchContactEvaluationsInput = {
     type = "structure",
+    id = "SearchContactEvaluationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24804,6 +26059,7 @@ M.SearchContactEvaluationsInput = {
 
 M.SearchContactFlowModulesInput = {
     type = "structure",
+    id = "SearchContactFlowModulesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24824,6 +26080,7 @@ M.SearchContactFlowModulesInput = {
 
 M.SearchContactFlowsInput = {
     type = "structure",
+    id = "SearchContactFlowsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24844,6 +26101,7 @@ M.SearchContactFlowsInput = {
 
 M.SearchDataTablesInput = {
     type = "structure",
+    id = "SearchDataTablesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24864,6 +26122,7 @@ M.SearchDataTablesInput = {
 
 M.SearchEmailAddressesInput = {
     type = "structure",
+    id = "SearchEmailAddressesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24884,6 +26143,7 @@ M.SearchEmailAddressesInput = {
 
 M.SearchEvaluationFormsInput = {
     type = "structure",
+    id = "SearchEvaluationFormsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24904,6 +26164,7 @@ M.SearchEvaluationFormsInput = {
 
 M.SearchHoursOfOperationOverridesInput = {
     type = "structure",
+    id = "SearchHoursOfOperationOverridesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24924,6 +26185,7 @@ M.SearchHoursOfOperationOverridesInput = {
 
 M.SearchHoursOfOperationsInput = {
     type = "structure",
+    id = "SearchHoursOfOperationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24944,6 +26206,7 @@ M.SearchHoursOfOperationsInput = {
 
 M.SearchNotificationsInput = {
     type = "structure",
+    id = "SearchNotificationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24964,6 +26227,7 @@ M.SearchNotificationsInput = {
 
 M.SearchPredefinedAttributesInput = {
     type = "structure",
+    id = "SearchPredefinedAttributesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -24983,6 +26247,7 @@ M.SearchPredefinedAttributesInput = {
 
 M.SearchPromptsInput = {
     type = "structure",
+    id = "SearchPromptsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25003,6 +26268,7 @@ M.SearchPromptsInput = {
 
 M.SearchQueuesInput = {
     type = "structure",
+    id = "SearchQueuesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25023,6 +26289,7 @@ M.SearchQueuesInput = {
 
 M.SearchQuickConnectsInput = {
     type = "structure",
+    id = "SearchQuickConnectsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25043,6 +26310,7 @@ M.SearchQuickConnectsInput = {
 
 M.SearchRoutingProfilesInput = {
     type = "structure",
+    id = "SearchRoutingProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25063,6 +26331,7 @@ M.SearchRoutingProfilesInput = {
 
 M.SearchSecurityProfilesInput = {
     type = "structure",
+    id = "SearchSecurityProfilesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25083,6 +26352,7 @@ M.SearchSecurityProfilesInput = {
 
 M.SearchTestCasesInput = {
     type = "structure",
+    id = "SearchTestCasesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25103,6 +26373,7 @@ M.SearchTestCasesInput = {
 
 M.SearchUserHierarchyGroupsInput = {
     type = "structure",
+    id = "SearchUserHierarchyGroupsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25123,6 +26394,7 @@ M.SearchUserHierarchyGroupsInput = {
 
 M.SearchUsersInput = {
     type = "structure",
+    id = "SearchUsersInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25143,6 +26415,7 @@ M.SearchUsersInput = {
 
 M.SearchViewsInput = {
     type = "structure",
+    id = "SearchViewsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25163,6 +26436,7 @@ M.SearchViewsInput = {
 
 M.SearchWorkspaceAssociationsInput = {
     type = "structure",
+    id = "SearchWorkspaceAssociationsInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25183,6 +26457,7 @@ M.SearchWorkspaceAssociationsInput = {
 
 M.SearchWorkspacesInput = {
     type = "structure",
+    id = "SearchWorkspacesInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25203,6 +26478,7 @@ M.SearchWorkspacesInput = {
 
 M.Step = {
     type = "structure",
+    id = "Step",
     members = {
         Expiry = M.Expiry,
         Expression = M.Expression,
@@ -25214,6 +26490,7 @@ M.Step = {
 
 M.ContactSearchSummarySegmentAttributeValue = {
     type = "structure",
+    id = "ContactSearchSummarySegmentAttributeValue",
     members = {
         ValueString = {
             type = "string",
@@ -25228,6 +26505,7 @@ M.ContactSearchSummarySegmentAttributeValue = {
 
 M.CreateContactInput = {
     type = "structure",
+    id = "CreateContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25292,6 +26570,7 @@ M.CreateContactInput = {
 
 M.StartChatContactInput = {
     type = "structure",
+    id = "StartChatContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25349,6 +26628,7 @@ M.StartChatContactInput = {
 
 M.StartEmailContactInput = {
     type = "structure",
+    id = "StartEmailContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25411,6 +26691,7 @@ M.StartEmailContactInput = {
 
 M.StartOutboundChatContactInput = {
     type = "structure",
+    id = "StartOutboundChatContactInput",
     members = {
         SourceEndpoint = setmetatable({ traits = {
             required = true,
@@ -25467,6 +26748,7 @@ M.StartOutboundChatContactInput = {
 
 M.StartTaskContactInput = {
     type = "structure",
+    id = "StartTaskContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25531,6 +26813,7 @@ M.StartTaskContactInput = {
 
 M.UpdateContactInput = {
     type = "structure",
+    id = "UpdateContactInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25571,6 +26854,7 @@ M.UpdateContactInput = {
 
 M.EvaluationFormItem = {
     type = "union",
+    id = "EvaluationFormItem",
     members = {
         Section = M.EvaluationFormSection,
         Question = M.EvaluationFormQuestion,
@@ -25579,6 +26863,7 @@ M.EvaluationFormItem = {
 
 M.RoutingCriteria = {
     type = "structure",
+    id = "RoutingCriteria",
     members = {
         Steps = {
             type = "list",
@@ -25595,6 +26880,7 @@ M.RoutingCriteria = {
 
 M.RoutingCriteriaInput = {
     type = "structure",
+    id = "RoutingCriteriaInput",
     members = {
         Steps = {
             type = "list",
@@ -25605,6 +26891,7 @@ M.RoutingCriteriaInput = {
 
 M.EvaluationFormSection = {
     type = "structure",
+    id = "EvaluationFormSection",
     members = {
         Title = {
             type = "string",
@@ -25639,6 +26926,7 @@ M.EvaluationFormSection = {
 
 M.CreateEvaluationFormInput = {
     type = "structure",
+    id = "CreateEvaluationFormInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25690,6 +26978,7 @@ M.CreateEvaluationFormInput = {
 
 M.EvaluationForm = {
     type = "structure",
+    id = "EvaluationForm",
     members = {
         EvaluationFormId = {
             type = "string",
@@ -25778,6 +27067,7 @@ M.EvaluationForm = {
 
 M.EvaluationFormContent = {
     type = "structure",
+    id = "EvaluationFormContent",
     members = {
         EvaluationFormVersion = {
             type = "integer",
@@ -25824,6 +27114,7 @@ M.EvaluationFormContent = {
 
 M.UpdateContactRoutingDataInput = {
     type = "structure",
+    id = "UpdateContactRoutingDataInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25851,6 +27142,7 @@ M.UpdateContactRoutingDataInput = {
 
 M.UpdateEvaluationFormInput = {
     type = "structure",
+    id = "UpdateEvaluationFormInput",
     members = {
         InstanceId = {
             type = "string",
@@ -25917,6 +27209,7 @@ M.UpdateEvaluationFormInput = {
 
 M.DescribeContactEvaluationOutput = {
     type = "structure",
+    id = "DescribeContactEvaluationOutput",
     members = {
         Evaluation = setmetatable({ traits = {
             required = true,
@@ -25929,6 +27222,7 @@ M.DescribeContactEvaluationOutput = {
 
 M.DescribeEvaluationFormOutput = {
     type = "structure",
+    id = "DescribeEvaluationFormOutput",
     members = {
         EvaluationForm = setmetatable({ traits = {
             required = true,
@@ -25938,6 +27232,7 @@ M.DescribeEvaluationFormOutput = {
 
 M.Contact = {
     type = "structure",
+    id = "Contact",
     members = {
         Arn = {
             type = "string",
@@ -26064,6 +27359,7 @@ M.Contact = {
 
 M.ContactSearchSummary = {
     type = "structure",
+    id = "ContactSearchSummary",
     members = {
         Arn = {
             type = "string",
@@ -26114,6 +27410,7 @@ M.ContactSearchSummary = {
 
 M.DescribeContactOutput = {
     type = "structure",
+    id = "DescribeContactOutput",
     members = {
         Contact = M.Contact,
     },
@@ -26121,6 +27418,7 @@ M.DescribeContactOutput = {
 
 M.SearchContactsOutput = {
     type = "structure",
+    id = "SearchContactsOutput",
     members = {
         Contacts = {
             type = "list",

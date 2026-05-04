@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -24,6 +25,7 @@ M.EnrollmentStatus = {
 
 M.AccountInfo = {
     type = "structure",
+    id = "AccountInfo",
     members = {
         accountId = {
             type = "string",
@@ -57,6 +59,7 @@ M.AccountInfo = {
 
 M.AssociateAccountsInput = {
     type = "structure",
+    id = "AssociateAccountsInput",
     members = {
         accountIds = {
             type = "list",
@@ -76,6 +79,7 @@ M.AssociateAccountsInput = {
 
 M.AssociateAccountsOutput = {
     type = "structure",
+    id = "AssociateAccountsOutput",
     members = {
         accountIds = {
             type = "list",
@@ -90,6 +94,7 @@ M.AssociateAccountsOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -100,6 +105,7 @@ M.ForbiddenException = {
 
 M.IdempotencyTokenInUseException = {
     type = "structure",
+    id = "IdempotencyTokenInUseException",
     error = "client",
     members = {
         message = {
@@ -110,6 +116,7 @@ M.IdempotencyTokenInUseException = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         message = {
@@ -120,6 +127,7 @@ M.IdempotentParameterMismatchException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -130,6 +138,7 @@ M.InternalServerException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -140,6 +149,7 @@ M.InvalidParameterValueException = {
 
 M.NotManagementAccountException = {
     type = "structure",
+    id = "NotManagementAccountException",
     error = "client",
     members = {
         message = {
@@ -150,6 +160,7 @@ M.NotManagementAccountException = {
 
 M.OptInRequiredException = {
     type = "structure",
+    id = "OptInRequiredException",
     error = "client",
     members = {
         message = {
@@ -160,6 +171,7 @@ M.OptInRequiredException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -170,6 +182,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -185,6 +198,7 @@ M.SavingsEstimationMode = {
 
 M.EstimatedMonthlySavings = {
     type = "structure",
+    id = "EstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -236,6 +250,7 @@ M.ResourceType = {
 
 M.AutomationEvent = {
     type = "structure",
+    id = "AutomationEvent",
     members = {
         eventId = {
             type = "string",
@@ -292,6 +307,7 @@ M.AutomationEventFilterName = {
 
 M.AutomationEventFilter = {
     type = "structure",
+    id = "AutomationEventFilter",
     members = {
         name = {
             type = "string",
@@ -325,6 +341,7 @@ M.StepType = {
 
 M.AutomationEventStep = {
     type = "structure",
+    id = "AutomationEventStep",
     members = {
         eventId = {
             type = "string",
@@ -357,6 +374,7 @@ M.SummaryDimensionKey = {
 
 M.SummaryDimension = {
     type = "structure",
+    id = "SummaryDimension",
     members = {
         key = {
             type = "string",
@@ -375,6 +393,7 @@ M.SummaryDimension = {
 
 M.TimePeriod = {
     type = "structure",
+    id = "TimePeriod",
     members = {
         startTimeInclusive = {
             type = "timestamp",
@@ -387,6 +406,7 @@ M.TimePeriod = {
 
 M.SummaryTotals = {
     type = "structure",
+    id = "SummaryTotals",
     members = {
         automationEventCount = {
             type = "integer",
@@ -397,6 +417,7 @@ M.SummaryTotals = {
 
 M.AutomationEventSummary = {
     type = "structure",
+    id = "AutomationEventSummary",
     members = {
         key = {
             type = "string",
@@ -417,6 +438,7 @@ M.RuleApplyOrder = {
 
 M.OrganizationConfiguration = {
     type = "structure",
+    id = "OrganizationConfiguration",
     members = {
         ruleApplyOrder = {
             type = "string",
@@ -440,6 +462,7 @@ M.RuleType = {
 
 M.Schedule = {
     type = "structure",
+    id = "Schedule",
     members = {
         scheduleExpression = {
             type = "string",
@@ -460,6 +483,7 @@ M.RuleStatus = {
 
 M.AutomationRule = {
     type = "structure",
+    id = "AutomationRule",
     members = {
         ruleArn = {
             type = "string",
@@ -529,6 +553,7 @@ M.ComparisonOperator = {
 
 M.IntegerCriteriaCondition = {
     type = "structure",
+    id = "IntegerCriteriaCondition",
     members = {
         comparison = {
             type = "string",
@@ -542,6 +567,7 @@ M.IntegerCriteriaCondition = {
 
 M.StringCriteriaCondition = {
     type = "structure",
+    id = "StringCriteriaCondition",
     members = {
         comparison = {
             type = "string",
@@ -555,6 +581,7 @@ M.StringCriteriaCondition = {
 
 M.DoubleCriteriaCondition = {
     type = "structure",
+    id = "DoubleCriteriaCondition",
     members = {
         comparison = {
             type = "string",
@@ -568,6 +595,7 @@ M.DoubleCriteriaCondition = {
 
 M.ResourceTagsCriteriaCondition = {
     type = "structure",
+    id = "ResourceTagsCriteriaCondition",
     members = {
         comparison = {
             type = "string",
@@ -584,6 +612,7 @@ M.ResourceTagsCriteriaCondition = {
 
 M.Criteria = {
     type = "structure",
+    id = "Criteria",
     members = {
         region = {
             type = "list",
@@ -622,6 +651,7 @@ M.Criteria = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -640,6 +670,7 @@ M.Tag = {
 
 M.CreateAutomationRuleInput = {
     type = "structure",
+    id = "CreateAutomationRuleInput",
     members = {
         name = {
             type = "string",
@@ -692,6 +723,7 @@ M.CreateAutomationRuleInput = {
 
 M.CreateAutomationRuleOutput = {
     type = "structure",
+    id = "CreateAutomationRuleOutput",
     members = {
         ruleArn = {
             type = "string",
@@ -736,6 +768,7 @@ M.CreateAutomationRuleOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -746,6 +779,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -756,6 +790,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteAutomationRuleInput = {
     type = "structure",
+    id = "DeleteAutomationRuleInput",
     members = {
         ruleArn = {
             type = "string",
@@ -780,10 +815,12 @@ M.DeleteAutomationRuleInput = {
 
 M.DeleteAutomationRuleOutput = {
     type = "structure",
+    id = "DeleteAutomationRuleOutput",
 }
 
 M.DisassociateAccountsInput = {
     type = "structure",
+    id = "DisassociateAccountsInput",
     members = {
         accountIds = {
             type = "list",
@@ -803,6 +840,7 @@ M.DisassociateAccountsInput = {
 
 M.DisassociateAccountsOutput = {
     type = "structure",
+    id = "DisassociateAccountsOutput",
     members = {
         accountIds = {
             type = "list",
@@ -817,6 +855,7 @@ M.DisassociateAccountsOutput = {
 
 M.GetAutomationEventInput = {
     type = "structure",
+    id = "GetAutomationEventInput",
     members = {
         eventId = {
             type = "string",
@@ -829,6 +868,7 @@ M.GetAutomationEventInput = {
 
 M.GetAutomationEventOutput = {
     type = "structure",
+    id = "GetAutomationEventOutput",
     members = {
         eventId = {
             type = "string",
@@ -878,6 +918,7 @@ M.GetAutomationEventOutput = {
 
 M.GetAutomationRuleInput = {
     type = "structure",
+    id = "GetAutomationRuleInput",
     members = {
         ruleArn = {
             type = "string",
@@ -890,6 +931,7 @@ M.GetAutomationRuleInput = {
 
 M.GetAutomationRuleOutput = {
     type = "structure",
+    id = "GetAutomationRuleOutput",
     members = {
         ruleArn = {
             type = "string",
@@ -940,10 +982,12 @@ M.GetAutomationRuleOutput = {
 
 M.GetEnrollmentConfigurationInput = {
     type = "structure",
+    id = "GetEnrollmentConfigurationInput",
 }
 
 M.GetEnrollmentConfigurationOutput = {
     type = "structure",
+    id = "GetEnrollmentConfigurationOutput",
     members = {
         status = {
             type = "string",
@@ -965,6 +1009,7 @@ M.GetEnrollmentConfigurationOutput = {
 
 M.ListAccountsInput = {
     type = "structure",
+    id = "ListAccountsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -977,6 +1022,7 @@ M.ListAccountsInput = {
 
 M.ListAccountsOutput = {
     type = "structure",
+    id = "ListAccountsOutput",
     members = {
         accounts = {
             type = "list",
@@ -993,6 +1039,7 @@ M.ListAccountsOutput = {
 
 M.ListAutomationEventsInput = {
     type = "structure",
+    id = "ListAutomationEventsInput",
     members = {
         filters = {
             type = "list",
@@ -1015,6 +1062,7 @@ M.ListAutomationEventsInput = {
 
 M.ListAutomationEventsOutput = {
     type = "structure",
+    id = "ListAutomationEventsOutput",
     members = {
         automationEvents = {
             type = "list",
@@ -1028,6 +1076,7 @@ M.ListAutomationEventsOutput = {
 
 M.ListAutomationEventStepsInput = {
     type = "structure",
+    id = "ListAutomationEventStepsInput",
     members = {
         eventId = {
             type = "string",
@@ -1046,6 +1095,7 @@ M.ListAutomationEventStepsInput = {
 
 M.ListAutomationEventStepsOutput = {
     type = "structure",
+    id = "ListAutomationEventStepsOutput",
     members = {
         automationEventSteps = {
             type = "list",
@@ -1059,6 +1109,7 @@ M.ListAutomationEventStepsOutput = {
 
 M.ListAutomationEventSummariesInput = {
     type = "structure",
+    id = "ListAutomationEventSummariesInput",
     members = {
         filters = {
             type = "list",
@@ -1081,6 +1132,7 @@ M.ListAutomationEventSummariesInput = {
 
 M.ListAutomationEventSummariesOutput = {
     type = "structure",
+    id = "ListAutomationEventSummariesOutput",
     members = {
         automationEventSummaries = {
             type = "list",
@@ -1094,6 +1146,7 @@ M.ListAutomationEventSummariesOutput = {
 
 M.OrganizationScope = {
     type = "structure",
+    id = "OrganizationScope",
     members = {
         accountIds = {
             type = "list",
@@ -1104,6 +1157,7 @@ M.OrganizationScope = {
 
 M.ListAutomationRulePreviewInput = {
     type = "structure",
+    id = "ListAutomationRulePreviewInput",
     members = {
         ruleType = {
             type = "string",
@@ -1131,6 +1185,7 @@ M.ListAutomationRulePreviewInput = {
 
 M.EbsVolumeConfiguration = {
     type = "structure",
+    id = "EbsVolumeConfiguration",
     members = {
         type = {
             type = "string",
@@ -1149,6 +1204,7 @@ M.EbsVolumeConfiguration = {
 
 M.EbsVolume = {
     type = "structure",
+    id = "EbsVolume",
     members = {
         configuration = M.EbsVolumeConfiguration,
     },
@@ -1156,6 +1212,7 @@ M.EbsVolume = {
 
 M.ResourceDetails = {
     type = "union",
+    id = "ResourceDetails",
     members = {
         ebsVolume = M.EbsVolume,
     },
@@ -1163,6 +1220,7 @@ M.ResourceDetails = {
 
 M.PreviewResult = {
     type = "structure",
+    id = "PreviewResult",
     members = {
         recommendedActionId = {
             type = "string",
@@ -1209,6 +1267,7 @@ M.PreviewResult = {
 
 M.ListAutomationRulePreviewOutput = {
     type = "structure",
+    id = "ListAutomationRulePreviewOutput",
     members = {
         previewResults = {
             type = "list",
@@ -1222,6 +1281,7 @@ M.ListAutomationRulePreviewOutput = {
 
 M.ListAutomationRulePreviewSummariesInput = {
     type = "structure",
+    id = "ListAutomationRulePreviewSummariesInput",
     members = {
         ruleType = {
             type = "string",
@@ -1249,6 +1309,7 @@ M.ListAutomationRulePreviewSummariesInput = {
 
 M.RulePreviewTotal = {
     type = "structure",
+    id = "RulePreviewTotal",
     members = {
         recommendedActionCount = {
             type = "integer",
@@ -1264,6 +1325,7 @@ M.RulePreviewTotal = {
 
 M.PreviewResultSummary = {
     type = "structure",
+    id = "PreviewResultSummary",
     members = {
         key = {
             type = "string",
@@ -1279,6 +1341,7 @@ M.PreviewResultSummary = {
 
 M.ListAutomationRulePreviewSummariesOutput = {
     type = "structure",
+    id = "ListAutomationRulePreviewSummariesOutput",
     members = {
         previewResultSummaries = {
             type = "list",
@@ -1292,6 +1355,7 @@ M.ListAutomationRulePreviewSummariesOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         name = {
             type = "string",
@@ -1311,6 +1375,7 @@ M.Filter = {
 
 M.ListAutomationRulesInput = {
     type = "structure",
+    id = "ListAutomationRulesInput",
     members = {
         filters = {
             type = "list",
@@ -1327,6 +1392,7 @@ M.ListAutomationRulesInput = {
 
 M.ListAutomationRulesOutput = {
     type = "structure",
+    id = "ListAutomationRulesOutput",
     members = {
         automationRules = {
             type = "list",
@@ -1352,6 +1418,7 @@ M.RecommendedActionFilterName = {
 
 M.RecommendedActionFilter = {
     type = "structure",
+    id = "RecommendedActionFilter",
     members = {
         name = {
             type = "string",
@@ -1371,6 +1438,7 @@ M.RecommendedActionFilter = {
 
 M.ListRecommendedActionsInput = {
     type = "structure",
+    id = "ListRecommendedActionsInput",
     members = {
         filters = {
             type = "list",
@@ -1387,6 +1455,7 @@ M.ListRecommendedActionsInput = {
 
 M.RecommendedAction = {
     type = "structure",
+    id = "RecommendedAction",
     members = {
         recommendedActionId = {
             type = "string",
@@ -1433,6 +1502,7 @@ M.RecommendedAction = {
 
 M.ListRecommendedActionsOutput = {
     type = "structure",
+    id = "ListRecommendedActionsOutput",
     members = {
         recommendedActions = {
             type = "list",
@@ -1446,6 +1516,7 @@ M.ListRecommendedActionsOutput = {
 
 M.ListRecommendedActionSummariesInput = {
     type = "structure",
+    id = "ListRecommendedActionSummariesInput",
     members = {
         filters = {
             type = "list",
@@ -1462,6 +1533,7 @@ M.ListRecommendedActionSummariesInput = {
 
 M.RecommendedActionTotal = {
     type = "structure",
+    id = "RecommendedActionTotal",
     members = {
         recommendedActionCount = {
             type = "integer",
@@ -1477,6 +1549,7 @@ M.RecommendedActionTotal = {
 
 M.RecommendedActionSummary = {
     type = "structure",
+    id = "RecommendedActionSummary",
     members = {
         key = {
             type = "string",
@@ -1492,6 +1565,7 @@ M.RecommendedActionSummary = {
 
 M.ListRecommendedActionSummariesOutput = {
     type = "structure",
+    id = "ListRecommendedActionSummariesOutput",
     members = {
         recommendedActionSummaries = {
             type = "list",
@@ -1505,6 +1579,7 @@ M.ListRecommendedActionSummariesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1517,6 +1592,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1527,6 +1603,7 @@ M.ListTagsForResourceOutput = {
 
 M.RollbackAutomationEventInput = {
     type = "structure",
+    id = "RollbackAutomationEventInput",
     members = {
         eventId = {
             type = "string",
@@ -1545,6 +1622,7 @@ M.RollbackAutomationEventInput = {
 
 M.RollbackAutomationEventOutput = {
     type = "structure",
+    id = "RollbackAutomationEventOutput",
     members = {
         eventId = {
             type = "string",
@@ -1557,6 +1635,7 @@ M.RollbackAutomationEventOutput = {
 
 M.StartAutomationEventInput = {
     type = "structure",
+    id = "StartAutomationEventInput",
     members = {
         recommendedActionId = {
             type = "string",
@@ -1575,6 +1654,7 @@ M.StartAutomationEventInput = {
 
 M.StartAutomationEventOutput = {
     type = "structure",
+    id = "StartAutomationEventOutput",
     members = {
         recommendedActionId = {
             type = "string",
@@ -1590,6 +1670,7 @@ M.StartAutomationEventOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1621,10 +1702,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1656,10 +1739,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAutomationRuleInput = {
     type = "structure",
+    id = "UpdateAutomationRuleInput",
     members = {
         ruleArn = {
             type = "string",
@@ -1706,6 +1791,7 @@ M.UpdateAutomationRuleInput = {
 
 M.UpdateAutomationRuleOutput = {
     type = "structure",
+    id = "UpdateAutomationRuleOutput",
     members = {
         ruleArn = {
             type = "string",
@@ -1746,6 +1832,7 @@ M.UpdateAutomationRuleOutput = {
 
 M.UpdateEnrollmentConfigurationInput = {
     type = "structure",
+    id = "UpdateEnrollmentConfigurationInput",
     members = {
         status = {
             type = "string",
@@ -1764,6 +1851,7 @@ M.UpdateEnrollmentConfigurationInput = {
 
 M.UpdateEnrollmentConfigurationOutput = {
     type = "structure",
+    id = "UpdateEnrollmentConfigurationOutput",
     members = {
         status = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.EntityPropertyReference = {
     type = "structure",
+    id = "EntityPropertyReference",
     members = {
         componentName = {
             type = "string",
@@ -38,6 +40,7 @@ M.EntityPropertyReference = {
 
 M.RelationshipValue = {
     type = "structure",
+    id = "RelationshipValue",
     members = {
         targetEntityId = {
             type = "string",
@@ -50,6 +53,7 @@ M.RelationshipValue = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -60,6 +64,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -70,6 +75,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -80,6 +86,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -90,6 +97,7 @@ M.ValidationException = {
 
 M.CancelMetadataTransferJobInput = {
     type = "structure",
+    id = "CancelMetadataTransferJobInput",
     members = {
         metadataTransferJobId = {
             type = "string",
@@ -103,6 +111,7 @@ M.CancelMetadataTransferJobInput = {
 
 M.MetadataTransferJobProgress = {
     type = "structure",
+    id = "MetadataTransferJobProgress",
     members = {
         totalCount = {
             type = "integer",
@@ -132,6 +141,7 @@ M.ErrorCode = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         code = {
             type = "string",
@@ -154,6 +164,7 @@ M.MetadataTransferJobState = {
 
 M.MetadataTransferJobStatus = {
     type = "structure",
+    id = "MetadataTransferJobStatus",
     members = {
         state = {
             type = "string",
@@ -167,6 +178,7 @@ M.MetadataTransferJobStatus = {
 
 M.CancelMetadataTransferJobOutput = {
     type = "structure",
+    id = "CancelMetadataTransferJobOutput",
     members = {
         metadataTransferJobId = {
             type = "string",
@@ -195,6 +207,7 @@ M.CancelMetadataTransferJobOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -205,6 +218,7 @@ M.ConflictException = {
 
 M.CompositeComponentTypeRequest = {
     type = "structure",
+    id = "CompositeComponentTypeRequest",
     members = {
         componentTypeId = {
             type = "string",
@@ -214,6 +228,7 @@ M.CompositeComponentTypeRequest = {
 
 M.LambdaFunction = {
     type = "structure",
+    id = "LambdaFunction",
     members = {
         arn = {
             type = "string",
@@ -226,6 +241,7 @@ M.LambdaFunction = {
 
 M.DataConnector = {
     type = "structure",
+    id = "DataConnector",
     members = {
         lambda = M.LambdaFunction,
         isNative = {
@@ -241,6 +257,7 @@ M.Scope = {
 
 M.FunctionRequest = {
     type = "structure",
+    id = "FunctionRequest",
     members = {
         requiredProperties = {
             type = "list",
@@ -255,6 +272,7 @@ M.FunctionRequest = {
 
 M.Relationship = {
     type = "structure",
+    id = "Relationship",
     members = {
         targetComponentTypeId = {
             type = "string",
@@ -282,6 +300,7 @@ M.GroupType = {
 
 M.PropertyGroupRequest = {
     type = "structure",
+    id = "PropertyGroupRequest",
     members = {
         groupType = {
             type = "string",
@@ -303,6 +322,7 @@ M.State = {
 
 M.CreateComponentTypeOutput = {
     type = "structure",
+    id = "CreateComponentTypeOutput",
     members = {
         arn = {
             type = "string",
@@ -327,6 +347,7 @@ M.CreateComponentTypeOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -350,6 +371,7 @@ M.PropertyGroupUpdateType = {
 
 M.ComponentPropertyGroupRequest = {
     type = "structure",
+    id = "ComponentPropertyGroupRequest",
     members = {
         groupType = {
             type = "string",
@@ -366,6 +388,7 @@ M.ComponentPropertyGroupRequest = {
 
 M.CreateEntityOutput = {
     type = "structure",
+    id = "CreateEntityOutput",
     members = {
         entityId = {
             type = "string",
@@ -396,6 +419,7 @@ M.CreateEntityOutput = {
 
 M.IotTwinMakerDestinationConfiguration = {
     type = "structure",
+    id = "IotTwinMakerDestinationConfiguration",
     members = {
         workspace = {
             type = "string",
@@ -408,6 +432,7 @@ M.IotTwinMakerDestinationConfiguration = {
 
 M.S3DestinationConfiguration = {
     type = "structure",
+    id = "S3DestinationConfiguration",
     members = {
         location = {
             type = "string",
@@ -426,6 +451,7 @@ M.DestinationType = {
 
 M.DestinationConfiguration = {
     type = "structure",
+    id = "DestinationConfiguration",
     members = {
         type = {
             type = "string",
@@ -440,6 +466,7 @@ M.DestinationConfiguration = {
 
 M.FilterByAsset = {
     type = "structure",
+    id = "FilterByAsset",
     members = {
         assetId = {
             type = "string",
@@ -458,6 +485,7 @@ M.FilterByAsset = {
 
 M.FilterByAssetModel = {
     type = "structure",
+    id = "FilterByAssetModel",
     members = {
         assetModelId = {
             type = "string",
@@ -476,6 +504,7 @@ M.FilterByAssetModel = {
 
 M.IotSiteWiseSourceConfigurationFilter = {
     type = "union",
+    id = "IotSiteWiseSourceConfigurationFilter",
     members = {
         filterByAssetModel = M.FilterByAssetModel,
         filterByAsset = M.FilterByAsset,
@@ -484,6 +513,7 @@ M.IotSiteWiseSourceConfigurationFilter = {
 
 M.IotSiteWiseSourceConfiguration = {
     type = "structure",
+    id = "IotSiteWiseSourceConfiguration",
     members = {
         filters = {
             type = "list",
@@ -494,6 +524,7 @@ M.IotSiteWiseSourceConfiguration = {
 
 M.FilterByComponentType = {
     type = "structure",
+    id = "FilterByComponentType",
     members = {
         componentTypeId = {
             type = "string",
@@ -506,6 +537,7 @@ M.FilterByComponentType = {
 
 M.FilterByEntity = {
     type = "structure",
+    id = "FilterByEntity",
     members = {
         entityId = {
             type = "string",
@@ -518,6 +550,7 @@ M.FilterByEntity = {
 
 M.IotTwinMakerSourceConfigurationFilter = {
     type = "union",
+    id = "IotTwinMakerSourceConfigurationFilter",
     members = {
         filterByComponentType = M.FilterByComponentType,
         filterByEntity = M.FilterByEntity,
@@ -526,6 +559,7 @@ M.IotTwinMakerSourceConfigurationFilter = {
 
 M.IotTwinMakerSourceConfiguration = {
     type = "structure",
+    id = "IotTwinMakerSourceConfiguration",
     members = {
         workspace = {
             type = "string",
@@ -542,6 +576,7 @@ M.IotTwinMakerSourceConfiguration = {
 
 M.S3SourceConfiguration = {
     type = "structure",
+    id = "S3SourceConfiguration",
     members = {
         location = {
             type = "string",
@@ -560,6 +595,7 @@ M.SourceType = {
 
 M.SourceConfiguration = {
     type = "structure",
+    id = "SourceConfiguration",
     members = {
         type = {
             type = "string",
@@ -575,6 +611,7 @@ M.SourceConfiguration = {
 
 M.CreateMetadataTransferJobInput = {
     type = "structure",
+    id = "CreateMetadataTransferJobInput",
     members = {
         metadataTransferJobId = {
             type = "string",
@@ -597,6 +634,7 @@ M.CreateMetadataTransferJobInput = {
 
 M.CreateMetadataTransferJobOutput = {
     type = "structure",
+    id = "CreateMetadataTransferJobOutput",
     members = {
         metadataTransferJobId = {
             type = "string",
@@ -624,6 +662,7 @@ M.CreateMetadataTransferJobOutput = {
 
 M.CreateSceneInput = {
     type = "structure",
+    id = "CreateSceneInput",
     members = {
         workspaceId = {
             type = "string",
@@ -666,6 +705,7 @@ M.CreateSceneInput = {
 
 M.CreateSceneOutput = {
     type = "structure",
+    id = "CreateSceneOutput",
     members = {
         arn = {
             type = "string",
@@ -684,6 +724,7 @@ M.CreateSceneOutput = {
 
 M.CreateSyncJobInput = {
     type = "structure",
+    id = "CreateSyncJobInput",
     members = {
         workspaceId = {
             type = "string",
@@ -723,6 +764,7 @@ M.SyncJobState = {
 
 M.CreateSyncJobOutput = {
     type = "structure",
+    id = "CreateSyncJobOutput",
     members = {
         arn = {
             type = "string",
@@ -747,6 +789,7 @@ M.CreateSyncJobOutput = {
 
 M.CreateWorkspaceInput = {
     type = "structure",
+    id = "CreateWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -774,6 +817,7 @@ M.CreateWorkspaceInput = {
 
 M.CreateWorkspaceOutput = {
     type = "structure",
+    id = "CreateWorkspaceOutput",
     members = {
         arn = {
             type = "string",
@@ -792,6 +836,7 @@ M.CreateWorkspaceOutput = {
 
 M.DeleteComponentTypeInput = {
     type = "structure",
+    id = "DeleteComponentTypeInput",
     members = {
         workspaceId = {
             type = "string",
@@ -812,6 +857,7 @@ M.DeleteComponentTypeInput = {
 
 M.DeleteComponentTypeOutput = {
     type = "structure",
+    id = "DeleteComponentTypeOutput",
     members = {
         state = {
             type = "string",
@@ -824,6 +870,7 @@ M.DeleteComponentTypeOutput = {
 
 M.DeleteEntityInput = {
     type = "structure",
+    id = "DeleteEntityInput",
     members = {
         workspaceId = {
             type = "string",
@@ -850,6 +897,7 @@ M.DeleteEntityInput = {
 
 M.DeleteEntityOutput = {
     type = "structure",
+    id = "DeleteEntityOutput",
     members = {
         state = {
             type = "string",
@@ -862,6 +910,7 @@ M.DeleteEntityOutput = {
 
 M.DeleteSceneInput = {
     type = "structure",
+    id = "DeleteSceneInput",
     members = {
         workspaceId = {
             type = "string",
@@ -882,10 +931,12 @@ M.DeleteSceneInput = {
 
 M.DeleteSceneOutput = {
     type = "structure",
+    id = "DeleteSceneOutput",
 }
 
 M.DeleteSyncJobInput = {
     type = "structure",
+    id = "DeleteSyncJobInput",
     members = {
         workspaceId = {
             type = "string",
@@ -906,6 +957,7 @@ M.DeleteSyncJobInput = {
 
 M.DeleteSyncJobOutput = {
     type = "structure",
+    id = "DeleteSyncJobOutput",
     members = {
         state = {
             type = "string",
@@ -918,6 +970,7 @@ M.DeleteSyncJobOutput = {
 
 M.DeleteWorkspaceInput = {
     type = "structure",
+    id = "DeleteWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -931,6 +984,7 @@ M.DeleteWorkspaceInput = {
 
 M.DeleteWorkspaceOutput = {
     type = "structure",
+    id = "DeleteWorkspaceOutput",
     members = {
         message = {
             type = "string",
@@ -940,6 +994,7 @@ M.DeleteWorkspaceOutput = {
 
 M.ExecuteQueryInput = {
     type = "structure",
+    id = "ExecuteQueryInput",
     members = {
         workspaceId = {
             type = "string",
@@ -970,6 +1025,7 @@ M.ColumnType = {
 
 M.ColumnDescription = {
     type = "structure",
+    id = "ColumnDescription",
     members = {
         name = {
             type = "string",
@@ -982,6 +1038,7 @@ M.ColumnDescription = {
 
 M.Row = {
     type = "structure",
+    id = "Row",
     members = {
         rowData = {
             type = "list",
@@ -992,6 +1049,7 @@ M.Row = {
 
 M.ExecuteQueryOutput = {
     type = "structure",
+    id = "ExecuteQueryOutput",
     members = {
         columnDescriptions = {
             type = "list",
@@ -1009,6 +1067,7 @@ M.ExecuteQueryOutput = {
 
 M.QueryTimeoutException = {
     type = "structure",
+    id = "QueryTimeoutException",
     error = "client",
     members = {
         message = {
@@ -1019,6 +1078,7 @@ M.QueryTimeoutException = {
 
 M.GetComponentTypeInput = {
     type = "structure",
+    id = "GetComponentTypeInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1039,6 +1099,7 @@ M.GetComponentTypeInput = {
 
 M.CompositeComponentTypeResponse = {
     type = "structure",
+    id = "CompositeComponentTypeResponse",
     members = {
         componentTypeId = {
             type = "string",
@@ -1051,6 +1112,7 @@ M.CompositeComponentTypeResponse = {
 
 M.FunctionResponse = {
     type = "structure",
+    id = "FunctionResponse",
     members = {
         requiredProperties = {
             type = "list",
@@ -1068,6 +1130,7 @@ M.FunctionResponse = {
 
 M.PropertyGroupResponse = {
     type = "structure",
+    id = "PropertyGroupResponse",
     members = {
         groupType = {
             type = "string",
@@ -1093,6 +1156,7 @@ M.PropertyGroupResponse = {
 
 M.Status = {
     type = "structure",
+    id = "Status",
     members = {
         state = {
             type = "string",
@@ -1103,6 +1167,7 @@ M.Status = {
 
 M.GetEntityInput = {
     type = "structure",
+    id = "GetEntityInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1123,6 +1188,7 @@ M.GetEntityInput = {
 
 M.ComponentPropertyGroupResponse = {
     type = "structure",
+    id = "ComponentPropertyGroupResponse",
     members = {
         groupType = {
             type = "string",
@@ -1148,6 +1214,7 @@ M.ComponentPropertyGroupResponse = {
 
 M.ComponentSummary = {
     type = "structure",
+    id = "ComponentSummary",
     members = {
         componentName = {
             type = "string",
@@ -1186,6 +1253,7 @@ M.ComponentSummary = {
 
 M.GetMetadataTransferJobInput = {
     type = "structure",
+    id = "GetMetadataTransferJobInput",
     members = {
         metadataTransferJobId = {
             type = "string",
@@ -1199,6 +1267,7 @@ M.GetMetadataTransferJobInput = {
 
 M.GetMetadataTransferJobOutput = {
     type = "structure",
+    id = "GetMetadataTransferJobOutput",
     members = {
         metadataTransferJobId = {
             type = "string",
@@ -1255,6 +1324,7 @@ M.GetMetadataTransferJobOutput = {
 
 M.GetPricingPlanInput = {
     type = "structure",
+    id = "GetPricingPlanInput",
 }
 
 M.PricingTier = {
@@ -1266,6 +1336,7 @@ M.PricingTier = {
 
 M.BundleInformation = {
     type = "structure",
+    id = "BundleInformation",
     members = {
         bundleNames = {
             type = "list",
@@ -1296,6 +1367,7 @@ M.UpdateReason = {
 
 M.PricingPlan = {
     type = "structure",
+    id = "PricingPlan",
     members = {
         billableEntityCount = {
             type = "long",
@@ -1330,6 +1402,7 @@ M.PricingPlan = {
 
 M.GetPricingPlanOutput = {
     type = "structure",
+    id = "GetPricingPlanOutput",
     members = {
         currentPricingPlan = setmetatable({ traits = {
             required = true,
@@ -1340,6 +1413,7 @@ M.GetPricingPlanOutput = {
 
 M.ConnectorFailureException = {
     type = "structure",
+    id = "ConnectorFailureException",
     error = "client",
     members = {
         message = {
@@ -1350,6 +1424,7 @@ M.ConnectorFailureException = {
 
 M.ConnectorTimeoutException = {
     type = "structure",
+    id = "ConnectorTimeoutException",
     error = "client",
     members = {
         message = {
@@ -1365,6 +1440,7 @@ M.Order = {
 
 M.OrderBy = {
     type = "structure",
+    id = "OrderBy",
     members = {
         order = {
             type = "string",
@@ -1384,6 +1460,7 @@ M.InterpolationType = {
 
 M.InterpolationParameters = {
     type = "structure",
+    id = "InterpolationParameters",
     members = {
         interpolationType = {
             type = "string",
@@ -1401,6 +1478,7 @@ M.OrderByTime = {
 
 M.GetSceneInput = {
     type = "structure",
+    id = "GetSceneInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1425,6 +1503,7 @@ M.SceneErrorCode = {
 
 M.SceneError = {
     type = "structure",
+    id = "SceneError",
     members = {
         code = {
             type = "string",
@@ -1437,6 +1516,7 @@ M.SceneError = {
 
 M.GetSceneOutput = {
     type = "structure",
+    id = "GetSceneOutput",
     members = {
         workspaceId = {
             type = "string",
@@ -1497,6 +1577,7 @@ M.GetSceneOutput = {
 
 M.GetSyncJobInput = {
     type = "structure",
+    id = "GetSyncJobInput",
     members = {
         syncSource = {
             type = "string",
@@ -1516,6 +1597,7 @@ M.GetSyncJobInput = {
 
 M.SyncJobStatus = {
     type = "structure",
+    id = "SyncJobStatus",
     members = {
         state = {
             type = "string",
@@ -1526,6 +1608,7 @@ M.SyncJobStatus = {
 
 M.GetSyncJobOutput = {
     type = "structure",
+    id = "GetSyncJobOutput",
     members = {
         arn = {
             type = "string",
@@ -1571,6 +1654,7 @@ M.GetSyncJobOutput = {
 
 M.GetWorkspaceInput = {
     type = "structure",
+    id = "GetWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1584,6 +1668,7 @@ M.GetWorkspaceInput = {
 
 M.GetWorkspaceOutput = {
     type = "structure",
+    id = "GetWorkspaceOutput",
     members = {
         workspaceId = {
             type = "string",
@@ -1627,6 +1712,7 @@ M.GetWorkspaceOutput = {
 
 M.ListComponentsInput = {
     type = "structure",
+    id = "ListComponentsInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1656,6 +1742,7 @@ M.ListComponentsInput = {
 
 M.ListComponentsOutput = {
     type = "structure",
+    id = "ListComponentsOutput",
     members = {
         componentSummaries = {
             type = "list",
@@ -1672,6 +1759,7 @@ M.ListComponentsOutput = {
 
 M.ListComponentTypesFilter = {
     type = "union",
+    id = "ListComponentTypesFilter",
     members = {
         extendsFrom = {
             type = "string",
@@ -1687,6 +1775,7 @@ M.ListComponentTypesFilter = {
 
 M.ListComponentTypesInput = {
     type = "structure",
+    id = "ListComponentTypesInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1710,6 +1799,7 @@ M.ListComponentTypesInput = {
 
 M.ComponentTypeSummary = {
     type = "structure",
+    id = "ComponentTypeSummary",
     members = {
         arn = {
             type = "string",
@@ -1747,6 +1837,7 @@ M.ComponentTypeSummary = {
 
 M.ListComponentTypesOutput = {
     type = "structure",
+    id = "ListComponentTypesOutput",
     members = {
         workspaceId = {
             type = "string",
@@ -1772,6 +1863,7 @@ M.ListComponentTypesOutput = {
 
 M.ListEntitiesFilter = {
     type = "union",
+    id = "ListEntitiesFilter",
     members = {
         parentEntityId = {
             type = "string",
@@ -1787,6 +1879,7 @@ M.ListEntitiesFilter = {
 
 M.ListEntitiesInput = {
     type = "structure",
+    id = "ListEntitiesInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1810,6 +1903,7 @@ M.ListEntitiesInput = {
 
 M.EntitySummary = {
     type = "structure",
+    id = "EntitySummary",
     members = {
         entityId = {
             type = "string",
@@ -1858,6 +1952,7 @@ M.EntitySummary = {
 
 M.ListEntitiesOutput = {
     type = "structure",
+    id = "ListEntitiesOutput",
     members = {
         entitySummaries = {
             type = "list",
@@ -1871,6 +1966,7 @@ M.ListEntitiesOutput = {
 
 M.ListMetadataTransferJobsFilter = {
     type = "union",
+    id = "ListMetadataTransferJobsFilter",
     members = {
         workspaceId = {
             type = "string",
@@ -1883,6 +1979,7 @@ M.ListMetadataTransferJobsFilter = {
 
 M.ListMetadataTransferJobsInput = {
     type = "structure",
+    id = "ListMetadataTransferJobsInput",
     members = {
         sourceType = {
             type = "string",
@@ -1911,6 +2008,7 @@ M.ListMetadataTransferJobsInput = {
 
 M.MetadataTransferJobSummary = {
     type = "structure",
+    id = "MetadataTransferJobSummary",
     members = {
         metadataTransferJobId = {
             type = "string",
@@ -1945,6 +2043,7 @@ M.MetadataTransferJobSummary = {
 
 M.ListMetadataTransferJobsOutput = {
     type = "structure",
+    id = "ListMetadataTransferJobsOutput",
     members = {
         metadataTransferJobSummaries = {
             type = "list",
@@ -1961,6 +2060,7 @@ M.ListMetadataTransferJobsOutput = {
 
 M.ListPropertiesInput = {
     type = "structure",
+    id = "ListPropertiesInput",
     members = {
         workspaceId = {
             type = "string",
@@ -1992,6 +2092,7 @@ M.ListPropertiesInput = {
 
 M.ListScenesInput = {
     type = "structure",
+    id = "ListScenesInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2011,6 +2112,7 @@ M.ListScenesInput = {
 
 M.SceneSummary = {
     type = "structure",
+    id = "SceneSummary",
     members = {
         sceneId = {
             type = "string",
@@ -2050,6 +2152,7 @@ M.SceneSummary = {
 
 M.ListScenesOutput = {
     type = "structure",
+    id = "ListScenesOutput",
     members = {
         sceneSummaries = {
             type = "list",
@@ -2063,6 +2166,7 @@ M.ListScenesOutput = {
 
 M.ListSyncJobsInput = {
     type = "structure",
+    id = "ListSyncJobsInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2082,6 +2186,7 @@ M.ListSyncJobsInput = {
 
 M.SyncJobSummary = {
     type = "structure",
+    id = "SyncJobSummary",
     members = {
         arn = {
             type = "string",
@@ -2104,6 +2209,7 @@ M.SyncJobSummary = {
 
 M.ListSyncJobsOutput = {
     type = "structure",
+    id = "ListSyncJobsOutput",
     members = {
         syncJobSummaries = {
             type = "list",
@@ -2130,6 +2236,7 @@ M.SyncResourceState = {
 
 M.SyncResourceFilter = {
     type = "union",
+    id = "SyncResourceFilter",
     members = {
         state = {
             type = "string",
@@ -2148,6 +2255,7 @@ M.SyncResourceFilter = {
 
 M.ListSyncResourcesInput = {
     type = "structure",
+    id = "ListSyncResourcesInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2178,6 +2286,7 @@ M.ListSyncResourcesInput = {
 
 M.SyncResourceStatus = {
     type = "structure",
+    id = "SyncResourceStatus",
     members = {
         state = {
             type = "string",
@@ -2188,6 +2297,7 @@ M.SyncResourceStatus = {
 
 M.SyncResourceSummary = {
     type = "structure",
+    id = "SyncResourceSummary",
     members = {
         resourceType = {
             type = "string",
@@ -2207,6 +2317,7 @@ M.SyncResourceSummary = {
 
 M.ListSyncResourcesOutput = {
     type = "structure",
+    id = "ListSyncResourcesOutput",
     members = {
         syncResources = {
             type = "list",
@@ -2220,6 +2331,7 @@ M.ListSyncResourcesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -2238,6 +2350,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2252,6 +2365,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWorkspacesInput = {
     type = "structure",
+    id = "ListWorkspacesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2264,6 +2378,7 @@ M.ListWorkspacesInput = {
 
 M.WorkspaceSummary = {
     type = "structure",
+    id = "WorkspaceSummary",
     members = {
         workspaceId = {
             type = "string",
@@ -2301,6 +2416,7 @@ M.WorkspaceSummary = {
 
 M.ListWorkspacesOutput = {
     type = "structure",
+    id = "ListWorkspacesOutput",
     members = {
         workspaceSummaries = {
             type = "list",
@@ -2314,6 +2430,7 @@ M.ListWorkspacesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -2334,10 +2451,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -2348,6 +2467,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -2369,10 +2489,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateComponentTypeOutput = {
     type = "structure",
+    id = "UpdateComponentTypeOutput",
     members = {
         workspaceId = {
             type = "string",
@@ -2414,6 +2536,7 @@ M.ParentEntityUpdateType = {
 
 M.ParentEntityUpdateRequest = {
     type = "structure",
+    id = "ParentEntityUpdateRequest",
     members = {
         updateType = {
             type = "string",
@@ -2429,6 +2552,7 @@ M.ParentEntityUpdateRequest = {
 
 M.UpdateEntityOutput = {
     type = "structure",
+    id = "UpdateEntityOutput",
     members = {
         updateDateTime = {
             type = "timestamp",
@@ -2447,6 +2571,7 @@ M.UpdateEntityOutput = {
 
 M.UpdatePricingPlanInput = {
     type = "structure",
+    id = "UpdatePricingPlanInput",
     members = {
         pricingMode = {
             type = "string",
@@ -2463,6 +2588,7 @@ M.UpdatePricingPlanInput = {
 
 M.UpdatePricingPlanOutput = {
     type = "structure",
+    id = "UpdatePricingPlanOutput",
     members = {
         currentPricingPlan = setmetatable({ traits = {
             required = true,
@@ -2473,6 +2599,7 @@ M.UpdatePricingPlanOutput = {
 
 M.UpdateSceneInput = {
     type = "structure",
+    id = "UpdateSceneInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2508,6 +2635,7 @@ M.UpdateSceneInput = {
 
 M.UpdateSceneOutput = {
     type = "structure",
+    id = "UpdateSceneOutput",
     members = {
         updateDateTime = {
             type = "timestamp",
@@ -2520,6 +2648,7 @@ M.UpdateSceneOutput = {
 
 M.UpdateWorkspaceInput = {
     type = "structure",
+    id = "UpdateWorkspaceInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2542,6 +2671,7 @@ M.UpdateWorkspaceInput = {
 
 M.UpdateWorkspaceOutput = {
     type = "structure",
+    id = "UpdateWorkspaceOutput",
     members = {
         updateDateTime = {
             type = "timestamp",
@@ -2554,6 +2684,7 @@ M.UpdateWorkspaceOutput = {
 
 M.DataValue = {
     type = "structure",
+    id = "DataValue",
     members = {
         booleanValue = {
             type = "boolean",
@@ -2588,6 +2719,7 @@ M.DataValue = {
 
 M.PropertyFilter = {
     type = "structure",
+    id = "PropertyFilter",
     members = {
         propertyName = {
             type = "string",
@@ -2601,6 +2733,7 @@ M.PropertyFilter = {
 
 M.PropertyLatestValue = {
     type = "structure",
+    id = "PropertyLatestValue",
     members = {
         propertyReference = setmetatable({ traits = {
             required = true,
@@ -2611,6 +2744,7 @@ M.PropertyLatestValue = {
 
 M.PropertyValue = {
     type = "structure",
+    id = "PropertyValue",
     members = {
         timestamp = {
             type = "timestamp",
@@ -2626,6 +2760,7 @@ M.PropertyValue = {
 
 M.DataType = {
     type = "structure",
+    id = "DataType",
     members = {
         type = {
             type = "string",
@@ -2647,6 +2782,7 @@ M.DataType = {
 
 M.GetPropertyValueHistoryInput = {
     type = "structure",
+    id = "GetPropertyValueHistoryInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2705,6 +2841,7 @@ M.GetPropertyValueHistoryInput = {
 
 M.PropertyValueEntry = {
     type = "structure",
+    id = "PropertyValueEntry",
     members = {
         entityPropertyReference = setmetatable({ traits = {
             required = true,
@@ -2718,6 +2855,7 @@ M.PropertyValueEntry = {
 
 M.PropertyValueHistory = {
     type = "structure",
+    id = "PropertyValueHistory",
     members = {
         entityPropertyReference = setmetatable({ traits = {
             required = true,
@@ -2731,6 +2869,7 @@ M.PropertyValueHistory = {
 
 M.TabularConditions = {
     type = "structure",
+    id = "TabularConditions",
     members = {
         orderBy = {
             type = "list",
@@ -2745,6 +2884,7 @@ M.TabularConditions = {
 
 M.BatchPutPropertyError = {
     type = "structure",
+    id = "BatchPutPropertyError",
     members = {
         errorCode = {
             type = "string",
@@ -2766,6 +2906,7 @@ M.BatchPutPropertyError = {
 
 M.GetPropertyValueInput = {
     type = "structure",
+    id = "GetPropertyValueInput",
     members = {
         componentName = {
             type = "string",
@@ -2808,6 +2949,7 @@ M.GetPropertyValueInput = {
 
 M.BatchPutPropertyValuesInput = {
     type = "structure",
+    id = "BatchPutPropertyValuesInput",
     members = {
         workspaceId = {
             type = "string",
@@ -2828,6 +2970,7 @@ M.BatchPutPropertyValuesInput = {
 
 M.GetPropertyValueHistoryOutput = {
     type = "structure",
+    id = "GetPropertyValueHistoryOutput",
     members = {
         propertyValues = {
             type = "list",
@@ -2844,6 +2987,7 @@ M.GetPropertyValueHistoryOutput = {
 
 M.BatchPutPropertyErrorEntry = {
     type = "structure",
+    id = "BatchPutPropertyErrorEntry",
     members = {
         errors = {
             type = "list",
@@ -2857,6 +3001,7 @@ M.BatchPutPropertyErrorEntry = {
 
 M.PropertyDefinitionRequest = {
     type = "structure",
+    id = "PropertyDefinitionRequest",
     members = {
         dataType = M.DataType,
         isRequiredInEntity = {
@@ -2885,6 +3030,7 @@ M.PropertyDefinitionRequest = {
 
 M.PropertyDefinitionResponse = {
     type = "structure",
+    id = "PropertyDefinitionResponse",
     members = {
         dataType = setmetatable({ traits = {
             required = true,
@@ -2945,6 +3091,7 @@ M.PropertyDefinitionResponse = {
 
 M.BatchPutPropertyValuesOutput = {
     type = "structure",
+    id = "BatchPutPropertyValuesOutput",
     members = {
         errorEntries = {
             type = "list",
@@ -2958,6 +3105,7 @@ M.BatchPutPropertyValuesOutput = {
 
 M.GetPropertyValueOutput = {
     type = "structure",
+    id = "GetPropertyValueOutput",
     members = {
         propertyValues = {
             type = "map",
@@ -2976,6 +3124,7 @@ M.GetPropertyValueOutput = {
 
 M.CreateComponentTypeInput = {
     type = "structure",
+    id = "CreateComponentTypeInput",
     members = {
         workspaceId = {
             type = "string",
@@ -3034,6 +3183,7 @@ M.CreateComponentTypeInput = {
 
 M.GetComponentTypeOutput = {
     type = "structure",
+    id = "GetComponentTypeOutput",
     members = {
         workspaceId = {
             type = "string",
@@ -3113,6 +3263,7 @@ M.GetComponentTypeOutput = {
 
 M.UpdateComponentTypeInput = {
     type = "structure",
+    id = "UpdateComponentTypeInput",
     members = {
         workspaceId = {
             type = "string",
@@ -3166,6 +3317,7 @@ M.UpdateComponentTypeInput = {
 
 M.PropertyRequest = {
     type = "structure",
+    id = "PropertyRequest",
     members = {
         definition = M.PropertyDefinitionRequest,
         value = M.DataValue,
@@ -3177,6 +3329,7 @@ M.PropertyRequest = {
 
 M.PropertyResponse = {
     type = "structure",
+    id = "PropertyResponse",
     members = {
         definition = M.PropertyDefinitionResponse,
         value = M.DataValue,
@@ -3188,6 +3341,7 @@ M.PropertyResponse = {
 
 M.PropertySummary = {
     type = "structure",
+    id = "PropertySummary",
     members = {
         definition = M.PropertyDefinitionResponse,
         propertyName = {
@@ -3205,6 +3359,7 @@ M.PropertySummary = {
 
 M.ComponentRequest = {
     type = "structure",
+    id = "ComponentRequest",
     members = {
         description = {
             type = "string",
@@ -3227,6 +3382,7 @@ M.ComponentRequest = {
 
 M.ComponentResponse = {
     type = "structure",
+    id = "ComponentResponse",
     members = {
         componentName = {
             type = "string",
@@ -3270,6 +3426,7 @@ M.ComponentResponse = {
 
 M.ComponentUpdateRequest = {
     type = "structure",
+    id = "ComponentUpdateRequest",
     members = {
         updateType = {
             type = "string",
@@ -3295,6 +3452,7 @@ M.ComponentUpdateRequest = {
 
 M.CompositeComponentRequest = {
     type = "structure",
+    id = "CompositeComponentRequest",
     members = {
         description = {
             type = "string",
@@ -3314,6 +3472,7 @@ M.CompositeComponentRequest = {
 
 M.CompositeComponentUpdateRequest = {
     type = "structure",
+    id = "CompositeComponentUpdateRequest",
     members = {
         updateType = {
             type = "string",
@@ -3336,6 +3495,7 @@ M.CompositeComponentUpdateRequest = {
 
 M.ListPropertiesOutput = {
     type = "structure",
+    id = "ListPropertiesOutput",
     members = {
         propertySummaries = {
             type = "list",
@@ -3352,6 +3512,7 @@ M.ListPropertiesOutput = {
 
 M.GetEntityOutput = {
     type = "structure",
+    id = "GetEntityOutput",
     members = {
         entityId = {
             type = "string",
@@ -3423,6 +3584,7 @@ M.GetEntityOutput = {
 
 M.CreateEntityInput = {
     type = "structure",
+    id = "CreateEntityInput",
     members = {
         workspaceId = {
             type = "string",
@@ -3466,6 +3628,7 @@ M.CreateEntityInput = {
 
 M.UpdateEntityInput = {
     type = "structure",
+    id = "UpdateEntityInput",
     members = {
         workspaceId = {
             type = "string",

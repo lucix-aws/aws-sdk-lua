@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptDomainTransferFromAnotherAwsAccountInput = {
     type = "structure",
+    id = "AcceptDomainTransferFromAnotherAwsAccountInput",
     members = {
         DomainName = {
             type = "string",
@@ -20,6 +21,7 @@ M.AcceptDomainTransferFromAnotherAwsAccountInput = {
 
 M.AcceptDomainTransferFromAnotherAwsAccountOutput = {
     type = "structure",
+    id = "AcceptDomainTransferFromAnotherAwsAccountOutput",
     members = {
         OperationId = {
             type = "string",
@@ -29,6 +31,7 @@ M.AcceptDomainTransferFromAnotherAwsAccountOutput = {
 
 M.DomainLimitExceeded = {
     type = "structure",
+    id = "DomainLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -39,6 +42,7 @@ M.DomainLimitExceeded = {
 
 M.InvalidInput = {
     type = "structure",
+    id = "InvalidInput",
     error = "client",
     members = {
         message = {
@@ -49,6 +53,7 @@ M.InvalidInput = {
 
 M.OperationLimitExceeded = {
     type = "structure",
+    id = "OperationLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -59,6 +64,7 @@ M.OperationLimitExceeded = {
 
 M.UnsupportedTLD = {
     type = "structure",
+    id = "UnsupportedTLD",
     error = "client",
     members = {
         message = {
@@ -69,6 +75,7 @@ M.UnsupportedTLD = {
 
 M.DnssecSigningAttributes = {
     type = "structure",
+    id = "DnssecSigningAttributes",
     members = {
         Algorithm = {
             type = "integer",
@@ -84,6 +91,7 @@ M.DnssecSigningAttributes = {
 
 M.AssociateDelegationSignerToDomainInput = {
     type = "structure",
+    id = "AssociateDelegationSignerToDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -99,6 +107,7 @@ M.AssociateDelegationSignerToDomainInput = {
 
 M.AssociateDelegationSignerToDomainOutput = {
     type = "structure",
+    id = "AssociateDelegationSignerToDomainOutput",
     members = {
         OperationId = {
             type = "string",
@@ -108,6 +117,7 @@ M.AssociateDelegationSignerToDomainOutput = {
 
 M.DnssecLimitExceeded = {
     type = "structure",
+    id = "DnssecLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -118,6 +128,7 @@ M.DnssecLimitExceeded = {
 
 M.DuplicateRequest = {
     type = "structure",
+    id = "DuplicateRequest",
     error = "client",
     members = {
         requestId = {
@@ -131,6 +142,7 @@ M.DuplicateRequest = {
 
 M.TLDRulesViolation = {
     type = "structure",
+    id = "TLDRulesViolation",
     error = "client",
     members = {
         message = {
@@ -165,6 +177,7 @@ M.OperationType = {
 
 M.BillingRecord = {
     type = "structure",
+    id = "BillingRecord",
     members = {
         DomainName = {
             type = "string",
@@ -189,6 +202,7 @@ M.BillingRecord = {
 
 M.CancelDomainTransferToAnotherAwsAccountInput = {
     type = "structure",
+    id = "CancelDomainTransferToAnotherAwsAccountInput",
     members = {
         DomainName = {
             type = "string",
@@ -201,6 +215,7 @@ M.CancelDomainTransferToAnotherAwsAccountInput = {
 
 M.CancelDomainTransferToAnotherAwsAccountOutput = {
     type = "structure",
+    id = "CancelDomainTransferToAnotherAwsAccountOutput",
     members = {
         OperationId = {
             type = "string",
@@ -210,6 +225,7 @@ M.CancelDomainTransferToAnotherAwsAccountOutput = {
 
 M.CheckDomainAvailabilityInput = {
     type = "structure",
+    id = "CheckDomainAvailabilityInput",
     members = {
         DomainName = {
             type = "string",
@@ -238,6 +254,7 @@ M.DomainAvailability = {
 
 M.CheckDomainAvailabilityOutput = {
     type = "structure",
+    id = "CheckDomainAvailabilityOutput",
     members = {
         Availability = {
             type = "string",
@@ -247,6 +264,7 @@ M.CheckDomainAvailabilityOutput = {
 
 M.CheckDomainTransferabilityInput = {
     type = "structure",
+    id = "CheckDomainTransferabilityInput",
     members = {
         DomainName = {
             type = "string",
@@ -271,6 +289,7 @@ M.Transferable = {
 
 M.DomainTransferability = {
     type = "structure",
+    id = "DomainTransferability",
     members = {
         Transferable = {
             type = "string",
@@ -280,6 +299,7 @@ M.DomainTransferability = {
 
 M.CheckDomainTransferabilityOutput = {
     type = "structure",
+    id = "CheckDomainTransferabilityOutput",
     members = {
         Transferability = M.DomainTransferability,
         Message = {
@@ -290,6 +310,7 @@ M.CheckDomainTransferabilityOutput = {
 
 M.Consent = {
     type = "structure",
+    id = "Consent",
     members = {
         MaxPrice = {
             type = "double",
@@ -608,6 +629,7 @@ M.ExtraParamName = {
 
 M.ExtraParam = {
     type = "structure",
+    id = "ExtraParam",
     members = {
         Name = {
             type = "string",
@@ -626,6 +648,7 @@ M.ExtraParam = {
 
 M.ContactDetail = {
     type = "structure",
+    id = "ContactDetail",
     members = {
         FirstName = {
             type = "string",
@@ -675,6 +698,7 @@ M.ContactDetail = {
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -687,6 +711,7 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
     members = {
         OperationId = {
             type = "string",
@@ -696,6 +721,7 @@ M.DeleteDomainOutput = {
 
 M.DeleteTagsForDomainInput = {
     type = "structure",
+    id = "DeleteTagsForDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -715,10 +741,12 @@ M.DeleteTagsForDomainInput = {
 
 M.DeleteTagsForDomainOutput = {
     type = "structure",
+    id = "DeleteTagsForDomainOutput",
 }
 
 M.DisableDomainAutoRenewInput = {
     type = "structure",
+    id = "DisableDomainAutoRenewInput",
     members = {
         DomainName = {
             type = "string",
@@ -731,10 +759,12 @@ M.DisableDomainAutoRenewInput = {
 
 M.DisableDomainAutoRenewOutput = {
     type = "structure",
+    id = "DisableDomainAutoRenewOutput",
 }
 
 M.DisableDomainTransferLockInput = {
     type = "structure",
+    id = "DisableDomainTransferLockInput",
     members = {
         DomainName = {
             type = "string",
@@ -747,6 +777,7 @@ M.DisableDomainTransferLockInput = {
 
 M.DisableDomainTransferLockOutput = {
     type = "structure",
+    id = "DisableDomainTransferLockOutput",
     members = {
         OperationId = {
             type = "string",
@@ -756,6 +787,7 @@ M.DisableDomainTransferLockOutput = {
 
 M.DisassociateDelegationSignerFromDomainInput = {
     type = "structure",
+    id = "DisassociateDelegationSignerFromDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -774,6 +806,7 @@ M.DisassociateDelegationSignerFromDomainInput = {
 
 M.DisassociateDelegationSignerFromDomainOutput = {
     type = "structure",
+    id = "DisassociateDelegationSignerFromDomainOutput",
     members = {
         OperationId = {
             type = "string",
@@ -783,6 +816,7 @@ M.DisassociateDelegationSignerFromDomainOutput = {
 
 M.DnssecKey = {
     type = "structure",
+    id = "DnssecKey",
     members = {
         Algorithm = {
             type = "integer",
@@ -810,6 +844,7 @@ M.DnssecKey = {
 
 M.PriceWithCurrency = {
     type = "structure",
+    id = "PriceWithCurrency",
     members = {
         Price = {
             type = "double",
@@ -829,6 +864,7 @@ M.PriceWithCurrency = {
 
 M.DomainPrice = {
     type = "structure",
+    id = "DomainPrice",
     members = {
         Name = {
             type = "string",
@@ -843,6 +879,7 @@ M.DomainPrice = {
 
 M.DomainSuggestion = {
     type = "structure",
+    id = "DomainSuggestion",
     members = {
         DomainName = {
             type = "string",
@@ -855,6 +892,7 @@ M.DomainSuggestion = {
 
 M.DomainSummary = {
     type = "structure",
+    id = "DomainSummary",
     members = {
         DomainName = {
             type = "string",
@@ -873,6 +911,7 @@ M.DomainSummary = {
 
 M.EnableDomainAutoRenewInput = {
     type = "structure",
+    id = "EnableDomainAutoRenewInput",
     members = {
         DomainName = {
             type = "string",
@@ -885,10 +924,12 @@ M.EnableDomainAutoRenewInput = {
 
 M.EnableDomainAutoRenewOutput = {
     type = "structure",
+    id = "EnableDomainAutoRenewOutput",
 }
 
 M.EnableDomainTransferLockInput = {
     type = "structure",
+    id = "EnableDomainTransferLockInput",
     members = {
         DomainName = {
             type = "string",
@@ -901,6 +942,7 @@ M.EnableDomainTransferLockInput = {
 
 M.EnableDomainTransferLockOutput = {
     type = "structure",
+    id = "EnableDomainTransferLockOutput",
     members = {
         OperationId = {
             type = "string",
@@ -921,6 +963,7 @@ M.Operator = {
 
 M.FilterCondition = {
     type = "structure",
+    id = "FilterCondition",
     members = {
         Name = {
             type = "string",
@@ -946,6 +989,7 @@ M.FilterCondition = {
 
 M.GetContactReachabilityStatusInput = {
     type = "structure",
+    id = "GetContactReachabilityStatusInput",
     members = {
         domainName = {
             type = "string",
@@ -961,6 +1005,7 @@ M.ReachabilityStatus = {
 
 M.GetContactReachabilityStatusOutput = {
     type = "structure",
+    id = "GetContactReachabilityStatusOutput",
     members = {
         domainName = {
             type = "string",
@@ -973,6 +1018,7 @@ M.GetContactReachabilityStatusOutput = {
 
 M.GetDomainDetailInput = {
     type = "structure",
+    id = "GetDomainDetailInput",
     members = {
         DomainName = {
             type = "string",
@@ -985,6 +1031,7 @@ M.GetDomainDetailInput = {
 
 M.Nameserver = {
     type = "structure",
+    id = "Nameserver",
     members = {
         Name = {
             type = "string",
@@ -1001,6 +1048,7 @@ M.Nameserver = {
 
 M.GetDomainDetailOutput = {
     type = "structure",
+    id = "GetDomainDetailOutput",
     members = {
         DomainName = {
             type = "string",
@@ -1074,6 +1122,7 @@ M.GetDomainDetailOutput = {
 
 M.GetDomainSuggestionsInput = {
     type = "structure",
+    id = "GetDomainSuggestionsInput",
     members = {
         DomainName = {
             type = "string",
@@ -1099,6 +1148,7 @@ M.GetDomainSuggestionsInput = {
 
 M.GetDomainSuggestionsOutput = {
     type = "structure",
+    id = "GetDomainSuggestionsOutput",
     members = {
         SuggestionsList = {
             type = "list",
@@ -1109,6 +1159,7 @@ M.GetDomainSuggestionsOutput = {
 
 M.GetOperationDetailInput = {
     type = "structure",
+    id = "GetOperationDetailInput",
     members = {
         OperationId = {
             type = "string",
@@ -1137,6 +1188,7 @@ M.StatusFlag = {
 
 M.GetOperationDetailOutput = {
     type = "structure",
+    id = "GetOperationDetailOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1172,6 +1224,7 @@ M.SortOrder = {
 
 M.SortCondition = {
     type = "structure",
+    id = "SortCondition",
     members = {
         Name = {
             type = "string",
@@ -1190,6 +1243,7 @@ M.SortCondition = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         FilterConditions = {
             type = "list",
@@ -1207,6 +1261,7 @@ M.ListDomainsInput = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         Domains = {
             type = "list",
@@ -1224,6 +1279,7 @@ M.ListOperationsSortAttributeName = {
 
 M.ListOperationsInput = {
     type = "structure",
+    id = "ListOperationsInput",
     members = {
         SubmittedSince = {
             type = "timestamp",
@@ -1253,6 +1309,7 @@ M.ListOperationsInput = {
 
 M.OperationSummary = {
     type = "structure",
+    id = "OperationSummary",
     members = {
         OperationId = {
             type = "string",
@@ -1283,6 +1340,7 @@ M.OperationSummary = {
 
 M.ListOperationsOutput = {
     type = "structure",
+    id = "ListOperationsOutput",
     members = {
         Operations = {
             type = "list",
@@ -1296,6 +1354,7 @@ M.ListOperationsOutput = {
 
 M.ListPricesInput = {
     type = "structure",
+    id = "ListPricesInput",
     members = {
         Tld = {
             type = "string",
@@ -1311,6 +1370,7 @@ M.ListPricesInput = {
 
 M.ListPricesOutput = {
     type = "structure",
+    id = "ListPricesOutput",
     members = {
         Prices = {
             type = "list",
@@ -1324,6 +1384,7 @@ M.ListPricesOutput = {
 
 M.ListTagsForDomainInput = {
     type = "structure",
+    id = "ListTagsForDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1336,6 +1397,7 @@ M.ListTagsForDomainInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1348,6 +1410,7 @@ M.Tag = {
 
 M.ListTagsForDomainOutput = {
     type = "structure",
+    id = "ListTagsForDomainOutput",
     members = {
         TagList = {
             type = "list",
@@ -1358,6 +1421,7 @@ M.ListTagsForDomainOutput = {
 
 M.PushDomainInput = {
     type = "structure",
+    id = "PushDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1376,10 +1440,12 @@ M.PushDomainInput = {
 
 M.PushDomainOutput = {
     type = "structure",
+    id = "PushDomainOutput",
 }
 
 M.RegisterDomainInput = {
     type = "structure",
+    id = "RegisterDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1426,6 +1492,7 @@ M.RegisterDomainInput = {
 
 M.RegisterDomainOutput = {
     type = "structure",
+    id = "RegisterDomainOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1435,6 +1502,7 @@ M.RegisterDomainOutput = {
 
 M.RejectDomainTransferFromAnotherAwsAccountInput = {
     type = "structure",
+    id = "RejectDomainTransferFromAnotherAwsAccountInput",
     members = {
         DomainName = {
             type = "string",
@@ -1447,6 +1515,7 @@ M.RejectDomainTransferFromAnotherAwsAccountInput = {
 
 M.RejectDomainTransferFromAnotherAwsAccountOutput = {
     type = "structure",
+    id = "RejectDomainTransferFromAnotherAwsAccountOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1456,6 +1525,7 @@ M.RejectDomainTransferFromAnotherAwsAccountOutput = {
 
 M.RenewDomainInput = {
     type = "structure",
+    id = "RenewDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1478,6 +1548,7 @@ M.RenewDomainInput = {
 
 M.RenewDomainOutput = {
     type = "structure",
+    id = "RenewDomainOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1487,6 +1558,7 @@ M.RenewDomainOutput = {
 
 M.ResendContactReachabilityEmailInput = {
     type = "structure",
+    id = "ResendContactReachabilityEmailInput",
     members = {
         domainName = {
             type = "string",
@@ -1496,6 +1568,7 @@ M.ResendContactReachabilityEmailInput = {
 
 M.ResendContactReachabilityEmailOutput = {
     type = "structure",
+    id = "ResendContactReachabilityEmailOutput",
     members = {
         domainName = {
             type = "string",
@@ -1511,6 +1584,7 @@ M.ResendContactReachabilityEmailOutput = {
 
 M.ResendOperationAuthorizationInput = {
     type = "structure",
+    id = "ResendOperationAuthorizationInput",
     members = {
         OperationId = {
             type = "string",
@@ -1523,10 +1597,12 @@ M.ResendOperationAuthorizationInput = {
 
 M.ResendOperationAuthorizationOutput = {
     type = "structure",
+    id = "ResendOperationAuthorizationOutput",
 }
 
 M.RetrieveDomainAuthCodeInput = {
     type = "structure",
+    id = "RetrieveDomainAuthCodeInput",
     members = {
         DomainName = {
             type = "string",
@@ -1539,6 +1615,7 @@ M.RetrieveDomainAuthCodeInput = {
 
 M.RetrieveDomainAuthCodeOutput = {
     type = "structure",
+    id = "RetrieveDomainAuthCodeOutput",
     members = {
         AuthCode = {
             type = "string",
@@ -1548,6 +1625,7 @@ M.RetrieveDomainAuthCodeOutput = {
 
 M.TransferDomainInput = {
     type = "structure",
+    id = "TransferDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1601,6 +1679,7 @@ M.TransferDomainInput = {
 
 M.TransferDomainOutput = {
     type = "structure",
+    id = "TransferDomainOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1610,6 +1689,7 @@ M.TransferDomainOutput = {
 
 M.TransferDomainToAnotherAwsAccountInput = {
     type = "structure",
+    id = "TransferDomainToAnotherAwsAccountInput",
     members = {
         DomainName = {
             type = "string",
@@ -1628,6 +1708,7 @@ M.TransferDomainToAnotherAwsAccountInput = {
 
 M.TransferDomainToAnotherAwsAccountOutput = {
     type = "structure",
+    id = "TransferDomainToAnotherAwsAccountOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1640,6 +1721,7 @@ M.TransferDomainToAnotherAwsAccountOutput = {
 
 M.UpdateDomainContactInput = {
     type = "structure",
+    id = "UpdateDomainContactInput",
     members = {
         DomainName = {
             type = "string",
@@ -1657,6 +1739,7 @@ M.UpdateDomainContactInput = {
 
 M.UpdateDomainContactOutput = {
     type = "structure",
+    id = "UpdateDomainContactOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1666,6 +1749,7 @@ M.UpdateDomainContactOutput = {
 
 M.UpdateDomainContactPrivacyInput = {
     type = "structure",
+    id = "UpdateDomainContactPrivacyInput",
     members = {
         DomainName = {
             type = "string",
@@ -1690,6 +1774,7 @@ M.UpdateDomainContactPrivacyInput = {
 
 M.UpdateDomainContactPrivacyOutput = {
     type = "structure",
+    id = "UpdateDomainContactPrivacyOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1699,6 +1784,7 @@ M.UpdateDomainContactPrivacyOutput = {
 
 M.UpdateDomainNameserversInput = {
     type = "structure",
+    id = "UpdateDomainNameserversInput",
     members = {
         DomainName = {
             type = "string",
@@ -1721,6 +1807,7 @@ M.UpdateDomainNameserversInput = {
 
 M.UpdateDomainNameserversOutput = {
     type = "structure",
+    id = "UpdateDomainNameserversOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1730,6 +1817,7 @@ M.UpdateDomainNameserversOutput = {
 
 M.UpdateTagsForDomainInput = {
     type = "structure",
+    id = "UpdateTagsForDomainInput",
     members = {
         DomainName = {
             type = "string",
@@ -1746,10 +1834,12 @@ M.UpdateTagsForDomainInput = {
 
 M.UpdateTagsForDomainOutput = {
     type = "structure",
+    id = "UpdateTagsForDomainOutput",
 }
 
 M.ViewBillingInput = {
     type = "structure",
+    id = "ViewBillingInput",
     members = {
         Start = {
             type = "timestamp",
@@ -1768,6 +1858,7 @@ M.ViewBillingInput = {
 
 M.ViewBillingOutput = {
     type = "structure",
+    id = "ViewBillingOutput",
     members = {
         NextPageMarker = {
             type = "string",

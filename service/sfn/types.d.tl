@@ -1210,23 +1210,23 @@ local record ValidationException
     reason: string
 end
 
-local type MapRunStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "ABORTED"
+local type SyncExecutionStatus = "SUCCEEDED" | "FAILED" | "TIMED_OUT"
 
-local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
+local type InspectionLevel = "INFO" | "DEBUG" | "TRACE"
+
+local type StateMachineType = "STANDARD" | "EXPRESS"
 
 local type StateMachineStatus = "ACTIVE" | "DELETING"
 
 local type ValidateStateMachineDefinitionSeverity = "ERROR" | "WARNING"
 
-local type StateMachineType = "STANDARD" | "EXPRESS"
-
 local type ExecutionRedriveFilter = "REDRIVEN" | "NOT_REDRIVEN"
+
+local type MapRunStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "ABORTED"
 
 local type ExecutionStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "ABORTED" | "PENDING_REDRIVE"
 
-local type SyncExecutionStatus = "SUCCEEDED" | "FAILED" | "TIMED_OUT"
-
-local type InspectionLevel = "INFO" | "DEBUG" | "TRACE"
+local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
 
 local type IncludedData = "ALL_DATA" | "METADATA_ONLY"
 

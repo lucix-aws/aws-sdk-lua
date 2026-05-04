@@ -2,6 +2,7 @@ local M = {}
 
 M.AlreadyExistsException = {
     type = "structure",
+    id = "AlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AlreadyExistsException = {
 
 M.CancelResourceRequestInput = {
     type = "structure",
+    id = "CancelResourceRequestInput",
     members = {
         RequestToken = {
             type = "string",
@@ -58,6 +60,7 @@ M.OperationStatus = {
 
 M.ProgressEvent = {
     type = "structure",
+    id = "ProgressEvent",
     members = {
         TypeName = {
             type = "string",
@@ -97,6 +100,7 @@ M.ProgressEvent = {
 
 M.CancelResourceRequestOutput = {
     type = "structure",
+    id = "CancelResourceRequestOutput",
     members = {
         ProgressEvent = M.ProgressEvent,
     },
@@ -104,6 +108,7 @@ M.CancelResourceRequestOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "server",
     members = {
         Message = {
@@ -114,6 +119,7 @@ M.ConcurrentModificationException = {
 
 M.RequestTokenNotFoundException = {
     type = "structure",
+    id = "RequestTokenNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -124,6 +130,7 @@ M.RequestTokenNotFoundException = {
 
 M.ClientTokenConflictException = {
     type = "structure",
+    id = "ClientTokenConflictException",
     error = "client",
     members = {
         Message = {
@@ -134,6 +141,7 @@ M.ClientTokenConflictException = {
 
 M.ConcurrentOperationException = {
     type = "structure",
+    id = "ConcurrentOperationException",
     error = "client",
     members = {
         Message = {
@@ -144,6 +152,7 @@ M.ConcurrentOperationException = {
 
 M.CreateResourceInput = {
     type = "structure",
+    id = "CreateResourceInput",
     members = {
         TypeName = {
             type = "string",
@@ -174,6 +183,7 @@ M.CreateResourceInput = {
 
 M.CreateResourceOutput = {
     type = "structure",
+    id = "CreateResourceOutput",
     members = {
         ProgressEvent = M.ProgressEvent,
     },
@@ -181,6 +191,7 @@ M.CreateResourceOutput = {
 
 M.GeneralServiceException = {
     type = "structure",
+    id = "GeneralServiceException",
     error = "client",
     members = {
         Message = {
@@ -191,6 +202,7 @@ M.GeneralServiceException = {
 
 M.HandlerFailureException = {
     type = "structure",
+    id = "HandlerFailureException",
     error = "server",
     members = {
         Message = {
@@ -201,6 +213,7 @@ M.HandlerFailureException = {
 
 M.HandlerInternalFailureException = {
     type = "structure",
+    id = "HandlerInternalFailureException",
     error = "server",
     members = {
         Message = {
@@ -211,6 +224,7 @@ M.HandlerInternalFailureException = {
 
 M.InvalidCredentialsException = {
     type = "structure",
+    id = "InvalidCredentialsException",
     error = "client",
     members = {
         Message = {
@@ -221,6 +235,7 @@ M.InvalidCredentialsException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -231,6 +246,7 @@ M.InvalidRequestException = {
 
 M.NetworkFailureException = {
     type = "structure",
+    id = "NetworkFailureException",
     error = "server",
     members = {
         Message = {
@@ -241,6 +257,7 @@ M.NetworkFailureException = {
 
 M.NotStabilizedException = {
     type = "structure",
+    id = "NotStabilizedException",
     error = "client",
     members = {
         Message = {
@@ -251,6 +268,7 @@ M.NotStabilizedException = {
 
 M.NotUpdatableException = {
     type = "structure",
+    id = "NotUpdatableException",
     error = "client",
     members = {
         Message = {
@@ -261,6 +279,7 @@ M.NotUpdatableException = {
 
 M.PrivateTypeException = {
     type = "structure",
+    id = "PrivateTypeException",
     error = "client",
     members = {
         Message = {
@@ -271,6 +290,7 @@ M.PrivateTypeException = {
 
 M.ResourceConflictException = {
     type = "structure",
+    id = "ResourceConflictException",
     error = "client",
     members = {
         Message = {
@@ -281,6 +301,7 @@ M.ResourceConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -291,6 +312,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceInternalErrorException = {
     type = "structure",
+    id = "ServiceInternalErrorException",
     error = "server",
     members = {
         Message = {
@@ -301,6 +323,7 @@ M.ServiceInternalErrorException = {
 
 M.ServiceLimitExceededException = {
     type = "structure",
+    id = "ServiceLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -311,6 +334,7 @@ M.ServiceLimitExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -321,6 +345,7 @@ M.ThrottlingException = {
 
 M.TypeNotFoundException = {
     type = "structure",
+    id = "TypeNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -331,6 +356,7 @@ M.TypeNotFoundException = {
 
 M.UnsupportedActionException = {
     type = "structure",
+    id = "UnsupportedActionException",
     error = "client",
     members = {
         Message = {
@@ -341,6 +367,7 @@ M.UnsupportedActionException = {
 
 M.DeleteResourceInput = {
     type = "structure",
+    id = "DeleteResourceInput",
     members = {
         TypeName = {
             type = "string",
@@ -371,6 +398,7 @@ M.DeleteResourceInput = {
 
 M.DeleteResourceOutput = {
     type = "structure",
+    id = "DeleteResourceOutput",
     members = {
         ProgressEvent = M.ProgressEvent,
     },
@@ -378,6 +406,7 @@ M.DeleteResourceOutput = {
 
 M.GetResourceInput = {
     type = "structure",
+    id = "GetResourceInput",
     members = {
         TypeName = {
             type = "string",
@@ -402,6 +431,7 @@ M.GetResourceInput = {
 
 M.ResourceDescription = {
     type = "structure",
+    id = "ResourceDescription",
     members = {
         Identifier = {
             type = "string",
@@ -414,6 +444,7 @@ M.ResourceDescription = {
 
 M.GetResourceOutput = {
     type = "structure",
+    id = "GetResourceOutput",
     members = {
         TypeName = {
             type = "string",
@@ -424,6 +455,7 @@ M.GetResourceOutput = {
 
 M.GetResourceRequestStatusInput = {
     type = "structure",
+    id = "GetResourceRequestStatusInput",
     members = {
         RequestToken = {
             type = "string",
@@ -436,6 +468,7 @@ M.GetResourceRequestStatusInput = {
 
 M.HookProgressEvent = {
     type = "structure",
+    id = "HookProgressEvent",
     members = {
         HookTypeName = {
             type = "string",
@@ -466,6 +499,7 @@ M.HookProgressEvent = {
 
 M.GetResourceRequestStatusOutput = {
     type = "structure",
+    id = "GetResourceRequestStatusOutput",
     members = {
         ProgressEvent = M.ProgressEvent,
         HooksProgressEvent = {
@@ -477,6 +511,7 @@ M.GetResourceRequestStatusOutput = {
 
 M.ResourceRequestStatusFilter = {
     type = "structure",
+    id = "ResourceRequestStatusFilter",
     members = {
         Operations = {
             type = "list",
@@ -491,6 +526,7 @@ M.ResourceRequestStatusFilter = {
 
 M.ListResourceRequestsInput = {
     type = "structure",
+    id = "ListResourceRequestsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -504,6 +540,7 @@ M.ListResourceRequestsInput = {
 
 M.ListResourceRequestsOutput = {
     type = "structure",
+    id = "ListResourceRequestsOutput",
     members = {
         ResourceRequestStatusSummaries = {
             type = "list",
@@ -517,6 +554,7 @@ M.ListResourceRequestsOutput = {
 
 M.ListResourcesInput = {
     type = "structure",
+    id = "ListResourcesInput",
     members = {
         TypeName = {
             type = "string",
@@ -544,6 +582,7 @@ M.ListResourcesInput = {
 
 M.ListResourcesOutput = {
     type = "structure",
+    id = "ListResourcesOutput",
     members = {
         TypeName = {
             type = "string",
@@ -560,6 +599,7 @@ M.ListResourcesOutput = {
 
 M.UpdateResourceInput = {
     type = "structure",
+    id = "UpdateResourceInput",
     members = {
         TypeName = {
             type = "string",
@@ -596,6 +636,7 @@ M.UpdateResourceInput = {
 
 M.UpdateResourceOutput = {
     type = "structure",
+    id = "UpdateResourceOutput",
     members = {
         ProgressEvent = M.ProgressEvent,
     },

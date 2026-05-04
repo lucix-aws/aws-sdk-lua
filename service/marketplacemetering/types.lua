@@ -2,6 +2,7 @@ local M = {}
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -20,6 +21,7 @@ M.Tag = {
 
 M.UsageAllocation = {
     type = "structure",
+    id = "UsageAllocation",
     members = {
         AllocatedUsageQuantity = {
             type = "integer",
@@ -36,6 +38,7 @@ M.UsageAllocation = {
 
 M.UsageRecord = {
     type = "structure",
+    id = "UsageRecord",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -73,6 +76,7 @@ M.UsageRecord = {
 
 M.BatchMeterUsageInput = {
     type = "structure",
+    id = "BatchMeterUsageInput",
     members = {
         UsageRecords = {
             type = "list",
@@ -98,6 +102,7 @@ M.UsageRecordResultStatus = {
 
 M.UsageRecordResult = {
     type = "structure",
+    id = "UsageRecordResult",
     members = {
         UsageRecord = M.UsageRecord,
         MeteringRecordId = {
@@ -111,6 +116,7 @@ M.UsageRecordResult = {
 
 M.BatchMeterUsageOutput = {
     type = "structure",
+    id = "BatchMeterUsageOutput",
     members = {
         Results = {
             type = "list",
@@ -125,6 +131,7 @@ M.BatchMeterUsageOutput = {
 
 M.DisabledApiException = {
     type = "structure",
+    id = "DisabledApiException",
     error = "client",
     members = {
         message = {
@@ -135,6 +142,7 @@ M.DisabledApiException = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         message = {
@@ -145,6 +153,7 @@ M.InternalServiceErrorException = {
 
 M.InvalidCustomerIdentifierException = {
     type = "structure",
+    id = "InvalidCustomerIdentifierException",
     error = "client",
     members = {
         message = {
@@ -155,6 +164,7 @@ M.InvalidCustomerIdentifierException = {
 
 M.InvalidLicenseException = {
     type = "structure",
+    id = "InvalidLicenseException",
     error = "client",
     members = {
         message = {
@@ -165,6 +175,7 @@ M.InvalidLicenseException = {
 
 M.InvalidProductCodeException = {
     type = "structure",
+    id = "InvalidProductCodeException",
     error = "client",
     members = {
         message = {
@@ -175,6 +186,7 @@ M.InvalidProductCodeException = {
 
 M.InvalidTagException = {
     type = "structure",
+    id = "InvalidTagException",
     error = "client",
     members = {
         message = {
@@ -185,6 +197,7 @@ M.InvalidTagException = {
 
 M.InvalidUsageAllocationsException = {
     type = "structure",
+    id = "InvalidUsageAllocationsException",
     error = "client",
     members = {
         message = {
@@ -195,6 +208,7 @@ M.InvalidUsageAllocationsException = {
 
 M.InvalidUsageDimensionException = {
     type = "structure",
+    id = "InvalidUsageDimensionException",
     error = "client",
     members = {
         message = {
@@ -205,6 +219,7 @@ M.InvalidUsageDimensionException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -215,6 +230,7 @@ M.ThrottlingException = {
 
 M.TimestampOutOfBoundsException = {
     type = "structure",
+    id = "TimestampOutOfBoundsException",
     error = "client",
     members = {
         message = {
@@ -225,6 +241,7 @@ M.TimestampOutOfBoundsException = {
 
 M.CustomerNotEntitledException = {
     type = "structure",
+    id = "CustomerNotEntitledException",
     error = "client",
     members = {
         message = {
@@ -235,6 +252,7 @@ M.CustomerNotEntitledException = {
 
 M.DuplicateRequestException = {
     type = "structure",
+    id = "DuplicateRequestException",
     error = "client",
     members = {
         message = {
@@ -245,6 +263,7 @@ M.DuplicateRequestException = {
 
 M.IdempotencyConflictException = {
     type = "structure",
+    id = "IdempotencyConflictException",
     error = "client",
     members = {
         message = {
@@ -255,6 +274,7 @@ M.IdempotencyConflictException = {
 
 M.InvalidEndpointRegionException = {
     type = "structure",
+    id = "InvalidEndpointRegionException",
     error = "client",
     members = {
         message = {
@@ -265,6 +285,7 @@ M.InvalidEndpointRegionException = {
 
 M.MeterUsageInput = {
     type = "structure",
+    id = "MeterUsageInput",
     members = {
         ProductCode = {
             type = "string",
@@ -305,6 +326,7 @@ M.MeterUsageInput = {
 
 M.MeterUsageOutput = {
     type = "structure",
+    id = "MeterUsageOutput",
     members = {
         MeteringRecordId = {
             type = "string",
@@ -314,6 +336,7 @@ M.MeterUsageOutput = {
 
 M.InvalidPublicKeyVersionException = {
     type = "structure",
+    id = "InvalidPublicKeyVersionException",
     error = "client",
     members = {
         message = {
@@ -324,6 +347,7 @@ M.InvalidPublicKeyVersionException = {
 
 M.InvalidRegionException = {
     type = "structure",
+    id = "InvalidRegionException",
     error = "client",
     members = {
         message = {
@@ -334,6 +358,7 @@ M.InvalidRegionException = {
 
 M.PlatformNotSupportedException = {
     type = "structure",
+    id = "PlatformNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -344,6 +369,7 @@ M.PlatformNotSupportedException = {
 
 M.RegisterUsageInput = {
     type = "structure",
+    id = "RegisterUsageInput",
     members = {
         ProductCode = {
             type = "string",
@@ -365,6 +391,7 @@ M.RegisterUsageInput = {
 
 M.RegisterUsageOutput = {
     type = "structure",
+    id = "RegisterUsageOutput",
     members = {
         PublicKeyRotationTimestamp = {
             type = "timestamp",
@@ -377,6 +404,7 @@ M.RegisterUsageOutput = {
 
 M.ExpiredTokenException = {
     type = "structure",
+    id = "ExpiredTokenException",
     error = "client",
     members = {
         message = {
@@ -387,6 +415,7 @@ M.ExpiredTokenException = {
 
 M.InvalidTokenException = {
     type = "structure",
+    id = "InvalidTokenException",
     error = "client",
     members = {
         message = {
@@ -397,6 +426,7 @@ M.InvalidTokenException = {
 
 M.ResolveCustomerInput = {
     type = "structure",
+    id = "ResolveCustomerInput",
     members = {
         RegistrationToken = {
             type = "string",
@@ -409,6 +439,7 @@ M.ResolveCustomerInput = {
 
 M.ResolveCustomerOutput = {
     type = "structure",
+    id = "ResolveCustomerOutput",
     members = {
         CustomerIdentifier = {
             type = "string",

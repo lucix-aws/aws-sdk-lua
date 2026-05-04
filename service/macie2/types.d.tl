@@ -2790,23 +2790,23 @@ local record ValidationException
     message: string
 end
 
-local type MacieStatus = "PAUSED" | "ENABLED"
-
 local type TimeRange = "MONTH_TO_DATE" | "PAST_30_DAYS"
 
-local type AutoEnableMode = "ALL" | "NEW" | "NONE"
+local type GroupBy = "resourcesAffected.s3Bucket.name" | "type" | "classificationDetails.jobId" | "severity.description"
 
-local type FindingPublishingFrequency = "FIFTEEN_MINUTES" | "ONE_HOUR" | "SIX_HOURS"
+local type FindingsFilterAction = "ARCHIVE" | "NOOP"
 
 local type RevealRequestStatus = "SUCCESS" | "PROCESSING" | "ERROR"
 
 local type AutomatedDiscoveryStatus = "ENABLED" | "DISABLED"
 
-local type FindingsFilterAction = "ARCHIVE" | "NOOP"
+local type AutoEnableMode = "ALL" | "NEW" | "NONE"
 
-local type GroupBy = "resourcesAffected.s3Bucket.name" | "type" | "classificationDetails.jobId" | "severity.description"
+local type FindingPublishingFrequency = "FIFTEEN_MINUTES" | "ONE_HOUR" | "SIX_HOURS"
 
 local type RelationshipStatus = "Enabled" | "Paused" | "Invited" | "Created" | "Removed" | "Resigned" | "EmailVerificationInProgress" | "EmailVerificationFailed" | "RegionDisabled" | "AccountSuspended"
+
+local type MacieStatus = "PAUSED" | "ENABLED"
 
 local type JobType = "ONE_TIME" | "SCHEDULED"
 

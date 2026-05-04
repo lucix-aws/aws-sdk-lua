@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -17,6 +18,7 @@ M.ThresholdType = {
 
 M.ActionThreshold = {
     type = "structure",
+    id = "ActionThreshold",
     members = {
         ActionThresholdValue = {
             type = "double",
@@ -47,6 +49,7 @@ M.ApprovalModel = {
 
 M.IamActionDefinition = {
     type = "structure",
+    id = "IamActionDefinition",
     members = {
         PolicyArn = {
             type = "string",
@@ -71,6 +74,7 @@ M.IamActionDefinition = {
 
 M.ScpActionDefinition = {
     type = "structure",
+    id = "ScpActionDefinition",
     members = {
         PolicyId = {
             type = "string",
@@ -95,6 +99,7 @@ M.ActionSubType = {
 
 M.SsmActionDefinition = {
     type = "structure",
+    id = "SsmActionDefinition",
     members = {
         ActionSubType = {
             type = "string",
@@ -120,6 +125,7 @@ M.SsmActionDefinition = {
 
 M.Definition = {
     type = "structure",
+    id = "Definition",
     members = {
         IamActionDefinition = M.IamActionDefinition,
         ScpActionDefinition = M.ScpActionDefinition,
@@ -152,6 +158,7 @@ M.SubscriptionType = {
 
 M.Subscriber = {
     type = "structure",
+    id = "Subscriber",
     members = {
         SubscriptionType = {
             type = "string",
@@ -170,6 +177,7 @@ M.Subscriber = {
 
 M.Action = {
     type = "structure",
+    id = "Action",
     members = {
         ActionId = {
             type = "string",
@@ -231,6 +239,7 @@ M.Action = {
 
 M.ActionHistoryDetails = {
     type = "structure",
+    id = "ActionHistoryDetails",
     members = {
         Message = {
             type = "string",
@@ -254,6 +263,7 @@ M.EventType = {
 
 M.ActionHistory = {
     type = "structure",
+    id = "ActionHistory",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -286,6 +296,7 @@ M.AutoAdjustType = {
 
 M.HistoricalOptions = {
     type = "structure",
+    id = "HistoricalOptions",
     members = {
         BudgetAdjustmentPeriod = {
             type = "integer",
@@ -301,6 +312,7 @@ M.HistoricalOptions = {
 
 M.AutoAdjustData = {
     type = "structure",
+    id = "AutoAdjustData",
     members = {
         AutoAdjustType = {
             type = "string",
@@ -317,6 +329,7 @@ M.AutoAdjustData = {
 
 M.BillingViewHealthStatusException = {
     type = "structure",
+    id = "BillingViewHealthStatusException",
     error = "client",
     members = {
         Message = {
@@ -327,6 +340,7 @@ M.BillingViewHealthStatusException = {
 
 M.Spend = {
     type = "structure",
+    id = "Spend",
     members = {
         Amount = {
             type = "string",
@@ -354,6 +368,7 @@ M.BudgetType = {
 
 M.CalculatedSpend = {
     type = "structure",
+    id = "CalculatedSpend",
     members = {
         ActualSpend = setmetatable({ traits = {
             required = true,
@@ -364,6 +379,7 @@ M.CalculatedSpend = {
 
 M.CostTypes = {
     type = "structure",
+    id = "CostTypes",
     members = {
         IncludeTax = {
             type = "boolean",
@@ -414,6 +430,7 @@ M.MatchOption = {
 
 M.CostCategoryValues = {
     type = "structure",
+    id = "CostCategoryValues",
     members = {
         Key = {
             type = "string",
@@ -467,6 +484,7 @@ M.Dimension = {
 
 M.ExpressionDimensionValues = {
     type = "structure",
+    id = "ExpressionDimensionValues",
     members = {
         Key = {
             type = "string",
@@ -490,6 +508,7 @@ M.ExpressionDimensionValues = {
 
 M.TagValues = {
     type = "structure",
+    id = "TagValues",
     members = {
         Key = {
             type = "string",
@@ -519,6 +538,7 @@ M.HealthStatusReason = {
 
 M.HealthStatus = {
     type = "structure",
+    id = "HealthStatus",
     members = {
         Status = {
             type = "string",
@@ -545,6 +565,7 @@ M.Metric = {
 
 M.TimePeriod = {
     type = "structure",
+    id = "TimePeriod",
     members = {
         Start = {
             type = "timestamp",
@@ -576,6 +597,7 @@ M.NotificationState = {
 
 M.Notification = {
     type = "structure",
+    id = "Notification",
     members = {
         NotificationType = {
             type = "string",
@@ -607,6 +629,7 @@ M.Notification = {
 
 M.NotificationWithSubscribers = {
     type = "structure",
+    id = "NotificationWithSubscribers",
     members = {
         Notification = setmetatable({ traits = {
             required = true,
@@ -623,6 +646,7 @@ M.NotificationWithSubscribers = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         Key = {
             type = "string",
@@ -641,10 +665,12 @@ M.ResourceTag = {
 
 M.CreateBudgetOutput = {
     type = "structure",
+    id = "CreateBudgetOutput",
 }
 
 M.CreationLimitExceededException = {
     type = "structure",
+    id = "CreationLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -655,6 +681,7 @@ M.CreationLimitExceededException = {
 
 M.DuplicateRecordException = {
     type = "structure",
+    id = "DuplicateRecordException",
     error = "client",
     members = {
         Message = {
@@ -665,6 +692,7 @@ M.DuplicateRecordException = {
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         Message = {
@@ -675,6 +703,7 @@ M.InternalErrorException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -685,6 +714,7 @@ M.InvalidParameterException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -695,6 +725,7 @@ M.NotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -705,6 +736,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -715,6 +747,7 @@ M.ThrottlingException = {
 
 M.CreateBudgetActionInput = {
     type = "structure",
+    id = "CreateBudgetActionInput",
     members = {
         AccountId = {
             type = "string",
@@ -774,6 +807,7 @@ M.CreateBudgetActionInput = {
 
 M.CreateBudgetActionOutput = {
     type = "structure",
+    id = "CreateBudgetActionOutput",
     members = {
         AccountId = {
             type = "string",
@@ -798,6 +832,7 @@ M.CreateBudgetActionOutput = {
 
 M.CreateNotificationInput = {
     type = "structure",
+    id = "CreateNotificationInput",
     members = {
         AccountId = {
             type = "string",
@@ -826,10 +861,12 @@ M.CreateNotificationInput = {
 
 M.CreateNotificationOutput = {
     type = "structure",
+    id = "CreateNotificationOutput",
 }
 
 M.CreateSubscriberInput = {
     type = "structure",
+    id = "CreateSubscriberInput",
     members = {
         AccountId = {
             type = "string",
@@ -854,10 +891,12 @@ M.CreateSubscriberInput = {
 
 M.CreateSubscriberOutput = {
     type = "structure",
+    id = "CreateSubscriberOutput",
 }
 
 M.DeleteBudgetInput = {
     type = "structure",
+    id = "DeleteBudgetInput",
     members = {
         AccountId = {
             type = "string",
@@ -876,10 +915,12 @@ M.DeleteBudgetInput = {
 
 M.DeleteBudgetOutput = {
     type = "structure",
+    id = "DeleteBudgetOutput",
 }
 
 M.DeleteBudgetActionInput = {
     type = "structure",
+    id = "DeleteBudgetActionInput",
     members = {
         AccountId = {
             type = "string",
@@ -904,6 +945,7 @@ M.DeleteBudgetActionInput = {
 
 M.DeleteBudgetActionOutput = {
     type = "structure",
+    id = "DeleteBudgetActionOutput",
     members = {
         AccountId = {
             type = "string",
@@ -925,6 +967,7 @@ M.DeleteBudgetActionOutput = {
 
 M.ResourceLockedException = {
     type = "structure",
+    id = "ResourceLockedException",
     error = "client",
     members = {
         Message = {
@@ -935,6 +978,7 @@ M.ResourceLockedException = {
 
 M.DeleteNotificationInput = {
     type = "structure",
+    id = "DeleteNotificationInput",
     members = {
         AccountId = {
             type = "string",
@@ -956,10 +1000,12 @@ M.DeleteNotificationInput = {
 
 M.DeleteNotificationOutput = {
     type = "structure",
+    id = "DeleteNotificationOutput",
 }
 
 M.DeleteSubscriberInput = {
     type = "structure",
+    id = "DeleteSubscriberInput",
     members = {
         AccountId = {
             type = "string",
@@ -984,10 +1030,12 @@ M.DeleteSubscriberInput = {
 
 M.DeleteSubscriberOutput = {
     type = "structure",
+    id = "DeleteSubscriberOutput",
 }
 
 M.DescribeBudgetInput = {
     type = "structure",
+    id = "DescribeBudgetInput",
     members = {
         AccountId = {
             type = "string",
@@ -1009,6 +1057,7 @@ M.DescribeBudgetInput = {
 
 M.DescribeBudgetActionInput = {
     type = "structure",
+    id = "DescribeBudgetActionInput",
     members = {
         AccountId = {
             type = "string",
@@ -1033,6 +1082,7 @@ M.DescribeBudgetActionInput = {
 
 M.DescribeBudgetActionOutput = {
     type = "structure",
+    id = "DescribeBudgetActionOutput",
     members = {
         AccountId = {
             type = "string",
@@ -1054,6 +1104,7 @@ M.DescribeBudgetActionOutput = {
 
 M.DescribeBudgetActionHistoriesInput = {
     type = "structure",
+    id = "DescribeBudgetActionHistoriesInput",
     members = {
         AccountId = {
             type = "string",
@@ -1085,6 +1136,7 @@ M.DescribeBudgetActionHistoriesInput = {
 
 M.DescribeBudgetActionHistoriesOutput = {
     type = "structure",
+    id = "DescribeBudgetActionHistoriesOutput",
     members = {
         ActionHistories = {
             type = "list",
@@ -1101,6 +1153,7 @@ M.DescribeBudgetActionHistoriesOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -1111,6 +1164,7 @@ M.InvalidNextTokenException = {
 
 M.DescribeBudgetActionsForAccountInput = {
     type = "structure",
+    id = "DescribeBudgetActionsForAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -1129,6 +1183,7 @@ M.DescribeBudgetActionsForAccountInput = {
 
 M.DescribeBudgetActionsForAccountOutput = {
     type = "structure",
+    id = "DescribeBudgetActionsForAccountOutput",
     members = {
         Actions = {
             type = "list",
@@ -1145,6 +1200,7 @@ M.DescribeBudgetActionsForAccountOutput = {
 
 M.DescribeBudgetActionsForBudgetInput = {
     type = "structure",
+    id = "DescribeBudgetActionsForBudgetInput",
     members = {
         AccountId = {
             type = "string",
@@ -1169,6 +1225,7 @@ M.DescribeBudgetActionsForBudgetInput = {
 
 M.DescribeBudgetActionsForBudgetOutput = {
     type = "structure",
+    id = "DescribeBudgetActionsForBudgetOutput",
     members = {
         Actions = {
             type = "list",
@@ -1185,6 +1242,7 @@ M.DescribeBudgetActionsForBudgetOutput = {
 
 M.DescribeBudgetNotificationsForAccountInput = {
     type = "structure",
+    id = "DescribeBudgetNotificationsForAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -1203,6 +1261,7 @@ M.DescribeBudgetNotificationsForAccountInput = {
 
 M.BudgetNotificationsForAccount = {
     type = "structure",
+    id = "BudgetNotificationsForAccount",
     members = {
         Notifications = {
             type = "list",
@@ -1216,6 +1275,7 @@ M.BudgetNotificationsForAccount = {
 
 M.DescribeBudgetNotificationsForAccountOutput = {
     type = "structure",
+    id = "DescribeBudgetNotificationsForAccountOutput",
     members = {
         BudgetNotificationsForAccount = {
             type = "list",
@@ -1229,6 +1289,7 @@ M.DescribeBudgetNotificationsForAccountOutput = {
 
 M.ExpiredNextTokenException = {
     type = "structure",
+    id = "ExpiredNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -1239,6 +1300,7 @@ M.ExpiredNextTokenException = {
 
 M.DescribeBudgetPerformanceHistoryInput = {
     type = "structure",
+    id = "DescribeBudgetPerformanceHistoryInput",
     members = {
         AccountId = {
             type = "string",
@@ -1264,6 +1326,7 @@ M.DescribeBudgetPerformanceHistoryInput = {
 
 M.BudgetedAndActualAmounts = {
     type = "structure",
+    id = "BudgetedAndActualAmounts",
     members = {
         BudgetedAmount = M.Spend,
         ActualAmount = M.Spend,
@@ -1273,6 +1336,7 @@ M.BudgetedAndActualAmounts = {
 
 M.DescribeBudgetsInput = {
     type = "structure",
+    id = "DescribeBudgetsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1294,6 +1358,7 @@ M.DescribeBudgetsInput = {
 
 M.DescribeNotificationsForBudgetInput = {
     type = "structure",
+    id = "DescribeNotificationsForBudgetInput",
     members = {
         AccountId = {
             type = "string",
@@ -1318,6 +1383,7 @@ M.DescribeNotificationsForBudgetInput = {
 
 M.DescribeNotificationsForBudgetOutput = {
     type = "structure",
+    id = "DescribeNotificationsForBudgetOutput",
     members = {
         Notifications = {
             type = "list",
@@ -1331,6 +1397,7 @@ M.DescribeNotificationsForBudgetOutput = {
 
 M.DescribeSubscribersForNotificationInput = {
     type = "structure",
+    id = "DescribeSubscribersForNotificationInput",
     members = {
         AccountId = {
             type = "string",
@@ -1358,6 +1425,7 @@ M.DescribeSubscribersForNotificationInput = {
 
 M.DescribeSubscribersForNotificationOutput = {
     type = "structure",
+    id = "DescribeSubscribersForNotificationOutput",
     members = {
         Subscribers = {
             type = "list",
@@ -1378,6 +1446,7 @@ M.ExecutionType = {
 
 M.ExecuteBudgetActionInput = {
     type = "structure",
+    id = "ExecuteBudgetActionInput",
     members = {
         AccountId = {
             type = "string",
@@ -1408,6 +1477,7 @@ M.ExecuteBudgetActionInput = {
 
 M.ExecuteBudgetActionOutput = {
     type = "structure",
+    id = "ExecuteBudgetActionOutput",
     members = {
         AccountId = {
             type = "string",
@@ -1438,6 +1508,7 @@ M.ExecuteBudgetActionOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1450,6 +1521,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceTags = {
             type = "list",
@@ -1460,6 +1532,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1479,10 +1552,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1502,14 +1577,17 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateBudgetOutput = {
     type = "structure",
+    id = "UpdateBudgetOutput",
 }
 
 M.UpdateBudgetActionInput = {
     type = "structure",
+    id = "UpdateBudgetActionInput",
     members = {
         AccountId = {
             type = "string",
@@ -1549,6 +1627,7 @@ M.UpdateBudgetActionInput = {
 
 M.UpdateBudgetActionOutput = {
     type = "structure",
+    id = "UpdateBudgetActionOutput",
     members = {
         AccountId = {
             type = "string",
@@ -1573,6 +1652,7 @@ M.UpdateBudgetActionOutput = {
 
 M.UpdateNotificationInput = {
     type = "structure",
+    id = "UpdateNotificationInput",
     members = {
         AccountId = {
             type = "string",
@@ -1597,10 +1677,12 @@ M.UpdateNotificationInput = {
 
 M.UpdateNotificationOutput = {
     type = "structure",
+    id = "UpdateNotificationOutput",
 }
 
 M.UpdateSubscriberInput = {
     type = "structure",
+    id = "UpdateSubscriberInput",
     members = {
         AccountId = {
             type = "string",
@@ -1628,10 +1710,12 @@ M.UpdateSubscriberInput = {
 
 M.UpdateSubscriberOutput = {
     type = "structure",
+    id = "UpdateSubscriberOutput",
 }
 
 M.Expression = {
     type = "structure",
+    id = "Expression",
     members = {
         Or = {
             type = "list",
@@ -1650,6 +1734,7 @@ M.Expression = {
 
 M.Budget = {
     type = "structure",
+    id = "Budget",
     members = {
         BudgetName = {
             type = "string",
@@ -1701,6 +1786,7 @@ M.Budget = {
 
 M.BudgetPerformanceHistory = {
     type = "structure",
+    id = "BudgetPerformanceHistory",
     members = {
         BudgetName = {
             type = "string",
@@ -1734,6 +1820,7 @@ M.BudgetPerformanceHistory = {
 
 M.CreateBudgetInput = {
     type = "structure",
+    id = "CreateBudgetInput",
     members = {
         AccountId = {
             type = "string",
@@ -1757,6 +1844,7 @@ M.CreateBudgetInput = {
 
 M.DescribeBudgetOutput = {
     type = "structure",
+    id = "DescribeBudgetOutput",
     members = {
         Budget = M.Budget,
     },
@@ -1764,6 +1852,7 @@ M.DescribeBudgetOutput = {
 
 M.DescribeBudgetPerformanceHistoryOutput = {
     type = "structure",
+    id = "DescribeBudgetPerformanceHistoryOutput",
     members = {
         BudgetPerformanceHistory = M.BudgetPerformanceHistory,
         NextToken = {
@@ -1774,6 +1863,7 @@ M.DescribeBudgetPerformanceHistoryOutput = {
 
 M.UpdateBudgetInput = {
     type = "structure",
+    id = "UpdateBudgetInput",
     members = {
         AccountId = {
             type = "string",
@@ -1789,6 +1879,7 @@ M.UpdateBudgetInput = {
 
 M.DescribeBudgetsOutput = {
     type = "structure",
+    id = "DescribeBudgetsOutput",
     members = {
         Budgets = {
             type = "list",

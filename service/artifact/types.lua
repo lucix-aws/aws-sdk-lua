@@ -7,6 +7,7 @@ M.AcceptanceType = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -25,6 +26,7 @@ M.NotificationSubscriptionStatus = {
 
 M.AccountSettings = {
     type = "structure",
+    id = "AccountSettings",
     members = {
         notificationSubscriptionStatus = {
             type = "string",
@@ -34,6 +36,7 @@ M.AccountSettings = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -59,10 +62,12 @@ M.ConflictException = {
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
 }
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         accountSettings = M.AccountSettings,
     },
@@ -70,6 +75,7 @@ M.GetAccountSettingsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -89,6 +95,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -114,6 +121,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -151,6 +159,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -176,6 +185,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -202,6 +212,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -225,6 +236,7 @@ M.ValidationException = {
 
 M.PutAccountSettingsInput = {
     type = "structure",
+    id = "PutAccountSettingsInput",
     members = {
         notificationSubscriptionStatus = {
             type = "string",
@@ -234,6 +246,7 @@ M.PutAccountSettingsInput = {
 
 M.PutAccountSettingsOutput = {
     type = "structure",
+    id = "PutAccountSettingsOutput",
     members = {
         accountSettings = M.AccountSettings,
     },
@@ -247,6 +260,7 @@ M.AgreementType = {
 
 M.ListCustomerAgreementsInput = {
     type = "structure",
+    id = "ListCustomerAgreementsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -271,6 +285,7 @@ M.CustomerAgreementState = {
 
 M.CustomerAgreementSummary = {
     type = "structure",
+    id = "CustomerAgreementSummary",
     members = {
         name = {
             type = "string",
@@ -324,6 +339,7 @@ M.CustomerAgreementSummary = {
 
 M.ListCustomerAgreementsOutput = {
     type = "structure",
+    id = "ListCustomerAgreementsOutput",
     members = {
         customerAgreements = {
             type = "list",
@@ -340,6 +356,7 @@ M.ListCustomerAgreementsOutput = {
 
 M.GetReportInput = {
     type = "structure",
+    id = "GetReportInput",
     members = {
         reportId = {
             type = "string",
@@ -366,6 +383,7 @@ M.GetReportInput = {
 
 M.GetReportOutput = {
     type = "structure",
+    id = "GetReportOutput",
     members = {
         documentPresignedUrl = {
             type = "string",
@@ -375,6 +393,7 @@ M.GetReportOutput = {
 
 M.GetReportMetadataInput = {
     type = "structure",
+    id = "GetReportMetadataInput",
     members = {
         reportId = {
             type = "string",
@@ -406,6 +425,7 @@ M.UploadState = {
 
 M.ReportDetail = {
     type = "structure",
+    id = "ReportDetail",
     members = {
         id = {
             type = "string",
@@ -487,6 +507,7 @@ M.ReportDetail = {
 
 M.GetReportMetadataOutput = {
     type = "structure",
+    id = "GetReportMetadataOutput",
     members = {
         reportDetails = M.ReportDetail,
     },
@@ -494,6 +515,7 @@ M.GetReportMetadataOutput = {
 
 M.GetTermForReportInput = {
     type = "structure",
+    id = "GetTermForReportInput",
     members = {
         reportId = {
             type = "string",
@@ -513,6 +535,7 @@ M.GetTermForReportInput = {
 
 M.GetTermForReportOutput = {
     type = "structure",
+    id = "GetTermForReportOutput",
     members = {
         documentPresignedUrl = {
             type = "string",
@@ -525,6 +548,7 @@ M.GetTermForReportOutput = {
 
 M.ListReportsInput = {
     type = "structure",
+    id = "ListReportsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -543,6 +567,7 @@ M.ListReportsInput = {
 
 M.ReportSummary = {
     type = "structure",
+    id = "ReportSummary",
     members = {
         id = {
             type = "string",
@@ -600,6 +625,7 @@ M.ReportSummary = {
 
 M.ListReportsOutput = {
     type = "structure",
+    id = "ListReportsOutput",
     members = {
         reports = {
             type = "list",
@@ -613,6 +639,7 @@ M.ListReportsOutput = {
 
 M.ListReportVersionsInput = {
     type = "structure",
+    id = "ListReportVersionsInput",
     members = {
         reportId = {
             type = "string",
@@ -638,6 +665,7 @@ M.ListReportVersionsInput = {
 
 M.ListReportVersionsOutput = {
     type = "structure",
+    id = "ListReportVersionsOutput",
     members = {
         reports = {
             type = "list",

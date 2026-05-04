@@ -9,6 +9,7 @@ M.AdditionalConstraintsElement = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +23,7 @@ M.BadRequestException = {
 
 M.CloneBackendInput = {
     type = "structure",
+    id = "CloneBackendInput",
     members = {
         AppId = {
             type = "string",
@@ -49,6 +51,7 @@ M.CloneBackendInput = {
 
 M.CloneBackendOutput = {
     type = "structure",
+    id = "CloneBackendOutput",
     members = {
         AppId = {
             type = "string",
@@ -91,6 +94,7 @@ M.CloneBackendOutput = {
 
 M.GatewayTimeoutException = {
     type = "structure",
+    id = "GatewayTimeoutException",
     error = "server",
     members = {
         Message = {
@@ -104,6 +108,7 @@ M.GatewayTimeoutException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -123,6 +128,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         LimitType = {
@@ -142,10 +148,12 @@ M.TooManyRequestsException = {
 
 M.ResourceConfig = {
     type = "structure",
+    id = "ResourceConfig",
 }
 
 M.CreateBackendInput = {
     type = "structure",
+    id = "CreateBackendInput",
     members = {
         AppId = {
             type = "string",
@@ -182,6 +190,7 @@ M.CreateBackendInput = {
 
 M.CreateBackendOutput = {
     type = "structure",
+    id = "CreateBackendOutput",
     members = {
         AppId = {
             type = "string",
@@ -231,6 +240,7 @@ M.Mode = {
 
 M.BackendAPIAppSyncAuthSettings = {
     type = "structure",
+    id = "BackendAPIAppSyncAuthSettings",
     members = {
         CognitoUserPoolId = {
             type = "string",
@@ -285,6 +295,7 @@ M.BackendAPIAppSyncAuthSettings = {
 
 M.BackendAPIAuthType = {
     type = "structure",
+    id = "BackendAPIAuthType",
     members = {
         Mode = {
             type = "string",
@@ -307,6 +318,7 @@ M.ResolutionStrategy = {
 
 M.BackendAPIConflictResolution = {
     type = "structure",
+    id = "BackendAPIConflictResolution",
     members = {
         ResolutionStrategy = {
             type = "string",
@@ -319,6 +331,7 @@ M.BackendAPIConflictResolution = {
 
 M.BackendAPIResourceConfig = {
     type = "structure",
+    id = "BackendAPIResourceConfig",
     members = {
         AdditionalAuthTypes = {
             type = "list",
@@ -356,6 +369,7 @@ M.BackendAPIResourceConfig = {
 
 M.CreateBackendAPIInput = {
     type = "structure",
+    id = "CreateBackendAPIInput",
     members = {
         AppId = {
             type = "string",
@@ -387,6 +401,7 @@ M.CreateBackendAPIInput = {
 
 M.CreateBackendAPIOutput = {
     type = "structure",
+    id = "CreateBackendAPIOutput",
     members = {
         AppId = {
             type = "string",
@@ -434,6 +449,7 @@ M.AuthResources = {
 
 M.CreateBackendAuthIdentityPoolConfig = {
     type = "structure",
+    id = "CreateBackendAuthIdentityPoolConfig",
     members = {
         IdentityPoolName = {
             type = "string",
@@ -463,6 +479,7 @@ M.DeliveryMethod = {
 
 M.EmailSettings = {
     type = "structure",
+    id = "EmailSettings",
     members = {
         EmailMessage = {
             type = "string",
@@ -481,6 +498,7 @@ M.EmailSettings = {
 
 M.SmsSettings = {
     type = "structure",
+    id = "SmsSettings",
     members = {
         SmsMessage = {
             type = "string",
@@ -493,6 +511,7 @@ M.SmsSettings = {
 
 M.CreateBackendAuthForgotPasswordConfig = {
     type = "structure",
+    id = "CreateBackendAuthForgotPasswordConfig",
     members = {
         DeliveryMethod = {
             type = "string",
@@ -523,6 +542,7 @@ M.MfaTypesElement = {
 
 M.Settings = {
     type = "structure",
+    id = "Settings",
     members = {
         MfaTypes = {
             type = "list",
@@ -542,6 +562,7 @@ M.Settings = {
 
 M.CreateBackendAuthMFAConfig = {
     type = "structure",
+    id = "CreateBackendAuthMFAConfig",
     members = {
         MFAMode = {
             type = "string",
@@ -570,6 +591,7 @@ M.OAuthScopesElement = {
 
 M.BackendAuthSocialProviderConfig = {
     type = "structure",
+    id = "BackendAuthSocialProviderConfig",
     members = {
         ClientId = {
             type = "string",
@@ -588,6 +610,7 @@ M.BackendAuthSocialProviderConfig = {
 
 M.BackendAuthAppleProviderConfig = {
     type = "structure",
+    id = "BackendAuthAppleProviderConfig",
     members = {
         ClientId = {
             type = "string",
@@ -618,6 +641,7 @@ M.BackendAuthAppleProviderConfig = {
 
 M.SocialProviderSettings = {
     type = "structure",
+    id = "SocialProviderSettings",
     members = {
         Facebook = M.BackendAuthSocialProviderConfig,
         Google = M.BackendAuthSocialProviderConfig,
@@ -628,6 +652,7 @@ M.SocialProviderSettings = {
 
 M.CreateBackendAuthOAuthConfig = {
     type = "structure",
+    id = "CreateBackendAuthOAuthConfig",
     members = {
         DomainPrefix = {
             type = "string",
@@ -674,6 +699,7 @@ M.CreateBackendAuthOAuthConfig = {
 
 M.CreateBackendAuthPasswordPolicyConfig = {
     type = "structure",
+    id = "CreateBackendAuthPasswordPolicyConfig",
     members = {
         AdditionalConstraints = {
             type = "list",
@@ -721,6 +747,7 @@ M.SignInMethod = {
 
 M.CreateBackendAuthVerificationMessageConfig = {
     type = "structure",
+    id = "CreateBackendAuthVerificationMessageConfig",
     members = {
         DeliveryMethod = {
             type = "string",
@@ -740,6 +767,7 @@ M.CreateBackendAuthVerificationMessageConfig = {
 
 M.CreateBackendAuthUserPoolConfig = {
     type = "structure",
+    id = "CreateBackendAuthUserPoolConfig",
     members = {
         ForgotPassword = setmetatable({ traits = {
             json_name = "forgotPassword",
@@ -783,6 +811,7 @@ M.CreateBackendAuthUserPoolConfig = {
 
 M.CreateBackendAuthResourceConfig = {
     type = "structure",
+    id = "CreateBackendAuthResourceConfig",
     members = {
         AuthResources = {
             type = "string",
@@ -810,6 +839,7 @@ M.CreateBackendAuthResourceConfig = {
 
 M.CreateBackendAuthInput = {
     type = "structure",
+    id = "CreateBackendAuthInput",
     members = {
         AppId = {
             type = "string",
@@ -841,6 +871,7 @@ M.CreateBackendAuthInput = {
 
 M.CreateBackendAuthOutput = {
     type = "structure",
+    id = "CreateBackendAuthOutput",
     members = {
         AppId = {
             type = "string",
@@ -883,6 +914,7 @@ M.CreateBackendAuthOutput = {
 
 M.CreateBackendConfigInput = {
     type = "structure",
+    id = "CreateBackendConfigInput",
     members = {
         AppId = {
             type = "string",
@@ -902,6 +934,7 @@ M.CreateBackendConfigInput = {
 
 M.CreateBackendConfigOutput = {
     type = "structure",
+    id = "CreateBackendConfigOutput",
     members = {
         AppId = {
             type = "string",
@@ -944,6 +977,7 @@ M.UnAuthenticatedElement = {
 
 M.BackendStoragePermissions = {
     type = "structure",
+    id = "BackendStoragePermissions",
     members = {
         Authenticated = {
             type = "list",
@@ -969,6 +1003,7 @@ M.ServiceName = {
 
 M.CreateBackendStorageResourceConfig = {
     type = "structure",
+    id = "CreateBackendStorageResourceConfig",
     members = {
         BucketName = {
             type = "string",
@@ -992,6 +1027,7 @@ M.CreateBackendStorageResourceConfig = {
 
 M.CreateBackendStorageInput = {
     type = "structure",
+    id = "CreateBackendStorageInput",
     members = {
         AppId = {
             type = "string",
@@ -1023,6 +1059,7 @@ M.CreateBackendStorageInput = {
 
 M.CreateBackendStorageOutput = {
     type = "structure",
+    id = "CreateBackendStorageOutput",
     members = {
         AppId = {
             type = "string",
@@ -1053,6 +1090,7 @@ M.CreateBackendStorageOutput = {
 
 M.CreateTokenInput = {
     type = "structure",
+    id = "CreateTokenInput",
     members = {
         AppId = {
             type = "string",
@@ -1066,6 +1104,7 @@ M.CreateTokenInput = {
 
 M.CreateTokenOutput = {
     type = "structure",
+    id = "CreateTokenOutput",
     members = {
         AppId = {
             type = "string",
@@ -1096,6 +1135,7 @@ M.CreateTokenOutput = {
 
 M.DeleteBackendInput = {
     type = "structure",
+    id = "DeleteBackendInput",
     members = {
         AppId = {
             type = "string",
@@ -1116,6 +1156,7 @@ M.DeleteBackendInput = {
 
 M.DeleteBackendOutput = {
     type = "structure",
+    id = "DeleteBackendOutput",
     members = {
         AppId = {
             type = "string",
@@ -1158,6 +1199,7 @@ M.DeleteBackendOutput = {
 
 M.DeleteBackendAPIInput = {
     type = "structure",
+    id = "DeleteBackendAPIInput",
     members = {
         AppId = {
             type = "string",
@@ -1188,6 +1230,7 @@ M.DeleteBackendAPIInput = {
 
 M.DeleteBackendAPIOutput = {
     type = "structure",
+    id = "DeleteBackendAPIOutput",
     members = {
         AppId = {
             type = "string",
@@ -1230,6 +1273,7 @@ M.DeleteBackendAPIOutput = {
 
 M.DeleteBackendAuthInput = {
     type = "structure",
+    id = "DeleteBackendAuthInput",
     members = {
         AppId = {
             type = "string",
@@ -1257,6 +1301,7 @@ M.DeleteBackendAuthInput = {
 
 M.DeleteBackendAuthOutput = {
     type = "structure",
+    id = "DeleteBackendAuthOutput",
     members = {
         AppId = {
             type = "string",
@@ -1299,6 +1344,7 @@ M.DeleteBackendAuthOutput = {
 
 M.DeleteBackendStorageInput = {
     type = "structure",
+    id = "DeleteBackendStorageInput",
     members = {
         AppId = {
             type = "string",
@@ -1333,6 +1379,7 @@ M.DeleteBackendStorageInput = {
 
 M.DeleteBackendStorageOutput = {
     type = "structure",
+    id = "DeleteBackendStorageOutput",
     members = {
         AppId = {
             type = "string",
@@ -1363,6 +1410,7 @@ M.DeleteBackendStorageOutput = {
 
 M.DeleteTokenInput = {
     type = "structure",
+    id = "DeleteTokenInput",
     members = {
         AppId = {
             type = "string",
@@ -1383,6 +1431,7 @@ M.DeleteTokenInput = {
 
 M.DeleteTokenOutput = {
     type = "structure",
+    id = "DeleteTokenOutput",
     members = {
         IsSuccess = {
             type = "boolean",
@@ -1395,6 +1444,7 @@ M.DeleteTokenOutput = {
 
 M.GenerateBackendAPIModelsInput = {
     type = "structure",
+    id = "GenerateBackendAPIModelsInput",
     members = {
         AppId = {
             type = "string",
@@ -1422,6 +1472,7 @@ M.GenerateBackendAPIModelsInput = {
 
 M.GenerateBackendAPIModelsOutput = {
     type = "structure",
+    id = "GenerateBackendAPIModelsOutput",
     members = {
         AppId = {
             type = "string",
@@ -1464,6 +1515,7 @@ M.GenerateBackendAPIModelsOutput = {
 
 M.GetBackendInput = {
     type = "structure",
+    id = "GetBackendInput",
     members = {
         AppId = {
             type = "string",
@@ -1483,6 +1535,7 @@ M.GetBackendInput = {
 
 M.GetBackendOutput = {
     type = "structure",
+    id = "GetBackendOutput",
     members = {
         AmplifyFeatureFlags = {
             type = "string",
@@ -1532,6 +1585,7 @@ M.GetBackendOutput = {
 
 M.GetBackendAPIInput = {
     type = "structure",
+    id = "GetBackendAPIInput",
     members = {
         AppId = {
             type = "string",
@@ -1562,6 +1616,7 @@ M.GetBackendAPIInput = {
 
 M.GetBackendAPIOutput = {
     type = "structure",
+    id = "GetBackendAPIOutput",
     members = {
         AppId = {
             type = "string",
@@ -1595,6 +1650,7 @@ M.GetBackendAPIOutput = {
 
 M.GetBackendAPIModelsInput = {
     type = "structure",
+    id = "GetBackendAPIModelsInput",
     members = {
         AppId = {
             type = "string",
@@ -1627,6 +1683,7 @@ M.Status = {
 
 M.GetBackendAPIModelsOutput = {
     type = "structure",
+    id = "GetBackendAPIModelsOutput",
     members = {
         Models = {
             type = "string",
@@ -1651,6 +1708,7 @@ M.GetBackendAPIModelsOutput = {
 
 M.GetBackendAuthInput = {
     type = "structure",
+    id = "GetBackendAuthInput",
     members = {
         AppId = {
             type = "string",
@@ -1678,6 +1736,7 @@ M.GetBackendAuthInput = {
 
 M.GetBackendAuthOutput = {
     type = "structure",
+    id = "GetBackendAuthOutput",
     members = {
         AppId = {
             type = "string",
@@ -1711,6 +1770,7 @@ M.GetBackendAuthOutput = {
 
 M.GetBackendJobInput = {
     type = "structure",
+    id = "GetBackendJobInput",
     members = {
         AppId = {
             type = "string",
@@ -1738,6 +1798,7 @@ M.GetBackendJobInput = {
 
 M.GetBackendJobOutput = {
     type = "structure",
+    id = "GetBackendJobOutput",
     members = {
         AppId = {
             type = "string",
@@ -1792,6 +1853,7 @@ M.GetBackendJobOutput = {
 
 M.GetBackendStorageInput = {
     type = "structure",
+    id = "GetBackendStorageInput",
     members = {
         AppId = {
             type = "string",
@@ -1819,6 +1881,7 @@ M.GetBackendStorageInput = {
 
 M.GetBackendStorageResourceConfig = {
     type = "structure",
+    id = "GetBackendStorageResourceConfig",
     members = {
         BucketName = {
             type = "string",
@@ -1848,6 +1911,7 @@ M.GetBackendStorageResourceConfig = {
 
 M.GetBackendStorageOutput = {
     type = "structure",
+    id = "GetBackendStorageOutput",
     members = {
         AppId = {
             type = "string",
@@ -1875,6 +1939,7 @@ M.GetBackendStorageOutput = {
 
 M.GetTokenInput = {
     type = "structure",
+    id = "GetTokenInput",
     members = {
         AppId = {
             type = "string",
@@ -1895,6 +1960,7 @@ M.GetTokenInput = {
 
 M.GetTokenOutput = {
     type = "structure",
+    id = "GetTokenOutput",
     members = {
         AppId = {
             type = "string",
@@ -1925,6 +1991,7 @@ M.GetTokenOutput = {
 
 M.ImportBackendAuthInput = {
     type = "structure",
+    id = "ImportBackendAuthInput",
     members = {
         AppId = {
             type = "string",
@@ -1972,6 +2039,7 @@ M.ImportBackendAuthInput = {
 
 M.ImportBackendAuthOutput = {
     type = "structure",
+    id = "ImportBackendAuthOutput",
     members = {
         AppId = {
             type = "string",
@@ -2014,6 +2082,7 @@ M.ImportBackendAuthOutput = {
 
 M.ImportBackendStorageInput = {
     type = "structure",
+    id = "ImportBackendStorageInput",
     members = {
         AppId = {
             type = "string",
@@ -2047,6 +2116,7 @@ M.ImportBackendStorageInput = {
 
 M.ImportBackendStorageOutput = {
     type = "structure",
+    id = "ImportBackendStorageOutput",
     members = {
         AppId = {
             type = "string",
@@ -2077,6 +2147,7 @@ M.ImportBackendStorageOutput = {
 
 M.ListBackendJobsInput = {
     type = "structure",
+    id = "ListBackendJobsInput",
     members = {
         AppId = {
             type = "string",
@@ -2127,6 +2198,7 @@ M.ListBackendJobsInput = {
 
 M.BackendJobRespObj = {
     type = "structure",
+    id = "BackendJobRespObj",
     members = {
         AppId = {
             type = "string",
@@ -2183,6 +2255,7 @@ M.BackendJobRespObj = {
 
 M.ListBackendJobsOutput = {
     type = "structure",
+    id = "ListBackendJobsOutput",
     members = {
         Jobs = {
             type = "list",
@@ -2202,6 +2275,7 @@ M.ListBackendJobsOutput = {
 
 M.ListS3BucketsInput = {
     type = "structure",
+    id = "ListS3BucketsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2214,6 +2288,7 @@ M.ListS3BucketsInput = {
 
 M.S3BucketInfo = {
     type = "structure",
+    id = "S3BucketInfo",
     members = {
         CreationDate = {
             type = "string",
@@ -2232,6 +2307,7 @@ M.S3BucketInfo = {
 
 M.ListS3BucketsOutput = {
     type = "structure",
+    id = "ListS3BucketsOutput",
     members = {
         Buckets = {
             type = "list",
@@ -2251,6 +2327,7 @@ M.ListS3BucketsOutput = {
 
 M.RemoveAllBackendsInput = {
     type = "structure",
+    id = "RemoveAllBackendsInput",
     members = {
         AppId = {
             type = "string",
@@ -2270,6 +2347,7 @@ M.RemoveAllBackendsInput = {
 
 M.RemoveAllBackendsOutput = {
     type = "structure",
+    id = "RemoveAllBackendsOutput",
     members = {
         AppId = {
             type = "string",
@@ -2306,6 +2384,7 @@ M.RemoveAllBackendsOutput = {
 
 M.RemoveBackendConfigInput = {
     type = "structure",
+    id = "RemoveBackendConfigInput",
     members = {
         AppId = {
             type = "string",
@@ -2319,6 +2398,7 @@ M.RemoveBackendConfigInput = {
 
 M.RemoveBackendConfigOutput = {
     type = "structure",
+    id = "RemoveBackendConfigOutput",
     members = {
         Error = {
             type = "string",
@@ -2331,6 +2411,7 @@ M.RemoveBackendConfigOutput = {
 
 M.UpdateBackendAPIInput = {
     type = "structure",
+    id = "UpdateBackendAPIInput",
     members = {
         AppId = {
             type = "string",
@@ -2361,6 +2442,7 @@ M.UpdateBackendAPIInput = {
 
 M.UpdateBackendAPIOutput = {
     type = "structure",
+    id = "UpdateBackendAPIOutput",
     members = {
         AppId = {
             type = "string",
@@ -2403,6 +2485,7 @@ M.UpdateBackendAPIOutput = {
 
 M.UpdateBackendAuthIdentityPoolConfig = {
     type = "structure",
+    id = "UpdateBackendAuthIdentityPoolConfig",
     members = {
         UnauthenticatedLogin = {
             type = "boolean",
@@ -2415,6 +2498,7 @@ M.UpdateBackendAuthIdentityPoolConfig = {
 
 M.UpdateBackendAuthForgotPasswordConfig = {
     type = "structure",
+    id = "UpdateBackendAuthForgotPasswordConfig",
     members = {
         DeliveryMethod = {
             type = "string",
@@ -2433,6 +2517,7 @@ M.UpdateBackendAuthForgotPasswordConfig = {
 
 M.UpdateBackendAuthMFAConfig = {
     type = "structure",
+    id = "UpdateBackendAuthMFAConfig",
     members = {
         MFAMode = {
             type = "string",
@@ -2445,6 +2530,7 @@ M.UpdateBackendAuthMFAConfig = {
 
 M.UpdateBackendAuthOAuthConfig = {
     type = "structure",
+    id = "UpdateBackendAuthOAuthConfig",
     members = {
         DomainPrefix = {
             type = "string",
@@ -2487,6 +2573,7 @@ M.UpdateBackendAuthOAuthConfig = {
 
 M.UpdateBackendAuthPasswordPolicyConfig = {
     type = "structure",
+    id = "UpdateBackendAuthPasswordPolicyConfig",
     members = {
         AdditionalConstraints = {
             type = "list",
@@ -2506,6 +2593,7 @@ M.UpdateBackendAuthPasswordPolicyConfig = {
 
 M.UpdateBackendAuthVerificationMessageConfig = {
     type = "structure",
+    id = "UpdateBackendAuthVerificationMessageConfig",
     members = {
         DeliveryMethod = {
             type = "string",
@@ -2525,6 +2613,7 @@ M.UpdateBackendAuthVerificationMessageConfig = {
 
 M.UpdateBackendAuthUserPoolConfig = {
     type = "structure",
+    id = "UpdateBackendAuthUserPoolConfig",
     members = {
         ForgotPassword = setmetatable({ traits = {
             json_name = "forgotPassword",
@@ -2546,6 +2635,7 @@ M.UpdateBackendAuthUserPoolConfig = {
 
 M.UpdateBackendAuthResourceConfig = {
     type = "structure",
+    id = "UpdateBackendAuthResourceConfig",
     members = {
         AuthResources = {
             type = "string",
@@ -2573,6 +2663,7 @@ M.UpdateBackendAuthResourceConfig = {
 
 M.UpdateBackendAuthInput = {
     type = "structure",
+    id = "UpdateBackendAuthInput",
     members = {
         AppId = {
             type = "string",
@@ -2604,6 +2695,7 @@ M.UpdateBackendAuthInput = {
 
 M.UpdateBackendAuthOutput = {
     type = "structure",
+    id = "UpdateBackendAuthOutput",
     members = {
         AppId = {
             type = "string",
@@ -2646,6 +2738,7 @@ M.UpdateBackendAuthOutput = {
 
 M.LoginAuthConfigReqObj = {
     type = "structure",
+    id = "LoginAuthConfigReqObj",
     members = {
         AwsCognitoIdentityPoolId = {
             type = "string",
@@ -2676,6 +2769,7 @@ M.LoginAuthConfigReqObj = {
 
 M.UpdateBackendConfigInput = {
     type = "structure",
+    id = "UpdateBackendConfigInput",
     members = {
         AppId = {
             type = "string",
@@ -2692,6 +2786,7 @@ M.UpdateBackendConfigInput = {
 
 M.UpdateBackendConfigOutput = {
     type = "structure",
+    id = "UpdateBackendConfigOutput",
     members = {
         AppId = {
             type = "string",
@@ -2719,6 +2814,7 @@ M.UpdateBackendConfigOutput = {
 
 M.UpdateBackendJobInput = {
     type = "structure",
+    id = "UpdateBackendJobInput",
     members = {
         AppId = {
             type = "string",
@@ -2758,6 +2854,7 @@ M.UpdateBackendJobInput = {
 
 M.UpdateBackendJobOutput = {
     type = "structure",
+    id = "UpdateBackendJobOutput",
     members = {
         AppId = {
             type = "string",
@@ -2812,6 +2909,7 @@ M.UpdateBackendJobOutput = {
 
 M.UpdateBackendStorageResourceConfig = {
     type = "structure",
+    id = "UpdateBackendStorageResourceConfig",
     members = {
         Permissions = setmetatable({ traits = {
             json_name = "permissions",
@@ -2829,6 +2927,7 @@ M.UpdateBackendStorageResourceConfig = {
 
 M.UpdateBackendStorageInput = {
     type = "structure",
+    id = "UpdateBackendStorageInput",
     members = {
         AppId = {
             type = "string",
@@ -2860,6 +2959,7 @@ M.UpdateBackendStorageInput = {
 
 M.UpdateBackendStorageOutput = {
     type = "structure",
+    id = "UpdateBackendStorageOutput",
     members = {
         AppId = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -45,6 +46,7 @@ M.ApplicationProgressStatus = {
 
 M.ApplicationAggregatedStatus = {
     type = "structure",
+    id = "ApplicationAggregatedStatus",
     members = {
         lastUpdateDateTime = {
             type = "string",
@@ -66,6 +68,7 @@ M.ApplicationAggregatedStatus = {
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         applicationID = {
             type = "string",
@@ -102,6 +105,7 @@ M.Application = {
 
 M.ArchiveApplicationInput = {
     type = "structure",
+    id = "ArchiveApplicationInput",
     members = {
         applicationID = {
             type = "string",
@@ -117,6 +121,7 @@ M.ArchiveApplicationInput = {
 
 M.ArchiveApplicationOutput = {
     type = "structure",
+    id = "ArchiveApplicationOutput",
     members = {
         applicationID = {
             type = "string",
@@ -153,6 +158,7 @@ M.ArchiveApplicationOutput = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         message = {
             type = "string",
@@ -171,6 +177,7 @@ M.ErrorDetails = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -194,6 +201,7 @@ M.ConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -213,6 +221,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -241,6 +250,7 @@ M.ServiceQuotaExceededException = {
 
 M.UninitializedAccountException = {
     type = "structure",
+    id = "UninitializedAccountException",
     error = "client",
     members = {
         message = {
@@ -254,6 +264,7 @@ M.UninitializedAccountException = {
 
 M.AssociateSourceServersInput = {
     type = "structure",
+    id = "AssociateSourceServersInput",
     members = {
         applicationID = {
             type = "string",
@@ -276,10 +287,12 @@ M.AssociateSourceServersInput = {
 
 M.AssociateSourceServersOutput = {
     type = "structure",
+    id = "AssociateSourceServersOutput",
 }
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         name = {
             type = "string",
@@ -303,6 +316,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         applicationID = {
             type = "string",
@@ -339,6 +353,7 @@ M.CreateApplicationOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         applicationID = {
             type = "string",
@@ -354,10 +369,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.DisassociateSourceServersInput = {
     type = "structure",
+    id = "DisassociateSourceServersInput",
     members = {
         applicationID = {
             type = "string",
@@ -380,10 +397,12 @@ M.DisassociateSourceServersInput = {
 
 M.DisassociateSourceServersOutput = {
     type = "structure",
+    id = "DisassociateSourceServersOutput",
 }
 
 M.ListApplicationsRequestFilters = {
     type = "structure",
+    id = "ListApplicationsRequestFilters",
     members = {
         applicationIDs = {
             type = "list",
@@ -401,6 +420,7 @@ M.ListApplicationsRequestFilters = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         filters = M.ListApplicationsRequestFilters,
         maxResults = {
@@ -417,6 +437,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         items = {
             type = "list",
@@ -430,6 +451,7 @@ M.ListApplicationsOutput = {
 
 M.UnarchiveApplicationInput = {
     type = "structure",
+    id = "UnarchiveApplicationInput",
     members = {
         applicationID = {
             type = "string",
@@ -445,6 +467,7 @@ M.UnarchiveApplicationInput = {
 
 M.UnarchiveApplicationOutput = {
     type = "structure",
+    id = "UnarchiveApplicationOutput",
     members = {
         applicationID = {
             type = "string",
@@ -481,6 +504,7 @@ M.UnarchiveApplicationOutput = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         applicationID = {
             type = "string",
@@ -502,6 +526,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         applicationID = {
             type = "string",
@@ -538,6 +563,7 @@ M.UpdateApplicationOutput = {
 
 M.ConnectorSsmCommandConfig = {
     type = "structure",
+    id = "ConnectorSsmCommandConfig",
     members = {
         s3OutputEnabled = {
             type = "boolean",
@@ -562,6 +588,7 @@ M.ConnectorSsmCommandConfig = {
 
 M.CreateConnectorInput = {
     type = "structure",
+    id = "CreateConnectorInput",
     members = {
         name = {
             type = "string",
@@ -586,6 +613,7 @@ M.CreateConnectorInput = {
 
 M.CreateConnectorOutput = {
     type = "structure",
+    id = "CreateConnectorOutput",
     members = {
         connectorID = {
             type = "string",
@@ -610,6 +638,7 @@ M.CreateConnectorOutput = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -629,6 +658,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -649,6 +679,7 @@ M.ValidationException = {
 
 M.DeleteConnectorInput = {
     type = "structure",
+    id = "DeleteConnectorInput",
     members = {
         connectorID = {
             type = "string",
@@ -661,10 +692,12 @@ M.DeleteConnectorInput = {
 
 M.DeleteConnectorOutput = {
     type = "structure",
+    id = "DeleteConnectorOutput",
 }
 
 M.ListConnectorsRequestFilters = {
     type = "structure",
+    id = "ListConnectorsRequestFilters",
     members = {
         connectorIDs = {
             type = "list",
@@ -675,6 +708,7 @@ M.ListConnectorsRequestFilters = {
 
 M.ListConnectorsInput = {
     type = "structure",
+    id = "ListConnectorsInput",
     members = {
         filters = M.ListConnectorsRequestFilters,
         maxResults = {
@@ -688,6 +722,7 @@ M.ListConnectorsInput = {
 
 M.Connector = {
     type = "structure",
+    id = "Connector",
     members = {
         connectorID = {
             type = "string",
@@ -712,6 +747,7 @@ M.Connector = {
 
 M.ListConnectorsOutput = {
     type = "structure",
+    id = "ListConnectorsOutput",
     members = {
         items = {
             type = "list",
@@ -725,6 +761,7 @@ M.ListConnectorsOutput = {
 
 M.UpdateConnectorInput = {
     type = "structure",
+    id = "UpdateConnectorInput",
     members = {
         connectorID = {
             type = "string",
@@ -741,6 +778,7 @@ M.UpdateConnectorInput = {
 
 M.UpdateConnectorOutput = {
     type = "structure",
+    id = "UpdateConnectorOutput",
     members = {
         connectorID = {
             type = "string",
@@ -765,6 +803,7 @@ M.UpdateConnectorOutput = {
 
 M.ListExportErrorsInput = {
     type = "structure",
+    id = "ListExportErrorsInput",
     members = {
         exportID = {
             type = "string",
@@ -783,6 +822,7 @@ M.ListExportErrorsInput = {
 
 M.ExportErrorData = {
     type = "structure",
+    id = "ExportErrorData",
     members = {
         rawError = {
             type = "string",
@@ -792,6 +832,7 @@ M.ExportErrorData = {
 
 M.ExportTaskError = {
     type = "structure",
+    id = "ExportTaskError",
     members = {
         errorDateTime = {
             type = "string",
@@ -802,6 +843,7 @@ M.ExportTaskError = {
 
 M.ListExportErrorsOutput = {
     type = "structure",
+    id = "ListExportErrorsOutput",
     members = {
         items = {
             type = "list",
@@ -815,6 +857,7 @@ M.ListExportErrorsOutput = {
 
 M.ListExportsRequestFilters = {
     type = "structure",
+    id = "ListExportsRequestFilters",
     members = {
         exportIDs = {
             type = "list",
@@ -825,6 +868,7 @@ M.ListExportsRequestFilters = {
 
 M.ListExportsInput = {
     type = "structure",
+    id = "ListExportsInput",
     members = {
         filters = M.ListExportsRequestFilters,
         maxResults = {
@@ -845,6 +889,7 @@ M.ExportStatus = {
 
 M.ExportTaskSummary = {
     type = "structure",
+    id = "ExportTaskSummary",
     members = {
         serversCount = {
             type = "long",
@@ -869,6 +914,7 @@ M.ExportTaskSummary = {
 
 M.ExportTask = {
     type = "structure",
+    id = "ExportTask",
     members = {
         exportID = {
             type = "string",
@@ -908,6 +954,7 @@ M.ExportTask = {
 
 M.ListExportsOutput = {
     type = "structure",
+    id = "ListExportsOutput",
     members = {
         items = {
             type = "list",
@@ -921,6 +968,7 @@ M.ListExportsOutput = {
 
 M.StartExportInput = {
     type = "structure",
+    id = "StartExportInput",
     members = {
         s3Bucket = {
             type = "string",
@@ -947,6 +995,7 @@ M.StartExportInput = {
 
 M.StartExportOutput = {
     type = "structure",
+    id = "StartExportOutput",
     members = {
         exportTask = M.ExportTask,
     },
@@ -954,6 +1003,7 @@ M.StartExportOutput = {
 
 M.ListImportErrorsInput = {
     type = "structure",
+    id = "ListImportErrorsInput",
     members = {
         importID = {
             type = "string",
@@ -972,6 +1022,7 @@ M.ListImportErrorsInput = {
 
 M.ImportErrorData = {
     type = "structure",
+    id = "ImportErrorData",
     members = {
         sourceServerID = {
             type = "string",
@@ -1007,6 +1058,7 @@ M.ImportErrorType = {
 
 M.ImportTaskError = {
     type = "structure",
+    id = "ImportTaskError",
     members = {
         errorDateTime = {
             type = "string",
@@ -1020,6 +1072,7 @@ M.ImportTaskError = {
 
 M.ListImportErrorsOutput = {
     type = "structure",
+    id = "ListImportErrorsOutput",
     members = {
         items = {
             type = "list",
@@ -1033,6 +1086,7 @@ M.ListImportErrorsOutput = {
 
 M.ListImportsRequestFilters = {
     type = "structure",
+    id = "ListImportsRequestFilters",
     members = {
         importIDs = {
             type = "list",
@@ -1043,6 +1097,7 @@ M.ListImportsRequestFilters = {
 
 M.ListImportsInput = {
     type = "structure",
+    id = "ListImportsInput",
     members = {
         filters = M.ListImportsRequestFilters,
         maxResults = {
@@ -1056,6 +1111,7 @@ M.ListImportsInput = {
 
 M.S3BucketSource = {
     type = "structure",
+    id = "S3BucketSource",
     members = {
         s3Bucket = {
             type = "string",
@@ -1084,6 +1140,7 @@ M.ImportStatus = {
 
 M.ImportTaskSummaryApplications = {
     type = "structure",
+    id = "ImportTaskSummaryApplications",
     members = {
         createdCount = {
             type = "long",
@@ -1102,6 +1159,7 @@ M.ImportTaskSummaryApplications = {
 
 M.ImportTaskSummaryServers = {
     type = "structure",
+    id = "ImportTaskSummaryServers",
     members = {
         createdCount = {
             type = "long",
@@ -1120,6 +1178,7 @@ M.ImportTaskSummaryServers = {
 
 M.ImportTaskSummaryWaves = {
     type = "structure",
+    id = "ImportTaskSummaryWaves",
     members = {
         createdCount = {
             type = "long",
@@ -1138,6 +1197,7 @@ M.ImportTaskSummaryWaves = {
 
 M.ImportTaskSummary = {
     type = "structure",
+    id = "ImportTaskSummary",
     members = {
         waves = M.ImportTaskSummaryWaves,
         applications = M.ImportTaskSummaryApplications,
@@ -1147,6 +1207,7 @@ M.ImportTaskSummary = {
 
 M.ImportTask = {
     type = "structure",
+    id = "ImportTask",
     members = {
         importID = {
             type = "string",
@@ -1178,6 +1239,7 @@ M.ImportTask = {
 
 M.ListImportsOutput = {
     type = "structure",
+    id = "ListImportsOutput",
     members = {
         items = {
             type = "list",
@@ -1191,6 +1253,7 @@ M.ListImportsOutput = {
 
 M.StartImportInput = {
     type = "structure",
+    id = "StartImportInput",
     members = {
         clientToken = {
             type = "string",
@@ -1211,6 +1274,7 @@ M.StartImportInput = {
 
 M.StartImportOutput = {
     type = "structure",
+    id = "StartImportOutput",
     members = {
         importTask = M.ImportTask,
     },
@@ -1218,14 +1282,17 @@ M.StartImportOutput = {
 
 M.InitializeServiceInput = {
     type = "structure",
+    id = "InitializeServiceInput",
 }
 
 M.InitializeServiceOutput = {
     type = "structure",
+    id = "InitializeServiceOutput",
 }
 
 M.DeleteJobInput = {
     type = "structure",
+    id = "DeleteJobInput",
     members = {
         jobID = {
             type = "string",
@@ -1241,10 +1308,12 @@ M.DeleteJobInput = {
 
 M.DeleteJobOutput = {
     type = "structure",
+    id = "DeleteJobOutput",
 }
 
 M.DescribeJobLogItemsInput = {
     type = "structure",
+    id = "DescribeJobLogItemsInput",
     members = {
         jobID = {
             type = "string",
@@ -1285,6 +1354,7 @@ M.JobLogEvent = {
 
 M.JobLogEventData = {
     type = "structure",
+    id = "JobLogEventData",
     members = {
         sourceServerID = {
             type = "string",
@@ -1309,6 +1379,7 @@ M.JobLogEventData = {
 
 M.JobLog = {
     type = "structure",
+    id = "JobLog",
     members = {
         logDateTime = {
             type = "string",
@@ -1322,6 +1393,7 @@ M.JobLog = {
 
 M.DescribeJobLogItemsOutput = {
     type = "structure",
+    id = "DescribeJobLogItemsOutput",
     members = {
         items = {
             type = "list",
@@ -1335,6 +1407,7 @@ M.DescribeJobLogItemsOutput = {
 
 M.DescribeJobsRequestFilters = {
     type = "structure",
+    id = "DescribeJobsRequestFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -1351,6 +1424,7 @@ M.DescribeJobsRequestFilters = {
 
 M.DescribeJobsInput = {
     type = "structure",
+    id = "DescribeJobsInput",
     members = {
         filters = M.DescribeJobsRequestFilters,
         maxResults = {
@@ -1388,6 +1462,7 @@ M.PostLaunchActionExecutionStatus = {
 
 M.SsmExternalParameter = {
     type = "union",
+    id = "SsmExternalParameter",
     members = {
         dynamicPath = {
             type = "string",
@@ -1402,6 +1477,7 @@ M.SsmParameterStoreParameterType = {
 
 M.SsmParameterStoreParameter = {
     type = "structure",
+    id = "SsmParameterStoreParameter",
     members = {
         parameterType = {
             type = "string",
@@ -1420,6 +1496,7 @@ M.SsmParameterStoreParameter = {
 
 M.SsmDocument = {
     type = "structure",
+    id = "SsmDocument",
     members = {
         actionName = {
             type = "string",
@@ -1459,6 +1536,7 @@ M.SsmDocumentType = {
 
 M.JobPostLaunchActionsLaunchStatus = {
     type = "structure",
+    id = "JobPostLaunchActionsLaunchStatus",
     members = {
         ssmDocument = M.SsmDocument,
         ssmDocumentType = {
@@ -1478,6 +1556,7 @@ M.JobPostLaunchActionsLaunchStatus = {
 
 M.PostLaunchActionsStatus = {
     type = "structure",
+    id = "PostLaunchActionsStatus",
     members = {
         ssmAgentDiscoveryDatetime = {
             type = "string",
@@ -1491,6 +1570,7 @@ M.PostLaunchActionsStatus = {
 
 M.ParticipatingServer = {
     type = "structure",
+    id = "ParticipatingServer",
     members = {
         sourceServerID = {
             type = "string",
@@ -1521,6 +1601,7 @@ M.JobType = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         jobID = {
             type = "string",
@@ -1560,6 +1641,7 @@ M.Job = {
 
 M.DescribeJobsOutput = {
     type = "structure",
+    id = "DescribeJobsOutput",
     members = {
         items = {
             type = "list",
@@ -1589,6 +1671,7 @@ M.VolumeType = {
 
 M.LaunchTemplateDiskConf = {
     type = "structure",
+    id = "LaunchTemplateDiskConf",
     members = {
         volumeType = {
             type = "string",
@@ -1609,6 +1692,7 @@ M.LaunchDisposition = {
 
 M.Licensing = {
     type = "structure",
+    id = "Licensing",
     members = {
         osByol = {
             type = "boolean",
@@ -1624,6 +1708,7 @@ M.PostLaunchActionsDeploymentType = {
 
 M.PostLaunchActions = {
     type = "structure",
+    id = "PostLaunchActions",
     members = {
         deployment = {
             type = "string",
@@ -1651,6 +1736,7 @@ M.TargetInstanceTypeRightSizingMethod = {
 
 M.CreateLaunchConfigurationTemplateInput = {
     type = "structure",
+    id = "CreateLaunchConfigurationTemplateInput",
     members = {
         postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
@@ -1702,6 +1788,7 @@ M.CreateLaunchConfigurationTemplateInput = {
 
 M.CreateLaunchConfigurationTemplateOutput = {
     type = "structure",
+    id = "CreateLaunchConfigurationTemplateOutput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -1765,6 +1852,7 @@ M.CreateLaunchConfigurationTemplateOutput = {
 
 M.DeleteLaunchConfigurationTemplateInput = {
     type = "structure",
+    id = "DeleteLaunchConfigurationTemplateInput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -1777,10 +1865,12 @@ M.DeleteLaunchConfigurationTemplateInput = {
 
 M.DeleteLaunchConfigurationTemplateOutput = {
     type = "structure",
+    id = "DeleteLaunchConfigurationTemplateOutput",
 }
 
 M.DescribeLaunchConfigurationTemplatesInput = {
     type = "structure",
+    id = "DescribeLaunchConfigurationTemplatesInput",
     members = {
         launchConfigurationTemplateIDs = {
             type = "list",
@@ -1797,6 +1887,7 @@ M.DescribeLaunchConfigurationTemplatesInput = {
 
 M.LaunchConfigurationTemplate = {
     type = "structure",
+    id = "LaunchConfigurationTemplate",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -1860,6 +1951,7 @@ M.LaunchConfigurationTemplate = {
 
 M.DescribeLaunchConfigurationTemplatesOutput = {
     type = "structure",
+    id = "DescribeLaunchConfigurationTemplatesOutput",
     members = {
         items = {
             type = "list",
@@ -1873,6 +1965,7 @@ M.DescribeLaunchConfigurationTemplatesOutput = {
 
 M.TemplateActionsRequestFilters = {
     type = "structure",
+    id = "TemplateActionsRequestFilters",
     members = {
         actionIDs = {
             type = "list",
@@ -1883,6 +1976,7 @@ M.TemplateActionsRequestFilters = {
 
 M.ListTemplateActionsInput = {
     type = "structure",
+    id = "ListTemplateActionsInput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -1902,6 +1996,7 @@ M.ListTemplateActionsInput = {
 
 M.TemplateActionDocument = {
     type = "structure",
+    id = "TemplateActionDocument",
     members = {
         actionID = {
             type = "string",
@@ -1951,6 +2046,7 @@ M.TemplateActionDocument = {
 
 M.ListTemplateActionsOutput = {
     type = "structure",
+    id = "ListTemplateActionsOutput",
     members = {
         items = {
             type = "list",
@@ -1964,6 +2060,7 @@ M.ListTemplateActionsOutput = {
 
 M.PutTemplateActionInput = {
     type = "structure",
+    id = "PutTemplateActionInput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -2031,6 +2128,7 @@ M.PutTemplateActionInput = {
 
 M.PutTemplateActionOutput = {
     type = "structure",
+    id = "PutTemplateActionOutput",
     members = {
         actionID = {
             type = "string",
@@ -2080,6 +2178,7 @@ M.PutTemplateActionOutput = {
 
 M.RemoveTemplateActionInput = {
     type = "structure",
+    id = "RemoveTemplateActionInput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -2098,10 +2197,12 @@ M.RemoveTemplateActionInput = {
 
 M.RemoveTemplateActionOutput = {
     type = "structure",
+    id = "RemoveTemplateActionOutput",
 }
 
 M.UpdateLaunchConfigurationTemplateInput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationTemplateInput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -2154,6 +2255,7 @@ M.UpdateLaunchConfigurationTemplateInput = {
 
 M.UpdateLaunchConfigurationTemplateOutput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationTemplateOutput",
     members = {
         launchConfigurationTemplateID = {
             type = "string",
@@ -2217,6 +2319,7 @@ M.UpdateLaunchConfigurationTemplateOutput = {
 
 M.ListImportFileEnrichmentsFilters = {
     type = "structure",
+    id = "ListImportFileEnrichmentsFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -2227,6 +2330,7 @@ M.ListImportFileEnrichmentsFilters = {
 
 M.ListImportFileEnrichmentsInput = {
     type = "structure",
+    id = "ListImportFileEnrichmentsInput",
     members = {
         filters = M.ListImportFileEnrichmentsFilters,
         maxResults = {
@@ -2244,6 +2348,7 @@ M.EncryptionAlgorithm = {
 
 M.Checksum = {
     type = "structure",
+    id = "Checksum",
     members = {
         encryptionAlgorithm = {
             type = "string",
@@ -2256,6 +2361,7 @@ M.Checksum = {
 
 M.EnrichmentTargetS3Configuration = {
     type = "structure",
+    id = "EnrichmentTargetS3Configuration",
     members = {
         s3Bucket = {
             type = "string",
@@ -2288,6 +2394,7 @@ M.ImportFileEnrichmentStatus = {
 
 M.ImportFileEnrichment = {
     type = "structure",
+    id = "ImportFileEnrichment",
     members = {
         jobID = {
             type = "string",
@@ -2311,6 +2418,7 @@ M.ImportFileEnrichment = {
 
 M.ListImportFileEnrichmentsOutput = {
     type = "structure",
+    id = "ListImportFileEnrichmentsOutput",
     members = {
         items = {
             type = "list",
@@ -2324,6 +2432,7 @@ M.ListImportFileEnrichmentsOutput = {
 
 M.ListManagedAccountsInput = {
     type = "structure",
+    id = "ListManagedAccountsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2336,6 +2445,7 @@ M.ListManagedAccountsInput = {
 
 M.ManagedAccount = {
     type = "structure",
+    id = "ManagedAccount",
     members = {
         accountId = {
             type = "string",
@@ -2345,6 +2455,7 @@ M.ManagedAccount = {
 
 M.ListManagedAccountsOutput = {
     type = "structure",
+    id = "ListManagedAccountsOutput",
     members = {
         items = {
             type = "list",
@@ -2361,6 +2472,7 @@ M.ListManagedAccountsOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -2381,6 +2493,7 @@ M.InternalServerException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2394,6 +2507,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2405,6 +2519,7 @@ M.ListTagsForResourceOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -2440,6 +2555,7 @@ M.SourceEnvironment = {
 
 M.SourceS3Configuration = {
     type = "structure",
+    id = "SourceS3Configuration",
     members = {
         s3Bucket = {
             type = "string",
@@ -2464,6 +2580,7 @@ M.SourceS3Configuration = {
 
 M.SourceConfiguration = {
     type = "structure",
+    id = "SourceConfiguration",
     members = {
         sourceEnvironment = {
             type = "string",
@@ -2489,6 +2606,7 @@ M.TargetNetworkTopology = {
 
 M.TargetNetwork = {
     type = "structure",
+    id = "TargetNetwork",
     members = {
         topology = {
             type = "string",
@@ -2510,6 +2628,7 @@ M.TargetNetwork = {
 
 M.TargetS3Configuration = {
     type = "structure",
+    id = "TargetS3Configuration",
     members = {
         s3Bucket = {
             type = "string",
@@ -2528,6 +2647,7 @@ M.TargetS3Configuration = {
 
 M.CreateNetworkMigrationDefinitionInput = {
     type = "structure",
+    id = "CreateNetworkMigrationDefinitionInput",
     members = {
         name = {
             type = "string",
@@ -2566,6 +2686,7 @@ M.CreateNetworkMigrationDefinitionInput = {
 
 M.CreateNetworkMigrationDefinitionOutput = {
     type = "structure",
+    id = "CreateNetworkMigrationDefinitionOutput",
     members = {
         arn = {
             type = "string",
@@ -2609,6 +2730,7 @@ M.CreateNetworkMigrationDefinitionOutput = {
 
 M.DeleteNetworkMigrationDefinitionInput = {
     type = "structure",
+    id = "DeleteNetworkMigrationDefinitionInput",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -2621,10 +2743,12 @@ M.DeleteNetworkMigrationDefinitionInput = {
 
 M.DeleteNetworkMigrationDefinitionOutput = {
     type = "structure",
+    id = "DeleteNetworkMigrationDefinitionOutput",
 }
 
 M.GetNetworkMigrationDefinitionInput = {
     type = "structure",
+    id = "GetNetworkMigrationDefinitionInput",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -2637,6 +2761,7 @@ M.GetNetworkMigrationDefinitionInput = {
 
 M.GetNetworkMigrationDefinitionOutput = {
     type = "structure",
+    id = "GetNetworkMigrationDefinitionOutput",
     members = {
         arn = {
             type = "string",
@@ -2680,6 +2805,7 @@ M.GetNetworkMigrationDefinitionOutput = {
 
 M.GetNetworkMigrationMapperSegmentConstructInput = {
     type = "structure",
+    id = "GetNetworkMigrationMapperSegmentConstructInput",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -2710,6 +2836,7 @@ M.GetNetworkMigrationMapperSegmentConstructInput = {
 
 M.NetworkMigrationMapperSegmentConstruct = {
     type = "structure",
+    id = "NetworkMigrationMapperSegmentConstruct",
     members = {
         constructID = {
             type = "string",
@@ -2745,6 +2872,7 @@ M.NetworkMigrationMapperSegmentConstruct = {
 
 M.GetNetworkMigrationMapperSegmentConstructOutput = {
     type = "structure",
+    id = "GetNetworkMigrationMapperSegmentConstructOutput",
     members = {
         construct = M.NetworkMigrationMapperSegmentConstruct,
     },
@@ -2752,6 +2880,7 @@ M.GetNetworkMigrationMapperSegmentConstructOutput = {
 
 M.ListNetworkMigrationAnalysesFilters = {
     type = "structure",
+    id = "ListNetworkMigrationAnalysesFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -2762,6 +2891,7 @@ M.ListNetworkMigrationAnalysesFilters = {
 
 M.ListNetworkMigrationAnalysesInput = {
     type = "structure",
+    id = "ListNetworkMigrationAnalysesInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -2794,6 +2924,7 @@ M.NetworkMigrationJobStatus = {
 
 M.NetworkMigrationAnalysisJobDetails = {
     type = "structure",
+    id = "NetworkMigrationAnalysisJobDetails",
     members = {
         jobID = {
             type = "string",
@@ -2821,6 +2952,7 @@ M.NetworkMigrationAnalysisJobDetails = {
 
 M.ListNetworkMigrationAnalysesOutput = {
     type = "structure",
+    id = "ListNetworkMigrationAnalysesOutput",
     members = {
         items = {
             type = "list",
@@ -2834,6 +2966,7 @@ M.ListNetworkMigrationAnalysesOutput = {
 
 M.ListNetworkMigrationAnalysisResultsFilters = {
     type = "structure",
+    id = "ListNetworkMigrationAnalysisResultsFilters",
     members = {
         vpcIDs = {
             type = "list",
@@ -2844,6 +2977,7 @@ M.ListNetworkMigrationAnalysisResultsFilters = {
 
 M.ListNetworkMigrationAnalysisResultsInput = {
     type = "structure",
+    id = "ListNetworkMigrationAnalysisResultsInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -2869,6 +3003,7 @@ M.ListNetworkMigrationAnalysisResultsInput = {
 
 M.NetworkMigrationAnalysisResultSource = {
     type = "structure",
+    id = "NetworkMigrationAnalysisResultSource",
     members = {
         vpcID = {
             type = "string",
@@ -2888,6 +3023,7 @@ M.NetworkMigrationAnalysisResultStatus = {
 
 M.NetworkMigrationAnalysisResultTarget = {
     type = "structure",
+    id = "NetworkMigrationAnalysisResultTarget",
     members = {
         vpcID = {
             type = "string",
@@ -2900,6 +3036,7 @@ M.NetworkMigrationAnalysisResultTarget = {
 
 M.NetworkMigrationAnalysisResult = {
     type = "structure",
+    id = "NetworkMigrationAnalysisResult",
     members = {
         jobID = {
             type = "string",
@@ -2926,6 +3063,7 @@ M.NetworkMigrationAnalysisResult = {
 
 M.ListNetworkMigrationAnalysisResultsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationAnalysisResultsOutput",
     members = {
         items = {
             type = "list",
@@ -2939,6 +3077,7 @@ M.ListNetworkMigrationAnalysisResultsOutput = {
 
 M.ListNetworkMigrationCodeGenerationsFilters = {
     type = "structure",
+    id = "ListNetworkMigrationCodeGenerationsFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -2949,6 +3088,7 @@ M.ListNetworkMigrationCodeGenerationsFilters = {
 
 M.ListNetworkMigrationCodeGenerationsInput = {
     type = "structure",
+    id = "ListNetworkMigrationCodeGenerationsInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -2986,6 +3126,7 @@ M.CodeGenerationOutputFormatStatus = {
 
 M.CodeGenerationOutputFormatStatusDetails = {
     type = "structure",
+    id = "CodeGenerationOutputFormatStatusDetails",
     members = {
         status = {
             type = "string",
@@ -2998,6 +3139,7 @@ M.CodeGenerationOutputFormatStatusDetails = {
 
 M.NetworkMigrationCodeGenerationJobDetails = {
     type = "structure",
+    id = "NetworkMigrationCodeGenerationJobDetails",
     members = {
         jobID = {
             type = "string",
@@ -3030,6 +3172,7 @@ M.NetworkMigrationCodeGenerationJobDetails = {
 
 M.ListNetworkMigrationCodeGenerationsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationCodeGenerationsOutput",
     members = {
         items = {
             type = "list",
@@ -3043,6 +3186,7 @@ M.ListNetworkMigrationCodeGenerationsOutput = {
 
 M.ListNetworkMigrationCodeGenerationSegmentsFilters = {
     type = "structure",
+    id = "ListNetworkMigrationCodeGenerationSegmentsFilters",
     members = {
         segmentIDs = {
             type = "list",
@@ -3053,6 +3197,7 @@ M.ListNetworkMigrationCodeGenerationSegmentsFilters = {
 
 M.ListNetworkMigrationCodeGenerationSegmentsInput = {
     type = "structure",
+    id = "ListNetworkMigrationCodeGenerationSegmentsInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3092,6 +3237,7 @@ M.NetworkMigrationCodeGenerationArtifactType = {
 
 M.S3Configuration = {
     type = "structure",
+    id = "S3Configuration",
     members = {
         s3Bucket = {
             type = "string",
@@ -3107,6 +3253,7 @@ M.S3Configuration = {
 
 M.NetworkMigrationCodeGenerationArtifact = {
     type = "structure",
+    id = "NetworkMigrationCodeGenerationArtifact",
     members = {
         artifactID = {
             type = "string",
@@ -3136,6 +3283,7 @@ M.NetworkMigrationCodeGenerationSegmentType = {
 
 M.NetworkMigrationCodeGenerationSegment = {
     type = "structure",
+    id = "NetworkMigrationCodeGenerationSegment",
     members = {
         jobID = {
             type = "string",
@@ -3170,6 +3318,7 @@ M.NetworkMigrationCodeGenerationSegment = {
 
 M.ListNetworkMigrationCodeGenerationSegmentsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationCodeGenerationSegmentsOutput",
     members = {
         items = {
             type = "list",
@@ -3183,6 +3332,7 @@ M.ListNetworkMigrationCodeGenerationSegmentsOutput = {
 
 M.ListNetworkMigrationDefinitionsRequestFilters = {
     type = "structure",
+    id = "ListNetworkMigrationDefinitionsRequestFilters",
     members = {
         networkMigrationDefinitionIDs = {
             type = "list",
@@ -3193,6 +3343,7 @@ M.ListNetworkMigrationDefinitionsRequestFilters = {
 
 M.ListNetworkMigrationDefinitionsInput = {
     type = "structure",
+    id = "ListNetworkMigrationDefinitionsInput",
     members = {
         filters = M.ListNetworkMigrationDefinitionsRequestFilters,
         nextToken = {
@@ -3206,6 +3357,7 @@ M.ListNetworkMigrationDefinitionsInput = {
 
 M.NetworkMigrationDefinitionSummary = {
     type = "structure",
+    id = "NetworkMigrationDefinitionSummary",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -3234,6 +3386,7 @@ M.NetworkMigrationDefinitionSummary = {
 
 M.ListNetworkMigrationDefinitionsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationDefinitionsOutput",
     members = {
         items = {
             type = "list",
@@ -3247,6 +3400,7 @@ M.ListNetworkMigrationDefinitionsOutput = {
 
 M.ListNetworkMigrationDeployedStacksInput = {
     type = "structure",
+    id = "ListNetworkMigrationDeployedStacksInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3276,6 +3430,7 @@ M.NetworkMigrationFailedResourceStatus = {
 
 M.NetworkMigrationFailedResourceDetails = {
     type = "structure",
+    id = "NetworkMigrationFailedResourceDetails",
     members = {
         logicalID = {
             type = "string",
@@ -3300,6 +3455,7 @@ M.NetworkMigrationDeployedStackStatus = {
 
 M.NetworkMigrationDeployedStackDetails = {
     type = "structure",
+    id = "NetworkMigrationDeployedStackDetails",
     members = {
         status = {
             type = "string",
@@ -3325,6 +3481,7 @@ M.NetworkMigrationDeployedStackDetails = {
 
 M.ListNetworkMigrationDeployedStacksOutput = {
     type = "structure",
+    id = "ListNetworkMigrationDeployedStacksOutput",
     members = {
         items = {
             type = "list",
@@ -3338,6 +3495,7 @@ M.ListNetworkMigrationDeployedStacksOutput = {
 
 M.ListNetworkMigrationDeployerJobFilters = {
     type = "structure",
+    id = "ListNetworkMigrationDeployerJobFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -3348,6 +3506,7 @@ M.ListNetworkMigrationDeployerJobFilters = {
 
 M.ListNetworkMigrationDeploymentsInput = {
     type = "structure",
+    id = "ListNetworkMigrationDeploymentsInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3373,6 +3532,7 @@ M.ListNetworkMigrationDeploymentsInput = {
 
 M.NetworkMigrationDeployerJobDetails = {
     type = "structure",
+    id = "NetworkMigrationDeployerJobDetails",
     members = {
         jobID = {
             type = "string",
@@ -3400,6 +3560,7 @@ M.NetworkMigrationDeployerJobDetails = {
 
 M.ListNetworkMigrationDeploymentsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationDeploymentsOutput",
     members = {
         items = {
             type = "list",
@@ -3420,6 +3581,7 @@ M.ExecutionStatus = {
 
 M.ListNetworkMigrationExecutionRequestFilters = {
     type = "structure",
+    id = "ListNetworkMigrationExecutionRequestFilters",
     members = {
         networkMigrationExecutionIDs = {
             type = "list",
@@ -3434,6 +3596,7 @@ M.ListNetworkMigrationExecutionRequestFilters = {
 
 M.ListNetworkMigrationExecutionsInput = {
     type = "structure",
+    id = "ListNetworkMigrationExecutionsInput",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -3470,6 +3633,7 @@ M.ExecutionStage = {
 
 M.NetworkMigrationExecution = {
     type = "structure",
+    id = "NetworkMigrationExecution",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -3502,6 +3666,7 @@ M.NetworkMigrationExecution = {
 
 M.ListNetworkMigrationExecutionsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationExecutionsOutput",
     members = {
         items = {
             type = "list",
@@ -3515,6 +3680,7 @@ M.ListNetworkMigrationExecutionsOutput = {
 
 M.ListNetworkMigrationMapperSegmentConstructsFilters = {
     type = "structure",
+    id = "ListNetworkMigrationMapperSegmentConstructsFilters",
     members = {
         constructIDs = {
             type = "list",
@@ -3529,6 +3695,7 @@ M.ListNetworkMigrationMapperSegmentConstructsFilters = {
 
 M.ListNetworkMigrationMapperSegmentConstructsInput = {
     type = "structure",
+    id = "ListNetworkMigrationMapperSegmentConstructsInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3560,6 +3727,7 @@ M.ListNetworkMigrationMapperSegmentConstructsInput = {
 
 M.ListNetworkMigrationMapperSegmentConstructsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationMapperSegmentConstructsOutput",
     members = {
         items = {
             type = "list",
@@ -3573,6 +3741,7 @@ M.ListNetworkMigrationMapperSegmentConstructsOutput = {
 
 M.ListNetworkMigrationMapperSegmentsFilters = {
     type = "structure",
+    id = "ListNetworkMigrationMapperSegmentsFilters",
     members = {
         segmentIDs = {
             type = "list",
@@ -3583,6 +3752,7 @@ M.ListNetworkMigrationMapperSegmentsFilters = {
 
 M.ListNetworkMigrationMapperSegmentsInput = {
     type = "structure",
+    id = "ListNetworkMigrationMapperSegmentsInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3613,6 +3783,7 @@ M.NetworkMigrationMapperSegmentType = {
 
 M.NetworkMigrationMapperSegment = {
     type = "structure",
+    id = "NetworkMigrationMapperSegment",
     members = {
         jobID = {
             type = "string",
@@ -3663,6 +3834,7 @@ M.NetworkMigrationMapperSegment = {
 
 M.ListNetworkMigrationMapperSegmentsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationMapperSegmentsOutput",
     members = {
         items = {
             type = "list",
@@ -3676,6 +3848,7 @@ M.ListNetworkMigrationMapperSegmentsOutput = {
 
 M.ListNetworkMigrationMappingsFilters = {
     type = "structure",
+    id = "ListNetworkMigrationMappingsFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -3686,6 +3859,7 @@ M.ListNetworkMigrationMappingsFilters = {
 
 M.ListNetworkMigrationMappingsInput = {
     type = "structure",
+    id = "ListNetworkMigrationMappingsInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3711,6 +3885,7 @@ M.ListNetworkMigrationMappingsInput = {
 
 M.NetworkMigrationMappingJobDetails = {
     type = "structure",
+    id = "NetworkMigrationMappingJobDetails",
     members = {
         jobID = {
             type = "string",
@@ -3738,6 +3913,7 @@ M.NetworkMigrationMappingJobDetails = {
 
 M.ListNetworkMigrationMappingsOutput = {
     type = "structure",
+    id = "ListNetworkMigrationMappingsOutput",
     members = {
         items = {
             type = "list",
@@ -3751,6 +3927,7 @@ M.ListNetworkMigrationMappingsOutput = {
 
 M.ListNetworkMigrationMappingUpdatesFilters = {
     type = "structure",
+    id = "ListNetworkMigrationMappingUpdatesFilters",
     members = {
         jobIDs = {
             type = "list",
@@ -3761,6 +3938,7 @@ M.ListNetworkMigrationMappingUpdatesFilters = {
 
 M.ListNetworkMigrationMappingUpdatesInput = {
     type = "structure",
+    id = "ListNetworkMigrationMappingUpdatesInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3786,6 +3964,7 @@ M.ListNetworkMigrationMappingUpdatesInput = {
 
 M.NetworkMigrationMappingUpdateJobDetails = {
     type = "structure",
+    id = "NetworkMigrationMappingUpdateJobDetails",
     members = {
         jobID = {
             type = "string",
@@ -3813,6 +3992,7 @@ M.NetworkMigrationMappingUpdateJobDetails = {
 
 M.ListNetworkMigrationMappingUpdatesOutput = {
     type = "structure",
+    id = "ListNetworkMigrationMappingUpdatesOutput",
     members = {
         items = {
             type = "list",
@@ -3826,6 +4006,7 @@ M.ListNetworkMigrationMappingUpdatesOutput = {
 
 M.StartNetworkMigrationAnalysisInput = {
     type = "structure",
+    id = "StartNetworkMigrationAnalysisInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3844,6 +4025,7 @@ M.StartNetworkMigrationAnalysisInput = {
 
 M.StartNetworkMigrationAnalysisOutput = {
     type = "structure",
+    id = "StartNetworkMigrationAnalysisOutput",
     members = {
         jobID = {
             type = "string",
@@ -3853,6 +4035,7 @@ M.StartNetworkMigrationAnalysisOutput = {
 
 M.StartNetworkMigrationCodeGenerationInput = {
     type = "structure",
+    id = "StartNetworkMigrationCodeGenerationInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3875,6 +4058,7 @@ M.StartNetworkMigrationCodeGenerationInput = {
 
 M.StartNetworkMigrationCodeGenerationOutput = {
     type = "structure",
+    id = "StartNetworkMigrationCodeGenerationOutput",
     members = {
         jobID = {
             type = "string",
@@ -3884,6 +4068,7 @@ M.StartNetworkMigrationCodeGenerationOutput = {
 
 M.StartNetworkMigrationDeploymentInput = {
     type = "structure",
+    id = "StartNetworkMigrationDeploymentInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3902,6 +4087,7 @@ M.StartNetworkMigrationDeploymentInput = {
 
 M.StartNetworkMigrationDeploymentOutput = {
     type = "structure",
+    id = "StartNetworkMigrationDeploymentOutput",
     members = {
         jobID = {
             type = "string",
@@ -3916,6 +4102,7 @@ M.SecurityGroupMappingStrategy = {
 
 M.StartNetworkMigrationMappingInput = {
     type = "structure",
+    id = "StartNetworkMigrationMappingInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -3937,6 +4124,7 @@ M.StartNetworkMigrationMappingInput = {
 
 M.StartNetworkMigrationMappingOutput = {
     type = "structure",
+    id = "StartNetworkMigrationMappingOutput",
     members = {
         jobID = {
             type = "string",
@@ -3946,10 +4134,12 @@ M.StartNetworkMigrationMappingOutput = {
 
 M.DeleteOperation = {
     type = "structure",
+    id = "DeleteOperation",
 }
 
 M.MergeConstruct = {
     type = "structure",
+    id = "MergeConstruct",
     members = {
         segmentID = {
             type = "string",
@@ -3962,6 +4152,7 @@ M.MergeConstruct = {
 
 M.MergeOperation = {
     type = "structure",
+    id = "MergeOperation",
     members = {
         mergeConstructs = {
             type = "list",
@@ -3972,6 +4163,7 @@ M.MergeOperation = {
 
 M.SplitConstruct = {
     type = "structure",
+    id = "SplitConstruct",
     members = {
         cidrBlock = {
             type = "string",
@@ -3981,6 +4173,7 @@ M.SplitConstruct = {
 
 M.SplitOperation = {
     type = "structure",
+    id = "SplitOperation",
     members = {
         splitConstructs = {
             type = "list",
@@ -3991,6 +4184,7 @@ M.SplitOperation = {
 
 M.UpdateOperation = {
     type = "structure",
+    id = "UpdateOperation",
     members = {
         name = {
             type = "string",
@@ -4008,6 +4202,7 @@ M.UpdateOperation = {
 
 M.OperationUnion = {
     type = "union",
+    id = "OperationUnion",
     members = {
         merge = M.MergeOperation,
         split = M.SplitOperation,
@@ -4018,6 +4213,7 @@ M.OperationUnion = {
 
 M.StartNetworkMigrationMappingUpdateConstruct = {
     type = "structure",
+    id = "StartNetworkMigrationMappingUpdateConstruct",
     members = {
         segmentID = {
             type = "string",
@@ -4043,6 +4239,7 @@ M.StartNetworkMigrationMappingUpdateConstruct = {
 
 M.StartNetworkMigrationMappingUpdateSegment = {
     type = "structure",
+    id = "StartNetworkMigrationMappingUpdateSegment",
     members = {
         segmentID = {
             type = "string",
@@ -4063,6 +4260,7 @@ M.StartNetworkMigrationMappingUpdateSegment = {
 
 M.StartNetworkMigrationMappingUpdateInput = {
     type = "structure",
+    id = "StartNetworkMigrationMappingUpdateInput",
     members = {
         networkMigrationExecutionID = {
             type = "string",
@@ -4089,6 +4287,7 @@ M.StartNetworkMigrationMappingUpdateInput = {
 
 M.StartNetworkMigrationMappingUpdateOutput = {
     type = "structure",
+    id = "StartNetworkMigrationMappingUpdateOutput",
     members = {
         jobID = {
             type = "string",
@@ -4098,6 +4297,7 @@ M.StartNetworkMigrationMappingUpdateOutput = {
 
 M.TargetNetworkUpdate = {
     type = "structure",
+    id = "TargetNetworkUpdate",
     members = {
         topology = {
             type = "string",
@@ -4116,6 +4316,7 @@ M.TargetNetworkUpdate = {
 
 M.TargetS3ConfigurationUpdate = {
     type = "structure",
+    id = "TargetS3ConfigurationUpdate",
     members = {
         s3Bucket = {
             type = "string",
@@ -4128,6 +4329,7 @@ M.TargetS3ConfigurationUpdate = {
 
 M.UpdateNetworkMigrationDefinitionInput = {
     type = "structure",
+    id = "UpdateNetworkMigrationDefinitionInput",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -4160,6 +4362,7 @@ M.UpdateNetworkMigrationDefinitionInput = {
 
 M.UpdateNetworkMigrationDefinitionOutput = {
     type = "structure",
+    id = "UpdateNetworkMigrationDefinitionOutput",
     members = {
         arn = {
             type = "string",
@@ -4203,6 +4406,7 @@ M.UpdateNetworkMigrationDefinitionOutput = {
 
 M.UpdateNetworkMigrationMapperSegmentInput = {
     type = "structure",
+    id = "UpdateNetworkMigrationMapperSegmentInput",
     members = {
         networkMigrationDefinitionID = {
             type = "string",
@@ -4232,6 +4436,7 @@ M.UpdateNetworkMigrationMapperSegmentInput = {
 
 M.UpdateNetworkMigrationMapperSegmentOutput = {
     type = "structure",
+    id = "UpdateNetworkMigrationMapperSegmentOutput",
     members = {
         jobID = {
             type = "string",
@@ -4303,6 +4508,7 @@ M.InternetProtocol = {
 
 M.CreateReplicationConfigurationTemplateInput = {
     type = "structure",
+    id = "CreateReplicationConfigurationTemplateInput",
     members = {
         stagingAreaSubnetId = {
             type = "string",
@@ -4396,6 +4602,7 @@ M.CreateReplicationConfigurationTemplateInput = {
 
 M.CreateReplicationConfigurationTemplateOutput = {
     type = "structure",
+    id = "CreateReplicationConfigurationTemplateOutput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -4467,6 +4674,7 @@ M.CreateReplicationConfigurationTemplateOutput = {
 
 M.DeleteReplicationConfigurationTemplateInput = {
     type = "structure",
+    id = "DeleteReplicationConfigurationTemplateInput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -4479,10 +4687,12 @@ M.DeleteReplicationConfigurationTemplateInput = {
 
 M.DeleteReplicationConfigurationTemplateOutput = {
     type = "structure",
+    id = "DeleteReplicationConfigurationTemplateOutput",
 }
 
 M.DescribeReplicationConfigurationTemplatesInput = {
     type = "structure",
+    id = "DescribeReplicationConfigurationTemplatesInput",
     members = {
         replicationConfigurationTemplateIDs = {
             type = "list",
@@ -4499,6 +4709,7 @@ M.DescribeReplicationConfigurationTemplatesInput = {
 
 M.ReplicationConfigurationTemplate = {
     type = "structure",
+    id = "ReplicationConfigurationTemplate",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -4570,6 +4781,7 @@ M.ReplicationConfigurationTemplate = {
 
 M.DescribeReplicationConfigurationTemplatesOutput = {
     type = "structure",
+    id = "DescribeReplicationConfigurationTemplatesOutput",
     members = {
         items = {
             type = "list",
@@ -4583,6 +4795,7 @@ M.DescribeReplicationConfigurationTemplatesOutput = {
 
 M.UpdateReplicationConfigurationTemplateInput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationTemplateInput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -4649,6 +4862,7 @@ M.UpdateReplicationConfigurationTemplateInput = {
 
 M.UpdateReplicationConfigurationTemplateOutput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationTemplateOutput",
     members = {
         replicationConfigurationTemplateID = {
             type = "string",
@@ -4726,6 +4940,7 @@ M.ChangeServerLifeCycleStateSourceServerLifecycleState = {
 
 M.ChangeServerLifeCycleStateSourceServerLifecycle = {
     type = "structure",
+    id = "ChangeServerLifeCycleStateSourceServerLifecycle",
     members = {
         state = {
             type = "string",
@@ -4738,6 +4953,7 @@ M.ChangeServerLifeCycleStateSourceServerLifecycle = {
 
 M.ChangeServerLifeCycleStateInput = {
     type = "structure",
+    id = "ChangeServerLifeCycleStateInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -4756,6 +4972,7 @@ M.ChangeServerLifeCycleStateInput = {
 
 M.SourceServerConnectorAction = {
     type = "structure",
+    id = "SourceServerConnectorAction",
     members = {
         credentialsSecretArn = {
             type = "string",
@@ -4787,6 +5004,7 @@ M.DataReplicationErrorString = {
 
 M.DataReplicationError = {
     type = "structure",
+    id = "DataReplicationError",
     members = {
         error = {
             type = "string",
@@ -4821,6 +5039,7 @@ M.DataReplicationInitiationStepStatus = {
 
 M.DataReplicationInitiationStep = {
     type = "structure",
+    id = "DataReplicationInitiationStep",
     members = {
         name = {
             type = "string",
@@ -4833,6 +5052,7 @@ M.DataReplicationInitiationStep = {
 
 M.DataReplicationInitiation = {
     type = "structure",
+    id = "DataReplicationInitiation",
     members = {
         startDateTime = {
             type = "string",
@@ -4864,6 +5084,7 @@ M.DataReplicationState = {
 
 M.DataReplicationInfoReplicatedDisk = {
     type = "structure",
+    id = "DataReplicationInfoReplicatedDisk",
     members = {
         deviceName = {
             type = "string",
@@ -4897,6 +5118,7 @@ M.DataReplicationInfoReplicatedDisk = {
 
 M.DataReplicationInfo = {
     type = "structure",
+    id = "DataReplicationInfo",
     members = {
         lagDuration = {
             type = "string",
@@ -4931,6 +5153,7 @@ M.FirstBoot = {
 
 M.LaunchedInstance = {
     type = "structure",
+    id = "LaunchedInstance",
     members = {
         ec2InstanceID = {
             type = "string",
@@ -4946,6 +5169,7 @@ M.LaunchedInstance = {
 
 M.LifeCycleLastCutoverFinalized = {
     type = "structure",
+    id = "LifeCycleLastCutoverFinalized",
     members = {
         apiCallDateTime = {
             type = "string",
@@ -4955,6 +5179,7 @@ M.LifeCycleLastCutoverFinalized = {
 
 M.LifeCycleLastCutoverInitiated = {
     type = "structure",
+    id = "LifeCycleLastCutoverInitiated",
     members = {
         apiCallDateTime = {
             type = "string",
@@ -4967,6 +5192,7 @@ M.LifeCycleLastCutoverInitiated = {
 
 M.LifeCycleLastCutoverReverted = {
     type = "structure",
+    id = "LifeCycleLastCutoverReverted",
     members = {
         apiCallDateTime = {
             type = "string",
@@ -4976,6 +5202,7 @@ M.LifeCycleLastCutoverReverted = {
 
 M.LifeCycleLastCutover = {
     type = "structure",
+    id = "LifeCycleLastCutover",
     members = {
         initiated = M.LifeCycleLastCutoverInitiated,
         reverted = M.LifeCycleLastCutoverReverted,
@@ -4985,6 +5212,7 @@ M.LifeCycleLastCutover = {
 
 M.LifeCycleLastTestFinalized = {
     type = "structure",
+    id = "LifeCycleLastTestFinalized",
     members = {
         apiCallDateTime = {
             type = "string",
@@ -4994,6 +5222,7 @@ M.LifeCycleLastTestFinalized = {
 
 M.LifeCycleLastTestInitiated = {
     type = "structure",
+    id = "LifeCycleLastTestInitiated",
     members = {
         apiCallDateTime = {
             type = "string",
@@ -5006,6 +5235,7 @@ M.LifeCycleLastTestInitiated = {
 
 M.LifeCycleLastTestReverted = {
     type = "structure",
+    id = "LifeCycleLastTestReverted",
     members = {
         apiCallDateTime = {
             type = "string",
@@ -5015,6 +5245,7 @@ M.LifeCycleLastTestReverted = {
 
 M.LifeCycleLastTest = {
     type = "structure",
+    id = "LifeCycleLastTest",
     members = {
         initiated = M.LifeCycleLastTestInitiated,
         reverted = M.LifeCycleLastTestReverted,
@@ -5037,6 +5268,7 @@ M.LifeCycleState = {
 
 M.LifeCycle = {
     type = "structure",
+    id = "LifeCycle",
     members = {
         addedToServiceDateTime = {
             type = "string",
@@ -5065,6 +5297,7 @@ M.ReplicationType = {
 
 M.CPU = {
     type = "structure",
+    id = "CPU",
     members = {
         cores = {
             type = "long",
@@ -5080,6 +5313,7 @@ M.CPU = {
 
 M.Disk = {
     type = "structure",
+    id = "Disk",
     members = {
         deviceName = {
             type = "string",
@@ -5095,6 +5329,7 @@ M.Disk = {
 
 M.IdentificationHints = {
     type = "structure",
+    id = "IdentificationHints",
     members = {
         fqdn = {
             type = "string",
@@ -5116,6 +5351,7 @@ M.IdentificationHints = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         macAddress = {
             type = "string",
@@ -5132,6 +5368,7 @@ M.NetworkInterface = {
 
 M.OS = {
     type = "structure",
+    id = "OS",
     members = {
         fullString = {
             type = "string",
@@ -5141,6 +5378,7 @@ M.OS = {
 
 M.SourceProperties = {
     type = "structure",
+    id = "SourceProperties",
     members = {
         lastUpdatedDateTime = {
             type = "string",
@@ -5173,6 +5411,7 @@ M.SourceProperties = {
 
 M.ChangeServerLifeCycleStateOutput = {
     type = "structure",
+    id = "ChangeServerLifeCycleStateOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5213,6 +5452,7 @@ M.ChangeServerLifeCycleStateOutput = {
 
 M.DeleteSourceServerInput = {
     type = "structure",
+    id = "DeleteSourceServerInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5228,10 +5468,12 @@ M.DeleteSourceServerInput = {
 
 M.DeleteSourceServerOutput = {
     type = "structure",
+    id = "DeleteSourceServerOutput",
 }
 
 M.DescribeSourceServersRequestFilters = {
     type = "structure",
+    id = "DescribeSourceServersRequestFilters",
     members = {
         sourceServerIDs = {
             type = "list",
@@ -5257,6 +5499,7 @@ M.DescribeSourceServersRequestFilters = {
 
 M.DescribeSourceServersInput = {
     type = "structure",
+    id = "DescribeSourceServersInput",
     members = {
         filters = M.DescribeSourceServersRequestFilters,
         maxResults = {
@@ -5273,6 +5516,7 @@ M.DescribeSourceServersInput = {
 
 M.SourceServer = {
     type = "structure",
+    id = "SourceServer",
     members = {
         sourceServerID = {
             type = "string",
@@ -5313,6 +5557,7 @@ M.SourceServer = {
 
 M.DescribeSourceServersOutput = {
     type = "structure",
+    id = "DescribeSourceServersOutput",
     members = {
         items = {
             type = "list",
@@ -5326,6 +5571,7 @@ M.DescribeSourceServersOutput = {
 
 M.DisconnectFromServiceInput = {
     type = "structure",
+    id = "DisconnectFromServiceInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5341,6 +5587,7 @@ M.DisconnectFromServiceInput = {
 
 M.DisconnectFromServiceOutput = {
     type = "structure",
+    id = "DisconnectFromServiceOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5381,6 +5628,7 @@ M.DisconnectFromServiceOutput = {
 
 M.FinalizeCutoverInput = {
     type = "structure",
+    id = "FinalizeCutoverInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5396,6 +5644,7 @@ M.FinalizeCutoverInput = {
 
 M.FinalizeCutoverOutput = {
     type = "structure",
+    id = "FinalizeCutoverOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5436,6 +5685,7 @@ M.FinalizeCutoverOutput = {
 
 M.GetLaunchConfigurationInput = {
     type = "structure",
+    id = "GetLaunchConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5451,6 +5701,7 @@ M.GetLaunchConfigurationInput = {
 
 M.GetLaunchConfigurationOutput = {
     type = "structure",
+    id = "GetLaunchConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5489,6 +5740,7 @@ M.GetLaunchConfigurationOutput = {
 
 M.GetReplicationConfigurationInput = {
     type = "structure",
+    id = "GetReplicationConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5515,6 +5767,7 @@ M.ReplicationConfigurationReplicatedDiskStagingDiskType = {
 
 M.ReplicationConfigurationReplicatedDisk = {
     type = "structure",
+    id = "ReplicationConfigurationReplicatedDisk",
     members = {
         deviceName = {
             type = "string",
@@ -5542,6 +5795,7 @@ M.ReplicationConfigurationReplicatedDisk = {
 
 M.GetReplicationConfigurationOutput = {
     type = "structure",
+    id = "GetReplicationConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5609,6 +5863,7 @@ M.GetReplicationConfigurationOutput = {
 
 M.SourceServerActionsRequestFilters = {
     type = "structure",
+    id = "SourceServerActionsRequestFilters",
     members = {
         actionIDs = {
             type = "list",
@@ -5619,6 +5874,7 @@ M.SourceServerActionsRequestFilters = {
 
 M.ListSourceServerActionsInput = {
     type = "structure",
+    id = "ListSourceServerActionsInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5641,6 +5897,7 @@ M.ListSourceServerActionsInput = {
 
 M.SourceServerActionDocument = {
     type = "structure",
+    id = "SourceServerActionDocument",
     members = {
         actionID = {
             type = "string",
@@ -5687,6 +5944,7 @@ M.SourceServerActionDocument = {
 
 M.ListSourceServerActionsOutput = {
     type = "structure",
+    id = "ListSourceServerActionsOutput",
     members = {
         items = {
             type = "list",
@@ -5700,6 +5958,7 @@ M.ListSourceServerActionsOutput = {
 
 M.MarkAsArchivedInput = {
     type = "structure",
+    id = "MarkAsArchivedInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5715,6 +5974,7 @@ M.MarkAsArchivedInput = {
 
 M.MarkAsArchivedOutput = {
     type = "structure",
+    id = "MarkAsArchivedOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5755,6 +6015,7 @@ M.MarkAsArchivedOutput = {
 
 M.PauseReplicationInput = {
     type = "structure",
+    id = "PauseReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5770,6 +6031,7 @@ M.PauseReplicationInput = {
 
 M.PauseReplicationOutput = {
     type = "structure",
+    id = "PauseReplicationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5810,6 +6072,7 @@ M.PauseReplicationOutput = {
 
 M.PutSourceServerActionInput = {
     type = "structure",
+    id = "PutSourceServerActionInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5877,6 +6140,7 @@ M.PutSourceServerActionInput = {
 
 M.PutSourceServerActionOutput = {
     type = "structure",
+    id = "PutSourceServerActionOutput",
     members = {
         actionID = {
             type = "string",
@@ -5923,6 +6187,7 @@ M.PutSourceServerActionOutput = {
 
 M.RemoveSourceServerActionInput = {
     type = "structure",
+    id = "RemoveSourceServerActionInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5944,10 +6209,12 @@ M.RemoveSourceServerActionInput = {
 
 M.RemoveSourceServerActionOutput = {
     type = "structure",
+    id = "RemoveSourceServerActionOutput",
 }
 
 M.ResumeReplicationInput = {
     type = "structure",
+    id = "ResumeReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -5963,6 +6230,7 @@ M.ResumeReplicationInput = {
 
 M.ResumeReplicationOutput = {
     type = "structure",
+    id = "ResumeReplicationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6003,6 +6271,7 @@ M.ResumeReplicationOutput = {
 
 M.RetryDataReplicationInput = {
     type = "structure",
+    id = "RetryDataReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6018,6 +6287,7 @@ M.RetryDataReplicationInput = {
 
 M.RetryDataReplicationOutput = {
     type = "structure",
+    id = "RetryDataReplicationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6058,6 +6328,7 @@ M.RetryDataReplicationOutput = {
 
 M.StartCutoverInput = {
     type = "structure",
+    id = "StartCutoverInput",
     members = {
         sourceServerIDs = {
             type = "list",
@@ -6079,6 +6350,7 @@ M.StartCutoverInput = {
 
 M.StartCutoverOutput = {
     type = "structure",
+    id = "StartCutoverOutput",
     members = {
         job = M.Job,
     },
@@ -6086,6 +6358,7 @@ M.StartCutoverOutput = {
 
 M.StartReplicationInput = {
     type = "structure",
+    id = "StartReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6101,6 +6374,7 @@ M.StartReplicationInput = {
 
 M.StartReplicationOutput = {
     type = "structure",
+    id = "StartReplicationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6141,6 +6415,7 @@ M.StartReplicationOutput = {
 
 M.StartTestInput = {
     type = "structure",
+    id = "StartTestInput",
     members = {
         sourceServerIDs = {
             type = "list",
@@ -6162,6 +6437,7 @@ M.StartTestInput = {
 
 M.StartTestOutput = {
     type = "structure",
+    id = "StartTestOutput",
     members = {
         job = M.Job,
     },
@@ -6169,6 +6445,7 @@ M.StartTestOutput = {
 
 M.StopReplicationInput = {
     type = "structure",
+    id = "StopReplicationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6184,6 +6461,7 @@ M.StopReplicationInput = {
 
 M.StopReplicationOutput = {
     type = "structure",
+    id = "StopReplicationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6224,6 +6502,7 @@ M.StopReplicationOutput = {
 
 M.TerminateTargetInstancesInput = {
     type = "structure",
+    id = "TerminateTargetInstancesInput",
     members = {
         sourceServerIDs = {
             type = "list",
@@ -6245,6 +6524,7 @@ M.TerminateTargetInstancesInput = {
 
 M.TerminateTargetInstancesOutput = {
     type = "structure",
+    id = "TerminateTargetInstancesOutput",
     members = {
         job = M.Job,
     },
@@ -6252,6 +6532,7 @@ M.TerminateTargetInstancesOutput = {
 
 M.UpdateLaunchConfigurationInput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6293,6 +6574,7 @@ M.UpdateLaunchConfigurationInput = {
 
 M.UpdateLaunchConfigurationOutput = {
     type = "structure",
+    id = "UpdateLaunchConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6331,6 +6613,7 @@ M.UpdateLaunchConfigurationOutput = {
 
 M.UpdateReplicationConfigurationInput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6404,6 +6687,7 @@ M.UpdateReplicationConfigurationInput = {
 
 M.UpdateReplicationConfigurationOutput = {
     type = "structure",
+    id = "UpdateReplicationConfigurationOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6471,6 +6755,7 @@ M.UpdateReplicationConfigurationOutput = {
 
 M.UpdateSourceServerInput = {
     type = "structure",
+    id = "UpdateSourceServerInput",
     members = {
         accountID = {
             type = "string",
@@ -6487,6 +6772,7 @@ M.UpdateSourceServerInput = {
 
 M.UpdateSourceServerOutput = {
     type = "structure",
+    id = "UpdateSourceServerOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6527,6 +6813,7 @@ M.UpdateSourceServerOutput = {
 
 M.UpdateSourceServerReplicationTypeInput = {
     type = "structure",
+    id = "UpdateSourceServerReplicationTypeInput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6548,6 +6835,7 @@ M.UpdateSourceServerReplicationTypeInput = {
 
 M.UpdateSourceServerReplicationTypeOutput = {
     type = "structure",
+    id = "UpdateSourceServerReplicationTypeOutput",
     members = {
         sourceServerID = {
             type = "string",
@@ -6593,6 +6881,7 @@ M.IpAssignmentStrategy = {
 
 M.EnrichmentSourceS3Configuration = {
     type = "structure",
+    id = "EnrichmentSourceS3Configuration",
     members = {
         s3Bucket = {
             type = "string",
@@ -6617,6 +6906,7 @@ M.EnrichmentSourceS3Configuration = {
 
 M.StartImportFileEnrichmentInput = {
     type = "structure",
+    id = "StartImportFileEnrichmentInput",
     members = {
         clientToken = {
             type = "string",
@@ -6638,6 +6928,7 @@ M.StartImportFileEnrichmentInput = {
 
 M.StartImportFileEnrichmentOutput = {
     type = "structure",
+    id = "StartImportFileEnrichmentOutput",
     members = {
         jobID = {
             type = "string",
@@ -6647,6 +6938,7 @@ M.StartImportFileEnrichmentOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6668,10 +6960,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6693,10 +6987,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.DeleteVcenterClientInput = {
     type = "structure",
+    id = "DeleteVcenterClientInput",
     members = {
         vcenterClientID = {
             type = "string",
@@ -6709,10 +7005,12 @@ M.DeleteVcenterClientInput = {
 
 M.DeleteVcenterClientOutput = {
     type = "structure",
+    id = "DeleteVcenterClientOutput",
 }
 
 M.DescribeVcenterClientsInput = {
     type = "structure",
+    id = "DescribeVcenterClientsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6731,6 +7029,7 @@ M.DescribeVcenterClientsInput = {
 
 M.VcenterClient = {
     type = "structure",
+    id = "VcenterClient",
     members = {
         vcenterClientID = {
             type = "string",
@@ -6765,6 +7064,7 @@ M.VcenterClient = {
 
 M.DescribeVcenterClientsOutput = {
     type = "structure",
+    id = "DescribeVcenterClientsOutput",
     members = {
         items = {
             type = "list",
@@ -6778,6 +7078,7 @@ M.DescribeVcenterClientsOutput = {
 
 M.ArchiveWaveInput = {
     type = "structure",
+    id = "ArchiveWaveInput",
     members = {
         waveID = {
             type = "string",
@@ -6805,6 +7106,7 @@ M.WaveProgressStatus = {
 
 M.WaveAggregatedStatus = {
     type = "structure",
+    id = "WaveAggregatedStatus",
     members = {
         lastUpdateDateTime = {
             type = "string",
@@ -6829,6 +7131,7 @@ M.WaveAggregatedStatus = {
 
 M.ArchiveWaveOutput = {
     type = "structure",
+    id = "ArchiveWaveOutput",
     members = {
         waveID = {
             type = "string",
@@ -6862,6 +7165,7 @@ M.ArchiveWaveOutput = {
 
 M.AssociateApplicationsInput = {
     type = "structure",
+    id = "AssociateApplicationsInput",
     members = {
         waveID = {
             type = "string",
@@ -6884,10 +7188,12 @@ M.AssociateApplicationsInput = {
 
 M.AssociateApplicationsOutput = {
     type = "structure",
+    id = "AssociateApplicationsOutput",
 }
 
 M.CreateWaveInput = {
     type = "structure",
+    id = "CreateWaveInput",
     members = {
         name = {
             type = "string",
@@ -6911,6 +7217,7 @@ M.CreateWaveInput = {
 
 M.CreateWaveOutput = {
     type = "structure",
+    id = "CreateWaveOutput",
     members = {
         waveID = {
             type = "string",
@@ -6944,6 +7251,7 @@ M.CreateWaveOutput = {
 
 M.DeleteWaveInput = {
     type = "structure",
+    id = "DeleteWaveInput",
     members = {
         waveID = {
             type = "string",
@@ -6959,10 +7267,12 @@ M.DeleteWaveInput = {
 
 M.DeleteWaveOutput = {
     type = "structure",
+    id = "DeleteWaveOutput",
 }
 
 M.DisassociateApplicationsInput = {
     type = "structure",
+    id = "DisassociateApplicationsInput",
     members = {
         waveID = {
             type = "string",
@@ -6985,10 +7295,12 @@ M.DisassociateApplicationsInput = {
 
 M.DisassociateApplicationsOutput = {
     type = "structure",
+    id = "DisassociateApplicationsOutput",
 }
 
 M.ListWavesRequestFilters = {
     type = "structure",
+    id = "ListWavesRequestFilters",
     members = {
         waveIDs = {
             type = "list",
@@ -7002,6 +7314,7 @@ M.ListWavesRequestFilters = {
 
 M.ListWavesInput = {
     type = "structure",
+    id = "ListWavesInput",
     members = {
         filters = M.ListWavesRequestFilters,
         maxResults = {
@@ -7018,6 +7331,7 @@ M.ListWavesInput = {
 
 M.Wave = {
     type = "structure",
+    id = "Wave",
     members = {
         waveID = {
             type = "string",
@@ -7051,6 +7365,7 @@ M.Wave = {
 
 M.ListWavesOutput = {
     type = "structure",
+    id = "ListWavesOutput",
     members = {
         items = {
             type = "list",
@@ -7064,6 +7379,7 @@ M.ListWavesOutput = {
 
 M.UnarchiveWaveInput = {
     type = "structure",
+    id = "UnarchiveWaveInput",
     members = {
         waveID = {
             type = "string",
@@ -7079,6 +7395,7 @@ M.UnarchiveWaveInput = {
 
 M.UnarchiveWaveOutput = {
     type = "structure",
+    id = "UnarchiveWaveOutput",
     members = {
         waveID = {
             type = "string",
@@ -7112,6 +7429,7 @@ M.UnarchiveWaveOutput = {
 
 M.UpdateWaveInput = {
     type = "structure",
+    id = "UpdateWaveInput",
     members = {
         waveID = {
             type = "string",
@@ -7133,6 +7451,7 @@ M.UpdateWaveInput = {
 
 M.UpdateWaveOutput = {
     type = "structure",
+    id = "UpdateWaveOutput",
     members = {
         waveID = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.GetBlueprintOptimizationStatusInput = {
     type = "structure",
+    id = "GetBlueprintOptimizationStatusInput",
     members = {
         invocationArn = {
             type = "string",
@@ -25,6 +27,7 @@ M.GetBlueprintOptimizationStatusInput = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         s3Uri = {
             type = "string",
@@ -40,6 +43,7 @@ M.S3Object = {
 
 M.BlueprintOptimizationOutputConfiguration = {
     type = "structure",
+    id = "BlueprintOptimizationOutputConfiguration",
     members = {
         s3Object = setmetatable({ traits = {
             required = true,
@@ -57,6 +61,7 @@ M.BlueprintOptimizationJobStatus = {
 
 M.GetBlueprintOptimizationStatusOutput = {
     type = "structure",
+    id = "GetBlueprintOptimizationStatusOutput",
     members = {
         status = {
             type = "string",
@@ -73,6 +78,7 @@ M.GetBlueprintOptimizationStatusOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -83,6 +89,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -93,6 +100,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -103,6 +111,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -121,6 +130,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -140,6 +150,7 @@ M.BlueprintStage = {
 
 M.BlueprintOptimizationObject = {
     type = "structure",
+    id = "BlueprintOptimizationObject",
     members = {
         blueprintArn = {
             type = "string",
@@ -155,6 +166,7 @@ M.BlueprintOptimizationObject = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -172,6 +184,7 @@ M.EncryptionConfiguration = {
 
 M.BlueprintOptimizationSample = {
     type = "structure",
+    id = "BlueprintOptimizationSample",
     members = {
         assetS3Object = setmetatable({ traits = {
             required = true,
@@ -184,6 +197,7 @@ M.BlueprintOptimizationSample = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -202,6 +216,7 @@ M.Tag = {
 
 M.InvokeBlueprintOptimizationAsyncInput = {
     type = "structure",
+    id = "InvokeBlueprintOptimizationAsyncInput",
     members = {
         blueprint = setmetatable({ traits = {
             required = true,
@@ -232,6 +247,7 @@ M.InvokeBlueprintOptimizationAsyncInput = {
 
 M.InvokeBlueprintOptimizationAsyncOutput = {
     type = "structure",
+    id = "InvokeBlueprintOptimizationAsyncOutput",
     members = {
         invocationArn = {
             type = "string",
@@ -244,6 +260,7 @@ M.InvokeBlueprintOptimizationAsyncOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -254,6 +271,7 @@ M.ServiceQuotaExceededException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -271,6 +289,7 @@ M.Type = {
 
 M.CreateBlueprintInput = {
     type = "structure",
+    id = "CreateBlueprintInput",
     members = {
         blueprintName = {
             type = "string",
@@ -309,6 +328,7 @@ M.CreateBlueprintInput = {
 
 M.Blueprint = {
     type = "structure",
+    id = "Blueprint",
     members = {
         blueprintArn = {
             type = "string",
@@ -377,6 +397,7 @@ M.Blueprint = {
 
 M.CreateBlueprintOutput = {
     type = "structure",
+    id = "CreateBlueprintOutput",
     members = {
         blueprint = setmetatable({ traits = {
             required = true,
@@ -386,6 +407,7 @@ M.CreateBlueprintOutput = {
 
 M.DeleteBlueprintInput = {
     type = "structure",
+    id = "DeleteBlueprintInput",
     members = {
         blueprintArn = {
             type = "string",
@@ -405,10 +427,12 @@ M.DeleteBlueprintInput = {
 
 M.DeleteBlueprintOutput = {
     type = "structure",
+    id = "DeleteBlueprintOutput",
 }
 
 M.GetBlueprintInput = {
     type = "structure",
+    id = "GetBlueprintInput",
     members = {
         blueprintArn = {
             type = "string",
@@ -428,6 +452,7 @@ M.GetBlueprintInput = {
 
 M.GetBlueprintOutput = {
     type = "structure",
+    id = "GetBlueprintOutput",
     members = {
         blueprint = setmetatable({ traits = {
             required = true,
@@ -448,6 +473,7 @@ M.DataAutomationProjectStage = {
 
 M.DataAutomationProjectFilter = {
     type = "structure",
+    id = "DataAutomationProjectFilter",
     members = {
         projectArn = {
             type = "string",
@@ -468,6 +494,7 @@ M.ResourceOwner = {
 
 M.ListBlueprintsInput = {
     type = "structure",
+    id = "ListBlueprintsInput",
     members = {
         blueprintArn = {
             type = "string",
@@ -490,6 +517,7 @@ M.ListBlueprintsInput = {
 
 M.BlueprintSummary = {
     type = "structure",
+    id = "BlueprintSummary",
     members = {
         blueprintArn = {
             type = "string",
@@ -524,6 +552,7 @@ M.BlueprintSummary = {
 
 M.ListBlueprintsOutput = {
     type = "structure",
+    id = "ListBlueprintsOutput",
     members = {
         blueprints = {
             type = "list",
@@ -540,6 +569,7 @@ M.ListBlueprintsOutput = {
 
 M.UpdateBlueprintInput = {
     type = "structure",
+    id = "UpdateBlueprintInput",
     members = {
         blueprintArn = {
             type = "string",
@@ -563,6 +593,7 @@ M.UpdateBlueprintInput = {
 
 M.UpdateBlueprintOutput = {
     type = "structure",
+    id = "UpdateBlueprintOutput",
     members = {
         blueprint = setmetatable({ traits = {
             required = true,
@@ -572,6 +603,7 @@ M.UpdateBlueprintOutput = {
 
 M.CopyBlueprintStageInput = {
     type = "structure",
+    id = "CopyBlueprintStageInput",
     members = {
         blueprintArn = {
             type = "string",
@@ -603,10 +635,12 @@ M.CopyBlueprintStageInput = {
 
 M.CopyBlueprintStageOutput = {
     type = "structure",
+    id = "CopyBlueprintStageOutput",
 }
 
 M.CreateBlueprintVersionInput = {
     type = "structure",
+    id = "CreateBlueprintVersionInput",
     members = {
         blueprintArn = {
             type = "string",
@@ -626,6 +660,7 @@ M.CreateBlueprintVersionInput = {
 
 M.CreateBlueprintVersionOutput = {
     type = "structure",
+    id = "CreateBlueprintVersionOutput",
     members = {
         blueprint = setmetatable({ traits = {
             required = true,
@@ -635,6 +670,7 @@ M.CreateBlueprintVersionOutput = {
 
 M.GetDataAutomationLibraryIngestionJobInput = {
     type = "structure",
+    id = "GetDataAutomationLibraryIngestionJobInput",
     members = {
         libraryArn = {
             type = "string",
@@ -671,6 +707,7 @@ M.LibraryIngestionJobOperationType = {
 
 M.OutputConfiguration = {
     type = "structure",
+    id = "OutputConfiguration",
     members = {
         s3Uri = {
             type = "string",
@@ -683,6 +720,7 @@ M.OutputConfiguration = {
 
 M.DataAutomationLibraryIngestionJob = {
     type = "structure",
+    id = "DataAutomationLibraryIngestionJob",
     members = {
         jobArn = {
             type = "string",
@@ -735,6 +773,7 @@ M.DataAutomationLibraryIngestionJob = {
 
 M.GetDataAutomationLibraryIngestionJobOutput = {
     type = "structure",
+    id = "GetDataAutomationLibraryIngestionJobOutput",
     members = {
         job = M.DataAutomationLibraryIngestionJob,
     },
@@ -742,6 +781,7 @@ M.GetDataAutomationLibraryIngestionJobOutput = {
 
 M.DeleteEntitiesInfo = {
     type = "structure",
+    id = "DeleteEntitiesInfo",
     members = {
         entityIds = {
             type = "list",
@@ -769,6 +809,7 @@ M.Language = {
 
 M.Phrase = {
     type = "structure",
+    id = "Phrase",
     members = {
         text = {
             type = "string",
@@ -784,6 +825,7 @@ M.Phrase = {
 
 M.VocabularyEntityInfo = {
     type = "structure",
+    id = "VocabularyEntityInfo",
     members = {
         entityId = {
             type = "string",
@@ -809,6 +851,7 @@ M.VocabularyEntityInfo = {
 
 M.UpsertEntityInfo = {
     type = "union",
+    id = "UpsertEntityInfo",
     members = {
         vocabulary = M.VocabularyEntityInfo,
     },
@@ -816,6 +859,7 @@ M.UpsertEntityInfo = {
 
 M.InlinePayload = {
     type = "union",
+    id = "InlinePayload",
     members = {
         upsertEntitiesInfo = {
             type = "list",
@@ -827,6 +871,7 @@ M.InlinePayload = {
 
 M.InputConfiguration = {
     type = "structure",
+    id = "InputConfiguration",
     members = {
         s3Object = M.S3Object,
         inlinePayload = M.InlinePayload,
@@ -835,6 +880,7 @@ M.InputConfiguration = {
 
 M.EventBridgeConfiguration = {
     type = "structure",
+    id = "EventBridgeConfiguration",
     members = {
         eventBridgeEnabled = {
             type = "boolean",
@@ -847,6 +893,7 @@ M.EventBridgeConfiguration = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         eventBridgeConfiguration = setmetatable({ traits = {
             required = true,
@@ -856,6 +903,7 @@ M.NotificationConfiguration = {
 
 M.InvokeDataAutomationLibraryIngestionJobInput = {
     type = "structure",
+    id = "InvokeDataAutomationLibraryIngestionJobInput",
     members = {
         libraryArn = {
             type = "string",
@@ -898,6 +946,7 @@ M.InvokeDataAutomationLibraryIngestionJobInput = {
 
 M.InvokeDataAutomationLibraryIngestionJobOutput = {
     type = "structure",
+    id = "InvokeDataAutomationLibraryIngestionJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -907,6 +956,7 @@ M.InvokeDataAutomationLibraryIngestionJobOutput = {
 
 M.ListDataAutomationLibraryIngestionJobsInput = {
     type = "structure",
+    id = "ListDataAutomationLibraryIngestionJobsInput",
     members = {
         libraryArn = {
             type = "string",
@@ -926,6 +976,7 @@ M.ListDataAutomationLibraryIngestionJobsInput = {
 
 M.DataAutomationLibraryIngestionJobSummary = {
     type = "structure",
+    id = "DataAutomationLibraryIngestionJobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -969,6 +1020,7 @@ M.DataAutomationLibraryIngestionJobSummary = {
 
 M.ListDataAutomationLibraryIngestionJobsOutput = {
     type = "structure",
+    id = "ListDataAutomationLibraryIngestionJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -982,6 +1034,7 @@ M.ListDataAutomationLibraryIngestionJobsOutput = {
 
 M.CreateDataAutomationLibraryInput = {
     type = "structure",
+    id = "CreateDataAutomationLibraryInput",
     members = {
         libraryName = {
             type = "string",
@@ -1013,6 +1066,7 @@ M.DataAutomationLibraryStatus = {
 
 M.CreateDataAutomationLibraryOutput = {
     type = "structure",
+    id = "CreateDataAutomationLibraryOutput",
     members = {
         libraryArn = {
             type = "string",
@@ -1025,6 +1079,7 @@ M.CreateDataAutomationLibraryOutput = {
 
 M.DeleteDataAutomationLibraryInput = {
     type = "structure",
+    id = "DeleteDataAutomationLibraryInput",
     members = {
         libraryArn = {
             type = "string",
@@ -1038,6 +1093,7 @@ M.DeleteDataAutomationLibraryInput = {
 
 M.DeleteDataAutomationLibraryOutput = {
     type = "structure",
+    id = "DeleteDataAutomationLibraryOutput",
     members = {
         libraryArn = {
             type = "string",
@@ -1050,6 +1106,7 @@ M.DeleteDataAutomationLibraryOutput = {
 
 M.GetDataAutomationLibraryInput = {
     type = "structure",
+    id = "GetDataAutomationLibraryInput",
     members = {
         libraryArn = {
             type = "string",
@@ -1063,6 +1120,7 @@ M.GetDataAutomationLibraryInput = {
 
 M.EntityTypeInfo = {
     type = "structure",
+    id = "EntityTypeInfo",
     members = {
         entityType = {
             type = "string",
@@ -1078,6 +1136,7 @@ M.EntityTypeInfo = {
 
 M.DataAutomationLibrary = {
     type = "structure",
+    id = "DataAutomationLibrary",
     members = {
         libraryArn = {
             type = "string",
@@ -1124,6 +1183,7 @@ M.DataAutomationLibrary = {
 
 M.GetDataAutomationLibraryOutput = {
     type = "structure",
+    id = "GetDataAutomationLibraryOutput",
     members = {
         library = M.DataAutomationLibrary,
     },
@@ -1131,6 +1191,7 @@ M.GetDataAutomationLibraryOutput = {
 
 M.ListDataAutomationLibrariesInput = {
     type = "structure",
+    id = "ListDataAutomationLibrariesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1144,6 +1205,7 @@ M.ListDataAutomationLibrariesInput = {
 
 M.DataAutomationLibrarySummary = {
     type = "structure",
+    id = "DataAutomationLibrarySummary",
     members = {
         libraryArn = {
             type = "string",
@@ -1166,6 +1228,7 @@ M.DataAutomationLibrarySummary = {
 
 M.ListDataAutomationLibrariesOutput = {
     type = "structure",
+    id = "ListDataAutomationLibrariesOutput",
     members = {
         libraries = {
             type = "list",
@@ -1179,6 +1242,7 @@ M.ListDataAutomationLibrariesOutput = {
 
 M.UpdateDataAutomationLibraryInput = {
     type = "structure",
+    id = "UpdateDataAutomationLibraryInput",
     members = {
         libraryArn = {
             type = "string",
@@ -1201,6 +1265,7 @@ M.UpdateDataAutomationLibraryInput = {
 
 M.UpdateDataAutomationLibraryOutput = {
     type = "structure",
+    id = "UpdateDataAutomationLibraryOutput",
     members = {
         libraryArn = {
             type = "string",
@@ -1213,6 +1278,7 @@ M.UpdateDataAutomationLibraryOutput = {
 
 M.BlueprintItem = {
     type = "structure",
+    id = "BlueprintItem",
     members = {
         blueprintArn = {
             type = "string",
@@ -1231,6 +1297,7 @@ M.BlueprintItem = {
 
 M.CustomOutputConfiguration = {
     type = "structure",
+    id = "CustomOutputConfiguration",
     members = {
         blueprints = {
             type = "list",
@@ -1241,6 +1308,7 @@ M.CustomOutputConfiguration = {
 
 M.DataAutomationLibraryItem = {
     type = "structure",
+    id = "DataAutomationLibraryItem",
     members = {
         libraryArn = {
             type = "string",
@@ -1253,6 +1321,7 @@ M.DataAutomationLibraryItem = {
 
 M.DataAutomationLibraryConfiguration = {
     type = "structure",
+    id = "DataAutomationLibraryConfiguration",
     members = {
         libraries = {
             type = "list",
@@ -1268,6 +1337,7 @@ M.AudioGenerativeOutputLanguage = {
 
 M.AudioLanguageConfiguration = {
     type = "structure",
+    id = "AudioLanguageConfiguration",
     members = {
         inputLanguages = {
             type = "list",
@@ -1289,6 +1359,7 @@ M.State = {
 
 M.ModalityProcessingConfiguration = {
     type = "structure",
+    id = "ModalityProcessingConfiguration",
     members = {
         state = {
             type = "string",
@@ -1348,6 +1419,7 @@ M.PIIRedactionMaskMode = {
 
 M.PIIEntitiesConfiguration = {
     type = "structure",
+    id = "PIIEntitiesConfiguration",
     members = {
         piiEntityTypes = {
             type = "list",
@@ -1361,6 +1433,7 @@ M.PIIEntitiesConfiguration = {
 
 M.SensitiveDataConfiguration = {
     type = "structure",
+    id = "SensitiveDataConfiguration",
     members = {
         detectionMode = {
             type = "string",
@@ -1378,6 +1451,7 @@ M.SensitiveDataConfiguration = {
 
 M.AudioOverrideConfiguration = {
     type = "structure",
+    id = "AudioOverrideConfiguration",
     members = {
         modalityProcessing = M.ModalityProcessingConfiguration,
         languageConfiguration = M.AudioLanguageConfiguration,
@@ -1387,6 +1461,7 @@ M.AudioOverrideConfiguration = {
 
 M.SplitterConfiguration = {
     type = "structure",
+    id = "SplitterConfiguration",
     members = {
         state = {
             type = "string",
@@ -1396,6 +1471,7 @@ M.SplitterConfiguration = {
 
 M.DocumentOverrideConfiguration = {
     type = "structure",
+    id = "DocumentOverrideConfiguration",
     members = {
         splitter = M.SplitterConfiguration,
         modalityProcessing = M.ModalityProcessingConfiguration,
@@ -1405,6 +1481,7 @@ M.DocumentOverrideConfiguration = {
 
 M.ImageOverrideConfiguration = {
     type = "structure",
+    id = "ImageOverrideConfiguration",
     members = {
         modalityProcessing = M.ModalityProcessingConfiguration,
         sensitiveDataConfiguration = M.SensitiveDataConfiguration,
@@ -1420,6 +1497,7 @@ M.DesiredModality = {
 
 M.ModalityRoutingConfiguration = {
     type = "structure",
+    id = "ModalityRoutingConfiguration",
     members = {
         jpeg = {
             type = "string",
@@ -1438,6 +1516,7 @@ M.ModalityRoutingConfiguration = {
 
 M.VideoOverrideConfiguration = {
     type = "structure",
+    id = "VideoOverrideConfiguration",
     members = {
         modalityProcessing = M.ModalityProcessingConfiguration,
         sensitiveDataConfiguration = M.SensitiveDataConfiguration,
@@ -1446,6 +1525,7 @@ M.VideoOverrideConfiguration = {
 
 M.OverrideConfiguration = {
     type = "structure",
+    id = "OverrideConfiguration",
     members = {
         document = M.DocumentOverrideConfiguration,
         image = M.ImageOverrideConfiguration,
@@ -1462,6 +1542,7 @@ M.DataAutomationProjectType = {
 
 M.ChannelLabelingConfiguration = {
     type = "structure",
+    id = "ChannelLabelingConfiguration",
     members = {
         state = {
             type = "string",
@@ -1474,6 +1555,7 @@ M.ChannelLabelingConfiguration = {
 
 M.SpeakerLabelingConfiguration = {
     type = "structure",
+    id = "SpeakerLabelingConfiguration",
     members = {
         state = {
             type = "string",
@@ -1486,6 +1568,7 @@ M.SpeakerLabelingConfiguration = {
 
 M.TranscriptConfiguration = {
     type = "structure",
+    id = "TranscriptConfiguration",
     members = {
         speakerLabeling = M.SpeakerLabelingConfiguration,
         channelLabeling = M.ChannelLabelingConfiguration,
@@ -1494,6 +1577,7 @@ M.TranscriptConfiguration = {
 
 M.AudioExtractionCategoryTypeConfiguration = {
     type = "structure",
+    id = "AudioExtractionCategoryTypeConfiguration",
     members = {
         transcript = M.TranscriptConfiguration,
     },
@@ -1507,6 +1591,7 @@ M.AudioExtractionCategoryType = {
 
 M.AudioExtractionCategory = {
     type = "structure",
+    id = "AudioExtractionCategory",
     members = {
         state = {
             type = "string",
@@ -1524,6 +1609,7 @@ M.AudioExtractionCategory = {
 
 M.AudioStandardExtraction = {
     type = "structure",
+    id = "AudioStandardExtraction",
     members = {
         category = setmetatable({ traits = {
             required = true,
@@ -1539,6 +1625,7 @@ M.AudioStandardGenerativeFieldType = {
 
 M.AudioStandardGenerativeField = {
     type = "structure",
+    id = "AudioStandardGenerativeField",
     members = {
         state = {
             type = "string",
@@ -1555,6 +1642,7 @@ M.AudioStandardGenerativeField = {
 
 M.AudioStandardOutputConfiguration = {
     type = "structure",
+    id = "AudioStandardOutputConfiguration",
     members = {
         extraction = M.AudioStandardExtraction,
         generativeField = M.AudioStandardGenerativeField,
@@ -1563,6 +1651,7 @@ M.AudioStandardOutputConfiguration = {
 
 M.DocumentBoundingBox = {
     type = "structure",
+    id = "DocumentBoundingBox",
     members = {
         state = {
             type = "string",
@@ -1583,6 +1672,7 @@ M.DocumentExtractionGranularityType = {
 
 M.DocumentExtractionGranularity = {
     type = "structure",
+    id = "DocumentExtractionGranularity",
     members = {
         types = {
             type = "list",
@@ -1593,6 +1683,7 @@ M.DocumentExtractionGranularity = {
 
 M.DocumentStandardExtraction = {
     type = "structure",
+    id = "DocumentStandardExtraction",
     members = {
         granularity = setmetatable({ traits = {
             required = true,
@@ -1605,6 +1696,7 @@ M.DocumentStandardExtraction = {
 
 M.DocumentStandardGenerativeField = {
     type = "structure",
+    id = "DocumentStandardGenerativeField",
     members = {
         state = {
             type = "string",
@@ -1617,6 +1709,7 @@ M.DocumentStandardGenerativeField = {
 
 M.DocumentOutputAdditionalFileFormat = {
     type = "structure",
+    id = "DocumentOutputAdditionalFileFormat",
     members = {
         state = {
             type = "string",
@@ -1636,6 +1729,7 @@ M.DocumentOutputTextFormatType = {
 
 M.DocumentOutputTextFormat = {
     type = "structure",
+    id = "DocumentOutputTextFormat",
     members = {
         types = {
             type = "list",
@@ -1646,6 +1740,7 @@ M.DocumentOutputTextFormat = {
 
 M.DocumentOutputFormat = {
     type = "structure",
+    id = "DocumentOutputFormat",
     members = {
         textFormat = setmetatable({ traits = {
             required = true,
@@ -1658,6 +1753,7 @@ M.DocumentOutputFormat = {
 
 M.DocumentStandardOutputConfiguration = {
     type = "structure",
+    id = "DocumentStandardOutputConfiguration",
     members = {
         extraction = M.DocumentStandardExtraction,
         generativeField = M.DocumentStandardGenerativeField,
@@ -1667,6 +1763,7 @@ M.DocumentStandardOutputConfiguration = {
 
 M.ImageBoundingBox = {
     type = "structure",
+    id = "ImageBoundingBox",
     members = {
         state = {
             type = "string",
@@ -1685,6 +1782,7 @@ M.ImageExtractionCategoryType = {
 
 M.ImageExtractionCategory = {
     type = "structure",
+    id = "ImageExtractionCategory",
     members = {
         state = {
             type = "string",
@@ -1701,6 +1799,7 @@ M.ImageExtractionCategory = {
 
 M.ImageStandardExtraction = {
     type = "structure",
+    id = "ImageStandardExtraction",
     members = {
         category = setmetatable({ traits = {
             required = true,
@@ -1718,6 +1817,7 @@ M.ImageStandardGenerativeFieldType = {
 
 M.ImageStandardGenerativeField = {
     type = "structure",
+    id = "ImageStandardGenerativeField",
     members = {
         state = {
             type = "string",
@@ -1734,6 +1834,7 @@ M.ImageStandardGenerativeField = {
 
 M.ImageStandardOutputConfiguration = {
     type = "structure",
+    id = "ImageStandardOutputConfiguration",
     members = {
         extraction = M.ImageStandardExtraction,
         generativeField = M.ImageStandardGenerativeField,
@@ -1742,6 +1843,7 @@ M.ImageStandardOutputConfiguration = {
 
 M.VideoBoundingBox = {
     type = "structure",
+    id = "VideoBoundingBox",
     members = {
         state = {
             type = "string",
@@ -1761,6 +1863,7 @@ M.VideoExtractionCategoryType = {
 
 M.VideoExtractionCategory = {
     type = "structure",
+    id = "VideoExtractionCategory",
     members = {
         state = {
             type = "string",
@@ -1777,6 +1880,7 @@ M.VideoExtractionCategory = {
 
 M.VideoStandardExtraction = {
     type = "structure",
+    id = "VideoStandardExtraction",
     members = {
         category = setmetatable({ traits = {
             required = true,
@@ -1795,6 +1899,7 @@ M.VideoStandardGenerativeFieldType = {
 
 M.VideoStandardGenerativeField = {
     type = "structure",
+    id = "VideoStandardGenerativeField",
     members = {
         state = {
             type = "string",
@@ -1811,6 +1916,7 @@ M.VideoStandardGenerativeField = {
 
 M.VideoStandardOutputConfiguration = {
     type = "structure",
+    id = "VideoStandardOutputConfiguration",
     members = {
         extraction = M.VideoStandardExtraction,
         generativeField = M.VideoStandardGenerativeField,
@@ -1819,6 +1925,7 @@ M.VideoStandardOutputConfiguration = {
 
 M.StandardOutputConfiguration = {
     type = "structure",
+    id = "StandardOutputConfiguration",
     members = {
         document = M.DocumentStandardOutputConfiguration,
         image = M.ImageStandardOutputConfiguration,
@@ -1829,6 +1936,7 @@ M.StandardOutputConfiguration = {
 
 M.CreateDataAutomationProjectInput = {
     type = "structure",
+    id = "CreateDataAutomationProjectInput",
     members = {
         projectName = {
             type = "string",
@@ -1876,6 +1984,7 @@ M.DataAutomationProjectStatus = {
 
 M.CreateDataAutomationProjectOutput = {
     type = "structure",
+    id = "CreateDataAutomationProjectOutput",
     members = {
         projectArn = {
             type = "string",
@@ -1894,6 +2003,7 @@ M.CreateDataAutomationProjectOutput = {
 
 M.DeleteDataAutomationProjectInput = {
     type = "structure",
+    id = "DeleteDataAutomationProjectInput",
     members = {
         projectArn = {
             type = "string",
@@ -1907,6 +2017,7 @@ M.DeleteDataAutomationProjectInput = {
 
 M.DeleteDataAutomationProjectOutput = {
     type = "structure",
+    id = "DeleteDataAutomationProjectOutput",
     members = {
         projectArn = {
             type = "string",
@@ -1922,6 +2033,7 @@ M.DeleteDataAutomationProjectOutput = {
 
 M.GetDataAutomationProjectInput = {
     type = "structure",
+    id = "GetDataAutomationProjectInput",
     members = {
         projectArn = {
             type = "string",
@@ -1938,6 +2050,7 @@ M.GetDataAutomationProjectInput = {
 
 M.DataAutomationProject = {
     type = "structure",
+    id = "DataAutomationProject",
     members = {
         projectArn = {
             type = "string",
@@ -1997,6 +2110,7 @@ M.DataAutomationProject = {
 
 M.GetDataAutomationProjectOutput = {
     type = "structure",
+    id = "GetDataAutomationProjectOutput",
     members = {
         project = setmetatable({ traits = {
             required = true,
@@ -2006,6 +2120,7 @@ M.GetDataAutomationProjectOutput = {
 
 M.BlueprintFilter = {
     type = "structure",
+    id = "BlueprintFilter",
     members = {
         blueprintArn = {
             type = "string",
@@ -2024,6 +2139,7 @@ M.BlueprintFilter = {
 
 M.DataAutomationLibraryFilter = {
     type = "structure",
+    id = "DataAutomationLibraryFilter",
     members = {
         libraryArn = {
             type = "string",
@@ -2042,6 +2158,7 @@ M.DataAutomationProjectStageFilter = {
 
 M.ListDataAutomationProjectsInput = {
     type = "structure",
+    id = "ListDataAutomationProjectsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2062,6 +2179,7 @@ M.ListDataAutomationProjectsInput = {
 
 M.DataAutomationProjectSummary = {
     type = "structure",
+    id = "DataAutomationProjectSummary",
     members = {
         projectArn = {
             type = "string",
@@ -2090,6 +2208,7 @@ M.DataAutomationProjectSummary = {
 
 M.ListDataAutomationProjectsOutput = {
     type = "structure",
+    id = "ListDataAutomationProjectsOutput",
     members = {
         projects = {
             type = "list",
@@ -2106,6 +2225,7 @@ M.ListDataAutomationProjectsOutput = {
 
 M.UpdateDataAutomationProjectInput = {
     type = "structure",
+    id = "UpdateDataAutomationProjectInput",
     members = {
         projectArn = {
             type = "string",
@@ -2132,6 +2252,7 @@ M.UpdateDataAutomationProjectInput = {
 
 M.UpdateDataAutomationProjectOutput = {
     type = "structure",
+    id = "UpdateDataAutomationProjectOutput",
     members = {
         projectArn = {
             type = "string",
@@ -2150,6 +2271,7 @@ M.UpdateDataAutomationProjectOutput = {
 
 M.GetDataAutomationLibraryEntityInput = {
     type = "structure",
+    id = "GetDataAutomationLibraryEntityInput",
     members = {
         libraryArn = {
             type = "string",
@@ -2177,6 +2299,7 @@ M.GetDataAutomationLibraryEntityInput = {
 
 M.VocabularyEntity = {
     type = "structure",
+    id = "VocabularyEntity",
     members = {
         entityId = {
             type = "string",
@@ -2202,6 +2325,7 @@ M.VocabularyEntity = {
 
 M.EntityDetails = {
     type = "union",
+    id = "EntityDetails",
     members = {
         vocabulary = M.VocabularyEntity,
     },
@@ -2209,6 +2333,7 @@ M.EntityDetails = {
 
 M.GetDataAutomationLibraryEntityOutput = {
     type = "structure",
+    id = "GetDataAutomationLibraryEntityOutput",
     members = {
         entity = M.EntityDetails,
     },
@@ -2216,6 +2341,7 @@ M.GetDataAutomationLibraryEntityOutput = {
 
 M.ListDataAutomationLibraryEntitiesInput = {
     type = "structure",
+    id = "ListDataAutomationLibraryEntitiesInput",
     members = {
         libraryArn = {
             type = "string",
@@ -2242,6 +2368,7 @@ M.ListDataAutomationLibraryEntitiesInput = {
 
 M.VocabularyEntitySummary = {
     type = "structure",
+    id = "VocabularyEntitySummary",
     members = {
         entityId = {
             type = "string",
@@ -2266,6 +2393,7 @@ M.VocabularyEntitySummary = {
 
 M.DataAutomationLibraryEntitySummary = {
     type = "union",
+    id = "DataAutomationLibraryEntitySummary",
     members = {
         vocabulary = M.VocabularyEntitySummary,
     },
@@ -2273,6 +2401,7 @@ M.DataAutomationLibraryEntitySummary = {
 
 M.ListDataAutomationLibraryEntitiesOutput = {
     type = "structure",
+    id = "ListDataAutomationLibraryEntitiesOutput",
     members = {
         entities = {
             type = "list",
@@ -2286,6 +2415,7 @@ M.ListDataAutomationLibraryEntitiesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -2298,6 +2428,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2308,6 +2439,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -2327,10 +2459,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -2350,6 +2484,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

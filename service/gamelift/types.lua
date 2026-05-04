@@ -7,6 +7,7 @@ M.AcceptanceType = {
 
 M.AcceptMatchInput = {
     type = "structure",
+    id = "AcceptMatchInput",
     members = {
         TicketId = {
             type = "string",
@@ -32,10 +33,12 @@ M.AcceptMatchInput = {
 
 M.AcceptMatchOutput = {
     type = "structure",
+    id = "AcceptMatchOutput",
 }
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -46,6 +49,7 @@ M.InternalServiceException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -56,6 +60,7 @@ M.InvalidRequestException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Message = {
@@ -66,6 +71,7 @@ M.NotFoundException = {
 
 M.UnsupportedRegionException = {
     type = "structure",
+    id = "UnsupportedRegionException",
     error = "client",
     members = {
         Message = {
@@ -81,6 +87,7 @@ M.RoutingStrategyType = {
 
 M.RoutingStrategy = {
     type = "structure",
+    id = "RoutingStrategy",
     members = {
         Type = {
             type = "string",
@@ -96,6 +103,7 @@ M.RoutingStrategy = {
 
 M.Alias = {
     type = "structure",
+    id = "Alias",
     members = {
         AliasId = {
             type = "string",
@@ -121,6 +129,7 @@ M.Alias = {
 
 M.AnywhereConfiguration = {
     type = "structure",
+    id = "AnywhereConfiguration",
     members = {
         Cost = {
             type = "string",
@@ -133,6 +142,7 @@ M.AnywhereConfiguration = {
 
 M.AttributeValue = {
     type = "structure",
+    id = "AttributeValue",
     members = {
         S = {
             type = "string",
@@ -154,6 +164,7 @@ M.AttributeValue = {
 
 M.AwsCredentials = {
     type = "structure",
+    id = "AwsCredentials",
     members = {
         AccessKeyId = {
             type = "string",
@@ -195,6 +206,7 @@ M.BuildStatus = {
 
 M.Build = {
     type = "structure",
+    id = "Build",
     members = {
         BuildId = {
             type = "string",
@@ -233,6 +245,7 @@ M.CertificateType = {
 
 M.CertificateConfiguration = {
     type = "structure",
+    id = "CertificateConfiguration",
     members = {
         CertificateType = {
             type = "string",
@@ -250,6 +263,7 @@ M.FilterInstanceStatus = {
 
 M.ClaimFilterOption = {
     type = "structure",
+    id = "ClaimFilterOption",
     members = {
         InstanceStatuses = {
             type = "list",
@@ -260,6 +274,7 @@ M.ClaimFilterOption = {
 
 M.ClaimGameServerInput = {
     type = "structure",
+    id = "ClaimGameServerInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -288,6 +303,7 @@ M.GameServerUtilizationStatus = {
 
 M.GameServer = {
     type = "structure",
+    id = "GameServer",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -327,6 +343,7 @@ M.GameServer = {
 
 M.ClaimGameServerOutput = {
     type = "structure",
+    id = "ClaimGameServerOutput",
     members = {
         GameServer = M.GameServer,
     },
@@ -334,6 +351,7 @@ M.ClaimGameServerOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -344,6 +362,7 @@ M.ConflictException = {
 
 M.OutOfCapacityException = {
     type = "structure",
+    id = "OutOfCapacityException",
     error = "client",
     members = {
         Message = {
@@ -354,6 +373,7 @@ M.OutOfCapacityException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         Message = {
@@ -378,6 +398,7 @@ M.ComputeStatus = {
 
 M.ContainerAttribute = {
     type = "structure",
+    id = "ContainerAttribute",
     members = {
         ContainerName = {
             type = "string",
@@ -898,6 +919,7 @@ M.EC2InstanceType = {
 
 M.Compute = {
     type = "structure",
+    id = "Compute",
     members = {
         FleetId = {
             type = "string",
@@ -958,6 +980,7 @@ M.ComputeType = {
 
 M.ConnectionPortRange = {
     type = "structure",
+    id = "ConnectionPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -983,6 +1006,7 @@ M.ContainerDependencyCondition = {
 
 M.ContainerDependency = {
     type = "structure",
+    id = "ContainerDependency",
     members = {
         ContainerName = {
             type = "string",
@@ -1001,6 +1025,7 @@ M.ContainerDependency = {
 
 M.ContainerEnvironment = {
     type = "structure",
+    id = "ContainerEnvironment",
     members = {
         Name = {
             type = "string",
@@ -1024,6 +1049,7 @@ M.ContainerFleetBillingType = {
 
 M.DeploymentDetails = {
     type = "structure",
+    id = "DeploymentDetails",
     members = {
         LatestDeploymentId = {
             type = "string",
@@ -1033,6 +1059,7 @@ M.DeploymentDetails = {
 
 M.GameSessionCreationLimitPolicy = {
     type = "structure",
+    id = "GameSessionCreationLimitPolicy",
     members = {
         NewGameSessionsPerCreator = {
             type = "integer",
@@ -1050,6 +1077,7 @@ M.IpProtocol = {
 
 M.IpPermission = {
     type = "structure",
+    id = "IpPermission",
     members = {
         FromPort = {
             type = "integer",
@@ -1095,6 +1123,7 @@ M.ContainerFleetLocationStatus = {
 
 M.ContainerFleetLocationAttributes = {
     type = "structure",
+    id = "ContainerFleetLocationAttributes",
     members = {
         Location = {
             type = "string",
@@ -1116,6 +1145,7 @@ M.LogDestination = {
 
 M.LogConfiguration = {
     type = "structure",
+    id = "LogConfiguration",
     members = {
         LogDestination = {
             type = "string",
@@ -1152,6 +1182,7 @@ M.ContainerFleetStatus = {
 
 M.ContainerFleet = {
     type = "structure",
+    id = "ContainerFleet",
     members = {
         FleetId = {
             type = "string",
@@ -1236,6 +1267,7 @@ M.ContainerMountPointAccessLevel = {
 
 M.ContainerMountPoint = {
     type = "structure",
+    id = "ContainerMountPoint",
     members = {
         InstancePath = {
             type = "string",
@@ -1254,6 +1286,7 @@ M.ContainerMountPoint = {
 
 M.ContainerPortRange = {
     type = "structure",
+    id = "ContainerPortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -1278,6 +1311,7 @@ M.ContainerPortRange = {
 
 M.ContainerPortConfiguration = {
     type = "structure",
+    id = "ContainerPortConfiguration",
     members = {
         ContainerPortRanges = {
             type = "list",
@@ -1291,6 +1325,7 @@ M.ContainerPortConfiguration = {
 
 M.GameServerContainerDefinition = {
     type = "structure",
+    id = "GameServerContainerDefinition",
     members = {
         ContainerName = {
             type = "string",
@@ -1332,6 +1367,7 @@ M.ContainerGroupDefinitionStatus = {
 
 M.ContainerHealthCheck = {
     type = "structure",
+    id = "ContainerHealthCheck",
     members = {
         Command = {
             type = "list",
@@ -1357,6 +1393,7 @@ M.ContainerHealthCheck = {
 
 M.SupportContainerDefinition = {
     type = "structure",
+    id = "SupportContainerDefinition",
     members = {
         ContainerName = {
             type = "string",
@@ -1395,6 +1432,7 @@ M.SupportContainerDefinition = {
 
 M.ContainerGroupDefinition = {
     type = "structure",
+    id = "ContainerGroupDefinition",
     members = {
         ContainerGroupDefinitionArn = {
             type = "string",
@@ -1442,6 +1480,7 @@ M.ContainerGroupDefinition = {
 
 M.ContainerPortMapping = {
     type = "structure",
+    id = "ContainerPortMapping",
     members = {
         ContainerPort = {
             type = "integer",
@@ -1457,6 +1496,7 @@ M.ContainerPortMapping = {
 
 M.ContainerGroupPortMapping = {
     type = "structure",
+    id = "ContainerGroupPortMapping",
     members = {
         ContainerName = {
             type = "string",
@@ -1473,6 +1513,7 @@ M.ContainerGroupPortMapping = {
 
 M.ContainerIdentifier = {
     type = "structure",
+    id = "ContainerIdentifier",
     members = {
         ContainerName = {
             type = "string",
@@ -1485,6 +1526,7 @@ M.ContainerIdentifier = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1503,6 +1545,7 @@ M.Tag = {
 
 M.CreateAliasInput = {
     type = "structure",
+    id = "CreateAliasInput",
     members = {
         Name = {
             type = "string",
@@ -1525,6 +1568,7 @@ M.CreateAliasInput = {
 
 M.CreateAliasOutput = {
     type = "structure",
+    id = "CreateAliasOutput",
     members = {
         Alias = M.Alias,
     },
@@ -1532,6 +1576,7 @@ M.CreateAliasOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1542,6 +1587,7 @@ M.LimitExceededException = {
 
 M.TaggingFailedException = {
     type = "structure",
+    id = "TaggingFailedException",
     error = "client",
     members = {
         Message = {
@@ -1552,6 +1598,7 @@ M.TaggingFailedException = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         Bucket = {
             type = "string",
@@ -1570,6 +1617,7 @@ M.S3Location = {
 
 M.CreateBuildInput = {
     type = "structure",
+    id = "CreateBuildInput",
     members = {
         Name = {
             type = "string",
@@ -1593,6 +1641,7 @@ M.CreateBuildInput = {
 
 M.CreateBuildOutput = {
     type = "structure",
+    id = "CreateBuildOutput",
     members = {
         Build = M.Build,
         UploadCredentials = M.AwsCredentials,
@@ -1602,6 +1651,7 @@ M.CreateBuildOutput = {
 
 M.LocationConfiguration = {
     type = "structure",
+    id = "LocationConfiguration",
     members = {
         Location = {
             type = "string",
@@ -1614,6 +1664,7 @@ M.LocationConfiguration = {
 
 M.CreateContainerFleetInput = {
     type = "structure",
+    id = "CreateContainerFleetInput",
     members = {
         FleetRoleArn = {
             type = "string",
@@ -1669,6 +1720,7 @@ M.CreateContainerFleetInput = {
 
 M.CreateContainerFleetOutput = {
     type = "structure",
+    id = "CreateContainerFleetOutput",
     members = {
         ContainerFleet = M.ContainerFleet,
     },
@@ -1676,6 +1728,7 @@ M.CreateContainerFleetOutput = {
 
 M.GameServerContainerDefinitionInput = {
     type = "structure",
+    id = "GameServerContainerDefinitionInput",
     members = {
         ContainerName = {
             type = "string",
@@ -1715,6 +1768,7 @@ M.GameServerContainerDefinitionInput = {
 
 M.SupportContainerDefinitionInput = {
     type = "structure",
+    id = "SupportContainerDefinitionInput",
     members = {
         ContainerName = {
             type = "string",
@@ -1756,6 +1810,7 @@ M.SupportContainerDefinitionInput = {
 
 M.CreateContainerGroupDefinitionInput = {
     type = "structure",
+    id = "CreateContainerGroupDefinitionInput",
     members = {
         Name = {
             type = "string",
@@ -1801,6 +1856,7 @@ M.CreateContainerGroupDefinitionInput = {
 
 M.CreateContainerGroupDefinitionOutput = {
     type = "structure",
+    id = "CreateContainerGroupDefinitionOutput",
     members = {
         ContainerGroupDefinition = M.ContainerGroupDefinition,
     },
@@ -1822,6 +1878,7 @@ M.GameServerIpProtocolSupported = {
 
 M.PlayerGatewayConfiguration = {
     type = "structure",
+    id = "PlayerGatewayConfiguration",
     members = {
         GameServerIpProtocolSupported = {
             type = "string",
@@ -1831,6 +1888,7 @@ M.PlayerGatewayConfiguration = {
 
 M.ResourceCreationLimitPolicy = {
     type = "structure",
+    id = "ResourceCreationLimitPolicy",
     members = {
         NewGameSessionsPerCreator = {
             type = "integer",
@@ -1843,6 +1901,7 @@ M.ResourceCreationLimitPolicy = {
 
 M.ServerProcess = {
     type = "structure",
+    id = "ServerProcess",
     members = {
         LaunchPath = {
             type = "string",
@@ -1864,6 +1923,7 @@ M.ServerProcess = {
 
 M.RuntimeConfiguration = {
     type = "structure",
+    id = "RuntimeConfiguration",
     members = {
         ServerProcesses = {
             type = "list",
@@ -1880,6 +1940,7 @@ M.RuntimeConfiguration = {
 
 M.CreateFleetInput = {
     type = "structure",
+    id = "CreateFleetInput",
     members = {
         Name = {
             type = "string",
@@ -1976,6 +2037,7 @@ M.FleetAction = {
 
 M.FleetAttributes = {
     type = "structure",
+    id = "FleetAttributes",
     members = {
         FleetId = {
             type = "string",
@@ -2061,6 +2123,7 @@ M.FleetAttributes = {
 
 M.LocationState = {
     type = "structure",
+    id = "LocationState",
     members = {
         Location = {
             type = "string",
@@ -2076,6 +2139,7 @@ M.LocationState = {
 
 M.CreateFleetOutput = {
     type = "structure",
+    id = "CreateFleetOutput",
     members = {
         FleetAttributes = M.FleetAttributes,
         LocationStates = {
@@ -2087,6 +2151,7 @@ M.CreateFleetOutput = {
 
 M.NotReadyException = {
     type = "structure",
+    id = "NotReadyException",
     error = "client",
     members = {
         Message = {
@@ -2097,6 +2162,7 @@ M.NotReadyException = {
 
 M.CreateFleetLocationsInput = {
     type = "structure",
+    id = "CreateFleetLocationsInput",
     members = {
         FleetId = {
             type = "string",
@@ -2116,6 +2182,7 @@ M.CreateFleetLocationsInput = {
 
 M.CreateFleetLocationsOutput = {
     type = "structure",
+    id = "CreateFleetLocationsOutput",
     members = {
         FleetId = {
             type = "string",
@@ -2132,6 +2199,7 @@ M.CreateFleetLocationsOutput = {
 
 M.InvalidFleetStatusException = {
     type = "structure",
+    id = "InvalidFleetStatusException",
     error = "client",
     members = {
         Message = {
@@ -2142,6 +2210,7 @@ M.InvalidFleetStatusException = {
 
 M.TargetTrackingConfiguration = {
     type = "structure",
+    id = "TargetTrackingConfiguration",
     members = {
         TargetValue = {
             type = "double",
@@ -2154,6 +2223,7 @@ M.TargetTrackingConfiguration = {
 
 M.GameServerGroupAutoScalingPolicy = {
     type = "structure",
+    id = "GameServerGroupAutoScalingPolicy",
     members = {
         EstimatedInstanceWarmup = {
             type = "integer",
@@ -2262,6 +2332,7 @@ M.GameServerGroupInstanceType = {
 
 M.InstanceDefinition = {
     type = "structure",
+    id = "InstanceDefinition",
     members = {
         InstanceType = {
             type = "string",
@@ -2277,6 +2348,7 @@ M.InstanceDefinition = {
 
 M.LaunchTemplateSpecification = {
     type = "structure",
+    id = "LaunchTemplateSpecification",
     members = {
         LaunchTemplateId = {
             type = "string",
@@ -2292,6 +2364,7 @@ M.LaunchTemplateSpecification = {
 
 M.CreateGameServerGroupInput = {
     type = "structure",
+    id = "CreateGameServerGroupInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -2361,6 +2434,7 @@ M.GameServerGroupAction = {
 
 M.GameServerGroup = {
     type = "structure",
+    id = "GameServerGroup",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -2405,6 +2479,7 @@ M.GameServerGroup = {
 
 M.CreateGameServerGroupOutput = {
     type = "structure",
+    id = "CreateGameServerGroupOutput",
     members = {
         GameServerGroup = M.GameServerGroup,
     },
@@ -2412,6 +2487,7 @@ M.CreateGameServerGroupOutput = {
 
 M.GameProperty = {
     type = "structure",
+    id = "GameProperty",
     members = {
         Key = {
             type = "string",
@@ -2430,6 +2506,7 @@ M.GameProperty = {
 
 M.CreateGameSessionInput = {
     type = "structure",
+    id = "CreateGameSessionInput",
     members = {
         FleetId = {
             type = "string",
@@ -2489,6 +2566,7 @@ M.GameSessionStatusReason = {
 
 M.GameSession = {
     type = "structure",
+    id = "GameSession",
     members = {
         GameSessionId = {
             type = "string",
@@ -2559,6 +2637,7 @@ M.GameSession = {
 
 M.CreateGameSessionOutput = {
     type = "structure",
+    id = "CreateGameSessionOutput",
     members = {
         GameSession = M.GameSession,
     },
@@ -2566,6 +2645,7 @@ M.CreateGameSessionOutput = {
 
 M.FleetCapacityExceededException = {
     type = "structure",
+    id = "FleetCapacityExceededException",
     error = "client",
     members = {
         Message = {
@@ -2576,6 +2656,7 @@ M.FleetCapacityExceededException = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         Message = {
@@ -2586,6 +2667,7 @@ M.IdempotentParameterMismatchException = {
 
 M.TerminalRoutingStrategyException = {
     type = "structure",
+    id = "TerminalRoutingStrategyException",
     error = "client",
     members = {
         Message = {
@@ -2596,6 +2678,7 @@ M.TerminalRoutingStrategyException = {
 
 M.GameSessionQueueDestination = {
     type = "structure",
+    id = "GameSessionQueueDestination",
     members = {
         DestinationArn = {
             type = "string",
@@ -2605,6 +2688,7 @@ M.GameSessionQueueDestination = {
 
 M.FilterConfiguration = {
     type = "structure",
+    id = "FilterConfiguration",
     members = {
         AllowedLocations = {
             type = "list",
@@ -2615,6 +2699,7 @@ M.FilterConfiguration = {
 
 M.PlayerLatencyPolicy = {
     type = "structure",
+    id = "PlayerLatencyPolicy",
     members = {
         MaximumIndividualPlayerLatencyMilliseconds = {
             type = "integer",
@@ -2634,6 +2719,7 @@ M.PriorityType = {
 
 M.PriorityConfiguration = {
     type = "structure",
+    id = "PriorityConfiguration",
     members = {
         PriorityOrder = {
             type = "list",
@@ -2648,6 +2734,7 @@ M.PriorityConfiguration = {
 
 M.CreateGameSessionQueueInput = {
     type = "structure",
+    id = "CreateGameSessionQueueInput",
     members = {
         Name = {
             type = "string",
@@ -2683,6 +2770,7 @@ M.CreateGameSessionQueueInput = {
 
 M.GameSessionQueue = {
     type = "structure",
+    id = "GameSessionQueue",
     members = {
         Name = {
             type = "string",
@@ -2714,6 +2802,7 @@ M.GameSessionQueue = {
 
 M.CreateGameSessionQueueOutput = {
     type = "structure",
+    id = "CreateGameSessionQueueOutput",
     members = {
         GameSessionQueue = M.GameSessionQueue,
     },
@@ -2721,6 +2810,7 @@ M.CreateGameSessionQueueOutput = {
 
 M.CreateLocationInput = {
     type = "structure",
+    id = "CreateLocationInput",
     members = {
         LocationName = {
             type = "string",
@@ -2737,6 +2827,7 @@ M.CreateLocationInput = {
 
 M.UDPEndpoint = {
     type = "structure",
+    id = "UDPEndpoint",
     members = {
         Domain = {
             type = "string",
@@ -2749,6 +2840,7 @@ M.UDPEndpoint = {
 
 M.PingBeacon = {
     type = "structure",
+    id = "PingBeacon",
     members = {
         UDPEndpoint = M.UDPEndpoint,
     },
@@ -2756,6 +2848,7 @@ M.PingBeacon = {
 
 M.LocationModel = {
     type = "structure",
+    id = "LocationModel",
     members = {
         LocationName = {
             type = "string",
@@ -2769,6 +2862,7 @@ M.LocationModel = {
 
 M.CreateLocationOutput = {
     type = "structure",
+    id = "CreateLocationOutput",
     members = {
         Location = M.LocationModel,
     },
@@ -2781,6 +2875,7 @@ M.FlexMatchMode = {
 
 M.CreateMatchmakingConfigurationInput = {
     type = "structure",
+    id = "CreateMatchmakingConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -2847,6 +2942,7 @@ M.CreateMatchmakingConfigurationInput = {
 
 M.MatchmakingConfiguration = {
     type = "structure",
+    id = "MatchmakingConfiguration",
     members = {
         Name = {
             type = "string",
@@ -2906,6 +3002,7 @@ M.MatchmakingConfiguration = {
 
 M.CreateMatchmakingConfigurationOutput = {
     type = "structure",
+    id = "CreateMatchmakingConfigurationOutput",
     members = {
         Configuration = M.MatchmakingConfiguration,
     },
@@ -2913,6 +3010,7 @@ M.CreateMatchmakingConfigurationOutput = {
 
 M.CreateMatchmakingRuleSetInput = {
     type = "structure",
+    id = "CreateMatchmakingRuleSetInput",
     members = {
         Name = {
             type = "string",
@@ -2935,6 +3033,7 @@ M.CreateMatchmakingRuleSetInput = {
 
 M.MatchmakingRuleSet = {
     type = "structure",
+    id = "MatchmakingRuleSet",
     members = {
         RuleSetName = {
             type = "string",
@@ -2956,6 +3055,7 @@ M.MatchmakingRuleSet = {
 
 M.CreateMatchmakingRuleSetOutput = {
     type = "structure",
+    id = "CreateMatchmakingRuleSetOutput",
     members = {
         RuleSet = setmetatable({ traits = {
             required = true,
@@ -2965,6 +3065,7 @@ M.CreateMatchmakingRuleSetOutput = {
 
 M.CreatePlayerSessionInput = {
     type = "structure",
+    id = "CreatePlayerSessionInput",
     members = {
         GameSessionId = {
             type = "string",
@@ -2993,6 +3094,7 @@ M.PlayerSessionStatus = {
 
 M.PlayerSession = {
     type = "structure",
+    id = "PlayerSession",
     members = {
         PlayerSessionId = {
             type = "string",
@@ -3035,6 +3137,7 @@ M.PlayerSession = {
 
 M.CreatePlayerSessionOutput = {
     type = "structure",
+    id = "CreatePlayerSessionOutput",
     members = {
         PlayerSession = M.PlayerSession,
     },
@@ -3042,6 +3145,7 @@ M.CreatePlayerSessionOutput = {
 
 M.GameSessionFullException = {
     type = "structure",
+    id = "GameSessionFullException",
     error = "client",
     members = {
         Message = {
@@ -3052,6 +3156,7 @@ M.GameSessionFullException = {
 
 M.InvalidGameSessionStatusException = {
     type = "structure",
+    id = "InvalidGameSessionStatusException",
     error = "client",
     members = {
         Message = {
@@ -3062,6 +3167,7 @@ M.InvalidGameSessionStatusException = {
 
 M.CreatePlayerSessionsInput = {
     type = "structure",
+    id = "CreatePlayerSessionsInput",
     members = {
         GameSessionId = {
             type = "string",
@@ -3086,6 +3192,7 @@ M.CreatePlayerSessionsInput = {
 
 M.CreatePlayerSessionsOutput = {
     type = "structure",
+    id = "CreatePlayerSessionsOutput",
     members = {
         PlayerSessions = {
             type = "list",
@@ -3096,6 +3203,7 @@ M.CreatePlayerSessionsOutput = {
 
 M.CreateScriptInput = {
     type = "structure",
+    id = "CreateScriptInput",
     members = {
         Name = {
             type = "string",
@@ -3119,6 +3227,7 @@ M.CreateScriptInput = {
 
 M.Script = {
     type = "structure",
+    id = "Script",
     members = {
         ScriptId = {
             type = "string",
@@ -3147,6 +3256,7 @@ M.Script = {
 
 M.CreateScriptOutput = {
     type = "structure",
+    id = "CreateScriptOutput",
     members = {
         Script = M.Script,
     },
@@ -3154,6 +3264,7 @@ M.CreateScriptOutput = {
 
 M.CreateVpcPeeringAuthorizationInput = {
     type = "structure",
+    id = "CreateVpcPeeringAuthorizationInput",
     members = {
         GameLiftAwsAccountId = {
             type = "string",
@@ -3172,6 +3283,7 @@ M.CreateVpcPeeringAuthorizationInput = {
 
 M.VpcPeeringAuthorization = {
     type = "structure",
+    id = "VpcPeeringAuthorization",
     members = {
         GameLiftAwsAccountId = {
             type = "string",
@@ -3193,6 +3305,7 @@ M.VpcPeeringAuthorization = {
 
 M.CreateVpcPeeringAuthorizationOutput = {
     type = "structure",
+    id = "CreateVpcPeeringAuthorizationOutput",
     members = {
         VpcPeeringAuthorization = M.VpcPeeringAuthorization,
     },
@@ -3200,6 +3313,7 @@ M.CreateVpcPeeringAuthorizationOutput = {
 
 M.CreateVpcPeeringConnectionInput = {
     type = "structure",
+    id = "CreateVpcPeeringConnectionInput",
     members = {
         FleetId = {
             type = "string",
@@ -3224,10 +3338,12 @@ M.CreateVpcPeeringConnectionInput = {
 
 M.CreateVpcPeeringConnectionOutput = {
     type = "structure",
+    id = "CreateVpcPeeringConnectionOutput",
 }
 
 M.DeleteAliasInput = {
     type = "structure",
+    id = "DeleteAliasInput",
     members = {
         AliasId = {
             type = "string",
@@ -3240,10 +3356,12 @@ M.DeleteAliasInput = {
 
 M.DeleteAliasOutput = {
     type = "structure",
+    id = "DeleteAliasOutput",
 }
 
 M.DeleteBuildInput = {
     type = "structure",
+    id = "DeleteBuildInput",
     members = {
         BuildId = {
             type = "string",
@@ -3256,10 +3374,12 @@ M.DeleteBuildInput = {
 
 M.DeleteBuildOutput = {
     type = "structure",
+    id = "DeleteBuildOutput",
 }
 
 M.DeleteContainerFleetInput = {
     type = "structure",
+    id = "DeleteContainerFleetInput",
     members = {
         FleetId = {
             type = "string",
@@ -3272,10 +3392,12 @@ M.DeleteContainerFleetInput = {
 
 M.DeleteContainerFleetOutput = {
     type = "structure",
+    id = "DeleteContainerFleetOutput",
 }
 
 M.DeleteContainerGroupDefinitionInput = {
     type = "structure",
+    id = "DeleteContainerGroupDefinitionInput",
     members = {
         Name = {
             type = "string",
@@ -3294,10 +3416,12 @@ M.DeleteContainerGroupDefinitionInput = {
 
 M.DeleteContainerGroupDefinitionOutput = {
     type = "structure",
+    id = "DeleteContainerGroupDefinitionOutput",
 }
 
 M.DeleteFleetInput = {
     type = "structure",
+    id = "DeleteFleetInput",
     members = {
         FleetId = {
             type = "string",
@@ -3310,10 +3434,12 @@ M.DeleteFleetInput = {
 
 M.DeleteFleetOutput = {
     type = "structure",
+    id = "DeleteFleetOutput",
 }
 
 M.DeleteFleetLocationsInput = {
     type = "structure",
+    id = "DeleteFleetLocationsInput",
     members = {
         FleetId = {
             type = "string",
@@ -3333,6 +3459,7 @@ M.DeleteFleetLocationsInput = {
 
 M.DeleteFleetLocationsOutput = {
     type = "structure",
+    id = "DeleteFleetLocationsOutput",
     members = {
         FleetId = {
             type = "string",
@@ -3355,6 +3482,7 @@ M.GameServerGroupDeleteOption = {
 
 M.DeleteGameServerGroupInput = {
     type = "structure",
+    id = "DeleteGameServerGroupInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -3370,6 +3498,7 @@ M.DeleteGameServerGroupInput = {
 
 M.DeleteGameServerGroupOutput = {
     type = "structure",
+    id = "DeleteGameServerGroupOutput",
     members = {
         GameServerGroup = M.GameServerGroup,
     },
@@ -3377,6 +3506,7 @@ M.DeleteGameServerGroupOutput = {
 
 M.DeleteGameSessionQueueInput = {
     type = "structure",
+    id = "DeleteGameSessionQueueInput",
     members = {
         Name = {
             type = "string",
@@ -3389,10 +3519,12 @@ M.DeleteGameSessionQueueInput = {
 
 M.DeleteGameSessionQueueOutput = {
     type = "structure",
+    id = "DeleteGameSessionQueueOutput",
 }
 
 M.DeleteLocationInput = {
     type = "structure",
+    id = "DeleteLocationInput",
     members = {
         LocationName = {
             type = "string",
@@ -3405,10 +3537,12 @@ M.DeleteLocationInput = {
 
 M.DeleteLocationOutput = {
     type = "structure",
+    id = "DeleteLocationOutput",
 }
 
 M.DeleteMatchmakingConfigurationInput = {
     type = "structure",
+    id = "DeleteMatchmakingConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -3421,10 +3555,12 @@ M.DeleteMatchmakingConfigurationInput = {
 
 M.DeleteMatchmakingConfigurationOutput = {
     type = "structure",
+    id = "DeleteMatchmakingConfigurationOutput",
 }
 
 M.DeleteMatchmakingRuleSetInput = {
     type = "structure",
+    id = "DeleteMatchmakingRuleSetInput",
     members = {
         Name = {
             type = "string",
@@ -3437,10 +3573,12 @@ M.DeleteMatchmakingRuleSetInput = {
 
 M.DeleteMatchmakingRuleSetOutput = {
     type = "structure",
+    id = "DeleteMatchmakingRuleSetOutput",
 }
 
 M.DeleteScalingPolicyInput = {
     type = "structure",
+    id = "DeleteScalingPolicyInput",
     members = {
         Name = {
             type = "string",
@@ -3459,10 +3597,12 @@ M.DeleteScalingPolicyInput = {
 
 M.DeleteScalingPolicyOutput = {
     type = "structure",
+    id = "DeleteScalingPolicyOutput",
 }
 
 M.DeleteScriptInput = {
     type = "structure",
+    id = "DeleteScriptInput",
     members = {
         ScriptId = {
             type = "string",
@@ -3475,10 +3615,12 @@ M.DeleteScriptInput = {
 
 M.DeleteScriptOutput = {
     type = "structure",
+    id = "DeleteScriptOutput",
 }
 
 M.DeleteVpcPeeringAuthorizationInput = {
     type = "structure",
+    id = "DeleteVpcPeeringAuthorizationInput",
     members = {
         GameLiftAwsAccountId = {
             type = "string",
@@ -3497,10 +3639,12 @@ M.DeleteVpcPeeringAuthorizationInput = {
 
 M.DeleteVpcPeeringAuthorizationOutput = {
     type = "structure",
+    id = "DeleteVpcPeeringAuthorizationOutput",
 }
 
 M.DeleteVpcPeeringConnectionInput = {
     type = "structure",
+    id = "DeleteVpcPeeringConnectionInput",
     members = {
         FleetId = {
             type = "string",
@@ -3519,6 +3663,7 @@ M.DeleteVpcPeeringConnectionInput = {
 
 M.DeleteVpcPeeringConnectionOutput = {
     type = "structure",
+    id = "DeleteVpcPeeringConnectionOutput",
 }
 
 M.DeploymentImpairmentStrategy = {
@@ -3533,6 +3678,7 @@ M.DeploymentProtectionStrategy = {
 
 M.DeploymentConfiguration = {
     type = "structure",
+    id = "DeploymentConfiguration",
     members = {
         ProtectionStrategy = {
             type = "string",
@@ -3558,6 +3704,7 @@ M.DeploymentStatus = {
 
 M.DeregisterComputeInput = {
     type = "structure",
+    id = "DeregisterComputeInput",
     members = {
         FleetId = {
             type = "string",
@@ -3576,10 +3723,12 @@ M.DeregisterComputeInput = {
 
 M.DeregisterComputeOutput = {
     type = "structure",
+    id = "DeregisterComputeOutput",
 }
 
 M.DeregisterGameServerInput = {
     type = "structure",
+    id = "DeregisterGameServerInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -3598,10 +3747,12 @@ M.DeregisterGameServerInput = {
 
 M.DeregisterGameServerOutput = {
     type = "structure",
+    id = "DeregisterGameServerOutput",
 }
 
 M.DescribeAliasInput = {
     type = "structure",
+    id = "DescribeAliasInput",
     members = {
         AliasId = {
             type = "string",
@@ -3614,6 +3765,7 @@ M.DescribeAliasInput = {
 
 M.DescribeAliasOutput = {
     type = "structure",
+    id = "DescribeAliasOutput",
     members = {
         Alias = M.Alias,
     },
@@ -3621,6 +3773,7 @@ M.DescribeAliasOutput = {
 
 M.DescribeBuildInput = {
     type = "structure",
+    id = "DescribeBuildInput",
     members = {
         BuildId = {
             type = "string",
@@ -3633,6 +3786,7 @@ M.DescribeBuildInput = {
 
 M.DescribeBuildOutput = {
     type = "structure",
+    id = "DescribeBuildOutput",
     members = {
         Build = M.Build,
     },
@@ -3640,6 +3794,7 @@ M.DescribeBuildOutput = {
 
 M.DescribeComputeInput = {
     type = "structure",
+    id = "DescribeComputeInput",
     members = {
         FleetId = {
             type = "string",
@@ -3658,6 +3813,7 @@ M.DescribeComputeInput = {
 
 M.DescribeComputeOutput = {
     type = "structure",
+    id = "DescribeComputeOutput",
     members = {
         Compute = M.Compute,
     },
@@ -3665,6 +3821,7 @@ M.DescribeComputeOutput = {
 
 M.DescribeContainerFleetInput = {
     type = "structure",
+    id = "DescribeContainerFleetInput",
     members = {
         FleetId = {
             type = "string",
@@ -3677,6 +3834,7 @@ M.DescribeContainerFleetInput = {
 
 M.DescribeContainerFleetOutput = {
     type = "structure",
+    id = "DescribeContainerFleetOutput",
     members = {
         ContainerFleet = M.ContainerFleet,
     },
@@ -3684,6 +3842,7 @@ M.DescribeContainerFleetOutput = {
 
 M.DescribeContainerGroupDefinitionInput = {
     type = "structure",
+    id = "DescribeContainerGroupDefinitionInput",
     members = {
         Name = {
             type = "string",
@@ -3699,6 +3858,7 @@ M.DescribeContainerGroupDefinitionInput = {
 
 M.DescribeContainerGroupDefinitionOutput = {
     type = "structure",
+    id = "DescribeContainerGroupDefinitionOutput",
     members = {
         ContainerGroupDefinition = M.ContainerGroupDefinition,
     },
@@ -3706,6 +3866,7 @@ M.DescribeContainerGroupDefinitionOutput = {
 
 M.DescribeContainerGroupPortMappingsInput = {
     type = "structure",
+    id = "DescribeContainerGroupPortMappingsInput",
     members = {
         FleetId = {
             type = "string",
@@ -3733,6 +3894,7 @@ M.DescribeContainerGroupPortMappingsInput = {
 
 M.DescribeContainerGroupPortMappingsOutput = {
     type = "structure",
+    id = "DescribeContainerGroupPortMappingsOutput",
     members = {
         FleetId = {
             type = "string",
@@ -3761,6 +3923,7 @@ M.DescribeContainerGroupPortMappingsOutput = {
 
 M.DescribeEC2InstanceLimitsInput = {
     type = "structure",
+    id = "DescribeEC2InstanceLimitsInput",
     members = {
         EC2InstanceType = {
             type = "string",
@@ -3773,6 +3936,7 @@ M.DescribeEC2InstanceLimitsInput = {
 
 M.EC2InstanceLimit = {
     type = "structure",
+    id = "EC2InstanceLimit",
     members = {
         EC2InstanceType = {
             type = "string",
@@ -3791,6 +3955,7 @@ M.EC2InstanceLimit = {
 
 M.DescribeEC2InstanceLimitsOutput = {
     type = "structure",
+    id = "DescribeEC2InstanceLimitsOutput",
     members = {
         EC2InstanceLimits = {
             type = "list",
@@ -3801,6 +3966,7 @@ M.DescribeEC2InstanceLimitsOutput = {
 
 M.DescribeFleetAttributesInput = {
     type = "structure",
+    id = "DescribeFleetAttributesInput",
     members = {
         FleetIds = {
             type = "list",
@@ -3817,6 +3983,7 @@ M.DescribeFleetAttributesInput = {
 
 M.DescribeFleetAttributesOutput = {
     type = "structure",
+    id = "DescribeFleetAttributesOutput",
     members = {
         FleetAttributes = {
             type = "list",
@@ -3830,6 +3997,7 @@ M.DescribeFleetAttributesOutput = {
 
 M.DescribeFleetCapacityInput = {
     type = "structure",
+    id = "DescribeFleetCapacityInput",
     members = {
         FleetIds = {
             type = "list",
@@ -3846,6 +4014,7 @@ M.DescribeFleetCapacityInput = {
 
 M.GameServerContainerGroupCounts = {
     type = "structure",
+    id = "GameServerContainerGroupCounts",
     members = {
         PENDING = {
             type = "integer",
@@ -3864,6 +4033,7 @@ M.GameServerContainerGroupCounts = {
 
 M.EC2InstanceCounts = {
     type = "structure",
+    id = "EC2InstanceCounts",
     members = {
         DESIRED = {
             type = "integer",
@@ -3896,6 +4066,7 @@ M.ZeroCapacityStrategy = {
 
 M.ManagedCapacityConfiguration = {
     type = "structure",
+    id = "ManagedCapacityConfiguration",
     members = {
         ZeroCapacityStrategy = {
             type = "string",
@@ -3908,6 +4079,7 @@ M.ManagedCapacityConfiguration = {
 
 M.FleetCapacity = {
     type = "structure",
+    id = "FleetCapacity",
     members = {
         FleetId = {
             type = "string",
@@ -3929,6 +4101,7 @@ M.FleetCapacity = {
 
 M.DescribeFleetCapacityOutput = {
     type = "structure",
+    id = "DescribeFleetCapacityOutput",
     members = {
         FleetCapacity = {
             type = "list",
@@ -3942,6 +4115,7 @@ M.DescribeFleetCapacityOutput = {
 
 M.DescribeFleetDeploymentInput = {
     type = "structure",
+    id = "DescribeFleetDeploymentInput",
     members = {
         FleetId = {
             type = "string",
@@ -3957,6 +4131,7 @@ M.DescribeFleetDeploymentInput = {
 
 M.FleetDeployment = {
     type = "structure",
+    id = "FleetDeployment",
     members = {
         DeploymentId = {
             type = "string",
@@ -3988,6 +4163,7 @@ M.FleetDeployment = {
 
 M.LocationalDeployment = {
     type = "structure",
+    id = "LocationalDeployment",
     members = {
         DeploymentStatus = {
             type = "string",
@@ -3997,6 +4173,7 @@ M.LocationalDeployment = {
 
 M.DescribeFleetDeploymentOutput = {
     type = "structure",
+    id = "DescribeFleetDeploymentOutput",
     members = {
         FleetDeployment = M.FleetDeployment,
         LocationalDeployments = {
@@ -4009,6 +4186,7 @@ M.DescribeFleetDeploymentOutput = {
 
 M.DescribeFleetEventsInput = {
     type = "structure",
+    id = "DescribeFleetEventsInput",
     members = {
         FleetId = {
             type = "string",
@@ -4092,6 +4270,7 @@ M.EventCode = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         EventId = {
             type = "string",
@@ -4119,6 +4298,7 @@ M.Event = {
 
 M.DescribeFleetEventsOutput = {
     type = "structure",
+    id = "DescribeFleetEventsOutput",
     members = {
         Events = {
             type = "list",
@@ -4132,6 +4312,7 @@ M.DescribeFleetEventsOutput = {
 
 M.DescribeFleetLocationAttributesInput = {
     type = "structure",
+    id = "DescribeFleetLocationAttributesInput",
     members = {
         FleetId = {
             type = "string",
@@ -4158,6 +4339,7 @@ M.LocationUpdateStatus = {
 
 M.LocationAttributes = {
     type = "structure",
+    id = "LocationAttributes",
     members = {
         LocationState = M.LocationState,
         StoppedActions = {
@@ -4172,6 +4354,7 @@ M.LocationAttributes = {
 
 M.DescribeFleetLocationAttributesOutput = {
     type = "structure",
+    id = "DescribeFleetLocationAttributesOutput",
     members = {
         FleetId = {
             type = "string",
@@ -4191,6 +4374,7 @@ M.DescribeFleetLocationAttributesOutput = {
 
 M.DescribeFleetLocationCapacityInput = {
     type = "structure",
+    id = "DescribeFleetLocationCapacityInput",
     members = {
         FleetId = {
             type = "string",
@@ -4209,6 +4393,7 @@ M.DescribeFleetLocationCapacityInput = {
 
 M.DescribeFleetLocationCapacityOutput = {
     type = "structure",
+    id = "DescribeFleetLocationCapacityOutput",
     members = {
         FleetCapacity = M.FleetCapacity,
     },
@@ -4216,6 +4401,7 @@ M.DescribeFleetLocationCapacityOutput = {
 
 M.DescribeFleetLocationUtilizationInput = {
     type = "structure",
+    id = "DescribeFleetLocationUtilizationInput",
     members = {
         FleetId = {
             type = "string",
@@ -4234,6 +4420,7 @@ M.DescribeFleetLocationUtilizationInput = {
 
 M.FleetUtilization = {
     type = "structure",
+    id = "FleetUtilization",
     members = {
         FleetId = {
             type = "string",
@@ -4261,6 +4448,7 @@ M.FleetUtilization = {
 
 M.DescribeFleetLocationUtilizationOutput = {
     type = "structure",
+    id = "DescribeFleetLocationUtilizationOutput",
     members = {
         FleetUtilization = M.FleetUtilization,
     },
@@ -4268,6 +4456,7 @@ M.DescribeFleetLocationUtilizationOutput = {
 
 M.DescribeFleetPortSettingsInput = {
     type = "structure",
+    id = "DescribeFleetPortSettingsInput",
     members = {
         FleetId = {
             type = "string",
@@ -4283,6 +4472,7 @@ M.DescribeFleetPortSettingsInput = {
 
 M.DescribeFleetPortSettingsOutput = {
     type = "structure",
+    id = "DescribeFleetPortSettingsOutput",
     members = {
         FleetId = {
             type = "string",
@@ -4305,6 +4495,7 @@ M.DescribeFleetPortSettingsOutput = {
 
 M.DescribeFleetUtilizationInput = {
     type = "structure",
+    id = "DescribeFleetUtilizationInput",
     members = {
         FleetIds = {
             type = "list",
@@ -4321,6 +4512,7 @@ M.DescribeFleetUtilizationInput = {
 
 M.DescribeFleetUtilizationOutput = {
     type = "structure",
+    id = "DescribeFleetUtilizationOutput",
     members = {
         FleetUtilization = {
             type = "list",
@@ -4334,6 +4526,7 @@ M.DescribeFleetUtilizationOutput = {
 
 M.DescribeGameServerInput = {
     type = "structure",
+    id = "DescribeGameServerInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -4352,6 +4545,7 @@ M.DescribeGameServerInput = {
 
 M.DescribeGameServerOutput = {
     type = "structure",
+    id = "DescribeGameServerOutput",
     members = {
         GameServer = M.GameServer,
     },
@@ -4359,6 +4553,7 @@ M.DescribeGameServerOutput = {
 
 M.DescribeGameServerGroupInput = {
     type = "structure",
+    id = "DescribeGameServerGroupInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -4371,6 +4566,7 @@ M.DescribeGameServerGroupInput = {
 
 M.DescribeGameServerGroupOutput = {
     type = "structure",
+    id = "DescribeGameServerGroupOutput",
     members = {
         GameServerGroup = M.GameServerGroup,
     },
@@ -4378,6 +4574,7 @@ M.DescribeGameServerGroupOutput = {
 
 M.DescribeGameServerInstancesInput = {
     type = "structure",
+    id = "DescribeGameServerInstancesInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -4406,6 +4603,7 @@ M.GameServerInstanceStatus = {
 
 M.GameServerInstance = {
     type = "structure",
+    id = "GameServerInstance",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -4424,6 +4622,7 @@ M.GameServerInstance = {
 
 M.DescribeGameServerInstancesOutput = {
     type = "structure",
+    id = "DescribeGameServerInstancesOutput",
     members = {
         GameServerInstances = {
             type = "list",
@@ -4437,6 +4636,7 @@ M.DescribeGameServerInstancesOutput = {
 
 M.DescribeGameSessionDetailsInput = {
     type = "structure",
+    id = "DescribeGameSessionDetailsInput",
     members = {
         FleetId = {
             type = "string",
@@ -4464,6 +4664,7 @@ M.DescribeGameSessionDetailsInput = {
 
 M.GameSessionDetail = {
     type = "structure",
+    id = "GameSessionDetail",
     members = {
         GameSession = M.GameSession,
         ProtectionPolicy = {
@@ -4474,6 +4675,7 @@ M.GameSessionDetail = {
 
 M.DescribeGameSessionDetailsOutput = {
     type = "structure",
+    id = "DescribeGameSessionDetailsOutput",
     members = {
         GameSessionDetails = {
             type = "list",
@@ -4487,6 +4689,7 @@ M.DescribeGameSessionDetailsOutput = {
 
 M.DescribeGameSessionPlacementInput = {
     type = "structure",
+    id = "DescribeGameSessionPlacementInput",
     members = {
         PlacementId = {
             type = "string",
@@ -4499,6 +4702,7 @@ M.DescribeGameSessionPlacementInput = {
 
 M.PlacedPlayerSession = {
     type = "structure",
+    id = "PlacedPlayerSession",
     members = {
         PlayerId = {
             type = "string",
@@ -4511,6 +4715,7 @@ M.PlacedPlayerSession = {
 
 M.PlayerLatency = {
     type = "structure",
+    id = "PlayerLatency",
     members = {
         PlayerId = {
             type = "string",
@@ -4531,6 +4736,7 @@ M.PlacementFallbackStrategy = {
 
 M.PriorityConfigurationOverride = {
     type = "structure",
+    id = "PriorityConfigurationOverride",
     members = {
         PlacementFallbackStrategy = {
             type = "string",
@@ -4555,6 +4761,7 @@ M.GameSessionPlacementState = {
 
 M.GameSessionPlacement = {
     type = "structure",
+    id = "GameSessionPlacement",
     members = {
         PlacementId = {
             type = "string",
@@ -4622,6 +4829,7 @@ M.GameSessionPlacement = {
 
 M.DescribeGameSessionPlacementOutput = {
     type = "structure",
+    id = "DescribeGameSessionPlacementOutput",
     members = {
         GameSessionPlacement = M.GameSessionPlacement,
     },
@@ -4629,6 +4837,7 @@ M.DescribeGameSessionPlacementOutput = {
 
 M.DescribeGameSessionQueuesInput = {
     type = "structure",
+    id = "DescribeGameSessionQueuesInput",
     members = {
         Names = {
             type = "list",
@@ -4645,6 +4854,7 @@ M.DescribeGameSessionQueuesInput = {
 
 M.DescribeGameSessionQueuesOutput = {
     type = "structure",
+    id = "DescribeGameSessionQueuesOutput",
     members = {
         GameSessionQueues = {
             type = "list",
@@ -4658,6 +4868,7 @@ M.DescribeGameSessionQueuesOutput = {
 
 M.DescribeGameSessionsInput = {
     type = "structure",
+    id = "DescribeGameSessionsInput",
     members = {
         FleetId = {
             type = "string",
@@ -4685,6 +4896,7 @@ M.DescribeGameSessionsInput = {
 
 M.DescribeGameSessionsOutput = {
     type = "structure",
+    id = "DescribeGameSessionsOutput",
     members = {
         GameSessions = {
             type = "list",
@@ -4698,6 +4910,7 @@ M.DescribeGameSessionsOutput = {
 
 M.DescribeInstancesInput = {
     type = "structure",
+    id = "DescribeInstancesInput",
     members = {
         FleetId = {
             type = "string",
@@ -4728,6 +4941,7 @@ M.InstanceStatus = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         FleetId = {
             type = "string",
@@ -4764,6 +4978,7 @@ M.Instance = {
 
 M.DescribeInstancesOutput = {
     type = "structure",
+    id = "DescribeInstancesOutput",
     members = {
         Instances = {
             type = "list",
@@ -4777,6 +4992,7 @@ M.DescribeInstancesOutput = {
 
 M.DescribeMatchmakingInput = {
     type = "structure",
+    id = "DescribeMatchmakingInput",
     members = {
         TicketIds = {
             type = "list",
@@ -4790,6 +5006,7 @@ M.DescribeMatchmakingInput = {
 
 M.MatchedPlayerSession = {
     type = "structure",
+    id = "MatchedPlayerSession",
     members = {
         PlayerId = {
             type = "string",
@@ -4802,6 +5019,7 @@ M.MatchedPlayerSession = {
 
 M.GameSessionConnectionInfo = {
     type = "structure",
+    id = "GameSessionConnectionInfo",
     members = {
         GameSessionArn = {
             type = "string",
@@ -4827,6 +5045,7 @@ M.GameSessionConnectionInfo = {
 
 M.Player = {
     type = "structure",
+    id = "Player",
     members = {
         PlayerId = {
             type = "string",
@@ -4860,6 +5079,7 @@ M.MatchmakingConfigurationStatus = {
 
 M.MatchmakingTicket = {
     type = "structure",
+    id = "MatchmakingTicket",
     members = {
         TicketId = {
             type = "string",
@@ -4898,6 +5118,7 @@ M.MatchmakingTicket = {
 
 M.DescribeMatchmakingOutput = {
     type = "structure",
+    id = "DescribeMatchmakingOutput",
     members = {
         TicketList = {
             type = "list",
@@ -4908,6 +5129,7 @@ M.DescribeMatchmakingOutput = {
 
 M.DescribeMatchmakingConfigurationsInput = {
     type = "structure",
+    id = "DescribeMatchmakingConfigurationsInput",
     members = {
         Names = {
             type = "list",
@@ -4927,6 +5149,7 @@ M.DescribeMatchmakingConfigurationsInput = {
 
 M.DescribeMatchmakingConfigurationsOutput = {
     type = "structure",
+    id = "DescribeMatchmakingConfigurationsOutput",
     members = {
         Configurations = {
             type = "list",
@@ -4940,6 +5163,7 @@ M.DescribeMatchmakingConfigurationsOutput = {
 
 M.DescribeMatchmakingRuleSetsInput = {
     type = "structure",
+    id = "DescribeMatchmakingRuleSetsInput",
     members = {
         Names = {
             type = "list",
@@ -4956,6 +5180,7 @@ M.DescribeMatchmakingRuleSetsInput = {
 
 M.DescribeMatchmakingRuleSetsOutput = {
     type = "structure",
+    id = "DescribeMatchmakingRuleSetsOutput",
     members = {
         RuleSets = {
             type = "list",
@@ -4972,6 +5197,7 @@ M.DescribeMatchmakingRuleSetsOutput = {
 
 M.DescribePlayerSessionsInput = {
     type = "structure",
+    id = "DescribePlayerSessionsInput",
     members = {
         GameSessionId = {
             type = "string",
@@ -4996,6 +5222,7 @@ M.DescribePlayerSessionsInput = {
 
 M.DescribePlayerSessionsOutput = {
     type = "structure",
+    id = "DescribePlayerSessionsOutput",
     members = {
         PlayerSessions = {
             type = "list",
@@ -5009,6 +5236,7 @@ M.DescribePlayerSessionsOutput = {
 
 M.DescribeRuntimeConfigurationInput = {
     type = "structure",
+    id = "DescribeRuntimeConfigurationInput",
     members = {
         FleetId = {
             type = "string",
@@ -5021,6 +5249,7 @@ M.DescribeRuntimeConfigurationInput = {
 
 M.DescribeRuntimeConfigurationOutput = {
     type = "structure",
+    id = "DescribeRuntimeConfigurationOutput",
     members = {
         RuntimeConfiguration = M.RuntimeConfiguration,
     },
@@ -5038,6 +5267,7 @@ M.ScalingStatusType = {
 
 M.DescribeScalingPoliciesInput = {
     type = "structure",
+    id = "DescribeScalingPoliciesInput",
     members = {
         FleetId = {
             type = "string",
@@ -5088,6 +5318,7 @@ M.ScalingAdjustmentType = {
 
 M.TargetConfiguration = {
     type = "structure",
+    id = "TargetConfiguration",
     members = {
         TargetValue = {
             type = "double",
@@ -5100,6 +5331,7 @@ M.TargetConfiguration = {
 
 M.ScalingPolicy = {
     type = "structure",
+    id = "ScalingPolicy",
     members = {
         FleetId = {
             type = "string",
@@ -5146,6 +5378,7 @@ M.ScalingPolicy = {
 
 M.DescribeScalingPoliciesOutput = {
     type = "structure",
+    id = "DescribeScalingPoliciesOutput",
     members = {
         ScalingPolicies = {
             type = "list",
@@ -5159,6 +5392,7 @@ M.DescribeScalingPoliciesOutput = {
 
 M.DescribeScriptInput = {
     type = "structure",
+    id = "DescribeScriptInput",
     members = {
         ScriptId = {
             type = "string",
@@ -5171,6 +5405,7 @@ M.DescribeScriptInput = {
 
 M.DescribeScriptOutput = {
     type = "structure",
+    id = "DescribeScriptOutput",
     members = {
         Script = M.Script,
     },
@@ -5178,10 +5413,12 @@ M.DescribeScriptOutput = {
 
 M.DescribeVpcPeeringAuthorizationsInput = {
     type = "structure",
+    id = "DescribeVpcPeeringAuthorizationsInput",
 }
 
 M.DescribeVpcPeeringAuthorizationsOutput = {
     type = "structure",
+    id = "DescribeVpcPeeringAuthorizationsOutput",
     members = {
         VpcPeeringAuthorizations = {
             type = "list",
@@ -5192,6 +5429,7 @@ M.DescribeVpcPeeringAuthorizationsOutput = {
 
 M.DescribeVpcPeeringConnectionsInput = {
     type = "structure",
+    id = "DescribeVpcPeeringConnectionsInput",
     members = {
         FleetId = {
             type = "string",
@@ -5201,6 +5439,7 @@ M.DescribeVpcPeeringConnectionsInput = {
 
 M.VpcPeeringConnectionStatus = {
     type = "structure",
+    id = "VpcPeeringConnectionStatus",
     members = {
         Code = {
             type = "string",
@@ -5213,6 +5452,7 @@ M.VpcPeeringConnectionStatus = {
 
 M.VpcPeeringConnection = {
     type = "structure",
+    id = "VpcPeeringConnection",
     members = {
         FleetId = {
             type = "string",
@@ -5238,6 +5478,7 @@ M.VpcPeeringConnection = {
 
 M.DescribeVpcPeeringConnectionsOutput = {
     type = "structure",
+    id = "DescribeVpcPeeringConnectionsOutput",
     members = {
         VpcPeeringConnections = {
             type = "list",
@@ -5248,6 +5489,7 @@ M.DescribeVpcPeeringConnectionsOutput = {
 
 M.DesiredPlayerSession = {
     type = "structure",
+    id = "DesiredPlayerSession",
     members = {
         PlayerId = {
             type = "string",
@@ -5260,6 +5502,7 @@ M.DesiredPlayerSession = {
 
 M.GetComputeAccessInput = {
     type = "structure",
+    id = "GetComputeAccessInput",
     members = {
         FleetId = {
             type = "string",
@@ -5278,6 +5521,7 @@ M.GetComputeAccessInput = {
 
 M.GetComputeAccessOutput = {
     type = "structure",
+    id = "GetComputeAccessOutput",
     members = {
         FleetId = {
             type = "string",
@@ -5304,6 +5548,7 @@ M.GetComputeAccessOutput = {
 
 M.GetComputeAuthTokenInput = {
     type = "structure",
+    id = "GetComputeAuthTokenInput",
     members = {
         FleetId = {
             type = "string",
@@ -5322,6 +5567,7 @@ M.GetComputeAuthTokenInput = {
 
 M.GetComputeAuthTokenOutput = {
     type = "structure",
+    id = "GetComputeAuthTokenOutput",
     members = {
         FleetId = {
             type = "string",
@@ -5346,6 +5592,7 @@ M.GetComputeAuthTokenOutput = {
 
 M.GetGameSessionLogUrlInput = {
     type = "structure",
+    id = "GetGameSessionLogUrlInput",
     members = {
         GameSessionId = {
             type = "string",
@@ -5358,6 +5605,7 @@ M.GetGameSessionLogUrlInput = {
 
 M.GetGameSessionLogUrlOutput = {
     type = "structure",
+    id = "GetGameSessionLogUrlOutput",
     members = {
         PreSignedUrl = {
             type = "string",
@@ -5367,6 +5615,7 @@ M.GetGameSessionLogUrlOutput = {
 
 M.GetInstanceAccessInput = {
     type = "structure",
+    id = "GetInstanceAccessInput",
     members = {
         FleetId = {
             type = "string",
@@ -5385,6 +5634,7 @@ M.GetInstanceAccessInput = {
 
 M.InstanceCredentials = {
     type = "structure",
+    id = "InstanceCredentials",
     members = {
         UserName = {
             type = "string",
@@ -5397,6 +5647,7 @@ M.InstanceCredentials = {
 
 M.InstanceAccess = {
     type = "structure",
+    id = "InstanceAccess",
     members = {
         FleetId = {
             type = "string",
@@ -5416,6 +5667,7 @@ M.InstanceAccess = {
 
 M.GetInstanceAccessOutput = {
     type = "structure",
+    id = "GetInstanceAccessOutput",
     members = {
         InstanceAccess = M.InstanceAccess,
     },
@@ -5423,6 +5675,7 @@ M.GetInstanceAccessOutput = {
 
 M.GetPlayerConnectionDetailsInput = {
     type = "structure",
+    id = "GetPlayerConnectionDetailsInput",
     members = {
         GameSessionId = {
             type = "string",
@@ -5442,6 +5695,7 @@ M.GetPlayerConnectionDetailsInput = {
 
 M.PlayerConnectionEndpoint = {
     type = "structure",
+    id = "PlayerConnectionEndpoint",
     members = {
         IpAddress = {
             type = "string",
@@ -5454,6 +5708,7 @@ M.PlayerConnectionEndpoint = {
 
 M.PlayerConnectionDetail = {
     type = "structure",
+    id = "PlayerConnectionDetail",
     members = {
         PlayerId = {
             type = "string",
@@ -5473,6 +5728,7 @@ M.PlayerConnectionDetail = {
 
 M.GetPlayerConnectionDetailsOutput = {
     type = "structure",
+    id = "GetPlayerConnectionDetailsOutput",
     members = {
         GameSessionId = {
             type = "string",
@@ -5486,6 +5742,7 @@ M.GetPlayerConnectionDetailsOutput = {
 
 M.ListAliasesInput = {
     type = "structure",
+    id = "ListAliasesInput",
     members = {
         RoutingStrategyType = {
             type = "string",
@@ -5504,6 +5761,7 @@ M.ListAliasesInput = {
 
 M.ListAliasesOutput = {
     type = "structure",
+    id = "ListAliasesOutput",
     members = {
         Aliases = {
             type = "list",
@@ -5517,6 +5775,7 @@ M.ListAliasesOutput = {
 
 M.ListBuildsInput = {
     type = "structure",
+    id = "ListBuildsInput",
     members = {
         Status = {
             type = "string",
@@ -5532,6 +5791,7 @@ M.ListBuildsInput = {
 
 M.ListBuildsOutput = {
     type = "structure",
+    id = "ListBuildsOutput",
     members = {
         Builds = {
             type = "list",
@@ -5550,6 +5810,7 @@ M.ListComputeInputStatus = {
 
 M.ListComputeInput = {
     type = "structure",
+    id = "ListComputeInput",
     members = {
         FleetId = {
             type = "string",
@@ -5577,6 +5838,7 @@ M.ListComputeInput = {
 
 M.ListComputeOutput = {
     type = "structure",
+    id = "ListComputeOutput",
     members = {
         ComputeList = {
             type = "list",
@@ -5590,6 +5852,7 @@ M.ListComputeOutput = {
 
 M.ListContainerFleetsInput = {
     type = "structure",
+    id = "ListContainerFleetsInput",
     members = {
         ContainerGroupDefinitionName = {
             type = "string",
@@ -5605,6 +5868,7 @@ M.ListContainerFleetsInput = {
 
 M.ListContainerFleetsOutput = {
     type = "structure",
+    id = "ListContainerFleetsOutput",
     members = {
         ContainerFleets = {
             type = "list",
@@ -5618,6 +5882,7 @@ M.ListContainerFleetsOutput = {
 
 M.ListContainerGroupDefinitionsInput = {
     type = "structure",
+    id = "ListContainerGroupDefinitionsInput",
     members = {
         ContainerGroupType = {
             type = "string",
@@ -5633,6 +5898,7 @@ M.ListContainerGroupDefinitionsInput = {
 
 M.ListContainerGroupDefinitionsOutput = {
     type = "structure",
+    id = "ListContainerGroupDefinitionsOutput",
     members = {
         ContainerGroupDefinitions = {
             type = "list",
@@ -5646,6 +5912,7 @@ M.ListContainerGroupDefinitionsOutput = {
 
 M.ListContainerGroupDefinitionVersionsInput = {
     type = "structure",
+    id = "ListContainerGroupDefinitionVersionsInput",
     members = {
         Name = {
             type = "string",
@@ -5664,6 +5931,7 @@ M.ListContainerGroupDefinitionVersionsInput = {
 
 M.ListContainerGroupDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListContainerGroupDefinitionVersionsOutput",
     members = {
         ContainerGroupDefinitions = {
             type = "list",
@@ -5677,6 +5945,7 @@ M.ListContainerGroupDefinitionVersionsOutput = {
 
 M.ListFleetDeploymentsInput = {
     type = "structure",
+    id = "ListFleetDeploymentsInput",
     members = {
         FleetId = {
             type = "string",
@@ -5692,6 +5961,7 @@ M.ListFleetDeploymentsInput = {
 
 M.ListFleetDeploymentsOutput = {
     type = "structure",
+    id = "ListFleetDeploymentsOutput",
     members = {
         FleetDeployments = {
             type = "list",
@@ -5705,6 +5975,7 @@ M.ListFleetDeploymentsOutput = {
 
 M.ListFleetsInput = {
     type = "structure",
+    id = "ListFleetsInput",
     members = {
         BuildId = {
             type = "string",
@@ -5723,6 +5994,7 @@ M.ListFleetsInput = {
 
 M.ListFleetsOutput = {
     type = "structure",
+    id = "ListFleetsOutput",
     members = {
         FleetIds = {
             type = "list",
@@ -5736,6 +6008,7 @@ M.ListFleetsOutput = {
 
 M.ListGameServerGroupsInput = {
     type = "structure",
+    id = "ListGameServerGroupsInput",
     members = {
         Limit = {
             type = "integer",
@@ -5748,6 +6021,7 @@ M.ListGameServerGroupsInput = {
 
 M.ListGameServerGroupsOutput = {
     type = "structure",
+    id = "ListGameServerGroupsOutput",
     members = {
         GameServerGroups = {
             type = "list",
@@ -5766,6 +6040,7 @@ M.SortOrder = {
 
 M.ListGameServersInput = {
     type = "structure",
+    id = "ListGameServersInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -5787,6 +6062,7 @@ M.ListGameServersInput = {
 
 M.ListGameServersOutput = {
     type = "structure",
+    id = "ListGameServersOutput",
     members = {
         GameServers = {
             type = "list",
@@ -5805,6 +6081,7 @@ M.LocationFilter = {
 
 M.ListLocationsInput = {
     type = "structure",
+    id = "ListLocationsInput",
     members = {
         Filters = {
             type = "list",
@@ -5821,6 +6098,7 @@ M.ListLocationsInput = {
 
 M.ListLocationsOutput = {
     type = "structure",
+    id = "ListLocationsOutput",
     members = {
         Locations = {
             type = "list",
@@ -5834,6 +6112,7 @@ M.ListLocationsOutput = {
 
 M.ListScriptsInput = {
     type = "structure",
+    id = "ListScriptsInput",
     members = {
         Limit = {
             type = "integer",
@@ -5846,6 +6125,7 @@ M.ListScriptsInput = {
 
 M.ListScriptsOutput = {
     type = "structure",
+    id = "ListScriptsOutput",
     members = {
         Scripts = {
             type = "list",
@@ -5859,6 +6139,7 @@ M.ListScriptsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -5871,6 +6152,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -5881,6 +6163,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutScalingPolicyInput = {
     type = "structure",
+    id = "PutScalingPolicyInput",
     members = {
         Name = {
             type = "string",
@@ -5924,6 +6207,7 @@ M.PutScalingPolicyInput = {
 
 M.PutScalingPolicyOutput = {
     type = "structure",
+    id = "PutScalingPolicyOutput",
     members = {
         Name = {
             type = "string",
@@ -5933,6 +6217,7 @@ M.PutScalingPolicyOutput = {
 
 M.RegisterComputeInput = {
     type = "structure",
+    id = "RegisterComputeInput",
     members = {
         FleetId = {
             type = "string",
@@ -5963,6 +6248,7 @@ M.RegisterComputeInput = {
 
 M.RegisterComputeOutput = {
     type = "structure",
+    id = "RegisterComputeOutput",
     members = {
         Compute = M.Compute,
     },
@@ -5970,6 +6256,7 @@ M.RegisterComputeOutput = {
 
 M.RegisterGameServerInput = {
     type = "structure",
+    id = "RegisterGameServerInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -6000,6 +6287,7 @@ M.RegisterGameServerInput = {
 
 M.RegisterGameServerOutput = {
     type = "structure",
+    id = "RegisterGameServerOutput",
     members = {
         GameServer = M.GameServer,
     },
@@ -6007,6 +6295,7 @@ M.RegisterGameServerOutput = {
 
 M.RequestUploadCredentialsInput = {
     type = "structure",
+    id = "RequestUploadCredentialsInput",
     members = {
         BuildId = {
             type = "string",
@@ -6019,6 +6308,7 @@ M.RequestUploadCredentialsInput = {
 
 M.RequestUploadCredentialsOutput = {
     type = "structure",
+    id = "RequestUploadCredentialsOutput",
     members = {
         UploadCredentials = M.AwsCredentials,
         StorageLocation = M.S3Location,
@@ -6027,6 +6317,7 @@ M.RequestUploadCredentialsOutput = {
 
 M.ResolveAliasInput = {
     type = "structure",
+    id = "ResolveAliasInput",
     members = {
         AliasId = {
             type = "string",
@@ -6039,6 +6330,7 @@ M.ResolveAliasInput = {
 
 M.ResolveAliasOutput = {
     type = "structure",
+    id = "ResolveAliasOutput",
     members = {
         FleetId = {
             type = "string",
@@ -6051,6 +6343,7 @@ M.ResolveAliasOutput = {
 
 M.ResumeGameServerGroupInput = {
     type = "structure",
+    id = "ResumeGameServerGroupInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -6070,6 +6363,7 @@ M.ResumeGameServerGroupInput = {
 
 M.ResumeGameServerGroupOutput = {
     type = "structure",
+    id = "ResumeGameServerGroupOutput",
     members = {
         GameServerGroup = M.GameServerGroup,
     },
@@ -6077,6 +6371,7 @@ M.ResumeGameServerGroupOutput = {
 
 M.SearchGameSessionsInput = {
     type = "structure",
+    id = "SearchGameSessionsInput",
     members = {
         FleetId = {
             type = "string",
@@ -6104,6 +6399,7 @@ M.SearchGameSessionsInput = {
 
 M.SearchGameSessionsOutput = {
     type = "structure",
+    id = "SearchGameSessionsOutput",
     members = {
         GameSessions = {
             type = "list",
@@ -6117,6 +6413,7 @@ M.SearchGameSessionsOutput = {
 
 M.StartFleetActionsInput = {
     type = "structure",
+    id = "StartFleetActionsInput",
     members = {
         FleetId = {
             type = "string",
@@ -6139,6 +6436,7 @@ M.StartFleetActionsInput = {
 
 M.StartFleetActionsOutput = {
     type = "structure",
+    id = "StartFleetActionsOutput",
     members = {
         FleetId = {
             type = "string",
@@ -6151,6 +6449,7 @@ M.StartFleetActionsOutput = {
 
 M.StartGameSessionPlacementInput = {
     type = "structure",
+    id = "StartGameSessionPlacementInput",
     members = {
         PlacementId = {
             type = "string",
@@ -6194,6 +6493,7 @@ M.StartGameSessionPlacementInput = {
 
 M.StartGameSessionPlacementOutput = {
     type = "structure",
+    id = "StartGameSessionPlacementOutput",
     members = {
         GameSessionPlacement = M.GameSessionPlacement,
     },
@@ -6201,6 +6501,7 @@ M.StartGameSessionPlacementOutput = {
 
 M.StartMatchBackfillInput = {
     type = "structure",
+    id = "StartMatchBackfillInput",
     members = {
         TicketId = {
             type = "string",
@@ -6226,6 +6527,7 @@ M.StartMatchBackfillInput = {
 
 M.StartMatchBackfillOutput = {
     type = "structure",
+    id = "StartMatchBackfillOutput",
     members = {
         MatchmakingTicket = M.MatchmakingTicket,
     },
@@ -6233,6 +6535,7 @@ M.StartMatchBackfillOutput = {
 
 M.StartMatchmakingInput = {
     type = "structure",
+    id = "StartMatchmakingInput",
     members = {
         TicketId = {
             type = "string",
@@ -6255,6 +6558,7 @@ M.StartMatchmakingInput = {
 
 M.StartMatchmakingOutput = {
     type = "structure",
+    id = "StartMatchmakingOutput",
     members = {
         MatchmakingTicket = M.MatchmakingTicket,
     },
@@ -6262,6 +6566,7 @@ M.StartMatchmakingOutput = {
 
 M.StopFleetActionsInput = {
     type = "structure",
+    id = "StopFleetActionsInput",
     members = {
         FleetId = {
             type = "string",
@@ -6284,6 +6589,7 @@ M.StopFleetActionsInput = {
 
 M.StopFleetActionsOutput = {
     type = "structure",
+    id = "StopFleetActionsOutput",
     members = {
         FleetId = {
             type = "string",
@@ -6296,6 +6602,7 @@ M.StopFleetActionsOutput = {
 
 M.StopGameSessionPlacementInput = {
     type = "structure",
+    id = "StopGameSessionPlacementInput",
     members = {
         PlacementId = {
             type = "string",
@@ -6308,6 +6615,7 @@ M.StopGameSessionPlacementInput = {
 
 M.StopGameSessionPlacementOutput = {
     type = "structure",
+    id = "StopGameSessionPlacementOutput",
     members = {
         GameSessionPlacement = M.GameSessionPlacement,
     },
@@ -6315,6 +6623,7 @@ M.StopGameSessionPlacementOutput = {
 
 M.StopMatchmakingInput = {
     type = "structure",
+    id = "StopMatchmakingInput",
     members = {
         TicketId = {
             type = "string",
@@ -6327,10 +6636,12 @@ M.StopMatchmakingInput = {
 
 M.StopMatchmakingOutput = {
     type = "structure",
+    id = "StopMatchmakingOutput",
 }
 
 M.SuspendGameServerGroupInput = {
     type = "structure",
+    id = "SuspendGameServerGroupInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -6350,6 +6661,7 @@ M.SuspendGameServerGroupInput = {
 
 M.SuspendGameServerGroupOutput = {
     type = "structure",
+    id = "SuspendGameServerGroupOutput",
     members = {
         GameServerGroup = M.GameServerGroup,
     },
@@ -6357,6 +6669,7 @@ M.SuspendGameServerGroupOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -6376,6 +6689,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TerminationMode = {
@@ -6385,6 +6699,7 @@ M.TerminationMode = {
 
 M.TerminateGameSessionInput = {
     type = "structure",
+    id = "TerminateGameSessionInput",
     members = {
         GameSessionId = {
             type = "string",
@@ -6403,6 +6718,7 @@ M.TerminateGameSessionInput = {
 
 M.TerminateGameSessionOutput = {
     type = "structure",
+    id = "TerminateGameSessionOutput",
     members = {
         GameSession = M.GameSession,
     },
@@ -6410,6 +6726,7 @@ M.TerminateGameSessionOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -6429,10 +6746,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAliasInput = {
     type = "structure",
+    id = "UpdateAliasInput",
     members = {
         AliasId = {
             type = "string",
@@ -6452,6 +6771,7 @@ M.UpdateAliasInput = {
 
 M.UpdateAliasOutput = {
     type = "structure",
+    id = "UpdateAliasOutput",
     members = {
         Alias = M.Alias,
     },
@@ -6459,6 +6779,7 @@ M.UpdateAliasOutput = {
 
 M.UpdateBuildInput = {
     type = "structure",
+    id = "UpdateBuildInput",
     members = {
         BuildId = {
             type = "string",
@@ -6477,6 +6798,7 @@ M.UpdateBuildInput = {
 
 M.UpdateBuildOutput = {
     type = "structure",
+    id = "UpdateBuildOutput",
     members = {
         Build = M.Build,
     },
@@ -6484,6 +6806,7 @@ M.UpdateBuildOutput = {
 
 M.UpdateContainerFleetInput = {
     type = "structure",
+    id = "UpdateContainerFleetInput",
     members = {
         FleetId = {
             type = "string",
@@ -6531,6 +6854,7 @@ M.UpdateContainerFleetInput = {
 
 M.UpdateContainerFleetOutput = {
     type = "structure",
+    id = "UpdateContainerFleetOutput",
     members = {
         ContainerFleet = M.ContainerFleet,
     },
@@ -6538,6 +6862,7 @@ M.UpdateContainerFleetOutput = {
 
 M.UpdateContainerGroupDefinitionInput = {
     type = "structure",
+    id = "UpdateContainerGroupDefinitionInput",
     members = {
         Name = {
             type = "string",
@@ -6570,6 +6895,7 @@ M.UpdateContainerGroupDefinitionInput = {
 
 M.UpdateContainerGroupDefinitionOutput = {
     type = "structure",
+    id = "UpdateContainerGroupDefinitionOutput",
     members = {
         ContainerGroupDefinition = M.ContainerGroupDefinition,
     },
@@ -6577,6 +6903,7 @@ M.UpdateContainerGroupDefinitionOutput = {
 
 M.UpdateFleetAttributesInput = {
     type = "structure",
+    id = "UpdateFleetAttributesInput",
     members = {
         FleetId = {
             type = "string",
@@ -6604,6 +6931,7 @@ M.UpdateFleetAttributesInput = {
 
 M.UpdateFleetAttributesOutput = {
     type = "structure",
+    id = "UpdateFleetAttributesOutput",
     members = {
         FleetId = {
             type = "string",
@@ -6616,6 +6944,7 @@ M.UpdateFleetAttributesOutput = {
 
 M.UpdateFleetCapacityInput = {
     type = "structure",
+    id = "UpdateFleetCapacityInput",
     members = {
         FleetId = {
             type = "string",
@@ -6641,6 +6970,7 @@ M.UpdateFleetCapacityInput = {
 
 M.UpdateFleetCapacityOutput = {
     type = "structure",
+    id = "UpdateFleetCapacityOutput",
     members = {
         FleetId = {
             type = "string",
@@ -6657,6 +6987,7 @@ M.UpdateFleetCapacityOutput = {
 
 M.UpdateFleetPortSettingsInput = {
     type = "structure",
+    id = "UpdateFleetPortSettingsInput",
     members = {
         FleetId = {
             type = "string",
@@ -6677,6 +7008,7 @@ M.UpdateFleetPortSettingsInput = {
 
 M.UpdateFleetPortSettingsOutput = {
     type = "structure",
+    id = "UpdateFleetPortSettingsOutput",
     members = {
         FleetId = {
             type = "string",
@@ -6693,6 +7025,7 @@ M.GameServerHealthCheck = {
 
 M.UpdateGameServerInput = {
     type = "structure",
+    id = "UpdateGameServerInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -6720,6 +7053,7 @@ M.UpdateGameServerInput = {
 
 M.UpdateGameServerOutput = {
     type = "structure",
+    id = "UpdateGameServerOutput",
     members = {
         GameServer = M.GameServer,
     },
@@ -6727,6 +7061,7 @@ M.UpdateGameServerOutput = {
 
 M.UpdateGameServerGroupInput = {
     type = "structure",
+    id = "UpdateGameServerGroupInput",
     members = {
         GameServerGroupName = {
             type = "string",
@@ -6752,6 +7087,7 @@ M.UpdateGameServerGroupInput = {
 
 M.UpdateGameServerGroupOutput = {
     type = "structure",
+    id = "UpdateGameServerGroupOutput",
     members = {
         GameServerGroup = M.GameServerGroup,
     },
@@ -6759,6 +7095,7 @@ M.UpdateGameServerGroupOutput = {
 
 M.UpdateGameSessionInput = {
     type = "structure",
+    id = "UpdateGameSessionInput",
     members = {
         GameSessionId = {
             type = "string",
@@ -6787,6 +7124,7 @@ M.UpdateGameSessionInput = {
 
 M.UpdateGameSessionOutput = {
     type = "structure",
+    id = "UpdateGameSessionOutput",
     members = {
         GameSession = M.GameSession,
     },
@@ -6794,6 +7132,7 @@ M.UpdateGameSessionOutput = {
 
 M.UpdateGameSessionQueueInput = {
     type = "structure",
+    id = "UpdateGameSessionQueueInput",
     members = {
         Name = {
             type = "string",
@@ -6825,6 +7164,7 @@ M.UpdateGameSessionQueueInput = {
 
 M.UpdateGameSessionQueueOutput = {
     type = "structure",
+    id = "UpdateGameSessionQueueOutput",
     members = {
         GameSessionQueue = M.GameSessionQueue,
     },
@@ -6832,6 +7172,7 @@ M.UpdateGameSessionQueueOutput = {
 
 M.UpdateMatchmakingConfigurationInput = {
     type = "structure",
+    id = "UpdateMatchmakingConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -6885,6 +7226,7 @@ M.UpdateMatchmakingConfigurationInput = {
 
 M.UpdateMatchmakingConfigurationOutput = {
     type = "structure",
+    id = "UpdateMatchmakingConfigurationOutput",
     members = {
         Configuration = M.MatchmakingConfiguration,
     },
@@ -6892,6 +7234,7 @@ M.UpdateMatchmakingConfigurationOutput = {
 
 M.UpdateRuntimeConfigurationInput = {
     type = "structure",
+    id = "UpdateRuntimeConfigurationInput",
     members = {
         FleetId = {
             type = "string",
@@ -6907,6 +7250,7 @@ M.UpdateRuntimeConfigurationInput = {
 
 M.UpdateRuntimeConfigurationOutput = {
     type = "structure",
+    id = "UpdateRuntimeConfigurationOutput",
     members = {
         RuntimeConfiguration = M.RuntimeConfiguration,
     },
@@ -6914,6 +7258,7 @@ M.UpdateRuntimeConfigurationOutput = {
 
 M.UpdateScriptInput = {
     type = "structure",
+    id = "UpdateScriptInput",
     members = {
         ScriptId = {
             type = "string",
@@ -6936,6 +7281,7 @@ M.UpdateScriptInput = {
 
 M.UpdateScriptOutput = {
     type = "structure",
+    id = "UpdateScriptOutput",
     members = {
         Script = M.Script,
     },
@@ -6943,6 +7289,7 @@ M.UpdateScriptOutput = {
 
 M.ValidateMatchmakingRuleSetInput = {
     type = "structure",
+    id = "ValidateMatchmakingRuleSetInput",
     members = {
         RuleSetBody = {
             type = "string",
@@ -6955,6 +7302,7 @@ M.ValidateMatchmakingRuleSetInput = {
 
 M.ValidateMatchmakingRuleSetOutput = {
     type = "structure",
+    id = "ValidateMatchmakingRuleSetOutput",
     members = {
         Valid = {
             type = "boolean",

@@ -2,6 +2,7 @@ local M = {}
 
 M.ConnectivityInfo = {
     type = "structure",
+    id = "ConnectivityInfo",
     members = {
         HostAddress = {
             type = "string",
@@ -20,6 +21,7 @@ M.ConnectivityInfo = {
 
 M.Connector = {
     type = "structure",
+    id = "Connector",
     members = {
         ConnectorArn = {
             type = "string",
@@ -43,6 +45,7 @@ M.Connector = {
 
 M.Core = {
     type = "structure",
+    id = "Core",
     members = {
         CertificateArn = {
             type = "string",
@@ -70,6 +73,7 @@ M.Core = {
 
 M.DefinitionInformation = {
     type = "structure",
+    id = "DefinitionInformation",
     members = {
         Arn = {
             type = "string",
@@ -105,6 +109,7 @@ M.DefinitionInformation = {
 
 M.Device = {
     type = "structure",
+    id = "Device",
     members = {
         CertificateArn = {
             type = "string",
@@ -142,6 +147,7 @@ M.FunctionIsolationMode = {
 
 M.FunctionRunAsConfig = {
     type = "structure",
+    id = "FunctionRunAsConfig",
     members = {
         Gid = {
             type = "integer",
@@ -154,6 +160,7 @@ M.FunctionRunAsConfig = {
 
 M.FunctionExecutionConfig = {
     type = "structure",
+    id = "FunctionExecutionConfig",
     members = {
         IsolationMode = {
             type = "string",
@@ -169,6 +176,7 @@ M.Permission = {
 
 M.ResourceAccessPolicy = {
     type = "structure",
+    id = "ResourceAccessPolicy",
     members = {
         Permission = {
             type = "string",
@@ -184,6 +192,7 @@ M.ResourceAccessPolicy = {
 
 M.FunctionConfigurationEnvironment = {
     type = "structure",
+    id = "FunctionConfigurationEnvironment",
     members = {
         AccessSysfs = {
             type = "boolean",
@@ -203,6 +212,7 @@ M.FunctionConfigurationEnvironment = {
 
 M.FunctionConfiguration = {
     type = "structure",
+    id = "FunctionConfiguration",
     members = {
         EncodingType = {
             type = "string",
@@ -231,6 +241,7 @@ M.FunctionConfiguration = {
 
 M.Function = {
     type = "structure",
+    id = "Function",
     members = {
         FunctionArn = {
             type = "string",
@@ -247,6 +258,7 @@ M.Function = {
 
 M.GroupCertificateAuthorityProperties = {
     type = "structure",
+    id = "GroupCertificateAuthorityProperties",
     members = {
         GroupCertificateAuthorityArn = {
             type = "string",
@@ -259,6 +271,7 @@ M.GroupCertificateAuthorityProperties = {
 
 M.GroupInformation = {
     type = "structure",
+    id = "GroupInformation",
     members = {
         Arn = {
             type = "string",
@@ -304,6 +317,7 @@ M.LoggerType = {
 
 M.Logger = {
     type = "structure",
+    id = "Logger",
     members = {
         Component = {
             type = "string",
@@ -337,6 +351,7 @@ M.Logger = {
 
 M.GroupOwnerSetting = {
     type = "structure",
+    id = "GroupOwnerSetting",
     members = {
         AutoAddGroupOwner = {
             type = "boolean",
@@ -349,6 +364,7 @@ M.GroupOwnerSetting = {
 
 M.LocalDeviceResourceData = {
     type = "structure",
+    id = "LocalDeviceResourceData",
     members = {
         GroupOwnerSetting = M.GroupOwnerSetting,
         SourcePath = {
@@ -359,6 +375,7 @@ M.LocalDeviceResourceData = {
 
 M.LocalVolumeResourceData = {
     type = "structure",
+    id = "LocalVolumeResourceData",
     members = {
         DestinationPath = {
             type = "string",
@@ -372,6 +389,7 @@ M.LocalVolumeResourceData = {
 
 M.ResourceDownloadOwnerSetting = {
     type = "structure",
+    id = "ResourceDownloadOwnerSetting",
     members = {
         GroupOwner = {
             type = "string",
@@ -390,6 +408,7 @@ M.ResourceDownloadOwnerSetting = {
 
 M.S3MachineLearningModelResourceData = {
     type = "structure",
+    id = "S3MachineLearningModelResourceData",
     members = {
         DestinationPath = {
             type = "string",
@@ -403,6 +422,7 @@ M.S3MachineLearningModelResourceData = {
 
 M.SageMakerMachineLearningModelResourceData = {
     type = "structure",
+    id = "SageMakerMachineLearningModelResourceData",
     members = {
         DestinationPath = {
             type = "string",
@@ -416,6 +436,7 @@ M.SageMakerMachineLearningModelResourceData = {
 
 M.SecretsManagerSecretResourceData = {
     type = "structure",
+    id = "SecretsManagerSecretResourceData",
     members = {
         ARN = {
             type = "string",
@@ -429,6 +450,7 @@ M.SecretsManagerSecretResourceData = {
 
 M.ResourceDataContainer = {
     type = "structure",
+    id = "ResourceDataContainer",
     members = {
         LocalDeviceResourceData = M.LocalDeviceResourceData,
         LocalVolumeResourceData = M.LocalVolumeResourceData,
@@ -440,6 +462,7 @@ M.ResourceDataContainer = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         Id = {
             type = "string",
@@ -461,6 +484,7 @@ M.Resource = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         Id = {
             type = "string",
@@ -491,6 +515,7 @@ M.Subscription = {
 
 M.VersionInformation = {
     type = "structure",
+    id = "VersionInformation",
     members = {
         Arn = {
             type = "string",
@@ -509,6 +534,7 @@ M.VersionInformation = {
 
 M.AssociateRoleToGroupInput = {
     type = "structure",
+    id = "AssociateRoleToGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -528,6 +554,7 @@ M.AssociateRoleToGroupInput = {
 
 M.AssociateRoleToGroupOutput = {
     type = "structure",
+    id = "AssociateRoleToGroupOutput",
     members = {
         AssociatedAt = {
             type = "string",
@@ -537,6 +564,7 @@ M.AssociateRoleToGroupOutput = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         DetailedErrorCode = {
             type = "string",
@@ -549,6 +577,7 @@ M.ErrorDetail = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         ErrorDetails = {
@@ -563,6 +592,7 @@ M.BadRequestException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         ErrorDetails = {
@@ -577,6 +607,7 @@ M.InternalServerErrorException = {
 
 M.AssociateServiceRoleToAccountInput = {
     type = "structure",
+    id = "AssociateServiceRoleToAccountInput",
     members = {
         RoleArn = {
             type = "string",
@@ -589,6 +620,7 @@ M.AssociateServiceRoleToAccountInput = {
 
 M.AssociateServiceRoleToAccountOutput = {
     type = "structure",
+    id = "AssociateServiceRoleToAccountOutput",
     members = {
         AssociatedAt = {
             type = "string",
@@ -598,6 +630,7 @@ M.AssociateServiceRoleToAccountOutput = {
 
 M.BulkDeployment = {
     type = "structure",
+    id = "BulkDeployment",
     members = {
         BulkDeploymentArn = {
             type = "string",
@@ -613,6 +646,7 @@ M.BulkDeployment = {
 
 M.BulkDeploymentMetrics = {
     type = "structure",
+    id = "BulkDeploymentMetrics",
     members = {
         InvalidInputRecords = {
             type = "integer",
@@ -635,6 +669,7 @@ M.DeploymentType = {
 
 M.BulkDeploymentResult = {
     type = "structure",
+    id = "BulkDeploymentResult",
     members = {
         CreatedAt = {
             type = "string",
@@ -680,6 +715,7 @@ M.ConfigurationSyncStatus = {
 
 M.ConnectorDefinitionVersion = {
     type = "structure",
+    id = "ConnectorDefinitionVersion",
     members = {
         Connectors = {
             type = "list",
@@ -690,6 +726,7 @@ M.ConnectorDefinitionVersion = {
 
 M.CoreDefinitionVersion = {
     type = "structure",
+    id = "CoreDefinitionVersion",
     members = {
         Cores = {
             type = "list",
@@ -700,6 +737,7 @@ M.CoreDefinitionVersion = {
 
 M.CreateConnectorDefinitionInput = {
     type = "structure",
+    id = "CreateConnectorDefinitionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -721,6 +759,7 @@ M.CreateConnectorDefinitionInput = {
 
 M.CreateConnectorDefinitionOutput = {
     type = "structure",
+    id = "CreateConnectorDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -748,6 +787,7 @@ M.CreateConnectorDefinitionOutput = {
 
 M.CreateConnectorDefinitionVersionInput = {
     type = "structure",
+    id = "CreateConnectorDefinitionVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -771,6 +811,7 @@ M.CreateConnectorDefinitionVersionInput = {
 
 M.CreateConnectorDefinitionVersionOutput = {
     type = "structure",
+    id = "CreateConnectorDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -789,6 +830,7 @@ M.CreateConnectorDefinitionVersionOutput = {
 
 M.CreateCoreDefinitionInput = {
     type = "structure",
+    id = "CreateCoreDefinitionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -810,6 +852,7 @@ M.CreateCoreDefinitionInput = {
 
 M.CreateCoreDefinitionOutput = {
     type = "structure",
+    id = "CreateCoreDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -837,6 +880,7 @@ M.CreateCoreDefinitionOutput = {
 
 M.CreateCoreDefinitionVersionInput = {
     type = "structure",
+    id = "CreateCoreDefinitionVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -860,6 +904,7 @@ M.CreateCoreDefinitionVersionInput = {
 
 M.CreateCoreDefinitionVersionOutput = {
     type = "structure",
+    id = "CreateCoreDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -878,6 +923,7 @@ M.CreateCoreDefinitionVersionOutput = {
 
 M.CreateDeploymentInput = {
     type = "structure",
+    id = "CreateDeploymentInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -909,6 +955,7 @@ M.CreateDeploymentInput = {
 
 M.CreateDeploymentOutput = {
     type = "structure",
+    id = "CreateDeploymentOutput",
     members = {
         DeploymentArn = {
             type = "string",
@@ -921,6 +968,7 @@ M.CreateDeploymentOutput = {
 
 M.DeviceDefinitionVersion = {
     type = "structure",
+    id = "DeviceDefinitionVersion",
     members = {
         Devices = {
             type = "list",
@@ -931,6 +979,7 @@ M.DeviceDefinitionVersion = {
 
 M.CreateDeviceDefinitionInput = {
     type = "structure",
+    id = "CreateDeviceDefinitionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -952,6 +1001,7 @@ M.CreateDeviceDefinitionInput = {
 
 M.CreateDeviceDefinitionOutput = {
     type = "structure",
+    id = "CreateDeviceDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -979,6 +1029,7 @@ M.CreateDeviceDefinitionOutput = {
 
 M.CreateDeviceDefinitionVersionInput = {
     type = "structure",
+    id = "CreateDeviceDefinitionVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1002,6 +1053,7 @@ M.CreateDeviceDefinitionVersionInput = {
 
 M.CreateDeviceDefinitionVersionOutput = {
     type = "structure",
+    id = "CreateDeviceDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1020,6 +1072,7 @@ M.CreateDeviceDefinitionVersionOutput = {
 
 M.FunctionDefaultExecutionConfig = {
     type = "structure",
+    id = "FunctionDefaultExecutionConfig",
     members = {
         IsolationMode = {
             type = "string",
@@ -1030,6 +1083,7 @@ M.FunctionDefaultExecutionConfig = {
 
 M.FunctionDefaultConfig = {
     type = "structure",
+    id = "FunctionDefaultConfig",
     members = {
         Execution = M.FunctionDefaultExecutionConfig,
     },
@@ -1037,6 +1091,7 @@ M.FunctionDefaultConfig = {
 
 M.FunctionDefinitionVersion = {
     type = "structure",
+    id = "FunctionDefinitionVersion",
     members = {
         DefaultConfig = M.FunctionDefaultConfig,
         Functions = {
@@ -1048,6 +1103,7 @@ M.FunctionDefinitionVersion = {
 
 M.CreateFunctionDefinitionInput = {
     type = "structure",
+    id = "CreateFunctionDefinitionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1069,6 +1125,7 @@ M.CreateFunctionDefinitionInput = {
 
 M.CreateFunctionDefinitionOutput = {
     type = "structure",
+    id = "CreateFunctionDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1096,6 +1153,7 @@ M.CreateFunctionDefinitionOutput = {
 
 M.CreateFunctionDefinitionVersionInput = {
     type = "structure",
+    id = "CreateFunctionDefinitionVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1120,6 +1178,7 @@ M.CreateFunctionDefinitionVersionInput = {
 
 M.CreateFunctionDefinitionVersionOutput = {
     type = "structure",
+    id = "CreateFunctionDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1138,6 +1197,7 @@ M.CreateFunctionDefinitionVersionOutput = {
 
 M.GroupVersion = {
     type = "structure",
+    id = "GroupVersion",
     members = {
         ConnectorDefinitionVersionArn = {
             type = "string",
@@ -1165,6 +1225,7 @@ M.GroupVersion = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1189,6 +1250,7 @@ M.CreateGroupInput = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -1216,6 +1278,7 @@ M.CreateGroupOutput = {
 
 M.CreateGroupCertificateAuthorityInput = {
     type = "structure",
+    id = "CreateGroupCertificateAuthorityInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1235,6 +1298,7 @@ M.CreateGroupCertificateAuthorityInput = {
 
 M.CreateGroupCertificateAuthorityOutput = {
     type = "structure",
+    id = "CreateGroupCertificateAuthorityOutput",
     members = {
         GroupCertificateAuthorityArn = {
             type = "string",
@@ -1244,6 +1308,7 @@ M.CreateGroupCertificateAuthorityOutput = {
 
 M.CreateGroupVersionInput = {
     type = "structure",
+    id = "CreateGroupVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1284,6 +1349,7 @@ M.CreateGroupVersionInput = {
 
 M.CreateGroupVersionOutput = {
     type = "structure",
+    id = "CreateGroupVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1302,6 +1368,7 @@ M.CreateGroupVersionOutput = {
 
 M.LoggerDefinitionVersion = {
     type = "structure",
+    id = "LoggerDefinitionVersion",
     members = {
         Loggers = {
             type = "list",
@@ -1312,6 +1379,7 @@ M.LoggerDefinitionVersion = {
 
 M.CreateLoggerDefinitionInput = {
     type = "structure",
+    id = "CreateLoggerDefinitionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1333,6 +1401,7 @@ M.CreateLoggerDefinitionInput = {
 
 M.CreateLoggerDefinitionOutput = {
     type = "structure",
+    id = "CreateLoggerDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1360,6 +1429,7 @@ M.CreateLoggerDefinitionOutput = {
 
 M.CreateLoggerDefinitionVersionInput = {
     type = "structure",
+    id = "CreateLoggerDefinitionVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1383,6 +1453,7 @@ M.CreateLoggerDefinitionVersionInput = {
 
 M.CreateLoggerDefinitionVersionOutput = {
     type = "structure",
+    id = "CreateLoggerDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1401,6 +1472,7 @@ M.CreateLoggerDefinitionVersionOutput = {
 
 M.ResourceDefinitionVersion = {
     type = "structure",
+    id = "ResourceDefinitionVersion",
     members = {
         Resources = {
             type = "list",
@@ -1411,6 +1483,7 @@ M.ResourceDefinitionVersion = {
 
 M.CreateResourceDefinitionInput = {
     type = "structure",
+    id = "CreateResourceDefinitionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1432,6 +1505,7 @@ M.CreateResourceDefinitionInput = {
 
 M.CreateResourceDefinitionOutput = {
     type = "structure",
+    id = "CreateResourceDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1459,6 +1533,7 @@ M.CreateResourceDefinitionOutput = {
 
 M.CreateResourceDefinitionVersionInput = {
     type = "structure",
+    id = "CreateResourceDefinitionVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1482,6 +1557,7 @@ M.CreateResourceDefinitionVersionInput = {
 
 M.CreateResourceDefinitionVersionOutput = {
     type = "structure",
+    id = "CreateResourceDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1530,6 +1606,7 @@ M.UpdateTargetsOperatingSystem = {
 
 M.CreateSoftwareUpdateJobInput = {
     type = "structure",
+    id = "CreateSoftwareUpdateJobInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1576,6 +1653,7 @@ M.CreateSoftwareUpdateJobInput = {
 
 M.CreateSoftwareUpdateJobOutput = {
     type = "structure",
+    id = "CreateSoftwareUpdateJobOutput",
     members = {
         IotJobArn = {
             type = "string",
@@ -1591,6 +1669,7 @@ M.CreateSoftwareUpdateJobOutput = {
 
 M.SubscriptionDefinitionVersion = {
     type = "structure",
+    id = "SubscriptionDefinitionVersion",
     members = {
         Subscriptions = {
             type = "list",
@@ -1601,6 +1680,7 @@ M.SubscriptionDefinitionVersion = {
 
 M.CreateSubscriptionDefinitionInput = {
     type = "structure",
+    id = "CreateSubscriptionDefinitionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1622,6 +1702,7 @@ M.CreateSubscriptionDefinitionInput = {
 
 M.CreateSubscriptionDefinitionOutput = {
     type = "structure",
+    id = "CreateSubscriptionDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1649,6 +1730,7 @@ M.CreateSubscriptionDefinitionOutput = {
 
 M.CreateSubscriptionDefinitionVersionInput = {
     type = "structure",
+    id = "CreateSubscriptionDefinitionVersionInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -1672,6 +1754,7 @@ M.CreateSubscriptionDefinitionVersionInput = {
 
 M.CreateSubscriptionDefinitionVersionOutput = {
     type = "structure",
+    id = "CreateSubscriptionDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -1690,6 +1773,7 @@ M.CreateSubscriptionDefinitionVersionOutput = {
 
 M.DeleteConnectorDefinitionInput = {
     type = "structure",
+    id = "DeleteConnectorDefinitionInput",
     members = {
         ConnectorDefinitionId = {
             type = "string",
@@ -1703,10 +1787,12 @@ M.DeleteConnectorDefinitionInput = {
 
 M.DeleteConnectorDefinitionOutput = {
     type = "structure",
+    id = "DeleteConnectorDefinitionOutput",
 }
 
 M.DeleteCoreDefinitionInput = {
     type = "structure",
+    id = "DeleteCoreDefinitionInput",
     members = {
         CoreDefinitionId = {
             type = "string",
@@ -1720,10 +1806,12 @@ M.DeleteCoreDefinitionInput = {
 
 M.DeleteCoreDefinitionOutput = {
     type = "structure",
+    id = "DeleteCoreDefinitionOutput",
 }
 
 M.DeleteDeviceDefinitionInput = {
     type = "structure",
+    id = "DeleteDeviceDefinitionInput",
     members = {
         DeviceDefinitionId = {
             type = "string",
@@ -1737,10 +1825,12 @@ M.DeleteDeviceDefinitionInput = {
 
 M.DeleteDeviceDefinitionOutput = {
     type = "structure",
+    id = "DeleteDeviceDefinitionOutput",
 }
 
 M.DeleteFunctionDefinitionInput = {
     type = "structure",
+    id = "DeleteFunctionDefinitionInput",
     members = {
         FunctionDefinitionId = {
             type = "string",
@@ -1754,10 +1844,12 @@ M.DeleteFunctionDefinitionInput = {
 
 M.DeleteFunctionDefinitionOutput = {
     type = "structure",
+    id = "DeleteFunctionDefinitionOutput",
 }
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -1771,10 +1863,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DeleteLoggerDefinitionInput = {
     type = "structure",
+    id = "DeleteLoggerDefinitionInput",
     members = {
         LoggerDefinitionId = {
             type = "string",
@@ -1788,10 +1882,12 @@ M.DeleteLoggerDefinitionInput = {
 
 M.DeleteLoggerDefinitionOutput = {
     type = "structure",
+    id = "DeleteLoggerDefinitionOutput",
 }
 
 M.DeleteResourceDefinitionInput = {
     type = "structure",
+    id = "DeleteResourceDefinitionInput",
     members = {
         ResourceDefinitionId = {
             type = "string",
@@ -1805,10 +1901,12 @@ M.DeleteResourceDefinitionInput = {
 
 M.DeleteResourceDefinitionOutput = {
     type = "structure",
+    id = "DeleteResourceDefinitionOutput",
 }
 
 M.DeleteSubscriptionDefinitionInput = {
     type = "structure",
+    id = "DeleteSubscriptionDefinitionInput",
     members = {
         SubscriptionDefinitionId = {
             type = "string",
@@ -1822,10 +1920,12 @@ M.DeleteSubscriptionDefinitionInput = {
 
 M.DeleteSubscriptionDefinitionOutput = {
     type = "structure",
+    id = "DeleteSubscriptionDefinitionOutput",
 }
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         CreatedAt = {
             type = "string",
@@ -1847,6 +1947,7 @@ M.Deployment = {
 
 M.DisassociateRoleFromGroupInput = {
     type = "structure",
+    id = "DisassociateRoleFromGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -1860,6 +1961,7 @@ M.DisassociateRoleFromGroupInput = {
 
 M.DisassociateRoleFromGroupOutput = {
     type = "structure",
+    id = "DisassociateRoleFromGroupOutput",
     members = {
         DisassociatedAt = {
             type = "string",
@@ -1869,10 +1971,12 @@ M.DisassociateRoleFromGroupOutput = {
 
 M.DisassociateServiceRoleFromAccountInput = {
     type = "structure",
+    id = "DisassociateServiceRoleFromAccountInput",
 }
 
 M.DisassociateServiceRoleFromAccountOutput = {
     type = "structure",
+    id = "DisassociateServiceRoleFromAccountOutput",
     members = {
         DisassociatedAt = {
             type = "string",
@@ -1882,6 +1986,7 @@ M.DisassociateServiceRoleFromAccountOutput = {
 
 M.GetAssociatedRoleInput = {
     type = "structure",
+    id = "GetAssociatedRoleInput",
     members = {
         GroupId = {
             type = "string",
@@ -1895,6 +2000,7 @@ M.GetAssociatedRoleInput = {
 
 M.GetAssociatedRoleOutput = {
     type = "structure",
+    id = "GetAssociatedRoleOutput",
     members = {
         AssociatedAt = {
             type = "string",
@@ -1907,6 +2013,7 @@ M.GetAssociatedRoleOutput = {
 
 M.GetBulkDeploymentStatusInput = {
     type = "structure",
+    id = "GetBulkDeploymentStatusInput",
     members = {
         BulkDeploymentId = {
             type = "string",
@@ -1920,6 +2027,7 @@ M.GetBulkDeploymentStatusInput = {
 
 M.GetBulkDeploymentStatusOutput = {
     type = "structure",
+    id = "GetBulkDeploymentStatusOutput",
     members = {
         BulkDeploymentMetrics = M.BulkDeploymentMetrics,
         BulkDeploymentStatus = {
@@ -1945,6 +2053,7 @@ M.GetBulkDeploymentStatusOutput = {
 
 M.GetConnectivityInfoInput = {
     type = "structure",
+    id = "GetConnectivityInfoInput",
     members = {
         ThingName = {
             type = "string",
@@ -1958,6 +2067,7 @@ M.GetConnectivityInfoInput = {
 
 M.GetConnectivityInfoOutput = {
     type = "structure",
+    id = "GetConnectivityInfoOutput",
     members = {
         ConnectivityInfo = {
             type = "list",
@@ -1974,6 +2084,7 @@ M.GetConnectivityInfoOutput = {
 
 M.GetConnectorDefinitionInput = {
     type = "structure",
+    id = "GetConnectorDefinitionInput",
     members = {
         ConnectorDefinitionId = {
             type = "string",
@@ -1987,6 +2098,7 @@ M.GetConnectorDefinitionInput = {
 
 M.GetConnectorDefinitionOutput = {
     type = "structure",
+    id = "GetConnectorDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2019,6 +2131,7 @@ M.GetConnectorDefinitionOutput = {
 
 M.GetConnectorDefinitionVersionInput = {
     type = "structure",
+    id = "GetConnectorDefinitionVersionInput",
     members = {
         ConnectorDefinitionId = {
             type = "string",
@@ -2045,6 +2158,7 @@ M.GetConnectorDefinitionVersionInput = {
 
 M.GetConnectorDefinitionVersionOutput = {
     type = "structure",
+    id = "GetConnectorDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2067,6 +2181,7 @@ M.GetConnectorDefinitionVersionOutput = {
 
 M.GetCoreDefinitionInput = {
     type = "structure",
+    id = "GetCoreDefinitionInput",
     members = {
         CoreDefinitionId = {
             type = "string",
@@ -2080,6 +2195,7 @@ M.GetCoreDefinitionInput = {
 
 M.GetCoreDefinitionOutput = {
     type = "structure",
+    id = "GetCoreDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2112,6 +2228,7 @@ M.GetCoreDefinitionOutput = {
 
 M.GetCoreDefinitionVersionInput = {
     type = "structure",
+    id = "GetCoreDefinitionVersionInput",
     members = {
         CoreDefinitionId = {
             type = "string",
@@ -2132,6 +2249,7 @@ M.GetCoreDefinitionVersionInput = {
 
 M.GetCoreDefinitionVersionOutput = {
     type = "structure",
+    id = "GetCoreDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2154,6 +2272,7 @@ M.GetCoreDefinitionVersionOutput = {
 
 M.GetDeploymentStatusInput = {
     type = "structure",
+    id = "GetDeploymentStatusInput",
     members = {
         DeploymentId = {
             type = "string",
@@ -2174,6 +2293,7 @@ M.GetDeploymentStatusInput = {
 
 M.GetDeploymentStatusOutput = {
     type = "structure",
+    id = "GetDeploymentStatusOutput",
     members = {
         DeploymentStatus = {
             type = "string",
@@ -2196,6 +2316,7 @@ M.GetDeploymentStatusOutput = {
 
 M.GetDeviceDefinitionInput = {
     type = "structure",
+    id = "GetDeviceDefinitionInput",
     members = {
         DeviceDefinitionId = {
             type = "string",
@@ -2209,6 +2330,7 @@ M.GetDeviceDefinitionInput = {
 
 M.GetDeviceDefinitionOutput = {
     type = "structure",
+    id = "GetDeviceDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2241,6 +2363,7 @@ M.GetDeviceDefinitionOutput = {
 
 M.GetDeviceDefinitionVersionInput = {
     type = "structure",
+    id = "GetDeviceDefinitionVersionInput",
     members = {
         DeviceDefinitionId = {
             type = "string",
@@ -2267,6 +2390,7 @@ M.GetDeviceDefinitionVersionInput = {
 
 M.GetDeviceDefinitionVersionOutput = {
     type = "structure",
+    id = "GetDeviceDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2289,6 +2413,7 @@ M.GetDeviceDefinitionVersionOutput = {
 
 M.GetFunctionDefinitionInput = {
     type = "structure",
+    id = "GetFunctionDefinitionInput",
     members = {
         FunctionDefinitionId = {
             type = "string",
@@ -2302,6 +2427,7 @@ M.GetFunctionDefinitionInput = {
 
 M.GetFunctionDefinitionOutput = {
     type = "structure",
+    id = "GetFunctionDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2334,6 +2460,7 @@ M.GetFunctionDefinitionOutput = {
 
 M.GetFunctionDefinitionVersionInput = {
     type = "structure",
+    id = "GetFunctionDefinitionVersionInput",
     members = {
         FunctionDefinitionId = {
             type = "string",
@@ -2360,6 +2487,7 @@ M.GetFunctionDefinitionVersionInput = {
 
 M.GetFunctionDefinitionVersionOutput = {
     type = "structure",
+    id = "GetFunctionDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2382,6 +2510,7 @@ M.GetFunctionDefinitionVersionOutput = {
 
 M.GetGroupInput = {
     type = "structure",
+    id = "GetGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -2395,6 +2524,7 @@ M.GetGroupInput = {
 
 M.GetGroupOutput = {
     type = "structure",
+    id = "GetGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -2427,6 +2557,7 @@ M.GetGroupOutput = {
 
 M.GetGroupCertificateAuthorityInput = {
     type = "structure",
+    id = "GetGroupCertificateAuthorityInput",
     members = {
         CertificateAuthorityId = {
             type = "string",
@@ -2447,6 +2578,7 @@ M.GetGroupCertificateAuthorityInput = {
 
 M.GetGroupCertificateAuthorityOutput = {
     type = "structure",
+    id = "GetGroupCertificateAuthorityOutput",
     members = {
         GroupCertificateAuthorityArn = {
             type = "string",
@@ -2462,6 +2594,7 @@ M.GetGroupCertificateAuthorityOutput = {
 
 M.GetGroupCertificateConfigurationInput = {
     type = "structure",
+    id = "GetGroupCertificateConfigurationInput",
     members = {
         GroupId = {
             type = "string",
@@ -2475,6 +2608,7 @@ M.GetGroupCertificateConfigurationInput = {
 
 M.GetGroupCertificateConfigurationOutput = {
     type = "structure",
+    id = "GetGroupCertificateConfigurationOutput",
     members = {
         CertificateAuthorityExpiryInMilliseconds = {
             type = "string",
@@ -2490,6 +2624,7 @@ M.GetGroupCertificateConfigurationOutput = {
 
 M.GetGroupVersionInput = {
     type = "structure",
+    id = "GetGroupVersionInput",
     members = {
         GroupId = {
             type = "string",
@@ -2510,6 +2645,7 @@ M.GetGroupVersionInput = {
 
 M.GetGroupVersionOutput = {
     type = "structure",
+    id = "GetGroupVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2529,6 +2665,7 @@ M.GetGroupVersionOutput = {
 
 M.GetLoggerDefinitionInput = {
     type = "structure",
+    id = "GetLoggerDefinitionInput",
     members = {
         LoggerDefinitionId = {
             type = "string",
@@ -2542,6 +2679,7 @@ M.GetLoggerDefinitionInput = {
 
 M.GetLoggerDefinitionOutput = {
     type = "structure",
+    id = "GetLoggerDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2574,6 +2712,7 @@ M.GetLoggerDefinitionOutput = {
 
 M.GetLoggerDefinitionVersionInput = {
     type = "structure",
+    id = "GetLoggerDefinitionVersionInput",
     members = {
         LoggerDefinitionId = {
             type = "string",
@@ -2600,6 +2739,7 @@ M.GetLoggerDefinitionVersionInput = {
 
 M.GetLoggerDefinitionVersionOutput = {
     type = "structure",
+    id = "GetLoggerDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2619,6 +2759,7 @@ M.GetLoggerDefinitionVersionOutput = {
 
 M.GetResourceDefinitionInput = {
     type = "structure",
+    id = "GetResourceDefinitionInput",
     members = {
         ResourceDefinitionId = {
             type = "string",
@@ -2632,6 +2773,7 @@ M.GetResourceDefinitionInput = {
 
 M.GetResourceDefinitionOutput = {
     type = "structure",
+    id = "GetResourceDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2664,6 +2806,7 @@ M.GetResourceDefinitionOutput = {
 
 M.GetResourceDefinitionVersionInput = {
     type = "structure",
+    id = "GetResourceDefinitionVersionInput",
     members = {
         ResourceDefinitionId = {
             type = "string",
@@ -2684,6 +2827,7 @@ M.GetResourceDefinitionVersionInput = {
 
 M.GetResourceDefinitionVersionOutput = {
     type = "structure",
+    id = "GetResourceDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2703,10 +2847,12 @@ M.GetResourceDefinitionVersionOutput = {
 
 M.GetServiceRoleForAccountInput = {
     type = "structure",
+    id = "GetServiceRoleForAccountInput",
 }
 
 M.GetServiceRoleForAccountOutput = {
     type = "structure",
+    id = "GetServiceRoleForAccountOutput",
     members = {
         AssociatedAt = {
             type = "string",
@@ -2719,6 +2865,7 @@ M.GetServiceRoleForAccountOutput = {
 
 M.GetSubscriptionDefinitionInput = {
     type = "structure",
+    id = "GetSubscriptionDefinitionInput",
     members = {
         SubscriptionDefinitionId = {
             type = "string",
@@ -2732,6 +2879,7 @@ M.GetSubscriptionDefinitionInput = {
 
 M.GetSubscriptionDefinitionOutput = {
     type = "structure",
+    id = "GetSubscriptionDefinitionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2764,6 +2912,7 @@ M.GetSubscriptionDefinitionOutput = {
 
 M.GetSubscriptionDefinitionVersionInput = {
     type = "structure",
+    id = "GetSubscriptionDefinitionVersionInput",
     members = {
         NextToken = {
             type = "string",
@@ -2790,6 +2939,7 @@ M.GetSubscriptionDefinitionVersionInput = {
 
 M.GetSubscriptionDefinitionVersionOutput = {
     type = "structure",
+    id = "GetSubscriptionDefinitionVersionOutput",
     members = {
         Arn = {
             type = "string",
@@ -2812,6 +2962,7 @@ M.GetSubscriptionDefinitionVersionOutput = {
 
 M.GetThingRuntimeConfigurationInput = {
     type = "structure",
+    id = "GetThingRuntimeConfigurationInput",
     members = {
         ThingName = {
             type = "string",
@@ -2830,6 +2981,7 @@ M.Telemetry = {
 
 M.TelemetryConfiguration = {
     type = "structure",
+    id = "TelemetryConfiguration",
     members = {
         ConfigurationSyncStatus = {
             type = "string",
@@ -2845,6 +2997,7 @@ M.TelemetryConfiguration = {
 
 M.RuntimeConfiguration = {
     type = "structure",
+    id = "RuntimeConfiguration",
     members = {
         TelemetryConfiguration = M.TelemetryConfiguration,
     },
@@ -2852,6 +3005,7 @@ M.RuntimeConfiguration = {
 
 M.GetThingRuntimeConfigurationOutput = {
     type = "structure",
+    id = "GetThingRuntimeConfigurationOutput",
     members = {
         RuntimeConfiguration = M.RuntimeConfiguration,
     },
@@ -2859,6 +3013,7 @@ M.GetThingRuntimeConfigurationOutput = {
 
 M.ListBulkDeploymentDetailedReportsInput = {
     type = "structure",
+    id = "ListBulkDeploymentDetailedReportsInput",
     members = {
         BulkDeploymentId = {
             type = "string",
@@ -2884,6 +3039,7 @@ M.ListBulkDeploymentDetailedReportsInput = {
 
 M.ListBulkDeploymentDetailedReportsOutput = {
     type = "structure",
+    id = "ListBulkDeploymentDetailedReportsOutput",
     members = {
         Deployments = {
             type = "list",
@@ -2897,6 +3053,7 @@ M.ListBulkDeploymentDetailedReportsOutput = {
 
 M.ListBulkDeploymentsInput = {
     type = "structure",
+    id = "ListBulkDeploymentsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -2915,6 +3072,7 @@ M.ListBulkDeploymentsInput = {
 
 M.ListBulkDeploymentsOutput = {
     type = "structure",
+    id = "ListBulkDeploymentsOutput",
     members = {
         BulkDeployments = {
             type = "list",
@@ -2928,6 +3086,7 @@ M.ListBulkDeploymentsOutput = {
 
 M.ListConnectorDefinitionsInput = {
     type = "structure",
+    id = "ListConnectorDefinitionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -2946,6 +3105,7 @@ M.ListConnectorDefinitionsInput = {
 
 M.ListConnectorDefinitionsOutput = {
     type = "structure",
+    id = "ListConnectorDefinitionsOutput",
     members = {
         Definitions = {
             type = "list",
@@ -2959,6 +3119,7 @@ M.ListConnectorDefinitionsOutput = {
 
 M.ListConnectorDefinitionVersionsInput = {
     type = "structure",
+    id = "ListConnectorDefinitionVersionsInput",
     members = {
         ConnectorDefinitionId = {
             type = "string",
@@ -2984,6 +3145,7 @@ M.ListConnectorDefinitionVersionsInput = {
 
 M.ListConnectorDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListConnectorDefinitionVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2997,6 +3159,7 @@ M.ListConnectorDefinitionVersionsOutput = {
 
 M.ListCoreDefinitionsInput = {
     type = "structure",
+    id = "ListCoreDefinitionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3015,6 +3178,7 @@ M.ListCoreDefinitionsInput = {
 
 M.ListCoreDefinitionsOutput = {
     type = "structure",
+    id = "ListCoreDefinitionsOutput",
     members = {
         Definitions = {
             type = "list",
@@ -3028,6 +3192,7 @@ M.ListCoreDefinitionsOutput = {
 
 M.ListCoreDefinitionVersionsInput = {
     type = "structure",
+    id = "ListCoreDefinitionVersionsInput",
     members = {
         CoreDefinitionId = {
             type = "string",
@@ -3053,6 +3218,7 @@ M.ListCoreDefinitionVersionsInput = {
 
 M.ListCoreDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListCoreDefinitionVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3066,6 +3232,7 @@ M.ListCoreDefinitionVersionsOutput = {
 
 M.ListDeploymentsInput = {
     type = "structure",
+    id = "ListDeploymentsInput",
     members = {
         GroupId = {
             type = "string",
@@ -3091,6 +3258,7 @@ M.ListDeploymentsInput = {
 
 M.ListDeploymentsOutput = {
     type = "structure",
+    id = "ListDeploymentsOutput",
     members = {
         Deployments = {
             type = "list",
@@ -3104,6 +3272,7 @@ M.ListDeploymentsOutput = {
 
 M.ListDeviceDefinitionsInput = {
     type = "structure",
+    id = "ListDeviceDefinitionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3122,6 +3291,7 @@ M.ListDeviceDefinitionsInput = {
 
 M.ListDeviceDefinitionsOutput = {
     type = "structure",
+    id = "ListDeviceDefinitionsOutput",
     members = {
         Definitions = {
             type = "list",
@@ -3135,6 +3305,7 @@ M.ListDeviceDefinitionsOutput = {
 
 M.ListDeviceDefinitionVersionsInput = {
     type = "structure",
+    id = "ListDeviceDefinitionVersionsInput",
     members = {
         DeviceDefinitionId = {
             type = "string",
@@ -3160,6 +3331,7 @@ M.ListDeviceDefinitionVersionsInput = {
 
 M.ListDeviceDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListDeviceDefinitionVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3173,6 +3345,7 @@ M.ListDeviceDefinitionVersionsOutput = {
 
 M.ListFunctionDefinitionsInput = {
     type = "structure",
+    id = "ListFunctionDefinitionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3191,6 +3364,7 @@ M.ListFunctionDefinitionsInput = {
 
 M.ListFunctionDefinitionsOutput = {
     type = "structure",
+    id = "ListFunctionDefinitionsOutput",
     members = {
         Definitions = {
             type = "list",
@@ -3204,6 +3378,7 @@ M.ListFunctionDefinitionsOutput = {
 
 M.ListFunctionDefinitionVersionsInput = {
     type = "structure",
+    id = "ListFunctionDefinitionVersionsInput",
     members = {
         FunctionDefinitionId = {
             type = "string",
@@ -3229,6 +3404,7 @@ M.ListFunctionDefinitionVersionsInput = {
 
 M.ListFunctionDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListFunctionDefinitionVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3242,6 +3418,7 @@ M.ListFunctionDefinitionVersionsOutput = {
 
 M.ListGroupCertificateAuthoritiesInput = {
     type = "structure",
+    id = "ListGroupCertificateAuthoritiesInput",
     members = {
         GroupId = {
             type = "string",
@@ -3255,6 +3432,7 @@ M.ListGroupCertificateAuthoritiesInput = {
 
 M.ListGroupCertificateAuthoritiesOutput = {
     type = "structure",
+    id = "ListGroupCertificateAuthoritiesOutput",
     members = {
         GroupCertificateAuthorities = {
             type = "list",
@@ -3265,6 +3443,7 @@ M.ListGroupCertificateAuthoritiesOutput = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3283,6 +3462,7 @@ M.ListGroupsInput = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -3296,6 +3476,7 @@ M.ListGroupsOutput = {
 
 M.ListGroupVersionsInput = {
     type = "structure",
+    id = "ListGroupVersionsInput",
     members = {
         GroupId = {
             type = "string",
@@ -3321,6 +3502,7 @@ M.ListGroupVersionsInput = {
 
 M.ListGroupVersionsOutput = {
     type = "structure",
+    id = "ListGroupVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3334,6 +3516,7 @@ M.ListGroupVersionsOutput = {
 
 M.ListLoggerDefinitionsInput = {
     type = "structure",
+    id = "ListLoggerDefinitionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3352,6 +3535,7 @@ M.ListLoggerDefinitionsInput = {
 
 M.ListLoggerDefinitionsOutput = {
     type = "structure",
+    id = "ListLoggerDefinitionsOutput",
     members = {
         Definitions = {
             type = "list",
@@ -3365,6 +3549,7 @@ M.ListLoggerDefinitionsOutput = {
 
 M.ListLoggerDefinitionVersionsInput = {
     type = "structure",
+    id = "ListLoggerDefinitionVersionsInput",
     members = {
         LoggerDefinitionId = {
             type = "string",
@@ -3390,6 +3575,7 @@ M.ListLoggerDefinitionVersionsInput = {
 
 M.ListLoggerDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListLoggerDefinitionVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3403,6 +3589,7 @@ M.ListLoggerDefinitionVersionsOutput = {
 
 M.ListResourceDefinitionsInput = {
     type = "structure",
+    id = "ListResourceDefinitionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3421,6 +3608,7 @@ M.ListResourceDefinitionsInput = {
 
 M.ListResourceDefinitionsOutput = {
     type = "structure",
+    id = "ListResourceDefinitionsOutput",
     members = {
         Definitions = {
             type = "list",
@@ -3434,6 +3622,7 @@ M.ListResourceDefinitionsOutput = {
 
 M.ListResourceDefinitionVersionsInput = {
     type = "structure",
+    id = "ListResourceDefinitionVersionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3459,6 +3648,7 @@ M.ListResourceDefinitionVersionsInput = {
 
 M.ListResourceDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListResourceDefinitionVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3472,6 +3662,7 @@ M.ListResourceDefinitionVersionsOutput = {
 
 M.ListSubscriptionDefinitionsInput = {
     type = "structure",
+    id = "ListSubscriptionDefinitionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3490,6 +3681,7 @@ M.ListSubscriptionDefinitionsInput = {
 
 M.ListSubscriptionDefinitionsOutput = {
     type = "structure",
+    id = "ListSubscriptionDefinitionsOutput",
     members = {
         Definitions = {
             type = "list",
@@ -3503,6 +3695,7 @@ M.ListSubscriptionDefinitionsOutput = {
 
 M.ListSubscriptionDefinitionVersionsInput = {
     type = "structure",
+    id = "ListSubscriptionDefinitionVersionsInput",
     members = {
         MaxResults = {
             type = "string",
@@ -3528,6 +3721,7 @@ M.ListSubscriptionDefinitionVersionsInput = {
 
 M.ListSubscriptionDefinitionVersionsOutput = {
     type = "structure",
+    id = "ListSubscriptionDefinitionVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3541,6 +3735,7 @@ M.ListSubscriptionDefinitionVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3554,6 +3749,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3565,6 +3761,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResetDeploymentsInput = {
     type = "structure",
+    id = "ResetDeploymentsInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -3587,6 +3784,7 @@ M.ResetDeploymentsInput = {
 
 M.ResetDeploymentsOutput = {
     type = "structure",
+    id = "ResetDeploymentsOutput",
     members = {
         DeploymentArn = {
             type = "string",
@@ -3599,6 +3797,7 @@ M.ResetDeploymentsOutput = {
 
 M.StartBulkDeploymentInput = {
     type = "structure",
+    id = "StartBulkDeploymentInput",
     members = {
         AmznClientToken = {
             type = "string",
@@ -3628,6 +3827,7 @@ M.StartBulkDeploymentInput = {
 
 M.StartBulkDeploymentOutput = {
     type = "structure",
+    id = "StartBulkDeploymentOutput",
     members = {
         BulkDeploymentArn = {
             type = "string",
@@ -3640,6 +3840,7 @@ M.StartBulkDeploymentOutput = {
 
 M.StopBulkDeploymentInput = {
     type = "structure",
+    id = "StopBulkDeploymentInput",
     members = {
         BulkDeploymentId = {
             type = "string",
@@ -3653,10 +3854,12 @@ M.StopBulkDeploymentInput = {
 
 M.StopBulkDeploymentOutput = {
     type = "structure",
+    id = "StopBulkDeploymentOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3675,10 +3878,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3700,10 +3905,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConnectivityInfoInput = {
     type = "structure",
+    id = "UpdateConnectivityInfoInput",
     members = {
         ConnectivityInfo = {
             type = "list",
@@ -3721,6 +3928,7 @@ M.UpdateConnectivityInfoInput = {
 
 M.UpdateConnectivityInfoOutput = {
     type = "structure",
+    id = "UpdateConnectivityInfoOutput",
     members = {
         Message = {
             type = "string",
@@ -3736,6 +3944,7 @@ M.UpdateConnectivityInfoOutput = {
 
 M.UpdateConnectorDefinitionInput = {
     type = "structure",
+    id = "UpdateConnectorDefinitionInput",
     members = {
         ConnectorDefinitionId = {
             type = "string",
@@ -3752,10 +3961,12 @@ M.UpdateConnectorDefinitionInput = {
 
 M.UpdateConnectorDefinitionOutput = {
     type = "structure",
+    id = "UpdateConnectorDefinitionOutput",
 }
 
 M.UpdateCoreDefinitionInput = {
     type = "structure",
+    id = "UpdateCoreDefinitionInput",
     members = {
         CoreDefinitionId = {
             type = "string",
@@ -3772,10 +3983,12 @@ M.UpdateCoreDefinitionInput = {
 
 M.UpdateCoreDefinitionOutput = {
     type = "structure",
+    id = "UpdateCoreDefinitionOutput",
 }
 
 M.UpdateDeviceDefinitionInput = {
     type = "structure",
+    id = "UpdateDeviceDefinitionInput",
     members = {
         DeviceDefinitionId = {
             type = "string",
@@ -3792,10 +4005,12 @@ M.UpdateDeviceDefinitionInput = {
 
 M.UpdateDeviceDefinitionOutput = {
     type = "structure",
+    id = "UpdateDeviceDefinitionOutput",
 }
 
 M.UpdateFunctionDefinitionInput = {
     type = "structure",
+    id = "UpdateFunctionDefinitionInput",
     members = {
         FunctionDefinitionId = {
             type = "string",
@@ -3812,10 +4027,12 @@ M.UpdateFunctionDefinitionInput = {
 
 M.UpdateFunctionDefinitionOutput = {
     type = "structure",
+    id = "UpdateFunctionDefinitionOutput",
 }
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -3832,10 +4049,12 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
 }
 
 M.UpdateGroupCertificateConfigurationInput = {
     type = "structure",
+    id = "UpdateGroupCertificateConfigurationInput",
     members = {
         CertificateExpiryInMilliseconds = {
             type = "string",
@@ -3852,6 +4071,7 @@ M.UpdateGroupCertificateConfigurationInput = {
 
 M.UpdateGroupCertificateConfigurationOutput = {
     type = "structure",
+    id = "UpdateGroupCertificateConfigurationOutput",
     members = {
         CertificateAuthorityExpiryInMilliseconds = {
             type = "string",
@@ -3867,6 +4087,7 @@ M.UpdateGroupCertificateConfigurationOutput = {
 
 M.UpdateLoggerDefinitionInput = {
     type = "structure",
+    id = "UpdateLoggerDefinitionInput",
     members = {
         LoggerDefinitionId = {
             type = "string",
@@ -3883,10 +4104,12 @@ M.UpdateLoggerDefinitionInput = {
 
 M.UpdateLoggerDefinitionOutput = {
     type = "structure",
+    id = "UpdateLoggerDefinitionOutput",
 }
 
 M.UpdateResourceDefinitionInput = {
     type = "structure",
+    id = "UpdateResourceDefinitionInput",
     members = {
         Name = {
             type = "string",
@@ -3903,10 +4126,12 @@ M.UpdateResourceDefinitionInput = {
 
 M.UpdateResourceDefinitionOutput = {
     type = "structure",
+    id = "UpdateResourceDefinitionOutput",
 }
 
 M.UpdateSubscriptionDefinitionInput = {
     type = "structure",
+    id = "UpdateSubscriptionDefinitionInput",
     members = {
         Name = {
             type = "string",
@@ -3923,10 +4148,12 @@ M.UpdateSubscriptionDefinitionInput = {
 
 M.UpdateSubscriptionDefinitionOutput = {
     type = "structure",
+    id = "UpdateSubscriptionDefinitionOutput",
 }
 
 M.TelemetryConfigurationUpdate = {
     type = "structure",
+    id = "TelemetryConfigurationUpdate",
     members = {
         Telemetry = {
             type = "string",
@@ -3939,6 +4166,7 @@ M.TelemetryConfigurationUpdate = {
 
 M.UpdateThingRuntimeConfigurationInput = {
     type = "structure",
+    id = "UpdateThingRuntimeConfigurationInput",
     members = {
         TelemetryConfiguration = M.TelemetryConfigurationUpdate,
         ThingName = {
@@ -3953,6 +4181,7 @@ M.UpdateThingRuntimeConfigurationInput = {
 
 M.UpdateThingRuntimeConfigurationOutput = {
     type = "structure",
+    id = "UpdateThingRuntimeConfigurationOutput",
 }
 
 return M

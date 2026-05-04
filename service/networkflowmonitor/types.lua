@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -30,6 +32,7 @@ M.MonitorLocalResourceType = {
 
 M.MonitorLocalResource = {
     type = "structure",
+    id = "MonitorLocalResource",
     members = {
         type = {
             type = "string",
@@ -56,6 +59,7 @@ M.MonitorRemoteResourceType = {
 
 M.MonitorRemoteResource = {
     type = "structure",
+    id = "MonitorRemoteResource",
     members = {
         type = {
             type = "string",
@@ -74,6 +78,7 @@ M.MonitorRemoteResource = {
 
 M.CreateMonitorInput = {
     type = "structure",
+    id = "CreateMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -122,6 +127,7 @@ M.MonitorStatus = {
 
 M.CreateMonitorOutput = {
     type = "structure",
+    id = "CreateMonitorOutput",
     members = {
         monitorArn = {
             type = "string",
@@ -177,6 +183,7 @@ M.CreateMonitorOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -187,6 +194,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -197,6 +205,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -207,6 +216,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -217,6 +227,7 @@ M.ValidationException = {
 
 M.TargetId = {
     type = "union",
+    id = "TargetId",
     members = {
         accountId = {
             type = "string",
@@ -230,6 +241,7 @@ M.TargetType = {
 
 M.TargetIdentifier = {
     type = "structure",
+    id = "TargetIdentifier",
     members = {
         targetId = setmetatable({ traits = {
             required = true,
@@ -245,6 +257,7 @@ M.TargetIdentifier = {
 
 M.TargetResource = {
     type = "structure",
+    id = "TargetResource",
     members = {
         targetIdentifier = setmetatable({ traits = {
             required = true,
@@ -260,6 +273,7 @@ M.TargetResource = {
 
 M.CreateScopeInput = {
     type = "structure",
+    id = "CreateScopeInput",
     members = {
         targets = {
             type = "list",
@@ -292,6 +306,7 @@ M.ScopeStatus = {
 
 M.CreateScopeOutput = {
     type = "structure",
+    id = "CreateScopeOutput",
     members = {
         scopeId = {
             type = "string",
@@ -321,6 +336,7 @@ M.CreateScopeOutput = {
 
 M.DeleteMonitorInput = {
     type = "structure",
+    id = "DeleteMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -334,10 +350,12 @@ M.DeleteMonitorInput = {
 
 M.DeleteMonitorOutput = {
     type = "structure",
+    id = "DeleteMonitorOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -348,6 +366,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteScopeInput = {
     type = "structure",
+    id = "DeleteScopeInput",
     members = {
         scopeId = {
             type = "string",
@@ -361,6 +380,7 @@ M.DeleteScopeInput = {
 
 M.DeleteScopeOutput = {
     type = "structure",
+    id = "DeleteScopeOutput",
 }
 
 M.DestinationCategory = {
@@ -375,6 +395,7 @@ M.DestinationCategory = {
 
 M.GetMonitorInput = {
     type = "structure",
+    id = "GetMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -388,6 +409,7 @@ M.GetMonitorInput = {
 
 M.GetMonitorOutput = {
     type = "structure",
+    id = "GetMonitorOutput",
     members = {
         monitorArn = {
             type = "string",
@@ -443,6 +465,7 @@ M.GetMonitorOutput = {
 
 M.GetQueryResultsMonitorTopContributorsInput = {
     type = "structure",
+    id = "GetQueryResultsMonitorTopContributorsInput",
     members = {
         monitorName = {
             type = "string",
@@ -475,6 +498,7 @@ M.GetQueryResultsMonitorTopContributorsInput = {
 
 M.KubernetesMetadata = {
     type = "structure",
+    id = "KubernetesMetadata",
     members = {
         localServiceName = {
             type = "string",
@@ -499,6 +523,7 @@ M.KubernetesMetadata = {
 
 M.TraversedComponent = {
     type = "structure",
+    id = "TraversedComponent",
     members = {
         componentId = {
             type = "string",
@@ -517,6 +542,7 @@ M.TraversedComponent = {
 
 M.MonitorTopContributorsRow = {
     type = "structure",
+    id = "MonitorTopContributorsRow",
     members = {
         localIp = {
             type = "string",
@@ -627,6 +653,7 @@ M.MetricUnit = {
 
 M.GetQueryResultsMonitorTopContributorsOutput = {
     type = "structure",
+    id = "GetQueryResultsMonitorTopContributorsOutput",
     members = {
         unit = {
             type = "string",
@@ -643,6 +670,7 @@ M.GetQueryResultsMonitorTopContributorsOutput = {
 
 M.GetQueryResultsWorkloadInsightsTopContributorsInput = {
     type = "structure",
+    id = "GetQueryResultsWorkloadInsightsTopContributorsInput",
     members = {
         scopeId = {
             type = "string",
@@ -675,6 +703,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsInput = {
 
 M.WorkloadInsightsTopContributorsRow = {
     type = "structure",
+    id = "WorkloadInsightsTopContributorsRow",
     members = {
         accountId = {
             type = "string",
@@ -708,6 +737,7 @@ M.WorkloadInsightsTopContributorsRow = {
 
 M.GetQueryResultsWorkloadInsightsTopContributorsOutput = {
     type = "structure",
+    id = "GetQueryResultsWorkloadInsightsTopContributorsOutput",
     members = {
         topContributors = {
             type = "list",
@@ -721,6 +751,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsOutput = {
 
 M.GetQueryResultsWorkloadInsightsTopContributorsDataInput = {
     type = "structure",
+    id = "GetQueryResultsWorkloadInsightsTopContributorsDataInput",
     members = {
         scopeId = {
             type = "string",
@@ -753,6 +784,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsDataInput = {
 
 M.WorkloadInsightsTopContributorsDataPoint = {
     type = "structure",
+    id = "WorkloadInsightsTopContributorsDataPoint",
     members = {
         timestamps = {
             type = "list",
@@ -779,6 +811,7 @@ M.WorkloadInsightsTopContributorsDataPoint = {
 
 M.GetQueryResultsWorkloadInsightsTopContributorsDataOutput = {
     type = "structure",
+    id = "GetQueryResultsWorkloadInsightsTopContributorsDataOutput",
     members = {
         unit = {
             type = "string",
@@ -801,6 +834,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsDataOutput = {
 
 M.GetQueryStatusMonitorTopContributorsInput = {
     type = "structure",
+    id = "GetQueryStatusMonitorTopContributorsInput",
     members = {
         monitorName = {
             type = "string",
@@ -829,6 +863,7 @@ M.QueryStatus = {
 
 M.GetQueryStatusMonitorTopContributorsOutput = {
     type = "structure",
+    id = "GetQueryStatusMonitorTopContributorsOutput",
     members = {
         status = {
             type = "string",
@@ -841,6 +876,7 @@ M.GetQueryStatusMonitorTopContributorsOutput = {
 
 M.GetQueryStatusWorkloadInsightsTopContributorsInput = {
     type = "structure",
+    id = "GetQueryStatusWorkloadInsightsTopContributorsInput",
     members = {
         scopeId = {
             type = "string",
@@ -861,6 +897,7 @@ M.GetQueryStatusWorkloadInsightsTopContributorsInput = {
 
 M.GetQueryStatusWorkloadInsightsTopContributorsOutput = {
     type = "structure",
+    id = "GetQueryStatusWorkloadInsightsTopContributorsOutput",
     members = {
         status = {
             type = "string",
@@ -873,6 +910,7 @@ M.GetQueryStatusWorkloadInsightsTopContributorsOutput = {
 
 M.GetQueryStatusWorkloadInsightsTopContributorsDataInput = {
     type = "structure",
+    id = "GetQueryStatusWorkloadInsightsTopContributorsDataInput",
     members = {
         scopeId = {
             type = "string",
@@ -893,6 +931,7 @@ M.GetQueryStatusWorkloadInsightsTopContributorsDataInput = {
 
 M.GetQueryStatusWorkloadInsightsTopContributorsDataOutput = {
     type = "structure",
+    id = "GetQueryStatusWorkloadInsightsTopContributorsDataOutput",
     members = {
         status = {
             type = "string",
@@ -905,6 +944,7 @@ M.GetQueryStatusWorkloadInsightsTopContributorsDataOutput = {
 
 M.GetScopeInput = {
     type = "structure",
+    id = "GetScopeInput",
     members = {
         scopeId = {
             type = "string",
@@ -918,6 +958,7 @@ M.GetScopeInput = {
 
 M.GetScopeOutput = {
     type = "structure",
+    id = "GetScopeOutput",
     members = {
         scopeId = {
             type = "string",
@@ -954,6 +995,7 @@ M.GetScopeOutput = {
 
 M.ListMonitorsInput = {
     type = "structure",
+    id = "ListMonitorsInput",
     members = {
         nextToken = {
             type = "string",
@@ -978,6 +1020,7 @@ M.ListMonitorsInput = {
 
 M.MonitorSummary = {
     type = "structure",
+    id = "MonitorSummary",
     members = {
         monitorArn = {
             type = "string",
@@ -1002,6 +1045,7 @@ M.MonitorSummary = {
 
 M.ListMonitorsOutput = {
     type = "structure",
+    id = "ListMonitorsOutput",
     members = {
         monitors = {
             type = "list",
@@ -1018,6 +1062,7 @@ M.ListMonitorsOutput = {
 
 M.ListScopesInput = {
     type = "structure",
+    id = "ListScopesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1036,6 +1081,7 @@ M.ListScopesInput = {
 
 M.ScopeSummary = {
     type = "structure",
+    id = "ScopeSummary",
     members = {
         scopeId = {
             type = "string",
@@ -1060,6 +1106,7 @@ M.ScopeSummary = {
 
 M.ListScopesOutput = {
     type = "structure",
+    id = "ListScopesOutput",
     members = {
         scopes = {
             type = "list",
@@ -1076,6 +1123,7 @@ M.ListScopesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1089,6 +1137,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1107,6 +1156,7 @@ M.MonitorMetric = {
 
 M.StartQueryMonitorTopContributorsInput = {
     type = "structure",
+    id = "StartQueryMonitorTopContributorsInput",
     members = {
         monitorName = {
             type = "string",
@@ -1149,6 +1199,7 @@ M.StartQueryMonitorTopContributorsInput = {
 
 M.StartQueryMonitorTopContributorsOutput = {
     type = "structure",
+    id = "StartQueryMonitorTopContributorsOutput",
     members = {
         queryId = {
             type = "string",
@@ -1161,6 +1212,7 @@ M.StartQueryMonitorTopContributorsOutput = {
 
 M.StopQueryMonitorTopContributorsInput = {
     type = "structure",
+    id = "StopQueryMonitorTopContributorsInput",
     members = {
         monitorName = {
             type = "string",
@@ -1181,10 +1233,12 @@ M.StopQueryMonitorTopContributorsInput = {
 
 M.StopQueryMonitorTopContributorsOutput = {
     type = "structure",
+    id = "StopQueryMonitorTopContributorsOutput",
 }
 
 M.UpdateMonitorInput = {
     type = "structure",
+    id = "UpdateMonitorInput",
     members = {
         monitorName = {
             type = "string",
@@ -1220,6 +1274,7 @@ M.UpdateMonitorInput = {
 
 M.UpdateMonitorOutput = {
     type = "structure",
+    id = "UpdateMonitorOutput",
     members = {
         monitorArn = {
             type = "string",
@@ -1281,6 +1336,7 @@ M.WorkloadInsightsMetric = {
 
 M.StartQueryWorkloadInsightsTopContributorsInput = {
     type = "structure",
+    id = "StartQueryWorkloadInsightsTopContributorsInput",
     members = {
         scopeId = {
             type = "string",
@@ -1323,6 +1379,7 @@ M.StartQueryWorkloadInsightsTopContributorsInput = {
 
 M.StartQueryWorkloadInsightsTopContributorsOutput = {
     type = "structure",
+    id = "StartQueryWorkloadInsightsTopContributorsOutput",
     members = {
         queryId = {
             type = "string",
@@ -1335,6 +1392,7 @@ M.StartQueryWorkloadInsightsTopContributorsOutput = {
 
 M.StartQueryWorkloadInsightsTopContributorsDataInput = {
     type = "structure",
+    id = "StartQueryWorkloadInsightsTopContributorsDataInput",
     members = {
         scopeId = {
             type = "string",
@@ -1374,6 +1432,7 @@ M.StartQueryWorkloadInsightsTopContributorsDataInput = {
 
 M.StartQueryWorkloadInsightsTopContributorsDataOutput = {
     type = "structure",
+    id = "StartQueryWorkloadInsightsTopContributorsDataOutput",
     members = {
         queryId = {
             type = "string",
@@ -1386,6 +1445,7 @@ M.StartQueryWorkloadInsightsTopContributorsDataOutput = {
 
 M.StopQueryWorkloadInsightsTopContributorsInput = {
     type = "structure",
+    id = "StopQueryWorkloadInsightsTopContributorsInput",
     members = {
         scopeId = {
             type = "string",
@@ -1406,10 +1466,12 @@ M.StopQueryWorkloadInsightsTopContributorsInput = {
 
 M.StopQueryWorkloadInsightsTopContributorsOutput = {
     type = "structure",
+    id = "StopQueryWorkloadInsightsTopContributorsOutput",
 }
 
 M.StopQueryWorkloadInsightsTopContributorsDataInput = {
     type = "structure",
+    id = "StopQueryWorkloadInsightsTopContributorsDataInput",
     members = {
         scopeId = {
             type = "string",
@@ -1430,10 +1492,12 @@ M.StopQueryWorkloadInsightsTopContributorsDataInput = {
 
 M.StopQueryWorkloadInsightsTopContributorsDataOutput = {
     type = "structure",
+    id = "StopQueryWorkloadInsightsTopContributorsDataOutput",
 }
 
 M.UpdateScopeInput = {
     type = "structure",
+    id = "UpdateScopeInput",
     members = {
         scopeId = {
             type = "string",
@@ -1455,6 +1519,7 @@ M.UpdateScopeInput = {
 
 M.UpdateScopeOutput = {
     type = "structure",
+    id = "UpdateScopeOutput",
     members = {
         scopeId = {
             type = "string",
@@ -1484,6 +1549,7 @@ M.UpdateScopeOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1505,10 +1571,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1530,6 +1598,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -40,6 +42,7 @@ M.ConflictException = {
 
 M.EndpointTemporarilyUnavailableException = {
     type = "structure",
+    id = "EndpointTemporarilyUnavailableException",
     error = "server",
     members = {
         message = {
@@ -53,6 +56,7 @@ M.EndpointTemporarilyUnavailableException = {
 
 M.GetRoutingControlStateInput = {
     type = "structure",
+    id = "GetRoutingControlStateInput",
     members = {
         RoutingControlArn = {
             type = "string",
@@ -70,6 +74,7 @@ M.RoutingControlState = {
 
 M.GetRoutingControlStateOutput = {
     type = "structure",
+    id = "GetRoutingControlStateOutput",
     members = {
         RoutingControlArn = {
             type = "string",
@@ -91,6 +96,7 @@ M.GetRoutingControlStateOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -111,6 +117,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -136,6 +143,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -156,6 +164,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -181,6 +190,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -201,6 +211,7 @@ M.ValidationException = {
 
 M.ListRoutingControlsInput = {
     type = "structure",
+    id = "ListRoutingControlsInput",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -216,6 +227,7 @@ M.ListRoutingControlsInput = {
 
 M.RoutingControl = {
     type = "structure",
+    id = "RoutingControl",
     members = {
         ControlPanelArn = {
             type = "string",
@@ -240,6 +252,7 @@ M.RoutingControl = {
 
 M.ListRoutingControlsOutput = {
     type = "structure",
+    id = "ListRoutingControlsOutput",
     members = {
         RoutingControls = {
             type = "list",
@@ -256,6 +269,7 @@ M.ListRoutingControlsOutput = {
 
 M.ServiceLimitExceededException = {
     type = "structure",
+    id = "ServiceLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -287,6 +301,7 @@ M.ServiceLimitExceededException = {
 
 M.UpdateRoutingControlStateInput = {
     type = "structure",
+    id = "UpdateRoutingControlStateInput",
     members = {
         RoutingControlArn = {
             type = "string",
@@ -309,10 +324,12 @@ M.UpdateRoutingControlStateInput = {
 
 M.UpdateRoutingControlStateOutput = {
     type = "structure",
+    id = "UpdateRoutingControlStateOutput",
 }
 
 M.UpdateRoutingControlStateEntry = {
     type = "structure",
+    id = "UpdateRoutingControlStateEntry",
     members = {
         RoutingControlArn = {
             type = "string",
@@ -331,6 +348,7 @@ M.UpdateRoutingControlStateEntry = {
 
 M.UpdateRoutingControlStatesInput = {
     type = "structure",
+    id = "UpdateRoutingControlStatesInput",
     members = {
         UpdateRoutingControlStateEntries = {
             type = "list",
@@ -348,6 +366,7 @@ M.UpdateRoutingControlStatesInput = {
 
 M.UpdateRoutingControlStatesOutput = {
     type = "structure",
+    id = "UpdateRoutingControlStatesOutput",
 }
 
 return M

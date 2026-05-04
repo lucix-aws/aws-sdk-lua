@@ -566,9 +566,9 @@ end
 
 local type RunType = "CANARY_RUN" | "DRY_RUN"
 
-local type BrowserType = "CHROME" | "FIREFOX"
-
 local type ProvisionedResourceCleanupSetting = "AUTOMATIC" | "OFF"
+
+local type BrowserType = "CHROME" | "FIREFOX"
 
 local record M
     AssociateResourceInput: AssociateResourceInput

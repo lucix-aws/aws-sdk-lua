@@ -2,6 +2,7 @@ local M = {}
 
 M.AccountLimit = {
     type = "structure",
+    id = "AccountLimit",
     members = {
         TotalCodeSize = {
             type = "long",
@@ -35,6 +36,7 @@ M.AccountLimit = {
 
 M.AccountUsage = {
     type = "structure",
+    id = "AccountUsage",
     members = {
         TotalCodeSize = {
             type = "long",
@@ -53,6 +55,7 @@ M.AccountUsage = {
 
 M.AddLayerVersionPermissionInput = {
     type = "structure",
+    id = "AddLayerVersionPermissionInput",
     members = {
         LayerName = {
             type = "string",
@@ -101,6 +104,7 @@ M.AddLayerVersionPermissionInput = {
 
 M.AddLayerVersionPermissionOutput = {
     type = "structure",
+    id = "AddLayerVersionPermissionOutput",
     members = {
         Statement = {
             type = "string",
@@ -113,6 +117,7 @@ M.AddLayerVersionPermissionOutput = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         Type = {
@@ -126,6 +131,7 @@ M.InvalidParameterValueException = {
 
 M.PolicyLengthExceededException = {
     type = "structure",
+    id = "PolicyLengthExceededException",
     error = "client",
     members = {
         Type = {
@@ -139,6 +145,7 @@ M.PolicyLengthExceededException = {
 
 M.PreconditionFailedException = {
     type = "structure",
+    id = "PreconditionFailedException",
     error = "client",
     members = {
         Type = {
@@ -152,6 +159,7 @@ M.PreconditionFailedException = {
 
 M.ResourceConflictException = {
     type = "structure",
+    id = "ResourceConflictException",
     error = "client",
     members = {
         Type = {
@@ -165,6 +173,7 @@ M.ResourceConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Type = {
@@ -178,6 +187,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         Type = {
@@ -200,6 +210,7 @@ M.ThrottleReason = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         retryAfterSeconds = {
@@ -227,6 +238,7 @@ M.FunctionUrlAuthType = {
 
 M.AddPermissionInput = {
     type = "structure",
+    id = "AddPermissionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -285,6 +297,7 @@ M.AddPermissionInput = {
 
 M.AddPermissionOutput = {
     type = "structure",
+    id = "AddPermissionOutput",
     members = {
         Statement = {
             type = "string",
@@ -294,6 +307,7 @@ M.AddPermissionOutput = {
 
 M.AliasRoutingConfiguration = {
     type = "structure",
+    id = "AliasRoutingConfiguration",
     members = {
         AdditionalVersionWeights = {
             type = "map",
@@ -305,6 +319,7 @@ M.AliasRoutingConfiguration = {
 
 M.AliasConfiguration = {
     type = "structure",
+    id = "AliasConfiguration",
     members = {
         AliasArn = {
             type = "string",
@@ -327,6 +342,7 @@ M.AliasConfiguration = {
 
 M.AllowedPublishers = {
     type = "structure",
+    id = "AllowedPublishers",
     members = {
         SigningProfileVersionArns = {
             type = "list",
@@ -346,6 +362,7 @@ M.KafkaSchemaRegistryAuthType = {
 
 M.KafkaSchemaRegistryAccessConfig = {
     type = "structure",
+    id = "KafkaSchemaRegistryAccessConfig",
     members = {
         Type = {
             type = "string",
@@ -368,6 +385,7 @@ M.KafkaSchemaValidationAttribute = {
 
 M.KafkaSchemaValidationConfig = {
     type = "structure",
+    id = "KafkaSchemaValidationConfig",
     members = {
         Attribute = {
             type = "string",
@@ -377,6 +395,7 @@ M.KafkaSchemaValidationConfig = {
 
 M.KafkaSchemaRegistryConfig = {
     type = "structure",
+    id = "KafkaSchemaRegistryConfig",
     members = {
         SchemaRegistryURI = {
             type = "string",
@@ -397,6 +416,7 @@ M.KafkaSchemaRegistryConfig = {
 
 M.AmazonManagedKafkaEventSourceConfig = {
     type = "structure",
+    id = "AmazonManagedKafkaEventSourceConfig",
     members = {
         ConsumerGroupId = {
             type = "string",
@@ -421,6 +441,7 @@ M.Architecture = {
 
 M.CapacityProviderLimitExceededException = {
     type = "structure",
+    id = "CapacityProviderLimitExceededException",
     error = "client",
     members = {
         Type = {
@@ -443,6 +464,7 @@ M.CapacityProviderPredefinedMetricType = {
 
 M.TargetTrackingScalingPolicy = {
     type = "structure",
+    id = "TargetTrackingScalingPolicy",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -461,6 +483,7 @@ M.TargetTrackingScalingPolicy = {
 
 M.CapacityProviderScalingConfig = {
     type = "structure",
+    id = "CapacityProviderScalingConfig",
     members = {
         MaxVCpuCount = {
             type = "integer",
@@ -477,6 +500,7 @@ M.CapacityProviderScalingConfig = {
 
 M.InstanceRequirements = {
     type = "structure",
+    id = "InstanceRequirements",
     members = {
         Architectures = {
             type = "list",
@@ -495,6 +519,7 @@ M.InstanceRequirements = {
 
 M.CapacityProviderPermissionsConfig = {
     type = "structure",
+    id = "CapacityProviderPermissionsConfig",
     members = {
         CapacityProviderOperatorRoleArn = {
             type = "string",
@@ -507,6 +532,7 @@ M.CapacityProviderPermissionsConfig = {
 
 M.CapacityProviderVpcConfig = {
     type = "structure",
+    id = "CapacityProviderVpcConfig",
     members = {
         SubnetIds = {
             type = "list",
@@ -527,6 +553,7 @@ M.CapacityProviderVpcConfig = {
 
 M.CreateCapacityProviderInput = {
     type = "structure",
+    id = "CreateCapacityProviderInput",
     members = {
         CapacityProviderName = {
             type = "string",
@@ -562,6 +589,7 @@ M.CapacityProviderState = {
 
 M.CapacityProvider = {
     type = "structure",
+    id = "CapacityProvider",
     members = {
         CapacityProviderArn = {
             type = "string",
@@ -594,6 +622,7 @@ M.CapacityProvider = {
 
 M.CreateCapacityProviderOutput = {
     type = "structure",
+    id = "CreateCapacityProviderOutput",
     members = {
         CapacityProvider = setmetatable({ traits = {
             required = true,
@@ -603,6 +632,7 @@ M.CreateCapacityProviderOutput = {
 
 M.DeleteCapacityProviderInput = {
     type = "structure",
+    id = "DeleteCapacityProviderInput",
     members = {
         CapacityProviderName = {
             type = "string",
@@ -616,6 +646,7 @@ M.DeleteCapacityProviderInput = {
 
 M.DeleteCapacityProviderOutput = {
     type = "structure",
+    id = "DeleteCapacityProviderOutput",
     members = {
         CapacityProvider = setmetatable({ traits = {
             required = true,
@@ -625,6 +656,7 @@ M.DeleteCapacityProviderOutput = {
 
 M.GetCapacityProviderInput = {
     type = "structure",
+    id = "GetCapacityProviderInput",
     members = {
         CapacityProviderName = {
             type = "string",
@@ -638,6 +670,7 @@ M.GetCapacityProviderInput = {
 
 M.GetCapacityProviderOutput = {
     type = "structure",
+    id = "GetCapacityProviderOutput",
     members = {
         CapacityProvider = setmetatable({ traits = {
             required = true,
@@ -647,6 +680,7 @@ M.GetCapacityProviderOutput = {
 
 M.ListCapacityProvidersInput = {
     type = "structure",
+    id = "ListCapacityProvidersInput",
     members = {
         State = {
             type = "string",
@@ -671,6 +705,7 @@ M.ListCapacityProvidersInput = {
 
 M.ListCapacityProvidersOutput = {
     type = "structure",
+    id = "ListCapacityProvidersOutput",
     members = {
         CapacityProviders = {
             type = "list",
@@ -687,6 +722,7 @@ M.ListCapacityProvidersOutput = {
 
 M.ListFunctionVersionsByCapacityProviderInput = {
     type = "structure",
+    id = "ListFunctionVersionsByCapacityProviderInput",
     members = {
         CapacityProviderName = {
             type = "string",
@@ -723,6 +759,7 @@ M.State = {
 
 M.FunctionVersionsByCapacityProviderListItem = {
     type = "structure",
+    id = "FunctionVersionsByCapacityProviderListItem",
     members = {
         FunctionArn = {
             type = "string",
@@ -741,6 +778,7 @@ M.FunctionVersionsByCapacityProviderListItem = {
 
 M.ListFunctionVersionsByCapacityProviderOutput = {
     type = "structure",
+    id = "ListFunctionVersionsByCapacityProviderOutput",
     members = {
         CapacityProviderArn = {
             type = "string",
@@ -763,6 +801,7 @@ M.ListFunctionVersionsByCapacityProviderOutput = {
 
 M.UpdateCapacityProviderInput = {
     type = "structure",
+    id = "UpdateCapacityProviderInput",
     members = {
         CapacityProviderName = {
             type = "string",
@@ -777,6 +816,7 @@ M.UpdateCapacityProviderInput = {
 
 M.UpdateCapacityProviderOutput = {
     type = "structure",
+    id = "UpdateCapacityProviderOutput",
     members = {
         CapacityProvider = setmetatable({ traits = {
             required = true,
@@ -794,6 +834,7 @@ M.OperationAction = {
 
 M.CallbackOptions = {
     type = "structure",
+    id = "CallbackOptions",
     members = {
         TimeoutSeconds = {
             type = "integer",
@@ -812,6 +853,7 @@ M.CallbackOptions = {
 
 M.ChainedInvokeOptions = {
     type = "structure",
+    id = "ChainedInvokeOptions",
     members = {
         FunctionName = {
             type = "string",
@@ -827,6 +869,7 @@ M.ChainedInvokeOptions = {
 
 M.ContextOptions = {
     type = "structure",
+    id = "ContextOptions",
     members = {
         ReplayChildren = {
             type = "boolean",
@@ -836,6 +879,7 @@ M.ContextOptions = {
 
 M.ErrorObject = {
     type = "structure",
+    id = "ErrorObject",
     members = {
         ErrorMessage = {
             type = "string",
@@ -855,6 +899,7 @@ M.ErrorObject = {
 
 M.StepOptions = {
     type = "structure",
+    id = "StepOptions",
     members = {
         NextAttemptDelaySeconds = {
             type = "integer",
@@ -873,6 +918,7 @@ M.OperationType = {
 
 M.WaitOptions = {
     type = "structure",
+    id = "WaitOptions",
     members = {
         WaitSeconds = {
             type = "integer",
@@ -882,6 +928,7 @@ M.WaitOptions = {
 
 M.OperationUpdate = {
     type = "structure",
+    id = "OperationUpdate",
     members = {
         Id = {
             type = "string",
@@ -924,6 +971,7 @@ M.OperationUpdate = {
 
 M.CheckpointDurableExecutionInput = {
     type = "structure",
+    id = "CheckpointDurableExecutionInput",
     members = {
         DurableExecutionArn = {
             type = "string",
@@ -953,6 +1001,7 @@ M.CheckpointDurableExecutionInput = {
 
 M.CallbackDetails = {
     type = "structure",
+    id = "CallbackDetails",
     members = {
         CallbackId = {
             type = "string",
@@ -966,6 +1015,7 @@ M.CallbackDetails = {
 
 M.ChainedInvokeDetails = {
     type = "structure",
+    id = "ChainedInvokeDetails",
     members = {
         Result = {
             type = "string",
@@ -976,6 +1026,7 @@ M.ChainedInvokeDetails = {
 
 M.ContextDetails = {
     type = "structure",
+    id = "ContextDetails",
     members = {
         ReplayChildren = {
             type = "boolean",
@@ -989,6 +1040,7 @@ M.ContextDetails = {
 
 M.ExecutionDetails = {
     type = "structure",
+    id = "ExecutionDetails",
     members = {
         InputPayload = {
             type = "string",
@@ -1009,6 +1061,7 @@ M.OperationStatus = {
 
 M.StepDetails = {
     type = "structure",
+    id = "StepDetails",
     members = {
         Attempt = {
             type = "integer",
@@ -1028,6 +1081,7 @@ M.StepDetails = {
 
 M.WaitDetails = {
     type = "structure",
+    id = "WaitDetails",
     members = {
         ScheduledEndTimestamp = {
             type = "timestamp",
@@ -1037,6 +1091,7 @@ M.WaitDetails = {
 
 M.Operation = {
     type = "structure",
+    id = "Operation",
     members = {
         Id = {
             type = "string",
@@ -1085,6 +1140,7 @@ M.Operation = {
 
 M.CheckpointUpdatedExecutionState = {
     type = "structure",
+    id = "CheckpointUpdatedExecutionState",
     members = {
         Operations = {
             type = "list",
@@ -1098,6 +1154,7 @@ M.CheckpointUpdatedExecutionState = {
 
 M.CheckpointDurableExecutionOutput = {
     type = "structure",
+    id = "CheckpointDurableExecutionOutput",
     members = {
         CheckpointToken = {
             type = "string",
@@ -1115,6 +1172,7 @@ M.CodeSigningPolicy = {
 
 M.CodeSigningPolicies = {
     type = "structure",
+    id = "CodeSigningPolicies",
     members = {
         UntrustedArtifactOnDeployment = {
             type = "string",
@@ -1124,6 +1182,7 @@ M.CodeSigningPolicies = {
 
 M.CreateCodeSigningConfigInput = {
     type = "structure",
+    id = "CreateCodeSigningConfigInput",
     members = {
         Description = {
             type = "string",
@@ -1142,6 +1201,7 @@ M.CreateCodeSigningConfigInput = {
 
 M.CodeSigningConfig = {
     type = "structure",
+    id = "CodeSigningConfig",
     members = {
         CodeSigningConfigId = {
             type = "string",
@@ -1175,6 +1235,7 @@ M.CodeSigningConfig = {
 
 M.CreateCodeSigningConfigOutput = {
     type = "structure",
+    id = "CreateCodeSigningConfigOutput",
     members = {
         CodeSigningConfig = setmetatable({ traits = {
             required = true,
@@ -1184,6 +1245,7 @@ M.CreateCodeSigningConfigOutput = {
 
 M.DeleteCodeSigningConfigInput = {
     type = "structure",
+    id = "DeleteCodeSigningConfigInput",
     members = {
         CodeSigningConfigArn = {
             type = "string",
@@ -1197,10 +1259,12 @@ M.DeleteCodeSigningConfigInput = {
 
 M.DeleteCodeSigningConfigOutput = {
     type = "structure",
+    id = "DeleteCodeSigningConfigOutput",
 }
 
 M.GetCodeSigningConfigInput = {
     type = "structure",
+    id = "GetCodeSigningConfigInput",
     members = {
         CodeSigningConfigArn = {
             type = "string",
@@ -1214,6 +1278,7 @@ M.GetCodeSigningConfigInput = {
 
 M.GetCodeSigningConfigOutput = {
     type = "structure",
+    id = "GetCodeSigningConfigOutput",
     members = {
         CodeSigningConfig = setmetatable({ traits = {
             required = true,
@@ -1223,6 +1288,7 @@ M.GetCodeSigningConfigOutput = {
 
 M.ListCodeSigningConfigsInput = {
     type = "structure",
+    id = "ListCodeSigningConfigsInput",
     members = {
         Marker = {
             type = "string",
@@ -1241,6 +1307,7 @@ M.ListCodeSigningConfigsInput = {
 
 M.ListCodeSigningConfigsOutput = {
     type = "structure",
+    id = "ListCodeSigningConfigsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -1254,6 +1321,7 @@ M.ListCodeSigningConfigsOutput = {
 
 M.ListFunctionsByCodeSigningConfigInput = {
     type = "structure",
+    id = "ListFunctionsByCodeSigningConfigInput",
     members = {
         CodeSigningConfigArn = {
             type = "string",
@@ -1279,6 +1347,7 @@ M.ListFunctionsByCodeSigningConfigInput = {
 
 M.ListFunctionsByCodeSigningConfigOutput = {
     type = "structure",
+    id = "ListFunctionsByCodeSigningConfigOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -1292,6 +1361,7 @@ M.ListFunctionsByCodeSigningConfigOutput = {
 
 M.UpdateCodeSigningConfigInput = {
     type = "structure",
+    id = "UpdateCodeSigningConfigInput",
     members = {
         CodeSigningConfigArn = {
             type = "string",
@@ -1310,6 +1380,7 @@ M.UpdateCodeSigningConfigInput = {
 
 M.UpdateCodeSigningConfigOutput = {
     type = "structure",
+    id = "UpdateCodeSigningConfigOutput",
     members = {
         CodeSigningConfig = setmetatable({ traits = {
             required = true,
@@ -1319,6 +1390,7 @@ M.UpdateCodeSigningConfigOutput = {
 
 M.DeleteFunctionInput = {
     type = "structure",
+    id = "DeleteFunctionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -1338,6 +1410,7 @@ M.DeleteFunctionInput = {
 
 M.DeleteFunctionOutput = {
     type = "structure",
+    id = "DeleteFunctionOutput",
     members = {
         StatusCode = {
             type = "integer",
@@ -1351,6 +1424,7 @@ M.DeleteFunctionOutput = {
 
 M.DeleteFunctionEventInvokeConfigInput = {
     type = "structure",
+    id = "DeleteFunctionEventInvokeConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -1370,10 +1444,12 @@ M.DeleteFunctionEventInvokeConfigInput = {
 
 M.DeleteFunctionEventInvokeConfigOutput = {
     type = "structure",
+    id = "DeleteFunctionEventInvokeConfigOutput",
 }
 
 M.OnFailure = {
     type = "structure",
+    id = "OnFailure",
     members = {
         Destination = {
             type = "string",
@@ -1383,6 +1459,7 @@ M.OnFailure = {
 
 M.OnSuccess = {
     type = "structure",
+    id = "OnSuccess",
     members = {
         Destination = {
             type = "string",
@@ -1392,6 +1469,7 @@ M.OnSuccess = {
 
 M.DestinationConfig = {
     type = "structure",
+    id = "DestinationConfig",
     members = {
         OnSuccess = M.OnSuccess,
         OnFailure = M.OnFailure,
@@ -1405,6 +1483,7 @@ M.FullDocument = {
 
 M.DocumentDBEventSourceConfig = {
     type = "structure",
+    id = "DocumentDBEventSourceConfig",
     members = {
         DatabaseName = {
             type = "string",
@@ -1420,6 +1499,7 @@ M.DocumentDBEventSourceConfig = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Pattern = {
             type = "string",
@@ -1429,6 +1509,7 @@ M.Filter = {
 
 M.FilterCriteria = {
     type = "structure",
+    id = "FilterCriteria",
     members = {
         Filters = {
             type = "list",
@@ -1449,6 +1530,7 @@ M.EventSourceMappingSystemLogLevel = {
 
 M.EventSourceMappingLoggingConfig = {
     type = "structure",
+    id = "EventSourceMappingLoggingConfig",
     members = {
         SystemLogLevel = {
             type = "string",
@@ -1464,6 +1546,7 @@ M.EventSourceMappingMetric = {
 
 M.EventSourceMappingMetricsConfig = {
     type = "structure",
+    id = "EventSourceMappingMetricsConfig",
     members = {
         Metrics = {
             type = "list",
@@ -1474,6 +1557,7 @@ M.EventSourceMappingMetricsConfig = {
 
 M.ProvisionedPollerConfig = {
     type = "structure",
+    id = "ProvisionedPollerConfig",
     members = {
         MinimumPollers = {
             type = "integer",
@@ -1489,6 +1573,7 @@ M.ProvisionedPollerConfig = {
 
 M.ScalingConfig = {
     type = "structure",
+    id = "ScalingConfig",
     members = {
         MaximumConcurrency = {
             type = "integer",
@@ -1502,6 +1587,7 @@ M.EndPointType = {
 
 M.SelfManagedEventSource = {
     type = "structure",
+    id = "SelfManagedEventSource",
     members = {
         Endpoints = {
             type = "map",
@@ -1513,6 +1599,7 @@ M.SelfManagedEventSource = {
 
 M.SelfManagedKafkaEventSourceConfig = {
     type = "structure",
+    id = "SelfManagedKafkaEventSourceConfig",
     members = {
         ConsumerGroupId = {
             type = "string",
@@ -1534,6 +1621,7 @@ M.SourceAccessType = {
 
 M.SourceAccessConfiguration = {
     type = "structure",
+    id = "SourceAccessConfiguration",
     members = {
         Type = {
             type = "string",
@@ -1552,6 +1640,7 @@ M.EventSourcePosition = {
 
 M.CreateEventSourceMappingInput = {
     type = "structure",
+    id = "CreateEventSourceMappingInput",
     members = {
         EventSourceArn = {
             type = "string",
@@ -1631,6 +1720,7 @@ M.CreateEventSourceMappingInput = {
 
 M.FilterCriteriaError = {
     type = "structure",
+    id = "FilterCriteriaError",
     members = {
         ErrorCode = {
             type = "string",
@@ -1643,6 +1733,7 @@ M.FilterCriteriaError = {
 
 M.CreateEventSourceMappingOutput = {
     type = "structure",
+    id = "CreateEventSourceMappingOutput",
     members = {
         UUID = {
             type = "string",
@@ -1730,6 +1821,7 @@ M.CreateEventSourceMappingOutput = {
 
 M.DeleteEventSourceMappingInput = {
     type = "structure",
+    id = "DeleteEventSourceMappingInput",
     members = {
         UUID = {
             type = "string",
@@ -1743,6 +1835,7 @@ M.DeleteEventSourceMappingInput = {
 
 M.DeleteEventSourceMappingOutput = {
     type = "structure",
+    id = "DeleteEventSourceMappingOutput",
     members = {
         UUID = {
             type = "string",
@@ -1830,6 +1923,7 @@ M.DeleteEventSourceMappingOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Type = {
@@ -1843,6 +1937,7 @@ M.ResourceInUseException = {
 
 M.GetEventSourceMappingInput = {
     type = "structure",
+    id = "GetEventSourceMappingInput",
     members = {
         UUID = {
             type = "string",
@@ -1856,6 +1951,7 @@ M.GetEventSourceMappingInput = {
 
 M.GetEventSourceMappingOutput = {
     type = "structure",
+    id = "GetEventSourceMappingOutput",
     members = {
         UUID = {
             type = "string",
@@ -1943,6 +2039,7 @@ M.GetEventSourceMappingOutput = {
 
 M.ListEventSourceMappingsInput = {
     type = "structure",
+    id = "ListEventSourceMappingsInput",
     members = {
         EventSourceArn = {
             type = "string",
@@ -1973,6 +2070,7 @@ M.ListEventSourceMappingsInput = {
 
 M.EventSourceMappingConfiguration = {
     type = "structure",
+    id = "EventSourceMappingConfiguration",
     members = {
         UUID = {
             type = "string",
@@ -2060,6 +2158,7 @@ M.EventSourceMappingConfiguration = {
 
 M.ListEventSourceMappingsOutput = {
     type = "structure",
+    id = "ListEventSourceMappingsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2073,6 +2172,7 @@ M.ListEventSourceMappingsOutput = {
 
 M.UpdateEventSourceMappingInput = {
     type = "structure",
+    id = "UpdateEventSourceMappingInput",
     members = {
         UUID = {
             type = "string",
@@ -2133,6 +2233,7 @@ M.UpdateEventSourceMappingInput = {
 
 M.UpdateEventSourceMappingOutput = {
     type = "structure",
+    id = "UpdateEventSourceMappingOutput",
     members = {
         UUID = {
             type = "string",
@@ -2220,6 +2321,7 @@ M.UpdateEventSourceMappingOutput = {
 
 M.CodeSigningConfigNotFoundException = {
     type = "structure",
+    id = "CodeSigningConfigNotFoundException",
     error = "client",
     members = {
         Type = {
@@ -2233,6 +2335,7 @@ M.CodeSigningConfigNotFoundException = {
 
 M.CodeStorageExceededException = {
     type = "structure",
+    id = "CodeStorageExceededException",
     error = "client",
     members = {
         Type = {
@@ -2246,6 +2349,7 @@ M.CodeStorageExceededException = {
 
 M.CodeVerificationFailedException = {
     type = "structure",
+    id = "CodeVerificationFailedException",
     error = "client",
     members = {
         Type = {
@@ -2259,6 +2363,7 @@ M.CodeVerificationFailedException = {
 
 M.LambdaManagedInstancesCapacityProviderConfig = {
     type = "structure",
+    id = "LambdaManagedInstancesCapacityProviderConfig",
     members = {
         CapacityProviderArn = {
             type = "string",
@@ -2277,6 +2382,7 @@ M.LambdaManagedInstancesCapacityProviderConfig = {
 
 M.CapacityProviderConfig = {
     type = "structure",
+    id = "CapacityProviderConfig",
     members = {
         LambdaManagedInstancesCapacityProviderConfig = setmetatable({ traits = {
             required = true,
@@ -2286,6 +2392,7 @@ M.CapacityProviderConfig = {
 
 M.FunctionCode = {
     type = "structure",
+    id = "FunctionCode",
     members = {
         ZipFile = {
             type = "blob",
@@ -2310,6 +2417,7 @@ M.FunctionCode = {
 
 M.DeadLetterConfig = {
     type = "structure",
+    id = "DeadLetterConfig",
     members = {
         TargetArn = {
             type = "string",
@@ -2319,6 +2427,7 @@ M.DeadLetterConfig = {
 
 M.DurableConfig = {
     type = "structure",
+    id = "DurableConfig",
     members = {
         RetentionPeriodInDays = {
             type = "integer",
@@ -2331,6 +2440,7 @@ M.DurableConfig = {
 
 M.Environment = {
     type = "structure",
+    id = "Environment",
     members = {
         Variables = {
             type = "map",
@@ -2342,6 +2452,7 @@ M.Environment = {
 
 M.EphemeralStorage = {
     type = "structure",
+    id = "EphemeralStorage",
     members = {
         Size = {
             type = "integer",
@@ -2354,6 +2465,7 @@ M.EphemeralStorage = {
 
 M.FileSystemConfig = {
     type = "structure",
+    id = "FileSystemConfig",
     members = {
         Arn = {
             type = "string",
@@ -2372,6 +2484,7 @@ M.FileSystemConfig = {
 
 M.ImageConfig = {
     type = "structure",
+    id = "ImageConfig",
     members = {
         EntryPoint = {
             type = "list",
@@ -2400,6 +2513,7 @@ M.SystemLogLevel = {
 
 M.LoggingConfig = {
     type = "structure",
+    id = "LoggingConfig",
     members = {
         LogFormat = {
             type = "string",
@@ -2481,6 +2595,7 @@ M.SnapStartApplyOn = {
 
 M.SnapStart = {
     type = "structure",
+    id = "SnapStart",
     members = {
         ApplyOn = {
             type = "string",
@@ -2494,6 +2609,7 @@ M.TenantIsolationMode = {
 
 M.TenancyConfig = {
     type = "structure",
+    id = "TenancyConfig",
     members = {
         TenantIsolationMode = {
             type = "string",
@@ -2511,6 +2627,7 @@ M.TracingMode = {
 
 M.TracingConfig = {
     type = "structure",
+    id = "TracingConfig",
     members = {
         Mode = {
             type = "string",
@@ -2520,6 +2637,7 @@ M.TracingConfig = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         SubnetIds = {
             type = "list",
@@ -2537,6 +2655,7 @@ M.VpcConfig = {
 
 M.CreateFunctionInput = {
     type = "structure",
+    id = "CreateFunctionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -2619,6 +2738,7 @@ M.CreateFunctionInput = {
 
 M.EnvironmentError = {
     type = "structure",
+    id = "EnvironmentError",
     members = {
         ErrorCode = {
             type = "string",
@@ -2631,6 +2751,7 @@ M.EnvironmentError = {
 
 M.EnvironmentResponse = {
     type = "structure",
+    id = "EnvironmentResponse",
     members = {
         Variables = {
             type = "map",
@@ -2643,6 +2764,7 @@ M.EnvironmentResponse = {
 
 M.ImageConfigError = {
     type = "structure",
+    id = "ImageConfigError",
     members = {
         ErrorCode = {
             type = "string",
@@ -2655,6 +2777,7 @@ M.ImageConfigError = {
 
 M.ImageConfigResponse = {
     type = "structure",
+    id = "ImageConfigResponse",
     members = {
         ImageConfig = M.ImageConfig,
         Error = M.ImageConfigError,
@@ -2706,6 +2829,7 @@ M.LastUpdateStatusReasonCode = {
 
 M.Layer = {
     type = "structure",
+    id = "Layer",
     members = {
         Arn = {
             type = "string",
@@ -2727,6 +2851,7 @@ M.Layer = {
 
 M.RuntimeVersionError = {
     type = "structure",
+    id = "RuntimeVersionError",
     members = {
         ErrorCode = {
             type = "string",
@@ -2739,6 +2864,7 @@ M.RuntimeVersionError = {
 
 M.RuntimeVersionConfig = {
     type = "structure",
+    id = "RuntimeVersionConfig",
     members = {
         RuntimeVersionArn = {
             type = "string",
@@ -2754,6 +2880,7 @@ M.SnapStartOptimizationStatus = {
 
 M.SnapStartResponse = {
     type = "structure",
+    id = "SnapStartResponse",
     members = {
         ApplyOn = {
             type = "string",
@@ -2807,6 +2934,7 @@ M.StateReasonCode = {
 
 M.TracingConfigResponse = {
     type = "structure",
+    id = "TracingConfigResponse",
     members = {
         Mode = {
             type = "string",
@@ -2816,6 +2944,7 @@ M.TracingConfigResponse = {
 
 M.VpcConfigResponse = {
     type = "structure",
+    id = "VpcConfigResponse",
     members = {
         SubnetIds = {
             type = "list",
@@ -2836,6 +2965,7 @@ M.VpcConfigResponse = {
 
 M.CreateFunctionOutput = {
     type = "structure",
+    id = "CreateFunctionOutput",
     members = {
         FunctionName = {
             type = "string",
@@ -2944,6 +3074,7 @@ M.CreateFunctionOutput = {
 
 M.FunctionVersionsPerCapacityProviderLimitExceededException = {
     type = "structure",
+    id = "FunctionVersionsPerCapacityProviderLimitExceededException",
     error = "client",
     members = {
         Type = {
@@ -2957,6 +3088,7 @@ M.FunctionVersionsPerCapacityProviderLimitExceededException = {
 
 M.InvalidCodeSignatureException = {
     type = "structure",
+    id = "InvalidCodeSignatureException",
     error = "client",
     members = {
         Type = {
@@ -2970,6 +3102,7 @@ M.InvalidCodeSignatureException = {
 
 M.Cors = {
     type = "structure",
+    id = "Cors",
     members = {
         AllowCredentials = {
             type = "boolean",
@@ -3003,6 +3136,7 @@ M.InvokeMode = {
 
 M.CreateFunctionUrlConfigInput = {
     type = "structure",
+    id = "CreateFunctionUrlConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3032,6 +3166,7 @@ M.CreateFunctionUrlConfigInput = {
 
 M.CreateFunctionUrlConfigOutput = {
     type = "structure",
+    id = "CreateFunctionUrlConfigOutput",
     members = {
         FunctionUrl = {
             type = "string",
@@ -3066,6 +3201,7 @@ M.CreateFunctionUrlConfigOutput = {
 
 M.DeleteFunctionCodeSigningConfigInput = {
     type = "structure",
+    id = "DeleteFunctionCodeSigningConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3079,10 +3215,12 @@ M.DeleteFunctionCodeSigningConfigInput = {
 
 M.DeleteFunctionCodeSigningConfigOutput = {
     type = "structure",
+    id = "DeleteFunctionCodeSigningConfigOutput",
 }
 
 M.DeleteFunctionConcurrencyInput = {
     type = "structure",
+    id = "DeleteFunctionConcurrencyInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3096,10 +3234,12 @@ M.DeleteFunctionConcurrencyInput = {
 
 M.DeleteFunctionConcurrencyOutput = {
     type = "structure",
+    id = "DeleteFunctionConcurrencyOutput",
 }
 
 M.DeleteFunctionUrlConfigInput = {
     type = "structure",
+    id = "DeleteFunctionUrlConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3119,10 +3259,12 @@ M.DeleteFunctionUrlConfigInput = {
 
 M.DeleteFunctionUrlConfigOutput = {
     type = "structure",
+    id = "DeleteFunctionUrlConfigOutput",
 }
 
 M.GetFunctionInput = {
     type = "structure",
+    id = "GetFunctionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3142,6 +3284,7 @@ M.GetFunctionInput = {
 
 M.FunctionCodeLocation = {
     type = "structure",
+    id = "FunctionCodeLocation",
     members = {
         RepositoryType = {
             type = "string",
@@ -3163,6 +3306,7 @@ M.FunctionCodeLocation = {
 
 M.Concurrency = {
     type = "structure",
+    id = "Concurrency",
     members = {
         ReservedConcurrentExecutions = {
             type = "integer",
@@ -3172,6 +3316,7 @@ M.Concurrency = {
 
 M.FunctionConfiguration = {
     type = "structure",
+    id = "FunctionConfiguration",
     members = {
         FunctionName = {
             type = "string",
@@ -3280,6 +3425,7 @@ M.FunctionConfiguration = {
 
 M.TagsError = {
     type = "structure",
+    id = "TagsError",
     members = {
         ErrorCode = {
             type = "string",
@@ -3298,6 +3444,7 @@ M.TagsError = {
 
 M.GetFunctionOutput = {
     type = "structure",
+    id = "GetFunctionOutput",
     members = {
         Configuration = M.FunctionConfiguration,
         Code = M.FunctionCodeLocation,
@@ -3313,6 +3460,7 @@ M.GetFunctionOutput = {
 
 M.GetFunctionCodeSigningConfigInput = {
     type = "structure",
+    id = "GetFunctionCodeSigningConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3326,6 +3474,7 @@ M.GetFunctionCodeSigningConfigInput = {
 
 M.GetFunctionCodeSigningConfigOutput = {
     type = "structure",
+    id = "GetFunctionCodeSigningConfigOutput",
     members = {
         CodeSigningConfigArn = {
             type = "string",
@@ -3344,6 +3493,7 @@ M.GetFunctionCodeSigningConfigOutput = {
 
 M.GetFunctionConcurrencyInput = {
     type = "structure",
+    id = "GetFunctionConcurrencyInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3357,6 +3507,7 @@ M.GetFunctionConcurrencyInput = {
 
 M.GetFunctionConcurrencyOutput = {
     type = "structure",
+    id = "GetFunctionConcurrencyOutput",
     members = {
         ReservedConcurrentExecutions = {
             type = "integer",
@@ -3366,6 +3517,7 @@ M.GetFunctionConcurrencyOutput = {
 
 M.GetFunctionConfigurationInput = {
     type = "structure",
+    id = "GetFunctionConfigurationInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3385,6 +3537,7 @@ M.GetFunctionConfigurationInput = {
 
 M.GetFunctionConfigurationOutput = {
     type = "structure",
+    id = "GetFunctionConfigurationOutput",
     members = {
         FunctionName = {
             type = "string",
@@ -3493,6 +3646,7 @@ M.GetFunctionConfigurationOutput = {
 
 M.GetFunctionRecursionConfigInput = {
     type = "structure",
+    id = "GetFunctionRecursionConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3511,6 +3665,7 @@ M.RecursiveLoop = {
 
 M.GetFunctionRecursionConfigOutput = {
     type = "structure",
+    id = "GetFunctionRecursionConfigOutput",
     members = {
         RecursiveLoop = {
             type = "string",
@@ -3520,6 +3675,7 @@ M.GetFunctionRecursionConfigOutput = {
 
 M.GetFunctionScalingConfigInput = {
     type = "structure",
+    id = "GetFunctionScalingConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3540,6 +3696,7 @@ M.GetFunctionScalingConfigInput = {
 
 M.FunctionScalingConfig = {
     type = "structure",
+    id = "FunctionScalingConfig",
     members = {
         MinExecutionEnvironments = {
             type = "integer",
@@ -3552,6 +3709,7 @@ M.FunctionScalingConfig = {
 
 M.GetFunctionScalingConfigOutput = {
     type = "structure",
+    id = "GetFunctionScalingConfigOutput",
     members = {
         FunctionArn = {
             type = "string",
@@ -3563,6 +3721,7 @@ M.GetFunctionScalingConfigOutput = {
 
 M.GetFunctionUrlConfigInput = {
     type = "structure",
+    id = "GetFunctionUrlConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3582,6 +3741,7 @@ M.GetFunctionUrlConfigInput = {
 
 M.GetFunctionUrlConfigOutput = {
     type = "structure",
+    id = "GetFunctionUrlConfigOutput",
     members = {
         FunctionUrl = {
             type = "string",
@@ -3622,6 +3782,7 @@ M.GetFunctionUrlConfigOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3641,6 +3802,7 @@ M.GetPolicyInput = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -3653,6 +3815,7 @@ M.GetPolicyOutput = {
 
 M.GetRuntimeManagementConfigInput = {
     type = "structure",
+    id = "GetRuntimeManagementConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3678,6 +3841,7 @@ M.UpdateRuntimeOn = {
 
 M.GetRuntimeManagementConfigOutput = {
     type = "structure",
+    id = "GetRuntimeManagementConfigOutput",
     members = {
         UpdateRuntimeOn = {
             type = "string",
@@ -3693,6 +3857,7 @@ M.GetRuntimeManagementConfigOutput = {
 
 M.DurableExecutionAlreadyStartedException = {
     type = "structure",
+    id = "DurableExecutionAlreadyStartedException",
     error = "client",
     members = {
         Type = {
@@ -3706,6 +3871,7 @@ M.DurableExecutionAlreadyStartedException = {
 
 M.EC2AccessDeniedException = {
     type = "structure",
+    id = "EC2AccessDeniedException",
     error = "server",
     members = {
         Type = {
@@ -3719,6 +3885,7 @@ M.EC2AccessDeniedException = {
 
 M.EC2ThrottledException = {
     type = "structure",
+    id = "EC2ThrottledException",
     error = "server",
     members = {
         Type = {
@@ -3732,6 +3899,7 @@ M.EC2ThrottledException = {
 
 M.EC2UnexpectedException = {
     type = "structure",
+    id = "EC2UnexpectedException",
     error = "server",
     members = {
         Type = {
@@ -3748,6 +3916,7 @@ M.EC2UnexpectedException = {
 
 M.EFSIOException = {
     type = "structure",
+    id = "EFSIOException",
     error = "client",
     members = {
         Type = {
@@ -3761,6 +3930,7 @@ M.EFSIOException = {
 
 M.EFSMountConnectivityException = {
     type = "structure",
+    id = "EFSMountConnectivityException",
     error = "client",
     members = {
         Type = {
@@ -3774,6 +3944,7 @@ M.EFSMountConnectivityException = {
 
 M.EFSMountFailureException = {
     type = "structure",
+    id = "EFSMountFailureException",
     error = "client",
     members = {
         Type = {
@@ -3787,6 +3958,7 @@ M.EFSMountFailureException = {
 
 M.EFSMountTimeoutException = {
     type = "structure",
+    id = "EFSMountTimeoutException",
     error = "client",
     members = {
         Type = {
@@ -3800,6 +3972,7 @@ M.EFSMountTimeoutException = {
 
 M.ENILimitReachedException = {
     type = "structure",
+    id = "ENILimitReachedException",
     error = "server",
     members = {
         Type = {
@@ -3813,6 +3986,7 @@ M.ENILimitReachedException = {
 
 M.InvalidRequestContentException = {
     type = "structure",
+    id = "InvalidRequestContentException",
     error = "client",
     members = {
         Type = {
@@ -3826,6 +4000,7 @@ M.InvalidRequestContentException = {
 
 M.InvalidRuntimeException = {
     type = "structure",
+    id = "InvalidRuntimeException",
     error = "server",
     members = {
         Type = {
@@ -3839,6 +4014,7 @@ M.InvalidRuntimeException = {
 
 M.InvalidSecurityGroupIDException = {
     type = "structure",
+    id = "InvalidSecurityGroupIDException",
     error = "server",
     members = {
         Type = {
@@ -3852,6 +4028,7 @@ M.InvalidSecurityGroupIDException = {
 
 M.InvalidSubnetIDException = {
     type = "structure",
+    id = "InvalidSubnetIDException",
     error = "server",
     members = {
         Type = {
@@ -3865,6 +4042,7 @@ M.InvalidSubnetIDException = {
 
 M.InvalidZipFileException = {
     type = "structure",
+    id = "InvalidZipFileException",
     error = "server",
     members = {
         Type = {
@@ -3889,6 +4067,7 @@ M.LogType = {
 
 M.InvokeInput = {
     type = "structure",
+    id = "InvokeInput",
     members = {
         FunctionName = {
             type = "string",
@@ -3944,6 +4123,7 @@ M.InvokeInput = {
 
 M.InvokeOutput = {
     type = "structure",
+    id = "InvokeOutput",
     members = {
         StatusCode = {
             type = "integer",
@@ -3987,6 +4167,7 @@ M.InvokeOutput = {
 
 M.KMSAccessDeniedException = {
     type = "structure",
+    id = "KMSAccessDeniedException",
     error = "server",
     members = {
         Type = {
@@ -4000,6 +4181,7 @@ M.KMSAccessDeniedException = {
 
 M.KMSDisabledException = {
     type = "structure",
+    id = "KMSDisabledException",
     error = "server",
     members = {
         Type = {
@@ -4013,6 +4195,7 @@ M.KMSDisabledException = {
 
 M.KMSInvalidStateException = {
     type = "structure",
+    id = "KMSInvalidStateException",
     error = "server",
     members = {
         Type = {
@@ -4026,6 +4209,7 @@ M.KMSInvalidStateException = {
 
 M.KMSNotFoundException = {
     type = "structure",
+    id = "KMSNotFoundException",
     error = "server",
     members = {
         Type = {
@@ -4039,6 +4223,7 @@ M.KMSNotFoundException = {
 
 M.NoPublishedVersionException = {
     type = "structure",
+    id = "NoPublishedVersionException",
     error = "client",
     members = {
         Type = {
@@ -4052,6 +4237,7 @@ M.NoPublishedVersionException = {
 
 M.RecursiveInvocationException = {
     type = "structure",
+    id = "RecursiveInvocationException",
     error = "client",
     members = {
         Type = {
@@ -4065,6 +4251,7 @@ M.RecursiveInvocationException = {
 
 M.RequestTooLargeException = {
     type = "structure",
+    id = "RequestTooLargeException",
     error = "client",
     members = {
         Type = {
@@ -4078,6 +4265,7 @@ M.RequestTooLargeException = {
 
 M.ResourceNotReadyException = {
     type = "structure",
+    id = "ResourceNotReadyException",
     error = "server",
     members = {
         Type = {
@@ -4091,6 +4279,7 @@ M.ResourceNotReadyException = {
 
 M.S3FilesMountConnectivityException = {
     type = "structure",
+    id = "S3FilesMountConnectivityException",
     error = "client",
     members = {
         Type = {
@@ -4104,6 +4293,7 @@ M.S3FilesMountConnectivityException = {
 
 M.S3FilesMountFailureException = {
     type = "structure",
+    id = "S3FilesMountFailureException",
     error = "client",
     members = {
         Type = {
@@ -4117,6 +4307,7 @@ M.S3FilesMountFailureException = {
 
 M.S3FilesMountTimeoutException = {
     type = "structure",
+    id = "S3FilesMountTimeoutException",
     error = "client",
     members = {
         Type = {
@@ -4130,6 +4321,7 @@ M.S3FilesMountTimeoutException = {
 
 M.SerializedRequestEntityTooLargeException = {
     type = "structure",
+    id = "SerializedRequestEntityTooLargeException",
     error = "client",
     members = {
         Type = {
@@ -4143,6 +4335,7 @@ M.SerializedRequestEntityTooLargeException = {
 
 M.SnapStartException = {
     type = "structure",
+    id = "SnapStartException",
     error = "client",
     members = {
         Type = {
@@ -4156,6 +4349,7 @@ M.SnapStartException = {
 
 M.SnapStartNotReadyException = {
     type = "structure",
+    id = "SnapStartNotReadyException",
     error = "client",
     members = {
         Type = {
@@ -4169,6 +4363,7 @@ M.SnapStartNotReadyException = {
 
 M.SnapStartTimeoutException = {
     type = "structure",
+    id = "SnapStartTimeoutException",
     error = "client",
     members = {
         Type = {
@@ -4182,6 +4377,7 @@ M.SnapStartTimeoutException = {
 
 M.SubnetIPAddressLimitReachedException = {
     type = "structure",
+    id = "SubnetIPAddressLimitReachedException",
     error = "server",
     members = {
         Type = {
@@ -4195,6 +4391,7 @@ M.SubnetIPAddressLimitReachedException = {
 
 M.UnsupportedMediaTypeException = {
     type = "structure",
+    id = "UnsupportedMediaTypeException",
     error = "client",
     members = {
         Type = {
@@ -4208,6 +4405,7 @@ M.UnsupportedMediaTypeException = {
 
 M.InvokeAsyncInput = {
     type = "structure",
+    id = "InvokeAsyncInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4228,6 +4426,7 @@ M.InvokeAsyncInput = {
 
 M.InvokeAsyncOutput = {
     type = "structure",
+    id = "InvokeAsyncOutput",
     members = {
         Status = {
             type = "integer",
@@ -4246,6 +4445,7 @@ M.ResponseStreamingInvocationType = {
 
 M.InvokeWithResponseStreamInput = {
     type = "structure",
+    id = "InvokeWithResponseStreamInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4295,6 +4495,7 @@ M.InvokeWithResponseStreamInput = {
 
 M.InvokeWithResponseStreamCompleteEvent = {
     type = "structure",
+    id = "InvokeWithResponseStreamCompleteEvent",
     members = {
         ErrorCode = {
             type = "string",
@@ -4310,6 +4511,7 @@ M.InvokeWithResponseStreamCompleteEvent = {
 
 M.InvokeResponseStreamUpdate = {
     type = "structure",
+    id = "InvokeResponseStreamUpdate",
     members = {
         Payload = {
             type = "blob",
@@ -4319,6 +4521,7 @@ M.InvokeResponseStreamUpdate = {
 
 M.InvokeWithResponseStreamResponseEvent = {
     type = "union",
+    id = "InvokeWithResponseStreamResponseEvent",
     members = {
         PayloadChunk = M.InvokeResponseStreamUpdate,
         InvokeComplete = M.InvokeWithResponseStreamCompleteEvent,
@@ -4327,6 +4530,7 @@ M.InvokeWithResponseStreamResponseEvent = {
 
 M.InvokeWithResponseStreamOutput = {
     type = "structure",
+    id = "InvokeWithResponseStreamOutput",
     members = {
         StatusCode = {
             type = "integer",
@@ -4359,6 +4563,7 @@ M.FunctionVersion = {
 
 M.ListFunctionsInput = {
     type = "structure",
+    id = "ListFunctionsInput",
     members = {
         MasterRegion = {
             type = "string",
@@ -4389,6 +4594,7 @@ M.ListFunctionsInput = {
 
 M.ListFunctionsOutput = {
     type = "structure",
+    id = "ListFunctionsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -4402,6 +4608,7 @@ M.ListFunctionsOutput = {
 
 M.ListFunctionUrlConfigsInput = {
     type = "structure",
+    id = "ListFunctionUrlConfigsInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4427,6 +4634,7 @@ M.ListFunctionUrlConfigsInput = {
 
 M.FunctionUrlConfig = {
     type = "structure",
+    id = "FunctionUrlConfig",
     members = {
         FunctionUrl = {
             type = "string",
@@ -4467,6 +4675,7 @@ M.FunctionUrlConfig = {
 
 M.ListFunctionUrlConfigsOutput = {
     type = "structure",
+    id = "ListFunctionUrlConfigsOutput",
     members = {
         FunctionUrlConfigs = {
             type = "list",
@@ -4483,6 +4692,7 @@ M.ListFunctionUrlConfigsOutput = {
 
 M.ListProvisionedConcurrencyConfigsInput = {
     type = "structure",
+    id = "ListProvisionedConcurrencyConfigsInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4514,6 +4724,7 @@ M.ProvisionedConcurrencyStatusEnum = {
 
 M.ProvisionedConcurrencyConfigListItem = {
     type = "structure",
+    id = "ProvisionedConcurrencyConfigListItem",
     members = {
         FunctionArn = {
             type = "string",
@@ -4541,6 +4752,7 @@ M.ProvisionedConcurrencyConfigListItem = {
 
 M.ListProvisionedConcurrencyConfigsOutput = {
     type = "structure",
+    id = "ListProvisionedConcurrencyConfigsOutput",
     members = {
         ProvisionedConcurrencyConfigs = {
             type = "list",
@@ -4554,6 +4766,7 @@ M.ListProvisionedConcurrencyConfigsOutput = {
 
 M.PutFunctionCodeSigningConfigInput = {
     type = "structure",
+    id = "PutFunctionCodeSigningConfigInput",
     members = {
         CodeSigningConfigArn = {
             type = "string",
@@ -4573,6 +4786,7 @@ M.PutFunctionCodeSigningConfigInput = {
 
 M.PutFunctionCodeSigningConfigOutput = {
     type = "structure",
+    id = "PutFunctionCodeSigningConfigOutput",
     members = {
         CodeSigningConfigArn = {
             type = "string",
@@ -4591,6 +4805,7 @@ M.PutFunctionCodeSigningConfigOutput = {
 
 M.PutFunctionConcurrencyInput = {
     type = "structure",
+    id = "PutFunctionConcurrencyInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4610,6 +4825,7 @@ M.PutFunctionConcurrencyInput = {
 
 M.PutFunctionConcurrencyOutput = {
     type = "structure",
+    id = "PutFunctionConcurrencyOutput",
     members = {
         ReservedConcurrentExecutions = {
             type = "integer",
@@ -4619,6 +4835,7 @@ M.PutFunctionConcurrencyOutput = {
 
 M.PutFunctionRecursionConfigInput = {
     type = "structure",
+    id = "PutFunctionRecursionConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4638,6 +4855,7 @@ M.PutFunctionRecursionConfigInput = {
 
 M.PutFunctionRecursionConfigOutput = {
     type = "structure",
+    id = "PutFunctionRecursionConfigOutput",
     members = {
         RecursiveLoop = {
             type = "string",
@@ -4647,6 +4865,7 @@ M.PutFunctionRecursionConfigOutput = {
 
 M.PutFunctionScalingConfigInput = {
     type = "structure",
+    id = "PutFunctionScalingConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4668,6 +4887,7 @@ M.PutFunctionScalingConfigInput = {
 
 M.PutFunctionScalingConfigOutput = {
     type = "structure",
+    id = "PutFunctionScalingConfigOutput",
     members = {
         FunctionState = {
             type = "string",
@@ -4677,6 +4897,7 @@ M.PutFunctionScalingConfigOutput = {
 
 M.PutRuntimeManagementConfigInput = {
     type = "structure",
+    id = "PutRuntimeManagementConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4705,6 +4926,7 @@ M.PutRuntimeManagementConfigInput = {
 
 M.PutRuntimeManagementConfigOutput = {
     type = "structure",
+    id = "PutRuntimeManagementConfigOutput",
     members = {
         UpdateRuntimeOn = {
             type = "string",
@@ -4726,6 +4948,7 @@ M.PutRuntimeManagementConfigOutput = {
 
 M.UpdateFunctionCodeInput = {
     type = "structure",
+    id = "UpdateFunctionCodeInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4779,6 +5002,7 @@ M.UpdateFunctionCodeInput = {
 
 M.UpdateFunctionCodeOutput = {
     type = "structure",
+    id = "UpdateFunctionCodeOutput",
     members = {
         FunctionName = {
             type = "string",
@@ -4887,6 +5111,7 @@ M.UpdateFunctionCodeOutput = {
 
 M.UpdateFunctionConfigurationInput = {
     type = "structure",
+    id = "UpdateFunctionConfigurationInput",
     members = {
         FunctionName = {
             type = "string",
@@ -4942,6 +5167,7 @@ M.UpdateFunctionConfigurationInput = {
 
 M.UpdateFunctionConfigurationOutput = {
     type = "structure",
+    id = "UpdateFunctionConfigurationOutput",
     members = {
         FunctionName = {
             type = "string",
@@ -5050,6 +5276,7 @@ M.UpdateFunctionConfigurationOutput = {
 
 M.UpdateFunctionUrlConfigInput = {
     type = "structure",
+    id = "UpdateFunctionUrlConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5076,6 +5303,7 @@ M.UpdateFunctionUrlConfigInput = {
 
 M.UpdateFunctionUrlConfigOutput = {
     type = "structure",
+    id = "UpdateFunctionUrlConfigOutput",
     members = {
         FunctionUrl = {
             type = "string",
@@ -5116,6 +5344,7 @@ M.UpdateFunctionUrlConfigOutput = {
 
 M.CreateAliasInput = {
     type = "structure",
+    id = "CreateAliasInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5145,6 +5374,7 @@ M.CreateAliasInput = {
 
 M.CreateAliasOutput = {
     type = "structure",
+    id = "CreateAliasOutput",
     members = {
         AliasArn = {
             type = "string",
@@ -5167,6 +5397,7 @@ M.CreateAliasOutput = {
 
 M.DeleteAliasInput = {
     type = "structure",
+    id = "DeleteAliasInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5187,10 +5418,12 @@ M.DeleteAliasInput = {
 
 M.DeleteAliasOutput = {
     type = "structure",
+    id = "DeleteAliasOutput",
 }
 
 M.GetAliasInput = {
     type = "structure",
+    id = "GetAliasInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5211,6 +5444,7 @@ M.GetAliasInput = {
 
 M.GetAliasOutput = {
     type = "structure",
+    id = "GetAliasOutput",
     members = {
         AliasArn = {
             type = "string",
@@ -5233,6 +5467,7 @@ M.GetAliasOutput = {
 
 M.ListAliasesInput = {
     type = "structure",
+    id = "ListAliasesInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5264,6 +5499,7 @@ M.ListAliasesInput = {
 
 M.ListAliasesOutput = {
     type = "structure",
+    id = "ListAliasesOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -5277,6 +5513,7 @@ M.ListAliasesOutput = {
 
 M.UpdateAliasInput = {
     type = "structure",
+    id = "UpdateAliasInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5307,6 +5544,7 @@ M.UpdateAliasInput = {
 
 M.UpdateAliasOutput = {
     type = "structure",
+    id = "UpdateAliasOutput",
     members = {
         AliasArn = {
             type = "string",
@@ -5329,6 +5567,7 @@ M.UpdateAliasOutput = {
 
 M.ListVersionsByFunctionInput = {
     type = "structure",
+    id = "ListVersionsByFunctionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5354,6 +5593,7 @@ M.ListVersionsByFunctionInput = {
 
 M.ListVersionsByFunctionOutput = {
     type = "structure",
+    id = "ListVersionsByFunctionOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -5367,6 +5607,7 @@ M.ListVersionsByFunctionOutput = {
 
 M.PublishVersionInput = {
     type = "structure",
+    id = "PublishVersionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -5392,6 +5633,7 @@ M.PublishVersionInput = {
 
 M.PublishVersionOutput = {
     type = "structure",
+    id = "PublishVersionOutput",
     members = {
         FunctionName = {
             type = "string",
@@ -5500,10 +5742,12 @@ M.PublishVersionOutput = {
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
 }
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         AccountLimit = M.AccountLimit,
         AccountUsage = M.AccountUsage,
@@ -5512,6 +5756,7 @@ M.GetAccountSettingsOutput = {
 
 M.GetDurableExecutionInput = {
     type = "structure",
+    id = "GetDurableExecutionInput",
     members = {
         DurableExecutionArn = {
             type = "string",
@@ -5533,6 +5778,7 @@ M.ExecutionStatus = {
 
 M.TraceHeader = {
     type = "structure",
+    id = "TraceHeader",
     members = {
         XAmznTraceId = {
             type = "string",
@@ -5542,6 +5788,7 @@ M.TraceHeader = {
 
 M.GetDurableExecutionOutput = {
     type = "structure",
+    id = "GetDurableExecutionOutput",
     members = {
         DurableExecutionArn = {
             type = "string",
@@ -5592,6 +5839,7 @@ M.GetDurableExecutionOutput = {
 
 M.GetDurableExecutionHistoryInput = {
     type = "structure",
+    id = "GetDurableExecutionHistoryInput",
     members = {
         DurableExecutionArn = {
             type = "string",
@@ -5630,6 +5878,7 @@ M.GetDurableExecutionHistoryInput = {
 
 M.EventError = {
     type = "structure",
+    id = "EventError",
     members = {
         Payload = M.ErrorObject,
         Truncated = {
@@ -5640,6 +5889,7 @@ M.EventError = {
 
 M.CallbackFailedDetails = {
     type = "structure",
+    id = "CallbackFailedDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5649,6 +5899,7 @@ M.CallbackFailedDetails = {
 
 M.CallbackStartedDetails = {
     type = "structure",
+    id = "CallbackStartedDetails",
     members = {
         CallbackId = {
             type = "string",
@@ -5667,6 +5918,7 @@ M.CallbackStartedDetails = {
 
 M.EventResult = {
     type = "structure",
+    id = "EventResult",
     members = {
         Payload = {
             type = "string",
@@ -5679,6 +5931,7 @@ M.EventResult = {
 
 M.CallbackSucceededDetails = {
     type = "structure",
+    id = "CallbackSucceededDetails",
     members = {
         Result = setmetatable({ traits = {
             required = true,
@@ -5688,6 +5941,7 @@ M.CallbackSucceededDetails = {
 
 M.CallbackTimedOutDetails = {
     type = "structure",
+    id = "CallbackTimedOutDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5697,6 +5951,7 @@ M.CallbackTimedOutDetails = {
 
 M.ChainedInvokeFailedDetails = {
     type = "structure",
+    id = "ChainedInvokeFailedDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5706,6 +5961,7 @@ M.ChainedInvokeFailedDetails = {
 
 M.EventInput = {
     type = "structure",
+    id = "EventInput",
     members = {
         Payload = {
             type = "string",
@@ -5718,6 +5974,7 @@ M.EventInput = {
 
 M.ChainedInvokeStartedDetails = {
     type = "structure",
+    id = "ChainedInvokeStartedDetails",
     members = {
         FunctionName = {
             type = "string",
@@ -5740,6 +5997,7 @@ M.ChainedInvokeStartedDetails = {
 
 M.ChainedInvokeStoppedDetails = {
     type = "structure",
+    id = "ChainedInvokeStoppedDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5749,6 +6007,7 @@ M.ChainedInvokeStoppedDetails = {
 
 M.ChainedInvokeSucceededDetails = {
     type = "structure",
+    id = "ChainedInvokeSucceededDetails",
     members = {
         Result = setmetatable({ traits = {
             required = true,
@@ -5758,6 +6017,7 @@ M.ChainedInvokeSucceededDetails = {
 
 M.ChainedInvokeTimedOutDetails = {
     type = "structure",
+    id = "ChainedInvokeTimedOutDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5767,6 +6027,7 @@ M.ChainedInvokeTimedOutDetails = {
 
 M.ContextFailedDetails = {
     type = "structure",
+    id = "ContextFailedDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5776,10 +6037,12 @@ M.ContextFailedDetails = {
 
 M.ContextStartedDetails = {
     type = "structure",
+    id = "ContextStartedDetails",
 }
 
 M.ContextSucceededDetails = {
     type = "structure",
+    id = "ContextSucceededDetails",
     members = {
         Result = setmetatable({ traits = {
             required = true,
@@ -5816,6 +6079,7 @@ M.EventType = {
 
 M.ExecutionFailedDetails = {
     type = "structure",
+    id = "ExecutionFailedDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5825,6 +6089,7 @@ M.ExecutionFailedDetails = {
 
 M.ExecutionStartedDetails = {
     type = "structure",
+    id = "ExecutionStartedDetails",
     members = {
         Input = setmetatable({ traits = {
             required = true,
@@ -5840,6 +6105,7 @@ M.ExecutionStartedDetails = {
 
 M.ExecutionStoppedDetails = {
     type = "structure",
+    id = "ExecutionStoppedDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5849,6 +6115,7 @@ M.ExecutionStoppedDetails = {
 
 M.ExecutionSucceededDetails = {
     type = "structure",
+    id = "ExecutionSucceededDetails",
     members = {
         Result = setmetatable({ traits = {
             required = true,
@@ -5858,6 +6125,7 @@ M.ExecutionSucceededDetails = {
 
 M.ExecutionTimedOutDetails = {
     type = "structure",
+    id = "ExecutionTimedOutDetails",
     members = {
         Error = M.EventError,
     },
@@ -5865,6 +6133,7 @@ M.ExecutionTimedOutDetails = {
 
 M.InvocationCompletedDetails = {
     type = "structure",
+    id = "InvocationCompletedDetails",
     members = {
         StartTimestamp = {
             type = "timestamp",
@@ -5890,6 +6159,7 @@ M.InvocationCompletedDetails = {
 
 M.RetryDetails = {
     type = "structure",
+    id = "RetryDetails",
     members = {
         CurrentAttempt = {
             type = "integer",
@@ -5905,6 +6175,7 @@ M.RetryDetails = {
 
 M.StepFailedDetails = {
     type = "structure",
+    id = "StepFailedDetails",
     members = {
         Error = setmetatable({ traits = {
             required = true,
@@ -5917,10 +6188,12 @@ M.StepFailedDetails = {
 
 M.StepStartedDetails = {
     type = "structure",
+    id = "StepStartedDetails",
 }
 
 M.StepSucceededDetails = {
     type = "structure",
+    id = "StepSucceededDetails",
     members = {
         Result = setmetatable({ traits = {
             required = true,
@@ -5933,6 +6206,7 @@ M.StepSucceededDetails = {
 
 M.WaitCancelledDetails = {
     type = "structure",
+    id = "WaitCancelledDetails",
     members = {
         Error = M.EventError,
     },
@@ -5940,6 +6214,7 @@ M.WaitCancelledDetails = {
 
 M.WaitStartedDetails = {
     type = "structure",
+    id = "WaitStartedDetails",
     members = {
         Duration = {
             type = "integer",
@@ -5958,6 +6233,7 @@ M.WaitStartedDetails = {
 
 M.WaitSucceededDetails = {
     type = "structure",
+    id = "WaitSucceededDetails",
     members = {
         Duration = {
             type = "integer",
@@ -5967,6 +6243,7 @@ M.WaitSucceededDetails = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         EventType = {
             type = "string",
@@ -6021,6 +6298,7 @@ M.Event = {
 
 M.GetDurableExecutionHistoryOutput = {
     type = "structure",
+    id = "GetDurableExecutionHistoryOutput",
     members = {
         Events = {
             type = "list",
@@ -6037,6 +6315,7 @@ M.GetDurableExecutionHistoryOutput = {
 
 M.GetDurableExecutionStateInput = {
     type = "structure",
+    id = "GetDurableExecutionStateInput",
     members = {
         DurableExecutionArn = {
             type = "string",
@@ -6070,6 +6349,7 @@ M.GetDurableExecutionStateInput = {
 
 M.GetDurableExecutionStateOutput = {
     type = "structure",
+    id = "GetDurableExecutionStateOutput",
     members = {
         Operations = {
             type = "list",
@@ -6086,6 +6366,7 @@ M.GetDurableExecutionStateOutput = {
 
 M.GetFunctionEventInvokeConfigInput = {
     type = "structure",
+    id = "GetFunctionEventInvokeConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6105,6 +6386,7 @@ M.GetFunctionEventInvokeConfigInput = {
 
 M.GetFunctionEventInvokeConfigOutput = {
     type = "structure",
+    id = "GetFunctionEventInvokeConfigOutput",
     members = {
         LastModified = {
             type = "timestamp",
@@ -6124,6 +6406,7 @@ M.GetFunctionEventInvokeConfigOutput = {
 
 M.ListLayersInput = {
     type = "structure",
+    id = "ListLayersInput",
     members = {
         CompatibleRuntime = {
             type = "string",
@@ -6154,6 +6437,7 @@ M.ListLayersInput = {
 
 M.LayerVersionsListItem = {
     type = "structure",
+    id = "LayerVersionsListItem",
     members = {
         LayerVersionArn = {
             type = "string",
@@ -6186,6 +6470,7 @@ M.LayerVersionsListItem = {
 
 M.LayersListItem = {
     type = "structure",
+    id = "LayersListItem",
     members = {
         LayerName = {
             type = "string",
@@ -6199,6 +6484,7 @@ M.LayersListItem = {
 
 M.ListLayersOutput = {
     type = "structure",
+    id = "ListLayersOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -6212,6 +6498,7 @@ M.ListLayersOutput = {
 
 M.DeleteLayerVersionInput = {
     type = "structure",
+    id = "DeleteLayerVersionInput",
     members = {
         LayerName = {
             type = "string",
@@ -6233,10 +6520,12 @@ M.DeleteLayerVersionInput = {
 
 M.DeleteLayerVersionOutput = {
     type = "structure",
+    id = "DeleteLayerVersionOutput",
 }
 
 M.GetLayerVersionInput = {
     type = "structure",
+    id = "GetLayerVersionInput",
     members = {
         LayerName = {
             type = "string",
@@ -6258,6 +6547,7 @@ M.GetLayerVersionInput = {
 
 M.LayerVersionContentOutput = {
     type = "structure",
+    id = "LayerVersionContentOutput",
     members = {
         Location = {
             type = "string",
@@ -6282,6 +6572,7 @@ M.LayerVersionContentOutput = {
 
 M.GetLayerVersionOutput = {
     type = "structure",
+    id = "GetLayerVersionOutput",
     members = {
         Content = M.LayerVersionContentOutput,
         LayerArn = {
@@ -6318,6 +6609,7 @@ M.GetLayerVersionOutput = {
 
 M.GetLayerVersionByArnInput = {
     type = "structure",
+    id = "GetLayerVersionByArnInput",
     members = {
         Arn = {
             type = "string",
@@ -6331,6 +6623,7 @@ M.GetLayerVersionByArnInput = {
 
 M.GetLayerVersionByArnOutput = {
     type = "structure",
+    id = "GetLayerVersionByArnOutput",
     members = {
         Content = M.LayerVersionContentOutput,
         LayerArn = {
@@ -6367,6 +6660,7 @@ M.GetLayerVersionByArnOutput = {
 
 M.GetLayerVersionPolicyInput = {
     type = "structure",
+    id = "GetLayerVersionPolicyInput",
     members = {
         LayerName = {
             type = "string",
@@ -6388,6 +6682,7 @@ M.GetLayerVersionPolicyInput = {
 
 M.GetLayerVersionPolicyOutput = {
     type = "structure",
+    id = "GetLayerVersionPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -6400,6 +6695,7 @@ M.GetLayerVersionPolicyOutput = {
 
 M.ListLayerVersionsInput = {
     type = "structure",
+    id = "ListLayerVersionsInput",
     members = {
         CompatibleRuntime = {
             type = "string",
@@ -6437,6 +6733,7 @@ M.ListLayerVersionsInput = {
 
 M.ListLayerVersionsOutput = {
     type = "structure",
+    id = "ListLayerVersionsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -6450,6 +6747,7 @@ M.ListLayerVersionsOutput = {
 
 M.LayerVersionContentInput = {
     type = "structure",
+    id = "LayerVersionContentInput",
     members = {
         S3Bucket = {
             type = "string",
@@ -6468,6 +6766,7 @@ M.LayerVersionContentInput = {
 
 M.PublishLayerVersionInput = {
     type = "structure",
+    id = "PublishLayerVersionInput",
     members = {
         LayerName = {
             type = "string",
@@ -6498,6 +6797,7 @@ M.PublishLayerVersionInput = {
 
 M.PublishLayerVersionOutput = {
     type = "structure",
+    id = "PublishLayerVersionOutput",
     members = {
         Content = M.LayerVersionContentOutput,
         LayerArn = {
@@ -6534,6 +6834,7 @@ M.PublishLayerVersionOutput = {
 
 M.RemoveLayerVersionPermissionInput = {
     type = "structure",
+    id = "RemoveLayerVersionPermissionInput",
     members = {
         LayerName = {
             type = "string",
@@ -6568,10 +6869,12 @@ M.RemoveLayerVersionPermissionInput = {
 
 M.RemoveLayerVersionPermissionOutput = {
     type = "structure",
+    id = "RemoveLayerVersionPermissionOutput",
 }
 
 M.ListDurableExecutionsByFunctionInput = {
     type = "structure",
+    id = "ListDurableExecutionsByFunctionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6635,6 +6938,7 @@ M.ListDurableExecutionsByFunctionInput = {
 
 M.Execution = {
     type = "structure",
+    id = "Execution",
     members = {
         DurableExecutionArn = {
             type = "string",
@@ -6674,6 +6978,7 @@ M.Execution = {
 
 M.ListDurableExecutionsByFunctionOutput = {
     type = "structure",
+    id = "ListDurableExecutionsByFunctionOutput",
     members = {
         DurableExecutions = {
             type = "list",
@@ -6687,6 +6992,7 @@ M.ListDurableExecutionsByFunctionOutput = {
 
 M.ListFunctionEventInvokeConfigsInput = {
     type = "structure",
+    id = "ListFunctionEventInvokeConfigsInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6712,6 +7018,7 @@ M.ListFunctionEventInvokeConfigsInput = {
 
 M.FunctionEventInvokeConfig = {
     type = "structure",
+    id = "FunctionEventInvokeConfig",
     members = {
         LastModified = {
             type = "timestamp",
@@ -6731,6 +7038,7 @@ M.FunctionEventInvokeConfig = {
 
 M.ListFunctionEventInvokeConfigsOutput = {
     type = "structure",
+    id = "ListFunctionEventInvokeConfigsOutput",
     members = {
         FunctionEventInvokeConfigs = {
             type = "list",
@@ -6744,6 +7052,7 @@ M.ListFunctionEventInvokeConfigsOutput = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         Resource = {
             type = "string",
@@ -6757,6 +7066,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         Tags = {
             type = "map",
@@ -6768,6 +7078,7 @@ M.ListTagsOutput = {
 
 M.RemovePermissionInput = {
     type = "structure",
+    id = "RemovePermissionInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6800,10 +7111,12 @@ M.RemovePermissionInput = {
 
 M.RemovePermissionOutput = {
     type = "structure",
+    id = "RemovePermissionOutput",
 }
 
 M.DeleteProvisionedConcurrencyConfigInput = {
     type = "structure",
+    id = "DeleteProvisionedConcurrencyConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6824,10 +7137,12 @@ M.DeleteProvisionedConcurrencyConfigInput = {
 
 M.DeleteProvisionedConcurrencyConfigOutput = {
     type = "structure",
+    id = "DeleteProvisionedConcurrencyConfigOutput",
 }
 
 M.GetProvisionedConcurrencyConfigInput = {
     type = "structure",
+    id = "GetProvisionedConcurrencyConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6848,6 +7163,7 @@ M.GetProvisionedConcurrencyConfigInput = {
 
 M.GetProvisionedConcurrencyConfigOutput = {
     type = "structure",
+    id = "GetProvisionedConcurrencyConfigOutput",
     members = {
         RequestedProvisionedConcurrentExecutions = {
             type = "integer",
@@ -6872,6 +7188,7 @@ M.GetProvisionedConcurrencyConfigOutput = {
 
 M.ProvisionedConcurrencyConfigNotFoundException = {
     type = "structure",
+    id = "ProvisionedConcurrencyConfigNotFoundException",
     error = "client",
     members = {
         Type = {
@@ -6885,6 +7202,7 @@ M.ProvisionedConcurrencyConfigNotFoundException = {
 
 M.PutProvisionedConcurrencyConfigInput = {
     type = "structure",
+    id = "PutProvisionedConcurrencyConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6911,6 +7229,7 @@ M.PutProvisionedConcurrencyConfigInput = {
 
 M.PutProvisionedConcurrencyConfigOutput = {
     type = "structure",
+    id = "PutProvisionedConcurrencyConfigOutput",
     members = {
         RequestedProvisionedConcurrentExecutions = {
             type = "integer",
@@ -6935,6 +7254,7 @@ M.PutProvisionedConcurrencyConfigOutput = {
 
 M.PutFunctionEventInvokeConfigInput = {
     type = "structure",
+    id = "PutFunctionEventInvokeConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -6961,6 +7281,7 @@ M.PutFunctionEventInvokeConfigInput = {
 
 M.PutFunctionEventInvokeConfigOutput = {
     type = "structure",
+    id = "PutFunctionEventInvokeConfigOutput",
     members = {
         LastModified = {
             type = "timestamp",
@@ -6980,6 +7301,7 @@ M.PutFunctionEventInvokeConfigOutput = {
 
 M.CallbackTimeoutException = {
     type = "structure",
+    id = "CallbackTimeoutException",
     error = "client",
     members = {
         Type = {
@@ -6993,6 +7315,7 @@ M.CallbackTimeoutException = {
 
 M.SendDurableExecutionCallbackFailureInput = {
     type = "structure",
+    id = "SendDurableExecutionCallbackFailureInput",
     members = {
         CallbackId = {
             type = "string",
@@ -7009,10 +7332,12 @@ M.SendDurableExecutionCallbackFailureInput = {
 
 M.SendDurableExecutionCallbackFailureOutput = {
     type = "structure",
+    id = "SendDurableExecutionCallbackFailureOutput",
 }
 
 M.SendDurableExecutionCallbackHeartbeatInput = {
     type = "structure",
+    id = "SendDurableExecutionCallbackHeartbeatInput",
     members = {
         CallbackId = {
             type = "string",
@@ -7026,10 +7351,12 @@ M.SendDurableExecutionCallbackHeartbeatInput = {
 
 M.SendDurableExecutionCallbackHeartbeatOutput = {
     type = "structure",
+    id = "SendDurableExecutionCallbackHeartbeatOutput",
 }
 
 M.SendDurableExecutionCallbackSuccessInput = {
     type = "structure",
+    id = "SendDurableExecutionCallbackSuccessInput",
     members = {
         CallbackId = {
             type = "string",
@@ -7049,10 +7376,12 @@ M.SendDurableExecutionCallbackSuccessInput = {
 
 M.SendDurableExecutionCallbackSuccessOutput = {
     type = "structure",
+    id = "SendDurableExecutionCallbackSuccessOutput",
 }
 
 M.StopDurableExecutionInput = {
     type = "structure",
+    id = "StopDurableExecutionInput",
     members = {
         DurableExecutionArn = {
             type = "string",
@@ -7069,6 +7398,7 @@ M.StopDurableExecutionInput = {
 
 M.StopDurableExecutionOutput = {
     type = "structure",
+    id = "StopDurableExecutionOutput",
     members = {
         StopTimestamp = {
             type = "timestamp",
@@ -7081,6 +7411,7 @@ M.StopDurableExecutionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -7102,10 +7433,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -7127,10 +7460,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateFunctionEventInvokeConfigInput = {
     type = "structure",
+    id = "UpdateFunctionEventInvokeConfigInput",
     members = {
         FunctionName = {
             type = "string",
@@ -7157,6 +7492,7 @@ M.UpdateFunctionEventInvokeConfigInput = {
 
 M.UpdateFunctionEventInvokeConfigOutput = {
     type = "structure",
+    id = "UpdateFunctionEventInvokeConfigOutput",
     members = {
         LastModified = {
             type = "timestamp",

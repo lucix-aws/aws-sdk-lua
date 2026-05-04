@@ -3031,35 +3031,35 @@ local record UnsupportedOperationException
     RequestId: string
 end
 
-local type NetworkType = "Dual-stack" | "IPv4" | "IPv6"
-
-local type LDAPSType = "Client"
-
-local type TrustType = "Forest" | "External"
-
-local type DirectorySize = "Small" | "Large"
-
-local type ShareMethod = "ORGANIZATIONS" | "HANDSHAKE"
-
-local type CaEnrollmentPolicyStatus = "InProgress" | "Success" | "Failed" | "Disabling" | "Disabled" | "Impaired"
-
-local type TrustDirection = "One-Way: Outgoing" | "One-Way: Incoming" | "Two-Way"
-
-local type CertificateType = "ClientCertAuth" | "ClientLDAPS"
-
-local type ClientAuthenticationType = "SmartCard" | "SmartCardOrPassword"
-
-local type DirectoryConfigurationStatus = "Requested" | "Updating" | "Updated" | "Failed" | "Default"
-
-local type HybridUpdateType = "SelfManagedInstances" | "HybridAdministratorAccount"
+local type DirectoryEdition = "Enterprise" | "Standard" | "Hybrid"
 
 local type UpdateType = "OS" | "NETWORK" | "SIZE"
 
+local type SelectiveAuth = "Enabled" | "Disabled"
+
+local type ShareMethod = "ORGANIZATIONS" | "HANDSHAKE"
+
+local type ClientAuthenticationType = "SmartCard" | "SmartCardOrPassword"
+
+local type LDAPSType = "Client"
+
+local type DirectoryConfigurationStatus = "Requested" | "Updating" | "Updated" | "Failed" | "Default"
+
+local type CaEnrollmentPolicyStatus = "InProgress" | "Success" | "Failed" | "Disabling" | "Disabled" | "Impaired"
+
+local type CertificateType = "ClientCertAuth" | "ClientLDAPS"
+
+local type TrustDirection = "One-Way: Outgoing" | "One-Way: Incoming" | "Two-Way"
+
+local type HybridUpdateType = "SelfManagedInstances" | "HybridAdministratorAccount"
+
 local type DataAccessStatus = "Disabled" | "Disabling" | "Enabled" | "Enabling" | "Failed"
 
-local type DirectoryEdition = "Enterprise" | "Standard" | "Hybrid"
+local type DirectorySize = "Small" | "Large"
 
-local type SelectiveAuth = "Enabled" | "Disabled"
+local type NetworkType = "Dual-stack" | "IPv4" | "IPv6"
+
+local type TrustType = "Forest" | "External"
 
 local record M
     AcceptSharedDirectoryInput: AcceptSharedDirectoryInput

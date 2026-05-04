@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptNetworkFirewallTransitGatewayAttachmentInput = {
     type = "structure",
+    id = "AcceptNetworkFirewallTransitGatewayAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -26,6 +27,7 @@ M.TransitGatewayAttachmentStatus = {
 
 M.AcceptNetworkFirewallTransitGatewayAttachmentOutput = {
     type = "structure",
+    id = "AcceptNetworkFirewallTransitGatewayAttachmentOutput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -44,6 +46,7 @@ M.AcceptNetworkFirewallTransitGatewayAttachmentOutput = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -54,6 +57,7 @@ M.InternalServerError = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -64,6 +68,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -74,6 +79,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -84,6 +90,7 @@ M.ThrottlingException = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         Value = {
             type = "string",
@@ -96,6 +103,7 @@ M.Dimension = {
 
 M.PublishMetricAction = {
     type = "structure",
+    id = "PublishMetricAction",
     members = {
         Dimensions = {
             type = "list",
@@ -109,6 +117,7 @@ M.PublishMetricAction = {
 
 M.ActionDefinition = {
     type = "structure",
+    id = "ActionDefinition",
     members = {
         PublishMetricAction = M.PublishMetricAction,
     },
@@ -116,6 +125,7 @@ M.ActionDefinition = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         AddressDefinition = {
             type = "string",
@@ -133,6 +143,7 @@ M.EnabledAnalysisType = {
 
 M.AnalysisReport = {
     type = "structure",
+    id = "AnalysisReport",
     members = {
         AnalysisReportId = {
             type = "string",
@@ -151,6 +162,7 @@ M.AnalysisReport = {
 
 M.Hits = {
     type = "structure",
+    id = "Hits",
     members = {
         Count = {
             type = "integer",
@@ -163,6 +175,7 @@ M.Hits = {
 
 M.UniqueSources = {
     type = "structure",
+    id = "UniqueSources",
     members = {
         Count = {
             type = "integer",
@@ -175,6 +188,7 @@ M.UniqueSources = {
 
 M.AnalysisTypeReportResult = {
     type = "structure",
+    id = "AnalysisTypeReportResult",
     members = {
         Protocol = {
             type = "string",
@@ -200,6 +214,7 @@ M.IdentifiedType = {
 
 M.AnalysisResult = {
     type = "structure",
+    id = "AnalysisResult",
     members = {
         IdentifiedRuleIds = {
             type = "list",
@@ -216,6 +231,7 @@ M.AnalysisResult = {
 
 M.AvailabilityZoneMapping = {
     type = "structure",
+    id = "AvailabilityZoneMapping",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -228,6 +244,7 @@ M.AvailabilityZoneMapping = {
 
 M.AssociateAvailabilityZonesInput = {
     type = "structure",
+    id = "AssociateAvailabilityZonesInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -250,6 +267,7 @@ M.AssociateAvailabilityZonesInput = {
 
 M.AssociateAvailabilityZonesOutput = {
     type = "structure",
+    id = "AssociateAvailabilityZonesOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -269,6 +287,7 @@ M.AssociateAvailabilityZonesOutput = {
 
 M.InsufficientCapacityException = {
     type = "structure",
+    id = "InsufficientCapacityException",
     error = "server",
     members = {
         Message = {
@@ -279,6 +298,7 @@ M.InsufficientCapacityException = {
 
 M.InvalidOperationException = {
     type = "structure",
+    id = "InvalidOperationException",
     error = "client",
     members = {
         Message = {
@@ -289,6 +309,7 @@ M.InvalidOperationException = {
 
 M.InvalidTokenException = {
     type = "structure",
+    id = "InvalidTokenException",
     error = "client",
     members = {
         Message = {
@@ -299,6 +320,7 @@ M.InvalidTokenException = {
 
 M.AssociateFirewallPolicyInput = {
     type = "structure",
+    id = "AssociateFirewallPolicyInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -320,6 +342,7 @@ M.AssociateFirewallPolicyInput = {
 
 M.AssociateFirewallPolicyOutput = {
     type = "structure",
+    id = "AssociateFirewallPolicyOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -344,6 +367,7 @@ M.IPAddressType = {
 
 M.SubnetMapping = {
     type = "structure",
+    id = "SubnetMapping",
     members = {
         SubnetId = {
             type = "string",
@@ -359,6 +383,7 @@ M.SubnetMapping = {
 
 M.AssociateSubnetsInput = {
     type = "structure",
+    id = "AssociateSubnetsInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -381,6 +406,7 @@ M.AssociateSubnetsInput = {
 
 M.AssociateSubnetsOutput = {
     type = "structure",
+    id = "AssociateSubnetsOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -409,6 +435,7 @@ M.AttachmentStatus = {
 
 M.Attachment = {
     type = "structure",
+    id = "Attachment",
     members = {
         SubnetId = {
             type = "string",
@@ -427,6 +454,7 @@ M.Attachment = {
 
 M.AZSyncState = {
     type = "structure",
+    id = "AZSyncState",
     members = {
         Attachment = M.Attachment,
     },
@@ -434,6 +462,7 @@ M.AZSyncState = {
 
 M.ProxyRuleGroupAttachment = {
     type = "structure",
+    id = "ProxyRuleGroupAttachment",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -446,6 +475,7 @@ M.ProxyRuleGroupAttachment = {
 
 M.AttachRuleGroupsToProxyConfigurationInput = {
     type = "structure",
+    id = "AttachRuleGroupsToProxyConfigurationInput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -477,6 +507,7 @@ M.ProxyRulePhaseAction = {
 
 M.ProxyConfigDefaultRulePhaseActionsRequest = {
     type = "structure",
+    id = "ProxyConfigDefaultRulePhaseActionsRequest",
     members = {
         PreDNS = {
             type = "string",
@@ -492,6 +523,7 @@ M.ProxyConfigDefaultRulePhaseActionsRequest = {
 
 M.ProxyConfigRuleGroup = {
     type = "structure",
+    id = "ProxyConfigRuleGroup",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -510,6 +542,7 @@ M.ProxyConfigRuleGroup = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -528,6 +561,7 @@ M.Tag = {
 
 M.ProxyConfiguration = {
     type = "structure",
+    id = "ProxyConfiguration",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -558,6 +592,7 @@ M.ProxyConfiguration = {
 
 M.AttachRuleGroupsToProxyConfigurationOutput = {
     type = "structure",
+    id = "AttachRuleGroupsToProxyConfigurationOutput",
     members = {
         ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
@@ -568,6 +603,7 @@ M.AttachRuleGroupsToProxyConfigurationOutput = {
 
 M.AvailabilityZoneMetadata = {
     type = "structure",
+    id = "AvailabilityZoneMetadata",
     members = {
         IPAddressType = {
             type = "string",
@@ -577,6 +613,7 @@ M.AvailabilityZoneMetadata = {
 
 M.IPSetMetadata = {
     type = "structure",
+    id = "IPSetMetadata",
     members = {
         ResolvedCIDRCount = {
             type = "integer",
@@ -586,6 +623,7 @@ M.IPSetMetadata = {
 
 M.CIDRSummary = {
     type = "structure",
+    id = "CIDRSummary",
     members = {
         AvailableCIDRCount = {
             type = "integer",
@@ -603,6 +641,7 @@ M.CIDRSummary = {
 
 M.CapacityUsageSummary = {
     type = "structure",
+    id = "CapacityUsageSummary",
     members = {
         CIDRs = M.CIDRSummary,
     },
@@ -610,6 +649,7 @@ M.CapacityUsageSummary = {
 
 M.TlsCertificateData = {
     type = "structure",
+    id = "TlsCertificateData",
     members = {
         CertificateArn = {
             type = "string",
@@ -634,6 +674,7 @@ M.RevocationCheckAction = {
 
 M.CheckCertificateRevocationStatusActions = {
     type = "structure",
+    id = "CheckCertificateRevocationStatusActions",
     members = {
         RevokedStatusAction = {
             type = "string",
@@ -657,6 +698,7 @@ M.EncryptionType = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         KeyId = {
             type = "string",
@@ -672,6 +714,7 @@ M.EncryptionConfiguration = {
 
 M.CreateFirewallInput = {
     type = "structure",
+    id = "CreateFirewallInput",
     members = {
         FirewallName = {
             type = "string",
@@ -740,6 +783,7 @@ M.CreateFirewallInput = {
 
 M.Firewall = {
     type = "structure",
+    id = "Firewall",
     members = {
         FirewallName = {
             type = "string",
@@ -840,6 +884,7 @@ M.PerObjectSyncStatus = {
 
 M.PerObjectStatus = {
     type = "structure",
+    id = "PerObjectStatus",
     members = {
         SyncStatus = {
             type = "string",
@@ -852,6 +897,7 @@ M.PerObjectStatus = {
 
 M.SyncState = {
     type = "structure",
+    id = "SyncState",
     members = {
         Attachment = M.Attachment,
         Config = {
@@ -864,6 +910,7 @@ M.SyncState = {
 
 M.TransitGatewayAttachmentSyncState = {
     type = "structure",
+    id = "TransitGatewayAttachmentSyncState",
     members = {
         AttachmentId = {
             type = "string",
@@ -879,6 +926,7 @@ M.TransitGatewayAttachmentSyncState = {
 
 M.FirewallStatus = {
     type = "structure",
+    id = "FirewallStatus",
     members = {
         Status = {
             type = "string",
@@ -904,6 +952,7 @@ M.FirewallStatus = {
 
 M.CreateFirewallOutput = {
     type = "structure",
+    id = "CreateFirewallOutput",
     members = {
         Firewall = M.Firewall,
         FirewallStatus = M.FirewallStatus,
@@ -912,6 +961,7 @@ M.CreateFirewallOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -922,6 +972,7 @@ M.LimitExceededException = {
 
 M.IPSet = {
     type = "structure",
+    id = "IPSet",
     members = {
         Definition = {
             type = "list",
@@ -935,6 +986,7 @@ M.IPSet = {
 
 M.PolicyVariables = {
     type = "structure",
+    id = "PolicyVariables",
     members = {
         RuleVariables = {
             type = "map",
@@ -946,6 +998,7 @@ M.PolicyVariables = {
 
 M.FlowTimeouts = {
     type = "structure",
+    id = "FlowTimeouts",
     members = {
         TcpIdleTimeoutSeconds = {
             type = "integer",
@@ -966,6 +1019,7 @@ M.StreamExceptionPolicy = {
 
 M.StatefulEngineOptions = {
     type = "structure",
+    id = "StatefulEngineOptions",
     members = {
         RuleOrder = {
             type = "string",
@@ -983,6 +1037,7 @@ M.OverrideAction = {
 
 M.StatefulRuleGroupOverride = {
     type = "structure",
+    id = "StatefulRuleGroupOverride",
     members = {
         Action = {
             type = "string",
@@ -992,6 +1047,7 @@ M.StatefulRuleGroupOverride = {
 
 M.StatefulRuleGroupReference = {
     type = "structure",
+    id = "StatefulRuleGroupReference",
     members = {
         ResourceArn = {
             type = "string",
@@ -1011,6 +1067,7 @@ M.StatefulRuleGroupReference = {
 
 M.CustomAction = {
     type = "structure",
+    id = "CustomAction",
     members = {
         ActionName = {
             type = "string",
@@ -1026,6 +1083,7 @@ M.CustomAction = {
 
 M.StatelessRuleGroupReference = {
     type = "structure",
+    id = "StatelessRuleGroupReference",
     members = {
         ResourceArn = {
             type = "string",
@@ -1044,6 +1102,7 @@ M.StatelessRuleGroupReference = {
 
 M.FirewallPolicy = {
     type = "structure",
+    id = "FirewallPolicy",
     members = {
         StatelessRuleGroupReferences = {
             type = "list",
@@ -1088,6 +1147,7 @@ M.FirewallPolicy = {
 
 M.CreateFirewallPolicyInput = {
     type = "structure",
+    id = "CreateFirewallPolicyInput",
     members = {
         FirewallPolicyName = {
             type = "string",
@@ -1123,6 +1183,7 @@ M.ResourceStatus = {
 
 M.FirewallPolicyResponse = {
     type = "structure",
+    id = "FirewallPolicyResponse",
     members = {
         FirewallPolicyName = {
             type = "string",
@@ -1173,6 +1234,7 @@ M.FirewallPolicyResponse = {
 
 M.CreateFirewallPolicyOutput = {
     type = "structure",
+    id = "CreateFirewallPolicyOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -1193,6 +1255,7 @@ M.ListenerPropertyType = {
 
 M.ListenerPropertyRequest = {
     type = "structure",
+    id = "ListenerPropertyRequest",
     members = {
         Port = {
             type = "integer",
@@ -1216,6 +1279,7 @@ M.TlsInterceptMode = {
 
 M.TlsInterceptPropertiesRequest = {
     type = "structure",
+    id = "TlsInterceptPropertiesRequest",
     members = {
         PcaArn = {
             type = "string",
@@ -1228,6 +1292,7 @@ M.TlsInterceptPropertiesRequest = {
 
 M.CreateProxyInput = {
     type = "structure",
+    id = "CreateProxyInput",
     members = {
         ProxyName = {
             type = "string",
@@ -1263,6 +1328,7 @@ M.CreateProxyInput = {
 
 M.ListenerProperty = {
     type = "structure",
+    id = "ListenerProperty",
     members = {
         Port = {
             type = "integer",
@@ -1290,6 +1356,7 @@ M.ProxyState = {
 
 M.TlsInterceptProperties = {
     type = "structure",
+    id = "TlsInterceptProperties",
     members = {
         PcaArn = {
             type = "string",
@@ -1302,6 +1369,7 @@ M.TlsInterceptProperties = {
 
 M.Proxy = {
     type = "structure",
+    id = "Proxy",
     members = {
         CreateTime = {
             type = "timestamp",
@@ -1353,6 +1421,7 @@ M.Proxy = {
 
 M.CreateProxyOutput = {
     type = "structure",
+    id = "CreateProxyOutput",
     members = {
         Proxy = M.Proxy,
         UpdateToken = {
@@ -1363,6 +1432,7 @@ M.CreateProxyOutput = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         Message = {
@@ -1373,6 +1443,7 @@ M.UnsupportedOperationException = {
 
 M.CreateProxyConfigurationInput = {
     type = "structure",
+    id = "CreateProxyConfigurationInput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -1403,6 +1474,7 @@ M.CreateProxyConfigurationInput = {
 
 M.CreateProxyConfigurationOutput = {
     type = "structure",
+    id = "CreateProxyConfigurationOutput",
     members = {
         ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
@@ -1413,6 +1485,7 @@ M.CreateProxyConfigurationOutput = {
 
 M.ProxyRuleCondition = {
     type = "structure",
+    id = "ProxyRuleCondition",
     members = {
         ConditionOperator = {
             type = "string",
@@ -1429,6 +1502,7 @@ M.ProxyRuleCondition = {
 
 M.CreateProxyRule = {
     type = "structure",
+    id = "CreateProxyRule",
     members = {
         ProxyRuleName = {
             type = "string",
@@ -1451,6 +1525,7 @@ M.CreateProxyRule = {
 
 M.ProxyRule = {
     type = "structure",
+    id = "ProxyRule",
     members = {
         ProxyRuleName = {
             type = "string",
@@ -1470,6 +1545,7 @@ M.ProxyRule = {
 
 M.ProxyRulesByRequestPhase = {
     type = "structure",
+    id = "ProxyRulesByRequestPhase",
     members = {
         PreDNS = {
             type = "list",
@@ -1488,6 +1564,7 @@ M.ProxyRulesByRequestPhase = {
 
 M.CreateProxyRuleGroupInput = {
     type = "structure",
+    id = "CreateProxyRuleGroupInput",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -1508,6 +1585,7 @@ M.CreateProxyRuleGroupInput = {
 
 M.ProxyRuleGroup = {
     type = "structure",
+    id = "ProxyRuleGroup",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -1534,6 +1612,7 @@ M.ProxyRuleGroup = {
 
 M.CreateProxyRuleGroupOutput = {
     type = "structure",
+    id = "CreateProxyRuleGroupOutput",
     members = {
         ProxyRuleGroup = M.ProxyRuleGroup,
         UpdateToken = {
@@ -1544,6 +1623,7 @@ M.CreateProxyRuleGroupOutput = {
 
 M.CreateProxyRulesByRequestPhase = {
     type = "structure",
+    id = "CreateProxyRulesByRequestPhase",
     members = {
         PreDNS = {
             type = "list",
@@ -1562,6 +1642,7 @@ M.CreateProxyRulesByRequestPhase = {
 
 M.CreateProxyRulesInput = {
     type = "structure",
+    id = "CreateProxyRulesInput",
     members = {
         ProxyRuleGroupArn = {
             type = "string",
@@ -1577,6 +1658,7 @@ M.CreateProxyRulesInput = {
 
 M.CreateProxyRulesOutput = {
     type = "structure",
+    id = "CreateProxyRulesOutput",
     members = {
         ProxyRuleGroup = M.ProxyRuleGroup,
         UpdateToken = {
@@ -1587,6 +1669,7 @@ M.CreateProxyRulesOutput = {
 
 M.IPSetReference = {
     type = "structure",
+    id = "IPSetReference",
     members = {
         ReferenceArn = {
             type = "string",
@@ -1596,6 +1679,7 @@ M.IPSetReference = {
 
 M.ReferenceSets = {
     type = "structure",
+    id = "ReferenceSets",
     members = {
         IPSetReferences = {
             type = "map",
@@ -1619,6 +1703,7 @@ M.TargetType = {
 
 M.RulesSourceList = {
     type = "structure",
+    id = "RulesSourceList",
     members = {
         Targets = {
             type = "list",
@@ -1681,6 +1766,7 @@ M.StatefulRuleProtocol = {
 
 M.Header = {
     type = "structure",
+    id = "Header",
     members = {
         Protocol = {
             type = "string",
@@ -1723,6 +1809,7 @@ M.Header = {
 
 M.RuleOption = {
     type = "structure",
+    id = "RuleOption",
     members = {
         Keyword = {
             type = "string",
@@ -1739,6 +1826,7 @@ M.RuleOption = {
 
 M.StatefulRule = {
     type = "structure",
+    id = "StatefulRule",
     members = {
         Action = {
             type = "string",
@@ -1761,6 +1849,7 @@ M.StatefulRule = {
 
 M.PortRange = {
     type = "structure",
+    id = "PortRange",
     members = {
         FromPort = {
             type = "integer",
@@ -1792,6 +1881,7 @@ M.TCPFlag = {
 
 M.TCPFlagField = {
     type = "structure",
+    id = "TCPFlagField",
     members = {
         Flags = {
             type = "list",
@@ -1809,6 +1899,7 @@ M.TCPFlagField = {
 
 M.MatchAttributes = {
     type = "structure",
+    id = "MatchAttributes",
     members = {
         Sources = {
             type = "list",
@@ -1839,6 +1930,7 @@ M.MatchAttributes = {
 
 M.RuleDefinition = {
     type = "structure",
+    id = "RuleDefinition",
     members = {
         MatchAttributes = setmetatable({ traits = {
             required = true,
@@ -1855,6 +1947,7 @@ M.RuleDefinition = {
 
 M.StatelessRule = {
     type = "structure",
+    id = "StatelessRule",
     members = {
         RuleDefinition = setmetatable({ traits = {
             required = true,
@@ -1870,6 +1963,7 @@ M.StatelessRule = {
 
 M.StatelessRulesAndCustomActions = {
     type = "structure",
+    id = "StatelessRulesAndCustomActions",
     members = {
         StatelessRules = {
             type = "list",
@@ -1887,6 +1981,7 @@ M.StatelessRulesAndCustomActions = {
 
 M.RulesSource = {
     type = "structure",
+    id = "RulesSource",
     members = {
         RulesString = {
             type = "string",
@@ -1902,6 +1997,7 @@ M.RulesSource = {
 
 M.PortSet = {
     type = "structure",
+    id = "PortSet",
     members = {
         Definition = {
             type = "list",
@@ -1912,6 +2008,7 @@ M.PortSet = {
 
 M.RuleVariables = {
     type = "structure",
+    id = "RuleVariables",
     members = {
         IPSets = {
             type = "map",
@@ -1928,6 +2025,7 @@ M.RuleVariables = {
 
 M.StatefulRuleOptions = {
     type = "structure",
+    id = "StatefulRuleOptions",
     members = {
         RuleOrder = {
             type = "string",
@@ -1937,6 +2035,7 @@ M.StatefulRuleOptions = {
 
 M.RuleGroup = {
     type = "structure",
+    id = "RuleGroup",
     members = {
         RuleVariables = M.RuleVariables,
         ReferenceSets = M.ReferenceSets,
@@ -1949,6 +2048,7 @@ M.RuleGroup = {
 
 M.SourceMetadata = {
     type = "structure",
+    id = "SourceMetadata",
     members = {
         SourceArn = {
             type = "string",
@@ -1967,6 +2067,7 @@ M.SummaryRuleOption = {
 
 M.SummaryConfiguration = {
     type = "structure",
+    id = "SummaryConfiguration",
     members = {
         RuleOptions = {
             type = "list",
@@ -1983,6 +2084,7 @@ M.RuleGroupType = {
 
 M.CreateRuleGroupInput = {
     type = "structure",
+    id = "CreateRuleGroupInput",
     members = {
         RuleGroupName = {
             type = "string",
@@ -2033,6 +2135,7 @@ M.CreateRuleGroupInput = {
 
 M.RuleGroupResponse = {
     type = "structure",
+    id = "RuleGroupResponse",
     members = {
         RuleGroupArn = {
             type = "string",
@@ -2092,6 +2195,7 @@ M.RuleGroupResponse = {
 
 M.CreateRuleGroupOutput = {
     type = "structure",
+    id = "CreateRuleGroupOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -2107,6 +2211,7 @@ M.CreateRuleGroupOutput = {
 
 M.ServerCertificateScope = {
     type = "structure",
+    id = "ServerCertificateScope",
     members = {
         Sources = {
             type = "list",
@@ -2133,6 +2238,7 @@ M.ServerCertificateScope = {
 
 M.ServerCertificate = {
     type = "structure",
+    id = "ServerCertificate",
     members = {
         ResourceArn = {
             type = "string",
@@ -2142,6 +2248,7 @@ M.ServerCertificate = {
 
 M.ServerCertificateConfiguration = {
     type = "structure",
+    id = "ServerCertificateConfiguration",
     members = {
         ServerCertificates = {
             type = "list",
@@ -2160,6 +2267,7 @@ M.ServerCertificateConfiguration = {
 
 M.TLSInspectionConfiguration = {
     type = "structure",
+    id = "TLSInspectionConfiguration",
     members = {
         ServerCertificateConfigurations = {
             type = "list",
@@ -2170,6 +2278,7 @@ M.TLSInspectionConfiguration = {
 
 M.CreateTLSInspectionConfigurationInput = {
     type = "structure",
+    id = "CreateTLSInspectionConfigurationInput",
     members = {
         TLSInspectionConfigurationName = {
             type = "string",
@@ -2193,6 +2302,7 @@ M.CreateTLSInspectionConfigurationInput = {
 
 M.TLSInspectionConfigurationResponse = {
     type = "structure",
+    id = "TLSInspectionConfigurationResponse",
     members = {
         TLSInspectionConfigurationArn = {
             type = "string",
@@ -2239,6 +2349,7 @@ M.TLSInspectionConfigurationResponse = {
 
 M.CreateTLSInspectionConfigurationOutput = {
     type = "structure",
+    id = "CreateTLSInspectionConfigurationOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -2254,6 +2365,7 @@ M.CreateTLSInspectionConfigurationOutput = {
 
 M.CreateVpcEndpointAssociationInput = {
     type = "structure",
+    id = "CreateVpcEndpointAssociationInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -2282,6 +2394,7 @@ M.CreateVpcEndpointAssociationInput = {
 
 M.VpcEndpointAssociation = {
     type = "structure",
+    id = "VpcEndpointAssociation",
     members = {
         VpcEndpointAssociationId = {
             type = "string",
@@ -2319,6 +2432,7 @@ M.VpcEndpointAssociation = {
 
 M.VpcEndpointAssociationStatus = {
     type = "structure",
+    id = "VpcEndpointAssociationStatus",
     members = {
         Status = {
             type = "string",
@@ -2336,6 +2450,7 @@ M.VpcEndpointAssociationStatus = {
 
 M.CreateVpcEndpointAssociationOutput = {
     type = "structure",
+    id = "CreateVpcEndpointAssociationOutput",
     members = {
         VpcEndpointAssociation = M.VpcEndpointAssociation,
         VpcEndpointAssociationStatus = M.VpcEndpointAssociationStatus,
@@ -2344,6 +2459,7 @@ M.CreateVpcEndpointAssociationOutput = {
 
 M.DeleteFirewallInput = {
     type = "structure",
+    id = "DeleteFirewallInput",
     members = {
         FirewallName = {
             type = "string",
@@ -2356,6 +2472,7 @@ M.DeleteFirewallInput = {
 
 M.DeleteFirewallOutput = {
     type = "structure",
+    id = "DeleteFirewallOutput",
     members = {
         Firewall = M.Firewall,
         FirewallStatus = M.FirewallStatus,
@@ -2364,6 +2481,7 @@ M.DeleteFirewallOutput = {
 
 M.DeleteFirewallPolicyInput = {
     type = "structure",
+    id = "DeleteFirewallPolicyInput",
     members = {
         FirewallPolicyName = {
             type = "string",
@@ -2376,6 +2494,7 @@ M.DeleteFirewallPolicyInput = {
 
 M.DeleteFirewallPolicyOutput = {
     type = "structure",
+    id = "DeleteFirewallPolicyOutput",
     members = {
         FirewallPolicyResponse = setmetatable({ traits = {
             required = true,
@@ -2385,6 +2504,7 @@ M.DeleteFirewallPolicyOutput = {
 
 M.DeleteNetworkFirewallTransitGatewayAttachmentInput = {
     type = "structure",
+    id = "DeleteNetworkFirewallTransitGatewayAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -2397,6 +2517,7 @@ M.DeleteNetworkFirewallTransitGatewayAttachmentInput = {
 
 M.DeleteNetworkFirewallTransitGatewayAttachmentOutput = {
     type = "structure",
+    id = "DeleteNetworkFirewallTransitGatewayAttachmentOutput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -2415,6 +2536,7 @@ M.DeleteNetworkFirewallTransitGatewayAttachmentOutput = {
 
 M.DeleteProxyInput = {
     type = "structure",
+    id = "DeleteProxyInput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -2433,6 +2555,7 @@ M.DeleteProxyInput = {
 
 M.DeleteProxyOutput = {
     type = "structure",
+    id = "DeleteProxyOutput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -2448,6 +2571,7 @@ M.DeleteProxyOutput = {
 
 M.DeleteProxyConfigurationInput = {
     type = "structure",
+    id = "DeleteProxyConfigurationInput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -2460,6 +2584,7 @@ M.DeleteProxyConfigurationInput = {
 
 M.DeleteProxyConfigurationOutput = {
     type = "structure",
+    id = "DeleteProxyConfigurationOutput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -2472,6 +2597,7 @@ M.DeleteProxyConfigurationOutput = {
 
 M.DeleteProxyRuleGroupInput = {
     type = "structure",
+    id = "DeleteProxyRuleGroupInput",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -2484,6 +2610,7 @@ M.DeleteProxyRuleGroupInput = {
 
 M.DeleteProxyRuleGroupOutput = {
     type = "structure",
+    id = "DeleteProxyRuleGroupOutput",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -2496,6 +2623,7 @@ M.DeleteProxyRuleGroupOutput = {
 
 M.DeleteProxyRulesInput = {
     type = "structure",
+    id = "DeleteProxyRulesInput",
     members = {
         ProxyRuleGroupArn = {
             type = "string",
@@ -2515,6 +2643,7 @@ M.DeleteProxyRulesInput = {
 
 M.DeleteProxyRulesOutput = {
     type = "structure",
+    id = "DeleteProxyRulesOutput",
     members = {
         ProxyRuleGroup = M.ProxyRuleGroup,
     },
@@ -2522,6 +2651,7 @@ M.DeleteProxyRulesOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2534,10 +2664,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.InvalidResourcePolicyException = {
     type = "structure",
+    id = "InvalidResourcePolicyException",
     error = "client",
     members = {
         Message = {
@@ -2548,6 +2680,7 @@ M.InvalidResourcePolicyException = {
 
 M.DeleteRuleGroupInput = {
     type = "structure",
+    id = "DeleteRuleGroupInput",
     members = {
         RuleGroupName = {
             type = "string",
@@ -2563,6 +2696,7 @@ M.DeleteRuleGroupInput = {
 
 M.DeleteRuleGroupOutput = {
     type = "structure",
+    id = "DeleteRuleGroupOutput",
     members = {
         RuleGroupResponse = setmetatable({ traits = {
             required = true,
@@ -2572,6 +2706,7 @@ M.DeleteRuleGroupOutput = {
 
 M.DeleteTLSInspectionConfigurationInput = {
     type = "structure",
+    id = "DeleteTLSInspectionConfigurationInput",
     members = {
         TLSInspectionConfigurationArn = {
             type = "string",
@@ -2584,6 +2719,7 @@ M.DeleteTLSInspectionConfigurationInput = {
 
 M.DeleteTLSInspectionConfigurationOutput = {
     type = "structure",
+    id = "DeleteTLSInspectionConfigurationOutput",
     members = {
         TLSInspectionConfigurationResponse = setmetatable({ traits = {
             required = true,
@@ -2593,6 +2729,7 @@ M.DeleteTLSInspectionConfigurationOutput = {
 
 M.DeleteVpcEndpointAssociationInput = {
     type = "structure",
+    id = "DeleteVpcEndpointAssociationInput",
     members = {
         VpcEndpointAssociationArn = {
             type = "string",
@@ -2605,6 +2742,7 @@ M.DeleteVpcEndpointAssociationInput = {
 
 M.DeleteVpcEndpointAssociationOutput = {
     type = "structure",
+    id = "DeleteVpcEndpointAssociationOutput",
     members = {
         VpcEndpointAssociation = M.VpcEndpointAssociation,
         VpcEndpointAssociationStatus = M.VpcEndpointAssociationStatus,
@@ -2613,6 +2751,7 @@ M.DeleteVpcEndpointAssociationOutput = {
 
 M.DescribeFirewallInput = {
     type = "structure",
+    id = "DescribeFirewallInput",
     members = {
         FirewallName = {
             type = "string",
@@ -2625,6 +2764,7 @@ M.DescribeFirewallInput = {
 
 M.DescribeFirewallOutput = {
     type = "structure",
+    id = "DescribeFirewallOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -2636,6 +2776,7 @@ M.DescribeFirewallOutput = {
 
 M.DescribeFirewallMetadataInput = {
     type = "structure",
+    id = "DescribeFirewallMetadataInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -2645,6 +2786,7 @@ M.DescribeFirewallMetadataInput = {
 
 M.DescribeFirewallMetadataOutput = {
     type = "structure",
+    id = "DescribeFirewallMetadataOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -2671,6 +2813,7 @@ M.DescribeFirewallMetadataOutput = {
 
 M.DescribeFirewallPolicyInput = {
     type = "structure",
+    id = "DescribeFirewallPolicyInput",
     members = {
         FirewallPolicyName = {
             type = "string",
@@ -2683,6 +2826,7 @@ M.DescribeFirewallPolicyInput = {
 
 M.DescribeFirewallPolicyOutput = {
     type = "structure",
+    id = "DescribeFirewallPolicyOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -2699,6 +2843,7 @@ M.DescribeFirewallPolicyOutput = {
 
 M.DescribeFlowOperationInput = {
     type = "structure",
+    id = "DescribeFlowOperationInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -2726,6 +2871,7 @@ M.DescribeFlowOperationInput = {
 
 M.FlowFilter = {
     type = "structure",
+    id = "FlowFilter",
     members = {
         SourceAddress = M.Address,
         DestinationAddress = M.Address,
@@ -2744,6 +2890,7 @@ M.FlowFilter = {
 
 M.FlowOperation = {
     type = "structure",
+    id = "FlowOperation",
     members = {
         MinimumFlowAgeInSeconds = {
             type = "integer",
@@ -2769,6 +2916,7 @@ M.FlowOperationType = {
 
 M.DescribeFlowOperationOutput = {
     type = "structure",
+    id = "DescribeFlowOperationOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -2803,6 +2951,7 @@ M.DescribeFlowOperationOutput = {
 
 M.DescribeLoggingConfigurationInput = {
     type = "structure",
+    id = "DescribeLoggingConfigurationInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -2827,6 +2976,7 @@ M.LogType = {
 
 M.LogDestinationConfig = {
     type = "structure",
+    id = "LogDestinationConfig",
     members = {
         LogType = {
             type = "string",
@@ -2853,6 +3003,7 @@ M.LogDestinationConfig = {
 
 M.LoggingConfiguration = {
     type = "structure",
+    id = "LoggingConfiguration",
     members = {
         LogDestinationConfigs = {
             type = "list",
@@ -2866,6 +3017,7 @@ M.LoggingConfiguration = {
 
 M.DescribeLoggingConfigurationOutput = {
     type = "structure",
+    id = "DescribeLoggingConfigurationOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -2879,6 +3031,7 @@ M.DescribeLoggingConfigurationOutput = {
 
 M.DescribeProxyInput = {
     type = "structure",
+    id = "DescribeProxyInput",
     members = {
         ProxyName = {
             type = "string",
@@ -2891,6 +3044,7 @@ M.DescribeProxyInput = {
 
 M.DescribeProxyResource = {
     type = "structure",
+    id = "DescribeProxyResource",
     members = {
         ProxyName = {
             type = "string",
@@ -2948,6 +3102,7 @@ M.DescribeProxyResource = {
 
 M.DescribeProxyOutput = {
     type = "structure",
+    id = "DescribeProxyOutput",
     members = {
         Proxy = M.DescribeProxyResource,
         UpdateToken = {
@@ -2958,6 +3113,7 @@ M.DescribeProxyOutput = {
 
 M.DescribeProxyConfigurationInput = {
     type = "structure",
+    id = "DescribeProxyConfigurationInput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -2970,6 +3126,7 @@ M.DescribeProxyConfigurationInput = {
 
 M.DescribeProxyConfigurationOutput = {
     type = "structure",
+    id = "DescribeProxyConfigurationOutput",
     members = {
         ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
@@ -2980,6 +3137,7 @@ M.DescribeProxyConfigurationOutput = {
 
 M.DescribeProxyRuleInput = {
     type = "structure",
+    id = "DescribeProxyRuleInput",
     members = {
         ProxyRuleName = {
             type = "string",
@@ -2998,6 +3156,7 @@ M.DescribeProxyRuleInput = {
 
 M.DescribeProxyRuleOutput = {
     type = "structure",
+    id = "DescribeProxyRuleOutput",
     members = {
         ProxyRule = M.ProxyRule,
         UpdateToken = {
@@ -3008,6 +3167,7 @@ M.DescribeProxyRuleOutput = {
 
 M.DescribeProxyRuleGroupInput = {
     type = "structure",
+    id = "DescribeProxyRuleGroupInput",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -3020,6 +3180,7 @@ M.DescribeProxyRuleGroupInput = {
 
 M.DescribeProxyRuleGroupOutput = {
     type = "structure",
+    id = "DescribeProxyRuleGroupOutput",
     members = {
         ProxyRuleGroup = M.ProxyRuleGroup,
         UpdateToken = {
@@ -3030,6 +3191,7 @@ M.DescribeProxyRuleGroupOutput = {
 
 M.DescribeResourcePolicyInput = {
     type = "structure",
+    id = "DescribeResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3042,6 +3204,7 @@ M.DescribeResourcePolicyInput = {
 
 M.DescribeResourcePolicyOutput = {
     type = "structure",
+    id = "DescribeResourcePolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -3051,6 +3214,7 @@ M.DescribeResourcePolicyOutput = {
 
 M.DescribeRuleGroupInput = {
     type = "structure",
+    id = "DescribeRuleGroupInput",
     members = {
         RuleGroupName = {
             type = "string",
@@ -3072,6 +3236,7 @@ M.DescribeRuleGroupInput = {
 
 M.DescribeRuleGroupOutput = {
     type = "structure",
+    id = "DescribeRuleGroupOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -3088,6 +3253,7 @@ M.DescribeRuleGroupOutput = {
 
 M.DescribeRuleGroupMetadataInput = {
     type = "structure",
+    id = "DescribeRuleGroupMetadataInput",
     members = {
         RuleGroupName = {
             type = "string",
@@ -3103,6 +3269,7 @@ M.DescribeRuleGroupMetadataInput = {
 
 M.DescribeRuleGroupMetadataOutput = {
     type = "structure",
+    id = "DescribeRuleGroupMetadataOutput",
     members = {
         RuleGroupArn = {
             type = "string",
@@ -3143,6 +3310,7 @@ M.DescribeRuleGroupMetadataOutput = {
 
 M.DescribeRuleGroupSummaryInput = {
     type = "structure",
+    id = "DescribeRuleGroupSummaryInput",
     members = {
         RuleGroupName = {
             type = "string",
@@ -3158,6 +3326,7 @@ M.DescribeRuleGroupSummaryInput = {
 
 M.RuleSummary = {
     type = "structure",
+    id = "RuleSummary",
     members = {
         SID = {
             type = "string",
@@ -3173,6 +3342,7 @@ M.RuleSummary = {
 
 M.Summary = {
     type = "structure",
+    id = "Summary",
     members = {
         RuleSummaries = {
             type = "list",
@@ -3183,6 +3353,7 @@ M.Summary = {
 
 M.DescribeRuleGroupSummaryOutput = {
     type = "structure",
+    id = "DescribeRuleGroupSummaryOutput",
     members = {
         RuleGroupName = {
             type = "string",
@@ -3199,6 +3370,7 @@ M.DescribeRuleGroupSummaryOutput = {
 
 M.DescribeTLSInspectionConfigurationInput = {
     type = "structure",
+    id = "DescribeTLSInspectionConfigurationInput",
     members = {
         TLSInspectionConfigurationArn = {
             type = "string",
@@ -3211,6 +3383,7 @@ M.DescribeTLSInspectionConfigurationInput = {
 
 M.DescribeTLSInspectionConfigurationOutput = {
     type = "structure",
+    id = "DescribeTLSInspectionConfigurationOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -3227,6 +3400,7 @@ M.DescribeTLSInspectionConfigurationOutput = {
 
 M.DescribeVpcEndpointAssociationInput = {
     type = "structure",
+    id = "DescribeVpcEndpointAssociationInput",
     members = {
         VpcEndpointAssociationArn = {
             type = "string",
@@ -3239,6 +3413,7 @@ M.DescribeVpcEndpointAssociationInput = {
 
 M.DescribeVpcEndpointAssociationOutput = {
     type = "structure",
+    id = "DescribeVpcEndpointAssociationOutput",
     members = {
         VpcEndpointAssociation = M.VpcEndpointAssociation,
         VpcEndpointAssociationStatus = M.VpcEndpointAssociationStatus,
@@ -3247,6 +3422,7 @@ M.DescribeVpcEndpointAssociationOutput = {
 
 M.DetachRuleGroupsFromProxyConfigurationInput = {
     type = "structure",
+    id = "DetachRuleGroupsFromProxyConfigurationInput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -3273,6 +3449,7 @@ M.DetachRuleGroupsFromProxyConfigurationInput = {
 
 M.DetachRuleGroupsFromProxyConfigurationOutput = {
     type = "structure",
+    id = "DetachRuleGroupsFromProxyConfigurationOutput",
     members = {
         ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
@@ -3283,6 +3460,7 @@ M.DetachRuleGroupsFromProxyConfigurationOutput = {
 
 M.DisassociateAvailabilityZonesInput = {
     type = "structure",
+    id = "DisassociateAvailabilityZonesInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -3305,6 +3483,7 @@ M.DisassociateAvailabilityZonesInput = {
 
 M.DisassociateAvailabilityZonesOutput = {
     type = "structure",
+    id = "DisassociateAvailabilityZonesOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -3324,6 +3503,7 @@ M.DisassociateAvailabilityZonesOutput = {
 
 M.DisassociateSubnetsInput = {
     type = "structure",
+    id = "DisassociateSubnetsInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -3346,6 +3526,7 @@ M.DisassociateSubnetsInput = {
 
 M.DisassociateSubnetsOutput = {
     type = "structure",
+    id = "DisassociateSubnetsOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -3365,6 +3546,7 @@ M.DisassociateSubnetsOutput = {
 
 M.FirewallMetadata = {
     type = "structure",
+    id = "FirewallMetadata",
     members = {
         FirewallName = {
             type = "string",
@@ -3380,6 +3562,7 @@ M.FirewallMetadata = {
 
 M.FirewallPolicyMetadata = {
     type = "structure",
+    id = "FirewallPolicyMetadata",
     members = {
         Name = {
             type = "string",
@@ -3392,6 +3575,7 @@ M.FirewallPolicyMetadata = {
 
 M.Flow = {
     type = "structure",
+    id = "Flow",
     members = {
         SourceAddress = M.Address,
         DestinationAddress = M.Address,
@@ -3421,6 +3605,7 @@ M.Flow = {
 
 M.FlowOperationMetadata = {
     type = "structure",
+    id = "FlowOperationMetadata",
     members = {
         FlowOperationId = {
             type = "string",
@@ -3439,6 +3624,7 @@ M.FlowOperationMetadata = {
 
 M.GetAnalysisReportResultsInput = {
     type = "structure",
+    id = "GetAnalysisReportResultsInput",
     members = {
         FirewallName = {
             type = "string",
@@ -3463,6 +3649,7 @@ M.GetAnalysisReportResultsInput = {
 
 M.GetAnalysisReportResultsOutput = {
     type = "structure",
+    id = "GetAnalysisReportResultsOutput",
     members = {
         Status = {
             type = "string",
@@ -3491,6 +3678,7 @@ M.GetAnalysisReportResultsOutput = {
 
 M.ListAnalysisReportsInput = {
     type = "structure",
+    id = "ListAnalysisReportsInput",
     members = {
         FirewallName = {
             type = "string",
@@ -3509,6 +3697,7 @@ M.ListAnalysisReportsInput = {
 
 M.ListAnalysisReportsOutput = {
     type = "structure",
+    id = "ListAnalysisReportsOutput",
     members = {
         AnalysisReports = {
             type = "list",
@@ -3522,6 +3711,7 @@ M.ListAnalysisReportsOutput = {
 
 M.ListFirewallPoliciesInput = {
     type = "structure",
+    id = "ListFirewallPoliciesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3534,6 +3724,7 @@ M.ListFirewallPoliciesInput = {
 
 M.ListFirewallPoliciesOutput = {
     type = "structure",
+    id = "ListFirewallPoliciesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3547,6 +3738,7 @@ M.ListFirewallPoliciesOutput = {
 
 M.ListFirewallsInput = {
     type = "structure",
+    id = "ListFirewallsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3563,6 +3755,7 @@ M.ListFirewallsInput = {
 
 M.ListFirewallsOutput = {
     type = "structure",
+    id = "ListFirewallsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3576,6 +3769,7 @@ M.ListFirewallsOutput = {
 
 M.ListFlowOperationResultsInput = {
     type = "structure",
+    id = "ListFlowOperationResultsInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -3609,6 +3803,7 @@ M.ListFlowOperationResultsInput = {
 
 M.ListFlowOperationResultsOutput = {
     type = "structure",
+    id = "ListFlowOperationResultsOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -3646,6 +3841,7 @@ M.ListFlowOperationResultsOutput = {
 
 M.ListFlowOperationsInput = {
     type = "structure",
+    id = "ListFlowOperationsInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -3676,6 +3872,7 @@ M.ListFlowOperationsInput = {
 
 M.ListFlowOperationsOutput = {
     type = "structure",
+    id = "ListFlowOperationsOutput",
     members = {
         FlowOperations = {
             type = "list",
@@ -3689,6 +3886,7 @@ M.ListFlowOperationsOutput = {
 
 M.ListProxiesInput = {
     type = "structure",
+    id = "ListProxiesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3701,6 +3899,7 @@ M.ListProxiesInput = {
 
 M.ProxyMetadata = {
     type = "structure",
+    id = "ProxyMetadata",
     members = {
         Name = {
             type = "string",
@@ -3713,6 +3912,7 @@ M.ProxyMetadata = {
 
 M.ListProxiesOutput = {
     type = "structure",
+    id = "ListProxiesOutput",
     members = {
         Proxies = {
             type = "list",
@@ -3726,6 +3926,7 @@ M.ListProxiesOutput = {
 
 M.ListProxyConfigurationsInput = {
     type = "structure",
+    id = "ListProxyConfigurationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3738,6 +3939,7 @@ M.ListProxyConfigurationsInput = {
 
 M.ProxyConfigurationMetadata = {
     type = "structure",
+    id = "ProxyConfigurationMetadata",
     members = {
         Name = {
             type = "string",
@@ -3750,6 +3952,7 @@ M.ProxyConfigurationMetadata = {
 
 M.ListProxyConfigurationsOutput = {
     type = "structure",
+    id = "ListProxyConfigurationsOutput",
     members = {
         ProxyConfigurations = {
             type = "list",
@@ -3763,6 +3966,7 @@ M.ListProxyConfigurationsOutput = {
 
 M.ListProxyRuleGroupsInput = {
     type = "structure",
+    id = "ListProxyRuleGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3775,6 +3979,7 @@ M.ListProxyRuleGroupsInput = {
 
 M.ProxyRuleGroupMetadata = {
     type = "structure",
+    id = "ProxyRuleGroupMetadata",
     members = {
         Name = {
             type = "string",
@@ -3787,6 +3992,7 @@ M.ProxyRuleGroupMetadata = {
 
 M.ListProxyRuleGroupsOutput = {
     type = "structure",
+    id = "ListProxyRuleGroupsOutput",
     members = {
         ProxyRuleGroups = {
             type = "list",
@@ -3817,6 +4023,7 @@ M.SubscriptionStatus = {
 
 M.ListRuleGroupsInput = {
     type = "structure",
+    id = "ListRuleGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3841,6 +4048,7 @@ M.ListRuleGroupsInput = {
 
 M.RuleGroupMetadata = {
     type = "structure",
+    id = "RuleGroupMetadata",
     members = {
         Name = {
             type = "string",
@@ -3856,6 +4064,7 @@ M.RuleGroupMetadata = {
 
 M.ListRuleGroupsOutput = {
     type = "structure",
+    id = "ListRuleGroupsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3869,6 +4078,7 @@ M.ListRuleGroupsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         NextToken = {
             type = "string",
@@ -3887,6 +4097,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3900,6 +4111,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTLSInspectionConfigurationsInput = {
     type = "structure",
+    id = "ListTLSInspectionConfigurationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3912,6 +4124,7 @@ M.ListTLSInspectionConfigurationsInput = {
 
 M.TLSInspectionConfigurationMetadata = {
     type = "structure",
+    id = "TLSInspectionConfigurationMetadata",
     members = {
         Name = {
             type = "string",
@@ -3924,6 +4137,7 @@ M.TLSInspectionConfigurationMetadata = {
 
 M.ListTLSInspectionConfigurationsOutput = {
     type = "structure",
+    id = "ListTLSInspectionConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3937,6 +4151,7 @@ M.ListTLSInspectionConfigurationsOutput = {
 
 M.ListVpcEndpointAssociationsInput = {
     type = "structure",
+    id = "ListVpcEndpointAssociationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3952,6 +4167,7 @@ M.ListVpcEndpointAssociationsInput = {
 
 M.VpcEndpointAssociationMetadata = {
     type = "structure",
+    id = "VpcEndpointAssociationMetadata",
     members = {
         VpcEndpointAssociationArn = {
             type = "string",
@@ -3961,6 +4177,7 @@ M.VpcEndpointAssociationMetadata = {
 
 M.ListVpcEndpointAssociationsOutput = {
     type = "structure",
+    id = "ListVpcEndpointAssociationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -3974,6 +4191,7 @@ M.ListVpcEndpointAssociationsOutput = {
 
 M.LogDestinationPermissionException = {
     type = "structure",
+    id = "LogDestinationPermissionException",
     error = "client",
     members = {
         Message = {
@@ -3984,6 +4202,7 @@ M.LogDestinationPermissionException = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4002,10 +4221,12 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
 }
 
 M.RejectNetworkFirewallTransitGatewayAttachmentInput = {
     type = "structure",
+    id = "RejectNetworkFirewallTransitGatewayAttachmentInput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -4018,6 +4239,7 @@ M.RejectNetworkFirewallTransitGatewayAttachmentInput = {
 
 M.RejectNetworkFirewallTransitGatewayAttachmentOutput = {
     type = "structure",
+    id = "RejectNetworkFirewallTransitGatewayAttachmentOutput",
     members = {
         TransitGatewayAttachmentId = {
             type = "string",
@@ -4036,6 +4258,7 @@ M.RejectNetworkFirewallTransitGatewayAttachmentOutput = {
 
 M.StartAnalysisReportInput = {
     type = "structure",
+    id = "StartAnalysisReportInput",
     members = {
         FirewallName = {
             type = "string",
@@ -4054,6 +4277,7 @@ M.StartAnalysisReportInput = {
 
 M.StartAnalysisReportOutput = {
     type = "structure",
+    id = "StartAnalysisReportOutput",
     members = {
         AnalysisReportId = {
             type = "string",
@@ -4066,6 +4290,7 @@ M.StartAnalysisReportOutput = {
 
 M.StartFlowCaptureInput = {
     type = "structure",
+    id = "StartFlowCaptureInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4097,6 +4322,7 @@ M.StartFlowCaptureInput = {
 
 M.StartFlowCaptureOutput = {
     type = "structure",
+    id = "StartFlowCaptureOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4112,6 +4338,7 @@ M.StartFlowCaptureOutput = {
 
 M.StartFlowFlushInput = {
     type = "structure",
+    id = "StartFlowFlushInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4143,6 +4370,7 @@ M.StartFlowFlushInput = {
 
 M.StartFlowFlushOutput = {
     type = "structure",
+    id = "StartFlowFlushOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4158,6 +4386,7 @@ M.StartFlowFlushOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4177,10 +4406,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4200,10 +4431,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ResourceOwnerCheckException = {
     type = "structure",
+    id = "ResourceOwnerCheckException",
     error = "client",
     members = {
         Message = {
@@ -4214,6 +4447,7 @@ M.ResourceOwnerCheckException = {
 
 M.UpdateAvailabilityZoneChangeProtectionInput = {
     type = "structure",
+    id = "UpdateAvailabilityZoneChangeProtectionInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4236,6 +4470,7 @@ M.UpdateAvailabilityZoneChangeProtectionInput = {
 
 M.UpdateAvailabilityZoneChangeProtectionOutput = {
     type = "structure",
+    id = "UpdateAvailabilityZoneChangeProtectionOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4257,6 +4492,7 @@ M.UpdateAvailabilityZoneChangeProtectionOutput = {
 
 M.UpdateFirewallAnalysisSettingsInput = {
     type = "structure",
+    id = "UpdateFirewallAnalysisSettingsInput",
     members = {
         EnabledAnalysisTypes = {
             type = "list",
@@ -4276,6 +4512,7 @@ M.UpdateFirewallAnalysisSettingsInput = {
 
 M.UpdateFirewallAnalysisSettingsOutput = {
     type = "structure",
+    id = "UpdateFirewallAnalysisSettingsOutput",
     members = {
         EnabledAnalysisTypes = {
             type = "list",
@@ -4295,6 +4532,7 @@ M.UpdateFirewallAnalysisSettingsOutput = {
 
 M.UpdateFirewallDeleteProtectionInput = {
     type = "structure",
+    id = "UpdateFirewallDeleteProtectionInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4317,6 +4555,7 @@ M.UpdateFirewallDeleteProtectionInput = {
 
 M.UpdateFirewallDeleteProtectionOutput = {
     type = "structure",
+    id = "UpdateFirewallDeleteProtectionOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4338,6 +4577,7 @@ M.UpdateFirewallDeleteProtectionOutput = {
 
 M.UpdateFirewallDescriptionInput = {
     type = "structure",
+    id = "UpdateFirewallDescriptionInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4356,6 +4596,7 @@ M.UpdateFirewallDescriptionInput = {
 
 M.UpdateFirewallDescriptionOutput = {
     type = "structure",
+    id = "UpdateFirewallDescriptionOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4374,6 +4615,7 @@ M.UpdateFirewallDescriptionOutput = {
 
 M.UpdateFirewallEncryptionConfigurationInput = {
     type = "structure",
+    id = "UpdateFirewallEncryptionConfigurationInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4390,6 +4632,7 @@ M.UpdateFirewallEncryptionConfigurationInput = {
 
 M.UpdateFirewallEncryptionConfigurationOutput = {
     type = "structure",
+    id = "UpdateFirewallEncryptionConfigurationOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4406,6 +4649,7 @@ M.UpdateFirewallEncryptionConfigurationOutput = {
 
 M.UpdateFirewallPolicyInput = {
     type = "structure",
+    id = "UpdateFirewallPolicyInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4437,6 +4681,7 @@ M.UpdateFirewallPolicyInput = {
 
 M.UpdateFirewallPolicyOutput = {
     type = "structure",
+    id = "UpdateFirewallPolicyOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4452,6 +4697,7 @@ M.UpdateFirewallPolicyOutput = {
 
 M.UpdateFirewallPolicyChangeProtectionInput = {
     type = "structure",
+    id = "UpdateFirewallPolicyChangeProtectionInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4474,6 +4720,7 @@ M.UpdateFirewallPolicyChangeProtectionInput = {
 
 M.UpdateFirewallPolicyChangeProtectionOutput = {
     type = "structure",
+    id = "UpdateFirewallPolicyChangeProtectionOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4495,6 +4742,7 @@ M.UpdateFirewallPolicyChangeProtectionOutput = {
 
 M.UpdateLoggingConfigurationInput = {
     type = "structure",
+    id = "UpdateLoggingConfigurationInput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4511,6 +4759,7 @@ M.UpdateLoggingConfigurationInput = {
 
 M.UpdateLoggingConfigurationOutput = {
     type = "structure",
+    id = "UpdateLoggingConfigurationOutput",
     members = {
         FirewallArn = {
             type = "string",
@@ -4527,6 +4776,7 @@ M.UpdateLoggingConfigurationOutput = {
 
 M.UpdateProxyInput = {
     type = "structure",
+    id = "UpdateProxyInput",
     members = {
         NatGatewayId = {
             type = "string",
@@ -4560,6 +4810,7 @@ M.UpdateProxyInput = {
 
 M.UpdateProxyOutput = {
     type = "structure",
+    id = "UpdateProxyOutput",
     members = {
         Proxy = M.Proxy,
         UpdateToken = {
@@ -4570,6 +4821,7 @@ M.UpdateProxyOutput = {
 
 M.UpdateProxyConfigurationInput = {
     type = "structure",
+    id = "UpdateProxyConfigurationInput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -4591,6 +4843,7 @@ M.UpdateProxyConfigurationInput = {
 
 M.UpdateProxyConfigurationOutput = {
     type = "structure",
+    id = "UpdateProxyConfigurationOutput",
     members = {
         ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
@@ -4601,6 +4854,7 @@ M.UpdateProxyConfigurationOutput = {
 
 M.UpdateProxyRuleInput = {
     type = "structure",
+    id = "UpdateProxyRuleInput",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -4639,6 +4893,7 @@ M.UpdateProxyRuleInput = {
 
 M.UpdateProxyRuleOutput = {
     type = "structure",
+    id = "UpdateProxyRuleOutput",
     members = {
         ProxyRule = M.ProxyRule,
         RemovedConditions = {
@@ -4653,6 +4908,7 @@ M.UpdateProxyRuleOutput = {
 
 M.ProxyRuleGroupPriority = {
     type = "structure",
+    id = "ProxyRuleGroupPriority",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -4665,6 +4921,7 @@ M.ProxyRuleGroupPriority = {
 
 M.UpdateProxyRuleGroupPrioritiesInput = {
     type = "structure",
+    id = "UpdateProxyRuleGroupPrioritiesInput",
     members = {
         ProxyConfigurationName = {
             type = "string",
@@ -4690,6 +4947,7 @@ M.UpdateProxyRuleGroupPrioritiesInput = {
 
 M.ProxyRuleGroupPriorityResult = {
     type = "structure",
+    id = "ProxyRuleGroupPriorityResult",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -4702,6 +4960,7 @@ M.ProxyRuleGroupPriorityResult = {
 
 M.UpdateProxyRuleGroupPrioritiesOutput = {
     type = "structure",
+    id = "UpdateProxyRuleGroupPrioritiesOutput",
     members = {
         ProxyRuleGroups = {
             type = "list",
@@ -4721,6 +4980,7 @@ M.RuleGroupRequestPhase = {
 
 M.ProxyRulePriority = {
     type = "structure",
+    id = "ProxyRulePriority",
     members = {
         ProxyRuleName = {
             type = "string",
@@ -4733,6 +4993,7 @@ M.ProxyRulePriority = {
 
 M.UpdateProxyRulePrioritiesInput = {
     type = "structure",
+    id = "UpdateProxyRulePrioritiesInput",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -4764,6 +5025,7 @@ M.UpdateProxyRulePrioritiesInput = {
 
 M.UpdateProxyRulePrioritiesOutput = {
     type = "structure",
+    id = "UpdateProxyRulePrioritiesOutput",
     members = {
         ProxyRuleGroupName = {
             type = "string",
@@ -4786,6 +5048,7 @@ M.UpdateProxyRulePrioritiesOutput = {
 
 M.UpdateRuleGroupInput = {
     type = "structure",
+    id = "UpdateRuleGroupInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4829,6 +5092,7 @@ M.UpdateRuleGroupInput = {
 
 M.UpdateRuleGroupOutput = {
     type = "structure",
+    id = "UpdateRuleGroupOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4844,6 +5108,7 @@ M.UpdateRuleGroupOutput = {
 
 M.UpdateSubnetChangeProtectionInput = {
     type = "structure",
+    id = "UpdateSubnetChangeProtectionInput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4866,6 +5131,7 @@ M.UpdateSubnetChangeProtectionInput = {
 
 M.UpdateSubnetChangeProtectionOutput = {
     type = "structure",
+    id = "UpdateSubnetChangeProtectionOutput",
     members = {
         UpdateToken = {
             type = "string",
@@ -4887,6 +5153,7 @@ M.UpdateSubnetChangeProtectionOutput = {
 
 M.UpdateTLSInspectionConfigurationInput = {
     type = "structure",
+    id = "UpdateTLSInspectionConfigurationInput",
     members = {
         TLSInspectionConfigurationArn = {
             type = "string",
@@ -4912,6 +5179,7 @@ M.UpdateTLSInspectionConfigurationInput = {
 
 M.UpdateTLSInspectionConfigurationOutput = {
     type = "structure",
+    id = "UpdateTLSInspectionConfigurationOutput",
     members = {
         UpdateToken = {
             type = "string",

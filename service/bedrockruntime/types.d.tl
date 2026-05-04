@@ -491,19 +491,19 @@ local record ValidationException
     message: string
 end
 
+local type AsyncInvokeStatus = "InProgress" | "Completed" | "Failed"
+
 local type ServiceTierType = "priority" | "default" | "flex" | "reserved"
+
+local type SortOrder = "Ascending" | "Descending"
+
+local type PerformanceConfigLatency = "standard" | "optimized"
 
 local type Trace = "ENABLED" | "DISABLED" | "ENABLED_FULL"
 
 local type GuardrailAction = "NONE" | "GUARDRAIL_INTERVENED"
 
-local type PerformanceConfigLatency = "standard" | "optimized"
-
-local type SortOrder = "Ascending" | "Descending"
-
 local type SortAsyncInvocationBy = "SubmissionTime"
-
-local type AsyncInvokeStatus = "InProgress" | "Completed" | "Failed"
 
 local type GuardrailContentSource = "INPUT" | "OUTPUT"
 

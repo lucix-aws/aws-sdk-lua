@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -48,6 +50,7 @@ M.DnsProtocol = {
 
 M.CreateAccessSourceInput = {
     type = "structure",
+    id = "CreateAccessSourceInput",
     members = {
         cidr = {
             type = "string",
@@ -99,6 +102,7 @@ M.CRResourceStatus = {
 
 M.CreateAccessSourceOutput = {
     type = "structure",
+    id = "CreateAccessSourceOutput",
     members = {
         arn = {
             type = "string",
@@ -164,6 +168,7 @@ M.CreateAccessSourceOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -183,6 +188,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -205,6 +211,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -233,6 +240,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -258,6 +266,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -283,6 +292,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -306,6 +316,7 @@ M.ValidationException = {
 
 M.DeleteAccessSourceInput = {
     type = "structure",
+    id = "DeleteAccessSourceInput",
     members = {
         accessSourceId = {
             type = "string",
@@ -319,6 +330,7 @@ M.DeleteAccessSourceInput = {
 
 M.DeleteAccessSourceOutput = {
     type = "structure",
+    id = "DeleteAccessSourceOutput",
     members = {
         arn = {
             type = "string",
@@ -384,6 +396,7 @@ M.DeleteAccessSourceOutput = {
 
 M.GetAccessSourceInput = {
     type = "structure",
+    id = "GetAccessSourceInput",
     members = {
         accessSourceId = {
             type = "string",
@@ -397,6 +410,7 @@ M.GetAccessSourceInput = {
 
 M.GetAccessSourceOutput = {
     type = "structure",
+    id = "GetAccessSourceOutput",
     members = {
         arn = {
             type = "string",
@@ -462,6 +476,7 @@ M.GetAccessSourceOutput = {
 
 M.ListAccessSourcesInput = {
     type = "structure",
+    id = "ListAccessSourcesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -488,6 +503,7 @@ M.ListAccessSourcesInput = {
 
 M.AccessSourcesItem = {
     type = "structure",
+    id = "AccessSourcesItem",
     members = {
         arn = {
             type = "string",
@@ -553,6 +569,7 @@ M.AccessSourcesItem = {
 
 M.ListAccessSourcesOutput = {
     type = "structure",
+    id = "ListAccessSourcesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -569,6 +586,7 @@ M.ListAccessSourcesOutput = {
 
 M.UpdateAccessSourceInput = {
     type = "structure",
+    id = "UpdateAccessSourceInput",
     members = {
         accessSourceId = {
             type = "string",
@@ -594,6 +612,7 @@ M.UpdateAccessSourceInput = {
 
 M.UpdateAccessSourceOutput = {
     type = "structure",
+    id = "UpdateAccessSourceOutput",
     members = {
         arn = {
             type = "string",
@@ -659,6 +678,7 @@ M.UpdateAccessSourceOutput = {
 
 M.CreateAccessTokenInput = {
     type = "structure",
+    id = "CreateAccessTokenInput",
     members = {
         clientToken = {
             type = "string",
@@ -698,6 +718,7 @@ M.TokenStatus = {
 
 M.CreateAccessTokenOutput = {
     type = "structure",
+    id = "CreateAccessTokenOutput",
     members = {
         id = {
             type = "string",
@@ -754,6 +775,7 @@ M.CreateAccessTokenOutput = {
 
 M.DeleteAccessTokenInput = {
     type = "structure",
+    id = "DeleteAccessTokenInput",
     members = {
         accessTokenId = {
             type = "string",
@@ -767,6 +789,7 @@ M.DeleteAccessTokenInput = {
 
 M.DeleteAccessTokenOutput = {
     type = "structure",
+    id = "DeleteAccessTokenOutput",
     members = {
         id = {
             type = "string",
@@ -792,6 +815,7 @@ M.DeleteAccessTokenOutput = {
 
 M.GetAccessTokenInput = {
     type = "structure",
+    id = "GetAccessTokenInput",
     members = {
         accessTokenId = {
             type = "string",
@@ -805,6 +829,7 @@ M.GetAccessTokenInput = {
 
 M.GetAccessTokenOutput = {
     type = "structure",
+    id = "GetAccessTokenOutput",
     members = {
         id = {
             type = "string",
@@ -874,6 +899,7 @@ M.GetAccessTokenOutput = {
 
 M.ListAccessTokensInput = {
     type = "structure",
+    id = "ListAccessTokensInput",
     members = {
         maxResults = {
             type = "integer",
@@ -907,6 +933,7 @@ M.ListAccessTokensInput = {
 
 M.AccessTokenItem = {
     type = "structure",
+    id = "AccessTokenItem",
     members = {
         id = {
             type = "string",
@@ -967,6 +994,7 @@ M.AccessTokenItem = {
 
 M.ListAccessTokensOutput = {
     type = "structure",
+    id = "ListAccessTokensOutput",
     members = {
         nextToken = {
             type = "string",
@@ -980,6 +1008,7 @@ M.ListAccessTokensOutput = {
 
 M.UpdateAccessTokenInput = {
     type = "structure",
+    id = "UpdateAccessTokenInput",
     members = {
         accessTokenId = {
             type = "string",
@@ -999,6 +1028,7 @@ M.UpdateAccessTokenInput = {
 
 M.UpdateAccessTokenOutput = {
     type = "structure",
+    id = "UpdateAccessTokenOutput",
     members = {
         id = {
             type = "string",
@@ -1017,6 +1047,7 @@ M.UpdateAccessTokenOutput = {
 
 M.AssociateHostedZoneInput = {
     type = "structure",
+    id = "AssociateHostedZoneInput",
     members = {
         hostedZoneId = {
             type = "string",
@@ -1048,6 +1079,7 @@ M.HostedZoneAssociationStatus = {
 
 M.AssociateHostedZoneOutput = {
     type = "structure",
+    id = "AssociateHostedZoneOutput",
     members = {
         id = {
             type = "string",
@@ -1132,6 +1164,7 @@ M.DnsAdvancedProtection = {
 
 M.BatchCreateFirewallRuleInputItem = {
     type = "structure",
+    id = "BatchCreateFirewallRuleInputItem",
     members = {
         action = {
             type = "string",
@@ -1192,6 +1225,7 @@ M.BatchCreateFirewallRuleInputItem = {
 
 M.BatchCreateFirewallRuleInput = {
     type = "structure",
+    id = "BatchCreateFirewallRuleInput",
     members = {
         firewallRules = {
             type = "list",
@@ -1205,6 +1239,7 @@ M.BatchCreateFirewallRuleInput = {
 
 M.BatchCreateFirewallRuleResult = {
     type = "structure",
+    id = "BatchCreateFirewallRuleResult",
     members = {
         action = {
             type = "string",
@@ -1286,6 +1321,7 @@ M.BatchCreateFirewallRuleResult = {
 
 M.BatchCreateFirewallRuleOutputItem = {
     type = "structure",
+    id = "BatchCreateFirewallRuleOutputItem",
     members = {
         firewallRule = setmetatable({ traits = {
             required = true,
@@ -1304,6 +1340,7 @@ M.BatchCreateFirewallRuleOutputItem = {
 
 M.BatchCreateFirewallRuleOutput = {
     type = "structure",
+    id = "BatchCreateFirewallRuleOutput",
     members = {
         failures = {
             type = "list",
@@ -1324,6 +1361,7 @@ M.BatchCreateFirewallRuleOutput = {
 
 M.BatchDeleteFirewallRuleInputItem = {
     type = "structure",
+    id = "BatchDeleteFirewallRuleInputItem",
     members = {
         firewallRuleId = {
             type = "string",
@@ -1336,6 +1374,7 @@ M.BatchDeleteFirewallRuleInputItem = {
 
 M.BatchDeleteFirewallRuleInput = {
     type = "structure",
+    id = "BatchDeleteFirewallRuleInput",
     members = {
         firewallRules = {
             type = "list",
@@ -1349,6 +1388,7 @@ M.BatchDeleteFirewallRuleInput = {
 
 M.BatchDeleteFirewallRuleResult = {
     type = "structure",
+    id = "BatchDeleteFirewallRuleResult",
     members = {
         clientToken = {
             type = "string",
@@ -1370,6 +1410,7 @@ M.BatchDeleteFirewallRuleResult = {
 
 M.BatchDeleteFirewallRuleOutputItem = {
     type = "structure",
+    id = "BatchDeleteFirewallRuleOutputItem",
     members = {
         firewallRule = setmetatable({ traits = {
             required = true,
@@ -1388,6 +1429,7 @@ M.BatchDeleteFirewallRuleOutputItem = {
 
 M.BatchDeleteFirewallRuleOutput = {
     type = "structure",
+    id = "BatchDeleteFirewallRuleOutput",
     members = {
         failures = {
             type = "list",
@@ -1408,6 +1450,7 @@ M.BatchDeleteFirewallRuleOutput = {
 
 M.BatchUpdateFirewallRuleInputItem = {
     type = "structure",
+    id = "BatchUpdateFirewallRuleInputItem",
     members = {
         action = {
             type = "string",
@@ -1450,6 +1493,7 @@ M.BatchUpdateFirewallRuleInputItem = {
 
 M.BatchUpdateFirewallRuleInput = {
     type = "structure",
+    id = "BatchUpdateFirewallRuleInput",
     members = {
         firewallRules = {
             type = "list",
@@ -1463,6 +1507,7 @@ M.BatchUpdateFirewallRuleInput = {
 
 M.BatchUpdateFirewallRuleResult = {
     type = "structure",
+    id = "BatchUpdateFirewallRuleResult",
     members = {
         action = {
             type = "string",
@@ -1532,6 +1577,7 @@ M.BatchUpdateFirewallRuleResult = {
 
 M.BatchUpdateFirewallRuleOutputItem = {
     type = "structure",
+    id = "BatchUpdateFirewallRuleOutputItem",
     members = {
         firewallRule = setmetatable({ traits = {
             required = true,
@@ -1550,6 +1596,7 @@ M.BatchUpdateFirewallRuleOutputItem = {
 
 M.BatchUpdateFirewallRuleOutput = {
     type = "structure",
+    id = "BatchUpdateFirewallRuleOutput",
     members = {
         failures = {
             type = "list",
@@ -1585,6 +1632,7 @@ M.FirewallRulesFailOpenType = {
 
 M.CreateDNSViewInput = {
     type = "structure",
+    id = "CreateDNSViewInput",
     members = {
         globalResolverId = {
             type = "string",
@@ -1646,6 +1694,7 @@ M.ProfileResourceStatus = {
 
 M.CreateDNSViewOutput = {
     type = "structure",
+    id = "CreateDNSViewOutput",
     members = {
         id = {
             type = "string",
@@ -1720,6 +1769,7 @@ M.CreateDNSViewOutput = {
 
 M.CreateFirewallDomainListInput = {
     type = "structure",
+    id = "CreateFirewallDomainListInput",
     members = {
         clientToken = {
             type = "string",
@@ -1753,6 +1803,7 @@ M.CreateFirewallDomainListInput = {
 
 M.CreateFirewallDomainListOutput = {
     type = "structure",
+    id = "CreateFirewallDomainListOutput",
     members = {
         arn = {
             type = "string",
@@ -1812,6 +1863,7 @@ M.CreateFirewallDomainListOutput = {
 
 M.CreateFirewallRuleInput = {
     type = "structure",
+    id = "CreateFirewallRuleInput",
     members = {
         action = {
             type = "string",
@@ -1872,6 +1924,7 @@ M.CreateFirewallRuleInput = {
 
 M.CreateFirewallRuleOutput = {
     type = "structure",
+    id = "CreateFirewallRuleOutput",
     members = {
         action = {
             type = "string",
@@ -1960,6 +2013,7 @@ M.GlobalResolverIpAddressType = {
 
 M.CreateGlobalResolverInput = {
     type = "structure",
+    id = "CreateGlobalResolverInput",
     members = {
         clientToken = {
             type = "string",
@@ -1999,6 +2053,7 @@ M.CreateGlobalResolverInput = {
 
 M.CreateGlobalResolverOutput = {
     type = "structure",
+    id = "CreateGlobalResolverOutput",
     members = {
         id = {
             type = "string",
@@ -2082,6 +2137,7 @@ M.CreateGlobalResolverOutput = {
 
 M.DeleteDNSViewInput = {
     type = "structure",
+    id = "DeleteDNSViewInput",
     members = {
         dnsViewId = {
             type = "string",
@@ -2095,6 +2151,7 @@ M.DeleteDNSViewInput = {
 
 M.DeleteDNSViewOutput = {
     type = "structure",
+    id = "DeleteDNSViewOutput",
     members = {
         id = {
             type = "string",
@@ -2169,6 +2226,7 @@ M.DeleteDNSViewOutput = {
 
 M.DeleteFirewallDomainListInput = {
     type = "structure",
+    id = "DeleteFirewallDomainListInput",
     members = {
         firewallDomainListId = {
             type = "string",
@@ -2182,6 +2240,7 @@ M.DeleteFirewallDomainListInput = {
 
 M.DeleteFirewallDomainListOutput = {
     type = "structure",
+    id = "DeleteFirewallDomainListOutput",
     members = {
         arn = {
             type = "string",
@@ -2212,6 +2271,7 @@ M.DeleteFirewallDomainListOutput = {
 
 M.DeleteFirewallRuleInput = {
     type = "structure",
+    id = "DeleteFirewallRuleInput",
     members = {
         firewallRuleId = {
             type = "string",
@@ -2225,6 +2285,7 @@ M.DeleteFirewallRuleInput = {
 
 M.DeleteFirewallRuleOutput = {
     type = "structure",
+    id = "DeleteFirewallRuleOutput",
     members = {
         action = {
             type = "string",
@@ -2308,6 +2369,7 @@ M.DeleteFirewallRuleOutput = {
 
 M.DeleteGlobalResolverInput = {
     type = "structure",
+    id = "DeleteGlobalResolverInput",
     members = {
         globalResolverId = {
             type = "string",
@@ -2321,6 +2383,7 @@ M.DeleteGlobalResolverInput = {
 
 M.DeleteGlobalResolverOutput = {
     type = "structure",
+    id = "DeleteGlobalResolverOutput",
     members = {
         id = {
             type = "string",
@@ -2404,6 +2467,7 @@ M.DeleteGlobalResolverOutput = {
 
 M.DisableDNSViewInput = {
     type = "structure",
+    id = "DisableDNSViewInput",
     members = {
         dnsViewId = {
             type = "string",
@@ -2417,6 +2481,7 @@ M.DisableDNSViewInput = {
 
 M.DisableDNSViewOutput = {
     type = "structure",
+    id = "DisableDNSViewOutput",
     members = {
         id = {
             type = "string",
@@ -2491,6 +2556,7 @@ M.DisableDNSViewOutput = {
 
 M.DisassociateHostedZoneInput = {
     type = "structure",
+    id = "DisassociateHostedZoneInput",
     members = {
         hostedZoneId = {
             type = "string",
@@ -2511,6 +2577,7 @@ M.DisassociateHostedZoneInput = {
 
 M.DisassociateHostedZoneOutput = {
     type = "structure",
+    id = "DisassociateHostedZoneOutput",
     members = {
         id = {
             type = "string",
@@ -2567,6 +2634,7 @@ M.DisassociateHostedZoneOutput = {
 
 M.EnableDNSViewInput = {
     type = "structure",
+    id = "EnableDNSViewInput",
     members = {
         dnsViewId = {
             type = "string",
@@ -2580,6 +2648,7 @@ M.EnableDNSViewInput = {
 
 M.EnableDNSViewOutput = {
     type = "structure",
+    id = "EnableDNSViewOutput",
     members = {
         id = {
             type = "string",
@@ -2654,6 +2723,7 @@ M.EnableDNSViewOutput = {
 
 M.GetDNSViewInput = {
     type = "structure",
+    id = "GetDNSViewInput",
     members = {
         dnsViewId = {
             type = "string",
@@ -2667,6 +2737,7 @@ M.GetDNSViewInput = {
 
 M.GetDNSViewOutput = {
     type = "structure",
+    id = "GetDNSViewOutput",
     members = {
         id = {
             type = "string",
@@ -2741,6 +2812,7 @@ M.GetDNSViewOutput = {
 
 M.ListDNSViewsInput = {
     type = "structure",
+    id = "ListDNSViewsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2766,6 +2838,7 @@ M.ListDNSViewsInput = {
 
 M.DNSViewSummary = {
     type = "structure",
+    id = "DNSViewSummary",
     members = {
         id = {
             type = "string",
@@ -2843,6 +2916,7 @@ M.DNSViewSummary = {
 
 M.ListDNSViewsOutput = {
     type = "structure",
+    id = "ListDNSViewsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2859,6 +2933,7 @@ M.ListDNSViewsOutput = {
 
 M.UpdateDNSViewInput = {
     type = "structure",
+    id = "UpdateDNSViewInput",
     members = {
         dnsViewId = {
             type = "string",
@@ -2887,6 +2962,7 @@ M.UpdateDNSViewInput = {
 
 M.UpdateDNSViewOutput = {
     type = "structure",
+    id = "UpdateDNSViewOutput",
     members = {
         id = {
             type = "string",
@@ -2961,6 +3037,7 @@ M.UpdateDNSViewOutput = {
 
 M.GetFirewallDomainListInput = {
     type = "structure",
+    id = "GetFirewallDomainListInput",
     members = {
         firewallDomainListId = {
             type = "string",
@@ -2974,6 +3051,7 @@ M.GetFirewallDomainListInput = {
 
 M.GetFirewallDomainListOutput = {
     type = "structure",
+    id = "GetFirewallDomainListOutput",
     members = {
         arn = {
             type = "string",
@@ -3039,6 +3117,7 @@ M.GetFirewallDomainListOutput = {
 
 M.ImportFirewallDomainsInput = {
     type = "structure",
+    id = "ImportFirewallDomainsInput",
     members = {
         domainFileUrl = {
             type = "string",
@@ -3064,6 +3143,7 @@ M.ImportFirewallDomainsInput = {
 
 M.ImportFirewallDomainsOutput = {
     type = "structure",
+    id = "ImportFirewallDomainsOutput",
     members = {
         id = {
             type = "string",
@@ -3088,6 +3168,7 @@ M.ImportFirewallDomainsOutput = {
 
 M.ListFirewallDomainListsInput = {
     type = "structure",
+    id = "ListFirewallDomainListsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3112,6 +3193,7 @@ M.ListFirewallDomainListsInput = {
 
 M.FirewallDomainListsItem = {
     type = "structure",
+    id = "FirewallDomainListsItem",
     members = {
         arn = {
             type = "string",
@@ -3165,6 +3247,7 @@ M.FirewallDomainListsItem = {
 
 M.ListFirewallDomainListsOutput = {
     type = "structure",
+    id = "ListFirewallDomainListsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3181,6 +3264,7 @@ M.ListFirewallDomainListsOutput = {
 
 M.ListFirewallDomainsInput = {
     type = "structure",
+    id = "ListFirewallDomainsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3206,6 +3290,7 @@ M.ListFirewallDomainsInput = {
 
 M.ListFirewallDomainsOutput = {
     type = "structure",
+    id = "ListFirewallDomainsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3222,6 +3307,7 @@ M.ListFirewallDomainsOutput = {
 
 M.UpdateFirewallDomainsInput = {
     type = "structure",
+    id = "UpdateFirewallDomainsInput",
     members = {
         domains = {
             type = "list",
@@ -3248,6 +3334,7 @@ M.UpdateFirewallDomainsInput = {
 
 M.UpdateFirewallDomainsOutput = {
     type = "structure",
+    id = "UpdateFirewallDomainsOutput",
     members = {
         id = {
             type = "string",
@@ -3272,6 +3359,7 @@ M.UpdateFirewallDomainsOutput = {
 
 M.GetFirewallRuleInput = {
     type = "structure",
+    id = "GetFirewallRuleInput",
     members = {
         firewallRuleId = {
             type = "string",
@@ -3285,6 +3373,7 @@ M.GetFirewallRuleInput = {
 
 M.GetFirewallRuleOutput = {
     type = "structure",
+    id = "GetFirewallRuleOutput",
     members = {
         action = {
             type = "string",
@@ -3368,6 +3457,7 @@ M.GetFirewallRuleOutput = {
 
 M.ListFirewallRulesInput = {
     type = "structure",
+    id = "ListFirewallRulesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3401,6 +3491,7 @@ M.ListFirewallRulesInput = {
 
 M.FirewallRulesItem = {
     type = "structure",
+    id = "FirewallRulesItem",
     members = {
         action = {
             type = "string",
@@ -3484,6 +3575,7 @@ M.FirewallRulesItem = {
 
 M.ListFirewallRulesOutput = {
     type = "structure",
+    id = "ListFirewallRulesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3500,6 +3592,7 @@ M.ListFirewallRulesOutput = {
 
 M.UpdateFirewallRuleInput = {
     type = "structure",
+    id = "UpdateFirewallRuleInput",
     members = {
         action = {
             type = "string",
@@ -3550,6 +3643,7 @@ M.UpdateFirewallRuleInput = {
 
 M.UpdateFirewallRuleOutput = {
     type = "structure",
+    id = "UpdateFirewallRuleOutput",
     members = {
         action = {
             type = "string",
@@ -3633,6 +3727,7 @@ M.UpdateFirewallRuleOutput = {
 
 M.GetGlobalResolverInput = {
     type = "structure",
+    id = "GetGlobalResolverInput",
     members = {
         globalResolverId = {
             type = "string",
@@ -3646,6 +3741,7 @@ M.GetGlobalResolverInput = {
 
 M.GetGlobalResolverOutput = {
     type = "structure",
+    id = "GetGlobalResolverOutput",
     members = {
         id = {
             type = "string",
@@ -3729,6 +3825,7 @@ M.GetGlobalResolverOutput = {
 
 M.ListGlobalResolversInput = {
     type = "structure",
+    id = "ListGlobalResolversInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3747,6 +3844,7 @@ M.ListGlobalResolversInput = {
 
 M.GlobalResolversItem = {
     type = "structure",
+    id = "GlobalResolversItem",
     members = {
         id = {
             type = "string",
@@ -3830,6 +3928,7 @@ M.GlobalResolversItem = {
 
 M.ListGlobalResolversOutput = {
     type = "structure",
+    id = "ListGlobalResolversOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3846,6 +3945,7 @@ M.ListGlobalResolversOutput = {
 
 M.UpdateGlobalResolverInput = {
     type = "structure",
+    id = "UpdateGlobalResolverInput",
     members = {
         globalResolverId = {
             type = "string",
@@ -3875,6 +3975,7 @@ M.UpdateGlobalResolverInput = {
 
 M.UpdateGlobalResolverOutput = {
     type = "structure",
+    id = "UpdateGlobalResolverOutput",
     members = {
         id = {
             type = "string",
@@ -3958,6 +4059,7 @@ M.UpdateGlobalResolverOutput = {
 
 M.GetHostedZoneAssociationInput = {
     type = "structure",
+    id = "GetHostedZoneAssociationInput",
     members = {
         hostedZoneAssociationId = {
             type = "string",
@@ -3971,6 +4073,7 @@ M.GetHostedZoneAssociationInput = {
 
 M.GetHostedZoneAssociationOutput = {
     type = "structure",
+    id = "GetHostedZoneAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -4027,6 +4130,7 @@ M.GetHostedZoneAssociationOutput = {
 
 M.ListHostedZoneAssociationsInput = {
     type = "structure",
+    id = "ListHostedZoneAssociationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4052,6 +4156,7 @@ M.ListHostedZoneAssociationsInput = {
 
 M.HostedZoneAssociationSummary = {
     type = "structure",
+    id = "HostedZoneAssociationSummary",
     members = {
         id = {
             type = "string",
@@ -4108,6 +4213,7 @@ M.HostedZoneAssociationSummary = {
 
 M.ListHostedZoneAssociationsOutput = {
     type = "structure",
+    id = "ListHostedZoneAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4124,6 +4230,7 @@ M.ListHostedZoneAssociationsOutput = {
 
 M.UpdateHostedZoneAssociationInput = {
     type = "structure",
+    id = "UpdateHostedZoneAssociationInput",
     members = {
         hostedZoneAssociationId = {
             type = "string",
@@ -4140,6 +4247,7 @@ M.UpdateHostedZoneAssociationInput = {
 
 M.UpdateHostedZoneAssociationOutput = {
     type = "structure",
+    id = "UpdateHostedZoneAssociationOutput",
     members = {
         id = {
             type = "string",
@@ -4196,6 +4304,7 @@ M.UpdateHostedZoneAssociationOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4208,6 +4317,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -4219,6 +4329,7 @@ M.ListTagsForResourceOutput = {
 
 M.GetManagedFirewallDomainListInput = {
     type = "structure",
+    id = "GetManagedFirewallDomainListInput",
     members = {
         managedFirewallDomainListId = {
             type = "string",
@@ -4232,6 +4343,7 @@ M.GetManagedFirewallDomainListInput = {
 
 M.GetManagedFirewallDomainListOutput = {
     type = "structure",
+    id = "GetManagedFirewallDomainListOutput",
     members = {
         description = {
             type = "string",
@@ -4259,6 +4371,7 @@ M.GetManagedFirewallDomainListOutput = {
 
 M.ListManagedFirewallDomainListsInput = {
     type = "structure",
+    id = "ListManagedFirewallDomainListsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4284,6 +4397,7 @@ M.ListManagedFirewallDomainListsInput = {
 
 M.ManagedFirewallDomainListsItem = {
     type = "structure",
+    id = "ManagedFirewallDomainListsItem",
     members = {
         description = {
             type = "string",
@@ -4311,6 +4425,7 @@ M.ManagedFirewallDomainListsItem = {
 
 M.ListManagedFirewallDomainListsOutput = {
     type = "structure",
+    id = "ListManagedFirewallDomainListsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4327,6 +4442,7 @@ M.ListManagedFirewallDomainListsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4347,10 +4463,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4370,6 +4488,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

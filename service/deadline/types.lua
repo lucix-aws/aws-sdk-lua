@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceleratorCountRange = {
     type = "structure",
+    id = "AcceleratorCountRange",
     members = {
         min = {
             type = "integer",
@@ -25,6 +26,7 @@ M.AcceleratorName = {
 
 M.AcceleratorSelection = {
     type = "structure",
+    id = "AcceleratorSelection",
     members = {
         name = {
             type = "string",
@@ -43,6 +45,7 @@ M.AcceleratorSelection = {
 
 M.AcceleratorCapabilities = {
     type = "structure",
+    id = "AcceleratorCapabilities",
     members = {
         selections = {
             type = "list",
@@ -57,6 +60,7 @@ M.AcceleratorCapabilities = {
 
 M.AcceleratorTotalMemoryMiBRange = {
     type = "structure",
+    id = "AcceleratorTotalMemoryMiBRange",
     members = {
         min = {
             type = "integer",
@@ -76,6 +80,7 @@ M.AcceleratorType = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -94,6 +99,7 @@ M.AccessDeniedException = {
 
 M.AcquiredLimit = {
     type = "structure",
+    id = "AcquiredLimit",
     members = {
         limitId = {
             type = "string",
@@ -112,6 +118,7 @@ M.AcquiredLimit = {
 
 M.AssignedEnvironmentEnterSessionActionDefinition = {
     type = "structure",
+    id = "AssignedEnvironmentEnterSessionActionDefinition",
     members = {
         environmentId = {
             type = "string",
@@ -124,6 +131,7 @@ M.AssignedEnvironmentEnterSessionActionDefinition = {
 
 M.AssignedEnvironmentExitSessionActionDefinition = {
     type = "structure",
+    id = "AssignedEnvironmentExitSessionActionDefinition",
     members = {
         environmentId = {
             type = "string",
@@ -136,6 +144,7 @@ M.AssignedEnvironmentExitSessionActionDefinition = {
 
 M.LogConfiguration = {
     type = "structure",
+    id = "LogConfiguration",
     members = {
         logDriver = {
             type = "string",
@@ -161,6 +170,7 @@ M.LogConfiguration = {
 
 M.AssignedSyncInputJobAttachmentsSessionActionDefinition = {
     type = "structure",
+    id = "AssignedSyncInputJobAttachmentsSessionActionDefinition",
     members = {
         stepId = {
             type = "string",
@@ -170,6 +180,7 @@ M.AssignedSyncInputJobAttachmentsSessionActionDefinition = {
 
 M.TaskParameterValue = {
     type = "union",
+    id = "TaskParameterValue",
     members = {
         int = {
             type = "string",
@@ -191,6 +202,7 @@ M.TaskParameterValue = {
 
 M.AssignedTaskRunSessionActionDefinition = {
     type = "structure",
+    id = "AssignedTaskRunSessionActionDefinition",
     members = {
         taskId = {
             type = "string",
@@ -214,6 +226,7 @@ M.AssignedTaskRunSessionActionDefinition = {
 
 M.AssignedSessionActionDefinition = {
     type = "union",
+    id = "AssignedSessionActionDefinition",
     members = {
         envEnter = M.AssignedEnvironmentEnterSessionActionDefinition,
         envExit = M.AssignedEnvironmentExitSessionActionDefinition,
@@ -224,6 +237,7 @@ M.AssignedSessionActionDefinition = {
 
 M.AssignedSessionAction = {
     type = "structure",
+    id = "AssignedSessionAction",
     members = {
         sessionActionId = {
             type = "string",
@@ -239,6 +253,7 @@ M.AssignedSessionAction = {
 
 M.AssignedSession = {
     type = "structure",
+    id = "AssignedSession",
     members = {
         queueId = {
             type = "string",
@@ -279,6 +294,7 @@ M.DeadlinePrincipalType = {
 
 M.AssociateMemberToFarmInput = {
     type = "structure",
+    id = "AssociateMemberToFarmInput",
     members = {
         farmId = {
             type = "string",
@@ -317,10 +333,12 @@ M.AssociateMemberToFarmInput = {
 
 M.AssociateMemberToFarmOutput = {
     type = "structure",
+    id = "AssociateMemberToFarmOutput",
 }
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         message = {
@@ -340,6 +358,7 @@ M.InternalServerErrorException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -376,6 +395,7 @@ M.ServiceQuotaExceededExceptionReason = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -421,6 +441,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -451,6 +472,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -476,6 +498,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -504,6 +527,7 @@ M.ValidationException = {
 
 M.AssociateMemberToFleetInput = {
     type = "structure",
+    id = "AssociateMemberToFleetInput",
     members = {
         farmId = {
             type = "string",
@@ -549,10 +573,12 @@ M.AssociateMemberToFleetInput = {
 
 M.AssociateMemberToFleetOutput = {
     type = "structure",
+    id = "AssociateMemberToFleetOutput",
 }
 
 M.AssociateMemberToJobInput = {
     type = "structure",
+    id = "AssociateMemberToJobInput",
     members = {
         farmId = {
             type = "string",
@@ -605,10 +631,12 @@ M.AssociateMemberToJobInput = {
 
 M.AssociateMemberToJobOutput = {
     type = "structure",
+    id = "AssociateMemberToJobOutput",
 }
 
 M.AssociateMemberToQueueInput = {
     type = "structure",
+    id = "AssociateMemberToQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -654,10 +682,12 @@ M.AssociateMemberToQueueInput = {
 
 M.AssociateMemberToQueueOutput = {
     type = "structure",
+    id = "AssociateMemberToQueueOutput",
 }
 
 M.AssumeFleetRoleForReadInput = {
     type = "structure",
+    id = "AssumeFleetRoleForReadInput",
     members = {
         farmId = {
             type = "string",
@@ -678,6 +708,7 @@ M.AssumeFleetRoleForReadInput = {
 
 M.AwsCredentials = {
     type = "structure",
+    id = "AwsCredentials",
     members = {
         accessKeyId = {
             type = "string",
@@ -709,6 +740,7 @@ M.AwsCredentials = {
 
 M.AssumeFleetRoleForReadOutput = {
     type = "structure",
+    id = "AssumeFleetRoleForReadOutput",
     members = {
         credentials = setmetatable({ traits = {
             required = true,
@@ -718,6 +750,7 @@ M.AssumeFleetRoleForReadOutput = {
 
 M.AssumeFleetRoleForWorkerInput = {
     type = "structure",
+    id = "AssumeFleetRoleForWorkerInput",
     members = {
         farmId = {
             type = "string",
@@ -745,6 +778,7 @@ M.AssumeFleetRoleForWorkerInput = {
 
 M.AssumeFleetRoleForWorkerOutput = {
     type = "structure",
+    id = "AssumeFleetRoleForWorkerOutput",
     members = {
         credentials = setmetatable({ traits = {
             required = true,
@@ -762,6 +796,7 @@ M.ConflictExceptionReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -798,6 +833,7 @@ M.ConflictException = {
 
 M.AssumeQueueRoleForReadInput = {
     type = "structure",
+    id = "AssumeQueueRoleForReadInput",
     members = {
         farmId = {
             type = "string",
@@ -818,6 +854,7 @@ M.AssumeQueueRoleForReadInput = {
 
 M.AssumeQueueRoleForReadOutput = {
     type = "structure",
+    id = "AssumeQueueRoleForReadOutput",
     members = {
         credentials = setmetatable({ traits = {
             required = true,
@@ -827,6 +864,7 @@ M.AssumeQueueRoleForReadOutput = {
 
 M.AssumeQueueRoleForUserInput = {
     type = "structure",
+    id = "AssumeQueueRoleForUserInput",
     members = {
         farmId = {
             type = "string",
@@ -847,6 +885,7 @@ M.AssumeQueueRoleForUserInput = {
 
 M.AssumeQueueRoleForUserOutput = {
     type = "structure",
+    id = "AssumeQueueRoleForUserOutput",
     members = {
         credentials = setmetatable({ traits = {
             required = true,
@@ -856,6 +895,7 @@ M.AssumeQueueRoleForUserOutput = {
 
 M.AssumeQueueRoleForWorkerInput = {
     type = "structure",
+    id = "AssumeQueueRoleForWorkerInput",
     members = {
         farmId = {
             type = "string",
@@ -890,6 +930,7 @@ M.AssumeQueueRoleForWorkerInput = {
 
 M.AssumeQueueRoleForWorkerOutput = {
     type = "structure",
+    id = "AssumeQueueRoleForWorkerOutput",
     members = {
         credentials = M.AwsCredentials,
     },
@@ -907,6 +948,7 @@ M.PathFormat = {
 
 M.ManifestProperties = {
     type = "structure",
+    id = "ManifestProperties",
     members = {
         fileSystemLocationName = {
             type = "string",
@@ -938,6 +980,7 @@ M.ManifestProperties = {
 
 M.Attachments = {
     type = "structure",
+    id = "Attachments",
     members = {
         manifests = {
             type = "list",
@@ -968,6 +1011,7 @@ M.AutoScalingStatus = {
 
 M.BatchGetJobIdentifier = {
     type = "structure",
+    id = "BatchGetJobIdentifier",
     members = {
         farmId = {
             type = "string",
@@ -992,6 +1036,7 @@ M.BatchGetJobIdentifier = {
 
 M.BatchGetJobInput = {
     type = "structure",
+    id = "BatchGetJobInput",
     members = {
         identifiers = {
             type = "list",
@@ -1013,6 +1058,7 @@ M.BatchGetJobErrorCode = {
 
 M.BatchGetJobError = {
     type = "structure",
+    id = "BatchGetJobError",
     members = {
         farmId = {
             type = "string",
@@ -1061,6 +1107,7 @@ M.JobLifecycleStatus = {
 
 M.JobParameter = {
     type = "union",
+    id = "JobParameter",
     members = {
         int = {
             type = "string",
@@ -1103,6 +1150,7 @@ M.TaskRunStatus = {
 
 M.BatchGetJobItem = {
     type = "structure",
+    id = "BatchGetJobItem",
     members = {
         farmId = {
             type = "string",
@@ -1223,6 +1271,7 @@ M.BatchGetJobItem = {
 
 M.BatchGetJobOutput = {
     type = "structure",
+    id = "BatchGetJobOutput",
     members = {
         jobs = {
             type = "list",
@@ -1243,6 +1292,7 @@ M.BatchGetJobOutput = {
 
 M.EnvironmentDetailsIdentifiers = {
     type = "structure",
+    id = "EnvironmentDetailsIdentifiers",
     members = {
         jobId = {
             type = "string",
@@ -1261,6 +1311,7 @@ M.EnvironmentDetailsIdentifiers = {
 
 M.JobAttachmentDetailsIdentifiers = {
     type = "structure",
+    id = "JobAttachmentDetailsIdentifiers",
     members = {
         jobId = {
             type = "string",
@@ -1273,6 +1324,7 @@ M.JobAttachmentDetailsIdentifiers = {
 
 M.JobDetailsIdentifiers = {
     type = "structure",
+    id = "JobDetailsIdentifiers",
     members = {
         jobId = {
             type = "string",
@@ -1285,6 +1337,7 @@ M.JobDetailsIdentifiers = {
 
 M.StepDetailsIdentifiers = {
     type = "structure",
+    id = "StepDetailsIdentifiers",
     members = {
         jobId = {
             type = "string",
@@ -1303,6 +1356,7 @@ M.StepDetailsIdentifiers = {
 
 M.JobEntityIdentifiersUnion = {
     type = "union",
+    id = "JobEntityIdentifiersUnion",
     members = {
         jobDetails = M.JobDetailsIdentifiers,
         jobAttachmentDetails = M.JobAttachmentDetailsIdentifiers,
@@ -1313,6 +1367,7 @@ M.JobEntityIdentifiersUnion = {
 
 M.BatchGetJobEntityInput = {
     type = "structure",
+    id = "BatchGetJobEntityInput",
     members = {
         farmId = {
             type = "string",
@@ -1347,6 +1402,7 @@ M.BatchGetJobEntityInput = {
 
 M.EnvironmentDetailsEntity = {
     type = "structure",
+    id = "EnvironmentDetailsEntity",
     members = {
         jobId = {
             type = "string",
@@ -1377,6 +1433,7 @@ M.EnvironmentDetailsEntity = {
 
 M.JobAttachmentDetailsEntity = {
     type = "structure",
+    id = "JobAttachmentDetailsEntity",
     members = {
         jobId = {
             type = "string",
@@ -1392,6 +1449,7 @@ M.JobAttachmentDetailsEntity = {
 
 M.JobAttachmentSettings = {
     type = "structure",
+    id = "JobAttachmentSettings",
     members = {
         s3BucketName = {
             type = "string",
@@ -1410,6 +1468,7 @@ M.JobAttachmentSettings = {
 
 M.PosixUser = {
     type = "structure",
+    id = "PosixUser",
     members = {
         user = {
             type = "string",
@@ -1433,6 +1492,7 @@ M.RunAs = {
 
 M.WindowsUser = {
     type = "structure",
+    id = "WindowsUser",
     members = {
         user = {
             type = "string",
@@ -1451,6 +1511,7 @@ M.WindowsUser = {
 
 M.JobRunAsUser = {
     type = "structure",
+    id = "JobRunAsUser",
     members = {
         posix = M.PosixUser,
         windows = M.WindowsUser,
@@ -1465,6 +1526,7 @@ M.JobRunAsUser = {
 
 M.PathMappingRule = {
     type = "structure",
+    id = "PathMappingRule",
     members = {
         sourcePathFormat = {
             type = "string",
@@ -1489,6 +1551,7 @@ M.PathMappingRule = {
 
 M.JobDetailsEntity = {
     type = "structure",
+    id = "JobDetailsEntity",
     members = {
         jobId = {
             type = "string",
@@ -1527,6 +1590,7 @@ M.JobDetailsEntity = {
 
 M.StepDetailsEntity = {
     type = "structure",
+    id = "StepDetailsEntity",
     members = {
         jobId = {
             type = "string",
@@ -1564,6 +1628,7 @@ M.StepDetailsEntity = {
 
 M.JobEntity = {
     type = "union",
+    id = "JobEntity",
     members = {
         jobDetails = M.JobDetailsEntity,
         jobAttachmentDetails = M.JobAttachmentDetailsEntity,
@@ -1583,6 +1648,7 @@ M.JobEntityErrorCode = {
 
 M.EnvironmentDetailsError = {
     type = "structure",
+    id = "EnvironmentDetailsError",
     members = {
         jobId = {
             type = "string",
@@ -1613,6 +1679,7 @@ M.EnvironmentDetailsError = {
 
 M.JobAttachmentDetailsError = {
     type = "structure",
+    id = "JobAttachmentDetailsError",
     members = {
         jobId = {
             type = "string",
@@ -1637,6 +1704,7 @@ M.JobAttachmentDetailsError = {
 
 M.JobDetailsError = {
     type = "structure",
+    id = "JobDetailsError",
     members = {
         jobId = {
             type = "string",
@@ -1661,6 +1729,7 @@ M.JobDetailsError = {
 
 M.StepDetailsError = {
     type = "structure",
+    id = "StepDetailsError",
     members = {
         jobId = {
             type = "string",
@@ -1691,6 +1760,7 @@ M.StepDetailsError = {
 
 M.GetJobEntityError = {
     type = "union",
+    id = "GetJobEntityError",
     members = {
         jobDetails = M.JobDetailsError,
         jobAttachmentDetails = M.JobAttachmentDetailsError,
@@ -1701,6 +1771,7 @@ M.GetJobEntityError = {
 
 M.BatchGetJobEntityOutput = {
     type = "structure",
+    id = "BatchGetJobEntityOutput",
     members = {
         entities = {
             type = "list",
@@ -1721,6 +1792,7 @@ M.BatchGetJobEntityOutput = {
 
 M.BatchGetSessionIdentifier = {
     type = "structure",
+    id = "BatchGetSessionIdentifier",
     members = {
         farmId = {
             type = "string",
@@ -1751,6 +1823,7 @@ M.BatchGetSessionIdentifier = {
 
 M.BatchGetSessionInput = {
     type = "structure",
+    id = "BatchGetSessionInput",
     members = {
         identifiers = {
             type = "list",
@@ -1770,6 +1843,7 @@ M.BatchGetSessionErrorCode = {
 
 M.BatchGetSessionError = {
     type = "structure",
+    id = "BatchGetSessionError",
     members = {
         farmId = {
             type = "string",
@@ -1812,6 +1886,7 @@ M.BatchGetSessionError = {
 
 M.IpAddresses = {
     type = "structure",
+    id = "IpAddresses",
     members = {
         ipV4Addresses = {
             type = "list",
@@ -1826,6 +1901,7 @@ M.IpAddresses = {
 
 M.HostPropertiesResponse = {
     type = "structure",
+    id = "HostPropertiesResponse",
     members = {
         ipAddresses = M.IpAddresses,
         hostName = {
@@ -1854,6 +1930,7 @@ M.SessionLifecycleTargetStatus = {
 
 M.BatchGetSessionItem = {
     type = "structure",
+    id = "BatchGetSessionItem",
     members = {
         farmId = {
             type = "string",
@@ -1932,6 +2009,7 @@ M.BatchGetSessionItem = {
 
 M.BatchGetSessionOutput = {
     type = "structure",
+    id = "BatchGetSessionOutput",
     members = {
         sessions = {
             type = "list",
@@ -1952,6 +2030,7 @@ M.BatchGetSessionOutput = {
 
 M.BatchGetSessionActionIdentifier = {
     type = "structure",
+    id = "BatchGetSessionActionIdentifier",
     members = {
         farmId = {
             type = "string",
@@ -1982,6 +2061,7 @@ M.BatchGetSessionActionIdentifier = {
 
 M.BatchGetSessionActionInput = {
     type = "structure",
+    id = "BatchGetSessionActionInput",
     members = {
         identifiers = {
             type = "list",
@@ -2001,6 +2081,7 @@ M.BatchGetSessionActionErrorCode = {
 
 M.BatchGetSessionActionError = {
     type = "structure",
+    id = "BatchGetSessionActionError",
     members = {
         farmId = {
             type = "string",
@@ -2043,6 +2124,7 @@ M.BatchGetSessionActionError = {
 
 M.EnvironmentEnterSessionActionDefinition = {
     type = "structure",
+    id = "EnvironmentEnterSessionActionDefinition",
     members = {
         environmentId = {
             type = "string",
@@ -2055,6 +2137,7 @@ M.EnvironmentEnterSessionActionDefinition = {
 
 M.EnvironmentExitSessionActionDefinition = {
     type = "structure",
+    id = "EnvironmentExitSessionActionDefinition",
     members = {
         environmentId = {
             type = "string",
@@ -2067,6 +2150,7 @@ M.EnvironmentExitSessionActionDefinition = {
 
 M.SyncInputJobAttachmentsSessionActionDefinition = {
     type = "structure",
+    id = "SyncInputJobAttachmentsSessionActionDefinition",
     members = {
         stepId = {
             type = "string",
@@ -2076,6 +2160,7 @@ M.SyncInputJobAttachmentsSessionActionDefinition = {
 
 M.TaskRunSessionActionDefinition = {
     type = "structure",
+    id = "TaskRunSessionActionDefinition",
     members = {
         taskId = {
             type = "string",
@@ -2099,6 +2184,7 @@ M.TaskRunSessionActionDefinition = {
 
 M.SessionActionDefinition = {
     type = "union",
+    id = "SessionActionDefinition",
     members = {
         envEnter = M.EnvironmentEnterSessionActionDefinition,
         envExit = M.EnvironmentExitSessionActionDefinition,
@@ -2109,6 +2195,7 @@ M.SessionActionDefinition = {
 
 M.TaskRunManifestPropertiesResponse = {
     type = "structure",
+    id = "TaskRunManifestPropertiesResponse",
     members = {
         outputManifestPath = {
             type = "string",
@@ -2135,6 +2222,7 @@ M.SessionActionStatus = {
 
 M.BatchGetSessionActionItem = {
     type = "structure",
+    id = "BatchGetSessionActionItem",
     members = {
         farmId = {
             type = "string",
@@ -2215,6 +2303,7 @@ M.BatchGetSessionActionItem = {
 
 M.BatchGetSessionActionOutput = {
     type = "structure",
+    id = "BatchGetSessionActionOutput",
     members = {
         sessionActions = {
             type = "list",
@@ -2235,6 +2324,7 @@ M.BatchGetSessionActionOutput = {
 
 M.BatchGetStepIdentifier = {
     type = "structure",
+    id = "BatchGetStepIdentifier",
     members = {
         farmId = {
             type = "string",
@@ -2265,6 +2355,7 @@ M.BatchGetStepIdentifier = {
 
 M.BatchGetStepInput = {
     type = "structure",
+    id = "BatchGetStepInput",
     members = {
         identifiers = {
             type = "list",
@@ -2286,6 +2377,7 @@ M.BatchGetStepErrorCode = {
 
 M.BatchGetStepError = {
     type = "structure",
+    id = "BatchGetStepError",
     members = {
         farmId = {
             type = "string",
@@ -2328,6 +2420,7 @@ M.BatchGetStepError = {
 
 M.DependencyCounts = {
     type = "structure",
+    id = "DependencyCounts",
     members = {
         dependenciesResolved = {
             type = "integer",
@@ -2370,6 +2463,7 @@ M.RangeConstraint = {
 
 M.StepParameterChunks = {
     type = "structure",
+    id = "StepParameterChunks",
     members = {
         defaultTaskCount = {
             type = "integer",
@@ -2399,6 +2493,7 @@ M.StepParameterType = {
 
 M.StepParameter = {
     type = "structure",
+    id = "StepParameter",
     members = {
         name = {
             type = "string",
@@ -2418,6 +2513,7 @@ M.StepParameter = {
 
 M.ParameterSpace = {
     type = "structure",
+    id = "ParameterSpace",
     members = {
         parameters = {
             type = "list",
@@ -2434,6 +2530,7 @@ M.ParameterSpace = {
 
 M.StepAmountCapability = {
     type = "structure",
+    id = "StepAmountCapability",
     members = {
         name = {
             type = "string",
@@ -2455,6 +2552,7 @@ M.StepAmountCapability = {
 
 M.StepAttributeCapability = {
     type = "structure",
+    id = "StepAttributeCapability",
     members = {
         name = {
             type = "string",
@@ -2475,6 +2573,7 @@ M.StepAttributeCapability = {
 
 M.StepRequiredCapabilities = {
     type = "structure",
+    id = "StepRequiredCapabilities",
     members = {
         attributes = {
             type = "list",
@@ -2504,6 +2603,7 @@ M.StepTargetTaskRunStatus = {
 
 M.BatchGetStepItem = {
     type = "structure",
+    id = "BatchGetStepItem",
     members = {
         farmId = {
             type = "string",
@@ -2609,6 +2709,7 @@ M.BatchGetStepItem = {
 
 M.BatchGetStepOutput = {
     type = "structure",
+    id = "BatchGetStepOutput",
     members = {
         steps = {
             type = "list",
@@ -2629,6 +2730,7 @@ M.BatchGetStepOutput = {
 
 M.BatchGetTaskIdentifier = {
     type = "structure",
+    id = "BatchGetTaskIdentifier",
     members = {
         farmId = {
             type = "string",
@@ -2665,6 +2767,7 @@ M.BatchGetTaskIdentifier = {
 
 M.BatchGetTaskInput = {
     type = "structure",
+    id = "BatchGetTaskInput",
     members = {
         identifiers = {
             type = "list",
@@ -2686,6 +2789,7 @@ M.BatchGetTaskErrorCode = {
 
 M.BatchGetTaskError = {
     type = "structure",
+    id = "BatchGetTaskError",
     members = {
         farmId = {
             type = "string",
@@ -2743,6 +2847,7 @@ M.TaskTargetRunStatus = {
 
 M.BatchGetTaskItem = {
     type = "structure",
+    id = "BatchGetTaskItem",
     members = {
         farmId = {
             type = "string",
@@ -2833,6 +2938,7 @@ M.BatchGetTaskItem = {
 
 M.BatchGetTaskOutput = {
     type = "structure",
+    id = "BatchGetTaskOutput",
     members = {
         tasks = {
             type = "list",
@@ -2853,6 +2959,7 @@ M.BatchGetTaskOutput = {
 
 M.BatchGetWorkerIdentifier = {
     type = "structure",
+    id = "BatchGetWorkerIdentifier",
     members = {
         farmId = {
             type = "string",
@@ -2877,6 +2984,7 @@ M.BatchGetWorkerIdentifier = {
 
 M.BatchGetWorkerInput = {
     type = "structure",
+    id = "BatchGetWorkerInput",
     members = {
         identifiers = {
             type = "list",
@@ -2896,6 +3004,7 @@ M.BatchGetWorkerErrorCode = {
 
 M.BatchGetWorkerError = {
     type = "structure",
+    id = "BatchGetWorkerError",
     members = {
         farmId = {
             type = "string",
@@ -2943,6 +3052,7 @@ M.WorkerStatus = {
 
 M.BatchGetWorkerItem = {
     type = "structure",
+    id = "BatchGetWorkerItem",
     members = {
         farmId = {
             type = "string",
@@ -2997,6 +3107,7 @@ M.BatchGetWorkerItem = {
 
 M.BatchGetWorkerOutput = {
     type = "structure",
+    id = "BatchGetWorkerOutput",
     members = {
         workers = {
             type = "list",
@@ -3021,6 +3132,7 @@ M.UpdateJobLifecycleStatus = {
 
 M.BatchUpdateJobItem = {
     type = "structure",
+    id = "BatchUpdateJobItem",
     members = {
         farmId = {
             type = "string",
@@ -3069,6 +3181,7 @@ M.BatchUpdateJobItem = {
 
 M.BatchUpdateJobInput = {
     type = "structure",
+    id = "BatchUpdateJobInput",
     members = {
         clientToken = {
             type = "string",
@@ -3098,6 +3211,7 @@ M.BatchUpdateJobErrorCode = {
 
 M.BatchUpdateJobError = {
     type = "structure",
+    id = "BatchUpdateJobError",
     members = {
         farmId = {
             type = "string",
@@ -3134,6 +3248,7 @@ M.BatchUpdateJobError = {
 
 M.BatchUpdateJobOutput = {
     type = "structure",
+    id = "BatchUpdateJobOutput",
     members = {
         errors = {
             type = "list",
@@ -3147,6 +3262,7 @@ M.BatchUpdateJobOutput = {
 
 M.BatchUpdateTaskItem = {
     type = "structure",
+    id = "BatchUpdateTaskItem",
     members = {
         farmId = {
             type = "string",
@@ -3189,6 +3305,7 @@ M.BatchUpdateTaskItem = {
 
 M.BatchUpdateTaskInput = {
     type = "structure",
+    id = "BatchUpdateTaskInput",
     members = {
         clientToken = {
             type = "string",
@@ -3218,6 +3335,7 @@ M.BatchUpdateTaskErrorCode = {
 
 M.BatchUpdateTaskError = {
     type = "structure",
+    id = "BatchUpdateTaskError",
     members = {
         farmId = {
             type = "string",
@@ -3266,6 +3384,7 @@ M.BatchUpdateTaskError = {
 
 M.BatchUpdateTaskOutput = {
     type = "structure",
+    id = "BatchUpdateTaskOutput",
     members = {
         errors = {
             type = "list",
@@ -3284,6 +3403,7 @@ M.BudgetActionType = {
 
 M.BudgetActionToAdd = {
     type = "structure",
+    id = "BudgetActionToAdd",
     members = {
         type = {
             type = "string",
@@ -3305,6 +3425,7 @@ M.BudgetActionToAdd = {
 
 M.BudgetActionToRemove = {
     type = "structure",
+    id = "BudgetActionToRemove",
     members = {
         type = {
             type = "string",
@@ -3323,6 +3444,7 @@ M.BudgetActionToRemove = {
 
 M.FixedBudgetSchedule = {
     type = "structure",
+    id = "FixedBudgetSchedule",
     members = {
         startTime = {
             type = "timestamp",
@@ -3343,6 +3465,7 @@ M.FixedBudgetSchedule = {
 
 M.BudgetSchedule = {
     type = "union",
+    id = "BudgetSchedule",
     members = {
         fixed = M.FixedBudgetSchedule,
     },
@@ -3350,6 +3473,7 @@ M.BudgetSchedule = {
 
 M.UsageTrackingResource = {
     type = "union",
+    id = "UsageTrackingResource",
     members = {
         queueId = {
             type = "string",
@@ -3359,6 +3483,7 @@ M.UsageTrackingResource = {
 
 M.CreateBudgetInput = {
     type = "structure",
+    id = "CreateBudgetInput",
     members = {
         farmId = {
             type = "string",
@@ -3415,6 +3540,7 @@ M.CreateBudgetInput = {
 
 M.CreateBudgetOutput = {
     type = "structure",
+    id = "CreateBudgetOutput",
     members = {
         budgetId = {
             type = "string",
@@ -3427,6 +3553,7 @@ M.CreateBudgetOutput = {
 
 M.DeleteBudgetInput = {
     type = "structure",
+    id = "DeleteBudgetInput",
     members = {
         farmId = {
             type = "string",
@@ -3447,10 +3574,12 @@ M.DeleteBudgetInput = {
 
 M.DeleteBudgetOutput = {
     type = "structure",
+    id = "DeleteBudgetOutput",
 }
 
 M.GetBudgetInput = {
     type = "structure",
+    id = "GetBudgetInput",
     members = {
         farmId = {
             type = "string",
@@ -3471,6 +3600,7 @@ M.GetBudgetInput = {
 
 M.ResponseBudgetAction = {
     type = "structure",
+    id = "ResponseBudgetAction",
     members = {
         type = {
             type = "string",
@@ -3497,6 +3627,7 @@ M.BudgetStatus = {
 
 M.ConsumedUsages = {
     type = "structure",
+    id = "ConsumedUsages",
     members = {
         approximateDollarUsage = {
             type = "float",
@@ -3509,6 +3640,7 @@ M.ConsumedUsages = {
 
 M.GetBudgetOutput = {
     type = "structure",
+    id = "GetBudgetOutput",
     members = {
         budgetId = {
             type = "string",
@@ -3586,6 +3718,7 @@ M.GetBudgetOutput = {
 
 M.ListBudgetsInput = {
     type = "structure",
+    id = "ListBudgetsInput",
     members = {
         farmId = {
             type = "string",
@@ -3618,6 +3751,7 @@ M.ListBudgetsInput = {
 
 M.BudgetSummary = {
     type = "structure",
+    id = "BudgetSummary",
     members = {
         budgetId = {
             type = "string",
@@ -3679,6 +3813,7 @@ M.BudgetSummary = {
 
 M.ListBudgetsOutput = {
     type = "structure",
+    id = "ListBudgetsOutput",
     members = {
         budgets = {
             type = "list",
@@ -3695,6 +3830,7 @@ M.ListBudgetsOutput = {
 
 M.UpdateBudgetInput = {
     type = "structure",
+    id = "UpdateBudgetInput",
     members = {
         farmId = {
             type = "string",
@@ -3743,6 +3879,7 @@ M.UpdateBudgetInput = {
 
 M.UpdateBudgetOutput = {
     type = "structure",
+    id = "UpdateBudgetOutput",
 }
 
 M.ComparisonOperator = {
@@ -3766,6 +3903,7 @@ M.CompletedStatus = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucketName = {
             type = "string",
@@ -3784,6 +3922,7 @@ M.S3Location = {
 
 M.CopyJobTemplateInput = {
     type = "structure",
+    id = "CopyJobTemplateInput",
     members = {
         farmId = {
             type = "string",
@@ -3819,6 +3958,7 @@ M.JobTemplateType = {
 
 M.CopyJobTemplateOutput = {
     type = "structure",
+    id = "CopyJobTemplateOutput",
     members = {
         templateType = {
             type = "string",
@@ -3836,6 +3976,7 @@ M.CpuArchitectureType = {
 
 M.CreateFarmInput = {
     type = "structure",
+    id = "CreateFarmInput",
     members = {
         clientToken = {
             type = "string",
@@ -3875,6 +4016,7 @@ M.CreateFarmInput = {
 
 M.CreateFarmOutput = {
     type = "structure",
+    id = "CreateFarmOutput",
     members = {
         farmId = {
             type = "string",
@@ -3887,6 +4029,7 @@ M.CreateFarmOutput = {
 
 M.CustomerManagedAutoScalingConfiguration = {
     type = "structure",
+    id = "CustomerManagedAutoScalingConfiguration",
     members = {
         standbyWorkerCount = {
             type = "integer",
@@ -3910,6 +4053,7 @@ M.TagPropagationMode = {
 
 M.FleetAmountCapability = {
     type = "structure",
+    id = "FleetAmountCapability",
     members = {
         name = {
             type = "string",
@@ -3931,6 +4075,7 @@ M.FleetAmountCapability = {
 
 M.FleetAttributeCapability = {
     type = "structure",
+    id = "FleetAttributeCapability",
     members = {
         name = {
             type = "string",
@@ -3950,6 +4095,7 @@ M.FleetAttributeCapability = {
 
 M.MemoryMiBRange = {
     type = "structure",
+    id = "MemoryMiBRange",
     members = {
         min = {
             type = "integer",
@@ -3971,6 +4117,7 @@ M.CustomerManagedFleetOperatingSystemFamily = {
 
 M.VCpuCountRange = {
     type = "structure",
+    id = "VCpuCountRange",
     members = {
         min = {
             type = "integer",
@@ -3986,6 +4133,7 @@ M.VCpuCountRange = {
 
 M.CustomerManagedWorkerCapabilities = {
     type = "structure",
+    id = "CustomerManagedWorkerCapabilities",
     members = {
         vCpuCount = setmetatable({ traits = {
             required = true,
@@ -4024,6 +4172,7 @@ M.CustomerManagedWorkerCapabilities = {
 
 M.CustomerManagedFleetConfiguration = {
     type = "structure",
+    id = "CustomerManagedFleetConfiguration",
     members = {
         mode = {
             type = "string",
@@ -4046,6 +4195,7 @@ M.CustomerManagedFleetConfiguration = {
 
 M.ServiceManagedEc2AutoScalingConfiguration = {
     type = "structure",
+    id = "ServiceManagedEc2AutoScalingConfiguration",
     members = {
         standbyWorkerCount = {
             type = "integer",
@@ -4069,6 +4219,7 @@ M.ServiceManagedFleetOperatingSystemFamily = {
 
 M.Ec2EbsVolume = {
     type = "structure",
+    id = "Ec2EbsVolume",
     members = {
         sizeGiB = {
             type = "integer",
@@ -4093,6 +4244,7 @@ M.Ec2EbsVolume = {
 
 M.ServiceManagedEc2InstanceCapabilities = {
     type = "structure",
+    id = "ServiceManagedEc2InstanceCapabilities",
     members = {
         vCpuCount = setmetatable({ traits = {
             required = true,
@@ -4141,6 +4293,7 @@ M.Ec2MarketType = {
 
 M.ServiceManagedEc2InstanceMarketOptions = {
     type = "structure",
+    id = "ServiceManagedEc2InstanceMarketOptions",
     members = {
         type = {
             type = "string",
@@ -4153,6 +4306,7 @@ M.ServiceManagedEc2InstanceMarketOptions = {
 
 M.VpcConfiguration = {
     type = "structure",
+    id = "VpcConfiguration",
     members = {
         resourceConfigurationArns = {
             type = "list",
@@ -4163,6 +4317,7 @@ M.VpcConfiguration = {
 
 M.ServiceManagedEc2FleetConfiguration = {
     type = "structure",
+    id = "ServiceManagedEc2FleetConfiguration",
     members = {
         instanceCapabilities = setmetatable({ traits = {
             required = true,
@@ -4180,6 +4335,7 @@ M.ServiceManagedEc2FleetConfiguration = {
 
 M.FleetConfiguration = {
     type = "union",
+    id = "FleetConfiguration",
     members = {
         customerManaged = M.CustomerManagedFleetConfiguration,
         serviceManagedEc2 = M.ServiceManagedEc2FleetConfiguration,
@@ -4188,6 +4344,7 @@ M.FleetConfiguration = {
 
 M.HostConfiguration = {
     type = "structure",
+    id = "HostConfiguration",
     members = {
         scriptBody = {
             type = "string",
@@ -4206,6 +4363,7 @@ M.HostConfiguration = {
 
 M.CreateFleetInput = {
     type = "structure",
+    id = "CreateFleetInput",
     members = {
         farmId = {
             type = "string",
@@ -4265,6 +4423,7 @@ M.CreateFleetInput = {
 
 M.CreateFleetOutput = {
     type = "structure",
+    id = "CreateFleetOutput",
     members = {
         fleetId = {
             type = "string",
@@ -4282,6 +4441,7 @@ M.CreateJobTargetTaskRunStatus = {
 
 M.CreateJobInput = {
     type = "structure",
+    id = "CreateJobInput",
     members = {
         farmId = {
             type = "string",
@@ -4365,6 +4525,7 @@ M.CreateJobInput = {
 
 M.CreateJobOutput = {
     type = "structure",
+    id = "CreateJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -4377,6 +4538,7 @@ M.CreateJobOutput = {
 
 M.CreateLicenseEndpointInput = {
     type = "structure",
+    id = "CreateLicenseEndpointInput",
     members = {
         clientToken = {
             type = "string",
@@ -4415,6 +4577,7 @@ M.CreateLicenseEndpointInput = {
 
 M.CreateLicenseEndpointOutput = {
     type = "structure",
+    id = "CreateLicenseEndpointOutput",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -4427,6 +4590,7 @@ M.CreateLicenseEndpointOutput = {
 
 M.CreateLimitInput = {
     type = "structure",
+    id = "CreateLimitInput",
     members = {
         farmId = {
             type = "string",
@@ -4471,6 +4635,7 @@ M.CreateLimitInput = {
 
 M.CreateLimitOutput = {
     type = "structure",
+    id = "CreateLimitOutput",
     members = {
         limitId = {
             type = "string",
@@ -4483,6 +4648,7 @@ M.CreateLimitOutput = {
 
 M.CreateMonitorInput = {
     type = "structure",
+    id = "CreateMonitorInput",
     members = {
         clientToken = {
             type = "string",
@@ -4528,6 +4694,7 @@ M.CreateMonitorInput = {
 
 M.CreateMonitorOutput = {
     type = "structure",
+    id = "CreateMonitorOutput",
     members = {
         monitorId = {
             type = "string",
@@ -4552,6 +4719,7 @@ M.DefaultQueueBudgetAction = {
 
 M.PriorityBalancedSchedulingConfiguration = {
     type = "structure",
+    id = "PriorityBalancedSchedulingConfiguration",
     members = {
         renderingTaskBuffer = {
             type = "integer",
@@ -4564,14 +4732,17 @@ M.PriorityBalancedSchedulingConfiguration = {
 
 M.PriorityFifoSchedulingConfiguration = {
     type = "structure",
+    id = "PriorityFifoSchedulingConfiguration",
 }
 
 M.SchedulingMaxPriorityOverrideAlwaysScheduleFirst = {
     type = "structure",
+    id = "SchedulingMaxPriorityOverrideAlwaysScheduleFirst",
 }
 
 M.SchedulingMaxPriorityOverride = {
     type = "union",
+    id = "SchedulingMaxPriorityOverride",
     members = {
         alwaysScheduleFirst = M.SchedulingMaxPriorityOverrideAlwaysScheduleFirst,
     },
@@ -4579,10 +4750,12 @@ M.SchedulingMaxPriorityOverride = {
 
 M.SchedulingMinPriorityOverrideAlwaysScheduleLast = {
     type = "structure",
+    id = "SchedulingMinPriorityOverrideAlwaysScheduleLast",
 }
 
 M.SchedulingMinPriorityOverride = {
     type = "union",
+    id = "SchedulingMinPriorityOverride",
     members = {
         alwaysScheduleLast = M.SchedulingMinPriorityOverrideAlwaysScheduleLast,
     },
@@ -4590,6 +4763,7 @@ M.SchedulingMinPriorityOverride = {
 
 M.WeightedBalancedSchedulingConfiguration = {
     type = "structure",
+    id = "WeightedBalancedSchedulingConfiguration",
     members = {
         priorityWeight = {
             type = "double",
@@ -4628,6 +4802,7 @@ M.WeightedBalancedSchedulingConfiguration = {
 
 M.SchedulingConfiguration = {
     type = "union",
+    id = "SchedulingConfiguration",
     members = {
         priorityFifo = M.PriorityFifoSchedulingConfiguration,
         priorityBalanced = M.PriorityBalancedSchedulingConfiguration,
@@ -4637,6 +4812,7 @@ M.SchedulingConfiguration = {
 
 M.CreateQueueInput = {
     type = "structure",
+    id = "CreateQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -4694,6 +4870,7 @@ M.CreateQueueInput = {
 
 M.CreateQueueOutput = {
     type = "structure",
+    id = "CreateQueueOutput",
     members = {
         queueId = {
             type = "string",
@@ -4711,6 +4888,7 @@ M.EnvironmentTemplateType = {
 
 M.CreateQueueEnvironmentInput = {
     type = "structure",
+    id = "CreateQueueEnvironmentInput",
     members = {
         farmId = {
             type = "string",
@@ -4756,6 +4934,7 @@ M.CreateQueueEnvironmentInput = {
 
 M.CreateQueueEnvironmentOutput = {
     type = "structure",
+    id = "CreateQueueEnvironmentOutput",
     members = {
         queueEnvironmentId = {
             type = "string",
@@ -4768,6 +4947,7 @@ M.CreateQueueEnvironmentOutput = {
 
 M.CreateQueueFleetAssociationInput = {
     type = "structure",
+    id = "CreateQueueFleetAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -4793,10 +4973,12 @@ M.CreateQueueFleetAssociationInput = {
 
 M.CreateQueueFleetAssociationOutput = {
     type = "structure",
+    id = "CreateQueueFleetAssociationOutput",
 }
 
 M.CreateQueueLimitAssociationInput = {
     type = "structure",
+    id = "CreateQueueLimitAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -4822,6 +5004,7 @@ M.CreateQueueLimitAssociationInput = {
 
 M.CreateQueueLimitAssociationOutput = {
     type = "structure",
+    id = "CreateQueueLimitAssociationOutput",
 }
 
 M.FileSystemLocationType = {
@@ -4831,6 +5014,7 @@ M.FileSystemLocationType = {
 
 M.FileSystemLocation = {
     type = "structure",
+    id = "FileSystemLocation",
     members = {
         name = {
             type = "string",
@@ -4861,6 +5045,7 @@ M.StorageProfileOperatingSystemFamily = {
 
 M.CreateStorageProfileInput = {
     type = "structure",
+    id = "CreateStorageProfileInput",
     members = {
         farmId = {
             type = "string",
@@ -4897,6 +5082,7 @@ M.CreateStorageProfileInput = {
 
 M.CreateStorageProfileOutput = {
     type = "structure",
+    id = "CreateStorageProfileOutput",
     members = {
         storageProfileId = {
             type = "string",
@@ -4909,6 +5095,7 @@ M.CreateStorageProfileOutput = {
 
 M.HostPropertiesRequest = {
     type = "structure",
+    id = "HostPropertiesRequest",
     members = {
         ipAddresses = M.IpAddresses,
         hostName = {
@@ -4919,6 +5106,7 @@ M.HostPropertiesRequest = {
 
 M.CreateWorkerInput = {
     type = "structure",
+    id = "CreateWorkerInput",
     members = {
         farmId = {
             type = "string",
@@ -4952,6 +5140,7 @@ M.CreateWorkerInput = {
 
 M.CreateWorkerOutput = {
     type = "structure",
+    id = "CreateWorkerOutput",
     members = {
         workerId = {
             type = "string",
@@ -4964,6 +5153,7 @@ M.CreateWorkerOutput = {
 
 M.DateTimeFilterExpression = {
     type = "structure",
+    id = "DateTimeFilterExpression",
     members = {
         name = {
             type = "string",
@@ -4989,6 +5179,7 @@ M.DateTimeFilterExpression = {
 
 M.DeleteQueueFleetAssociationInput = {
     type = "structure",
+    id = "DeleteQueueFleetAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -5016,10 +5207,12 @@ M.DeleteQueueFleetAssociationInput = {
 
 M.DeleteQueueFleetAssociationOutput = {
     type = "structure",
+    id = "DeleteQueueFleetAssociationOutput",
 }
 
 M.DeleteQueueLimitAssociationInput = {
     type = "structure",
+    id = "DeleteQueueLimitAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -5047,10 +5240,12 @@ M.DeleteQueueLimitAssociationInput = {
 
 M.DeleteQueueLimitAssociationOutput = {
     type = "structure",
+    id = "DeleteQueueLimitAssociationOutput",
 }
 
 M.DeleteFarmInput = {
     type = "structure",
+    id = "DeleteFarmInput",
     members = {
         farmId = {
             type = "string",
@@ -5064,10 +5259,12 @@ M.DeleteFarmInput = {
 
 M.DeleteFarmOutput = {
     type = "structure",
+    id = "DeleteFarmOutput",
 }
 
 M.DeleteLimitInput = {
     type = "structure",
+    id = "DeleteLimitInput",
     members = {
         farmId = {
             type = "string",
@@ -5088,10 +5285,12 @@ M.DeleteLimitInput = {
 
 M.DeleteLimitOutput = {
     type = "structure",
+    id = "DeleteLimitOutput",
 }
 
 M.DeleteStorageProfileInput = {
     type = "structure",
+    id = "DeleteStorageProfileInput",
     members = {
         farmId = {
             type = "string",
@@ -5112,10 +5311,12 @@ M.DeleteStorageProfileInput = {
 
 M.DeleteStorageProfileOutput = {
     type = "structure",
+    id = "DeleteStorageProfileOutput",
 }
 
 M.DisassociateMemberFromFarmInput = {
     type = "structure",
+    id = "DisassociateMemberFromFarmInput",
     members = {
         farmId = {
             type = "string",
@@ -5136,10 +5337,12 @@ M.DisassociateMemberFromFarmInput = {
 
 M.DisassociateMemberFromFarmOutput = {
     type = "structure",
+    id = "DisassociateMemberFromFarmOutput",
 }
 
 M.DeleteFleetInput = {
     type = "structure",
+    id = "DeleteFleetInput",
     members = {
         farmId = {
             type = "string",
@@ -5167,10 +5370,12 @@ M.DeleteFleetInput = {
 
 M.DeleteFleetOutput = {
     type = "structure",
+    id = "DeleteFleetOutput",
 }
 
 M.DisassociateMemberFromFleetInput = {
     type = "structure",
+    id = "DisassociateMemberFromFleetInput",
     members = {
         farmId = {
             type = "string",
@@ -5198,10 +5403,12 @@ M.DisassociateMemberFromFleetInput = {
 
 M.DisassociateMemberFromFleetOutput = {
     type = "structure",
+    id = "DisassociateMemberFromFleetOutput",
 }
 
 M.GetFleetInput = {
     type = "structure",
+    id = "GetFleetInput",
     members = {
         farmId = {
             type = "string",
@@ -5222,6 +5429,7 @@ M.GetFleetInput = {
 
 M.FleetCapabilities = {
     type = "structure",
+    id = "FleetCapabilities",
     members = {
         amounts = {
             type = "list",
@@ -5245,6 +5453,7 @@ M.FleetStatus = {
 
 M.GetFleetOutput = {
     type = "structure",
+    id = "GetFleetOutput",
     members = {
         fleetId = {
             type = "string",
@@ -5338,6 +5547,7 @@ M.GetFleetOutput = {
 
 M.ListFleetMembersInput = {
     type = "structure",
+    id = "ListFleetMembersInput",
     members = {
         farmId = {
             type = "string",
@@ -5371,6 +5581,7 @@ M.ListFleetMembersInput = {
 
 M.FleetMember = {
     type = "structure",
+    id = "FleetMember",
     members = {
         farmId = {
             type = "string",
@@ -5413,6 +5624,7 @@ M.FleetMember = {
 
 M.ListFleetMembersOutput = {
     type = "structure",
+    id = "ListFleetMembersOutput",
     members = {
         members = {
             type = "list",
@@ -5429,6 +5641,7 @@ M.ListFleetMembersOutput = {
 
 M.ListFleetsInput = {
     type = "structure",
+    id = "ListFleetsInput",
     members = {
         farmId = {
             type = "string",
@@ -5473,6 +5686,7 @@ M.ListFleetsInput = {
 
 M.FleetSummary = {
     type = "structure",
+    id = "FleetSummary",
     members = {
         fleetId = {
             type = "string",
@@ -5555,6 +5769,7 @@ M.FleetSummary = {
 
 M.ListFleetsOutput = {
     type = "structure",
+    id = "ListFleetsOutput",
     members = {
         fleets = {
             type = "list",
@@ -5571,6 +5786,7 @@ M.ListFleetsOutput = {
 
 M.UpdateFleetInput = {
     type = "structure",
+    id = "UpdateFleetInput",
     members = {
         farmId = {
             type = "string",
@@ -5615,10 +5831,12 @@ M.UpdateFleetInput = {
 
 M.UpdateFleetOutput = {
     type = "structure",
+    id = "UpdateFleetOutput",
 }
 
 M.DeleteWorkerInput = {
     type = "structure",
+    id = "DeleteWorkerInput",
     members = {
         farmId = {
             type = "string",
@@ -5646,10 +5864,12 @@ M.DeleteWorkerInput = {
 
 M.DeleteWorkerOutput = {
     type = "structure",
+    id = "DeleteWorkerOutput",
 }
 
 M.GetWorkerInput = {
     type = "structure",
+    id = "GetWorkerInput",
     members = {
         farmId = {
             type = "string",
@@ -5677,6 +5897,7 @@ M.GetWorkerInput = {
 
 M.GetWorkerOutput = {
     type = "structure",
+    id = "GetWorkerOutput",
     members = {
         farmId = {
             type = "string",
@@ -5731,6 +5952,7 @@ M.GetWorkerOutput = {
 
 M.ListSessionsForWorkerInput = {
     type = "structure",
+    id = "ListSessionsForWorkerInput",
     members = {
         farmId = {
             type = "string",
@@ -5771,6 +5993,7 @@ M.ListSessionsForWorkerInput = {
 
 M.WorkerSessionSummary = {
     type = "structure",
+    id = "WorkerSessionSummary",
     members = {
         sessionId = {
             type = "string",
@@ -5817,6 +6040,7 @@ M.WorkerSessionSummary = {
 
 M.ListSessionsForWorkerOutput = {
     type = "structure",
+    id = "ListSessionsForWorkerOutput",
     members = {
         sessions = {
             type = "list",
@@ -5833,6 +6057,7 @@ M.ListSessionsForWorkerOutput = {
 
 M.ListWorkersInput = {
     type = "structure",
+    id = "ListWorkersInput",
     members = {
         farmId = {
             type = "string",
@@ -5866,6 +6091,7 @@ M.ListWorkersInput = {
 
 M.WorkerSummary = {
     type = "structure",
+    id = "WorkerSummary",
     members = {
         farmId = {
             type = "string",
@@ -5920,6 +6146,7 @@ M.WorkerSummary = {
 
 M.ListWorkersOutput = {
     type = "structure",
+    id = "ListWorkersOutput",
     members = {
         workers = {
             type = "list",
@@ -5936,6 +6163,7 @@ M.ListWorkersOutput = {
 
 M.WorkerAmountCapability = {
     type = "structure",
+    id = "WorkerAmountCapability",
     members = {
         name = {
             type = "string",
@@ -5954,6 +6182,7 @@ M.WorkerAmountCapability = {
 
 M.WorkerAttributeCapability = {
     type = "structure",
+    id = "WorkerAttributeCapability",
     members = {
         name = {
             type = "string",
@@ -5973,6 +6202,7 @@ M.WorkerAttributeCapability = {
 
 M.WorkerCapabilities = {
     type = "structure",
+    id = "WorkerCapabilities",
     members = {
         amounts = {
             type = "list",
@@ -5999,6 +6229,7 @@ M.UpdatedWorkerStatus = {
 
 M.UpdateWorkerInput = {
     type = "structure",
+    id = "UpdateWorkerInput",
     members = {
         farmId = {
             type = "string",
@@ -6031,6 +6262,7 @@ M.UpdateWorkerInput = {
 
 M.UpdateWorkerOutput = {
     type = "structure",
+    id = "UpdateWorkerOutput",
     members = {
         log = M.LogConfiguration,
         hostConfiguration = M.HostConfiguration,
@@ -6039,6 +6271,7 @@ M.UpdateWorkerOutput = {
 
 M.TaskRunManifestPropertiesRequest = {
     type = "structure",
+    id = "TaskRunManifestPropertiesRequest",
     members = {
         outputManifestPath = {
             type = "string",
@@ -6051,6 +6284,7 @@ M.TaskRunManifestPropertiesRequest = {
 
 M.UpdatedSessionActionInfo = {
     type = "structure",
+    id = "UpdatedSessionActionInfo",
     members = {
         completedStatus = {
             type = "string",
@@ -6091,6 +6325,7 @@ M.UpdatedSessionActionInfo = {
 
 M.UpdateWorkerScheduleInput = {
     type = "structure",
+    id = "UpdateWorkerScheduleInput",
     members = {
         farmId = {
             type = "string",
@@ -6127,6 +6362,7 @@ M.DesiredWorkerStatus = {
 
 M.UpdateWorkerScheduleOutput = {
     type = "structure",
+    id = "UpdateWorkerScheduleOutput",
     members = {
         assignedSessions = {
             type = "map",
@@ -6158,6 +6394,7 @@ M.UpdateWorkerScheduleOutput = {
 
 M.GetFarmInput = {
     type = "structure",
+    id = "GetFarmInput",
     members = {
         farmId = {
             type = "string",
@@ -6171,6 +6408,7 @@ M.GetFarmInput = {
 
 M.GetFarmOutput = {
     type = "structure",
+    id = "GetFarmOutput",
     members = {
         farmId = {
             type = "string",
@@ -6224,6 +6462,7 @@ M.GetFarmOutput = {
 
 M.GetLimitInput = {
     type = "structure",
+    id = "GetLimitInput",
     members = {
         farmId = {
             type = "string",
@@ -6244,6 +6483,7 @@ M.GetLimitInput = {
 
 M.GetLimitOutput = {
     type = "structure",
+    id = "GetLimitOutput",
     members = {
         farmId = {
             type = "string",
@@ -6311,6 +6551,7 @@ M.GetLimitOutput = {
 
 M.GetStorageProfileInput = {
     type = "structure",
+    id = "GetStorageProfileInput",
     members = {
         farmId = {
             type = "string",
@@ -6331,6 +6572,7 @@ M.GetStorageProfileInput = {
 
 M.GetStorageProfileOutput = {
     type = "structure",
+    id = "GetStorageProfileOutput",
     members = {
         storageProfileId = {
             type = "string",
@@ -6381,6 +6623,7 @@ M.GetStorageProfileOutput = {
 
 M.ListFarmMembersInput = {
     type = "structure",
+    id = "ListFarmMembersInput",
     members = {
         farmId = {
             type = "string",
@@ -6407,6 +6650,7 @@ M.ListFarmMembersInput = {
 
 M.FarmMember = {
     type = "structure",
+    id = "FarmMember",
     members = {
         farmId = {
             type = "string",
@@ -6443,6 +6687,7 @@ M.FarmMember = {
 
 M.ListFarmMembersOutput = {
     type = "structure",
+    id = "ListFarmMembersOutput",
     members = {
         members = {
             type = "list",
@@ -6459,6 +6704,7 @@ M.ListFarmMembersOutput = {
 
 M.ListFarmsInput = {
     type = "structure",
+    id = "ListFarmsInput",
     members = {
         nextToken = {
             type = "string",
@@ -6484,6 +6730,7 @@ M.ListFarmsInput = {
 
 M.FarmSummary = {
     type = "structure",
+    id = "FarmSummary",
     members = {
         farmId = {
             type = "string",
@@ -6527,6 +6774,7 @@ M.FarmSummary = {
 
 M.ListFarmsOutput = {
     type = "structure",
+    id = "ListFarmsOutput",
     members = {
         farms = {
             type = "list",
@@ -6543,6 +6791,7 @@ M.ListFarmsOutput = {
 
 M.ListLimitsInput = {
     type = "structure",
+    id = "ListLimitsInput",
     members = {
         farmId = {
             type = "string",
@@ -6569,6 +6818,7 @@ M.ListLimitsInput = {
 
 M.LimitSummary = {
     type = "structure",
+    id = "LimitSummary",
     members = {
         farmId = {
             type = "string",
@@ -6633,6 +6883,7 @@ M.LimitSummary = {
 
 M.ListLimitsOutput = {
     type = "structure",
+    id = "ListLimitsOutput",
     members = {
         limits = {
             type = "list",
@@ -6649,6 +6900,7 @@ M.ListLimitsOutput = {
 
 M.ListStorageProfilesInput = {
     type = "structure",
+    id = "ListStorageProfilesInput",
     members = {
         farmId = {
             type = "string",
@@ -6675,6 +6927,7 @@ M.ListStorageProfilesInput = {
 
 M.StorageProfileSummary = {
     type = "structure",
+    id = "StorageProfileSummary",
     members = {
         storageProfileId = {
             type = "string",
@@ -6699,6 +6952,7 @@ M.StorageProfileSummary = {
 
 M.ListStorageProfilesOutput = {
     type = "structure",
+    id = "ListStorageProfilesOutput",
     members = {
         storageProfiles = {
             type = "list",
@@ -6715,6 +6969,7 @@ M.ListStorageProfilesOutput = {
 
 M.DeleteQueueInput = {
     type = "structure",
+    id = "DeleteQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -6735,10 +6990,12 @@ M.DeleteQueueInput = {
 
 M.DeleteQueueOutput = {
     type = "structure",
+    id = "DeleteQueueOutput",
 }
 
 M.DeleteQueueEnvironmentInput = {
     type = "structure",
+    id = "DeleteQueueEnvironmentInput",
     members = {
         farmId = {
             type = "string",
@@ -6766,10 +7023,12 @@ M.DeleteQueueEnvironmentInput = {
 
 M.DeleteQueueEnvironmentOutput = {
     type = "structure",
+    id = "DeleteQueueEnvironmentOutput",
 }
 
 M.DisassociateMemberFromQueueInput = {
     type = "structure",
+    id = "DisassociateMemberFromQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -6797,10 +7056,12 @@ M.DisassociateMemberFromQueueInput = {
 
 M.DisassociateMemberFromQueueOutput = {
     type = "structure",
+    id = "DisassociateMemberFromQueueOutput",
 }
 
 M.GetQueueInput = {
     type = "structure",
+    id = "GetQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -6832,6 +7093,7 @@ M.QueueStatus = {
 
 M.GetQueueOutput = {
     type = "structure",
+    id = "GetQueueOutput",
     members = {
         farmId = {
             type = "string",
@@ -6910,6 +7172,7 @@ M.GetQueueOutput = {
 
 M.GetQueueEnvironmentInput = {
     type = "structure",
+    id = "GetQueueEnvironmentInput",
     members = {
         farmId = {
             type = "string",
@@ -6937,6 +7200,7 @@ M.GetQueueEnvironmentInput = {
 
 M.GetQueueEnvironmentOutput = {
     type = "structure",
+    id = "GetQueueEnvironmentOutput",
     members = {
         queueEnvironmentId = {
             type = "string",
@@ -6995,6 +7259,7 @@ M.GetQueueEnvironmentOutput = {
 
 M.GetStorageProfileForQueueInput = {
     type = "structure",
+    id = "GetStorageProfileForQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -7022,6 +7287,7 @@ M.GetStorageProfileForQueueInput = {
 
 M.GetStorageProfileForQueueOutput = {
     type = "structure",
+    id = "GetStorageProfileForQueueOutput",
     members = {
         storageProfileId = {
             type = "string",
@@ -7050,6 +7316,7 @@ M.GetStorageProfileForQueueOutput = {
 
 M.DisassociateMemberFromJobInput = {
     type = "structure",
+    id = "DisassociateMemberFromJobInput",
     members = {
         farmId = {
             type = "string",
@@ -7084,10 +7351,12 @@ M.DisassociateMemberFromJobInput = {
 
 M.DisassociateMemberFromJobOutput = {
     type = "structure",
+    id = "DisassociateMemberFromJobOutput",
 }
 
 M.GetJobInput = {
     type = "structure",
+    id = "GetJobInput",
     members = {
         farmId = {
             type = "string",
@@ -7115,6 +7384,7 @@ M.GetJobInput = {
 
 M.GetJobOutput = {
     type = "structure",
+    id = "GetJobOutput",
     members = {
         jobId = {
             type = "string",
@@ -7223,6 +7493,7 @@ M.GetJobOutput = {
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         farmId = {
             type = "string",
@@ -7257,6 +7528,7 @@ M.GetSessionInput = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         sessionId = {
             type = "string",
@@ -7317,6 +7589,7 @@ M.GetSessionOutput = {
 
 M.GetSessionActionInput = {
     type = "structure",
+    id = "GetSessionActionInput",
     members = {
         farmId = {
             type = "string",
@@ -7351,6 +7624,7 @@ M.GetSessionActionInput = {
 
 M.GetSessionActionOutput = {
     type = "structure",
+    id = "GetSessionActionOutput",
     members = {
         sessionActionId = {
             type = "string",
@@ -7413,6 +7687,7 @@ M.GetSessionActionOutput = {
 
 M.GetStepInput = {
     type = "structure",
+    id = "GetStepInput",
     members = {
         farmId = {
             type = "string",
@@ -7447,6 +7722,7 @@ M.GetStepInput = {
 
 M.GetStepOutput = {
     type = "structure",
+    id = "GetStepOutput",
     members = {
         stepId = {
             type = "string",
@@ -7534,6 +7810,7 @@ M.GetStepOutput = {
 
 M.GetTaskInput = {
     type = "structure",
+    id = "GetTaskInput",
     members = {
         farmId = {
             type = "string",
@@ -7575,6 +7852,7 @@ M.GetTaskInput = {
 
 M.GetTaskOutput = {
     type = "structure",
+    id = "GetTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -7641,6 +7919,7 @@ M.GetTaskOutput = {
 
 M.ListJobMembersInput = {
     type = "structure",
+    id = "ListJobMembersInput",
     members = {
         farmId = {
             type = "string",
@@ -7681,6 +7960,7 @@ M.ListJobMembersInput = {
 
 M.JobMember = {
     type = "structure",
+    id = "JobMember",
     members = {
         farmId = {
             type = "string",
@@ -7729,6 +8009,7 @@ M.JobMember = {
 
 M.ListJobMembersOutput = {
     type = "structure",
+    id = "ListJobMembersOutput",
     members = {
         members = {
             type = "list",
@@ -7745,6 +8026,7 @@ M.ListJobMembersOutput = {
 
 M.ListJobParameterDefinitionsInput = {
     type = "structure",
+    id = "ListJobParameterDefinitionsInput",
     members = {
         farmId = {
             type = "string",
@@ -7785,6 +8067,7 @@ M.ListJobParameterDefinitionsInput = {
 
 M.ListJobParameterDefinitionsOutput = {
     type = "structure",
+    id = "ListJobParameterDefinitionsOutput",
     members = {
         jobParameterDefinitions = {
             type = "list",
@@ -7801,6 +8084,7 @@ M.ListJobParameterDefinitionsOutput = {
 
 M.ListJobsInput = {
     type = "structure",
+    id = "ListJobsInput",
     members = {
         farmId = {
             type = "string",
@@ -7840,6 +8124,7 @@ M.ListJobsInput = {
 
 M.JobSummary = {
     type = "structure",
+    id = "JobSummary",
     members = {
         jobId = {
             type = "string",
@@ -7936,6 +8221,7 @@ M.JobSummary = {
 
 M.ListJobsOutput = {
     type = "structure",
+    id = "ListJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -7952,6 +8238,7 @@ M.ListJobsOutput = {
 
 M.ListSessionActionsInput = {
     type = "structure",
+    id = "ListSessionActionsInput",
     members = {
         farmId = {
             type = "string",
@@ -8004,6 +8291,7 @@ M.ListSessionActionsInput = {
 
 M.EnvironmentEnterSessionActionDefinitionSummary = {
     type = "structure",
+    id = "EnvironmentEnterSessionActionDefinitionSummary",
     members = {
         environmentId = {
             type = "string",
@@ -8016,6 +8304,7 @@ M.EnvironmentEnterSessionActionDefinitionSummary = {
 
 M.EnvironmentExitSessionActionDefinitionSummary = {
     type = "structure",
+    id = "EnvironmentExitSessionActionDefinitionSummary",
     members = {
         environmentId = {
             type = "string",
@@ -8028,6 +8317,7 @@ M.EnvironmentExitSessionActionDefinitionSummary = {
 
 M.SyncInputJobAttachmentsSessionActionDefinitionSummary = {
     type = "structure",
+    id = "SyncInputJobAttachmentsSessionActionDefinitionSummary",
     members = {
         stepId = {
             type = "string",
@@ -8037,6 +8327,7 @@ M.SyncInputJobAttachmentsSessionActionDefinitionSummary = {
 
 M.TaskRunSessionActionDefinitionSummary = {
     type = "structure",
+    id = "TaskRunSessionActionDefinitionSummary",
     members = {
         taskId = {
             type = "string",
@@ -8057,6 +8348,7 @@ M.TaskRunSessionActionDefinitionSummary = {
 
 M.SessionActionDefinitionSummary = {
     type = "union",
+    id = "SessionActionDefinitionSummary",
     members = {
         envEnter = M.EnvironmentEnterSessionActionDefinitionSummary,
         envExit = M.EnvironmentExitSessionActionDefinitionSummary,
@@ -8067,6 +8359,7 @@ M.SessionActionDefinitionSummary = {
 
 M.SessionActionSummary = {
     type = "structure",
+    id = "SessionActionSummary",
     members = {
         sessionActionId = {
             type = "string",
@@ -8113,6 +8406,7 @@ M.SessionActionSummary = {
 
 M.ListSessionActionsOutput = {
     type = "structure",
+    id = "ListSessionActionsOutput",
     members = {
         sessionActions = {
             type = "list",
@@ -8129,6 +8423,7 @@ M.ListSessionActionsOutput = {
 
 M.ListSessionsInput = {
     type = "structure",
+    id = "ListSessionsInput",
     members = {
         farmId = {
             type = "string",
@@ -8169,6 +8464,7 @@ M.ListSessionsInput = {
 
 M.SessionSummary = {
     type = "structure",
+    id = "SessionSummary",
     members = {
         sessionId = {
             type = "string",
@@ -8224,6 +8520,7 @@ M.SessionSummary = {
 
 M.ListSessionsOutput = {
     type = "structure",
+    id = "ListSessionsOutput",
     members = {
         sessions = {
             type = "list",
@@ -8240,6 +8537,7 @@ M.ListSessionsOutput = {
 
 M.ListStepConsumersInput = {
     type = "structure",
+    id = "ListStepConsumersInput",
     members = {
         farmId = {
             type = "string",
@@ -8292,6 +8590,7 @@ M.DependencyConsumerResolutionStatus = {
 
 M.StepConsumer = {
     type = "structure",
+    id = "StepConsumer",
     members = {
         stepId = {
             type = "string",
@@ -8310,6 +8609,7 @@ M.StepConsumer = {
 
 M.ListStepConsumersOutput = {
     type = "structure",
+    id = "ListStepConsumersOutput",
     members = {
         consumers = {
             type = "list",
@@ -8326,6 +8626,7 @@ M.ListStepConsumersOutput = {
 
 M.ListStepDependenciesInput = {
     type = "structure",
+    id = "ListStepDependenciesInput",
     members = {
         farmId = {
             type = "string",
@@ -8373,6 +8674,7 @@ M.ListStepDependenciesInput = {
 
 M.StepDependency = {
     type = "structure",
+    id = "StepDependency",
     members = {
         stepId = {
             type = "string",
@@ -8391,6 +8693,7 @@ M.StepDependency = {
 
 M.ListStepDependenciesOutput = {
     type = "structure",
+    id = "ListStepDependenciesOutput",
     members = {
         dependencies = {
             type = "list",
@@ -8407,6 +8710,7 @@ M.ListStepDependenciesOutput = {
 
 M.ListStepsInput = {
     type = "structure",
+    id = "ListStepsInput",
     members = {
         farmId = {
             type = "string",
@@ -8447,6 +8751,7 @@ M.ListStepsInput = {
 
 M.StepSummary = {
     type = "structure",
+    id = "StepSummary",
     members = {
         stepId = {
             type = "string",
@@ -8529,6 +8834,7 @@ M.StepSummary = {
 
 M.ListStepsOutput = {
     type = "structure",
+    id = "ListStepsOutput",
     members = {
         steps = {
             type = "list",
@@ -8545,6 +8851,7 @@ M.ListStepsOutput = {
 
 M.ListTasksInput = {
     type = "structure",
+    id = "ListTasksInput",
     members = {
         farmId = {
             type = "string",
@@ -8592,6 +8899,7 @@ M.ListTasksInput = {
 
 M.TaskSummary = {
     type = "structure",
+    id = "TaskSummary",
     members = {
         taskId = {
             type = "string",
@@ -8658,6 +8966,7 @@ M.TaskSummary = {
 
 M.ListTasksOutput = {
     type = "structure",
+    id = "ListTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -8674,6 +8983,7 @@ M.ListTasksOutput = {
 
 M.UpdateJobInput = {
     type = "structure",
+    id = "UpdateJobInput",
     members = {
         farmId = {
             type = "string",
@@ -8732,10 +9042,12 @@ M.UpdateJobInput = {
 
 M.UpdateJobOutput = {
     type = "structure",
+    id = "UpdateJobOutput",
 }
 
 M.UpdateSessionInput = {
     type = "structure",
+    id = "UpdateSessionInput",
     members = {
         farmId = {
             type = "string",
@@ -8783,10 +9095,12 @@ M.UpdateSessionInput = {
 
 M.UpdateSessionOutput = {
     type = "structure",
+    id = "UpdateSessionOutput",
 }
 
 M.UpdateStepInput = {
     type = "structure",
+    id = "UpdateStepInput",
     members = {
         farmId = {
             type = "string",
@@ -8834,10 +9148,12 @@ M.UpdateStepInput = {
 
 M.UpdateStepOutput = {
     type = "structure",
+    id = "UpdateStepOutput",
 }
 
 M.UpdateTaskInput = {
     type = "structure",
+    id = "UpdateTaskInput",
     members = {
         farmId = {
             type = "string",
@@ -8892,10 +9208,12 @@ M.UpdateTaskInput = {
 
 M.UpdateTaskOutput = {
     type = "structure",
+    id = "UpdateTaskOutput",
 }
 
 M.ListQueueEnvironmentsInput = {
     type = "structure",
+    id = "ListQueueEnvironmentsInput",
     members = {
         farmId = {
             type = "string",
@@ -8929,6 +9247,7 @@ M.ListQueueEnvironmentsInput = {
 
 M.QueueEnvironmentSummary = {
     type = "structure",
+    id = "QueueEnvironmentSummary",
     members = {
         queueEnvironmentId = {
             type = "string",
@@ -8953,6 +9272,7 @@ M.QueueEnvironmentSummary = {
 
 M.ListQueueEnvironmentsOutput = {
     type = "structure",
+    id = "ListQueueEnvironmentsOutput",
     members = {
         environments = {
             type = "list",
@@ -8969,6 +9289,7 @@ M.ListQueueEnvironmentsOutput = {
 
 M.ListQueueMembersInput = {
     type = "structure",
+    id = "ListQueueMembersInput",
     members = {
         farmId = {
             type = "string",
@@ -9002,6 +9323,7 @@ M.ListQueueMembersInput = {
 
 M.QueueMember = {
     type = "structure",
+    id = "QueueMember",
     members = {
         farmId = {
             type = "string",
@@ -9044,6 +9366,7 @@ M.QueueMember = {
 
 M.ListQueueMembersOutput = {
     type = "structure",
+    id = "ListQueueMembersOutput",
     members = {
         members = {
             type = "list",
@@ -9060,6 +9383,7 @@ M.ListQueueMembersOutput = {
 
 M.ListQueuesInput = {
     type = "structure",
+    id = "ListQueuesInput",
     members = {
         farmId = {
             type = "string",
@@ -9098,6 +9422,7 @@ M.ListQueuesInput = {
 
 M.QueueSummary = {
     type = "structure",
+    id = "QueueSummary",
     members = {
         farmId = {
             type = "string",
@@ -9159,6 +9484,7 @@ M.QueueSummary = {
 
 M.ListQueuesOutput = {
     type = "structure",
+    id = "ListQueuesOutput",
     members = {
         queues = {
             type = "list",
@@ -9175,6 +9501,7 @@ M.ListQueuesOutput = {
 
 M.ListStorageProfilesForQueueInput = {
     type = "structure",
+    id = "ListStorageProfilesForQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -9208,6 +9535,7 @@ M.ListStorageProfilesForQueueInput = {
 
 M.ListStorageProfilesForQueueOutput = {
     type = "structure",
+    id = "ListStorageProfilesForQueueOutput",
     members = {
         storageProfiles = {
             type = "list",
@@ -9224,6 +9552,7 @@ M.ListStorageProfilesForQueueOutput = {
 
 M.UpdateQueueInput = {
     type = "structure",
+    id = "UpdateQueueInput",
     members = {
         farmId = {
             type = "string",
@@ -9282,10 +9611,12 @@ M.UpdateQueueInput = {
 
 M.UpdateQueueOutput = {
     type = "structure",
+    id = "UpdateQueueOutput",
 }
 
 M.UpdateQueueEnvironmentInput = {
     type = "structure",
+    id = "UpdateQueueEnvironmentInput",
     members = {
         farmId = {
             type = "string",
@@ -9329,10 +9660,12 @@ M.UpdateQueueEnvironmentInput = {
 
 M.UpdateQueueEnvironmentOutput = {
     type = "structure",
+    id = "UpdateQueueEnvironmentOutput",
 }
 
 M.UpdateFarmInput = {
     type = "structure",
+    id = "UpdateFarmInput",
     members = {
         farmId = {
             type = "string",
@@ -9355,10 +9688,12 @@ M.UpdateFarmInput = {
 
 M.UpdateFarmOutput = {
     type = "structure",
+    id = "UpdateFarmOutput",
 }
 
 M.UpdateLimitInput = {
     type = "structure",
+    id = "UpdateLimitInput",
     members = {
         farmId = {
             type = "string",
@@ -9388,10 +9723,12 @@ M.UpdateLimitInput = {
 
 M.UpdateLimitOutput = {
     type = "structure",
+    id = "UpdateLimitOutput",
 }
 
 M.UpdateStorageProfileInput = {
     type = "structure",
+    id = "UpdateStorageProfileInput",
     members = {
         farmId = {
             type = "string",
@@ -9433,10 +9770,12 @@ M.UpdateStorageProfileInput = {
 
 M.UpdateStorageProfileOutput = {
     type = "structure",
+    id = "UpdateStorageProfileOutput",
 }
 
 M.GetQueueFleetAssociationInput = {
     type = "structure",
+    id = "GetQueueFleetAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -9471,6 +9810,7 @@ M.QueueFleetAssociationStatus = {
 
 M.GetQueueFleetAssociationOutput = {
     type = "structure",
+    id = "GetQueueFleetAssociationOutput",
     members = {
         queueId = {
             type = "string",
@@ -9517,6 +9857,7 @@ M.GetQueueFleetAssociationOutput = {
 
 M.GetQueueLimitAssociationInput = {
     type = "structure",
+    id = "GetQueueLimitAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -9551,6 +9892,7 @@ M.QueueLimitAssociationStatus = {
 
 M.GetQueueLimitAssociationOutput = {
     type = "structure",
+    id = "GetQueueLimitAssociationOutput",
     members = {
         queueId = {
             type = "string",
@@ -9597,6 +9939,7 @@ M.GetQueueLimitAssociationOutput = {
 
 M.GetSessionsStatisticsAggregationInput = {
     type = "structure",
+    id = "GetSessionsStatisticsAggregationInput",
     members = {
         farmId = {
             type = "string",
@@ -9630,6 +9973,7 @@ M.GetSessionsStatisticsAggregationInput = {
 
 M.Stats = {
     type = "structure",
+    id = "Stats",
     members = {
         min = {
             type = "double",
@@ -9653,6 +9997,7 @@ M.UsageType = {
 
 M.Statistics = {
     type = "structure",
+    id = "Statistics",
     members = {
         queueId = {
             type = "string",
@@ -9714,6 +10059,7 @@ M.SessionsStatisticsAggregationStatus = {
 
 M.GetSessionsStatisticsAggregationOutput = {
     type = "structure",
+    id = "GetSessionsStatisticsAggregationOutput",
     members = {
         statistics = {
             type = "list",
@@ -9736,6 +10082,7 @@ M.GetSessionsStatisticsAggregationOutput = {
 
 M.DeleteLicenseEndpointInput = {
     type = "structure",
+    id = "DeleteLicenseEndpointInput",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -9749,10 +10096,12 @@ M.DeleteLicenseEndpointInput = {
 
 M.DeleteLicenseEndpointOutput = {
     type = "structure",
+    id = "DeleteLicenseEndpointOutput",
 }
 
 M.DeleteMeteredProductInput = {
     type = "structure",
+    id = "DeleteMeteredProductInput",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -9773,10 +10122,12 @@ M.DeleteMeteredProductInput = {
 
 M.DeleteMeteredProductOutput = {
     type = "structure",
+    id = "DeleteMeteredProductOutput",
 }
 
 M.GetLicenseEndpointInput = {
     type = "structure",
+    id = "GetLicenseEndpointInput",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -9797,6 +10148,7 @@ M.LicenseEndpointStatus = {
 
 M.GetLicenseEndpointOutput = {
     type = "structure",
+    id = "GetLicenseEndpointOutput",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -9835,6 +10187,7 @@ M.GetLicenseEndpointOutput = {
 
 M.ListLicenseEndpointsInput = {
     type = "structure",
+    id = "ListLicenseEndpointsInput",
     members = {
         nextToken = {
             type = "string",
@@ -9854,6 +10207,7 @@ M.ListLicenseEndpointsInput = {
 
 M.LicenseEndpointSummary = {
     type = "structure",
+    id = "LicenseEndpointSummary",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -9872,6 +10226,7 @@ M.LicenseEndpointSummary = {
 
 M.ListLicenseEndpointsOutput = {
     type = "structure",
+    id = "ListLicenseEndpointsOutput",
     members = {
         licenseEndpoints = {
             type = "list",
@@ -9888,6 +10243,7 @@ M.ListLicenseEndpointsOutput = {
 
 M.ListMeteredProductsInput = {
     type = "structure",
+    id = "ListMeteredProductsInput",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -9914,6 +10270,7 @@ M.ListMeteredProductsInput = {
 
 M.MeteredProductSummary = {
     type = "structure",
+    id = "MeteredProductSummary",
     members = {
         productId = {
             type = "string",
@@ -9944,6 +10301,7 @@ M.MeteredProductSummary = {
 
 M.ListMeteredProductsOutput = {
     type = "structure",
+    id = "ListMeteredProductsOutput",
     members = {
         meteredProducts = {
             type = "list",
@@ -9960,6 +10318,7 @@ M.ListMeteredProductsOutput = {
 
 M.PutMeteredProductInput = {
     type = "structure",
+    id = "PutMeteredProductInput",
     members = {
         licenseEndpointId = {
             type = "string",
@@ -9980,10 +10339,12 @@ M.PutMeteredProductInput = {
 
 M.PutMeteredProductOutput = {
     type = "structure",
+    id = "PutMeteredProductOutput",
 }
 
 M.ListAvailableMeteredProductsInput = {
     type = "structure",
+    id = "ListAvailableMeteredProductsInput",
     members = {
         nextToken = {
             type = "string",
@@ -10003,6 +10364,7 @@ M.ListAvailableMeteredProductsInput = {
 
 M.ListAvailableMeteredProductsOutput = {
     type = "structure",
+    id = "ListAvailableMeteredProductsOutput",
     members = {
         meteredProducts = {
             type = "list",
@@ -10019,6 +10381,7 @@ M.ListAvailableMeteredProductsOutput = {
 
 M.ListQueueFleetAssociationsInput = {
     type = "structure",
+    id = "ListQueueFleetAssociationsInput",
     members = {
         farmId = {
             type = "string",
@@ -10057,6 +10420,7 @@ M.ListQueueFleetAssociationsInput = {
 
 M.QueueFleetAssociationSummary = {
     type = "structure",
+    id = "QueueFleetAssociationSummary",
     members = {
         queueId = {
             type = "string",
@@ -10103,6 +10467,7 @@ M.QueueFleetAssociationSummary = {
 
 M.ListQueueFleetAssociationsOutput = {
     type = "structure",
+    id = "ListQueueFleetAssociationsOutput",
     members = {
         queueFleetAssociations = {
             type = "list",
@@ -10119,6 +10484,7 @@ M.ListQueueFleetAssociationsOutput = {
 
 M.ListQueueLimitAssociationsInput = {
     type = "structure",
+    id = "ListQueueLimitAssociationsInput",
     members = {
         farmId = {
             type = "string",
@@ -10157,6 +10523,7 @@ M.ListQueueLimitAssociationsInput = {
 
 M.QueueLimitAssociationSummary = {
     type = "structure",
+    id = "QueueLimitAssociationSummary",
     members = {
         queueId = {
             type = "string",
@@ -10203,6 +10570,7 @@ M.QueueLimitAssociationSummary = {
 
 M.ListQueueLimitAssociationsOutput = {
     type = "structure",
+    id = "ListQueueLimitAssociationsOutput",
     members = {
         queueLimitAssociations = {
             type = "list",
@@ -10219,6 +10587,7 @@ M.ListQueueLimitAssociationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -10232,6 +10601,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -10243,6 +10613,7 @@ M.ListTagsForResourceOutput = {
 
 M.DeleteMonitorInput = {
     type = "structure",
+    id = "DeleteMonitorInput",
     members = {
         monitorId = {
             type = "string",
@@ -10256,10 +10627,12 @@ M.DeleteMonitorInput = {
 
 M.DeleteMonitorOutput = {
     type = "structure",
+    id = "DeleteMonitorOutput",
 }
 
 M.GetMonitorInput = {
     type = "structure",
+    id = "GetMonitorInput",
     members = {
         monitorId = {
             type = "string",
@@ -10273,6 +10646,7 @@ M.GetMonitorInput = {
 
 M.GetMonitorOutput = {
     type = "structure",
+    id = "GetMonitorOutput",
     members = {
         monitorId = {
             type = "string",
@@ -10346,6 +10720,7 @@ M.GetMonitorOutput = {
 
 M.GetMonitorSettingsInput = {
     type = "structure",
+    id = "GetMonitorSettingsInput",
     members = {
         monitorId = {
             type = "string",
@@ -10359,6 +10734,7 @@ M.GetMonitorSettingsInput = {
 
 M.GetMonitorSettingsOutput = {
     type = "structure",
+    id = "GetMonitorSettingsOutput",
     members = {
         settings = {
             type = "map",
@@ -10373,6 +10749,7 @@ M.GetMonitorSettingsOutput = {
 
 M.ListMonitorsInput = {
     type = "structure",
+    id = "ListMonitorsInput",
     members = {
         nextToken = {
             type = "string",
@@ -10392,6 +10769,7 @@ M.ListMonitorsInput = {
 
 M.MonitorSummary = {
     type = "structure",
+    id = "MonitorSummary",
     members = {
         monitorId = {
             type = "string",
@@ -10465,6 +10843,7 @@ M.MonitorSummary = {
 
 M.ListMonitorsOutput = {
     type = "structure",
+    id = "ListMonitorsOutput",
     members = {
         monitors = {
             type = "list",
@@ -10481,6 +10860,7 @@ M.ListMonitorsOutput = {
 
 M.UpdateMonitorInput = {
     type = "structure",
+    id = "UpdateMonitorInput",
     members = {
         monitorId = {
             type = "string",
@@ -10503,10 +10883,12 @@ M.UpdateMonitorInput = {
 
 M.UpdateMonitorOutput = {
     type = "structure",
+    id = "UpdateMonitorOutput",
 }
 
 M.UpdateMonitorSettingsInput = {
     type = "structure",
+    id = "UpdateMonitorSettingsInput",
     members = {
         monitorId = {
             type = "string",
@@ -10528,10 +10910,12 @@ M.UpdateMonitorSettingsInput = {
 
 M.UpdateMonitorSettingsOutput = {
     type = "structure",
+    id = "UpdateMonitorSettingsOutput",
 }
 
 M.ParameterFilterExpression = {
     type = "structure",
+    id = "ParameterFilterExpression",
     members = {
         name = {
             type = "string",
@@ -10561,6 +10945,7 @@ M.SearchTermMatchingType = {
 
 M.SearchTermFilterExpression = {
     type = "structure",
+    id = "SearchTermFilterExpression",
     members = {
         searchTerm = {
             type = "string",
@@ -10579,6 +10964,7 @@ M.SearchTermFilterExpression = {
 
 M.StringFilterExpression = {
     type = "structure",
+    id = "StringFilterExpression",
     members = {
         name = {
             type = "string",
@@ -10603,6 +10989,7 @@ M.StringFilterExpression = {
 
 M.StringListFilterExpression = {
     type = "structure",
+    id = "StringListFilterExpression",
     members = {
         name = {
             type = "string",
@@ -10638,6 +11025,7 @@ M.SortOrder = {
 
 M.FieldSortExpression = {
     type = "structure",
+    id = "FieldSortExpression",
     members = {
         sortOrder = {
             type = "string",
@@ -10656,6 +11044,7 @@ M.FieldSortExpression = {
 
 M.ParameterSortExpression = {
     type = "structure",
+    id = "ParameterSortExpression",
     members = {
         sortOrder = {
             type = "string",
@@ -10674,6 +11063,7 @@ M.ParameterSortExpression = {
 
 M.UserJobsFirst = {
     type = "structure",
+    id = "UserJobsFirst",
     members = {
         userIdentityId = {
             type = "string",
@@ -10686,6 +11076,7 @@ M.UserJobsFirst = {
 
 M.SearchSortExpression = {
     type = "union",
+    id = "SearchSortExpression",
     members = {
         userJobsFirst = M.UserJobsFirst,
         fieldSort = M.FieldSortExpression,
@@ -10695,6 +11086,7 @@ M.SearchSortExpression = {
 
 M.JobSearchSummary = {
     type = "structure",
+    id = "JobSearchSummary",
     members = {
         jobId = {
             type = "string",
@@ -10780,6 +11172,7 @@ M.JobSearchSummary = {
 
 M.SearchJobsOutput = {
     type = "structure",
+    id = "SearchJobsOutput",
     members = {
         jobs = {
             type = "list",
@@ -10802,6 +11195,7 @@ M.SearchJobsOutput = {
 
 M.StepSearchSummary = {
     type = "structure",
+    id = "StepSearchSummary",
     members = {
         stepId = {
             type = "string",
@@ -10871,6 +11265,7 @@ M.StepSearchSummary = {
 
 M.SearchStepsOutput = {
     type = "structure",
+    id = "SearchStepsOutput",
     members = {
         steps = {
             type = "list",
@@ -10893,6 +11288,7 @@ M.SearchStepsOutput = {
 
 M.TaskSearchSummary = {
     type = "structure",
+    id = "TaskSearchSummary",
     members = {
         taskId = {
             type = "string",
@@ -10949,6 +11345,7 @@ M.TaskSearchSummary = {
 
 M.SearchTasksOutput = {
     type = "structure",
+    id = "SearchTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -10971,6 +11368,7 @@ M.SearchTasksOutput = {
 
 M.WorkerSearchSummary = {
     type = "structure",
+    id = "WorkerSearchSummary",
     members = {
         fleetId = {
             type = "string",
@@ -11005,6 +11403,7 @@ M.WorkerSearchSummary = {
 
 M.SearchWorkersOutput = {
     type = "structure",
+    id = "SearchWorkersOutput",
     members = {
         workers = {
             type = "list",
@@ -11044,6 +11443,7 @@ M.Period = {
 
 M.SessionsStatisticsResources = {
     type = "union",
+    id = "SessionsStatisticsResources",
     members = {
         queueIds = {
             type = "list",
@@ -11065,6 +11465,7 @@ M.UsageStatistic = {
 
 M.StartSessionsStatisticsAggregationInput = {
     type = "structure",
+    id = "StartSessionsStatisticsAggregationInput",
     members = {
         farmId = {
             type = "string",
@@ -11115,6 +11516,7 @@ M.StartSessionsStatisticsAggregationInput = {
 
 M.StartSessionsStatisticsAggregationOutput = {
     type = "structure",
+    id = "StartSessionsStatisticsAggregationOutput",
     members = {
         aggregationId = {
             type = "string",
@@ -11127,6 +11529,7 @@ M.StartSessionsStatisticsAggregationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -11145,10 +11548,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -11170,6 +11575,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateQueueFleetAssociationStatus = {
@@ -11180,6 +11586,7 @@ M.UpdateQueueFleetAssociationStatus = {
 
 M.UpdateQueueFleetAssociationInput = {
     type = "structure",
+    id = "UpdateQueueFleetAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -11213,6 +11620,7 @@ M.UpdateQueueFleetAssociationInput = {
 
 M.UpdateQueueFleetAssociationOutput = {
     type = "structure",
+    id = "UpdateQueueFleetAssociationOutput",
 }
 
 M.UpdateQueueLimitAssociationStatus = {
@@ -11223,6 +11631,7 @@ M.UpdateQueueLimitAssociationStatus = {
 
 M.UpdateQueueLimitAssociationInput = {
     type = "structure",
+    id = "UpdateQueueLimitAssociationInput",
     members = {
         farmId = {
             type = "string",
@@ -11256,10 +11665,12 @@ M.UpdateQueueLimitAssociationInput = {
 
 M.UpdateQueueLimitAssociationOutput = {
     type = "structure",
+    id = "UpdateQueueLimitAssociationOutput",
 }
 
 M.SearchFilterExpression = {
     type = "union",
+    id = "SearchFilterExpression",
     members = {
         dateTimeFilter = M.DateTimeFilterExpression,
         parameterFilter = M.ParameterFilterExpression,
@@ -11272,6 +11683,7 @@ M.SearchFilterExpression = {
 
 M.SearchGroupedFilterExpressions = {
     type = "structure",
+    id = "SearchGroupedFilterExpressions",
     members = {
         filters = {
             type = "list",
@@ -11291,6 +11703,7 @@ M.SearchGroupedFilterExpressions = {
 
 M.SearchJobsInput = {
     type = "structure",
+    id = "SearchJobsInput",
     members = {
         farmId = {
             type = "string",
@@ -11328,6 +11741,7 @@ M.SearchJobsInput = {
 
 M.SearchStepsInput = {
     type = "structure",
+    id = "SearchStepsInput",
     members = {
         farmId = {
             type = "string",
@@ -11368,6 +11782,7 @@ M.SearchStepsInput = {
 
 M.SearchTasksInput = {
     type = "structure",
+    id = "SearchTasksInput",
     members = {
         farmId = {
             type = "string",
@@ -11408,6 +11823,7 @@ M.SearchTasksInput = {
 
 M.SearchWorkersInput = {
     type = "structure",
+    id = "SearchWorkersInput",
     members = {
         farmId = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessControlAttributeValue = {
     type = "structure",
+    id = "AccessControlAttributeValue",
     members = {
         Source = {
             type = "list",
@@ -15,6 +16,7 @@ M.AccessControlAttributeValue = {
 
 M.AccessControlAttribute = {
     type = "structure",
+    id = "AccessControlAttribute",
     members = {
         Key = {
             type = "string",
@@ -34,6 +36,7 @@ M.AccessDeniedExceptionReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -52,6 +55,7 @@ M.PrincipalType = {
 
 M.AccountAssignment = {
     type = "structure",
+    id = "AccountAssignment",
     members = {
         AccountId = {
             type = "string",
@@ -70,6 +74,7 @@ M.AccountAssignment = {
 
 M.AccountAssignmentForPrincipal = {
     type = "structure",
+    id = "AccountAssignmentForPrincipal",
     members = {
         AccountId = {
             type = "string",
@@ -98,6 +103,7 @@ M.TargetType = {
 
 M.AccountAssignmentOperationStatus = {
     type = "structure",
+    id = "AccountAssignmentOperationStatus",
     members = {
         Status = {
             type = "string",
@@ -131,6 +137,7 @@ M.AccountAssignmentOperationStatus = {
 
 M.AccountAssignmentOperationStatusMetadata = {
     type = "structure",
+    id = "AccountAssignmentOperationStatusMetadata",
     members = {
         Status = {
             type = "string",
@@ -146,6 +153,7 @@ M.AccountAssignmentOperationStatusMetadata = {
 
 M.AddRegionInput = {
     type = "structure",
+    id = "AddRegionInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -170,6 +178,7 @@ M.RegionStatus = {
 
 M.AddRegionOutput = {
     type = "structure",
+    id = "AddRegionOutput",
     members = {
         Status = {
             type = "string",
@@ -179,6 +188,7 @@ M.AddRegionOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -189,6 +199,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -199,6 +210,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -213,6 +225,7 @@ M.ThrottlingExceptionReason = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -232,6 +245,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -250,6 +264,7 @@ M.SignInOrigin = {
 
 M.SignInOptions = {
     type = "structure",
+    id = "SignInOptions",
     members = {
         Origin = {
             type = "string",
@@ -270,6 +285,7 @@ M.ApplicationVisibility = {
 
 M.PortalOptions = {
     type = "structure",
+    id = "PortalOptions",
     members = {
         SignInOptions = M.SignInOptions,
         Visibility = {
@@ -288,6 +304,7 @@ M.ApplicationStatus = {
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         ApplicationArn = {
             type = "string",
@@ -325,6 +342,7 @@ M.Application = {
 
 M.DeleteApplicationAccessScopeInput = {
     type = "structure",
+    id = "DeleteApplicationAccessScopeInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -343,6 +361,7 @@ M.DeleteApplicationAccessScopeInput = {
 
 M.DeleteApplicationAccessScopeOutput = {
     type = "structure",
+    id = "DeleteApplicationAccessScopeOutput",
 }
 
 M.ResourceNotFoundExceptionReason = {
@@ -351,6 +370,7 @@ M.ResourceNotFoundExceptionReason = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -364,6 +384,7 @@ M.ResourceNotFoundException = {
 
 M.GetApplicationAccessScopeInput = {
     type = "structure",
+    id = "GetApplicationAccessScopeInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -382,6 +403,7 @@ M.GetApplicationAccessScopeInput = {
 
 M.GetApplicationAccessScopeOutput = {
     type = "structure",
+    id = "GetApplicationAccessScopeOutput",
     members = {
         Scope = {
             type = "string",
@@ -398,6 +420,7 @@ M.GetApplicationAccessScopeOutput = {
 
 M.ListApplicationAccessScopesInput = {
     type = "structure",
+    id = "ListApplicationAccessScopesInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -419,6 +442,7 @@ M.ListApplicationAccessScopesInput = {
 
 M.ScopeDetails = {
     type = "structure",
+    id = "ScopeDetails",
     members = {
         Scope = {
             type = "string",
@@ -435,6 +459,7 @@ M.ScopeDetails = {
 
 M.ListApplicationAccessScopesOutput = {
     type = "structure",
+    id = "ListApplicationAccessScopesOutput",
     members = {
         Scopes = {
             type = "list",
@@ -451,6 +476,7 @@ M.ListApplicationAccessScopesOutput = {
 
 M.PutApplicationAccessScopeInput = {
     type = "structure",
+    id = "PutApplicationAccessScopeInput",
     members = {
         Scope = {
             type = "string",
@@ -473,10 +499,12 @@ M.PutApplicationAccessScopeInput = {
 
 M.PutApplicationAccessScopeOutput = {
     type = "structure",
+    id = "PutApplicationAccessScopeOutput",
 }
 
 M.ApplicationAssignment = {
     type = "structure",
+    id = "ApplicationAssignment",
     members = {
         ApplicationArn = {
             type = "string",
@@ -501,6 +529,7 @@ M.ApplicationAssignment = {
 
 M.ApplicationAssignmentForPrincipal = {
     type = "structure",
+    id = "ApplicationAssignmentForPrincipal",
     members = {
         ApplicationArn = {
             type = "string",
@@ -520,6 +549,7 @@ M.AuthenticationMethodType = {
 
 M.DeleteApplicationAuthenticationMethodInput = {
     type = "structure",
+    id = "DeleteApplicationAuthenticationMethodInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -538,10 +568,12 @@ M.DeleteApplicationAuthenticationMethodInput = {
 
 M.DeleteApplicationAuthenticationMethodOutput = {
     type = "structure",
+    id = "DeleteApplicationAuthenticationMethodOutput",
 }
 
 M.GetApplicationAuthenticationMethodInput = {
     type = "structure",
+    id = "GetApplicationAuthenticationMethodInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -560,6 +592,7 @@ M.GetApplicationAuthenticationMethodInput = {
 
 M.IamAuthenticationMethod = {
     type = "structure",
+    id = "IamAuthenticationMethod",
     members = {
         ActorPolicy = {
             type = "document",
@@ -572,6 +605,7 @@ M.IamAuthenticationMethod = {
 
 M.AuthenticationMethod = {
     type = "union",
+    id = "AuthenticationMethod",
     members = {
         Iam = M.IamAuthenticationMethod,
     },
@@ -579,6 +613,7 @@ M.AuthenticationMethod = {
 
 M.GetApplicationAuthenticationMethodOutput = {
     type = "structure",
+    id = "GetApplicationAuthenticationMethodOutput",
     members = {
         AuthenticationMethod = M.AuthenticationMethod,
     },
@@ -586,6 +621,7 @@ M.GetApplicationAuthenticationMethodOutput = {
 
 M.ListApplicationAuthenticationMethodsInput = {
     type = "structure",
+    id = "ListApplicationAuthenticationMethodsInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -601,6 +637,7 @@ M.ListApplicationAuthenticationMethodsInput = {
 
 M.AuthenticationMethodItem = {
     type = "structure",
+    id = "AuthenticationMethodItem",
     members = {
         AuthenticationMethodType = {
             type = "string",
@@ -611,6 +648,7 @@ M.AuthenticationMethodItem = {
 
 M.ListApplicationAuthenticationMethodsOutput = {
     type = "structure",
+    id = "ListApplicationAuthenticationMethodsOutput",
     members = {
         AuthenticationMethods = {
             type = "list",
@@ -624,6 +662,7 @@ M.ListApplicationAuthenticationMethodsOutput = {
 
 M.PutApplicationAuthenticationMethodInput = {
     type = "structure",
+    id = "PutApplicationAuthenticationMethodInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -645,6 +684,7 @@ M.PutApplicationAuthenticationMethodInput = {
 
 M.PutApplicationAuthenticationMethodOutput = {
     type = "structure",
+    id = "PutApplicationAuthenticationMethodOutput",
 }
 
 M.GrantType = {
@@ -656,6 +696,7 @@ M.GrantType = {
 
 M.DeleteApplicationGrantInput = {
     type = "structure",
+    id = "DeleteApplicationGrantInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -674,10 +715,12 @@ M.DeleteApplicationGrantInput = {
 
 M.DeleteApplicationGrantOutput = {
     type = "structure",
+    id = "DeleteApplicationGrantOutput",
 }
 
 M.GetApplicationGrantInput = {
     type = "structure",
+    id = "GetApplicationGrantInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -696,6 +739,7 @@ M.GetApplicationGrantInput = {
 
 M.AuthorizationCodeGrant = {
     type = "structure",
+    id = "AuthorizationCodeGrant",
     members = {
         RedirectUris = {
             type = "list",
@@ -706,6 +750,7 @@ M.AuthorizationCodeGrant = {
 
 M.AuthorizedTokenIssuer = {
     type = "structure",
+    id = "AuthorizedTokenIssuer",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -719,6 +764,7 @@ M.AuthorizedTokenIssuer = {
 
 M.JwtBearerGrant = {
     type = "structure",
+    id = "JwtBearerGrant",
     members = {
         AuthorizedTokenIssuers = {
             type = "list",
@@ -729,14 +775,17 @@ M.JwtBearerGrant = {
 
 M.RefreshTokenGrant = {
     type = "structure",
+    id = "RefreshTokenGrant",
 }
 
 M.TokenExchangeGrant = {
     type = "structure",
+    id = "TokenExchangeGrant",
 }
 
 M.Grant = {
     type = "union",
+    id = "Grant",
     members = {
         AuthorizationCode = M.AuthorizationCodeGrant,
         JwtBearer = M.JwtBearerGrant,
@@ -747,6 +796,7 @@ M.Grant = {
 
 M.GetApplicationGrantOutput = {
     type = "structure",
+    id = "GetApplicationGrantOutput",
     members = {
         Grant = setmetatable({ traits = {
             required = true,
@@ -756,6 +806,7 @@ M.GetApplicationGrantOutput = {
 
 M.ListApplicationGrantsInput = {
     type = "structure",
+    id = "ListApplicationGrantsInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -771,6 +822,7 @@ M.ListApplicationGrantsInput = {
 
 M.GrantItem = {
     type = "structure",
+    id = "GrantItem",
     members = {
         GrantType = {
             type = "string",
@@ -786,6 +838,7 @@ M.GrantItem = {
 
 M.ListApplicationGrantsOutput = {
     type = "structure",
+    id = "ListApplicationGrantsOutput",
     members = {
         Grants = {
             type = "list",
@@ -802,6 +855,7 @@ M.ListApplicationGrantsOutput = {
 
 M.PutApplicationGrantInput = {
     type = "structure",
+    id = "PutApplicationGrantInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -823,10 +877,12 @@ M.PutApplicationGrantInput = {
 
 M.PutApplicationGrantOutput = {
     type = "structure",
+    id = "PutApplicationGrantOutput",
 }
 
 M.DisplayData = {
     type = "structure",
+    id = "DisplayData",
     members = {
         DisplayName = {
             type = "string",
@@ -847,6 +903,7 @@ M.FederationProtocol = {
 
 M.ResourceServerScopeDetails = {
     type = "structure",
+    id = "ResourceServerScopeDetails",
     members = {
         LongDescription = {
             type = "string",
@@ -859,6 +916,7 @@ M.ResourceServerScopeDetails = {
 
 M.ResourceServerConfig = {
     type = "structure",
+    id = "ResourceServerConfig",
     members = {
         Scopes = {
             type = "map",
@@ -870,6 +928,7 @@ M.ResourceServerConfig = {
 
 M.ApplicationProvider = {
     type = "structure",
+    id = "ApplicationProvider",
     members = {
         ApplicationProviderArn = {
             type = "string",
@@ -887,6 +946,7 @@ M.ApplicationProvider = {
 
 M.CustomerManagedPolicyReference = {
     type = "structure",
+    id = "CustomerManagedPolicyReference",
     members = {
         Name = {
             type = "string",
@@ -902,6 +962,7 @@ M.CustomerManagedPolicyReference = {
 
 M.AttachCustomerManagedPolicyReferenceToPermissionSetInput = {
     type = "structure",
+    id = "AttachCustomerManagedPolicyReferenceToPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -923,10 +984,12 @@ M.AttachCustomerManagedPolicyReferenceToPermissionSetInput = {
 
 M.AttachCustomerManagedPolicyReferenceToPermissionSetOutput = {
     type = "structure",
+    id = "AttachCustomerManagedPolicyReferenceToPermissionSetOutput",
 }
 
 M.AttachedManagedPolicy = {
     type = "structure",
+    id = "AttachedManagedPolicy",
     members = {
         Name = {
             type = "string",
@@ -939,6 +1002,7 @@ M.AttachedManagedPolicy = {
 
 M.AttachManagedPolicyToPermissionSetInput = {
     type = "structure",
+    id = "AttachManagedPolicyToPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -963,10 +1027,12 @@ M.AttachManagedPolicyToPermissionSetInput = {
 
 M.AttachManagedPolicyToPermissionSetOutput = {
     type = "structure",
+    id = "AttachManagedPolicyToPermissionSetOutput",
 }
 
 M.CreateAccountAssignmentInput = {
     type = "structure",
+    id = "CreateAccountAssignmentInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1009,6 +1075,7 @@ M.CreateAccountAssignmentInput = {
 
 M.CreateAccountAssignmentOutput = {
     type = "structure",
+    id = "CreateAccountAssignmentOutput",
     members = {
         AccountAssignmentCreationStatus = M.AccountAssignmentOperationStatus,
     },
@@ -1016,6 +1083,7 @@ M.CreateAccountAssignmentOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1034,6 +1102,7 @@ M.Tag = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1075,6 +1144,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1090,6 +1160,7 @@ M.CreateApplicationOutput = {
 
 M.CreateApplicationAssignmentInput = {
     type = "structure",
+    id = "CreateApplicationAssignmentInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1114,10 +1185,12 @@ M.CreateApplicationAssignmentInput = {
 
 M.CreateApplicationAssignmentOutput = {
     type = "structure",
+    id = "CreateApplicationAssignmentOutput",
 }
 
 M.CreateInstanceInput = {
     type = "structure",
+    id = "CreateInstanceInput",
     members = {
         Name = {
             type = "string",
@@ -1137,6 +1210,7 @@ M.CreateInstanceInput = {
 
 M.CreateInstanceOutput = {
     type = "structure",
+    id = "CreateInstanceOutput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1146,6 +1220,7 @@ M.CreateInstanceOutput = {
 
 M.InstanceAccessControlAttributeConfiguration = {
     type = "structure",
+    id = "InstanceAccessControlAttributeConfiguration",
     members = {
         AccessControlAttributes = {
             type = "list",
@@ -1159,6 +1234,7 @@ M.InstanceAccessControlAttributeConfiguration = {
 
 M.CreateInstanceAccessControlAttributeConfigurationInput = {
     type = "structure",
+    id = "CreateInstanceAccessControlAttributeConfigurationInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1174,10 +1250,12 @@ M.CreateInstanceAccessControlAttributeConfigurationInput = {
 
 M.CreateInstanceAccessControlAttributeConfigurationOutput = {
     type = "structure",
+    id = "CreateInstanceAccessControlAttributeConfigurationOutput",
 }
 
 M.CreatePermissionSetInput = {
     type = "structure",
+    id = "CreatePermissionSetInput",
     members = {
         Name = {
             type = "string",
@@ -1209,6 +1287,7 @@ M.CreatePermissionSetInput = {
 
 M.PermissionSet = {
     type = "structure",
+    id = "PermissionSet",
     members = {
         Name = {
             type = "string",
@@ -1233,6 +1312,7 @@ M.PermissionSet = {
 
 M.CreatePermissionSetOutput = {
     type = "structure",
+    id = "CreatePermissionSetOutput",
     members = {
         PermissionSet = M.PermissionSet,
     },
@@ -1244,6 +1324,7 @@ M.JwksRetrievalOption = {
 
 M.OidcJwtConfiguration = {
     type = "structure",
+    id = "OidcJwtConfiguration",
     members = {
         IssuerUrl = {
             type = "string",
@@ -1274,6 +1355,7 @@ M.OidcJwtConfiguration = {
 
 M.TrustedTokenIssuerConfiguration = {
     type = "union",
+    id = "TrustedTokenIssuerConfiguration",
     members = {
         OidcJwtConfiguration = M.OidcJwtConfiguration,
     },
@@ -1285,6 +1367,7 @@ M.TrustedTokenIssuerType = {
 
 M.CreateTrustedTokenIssuerInput = {
     type = "structure",
+    id = "CreateTrustedTokenIssuerInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1322,6 +1405,7 @@ M.CreateTrustedTokenIssuerInput = {
 
 M.CreateTrustedTokenIssuerOutput = {
     type = "structure",
+    id = "CreateTrustedTokenIssuerOutput",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -1331,6 +1415,7 @@ M.CreateTrustedTokenIssuerOutput = {
 
 M.DeleteAccountAssignmentInput = {
     type = "structure",
+    id = "DeleteAccountAssignmentInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1373,6 +1458,7 @@ M.DeleteAccountAssignmentInput = {
 
 M.DeleteAccountAssignmentOutput = {
     type = "structure",
+    id = "DeleteAccountAssignmentOutput",
     members = {
         AccountAssignmentDeletionStatus = M.AccountAssignmentOperationStatus,
     },
@@ -1380,6 +1466,7 @@ M.DeleteAccountAssignmentOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1392,10 +1479,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.DeleteApplicationAssignmentInput = {
     type = "structure",
+    id = "DeleteApplicationAssignmentInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1420,10 +1509,12 @@ M.DeleteApplicationAssignmentInput = {
 
 M.DeleteApplicationAssignmentOutput = {
     type = "structure",
+    id = "DeleteApplicationAssignmentOutput",
 }
 
 M.DeleteInlinePolicyFromPermissionSetInput = {
     type = "structure",
+    id = "DeleteInlinePolicyFromPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1442,10 +1533,12 @@ M.DeleteInlinePolicyFromPermissionSetInput = {
 
 M.DeleteInlinePolicyFromPermissionSetOutput = {
     type = "structure",
+    id = "DeleteInlinePolicyFromPermissionSetOutput",
 }
 
 M.DeleteInstanceInput = {
     type = "structure",
+    id = "DeleteInstanceInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1458,10 +1551,12 @@ M.DeleteInstanceInput = {
 
 M.DeleteInstanceOutput = {
     type = "structure",
+    id = "DeleteInstanceOutput",
 }
 
 M.DeleteInstanceAccessControlAttributeConfigurationInput = {
     type = "structure",
+    id = "DeleteInstanceAccessControlAttributeConfigurationInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1474,10 +1569,12 @@ M.DeleteInstanceAccessControlAttributeConfigurationInput = {
 
 M.DeleteInstanceAccessControlAttributeConfigurationOutput = {
     type = "structure",
+    id = "DeleteInstanceAccessControlAttributeConfigurationOutput",
 }
 
 M.DeletePermissionsBoundaryFromPermissionSetInput = {
     type = "structure",
+    id = "DeletePermissionsBoundaryFromPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1496,10 +1593,12 @@ M.DeletePermissionsBoundaryFromPermissionSetInput = {
 
 M.DeletePermissionsBoundaryFromPermissionSetOutput = {
     type = "structure",
+    id = "DeletePermissionsBoundaryFromPermissionSetOutput",
 }
 
 M.DeletePermissionSetInput = {
     type = "structure",
+    id = "DeletePermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1518,10 +1617,12 @@ M.DeletePermissionSetInput = {
 
 M.DeletePermissionSetOutput = {
     type = "structure",
+    id = "DeletePermissionSetOutput",
 }
 
 M.DeleteTrustedTokenIssuerInput = {
     type = "structure",
+    id = "DeleteTrustedTokenIssuerInput",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -1534,10 +1635,12 @@ M.DeleteTrustedTokenIssuerInput = {
 
 M.DeleteTrustedTokenIssuerOutput = {
     type = "structure",
+    id = "DeleteTrustedTokenIssuerOutput",
 }
 
 M.DescribeAccountAssignmentCreationStatusInput = {
     type = "structure",
+    id = "DescribeAccountAssignmentCreationStatusInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1556,6 +1659,7 @@ M.DescribeAccountAssignmentCreationStatusInput = {
 
 M.DescribeAccountAssignmentCreationStatusOutput = {
     type = "structure",
+    id = "DescribeAccountAssignmentCreationStatusOutput",
     members = {
         AccountAssignmentCreationStatus = M.AccountAssignmentOperationStatus,
     },
@@ -1563,6 +1667,7 @@ M.DescribeAccountAssignmentCreationStatusOutput = {
 
 M.DescribeAccountAssignmentDeletionStatusInput = {
     type = "structure",
+    id = "DescribeAccountAssignmentDeletionStatusInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1581,6 +1686,7 @@ M.DescribeAccountAssignmentDeletionStatusInput = {
 
 M.DescribeAccountAssignmentDeletionStatusOutput = {
     type = "structure",
+    id = "DescribeAccountAssignmentDeletionStatusOutput",
     members = {
         AccountAssignmentDeletionStatus = M.AccountAssignmentOperationStatus,
     },
@@ -1588,6 +1694,7 @@ M.DescribeAccountAssignmentDeletionStatusOutput = {
 
 M.DescribeApplicationInput = {
     type = "structure",
+    id = "DescribeApplicationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1600,6 +1707,7 @@ M.DescribeApplicationInput = {
 
 M.DescribeApplicationOutput = {
     type = "structure",
+    id = "DescribeApplicationOutput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1637,6 +1745,7 @@ M.DescribeApplicationOutput = {
 
 M.DescribeApplicationAssignmentInput = {
     type = "structure",
+    id = "DescribeApplicationAssignmentInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -1661,6 +1770,7 @@ M.DescribeApplicationAssignmentInput = {
 
 M.DescribeApplicationAssignmentOutput = {
     type = "structure",
+    id = "DescribeApplicationAssignmentOutput",
     members = {
         PrincipalType = {
             type = "string",
@@ -1676,6 +1786,7 @@ M.DescribeApplicationAssignmentOutput = {
 
 M.DescribeApplicationProviderInput = {
     type = "structure",
+    id = "DescribeApplicationProviderInput",
     members = {
         ApplicationProviderArn = {
             type = "string",
@@ -1688,6 +1799,7 @@ M.DescribeApplicationProviderInput = {
 
 M.DescribeApplicationProviderOutput = {
     type = "structure",
+    id = "DescribeApplicationProviderOutput",
     members = {
         ApplicationProviderArn = {
             type = "string",
@@ -1705,6 +1817,7 @@ M.DescribeApplicationProviderOutput = {
 
 M.DescribeInstanceInput = {
     type = "structure",
+    id = "DescribeInstanceInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1728,6 +1841,7 @@ M.KmsKeyType = {
 
 M.EncryptionConfigurationDetails = {
     type = "structure",
+    id = "EncryptionConfigurationDetails",
     members = {
         KeyType = {
             type = "string",
@@ -1753,6 +1867,7 @@ M.InstanceStatus = {
 
 M.DescribeInstanceOutput = {
     type = "structure",
+    id = "DescribeInstanceOutput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1781,6 +1896,7 @@ M.DescribeInstanceOutput = {
 
 M.DescribeInstanceAccessControlAttributeConfigurationInput = {
     type = "structure",
+    id = "DescribeInstanceAccessControlAttributeConfigurationInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1799,6 +1915,7 @@ M.InstanceAccessControlAttributeConfigurationStatus = {
 
 M.DescribeInstanceAccessControlAttributeConfigurationOutput = {
     type = "structure",
+    id = "DescribeInstanceAccessControlAttributeConfigurationOutput",
     members = {
         Status = {
             type = "string",
@@ -1812,6 +1929,7 @@ M.DescribeInstanceAccessControlAttributeConfigurationOutput = {
 
 M.DescribePermissionSetInput = {
     type = "structure",
+    id = "DescribePermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1830,6 +1948,7 @@ M.DescribePermissionSetInput = {
 
 M.DescribePermissionSetOutput = {
     type = "structure",
+    id = "DescribePermissionSetOutput",
     members = {
         PermissionSet = M.PermissionSet,
     },
@@ -1837,6 +1956,7 @@ M.DescribePermissionSetOutput = {
 
 M.DescribePermissionSetProvisioningStatusInput = {
     type = "structure",
+    id = "DescribePermissionSetProvisioningStatusInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1855,6 +1975,7 @@ M.DescribePermissionSetProvisioningStatusInput = {
 
 M.PermissionSetProvisioningStatus = {
     type = "structure",
+    id = "PermissionSetProvisioningStatus",
     members = {
         Status = {
             type = "string",
@@ -1879,6 +2000,7 @@ M.PermissionSetProvisioningStatus = {
 
 M.DescribePermissionSetProvisioningStatusOutput = {
     type = "structure",
+    id = "DescribePermissionSetProvisioningStatusOutput",
     members = {
         PermissionSetProvisioningStatus = M.PermissionSetProvisioningStatus,
     },
@@ -1886,6 +2008,7 @@ M.DescribePermissionSetProvisioningStatusOutput = {
 
 M.DescribeRegionInput = {
     type = "structure",
+    id = "DescribeRegionInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1904,6 +2027,7 @@ M.DescribeRegionInput = {
 
 M.DescribeRegionOutput = {
     type = "structure",
+    id = "DescribeRegionOutput",
     members = {
         RegionName = {
             type = "string",
@@ -1925,6 +2049,7 @@ M.DescribeRegionOutput = {
 
 M.DescribeTrustedTokenIssuerInput = {
     type = "structure",
+    id = "DescribeTrustedTokenIssuerInput",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -1937,6 +2062,7 @@ M.DescribeTrustedTokenIssuerInput = {
 
 M.DescribeTrustedTokenIssuerOutput = {
     type = "structure",
+    id = "DescribeTrustedTokenIssuerOutput",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -1953,6 +2079,7 @@ M.DescribeTrustedTokenIssuerOutput = {
 
 M.DetachCustomerManagedPolicyReferenceFromPermissionSetInput = {
     type = "structure",
+    id = "DetachCustomerManagedPolicyReferenceFromPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -1974,10 +2101,12 @@ M.DetachCustomerManagedPolicyReferenceFromPermissionSetInput = {
 
 M.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput = {
     type = "structure",
+    id = "DetachCustomerManagedPolicyReferenceFromPermissionSetOutput",
 }
 
 M.DetachManagedPolicyFromPermissionSetInput = {
     type = "structure",
+    id = "DetachManagedPolicyFromPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2002,10 +2131,12 @@ M.DetachManagedPolicyFromPermissionSetInput = {
 
 M.DetachManagedPolicyFromPermissionSetOutput = {
     type = "structure",
+    id = "DetachManagedPolicyFromPermissionSetOutput",
 }
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         KeyType = {
             type = "string",
@@ -2021,6 +2152,7 @@ M.EncryptionConfiguration = {
 
 M.GetApplicationAssignmentConfigurationInput = {
     type = "structure",
+    id = "GetApplicationAssignmentConfigurationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -2033,6 +2165,7 @@ M.GetApplicationAssignmentConfigurationInput = {
 
 M.GetApplicationAssignmentConfigurationOutput = {
     type = "structure",
+    id = "GetApplicationAssignmentConfigurationOutput",
     members = {
         AssignmentRequired = {
             type = "boolean",
@@ -2046,6 +2179,7 @@ M.GetApplicationAssignmentConfigurationOutput = {
 
 M.GetApplicationSessionConfigurationInput = {
     type = "structure",
+    id = "GetApplicationSessionConfigurationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -2063,6 +2197,7 @@ M.UserBackgroundSessionApplicationStatus = {
 
 M.GetApplicationSessionConfigurationOutput = {
     type = "structure",
+    id = "GetApplicationSessionConfigurationOutput",
     members = {
         UserBackgroundSessionApplicationStatus = {
             type = "string",
@@ -2072,6 +2207,7 @@ M.GetApplicationSessionConfigurationOutput = {
 
 M.GetInlinePolicyForPermissionSetInput = {
     type = "structure",
+    id = "GetInlinePolicyForPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2090,6 +2226,7 @@ M.GetInlinePolicyForPermissionSetInput = {
 
 M.GetInlinePolicyForPermissionSetOutput = {
     type = "structure",
+    id = "GetInlinePolicyForPermissionSetOutput",
     members = {
         InlinePolicy = {
             type = "string",
@@ -2099,6 +2236,7 @@ M.GetInlinePolicyForPermissionSetOutput = {
 
 M.GetPermissionsBoundaryForPermissionSetInput = {
     type = "structure",
+    id = "GetPermissionsBoundaryForPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2117,6 +2255,7 @@ M.GetPermissionsBoundaryForPermissionSetInput = {
 
 M.PermissionsBoundary = {
     type = "structure",
+    id = "PermissionsBoundary",
     members = {
         CustomerManagedPolicyReference = M.CustomerManagedPolicyReference,
         ManagedPolicyArn = {
@@ -2127,6 +2266,7 @@ M.PermissionsBoundary = {
 
 M.GetPermissionsBoundaryForPermissionSetOutput = {
     type = "structure",
+    id = "GetPermissionsBoundaryForPermissionSetOutput",
     members = {
         PermissionsBoundary = M.PermissionsBoundary,
     },
@@ -2134,6 +2274,7 @@ M.GetPermissionsBoundaryForPermissionSetOutput = {
 
 M.InstanceMetadata = {
     type = "structure",
+    id = "InstanceMetadata",
     members = {
         InstanceArn = {
             type = "string",
@@ -2161,6 +2302,7 @@ M.InstanceMetadata = {
 
 M.OperationStatusFilter = {
     type = "structure",
+    id = "OperationStatusFilter",
     members = {
         Status = {
             type = "string",
@@ -2170,6 +2312,7 @@ M.OperationStatusFilter = {
 
 M.ListAccountAssignmentCreationStatusInput = {
     type = "structure",
+    id = "ListAccountAssignmentCreationStatusInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2189,6 +2332,7 @@ M.ListAccountAssignmentCreationStatusInput = {
 
 M.ListAccountAssignmentCreationStatusOutput = {
     type = "structure",
+    id = "ListAccountAssignmentCreationStatusOutput",
     members = {
         AccountAssignmentsCreationStatus = {
             type = "list",
@@ -2202,6 +2346,7 @@ M.ListAccountAssignmentCreationStatusOutput = {
 
 M.ListAccountAssignmentDeletionStatusInput = {
     type = "structure",
+    id = "ListAccountAssignmentDeletionStatusInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2221,6 +2366,7 @@ M.ListAccountAssignmentDeletionStatusInput = {
 
 M.ListAccountAssignmentDeletionStatusOutput = {
     type = "structure",
+    id = "ListAccountAssignmentDeletionStatusOutput",
     members = {
         AccountAssignmentsDeletionStatus = {
             type = "list",
@@ -2234,6 +2380,7 @@ M.ListAccountAssignmentDeletionStatusOutput = {
 
 M.ListAccountAssignmentsInput = {
     type = "structure",
+    id = "ListAccountAssignmentsInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2264,6 +2411,7 @@ M.ListAccountAssignmentsInput = {
 
 M.ListAccountAssignmentsOutput = {
     type = "structure",
+    id = "ListAccountAssignmentsOutput",
     members = {
         AccountAssignments = {
             type = "list",
@@ -2277,6 +2425,7 @@ M.ListAccountAssignmentsOutput = {
 
 M.ListAccountAssignmentsFilter = {
     type = "structure",
+    id = "ListAccountAssignmentsFilter",
     members = {
         AccountId = {
             type = "string",
@@ -2286,6 +2435,7 @@ M.ListAccountAssignmentsFilter = {
 
 M.ListAccountAssignmentsForPrincipalInput = {
     type = "structure",
+    id = "ListAccountAssignmentsForPrincipalInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2320,6 +2470,7 @@ M.ListAccountAssignmentsForPrincipalInput = {
 
 M.ListAccountAssignmentsForPrincipalOutput = {
     type = "structure",
+    id = "ListAccountAssignmentsForPrincipalOutput",
     members = {
         AccountAssignments = {
             type = "list",
@@ -2338,6 +2489,7 @@ M.ProvisioningStatus = {
 
 M.ListAccountsForProvisionedPermissionSetInput = {
     type = "structure",
+    id = "ListAccountsForProvisionedPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2365,6 +2517,7 @@ M.ListAccountsForProvisionedPermissionSetInput = {
 
 M.ListAccountsForProvisionedPermissionSetOutput = {
     type = "structure",
+    id = "ListAccountsForProvisionedPermissionSetOutput",
     members = {
         AccountIds = {
             type = "list",
@@ -2378,6 +2531,7 @@ M.ListAccountsForProvisionedPermissionSetOutput = {
 
 M.ListApplicationAssignmentsInput = {
     type = "structure",
+    id = "ListApplicationAssignmentsInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -2396,6 +2550,7 @@ M.ListApplicationAssignmentsInput = {
 
 M.ListApplicationAssignmentsOutput = {
     type = "structure",
+    id = "ListApplicationAssignmentsOutput",
     members = {
         ApplicationAssignments = {
             type = "list",
@@ -2409,6 +2564,7 @@ M.ListApplicationAssignmentsOutput = {
 
 M.ListApplicationAssignmentsFilter = {
     type = "structure",
+    id = "ListApplicationAssignmentsFilter",
     members = {
         ApplicationArn = {
             type = "string",
@@ -2418,6 +2574,7 @@ M.ListApplicationAssignmentsFilter = {
 
 M.ListApplicationAssignmentsForPrincipalInput = {
     type = "structure",
+    id = "ListApplicationAssignmentsForPrincipalInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2452,6 +2609,7 @@ M.ListApplicationAssignmentsForPrincipalInput = {
 
 M.ListApplicationAssignmentsForPrincipalOutput = {
     type = "structure",
+    id = "ListApplicationAssignmentsForPrincipalOutput",
     members = {
         ApplicationAssignments = {
             type = "list",
@@ -2465,6 +2623,7 @@ M.ListApplicationAssignmentsForPrincipalOutput = {
 
 M.ListApplicationProvidersInput = {
     type = "structure",
+    id = "ListApplicationProvidersInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2477,6 +2636,7 @@ M.ListApplicationProvidersInput = {
 
 M.ListApplicationProvidersOutput = {
     type = "structure",
+    id = "ListApplicationProvidersOutput",
     members = {
         ApplicationProviders = {
             type = "list",
@@ -2490,6 +2650,7 @@ M.ListApplicationProvidersOutput = {
 
 M.ListApplicationsFilter = {
     type = "structure",
+    id = "ListApplicationsFilter",
     members = {
         ApplicationAccount = {
             type = "string",
@@ -2502,6 +2663,7 @@ M.ListApplicationsFilter = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2521,6 +2683,7 @@ M.ListApplicationsInput = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -2534,6 +2697,7 @@ M.ListApplicationsOutput = {
 
 M.ListCustomerManagedPolicyReferencesInPermissionSetInput = {
     type = "structure",
+    id = "ListCustomerManagedPolicyReferencesInPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2558,6 +2722,7 @@ M.ListCustomerManagedPolicyReferencesInPermissionSetInput = {
 
 M.ListCustomerManagedPolicyReferencesInPermissionSetOutput = {
     type = "structure",
+    id = "ListCustomerManagedPolicyReferencesInPermissionSetOutput",
     members = {
         CustomerManagedPolicyReferences = {
             type = "list",
@@ -2571,6 +2736,7 @@ M.ListCustomerManagedPolicyReferencesInPermissionSetOutput = {
 
 M.ListInstancesInput = {
     type = "structure",
+    id = "ListInstancesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2583,6 +2749,7 @@ M.ListInstancesInput = {
 
 M.ListInstancesOutput = {
     type = "structure",
+    id = "ListInstancesOutput",
     members = {
         Instances = {
             type = "list",
@@ -2596,6 +2763,7 @@ M.ListInstancesOutput = {
 
 M.ListManagedPoliciesInPermissionSetInput = {
     type = "structure",
+    id = "ListManagedPoliciesInPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2620,6 +2788,7 @@ M.ListManagedPoliciesInPermissionSetInput = {
 
 M.ListManagedPoliciesInPermissionSetOutput = {
     type = "structure",
+    id = "ListManagedPoliciesInPermissionSetOutput",
     members = {
         AttachedManagedPolicies = {
             type = "list",
@@ -2633,6 +2802,7 @@ M.ListManagedPoliciesInPermissionSetOutput = {
 
 M.ListPermissionSetProvisioningStatusInput = {
     type = "structure",
+    id = "ListPermissionSetProvisioningStatusInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2652,6 +2822,7 @@ M.ListPermissionSetProvisioningStatusInput = {
 
 M.PermissionSetProvisioningStatusMetadata = {
     type = "structure",
+    id = "PermissionSetProvisioningStatusMetadata",
     members = {
         Status = {
             type = "string",
@@ -2667,6 +2838,7 @@ M.PermissionSetProvisioningStatusMetadata = {
 
 M.ListPermissionSetProvisioningStatusOutput = {
     type = "structure",
+    id = "ListPermissionSetProvisioningStatusOutput",
     members = {
         PermissionSetsProvisioningStatus = {
             type = "list",
@@ -2680,6 +2852,7 @@ M.ListPermissionSetProvisioningStatusOutput = {
 
 M.ListPermissionSetsInput = {
     type = "structure",
+    id = "ListPermissionSetsInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2698,6 +2871,7 @@ M.ListPermissionSetsInput = {
 
 M.ListPermissionSetsOutput = {
     type = "structure",
+    id = "ListPermissionSetsOutput",
     members = {
         PermissionSets = {
             type = "list",
@@ -2711,6 +2885,7 @@ M.ListPermissionSetsOutput = {
 
 M.ListPermissionSetsProvisionedToAccountInput = {
     type = "structure",
+    id = "ListPermissionSetsProvisionedToAccountInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2738,6 +2913,7 @@ M.ListPermissionSetsProvisionedToAccountInput = {
 
 M.ListPermissionSetsProvisionedToAccountOutput = {
     type = "structure",
+    id = "ListPermissionSetsProvisionedToAccountOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2751,6 +2927,7 @@ M.ListPermissionSetsProvisionedToAccountOutput = {
 
 M.ListRegionsInput = {
     type = "structure",
+    id = "ListRegionsInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2769,6 +2946,7 @@ M.ListRegionsInput = {
 
 M.RegionMetadata = {
     type = "structure",
+    id = "RegionMetadata",
     members = {
         RegionName = {
             type = "string",
@@ -2790,6 +2968,7 @@ M.RegionMetadata = {
 
 M.ListRegionsOutput = {
     type = "structure",
+    id = "ListRegionsOutput",
     members = {
         Regions = {
             type = "list",
@@ -2803,6 +2982,7 @@ M.ListRegionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2821,6 +3001,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2834,6 +3015,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTrustedTokenIssuersInput = {
     type = "structure",
+    id = "ListTrustedTokenIssuersInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2852,6 +3034,7 @@ M.ListTrustedTokenIssuersInput = {
 
 M.TrustedTokenIssuerMetadata = {
     type = "structure",
+    id = "TrustedTokenIssuerMetadata",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -2867,6 +3050,7 @@ M.TrustedTokenIssuerMetadata = {
 
 M.ListTrustedTokenIssuersOutput = {
     type = "structure",
+    id = "ListTrustedTokenIssuersOutput",
     members = {
         TrustedTokenIssuers = {
             type = "list",
@@ -2880,6 +3064,7 @@ M.ListTrustedTokenIssuersOutput = {
 
 M.OidcJwtUpdateConfiguration = {
     type = "structure",
+    id = "OidcJwtUpdateConfiguration",
     members = {
         ClaimAttributePath = {
             type = "string",
@@ -2900,6 +3085,7 @@ M.ProvisionTargetType = {
 
 M.ProvisionPermissionSetInput = {
     type = "structure",
+    id = "ProvisionPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -2927,6 +3113,7 @@ M.ProvisionPermissionSetInput = {
 
 M.ProvisionPermissionSetOutput = {
     type = "structure",
+    id = "ProvisionPermissionSetOutput",
     members = {
         PermissionSetProvisioningStatus = M.PermissionSetProvisioningStatus,
     },
@@ -2934,6 +3121,7 @@ M.ProvisionPermissionSetOutput = {
 
 M.PutApplicationAssignmentConfigurationInput = {
     type = "structure",
+    id = "PutApplicationAssignmentConfigurationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -2953,10 +3141,12 @@ M.PutApplicationAssignmentConfigurationInput = {
 
 M.PutApplicationAssignmentConfigurationOutput = {
     type = "structure",
+    id = "PutApplicationAssignmentConfigurationOutput",
 }
 
 M.PutApplicationSessionConfigurationInput = {
     type = "structure",
+    id = "PutApplicationSessionConfigurationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -2972,10 +3162,12 @@ M.PutApplicationSessionConfigurationInput = {
 
 M.PutApplicationSessionConfigurationOutput = {
     type = "structure",
+    id = "PutApplicationSessionConfigurationOutput",
 }
 
 M.PutInlinePolicyToPermissionSetInput = {
     type = "structure",
+    id = "PutInlinePolicyToPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -3000,10 +3192,12 @@ M.PutInlinePolicyToPermissionSetInput = {
 
 M.PutInlinePolicyToPermissionSetOutput = {
     type = "structure",
+    id = "PutInlinePolicyToPermissionSetOutput",
 }
 
 M.PutPermissionsBoundaryToPermissionSetInput = {
     type = "structure",
+    id = "PutPermissionsBoundaryToPermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -3025,10 +3219,12 @@ M.PutPermissionsBoundaryToPermissionSetInput = {
 
 M.PutPermissionsBoundaryToPermissionSetOutput = {
     type = "structure",
+    id = "PutPermissionsBoundaryToPermissionSetOutput",
 }
 
 M.RemoveRegionInput = {
     type = "structure",
+    id = "RemoveRegionInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -3047,6 +3243,7 @@ M.RemoveRegionInput = {
 
 M.RemoveRegionOutput = {
     type = "structure",
+    id = "RemoveRegionOutput",
     members = {
         Status = {
             type = "string",
@@ -3056,6 +3253,7 @@ M.RemoveRegionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -3078,10 +3276,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -3104,10 +3304,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApplicationPortalOptions = {
     type = "structure",
+    id = "UpdateApplicationPortalOptions",
     members = {
         SignInOptions = M.SignInOptions,
     },
@@ -3115,6 +3317,7 @@ M.UpdateApplicationPortalOptions = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         ApplicationArn = {
             type = "string",
@@ -3137,10 +3340,12 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
 }
 
 M.UpdateInstanceInput = {
     type = "structure",
+    id = "UpdateInstanceInput",
     members = {
         Name = {
             type = "string",
@@ -3157,10 +3362,12 @@ M.UpdateInstanceInput = {
 
 M.UpdateInstanceOutput = {
     type = "structure",
+    id = "UpdateInstanceOutput",
 }
 
 M.UpdateInstanceAccessControlAttributeConfigurationInput = {
     type = "structure",
+    id = "UpdateInstanceAccessControlAttributeConfigurationInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -3176,10 +3383,12 @@ M.UpdateInstanceAccessControlAttributeConfigurationInput = {
 
 M.UpdateInstanceAccessControlAttributeConfigurationOutput = {
     type = "structure",
+    id = "UpdateInstanceAccessControlAttributeConfigurationOutput",
 }
 
 M.UpdatePermissionSetInput = {
     type = "structure",
+    id = "UpdatePermissionSetInput",
     members = {
         InstanceArn = {
             type = "string",
@@ -3207,10 +3416,12 @@ M.UpdatePermissionSetInput = {
 
 M.UpdatePermissionSetOutput = {
     type = "structure",
+    id = "UpdatePermissionSetOutput",
 }
 
 M.TrustedTokenIssuerUpdateConfiguration = {
     type = "union",
+    id = "TrustedTokenIssuerUpdateConfiguration",
     members = {
         OidcJwtConfiguration = M.OidcJwtUpdateConfiguration,
     },
@@ -3218,6 +3429,7 @@ M.TrustedTokenIssuerUpdateConfiguration = {
 
 M.UpdateTrustedTokenIssuerInput = {
     type = "structure",
+    id = "UpdateTrustedTokenIssuerInput",
     members = {
         TrustedTokenIssuerArn = {
             type = "string",
@@ -3234,6 +3446,7 @@ M.UpdateTrustedTokenIssuerInput = {
 
 M.UpdateTrustedTokenIssuerOutput = {
     type = "structure",
+    id = "UpdateTrustedTokenIssuerOutput",
 }
 
 return M

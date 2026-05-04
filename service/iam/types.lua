@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptDelegationRequestInput = {
     type = "structure",
+    id = "AcceptDelegationRequestInput",
     members = {
         DelegationRequestId = {
             type = "string",
@@ -14,10 +15,12 @@ M.AcceptDelegationRequestInput = {
 
 M.AcceptDelegationRequestOutput = {
     type = "structure",
+    id = "AcceptDelegationRequestOutput",
 }
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -28,6 +31,7 @@ M.ConcurrentModificationException = {
 
 M.NoSuchEntityException = {
     type = "structure",
+    id = "NoSuchEntityException",
     error = "client",
     members = {
         message = {
@@ -38,6 +42,7 @@ M.NoSuchEntityException = {
 
 M.ServiceFailureException = {
     type = "structure",
+    id = "ServiceFailureException",
     error = "server",
     members = {
         message = {
@@ -53,6 +58,7 @@ M.AccessAdvisorUsageGranularityType = {
 
 M.AccessDetail = {
     type = "structure",
+    id = "AccessDetail",
     members = {
         ServiceName = {
             type = "string",
@@ -89,6 +95,7 @@ M.statusType = {
 
 M.AccessKey = {
     type = "structure",
+    id = "AccessKey",
     members = {
         UserName = {
             type = "string",
@@ -122,6 +129,7 @@ M.AccessKey = {
 
 M.AccessKeyLastUsed = {
     type = "structure",
+    id = "AccessKeyLastUsed",
     members = {
         LastUsedDate = {
             type = "timestamp",
@@ -143,6 +151,7 @@ M.AccessKeyLastUsed = {
 
 M.AccessKeyMetadata = {
     type = "structure",
+    id = "AccessKeyMetadata",
     members = {
         UserName = {
             type = "string",
@@ -161,6 +170,7 @@ M.AccessKeyMetadata = {
 
 M.AccountNotManagementOrDelegatedAdministratorException = {
     type = "structure",
+    id = "AccountNotManagementOrDelegatedAdministratorException",
     error = "client",
     members = {
         Message = {
@@ -171,6 +181,7 @@ M.AccountNotManagementOrDelegatedAdministratorException = {
 
 M.AddClientIDToOpenIDConnectProviderInput = {
     type = "structure",
+    id = "AddClientIDToOpenIDConnectProviderInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -189,10 +200,12 @@ M.AddClientIDToOpenIDConnectProviderInput = {
 
 M.AddClientIDToOpenIDConnectProviderOutput = {
     type = "structure",
+    id = "AddClientIDToOpenIDConnectProviderOutput",
 }
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         message = {
@@ -203,6 +216,7 @@ M.InvalidInputException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -213,6 +227,7 @@ M.LimitExceededException = {
 
 M.AddRoleToInstanceProfileInput = {
     type = "structure",
+    id = "AddRoleToInstanceProfileInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -231,10 +246,12 @@ M.AddRoleToInstanceProfileInput = {
 
 M.AddRoleToInstanceProfileOutput = {
     type = "structure",
+    id = "AddRoleToInstanceProfileOutput",
 }
 
 M.EntityAlreadyExistsException = {
     type = "structure",
+    id = "EntityAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -245,6 +262,7 @@ M.EntityAlreadyExistsException = {
 
 M.UnmodifiableEntityException = {
     type = "structure",
+    id = "UnmodifiableEntityException",
     error = "client",
     members = {
         message = {
@@ -255,6 +273,7 @@ M.UnmodifiableEntityException = {
 
 M.AddUserToGroupInput = {
     type = "structure",
+    id = "AddUserToGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -273,6 +292,7 @@ M.AddUserToGroupInput = {
 
 M.AddUserToGroupOutput = {
     type = "structure",
+    id = "AddUserToGroupOutput",
 }
 
 M.assertionEncryptionModeType = {
@@ -288,6 +308,7 @@ M.assignmentStatusType = {
 
 M.AssociateDelegationRequestInput = {
     type = "structure",
+    id = "AssociateDelegationRequestInput",
     members = {
         DelegationRequestId = {
             type = "string",
@@ -300,6 +321,7 @@ M.AssociateDelegationRequestInput = {
 
 M.AssociateDelegationRequestOutput = {
     type = "structure",
+    id = "AssociateDelegationRequestOutput",
 }
 
 M.PermissionsBoundaryAttachmentType = {
@@ -308,6 +330,7 @@ M.PermissionsBoundaryAttachmentType = {
 
 M.AttachedPermissionsBoundary = {
     type = "structure",
+    id = "AttachedPermissionsBoundary",
     members = {
         PermissionsBoundaryType = {
             type = "string",
@@ -320,6 +343,7 @@ M.AttachedPermissionsBoundary = {
 
 M.AttachedPolicy = {
     type = "structure",
+    id = "AttachedPolicy",
     members = {
         PolicyName = {
             type = "string",
@@ -332,6 +356,7 @@ M.AttachedPolicy = {
 
 M.AttachGroupPolicyInput = {
     type = "structure",
+    id = "AttachGroupPolicyInput",
     members = {
         GroupName = {
             type = "string",
@@ -350,10 +375,12 @@ M.AttachGroupPolicyInput = {
 
 M.AttachGroupPolicyOutput = {
     type = "structure",
+    id = "AttachGroupPolicyOutput",
 }
 
 M.PolicyNotAttachableException = {
     type = "structure",
+    id = "PolicyNotAttachableException",
     error = "client",
     members = {
         message = {
@@ -364,6 +391,7 @@ M.PolicyNotAttachableException = {
 
 M.AttachRolePolicyInput = {
     type = "structure",
+    id = "AttachRolePolicyInput",
     members = {
         RoleName = {
             type = "string",
@@ -382,10 +410,12 @@ M.AttachRolePolicyInput = {
 
 M.AttachRolePolicyOutput = {
     type = "structure",
+    id = "AttachRolePolicyOutput",
 }
 
 M.AttachUserPolicyInput = {
     type = "structure",
+    id = "AttachUserPolicyInput",
     members = {
         UserName = {
             type = "string",
@@ -404,10 +434,12 @@ M.AttachUserPolicyInput = {
 
 M.AttachUserPolicyOutput = {
     type = "structure",
+    id = "AttachUserPolicyOutput",
 }
 
 M.ChangePasswordInput = {
     type = "structure",
+    id = "ChangePasswordInput",
     members = {
         OldPassword = {
             type = "string",
@@ -426,10 +458,12 @@ M.ChangePasswordInput = {
 
 M.ChangePasswordOutput = {
     type = "structure",
+    id = "ChangePasswordOutput",
 }
 
 M.EntityTemporarilyUnmodifiableException = {
     type = "structure",
+    id = "EntityTemporarilyUnmodifiableException",
     error = "client",
     members = {
         message = {
@@ -440,6 +474,7 @@ M.EntityTemporarilyUnmodifiableException = {
 
 M.InvalidUserTypeException = {
     type = "structure",
+    id = "InvalidUserTypeException",
     error = "client",
     members = {
         message = {
@@ -450,6 +485,7 @@ M.InvalidUserTypeException = {
 
 M.PasswordPolicyViolationException = {
     type = "structure",
+    id = "PasswordPolicyViolationException",
     error = "client",
     members = {
         message = {
@@ -460,6 +496,7 @@ M.PasswordPolicyViolationException = {
 
 M.CreateAccessKeyInput = {
     type = "structure",
+    id = "CreateAccessKeyInput",
     members = {
         UserName = {
             type = "string",
@@ -469,6 +506,7 @@ M.CreateAccessKeyInput = {
 
 M.CreateAccessKeyOutput = {
     type = "structure",
+    id = "CreateAccessKeyOutput",
     members = {
         AccessKey = setmetatable({ traits = {
             required = true,
@@ -478,6 +516,7 @@ M.CreateAccessKeyOutput = {
 
 M.CreateAccountAliasInput = {
     type = "structure",
+    id = "CreateAccountAliasInput",
     members = {
         AccountAlias = {
             type = "string",
@@ -490,6 +529,7 @@ M.CreateAccountAliasInput = {
 
 M.CreateAccountAliasOutput = {
     type = "structure",
+    id = "CreateAccountAliasOutput",
 }
 
 M.PolicyParameterTypeEnum = {
@@ -499,6 +539,7 @@ M.PolicyParameterTypeEnum = {
 
 M.PolicyParameter = {
     type = "structure",
+    id = "PolicyParameter",
     members = {
         Name = {
             type = "string",
@@ -515,6 +556,7 @@ M.PolicyParameter = {
 
 M.DelegationPermission = {
     type = "structure",
+    id = "DelegationPermission",
     members = {
         PolicyTemplateArn = {
             type = "string",
@@ -528,6 +570,7 @@ M.DelegationPermission = {
 
 M.CreateDelegationRequestInput = {
     type = "structure",
+    id = "CreateDelegationRequestInput",
     members = {
         OwnerAccountId = {
             type = "string",
@@ -576,6 +619,7 @@ M.CreateDelegationRequestInput = {
 
 M.CreateDelegationRequestOutput = {
     type = "structure",
+    id = "CreateDelegationRequestOutput",
     members = {
         ConsoleDeepLink = {
             type = "string",
@@ -588,6 +632,7 @@ M.CreateDelegationRequestOutput = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         Path = {
             type = "string",
@@ -603,6 +648,7 @@ M.CreateGroupInput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         Path = {
             type = "string",
@@ -639,6 +685,7 @@ M.Group = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         Group = setmetatable({ traits = {
             required = true,
@@ -648,6 +695,7 @@ M.CreateGroupOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -666,6 +714,7 @@ M.Tag = {
 
 M.CreateInstanceProfileInput = {
     type = "structure",
+    id = "CreateInstanceProfileInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -685,6 +734,7 @@ M.CreateInstanceProfileInput = {
 
 M.RoleLastUsed = {
     type = "structure",
+    id = "RoleLastUsed",
     members = {
         LastUsedDate = {
             type = "timestamp",
@@ -697,6 +747,7 @@ M.RoleLastUsed = {
 
 M.Role = {
     type = "structure",
+    id = "Role",
     members = {
         Path = {
             type = "string",
@@ -748,6 +799,7 @@ M.Role = {
 
 M.InstanceProfile = {
     type = "structure",
+    id = "InstanceProfile",
     members = {
         Path = {
             type = "string",
@@ -795,6 +847,7 @@ M.InstanceProfile = {
 
 M.CreateInstanceProfileOutput = {
     type = "structure",
+    id = "CreateInstanceProfileOutput",
     members = {
         InstanceProfile = setmetatable({ traits = {
             required = true,
@@ -804,6 +857,7 @@ M.CreateInstanceProfileOutput = {
 
 M.CreateLoginProfileInput = {
     type = "structure",
+    id = "CreateLoginProfileInput",
     members = {
         UserName = {
             type = "string",
@@ -822,6 +876,7 @@ M.CreateLoginProfileInput = {
 
 M.LoginProfile = {
     type = "structure",
+    id = "LoginProfile",
     members = {
         UserName = {
             type = "string",
@@ -846,6 +901,7 @@ M.LoginProfile = {
 
 M.CreateLoginProfileOutput = {
     type = "structure",
+    id = "CreateLoginProfileOutput",
     members = {
         LoginProfile = setmetatable({ traits = {
             required = true,
@@ -855,6 +911,7 @@ M.CreateLoginProfileOutput = {
 
 M.CreateOpenIDConnectProviderInput = {
     type = "structure",
+    id = "CreateOpenIDConnectProviderInput",
     members = {
         Url = {
             type = "string",
@@ -879,6 +936,7 @@ M.CreateOpenIDConnectProviderInput = {
 
 M.CreateOpenIDConnectProviderOutput = {
     type = "structure",
+    id = "CreateOpenIDConnectProviderOutput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -892,6 +950,7 @@ M.CreateOpenIDConnectProviderOutput = {
 
 M.OpenIdIdpCommunicationErrorException = {
     type = "structure",
+    id = "OpenIdIdpCommunicationErrorException",
     error = "client",
     members = {
         message = {
@@ -902,6 +961,7 @@ M.OpenIdIdpCommunicationErrorException = {
 
 M.CreatePolicyInput = {
     type = "structure",
+    id = "CreatePolicyInput",
     members = {
         PolicyName = {
             type = "string",
@@ -930,6 +990,7 @@ M.CreatePolicyInput = {
 
 M.Policy = {
     type = "structure",
+    id = "Policy",
     members = {
         PolicyName = {
             type = "string",
@@ -976,6 +1037,7 @@ M.Policy = {
 
 M.CreatePolicyOutput = {
     type = "structure",
+    id = "CreatePolicyOutput",
     members = {
         Policy = M.Policy,
     },
@@ -983,6 +1045,7 @@ M.CreatePolicyOutput = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         message = {
@@ -993,6 +1056,7 @@ M.MalformedPolicyDocumentException = {
 
 M.CreatePolicyVersionInput = {
     type = "structure",
+    id = "CreatePolicyVersionInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -1017,6 +1081,7 @@ M.CreatePolicyVersionInput = {
 
 M.PolicyVersion = {
     type = "structure",
+    id = "PolicyVersion",
     members = {
         Document = {
             type = "string",
@@ -1038,6 +1103,7 @@ M.PolicyVersion = {
 
 M.CreatePolicyVersionOutput = {
     type = "structure",
+    id = "CreatePolicyVersionOutput",
     members = {
         PolicyVersion = M.PolicyVersion,
     },
@@ -1045,6 +1111,7 @@ M.CreatePolicyVersionOutput = {
 
 M.CreateRoleInput = {
     type = "structure",
+    id = "CreateRoleInput",
     members = {
         Path = {
             type = "string",
@@ -1079,6 +1146,7 @@ M.CreateRoleInput = {
 
 M.CreateRoleOutput = {
     type = "structure",
+    id = "CreateRoleOutput",
     members = {
         Role = setmetatable({ traits = {
             required = true,
@@ -1088,6 +1156,7 @@ M.CreateRoleOutput = {
 
 M.CreateSAMLProviderInput = {
     type = "structure",
+    id = "CreateSAMLProviderInput",
     members = {
         SAMLMetadataDocument = {
             type = "string",
@@ -1116,6 +1185,7 @@ M.CreateSAMLProviderInput = {
 
 M.CreateSAMLProviderOutput = {
     type = "structure",
+    id = "CreateSAMLProviderOutput",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -1129,6 +1199,7 @@ M.CreateSAMLProviderOutput = {
 
 M.CreateServiceLinkedRoleInput = {
     type = "structure",
+    id = "CreateServiceLinkedRoleInput",
     members = {
         AWSServiceName = {
             type = "string",
@@ -1147,6 +1218,7 @@ M.CreateServiceLinkedRoleInput = {
 
 M.CreateServiceLinkedRoleOutput = {
     type = "structure",
+    id = "CreateServiceLinkedRoleOutput",
     members = {
         Role = M.Role,
     },
@@ -1154,6 +1226,7 @@ M.CreateServiceLinkedRoleOutput = {
 
 M.CreateServiceSpecificCredentialInput = {
     type = "structure",
+    id = "CreateServiceSpecificCredentialInput",
     members = {
         UserName = {
             type = "string",
@@ -1175,6 +1248,7 @@ M.CreateServiceSpecificCredentialInput = {
 
 M.ServiceSpecificCredential = {
     type = "structure",
+    id = "ServiceSpecificCredential",
     members = {
         CreateDate = {
             type = "timestamp",
@@ -1232,6 +1306,7 @@ M.ServiceSpecificCredential = {
 
 M.CreateServiceSpecificCredentialOutput = {
     type = "structure",
+    id = "CreateServiceSpecificCredentialOutput",
     members = {
         ServiceSpecificCredential = M.ServiceSpecificCredential,
     },
@@ -1239,6 +1314,7 @@ M.CreateServiceSpecificCredentialOutput = {
 
 M.ServiceNotSupportedException = {
     type = "structure",
+    id = "ServiceNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -1249,6 +1325,7 @@ M.ServiceNotSupportedException = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         Path = {
             type = "string",
@@ -1271,6 +1348,7 @@ M.CreateUserInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         Path = {
             type = "string",
@@ -1315,6 +1393,7 @@ M.User = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         User = M.User,
     },
@@ -1322,6 +1401,7 @@ M.CreateUserOutput = {
 
 M.CreateVirtualMFADeviceInput = {
     type = "structure",
+    id = "CreateVirtualMFADeviceInput",
     members = {
         Path = {
             type = "string",
@@ -1341,6 +1421,7 @@ M.CreateVirtualMFADeviceInput = {
 
 M.VirtualMFADevice = {
     type = "structure",
+    id = "VirtualMFADevice",
     members = {
         SerialNumber = {
             type = "string",
@@ -1367,6 +1448,7 @@ M.VirtualMFADevice = {
 
 M.CreateVirtualMFADeviceOutput = {
     type = "structure",
+    id = "CreateVirtualMFADeviceOutput",
     members = {
         VirtualMFADevice = setmetatable({ traits = {
             required = true,
@@ -1376,6 +1458,7 @@ M.CreateVirtualMFADeviceOutput = {
 
 M.DeactivateMFADeviceInput = {
     type = "structure",
+    id = "DeactivateMFADeviceInput",
     members = {
         UserName = {
             type = "string",
@@ -1391,10 +1474,12 @@ M.DeactivateMFADeviceInput = {
 
 M.DeactivateMFADeviceOutput = {
     type = "structure",
+    id = "DeactivateMFADeviceOutput",
 }
 
 M.DeleteAccessKeyInput = {
     type = "structure",
+    id = "DeleteAccessKeyInput",
     members = {
         UserName = {
             type = "string",
@@ -1410,10 +1495,12 @@ M.DeleteAccessKeyInput = {
 
 M.DeleteAccessKeyOutput = {
     type = "structure",
+    id = "DeleteAccessKeyOutput",
 }
 
 M.DeleteAccountAliasInput = {
     type = "structure",
+    id = "DeleteAccountAliasInput",
     members = {
         AccountAlias = {
             type = "string",
@@ -1426,18 +1513,22 @@ M.DeleteAccountAliasInput = {
 
 M.DeleteAccountAliasOutput = {
     type = "structure",
+    id = "DeleteAccountAliasOutput",
 }
 
 M.DeleteAccountPasswordPolicyInput = {
     type = "structure",
+    id = "DeleteAccountPasswordPolicyInput",
 }
 
 M.DeleteAccountPasswordPolicyOutput = {
     type = "structure",
+    id = "DeleteAccountPasswordPolicyOutput",
 }
 
 M.DeleteConflictException = {
     type = "structure",
+    id = "DeleteConflictException",
     error = "client",
     members = {
         message = {
@@ -1448,6 +1539,7 @@ M.DeleteConflictException = {
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -1460,10 +1552,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DeleteGroupPolicyInput = {
     type = "structure",
+    id = "DeleteGroupPolicyInput",
     members = {
         GroupName = {
             type = "string",
@@ -1482,10 +1576,12 @@ M.DeleteGroupPolicyInput = {
 
 M.DeleteGroupPolicyOutput = {
     type = "structure",
+    id = "DeleteGroupPolicyOutput",
 }
 
 M.DeleteInstanceProfileInput = {
     type = "structure",
+    id = "DeleteInstanceProfileInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -1498,10 +1594,12 @@ M.DeleteInstanceProfileInput = {
 
 M.DeleteInstanceProfileOutput = {
     type = "structure",
+    id = "DeleteInstanceProfileOutput",
 }
 
 M.DeleteLoginProfileInput = {
     type = "structure",
+    id = "DeleteLoginProfileInput",
     members = {
         UserName = {
             type = "string",
@@ -1511,10 +1609,12 @@ M.DeleteLoginProfileInput = {
 
 M.DeleteLoginProfileOutput = {
     type = "structure",
+    id = "DeleteLoginProfileOutput",
 }
 
 M.DeleteOpenIDConnectProviderInput = {
     type = "structure",
+    id = "DeleteOpenIDConnectProviderInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -1527,10 +1627,12 @@ M.DeleteOpenIDConnectProviderInput = {
 
 M.DeleteOpenIDConnectProviderOutput = {
     type = "structure",
+    id = "DeleteOpenIDConnectProviderOutput",
 }
 
 M.DeletePolicyInput = {
     type = "structure",
+    id = "DeletePolicyInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -1543,10 +1645,12 @@ M.DeletePolicyInput = {
 
 M.DeletePolicyOutput = {
     type = "structure",
+    id = "DeletePolicyOutput",
 }
 
 M.DeletePolicyVersionInput = {
     type = "structure",
+    id = "DeletePolicyVersionInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -1565,10 +1669,12 @@ M.DeletePolicyVersionInput = {
 
 M.DeletePolicyVersionOutput = {
     type = "structure",
+    id = "DeletePolicyVersionOutput",
 }
 
 M.DeleteRoleInput = {
     type = "structure",
+    id = "DeleteRoleInput",
     members = {
         RoleName = {
             type = "string",
@@ -1581,10 +1687,12 @@ M.DeleteRoleInput = {
 
 M.DeleteRoleOutput = {
     type = "structure",
+    id = "DeleteRoleOutput",
 }
 
 M.DeleteRolePermissionsBoundaryInput = {
     type = "structure",
+    id = "DeleteRolePermissionsBoundaryInput",
     members = {
         RoleName = {
             type = "string",
@@ -1597,10 +1705,12 @@ M.DeleteRolePermissionsBoundaryInput = {
 
 M.DeleteRolePermissionsBoundaryOutput = {
     type = "structure",
+    id = "DeleteRolePermissionsBoundaryOutput",
 }
 
 M.DeleteRolePolicyInput = {
     type = "structure",
+    id = "DeleteRolePolicyInput",
     members = {
         RoleName = {
             type = "string",
@@ -1619,10 +1729,12 @@ M.DeleteRolePolicyInput = {
 
 M.DeleteRolePolicyOutput = {
     type = "structure",
+    id = "DeleteRolePolicyOutput",
 }
 
 M.DeleteSAMLProviderInput = {
     type = "structure",
+    id = "DeleteSAMLProviderInput",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -1635,10 +1747,12 @@ M.DeleteSAMLProviderInput = {
 
 M.DeleteSAMLProviderOutput = {
     type = "structure",
+    id = "DeleteSAMLProviderOutput",
 }
 
 M.DeleteServerCertificateInput = {
     type = "structure",
+    id = "DeleteServerCertificateInput",
     members = {
         ServerCertificateName = {
             type = "string",
@@ -1651,10 +1765,12 @@ M.DeleteServerCertificateInput = {
 
 M.DeleteServerCertificateOutput = {
     type = "structure",
+    id = "DeleteServerCertificateOutput",
 }
 
 M.DeleteServiceLinkedRoleInput = {
     type = "structure",
+    id = "DeleteServiceLinkedRoleInput",
     members = {
         RoleName = {
             type = "string",
@@ -1667,6 +1783,7 @@ M.DeleteServiceLinkedRoleInput = {
 
 M.DeleteServiceLinkedRoleOutput = {
     type = "structure",
+    id = "DeleteServiceLinkedRoleOutput",
     members = {
         DeletionTaskId = {
             type = "string",
@@ -1679,6 +1796,7 @@ M.DeleteServiceLinkedRoleOutput = {
 
 M.DeleteServiceSpecificCredentialInput = {
     type = "structure",
+    id = "DeleteServiceSpecificCredentialInput",
     members = {
         UserName = {
             type = "string",
@@ -1694,10 +1812,12 @@ M.DeleteServiceSpecificCredentialInput = {
 
 M.DeleteServiceSpecificCredentialOutput = {
     type = "structure",
+    id = "DeleteServiceSpecificCredentialOutput",
 }
 
 M.DeleteSigningCertificateInput = {
     type = "structure",
+    id = "DeleteSigningCertificateInput",
     members = {
         UserName = {
             type = "string",
@@ -1713,10 +1833,12 @@ M.DeleteSigningCertificateInput = {
 
 M.DeleteSigningCertificateOutput = {
     type = "structure",
+    id = "DeleteSigningCertificateOutput",
 }
 
 M.DeleteSSHPublicKeyInput = {
     type = "structure",
+    id = "DeleteSSHPublicKeyInput",
     members = {
         UserName = {
             type = "string",
@@ -1735,10 +1857,12 @@ M.DeleteSSHPublicKeyInput = {
 
 M.DeleteSSHPublicKeyOutput = {
     type = "structure",
+    id = "DeleteSSHPublicKeyOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         UserName = {
             type = "string",
@@ -1751,10 +1875,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DeleteUserPermissionsBoundaryInput = {
     type = "structure",
+    id = "DeleteUserPermissionsBoundaryInput",
     members = {
         UserName = {
             type = "string",
@@ -1767,10 +1893,12 @@ M.DeleteUserPermissionsBoundaryInput = {
 
 M.DeleteUserPermissionsBoundaryOutput = {
     type = "structure",
+    id = "DeleteUserPermissionsBoundaryOutput",
 }
 
 M.DeleteUserPolicyInput = {
     type = "structure",
+    id = "DeleteUserPolicyInput",
     members = {
         UserName = {
             type = "string",
@@ -1789,10 +1917,12 @@ M.DeleteUserPolicyInput = {
 
 M.DeleteUserPolicyOutput = {
     type = "structure",
+    id = "DeleteUserPolicyOutput",
 }
 
 M.DeleteVirtualMFADeviceInput = {
     type = "structure",
+    id = "DeleteVirtualMFADeviceInput",
     members = {
         SerialNumber = {
             type = "string",
@@ -1805,10 +1935,12 @@ M.DeleteVirtualMFADeviceInput = {
 
 M.DeleteVirtualMFADeviceOutput = {
     type = "structure",
+    id = "DeleteVirtualMFADeviceOutput",
 }
 
 M.DetachGroupPolicyInput = {
     type = "structure",
+    id = "DetachGroupPolicyInput",
     members = {
         GroupName = {
             type = "string",
@@ -1827,10 +1959,12 @@ M.DetachGroupPolicyInput = {
 
 M.DetachGroupPolicyOutput = {
     type = "structure",
+    id = "DetachGroupPolicyOutput",
 }
 
 M.DetachRolePolicyInput = {
     type = "structure",
+    id = "DetachRolePolicyInput",
     members = {
         RoleName = {
             type = "string",
@@ -1849,10 +1983,12 @@ M.DetachRolePolicyInput = {
 
 M.DetachRolePolicyOutput = {
     type = "structure",
+    id = "DetachRolePolicyOutput",
 }
 
 M.DetachUserPolicyInput = {
     type = "structure",
+    id = "DetachUserPolicyInput",
     members = {
         UserName = {
             type = "string",
@@ -1871,10 +2007,12 @@ M.DetachUserPolicyInput = {
 
 M.DetachUserPolicyOutput = {
     type = "structure",
+    id = "DetachUserPolicyOutput",
 }
 
 M.DisableOrganizationsRootCredentialsManagementInput = {
     type = "structure",
+    id = "DisableOrganizationsRootCredentialsManagementInput",
 }
 
 M.FeatureType = {
@@ -1884,6 +2022,7 @@ M.FeatureType = {
 
 M.DisableOrganizationsRootCredentialsManagementOutput = {
     type = "structure",
+    id = "DisableOrganizationsRootCredentialsManagementOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1897,6 +2036,7 @@ M.DisableOrganizationsRootCredentialsManagementOutput = {
 
 M.OrganizationNotFoundException = {
     type = "structure",
+    id = "OrganizationNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1907,6 +2047,7 @@ M.OrganizationNotFoundException = {
 
 M.OrganizationNotInAllFeaturesModeException = {
     type = "structure",
+    id = "OrganizationNotInAllFeaturesModeException",
     error = "client",
     members = {
         Message = {
@@ -1917,6 +2058,7 @@ M.OrganizationNotInAllFeaturesModeException = {
 
 M.ServiceAccessNotEnabledException = {
     type = "structure",
+    id = "ServiceAccessNotEnabledException",
     error = "client",
     members = {
         Message = {
@@ -1927,10 +2069,12 @@ M.ServiceAccessNotEnabledException = {
 
 M.DisableOrganizationsRootSessionsInput = {
     type = "structure",
+    id = "DisableOrganizationsRootSessionsInput",
 }
 
 M.DisableOrganizationsRootSessionsOutput = {
     type = "structure",
+    id = "DisableOrganizationsRootSessionsOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -1944,14 +2088,17 @@ M.DisableOrganizationsRootSessionsOutput = {
 
 M.DisableOutboundWebIdentityFederationInput = {
     type = "structure",
+    id = "DisableOutboundWebIdentityFederationInput",
 }
 
 M.DisableOutboundWebIdentityFederationOutput = {
     type = "structure",
+    id = "DisableOutboundWebIdentityFederationOutput",
 }
 
 M.FeatureDisabledException = {
     type = "structure",
+    id = "FeatureDisabledException",
     error = "client",
     members = {
         message = {
@@ -1962,6 +2109,7 @@ M.FeatureDisabledException = {
 
 M.EnableMFADeviceInput = {
     type = "structure",
+    id = "EnableMFADeviceInput",
     members = {
         UserName = {
             type = "string",
@@ -1992,10 +2140,12 @@ M.EnableMFADeviceInput = {
 
 M.EnableMFADeviceOutput = {
     type = "structure",
+    id = "EnableMFADeviceOutput",
 }
 
 M.InvalidAuthenticationCodeException = {
     type = "structure",
+    id = "InvalidAuthenticationCodeException",
     error = "client",
     members = {
         message = {
@@ -2006,6 +2156,7 @@ M.InvalidAuthenticationCodeException = {
 
 M.CallerIsNotManagementAccountException = {
     type = "structure",
+    id = "CallerIsNotManagementAccountException",
     error = "client",
     members = {
         Message = {
@@ -2016,10 +2167,12 @@ M.CallerIsNotManagementAccountException = {
 
 M.EnableOrganizationsRootCredentialsManagementInput = {
     type = "structure",
+    id = "EnableOrganizationsRootCredentialsManagementInput",
 }
 
 M.EnableOrganizationsRootCredentialsManagementOutput = {
     type = "structure",
+    id = "EnableOrganizationsRootCredentialsManagementOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2033,10 +2186,12 @@ M.EnableOrganizationsRootCredentialsManagementOutput = {
 
 M.EnableOrganizationsRootSessionsInput = {
     type = "structure",
+    id = "EnableOrganizationsRootSessionsInput",
 }
 
 M.EnableOrganizationsRootSessionsOutput = {
     type = "structure",
+    id = "EnableOrganizationsRootSessionsOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -2050,10 +2205,12 @@ M.EnableOrganizationsRootSessionsOutput = {
 
 M.EnableOutboundWebIdentityFederationInput = {
     type = "structure",
+    id = "EnableOutboundWebIdentityFederationInput",
 }
 
 M.EnableOutboundWebIdentityFederationOutput = {
     type = "structure",
+    id = "EnableOutboundWebIdentityFederationOutput",
     members = {
         IssuerIdentifier = {
             type = "string",
@@ -2063,6 +2220,7 @@ M.EnableOutboundWebIdentityFederationOutput = {
 
 M.FeatureEnabledException = {
     type = "structure",
+    id = "FeatureEnabledException",
     error = "client",
     members = {
         message = {
@@ -2073,6 +2231,7 @@ M.FeatureEnabledException = {
 
 M.GenerateCredentialReportInput = {
     type = "structure",
+    id = "GenerateCredentialReportInput",
 }
 
 M.ReportStateType = {
@@ -2083,6 +2242,7 @@ M.ReportStateType = {
 
 M.GenerateCredentialReportOutput = {
     type = "structure",
+    id = "GenerateCredentialReportOutput",
     members = {
         State = {
             type = "string",
@@ -2095,6 +2255,7 @@ M.GenerateCredentialReportOutput = {
 
 M.GenerateOrganizationsAccessReportInput = {
     type = "structure",
+    id = "GenerateOrganizationsAccessReportInput",
     members = {
         EntityPath = {
             type = "string",
@@ -2110,6 +2271,7 @@ M.GenerateOrganizationsAccessReportInput = {
 
 M.GenerateOrganizationsAccessReportOutput = {
     type = "structure",
+    id = "GenerateOrganizationsAccessReportOutput",
     members = {
         JobId = {
             type = "string",
@@ -2119,6 +2281,7 @@ M.GenerateOrganizationsAccessReportOutput = {
 
 M.ReportGenerationLimitExceededException = {
     type = "structure",
+    id = "ReportGenerationLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -2129,6 +2292,7 @@ M.ReportGenerationLimitExceededException = {
 
 M.GenerateServiceLastAccessedDetailsInput = {
     type = "structure",
+    id = "GenerateServiceLastAccessedDetailsInput",
     members = {
         Arn = {
             type = "string",
@@ -2144,6 +2308,7 @@ M.GenerateServiceLastAccessedDetailsInput = {
 
 M.GenerateServiceLastAccessedDetailsOutput = {
     type = "structure",
+    id = "GenerateServiceLastAccessedDetailsOutput",
     members = {
         JobId = {
             type = "string",
@@ -2153,6 +2318,7 @@ M.GenerateServiceLastAccessedDetailsOutput = {
 
 M.GetAccessKeyLastUsedInput = {
     type = "structure",
+    id = "GetAccessKeyLastUsedInput",
     members = {
         AccessKeyId = {
             type = "string",
@@ -2165,6 +2331,7 @@ M.GetAccessKeyLastUsedInput = {
 
 M.GetAccessKeyLastUsedOutput = {
     type = "structure",
+    id = "GetAccessKeyLastUsedOutput",
     members = {
         UserName = {
             type = "string",
@@ -2183,6 +2350,7 @@ M.EntityType = {
 
 M.GetAccountAuthorizationDetailsInput = {
     type = "structure",
+    id = "GetAccountAuthorizationDetailsInput",
     members = {
         Filter = {
             type = "list",
@@ -2199,6 +2367,7 @@ M.GetAccountAuthorizationDetailsInput = {
 
 M.PolicyDetail = {
     type = "structure",
+    id = "PolicyDetail",
     members = {
         PolicyName = {
             type = "string",
@@ -2211,6 +2380,7 @@ M.PolicyDetail = {
 
 M.GroupDetail = {
     type = "structure",
+    id = "GroupDetail",
     members = {
         Path = {
             type = "string",
@@ -2240,6 +2410,7 @@ M.GroupDetail = {
 
 M.ManagedPolicyDetail = {
     type = "structure",
+    id = "ManagedPolicyDetail",
     members = {
         PolicyName = {
             type = "string",
@@ -2286,6 +2457,7 @@ M.ManagedPolicyDetail = {
 
 M.RoleDetail = {
     type = "structure",
+    id = "RoleDetail",
     members = {
         Path = {
             type = "string",
@@ -2328,6 +2500,7 @@ M.RoleDetail = {
 
 M.UserDetail = {
     type = "structure",
+    id = "UserDetail",
     members = {
         Path = {
             type = "string",
@@ -2366,6 +2539,7 @@ M.UserDetail = {
 
 M.GetAccountAuthorizationDetailsOutput = {
     type = "structure",
+    id = "GetAccountAuthorizationDetailsOutput",
     members = {
         UserDetailList = {
             type = "list",
@@ -2397,10 +2571,12 @@ M.GetAccountAuthorizationDetailsOutput = {
 
 M.GetAccountPasswordPolicyInput = {
     type = "structure",
+    id = "GetAccountPasswordPolicyInput",
 }
 
 M.PasswordPolicy = {
     type = "structure",
+    id = "PasswordPolicy",
     members = {
         MinimumPasswordLength = {
             type = "integer",
@@ -2455,6 +2631,7 @@ M.PasswordPolicy = {
 
 M.GetAccountPasswordPolicyOutput = {
     type = "structure",
+    id = "GetAccountPasswordPolicyOutput",
     members = {
         PasswordPolicy = setmetatable({ traits = {
             required = true,
@@ -2464,6 +2641,7 @@ M.GetAccountPasswordPolicyOutput = {
 
 M.GetAccountSummaryInput = {
     type = "structure",
+    id = "GetAccountSummaryInput",
 }
 
 M.summaryKeyType = {
@@ -2505,6 +2683,7 @@ M.summaryKeyType = {
 
 M.GetAccountSummaryOutput = {
     type = "structure",
+    id = "GetAccountSummaryOutput",
     members = {
         SummaryMap = {
             type = "map",
@@ -2516,6 +2695,7 @@ M.GetAccountSummaryOutput = {
 
 M.GetContextKeysForCustomPolicyInput = {
     type = "structure",
+    id = "GetContextKeysForCustomPolicyInput",
     members = {
         PolicyInputList = {
             type = "list",
@@ -2529,6 +2709,7 @@ M.GetContextKeysForCustomPolicyInput = {
 
 M.GetContextKeysForCustomPolicyOutput = {
     type = "structure",
+    id = "GetContextKeysForCustomPolicyOutput",
     members = {
         ContextKeyNames = {
             type = "list",
@@ -2539,6 +2720,7 @@ M.GetContextKeysForCustomPolicyOutput = {
 
 M.GetContextKeysForPrincipalPolicyInput = {
     type = "structure",
+    id = "GetContextKeysForPrincipalPolicyInput",
     members = {
         PolicySourceArn = {
             type = "string",
@@ -2555,6 +2737,7 @@ M.GetContextKeysForPrincipalPolicyInput = {
 
 M.GetContextKeysForPrincipalPolicyOutput = {
     type = "structure",
+    id = "GetContextKeysForPrincipalPolicyOutput",
     members = {
         ContextKeyNames = {
             type = "list",
@@ -2565,6 +2748,7 @@ M.GetContextKeysForPrincipalPolicyOutput = {
 
 M.CredentialReportExpiredException = {
     type = "structure",
+    id = "CredentialReportExpiredException",
     error = "client",
     members = {
         message = {
@@ -2575,6 +2759,7 @@ M.CredentialReportExpiredException = {
 
 M.CredentialReportNotPresentException = {
     type = "structure",
+    id = "CredentialReportNotPresentException",
     error = "client",
     members = {
         message = {
@@ -2585,6 +2770,7 @@ M.CredentialReportNotPresentException = {
 
 M.CredentialReportNotReadyException = {
     type = "structure",
+    id = "CredentialReportNotReadyException",
     error = "client",
     members = {
         message = {
@@ -2595,6 +2781,7 @@ M.CredentialReportNotReadyException = {
 
 M.GetCredentialReportInput = {
     type = "structure",
+    id = "GetCredentialReportInput",
 }
 
 M.ReportFormatType = {
@@ -2603,6 +2790,7 @@ M.ReportFormatType = {
 
 M.GetCredentialReportOutput = {
     type = "structure",
+    id = "GetCredentialReportOutput",
     members = {
         Content = {
             type = "blob",
@@ -2618,6 +2806,7 @@ M.GetCredentialReportOutput = {
 
 M.GetDelegationRequestInput = {
     type = "structure",
+    id = "GetDelegationRequestInput",
     members = {
         DelegationRequestId = {
             type = "string",
@@ -2646,6 +2835,7 @@ M.stateType = {
 
 M.DelegationRequest = {
     type = "structure",
+    id = "DelegationRequest",
     members = {
         DelegationRequestId = {
             type = "string",
@@ -2726,6 +2916,7 @@ M.permissionCheckStatusType = {
 
 M.GetDelegationRequestOutput = {
     type = "structure",
+    id = "GetDelegationRequestOutput",
     members = {
         DelegationRequest = M.DelegationRequest,
         PermissionCheckStatus = {
@@ -2739,6 +2930,7 @@ M.GetDelegationRequestOutput = {
 
 M.GetGroupInput = {
     type = "structure",
+    id = "GetGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -2757,6 +2949,7 @@ M.GetGroupInput = {
 
 M.GetGroupOutput = {
     type = "structure",
+    id = "GetGroupOutput",
     members = {
         Group = setmetatable({ traits = {
             required = true,
@@ -2782,6 +2975,7 @@ M.GetGroupOutput = {
 
 M.GetGroupPolicyInput = {
     type = "structure",
+    id = "GetGroupPolicyInput",
     members = {
         GroupName = {
             type = "string",
@@ -2800,6 +2994,7 @@ M.GetGroupPolicyInput = {
 
 M.GetGroupPolicyOutput = {
     type = "structure",
+    id = "GetGroupPolicyOutput",
     members = {
         GroupName = {
             type = "string",
@@ -2824,6 +3019,7 @@ M.GetGroupPolicyOutput = {
 
 M.GetHumanReadableSummaryInput = {
     type = "structure",
+    id = "GetHumanReadableSummaryInput",
     members = {
         EntityArn = {
             type = "string",
@@ -2846,6 +3042,7 @@ M.summaryStateType = {
 
 M.GetHumanReadableSummaryOutput = {
     type = "structure",
+    id = "GetHumanReadableSummaryOutput",
     members = {
         SummaryContent = {
             type = "string",
@@ -2861,6 +3058,7 @@ M.GetHumanReadableSummaryOutput = {
 
 M.GetInstanceProfileInput = {
     type = "structure",
+    id = "GetInstanceProfileInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -2873,6 +3071,7 @@ M.GetInstanceProfileInput = {
 
 M.GetInstanceProfileOutput = {
     type = "structure",
+    id = "GetInstanceProfileOutput",
     members = {
         InstanceProfile = setmetatable({ traits = {
             required = true,
@@ -2882,6 +3081,7 @@ M.GetInstanceProfileOutput = {
 
 M.GetLoginProfileInput = {
     type = "structure",
+    id = "GetLoginProfileInput",
     members = {
         UserName = {
             type = "string",
@@ -2891,6 +3091,7 @@ M.GetLoginProfileInput = {
 
 M.GetLoginProfileOutput = {
     type = "structure",
+    id = "GetLoginProfileOutput",
     members = {
         LoginProfile = setmetatable({ traits = {
             required = true,
@@ -2900,6 +3101,7 @@ M.GetLoginProfileOutput = {
 
 M.GetMFADeviceInput = {
     type = "structure",
+    id = "GetMFADeviceInput",
     members = {
         SerialNumber = {
             type = "string",
@@ -2915,6 +3117,7 @@ M.GetMFADeviceInput = {
 
 M.GetMFADeviceOutput = {
     type = "structure",
+    id = "GetMFADeviceOutput",
     members = {
         UserName = {
             type = "string",
@@ -2938,6 +3141,7 @@ M.GetMFADeviceOutput = {
 
 M.GetOpenIDConnectProviderInput = {
     type = "structure",
+    id = "GetOpenIDConnectProviderInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -2950,6 +3154,7 @@ M.GetOpenIDConnectProviderInput = {
 
 M.GetOpenIDConnectProviderOutput = {
     type = "structure",
+    id = "GetOpenIDConnectProviderOutput",
     members = {
         Url = {
             type = "string",
@@ -2981,6 +3186,7 @@ M.sortKeyType = {
 
 M.GetOrganizationsAccessReportInput = {
     type = "structure",
+    id = "GetOrganizationsAccessReportInput",
     members = {
         JobId = {
             type = "string",
@@ -3002,6 +3208,7 @@ M.GetOrganizationsAccessReportInput = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         Message = {
             type = "string",
@@ -3026,6 +3233,7 @@ M.jobStatusType = {
 
 M.GetOrganizationsAccessReportOutput = {
     type = "structure",
+    id = "GetOrganizationsAccessReportOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3067,10 +3275,12 @@ M.GetOrganizationsAccessReportOutput = {
 
 M.GetOutboundWebIdentityFederationInfoInput = {
     type = "structure",
+    id = "GetOutboundWebIdentityFederationInfoInput",
 }
 
 M.GetOutboundWebIdentityFederationInfoOutput = {
     type = "structure",
+    id = "GetOutboundWebIdentityFederationInfoOutput",
     members = {
         IssuerIdentifier = {
             type = "string",
@@ -3086,6 +3296,7 @@ M.GetOutboundWebIdentityFederationInfoOutput = {
 
 M.GetPolicyInput = {
     type = "structure",
+    id = "GetPolicyInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -3098,6 +3309,7 @@ M.GetPolicyInput = {
 
 M.GetPolicyOutput = {
     type = "structure",
+    id = "GetPolicyOutput",
     members = {
         Policy = M.Policy,
     },
@@ -3105,6 +3317,7 @@ M.GetPolicyOutput = {
 
 M.GetPolicyVersionInput = {
     type = "structure",
+    id = "GetPolicyVersionInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -3123,6 +3336,7 @@ M.GetPolicyVersionInput = {
 
 M.GetPolicyVersionOutput = {
     type = "structure",
+    id = "GetPolicyVersionOutput",
     members = {
         PolicyVersion = M.PolicyVersion,
     },
@@ -3130,6 +3344,7 @@ M.GetPolicyVersionOutput = {
 
 M.GetRoleInput = {
     type = "structure",
+    id = "GetRoleInput",
     members = {
         RoleName = {
             type = "string",
@@ -3142,6 +3357,7 @@ M.GetRoleInput = {
 
 M.GetRoleOutput = {
     type = "structure",
+    id = "GetRoleOutput",
     members = {
         Role = setmetatable({ traits = {
             required = true,
@@ -3151,6 +3367,7 @@ M.GetRoleOutput = {
 
 M.GetRolePolicyInput = {
     type = "structure",
+    id = "GetRolePolicyInput",
     members = {
         RoleName = {
             type = "string",
@@ -3169,6 +3386,7 @@ M.GetRolePolicyInput = {
 
 M.GetRolePolicyOutput = {
     type = "structure",
+    id = "GetRolePolicyOutput",
     members = {
         RoleName = {
             type = "string",
@@ -3193,6 +3411,7 @@ M.GetRolePolicyOutput = {
 
 M.GetSAMLProviderInput = {
     type = "structure",
+    id = "GetSAMLProviderInput",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -3205,6 +3424,7 @@ M.GetSAMLProviderInput = {
 
 M.SAMLPrivateKey = {
     type = "structure",
+    id = "SAMLPrivateKey",
     members = {
         KeyId = {
             type = "string",
@@ -3217,6 +3437,7 @@ M.SAMLPrivateKey = {
 
 M.GetSAMLProviderOutput = {
     type = "structure",
+    id = "GetSAMLProviderOutput",
     members = {
         SAMLProviderUUID = {
             type = "string",
@@ -3246,6 +3467,7 @@ M.GetSAMLProviderOutput = {
 
 M.GetServerCertificateInput = {
     type = "structure",
+    id = "GetServerCertificateInput",
     members = {
         ServerCertificateName = {
             type = "string",
@@ -3258,6 +3480,7 @@ M.GetServerCertificateInput = {
 
 M.ServerCertificateMetadata = {
     type = "structure",
+    id = "ServerCertificateMetadata",
     members = {
         Path = {
             type = "string",
@@ -3294,6 +3517,7 @@ M.ServerCertificateMetadata = {
 
 M.ServerCertificate = {
     type = "structure",
+    id = "ServerCertificate",
     members = {
         ServerCertificateMetadata = setmetatable({ traits = {
             required = true,
@@ -3316,6 +3540,7 @@ M.ServerCertificate = {
 
 M.GetServerCertificateOutput = {
     type = "structure",
+    id = "GetServerCertificateOutput",
     members = {
         ServerCertificate = setmetatable({ traits = {
             required = true,
@@ -3325,6 +3550,7 @@ M.GetServerCertificateOutput = {
 
 M.GetServiceLastAccessedDetailsInput = {
     type = "structure",
+    id = "GetServiceLastAccessedDetailsInput",
     members = {
         JobId = {
             type = "string",
@@ -3343,6 +3569,7 @@ M.GetServiceLastAccessedDetailsInput = {
 
 M.TrackedActionLastAccessed = {
     type = "structure",
+    id = "TrackedActionLastAccessed",
     members = {
         ActionName = {
             type = "string",
@@ -3361,6 +3588,7 @@ M.TrackedActionLastAccessed = {
 
 M.ServiceLastAccessed = {
     type = "structure",
+    id = "ServiceLastAccessed",
     members = {
         ServiceName = {
             type = "string",
@@ -3395,6 +3623,7 @@ M.ServiceLastAccessed = {
 
 M.GetServiceLastAccessedDetailsOutput = {
     type = "structure",
+    id = "GetServiceLastAccessedDetailsOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3439,6 +3668,7 @@ M.GetServiceLastAccessedDetailsOutput = {
 
 M.GetServiceLastAccessedDetailsWithEntitiesInput = {
     type = "structure",
+    id = "GetServiceLastAccessedDetailsWithEntitiesInput",
     members = {
         JobId = {
             type = "string",
@@ -3469,6 +3699,7 @@ M.policyOwnerEntityType = {
 
 M.EntityInfo = {
     type = "structure",
+    id = "EntityInfo",
     members = {
         Arn = {
             type = "string",
@@ -3502,6 +3733,7 @@ M.EntityInfo = {
 
 M.EntityDetails = {
     type = "structure",
+    id = "EntityDetails",
     members = {
         EntityInfo = setmetatable({ traits = {
             required = true,
@@ -3514,6 +3746,7 @@ M.EntityDetails = {
 
 M.GetServiceLastAccessedDetailsWithEntitiesOutput = {
     type = "structure",
+    id = "GetServiceLastAccessedDetailsWithEntitiesOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3555,6 +3788,7 @@ M.GetServiceLastAccessedDetailsWithEntitiesOutput = {
 
 M.GetServiceLinkedRoleDeletionStatusInput = {
     type = "structure",
+    id = "GetServiceLinkedRoleDeletionStatusInput",
     members = {
         DeletionTaskId = {
             type = "string",
@@ -3567,6 +3801,7 @@ M.GetServiceLinkedRoleDeletionStatusInput = {
 
 M.RoleUsageType = {
     type = "structure",
+    id = "RoleUsageType",
     members = {
         Region = {
             type = "string",
@@ -3580,6 +3815,7 @@ M.RoleUsageType = {
 
 M.DeletionTaskFailureReasonType = {
     type = "structure",
+    id = "DeletionTaskFailureReasonType",
     members = {
         Reason = {
             type = "string",
@@ -3600,6 +3836,7 @@ M.DeletionTaskStatusType = {
 
 M.GetServiceLinkedRoleDeletionStatusOutput = {
     type = "structure",
+    id = "GetServiceLinkedRoleDeletionStatusOutput",
     members = {
         Status = {
             type = "string",
@@ -3618,6 +3855,7 @@ M.encodingType = {
 
 M.GetSSHPublicKeyInput = {
     type = "structure",
+    id = "GetSSHPublicKeyInput",
     members = {
         UserName = {
             type = "string",
@@ -3642,6 +3880,7 @@ M.GetSSHPublicKeyInput = {
 
 M.SSHPublicKey = {
     type = "structure",
+    id = "SSHPublicKey",
     members = {
         UserName = {
             type = "string",
@@ -3681,6 +3920,7 @@ M.SSHPublicKey = {
 
 M.GetSSHPublicKeyOutput = {
     type = "structure",
+    id = "GetSSHPublicKeyOutput",
     members = {
         SSHPublicKey = M.SSHPublicKey,
     },
@@ -3688,6 +3928,7 @@ M.GetSSHPublicKeyOutput = {
 
 M.UnrecognizedPublicKeyEncodingException = {
     type = "structure",
+    id = "UnrecognizedPublicKeyEncodingException",
     error = "client",
     members = {
         message = {
@@ -3698,6 +3939,7 @@ M.UnrecognizedPublicKeyEncodingException = {
 
 M.GetUserInput = {
     type = "structure",
+    id = "GetUserInput",
     members = {
         UserName = {
             type = "string",
@@ -3707,6 +3949,7 @@ M.GetUserInput = {
 
 M.GetUserOutput = {
     type = "structure",
+    id = "GetUserOutput",
     members = {
         User = setmetatable({ traits = {
             required = true,
@@ -3716,6 +3959,7 @@ M.GetUserOutput = {
 
 M.GetUserPolicyInput = {
     type = "structure",
+    id = "GetUserPolicyInput",
     members = {
         UserName = {
             type = "string",
@@ -3734,6 +3978,7 @@ M.GetUserPolicyInput = {
 
 M.GetUserPolicyOutput = {
     type = "structure",
+    id = "GetUserPolicyOutput",
     members = {
         UserName = {
             type = "string",
@@ -3758,6 +4003,7 @@ M.GetUserPolicyOutput = {
 
 M.ListAccessKeysInput = {
     type = "structure",
+    id = "ListAccessKeysInput",
     members = {
         UserName = {
             type = "string",
@@ -3773,6 +4019,7 @@ M.ListAccessKeysInput = {
 
 M.ListAccessKeysOutput = {
     type = "structure",
+    id = "ListAccessKeysOutput",
     members = {
         AccessKeyMetadata = {
             type = "list",
@@ -3795,6 +4042,7 @@ M.ListAccessKeysOutput = {
 
 M.ListAccountAliasesInput = {
     type = "structure",
+    id = "ListAccountAliasesInput",
     members = {
         Marker = {
             type = "string",
@@ -3807,6 +4055,7 @@ M.ListAccountAliasesInput = {
 
 M.ListAccountAliasesOutput = {
     type = "structure",
+    id = "ListAccountAliasesOutput",
     members = {
         AccountAliases = {
             type = "list",
@@ -3829,6 +4078,7 @@ M.ListAccountAliasesOutput = {
 
 M.ListAttachedGroupPoliciesInput = {
     type = "structure",
+    id = "ListAttachedGroupPoliciesInput",
     members = {
         GroupName = {
             type = "string",
@@ -3850,6 +4100,7 @@ M.ListAttachedGroupPoliciesInput = {
 
 M.ListAttachedGroupPoliciesOutput = {
     type = "structure",
+    id = "ListAttachedGroupPoliciesOutput",
     members = {
         AttachedPolicies = {
             type = "list",
@@ -3869,6 +4120,7 @@ M.ListAttachedGroupPoliciesOutput = {
 
 M.ListAttachedRolePoliciesInput = {
     type = "structure",
+    id = "ListAttachedRolePoliciesInput",
     members = {
         RoleName = {
             type = "string",
@@ -3890,6 +4142,7 @@ M.ListAttachedRolePoliciesInput = {
 
 M.ListAttachedRolePoliciesOutput = {
     type = "structure",
+    id = "ListAttachedRolePoliciesOutput",
     members = {
         AttachedPolicies = {
             type = "list",
@@ -3909,6 +4162,7 @@ M.ListAttachedRolePoliciesOutput = {
 
 M.ListAttachedUserPoliciesInput = {
     type = "structure",
+    id = "ListAttachedUserPoliciesInput",
     members = {
         UserName = {
             type = "string",
@@ -3930,6 +4184,7 @@ M.ListAttachedUserPoliciesInput = {
 
 M.ListAttachedUserPoliciesOutput = {
     type = "structure",
+    id = "ListAttachedUserPoliciesOutput",
     members = {
         AttachedPolicies = {
             type = "list",
@@ -3949,6 +4204,7 @@ M.ListAttachedUserPoliciesOutput = {
 
 M.ListDelegationRequestsInput = {
     type = "structure",
+    id = "ListDelegationRequestsInput",
     members = {
         OwnerId = {
             type = "string",
@@ -3964,6 +4220,7 @@ M.ListDelegationRequestsInput = {
 
 M.ListDelegationRequestsOutput = {
     type = "structure",
+    id = "ListDelegationRequestsOutput",
     members = {
         DelegationRequests = {
             type = "list",
@@ -3988,6 +4245,7 @@ M.PolicyUsageType = {
 
 M.ListEntitiesForPolicyInput = {
     type = "structure",
+    id = "ListEntitiesForPolicyInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -4015,6 +4273,7 @@ M.ListEntitiesForPolicyInput = {
 
 M.PolicyGroup = {
     type = "structure",
+    id = "PolicyGroup",
     members = {
         GroupName = {
             type = "string",
@@ -4027,6 +4286,7 @@ M.PolicyGroup = {
 
 M.PolicyRole = {
     type = "structure",
+    id = "PolicyRole",
     members = {
         RoleName = {
             type = "string",
@@ -4039,6 +4299,7 @@ M.PolicyRole = {
 
 M.PolicyUser = {
     type = "structure",
+    id = "PolicyUser",
     members = {
         UserName = {
             type = "string",
@@ -4051,6 +4312,7 @@ M.PolicyUser = {
 
 M.ListEntitiesForPolicyOutput = {
     type = "structure",
+    id = "ListEntitiesForPolicyOutput",
     members = {
         PolicyGroups = {
             type = "list",
@@ -4078,6 +4340,7 @@ M.ListEntitiesForPolicyOutput = {
 
 M.ListGroupPoliciesInput = {
     type = "structure",
+    id = "ListGroupPoliciesInput",
     members = {
         GroupName = {
             type = "string",
@@ -4096,6 +4359,7 @@ M.ListGroupPoliciesInput = {
 
 M.ListGroupPoliciesOutput = {
     type = "structure",
+    id = "ListGroupPoliciesOutput",
     members = {
         PolicyNames = {
             type = "list",
@@ -4118,6 +4382,7 @@ M.ListGroupPoliciesOutput = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         PathPrefix = {
             type = "string",
@@ -4133,6 +4398,7 @@ M.ListGroupsInput = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -4155,6 +4421,7 @@ M.ListGroupsOutput = {
 
 M.ListGroupsForUserInput = {
     type = "structure",
+    id = "ListGroupsForUserInput",
     members = {
         UserName = {
             type = "string",
@@ -4173,6 +4440,7 @@ M.ListGroupsForUserInput = {
 
 M.ListGroupsForUserOutput = {
     type = "structure",
+    id = "ListGroupsForUserOutput",
     members = {
         Groups = {
             type = "list",
@@ -4195,6 +4463,7 @@ M.ListGroupsForUserOutput = {
 
 M.ListInstanceProfilesInput = {
     type = "structure",
+    id = "ListInstanceProfilesInput",
     members = {
         PathPrefix = {
             type = "string",
@@ -4210,6 +4479,7 @@ M.ListInstanceProfilesInput = {
 
 M.ListInstanceProfilesOutput = {
     type = "structure",
+    id = "ListInstanceProfilesOutput",
     members = {
         InstanceProfiles = {
             type = "list",
@@ -4232,6 +4502,7 @@ M.ListInstanceProfilesOutput = {
 
 M.ListInstanceProfilesForRoleInput = {
     type = "structure",
+    id = "ListInstanceProfilesForRoleInput",
     members = {
         RoleName = {
             type = "string",
@@ -4250,6 +4521,7 @@ M.ListInstanceProfilesForRoleInput = {
 
 M.ListInstanceProfilesForRoleOutput = {
     type = "structure",
+    id = "ListInstanceProfilesForRoleOutput",
     members = {
         InstanceProfiles = {
             type = "list",
@@ -4272,6 +4544,7 @@ M.ListInstanceProfilesForRoleOutput = {
 
 M.ListInstanceProfileTagsInput = {
     type = "structure",
+    id = "ListInstanceProfileTagsInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -4290,6 +4563,7 @@ M.ListInstanceProfileTagsInput = {
 
 M.ListInstanceProfileTagsOutput = {
     type = "structure",
+    id = "ListInstanceProfileTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -4312,6 +4586,7 @@ M.ListInstanceProfileTagsOutput = {
 
 M.ListMFADevicesInput = {
     type = "structure",
+    id = "ListMFADevicesInput",
     members = {
         UserName = {
             type = "string",
@@ -4327,6 +4602,7 @@ M.ListMFADevicesInput = {
 
 M.MFADevice = {
     type = "structure",
+    id = "MFADevice",
     members = {
         UserName = {
             type = "string",
@@ -4351,6 +4627,7 @@ M.MFADevice = {
 
 M.ListMFADevicesOutput = {
     type = "structure",
+    id = "ListMFADevicesOutput",
     members = {
         MFADevices = {
             type = "list",
@@ -4373,6 +4650,7 @@ M.ListMFADevicesOutput = {
 
 M.ListMFADeviceTagsInput = {
     type = "structure",
+    id = "ListMFADeviceTagsInput",
     members = {
         SerialNumber = {
             type = "string",
@@ -4391,6 +4669,7 @@ M.ListMFADeviceTagsInput = {
 
 M.ListMFADeviceTagsOutput = {
     type = "structure",
+    id = "ListMFADeviceTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -4413,10 +4692,12 @@ M.ListMFADeviceTagsOutput = {
 
 M.ListOpenIDConnectProvidersInput = {
     type = "structure",
+    id = "ListOpenIDConnectProvidersInput",
 }
 
 M.OpenIDConnectProviderListEntry = {
     type = "structure",
+    id = "OpenIDConnectProviderListEntry",
     members = {
         Arn = {
             type = "string",
@@ -4426,6 +4707,7 @@ M.OpenIDConnectProviderListEntry = {
 
 M.ListOpenIDConnectProvidersOutput = {
     type = "structure",
+    id = "ListOpenIDConnectProvidersOutput",
     members = {
         OpenIDConnectProviderList = {
             type = "list",
@@ -4436,6 +4718,7 @@ M.ListOpenIDConnectProvidersOutput = {
 
 M.ListOpenIDConnectProviderTagsInput = {
     type = "structure",
+    id = "ListOpenIDConnectProviderTagsInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -4454,6 +4737,7 @@ M.ListOpenIDConnectProviderTagsInput = {
 
 M.ListOpenIDConnectProviderTagsOutput = {
     type = "structure",
+    id = "ListOpenIDConnectProviderTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -4476,10 +4760,12 @@ M.ListOpenIDConnectProviderTagsOutput = {
 
 M.ListOrganizationsFeaturesInput = {
     type = "structure",
+    id = "ListOrganizationsFeaturesInput",
 }
 
 M.ListOrganizationsFeaturesOutput = {
     type = "structure",
+    id = "ListOrganizationsFeaturesOutput",
     members = {
         OrganizationId = {
             type = "string",
@@ -4499,6 +4785,7 @@ M.policyScopeType = {
 
 M.ListPoliciesInput = {
     type = "structure",
+    id = "ListPoliciesInput",
     members = {
         Scope = {
             type = "string",
@@ -4526,6 +4813,7 @@ M.ListPoliciesInput = {
 
 M.ListPoliciesOutput = {
     type = "structure",
+    id = "ListPoliciesOutput",
     members = {
         Policies = {
             type = "list",
@@ -4545,6 +4833,7 @@ M.ListPoliciesOutput = {
 
 M.ListPoliciesGrantingServiceAccessInput = {
     type = "structure",
+    id = "ListPoliciesGrantingServiceAccessInput",
     members = {
         Marker = {
             type = "string",
@@ -4572,6 +4861,7 @@ M.policyType = {
 
 M.PolicyGrantingServiceAccess = {
     type = "structure",
+    id = "PolicyGrantingServiceAccess",
     members = {
         PolicyName = {
             type = "string",
@@ -4599,6 +4889,7 @@ M.PolicyGrantingServiceAccess = {
 
 M.ListPoliciesGrantingServiceAccessEntry = {
     type = "structure",
+    id = "ListPoliciesGrantingServiceAccessEntry",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -4612,6 +4903,7 @@ M.ListPoliciesGrantingServiceAccessEntry = {
 
 M.ListPoliciesGrantingServiceAccessOutput = {
     type = "structure",
+    id = "ListPoliciesGrantingServiceAccessOutput",
     members = {
         PoliciesGrantingServiceAccess = {
             type = "list",
@@ -4634,6 +4926,7 @@ M.ListPoliciesGrantingServiceAccessOutput = {
 
 M.ListPolicyTagsInput = {
     type = "structure",
+    id = "ListPolicyTagsInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -4652,6 +4945,7 @@ M.ListPolicyTagsInput = {
 
 M.ListPolicyTagsOutput = {
     type = "structure",
+    id = "ListPolicyTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -4674,6 +4968,7 @@ M.ListPolicyTagsOutput = {
 
 M.ListPolicyVersionsInput = {
     type = "structure",
+    id = "ListPolicyVersionsInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -4692,6 +4987,7 @@ M.ListPolicyVersionsInput = {
 
 M.ListPolicyVersionsOutput = {
     type = "structure",
+    id = "ListPolicyVersionsOutput",
     members = {
         Versions = {
             type = "list",
@@ -4711,6 +5007,7 @@ M.ListPolicyVersionsOutput = {
 
 M.ListRolePoliciesInput = {
     type = "structure",
+    id = "ListRolePoliciesInput",
     members = {
         RoleName = {
             type = "string",
@@ -4729,6 +5026,7 @@ M.ListRolePoliciesInput = {
 
 M.ListRolePoliciesOutput = {
     type = "structure",
+    id = "ListRolePoliciesOutput",
     members = {
         PolicyNames = {
             type = "list",
@@ -4751,6 +5049,7 @@ M.ListRolePoliciesOutput = {
 
 M.ListRolesInput = {
     type = "structure",
+    id = "ListRolesInput",
     members = {
         PathPrefix = {
             type = "string",
@@ -4766,6 +5065,7 @@ M.ListRolesInput = {
 
 M.ListRolesOutput = {
     type = "structure",
+    id = "ListRolesOutput",
     members = {
         Roles = {
             type = "list",
@@ -4788,6 +5088,7 @@ M.ListRolesOutput = {
 
 M.ListRoleTagsInput = {
     type = "structure",
+    id = "ListRoleTagsInput",
     members = {
         RoleName = {
             type = "string",
@@ -4806,6 +5107,7 @@ M.ListRoleTagsInput = {
 
 M.ListRoleTagsOutput = {
     type = "structure",
+    id = "ListRoleTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -4828,10 +5130,12 @@ M.ListRoleTagsOutput = {
 
 M.ListSAMLProvidersInput = {
     type = "structure",
+    id = "ListSAMLProvidersInput",
 }
 
 M.SAMLProviderListEntry = {
     type = "structure",
+    id = "SAMLProviderListEntry",
     members = {
         Arn = {
             type = "string",
@@ -4847,6 +5151,7 @@ M.SAMLProviderListEntry = {
 
 M.ListSAMLProvidersOutput = {
     type = "structure",
+    id = "ListSAMLProvidersOutput",
     members = {
         SAMLProviderList = {
             type = "list",
@@ -4857,6 +5162,7 @@ M.ListSAMLProvidersOutput = {
 
 M.ListSAMLProviderTagsInput = {
     type = "structure",
+    id = "ListSAMLProviderTagsInput",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -4875,6 +5181,7 @@ M.ListSAMLProviderTagsInput = {
 
 M.ListSAMLProviderTagsOutput = {
     type = "structure",
+    id = "ListSAMLProviderTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -4897,6 +5204,7 @@ M.ListSAMLProviderTagsOutput = {
 
 M.ListServerCertificatesInput = {
     type = "structure",
+    id = "ListServerCertificatesInput",
     members = {
         PathPrefix = {
             type = "string",
@@ -4912,6 +5220,7 @@ M.ListServerCertificatesInput = {
 
 M.ListServerCertificatesOutput = {
     type = "structure",
+    id = "ListServerCertificatesOutput",
     members = {
         ServerCertificateMetadataList = {
             type = "list",
@@ -4934,6 +5243,7 @@ M.ListServerCertificatesOutput = {
 
 M.ListServerCertificateTagsInput = {
     type = "structure",
+    id = "ListServerCertificateTagsInput",
     members = {
         ServerCertificateName = {
             type = "string",
@@ -4952,6 +5262,7 @@ M.ListServerCertificateTagsInput = {
 
 M.ListServerCertificateTagsOutput = {
     type = "structure",
+    id = "ListServerCertificateTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -4974,6 +5285,7 @@ M.ListServerCertificateTagsOutput = {
 
 M.ListServiceSpecificCredentialsInput = {
     type = "structure",
+    id = "ListServiceSpecificCredentialsInput",
     members = {
         UserName = {
             type = "string",
@@ -4995,6 +5307,7 @@ M.ListServiceSpecificCredentialsInput = {
 
 M.ServiceSpecificCredentialMetadata = {
     type = "structure",
+    id = "ServiceSpecificCredentialMetadata",
     members = {
         UserName = {
             type = "string",
@@ -5043,6 +5356,7 @@ M.ServiceSpecificCredentialMetadata = {
 
 M.ListServiceSpecificCredentialsOutput = {
     type = "structure",
+    id = "ListServiceSpecificCredentialsOutput",
     members = {
         ServiceSpecificCredentials = {
             type = "list",
@@ -5062,6 +5376,7 @@ M.ListServiceSpecificCredentialsOutput = {
 
 M.ListSigningCertificatesInput = {
     type = "structure",
+    id = "ListSigningCertificatesInput",
     members = {
         UserName = {
             type = "string",
@@ -5077,6 +5392,7 @@ M.ListSigningCertificatesInput = {
 
 M.SigningCertificate = {
     type = "structure",
+    id = "SigningCertificate",
     members = {
         UserName = {
             type = "string",
@@ -5110,6 +5426,7 @@ M.SigningCertificate = {
 
 M.ListSigningCertificatesOutput = {
     type = "structure",
+    id = "ListSigningCertificatesOutput",
     members = {
         Certificates = {
             type = "list",
@@ -5132,6 +5449,7 @@ M.ListSigningCertificatesOutput = {
 
 M.ListSSHPublicKeysInput = {
     type = "structure",
+    id = "ListSSHPublicKeysInput",
     members = {
         UserName = {
             type = "string",
@@ -5147,6 +5465,7 @@ M.ListSSHPublicKeysInput = {
 
 M.SSHPublicKeyMetadata = {
     type = "structure",
+    id = "SSHPublicKeyMetadata",
     members = {
         UserName = {
             type = "string",
@@ -5177,6 +5496,7 @@ M.SSHPublicKeyMetadata = {
 
 M.ListSSHPublicKeysOutput = {
     type = "structure",
+    id = "ListSSHPublicKeysOutput",
     members = {
         SSHPublicKeys = {
             type = "list",
@@ -5196,6 +5516,7 @@ M.ListSSHPublicKeysOutput = {
 
 M.ListUserPoliciesInput = {
     type = "structure",
+    id = "ListUserPoliciesInput",
     members = {
         UserName = {
             type = "string",
@@ -5214,6 +5535,7 @@ M.ListUserPoliciesInput = {
 
 M.ListUserPoliciesOutput = {
     type = "structure",
+    id = "ListUserPoliciesOutput",
     members = {
         PolicyNames = {
             type = "list",
@@ -5236,6 +5558,7 @@ M.ListUserPoliciesOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         PathPrefix = {
             type = "string",
@@ -5251,6 +5574,7 @@ M.ListUsersInput = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -5273,6 +5597,7 @@ M.ListUsersOutput = {
 
 M.ListUserTagsInput = {
     type = "structure",
+    id = "ListUserTagsInput",
     members = {
         UserName = {
             type = "string",
@@ -5291,6 +5616,7 @@ M.ListUserTagsInput = {
 
 M.ListUserTagsOutput = {
     type = "structure",
+    id = "ListUserTagsOutput",
     members = {
         Tags = {
             type = "list",
@@ -5313,6 +5639,7 @@ M.ListUserTagsOutput = {
 
 M.ListVirtualMFADevicesInput = {
     type = "structure",
+    id = "ListVirtualMFADevicesInput",
     members = {
         AssignmentStatus = {
             type = "string",
@@ -5328,6 +5655,7 @@ M.ListVirtualMFADevicesInput = {
 
 M.ListVirtualMFADevicesOutput = {
     type = "structure",
+    id = "ListVirtualMFADevicesOutput",
     members = {
         VirtualMFADevices = {
             type = "list",
@@ -5350,6 +5678,7 @@ M.ListVirtualMFADevicesOutput = {
 
 M.PutGroupPolicyInput = {
     type = "structure",
+    id = "PutGroupPolicyInput",
     members = {
         GroupName = {
             type = "string",
@@ -5374,10 +5703,12 @@ M.PutGroupPolicyInput = {
 
 M.PutGroupPolicyOutput = {
     type = "structure",
+    id = "PutGroupPolicyOutput",
 }
 
 M.PutRolePermissionsBoundaryInput = {
     type = "structure",
+    id = "PutRolePermissionsBoundaryInput",
     members = {
         RoleName = {
             type = "string",
@@ -5396,10 +5727,12 @@ M.PutRolePermissionsBoundaryInput = {
 
 M.PutRolePermissionsBoundaryOutput = {
     type = "structure",
+    id = "PutRolePermissionsBoundaryOutput",
 }
 
 M.PutRolePolicyInput = {
     type = "structure",
+    id = "PutRolePolicyInput",
     members = {
         RoleName = {
             type = "string",
@@ -5424,10 +5757,12 @@ M.PutRolePolicyInput = {
 
 M.PutRolePolicyOutput = {
     type = "structure",
+    id = "PutRolePolicyOutput",
 }
 
 M.PutUserPermissionsBoundaryInput = {
     type = "structure",
+    id = "PutUserPermissionsBoundaryInput",
     members = {
         UserName = {
             type = "string",
@@ -5446,10 +5781,12 @@ M.PutUserPermissionsBoundaryInput = {
 
 M.PutUserPermissionsBoundaryOutput = {
     type = "structure",
+    id = "PutUserPermissionsBoundaryOutput",
 }
 
 M.PutUserPolicyInput = {
     type = "structure",
+    id = "PutUserPolicyInput",
     members = {
         UserName = {
             type = "string",
@@ -5474,10 +5811,12 @@ M.PutUserPolicyInput = {
 
 M.PutUserPolicyOutput = {
     type = "structure",
+    id = "PutUserPolicyOutput",
 }
 
 M.RejectDelegationRequestInput = {
     type = "structure",
+    id = "RejectDelegationRequestInput",
     members = {
         DelegationRequestId = {
             type = "string",
@@ -5493,10 +5832,12 @@ M.RejectDelegationRequestInput = {
 
 M.RejectDelegationRequestOutput = {
     type = "structure",
+    id = "RejectDelegationRequestOutput",
 }
 
 M.RemoveClientIDFromOpenIDConnectProviderInput = {
     type = "structure",
+    id = "RemoveClientIDFromOpenIDConnectProviderInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -5515,10 +5856,12 @@ M.RemoveClientIDFromOpenIDConnectProviderInput = {
 
 M.RemoveClientIDFromOpenIDConnectProviderOutput = {
     type = "structure",
+    id = "RemoveClientIDFromOpenIDConnectProviderOutput",
 }
 
 M.RemoveRoleFromInstanceProfileInput = {
     type = "structure",
+    id = "RemoveRoleFromInstanceProfileInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -5537,10 +5880,12 @@ M.RemoveRoleFromInstanceProfileInput = {
 
 M.RemoveRoleFromInstanceProfileOutput = {
     type = "structure",
+    id = "RemoveRoleFromInstanceProfileOutput",
 }
 
 M.RemoveUserFromGroupInput = {
     type = "structure",
+    id = "RemoveUserFromGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -5559,10 +5904,12 @@ M.RemoveUserFromGroupInput = {
 
 M.RemoveUserFromGroupOutput = {
     type = "structure",
+    id = "RemoveUserFromGroupOutput",
 }
 
 M.ResetServiceSpecificCredentialInput = {
     type = "structure",
+    id = "ResetServiceSpecificCredentialInput",
     members = {
         UserName = {
             type = "string",
@@ -5578,6 +5925,7 @@ M.ResetServiceSpecificCredentialInput = {
 
 M.ResetServiceSpecificCredentialOutput = {
     type = "structure",
+    id = "ResetServiceSpecificCredentialOutput",
     members = {
         ServiceSpecificCredential = M.ServiceSpecificCredential,
     },
@@ -5585,6 +5933,7 @@ M.ResetServiceSpecificCredentialOutput = {
 
 M.ResyncMFADeviceInput = {
     type = "structure",
+    id = "ResyncMFADeviceInput",
     members = {
         UserName = {
             type = "string",
@@ -5615,10 +5964,12 @@ M.ResyncMFADeviceInput = {
 
 M.ResyncMFADeviceOutput = {
     type = "structure",
+    id = "ResyncMFADeviceOutput",
 }
 
 M.SendDelegationTokenInput = {
     type = "structure",
+    id = "SendDelegationTokenInput",
     members = {
         DelegationRequestId = {
             type = "string",
@@ -5631,10 +5982,12 @@ M.SendDelegationTokenInput = {
 
 M.SendDelegationTokenOutput = {
     type = "structure",
+    id = "SendDelegationTokenOutput",
 }
 
 M.SetDefaultPolicyVersionInput = {
     type = "structure",
+    id = "SetDefaultPolicyVersionInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -5653,6 +6006,7 @@ M.SetDefaultPolicyVersionInput = {
 
 M.SetDefaultPolicyVersionOutput = {
     type = "structure",
+    id = "SetDefaultPolicyVersionOutput",
 }
 
 M.globalEndpointTokenVersion = {
@@ -5662,6 +6016,7 @@ M.globalEndpointTokenVersion = {
 
 M.SetSecurityTokenServicePreferencesInput = {
     type = "structure",
+    id = "SetSecurityTokenServicePreferencesInput",
     members = {
         GlobalEndpointTokenVersion = {
             type = "string",
@@ -5674,10 +6029,12 @@ M.SetSecurityTokenServicePreferencesInput = {
 
 M.SetSecurityTokenServicePreferencesOutput = {
     type = "structure",
+    id = "SetSecurityTokenServicePreferencesOutput",
 }
 
 M.PolicyEvaluationException = {
     type = "structure",
+    id = "PolicyEvaluationException",
     error = "server",
     members = {
         message = {
@@ -5703,6 +6060,7 @@ M.ContextKeyTypeEnum = {
 
 M.ContextEntry = {
     type = "structure",
+    id = "ContextEntry",
     members = {
         ContextKeyName = {
             type = "string",
@@ -5719,6 +6077,7 @@ M.ContextEntry = {
 
 M.SimulateCustomPolicyInput = {
     type = "structure",
+    id = "SimulateCustomPolicyInput",
     members = {
         PolicyInputList = {
             type = "list",
@@ -5775,6 +6134,7 @@ M.PolicyEvaluationDecisionType = {
 
 M.Position = {
     type = "structure",
+    id = "Position",
     members = {
         Line = {
             type = "integer",
@@ -5803,6 +6163,7 @@ M.PolicySourceType = {
 
 M.Statement = {
     type = "structure",
+    id = "Statement",
     members = {
         SourcePolicyId = {
             type = "string",
@@ -5817,6 +6178,7 @@ M.Statement = {
 
 M.OrganizationsDecisionDetail = {
     type = "structure",
+    id = "OrganizationsDecisionDetail",
     members = {
         AllowedByOrganizations = {
             type = "boolean",
@@ -5829,6 +6191,7 @@ M.OrganizationsDecisionDetail = {
 
 M.PermissionsBoundaryDecisionDetail = {
     type = "structure",
+    id = "PermissionsBoundaryDecisionDetail",
     members = {
         AllowedByPermissionsBoundary = {
             type = "boolean",
@@ -5841,6 +6204,7 @@ M.PermissionsBoundaryDecisionDetail = {
 
 M.ResourceSpecificResult = {
     type = "structure",
+    id = "ResourceSpecificResult",
     members = {
         EvalResourceName = {
             type = "string",
@@ -5873,6 +6237,7 @@ M.ResourceSpecificResult = {
 
 M.EvaluationResult = {
     type = "structure",
+    id = "EvaluationResult",
     members = {
         EvalActionName = {
             type = "string",
@@ -5913,6 +6278,7 @@ M.EvaluationResult = {
 
 M.SimulateCustomPolicyOutput = {
     type = "structure",
+    id = "SimulateCustomPolicyOutput",
     members = {
         EvaluationResults = {
             type = "list",
@@ -5932,6 +6298,7 @@ M.SimulateCustomPolicyOutput = {
 
 M.SimulatePrincipalPolicyInput = {
     type = "structure",
+    id = "SimulatePrincipalPolicyInput",
     members = {
         PolicySourceArn = {
             type = "string",
@@ -5985,6 +6352,7 @@ M.SimulatePrincipalPolicyInput = {
 
 M.SimulatePrincipalPolicyOutput = {
     type = "structure",
+    id = "SimulatePrincipalPolicyOutput",
     members = {
         EvaluationResults = {
             type = "list",
@@ -6004,6 +6372,7 @@ M.SimulatePrincipalPolicyOutput = {
 
 M.TagInstanceProfileInput = {
     type = "structure",
+    id = "TagInstanceProfileInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -6023,10 +6392,12 @@ M.TagInstanceProfileInput = {
 
 M.TagInstanceProfileOutput = {
     type = "structure",
+    id = "TagInstanceProfileOutput",
 }
 
 M.TagMFADeviceInput = {
     type = "structure",
+    id = "TagMFADeviceInput",
     members = {
         SerialNumber = {
             type = "string",
@@ -6046,10 +6417,12 @@ M.TagMFADeviceInput = {
 
 M.TagMFADeviceOutput = {
     type = "structure",
+    id = "TagMFADeviceOutput",
 }
 
 M.TagOpenIDConnectProviderInput = {
     type = "structure",
+    id = "TagOpenIDConnectProviderInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -6069,10 +6442,12 @@ M.TagOpenIDConnectProviderInput = {
 
 M.TagOpenIDConnectProviderOutput = {
     type = "structure",
+    id = "TagOpenIDConnectProviderOutput",
 }
 
 M.TagPolicyInput = {
     type = "structure",
+    id = "TagPolicyInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -6092,10 +6467,12 @@ M.TagPolicyInput = {
 
 M.TagPolicyOutput = {
     type = "structure",
+    id = "TagPolicyOutput",
 }
 
 M.TagRoleInput = {
     type = "structure",
+    id = "TagRoleInput",
     members = {
         RoleName = {
             type = "string",
@@ -6115,10 +6492,12 @@ M.TagRoleInput = {
 
 M.TagRoleOutput = {
     type = "structure",
+    id = "TagRoleOutput",
 }
 
 M.TagSAMLProviderInput = {
     type = "structure",
+    id = "TagSAMLProviderInput",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -6138,10 +6517,12 @@ M.TagSAMLProviderInput = {
 
 M.TagSAMLProviderOutput = {
     type = "structure",
+    id = "TagSAMLProviderOutput",
 }
 
 M.TagServerCertificateInput = {
     type = "structure",
+    id = "TagServerCertificateInput",
     members = {
         ServerCertificateName = {
             type = "string",
@@ -6161,10 +6542,12 @@ M.TagServerCertificateInput = {
 
 M.TagServerCertificateOutput = {
     type = "structure",
+    id = "TagServerCertificateOutput",
 }
 
 M.TagUserInput = {
     type = "structure",
+    id = "TagUserInput",
     members = {
         UserName = {
             type = "string",
@@ -6184,10 +6567,12 @@ M.TagUserInput = {
 
 M.TagUserOutput = {
     type = "structure",
+    id = "TagUserOutput",
 }
 
 M.UntagInstanceProfileInput = {
     type = "structure",
+    id = "UntagInstanceProfileInput",
     members = {
         InstanceProfileName = {
             type = "string",
@@ -6207,10 +6592,12 @@ M.UntagInstanceProfileInput = {
 
 M.UntagInstanceProfileOutput = {
     type = "structure",
+    id = "UntagInstanceProfileOutput",
 }
 
 M.UntagMFADeviceInput = {
     type = "structure",
+    id = "UntagMFADeviceInput",
     members = {
         SerialNumber = {
             type = "string",
@@ -6230,10 +6617,12 @@ M.UntagMFADeviceInput = {
 
 M.UntagMFADeviceOutput = {
     type = "structure",
+    id = "UntagMFADeviceOutput",
 }
 
 M.UntagOpenIDConnectProviderInput = {
     type = "structure",
+    id = "UntagOpenIDConnectProviderInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -6253,10 +6642,12 @@ M.UntagOpenIDConnectProviderInput = {
 
 M.UntagOpenIDConnectProviderOutput = {
     type = "structure",
+    id = "UntagOpenIDConnectProviderOutput",
 }
 
 M.UntagPolicyInput = {
     type = "structure",
+    id = "UntagPolicyInput",
     members = {
         PolicyArn = {
             type = "string",
@@ -6276,10 +6667,12 @@ M.UntagPolicyInput = {
 
 M.UntagPolicyOutput = {
     type = "structure",
+    id = "UntagPolicyOutput",
 }
 
 M.UntagRoleInput = {
     type = "structure",
+    id = "UntagRoleInput",
     members = {
         RoleName = {
             type = "string",
@@ -6299,10 +6692,12 @@ M.UntagRoleInput = {
 
 M.UntagRoleOutput = {
     type = "structure",
+    id = "UntagRoleOutput",
 }
 
 M.UntagSAMLProviderInput = {
     type = "structure",
+    id = "UntagSAMLProviderInput",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -6322,10 +6717,12 @@ M.UntagSAMLProviderInput = {
 
 M.UntagSAMLProviderOutput = {
     type = "structure",
+    id = "UntagSAMLProviderOutput",
 }
 
 M.UntagServerCertificateInput = {
     type = "structure",
+    id = "UntagServerCertificateInput",
     members = {
         ServerCertificateName = {
             type = "string",
@@ -6345,10 +6742,12 @@ M.UntagServerCertificateInput = {
 
 M.UntagServerCertificateOutput = {
     type = "structure",
+    id = "UntagServerCertificateOutput",
 }
 
 M.UntagUserInput = {
     type = "structure",
+    id = "UntagUserInput",
     members = {
         UserName = {
             type = "string",
@@ -6368,10 +6767,12 @@ M.UntagUserInput = {
 
 M.UntagUserOutput = {
     type = "structure",
+    id = "UntagUserOutput",
 }
 
 M.UpdateAccessKeyInput = {
     type = "structure",
+    id = "UpdateAccessKeyInput",
     members = {
         UserName = {
             type = "string",
@@ -6393,10 +6794,12 @@ M.UpdateAccessKeyInput = {
 
 M.UpdateAccessKeyOutput = {
     type = "structure",
+    id = "UpdateAccessKeyOutput",
 }
 
 M.UpdateAccountPasswordPolicyInput = {
     type = "structure",
+    id = "UpdateAccountPasswordPolicyInput",
     members = {
         MinimumPasswordLength = {
             type = "integer",
@@ -6445,10 +6848,12 @@ M.UpdateAccountPasswordPolicyInput = {
 
 M.UpdateAccountPasswordPolicyOutput = {
     type = "structure",
+    id = "UpdateAccountPasswordPolicyOutput",
 }
 
 M.UpdateAssumeRolePolicyInput = {
     type = "structure",
+    id = "UpdateAssumeRolePolicyInput",
     members = {
         RoleName = {
             type = "string",
@@ -6467,10 +6872,12 @@ M.UpdateAssumeRolePolicyInput = {
 
 M.UpdateAssumeRolePolicyOutput = {
     type = "structure",
+    id = "UpdateAssumeRolePolicyOutput",
 }
 
 M.UpdateDelegationRequestInput = {
     type = "structure",
+    id = "UpdateDelegationRequestInput",
     members = {
         DelegationRequestId = {
             type = "string",
@@ -6486,10 +6893,12 @@ M.UpdateDelegationRequestInput = {
 
 M.UpdateDelegationRequestOutput = {
     type = "structure",
+    id = "UpdateDelegationRequestOutput",
 }
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -6508,10 +6917,12 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
 }
 
 M.UpdateLoginProfileInput = {
     type = "structure",
+    id = "UpdateLoginProfileInput",
     members = {
         UserName = {
             type = "string",
@@ -6530,10 +6941,12 @@ M.UpdateLoginProfileInput = {
 
 M.UpdateLoginProfileOutput = {
     type = "structure",
+    id = "UpdateLoginProfileOutput",
 }
 
 M.UpdateOpenIDConnectProviderThumbprintInput = {
     type = "structure",
+    id = "UpdateOpenIDConnectProviderThumbprintInput",
     members = {
         OpenIDConnectProviderArn = {
             type = "string",
@@ -6553,10 +6966,12 @@ M.UpdateOpenIDConnectProviderThumbprintInput = {
 
 M.UpdateOpenIDConnectProviderThumbprintOutput = {
     type = "structure",
+    id = "UpdateOpenIDConnectProviderThumbprintOutput",
 }
 
 M.UpdateRoleInput = {
     type = "structure",
+    id = "UpdateRoleInput",
     members = {
         RoleName = {
             type = "string",
@@ -6575,10 +6990,12 @@ M.UpdateRoleInput = {
 
 M.UpdateRoleOutput = {
     type = "structure",
+    id = "UpdateRoleOutput",
 }
 
 M.UpdateRoleDescriptionInput = {
     type = "structure",
+    id = "UpdateRoleDescriptionInput",
     members = {
         RoleName = {
             type = "string",
@@ -6597,6 +7014,7 @@ M.UpdateRoleDescriptionInput = {
 
 M.UpdateRoleDescriptionOutput = {
     type = "structure",
+    id = "UpdateRoleDescriptionOutput",
     members = {
         Role = M.Role,
     },
@@ -6604,6 +7022,7 @@ M.UpdateRoleDescriptionOutput = {
 
 M.UpdateSAMLProviderInput = {
     type = "structure",
+    id = "UpdateSAMLProviderInput",
     members = {
         SAMLMetadataDocument = {
             type = "string",
@@ -6628,6 +7047,7 @@ M.UpdateSAMLProviderInput = {
 
 M.UpdateSAMLProviderOutput = {
     type = "structure",
+    id = "UpdateSAMLProviderOutput",
     members = {
         SAMLProviderArn = {
             type = "string",
@@ -6637,6 +7057,7 @@ M.UpdateSAMLProviderOutput = {
 
 M.UpdateServerCertificateInput = {
     type = "structure",
+    id = "UpdateServerCertificateInput",
     members = {
         ServerCertificateName = {
             type = "string",
@@ -6655,10 +7076,12 @@ M.UpdateServerCertificateInput = {
 
 M.UpdateServerCertificateOutput = {
     type = "structure",
+    id = "UpdateServerCertificateOutput",
 }
 
 M.UpdateServiceSpecificCredentialInput = {
     type = "structure",
+    id = "UpdateServiceSpecificCredentialInput",
     members = {
         UserName = {
             type = "string",
@@ -6680,10 +7103,12 @@ M.UpdateServiceSpecificCredentialInput = {
 
 M.UpdateServiceSpecificCredentialOutput = {
     type = "structure",
+    id = "UpdateServiceSpecificCredentialOutput",
 }
 
 M.UpdateSigningCertificateInput = {
     type = "structure",
+    id = "UpdateSigningCertificateInput",
     members = {
         UserName = {
             type = "string",
@@ -6705,10 +7130,12 @@ M.UpdateSigningCertificateInput = {
 
 M.UpdateSigningCertificateOutput = {
     type = "structure",
+    id = "UpdateSigningCertificateOutput",
 }
 
 M.UpdateSSHPublicKeyInput = {
     type = "structure",
+    id = "UpdateSSHPublicKeyInput",
     members = {
         UserName = {
             type = "string",
@@ -6733,10 +7160,12 @@ M.UpdateSSHPublicKeyInput = {
 
 M.UpdateSSHPublicKeyOutput = {
     type = "structure",
+    id = "UpdateSSHPublicKeyOutput",
 }
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         UserName = {
             type = "string",
@@ -6755,10 +7184,12 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
 }
 
 M.KeyPairMismatchException = {
     type = "structure",
+    id = "KeyPairMismatchException",
     error = "client",
     members = {
         message = {
@@ -6769,6 +7200,7 @@ M.KeyPairMismatchException = {
 
 M.MalformedCertificateException = {
     type = "structure",
+    id = "MalformedCertificateException",
     error = "client",
     members = {
         message = {
@@ -6779,6 +7211,7 @@ M.MalformedCertificateException = {
 
 M.UploadServerCertificateInput = {
     type = "structure",
+    id = "UploadServerCertificateInput",
     members = {
         Path = {
             type = "string",
@@ -6813,6 +7246,7 @@ M.UploadServerCertificateInput = {
 
 M.UploadServerCertificateOutput = {
     type = "structure",
+    id = "UploadServerCertificateOutput",
     members = {
         ServerCertificateMetadata = M.ServerCertificateMetadata,
         Tags = {
@@ -6824,6 +7258,7 @@ M.UploadServerCertificateOutput = {
 
 M.DuplicateCertificateException = {
     type = "structure",
+    id = "DuplicateCertificateException",
     error = "client",
     members = {
         message = {
@@ -6834,6 +7269,7 @@ M.DuplicateCertificateException = {
 
 M.InvalidCertificateException = {
     type = "structure",
+    id = "InvalidCertificateException",
     error = "client",
     members = {
         message = {
@@ -6844,6 +7280,7 @@ M.InvalidCertificateException = {
 
 M.UploadSigningCertificateInput = {
     type = "structure",
+    id = "UploadSigningCertificateInput",
     members = {
         UserName = {
             type = "string",
@@ -6859,6 +7296,7 @@ M.UploadSigningCertificateInput = {
 
 M.UploadSigningCertificateOutput = {
     type = "structure",
+    id = "UploadSigningCertificateOutput",
     members = {
         Certificate = setmetatable({ traits = {
             required = true,
@@ -6868,6 +7306,7 @@ M.UploadSigningCertificateOutput = {
 
 M.DuplicateSSHPublicKeyException = {
     type = "structure",
+    id = "DuplicateSSHPublicKeyException",
     error = "client",
     members = {
         message = {
@@ -6878,6 +7317,7 @@ M.DuplicateSSHPublicKeyException = {
 
 M.InvalidPublicKeyException = {
     type = "structure",
+    id = "InvalidPublicKeyException",
     error = "client",
     members = {
         message = {
@@ -6888,6 +7328,7 @@ M.InvalidPublicKeyException = {
 
 M.UploadSSHPublicKeyInput = {
     type = "structure",
+    id = "UploadSSHPublicKeyInput",
     members = {
         UserName = {
             type = "string",
@@ -6906,6 +7347,7 @@ M.UploadSSHPublicKeyInput = {
 
 M.UploadSSHPublicKeyOutput = {
     type = "structure",
+    id = "UploadSSHPublicKeyOutput",
     members = {
         SSHPublicKey = M.SSHPublicKey,
     },

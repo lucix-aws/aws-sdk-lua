@@ -2,6 +2,7 @@ local M = {}
 
 M.DeregisterSubscriptionProviderInput = {
     type = "structure",
+    id = "DeregisterSubscriptionProviderInput",
     members = {
         SubscriptionProviderArn = {
             type = "string",
@@ -14,10 +15,12 @@ M.DeregisterSubscriptionProviderInput = {
 
 M.DeregisterSubscriptionProviderOutput = {
     type = "structure",
+    id = "DeregisterSubscriptionProviderOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -28,6 +31,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -38,6 +42,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -48,6 +53,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -64,6 +70,7 @@ M.Operator = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -80,6 +87,7 @@ M.Filter = {
 
 M.GetRegisteredSubscriptionProviderInput = {
     type = "structure",
+    id = "GetRegisteredSubscriptionProviderInput",
     members = {
         SubscriptionProviderArn = {
             type = "string",
@@ -102,6 +110,7 @@ M.SubscriptionProviderStatus = {
 
 M.GetRegisteredSubscriptionProviderOutput = {
     type = "structure",
+    id = "GetRegisteredSubscriptionProviderOutput",
     members = {
         SubscriptionProviderArn = {
             type = "string",
@@ -126,6 +135,7 @@ M.GetRegisteredSubscriptionProviderOutput = {
 
 M.GetServiceSettingsInput = {
     type = "structure",
+    id = "GetServiceSettingsInput",
 }
 
 M.LinuxSubscriptionsDiscovery = {
@@ -140,6 +150,7 @@ M.OrganizationIntegration = {
 
 M.LinuxSubscriptionsDiscoverySettings = {
     type = "structure",
+    id = "LinuxSubscriptionsDiscoverySettings",
     members = {
         SourceRegions = {
             type = "list",
@@ -166,6 +177,7 @@ M.Status = {
 
 M.GetServiceSettingsOutput = {
     type = "structure",
+    id = "GetServiceSettingsOutput",
     members = {
         LinuxSubscriptionsDiscovery = {
             type = "string",
@@ -188,6 +200,7 @@ M.GetServiceSettingsOutput = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         AmiId = {
             type = "string",
@@ -240,6 +253,7 @@ M.Instance = {
 
 M.ListLinuxSubscriptionInstancesInput = {
     type = "structure",
+    id = "ListLinuxSubscriptionInstancesInput",
     members = {
         Filters = {
             type = "list",
@@ -256,6 +270,7 @@ M.ListLinuxSubscriptionInstancesInput = {
 
 M.ListLinuxSubscriptionInstancesOutput = {
     type = "structure",
+    id = "ListLinuxSubscriptionInstancesOutput",
     members = {
         Instances = {
             type = "list",
@@ -269,6 +284,7 @@ M.ListLinuxSubscriptionInstancesOutput = {
 
 M.ListLinuxSubscriptionsInput = {
     type = "structure",
+    id = "ListLinuxSubscriptionsInput",
     members = {
         Filters = {
             type = "list",
@@ -285,6 +301,7 @@ M.ListLinuxSubscriptionsInput = {
 
 M.Subscription = {
     type = "structure",
+    id = "Subscription",
     members = {
         Name = {
             type = "string",
@@ -300,6 +317,7 @@ M.Subscription = {
 
 M.ListLinuxSubscriptionsOutput = {
     type = "structure",
+    id = "ListLinuxSubscriptionsOutput",
     members = {
         Subscriptions = {
             type = "list",
@@ -313,6 +331,7 @@ M.ListLinuxSubscriptionsOutput = {
 
 M.ListRegisteredSubscriptionProvidersInput = {
     type = "structure",
+    id = "ListRegisteredSubscriptionProvidersInput",
     members = {
         SubscriptionProviderSources = {
             type = "list",
@@ -329,6 +348,7 @@ M.ListRegisteredSubscriptionProvidersInput = {
 
 M.RegisteredSubscriptionProvider = {
     type = "structure",
+    id = "RegisteredSubscriptionProvider",
     members = {
         SubscriptionProviderArn = {
             type = "string",
@@ -353,6 +373,7 @@ M.RegisteredSubscriptionProvider = {
 
 M.ListRegisteredSubscriptionProvidersOutput = {
     type = "structure",
+    id = "ListRegisteredSubscriptionProvidersOutput",
     members = {
         RegisteredSubscriptionProviders = {
             type = "list",
@@ -366,6 +387,7 @@ M.ListRegisteredSubscriptionProvidersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -379,6 +401,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -390,6 +413,7 @@ M.ListTagsForResourceOutput = {
 
 M.RegisterSubscriptionProviderInput = {
     type = "structure",
+    id = "RegisterSubscriptionProviderInput",
     members = {
         SubscriptionProviderSource = {
             type = "string",
@@ -413,6 +437,7 @@ M.RegisterSubscriptionProviderInput = {
 
 M.RegisterSubscriptionProviderOutput = {
     type = "structure",
+    id = "RegisterSubscriptionProviderOutput",
     members = {
         SubscriptionProviderSource = {
             type = "string",
@@ -428,6 +453,7 @@ M.RegisterSubscriptionProviderOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -449,10 +475,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -474,10 +502,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateServiceSettingsInput = {
     type = "structure",
+    id = "UpdateServiceSettingsInput",
     members = {
         LinuxSubscriptionsDiscovery = {
             type = "string",
@@ -496,6 +526,7 @@ M.UpdateServiceSettingsInput = {
 
 M.UpdateServiceSettingsOutput = {
     type = "structure",
+    id = "UpdateServiceSettingsOutput",
     members = {
         LinuxSubscriptionsDiscovery = {
             type = "string",

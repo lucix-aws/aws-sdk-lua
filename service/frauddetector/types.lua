@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AggregatedLogOddsMetric = {
     type = "structure",
+    id = "AggregatedLogOddsMetric",
     members = {
         variableNames = {
             type = "list",
@@ -34,6 +36,7 @@ M.AggregatedLogOddsMetric = {
 
 M.AggregatedVariablesImpactExplanation = {
     type = "structure",
+    id = "AggregatedVariablesImpactExplanation",
     members = {
         eventVariableNames = {
             type = "list",
@@ -50,6 +53,7 @@ M.AggregatedVariablesImpactExplanation = {
 
 M.AggregatedVariablesImportanceMetrics = {
     type = "structure",
+    id = "AggregatedVariablesImportanceMetrics",
     members = {
         logOddsMetrics = {
             type = "list",
@@ -60,6 +64,7 @@ M.AggregatedVariablesImportanceMetrics = {
 
 M.AllowDenyList = {
     type = "structure",
+    id = "AllowDenyList",
     members = {
         name = {
             type = "string",
@@ -96,6 +101,7 @@ M.AsyncJobStatus = {
 
 M.ATIMetricDataPoint = {
     type = "structure",
+    id = "ATIMetricDataPoint",
     members = {
         cr = {
             type = "float",
@@ -114,6 +120,7 @@ M.ATIMetricDataPoint = {
 
 M.ATIModelPerformance = {
     type = "structure",
+    id = "ATIModelPerformance",
     members = {
         asi = {
             type = "float",
@@ -123,6 +130,7 @@ M.ATIModelPerformance = {
 
 M.ATITrainingMetricsValue = {
     type = "structure",
+    id = "ATITrainingMetricsValue",
     members = {
         metricDataPoints = {
             type = "list",
@@ -134,6 +142,7 @@ M.ATITrainingMetricsValue = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -152,6 +161,7 @@ M.Tag = {
 
 M.VariableEntry = {
     type = "structure",
+    id = "VariableEntry",
     members = {
         name = {
             type = "string",
@@ -176,6 +186,7 @@ M.VariableEntry = {
 
 M.BatchCreateVariableInput = {
     type = "structure",
+    id = "BatchCreateVariableInput",
     members = {
         variableEntries = {
             type = "list",
@@ -193,6 +204,7 @@ M.BatchCreateVariableInput = {
 
 M.BatchCreateVariableError = {
     type = "structure",
+    id = "BatchCreateVariableError",
     members = {
         name = {
             type = "string",
@@ -211,6 +223,7 @@ M.BatchCreateVariableError = {
 
 M.BatchCreateVariableOutput = {
     type = "structure",
+    id = "BatchCreateVariableOutput",
     members = {
         errors = {
             type = "list",
@@ -221,6 +234,7 @@ M.BatchCreateVariableOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -234,6 +248,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -247,6 +262,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -260,6 +276,7 @@ M.ValidationException = {
 
 M.BatchGetVariableInput = {
     type = "structure",
+    id = "BatchGetVariableInput",
     members = {
         names = {
             type = "list",
@@ -273,6 +290,7 @@ M.BatchGetVariableInput = {
 
 M.BatchGetVariableError = {
     type = "structure",
+    id = "BatchGetVariableError",
     members = {
         name = {
             type = "string",
@@ -305,6 +323,7 @@ M.DataType = {
 
 M.Variable = {
     type = "structure",
+    id = "Variable",
     members = {
         name = {
             type = "string",
@@ -338,6 +357,7 @@ M.Variable = {
 
 M.BatchGetVariableOutput = {
     type = "structure",
+    id = "BatchGetVariableOutput",
     members = {
         variables = {
             type = "list",
@@ -352,6 +372,7 @@ M.BatchGetVariableOutput = {
 
 M.CancelBatchImportJobInput = {
     type = "structure",
+    id = "CancelBatchImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -364,10 +385,12 @@ M.CancelBatchImportJobInput = {
 
 M.CancelBatchImportJobOutput = {
     type = "structure",
+    id = "CancelBatchImportJobOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -381,6 +404,7 @@ M.ResourceNotFoundException = {
 
 M.CancelBatchPredictionJobInput = {
     type = "structure",
+    id = "CancelBatchPredictionJobInput",
     members = {
         jobId = {
             type = "string",
@@ -393,10 +417,12 @@ M.CancelBatchPredictionJobInput = {
 
 M.CancelBatchPredictionJobOutput = {
     type = "structure",
+    id = "CancelBatchPredictionJobOutput",
 }
 
 M.CreateBatchImportJobInput = {
     type = "structure",
+    id = "CreateBatchImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -437,10 +463,12 @@ M.CreateBatchImportJobInput = {
 
 M.CreateBatchImportJobOutput = {
     type = "structure",
+    id = "CreateBatchImportJobOutput",
 }
 
 M.CreateBatchPredictionJobInput = {
     type = "structure",
+    id = "CreateBatchPredictionJobInput",
     members = {
         jobId = {
             type = "string",
@@ -490,6 +518,7 @@ M.CreateBatchPredictionJobInput = {
 
 M.CreateBatchPredictionJobOutput = {
     type = "structure",
+    id = "CreateBatchPredictionJobOutput",
 }
 
 M.ModelTypeEnum = {
@@ -500,6 +529,7 @@ M.ModelTypeEnum = {
 
 M.ModelVersion = {
     type = "structure",
+    id = "ModelVersion",
     members = {
         modelId = {
             type = "string",
@@ -532,6 +562,7 @@ M.RuleExecutionMode = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         detectorId = {
             type = "string",
@@ -556,6 +587,7 @@ M.Rule = {
 
 M.CreateDetectorVersionInput = {
     type = "structure",
+    id = "CreateDetectorVersionInput",
     members = {
         detectorId = {
             type = "string",
@@ -599,6 +631,7 @@ M.DetectorVersionStatus = {
 
 M.CreateDetectorVersionOutput = {
     type = "structure",
+    id = "CreateDetectorVersionOutput",
     members = {
         detectorId = {
             type = "string",
@@ -614,6 +647,7 @@ M.CreateDetectorVersionOutput = {
 
 M.CreateListInput = {
     type = "structure",
+    id = "CreateListInput",
     members = {
         name = {
             type = "string",
@@ -640,10 +674,12 @@ M.CreateListInput = {
 
 M.CreateListOutput = {
     type = "structure",
+    id = "CreateListOutput",
 }
 
 M.CreateModelInput = {
     type = "structure",
+    id = "CreateModelInput",
     members = {
         modelId = {
             type = "string",
@@ -675,10 +711,12 @@ M.CreateModelInput = {
 
 M.CreateModelOutput = {
     type = "structure",
+    id = "CreateModelOutput",
 }
 
 M.ExternalEventsDetail = {
     type = "structure",
+    id = "ExternalEventsDetail",
     members = {
         dataLocation = {
             type = "string",
@@ -697,6 +735,7 @@ M.ExternalEventsDetail = {
 
 M.IngestedEventsTimeWindow = {
     type = "structure",
+    id = "IngestedEventsTimeWindow",
     members = {
         startTime = {
             type = "string",
@@ -715,6 +754,7 @@ M.IngestedEventsTimeWindow = {
 
 M.IngestedEventsDetail = {
     type = "structure",
+    id = "IngestedEventsDetail",
     members = {
         ingestedEventsTimeWindow = setmetatable({ traits = {
             required = true,
@@ -731,6 +771,7 @@ M.UnlabeledEventsTreatment = {
 
 M.LabelSchema = {
     type = "structure",
+    id = "LabelSchema",
     members = {
         labelMapper = {
             type = "map",
@@ -745,6 +786,7 @@ M.LabelSchema = {
 
 M.TrainingDataSchema = {
     type = "structure",
+    id = "TrainingDataSchema",
     members = {
         modelVariables = {
             type = "list",
@@ -764,6 +806,7 @@ M.TrainingDataSourceEnum = {
 
 M.CreateModelVersionInput = {
     type = "structure",
+    id = "CreateModelVersionInput",
     members = {
         modelId = {
             type = "string",
@@ -797,6 +840,7 @@ M.CreateModelVersionInput = {
 
 M.CreateModelVersionOutput = {
     type = "structure",
+    id = "CreateModelVersionOutput",
     members = {
         modelId = {
             type = "string",
@@ -819,6 +863,7 @@ M.Language = {
 
 M.CreateRuleInput = {
     type = "structure",
+    id = "CreateRuleInput",
     members = {
         ruleId = {
             type = "string",
@@ -863,6 +908,7 @@ M.CreateRuleInput = {
 
 M.CreateRuleOutput = {
     type = "structure",
+    id = "CreateRuleOutput",
     members = {
         rule = M.Rule,
     },
@@ -870,6 +916,7 @@ M.CreateRuleOutput = {
 
 M.CreateVariableInput = {
     type = "structure",
+    id = "CreateVariableInput",
     members = {
         name = {
             type = "string",
@@ -910,10 +957,12 @@ M.CreateVariableInput = {
 
 M.CreateVariableOutput = {
     type = "structure",
+    id = "CreateVariableOutput",
 }
 
 M.DeleteBatchImportJobInput = {
     type = "structure",
+    id = "DeleteBatchImportJobInput",
     members = {
         jobId = {
             type = "string",
@@ -926,10 +975,12 @@ M.DeleteBatchImportJobInput = {
 
 M.DeleteBatchImportJobOutput = {
     type = "structure",
+    id = "DeleteBatchImportJobOutput",
 }
 
 M.DeleteBatchPredictionJobInput = {
     type = "structure",
+    id = "DeleteBatchPredictionJobInput",
     members = {
         jobId = {
             type = "string",
@@ -942,10 +993,12 @@ M.DeleteBatchPredictionJobInput = {
 
 M.DeleteBatchPredictionJobOutput = {
     type = "structure",
+    id = "DeleteBatchPredictionJobOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -959,6 +1012,7 @@ M.ConflictException = {
 
 M.DeleteDetectorInput = {
     type = "structure",
+    id = "DeleteDetectorInput",
     members = {
         detectorId = {
             type = "string",
@@ -971,10 +1025,12 @@ M.DeleteDetectorInput = {
 
 M.DeleteDetectorOutput = {
     type = "structure",
+    id = "DeleteDetectorOutput",
 }
 
 M.DeleteDetectorVersionInput = {
     type = "structure",
+    id = "DeleteDetectorVersionInput",
     members = {
         detectorId = {
             type = "string",
@@ -993,10 +1049,12 @@ M.DeleteDetectorVersionInput = {
 
 M.DeleteDetectorVersionOutput = {
     type = "structure",
+    id = "DeleteDetectorVersionOutput",
 }
 
 M.DeleteEntityTypeInput = {
     type = "structure",
+    id = "DeleteEntityTypeInput",
     members = {
         name = {
             type = "string",
@@ -1009,10 +1067,12 @@ M.DeleteEntityTypeInput = {
 
 M.DeleteEntityTypeOutput = {
     type = "structure",
+    id = "DeleteEntityTypeOutput",
 }
 
 M.DeleteEventInput = {
     type = "structure",
+    id = "DeleteEventInput",
     members = {
         eventId = {
             type = "string",
@@ -1034,10 +1094,12 @@ M.DeleteEventInput = {
 
 M.DeleteEventOutput = {
     type = "structure",
+    id = "DeleteEventOutput",
 }
 
 M.DeleteEventsByEventTypeInput = {
     type = "structure",
+    id = "DeleteEventsByEventTypeInput",
     members = {
         eventTypeName = {
             type = "string",
@@ -1050,6 +1112,7 @@ M.DeleteEventsByEventTypeInput = {
 
 M.DeleteEventsByEventTypeOutput = {
     type = "structure",
+    id = "DeleteEventsByEventTypeOutput",
     members = {
         eventTypeName = {
             type = "string",
@@ -1062,6 +1125,7 @@ M.DeleteEventsByEventTypeOutput = {
 
 M.DeleteEventTypeInput = {
     type = "structure",
+    id = "DeleteEventTypeInput",
     members = {
         name = {
             type = "string",
@@ -1074,10 +1138,12 @@ M.DeleteEventTypeInput = {
 
 M.DeleteEventTypeOutput = {
     type = "structure",
+    id = "DeleteEventTypeOutput",
 }
 
 M.DeleteExternalModelInput = {
     type = "structure",
+    id = "DeleteExternalModelInput",
     members = {
         modelEndpoint = {
             type = "string",
@@ -1090,10 +1156,12 @@ M.DeleteExternalModelInput = {
 
 M.DeleteExternalModelOutput = {
     type = "structure",
+    id = "DeleteExternalModelOutput",
 }
 
 M.DeleteLabelInput = {
     type = "structure",
+    id = "DeleteLabelInput",
     members = {
         name = {
             type = "string",
@@ -1106,10 +1174,12 @@ M.DeleteLabelInput = {
 
 M.DeleteLabelOutput = {
     type = "structure",
+    id = "DeleteLabelOutput",
 }
 
 M.DeleteListInput = {
     type = "structure",
+    id = "DeleteListInput",
     members = {
         name = {
             type = "string",
@@ -1122,10 +1192,12 @@ M.DeleteListInput = {
 
 M.DeleteListOutput = {
     type = "structure",
+    id = "DeleteListOutput",
 }
 
 M.DeleteModelInput = {
     type = "structure",
+    id = "DeleteModelInput",
     members = {
         modelId = {
             type = "string",
@@ -1144,10 +1216,12 @@ M.DeleteModelInput = {
 
 M.DeleteModelOutput = {
     type = "structure",
+    id = "DeleteModelOutput",
 }
 
 M.DeleteModelVersionInput = {
     type = "structure",
+    id = "DeleteModelVersionInput",
     members = {
         modelId = {
             type = "string",
@@ -1172,10 +1246,12 @@ M.DeleteModelVersionInput = {
 
 M.DeleteModelVersionOutput = {
     type = "structure",
+    id = "DeleteModelVersionOutput",
 }
 
 M.DeleteOutcomeInput = {
     type = "structure",
+    id = "DeleteOutcomeInput",
     members = {
         name = {
             type = "string",
@@ -1188,10 +1264,12 @@ M.DeleteOutcomeInput = {
 
 M.DeleteOutcomeOutput = {
     type = "structure",
+    id = "DeleteOutcomeOutput",
 }
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         rule = setmetatable({ traits = {
             required = true,
@@ -1201,10 +1279,12 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
 }
 
 M.DeleteVariableInput = {
     type = "structure",
+    id = "DeleteVariableInput",
     members = {
         name = {
             type = "string",
@@ -1217,10 +1297,12 @@ M.DeleteVariableInput = {
 
 M.DeleteVariableOutput = {
     type = "structure",
+    id = "DeleteVariableOutput",
 }
 
 M.DescribeDetectorInput = {
     type = "structure",
+    id = "DescribeDetectorInput",
     members = {
         detectorId = {
             type = "string",
@@ -1239,6 +1321,7 @@ M.DescribeDetectorInput = {
 
 M.DetectorVersionSummary = {
     type = "structure",
+    id = "DetectorVersionSummary",
     members = {
         detectorVersionId = {
             type = "string",
@@ -1257,6 +1340,7 @@ M.DetectorVersionSummary = {
 
 M.DescribeDetectorOutput = {
     type = "structure",
+    id = "DescribeDetectorOutput",
     members = {
         detectorId = {
             type = "string",
@@ -1276,6 +1360,7 @@ M.DescribeDetectorOutput = {
 
 M.DescribeModelVersionsInput = {
     type = "structure",
+    id = "DescribeModelVersionsInput",
     members = {
         modelId = {
             type = "string",
@@ -1297,6 +1382,7 @@ M.DescribeModelVersionsInput = {
 
 M.FieldValidationMessage = {
     type = "structure",
+    id = "FieldValidationMessage",
     members = {
         fieldName = {
             type = "string",
@@ -1318,6 +1404,7 @@ M.FieldValidationMessage = {
 
 M.FileValidationMessage = {
     type = "structure",
+    id = "FileValidationMessage",
     members = {
         title = {
             type = "string",
@@ -1333,6 +1420,7 @@ M.FileValidationMessage = {
 
 M.DataValidationMetrics = {
     type = "structure",
+    id = "DataValidationMetrics",
     members = {
         fileLevelMessages = {
             type = "list",
@@ -1347,6 +1435,7 @@ M.DataValidationMetrics = {
 
 M.MetricDataPoint = {
     type = "structure",
+    id = "MetricDataPoint",
     members = {
         fpr = {
             type = "float",
@@ -1365,6 +1454,7 @@ M.MetricDataPoint = {
 
 M.TrainingMetrics = {
     type = "structure",
+    id = "TrainingMetrics",
     members = {
         auc = {
             type = "float",
@@ -1378,6 +1468,7 @@ M.TrainingMetrics = {
 
 M.LogOddsMetric = {
     type = "structure",
+    id = "LogOddsMetric",
     members = {
         variableName = {
             type = "string",
@@ -1402,6 +1493,7 @@ M.LogOddsMetric = {
 
 M.VariableImportanceMetrics = {
     type = "structure",
+    id = "VariableImportanceMetrics",
     members = {
         logOddsMetrics = {
             type = "list",
@@ -1412,6 +1504,7 @@ M.VariableImportanceMetrics = {
 
 M.TrainingResult = {
     type = "structure",
+    id = "TrainingResult",
     members = {
         dataValidationMetrics = M.DataValidationMetrics,
         trainingMetrics = M.TrainingMetrics,
@@ -1421,6 +1514,7 @@ M.TrainingResult = {
 
 M.OFIMetricDataPoint = {
     type = "structure",
+    id = "OFIMetricDataPoint",
     members = {
         fpr = {
             type = "float",
@@ -1439,6 +1533,7 @@ M.OFIMetricDataPoint = {
 
 M.UncertaintyRange = {
     type = "structure",
+    id = "UncertaintyRange",
     members = {
         lowerBoundValue = {
             type = "float",
@@ -1457,6 +1552,7 @@ M.UncertaintyRange = {
 
 M.OFIModelPerformance = {
     type = "structure",
+    id = "OFIModelPerformance",
     members = {
         auc = {
             type = "float",
@@ -1467,6 +1563,7 @@ M.OFIModelPerformance = {
 
 M.OFITrainingMetricsValue = {
     type = "structure",
+    id = "OFITrainingMetricsValue",
     members = {
         metricDataPoints = {
             type = "list",
@@ -1478,6 +1575,7 @@ M.OFITrainingMetricsValue = {
 
 M.TFIMetricDataPoint = {
     type = "structure",
+    id = "TFIMetricDataPoint",
     members = {
         fpr = {
             type = "float",
@@ -1496,6 +1594,7 @@ M.TFIMetricDataPoint = {
 
 M.TFIModelPerformance = {
     type = "structure",
+    id = "TFIModelPerformance",
     members = {
         auc = {
             type = "float",
@@ -1506,6 +1605,7 @@ M.TFIModelPerformance = {
 
 M.TFITrainingMetricsValue = {
     type = "structure",
+    id = "TFITrainingMetricsValue",
     members = {
         metricDataPoints = {
             type = "list",
@@ -1517,6 +1617,7 @@ M.TFITrainingMetricsValue = {
 
 M.TrainingMetricsV2 = {
     type = "structure",
+    id = "TrainingMetricsV2",
     members = {
         ofi = M.OFITrainingMetricsValue,
         tfi = M.TFITrainingMetricsValue,
@@ -1526,6 +1627,7 @@ M.TrainingMetricsV2 = {
 
 M.TrainingResultV2 = {
     type = "structure",
+    id = "TrainingResultV2",
     members = {
         dataValidationMetrics = M.DataValidationMetrics,
         trainingMetricsV2 = M.TrainingMetricsV2,
@@ -1536,6 +1638,7 @@ M.TrainingResultV2 = {
 
 M.ModelVersionDetail = {
     type = "structure",
+    id = "ModelVersionDetail",
     members = {
         modelId = {
             type = "string",
@@ -1571,6 +1674,7 @@ M.ModelVersionDetail = {
 
 M.DescribeModelVersionsOutput = {
     type = "structure",
+    id = "DescribeModelVersionsOutput",
     members = {
         modelVersionDetails = {
             type = "list",
@@ -1584,6 +1688,7 @@ M.DescribeModelVersionsOutput = {
 
 M.GetBatchImportJobsInput = {
     type = "structure",
+    id = "GetBatchImportJobsInput",
     members = {
         jobId = {
             type = "string",
@@ -1599,6 +1704,7 @@ M.GetBatchImportJobsInput = {
 
 M.BatchImport = {
     type = "structure",
+    id = "BatchImport",
     members = {
         jobId = {
             type = "string",
@@ -1644,6 +1750,7 @@ M.BatchImport = {
 
 M.GetBatchImportJobsOutput = {
     type = "structure",
+    id = "GetBatchImportJobsOutput",
     members = {
         batchImports = {
             type = "list",
@@ -1657,6 +1764,7 @@ M.GetBatchImportJobsOutput = {
 
 M.GetBatchPredictionJobsInput = {
     type = "structure",
+    id = "GetBatchPredictionJobsInput",
     members = {
         jobId = {
             type = "string",
@@ -1672,6 +1780,7 @@ M.GetBatchPredictionJobsInput = {
 
 M.BatchPrediction = {
     type = "structure",
+    id = "BatchPrediction",
     members = {
         jobId = {
             type = "string",
@@ -1723,6 +1832,7 @@ M.BatchPrediction = {
 
 M.GetBatchPredictionJobsOutput = {
     type = "structure",
+    id = "GetBatchPredictionJobsOutput",
     members = {
         batchPredictions = {
             type = "list",
@@ -1736,6 +1846,7 @@ M.GetBatchPredictionJobsOutput = {
 
 M.GetDeleteEventsByEventTypeStatusInput = {
     type = "structure",
+    id = "GetDeleteEventsByEventTypeStatusInput",
     members = {
         eventTypeName = {
             type = "string",
@@ -1748,6 +1859,7 @@ M.GetDeleteEventsByEventTypeStatusInput = {
 
 M.GetDeleteEventsByEventTypeStatusOutput = {
     type = "structure",
+    id = "GetDeleteEventsByEventTypeStatusOutput",
     members = {
         eventTypeName = {
             type = "string",
@@ -1760,6 +1872,7 @@ M.GetDeleteEventsByEventTypeStatusOutput = {
 
 M.GetDetectorsInput = {
     type = "structure",
+    id = "GetDetectorsInput",
     members = {
         detectorId = {
             type = "string",
@@ -1775,6 +1888,7 @@ M.GetDetectorsInput = {
 
 M.Detector = {
     type = "structure",
+    id = "Detector",
     members = {
         detectorId = {
             type = "string",
@@ -1799,6 +1913,7 @@ M.Detector = {
 
 M.GetDetectorsOutput = {
     type = "structure",
+    id = "GetDetectorsOutput",
     members = {
         detectors = {
             type = "list",
@@ -1812,6 +1927,7 @@ M.GetDetectorsOutput = {
 
 M.GetDetectorVersionInput = {
     type = "structure",
+    id = "GetDetectorVersionInput",
     members = {
         detectorId = {
             type = "string",
@@ -1830,6 +1946,7 @@ M.GetDetectorVersionInput = {
 
 M.GetDetectorVersionOutput = {
     type = "structure",
+    id = "GetDetectorVersionOutput",
     members = {
         detectorId = {
             type = "string",
@@ -1872,6 +1989,7 @@ M.GetDetectorVersionOutput = {
 
 M.GetEntityTypesInput = {
     type = "structure",
+    id = "GetEntityTypesInput",
     members = {
         name = {
             type = "string",
@@ -1887,6 +2005,7 @@ M.GetEntityTypesInput = {
 
 M.EntityType = {
     type = "structure",
+    id = "EntityType",
     members = {
         name = {
             type = "string",
@@ -1908,6 +2027,7 @@ M.EntityType = {
 
 M.GetEntityTypesOutput = {
     type = "structure",
+    id = "GetEntityTypesOutput",
     members = {
         entityTypes = {
             type = "list",
@@ -1921,6 +2041,7 @@ M.GetEntityTypesOutput = {
 
 M.GetEventInput = {
     type = "structure",
+    id = "GetEventInput",
     members = {
         eventId = {
             type = "string",
@@ -1939,6 +2060,7 @@ M.GetEventInput = {
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         entityType = {
             type = "string",
@@ -1957,6 +2079,7 @@ M.Entity = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         eventId = {
             type = "string",
@@ -1987,6 +2110,7 @@ M.Event = {
 
 M.GetEventOutput = {
     type = "structure",
+    id = "GetEventOutput",
     members = {
         event = M.Event,
     },
@@ -1994,6 +2118,7 @@ M.GetEventOutput = {
 
 M.ModelEndpointDataBlob = {
     type = "structure",
+    id = "ModelEndpointDataBlob",
     members = {
         byteBuffer = {
             type = "blob",
@@ -2006,6 +2131,7 @@ M.ModelEndpointDataBlob = {
 
 M.GetEventPredictionInput = {
     type = "structure",
+    id = "GetEventPredictionInput",
     members = {
         detectorId = {
             type = "string",
@@ -2063,6 +2189,7 @@ M.ModelSource = {
 
 M.ExternalModelSummary = {
     type = "structure",
+    id = "ExternalModelSummary",
     members = {
         modelEndpoint = {
             type = "string",
@@ -2075,6 +2202,7 @@ M.ExternalModelSummary = {
 
 M.ExternalModelOutputs = {
     type = "structure",
+    id = "ExternalModelOutputs",
     members = {
         externalModel = M.ExternalModelSummary,
         outputs = {
@@ -2087,6 +2215,7 @@ M.ExternalModelOutputs = {
 
 M.ModelScores = {
     type = "structure",
+    id = "ModelScores",
     members = {
         modelVersion = M.ModelVersion,
         scores = {
@@ -2099,6 +2228,7 @@ M.ModelScores = {
 
 M.RuleResult = {
     type = "structure",
+    id = "RuleResult",
     members = {
         ruleId = {
             type = "string",
@@ -2112,6 +2242,7 @@ M.RuleResult = {
 
 M.GetEventPredictionOutput = {
     type = "structure",
+    id = "GetEventPredictionOutput",
     members = {
         modelScores = {
             type = "list",
@@ -2130,6 +2261,7 @@ M.GetEventPredictionOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         message = {
@@ -2140,6 +2272,7 @@ M.ResourceUnavailableException = {
 
 M.GetEventPredictionMetadataInput = {
     type = "structure",
+    id = "GetEventPredictionMetadataInput",
     members = {
         eventId = {
             type = "string",
@@ -2176,6 +2309,7 @@ M.GetEventPredictionMetadataInput = {
 
 M.EvaluatedExternalModel = {
     type = "structure",
+    id = "EvaluatedExternalModel",
     members = {
         modelEndpoint = {
             type = "string",
@@ -2198,6 +2332,7 @@ M.EvaluatedExternalModel = {
 
 M.VariableImpactExplanation = {
     type = "structure",
+    id = "VariableImpactExplanation",
     members = {
         eventVariableName = {
             type = "string",
@@ -2213,6 +2348,7 @@ M.VariableImpactExplanation = {
 
 M.PredictionExplanations = {
     type = "structure",
+    id = "PredictionExplanations",
     members = {
         variableImpactExplanations = {
             type = "list",
@@ -2227,6 +2363,7 @@ M.PredictionExplanations = {
 
 M.ModelVersionEvaluation = {
     type = "structure",
+    id = "ModelVersionEvaluation",
     members = {
         outputVariableName = {
             type = "string",
@@ -2240,6 +2377,7 @@ M.ModelVersionEvaluation = {
 
 M.EvaluatedModelVersion = {
     type = "structure",
+    id = "EvaluatedModelVersion",
     members = {
         modelId = {
             type = "string",
@@ -2259,6 +2397,7 @@ M.EvaluatedModelVersion = {
 
 M.EventVariableSummary = {
     type = "structure",
+    id = "EventVariableSummary",
     members = {
         name = {
             type = "string",
@@ -2274,6 +2413,7 @@ M.EventVariableSummary = {
 
 M.EvaluatedRule = {
     type = "structure",
+    id = "EvaluatedRule",
     members = {
         ruleId = {
             type = "string",
@@ -2302,6 +2442,7 @@ M.EvaluatedRule = {
 
 M.GetEventPredictionMetadataOutput = {
     type = "structure",
+    id = "GetEventPredictionMetadataOutput",
     members = {
         eventId = {
             type = "string",
@@ -2358,6 +2499,7 @@ M.GetEventPredictionMetadataOutput = {
 
 M.GetEventTypesInput = {
     type = "structure",
+    id = "GetEventTypesInput",
     members = {
         name = {
             type = "string",
@@ -2378,6 +2520,7 @@ M.EventIngestion = {
 
 M.EventOrchestration = {
     type = "structure",
+    id = "EventOrchestration",
     members = {
         eventBridgeEnabled = {
             type = "boolean",
@@ -2390,6 +2533,7 @@ M.EventOrchestration = {
 
 M.IngestedEventStatistics = {
     type = "structure",
+    id = "IngestedEventStatistics",
     members = {
         numberOfEvents = {
             type = "long",
@@ -2411,6 +2555,7 @@ M.IngestedEventStatistics = {
 
 M.EventType = {
     type = "structure",
+    id = "EventType",
     members = {
         name = {
             type = "string",
@@ -2449,6 +2594,7 @@ M.EventType = {
 
 M.GetEventTypesOutput = {
     type = "structure",
+    id = "GetEventTypesOutput",
     members = {
         eventTypes = {
             type = "list",
@@ -2462,6 +2608,7 @@ M.GetEventTypesOutput = {
 
 M.GetExternalModelsInput = {
     type = "structure",
+    id = "GetExternalModelsInput",
     members = {
         modelEndpoint = {
             type = "string",
@@ -2482,6 +2629,7 @@ M.ModelInputDataFormat = {
 
 M.ModelInputConfiguration = {
     type = "structure",
+    id = "ModelInputConfiguration",
     members = {
         eventTypeName = {
             type = "string",
@@ -2516,6 +2664,7 @@ M.ModelOutputDataFormat = {
 
 M.ModelOutputConfiguration = {
     type = "structure",
+    id = "ModelOutputConfiguration",
     members = {
         format = {
             type = "string",
@@ -2538,6 +2687,7 @@ M.ModelOutputConfiguration = {
 
 M.ExternalModel = {
     type = "structure",
+    id = "ExternalModel",
     members = {
         modelEndpoint = {
             type = "string",
@@ -2567,6 +2717,7 @@ M.ExternalModel = {
 
 M.GetExternalModelsOutput = {
     type = "structure",
+    id = "GetExternalModelsOutput",
     members = {
         externalModels = {
             type = "list",
@@ -2580,10 +2731,12 @@ M.GetExternalModelsOutput = {
 
 M.GetKMSEncryptionKeyInput = {
     type = "structure",
+    id = "GetKMSEncryptionKeyInput",
 }
 
 M.KMSKey = {
     type = "structure",
+    id = "KMSKey",
     members = {
         kmsEncryptionKeyArn = {
             type = "string",
@@ -2593,6 +2746,7 @@ M.KMSKey = {
 
 M.GetKMSEncryptionKeyOutput = {
     type = "structure",
+    id = "GetKMSEncryptionKeyOutput",
     members = {
         kmsKey = M.KMSKey,
     },
@@ -2600,6 +2754,7 @@ M.GetKMSEncryptionKeyOutput = {
 
 M.GetLabelsInput = {
     type = "structure",
+    id = "GetLabelsInput",
     members = {
         name = {
             type = "string",
@@ -2615,6 +2770,7 @@ M.GetLabelsInput = {
 
 M.Label = {
     type = "structure",
+    id = "Label",
     members = {
         name = {
             type = "string",
@@ -2636,6 +2792,7 @@ M.Label = {
 
 M.GetLabelsOutput = {
     type = "structure",
+    id = "GetLabelsOutput",
     members = {
         labels = {
             type = "list",
@@ -2649,6 +2806,7 @@ M.GetLabelsOutput = {
 
 M.GetListElementsInput = {
     type = "structure",
+    id = "GetListElementsInput",
     members = {
         name = {
             type = "string",
@@ -2667,6 +2825,7 @@ M.GetListElementsInput = {
 
 M.GetListElementsOutput = {
     type = "structure",
+    id = "GetListElementsOutput",
     members = {
         elements = {
             type = "list",
@@ -2680,6 +2839,7 @@ M.GetListElementsOutput = {
 
 M.GetListsMetadataInput = {
     type = "structure",
+    id = "GetListsMetadataInput",
     members = {
         name = {
             type = "string",
@@ -2695,6 +2855,7 @@ M.GetListsMetadataInput = {
 
 M.GetListsMetadataOutput = {
     type = "structure",
+    id = "GetListsMetadataOutput",
     members = {
         lists = {
             type = "list",
@@ -2708,6 +2869,7 @@ M.GetListsMetadataOutput = {
 
 M.GetModelsInput = {
     type = "structure",
+    id = "GetModelsInput",
     members = {
         modelId = {
             type = "string",
@@ -2726,6 +2888,7 @@ M.GetModelsInput = {
 
 M.Model = {
     type = "structure",
+    id = "Model",
     members = {
         modelId = {
             type = "string",
@@ -2753,6 +2916,7 @@ M.Model = {
 
 M.GetModelsOutput = {
     type = "structure",
+    id = "GetModelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2766,6 +2930,7 @@ M.GetModelsOutput = {
 
 M.GetModelVersionInput = {
     type = "structure",
+    id = "GetModelVersionInput",
     members = {
         modelId = {
             type = "string",
@@ -2790,6 +2955,7 @@ M.GetModelVersionInput = {
 
 M.GetModelVersionOutput = {
     type = "structure",
+    id = "GetModelVersionOutput",
     members = {
         modelId = {
             type = "string",
@@ -2817,6 +2983,7 @@ M.GetModelVersionOutput = {
 
 M.GetOutcomesInput = {
     type = "structure",
+    id = "GetOutcomesInput",
     members = {
         name = {
             type = "string",
@@ -2832,6 +2999,7 @@ M.GetOutcomesInput = {
 
 M.Outcome = {
     type = "structure",
+    id = "Outcome",
     members = {
         name = {
             type = "string",
@@ -2853,6 +3021,7 @@ M.Outcome = {
 
 M.GetOutcomesOutput = {
     type = "structure",
+    id = "GetOutcomesOutput",
     members = {
         outcomes = {
             type = "list",
@@ -2866,6 +3035,7 @@ M.GetOutcomesOutput = {
 
 M.GetRulesInput = {
     type = "structure",
+    id = "GetRulesInput",
     members = {
         ruleId = {
             type = "string",
@@ -2890,6 +3060,7 @@ M.GetRulesInput = {
 
 M.RuleDetail = {
     type = "structure",
+    id = "RuleDetail",
     members = {
         ruleId = {
             type = "string",
@@ -2927,6 +3098,7 @@ M.RuleDetail = {
 
 M.GetRulesOutput = {
     type = "structure",
+    id = "GetRulesOutput",
     members = {
         ruleDetails = {
             type = "list",
@@ -2940,6 +3112,7 @@ M.GetRulesOutput = {
 
 M.GetVariablesInput = {
     type = "structure",
+    id = "GetVariablesInput",
     members = {
         name = {
             type = "string",
@@ -2955,6 +3128,7 @@ M.GetVariablesInput = {
 
 M.GetVariablesOutput = {
     type = "structure",
+    id = "GetVariablesOutput",
     members = {
         variables = {
             type = "list",
@@ -2968,6 +3142,7 @@ M.GetVariablesOutput = {
 
 M.FilterCondition = {
     type = "structure",
+    id = "FilterCondition",
     members = {
         value = {
             type = "string",
@@ -2977,6 +3152,7 @@ M.FilterCondition = {
 
 M.PredictionTimeRange = {
     type = "structure",
+    id = "PredictionTimeRange",
     members = {
         startTime = {
             type = "string",
@@ -2995,6 +3171,7 @@ M.PredictionTimeRange = {
 
 M.ListEventPredictionsInput = {
     type = "structure",
+    id = "ListEventPredictionsInput",
     members = {
         eventId = M.FilterCondition,
         eventType = M.FilterCondition,
@@ -3012,6 +3189,7 @@ M.ListEventPredictionsInput = {
 
 M.EventPredictionSummary = {
     type = "structure",
+    id = "EventPredictionSummary",
     members = {
         eventId = {
             type = "string",
@@ -3036,6 +3214,7 @@ M.EventPredictionSummary = {
 
 M.ListEventPredictionsOutput = {
     type = "structure",
+    id = "ListEventPredictionsOutput",
     members = {
         eventPredictionSummaries = {
             type = "list",
@@ -3049,6 +3228,7 @@ M.ListEventPredictionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -3067,6 +3247,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -3080,6 +3261,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutDetectorInput = {
     type = "structure",
+    id = "PutDetectorInput",
     members = {
         detectorId = {
             type = "string",
@@ -3105,10 +3287,12 @@ M.PutDetectorInput = {
 
 M.PutDetectorOutput = {
     type = "structure",
+    id = "PutDetectorOutput",
 }
 
 M.PutEntityTypeInput = {
     type = "structure",
+    id = "PutEntityTypeInput",
     members = {
         name = {
             type = "string",
@@ -3128,10 +3312,12 @@ M.PutEntityTypeInput = {
 
 M.PutEntityTypeOutput = {
     type = "structure",
+    id = "PutEntityTypeOutput",
 }
 
 M.PutEventTypeInput = {
     type = "structure",
+    id = "PutEventTypeInput",
     members = {
         name = {
             type = "string",
@@ -3173,10 +3359,12 @@ M.PutEventTypeInput = {
 
 M.PutEventTypeOutput = {
     type = "structure",
+    id = "PutEventTypeOutput",
 }
 
 M.PutExternalModelInput = {
     type = "structure",
+    id = "PutExternalModelInput",
     members = {
         modelEndpoint = {
             type = "string",
@@ -3217,10 +3405,12 @@ M.PutExternalModelInput = {
 
 M.PutExternalModelOutput = {
     type = "structure",
+    id = "PutExternalModelOutput",
 }
 
 M.PutKMSEncryptionKeyInput = {
     type = "structure",
+    id = "PutKMSEncryptionKeyInput",
     members = {
         kmsEncryptionKeyArn = {
             type = "string",
@@ -3233,10 +3423,12 @@ M.PutKMSEncryptionKeyInput = {
 
 M.PutKMSEncryptionKeyOutput = {
     type = "structure",
+    id = "PutKMSEncryptionKeyOutput",
 }
 
 M.PutLabelInput = {
     type = "structure",
+    id = "PutLabelInput",
     members = {
         name = {
             type = "string",
@@ -3256,10 +3448,12 @@ M.PutLabelInput = {
 
 M.PutLabelOutput = {
     type = "structure",
+    id = "PutLabelOutput",
 }
 
 M.PutOutcomeInput = {
     type = "structure",
+    id = "PutOutcomeInput",
     members = {
         name = {
             type = "string",
@@ -3279,10 +3473,12 @@ M.PutOutcomeInput = {
 
 M.PutOutcomeOutput = {
     type = "structure",
+    id = "PutOutcomeOutput",
 }
 
 M.SendEventInput = {
     type = "structure",
+    id = "SendEventInput",
     members = {
         eventId = {
             type = "string",
@@ -3328,10 +3524,12 @@ M.SendEventInput = {
 
 M.SendEventOutput = {
     type = "structure",
+    id = "SendEventOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -3351,10 +3549,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -3374,10 +3574,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDetectorVersionInput = {
     type = "structure",
+    id = "UpdateDetectorVersionInput",
     members = {
         detectorId = {
             type = "string",
@@ -3420,10 +3622,12 @@ M.UpdateDetectorVersionInput = {
 
 M.UpdateDetectorVersionOutput = {
     type = "structure",
+    id = "UpdateDetectorVersionOutput",
 }
 
 M.UpdateDetectorVersionMetadataInput = {
     type = "structure",
+    id = "UpdateDetectorVersionMetadataInput",
     members = {
         detectorId = {
             type = "string",
@@ -3448,10 +3652,12 @@ M.UpdateDetectorVersionMetadataInput = {
 
 M.UpdateDetectorVersionMetadataOutput = {
     type = "structure",
+    id = "UpdateDetectorVersionMetadataOutput",
 }
 
 M.UpdateDetectorVersionStatusInput = {
     type = "structure",
+    id = "UpdateDetectorVersionStatusInput",
     members = {
         detectorId = {
             type = "string",
@@ -3476,10 +3682,12 @@ M.UpdateDetectorVersionStatusInput = {
 
 M.UpdateDetectorVersionStatusOutput = {
     type = "structure",
+    id = "UpdateDetectorVersionStatusOutput",
 }
 
 M.UpdateEventLabelInput = {
     type = "structure",
+    id = "UpdateEventLabelInput",
     members = {
         eventId = {
             type = "string",
@@ -3510,6 +3718,7 @@ M.UpdateEventLabelInput = {
 
 M.UpdateEventLabelOutput = {
     type = "structure",
+    id = "UpdateEventLabelOutput",
 }
 
 M.ListUpdateMode = {
@@ -3520,6 +3729,7 @@ M.ListUpdateMode = {
 
 M.UpdateListInput = {
     type = "structure",
+    id = "UpdateListInput",
     members = {
         name = {
             type = "string",
@@ -3545,10 +3755,12 @@ M.UpdateListInput = {
 
 M.UpdateListOutput = {
     type = "structure",
+    id = "UpdateListOutput",
 }
 
 M.UpdateModelInput = {
     type = "structure",
+    id = "UpdateModelInput",
     members = {
         modelId = {
             type = "string",
@@ -3570,10 +3782,12 @@ M.UpdateModelInput = {
 
 M.UpdateModelOutput = {
     type = "structure",
+    id = "UpdateModelOutput",
 }
 
 M.UpdateModelVersionInput = {
     type = "structure",
+    id = "UpdateModelVersionInput",
     members = {
         modelId = {
             type = "string",
@@ -3604,6 +3818,7 @@ M.UpdateModelVersionInput = {
 
 M.UpdateModelVersionOutput = {
     type = "structure",
+    id = "UpdateModelVersionOutput",
     members = {
         modelId = {
             type = "string",
@@ -3628,6 +3843,7 @@ M.ModelVersionStatus = {
 
 M.UpdateModelVersionStatusInput = {
     type = "structure",
+    id = "UpdateModelVersionStatusInput",
     members = {
         modelId = {
             type = "string",
@@ -3658,10 +3874,12 @@ M.UpdateModelVersionStatusInput = {
 
 M.UpdateModelVersionStatusOutput = {
     type = "structure",
+    id = "UpdateModelVersionStatusOutput",
 }
 
 M.UpdateRuleMetadataInput = {
     type = "structure",
+    id = "UpdateRuleMetadataInput",
     members = {
         rule = setmetatable({ traits = {
             required = true,
@@ -3677,10 +3895,12 @@ M.UpdateRuleMetadataInput = {
 
 M.UpdateRuleMetadataOutput = {
     type = "structure",
+    id = "UpdateRuleMetadataOutput",
 }
 
 M.UpdateRuleVersionInput = {
     type = "structure",
+    id = "UpdateRuleVersionInput",
     members = {
         rule = setmetatable({ traits = {
             required = true,
@@ -3716,6 +3936,7 @@ M.UpdateRuleVersionInput = {
 
 M.UpdateRuleVersionOutput = {
     type = "structure",
+    id = "UpdateRuleVersionOutput",
     members = {
         rule = M.Rule,
     },
@@ -3723,6 +3944,7 @@ M.UpdateRuleVersionOutput = {
 
 M.UpdateVariableInput = {
     type = "structure",
+    id = "UpdateVariableInput",
     members = {
         name = {
             type = "string",
@@ -3744,6 +3966,7 @@ M.UpdateVariableInput = {
 
 M.UpdateVariableOutput = {
     type = "structure",
+    id = "UpdateVariableOutput",
 }
 
 return M

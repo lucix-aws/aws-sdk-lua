@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.CancelQueryInput = {
     type = "structure",
+    id = "CancelQueryInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -35,10 +37,12 @@ M.CancelQueryInput = {
 
 M.CancelQueryOutput = {
     type = "structure",
+    id = "CancelQueryOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -52,6 +56,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -65,6 +70,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -88,6 +94,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -108,6 +115,7 @@ M.ConflictExceptionReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -139,6 +147,7 @@ M.PlanCacheType = {
 
 M.ExecuteQueryInput = {
     type = "structure",
+    id = "ExecuteQueryInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -182,6 +191,7 @@ M.ExecuteQueryInput = {
 
 M.ExecuteQueryOutput = {
     type = "structure",
+    id = "ExecuteQueryOutput",
     members = {
         payload = {
             type = "blob",
@@ -203,6 +213,7 @@ M.UnprocessableExceptionReason = {
 
 M.UnprocessableException = {
     type = "structure",
+    id = "UnprocessableException",
     error = "client",
     members = {
         message = {
@@ -227,6 +238,7 @@ M.GraphSummaryMode = {
 
 M.GetGraphSummaryInput = {
     type = "structure",
+    id = "GetGraphSummaryInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -246,6 +258,7 @@ M.GetGraphSummaryInput = {
 
 M.EdgeStructure = {
     type = "structure",
+    id = "EdgeStructure",
     members = {
         count = {
             type = "long",
@@ -259,6 +272,7 @@ M.EdgeStructure = {
 
 M.NodeStructure = {
     type = "structure",
+    id = "NodeStructure",
     members = {
         count = {
             type = "long",
@@ -276,6 +290,7 @@ M.NodeStructure = {
 
 M.GraphDataSummary = {
     type = "structure",
+    id = "GraphDataSummary",
     members = {
         numNodes = {
             type = "long",
@@ -330,6 +345,7 @@ M.GraphDataSummary = {
 
 M.GetGraphSummaryOutput = {
     type = "structure",
+    id = "GetGraphSummaryOutput",
     members = {
         version = {
             type = "string",
@@ -346,6 +362,7 @@ M.GetGraphSummaryOutput = {
 
 M.GetQueryInput = {
     type = "structure",
+    id = "GetQueryInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -372,6 +389,7 @@ M.QueryState = {
 
 M.GetQueryOutput = {
     type = "structure",
+    id = "GetQueryOutput",
     members = {
         id = {
             type = "string",
@@ -393,6 +411,7 @@ M.GetQueryOutput = {
 
 M.VectorSearchConfiguration = {
     type = "structure",
+    id = "VectorSearchConfiguration",
     members = {
         dimension = {
             type = "integer",
@@ -405,6 +424,7 @@ M.VectorSearchConfiguration = {
 
 M.CreateGraphInput = {
     type = "structure",
+    id = "CreateGraphInput",
     members = {
         graphName = {
             type = "string",
@@ -455,6 +475,7 @@ M.GraphStatus = {
 
 M.CreateGraphOutput = {
     type = "structure",
+    id = "CreateGraphOutput",
     members = {
         id = {
             type = "string",
@@ -513,6 +534,7 @@ M.CreateGraphOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -538,6 +560,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteGraphInput = {
     type = "structure",
+    id = "DeleteGraphInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -558,6 +581,7 @@ M.DeleteGraphInput = {
 
 M.DeleteGraphOutput = {
     type = "structure",
+    id = "DeleteGraphOutput",
     members = {
         id = {
             type = "string",
@@ -616,6 +640,7 @@ M.DeleteGraphOutput = {
 
 M.GetGraphInput = {
     type = "structure",
+    id = "GetGraphInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -629,6 +654,7 @@ M.GetGraphInput = {
 
 M.GetGraphOutput = {
     type = "structure",
+    id = "GetGraphOutput",
     members = {
         id = {
             type = "string",
@@ -687,6 +713,7 @@ M.GetGraphOutput = {
 
 M.ListGraphsInput = {
     type = "structure",
+    id = "ListGraphsInput",
     members = {
         nextToken = {
             type = "string",
@@ -705,6 +732,7 @@ M.ListGraphsInput = {
 
 M.GraphSummary = {
     type = "structure",
+    id = "GraphSummary",
     members = {
         id = {
             type = "string",
@@ -750,6 +778,7 @@ M.GraphSummary = {
 
 M.ListGraphsOutput = {
     type = "structure",
+    id = "ListGraphsOutput",
     members = {
         graphs = {
             type = "list",
@@ -766,6 +795,7 @@ M.ListGraphsOutput = {
 
 M.ResetGraphInput = {
     type = "structure",
+    id = "ResetGraphInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -785,6 +815,7 @@ M.ResetGraphInput = {
 
 M.ResetGraphOutput = {
     type = "structure",
+    id = "ResetGraphOutput",
     members = {
         id = {
             type = "string",
@@ -843,6 +874,7 @@ M.ResetGraphOutput = {
 
 M.RestoreGraphFromSnapshotInput = {
     type = "structure",
+    id = "RestoreGraphFromSnapshotInput",
     members = {
         snapshotIdentifier = {
             type = "string",
@@ -879,6 +911,7 @@ M.RestoreGraphFromSnapshotInput = {
 
 M.RestoreGraphFromSnapshotOutput = {
     type = "structure",
+    id = "RestoreGraphFromSnapshotOutput",
     members = {
         id = {
             type = "string",
@@ -937,6 +970,7 @@ M.RestoreGraphFromSnapshotOutput = {
 
 M.StartGraphInput = {
     type = "structure",
+    id = "StartGraphInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -950,6 +984,7 @@ M.StartGraphInput = {
 
 M.StartGraphOutput = {
     type = "structure",
+    id = "StartGraphOutput",
     members = {
         id = {
             type = "string",
@@ -1008,6 +1043,7 @@ M.StartGraphOutput = {
 
 M.StopGraphInput = {
     type = "structure",
+    id = "StopGraphInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1021,6 +1057,7 @@ M.StopGraphInput = {
 
 M.StopGraphOutput = {
     type = "structure",
+    id = "StopGraphOutput",
     members = {
         id = {
             type = "string",
@@ -1079,6 +1116,7 @@ M.StopGraphOutput = {
 
 M.UpdateGraphInput = {
     type = "structure",
+    id = "UpdateGraphInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1101,6 +1139,7 @@ M.UpdateGraphInput = {
 
 M.UpdateGraphOutput = {
     type = "structure",
+    id = "UpdateGraphOutput",
     members = {
         id = {
             type = "string",
@@ -1166,6 +1205,7 @@ M.QueryStateInput = {
 
 M.ListQueriesInput = {
     type = "structure",
+    id = "ListQueriesInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1192,6 +1232,7 @@ M.ListQueriesInput = {
 
 M.QuerySummary = {
     type = "structure",
+    id = "QuerySummary",
     members = {
         id = {
             type = "string",
@@ -1213,6 +1254,7 @@ M.QuerySummary = {
 
 M.ListQueriesOutput = {
     type = "structure",
+    id = "ListQueriesOutput",
     members = {
         queries = {
             type = "list",
@@ -1226,6 +1268,7 @@ M.ListQueriesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1239,6 +1282,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1250,6 +1294,7 @@ M.ListTagsForResourceOutput = {
 
 M.CreatePrivateGraphEndpointInput = {
     type = "structure",
+    id = "CreatePrivateGraphEndpointInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1281,6 +1326,7 @@ M.PrivateGraphEndpointStatus = {
 
 M.CreatePrivateGraphEndpointOutput = {
     type = "structure",
+    id = "CreatePrivateGraphEndpointOutput",
     members = {
         vpcId = {
             type = "string",
@@ -1309,6 +1355,7 @@ M.CreatePrivateGraphEndpointOutput = {
 
 M.DeletePrivateGraphEndpointInput = {
     type = "structure",
+    id = "DeletePrivateGraphEndpointInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1329,6 +1376,7 @@ M.DeletePrivateGraphEndpointInput = {
 
 M.DeletePrivateGraphEndpointOutput = {
     type = "structure",
+    id = "DeletePrivateGraphEndpointOutput",
     members = {
         vpcId = {
             type = "string",
@@ -1357,6 +1405,7 @@ M.DeletePrivateGraphEndpointOutput = {
 
 M.GetPrivateGraphEndpointInput = {
     type = "structure",
+    id = "GetPrivateGraphEndpointInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1377,6 +1426,7 @@ M.GetPrivateGraphEndpointInput = {
 
 M.GetPrivateGraphEndpointOutput = {
     type = "structure",
+    id = "GetPrivateGraphEndpointOutput",
     members = {
         vpcId = {
             type = "string",
@@ -1405,6 +1455,7 @@ M.GetPrivateGraphEndpointOutput = {
 
 M.ListPrivateGraphEndpointsInput = {
     type = "structure",
+    id = "ListPrivateGraphEndpointsInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1430,6 +1481,7 @@ M.ListPrivateGraphEndpointsInput = {
 
 M.PrivateGraphEndpointSummary = {
     type = "structure",
+    id = "PrivateGraphEndpointSummary",
     members = {
         vpcId = {
             type = "string",
@@ -1458,6 +1510,7 @@ M.PrivateGraphEndpointSummary = {
 
 M.ListPrivateGraphEndpointsOutput = {
     type = "structure",
+    id = "ListPrivateGraphEndpointsOutput",
     members = {
         privateGraphEndpoints = {
             type = "list",
@@ -1474,6 +1527,7 @@ M.ListPrivateGraphEndpointsOutput = {
 
 M.CreateGraphSnapshotInput = {
     type = "structure",
+    id = "CreateGraphSnapshotInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1504,6 +1558,7 @@ M.SnapshotStatus = {
 
 M.CreateGraphSnapshotOutput = {
     type = "structure",
+    id = "CreateGraphSnapshotOutput",
     members = {
         id = {
             type = "string",
@@ -1540,6 +1595,7 @@ M.CreateGraphSnapshotOutput = {
 
 M.DeleteGraphSnapshotInput = {
     type = "structure",
+    id = "DeleteGraphSnapshotInput",
     members = {
         snapshotIdentifier = {
             type = "string",
@@ -1553,6 +1609,7 @@ M.DeleteGraphSnapshotInput = {
 
 M.DeleteGraphSnapshotOutput = {
     type = "structure",
+    id = "DeleteGraphSnapshotOutput",
     members = {
         id = {
             type = "string",
@@ -1589,6 +1646,7 @@ M.DeleteGraphSnapshotOutput = {
 
 M.GetGraphSnapshotInput = {
     type = "structure",
+    id = "GetGraphSnapshotInput",
     members = {
         snapshotIdentifier = {
             type = "string",
@@ -1602,6 +1660,7 @@ M.GetGraphSnapshotInput = {
 
 M.GetGraphSnapshotOutput = {
     type = "structure",
+    id = "GetGraphSnapshotOutput",
     members = {
         id = {
             type = "string",
@@ -1638,6 +1697,7 @@ M.GetGraphSnapshotOutput = {
 
 M.ListGraphSnapshotsInput = {
     type = "structure",
+    id = "ListGraphSnapshotsInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -1662,6 +1722,7 @@ M.ListGraphSnapshotsInput = {
 
 M.GraphSnapshotSummary = {
     type = "structure",
+    id = "GraphSnapshotSummary",
     members = {
         id = {
             type = "string",
@@ -1698,6 +1759,7 @@ M.GraphSnapshotSummary = {
 
 M.ListGraphSnapshotsOutput = {
     type = "structure",
+    id = "ListGraphSnapshotsOutput",
     members = {
         graphSnapshots = {
             type = "list",
@@ -1714,6 +1776,7 @@ M.ListGraphSnapshotsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1735,10 +1798,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.CancelExportTaskInput = {
     type = "structure",
+    id = "CancelExportTaskInput",
     members = {
         taskIdentifier = {
             type = "string",
@@ -1771,6 +1836,7 @@ M.ExportTaskStatus = {
 
 M.CancelExportTaskOutput = {
     type = "structure",
+    id = "CancelExportTaskOutput",
     members = {
         graphId = {
             type = "string",
@@ -1825,6 +1891,7 @@ M.CancelExportTaskOutput = {
 
 M.CancelImportTaskInput = {
     type = "structure",
+    id = "CancelImportTaskInput",
     members = {
         taskIdentifier = {
             type = "string",
@@ -1859,6 +1926,7 @@ M.ImportTaskStatus = {
 
 M.CancelImportTaskOutput = {
     type = "structure",
+    id = "CancelImportTaskOutput",
     members = {
         graphId = {
             type = "string",
@@ -1902,6 +1970,7 @@ M.BlankNodeHandling = {
 
 M.NeptuneImportOptions = {
     type = "structure",
+    id = "NeptuneImportOptions",
     members = {
         s3ExportPath = {
             type = "string",
@@ -1926,6 +1995,7 @@ M.NeptuneImportOptions = {
 
 M.ImportOptions = {
     type = "union",
+    id = "ImportOptions",
     members = {
         neptune = M.NeptuneImportOptions,
     },
@@ -1933,6 +2003,7 @@ M.ImportOptions = {
 
 M.CreateGraphUsingImportTaskInput = {
     type = "structure",
+    id = "CreateGraphUsingImportTaskInput",
     members = {
         graphName = {
             type = "string",
@@ -1994,6 +2065,7 @@ M.CreateGraphUsingImportTaskInput = {
 
 M.CreateGraphUsingImportTaskOutput = {
     type = "structure",
+    id = "CreateGraphUsingImportTaskOutput",
     members = {
         graphId = {
             type = "string",
@@ -2034,6 +2106,7 @@ M.CreateGraphUsingImportTaskOutput = {
 
 M.GetExportTaskInput = {
     type = "structure",
+    id = "GetExportTaskInput",
     members = {
         taskIdentifier = {
             type = "string",
@@ -2052,6 +2125,7 @@ M.MultiValueHandlingType = {
 
 M.ExportFilterPropertyAttributes = {
     type = "structure",
+    id = "ExportFilterPropertyAttributes",
     members = {
         outputType = {
             type = "string",
@@ -2070,6 +2144,7 @@ M.ExportFilterPropertyAttributes = {
 
 M.ExportFilterElement = {
     type = "structure",
+    id = "ExportFilterElement",
     members = {
         properties = {
             type = "map",
@@ -2081,6 +2156,7 @@ M.ExportFilterElement = {
 
 M.ExportFilter = {
     type = "structure",
+    id = "ExportFilter",
     members = {
         vertexFilter = {
             type = "map",
@@ -2097,6 +2173,7 @@ M.ExportFilter = {
 
 M.ExportTaskDetails = {
     type = "structure",
+    id = "ExportTaskDetails",
     members = {
         startTime = {
             type = "timestamp",
@@ -2127,6 +2204,7 @@ M.ExportTaskDetails = {
 
 M.GetExportTaskOutput = {
     type = "structure",
+    id = "GetExportTaskOutput",
     members = {
         graphId = {
             type = "string",
@@ -2183,6 +2261,7 @@ M.GetExportTaskOutput = {
 
 M.GetImportTaskInput = {
     type = "structure",
+    id = "GetImportTaskInput",
     members = {
         taskIdentifier = {
             type = "string",
@@ -2196,6 +2275,7 @@ M.GetImportTaskInput = {
 
 M.ImportTaskDetails = {
     type = "structure",
+    id = "ImportTaskDetails",
     members = {
         status = {
             type = "string",
@@ -2247,6 +2327,7 @@ M.ImportTaskDetails = {
 
 M.GetImportTaskOutput = {
     type = "structure",
+    id = "GetImportTaskOutput",
     members = {
         graphId = {
             type = "string",
@@ -2294,6 +2375,7 @@ M.GetImportTaskOutput = {
 
 M.ListExportTasksInput = {
     type = "structure",
+    id = "ListExportTasksInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -2318,6 +2400,7 @@ M.ListExportTasksInput = {
 
 M.ExportTaskSummary = {
     type = "structure",
+    id = "ExportTaskSummary",
     members = {
         graphId = {
             type = "string",
@@ -2372,6 +2455,7 @@ M.ExportTaskSummary = {
 
 M.ListExportTasksOutput = {
     type = "structure",
+    id = "ListExportTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -2388,6 +2472,7 @@ M.ListExportTasksOutput = {
 
 M.ListImportTasksInput = {
     type = "structure",
+    id = "ListImportTasksInput",
     members = {
         nextToken = {
             type = "string",
@@ -2406,6 +2491,7 @@ M.ListImportTasksInput = {
 
 M.ImportTaskSummary = {
     type = "structure",
+    id = "ImportTaskSummary",
     members = {
         graphId = {
             type = "string",
@@ -2445,6 +2531,7 @@ M.ImportTaskSummary = {
 
 M.ListImportTasksOutput = {
     type = "structure",
+    id = "ListImportTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -2461,6 +2548,7 @@ M.ListImportTasksOutput = {
 
 M.StartExportTaskInput = {
     type = "structure",
+    id = "StartExportTaskInput",
     members = {
         graphIdentifier = {
             type = "string",
@@ -2506,6 +2594,7 @@ M.StartExportTaskInput = {
 
 M.StartExportTaskOutput = {
     type = "structure",
+    id = "StartExportTaskOutput",
     members = {
         graphId = {
             type = "string",
@@ -2561,6 +2650,7 @@ M.StartExportTaskOutput = {
 
 M.StartImportTaskInput = {
     type = "structure",
+    id = "StartImportTaskInput",
     members = {
         importOptions = M.ImportOptions,
         failOnError = {
@@ -2599,6 +2689,7 @@ M.StartImportTaskInput = {
 
 M.StartImportTaskOutput = {
     type = "structure",
+    id = "StartImportTaskOutput",
     members = {
         graphId = {
             type = "string",
@@ -2639,6 +2730,7 @@ M.StartImportTaskOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2660,6 +2752,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

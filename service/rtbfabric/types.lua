@@ -13,6 +13,7 @@ M.ResponderErrorMaskingLoggingType = {
 
 M.ResponderErrorMaskingForHttpCode = {
     type = "structure",
+    id = "ResponderErrorMaskingForHttpCode",
     members = {
         httpCode = {
             type = "string",
@@ -41,6 +42,7 @@ M.ResponderErrorMaskingForHttpCode = {
 
 M.LinkAttributes = {
     type = "structure",
+    id = "LinkAttributes",
     members = {
         responderErrorMasking = {
             type = "list",
@@ -54,6 +56,7 @@ M.LinkAttributes = {
 
 M.LinkApplicationLogSampling = {
     type = "structure",
+    id = "LinkApplicationLogSampling",
     members = {
         errorLog = {
             type = "double",
@@ -72,6 +75,7 @@ M.LinkApplicationLogSampling = {
 
 M.LinkApplicationLogConfiguration = {
     type = "structure",
+    id = "LinkApplicationLogConfiguration",
     members = {
         sampling = setmetatable({ traits = {
             required = true,
@@ -81,6 +85,7 @@ M.LinkApplicationLogConfiguration = {
 
 M.LinkLogSettings = {
     type = "structure",
+    id = "LinkLogSettings",
     members = {
         applicationLogs = setmetatable({ traits = {
             required = true,
@@ -90,6 +95,7 @@ M.LinkLogSettings = {
 
 M.AcceptLinkInput = {
     type = "structure",
+    id = "AcceptLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -129,6 +135,7 @@ M.LinkDirection = {
 
 M.NoBidModuleParameters = {
     type = "structure",
+    id = "NoBidModuleParameters",
     members = {
         reason = {
             type = "string",
@@ -144,6 +151,7 @@ M.NoBidModuleParameters = {
 
 M.HeaderTagAction = {
     type = "structure",
+    id = "HeaderTagAction",
     members = {
         name = {
             type = "string",
@@ -162,6 +170,7 @@ M.HeaderTagAction = {
 
 M.NoBidAction = {
     type = "structure",
+    id = "NoBidAction",
     members = {
         noBidReasonCode = {
             type = "integer",
@@ -171,6 +180,7 @@ M.NoBidAction = {
 
 M.Action = {
     type = "union",
+    id = "Action",
     members = {
         noBid = M.NoBidAction,
         headerTag = M.HeaderTagAction,
@@ -179,6 +189,7 @@ M.Action = {
 
 M.FilterCriterion = {
     type = "structure",
+    id = "FilterCriterion",
     members = {
         path = {
             type = "string",
@@ -198,6 +209,7 @@ M.FilterCriterion = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         criteria = {
             type = "list",
@@ -216,6 +228,7 @@ M.FilterType = {
 
 M.OpenRtbAttributeModuleParameters = {
     type = "structure",
+    id = "OpenRtbAttributeModuleParameters",
     members = {
         filterType = {
             type = "string",
@@ -244,6 +257,7 @@ M.OpenRtbAttributeModuleParameters = {
 
 M.RateLimiterModuleParameters = {
     type = "structure",
+    id = "RateLimiterModuleParameters",
     members = {
         tps = {
             type = "float",
@@ -253,6 +267,7 @@ M.RateLimiterModuleParameters = {
 
 M.ModuleParameters = {
     type = "union",
+    id = "ModuleParameters",
     members = {
         noBid = M.NoBidModuleParameters,
         openRtbAttribute = M.OpenRtbAttributeModuleParameters,
@@ -262,6 +277,7 @@ M.ModuleParameters = {
 
 M.ModuleConfiguration = {
     type = "structure",
+    id = "ModuleConfiguration",
     members = {
         version = {
             type = "string",
@@ -298,6 +314,7 @@ M.LinkStatus = {
 
 M.AcceptLinkOutput = {
     type = "structure",
+    id = "AcceptLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -356,6 +373,7 @@ M.AcceptLinkOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -369,6 +387,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -382,6 +401,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -395,6 +415,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -408,6 +429,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -421,6 +443,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -439,6 +462,7 @@ M.Protocol = {
 
 M.HealthCheckConfig = {
     type = "structure",
+    id = "HealthCheckConfig",
     members = {
         port = {
             type = "integer",
@@ -475,6 +499,7 @@ M.HealthCheckConfig = {
 
 M.AutoScalingGroupsConfiguration = {
     type = "structure",
+    id = "AutoScalingGroupsConfiguration",
     members = {
         autoScalingGroupNames = {
             type = "list",
@@ -495,6 +520,7 @@ M.AutoScalingGroupsConfiguration = {
 
 M.CreateInboundExternalLinkInput = {
     type = "structure",
+    id = "CreateInboundExternalLinkInput",
     members = {
         clientToken = {
             type = "string",
@@ -524,6 +550,7 @@ M.CreateInboundExternalLinkInput = {
 
 M.CreateInboundExternalLinkOutput = {
     type = "structure",
+    id = "CreateInboundExternalLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -554,6 +581,7 @@ M.CreateInboundExternalLinkOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -567,6 +595,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateLinkInput = {
     type = "structure",
+    id = "CreateLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -601,6 +630,7 @@ M.CreateLinkInput = {
 
 M.CreateLinkOutput = {
     type = "structure",
+    id = "CreateLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -662,6 +692,7 @@ M.CreateLinkOutput = {
 
 M.CreateOutboundExternalLinkInput = {
     type = "structure",
+    id = "CreateOutboundExternalLinkInput",
     members = {
         clientToken = {
             type = "string",
@@ -697,6 +728,7 @@ M.CreateOutboundExternalLinkInput = {
 
 M.CreateOutboundExternalLinkOutput = {
     type = "structure",
+    id = "CreateOutboundExternalLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -721,6 +753,7 @@ M.CreateOutboundExternalLinkOutput = {
 
 M.CreateRequesterGatewayInput = {
     type = "structure",
+    id = "CreateRequesterGatewayInput",
     members = {
         vpcId = {
             type = "string",
@@ -774,6 +807,7 @@ M.RequesterGatewayStatus = {
 
 M.CreateRequesterGatewayOutput = {
     type = "structure",
+    id = "CreateRequesterGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -803,6 +837,7 @@ M.GatewayType = {
 
 M.ListenerConfig = {
     type = "structure",
+    id = "ListenerConfig",
     members = {
         protocols = {
             type = "list",
@@ -816,6 +851,7 @@ M.ListenerConfig = {
 
 M.EksEndpointsConfiguration = {
     type = "structure",
+    id = "EksEndpointsConfiguration",
     members = {
         endpointsResourceName = {
             type = "string",
@@ -858,6 +894,7 @@ M.EksEndpointsConfiguration = {
 
 M.ManagedEndpointConfiguration = {
     type = "union",
+    id = "ManagedEndpointConfiguration",
     members = {
         autoScalingGroups = M.AutoScalingGroupsConfiguration,
         eksEndpoints = M.EksEndpointsConfiguration,
@@ -866,6 +903,7 @@ M.ManagedEndpointConfiguration = {
 
 M.TrustStoreConfiguration = {
     type = "structure",
+    id = "TrustStoreConfiguration",
     members = {
         certificateAuthorityCertificates = {
             type = "list",
@@ -879,6 +917,7 @@ M.TrustStoreConfiguration = {
 
 M.CreateResponderGatewayInput = {
     type = "structure",
+    id = "CreateResponderGatewayInput",
     members = {
         vpcId = {
             type = "string",
@@ -953,6 +992,7 @@ M.ResponderGatewayStatus = {
 
 M.CreateResponderGatewayOutput = {
     type = "structure",
+    id = "CreateResponderGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -975,6 +1015,7 @@ M.CreateResponderGatewayOutput = {
 
 M.DeleteInboundExternalLinkInput = {
     type = "structure",
+    id = "DeleteInboundExternalLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -995,6 +1036,7 @@ M.DeleteInboundExternalLinkInput = {
 
 M.DeleteInboundExternalLinkOutput = {
     type = "structure",
+    id = "DeleteInboundExternalLinkOutput",
     members = {
         linkId = {
             type = "string",
@@ -1013,6 +1055,7 @@ M.DeleteInboundExternalLinkOutput = {
 
 M.DeleteLinkInput = {
     type = "structure",
+    id = "DeleteLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1033,6 +1076,7 @@ M.DeleteLinkInput = {
 
 M.DeleteLinkOutput = {
     type = "structure",
+    id = "DeleteLinkOutput",
     members = {
         linkId = {
             type = "string",
@@ -1051,6 +1095,7 @@ M.DeleteLinkOutput = {
 
 M.DeleteOutboundExternalLinkInput = {
     type = "structure",
+    id = "DeleteOutboundExternalLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1071,6 +1116,7 @@ M.DeleteOutboundExternalLinkInput = {
 
 M.DeleteOutboundExternalLinkOutput = {
     type = "structure",
+    id = "DeleteOutboundExternalLinkOutput",
     members = {
         linkId = {
             type = "string",
@@ -1089,6 +1135,7 @@ M.DeleteOutboundExternalLinkOutput = {
 
 M.DeleteRequesterGatewayInput = {
     type = "structure",
+    id = "DeleteRequesterGatewayInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1102,6 +1149,7 @@ M.DeleteRequesterGatewayInput = {
 
 M.DeleteRequesterGatewayOutput = {
     type = "structure",
+    id = "DeleteRequesterGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1120,6 +1168,7 @@ M.DeleteRequesterGatewayOutput = {
 
 M.DeleteResponderGatewayInput = {
     type = "structure",
+    id = "DeleteResponderGatewayInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1133,6 +1182,7 @@ M.DeleteResponderGatewayInput = {
 
 M.DeleteResponderGatewayOutput = {
     type = "structure",
+    id = "DeleteResponderGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1151,6 +1201,7 @@ M.DeleteResponderGatewayOutput = {
 
 M.GetLinkInput = {
     type = "structure",
+    id = "GetLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1171,6 +1222,7 @@ M.GetLinkInput = {
 
 M.GetLinkOutput = {
     type = "structure",
+    id = "GetLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1240,6 +1292,7 @@ M.GetLinkOutput = {
 
 M.ListLinksInput = {
     type = "structure",
+    id = "ListLinksInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1265,6 +1318,7 @@ M.ListLinksInput = {
 
 M.ListLinksResponseStructure = {
     type = "structure",
+    id = "ListLinksResponseStructure",
     members = {
         gatewayId = {
             type = "string",
@@ -1331,6 +1385,7 @@ M.ListLinksResponseStructure = {
 
 M.ListLinksOutput = {
     type = "structure",
+    id = "ListLinksOutput",
     members = {
         links = {
             type = "list",
@@ -1344,6 +1399,7 @@ M.ListLinksOutput = {
 
 M.RejectLinkInput = {
     type = "structure",
+    id = "RejectLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1364,6 +1420,7 @@ M.RejectLinkInput = {
 
 M.RejectLinkOutput = {
     type = "structure",
+    id = "RejectLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1422,6 +1479,7 @@ M.RejectLinkOutput = {
 
 M.UpdateLinkInput = {
     type = "structure",
+    id = "UpdateLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1446,6 +1504,7 @@ M.UpdateLinkInput = {
 
 M.UpdateLinkOutput = {
     type = "structure",
+    id = "UpdateLinkOutput",
     members = {
         linkId = {
             type = "string",
@@ -1464,6 +1523,7 @@ M.UpdateLinkOutput = {
 
 M.UpdateLinkModuleFlowInput = {
     type = "structure",
+    id = "UpdateLinkModuleFlowInput",
     members = {
         clientToken = {
             type = "string",
@@ -1498,6 +1558,7 @@ M.UpdateLinkModuleFlowInput = {
 
 M.UpdateLinkModuleFlowOutput = {
     type = "structure",
+    id = "UpdateLinkModuleFlowOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1522,6 +1583,7 @@ M.UpdateLinkModuleFlowOutput = {
 
 M.GetInboundExternalLinkInput = {
     type = "structure",
+    id = "GetInboundExternalLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1542,6 +1604,7 @@ M.GetInboundExternalLinkInput = {
 
 M.GetInboundExternalLinkOutput = {
     type = "structure",
+    id = "GetInboundExternalLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1596,6 +1659,7 @@ M.GetInboundExternalLinkOutput = {
 
 M.GetOutboundExternalLinkInput = {
     type = "structure",
+    id = "GetOutboundExternalLinkInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1616,6 +1680,7 @@ M.GetOutboundExternalLinkInput = {
 
 M.GetOutboundExternalLinkOutput = {
     type = "structure",
+    id = "GetOutboundExternalLinkOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1670,6 +1735,7 @@ M.GetOutboundExternalLinkOutput = {
 
 M.GetRequesterGatewayInput = {
     type = "structure",
+    id = "GetRequesterGatewayInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1683,6 +1749,7 @@ M.GetRequesterGatewayInput = {
 
 M.GetRequesterGatewayOutput = {
     type = "structure",
+    id = "GetRequesterGatewayOutput",
     members = {
         status = {
             type = "string",
@@ -1747,6 +1814,7 @@ M.GetRequesterGatewayOutput = {
 
 M.GetResponderGatewayInput = {
     type = "structure",
+    id = "GetResponderGatewayInput",
     members = {
         gatewayId = {
             type = "string",
@@ -1760,6 +1828,7 @@ M.GetResponderGatewayInput = {
 
 M.GetResponderGatewayOutput = {
     type = "structure",
+    id = "GetResponderGatewayOutput",
     members = {
         vpcId = {
             type = "string",
@@ -1845,6 +1914,7 @@ M.GetResponderGatewayOutput = {
 
 M.ListRequesterGatewaysInput = {
     type = "structure",
+    id = "ListRequesterGatewaysInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1864,6 +1934,7 @@ M.ListRequesterGatewaysInput = {
 
 M.ListRequesterGatewaysOutput = {
     type = "structure",
+    id = "ListRequesterGatewaysOutput",
     members = {
         gatewayIds = {
             type = "list",
@@ -1877,6 +1948,7 @@ M.ListRequesterGatewaysOutput = {
 
 M.ListResponderGatewaysInput = {
     type = "structure",
+    id = "ListResponderGatewaysInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1896,6 +1968,7 @@ M.ListResponderGatewaysInput = {
 
 M.ListResponderGatewaysOutput = {
     type = "structure",
+    id = "ListResponderGatewaysOutput",
     members = {
         gatewayIds = {
             type = "list",
@@ -1909,6 +1982,7 @@ M.ListResponderGatewaysOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1922,6 +1996,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1933,6 +2008,7 @@ M.ListTagsForResourceOutput = {
 
 M.UpdateRequesterGatewayInput = {
     type = "structure",
+    id = "UpdateRequesterGatewayInput",
     members = {
         clientToken = {
             type = "string",
@@ -1956,6 +2032,7 @@ M.UpdateRequesterGatewayInput = {
 
 M.UpdateRequesterGatewayOutput = {
     type = "structure",
+    id = "UpdateRequesterGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -1974,6 +2051,7 @@ M.UpdateRequesterGatewayOutput = {
 
 M.UpdateResponderGatewayInput = {
     type = "structure",
+    id = "UpdateResponderGatewayInput",
     members = {
         domainName = {
             type = "string",
@@ -2015,6 +2093,7 @@ M.UpdateResponderGatewayInput = {
 
 M.UpdateResponderGatewayOutput = {
     type = "structure",
+    id = "UpdateResponderGatewayOutput",
     members = {
         gatewayId = {
             type = "string",
@@ -2033,6 +2112,7 @@ M.UpdateResponderGatewayOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2054,10 +2134,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2079,6 +2161,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

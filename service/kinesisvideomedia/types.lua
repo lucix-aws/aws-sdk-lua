@@ -2,6 +2,7 @@ local M = {}
 
 M.ClientLimitExceededException = {
     type = "structure",
+    id = "ClientLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.ClientLimitExceededException = {
 
 M.ConnectionLimitExceededException = {
     type = "structure",
+    id = "ConnectionLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -31,6 +33,7 @@ M.StartSelectorType = {
 
 M.StartSelector = {
     type = "structure",
+    id = "StartSelector",
     members = {
         StartSelectorType = {
             type = "string",
@@ -52,6 +55,7 @@ M.StartSelector = {
 
 M.GetMediaInput = {
     type = "structure",
+    id = "GetMediaInput",
     members = {
         StreamName = {
             type = "string",
@@ -67,6 +71,7 @@ M.GetMediaInput = {
 
 M.GetMediaOutput = {
     type = "structure",
+    id = "GetMediaOutput",
     members = {
         ContentType = {
             type = "string",
@@ -86,6 +91,7 @@ M.GetMediaOutput = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         Message = {
@@ -96,6 +102,7 @@ M.InvalidArgumentException = {
 
 M.InvalidEndpointException = {
     type = "structure",
+    id = "InvalidEndpointException",
     error = "client",
     members = {
         Message = {
@@ -106,6 +113,7 @@ M.InvalidEndpointException = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +124,7 @@ M.NotAuthorizedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {

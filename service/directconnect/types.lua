@@ -2,6 +2,7 @@ local M = {}
 
 M.RouteFilterPrefix = {
     type = "structure",
+    id = "RouteFilterPrefix",
     members = {
         cidr = {
             type = "string",
@@ -11,6 +12,7 @@ M.RouteFilterPrefix = {
 
 M.AcceptDirectConnectGatewayAssociationProposalInput = {
     type = "structure",
+    id = "AcceptDirectConnectGatewayAssociationProposalInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -39,6 +41,7 @@ M.AcceptDirectConnectGatewayAssociationProposalInput = {
 
 M.AssociatedCoreNetwork = {
     type = "structure",
+    id = "AssociatedCoreNetwork",
     members = {
         id = {
             type = "string",
@@ -59,6 +62,7 @@ M.GatewayType = {
 
 M.AssociatedGateway = {
     type = "structure",
+    id = "AssociatedGateway",
     members = {
         id = {
             type = "string",
@@ -85,6 +89,7 @@ M.DirectConnectGatewayAssociationState = {
 
 M.DirectConnectGatewayAssociation = {
     type = "structure",
+    id = "DirectConnectGatewayAssociation",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -121,6 +126,7 @@ M.DirectConnectGatewayAssociation = {
 
 M.AcceptDirectConnectGatewayAssociationProposalOutput = {
     type = "structure",
+    id = "AcceptDirectConnectGatewayAssociationProposalOutput",
     members = {
         directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
@@ -128,6 +134,7 @@ M.AcceptDirectConnectGatewayAssociationProposalOutput = {
 
 M.DirectConnectClientException = {
     type = "structure",
+    id = "DirectConnectClientException",
     error = "client",
     members = {
         message = {
@@ -138,6 +145,7 @@ M.DirectConnectClientException = {
 
 M.DirectConnectServerException = {
     type = "structure",
+    id = "DirectConnectServerException",
     error = "server",
     members = {
         message = {
@@ -153,6 +161,7 @@ M.AddressFamily = {
 
 M.CustomerAgreement = {
     type = "structure",
+    id = "CustomerAgreement",
     members = {
         agreementName = {
             type = "string",
@@ -165,6 +174,7 @@ M.CustomerAgreement = {
 
 M.AllocateConnectionOnInterconnectInput = {
     type = "structure",
+    id = "AllocateConnectionOnInterconnectInput",
     members = {
         bandwidth = {
             type = "string",
@@ -220,6 +230,7 @@ M.HasLogicalRedundancy = {
 
 M.MacSecKey = {
     type = "structure",
+    id = "MacSecKey",
     members = {
         secretARN = {
             type = "string",
@@ -238,6 +249,7 @@ M.MacSecKey = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -253,6 +265,7 @@ M.Tag = {
 
 M.AllocateConnectionOnInterconnectOutput = {
     type = "structure",
+    id = "AllocateConnectionOnInterconnectOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -333,6 +346,7 @@ M.AllocateConnectionOnInterconnectOutput = {
 
 M.AllocateHostedConnectionInput = {
     type = "structure",
+    id = "AllocateHostedConnectionInput",
     members = {
         connectionId = {
             type = "string",
@@ -374,6 +388,7 @@ M.AllocateHostedConnectionInput = {
 
 M.AllocateHostedConnectionOutput = {
     type = "structure",
+    id = "AllocateHostedConnectionOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -454,6 +469,7 @@ M.AllocateHostedConnectionOutput = {
 
 M.DuplicateTagKeysException = {
     type = "structure",
+    id = "DuplicateTagKeysException",
     error = "client",
     members = {
         message = {
@@ -464,6 +480,7 @@ M.DuplicateTagKeysException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -474,6 +491,7 @@ M.TooManyTagsException = {
 
 M.NewPrivateVirtualInterfaceAllocation = {
     type = "structure",
+    id = "NewPrivateVirtualInterfaceAllocation",
     members = {
         virtualInterfaceName = {
             type = "string",
@@ -521,6 +539,7 @@ M.NewPrivateVirtualInterfaceAllocation = {
 
 M.AllocatePrivateVirtualInterfaceInput = {
     type = "structure",
+    id = "AllocatePrivateVirtualInterfaceInput",
     members = {
         connectionId = {
             type = "string",
@@ -556,6 +575,7 @@ M.BGPStatus = {
 
 M.BGPPeer = {
     type = "structure",
+    id = "BGPPeer",
     members = {
         bgpPeerId = {
             type = "string",
@@ -611,6 +631,7 @@ M.VirtualInterfaceState = {
 
 M.AllocatePrivateVirtualInterfaceOutput = {
     type = "structure",
+    id = "AllocatePrivateVirtualInterfaceOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -707,6 +728,7 @@ M.AllocatePrivateVirtualInterfaceOutput = {
 
 M.NewPublicVirtualInterfaceAllocation = {
     type = "structure",
+    id = "NewPublicVirtualInterfaceAllocation",
     members = {
         virtualInterfaceName = {
             type = "string",
@@ -755,6 +777,7 @@ M.NewPublicVirtualInterfaceAllocation = {
 
 M.AllocatePublicVirtualInterfaceInput = {
     type = "structure",
+    id = "AllocatePublicVirtualInterfaceInput",
     members = {
         connectionId = {
             type = "string",
@@ -776,6 +799,7 @@ M.AllocatePublicVirtualInterfaceInput = {
 
 M.AllocatePublicVirtualInterfaceOutput = {
     type = "structure",
+    id = "AllocatePublicVirtualInterfaceOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -872,6 +896,7 @@ M.AllocatePublicVirtualInterfaceOutput = {
 
 M.NewTransitVirtualInterfaceAllocation = {
     type = "structure",
+    id = "NewTransitVirtualInterfaceAllocation",
     members = {
         virtualInterfaceName = {
             type = "string",
@@ -915,6 +940,7 @@ M.NewTransitVirtualInterfaceAllocation = {
 
 M.AllocateTransitVirtualInterfaceInput = {
     type = "structure",
+    id = "AllocateTransitVirtualInterfaceInput",
     members = {
         connectionId = {
             type = "string",
@@ -936,6 +962,7 @@ M.AllocateTransitVirtualInterfaceInput = {
 
 M.VirtualInterface = {
     type = "structure",
+    id = "VirtualInterface",
     members = {
         ownerAccount = {
             type = "string",
@@ -1032,6 +1059,7 @@ M.VirtualInterface = {
 
 M.AllocateTransitVirtualInterfaceOutput = {
     type = "structure",
+    id = "AllocateTransitVirtualInterfaceOutput",
     members = {
         virtualInterface = M.VirtualInterface,
     },
@@ -1039,6 +1067,7 @@ M.AllocateTransitVirtualInterfaceOutput = {
 
 M.AssociateConnectionWithLagInput = {
     type = "structure",
+    id = "AssociateConnectionWithLagInput",
     members = {
         connectionId = {
             type = "string",
@@ -1057,6 +1086,7 @@ M.AssociateConnectionWithLagInput = {
 
 M.AssociateConnectionWithLagOutput = {
     type = "structure",
+    id = "AssociateConnectionWithLagOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -1137,6 +1167,7 @@ M.AssociateConnectionWithLagOutput = {
 
 M.AssociateHostedConnectionInput = {
     type = "structure",
+    id = "AssociateHostedConnectionInput",
     members = {
         connectionId = {
             type = "string",
@@ -1155,6 +1186,7 @@ M.AssociateHostedConnectionInput = {
 
 M.AssociateHostedConnectionOutput = {
     type = "structure",
+    id = "AssociateHostedConnectionOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -1235,6 +1267,7 @@ M.AssociateHostedConnectionOutput = {
 
 M.AssociateMacSecKeyInput = {
     type = "structure",
+    id = "AssociateMacSecKeyInput",
     members = {
         connectionId = {
             type = "string",
@@ -1256,6 +1289,7 @@ M.AssociateMacSecKeyInput = {
 
 M.AssociateMacSecKeyOutput = {
     type = "structure",
+    id = "AssociateMacSecKeyOutput",
     members = {
         connectionId = {
             type = "string",
@@ -1269,6 +1303,7 @@ M.AssociateMacSecKeyOutput = {
 
 M.AssociateVirtualInterfaceInput = {
     type = "structure",
+    id = "AssociateVirtualInterfaceInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -1287,6 +1322,7 @@ M.AssociateVirtualInterfaceInput = {
 
 M.AssociateVirtualInterfaceOutput = {
     type = "structure",
+    id = "AssociateVirtualInterfaceOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -1383,6 +1419,7 @@ M.AssociateVirtualInterfaceOutput = {
 
 M.ConfirmConnectionInput = {
     type = "structure",
+    id = "ConfirmConnectionInput",
     members = {
         connectionId = {
             type = "string",
@@ -1395,6 +1432,7 @@ M.ConfirmConnectionInput = {
 
 M.ConfirmConnectionOutput = {
     type = "structure",
+    id = "ConfirmConnectionOutput",
     members = {
         connectionState = {
             type = "string",
@@ -1404,6 +1442,7 @@ M.ConfirmConnectionOutput = {
 
 M.ConfirmCustomerAgreementInput = {
     type = "structure",
+    id = "ConfirmCustomerAgreementInput",
     members = {
         agreementName = {
             type = "string",
@@ -1413,6 +1452,7 @@ M.ConfirmCustomerAgreementInput = {
 
 M.ConfirmCustomerAgreementOutput = {
     type = "structure",
+    id = "ConfirmCustomerAgreementOutput",
     members = {
         status = {
             type = "string",
@@ -1422,6 +1462,7 @@ M.ConfirmCustomerAgreementOutput = {
 
 M.ConfirmPrivateVirtualInterfaceInput = {
     type = "structure",
+    id = "ConfirmPrivateVirtualInterfaceInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -1440,6 +1481,7 @@ M.ConfirmPrivateVirtualInterfaceInput = {
 
 M.ConfirmPrivateVirtualInterfaceOutput = {
     type = "structure",
+    id = "ConfirmPrivateVirtualInterfaceOutput",
     members = {
         virtualInterfaceState = {
             type = "string",
@@ -1449,6 +1491,7 @@ M.ConfirmPrivateVirtualInterfaceOutput = {
 
 M.ConfirmPublicVirtualInterfaceInput = {
     type = "structure",
+    id = "ConfirmPublicVirtualInterfaceInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -1461,6 +1504,7 @@ M.ConfirmPublicVirtualInterfaceInput = {
 
 M.ConfirmPublicVirtualInterfaceOutput = {
     type = "structure",
+    id = "ConfirmPublicVirtualInterfaceOutput",
     members = {
         virtualInterfaceState = {
             type = "string",
@@ -1470,6 +1514,7 @@ M.ConfirmPublicVirtualInterfaceOutput = {
 
 M.ConfirmTransitVirtualInterfaceInput = {
     type = "structure",
+    id = "ConfirmTransitVirtualInterfaceInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -1488,6 +1533,7 @@ M.ConfirmTransitVirtualInterfaceInput = {
 
 M.ConfirmTransitVirtualInterfaceOutput = {
     type = "structure",
+    id = "ConfirmTransitVirtualInterfaceOutput",
     members = {
         virtualInterfaceState = {
             type = "string",
@@ -1497,6 +1543,7 @@ M.ConfirmTransitVirtualInterfaceOutput = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         ownerAccount = {
             type = "string",
@@ -1577,6 +1624,7 @@ M.Connection = {
 
 M.NewBGPPeer = {
     type = "structure",
+    id = "NewBGPPeer",
     members = {
         asn = {
             type = "integer",
@@ -1604,6 +1652,7 @@ M.NewBGPPeer = {
 
 M.CreateBGPPeerInput = {
     type = "structure",
+    id = "CreateBGPPeerInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -1614,6 +1663,7 @@ M.CreateBGPPeerInput = {
 
 M.CreateBGPPeerOutput = {
     type = "structure",
+    id = "CreateBGPPeerOutput",
     members = {
         virtualInterface = M.VirtualInterface,
     },
@@ -1621,6 +1671,7 @@ M.CreateBGPPeerOutput = {
 
 M.CreateConnectionInput = {
     type = "structure",
+    id = "CreateConnectionInput",
     members = {
         location = {
             type = "string",
@@ -1658,6 +1709,7 @@ M.CreateConnectionInput = {
 
 M.CreateConnectionOutput = {
     type = "structure",
+    id = "CreateConnectionOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -1738,6 +1790,7 @@ M.CreateConnectionOutput = {
 
 M.CreateDirectConnectGatewayInput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayInput",
     members = {
         directConnectGatewayName = {
             type = "string",
@@ -1764,6 +1817,7 @@ M.DirectConnectGatewayState = {
 
 M.DirectConnectGateway = {
     type = "structure",
+    id = "DirectConnectGateway",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -1792,6 +1846,7 @@ M.DirectConnectGateway = {
 
 M.CreateDirectConnectGatewayOutput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayOutput",
     members = {
         directConnectGateway = M.DirectConnectGateway,
     },
@@ -1799,6 +1854,7 @@ M.CreateDirectConnectGatewayOutput = {
 
 M.CreateDirectConnectGatewayAssociationInput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayAssociationInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -1821,6 +1877,7 @@ M.CreateDirectConnectGatewayAssociationInput = {
 
 M.CreateDirectConnectGatewayAssociationOutput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayAssociationOutput",
     members = {
         directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
@@ -1828,6 +1885,7 @@ M.CreateDirectConnectGatewayAssociationOutput = {
 
 M.CreateDirectConnectGatewayAssociationProposalInput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayAssociationProposalInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -1866,6 +1924,7 @@ M.DirectConnectGatewayAssociationProposalState = {
 
 M.DirectConnectGatewayAssociationProposal = {
     type = "structure",
+    id = "DirectConnectGatewayAssociationProposal",
     members = {
         proposalId = {
             type = "string",
@@ -1893,6 +1952,7 @@ M.DirectConnectGatewayAssociationProposal = {
 
 M.CreateDirectConnectGatewayAssociationProposalOutput = {
     type = "structure",
+    id = "CreateDirectConnectGatewayAssociationProposalOutput",
     members = {
         directConnectGatewayAssociationProposal = M.DirectConnectGatewayAssociationProposal,
     },
@@ -1900,6 +1960,7 @@ M.CreateDirectConnectGatewayAssociationProposalOutput = {
 
 M.CreateInterconnectInput = {
     type = "structure",
+    id = "CreateInterconnectInput",
     members = {
         interconnectName = {
             type = "string",
@@ -1947,6 +2008,7 @@ M.InterconnectState = {
 
 M.CreateInterconnectOutput = {
     type = "structure",
+    id = "CreateInterconnectOutput",
     members = {
         interconnectId = {
             type = "string",
@@ -2012,6 +2074,7 @@ M.CreateInterconnectOutput = {
 
 M.CreateLagInput = {
     type = "structure",
+    id = "CreateLagInput",
     members = {
         numberOfConnections = {
             type = "integer",
@@ -2070,6 +2133,7 @@ M.LagState = {
 
 M.CreateLagOutput = {
     type = "structure",
+    id = "CreateLagOutput",
     members = {
         connectionsBandwidth = {
             type = "string",
@@ -2151,6 +2215,7 @@ M.CreateLagOutput = {
 
 M.NewPrivateVirtualInterface = {
     type = "structure",
+    id = "NewPrivateVirtualInterface",
     members = {
         virtualInterfaceName = {
             type = "string",
@@ -2207,6 +2272,7 @@ M.NewPrivateVirtualInterface = {
 
 M.CreatePrivateVirtualInterfaceInput = {
     type = "structure",
+    id = "CreatePrivateVirtualInterfaceInput",
     members = {
         connectionId = {
             type = "string",
@@ -2222,6 +2288,7 @@ M.CreatePrivateVirtualInterfaceInput = {
 
 M.CreatePrivateVirtualInterfaceOutput = {
     type = "structure",
+    id = "CreatePrivateVirtualInterfaceOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -2318,6 +2385,7 @@ M.CreatePrivateVirtualInterfaceOutput = {
 
 M.NewPublicVirtualInterface = {
     type = "structure",
+    id = "NewPublicVirtualInterface",
     members = {
         virtualInterfaceName = {
             type = "string",
@@ -2366,6 +2434,7 @@ M.NewPublicVirtualInterface = {
 
 M.CreatePublicVirtualInterfaceInput = {
     type = "structure",
+    id = "CreatePublicVirtualInterfaceInput",
     members = {
         connectionId = {
             type = "string",
@@ -2381,6 +2450,7 @@ M.CreatePublicVirtualInterfaceInput = {
 
 M.CreatePublicVirtualInterfaceOutput = {
     type = "structure",
+    id = "CreatePublicVirtualInterfaceOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -2477,6 +2547,7 @@ M.CreatePublicVirtualInterfaceOutput = {
 
 M.NewTransitVirtualInterface = {
     type = "structure",
+    id = "NewTransitVirtualInterface",
     members = {
         virtualInterfaceName = {
             type = "string",
@@ -2526,6 +2597,7 @@ M.NewTransitVirtualInterface = {
 
 M.CreateTransitVirtualInterfaceInput = {
     type = "structure",
+    id = "CreateTransitVirtualInterfaceInput",
     members = {
         connectionId = {
             type = "string",
@@ -2541,6 +2613,7 @@ M.CreateTransitVirtualInterfaceInput = {
 
 M.CreateTransitVirtualInterfaceOutput = {
     type = "structure",
+    id = "CreateTransitVirtualInterfaceOutput",
     members = {
         virtualInterface = M.VirtualInterface,
     },
@@ -2548,6 +2621,7 @@ M.CreateTransitVirtualInterfaceOutput = {
 
 M.DeleteBGPPeerInput = {
     type = "structure",
+    id = "DeleteBGPPeerInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -2572,6 +2646,7 @@ M.DeleteBGPPeerInput = {
 
 M.DeleteBGPPeerOutput = {
     type = "structure",
+    id = "DeleteBGPPeerOutput",
     members = {
         virtualInterface = M.VirtualInterface,
     },
@@ -2579,6 +2654,7 @@ M.DeleteBGPPeerOutput = {
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         connectionId = {
             type = "string",
@@ -2591,6 +2667,7 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -2671,6 +2748,7 @@ M.DeleteConnectionOutput = {
 
 M.DeleteDirectConnectGatewayInput = {
     type = "structure",
+    id = "DeleteDirectConnectGatewayInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -2683,6 +2761,7 @@ M.DeleteDirectConnectGatewayInput = {
 
 M.DeleteDirectConnectGatewayOutput = {
     type = "structure",
+    id = "DeleteDirectConnectGatewayOutput",
     members = {
         directConnectGateway = M.DirectConnectGateway,
     },
@@ -2690,6 +2769,7 @@ M.DeleteDirectConnectGatewayOutput = {
 
 M.DeleteDirectConnectGatewayAssociationInput = {
     type = "structure",
+    id = "DeleteDirectConnectGatewayAssociationInput",
     members = {
         associationId = {
             type = "string",
@@ -2705,6 +2785,7 @@ M.DeleteDirectConnectGatewayAssociationInput = {
 
 M.DeleteDirectConnectGatewayAssociationOutput = {
     type = "structure",
+    id = "DeleteDirectConnectGatewayAssociationOutput",
     members = {
         directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
@@ -2712,6 +2793,7 @@ M.DeleteDirectConnectGatewayAssociationOutput = {
 
 M.DeleteDirectConnectGatewayAssociationProposalInput = {
     type = "structure",
+    id = "DeleteDirectConnectGatewayAssociationProposalInput",
     members = {
         proposalId = {
             type = "string",
@@ -2724,6 +2806,7 @@ M.DeleteDirectConnectGatewayAssociationProposalInput = {
 
 M.DeleteDirectConnectGatewayAssociationProposalOutput = {
     type = "structure",
+    id = "DeleteDirectConnectGatewayAssociationProposalOutput",
     members = {
         directConnectGatewayAssociationProposal = M.DirectConnectGatewayAssociationProposal,
     },
@@ -2731,6 +2814,7 @@ M.DeleteDirectConnectGatewayAssociationProposalOutput = {
 
 M.DeleteInterconnectInput = {
     type = "structure",
+    id = "DeleteInterconnectInput",
     members = {
         interconnectId = {
             type = "string",
@@ -2743,6 +2827,7 @@ M.DeleteInterconnectInput = {
 
 M.DeleteInterconnectOutput = {
     type = "structure",
+    id = "DeleteInterconnectOutput",
     members = {
         interconnectState = {
             type = "string",
@@ -2752,6 +2837,7 @@ M.DeleteInterconnectOutput = {
 
 M.DeleteLagInput = {
     type = "structure",
+    id = "DeleteLagInput",
     members = {
         lagId = {
             type = "string",
@@ -2764,6 +2850,7 @@ M.DeleteLagInput = {
 
 M.DeleteLagOutput = {
     type = "structure",
+    id = "DeleteLagOutput",
     members = {
         connectionsBandwidth = {
             type = "string",
@@ -2845,6 +2932,7 @@ M.DeleteLagOutput = {
 
 M.DeleteVirtualInterfaceInput = {
     type = "structure",
+    id = "DeleteVirtualInterfaceInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -2857,6 +2945,7 @@ M.DeleteVirtualInterfaceInput = {
 
 M.DeleteVirtualInterfaceOutput = {
     type = "structure",
+    id = "DeleteVirtualInterfaceOutput",
     members = {
         virtualInterfaceState = {
             type = "string",
@@ -2870,6 +2959,7 @@ M.LoaContentType = {
 
 M.DescribeConnectionLoaInput = {
     type = "structure",
+    id = "DescribeConnectionLoaInput",
     members = {
         connectionId = {
             type = "string",
@@ -2888,6 +2978,7 @@ M.DescribeConnectionLoaInput = {
 
 M.Loa = {
     type = "structure",
+    id = "Loa",
     members = {
         loaContent = {
             type = "blob",
@@ -2900,6 +2991,7 @@ M.Loa = {
 
 M.DescribeConnectionLoaOutput = {
     type = "structure",
+    id = "DescribeConnectionLoaOutput",
     members = {
         loa = M.Loa,
     },
@@ -2907,6 +2999,7 @@ M.DescribeConnectionLoaOutput = {
 
 M.DescribeConnectionsInput = {
     type = "structure",
+    id = "DescribeConnectionsInput",
     members = {
         connectionId = {
             type = "string",
@@ -2922,6 +3015,7 @@ M.DescribeConnectionsInput = {
 
 M.DescribeConnectionsOutput = {
     type = "structure",
+    id = "DescribeConnectionsOutput",
     members = {
         connections = {
             type = "list",
@@ -2935,6 +3029,7 @@ M.DescribeConnectionsOutput = {
 
 M.DescribeConnectionsOnInterconnectInput = {
     type = "structure",
+    id = "DescribeConnectionsOnInterconnectInput",
     members = {
         interconnectId = {
             type = "string",
@@ -2947,6 +3042,7 @@ M.DescribeConnectionsOnInterconnectInput = {
 
 M.DescribeConnectionsOnInterconnectOutput = {
     type = "structure",
+    id = "DescribeConnectionsOnInterconnectOutput",
     members = {
         connections = {
             type = "list",
@@ -2960,6 +3056,7 @@ M.DescribeConnectionsOnInterconnectOutput = {
 
 M.DescribeCustomerMetadataInput = {
     type = "structure",
+    id = "DescribeCustomerMetadataInput",
 }
 
 M.NniPartnerType = {
@@ -2970,6 +3067,7 @@ M.NniPartnerType = {
 
 M.DescribeCustomerMetadataOutput = {
     type = "structure",
+    id = "DescribeCustomerMetadataOutput",
     members = {
         agreements = {
             type = "list",
@@ -2983,6 +3081,7 @@ M.DescribeCustomerMetadataOutput = {
 
 M.DescribeDirectConnectGatewayAssociationProposalsInput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewayAssociationProposalsInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -3004,6 +3103,7 @@ M.DescribeDirectConnectGatewayAssociationProposalsInput = {
 
 M.DescribeDirectConnectGatewayAssociationProposalsOutput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewayAssociationProposalsOutput",
     members = {
         directConnectGatewayAssociationProposals = {
             type = "list",
@@ -3017,6 +3117,7 @@ M.DescribeDirectConnectGatewayAssociationProposalsOutput = {
 
 M.DescribeDirectConnectGatewayAssociationsInput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewayAssociationsInput",
     members = {
         associationId = {
             type = "string",
@@ -3041,6 +3142,7 @@ M.DescribeDirectConnectGatewayAssociationsInput = {
 
 M.DescribeDirectConnectGatewayAssociationsOutput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewayAssociationsOutput",
     members = {
         directConnectGatewayAssociations = {
             type = "list",
@@ -3054,6 +3156,7 @@ M.DescribeDirectConnectGatewayAssociationsOutput = {
 
 M.DescribeDirectConnectGatewayAttachmentsInput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewayAttachmentsInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -3084,6 +3187,7 @@ M.DirectConnectGatewayAttachmentType = {
 
 M.DirectConnectGatewayAttachment = {
     type = "structure",
+    id = "DirectConnectGatewayAttachment",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -3111,6 +3215,7 @@ M.DirectConnectGatewayAttachment = {
 
 M.DescribeDirectConnectGatewayAttachmentsOutput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewayAttachmentsOutput",
     members = {
         directConnectGatewayAttachments = {
             type = "list",
@@ -3124,6 +3229,7 @@ M.DescribeDirectConnectGatewayAttachmentsOutput = {
 
 M.DescribeDirectConnectGatewaysInput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewaysInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -3139,6 +3245,7 @@ M.DescribeDirectConnectGatewaysInput = {
 
 M.DescribeDirectConnectGatewaysOutput = {
     type = "structure",
+    id = "DescribeDirectConnectGatewaysOutput",
     members = {
         directConnectGateways = {
             type = "list",
@@ -3152,6 +3259,7 @@ M.DescribeDirectConnectGatewaysOutput = {
 
 M.DescribeHostedConnectionsInput = {
     type = "structure",
+    id = "DescribeHostedConnectionsInput",
     members = {
         connectionId = {
             type = "string",
@@ -3170,6 +3278,7 @@ M.DescribeHostedConnectionsInput = {
 
 M.DescribeHostedConnectionsOutput = {
     type = "structure",
+    id = "DescribeHostedConnectionsOutput",
     members = {
         connections = {
             type = "list",
@@ -3183,6 +3292,7 @@ M.DescribeHostedConnectionsOutput = {
 
 M.DescribeInterconnectLoaInput = {
     type = "structure",
+    id = "DescribeInterconnectLoaInput",
     members = {
         interconnectId = {
             type = "string",
@@ -3201,6 +3311,7 @@ M.DescribeInterconnectLoaInput = {
 
 M.DescribeInterconnectLoaOutput = {
     type = "structure",
+    id = "DescribeInterconnectLoaOutput",
     members = {
         loa = M.Loa,
     },
@@ -3208,6 +3319,7 @@ M.DescribeInterconnectLoaOutput = {
 
 M.DescribeInterconnectsInput = {
     type = "structure",
+    id = "DescribeInterconnectsInput",
     members = {
         interconnectId = {
             type = "string",
@@ -3223,6 +3335,7 @@ M.DescribeInterconnectsInput = {
 
 M.Interconnect = {
     type = "structure",
+    id = "Interconnect",
     members = {
         interconnectId = {
             type = "string",
@@ -3288,6 +3401,7 @@ M.Interconnect = {
 
 M.DescribeInterconnectsOutput = {
     type = "structure",
+    id = "DescribeInterconnectsOutput",
     members = {
         interconnects = {
             type = "list",
@@ -3301,6 +3415,7 @@ M.DescribeInterconnectsOutput = {
 
 M.DescribeLagsInput = {
     type = "structure",
+    id = "DescribeLagsInput",
     members = {
         lagId = {
             type = "string",
@@ -3316,6 +3431,7 @@ M.DescribeLagsInput = {
 
 M.Lag = {
     type = "structure",
+    id = "Lag",
     members = {
         connectionsBandwidth = {
             type = "string",
@@ -3397,6 +3513,7 @@ M.Lag = {
 
 M.DescribeLagsOutput = {
     type = "structure",
+    id = "DescribeLagsOutput",
     members = {
         lags = {
             type = "list",
@@ -3410,6 +3527,7 @@ M.DescribeLagsOutput = {
 
 M.DescribeLoaInput = {
     type = "structure",
+    id = "DescribeLoaInput",
     members = {
         connectionId = {
             type = "string",
@@ -3428,6 +3546,7 @@ M.DescribeLoaInput = {
 
 M.DescribeLoaOutput = {
     type = "structure",
+    id = "DescribeLoaOutput",
     members = {
         loaContent = {
             type = "blob",
@@ -3440,10 +3559,12 @@ M.DescribeLoaOutput = {
 
 M.DescribeLocationsInput = {
     type = "structure",
+    id = "DescribeLocationsInput",
 }
 
 M.Location = {
     type = "structure",
+    id = "Location",
     members = {
         locationCode = {
             type = "string",
@@ -3471,6 +3592,7 @@ M.Location = {
 
 M.DescribeLocationsOutput = {
     type = "structure",
+    id = "DescribeLocationsOutput",
     members = {
         locations = {
             type = "list",
@@ -3481,6 +3603,7 @@ M.DescribeLocationsOutput = {
 
 M.DescribeRouterConfigurationInput = {
     type = "structure",
+    id = "DescribeRouterConfigurationInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -3496,6 +3619,7 @@ M.DescribeRouterConfigurationInput = {
 
 M.RouterType = {
     type = "structure",
+    id = "RouterType",
     members = {
         vendor = {
             type = "string",
@@ -3520,6 +3644,7 @@ M.RouterType = {
 
 M.DescribeRouterConfigurationOutput = {
     type = "structure",
+    id = "DescribeRouterConfigurationOutput",
     members = {
         customerRouterConfig = {
             type = "string",
@@ -3536,6 +3661,7 @@ M.DescribeRouterConfigurationOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         resourceArns = {
             type = "list",
@@ -3549,6 +3675,7 @@ M.DescribeTagsInput = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         resourceArn = {
             type = "string",
@@ -3562,6 +3689,7 @@ M.ResourceTag = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         resourceTags = {
             type = "list",
@@ -3572,10 +3700,12 @@ M.DescribeTagsOutput = {
 
 M.DescribeVirtualGatewaysInput = {
     type = "structure",
+    id = "DescribeVirtualGatewaysInput",
 }
 
 M.VirtualGateway = {
     type = "structure",
+    id = "VirtualGateway",
     members = {
         virtualGatewayId = {
             type = "string",
@@ -3588,6 +3718,7 @@ M.VirtualGateway = {
 
 M.DescribeVirtualGatewaysOutput = {
     type = "structure",
+    id = "DescribeVirtualGatewaysOutput",
     members = {
         virtualGateways = {
             type = "list",
@@ -3598,6 +3729,7 @@ M.DescribeVirtualGatewaysOutput = {
 
 M.DescribeVirtualInterfacesInput = {
     type = "structure",
+    id = "DescribeVirtualInterfacesInput",
     members = {
         connectionId = {
             type = "string",
@@ -3616,6 +3748,7 @@ M.DescribeVirtualInterfacesInput = {
 
 M.DescribeVirtualInterfacesOutput = {
     type = "structure",
+    id = "DescribeVirtualInterfacesOutput",
     members = {
         virtualInterfaces = {
             type = "list",
@@ -3629,6 +3762,7 @@ M.DescribeVirtualInterfacesOutput = {
 
 M.DisassociateConnectionFromLagInput = {
     type = "structure",
+    id = "DisassociateConnectionFromLagInput",
     members = {
         connectionId = {
             type = "string",
@@ -3647,6 +3781,7 @@ M.DisassociateConnectionFromLagInput = {
 
 M.DisassociateConnectionFromLagOutput = {
     type = "structure",
+    id = "DisassociateConnectionFromLagOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -3727,6 +3862,7 @@ M.DisassociateConnectionFromLagOutput = {
 
 M.DisassociateMacSecKeyInput = {
     type = "structure",
+    id = "DisassociateMacSecKeyInput",
     members = {
         connectionId = {
             type = "string",
@@ -3745,6 +3881,7 @@ M.DisassociateMacSecKeyInput = {
 
 M.DisassociateMacSecKeyOutput = {
     type = "structure",
+    id = "DisassociateMacSecKeyOutput",
     members = {
         connectionId = {
             type = "string",
@@ -3758,6 +3895,7 @@ M.DisassociateMacSecKeyOutput = {
 
 M.ListVirtualInterfaceTestHistoryInput = {
     type = "structure",
+    id = "ListVirtualInterfaceTestHistoryInput",
     members = {
         testId = {
             type = "string",
@@ -3783,6 +3921,7 @@ M.ListVirtualInterfaceTestHistoryInput = {
 
 M.VirtualInterfaceTestHistory = {
     type = "structure",
+    id = "VirtualInterfaceTestHistory",
     members = {
         testId = {
             type = "string",
@@ -3814,6 +3953,7 @@ M.VirtualInterfaceTestHistory = {
 
 M.ListVirtualInterfaceTestHistoryOutput = {
     type = "structure",
+    id = "ListVirtualInterfaceTestHistoryOutput",
     members = {
         virtualInterfaceTestHistory = {
             type = "list",
@@ -3827,6 +3967,7 @@ M.ListVirtualInterfaceTestHistoryOutput = {
 
 M.StartBgpFailoverTestInput = {
     type = "structure",
+    id = "StartBgpFailoverTestInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -3846,6 +3987,7 @@ M.StartBgpFailoverTestInput = {
 
 M.StartBgpFailoverTestOutput = {
     type = "structure",
+    id = "StartBgpFailoverTestOutput",
     members = {
         virtualInterfaceTest = M.VirtualInterfaceTestHistory,
     },
@@ -3853,6 +3995,7 @@ M.StartBgpFailoverTestOutput = {
 
 M.StopBgpFailoverTestInput = {
     type = "structure",
+    id = "StopBgpFailoverTestInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -3865,6 +4008,7 @@ M.StopBgpFailoverTestInput = {
 
 M.StopBgpFailoverTestOutput = {
     type = "structure",
+    id = "StopBgpFailoverTestOutput",
     members = {
         virtualInterfaceTest = M.VirtualInterfaceTestHistory,
     },
@@ -3872,6 +4016,7 @@ M.StopBgpFailoverTestOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3891,10 +4036,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3914,10 +4061,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConnectionInput = {
     type = "structure",
+    id = "UpdateConnectionInput",
     members = {
         connectionId = {
             type = "string",
@@ -3936,6 +4085,7 @@ M.UpdateConnectionInput = {
 
 M.UpdateConnectionOutput = {
     type = "structure",
+    id = "UpdateConnectionOutput",
     members = {
         ownerAccount = {
             type = "string",
@@ -4016,6 +4166,7 @@ M.UpdateConnectionOutput = {
 
 M.UpdateDirectConnectGatewayInput = {
     type = "structure",
+    id = "UpdateDirectConnectGatewayInput",
     members = {
         directConnectGatewayId = {
             type = "string",
@@ -4034,6 +4185,7 @@ M.UpdateDirectConnectGatewayInput = {
 
 M.UpdateDirectConnectGatewayOutput = {
     type = "structure",
+    id = "UpdateDirectConnectGatewayOutput",
     members = {
         directConnectGateway = M.DirectConnectGateway,
     },
@@ -4041,6 +4193,7 @@ M.UpdateDirectConnectGatewayOutput = {
 
 M.UpdateDirectConnectGatewayAssociationInput = {
     type = "structure",
+    id = "UpdateDirectConnectGatewayAssociationInput",
     members = {
         associationId = {
             type = "string",
@@ -4058,6 +4211,7 @@ M.UpdateDirectConnectGatewayAssociationInput = {
 
 M.UpdateDirectConnectGatewayAssociationOutput = {
     type = "structure",
+    id = "UpdateDirectConnectGatewayAssociationOutput",
     members = {
         directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
@@ -4065,6 +4219,7 @@ M.UpdateDirectConnectGatewayAssociationOutput = {
 
 M.UpdateLagInput = {
     type = "structure",
+    id = "UpdateLagInput",
     members = {
         lagId = {
             type = "string",
@@ -4089,6 +4244,7 @@ M.UpdateLagInput = {
 
 M.UpdateLagOutput = {
     type = "structure",
+    id = "UpdateLagOutput",
     members = {
         connectionsBandwidth = {
             type = "string",
@@ -4170,6 +4326,7 @@ M.UpdateLagOutput = {
 
 M.UpdateVirtualInterfaceAttributesInput = {
     type = "structure",
+    id = "UpdateVirtualInterfaceAttributesInput",
     members = {
         virtualInterfaceId = {
             type = "string",
@@ -4191,6 +4348,7 @@ M.UpdateVirtualInterfaceAttributesInput = {
 
 M.UpdateVirtualInterfaceAttributesOutput = {
     type = "structure",
+    id = "UpdateVirtualInterfaceAttributesOutput",
     members = {
         ownerAccount = {
             type = "string",

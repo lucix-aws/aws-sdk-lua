@@ -2,6 +2,7 @@ local M = {}
 
 M.AbortEnvironmentUpdateInput = {
     type = "structure",
+    id = "AbortEnvironmentUpdateInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -14,10 +15,12 @@ M.AbortEnvironmentUpdateInput = {
 
 M.AbortEnvironmentUpdateOutput = {
     type = "structure",
+    id = "AbortEnvironmentUpdateOutput",
 }
 
 M.InsufficientPrivilegesException = {
     type = "structure",
+    id = "InsufficientPrivilegesException",
     error = "client",
     members = {
         message = {
@@ -47,6 +50,7 @@ M.ActionType = {
 
 M.MaxAgeRule = {
     type = "structure",
+    id = "MaxAgeRule",
     members = {
         Enabled = {
             type = "boolean",
@@ -65,6 +69,7 @@ M.MaxAgeRule = {
 
 M.MaxCountRule = {
     type = "structure",
+    id = "MaxCountRule",
     members = {
         Enabled = {
             type = "boolean",
@@ -83,6 +88,7 @@ M.MaxCountRule = {
 
 M.ApplicationVersionLifecycleConfig = {
     type = "structure",
+    id = "ApplicationVersionLifecycleConfig",
     members = {
         MaxCountRule = M.MaxCountRule,
         MaxAgeRule = M.MaxAgeRule,
@@ -91,6 +97,7 @@ M.ApplicationVersionLifecycleConfig = {
 
 M.ApplicationResourceLifecycleConfig = {
     type = "structure",
+    id = "ApplicationResourceLifecycleConfig",
     members = {
         ServiceRole = {
             type = "string",
@@ -101,6 +108,7 @@ M.ApplicationResourceLifecycleConfig = {
 
 M.ApplicationDescription = {
     type = "structure",
+    id = "ApplicationDescription",
     members = {
         ApplicationArn = {
             type = "string",
@@ -131,6 +139,7 @@ M.ApplicationDescription = {
 
 M.Latency = {
     type = "structure",
+    id = "Latency",
     members = {
         P999 = {
             type = "double",
@@ -161,6 +170,7 @@ M.Latency = {
 
 M.StatusCodes = {
     type = "structure",
+    id = "StatusCodes",
     members = {
         Status2xx = {
             type = "integer",
@@ -179,6 +189,7 @@ M.StatusCodes = {
 
 M.ApplicationMetrics = {
     type = "structure",
+    id = "ApplicationMetrics",
     members = {
         Duration = {
             type = "integer",
@@ -206,6 +217,7 @@ M.SourceType = {
 
 M.SourceBuildInformation = {
     type = "structure",
+    id = "SourceBuildInformation",
     members = {
         SourceType = {
             type = "string",
@@ -230,6 +242,7 @@ M.SourceBuildInformation = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         S3Bucket = {
             type = "string",
@@ -250,6 +263,7 @@ M.ApplicationVersionStatus = {
 
 M.ApplicationVersionDescription = {
     type = "structure",
+    id = "ApplicationVersionDescription",
     members = {
         ApplicationVersionArn = {
             type = "string",
@@ -282,6 +296,7 @@ M.ApplicationVersionDescription = {
 
 M.ApplyEnvironmentManagedActionInput = {
     type = "structure",
+    id = "ApplyEnvironmentManagedActionInput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -300,6 +315,7 @@ M.ApplyEnvironmentManagedActionInput = {
 
 M.ApplyEnvironmentManagedActionOutput = {
     type = "structure",
+    id = "ApplyEnvironmentManagedActionOutput",
     members = {
         ActionId = {
             type = "string",
@@ -318,6 +334,7 @@ M.ApplyEnvironmentManagedActionOutput = {
 
 M.ElasticBeanstalkServiceException = {
     type = "structure",
+    id = "ElasticBeanstalkServiceException",
     error = "client",
     members = {
         message = {
@@ -328,6 +345,7 @@ M.ElasticBeanstalkServiceException = {
 
 M.ManagedActionInvalidStateException = {
     type = "structure",
+    id = "ManagedActionInvalidStateException",
     error = "client",
     members = {
         message = {
@@ -338,6 +356,7 @@ M.ManagedActionInvalidStateException = {
 
 M.AssociateEnvironmentOperationsRoleInput = {
     type = "structure",
+    id = "AssociateEnvironmentOperationsRoleInput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -356,10 +375,12 @@ M.AssociateEnvironmentOperationsRoleInput = {
 
 M.AssociateEnvironmentOperationsRoleOutput = {
     type = "structure",
+    id = "AssociateEnvironmentOperationsRoleOutput",
 }
 
 M.AutoScalingGroup = {
     type = "structure",
+    id = "AutoScalingGroup",
     members = {
         Name = {
             type = "string",
@@ -369,6 +390,7 @@ M.AutoScalingGroup = {
 
 M.SolutionStackDescription = {
     type = "structure",
+    id = "SolutionStackDescription",
     members = {
         SolutionStackName = {
             type = "string",
@@ -382,6 +404,7 @@ M.SolutionStackDescription = {
 
 M.CheckDNSAvailabilityInput = {
     type = "structure",
+    id = "CheckDNSAvailabilityInput",
     members = {
         CNAMEPrefix = {
             type = "string",
@@ -394,6 +417,7 @@ M.CheckDNSAvailabilityInput = {
 
 M.CheckDNSAvailabilityOutput = {
     type = "structure",
+    id = "CheckDNSAvailabilityOutput",
     members = {
         Available = {
             type = "boolean",
@@ -406,6 +430,7 @@ M.CheckDNSAvailabilityOutput = {
 
 M.ComposeEnvironmentsInput = {
     type = "structure",
+    id = "ComposeEnvironmentsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -422,6 +447,7 @@ M.ComposeEnvironmentsInput = {
 
 M.EnvironmentLink = {
     type = "structure",
+    id = "EnvironmentLink",
     members = {
         LinkName = {
             type = "string",
@@ -453,6 +479,7 @@ M.EnvironmentHealthStatus = {
 
 M.Listener = {
     type = "structure",
+    id = "Listener",
     members = {
         Protocol = {
             type = "string",
@@ -468,6 +495,7 @@ M.Listener = {
 
 M.LoadBalancerDescription = {
     type = "structure",
+    id = "LoadBalancerDescription",
     members = {
         LoadBalancerName = {
             type = "string",
@@ -484,6 +512,7 @@ M.LoadBalancerDescription = {
 
 M.EnvironmentResourcesDescription = {
     type = "structure",
+    id = "EnvironmentResourcesDescription",
     members = {
         LoadBalancer = M.LoadBalancerDescription,
     },
@@ -502,6 +531,7 @@ M.EnvironmentStatus = {
 
 M.EnvironmentTier = {
     type = "structure",
+    id = "EnvironmentTier",
     members = {
         Name = {
             type = "string",
@@ -517,6 +547,7 @@ M.EnvironmentTier = {
 
 M.EnvironmentDescription = {
     type = "structure",
+    id = "EnvironmentDescription",
     members = {
         EnvironmentName = {
             type = "string",
@@ -583,6 +614,7 @@ M.EnvironmentDescription = {
 
 M.ComposeEnvironmentsOutput = {
     type = "structure",
+    id = "ComposeEnvironmentsOutput",
     members = {
         Environments = {
             type = "list",
@@ -596,6 +628,7 @@ M.ComposeEnvironmentsOutput = {
 
 M.TooManyEnvironmentsException = {
     type = "structure",
+    id = "TooManyEnvironmentsException",
     error = "client",
     members = {
         message = {
@@ -606,6 +639,7 @@ M.TooManyEnvironmentsException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -618,6 +652,7 @@ M.Tag = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -638,6 +673,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         Application = M.ApplicationDescription,
     },
@@ -645,6 +681,7 @@ M.CreateApplicationOutput = {
 
 M.TooManyApplicationsException = {
     type = "structure",
+    id = "TooManyApplicationsException",
     error = "client",
     members = {
         message = {
@@ -655,6 +692,7 @@ M.TooManyApplicationsException = {
 
 M.CodeBuildNotInServiceRegionException = {
     type = "structure",
+    id = "CodeBuildNotInServiceRegionException",
     error = "client",
     members = {
         message = {
@@ -671,6 +709,7 @@ M.ComputeType = {
 
 M.BuildConfiguration = {
     type = "structure",
+    id = "BuildConfiguration",
     members = {
         ArtifactName = {
             type = "string",
@@ -698,6 +737,7 @@ M.BuildConfiguration = {
 
 M.CreateApplicationVersionInput = {
     type = "structure",
+    id = "CreateApplicationVersionInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -732,6 +772,7 @@ M.CreateApplicationVersionInput = {
 
 M.CreateApplicationVersionOutput = {
     type = "structure",
+    id = "CreateApplicationVersionOutput",
     members = {
         ApplicationVersion = M.ApplicationVersionDescription,
     },
@@ -739,6 +780,7 @@ M.CreateApplicationVersionOutput = {
 
 M.S3LocationNotInServiceRegionException = {
     type = "structure",
+    id = "S3LocationNotInServiceRegionException",
     error = "client",
     members = {
         message = {
@@ -749,6 +791,7 @@ M.S3LocationNotInServiceRegionException = {
 
 M.TooManyApplicationVersionsException = {
     type = "structure",
+    id = "TooManyApplicationVersionsException",
     error = "client",
     members = {
         message = {
@@ -759,6 +802,7 @@ M.TooManyApplicationVersionsException = {
 
 M.ConfigurationOptionSetting = {
     type = "structure",
+    id = "ConfigurationOptionSetting",
     members = {
         ResourceName = {
             type = "string",
@@ -777,6 +821,7 @@ M.ConfigurationOptionSetting = {
 
 M.SourceConfiguration = {
     type = "structure",
+    id = "SourceConfiguration",
     members = {
         ApplicationName = {
             type = "string",
@@ -789,6 +834,7 @@ M.SourceConfiguration = {
 
 M.CreateConfigurationTemplateInput = {
     type = "structure",
+    id = "CreateConfigurationTemplateInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -834,6 +880,7 @@ M.ConfigurationDeploymentStatus = {
 
 M.CreateConfigurationTemplateOutput = {
     type = "structure",
+    id = "CreateConfigurationTemplateOutput",
     members = {
         SolutionStackName = {
             type = "string",
@@ -871,6 +918,7 @@ M.CreateConfigurationTemplateOutput = {
 
 M.TooManyBucketsException = {
     type = "structure",
+    id = "TooManyBucketsException",
     error = "client",
     members = {
         message = {
@@ -881,6 +929,7 @@ M.TooManyBucketsException = {
 
 M.TooManyConfigurationTemplatesException = {
     type = "structure",
+    id = "TooManyConfigurationTemplatesException",
     error = "client",
     members = {
         message = {
@@ -891,6 +940,7 @@ M.TooManyConfigurationTemplatesException = {
 
 M.OptionSpecification = {
     type = "structure",
+    id = "OptionSpecification",
     members = {
         ResourceName = {
             type = "string",
@@ -906,6 +956,7 @@ M.OptionSpecification = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -958,6 +1009,7 @@ M.CreateEnvironmentInput = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -1024,6 +1076,7 @@ M.CreateEnvironmentOutput = {
 
 M.CreatePlatformVersionInput = {
     type = "structure",
+    id = "CreatePlatformVersionInput",
     members = {
         PlatformName = {
             type = "string",
@@ -1056,6 +1109,7 @@ M.CreatePlatformVersionInput = {
 
 M.Builder = {
     type = "structure",
+    id = "Builder",
     members = {
         ARN = {
             type = "string",
@@ -1073,6 +1127,7 @@ M.PlatformStatus = {
 
 M.PlatformSummary = {
     type = "structure",
+    id = "PlatformSummary",
     members = {
         PlatformArn = {
             type = "string",
@@ -1117,6 +1172,7 @@ M.PlatformSummary = {
 
 M.CreatePlatformVersionOutput = {
     type = "structure",
+    id = "CreatePlatformVersionOutput",
     members = {
         PlatformSummary = M.PlatformSummary,
         Builder = M.Builder,
@@ -1125,6 +1181,7 @@ M.CreatePlatformVersionOutput = {
 
 M.TooManyPlatformsException = {
     type = "structure",
+    id = "TooManyPlatformsException",
     error = "client",
     members = {
         message = {
@@ -1135,10 +1192,12 @@ M.TooManyPlatformsException = {
 
 M.CreateStorageLocationInput = {
     type = "structure",
+    id = "CreateStorageLocationInput",
 }
 
 M.CreateStorageLocationOutput = {
     type = "structure",
+    id = "CreateStorageLocationOutput",
     members = {
         S3Bucket = {
             type = "string",
@@ -1148,6 +1207,7 @@ M.CreateStorageLocationOutput = {
 
 M.S3SubscriptionRequiredException = {
     type = "structure",
+    id = "S3SubscriptionRequiredException",
     error = "client",
     members = {
         message = {
@@ -1158,6 +1218,7 @@ M.S3SubscriptionRequiredException = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1173,10 +1234,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.OperationInProgressException = {
     type = "structure",
+    id = "OperationInProgressException",
     error = "client",
     members = {
         message = {
@@ -1187,6 +1250,7 @@ M.OperationInProgressException = {
 
 M.DeleteApplicationVersionInput = {
     type = "structure",
+    id = "DeleteApplicationVersionInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1208,10 +1272,12 @@ M.DeleteApplicationVersionInput = {
 
 M.DeleteApplicationVersionOutput = {
     type = "structure",
+    id = "DeleteApplicationVersionOutput",
 }
 
 M.SourceBundleDeletionException = {
     type = "structure",
+    id = "SourceBundleDeletionException",
     error = "client",
     members = {
         message = {
@@ -1222,6 +1288,7 @@ M.SourceBundleDeletionException = {
 
 M.DeleteConfigurationTemplateInput = {
     type = "structure",
+    id = "DeleteConfigurationTemplateInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1240,10 +1307,12 @@ M.DeleteConfigurationTemplateInput = {
 
 M.DeleteConfigurationTemplateOutput = {
     type = "structure",
+    id = "DeleteConfigurationTemplateOutput",
 }
 
 M.DeleteEnvironmentConfigurationInput = {
     type = "structure",
+    id = "DeleteEnvironmentConfigurationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1262,10 +1331,12 @@ M.DeleteEnvironmentConfigurationInput = {
 
 M.DeleteEnvironmentConfigurationOutput = {
     type = "structure",
+    id = "DeleteEnvironmentConfigurationOutput",
 }
 
 M.DeletePlatformVersionInput = {
     type = "structure",
+    id = "DeletePlatformVersionInput",
     members = {
         PlatformArn = {
             type = "string",
@@ -1275,6 +1346,7 @@ M.DeletePlatformVersionInput = {
 
 M.DeletePlatformVersionOutput = {
     type = "structure",
+    id = "DeletePlatformVersionOutput",
     members = {
         PlatformSummary = M.PlatformSummary,
     },
@@ -1282,6 +1354,7 @@ M.DeletePlatformVersionOutput = {
 
 M.PlatformVersionStillReferencedException = {
     type = "structure",
+    id = "PlatformVersionStillReferencedException",
     error = "client",
     members = {
         message = {
@@ -1292,10 +1365,12 @@ M.PlatformVersionStillReferencedException = {
 
 M.DescribeAccountAttributesInput = {
     type = "structure",
+    id = "DescribeAccountAttributesInput",
 }
 
 M.ResourceQuota = {
     type = "structure",
+    id = "ResourceQuota",
     members = {
         Maximum = {
             type = "integer",
@@ -1305,6 +1380,7 @@ M.ResourceQuota = {
 
 M.ResourceQuotas = {
     type = "structure",
+    id = "ResourceQuotas",
     members = {
         ApplicationQuota = M.ResourceQuota,
         ApplicationVersionQuota = M.ResourceQuota,
@@ -1316,6 +1392,7 @@ M.ResourceQuotas = {
 
 M.DescribeAccountAttributesOutput = {
     type = "structure",
+    id = "DescribeAccountAttributesOutput",
     members = {
         ResourceQuotas = M.ResourceQuotas,
     },
@@ -1323,6 +1400,7 @@ M.DescribeAccountAttributesOutput = {
 
 M.DescribeApplicationsInput = {
     type = "structure",
+    id = "DescribeApplicationsInput",
     members = {
         ApplicationNames = {
             type = "list",
@@ -1333,6 +1411,7 @@ M.DescribeApplicationsInput = {
 
 M.DescribeApplicationsOutput = {
     type = "structure",
+    id = "DescribeApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -1343,6 +1422,7 @@ M.DescribeApplicationsOutput = {
 
 M.DescribeApplicationVersionsInput = {
     type = "structure",
+    id = "DescribeApplicationVersionsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1362,6 +1442,7 @@ M.DescribeApplicationVersionsInput = {
 
 M.DescribeApplicationVersionsOutput = {
     type = "structure",
+    id = "DescribeApplicationVersionsOutput",
     members = {
         ApplicationVersions = {
             type = "list",
@@ -1375,6 +1456,7 @@ M.DescribeApplicationVersionsOutput = {
 
 M.DescribeConfigurationOptionsInput = {
     type = "structure",
+    id = "DescribeConfigurationOptionsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1400,6 +1482,7 @@ M.DescribeConfigurationOptionsInput = {
 
 M.OptionRestrictionRegex = {
     type = "structure",
+    id = "OptionRestrictionRegex",
     members = {
         Pattern = {
             type = "string",
@@ -1417,6 +1500,7 @@ M.ConfigurationOptionValueType = {
 
 M.ConfigurationOptionDescription = {
     type = "structure",
+    id = "ConfigurationOptionDescription",
     members = {
         Namespace = {
             type = "string",
@@ -1455,6 +1539,7 @@ M.ConfigurationOptionDescription = {
 
 M.DescribeConfigurationOptionsOutput = {
     type = "structure",
+    id = "DescribeConfigurationOptionsOutput",
     members = {
         SolutionStackName = {
             type = "string",
@@ -1471,6 +1556,7 @@ M.DescribeConfigurationOptionsOutput = {
 
 M.DescribeConfigurationSettingsInput = {
     type = "structure",
+    id = "DescribeConfigurationSettingsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1489,6 +1575,7 @@ M.DescribeConfigurationSettingsInput = {
 
 M.ConfigurationSettingsDescription = {
     type = "structure",
+    id = "ConfigurationSettingsDescription",
     members = {
         SolutionStackName = {
             type = "string",
@@ -1526,6 +1613,7 @@ M.ConfigurationSettingsDescription = {
 
 M.DescribeConfigurationSettingsOutput = {
     type = "structure",
+    id = "DescribeConfigurationSettingsOutput",
     members = {
         ConfigurationSettings = {
             type = "list",
@@ -1547,6 +1635,7 @@ M.EnvironmentHealthAttribute = {
 
 M.DescribeEnvironmentHealthInput = {
     type = "structure",
+    id = "DescribeEnvironmentHealthInput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -1563,6 +1652,7 @@ M.DescribeEnvironmentHealthInput = {
 
 M.InstanceHealthSummary = {
     type = "structure",
+    id = "InstanceHealthSummary",
     members = {
         NoData = {
             type = "integer",
@@ -1593,6 +1683,7 @@ M.InstanceHealthSummary = {
 
 M.DescribeEnvironmentHealthOutput = {
     type = "structure",
+    id = "DescribeEnvironmentHealthOutput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -1620,6 +1711,7 @@ M.DescribeEnvironmentHealthOutput = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -1630,6 +1722,7 @@ M.InvalidRequestException = {
 
 M.DescribeEnvironmentManagedActionHistoryInput = {
     type = "structure",
+    id = "DescribeEnvironmentManagedActionHistoryInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -1658,6 +1751,7 @@ M.FailureType = {
 
 M.ManagedActionHistoryItem = {
     type = "structure",
+    id = "ManagedActionHistoryItem",
     members = {
         ActionId = {
             type = "string",
@@ -1688,6 +1782,7 @@ M.ManagedActionHistoryItem = {
 
 M.DescribeEnvironmentManagedActionHistoryOutput = {
     type = "structure",
+    id = "DescribeEnvironmentManagedActionHistoryOutput",
     members = {
         ManagedActionHistoryItems = {
             type = "list",
@@ -1701,6 +1796,7 @@ M.DescribeEnvironmentManagedActionHistoryOutput = {
 
 M.DescribeEnvironmentManagedActionsInput = {
     type = "structure",
+    id = "DescribeEnvironmentManagedActionsInput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -1716,6 +1812,7 @@ M.DescribeEnvironmentManagedActionsInput = {
 
 M.ManagedAction = {
     type = "structure",
+    id = "ManagedAction",
     members = {
         ActionId = {
             type = "string",
@@ -1737,6 +1834,7 @@ M.ManagedAction = {
 
 M.DescribeEnvironmentManagedActionsOutput = {
     type = "structure",
+    id = "DescribeEnvironmentManagedActionsOutput",
     members = {
         ManagedActions = {
             type = "list",
@@ -1747,6 +1845,7 @@ M.DescribeEnvironmentManagedActionsOutput = {
 
 M.DescribeEnvironmentResourcesInput = {
     type = "structure",
+    id = "DescribeEnvironmentResourcesInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -1759,6 +1858,7 @@ M.DescribeEnvironmentResourcesInput = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         Id = {
             type = "string",
@@ -1768,6 +1868,7 @@ M.Instance = {
 
 M.LaunchConfiguration = {
     type = "structure",
+    id = "LaunchConfiguration",
     members = {
         Name = {
             type = "string",
@@ -1777,6 +1878,7 @@ M.LaunchConfiguration = {
 
 M.LaunchTemplate = {
     type = "structure",
+    id = "LaunchTemplate",
     members = {
         Id = {
             type = "string",
@@ -1786,6 +1888,7 @@ M.LaunchTemplate = {
 
 M.LoadBalancer = {
     type = "structure",
+    id = "LoadBalancer",
     members = {
         Name = {
             type = "string",
@@ -1795,6 +1898,7 @@ M.LoadBalancer = {
 
 M.Queue = {
     type = "structure",
+    id = "Queue",
     members = {
         Name = {
             type = "string",
@@ -1807,6 +1911,7 @@ M.Queue = {
 
 M.Trigger = {
     type = "structure",
+    id = "Trigger",
     members = {
         Name = {
             type = "string",
@@ -1816,6 +1921,7 @@ M.Trigger = {
 
 M.EnvironmentResourceDescription = {
     type = "structure",
+    id = "EnvironmentResourceDescription",
     members = {
         EnvironmentName = {
             type = "string",
@@ -1853,6 +1959,7 @@ M.EnvironmentResourceDescription = {
 
 M.DescribeEnvironmentResourcesOutput = {
     type = "structure",
+    id = "DescribeEnvironmentResourcesOutput",
     members = {
         EnvironmentResources = M.EnvironmentResourceDescription,
     },
@@ -1860,6 +1967,7 @@ M.DescribeEnvironmentResourcesOutput = {
 
 M.DescribeEnvironmentsInput = {
     type = "structure",
+    id = "DescribeEnvironmentsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1892,6 +2000,7 @@ M.DescribeEnvironmentsInput = {
 
 M.DescribeEnvironmentsOutput = {
     type = "structure",
+    id = "DescribeEnvironmentsOutput",
     members = {
         Environments = {
             type = "list",
@@ -1914,6 +2023,7 @@ M.EventSeverity = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -1956,6 +2066,7 @@ M.DescribeEventsInput = {
 
 M.EventDescription = {
     type = "structure",
+    id = "EventDescription",
     members = {
         EventDate = {
             type = "timestamp",
@@ -1989,6 +2100,7 @@ M.EventDescription = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         Events = {
             type = "list",
@@ -2016,6 +2128,7 @@ M.InstancesHealthAttribute = {
 
 M.DescribeInstancesHealthInput = {
     type = "structure",
+    id = "DescribeInstancesHealthInput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -2035,6 +2148,7 @@ M.DescribeInstancesHealthInput = {
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         VersionLabel = {
             type = "string",
@@ -2053,6 +2167,7 @@ M.Deployment = {
 
 M.CPUUtilization = {
     type = "structure",
+    id = "CPUUtilization",
     members = {
         User = {
             type = "double",
@@ -2083,6 +2198,7 @@ M.CPUUtilization = {
 
 M.SystemStatus = {
     type = "structure",
+    id = "SystemStatus",
     members = {
         CPUUtilization = M.CPUUtilization,
         LoadAverage = {
@@ -2094,6 +2210,7 @@ M.SystemStatus = {
 
 M.SingleInstanceHealth = {
     type = "structure",
+    id = "SingleInstanceHealth",
     members = {
         InstanceId = {
             type = "string",
@@ -2125,6 +2242,7 @@ M.SingleInstanceHealth = {
 
 M.DescribeInstancesHealthOutput = {
     type = "structure",
+    id = "DescribeInstancesHealthOutput",
     members = {
         InstanceHealthList = {
             type = "list",
@@ -2141,6 +2259,7 @@ M.DescribeInstancesHealthOutput = {
 
 M.DescribePlatformVersionInput = {
     type = "structure",
+    id = "DescribePlatformVersionInput",
     members = {
         PlatformArn = {
             type = "string",
@@ -2150,6 +2269,7 @@ M.DescribePlatformVersionInput = {
 
 M.CustomAmi = {
     type = "structure",
+    id = "CustomAmi",
     members = {
         VirtualizationType = {
             type = "string",
@@ -2162,6 +2282,7 @@ M.CustomAmi = {
 
 M.PlatformFramework = {
     type = "structure",
+    id = "PlatformFramework",
     members = {
         Name = {
             type = "string",
@@ -2174,6 +2295,7 @@ M.PlatformFramework = {
 
 M.PlatformProgrammingLanguage = {
     type = "structure",
+    id = "PlatformProgrammingLanguage",
     members = {
         Name = {
             type = "string",
@@ -2186,6 +2308,7 @@ M.PlatformProgrammingLanguage = {
 
 M.PlatformDescription = {
     type = "structure",
+    id = "PlatformDescription",
     members = {
         PlatformArn = {
             type = "string",
@@ -2260,6 +2383,7 @@ M.PlatformDescription = {
 
 M.DescribePlatformVersionOutput = {
     type = "structure",
+    id = "DescribePlatformVersionOutput",
     members = {
         PlatformDescription = M.PlatformDescription,
     },
@@ -2267,6 +2391,7 @@ M.DescribePlatformVersionOutput = {
 
 M.DisassociateEnvironmentOperationsRoleInput = {
     type = "structure",
+    id = "DisassociateEnvironmentOperationsRoleInput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -2279,14 +2404,17 @@ M.DisassociateEnvironmentOperationsRoleInput = {
 
 M.DisassociateEnvironmentOperationsRoleOutput = {
     type = "structure",
+    id = "DisassociateEnvironmentOperationsRoleOutput",
 }
 
 M.ListAvailableSolutionStacksInput = {
     type = "structure",
+    id = "ListAvailableSolutionStacksInput",
 }
 
 M.ListAvailableSolutionStacksOutput = {
     type = "structure",
+    id = "ListAvailableSolutionStacksOutput",
     members = {
         SolutionStacks = {
             type = "list",
@@ -2301,6 +2429,7 @@ M.ListAvailableSolutionStacksOutput = {
 
 M.SearchFilter = {
     type = "structure",
+    id = "SearchFilter",
     members = {
         Attribute = {
             type = "string",
@@ -2317,6 +2446,7 @@ M.SearchFilter = {
 
 M.ListPlatformBranchesInput = {
     type = "structure",
+    id = "ListPlatformBranchesInput",
     members = {
         Filters = {
             type = "list",
@@ -2333,6 +2463,7 @@ M.ListPlatformBranchesInput = {
 
 M.PlatformBranchSummary = {
     type = "structure",
+    id = "PlatformBranchSummary",
     members = {
         PlatformName = {
             type = "string",
@@ -2358,6 +2489,7 @@ M.PlatformBranchSummary = {
 
 M.ListPlatformBranchesOutput = {
     type = "structure",
+    id = "ListPlatformBranchesOutput",
     members = {
         PlatformBranchSummaryList = {
             type = "list",
@@ -2371,6 +2503,7 @@ M.ListPlatformBranchesOutput = {
 
 M.PlatformFilter = {
     type = "structure",
+    id = "PlatformFilter",
     members = {
         Type = {
             type = "string",
@@ -2387,6 +2520,7 @@ M.PlatformFilter = {
 
 M.ListPlatformVersionsInput = {
     type = "structure",
+    id = "ListPlatformVersionsInput",
     members = {
         Filters = {
             type = "list",
@@ -2403,6 +2537,7 @@ M.ListPlatformVersionsInput = {
 
 M.ListPlatformVersionsOutput = {
     type = "structure",
+    id = "ListPlatformVersionsOutput",
     members = {
         PlatformSummaryList = {
             type = "list",
@@ -2416,6 +2551,7 @@ M.ListPlatformVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2428,6 +2564,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2441,6 +2578,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2451,6 +2589,7 @@ M.ResourceNotFoundException = {
 
 M.ResourceTypeNotSupportedException = {
     type = "structure",
+    id = "ResourceTypeNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -2461,6 +2600,7 @@ M.ResourceTypeNotSupportedException = {
 
 M.RebuildEnvironmentInput = {
     type = "structure",
+    id = "RebuildEnvironmentInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -2473,6 +2613,7 @@ M.RebuildEnvironmentInput = {
 
 M.RebuildEnvironmentOutput = {
     type = "structure",
+    id = "RebuildEnvironmentOutput",
 }
 
 M.EnvironmentInfoType = {
@@ -2483,6 +2624,7 @@ M.EnvironmentInfoType = {
 
 M.RequestEnvironmentInfoInput = {
     type = "structure",
+    id = "RequestEnvironmentInfoInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -2501,10 +2643,12 @@ M.RequestEnvironmentInfoInput = {
 
 M.RequestEnvironmentInfoOutput = {
     type = "structure",
+    id = "RequestEnvironmentInfoOutput",
 }
 
 M.RestartAppServerInput = {
     type = "structure",
+    id = "RestartAppServerInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -2517,10 +2661,12 @@ M.RestartAppServerInput = {
 
 M.RestartAppServerOutput = {
     type = "structure",
+    id = "RestartAppServerOutput",
 }
 
 M.RetrieveEnvironmentInfoInput = {
     type = "structure",
+    id = "RetrieveEnvironmentInfoInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -2539,6 +2685,7 @@ M.RetrieveEnvironmentInfoInput = {
 
 M.EnvironmentInfoDescription = {
     type = "structure",
+    id = "EnvironmentInfoDescription",
     members = {
         InfoType = {
             type = "string",
@@ -2557,6 +2704,7 @@ M.EnvironmentInfoDescription = {
 
 M.RetrieveEnvironmentInfoOutput = {
     type = "structure",
+    id = "RetrieveEnvironmentInfoOutput",
     members = {
         EnvironmentInfo = {
             type = "list",
@@ -2567,6 +2715,7 @@ M.RetrieveEnvironmentInfoOutput = {
 
 M.SwapEnvironmentCNAMEsInput = {
     type = "structure",
+    id = "SwapEnvironmentCNAMEsInput",
     members = {
         SourceEnvironmentId = {
             type = "string",
@@ -2585,10 +2734,12 @@ M.SwapEnvironmentCNAMEsInput = {
 
 M.SwapEnvironmentCNAMEsOutput = {
     type = "structure",
+    id = "SwapEnvironmentCNAMEsOutput",
 }
 
 M.TerminateEnvironmentInput = {
     type = "structure",
+    id = "TerminateEnvironmentInput",
     members = {
         EnvironmentId = {
             type = "string",
@@ -2607,6 +2758,7 @@ M.TerminateEnvironmentInput = {
 
 M.TerminateEnvironmentOutput = {
     type = "structure",
+    id = "TerminateEnvironmentOutput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -2673,6 +2825,7 @@ M.TerminateEnvironmentOutput = {
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2688,6 +2841,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         Application = M.ApplicationDescription,
     },
@@ -2695,6 +2849,7 @@ M.UpdateApplicationOutput = {
 
 M.UpdateApplicationResourceLifecycleInput = {
     type = "structure",
+    id = "UpdateApplicationResourceLifecycleInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2710,6 +2865,7 @@ M.UpdateApplicationResourceLifecycleInput = {
 
 M.UpdateApplicationResourceLifecycleOutput = {
     type = "structure",
+    id = "UpdateApplicationResourceLifecycleOutput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2720,6 +2876,7 @@ M.UpdateApplicationResourceLifecycleOutput = {
 
 M.UpdateApplicationVersionInput = {
     type = "structure",
+    id = "UpdateApplicationVersionInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2741,6 +2898,7 @@ M.UpdateApplicationVersionInput = {
 
 M.UpdateApplicationVersionOutput = {
     type = "structure",
+    id = "UpdateApplicationVersionOutput",
     members = {
         ApplicationVersion = M.ApplicationVersionDescription,
     },
@@ -2748,6 +2906,7 @@ M.UpdateApplicationVersionOutput = {
 
 M.UpdateConfigurationTemplateInput = {
     type = "structure",
+    id = "UpdateConfigurationTemplateInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2777,6 +2936,7 @@ M.UpdateConfigurationTemplateInput = {
 
 M.UpdateConfigurationTemplateOutput = {
     type = "structure",
+    id = "UpdateConfigurationTemplateOutput",
     members = {
         SolutionStackName = {
             type = "string",
@@ -2814,6 +2974,7 @@ M.UpdateConfigurationTemplateOutput = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2856,6 +3017,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         EnvironmentName = {
             type = "string",
@@ -2922,6 +3084,7 @@ M.UpdateEnvironmentOutput = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -2932,6 +3095,7 @@ M.TooManyTagsException = {
 
 M.UpdateTagsForResourceInput = {
     type = "structure",
+    id = "UpdateTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2952,10 +3116,12 @@ M.UpdateTagsForResourceInput = {
 
 M.UpdateTagsForResourceOutput = {
     type = "structure",
+    id = "UpdateTagsForResourceOutput",
 }
 
 M.ValidateConfigurationSettingsInput = {
     type = "structure",
+    id = "ValidateConfigurationSettingsInput",
     members = {
         ApplicationName = {
             type = "string",
@@ -2986,6 +3152,7 @@ M.ValidationSeverity = {
 
 M.ValidationMessage = {
     type = "structure",
+    id = "ValidationMessage",
     members = {
         Message = {
             type = "string",
@@ -3004,6 +3171,7 @@ M.ValidationMessage = {
 
 M.ValidateConfigurationSettingsOutput = {
     type = "structure",
+    id = "ValidateConfigurationSettingsOutput",
     members = {
         Messages = {
             type = "list",

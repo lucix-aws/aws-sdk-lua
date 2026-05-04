@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.GetDataAutomationStatusInput = {
     type = "structure",
+    id = "GetDataAutomationStatusInput",
     members = {
         invocationArn = {
             type = "string",
@@ -25,6 +27,7 @@ M.GetDataAutomationStatusInput = {
 
 M.OutputConfiguration = {
     type = "structure",
+    id = "OutputConfiguration",
     members = {
         s3Uri = {
             type = "string",
@@ -45,6 +48,7 @@ M.AutomationJobStatus = {
 
 M.GetDataAutomationStatusOutput = {
     type = "structure",
+    id = "GetDataAutomationStatusOutput",
     members = {
         status = {
             type = "string",
@@ -76,6 +80,7 @@ M.GetDataAutomationStatusOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -86,6 +91,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -96,6 +102,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -106,6 +113,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -121,6 +129,7 @@ M.BlueprintStage = {
 
 M.Blueprint = {
     type = "structure",
+    id = "Blueprint",
     members = {
         blueprintArn = {
             type = "string",
@@ -144,6 +153,7 @@ M.DataAutomationStage = {
 
 M.DataAutomationConfiguration = {
     type = "structure",
+    id = "DataAutomationConfiguration",
     members = {
         dataAutomationProjectArn = {
             type = "string",
@@ -159,6 +169,7 @@ M.DataAutomationConfiguration = {
 
 M.EncryptionConfiguration = {
     type = "structure",
+    id = "EncryptionConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -176,6 +187,7 @@ M.EncryptionConfiguration = {
 
 M.TimestampSegment = {
     type = "structure",
+    id = "TimestampSegment",
     members = {
         startTimeMillis = {
             type = "long",
@@ -194,6 +206,7 @@ M.TimestampSegment = {
 
 M.VideoSegmentConfiguration = {
     type = "union",
+    id = "VideoSegmentConfiguration",
     members = {
         timestampSegment = M.TimestampSegment,
     },
@@ -201,6 +214,7 @@ M.VideoSegmentConfiguration = {
 
 M.VideoAssetProcessingConfiguration = {
     type = "structure",
+    id = "VideoAssetProcessingConfiguration",
     members = {
         segmentConfiguration = M.VideoSegmentConfiguration,
     },
@@ -208,6 +222,7 @@ M.VideoAssetProcessingConfiguration = {
 
 M.AssetProcessingConfiguration = {
     type = "structure",
+    id = "AssetProcessingConfiguration",
     members = {
         video = M.VideoAssetProcessingConfiguration,
     },
@@ -215,6 +230,7 @@ M.AssetProcessingConfiguration = {
 
 M.InputConfiguration = {
     type = "structure",
+    id = "InputConfiguration",
     members = {
         s3Uri = {
             type = "string",
@@ -228,6 +244,7 @@ M.InputConfiguration = {
 
 M.EventBridgeConfiguration = {
     type = "structure",
+    id = "EventBridgeConfiguration",
     members = {
         eventBridgeEnabled = {
             type = "boolean",
@@ -240,6 +257,7 @@ M.EventBridgeConfiguration = {
 
 M.NotificationConfiguration = {
     type = "structure",
+    id = "NotificationConfiguration",
     members = {
         eventBridgeConfiguration = setmetatable({ traits = {
             required = true,
@@ -249,6 +267,7 @@ M.NotificationConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -267,6 +286,7 @@ M.Tag = {
 
 M.InvokeDataAutomationAsyncInput = {
     type = "structure",
+    id = "InvokeDataAutomationAsyncInput",
     members = {
         clientToken = {
             type = "string",
@@ -302,6 +322,7 @@ M.InvokeDataAutomationAsyncInput = {
 
 M.InvokeDataAutomationAsyncOutput = {
     type = "structure",
+    id = "InvokeDataAutomationAsyncOutput",
     members = {
         invocationArn = {
             type = "string",
@@ -314,6 +335,7 @@ M.InvokeDataAutomationAsyncOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -324,6 +346,7 @@ M.ServiceQuotaExceededException = {
 
 M.SyncInputConfiguration = {
     type = "structure",
+    id = "SyncInputConfiguration",
     members = {
         bytes = {
             type = "blob",
@@ -336,6 +359,7 @@ M.SyncInputConfiguration = {
 
 M.InvokeDataAutomationInput = {
     type = "structure",
+    id = "InvokeDataAutomationInput",
     members = {
         inputConfiguration = setmetatable({ traits = {
             required = true,
@@ -363,6 +387,7 @@ M.CustomOutputStatus = {
 
 M.OutputSegment = {
     type = "structure",
+    id = "OutputSegment",
     members = {
         customOutputStatus = {
             type = "string",
@@ -385,6 +410,7 @@ M.SemanticModality = {
 
 M.InvokeDataAutomationOutput = {
     type = "structure",
+    id = "InvokeDataAutomationOutput",
     members = {
         outputConfiguration = M.OutputConfiguration,
         semanticModality = {
@@ -405,6 +431,7 @@ M.InvokeDataAutomationOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -415,6 +442,7 @@ M.ServiceUnavailableException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -427,6 +455,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -437,6 +466,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -456,10 +486,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -479,6 +511,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

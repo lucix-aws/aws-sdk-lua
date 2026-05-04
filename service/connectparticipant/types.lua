@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.CancelParticipantAuthenticationInput = {
     type = "structure",
+    id = "CancelParticipantAuthenticationInput",
     members = {
         SessionId = {
             type = "string",
@@ -34,10 +36,12 @@ M.CancelParticipantAuthenticationInput = {
 
 M.CancelParticipantAuthenticationOutput = {
     type = "structure",
+    id = "CancelParticipantAuthenticationOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -51,6 +55,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -64,6 +69,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -77,6 +83,7 @@ M.ValidationException = {
 
 M.CompleteAttachmentUploadInput = {
     type = "structure",
+    id = "CompleteAttachmentUploadInput",
     members = {
         AttachmentIds = {
             type = "list",
@@ -104,10 +111,12 @@ M.CompleteAttachmentUploadInput = {
 
 M.CompleteAttachmentUploadOutput = {
     type = "structure",
+    id = "CompleteAttachmentUploadOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -121,6 +130,7 @@ M.ConflictException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -140,6 +150,7 @@ M.ConnectionType = {
 
 M.CreateParticipantConnectionInput = {
     type = "structure",
+    id = "CreateParticipantConnectionInput",
     members = {
         Type = {
             type = "list",
@@ -160,6 +171,7 @@ M.CreateParticipantConnectionInput = {
 
 M.ConnectionCredentials = {
     type = "structure",
+    id = "ConnectionCredentials",
     members = {
         ConnectionToken = {
             type = "string",
@@ -172,6 +184,7 @@ M.ConnectionCredentials = {
 
 M.Attendee = {
     type = "structure",
+    id = "Attendee",
     members = {
         AttendeeId = {
             type = "string",
@@ -184,6 +197,7 @@ M.Attendee = {
 
 M.WebRTCMediaPlacement = {
     type = "structure",
+    id = "WebRTCMediaPlacement",
     members = {
         AudioHostUrl = {
             type = "string",
@@ -207,6 +221,7 @@ M.MeetingFeatureStatus = {
 
 M.AudioFeatures = {
     type = "structure",
+    id = "AudioFeatures",
     members = {
         EchoReduction = {
             type = "string",
@@ -216,6 +231,7 @@ M.AudioFeatures = {
 
 M.MeetingFeaturesConfiguration = {
     type = "structure",
+    id = "MeetingFeaturesConfiguration",
     members = {
         Audio = M.AudioFeatures,
     },
@@ -223,6 +239,7 @@ M.MeetingFeaturesConfiguration = {
 
 M.WebRTCMeeting = {
     type = "structure",
+    id = "WebRTCMeeting",
     members = {
         MediaPlacement = M.WebRTCMediaPlacement,
         MeetingFeatures = M.MeetingFeaturesConfiguration,
@@ -234,6 +251,7 @@ M.WebRTCMeeting = {
 
 M.WebRTCConnection = {
     type = "structure",
+    id = "WebRTCConnection",
     members = {
         Attendee = M.Attendee,
         Meeting = M.WebRTCMeeting,
@@ -242,6 +260,7 @@ M.WebRTCConnection = {
 
 M.Websocket = {
     type = "structure",
+    id = "Websocket",
     members = {
         Url = {
             type = "string",
@@ -254,6 +273,7 @@ M.Websocket = {
 
 M.CreateParticipantConnectionOutput = {
     type = "structure",
+    id = "CreateParticipantConnectionOutput",
     members = {
         Websocket = M.Websocket,
         ConnectionCredentials = M.ConnectionCredentials,
@@ -263,6 +283,7 @@ M.CreateParticipantConnectionOutput = {
 
 M.DescribeViewInput = {
     type = "structure",
+    id = "DescribeViewInput",
     members = {
         ViewToken = {
             type = "string",
@@ -283,6 +304,7 @@ M.DescribeViewInput = {
 
 M.ViewContent = {
     type = "structure",
+    id = "ViewContent",
     members = {
         InputSchema = {
             type = "string",
@@ -299,6 +321,7 @@ M.ViewContent = {
 
 M.View = {
     type = "structure",
+    id = "View",
     members = {
         Id = {
             type = "string",
@@ -318,6 +341,7 @@ M.View = {
 
 M.DescribeViewOutput = {
     type = "structure",
+    id = "DescribeViewOutput",
     members = {
         View = M.View,
     },
@@ -336,6 +360,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -352,6 +377,7 @@ M.ResourceNotFoundException = {
 
 M.DisconnectParticipantInput = {
     type = "structure",
+    id = "DisconnectParticipantInput",
     members = {
         ClientToken = {
             type = "string",
@@ -371,10 +397,12 @@ M.DisconnectParticipantInput = {
 
 M.DisconnectParticipantOutput = {
     type = "structure",
+    id = "DisconnectParticipantOutput",
 }
 
 M.GetAttachmentInput = {
     type = "structure",
+    id = "GetAttachmentInput",
     members = {
         AttachmentId = {
             type = "string",
@@ -397,6 +425,7 @@ M.GetAttachmentInput = {
 
 M.GetAttachmentOutput = {
     type = "structure",
+    id = "GetAttachmentOutput",
     members = {
         Url = {
             type = "string",
@@ -416,6 +445,7 @@ M.GetAttachmentOutput = {
 
 M.GetAuthenticationUrlInput = {
     type = "structure",
+    id = "GetAuthenticationUrlInput",
     members = {
         SessionId = {
             type = "string",
@@ -441,6 +471,7 @@ M.GetAuthenticationUrlInput = {
 
 M.GetAuthenticationUrlOutput = {
     type = "structure",
+    id = "GetAuthenticationUrlOutput",
     members = {
         AuthenticationUrl = {
             type = "string",
@@ -460,6 +491,7 @@ M.SortKey = {
 
 M.StartPosition = {
     type = "structure",
+    id = "StartPosition",
     members = {
         Id = {
             type = "string",
@@ -478,6 +510,7 @@ M.StartPosition = {
 
 M.GetTranscriptInput = {
     type = "structure",
+    id = "GetTranscriptInput",
     members = {
         ContactId = {
             type = "string",
@@ -516,6 +549,7 @@ M.ArtifactStatus = {
 
 M.AttachmentItem = {
     type = "structure",
+    id = "AttachmentItem",
     members = {
         ContentType = {
             type = "string",
@@ -540,6 +574,7 @@ M.MessageProcessingStatus = {
 
 M.Receipt = {
     type = "structure",
+    id = "Receipt",
     members = {
         DeliveredTimestamp = {
             type = "string",
@@ -555,6 +590,7 @@ M.Receipt = {
 
 M.MessageMetadata = {
     type = "structure",
+    id = "MessageMetadata",
     members = {
         MessageId = {
             type = "string",
@@ -594,6 +630,7 @@ M.ChatItemType = {
 
 M.Item = {
     type = "structure",
+    id = "Item",
     members = {
         AbsoluteTime = {
             type = "string",
@@ -635,6 +672,7 @@ M.Item = {
 
 M.GetTranscriptOutput = {
     type = "structure",
+    id = "GetTranscriptOutput",
     members = {
         InitialContactId = {
             type = "string",
@@ -651,6 +689,7 @@ M.GetTranscriptOutput = {
 
 M.SendEventInput = {
     type = "structure",
+    id = "SendEventInput",
     members = {
         ContentType = {
             type = "string",
@@ -679,6 +718,7 @@ M.SendEventInput = {
 
 M.SendEventOutput = {
     type = "structure",
+    id = "SendEventOutput",
     members = {
         Id = {
             type = "string",
@@ -691,6 +731,7 @@ M.SendEventOutput = {
 
 M.SendMessageInput = {
     type = "structure",
+    id = "SendMessageInput",
     members = {
         ContentType = {
             type = "string",
@@ -722,6 +763,7 @@ M.SendMessageInput = {
 
 M.MessageProcessingMetadata = {
     type = "structure",
+    id = "MessageProcessingMetadata",
     members = {
         MessageProcessingStatus = {
             type = "string",
@@ -731,6 +773,7 @@ M.MessageProcessingMetadata = {
 
 M.SendMessageOutput = {
     type = "structure",
+    id = "SendMessageOutput",
     members = {
         Id = {
             type = "string",
@@ -744,6 +787,7 @@ M.SendMessageOutput = {
 
 M.StartAttachmentUploadInput = {
     type = "structure",
+    id = "StartAttachmentUploadInput",
     members = {
         ContentType = {
             type = "string",
@@ -783,6 +827,7 @@ M.StartAttachmentUploadInput = {
 
 M.UploadMetadata = {
     type = "structure",
+    id = "UploadMetadata",
     members = {
         Url = {
             type = "string",
@@ -800,6 +845,7 @@ M.UploadMetadata = {
 
 M.StartAttachmentUploadOutput = {
     type = "structure",
+    id = "StartAttachmentUploadOutput",
     members = {
         AttachmentId = {
             type = "string",

@@ -8,6 +8,7 @@ M.WafActionType = {
 
 M.WafAction = {
     type = "structure",
+    id = "WafAction",
     members = {
         Type = {
             type = "string",
@@ -20,6 +21,7 @@ M.WafAction = {
 
 M.ExcludedRule = {
     type = "structure",
+    id = "ExcludedRule",
     members = {
         RuleId = {
             type = "string",
@@ -37,6 +39,7 @@ M.WafOverrideActionType = {
 
 M.WafOverrideAction = {
     type = "structure",
+    id = "WafOverrideAction",
     members = {
         Type = {
             type = "string",
@@ -55,6 +58,7 @@ M.WafRuleType = {
 
 M.ActivatedRule = {
     type = "structure",
+    id = "ActivatedRule",
     members = {
         Priority = {
             type = "integer",
@@ -82,6 +86,7 @@ M.ActivatedRule = {
 
 M.CreateByteMatchSetInput = {
     type = "structure",
+    id = "CreateByteMatchSetInput",
     members = {
         Name = {
             type = "string",
@@ -110,6 +115,7 @@ M.MatchFieldType = {
 
 M.FieldToMatch = {
     type = "structure",
+    id = "FieldToMatch",
     members = {
         Type = {
             type = "string",
@@ -142,6 +148,7 @@ M.TextTransformation = {
 
 M.ByteMatchTuple = {
     type = "structure",
+    id = "ByteMatchTuple",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -169,6 +176,7 @@ M.ByteMatchTuple = {
 
 M.ByteMatchSet = {
     type = "structure",
+    id = "ByteMatchSet",
     members = {
         ByteMatchSetId = {
             type = "string",
@@ -191,6 +199,7 @@ M.ByteMatchSet = {
 
 M.CreateByteMatchSetOutput = {
     type = "structure",
+    id = "CreateByteMatchSetOutput",
     members = {
         ByteMatchSet = M.ByteMatchSet,
         ChangeToken = {
@@ -201,6 +210,7 @@ M.CreateByteMatchSetOutput = {
 
 M.WAFDisallowedNameException = {
     type = "structure",
+    id = "WAFDisallowedNameException",
     error = "client",
     members = {
         message = {
@@ -211,6 +221,7 @@ M.WAFDisallowedNameException = {
 
 M.WAFInternalErrorException = {
     type = "structure",
+    id = "WAFInternalErrorException",
     error = "server",
     members = {
         message = {
@@ -221,6 +232,7 @@ M.WAFInternalErrorException = {
 
 M.WAFInvalidAccountException = {
     type = "structure",
+    id = "WAFInvalidAccountException",
     error = "client",
 }
 
@@ -254,6 +266,7 @@ M.ParameterExceptionReason = {
 
 M.WAFInvalidParameterException = {
     type = "structure",
+    id = "WAFInvalidParameterException",
     error = "client",
     members = {
         field = {
@@ -270,6 +283,7 @@ M.WAFInvalidParameterException = {
 
 M.WAFLimitsExceededException = {
     type = "structure",
+    id = "WAFLimitsExceededException",
     error = "client",
     members = {
         message = {
@@ -280,6 +294,7 @@ M.WAFLimitsExceededException = {
 
 M.WAFStaleDataException = {
     type = "structure",
+    id = "WAFStaleDataException",
     error = "client",
     members = {
         message = {
@@ -290,6 +305,7 @@ M.WAFStaleDataException = {
 
 M.CreateGeoMatchSetInput = {
     type = "structure",
+    id = "CreateGeoMatchSetInput",
     members = {
         Name = {
             type = "string",
@@ -564,6 +580,7 @@ M.GeoMatchConstraintValue = {
 
 M.GeoMatchConstraint = {
     type = "structure",
+    id = "GeoMatchConstraint",
     members = {
         Type = {
             type = "string",
@@ -582,6 +599,7 @@ M.GeoMatchConstraint = {
 
 M.GeoMatchSet = {
     type = "structure",
+    id = "GeoMatchSet",
     members = {
         GeoMatchSetId = {
             type = "string",
@@ -604,6 +622,7 @@ M.GeoMatchSet = {
 
 M.CreateGeoMatchSetOutput = {
     type = "structure",
+    id = "CreateGeoMatchSetOutput",
     members = {
         GeoMatchSet = M.GeoMatchSet,
         ChangeToken = {
@@ -614,6 +633,7 @@ M.CreateGeoMatchSetOutput = {
 
 M.CreateIPSetInput = {
     type = "structure",
+    id = "CreateIPSetInput",
     members = {
         Name = {
             type = "string",
@@ -637,6 +657,7 @@ M.IPSetDescriptorType = {
 
 M.IPSetDescriptor = {
     type = "structure",
+    id = "IPSetDescriptor",
     members = {
         Type = {
             type = "string",
@@ -655,6 +676,7 @@ M.IPSetDescriptor = {
 
 M.IPSet = {
     type = "structure",
+    id = "IPSet",
     members = {
         IPSetId = {
             type = "string",
@@ -677,6 +699,7 @@ M.IPSet = {
 
 M.CreateIPSetOutput = {
     type = "structure",
+    id = "CreateIPSetOutput",
     members = {
         IPSet = M.IPSet,
         ChangeToken = {
@@ -691,6 +714,7 @@ M.RateKey = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -709,6 +733,7 @@ M.Tag = {
 
 M.CreateRateBasedRuleInput = {
     type = "structure",
+    id = "CreateRateBasedRuleInput",
     members = {
         Name = {
             type = "string",
@@ -759,6 +784,7 @@ M.PredicateType = {
 
 M.Predicate = {
     type = "structure",
+    id = "Predicate",
     members = {
         Negated = {
             type = "boolean",
@@ -783,6 +809,7 @@ M.Predicate = {
 
 M.RateBasedRule = {
     type = "structure",
+    id = "RateBasedRule",
     members = {
         RuleId = {
             type = "string",
@@ -820,6 +847,7 @@ M.RateBasedRule = {
 
 M.CreateRateBasedRuleOutput = {
     type = "structure",
+    id = "CreateRateBasedRuleOutput",
     members = {
         Rule = M.RateBasedRule,
         ChangeToken = {
@@ -830,6 +858,7 @@ M.CreateRateBasedRuleOutput = {
 
 M.WAFBadRequestException = {
     type = "structure",
+    id = "WAFBadRequestException",
     error = "client",
     members = {
         message = {
@@ -840,6 +869,7 @@ M.WAFBadRequestException = {
 
 M.WAFTagOperationException = {
     type = "structure",
+    id = "WAFTagOperationException",
     error = "client",
     members = {
         message = {
@@ -850,6 +880,7 @@ M.WAFTagOperationException = {
 
 M.WAFTagOperationInternalErrorException = {
     type = "structure",
+    id = "WAFTagOperationInternalErrorException",
     error = "server",
     members = {
         message = {
@@ -860,6 +891,7 @@ M.WAFTagOperationInternalErrorException = {
 
 M.CreateRegexMatchSetInput = {
     type = "structure",
+    id = "CreateRegexMatchSetInput",
     members = {
         Name = {
             type = "string",
@@ -878,6 +910,7 @@ M.CreateRegexMatchSetInput = {
 
 M.RegexMatchTuple = {
     type = "structure",
+    id = "RegexMatchTuple",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -899,6 +932,7 @@ M.RegexMatchTuple = {
 
 M.RegexMatchSet = {
     type = "structure",
+    id = "RegexMatchSet",
     members = {
         RegexMatchSetId = {
             type = "string",
@@ -915,6 +949,7 @@ M.RegexMatchSet = {
 
 M.CreateRegexMatchSetOutput = {
     type = "structure",
+    id = "CreateRegexMatchSetOutput",
     members = {
         RegexMatchSet = M.RegexMatchSet,
         ChangeToken = {
@@ -925,6 +960,7 @@ M.CreateRegexMatchSetOutput = {
 
 M.CreateRegexPatternSetInput = {
     type = "structure",
+    id = "CreateRegexPatternSetInput",
     members = {
         Name = {
             type = "string",
@@ -943,6 +979,7 @@ M.CreateRegexPatternSetInput = {
 
 M.RegexPatternSet = {
     type = "structure",
+    id = "RegexPatternSet",
     members = {
         RegexPatternSetId = {
             type = "string",
@@ -965,6 +1002,7 @@ M.RegexPatternSet = {
 
 M.CreateRegexPatternSetOutput = {
     type = "structure",
+    id = "CreateRegexPatternSetOutput",
     members = {
         RegexPatternSet = M.RegexPatternSet,
         ChangeToken = {
@@ -975,6 +1013,7 @@ M.CreateRegexPatternSetOutput = {
 
 M.CreateRuleInput = {
     type = "structure",
+    id = "CreateRuleInput",
     members = {
         Name = {
             type = "string",
@@ -1003,6 +1042,7 @@ M.CreateRuleInput = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         RuleId = {
             type = "string",
@@ -1028,6 +1068,7 @@ M.Rule = {
 
 M.CreateRuleOutput = {
     type = "structure",
+    id = "CreateRuleOutput",
     members = {
         Rule = M.Rule,
         ChangeToken = {
@@ -1038,6 +1079,7 @@ M.CreateRuleOutput = {
 
 M.CreateRuleGroupInput = {
     type = "structure",
+    id = "CreateRuleGroupInput",
     members = {
         Name = {
             type = "string",
@@ -1066,6 +1108,7 @@ M.CreateRuleGroupInput = {
 
 M.RuleGroup = {
     type = "structure",
+    id = "RuleGroup",
     members = {
         RuleGroupId = {
             type = "string",
@@ -1084,6 +1127,7 @@ M.RuleGroup = {
 
 M.CreateRuleGroupOutput = {
     type = "structure",
+    id = "CreateRuleGroupOutput",
     members = {
         RuleGroup = M.RuleGroup,
         ChangeToken = {
@@ -1094,6 +1138,7 @@ M.CreateRuleGroupOutput = {
 
 M.CreateSizeConstraintSetInput = {
     type = "structure",
+    id = "CreateSizeConstraintSetInput",
     members = {
         Name = {
             type = "string",
@@ -1121,6 +1166,7 @@ M.ComparisonOperator = {
 
 M.SizeConstraint = {
     type = "structure",
+    id = "SizeConstraint",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -1149,6 +1195,7 @@ M.SizeConstraint = {
 
 M.SizeConstraintSet = {
     type = "structure",
+    id = "SizeConstraintSet",
     members = {
         SizeConstraintSetId = {
             type = "string",
@@ -1171,6 +1218,7 @@ M.SizeConstraintSet = {
 
 M.CreateSizeConstraintSetOutput = {
     type = "structure",
+    id = "CreateSizeConstraintSetOutput",
     members = {
         SizeConstraintSet = M.SizeConstraintSet,
         ChangeToken = {
@@ -1181,6 +1229,7 @@ M.CreateSizeConstraintSetOutput = {
 
 M.CreateSqlInjectionMatchSetInput = {
     type = "structure",
+    id = "CreateSqlInjectionMatchSetInput",
     members = {
         Name = {
             type = "string",
@@ -1199,6 +1248,7 @@ M.CreateSqlInjectionMatchSetInput = {
 
 M.SqlInjectionMatchTuple = {
     type = "structure",
+    id = "SqlInjectionMatchTuple",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -1214,6 +1264,7 @@ M.SqlInjectionMatchTuple = {
 
 M.SqlInjectionMatchSet = {
     type = "structure",
+    id = "SqlInjectionMatchSet",
     members = {
         SqlInjectionMatchSetId = {
             type = "string",
@@ -1236,6 +1287,7 @@ M.SqlInjectionMatchSet = {
 
 M.CreateSqlInjectionMatchSetOutput = {
     type = "structure",
+    id = "CreateSqlInjectionMatchSetOutput",
     members = {
         SqlInjectionMatchSet = M.SqlInjectionMatchSet,
         ChangeToken = {
@@ -1246,6 +1298,7 @@ M.CreateSqlInjectionMatchSetOutput = {
 
 M.CreateWebACLInput = {
     type = "structure",
+    id = "CreateWebACLInput",
     members = {
         Name = {
             type = "string",
@@ -1277,6 +1330,7 @@ M.CreateWebACLInput = {
 
 M.WebACL = {
     type = "structure",
+    id = "WebACL",
     members = {
         WebACLId = {
             type = "string",
@@ -1308,6 +1362,7 @@ M.WebACL = {
 
 M.CreateWebACLOutput = {
     type = "structure",
+    id = "CreateWebACLOutput",
     members = {
         WebACL = M.WebACL,
         ChangeToken = {
@@ -1318,6 +1373,7 @@ M.CreateWebACLOutput = {
 
 M.CreateWebACLMigrationStackInput = {
     type = "structure",
+    id = "CreateWebACLMigrationStackInput",
     members = {
         WebACLId = {
             type = "string",
@@ -1342,6 +1398,7 @@ M.CreateWebACLMigrationStackInput = {
 
 M.CreateWebACLMigrationStackOutput = {
     type = "structure",
+    id = "CreateWebACLMigrationStackOutput",
     members = {
         S3ObjectUrl = {
             type = "string",
@@ -1364,6 +1421,7 @@ M.MigrationErrorType = {
 
 M.WAFEntityMigrationException = {
     type = "structure",
+    id = "WAFEntityMigrationException",
     error = "client",
     members = {
         message = {
@@ -1380,6 +1438,7 @@ M.WAFEntityMigrationException = {
 
 M.WAFInvalidOperationException = {
     type = "structure",
+    id = "WAFInvalidOperationException",
     error = "client",
     members = {
         message = {
@@ -1390,6 +1449,7 @@ M.WAFInvalidOperationException = {
 
 M.WAFNonexistentItemException = {
     type = "structure",
+    id = "WAFNonexistentItemException",
     error = "client",
     members = {
         message = {
@@ -1400,6 +1460,7 @@ M.WAFNonexistentItemException = {
 
 M.CreateXssMatchSetInput = {
     type = "structure",
+    id = "CreateXssMatchSetInput",
     members = {
         Name = {
             type = "string",
@@ -1418,6 +1479,7 @@ M.CreateXssMatchSetInput = {
 
 M.XssMatchTuple = {
     type = "structure",
+    id = "XssMatchTuple",
     members = {
         FieldToMatch = setmetatable({ traits = {
             required = true,
@@ -1433,6 +1495,7 @@ M.XssMatchTuple = {
 
 M.XssMatchSet = {
     type = "structure",
+    id = "XssMatchSet",
     members = {
         XssMatchSetId = {
             type = "string",
@@ -1455,6 +1518,7 @@ M.XssMatchSet = {
 
 M.CreateXssMatchSetOutput = {
     type = "structure",
+    id = "CreateXssMatchSetOutput",
     members = {
         XssMatchSet = M.XssMatchSet,
         ChangeToken = {
@@ -1465,6 +1529,7 @@ M.CreateXssMatchSetOutput = {
 
 M.DeleteByteMatchSetInput = {
     type = "structure",
+    id = "DeleteByteMatchSetInput",
     members = {
         ByteMatchSetId = {
             type = "string",
@@ -1483,6 +1548,7 @@ M.DeleteByteMatchSetInput = {
 
 M.DeleteByteMatchSetOutput = {
     type = "structure",
+    id = "DeleteByteMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1492,6 +1558,7 @@ M.DeleteByteMatchSetOutput = {
 
 M.WAFNonEmptyEntityException = {
     type = "structure",
+    id = "WAFNonEmptyEntityException",
     error = "client",
     members = {
         message = {
@@ -1502,6 +1569,7 @@ M.WAFNonEmptyEntityException = {
 
 M.WAFReferencedItemException = {
     type = "structure",
+    id = "WAFReferencedItemException",
     error = "client",
     members = {
         message = {
@@ -1512,6 +1580,7 @@ M.WAFReferencedItemException = {
 
 M.DeleteGeoMatchSetInput = {
     type = "structure",
+    id = "DeleteGeoMatchSetInput",
     members = {
         GeoMatchSetId = {
             type = "string",
@@ -1530,6 +1599,7 @@ M.DeleteGeoMatchSetInput = {
 
 M.DeleteGeoMatchSetOutput = {
     type = "structure",
+    id = "DeleteGeoMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1539,6 +1609,7 @@ M.DeleteGeoMatchSetOutput = {
 
 M.DeleteIPSetInput = {
     type = "structure",
+    id = "DeleteIPSetInput",
     members = {
         IPSetId = {
             type = "string",
@@ -1557,6 +1628,7 @@ M.DeleteIPSetInput = {
 
 M.DeleteIPSetOutput = {
     type = "structure",
+    id = "DeleteIPSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1566,6 +1638,7 @@ M.DeleteIPSetOutput = {
 
 M.DeleteLoggingConfigurationInput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1578,10 +1651,12 @@ M.DeleteLoggingConfigurationInput = {
 
 M.DeleteLoggingConfigurationOutput = {
     type = "structure",
+    id = "DeleteLoggingConfigurationOutput",
 }
 
 M.DeletePermissionPolicyInput = {
     type = "structure",
+    id = "DeletePermissionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1594,10 +1669,12 @@ M.DeletePermissionPolicyInput = {
 
 M.DeletePermissionPolicyOutput = {
     type = "structure",
+    id = "DeletePermissionPolicyOutput",
 }
 
 M.DeleteRateBasedRuleInput = {
     type = "structure",
+    id = "DeleteRateBasedRuleInput",
     members = {
         RuleId = {
             type = "string",
@@ -1616,6 +1693,7 @@ M.DeleteRateBasedRuleInput = {
 
 M.DeleteRateBasedRuleOutput = {
     type = "structure",
+    id = "DeleteRateBasedRuleOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1625,6 +1703,7 @@ M.DeleteRateBasedRuleOutput = {
 
 M.DeleteRegexMatchSetInput = {
     type = "structure",
+    id = "DeleteRegexMatchSetInput",
     members = {
         RegexMatchSetId = {
             type = "string",
@@ -1643,6 +1722,7 @@ M.DeleteRegexMatchSetInput = {
 
 M.DeleteRegexMatchSetOutput = {
     type = "structure",
+    id = "DeleteRegexMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1652,6 +1732,7 @@ M.DeleteRegexMatchSetOutput = {
 
 M.DeleteRegexPatternSetInput = {
     type = "structure",
+    id = "DeleteRegexPatternSetInput",
     members = {
         RegexPatternSetId = {
             type = "string",
@@ -1670,6 +1751,7 @@ M.DeleteRegexPatternSetInput = {
 
 M.DeleteRegexPatternSetOutput = {
     type = "structure",
+    id = "DeleteRegexPatternSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1679,6 +1761,7 @@ M.DeleteRegexPatternSetOutput = {
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         RuleId = {
             type = "string",
@@ -1697,6 +1780,7 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1706,6 +1790,7 @@ M.DeleteRuleOutput = {
 
 M.DeleteRuleGroupInput = {
     type = "structure",
+    id = "DeleteRuleGroupInput",
     members = {
         RuleGroupId = {
             type = "string",
@@ -1724,6 +1809,7 @@ M.DeleteRuleGroupInput = {
 
 M.DeleteRuleGroupOutput = {
     type = "structure",
+    id = "DeleteRuleGroupOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1733,6 +1819,7 @@ M.DeleteRuleGroupOutput = {
 
 M.DeleteSizeConstraintSetInput = {
     type = "structure",
+    id = "DeleteSizeConstraintSetInput",
     members = {
         SizeConstraintSetId = {
             type = "string",
@@ -1751,6 +1838,7 @@ M.DeleteSizeConstraintSetInput = {
 
 M.DeleteSizeConstraintSetOutput = {
     type = "structure",
+    id = "DeleteSizeConstraintSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1760,6 +1848,7 @@ M.DeleteSizeConstraintSetOutput = {
 
 M.DeleteSqlInjectionMatchSetInput = {
     type = "structure",
+    id = "DeleteSqlInjectionMatchSetInput",
     members = {
         SqlInjectionMatchSetId = {
             type = "string",
@@ -1778,6 +1867,7 @@ M.DeleteSqlInjectionMatchSetInput = {
 
 M.DeleteSqlInjectionMatchSetOutput = {
     type = "structure",
+    id = "DeleteSqlInjectionMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1787,6 +1877,7 @@ M.DeleteSqlInjectionMatchSetOutput = {
 
 M.DeleteWebACLInput = {
     type = "structure",
+    id = "DeleteWebACLInput",
     members = {
         WebACLId = {
             type = "string",
@@ -1805,6 +1896,7 @@ M.DeleteWebACLInput = {
 
 M.DeleteWebACLOutput = {
     type = "structure",
+    id = "DeleteWebACLOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1814,6 +1906,7 @@ M.DeleteWebACLOutput = {
 
 M.DeleteXssMatchSetInput = {
     type = "structure",
+    id = "DeleteXssMatchSetInput",
     members = {
         XssMatchSetId = {
             type = "string",
@@ -1832,6 +1925,7 @@ M.DeleteXssMatchSetInput = {
 
 M.DeleteXssMatchSetOutput = {
     type = "structure",
+    id = "DeleteXssMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1841,6 +1935,7 @@ M.DeleteXssMatchSetOutput = {
 
 M.GetByteMatchSetInput = {
     type = "structure",
+    id = "GetByteMatchSetInput",
     members = {
         ByteMatchSetId = {
             type = "string",
@@ -1853,6 +1948,7 @@ M.GetByteMatchSetInput = {
 
 M.GetByteMatchSetOutput = {
     type = "structure",
+    id = "GetByteMatchSetOutput",
     members = {
         ByteMatchSet = M.ByteMatchSet,
     },
@@ -1860,10 +1956,12 @@ M.GetByteMatchSetOutput = {
 
 M.GetChangeTokenInput = {
     type = "structure",
+    id = "GetChangeTokenInput",
 }
 
 M.GetChangeTokenOutput = {
     type = "structure",
+    id = "GetChangeTokenOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1873,6 +1971,7 @@ M.GetChangeTokenOutput = {
 
 M.GetChangeTokenStatusInput = {
     type = "structure",
+    id = "GetChangeTokenStatusInput",
     members = {
         ChangeToken = {
             type = "string",
@@ -1891,6 +1990,7 @@ M.ChangeTokenStatus = {
 
 M.GetChangeTokenStatusOutput = {
     type = "structure",
+    id = "GetChangeTokenStatusOutput",
     members = {
         ChangeTokenStatus = {
             type = "string",
@@ -1900,6 +2000,7 @@ M.GetChangeTokenStatusOutput = {
 
 M.GetGeoMatchSetInput = {
     type = "structure",
+    id = "GetGeoMatchSetInput",
     members = {
         GeoMatchSetId = {
             type = "string",
@@ -1912,6 +2013,7 @@ M.GetGeoMatchSetInput = {
 
 M.GetGeoMatchSetOutput = {
     type = "structure",
+    id = "GetGeoMatchSetOutput",
     members = {
         GeoMatchSet = M.GeoMatchSet,
     },
@@ -1919,6 +2021,7 @@ M.GetGeoMatchSetOutput = {
 
 M.GetIPSetInput = {
     type = "structure",
+    id = "GetIPSetInput",
     members = {
         IPSetId = {
             type = "string",
@@ -1931,6 +2034,7 @@ M.GetIPSetInput = {
 
 M.GetIPSetOutput = {
     type = "structure",
+    id = "GetIPSetOutput",
     members = {
         IPSet = M.IPSet,
     },
@@ -1938,6 +2042,7 @@ M.GetIPSetOutput = {
 
 M.GetLoggingConfigurationInput = {
     type = "structure",
+    id = "GetLoggingConfigurationInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1950,6 +2055,7 @@ M.GetLoggingConfigurationInput = {
 
 M.LoggingConfiguration = {
     type = "structure",
+    id = "LoggingConfiguration",
     members = {
         ResourceArn = {
             type = "string",
@@ -1973,6 +2079,7 @@ M.LoggingConfiguration = {
 
 M.GetLoggingConfigurationOutput = {
     type = "structure",
+    id = "GetLoggingConfigurationOutput",
     members = {
         LoggingConfiguration = M.LoggingConfiguration,
     },
@@ -1980,6 +2087,7 @@ M.GetLoggingConfigurationOutput = {
 
 M.GetPermissionPolicyInput = {
     type = "structure",
+    id = "GetPermissionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1992,6 +2100,7 @@ M.GetPermissionPolicyInput = {
 
 M.GetPermissionPolicyOutput = {
     type = "structure",
+    id = "GetPermissionPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -2001,6 +2110,7 @@ M.GetPermissionPolicyOutput = {
 
 M.GetRateBasedRuleInput = {
     type = "structure",
+    id = "GetRateBasedRuleInput",
     members = {
         RuleId = {
             type = "string",
@@ -2013,6 +2123,7 @@ M.GetRateBasedRuleInput = {
 
 M.GetRateBasedRuleOutput = {
     type = "structure",
+    id = "GetRateBasedRuleOutput",
     members = {
         Rule = M.RateBasedRule,
     },
@@ -2020,6 +2131,7 @@ M.GetRateBasedRuleOutput = {
 
 M.GetRateBasedRuleManagedKeysInput = {
     type = "structure",
+    id = "GetRateBasedRuleManagedKeysInput",
     members = {
         RuleId = {
             type = "string",
@@ -2035,6 +2147,7 @@ M.GetRateBasedRuleManagedKeysInput = {
 
 M.GetRateBasedRuleManagedKeysOutput = {
     type = "structure",
+    id = "GetRateBasedRuleManagedKeysOutput",
     members = {
         ManagedKeys = {
             type = "list",
@@ -2048,6 +2161,7 @@ M.GetRateBasedRuleManagedKeysOutput = {
 
 M.GetRegexMatchSetInput = {
     type = "structure",
+    id = "GetRegexMatchSetInput",
     members = {
         RegexMatchSetId = {
             type = "string",
@@ -2060,6 +2174,7 @@ M.GetRegexMatchSetInput = {
 
 M.GetRegexMatchSetOutput = {
     type = "structure",
+    id = "GetRegexMatchSetOutput",
     members = {
         RegexMatchSet = M.RegexMatchSet,
     },
@@ -2067,6 +2182,7 @@ M.GetRegexMatchSetOutput = {
 
 M.GetRegexPatternSetInput = {
     type = "structure",
+    id = "GetRegexPatternSetInput",
     members = {
         RegexPatternSetId = {
             type = "string",
@@ -2079,6 +2195,7 @@ M.GetRegexPatternSetInput = {
 
 M.GetRegexPatternSetOutput = {
     type = "structure",
+    id = "GetRegexPatternSetOutput",
     members = {
         RegexPatternSet = M.RegexPatternSet,
     },
@@ -2086,6 +2203,7 @@ M.GetRegexPatternSetOutput = {
 
 M.GetRuleInput = {
     type = "structure",
+    id = "GetRuleInput",
     members = {
         RuleId = {
             type = "string",
@@ -2098,6 +2216,7 @@ M.GetRuleInput = {
 
 M.GetRuleOutput = {
     type = "structure",
+    id = "GetRuleOutput",
     members = {
         Rule = M.Rule,
     },
@@ -2105,6 +2224,7 @@ M.GetRuleOutput = {
 
 M.GetRuleGroupInput = {
     type = "structure",
+    id = "GetRuleGroupInput",
     members = {
         RuleGroupId = {
             type = "string",
@@ -2117,6 +2237,7 @@ M.GetRuleGroupInput = {
 
 M.GetRuleGroupOutput = {
     type = "structure",
+    id = "GetRuleGroupOutput",
     members = {
         RuleGroup = M.RuleGroup,
     },
@@ -2124,6 +2245,7 @@ M.GetRuleGroupOutput = {
 
 M.TimeWindow = {
     type = "structure",
+    id = "TimeWindow",
     members = {
         StartTime = {
             type = "timestamp",
@@ -2142,6 +2264,7 @@ M.TimeWindow = {
 
 M.GetSampledRequestsInput = {
     type = "structure",
+    id = "GetSampledRequestsInput",
     members = {
         WebAclId = {
             type = "string",
@@ -2169,6 +2292,7 @@ M.GetSampledRequestsInput = {
 
 M.HTTPHeader = {
     type = "structure",
+    id = "HTTPHeader",
     members = {
         Name = {
             type = "string",
@@ -2181,6 +2305,7 @@ M.HTTPHeader = {
 
 M.HTTPRequest = {
     type = "structure",
+    id = "HTTPRequest",
     members = {
         ClientIP = {
             type = "string",
@@ -2206,6 +2331,7 @@ M.HTTPRequest = {
 
 M.SampledHTTPRequest = {
     type = "structure",
+    id = "SampledHTTPRequest",
     members = {
         Request = setmetatable({ traits = {
             required = true,
@@ -2231,6 +2357,7 @@ M.SampledHTTPRequest = {
 
 M.GetSampledRequestsOutput = {
     type = "structure",
+    id = "GetSampledRequestsOutput",
     members = {
         SampledRequests = {
             type = "list",
@@ -2248,6 +2375,7 @@ M.GetSampledRequestsOutput = {
 
 M.GetSizeConstraintSetInput = {
     type = "structure",
+    id = "GetSizeConstraintSetInput",
     members = {
         SizeConstraintSetId = {
             type = "string",
@@ -2260,6 +2388,7 @@ M.GetSizeConstraintSetInput = {
 
 M.GetSizeConstraintSetOutput = {
     type = "structure",
+    id = "GetSizeConstraintSetOutput",
     members = {
         SizeConstraintSet = M.SizeConstraintSet,
     },
@@ -2267,6 +2396,7 @@ M.GetSizeConstraintSetOutput = {
 
 M.GetSqlInjectionMatchSetInput = {
     type = "structure",
+    id = "GetSqlInjectionMatchSetInput",
     members = {
         SqlInjectionMatchSetId = {
             type = "string",
@@ -2279,6 +2409,7 @@ M.GetSqlInjectionMatchSetInput = {
 
 M.GetSqlInjectionMatchSetOutput = {
     type = "structure",
+    id = "GetSqlInjectionMatchSetOutput",
     members = {
         SqlInjectionMatchSet = M.SqlInjectionMatchSet,
     },
@@ -2286,6 +2417,7 @@ M.GetSqlInjectionMatchSetOutput = {
 
 M.GetWebACLInput = {
     type = "structure",
+    id = "GetWebACLInput",
     members = {
         WebACLId = {
             type = "string",
@@ -2298,6 +2430,7 @@ M.GetWebACLInput = {
 
 M.GetWebACLOutput = {
     type = "structure",
+    id = "GetWebACLOutput",
     members = {
         WebACL = M.WebACL,
     },
@@ -2305,6 +2438,7 @@ M.GetWebACLOutput = {
 
 M.GetXssMatchSetInput = {
     type = "structure",
+    id = "GetXssMatchSetInput",
     members = {
         XssMatchSetId = {
             type = "string",
@@ -2317,6 +2451,7 @@ M.GetXssMatchSetInput = {
 
 M.GetXssMatchSetOutput = {
     type = "structure",
+    id = "GetXssMatchSetOutput",
     members = {
         XssMatchSet = M.XssMatchSet,
     },
@@ -2324,6 +2459,7 @@ M.GetXssMatchSetOutput = {
 
 M.ListActivatedRulesInRuleGroupInput = {
     type = "structure",
+    id = "ListActivatedRulesInRuleGroupInput",
     members = {
         RuleGroupId = {
             type = "string",
@@ -2342,6 +2478,7 @@ M.ListActivatedRulesInRuleGroupInput = {
 
 M.ListActivatedRulesInRuleGroupOutput = {
     type = "structure",
+    id = "ListActivatedRulesInRuleGroupOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2355,6 +2492,7 @@ M.ListActivatedRulesInRuleGroupOutput = {
 
 M.ListByteMatchSetsInput = {
     type = "structure",
+    id = "ListByteMatchSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2370,6 +2508,7 @@ M.ListByteMatchSetsInput = {
 
 M.ByteMatchSetSummary = {
     type = "structure",
+    id = "ByteMatchSetSummary",
     members = {
         ByteMatchSetId = {
             type = "string",
@@ -2388,6 +2527,7 @@ M.ByteMatchSetSummary = {
 
 M.ListByteMatchSetsOutput = {
     type = "structure",
+    id = "ListByteMatchSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2401,6 +2541,7 @@ M.ListByteMatchSetsOutput = {
 
 M.ListGeoMatchSetsInput = {
     type = "structure",
+    id = "ListGeoMatchSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2416,6 +2557,7 @@ M.ListGeoMatchSetsInput = {
 
 M.GeoMatchSetSummary = {
     type = "structure",
+    id = "GeoMatchSetSummary",
     members = {
         GeoMatchSetId = {
             type = "string",
@@ -2434,6 +2576,7 @@ M.GeoMatchSetSummary = {
 
 M.ListGeoMatchSetsOutput = {
     type = "structure",
+    id = "ListGeoMatchSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2447,6 +2590,7 @@ M.ListGeoMatchSetsOutput = {
 
 M.ListIPSetsInput = {
     type = "structure",
+    id = "ListIPSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2462,6 +2606,7 @@ M.ListIPSetsInput = {
 
 M.IPSetSummary = {
     type = "structure",
+    id = "IPSetSummary",
     members = {
         IPSetId = {
             type = "string",
@@ -2480,6 +2625,7 @@ M.IPSetSummary = {
 
 M.ListIPSetsOutput = {
     type = "structure",
+    id = "ListIPSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2493,6 +2639,7 @@ M.ListIPSetsOutput = {
 
 M.ListLoggingConfigurationsInput = {
     type = "structure",
+    id = "ListLoggingConfigurationsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2508,6 +2655,7 @@ M.ListLoggingConfigurationsInput = {
 
 M.ListLoggingConfigurationsOutput = {
     type = "structure",
+    id = "ListLoggingConfigurationsOutput",
     members = {
         LoggingConfigurations = {
             type = "list",
@@ -2521,6 +2669,7 @@ M.ListLoggingConfigurationsOutput = {
 
 M.ListRateBasedRulesInput = {
     type = "structure",
+    id = "ListRateBasedRulesInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2536,6 +2685,7 @@ M.ListRateBasedRulesInput = {
 
 M.RuleSummary = {
     type = "structure",
+    id = "RuleSummary",
     members = {
         RuleId = {
             type = "string",
@@ -2554,6 +2704,7 @@ M.RuleSummary = {
 
 M.ListRateBasedRulesOutput = {
     type = "structure",
+    id = "ListRateBasedRulesOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2567,6 +2718,7 @@ M.ListRateBasedRulesOutput = {
 
 M.ListRegexMatchSetsInput = {
     type = "structure",
+    id = "ListRegexMatchSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2582,6 +2734,7 @@ M.ListRegexMatchSetsInput = {
 
 M.RegexMatchSetSummary = {
     type = "structure",
+    id = "RegexMatchSetSummary",
     members = {
         RegexMatchSetId = {
             type = "string",
@@ -2600,6 +2753,7 @@ M.RegexMatchSetSummary = {
 
 M.ListRegexMatchSetsOutput = {
     type = "structure",
+    id = "ListRegexMatchSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2613,6 +2767,7 @@ M.ListRegexMatchSetsOutput = {
 
 M.ListRegexPatternSetsInput = {
     type = "structure",
+    id = "ListRegexPatternSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2628,6 +2783,7 @@ M.ListRegexPatternSetsInput = {
 
 M.RegexPatternSetSummary = {
     type = "structure",
+    id = "RegexPatternSetSummary",
     members = {
         RegexPatternSetId = {
             type = "string",
@@ -2646,6 +2802,7 @@ M.RegexPatternSetSummary = {
 
 M.ListRegexPatternSetsOutput = {
     type = "structure",
+    id = "ListRegexPatternSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2659,6 +2816,7 @@ M.ListRegexPatternSetsOutput = {
 
 M.ListRuleGroupsInput = {
     type = "structure",
+    id = "ListRuleGroupsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2674,6 +2832,7 @@ M.ListRuleGroupsInput = {
 
 M.RuleGroupSummary = {
     type = "structure",
+    id = "RuleGroupSummary",
     members = {
         RuleGroupId = {
             type = "string",
@@ -2692,6 +2851,7 @@ M.RuleGroupSummary = {
 
 M.ListRuleGroupsOutput = {
     type = "structure",
+    id = "ListRuleGroupsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2705,6 +2865,7 @@ M.ListRuleGroupsOutput = {
 
 M.ListRulesInput = {
     type = "structure",
+    id = "ListRulesInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2720,6 +2881,7 @@ M.ListRulesInput = {
 
 M.ListRulesOutput = {
     type = "structure",
+    id = "ListRulesOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2733,6 +2895,7 @@ M.ListRulesOutput = {
 
 M.ListSizeConstraintSetsInput = {
     type = "structure",
+    id = "ListSizeConstraintSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2748,6 +2911,7 @@ M.ListSizeConstraintSetsInput = {
 
 M.SizeConstraintSetSummary = {
     type = "structure",
+    id = "SizeConstraintSetSummary",
     members = {
         SizeConstraintSetId = {
             type = "string",
@@ -2766,6 +2930,7 @@ M.SizeConstraintSetSummary = {
 
 M.ListSizeConstraintSetsOutput = {
     type = "structure",
+    id = "ListSizeConstraintSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2779,6 +2944,7 @@ M.ListSizeConstraintSetsOutput = {
 
 M.ListSqlInjectionMatchSetsInput = {
     type = "structure",
+    id = "ListSqlInjectionMatchSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2794,6 +2960,7 @@ M.ListSqlInjectionMatchSetsInput = {
 
 M.SqlInjectionMatchSetSummary = {
     type = "structure",
+    id = "SqlInjectionMatchSetSummary",
     members = {
         SqlInjectionMatchSetId = {
             type = "string",
@@ -2812,6 +2979,7 @@ M.SqlInjectionMatchSetSummary = {
 
 M.ListSqlInjectionMatchSetsOutput = {
     type = "structure",
+    id = "ListSqlInjectionMatchSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2825,6 +2993,7 @@ M.ListSqlInjectionMatchSetsOutput = {
 
 M.ListSubscribedRuleGroupsInput = {
     type = "structure",
+    id = "ListSubscribedRuleGroupsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2840,6 +3009,7 @@ M.ListSubscribedRuleGroupsInput = {
 
 M.SubscribedRuleGroupSummary = {
     type = "structure",
+    id = "SubscribedRuleGroupSummary",
     members = {
         RuleGroupId = {
             type = "string",
@@ -2864,6 +3034,7 @@ M.SubscribedRuleGroupSummary = {
 
 M.ListSubscribedRuleGroupsOutput = {
     type = "structure",
+    id = "ListSubscribedRuleGroupsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2877,6 +3048,7 @@ M.ListSubscribedRuleGroupsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2898,6 +3070,7 @@ M.ListTagsForResourceInput = {
 
 M.TagInfoForResource = {
     type = "structure",
+    id = "TagInfoForResource",
     members = {
         ResourceARN = {
             type = "string",
@@ -2911,6 +3084,7 @@ M.TagInfoForResource = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2921,6 +3095,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWebACLsInput = {
     type = "structure",
+    id = "ListWebACLsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2936,6 +3111,7 @@ M.ListWebACLsInput = {
 
 M.WebACLSummary = {
     type = "structure",
+    id = "WebACLSummary",
     members = {
         WebACLId = {
             type = "string",
@@ -2954,6 +3130,7 @@ M.WebACLSummary = {
 
 M.ListWebACLsOutput = {
     type = "structure",
+    id = "ListWebACLsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -2967,6 +3144,7 @@ M.ListWebACLsOutput = {
 
 M.ListXssMatchSetsInput = {
     type = "structure",
+    id = "ListXssMatchSetsInput",
     members = {
         NextMarker = {
             type = "string",
@@ -2982,6 +3160,7 @@ M.ListXssMatchSetsInput = {
 
 M.XssMatchSetSummary = {
     type = "structure",
+    id = "XssMatchSetSummary",
     members = {
         XssMatchSetId = {
             type = "string",
@@ -3000,6 +3179,7 @@ M.XssMatchSetSummary = {
 
 M.ListXssMatchSetsOutput = {
     type = "structure",
+    id = "ListXssMatchSetsOutput",
     members = {
         NextMarker = {
             type = "string",
@@ -3013,6 +3193,7 @@ M.ListXssMatchSetsOutput = {
 
 M.PutLoggingConfigurationInput = {
     type = "structure",
+    id = "PutLoggingConfigurationInput",
     members = {
         LoggingConfiguration = setmetatable({ traits = {
             required = true,
@@ -3022,6 +3203,7 @@ M.PutLoggingConfigurationInput = {
 
 M.PutLoggingConfigurationOutput = {
     type = "structure",
+    id = "PutLoggingConfigurationOutput",
     members = {
         LoggingConfiguration = M.LoggingConfiguration,
     },
@@ -3029,6 +3211,7 @@ M.PutLoggingConfigurationOutput = {
 
 M.WAFServiceLinkedRoleErrorException = {
     type = "structure",
+    id = "WAFServiceLinkedRoleErrorException",
     error = "client",
     members = {
         message = {
@@ -3039,6 +3222,7 @@ M.WAFServiceLinkedRoleErrorException = {
 
 M.PutPermissionPolicyInput = {
     type = "structure",
+    id = "PutPermissionPolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3057,10 +3241,12 @@ M.PutPermissionPolicyInput = {
 
 M.PutPermissionPolicyOutput = {
     type = "structure",
+    id = "PutPermissionPolicyOutput",
 }
 
 M.WAFInvalidPermissionPolicyException = {
     type = "structure",
+    id = "WAFInvalidPermissionPolicyException",
     error = "client",
     members = {
         message = {
@@ -3071,6 +3257,7 @@ M.WAFInvalidPermissionPolicyException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3090,10 +3277,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -3113,6 +3302,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.ChangeAction = {
@@ -3122,6 +3312,7 @@ M.ChangeAction = {
 
 M.ByteMatchSetUpdate = {
     type = "structure",
+    id = "ByteMatchSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3137,6 +3328,7 @@ M.ByteMatchSetUpdate = {
 
 M.UpdateByteMatchSetInput = {
     type = "structure",
+    id = "UpdateByteMatchSetInput",
     members = {
         ByteMatchSetId = {
             type = "string",
@@ -3162,6 +3354,7 @@ M.UpdateByteMatchSetInput = {
 
 M.UpdateByteMatchSetOutput = {
     type = "structure",
+    id = "UpdateByteMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3171,6 +3364,7 @@ M.UpdateByteMatchSetOutput = {
 
 M.WAFNonexistentContainerException = {
     type = "structure",
+    id = "WAFNonexistentContainerException",
     error = "client",
     members = {
         message = {
@@ -3181,6 +3375,7 @@ M.WAFNonexistentContainerException = {
 
 M.GeoMatchSetUpdate = {
     type = "structure",
+    id = "GeoMatchSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3196,6 +3391,7 @@ M.GeoMatchSetUpdate = {
 
 M.UpdateGeoMatchSetInput = {
     type = "structure",
+    id = "UpdateGeoMatchSetInput",
     members = {
         GeoMatchSetId = {
             type = "string",
@@ -3221,6 +3417,7 @@ M.UpdateGeoMatchSetInput = {
 
 M.UpdateGeoMatchSetOutput = {
     type = "structure",
+    id = "UpdateGeoMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3230,6 +3427,7 @@ M.UpdateGeoMatchSetOutput = {
 
 M.IPSetUpdate = {
     type = "structure",
+    id = "IPSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3245,6 +3443,7 @@ M.IPSetUpdate = {
 
 M.UpdateIPSetInput = {
     type = "structure",
+    id = "UpdateIPSetInput",
     members = {
         IPSetId = {
             type = "string",
@@ -3270,6 +3469,7 @@ M.UpdateIPSetInput = {
 
 M.UpdateIPSetOutput = {
     type = "structure",
+    id = "UpdateIPSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3279,6 +3479,7 @@ M.UpdateIPSetOutput = {
 
 M.RuleUpdate = {
     type = "structure",
+    id = "RuleUpdate",
     members = {
         Action = {
             type = "string",
@@ -3294,6 +3495,7 @@ M.RuleUpdate = {
 
 M.UpdateRateBasedRuleInput = {
     type = "structure",
+    id = "UpdateRateBasedRuleInput",
     members = {
         RuleId = {
             type = "string",
@@ -3325,6 +3527,7 @@ M.UpdateRateBasedRuleInput = {
 
 M.UpdateRateBasedRuleOutput = {
     type = "structure",
+    id = "UpdateRateBasedRuleOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3334,6 +3537,7 @@ M.UpdateRateBasedRuleOutput = {
 
 M.RegexMatchSetUpdate = {
     type = "structure",
+    id = "RegexMatchSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3349,6 +3553,7 @@ M.RegexMatchSetUpdate = {
 
 M.UpdateRegexMatchSetInput = {
     type = "structure",
+    id = "UpdateRegexMatchSetInput",
     members = {
         RegexMatchSetId = {
             type = "string",
@@ -3374,6 +3579,7 @@ M.UpdateRegexMatchSetInput = {
 
 M.UpdateRegexMatchSetOutput = {
     type = "structure",
+    id = "UpdateRegexMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3383,6 +3589,7 @@ M.UpdateRegexMatchSetOutput = {
 
 M.RegexPatternSetUpdate = {
     type = "structure",
+    id = "RegexPatternSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3401,6 +3608,7 @@ M.RegexPatternSetUpdate = {
 
 M.UpdateRegexPatternSetInput = {
     type = "structure",
+    id = "UpdateRegexPatternSetInput",
     members = {
         RegexPatternSetId = {
             type = "string",
@@ -3426,6 +3634,7 @@ M.UpdateRegexPatternSetInput = {
 
 M.UpdateRegexPatternSetOutput = {
     type = "structure",
+    id = "UpdateRegexPatternSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3435,6 +3644,7 @@ M.UpdateRegexPatternSetOutput = {
 
 M.WAFInvalidRegexPatternException = {
     type = "structure",
+    id = "WAFInvalidRegexPatternException",
     error = "client",
     members = {
         message = {
@@ -3445,6 +3655,7 @@ M.WAFInvalidRegexPatternException = {
 
 M.UpdateRuleInput = {
     type = "structure",
+    id = "UpdateRuleInput",
     members = {
         RuleId = {
             type = "string",
@@ -3470,6 +3681,7 @@ M.UpdateRuleInput = {
 
 M.UpdateRuleOutput = {
     type = "structure",
+    id = "UpdateRuleOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3479,6 +3691,7 @@ M.UpdateRuleOutput = {
 
 M.RuleGroupUpdate = {
     type = "structure",
+    id = "RuleGroupUpdate",
     members = {
         Action = {
             type = "string",
@@ -3494,6 +3707,7 @@ M.RuleGroupUpdate = {
 
 M.UpdateRuleGroupInput = {
     type = "structure",
+    id = "UpdateRuleGroupInput",
     members = {
         RuleGroupId = {
             type = "string",
@@ -3519,6 +3733,7 @@ M.UpdateRuleGroupInput = {
 
 M.UpdateRuleGroupOutput = {
     type = "structure",
+    id = "UpdateRuleGroupOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3528,6 +3743,7 @@ M.UpdateRuleGroupOutput = {
 
 M.SizeConstraintSetUpdate = {
     type = "structure",
+    id = "SizeConstraintSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3543,6 +3759,7 @@ M.SizeConstraintSetUpdate = {
 
 M.UpdateSizeConstraintSetInput = {
     type = "structure",
+    id = "UpdateSizeConstraintSetInput",
     members = {
         SizeConstraintSetId = {
             type = "string",
@@ -3568,6 +3785,7 @@ M.UpdateSizeConstraintSetInput = {
 
 M.UpdateSizeConstraintSetOutput = {
     type = "structure",
+    id = "UpdateSizeConstraintSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3577,6 +3795,7 @@ M.UpdateSizeConstraintSetOutput = {
 
 M.SqlInjectionMatchSetUpdate = {
     type = "structure",
+    id = "SqlInjectionMatchSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3592,6 +3811,7 @@ M.SqlInjectionMatchSetUpdate = {
 
 M.UpdateSqlInjectionMatchSetInput = {
     type = "structure",
+    id = "UpdateSqlInjectionMatchSetInput",
     members = {
         SqlInjectionMatchSetId = {
             type = "string",
@@ -3617,6 +3837,7 @@ M.UpdateSqlInjectionMatchSetInput = {
 
 M.UpdateSqlInjectionMatchSetOutput = {
     type = "structure",
+    id = "UpdateSqlInjectionMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3626,6 +3847,7 @@ M.UpdateSqlInjectionMatchSetOutput = {
 
 M.WebACLUpdate = {
     type = "structure",
+    id = "WebACLUpdate",
     members = {
         Action = {
             type = "string",
@@ -3641,6 +3863,7 @@ M.WebACLUpdate = {
 
 M.UpdateWebACLInput = {
     type = "structure",
+    id = "UpdateWebACLInput",
     members = {
         WebACLId = {
             type = "string",
@@ -3664,6 +3887,7 @@ M.UpdateWebACLInput = {
 
 M.UpdateWebACLOutput = {
     type = "structure",
+    id = "UpdateWebACLOutput",
     members = {
         ChangeToken = {
             type = "string",
@@ -3673,6 +3897,7 @@ M.UpdateWebACLOutput = {
 
 M.WAFSubscriptionNotFoundException = {
     type = "structure",
+    id = "WAFSubscriptionNotFoundException",
     error = "client",
     members = {
         message = {
@@ -3683,6 +3908,7 @@ M.WAFSubscriptionNotFoundException = {
 
 M.XssMatchSetUpdate = {
     type = "structure",
+    id = "XssMatchSetUpdate",
     members = {
         Action = {
             type = "string",
@@ -3698,6 +3924,7 @@ M.XssMatchSetUpdate = {
 
 M.UpdateXssMatchSetInput = {
     type = "structure",
+    id = "UpdateXssMatchSetInput",
     members = {
         XssMatchSetId = {
             type = "string",
@@ -3723,6 +3950,7 @@ M.UpdateXssMatchSetInput = {
 
 M.UpdateXssMatchSetOutput = {
     type = "structure",
+    id = "UpdateXssMatchSetOutput",
     members = {
         ChangeToken = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.ComplianceDetails = {
     type = "structure",
+    id = "ComplianceDetails",
     members = {
         NoncompliantKeys = {
             type = "list",
@@ -19,6 +20,7 @@ M.ComplianceDetails = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -29,6 +31,7 @@ M.ConcurrentModificationException = {
 
 M.ConstraintViolationException = {
     type = "structure",
+    id = "ConstraintViolationException",
     error = "client",
     members = {
         Message = {
@@ -39,10 +42,12 @@ M.ConstraintViolationException = {
 
 M.DescribeReportCreationInput = {
     type = "structure",
+    id = "DescribeReportCreationInput",
 }
 
 M.DescribeReportCreationOutput = {
     type = "structure",
+    id = "DescribeReportCreationOutput",
     members = {
         Status = {
             type = "string",
@@ -61,6 +66,7 @@ M.DescribeReportCreationOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -71,6 +77,7 @@ M.InternalServiceException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -81,6 +88,7 @@ M.InvalidParameterException = {
 
 M.ThrottledException = {
     type = "structure",
+    id = "ThrottledException",
     error = "client",
     members = {
         Message = {
@@ -96,6 +104,7 @@ M.ErrorCode = {
 
 M.FailureInfo = {
     type = "structure",
+    id = "FailureInfo",
     members = {
         StatusCode = {
             type = "integer",
@@ -120,6 +129,7 @@ M.GroupByAttribute = {
 
 M.GetComplianceSummaryInput = {
     type = "structure",
+    id = "GetComplianceSummaryInput",
     members = {
         TargetIdFilters = {
             type = "list",
@@ -158,6 +168,7 @@ M.TargetIdType = {
 
 M.Summary = {
     type = "structure",
+    id = "Summary",
     members = {
         LastUpdated = {
             type = "string",
@@ -185,6 +196,7 @@ M.Summary = {
 
 M.GetComplianceSummaryOutput = {
     type = "structure",
+    id = "GetComplianceSummaryOutput",
     members = {
         SummaryList = {
             type = "list",
@@ -198,6 +210,7 @@ M.GetComplianceSummaryOutput = {
 
 M.TagFilter = {
     type = "structure",
+    id = "TagFilter",
     members = {
         Key = {
             type = "string",
@@ -211,6 +224,7 @@ M.TagFilter = {
 
 M.GetResourcesInput = {
     type = "structure",
+    id = "GetResourcesInput",
     members = {
         PaginationToken = {
             type = "string",
@@ -244,6 +258,7 @@ M.GetResourcesInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -262,6 +277,7 @@ M.Tag = {
 
 M.ResourceTagMapping = {
     type = "structure",
+    id = "ResourceTagMapping",
     members = {
         ResourceARN = {
             type = "string",
@@ -276,6 +292,7 @@ M.ResourceTagMapping = {
 
 M.GetResourcesOutput = {
     type = "structure",
+    id = "GetResourcesOutput",
     members = {
         PaginationToken = {
             type = "string",
@@ -289,6 +306,7 @@ M.GetResourcesOutput = {
 
 M.PaginationTokenExpiredException = {
     type = "structure",
+    id = "PaginationTokenExpiredException",
     error = "client",
     members = {
         Message = {
@@ -299,6 +317,7 @@ M.PaginationTokenExpiredException = {
 
 M.GetTagKeysInput = {
     type = "structure",
+    id = "GetTagKeysInput",
     members = {
         PaginationToken = {
             type = "string",
@@ -308,6 +327,7 @@ M.GetTagKeysInput = {
 
 M.GetTagKeysOutput = {
     type = "structure",
+    id = "GetTagKeysOutput",
     members = {
         PaginationToken = {
             type = "string",
@@ -321,6 +341,7 @@ M.GetTagKeysOutput = {
 
 M.GetTagValuesInput = {
     type = "structure",
+    id = "GetTagValuesInput",
     members = {
         PaginationToken = {
             type = "string",
@@ -336,6 +357,7 @@ M.GetTagValuesInput = {
 
 M.GetTagValuesOutput = {
     type = "structure",
+    id = "GetTagValuesOutput",
     members = {
         PaginationToken = {
             type = "string",
@@ -349,6 +371,7 @@ M.GetTagValuesOutput = {
 
 M.ListRequiredTagsInput = {
     type = "structure",
+    id = "ListRequiredTagsInput",
     members = {
         NextToken = {
             type = "string",
@@ -361,6 +384,7 @@ M.ListRequiredTagsInput = {
 
 M.RequiredTag = {
     type = "structure",
+    id = "RequiredTag",
     members = {
         ResourceType = {
             type = "string",
@@ -378,6 +402,7 @@ M.RequiredTag = {
 
 M.ListRequiredTagsOutput = {
     type = "structure",
+    id = "ListRequiredTagsOutput",
     members = {
         RequiredTags = {
             type = "list",
@@ -391,6 +416,7 @@ M.ListRequiredTagsOutput = {
 
 M.StartReportCreationInput = {
     type = "structure",
+    id = "StartReportCreationInput",
     members = {
         S3Bucket = {
             type = "string",
@@ -403,10 +429,12 @@ M.StartReportCreationInput = {
 
 M.StartReportCreationOutput = {
     type = "structure",
+    id = "StartReportCreationOutput",
 }
 
 M.TagResourcesInput = {
     type = "structure",
+    id = "TagResourcesInput",
     members = {
         ResourceARNList = {
             type = "list",
@@ -428,6 +456,7 @@ M.TagResourcesInput = {
 
 M.TagResourcesOutput = {
     type = "structure",
+    id = "TagResourcesOutput",
     members = {
         FailedResourcesMap = {
             type = "map",
@@ -439,6 +468,7 @@ M.TagResourcesOutput = {
 
 M.UntagResourcesInput = {
     type = "structure",
+    id = "UntagResourcesInput",
     members = {
         ResourceARNList = {
             type = "list",
@@ -459,6 +489,7 @@ M.UntagResourcesInput = {
 
 M.UntagResourcesOutput = {
     type = "structure",
+    id = "UntagResourcesOutput",
     members = {
         FailedResourcesMap = {
             type = "map",

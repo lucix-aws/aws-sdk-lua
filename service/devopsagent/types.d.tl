@@ -2127,37 +2127,37 @@ local record ServiceQuotaExceededException
     message: string
 end
 
+local type OrderType = "ASC" | "DESC"
+
+local type PrivateConnectionStatus = "ACTIVE" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
+
+local type Priority = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "MINIMAL"
+
+local type TaskType = "INVESTIGATION" | "EVALUATION"
+
+local type RecommendationPriority = "HIGH" | "MEDIUM" | "LOW"
+
+local type GoalType = "CUSTOMER_DEFINED" | "ONCALL_REPORT"
+
+local type Service = "github" | "slack" | "azure" | "azuredevops" | "dynatrace" | "servicenow" | "pagerduty" | "gitlab" | "eventChannel" | "mcpservernewrelic" | "mcpservergrafana" | "mcpserverdatadog" | "mcpserver" | "mcpserversplunk" | "azureidentity"
+
+local type UserType = "IAM" | "IDC" | "IDP"
+
 local type AuthFlow = "iam" | "idc" | "idp"
 
 local type RecommendationStatus = "PROPOSED" | "ACCEPTED" | "REJECTED" | "CLOSED" | "COMPLETED" | "UPDATE_IN_PROGRESS"
 
-local type UserType = "IAM" | "IDC" | "IDP"
-
 local type PostRegisterServiceSupportedService = "dynatrace" | "servicenow" | "pagerduty" | "gitlab" | "eventChannel" | "mcpservernewrelic" | "mcpservergrafana" | "mcpserverdatadog" | "mcpserver" | "mcpserversplunk" | "azureidentity"
-
-local type Service = "github" | "slack" | "azure" | "azuredevops" | "dynatrace" | "servicenow" | "pagerduty" | "gitlab" | "eventChannel" | "mcpservernewrelic" | "mcpservergrafana" | "mcpserverdatadog" | "mcpserver" | "mcpserversplunk" | "azureidentity"
-
-local type RecommendationPriority = "HIGH" | "MEDIUM" | "LOW"
-
-local type PrivateConnectionStatus = "ACTIVE" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
-
-local type TaskType = "INVESTIGATION" | "EVALUATION"
-
-local type Priority = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "MINIMAL"
-
-local type GoalType = "CUSTOMER_DEFINED" | "ONCALL_REPORT"
-
-local type OrderType = "ASC" | "DESC"
 
 local type TaskSortOrder = "ASC" | "DESC"
 
 local type TaskStatus = "PENDING_TRIAGE" | "LINKED" | "PENDING_START" | "IN_PROGRESS" | "PENDING_CUSTOMER_APPROVAL" | "COMPLETED" | "FAILED" | "TIMED_OUT" | "CANCELED"
 
-local type GoalStatus = "ACTIVE" | "PAUSED" | "COMPLETE"
-
 local type TaskSortField = "CREATED_AT" | "PRIORITY"
 
 local type PrivateConnectionType = "SELF_MANAGED" | "SERVICE_MANAGED"
+
+local type GoalStatus = "ACTIVE" | "PAUSED" | "COMPLETE"
 
 local record M
     AssociateServiceInput: AssociateServiceInput

@@ -8,6 +8,7 @@ M.AdjustmentType = {
 
 M.Alarm = {
     type = "structure",
+    id = "Alarm",
     members = {
         AlarmName = {
             type = "string",
@@ -26,6 +27,7 @@ M.Alarm = {
 
 M.ConcurrentUpdateException = {
     type = "structure",
+    id = "ConcurrentUpdateException",
     error = "server",
     members = {
         Message = {
@@ -81,6 +83,7 @@ M.ServiceNamespace = {
 
 M.DeleteScalingPolicyInput = {
     type = "structure",
+    id = "DeleteScalingPolicyInput",
     members = {
         PolicyName = {
             type = "string",
@@ -111,10 +114,12 @@ M.DeleteScalingPolicyInput = {
 
 M.DeleteScalingPolicyOutput = {
     type = "structure",
+    id = "DeleteScalingPolicyOutput",
 }
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -125,6 +130,7 @@ M.InternalServiceException = {
 
 M.ObjectNotFoundException = {
     type = "structure",
+    id = "ObjectNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -135,6 +141,7 @@ M.ObjectNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -145,6 +152,7 @@ M.ValidationException = {
 
 M.DeleteScheduledActionInput = {
     type = "structure",
+    id = "DeleteScheduledActionInput",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -175,10 +183,12 @@ M.DeleteScheduledActionInput = {
 
 M.DeleteScheduledActionOutput = {
     type = "structure",
+    id = "DeleteScheduledActionOutput",
 }
 
 M.DeregisterScalableTargetInput = {
     type = "structure",
+    id = "DeregisterScalableTargetInput",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -203,10 +213,12 @@ M.DeregisterScalableTargetInput = {
 
 M.DeregisterScalableTargetOutput = {
     type = "structure",
+    id = "DeregisterScalableTargetOutput",
 }
 
 M.DescribeScalableTargetsInput = {
     type = "structure",
+    id = "DescribeScalableTargetsInput",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -232,6 +244,7 @@ M.DescribeScalableTargetsInput = {
 
 M.SuspendedState = {
     type = "structure",
+    id = "SuspendedState",
     members = {
         DynamicScalingInSuspended = {
             type = "boolean",
@@ -247,6 +260,7 @@ M.SuspendedState = {
 
 M.ScalableTarget = {
     type = "structure",
+    id = "ScalableTarget",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -302,6 +316,7 @@ M.ScalableTarget = {
 
 M.DescribeScalableTargetsOutput = {
     type = "structure",
+    id = "DescribeScalableTargetsOutput",
     members = {
         ScalableTargets = {
             type = "list",
@@ -315,6 +330,7 @@ M.DescribeScalableTargetsOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -325,6 +341,7 @@ M.InvalidNextTokenException = {
 
 M.DescribeScalingActivitiesInput = {
     type = "structure",
+    id = "DescribeScalingActivitiesInput",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -352,6 +369,7 @@ M.DescribeScalingActivitiesInput = {
 
 M.NotScaledReason = {
     type = "structure",
+    id = "NotScaledReason",
     members = {
         Code = {
             type = "string",
@@ -382,6 +400,7 @@ M.ScalingActivityStatusCode = {
 
 M.ScalingActivity = {
     type = "structure",
+    id = "ScalingActivity",
     members = {
         ActivityId = {
             type = "string",
@@ -449,6 +468,7 @@ M.ScalingActivity = {
 
 M.DescribeScalingActivitiesOutput = {
     type = "structure",
+    id = "DescribeScalingActivitiesOutput",
     members = {
         ScalingActivities = {
             type = "list",
@@ -462,6 +482,7 @@ M.DescribeScalingActivitiesOutput = {
 
 M.DescribeScalingPoliciesInput = {
     type = "structure",
+    id = "DescribeScalingPoliciesInput",
     members = {
         PolicyNames = {
             type = "list",
@@ -501,6 +522,7 @@ M.PredictiveScalingMaxCapacityBreachBehavior = {
 
 M.PredictiveScalingMetricDimension = {
     type = "structure",
+    id = "PredictiveScalingMetricDimension",
     members = {
         Name = {
             type = "string",
@@ -519,6 +541,7 @@ M.PredictiveScalingMetricDimension = {
 
 M.PredictiveScalingMetric = {
     type = "structure",
+    id = "PredictiveScalingMetric",
     members = {
         Dimensions = {
             type = "list",
@@ -535,6 +558,7 @@ M.PredictiveScalingMetric = {
 
 M.PredictiveScalingMetricStat = {
     type = "structure",
+    id = "PredictiveScalingMetricStat",
     members = {
         Metric = setmetatable({ traits = {
             required = true,
@@ -553,6 +577,7 @@ M.PredictiveScalingMetricStat = {
 
 M.PredictiveScalingMetricDataQuery = {
     type = "structure",
+    id = "PredictiveScalingMetricDataQuery",
     members = {
         Id = {
             type = "string",
@@ -575,6 +600,7 @@ M.PredictiveScalingMetricDataQuery = {
 
 M.PredictiveScalingCustomizedMetricSpecification = {
     type = "structure",
+    id = "PredictiveScalingCustomizedMetricSpecification",
     members = {
         MetricDataQueries = {
             type = "list",
@@ -588,6 +614,7 @@ M.PredictiveScalingCustomizedMetricSpecification = {
 
 M.PredictiveScalingPredefinedLoadMetricSpecification = {
     type = "structure",
+    id = "PredictiveScalingPredefinedLoadMetricSpecification",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -603,6 +630,7 @@ M.PredictiveScalingPredefinedLoadMetricSpecification = {
 
 M.PredictiveScalingPredefinedMetricPairSpecification = {
     type = "structure",
+    id = "PredictiveScalingPredefinedMetricPairSpecification",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -618,6 +646,7 @@ M.PredictiveScalingPredefinedMetricPairSpecification = {
 
 M.PredictiveScalingPredefinedScalingMetricSpecification = {
     type = "structure",
+    id = "PredictiveScalingPredefinedScalingMetricSpecification",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -633,6 +662,7 @@ M.PredictiveScalingPredefinedScalingMetricSpecification = {
 
 M.PredictiveScalingMetricSpecification = {
     type = "structure",
+    id = "PredictiveScalingMetricSpecification",
     members = {
         TargetValue = {
             type = "double",
@@ -656,6 +686,7 @@ M.PredictiveScalingMode = {
 
 M.PredictiveScalingPolicyConfiguration = {
     type = "structure",
+    id = "PredictiveScalingPolicyConfiguration",
     members = {
         MetricSpecifications = {
             type = "list",
@@ -687,6 +718,7 @@ M.MetricAggregationType = {
 
 M.StepAdjustment = {
     type = "structure",
+    id = "StepAdjustment",
     members = {
         MetricIntervalLowerBound = {
             type = "double",
@@ -705,6 +737,7 @@ M.StepAdjustment = {
 
 M.StepScalingPolicyConfiguration = {
     type = "structure",
+    id = "StepScalingPolicyConfiguration",
     members = {
         AdjustmentType = {
             type = "string",
@@ -727,6 +760,7 @@ M.StepScalingPolicyConfiguration = {
 
 M.MetricDimension = {
     type = "structure",
+    id = "MetricDimension",
     members = {
         Name = {
             type = "string",
@@ -745,6 +779,7 @@ M.MetricDimension = {
 
 M.TargetTrackingMetricDimension = {
     type = "structure",
+    id = "TargetTrackingMetricDimension",
     members = {
         Name = {
             type = "string",
@@ -763,6 +798,7 @@ M.TargetTrackingMetricDimension = {
 
 M.TargetTrackingMetric = {
     type = "structure",
+    id = "TargetTrackingMetric",
     members = {
         Dimensions = {
             type = "list",
@@ -779,6 +815,7 @@ M.TargetTrackingMetric = {
 
 M.TargetTrackingMetricStat = {
     type = "structure",
+    id = "TargetTrackingMetricStat",
     members = {
         Metric = setmetatable({ traits = {
             required = true,
@@ -797,6 +834,7 @@ M.TargetTrackingMetricStat = {
 
 M.TargetTrackingMetricDataQuery = {
     type = "structure",
+    id = "TargetTrackingMetricDataQuery",
     members = {
         Expression = {
             type = "string",
@@ -827,6 +865,7 @@ M.MetricStatistic = {
 
 M.CustomizedMetricSpecification = {
     type = "structure",
+    id = "CustomizedMetricSpecification",
     members = {
         MetricName = {
             type = "string",
@@ -885,6 +924,7 @@ M.MetricType = {
 
 M.PredefinedMetricSpecification = {
     type = "structure",
+    id = "PredefinedMetricSpecification",
     members = {
         PredefinedMetricType = {
             type = "string",
@@ -900,6 +940,7 @@ M.PredefinedMetricSpecification = {
 
 M.TargetTrackingScalingPolicyConfiguration = {
     type = "structure",
+    id = "TargetTrackingScalingPolicyConfiguration",
     members = {
         TargetValue = {
             type = "double",
@@ -923,6 +964,7 @@ M.TargetTrackingScalingPolicyConfiguration = {
 
 M.ScalingPolicy = {
     type = "structure",
+    id = "ScalingPolicy",
     members = {
         PolicyARN = {
             type = "string",
@@ -978,6 +1020,7 @@ M.ScalingPolicy = {
 
 M.DescribeScalingPoliciesOutput = {
     type = "structure",
+    id = "DescribeScalingPoliciesOutput",
     members = {
         ScalingPolicies = {
             type = "list",
@@ -991,6 +1034,7 @@ M.DescribeScalingPoliciesOutput = {
 
 M.FailedResourceAccessException = {
     type = "structure",
+    id = "FailedResourceAccessException",
     error = "client",
     members = {
         Message = {
@@ -1001,6 +1045,7 @@ M.FailedResourceAccessException = {
 
 M.DescribeScheduledActionsInput = {
     type = "structure",
+    id = "DescribeScheduledActionsInput",
     members = {
         ScheduledActionNames = {
             type = "list",
@@ -1029,6 +1074,7 @@ M.DescribeScheduledActionsInput = {
 
 M.ScalableTargetAction = {
     type = "structure",
+    id = "ScalableTargetAction",
     members = {
         MinCapacity = {
             type = "integer",
@@ -1041,6 +1087,7 @@ M.ScalableTargetAction = {
 
 M.ScheduledAction = {
     type = "structure",
+    id = "ScheduledAction",
     members = {
         ScheduledActionName = {
             type = "string",
@@ -1096,6 +1143,7 @@ M.ScheduledAction = {
 
 M.DescribeScheduledActionsOutput = {
     type = "structure",
+    id = "DescribeScheduledActionsOutput",
     members = {
         ScheduledActions = {
             type = "list",
@@ -1109,6 +1157,7 @@ M.DescribeScheduledActionsOutput = {
 
 M.GetPredictiveScalingForecastInput = {
     type = "structure",
+    id = "GetPredictiveScalingForecastInput",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -1151,6 +1200,7 @@ M.GetPredictiveScalingForecastInput = {
 
 M.CapacityForecast = {
     type = "structure",
+    id = "CapacityForecast",
     members = {
         Timestamps = {
             type = "list",
@@ -1171,6 +1221,7 @@ M.CapacityForecast = {
 
 M.LoadForecast = {
     type = "structure",
+    id = "LoadForecast",
     members = {
         Timestamps = {
             type = "list",
@@ -1194,6 +1245,7 @@ M.LoadForecast = {
 
 M.GetPredictiveScalingForecastOutput = {
     type = "structure",
+    id = "GetPredictiveScalingForecastOutput",
     members = {
         LoadForecast = {
             type = "list",
@@ -1208,6 +1260,7 @@ M.GetPredictiveScalingForecastOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1220,6 +1273,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1231,6 +1285,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1244,6 +1299,7 @@ M.ResourceNotFoundException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1254,6 +1310,7 @@ M.LimitExceededException = {
 
 M.PutScalingPolicyInput = {
     type = "structure",
+    id = "PutScalingPolicyInput",
     members = {
         PolicyName = {
             type = "string",
@@ -1290,6 +1347,7 @@ M.PutScalingPolicyInput = {
 
 M.PutScalingPolicyOutput = {
     type = "structure",
+    id = "PutScalingPolicyOutput",
     members = {
         PolicyARN = {
             type = "string",
@@ -1306,6 +1364,7 @@ M.PutScalingPolicyOutput = {
 
 M.PutScheduledActionInput = {
     type = "structure",
+    id = "PutScheduledActionInput",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -1349,10 +1408,12 @@ M.PutScheduledActionInput = {
 
 M.PutScheduledActionOutput = {
     type = "structure",
+    id = "PutScheduledActionOutput",
 }
 
 M.RegisterScalableTargetInput = {
     type = "structure",
+    id = "RegisterScalableTargetInput",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -1392,6 +1453,7 @@ M.RegisterScalableTargetInput = {
 
 M.RegisterScalableTargetOutput = {
     type = "structure",
+    id = "RegisterScalableTargetOutput",
     members = {
         ScalableTargetARN = {
             type = "string",
@@ -1401,6 +1463,7 @@ M.RegisterScalableTargetOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1421,10 +1484,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -1438,6 +1503,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1457,6 +1523,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

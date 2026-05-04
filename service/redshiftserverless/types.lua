@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         code = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.Association = {
     type = "structure",
+    id = "Association",
     members = {
         customDomainCertificateArn = {
             type = "string",
@@ -36,6 +38,7 @@ M.Association = {
 
 M.ConfigParameter = {
     type = "structure",
+    id = "ConfigParameter",
     members = {
         parameterKey = {
             type = "string",
@@ -48,6 +51,7 @@ M.ConfigParameter = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -61,6 +65,7 @@ M.ConflictException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -79,6 +84,7 @@ M.Tag = {
 
 M.ConvertRecoveryPointToSnapshotInput = {
     type = "structure",
+    id = "ConvertRecoveryPointToSnapshotInput",
     members = {
         recoveryPointId = {
             type = "string",
@@ -113,6 +119,7 @@ M.SnapshotStatus = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         namespaceName = {
             type = "string",
@@ -193,6 +200,7 @@ M.Snapshot = {
 
 M.ConvertRecoveryPointToSnapshotOutput = {
     type = "structure",
+    id = "ConvertRecoveryPointToSnapshotOutput",
     members = {
         snapshot = M.Snapshot,
     },
@@ -200,6 +208,7 @@ M.ConvertRecoveryPointToSnapshotOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -213,6 +222,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -229,6 +239,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -242,6 +253,7 @@ M.ServiceQuotaExceededException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -255,6 +267,7 @@ M.TooManyTagsException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -268,6 +281,7 @@ M.ValidationException = {
 
 M.CreateCustomDomainAssociationInput = {
     type = "structure",
+    id = "CreateCustomDomainAssociationInput",
     members = {
         workgroupName = {
             type = "string",
@@ -292,6 +306,7 @@ M.CreateCustomDomainAssociationInput = {
 
 M.CreateCustomDomainAssociationOutput = {
     type = "structure",
+    id = "CreateCustomDomainAssociationOutput",
     members = {
         customDomainName = {
             type = "string",
@@ -313,6 +328,7 @@ M.CreateCustomDomainAssociationOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         code = {
@@ -326,6 +342,7 @@ M.ThrottlingException = {
 
 M.CreateEndpointAccessInput = {
     type = "structure",
+    id = "CreateEndpointAccessInput",
     members = {
         endpointName = {
             type = "string",
@@ -358,6 +375,7 @@ M.CreateEndpointAccessInput = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         networkInterfaceId = {
             type = "string",
@@ -379,6 +397,7 @@ M.NetworkInterface = {
 
 M.VpcEndpoint = {
     type = "structure",
+    id = "VpcEndpoint",
     members = {
         vpcEndpointId = {
             type = "string",
@@ -395,6 +414,7 @@ M.VpcEndpoint = {
 
 M.VpcSecurityGroupMembership = {
     type = "structure",
+    id = "VpcSecurityGroupMembership",
     members = {
         vpcSecurityGroupId = {
             type = "string",
@@ -407,6 +427,7 @@ M.VpcSecurityGroupMembership = {
 
 M.EndpointAccess = {
     type = "structure",
+    id = "EndpointAccess",
     members = {
         endpointName = {
             type = "string",
@@ -446,6 +467,7 @@ M.EndpointAccess = {
 
 M.CreateEndpointAccessOutput = {
     type = "structure",
+    id = "CreateEndpointAccessOutput",
     members = {
         endpoint = M.EndpointAccess,
     },
@@ -459,6 +481,7 @@ M.LogExport = {
 
 M.CreateNamespaceInput = {
     type = "structure",
+    id = "CreateNamespaceInput",
     members = {
         namespaceName = {
             type = "string",
@@ -513,6 +536,7 @@ M.NamespaceStatus = {
 
 M.Namespace = {
     type = "structure",
+    id = "Namespace",
     members = {
         namespaceArn = {
             type = "string",
@@ -569,6 +593,7 @@ M.Namespace = {
 
 M.CreateNamespaceOutput = {
     type = "structure",
+    id = "CreateNamespaceOutput",
     members = {
         namespace = M.Namespace,
     },
@@ -576,6 +601,7 @@ M.CreateNamespaceOutput = {
 
 M.CreateReservationInput = {
     type = "structure",
+    id = "CreateReservationInput",
     members = {
         capacity = {
             type = "integer",
@@ -606,6 +632,7 @@ M.OfferingType = {
 
 M.ReservationOffering = {
     type = "structure",
+    id = "ReservationOffering",
     members = {
         offeringId = {
             type = "string",
@@ -639,6 +666,7 @@ M.ReservationOffering = {
 
 M.Reservation = {
     type = "structure",
+    id = "Reservation",
     members = {
         reservationId = {
             type = "string",
@@ -673,6 +701,7 @@ M.Reservation = {
 
 M.CreateReservationOutput = {
     type = "structure",
+    id = "CreateReservationOutput",
     members = {
         reservation = M.Reservation,
     },
@@ -680,6 +709,7 @@ M.CreateReservationOutput = {
 
 M.Schedule = {
     type = "union",
+    id = "Schedule",
     members = {
         at = {
             type = "timestamp",
@@ -692,6 +722,7 @@ M.Schedule = {
 
 M.CreateSnapshotScheduleActionParameters = {
     type = "structure",
+    id = "CreateSnapshotScheduleActionParameters",
     members = {
         namespaceName = {
             type = "string",
@@ -717,6 +748,7 @@ M.CreateSnapshotScheduleActionParameters = {
 
 M.TargetAction = {
     type = "union",
+    id = "TargetAction",
     members = {
         createSnapshot = M.CreateSnapshotScheduleActionParameters,
     },
@@ -724,6 +756,7 @@ M.TargetAction = {
 
 M.CreateScheduledActionInput = {
     type = "structure",
+    id = "CreateScheduledActionInput",
     members = {
         scheduledActionName = {
             type = "string",
@@ -771,6 +804,7 @@ M.State = {
 
 M.ScheduledActionResponse = {
     type = "structure",
+    id = "ScheduledActionResponse",
     members = {
         scheduledActionName = {
             type = "string",
@@ -807,6 +841,7 @@ M.ScheduledActionResponse = {
 
 M.CreateScheduledActionOutput = {
     type = "structure",
+    id = "CreateScheduledActionOutput",
     members = {
         scheduledAction = M.ScheduledActionResponse,
     },
@@ -814,6 +849,7 @@ M.CreateScheduledActionOutput = {
 
 M.CreateSnapshotInput = {
     type = "structure",
+    id = "CreateSnapshotInput",
     members = {
         namespaceName = {
             type = "string",
@@ -839,6 +875,7 @@ M.CreateSnapshotInput = {
 
 M.CreateSnapshotOutput = {
     type = "structure",
+    id = "CreateSnapshotOutput",
     members = {
         snapshot = M.Snapshot,
     },
@@ -846,6 +883,7 @@ M.CreateSnapshotOutput = {
 
 M.CreateSnapshotCopyConfigurationInput = {
     type = "structure",
+    id = "CreateSnapshotCopyConfigurationInput",
     members = {
         namespaceName = {
             type = "string",
@@ -870,6 +908,7 @@ M.CreateSnapshotCopyConfigurationInput = {
 
 M.SnapshotCopyConfiguration = {
     type = "structure",
+    id = "SnapshotCopyConfiguration",
     members = {
         snapshotCopyConfigurationId = {
             type = "string",
@@ -894,6 +933,7 @@ M.SnapshotCopyConfiguration = {
 
 M.CreateSnapshotCopyConfigurationOutput = {
     type = "structure",
+    id = "CreateSnapshotCopyConfigurationOutput",
     members = {
         snapshotCopyConfiguration = setmetatable({ traits = {
             required = true,
@@ -920,6 +960,7 @@ M.UsageLimitUsageType = {
 
 M.CreateUsageLimitInput = {
     type = "structure",
+    id = "CreateUsageLimitInput",
     members = {
         resourceArn = {
             type = "string",
@@ -950,6 +991,7 @@ M.CreateUsageLimitInput = {
 
 M.UsageLimit = {
     type = "structure",
+    id = "UsageLimit",
     members = {
         usageLimitId = {
             type = "string",
@@ -977,6 +1019,7 @@ M.UsageLimit = {
 
 M.CreateUsageLimitOutput = {
     type = "structure",
+    id = "CreateUsageLimitOutput",
     members = {
         usageLimit = M.UsageLimit,
     },
@@ -989,6 +1032,7 @@ M.PerformanceTargetStatus = {
 
 M.PerformanceTarget = {
     type = "structure",
+    id = "PerformanceTarget",
     members = {
         status = {
             type = "string",
@@ -1001,6 +1045,7 @@ M.PerformanceTarget = {
 
 M.CreateWorkgroupInput = {
     type = "structure",
+    id = "CreateWorkgroupInput",
     members = {
         workgroupName = {
             type = "string",
@@ -1060,6 +1105,7 @@ M.CreateWorkgroupInput = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         address = {
             type = "string",
@@ -1083,6 +1129,7 @@ M.WorkgroupStatus = {
 
 M.Workgroup = {
     type = "structure",
+    id = "Workgroup",
     members = {
         workgroupId = {
             type = "string",
@@ -1173,6 +1220,7 @@ M.Workgroup = {
 
 M.CreateWorkgroupOutput = {
     type = "structure",
+    id = "CreateWorkgroupOutput",
     members = {
         workgroup = M.Workgroup,
     },
@@ -1180,6 +1228,7 @@ M.CreateWorkgroupOutput = {
 
 M.InsufficientCapacityException = {
     type = "structure",
+    id = "InsufficientCapacityException",
     error = "client",
     members = {
         message = {
@@ -1193,6 +1242,7 @@ M.InsufficientCapacityException = {
 
 M.Ipv6CidrBlockNotFoundException = {
     type = "structure",
+    id = "Ipv6CidrBlockNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1206,6 +1256,7 @@ M.Ipv6CidrBlockNotFoundException = {
 
 M.DeleteEndpointAccessInput = {
     type = "structure",
+    id = "DeleteEndpointAccessInput",
     members = {
         endpointName = {
             type = "string",
@@ -1218,6 +1269,7 @@ M.DeleteEndpointAccessInput = {
 
 M.DeleteEndpointAccessOutput = {
     type = "structure",
+    id = "DeleteEndpointAccessOutput",
     members = {
         endpoint = M.EndpointAccess,
     },
@@ -1225,6 +1277,7 @@ M.DeleteEndpointAccessOutput = {
 
 M.GetEndpointAccessInput = {
     type = "structure",
+    id = "GetEndpointAccessInput",
     members = {
         endpointName = {
             type = "string",
@@ -1237,6 +1290,7 @@ M.GetEndpointAccessInput = {
 
 M.GetEndpointAccessOutput = {
     type = "structure",
+    id = "GetEndpointAccessOutput",
     members = {
         endpoint = M.EndpointAccess,
     },
@@ -1244,6 +1298,7 @@ M.GetEndpointAccessOutput = {
 
 M.ListEndpointAccessInput = {
     type = "structure",
+    id = "ListEndpointAccessInput",
     members = {
         nextToken = {
             type = "string",
@@ -1272,6 +1327,7 @@ M.ListEndpointAccessInput = {
 
 M.ListEndpointAccessOutput = {
     type = "structure",
+    id = "ListEndpointAccessOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1288,6 +1344,7 @@ M.ListEndpointAccessOutput = {
 
 M.UpdateEndpointAccessInput = {
     type = "structure",
+    id = "UpdateEndpointAccessInput",
     members = {
         endpointName = {
             type = "string",
@@ -1304,6 +1361,7 @@ M.UpdateEndpointAccessInput = {
 
 M.UpdateEndpointAccessOutput = {
     type = "structure",
+    id = "UpdateEndpointAccessOutput",
     members = {
         endpoint = M.EndpointAccess,
     },
@@ -1311,6 +1369,7 @@ M.UpdateEndpointAccessOutput = {
 
 M.DeleteCustomDomainAssociationInput = {
     type = "structure",
+    id = "DeleteCustomDomainAssociationInput",
     members = {
         workgroupName = {
             type = "string",
@@ -1329,10 +1388,12 @@ M.DeleteCustomDomainAssociationInput = {
 
 M.DeleteCustomDomainAssociationOutput = {
     type = "structure",
+    id = "DeleteCustomDomainAssociationOutput",
 }
 
 M.DeleteNamespaceInput = {
     type = "structure",
+    id = "DeleteNamespaceInput",
     members = {
         namespaceName = {
             type = "string",
@@ -1351,6 +1412,7 @@ M.DeleteNamespaceInput = {
 
 M.DeleteNamespaceOutput = {
     type = "structure",
+    id = "DeleteNamespaceOutput",
     members = {
         namespace = setmetatable({ traits = {
             required = true,
@@ -1360,6 +1422,7 @@ M.DeleteNamespaceOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1372,10 +1435,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DeleteScheduledActionInput = {
     type = "structure",
+    id = "DeleteScheduledActionInput",
     members = {
         scheduledActionName = {
             type = "string",
@@ -1388,6 +1453,7 @@ M.DeleteScheduledActionInput = {
 
 M.DeleteScheduledActionOutput = {
     type = "structure",
+    id = "DeleteScheduledActionOutput",
     members = {
         scheduledAction = M.ScheduledActionResponse,
     },
@@ -1395,6 +1461,7 @@ M.DeleteScheduledActionOutput = {
 
 M.DeleteSnapshotInput = {
     type = "structure",
+    id = "DeleteSnapshotInput",
     members = {
         snapshotName = {
             type = "string",
@@ -1407,6 +1474,7 @@ M.DeleteSnapshotInput = {
 
 M.DeleteSnapshotOutput = {
     type = "structure",
+    id = "DeleteSnapshotOutput",
     members = {
         snapshot = M.Snapshot,
     },
@@ -1414,6 +1482,7 @@ M.DeleteSnapshotOutput = {
 
 M.DeleteSnapshotCopyConfigurationInput = {
     type = "structure",
+    id = "DeleteSnapshotCopyConfigurationInput",
     members = {
         snapshotCopyConfigurationId = {
             type = "string",
@@ -1426,6 +1495,7 @@ M.DeleteSnapshotCopyConfigurationInput = {
 
 M.DeleteSnapshotCopyConfigurationOutput = {
     type = "structure",
+    id = "DeleteSnapshotCopyConfigurationOutput",
     members = {
         snapshotCopyConfiguration = setmetatable({ traits = {
             required = true,
@@ -1435,6 +1505,7 @@ M.DeleteSnapshotCopyConfigurationOutput = {
 
 M.DeleteUsageLimitInput = {
     type = "structure",
+    id = "DeleteUsageLimitInput",
     members = {
         usageLimitId = {
             type = "string",
@@ -1447,6 +1518,7 @@ M.DeleteUsageLimitInput = {
 
 M.DeleteUsageLimitOutput = {
     type = "structure",
+    id = "DeleteUsageLimitOutput",
     members = {
         usageLimit = M.UsageLimit,
     },
@@ -1454,6 +1526,7 @@ M.DeleteUsageLimitOutput = {
 
 M.DeleteWorkgroupInput = {
     type = "structure",
+    id = "DeleteWorkgroupInput",
     members = {
         workgroupName = {
             type = "string",
@@ -1466,6 +1539,7 @@ M.DeleteWorkgroupInput = {
 
 M.DeleteWorkgroupOutput = {
     type = "structure",
+    id = "DeleteWorkgroupOutput",
     members = {
         workgroup = setmetatable({ traits = {
             required = true,
@@ -1475,6 +1549,7 @@ M.DeleteWorkgroupOutput = {
 
 M.DryRunException = {
     type = "structure",
+    id = "DryRunException",
     error = "client",
     members = {
         message = {
@@ -1488,6 +1563,7 @@ M.DryRunException = {
 
 M.GetCredentialsInput = {
     type = "structure",
+    id = "GetCredentialsInput",
     members = {
         dbName = {
             type = "string",
@@ -1506,6 +1582,7 @@ M.GetCredentialsInput = {
 
 M.GetCredentialsOutput = {
     type = "structure",
+    id = "GetCredentialsOutput",
     members = {
         dbUser = {
             type = "string",
@@ -1524,6 +1601,7 @@ M.GetCredentialsOutput = {
 
 M.GetCustomDomainAssociationInput = {
     type = "structure",
+    id = "GetCustomDomainAssociationInput",
     members = {
         customDomainName = {
             type = "string",
@@ -1542,6 +1620,7 @@ M.GetCustomDomainAssociationInput = {
 
 M.GetCustomDomainAssociationOutput = {
     type = "structure",
+    id = "GetCustomDomainAssociationOutput",
     members = {
         customDomainName = {
             type = "string",
@@ -1563,6 +1642,7 @@ M.GetCustomDomainAssociationOutput = {
 
 M.GetIdentityCenterAuthTokenInput = {
     type = "structure",
+    id = "GetIdentityCenterAuthTokenInput",
     members = {
         workgroupNames = {
             type = "list",
@@ -1576,6 +1656,7 @@ M.GetIdentityCenterAuthTokenInput = {
 
 M.GetIdentityCenterAuthTokenOutput = {
     type = "structure",
+    id = "GetIdentityCenterAuthTokenOutput",
     members = {
         token = {
             type = "string",
@@ -1595,6 +1676,7 @@ M.GetIdentityCenterAuthTokenOutput = {
 
 M.GetNamespaceInput = {
     type = "structure",
+    id = "GetNamespaceInput",
     members = {
         namespaceName = {
             type = "string",
@@ -1607,6 +1689,7 @@ M.GetNamespaceInput = {
 
 M.GetNamespaceOutput = {
     type = "structure",
+    id = "GetNamespaceOutput",
     members = {
         namespace = setmetatable({ traits = {
             required = true,
@@ -1616,6 +1699,7 @@ M.GetNamespaceOutput = {
 
 M.GetRecoveryPointInput = {
     type = "structure",
+    id = "GetRecoveryPointInput",
     members = {
         recoveryPointId = {
             type = "string",
@@ -1628,6 +1712,7 @@ M.GetRecoveryPointInput = {
 
 M.RecoveryPoint = {
     type = "structure",
+    id = "RecoveryPoint",
     members = {
         recoveryPointId = {
             type = "string",
@@ -1655,6 +1740,7 @@ M.RecoveryPoint = {
 
 M.GetRecoveryPointOutput = {
     type = "structure",
+    id = "GetRecoveryPointOutput",
     members = {
         recoveryPoint = M.RecoveryPoint,
     },
@@ -1662,6 +1748,7 @@ M.GetRecoveryPointOutput = {
 
 M.GetReservationInput = {
     type = "structure",
+    id = "GetReservationInput",
     members = {
         reservationId = {
             type = "string",
@@ -1674,6 +1761,7 @@ M.GetReservationInput = {
 
 M.GetReservationOutput = {
     type = "structure",
+    id = "GetReservationOutput",
     members = {
         reservation = setmetatable({ traits = {
             required = true,
@@ -1683,6 +1771,7 @@ M.GetReservationOutput = {
 
 M.GetReservationOfferingInput = {
     type = "structure",
+    id = "GetReservationOfferingInput",
     members = {
         offeringId = {
             type = "string",
@@ -1695,6 +1784,7 @@ M.GetReservationOfferingInput = {
 
 M.GetReservationOfferingOutput = {
     type = "structure",
+    id = "GetReservationOfferingOutput",
     members = {
         reservationOffering = setmetatable({ traits = {
             required = true,
@@ -1704,6 +1794,7 @@ M.GetReservationOfferingOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1716,6 +1807,7 @@ M.GetResourcePolicyInput = {
 
 M.ResourcePolicy = {
     type = "structure",
+    id = "ResourcePolicy",
     members = {
         resourceArn = {
             type = "string",
@@ -1728,6 +1820,7 @@ M.ResourcePolicy = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         resourcePolicy = M.ResourcePolicy,
     },
@@ -1735,6 +1828,7 @@ M.GetResourcePolicyOutput = {
 
 M.GetScheduledActionInput = {
     type = "structure",
+    id = "GetScheduledActionInput",
     members = {
         scheduledActionName = {
             type = "string",
@@ -1747,6 +1841,7 @@ M.GetScheduledActionInput = {
 
 M.GetScheduledActionOutput = {
     type = "structure",
+    id = "GetScheduledActionOutput",
     members = {
         scheduledAction = M.ScheduledActionResponse,
     },
@@ -1754,6 +1849,7 @@ M.GetScheduledActionOutput = {
 
 M.GetSnapshotInput = {
     type = "structure",
+    id = "GetSnapshotInput",
     members = {
         snapshotName = {
             type = "string",
@@ -1769,6 +1865,7 @@ M.GetSnapshotInput = {
 
 M.GetSnapshotOutput = {
     type = "structure",
+    id = "GetSnapshotOutput",
     members = {
         snapshot = M.Snapshot,
     },
@@ -1776,6 +1873,7 @@ M.GetSnapshotOutput = {
 
 M.GetTableRestoreStatusInput = {
     type = "structure",
+    id = "GetTableRestoreStatusInput",
     members = {
         tableRestoreRequestId = {
             type = "string",
@@ -1788,6 +1886,7 @@ M.GetTableRestoreStatusInput = {
 
 M.TableRestoreStatus = {
     type = "structure",
+    id = "TableRestoreStatus",
     members = {
         tableRestoreRequestId = {
             type = "string",
@@ -1842,6 +1941,7 @@ M.TableRestoreStatus = {
 
 M.GetTableRestoreStatusOutput = {
     type = "structure",
+    id = "GetTableRestoreStatusOutput",
     members = {
         tableRestoreStatus = M.TableRestoreStatus,
     },
@@ -1849,6 +1949,7 @@ M.GetTableRestoreStatusOutput = {
 
 M.GetTrackInput = {
     type = "structure",
+    id = "GetTrackInput",
     members = {
         trackName = {
             type = "string",
@@ -1861,6 +1962,7 @@ M.GetTrackInput = {
 
 M.UpdateTarget = {
     type = "structure",
+    id = "UpdateTarget",
     members = {
         trackName = {
             type = "string",
@@ -1873,6 +1975,7 @@ M.UpdateTarget = {
 
 M.ServerlessTrack = {
     type = "structure",
+    id = "ServerlessTrack",
     members = {
         trackName = {
             type = "string",
@@ -1889,6 +1992,7 @@ M.ServerlessTrack = {
 
 M.GetTrackOutput = {
     type = "structure",
+    id = "GetTrackOutput",
     members = {
         track = M.ServerlessTrack,
     },
@@ -1896,6 +2000,7 @@ M.GetTrackOutput = {
 
 M.GetUsageLimitInput = {
     type = "structure",
+    id = "GetUsageLimitInput",
     members = {
         usageLimitId = {
             type = "string",
@@ -1908,6 +2013,7 @@ M.GetUsageLimitInput = {
 
 M.GetUsageLimitOutput = {
     type = "structure",
+    id = "GetUsageLimitOutput",
     members = {
         usageLimit = M.UsageLimit,
     },
@@ -1915,6 +2021,7 @@ M.GetUsageLimitOutput = {
 
 M.GetWorkgroupInput = {
     type = "structure",
+    id = "GetWorkgroupInput",
     members = {
         workgroupName = {
             type = "string",
@@ -1927,6 +2034,7 @@ M.GetWorkgroupInput = {
 
 M.GetWorkgroupOutput = {
     type = "structure",
+    id = "GetWorkgroupOutput",
     members = {
         workgroup = setmetatable({ traits = {
             required = true,
@@ -1936,6 +2044,7 @@ M.GetWorkgroupOutput = {
 
 M.InvalidPaginationException = {
     type = "structure",
+    id = "InvalidPaginationException",
     error = "client",
     members = {
         message = {
@@ -1959,6 +2068,7 @@ M.LakehouseRegistration = {
 
 M.ListCustomDomainAssociationsInput = {
     type = "structure",
+    id = "ListCustomDomainAssociationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1984,6 +2094,7 @@ M.ListCustomDomainAssociationsInput = {
 
 M.ListCustomDomainAssociationsOutput = {
     type = "structure",
+    id = "ListCustomDomainAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1997,6 +2108,7 @@ M.ListCustomDomainAssociationsOutput = {
 
 M.ListManagedWorkgroupsInput = {
     type = "structure",
+    id = "ListManagedWorkgroupsInput",
     members = {
         sourceArn = {
             type = "string",
@@ -2026,6 +2138,7 @@ M.ManagedWorkgroupStatus = {
 
 M.ManagedWorkgroupListItem = {
     type = "structure",
+    id = "ManagedWorkgroupListItem",
     members = {
         managedWorkgroupName = {
             type = "string",
@@ -2050,6 +2163,7 @@ M.ManagedWorkgroupListItem = {
 
 M.ListManagedWorkgroupsOutput = {
     type = "structure",
+    id = "ListManagedWorkgroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2063,6 +2177,7 @@ M.ListManagedWorkgroupsOutput = {
 
 M.ListNamespacesInput = {
     type = "structure",
+    id = "ListNamespacesInput",
     members = {
         nextToken = {
             type = "string",
@@ -2082,6 +2197,7 @@ M.ListNamespacesInput = {
 
 M.ListNamespacesOutput = {
     type = "structure",
+    id = "ListNamespacesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2098,6 +2214,7 @@ M.ListNamespacesOutput = {
 
 M.ListRecoveryPointsInput = {
     type = "structure",
+    id = "ListRecoveryPointsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2129,6 +2246,7 @@ M.ListRecoveryPointsInput = {
 
 M.ListRecoveryPointsOutput = {
     type = "structure",
+    id = "ListRecoveryPointsOutput",
     members = {
         recoveryPoints = {
             type = "list",
@@ -2142,6 +2260,7 @@ M.ListRecoveryPointsOutput = {
 
 M.ListReservationOfferingsInput = {
     type = "structure",
+    id = "ListReservationOfferingsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2161,6 +2280,7 @@ M.ListReservationOfferingsInput = {
 
 M.ListReservationOfferingsOutput = {
     type = "structure",
+    id = "ListReservationOfferingsOutput",
     members = {
         reservationOfferingsList = {
             type = "list",
@@ -2177,6 +2297,7 @@ M.ListReservationOfferingsOutput = {
 
 M.ListReservationsInput = {
     type = "structure",
+    id = "ListReservationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2196,6 +2317,7 @@ M.ListReservationsInput = {
 
 M.ListReservationsOutput = {
     type = "structure",
+    id = "ListReservationsOutput",
     members = {
         reservationsList = {
             type = "list",
@@ -2212,6 +2334,7 @@ M.ListReservationsOutput = {
 
 M.ListScheduledActionsInput = {
     type = "structure",
+    id = "ListScheduledActionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2234,6 +2357,7 @@ M.ListScheduledActionsInput = {
 
 M.ScheduledActionAssociation = {
     type = "structure",
+    id = "ScheduledActionAssociation",
     members = {
         namespaceName = {
             type = "string",
@@ -2246,6 +2370,7 @@ M.ScheduledActionAssociation = {
 
 M.ListScheduledActionsOutput = {
     type = "structure",
+    id = "ListScheduledActionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2259,6 +2384,7 @@ M.ListScheduledActionsOutput = {
 
 M.ListSnapshotCopyConfigurationsInput = {
     type = "structure",
+    id = "ListSnapshotCopyConfigurationsInput",
     members = {
         namespaceName = {
             type = "string",
@@ -2281,6 +2407,7 @@ M.ListSnapshotCopyConfigurationsInput = {
 
 M.ListSnapshotCopyConfigurationsOutput = {
     type = "structure",
+    id = "ListSnapshotCopyConfigurationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2297,6 +2424,7 @@ M.ListSnapshotCopyConfigurationsOutput = {
 
 M.ListSnapshotsInput = {
     type = "structure",
+    id = "ListSnapshotsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2331,6 +2459,7 @@ M.ListSnapshotsInput = {
 
 M.ListSnapshotsOutput = {
     type = "structure",
+    id = "ListSnapshotsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2344,6 +2473,7 @@ M.ListSnapshotsOutput = {
 
 M.ListTableRestoreStatusInput = {
     type = "structure",
+    id = "ListTableRestoreStatusInput",
     members = {
         nextToken = {
             type = "string",
@@ -2369,6 +2499,7 @@ M.ListTableRestoreStatusInput = {
 
 M.ListTableRestoreStatusOutput = {
     type = "structure",
+    id = "ListTableRestoreStatusOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2382,6 +2513,7 @@ M.ListTableRestoreStatusOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2394,6 +2526,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2404,6 +2537,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTracksInput = {
     type = "structure",
+    id = "ListTracksInput",
     members = {
         nextToken = {
             type = "string",
@@ -2423,6 +2557,7 @@ M.ListTracksInput = {
 
 M.ListTracksOutput = {
     type = "structure",
+    id = "ListTracksOutput",
     members = {
         tracks = {
             type = "list",
@@ -2436,6 +2571,7 @@ M.ListTracksOutput = {
 
 M.ListUsageLimitsInput = {
     type = "structure",
+    id = "ListUsageLimitsInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2461,6 +2597,7 @@ M.ListUsageLimitsInput = {
 
 M.ListUsageLimitsOutput = {
     type = "structure",
+    id = "ListUsageLimitsOutput",
     members = {
         usageLimits = {
             type = "list",
@@ -2474,6 +2611,7 @@ M.ListUsageLimitsOutput = {
 
 M.ListWorkgroupsInput = {
     type = "structure",
+    id = "ListWorkgroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2496,6 +2634,7 @@ M.ListWorkgroupsInput = {
 
 M.ListWorkgroupsOutput = {
     type = "structure",
+    id = "ListWorkgroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2512,6 +2651,7 @@ M.ListWorkgroupsOutput = {
 
 M.UpdateLakehouseConfigurationInput = {
     type = "structure",
+    id = "UpdateLakehouseConfigurationInput",
     members = {
         namespaceName = {
             type = "string",
@@ -2539,6 +2679,7 @@ M.UpdateLakehouseConfigurationInput = {
 
 M.UpdateLakehouseConfigurationOutput = {
     type = "structure",
+    id = "UpdateLakehouseConfigurationOutput",
     members = {
         namespaceName = {
             type = "string",
@@ -2557,6 +2698,7 @@ M.UpdateLakehouseConfigurationOutput = {
 
 M.UpdateNamespaceInput = {
     type = "structure",
+    id = "UpdateNamespaceInput",
     members = {
         namespaceName = {
             type = "string",
@@ -2595,6 +2737,7 @@ M.UpdateNamespaceInput = {
 
 M.UpdateNamespaceOutput = {
     type = "structure",
+    id = "UpdateNamespaceOutput",
     members = {
         namespace = setmetatable({ traits = {
             required = true,
@@ -2604,6 +2747,7 @@ M.UpdateNamespaceOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2622,6 +2766,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         resourcePolicy = M.ResourcePolicy,
     },
@@ -2629,6 +2774,7 @@ M.PutResourcePolicyOutput = {
 
 M.RestoreFromRecoveryPointInput = {
     type = "structure",
+    id = "RestoreFromRecoveryPointInput",
     members = {
         recoveryPointId = {
             type = "string",
@@ -2653,6 +2799,7 @@ M.RestoreFromRecoveryPointInput = {
 
 M.RestoreFromRecoveryPointOutput = {
     type = "structure",
+    id = "RestoreFromRecoveryPointOutput",
     members = {
         recoveryPointId = {
             type = "string",
@@ -2663,6 +2810,7 @@ M.RestoreFromRecoveryPointOutput = {
 
 M.RestoreTableFromRecoveryPointInput = {
     type = "structure",
+    id = "RestoreTableFromRecoveryPointInput",
     members = {
         namespaceName = {
             type = "string",
@@ -2717,6 +2865,7 @@ M.RestoreTableFromRecoveryPointInput = {
 
 M.RestoreTableFromRecoveryPointOutput = {
     type = "structure",
+    id = "RestoreTableFromRecoveryPointOutput",
     members = {
         tableRestoreStatus = M.TableRestoreStatus,
     },
@@ -2724,6 +2873,7 @@ M.RestoreTableFromRecoveryPointOutput = {
 
 M.UpdateScheduledActionInput = {
     type = "structure",
+    id = "UpdateScheduledActionInput",
     members = {
         scheduledActionName = {
             type = "string",
@@ -2753,6 +2903,7 @@ M.UpdateScheduledActionInput = {
 
 M.UpdateScheduledActionOutput = {
     type = "structure",
+    id = "UpdateScheduledActionOutput",
     members = {
         scheduledAction = M.ScheduledActionResponse,
     },
@@ -2760,6 +2911,7 @@ M.UpdateScheduledActionOutput = {
 
 M.RestoreFromSnapshotInput = {
     type = "structure",
+    id = "RestoreFromSnapshotInput",
     members = {
         namespaceName = {
             type = "string",
@@ -2793,6 +2945,7 @@ M.RestoreFromSnapshotInput = {
 
 M.RestoreFromSnapshotOutput = {
     type = "structure",
+    id = "RestoreFromSnapshotOutput",
     members = {
         snapshotName = {
             type = "string",
@@ -2806,6 +2959,7 @@ M.RestoreFromSnapshotOutput = {
 
 M.RestoreTableFromSnapshotInput = {
     type = "structure",
+    id = "RestoreTableFromSnapshotInput",
     members = {
         namespaceName = {
             type = "string",
@@ -2860,6 +3014,7 @@ M.RestoreTableFromSnapshotInput = {
 
 M.RestoreTableFromSnapshotOutput = {
     type = "structure",
+    id = "RestoreTableFromSnapshotOutput",
     members = {
         tableRestoreStatus = M.TableRestoreStatus,
     },
@@ -2867,6 +3022,7 @@ M.RestoreTableFromSnapshotOutput = {
 
 M.UpdateSnapshotInput = {
     type = "structure",
+    id = "UpdateSnapshotInput",
     members = {
         snapshotName = {
             type = "string",
@@ -2882,6 +3038,7 @@ M.UpdateSnapshotInput = {
 
 M.UpdateSnapshotOutput = {
     type = "structure",
+    id = "UpdateSnapshotOutput",
     members = {
         snapshot = M.Snapshot,
     },
@@ -2889,6 +3046,7 @@ M.UpdateSnapshotOutput = {
 
 M.UpdateSnapshotCopyConfigurationInput = {
     type = "structure",
+    id = "UpdateSnapshotCopyConfigurationInput",
     members = {
         snapshotCopyConfigurationId = {
             type = "string",
@@ -2904,6 +3062,7 @@ M.UpdateSnapshotCopyConfigurationInput = {
 
 M.UpdateSnapshotCopyConfigurationOutput = {
     type = "structure",
+    id = "UpdateSnapshotCopyConfigurationOutput",
     members = {
         snapshotCopyConfiguration = setmetatable({ traits = {
             required = true,
@@ -2913,6 +3072,7 @@ M.UpdateSnapshotCopyConfigurationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2932,10 +3092,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2955,10 +3117,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateCustomDomainAssociationInput = {
     type = "structure",
+    id = "UpdateCustomDomainAssociationInput",
     members = {
         workgroupName = {
             type = "string",
@@ -2983,6 +3147,7 @@ M.UpdateCustomDomainAssociationInput = {
 
 M.UpdateCustomDomainAssociationOutput = {
     type = "structure",
+    id = "UpdateCustomDomainAssociationOutput",
     members = {
         customDomainName = {
             type = "string",
@@ -3004,6 +3169,7 @@ M.UpdateCustomDomainAssociationOutput = {
 
 M.UpdateUsageLimitInput = {
     type = "structure",
+    id = "UpdateUsageLimitInput",
     members = {
         usageLimitId = {
             type = "string",
@@ -3022,6 +3188,7 @@ M.UpdateUsageLimitInput = {
 
 M.UpdateUsageLimitOutput = {
     type = "structure",
+    id = "UpdateUsageLimitOutput",
     members = {
         usageLimit = M.UsageLimit,
     },
@@ -3029,6 +3196,7 @@ M.UpdateUsageLimitOutput = {
 
 M.UpdateWorkgroupInput = {
     type = "structure",
+    id = "UpdateWorkgroupInput",
     members = {
         workgroupName = {
             type = "string",
@@ -3078,6 +3246,7 @@ M.UpdateWorkgroupInput = {
 
 M.UpdateWorkgroupOutput = {
     type = "structure",
+    id = "UpdateWorkgroupOutput",
     members = {
         workgroup = setmetatable({ traits = {
             required = true,

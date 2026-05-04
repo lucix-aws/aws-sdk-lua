@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -19,6 +20,7 @@ M.Status = {
 
 M.AccountEnrollmentStatus = {
     type = "structure",
+    id = "AccountEnrollmentStatus",
     members = {
         accountId = {
             type = "string",
@@ -52,6 +54,7 @@ M.AutoScalingConfiguration = {
 
 M.AutoScalingGroupConfiguration = {
     type = "structure",
+    id = "AutoScalingGroupConfiguration",
     members = {
         desiredCapacity = {
             type = "integer",
@@ -97,6 +100,7 @@ M.Currency = {
 
 M.AutoScalingGroupEstimatedMonthlySavings = {
     type = "structure",
+    id = "AutoScalingGroupEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -112,6 +116,7 @@ M.AutoScalingGroupEstimatedMonthlySavings = {
 
 M.Gpu = {
     type = "structure",
+    id = "Gpu",
     members = {
         gpuCount = {
             type = "integer",
@@ -130,6 +135,7 @@ M.Gpu = {
 
 M.GpuInfo = {
     type = "structure",
+    id = "GpuInfo",
     members = {
         gpus = {
             type = "list",
@@ -164,6 +170,7 @@ M.ExternalMetricsSource = {
 
 M.ExternalMetricsPreference = {
     type = "structure",
+    id = "ExternalMetricsPreference",
     members = {
         source = {
             type = "string",
@@ -188,6 +195,7 @@ M.PreferredResourceName = {
 
 M.EffectivePreferredResource = {
     type = "structure",
+    id = "EffectivePreferredResource",
     members = {
         name = {
             type = "string",
@@ -215,6 +223,7 @@ M.InstanceSavingsEstimationModeSource = {
 
 M.InstanceSavingsEstimationMode = {
     type = "structure",
+    id = "InstanceSavingsEstimationMode",
     members = {
         source = {
             type = "string",
@@ -242,6 +251,7 @@ M.CustomizableMetricThreshold = {
 
 M.CustomizableMetricParameters = {
     type = "structure",
+    id = "CustomizableMetricParameters",
     members = {
         threshold = {
             type = "string",
@@ -254,6 +264,7 @@ M.CustomizableMetricParameters = {
 
 M.UtilizationPreference = {
     type = "structure",
+    id = "UtilizationPreference",
     members = {
         metricName = {
             type = "string",
@@ -264,6 +275,7 @@ M.UtilizationPreference = {
 
 M.EffectiveRecommendationPreferences = {
     type = "structure",
+    id = "EffectiveRecommendationPreferences",
     members = {
         cpuVendorArchitectures = {
             type = "list",
@@ -343,6 +355,7 @@ M.MetricStatistic = {
 
 M.UtilizationMetric = {
     type = "structure",
+    id = "UtilizationMetric",
     members = {
         name = {
             type = "string",
@@ -361,6 +374,7 @@ M.UtilizationMetric = {
 
 M.EstimatedMonthlySavings = {
     type = "structure",
+    id = "EstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -376,6 +390,7 @@ M.EstimatedMonthlySavings = {
 
 M.SavingsOpportunity = {
     type = "structure",
+    id = "SavingsOpportunity",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -389,6 +404,7 @@ M.SavingsOpportunity = {
 
 M.AutoScalingGroupSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "AutoScalingGroupSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -402,6 +418,7 @@ M.AutoScalingGroupSavingsOpportunityAfterDiscounts = {
 
 M.AutoScalingGroupRecommendationOption = {
     type = "structure",
+    id = "AutoScalingGroupRecommendationOption",
     members = {
         configuration = M.AutoScalingGroupConfiguration,
         instanceGpuInfo = M.GpuInfo,
@@ -431,6 +448,7 @@ M.AutoScalingGroupRecommendationOption = {
 
 M.AutoScalingGroupRecommendation = {
     type = "structure",
+    id = "AutoScalingGroupRecommendation",
     members = {
         accountId = {
             type = "string",
@@ -504,6 +522,7 @@ M.ScopeName = {
 
 M.Scope = {
     type = "structure",
+    id = "Scope",
     members = {
         name = {
             type = "string",
@@ -516,6 +535,7 @@ M.Scope = {
 
 M.DeleteRecommendationPreferencesInput = {
     type = "structure",
+    id = "DeleteRecommendationPreferencesInput",
     members = {
         resourceType = {
             type = "string",
@@ -536,10 +556,12 @@ M.DeleteRecommendationPreferencesInput = {
 
 M.DeleteRecommendationPreferencesOutput = {
     type = "structure",
+    id = "DeleteRecommendationPreferencesOutput",
 }
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -550,6 +572,7 @@ M.InternalServerException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -560,6 +583,7 @@ M.InvalidParameterValueException = {
 
 M.MissingAuthenticationToken = {
     type = "structure",
+    id = "MissingAuthenticationToken",
     error = "client",
     members = {
         message = {
@@ -570,6 +594,7 @@ M.MissingAuthenticationToken = {
 
 M.OptInRequiredException = {
     type = "structure",
+    id = "OptInRequiredException",
     error = "client",
     members = {
         message = {
@@ -580,6 +605,7 @@ M.OptInRequiredException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -590,6 +616,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -600,6 +627,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -618,6 +646,7 @@ M.JobFilterName = {
 
 M.JobFilter = {
     type = "structure",
+    id = "JobFilter",
     members = {
         name = {
             type = "string",
@@ -631,6 +660,7 @@ M.JobFilter = {
 
 M.DescribeRecommendationExportJobsInput = {
     type = "structure",
+    id = "DescribeRecommendationExportJobsInput",
     members = {
         jobIds = {
             type = "list",
@@ -651,6 +681,7 @@ M.DescribeRecommendationExportJobsInput = {
 
 M.S3Destination = {
     type = "structure",
+    id = "S3Destination",
     members = {
         bucket = {
             type = "string",
@@ -666,6 +697,7 @@ M.S3Destination = {
 
 M.ExportDestination = {
     type = "structure",
+    id = "ExportDestination",
     members = {
         s3 = M.S3Destination,
     },
@@ -680,6 +712,7 @@ M.JobStatus = {
 
 M.RecommendationExportJob = {
     type = "structure",
+    id = "RecommendationExportJob",
     members = {
         jobId = {
             type = "string",
@@ -705,6 +738,7 @@ M.RecommendationExportJob = {
 
 M.DescribeRecommendationExportJobsOutput = {
     type = "structure",
+    id = "DescribeRecommendationExportJobsOutput",
     members = {
         recommendationExportJobs = {
             type = "list",
@@ -805,6 +839,7 @@ M.FilterName = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         name = {
             type = "string",
@@ -818,6 +853,7 @@ M.Filter = {
 
 M.RecommendationPreferences = {
     type = "structure",
+    id = "RecommendationPreferences",
     members = {
         cpuVendorArchitectures = {
             type = "list",
@@ -828,6 +864,7 @@ M.RecommendationPreferences = {
 
 M.S3DestinationConfig = {
     type = "structure",
+    id = "S3DestinationConfig",
     members = {
         bucket = {
             type = "string",
@@ -840,6 +877,7 @@ M.S3DestinationConfig = {
 
 M.ExportAutoScalingGroupRecommendationsInput = {
     type = "structure",
+    id = "ExportAutoScalingGroupRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -871,6 +909,7 @@ M.ExportAutoScalingGroupRecommendationsInput = {
 
 M.ExportAutoScalingGroupRecommendationsOutput = {
     type = "structure",
+    id = "ExportAutoScalingGroupRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -881,6 +920,7 @@ M.ExportAutoScalingGroupRecommendationsOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -933,6 +973,7 @@ M.EBSFilterName = {
 
 M.EBSFilter = {
     type = "structure",
+    id = "EBSFilter",
     members = {
         name = {
             type = "string",
@@ -946,6 +987,7 @@ M.EBSFilter = {
 
 M.ExportEBSVolumeRecommendationsInput = {
     type = "structure",
+    id = "ExportEBSVolumeRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -976,6 +1018,7 @@ M.ExportEBSVolumeRecommendationsInput = {
 
 M.ExportEBSVolumeRecommendationsOutput = {
     type = "structure",
+    id = "ExportEBSVolumeRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -1060,6 +1103,7 @@ M.ExportableInstanceField = {
 
 M.ExportEC2InstanceRecommendationsInput = {
     type = "structure",
+    id = "ExportEC2InstanceRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -1091,6 +1135,7 @@ M.ExportEC2InstanceRecommendationsInput = {
 
 M.ExportEC2InstanceRecommendationsOutput = {
     type = "structure",
+    id = "ExportEC2InstanceRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -1137,6 +1182,7 @@ M.ECSServiceRecommendationFilterName = {
 
 M.ECSServiceRecommendationFilter = {
     type = "structure",
+    id = "ECSServiceRecommendationFilter",
     members = {
         name = {
             type = "string",
@@ -1150,6 +1196,7 @@ M.ECSServiceRecommendationFilter = {
 
 M.ExportECSServiceRecommendationsInput = {
     type = "structure",
+    id = "ExportECSServiceRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -1180,6 +1227,7 @@ M.ExportECSServiceRecommendationsInput = {
 
 M.ExportECSServiceRecommendationsOutput = {
     type = "structure",
+    id = "ExportECSServiceRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -1221,6 +1269,7 @@ M.IdleRecommendationFilterName = {
 
 M.IdleRecommendationFilter = {
     type = "structure",
+    id = "IdleRecommendationFilter",
     members = {
         name = {
             type = "string",
@@ -1234,6 +1283,7 @@ M.IdleRecommendationFilter = {
 
 M.ExportIdleRecommendationsInput = {
     type = "structure",
+    id = "ExportIdleRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -1264,6 +1314,7 @@ M.ExportIdleRecommendationsInput = {
 
 M.ExportIdleRecommendationsOutput = {
     type = "structure",
+    id = "ExportIdleRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -1313,6 +1364,7 @@ M.LambdaFunctionRecommendationFilterName = {
 
 M.LambdaFunctionRecommendationFilter = {
     type = "structure",
+    id = "LambdaFunctionRecommendationFilter",
     members = {
         name = {
             type = "string",
@@ -1326,6 +1378,7 @@ M.LambdaFunctionRecommendationFilter = {
 
 M.ExportLambdaFunctionRecommendationsInput = {
     type = "structure",
+    id = "ExportLambdaFunctionRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -1356,6 +1409,7 @@ M.ExportLambdaFunctionRecommendationsInput = {
 
 M.ExportLambdaFunctionRecommendationsOutput = {
     type = "structure",
+    id = "ExportLambdaFunctionRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -1396,6 +1450,7 @@ M.LicenseRecommendationFilterName = {
 
 M.LicenseRecommendationFilter = {
     type = "structure",
+    id = "LicenseRecommendationFilter",
     members = {
         name = {
             type = "string",
@@ -1409,6 +1464,7 @@ M.LicenseRecommendationFilter = {
 
 M.ExportLicenseRecommendationsInput = {
     type = "structure",
+    id = "ExportLicenseRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -1439,6 +1495,7 @@ M.ExportLicenseRecommendationsInput = {
 
 M.ExportLicenseRecommendationsOutput = {
     type = "structure",
+    id = "ExportLicenseRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -1542,6 +1599,7 @@ M.RDSDBRecommendationFilterName = {
 
 M.RDSDBRecommendationFilter = {
     type = "structure",
+    id = "RDSDBRecommendationFilter",
     members = {
         name = {
             type = "string",
@@ -1555,6 +1613,7 @@ M.RDSDBRecommendationFilter = {
 
 M.ExportRDSDatabaseRecommendationsInput = {
     type = "structure",
+    id = "ExportRDSDatabaseRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -1586,6 +1645,7 @@ M.ExportRDSDatabaseRecommendationsInput = {
 
 M.ExportRDSDatabaseRecommendationsOutput = {
     type = "structure",
+    id = "ExportRDSDatabaseRecommendationsOutput",
     members = {
         jobId = {
             type = "string",
@@ -1596,6 +1656,7 @@ M.ExportRDSDatabaseRecommendationsOutput = {
 
 M.GetAutoScalingGroupRecommendationsInput = {
     type = "structure",
+    id = "GetAutoScalingGroupRecommendationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -1621,6 +1682,7 @@ M.GetAutoScalingGroupRecommendationsInput = {
 
 M.GetRecommendationError = {
     type = "structure",
+    id = "GetRecommendationError",
     members = {
         identifier = {
             type = "string",
@@ -1636,6 +1698,7 @@ M.GetRecommendationError = {
 
 M.GetAutoScalingGroupRecommendationsOutput = {
     type = "structure",
+    id = "GetAutoScalingGroupRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1653,6 +1716,7 @@ M.GetAutoScalingGroupRecommendationsOutput = {
 
 M.GetEBSVolumeRecommendationsInput = {
     type = "structure",
+    id = "GetEBSVolumeRecommendationsInput",
     members = {
         volumeArns = {
             type = "list",
@@ -1677,6 +1741,7 @@ M.GetEBSVolumeRecommendationsInput = {
 
 M.VolumeConfiguration = {
     type = "structure",
+    id = "VolumeConfiguration",
     members = {
         volumeType = {
             type = "string",
@@ -1725,6 +1790,7 @@ M.EBSSavingsEstimationModeSource = {
 
 M.EBSSavingsEstimationMode = {
     type = "structure",
+    id = "EBSSavingsEstimationMode",
     members = {
         source = {
             type = "string",
@@ -1734,6 +1800,7 @@ M.EBSSavingsEstimationMode = {
 
 M.EBSEffectiveRecommendationPreferences = {
     type = "structure",
+    id = "EBSEffectiveRecommendationPreferences",
     members = {
         savingsEstimationMode = M.EBSSavingsEstimationMode,
     },
@@ -1746,6 +1813,7 @@ M.EBSFinding = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -1765,6 +1833,7 @@ M.EBSMetricName = {
 
 M.EBSUtilizationMetric = {
     type = "structure",
+    id = "EBSUtilizationMetric",
     members = {
         name = {
             type = "string",
@@ -1783,6 +1852,7 @@ M.EBSUtilizationMetric = {
 
 M.EBSEstimatedMonthlySavings = {
     type = "structure",
+    id = "EBSEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -1798,6 +1868,7 @@ M.EBSEstimatedMonthlySavings = {
 
 M.EBSSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "EBSSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -1811,6 +1882,7 @@ M.EBSSavingsOpportunityAfterDiscounts = {
 
 M.VolumeRecommendationOption = {
     type = "structure",
+    id = "VolumeRecommendationOption",
     members = {
         configuration = M.VolumeConfiguration,
         performanceRisk = {
@@ -1832,6 +1904,7 @@ M.VolumeRecommendationOption = {
 
 M.VolumeRecommendation = {
     type = "structure",
+    id = "VolumeRecommendation",
     members = {
         volumeArn = {
             type = "string",
@@ -1873,6 +1946,7 @@ M.VolumeRecommendation = {
 
 M.GetEBSVolumeRecommendationsOutput = {
     type = "structure",
+    id = "GetEBSVolumeRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1890,6 +1964,7 @@ M.GetEBSVolumeRecommendationsOutput = {
 
 M.GetEC2InstanceRecommendationsInput = {
     type = "structure",
+    id = "GetEC2InstanceRecommendationsInput",
     members = {
         instanceArns = {
             type = "list",
@@ -1928,6 +2003,7 @@ M.ExternalMetricStatusCode = {
 
 M.ExternalMetricStatus = {
     type = "structure",
+    id = "ExternalMetricStatus",
     members = {
         statusCode = {
             type = "string",
@@ -1986,6 +2062,7 @@ M.PlatformDifference = {
 
 M.InstanceEstimatedMonthlySavings = {
     type = "structure",
+    id = "InstanceEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -2001,6 +2078,7 @@ M.InstanceEstimatedMonthlySavings = {
 
 M.InstanceSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "InstanceSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -2014,6 +2092,7 @@ M.InstanceSavingsOpportunityAfterDiscounts = {
 
 M.InstanceRecommendationOption = {
     type = "structure",
+    id = "InstanceRecommendationOption",
     members = {
         instanceType = {
             type = "string",
@@ -2062,6 +2141,7 @@ M.RecommendationSourceType = {
 
 M.RecommendationSource = {
     type = "structure",
+    id = "RecommendationSource",
     members = {
         recommendationSourceArn = {
             type = "string",
@@ -2074,6 +2154,7 @@ M.RecommendationSource = {
 
 M.InstanceRecommendation = {
     type = "structure",
+    id = "InstanceRecommendation",
     members = {
         instanceArn = {
             type = "string",
@@ -2140,6 +2221,7 @@ M.InstanceRecommendation = {
 
 M.GetEC2InstanceRecommendationsOutput = {
     type = "structure",
+    id = "GetEC2InstanceRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2157,6 +2239,7 @@ M.GetEC2InstanceRecommendationsOutput = {
 
 M.GetEC2RecommendationProjectedMetricsInput = {
     type = "structure",
+    id = "GetEC2RecommendationProjectedMetricsInput",
     members = {
         instanceArn = {
             type = "string",
@@ -2195,6 +2278,7 @@ M.GetEC2RecommendationProjectedMetricsInput = {
 
 M.ProjectedMetric = {
     type = "structure",
+    id = "ProjectedMetric",
     members = {
         name = {
             type = "string",
@@ -2212,6 +2296,7 @@ M.ProjectedMetric = {
 
 M.RecommendedOptionProjectedMetric = {
     type = "structure",
+    id = "RecommendedOptionProjectedMetric",
     members = {
         recommendedInstanceType = {
             type = "string",
@@ -2231,6 +2316,7 @@ M.RecommendedOptionProjectedMetric = {
 
 M.GetEC2RecommendationProjectedMetricsOutput = {
     type = "structure",
+    id = "GetEC2RecommendationProjectedMetricsOutput",
     members = {
         recommendedOptionProjectedMetrics = {
             type = "list",
@@ -2241,6 +2327,7 @@ M.GetEC2RecommendationProjectedMetricsOutput = {
 
 M.GetECSServiceRecommendationProjectedMetricsInput = {
     type = "structure",
+    id = "GetECSServiceRecommendationProjectedMetricsInput",
     members = {
         serviceArn = {
             type = "string",
@@ -2283,6 +2370,7 @@ M.ECSServiceMetricName = {
 
 M.ECSServiceProjectedMetric = {
     type = "structure",
+    id = "ECSServiceProjectedMetric",
     members = {
         name = {
             type = "string",
@@ -2304,6 +2392,7 @@ M.ECSServiceProjectedMetric = {
 
 M.ECSServiceRecommendedOptionProjectedMetric = {
     type = "structure",
+    id = "ECSServiceRecommendedOptionProjectedMetric",
     members = {
         recommendedCpuUnits = {
             type = "integer",
@@ -2326,6 +2415,7 @@ M.ECSServiceRecommendedOptionProjectedMetric = {
 
 M.GetECSServiceRecommendationProjectedMetricsOutput = {
     type = "structure",
+    id = "GetECSServiceRecommendationProjectedMetricsOutput",
     members = {
         recommendedOptionProjectedMetrics = {
             type = "list",
@@ -2336,6 +2426,7 @@ M.GetECSServiceRecommendationProjectedMetricsOutput = {
 
 M.GetECSServiceRecommendationsInput = {
     type = "structure",
+    id = "GetECSServiceRecommendationsInput",
     members = {
         serviceArns = {
             type = "list",
@@ -2360,6 +2451,7 @@ M.GetECSServiceRecommendationsInput = {
 
 M.MemorySizeConfiguration = {
     type = "structure",
+    id = "MemorySizeConfiguration",
     members = {
         memory = {
             type = "integer",
@@ -2372,6 +2464,7 @@ M.MemorySizeConfiguration = {
 
 M.ContainerConfiguration = {
     type = "structure",
+    id = "ContainerConfiguration",
     members = {
         containerName = {
             type = "string",
@@ -2385,6 +2478,7 @@ M.ContainerConfiguration = {
 
 M.ServiceConfiguration = {
     type = "structure",
+    id = "ServiceConfiguration",
     members = {
         memory = {
             type = "integer",
@@ -2413,6 +2507,7 @@ M.ECSSavingsEstimationModeSource = {
 
 M.ECSSavingsEstimationMode = {
     type = "structure",
+    id = "ECSSavingsEstimationMode",
     members = {
         source = {
             type = "string",
@@ -2422,6 +2517,7 @@ M.ECSSavingsEstimationMode = {
 
 M.ECSEffectiveRecommendationPreferences = {
     type = "structure",
+    id = "ECSEffectiveRecommendationPreferences",
     members = {
         savingsEstimationMode = M.ECSSavingsEstimationMode,
     },
@@ -2447,6 +2543,7 @@ M.ECSServiceLaunchType = {
 
 M.ContainerRecommendation = {
     type = "structure",
+    id = "ContainerRecommendation",
     members = {
         containerName = {
             type = "string",
@@ -2465,6 +2562,7 @@ M.ECSServiceMetricStatistic = {
 
 M.ECSServiceProjectedUtilizationMetric = {
     type = "structure",
+    id = "ECSServiceProjectedUtilizationMetric",
     members = {
         name = {
             type = "string",
@@ -2489,6 +2587,7 @@ M.ECSServiceProjectedUtilizationMetric = {
 
 M.ECSEstimatedMonthlySavings = {
     type = "structure",
+    id = "ECSEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -2504,6 +2603,7 @@ M.ECSEstimatedMonthlySavings = {
 
 M.ECSSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "ECSSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -2517,6 +2617,7 @@ M.ECSSavingsOpportunityAfterDiscounts = {
 
 M.ECSServiceRecommendationOption = {
     type = "structure",
+    id = "ECSServiceRecommendationOption",
     members = {
         memory = {
             type = "integer",
@@ -2539,6 +2640,7 @@ M.ECSServiceRecommendationOption = {
 
 M.ECSServiceUtilizationMetric = {
     type = "structure",
+    id = "ECSServiceUtilizationMetric",
     members = {
         name = {
             type = "string",
@@ -2557,6 +2659,7 @@ M.ECSServiceUtilizationMetric = {
 
 M.ECSServiceRecommendation = {
     type = "structure",
+    id = "ECSServiceRecommendation",
     members = {
         serviceArn = {
             type = "string",
@@ -2605,6 +2708,7 @@ M.ECSServiceRecommendation = {
 
 M.GetECSServiceRecommendationsOutput = {
     type = "structure",
+    id = "GetECSServiceRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2622,6 +2726,7 @@ M.GetECSServiceRecommendationsOutput = {
 
 M.GetEffectiveRecommendationPreferencesInput = {
     type = "structure",
+    id = "GetEffectiveRecommendationPreferencesInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2634,6 +2739,7 @@ M.GetEffectiveRecommendationPreferencesInput = {
 
 M.GetEffectiveRecommendationPreferencesOutput = {
     type = "structure",
+    id = "GetEffectiveRecommendationPreferencesOutput",
     members = {
         enhancedInfrastructureMetrics = {
             type = "string",
@@ -2655,10 +2761,12 @@ M.GetEffectiveRecommendationPreferencesOutput = {
 
 M.GetEnrollmentStatusInput = {
     type = "structure",
+    id = "GetEnrollmentStatusInput",
 }
 
 M.GetEnrollmentStatusOutput = {
     type = "structure",
+    id = "GetEnrollmentStatusOutput",
     members = {
         status = {
             type = "string",
@@ -2687,6 +2795,7 @@ M.EnrollmentFilterName = {
 
 M.EnrollmentFilter = {
     type = "structure",
+    id = "EnrollmentFilter",
     members = {
         name = {
             type = "string",
@@ -2700,6 +2809,7 @@ M.EnrollmentFilter = {
 
 M.GetEnrollmentStatusesForOrganizationInput = {
     type = "structure",
+    id = "GetEnrollmentStatusesForOrganizationInput",
     members = {
         filters = {
             type = "list",
@@ -2716,6 +2826,7 @@ M.GetEnrollmentStatusesForOrganizationInput = {
 
 M.GetEnrollmentStatusesForOrganizationOutput = {
     type = "structure",
+    id = "GetEnrollmentStatusesForOrganizationOutput",
     members = {
         accountEnrollmentStatuses = {
             type = "list",
@@ -2739,6 +2850,7 @@ M.Order = {
 
 M.OrderBy = {
     type = "structure",
+    id = "OrderBy",
     members = {
         dimension = {
             type = "string",
@@ -2751,6 +2863,7 @@ M.OrderBy = {
 
 M.GetIdleRecommendationsInput = {
     type = "structure",
+    id = "GetIdleRecommendationsInput",
     members = {
         resourceArns = {
             type = "list",
@@ -2785,6 +2898,7 @@ M.IdleRecommendationResourceType = {
 
 M.IdleRecommendationError = {
     type = "structure",
+    id = "IdleRecommendationError",
     members = {
         identifier = {
             type = "string",
@@ -2809,6 +2923,7 @@ M.IdleFinding = {
 
 M.IdleEstimatedMonthlySavings = {
     type = "structure",
+    id = "IdleEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -2824,6 +2939,7 @@ M.IdleEstimatedMonthlySavings = {
 
 M.IdleSavingsOpportunity = {
     type = "structure",
+    id = "IdleSavingsOpportunity",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -2837,6 +2953,7 @@ M.IdleSavingsOpportunity = {
 
 M.IdleSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "IdleSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -2865,6 +2982,7 @@ M.IdleMetricName = {
 
 M.IdleUtilizationMetric = {
     type = "structure",
+    id = "IdleUtilizationMetric",
     members = {
         name = {
             type = "string",
@@ -2883,6 +3001,7 @@ M.IdleUtilizationMetric = {
 
 M.IdleRecommendation = {
     type = "structure",
+    id = "IdleRecommendation",
     members = {
         resourceArn = {
             type = "string",
@@ -2926,6 +3045,7 @@ M.IdleRecommendation = {
 
 M.GetIdleRecommendationsOutput = {
     type = "structure",
+    id = "GetIdleRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2943,6 +3063,7 @@ M.GetIdleRecommendationsOutput = {
 
 M.GetLambdaFunctionRecommendationsInput = {
     type = "structure",
+    id = "GetLambdaFunctionRecommendationsInput",
     members = {
         functionArns = {
             type = "list",
@@ -2973,6 +3094,7 @@ M.LambdaSavingsEstimationModeSource = {
 
 M.LambdaSavingsEstimationMode = {
     type = "structure",
+    id = "LambdaSavingsEstimationMode",
     members = {
         source = {
             type = "string",
@@ -2982,6 +3104,7 @@ M.LambdaSavingsEstimationMode = {
 
 M.LambdaEffectiveRecommendationPreferences = {
     type = "structure",
+    id = "LambdaEffectiveRecommendationPreferences",
     members = {
         savingsEstimationMode = M.LambdaSavingsEstimationMode,
     },
@@ -3012,6 +3135,7 @@ M.LambdaFunctionMemoryMetricStatistic = {
 
 M.LambdaFunctionMemoryProjectedMetric = {
     type = "structure",
+    id = "LambdaFunctionMemoryProjectedMetric",
     members = {
         name = {
             type = "string",
@@ -3030,6 +3154,7 @@ M.LambdaFunctionMemoryProjectedMetric = {
 
 M.LambdaEstimatedMonthlySavings = {
     type = "structure",
+    id = "LambdaEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -3045,6 +3170,7 @@ M.LambdaEstimatedMonthlySavings = {
 
 M.LambdaSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "LambdaSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -3058,6 +3184,7 @@ M.LambdaSavingsOpportunityAfterDiscounts = {
 
 M.LambdaFunctionMemoryRecommendationOption = {
     type = "structure",
+    id = "LambdaFunctionMemoryRecommendationOption",
     members = {
         rank = {
             type = "integer",
@@ -3092,6 +3219,7 @@ M.LambdaFunctionMetricStatistic = {
 
 M.LambdaFunctionUtilizationMetric = {
     type = "structure",
+    id = "LambdaFunctionUtilizationMetric",
     members = {
         name = {
             type = "string",
@@ -3110,6 +3238,7 @@ M.LambdaFunctionUtilizationMetric = {
 
 M.LambdaFunctionRecommendation = {
     type = "structure",
+    id = "LambdaFunctionRecommendation",
     members = {
         functionArn = {
             type = "string",
@@ -3169,6 +3298,7 @@ M.LambdaFunctionRecommendation = {
 
 M.GetLambdaFunctionRecommendationsOutput = {
     type = "structure",
+    id = "GetLambdaFunctionRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3182,6 +3312,7 @@ M.GetLambdaFunctionRecommendationsOutput = {
 
 M.GetLicenseRecommendationsInput = {
     type = "structure",
+    id = "GetLicenseRecommendationsInput",
     members = {
         resourceArns = {
             type = "list",
@@ -3226,6 +3357,7 @@ M.MetricSourceProvider = {
 
 M.MetricSource = {
     type = "structure",
+    id = "MetricSource",
     members = {
         provider = {
             type = "string",
@@ -3238,6 +3370,7 @@ M.MetricSource = {
 
 M.LicenseConfiguration = {
     type = "structure",
+    id = "LicenseConfiguration",
     members = {
         numberOfCores = {
             type = "integer",
@@ -3285,6 +3418,7 @@ M.LicenseFindingReasonCode = {
 
 M.LicenseRecommendationOption = {
     type = "structure",
+    id = "LicenseRecommendationOption",
     members = {
         rank = {
             type = "integer",
@@ -3307,6 +3441,7 @@ M.LicenseRecommendationOption = {
 
 M.LicenseRecommendation = {
     type = "structure",
+    id = "LicenseRecommendation",
     members = {
         resourceArn = {
             type = "string",
@@ -3344,6 +3479,7 @@ M.LicenseRecommendation = {
 
 M.GetLicenseRecommendationsOutput = {
     type = "structure",
+    id = "GetLicenseRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3361,6 +3497,7 @@ M.GetLicenseRecommendationsOutput = {
 
 M.GetRDSDatabaseRecommendationProjectedMetricsInput = {
     type = "structure",
+    id = "GetRDSDatabaseRecommendationProjectedMetricsInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3423,6 +3560,7 @@ M.RDSDBMetricName = {
 
 M.RDSDatabaseProjectedMetric = {
     type = "structure",
+    id = "RDSDatabaseProjectedMetric",
     members = {
         name = {
             type = "string",
@@ -3440,6 +3578,7 @@ M.RDSDatabaseProjectedMetric = {
 
 M.RDSDatabaseRecommendedOptionProjectedMetric = {
     type = "structure",
+    id = "RDSDatabaseRecommendedOptionProjectedMetric",
     members = {
         recommendedDBInstanceClass = {
             type = "string",
@@ -3459,6 +3598,7 @@ M.RDSDatabaseRecommendedOptionProjectedMetric = {
 
 M.GetRDSDatabaseRecommendationProjectedMetricsOutput = {
     type = "structure",
+    id = "GetRDSDatabaseRecommendationProjectedMetricsOutput",
     members = {
         recommendedOptionProjectedMetrics = {
             type = "list",
@@ -3469,6 +3609,7 @@ M.GetRDSDatabaseRecommendationProjectedMetricsOutput = {
 
 M.GetRDSDatabaseRecommendationsInput = {
     type = "structure",
+    id = "GetRDSDatabaseRecommendationsInput",
     members = {
         resourceArns = {
             type = "list",
@@ -3501,6 +3642,7 @@ M.RDSCurrentInstancePerformanceRisk = {
 
 M.DBStorageConfiguration = {
     type = "structure",
+    id = "DBStorageConfiguration",
     members = {
         storageType = {
             type = "string",
@@ -3538,6 +3680,7 @@ M.RDSSavingsEstimationModeSource = {
 
 M.RDSSavingsEstimationMode = {
     type = "structure",
+    id = "RDSSavingsEstimationMode",
     members = {
         source = {
             type = "string",
@@ -3547,6 +3690,7 @@ M.RDSSavingsEstimationMode = {
 
 M.RDSEffectiveRecommendationPreferences = {
     type = "structure",
+    id = "RDSEffectiveRecommendationPreferences",
     members = {
         cpuVendorArchitectures = {
             type = "list",
@@ -3598,6 +3742,7 @@ M.RDSDBMetricStatistic = {
 
 M.RDSDBUtilizationMetric = {
     type = "structure",
+    id = "RDSDBUtilizationMetric",
     members = {
         name = {
             type = "string",
@@ -3616,6 +3761,7 @@ M.RDSDBUtilizationMetric = {
 
 M.RDSInstanceEstimatedMonthlySavings = {
     type = "structure",
+    id = "RDSInstanceEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -3631,6 +3777,7 @@ M.RDSInstanceEstimatedMonthlySavings = {
 
 M.RDSInstanceSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "RDSInstanceSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -3644,6 +3791,7 @@ M.RDSInstanceSavingsOpportunityAfterDiscounts = {
 
 M.RDSDBInstanceRecommendationOption = {
     type = "structure",
+    id = "RDSDBInstanceRecommendationOption",
     members = {
         dbInstanceClass = {
             type = "string",
@@ -3688,6 +3836,7 @@ M.RDSStorageFindingReasonCode = {
 
 M.RDSStorageEstimatedMonthlySavings = {
     type = "structure",
+    id = "RDSStorageEstimatedMonthlySavings",
     members = {
         currency = {
             type = "string",
@@ -3703,6 +3852,7 @@ M.RDSStorageEstimatedMonthlySavings = {
 
 M.RDSStorageSavingsOpportunityAfterDiscounts = {
     type = "structure",
+    id = "RDSStorageSavingsOpportunityAfterDiscounts",
     members = {
         savingsOpportunityPercentage = {
             type = "double",
@@ -3716,6 +3866,7 @@ M.RDSStorageSavingsOpportunityAfterDiscounts = {
 
 M.RDSDBStorageRecommendationOption = {
     type = "structure",
+    id = "RDSDBStorageRecommendationOption",
     members = {
         storageConfiguration = M.DBStorageConfiguration,
         rank = {
@@ -3734,6 +3885,7 @@ M.RDSDBStorageRecommendationOption = {
 
 M.RDSDBRecommendation = {
     type = "structure",
+    id = "RDSDBRecommendation",
     members = {
         resourceArn = {
             type = "string",
@@ -3811,6 +3963,7 @@ M.RDSDBRecommendation = {
 
 M.GetRDSDatabaseRecommendationsOutput = {
     type = "structure",
+    id = "GetRDSDatabaseRecommendationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3828,6 +3981,7 @@ M.GetRDSDatabaseRecommendationsOutput = {
 
 M.GetRecommendationPreferencesInput = {
     type = "structure",
+    id = "GetRecommendationPreferencesInput",
     members = {
         resourceType = {
             type = "string",
@@ -3852,6 +4006,7 @@ M.SavingsEstimationMode = {
 
 M.RecommendationPreferencesDetail = {
     type = "structure",
+    id = "RecommendationPreferencesDetail",
     members = {
         scope = M.Scope,
         resourceType = {
@@ -3883,6 +4038,7 @@ M.RecommendationPreferencesDetail = {
 
 M.GetRecommendationPreferencesOutput = {
     type = "structure",
+    id = "GetRecommendationPreferencesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3896,6 +4052,7 @@ M.GetRecommendationPreferencesOutput = {
 
 M.GetRecommendationSummariesInput = {
     type = "structure",
+    id = "GetRecommendationSummariesInput",
     members = {
         accountIds = {
             type = "list",
@@ -3912,6 +4069,7 @@ M.GetRecommendationSummariesInput = {
 
 M.CurrentPerformanceRiskRatings = {
     type = "structure",
+    id = "CurrentPerformanceRiskRatings",
     members = {
         high = {
             type = "long",
@@ -3942,6 +4100,7 @@ M.CurrentPerformanceRiskRatings = {
 
 M.IdleSummary = {
     type = "structure",
+    id = "IdleSummary",
     members = {
         name = {
             type = "string",
@@ -3957,6 +4116,7 @@ M.IdleSummary = {
 
 M.InferredWorkloadSaving = {
     type = "structure",
+    id = "InferredWorkloadSaving",
     members = {
         inferredWorkloadTypes = {
             type = "list",
@@ -3973,6 +4133,7 @@ M.FindingReasonCode = {
 
 M.ReasonCodeSummary = {
     type = "structure",
+    id = "ReasonCodeSummary",
     members = {
         name = {
             type = "string",
@@ -3988,6 +4149,7 @@ M.ReasonCodeSummary = {
 
 M.Summary = {
     type = "structure",
+    id = "Summary",
     members = {
         name = {
             type = "string",
@@ -4007,6 +4169,7 @@ M.Summary = {
 
 M.RecommendationSummary = {
     type = "structure",
+    id = "RecommendationSummary",
     members = {
         summaries = {
             type = "list",
@@ -4035,6 +4198,7 @@ M.RecommendationSummary = {
 
 M.GetRecommendationSummariesOutput = {
     type = "structure",
+    id = "GetRecommendationSummariesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4048,6 +4212,7 @@ M.GetRecommendationSummariesOutput = {
 
 M.PreferredResource = {
     type = "structure",
+    id = "PreferredResource",
     members = {
         name = {
             type = "string",
@@ -4065,6 +4230,7 @@ M.PreferredResource = {
 
 M.PutRecommendationPreferencesInput = {
     type = "structure",
+    id = "PutRecommendationPreferencesInput",
     members = {
         resourceType = {
             type = "string",
@@ -4099,10 +4265,12 @@ M.PutRecommendationPreferencesInput = {
 
 M.PutRecommendationPreferencesOutput = {
     type = "structure",
+    id = "PutRecommendationPreferencesOutput",
 }
 
 M.UpdateEnrollmentStatusInput = {
     type = "structure",
+    id = "UpdateEnrollmentStatusInput",
     members = {
         status = {
             type = "string",
@@ -4121,6 +4289,7 @@ M.UpdateEnrollmentStatusInput = {
 
 M.UpdateEnrollmentStatusOutput = {
     type = "structure",
+    id = "UpdateEnrollmentStatusOutput",
     members = {
         status = {
             type = "string",

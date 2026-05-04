@@ -7,6 +7,7 @@ M.AdminStatus = {
 
 M.AdminAccount = {
     type = "structure",
+    id = "AdminAccount",
     members = {
         accountId = {
             type = "string",
@@ -25,6 +26,7 @@ M.AdminAccount = {
 
 M.AllowListSummary = {
     type = "structure",
+    id = "AllowListSummary",
     members = {
         arn = {
             type = "string",
@@ -74,6 +76,7 @@ M.AutomatedDiscoveryAccountStatus = {
 
 M.AutomatedDiscoveryAccount = {
     type = "structure",
+    id = "AutomatedDiscoveryAccount",
     members = {
         accountId = {
             type = "string",
@@ -92,6 +95,7 @@ M.AutomatedDiscoveryAccount = {
 
 M.AutomatedDiscoveryAccountUpdate = {
     type = "structure",
+    id = "AutomatedDiscoveryAccountUpdate",
     members = {
         accountId = {
             type = "string",
@@ -115,6 +119,7 @@ M.AutomatedDiscoveryAccountUpdateErrorCode = {
 
 M.AutomatedDiscoveryAccountUpdateError = {
     type = "structure",
+    id = "AutomatedDiscoveryAccountUpdateError",
     members = {
         accountId = {
             type = "string",
@@ -133,6 +138,7 @@ M.AutomatedDiscoveryAccountUpdateError = {
 
 M.BatchGetCustomDataIdentifierSummary = {
     type = "structure",
+    id = "BatchGetCustomDataIdentifierSummary",
     members = {
         arn = {
             type = "string",
@@ -204,6 +210,7 @@ M.IsMonitoredByJob = {
 
 M.JobDetails = {
     type = "structure",
+    id = "JobDetails",
     members = {
         isDefinedInJob = {
             type = "string",
@@ -235,6 +242,7 @@ M.JobDetails = {
 
 M.ObjectCountByEncryptionType = {
     type = "structure",
+    id = "ObjectCountByEncryptionType",
     members = {
         customerManaged = {
             type = "long",
@@ -277,6 +285,7 @@ M.EffectivePermission = {
 
 M.BlockPublicAccess = {
     type = "structure",
+    id = "BlockPublicAccess",
     members = {
         blockPublicAcls = {
             type = "boolean",
@@ -307,6 +316,7 @@ M.BlockPublicAccess = {
 
 M.AccountLevelPermissions = {
     type = "structure",
+    id = "AccountLevelPermissions",
     members = {
         blockPublicAccess = setmetatable({ traits = {
             json_name = "blockPublicAccess",
@@ -316,6 +326,7 @@ M.AccountLevelPermissions = {
 
 M.AccessControlList = {
     type = "structure",
+    id = "AccessControlList",
     members = {
         allowsPublicReadAccess = {
             type = "boolean",
@@ -334,6 +345,7 @@ M.AccessControlList = {
 
 M.BucketPolicy = {
     type = "structure",
+    id = "BucketPolicy",
     members = {
         allowsPublicReadAccess = {
             type = "boolean",
@@ -352,6 +364,7 @@ M.BucketPolicy = {
 
 M.BucketLevelPermissions = {
     type = "structure",
+    id = "BucketLevelPermissions",
     members = {
         accessControlList = setmetatable({ traits = {
             json_name = "accessControlList",
@@ -367,6 +380,7 @@ M.BucketLevelPermissions = {
 
 M.BucketPermissionConfiguration = {
     type = "structure",
+    id = "BucketPermissionConfiguration",
     members = {
         accountLevelPermissions = setmetatable({ traits = {
             json_name = "accountLevelPermissions",
@@ -379,6 +393,7 @@ M.BucketPermissionConfiguration = {
 
 M.BucketPublicAccess = {
     type = "structure",
+    id = "BucketPublicAccess",
     members = {
         effectivePermission = {
             type = "string",
@@ -394,6 +409,7 @@ M.BucketPublicAccess = {
 
 M.ReplicationDetails = {
     type = "structure",
+    id = "ReplicationDetails",
     members = {
         replicated = {
             type = "boolean",
@@ -426,6 +442,7 @@ M.Type = {
 
 M.BucketServerSideEncryption = {
     type = "structure",
+    id = "BucketServerSideEncryption",
     members = {
         kmsMasterKeyId = {
             type = "string",
@@ -451,6 +468,7 @@ M.SharedAccess = {
 
 M.KeyValuePair = {
     type = "structure",
+    id = "KeyValuePair",
     members = {
         key = {
             type = "string",
@@ -469,6 +487,7 @@ M.KeyValuePair = {
 
 M.ObjectLevelStatistics = {
     type = "structure",
+    id = "ObjectLevelStatistics",
     members = {
         fileType = {
             type = "long",
@@ -493,6 +512,7 @@ M.ObjectLevelStatistics = {
 
 M.BucketMetadata = {
     type = "structure",
+    id = "BucketMetadata",
     members = {
         accountId = {
             type = "string",
@@ -644,6 +664,7 @@ M.BucketMetadata = {
 
 M.ClassificationScopeSummary = {
     type = "structure",
+    id = "ClassificationScopeSummary",
     members = {
         id = {
             type = "string",
@@ -680,6 +701,7 @@ M.SimpleCriterionKeyForJob = {
 
 M.SimpleCriterionForJob = {
     type = "structure",
+    id = "SimpleCriterionForJob",
     members = {
         comparator = {
             type = "string",
@@ -705,6 +727,7 @@ M.SimpleCriterionForJob = {
 
 M.TagCriterionPairForJob = {
     type = "structure",
+    id = "TagCriterionPairForJob",
     members = {
         key = {
             type = "string",
@@ -723,6 +746,7 @@ M.TagCriterionPairForJob = {
 
 M.TagCriterionForJob = {
     type = "structure",
+    id = "TagCriterionForJob",
     members = {
         comparator = {
             type = "string",
@@ -742,6 +766,7 @@ M.TagCriterionForJob = {
 
 M.CriteriaForJob = {
     type = "structure",
+    id = "CriteriaForJob",
     members = {
         simpleCriterion = setmetatable({ traits = {
             json_name = "simpleCriterion",
@@ -754,6 +779,7 @@ M.CriteriaForJob = {
 
 M.CustomDataIdentifierSummary = {
     type = "structure",
+    id = "CustomDataIdentifierSummary",
     members = {
         arn = {
             type = "string",
@@ -791,6 +817,7 @@ M.CustomDataIdentifierSummary = {
 
 M.DetectedDataDetails = {
     type = "structure",
+    id = "DetectedDataDetails",
     members = {
         value = {
             type = "string",
@@ -809,6 +836,7 @@ M.DataIdentifierType = {
 
 M.Detection = {
     type = "structure",
+    id = "Detection",
     members = {
         arn = {
             type = "string",
@@ -861,6 +889,7 @@ M.OriginType = {
 
 M.Cell = {
     type = "structure",
+    id = "Cell",
     members = {
         cellReference = {
             type = "string",
@@ -891,6 +920,7 @@ M.Cell = {
 
 M.Range = {
     type = "structure",
+    id = "Range",
     members = {
         end = {
             type = "long",
@@ -915,6 +945,7 @@ M.Range = {
 
 M.Page = {
     type = "structure",
+    id = "Page",
     members = {
         lineRange = setmetatable({ traits = {
             json_name = "lineRange",
@@ -933,6 +964,7 @@ M.Page = {
 
 M.Record = {
     type = "structure",
+    id = "Record",
     members = {
         jsonPath = {
             type = "string",
@@ -951,6 +983,7 @@ M.Record = {
 
 M.Occurrences = {
     type = "structure",
+    id = "Occurrences",
     members = {
         cells = {
             type = "list",
@@ -992,6 +1025,7 @@ M.Occurrences = {
 
 M.CustomDetection = {
     type = "structure",
+    id = "CustomDetection",
     members = {
         arn = {
             type = "string",
@@ -1019,6 +1053,7 @@ M.CustomDetection = {
 
 M.CustomDataIdentifiers = {
     type = "structure",
+    id = "CustomDataIdentifiers",
     members = {
         detections = {
             type = "list",
@@ -1045,6 +1080,7 @@ M.SensitiveDataItemCategory = {
 
 M.DefaultDetection = {
     type = "structure",
+    id = "DefaultDetection",
     members = {
         count = {
             type = "long",
@@ -1066,6 +1102,7 @@ M.DefaultDetection = {
 
 M.SensitiveDataItem = {
     type = "structure",
+    id = "SensitiveDataItem",
     members = {
         category = {
             type = "string",
@@ -1091,6 +1128,7 @@ M.SensitiveDataItem = {
 
 M.ClassificationResultStatus = {
     type = "structure",
+    id = "ClassificationResultStatus",
     members = {
         code = {
             type = "string",
@@ -1109,6 +1147,7 @@ M.ClassificationResultStatus = {
 
 M.ClassificationResult = {
     type = "structure",
+    id = "ClassificationResult",
     members = {
         additionalOccurrences = {
             type = "boolean",
@@ -1146,6 +1185,7 @@ M.ClassificationResult = {
 
 M.ClassificationDetails = {
     type = "structure",
+    id = "ClassificationDetails",
     members = {
         detailedResultsLocation = {
             type = "string",
@@ -1183,6 +1223,7 @@ M.FindingActionType = {
 
 M.ApiCallDetails = {
     type = "structure",
+    id = "ApiCallDetails",
     members = {
         api = {
             type = "string",
@@ -1215,6 +1256,7 @@ M.ApiCallDetails = {
 
 M.FindingAction = {
     type = "structure",
+    id = "FindingAction",
     members = {
         actionType = {
             type = "string",
@@ -1230,6 +1272,7 @@ M.FindingAction = {
 
 M.DomainDetails = {
     type = "structure",
+    id = "DomainDetails",
     members = {
         domainName = {
             type = "string",
@@ -1242,6 +1285,7 @@ M.DomainDetails = {
 
 M.IpCity = {
     type = "structure",
+    id = "IpCity",
     members = {
         name = {
             type = "string",
@@ -1254,6 +1298,7 @@ M.IpCity = {
 
 M.IpCountry = {
     type = "structure",
+    id = "IpCountry",
     members = {
         code = {
             type = "string",
@@ -1272,6 +1317,7 @@ M.IpCountry = {
 
 M.IpGeoLocation = {
     type = "structure",
+    id = "IpGeoLocation",
     members = {
         lat = {
             type = "double",
@@ -1290,6 +1336,7 @@ M.IpGeoLocation = {
 
 M.IpOwner = {
     type = "structure",
+    id = "IpOwner",
     members = {
         asn = {
             type = "string",
@@ -1320,6 +1367,7 @@ M.IpOwner = {
 
 M.IpAddressDetails = {
     type = "structure",
+    id = "IpAddressDetails",
     members = {
         ipAddressV4 = {
             type = "string",
@@ -1344,6 +1392,7 @@ M.IpAddressDetails = {
 
 M.SessionContextAttributes = {
     type = "structure",
+    id = "SessionContextAttributes",
     members = {
         creationDate = {
             type = "timestamp",
@@ -1363,6 +1412,7 @@ M.SessionContextAttributes = {
 
 M.SessionIssuer = {
     type = "structure",
+    id = "SessionIssuer",
     members = {
         accountId = {
             type = "string",
@@ -1399,6 +1449,7 @@ M.SessionIssuer = {
 
 M.SessionContext = {
     type = "structure",
+    id = "SessionContext",
     members = {
         attributes = setmetatable({ traits = {
             json_name = "attributes",
@@ -1411,6 +1462,7 @@ M.SessionContext = {
 
 M.AssumedRole = {
     type = "structure",
+    id = "AssumedRole",
     members = {
         accessKeyId = {
             type = "string",
@@ -1444,6 +1496,7 @@ M.AssumedRole = {
 
 M.AwsAccount = {
     type = "structure",
+    id = "AwsAccount",
     members = {
         accountId = {
             type = "string",
@@ -1462,6 +1515,7 @@ M.AwsAccount = {
 
 M.AwsService = {
     type = "structure",
+    id = "AwsService",
     members = {
         invokedBy = {
             type = "string",
@@ -1474,6 +1528,7 @@ M.AwsService = {
 
 M.FederatedUser = {
     type = "structure",
+    id = "FederatedUser",
     members = {
         accessKeyId = {
             type = "string",
@@ -1507,6 +1562,7 @@ M.FederatedUser = {
 
 M.IamUser = {
     type = "structure",
+    id = "IamUser",
     members = {
         accountId = {
             type = "string",
@@ -1537,6 +1593,7 @@ M.IamUser = {
 
 M.UserIdentityRoot = {
     type = "structure",
+    id = "UserIdentityRoot",
     members = {
         accountId = {
             type = "string",
@@ -1570,6 +1627,7 @@ M.UserIdentityType = {
 
 M.UserIdentity = {
     type = "structure",
+    id = "UserIdentity",
     members = {
         assumedRole = setmetatable({ traits = {
             json_name = "assumedRole",
@@ -1600,6 +1658,7 @@ M.UserIdentity = {
 
 M.FindingActor = {
     type = "structure",
+    id = "FindingActor",
     members = {
         domainDetails = setmetatable({ traits = {
             json_name = "domainDetails",
@@ -1615,6 +1674,7 @@ M.FindingActor = {
 
 M.PolicyDetails = {
     type = "structure",
+    id = "PolicyDetails",
     members = {
         action = setmetatable({ traits = {
             json_name = "action",
@@ -1635,6 +1695,7 @@ M.EncryptionType = {
 
 M.ServerSideEncryption = {
     type = "structure",
+    id = "ServerSideEncryption",
     members = {
         encryptionType = {
             type = "string",
@@ -1653,6 +1714,7 @@ M.ServerSideEncryption = {
 
 M.S3BucketOwner = {
     type = "structure",
+    id = "S3BucketOwner",
     members = {
         displayName = {
             type = "string",
@@ -1671,6 +1733,7 @@ M.S3BucketOwner = {
 
 M.S3Bucket = {
     type = "structure",
+    id = "S3Bucket",
     members = {
         allowsUnencryptedObjectUploads = {
             type = "string",
@@ -1730,6 +1793,7 @@ M.StorageClass = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         bucketArn = {
             type = "string",
@@ -1807,6 +1871,7 @@ M.S3Object = {
 
 M.ResourcesAffected = {
     type = "structure",
+    id = "ResourcesAffected",
     members = {
         s3Bucket = setmetatable({ traits = {
             json_name = "s3Bucket",
@@ -1825,6 +1890,7 @@ M.SeverityDescription = {
 
 M.Severity = {
     type = "structure",
+    id = "Severity",
     members = {
         description = {
             type = "string",
@@ -1857,6 +1923,7 @@ M.FindingType = {
 
 M.Finding = {
     type = "structure",
+    id = "Finding",
     members = {
         accountId = {
             type = "string",
@@ -1966,6 +2033,7 @@ M.FindingsFilterAction = {
 
 M.FindingsFilterListItem = {
     type = "structure",
+    id = "FindingsFilterListItem",
     members = {
         action = {
             type = "string",
@@ -2004,6 +2072,7 @@ M.FindingsFilterListItem = {
 
 M.GroupCount = {
     type = "structure",
+    id = "GroupCount",
     members = {
         count = {
             type = "long",
@@ -2035,6 +2104,7 @@ M.RelationshipStatus = {
 
 M.Invitation = {
     type = "structure",
+    id = "Invitation",
     members = {
         accountId = {
             type = "string",
@@ -2073,6 +2143,7 @@ M.ScopeFilterKey = {
 
 M.SimpleScopeTerm = {
     type = "structure",
+    id = "SimpleScopeTerm",
     members = {
         comparator = {
             type = "string",
@@ -2098,6 +2169,7 @@ M.SimpleScopeTerm = {
 
 M.TagValuePair = {
     type = "structure",
+    id = "TagValuePair",
     members = {
         key = {
             type = "string",
@@ -2120,6 +2192,7 @@ M.TagTarget = {
 
 M.TagScopeTerm = {
     type = "structure",
+    id = "TagScopeTerm",
     members = {
         comparator = {
             type = "string",
@@ -2151,6 +2224,7 @@ M.TagScopeTerm = {
 
 M.JobScopeTerm = {
     type = "structure",
+    id = "JobScopeTerm",
     members = {
         simpleScopeTerm = setmetatable({ traits = {
             json_name = "simpleScopeTerm",
@@ -2163,6 +2237,7 @@ M.JobScopeTerm = {
 
 M.CriteriaBlockForJob = {
     type = "structure",
+    id = "CriteriaBlockForJob",
     members = {
         and = {
             type = "list",
@@ -2176,6 +2251,7 @@ M.CriteriaBlockForJob = {
 
 M.S3BucketCriteriaForJob = {
     type = "structure",
+    id = "S3BucketCriteriaForJob",
     members = {
         excludes = setmetatable({ traits = {
             json_name = "excludes",
@@ -2188,6 +2264,7 @@ M.S3BucketCriteriaForJob = {
 
 M.S3BucketDefinitionForJob = {
     type = "structure",
+    id = "S3BucketDefinitionForJob",
     members = {
         accountId = {
             type = "string",
@@ -2228,6 +2305,7 @@ M.LastRunErrorStatusCode = {
 
 M.LastRunErrorStatus = {
     type = "structure",
+    id = "LastRunErrorStatus",
     members = {
         code = {
             type = "string",
@@ -2240,6 +2318,7 @@ M.LastRunErrorStatus = {
 
 M.UserPausedDetails = {
     type = "structure",
+    id = "UserPausedDetails",
     members = {
         jobExpiresAt = {
             type = "timestamp",
@@ -2266,6 +2345,7 @@ M.UserPausedDetails = {
 
 M.JobSummary = {
     type = "structure",
+    id = "JobSummary",
     members = {
         bucketCriteria = setmetatable({ traits = {
             json_name = "bucketCriteria",
@@ -2326,6 +2406,7 @@ M.ListJobsFilterKey = {
 
 M.ListJobsFilterTerm = {
     type = "structure",
+    id = "ListJobsFilterTerm",
     members = {
         comparator = {
             type = "string",
@@ -2351,6 +2432,7 @@ M.ListJobsFilterTerm = {
 
 M.ManagedDataIdentifierSummary = {
     type = "structure",
+    id = "ManagedDataIdentifierSummary",
     members = {
         category = {
             type = "string",
@@ -2369,6 +2451,7 @@ M.ManagedDataIdentifierSummary = {
 
 M.MatchingBucket = {
     type = "structure",
+    id = "MatchingBucket",
     members = {
         accountId = {
             type = "string",
@@ -2460,6 +2543,7 @@ M.MatchingBucket = {
 
 M.MatchingResource = {
     type = "structure",
+    id = "MatchingResource",
     members = {
         matchingBucket = setmetatable({ traits = {
             json_name = "matchingBucket",
@@ -2469,6 +2553,7 @@ M.MatchingResource = {
 
 M.Member = {
     type = "structure",
+    id = "Member",
     members = {
         accountId = {
             type = "string",
@@ -2533,6 +2618,7 @@ M.Member = {
 
 M.ResourceProfileArtifact = {
     type = "structure",
+    id = "ResourceProfileArtifact",
     members = {
         arn = {
             type = "string",
@@ -2572,6 +2658,7 @@ M.SearchResourcesSimpleCriterionKey = {
 
 M.SearchResourcesSimpleCriterion = {
     type = "structure",
+    id = "SearchResourcesSimpleCriterion",
     members = {
         comparator = {
             type = "string",
@@ -2597,6 +2684,7 @@ M.SearchResourcesSimpleCriterion = {
 
 M.SearchResourcesTagCriterionPair = {
     type = "structure",
+    id = "SearchResourcesTagCriterionPair",
     members = {
         key = {
             type = "string",
@@ -2615,6 +2703,7 @@ M.SearchResourcesTagCriterionPair = {
 
 M.SearchResourcesTagCriterion = {
     type = "structure",
+    id = "SearchResourcesTagCriterion",
     members = {
         comparator = {
             type = "string",
@@ -2634,6 +2723,7 @@ M.SearchResourcesTagCriterion = {
 
 M.SearchResourcesCriteria = {
     type = "structure",
+    id = "SearchResourcesCriteria",
     members = {
         simpleCriterion = setmetatable({ traits = {
             json_name = "simpleCriterion",
@@ -2646,6 +2736,7 @@ M.SearchResourcesCriteria = {
 
 M.SensitivityInspectionTemplatesEntry = {
     type = "structure",
+    id = "SensitivityInspectionTemplatesEntry",
     members = {
         id = {
             type = "string",
@@ -2664,6 +2755,7 @@ M.SensitivityInspectionTemplatesEntry = {
 
 M.SuppressDataIdentifier = {
     type = "structure",
+    id = "SuppressDataIdentifier",
     members = {
         id = {
             type = "string",
@@ -2701,6 +2793,7 @@ M.ErrorCode = {
 
 M.UnprocessedAccount = {
     type = "structure",
+    id = "UnprocessedAccount",
     members = {
         accountId = {
             type = "string",
@@ -2733,6 +2826,7 @@ M.Unit = {
 
 M.ServiceLimit = {
     type = "structure",
+    id = "ServiceLimit",
     members = {
         isServiceLimited = {
             type = "boolean",
@@ -2764,6 +2858,7 @@ M.UsageType = {
 
 M.UsageByAccount = {
     type = "structure",
+    id = "UsageByAccount",
     members = {
         currency = {
             type = "string",
@@ -2791,6 +2886,7 @@ M.UsageByAccount = {
 
 M.UsageRecord = {
     type = "structure",
+    id = "UsageRecord",
     members = {
         accountId = {
             type = "string",
@@ -2841,6 +2937,7 @@ M.UsageStatisticsFilterKey = {
 
 M.UsageStatisticsFilter = {
     type = "structure",
+    id = "UsageStatisticsFilter",
     members = {
         comparator = {
             type = "string",
@@ -2866,6 +2963,7 @@ M.UsageStatisticsFilter = {
 
 M.UsageTotal = {
     type = "structure",
+    id = "UsageTotal",
     members = {
         currency = {
             type = "string",
@@ -2890,6 +2988,7 @@ M.UsageTotal = {
 
 M.AcceptInvitationInput = {
     type = "structure",
+    id = "AcceptInvitationInput",
     members = {
         administratorAccountId = {
             type = "string",
@@ -2915,10 +3014,12 @@ M.AcceptInvitationInput = {
 
 M.AcceptInvitationOutput = {
     type = "structure",
+    id = "AcceptInvitationOutput",
 }
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -2932,6 +3033,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -2945,6 +3047,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -2958,6 +3061,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2971,6 +3075,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -2984,6 +3089,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -2997,6 +3103,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -3010,6 +3117,7 @@ M.ValidationException = {
 
 M.AccountDetail = {
     type = "structure",
+    id = "AccountDetail",
     members = {
         accountId = {
             type = "string",
@@ -3030,6 +3138,7 @@ M.AccountDetail = {
 
 M.S3WordsList = {
     type = "structure",
+    id = "S3WordsList",
     members = {
         bucketName = {
             type = "string",
@@ -3050,6 +3159,7 @@ M.S3WordsList = {
 
 M.AllowListCriteria = {
     type = "structure",
+    id = "AllowListCriteria",
     members = {
         regex = {
             type = "string",
@@ -3076,6 +3186,7 @@ M.AllowListStatusCode = {
 
 M.AllowListStatus = {
     type = "structure",
+    id = "AllowListStatus",
     members = {
         code = {
             type = "string",
@@ -3111,6 +3222,7 @@ M.AvailabilityCode = {
 
 M.BatchGetCustomDataIdentifiersInput = {
     type = "structure",
+    id = "BatchGetCustomDataIdentifiersInput",
     members = {
         ids = {
             type = "list",
@@ -3124,6 +3236,7 @@ M.BatchGetCustomDataIdentifiersInput = {
 
 M.BatchGetCustomDataIdentifiersOutput = {
     type = "structure",
+    id = "BatchGetCustomDataIdentifiersOutput",
     members = {
         customDataIdentifiers = {
             type = "list",
@@ -3144,6 +3257,7 @@ M.BatchGetCustomDataIdentifiersOutput = {
 
 M.BatchUpdateAutomatedDiscoveryAccountsInput = {
     type = "structure",
+    id = "BatchUpdateAutomatedDiscoveryAccountsInput",
     members = {
         accounts = {
             type = "list",
@@ -3157,6 +3271,7 @@ M.BatchUpdateAutomatedDiscoveryAccountsInput = {
 
 M.BatchUpdateAutomatedDiscoveryAccountsOutput = {
     type = "structure",
+    id = "BatchUpdateAutomatedDiscoveryAccountsOutput",
     members = {
         errors = {
             type = "list",
@@ -3170,6 +3285,7 @@ M.BatchUpdateAutomatedDiscoveryAccountsOutput = {
 
 M.BucketCountByEffectivePermission = {
     type = "structure",
+    id = "BucketCountByEffectivePermission",
     members = {
         publiclyAccessible = {
             type = "long",
@@ -3200,6 +3316,7 @@ M.BucketCountByEffectivePermission = {
 
 M.BucketCountByEncryptionType = {
     type = "structure",
+    id = "BucketCountByEncryptionType",
     members = {
         kmsManaged = {
             type = "long",
@@ -3230,6 +3347,7 @@ M.BucketCountByEncryptionType = {
 
 M.BucketCountBySharedAccessType = {
     type = "structure",
+    id = "BucketCountBySharedAccessType",
     members = {
         external = {
             type = "long",
@@ -3260,6 +3378,7 @@ M.BucketCountBySharedAccessType = {
 
 M.BucketCountPolicyAllowsUnencryptedObjectUploads = {
     type = "structure",
+    id = "BucketCountPolicyAllowsUnencryptedObjectUploads",
     members = {
         allowsUnencryptedObjectUploads = {
             type = "long",
@@ -3284,6 +3403,7 @@ M.BucketCountPolicyAllowsUnencryptedObjectUploads = {
 
 M.BucketCriteriaAdditionalProperties = {
     type = "structure",
+    id = "BucketCriteriaAdditionalProperties",
     members = {
         eq = {
             type = "list",
@@ -3339,6 +3459,7 @@ M.OrderBy = {
 
 M.BucketSortCriteria = {
     type = "structure",
+    id = "BucketSortCriteria",
     members = {
         attributeName = {
             type = "string",
@@ -3357,6 +3478,7 @@ M.BucketSortCriteria = {
 
 M.SensitivityAggregations = {
     type = "structure",
+    id = "SensitivityAggregations",
     members = {
         classifiableSizeInBytes = {
             type = "long",
@@ -3387,6 +3509,7 @@ M.SensitivityAggregations = {
 
 M.BucketStatisticsBySensitivity = {
     type = "structure",
+    id = "BucketStatisticsBySensitivity",
     members = {
         classificationError = setmetatable({ traits = {
             json_name = "classificationError",
@@ -3405,6 +3528,7 @@ M.BucketStatisticsBySensitivity = {
 
 M.S3Destination = {
     type = "structure",
+    id = "S3Destination",
     members = {
         bucketName = {
             type = "string",
@@ -3437,6 +3561,7 @@ M.S3Destination = {
 
 M.ClassificationExportConfiguration = {
     type = "structure",
+    id = "ClassificationExportConfiguration",
     members = {
         s3Destination = setmetatable({ traits = {
             json_name = "s3Destination",
@@ -3452,6 +3577,7 @@ M.ClassificationScopeUpdateOperation = {
 
 M.CreateAllowListInput = {
     type = "structure",
+    id = "CreateAllowListInput",
     members = {
         clientToken = {
             type = "string",
@@ -3491,6 +3617,7 @@ M.CreateAllowListInput = {
 
 M.CreateAllowListOutput = {
     type = "structure",
+    id = "CreateAllowListOutput",
     members = {
         arn = {
             type = "string",
@@ -3517,6 +3644,7 @@ M.ManagedDataIdentifierSelector = {
 
 M.JobScopingBlock = {
     type = "structure",
+    id = "JobScopingBlock",
     members = {
         and = {
             type = "list",
@@ -3530,6 +3658,7 @@ M.JobScopingBlock = {
 
 M.Scoping = {
     type = "structure",
+    id = "Scoping",
     members = {
         excludes = setmetatable({ traits = {
             json_name = "excludes",
@@ -3542,6 +3671,7 @@ M.Scoping = {
 
 M.S3JobDefinition = {
     type = "structure",
+    id = "S3JobDefinition",
     members = {
         bucketCriteria = setmetatable({ traits = {
             json_name = "bucketCriteria",
@@ -3561,10 +3691,12 @@ M.S3JobDefinition = {
 
 M.DailySchedule = {
     type = "structure",
+    id = "DailySchedule",
 }
 
 M.MonthlySchedule = {
     type = "structure",
+    id = "MonthlySchedule",
     members = {
         dayOfMonth = {
             type = "integer",
@@ -3587,6 +3719,7 @@ M.DayOfWeek = {
 
 M.WeeklySchedule = {
     type = "structure",
+    id = "WeeklySchedule",
     members = {
         dayOfWeek = {
             type = "string",
@@ -3599,6 +3732,7 @@ M.WeeklySchedule = {
 
 M.JobScheduleFrequency = {
     type = "structure",
+    id = "JobScheduleFrequency",
     members = {
         dailySchedule = setmetatable({ traits = {
             json_name = "dailySchedule",
@@ -3614,6 +3748,7 @@ M.JobScheduleFrequency = {
 
 M.CreateClassificationJobInput = {
     type = "structure",
+    id = "CreateClassificationJobInput",
     members = {
         allowListIds = {
             type = "list",
@@ -3702,6 +3837,7 @@ M.CreateClassificationJobInput = {
 
 M.CreateClassificationJobOutput = {
     type = "structure",
+    id = "CreateClassificationJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -3726,6 +3862,7 @@ M.DataIdentifierSeverity = {
 
 M.SeverityLevel = {
     type = "structure",
+    id = "SeverityLevel",
     members = {
         occurrencesThreshold = {
             type = "long",
@@ -3746,6 +3883,7 @@ M.SeverityLevel = {
 
 M.CreateCustomDataIdentifierInput = {
     type = "structure",
+    id = "CreateCustomDataIdentifierInput",
     members = {
         clientToken = {
             type = "string",
@@ -3814,6 +3952,7 @@ M.CreateCustomDataIdentifierInput = {
 
 M.CreateCustomDataIdentifierOutput = {
     type = "structure",
+    id = "CreateCustomDataIdentifierOutput",
     members = {
         customDataIdentifierId = {
             type = "string",
@@ -3826,6 +3965,7 @@ M.CreateCustomDataIdentifierOutput = {
 
 M.CriterionAdditionalProperties = {
     type = "structure",
+    id = "CriterionAdditionalProperties",
     members = {
         eq = {
             type = "list",
@@ -3877,6 +4017,7 @@ M.CriterionAdditionalProperties = {
 
 M.FindingCriteria = {
     type = "structure",
+    id = "FindingCriteria",
     members = {
         criterion = {
             type = "map",
@@ -3891,6 +4032,7 @@ M.FindingCriteria = {
 
 M.CreateFindingsFilterInput = {
     type = "structure",
+    id = "CreateFindingsFilterInput",
     members = {
         action = {
             type = "string",
@@ -3942,6 +4084,7 @@ M.CreateFindingsFilterInput = {
 
 M.CreateFindingsFilterOutput = {
     type = "structure",
+    id = "CreateFindingsFilterOutput",
     members = {
         arn = {
             type = "string",
@@ -3960,6 +4103,7 @@ M.CreateFindingsFilterOutput = {
 
 M.CreateInvitationsInput = {
     type = "structure",
+    id = "CreateInvitationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -3986,6 +4130,7 @@ M.CreateInvitationsInput = {
 
 M.CreateInvitationsOutput = {
     type = "structure",
+    id = "CreateInvitationsOutput",
     members = {
         unprocessedAccounts = {
             type = "list",
@@ -3999,6 +4144,7 @@ M.CreateInvitationsOutput = {
 
 M.CreateMemberInput = {
     type = "structure",
+    id = "CreateMemberInput",
     members = {
         account = setmetatable({ traits = {
             json_name = "account",
@@ -4017,6 +4163,7 @@ M.CreateMemberInput = {
 
 M.CreateMemberOutput = {
     type = "structure",
+    id = "CreateMemberOutput",
     members = {
         arn = {
             type = "string",
@@ -4029,6 +4176,7 @@ M.CreateMemberOutput = {
 
 M.CreateSampleFindingsInput = {
     type = "structure",
+    id = "CreateSampleFindingsInput",
     members = {
         findingTypes = {
             type = "list",
@@ -4042,10 +4190,12 @@ M.CreateSampleFindingsInput = {
 
 M.CreateSampleFindingsOutput = {
     type = "structure",
+    id = "CreateSampleFindingsOutput",
 }
 
 M.DeclineInvitationsInput = {
     type = "structure",
+    id = "DeclineInvitationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -4060,6 +4210,7 @@ M.DeclineInvitationsInput = {
 
 M.DeclineInvitationsOutput = {
     type = "structure",
+    id = "DeclineInvitationsOutput",
     members = {
         unprocessedAccounts = {
             type = "list",
@@ -4073,6 +4224,7 @@ M.DeclineInvitationsOutput = {
 
 M.DeleteAllowListInput = {
     type = "structure",
+    id = "DeleteAllowListInput",
     members = {
         id = {
             type = "string",
@@ -4092,10 +4244,12 @@ M.DeleteAllowListInput = {
 
 M.DeleteAllowListOutput = {
     type = "structure",
+    id = "DeleteAllowListOutput",
 }
 
 M.DeleteCustomDataIdentifierInput = {
     type = "structure",
+    id = "DeleteCustomDataIdentifierInput",
     members = {
         id = {
             type = "string",
@@ -4109,10 +4263,12 @@ M.DeleteCustomDataIdentifierInput = {
 
 M.DeleteCustomDataIdentifierOutput = {
     type = "structure",
+    id = "DeleteCustomDataIdentifierOutput",
 }
 
 M.DeleteFindingsFilterInput = {
     type = "structure",
+    id = "DeleteFindingsFilterInput",
     members = {
         id = {
             type = "string",
@@ -4126,10 +4282,12 @@ M.DeleteFindingsFilterInput = {
 
 M.DeleteFindingsFilterOutput = {
     type = "structure",
+    id = "DeleteFindingsFilterOutput",
 }
 
 M.DeleteInvitationsInput = {
     type = "structure",
+    id = "DeleteInvitationsInput",
     members = {
         accountIds = {
             type = "list",
@@ -4144,6 +4302,7 @@ M.DeleteInvitationsInput = {
 
 M.DeleteInvitationsOutput = {
     type = "structure",
+    id = "DeleteInvitationsOutput",
     members = {
         unprocessedAccounts = {
             type = "list",
@@ -4157,6 +4316,7 @@ M.DeleteInvitationsOutput = {
 
 M.DeleteMemberInput = {
     type = "structure",
+    id = "DeleteMemberInput",
     members = {
         id = {
             type = "string",
@@ -4170,10 +4330,12 @@ M.DeleteMemberInput = {
 
 M.DeleteMemberOutput = {
     type = "structure",
+    id = "DeleteMemberOutput",
 }
 
 M.DescribeBucketsInput = {
     type = "structure",
+    id = "DescribeBucketsInput",
     members = {
         criteria = {
             type = "map",
@@ -4203,6 +4365,7 @@ M.DescribeBucketsInput = {
 
 M.DescribeBucketsOutput = {
     type = "structure",
+    id = "DescribeBucketsOutput",
     members = {
         buckets = {
             type = "list",
@@ -4222,6 +4385,7 @@ M.DescribeBucketsOutput = {
 
 M.DescribeClassificationJobInput = {
     type = "structure",
+    id = "DescribeClassificationJobInput",
     members = {
         jobId = {
             type = "string",
@@ -4235,6 +4399,7 @@ M.DescribeClassificationJobInput = {
 
 M.Statistics = {
     type = "structure",
+    id = "Statistics",
     members = {
         approximateNumberOfObjectsToProcess = {
             type = "double",
@@ -4253,6 +4418,7 @@ M.Statistics = {
 
 M.DescribeClassificationJobOutput = {
     type = "structure",
+    id = "DescribeClassificationJobOutput",
     members = {
         allowListIds = {
             type = "list",
@@ -4378,10 +4544,12 @@ M.DescribeClassificationJobOutput = {
 
 M.DescribeOrganizationConfigurationInput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationInput",
 }
 
 M.DescribeOrganizationConfigurationOutput = {
     type = "structure",
+    id = "DescribeOrganizationConfigurationOutput",
     members = {
         autoEnable = {
             type = "boolean",
@@ -4400,14 +4568,17 @@ M.DescribeOrganizationConfigurationOutput = {
 
 M.DisableMacieInput = {
     type = "structure",
+    id = "DisableMacieInput",
 }
 
 M.DisableMacieOutput = {
     type = "structure",
+    id = "DisableMacieOutput",
 }
 
 M.DisableOrganizationAdminAccountInput = {
     type = "structure",
+    id = "DisableOrganizationAdminAccountInput",
     members = {
         adminAccountId = {
             type = "string",
@@ -4421,26 +4592,32 @@ M.DisableOrganizationAdminAccountInput = {
 
 M.DisableOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "DisableOrganizationAdminAccountOutput",
 }
 
 M.DisassociateFromAdministratorAccountInput = {
     type = "structure",
+    id = "DisassociateFromAdministratorAccountInput",
 }
 
 M.DisassociateFromAdministratorAccountOutput = {
     type = "structure",
+    id = "DisassociateFromAdministratorAccountOutput",
 }
 
 M.DisassociateFromMasterAccountInput = {
     type = "structure",
+    id = "DisassociateFromMasterAccountInput",
 }
 
 M.DisassociateFromMasterAccountOutput = {
     type = "structure",
+    id = "DisassociateFromMasterAccountOutput",
 }
 
 M.DisassociateMemberInput = {
     type = "structure",
+    id = "DisassociateMemberInput",
     members = {
         id = {
             type = "string",
@@ -4454,6 +4631,7 @@ M.DisassociateMemberInput = {
 
 M.DisassociateMemberOutput = {
     type = "structure",
+    id = "DisassociateMemberOutput",
 }
 
 M.FindingPublishingFrequency = {
@@ -4469,6 +4647,7 @@ M.MacieStatus = {
 
 M.EnableMacieInput = {
     type = "structure",
+    id = "EnableMacieInput",
     members = {
         clientToken = {
             type = "string",
@@ -4494,10 +4673,12 @@ M.EnableMacieInput = {
 
 M.EnableMacieOutput = {
     type = "structure",
+    id = "EnableMacieOutput",
 }
 
 M.EnableOrganizationAdminAccountInput = {
     type = "structure",
+    id = "EnableOrganizationAdminAccountInput",
     members = {
         adminAccountId = {
             type = "string",
@@ -4518,6 +4699,7 @@ M.EnableOrganizationAdminAccountInput = {
 
 M.EnableOrganizationAdminAccountOutput = {
     type = "structure",
+    id = "EnableOrganizationAdminAccountOutput",
 }
 
 M.FindingStatisticsSortAttributeName = {
@@ -4527,6 +4709,7 @@ M.FindingStatisticsSortAttributeName = {
 
 M.FindingStatisticsSortCriteria = {
     type = "structure",
+    id = "FindingStatisticsSortCriteria",
     members = {
         attributeName = {
             type = "string",
@@ -4545,10 +4728,12 @@ M.FindingStatisticsSortCriteria = {
 
 M.GetAdministratorAccountInput = {
     type = "structure",
+    id = "GetAdministratorAccountInput",
 }
 
 M.GetAdministratorAccountOutput = {
     type = "structure",
+    id = "GetAdministratorAccountOutput",
     members = {
         administrator = setmetatable({ traits = {
             json_name = "administrator",
@@ -4558,6 +4743,7 @@ M.GetAdministratorAccountOutput = {
 
 M.GetAllowListInput = {
     type = "structure",
+    id = "GetAllowListInput",
     members = {
         id = {
             type = "string",
@@ -4571,6 +4757,7 @@ M.GetAllowListInput = {
 
 M.GetAllowListOutput = {
     type = "structure",
+    id = "GetAllowListOutput",
     members = {
         arn = {
             type = "string",
@@ -4629,10 +4816,12 @@ M.GetAllowListOutput = {
 
 M.GetAutomatedDiscoveryConfigurationInput = {
     type = "structure",
+    id = "GetAutomatedDiscoveryConfigurationInput",
 }
 
 M.GetAutomatedDiscoveryConfigurationOutput = {
     type = "structure",
+    id = "GetAutomatedDiscoveryConfigurationOutput",
     members = {
         autoEnableOrganizationMembers = {
             type = "string",
@@ -4684,6 +4873,7 @@ M.GetAutomatedDiscoveryConfigurationOutput = {
 
 M.GetBucketStatisticsInput = {
     type = "structure",
+    id = "GetBucketStatisticsInput",
     members = {
         accountId = {
             type = "string",
@@ -4696,6 +4886,7 @@ M.GetBucketStatisticsInput = {
 
 M.GetBucketStatisticsOutput = {
     type = "structure",
+    id = "GetBucketStatisticsOutput",
     members = {
         bucketCount = {
             type = "long",
@@ -4766,10 +4957,12 @@ M.GetBucketStatisticsOutput = {
 
 M.GetClassificationExportConfigurationInput = {
     type = "structure",
+    id = "GetClassificationExportConfigurationInput",
 }
 
 M.GetClassificationExportConfigurationOutput = {
     type = "structure",
+    id = "GetClassificationExportConfigurationOutput",
     members = {
         configuration = setmetatable({ traits = {
             json_name = "configuration",
@@ -4779,6 +4972,7 @@ M.GetClassificationExportConfigurationOutput = {
 
 M.GetClassificationScopeInput = {
     type = "structure",
+    id = "GetClassificationScopeInput",
     members = {
         id = {
             type = "string",
@@ -4792,6 +4986,7 @@ M.GetClassificationScopeInput = {
 
 M.S3ClassificationScopeExclusion = {
     type = "structure",
+    id = "S3ClassificationScopeExclusion",
     members = {
         bucketNames = {
             type = "list",
@@ -4806,6 +5001,7 @@ M.S3ClassificationScopeExclusion = {
 
 M.S3ClassificationScope = {
     type = "structure",
+    id = "S3ClassificationScope",
     members = {
         excludes = setmetatable({ traits = {
             json_name = "excludes",
@@ -4816,6 +5012,7 @@ M.S3ClassificationScope = {
 
 M.GetClassificationScopeOutput = {
     type = "structure",
+    id = "GetClassificationScopeOutput",
     members = {
         id = {
             type = "string",
@@ -4837,6 +5034,7 @@ M.GetClassificationScopeOutput = {
 
 M.GetCustomDataIdentifierInput = {
     type = "structure",
+    id = "GetCustomDataIdentifierInput",
     members = {
         id = {
             type = "string",
@@ -4850,6 +5048,7 @@ M.GetCustomDataIdentifierInput = {
 
 M.GetCustomDataIdentifierOutput = {
     type = "structure",
+    id = "GetCustomDataIdentifierOutput",
     members = {
         arn = {
             type = "string",
@@ -4934,6 +5133,7 @@ M.GetCustomDataIdentifierOutput = {
 
 M.SortCriteria = {
     type = "structure",
+    id = "SortCriteria",
     members = {
         attributeName = {
             type = "string",
@@ -4952,6 +5152,7 @@ M.SortCriteria = {
 
 M.GetFindingsInput = {
     type = "structure",
+    id = "GetFindingsInput",
     members = {
         findingIds = {
             type = "list",
@@ -4969,6 +5170,7 @@ M.GetFindingsInput = {
 
 M.GetFindingsOutput = {
     type = "structure",
+    id = "GetFindingsOutput",
     members = {
         findings = {
             type = "list",
@@ -4982,6 +5184,7 @@ M.GetFindingsOutput = {
 
 M.GetFindingsFilterInput = {
     type = "structure",
+    id = "GetFindingsFilterInput",
     members = {
         id = {
             type = "string",
@@ -4995,6 +5198,7 @@ M.GetFindingsFilterInput = {
 
 M.GetFindingsFilterOutput = {
     type = "structure",
+    id = "GetFindingsFilterOutput",
     members = {
         action = {
             type = "string",
@@ -5048,10 +5252,12 @@ M.GetFindingsFilterOutput = {
 
 M.GetFindingsPublicationConfigurationInput = {
     type = "structure",
+    id = "GetFindingsPublicationConfigurationInput",
 }
 
 M.SecurityHubConfiguration = {
     type = "structure",
+    id = "SecurityHubConfiguration",
     members = {
         publishClassificationFindings = {
             type = "boolean",
@@ -5072,6 +5278,7 @@ M.SecurityHubConfiguration = {
 
 M.GetFindingsPublicationConfigurationOutput = {
     type = "structure",
+    id = "GetFindingsPublicationConfigurationOutput",
     members = {
         securityHubConfiguration = setmetatable({ traits = {
             json_name = "securityHubConfiguration",
@@ -5088,6 +5295,7 @@ M.GroupBy = {
 
 M.GetFindingStatisticsInput = {
     type = "structure",
+    id = "GetFindingStatisticsInput",
     members = {
         findingCriteria = setmetatable({ traits = {
             json_name = "findingCriteria",
@@ -5113,6 +5321,7 @@ M.GetFindingStatisticsInput = {
 
 M.GetFindingStatisticsOutput = {
     type = "structure",
+    id = "GetFindingStatisticsOutput",
     members = {
         countsByGroup = {
             type = "list",
@@ -5126,10 +5335,12 @@ M.GetFindingStatisticsOutput = {
 
 M.GetInvitationsCountInput = {
     type = "structure",
+    id = "GetInvitationsCountInput",
 }
 
 M.GetInvitationsCountOutput = {
     type = "structure",
+    id = "GetInvitationsCountOutput",
     members = {
         invitationsCount = {
             type = "long",
@@ -5142,10 +5353,12 @@ M.GetInvitationsCountOutput = {
 
 M.GetMacieSessionInput = {
     type = "structure",
+    id = "GetMacieSessionInput",
 }
 
 M.GetMacieSessionOutput = {
     type = "structure",
+    id = "GetMacieSessionOutput",
     members = {
         createdAt = {
             type = "timestamp",
@@ -5184,10 +5397,12 @@ M.GetMacieSessionOutput = {
 
 M.GetMasterAccountInput = {
     type = "structure",
+    id = "GetMasterAccountInput",
 }
 
 M.GetMasterAccountOutput = {
     type = "structure",
+    id = "GetMasterAccountOutput",
     members = {
         master = setmetatable({ traits = {
             json_name = "master",
@@ -5197,6 +5412,7 @@ M.GetMasterAccountOutput = {
 
 M.GetMemberInput = {
     type = "structure",
+    id = "GetMemberInput",
     members = {
         id = {
             type = "string",
@@ -5210,6 +5426,7 @@ M.GetMemberInput = {
 
 M.GetMemberOutput = {
     type = "structure",
+    id = "GetMemberOutput",
     members = {
         accountId = {
             type = "string",
@@ -5274,6 +5491,7 @@ M.GetMemberOutput = {
 
 M.GetResourceProfileInput = {
     type = "structure",
+    id = "GetResourceProfileInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5287,6 +5505,7 @@ M.GetResourceProfileInput = {
 
 M.ResourceStatistics = {
     type = "structure",
+    id = "ResourceStatistics",
     members = {
         totalBytesClassified = {
             type = "long",
@@ -5347,6 +5566,7 @@ M.ResourceStatistics = {
 
 M.GetResourceProfileOutput = {
     type = "structure",
+    id = "GetResourceProfileOutput",
     members = {
         profileUpdatedAt = {
             type = "timestamp",
@@ -5375,6 +5595,7 @@ M.GetResourceProfileOutput = {
 
 M.GetRevealConfigurationInput = {
     type = "structure",
+    id = "GetRevealConfigurationInput",
 }
 
 M.RevealStatus = {
@@ -5384,6 +5605,7 @@ M.RevealStatus = {
 
 M.RevealConfiguration = {
     type = "structure",
+    id = "RevealConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -5408,6 +5630,7 @@ M.RetrievalMode = {
 
 M.RetrievalConfiguration = {
     type = "structure",
+    id = "RetrievalConfiguration",
     members = {
         externalId = {
             type = "string",
@@ -5433,6 +5656,7 @@ M.RetrievalConfiguration = {
 
 M.GetRevealConfigurationOutput = {
     type = "structure",
+    id = "GetRevealConfigurationOutput",
     members = {
         configuration = setmetatable({ traits = {
             json_name = "configuration",
@@ -5445,6 +5669,7 @@ M.GetRevealConfigurationOutput = {
 
 M.GetSensitiveDataOccurrencesInput = {
     type = "structure",
+    id = "GetSensitiveDataOccurrencesInput",
     members = {
         findingId = {
             type = "string",
@@ -5464,6 +5689,7 @@ M.RevealRequestStatus = {
 
 M.GetSensitiveDataOccurrencesOutput = {
     type = "structure",
+    id = "GetSensitiveDataOccurrencesOutput",
     members = {
         error = {
             type = "string",
@@ -5490,6 +5716,7 @@ M.GetSensitiveDataOccurrencesOutput = {
 
 M.UnprocessableEntityException = {
     type = "structure",
+    id = "UnprocessableEntityException",
     error = "client",
     members = {
         message = {
@@ -5504,6 +5731,7 @@ M.UnprocessableEntityException = {
 
 M.GetSensitiveDataOccurrencesAvailabilityInput = {
     type = "structure",
+    id = "GetSensitiveDataOccurrencesAvailabilityInput",
     members = {
         findingId = {
             type = "string",
@@ -5517,6 +5745,7 @@ M.GetSensitiveDataOccurrencesAvailabilityInput = {
 
 M.GetSensitiveDataOccurrencesAvailabilityOutput = {
     type = "structure",
+    id = "GetSensitiveDataOccurrencesAvailabilityOutput",
     members = {
         code = {
             type = "string",
@@ -5536,6 +5765,7 @@ M.GetSensitiveDataOccurrencesAvailabilityOutput = {
 
 M.GetSensitivityInspectionTemplateInput = {
     type = "structure",
+    id = "GetSensitivityInspectionTemplateInput",
     members = {
         id = {
             type = "string",
@@ -5549,6 +5779,7 @@ M.GetSensitivityInspectionTemplateInput = {
 
 M.SensitivityInspectionTemplateExcludes = {
     type = "structure",
+    id = "SensitivityInspectionTemplateExcludes",
     members = {
         managedDataIdentifierIds = {
             type = "list",
@@ -5562,6 +5793,7 @@ M.SensitivityInspectionTemplateExcludes = {
 
 M.SensitivityInspectionTemplateIncludes = {
     type = "structure",
+    id = "SensitivityInspectionTemplateIncludes",
     members = {
         allowListIds = {
             type = "list",
@@ -5589,6 +5821,7 @@ M.SensitivityInspectionTemplateIncludes = {
 
 M.GetSensitivityInspectionTemplateOutput = {
     type = "structure",
+    id = "GetSensitivityInspectionTemplateOutput",
     members = {
         description = {
             type = "string",
@@ -5626,6 +5859,7 @@ M.UsageStatisticsSortKey = {
 
 M.UsageStatisticsSortBy = {
     type = "structure",
+    id = "UsageStatisticsSortBy",
     members = {
         key = {
             type = "string",
@@ -5649,6 +5883,7 @@ M.TimeRange = {
 
 M.GetUsageStatisticsInput = {
     type = "structure",
+    id = "GetUsageStatisticsInput",
     members = {
         filterBy = {
             type = "list",
@@ -5683,6 +5918,7 @@ M.GetUsageStatisticsInput = {
 
 M.GetUsageStatisticsOutput = {
     type = "structure",
+    id = "GetUsageStatisticsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -5708,6 +5944,7 @@ M.GetUsageStatisticsOutput = {
 
 M.GetUsageTotalsInput = {
     type = "structure",
+    id = "GetUsageTotalsInput",
     members = {
         timeRange = {
             type = "string",
@@ -5720,6 +5957,7 @@ M.GetUsageTotalsInput = {
 
 M.GetUsageTotalsOutput = {
     type = "structure",
+    id = "GetUsageTotalsOutput",
     members = {
         timeRange = {
             type = "string",
@@ -5739,6 +5977,7 @@ M.GetUsageTotalsOutput = {
 
 M.ListAllowListsInput = {
     type = "structure",
+    id = "ListAllowListsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -5757,6 +5996,7 @@ M.ListAllowListsInput = {
 
 M.ListAllowListsOutput = {
     type = "structure",
+    id = "ListAllowListsOutput",
     members = {
         allowLists = {
             type = "list",
@@ -5776,6 +6016,7 @@ M.ListAllowListsOutput = {
 
 M.ListAutomatedDiscoveryAccountsInput = {
     type = "structure",
+    id = "ListAutomatedDiscoveryAccountsInput",
     members = {
         accountIds = {
             type = "list",
@@ -5801,6 +6042,7 @@ M.ListAutomatedDiscoveryAccountsInput = {
 
 M.ListAutomatedDiscoveryAccountsOutput = {
     type = "structure",
+    id = "ListAutomatedDiscoveryAccountsOutput",
     members = {
         items = {
             type = "list",
@@ -5820,6 +6062,7 @@ M.ListAutomatedDiscoveryAccountsOutput = {
 
 M.ListJobsFilterCriteria = {
     type = "structure",
+    id = "ListJobsFilterCriteria",
     members = {
         excludes = {
             type = "list",
@@ -5847,6 +6090,7 @@ M.ListJobsSortAttributeName = {
 
 M.ListJobsSortCriteria = {
     type = "structure",
+    id = "ListJobsSortCriteria",
     members = {
         attributeName = {
             type = "string",
@@ -5865,6 +6109,7 @@ M.ListJobsSortCriteria = {
 
 M.ListClassificationJobsInput = {
     type = "structure",
+    id = "ListClassificationJobsInput",
     members = {
         filterCriteria = setmetatable({ traits = {
             json_name = "filterCriteria",
@@ -5889,6 +6134,7 @@ M.ListClassificationJobsInput = {
 
 M.ListClassificationJobsOutput = {
     type = "structure",
+    id = "ListClassificationJobsOutput",
     members = {
         items = {
             type = "list",
@@ -5908,6 +6154,7 @@ M.ListClassificationJobsOutput = {
 
 M.ListClassificationScopesInput = {
     type = "structure",
+    id = "ListClassificationScopesInput",
     members = {
         name = {
             type = "string",
@@ -5926,6 +6173,7 @@ M.ListClassificationScopesInput = {
 
 M.ListClassificationScopesOutput = {
     type = "structure",
+    id = "ListClassificationScopesOutput",
     members = {
         classificationScopes = {
             type = "list",
@@ -5945,6 +6193,7 @@ M.ListClassificationScopesOutput = {
 
 M.ListCustomDataIdentifiersInput = {
     type = "structure",
+    id = "ListCustomDataIdentifiersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -5963,6 +6212,7 @@ M.ListCustomDataIdentifiersInput = {
 
 M.ListCustomDataIdentifiersOutput = {
     type = "structure",
+    id = "ListCustomDataIdentifiersOutput",
     members = {
         items = {
             type = "list",
@@ -5982,6 +6232,7 @@ M.ListCustomDataIdentifiersOutput = {
 
 M.ListFindingsInput = {
     type = "structure",
+    id = "ListFindingsInput",
     members = {
         findingCriteria = setmetatable({ traits = {
             json_name = "findingCriteria",
@@ -6006,6 +6257,7 @@ M.ListFindingsInput = {
 
 M.ListFindingsOutput = {
     type = "structure",
+    id = "ListFindingsOutput",
     members = {
         findingIds = {
             type = "list",
@@ -6025,6 +6277,7 @@ M.ListFindingsOutput = {
 
 M.ListFindingsFiltersInput = {
     type = "structure",
+    id = "ListFindingsFiltersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6043,6 +6296,7 @@ M.ListFindingsFiltersInput = {
 
 M.ListFindingsFiltersOutput = {
     type = "structure",
+    id = "ListFindingsFiltersOutput",
     members = {
         findingsFilterListItems = {
             type = "list",
@@ -6062,6 +6316,7 @@ M.ListFindingsFiltersOutput = {
 
 M.ListInvitationsInput = {
     type = "structure",
+    id = "ListInvitationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6080,6 +6335,7 @@ M.ListInvitationsInput = {
 
 M.ListInvitationsOutput = {
     type = "structure",
+    id = "ListInvitationsOutput",
     members = {
         invitations = {
             type = "list",
@@ -6099,6 +6355,7 @@ M.ListInvitationsOutput = {
 
 M.ListManagedDataIdentifiersInput = {
     type = "structure",
+    id = "ListManagedDataIdentifiersInput",
     members = {
         nextToken = {
             type = "string",
@@ -6111,6 +6368,7 @@ M.ListManagedDataIdentifiersInput = {
 
 M.ListManagedDataIdentifiersOutput = {
     type = "structure",
+    id = "ListManagedDataIdentifiersOutput",
     members = {
         items = {
             type = "list",
@@ -6130,6 +6388,7 @@ M.ListManagedDataIdentifiersOutput = {
 
 M.ListMembersInput = {
     type = "structure",
+    id = "ListMembersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6154,6 +6413,7 @@ M.ListMembersInput = {
 
 M.ListMembersOutput = {
     type = "structure",
+    id = "ListMembersOutput",
     members = {
         members = {
             type = "list",
@@ -6173,6 +6433,7 @@ M.ListMembersOutput = {
 
 M.ListOrganizationAdminAccountsInput = {
     type = "structure",
+    id = "ListOrganizationAdminAccountsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6191,6 +6452,7 @@ M.ListOrganizationAdminAccountsInput = {
 
 M.ListOrganizationAdminAccountsOutput = {
     type = "structure",
+    id = "ListOrganizationAdminAccountsOutput",
     members = {
         adminAccounts = {
             type = "list",
@@ -6210,6 +6472,7 @@ M.ListOrganizationAdminAccountsOutput = {
 
 M.ListResourceProfileArtifactsInput = {
     type = "structure",
+    id = "ListResourceProfileArtifactsInput",
     members = {
         nextToken = {
             type = "string",
@@ -6229,6 +6492,7 @@ M.ListResourceProfileArtifactsInput = {
 
 M.ListResourceProfileArtifactsOutput = {
     type = "structure",
+    id = "ListResourceProfileArtifactsOutput",
     members = {
         artifacts = {
             type = "list",
@@ -6248,6 +6512,7 @@ M.ListResourceProfileArtifactsOutput = {
 
 M.ListResourceProfileDetectionsInput = {
     type = "structure",
+    id = "ListResourceProfileDetectionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6273,6 +6538,7 @@ M.ListResourceProfileDetectionsInput = {
 
 M.ListResourceProfileDetectionsOutput = {
     type = "structure",
+    id = "ListResourceProfileDetectionsOutput",
     members = {
         detections = {
             type = "list",
@@ -6292,6 +6558,7 @@ M.ListResourceProfileDetectionsOutput = {
 
 M.ListSensitivityInspectionTemplatesInput = {
     type = "structure",
+    id = "ListSensitivityInspectionTemplatesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6310,6 +6577,7 @@ M.ListSensitivityInspectionTemplatesInput = {
 
 M.ListSensitivityInspectionTemplatesOutput = {
     type = "structure",
+    id = "ListSensitivityInspectionTemplatesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -6329,6 +6597,7 @@ M.ListSensitivityInspectionTemplatesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6342,6 +6611,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -6356,6 +6626,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutClassificationExportConfigurationInput = {
     type = "structure",
+    id = "PutClassificationExportConfigurationInput",
     members = {
         configuration = setmetatable({ traits = {
             json_name = "configuration",
@@ -6366,6 +6637,7 @@ M.PutClassificationExportConfigurationInput = {
 
 M.PutClassificationExportConfigurationOutput = {
     type = "structure",
+    id = "PutClassificationExportConfigurationOutput",
     members = {
         configuration = setmetatable({ traits = {
             json_name = "configuration",
@@ -6375,6 +6647,7 @@ M.PutClassificationExportConfigurationOutput = {
 
 M.PutFindingsPublicationConfigurationInput = {
     type = "structure",
+    id = "PutFindingsPublicationConfigurationInput",
     members = {
         clientToken = {
             type = "string",
@@ -6391,10 +6664,12 @@ M.PutFindingsPublicationConfigurationInput = {
 
 M.PutFindingsPublicationConfigurationOutput = {
     type = "structure",
+    id = "PutFindingsPublicationConfigurationOutput",
 }
 
 M.SearchResourcesCriteriaBlock = {
     type = "structure",
+    id = "SearchResourcesCriteriaBlock",
     members = {
         and = {
             type = "list",
@@ -6408,6 +6683,7 @@ M.SearchResourcesCriteriaBlock = {
 
 M.SearchResourcesBucketCriteria = {
     type = "structure",
+    id = "SearchResourcesBucketCriteria",
     members = {
         excludes = setmetatable({ traits = {
             json_name = "excludes",
@@ -6427,6 +6703,7 @@ M.SearchResourcesSortAttributeName = {
 
 M.SearchResourcesSortCriteria = {
     type = "structure",
+    id = "SearchResourcesSortCriteria",
     members = {
         attributeName = {
             type = "string",
@@ -6445,6 +6722,7 @@ M.SearchResourcesSortCriteria = {
 
 M.SearchResourcesInput = {
     type = "structure",
+    id = "SearchResourcesInput",
     members = {
         bucketCriteria = setmetatable({ traits = {
             json_name = "bucketCriteria",
@@ -6469,6 +6747,7 @@ M.SearchResourcesInput = {
 
 M.SearchResourcesOutput = {
     type = "structure",
+    id = "SearchResourcesOutput",
     members = {
         matchingResources = {
             type = "list",
@@ -6488,6 +6767,7 @@ M.SearchResourcesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6510,10 +6790,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TestCustomDataIdentifierInput = {
     type = "structure",
+    id = "TestCustomDataIdentifierInput",
     members = {
         ignoreWords = {
             type = "list",
@@ -6554,6 +6836,7 @@ M.TestCustomDataIdentifierInput = {
 
 M.TestCustomDataIdentifierOutput = {
     type = "structure",
+    id = "TestCustomDataIdentifierOutput",
     members = {
         matchCount = {
             type = "integer",
@@ -6566,6 +6849,7 @@ M.TestCustomDataIdentifierOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6587,10 +6871,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAllowListInput = {
     type = "structure",
+    id = "UpdateAllowListInput",
     members = {
         criteria = setmetatable({ traits = {
             json_name = "criteria",
@@ -6621,6 +6907,7 @@ M.UpdateAllowListInput = {
 
 M.UpdateAllowListOutput = {
     type = "structure",
+    id = "UpdateAllowListOutput",
     members = {
         arn = {
             type = "string",
@@ -6639,6 +6926,7 @@ M.UpdateAllowListOutput = {
 
 M.UpdateAutomatedDiscoveryConfigurationInput = {
     type = "structure",
+    id = "UpdateAutomatedDiscoveryConfigurationInput",
     members = {
         autoEnableOrganizationMembers = {
             type = "string",
@@ -6658,10 +6946,12 @@ M.UpdateAutomatedDiscoveryConfigurationInput = {
 
 M.UpdateAutomatedDiscoveryConfigurationOutput = {
     type = "structure",
+    id = "UpdateAutomatedDiscoveryConfigurationOutput",
 }
 
 M.UpdateClassificationJobInput = {
     type = "structure",
+    id = "UpdateClassificationJobInput",
     members = {
         jobId = {
             type = "string",
@@ -6682,10 +6972,12 @@ M.UpdateClassificationJobInput = {
 
 M.UpdateClassificationJobOutput = {
     type = "structure",
+    id = "UpdateClassificationJobOutput",
 }
 
 M.S3ClassificationScopeExclusionUpdate = {
     type = "structure",
+    id = "S3ClassificationScopeExclusionUpdate",
     members = {
         bucketNames = {
             type = "list",
@@ -6707,6 +6999,7 @@ M.S3ClassificationScopeExclusionUpdate = {
 
 M.S3ClassificationScopeUpdate = {
     type = "structure",
+    id = "S3ClassificationScopeUpdate",
     members = {
         excludes = setmetatable({ traits = {
             json_name = "excludes",
@@ -6717,6 +7010,7 @@ M.S3ClassificationScopeUpdate = {
 
 M.UpdateClassificationScopeInput = {
     type = "structure",
+    id = "UpdateClassificationScopeInput",
     members = {
         id = {
             type = "string",
@@ -6733,10 +7027,12 @@ M.UpdateClassificationScopeInput = {
 
 M.UpdateClassificationScopeOutput = {
     type = "structure",
+    id = "UpdateClassificationScopeOutput",
 }
 
 M.UpdateFindingsFilterInput = {
     type = "structure",
+    id = "UpdateFindingsFilterInput",
     members = {
         action = {
             type = "string",
@@ -6784,6 +7080,7 @@ M.UpdateFindingsFilterInput = {
 
 M.UpdateFindingsFilterOutput = {
     type = "structure",
+    id = "UpdateFindingsFilterOutput",
     members = {
         arn = {
             type = "string",
@@ -6802,6 +7099,7 @@ M.UpdateFindingsFilterOutput = {
 
 M.UpdateMacieSessionInput = {
     type = "structure",
+    id = "UpdateMacieSessionInput",
     members = {
         findingPublishingFrequency = {
             type = "string",
@@ -6820,10 +7118,12 @@ M.UpdateMacieSessionInput = {
 
 M.UpdateMacieSessionOutput = {
     type = "structure",
+    id = "UpdateMacieSessionOutput",
 }
 
 M.UpdateMemberSessionInput = {
     type = "structure",
+    id = "UpdateMemberSessionInput",
     members = {
         id = {
             type = "string",
@@ -6844,10 +7144,12 @@ M.UpdateMemberSessionInput = {
 
 M.UpdateMemberSessionOutput = {
     type = "structure",
+    id = "UpdateMemberSessionOutput",
 }
 
 M.UpdateOrganizationConfigurationInput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationInput",
     members = {
         autoEnable = {
             type = "boolean",
@@ -6861,10 +7163,12 @@ M.UpdateOrganizationConfigurationInput = {
 
 M.UpdateOrganizationConfigurationOutput = {
     type = "structure",
+    id = "UpdateOrganizationConfigurationOutput",
 }
 
 M.UpdateResourceProfileInput = {
     type = "structure",
+    id = "UpdateResourceProfileInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6884,10 +7188,12 @@ M.UpdateResourceProfileInput = {
 
 M.UpdateResourceProfileOutput = {
     type = "structure",
+    id = "UpdateResourceProfileOutput",
 }
 
 M.UpdateResourceProfileDetectionsInput = {
     type = "structure",
+    id = "UpdateResourceProfileDetectionsInput",
     members = {
         resourceArn = {
             type = "string",
@@ -6908,10 +7214,12 @@ M.UpdateResourceProfileDetectionsInput = {
 
 M.UpdateResourceProfileDetectionsOutput = {
     type = "structure",
+    id = "UpdateResourceProfileDetectionsOutput",
 }
 
 M.UpdateRetrievalConfiguration = {
     type = "structure",
+    id = "UpdateRetrievalConfiguration",
     members = {
         retrievalMode = {
             type = "string",
@@ -6931,6 +7239,7 @@ M.UpdateRetrievalConfiguration = {
 
 M.UpdateRevealConfigurationInput = {
     type = "structure",
+    id = "UpdateRevealConfigurationInput",
     members = {
         configuration = setmetatable({ traits = {
             json_name = "configuration",
@@ -6944,6 +7253,7 @@ M.UpdateRevealConfigurationInput = {
 
 M.UpdateRevealConfigurationOutput = {
     type = "structure",
+    id = "UpdateRevealConfigurationOutput",
     members = {
         configuration = setmetatable({ traits = {
             json_name = "configuration",
@@ -6956,6 +7266,7 @@ M.UpdateRevealConfigurationOutput = {
 
 M.UpdateSensitivityInspectionTemplateInput = {
     type = "structure",
+    id = "UpdateSensitivityInspectionTemplateInput",
     members = {
         description = {
             type = "string",
@@ -6981,6 +7292,7 @@ M.UpdateSensitivityInspectionTemplateInput = {
 
 M.UpdateSensitivityInspectionTemplateOutput = {
     type = "structure",
+    id = "UpdateSensitivityInspectionTemplateOutput",
 }
 
 return M

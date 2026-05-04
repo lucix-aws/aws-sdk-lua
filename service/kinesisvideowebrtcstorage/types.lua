@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ClientLimitExceededException = {
     type = "structure",
+    id = "ClientLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -22,6 +24,7 @@ M.ClientLimitExceededException = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         message = {
@@ -32,6 +35,7 @@ M.InvalidArgumentException = {
 
 M.JoinStorageSessionInput = {
     type = "structure",
+    id = "JoinStorageSessionInput",
     members = {
         channelArn = {
             type = "string",
@@ -44,10 +48,12 @@ M.JoinStorageSessionInput = {
 
 M.JoinStorageSessionOutput = {
     type = "structure",
+    id = "JoinStorageSessionOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -58,6 +64,7 @@ M.ResourceNotFoundException = {
 
 M.JoinStorageSessionAsViewerInput = {
     type = "structure",
+    id = "JoinStorageSessionAsViewerInput",
     members = {
         channelArn = {
             type = "string",
@@ -76,6 +83,7 @@ M.JoinStorageSessionAsViewerInput = {
 
 M.JoinStorageSessionAsViewerOutput = {
     type = "structure",
+    id = "JoinStorageSessionAsViewerOutput",
 }
 
 return M

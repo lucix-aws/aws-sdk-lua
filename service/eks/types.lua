@@ -8,6 +8,7 @@ M.AuthenticationMode = {
 
 M.AccessConfigResponse = {
     type = "structure",
+    id = "AccessConfigResponse",
     members = {
         bootstrapClusterCreatorAdminPermissions = {
             type = "boolean",
@@ -20,6 +21,7 @@ M.AccessConfigResponse = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -30,6 +32,7 @@ M.AccessDeniedException = {
 
 M.AccessEntry = {
     type = "structure",
+    id = "AccessEntry",
     members = {
         clusterName = {
             type = "string",
@@ -66,6 +69,7 @@ M.AccessEntry = {
 
 M.AccessPolicy = {
     type = "structure",
+    id = "AccessPolicy",
     members = {
         name = {
             type = "string",
@@ -83,6 +87,7 @@ M.AccessScopeType = {
 
 M.AccessScope = {
     type = "structure",
+    id = "AccessScope",
     members = {
         type = {
             type = "string",
@@ -109,6 +114,7 @@ M.AddonIssueCode = {
 
 M.AddonIssue = {
     type = "structure",
+    id = "AddonIssue",
     members = {
         code = {
             type = "string",
@@ -125,6 +131,7 @@ M.AddonIssue = {
 
 M.AddonHealth = {
     type = "structure",
+    id = "AddonHealth",
     members = {
         issues = {
             type = "list",
@@ -135,6 +142,7 @@ M.AddonHealth = {
 
 M.MarketplaceInformation = {
     type = "structure",
+    id = "MarketplaceInformation",
     members = {
         productId = {
             type = "string",
@@ -147,6 +155,7 @@ M.MarketplaceInformation = {
 
 M.AddonNamespaceConfigResponse = {
     type = "structure",
+    id = "AddonNamespaceConfigResponse",
     members = {
         namespace = {
             type = "string",
@@ -167,6 +176,7 @@ M.AddonStatus = {
 
 M.Addon = {
     type = "structure",
+    id = "Addon",
     members = {
         addonName = {
             type = "string",
@@ -218,6 +228,7 @@ M.Addon = {
 
 M.AddonCompatibilityDetail = {
     type = "structure",
+    id = "AddonCompatibilityDetail",
     members = {
         name = {
             type = "string",
@@ -231,6 +242,7 @@ M.AddonCompatibilityDetail = {
 
 M.Compatibility = {
     type = "structure",
+    id = "Compatibility",
     members = {
         clusterVersion = {
             type = "string",
@@ -250,6 +262,7 @@ M.Compatibility = {
 
 M.AddonVersionInfo = {
     type = "structure",
+    id = "AddonVersionInfo",
     members = {
         addonVersion = {
             type = "string",
@@ -283,6 +296,7 @@ M.AddonVersionInfo = {
 
 M.AddonInfo = {
     type = "structure",
+    id = "AddonInfo",
     members = {
         addonName = {
             type = "string",
@@ -309,6 +323,7 @@ M.AddonInfo = {
 
 M.AddonNamespaceConfigRequest = {
     type = "structure",
+    id = "AddonNamespaceConfigRequest",
     members = {
         namespace = {
             type = "string",
@@ -318,6 +333,7 @@ M.AddonNamespaceConfigRequest = {
 
 M.AddonPodIdentityAssociations = {
     type = "structure",
+    id = "AddonPodIdentityAssociations",
     members = {
         serviceAccount = {
             type = "string",
@@ -336,6 +352,7 @@ M.AddonPodIdentityAssociations = {
 
 M.AddonPodIdentityConfiguration = {
     type = "structure",
+    id = "AddonPodIdentityConfiguration",
     members = {
         serviceAccount = {
             type = "string",
@@ -375,6 +392,7 @@ M.AMITypes = {
 
 M.ArgoCdAwsIdcConfigRequest = {
     type = "structure",
+    id = "ArgoCdAwsIdcConfigRequest",
     members = {
         idcInstanceArn = {
             type = "string",
@@ -390,6 +408,7 @@ M.ArgoCdAwsIdcConfigRequest = {
 
 M.ArgoCdAwsIdcConfigResponse = {
     type = "structure",
+    id = "ArgoCdAwsIdcConfigResponse",
     members = {
         idcInstanceArn = {
             type = "string",
@@ -405,6 +424,7 @@ M.ArgoCdAwsIdcConfigResponse = {
 
 M.ArgoCdNetworkAccessConfigRequest = {
     type = "structure",
+    id = "ArgoCdNetworkAccessConfigRequest",
     members = {
         vpceIds = {
             type = "list",
@@ -420,6 +440,7 @@ M.SsoIdentityType = {
 
 M.SsoIdentity = {
     type = "structure",
+    id = "SsoIdentity",
     members = {
         id = {
             type = "string",
@@ -444,6 +465,7 @@ M.ArgoCdRole = {
 
 M.ArgoCdRoleMapping = {
     type = "structure",
+    id = "ArgoCdRoleMapping",
     members = {
         role = {
             type = "string",
@@ -463,6 +485,7 @@ M.ArgoCdRoleMapping = {
 
 M.ArgoCdConfigRequest = {
     type = "structure",
+    id = "ArgoCdConfigRequest",
     members = {
         namespace = {
             type = "string",
@@ -480,6 +503,7 @@ M.ArgoCdConfigRequest = {
 
 M.ArgoCdNetworkAccessConfigResponse = {
     type = "structure",
+    id = "ArgoCdNetworkAccessConfigResponse",
     members = {
         vpceIds = {
             type = "list",
@@ -490,6 +514,7 @@ M.ArgoCdNetworkAccessConfigResponse = {
 
 M.ArgoCdConfigResponse = {
     type = "structure",
+    id = "ArgoCdConfigResponse",
     members = {
         namespace = {
             type = "string",
@@ -508,6 +533,7 @@ M.ArgoCdConfigResponse = {
 
 M.AssociateAccessPolicyInput = {
     type = "structure",
+    id = "AssociateAccessPolicyInput",
     members = {
         clusterName = {
             type = "string",
@@ -537,6 +563,7 @@ M.AssociateAccessPolicyInput = {
 
 M.AssociatedAccessPolicy = {
     type = "structure",
+    id = "AssociatedAccessPolicy",
     members = {
         policyArn = {
             type = "string",
@@ -553,6 +580,7 @@ M.AssociatedAccessPolicy = {
 
 M.AssociateAccessPolicyOutput = {
     type = "structure",
+    id = "AssociateAccessPolicyOutput",
     members = {
         clusterName = {
             type = "string",
@@ -566,6 +594,7 @@ M.AssociateAccessPolicyOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         clusterName = {
@@ -591,6 +620,7 @@ M.InvalidParameterException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         clusterName = {
@@ -613,6 +643,7 @@ M.InvalidRequestException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         clusterName = {
@@ -638,6 +669,7 @@ M.ResourceNotFoundException = {
 
 M.ServerException = {
     type = "structure",
+    id = "ServerException",
     error = "server",
     members = {
         clusterName = {
@@ -660,6 +692,7 @@ M.ServerException = {
 
 M.Provider = {
     type = "structure",
+    id = "Provider",
     members = {
         keyArn = {
             type = "string",
@@ -669,6 +702,7 @@ M.Provider = {
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         resources = {
             type = "list",
@@ -680,6 +714,7 @@ M.EncryptionConfig = {
 
 M.AssociateEncryptionConfigInput = {
     type = "structure",
+    id = "AssociateEncryptionConfigInput",
     members = {
         clusterName = {
             type = "string",
@@ -726,6 +761,7 @@ M.ErrorCode = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         errorCode = {
             type = "string",
@@ -791,6 +827,7 @@ M.UpdateParamType = {
 
 M.UpdateParam = {
     type = "structure",
+    id = "UpdateParam",
     members = {
         type = {
             type = "string",
@@ -830,6 +867,7 @@ M.UpdateType = {
 
 M.Update = {
     type = "structure",
+    id = "Update",
     members = {
         id = {
             type = "string",
@@ -856,6 +894,7 @@ M.Update = {
 
 M.AssociateEncryptionConfigOutput = {
     type = "structure",
+    id = "AssociateEncryptionConfigOutput",
     members = {
         update = M.Update,
     },
@@ -863,6 +902,7 @@ M.AssociateEncryptionConfigOutput = {
 
 M.ClientException = {
     type = "structure",
+    id = "ClientException",
     error = "client",
     members = {
         clusterName = {
@@ -885,6 +925,7 @@ M.ClientException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         clusterName = {
@@ -904,6 +945,7 @@ M.ResourceInUseException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         clusterName = {
@@ -917,6 +959,7 @@ M.ThrottlingException = {
 
 M.OidcIdentityProviderConfigRequest = {
     type = "structure",
+    id = "OidcIdentityProviderConfigRequest",
     members = {
         identityProviderConfigName = {
             type = "string",
@@ -958,6 +1001,7 @@ M.OidcIdentityProviderConfigRequest = {
 
 M.AssociateIdentityProviderConfigInput = {
     type = "structure",
+    id = "AssociateIdentityProviderConfigInput",
     members = {
         clusterName = {
             type = "string",
@@ -985,6 +1029,7 @@ M.AssociateIdentityProviderConfigInput = {
 
 M.AssociateIdentityProviderConfigOutput = {
     type = "structure",
+    id = "AssociateIdentityProviderConfigOutput",
     members = {
         update = M.Update,
         tags = {
@@ -997,6 +1042,7 @@ M.AssociateIdentityProviderConfigOutput = {
 
 M.AutoScalingGroup = {
     type = "structure",
+    id = "AutoScalingGroup",
     members = {
         name = {
             type = "string",
@@ -1006,6 +1052,7 @@ M.AutoScalingGroup = {
 
 M.CreateAccessEntryInput = {
     type = "structure",
+    id = "CreateAccessEntryInput",
     members = {
         clusterName = {
             type = "string",
@@ -1046,6 +1093,7 @@ M.CreateAccessEntryInput = {
 
 M.CreateAccessEntryOutput = {
     type = "structure",
+    id = "CreateAccessEntryOutput",
     members = {
         accessEntry = M.AccessEntry,
     },
@@ -1053,6 +1101,7 @@ M.CreateAccessEntryOutput = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         clusterName = {
@@ -1078,6 +1127,7 @@ M.ResolveConflicts = {
 
 M.CreateAddonInput = {
     type = "structure",
+    id = "CreateAddonInput",
     members = {
         clusterName = {
             type = "string",
@@ -1125,6 +1175,7 @@ M.CreateAddonInput = {
 
 M.CreateAddonOutput = {
     type = "structure",
+    id = "CreateAddonOutput",
     members = {
         addon = M.Addon,
     },
@@ -1132,6 +1183,7 @@ M.CreateAddonOutput = {
 
 M.CapabilityConfigurationRequest = {
     type = "structure",
+    id = "CapabilityConfigurationRequest",
     members = {
         argoCd = M.ArgoCdConfigRequest,
     },
@@ -1149,6 +1201,7 @@ M.CapabilityType = {
 
 M.CreateCapabilityInput = {
     type = "structure",
+    id = "CreateCapabilityInput",
     members = {
         capabilityName = {
             type = "string",
@@ -1198,6 +1251,7 @@ M.CreateCapabilityInput = {
 
 M.CapabilityConfigurationResponse = {
     type = "structure",
+    id = "CapabilityConfigurationResponse",
     members = {
         argoCd = M.ArgoCdConfigResponse,
     },
@@ -1210,6 +1264,7 @@ M.CapabilityIssueCode = {
 
 M.CapabilityIssue = {
     type = "structure",
+    id = "CapabilityIssue",
     members = {
         code = {
             type = "string",
@@ -1222,6 +1277,7 @@ M.CapabilityIssue = {
 
 M.CapabilityHealth = {
     type = "structure",
+    id = "CapabilityHealth",
     members = {
         issues = {
             type = "list",
@@ -1242,6 +1298,7 @@ M.CapabilityStatus = {
 
 M.Capability = {
     type = "structure",
+    id = "Capability",
     members = {
         capabilityName = {
             type = "string",
@@ -1285,6 +1342,7 @@ M.Capability = {
 
 M.CreateCapabilityOutput = {
     type = "structure",
+    id = "CreateCapabilityOutput",
     members = {
         capability = M.Capability,
     },
@@ -1292,6 +1350,7 @@ M.CreateCapabilityOutput = {
 
 M.CreateAccessConfigRequest = {
     type = "structure",
+    id = "CreateAccessConfigRequest",
     members = {
         bootstrapClusterCreatorAdminPermissions = {
             type = "boolean",
@@ -1304,6 +1363,7 @@ M.CreateAccessConfigRequest = {
 
 M.ComputeConfigRequest = {
     type = "structure",
+    id = "ComputeConfigRequest",
     members = {
         enabled = {
             type = "boolean",
@@ -1328,6 +1388,7 @@ M.ProvisionedControlPlaneTier = {
 
 M.ControlPlaneScalingConfig = {
     type = "structure",
+    id = "ControlPlaneScalingConfig",
     members = {
         tier = {
             type = "string",
@@ -1337,6 +1398,7 @@ M.ControlPlaneScalingConfig = {
 
 M.ElasticLoadBalancing = {
     type = "structure",
+    id = "ElasticLoadBalancing",
     members = {
         enabled = {
             type = "boolean",
@@ -1351,6 +1413,7 @@ M.IpFamily = {
 
 M.KubernetesNetworkConfigRequest = {
     type = "structure",
+    id = "KubernetesNetworkConfigRequest",
     members = {
         serviceIpv4Cidr = {
             type = "string",
@@ -1372,6 +1435,7 @@ M.LogType = {
 
 M.LogSetup = {
     type = "structure",
+    id = "LogSetup",
     members = {
         types = {
             type = "list",
@@ -1385,6 +1449,7 @@ M.LogSetup = {
 
 M.Logging = {
     type = "structure",
+    id = "Logging",
     members = {
         clusterLogging = {
             type = "list",
@@ -1395,6 +1460,7 @@ M.Logging = {
 
 M.ControlPlanePlacementRequest = {
     type = "structure",
+    id = "ControlPlanePlacementRequest",
     members = {
         groupName = {
             type = "string",
@@ -1404,6 +1470,7 @@ M.ControlPlanePlacementRequest = {
 
 M.OutpostConfigRequest = {
     type = "structure",
+    id = "OutpostConfigRequest",
     members = {
         outpostArns = {
             type = "list",
@@ -1424,6 +1491,7 @@ M.OutpostConfigRequest = {
 
 M.RemoteNodeNetwork = {
     type = "structure",
+    id = "RemoteNodeNetwork",
     members = {
         cidrs = {
             type = "list",
@@ -1434,6 +1502,7 @@ M.RemoteNodeNetwork = {
 
 M.RemotePodNetwork = {
     type = "structure",
+    id = "RemotePodNetwork",
     members = {
         cidrs = {
             type = "list",
@@ -1444,6 +1513,7 @@ M.RemotePodNetwork = {
 
 M.RemoteNetworkConfigRequest = {
     type = "structure",
+    id = "RemoteNetworkConfigRequest",
     members = {
         remoteNodeNetworks = {
             type = "list",
@@ -1458,6 +1528,7 @@ M.RemoteNetworkConfigRequest = {
 
 M.VpcConfigRequest = {
     type = "structure",
+    id = "VpcConfigRequest",
     members = {
         subnetIds = {
             type = "list",
@@ -1482,6 +1553,7 @@ M.VpcConfigRequest = {
 
 M.BlockStorage = {
     type = "structure",
+    id = "BlockStorage",
     members = {
         enabled = {
             type = "boolean",
@@ -1491,6 +1563,7 @@ M.BlockStorage = {
 
 M.StorageConfigRequest = {
     type = "structure",
+    id = "StorageConfigRequest",
     members = {
         blockStorage = M.BlockStorage,
     },
@@ -1503,6 +1576,7 @@ M.SupportType = {
 
 M.UpgradePolicyRequest = {
     type = "structure",
+    id = "UpgradePolicyRequest",
     members = {
         supportType = {
             type = "string",
@@ -1512,6 +1586,7 @@ M.UpgradePolicyRequest = {
 
 M.ZonalShiftConfigRequest = {
     type = "structure",
+    id = "ZonalShiftConfigRequest",
     members = {
         enabled = {
             type = "boolean",
@@ -1521,6 +1596,7 @@ M.ZonalShiftConfigRequest = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         name = {
             type = "string",
@@ -1576,6 +1652,7 @@ M.CreateClusterInput = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         data = {
             type = "string",
@@ -1585,6 +1662,7 @@ M.Certificate = {
 
 M.ComputeConfigResponse = {
     type = "structure",
+    id = "ComputeConfigResponse",
     members = {
         enabled = {
             type = "boolean",
@@ -1601,6 +1679,7 @@ M.ComputeConfigResponse = {
 
 M.ConnectorConfigResponse = {
     type = "structure",
+    id = "ConnectorConfigResponse",
     members = {
         activationId = {
             type = "string",
@@ -1644,6 +1723,7 @@ M.ClusterIssueCode = {
 
 M.ClusterIssue = {
     type = "structure",
+    id = "ClusterIssue",
     members = {
         code = {
             type = "string",
@@ -1660,6 +1740,7 @@ M.ClusterIssue = {
 
 M.ClusterHealth = {
     type = "structure",
+    id = "ClusterHealth",
     members = {
         issues = {
             type = "list",
@@ -1670,6 +1751,7 @@ M.ClusterHealth = {
 
 M.OIDC = {
     type = "structure",
+    id = "OIDC",
     members = {
         issuer = {
             type = "string",
@@ -1679,6 +1761,7 @@ M.OIDC = {
 
 M.Identity = {
     type = "structure",
+    id = "Identity",
     members = {
         oidc = M.OIDC,
     },
@@ -1686,6 +1769,7 @@ M.Identity = {
 
 M.KubernetesNetworkConfigResponse = {
     type = "structure",
+    id = "KubernetesNetworkConfigResponse",
     members = {
         serviceIpv4Cidr = {
             type = "string",
@@ -1702,6 +1786,7 @@ M.KubernetesNetworkConfigResponse = {
 
 M.ControlPlanePlacementResponse = {
     type = "structure",
+    id = "ControlPlanePlacementResponse",
     members = {
         groupName = {
             type = "string",
@@ -1711,6 +1796,7 @@ M.ControlPlanePlacementResponse = {
 
 M.OutpostConfigResponse = {
     type = "structure",
+    id = "OutpostConfigResponse",
     members = {
         outpostArns = {
             type = "list",
@@ -1731,6 +1817,7 @@ M.OutpostConfigResponse = {
 
 M.RemoteNetworkConfigResponse = {
     type = "structure",
+    id = "RemoteNetworkConfigResponse",
     members = {
         remoteNodeNetworks = {
             type = "list",
@@ -1745,6 +1832,7 @@ M.RemoteNetworkConfigResponse = {
 
 M.VpcConfigResponse = {
     type = "structure",
+    id = "VpcConfigResponse",
     members = {
         subnetIds = {
             type = "list",
@@ -1790,6 +1878,7 @@ M.ClusterStatus = {
 
 M.StorageConfigResponse = {
     type = "structure",
+    id = "StorageConfigResponse",
     members = {
         blockStorage = M.BlockStorage,
     },
@@ -1797,6 +1886,7 @@ M.StorageConfigResponse = {
 
 M.UpgradePolicyResponse = {
     type = "structure",
+    id = "UpgradePolicyResponse",
     members = {
         supportType = {
             type = "string",
@@ -1806,6 +1896,7 @@ M.UpgradePolicyResponse = {
 
 M.ZonalShiftConfigResponse = {
     type = "structure",
+    id = "ZonalShiftConfigResponse",
     members = {
         enabled = {
             type = "boolean",
@@ -1815,6 +1906,7 @@ M.ZonalShiftConfigResponse = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         name = {
             type = "string",
@@ -1878,6 +1970,7 @@ M.Cluster = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -1885,6 +1978,7 @@ M.CreateClusterOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -1895,6 +1989,7 @@ M.ServiceUnavailableException = {
 
 M.UnsupportedAvailabilityZoneException = {
     type = "structure",
+    id = "UnsupportedAvailabilityZoneException",
     error = "client",
     members = {
         message = {
@@ -1923,6 +2018,7 @@ M.EksAnywhereSubscriptionTermUnit = {
 
 M.EksAnywhereSubscriptionTerm = {
     type = "structure",
+    id = "EksAnywhereSubscriptionTerm",
     members = {
         duration = {
             type = "integer",
@@ -1938,6 +2034,7 @@ M.EksAnywhereSubscriptionTerm = {
 
 M.CreateEksAnywhereSubscriptionInput = {
     type = "structure",
+    id = "CreateEksAnywhereSubscriptionInput",
     members = {
         name = {
             type = "string",
@@ -1979,6 +2076,7 @@ M.CreateEksAnywhereSubscriptionInput = {
 
 M.License = {
     type = "structure",
+    id = "License",
     members = {
         id = {
             type = "string",
@@ -1991,6 +2089,7 @@ M.License = {
 
 M.EksAnywhereSubscription = {
     type = "structure",
+    id = "EksAnywhereSubscription",
     members = {
         id = {
             type = "string",
@@ -2044,6 +2143,7 @@ M.EksAnywhereSubscription = {
 
 M.CreateEksAnywhereSubscriptionOutput = {
     type = "structure",
+    id = "CreateEksAnywhereSubscriptionOutput",
     members = {
         subscription = M.EksAnywhereSubscription,
     },
@@ -2051,6 +2151,7 @@ M.CreateEksAnywhereSubscriptionOutput = {
 
 M.FargateProfileSelector = {
     type = "structure",
+    id = "FargateProfileSelector",
     members = {
         namespace = {
             type = "string",
@@ -2065,6 +2166,7 @@ M.FargateProfileSelector = {
 
 M.CreateFargateProfileInput = {
     type = "structure",
+    id = "CreateFargateProfileInput",
     members = {
         fargateProfileName = {
             type = "string",
@@ -2116,6 +2218,7 @@ M.FargateProfileIssueCode = {
 
 M.FargateProfileIssue = {
     type = "structure",
+    id = "FargateProfileIssue",
     members = {
         code = {
             type = "string",
@@ -2132,6 +2235,7 @@ M.FargateProfileIssue = {
 
 M.FargateProfileHealth = {
     type = "structure",
+    id = "FargateProfileHealth",
     members = {
         issues = {
             type = "list",
@@ -2150,6 +2254,7 @@ M.FargateProfileStatus = {
 
 M.FargateProfile = {
     type = "structure",
+    id = "FargateProfile",
     members = {
         fargateProfileName = {
             type = "string",
@@ -2188,6 +2293,7 @@ M.FargateProfile = {
 
 M.CreateFargateProfileOutput = {
     type = "structure",
+    id = "CreateFargateProfileOutput",
     members = {
         fargateProfile = M.FargateProfile,
     },
@@ -2201,6 +2307,7 @@ M.CapacityTypes = {
 
 M.LaunchTemplateSpecification = {
     type = "structure",
+    id = "LaunchTemplateSpecification",
     members = {
         name = {
             type = "string",
@@ -2222,6 +2329,7 @@ M.RepairAction = {
 
 M.NodeRepairConfigOverrides = {
     type = "structure",
+    id = "NodeRepairConfigOverrides",
     members = {
         nodeMonitoringCondition = {
             type = "string",
@@ -2240,6 +2348,7 @@ M.NodeRepairConfigOverrides = {
 
 M.NodeRepairConfig = {
     type = "structure",
+    id = "NodeRepairConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -2265,6 +2374,7 @@ M.NodeRepairConfig = {
 
 M.RemoteAccessConfig = {
     type = "structure",
+    id = "RemoteAccessConfig",
     members = {
         ec2SshKey = {
             type = "string",
@@ -2278,6 +2388,7 @@ M.RemoteAccessConfig = {
 
 M.NodegroupScalingConfig = {
     type = "structure",
+    id = "NodegroupScalingConfig",
     members = {
         minSize = {
             type = "integer",
@@ -2299,6 +2410,7 @@ M.TaintEffect = {
 
 M.Taint = {
     type = "structure",
+    id = "Taint",
     members = {
         key = {
             type = "string",
@@ -2319,6 +2431,7 @@ M.NodegroupUpdateStrategies = {
 
 M.NodegroupUpdateConfig = {
     type = "structure",
+    id = "NodegroupUpdateConfig",
     members = {
         maxUnavailable = {
             type = "integer",
@@ -2340,6 +2453,7 @@ M.WarmPoolState = {
 
 M.WarmPoolConfig = {
     type = "structure",
+    id = "WarmPoolConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -2361,6 +2475,7 @@ M.WarmPoolConfig = {
 
 M.CreateNodegroupInput = {
     type = "structure",
+    id = "CreateNodegroupInput",
     members = {
         clusterName = {
             type = "string",
@@ -2477,6 +2592,7 @@ M.NodegroupIssueCode = {
 
 M.Issue = {
     type = "structure",
+    id = "Issue",
     members = {
         code = {
             type = "string",
@@ -2493,6 +2609,7 @@ M.Issue = {
 
 M.NodegroupHealth = {
     type = "structure",
+    id = "NodegroupHealth",
     members = {
         issues = {
             type = "list",
@@ -2503,6 +2620,7 @@ M.NodegroupHealth = {
 
 M.NodegroupResources = {
     type = "structure",
+    id = "NodegroupResources",
     members = {
         autoScalingGroups = {
             type = "list",
@@ -2526,6 +2644,7 @@ M.NodegroupStatus = {
 
 M.Nodegroup = {
     type = "structure",
+    id = "Nodegroup",
     members = {
         nodegroupName = {
             type = "string",
@@ -2598,6 +2717,7 @@ M.Nodegroup = {
 
 M.CreateNodegroupOutput = {
     type = "structure",
+    id = "CreateNodegroupOutput",
     members = {
         nodegroup = M.Nodegroup,
     },
@@ -2605,6 +2725,7 @@ M.CreateNodegroupOutput = {
 
 M.CreatePodIdentityAssociationInput = {
     type = "structure",
+    id = "CreatePodIdentityAssociationInput",
     members = {
         clusterName = {
             type = "string",
@@ -2656,6 +2777,7 @@ M.CreatePodIdentityAssociationInput = {
 
 M.PodIdentityAssociation = {
     type = "structure",
+    id = "PodIdentityAssociation",
     members = {
         clusterName = {
             type = "string",
@@ -2706,6 +2828,7 @@ M.PodIdentityAssociation = {
 
 M.CreatePodIdentityAssociationOutput = {
     type = "structure",
+    id = "CreatePodIdentityAssociationOutput",
     members = {
         association = M.PodIdentityAssociation,
     },
@@ -2713,6 +2836,7 @@ M.CreatePodIdentityAssociationOutput = {
 
 M.DeleteAccessEntryInput = {
     type = "structure",
+    id = "DeleteAccessEntryInput",
     members = {
         clusterName = {
             type = "string",
@@ -2733,10 +2857,12 @@ M.DeleteAccessEntryInput = {
 
 M.DeleteAccessEntryOutput = {
     type = "structure",
+    id = "DeleteAccessEntryOutput",
 }
 
 M.DeleteAddonInput = {
     type = "structure",
+    id = "DeleteAddonInput",
     members = {
         clusterName = {
             type = "string",
@@ -2764,6 +2890,7 @@ M.DeleteAddonInput = {
 
 M.DeleteAddonOutput = {
     type = "structure",
+    id = "DeleteAddonOutput",
     members = {
         addon = M.Addon,
     },
@@ -2771,6 +2898,7 @@ M.DeleteAddonOutput = {
 
 M.DeleteCapabilityInput = {
     type = "structure",
+    id = "DeleteCapabilityInput",
     members = {
         clusterName = {
             type = "string",
@@ -2791,6 +2919,7 @@ M.DeleteCapabilityInput = {
 
 M.DeleteCapabilityOutput = {
     type = "structure",
+    id = "DeleteCapabilityOutput",
     members = {
         capability = M.Capability,
     },
@@ -2798,6 +2927,7 @@ M.DeleteCapabilityOutput = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         name = {
             type = "string",
@@ -2811,6 +2941,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -2818,6 +2949,7 @@ M.DeleteClusterOutput = {
 
 M.DeleteEksAnywhereSubscriptionInput = {
     type = "structure",
+    id = "DeleteEksAnywhereSubscriptionInput",
     members = {
         id = {
             type = "string",
@@ -2831,6 +2963,7 @@ M.DeleteEksAnywhereSubscriptionInput = {
 
 M.DeleteEksAnywhereSubscriptionOutput = {
     type = "structure",
+    id = "DeleteEksAnywhereSubscriptionOutput",
     members = {
         subscription = M.EksAnywhereSubscription,
     },
@@ -2838,6 +2971,7 @@ M.DeleteEksAnywhereSubscriptionOutput = {
 
 M.DeleteFargateProfileInput = {
     type = "structure",
+    id = "DeleteFargateProfileInput",
     members = {
         clusterName = {
             type = "string",
@@ -2858,6 +2992,7 @@ M.DeleteFargateProfileInput = {
 
 M.DeleteFargateProfileOutput = {
     type = "structure",
+    id = "DeleteFargateProfileOutput",
     members = {
         fargateProfile = M.FargateProfile,
     },
@@ -2865,6 +3000,7 @@ M.DeleteFargateProfileOutput = {
 
 M.DeleteNodegroupInput = {
     type = "structure",
+    id = "DeleteNodegroupInput",
     members = {
         clusterName = {
             type = "string",
@@ -2885,6 +3021,7 @@ M.DeleteNodegroupInput = {
 
 M.DeleteNodegroupOutput = {
     type = "structure",
+    id = "DeleteNodegroupOutput",
     members = {
         nodegroup = M.Nodegroup,
     },
@@ -2892,6 +3029,7 @@ M.DeleteNodegroupOutput = {
 
 M.DeletePodIdentityAssociationInput = {
     type = "structure",
+    id = "DeletePodIdentityAssociationInput",
     members = {
         clusterName = {
             type = "string",
@@ -2912,6 +3050,7 @@ M.DeletePodIdentityAssociationInput = {
 
 M.DeletePodIdentityAssociationOutput = {
     type = "structure",
+    id = "DeletePodIdentityAssociationOutput",
     members = {
         association = M.PodIdentityAssociation,
     },
@@ -2919,6 +3058,7 @@ M.DeletePodIdentityAssociationOutput = {
 
 M.DeregisterClusterInput = {
     type = "structure",
+    id = "DeregisterClusterInput",
     members = {
         name = {
             type = "string",
@@ -2932,6 +3072,7 @@ M.DeregisterClusterInput = {
 
 M.DeregisterClusterOutput = {
     type = "structure",
+    id = "DeregisterClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -2939,6 +3080,7 @@ M.DeregisterClusterOutput = {
 
 M.DescribeAccessEntryInput = {
     type = "structure",
+    id = "DescribeAccessEntryInput",
     members = {
         clusterName = {
             type = "string",
@@ -2959,6 +3101,7 @@ M.DescribeAccessEntryInput = {
 
 M.DescribeAccessEntryOutput = {
     type = "structure",
+    id = "DescribeAccessEntryOutput",
     members = {
         accessEntry = M.AccessEntry,
     },
@@ -2966,6 +3109,7 @@ M.DescribeAccessEntryOutput = {
 
 M.DescribeAddonInput = {
     type = "structure",
+    id = "DescribeAddonInput",
     members = {
         clusterName = {
             type = "string",
@@ -2986,6 +3130,7 @@ M.DescribeAddonInput = {
 
 M.DescribeAddonOutput = {
     type = "structure",
+    id = "DescribeAddonOutput",
     members = {
         addon = M.Addon,
     },
@@ -2993,6 +3138,7 @@ M.DescribeAddonOutput = {
 
 M.DescribeAddonConfigurationInput = {
     type = "structure",
+    id = "DescribeAddonConfigurationInput",
     members = {
         addonName = {
             type = "string",
@@ -3013,6 +3159,7 @@ M.DescribeAddonConfigurationInput = {
 
 M.DescribeAddonConfigurationOutput = {
     type = "structure",
+    id = "DescribeAddonConfigurationOutput",
     members = {
         addonName = {
             type = "string",
@@ -3032,6 +3179,7 @@ M.DescribeAddonConfigurationOutput = {
 
 M.DescribeAddonVersionsInput = {
     type = "structure",
+    id = "DescribeAddonVersionsInput",
     members = {
         kubernetesVersion = {
             type = "string",
@@ -3083,6 +3231,7 @@ M.DescribeAddonVersionsInput = {
 
 M.DescribeAddonVersionsOutput = {
     type = "structure",
+    id = "DescribeAddonVersionsOutput",
     members = {
         addons = {
             type = "list",
@@ -3096,6 +3245,7 @@ M.DescribeAddonVersionsOutput = {
 
 M.DescribeCapabilityInput = {
     type = "structure",
+    id = "DescribeCapabilityInput",
     members = {
         clusterName = {
             type = "string",
@@ -3116,6 +3266,7 @@ M.DescribeCapabilityInput = {
 
 M.DescribeCapabilityOutput = {
     type = "structure",
+    id = "DescribeCapabilityOutput",
     members = {
         capability = M.Capability,
     },
@@ -3123,6 +3274,7 @@ M.DescribeCapabilityOutput = {
 
 M.DescribeClusterInput = {
     type = "structure",
+    id = "DescribeClusterInput",
     members = {
         name = {
             type = "string",
@@ -3136,6 +3288,7 @@ M.DescribeClusterInput = {
 
 M.DescribeClusterOutput = {
     type = "structure",
+    id = "DescribeClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -3155,6 +3308,7 @@ M.VersionStatus = {
 
 M.DescribeClusterVersionsInput = {
     type = "structure",
+    id = "DescribeClusterVersionsInput",
     members = {
         clusterType = {
             type = "string",
@@ -3210,6 +3364,7 @@ M.DescribeClusterVersionsInput = {
 
 M.ClusterVersionInformation = {
     type = "structure",
+    id = "ClusterVersionInformation",
     members = {
         clusterVersion = {
             type = "string",
@@ -3249,6 +3404,7 @@ M.ClusterVersionInformation = {
 
 M.DescribeClusterVersionsOutput = {
     type = "structure",
+    id = "DescribeClusterVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3262,6 +3418,7 @@ M.DescribeClusterVersionsOutput = {
 
 M.DescribeEksAnywhereSubscriptionInput = {
     type = "structure",
+    id = "DescribeEksAnywhereSubscriptionInput",
     members = {
         id = {
             type = "string",
@@ -3275,6 +3432,7 @@ M.DescribeEksAnywhereSubscriptionInput = {
 
 M.DescribeEksAnywhereSubscriptionOutput = {
     type = "structure",
+    id = "DescribeEksAnywhereSubscriptionOutput",
     members = {
         subscription = M.EksAnywhereSubscription,
     },
@@ -3282,6 +3440,7 @@ M.DescribeEksAnywhereSubscriptionOutput = {
 
 M.DescribeFargateProfileInput = {
     type = "structure",
+    id = "DescribeFargateProfileInput",
     members = {
         clusterName = {
             type = "string",
@@ -3302,6 +3461,7 @@ M.DescribeFargateProfileInput = {
 
 M.DescribeFargateProfileOutput = {
     type = "structure",
+    id = "DescribeFargateProfileOutput",
     members = {
         fargateProfile = M.FargateProfile,
     },
@@ -3309,6 +3469,7 @@ M.DescribeFargateProfileOutput = {
 
 M.IdentityProviderConfig = {
     type = "structure",
+    id = "IdentityProviderConfig",
     members = {
         type = {
             type = "string",
@@ -3327,6 +3488,7 @@ M.IdentityProviderConfig = {
 
 M.DescribeIdentityProviderConfigInput = {
     type = "structure",
+    id = "DescribeIdentityProviderConfigInput",
     members = {
         clusterName = {
             type = "string",
@@ -3349,6 +3511,7 @@ M.configStatus = {
 
 M.OidcIdentityProviderConfig = {
     type = "structure",
+    id = "OidcIdentityProviderConfig",
     members = {
         identityProviderConfigName = {
             type = "string",
@@ -3395,6 +3558,7 @@ M.OidcIdentityProviderConfig = {
 
 M.IdentityProviderConfigResponse = {
     type = "structure",
+    id = "IdentityProviderConfigResponse",
     members = {
         oidc = M.OidcIdentityProviderConfig,
     },
@@ -3402,6 +3566,7 @@ M.IdentityProviderConfigResponse = {
 
 M.DescribeIdentityProviderConfigOutput = {
     type = "structure",
+    id = "DescribeIdentityProviderConfigOutput",
     members = {
         identityProviderConfig = M.IdentityProviderConfigResponse,
     },
@@ -3409,6 +3574,7 @@ M.DescribeIdentityProviderConfigOutput = {
 
 M.DescribeInsightInput = {
     type = "structure",
+    id = "DescribeInsightInput",
     members = {
         clusterName = {
             type = "string",
@@ -3434,6 +3600,7 @@ M.Category = {
 
 M.ClientStat = {
     type = "structure",
+    id = "ClientStat",
     members = {
         userAgent = {
             type = "string",
@@ -3452,6 +3619,7 @@ M.ClientStat = {
 
 M.DeprecationDetail = {
     type = "structure",
+    id = "DeprecationDetail",
     members = {
         usage = {
             type = "string",
@@ -3474,6 +3642,7 @@ M.DeprecationDetail = {
 
 M.InsightCategorySpecificSummary = {
     type = "structure",
+    id = "InsightCategorySpecificSummary",
     members = {
         deprecationDetails = {
             type = "list",
@@ -3495,6 +3664,7 @@ M.InsightStatusValue = {
 
 M.InsightStatus = {
     type = "structure",
+    id = "InsightStatus",
     members = {
         status = {
             type = "string",
@@ -3507,6 +3677,7 @@ M.InsightStatus = {
 
 M.InsightResourceDetail = {
     type = "structure",
+    id = "InsightResourceDetail",
     members = {
         insightStatus = M.InsightStatus,
         kubernetesResourceUri = {
@@ -3520,6 +3691,7 @@ M.InsightResourceDetail = {
 
 M.Insight = {
     type = "structure",
+    id = "Insight",
     members = {
         id = {
             type = "string",
@@ -3561,6 +3733,7 @@ M.Insight = {
 
 M.DescribeInsightOutput = {
     type = "structure",
+    id = "DescribeInsightOutput",
     members = {
         insight = M.Insight,
     },
@@ -3568,6 +3741,7 @@ M.DescribeInsightOutput = {
 
 M.DescribeInsightsRefreshInput = {
     type = "structure",
+    id = "DescribeInsightsRefreshInput",
     members = {
         clusterName = {
             type = "string",
@@ -3587,6 +3761,7 @@ M.InsightsRefreshStatus = {
 
 M.DescribeInsightsRefreshOutput = {
     type = "structure",
+    id = "DescribeInsightsRefreshOutput",
     members = {
         message = {
             type = "string",
@@ -3605,6 +3780,7 @@ M.DescribeInsightsRefreshOutput = {
 
 M.DescribeNodegroupInput = {
     type = "structure",
+    id = "DescribeNodegroupInput",
     members = {
         clusterName = {
             type = "string",
@@ -3625,6 +3801,7 @@ M.DescribeNodegroupInput = {
 
 M.DescribeNodegroupOutput = {
     type = "structure",
+    id = "DescribeNodegroupOutput",
     members = {
         nodegroup = M.Nodegroup,
     },
@@ -3632,6 +3809,7 @@ M.DescribeNodegroupOutput = {
 
 M.DescribePodIdentityAssociationInput = {
     type = "structure",
+    id = "DescribePodIdentityAssociationInput",
     members = {
         clusterName = {
             type = "string",
@@ -3652,6 +3830,7 @@ M.DescribePodIdentityAssociationInput = {
 
 M.DescribePodIdentityAssociationOutput = {
     type = "structure",
+    id = "DescribePodIdentityAssociationOutput",
     members = {
         association = M.PodIdentityAssociation,
     },
@@ -3659,6 +3838,7 @@ M.DescribePodIdentityAssociationOutput = {
 
 M.DescribeUpdateInput = {
     type = "structure",
+    id = "DescribeUpdateInput",
     members = {
         name = {
             type = "string",
@@ -3697,6 +3877,7 @@ M.DescribeUpdateInput = {
 
 M.DescribeUpdateOutput = {
     type = "structure",
+    id = "DescribeUpdateOutput",
     members = {
         update = M.Update,
     },
@@ -3704,6 +3885,7 @@ M.DescribeUpdateOutput = {
 
 M.DisassociateAccessPolicyInput = {
     type = "structure",
+    id = "DisassociateAccessPolicyInput",
     members = {
         clusterName = {
             type = "string",
@@ -3731,10 +3913,12 @@ M.DisassociateAccessPolicyInput = {
 
 M.DisassociateAccessPolicyOutput = {
     type = "structure",
+    id = "DisassociateAccessPolicyOutput",
 }
 
 M.DisassociateIdentityProviderConfigInput = {
     type = "structure",
+    id = "DisassociateIdentityProviderConfigInput",
     members = {
         clusterName = {
             type = "string",
@@ -3757,6 +3941,7 @@ M.DisassociateIdentityProviderConfigInput = {
 
 M.DisassociateIdentityProviderConfigOutput = {
     type = "structure",
+    id = "DisassociateIdentityProviderConfigOutput",
     members = {
         update = M.Update,
     },
@@ -3764,6 +3949,7 @@ M.DisassociateIdentityProviderConfigOutput = {
 
 M.ListAccessEntriesInput = {
     type = "structure",
+    id = "ListAccessEntriesInput",
     members = {
         clusterName = {
             type = "string",
@@ -3795,6 +3981,7 @@ M.ListAccessEntriesInput = {
 
 M.ListAccessEntriesOutput = {
     type = "structure",
+    id = "ListAccessEntriesOutput",
     members = {
         accessEntries = {
             type = "list",
@@ -3808,6 +3995,7 @@ M.ListAccessEntriesOutput = {
 
 M.ListAccessPoliciesInput = {
     type = "structure",
+    id = "ListAccessPoliciesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3826,6 +4014,7 @@ M.ListAccessPoliciesInput = {
 
 M.ListAccessPoliciesOutput = {
     type = "structure",
+    id = "ListAccessPoliciesOutput",
     members = {
         accessPolicies = {
             type = "list",
@@ -3839,6 +4028,7 @@ M.ListAccessPoliciesOutput = {
 
 M.ListAddonsInput = {
     type = "structure",
+    id = "ListAddonsInput",
     members = {
         clusterName = {
             type = "string",
@@ -3864,6 +4054,7 @@ M.ListAddonsInput = {
 
 M.ListAddonsOutput = {
     type = "structure",
+    id = "ListAddonsOutput",
     members = {
         addons = {
             type = "list",
@@ -3877,6 +4068,7 @@ M.ListAddonsOutput = {
 
 M.ListAssociatedAccessPoliciesInput = {
     type = "structure",
+    id = "ListAssociatedAccessPoliciesInput",
     members = {
         clusterName = {
             type = "string",
@@ -3909,6 +4101,7 @@ M.ListAssociatedAccessPoliciesInput = {
 
 M.ListAssociatedAccessPoliciesOutput = {
     type = "structure",
+    id = "ListAssociatedAccessPoliciesOutput",
     members = {
         clusterName = {
             type = "string",
@@ -3928,6 +4121,7 @@ M.ListAssociatedAccessPoliciesOutput = {
 
 M.ListCapabilitiesInput = {
     type = "structure",
+    id = "ListCapabilitiesInput",
     members = {
         clusterName = {
             type = "string",
@@ -3953,6 +4147,7 @@ M.ListCapabilitiesInput = {
 
 M.CapabilitySummary = {
     type = "structure",
+    id = "CapabilitySummary",
     members = {
         capabilityName = {
             type = "string",
@@ -3980,6 +4175,7 @@ M.CapabilitySummary = {
 
 M.ListCapabilitiesOutput = {
     type = "structure",
+    id = "ListCapabilitiesOutput",
     members = {
         capabilities = {
             type = "list",
@@ -3993,6 +4189,7 @@ M.ListCapabilitiesOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4018,6 +4215,7 @@ M.ListClustersInput = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         clusters = {
             type = "list",
@@ -4040,6 +4238,7 @@ M.EksAnywhereSubscriptionStatus = {
 
 M.ListEksAnywhereSubscriptionsInput = {
     type = "structure",
+    id = "ListEksAnywhereSubscriptionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -4065,6 +4264,7 @@ M.ListEksAnywhereSubscriptionsInput = {
 
 M.ListEksAnywhereSubscriptionsOutput = {
     type = "structure",
+    id = "ListEksAnywhereSubscriptionsOutput",
     members = {
         subscriptions = {
             type = "list",
@@ -4078,6 +4278,7 @@ M.ListEksAnywhereSubscriptionsOutput = {
 
 M.ListFargateProfilesInput = {
     type = "structure",
+    id = "ListFargateProfilesInput",
     members = {
         clusterName = {
             type = "string",
@@ -4103,6 +4304,7 @@ M.ListFargateProfilesInput = {
 
 M.ListFargateProfilesOutput = {
     type = "structure",
+    id = "ListFargateProfilesOutput",
     members = {
         fargateProfileNames = {
             type = "list",
@@ -4116,6 +4318,7 @@ M.ListFargateProfilesOutput = {
 
 M.ListIdentityProviderConfigsInput = {
     type = "structure",
+    id = "ListIdentityProviderConfigsInput",
     members = {
         clusterName = {
             type = "string",
@@ -4141,6 +4344,7 @@ M.ListIdentityProviderConfigsInput = {
 
 M.ListIdentityProviderConfigsOutput = {
     type = "structure",
+    id = "ListIdentityProviderConfigsOutput",
     members = {
         identityProviderConfigs = {
             type = "list",
@@ -4154,6 +4358,7 @@ M.ListIdentityProviderConfigsOutput = {
 
 M.InsightsFilter = {
     type = "structure",
+    id = "InsightsFilter",
     members = {
         categories = {
             type = "list",
@@ -4172,6 +4377,7 @@ M.InsightsFilter = {
 
 M.ListInsightsInput = {
     type = "structure",
+    id = "ListInsightsInput",
     members = {
         clusterName = {
             type = "string",
@@ -4192,6 +4398,7 @@ M.ListInsightsInput = {
 
 M.InsightSummary = {
     type = "structure",
+    id = "InsightSummary",
     members = {
         id = {
             type = "string",
@@ -4220,6 +4427,7 @@ M.InsightSummary = {
 
 M.ListInsightsOutput = {
     type = "structure",
+    id = "ListInsightsOutput",
     members = {
         insights = {
             type = "list",
@@ -4233,6 +4441,7 @@ M.ListInsightsOutput = {
 
 M.ListNodegroupsInput = {
     type = "structure",
+    id = "ListNodegroupsInput",
     members = {
         clusterName = {
             type = "string",
@@ -4258,6 +4467,7 @@ M.ListNodegroupsInput = {
 
 M.ListNodegroupsOutput = {
     type = "structure",
+    id = "ListNodegroupsOutput",
     members = {
         nodegroups = {
             type = "list",
@@ -4271,6 +4481,7 @@ M.ListNodegroupsOutput = {
 
 M.ListPodIdentityAssociationsInput = {
     type = "structure",
+    id = "ListPodIdentityAssociationsInput",
     members = {
         clusterName = {
             type = "string",
@@ -4308,6 +4519,7 @@ M.ListPodIdentityAssociationsInput = {
 
 M.PodIdentityAssociationSummary = {
     type = "structure",
+    id = "PodIdentityAssociationSummary",
     members = {
         clusterName = {
             type = "string",
@@ -4332,6 +4544,7 @@ M.PodIdentityAssociationSummary = {
 
 M.ListPodIdentityAssociationsOutput = {
     type = "structure",
+    id = "ListPodIdentityAssociationsOutput",
     members = {
         associations = {
             type = "list",
@@ -4345,6 +4558,7 @@ M.ListPodIdentityAssociationsOutput = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -4355,6 +4569,7 @@ M.BadRequestException = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4368,6 +4583,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -4379,6 +4595,7 @@ M.ListTagsForResourceOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -4389,6 +4606,7 @@ M.NotFoundException = {
 
 M.ListUpdatesInput = {
     type = "structure",
+    id = "ListUpdatesInput",
     members = {
         name = {
             type = "string",
@@ -4432,6 +4650,7 @@ M.ListUpdatesInput = {
 
 M.ListUpdatesOutput = {
     type = "structure",
+    id = "ListUpdatesOutput",
     members = {
         updateIds = {
             type = "list",
@@ -4457,6 +4676,7 @@ M.ConnectorConfigProvider = {
 
 M.ConnectorConfigRequest = {
     type = "structure",
+    id = "ConnectorConfigRequest",
     members = {
         roleArn = {
             type = "string",
@@ -4475,6 +4695,7 @@ M.ConnectorConfigRequest = {
 
 M.RegisterClusterInput = {
     type = "structure",
+    id = "RegisterClusterInput",
     members = {
         name = {
             type = "string",
@@ -4501,6 +4722,7 @@ M.RegisterClusterInput = {
 
 M.RegisterClusterOutput = {
     type = "structure",
+    id = "RegisterClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -4508,6 +4730,7 @@ M.RegisterClusterOutput = {
 
 M.ResourcePropagationDelayException = {
     type = "structure",
+    id = "ResourcePropagationDelayException",
     error = "client",
     members = {
         message = {
@@ -4518,6 +4741,7 @@ M.ResourcePropagationDelayException = {
 
 M.StartInsightsRefreshInput = {
     type = "structure",
+    id = "StartInsightsRefreshInput",
     members = {
         clusterName = {
             type = "string",
@@ -4531,6 +4755,7 @@ M.StartInsightsRefreshInput = {
 
 M.StartInsightsRefreshOutput = {
     type = "structure",
+    id = "StartInsightsRefreshOutput",
     members = {
         message = {
             type = "string",
@@ -4543,6 +4768,7 @@ M.StartInsightsRefreshOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4564,10 +4790,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4589,10 +4817,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccessEntryInput = {
     type = "structure",
+    id = "UpdateAccessEntryInput",
     members = {
         clusterName = {
             type = "string",
@@ -4626,6 +4856,7 @@ M.UpdateAccessEntryInput = {
 
 M.UpdateAccessEntryOutput = {
     type = "structure",
+    id = "UpdateAccessEntryOutput",
     members = {
         accessEntry = M.AccessEntry,
     },
@@ -4633,6 +4864,7 @@ M.UpdateAccessEntryOutput = {
 
 M.UpdateAddonInput = {
     type = "structure",
+    id = "UpdateAddonInput",
     members = {
         clusterName = {
             type = "string",
@@ -4675,6 +4907,7 @@ M.UpdateAddonInput = {
 
 M.UpdateAddonOutput = {
     type = "structure",
+    id = "UpdateAddonOutput",
     members = {
         update = M.Update,
     },
@@ -4682,6 +4915,7 @@ M.UpdateAddonOutput = {
 
 M.UpdateRoleMappings = {
     type = "structure",
+    id = "UpdateRoleMappings",
     members = {
         addOrUpdateRoleMappings = {
             type = "list",
@@ -4696,6 +4930,7 @@ M.UpdateRoleMappings = {
 
 M.UpdateArgoCdConfig = {
     type = "structure",
+    id = "UpdateArgoCdConfig",
     members = {
         rbacRoleMappings = M.UpdateRoleMappings,
         networkAccess = M.ArgoCdNetworkAccessConfigRequest,
@@ -4704,6 +4939,7 @@ M.UpdateArgoCdConfig = {
 
 M.UpdateCapabilityConfiguration = {
     type = "structure",
+    id = "UpdateCapabilityConfiguration",
     members = {
         argoCd = M.UpdateArgoCdConfig,
     },
@@ -4711,6 +4947,7 @@ M.UpdateCapabilityConfiguration = {
 
 M.UpdateCapabilityInput = {
     type = "structure",
+    id = "UpdateCapabilityInput",
     members = {
         clusterName = {
             type = "string",
@@ -4744,6 +4981,7 @@ M.UpdateCapabilityInput = {
 
 M.UpdateCapabilityOutput = {
     type = "structure",
+    id = "UpdateCapabilityOutput",
     members = {
         update = M.Update,
     },
@@ -4751,6 +4989,7 @@ M.UpdateCapabilityOutput = {
 
 M.UpdateAccessConfigRequest = {
     type = "structure",
+    id = "UpdateAccessConfigRequest",
     members = {
         authenticationMode = {
             type = "string",
@@ -4760,6 +4999,7 @@ M.UpdateAccessConfigRequest = {
 
 M.UpdateClusterConfigInput = {
     type = "structure",
+    id = "UpdateClusterConfigInput",
     members = {
         name = {
             type = "string",
@@ -4792,6 +5032,7 @@ M.UpdateClusterConfigInput = {
 
 M.UpdateClusterConfigOutput = {
     type = "structure",
+    id = "UpdateClusterConfigOutput",
     members = {
         update = M.Update,
     },
@@ -4799,6 +5040,7 @@ M.UpdateClusterConfigOutput = {
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         clusterName = {
@@ -4812,6 +5054,7 @@ M.InvalidStateException = {
 
 M.UpdateClusterVersionInput = {
     type = "structure",
+    id = "UpdateClusterVersionInput",
     members = {
         name = {
             type = "string",
@@ -4843,6 +5086,7 @@ M.UpdateClusterVersionInput = {
 
 M.UpdateClusterVersionOutput = {
     type = "structure",
+    id = "UpdateClusterVersionOutput",
     members = {
         update = M.Update,
     },
@@ -4850,6 +5094,7 @@ M.UpdateClusterVersionOutput = {
 
 M.UpdateEksAnywhereSubscriptionInput = {
     type = "structure",
+    id = "UpdateEksAnywhereSubscriptionInput",
     members = {
         id = {
             type = "string",
@@ -4876,6 +5121,7 @@ M.UpdateEksAnywhereSubscriptionInput = {
 
 M.UpdateEksAnywhereSubscriptionOutput = {
     type = "structure",
+    id = "UpdateEksAnywhereSubscriptionOutput",
     members = {
         subscription = M.EksAnywhereSubscription,
     },
@@ -4883,6 +5129,7 @@ M.UpdateEksAnywhereSubscriptionOutput = {
 
 M.UpdateLabelsPayload = {
     type = "structure",
+    id = "UpdateLabelsPayload",
     members = {
         addOrUpdateLabels = {
             type = "map",
@@ -4898,6 +5145,7 @@ M.UpdateLabelsPayload = {
 
 M.UpdateTaintsPayload = {
     type = "structure",
+    id = "UpdateTaintsPayload",
     members = {
         addOrUpdateTaints = {
             type = "list",
@@ -4912,6 +5160,7 @@ M.UpdateTaintsPayload = {
 
 M.UpdateNodegroupConfigInput = {
     type = "structure",
+    id = "UpdateNodegroupConfigInput",
     members = {
         clusterName = {
             type = "string",
@@ -4944,6 +5193,7 @@ M.UpdateNodegroupConfigInput = {
 
 M.UpdateNodegroupConfigOutput = {
     type = "structure",
+    id = "UpdateNodegroupConfigOutput",
     members = {
         update = M.Update,
     },
@@ -4951,6 +5201,7 @@ M.UpdateNodegroupConfigOutput = {
 
 M.UpdateNodegroupVersionInput = {
     type = "structure",
+    id = "UpdateNodegroupVersionInput",
     members = {
         clusterName = {
             type = "string",
@@ -4990,6 +5241,7 @@ M.UpdateNodegroupVersionInput = {
 
 M.UpdateNodegroupVersionOutput = {
     type = "structure",
+    id = "UpdateNodegroupVersionOutput",
     members = {
         update = M.Update,
     },
@@ -4997,6 +5249,7 @@ M.UpdateNodegroupVersionOutput = {
 
 M.UpdatePodIdentityAssociationInput = {
     type = "structure",
+    id = "UpdatePodIdentityAssociationInput",
     members = {
         clusterName = {
             type = "string",
@@ -5035,6 +5288,7 @@ M.UpdatePodIdentityAssociationInput = {
 
 M.UpdatePodIdentityAssociationOutput = {
     type = "structure",
+    id = "UpdatePodIdentityAssociationOutput",
     members = {
         association = M.PodIdentityAssociation,
     },

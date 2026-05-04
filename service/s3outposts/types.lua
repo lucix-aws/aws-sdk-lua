@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -27,6 +29,7 @@ M.EndpointAccessType = {
 
 M.CreateEndpointInput = {
     type = "structure",
+    id = "CreateEndpointInput",
     members = {
         OutpostId = {
             type = "string",
@@ -57,6 +60,7 @@ M.CreateEndpointInput = {
 
 M.CreateEndpointOutput = {
     type = "structure",
+    id = "CreateEndpointOutput",
     members = {
         EndpointArn = {
             type = "string",
@@ -66,6 +70,7 @@ M.CreateEndpointOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -76,6 +81,7 @@ M.InternalServerException = {
 
 M.OutpostOfflineException = {
     type = "structure",
+    id = "OutpostOfflineException",
     error = "client",
     members = {
         Message = {
@@ -86,6 +92,7 @@ M.OutpostOfflineException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -96,6 +103,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -106,6 +114,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +125,7 @@ M.ValidationException = {
 
 M.DeleteEndpointInput = {
     type = "structure",
+    id = "DeleteEndpointInput",
     members = {
         EndpointId = {
             type = "string",
@@ -136,10 +146,12 @@ M.DeleteEndpointInput = {
 
 M.DeleteEndpointOutput = {
     type = "structure",
+    id = "DeleteEndpointOutput",
 }
 
 M.FailedReason = {
     type = "structure",
+    id = "FailedReason",
     members = {
         ErrorCode = {
             type = "string",
@@ -152,6 +164,7 @@ M.FailedReason = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         NetworkInterfaceId = {
             type = "string",
@@ -169,6 +182,7 @@ M.EndpointStatus = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         EndpointArn = {
             type = "string",
@@ -210,6 +224,7 @@ M.Endpoint = {
 
 M.ListEndpointsInput = {
     type = "structure",
+    id = "ListEndpointsInput",
     members = {
         NextToken = {
             type = "string",
@@ -229,6 +244,7 @@ M.ListEndpointsInput = {
 
 M.ListEndpointsOutput = {
     type = "structure",
+    id = "ListEndpointsOutput",
     members = {
         Endpoints = {
             type = "list",
@@ -242,6 +258,7 @@ M.ListEndpointsOutput = {
 
 M.ListOutpostsWithS3Input = {
     type = "structure",
+    id = "ListOutpostsWithS3Input",
     members = {
         NextToken = {
             type = "string",
@@ -261,6 +278,7 @@ M.ListOutpostsWithS3Input = {
 
 M.Outpost = {
     type = "structure",
+    id = "Outpost",
     members = {
         OutpostArn = {
             type = "string",
@@ -285,6 +303,7 @@ M.Outpost = {
 
 M.ListOutpostsWithS3Output = {
     type = "structure",
+    id = "ListOutpostsWithS3Output",
     members = {
         Outposts = {
             type = "list",
@@ -298,6 +317,7 @@ M.ListOutpostsWithS3Output = {
 
 M.ListSharedEndpointsInput = {
     type = "structure",
+    id = "ListSharedEndpointsInput",
     members = {
         NextToken = {
             type = "string",
@@ -324,6 +344,7 @@ M.ListSharedEndpointsInput = {
 
 M.ListSharedEndpointsOutput = {
     type = "structure",
+    id = "ListSharedEndpointsOutput",
     members = {
         Endpoints = {
             type = "list",

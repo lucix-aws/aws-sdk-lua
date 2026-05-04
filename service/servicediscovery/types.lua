@@ -2,6 +2,7 @@ local M = {}
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -20,6 +21,7 @@ M.Tag = {
 
 M.CreateHttpNamespaceInput = {
     type = "structure",
+    id = "CreateHttpNamespaceInput",
     members = {
         Name = {
             type = "string",
@@ -45,6 +47,7 @@ M.CreateHttpNamespaceInput = {
 
 M.CreateHttpNamespaceOutput = {
     type = "structure",
+    id = "CreateHttpNamespaceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -54,6 +57,7 @@ M.CreateHttpNamespaceOutput = {
 
 M.DuplicateRequest = {
     type = "structure",
+    id = "DuplicateRequest",
     error = "client",
     members = {
         Message = {
@@ -67,6 +71,7 @@ M.DuplicateRequest = {
 
 M.InvalidInput = {
     type = "structure",
+    id = "InvalidInput",
     error = "client",
     members = {
         Message = {
@@ -77,6 +82,7 @@ M.InvalidInput = {
 
 M.NamespaceAlreadyExists = {
     type = "structure",
+    id = "NamespaceAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -93,6 +99,7 @@ M.NamespaceAlreadyExists = {
 
 M.ResourceLimitExceeded = {
     type = "structure",
+    id = "ResourceLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -103,6 +110,7 @@ M.ResourceLimitExceeded = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +124,7 @@ M.TooManyTagsException = {
 
 M.SOA = {
     type = "structure",
+    id = "SOA",
     members = {
         TTL = {
             type = "long",
@@ -128,6 +137,7 @@ M.SOA = {
 
 M.PrivateDnsPropertiesMutable = {
     type = "structure",
+    id = "PrivateDnsPropertiesMutable",
     members = {
         SOA = setmetatable({ traits = {
             required = true,
@@ -137,6 +147,7 @@ M.PrivateDnsPropertiesMutable = {
 
 M.PrivateDnsNamespaceProperties = {
     type = "structure",
+    id = "PrivateDnsNamespaceProperties",
     members = {
         DnsProperties = setmetatable({ traits = {
             required = true,
@@ -146,6 +157,7 @@ M.PrivateDnsNamespaceProperties = {
 
 M.CreatePrivateDnsNamespaceInput = {
     type = "structure",
+    id = "CreatePrivateDnsNamespaceInput",
     members = {
         Name = {
             type = "string",
@@ -178,6 +190,7 @@ M.CreatePrivateDnsNamespaceInput = {
 
 M.CreatePrivateDnsNamespaceOutput = {
     type = "structure",
+    id = "CreatePrivateDnsNamespaceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -187,6 +200,7 @@ M.CreatePrivateDnsNamespaceOutput = {
 
 M.PublicDnsPropertiesMutable = {
     type = "structure",
+    id = "PublicDnsPropertiesMutable",
     members = {
         SOA = setmetatable({ traits = {
             required = true,
@@ -196,6 +210,7 @@ M.PublicDnsPropertiesMutable = {
 
 M.PublicDnsNamespaceProperties = {
     type = "structure",
+    id = "PublicDnsNamespaceProperties",
     members = {
         DnsProperties = setmetatable({ traits = {
             required = true,
@@ -205,6 +220,7 @@ M.PublicDnsNamespaceProperties = {
 
 M.CreatePublicDnsNamespaceInput = {
     type = "structure",
+    id = "CreatePublicDnsNamespaceInput",
     members = {
         Name = {
             type = "string",
@@ -231,6 +247,7 @@ M.CreatePublicDnsNamespaceInput = {
 
 M.CreatePublicDnsNamespaceOutput = {
     type = "structure",
+    id = "CreatePublicDnsNamespaceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -247,6 +264,7 @@ M.RecordType = {
 
 M.DnsRecord = {
     type = "structure",
+    id = "DnsRecord",
     members = {
         Type = {
             type = "string",
@@ -270,6 +288,7 @@ M.RoutingPolicy = {
 
 M.DnsConfig = {
     type = "structure",
+    id = "DnsConfig",
     members = {
         NamespaceId = {
             type = "string",
@@ -295,6 +314,7 @@ M.HealthCheckType = {
 
 M.HealthCheckConfig = {
     type = "structure",
+    id = "HealthCheckConfig",
     members = {
         Type = {
             type = "string",
@@ -313,6 +333,7 @@ M.HealthCheckConfig = {
 
 M.HealthCheckCustomConfig = {
     type = "structure",
+    id = "HealthCheckCustomConfig",
     members = {
         FailureThreshold = {
             type = "integer",
@@ -326,6 +347,7 @@ M.ServiceTypeOption = {
 
 M.CreateServiceInput = {
     type = "structure",
+    id = "CreateServiceInput",
     members = {
         Name = {
             type = "string",
@@ -366,6 +388,7 @@ M.ServiceType = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         Id = {
             type = "string",
@@ -408,6 +431,7 @@ M.Service = {
 
 M.CreateServiceOutput = {
     type = "structure",
+    id = "CreateServiceOutput",
     members = {
         Service = M.Service,
     },
@@ -415,6 +439,7 @@ M.CreateServiceOutput = {
 
 M.NamespaceNotFound = {
     type = "structure",
+    id = "NamespaceNotFound",
     error = "client",
     members = {
         Message = {
@@ -425,6 +450,7 @@ M.NamespaceNotFound = {
 
 M.ServiceAlreadyExists = {
     type = "structure",
+    id = "ServiceAlreadyExists",
     error = "client",
     members = {
         Message = {
@@ -444,6 +470,7 @@ M.ServiceAlreadyExists = {
 
 M.CustomHealthNotFound = {
     type = "structure",
+    id = "CustomHealthNotFound",
     error = "client",
     members = {
         Message = {
@@ -459,6 +486,7 @@ M.CustomHealthStatus = {
 
 M.DeleteNamespaceInput = {
     type = "structure",
+    id = "DeleteNamespaceInput",
     members = {
         Id = {
             type = "string",
@@ -471,6 +499,7 @@ M.DeleteNamespaceInput = {
 
 M.DeleteNamespaceOutput = {
     type = "structure",
+    id = "DeleteNamespaceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -480,6 +509,7 @@ M.DeleteNamespaceOutput = {
 
 M.ResourceInUse = {
     type = "structure",
+    id = "ResourceInUse",
     error = "client",
     members = {
         Message = {
@@ -490,6 +520,7 @@ M.ResourceInUse = {
 
 M.DeleteServiceInput = {
     type = "structure",
+    id = "DeleteServiceInput",
     members = {
         Id = {
             type = "string",
@@ -502,10 +533,12 @@ M.DeleteServiceInput = {
 
 M.DeleteServiceOutput = {
     type = "structure",
+    id = "DeleteServiceOutput",
 }
 
 M.ServiceNotFound = {
     type = "structure",
+    id = "ServiceNotFound",
     error = "client",
     members = {
         Message = {
@@ -516,6 +549,7 @@ M.ServiceNotFound = {
 
 M.DeleteServiceAttributesInput = {
     type = "structure",
+    id = "DeleteServiceAttributesInput",
     members = {
         ServiceId = {
             type = "string",
@@ -535,10 +569,12 @@ M.DeleteServiceAttributesInput = {
 
 M.DeleteServiceAttributesOutput = {
     type = "structure",
+    id = "DeleteServiceAttributesOutput",
 }
 
 M.DeregisterInstanceInput = {
     type = "structure",
+    id = "DeregisterInstanceInput",
     members = {
         ServiceId = {
             type = "string",
@@ -557,6 +593,7 @@ M.DeregisterInstanceInput = {
 
 M.DeregisterInstanceOutput = {
     type = "structure",
+    id = "DeregisterInstanceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -566,6 +603,7 @@ M.DeregisterInstanceOutput = {
 
 M.InstanceNotFound = {
     type = "structure",
+    id = "InstanceNotFound",
     error = "client",
     members = {
         Message = {
@@ -583,6 +621,7 @@ M.HealthStatusFilter = {
 
 M.DiscoverInstancesInput = {
     type = "structure",
+    id = "DiscoverInstancesInput",
     members = {
         NamespaceName = {
             type = "string",
@@ -626,6 +665,7 @@ M.HealthStatus = {
 
 M.HttpInstanceSummary = {
     type = "structure",
+    id = "HttpInstanceSummary",
     members = {
         InstanceId = {
             type = "string",
@@ -649,6 +689,7 @@ M.HttpInstanceSummary = {
 
 M.DiscoverInstancesOutput = {
     type = "structure",
+    id = "DiscoverInstancesOutput",
     members = {
         Instances = {
             type = "list",
@@ -662,6 +703,7 @@ M.DiscoverInstancesOutput = {
 
 M.RequestLimitExceeded = {
     type = "structure",
+    id = "RequestLimitExceeded",
     error = "client",
     members = {
         Message = {
@@ -672,6 +714,7 @@ M.RequestLimitExceeded = {
 
 M.DiscoverInstancesRevisionInput = {
     type = "structure",
+    id = "DiscoverInstancesRevisionInput",
     members = {
         NamespaceName = {
             type = "string",
@@ -693,6 +736,7 @@ M.DiscoverInstancesRevisionInput = {
 
 M.DiscoverInstancesRevisionOutput = {
     type = "structure",
+    id = "DiscoverInstancesRevisionOutput",
     members = {
         InstancesRevision = {
             type = "long",
@@ -702,6 +746,7 @@ M.DiscoverInstancesRevisionOutput = {
 
 M.DnsConfigChange = {
     type = "structure",
+    id = "DnsConfigChange",
     members = {
         DnsRecords = {
             type = "list",
@@ -715,6 +760,7 @@ M.DnsConfigChange = {
 
 M.DnsProperties = {
     type = "structure",
+    id = "DnsProperties",
     members = {
         HostedZoneId = {
             type = "string",
@@ -732,6 +778,7 @@ M.FilterCondition = {
 
 M.GetInstanceInput = {
     type = "structure",
+    id = "GetInstanceInput",
     members = {
         ServiceId = {
             type = "string",
@@ -750,6 +797,7 @@ M.GetInstanceInput = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         Id = {
             type = "string",
@@ -773,6 +821,7 @@ M.Instance = {
 
 M.GetInstanceOutput = {
     type = "structure",
+    id = "GetInstanceOutput",
     members = {
         ResourceOwner = {
             type = "string",
@@ -783,6 +832,7 @@ M.GetInstanceOutput = {
 
 M.GetInstancesHealthStatusInput = {
     type = "structure",
+    id = "GetInstancesHealthStatusInput",
     members = {
         ServiceId = {
             type = "string",
@@ -805,6 +855,7 @@ M.GetInstancesHealthStatusInput = {
 
 M.GetInstancesHealthStatusOutput = {
     type = "structure",
+    id = "GetInstancesHealthStatusOutput",
     members = {
         Status = {
             type = "map",
@@ -819,6 +870,7 @@ M.GetInstancesHealthStatusOutput = {
 
 M.GetNamespaceInput = {
     type = "structure",
+    id = "GetNamespaceInput",
     members = {
         Id = {
             type = "string",
@@ -831,6 +883,7 @@ M.GetNamespaceInput = {
 
 M.HttpProperties = {
     type = "structure",
+    id = "HttpProperties",
     members = {
         HttpName = {
             type = "string",
@@ -840,6 +893,7 @@ M.HttpProperties = {
 
 M.NamespaceProperties = {
     type = "structure",
+    id = "NamespaceProperties",
     members = {
         DnsProperties = M.DnsProperties,
         HttpProperties = M.HttpProperties,
@@ -854,6 +908,7 @@ M.NamespaceType = {
 
 M.Namespace = {
     type = "structure",
+    id = "Namespace",
     members = {
         Id = {
             type = "string",
@@ -888,6 +943,7 @@ M.Namespace = {
 
 M.GetNamespaceOutput = {
     type = "structure",
+    id = "GetNamespaceOutput",
     members = {
         Namespace = M.Namespace,
     },
@@ -895,6 +951,7 @@ M.GetNamespaceOutput = {
 
 M.GetOperationInput = {
     type = "structure",
+    id = "GetOperationInput",
     members = {
         OperationId = {
             type = "string",
@@ -932,6 +989,7 @@ M.OperationType = {
 
 M.Operation = {
     type = "structure",
+    id = "Operation",
     members = {
         Id = {
             type = "string",
@@ -967,6 +1025,7 @@ M.Operation = {
 
 M.GetOperationOutput = {
     type = "structure",
+    id = "GetOperationOutput",
     members = {
         Operation = M.Operation,
     },
@@ -974,6 +1033,7 @@ M.GetOperationOutput = {
 
 M.OperationNotFound = {
     type = "structure",
+    id = "OperationNotFound",
     error = "client",
     members = {
         Message = {
@@ -984,6 +1044,7 @@ M.OperationNotFound = {
 
 M.GetServiceInput = {
     type = "structure",
+    id = "GetServiceInput",
     members = {
         Id = {
             type = "string",
@@ -996,6 +1057,7 @@ M.GetServiceInput = {
 
 M.GetServiceOutput = {
     type = "structure",
+    id = "GetServiceOutput",
     members = {
         Service = M.Service,
     },
@@ -1003,6 +1065,7 @@ M.GetServiceOutput = {
 
 M.GetServiceAttributesInput = {
     type = "structure",
+    id = "GetServiceAttributesInput",
     members = {
         ServiceId = {
             type = "string",
@@ -1015,6 +1078,7 @@ M.GetServiceAttributesInput = {
 
 M.ServiceAttributes = {
     type = "structure",
+    id = "ServiceAttributes",
     members = {
         ServiceArn = {
             type = "string",
@@ -1032,6 +1096,7 @@ M.ServiceAttributes = {
 
 M.GetServiceAttributesOutput = {
     type = "structure",
+    id = "GetServiceAttributesOutput",
     members = {
         ServiceAttributes = M.ServiceAttributes,
     },
@@ -1039,6 +1104,7 @@ M.GetServiceAttributesOutput = {
 
 M.HttpNamespaceChange = {
     type = "structure",
+    id = "HttpNamespaceChange",
     members = {
         Description = {
             type = "string",
@@ -1051,6 +1117,7 @@ M.HttpNamespaceChange = {
 
 M.InstanceSummary = {
     type = "structure",
+    id = "InstanceSummary",
     members = {
         Id = {
             type = "string",
@@ -1068,6 +1135,7 @@ M.InstanceSummary = {
 
 M.ListInstancesInput = {
     type = "structure",
+    id = "ListInstancesInput",
     members = {
         ServiceId = {
             type = "string",
@@ -1086,6 +1154,7 @@ M.ListInstancesInput = {
 
 M.ListInstancesOutput = {
     type = "structure",
+    id = "ListInstancesOutput",
     members = {
         ResourceOwner = {
             type = "string",
@@ -1109,6 +1178,7 @@ M.NamespaceFilterName = {
 
 M.NamespaceFilter = {
     type = "structure",
+    id = "NamespaceFilter",
     members = {
         Name = {
             type = "string",
@@ -1131,6 +1201,7 @@ M.NamespaceFilter = {
 
 M.ListNamespacesInput = {
     type = "structure",
+    id = "ListNamespacesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1147,6 +1218,7 @@ M.ListNamespacesInput = {
 
 M.NamespaceSummary = {
     type = "structure",
+    id = "NamespaceSummary",
     members = {
         Id = {
             type = "string",
@@ -1178,6 +1250,7 @@ M.NamespaceSummary = {
 
 M.ListNamespacesOutput = {
     type = "structure",
+    id = "ListNamespacesOutput",
     members = {
         Namespaces = {
             type = "list",
@@ -1199,6 +1272,7 @@ M.OperationFilterName = {
 
 M.OperationFilter = {
     type = "structure",
+    id = "OperationFilter",
     members = {
         Name = {
             type = "string",
@@ -1221,6 +1295,7 @@ M.OperationFilter = {
 
 M.ListOperationsInput = {
     type = "structure",
+    id = "ListOperationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1237,6 +1312,7 @@ M.ListOperationsInput = {
 
 M.OperationSummary = {
     type = "structure",
+    id = "OperationSummary",
     members = {
         Id = {
             type = "string",
@@ -1249,6 +1325,7 @@ M.OperationSummary = {
 
 M.ListOperationsOutput = {
     type = "structure",
+    id = "ListOperationsOutput",
     members = {
         Operations = {
             type = "list",
@@ -1267,6 +1344,7 @@ M.ServiceFilterName = {
 
 M.ServiceFilter = {
     type = "structure",
+    id = "ServiceFilter",
     members = {
         Name = {
             type = "string",
@@ -1289,6 +1367,7 @@ M.ServiceFilter = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1305,6 +1384,7 @@ M.ListServicesInput = {
 
 M.ServiceSummary = {
     type = "structure",
+    id = "ServiceSummary",
     members = {
         Id = {
             type = "string",
@@ -1341,6 +1421,7 @@ M.ServiceSummary = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         Services = {
             type = "list",
@@ -1354,6 +1435,7 @@ M.ListServicesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1366,6 +1448,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1376,6 +1459,7 @@ M.ListTagsForResourceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -1386,6 +1470,7 @@ M.ResourceNotFoundException = {
 
 M.SOAChange = {
     type = "structure",
+    id = "SOAChange",
     members = {
         TTL = {
             type = "long",
@@ -1398,6 +1483,7 @@ M.SOAChange = {
 
 M.PrivateDnsPropertiesMutableChange = {
     type = "structure",
+    id = "PrivateDnsPropertiesMutableChange",
     members = {
         SOA = setmetatable({ traits = {
             required = true,
@@ -1407,6 +1493,7 @@ M.PrivateDnsPropertiesMutableChange = {
 
 M.PrivateDnsNamespacePropertiesChange = {
     type = "structure",
+    id = "PrivateDnsNamespacePropertiesChange",
     members = {
         DnsProperties = setmetatable({ traits = {
             required = true,
@@ -1416,6 +1503,7 @@ M.PrivateDnsNamespacePropertiesChange = {
 
 M.PrivateDnsNamespaceChange = {
     type = "structure",
+    id = "PrivateDnsNamespaceChange",
     members = {
         Description = {
             type = "string",
@@ -1426,6 +1514,7 @@ M.PrivateDnsNamespaceChange = {
 
 M.PublicDnsPropertiesMutableChange = {
     type = "structure",
+    id = "PublicDnsPropertiesMutableChange",
     members = {
         SOA = setmetatable({ traits = {
             required = true,
@@ -1435,6 +1524,7 @@ M.PublicDnsPropertiesMutableChange = {
 
 M.PublicDnsNamespacePropertiesChange = {
     type = "structure",
+    id = "PublicDnsNamespacePropertiesChange",
     members = {
         DnsProperties = setmetatable({ traits = {
             required = true,
@@ -1444,6 +1534,7 @@ M.PublicDnsNamespacePropertiesChange = {
 
 M.PublicDnsNamespaceChange = {
     type = "structure",
+    id = "PublicDnsNamespaceChange",
     members = {
         Description = {
             type = "string",
@@ -1454,6 +1545,7 @@ M.PublicDnsNamespaceChange = {
 
 M.RegisterInstanceInput = {
     type = "structure",
+    id = "RegisterInstanceInput",
     members = {
         ServiceId = {
             type = "string",
@@ -1486,6 +1578,7 @@ M.RegisterInstanceInput = {
 
 M.RegisterInstanceOutput = {
     type = "structure",
+    id = "RegisterInstanceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1495,6 +1588,7 @@ M.RegisterInstanceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1514,10 +1608,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1537,10 +1633,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateHttpNamespaceInput = {
     type = "structure",
+    id = "UpdateHttpNamespaceInput",
     members = {
         Id = {
             type = "string",
@@ -1562,6 +1660,7 @@ M.UpdateHttpNamespaceInput = {
 
 M.UpdateHttpNamespaceOutput = {
     type = "structure",
+    id = "UpdateHttpNamespaceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1571,6 +1670,7 @@ M.UpdateHttpNamespaceOutput = {
 
 M.UpdateInstanceCustomHealthStatusInput = {
     type = "structure",
+    id = "UpdateInstanceCustomHealthStatusInput",
     members = {
         ServiceId = {
             type = "string",
@@ -1595,10 +1695,12 @@ M.UpdateInstanceCustomHealthStatusInput = {
 
 M.UpdateInstanceCustomHealthStatusOutput = {
     type = "structure",
+    id = "UpdateInstanceCustomHealthStatusOutput",
 }
 
 M.UpdatePrivateDnsNamespaceInput = {
     type = "structure",
+    id = "UpdatePrivateDnsNamespaceInput",
     members = {
         Id = {
             type = "string",
@@ -1620,6 +1722,7 @@ M.UpdatePrivateDnsNamespaceInput = {
 
 M.UpdatePrivateDnsNamespaceOutput = {
     type = "structure",
+    id = "UpdatePrivateDnsNamespaceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1629,6 +1732,7 @@ M.UpdatePrivateDnsNamespaceOutput = {
 
 M.UpdatePublicDnsNamespaceInput = {
     type = "structure",
+    id = "UpdatePublicDnsNamespaceInput",
     members = {
         Id = {
             type = "string",
@@ -1650,6 +1754,7 @@ M.UpdatePublicDnsNamespaceInput = {
 
 M.UpdatePublicDnsNamespaceOutput = {
     type = "structure",
+    id = "UpdatePublicDnsNamespaceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1659,6 +1764,7 @@ M.UpdatePublicDnsNamespaceOutput = {
 
 M.ServiceChange = {
     type = "structure",
+    id = "ServiceChange",
     members = {
         Description = {
             type = "string",
@@ -1670,6 +1776,7 @@ M.ServiceChange = {
 
 M.UpdateServiceInput = {
     type = "structure",
+    id = "UpdateServiceInput",
     members = {
         Id = {
             type = "string",
@@ -1685,6 +1792,7 @@ M.UpdateServiceInput = {
 
 M.UpdateServiceOutput = {
     type = "structure",
+    id = "UpdateServiceOutput",
     members = {
         OperationId = {
             type = "string",
@@ -1694,6 +1802,7 @@ M.UpdateServiceOutput = {
 
 M.ServiceAttributesLimitExceededException = {
     type = "structure",
+    id = "ServiceAttributesLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1704,6 +1813,7 @@ M.ServiceAttributesLimitExceededException = {
 
 M.UpdateServiceAttributesInput = {
     type = "structure",
+    id = "UpdateServiceAttributesInput",
     members = {
         ServiceId = {
             type = "string",
@@ -1724,6 +1834,7 @@ M.UpdateServiceAttributesInput = {
 
 M.UpdateServiceAttributesOutput = {
     type = "structure",
+    id = "UpdateServiceAttributesOutput",
 }
 
 return M

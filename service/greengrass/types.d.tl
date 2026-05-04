@@ -1531,13 +1531,13 @@ local record InternalServerErrorException
     Message: string
 end
 
-local type BulkDeploymentStatus = "Initializing" | "Running" | "Completed" | "Stopping" | "Stopped" | "Failed"
-
-local type DeploymentType = "NewDeployment" | "Redeployment" | "ResetDeployment" | "ForceResetDeployment"
-
 local type UpdateTargetsArchitecture = "armv6l" | "armv7l" | "x86_64" | "aarch64"
 
 local type SoftwareToUpdate = "core" | "ota_agent"
+
+local type DeploymentType = "NewDeployment" | "Redeployment" | "ResetDeployment" | "ForceResetDeployment"
+
+local type BulkDeploymentStatus = "Initializing" | "Running" | "Completed" | "Stopping" | "Stopped" | "Failed"
 
 local type UpdateTargetsOperatingSystem = "ubuntu" | "raspbian" | "amazon_linux" | "openwrt"
 

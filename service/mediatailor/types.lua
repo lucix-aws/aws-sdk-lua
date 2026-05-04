@@ -51,6 +51,7 @@ M.AdsInteractionPublishOptInEventType = {
 
 M.KeyValuePair = {
     type = "structure",
+    id = "KeyValuePair",
     members = {
         Key = {
             type = "string",
@@ -74,6 +75,7 @@ M.MessageType = {
 
 M.SlateSource = {
     type = "structure",
+    id = "SlateSource",
     members = {
         SourceLocationName = {
             type = "string",
@@ -86,6 +88,7 @@ M.SlateSource = {
 
 M.SpliceInsertMessage = {
     type = "structure",
+    id = "SpliceInsertMessage",
     members = {
         AvailNum = {
             type = "integer",
@@ -104,6 +107,7 @@ M.SpliceInsertMessage = {
 
 M.SegmentationDescriptor = {
     type = "structure",
+    id = "SegmentationDescriptor",
     members = {
         SegmentationEventId = {
             type = "integer",
@@ -134,6 +138,7 @@ M.SegmentationDescriptor = {
 
 M.TimeSignalMessage = {
     type = "structure",
+    id = "TimeSignalMessage",
     members = {
         SegmentationDescriptors = {
             type = "list",
@@ -144,6 +149,7 @@ M.TimeSignalMessage = {
 
 M.AdBreak = {
     type = "structure",
+    id = "AdBreak",
     members = {
         MessageType = {
             type = "string",
@@ -173,6 +179,7 @@ M.AlertCategory = {
 
 M.Alert = {
     type = "structure",
+    id = "Alert",
     members = {
         AlertCode = {
             type = "string",
@@ -214,6 +221,7 @@ M.Alert = {
 
 M.ClipRange = {
     type = "structure",
+    id = "ClipRange",
     members = {
         EndOffsetMillis = {
             type = "long",
@@ -229,6 +237,7 @@ M.ClipRange = {
 
 M.AlternateMedia = {
     type = "structure",
+    id = "AlternateMedia",
     members = {
         SourceLocationName = {
             type = "string",
@@ -255,6 +264,7 @@ M.AlternateMedia = {
 
 M.AudienceMedia = {
     type = "structure",
+    id = "AudienceMedia",
     members = {
         Audience = {
             type = "string",
@@ -272,6 +282,7 @@ M.Operator = {
 
 M.AvailMatchingCriteria = {
     type = "structure",
+    id = "AvailMatchingCriteria",
     members = {
         DynamicVariable = {
             type = "string",
@@ -294,6 +305,7 @@ M.LogType = {
 
 M.LogConfigurationForChannel = {
     type = "structure",
+    id = "LogConfigurationForChannel",
     members = {
         LogTypes = {
             type = "list",
@@ -304,6 +316,7 @@ M.LogConfigurationForChannel = {
 
 M.DashPlaylistSettings = {
     type = "structure",
+    id = "DashPlaylistSettings",
     members = {
         ManifestWindowSeconds = {
             type = "integer",
@@ -327,6 +340,7 @@ M.AdMarkupType = {
 
 M.HlsPlaylistSettings = {
     type = "structure",
+    id = "HlsPlaylistSettings",
     members = {
         ManifestWindowSeconds = {
             type = "integer",
@@ -340,6 +354,7 @@ M.HlsPlaylistSettings = {
 
 M.ResponseOutputItem = {
     type = "structure",
+    id = "ResponseOutputItem",
     members = {
         DashPlaylistSettings = M.DashPlaylistSettings,
         HlsPlaylistSettings = M.HlsPlaylistSettings,
@@ -366,6 +381,7 @@ M.ResponseOutputItem = {
 
 M.Channel = {
     type = "structure",
+    id = "Channel",
     members = {
         Arn = {
             type = "string",
@@ -442,6 +458,7 @@ M.Type = {
 
 M.HttpPackageConfiguration = {
     type = "structure",
+    id = "HttpPackageConfiguration",
     members = {
         Path = {
             type = "string",
@@ -466,6 +483,7 @@ M.HttpPackageConfiguration = {
 
 M.LiveSource = {
     type = "structure",
+    id = "LiveSource",
     members = {
         Arn = {
             type = "string",
@@ -527,6 +545,7 @@ M.StreamingMediaFileConditioning = {
 
 M.AdConditioningConfiguration = {
     type = "structure",
+    id = "AdConditioningConfiguration",
     members = {
         StreamingMediaFileConditioning = {
             type = "string",
@@ -549,6 +568,7 @@ M.Method = {
 
 M.HttpRequest = {
     type = "structure",
+    id = "HttpRequest",
     members = {
         Method = {
             type = "string",
@@ -569,6 +589,7 @@ M.HttpRequest = {
 
 M.AdDecisionServerConfiguration = {
     type = "structure",
+    id = "AdDecisionServerConfiguration",
     members = {
         HttpRequest = M.HttpRequest,
     },
@@ -587,6 +608,7 @@ M.Mode = {
 
 M.AvailSuppression = {
     type = "structure",
+    id = "AvailSuppression",
     members = {
         Mode = {
             type = "string",
@@ -602,6 +624,7 @@ M.AvailSuppression = {
 
 M.Bumper = {
     type = "structure",
+    id = "Bumper",
     members = {
         EndUrl = {
             type = "string",
@@ -614,6 +637,7 @@ M.Bumper = {
 
 M.CdnConfiguration = {
     type = "structure",
+    id = "CdnConfiguration",
     members = {
         AdSegmentUrlPrefix = {
             type = "string",
@@ -631,6 +655,7 @@ M.OriginManifestType = {
 
 M.DashConfiguration = {
     type = "structure",
+    id = "DashConfiguration",
     members = {
         ManifestEndpointPrefix = {
             type = "string",
@@ -646,6 +671,7 @@ M.DashConfiguration = {
 
 M.HlsConfiguration = {
     type = "structure",
+    id = "HlsConfiguration",
     members = {
         ManifestEndpointPrefix = {
             type = "string",
@@ -660,6 +686,7 @@ M.InsertionMode = {
 
 M.LivePreRollConfiguration = {
     type = "structure",
+    id = "LivePreRollConfiguration",
     members = {
         AdDecisionServerUrl = {
             type = "string",
@@ -672,6 +699,7 @@ M.LivePreRollConfiguration = {
 
 M.AdsInteractionLog = {
     type = "structure",
+    id = "AdsInteractionLog",
     members = {
         PublishOptInEventTypes = {
             type = "list",
@@ -721,6 +749,7 @@ M.ManifestServiceExcludeEventType = {
 
 M.ManifestServiceInteractionLog = {
     type = "structure",
+    id = "ManifestServiceInteractionLog",
     members = {
         ExcludeEventTypes = {
             type = "list",
@@ -731,6 +760,7 @@ M.ManifestServiceInteractionLog = {
 
 M.LogConfiguration = {
     type = "structure",
+    id = "LogConfiguration",
     members = {
         PercentEnabled = {
             type = "integer",
@@ -753,6 +783,7 @@ M.LogConfiguration = {
 
 M.AdMarkerPassthrough = {
     type = "structure",
+    id = "AdMarkerPassthrough",
     members = {
         Enabled = {
             type = "boolean",
@@ -765,6 +796,7 @@ M.AdMarkerPassthrough = {
 
 M.ManifestProcessingRules = {
     type = "structure",
+    id = "ManifestProcessingRules",
     members = {
         AdMarkerPassthrough = M.AdMarkerPassthrough,
     },
@@ -772,6 +804,7 @@ M.ManifestProcessingRules = {
 
 M.PlaybackConfiguration = {
     type = "structure",
+    id = "PlaybackConfiguration",
     members = {
         AdDecisionServerUrl = {
             type = "string",
@@ -834,6 +867,7 @@ M.PlaybackConfiguration = {
 
 M.PrefetchConsumption = {
     type = "structure",
+    id = "PrefetchConsumption",
     members = {
         AvailMatchingCriteria = {
             type = "list",
@@ -857,6 +891,7 @@ M.PrefetchConsumption = {
 
 M.RecurringConsumption = {
     type = "structure",
+    id = "RecurringConsumption",
     members = {
         RetrievedAdExpirationSeconds = {
             type = "integer",
@@ -870,6 +905,7 @@ M.RecurringConsumption = {
 
 M.TrafficShapingRetrievalWindow = {
     type = "structure",
+    id = "TrafficShapingRetrievalWindow",
     members = {
         RetrievalWindowDurationSeconds = {
             type = "integer",
@@ -879,6 +915,7 @@ M.TrafficShapingRetrievalWindow = {
 
 M.TrafficShapingTpsConfiguration = {
     type = "structure",
+    id = "TrafficShapingTpsConfiguration",
     members = {
         PeakTps = {
             type = "integer",
@@ -896,6 +933,7 @@ M.TrafficShapingType = {
 
 M.RecurringRetrieval = {
     type = "structure",
+    id = "RecurringRetrieval",
     members = {
         DynamicVariables = {
             type = "map",
@@ -915,6 +953,7 @@ M.RecurringRetrieval = {
 
 M.RecurringPrefetchConfiguration = {
     type = "structure",
+    id = "RecurringPrefetchConfiguration",
     members = {
         StartTime = {
             type = "timestamp",
@@ -940,6 +979,7 @@ M.RecurringPrefetchConfiguration = {
 
 M.PrefetchRetrieval = {
     type = "structure",
+    id = "PrefetchRetrieval",
     members = {
         DynamicVariables = {
             type = "map",
@@ -974,6 +1014,7 @@ M.PrefetchScheduleType = {
 
 M.PrefetchSchedule = {
     type = "structure",
+    id = "PrefetchSchedule",
     members = {
         Arn = {
             type = "string",
@@ -1015,6 +1056,7 @@ M.PrefetchSchedule = {
 
 M.ScheduleAdBreak = {
     type = "structure",
+    id = "ScheduleAdBreak",
     members = {
         ApproximateDurationSeconds = {
             type = "long",
@@ -1042,6 +1084,7 @@ M.ScheduleEntryType = {
 
 M.ScheduleEntry = {
     type = "structure",
+    id = "ScheduleEntry",
     members = {
         ApproximateDurationSeconds = {
             type = "long",
@@ -1098,6 +1141,7 @@ M.ScheduleEntry = {
 
 M.SegmentDeliveryConfiguration = {
     type = "structure",
+    id = "SegmentDeliveryConfiguration",
     members = {
         BaseUrl = {
             type = "string",
@@ -1116,6 +1160,7 @@ M.AccessType = {
 
 M.SecretsManagerAccessTokenConfiguration = {
     type = "structure",
+    id = "SecretsManagerAccessTokenConfiguration",
     members = {
         HeaderName = {
             type = "string",
@@ -1131,6 +1176,7 @@ M.SecretsManagerAccessTokenConfiguration = {
 
 M.AccessConfiguration = {
     type = "structure",
+    id = "AccessConfiguration",
     members = {
         AccessType = {
             type = "string",
@@ -1141,6 +1187,7 @@ M.AccessConfiguration = {
 
 M.DefaultSegmentDeliveryConfiguration = {
     type = "structure",
+    id = "DefaultSegmentDeliveryConfiguration",
     members = {
         BaseUrl = {
             type = "string",
@@ -1150,6 +1197,7 @@ M.DefaultSegmentDeliveryConfiguration = {
 
 M.HttpConfiguration = {
     type = "structure",
+    id = "HttpConfiguration",
     members = {
         BaseUrl = {
             type = "string",
@@ -1162,6 +1210,7 @@ M.HttpConfiguration = {
 
 M.SourceLocation = {
     type = "structure",
+    id = "SourceLocation",
     members = {
         AccessConfiguration = M.AccessConfiguration,
         Arn = {
@@ -1209,6 +1258,7 @@ M.SourceLocation = {
 
 M.VodSource = {
     type = "structure",
+    id = "VodSource",
     members = {
         Arn = {
             type = "string",
@@ -1260,6 +1310,7 @@ M.VodSource = {
 
 M.AdBreakOpportunity = {
     type = "structure",
+    id = "AdBreakOpportunity",
     members = {
         OffsetMillis = {
             type = "long",
@@ -1273,6 +1324,7 @@ M.AdBreakOpportunity = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -1283,6 +1335,7 @@ M.BadRequestException = {
 
 M.DeleteChannelPolicyInput = {
     type = "structure",
+    id = "DeleteChannelPolicyInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1296,10 +1349,12 @@ M.DeleteChannelPolicyInput = {
 
 M.DeleteChannelPolicyOutput = {
     type = "structure",
+    id = "DeleteChannelPolicyOutput",
 }
 
 M.GetChannelPolicyInput = {
     type = "structure",
+    id = "GetChannelPolicyInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1313,6 +1368,7 @@ M.GetChannelPolicyInput = {
 
 M.GetChannelPolicyOutput = {
     type = "structure",
+    id = "GetChannelPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -1322,6 +1378,7 @@ M.GetChannelPolicyOutput = {
 
 M.PutChannelPolicyInput = {
     type = "structure",
+    id = "PutChannelPolicyInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1341,10 +1398,12 @@ M.PutChannelPolicyInput = {
 
 M.PutChannelPolicyOutput = {
     type = "structure",
+    id = "PutChannelPolicyOutput",
 }
 
 M.ConfigureLogsForChannelInput = {
     type = "structure",
+    id = "ConfigureLogsForChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1364,6 +1423,7 @@ M.ConfigureLogsForChannelInput = {
 
 M.ConfigureLogsForChannelOutput = {
     type = "structure",
+    id = "ConfigureLogsForChannelOutput",
     members = {
         ChannelName = {
             type = "string",
@@ -1377,6 +1437,7 @@ M.ConfigureLogsForChannelOutput = {
 
 M.RequestOutputItem = {
     type = "structure",
+    id = "RequestOutputItem",
     members = {
         DashPlaylistSettings = M.DashPlaylistSettings,
         HlsPlaylistSettings = M.HlsPlaylistSettings,
@@ -1407,6 +1468,7 @@ M.Tier = {
 
 M.TimeShiftConfiguration = {
     type = "structure",
+    id = "TimeShiftConfiguration",
     members = {
         MaxTimeDelaySeconds = {
             type = "integer",
@@ -1419,6 +1481,7 @@ M.TimeShiftConfiguration = {
 
 M.CreateChannelInput = {
     type = "structure",
+    id = "CreateChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1467,6 +1530,7 @@ M.ChannelState = {
 
 M.CreateChannelOutput = {
     type = "structure",
+    id = "CreateChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -1518,6 +1582,7 @@ M.CreateChannelOutput = {
 
 M.DeleteChannelInput = {
     type = "structure",
+    id = "DeleteChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1531,10 +1596,12 @@ M.DeleteChannelInput = {
 
 M.DeleteChannelOutput = {
     type = "structure",
+    id = "DeleteChannelOutput",
 }
 
 M.DescribeChannelInput = {
     type = "structure",
+    id = "DescribeChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1548,6 +1615,7 @@ M.DescribeChannelInput = {
 
 M.DescribeChannelOutput = {
     type = "structure",
+    id = "DescribeChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -1602,6 +1670,7 @@ M.DescribeChannelOutput = {
 
 M.GetChannelScheduleInput = {
     type = "structure",
+    id = "GetChannelScheduleInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1639,6 +1708,7 @@ M.GetChannelScheduleInput = {
 
 M.GetChannelScheduleOutput = {
     type = "structure",
+    id = "GetChannelScheduleOutput",
     members = {
         Items = {
             type = "list",
@@ -1652,6 +1722,7 @@ M.GetChannelScheduleOutput = {
 
 M.ListChannelsInput = {
     type = "structure",
+    id = "ListChannelsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1670,6 +1741,7 @@ M.ListChannelsInput = {
 
 M.ListChannelsOutput = {
     type = "structure",
+    id = "ListChannelsOutput",
     members = {
         Items = {
             type = "list",
@@ -1688,6 +1760,7 @@ M.RelativePosition = {
 
 M.Transition = {
     type = "structure",
+    id = "Transition",
     members = {
         DurationMillis = {
             type = "long",
@@ -1715,6 +1788,7 @@ M.Transition = {
 
 M.ScheduleConfiguration = {
     type = "structure",
+    id = "ScheduleConfiguration",
     members = {
         Transition = setmetatable({ traits = {
             required = true,
@@ -1725,6 +1799,7 @@ M.ScheduleConfiguration = {
 
 M.CreateProgramInput = {
     type = "structure",
+    id = "CreateProgramInput",
     members = {
         AdBreaks = {
             type = "list",
@@ -1776,6 +1851,7 @@ M.CreateProgramInput = {
 
 M.CreateProgramOutput = {
     type = "structure",
+    id = "CreateProgramOutput",
     members = {
         AdBreaks = {
             type = "list",
@@ -1832,6 +1908,7 @@ M.CreateProgramOutput = {
 
 M.DeleteProgramInput = {
     type = "structure",
+    id = "DeleteProgramInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1852,10 +1929,12 @@ M.DeleteProgramInput = {
 
 M.DeleteProgramOutput = {
     type = "structure",
+    id = "DeleteProgramOutput",
 }
 
 M.DescribeProgramInput = {
     type = "structure",
+    id = "DescribeProgramInput",
     members = {
         ChannelName = {
             type = "string",
@@ -1876,6 +1955,7 @@ M.DescribeProgramInput = {
 
 M.DescribeProgramOutput = {
     type = "structure",
+    id = "DescribeProgramOutput",
     members = {
         AdBreaks = {
             type = "list",
@@ -1932,6 +2012,7 @@ M.DescribeProgramOutput = {
 
 M.UpdateProgramTransition = {
     type = "structure",
+    id = "UpdateProgramTransition",
     members = {
         ScheduledStartTimeMillis = {
             type = "long",
@@ -1944,6 +2025,7 @@ M.UpdateProgramTransition = {
 
 M.UpdateProgramScheduleConfiguration = {
     type = "structure",
+    id = "UpdateProgramScheduleConfiguration",
     members = {
         Transition = M.UpdateProgramTransition,
         ClipRange = M.ClipRange,
@@ -1952,6 +2034,7 @@ M.UpdateProgramScheduleConfiguration = {
 
 M.UpdateProgramInput = {
     type = "structure",
+    id = "UpdateProgramInput",
     members = {
         AdBreaks = {
             type = "list",
@@ -1983,6 +2066,7 @@ M.UpdateProgramInput = {
 
 M.UpdateProgramOutput = {
     type = "structure",
+    id = "UpdateProgramOutput",
     members = {
         AdBreaks = {
             type = "list",
@@ -2039,6 +2123,7 @@ M.UpdateProgramOutput = {
 
 M.StartChannelInput = {
     type = "structure",
+    id = "StartChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -2052,10 +2137,12 @@ M.StartChannelInput = {
 
 M.StartChannelOutput = {
     type = "structure",
+    id = "StartChannelOutput",
 }
 
 M.StopChannelInput = {
     type = "structure",
+    id = "StopChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -2069,10 +2156,12 @@ M.StopChannelInput = {
 
 M.StopChannelOutput = {
     type = "structure",
+    id = "StopChannelOutput",
 }
 
 M.UpdateChannelInput = {
     type = "structure",
+    id = "UpdateChannelInput",
     members = {
         ChannelName = {
             type = "string",
@@ -2099,6 +2188,7 @@ M.UpdateChannelInput = {
 
 M.UpdateChannelOutput = {
     type = "structure",
+    id = "UpdateChannelOutput",
     members = {
         Arn = {
             type = "string",
@@ -2150,6 +2240,7 @@ M.UpdateChannelOutput = {
 
 M.ConfigureLogsForPlaybackConfigurationInput = {
     type = "structure",
+    id = "ConfigureLogsForPlaybackConfigurationInput",
     members = {
         PercentEnabled = {
             type = "integer",
@@ -2175,6 +2266,7 @@ M.ConfigureLogsForPlaybackConfigurationInput = {
 
 M.ConfigureLogsForPlaybackConfigurationOutput = {
     type = "structure",
+    id = "ConfigureLogsForPlaybackConfigurationOutput",
     members = {
         PercentEnabled = {
             type = "integer",
@@ -2197,6 +2289,7 @@ M.ConfigureLogsForPlaybackConfigurationOutput = {
 
 M.CreateLiveSourceInput = {
     type = "structure",
+    id = "CreateLiveSourceInput",
     members = {
         HttpPackageConfigurations = {
             type = "list",
@@ -2232,6 +2325,7 @@ M.CreateLiveSourceInput = {
 
 M.CreateLiveSourceOutput = {
     type = "structure",
+    id = "CreateLiveSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -2271,6 +2365,7 @@ M.CreateLiveSourceOutput = {
 
 M.CreatePrefetchScheduleInput = {
     type = "structure",
+    id = "CreatePrefetchScheduleInput",
     members = {
         Consumption = M.PrefetchConsumption,
         Name = {
@@ -2308,6 +2403,7 @@ M.CreatePrefetchScheduleInput = {
 
 M.CreatePrefetchScheduleOutput = {
     type = "structure",
+    id = "CreatePrefetchScheduleOutput",
     members = {
         Arn = {
             type = "string",
@@ -2340,6 +2436,7 @@ M.CreatePrefetchScheduleOutput = {
 
 M.CreateSourceLocationInput = {
     type = "structure",
+    id = "CreateSourceLocationInput",
     members = {
         AccessConfiguration = M.AccessConfiguration,
         DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
@@ -2370,6 +2467,7 @@ M.CreateSourceLocationInput = {
 
 M.CreateSourceLocationOutput = {
     type = "structure",
+    id = "CreateSourceLocationOutput",
     members = {
         AccessConfiguration = M.AccessConfiguration,
         Arn = {
@@ -2409,6 +2507,7 @@ M.CreateSourceLocationOutput = {
 
 M.CreateVodSourceInput = {
     type = "structure",
+    id = "CreateVodSourceInput",
     members = {
         HttpPackageConfigurations = {
             type = "list",
@@ -2444,6 +2543,7 @@ M.CreateVodSourceInput = {
 
 M.CreateVodSourceOutput = {
     type = "structure",
+    id = "CreateVodSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -2483,6 +2583,7 @@ M.CreateVodSourceOutput = {
 
 M.DashConfigurationForPut = {
     type = "structure",
+    id = "DashConfigurationForPut",
     members = {
         MpdLocation = {
             type = "string",
@@ -2495,6 +2596,7 @@ M.DashConfigurationForPut = {
 
 M.DeleteLiveSourceInput = {
     type = "structure",
+    id = "DeleteLiveSourceInput",
     members = {
         LiveSourceName = {
             type = "string",
@@ -2515,10 +2617,12 @@ M.DeleteLiveSourceInput = {
 
 M.DeleteLiveSourceOutput = {
     type = "structure",
+    id = "DeleteLiveSourceOutput",
 }
 
 M.DeletePlaybackConfigurationInput = {
     type = "structure",
+    id = "DeletePlaybackConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -2532,10 +2636,12 @@ M.DeletePlaybackConfigurationInput = {
 
 M.DeletePlaybackConfigurationOutput = {
     type = "structure",
+    id = "DeletePlaybackConfigurationOutput",
 }
 
 M.DeletePrefetchScheduleInput = {
     type = "structure",
+    id = "DeletePrefetchScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -2556,10 +2662,12 @@ M.DeletePrefetchScheduleInput = {
 
 M.DeletePrefetchScheduleOutput = {
     type = "structure",
+    id = "DeletePrefetchScheduleOutput",
 }
 
 M.DeleteSourceLocationInput = {
     type = "structure",
+    id = "DeleteSourceLocationInput",
     members = {
         SourceLocationName = {
             type = "string",
@@ -2573,10 +2681,12 @@ M.DeleteSourceLocationInput = {
 
 M.DeleteSourceLocationOutput = {
     type = "structure",
+    id = "DeleteSourceLocationOutput",
 }
 
 M.DeleteVodSourceInput = {
     type = "structure",
+    id = "DeleteVodSourceInput",
     members = {
         SourceLocationName = {
             type = "string",
@@ -2597,10 +2707,12 @@ M.DeleteVodSourceInput = {
 
 M.DeleteVodSourceOutput = {
     type = "structure",
+    id = "DeleteVodSourceOutput",
 }
 
 M.DescribeLiveSourceInput = {
     type = "structure",
+    id = "DescribeLiveSourceInput",
     members = {
         LiveSourceName = {
             type = "string",
@@ -2621,6 +2733,7 @@ M.DescribeLiveSourceInput = {
 
 M.DescribeLiveSourceOutput = {
     type = "structure",
+    id = "DescribeLiveSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -2660,6 +2773,7 @@ M.DescribeLiveSourceOutput = {
 
 M.DescribeSourceLocationInput = {
     type = "structure",
+    id = "DescribeSourceLocationInput",
     members = {
         SourceLocationName = {
             type = "string",
@@ -2673,6 +2787,7 @@ M.DescribeSourceLocationInput = {
 
 M.DescribeSourceLocationOutput = {
     type = "structure",
+    id = "DescribeSourceLocationOutput",
     members = {
         AccessConfiguration = M.AccessConfiguration,
         Arn = {
@@ -2712,6 +2827,7 @@ M.DescribeSourceLocationOutput = {
 
 M.DescribeVodSourceInput = {
     type = "structure",
+    id = "DescribeVodSourceInput",
     members = {
         SourceLocationName = {
             type = "string",
@@ -2732,6 +2848,7 @@ M.DescribeVodSourceInput = {
 
 M.DescribeVodSourceOutput = {
     type = "structure",
+    id = "DescribeVodSourceOutput",
     members = {
         AdBreakOpportunities = {
             type = "list",
@@ -2775,6 +2892,7 @@ M.DescribeVodSourceOutput = {
 
 M.GetPlaybackConfigurationInput = {
     type = "structure",
+    id = "GetPlaybackConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -2788,6 +2906,7 @@ M.GetPlaybackConfigurationInput = {
 
 M.GetPlaybackConfigurationOutput = {
     type = "structure",
+    id = "GetPlaybackConfigurationOutput",
     members = {
         AdDecisionServerUrl = {
             type = "string",
@@ -2850,6 +2969,7 @@ M.GetPlaybackConfigurationOutput = {
 
 M.GetPrefetchScheduleInput = {
     type = "structure",
+    id = "GetPrefetchScheduleInput",
     members = {
         Name = {
             type = "string",
@@ -2870,6 +2990,7 @@ M.GetPrefetchScheduleInput = {
 
 M.GetPrefetchScheduleOutput = {
     type = "structure",
+    id = "GetPrefetchScheduleOutput",
     members = {
         Arn = {
             type = "string",
@@ -2902,6 +3023,7 @@ M.GetPrefetchScheduleOutput = {
 
 M.ListAlertsInput = {
     type = "structure",
+    id = "ListAlertsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2927,6 +3049,7 @@ M.ListAlertsInput = {
 
 M.ListAlertsOutput = {
     type = "structure",
+    id = "ListAlertsOutput",
     members = {
         Items = {
             type = "list",
@@ -2940,6 +3063,7 @@ M.ListAlertsOutput = {
 
 M.ListLiveSourcesInput = {
     type = "structure",
+    id = "ListLiveSourcesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2965,6 +3089,7 @@ M.ListLiveSourcesInput = {
 
 M.ListLiveSourcesOutput = {
     type = "structure",
+    id = "ListLiveSourcesOutput",
     members = {
         Items = {
             type = "list",
@@ -2978,6 +3103,7 @@ M.ListLiveSourcesOutput = {
 
 M.ListPlaybackConfigurationsInput = {
     type = "structure",
+    id = "ListPlaybackConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2996,6 +3122,7 @@ M.ListPlaybackConfigurationsInput = {
 
 M.ListPlaybackConfigurationsOutput = {
     type = "structure",
+    id = "ListPlaybackConfigurationsOutput",
     members = {
         Items = {
             type = "list",
@@ -3015,6 +3142,7 @@ M.ListPrefetchScheduleType = {
 
 M.ListPrefetchSchedulesInput = {
     type = "structure",
+    id = "ListPrefetchSchedulesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3040,6 +3168,7 @@ M.ListPrefetchSchedulesInput = {
 
 M.ListPrefetchSchedulesOutput = {
     type = "structure",
+    id = "ListPrefetchSchedulesOutput",
     members = {
         Items = {
             type = "list",
@@ -3053,6 +3182,7 @@ M.ListPrefetchSchedulesOutput = {
 
 M.ListSourceLocationsInput = {
     type = "structure",
+    id = "ListSourceLocationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3071,6 +3201,7 @@ M.ListSourceLocationsInput = {
 
 M.ListSourceLocationsOutput = {
     type = "structure",
+    id = "ListSourceLocationsOutput",
     members = {
         Items = {
             type = "list",
@@ -3084,6 +3215,7 @@ M.ListSourceLocationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3097,6 +3229,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -3111,6 +3244,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListVodSourcesInput = {
     type = "structure",
+    id = "ListVodSourcesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -3136,6 +3270,7 @@ M.ListVodSourcesInput = {
 
 M.ListVodSourcesOutput = {
     type = "structure",
+    id = "ListVodSourcesOutput",
     members = {
         Items = {
             type = "list",
@@ -3149,6 +3284,7 @@ M.ListVodSourcesOutput = {
 
 M.UpdateLiveSourceInput = {
     type = "structure",
+    id = "UpdateLiveSourceInput",
     members = {
         HttpPackageConfigurations = {
             type = "list",
@@ -3176,6 +3312,7 @@ M.UpdateLiveSourceInput = {
 
 M.UpdateLiveSourceOutput = {
     type = "structure",
+    id = "UpdateLiveSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -3215,6 +3352,7 @@ M.UpdateLiveSourceOutput = {
 
 M.PutPlaybackConfigurationInput = {
     type = "structure",
+    id = "PutPlaybackConfigurationInput",
     members = {
         AdDecisionServerUrl = {
             type = "string",
@@ -3269,6 +3407,7 @@ M.PutPlaybackConfigurationInput = {
 
 M.PutPlaybackConfigurationOutput = {
     type = "structure",
+    id = "PutPlaybackConfigurationOutput",
     members = {
         AdDecisionServerUrl = {
             type = "string",
@@ -3331,6 +3470,7 @@ M.PutPlaybackConfigurationOutput = {
 
 M.UpdateSourceLocationInput = {
     type = "structure",
+    id = "UpdateSourceLocationInput",
     members = {
         AccessConfiguration = M.AccessConfiguration,
         DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
@@ -3353,6 +3493,7 @@ M.UpdateSourceLocationInput = {
 
 M.UpdateSourceLocationOutput = {
     type = "structure",
+    id = "UpdateSourceLocationOutput",
     members = {
         AccessConfiguration = M.AccessConfiguration,
         Arn = {
@@ -3392,6 +3533,7 @@ M.UpdateSourceLocationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3414,10 +3556,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -3439,10 +3583,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateVodSourceInput = {
     type = "structure",
+    id = "UpdateVodSourceInput",
     members = {
         HttpPackageConfigurations = {
             type = "list",
@@ -3470,6 +3616,7 @@ M.UpdateVodSourceInput = {
 
 M.UpdateVodSourceOutput = {
     type = "structure",
+    id = "UpdateVodSourceOutput",
     members = {
         Arn = {
             type = "string",

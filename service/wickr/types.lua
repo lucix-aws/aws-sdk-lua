@@ -7,6 +7,7 @@ M.AccessLevel = {
 
 M.BadRequestError = {
     type = "structure",
+    id = "BadRequestError",
     error = "client",
     members = {
         message = {
@@ -17,6 +18,7 @@ M.BadRequestError = {
 
 M.BasicDeviceObject = {
     type = "structure",
+    id = "BasicDeviceObject",
     members = {
         appId = {
             type = "string",
@@ -41,6 +43,7 @@ M.BasicDeviceObject = {
 
 M.BatchCreateUserRequestItem = {
     type = "structure",
+    id = "BatchCreateUserRequestItem",
     members = {
         firstName = {
             type = "string",
@@ -75,6 +78,7 @@ M.BatchCreateUserRequestItem = {
 
 M.BatchCreateUserInput = {
     type = "structure",
+    id = "BatchCreateUserInput",
     members = {
         networkId = {
             type = "string",
@@ -102,6 +106,7 @@ M.BatchCreateUserInput = {
 
 M.BatchUserErrorResponseItem = {
     type = "structure",
+    id = "BatchUserErrorResponseItem",
     members = {
         field = {
             type = "string",
@@ -120,6 +125,7 @@ M.BatchUserErrorResponseItem = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         userId = {
             type = "string",
@@ -184,6 +190,7 @@ M.User = {
 
 M.BatchCreateUserOutput = {
     type = "structure",
+    id = "BatchCreateUserOutput",
     members = {
         message = {
             type = "string",
@@ -201,6 +208,7 @@ M.BatchCreateUserOutput = {
 
 M.ForbiddenError = {
     type = "structure",
+    id = "ForbiddenError",
     error = "client",
     members = {
         message = {
@@ -211,6 +219,7 @@ M.ForbiddenError = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         message = {
@@ -224,6 +233,7 @@ M.InternalServerError = {
 
 M.RateLimitError = {
     type = "structure",
+    id = "RateLimitError",
     error = "client",
     members = {
         message = {
@@ -237,6 +247,7 @@ M.RateLimitError = {
 
 M.ResourceNotFoundError = {
     type = "structure",
+    id = "ResourceNotFoundError",
     error = "client",
     members = {
         message = {
@@ -247,6 +258,7 @@ M.ResourceNotFoundError = {
 
 M.UnauthorizedError = {
     type = "structure",
+    id = "UnauthorizedError",
     error = "client",
     members = {
         message = {
@@ -257,6 +269,7 @@ M.UnauthorizedError = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         field = {
             type = "string",
@@ -269,6 +282,7 @@ M.ErrorDetail = {
 
 M.ValidationError = {
     type = "structure",
+    id = "ValidationError",
     error = "client",
     members = {
         reasons = {
@@ -283,6 +297,7 @@ M.ValidationError = {
 
 M.BatchDeleteUserInput = {
     type = "structure",
+    id = "BatchDeleteUserInput",
     members = {
         networkId = {
             type = "string",
@@ -310,6 +325,7 @@ M.BatchDeleteUserInput = {
 
 M.BatchUserSuccessResponseItem = {
     type = "structure",
+    id = "BatchUserSuccessResponseItem",
     members = {
         userId = {
             type = "string",
@@ -322,6 +338,7 @@ M.BatchUserSuccessResponseItem = {
 
 M.BatchDeleteUserOutput = {
     type = "structure",
+    id = "BatchDeleteUserOutput",
     members = {
         message = {
             type = "string",
@@ -339,6 +356,7 @@ M.BatchDeleteUserOutput = {
 
 M.BatchDeviceErrorResponseItem = {
     type = "structure",
+    id = "BatchDeviceErrorResponseItem",
     members = {
         field = {
             type = "string",
@@ -357,6 +375,7 @@ M.BatchDeviceErrorResponseItem = {
 
 M.BatchDeviceSuccessResponseItem = {
     type = "structure",
+    id = "BatchDeviceSuccessResponseItem",
     members = {
         appId = {
             type = "string",
@@ -369,6 +388,7 @@ M.BatchDeviceSuccessResponseItem = {
 
 M.BatchLookupUserUnameInput = {
     type = "structure",
+    id = "BatchLookupUserUnameInput",
     members = {
         networkId = {
             type = "string",
@@ -396,6 +416,7 @@ M.BatchLookupUserUnameInput = {
 
 M.BatchUnameErrorResponseItem = {
     type = "structure",
+    id = "BatchUnameErrorResponseItem",
     members = {
         field = {
             type = "string",
@@ -414,6 +435,7 @@ M.BatchUnameErrorResponseItem = {
 
 M.BatchUnameSuccessResponseItem = {
     type = "structure",
+    id = "BatchUnameSuccessResponseItem",
     members = {
         uname = {
             type = "string",
@@ -432,6 +454,7 @@ M.BatchUnameSuccessResponseItem = {
 
 M.BatchLookupUserUnameOutput = {
     type = "structure",
+    id = "BatchLookupUserUnameOutput",
     members = {
         message = {
             type = "string",
@@ -449,6 +472,7 @@ M.BatchLookupUserUnameOutput = {
 
 M.BatchReinviteUserInput = {
     type = "structure",
+    id = "BatchReinviteUserInput",
     members = {
         networkId = {
             type = "string",
@@ -476,6 +500,7 @@ M.BatchReinviteUserInput = {
 
 M.BatchReinviteUserOutput = {
     type = "structure",
+    id = "BatchReinviteUserOutput",
     members = {
         message = {
             type = "string",
@@ -493,6 +518,7 @@ M.BatchReinviteUserOutput = {
 
 M.BatchResetDevicesForUserInput = {
     type = "structure",
+    id = "BatchResetDevicesForUserInput",
     members = {
         networkId = {
             type = "string",
@@ -527,6 +553,7 @@ M.BatchResetDevicesForUserInput = {
 
 M.BatchResetDevicesForUserOutput = {
     type = "structure",
+    id = "BatchResetDevicesForUserOutput",
     members = {
         message = {
             type = "string",
@@ -544,6 +571,7 @@ M.BatchResetDevicesForUserOutput = {
 
 M.BatchToggleUserSuspendStatusInput = {
     type = "structure",
+    id = "BatchToggleUserSuspendStatusInput",
     members = {
         networkId = {
             type = "string",
@@ -578,6 +606,7 @@ M.BatchToggleUserSuspendStatusInput = {
 
 M.BatchToggleUserSuspendStatusOutput = {
     type = "structure",
+    id = "BatchToggleUserSuspendStatusOutput",
     members = {
         message = {
             type = "string",
@@ -595,6 +624,7 @@ M.BatchToggleUserSuspendStatusOutput = {
 
 M.BlockedGuestUser = {
     type = "structure",
+    id = "BlockedGuestUser",
     members = {
         username = {
             type = "string",
@@ -630,6 +660,7 @@ M.BotStatus = {
 
 M.Bot = {
     type = "structure",
+    id = "Bot",
     members = {
         botId = {
             type = "string",
@@ -666,6 +697,7 @@ M.Bot = {
 
 M.CallingSettings = {
     type = "structure",
+    id = "CallingSettings",
     members = {
         canStart11Call = {
             type = "boolean",
@@ -681,6 +713,7 @@ M.CallingSettings = {
 
 M.CreateBotInput = {
     type = "structure",
+    id = "CreateBotInput",
     members = {
         networkId = {
             type = "string",
@@ -715,6 +748,7 @@ M.CreateBotInput = {
 
 M.CreateBotOutput = {
     type = "structure",
+    id = "CreateBotOutput",
     members = {
         message = {
             type = "string",
@@ -742,6 +776,7 @@ M.CreateBotOutput = {
 
 M.CreateDataRetentionBotInput = {
     type = "structure",
+    id = "CreateDataRetentionBotInput",
     members = {
         networkId = {
             type = "string",
@@ -755,6 +790,7 @@ M.CreateDataRetentionBotInput = {
 
 M.CreateDataRetentionBotOutput = {
     type = "structure",
+    id = "CreateDataRetentionBotOutput",
     members = {
         message = {
             type = "string",
@@ -764,6 +800,7 @@ M.CreateDataRetentionBotOutput = {
 
 M.CreateDataRetentionBotChallengeInput = {
     type = "structure",
+    id = "CreateDataRetentionBotChallengeInput",
     members = {
         networkId = {
             type = "string",
@@ -777,6 +814,7 @@ M.CreateDataRetentionBotChallengeInput = {
 
 M.CreateDataRetentionBotChallengeOutput = {
     type = "structure",
+    id = "CreateDataRetentionBotChallengeOutput",
     members = {
         challenge = {
             type = "string",
@@ -789,6 +827,7 @@ M.CreateDataRetentionBotChallengeOutput = {
 
 M.CreateNetworkInput = {
     type = "structure",
+    id = "CreateNetworkInput",
     members = {
         networkName = {
             type = "string",
@@ -813,6 +852,7 @@ M.CreateNetworkInput = {
 
 M.CreateNetworkOutput = {
     type = "structure",
+    id = "CreateNetworkOutput",
     members = {
         networkId = {
             type = "string",
@@ -828,6 +868,7 @@ M.CreateNetworkOutput = {
 
 M.WickrAwsNetworks = {
     type = "structure",
+    id = "WickrAwsNetworks",
     members = {
         region = {
             type = "string",
@@ -846,6 +887,7 @@ M.WickrAwsNetworks = {
 
 M.PermittedWickrEnterpriseNetwork = {
     type = "structure",
+    id = "PermittedWickrEnterpriseNetwork",
     members = {
         domain = {
             type = "string",
@@ -864,6 +906,7 @@ M.PermittedWickrEnterpriseNetwork = {
 
 M.SecurityGroupSettingsRequest = {
     type = "structure",
+    id = "SecurityGroupSettingsRequest",
     members = {
         lockoutThreshold = {
             type = "integer",
@@ -897,6 +940,7 @@ M.SecurityGroupSettingsRequest = {
 
 M.CreateSecurityGroupInput = {
     type = "structure",
+    id = "CreateSecurityGroupInput",
     members = {
         networkId = {
             type = "string",
@@ -926,6 +970,7 @@ M.CreateSecurityGroupInput = {
 
 M.PasswordRequirements = {
     type = "structure",
+    id = "PasswordRequirements",
     members = {
         lowercase = {
             type = "integer",
@@ -947,6 +992,7 @@ M.PasswordRequirements = {
 
 M.ShredderSettings = {
     type = "structure",
+    id = "ShredderSettings",
     members = {
         canProcessManually = {
             type = "boolean",
@@ -959,6 +1005,7 @@ M.ShredderSettings = {
 
 M.SecurityGroupSettings = {
     type = "structure",
+    id = "SecurityGroupSettings",
     members = {
         alwaysReauthenticate = {
             type = "boolean",
@@ -1069,6 +1116,7 @@ M.SecurityGroupSettings = {
 
 M.SecurityGroup = {
     type = "structure",
+    id = "SecurityGroup",
     members = {
         activeMembers = {
             type = "integer",
@@ -1117,6 +1165,7 @@ M.SecurityGroup = {
 
 M.CreateSecurityGroupOutput = {
     type = "structure",
+    id = "CreateSecurityGroupOutput",
     members = {
         securityGroup = setmetatable({ traits = {
             required = true,
@@ -1132,6 +1181,7 @@ M.DataRetentionActionType = {
 
 M.DeleteBotInput = {
     type = "structure",
+    id = "DeleteBotInput",
     members = {
         networkId = {
             type = "string",
@@ -1152,6 +1202,7 @@ M.DeleteBotInput = {
 
 M.DeleteBotOutput = {
     type = "structure",
+    id = "DeleteBotOutput",
     members = {
         message = {
             type = "string",
@@ -1161,6 +1212,7 @@ M.DeleteBotOutput = {
 
 M.DeleteDataRetentionBotInput = {
     type = "structure",
+    id = "DeleteDataRetentionBotInput",
     members = {
         networkId = {
             type = "string",
@@ -1174,6 +1226,7 @@ M.DeleteDataRetentionBotInput = {
 
 M.DeleteDataRetentionBotOutput = {
     type = "structure",
+    id = "DeleteDataRetentionBotOutput",
     members = {
         message = {
             type = "string",
@@ -1183,6 +1236,7 @@ M.DeleteDataRetentionBotOutput = {
 
 M.DeleteNetworkInput = {
     type = "structure",
+    id = "DeleteNetworkInput",
     members = {
         networkId = {
             type = "string",
@@ -1203,6 +1257,7 @@ M.DeleteNetworkInput = {
 
 M.DeleteNetworkOutput = {
     type = "structure",
+    id = "DeleteNetworkOutput",
     members = {
         message = {
             type = "string",
@@ -1212,6 +1267,7 @@ M.DeleteNetworkOutput = {
 
 M.DeleteSecurityGroupInput = {
     type = "structure",
+    id = "DeleteSecurityGroupInput",
     members = {
         networkId = {
             type = "string",
@@ -1232,6 +1288,7 @@ M.DeleteSecurityGroupInput = {
 
 M.DeleteSecurityGroupOutput = {
     type = "structure",
+    id = "DeleteSecurityGroupOutput",
     members = {
         message = {
             type = "string",
@@ -1247,6 +1304,7 @@ M.DeleteSecurityGroupOutput = {
 
 M.GetBotInput = {
     type = "structure",
+    id = "GetBotInput",
     members = {
         networkId = {
             type = "string",
@@ -1267,6 +1325,7 @@ M.GetBotInput = {
 
 M.GetBotOutput = {
     type = "structure",
+    id = "GetBotOutput",
     members = {
         botId = {
             type = "string",
@@ -1303,6 +1362,7 @@ M.GetBotOutput = {
 
 M.GetBotsCountInput = {
     type = "structure",
+    id = "GetBotsCountInput",
     members = {
         networkId = {
             type = "string",
@@ -1316,6 +1376,7 @@ M.GetBotsCountInput = {
 
 M.GetBotsCountOutput = {
     type = "structure",
+    id = "GetBotsCountOutput",
     members = {
         pending = {
             type = "integer",
@@ -1340,6 +1401,7 @@ M.GetBotsCountOutput = {
 
 M.GetDataRetentionBotInput = {
     type = "structure",
+    id = "GetDataRetentionBotInput",
     members = {
         networkId = {
             type = "string",
@@ -1353,6 +1415,7 @@ M.GetDataRetentionBotInput = {
 
 M.GetDataRetentionBotOutput = {
     type = "structure",
+    id = "GetDataRetentionBotOutput",
     members = {
         botName = {
             type = "string",
@@ -1377,6 +1440,7 @@ M.GetDataRetentionBotOutput = {
 
 M.GetGuestUserHistoryCountInput = {
     type = "structure",
+    id = "GetGuestUserHistoryCountInput",
     members = {
         networkId = {
             type = "string",
@@ -1390,6 +1454,7 @@ M.GetGuestUserHistoryCountInput = {
 
 M.GuestUserHistoryCount = {
     type = "structure",
+    id = "GuestUserHistoryCount",
     members = {
         month = {
             type = "string",
@@ -1408,6 +1473,7 @@ M.GuestUserHistoryCount = {
 
 M.GetGuestUserHistoryCountOutput = {
     type = "structure",
+    id = "GetGuestUserHistoryCountOutput",
     members = {
         history = {
             type = "list",
@@ -1421,6 +1487,7 @@ M.GetGuestUserHistoryCountOutput = {
 
 M.GetNetworkInput = {
     type = "structure",
+    id = "GetNetworkInput",
     members = {
         networkId = {
             type = "string",
@@ -1434,6 +1501,7 @@ M.GetNetworkInput = {
 
 M.GetNetworkOutput = {
     type = "structure",
+    id = "GetNetworkOutput",
     members = {
         networkId = {
             type = "string",
@@ -1482,6 +1550,7 @@ M.GetNetworkOutput = {
 
 M.GetNetworkSettingsInput = {
     type = "structure",
+    id = "GetNetworkSettingsInput",
     members = {
         networkId = {
             type = "string",
@@ -1495,6 +1564,7 @@ M.GetNetworkSettingsInput = {
 
 M.Setting = {
     type = "structure",
+    id = "Setting",
     members = {
         optionName = {
             type = "string",
@@ -1519,6 +1589,7 @@ M.Setting = {
 
 M.GetNetworkSettingsOutput = {
     type = "structure",
+    id = "GetNetworkSettingsOutput",
     members = {
         settings = {
             type = "list",
@@ -1532,6 +1603,7 @@ M.GetNetworkSettingsOutput = {
 
 M.GetOidcInfoInput = {
     type = "structure",
+    id = "GetOidcInfoInput",
     members = {
         networkId = {
             type = "string",
@@ -1593,6 +1665,7 @@ M.GetOidcInfoInput = {
 
 M.OidcConfigInfo = {
     type = "structure",
+    id = "OidcConfigInfo",
     members = {
         applicationName = {
             type = "string",
@@ -1650,6 +1723,7 @@ M.OidcConfigInfo = {
 
 M.OidcTokenInfo = {
     type = "structure",
+    id = "OidcTokenInfo",
     members = {
         codeVerifier = {
             type = "string",
@@ -1677,6 +1751,7 @@ M.OidcTokenInfo = {
 
 M.GetOidcInfoOutput = {
     type = "structure",
+    id = "GetOidcInfoOutput",
     members = {
         openidConnectInfo = M.OidcConfigInfo,
         tokenInfo = M.OidcTokenInfo,
@@ -1685,6 +1760,7 @@ M.GetOidcInfoOutput = {
 
 M.GetOpentdfConfigInput = {
     type = "structure",
+    id = "GetOpentdfConfigInput",
     members = {
         networkId = {
             type = "string",
@@ -1698,6 +1774,7 @@ M.GetOpentdfConfigInput = {
 
 M.GetOpentdfConfigOutput = {
     type = "structure",
+    id = "GetOpentdfConfigOutput",
     members = {
         clientId = {
             type = "string",
@@ -1728,6 +1805,7 @@ M.GetOpentdfConfigOutput = {
 
 M.GetSecurityGroupInput = {
     type = "structure",
+    id = "GetSecurityGroupInput",
     members = {
         networkId = {
             type = "string",
@@ -1748,6 +1826,7 @@ M.GetSecurityGroupInput = {
 
 M.GetSecurityGroupOutput = {
     type = "structure",
+    id = "GetSecurityGroupOutput",
     members = {
         securityGroup = setmetatable({ traits = {
             required = true,
@@ -1757,6 +1836,7 @@ M.GetSecurityGroupOutput = {
 
 M.GetUserInput = {
     type = "structure",
+    id = "GetUserInput",
     members = {
         networkId = {
             type = "string",
@@ -1791,6 +1871,7 @@ M.GetUserInput = {
 
 M.GetUserOutput = {
     type = "structure",
+    id = "GetUserOutput",
     members = {
         userId = {
             type = "string",
@@ -1831,6 +1912,7 @@ M.GetUserOutput = {
 
 M.GetUsersCountInput = {
     type = "structure",
+    id = "GetUsersCountInput",
     members = {
         networkId = {
             type = "string",
@@ -1844,6 +1926,7 @@ M.GetUsersCountInput = {
 
 M.GetUsersCountOutput = {
     type = "structure",
+    id = "GetUsersCountOutput",
     members = {
         pending = {
             type = "integer",
@@ -1880,6 +1963,7 @@ M.GetUsersCountOutput = {
 
 M.GuestUser = {
     type = "structure",
+    id = "GuestUser",
     members = {
         billingPeriod = {
             type = "string",
@@ -1909,6 +1993,7 @@ M.SortDirection = {
 
 M.ListBlockedGuestUsersInput = {
     type = "structure",
+    id = "ListBlockedGuestUsersInput",
     members = {
         networkId = {
             type = "string",
@@ -1958,6 +2043,7 @@ M.ListBlockedGuestUsersInput = {
 
 M.ListBlockedGuestUsersOutput = {
     type = "structure",
+    id = "ListBlockedGuestUsersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1974,6 +2060,7 @@ M.ListBlockedGuestUsersOutput = {
 
 M.ListBotsInput = {
     type = "structure",
+    id = "ListBotsInput",
     members = {
         networkId = {
             type = "string",
@@ -2035,6 +2122,7 @@ M.ListBotsInput = {
 
 M.ListBotsOutput = {
     type = "structure",
+    id = "ListBotsOutput",
     members = {
         bots = {
             type = "list",
@@ -2051,6 +2139,7 @@ M.ListBotsOutput = {
 
 M.ListDevicesForUserInput = {
     type = "structure",
+    id = "ListDevicesForUserInput",
     members = {
         networkId = {
             type = "string",
@@ -2095,6 +2184,7 @@ M.ListDevicesForUserInput = {
 
 M.ListDevicesForUserOutput = {
     type = "structure",
+    id = "ListDevicesForUserOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2111,6 +2201,7 @@ M.ListDevicesForUserOutput = {
 
 M.ListGuestUsersInput = {
     type = "structure",
+    id = "ListGuestUsersInput",
     members = {
         networkId = {
             type = "string",
@@ -2160,6 +2251,7 @@ M.ListGuestUsersInput = {
 
 M.ListGuestUsersOutput = {
     type = "structure",
+    id = "ListGuestUsersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2176,6 +2268,7 @@ M.ListGuestUsersOutput = {
 
 M.ListNetworksInput = {
     type = "structure",
+    id = "ListNetworksInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2206,6 +2299,7 @@ M.ListNetworksInput = {
 
 M.Network = {
     type = "structure",
+    id = "Network",
     members = {
         networkId = {
             type = "string",
@@ -2254,6 +2348,7 @@ M.Network = {
 
 M.ListNetworksOutput = {
     type = "structure",
+    id = "ListNetworksOutput",
     members = {
         networks = {
             type = "list",
@@ -2270,6 +2365,7 @@ M.ListNetworksOutput = {
 
 M.ListSecurityGroupsInput = {
     type = "structure",
+    id = "ListSecurityGroupsInput",
     members = {
         networkId = {
             type = "string",
@@ -2307,6 +2403,7 @@ M.ListSecurityGroupsInput = {
 
 M.ListSecurityGroupsOutput = {
     type = "structure",
+    id = "ListSecurityGroupsOutput",
     members = {
         securityGroups = {
             type = "list",
@@ -2320,6 +2417,7 @@ M.ListSecurityGroupsOutput = {
 
 M.ListSecurityGroupUsersInput = {
     type = "structure",
+    id = "ListSecurityGroupUsersInput",
     members = {
         networkId = {
             type = "string",
@@ -2364,6 +2462,7 @@ M.ListSecurityGroupUsersInput = {
 
 M.ListSecurityGroupUsersOutput = {
     type = "structure",
+    id = "ListSecurityGroupUsersOutput",
     members = {
         users = {
             type = "list",
@@ -2385,6 +2484,7 @@ M.UserStatus = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         networkId = {
             type = "string",
@@ -2452,6 +2552,7 @@ M.ListUsersInput = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2471,6 +2572,7 @@ M.Status = {
 
 M.ReadReceiptConfig = {
     type = "structure",
+    id = "ReadReceiptConfig",
     members = {
         status = {
             type = "string",
@@ -2480,6 +2582,7 @@ M.ReadReceiptConfig = {
 
 M.NetworkSettings = {
     type = "structure",
+    id = "NetworkSettings",
     members = {
         enableClientMetrics = {
             type = "boolean",
@@ -2496,6 +2599,7 @@ M.NetworkSettings = {
 
 M.RegisterOidcConfigInput = {
     type = "structure",
+    id = "RegisterOidcConfigInput",
     members = {
         networkId = {
             type = "string",
@@ -2542,6 +2646,7 @@ M.RegisterOidcConfigInput = {
 
 M.RegisterOidcConfigOutput = {
     type = "structure",
+    id = "RegisterOidcConfigOutput",
     members = {
         applicationName = {
             type = "string",
@@ -2599,6 +2704,7 @@ M.RegisterOidcConfigOutput = {
 
 M.RegisterOidcConfigTestInput = {
     type = "structure",
+    id = "RegisterOidcConfigTestInput",
     members = {
         networkId = {
             type = "string",
@@ -2630,6 +2736,7 @@ M.RegisterOidcConfigTestInput = {
 
 M.RegisterOidcConfigTestOutput = {
     type = "structure",
+    id = "RegisterOidcConfigTestOutput",
     members = {
         tokenEndpoint = {
             type = "string",
@@ -2676,6 +2783,7 @@ M.RegisterOidcConfigTestOutput = {
 
 M.RegisterOpentdfConfigInput = {
     type = "structure",
+    id = "RegisterOpentdfConfigInput",
     members = {
         networkId = {
             type = "string",
@@ -2719,6 +2827,7 @@ M.RegisterOpentdfConfigInput = {
 
 M.RegisterOpentdfConfigOutput = {
     type = "structure",
+    id = "RegisterOpentdfConfigOutput",
     members = {
         clientId = {
             type = "string",
@@ -2749,6 +2858,7 @@ M.RegisterOpentdfConfigOutput = {
 
 M.UpdateBotInput = {
     type = "structure",
+    id = "UpdateBotInput",
     members = {
         networkId = {
             type = "string",
@@ -2781,6 +2891,7 @@ M.UpdateBotInput = {
 
 M.UpdateBotOutput = {
     type = "structure",
+    id = "UpdateBotOutput",
     members = {
         message = {
             type = "string",
@@ -2790,6 +2901,7 @@ M.UpdateBotOutput = {
 
 M.UpdateDataRetentionInput = {
     type = "structure",
+    id = "UpdateDataRetentionInput",
     members = {
         networkId = {
             type = "string",
@@ -2809,6 +2921,7 @@ M.UpdateDataRetentionInput = {
 
 M.UpdateDataRetentionOutput = {
     type = "structure",
+    id = "UpdateDataRetentionOutput",
     members = {
         message = {
             type = "string",
@@ -2818,6 +2931,7 @@ M.UpdateDataRetentionOutput = {
 
 M.UpdateGuestUserInput = {
     type = "structure",
+    id = "UpdateGuestUserInput",
     members = {
         networkId = {
             type = "string",
@@ -2844,6 +2958,7 @@ M.UpdateGuestUserInput = {
 
 M.UpdateGuestUserOutput = {
     type = "structure",
+    id = "UpdateGuestUserOutput",
     members = {
         message = {
             type = "string",
@@ -2853,6 +2968,7 @@ M.UpdateGuestUserOutput = {
 
 M.UpdateNetworkInput = {
     type = "structure",
+    id = "UpdateNetworkInput",
     members = {
         networkId = {
             type = "string",
@@ -2882,6 +2998,7 @@ M.UpdateNetworkInput = {
 
 M.UpdateNetworkOutput = {
     type = "structure",
+    id = "UpdateNetworkOutput",
     members = {
         message = {
             type = "string",
@@ -2891,6 +3008,7 @@ M.UpdateNetworkOutput = {
 
 M.UpdateNetworkSettingsInput = {
     type = "structure",
+    id = "UpdateNetworkSettingsInput",
     members = {
         networkId = {
             type = "string",
@@ -2907,6 +3025,7 @@ M.UpdateNetworkSettingsInput = {
 
 M.UpdateNetworkSettingsOutput = {
     type = "structure",
+    id = "UpdateNetworkSettingsOutput",
     members = {
         settings = {
             type = "list",
@@ -2920,6 +3039,7 @@ M.UpdateNetworkSettingsOutput = {
 
 M.UpdateSecurityGroupInput = {
     type = "structure",
+    id = "UpdateSecurityGroupInput",
     members = {
         networkId = {
             type = "string",
@@ -2944,6 +3064,7 @@ M.UpdateSecurityGroupInput = {
 
 M.UpdateSecurityGroupOutput = {
     type = "structure",
+    id = "UpdateSecurityGroupOutput",
     members = {
         securityGroup = setmetatable({ traits = {
             required = true,
@@ -2953,6 +3074,7 @@ M.UpdateSecurityGroupOutput = {
 
 M.UpdateUserDetails = {
     type = "structure",
+    id = "UpdateUserDetails",
     members = {
         firstName = {
             type = "string",
@@ -2981,6 +3103,7 @@ M.UpdateUserDetails = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         networkId = {
             type = "string",
@@ -3001,6 +3124,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
     members = {
         userId = {
             type = "string",

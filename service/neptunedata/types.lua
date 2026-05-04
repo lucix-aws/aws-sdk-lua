@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         detailedMessage = {
@@ -32,6 +33,7 @@ M.Action = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         detailedMessage = {
@@ -57,6 +59,7 @@ M.BadRequestException = {
 
 M.CancelGremlinQueryInput = {
     type = "structure",
+    id = "CancelGremlinQueryInput",
     members = {
         queryId = {
             type = "string",
@@ -70,6 +73,7 @@ M.CancelGremlinQueryInput = {
 
 M.CancelGremlinQueryOutput = {
     type = "structure",
+    id = "CancelGremlinQueryOutput",
     members = {
         status = {
             type = "string",
@@ -79,6 +83,7 @@ M.CancelGremlinQueryOutput = {
 
 M.ClientTimeoutException = {
     type = "structure",
+    id = "ClientTimeoutException",
     error = "client",
     members = {
         detailedMessage = {
@@ -104,6 +109,7 @@ M.ClientTimeoutException = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "server",
     members = {
         detailedMessage = {
@@ -129,6 +135,7 @@ M.ConcurrentModificationException = {
 
 M.ConstraintViolationException = {
     type = "structure",
+    id = "ConstraintViolationException",
     error = "client",
     members = {
         detailedMessage = {
@@ -154,6 +161,7 @@ M.ConstraintViolationException = {
 
 M.FailureByQueryException = {
     type = "structure",
+    id = "FailureByQueryException",
     error = "server",
     members = {
         detailedMessage = {
@@ -179,6 +187,7 @@ M.FailureByQueryException = {
 
 M.IllegalArgumentException = {
     type = "structure",
+    id = "IllegalArgumentException",
     error = "client",
     members = {
         detailedMessage = {
@@ -204,6 +213,7 @@ M.IllegalArgumentException = {
 
 M.InvalidArgumentException = {
     type = "structure",
+    id = "InvalidArgumentException",
     error = "client",
     members = {
         detailedMessage = {
@@ -229,6 +239,7 @@ M.InvalidArgumentException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         detailedMessage = {
@@ -254,6 +265,7 @@ M.InvalidParameterException = {
 
 M.MissingParameterException = {
     type = "structure",
+    id = "MissingParameterException",
     error = "client",
     members = {
         detailedMessage = {
@@ -279,6 +291,7 @@ M.MissingParameterException = {
 
 M.ParsingException = {
     type = "structure",
+    id = "ParsingException",
     error = "client",
     members = {
         detailedMessage = {
@@ -304,6 +317,7 @@ M.ParsingException = {
 
 M.PreconditionsFailedException = {
     type = "structure",
+    id = "PreconditionsFailedException",
     error = "client",
     members = {
         detailedMessage = {
@@ -329,6 +343,7 @@ M.PreconditionsFailedException = {
 
 M.TimeLimitExceededException = {
     type = "structure",
+    id = "TimeLimitExceededException",
     error = "server",
     members = {
         detailedMessage = {
@@ -354,6 +369,7 @@ M.TimeLimitExceededException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         detailedMessage = {
@@ -379,6 +395,7 @@ M.TooManyRequestsException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         detailedMessage = {
@@ -404,6 +421,7 @@ M.UnsupportedOperationException = {
 
 M.BulkLoadIdNotFoundException = {
     type = "structure",
+    id = "BulkLoadIdNotFoundException",
     error = "client",
     members = {
         detailedMessage = {
@@ -429,6 +447,7 @@ M.BulkLoadIdNotFoundException = {
 
 M.CancelLoaderJobInput = {
     type = "structure",
+    id = "CancelLoaderJobInput",
     members = {
         loadId = {
             type = "string",
@@ -442,6 +461,7 @@ M.CancelLoaderJobInput = {
 
 M.CancelLoaderJobOutput = {
     type = "structure",
+    id = "CancelLoaderJobOutput",
     members = {
         status = {
             type = "string",
@@ -451,6 +471,7 @@ M.CancelLoaderJobOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         detailedMessage = {
@@ -476,6 +497,7 @@ M.InternalFailureException = {
 
 M.LoadUrlAccessDeniedException = {
     type = "structure",
+    id = "LoadUrlAccessDeniedException",
     error = "client",
     members = {
         detailedMessage = {
@@ -501,6 +523,7 @@ M.LoadUrlAccessDeniedException = {
 
 M.CancelMLDataProcessingJobInput = {
     type = "structure",
+    id = "CancelMLDataProcessingJobInput",
     members = {
         id = {
             type = "string",
@@ -526,6 +549,7 @@ M.CancelMLDataProcessingJobInput = {
 
 M.CancelMLDataProcessingJobOutput = {
     type = "structure",
+    id = "CancelMLDataProcessingJobOutput",
     members = {
         status = {
             type = "string",
@@ -535,6 +559,7 @@ M.CancelMLDataProcessingJobOutput = {
 
 M.MLResourceNotFoundException = {
     type = "structure",
+    id = "MLResourceNotFoundException",
     error = "client",
     members = {
         detailedMessage = {
@@ -560,6 +585,7 @@ M.MLResourceNotFoundException = {
 
 M.CancelMLModelTrainingJobInput = {
     type = "structure",
+    id = "CancelMLModelTrainingJobInput",
     members = {
         id = {
             type = "string",
@@ -585,6 +611,7 @@ M.CancelMLModelTrainingJobInput = {
 
 M.CancelMLModelTrainingJobOutput = {
     type = "structure",
+    id = "CancelMLModelTrainingJobOutput",
     members = {
         status = {
             type = "string",
@@ -594,6 +621,7 @@ M.CancelMLModelTrainingJobOutput = {
 
 M.CancelMLModelTransformJobInput = {
     type = "structure",
+    id = "CancelMLModelTransformJobInput",
     members = {
         id = {
             type = "string",
@@ -619,6 +647,7 @@ M.CancelMLModelTransformJobInput = {
 
 M.CancelMLModelTransformJobOutput = {
     type = "structure",
+    id = "CancelMLModelTransformJobOutput",
     members = {
         status = {
             type = "string",
@@ -628,6 +657,7 @@ M.CancelMLModelTransformJobOutput = {
 
 M.CancelOpenCypherQueryInput = {
     type = "structure",
+    id = "CancelOpenCypherQueryInput",
     members = {
         queryId = {
             type = "string",
@@ -647,6 +677,7 @@ M.CancelOpenCypherQueryInput = {
 
 M.CancelOpenCypherQueryOutput = {
     type = "structure",
+    id = "CancelOpenCypherQueryOutput",
     members = {
         status = {
             type = "string",
@@ -659,6 +690,7 @@ M.CancelOpenCypherQueryOutput = {
 
 M.InvalidNumericDataException = {
     type = "structure",
+    id = "InvalidNumericDataException",
     error = "client",
     members = {
         detailedMessage = {
@@ -684,6 +716,7 @@ M.InvalidNumericDataException = {
 
 M.CreateMLEndpointInput = {
     type = "structure",
+    id = "CreateMLEndpointInput",
     members = {
         id = {
             type = "string",
@@ -717,6 +750,7 @@ M.CreateMLEndpointInput = {
 
 M.CreateMLEndpointOutput = {
     type = "structure",
+    id = "CreateMLEndpointOutput",
     members = {
         id = {
             type = "string",
@@ -732,6 +766,7 @@ M.CreateMLEndpointOutput = {
 
 M.DeleteMLEndpointInput = {
     type = "structure",
+    id = "DeleteMLEndpointInput",
     members = {
         id = {
             type = "string",
@@ -757,6 +792,7 @@ M.DeleteMLEndpointInput = {
 
 M.DeleteMLEndpointOutput = {
     type = "structure",
+    id = "DeleteMLEndpointOutput",
     members = {
         status = {
             type = "string",
@@ -766,10 +802,12 @@ M.DeleteMLEndpointOutput = {
 
 M.DeletePropertygraphStatisticsInput = {
     type = "structure",
+    id = "DeletePropertygraphStatisticsInput",
 }
 
 M.DeleteStatisticsValueMap = {
     type = "structure",
+    id = "DeleteStatisticsValueMap",
     members = {
         active = {
             type = "boolean",
@@ -782,6 +820,7 @@ M.DeleteStatisticsValueMap = {
 
 M.DeletePropertygraphStatisticsOutput = {
     type = "structure",
+    id = "DeletePropertygraphStatisticsOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -798,6 +837,7 @@ M.DeletePropertygraphStatisticsOutput = {
 
 M.ReadOnlyViolationException = {
     type = "structure",
+    id = "ReadOnlyViolationException",
     error = "client",
     members = {
         detailedMessage = {
@@ -823,6 +863,7 @@ M.ReadOnlyViolationException = {
 
 M.StatisticsNotAvailableException = {
     type = "structure",
+    id = "StatisticsNotAvailableException",
     error = "client",
     members = {
         detailedMessage = {
@@ -848,10 +889,12 @@ M.StatisticsNotAvailableException = {
 
 M.DeleteSparqlStatisticsInput = {
     type = "structure",
+    id = "DeleteSparqlStatisticsInput",
 }
 
 M.DeleteSparqlStatisticsOutput = {
     type = "structure",
+    id = "DeleteSparqlStatisticsOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -868,6 +911,7 @@ M.DeleteSparqlStatisticsOutput = {
 
 M.ExecuteFastResetInput = {
     type = "structure",
+    id = "ExecuteFastResetInput",
     members = {
         action = {
             type = "string",
@@ -883,6 +927,7 @@ M.ExecuteFastResetInput = {
 
 M.FastResetToken = {
     type = "structure",
+    id = "FastResetToken",
     members = {
         token = {
             type = "string",
@@ -892,6 +937,7 @@ M.FastResetToken = {
 
 M.ExecuteFastResetOutput = {
     type = "structure",
+    id = "ExecuteFastResetOutput",
     members = {
         status = {
             type = "string",
@@ -905,6 +951,7 @@ M.ExecuteFastResetOutput = {
 
 M.MethodNotAllowedException = {
     type = "structure",
+    id = "MethodNotAllowedException",
     error = "client",
     members = {
         detailedMessage = {
@@ -930,6 +977,7 @@ M.MethodNotAllowedException = {
 
 M.ServerShutdownException = {
     type = "structure",
+    id = "ServerShutdownException",
     error = "server",
     members = {
         detailedMessage = {
@@ -955,6 +1003,7 @@ M.ServerShutdownException = {
 
 M.CancelledByUserException = {
     type = "structure",
+    id = "CancelledByUserException",
     error = "server",
     members = {
         detailedMessage = {
@@ -980,6 +1029,7 @@ M.CancelledByUserException = {
 
 M.ExecuteGremlinExplainQueryInput = {
     type = "structure",
+    id = "ExecuteGremlinExplainQueryInput",
     members = {
         gremlinQuery = {
             type = "string",
@@ -993,6 +1043,7 @@ M.ExecuteGremlinExplainQueryInput = {
 
 M.ExecuteGremlinExplainQueryOutput = {
     type = "structure",
+    id = "ExecuteGremlinExplainQueryOutput",
     members = {
         output = {
             type = "blob",
@@ -1006,6 +1057,7 @@ M.ExecuteGremlinExplainQueryOutput = {
 
 M.MalformedQueryException = {
     type = "structure",
+    id = "MalformedQueryException",
     error = "client",
     members = {
         detailedMessage = {
@@ -1031,6 +1083,7 @@ M.MalformedQueryException = {
 
 M.MemoryLimitExceededException = {
     type = "structure",
+    id = "MemoryLimitExceededException",
     error = "server",
     members = {
         detailedMessage = {
@@ -1056,6 +1109,7 @@ M.MemoryLimitExceededException = {
 
 M.QueryLimitExceededException = {
     type = "structure",
+    id = "QueryLimitExceededException",
     error = "server",
     members = {
         detailedMessage = {
@@ -1081,6 +1135,7 @@ M.QueryLimitExceededException = {
 
 M.QueryLimitException = {
     type = "structure",
+    id = "QueryLimitException",
     error = "client",
     members = {
         detailedMessage = {
@@ -1106,6 +1161,7 @@ M.QueryLimitException = {
 
 M.QueryTooLargeException = {
     type = "structure",
+    id = "QueryTooLargeException",
     error = "client",
     members = {
         detailedMessage = {
@@ -1131,6 +1187,7 @@ M.QueryTooLargeException = {
 
 M.ExecuteGremlinProfileQueryInput = {
     type = "structure",
+    id = "ExecuteGremlinProfileQueryInput",
     members = {
         gremlinQuery = {
             type = "string",
@@ -1168,6 +1225,7 @@ M.ExecuteGremlinProfileQueryInput = {
 
 M.ExecuteGremlinProfileQueryOutput = {
     type = "structure",
+    id = "ExecuteGremlinProfileQueryOutput",
     members = {
         output = {
             type = "blob",
@@ -1181,6 +1239,7 @@ M.ExecuteGremlinProfileQueryOutput = {
 
 M.ExecuteGremlinQueryInput = {
     type = "structure",
+    id = "ExecuteGremlinQueryInput",
     members = {
         gremlinQuery = {
             type = "string",
@@ -1200,6 +1259,7 @@ M.ExecuteGremlinQueryInput = {
 
 M.GremlinQueryStatusAttributes = {
     type = "structure",
+    id = "GremlinQueryStatusAttributes",
     members = {
         message = {
             type = "string",
@@ -1215,6 +1275,7 @@ M.GremlinQueryStatusAttributes = {
 
 M.ExecuteGremlinQueryOutput = {
     type = "structure",
+    id = "ExecuteGremlinQueryOutput",
     members = {
         requestId = {
             type = "string",
@@ -1237,6 +1298,7 @@ M.OpenCypherExplainMode = {
 
 M.ExecuteOpenCypherExplainQueryInput = {
     type = "structure",
+    id = "ExecuteOpenCypherExplainQueryInput",
     members = {
         openCypherQuery = {
             type = "string",
@@ -1260,6 +1322,7 @@ M.ExecuteOpenCypherExplainQueryInput = {
 
 M.ExecuteOpenCypherExplainQueryOutput = {
     type = "structure",
+    id = "ExecuteOpenCypherExplainQueryOutput",
     members = {
         results = {
             type = "blob",
@@ -1273,6 +1336,7 @@ M.ExecuteOpenCypherExplainQueryOutput = {
 
 M.ExecuteOpenCypherQueryInput = {
     type = "structure",
+    id = "ExecuteOpenCypherQueryInput",
     members = {
         openCypherQuery = {
             type = "string",
@@ -1289,6 +1353,7 @@ M.ExecuteOpenCypherQueryInput = {
 
 M.ExecuteOpenCypherQueryOutput = {
     type = "structure",
+    id = "ExecuteOpenCypherQueryOutput",
     members = {
         results = {
             type = "document",
@@ -1301,10 +1366,12 @@ M.ExecuteOpenCypherQueryOutput = {
 
 M.GetEngineStatusInput = {
     type = "structure",
+    id = "GetEngineStatusInput",
 }
 
 M.QueryLanguageVersion = {
     type = "structure",
+    id = "QueryLanguageVersion",
     members = {
         version = {
             type = "string",
@@ -1317,6 +1384,7 @@ M.QueryLanguageVersion = {
 
 M.GetEngineStatusOutput = {
     type = "structure",
+    id = "GetEngineStatusOutput",
     members = {
         status = {
             type = "string",
@@ -1362,6 +1430,7 @@ M.GetEngineStatusOutput = {
 
 M.GetGremlinQueryStatusInput = {
     type = "structure",
+    id = "GetGremlinQueryStatusInput",
     members = {
         queryId = {
             type = "string",
@@ -1375,6 +1444,7 @@ M.GetGremlinQueryStatusInput = {
 
 M.QueryEvalStats = {
     type = "structure",
+    id = "QueryEvalStats",
     members = {
         waited = {
             type = "integer",
@@ -1393,6 +1463,7 @@ M.QueryEvalStats = {
 
 M.GetGremlinQueryStatusOutput = {
     type = "structure",
+    id = "GetGremlinQueryStatusOutput",
     members = {
         queryId = {
             type = "string",
@@ -1406,6 +1477,7 @@ M.GetGremlinQueryStatusOutput = {
 
 M.GetLoaderJobStatusInput = {
     type = "structure",
+    id = "GetLoaderJobStatusInput",
     members = {
         loadId = {
             type = "string",
@@ -1443,6 +1515,7 @@ M.GetLoaderJobStatusInput = {
 
 M.GetLoaderJobStatusOutput = {
     type = "structure",
+    id = "GetLoaderJobStatusOutput",
     members = {
         status = {
             type = "string",
@@ -1461,6 +1534,7 @@ M.GetLoaderJobStatusOutput = {
 
 M.GetMLDataProcessingJobInput = {
     type = "structure",
+    id = "GetMLDataProcessingJobInput",
     members = {
         id = {
             type = "string",
@@ -1480,6 +1554,7 @@ M.GetMLDataProcessingJobInput = {
 
 M.MlResourceDefinition = {
     type = "structure",
+    id = "MlResourceDefinition",
     members = {
         name = {
             type = "string",
@@ -1504,6 +1579,7 @@ M.MlResourceDefinition = {
 
 M.GetMLDataProcessingJobOutput = {
     type = "structure",
+    id = "GetMLDataProcessingJobOutput",
     members = {
         status = {
             type = "string",
@@ -1517,6 +1593,7 @@ M.GetMLDataProcessingJobOutput = {
 
 M.GetMLEndpointInput = {
     type = "structure",
+    id = "GetMLEndpointInput",
     members = {
         id = {
             type = "string",
@@ -1536,6 +1613,7 @@ M.GetMLEndpointInput = {
 
 M.MlConfigDefinition = {
     type = "structure",
+    id = "MlConfigDefinition",
     members = {
         name = {
             type = "string",
@@ -1548,6 +1626,7 @@ M.MlConfigDefinition = {
 
 M.GetMLEndpointOutput = {
     type = "structure",
+    id = "GetMLEndpointOutput",
     members = {
         status = {
             type = "string",
@@ -1562,6 +1641,7 @@ M.GetMLEndpointOutput = {
 
 M.GetMLModelTrainingJobInput = {
     type = "structure",
+    id = "GetMLModelTrainingJobInput",
     members = {
         id = {
             type = "string",
@@ -1581,6 +1661,7 @@ M.GetMLModelTrainingJobInput = {
 
 M.GetMLModelTrainingJobOutput = {
     type = "structure",
+    id = "GetMLModelTrainingJobOutput",
     members = {
         status = {
             type = "string",
@@ -1600,6 +1681,7 @@ M.GetMLModelTrainingJobOutput = {
 
 M.GetMLModelTransformJobInput = {
     type = "structure",
+    id = "GetMLModelTransformJobInput",
     members = {
         id = {
             type = "string",
@@ -1619,6 +1701,7 @@ M.GetMLModelTransformJobInput = {
 
 M.GetMLModelTransformJobOutput = {
     type = "structure",
+    id = "GetMLModelTransformJobOutput",
     members = {
         status = {
             type = "string",
@@ -1637,6 +1720,7 @@ M.GetMLModelTransformJobOutput = {
 
 M.GetOpenCypherQueryStatusInput = {
     type = "structure",
+    id = "GetOpenCypherQueryStatusInput",
     members = {
         queryId = {
             type = "string",
@@ -1650,6 +1734,7 @@ M.GetOpenCypherQueryStatusInput = {
 
 M.GetOpenCypherQueryStatusOutput = {
     type = "structure",
+    id = "GetOpenCypherQueryStatusOutput",
     members = {
         queryId = {
             type = "string",
@@ -1663,10 +1748,12 @@ M.GetOpenCypherQueryStatusOutput = {
 
 M.GetPropertygraphStatisticsInput = {
     type = "structure",
+    id = "GetPropertygraphStatisticsInput",
 }
 
 M.StatisticsSummary = {
     type = "structure",
+    id = "StatisticsSummary",
     members = {
         signatureCount = {
             type = "integer",
@@ -1682,6 +1769,7 @@ M.StatisticsSummary = {
 
 M.Statistics = {
     type = "structure",
+    id = "Statistics",
     members = {
         autoCompute = {
             type = "boolean",
@@ -1707,6 +1795,7 @@ M.Statistics = {
 
 M.GetPropertygraphStatisticsOutput = {
     type = "structure",
+    id = "GetPropertygraphStatisticsOutput",
     members = {
         status = {
             type = "string",
@@ -1722,6 +1811,7 @@ M.GetPropertygraphStatisticsOutput = {
 
 M.ExpiredStreamException = {
     type = "structure",
+    id = "ExpiredStreamException",
     error = "client",
     members = {
         detailedMessage = {
@@ -1758,6 +1848,7 @@ M.IteratorType = {
 
 M.GetPropertygraphStreamInput = {
     type = "structure",
+    id = "GetPropertygraphStreamInput",
     members = {
         limit = {
             type = "long",
@@ -1794,6 +1885,7 @@ M.GetPropertygraphStreamInput = {
 
 M.PropertygraphData = {
     type = "structure",
+    id = "PropertygraphData",
     members = {
         id = {
             type = "string",
@@ -1830,6 +1922,7 @@ M.PropertygraphData = {
 
 M.PropertygraphRecord = {
     type = "structure",
+    id = "PropertygraphRecord",
     members = {
         commitTimestampInMillis = {
             type = "long",
@@ -1863,6 +1956,7 @@ M.PropertygraphRecord = {
 
 M.GetPropertygraphStreamOutput = {
     type = "structure",
+    id = "GetPropertygraphStreamOutput",
     members = {
         lastEventId = {
             type = "map",
@@ -1903,6 +1997,7 @@ M.GetPropertygraphStreamOutput = {
 
 M.StreamRecordsNotFoundException = {
     type = "structure",
+    id = "StreamRecordsNotFoundException",
     error = "client",
     members = {
         detailedMessage = {
@@ -1928,6 +2023,7 @@ M.StreamRecordsNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "server",
     members = {
         detailedMessage = {
@@ -1958,6 +2054,7 @@ M.GraphSummaryType = {
 
 M.GetPropertygraphSummaryInput = {
     type = "structure",
+    id = "GetPropertygraphSummaryInput",
     members = {
         mode = {
             type = "string",
@@ -1971,6 +2068,7 @@ M.GetPropertygraphSummaryInput = {
 
 M.EdgeStructure = {
     type = "structure",
+    id = "EdgeStructure",
     members = {
         count = {
             type = "long",
@@ -1984,6 +2082,7 @@ M.EdgeStructure = {
 
 M.NodeStructure = {
     type = "structure",
+    id = "NodeStructure",
     members = {
         count = {
             type = "long",
@@ -2001,6 +2100,7 @@ M.NodeStructure = {
 
 M.PropertygraphSummary = {
     type = "structure",
+    id = "PropertygraphSummary",
     members = {
         numNodes = {
             type = "long",
@@ -2055,6 +2155,7 @@ M.PropertygraphSummary = {
 
 M.PropertygraphSummaryValueMap = {
     type = "structure",
+    id = "PropertygraphSummaryValueMap",
     members = {
         version = {
             type = "string",
@@ -2071,6 +2172,7 @@ M.PropertygraphSummaryValueMap = {
 
 M.GetPropertygraphSummaryOutput = {
     type = "structure",
+    id = "GetPropertygraphSummaryOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -2084,6 +2186,7 @@ M.GetPropertygraphSummaryOutput = {
 
 M.GetRDFGraphSummaryInput = {
     type = "structure",
+    id = "GetRDFGraphSummaryInput",
     members = {
         mode = {
             type = "string",
@@ -2097,6 +2200,7 @@ M.GetRDFGraphSummaryInput = {
 
 M.SubjectStructure = {
     type = "structure",
+    id = "SubjectStructure",
     members = {
         count = {
             type = "long",
@@ -2110,6 +2214,7 @@ M.SubjectStructure = {
 
 M.RDFGraphSummary = {
     type = "structure",
+    id = "RDFGraphSummary",
     members = {
         numDistinctSubjects = {
             type = "long",
@@ -2140,6 +2245,7 @@ M.RDFGraphSummary = {
 
 M.RDFGraphSummaryValueMap = {
     type = "structure",
+    id = "RDFGraphSummaryValueMap",
     members = {
         version = {
             type = "string",
@@ -2156,6 +2262,7 @@ M.RDFGraphSummaryValueMap = {
 
 M.GetRDFGraphSummaryOutput = {
     type = "structure",
+    id = "GetRDFGraphSummaryOutput",
     members = {
         statusCode = {
             type = "integer",
@@ -2169,10 +2276,12 @@ M.GetRDFGraphSummaryOutput = {
 
 M.GetSparqlStatisticsInput = {
     type = "structure",
+    id = "GetSparqlStatisticsInput",
 }
 
 M.GetSparqlStatisticsOutput = {
     type = "structure",
+    id = "GetSparqlStatisticsOutput",
     members = {
         status = {
             type = "string",
@@ -2188,6 +2297,7 @@ M.GetSparqlStatisticsOutput = {
 
 M.GetSparqlStreamInput = {
     type = "structure",
+    id = "GetSparqlStreamInput",
     members = {
         limit = {
             type = "long",
@@ -2224,6 +2334,7 @@ M.GetSparqlStreamInput = {
 
 M.SparqlData = {
     type = "structure",
+    id = "SparqlData",
     members = {
         stmt = {
             type = "string",
@@ -2236,6 +2347,7 @@ M.SparqlData = {
 
 M.SparqlRecord = {
     type = "structure",
+    id = "SparqlRecord",
     members = {
         commitTimestampInMillis = {
             type = "long",
@@ -2269,6 +2381,7 @@ M.SparqlRecord = {
 
 M.GetSparqlStreamOutput = {
     type = "structure",
+    id = "GetSparqlStreamOutput",
     members = {
         lastEventId = {
             type = "map",
@@ -2309,6 +2422,7 @@ M.GetSparqlStreamOutput = {
 
 M.ListGremlinQueriesInput = {
     type = "structure",
+    id = "ListGremlinQueriesInput",
     members = {
         includeWaiting = {
             type = "boolean",
@@ -2321,6 +2435,7 @@ M.ListGremlinQueriesInput = {
 
 M.GremlinQueryStatus = {
     type = "structure",
+    id = "GremlinQueryStatus",
     members = {
         queryId = {
             type = "string",
@@ -2334,6 +2449,7 @@ M.GremlinQueryStatus = {
 
 M.ListGremlinQueriesOutput = {
     type = "structure",
+    id = "ListGremlinQueriesOutput",
     members = {
         acceptedQueryCount = {
             type = "integer",
@@ -2350,6 +2466,7 @@ M.ListGremlinQueriesOutput = {
 
 M.ListLoaderJobsInput = {
     type = "structure",
+    id = "ListLoaderJobsInput",
     members = {
         limit = {
             type = "integer",
@@ -2368,6 +2485,7 @@ M.ListLoaderJobsInput = {
 
 M.LoaderIdResult = {
     type = "structure",
+    id = "LoaderIdResult",
     members = {
         loadIds = {
             type = "list",
@@ -2378,6 +2496,7 @@ M.LoaderIdResult = {
 
 M.ListLoaderJobsOutput = {
     type = "structure",
+    id = "ListLoaderJobsOutput",
     members = {
         status = {
             type = "string",
@@ -2393,6 +2512,7 @@ M.ListLoaderJobsOutput = {
 
 M.ListMLDataProcessingJobsInput = {
     type = "structure",
+    id = "ListMLDataProcessingJobsInput",
     members = {
         maxItems = {
             type = "integer",
@@ -2411,6 +2531,7 @@ M.ListMLDataProcessingJobsInput = {
 
 M.ListMLDataProcessingJobsOutput = {
     type = "structure",
+    id = "ListMLDataProcessingJobsOutput",
     members = {
         ids = {
             type = "list",
@@ -2421,6 +2542,7 @@ M.ListMLDataProcessingJobsOutput = {
 
 M.ListMLEndpointsInput = {
     type = "structure",
+    id = "ListMLEndpointsInput",
     members = {
         maxItems = {
             type = "integer",
@@ -2439,6 +2561,7 @@ M.ListMLEndpointsInput = {
 
 M.ListMLEndpointsOutput = {
     type = "structure",
+    id = "ListMLEndpointsOutput",
     members = {
         ids = {
             type = "list",
@@ -2449,6 +2572,7 @@ M.ListMLEndpointsOutput = {
 
 M.ListMLModelTrainingJobsInput = {
     type = "structure",
+    id = "ListMLModelTrainingJobsInput",
     members = {
         maxItems = {
             type = "integer",
@@ -2467,6 +2591,7 @@ M.ListMLModelTrainingJobsInput = {
 
 M.ListMLModelTrainingJobsOutput = {
     type = "structure",
+    id = "ListMLModelTrainingJobsOutput",
     members = {
         ids = {
             type = "list",
@@ -2477,6 +2602,7 @@ M.ListMLModelTrainingJobsOutput = {
 
 M.ListMLModelTransformJobsInput = {
     type = "structure",
+    id = "ListMLModelTransformJobsInput",
     members = {
         maxItems = {
             type = "integer",
@@ -2495,6 +2621,7 @@ M.ListMLModelTransformJobsInput = {
 
 M.ListMLModelTransformJobsOutput = {
     type = "structure",
+    id = "ListMLModelTransformJobsOutput",
     members = {
         ids = {
             type = "list",
@@ -2505,6 +2632,7 @@ M.ListMLModelTransformJobsOutput = {
 
 M.ListOpenCypherQueriesInput = {
     type = "structure",
+    id = "ListOpenCypherQueriesInput",
     members = {
         includeWaiting = {
             type = "boolean",
@@ -2517,6 +2645,7 @@ M.ListOpenCypherQueriesInput = {
 
 M.ListOpenCypherQueriesOutput = {
     type = "structure",
+    id = "ListOpenCypherQueriesOutput",
     members = {
         acceptedQueryCount = {
             type = "integer",
@@ -2539,6 +2668,7 @@ M.StatisticsAutoGenerationMode = {
 
 M.ManagePropertygraphStatisticsInput = {
     type = "structure",
+    id = "ManagePropertygraphStatisticsInput",
     members = {
         mode = {
             type = "string",
@@ -2548,6 +2678,7 @@ M.ManagePropertygraphStatisticsInput = {
 
 M.RefreshStatisticsIdMap = {
     type = "structure",
+    id = "RefreshStatisticsIdMap",
     members = {
         statisticsId = {
             type = "string",
@@ -2557,6 +2688,7 @@ M.RefreshStatisticsIdMap = {
 
 M.ManagePropertygraphStatisticsOutput = {
     type = "structure",
+    id = "ManagePropertygraphStatisticsOutput",
     members = {
         status = {
             type = "string",
@@ -2570,6 +2702,7 @@ M.ManagePropertygraphStatisticsOutput = {
 
 M.ManageSparqlStatisticsInput = {
     type = "structure",
+    id = "ManageSparqlStatisticsInput",
     members = {
         mode = {
             type = "string",
@@ -2579,6 +2712,7 @@ M.ManageSparqlStatisticsInput = {
 
 M.ManageSparqlStatisticsOutput = {
     type = "structure",
+    id = "ManageSparqlStatisticsOutput",
     members = {
         status = {
             type = "string",
@@ -2592,6 +2726,7 @@ M.ManageSparqlStatisticsOutput = {
 
 M.S3Exception = {
     type = "structure",
+    id = "S3Exception",
     error = "client",
     members = {
         detailedMessage = {
@@ -2678,6 +2813,7 @@ M.S3BucketRegion = {
 
 M.StartLoaderJobInput = {
     type = "structure",
+    id = "StartLoaderJobInput",
     members = {
         source = {
             type = "string",
@@ -2739,6 +2875,7 @@ M.StartLoaderJobInput = {
 
 M.StartLoaderJobOutput = {
     type = "structure",
+    id = "StartLoaderJobOutput",
     members = {
         status = {
             type = "string",
@@ -2759,6 +2896,7 @@ M.StartLoaderJobOutput = {
 
 M.StartMLDataProcessingJobInput = {
     type = "structure",
+    id = "StartMLDataProcessingJobInput",
     members = {
         id = {
             type = "string",
@@ -2818,6 +2956,7 @@ M.StartMLDataProcessingJobInput = {
 
 M.StartMLDataProcessingJobOutput = {
     type = "structure",
+    id = "StartMLDataProcessingJobOutput",
     members = {
         id = {
             type = "string",
@@ -2833,6 +2972,7 @@ M.StartMLDataProcessingJobOutput = {
 
 M.CustomModelTrainingParameters = {
     type = "structure",
+    id = "CustomModelTrainingParameters",
     members = {
         sourceS3DirectoryPath = {
             type = "string",
@@ -2851,6 +2991,7 @@ M.CustomModelTrainingParameters = {
 
 M.StartMLModelTrainingJobInput = {
     type = "structure",
+    id = "StartMLModelTrainingJobInput",
     members = {
         id = {
             type = "string",
@@ -2917,6 +3058,7 @@ M.StartMLModelTrainingJobInput = {
 
 M.StartMLModelTrainingJobOutput = {
     type = "structure",
+    id = "StartMLModelTrainingJobOutput",
     members = {
         id = {
             type = "string",
@@ -2932,6 +3074,7 @@ M.StartMLModelTrainingJobOutput = {
 
 M.CustomModelTransformParameters = {
     type = "structure",
+    id = "CustomModelTransformParameters",
     members = {
         sourceS3DirectoryPath = {
             type = "string",
@@ -2947,6 +3090,7 @@ M.CustomModelTransformParameters = {
 
 M.StartMLModelTransformJobInput = {
     type = "structure",
+    id = "StartMLModelTransformJobInput",
     members = {
         id = {
             type = "string",
@@ -2998,6 +3142,7 @@ M.StartMLModelTransformJobInput = {
 
 M.StartMLModelTransformJobOutput = {
     type = "structure",
+    id = "StartMLModelTransformJobOutput",
     members = {
         id = {
             type = "string",

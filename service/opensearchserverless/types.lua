@@ -6,6 +6,7 @@ M.AccessPolicyType = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -16,6 +17,7 @@ M.ConflictException = {
 
 M.CreateAccessPolicyInput = {
     type = "structure",
+    id = "CreateAccessPolicyInput",
     members = {
         type = {
             type = "string",
@@ -49,6 +51,7 @@ M.CreateAccessPolicyInput = {
 
 M.AccessPolicyDetail = {
     type = "structure",
+    id = "AccessPolicyDetail",
     members = {
         type = {
             type = "string",
@@ -76,6 +79,7 @@ M.AccessPolicyDetail = {
 
 M.CreateAccessPolicyOutput = {
     type = "structure",
+    id = "CreateAccessPolicyOutput",
     members = {
         accessPolicyDetail = M.AccessPolicyDetail,
     },
@@ -83,6 +87,7 @@ M.CreateAccessPolicyOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -93,6 +98,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -121,6 +127,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -131,6 +138,7 @@ M.ValidationException = {
 
 M.DeleteAccessPolicyInput = {
     type = "structure",
+    id = "DeleteAccessPolicyInput",
     members = {
         type = {
             type = "string",
@@ -155,10 +163,12 @@ M.DeleteAccessPolicyInput = {
 
 M.DeleteAccessPolicyOutput = {
     type = "structure",
+    id = "DeleteAccessPolicyOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -169,6 +179,7 @@ M.ResourceNotFoundException = {
 
 M.GetAccessPolicyInput = {
     type = "structure",
+    id = "GetAccessPolicyInput",
     members = {
         type = {
             type = "string",
@@ -187,6 +198,7 @@ M.GetAccessPolicyInput = {
 
 M.GetAccessPolicyOutput = {
     type = "structure",
+    id = "GetAccessPolicyOutput",
     members = {
         accessPolicyDetail = M.AccessPolicyDetail,
     },
@@ -194,6 +206,7 @@ M.GetAccessPolicyOutput = {
 
 M.ListAccessPoliciesInput = {
     type = "structure",
+    id = "ListAccessPoliciesInput",
     members = {
         type = {
             type = "string",
@@ -216,6 +229,7 @@ M.ListAccessPoliciesInput = {
 
 M.AccessPolicySummary = {
     type = "structure",
+    id = "AccessPolicySummary",
     members = {
         type = {
             type = "string",
@@ -240,6 +254,7 @@ M.AccessPolicySummary = {
 
 M.ListAccessPoliciesOutput = {
     type = "structure",
+    id = "ListAccessPoliciesOutput",
     members = {
         accessPolicySummaries = {
             type = "list",
@@ -253,6 +268,7 @@ M.ListAccessPoliciesOutput = {
 
 M.UpdateAccessPolicyInput = {
     type = "structure",
+    id = "UpdateAccessPolicyInput",
     members = {
         type = {
             type = "string",
@@ -289,6 +305,7 @@ M.UpdateAccessPolicyInput = {
 
 M.UpdateAccessPolicyOutput = {
     type = "structure",
+    id = "UpdateAccessPolicyOutput",
     members = {
         accessPolicyDetail = M.AccessPolicyDetail,
     },
@@ -296,6 +313,7 @@ M.UpdateAccessPolicyOutput = {
 
 M.AccessPolicyStats = {
     type = "structure",
+    id = "AccessPolicyStats",
     members = {
         DataPolicyCount = {
             type = "long",
@@ -305,6 +323,7 @@ M.AccessPolicyStats = {
 
 M.CapacityLimits = {
     type = "structure",
+    id = "CapacityLimits",
     members = {
         maxIndexingCapacityInOCU = {
             type = "integer",
@@ -317,6 +336,7 @@ M.CapacityLimits = {
 
 M.AccountSettingsDetail = {
     type = "structure",
+    id = "AccountSettingsDetail",
     members = {
         capacityLimits = M.CapacityLimits,
     },
@@ -324,6 +344,7 @@ M.AccountSettingsDetail = {
 
 M.BatchGetCollectionInput = {
     type = "structure",
+    id = "BatchGetCollectionInput",
     members = {
         ids = {
             type = "list",
@@ -338,6 +359,7 @@ M.BatchGetCollectionInput = {
 
 M.FipsEndpoints = {
     type = "structure",
+    id = "FipsEndpoints",
     members = {
         collectionEndpoint = {
             type = "string",
@@ -376,6 +398,7 @@ M.ServerlessVectorAccelerationStatus = {
 
 M.VectorOptions = {
     type = "structure",
+    id = "VectorOptions",
     members = {
         ServerlessVectorAcceleration = {
             type = "string",
@@ -388,6 +411,7 @@ M.VectorOptions = {
 
 M.CollectionDetail = {
     type = "structure",
+    id = "CollectionDetail",
     members = {
         id = {
             type = "string",
@@ -441,6 +465,7 @@ M.CollectionDetail = {
 
 M.CollectionErrorDetail = {
     type = "structure",
+    id = "CollectionErrorDetail",
     members = {
         id = {
             type = "string",
@@ -459,6 +484,7 @@ M.CollectionErrorDetail = {
 
 M.BatchGetCollectionOutput = {
     type = "structure",
+    id = "BatchGetCollectionOutput",
     members = {
         collectionDetails = {
             type = "list",
@@ -473,6 +499,7 @@ M.BatchGetCollectionOutput = {
 
 M.BatchGetCollectionGroupInput = {
     type = "structure",
+    id = "BatchGetCollectionGroupInput",
     members = {
         ids = {
             type = "list",
@@ -487,6 +514,7 @@ M.BatchGetCollectionGroupInput = {
 
 M.CollectionGroupCapacityLimits = {
     type = "structure",
+    id = "CollectionGroupCapacityLimits",
     members = {
         maxIndexingCapacityInOCU = {
             type = "float",
@@ -505,6 +533,7 @@ M.CollectionGroupCapacityLimits = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -523,6 +552,7 @@ M.Tag = {
 
 M.CollectionGroupDetail = {
     type = "structure",
+    id = "CollectionGroupDetail",
     members = {
         id = {
             type = "string",
@@ -555,6 +585,7 @@ M.CollectionGroupDetail = {
 
 M.CollectionGroupErrorDetail = {
     type = "structure",
+    id = "CollectionGroupErrorDetail",
     members = {
         id = {
             type = "string",
@@ -573,6 +604,7 @@ M.CollectionGroupErrorDetail = {
 
 M.BatchGetCollectionGroupOutput = {
     type = "structure",
+    id = "BatchGetCollectionGroupOutput",
     members = {
         collectionGroupDetails = {
             type = "list",
@@ -591,6 +623,7 @@ M.LifecyclePolicyType = {
 
 M.LifecyclePolicyResourceIdentifier = {
     type = "structure",
+    id = "LifecyclePolicyResourceIdentifier",
     members = {
         type = {
             type = "string",
@@ -609,6 +642,7 @@ M.LifecyclePolicyResourceIdentifier = {
 
 M.BatchGetEffectiveLifecyclePolicyInput = {
     type = "structure",
+    id = "BatchGetEffectiveLifecyclePolicyInput",
     members = {
         resourceIdentifiers = {
             type = "list",
@@ -626,6 +660,7 @@ M.ResourceType = {
 
 M.EffectiveLifecyclePolicyDetail = {
     type = "structure",
+    id = "EffectiveLifecyclePolicyDetail",
     members = {
         type = {
             type = "string",
@@ -650,6 +685,7 @@ M.EffectiveLifecyclePolicyDetail = {
 
 M.EffectiveLifecyclePolicyErrorDetail = {
     type = "structure",
+    id = "EffectiveLifecyclePolicyErrorDetail",
     members = {
         type = {
             type = "string",
@@ -668,6 +704,7 @@ M.EffectiveLifecyclePolicyErrorDetail = {
 
 M.BatchGetEffectiveLifecyclePolicyOutput = {
     type = "structure",
+    id = "BatchGetEffectiveLifecyclePolicyOutput",
     members = {
         effectiveLifecyclePolicyDetails = {
             type = "list",
@@ -682,6 +719,7 @@ M.BatchGetEffectiveLifecyclePolicyOutput = {
 
 M.LifecyclePolicyIdentifier = {
     type = "structure",
+    id = "LifecyclePolicyIdentifier",
     members = {
         type = {
             type = "string",
@@ -700,6 +738,7 @@ M.LifecyclePolicyIdentifier = {
 
 M.BatchGetLifecyclePolicyInput = {
     type = "structure",
+    id = "BatchGetLifecyclePolicyInput",
     members = {
         identifiers = {
             type = "list",
@@ -713,6 +752,7 @@ M.BatchGetLifecyclePolicyInput = {
 
 M.LifecyclePolicyDetail = {
     type = "structure",
+    id = "LifecyclePolicyDetail",
     members = {
         type = {
             type = "string",
@@ -740,6 +780,7 @@ M.LifecyclePolicyDetail = {
 
 M.LifecyclePolicyErrorDetail = {
     type = "structure",
+    id = "LifecyclePolicyErrorDetail",
     members = {
         type = {
             type = "string",
@@ -758,6 +799,7 @@ M.LifecyclePolicyErrorDetail = {
 
 M.BatchGetLifecyclePolicyOutput = {
     type = "structure",
+    id = "BatchGetLifecyclePolicyOutput",
     members = {
         lifecyclePolicyDetails = {
             type = "list",
@@ -772,6 +814,7 @@ M.BatchGetLifecyclePolicyOutput = {
 
 M.BatchGetVpcEndpointInput = {
     type = "structure",
+    id = "BatchGetVpcEndpointInput",
     members = {
         ids = {
             type = "list",
@@ -792,6 +835,7 @@ M.VpcEndpointStatus = {
 
 M.VpcEndpointDetail = {
     type = "structure",
+    id = "VpcEndpointDetail",
     members = {
         id = {
             type = "string",
@@ -827,6 +871,7 @@ M.VpcEndpointDetail = {
 
 M.VpcEndpointErrorDetail = {
     type = "structure",
+    id = "VpcEndpointErrorDetail",
     members = {
         id = {
             type = "string",
@@ -842,6 +887,7 @@ M.VpcEndpointErrorDetail = {
 
 M.BatchGetVpcEndpointOutput = {
     type = "structure",
+    id = "BatchGetVpcEndpointOutput",
     members = {
         vpcEndpointDetails = {
             type = "list",
@@ -856,6 +902,7 @@ M.BatchGetVpcEndpointOutput = {
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         aWSOwnedKey = {
             type = "boolean",
@@ -868,6 +915,7 @@ M.EncryptionConfig = {
 
 M.CreateCollectionInput = {
     type = "structure",
+    id = "CreateCollectionInput",
     members = {
         name = {
             type = "string",
@@ -904,6 +952,7 @@ M.CreateCollectionInput = {
 
 M.CreateCollectionDetail = {
     type = "structure",
+    id = "CreateCollectionDetail",
     members = {
         id = {
             type = "string",
@@ -944,6 +993,7 @@ M.CreateCollectionDetail = {
 
 M.CreateCollectionOutput = {
     type = "structure",
+    id = "CreateCollectionOutput",
     members = {
         createCollectionDetail = M.CreateCollectionDetail,
     },
@@ -951,6 +1001,7 @@ M.CreateCollectionOutput = {
 
 M.OcuLimitExceededException = {
     type = "structure",
+    id = "OcuLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -964,6 +1015,7 @@ M.OcuLimitExceededException = {
 
 M.DeleteCollectionInput = {
     type = "structure",
+    id = "DeleteCollectionInput",
     members = {
         id = {
             type = "string",
@@ -982,6 +1034,7 @@ M.DeleteCollectionInput = {
 
 M.DeleteCollectionDetail = {
     type = "structure",
+    id = "DeleteCollectionDetail",
     members = {
         id = {
             type = "string",
@@ -997,6 +1050,7 @@ M.DeleteCollectionDetail = {
 
 M.DeleteCollectionOutput = {
     type = "structure",
+    id = "DeleteCollectionOutput",
     members = {
         deleteCollectionDetail = M.DeleteCollectionDetail,
     },
@@ -1004,6 +1058,7 @@ M.DeleteCollectionOutput = {
 
 M.CollectionFilters = {
     type = "structure",
+    id = "CollectionFilters",
     members = {
         name = {
             type = "string",
@@ -1019,6 +1074,7 @@ M.CollectionFilters = {
 
 M.ListCollectionsInput = {
     type = "structure",
+    id = "ListCollectionsInput",
     members = {
         collectionFilters = M.CollectionFilters,
         nextToken = {
@@ -1032,6 +1088,7 @@ M.ListCollectionsInput = {
 
 M.CollectionSummary = {
     type = "structure",
+    id = "CollectionSummary",
     members = {
         id = {
             type = "string",
@@ -1056,6 +1113,7 @@ M.CollectionSummary = {
 
 M.ListCollectionsOutput = {
     type = "structure",
+    id = "ListCollectionsOutput",
     members = {
         collectionSummaries = {
             type = "list",
@@ -1069,6 +1127,7 @@ M.ListCollectionsOutput = {
 
 M.UpdateCollectionInput = {
     type = "structure",
+    id = "UpdateCollectionInput",
     members = {
         id = {
             type = "string",
@@ -1091,6 +1150,7 @@ M.UpdateCollectionInput = {
 
 M.UpdateCollectionDetail = {
     type = "structure",
+    id = "UpdateCollectionDetail",
     members = {
         id = {
             type = "string",
@@ -1122,6 +1182,7 @@ M.UpdateCollectionDetail = {
 
 M.UpdateCollectionOutput = {
     type = "structure",
+    id = "UpdateCollectionOutput",
     members = {
         updateCollectionDetail = M.UpdateCollectionDetail,
     },
@@ -1129,6 +1190,7 @@ M.UpdateCollectionOutput = {
 
 M.CreateCollectionGroupInput = {
     type = "structure",
+    id = "CreateCollectionGroupInput",
     members = {
         name = {
             type = "string",
@@ -1161,6 +1223,7 @@ M.CreateCollectionGroupInput = {
 
 M.CreateCollectionGroupDetail = {
     type = "structure",
+    id = "CreateCollectionGroupDetail",
     members = {
         id = {
             type = "string",
@@ -1190,6 +1253,7 @@ M.CreateCollectionGroupDetail = {
 
 M.CreateCollectionGroupOutput = {
     type = "structure",
+    id = "CreateCollectionGroupOutput",
     members = {
         createCollectionGroupDetail = M.CreateCollectionGroupDetail,
     },
@@ -1197,6 +1261,7 @@ M.CreateCollectionGroupOutput = {
 
 M.DeleteCollectionGroupInput = {
     type = "structure",
+    id = "DeleteCollectionGroupInput",
     members = {
         id = {
             type = "string",
@@ -1215,10 +1280,12 @@ M.DeleteCollectionGroupInput = {
 
 M.DeleteCollectionGroupOutput = {
     type = "structure",
+    id = "DeleteCollectionGroupOutput",
 }
 
 M.ListCollectionGroupsInput = {
     type = "structure",
+    id = "ListCollectionGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1231,6 +1298,7 @@ M.ListCollectionGroupsInput = {
 
 M.CollectionGroupSummary = {
     type = "structure",
+    id = "CollectionGroupSummary",
     members = {
         id = {
             type = "string",
@@ -1253,6 +1321,7 @@ M.CollectionGroupSummary = {
 
 M.ListCollectionGroupsOutput = {
     type = "structure",
+    id = "ListCollectionGroupsOutput",
     members = {
         collectionGroupSummaries = {
             type = "list",
@@ -1266,6 +1335,7 @@ M.ListCollectionGroupsOutput = {
 
 M.UpdateCollectionGroupInput = {
     type = "structure",
+    id = "UpdateCollectionGroupInput",
     members = {
         id = {
             type = "string",
@@ -1288,6 +1358,7 @@ M.UpdateCollectionGroupInput = {
 
 M.UpdateCollectionGroupDetail = {
     type = "structure",
+    id = "UpdateCollectionGroupDetail",
     members = {
         id = {
             type = "string",
@@ -1313,6 +1384,7 @@ M.UpdateCollectionGroupDetail = {
 
 M.UpdateCollectionGroupOutput = {
     type = "structure",
+    id = "UpdateCollectionGroupOutput",
     members = {
         updateCollectionGroupDetail = M.UpdateCollectionGroupDetail,
     },
@@ -1331,6 +1403,7 @@ M.IamIdentityCenterUserAttribute = {
 
 M.CreateIamIdentityCenterConfigOptions = {
     type = "structure",
+    id = "CreateIamIdentityCenterConfigOptions",
     members = {
         instanceArn = {
             type = "string",
@@ -1349,6 +1422,7 @@ M.CreateIamIdentityCenterConfigOptions = {
 
 M.CreateIndexInput = {
     type = "structure",
+    id = "CreateIndexInput",
     members = {
         id = {
             type = "string",
@@ -1370,10 +1444,12 @@ M.CreateIndexInput = {
 
 M.CreateIndexOutput = {
     type = "structure",
+    id = "CreateIndexOutput",
 }
 
 M.CreateLifecyclePolicyInput = {
     type = "structure",
+    id = "CreateLifecyclePolicyInput",
     members = {
         type = {
             type = "string",
@@ -1407,6 +1483,7 @@ M.CreateLifecyclePolicyInput = {
 
 M.CreateLifecyclePolicyOutput = {
     type = "structure",
+    id = "CreateLifecyclePolicyOutput",
     members = {
         lifecyclePolicyDetail = M.LifecyclePolicyDetail,
     },
@@ -1414,6 +1491,7 @@ M.CreateLifecyclePolicyOutput = {
 
 M.IamFederationConfigOptions = {
     type = "structure",
+    id = "IamFederationConfigOptions",
     members = {
         groupAttribute = {
             type = "string",
@@ -1426,6 +1504,7 @@ M.IamFederationConfigOptions = {
 
 M.SamlConfigOptions = {
     type = "structure",
+    id = "SamlConfigOptions",
     members = {
         metadata = {
             type = "string",
@@ -1456,6 +1535,7 @@ M.SecurityConfigType = {
 
 M.CreateSecurityConfigInput = {
     type = "structure",
+    id = "CreateSecurityConfigInput",
     members = {
         type = {
             type = "string",
@@ -1486,6 +1566,7 @@ M.CreateSecurityConfigInput = {
 
 M.IamIdentityCenterConfigOptions = {
     type = "structure",
+    id = "IamIdentityCenterConfigOptions",
     members = {
         instanceArn = {
             type = "string",
@@ -1510,6 +1591,7 @@ M.IamIdentityCenterConfigOptions = {
 
 M.SecurityConfigDetail = {
     type = "structure",
+    id = "SecurityConfigDetail",
     members = {
         id = {
             type = "string",
@@ -1537,6 +1619,7 @@ M.SecurityConfigDetail = {
 
 M.CreateSecurityConfigOutput = {
     type = "structure",
+    id = "CreateSecurityConfigOutput",
     members = {
         securityConfigDetail = M.SecurityConfigDetail,
     },
@@ -1549,6 +1632,7 @@ M.SecurityPolicyType = {
 
 M.CreateSecurityPolicyInput = {
     type = "structure",
+    id = "CreateSecurityPolicyInput",
     members = {
         type = {
             type = "string",
@@ -1582,6 +1666,7 @@ M.CreateSecurityPolicyInput = {
 
 M.SecurityPolicyDetail = {
     type = "structure",
+    id = "SecurityPolicyDetail",
     members = {
         type = {
             type = "string",
@@ -1609,6 +1694,7 @@ M.SecurityPolicyDetail = {
 
 M.CreateSecurityPolicyOutput = {
     type = "structure",
+    id = "CreateSecurityPolicyOutput",
     members = {
         securityPolicyDetail = M.SecurityPolicyDetail,
     },
@@ -1616,6 +1702,7 @@ M.CreateSecurityPolicyOutput = {
 
 M.CreateVpcEndpointInput = {
     type = "structure",
+    id = "CreateVpcEndpointInput",
     members = {
         name = {
             type = "string",
@@ -1651,6 +1738,7 @@ M.CreateVpcEndpointInput = {
 
 M.CreateVpcEndpointDetail = {
     type = "structure",
+    id = "CreateVpcEndpointDetail",
     members = {
         id = {
             type = "string",
@@ -1666,6 +1754,7 @@ M.CreateVpcEndpointDetail = {
 
 M.CreateVpcEndpointOutput = {
     type = "structure",
+    id = "CreateVpcEndpointOutput",
     members = {
         createVpcEndpointDetail = M.CreateVpcEndpointDetail,
     },
@@ -1673,6 +1762,7 @@ M.CreateVpcEndpointOutput = {
 
 M.DeleteIndexInput = {
     type = "structure",
+    id = "DeleteIndexInput",
     members = {
         id = {
             type = "string",
@@ -1691,10 +1781,12 @@ M.DeleteIndexInput = {
 
 M.DeleteIndexOutput = {
     type = "structure",
+    id = "DeleteIndexOutput",
 }
 
 M.DeleteLifecyclePolicyInput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyInput",
     members = {
         type = {
             type = "string",
@@ -1719,10 +1811,12 @@ M.DeleteLifecyclePolicyInput = {
 
 M.DeleteLifecyclePolicyOutput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyOutput",
 }
 
 M.DeleteSecurityConfigInput = {
     type = "structure",
+    id = "DeleteSecurityConfigInput",
     members = {
         id = {
             type = "string",
@@ -1741,10 +1835,12 @@ M.DeleteSecurityConfigInput = {
 
 M.DeleteSecurityConfigOutput = {
     type = "structure",
+    id = "DeleteSecurityConfigOutput",
 }
 
 M.DeleteSecurityPolicyInput = {
     type = "structure",
+    id = "DeleteSecurityPolicyInput",
     members = {
         type = {
             type = "string",
@@ -1769,10 +1865,12 @@ M.DeleteSecurityPolicyInput = {
 
 M.DeleteSecurityPolicyOutput = {
     type = "structure",
+    id = "DeleteSecurityPolicyOutput",
 }
 
 M.DeleteVpcEndpointInput = {
     type = "structure",
+    id = "DeleteVpcEndpointInput",
     members = {
         id = {
             type = "string",
@@ -1791,6 +1889,7 @@ M.DeleteVpcEndpointInput = {
 
 M.DeleteVpcEndpointDetail = {
     type = "structure",
+    id = "DeleteVpcEndpointDetail",
     members = {
         id = {
             type = "string",
@@ -1806,6 +1905,7 @@ M.DeleteVpcEndpointDetail = {
 
 M.DeleteVpcEndpointOutput = {
     type = "structure",
+    id = "DeleteVpcEndpointOutput",
     members = {
         deleteVpcEndpointDetail = M.DeleteVpcEndpointDetail,
     },
@@ -1813,10 +1913,12 @@ M.DeleteVpcEndpointOutput = {
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
 }
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         accountSettingsDetail = M.AccountSettingsDetail,
     },
@@ -1824,6 +1926,7 @@ M.GetAccountSettingsOutput = {
 
 M.GetIndexInput = {
     type = "structure",
+    id = "GetIndexInput",
     members = {
         id = {
             type = "string",
@@ -1842,6 +1945,7 @@ M.GetIndexInput = {
 
 M.GetIndexOutput = {
     type = "structure",
+    id = "GetIndexOutput",
     members = {
         indexSchema = {
             type = "document",
@@ -1851,10 +1955,12 @@ M.GetIndexOutput = {
 
 M.GetPoliciesStatsInput = {
     type = "structure",
+    id = "GetPoliciesStatsInput",
 }
 
 M.LifecyclePolicyStats = {
     type = "structure",
+    id = "LifecyclePolicyStats",
     members = {
         RetentionPolicyCount = {
             type = "long",
@@ -1864,6 +1970,7 @@ M.LifecyclePolicyStats = {
 
 M.SecurityConfigStats = {
     type = "structure",
+    id = "SecurityConfigStats",
     members = {
         SamlConfigCount = {
             type = "long",
@@ -1873,6 +1980,7 @@ M.SecurityConfigStats = {
 
 M.SecurityPolicyStats = {
     type = "structure",
+    id = "SecurityPolicyStats",
     members = {
         EncryptionPolicyCount = {
             type = "long",
@@ -1885,6 +1993,7 @@ M.SecurityPolicyStats = {
 
 M.GetPoliciesStatsOutput = {
     type = "structure",
+    id = "GetPoliciesStatsOutput",
     members = {
         AccessPolicyStats = M.AccessPolicyStats,
         SecurityPolicyStats = M.SecurityPolicyStats,
@@ -1898,6 +2007,7 @@ M.GetPoliciesStatsOutput = {
 
 M.GetSecurityConfigInput = {
     type = "structure",
+    id = "GetSecurityConfigInput",
     members = {
         id = {
             type = "string",
@@ -1910,6 +2020,7 @@ M.GetSecurityConfigInput = {
 
 M.GetSecurityConfigOutput = {
     type = "structure",
+    id = "GetSecurityConfigOutput",
     members = {
         securityConfigDetail = M.SecurityConfigDetail,
     },
@@ -1917,6 +2028,7 @@ M.GetSecurityConfigOutput = {
 
 M.GetSecurityPolicyInput = {
     type = "structure",
+    id = "GetSecurityPolicyInput",
     members = {
         type = {
             type = "string",
@@ -1935,6 +2047,7 @@ M.GetSecurityPolicyInput = {
 
 M.GetSecurityPolicyOutput = {
     type = "structure",
+    id = "GetSecurityPolicyOutput",
     members = {
         securityPolicyDetail = M.SecurityPolicyDetail,
     },
@@ -1942,6 +2055,7 @@ M.GetSecurityPolicyOutput = {
 
 M.UpdateIndexInput = {
     type = "structure",
+    id = "UpdateIndexInput",
     members = {
         id = {
             type = "string",
@@ -1963,10 +2077,12 @@ M.UpdateIndexInput = {
 
 M.UpdateIndexOutput = {
     type = "structure",
+    id = "UpdateIndexOutput",
 }
 
 M.ListLifecyclePoliciesInput = {
     type = "structure",
+    id = "ListLifecyclePoliciesInput",
     members = {
         type = {
             type = "string",
@@ -1989,6 +2105,7 @@ M.ListLifecyclePoliciesInput = {
 
 M.LifecyclePolicySummary = {
     type = "structure",
+    id = "LifecyclePolicySummary",
     members = {
         type = {
             type = "string",
@@ -2013,6 +2130,7 @@ M.LifecyclePolicySummary = {
 
 M.ListLifecyclePoliciesOutput = {
     type = "structure",
+    id = "ListLifecyclePoliciesOutput",
     members = {
         lifecyclePolicySummaries = {
             type = "list",
@@ -2026,6 +2144,7 @@ M.ListLifecyclePoliciesOutput = {
 
 M.UpdateLifecyclePolicyInput = {
     type = "structure",
+    id = "UpdateLifecyclePolicyInput",
     members = {
         type = {
             type = "string",
@@ -2062,6 +2181,7 @@ M.UpdateLifecyclePolicyInput = {
 
 M.UpdateLifecyclePolicyOutput = {
     type = "structure",
+    id = "UpdateLifecyclePolicyOutput",
     members = {
         lifecyclePolicyDetail = M.LifecyclePolicyDetail,
     },
@@ -2069,6 +2189,7 @@ M.UpdateLifecyclePolicyOutput = {
 
 M.ListSecurityConfigsInput = {
     type = "structure",
+    id = "ListSecurityConfigsInput",
     members = {
         type = {
             type = "string",
@@ -2087,6 +2208,7 @@ M.ListSecurityConfigsInput = {
 
 M.SecurityConfigSummary = {
     type = "structure",
+    id = "SecurityConfigSummary",
     members = {
         id = {
             type = "string",
@@ -2111,6 +2233,7 @@ M.SecurityConfigSummary = {
 
 M.ListSecurityConfigsOutput = {
     type = "structure",
+    id = "ListSecurityConfigsOutput",
     members = {
         securityConfigSummaries = {
             type = "list",
@@ -2124,6 +2247,7 @@ M.ListSecurityConfigsOutput = {
 
 M.ListSecurityPoliciesInput = {
     type = "structure",
+    id = "ListSecurityPoliciesInput",
     members = {
         type = {
             type = "string",
@@ -2146,6 +2270,7 @@ M.ListSecurityPoliciesInput = {
 
 M.SecurityPolicySummary = {
     type = "structure",
+    id = "SecurityPolicySummary",
     members = {
         type = {
             type = "string",
@@ -2170,6 +2295,7 @@ M.SecurityPolicySummary = {
 
 M.ListSecurityPoliciesOutput = {
     type = "structure",
+    id = "ListSecurityPoliciesOutput",
     members = {
         securityPolicySummaries = {
             type = "list",
@@ -2183,6 +2309,7 @@ M.ListSecurityPoliciesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2195,6 +2322,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -2205,6 +2333,7 @@ M.ListTagsForResourceOutput = {
 
 M.VpcEndpointFilters = {
     type = "structure",
+    id = "VpcEndpointFilters",
     members = {
         status = {
             type = "string",
@@ -2214,6 +2343,7 @@ M.VpcEndpointFilters = {
 
 M.ListVpcEndpointsInput = {
     type = "structure",
+    id = "ListVpcEndpointsInput",
     members = {
         vpcEndpointFilters = M.VpcEndpointFilters,
         nextToken = {
@@ -2227,6 +2357,7 @@ M.ListVpcEndpointsInput = {
 
 M.VpcEndpointSummary = {
     type = "structure",
+    id = "VpcEndpointSummary",
     members = {
         id = {
             type = "string",
@@ -2242,6 +2373,7 @@ M.VpcEndpointSummary = {
 
 M.ListVpcEndpointsOutput = {
     type = "structure",
+    id = "ListVpcEndpointsOutput",
     members = {
         vpcEndpointSummaries = {
             type = "list",
@@ -2255,6 +2387,7 @@ M.ListVpcEndpointsOutput = {
 
 M.UpdateIamIdentityCenterConfigOptions = {
     type = "structure",
+    id = "UpdateIamIdentityCenterConfigOptions",
     members = {
         userAttribute = {
             type = "string",
@@ -2267,6 +2400,7 @@ M.UpdateIamIdentityCenterConfigOptions = {
 
 M.UpdateSecurityConfigInput = {
     type = "structure",
+    id = "UpdateSecurityConfigInput",
     members = {
         id = {
             type = "string",
@@ -2297,6 +2431,7 @@ M.UpdateSecurityConfigInput = {
 
 M.UpdateSecurityConfigOutput = {
     type = "structure",
+    id = "UpdateSecurityConfigOutput",
     members = {
         securityConfigDetail = M.SecurityConfigDetail,
     },
@@ -2304,6 +2439,7 @@ M.UpdateSecurityConfigOutput = {
 
 M.UpdateSecurityPolicyInput = {
     type = "structure",
+    id = "UpdateSecurityPolicyInput",
     members = {
         type = {
             type = "string",
@@ -2340,6 +2476,7 @@ M.UpdateSecurityPolicyInput = {
 
 M.UpdateSecurityPolicyOutput = {
     type = "structure",
+    id = "UpdateSecurityPolicyOutput",
     members = {
         securityPolicyDetail = M.SecurityPolicyDetail,
     },
@@ -2347,6 +2484,7 @@ M.UpdateSecurityPolicyOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2366,10 +2504,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2389,10 +2529,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         capacityLimits = M.CapacityLimits,
     },
@@ -2400,6 +2542,7 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
     members = {
         accountSettingsDetail = M.AccountSettingsDetail,
     },
@@ -2407,6 +2550,7 @@ M.UpdateAccountSettingsOutput = {
 
 M.UpdateVpcEndpointInput = {
     type = "structure",
+    id = "UpdateVpcEndpointInput",
     members = {
         id = {
             type = "string",
@@ -2441,6 +2585,7 @@ M.UpdateVpcEndpointInput = {
 
 M.UpdateVpcEndpointDetail = {
     type = "structure",
+    id = "UpdateVpcEndpointDetail",
     members = {
         id = {
             type = "string",
@@ -2467,6 +2612,7 @@ M.UpdateVpcEndpointDetail = {
 
 M.UpdateVpcEndpointOutput = {
     type = "structure",
+    id = "UpdateVpcEndpointOutput",
     members = {
         UpdateVpcEndpointDetail = M.UpdateVpcEndpointDetail,
     },

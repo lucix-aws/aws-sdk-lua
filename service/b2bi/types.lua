@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -20,6 +21,7 @@ M.X12SplitBy = {
 
 M.X12SplitOptions = {
     type = "structure",
+    id = "X12SplitOptions",
     members = {
         splitBy = {
             type = "string",
@@ -32,6 +34,7 @@ M.X12SplitOptions = {
 
 M.X12CodeListValidationRule = {
     type = "structure",
+    id = "X12CodeListValidationRule",
     members = {
         elementId = {
             type = "string",
@@ -52,6 +55,7 @@ M.X12CodeListValidationRule = {
 
 M.X12ElementLengthValidationRule = {
     type = "structure",
+    id = "X12ElementLengthValidationRule",
     members = {
         elementId = {
             type = "string",
@@ -81,6 +85,7 @@ M.ElementRequirement = {
 
 M.X12ElementRequirementValidationRule = {
     type = "structure",
+    id = "X12ElementRequirementValidationRule",
     members = {
         elementPosition = {
             type = "string",
@@ -99,6 +104,7 @@ M.X12ElementRequirementValidationRule = {
 
 M.X12ValidationRule = {
     type = "union",
+    id = "X12ValidationRule",
     members = {
         codeListValidationRule = M.X12CodeListValidationRule,
         elementLengthValidationRule = M.X12ElementLengthValidationRule,
@@ -108,6 +114,7 @@ M.X12ValidationRule = {
 
 M.X12ValidationOptions = {
     type = "structure",
+    id = "X12ValidationOptions",
     members = {
         validationRules = {
             type = "list",
@@ -118,6 +125,7 @@ M.X12ValidationOptions = {
 
 M.X12AdvancedOptions = {
     type = "structure",
+    id = "X12AdvancedOptions",
     members = {
         splitOptions = M.X12SplitOptions,
         validationOptions = M.X12ValidationOptions,
@@ -126,6 +134,7 @@ M.X12AdvancedOptions = {
 
 M.AdvancedOptions = {
     type = "structure",
+    id = "AdvancedOptions",
     members = {
         x12 = M.X12AdvancedOptions,
     },
@@ -133,6 +142,7 @@ M.AdvancedOptions = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -151,6 +161,7 @@ M.CapabilityDirection = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucketName = {
             type = "string",
@@ -517,6 +528,7 @@ M.X12Version = {
 
 M.X12Details = {
     type = "structure",
+    id = "X12Details",
     members = {
         transactionSet = {
             type = "string",
@@ -529,6 +541,7 @@ M.X12Details = {
 
 M.EdiType = {
     type = "union",
+    id = "EdiType",
     members = {
         x12Details = M.X12Details,
     },
@@ -536,6 +549,7 @@ M.EdiType = {
 
 M.EdiConfiguration = {
     type = "structure",
+    id = "EdiConfiguration",
     members = {
         capabilityDirection = {
             type = "string",
@@ -560,6 +574,7 @@ M.EdiConfiguration = {
 
 M.CapabilityConfiguration = {
     type = "union",
+    id = "CapabilityConfiguration",
     members = {
         edi = M.EdiConfiguration,
     },
@@ -567,6 +582,7 @@ M.CapabilityConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -589,6 +605,7 @@ M.CapabilityType = {
 
 M.CreateCapabilityInput = {
     type = "structure",
+    id = "CreateCapabilityInput",
     members = {
         name = {
             type = "string",
@@ -624,6 +641,7 @@ M.CreateCapabilityInput = {
 
 M.CreateCapabilityOutput = {
     type = "structure",
+    id = "CreateCapabilityOutput",
     members = {
         capabilityId = {
             type = "string",
@@ -668,6 +686,7 @@ M.CreateCapabilityOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -687,6 +706,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -700,6 +720,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -737,6 +758,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -756,6 +778,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -769,6 +792,7 @@ M.ValidationException = {
 
 M.DeleteCapabilityInput = {
     type = "structure",
+    id = "DeleteCapabilityInput",
     members = {
         capabilityId = {
             type = "string",
@@ -782,10 +806,12 @@ M.DeleteCapabilityInput = {
 
 M.DeleteCapabilityOutput = {
     type = "structure",
+    id = "DeleteCapabilityOutput",
 }
 
 M.GetCapabilityInput = {
     type = "structure",
+    id = "GetCapabilityInput",
     members = {
         capabilityId = {
             type = "string",
@@ -799,6 +825,7 @@ M.GetCapabilityInput = {
 
 M.GetCapabilityOutput = {
     type = "structure",
+    id = "GetCapabilityOutput",
     members = {
         capabilityId = {
             type = "string",
@@ -849,6 +876,7 @@ M.GetCapabilityOutput = {
 
 M.ListCapabilitiesInput = {
     type = "structure",
+    id = "ListCapabilitiesInput",
     members = {
         nextToken = {
             type = "string",
@@ -867,6 +895,7 @@ M.ListCapabilitiesInput = {
 
 M.CapabilitySummary = {
     type = "structure",
+    id = "CapabilitySummary",
     members = {
         capabilityId = {
             type = "string",
@@ -904,6 +933,7 @@ M.CapabilitySummary = {
 
 M.ListCapabilitiesOutput = {
     type = "structure",
+    id = "ListCapabilitiesOutput",
     members = {
         capabilities = {
             type = "list",
@@ -920,6 +950,7 @@ M.ListCapabilitiesOutput = {
 
 M.UpdateCapabilityInput = {
     type = "structure",
+    id = "UpdateCapabilityInput",
     members = {
         capabilityId = {
             type = "string",
@@ -941,6 +972,7 @@ M.UpdateCapabilityInput = {
 
 M.UpdateCapabilityOutput = {
     type = "structure",
+    id = "UpdateCapabilityOutput",
     members = {
         capabilityId = {
             type = "string",
@@ -996,6 +1028,7 @@ M.MappingType = {
 
 M.TemplateDetails = {
     type = "union",
+    id = "TemplateDetails",
     members = {
         x12 = M.X12Details,
     },
@@ -1003,6 +1036,7 @@ M.TemplateDetails = {
 
 M.CreateStarterMappingTemplateInput = {
     type = "structure",
+    id = "CreateStarterMappingTemplateInput",
     members = {
         outputSampleLocation = M.S3Location,
         mappingType = {
@@ -1019,6 +1053,7 @@ M.CreateStarterMappingTemplateInput = {
 
 M.CreateStarterMappingTemplateOutput = {
     type = "structure",
+    id = "CreateStarterMappingTemplateOutput",
     members = {
         mappingTemplate = {
             type = "string",
@@ -1031,6 +1066,7 @@ M.CreateStarterMappingTemplateOutput = {
 
 M.GenerateMappingInput = {
     type = "structure",
+    id = "GenerateMappingInput",
     members = {
         inputFileContent = {
             type = "string",
@@ -1055,6 +1091,7 @@ M.GenerateMappingInput = {
 
 M.GenerateMappingOutput = {
     type = "structure",
+    id = "GenerateMappingOutput",
     members = {
         mappingTemplate = {
             type = "string",
@@ -1070,6 +1107,7 @@ M.GenerateMappingOutput = {
 
 M.GetTransformerJobInput = {
     type = "structure",
+    id = "GetTransformerJobInput",
     members = {
         transformerJobId = {
             type = "string",
@@ -1096,6 +1134,7 @@ M.TransformerJobStatus = {
 
 M.GetTransformerJobOutput = {
     type = "structure",
+    id = "GetTransformerJobOutput",
     members = {
         status = {
             type = "string",
@@ -1115,6 +1154,7 @@ M.GetTransformerJobOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1128,6 +1168,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1149,6 +1190,7 @@ M.X12TechnicalAcknowledgment = {
 
 M.X12AcknowledgmentOptions = {
     type = "structure",
+    id = "X12AcknowledgmentOptions",
     members = {
         functionalAcknowledgment = {
             type = "string",
@@ -1167,6 +1209,7 @@ M.X12AcknowledgmentOptions = {
 
 M.X12InboundEdiOptions = {
     type = "structure",
+    id = "X12InboundEdiOptions",
     members = {
         acknowledgmentOptions = M.X12AcknowledgmentOptions,
     },
@@ -1174,6 +1217,7 @@ M.X12InboundEdiOptions = {
 
 M.InboundEdiOptions = {
     type = "structure",
+    id = "InboundEdiOptions",
     members = {
         x12 = M.X12InboundEdiOptions,
     },
@@ -1181,6 +1225,7 @@ M.InboundEdiOptions = {
 
 M.X12ControlNumbers = {
     type = "structure",
+    id = "X12ControlNumbers",
     members = {
         startingInterchangeControlNumber = {
             type = "integer",
@@ -1196,6 +1241,7 @@ M.X12ControlNumbers = {
 
 M.X12Delimiters = {
     type = "structure",
+    id = "X12Delimiters",
     members = {
         componentSeparator = {
             type = "string",
@@ -1211,6 +1257,7 @@ M.X12Delimiters = {
 
 M.X12FunctionalGroupHeaders = {
     type = "structure",
+    id = "X12FunctionalGroupHeaders",
     members = {
         applicationSenderCode = {
             type = "string",
@@ -1232,6 +1279,7 @@ M.X12GS05TimeFormat = {
 
 M.X12InterchangeControlHeaders = {
     type = "structure",
+    id = "X12InterchangeControlHeaders",
     members = {
         senderIdQualifier = {
             type = "string",
@@ -1259,6 +1307,7 @@ M.X12InterchangeControlHeaders = {
 
 M.X12OutboundEdiHeaders = {
     type = "structure",
+    id = "X12OutboundEdiHeaders",
     members = {
         interchangeControlHeaders = M.X12InterchangeControlHeaders,
         functionalGroupHeaders = M.X12FunctionalGroupHeaders,
@@ -1287,6 +1336,7 @@ M.WrapFormat = {
 
 M.WrapOptions = {
     type = "structure",
+    id = "WrapOptions",
     members = {
         wrapBy = {
             type = "string",
@@ -1305,6 +1355,7 @@ M.WrapOptions = {
 
 M.X12Envelope = {
     type = "structure",
+    id = "X12Envelope",
     members = {
         common = M.X12OutboundEdiHeaders,
         wrapOptions = M.WrapOptions,
@@ -1313,6 +1364,7 @@ M.X12Envelope = {
 
 M.OutboundEdiOptions = {
     type = "union",
+    id = "OutboundEdiOptions",
     members = {
         x12 = M.X12Envelope,
     },
@@ -1320,6 +1372,7 @@ M.OutboundEdiOptions = {
 
 M.CapabilityOptions = {
     type = "structure",
+    id = "CapabilityOptions",
     members = {
         outboundEdi = M.OutboundEdiOptions,
         inboundEdi = M.InboundEdiOptions,
@@ -1328,6 +1381,7 @@ M.CapabilityOptions = {
 
 M.CreatePartnershipInput = {
     type = "structure",
+    id = "CreatePartnershipInput",
     members = {
         profileId = {
             type = "string",
@@ -1373,6 +1427,7 @@ M.CreatePartnershipInput = {
 
 M.CreatePartnershipOutput = {
     type = "structure",
+    id = "CreatePartnershipOutput",
     members = {
         profileId = {
             type = "string",
@@ -1421,6 +1476,7 @@ M.CreatePartnershipOutput = {
 
 M.DeletePartnershipInput = {
     type = "structure",
+    id = "DeletePartnershipInput",
     members = {
         partnershipId = {
             type = "string",
@@ -1434,10 +1490,12 @@ M.DeletePartnershipInput = {
 
 M.DeletePartnershipOutput = {
     type = "structure",
+    id = "DeletePartnershipOutput",
 }
 
 M.GetPartnershipInput = {
     type = "structure",
+    id = "GetPartnershipInput",
     members = {
         partnershipId = {
             type = "string",
@@ -1451,6 +1509,7 @@ M.GetPartnershipInput = {
 
 M.GetPartnershipOutput = {
     type = "structure",
+    id = "GetPartnershipOutput",
     members = {
         profileId = {
             type = "string",
@@ -1505,6 +1564,7 @@ M.GetPartnershipOutput = {
 
 M.ListPartnershipsInput = {
     type = "structure",
+    id = "ListPartnershipsInput",
     members = {
         profileId = {
             type = "string",
@@ -1529,6 +1589,7 @@ M.ListPartnershipsInput = {
 
 M.PartnershipSummary = {
     type = "structure",
+    id = "PartnershipSummary",
     members = {
         profileId = {
             type = "string",
@@ -1571,6 +1632,7 @@ M.PartnershipSummary = {
 
 M.ListPartnershipsOutput = {
     type = "structure",
+    id = "ListPartnershipsOutput",
     members = {
         partnerships = {
             type = "list",
@@ -1587,6 +1649,7 @@ M.ListPartnershipsOutput = {
 
 M.UpdatePartnershipInput = {
     type = "structure",
+    id = "UpdatePartnershipInput",
     members = {
         partnershipId = {
             type = "string",
@@ -1608,6 +1671,7 @@ M.UpdatePartnershipInput = {
 
 M.UpdatePartnershipOutput = {
     type = "structure",
+    id = "UpdatePartnershipOutput",
     members = {
         profileId = {
             type = "string",
@@ -1667,6 +1731,7 @@ M.Logging = {
 
 M.CreateProfileInput = {
     type = "structure",
+    id = "CreateProfileInput",
     members = {
         name = {
             type = "string",
@@ -1710,6 +1775,7 @@ M.CreateProfileInput = {
 
 M.CreateProfileOutput = {
     type = "structure",
+    id = "CreateProfileOutput",
     members = {
         profileId = {
             type = "string",
@@ -1762,6 +1828,7 @@ M.CreateProfileOutput = {
 
 M.DeleteProfileInput = {
     type = "structure",
+    id = "DeleteProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -1775,10 +1842,12 @@ M.DeleteProfileInput = {
 
 M.DeleteProfileOutput = {
     type = "structure",
+    id = "DeleteProfileOutput",
 }
 
 M.GetProfileInput = {
     type = "structure",
+    id = "GetProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -1792,6 +1861,7 @@ M.GetProfileInput = {
 
 M.GetProfileOutput = {
     type = "structure",
+    id = "GetProfileOutput",
     members = {
         profileId = {
             type = "string",
@@ -1850,6 +1920,7 @@ M.GetProfileOutput = {
 
 M.ListProfilesInput = {
     type = "structure",
+    id = "ListProfilesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1868,6 +1939,7 @@ M.ListProfilesInput = {
 
 M.ProfileSummary = {
     type = "structure",
+    id = "ProfileSummary",
     members = {
         profileId = {
             type = "string",
@@ -1911,6 +1983,7 @@ M.ProfileSummary = {
 
 M.ListProfilesOutput = {
     type = "structure",
+    id = "ListProfilesOutput",
     members = {
         profiles = {
             type = "list",
@@ -1927,6 +2000,7 @@ M.ListProfilesOutput = {
 
 M.UpdateProfileInput = {
     type = "structure",
+    id = "UpdateProfileInput",
     members = {
         profileId = {
             type = "string",
@@ -1952,6 +2026,7 @@ M.UpdateProfileInput = {
 
 M.UpdateProfileOutput = {
     type = "structure",
+    id = "UpdateProfileOutput",
     members = {
         profileId = {
             type = "string",
@@ -2010,6 +2085,7 @@ M.UpdateProfileOutput = {
 
 M.StartTransformerJobInput = {
     type = "structure",
+    id = "StartTransformerJobInput",
     members = {
         inputFile = setmetatable({ traits = {
             required = true,
@@ -2034,6 +2110,7 @@ M.StartTransformerJobInput = {
 
 M.StartTransformerJobOutput = {
     type = "structure",
+    id = "StartTransformerJobOutput",
     members = {
         transformerJobId = {
             type = "string",
@@ -2046,6 +2123,7 @@ M.StartTransformerJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2066,6 +2144,7 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.ConversionSourceFormat = {
@@ -2075,6 +2154,7 @@ M.ConversionSourceFormat = {
 
 M.InputFileSource = {
     type = "union",
+    id = "InputFileSource",
     members = {
         fileContent = {
             type = "string",
@@ -2084,6 +2164,7 @@ M.InputFileSource = {
 
 M.ConversionSource = {
     type = "structure",
+    id = "ConversionSource",
     members = {
         fileFormat = {
             type = "string",
@@ -2103,6 +2184,7 @@ M.ConversionTargetFormat = {
 
 M.ConversionTargetFormatDetails = {
     type = "union",
+    id = "ConversionTargetFormatDetails",
     members = {
         x12 = M.X12Details,
     },
@@ -2110,6 +2192,7 @@ M.ConversionTargetFormatDetails = {
 
 M.OutputSampleFileSource = {
     type = "union",
+    id = "OutputSampleFileSource",
     members = {
         fileLocation = M.S3Location,
     },
@@ -2117,6 +2200,7 @@ M.OutputSampleFileSource = {
 
 M.ConversionTarget = {
     type = "structure",
+    id = "ConversionTarget",
     members = {
         fileFormat = {
             type = "string",
@@ -2132,6 +2216,7 @@ M.ConversionTarget = {
 
 M.TestConversionInput = {
     type = "structure",
+    id = "TestConversionInput",
     members = {
         source = setmetatable({ traits = {
             required = true,
@@ -2144,6 +2229,7 @@ M.TestConversionInput = {
 
 M.TestConversionOutput = {
     type = "structure",
+    id = "TestConversionOutput",
     members = {
         convertedFileContent = {
             type = "string",
@@ -2166,6 +2252,7 @@ M.FileFormat = {
 
 M.TestMappingInput = {
     type = "structure",
+    id = "TestMappingInput",
     members = {
         inputFileContent = {
             type = "string",
@@ -2190,6 +2277,7 @@ M.TestMappingInput = {
 
 M.TestMappingOutput = {
     type = "structure",
+    id = "TestMappingOutput",
     members = {
         mappedFileContent = {
             type = "string",
@@ -2202,6 +2290,7 @@ M.TestMappingOutput = {
 
 M.TestParsingInput = {
     type = "structure",
+    id = "TestParsingInput",
     members = {
         inputFile = setmetatable({ traits = {
             required = true,
@@ -2221,6 +2310,7 @@ M.TestParsingInput = {
 
 M.TestParsingOutput = {
     type = "structure",
+    id = "TestParsingOutput",
     members = {
         parsedFileContent = {
             type = "string",
@@ -2241,6 +2331,7 @@ M.TestParsingOutput = {
 
 M.FormatOptions = {
     type = "union",
+    id = "FormatOptions",
     members = {
         x12 = M.X12Details,
     },
@@ -2252,6 +2343,7 @@ M.FromFormat = {
 
 M.InputConversion = {
     type = "structure",
+    id = "InputConversion",
     members = {
         fromFormat = {
             type = "string",
@@ -2271,6 +2363,7 @@ M.MappingTemplateLanguage = {
 
 M.Mapping = {
     type = "structure",
+    id = "Mapping",
     members = {
         templateLanguage = {
             type = "string",
@@ -2290,6 +2383,7 @@ M.ToFormat = {
 
 M.OutputConversion = {
     type = "structure",
+    id = "OutputConversion",
     members = {
         toFormat = {
             type = "string",
@@ -2304,6 +2398,7 @@ M.OutputConversion = {
 
 M.SampleDocumentKeys = {
     type = "structure",
+    id = "SampleDocumentKeys",
     members = {
         input = {
             type = "string",
@@ -2316,6 +2411,7 @@ M.SampleDocumentKeys = {
 
 M.SampleDocuments = {
     type = "structure",
+    id = "SampleDocuments",
     members = {
         bucketName = {
             type = "string",
@@ -2335,6 +2431,7 @@ M.SampleDocuments = {
 
 M.CreateTransformerInput = {
     type = "structure",
+    id = "CreateTransformerInput",
     members = {
         name = {
             type = "string",
@@ -2376,6 +2473,7 @@ M.TransformerStatus = {
 
 M.CreateTransformerOutput = {
     type = "structure",
+    id = "CreateTransformerOutput",
     members = {
         transformerId = {
             type = "string",
@@ -2433,6 +2531,7 @@ M.CreateTransformerOutput = {
 
 M.DeleteTransformerInput = {
     type = "structure",
+    id = "DeleteTransformerInput",
     members = {
         transformerId = {
             type = "string",
@@ -2446,10 +2545,12 @@ M.DeleteTransformerInput = {
 
 M.DeleteTransformerOutput = {
     type = "structure",
+    id = "DeleteTransformerOutput",
 }
 
 M.GetTransformerInput = {
     type = "structure",
+    id = "GetTransformerInput",
     members = {
         transformerId = {
             type = "string",
@@ -2463,6 +2564,7 @@ M.GetTransformerInput = {
 
 M.GetTransformerOutput = {
     type = "structure",
+    id = "GetTransformerOutput",
     members = {
         transformerId = {
             type = "string",
@@ -2526,6 +2628,7 @@ M.GetTransformerOutput = {
 
 M.ListTransformersInput = {
     type = "structure",
+    id = "ListTransformersInput",
     members = {
         nextToken = {
             type = "string",
@@ -2544,6 +2647,7 @@ M.ListTransformersInput = {
 
 M.TransformerSummary = {
     type = "structure",
+    id = "TransformerSummary",
     members = {
         transformerId = {
             type = "string",
@@ -2601,6 +2705,7 @@ M.TransformerSummary = {
 
 M.ListTransformersOutput = {
     type = "structure",
+    id = "ListTransformersOutput",
     members = {
         transformers = {
             type = "list",
@@ -2617,6 +2722,7 @@ M.ListTransformersOutput = {
 
 M.UpdateTransformerInput = {
     type = "structure",
+    id = "UpdateTransformerInput",
     members = {
         transformerId = {
             type = "string",
@@ -2650,6 +2756,7 @@ M.UpdateTransformerInput = {
 
 M.UpdateTransformerOutput = {
     type = "structure",
+    id = "UpdateTransformerOutput",
     members = {
         transformerId = {
             type = "string",
@@ -2714,6 +2821,7 @@ M.UpdateTransformerOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2735,6 +2843,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

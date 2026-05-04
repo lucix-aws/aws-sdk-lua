@@ -18,6 +18,7 @@ M.ConnectorOperationStepType = {
 
 M.ConnectorOperationStep = {
     type = "structure",
+    id = "ConnectorOperationStep",
     members = {
         stepType = {
             type = "string",
@@ -47,6 +48,7 @@ M.ConnectorOperationType = {
 
 M.ConnectorOperationSummary = {
     type = "structure",
+    id = "ConnectorOperationSummary",
     members = {
         connectorOperationArn = {
             type = "string",
@@ -74,6 +76,7 @@ M.ConnectorOperationSummary = {
 
 M.ScaleInPolicyDescription = {
     type = "structure",
+    id = "ScaleInPolicyDescription",
     members = {
         cpuUtilizationPercentage = {
             type = "integer",
@@ -86,6 +89,7 @@ M.ScaleInPolicyDescription = {
 
 M.ScaleOutPolicyDescription = {
     type = "structure",
+    id = "ScaleOutPolicyDescription",
     members = {
         cpuUtilizationPercentage = {
             type = "integer",
@@ -98,6 +102,7 @@ M.ScaleOutPolicyDescription = {
 
 M.AutoScalingDescription = {
     type = "structure",
+    id = "AutoScalingDescription",
     members = {
         maxWorkerCount = {
             type = "integer",
@@ -130,6 +135,7 @@ M.AutoScalingDescription = {
 
 M.ProvisionedCapacityDescription = {
     type = "structure",
+    id = "ProvisionedCapacityDescription",
     members = {
         mcuCount = {
             type = "integer",
@@ -148,6 +154,7 @@ M.ProvisionedCapacityDescription = {
 
 M.CapacityDescription = {
     type = "structure",
+    id = "CapacityDescription",
     members = {
         autoScaling = M.AutoScalingDescription,
         provisionedCapacity = M.ProvisionedCapacityDescription,
@@ -164,6 +171,7 @@ M.ConnectorState = {
 
 M.VpcDescription = {
     type = "structure",
+    id = "VpcDescription",
     members = {
         securityGroups = {
             type = "list",
@@ -178,6 +186,7 @@ M.VpcDescription = {
 
 M.ApacheKafkaClusterDescription = {
     type = "structure",
+    id = "ApacheKafkaClusterDescription",
     members = {
         bootstrapServers = {
             type = "string",
@@ -188,6 +197,7 @@ M.ApacheKafkaClusterDescription = {
 
 M.KafkaClusterDescription = {
     type = "structure",
+    id = "KafkaClusterDescription",
     members = {
         apacheKafkaCluster = M.ApacheKafkaClusterDescription,
     },
@@ -200,6 +210,7 @@ M.KafkaClusterClientAuthenticationType = {
 
 M.KafkaClusterClientAuthenticationDescription = {
     type = "structure",
+    id = "KafkaClusterClientAuthenticationDescription",
     members = {
         authenticationType = {
             type = "string",
@@ -214,6 +225,7 @@ M.KafkaClusterEncryptionInTransitType = {
 
 M.KafkaClusterEncryptionInTransitDescription = {
     type = "structure",
+    id = "KafkaClusterEncryptionInTransitDescription",
     members = {
         encryptionType = {
             type = "string",
@@ -223,6 +235,7 @@ M.KafkaClusterEncryptionInTransitDescription = {
 
 M.CloudWatchLogsLogDeliveryDescription = {
     type = "structure",
+    id = "CloudWatchLogsLogDeliveryDescription",
     members = {
         enabled = {
             type = "boolean",
@@ -238,6 +251,7 @@ M.CloudWatchLogsLogDeliveryDescription = {
 
 M.FirehoseLogDeliveryDescription = {
     type = "structure",
+    id = "FirehoseLogDeliveryDescription",
     members = {
         deliveryStream = {
             type = "string",
@@ -253,6 +267,7 @@ M.FirehoseLogDeliveryDescription = {
 
 M.S3LogDeliveryDescription = {
     type = "structure",
+    id = "S3LogDeliveryDescription",
     members = {
         bucket = {
             type = "string",
@@ -271,6 +286,7 @@ M.S3LogDeliveryDescription = {
 
 M.WorkerLogDeliveryDescription = {
     type = "structure",
+    id = "WorkerLogDeliveryDescription",
     members = {
         cloudWatchLogs = M.CloudWatchLogsLogDeliveryDescription,
         firehose = M.FirehoseLogDeliveryDescription,
@@ -280,6 +296,7 @@ M.WorkerLogDeliveryDescription = {
 
 M.LogDeliveryDescription = {
     type = "structure",
+    id = "LogDeliveryDescription",
     members = {
         workerLogDelivery = M.WorkerLogDeliveryDescription,
     },
@@ -292,6 +309,7 @@ M.NetworkType = {
 
 M.CustomPluginDescription = {
     type = "structure",
+    id = "CustomPluginDescription",
     members = {
         customPluginArn = {
             type = "string",
@@ -307,6 +325,7 @@ M.CustomPluginDescription = {
 
 M.PluginDescription = {
     type = "structure",
+    id = "PluginDescription",
     members = {
         customPlugin = M.CustomPluginDescription,
     },
@@ -314,6 +333,7 @@ M.PluginDescription = {
 
 M.WorkerConfigurationDescription = {
     type = "structure",
+    id = "WorkerConfigurationDescription",
     members = {
         revision = {
             type = "long",
@@ -329,6 +349,7 @@ M.WorkerConfigurationDescription = {
 
 M.ConnectorSummary = {
     type = "structure",
+    id = "ConnectorSummary",
     members = {
         capacity = M.CapacityDescription,
         connectorArn = {
@@ -389,6 +410,7 @@ M.CustomPluginContentType = {
 
 M.CustomPluginFileDescription = {
     type = "structure",
+    id = "CustomPluginFileDescription",
     members = {
         fileMd5 = {
             type = "string",
@@ -404,6 +426,7 @@ M.CustomPluginFileDescription = {
 
 M.S3LocationDescription = {
     type = "structure",
+    id = "S3LocationDescription",
     members = {
         bucketArn = {
             type = "string",
@@ -419,6 +442,7 @@ M.S3LocationDescription = {
 
 M.CustomPluginLocationDescription = {
     type = "structure",
+    id = "CustomPluginLocationDescription",
     members = {
         s3Location = M.S3LocationDescription,
     },
@@ -426,6 +450,7 @@ M.CustomPluginLocationDescription = {
 
 M.CustomPluginRevisionSummary = {
     type = "structure",
+    id = "CustomPluginRevisionSummary",
     members = {
         contentType = {
             type = "string",
@@ -452,6 +477,7 @@ M.CustomPluginRevisionSummary = {
 
 M.CustomPluginSummary = {
     type = "structure",
+    id = "CustomPluginSummary",
     members = {
         creationTime = {
             type = "timestamp",
@@ -477,6 +503,7 @@ M.CustomPluginSummary = {
 
 M.CustomPlugin = {
     type = "structure",
+    id = "CustomPlugin",
     members = {
         customPluginArn = {
             type = "string",
@@ -496,6 +523,7 @@ M.CustomPlugin = {
 
 M.Plugin = {
     type = "structure",
+    id = "Plugin",
     members = {
         customPlugin = setmetatable({ traits = {
             required = true,
@@ -505,6 +533,7 @@ M.Plugin = {
 
 M.WorkerConfigurationRevisionSummary = {
     type = "structure",
+    id = "WorkerConfigurationRevisionSummary",
     members = {
         creationTime = {
             type = "timestamp",
@@ -531,6 +560,7 @@ M.WorkerConfigurationState = {
 
 M.WorkerConfigurationSummary = {
     type = "structure",
+    id = "WorkerConfigurationSummary",
     members = {
         creationTime = {
             type = "timestamp",
@@ -556,6 +586,7 @@ M.WorkerConfigurationSummary = {
 
 M.Vpc = {
     type = "structure",
+    id = "Vpc",
     members = {
         securityGroups = {
             type = "list",
@@ -573,6 +604,7 @@ M.Vpc = {
 
 M.ApacheKafkaCluster = {
     type = "structure",
+    id = "ApacheKafkaCluster",
     members = {
         bootstrapServers = {
             type = "string",
@@ -588,6 +620,7 @@ M.ApacheKafkaCluster = {
 
 M.ScaleInPolicy = {
     type = "structure",
+    id = "ScaleInPolicy",
     members = {
         cpuUtilizationPercentage = {
             type = "integer",
@@ -601,6 +634,7 @@ M.ScaleInPolicy = {
 
 M.ScaleOutPolicy = {
     type = "structure",
+    id = "ScaleOutPolicy",
     members = {
         cpuUtilizationPercentage = {
             type = "integer",
@@ -614,6 +648,7 @@ M.ScaleOutPolicy = {
 
 M.AutoScaling = {
     type = "structure",
+    id = "AutoScaling",
     members = {
         maxWorkerCount = {
             type = "integer",
@@ -649,6 +684,7 @@ M.AutoScaling = {
 
 M.ScaleInPolicyUpdate = {
     type = "structure",
+    id = "ScaleInPolicyUpdate",
     members = {
         cpuUtilizationPercentage = {
             type = "integer",
@@ -662,6 +698,7 @@ M.ScaleInPolicyUpdate = {
 
 M.ScaleOutPolicyUpdate = {
     type = "structure",
+    id = "ScaleOutPolicyUpdate",
     members = {
         cpuUtilizationPercentage = {
             type = "integer",
@@ -675,6 +712,7 @@ M.ScaleOutPolicyUpdate = {
 
 M.AutoScalingUpdate = {
     type = "structure",
+    id = "AutoScalingUpdate",
     members = {
         maxWorkerCount = {
             type = "integer",
@@ -714,6 +752,7 @@ M.AutoScalingUpdate = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -724,6 +763,7 @@ M.BadRequestException = {
 
 M.ProvisionedCapacity = {
     type = "structure",
+    id = "ProvisionedCapacity",
     members = {
         mcuCount = {
             type = "integer",
@@ -744,6 +784,7 @@ M.ProvisionedCapacity = {
 
 M.Capacity = {
     type = "structure",
+    id = "Capacity",
     members = {
         autoScaling = M.AutoScaling,
         provisionedCapacity = M.ProvisionedCapacity,
@@ -752,6 +793,7 @@ M.Capacity = {
 
 M.ProvisionedCapacityUpdate = {
     type = "structure",
+    id = "ProvisionedCapacityUpdate",
     members = {
         mcuCount = {
             type = "integer",
@@ -772,6 +814,7 @@ M.ProvisionedCapacityUpdate = {
 
 M.CapacityUpdate = {
     type = "structure",
+    id = "CapacityUpdate",
     members = {
         autoScaling = M.AutoScalingUpdate,
         provisionedCapacity = M.ProvisionedCapacityUpdate,
@@ -780,6 +823,7 @@ M.CapacityUpdate = {
 
 M.CloudWatchLogsLogDelivery = {
     type = "structure",
+    id = "CloudWatchLogsLogDelivery",
     members = {
         enabled = {
             type = "boolean",
@@ -796,6 +840,7 @@ M.CloudWatchLogsLogDelivery = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -806,6 +851,7 @@ M.ConflictException = {
 
 M.KafkaCluster = {
     type = "structure",
+    id = "KafkaCluster",
     members = {
         apacheKafkaCluster = setmetatable({ traits = {
             required = true,
@@ -815,6 +861,7 @@ M.KafkaCluster = {
 
 M.KafkaClusterClientAuthentication = {
     type = "structure",
+    id = "KafkaClusterClientAuthentication",
     members = {
         authenticationType = {
             type = "string",
@@ -827,6 +874,7 @@ M.KafkaClusterClientAuthentication = {
 
 M.KafkaClusterEncryptionInTransit = {
     type = "structure",
+    id = "KafkaClusterEncryptionInTransit",
     members = {
         encryptionType = {
             type = "string",
@@ -839,6 +887,7 @@ M.KafkaClusterEncryptionInTransit = {
 
 M.FirehoseLogDelivery = {
     type = "structure",
+    id = "FirehoseLogDelivery",
     members = {
         deliveryStream = {
             type = "string",
@@ -855,6 +904,7 @@ M.FirehoseLogDelivery = {
 
 M.S3LogDelivery = {
     type = "structure",
+    id = "S3LogDelivery",
     members = {
         bucket = {
             type = "string",
@@ -874,6 +924,7 @@ M.S3LogDelivery = {
 
 M.WorkerLogDelivery = {
     type = "structure",
+    id = "WorkerLogDelivery",
     members = {
         cloudWatchLogs = M.CloudWatchLogsLogDelivery,
         firehose = M.FirehoseLogDelivery,
@@ -883,6 +934,7 @@ M.WorkerLogDelivery = {
 
 M.LogDelivery = {
     type = "structure",
+    id = "LogDelivery",
     members = {
         workerLogDelivery = setmetatable({ traits = {
             required = true,
@@ -892,6 +944,7 @@ M.LogDelivery = {
 
 M.WorkerConfiguration = {
     type = "structure",
+    id = "WorkerConfiguration",
     members = {
         revision = {
             type = "long",
@@ -911,6 +964,7 @@ M.WorkerConfiguration = {
 
 M.CreateConnectorInput = {
     type = "structure",
+    id = "CreateConnectorInput",
     members = {
         capacity = setmetatable({ traits = {
             required = true,
@@ -975,6 +1029,7 @@ M.CreateConnectorInput = {
 
 M.CreateConnectorOutput = {
     type = "structure",
+    id = "CreateConnectorOutput",
     members = {
         connectorArn = {
             type = "string",
@@ -990,6 +1045,7 @@ M.CreateConnectorOutput = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -1000,6 +1056,7 @@ M.ForbiddenException = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         message = {
@@ -1010,6 +1067,7 @@ M.InternalServerErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -1020,6 +1078,7 @@ M.NotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -1030,6 +1089,7 @@ M.ServiceUnavailableException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -1040,6 +1100,7 @@ M.TooManyRequestsException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -1050,6 +1111,7 @@ M.UnauthorizedException = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucketArn = {
             type = "string",
@@ -1071,6 +1133,7 @@ M.S3Location = {
 
 M.CustomPluginLocation = {
     type = "structure",
+    id = "CustomPluginLocation",
     members = {
         s3Location = setmetatable({ traits = {
             required = true,
@@ -1080,6 +1143,7 @@ M.CustomPluginLocation = {
 
 M.CreateCustomPluginInput = {
     type = "structure",
+    id = "CreateCustomPluginInput",
     members = {
         contentType = {
             type = "string",
@@ -1109,6 +1173,7 @@ M.CreateCustomPluginInput = {
 
 M.CreateCustomPluginOutput = {
     type = "structure",
+    id = "CreateCustomPluginOutput",
     members = {
         customPluginArn = {
             type = "string",
@@ -1130,6 +1195,7 @@ M.CreateCustomPluginOutput = {
 
 M.CreateWorkerConfigurationInput = {
     type = "structure",
+    id = "CreateWorkerConfigurationInput",
     members = {
         description = {
             type = "string",
@@ -1156,6 +1222,7 @@ M.CreateWorkerConfigurationInput = {
 
 M.CreateWorkerConfigurationOutput = {
     type = "structure",
+    id = "CreateWorkerConfigurationOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -1178,6 +1245,7 @@ M.CreateWorkerConfigurationOutput = {
 
 M.DeleteConnectorInput = {
     type = "structure",
+    id = "DeleteConnectorInput",
     members = {
         connectorArn = {
             type = "string",
@@ -1197,6 +1265,7 @@ M.DeleteConnectorInput = {
 
 M.DeleteConnectorOutput = {
     type = "structure",
+    id = "DeleteConnectorOutput",
     members = {
         connectorArn = {
             type = "string",
@@ -1209,6 +1278,7 @@ M.DeleteConnectorOutput = {
 
 M.DeleteCustomPluginInput = {
     type = "structure",
+    id = "DeleteCustomPluginInput",
     members = {
         customPluginArn = {
             type = "string",
@@ -1222,6 +1292,7 @@ M.DeleteCustomPluginInput = {
 
 M.DeleteCustomPluginOutput = {
     type = "structure",
+    id = "DeleteCustomPluginOutput",
     members = {
         customPluginArn = {
             type = "string",
@@ -1234,6 +1305,7 @@ M.DeleteCustomPluginOutput = {
 
 M.DeleteWorkerConfigurationInput = {
     type = "structure",
+    id = "DeleteWorkerConfigurationInput",
     members = {
         workerConfigurationArn = {
             type = "string",
@@ -1247,6 +1319,7 @@ M.DeleteWorkerConfigurationInput = {
 
 M.DeleteWorkerConfigurationOutput = {
     type = "structure",
+    id = "DeleteWorkerConfigurationOutput",
     members = {
         workerConfigurationArn = {
             type = "string",
@@ -1259,6 +1332,7 @@ M.DeleteWorkerConfigurationOutput = {
 
 M.DescribeConnectorInput = {
     type = "structure",
+    id = "DescribeConnectorInput",
     members = {
         connectorArn = {
             type = "string",
@@ -1272,6 +1346,7 @@ M.DescribeConnectorInput = {
 
 M.StateDescription = {
     type = "structure",
+    id = "StateDescription",
     members = {
         code = {
             type = "string",
@@ -1284,6 +1359,7 @@ M.StateDescription = {
 
 M.DescribeConnectorOutput = {
     type = "structure",
+    id = "DescribeConnectorOutput",
     members = {
         capacity = M.CapacityDescription,
         connectorArn = {
@@ -1336,6 +1412,7 @@ M.DescribeConnectorOutput = {
 
 M.DescribeConnectorOperationInput = {
     type = "structure",
+    id = "DescribeConnectorOperationInput",
     members = {
         connectorOperationArn = {
             type = "string",
@@ -1349,6 +1426,7 @@ M.DescribeConnectorOperationInput = {
 
 M.WorkerSetting = {
     type = "structure",
+    id = "WorkerSetting",
     members = {
         capacity = M.CapacityDescription,
     },
@@ -1356,6 +1434,7 @@ M.WorkerSetting = {
 
 M.DescribeConnectorOperationOutput = {
     type = "structure",
+    id = "DescribeConnectorOperationOutput",
     members = {
         connectorArn = {
             type = "string",
@@ -1403,6 +1482,7 @@ M.DescribeConnectorOperationOutput = {
 
 M.DescribeCustomPluginInput = {
     type = "structure",
+    id = "DescribeCustomPluginInput",
     members = {
         customPluginArn = {
             type = "string",
@@ -1416,6 +1496,7 @@ M.DescribeCustomPluginInput = {
 
 M.DescribeCustomPluginOutput = {
     type = "structure",
+    id = "DescribeCustomPluginOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -1442,6 +1523,7 @@ M.DescribeCustomPluginOutput = {
 
 M.DescribeWorkerConfigurationInput = {
     type = "structure",
+    id = "DescribeWorkerConfigurationInput",
     members = {
         workerConfigurationArn = {
             type = "string",
@@ -1455,6 +1537,7 @@ M.DescribeWorkerConfigurationInput = {
 
 M.WorkerConfigurationRevisionDescription = {
     type = "structure",
+    id = "WorkerConfigurationRevisionDescription",
     members = {
         creationTime = {
             type = "timestamp",
@@ -1479,6 +1562,7 @@ M.WorkerConfigurationRevisionDescription = {
 
 M.DescribeWorkerConfigurationOutput = {
     type = "structure",
+    id = "DescribeWorkerConfigurationOutput",
     members = {
         creationTime = {
             type = "timestamp",
@@ -1504,6 +1588,7 @@ M.DescribeWorkerConfigurationOutput = {
 
 M.ListConnectorOperationsInput = {
     type = "structure",
+    id = "ListConnectorOperationsInput",
     members = {
         connectorArn = {
             type = "string",
@@ -1529,6 +1614,7 @@ M.ListConnectorOperationsInput = {
 
 M.ListConnectorOperationsOutput = {
     type = "structure",
+    id = "ListConnectorOperationsOutput",
     members = {
         connectorOperations = {
             type = "list",
@@ -1542,6 +1628,7 @@ M.ListConnectorOperationsOutput = {
 
 M.ListConnectorsInput = {
     type = "structure",
+    id = "ListConnectorsInput",
     members = {
         connectorNamePrefix = {
             type = "string",
@@ -1566,6 +1653,7 @@ M.ListConnectorsInput = {
 
 M.ListConnectorsOutput = {
     type = "structure",
+    id = "ListConnectorsOutput",
     members = {
         connectors = {
             type = "list",
@@ -1579,6 +1667,7 @@ M.ListConnectorsOutput = {
 
 M.ListCustomPluginsInput = {
     type = "structure",
+    id = "ListCustomPluginsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1603,6 +1692,7 @@ M.ListCustomPluginsInput = {
 
 M.ListCustomPluginsOutput = {
     type = "structure",
+    id = "ListCustomPluginsOutput",
     members = {
         customPlugins = {
             type = "list",
@@ -1616,6 +1706,7 @@ M.ListCustomPluginsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1629,6 +1720,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1640,6 +1732,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWorkerConfigurationsInput = {
     type = "structure",
+    id = "ListWorkerConfigurationsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1664,6 +1757,7 @@ M.ListWorkerConfigurationsInput = {
 
 M.ListWorkerConfigurationsOutput = {
     type = "structure",
+    id = "ListWorkerConfigurationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1677,6 +1771,7 @@ M.ListWorkerConfigurationsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1698,10 +1793,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1723,10 +1820,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConnectorInput = {
     type = "structure",
+    id = "UpdateConnectorInput",
     members = {
         capacity = M.CapacityUpdate,
         connectorConfiguration = {
@@ -1753,6 +1852,7 @@ M.UpdateConnectorInput = {
 
 M.UpdateConnectorOutput = {
     type = "structure",
+    id = "UpdateConnectorOutput",
     members = {
         connectorArn = {
             type = "string",

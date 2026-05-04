@@ -2,6 +2,7 @@ local M = {}
 
 M.AudioEvent = {
     type = "structure",
+    id = "AudioEvent",
     members = {
         AudioChunk = {
             type = "blob",
@@ -11,10 +12,12 @@ M.AudioEvent = {
 
 M.CloseStreamEvent = {
     type = "structure",
+    id = "CloseStreamEvent",
 }
 
 M.DeleteLexiconInput = {
     type = "structure",
+    id = "DeleteLexiconInput",
     members = {
         Name = {
             type = "string",
@@ -28,10 +31,12 @@ M.DeleteLexiconInput = {
 
 M.DeleteLexiconOutput = {
     type = "structure",
+    id = "DeleteLexiconOutput",
 }
 
 M.LexiconNotFoundException = {
     type = "structure",
+    id = "LexiconNotFoundException",
     error = "client",
     members = {
         message = {
@@ -42,6 +47,7 @@ M.LexiconNotFoundException = {
 
 M.ServiceFailureException = {
     type = "structure",
+    id = "ServiceFailureException",
     error = "server",
     members = {
         message = {
@@ -104,6 +110,7 @@ M.LanguageCode = {
 
 M.DescribeVoicesInput = {
     type = "structure",
+    id = "DescribeVoicesInput",
     members = {
         Engine = {
             type = "string",
@@ -249,6 +256,7 @@ M.VoiceId = {
 
 M.Voice = {
     type = "structure",
+    id = "Voice",
     members = {
         Gender = {
             type = "string",
@@ -278,6 +286,7 @@ M.Voice = {
 
 M.DescribeVoicesOutput = {
     type = "structure",
+    id = "DescribeVoicesOutput",
     members = {
         Voices = {
             type = "list",
@@ -291,6 +300,7 @@ M.DescribeVoicesOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -301,6 +311,7 @@ M.InvalidNextTokenException = {
 
 M.EngineNotSupportedException = {
     type = "structure",
+    id = "EngineNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -311,6 +322,7 @@ M.EngineNotSupportedException = {
 
 M.FlushStreamConfiguration = {
     type = "structure",
+    id = "FlushStreamConfiguration",
     members = {
         Force = {
             type = "boolean",
@@ -323,6 +335,7 @@ M.FlushStreamConfiguration = {
 
 M.GetLexiconInput = {
     type = "structure",
+    id = "GetLexiconInput",
     members = {
         Name = {
             type = "string",
@@ -336,6 +349,7 @@ M.GetLexiconInput = {
 
 M.Lexicon = {
     type = "structure",
+    id = "Lexicon",
     members = {
         Content = {
             type = "string",
@@ -348,6 +362,7 @@ M.Lexicon = {
 
 M.LexiconAttributes = {
     type = "structure",
+    id = "LexiconAttributes",
     members = {
         Alphabet = {
             type = "string",
@@ -378,6 +393,7 @@ M.LexiconAttributes = {
 
 M.GetLexiconOutput = {
     type = "structure",
+    id = "GetLexiconOutput",
     members = {
         Lexicon = M.Lexicon,
         LexiconAttributes = M.LexiconAttributes,
@@ -386,6 +402,7 @@ M.GetLexiconOutput = {
 
 M.GetSpeechSynthesisTaskInput = {
     type = "structure",
+    id = "GetSpeechSynthesisTaskInput",
     members = {
         TaskId = {
             type = "string",
@@ -428,6 +445,7 @@ M.TextType = {
 
 M.SynthesisTask = {
     type = "structure",
+    id = "SynthesisTask",
     members = {
         Engine = {
             type = "string",
@@ -484,6 +502,7 @@ M.SynthesisTask = {
 
 M.GetSpeechSynthesisTaskOutput = {
     type = "structure",
+    id = "GetSpeechSynthesisTaskOutput",
     members = {
         SynthesisTask = M.SynthesisTask,
     },
@@ -491,6 +510,7 @@ M.GetSpeechSynthesisTaskOutput = {
 
 M.InvalidTaskIdException = {
     type = "structure",
+    id = "InvalidTaskIdException",
     error = "client",
     members = {
         message = {
@@ -501,6 +521,7 @@ M.InvalidTaskIdException = {
 
 M.SynthesisTaskNotFoundException = {
     type = "structure",
+    id = "SynthesisTaskNotFoundException",
     error = "client",
     members = {
         message = {
@@ -511,6 +532,7 @@ M.SynthesisTaskNotFoundException = {
 
 M.InvalidLexiconException = {
     type = "structure",
+    id = "InvalidLexiconException",
     error = "client",
     members = {
         message = {
@@ -521,6 +543,7 @@ M.InvalidLexiconException = {
 
 M.InvalidS3BucketException = {
     type = "structure",
+    id = "InvalidS3BucketException",
     error = "client",
     members = {
         message = {
@@ -531,6 +554,7 @@ M.InvalidS3BucketException = {
 
 M.InvalidS3KeyException = {
     type = "structure",
+    id = "InvalidS3KeyException",
     error = "client",
     members = {
         message = {
@@ -541,6 +565,7 @@ M.InvalidS3KeyException = {
 
 M.InvalidSampleRateException = {
     type = "structure",
+    id = "InvalidSampleRateException",
     error = "client",
     members = {
         message = {
@@ -551,6 +576,7 @@ M.InvalidSampleRateException = {
 
 M.InvalidSnsTopicArnException = {
     type = "structure",
+    id = "InvalidSnsTopicArnException",
     error = "client",
     members = {
         message = {
@@ -561,6 +587,7 @@ M.InvalidSnsTopicArnException = {
 
 M.InvalidSsmlException = {
     type = "structure",
+    id = "InvalidSsmlException",
     error = "client",
     members = {
         message = {
@@ -571,6 +598,7 @@ M.InvalidSsmlException = {
 
 M.LanguageNotSupportedException = {
     type = "structure",
+    id = "LanguageNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -581,6 +609,7 @@ M.LanguageNotSupportedException = {
 
 M.LexiconDescription = {
     type = "structure",
+    id = "LexiconDescription",
     members = {
         Name = {
             type = "string",
@@ -591,6 +620,7 @@ M.LexiconDescription = {
 
 M.LexiconSizeExceededException = {
     type = "structure",
+    id = "LexiconSizeExceededException",
     error = "client",
     members = {
         message = {
@@ -601,6 +631,7 @@ M.LexiconSizeExceededException = {
 
 M.ListLexiconsInput = {
     type = "structure",
+    id = "ListLexiconsInput",
     members = {
         NextToken = {
             type = "string",
@@ -613,6 +644,7 @@ M.ListLexiconsInput = {
 
 M.ListLexiconsOutput = {
     type = "structure",
+    id = "ListLexiconsOutput",
     members = {
         Lexicons = {
             type = "list",
@@ -626,6 +658,7 @@ M.ListLexiconsOutput = {
 
 M.ListSpeechSynthesisTasksInput = {
     type = "structure",
+    id = "ListSpeechSynthesisTasksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -650,6 +683,7 @@ M.ListSpeechSynthesisTasksInput = {
 
 M.ListSpeechSynthesisTasksOutput = {
     type = "structure",
+    id = "ListSpeechSynthesisTasksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -663,6 +697,7 @@ M.ListSpeechSynthesisTasksOutput = {
 
 M.MarksNotSupportedForFormatException = {
     type = "structure",
+    id = "MarksNotSupportedForFormatException",
     error = "client",
     members = {
         message = {
@@ -673,6 +708,7 @@ M.MarksNotSupportedForFormatException = {
 
 M.MaxLexemeLengthExceededException = {
     type = "structure",
+    id = "MaxLexemeLengthExceededException",
     error = "client",
     members = {
         message = {
@@ -683,6 +719,7 @@ M.MaxLexemeLengthExceededException = {
 
 M.MaxLexiconsNumberExceededException = {
     type = "structure",
+    id = "MaxLexiconsNumberExceededException",
     error = "client",
     members = {
         message = {
@@ -693,6 +730,7 @@ M.MaxLexiconsNumberExceededException = {
 
 M.PutLexiconInput = {
     type = "structure",
+    id = "PutLexiconInput",
     members = {
         Name = {
             type = "string",
@@ -712,10 +750,12 @@ M.PutLexiconInput = {
 
 M.PutLexiconOutput = {
     type = "structure",
+    id = "PutLexiconOutput",
 }
 
 M.UnsupportedPlsAlphabetException = {
     type = "structure",
+    id = "UnsupportedPlsAlphabetException",
     error = "client",
     members = {
         message = {
@@ -726,6 +766,7 @@ M.UnsupportedPlsAlphabetException = {
 
 M.UnsupportedPlsLanguageException = {
     type = "structure",
+    id = "UnsupportedPlsLanguageException",
     error = "client",
     members = {
         message = {
@@ -745,6 +786,7 @@ M.ServiceCode = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -770,6 +812,7 @@ M.ServiceQuotaExceededException = {
 
 M.TextEvent = {
     type = "structure",
+    id = "TextEvent",
     members = {
         Text = {
             type = "string",
@@ -786,6 +829,7 @@ M.TextEvent = {
 
 M.StartSpeechSynthesisStreamActionStream = {
     type = "union",
+    id = "StartSpeechSynthesisStreamActionStream",
     members = {
         TextEvent = M.TextEvent,
         CloseStreamEvent = M.CloseStreamEvent,
@@ -794,6 +838,7 @@ M.StartSpeechSynthesisStreamActionStream = {
 
 M.StartSpeechSynthesisStreamInput = {
     type = "structure",
+    id = "StartSpeechSynthesisStreamInput",
     members = {
         Engine = {
             type = "string",
@@ -843,6 +888,7 @@ M.StartSpeechSynthesisStreamInput = {
 
 M.StreamClosedEvent = {
     type = "structure",
+    id = "StreamClosedEvent",
     members = {
         RequestCharacters = {
             type = "integer",
@@ -855,6 +901,7 @@ M.StreamClosedEvent = {
 
 M.ThrottlingReason = {
     type = "structure",
+    id = "ThrottlingReason",
     members = {
         reason = {
             type = "string",
@@ -867,6 +914,7 @@ M.ThrottlingReason = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -881,6 +929,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -906,6 +955,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -929,6 +979,7 @@ M.ValidationException = {
 
 M.StartSpeechSynthesisStreamEventStream = {
     type = "union",
+    id = "StartSpeechSynthesisStreamEventStream",
     members = {
         AudioEvent = M.AudioEvent,
         StreamClosedEvent = M.StreamClosedEvent,
@@ -941,6 +992,7 @@ M.StartSpeechSynthesisStreamEventStream = {
 
 M.StartSpeechSynthesisStreamOutput = {
     type = "structure",
+    id = "StartSpeechSynthesisStreamOutput",
     members = {
         EventStream = setmetatable({ traits = {
             http_payload = true,
@@ -950,6 +1002,7 @@ M.StartSpeechSynthesisStreamOutput = {
 
 M.SsmlMarksNotSupportedForTextTypeException = {
     type = "structure",
+    id = "SsmlMarksNotSupportedForTextTypeException",
     error = "client",
     members = {
         message = {
@@ -960,6 +1013,7 @@ M.SsmlMarksNotSupportedForTextTypeException = {
 
 M.StartSpeechSynthesisTaskInput = {
     type = "structure",
+    id = "StartSpeechSynthesisTaskInput",
     members = {
         Engine = {
             type = "string",
@@ -1016,6 +1070,7 @@ M.StartSpeechSynthesisTaskInput = {
 
 M.StartSpeechSynthesisTaskOutput = {
     type = "structure",
+    id = "StartSpeechSynthesisTaskOutput",
     members = {
         SynthesisTask = M.SynthesisTask,
     },
@@ -1023,6 +1078,7 @@ M.StartSpeechSynthesisTaskOutput = {
 
 M.TextLengthExceededException = {
     type = "structure",
+    id = "TextLengthExceededException",
     error = "client",
     members = {
         message = {
@@ -1033,6 +1089,7 @@ M.TextLengthExceededException = {
 
 M.SynthesizeSpeechInput = {
     type = "structure",
+    id = "SynthesizeSpeechInput",
     members = {
         Engine = {
             type = "string",
@@ -1077,6 +1134,7 @@ M.SynthesizeSpeechInput = {
 
 M.SynthesizeSpeechOutput = {
     type = "structure",
+    id = "SynthesizeSpeechOutput",
     members = {
         AudioStream = {
             type = "blob",

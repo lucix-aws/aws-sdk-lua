@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.TargetTrackingScalingPolicyConfiguration = {
     type = "structure",
+    id = "TargetTrackingScalingPolicyConfiguration",
     members = {
         disableScaleIn = {
             type = "boolean",
@@ -43,6 +45,7 @@ M.TargetTrackingScalingPolicyConfiguration = {
 
 M.AutoScalingPolicy = {
     type = "structure",
+    id = "AutoScalingPolicy",
     members = {
         targetTrackingScalingPolicyConfiguration = M.TargetTrackingScalingPolicyConfiguration,
     },
@@ -50,6 +53,7 @@ M.AutoScalingPolicy = {
 
 M.AutoScalingSettings = {
     type = "structure",
+    id = "AutoScalingSettings",
     members = {
         autoScalingDisabled = {
             type = "boolean",
@@ -69,6 +73,7 @@ M.AutoScalingSettings = {
 
 M.AutoScalingSpecification = {
     type = "structure",
+    id = "AutoScalingSpecification",
     members = {
         writeCapacityAutoScaling = M.AutoScalingSettings,
         readCapacityAutoScaling = M.AutoScalingSettings,
@@ -82,6 +87,7 @@ M.ThroughputMode = {
 
 M.CapacitySpecification = {
     type = "structure",
+    id = "CapacitySpecification",
     members = {
         throughputMode = {
             type = "string",
@@ -100,6 +106,7 @@ M.CapacitySpecification = {
 
 M.CapacitySpecificationSummary = {
     type = "structure",
+    id = "CapacitySpecificationSummary",
     members = {
         throughputMode = {
             type = "string",
@@ -133,6 +140,7 @@ M.CdcStatus = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -158,6 +166,7 @@ M.ViewType = {
 
 M.CdcSpecification = {
     type = "structure",
+    id = "CdcSpecification",
     members = {
         status = {
             type = "string",
@@ -180,6 +189,7 @@ M.CdcSpecification = {
 
 M.CdcSpecificationSummary = {
     type = "structure",
+    id = "CdcSpecificationSummary",
     members = {
         status = {
             type = "string",
@@ -199,6 +209,7 @@ M.ClientSideTimestampsStatus = {
 
 M.ClientSideTimestamps = {
     type = "structure",
+    id = "ClientSideTimestamps",
     members = {
         status = {
             type = "string",
@@ -216,6 +227,7 @@ M.SortOrder = {
 
 M.ClusteringKey = {
     type = "structure",
+    id = "ClusteringKey",
     members = {
         name = {
             type = "string",
@@ -234,6 +246,7 @@ M.ClusteringKey = {
 
 M.ColumnDefinition = {
     type = "structure",
+    id = "ColumnDefinition",
     members = {
         name = {
             type = "string",
@@ -252,6 +265,7 @@ M.ColumnDefinition = {
 
 M.Comment = {
     type = "structure",
+    id = "Comment",
     members = {
         message = {
             type = "string",
@@ -264,6 +278,7 @@ M.Comment = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -279,6 +294,7 @@ M.rs = {
 
 M.ReplicationSpecification = {
     type = "structure",
+    id = "ReplicationSpecification",
     members = {
         replicationStrategy = {
             type = "string",
@@ -295,6 +311,7 @@ M.ReplicationSpecification = {
 
 M.CreateKeyspaceInput = {
     type = "structure",
+    id = "CreateKeyspaceInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -312,6 +329,7 @@ M.CreateKeyspaceInput = {
 
 M.CreateKeyspaceOutput = {
     type = "structure",
+    id = "CreateKeyspaceOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -324,6 +342,7 @@ M.CreateKeyspaceOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -334,6 +353,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -344,6 +364,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -359,6 +380,7 @@ M.EncryptionType = {
 
 M.EncryptionSpecification = {
     type = "structure",
+    id = "EncryptionSpecification",
     members = {
         type = {
             type = "string",
@@ -379,6 +401,7 @@ M.PointInTimeRecoveryStatus = {
 
 M.PointInTimeRecovery = {
     type = "structure",
+    id = "PointInTimeRecovery",
     members = {
         status = {
             type = "string",
@@ -391,6 +414,7 @@ M.PointInTimeRecovery = {
 
 M.ReplicaSpecification = {
     type = "structure",
+    id = "ReplicaSpecification",
     members = {
         region = {
             type = "string",
@@ -407,6 +431,7 @@ M.ReplicaSpecification = {
 
 M.PartitionKey = {
     type = "structure",
+    id = "PartitionKey",
     members = {
         name = {
             type = "string",
@@ -419,6 +444,7 @@ M.PartitionKey = {
 
 M.StaticColumn = {
     type = "structure",
+    id = "StaticColumn",
     members = {
         name = {
             type = "string",
@@ -431,6 +457,7 @@ M.StaticColumn = {
 
 M.SchemaDefinition = {
     type = "structure",
+    id = "SchemaDefinition",
     members = {
         allColumns = {
             type = "list",
@@ -463,6 +490,7 @@ M.TimeToLiveStatus = {
 
 M.TimeToLive = {
     type = "structure",
+    id = "TimeToLive",
     members = {
         status = {
             type = "string",
@@ -475,6 +503,7 @@ M.TimeToLive = {
 
 M.WarmThroughputSpecification = {
     type = "structure",
+    id = "WarmThroughputSpecification",
     members = {
         readUnitsPerSecond = {
             type = "long",
@@ -493,6 +522,7 @@ M.WarmThroughputSpecification = {
 
 M.CreateTableInput = {
     type = "structure",
+    id = "CreateTableInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -534,6 +564,7 @@ M.CreateTableInput = {
 
 M.CreateTableOutput = {
     type = "structure",
+    id = "CreateTableOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -546,6 +577,7 @@ M.CreateTableOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -559,6 +591,7 @@ M.ResourceNotFoundException = {
 
 M.FieldDefinition = {
     type = "structure",
+    id = "FieldDefinition",
     members = {
         name = {
             type = "string",
@@ -577,6 +610,7 @@ M.FieldDefinition = {
 
 M.CreateTypeInput = {
     type = "structure",
+    id = "CreateTypeInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -602,6 +636,7 @@ M.CreateTypeInput = {
 
 M.CreateTypeOutput = {
     type = "structure",
+    id = "CreateTypeOutput",
     members = {
         keyspaceArn = {
             type = "string",
@@ -620,6 +655,7 @@ M.CreateTypeOutput = {
 
 M.DeleteKeyspaceInput = {
     type = "structure",
+    id = "DeleteKeyspaceInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -632,10 +668,12 @@ M.DeleteKeyspaceInput = {
 
 M.DeleteKeyspaceOutput = {
     type = "structure",
+    id = "DeleteKeyspaceOutput",
 }
 
 M.DeleteTableInput = {
     type = "structure",
+    id = "DeleteTableInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -654,10 +692,12 @@ M.DeleteTableInput = {
 
 M.DeleteTableOutput = {
     type = "structure",
+    id = "DeleteTableOutput",
 }
 
 M.DeleteTypeInput = {
     type = "structure",
+    id = "DeleteTypeInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -676,6 +716,7 @@ M.DeleteTypeInput = {
 
 M.DeleteTypeOutput = {
     type = "structure",
+    id = "DeleteTypeOutput",
     members = {
         keyspaceArn = {
             type = "string",
@@ -694,6 +735,7 @@ M.DeleteTypeOutput = {
 
 M.GetKeyspaceInput = {
     type = "structure",
+    id = "GetKeyspaceInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -713,6 +755,7 @@ M.KeyspaceStatus = {
 
 M.ReplicationGroupStatus = {
     type = "structure",
+    id = "ReplicationGroupStatus",
     members = {
         region = {
             type = "string",
@@ -734,6 +777,7 @@ M.ReplicationGroupStatus = {
 
 M.GetKeyspaceOutput = {
     type = "structure",
+    id = "GetKeyspaceOutput",
     members = {
         keyspaceName = {
             type = "string",
@@ -766,6 +810,7 @@ M.GetKeyspaceOutput = {
 
 M.GetTableInput = {
     type = "structure",
+    id = "GetTableInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -784,6 +829,7 @@ M.GetTableInput = {
 
 M.PointInTimeRecoverySummary = {
     type = "structure",
+    id = "PointInTimeRecoverySummary",
     members = {
         status = {
             type = "string",
@@ -814,6 +860,7 @@ M.WarmThroughputStatus = {
 
 M.WarmThroughputSpecificationSummary = {
     type = "structure",
+    id = "WarmThroughputSpecificationSummary",
     members = {
         readUnitsPerSecond = {
             type = "long",
@@ -838,6 +885,7 @@ M.WarmThroughputSpecificationSummary = {
 
 M.ReplicaSpecificationSummary = {
     type = "structure",
+    id = "ReplicaSpecificationSummary",
     members = {
         region = {
             type = "string",
@@ -852,6 +900,7 @@ M.ReplicaSpecificationSummary = {
 
 M.GetTableOutput = {
     type = "structure",
+    id = "GetTableOutput",
     members = {
         keyspaceName = {
             type = "string",
@@ -901,6 +950,7 @@ M.GetTableOutput = {
 
 M.GetTableAutoScalingSettingsInput = {
     type = "structure",
+    id = "GetTableAutoScalingSettingsInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -919,6 +969,7 @@ M.GetTableAutoScalingSettingsInput = {
 
 M.ReplicaAutoScalingSpecification = {
     type = "structure",
+    id = "ReplicaAutoScalingSpecification",
     members = {
         region = {
             type = "string",
@@ -929,6 +980,7 @@ M.ReplicaAutoScalingSpecification = {
 
 M.GetTableAutoScalingSettingsOutput = {
     type = "structure",
+    id = "GetTableAutoScalingSettingsOutput",
     members = {
         keyspaceName = {
             type = "string",
@@ -958,6 +1010,7 @@ M.GetTableAutoScalingSettingsOutput = {
 
 M.GetTypeInput = {
     type = "structure",
+    id = "GetTypeInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -983,6 +1036,7 @@ M.TypeStatus = {
 
 M.GetTypeOutput = {
     type = "structure",
+    id = "GetTypeOutput",
     members = {
         keyspaceName = {
             type = "string",
@@ -1031,6 +1085,7 @@ M.GetTypeOutput = {
 
 M.ListKeyspacesInput = {
     type = "structure",
+    id = "ListKeyspacesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1043,6 +1098,7 @@ M.ListKeyspacesInput = {
 
 M.KeyspaceSummary = {
     type = "structure",
+    id = "KeyspaceSummary",
     members = {
         keyspaceName = {
             type = "string",
@@ -1071,6 +1127,7 @@ M.KeyspaceSummary = {
 
 M.ListKeyspacesOutput = {
     type = "structure",
+    id = "ListKeyspacesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1087,6 +1144,7 @@ M.ListKeyspacesOutput = {
 
 M.ListTablesInput = {
     type = "structure",
+    id = "ListTablesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1105,6 +1163,7 @@ M.ListTablesInput = {
 
 M.TableSummary = {
     type = "structure",
+    id = "TableSummary",
     members = {
         keyspaceName = {
             type = "string",
@@ -1129,6 +1188,7 @@ M.TableSummary = {
 
 M.ListTablesOutput = {
     type = "structure",
+    id = "ListTablesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1142,6 +1202,7 @@ M.ListTablesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1160,6 +1221,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1173,6 +1235,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTypesInput = {
     type = "structure",
+    id = "ListTypesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1191,6 +1254,7 @@ M.ListTypesInput = {
 
 M.ListTypesOutput = {
     type = "structure",
+    id = "ListTypesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1207,6 +1271,7 @@ M.ListTypesOutput = {
 
 M.RestoreTableInput = {
     type = "structure",
+    id = "RestoreTableInput",
     members = {
         sourceKeyspaceName = {
             type = "string",
@@ -1252,6 +1317,7 @@ M.RestoreTableInput = {
 
 M.RestoreTableOutput = {
     type = "structure",
+    id = "RestoreTableOutput",
     members = {
         restoredTableARN = {
             type = "string",
@@ -1264,6 +1330,7 @@ M.RestoreTableOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1283,10 +1350,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1306,10 +1375,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateKeyspaceInput = {
     type = "structure",
+    id = "UpdateKeyspaceInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -1326,6 +1397,7 @@ M.UpdateKeyspaceInput = {
 
 M.UpdateKeyspaceOutput = {
     type = "structure",
+    id = "UpdateKeyspaceOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -1338,6 +1410,7 @@ M.UpdateKeyspaceOutput = {
 
 M.UpdateTableInput = {
     type = "structure",
+    id = "UpdateTableInput",
     members = {
         keyspaceName = {
             type = "string",
@@ -1375,6 +1448,7 @@ M.UpdateTableInput = {
 
 M.UpdateTableOutput = {
     type = "structure",
+    id = "UpdateTableOutput",
     members = {
         resourceArn = {
             type = "string",

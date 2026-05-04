@@ -2,6 +2,7 @@ local M = {}
 
 M.Platform = {
     type = "structure",
+    id = "Platform",
     members = {
         Version = {
             type = "string",
@@ -16,6 +17,7 @@ M.AgentStatus = {
 
 M.AgentListEntry = {
     type = "structure",
+    id = "AgentListEntry",
     members = {
         AgentArn = {
             type = "string",
@@ -48,6 +50,7 @@ M.AzureBlobAuthenticationType = {
 
 M.AzureBlobSasConfiguration = {
     type = "structure",
+    id = "AzureBlobSasConfiguration",
     members = {
         Token = {
             type = "string",
@@ -64,6 +67,7 @@ M.AzureBlobType = {
 
 M.CancelTaskExecutionInput = {
     type = "structure",
+    id = "CancelTaskExecutionInput",
     members = {
         TaskExecutionArn = {
             type = "string",
@@ -76,10 +80,12 @@ M.CancelTaskExecutionInput = {
 
 M.CancelTaskExecutionOutput = {
     type = "structure",
+    id = "CancelTaskExecutionOutput",
 }
 
 M.InternalException = {
     type = "structure",
+    id = "InternalException",
     error = "server",
     members = {
         message = {
@@ -93,6 +99,7 @@ M.InternalException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -109,6 +116,7 @@ M.InvalidRequestException = {
 
 M.CmkSecretConfig = {
     type = "structure",
+    id = "CmkSecretConfig",
     members = {
         SecretArn = {
             type = "string",
@@ -121,6 +129,7 @@ M.CmkSecretConfig = {
 
 M.TagListEntry = {
     type = "structure",
+    id = "TagListEntry",
     members = {
         Key = {
             type = "string",
@@ -136,6 +145,7 @@ M.TagListEntry = {
 
 M.CreateAgentInput = {
     type = "structure",
+    id = "CreateAgentInput",
     members = {
         ActivationKey = {
             type = "string",
@@ -166,6 +176,7 @@ M.CreateAgentInput = {
 
 M.CreateAgentOutput = {
     type = "structure",
+    id = "CreateAgentOutput",
     members = {
         AgentArn = {
             type = "string",
@@ -175,6 +186,7 @@ M.CreateAgentOutput = {
 
 M.CustomSecretConfig = {
     type = "structure",
+    id = "CustomSecretConfig",
     members = {
         SecretArn = {
             type = "string",
@@ -187,6 +199,7 @@ M.CustomSecretConfig = {
 
 M.CreateLocationAzureBlobInput = {
     type = "structure",
+    id = "CreateLocationAzureBlobInput",
     members = {
         ContainerUrl = {
             type = "string",
@@ -225,6 +238,7 @@ M.CreateLocationAzureBlobInput = {
 
 M.CreateLocationAzureBlobOutput = {
     type = "structure",
+    id = "CreateLocationAzureBlobOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -234,6 +248,7 @@ M.CreateLocationAzureBlobOutput = {
 
 M.Ec2Config = {
     type = "structure",
+    id = "Ec2Config",
     members = {
         SubnetArn = {
             type = "string",
@@ -258,6 +273,7 @@ M.EfsInTransitEncryption = {
 
 M.CreateLocationEfsInput = {
     type = "structure",
+    id = "CreateLocationEfsInput",
     members = {
         Subdirectory = {
             type = "string",
@@ -289,6 +305,7 @@ M.CreateLocationEfsInput = {
 
 M.CreateLocationEfsOutput = {
     type = "structure",
+    id = "CreateLocationEfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -298,6 +315,7 @@ M.CreateLocationEfsOutput = {
 
 M.CreateLocationFsxLustreInput = {
     type = "structure",
+    id = "CreateLocationFsxLustreInput",
     members = {
         FsxFilesystemArn = {
             type = "string",
@@ -324,6 +342,7 @@ M.CreateLocationFsxLustreInput = {
 
 M.CreateLocationFsxLustreOutput = {
     type = "structure",
+    id = "CreateLocationFsxLustreOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -340,6 +359,7 @@ M.NfsVersion = {
 
 M.NfsMountOptions = {
     type = "structure",
+    id = "NfsMountOptions",
     members = {
         Version = {
             type = "string",
@@ -349,6 +369,7 @@ M.NfsMountOptions = {
 
 M.FsxProtocolNfs = {
     type = "structure",
+    id = "FsxProtocolNfs",
     members = {
         MountOptions = M.NfsMountOptions,
     },
@@ -356,6 +377,7 @@ M.FsxProtocolNfs = {
 
 M.ManagedSecretConfig = {
     type = "structure",
+    id = "ManagedSecretConfig",
     members = {
         SecretArn = {
             type = "string",
@@ -373,6 +395,7 @@ M.SmbVersion = {
 
 M.SmbMountOptions = {
     type = "structure",
+    id = "SmbMountOptions",
     members = {
         Version = {
             type = "string",
@@ -382,6 +405,7 @@ M.SmbMountOptions = {
 
 M.FsxProtocolSmb = {
     type = "structure",
+    id = "FsxProtocolSmb",
     members = {
         Domain = {
             type = "string",
@@ -407,6 +431,7 @@ M.FsxProtocolSmb = {
 
 M.FsxProtocol = {
     type = "structure",
+    id = "FsxProtocol",
     members = {
         NFS = M.FsxProtocolNfs,
         SMB = M.FsxProtocolSmb,
@@ -415,6 +440,7 @@ M.FsxProtocol = {
 
 M.CreateLocationFsxOntapInput = {
     type = "structure",
+    id = "CreateLocationFsxOntapInput",
     members = {
         Protocol = setmetatable({ traits = {
             required = true,
@@ -444,6 +470,7 @@ M.CreateLocationFsxOntapInput = {
 
 M.CreateLocationFsxOntapOutput = {
     type = "structure",
+    id = "CreateLocationFsxOntapOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -453,6 +480,7 @@ M.CreateLocationFsxOntapOutput = {
 
 M.CreateLocationFsxOpenZfsInput = {
     type = "structure",
+    id = "CreateLocationFsxOpenZfsInput",
     members = {
         FsxFilesystemArn = {
             type = "string",
@@ -482,6 +510,7 @@ M.CreateLocationFsxOpenZfsInput = {
 
 M.CreateLocationFsxOpenZfsOutput = {
     type = "structure",
+    id = "CreateLocationFsxOpenZfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -491,6 +520,7 @@ M.CreateLocationFsxOpenZfsOutput = {
 
 M.CreateLocationFsxWindowsInput = {
     type = "structure",
+    id = "CreateLocationFsxWindowsInput",
     members = {
         Subdirectory = {
             type = "string",
@@ -531,6 +561,7 @@ M.CreateLocationFsxWindowsInput = {
 
 M.CreateLocationFsxWindowsOutput = {
     type = "structure",
+    id = "CreateLocationFsxWindowsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -545,6 +576,7 @@ M.HdfsAuthenticationType = {
 
 M.HdfsNameNode = {
     type = "structure",
+    id = "HdfsNameNode",
     members = {
         Hostname = {
             type = "string",
@@ -577,6 +609,7 @@ M.HdfsRpcProtection = {
 
 M.QopConfiguration = {
     type = "structure",
+    id = "QopConfiguration",
     members = {
         RpcProtection = {
             type = "string",
@@ -589,6 +622,7 @@ M.QopConfiguration = {
 
 M.CreateLocationHdfsInput = {
     type = "structure",
+    id = "CreateLocationHdfsInput",
     members = {
         Subdirectory = {
             type = "string",
@@ -646,6 +680,7 @@ M.CreateLocationHdfsInput = {
 
 M.CreateLocationHdfsOutput = {
     type = "structure",
+    id = "CreateLocationHdfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -655,6 +690,7 @@ M.CreateLocationHdfsOutput = {
 
 M.OnPremConfig = {
     type = "structure",
+    id = "OnPremConfig",
     members = {
         AgentArns = {
             type = "list",
@@ -668,6 +704,7 @@ M.OnPremConfig = {
 
 M.CreateLocationNfsInput = {
     type = "structure",
+    id = "CreateLocationNfsInput",
     members = {
         Subdirectory = {
             type = "string",
@@ -694,6 +731,7 @@ M.CreateLocationNfsInput = {
 
 M.CreateLocationNfsOutput = {
     type = "structure",
+    id = "CreateLocationNfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -708,6 +746,7 @@ M.ObjectStorageServerProtocol = {
 
 M.CreateLocationObjectStorageInput = {
     type = "structure",
+    id = "CreateLocationObjectStorageInput",
     members = {
         ServerHostname = {
             type = "string",
@@ -754,6 +793,7 @@ M.CreateLocationObjectStorageInput = {
 
 M.CreateLocationObjectStorageOutput = {
     type = "structure",
+    id = "CreateLocationObjectStorageOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -763,6 +803,7 @@ M.CreateLocationObjectStorageOutput = {
 
 M.S3Config = {
     type = "structure",
+    id = "S3Config",
     members = {
         BucketAccessRoleArn = {
             type = "string",
@@ -786,6 +827,7 @@ M.S3StorageClass = {
 
 M.CreateLocationS3Input = {
     type = "structure",
+    id = "CreateLocationS3Input",
     members = {
         Subdirectory = {
             type = "string",
@@ -815,6 +857,7 @@ M.CreateLocationS3Input = {
 
 M.CreateLocationS3Output = {
     type = "structure",
+    id = "CreateLocationS3Output",
     members = {
         LocationArn = {
             type = "string",
@@ -829,6 +872,7 @@ M.SmbAuthenticationType = {
 
 M.CreateLocationSmbInput = {
     type = "structure",
+    id = "CreateLocationSmbInput",
     members = {
         Subdirectory = {
             type = "string",
@@ -886,6 +930,7 @@ M.CreateLocationSmbInput = {
 
 M.CreateLocationSmbOutput = {
     type = "structure",
+    id = "CreateLocationSmbOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -899,6 +944,7 @@ M.FilterType = {
 
 M.FilterRule = {
     type = "structure",
+    id = "FilterRule",
     members = {
         FilterType = {
             type = "string",
@@ -919,6 +965,7 @@ M.ManifestFormat = {
 
 M.S3ManifestConfig = {
     type = "structure",
+    id = "S3ManifestConfig",
     members = {
         ManifestObjectPath = {
             type = "string",
@@ -946,6 +993,7 @@ M.S3ManifestConfig = {
 
 M.SourceManifestConfig = {
     type = "structure",
+    id = "SourceManifestConfig",
     members = {
         S3 = setmetatable({ traits = {
             required = true,
@@ -955,6 +1003,7 @@ M.SourceManifestConfig = {
 
 M.ManifestConfig = {
     type = "structure",
+    id = "ManifestConfig",
     members = {
         Action = {
             type = "string",
@@ -1040,6 +1089,7 @@ M.VerifyMode = {
 
 M.Options = {
     type = "structure",
+    id = "Options",
     members = {
         VerifyMode = {
             type = "string",
@@ -1096,6 +1146,7 @@ M.ScheduleStatus = {
 
 M.TaskSchedule = {
     type = "structure",
+    id = "TaskSchedule",
     members = {
         ScheduleExpression = {
             type = "string",
@@ -1116,6 +1167,7 @@ M.TaskMode = {
 
 M.ReportDestinationS3 = {
     type = "structure",
+    id = "ReportDestinationS3",
     members = {
         Subdirectory = {
             type = "string",
@@ -1137,6 +1189,7 @@ M.ReportDestinationS3 = {
 
 M.ReportDestination = {
     type = "structure",
+    id = "ReportDestination",
     members = {
         S3 = M.ReportDestinationS3,
     },
@@ -1159,6 +1212,7 @@ M.ReportLevel = {
 
 M.ReportOverride = {
     type = "structure",
+    id = "ReportOverride",
     members = {
         ReportLevel = {
             type = "string",
@@ -1168,6 +1222,7 @@ M.ReportOverride = {
 
 M.ReportOverrides = {
     type = "structure",
+    id = "ReportOverrides",
     members = {
         Transferred = M.ReportOverride,
         Verified = M.ReportOverride,
@@ -1178,6 +1233,7 @@ M.ReportOverrides = {
 
 M.TaskReportConfig = {
     type = "structure",
+    id = "TaskReportConfig",
     members = {
         Destination = M.ReportDestination,
         OutputType = {
@@ -1195,6 +1251,7 @@ M.TaskReportConfig = {
 
 M.CreateTaskInput = {
     type = "structure",
+    id = "CreateTaskInput",
     members = {
         SourceLocationArn = {
             type = "string",
@@ -1238,6 +1295,7 @@ M.CreateTaskInput = {
 
 M.CreateTaskOutput = {
     type = "structure",
+    id = "CreateTaskOutput",
     members = {
         TaskArn = {
             type = "string",
@@ -1247,6 +1305,7 @@ M.CreateTaskOutput = {
 
 M.DeleteAgentInput = {
     type = "structure",
+    id = "DeleteAgentInput",
     members = {
         AgentArn = {
             type = "string",
@@ -1259,10 +1318,12 @@ M.DeleteAgentInput = {
 
 M.DeleteAgentOutput = {
     type = "structure",
+    id = "DeleteAgentOutput",
 }
 
 M.DeleteLocationInput = {
     type = "structure",
+    id = "DeleteLocationInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1275,10 +1336,12 @@ M.DeleteLocationInput = {
 
 M.DeleteLocationOutput = {
     type = "structure",
+    id = "DeleteLocationOutput",
 }
 
 M.DeleteTaskInput = {
     type = "structure",
+    id = "DeleteTaskInput",
     members = {
         TaskArn = {
             type = "string",
@@ -1291,10 +1354,12 @@ M.DeleteTaskInput = {
 
 M.DeleteTaskOutput = {
     type = "structure",
+    id = "DeleteTaskOutput",
 }
 
 M.DescribeAgentInput = {
     type = "structure",
+    id = "DescribeAgentInput",
     members = {
         AgentArn = {
             type = "string",
@@ -1314,6 +1379,7 @@ M.EndpointType = {
 
 M.PrivateLinkConfig = {
     type = "structure",
+    id = "PrivateLinkConfig",
     members = {
         VpcEndpointId = {
             type = "string",
@@ -1334,6 +1400,7 @@ M.PrivateLinkConfig = {
 
 M.DescribeAgentOutput = {
     type = "structure",
+    id = "DescribeAgentOutput",
     members = {
         AgentArn = {
             type = "string",
@@ -1360,6 +1427,7 @@ M.DescribeAgentOutput = {
 
 M.DescribeLocationAzureBlobInput = {
     type = "structure",
+    id = "DescribeLocationAzureBlobInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1372,6 +1440,7 @@ M.DescribeLocationAzureBlobInput = {
 
 M.DescribeLocationAzureBlobOutput = {
     type = "structure",
+    id = "DescribeLocationAzureBlobOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1403,6 +1472,7 @@ M.DescribeLocationAzureBlobOutput = {
 
 M.DescribeLocationEfsInput = {
     type = "structure",
+    id = "DescribeLocationEfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1415,6 +1485,7 @@ M.DescribeLocationEfsInput = {
 
 M.DescribeLocationEfsOutput = {
     type = "structure",
+    id = "DescribeLocationEfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1440,6 +1511,7 @@ M.DescribeLocationEfsOutput = {
 
 M.DescribeLocationFsxLustreInput = {
     type = "structure",
+    id = "DescribeLocationFsxLustreInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1452,6 +1524,7 @@ M.DescribeLocationFsxLustreInput = {
 
 M.DescribeLocationFsxLustreOutput = {
     type = "structure",
+    id = "DescribeLocationFsxLustreOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1471,6 +1544,7 @@ M.DescribeLocationFsxLustreOutput = {
 
 M.DescribeLocationFsxOntapInput = {
     type = "structure",
+    id = "DescribeLocationFsxOntapInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1483,6 +1557,7 @@ M.DescribeLocationFsxOntapInput = {
 
 M.DescribeLocationFsxOntapOutput = {
     type = "structure",
+    id = "DescribeLocationFsxOntapOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -1509,6 +1584,7 @@ M.DescribeLocationFsxOntapOutput = {
 
 M.DescribeLocationFsxOpenZfsInput = {
     type = "structure",
+    id = "DescribeLocationFsxOpenZfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1521,6 +1597,7 @@ M.DescribeLocationFsxOpenZfsInput = {
 
 M.DescribeLocationFsxOpenZfsOutput = {
     type = "structure",
+    id = "DescribeLocationFsxOpenZfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1541,6 +1618,7 @@ M.DescribeLocationFsxOpenZfsOutput = {
 
 M.DescribeLocationFsxWindowsInput = {
     type = "structure",
+    id = "DescribeLocationFsxWindowsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1553,6 +1631,7 @@ M.DescribeLocationFsxWindowsInput = {
 
 M.DescribeLocationFsxWindowsOutput = {
     type = "structure",
+    id = "DescribeLocationFsxWindowsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1581,6 +1660,7 @@ M.DescribeLocationFsxWindowsOutput = {
 
 M.DescribeLocationHdfsInput = {
     type = "structure",
+    id = "DescribeLocationHdfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1593,6 +1673,7 @@ M.DescribeLocationHdfsInput = {
 
 M.DescribeLocationHdfsOutput = {
     type = "structure",
+    id = "DescribeLocationHdfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1638,6 +1719,7 @@ M.DescribeLocationHdfsOutput = {
 
 M.DescribeLocationNfsInput = {
     type = "structure",
+    id = "DescribeLocationNfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1650,6 +1732,7 @@ M.DescribeLocationNfsInput = {
 
 M.DescribeLocationNfsOutput = {
     type = "structure",
+    id = "DescribeLocationNfsOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1667,6 +1750,7 @@ M.DescribeLocationNfsOutput = {
 
 M.DescribeLocationObjectStorageInput = {
     type = "structure",
+    id = "DescribeLocationObjectStorageInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1679,6 +1763,7 @@ M.DescribeLocationObjectStorageInput = {
 
 M.DescribeLocationObjectStorageOutput = {
     type = "structure",
+    id = "DescribeLocationObjectStorageOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1713,6 +1798,7 @@ M.DescribeLocationObjectStorageOutput = {
 
 M.DescribeLocationS3Input = {
     type = "structure",
+    id = "DescribeLocationS3Input",
     members = {
         LocationArn = {
             type = "string",
@@ -1725,6 +1811,7 @@ M.DescribeLocationS3Input = {
 
 M.DescribeLocationS3Output = {
     type = "structure",
+    id = "DescribeLocationS3Output",
     members = {
         LocationArn = {
             type = "string",
@@ -1748,6 +1835,7 @@ M.DescribeLocationS3Output = {
 
 M.DescribeLocationSmbInput = {
     type = "structure",
+    id = "DescribeLocationSmbInput",
     members = {
         LocationArn = {
             type = "string",
@@ -1760,6 +1848,7 @@ M.DescribeLocationSmbInput = {
 
 M.DescribeLocationSmbOutput = {
     type = "structure",
+    id = "DescribeLocationSmbOutput",
     members = {
         LocationArn = {
             type = "string",
@@ -1799,6 +1888,7 @@ M.DescribeLocationSmbOutput = {
 
 M.DescribeTaskInput = {
     type = "structure",
+    id = "DescribeTaskInput",
     members = {
         TaskArn = {
             type = "string",
@@ -1816,6 +1906,7 @@ M.ScheduleDisabledBy = {
 
 M.TaskScheduleDetails = {
     type = "structure",
+    id = "TaskScheduleDetails",
     members = {
         StatusUpdateTime = {
             type = "timestamp",
@@ -1839,6 +1930,7 @@ M.TaskStatus = {
 
 M.DescribeTaskOutput = {
     type = "structure",
+    id = "DescribeTaskOutput",
     members = {
         TaskArn = {
             type = "string",
@@ -1899,6 +1991,7 @@ M.DescribeTaskOutput = {
 
 M.DescribeTaskExecutionInput = {
     type = "structure",
+    id = "DescribeTaskExecutionInput",
     members = {
         TaskExecutionArn = {
             type = "string",
@@ -1911,6 +2004,7 @@ M.DescribeTaskExecutionInput = {
 
 M.TaskExecutionFilesFailedDetail = {
     type = "structure",
+    id = "TaskExecutionFilesFailedDetail",
     members = {
         Prepare = {
             type = "long",
@@ -1941,6 +2035,7 @@ M.TaskExecutionFilesFailedDetail = {
 
 M.TaskExecutionFilesListedDetail = {
     type = "structure",
+    id = "TaskExecutionFilesListedDetail",
     members = {
         AtSource = {
             type = "long",
@@ -1959,6 +2054,7 @@ M.TaskExecutionFilesListedDetail = {
 
 M.TaskExecutionFoldersFailedDetail = {
     type = "structure",
+    id = "TaskExecutionFoldersFailedDetail",
     members = {
         List = {
             type = "long",
@@ -1995,6 +2091,7 @@ M.TaskExecutionFoldersFailedDetail = {
 
 M.TaskExecutionFoldersListedDetail = {
     type = "structure",
+    id = "TaskExecutionFoldersListedDetail",
     members = {
         AtSource = {
             type = "long",
@@ -2019,6 +2116,7 @@ M.PhaseStatus = {
 
 M.ReportResult = {
     type = "structure",
+    id = "ReportResult",
     members = {
         Status = {
             type = "string",
@@ -2034,6 +2132,7 @@ M.ReportResult = {
 
 M.TaskExecutionResultDetail = {
     type = "structure",
+    id = "TaskExecutionResultDetail",
     members = {
         PrepareDuration = {
             type = "long",
@@ -2078,6 +2177,7 @@ M.TaskExecutionStatus = {
 
 M.DescribeTaskExecutionOutput = {
     type = "structure",
+    id = "DescribeTaskExecutionOutput",
     members = {
         TaskExecutionArn = {
             type = "string",
@@ -2206,6 +2306,7 @@ M.DescribeTaskExecutionOutput = {
 
 M.ListAgentsInput = {
     type = "structure",
+    id = "ListAgentsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2218,6 +2319,7 @@ M.ListAgentsInput = {
 
 M.ListAgentsOutput = {
     type = "structure",
+    id = "ListAgentsOutput",
     members = {
         Agents = {
             type = "list",
@@ -2250,6 +2352,7 @@ M.Operator = {
 
 M.LocationFilter = {
     type = "structure",
+    id = "LocationFilter",
     members = {
         Name = {
             type = "string",
@@ -2275,6 +2378,7 @@ M.LocationFilter = {
 
 M.ListLocationsInput = {
     type = "structure",
+    id = "ListLocationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2291,6 +2395,7 @@ M.ListLocationsInput = {
 
 M.LocationListEntry = {
     type = "structure",
+    id = "LocationListEntry",
     members = {
         LocationArn = {
             type = "string",
@@ -2303,6 +2408,7 @@ M.LocationListEntry = {
 
 M.ListLocationsOutput = {
     type = "structure",
+    id = "ListLocationsOutput",
     members = {
         Locations = {
             type = "list",
@@ -2316,6 +2422,7 @@ M.ListLocationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2334,6 +2441,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2347,6 +2455,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTaskExecutionsInput = {
     type = "structure",
+    id = "ListTaskExecutionsInput",
     members = {
         TaskArn = {
             type = "string",
@@ -2362,6 +2471,7 @@ M.ListTaskExecutionsInput = {
 
 M.TaskExecutionListEntry = {
     type = "structure",
+    id = "TaskExecutionListEntry",
     members = {
         TaskExecutionArn = {
             type = "string",
@@ -2377,6 +2487,7 @@ M.TaskExecutionListEntry = {
 
 M.ListTaskExecutionsOutput = {
     type = "structure",
+    id = "ListTaskExecutionsOutput",
     members = {
         TaskExecutions = {
             type = "list",
@@ -2395,6 +2506,7 @@ M.TaskFilterName = {
 
 M.TaskFilter = {
     type = "structure",
+    id = "TaskFilter",
     members = {
         Name = {
             type = "string",
@@ -2420,6 +2532,7 @@ M.TaskFilter = {
 
 M.ListTasksInput = {
     type = "structure",
+    id = "ListTasksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2436,6 +2549,7 @@ M.ListTasksInput = {
 
 M.TaskListEntry = {
     type = "structure",
+    id = "TaskListEntry",
     members = {
         TaskArn = {
             type = "string",
@@ -2454,6 +2568,7 @@ M.TaskListEntry = {
 
 M.ListTasksOutput = {
     type = "structure",
+    id = "ListTasksOutput",
     members = {
         Tasks = {
             type = "list",
@@ -2467,6 +2582,7 @@ M.ListTasksOutput = {
 
 M.StartTaskExecutionInput = {
     type = "structure",
+    id = "StartTaskExecutionInput",
     members = {
         TaskArn = {
             type = "string",
@@ -2494,6 +2610,7 @@ M.StartTaskExecutionInput = {
 
 M.StartTaskExecutionOutput = {
     type = "structure",
+    id = "StartTaskExecutionOutput",
     members = {
         TaskExecutionArn = {
             type = "string",
@@ -2503,6 +2620,7 @@ M.StartTaskExecutionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2522,10 +2640,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2545,10 +2665,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAgentInput = {
     type = "structure",
+    id = "UpdateAgentInput",
     members = {
         AgentArn = {
             type = "string",
@@ -2564,10 +2686,12 @@ M.UpdateAgentInput = {
 
 M.UpdateAgentOutput = {
     type = "structure",
+    id = "UpdateAgentOutput",
 }
 
 M.UpdateLocationAzureBlobInput = {
     type = "structure",
+    id = "UpdateLocationAzureBlobInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2599,10 +2723,12 @@ M.UpdateLocationAzureBlobInput = {
 
 M.UpdateLocationAzureBlobOutput = {
     type = "structure",
+    id = "UpdateLocationAzureBlobOutput",
 }
 
 M.UpdateLocationEfsInput = {
     type = "structure",
+    id = "UpdateLocationEfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2627,10 +2753,12 @@ M.UpdateLocationEfsInput = {
 
 M.UpdateLocationEfsOutput = {
     type = "structure",
+    id = "UpdateLocationEfsOutput",
 }
 
 M.UpdateLocationFsxLustreInput = {
     type = "structure",
+    id = "UpdateLocationFsxLustreInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2646,10 +2774,12 @@ M.UpdateLocationFsxLustreInput = {
 
 M.UpdateLocationFsxLustreOutput = {
     type = "structure",
+    id = "UpdateLocationFsxLustreOutput",
 }
 
 M.FsxUpdateProtocolSmb = {
     type = "structure",
+    id = "FsxUpdateProtocolSmb",
     members = {
         Domain = {
             type = "string",
@@ -2668,6 +2798,7 @@ M.FsxUpdateProtocolSmb = {
 
 M.FsxUpdateProtocol = {
     type = "structure",
+    id = "FsxUpdateProtocol",
     members = {
         NFS = M.FsxProtocolNfs,
         SMB = M.FsxUpdateProtocolSmb,
@@ -2676,6 +2807,7 @@ M.FsxUpdateProtocol = {
 
 M.UpdateLocationFsxOntapInput = {
     type = "structure",
+    id = "UpdateLocationFsxOntapInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2692,10 +2824,12 @@ M.UpdateLocationFsxOntapInput = {
 
 M.UpdateLocationFsxOntapOutput = {
     type = "structure",
+    id = "UpdateLocationFsxOntapOutput",
 }
 
 M.UpdateLocationFsxOpenZfsInput = {
     type = "structure",
+    id = "UpdateLocationFsxOpenZfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2712,10 +2846,12 @@ M.UpdateLocationFsxOpenZfsInput = {
 
 M.UpdateLocationFsxOpenZfsOutput = {
     type = "structure",
+    id = "UpdateLocationFsxOpenZfsOutput",
 }
 
 M.UpdateLocationFsxWindowsInput = {
     type = "structure",
+    id = "UpdateLocationFsxWindowsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2742,10 +2878,12 @@ M.UpdateLocationFsxWindowsInput = {
 
 M.UpdateLocationFsxWindowsOutput = {
     type = "structure",
+    id = "UpdateLocationFsxWindowsOutput",
 }
 
 M.UpdateLocationHdfsInput = {
     type = "structure",
+    id = "UpdateLocationHdfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2796,10 +2934,12 @@ M.UpdateLocationHdfsInput = {
 
 M.UpdateLocationHdfsOutput = {
     type = "structure",
+    id = "UpdateLocationHdfsOutput",
 }
 
 M.UpdateLocationNfsInput = {
     type = "structure",
+    id = "UpdateLocationNfsInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2820,10 +2960,12 @@ M.UpdateLocationNfsInput = {
 
 M.UpdateLocationNfsOutput = {
     type = "structure",
+    id = "UpdateLocationNfsOutput",
 }
 
 M.UpdateLocationObjectStorageInput = {
     type = "structure",
+    id = "UpdateLocationObjectStorageInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2863,10 +3005,12 @@ M.UpdateLocationObjectStorageInput = {
 
 M.UpdateLocationObjectStorageOutput = {
     type = "structure",
+    id = "UpdateLocationObjectStorageOutput",
 }
 
 M.UpdateLocationS3Input = {
     type = "structure",
+    id = "UpdateLocationS3Input",
     members = {
         LocationArn = {
             type = "string",
@@ -2886,10 +3030,12 @@ M.UpdateLocationS3Input = {
 
 M.UpdateLocationS3Output = {
     type = "structure",
+    id = "UpdateLocationS3Output",
 }
 
 M.UpdateLocationSmbInput = {
     type = "structure",
+    id = "UpdateLocationSmbInput",
     members = {
         LocationArn = {
             type = "string",
@@ -2940,10 +3086,12 @@ M.UpdateLocationSmbInput = {
 
 M.UpdateLocationSmbOutput = {
     type = "structure",
+    id = "UpdateLocationSmbOutput",
 }
 
 M.UpdateTaskInput = {
     type = "structure",
+    id = "UpdateTaskInput",
     members = {
         TaskArn = {
             type = "string",
@@ -2974,10 +3122,12 @@ M.UpdateTaskInput = {
 
 M.UpdateTaskOutput = {
     type = "structure",
+    id = "UpdateTaskOutput",
 }
 
 M.UpdateTaskExecutionInput = {
     type = "structure",
+    id = "UpdateTaskExecutionInput",
     members = {
         TaskExecutionArn = {
             type = "string",
@@ -2993,6 +3143,7 @@ M.UpdateTaskExecutionInput = {
 
 M.UpdateTaskExecutionOutput = {
     type = "structure",
+    id = "UpdateTaskExecutionOutput",
 }
 
 return M

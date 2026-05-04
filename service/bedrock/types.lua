@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ModelEnforcement = {
     type = "structure",
+    id = "ModelEnforcement",
     members = {
         includedModels = {
             type = "list",
@@ -37,6 +39,7 @@ M.SelectiveGuardingMode = {
 
 M.SelectiveContentGuarding = {
     type = "structure",
+    id = "SelectiveContentGuarding",
     members = {
         system = {
             type = "string",
@@ -49,6 +52,7 @@ M.SelectiveContentGuarding = {
 
 M.AccountEnforcedGuardrailInferenceInputConfiguration = {
     type = "structure",
+    id = "AccountEnforcedGuardrailInferenceInputConfiguration",
     members = {
         guardrailIdentifier = {
             type = "string",
@@ -78,6 +82,7 @@ M.ConfigurationOwner = {
 
 M.AccountEnforcedGuardrailOutputConfiguration = {
     type = "structure",
+    id = "AccountEnforcedGuardrailOutputConfiguration",
     members = {
         configId = {
             type = "string",
@@ -129,6 +134,7 @@ M.AgreementStatus = {
 
 M.AgreementAvailability = {
     type = "structure",
+    id = "AgreementAvailability",
     members = {
         status = {
             type = "string",
@@ -144,10 +150,12 @@ M.AgreementAvailability = {
 
 M.GetUseCaseForModelAccessInput = {
     type = "structure",
+    id = "GetUseCaseForModelAccessInput",
 }
 
 M.GetUseCaseForModelAccessOutput = {
     type = "structure",
+    id = "GetUseCaseForModelAccessOutput",
     members = {
         formData = {
             type = "blob",
@@ -160,6 +168,7 @@ M.GetUseCaseForModelAccessOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -170,6 +179,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -180,6 +190,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -190,6 +201,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -200,6 +212,7 @@ M.ValidationException = {
 
 M.PutUseCaseForModelAccessInput = {
     type = "structure",
+    id = "PutUseCaseForModelAccessInput",
     members = {
         formData = {
             type = "blob",
@@ -212,10 +225,12 @@ M.PutUseCaseForModelAccessInput = {
 
 M.PutUseCaseForModelAccessOutput = {
     type = "structure",
+    id = "PutUseCaseForModelAccessOutput",
 }
 
 M.CancelAutomatedReasoningPolicyBuildWorkflowInput = {
     type = "structure",
+    id = "CancelAutomatedReasoningPolicyBuildWorkflowInput",
     members = {
         policyArn = {
             type = "string",
@@ -236,10 +251,12 @@ M.CancelAutomatedReasoningPolicyBuildWorkflowInput = {
 
 M.CancelAutomatedReasoningPolicyBuildWorkflowOutput = {
     type = "structure",
+    id = "CancelAutomatedReasoningPolicyBuildWorkflowOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -250,6 +267,7 @@ M.ConflictException = {
 
 M.AutomatedReasoningPolicyDefinitionRule = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDefinitionRule",
     members = {
         id = {
             type = "string",
@@ -271,6 +289,7 @@ M.AutomatedReasoningPolicyDefinitionRule = {
 
 M.AutomatedReasoningPolicyDefinitionTypeValue = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDefinitionTypeValue",
     members = {
         value = {
             type = "string",
@@ -286,6 +305,7 @@ M.AutomatedReasoningPolicyDefinitionTypeValue = {
 
 M.AutomatedReasoningPolicyDefinitionType = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDefinitionType",
     members = {
         name = {
             type = "string",
@@ -308,6 +328,7 @@ M.AutomatedReasoningPolicyDefinitionType = {
 
 M.AutomatedReasoningPolicyDefinitionVariable = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDefinitionVariable",
     members = {
         name = {
             type = "string",
@@ -332,6 +353,7 @@ M.AutomatedReasoningPolicyDefinitionVariable = {
 
 M.AutomatedReasoningPolicyDefinition = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDefinition",
     members = {
         version = {
             type = "string",
@@ -356,6 +378,7 @@ M.AutomatedReasoningPolicyDefinition = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -374,6 +397,7 @@ M.Tag = {
 
 M.CreateAutomatedReasoningPolicyInput = {
     type = "structure",
+    id = "CreateAutomatedReasoningPolicyInput",
     members = {
         name = {
             type = "string",
@@ -403,6 +427,7 @@ M.CreateAutomatedReasoningPolicyInput = {
 
 M.CreateAutomatedReasoningPolicyOutput = {
     type = "structure",
+    id = "CreateAutomatedReasoningPolicyOutput",
     members = {
         policyArn = {
             type = "string",
@@ -447,6 +472,7 @@ M.CreateAutomatedReasoningPolicyOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -457,6 +483,7 @@ M.ServiceQuotaExceededException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -480,6 +507,7 @@ M.AutomatedReasoningCheckResult = {
 
 M.CreateAutomatedReasoningPolicyTestCaseInput = {
     type = "structure",
+    id = "CreateAutomatedReasoningPolicyTestCaseInput",
     members = {
         policyArn = {
             type = "string",
@@ -517,6 +545,7 @@ M.CreateAutomatedReasoningPolicyTestCaseInput = {
 
 M.CreateAutomatedReasoningPolicyTestCaseOutput = {
     type = "structure",
+    id = "CreateAutomatedReasoningPolicyTestCaseOutput",
     members = {
         policyArn = {
             type = "string",
@@ -535,6 +564,7 @@ M.CreateAutomatedReasoningPolicyTestCaseOutput = {
 
 M.CreateAutomatedReasoningPolicyVersionInput = {
     type = "structure",
+    id = "CreateAutomatedReasoningPolicyVersionInput",
     members = {
         policyArn = {
             type = "string",
@@ -564,6 +594,7 @@ M.CreateAutomatedReasoningPolicyVersionInput = {
 
 M.CreateAutomatedReasoningPolicyVersionOutput = {
     type = "structure",
+    id = "CreateAutomatedReasoningPolicyVersionOutput",
     members = {
         policyArn = {
             type = "string",
@@ -604,6 +635,7 @@ M.CreateAutomatedReasoningPolicyVersionOutput = {
 
 M.DeleteAutomatedReasoningPolicyInput = {
     type = "structure",
+    id = "DeleteAutomatedReasoningPolicyInput",
     members = {
         policyArn = {
             type = "string",
@@ -624,10 +656,12 @@ M.DeleteAutomatedReasoningPolicyInput = {
 
 M.DeleteAutomatedReasoningPolicyOutput = {
     type = "structure",
+    id = "DeleteAutomatedReasoningPolicyOutput",
 }
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -638,6 +672,7 @@ M.ResourceInUseException = {
 
 M.DeleteAutomatedReasoningPolicyBuildWorkflowInput = {
     type = "structure",
+    id = "DeleteAutomatedReasoningPolicyBuildWorkflowInput",
     members = {
         policyArn = {
             type = "string",
@@ -666,10 +701,12 @@ M.DeleteAutomatedReasoningPolicyBuildWorkflowInput = {
 
 M.DeleteAutomatedReasoningPolicyBuildWorkflowOutput = {
     type = "structure",
+    id = "DeleteAutomatedReasoningPolicyBuildWorkflowOutput",
 }
 
 M.DeleteAutomatedReasoningPolicyTestCaseInput = {
     type = "structure",
+    id = "DeleteAutomatedReasoningPolicyTestCaseInput",
     members = {
         policyArn = {
             type = "string",
@@ -698,10 +735,12 @@ M.DeleteAutomatedReasoningPolicyTestCaseInput = {
 
 M.DeleteAutomatedReasoningPolicyTestCaseOutput = {
     type = "structure",
+    id = "DeleteAutomatedReasoningPolicyTestCaseOutput",
 }
 
 M.ExportAutomatedReasoningPolicyVersionInput = {
     type = "structure",
+    id = "ExportAutomatedReasoningPolicyVersionInput",
     members = {
         policyArn = {
             type = "string",
@@ -715,6 +754,7 @@ M.ExportAutomatedReasoningPolicyVersionInput = {
 
 M.ExportAutomatedReasoningPolicyVersionOutput = {
     type = "structure",
+    id = "ExportAutomatedReasoningPolicyVersionOutput",
     members = {
         policyDefinition = setmetatable({ traits = {
             http_payload = true,
@@ -725,6 +765,7 @@ M.ExportAutomatedReasoningPolicyVersionOutput = {
 
 M.GetAutomatedReasoningPolicyInput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyInput",
     members = {
         policyArn = {
             type = "string",
@@ -738,6 +779,7 @@ M.GetAutomatedReasoningPolicyInput = {
 
 M.GetAutomatedReasoningPolicyOutput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyOutput",
     members = {
         policyArn = {
             type = "string",
@@ -793,6 +835,7 @@ M.GetAutomatedReasoningPolicyOutput = {
 
 M.GetAutomatedReasoningPolicyAnnotationsInput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyAnnotationsInput",
     members = {
         policyArn = {
             type = "string",
@@ -813,6 +856,7 @@ M.GetAutomatedReasoningPolicyAnnotationsInput = {
 
 M.AutomatedReasoningPolicyAddRuleAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddRuleAnnotation",
     members = {
         expression = {
             type = "string",
@@ -825,6 +869,7 @@ M.AutomatedReasoningPolicyAddRuleAnnotation = {
 
 M.AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation",
     members = {
         naturalLanguage = {
             type = "string",
@@ -837,6 +882,7 @@ M.AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation = {
 
 M.AutomatedReasoningPolicyAddTypeAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddTypeAnnotation",
     members = {
         name = {
             type = "string",
@@ -862,6 +908,7 @@ M.AutomatedReasoningPolicyAddTypeAnnotation = {
 
 M.AutomatedReasoningPolicyAddVariableAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddVariableAnnotation",
     members = {
         name = {
             type = "string",
@@ -886,6 +933,7 @@ M.AutomatedReasoningPolicyAddVariableAnnotation = {
 
 M.AutomatedReasoningPolicyDeleteRuleAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDeleteRuleAnnotation",
     members = {
         ruleId = {
             type = "string",
@@ -898,6 +946,7 @@ M.AutomatedReasoningPolicyDeleteRuleAnnotation = {
 
 M.AutomatedReasoningPolicyDeleteTypeAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDeleteTypeAnnotation",
     members = {
         name = {
             type = "string",
@@ -910,6 +959,7 @@ M.AutomatedReasoningPolicyDeleteTypeAnnotation = {
 
 M.AutomatedReasoningPolicyDeleteVariableAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDeleteVariableAnnotation",
     members = {
         name = {
             type = "string",
@@ -922,6 +972,7 @@ M.AutomatedReasoningPolicyDeleteVariableAnnotation = {
 
 M.AutomatedReasoningPolicyIngestContentAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyIngestContentAnnotation",
     members = {
         content = {
             type = "string",
@@ -934,6 +985,7 @@ M.AutomatedReasoningPolicyIngestContentAnnotation = {
 
 M.AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation",
     members = {
         ruleIds = {
             type = "list",
@@ -950,6 +1002,7 @@ M.AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation = {
 
 M.AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation",
     members = {
         ruleIds = {
             type = "list",
@@ -969,6 +1022,7 @@ M.AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation = {
 
 M.AutomatedReasoningPolicyUpdateRuleAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateRuleAnnotation",
     members = {
         ruleId = {
             type = "string",
@@ -987,6 +1041,7 @@ M.AutomatedReasoningPolicyUpdateRuleAnnotation = {
 
 M.AutomatedReasoningPolicyAddTypeValue = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddTypeValue",
     members = {
         value = {
             type = "string",
@@ -1002,6 +1057,7 @@ M.AutomatedReasoningPolicyAddTypeValue = {
 
 M.AutomatedReasoningPolicyDeleteTypeValue = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDeleteTypeValue",
     members = {
         value = {
             type = "string",
@@ -1014,6 +1070,7 @@ M.AutomatedReasoningPolicyDeleteTypeValue = {
 
 M.AutomatedReasoningPolicyUpdateTypeValue = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateTypeValue",
     members = {
         value = {
             type = "string",
@@ -1032,6 +1089,7 @@ M.AutomatedReasoningPolicyUpdateTypeValue = {
 
 M.AutomatedReasoningPolicyTypeValueAnnotation = {
     type = "union",
+    id = "AutomatedReasoningPolicyTypeValueAnnotation",
     members = {
         addTypeValue = M.AutomatedReasoningPolicyAddTypeValue,
         updateTypeValue = M.AutomatedReasoningPolicyUpdateTypeValue,
@@ -1041,6 +1099,7 @@ M.AutomatedReasoningPolicyTypeValueAnnotation = {
 
 M.AutomatedReasoningPolicyUpdateTypeAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateTypeAnnotation",
     members = {
         name = {
             type = "string",
@@ -1066,6 +1125,7 @@ M.AutomatedReasoningPolicyUpdateTypeAnnotation = {
 
 M.AutomatedReasoningPolicyUpdateVariableAnnotation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateVariableAnnotation",
     members = {
         name = {
             type = "string",
@@ -1084,6 +1144,7 @@ M.AutomatedReasoningPolicyUpdateVariableAnnotation = {
 
 M.AutomatedReasoningPolicyAnnotation = {
     type = "union",
+    id = "AutomatedReasoningPolicyAnnotation",
     members = {
         addType = M.AutomatedReasoningPolicyAddTypeAnnotation,
         updateType = M.AutomatedReasoningPolicyUpdateTypeAnnotation,
@@ -1103,6 +1164,7 @@ M.AutomatedReasoningPolicyAnnotation = {
 
 M.GetAutomatedReasoningPolicyAnnotationsOutput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyAnnotationsOutput",
     members = {
         policyArn = {
             type = "string",
@@ -1147,6 +1209,7 @@ M.GetAutomatedReasoningPolicyAnnotationsOutput = {
 
 M.GetAutomatedReasoningPolicyBuildWorkflowInput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyBuildWorkflowInput",
     members = {
         policyArn = {
             type = "string",
@@ -1191,6 +1254,7 @@ M.AutomatedReasoningPolicyBuildWorkflowStatus = {
 
 M.GetAutomatedReasoningPolicyBuildWorkflowOutput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyBuildWorkflowOutput",
     members = {
         policyArn = {
             type = "string",
@@ -1255,6 +1319,7 @@ M.AutomatedReasoningPolicyBuildResultAssetType = {
 
 M.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput",
     members = {
         policyArn = {
             type = "string",
@@ -1288,6 +1353,7 @@ M.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput = {
 
 M.AutomatedReasoningPolicyBuildResultAssetManifestEntry = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildResultAssetManifestEntry",
     members = {
         assetType = {
             type = "string",
@@ -1306,6 +1372,7 @@ M.AutomatedReasoningPolicyBuildResultAssetManifestEntry = {
 
 M.AutomatedReasoningPolicyBuildResultAssetManifest = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildResultAssetManifest",
     members = {
         entries = {
             type = "list",
@@ -1319,6 +1386,7 @@ M.AutomatedReasoningPolicyBuildResultAssetManifest = {
 
 M.AutomatedReasoningPolicyAddRuleMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddRuleMutation",
     members = {
         rule = setmetatable({ traits = {
             required = true,
@@ -1328,6 +1396,7 @@ M.AutomatedReasoningPolicyAddRuleMutation = {
 
 M.AutomatedReasoningPolicyAddTypeMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddTypeMutation",
     members = {
         type = setmetatable({ traits = {
             required = true,
@@ -1337,6 +1406,7 @@ M.AutomatedReasoningPolicyAddTypeMutation = {
 
 M.AutomatedReasoningPolicyAddVariableMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAddVariableMutation",
     members = {
         variable = setmetatable({ traits = {
             required = true,
@@ -1346,6 +1416,7 @@ M.AutomatedReasoningPolicyAddVariableMutation = {
 
 M.AutomatedReasoningPolicyDeleteRuleMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDeleteRuleMutation",
     members = {
         id = {
             type = "string",
@@ -1358,6 +1429,7 @@ M.AutomatedReasoningPolicyDeleteRuleMutation = {
 
 M.AutomatedReasoningPolicyDeleteTypeMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDeleteTypeMutation",
     members = {
         name = {
             type = "string",
@@ -1370,6 +1442,7 @@ M.AutomatedReasoningPolicyDeleteTypeMutation = {
 
 M.AutomatedReasoningPolicyDeleteVariableMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDeleteVariableMutation",
     members = {
         name = {
             type = "string",
@@ -1382,6 +1455,7 @@ M.AutomatedReasoningPolicyDeleteVariableMutation = {
 
 M.AutomatedReasoningPolicyUpdateRuleMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateRuleMutation",
     members = {
         rule = setmetatable({ traits = {
             required = true,
@@ -1391,6 +1465,7 @@ M.AutomatedReasoningPolicyUpdateRuleMutation = {
 
 M.AutomatedReasoningPolicyUpdateTypeMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateTypeMutation",
     members = {
         type = setmetatable({ traits = {
             required = true,
@@ -1400,6 +1475,7 @@ M.AutomatedReasoningPolicyUpdateTypeMutation = {
 
 M.AutomatedReasoningPolicyUpdateVariableMutation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyUpdateVariableMutation",
     members = {
         variable = setmetatable({ traits = {
             required = true,
@@ -1409,6 +1485,7 @@ M.AutomatedReasoningPolicyUpdateVariableMutation = {
 
 M.AutomatedReasoningPolicyMutation = {
     type = "union",
+    id = "AutomatedReasoningPolicyMutation",
     members = {
         addType = M.AutomatedReasoningPolicyAddTypeMutation,
         updateType = M.AutomatedReasoningPolicyUpdateTypeMutation,
@@ -1424,10 +1501,12 @@ M.AutomatedReasoningPolicyMutation = {
 
 M.AutomatedReasoningPolicyPlanning = {
     type = "structure",
+    id = "AutomatedReasoningPolicyPlanning",
 }
 
 M.AutomatedReasoningPolicyBuildStepContext = {
     type = "union",
+    id = "AutomatedReasoningPolicyBuildStepContext",
     members = {
         planning = M.AutomatedReasoningPolicyPlanning,
         mutation = M.AutomatedReasoningPolicyMutation,
@@ -1442,6 +1521,7 @@ M.AutomatedReasoningPolicyBuildMessageType = {
 
 M.AutomatedReasoningPolicyBuildStepMessage = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildStepMessage",
     members = {
         message = {
             type = "string",
@@ -1460,6 +1540,7 @@ M.AutomatedReasoningPolicyBuildStepMessage = {
 
 M.AutomatedReasoningPolicyDefinitionElement = {
     type = "union",
+    id = "AutomatedReasoningPolicyDefinitionElement",
     members = {
         policyDefinitionVariable = M.AutomatedReasoningPolicyDefinitionVariable,
         policyDefinitionType = M.AutomatedReasoningPolicyDefinitionType,
@@ -1469,6 +1550,7 @@ M.AutomatedReasoningPolicyDefinitionElement = {
 
 M.AutomatedReasoningPolicyBuildStep = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildStep",
     members = {
         context = setmetatable({ traits = {
             required = true,
@@ -1491,6 +1573,7 @@ M.AutomatedReasoningPolicyAnnotationStatus = {
 
 M.AutomatedReasoningPolicyBuildLogEntry = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildLogEntry",
     members = {
         annotation = setmetatable({ traits = {
             required = true,
@@ -1513,6 +1596,7 @@ M.AutomatedReasoningPolicyBuildLogEntry = {
 
 M.AutomatedReasoningPolicyBuildLog = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildLog",
     members = {
         entries = {
             type = "list",
@@ -1526,6 +1610,7 @@ M.AutomatedReasoningPolicyBuildLog = {
 
 M.AutomatedReasoningPolicySourceDocument = {
     type = "structure",
+    id = "AutomatedReasoningPolicySourceDocument",
     members = {
         document = {
             type = "blob",
@@ -1559,6 +1644,7 @@ M.AutomatedReasoningPolicySourceDocument = {
 
 M.AutomatedReasoningPolicyStatementLocation = {
     type = "structure",
+    id = "AutomatedReasoningPolicyStatementLocation",
     members = {
         lines = {
             type = "list",
@@ -1572,6 +1658,7 @@ M.AutomatedReasoningPolicyStatementLocation = {
 
 M.AutomatedReasoningPolicyAtomicStatement = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAtomicStatement",
     members = {
         id = {
             type = "string",
@@ -1593,6 +1680,7 @@ M.AutomatedReasoningPolicyAtomicStatement = {
 
 M.AutomatedReasoningPolicyAnnotatedLine = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAnnotatedLine",
     members = {
         lineNumber = {
             type = "integer",
@@ -1605,6 +1693,7 @@ M.AutomatedReasoningPolicyAnnotatedLine = {
 
 M.AutomatedReasoningPolicyAnnotatedContent = {
     type = "union",
+    id = "AutomatedReasoningPolicyAnnotatedContent",
     members = {
         line = M.AutomatedReasoningPolicyAnnotatedLine,
     },
@@ -1612,6 +1701,7 @@ M.AutomatedReasoningPolicyAnnotatedContent = {
 
 M.AutomatedReasoningPolicyAnnotatedChunk = {
     type = "structure",
+    id = "AutomatedReasoningPolicyAnnotatedChunk",
     members = {
         pageNumber = {
             type = "integer",
@@ -1628,6 +1718,7 @@ M.AutomatedReasoningPolicyAnnotatedChunk = {
 
 M.AutomatedReasoningPolicyReportSourceDocument = {
     type = "structure",
+    id = "AutomatedReasoningPolicyReportSourceDocument",
     members = {
         documentName = {
             type = "string",
@@ -1666,6 +1757,7 @@ M.AutomatedReasoningPolicyReportSourceDocument = {
 
 M.AutomatedReasoningPolicyStatementReference = {
     type = "structure",
+    id = "AutomatedReasoningPolicyStatementReference",
     members = {
         documentId = {
             type = "string",
@@ -1684,6 +1776,7 @@ M.AutomatedReasoningPolicyStatementReference = {
 
 M.AutomatedReasoningPolicyRuleReport = {
     type = "structure",
+    id = "AutomatedReasoningPolicyRuleReport",
     members = {
         rule = {
             type = "string",
@@ -1710,6 +1803,7 @@ M.AutomatedReasoningPolicyRuleReport = {
 
 M.AutomatedReasoningPolicyVariableReport = {
     type = "structure",
+    id = "AutomatedReasoningPolicyVariableReport",
     members = {
         policyVariable = {
             type = "string",
@@ -1736,6 +1830,7 @@ M.AutomatedReasoningPolicyVariableReport = {
 
 M.AutomatedReasoningPolicyFidelityReport = {
     type = "structure",
+    id = "AutomatedReasoningPolicyFidelityReport",
     members = {
         coverageScore = {
             type = "double",
@@ -1777,6 +1872,7 @@ M.AutomatedReasoningPolicyFidelityReport = {
 
 M.AutomatedReasoningPolicyGeneratedTestCase = {
     type = "structure",
+    id = "AutomatedReasoningPolicyGeneratedTestCase",
     members = {
         queryContent = {
             type = "string",
@@ -1801,6 +1897,7 @@ M.AutomatedReasoningPolicyGeneratedTestCase = {
 
 M.AutomatedReasoningPolicyGeneratedTestCases = {
     type = "structure",
+    id = "AutomatedReasoningPolicyGeneratedTestCases",
     members = {
         generatedTestCases = {
             type = "list",
@@ -1814,6 +1911,7 @@ M.AutomatedReasoningPolicyGeneratedTestCases = {
 
 M.AutomatedReasoningPolicyScenario = {
     type = "structure",
+    id = "AutomatedReasoningPolicyScenario",
     members = {
         expression = {
             type = "string",
@@ -1845,6 +1943,7 @@ M.AutomatedReasoningPolicyScenario = {
 
 M.AutomatedReasoningPolicyScenarios = {
     type = "structure",
+    id = "AutomatedReasoningPolicyScenarios",
     members = {
         policyScenarios = {
             type = "list",
@@ -1858,6 +1957,7 @@ M.AutomatedReasoningPolicyScenarios = {
 
 M.AutomatedReasoningPolicyDisjointRuleSet = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDisjointRuleSet",
     members = {
         variables = {
             type = "list",
@@ -1878,6 +1978,7 @@ M.AutomatedReasoningPolicyDisjointRuleSet = {
 
 M.AutomatedReasoningPolicyDefinitionTypeValuePair = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDefinitionTypeValuePair",
     members = {
         typeName = {
             type = "string",
@@ -1896,6 +1997,7 @@ M.AutomatedReasoningPolicyDefinitionTypeValuePair = {
 
 M.AutomatedReasoningPolicyDefinitionQualityReport = {
     type = "structure",
+    id = "AutomatedReasoningPolicyDefinitionQualityReport",
     members = {
         typeCount = {
             type = "integer",
@@ -1955,6 +2057,7 @@ M.AutomatedReasoningPolicyDefinitionQualityReport = {
 
 M.AutomatedReasoningPolicyBuildResultAssets = {
     type = "union",
+    id = "AutomatedReasoningPolicyBuildResultAssets",
     members = {
         policyDefinition = M.AutomatedReasoningPolicyDefinition,
         qualityReport = M.AutomatedReasoningPolicyDefinitionQualityReport,
@@ -1969,6 +2072,7 @@ M.AutomatedReasoningPolicyBuildResultAssets = {
 
 M.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput",
     members = {
         policyArn = {
             type = "string",
@@ -1988,6 +2092,7 @@ M.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput = {
 
 M.GetAutomatedReasoningPolicyNextScenarioInput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyNextScenarioInput",
     members = {
         policyArn = {
             type = "string",
@@ -2008,6 +2113,7 @@ M.GetAutomatedReasoningPolicyNextScenarioInput = {
 
 M.GetAutomatedReasoningPolicyNextScenarioOutput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyNextScenarioOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2021,6 +2127,7 @@ M.GetAutomatedReasoningPolicyNextScenarioOutput = {
 
 M.GetAutomatedReasoningPolicyTestCaseInput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyTestCaseInput",
     members = {
         policyArn = {
             type = "string",
@@ -2041,6 +2148,7 @@ M.GetAutomatedReasoningPolicyTestCaseInput = {
 
 M.AutomatedReasoningPolicyTestCase = {
     type = "structure",
+    id = "AutomatedReasoningPolicyTestCase",
     members = {
         testCaseId = {
             type = "string",
@@ -2082,6 +2190,7 @@ M.AutomatedReasoningPolicyTestCase = {
 
 M.GetAutomatedReasoningPolicyTestCaseOutput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyTestCaseOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2097,6 +2206,7 @@ M.GetAutomatedReasoningPolicyTestCaseOutput = {
 
 M.GetAutomatedReasoningPolicyTestResultInput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyTestResultInput",
     members = {
         policyArn = {
             type = "string",
@@ -2124,6 +2234,7 @@ M.GetAutomatedReasoningPolicyTestResultInput = {
 
 M.AutomatedReasoningCheckRule = {
     type = "structure",
+    id = "AutomatedReasoningCheckRule",
     members = {
         id = {
             type = "string",
@@ -2136,6 +2247,7 @@ M.AutomatedReasoningCheckRule = {
 
 M.AutomatedReasoningLogicStatement = {
     type = "structure",
+    id = "AutomatedReasoningLogicStatement",
     members = {
         logic = {
             type = "string",
@@ -2156,6 +2268,7 @@ M.AutomatedReasoningCheckLogicWarningType = {
 
 M.AutomatedReasoningCheckLogicWarning = {
     type = "structure",
+    id = "AutomatedReasoningCheckLogicWarning",
     members = {
         type = {
             type = "string",
@@ -2173,6 +2286,7 @@ M.AutomatedReasoningCheckLogicWarning = {
 
 M.AutomatedReasoningCheckInputTextReference = {
     type = "structure",
+    id = "AutomatedReasoningCheckInputTextReference",
     members = {
         text = {
             type = "string",
@@ -2182,6 +2296,7 @@ M.AutomatedReasoningCheckInputTextReference = {
 
 M.AutomatedReasoningCheckTranslation = {
     type = "structure",
+    id = "AutomatedReasoningCheckTranslation",
     members = {
         premises = {
             type = "list",
@@ -2213,6 +2328,7 @@ M.AutomatedReasoningCheckTranslation = {
 
 M.AutomatedReasoningCheckImpossibleFinding = {
     type = "structure",
+    id = "AutomatedReasoningCheckImpossibleFinding",
     members = {
         translation = M.AutomatedReasoningCheckTranslation,
         contradictingRules = {
@@ -2225,6 +2341,7 @@ M.AutomatedReasoningCheckImpossibleFinding = {
 
 M.AutomatedReasoningCheckInvalidFinding = {
     type = "structure",
+    id = "AutomatedReasoningCheckInvalidFinding",
     members = {
         translation = M.AutomatedReasoningCheckTranslation,
         contradictingRules = {
@@ -2237,10 +2354,12 @@ M.AutomatedReasoningCheckInvalidFinding = {
 
 M.AutomatedReasoningCheckNoTranslationsFinding = {
     type = "structure",
+    id = "AutomatedReasoningCheckNoTranslationsFinding",
 }
 
 M.AutomatedReasoningCheckScenario = {
     type = "structure",
+    id = "AutomatedReasoningCheckScenario",
     members = {
         statements = {
             type = "list",
@@ -2251,6 +2370,7 @@ M.AutomatedReasoningCheckScenario = {
 
 M.AutomatedReasoningCheckSatisfiableFinding = {
     type = "structure",
+    id = "AutomatedReasoningCheckSatisfiableFinding",
     members = {
         translation = M.AutomatedReasoningCheckTranslation,
         claimsTrueScenario = M.AutomatedReasoningCheckScenario,
@@ -2261,10 +2381,12 @@ M.AutomatedReasoningCheckSatisfiableFinding = {
 
 M.AutomatedReasoningCheckTooComplexFinding = {
     type = "structure",
+    id = "AutomatedReasoningCheckTooComplexFinding",
 }
 
 M.AutomatedReasoningCheckTranslationOption = {
     type = "structure",
+    id = "AutomatedReasoningCheckTranslationOption",
     members = {
         translations = {
             type = "list",
@@ -2275,6 +2397,7 @@ M.AutomatedReasoningCheckTranslationOption = {
 
 M.AutomatedReasoningCheckTranslationAmbiguousFinding = {
     type = "structure",
+    id = "AutomatedReasoningCheckTranslationAmbiguousFinding",
     members = {
         options = {
             type = "list",
@@ -2289,6 +2412,7 @@ M.AutomatedReasoningCheckTranslationAmbiguousFinding = {
 
 M.AutomatedReasoningCheckValidFinding = {
     type = "structure",
+    id = "AutomatedReasoningCheckValidFinding",
     members = {
         translation = M.AutomatedReasoningCheckTranslation,
         claimsTrueScenario = M.AutomatedReasoningCheckScenario,
@@ -2302,6 +2426,7 @@ M.AutomatedReasoningCheckValidFinding = {
 
 M.AutomatedReasoningCheckFinding = {
     type = "union",
+    id = "AutomatedReasoningCheckFinding",
     members = {
         valid = M.AutomatedReasoningCheckValidFinding,
         invalid = M.AutomatedReasoningCheckInvalidFinding,
@@ -2328,6 +2453,7 @@ M.AutomatedReasoningPolicyTestRunStatus = {
 
 M.AutomatedReasoningPolicyTestResult = {
     type = "structure",
+    id = "AutomatedReasoningPolicyTestResult",
     members = {
         testCase = setmetatable({ traits = {
             required = true,
@@ -2366,6 +2492,7 @@ M.AutomatedReasoningPolicyTestResult = {
 
 M.GetAutomatedReasoningPolicyTestResultOutput = {
     type = "structure",
+    id = "GetAutomatedReasoningPolicyTestResultOutput",
     members = {
         testResult = setmetatable({ traits = {
             required = true,
@@ -2375,6 +2502,7 @@ M.GetAutomatedReasoningPolicyTestResultOutput = {
 
 M.ListAutomatedReasoningPoliciesInput = {
     type = "structure",
+    id = "ListAutomatedReasoningPoliciesInput",
     members = {
         policyArn = {
             type = "string",
@@ -2400,6 +2528,7 @@ M.ListAutomatedReasoningPoliciesInput = {
 
 M.AutomatedReasoningPolicySummary = {
     type = "structure",
+    id = "AutomatedReasoningPolicySummary",
     members = {
         policyArn = {
             type = "string",
@@ -2447,6 +2576,7 @@ M.AutomatedReasoningPolicySummary = {
 
 M.ListAutomatedReasoningPoliciesOutput = {
     type = "structure",
+    id = "ListAutomatedReasoningPoliciesOutput",
     members = {
         automatedReasoningPolicySummaries = {
             type = "list",
@@ -2463,6 +2593,7 @@ M.ListAutomatedReasoningPoliciesOutput = {
 
 M.ListAutomatedReasoningPolicyBuildWorkflowsInput = {
     type = "structure",
+    id = "ListAutomatedReasoningPolicyBuildWorkflowsInput",
     members = {
         policyArn = {
             type = "string",
@@ -2489,6 +2620,7 @@ M.ListAutomatedReasoningPolicyBuildWorkflowsInput = {
 
 M.AutomatedReasoningPolicyBuildWorkflowSummary = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildWorkflowSummary",
     members = {
         policyArn = {
             type = "string",
@@ -2533,6 +2665,7 @@ M.AutomatedReasoningPolicyBuildWorkflowSummary = {
 
 M.ListAutomatedReasoningPolicyBuildWorkflowsOutput = {
     type = "structure",
+    id = "ListAutomatedReasoningPolicyBuildWorkflowsOutput",
     members = {
         automatedReasoningPolicyBuildWorkflowSummaries = {
             type = "list",
@@ -2549,6 +2682,7 @@ M.ListAutomatedReasoningPolicyBuildWorkflowsOutput = {
 
 M.ListAutomatedReasoningPolicyTestCasesInput = {
     type = "structure",
+    id = "ListAutomatedReasoningPolicyTestCasesInput",
     members = {
         policyArn = {
             type = "string",
@@ -2576,6 +2710,7 @@ M.ListAutomatedReasoningPolicyTestCasesInput = {
 
 M.ListAutomatedReasoningPolicyTestCasesOutput = {
     type = "structure",
+    id = "ListAutomatedReasoningPolicyTestCasesOutput",
     members = {
         testCases = {
             type = "list",
@@ -2592,6 +2727,7 @@ M.ListAutomatedReasoningPolicyTestCasesOutput = {
 
 M.ListAutomatedReasoningPolicyTestResultsInput = {
     type = "structure",
+    id = "ListAutomatedReasoningPolicyTestResultsInput",
     members = {
         policyArn = {
             type = "string",
@@ -2626,6 +2762,7 @@ M.ListAutomatedReasoningPolicyTestResultsInput = {
 
 M.ListAutomatedReasoningPolicyTestResultsOutput = {
     type = "structure",
+    id = "ListAutomatedReasoningPolicyTestResultsOutput",
     members = {
         testResults = {
             type = "list",
@@ -2642,6 +2779,7 @@ M.ListAutomatedReasoningPolicyTestResultsOutput = {
 
 M.AutomatedReasoningPolicyBuildWorkflowDocument = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildWorkflowDocument",
     members = {
         document = {
             type = "blob",
@@ -2669,6 +2807,7 @@ M.AutomatedReasoningPolicyBuildWorkflowDocument = {
 
 M.AutomatedReasoningPolicyGenerateFidelityReportContent = {
     type = "union",
+    id = "AutomatedReasoningPolicyGenerateFidelityReportContent",
     members = {
         documents = {
             type = "list",
@@ -2679,6 +2818,7 @@ M.AutomatedReasoningPolicyGenerateFidelityReportContent = {
 
 M.AutomatedReasoningPolicyBuildWorkflowRepairContent = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildWorkflowRepairContent",
     members = {
         annotations = {
             type = "list",
@@ -2692,6 +2832,7 @@ M.AutomatedReasoningPolicyBuildWorkflowRepairContent = {
 
 M.AutomatedReasoningPolicyWorkflowTypeContent = {
     type = "union",
+    id = "AutomatedReasoningPolicyWorkflowTypeContent",
     members = {
         documents = {
             type = "list",
@@ -2704,6 +2845,7 @@ M.AutomatedReasoningPolicyWorkflowTypeContent = {
 
 M.AutomatedReasoningPolicyBuildWorkflowSource = {
     type = "structure",
+    id = "AutomatedReasoningPolicyBuildWorkflowSource",
     members = {
         policyDefinition = M.AutomatedReasoningPolicyDefinition,
         workflowContent = M.AutomatedReasoningPolicyWorkflowTypeContent,
@@ -2712,6 +2854,7 @@ M.AutomatedReasoningPolicyBuildWorkflowSource = {
 
 M.StartAutomatedReasoningPolicyBuildWorkflowInput = {
     type = "structure",
+    id = "StartAutomatedReasoningPolicyBuildWorkflowInput",
     members = {
         policyArn = {
             type = "string",
@@ -2743,6 +2886,7 @@ M.StartAutomatedReasoningPolicyBuildWorkflowInput = {
 
 M.StartAutomatedReasoningPolicyBuildWorkflowOutput = {
     type = "structure",
+    id = "StartAutomatedReasoningPolicyBuildWorkflowOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2761,6 +2905,7 @@ M.StartAutomatedReasoningPolicyBuildWorkflowOutput = {
 
 M.StartAutomatedReasoningPolicyTestWorkflowInput = {
     type = "structure",
+    id = "StartAutomatedReasoningPolicyTestWorkflowInput",
     members = {
         policyArn = {
             type = "string",
@@ -2791,6 +2936,7 @@ M.StartAutomatedReasoningPolicyTestWorkflowInput = {
 
 M.StartAutomatedReasoningPolicyTestWorkflowOutput = {
     type = "structure",
+    id = "StartAutomatedReasoningPolicyTestWorkflowOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2803,6 +2949,7 @@ M.StartAutomatedReasoningPolicyTestWorkflowOutput = {
 
 M.UpdateAutomatedReasoningPolicyInput = {
     type = "structure",
+    id = "UpdateAutomatedReasoningPolicyInput",
     members = {
         policyArn = {
             type = "string",
@@ -2825,6 +2972,7 @@ M.UpdateAutomatedReasoningPolicyInput = {
 
 M.UpdateAutomatedReasoningPolicyOutput = {
     type = "structure",
+    id = "UpdateAutomatedReasoningPolicyOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2856,6 +3004,7 @@ M.UpdateAutomatedReasoningPolicyOutput = {
 
 M.UpdateAutomatedReasoningPolicyAnnotationsInput = {
     type = "structure",
+    id = "UpdateAutomatedReasoningPolicyAnnotationsInput",
     members = {
         policyArn = {
             type = "string",
@@ -2889,6 +3038,7 @@ M.UpdateAutomatedReasoningPolicyAnnotationsInput = {
 
 M.UpdateAutomatedReasoningPolicyAnnotationsOutput = {
     type = "structure",
+    id = "UpdateAutomatedReasoningPolicyAnnotationsOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2920,6 +3070,7 @@ M.UpdateAutomatedReasoningPolicyAnnotationsOutput = {
 
 M.UpdateAutomatedReasoningPolicyTestCaseInput = {
     type = "structure",
+    id = "UpdateAutomatedReasoningPolicyTestCaseInput",
     members = {
         policyArn = {
             type = "string",
@@ -2971,6 +3122,7 @@ M.UpdateAutomatedReasoningPolicyTestCaseInput = {
 
 M.UpdateAutomatedReasoningPolicyTestCaseOutput = {
     type = "structure",
+    id = "UpdateAutomatedReasoningPolicyTestCaseOutput",
     members = {
         policyArn = {
             type = "string",
@@ -2989,6 +3141,7 @@ M.UpdateAutomatedReasoningPolicyTestCaseOutput = {
 
 M.VpcConfig = {
     type = "structure",
+    id = "VpcConfig",
     members = {
         subnetIds = {
             type = "list",
@@ -3009,6 +3162,7 @@ M.VpcConfig = {
 
 M.SageMakerEndpoint = {
     type = "structure",
+    id = "SageMakerEndpoint",
     members = {
         initialInstanceCount = {
             type = "integer",
@@ -3037,6 +3191,7 @@ M.SageMakerEndpoint = {
 
 M.EndpointConfig = {
     type = "union",
+    id = "EndpointConfig",
     members = {
         sageMaker = M.SageMakerEndpoint,
     },
@@ -3044,6 +3199,7 @@ M.EndpointConfig = {
 
 M.CreateMarketplaceModelEndpointInput = {
     type = "structure",
+    id = "CreateMarketplaceModelEndpointInput",
     members = {
         modelSourceIdentifier = {
             type = "string",
@@ -3086,6 +3242,7 @@ M.Status = {
 
 M.MarketplaceModelEndpoint = {
     type = "structure",
+    id = "MarketplaceModelEndpoint",
     members = {
         endpointArn = {
             type = "string",
@@ -3136,6 +3293,7 @@ M.MarketplaceModelEndpoint = {
 
 M.CreateMarketplaceModelEndpointOutput = {
     type = "structure",
+    id = "CreateMarketplaceModelEndpointOutput",
     members = {
         marketplaceModelEndpoint = setmetatable({ traits = {
             required = true,
@@ -3145,6 +3303,7 @@ M.CreateMarketplaceModelEndpointOutput = {
 
 M.DeleteMarketplaceModelEndpointInput = {
     type = "structure",
+    id = "DeleteMarketplaceModelEndpointInput",
     members = {
         endpointArn = {
             type = "string",
@@ -3158,10 +3317,12 @@ M.DeleteMarketplaceModelEndpointInput = {
 
 M.DeleteMarketplaceModelEndpointOutput = {
     type = "structure",
+    id = "DeleteMarketplaceModelEndpointOutput",
 }
 
 M.DeregisterMarketplaceModelEndpointInput = {
     type = "structure",
+    id = "DeregisterMarketplaceModelEndpointInput",
     members = {
         endpointArn = {
             type = "string",
@@ -3175,10 +3336,12 @@ M.DeregisterMarketplaceModelEndpointInput = {
 
 M.DeregisterMarketplaceModelEndpointOutput = {
     type = "structure",
+    id = "DeregisterMarketplaceModelEndpointOutput",
 }
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -3189,6 +3352,7 @@ M.ServiceUnavailableException = {
 
 M.GetMarketplaceModelEndpointInput = {
     type = "structure",
+    id = "GetMarketplaceModelEndpointInput",
     members = {
         endpointArn = {
             type = "string",
@@ -3202,6 +3366,7 @@ M.GetMarketplaceModelEndpointInput = {
 
 M.GetMarketplaceModelEndpointOutput = {
     type = "structure",
+    id = "GetMarketplaceModelEndpointOutput",
     members = {
         marketplaceModelEndpoint = M.MarketplaceModelEndpoint,
     },
@@ -3209,6 +3374,7 @@ M.GetMarketplaceModelEndpointOutput = {
 
 M.ListMarketplaceModelEndpointsInput = {
     type = "structure",
+    id = "ListMarketplaceModelEndpointsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3233,6 +3399,7 @@ M.ListMarketplaceModelEndpointsInput = {
 
 M.MarketplaceModelEndpointSummary = {
     type = "structure",
+    id = "MarketplaceModelEndpointSummary",
     members = {
         endpointArn = {
             type = "string",
@@ -3271,6 +3438,7 @@ M.MarketplaceModelEndpointSummary = {
 
 M.ListMarketplaceModelEndpointsOutput = {
     type = "structure",
+    id = "ListMarketplaceModelEndpointsOutput",
     members = {
         marketplaceModelEndpoints = {
             type = "list",
@@ -3284,6 +3452,7 @@ M.ListMarketplaceModelEndpointsOutput = {
 
 M.RegisterMarketplaceModelEndpointInput = {
     type = "structure",
+    id = "RegisterMarketplaceModelEndpointInput",
     members = {
         endpointIdentifier = {
             type = "string",
@@ -3303,6 +3472,7 @@ M.RegisterMarketplaceModelEndpointInput = {
 
 M.RegisterMarketplaceModelEndpointOutput = {
     type = "structure",
+    id = "RegisterMarketplaceModelEndpointOutput",
     members = {
         marketplaceModelEndpoint = setmetatable({ traits = {
             required = true,
@@ -3312,6 +3482,7 @@ M.RegisterMarketplaceModelEndpointOutput = {
 
 M.UpdateMarketplaceModelEndpointInput = {
     type = "structure",
+    id = "UpdateMarketplaceModelEndpointInput",
     members = {
         endpointArn = {
             type = "string",
@@ -3334,6 +3505,7 @@ M.UpdateMarketplaceModelEndpointInput = {
 
 M.UpdateMarketplaceModelEndpointOutput = {
     type = "structure",
+    id = "UpdateMarketplaceModelEndpointOutput",
     members = {
         marketplaceModelEndpoint = setmetatable({ traits = {
             required = true,
@@ -3343,6 +3515,7 @@ M.UpdateMarketplaceModelEndpointOutput = {
 
 M.CreateCustomModelDeploymentInput = {
     type = "structure",
+    id = "CreateCustomModelDeploymentInput",
     members = {
         modelDeploymentName = {
             type = "string",
@@ -3374,6 +3547,7 @@ M.CreateCustomModelDeploymentInput = {
 
 M.CreateCustomModelDeploymentOutput = {
     type = "structure",
+    id = "CreateCustomModelDeploymentOutput",
     members = {
         customModelDeploymentArn = {
             type = "string",
@@ -3386,6 +3560,7 @@ M.CreateCustomModelDeploymentOutput = {
 
 M.DeleteCustomModelDeploymentInput = {
     type = "structure",
+    id = "DeleteCustomModelDeploymentInput",
     members = {
         customModelDeploymentIdentifier = {
             type = "string",
@@ -3399,10 +3574,12 @@ M.DeleteCustomModelDeploymentInput = {
 
 M.DeleteCustomModelDeploymentOutput = {
     type = "structure",
+    id = "DeleteCustomModelDeploymentOutput",
 }
 
 M.GetCustomModelDeploymentInput = {
     type = "structure",
+    id = "GetCustomModelDeploymentInput",
     members = {
         customModelDeploymentIdentifier = {
             type = "string",
@@ -3428,6 +3605,7 @@ M.CustomModelDeploymentUpdateStatus = {
 
 M.CustomModelDeploymentUpdateDetails = {
     type = "structure",
+    id = "CustomModelDeploymentUpdateDetails",
     members = {
         modelArn = {
             type = "string",
@@ -3446,6 +3624,7 @@ M.CustomModelDeploymentUpdateDetails = {
 
 M.GetCustomModelDeploymentOutput = {
     type = "structure",
+    id = "GetCustomModelDeploymentOutput",
     members = {
         customModelDeploymentArn = {
             type = "string",
@@ -3505,6 +3684,7 @@ M.SortOrder = {
 
 M.ListCustomModelDeploymentsInput = {
     type = "structure",
+    id = "ListCustomModelDeploymentsInput",
     members = {
         createdBefore = {
             type = "timestamp",
@@ -3567,6 +3747,7 @@ M.ListCustomModelDeploymentsInput = {
 
 M.CustomModelDeploymentSummary = {
     type = "structure",
+    id = "CustomModelDeploymentSummary",
     members = {
         customModelDeploymentArn = {
             type = "string",
@@ -3613,6 +3794,7 @@ M.CustomModelDeploymentSummary = {
 
 M.ListCustomModelDeploymentsOutput = {
     type = "structure",
+    id = "ListCustomModelDeploymentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3626,6 +3808,7 @@ M.ListCustomModelDeploymentsOutput = {
 
 M.UpdateCustomModelDeploymentInput = {
     type = "structure",
+    id = "UpdateCustomModelDeploymentInput",
     members = {
         modelArn = {
             type = "string",
@@ -3645,6 +3828,7 @@ M.UpdateCustomModelDeploymentInput = {
 
 M.UpdateCustomModelDeploymentOutput = {
     type = "structure",
+    id = "UpdateCustomModelDeploymentOutput",
     members = {
         customModelDeploymentArn = {
             type = "string",
@@ -3657,6 +3841,7 @@ M.UpdateCustomModelDeploymentOutput = {
 
 M.S3DataSource = {
     type = "structure",
+    id = "S3DataSource",
     members = {
         s3Uri = {
             type = "string",
@@ -3669,6 +3854,7 @@ M.S3DataSource = {
 
 M.ModelDataSource = {
     type = "union",
+    id = "ModelDataSource",
     members = {
         s3DataSource = M.S3DataSource,
     },
@@ -3676,6 +3862,7 @@ M.ModelDataSource = {
 
 M.CreateCustomModelInput = {
     type = "structure",
+    id = "CreateCustomModelInput",
     members = {
         modelName = {
             type = "string",
@@ -3707,6 +3894,7 @@ M.CreateCustomModelInput = {
 
 M.CreateCustomModelOutput = {
     type = "structure",
+    id = "CreateCustomModelOutput",
     members = {
         modelArn = {
             type = "string",
@@ -3719,6 +3907,7 @@ M.CreateCustomModelOutput = {
 
 M.DeleteCustomModelInput = {
     type = "structure",
+    id = "DeleteCustomModelInput",
     members = {
         modelIdentifier = {
             type = "string",
@@ -3732,10 +3921,12 @@ M.DeleteCustomModelInput = {
 
 M.DeleteCustomModelOutput = {
     type = "structure",
+    id = "DeleteCustomModelOutput",
 }
 
 M.GetCustomModelInput = {
     type = "structure",
+    id = "GetCustomModelInput",
     members = {
         modelIdentifier = {
             type = "string",
@@ -3749,6 +3940,7 @@ M.GetCustomModelInput = {
 
 M.TeacherModelConfig = {
     type = "structure",
+    id = "TeacherModelConfig",
     members = {
         teacherModelIdentifier = {
             type = "string",
@@ -3764,6 +3956,7 @@ M.TeacherModelConfig = {
 
 M.DistillationConfig = {
     type = "structure",
+    id = "DistillationConfig",
     members = {
         teacherModelConfig = setmetatable({ traits = {
             required = true,
@@ -3773,6 +3966,7 @@ M.DistillationConfig = {
 
 M.LambdaGraderConfig = {
     type = "structure",
+    id = "LambdaGraderConfig",
     members = {
         lambdaArn = {
             type = "string",
@@ -3785,6 +3979,7 @@ M.LambdaGraderConfig = {
 
 M.GraderConfig = {
     type = "union",
+    id = "GraderConfig",
     members = {
         lambdaGrader = M.LambdaGraderConfig,
     },
@@ -3798,6 +3993,7 @@ M.ReasoningEffort = {
 
 M.RFTHyperParameters = {
     type = "structure",
+    id = "RFTHyperParameters",
     members = {
         epochCount = {
             type = "integer",
@@ -3828,6 +4024,7 @@ M.RFTHyperParameters = {
 
 M.RFTConfig = {
     type = "structure",
+    id = "RFTConfig",
     members = {
         graderConfig = M.GraderConfig,
         hyperParameters = M.RFTHyperParameters,
@@ -3836,6 +4033,7 @@ M.RFTConfig = {
 
 M.CustomizationConfig = {
     type = "union",
+    id = "CustomizationConfig",
     members = {
         distillationConfig = M.DistillationConfig,
         rftConfig = M.RFTConfig,
@@ -3858,6 +4056,7 @@ M.ModelStatus = {
 
 M.OutputDataConfig = {
     type = "structure",
+    id = "OutputDataConfig",
     members = {
         s3Uri = {
             type = "string",
@@ -3870,6 +4069,7 @@ M.OutputDataConfig = {
 
 M.InvocationLogSource = {
     type = "union",
+    id = "InvocationLogSource",
     members = {
         s3Uri = {
             type = "string",
@@ -3879,6 +4079,7 @@ M.InvocationLogSource = {
 
 M.RequestMetadataBaseFilters = {
     type = "structure",
+    id = "RequestMetadataBaseFilters",
     members = {
         equals = {
             type = "map",
@@ -3895,6 +4096,7 @@ M.RequestMetadataBaseFilters = {
 
 M.RequestMetadataFilters = {
     type = "union",
+    id = "RequestMetadataFilters",
     members = {
         equals = {
             type = "map",
@@ -3919,6 +4121,7 @@ M.RequestMetadataFilters = {
 
 M.InvocationLogsConfig = {
     type = "structure",
+    id = "InvocationLogsConfig",
     members = {
         usePromptResponse = {
             type = "boolean",
@@ -3935,6 +4138,7 @@ M.InvocationLogsConfig = {
 
 M.TrainingDataConfig = {
     type = "structure",
+    id = "TrainingDataConfig",
     members = {
         s3Uri = {
             type = "string",
@@ -3945,6 +4149,7 @@ M.TrainingDataConfig = {
 
 M.TrainingMetrics = {
     type = "structure",
+    id = "TrainingMetrics",
     members = {
         trainingLoss = {
             type = "float",
@@ -3954,6 +4159,7 @@ M.TrainingMetrics = {
 
 M.Validator = {
     type = "structure",
+    id = "Validator",
     members = {
         s3Uri = {
             type = "string",
@@ -3966,6 +4172,7 @@ M.Validator = {
 
 M.ValidationDataConfig = {
     type = "structure",
+    id = "ValidationDataConfig",
     members = {
         validators = {
             type = "list",
@@ -3979,6 +4186,7 @@ M.ValidationDataConfig = {
 
 M.ValidatorMetric = {
     type = "structure",
+    id = "ValidatorMetric",
     members = {
         validationLoss = {
             type = "float",
@@ -3988,6 +4196,7 @@ M.ValidatorMetric = {
 
 M.GetCustomModelOutput = {
     type = "structure",
+    id = "GetCustomModelOutput",
     members = {
         modelArn = {
             type = "string",
@@ -4048,6 +4257,7 @@ M.GetCustomModelOutput = {
 
 M.ListCustomModelsInput = {
     type = "structure",
+    id = "ListCustomModelsInput",
     members = {
         creationTimeBefore = {
             type = "timestamp",
@@ -4122,6 +4332,7 @@ M.ListCustomModelsInput = {
 
 M.CustomModelSummary = {
     type = "structure",
+    id = "CustomModelSummary",
     members = {
         modelArn = {
             type = "string",
@@ -4168,6 +4379,7 @@ M.CustomModelSummary = {
 
 M.ListCustomModelsOutput = {
     type = "structure",
+    id = "ListCustomModelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -4181,6 +4393,7 @@ M.ListCustomModelsOutput = {
 
 M.DeleteEnforcedGuardrailConfigurationInput = {
     type = "structure",
+    id = "DeleteEnforcedGuardrailConfigurationInput",
     members = {
         configId = {
             type = "string",
@@ -4194,10 +4407,12 @@ M.DeleteEnforcedGuardrailConfigurationInput = {
 
 M.DeleteEnforcedGuardrailConfigurationOutput = {
     type = "structure",
+    id = "DeleteEnforcedGuardrailConfigurationOutput",
 }
 
 M.ListEnforcedGuardrailsConfigurationInput = {
     type = "structure",
+    id = "ListEnforcedGuardrailsConfigurationInput",
     members = {
         nextToken = {
             type = "string",
@@ -4210,6 +4425,7 @@ M.ListEnforcedGuardrailsConfigurationInput = {
 
 M.ListEnforcedGuardrailsConfigurationOutput = {
     type = "structure",
+    id = "ListEnforcedGuardrailsConfigurationOutput",
     members = {
         guardrailsConfig = {
             type = "list",
@@ -4226,6 +4442,7 @@ M.ListEnforcedGuardrailsConfigurationOutput = {
 
 M.PutEnforcedGuardrailConfigurationInput = {
     type = "structure",
+    id = "PutEnforcedGuardrailConfigurationInput",
     members = {
         configId = {
             type = "string",
@@ -4238,6 +4455,7 @@ M.PutEnforcedGuardrailConfigurationInput = {
 
 M.PutEnforcedGuardrailConfigurationOutput = {
     type = "structure",
+    id = "PutEnforcedGuardrailConfigurationOutput",
     members = {
         configId = {
             type = "string",
@@ -4256,6 +4474,7 @@ M.PutEnforcedGuardrailConfigurationOutput = {
 
 M.BatchDeleteEvaluationJobInput = {
     type = "structure",
+    id = "BatchDeleteEvaluationJobInput",
     members = {
         jobIdentifiers = {
             type = "list",
@@ -4269,6 +4488,7 @@ M.BatchDeleteEvaluationJobInput = {
 
 M.BatchDeleteEvaluationJobError = {
     type = "structure",
+    id = "BatchDeleteEvaluationJobError",
     members = {
         jobIdentifier = {
             type = "string",
@@ -4299,6 +4519,7 @@ M.EvaluationJobStatus = {
 
 M.BatchDeleteEvaluationJobItem = {
     type = "structure",
+    id = "BatchDeleteEvaluationJobItem",
     members = {
         jobIdentifier = {
             type = "string",
@@ -4317,6 +4538,7 @@ M.BatchDeleteEvaluationJobItem = {
 
 M.BatchDeleteEvaluationJobOutput = {
     type = "structure",
+    id = "BatchDeleteEvaluationJobOutput",
     members = {
         errors = {
             type = "list",
@@ -4342,6 +4564,7 @@ M.ApplicationType = {
 
 M.RatingScaleItemValue = {
     type = "union",
+    id = "RatingScaleItemValue",
     members = {
         stringValue = {
             type = "string",
@@ -4354,6 +4577,7 @@ M.RatingScaleItemValue = {
 
 M.RatingScaleItem = {
     type = "structure",
+    id = "RatingScaleItem",
     members = {
         definition = {
             type = "string",
@@ -4369,6 +4593,7 @@ M.RatingScaleItem = {
 
 M.CustomMetricDefinition = {
     type = "structure",
+    id = "CustomMetricDefinition",
     members = {
         name = {
             type = "string",
@@ -4391,6 +4616,7 @@ M.CustomMetricDefinition = {
 
 M.AutomatedEvaluationCustomMetricSource = {
     type = "union",
+    id = "AutomatedEvaluationCustomMetricSource",
     members = {
         customMetricDefinition = M.CustomMetricDefinition,
     },
@@ -4398,6 +4624,7 @@ M.AutomatedEvaluationCustomMetricSource = {
 
 M.CustomMetricBedrockEvaluatorModel = {
     type = "structure",
+    id = "CustomMetricBedrockEvaluatorModel",
     members = {
         modelIdentifier = {
             type = "string",
@@ -4410,6 +4637,7 @@ M.CustomMetricBedrockEvaluatorModel = {
 
 M.CustomMetricEvaluatorModelConfig = {
     type = "structure",
+    id = "CustomMetricEvaluatorModelConfig",
     members = {
         bedrockEvaluatorModels = {
             type = "list",
@@ -4423,6 +4651,7 @@ M.CustomMetricEvaluatorModelConfig = {
 
 M.AutomatedEvaluationCustomMetricConfig = {
     type = "structure",
+    id = "AutomatedEvaluationCustomMetricConfig",
     members = {
         customMetrics = {
             type = "list",
@@ -4439,6 +4668,7 @@ M.AutomatedEvaluationCustomMetricConfig = {
 
 M.EvaluationDatasetLocation = {
     type = "union",
+    id = "EvaluationDatasetLocation",
     members = {
         s3Uri = {
             type = "string",
@@ -4448,6 +4678,7 @@ M.EvaluationDatasetLocation = {
 
 M.EvaluationDataset = {
     type = "structure",
+    id = "EvaluationDataset",
     members = {
         name = {
             type = "string",
@@ -4469,6 +4700,7 @@ M.EvaluationTaskType = {
 
 M.EvaluationDatasetMetricConfig = {
     type = "structure",
+    id = "EvaluationDatasetMetricConfig",
     members = {
         taskType = {
             type = "string",
@@ -4491,6 +4723,7 @@ M.EvaluationDatasetMetricConfig = {
 
 M.BedrockEvaluatorModel = {
     type = "structure",
+    id = "BedrockEvaluatorModel",
     members = {
         modelIdentifier = {
             type = "string",
@@ -4503,6 +4736,7 @@ M.BedrockEvaluatorModel = {
 
 M.EvaluatorModelConfig = {
     type = "union",
+    id = "EvaluatorModelConfig",
     members = {
         bedrockEvaluatorModels = {
             type = "list",
@@ -4513,6 +4747,7 @@ M.EvaluatorModelConfig = {
 
 M.AutomatedEvaluationConfig = {
     type = "structure",
+    id = "AutomatedEvaluationConfig",
     members = {
         datasetMetricConfigs = {
             type = "list",
@@ -4528,6 +4763,7 @@ M.AutomatedEvaluationConfig = {
 
 M.HumanEvaluationCustomMetric = {
     type = "structure",
+    id = "HumanEvaluationCustomMetric",
     members = {
         name = {
             type = "string",
@@ -4549,6 +4785,7 @@ M.HumanEvaluationCustomMetric = {
 
 M.HumanWorkflowConfig = {
     type = "structure",
+    id = "HumanWorkflowConfig",
     members = {
         flowDefinitionArn = {
             type = "string",
@@ -4564,6 +4801,7 @@ M.HumanWorkflowConfig = {
 
 M.HumanEvaluationConfig = {
     type = "structure",
+    id = "HumanEvaluationConfig",
     members = {
         humanWorkflowConfig = M.HumanWorkflowConfig,
         customMetrics = {
@@ -4582,6 +4820,7 @@ M.HumanEvaluationConfig = {
 
 M.EvaluationConfig = {
     type = "union",
+    id = "EvaluationConfig",
     members = {
         automated = M.AutomatedEvaluationConfig,
         human = M.HumanEvaluationConfig,
@@ -4595,6 +4834,7 @@ M.PerformanceConfigLatency = {
 
 M.PerformanceConfiguration = {
     type = "structure",
+    id = "PerformanceConfiguration",
     members = {
         latency = {
             type = "string",
@@ -4604,6 +4844,7 @@ M.PerformanceConfiguration = {
 
 M.EvaluationBedrockModel = {
     type = "structure",
+    id = "EvaluationBedrockModel",
     members = {
         modelIdentifier = {
             type = "string",
@@ -4623,6 +4864,7 @@ M.EvaluationBedrockModel = {
 
 M.EvaluationPrecomputedInferenceSource = {
     type = "structure",
+    id = "EvaluationPrecomputedInferenceSource",
     members = {
         inferenceSourceIdentifier = {
             type = "string",
@@ -4635,6 +4877,7 @@ M.EvaluationPrecomputedInferenceSource = {
 
 M.EvaluationModelConfig = {
     type = "union",
+    id = "EvaluationModelConfig",
     members = {
         bedrockModel = M.EvaluationBedrockModel,
         precomputedInferenceSource = M.EvaluationPrecomputedInferenceSource,
@@ -4643,6 +4886,7 @@ M.EvaluationModelConfig = {
 
 M.GuardrailConfiguration = {
     type = "structure",
+    id = "GuardrailConfiguration",
     members = {
         guardrailId = {
             type = "string",
@@ -4661,6 +4905,7 @@ M.GuardrailConfiguration = {
 
 M.TextInferenceConfig = {
     type = "structure",
+    id = "TextInferenceConfig",
     members = {
         temperature = {
             type = "float",
@@ -4680,6 +4925,7 @@ M.TextInferenceConfig = {
 
 M.KbInferenceConfig = {
     type = "structure",
+    id = "KbInferenceConfig",
     members = {
         textInferenceConfig = M.TextInferenceConfig,
     },
@@ -4687,6 +4933,7 @@ M.KbInferenceConfig = {
 
 M.PromptTemplate = {
     type = "structure",
+    id = "PromptTemplate",
     members = {
         textPromptTemplate = {
             type = "string",
@@ -4696,6 +4943,7 @@ M.PromptTemplate = {
 
 M.ExternalSourcesGenerationConfiguration = {
     type = "structure",
+    id = "ExternalSourcesGenerationConfiguration",
     members = {
         promptTemplate = M.PromptTemplate,
         guardrailConfiguration = M.GuardrailConfiguration,
@@ -4710,6 +4958,7 @@ M.ExternalSourcesGenerationConfiguration = {
 
 M.ByteContentDoc = {
     type = "structure",
+    id = "ByteContentDoc",
     members = {
         identifier = {
             type = "string",
@@ -4734,6 +4983,7 @@ M.ByteContentDoc = {
 
 M.S3ObjectDoc = {
     type = "structure",
+    id = "S3ObjectDoc",
     members = {
         uri = {
             type = "string",
@@ -4751,6 +5001,7 @@ M.ExternalSourceType = {
 
 M.ExternalSource = {
     type = "structure",
+    id = "ExternalSource",
     members = {
         sourceType = {
             type = "string",
@@ -4765,6 +5016,7 @@ M.ExternalSource = {
 
 M.ExternalSourcesRetrieveAndGenerateConfiguration = {
     type = "structure",
+    id = "ExternalSourcesRetrieveAndGenerateConfiguration",
     members = {
         modelArn = {
             type = "string",
@@ -4785,6 +5037,7 @@ M.ExternalSourcesRetrieveAndGenerateConfiguration = {
 
 M.GenerationConfiguration = {
     type = "structure",
+    id = "GenerationConfiguration",
     members = {
         promptTemplate = M.PromptTemplate,
         guardrailConfiguration = M.GuardrailConfiguration,
@@ -4803,6 +5056,7 @@ M.QueryTransformationType = {
 
 M.QueryTransformationConfiguration = {
     type = "structure",
+    id = "QueryTransformationConfiguration",
     members = {
         type = {
             type = "string",
@@ -4815,6 +5069,7 @@ M.QueryTransformationConfiguration = {
 
 M.OrchestrationConfiguration = {
     type = "structure",
+    id = "OrchestrationConfiguration",
     members = {
         queryTransformationConfiguration = setmetatable({ traits = {
             required = true,
@@ -4824,6 +5079,7 @@ M.OrchestrationConfiguration = {
 
 M.FilterAttribute = {
     type = "structure",
+    id = "FilterAttribute",
     members = {
         key = {
             type = "string",
@@ -4849,6 +5105,7 @@ M.AttributeType = {
 
 M.MetadataAttributeSchema = {
     type = "structure",
+    id = "MetadataAttributeSchema",
     members = {
         key = {
             type = "string",
@@ -4873,6 +5130,7 @@ M.MetadataAttributeSchema = {
 
 M.ImplicitFilterConfiguration = {
     type = "structure",
+    id = "ImplicitFilterConfiguration",
     members = {
         metadataAttributes = {
             type = "list",
@@ -4902,6 +5160,7 @@ M.RerankingMetadataSelectionMode = {
 
 M.FieldForReranking = {
     type = "structure",
+    id = "FieldForReranking",
     members = {
         fieldName = {
             type = "string",
@@ -4914,6 +5173,7 @@ M.FieldForReranking = {
 
 M.RerankingMetadataSelectiveModeConfiguration = {
     type = "union",
+    id = "RerankingMetadataSelectiveModeConfiguration",
     members = {
         fieldsToInclude = {
             type = "list",
@@ -4928,6 +5188,7 @@ M.RerankingMetadataSelectiveModeConfiguration = {
 
 M.MetadataConfigurationForReranking = {
     type = "structure",
+    id = "MetadataConfigurationForReranking",
     members = {
         selectionMode = {
             type = "string",
@@ -4941,6 +5202,7 @@ M.MetadataConfigurationForReranking = {
 
 M.VectorSearchBedrockRerankingModelConfiguration = {
     type = "structure",
+    id = "VectorSearchBedrockRerankingModelConfiguration",
     members = {
         modelArn = {
             type = "string",
@@ -4958,6 +5220,7 @@ M.VectorSearchBedrockRerankingModelConfiguration = {
 
 M.VectorSearchBedrockRerankingConfiguration = {
     type = "structure",
+    id = "VectorSearchBedrockRerankingConfiguration",
     members = {
         modelConfiguration = setmetatable({ traits = {
             required = true,
@@ -4975,6 +5238,7 @@ M.VectorSearchRerankingConfigurationType = {
 
 M.VectorSearchRerankingConfiguration = {
     type = "structure",
+    id = "VectorSearchRerankingConfiguration",
     members = {
         type = {
             type = "string",
@@ -4993,6 +5257,7 @@ M.RetrieveAndGenerateType = {
 
 M.EvaluationPrecomputedRetrieveAndGenerateSourceConfig = {
     type = "structure",
+    id = "EvaluationPrecomputedRetrieveAndGenerateSourceConfig",
     members = {
         ragSourceIdentifier = {
             type = "string",
@@ -5005,6 +5270,7 @@ M.EvaluationPrecomputedRetrieveAndGenerateSourceConfig = {
 
 M.EvaluationPrecomputedRetrieveSourceConfig = {
     type = "structure",
+    id = "EvaluationPrecomputedRetrieveSourceConfig",
     members = {
         ragSourceIdentifier = {
             type = "string",
@@ -5017,6 +5283,7 @@ M.EvaluationPrecomputedRetrieveSourceConfig = {
 
 M.EvaluationPrecomputedRagSourceConfig = {
     type = "union",
+    id = "EvaluationPrecomputedRagSourceConfig",
     members = {
         retrieveSourceConfig = M.EvaluationPrecomputedRetrieveSourceConfig,
         retrieveAndGenerateSourceConfig = M.EvaluationPrecomputedRetrieveAndGenerateSourceConfig,
@@ -5025,6 +5292,7 @@ M.EvaluationPrecomputedRagSourceConfig = {
 
 M.EvaluationOutputDataConfig = {
     type = "structure",
+    id = "EvaluationOutputDataConfig",
     members = {
         s3Uri = {
             type = "string",
@@ -5037,6 +5305,7 @@ M.EvaluationOutputDataConfig = {
 
 M.CreateEvaluationJobOutput = {
     type = "structure",
+    id = "CreateEvaluationJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -5049,6 +5318,7 @@ M.CreateEvaluationJobOutput = {
 
 M.GetEvaluationJobInput = {
     type = "structure",
+    id = "GetEvaluationJobInput",
     members = {
         jobIdentifier = {
             type = "string",
@@ -5071,6 +5341,7 @@ M.SortJobsBy = {
 
 M.ListEvaluationJobsInput = {
     type = "structure",
+    id = "ListEvaluationJobsInput",
     members = {
         creationTimeAfter = {
             type = "timestamp",
@@ -5133,6 +5404,7 @@ M.ListEvaluationJobsInput = {
 
 M.EvaluationModelConfigSummary = {
     type = "structure",
+    id = "EvaluationModelConfigSummary",
     members = {
         bedrockModelIdentifiers = {
             type = "list",
@@ -5147,6 +5419,7 @@ M.EvaluationModelConfigSummary = {
 
 M.EvaluationRagConfigSummary = {
     type = "structure",
+    id = "EvaluationRagConfigSummary",
     members = {
         bedrockKnowledgeBaseIdentifiers = {
             type = "list",
@@ -5161,6 +5434,7 @@ M.EvaluationRagConfigSummary = {
 
 M.EvaluationInferenceConfigSummary = {
     type = "structure",
+    id = "EvaluationInferenceConfigSummary",
     members = {
         modelConfigSummary = M.EvaluationModelConfigSummary,
         ragConfigSummary = M.EvaluationRagConfigSummary,
@@ -5169,6 +5443,7 @@ M.EvaluationInferenceConfigSummary = {
 
 M.EvaluationSummary = {
     type = "structure",
+    id = "EvaluationSummary",
     members = {
         jobArn = {
             type = "string",
@@ -5236,6 +5511,7 @@ M.EvaluationSummary = {
 
 M.ListEvaluationJobsOutput = {
     type = "structure",
+    id = "ListEvaluationJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -5249,6 +5525,7 @@ M.ListEvaluationJobsOutput = {
 
 M.StopEvaluationJobInput = {
     type = "structure",
+    id = "StopEvaluationJobInput",
     members = {
         jobIdentifier = {
             type = "string",
@@ -5262,10 +5539,12 @@ M.StopEvaluationJobInput = {
 
 M.StopEvaluationJobOutput = {
     type = "structure",
+    id = "StopEvaluationJobOutput",
 }
 
 M.GuardrailAutomatedReasoningPolicyConfig = {
     type = "structure",
+    id = "GuardrailAutomatedReasoningPolicyConfig",
     members = {
         policies = {
             type = "list",
@@ -5308,6 +5587,7 @@ M.GuardrailContentFilterType = {
 
 M.GuardrailContentFilterConfig = {
     type = "structure",
+    id = "GuardrailContentFilterConfig",
     members = {
         type = {
             type = "string",
@@ -5357,6 +5637,7 @@ M.GuardrailContentFiltersTierName = {
 
 M.GuardrailContentFiltersTierConfig = {
     type = "structure",
+    id = "GuardrailContentFiltersTierConfig",
     members = {
         tierName = {
             type = "string",
@@ -5369,6 +5650,7 @@ M.GuardrailContentFiltersTierConfig = {
 
 M.GuardrailContentPolicyConfig = {
     type = "structure",
+    id = "GuardrailContentPolicyConfig",
     members = {
         filtersConfig = {
             type = "list",
@@ -5393,6 +5675,7 @@ M.GuardrailContextualGroundingFilterType = {
 
 M.GuardrailContextualGroundingFilterConfig = {
     type = "structure",
+    id = "GuardrailContextualGroundingFilterConfig",
     members = {
         type = {
             type = "string",
@@ -5417,6 +5700,7 @@ M.GuardrailContextualGroundingFilterConfig = {
 
 M.GuardrailContextualGroundingPolicyConfig = {
     type = "structure",
+    id = "GuardrailContextualGroundingPolicyConfig",
     members = {
         filtersConfig = {
             type = "list",
@@ -5430,6 +5714,7 @@ M.GuardrailContextualGroundingPolicyConfig = {
 
 M.GuardrailCrossRegionConfig = {
     type = "structure",
+    id = "GuardrailCrossRegionConfig",
     members = {
         guardrailProfileIdentifier = {
             type = "string",
@@ -5482,6 +5767,7 @@ M.GuardrailPiiEntityType = {
 
 M.GuardrailPiiEntityConfig = {
     type = "structure",
+    id = "GuardrailPiiEntityConfig",
     members = {
         type = {
             type = "string",
@@ -5512,6 +5798,7 @@ M.GuardrailPiiEntityConfig = {
 
 M.GuardrailRegexConfig = {
     type = "structure",
+    id = "GuardrailRegexConfig",
     members = {
         name = {
             type = "string",
@@ -5551,6 +5838,7 @@ M.GuardrailRegexConfig = {
 
 M.GuardrailSensitiveInformationPolicyConfig = {
     type = "structure",
+    id = "GuardrailSensitiveInformationPolicyConfig",
     members = {
         piiEntitiesConfig = {
             type = "list",
@@ -5570,6 +5858,7 @@ M.GuardrailTopicsTierName = {
 
 M.GuardrailTopicsTierConfig = {
     type = "structure",
+    id = "GuardrailTopicsTierConfig",
     members = {
         tierName = {
             type = "string",
@@ -5591,6 +5880,7 @@ M.GuardrailTopicType = {
 
 M.GuardrailTopicConfig = {
     type = "structure",
+    id = "GuardrailTopicConfig",
     members = {
         name = {
             type = "string",
@@ -5631,6 +5921,7 @@ M.GuardrailTopicConfig = {
 
 M.GuardrailTopicPolicyConfig = {
     type = "structure",
+    id = "GuardrailTopicPolicyConfig",
     members = {
         topicsConfig = {
             type = "list",
@@ -5654,6 +5945,7 @@ M.GuardrailManagedWordsType = {
 
 M.GuardrailManagedWordsConfig = {
     type = "structure",
+    id = "GuardrailManagedWordsConfig",
     members = {
         type = {
             type = "string",
@@ -5678,6 +5970,7 @@ M.GuardrailManagedWordsConfig = {
 
 M.GuardrailWordConfig = {
     type = "structure",
+    id = "GuardrailWordConfig",
     members = {
         text = {
             type = "string",
@@ -5702,6 +5995,7 @@ M.GuardrailWordConfig = {
 
 M.GuardrailWordPolicyConfig = {
     type = "structure",
+    id = "GuardrailWordPolicyConfig",
     members = {
         wordsConfig = {
             type = "list",
@@ -5716,6 +6010,7 @@ M.GuardrailWordPolicyConfig = {
 
 M.CreateGuardrailInput = {
     type = "structure",
+    id = "CreateGuardrailInput",
     members = {
         name = {
             type = "string",
@@ -5763,6 +6058,7 @@ M.CreateGuardrailInput = {
 
 M.CreateGuardrailOutput = {
     type = "structure",
+    id = "CreateGuardrailOutput",
     members = {
         guardrailId = {
             type = "string",
@@ -5794,6 +6090,7 @@ M.CreateGuardrailOutput = {
 
 M.CreateGuardrailVersionInput = {
     type = "structure",
+    id = "CreateGuardrailVersionInput",
     members = {
         guardrailIdentifier = {
             type = "string",
@@ -5816,6 +6113,7 @@ M.CreateGuardrailVersionInput = {
 
 M.CreateGuardrailVersionOutput = {
     type = "structure",
+    id = "CreateGuardrailVersionOutput",
     members = {
         guardrailId = {
             type = "string",
@@ -5834,6 +6132,7 @@ M.CreateGuardrailVersionOutput = {
 
 M.DeleteGuardrailInput = {
     type = "structure",
+    id = "DeleteGuardrailInput",
     members = {
         guardrailIdentifier = {
             type = "string",
@@ -5853,10 +6152,12 @@ M.DeleteGuardrailInput = {
 
 M.DeleteGuardrailOutput = {
     type = "structure",
+    id = "DeleteGuardrailOutput",
 }
 
 M.GetGuardrailInput = {
     type = "structure",
+    id = "GetGuardrailInput",
     members = {
         guardrailIdentifier = {
             type = "string",
@@ -5876,6 +6177,7 @@ M.GetGuardrailInput = {
 
 M.GuardrailAutomatedReasoningPolicy = {
     type = "structure",
+    id = "GuardrailAutomatedReasoningPolicy",
     members = {
         policies = {
             type = "list",
@@ -5892,6 +6194,7 @@ M.GuardrailAutomatedReasoningPolicy = {
 
 M.GuardrailContentFilter = {
     type = "structure",
+    id = "GuardrailContentFilter",
     members = {
         type = {
             type = "string",
@@ -5936,6 +6239,7 @@ M.GuardrailContentFilter = {
 
 M.GuardrailContentFiltersTier = {
     type = "structure",
+    id = "GuardrailContentFiltersTier",
     members = {
         tierName = {
             type = "string",
@@ -5948,6 +6252,7 @@ M.GuardrailContentFiltersTier = {
 
 M.GuardrailContentPolicy = {
     type = "structure",
+    id = "GuardrailContentPolicy",
     members = {
         filters = {
             type = "list",
@@ -5959,6 +6264,7 @@ M.GuardrailContentPolicy = {
 
 M.GuardrailContextualGroundingFilter = {
     type = "structure",
+    id = "GuardrailContextualGroundingFilter",
     members = {
         type = {
             type = "string",
@@ -5983,6 +6289,7 @@ M.GuardrailContextualGroundingFilter = {
 
 M.GuardrailContextualGroundingPolicy = {
     type = "structure",
+    id = "GuardrailContextualGroundingPolicy",
     members = {
         filters = {
             type = "list",
@@ -5996,6 +6303,7 @@ M.GuardrailContextualGroundingPolicy = {
 
 M.GuardrailCrossRegionDetails = {
     type = "structure",
+    id = "GuardrailCrossRegionDetails",
     members = {
         guardrailProfileId = {
             type = "string",
@@ -6008,6 +6316,7 @@ M.GuardrailCrossRegionDetails = {
 
 M.GuardrailPiiEntity = {
     type = "structure",
+    id = "GuardrailPiiEntity",
     members = {
         type = {
             type = "string",
@@ -6038,6 +6347,7 @@ M.GuardrailPiiEntity = {
 
 M.GuardrailRegex = {
     type = "structure",
+    id = "GuardrailRegex",
     members = {
         name = {
             type = "string",
@@ -6077,6 +6387,7 @@ M.GuardrailRegex = {
 
 M.GuardrailSensitiveInformationPolicy = {
     type = "structure",
+    id = "GuardrailSensitiveInformationPolicy",
     members = {
         piiEntities = {
             type = "list",
@@ -6100,6 +6411,7 @@ M.GuardrailStatus = {
 
 M.GuardrailTopicsTier = {
     type = "structure",
+    id = "GuardrailTopicsTier",
     members = {
         tierName = {
             type = "string",
@@ -6112,6 +6424,7 @@ M.GuardrailTopicsTier = {
 
 M.GuardrailTopic = {
     type = "structure",
+    id = "GuardrailTopic",
     members = {
         name = {
             type = "string",
@@ -6149,6 +6462,7 @@ M.GuardrailTopic = {
 
 M.GuardrailTopicPolicy = {
     type = "structure",
+    id = "GuardrailTopicPolicy",
     members = {
         topics = {
             type = "list",
@@ -6163,6 +6477,7 @@ M.GuardrailTopicPolicy = {
 
 M.GuardrailManagedWords = {
     type = "structure",
+    id = "GuardrailManagedWords",
     members = {
         type = {
             type = "string",
@@ -6187,6 +6502,7 @@ M.GuardrailManagedWords = {
 
 M.GuardrailWord = {
     type = "structure",
+    id = "GuardrailWord",
     members = {
         text = {
             type = "string",
@@ -6211,6 +6527,7 @@ M.GuardrailWord = {
 
 M.GuardrailWordPolicy = {
     type = "structure",
+    id = "GuardrailWordPolicy",
     members = {
         words = {
             type = "list",
@@ -6225,6 +6542,7 @@ M.GuardrailWordPolicy = {
 
 M.GetGuardrailOutput = {
     type = "structure",
+    id = "GetGuardrailOutput",
     members = {
         name = {
             type = "string",
@@ -6308,6 +6626,7 @@ M.GetGuardrailOutput = {
 
 M.ListGuardrailsInput = {
     type = "structure",
+    id = "ListGuardrailsInput",
     members = {
         guardrailIdentifier = {
             type = "string",
@@ -6332,6 +6651,7 @@ M.ListGuardrailsInput = {
 
 M.GuardrailSummary = {
     type = "structure",
+    id = "GuardrailSummary",
     members = {
         id = {
             type = "string",
@@ -6386,6 +6706,7 @@ M.GuardrailSummary = {
 
 M.ListGuardrailsOutput = {
     type = "structure",
+    id = "ListGuardrailsOutput",
     members = {
         guardrails = {
             type = "list",
@@ -6402,6 +6723,7 @@ M.ListGuardrailsOutput = {
 
 M.UpdateGuardrailInput = {
     type = "structure",
+    id = "UpdateGuardrailInput",
     members = {
         guardrailIdentifier = {
             type = "string",
@@ -6446,6 +6768,7 @@ M.UpdateGuardrailInput = {
 
 M.UpdateGuardrailOutput = {
     type = "structure",
+    id = "UpdateGuardrailOutput",
     members = {
         guardrailId = {
             type = "string",
@@ -6477,6 +6800,7 @@ M.UpdateGuardrailOutput = {
 
 M.InferenceProfileModelSource = {
     type = "union",
+    id = "InferenceProfileModelSource",
     members = {
         copyFrom = {
             type = "string",
@@ -6486,6 +6810,7 @@ M.InferenceProfileModelSource = {
 
 M.CreateInferenceProfileInput = {
     type = "structure",
+    id = "CreateInferenceProfileInput",
     members = {
         inferenceProfileName = {
             type = "string",
@@ -6518,6 +6843,7 @@ M.InferenceProfileStatus = {
 
 M.CreateInferenceProfileOutput = {
     type = "structure",
+    id = "CreateInferenceProfileOutput",
     members = {
         inferenceProfileArn = {
             type = "string",
@@ -6533,6 +6859,7 @@ M.CreateInferenceProfileOutput = {
 
 M.DeleteInferenceProfileInput = {
     type = "structure",
+    id = "DeleteInferenceProfileInput",
     members = {
         inferenceProfileIdentifier = {
             type = "string",
@@ -6546,10 +6873,12 @@ M.DeleteInferenceProfileInput = {
 
 M.DeleteInferenceProfileOutput = {
     type = "structure",
+    id = "DeleteInferenceProfileOutput",
 }
 
 M.GetInferenceProfileInput = {
     type = "structure",
+    id = "GetInferenceProfileInput",
     members = {
         inferenceProfileIdentifier = {
             type = "string",
@@ -6563,6 +6892,7 @@ M.GetInferenceProfileInput = {
 
 M.InferenceProfileModel = {
     type = "structure",
+    id = "InferenceProfileModel",
     members = {
         modelArn = {
             type = "string",
@@ -6577,6 +6907,7 @@ M.InferenceProfileType = {
 
 M.GetInferenceProfileOutput = {
     type = "structure",
+    id = "GetInferenceProfileOutput",
     members = {
         inferenceProfileName = {
             type = "string",
@@ -6635,6 +6966,7 @@ M.GetInferenceProfileOutput = {
 
 M.ListInferenceProfilesInput = {
     type = "structure",
+    id = "ListInferenceProfilesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -6659,6 +6991,7 @@ M.ListInferenceProfilesInput = {
 
 M.InferenceProfileSummary = {
     type = "structure",
+    id = "InferenceProfileSummary",
     members = {
         inferenceProfileName = {
             type = "string",
@@ -6717,6 +7050,7 @@ M.InferenceProfileSummary = {
 
 M.ListInferenceProfilesOutput = {
     type = "structure",
+    id = "ListInferenceProfilesOutput",
     members = {
         inferenceProfileSummaries = {
             type = "list",
@@ -6730,18 +7064,22 @@ M.ListInferenceProfilesOutput = {
 
 M.DeleteModelInvocationLoggingConfigurationInput = {
     type = "structure",
+    id = "DeleteModelInvocationLoggingConfigurationInput",
 }
 
 M.DeleteModelInvocationLoggingConfigurationOutput = {
     type = "structure",
+    id = "DeleteModelInvocationLoggingConfigurationOutput",
 }
 
 M.GetModelInvocationLoggingConfigurationInput = {
     type = "structure",
+    id = "GetModelInvocationLoggingConfigurationInput",
 }
 
 M.S3Config = {
     type = "structure",
+    id = "S3Config",
     members = {
         bucketName = {
             type = "string",
@@ -6757,6 +7095,7 @@ M.S3Config = {
 
 M.CloudWatchConfig = {
     type = "structure",
+    id = "CloudWatchConfig",
     members = {
         logGroupName = {
             type = "string",
@@ -6776,6 +7115,7 @@ M.CloudWatchConfig = {
 
 M.LoggingConfig = {
     type = "structure",
+    id = "LoggingConfig",
     members = {
         cloudWatchConfig = M.CloudWatchConfig,
         s3Config = M.S3Config,
@@ -6799,6 +7139,7 @@ M.LoggingConfig = {
 
 M.GetModelInvocationLoggingConfigurationOutput = {
     type = "structure",
+    id = "GetModelInvocationLoggingConfigurationOutput",
     members = {
         loggingConfig = M.LoggingConfig,
     },
@@ -6806,6 +7147,7 @@ M.GetModelInvocationLoggingConfigurationOutput = {
 
 M.PutModelInvocationLoggingConfigurationInput = {
     type = "structure",
+    id = "PutModelInvocationLoggingConfigurationInput",
     members = {
         loggingConfig = setmetatable({ traits = {
             required = true,
@@ -6815,10 +7157,12 @@ M.PutModelInvocationLoggingConfigurationInput = {
 
 M.PutModelInvocationLoggingConfigurationOutput = {
     type = "structure",
+    id = "PutModelInvocationLoggingConfigurationOutput",
 }
 
 M.CreateModelCopyJobInput = {
     type = "structure",
+    id = "CreateModelCopyJobInput",
     members = {
         sourceModelArn = {
             type = "string",
@@ -6850,6 +7194,7 @@ M.CreateModelCopyJobInput = {
 
 M.CreateModelCopyJobOutput = {
     type = "structure",
+    id = "CreateModelCopyJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -6862,6 +7207,7 @@ M.CreateModelCopyJobOutput = {
 
 M.GetModelCopyJobInput = {
     type = "structure",
+    id = "GetModelCopyJobInput",
     members = {
         jobArn = {
             type = "string",
@@ -6881,6 +7227,7 @@ M.ModelCopyJobStatus = {
 
 M.GetModelCopyJobOutput = {
     type = "structure",
+    id = "GetModelCopyJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -6940,6 +7287,7 @@ M.GetModelCopyJobOutput = {
 
 M.ListModelCopyJobsInput = {
     type = "structure",
+    id = "ListModelCopyJobsInput",
     members = {
         creationTimeAfter = {
             type = "timestamp",
@@ -7008,6 +7356,7 @@ M.ListModelCopyJobsInput = {
 
 M.ModelCopyJobSummary = {
     type = "structure",
+    id = "ModelCopyJobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -7067,6 +7416,7 @@ M.ModelCopyJobSummary = {
 
 M.ListModelCopyJobsOutput = {
     type = "structure",
+    id = "ListModelCopyJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -7080,6 +7430,7 @@ M.ListModelCopyJobsOutput = {
 
 M.CreateModelImportJobInput = {
     type = "structure",
+    id = "CreateModelImportJobInput",
     members = {
         jobName = {
             type = "string",
@@ -7122,6 +7473,7 @@ M.CreateModelImportJobInput = {
 
 M.CreateModelImportJobOutput = {
     type = "structure",
+    id = "CreateModelImportJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -7134,6 +7486,7 @@ M.CreateModelImportJobOutput = {
 
 M.DeleteImportedModelInput = {
     type = "structure",
+    id = "DeleteImportedModelInput",
     members = {
         modelIdentifier = {
             type = "string",
@@ -7147,10 +7500,12 @@ M.DeleteImportedModelInput = {
 
 M.DeleteImportedModelOutput = {
     type = "structure",
+    id = "DeleteImportedModelOutput",
 }
 
 M.GetImportedModelInput = {
     type = "structure",
+    id = "GetImportedModelInput",
     members = {
         modelIdentifier = {
             type = "string",
@@ -7164,6 +7519,7 @@ M.GetImportedModelInput = {
 
 M.CustomModelUnits = {
     type = "structure",
+    id = "CustomModelUnits",
     members = {
         customModelUnitsPerModelCopy = {
             type = "integer",
@@ -7176,6 +7532,7 @@ M.CustomModelUnits = {
 
 M.GetImportedModelOutput = {
     type = "structure",
+    id = "GetImportedModelOutput",
     members = {
         modelArn = {
             type = "string",
@@ -7211,6 +7568,7 @@ M.GetImportedModelOutput = {
 
 M.GetModelImportJobInput = {
     type = "structure",
+    id = "GetModelImportJobInput",
     members = {
         jobIdentifier = {
             type = "string",
@@ -7230,6 +7588,7 @@ M.ModelImportJobStatus = {
 
 M.GetModelImportJobOutput = {
     type = "structure",
+    id = "GetModelImportJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -7280,6 +7639,7 @@ M.GetModelImportJobOutput = {
 
 M.ListImportedModelsInput = {
     type = "structure",
+    id = "ListImportedModelsInput",
     members = {
         creationTimeBefore = {
             type = "timestamp",
@@ -7330,6 +7690,7 @@ M.ListImportedModelsInput = {
 
 M.ImportedModelSummary = {
     type = "structure",
+    id = "ImportedModelSummary",
     members = {
         modelArn = {
             type = "string",
@@ -7361,6 +7722,7 @@ M.ImportedModelSummary = {
 
 M.ListImportedModelsOutput = {
     type = "structure",
+    id = "ListImportedModelsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -7374,6 +7736,7 @@ M.ListImportedModelsOutput = {
 
 M.ListModelImportJobsInput = {
     type = "structure",
+    id = "ListModelImportJobsInput",
     members = {
         creationTimeAfter = {
             type = "timestamp",
@@ -7430,6 +7793,7 @@ M.ListModelImportJobsInput = {
 
 M.ModelImportJobSummary = {
     type = "structure",
+    id = "ModelImportJobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -7479,6 +7843,7 @@ M.ModelImportJobSummary = {
 
 M.ListModelImportJobsOutput = {
     type = "structure",
+    id = "ListModelImportJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -7496,6 +7861,7 @@ M.S3InputFormat = {
 
 M.ModelInvocationJobS3InputDataConfig = {
     type = "structure",
+    id = "ModelInvocationJobS3InputDataConfig",
     members = {
         s3InputFormat = {
             type = "string",
@@ -7514,6 +7880,7 @@ M.ModelInvocationJobS3InputDataConfig = {
 
 M.ModelInvocationJobInputDataConfig = {
     type = "union",
+    id = "ModelInvocationJobInputDataConfig",
     members = {
         s3InputDataConfig = M.ModelInvocationJobS3InputDataConfig,
     },
@@ -7526,6 +7893,7 @@ M.ModelInvocationType = {
 
 M.ModelInvocationJobS3OutputDataConfig = {
     type = "structure",
+    id = "ModelInvocationJobS3OutputDataConfig",
     members = {
         s3Uri = {
             type = "string",
@@ -7544,6 +7912,7 @@ M.ModelInvocationJobS3OutputDataConfig = {
 
 M.ModelInvocationJobOutputDataConfig = {
     type = "union",
+    id = "ModelInvocationJobOutputDataConfig",
     members = {
         s3OutputDataConfig = M.ModelInvocationJobS3OutputDataConfig,
     },
@@ -7551,6 +7920,7 @@ M.ModelInvocationJobOutputDataConfig = {
 
 M.CreateModelInvocationJobInput = {
     type = "structure",
+    id = "CreateModelInvocationJobInput",
     members = {
         jobName = {
             type = "string",
@@ -7601,6 +7971,7 @@ M.CreateModelInvocationJobInput = {
 
 M.CreateModelInvocationJobOutput = {
     type = "structure",
+    id = "CreateModelInvocationJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -7613,6 +7984,7 @@ M.CreateModelInvocationJobOutput = {
 
 M.GetModelInvocationJobInput = {
     type = "structure",
+    id = "GetModelInvocationJobInput",
     members = {
         jobIdentifier = {
             type = "string",
@@ -7639,6 +8011,7 @@ M.ModelInvocationJobStatus = {
 
 M.GetModelInvocationJobOutput = {
     type = "structure",
+    id = "GetModelInvocationJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -7725,6 +8098,7 @@ M.GetModelInvocationJobOutput = {
 
 M.ListModelInvocationJobsInput = {
     type = "structure",
+    id = "ListModelInvocationJobsInput",
     members = {
         submitTimeAfter = {
             type = "timestamp",
@@ -7781,6 +8155,7 @@ M.ListModelInvocationJobsInput = {
 
 M.ModelInvocationJobSummary = {
     type = "structure",
+    id = "ModelInvocationJobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -7870,6 +8245,7 @@ M.ModelInvocationJobSummary = {
 
 M.ListModelInvocationJobsOutput = {
     type = "structure",
+    id = "ListModelInvocationJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -7883,6 +8259,7 @@ M.ListModelInvocationJobsOutput = {
 
 M.StopModelInvocationJobInput = {
     type = "structure",
+    id = "StopModelInvocationJobInput",
     members = {
         jobIdentifier = {
             type = "string",
@@ -7896,10 +8273,12 @@ M.StopModelInvocationJobInput = {
 
 M.StopModelInvocationJobOutput = {
     type = "structure",
+    id = "StopModelInvocationJobOutput",
 }
 
 M.GetFoundationModelInput = {
     type = "structure",
+    id = "GetFoundationModelInput",
     members = {
         modelIdentifier = {
             type = "string",
@@ -7935,6 +8314,7 @@ M.FoundationModelLifecycleStatus = {
 
 M.FoundationModelLifecycle = {
     type = "structure",
+    id = "FoundationModelLifecycle",
     members = {
         status = {
             type = "string",
@@ -7971,6 +8351,7 @@ M.FoundationModelLifecycle = {
 
 M.FoundationModelDetails = {
     type = "structure",
+    id = "FoundationModelDetails",
     members = {
         modelArn = {
             type = "string",
@@ -8015,6 +8396,7 @@ M.FoundationModelDetails = {
 
 M.GetFoundationModelOutput = {
     type = "structure",
+    id = "GetFoundationModelOutput",
     members = {
         modelDetails = M.FoundationModelDetails,
     },
@@ -8022,6 +8404,7 @@ M.GetFoundationModelOutput = {
 
 M.ListFoundationModelsInput = {
     type = "structure",
+    id = "ListFoundationModelsInput",
     members = {
         byProvider = {
             type = "string",
@@ -8052,6 +8435,7 @@ M.ListFoundationModelsInput = {
 
 M.FoundationModelSummary = {
     type = "structure",
+    id = "FoundationModelSummary",
     members = {
         modelArn = {
             type = "string",
@@ -8096,6 +8480,7 @@ M.FoundationModelSummary = {
 
 M.ListFoundationModelsOutput = {
     type = "structure",
+    id = "ListFoundationModelsOutput",
     members = {
         modelSummaries = {
             type = "list",
@@ -8106,6 +8491,7 @@ M.ListFoundationModelsOutput = {
 
 M.PromptRouterTargetModel = {
     type = "structure",
+    id = "PromptRouterTargetModel",
     members = {
         modelArn = {
             type = "string",
@@ -8118,6 +8504,7 @@ M.PromptRouterTargetModel = {
 
 M.RoutingCriteria = {
     type = "structure",
+    id = "RoutingCriteria",
     members = {
         responseQualityDifference = {
             type = "double",
@@ -8130,6 +8517,7 @@ M.RoutingCriteria = {
 
 M.CreatePromptRouterInput = {
     type = "structure",
+    id = "CreatePromptRouterInput",
     members = {
         clientRequestToken = {
             type = "string",
@@ -8168,6 +8556,7 @@ M.CreatePromptRouterInput = {
 
 M.CreatePromptRouterOutput = {
     type = "structure",
+    id = "CreatePromptRouterOutput",
     members = {
         promptRouterArn = {
             type = "string",
@@ -8177,6 +8566,7 @@ M.CreatePromptRouterOutput = {
 
 M.DeletePromptRouterInput = {
     type = "structure",
+    id = "DeletePromptRouterInput",
     members = {
         promptRouterArn = {
             type = "string",
@@ -8190,10 +8580,12 @@ M.DeletePromptRouterInput = {
 
 M.DeletePromptRouterOutput = {
     type = "structure",
+    id = "DeletePromptRouterOutput",
 }
 
 M.GetPromptRouterInput = {
     type = "structure",
+    id = "GetPromptRouterInput",
     members = {
         promptRouterArn = {
             type = "string",
@@ -8216,6 +8608,7 @@ M.PromptRouterType = {
 
 M.GetPromptRouterOutput = {
     type = "structure",
+    id = "GetPromptRouterOutput",
     members = {
         promptRouterName = {
             type = "string",
@@ -8274,6 +8667,7 @@ M.GetPromptRouterOutput = {
 
 M.ListPromptRoutersInput = {
     type = "structure",
+    id = "ListPromptRoutersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -8299,6 +8693,7 @@ M.ListPromptRoutersInput = {
 
 M.PromptRouterSummary = {
     type = "structure",
+    id = "PromptRouterSummary",
     members = {
         promptRouterName = {
             type = "string",
@@ -8357,6 +8752,7 @@ M.PromptRouterSummary = {
 
 M.ListPromptRoutersOutput = {
     type = "structure",
+    id = "ListPromptRoutersOutput",
     members = {
         promptRouterSummaries = {
             type = "list",
@@ -8375,6 +8771,7 @@ M.CommitmentDuration = {
 
 M.CreateProvisionedModelThroughputInput = {
     type = "structure",
+    id = "CreateProvisionedModelThroughputInput",
     members = {
         clientRequestToken = {
             type = "string",
@@ -8412,6 +8809,7 @@ M.CreateProvisionedModelThroughputInput = {
 
 M.CreateProvisionedModelThroughputOutput = {
     type = "structure",
+    id = "CreateProvisionedModelThroughputOutput",
     members = {
         provisionedModelArn = {
             type = "string",
@@ -8424,6 +8822,7 @@ M.CreateProvisionedModelThroughputOutput = {
 
 M.DeleteProvisionedModelThroughputInput = {
     type = "structure",
+    id = "DeleteProvisionedModelThroughputInput",
     members = {
         provisionedModelId = {
             type = "string",
@@ -8437,10 +8836,12 @@ M.DeleteProvisionedModelThroughputInput = {
 
 M.DeleteProvisionedModelThroughputOutput = {
     type = "structure",
+    id = "DeleteProvisionedModelThroughputOutput",
 }
 
 M.GetProvisionedModelThroughputInput = {
     type = "structure",
+    id = "GetProvisionedModelThroughputInput",
     members = {
         provisionedModelId = {
             type = "string",
@@ -8461,6 +8862,7 @@ M.ProvisionedModelStatus = {
 
 M.GetProvisionedModelThroughputOutput = {
     type = "structure",
+    id = "GetProvisionedModelThroughputOutput",
     members = {
         modelUnits = {
             type = "integer",
@@ -8545,6 +8947,7 @@ M.SortByProvisionedModels = {
 
 M.ListProvisionedModelThroughputsInput = {
     type = "structure",
+    id = "ListProvisionedModelThroughputsInput",
     members = {
         creationTimeAfter = {
             type = "timestamp",
@@ -8607,6 +9010,7 @@ M.ListProvisionedModelThroughputsInput = {
 
 M.ProvisionedModelSummary = {
     type = "structure",
+    id = "ProvisionedModelSummary",
     members = {
         provisionedModelName = {
             type = "string",
@@ -8684,6 +9088,7 @@ M.ProvisionedModelSummary = {
 
 M.ListProvisionedModelThroughputsOutput = {
     type = "structure",
+    id = "ListProvisionedModelThroughputsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -8697,6 +9102,7 @@ M.ListProvisionedModelThroughputsOutput = {
 
 M.UpdateProvisionedModelThroughputInput = {
     type = "structure",
+    id = "UpdateProvisionedModelThroughputInput",
     members = {
         provisionedModelId = {
             type = "string",
@@ -8716,10 +9122,12 @@ M.UpdateProvisionedModelThroughputInput = {
 
 M.UpdateProvisionedModelThroughputOutput = {
     type = "structure",
+    id = "UpdateProvisionedModelThroughputOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8733,10 +9141,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8750,6 +9160,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         resourcePolicy = {
             type = "string",
@@ -8759,6 +9170,7 @@ M.GetResourcePolicyOutput = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8777,6 +9189,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -8786,6 +9199,7 @@ M.PutResourcePolicyOutput = {
 
 M.CreateFoundationModelAgreementInput = {
     type = "structure",
+    id = "CreateFoundationModelAgreementInput",
     members = {
         offerToken = {
             type = "string",
@@ -8804,6 +9218,7 @@ M.CreateFoundationModelAgreementInput = {
 
 M.CreateFoundationModelAgreementOutput = {
     type = "structure",
+    id = "CreateFoundationModelAgreementOutput",
     members = {
         modelId = {
             type = "string",
@@ -8816,6 +9231,7 @@ M.CreateFoundationModelAgreementOutput = {
 
 M.DeleteFoundationModelAgreementInput = {
     type = "structure",
+    id = "DeleteFoundationModelAgreementInput",
     members = {
         modelId = {
             type = "string",
@@ -8828,10 +9244,12 @@ M.DeleteFoundationModelAgreementInput = {
 
 M.DeleteFoundationModelAgreementOutput = {
     type = "structure",
+    id = "DeleteFoundationModelAgreementOutput",
 }
 
 M.GetFoundationModelAvailabilityInput = {
     type = "structure",
+    id = "GetFoundationModelAvailabilityInput",
     members = {
         modelId = {
             type = "string",
@@ -8860,6 +9278,7 @@ M.RegionAvailability = {
 
 M.GetFoundationModelAvailabilityOutput = {
     type = "structure",
+    id = "GetFoundationModelAvailabilityOutput",
     members = {
         modelId = {
             type = "string",
@@ -8898,6 +9317,7 @@ M.OfferType = {
 
 M.ListFoundationModelAgreementOffersInput = {
     type = "structure",
+    id = "ListFoundationModelAgreementOffersInput",
     members = {
         modelId = {
             type = "string",
@@ -8917,6 +9337,7 @@ M.ListFoundationModelAgreementOffersInput = {
 
 M.LegalTerm = {
     type = "structure",
+    id = "LegalTerm",
     members = {
         url = {
             type = "string",
@@ -8926,6 +9347,7 @@ M.LegalTerm = {
 
 M.SupportTerm = {
     type = "structure",
+    id = "SupportTerm",
     members = {
         refundPolicyDescription = {
             type = "string",
@@ -8935,6 +9357,7 @@ M.SupportTerm = {
 
 M.DimensionalPriceRate = {
     type = "structure",
+    id = "DimensionalPriceRate",
     members = {
         dimension = {
             type = "string",
@@ -8953,6 +9376,7 @@ M.DimensionalPriceRate = {
 
 M.PricingTerm = {
     type = "structure",
+    id = "PricingTerm",
     members = {
         rateCard = {
             type = "list",
@@ -8966,6 +9390,7 @@ M.PricingTerm = {
 
 M.ValidityTerm = {
     type = "structure",
+    id = "ValidityTerm",
     members = {
         agreementDuration = {
             type = "string",
@@ -8975,6 +9400,7 @@ M.ValidityTerm = {
 
 M.TermDetails = {
     type = "structure",
+    id = "TermDetails",
     members = {
         usageBasedPricingTerm = setmetatable({ traits = {
             required = true,
@@ -8991,6 +9417,7 @@ M.TermDetails = {
 
 M.Offer = {
     type = "structure",
+    id = "Offer",
     members = {
         offerId = {
             type = "string",
@@ -9009,6 +9436,7 @@ M.Offer = {
 
 M.ListFoundationModelAgreementOffersOutput = {
     type = "structure",
+    id = "ListFoundationModelAgreementOffersOutput",
     members = {
         modelId = {
             type = "string",
@@ -9028,6 +9456,7 @@ M.ListFoundationModelAgreementOffersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -9040,6 +9469,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -9050,6 +9480,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -9069,10 +9500,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -9092,10 +9525,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.CreateModelCustomizationJobInput = {
     type = "structure",
+    id = "CreateModelCustomizationJobInput",
     members = {
         jobName = {
             type = "string",
@@ -9160,6 +9595,7 @@ M.CreateModelCustomizationJobInput = {
 
 M.CreateModelCustomizationJobOutput = {
     type = "structure",
+    id = "CreateModelCustomizationJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -9172,6 +9608,7 @@ M.CreateModelCustomizationJobOutput = {
 
 M.GetModelCustomizationJobInput = {
     type = "structure",
+    id = "GetModelCustomizationJobInput",
     members = {
         jobIdentifier = {
             type = "string",
@@ -9202,6 +9639,7 @@ M.JobStatusDetails = {
 
 M.DataProcessingDetails = {
     type = "structure",
+    id = "DataProcessingDetails",
     members = {
         status = {
             type = "string",
@@ -9223,6 +9661,7 @@ M.DataProcessingDetails = {
 
 M.TrainingDetails = {
     type = "structure",
+    id = "TrainingDetails",
     members = {
         status = {
             type = "string",
@@ -9244,6 +9683,7 @@ M.TrainingDetails = {
 
 M.ValidationDetails = {
     type = "structure",
+    id = "ValidationDetails",
     members = {
         status = {
             type = "string",
@@ -9265,6 +9705,7 @@ M.ValidationDetails = {
 
 M.StatusDetails = {
     type = "structure",
+    id = "StatusDetails",
     members = {
         validationDetails = M.ValidationDetails,
         dataProcessingDetails = M.DataProcessingDetails,
@@ -9274,6 +9715,7 @@ M.StatusDetails = {
 
 M.GetModelCustomizationJobOutput = {
     type = "structure",
+    id = "GetModelCustomizationJobOutput",
     members = {
         jobArn = {
             type = "string",
@@ -9377,6 +9819,7 @@ M.FineTuningJobStatus = {
 
 M.ListModelCustomizationJobsInput = {
     type = "structure",
+    id = "ListModelCustomizationJobsInput",
     members = {
         creationTimeAfter = {
             type = "timestamp",
@@ -9433,6 +9876,7 @@ M.ListModelCustomizationJobsInput = {
 
 M.ModelCustomizationJobSummary = {
     type = "structure",
+    id = "ModelCustomizationJobSummary",
     members = {
         jobArn = {
             type = "string",
@@ -9492,6 +9936,7 @@ M.ModelCustomizationJobSummary = {
 
 M.ListModelCustomizationJobsOutput = {
     type = "structure",
+    id = "ListModelCustomizationJobsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -9505,6 +9950,7 @@ M.ListModelCustomizationJobsOutput = {
 
 M.StopModelCustomizationJobInput = {
     type = "structure",
+    id = "StopModelCustomizationJobInput",
     members = {
         jobIdentifier = {
             type = "string",
@@ -9518,10 +9964,12 @@ M.StopModelCustomizationJobInput = {
 
 M.StopModelCustomizationJobOutput = {
     type = "structure",
+    id = "StopModelCustomizationJobOutput",
 }
 
 M.RetrievalFilter = {
     type = "union",
+    id = "RetrievalFilter",
     members = {
         equals = M.FilterAttribute,
         notEquals = M.FilterAttribute,
@@ -9547,6 +9995,7 @@ M.RetrievalFilter = {
 
 M.KnowledgeBaseVectorSearchConfiguration = {
     type = "structure",
+    id = "KnowledgeBaseVectorSearchConfiguration",
     members = {
         numberOfResults = {
             type = "integer",
@@ -9562,6 +10011,7 @@ M.KnowledgeBaseVectorSearchConfiguration = {
 
 M.KnowledgeBaseRetrievalConfiguration = {
     type = "structure",
+    id = "KnowledgeBaseRetrievalConfiguration",
     members = {
         vectorSearchConfiguration = setmetatable({ traits = {
             required = true,
@@ -9571,6 +10021,7 @@ M.KnowledgeBaseRetrievalConfiguration = {
 
 M.KnowledgeBaseRetrieveAndGenerateConfiguration = {
     type = "structure",
+    id = "KnowledgeBaseRetrieveAndGenerateConfiguration",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -9592,6 +10043,7 @@ M.KnowledgeBaseRetrieveAndGenerateConfiguration = {
 
 M.RetrieveConfig = {
     type = "structure",
+    id = "RetrieveConfig",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -9607,6 +10059,7 @@ M.RetrieveConfig = {
 
 M.RetrieveAndGenerateConfiguration = {
     type = "structure",
+    id = "RetrieveAndGenerateConfiguration",
     members = {
         type = {
             type = "string",
@@ -9621,6 +10074,7 @@ M.RetrieveAndGenerateConfiguration = {
 
 M.KnowledgeBaseConfig = {
     type = "union",
+    id = "KnowledgeBaseConfig",
     members = {
         retrieveConfig = M.RetrieveConfig,
         retrieveAndGenerateConfig = M.RetrieveAndGenerateConfiguration,
@@ -9629,6 +10083,7 @@ M.KnowledgeBaseConfig = {
 
 M.RAGConfig = {
     type = "union",
+    id = "RAGConfig",
     members = {
         knowledgeBaseConfig = M.KnowledgeBaseConfig,
         precomputedRagSourceConfig = M.EvaluationPrecomputedRagSourceConfig,
@@ -9637,6 +10092,7 @@ M.RAGConfig = {
 
 M.EvaluationInferenceConfig = {
     type = "union",
+    id = "EvaluationInferenceConfig",
     members = {
         models = {
             type = "list",
@@ -9651,6 +10107,7 @@ M.EvaluationInferenceConfig = {
 
 M.CreateEvaluationJobInput = {
     type = "structure",
+    id = "CreateEvaluationJobInput",
     members = {
         jobName = {
             type = "string",
@@ -9697,6 +10154,7 @@ M.CreateEvaluationJobInput = {
 
 M.GetEvaluationJobOutput = {
     type = "structure",
+    id = "GetEvaluationJobOutput",
     members = {
         jobName = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -22,6 +23,7 @@ M.ExportStatus = {
 
 M.ExportSummary = {
     type = "structure",
+    id = "ExportSummary",
     members = {
         exportArn = {
             type = "string",
@@ -52,6 +54,7 @@ M.ExportSummary = {
 
 M.GetExportInput = {
     type = "structure",
+    id = "GetExportInput",
     members = {
         exportArn = {
             type = "string",
@@ -69,6 +72,7 @@ M.S3SseAlgorithm = {
 
 M.GetExportOutput = {
     type = "structure",
+    id = "GetExportOutput",
     members = {
         exportArn = {
             type = "string",
@@ -138,6 +142,7 @@ M.GetExportOutput = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -151,6 +156,7 @@ M.InvalidParameterValueException = {
 
 M.NoSuchExportException = {
     type = "structure",
+    id = "NoSuchExportException",
     error = "client",
     members = {
         message = {
@@ -164,6 +170,7 @@ M.NoSuchExportException = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -177,6 +184,7 @@ M.InvalidNextTokenException = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         message = {
@@ -190,6 +198,7 @@ M.InvalidParameterCombinationException = {
 
 M.ListExportsInput = {
     type = "structure",
+    id = "ListExportsInput",
     members = {
         domainName = {
             type = "string",
@@ -205,6 +214,7 @@ M.ListExportsInput = {
 
 M.ListExportsOutput = {
     type = "structure",
+    id = "ListExportsOutput",
     members = {
         exportSummaries = {
             type = "list",
@@ -221,6 +231,7 @@ M.ListExportsOutput = {
 
 M.NoSuchDomainException = {
     type = "structure",
+    id = "NoSuchDomainException",
     error = "client",
     members = {
         message = {
@@ -234,6 +245,7 @@ M.NoSuchDomainException = {
 
 M.NumberExportsLimitExceeded = {
     type = "structure",
+    id = "NumberExportsLimitExceeded",
     error = "client",
     members = {
         message = {
@@ -247,6 +259,7 @@ M.NumberExportsLimitExceeded = {
 
 M.StartDomainExportInput = {
     type = "structure",
+    id = "StartDomainExportInput",
     members = {
         clientToken = {
             type = "string",
@@ -283,6 +296,7 @@ M.StartDomainExportInput = {
 
 M.StartDomainExportOutput = {
     type = "structure",
+    id = "StartDomainExportOutput",
     members = {
         clientToken = {
             type = "string",

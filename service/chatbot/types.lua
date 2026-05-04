@@ -2,6 +2,7 @@ local M = {}
 
 M.AccountPreferences = {
     type = "structure",
+    id = "AccountPreferences",
     members = {
         UserAuthorizationRequired = {
             type = "boolean",
@@ -14,6 +15,7 @@ M.AccountPreferences = {
 
 M.AssociateToConfigurationInput = {
     type = "structure",
+    id = "AssociateToConfigurationInput",
     members = {
         Resource = {
             type = "string",
@@ -32,10 +34,12 @@ M.AssociateToConfigurationInput = {
 
 M.AssociateToConfigurationOutput = {
     type = "structure",
+    id = "AssociateToConfigurationOutput",
 }
 
 M.InternalServiceError = {
     type = "structure",
+    id = "InternalServiceError",
     error = "server",
     members = {
         Message = {
@@ -46,6 +50,7 @@ M.InternalServiceError = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -56,6 +61,7 @@ M.InvalidRequestException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -66,6 +72,7 @@ M.UnauthorizedException = {
 
 M.AssociationListing = {
     type = "structure",
+    id = "AssociationListing",
     members = {
         Resource = {
             type = "string",
@@ -78,6 +85,7 @@ M.AssociationListing = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         TagKey = {
             type = "string",
@@ -96,6 +104,7 @@ M.Tag = {
 
 M.ChimeWebhookConfiguration = {
     type = "structure",
+    id = "ChimeWebhookConfiguration",
     members = {
         WebhookDescription = {
             type = "string",
@@ -143,6 +152,7 @@ M.ChimeWebhookConfiguration = {
 
 M.ConfiguredTeam = {
     type = "structure",
+    id = "ConfiguredTeam",
     members = {
         TenantId = {
             type = "string",
@@ -170,6 +180,7 @@ M.ConfiguredTeam = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -180,6 +191,7 @@ M.ConflictException = {
 
 M.CreateChimeWebhookConfigurationException = {
     type = "structure",
+    id = "CreateChimeWebhookConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -190,6 +202,7 @@ M.CreateChimeWebhookConfigurationException = {
 
 M.CreateChimeWebhookConfigurationInput = {
     type = "structure",
+    id = "CreateChimeWebhookConfigurationInput",
     members = {
         WebhookDescription = {
             type = "string",
@@ -234,6 +247,7 @@ M.CreateChimeWebhookConfigurationInput = {
 
 M.CreateChimeWebhookConfigurationOutput = {
     type = "structure",
+    id = "CreateChimeWebhookConfigurationOutput",
     members = {
         WebhookConfiguration = M.ChimeWebhookConfiguration,
     },
@@ -241,6 +255,7 @@ M.CreateChimeWebhookConfigurationOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -251,6 +266,7 @@ M.InvalidParameterException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -266,6 +282,7 @@ M.CustomActionAttachmentCriteriaOperator = {
 
 M.CustomActionAttachmentCriteria = {
     type = "structure",
+    id = "CustomActionAttachmentCriteria",
     members = {
         Operator = {
             type = "string",
@@ -287,6 +304,7 @@ M.CustomActionAttachmentCriteria = {
 
 M.CustomActionAttachment = {
     type = "structure",
+    id = "CustomActionAttachment",
     members = {
         NotificationType = {
             type = "string",
@@ -308,6 +326,7 @@ M.CustomActionAttachment = {
 
 M.CustomActionDefinition = {
     type = "structure",
+    id = "CustomActionDefinition",
     members = {
         CommandText = {
             type = "string",
@@ -320,6 +339,7 @@ M.CustomActionDefinition = {
 
 M.CreateCustomActionInput = {
     type = "structure",
+    id = "CreateCustomActionInput",
     members = {
         Definition = setmetatable({ traits = {
             required = true,
@@ -352,6 +372,7 @@ M.CreateCustomActionInput = {
 
 M.CreateCustomActionOutput = {
     type = "structure",
+    id = "CreateCustomActionOutput",
     members = {
         CustomActionArn = {
             type = "string",
@@ -364,6 +385,7 @@ M.CreateCustomActionOutput = {
 
 M.CreateMicrosoftTeamsChannelConfigurationInput = {
     type = "structure",
+    id = "CreateMicrosoftTeamsChannelConfigurationInput",
     members = {
         ChannelId = {
             type = "string",
@@ -424,6 +446,7 @@ M.CreateMicrosoftTeamsChannelConfigurationInput = {
 
 M.TeamsChannelConfiguration = {
     type = "structure",
+    id = "TeamsChannelConfiguration",
     members = {
         ChannelId = {
             type = "string",
@@ -496,6 +519,7 @@ M.TeamsChannelConfiguration = {
 
 M.CreateMicrosoftTeamsChannelConfigurationOutput = {
     type = "structure",
+    id = "CreateMicrosoftTeamsChannelConfigurationOutput",
     members = {
         ChannelConfiguration = M.TeamsChannelConfiguration,
     },
@@ -503,6 +527,7 @@ M.CreateMicrosoftTeamsChannelConfigurationOutput = {
 
 M.CreateTeamsChannelConfigurationException = {
     type = "structure",
+    id = "CreateTeamsChannelConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -513,6 +538,7 @@ M.CreateTeamsChannelConfigurationException = {
 
 M.CreateSlackChannelConfigurationException = {
     type = "structure",
+    id = "CreateSlackChannelConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -523,6 +549,7 @@ M.CreateSlackChannelConfigurationException = {
 
 M.CreateSlackChannelConfigurationInput = {
     type = "structure",
+    id = "CreateSlackChannelConfigurationInput",
     members = {
         SlackTeamId = {
             type = "string",
@@ -574,6 +601,7 @@ M.CreateSlackChannelConfigurationInput = {
 
 M.SlackChannelConfiguration = {
     type = "structure",
+    id = "SlackChannelConfiguration",
     members = {
         SlackTeamName = {
             type = "string",
@@ -646,6 +674,7 @@ M.SlackChannelConfiguration = {
 
 M.CreateSlackChannelConfigurationOutput = {
     type = "structure",
+    id = "CreateSlackChannelConfigurationOutput",
     members = {
         ChannelConfiguration = M.SlackChannelConfiguration,
     },
@@ -653,6 +682,7 @@ M.CreateSlackChannelConfigurationOutput = {
 
 M.CustomAction = {
     type = "structure",
+    id = "CustomAction",
     members = {
         CustomActionArn = {
             type = "string",
@@ -678,6 +708,7 @@ M.CustomAction = {
 
 M.DeleteCustomActionInput = {
     type = "structure",
+    id = "DeleteCustomActionInput",
     members = {
         CustomActionArn = {
             type = "string",
@@ -690,10 +721,12 @@ M.DeleteCustomActionInput = {
 
 M.DeleteCustomActionOutput = {
     type = "structure",
+    id = "DeleteCustomActionOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -704,6 +737,7 @@ M.ResourceNotFoundException = {
 
 M.GetCustomActionInput = {
     type = "structure",
+    id = "GetCustomActionInput",
     members = {
         CustomActionArn = {
             type = "string",
@@ -716,6 +750,7 @@ M.GetCustomActionInput = {
 
 M.GetCustomActionOutput = {
     type = "structure",
+    id = "GetCustomActionOutput",
     members = {
         CustomAction = M.CustomAction,
     },
@@ -723,6 +758,7 @@ M.GetCustomActionOutput = {
 
 M.ListCustomActionsInput = {
     type = "structure",
+    id = "ListCustomActionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -735,6 +771,7 @@ M.ListCustomActionsInput = {
 
 M.ListCustomActionsOutput = {
     type = "structure",
+    id = "ListCustomActionsOutput",
     members = {
         CustomActions = {
             type = "list",
@@ -751,6 +788,7 @@ M.ListCustomActionsOutput = {
 
 M.UpdateCustomActionInput = {
     type = "structure",
+    id = "UpdateCustomActionInput",
     members = {
         CustomActionArn = {
             type = "string",
@@ -773,6 +811,7 @@ M.UpdateCustomActionInput = {
 
 M.UpdateCustomActionOutput = {
     type = "structure",
+    id = "UpdateCustomActionOutput",
     members = {
         CustomActionArn = {
             type = "string",
@@ -785,6 +824,7 @@ M.UpdateCustomActionOutput = {
 
 M.DeleteChimeWebhookConfigurationException = {
     type = "structure",
+    id = "DeleteChimeWebhookConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -795,6 +835,7 @@ M.DeleteChimeWebhookConfigurationException = {
 
 M.DeleteChimeWebhookConfigurationInput = {
     type = "structure",
+    id = "DeleteChimeWebhookConfigurationInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -807,10 +848,12 @@ M.DeleteChimeWebhookConfigurationInput = {
 
 M.DeleteChimeWebhookConfigurationOutput = {
     type = "structure",
+    id = "DeleteChimeWebhookConfigurationOutput",
 }
 
 M.DeleteMicrosoftTeamsChannelConfigurationInput = {
     type = "structure",
+    id = "DeleteMicrosoftTeamsChannelConfigurationInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -823,10 +866,12 @@ M.DeleteMicrosoftTeamsChannelConfigurationInput = {
 
 M.DeleteMicrosoftTeamsChannelConfigurationOutput = {
     type = "structure",
+    id = "DeleteMicrosoftTeamsChannelConfigurationOutput",
 }
 
 M.DeleteTeamsChannelConfigurationException = {
     type = "structure",
+    id = "DeleteTeamsChannelConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -837,6 +882,7 @@ M.DeleteTeamsChannelConfigurationException = {
 
 M.DeleteMicrosoftTeamsConfiguredTeamInput = {
     type = "structure",
+    id = "DeleteMicrosoftTeamsConfiguredTeamInput",
     members = {
         TeamId = {
             type = "string",
@@ -849,10 +895,12 @@ M.DeleteMicrosoftTeamsConfiguredTeamInput = {
 
 M.DeleteMicrosoftTeamsConfiguredTeamOutput = {
     type = "structure",
+    id = "DeleteMicrosoftTeamsConfiguredTeamOutput",
 }
 
 M.DeleteTeamsConfiguredTeamException = {
     type = "structure",
+    id = "DeleteTeamsConfiguredTeamException",
     error = "server",
     members = {
         Message = {
@@ -863,6 +911,7 @@ M.DeleteTeamsConfiguredTeamException = {
 
 M.DeleteMicrosoftTeamsUserIdentityException = {
     type = "structure",
+    id = "DeleteMicrosoftTeamsUserIdentityException",
     error = "server",
     members = {
         Message = {
@@ -873,6 +922,7 @@ M.DeleteMicrosoftTeamsUserIdentityException = {
 
 M.DeleteMicrosoftTeamsUserIdentityInput = {
     type = "structure",
+    id = "DeleteMicrosoftTeamsUserIdentityInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -891,10 +941,12 @@ M.DeleteMicrosoftTeamsUserIdentityInput = {
 
 M.DeleteMicrosoftTeamsUserIdentityOutput = {
     type = "structure",
+    id = "DeleteMicrosoftTeamsUserIdentityOutput",
 }
 
 M.DeleteSlackChannelConfigurationException = {
     type = "structure",
+    id = "DeleteSlackChannelConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -905,6 +957,7 @@ M.DeleteSlackChannelConfigurationException = {
 
 M.DeleteSlackChannelConfigurationInput = {
     type = "structure",
+    id = "DeleteSlackChannelConfigurationInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -917,10 +970,12 @@ M.DeleteSlackChannelConfigurationInput = {
 
 M.DeleteSlackChannelConfigurationOutput = {
     type = "structure",
+    id = "DeleteSlackChannelConfigurationOutput",
 }
 
 M.DeleteSlackUserIdentityException = {
     type = "structure",
+    id = "DeleteSlackUserIdentityException",
     error = "server",
     members = {
         Message = {
@@ -931,6 +986,7 @@ M.DeleteSlackUserIdentityException = {
 
 M.DeleteSlackUserIdentityInput = {
     type = "structure",
+    id = "DeleteSlackUserIdentityInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -955,10 +1011,12 @@ M.DeleteSlackUserIdentityInput = {
 
 M.DeleteSlackUserIdentityOutput = {
     type = "structure",
+    id = "DeleteSlackUserIdentityOutput",
 }
 
 M.DeleteSlackWorkspaceAuthorizationFault = {
     type = "structure",
+    id = "DeleteSlackWorkspaceAuthorizationFault",
     error = "server",
     members = {
         Message = {
@@ -969,6 +1027,7 @@ M.DeleteSlackWorkspaceAuthorizationFault = {
 
 M.DeleteSlackWorkspaceAuthorizationInput = {
     type = "structure",
+    id = "DeleteSlackWorkspaceAuthorizationInput",
     members = {
         SlackTeamId = {
             type = "string",
@@ -981,10 +1040,12 @@ M.DeleteSlackWorkspaceAuthorizationInput = {
 
 M.DeleteSlackWorkspaceAuthorizationOutput = {
     type = "structure",
+    id = "DeleteSlackWorkspaceAuthorizationOutput",
 }
 
 M.DescribeChimeWebhookConfigurationsException = {
     type = "structure",
+    id = "DescribeChimeWebhookConfigurationsException",
     error = "server",
     members = {
         Message = {
@@ -995,6 +1056,7 @@ M.DescribeChimeWebhookConfigurationsException = {
 
 M.DescribeChimeWebhookConfigurationsInput = {
     type = "structure",
+    id = "DescribeChimeWebhookConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1010,6 +1072,7 @@ M.DescribeChimeWebhookConfigurationsInput = {
 
 M.DescribeChimeWebhookConfigurationsOutput = {
     type = "structure",
+    id = "DescribeChimeWebhookConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1023,6 +1086,7 @@ M.DescribeChimeWebhookConfigurationsOutput = {
 
 M.DescribeSlackChannelConfigurationsException = {
     type = "structure",
+    id = "DescribeSlackChannelConfigurationsException",
     error = "server",
     members = {
         Message = {
@@ -1033,6 +1097,7 @@ M.DescribeSlackChannelConfigurationsException = {
 
 M.DescribeSlackChannelConfigurationsInput = {
     type = "structure",
+    id = "DescribeSlackChannelConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1048,6 +1113,7 @@ M.DescribeSlackChannelConfigurationsInput = {
 
 M.DescribeSlackChannelConfigurationsOutput = {
     type = "structure",
+    id = "DescribeSlackChannelConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1061,6 +1127,7 @@ M.DescribeSlackChannelConfigurationsOutput = {
 
 M.DescribeSlackUserIdentitiesException = {
     type = "structure",
+    id = "DescribeSlackUserIdentitiesException",
     error = "server",
     members = {
         Message = {
@@ -1071,6 +1138,7 @@ M.DescribeSlackUserIdentitiesException = {
 
 M.DescribeSlackUserIdentitiesInput = {
     type = "structure",
+    id = "DescribeSlackUserIdentitiesInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -1086,6 +1154,7 @@ M.DescribeSlackUserIdentitiesInput = {
 
 M.SlackUserIdentity = {
     type = "structure",
+    id = "SlackUserIdentity",
     members = {
         IamRoleArn = {
             type = "string",
@@ -1119,6 +1188,7 @@ M.SlackUserIdentity = {
 
 M.DescribeSlackUserIdentitiesOutput = {
     type = "structure",
+    id = "DescribeSlackUserIdentitiesOutput",
     members = {
         SlackUserIdentities = {
             type = "list",
@@ -1132,6 +1202,7 @@ M.DescribeSlackUserIdentitiesOutput = {
 
 M.DescribeSlackWorkspacesException = {
     type = "structure",
+    id = "DescribeSlackWorkspacesException",
     error = "server",
     members = {
         Message = {
@@ -1142,6 +1213,7 @@ M.DescribeSlackWorkspacesException = {
 
 M.DescribeSlackWorkspacesInput = {
     type = "structure",
+    id = "DescribeSlackWorkspacesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1154,6 +1226,7 @@ M.DescribeSlackWorkspacesInput = {
 
 M.SlackWorkspace = {
     type = "structure",
+    id = "SlackWorkspace",
     members = {
         SlackTeamId = {
             type = "string",
@@ -1178,6 +1251,7 @@ M.SlackWorkspace = {
 
 M.DescribeSlackWorkspacesOutput = {
     type = "structure",
+    id = "DescribeSlackWorkspacesOutput",
     members = {
         SlackWorkspaces = {
             type = "list",
@@ -1191,6 +1265,7 @@ M.DescribeSlackWorkspacesOutput = {
 
 M.DisassociateFromConfigurationInput = {
     type = "structure",
+    id = "DisassociateFromConfigurationInput",
     members = {
         Resource = {
             type = "string",
@@ -1209,10 +1284,12 @@ M.DisassociateFromConfigurationInput = {
 
 M.DisassociateFromConfigurationOutput = {
     type = "structure",
+    id = "DisassociateFromConfigurationOutput",
 }
 
 M.GetAccountPreferencesException = {
     type = "structure",
+    id = "GetAccountPreferencesException",
     error = "server",
     members = {
         Message = {
@@ -1223,10 +1300,12 @@ M.GetAccountPreferencesException = {
 
 M.GetAccountPreferencesInput = {
     type = "structure",
+    id = "GetAccountPreferencesInput",
 }
 
 M.GetAccountPreferencesOutput = {
     type = "structure",
+    id = "GetAccountPreferencesOutput",
     members = {
         AccountPreferences = M.AccountPreferences,
     },
@@ -1234,6 +1313,7 @@ M.GetAccountPreferencesOutput = {
 
 M.GetMicrosoftTeamsChannelConfigurationInput = {
     type = "structure",
+    id = "GetMicrosoftTeamsChannelConfigurationInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -1246,6 +1326,7 @@ M.GetMicrosoftTeamsChannelConfigurationInput = {
 
 M.GetMicrosoftTeamsChannelConfigurationOutput = {
     type = "structure",
+    id = "GetMicrosoftTeamsChannelConfigurationOutput",
     members = {
         ChannelConfiguration = M.TeamsChannelConfiguration,
     },
@@ -1253,6 +1334,7 @@ M.GetMicrosoftTeamsChannelConfigurationOutput = {
 
 M.GetTeamsChannelConfigurationException = {
     type = "structure",
+    id = "GetTeamsChannelConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -1263,6 +1345,7 @@ M.GetTeamsChannelConfigurationException = {
 
 M.ListAssociationsInput = {
     type = "structure",
+    id = "ListAssociationsInput",
     members = {
         ChatConfiguration = {
             type = "string",
@@ -1281,6 +1364,7 @@ M.ListAssociationsInput = {
 
 M.ListAssociationsOutput = {
     type = "structure",
+    id = "ListAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -1297,6 +1381,7 @@ M.ListAssociationsOutput = {
 
 M.ListMicrosoftTeamsChannelConfigurationsInput = {
     type = "structure",
+    id = "ListMicrosoftTeamsChannelConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1312,6 +1397,7 @@ M.ListMicrosoftTeamsChannelConfigurationsInput = {
 
 M.ListMicrosoftTeamsChannelConfigurationsOutput = {
     type = "structure",
+    id = "ListMicrosoftTeamsChannelConfigurationsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1325,6 +1411,7 @@ M.ListMicrosoftTeamsChannelConfigurationsOutput = {
 
 M.ListTeamsChannelConfigurationsException = {
     type = "structure",
+    id = "ListTeamsChannelConfigurationsException",
     error = "server",
     members = {
         Message = {
@@ -1335,6 +1422,7 @@ M.ListTeamsChannelConfigurationsException = {
 
 M.ListMicrosoftTeamsConfiguredTeamsException = {
     type = "structure",
+    id = "ListMicrosoftTeamsConfiguredTeamsException",
     error = "server",
     members = {
         Message = {
@@ -1345,6 +1433,7 @@ M.ListMicrosoftTeamsConfiguredTeamsException = {
 
 M.ListMicrosoftTeamsConfiguredTeamsInput = {
     type = "structure",
+    id = "ListMicrosoftTeamsConfiguredTeamsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1357,6 +1446,7 @@ M.ListMicrosoftTeamsConfiguredTeamsInput = {
 
 M.ListMicrosoftTeamsConfiguredTeamsOutput = {
     type = "structure",
+    id = "ListMicrosoftTeamsConfiguredTeamsOutput",
     members = {
         ConfiguredTeams = {
             type = "list",
@@ -1370,6 +1460,7 @@ M.ListMicrosoftTeamsConfiguredTeamsOutput = {
 
 M.ListMicrosoftTeamsUserIdentitiesException = {
     type = "structure",
+    id = "ListMicrosoftTeamsUserIdentitiesException",
     error = "server",
     members = {
         Message = {
@@ -1380,6 +1471,7 @@ M.ListMicrosoftTeamsUserIdentitiesException = {
 
 M.ListMicrosoftTeamsUserIdentitiesInput = {
     type = "structure",
+    id = "ListMicrosoftTeamsUserIdentitiesInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -1395,6 +1487,7 @@ M.ListMicrosoftTeamsUserIdentitiesInput = {
 
 M.TeamsUserIdentity = {
     type = "structure",
+    id = "TeamsUserIdentity",
     members = {
         IamRoleArn = {
             type = "string",
@@ -1431,6 +1524,7 @@ M.TeamsUserIdentity = {
 
 M.ListMicrosoftTeamsUserIdentitiesOutput = {
     type = "structure",
+    id = "ListMicrosoftTeamsUserIdentitiesOutput",
     members = {
         TeamsUserIdentities = {
             type = "list",
@@ -1444,6 +1538,7 @@ M.ListMicrosoftTeamsUserIdentitiesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1456,6 +1551,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1466,6 +1562,7 @@ M.ListTagsForResourceOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "client",
     members = {
         message = {
@@ -1476,6 +1573,7 @@ M.ServiceUnavailableException = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1495,10 +1593,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -1509,6 +1609,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1528,10 +1629,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAccountPreferencesException = {
     type = "structure",
+    id = "UpdateAccountPreferencesException",
     error = "server",
     members = {
         Message = {
@@ -1542,6 +1645,7 @@ M.UpdateAccountPreferencesException = {
 
 M.UpdateAccountPreferencesInput = {
     type = "structure",
+    id = "UpdateAccountPreferencesInput",
     members = {
         UserAuthorizationRequired = {
             type = "boolean",
@@ -1554,6 +1658,7 @@ M.UpdateAccountPreferencesInput = {
 
 M.UpdateAccountPreferencesOutput = {
     type = "structure",
+    id = "UpdateAccountPreferencesOutput",
     members = {
         AccountPreferences = M.AccountPreferences,
     },
@@ -1561,6 +1666,7 @@ M.UpdateAccountPreferencesOutput = {
 
 M.UpdateChimeWebhookConfigurationException = {
     type = "structure",
+    id = "UpdateChimeWebhookConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -1571,6 +1677,7 @@ M.UpdateChimeWebhookConfigurationException = {
 
 M.UpdateChimeWebhookConfigurationInput = {
     type = "structure",
+    id = "UpdateChimeWebhookConfigurationInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -1599,6 +1706,7 @@ M.UpdateChimeWebhookConfigurationInput = {
 
 M.UpdateChimeWebhookConfigurationOutput = {
     type = "structure",
+    id = "UpdateChimeWebhookConfigurationOutput",
     members = {
         WebhookConfiguration = M.ChimeWebhookConfiguration,
     },
@@ -1606,6 +1714,7 @@ M.UpdateChimeWebhookConfigurationOutput = {
 
 M.UpdateMicrosoftTeamsChannelConfigurationInput = {
     type = "structure",
+    id = "UpdateMicrosoftTeamsChannelConfigurationInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -1644,6 +1753,7 @@ M.UpdateMicrosoftTeamsChannelConfigurationInput = {
 
 M.UpdateMicrosoftTeamsChannelConfigurationOutput = {
     type = "structure",
+    id = "UpdateMicrosoftTeamsChannelConfigurationOutput",
     members = {
         ChannelConfiguration = M.TeamsChannelConfiguration,
     },
@@ -1651,6 +1761,7 @@ M.UpdateMicrosoftTeamsChannelConfigurationOutput = {
 
 M.UpdateTeamsChannelConfigurationException = {
     type = "structure",
+    id = "UpdateTeamsChannelConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -1661,6 +1772,7 @@ M.UpdateTeamsChannelConfigurationException = {
 
 M.UpdateSlackChannelConfigurationException = {
     type = "structure",
+    id = "UpdateSlackChannelConfigurationException",
     error = "server",
     members = {
         Message = {
@@ -1671,6 +1783,7 @@ M.UpdateSlackChannelConfigurationException = {
 
 M.UpdateSlackChannelConfigurationInput = {
     type = "structure",
+    id = "UpdateSlackChannelConfigurationInput",
     members = {
         ChatConfigurationArn = {
             type = "string",
@@ -1709,6 +1822,7 @@ M.UpdateSlackChannelConfigurationInput = {
 
 M.UpdateSlackChannelConfigurationOutput = {
     type = "structure",
+    id = "UpdateSlackChannelConfigurationOutput",
     members = {
         ChannelConfiguration = M.SlackChannelConfiguration,
     },

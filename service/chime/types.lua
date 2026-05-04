@@ -20,6 +20,7 @@ M.ErrorCode = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Code = {
@@ -52,6 +53,7 @@ M.License = {
 
 M.SigninDelegateGroup = {
     type = "structure",
+    id = "SigninDelegateGroup",
     members = {
         GroupName = {
             type = "string",
@@ -61,6 +63,7 @@ M.SigninDelegateGroup = {
 
 M.Account = {
     type = "structure",
+    id = "Account",
     members = {
         AwsAccountId = {
             type = "string",
@@ -108,6 +111,7 @@ M.Account = {
 
 M.AccountSettings = {
     type = "structure",
+    id = "AccountSettings",
     members = {
         DisableRemoteControl = {
             type = "boolean",
@@ -120,6 +124,7 @@ M.AccountSettings = {
 
 M.AlexaForBusinessMetadata = {
     type = "structure",
+    id = "AlexaForBusinessMetadata",
     members = {
         IsAlexaForBusinessEnabled = {
             type = "boolean",
@@ -132,6 +137,7 @@ M.AlexaForBusinessMetadata = {
 
 M.AssociatePhoneNumberWithUserInput = {
     type = "structure",
+    id = "AssociatePhoneNumberWithUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -158,10 +164,12 @@ M.AssociatePhoneNumberWithUserInput = {
 
 M.AssociatePhoneNumberWithUserOutput = {
     type = "structure",
+    id = "AssociatePhoneNumberWithUserOutput",
 }
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Code = {
@@ -175,6 +183,7 @@ M.BadRequestException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         Code = {
@@ -188,6 +197,7 @@ M.ForbiddenException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         Code = {
@@ -201,6 +211,7 @@ M.NotFoundException = {
 
 M.ServiceFailureException = {
     type = "structure",
+    id = "ServiceFailureException",
     error = "server",
     members = {
         Code = {
@@ -214,6 +225,7 @@ M.ServiceFailureException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Code = {
@@ -227,6 +239,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottledClientException = {
     type = "structure",
+    id = "ThrottledClientException",
     error = "client",
     members = {
         Code = {
@@ -240,6 +253,7 @@ M.ThrottledClientException = {
 
 M.UnauthorizedClientException = {
     type = "structure",
+    id = "UnauthorizedClientException",
     error = "client",
     members = {
         Code = {
@@ -253,6 +267,7 @@ M.UnauthorizedClientException = {
 
 M.AssociateSigninDelegateGroupsWithAccountInput = {
     type = "structure",
+    id = "AssociateSigninDelegateGroupsWithAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -273,6 +288,7 @@ M.AssociateSigninDelegateGroupsWithAccountInput = {
 
 M.AssociateSigninDelegateGroupsWithAccountOutput = {
     type = "structure",
+    id = "AssociateSigninDelegateGroupsWithAccountOutput",
 }
 
 M.RoomMembershipRole = {
@@ -282,6 +298,7 @@ M.RoomMembershipRole = {
 
 M.MembershipItem = {
     type = "structure",
+    id = "MembershipItem",
     members = {
         MemberId = {
             type = "string",
@@ -294,6 +311,7 @@ M.MembershipItem = {
 
 M.BatchCreateRoomMembershipInput = {
     type = "structure",
+    id = "BatchCreateRoomMembershipInput",
     members = {
         AccountId = {
             type = "string",
@@ -321,6 +339,7 @@ M.BatchCreateRoomMembershipInput = {
 
 M.MemberError = {
     type = "structure",
+    id = "MemberError",
     members = {
         MemberId = {
             type = "string",
@@ -336,6 +355,7 @@ M.MemberError = {
 
 M.BatchCreateRoomMembershipOutput = {
     type = "structure",
+    id = "BatchCreateRoomMembershipOutput",
     members = {
         Errors = {
             type = "list",
@@ -346,6 +366,7 @@ M.BatchCreateRoomMembershipOutput = {
 
 M.BatchDeletePhoneNumberInput = {
     type = "structure",
+    id = "BatchDeletePhoneNumberInput",
     members = {
         PhoneNumberIds = {
             type = "list",
@@ -359,6 +380,7 @@ M.BatchDeletePhoneNumberInput = {
 
 M.PhoneNumberError = {
     type = "structure",
+    id = "PhoneNumberError",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -374,6 +396,7 @@ M.PhoneNumberError = {
 
 M.BatchDeletePhoneNumberOutput = {
     type = "structure",
+    id = "BatchDeletePhoneNumberOutput",
     members = {
         PhoneNumberErrors = {
             type = "list",
@@ -384,6 +407,7 @@ M.BatchDeletePhoneNumberOutput = {
 
 M.BatchSuspendUserInput = {
     type = "structure",
+    id = "BatchSuspendUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -404,6 +428,7 @@ M.BatchSuspendUserInput = {
 
 M.UserError = {
     type = "structure",
+    id = "UserError",
     members = {
         UserId = {
             type = "string",
@@ -419,6 +444,7 @@ M.UserError = {
 
 M.BatchSuspendUserOutput = {
     type = "structure",
+    id = "BatchSuspendUserOutput",
     members = {
         UserErrors = {
             type = "list",
@@ -429,6 +455,7 @@ M.BatchSuspendUserOutput = {
 
 M.BatchUnsuspendUserInput = {
     type = "structure",
+    id = "BatchUnsuspendUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -449,6 +476,7 @@ M.BatchUnsuspendUserInput = {
 
 M.BatchUnsuspendUserOutput = {
     type = "structure",
+    id = "BatchUnsuspendUserOutput",
     members = {
         UserErrors = {
             type = "list",
@@ -465,6 +493,7 @@ M.PhoneNumberProductType = {
 
 M.UpdatePhoneNumberRequestItem = {
     type = "structure",
+    id = "UpdatePhoneNumberRequestItem",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -483,6 +512,7 @@ M.UpdatePhoneNumberRequestItem = {
 
 M.BatchUpdatePhoneNumberInput = {
     type = "structure",
+    id = "BatchUpdatePhoneNumberInput",
     members = {
         UpdatePhoneNumberRequestItems = {
             type = "list",
@@ -496,6 +526,7 @@ M.BatchUpdatePhoneNumberInput = {
 
 M.BatchUpdatePhoneNumberOutput = {
     type = "structure",
+    id = "BatchUpdatePhoneNumberOutput",
     members = {
         PhoneNumberErrors = {
             type = "list",
@@ -511,6 +542,7 @@ M.UserType = {
 
 M.UpdateUserRequestItem = {
     type = "structure",
+    id = "UpdateUserRequestItem",
     members = {
         UserId = {
             type = "string",
@@ -530,6 +562,7 @@ M.UpdateUserRequestItem = {
 
 M.BatchUpdateUserInput = {
     type = "structure",
+    id = "BatchUpdateUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -550,6 +583,7 @@ M.BatchUpdateUserInput = {
 
 M.BatchUpdateUserOutput = {
     type = "structure",
+    id = "BatchUpdateUserOutput",
     members = {
         UserErrors = {
             type = "list",
@@ -564,6 +598,7 @@ M.BotType = {
 
 M.Bot = {
     type = "structure",
+    id = "Bot",
     members = {
         BotId = {
             type = "string",
@@ -603,6 +638,7 @@ M.Bot = {
 
 M.BusinessCallingSettings = {
     type = "structure",
+    id = "BusinessCallingSettings",
     members = {
         CdrBucket = {
             type = "string",
@@ -619,6 +655,7 @@ M.CallingNameStatus = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Code = {
@@ -632,6 +669,7 @@ M.ConflictException = {
 
 M.ConversationRetentionSettings = {
     type = "structure",
+    id = "ConversationRetentionSettings",
     members = {
         RetentionDays = {
             type = "integer",
@@ -641,6 +679,7 @@ M.ConversationRetentionSettings = {
 
 M.CreateAccountInput = {
     type = "structure",
+    id = "CreateAccountInput",
     members = {
         Name = {
             type = "string",
@@ -653,6 +692,7 @@ M.CreateAccountInput = {
 
 M.CreateAccountOutput = {
     type = "structure",
+    id = "CreateAccountOutput",
     members = {
         Account = M.Account,
     },
@@ -660,6 +700,7 @@ M.CreateAccountOutput = {
 
 M.CreateBotInput = {
     type = "structure",
+    id = "CreateBotInput",
     members = {
         AccountId = {
             type = "string",
@@ -682,6 +723,7 @@ M.CreateBotInput = {
 
 M.CreateBotOutput = {
     type = "structure",
+    id = "CreateBotOutput",
     members = {
         Bot = M.Bot,
     },
@@ -689,6 +731,7 @@ M.CreateBotOutput = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         Code = {
@@ -702,6 +745,7 @@ M.ResourceLimitExceededException = {
 
 M.CreateMeetingDialOutInput = {
     type = "structure",
+    id = "CreateMeetingDialOutInput",
     members = {
         MeetingId = {
             type = "string",
@@ -733,6 +777,7 @@ M.CreateMeetingDialOutInput = {
 
 M.CreateMeetingDialOutOutput = {
     type = "structure",
+    id = "CreateMeetingDialOutOutput",
     members = {
         TransactionId = {
             type = "string",
@@ -742,6 +787,7 @@ M.CreateMeetingDialOutOutput = {
 
 M.CreatePhoneNumberOrderInput = {
     type = "structure",
+    id = "CreatePhoneNumberOrderInput",
     members = {
         ProductType = {
             type = "string",
@@ -767,6 +813,7 @@ M.OrderedPhoneNumberStatus = {
 
 M.OrderedPhoneNumber = {
     type = "structure",
+    id = "OrderedPhoneNumber",
     members = {
         E164PhoneNumber = {
             type = "string",
@@ -786,6 +833,7 @@ M.PhoneNumberOrderStatus = {
 
 M.PhoneNumberOrder = {
     type = "structure",
+    id = "PhoneNumberOrder",
     members = {
         PhoneNumberOrderId = {
             type = "string",
@@ -817,6 +865,7 @@ M.PhoneNumberOrder = {
 
 M.CreatePhoneNumberOrderOutput = {
     type = "structure",
+    id = "CreatePhoneNumberOrderOutput",
     members = {
         PhoneNumberOrder = M.PhoneNumberOrder,
     },
@@ -824,6 +873,7 @@ M.CreatePhoneNumberOrderOutput = {
 
 M.CreateRoomInput = {
     type = "structure",
+    id = "CreateRoomInput",
     members = {
         AccountId = {
             type = "string",
@@ -849,6 +899,7 @@ M.CreateRoomInput = {
 
 M.Room = {
     type = "structure",
+    id = "Room",
     members = {
         RoomId = {
             type = "string",
@@ -879,6 +930,7 @@ M.Room = {
 
 M.CreateRoomOutput = {
     type = "structure",
+    id = "CreateRoomOutput",
     members = {
         Room = M.Room,
     },
@@ -886,6 +938,7 @@ M.CreateRoomOutput = {
 
 M.CreateRoomMembershipInput = {
     type = "structure",
+    id = "CreateRoomMembershipInput",
     members = {
         AccountId = {
             type = "string",
@@ -921,6 +974,7 @@ M.MemberType = {
 
 M.Member = {
     type = "structure",
+    id = "Member",
     members = {
         MemberId = {
             type = "string",
@@ -942,6 +996,7 @@ M.Member = {
 
 M.RoomMembership = {
     type = "structure",
+    id = "RoomMembership",
     members = {
         RoomId = {
             type = "string",
@@ -964,6 +1019,7 @@ M.RoomMembership = {
 
 M.CreateRoomMembershipOutput = {
     type = "structure",
+    id = "CreateRoomMembershipOutput",
     members = {
         RoomMembership = M.RoomMembership,
     },
@@ -971,6 +1027,7 @@ M.CreateRoomMembershipOutput = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -1005,6 +1062,7 @@ M.RegistrationStatus = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         UserId = {
             type = "string",
@@ -1057,6 +1115,7 @@ M.User = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         User = M.User,
     },
@@ -1064,6 +1123,7 @@ M.CreateUserOutput = {
 
 M.DeleteAccountInput = {
     type = "structure",
+    id = "DeleteAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -1077,10 +1137,12 @@ M.DeleteAccountInput = {
 
 M.DeleteAccountOutput = {
     type = "structure",
+    id = "DeleteAccountOutput",
 }
 
 M.UnprocessableEntityException = {
     type = "structure",
+    id = "UnprocessableEntityException",
     error = "client",
     members = {
         Code = {
@@ -1094,6 +1156,7 @@ M.UnprocessableEntityException = {
 
 M.DeleteEventsConfigurationInput = {
     type = "structure",
+    id = "DeleteEventsConfigurationInput",
     members = {
         AccountId = {
             type = "string",
@@ -1114,10 +1177,12 @@ M.DeleteEventsConfigurationInput = {
 
 M.DeleteEventsConfigurationOutput = {
     type = "structure",
+    id = "DeleteEventsConfigurationOutput",
 }
 
 M.DeletePhoneNumberInput = {
     type = "structure",
+    id = "DeletePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -1131,10 +1196,12 @@ M.DeletePhoneNumberInput = {
 
 M.DeletePhoneNumberOutput = {
     type = "structure",
+    id = "DeletePhoneNumberOutput",
 }
 
 M.DeleteRoomInput = {
     type = "structure",
+    id = "DeleteRoomInput",
     members = {
         AccountId = {
             type = "string",
@@ -1155,10 +1222,12 @@ M.DeleteRoomInput = {
 
 M.DeleteRoomOutput = {
     type = "structure",
+    id = "DeleteRoomOutput",
 }
 
 M.DeleteRoomMembershipInput = {
     type = "structure",
+    id = "DeleteRoomMembershipInput",
     members = {
         AccountId = {
             type = "string",
@@ -1186,10 +1255,12 @@ M.DeleteRoomMembershipInput = {
 
 M.DeleteRoomMembershipOutput = {
     type = "structure",
+    id = "DeleteRoomMembershipOutput",
 }
 
 M.DisassociatePhoneNumberFromUserInput = {
     type = "structure",
+    id = "DisassociatePhoneNumberFromUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -1210,10 +1281,12 @@ M.DisassociatePhoneNumberFromUserInput = {
 
 M.DisassociatePhoneNumberFromUserOutput = {
     type = "structure",
+    id = "DisassociatePhoneNumberFromUserOutput",
 }
 
 M.DisassociateSigninDelegateGroupsFromAccountInput = {
     type = "structure",
+    id = "DisassociateSigninDelegateGroupsFromAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -1234,6 +1307,7 @@ M.DisassociateSigninDelegateGroupsFromAccountInput = {
 
 M.DisassociateSigninDelegateGroupsFromAccountOutput = {
     type = "structure",
+    id = "DisassociateSigninDelegateGroupsFromAccountOutput",
 }
 
 M.EmailStatus = {
@@ -1244,6 +1318,7 @@ M.EmailStatus = {
 
 M.EventsConfiguration = {
     type = "structure",
+    id = "EventsConfiguration",
     members = {
         BotId = {
             type = "string",
@@ -1259,6 +1334,7 @@ M.EventsConfiguration = {
 
 M.GetAccountInput = {
     type = "structure",
+    id = "GetAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -1272,6 +1348,7 @@ M.GetAccountInput = {
 
 M.GetAccountOutput = {
     type = "structure",
+    id = "GetAccountOutput",
     members = {
         Account = M.Account,
     },
@@ -1279,6 +1356,7 @@ M.GetAccountOutput = {
 
 M.GetAccountSettingsInput = {
     type = "structure",
+    id = "GetAccountSettingsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1292,6 +1370,7 @@ M.GetAccountSettingsInput = {
 
 M.GetAccountSettingsOutput = {
     type = "structure",
+    id = "GetAccountSettingsOutput",
     members = {
         AccountSettings = M.AccountSettings,
     },
@@ -1299,6 +1378,7 @@ M.GetAccountSettingsOutput = {
 
 M.GetBotInput = {
     type = "structure",
+    id = "GetBotInput",
     members = {
         AccountId = {
             type = "string",
@@ -1319,6 +1399,7 @@ M.GetBotInput = {
 
 M.GetBotOutput = {
     type = "structure",
+    id = "GetBotOutput",
     members = {
         Bot = M.Bot,
     },
@@ -1326,6 +1407,7 @@ M.GetBotOutput = {
 
 M.GetEventsConfigurationInput = {
     type = "structure",
+    id = "GetEventsConfigurationInput",
     members = {
         AccountId = {
             type = "string",
@@ -1346,6 +1428,7 @@ M.GetEventsConfigurationInput = {
 
 M.GetEventsConfigurationOutput = {
     type = "structure",
+    id = "GetEventsConfigurationOutput",
     members = {
         EventsConfiguration = M.EventsConfiguration,
     },
@@ -1353,10 +1436,12 @@ M.GetEventsConfigurationOutput = {
 
 M.GetGlobalSettingsInput = {
     type = "structure",
+    id = "GetGlobalSettingsInput",
 }
 
 M.VoiceConnectorSettings = {
     type = "structure",
+    id = "VoiceConnectorSettings",
     members = {
         CdrBucket = {
             type = "string",
@@ -1366,6 +1451,7 @@ M.VoiceConnectorSettings = {
 
 M.GetGlobalSettingsOutput = {
     type = "structure",
+    id = "GetGlobalSettingsOutput",
     members = {
         BusinessCalling = M.BusinessCallingSettings,
         VoiceConnector = M.VoiceConnectorSettings,
@@ -1374,6 +1460,7 @@ M.GetGlobalSettingsOutput = {
 
 M.GetPhoneNumberInput = {
     type = "structure",
+    id = "GetPhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -1395,6 +1482,7 @@ M.PhoneNumberAssociationName = {
 
 M.PhoneNumberAssociation = {
     type = "structure",
+    id = "PhoneNumberAssociation",
     members = {
         Value = {
             type = "string",
@@ -1413,6 +1501,7 @@ M.PhoneNumberAssociation = {
 
 M.PhoneNumberCapabilities = {
     type = "structure",
+    id = "PhoneNumberCapabilities",
     members = {
         InboundCall = {
             type = "boolean",
@@ -1453,6 +1542,7 @@ M.PhoneNumberType = {
 
 M.PhoneNumber = {
     type = "structure",
+    id = "PhoneNumber",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -1506,6 +1596,7 @@ M.PhoneNumber = {
 
 M.GetPhoneNumberOutput = {
     type = "structure",
+    id = "GetPhoneNumberOutput",
     members = {
         PhoneNumber = M.PhoneNumber,
     },
@@ -1513,6 +1604,7 @@ M.GetPhoneNumberOutput = {
 
 M.GetPhoneNumberOrderInput = {
     type = "structure",
+    id = "GetPhoneNumberOrderInput",
     members = {
         PhoneNumberOrderId = {
             type = "string",
@@ -1526,6 +1618,7 @@ M.GetPhoneNumberOrderInput = {
 
 M.GetPhoneNumberOrderOutput = {
     type = "structure",
+    id = "GetPhoneNumberOrderOutput",
     members = {
         PhoneNumberOrder = M.PhoneNumberOrder,
     },
@@ -1533,10 +1626,12 @@ M.GetPhoneNumberOrderOutput = {
 
 M.GetPhoneNumberSettingsInput = {
     type = "structure",
+    id = "GetPhoneNumberSettingsInput",
 }
 
 M.GetPhoneNumberSettingsOutput = {
     type = "structure",
+    id = "GetPhoneNumberSettingsOutput",
     members = {
         CallingName = {
             type = "string",
@@ -1552,6 +1647,7 @@ M.GetPhoneNumberSettingsOutput = {
 
 M.GetRetentionSettingsInput = {
     type = "structure",
+    id = "GetRetentionSettingsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1565,6 +1661,7 @@ M.GetRetentionSettingsInput = {
 
 M.RoomRetentionSettings = {
     type = "structure",
+    id = "RoomRetentionSettings",
     members = {
         RetentionDays = {
             type = "integer",
@@ -1574,6 +1671,7 @@ M.RoomRetentionSettings = {
 
 M.RetentionSettings = {
     type = "structure",
+    id = "RetentionSettings",
     members = {
         RoomRetentionSettings = M.RoomRetentionSettings,
         ConversationRetentionSettings = M.ConversationRetentionSettings,
@@ -1582,6 +1680,7 @@ M.RetentionSettings = {
 
 M.GetRetentionSettingsOutput = {
     type = "structure",
+    id = "GetRetentionSettingsOutput",
     members = {
         RetentionSettings = M.RetentionSettings,
         InitiateDeletionTimestamp = {
@@ -1595,6 +1694,7 @@ M.GetRetentionSettingsOutput = {
 
 M.GetRoomInput = {
     type = "structure",
+    id = "GetRoomInput",
     members = {
         AccountId = {
             type = "string",
@@ -1615,6 +1715,7 @@ M.GetRoomInput = {
 
 M.GetRoomOutput = {
     type = "structure",
+    id = "GetRoomOutput",
     members = {
         Room = M.Room,
     },
@@ -1622,6 +1723,7 @@ M.GetRoomOutput = {
 
 M.GetUserInput = {
     type = "structure",
+    id = "GetUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -1642,6 +1744,7 @@ M.GetUserInput = {
 
 M.GetUserOutput = {
     type = "structure",
+    id = "GetUserOutput",
     members = {
         User = M.User,
     },
@@ -1649,6 +1752,7 @@ M.GetUserOutput = {
 
 M.GetUserSettingsInput = {
     type = "structure",
+    id = "GetUserSettingsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1669,6 +1773,7 @@ M.GetUserSettingsInput = {
 
 M.TelephonySettings = {
     type = "structure",
+    id = "TelephonySettings",
     members = {
         InboundCalling = {
             type = "boolean",
@@ -1693,6 +1798,7 @@ M.TelephonySettings = {
 
 M.UserSettings = {
     type = "structure",
+    id = "UserSettings",
     members = {
         Telephony = setmetatable({ traits = {
             required = true,
@@ -1702,6 +1808,7 @@ M.UserSettings = {
 
 M.GetUserSettingsOutput = {
     type = "structure",
+    id = "GetUserSettingsOutput",
     members = {
         UserSettings = M.UserSettings,
     },
@@ -1709,6 +1816,7 @@ M.GetUserSettingsOutput = {
 
 M.Invite = {
     type = "structure",
+    id = "Invite",
     members = {
         InviteId = {
             type = "string",
@@ -1727,6 +1835,7 @@ M.Invite = {
 
 M.InviteUsersInput = {
     type = "structure",
+    id = "InviteUsersInput",
     members = {
         AccountId = {
             type = "string",
@@ -1750,6 +1859,7 @@ M.InviteUsersInput = {
 
 M.InviteUsersOutput = {
     type = "structure",
+    id = "InviteUsersOutput",
     members = {
         Invites = {
             type = "list",
@@ -1760,6 +1870,7 @@ M.InviteUsersOutput = {
 
 M.ListAccountsInput = {
     type = "structure",
+    id = "ListAccountsInput",
     members = {
         Name = {
             type = "string",
@@ -1790,6 +1901,7 @@ M.ListAccountsInput = {
 
 M.ListAccountsOutput = {
     type = "structure",
+    id = "ListAccountsOutput",
     members = {
         Accounts = {
             type = "list",
@@ -1803,6 +1915,7 @@ M.ListAccountsOutput = {
 
 M.ListBotsInput = {
     type = "structure",
+    id = "ListBotsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1828,6 +1941,7 @@ M.ListBotsInput = {
 
 M.ListBotsOutput = {
     type = "structure",
+    id = "ListBotsOutput",
     members = {
         Bots = {
             type = "list",
@@ -1841,6 +1955,7 @@ M.ListBotsOutput = {
 
 M.ListPhoneNumberOrdersInput = {
     type = "structure",
+    id = "ListPhoneNumberOrdersInput",
     members = {
         NextToken = {
             type = "string",
@@ -1859,6 +1974,7 @@ M.ListPhoneNumberOrdersInput = {
 
 M.ListPhoneNumberOrdersOutput = {
     type = "structure",
+    id = "ListPhoneNumberOrdersOutput",
     members = {
         PhoneNumberOrders = {
             type = "list",
@@ -1872,6 +1988,7 @@ M.ListPhoneNumberOrdersOutput = {
 
 M.ListPhoneNumbersInput = {
     type = "structure",
+    id = "ListPhoneNumbersInput",
     members = {
         Status = {
             type = "string",
@@ -1914,6 +2031,7 @@ M.ListPhoneNumbersInput = {
 
 M.ListPhoneNumbersOutput = {
     type = "structure",
+    id = "ListPhoneNumbersOutput",
     members = {
         PhoneNumbers = {
             type = "list",
@@ -1927,6 +2045,7 @@ M.ListPhoneNumbersOutput = {
 
 M.ListRoomMembershipsInput = {
     type = "structure",
+    id = "ListRoomMembershipsInput",
     members = {
         AccountId = {
             type = "string",
@@ -1959,6 +2078,7 @@ M.ListRoomMembershipsInput = {
 
 M.ListRoomMembershipsOutput = {
     type = "structure",
+    id = "ListRoomMembershipsOutput",
     members = {
         RoomMemberships = {
             type = "list",
@@ -1972,6 +2092,7 @@ M.ListRoomMembershipsOutput = {
 
 M.ListRoomsInput = {
     type = "structure",
+    id = "ListRoomsInput",
     members = {
         AccountId = {
             type = "string",
@@ -2003,6 +2124,7 @@ M.ListRoomsInput = {
 
 M.ListRoomsOutput = {
     type = "structure",
+    id = "ListRoomsOutput",
     members = {
         Rooms = {
             type = "list",
@@ -2016,6 +2138,7 @@ M.ListRoomsOutput = {
 
 M.ListSupportedPhoneNumberCountriesInput = {
     type = "structure",
+    id = "ListSupportedPhoneNumberCountriesInput",
     members = {
         ProductType = {
             type = "string",
@@ -2029,6 +2152,7 @@ M.ListSupportedPhoneNumberCountriesInput = {
 
 M.PhoneNumberCountry = {
     type = "structure",
+    id = "PhoneNumberCountry",
     members = {
         CountryCode = {
             type = "string",
@@ -2042,6 +2166,7 @@ M.PhoneNumberCountry = {
 
 M.ListSupportedPhoneNumberCountriesOutput = {
     type = "structure",
+    id = "ListSupportedPhoneNumberCountriesOutput",
     members = {
         PhoneNumberCountries = {
             type = "list",
@@ -2052,6 +2177,7 @@ M.ListSupportedPhoneNumberCountriesOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         AccountId = {
             type = "string",
@@ -2089,6 +2215,7 @@ M.ListUsersInput = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -2102,6 +2229,7 @@ M.ListUsersOutput = {
 
 M.LogoutUserInput = {
     type = "structure",
+    id = "LogoutUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -2122,10 +2250,12 @@ M.LogoutUserInput = {
 
 M.LogoutUserOutput = {
     type = "structure",
+    id = "LogoutUserOutput",
 }
 
 M.PutEventsConfigurationInput = {
     type = "structure",
+    id = "PutEventsConfigurationInput",
     members = {
         AccountId = {
             type = "string",
@@ -2152,6 +2282,7 @@ M.PutEventsConfigurationInput = {
 
 M.PutEventsConfigurationOutput = {
     type = "structure",
+    id = "PutEventsConfigurationOutput",
     members = {
         EventsConfiguration = M.EventsConfiguration,
     },
@@ -2159,6 +2290,7 @@ M.PutEventsConfigurationOutput = {
 
 M.PutRetentionSettingsInput = {
     type = "structure",
+    id = "PutRetentionSettingsInput",
     members = {
         AccountId = {
             type = "string",
@@ -2175,6 +2307,7 @@ M.PutRetentionSettingsInput = {
 
 M.PutRetentionSettingsOutput = {
     type = "structure",
+    id = "PutRetentionSettingsOutput",
     members = {
         RetentionSettings = M.RetentionSettings,
         InitiateDeletionTimestamp = {
@@ -2188,6 +2321,7 @@ M.PutRetentionSettingsOutput = {
 
 M.RedactConversationMessageInput = {
     type = "structure",
+    id = "RedactConversationMessageInput",
     members = {
         AccountId = {
             type = "string",
@@ -2215,10 +2349,12 @@ M.RedactConversationMessageInput = {
 
 M.RedactConversationMessageOutput = {
     type = "structure",
+    id = "RedactConversationMessageOutput",
 }
 
 M.RedactRoomMessageInput = {
     type = "structure",
+    id = "RedactRoomMessageInput",
     members = {
         AccountId = {
             type = "string",
@@ -2246,10 +2382,12 @@ M.RedactRoomMessageInput = {
 
 M.RedactRoomMessageOutput = {
     type = "structure",
+    id = "RedactRoomMessageOutput",
 }
 
 M.RegenerateSecurityTokenInput = {
     type = "structure",
+    id = "RegenerateSecurityTokenInput",
     members = {
         AccountId = {
             type = "string",
@@ -2270,6 +2408,7 @@ M.RegenerateSecurityTokenInput = {
 
 M.RegenerateSecurityTokenOutput = {
     type = "structure",
+    id = "RegenerateSecurityTokenOutput",
     members = {
         Bot = M.Bot,
     },
@@ -2277,6 +2416,7 @@ M.RegenerateSecurityTokenOutput = {
 
 M.ResetPersonalPINInput = {
     type = "structure",
+    id = "ResetPersonalPINInput",
     members = {
         AccountId = {
             type = "string",
@@ -2297,6 +2437,7 @@ M.ResetPersonalPINInput = {
 
 M.ResetPersonalPINOutput = {
     type = "structure",
+    id = "ResetPersonalPINOutput",
     members = {
         User = M.User,
     },
@@ -2304,6 +2445,7 @@ M.ResetPersonalPINOutput = {
 
 M.RestorePhoneNumberInput = {
     type = "structure",
+    id = "RestorePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -2317,6 +2459,7 @@ M.RestorePhoneNumberInput = {
 
 M.RestorePhoneNumberOutput = {
     type = "structure",
+    id = "RestorePhoneNumberOutput",
     members = {
         PhoneNumber = M.PhoneNumber,
     },
@@ -2324,6 +2467,7 @@ M.RestorePhoneNumberOutput = {
 
 M.SearchAvailablePhoneNumbersInput = {
     type = "structure",
+    id = "SearchAvailablePhoneNumbersInput",
     members = {
         AreaCode = {
             type = "string",
@@ -2378,6 +2522,7 @@ M.SearchAvailablePhoneNumbersInput = {
 
 M.SearchAvailablePhoneNumbersOutput = {
     type = "structure",
+    id = "SearchAvailablePhoneNumbersOutput",
     members = {
         E164PhoneNumbers = {
             type = "list",
@@ -2391,6 +2536,7 @@ M.SearchAvailablePhoneNumbersOutput = {
 
 M.UpdateAccountInput = {
     type = "structure",
+    id = "UpdateAccountInput",
     members = {
         AccountId = {
             type = "string",
@@ -2410,6 +2556,7 @@ M.UpdateAccountInput = {
 
 M.UpdateAccountOutput = {
     type = "structure",
+    id = "UpdateAccountOutput",
     members = {
         Account = M.Account,
     },
@@ -2417,6 +2564,7 @@ M.UpdateAccountOutput = {
 
 M.UpdateAccountSettingsInput = {
     type = "structure",
+    id = "UpdateAccountSettingsInput",
     members = {
         AccountId = {
             type = "string",
@@ -2433,10 +2581,12 @@ M.UpdateAccountSettingsInput = {
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
+    id = "UpdateAccountSettingsOutput",
 }
 
 M.UpdateBotInput = {
     type = "structure",
+    id = "UpdateBotInput",
     members = {
         AccountId = {
             type = "string",
@@ -2460,6 +2610,7 @@ M.UpdateBotInput = {
 
 M.UpdateBotOutput = {
     type = "structure",
+    id = "UpdateBotOutput",
     members = {
         Bot = M.Bot,
     },
@@ -2467,6 +2618,7 @@ M.UpdateBotOutput = {
 
 M.UpdateGlobalSettingsInput = {
     type = "structure",
+    id = "UpdateGlobalSettingsInput",
     members = {
         BusinessCalling = M.BusinessCallingSettings,
         VoiceConnector = M.VoiceConnectorSettings,
@@ -2475,10 +2627,12 @@ M.UpdateGlobalSettingsInput = {
 
 M.UpdateGlobalSettingsOutput = {
     type = "structure",
+    id = "UpdateGlobalSettingsOutput",
 }
 
 M.UpdatePhoneNumberInput = {
     type = "structure",
+    id = "UpdatePhoneNumberInput",
     members = {
         PhoneNumberId = {
             type = "string",
@@ -2498,6 +2652,7 @@ M.UpdatePhoneNumberInput = {
 
 M.UpdatePhoneNumberOutput = {
     type = "structure",
+    id = "UpdatePhoneNumberOutput",
     members = {
         PhoneNumber = M.PhoneNumber,
     },
@@ -2505,6 +2660,7 @@ M.UpdatePhoneNumberOutput = {
 
 M.UpdatePhoneNumberSettingsInput = {
     type = "structure",
+    id = "UpdatePhoneNumberSettingsInput",
     members = {
         CallingName = {
             type = "string",
@@ -2517,10 +2673,12 @@ M.UpdatePhoneNumberSettingsInput = {
 
 M.UpdatePhoneNumberSettingsOutput = {
     type = "structure",
+    id = "UpdatePhoneNumberSettingsOutput",
 }
 
 M.UpdateRoomInput = {
     type = "structure",
+    id = "UpdateRoomInput",
     members = {
         AccountId = {
             type = "string",
@@ -2544,6 +2702,7 @@ M.UpdateRoomInput = {
 
 M.UpdateRoomOutput = {
     type = "structure",
+    id = "UpdateRoomOutput",
     members = {
         Room = M.Room,
     },
@@ -2551,6 +2710,7 @@ M.UpdateRoomOutput = {
 
 M.UpdateRoomMembershipInput = {
     type = "structure",
+    id = "UpdateRoomMembershipInput",
     members = {
         AccountId = {
             type = "string",
@@ -2581,6 +2741,7 @@ M.UpdateRoomMembershipInput = {
 
 M.UpdateRoomMembershipOutput = {
     type = "structure",
+    id = "UpdateRoomMembershipOutput",
     members = {
         RoomMembership = M.RoomMembership,
     },
@@ -2588,6 +2749,7 @@ M.UpdateRoomMembershipOutput = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         AccountId = {
             type = "string",
@@ -2615,6 +2777,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
     members = {
         User = M.User,
     },
@@ -2622,6 +2785,7 @@ M.UpdateUserOutput = {
 
 M.UpdateUserSettingsInput = {
     type = "structure",
+    id = "UpdateUserSettingsInput",
     members = {
         AccountId = {
             type = "string",
@@ -2645,6 +2809,7 @@ M.UpdateUserSettingsInput = {
 
 M.UpdateUserSettingsOutput = {
     type = "structure",
+    id = "UpdateUserSettingsOutput",
 }
 
 return M

@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptAccountLinkInvitationInput = {
     type = "structure",
+    id = "AcceptAccountLinkInvitationInput",
     members = {
         LinkId = {
             type = "string",
@@ -25,6 +26,7 @@ M.AccountLinkStatusEnum = {
 
 M.AccountLink = {
     type = "structure",
+    id = "AccountLink",
     members = {
         AccountLinkId = {
             type = "string",
@@ -43,6 +45,7 @@ M.AccountLink = {
 
 M.AcceptAccountLinkInvitationOutput = {
     type = "structure",
+    id = "AcceptAccountLinkInvitationOutput",
     members = {
         AccountLink = M.AccountLink,
     },
@@ -50,6 +53,7 @@ M.AcceptAccountLinkInvitationOutput = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -60,6 +64,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -70,6 +75,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "client",
     members = {
         message = {
@@ -80,6 +86,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -93,6 +100,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -107,6 +115,7 @@ M.AccessEndpointType = {
 
 M.AccessEndpoint = {
     type = "structure",
+    id = "AccessEndpoint",
     members = {
         AccessEndpointType = {
             type = "string",
@@ -123,6 +132,7 @@ M.InternetFallbackProtocol = {
 
 M.AccessEndpointConfig = {
     type = "structure",
+    id = "AccessEndpointConfig",
     members = {
         AccessEndpoints = {
             type = "list",
@@ -156,6 +166,7 @@ M.DedicatedTenancyModificationStateEnum = {
 
 M.AccountModification = {
     type = "structure",
+    id = "AccountModification",
     members = {
         ModificationState = {
             type = "string",
@@ -180,6 +191,7 @@ M.AccountModification = {
 
 M.ActiveDirectoryConfig = {
     type = "structure",
+    id = "ActiveDirectoryConfig",
     members = {
         DomainName = {
             type = "string",
@@ -231,6 +243,7 @@ M.ApplicationAssociatedResourceType = {
 
 M.ApplicationNotSupportedException = {
     type = "structure",
+    id = "ApplicationNotSupportedException",
     error = "client",
 }
 
@@ -257,6 +270,7 @@ M.AssociationErrorCode = {
 
 M.AssociationStateReason = {
     type = "structure",
+    id = "AssociationStateReason",
     members = {
         ErrorCode = {
             type = "string",
@@ -269,6 +283,7 @@ M.AssociationStateReason = {
 
 M.ApplicationResourceAssociation = {
     type = "structure",
+    id = "ApplicationResourceAssociation",
     members = {
         ApplicationId = {
             type = "string",
@@ -299,6 +314,7 @@ M.ApplicationSettingsStatusEnum = {
 
 M.ApplicationSettingsRequest = {
     type = "structure",
+    id = "ApplicationSettingsRequest",
     members = {
         Status = {
             type = "string",
@@ -314,6 +330,7 @@ M.ApplicationSettingsRequest = {
 
 M.ApplicationSettingsResponse = {
     type = "structure",
+    id = "ApplicationSettingsResponse",
     members = {
         Status = {
             type = "string",
@@ -332,6 +349,7 @@ M.ApplicationSettingsResponse = {
 
 M.AssociateConnectionAliasInput = {
     type = "structure",
+    id = "AssociateConnectionAliasInput",
     members = {
         AliasId = {
             type = "string",
@@ -350,6 +368,7 @@ M.AssociateConnectionAliasInput = {
 
 M.AssociateConnectionAliasOutput = {
     type = "structure",
+    id = "AssociateConnectionAliasOutput",
     members = {
         ConnectionIdentifier = {
             type = "string",
@@ -359,6 +378,7 @@ M.AssociateConnectionAliasOutput = {
 
 M.InvalidParameterValuesException = {
     type = "structure",
+    id = "InvalidParameterValuesException",
     error = "client",
     members = {
         message = {
@@ -369,6 +389,7 @@ M.InvalidParameterValuesException = {
 
 M.InvalidResourceStateException = {
     type = "structure",
+    id = "InvalidResourceStateException",
     error = "client",
     members = {
         message = {
@@ -379,6 +400,7 @@ M.InvalidResourceStateException = {
 
 M.OperationNotSupportedException = {
     type = "structure",
+    id = "OperationNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -392,6 +414,7 @@ M.OperationNotSupportedException = {
 
 M.ResourceAssociatedException = {
     type = "structure",
+    id = "ResourceAssociatedException",
     error = "client",
     members = {
         message = {
@@ -402,6 +425,7 @@ M.ResourceAssociatedException = {
 
 M.AssociateIpGroupsInput = {
     type = "structure",
+    id = "AssociateIpGroupsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -421,10 +445,12 @@ M.AssociateIpGroupsInput = {
 
 M.AssociateIpGroupsOutput = {
     type = "structure",
+    id = "AssociateIpGroupsOutput",
 }
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -435,6 +461,7 @@ M.ResourceLimitExceededException = {
 
 M.AssociateWorkspaceApplicationInput = {
     type = "structure",
+    id = "AssociateWorkspaceApplicationInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -457,6 +484,7 @@ M.WorkSpaceAssociatedResourceType = {
 
 M.WorkspaceResourceAssociation = {
     type = "structure",
+    id = "WorkspaceResourceAssociation",
     members = {
         AssociatedResourceId = {
             type = "string",
@@ -482,6 +510,7 @@ M.WorkspaceResourceAssociation = {
 
 M.AssociateWorkspaceApplicationOutput = {
     type = "structure",
+    id = "AssociateWorkspaceApplicationOutput",
     members = {
         Association = M.WorkspaceResourceAssociation,
     },
@@ -489,21 +518,25 @@ M.AssociateWorkspaceApplicationOutput = {
 
 M.ComputeNotCompatibleException = {
     type = "structure",
+    id = "ComputeNotCompatibleException",
     error = "client",
 }
 
 M.IncompatibleApplicationsException = {
     type = "structure",
+    id = "IncompatibleApplicationsException",
     error = "client",
 }
 
 M.OperatingSystemNotCompatibleException = {
     type = "structure",
+    id = "OperatingSystemNotCompatibleException",
     error = "client",
 }
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -514,6 +547,7 @@ M.ResourceAlreadyExistsException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -539,6 +573,7 @@ M.AuthenticationType = {
 
 M.IpRuleItem = {
     type = "structure",
+    id = "IpRuleItem",
     members = {
         ipRule = {
             type = "string",
@@ -551,6 +586,7 @@ M.IpRuleItem = {
 
 M.AuthorizeIpRulesInput = {
     type = "structure",
+    id = "AuthorizeIpRulesInput",
     members = {
         GroupId = {
             type = "string",
@@ -570,6 +606,7 @@ M.AuthorizeIpRulesInput = {
 
 M.AuthorizeIpRulesOutput = {
     type = "structure",
+    id = "AuthorizeIpRulesOutput",
 }
 
 M.BundleAssociatedResourceType = {
@@ -609,6 +646,7 @@ M.Compute = {
 
 M.ComputeType = {
     type = "structure",
+    id = "ComputeType",
     members = {
         Name = {
             type = "string",
@@ -618,6 +656,7 @@ M.ComputeType = {
 
 M.RootStorage = {
     type = "structure",
+    id = "RootStorage",
     members = {
         Capacity = {
             type = "string",
@@ -636,6 +675,7 @@ M.WorkspaceBundleState = {
 
 M.UserStorage = {
     type = "structure",
+    id = "UserStorage",
     members = {
         Capacity = {
             type = "string",
@@ -648,6 +688,7 @@ M.UserStorage = {
 
 M.WorkspaceBundle = {
     type = "structure",
+    id = "WorkspaceBundle",
     members = {
         BundleId = {
             type = "string",
@@ -684,6 +725,7 @@ M.WorkspaceBundle = {
 
 M.BundleResourceAssociation = {
     type = "structure",
+    id = "BundleResourceAssociation",
     members = {
         AssociatedResourceId = {
             type = "string",
@@ -709,6 +751,7 @@ M.BundleResourceAssociation = {
 
 M.Capacity = {
     type = "structure",
+    id = "Capacity",
     members = {
         DesiredUserSessions = {
             type = "integer",
@@ -721,6 +764,7 @@ M.Capacity = {
 
 M.CapacityStatus = {
     type = "structure",
+    id = "CapacityStatus",
     members = {
         AvailableUserSessions = {
             type = "integer",
@@ -756,6 +800,7 @@ M.CertificateBasedAuthStatusEnum = {
 
 M.CertificateBasedAuthProperties = {
     type = "structure",
+    id = "CertificateBasedAuthProperties",
     members = {
         Status = {
             type = "string",
@@ -787,6 +832,7 @@ M.ReconnectEnum = {
 
 M.ClientProperties = {
     type = "structure",
+    id = "ClientProperties",
     members = {
         ReconnectEnabled = {
             type = "string",
@@ -799,6 +845,7 @@ M.ClientProperties = {
 
 M.ClientPropertiesResult = {
     type = "structure",
+    id = "ClientPropertiesResult",
     members = {
         ResourceId = {
             type = "string",
@@ -809,6 +856,7 @@ M.ClientPropertiesResult = {
 
 M.ConnectClientAddIn = {
     type = "structure",
+    id = "ConnectClientAddIn",
     members = {
         AddInId = {
             type = "string",
@@ -827,6 +875,7 @@ M.ConnectClientAddIn = {
 
 M.ConnectionAliasAssociation = {
     type = "structure",
+    id = "ConnectionAliasAssociation",
     members = {
         AssociationStatus = {
             type = "string",
@@ -851,6 +900,7 @@ M.ConnectionAliasState = {
 
 M.ConnectionAlias = {
     type = "structure",
+    id = "ConnectionAlias",
     members = {
         ConnectionString = {
             type = "string",
@@ -873,6 +923,7 @@ M.ConnectionAlias = {
 
 M.ConnectionAliasPermission = {
     type = "structure",
+    id = "ConnectionAliasPermission",
     members = {
         SharedAccountId = {
             type = "string",
@@ -897,6 +948,7 @@ M.ConnectionState = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -912,6 +964,7 @@ M.Tag = {
 
 M.CopyWorkspaceImageInput = {
     type = "structure",
+    id = "CopyWorkspaceImageInput",
     members = {
         Name = {
             type = "string",
@@ -943,6 +996,7 @@ M.CopyWorkspaceImageInput = {
 
 M.CopyWorkspaceImageOutput = {
     type = "structure",
+    id = "CopyWorkspaceImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -952,6 +1006,7 @@ M.CopyWorkspaceImageOutput = {
 
 M.ResourceUnavailableException = {
     type = "structure",
+    id = "ResourceUnavailableException",
     error = "client",
     members = {
         message = {
@@ -965,6 +1020,7 @@ M.ResourceUnavailableException = {
 
 M.CreateAccountLinkInvitationInput = {
     type = "structure",
+    id = "CreateAccountLinkInvitationInput",
     members = {
         TargetAccountId = {
             type = "string",
@@ -980,6 +1036,7 @@ M.CreateAccountLinkInvitationInput = {
 
 M.CreateAccountLinkInvitationOutput = {
     type = "structure",
+    id = "CreateAccountLinkInvitationOutput",
     members = {
         AccountLink = M.AccountLink,
     },
@@ -987,6 +1044,7 @@ M.CreateAccountLinkInvitationOutput = {
 
 M.CreateConnectClientAddInInput = {
     type = "structure",
+    id = "CreateConnectClientAddInInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1011,6 +1069,7 @@ M.CreateConnectClientAddInInput = {
 
 M.CreateConnectClientAddInOutput = {
     type = "structure",
+    id = "CreateConnectClientAddInOutput",
     members = {
         AddInId = {
             type = "string",
@@ -1020,6 +1079,7 @@ M.CreateConnectClientAddInOutput = {
 
 M.ResourceCreationFailedException = {
     type = "structure",
+    id = "ResourceCreationFailedException",
     error = "client",
     members = {
         message = {
@@ -1030,6 +1090,7 @@ M.ResourceCreationFailedException = {
 
 M.CreateConnectionAliasInput = {
     type = "structure",
+    id = "CreateConnectionAliasInput",
     members = {
         ConnectionString = {
             type = "string",
@@ -1046,6 +1107,7 @@ M.CreateConnectionAliasInput = {
 
 M.CreateConnectionAliasOutput = {
     type = "structure",
+    id = "CreateConnectionAliasOutput",
     members = {
         AliasId = {
             type = "string",
@@ -1055,6 +1117,7 @@ M.CreateConnectionAliasOutput = {
 
 M.CreateIpGroupInput = {
     type = "structure",
+    id = "CreateIpGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -1078,6 +1141,7 @@ M.CreateIpGroupInput = {
 
 M.CreateIpGroupOutput = {
     type = "structure",
+    id = "CreateIpGroupOutput",
     members = {
         GroupId = {
             type = "string",
@@ -1092,6 +1156,7 @@ M.DataReplication = {
 
 M.StandbyWorkspace = {
     type = "structure",
+    id = "StandbyWorkspace",
     members = {
         PrimaryWorkspaceId = {
             type = "string",
@@ -1120,6 +1185,7 @@ M.StandbyWorkspace = {
 
 M.CreateStandbyWorkspacesInput = {
     type = "structure",
+    id = "CreateStandbyWorkspacesInput",
     members = {
         PrimaryRegion = {
             type = "string",
@@ -1139,6 +1205,7 @@ M.CreateStandbyWorkspacesInput = {
 
 M.FailedCreateStandbyWorkspacesRequest = {
     type = "structure",
+    id = "FailedCreateStandbyWorkspacesRequest",
     members = {
         StandbyWorkspaceRequest = M.StandbyWorkspace,
         ErrorCode = {
@@ -1172,6 +1239,7 @@ M.WorkspaceState = {
 
 M.PendingCreateStandbyWorkspacesRequest = {
     type = "structure",
+    id = "PendingCreateStandbyWorkspacesRequest",
     members = {
         UserName = {
             type = "string",
@@ -1190,6 +1258,7 @@ M.PendingCreateStandbyWorkspacesRequest = {
 
 M.CreateStandbyWorkspacesOutput = {
     type = "structure",
+    id = "CreateStandbyWorkspacesOutput",
     members = {
         FailedStandbyRequests = {
             type = "list",
@@ -1204,6 +1273,7 @@ M.CreateStandbyWorkspacesOutput = {
 
 M.CreateTagsInput = {
     type = "structure",
+    id = "CreateTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -1223,10 +1293,12 @@ M.CreateTagsInput = {
 
 M.CreateTagsOutput = {
     type = "structure",
+    id = "CreateTagsOutput",
 }
 
 M.CreateUpdatedWorkspaceImageInput = {
     type = "structure",
+    id = "CreateUpdatedWorkspaceImageInput",
     members = {
         Name = {
             type = "string",
@@ -1255,6 +1327,7 @@ M.CreateUpdatedWorkspaceImageInput = {
 
 M.CreateUpdatedWorkspaceImageOutput = {
     type = "structure",
+    id = "CreateUpdatedWorkspaceImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -1264,6 +1337,7 @@ M.CreateUpdatedWorkspaceImageOutput = {
 
 M.CreateWorkspaceBundleInput = {
     type = "structure",
+    id = "CreateWorkspaceBundleInput",
     members = {
         BundleName = {
             type = "string",
@@ -1299,6 +1373,7 @@ M.CreateWorkspaceBundleInput = {
 
 M.CreateWorkspaceBundleOutput = {
     type = "structure",
+    id = "CreateWorkspaceBundleOutput",
     members = {
         WorkspaceBundle = M.WorkspaceBundle,
     },
@@ -1306,6 +1381,7 @@ M.CreateWorkspaceBundleOutput = {
 
 M.CreateWorkspaceImageInput = {
     type = "structure",
+    id = "CreateWorkspaceImageInput",
     members = {
         Name = {
             type = "string",
@@ -1339,6 +1415,7 @@ M.OperatingSystemType = {
 
 M.OperatingSystem = {
     type = "structure",
+    id = "OperatingSystem",
     members = {
         Type = {
             type = "string",
@@ -1359,6 +1436,7 @@ M.WorkspaceImageState = {
 
 M.CreateWorkspaceImageOutput = {
     type = "structure",
+    id = "CreateWorkspaceImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -1387,6 +1465,7 @@ M.CreateWorkspaceImageOutput = {
 
 M.GlobalAcceleratorForWorkSpace = {
     type = "structure",
+    id = "GlobalAcceleratorForWorkSpace",
     members = {
         Mode = {
             type = "string",
@@ -1430,6 +1509,7 @@ M.RunningMode = {
 
 M.WorkspaceProperties = {
     type = "structure",
+    id = "WorkspaceProperties",
     members = {
         RunningMode = {
             type = "string",
@@ -1459,6 +1539,7 @@ M.WorkspaceProperties = {
 
 M.WorkspaceRequest = {
     type = "structure",
+    id = "WorkspaceRequest",
     members = {
         DirectoryId = {
             type = "string",
@@ -1503,6 +1584,7 @@ M.WorkspaceRequest = {
 
 M.CreateWorkspacesInput = {
     type = "structure",
+    id = "CreateWorkspacesInput",
     members = {
         Workspaces = {
             type = "list",
@@ -1516,6 +1598,7 @@ M.CreateWorkspacesInput = {
 
 M.FailedCreateWorkspaceRequest = {
     type = "structure",
+    id = "FailedCreateWorkspaceRequest",
     members = {
         WorkspaceRequest = M.WorkspaceRequest,
         ErrorCode = {
@@ -1529,6 +1612,7 @@ M.FailedCreateWorkspaceRequest = {
 
 M.DataReplicationSettings = {
     type = "structure",
+    id = "DataReplicationSettings",
     members = {
         DataReplication = {
             type = "string",
@@ -1554,6 +1638,7 @@ M.ModificationStateEnum = {
 
 M.ModificationState = {
     type = "structure",
+    id = "ModificationState",
     members = {
         Resource = {
             type = "string",
@@ -1571,6 +1656,7 @@ M.StandbyWorkspaceRelationshipType = {
 
 M.RelatedWorkspaceProperties = {
     type = "structure",
+    id = "RelatedWorkspaceProperties",
     members = {
         WorkspaceId = {
             type = "string",
@@ -1589,6 +1675,7 @@ M.RelatedWorkspaceProperties = {
 
 M.StandbyWorkspacesProperties = {
     type = "structure",
+    id = "StandbyWorkspacesProperties",
     members = {
         StandbyWorkspaceId = {
             type = "string",
@@ -1604,6 +1691,7 @@ M.StandbyWorkspacesProperties = {
 
 M.Workspace = {
     type = "structure",
+    id = "Workspace",
     members = {
         WorkspaceId = {
             type = "string",
@@ -1669,6 +1757,7 @@ M.Workspace = {
 
 M.CreateWorkspacesOutput = {
     type = "structure",
+    id = "CreateWorkspacesOutput",
     members = {
         FailedRequests = {
             type = "list",
@@ -1688,6 +1777,7 @@ M.PoolsRunningMode = {
 
 M.TimeoutSettings = {
     type = "structure",
+    id = "TimeoutSettings",
     members = {
         DisconnectTimeoutInSeconds = {
             type = "integer",
@@ -1703,6 +1793,7 @@ M.TimeoutSettings = {
 
 M.CreateWorkspacesPoolInput = {
     type = "structure",
+    id = "CreateWorkspacesPoolInput",
     members = {
         PoolName = {
             type = "string",
@@ -1788,6 +1879,7 @@ M.WorkspacesPoolErrorCode = {
 
 M.WorkspacesPoolError = {
     type = "structure",
+    id = "WorkspacesPoolError",
     members = {
         ErrorCode = {
             type = "string",
@@ -1810,6 +1902,7 @@ M.WorkspacesPoolState = {
 
 M.WorkspacesPool = {
     type = "structure",
+    id = "WorkspacesPool",
     members = {
         PoolId = {
             type = "string",
@@ -1877,6 +1970,7 @@ M.WorkspacesPool = {
 
 M.CreateWorkspacesPoolOutput = {
     type = "structure",
+    id = "CreateWorkspacesPoolOutput",
     members = {
         WorkspacesPool = M.WorkspacesPool,
     },
@@ -1890,6 +1984,7 @@ M.CustomImageProtocol = {
 
 M.CustomWorkspaceImageImportErrorDetails = {
     type = "structure",
+    id = "CustomWorkspaceImageImportErrorDetails",
     members = {
         ErrorCode = {
             type = "string",
@@ -1928,6 +2023,7 @@ M.DedicatedTenancySupportEnum = {
 
 M.DefaultClientBrandingAttributes = {
     type = "structure",
+    id = "DefaultClientBrandingAttributes",
     members = {
         LogoUrl = {
             type = "string",
@@ -1951,6 +2047,7 @@ M.DefaultClientBrandingAttributes = {
 
 M.DefaultImportClientBrandingAttributes = {
     type = "structure",
+    id = "DefaultImportClientBrandingAttributes",
     members = {
         Logo = {
             type = "blob",
@@ -1974,6 +2071,7 @@ M.DefaultImportClientBrandingAttributes = {
 
 M.DefaultWorkspaceCreationProperties = {
     type = "structure",
+    id = "DefaultWorkspaceCreationProperties",
     members = {
         EnableInternetAccess = {
             type = "boolean",
@@ -2007,6 +2105,7 @@ M.DeletableSamlProperty = {
 
 M.DeleteAccountLinkInvitationInput = {
     type = "structure",
+    id = "DeleteAccountLinkInvitationInput",
     members = {
         LinkId = {
             type = "string",
@@ -2022,6 +2121,7 @@ M.DeleteAccountLinkInvitationInput = {
 
 M.DeleteAccountLinkInvitationOutput = {
     type = "structure",
+    id = "DeleteAccountLinkInvitationOutput",
     members = {
         AccountLink = M.AccountLink,
     },
@@ -2029,6 +2129,7 @@ M.DeleteAccountLinkInvitationOutput = {
 
 M.DeleteClientBrandingInput = {
     type = "structure",
+    id = "DeleteClientBrandingInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2048,10 +2149,12 @@ M.DeleteClientBrandingInput = {
 
 M.DeleteClientBrandingOutput = {
     type = "structure",
+    id = "DeleteClientBrandingOutput",
 }
 
 M.DeleteConnectClientAddInInput = {
     type = "structure",
+    id = "DeleteConnectClientAddInInput",
     members = {
         AddInId = {
             type = "string",
@@ -2070,10 +2173,12 @@ M.DeleteConnectClientAddInInput = {
 
 M.DeleteConnectClientAddInOutput = {
     type = "structure",
+    id = "DeleteConnectClientAddInOutput",
 }
 
 M.DeleteConnectionAliasInput = {
     type = "structure",
+    id = "DeleteConnectionAliasInput",
     members = {
         AliasId = {
             type = "string",
@@ -2086,10 +2191,12 @@ M.DeleteConnectionAliasInput = {
 
 M.DeleteConnectionAliasOutput = {
     type = "structure",
+    id = "DeleteConnectionAliasOutput",
 }
 
 M.DeleteIpGroupInput = {
     type = "structure",
+    id = "DeleteIpGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -2102,10 +2209,12 @@ M.DeleteIpGroupInput = {
 
 M.DeleteIpGroupOutput = {
     type = "structure",
+    id = "DeleteIpGroupOutput",
 }
 
 M.DeleteTagsInput = {
     type = "structure",
+    id = "DeleteTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2125,10 +2234,12 @@ M.DeleteTagsInput = {
 
 M.DeleteTagsOutput = {
     type = "structure",
+    id = "DeleteTagsOutput",
 }
 
 M.DeleteWorkspaceBundleInput = {
     type = "structure",
+    id = "DeleteWorkspaceBundleInput",
     members = {
         BundleId = {
             type = "string",
@@ -2138,10 +2249,12 @@ M.DeleteWorkspaceBundleInput = {
 
 M.DeleteWorkspaceBundleOutput = {
     type = "structure",
+    id = "DeleteWorkspaceBundleOutput",
 }
 
 M.DeleteWorkspaceImageInput = {
     type = "structure",
+    id = "DeleteWorkspaceImageInput",
     members = {
         ImageId = {
             type = "string",
@@ -2154,10 +2267,12 @@ M.DeleteWorkspaceImageInput = {
 
 M.DeleteWorkspaceImageOutput = {
     type = "structure",
+    id = "DeleteWorkspaceImageOutput",
 }
 
 M.DeployWorkspaceApplicationsInput = {
     type = "structure",
+    id = "DeployWorkspaceApplicationsInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -2173,6 +2288,7 @@ M.DeployWorkspaceApplicationsInput = {
 
 M.WorkSpaceApplicationDeployment = {
     type = "structure",
+    id = "WorkSpaceApplicationDeployment",
     members = {
         Associations = {
             type = "list",
@@ -2183,6 +2299,7 @@ M.WorkSpaceApplicationDeployment = {
 
 M.DeployWorkspaceApplicationsOutput = {
     type = "structure",
+    id = "DeployWorkspaceApplicationsOutput",
     members = {
         Deployment = M.WorkSpaceApplicationDeployment,
     },
@@ -2190,6 +2307,7 @@ M.DeployWorkspaceApplicationsOutput = {
 
 M.DeregisterWorkspaceDirectoryInput = {
     type = "structure",
+    id = "DeregisterWorkspaceDirectoryInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -2202,14 +2320,17 @@ M.DeregisterWorkspaceDirectoryInput = {
 
 M.DeregisterWorkspaceDirectoryOutput = {
     type = "structure",
+    id = "DeregisterWorkspaceDirectoryOutput",
 }
 
 M.DescribeAccountInput = {
     type = "structure",
+    id = "DescribeAccountInput",
 }
 
 M.DescribeAccountOutput = {
     type = "structure",
+    id = "DescribeAccountOutput",
     members = {
         DedicatedTenancySupport = {
             type = "string",
@@ -2228,6 +2349,7 @@ M.DescribeAccountOutput = {
 
 M.DescribeAccountModificationsInput = {
     type = "structure",
+    id = "DescribeAccountModificationsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2237,6 +2359,7 @@ M.DescribeAccountModificationsInput = {
 
 M.DescribeAccountModificationsOutput = {
     type = "structure",
+    id = "DescribeAccountModificationsOutput",
     members = {
         AccountModifications = {
             type = "list",
@@ -2250,6 +2373,7 @@ M.DescribeAccountModificationsOutput = {
 
 M.DescribeApplicationAssociationsInput = {
     type = "structure",
+    id = "DescribeApplicationAssociationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2275,6 +2399,7 @@ M.DescribeApplicationAssociationsInput = {
 
 M.DescribeApplicationAssociationsOutput = {
     type = "structure",
+    id = "DescribeApplicationAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -2293,6 +2418,7 @@ M.WorkSpaceApplicationLicenseType = {
 
 M.DescribeApplicationsInput = {
     type = "structure",
+    id = "DescribeApplicationsInput",
     members = {
         ApplicationIds = {
             type = "list",
@@ -2330,6 +2456,7 @@ M.WorkSpaceApplicationState = {
 
 M.WorkSpaceApplication = {
     type = "structure",
+    id = "WorkSpaceApplication",
     members = {
         ApplicationId = {
             type = "string",
@@ -2365,6 +2492,7 @@ M.WorkSpaceApplication = {
 
 M.DescribeApplicationsOutput = {
     type = "structure",
+    id = "DescribeApplicationsOutput",
     members = {
         Applications = {
             type = "list",
@@ -2378,6 +2506,7 @@ M.DescribeApplicationsOutput = {
 
 M.DescribeBundleAssociationsInput = {
     type = "structure",
+    id = "DescribeBundleAssociationsInput",
     members = {
         BundleId = {
             type = "string",
@@ -2397,6 +2526,7 @@ M.DescribeBundleAssociationsInput = {
 
 M.DescribeBundleAssociationsOutput = {
     type = "structure",
+    id = "DescribeBundleAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -2407,6 +2537,7 @@ M.DescribeBundleAssociationsOutput = {
 
 M.DescribeClientBrandingInput = {
     type = "structure",
+    id = "DescribeClientBrandingInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2419,6 +2550,7 @@ M.DescribeClientBrandingInput = {
 
 M.IosClientBrandingAttributes = {
     type = "structure",
+    id = "IosClientBrandingAttributes",
     members = {
         LogoUrl = {
             type = "string",
@@ -2448,6 +2580,7 @@ M.IosClientBrandingAttributes = {
 
 M.DescribeClientBrandingOutput = {
     type = "structure",
+    id = "DescribeClientBrandingOutput",
     members = {
         DeviceTypeWindows = M.DefaultClientBrandingAttributes,
         DeviceTypeOsx = M.DefaultClientBrandingAttributes,
@@ -2460,6 +2593,7 @@ M.DescribeClientBrandingOutput = {
 
 M.DescribeClientPropertiesInput = {
     type = "structure",
+    id = "DescribeClientPropertiesInput",
     members = {
         ResourceIds = {
             type = "list",
@@ -2473,6 +2607,7 @@ M.DescribeClientPropertiesInput = {
 
 M.DescribeClientPropertiesOutput = {
     type = "structure",
+    id = "DescribeClientPropertiesOutput",
     members = {
         ClientPropertiesList = {
             type = "list",
@@ -2483,6 +2618,7 @@ M.DescribeClientPropertiesOutput = {
 
 M.DescribeConnectClientAddInsInput = {
     type = "structure",
+    id = "DescribeConnectClientAddInsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2501,6 +2637,7 @@ M.DescribeConnectClientAddInsInput = {
 
 M.DescribeConnectClientAddInsOutput = {
     type = "structure",
+    id = "DescribeConnectClientAddInsOutput",
     members = {
         AddIns = {
             type = "list",
@@ -2514,6 +2651,7 @@ M.DescribeConnectClientAddInsOutput = {
 
 M.DescribeConnectionAliasesInput = {
     type = "structure",
+    id = "DescribeConnectionAliasesInput",
     members = {
         AliasIds = {
             type = "list",
@@ -2533,6 +2671,7 @@ M.DescribeConnectionAliasesInput = {
 
 M.DescribeConnectionAliasesOutput = {
     type = "structure",
+    id = "DescribeConnectionAliasesOutput",
     members = {
         ConnectionAliases = {
             type = "list",
@@ -2546,6 +2685,7 @@ M.DescribeConnectionAliasesOutput = {
 
 M.DescribeConnectionAliasPermissionsInput = {
     type = "structure",
+    id = "DescribeConnectionAliasPermissionsInput",
     members = {
         AliasId = {
             type = "string",
@@ -2564,6 +2704,7 @@ M.DescribeConnectionAliasPermissionsInput = {
 
 M.DescribeConnectionAliasPermissionsOutput = {
     type = "structure",
+    id = "DescribeConnectionAliasPermissionsOutput",
     members = {
         AliasId = {
             type = "string",
@@ -2580,6 +2721,7 @@ M.DescribeConnectionAliasPermissionsOutput = {
 
 M.DescribeCustomWorkspaceImageImportInput = {
     type = "structure",
+    id = "DescribeCustomWorkspaceImageImportInput",
     members = {
         ImageId = {
             type = "string",
@@ -2592,6 +2734,7 @@ M.DescribeCustomWorkspaceImageImportInput = {
 
 M.ImageSourceIdentifier = {
     type = "union",
+    id = "ImageSourceIdentifier",
     members = {
         Ec2ImportTaskId = {
             type = "string",
@@ -2607,6 +2750,7 @@ M.ImageSourceIdentifier = {
 
 M.DescribeCustomWorkspaceImageImportOutput = {
     type = "structure",
+    id = "DescribeCustomWorkspaceImageImportOutput",
     members = {
         ImageId = {
             type = "string",
@@ -2646,6 +2790,7 @@ M.ImageAssociatedResourceType = {
 
 M.DescribeImageAssociationsInput = {
     type = "structure",
+    id = "DescribeImageAssociationsInput",
     members = {
         ImageId = {
             type = "string",
@@ -2665,6 +2810,7 @@ M.DescribeImageAssociationsInput = {
 
 M.ImageResourceAssociation = {
     type = "structure",
+    id = "ImageResourceAssociation",
     members = {
         AssociatedResourceId = {
             type = "string",
@@ -2690,6 +2836,7 @@ M.ImageResourceAssociation = {
 
 M.DescribeImageAssociationsOutput = {
     type = "structure",
+    id = "DescribeImageAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -2700,6 +2847,7 @@ M.DescribeImageAssociationsOutput = {
 
 M.DescribeIpGroupsInput = {
     type = "structure",
+    id = "DescribeIpGroupsInput",
     members = {
         GroupIds = {
             type = "list",
@@ -2716,6 +2864,7 @@ M.DescribeIpGroupsInput = {
 
 M.WorkspacesIpGroup = {
     type = "structure",
+    id = "WorkspacesIpGroup",
     members = {
         groupId = {
             type = "string",
@@ -2735,6 +2884,7 @@ M.WorkspacesIpGroup = {
 
 M.DescribeIpGroupsOutput = {
     type = "structure",
+    id = "DescribeIpGroupsOutput",
     members = {
         Result = {
             type = "list",
@@ -2748,6 +2898,7 @@ M.DescribeIpGroupsOutput = {
 
 M.DescribeTagsInput = {
     type = "structure",
+    id = "DescribeTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -2760,6 +2911,7 @@ M.DescribeTagsInput = {
 
 M.DescribeTagsOutput = {
     type = "structure",
+    id = "DescribeTagsOutput",
     members = {
         TagList = {
             type = "list",
@@ -2770,6 +2922,7 @@ M.DescribeTagsOutput = {
 
 M.DescribeWorkspaceAssociationsInput = {
     type = "structure",
+    id = "DescribeWorkspaceAssociationsInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -2789,6 +2942,7 @@ M.DescribeWorkspaceAssociationsInput = {
 
 M.DescribeWorkspaceAssociationsOutput = {
     type = "structure",
+    id = "DescribeWorkspaceAssociationsOutput",
     members = {
         Associations = {
             type = "list",
@@ -2799,6 +2953,7 @@ M.DescribeWorkspaceAssociationsOutput = {
 
 M.DescribeWorkspaceBundlesInput = {
     type = "structure",
+    id = "DescribeWorkspaceBundlesInput",
     members = {
         BundleIds = {
             type = "list",
@@ -2815,6 +2970,7 @@ M.DescribeWorkspaceBundlesInput = {
 
 M.DescribeWorkspaceBundlesOutput = {
     type = "structure",
+    id = "DescribeWorkspaceBundlesOutput",
     members = {
         Bundles = {
             type = "list",
@@ -2833,6 +2989,7 @@ M.DescribeWorkspaceDirectoriesFilterName = {
 
 M.DescribeWorkspaceDirectoriesFilter = {
     type = "structure",
+    id = "DescribeWorkspaceDirectoriesFilter",
     members = {
         Name = {
             type = "string",
@@ -2852,6 +3009,7 @@ M.DescribeWorkspaceDirectoriesFilter = {
 
 M.DescribeWorkspaceDirectoriesInput = {
     type = "structure",
+    id = "DescribeWorkspaceDirectoriesInput",
     members = {
         DirectoryIds = {
             type = "list",
@@ -2888,6 +3046,7 @@ M.EndpointEncryptionMode = {
 
 M.IDCConfig = {
     type = "structure",
+    id = "IDCConfig",
     members = {
         InstanceArn = {
             type = "string",
@@ -2900,6 +3059,7 @@ M.IDCConfig = {
 
 M.MicrosoftEntraConfig = {
     type = "structure",
+    id = "MicrosoftEntraConfig",
     members = {
         TenantId = {
             type = "string",
@@ -2918,6 +3078,7 @@ M.SamlStatusEnum = {
 
 M.SamlProperties = {
     type = "structure",
+    id = "SamlProperties",
     members = {
         Status = {
             type = "string",
@@ -2933,6 +3094,7 @@ M.SamlProperties = {
 
 M.SelfservicePermissions = {
     type = "structure",
+    id = "SelfservicePermissions",
     members = {
         RestartWorkspace = {
             type = "string",
@@ -2962,6 +3124,7 @@ M.WorkspaceDirectoryState = {
 
 M.GlobalAcceleratorForDirectory = {
     type = "structure",
+    id = "GlobalAcceleratorForDirectory",
     members = {
         Mode = {
             type = "string",
@@ -2986,6 +3149,7 @@ M.StorageConnectorStatusEnum = {
 
 M.StorageConnector = {
     type = "structure",
+    id = "StorageConnector",
     members = {
         ConnectorType = {
             type = "string",
@@ -3021,6 +3185,7 @@ M.UserSettingPermissionEnum = {
 
 M.UserSetting = {
     type = "structure",
+    id = "UserSetting",
     members = {
         Action = {
             type = "string",
@@ -3042,6 +3207,7 @@ M.UserSetting = {
 
 M.StreamingProperties = {
     type = "structure",
+    id = "StreamingProperties",
     members = {
         StreamingExperiencePreferredProtocol = {
             type = "string",
@@ -3071,6 +3237,7 @@ M.UserIdentityType = {
 
 M.WorkspaceAccessProperties = {
     type = "structure",
+    id = "WorkspaceAccessProperties",
     members = {
         DeviceTypeWindows = {
             type = "string",
@@ -3110,6 +3277,7 @@ M.WorkspaceType = {
 
 M.WorkspaceDirectory = {
     type = "structure",
+    id = "WorkspaceDirectory",
     members = {
         DirectoryId = {
             type = "string",
@@ -3189,6 +3357,7 @@ M.WorkspaceDirectory = {
 
 M.DescribeWorkspaceDirectoriesOutput = {
     type = "structure",
+    id = "DescribeWorkspaceDirectoriesOutput",
     members = {
         Directories = {
             type = "list",
@@ -3202,6 +3371,7 @@ M.DescribeWorkspaceDirectoriesOutput = {
 
 M.DescribeWorkspaceImagePermissionsInput = {
     type = "structure",
+    id = "DescribeWorkspaceImagePermissionsInput",
     members = {
         ImageId = {
             type = "string",
@@ -3220,6 +3390,7 @@ M.DescribeWorkspaceImagePermissionsInput = {
 
 M.ImagePermission = {
     type = "structure",
+    id = "ImagePermission",
     members = {
         SharedAccountId = {
             type = "string",
@@ -3229,6 +3400,7 @@ M.ImagePermission = {
 
 M.DescribeWorkspaceImagePermissionsOutput = {
     type = "structure",
+    id = "DescribeWorkspaceImagePermissionsOutput",
     members = {
         ImageId = {
             type = "string",
@@ -3250,6 +3422,7 @@ M.ImageType = {
 
 M.DescribeWorkspaceImagesInput = {
     type = "structure",
+    id = "DescribeWorkspaceImagesInput",
     members = {
         ImageIds = {
             type = "list",
@@ -3320,6 +3493,7 @@ M.WorkspaceImageErrorDetailCode = {
 
 M.ErrorDetails = {
     type = "structure",
+    id = "ErrorDetails",
     members = {
         ErrorCode = {
             type = "string",
@@ -3332,6 +3506,7 @@ M.ErrorDetails = {
 
 M.UpdateResult = {
     type = "structure",
+    id = "UpdateResult",
     members = {
         UpdateAvailable = {
             type = "boolean",
@@ -3344,6 +3519,7 @@ M.UpdateResult = {
 
 M.WorkspaceImage = {
     type = "structure",
+    id = "WorkspaceImage",
     members = {
         ImageId = {
             type = "string",
@@ -3383,6 +3559,7 @@ M.WorkspaceImage = {
 
 M.DescribeWorkspaceImagesOutput = {
     type = "structure",
+    id = "DescribeWorkspaceImagesOutput",
     members = {
         Images = {
             type = "list",
@@ -3396,6 +3573,7 @@ M.DescribeWorkspaceImagesOutput = {
 
 M.DescribeWorkspacesInput = {
     type = "structure",
+    id = "DescribeWorkspacesInput",
     members = {
         WorkspaceIds = {
             type = "list",
@@ -3424,6 +3602,7 @@ M.DescribeWorkspacesInput = {
 
 M.DescribeWorkspacesOutput = {
     type = "structure",
+    id = "DescribeWorkspacesOutput",
     members = {
         Workspaces = {
             type = "list",
@@ -3437,6 +3616,7 @@ M.DescribeWorkspacesOutput = {
 
 M.DescribeWorkspacesConnectionStatusInput = {
     type = "structure",
+    id = "DescribeWorkspacesConnectionStatusInput",
     members = {
         WorkspaceIds = {
             type = "list",
@@ -3450,6 +3630,7 @@ M.DescribeWorkspacesConnectionStatusInput = {
 
 M.WorkspaceConnectionStatus = {
     type = "structure",
+    id = "WorkspaceConnectionStatus",
     members = {
         WorkspaceId = {
             type = "string",
@@ -3468,6 +3649,7 @@ M.WorkspaceConnectionStatus = {
 
 M.DescribeWorkspacesConnectionStatusOutput = {
     type = "structure",
+    id = "DescribeWorkspacesConnectionStatusOutput",
     members = {
         WorkspacesConnectionStatus = {
             type = "list",
@@ -3481,6 +3663,7 @@ M.DescribeWorkspacesConnectionStatusOutput = {
 
 M.DescribeWorkspaceSnapshotsInput = {
     type = "structure",
+    id = "DescribeWorkspaceSnapshotsInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -3493,6 +3676,7 @@ M.DescribeWorkspaceSnapshotsInput = {
 
 M.Snapshot = {
     type = "structure",
+    id = "Snapshot",
     members = {
         SnapshotTime = {
             type = "timestamp",
@@ -3502,6 +3686,7 @@ M.Snapshot = {
 
 M.DescribeWorkspaceSnapshotsOutput = {
     type = "structure",
+    id = "DescribeWorkspaceSnapshotsOutput",
     members = {
         RebuildSnapshots = {
             type = "list",
@@ -3527,6 +3712,7 @@ M.DescribeWorkspacesPoolsFilterOperator = {
 
 M.DescribeWorkspacesPoolsFilter = {
     type = "structure",
+    id = "DescribeWorkspacesPoolsFilter",
     members = {
         Name = {
             type = "string",
@@ -3552,6 +3738,7 @@ M.DescribeWorkspacesPoolsFilter = {
 
 M.DescribeWorkspacesPoolsInput = {
     type = "structure",
+    id = "DescribeWorkspacesPoolsInput",
     members = {
         PoolIds = {
             type = "list",
@@ -3572,6 +3759,7 @@ M.DescribeWorkspacesPoolsInput = {
 
 M.DescribeWorkspacesPoolsOutput = {
     type = "structure",
+    id = "DescribeWorkspacesPoolsOutput",
     members = {
         WorkspacesPools = {
             type = "list",
@@ -3585,6 +3773,7 @@ M.DescribeWorkspacesPoolsOutput = {
 
 M.DescribeWorkspacesPoolSessionsInput = {
     type = "structure",
+    id = "DescribeWorkspacesPoolSessionsInput",
     members = {
         PoolId = {
             type = "string",
@@ -3611,6 +3800,7 @@ M.SessionConnectionState = {
 
 M.NetworkAccessConfiguration = {
     type = "structure",
+    id = "NetworkAccessConfiguration",
     members = {
         EniPrivateIpAddress = {
             type = "string",
@@ -3623,6 +3813,7 @@ M.NetworkAccessConfiguration = {
 
 M.WorkspacesPoolSession = {
     type = "structure",
+    id = "WorkspacesPoolSession",
     members = {
         AuthenticationType = {
             type = "string",
@@ -3663,6 +3854,7 @@ M.WorkspacesPoolSession = {
 
 M.DescribeWorkspacesPoolSessionsOutput = {
     type = "structure",
+    id = "DescribeWorkspacesPoolSessionsOutput",
     members = {
         Sessions = {
             type = "list",
@@ -3676,6 +3868,7 @@ M.DescribeWorkspacesPoolSessionsOutput = {
 
 M.DisassociateConnectionAliasInput = {
     type = "structure",
+    id = "DisassociateConnectionAliasInput",
     members = {
         AliasId = {
             type = "string",
@@ -3688,10 +3881,12 @@ M.DisassociateConnectionAliasInput = {
 
 M.DisassociateConnectionAliasOutput = {
     type = "structure",
+    id = "DisassociateConnectionAliasOutput",
 }
 
 M.DisassociateIpGroupsInput = {
     type = "structure",
+    id = "DisassociateIpGroupsInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -3711,10 +3906,12 @@ M.DisassociateIpGroupsInput = {
 
 M.DisassociateIpGroupsOutput = {
     type = "structure",
+    id = "DisassociateIpGroupsOutput",
 }
 
 M.DisassociateWorkspaceApplicationInput = {
     type = "structure",
+    id = "DisassociateWorkspaceApplicationInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -3733,6 +3930,7 @@ M.DisassociateWorkspaceApplicationInput = {
 
 M.DisassociateWorkspaceApplicationOutput = {
     type = "structure",
+    id = "DisassociateWorkspaceApplicationOutput",
     members = {
         Association = M.WorkspaceResourceAssociation,
     },
@@ -3740,6 +3938,7 @@ M.DisassociateWorkspaceApplicationOutput = {
 
 M.FailedWorkspaceChangeRequest = {
     type = "structure",
+    id = "FailedWorkspaceChangeRequest",
     members = {
         WorkspaceId = {
             type = "string",
@@ -3755,6 +3954,7 @@ M.FailedWorkspaceChangeRequest = {
 
 M.GetAccountLinkInput = {
     type = "structure",
+    id = "GetAccountLinkInput",
     members = {
         LinkId = {
             type = "string",
@@ -3767,6 +3967,7 @@ M.GetAccountLinkInput = {
 
 M.GetAccountLinkOutput = {
     type = "structure",
+    id = "GetAccountLinkOutput",
     members = {
         AccountLink = M.AccountLink,
     },
@@ -3780,6 +3981,7 @@ M.ImageComputeType = {
 
 M.IosImportClientBrandingAttributes = {
     type = "structure",
+    id = "IosImportClientBrandingAttributes",
     members = {
         Logo = {
             type = "blob",
@@ -3809,6 +4011,7 @@ M.IosImportClientBrandingAttributes = {
 
 M.ImportClientBrandingInput = {
     type = "structure",
+    id = "ImportClientBrandingInput",
     members = {
         ResourceId = {
             type = "string",
@@ -3827,6 +4030,7 @@ M.ImportClientBrandingInput = {
 
 M.ImportClientBrandingOutput = {
     type = "structure",
+    id = "ImportClientBrandingOutput",
     members = {
         DeviceTypeWindows = M.DefaultClientBrandingAttributes,
         DeviceTypeOsx = M.DefaultClientBrandingAttributes,
@@ -3848,6 +4052,7 @@ M.Platform = {
 
 M.ImportCustomWorkspaceImageInput = {
     type = "structure",
+    id = "ImportCustomWorkspaceImageInput",
     members = {
         ImageName = {
             type = "string",
@@ -3903,6 +4108,7 @@ M.ImportCustomWorkspaceImageInput = {
 
 M.ImportCustomWorkspaceImageOutput = {
     type = "structure",
+    id = "ImportCustomWorkspaceImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -3926,6 +4132,7 @@ M.WorkspaceImageIngestionProcess = {
 
 M.ImportWorkspaceImageInput = {
     type = "structure",
+    id = "ImportWorkspaceImageInput",
     members = {
         Ec2ImageId = {
             type = "string",
@@ -3964,6 +4171,7 @@ M.ImportWorkspaceImageInput = {
 
 M.ImportWorkspaceImageOutput = {
     type = "structure",
+    id = "ImportWorkspaceImageOutput",
     members = {
         ImageId = {
             type = "string",
@@ -3973,6 +4181,7 @@ M.ImportWorkspaceImageOutput = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         message = {
@@ -3983,6 +4192,7 @@ M.InvalidParameterCombinationException = {
 
 M.ListAccountLinksInput = {
     type = "structure",
+    id = "ListAccountLinksInput",
     members = {
         LinkStatusFilter = {
             type = "list",
@@ -3999,6 +4209,7 @@ M.ListAccountLinksInput = {
 
 M.ListAccountLinksOutput = {
     type = "structure",
+    id = "ListAccountLinksOutput",
     members = {
         AccountLinks = {
             type = "list",
@@ -4012,6 +4223,7 @@ M.ListAccountLinksOutput = {
 
 M.ListAvailableManagementCidrRangesInput = {
     type = "structure",
+    id = "ListAvailableManagementCidrRangesInput",
     members = {
         ManagementCidrRangeConstraint = {
             type = "string",
@@ -4030,6 +4242,7 @@ M.ListAvailableManagementCidrRangesInput = {
 
 M.ListAvailableManagementCidrRangesOutput = {
     type = "structure",
+    id = "ListAvailableManagementCidrRangesOutput",
     members = {
         ManagementCidrRanges = {
             type = "list",
@@ -4043,6 +4256,7 @@ M.ListAvailableManagementCidrRangesOutput = {
 
 M.MigrateWorkspaceInput = {
     type = "structure",
+    id = "MigrateWorkspaceInput",
     members = {
         SourceWorkspaceId = {
             type = "string",
@@ -4061,6 +4275,7 @@ M.MigrateWorkspaceInput = {
 
 M.MigrateWorkspaceOutput = {
     type = "structure",
+    id = "MigrateWorkspaceOutput",
     members = {
         SourceWorkspaceId = {
             type = "string",
@@ -4073,6 +4288,7 @@ M.MigrateWorkspaceOutput = {
 
 M.OperationInProgressException = {
     type = "structure",
+    id = "OperationInProgressException",
     error = "client",
     members = {
         message = {
@@ -4083,6 +4299,7 @@ M.OperationInProgressException = {
 
 M.ModifyAccountInput = {
     type = "structure",
+    id = "ModifyAccountInput",
     members = {
         DedicatedTenancySupport = {
             type = "string",
@@ -4095,6 +4312,7 @@ M.ModifyAccountInput = {
 
 M.ModifyAccountOutput = {
     type = "structure",
+    id = "ModifyAccountOutput",
     members = {
         Message = {
             type = "string",
@@ -4104,6 +4322,7 @@ M.ModifyAccountOutput = {
 
 M.ModifyCertificateBasedAuthPropertiesInput = {
     type = "structure",
+    id = "ModifyCertificateBasedAuthPropertiesInput",
     members = {
         ResourceId = {
             type = "string",
@@ -4121,10 +4340,12 @@ M.ModifyCertificateBasedAuthPropertiesInput = {
 
 M.ModifyCertificateBasedAuthPropertiesOutput = {
     type = "structure",
+    id = "ModifyCertificateBasedAuthPropertiesOutput",
 }
 
 M.ModifyClientPropertiesInput = {
     type = "structure",
+    id = "ModifyClientPropertiesInput",
     members = {
         ResourceId = {
             type = "string",
@@ -4140,10 +4361,12 @@ M.ModifyClientPropertiesInput = {
 
 M.ModifyClientPropertiesOutput = {
     type = "structure",
+    id = "ModifyClientPropertiesOutput",
 }
 
 M.ModifyEndpointEncryptionModeInput = {
     type = "structure",
+    id = "ModifyEndpointEncryptionModeInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -4162,10 +4385,12 @@ M.ModifyEndpointEncryptionModeInput = {
 
 M.ModifyEndpointEncryptionModeOutput = {
     type = "structure",
+    id = "ModifyEndpointEncryptionModeOutput",
 }
 
 M.ModifySamlPropertiesInput = {
     type = "structure",
+    id = "ModifySamlPropertiesInput",
     members = {
         ResourceId = {
             type = "string",
@@ -4183,10 +4408,12 @@ M.ModifySamlPropertiesInput = {
 
 M.ModifySamlPropertiesOutput = {
     type = "structure",
+    id = "ModifySamlPropertiesOutput",
 }
 
 M.ModifySelfservicePermissionsInput = {
     type = "structure",
+    id = "ModifySelfservicePermissionsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -4202,10 +4429,12 @@ M.ModifySelfservicePermissionsInput = {
 
 M.ModifySelfservicePermissionsOutput = {
     type = "structure",
+    id = "ModifySelfservicePermissionsOutput",
 }
 
 M.ModifyStreamingPropertiesInput = {
     type = "structure",
+    id = "ModifyStreamingPropertiesInput",
     members = {
         ResourceId = {
             type = "string",
@@ -4219,10 +4448,12 @@ M.ModifyStreamingPropertiesInput = {
 
 M.ModifyStreamingPropertiesOutput = {
     type = "structure",
+    id = "ModifyStreamingPropertiesOutput",
 }
 
 M.ModifyWorkspaceAccessPropertiesInput = {
     type = "structure",
+    id = "ModifyWorkspaceAccessPropertiesInput",
     members = {
         ResourceId = {
             type = "string",
@@ -4238,10 +4469,12 @@ M.ModifyWorkspaceAccessPropertiesInput = {
 
 M.ModifyWorkspaceAccessPropertiesOutput = {
     type = "structure",
+    id = "ModifyWorkspaceAccessPropertiesOutput",
 }
 
 M.WorkspaceCreationProperties = {
     type = "structure",
+    id = "WorkspaceCreationProperties",
     members = {
         EnableInternetAccess = {
             type = "boolean",
@@ -4266,6 +4499,7 @@ M.WorkspaceCreationProperties = {
 
 M.ModifyWorkspaceCreationPropertiesInput = {
     type = "structure",
+    id = "ModifyWorkspaceCreationPropertiesInput",
     members = {
         ResourceId = {
             type = "string",
@@ -4281,10 +4515,12 @@ M.ModifyWorkspaceCreationPropertiesInput = {
 
 M.ModifyWorkspaceCreationPropertiesOutput = {
     type = "structure",
+    id = "ModifyWorkspaceCreationPropertiesOutput",
 }
 
 M.ModifyWorkspacePropertiesInput = {
     type = "structure",
+    id = "ModifyWorkspacePropertiesInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4301,10 +4537,12 @@ M.ModifyWorkspacePropertiesInput = {
 
 M.ModifyWorkspacePropertiesOutput = {
     type = "structure",
+    id = "ModifyWorkspacePropertiesOutput",
 }
 
 M.UnsupportedWorkspaceConfigurationException = {
     type = "structure",
+    id = "UnsupportedWorkspaceConfigurationException",
     error = "client",
     members = {
         message = {
@@ -4320,6 +4558,7 @@ M.TargetWorkspaceState = {
 
 M.ModifyWorkspaceStateInput = {
     type = "structure",
+    id = "ModifyWorkspaceStateInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4338,10 +4577,12 @@ M.ModifyWorkspaceStateInput = {
 
 M.ModifyWorkspaceStateOutput = {
     type = "structure",
+    id = "ModifyWorkspaceStateOutput",
 }
 
 M.RebootRequest = {
     type = "structure",
+    id = "RebootRequest",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4354,6 +4595,7 @@ M.RebootRequest = {
 
 M.RebootWorkspacesInput = {
     type = "structure",
+    id = "RebootWorkspacesInput",
     members = {
         RebootWorkspaceRequests = {
             type = "list",
@@ -4367,6 +4609,7 @@ M.RebootWorkspacesInput = {
 
 M.RebootWorkspacesOutput = {
     type = "structure",
+    id = "RebootWorkspacesOutput",
     members = {
         FailedRequests = {
             type = "list",
@@ -4377,6 +4620,7 @@ M.RebootWorkspacesOutput = {
 
 M.RebuildRequest = {
     type = "structure",
+    id = "RebuildRequest",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4389,6 +4633,7 @@ M.RebuildRequest = {
 
 M.RebuildWorkspacesInput = {
     type = "structure",
+    id = "RebuildWorkspacesInput",
     members = {
         RebuildWorkspaceRequests = {
             type = "list",
@@ -4402,6 +4647,7 @@ M.RebuildWorkspacesInput = {
 
 M.RebuildWorkspacesOutput = {
     type = "structure",
+    id = "RebuildWorkspacesOutput",
     members = {
         FailedRequests = {
             type = "list",
@@ -4412,6 +4658,7 @@ M.RebuildWorkspacesOutput = {
 
 M.RegisterWorkspaceDirectoryInput = {
     type = "structure",
+    id = "RegisterWorkspaceDirectoryInput",
     members = {
         DirectoryId = {
             type = "string",
@@ -4452,6 +4699,7 @@ M.RegisterWorkspaceDirectoryInput = {
 
 M.RegisterWorkspaceDirectoryOutput = {
     type = "structure",
+    id = "RegisterWorkspaceDirectoryOutput",
     members = {
         DirectoryId = {
             type = "string",
@@ -4464,6 +4712,7 @@ M.RegisterWorkspaceDirectoryOutput = {
 
 M.UnsupportedNetworkConfigurationException = {
     type = "structure",
+    id = "UnsupportedNetworkConfigurationException",
     error = "client",
     members = {
         message = {
@@ -4474,6 +4723,7 @@ M.UnsupportedNetworkConfigurationException = {
 
 M.WorkspacesDefaultRoleNotFoundException = {
     type = "structure",
+    id = "WorkspacesDefaultRoleNotFoundException",
     error = "client",
     members = {
         message = {
@@ -4484,6 +4734,7 @@ M.WorkspacesDefaultRoleNotFoundException = {
 
 M.RejectAccountLinkInvitationInput = {
     type = "structure",
+    id = "RejectAccountLinkInvitationInput",
     members = {
         LinkId = {
             type = "string",
@@ -4499,6 +4750,7 @@ M.RejectAccountLinkInvitationInput = {
 
 M.RejectAccountLinkInvitationOutput = {
     type = "structure",
+    id = "RejectAccountLinkInvitationOutput",
     members = {
         AccountLink = M.AccountLink,
     },
@@ -4506,6 +4758,7 @@ M.RejectAccountLinkInvitationOutput = {
 
 M.RestoreWorkspaceInput = {
     type = "structure",
+    id = "RestoreWorkspaceInput",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4518,10 +4771,12 @@ M.RestoreWorkspaceInput = {
 
 M.RestoreWorkspaceOutput = {
     type = "structure",
+    id = "RestoreWorkspaceOutput",
 }
 
 M.RevokeIpRulesInput = {
     type = "structure",
+    id = "RevokeIpRulesInput",
     members = {
         GroupId = {
             type = "string",
@@ -4541,10 +4796,12 @@ M.RevokeIpRulesInput = {
 
 M.RevokeIpRulesOutput = {
     type = "structure",
+    id = "RevokeIpRulesOutput",
 }
 
 M.StartRequest = {
     type = "structure",
+    id = "StartRequest",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4554,6 +4811,7 @@ M.StartRequest = {
 
 M.StartWorkspacesInput = {
     type = "structure",
+    id = "StartWorkspacesInput",
     members = {
         StartWorkspaceRequests = {
             type = "list",
@@ -4567,6 +4825,7 @@ M.StartWorkspacesInput = {
 
 M.StartWorkspacesOutput = {
     type = "structure",
+    id = "StartWorkspacesOutput",
     members = {
         FailedRequests = {
             type = "list",
@@ -4577,6 +4836,7 @@ M.StartWorkspacesOutput = {
 
 M.StartWorkspacesPoolInput = {
     type = "structure",
+    id = "StartWorkspacesPoolInput",
     members = {
         PoolId = {
             type = "string",
@@ -4589,10 +4849,12 @@ M.StartWorkspacesPoolInput = {
 
 M.StartWorkspacesPoolOutput = {
     type = "structure",
+    id = "StartWorkspacesPoolOutput",
 }
 
 M.StopRequest = {
     type = "structure",
+    id = "StopRequest",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4602,6 +4864,7 @@ M.StopRequest = {
 
 M.StopWorkspacesInput = {
     type = "structure",
+    id = "StopWorkspacesInput",
     members = {
         StopWorkspaceRequests = {
             type = "list",
@@ -4615,6 +4878,7 @@ M.StopWorkspacesInput = {
 
 M.StopWorkspacesOutput = {
     type = "structure",
+    id = "StopWorkspacesOutput",
     members = {
         FailedRequests = {
             type = "list",
@@ -4625,6 +4889,7 @@ M.StopWorkspacesOutput = {
 
 M.StopWorkspacesPoolInput = {
     type = "structure",
+    id = "StopWorkspacesPoolInput",
     members = {
         PoolId = {
             type = "string",
@@ -4637,10 +4902,12 @@ M.StopWorkspacesPoolInput = {
 
 M.StopWorkspacesPoolOutput = {
     type = "structure",
+    id = "StopWorkspacesPoolOutput",
 }
 
 M.TerminateRequest = {
     type = "structure",
+    id = "TerminateRequest",
     members = {
         WorkspaceId = {
             type = "string",
@@ -4653,6 +4920,7 @@ M.TerminateRequest = {
 
 M.TerminateWorkspacesInput = {
     type = "structure",
+    id = "TerminateWorkspacesInput",
     members = {
         TerminateWorkspaceRequests = {
             type = "list",
@@ -4666,6 +4934,7 @@ M.TerminateWorkspacesInput = {
 
 M.TerminateWorkspacesOutput = {
     type = "structure",
+    id = "TerminateWorkspacesOutput",
     members = {
         FailedRequests = {
             type = "list",
@@ -4676,6 +4945,7 @@ M.TerminateWorkspacesOutput = {
 
 M.TerminateWorkspacesPoolInput = {
     type = "structure",
+    id = "TerminateWorkspacesPoolInput",
     members = {
         PoolId = {
             type = "string",
@@ -4688,10 +4958,12 @@ M.TerminateWorkspacesPoolInput = {
 
 M.TerminateWorkspacesPoolOutput = {
     type = "structure",
+    id = "TerminateWorkspacesPoolOutput",
 }
 
 M.TerminateWorkspacesPoolSessionInput = {
     type = "structure",
+    id = "TerminateWorkspacesPoolSessionInput",
     members = {
         SessionId = {
             type = "string",
@@ -4704,10 +4976,12 @@ M.TerminateWorkspacesPoolSessionInput = {
 
 M.TerminateWorkspacesPoolSessionOutput = {
     type = "structure",
+    id = "TerminateWorkspacesPoolSessionOutput",
 }
 
 M.UpdateConnectClientAddInInput = {
     type = "structure",
+    id = "UpdateConnectClientAddInInput",
     members = {
         AddInId = {
             type = "string",
@@ -4732,10 +5006,12 @@ M.UpdateConnectClientAddInInput = {
 
 M.UpdateConnectClientAddInOutput = {
     type = "structure",
+    id = "UpdateConnectClientAddInOutput",
 }
 
 M.UpdateConnectionAliasPermissionInput = {
     type = "structure",
+    id = "UpdateConnectionAliasPermissionInput",
     members = {
         AliasId = {
             type = "string",
@@ -4751,10 +5027,12 @@ M.UpdateConnectionAliasPermissionInput = {
 
 M.UpdateConnectionAliasPermissionOutput = {
     type = "structure",
+    id = "UpdateConnectionAliasPermissionOutput",
 }
 
 M.UpdateRulesOfIpGroupInput = {
     type = "structure",
+    id = "UpdateRulesOfIpGroupInput",
     members = {
         GroupId = {
             type = "string",
@@ -4774,10 +5052,12 @@ M.UpdateRulesOfIpGroupInput = {
 
 M.UpdateRulesOfIpGroupOutput = {
     type = "structure",
+    id = "UpdateRulesOfIpGroupOutput",
 }
 
 M.UpdateWorkspaceBundleInput = {
     type = "structure",
+    id = "UpdateWorkspaceBundleInput",
     members = {
         BundleId = {
             type = "string",
@@ -4790,10 +5070,12 @@ M.UpdateWorkspaceBundleInput = {
 
 M.UpdateWorkspaceBundleOutput = {
     type = "structure",
+    id = "UpdateWorkspaceBundleOutput",
 }
 
 M.UpdateWorkspaceImagePermissionInput = {
     type = "structure",
+    id = "UpdateWorkspaceImagePermissionInput",
     members = {
         ImageId = {
             type = "string",
@@ -4818,10 +5100,12 @@ M.UpdateWorkspaceImagePermissionInput = {
 
 M.UpdateWorkspaceImagePermissionOutput = {
     type = "structure",
+    id = "UpdateWorkspaceImagePermissionOutput",
 }
 
 M.UpdateWorkspacesPoolInput = {
     type = "structure",
+    id = "UpdateWorkspacesPoolInput",
     members = {
         PoolId = {
             type = "string",
@@ -4849,6 +5133,7 @@ M.UpdateWorkspacesPoolInput = {
 
 M.UpdateWorkspacesPoolOutput = {
     type = "structure",
+    id = "UpdateWorkspacesPoolOutput",
     members = {
         WorkspacesPool = M.WorkspacesPool,
     },

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -67,6 +69,7 @@ M.FailoverMode = {
 
 M.S3Configuration = {
     type = "structure",
+    id = "S3Configuration",
     members = {
         bucketName = {
             type = "string",
@@ -85,6 +88,7 @@ M.S3Configuration = {
 
 M.LogDeliveryConfiguration = {
     type = "structure",
+    id = "LogDeliveryConfiguration",
     members = {
         s3Configuration = setmetatable({ traits = {
             required = true,
@@ -94,6 +98,7 @@ M.LogDeliveryConfiguration = {
 
 M.MaintenanceSchedule = {
     type = "structure",
+    id = "MaintenanceSchedule",
     members = {
         timezone = {
             type = "string",
@@ -117,6 +122,7 @@ M.NetworkType = {
 
 M.CreateDbClusterInput = {
     type = "structure",
+    id = "CreateDbClusterInput",
     members = {
         name = {
             type = "string",
@@ -206,6 +212,7 @@ M.ClusterStatus = {
 
 M.CreateDbClusterOutput = {
     type = "structure",
+    id = "CreateDbClusterOutput",
     members = {
         dbClusterId = {
             type = "string",
@@ -218,6 +225,7 @@ M.CreateDbClusterOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -231,6 +239,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -256,6 +265,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -269,6 +279,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -293,6 +304,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -312,6 +324,7 @@ M.ValidationException = {
 
 M.DeleteDbClusterInput = {
     type = "structure",
+    id = "DeleteDbClusterInput",
     members = {
         dbClusterId = {
             type = "string",
@@ -324,6 +337,7 @@ M.DeleteDbClusterInput = {
 
 M.DeleteDbClusterOutput = {
     type = "structure",
+    id = "DeleteDbClusterOutput",
     members = {
         dbClusterStatus = {
             type = "string",
@@ -333,6 +347,7 @@ M.DeleteDbClusterOutput = {
 
 M.GetDbClusterInput = {
     type = "structure",
+    id = "GetDbClusterInput",
     members = {
         dbClusterId = {
             type = "string",
@@ -345,6 +360,7 @@ M.GetDbClusterInput = {
 
 M.ClusterConfiguration = {
     type = "structure",
+    id = "ClusterConfiguration",
     members = {
         ingestQueryInstances = {
             type = "integer",
@@ -366,6 +382,7 @@ M.EngineType = {
 
 M.GetDbClusterOutput = {
     type = "structure",
+    id = "GetDbClusterOutput",
     members = {
         id = {
             type = "string",
@@ -455,6 +472,7 @@ M.GetDbClusterOutput = {
 
 M.ListDbClustersInput = {
     type = "structure",
+    id = "ListDbClustersInput",
     members = {
         nextToken = {
             type = "string",
@@ -467,6 +485,7 @@ M.ListDbClustersInput = {
 
 M.DbClusterSummary = {
     type = "structure",
+    id = "DbClusterSummary",
     members = {
         id = {
             type = "string",
@@ -521,6 +540,7 @@ M.DbClusterSummary = {
 
 M.ListDbClustersOutput = {
     type = "structure",
+    id = "ListDbClustersOutput",
     members = {
         items = {
             type = "list",
@@ -537,6 +557,7 @@ M.ListDbClustersOutput = {
 
 M.ListDbInstancesForClusterInput = {
     type = "structure",
+    id = "ListDbInstancesForClusterInput",
     members = {
         dbClusterId = {
             type = "string",
@@ -585,6 +606,7 @@ M.Status = {
 
 M.DbInstanceForClusterSummary = {
     type = "structure",
+    id = "DbInstanceForClusterSummary",
     members = {
         id = {
             type = "string",
@@ -640,6 +662,7 @@ M.DbInstanceForClusterSummary = {
 
 M.ListDbInstancesForClusterOutput = {
     type = "structure",
+    id = "ListDbInstancesForClusterOutput",
     members = {
         items = {
             type = "list",
@@ -656,6 +679,7 @@ M.ListDbInstancesForClusterOutput = {
 
 M.RebootDbClusterInput = {
     type = "structure",
+    id = "RebootDbClusterInput",
     members = {
         dbClusterId = {
             type = "string",
@@ -672,6 +696,7 @@ M.RebootDbClusterInput = {
 
 M.RebootDbClusterOutput = {
     type = "structure",
+    id = "RebootDbClusterOutput",
     members = {
         dbClusterStatus = {
             type = "string",
@@ -681,6 +706,7 @@ M.RebootDbClusterOutput = {
 
 M.UpdateDbClusterInput = {
     type = "structure",
+    id = "UpdateDbClusterInput",
     members = {
         dbClusterId = {
             type = "string",
@@ -707,6 +733,7 @@ M.UpdateDbClusterInput = {
 
 M.UpdateDbClusterOutput = {
     type = "structure",
+    id = "UpdateDbClusterOutput",
     members = {
         dbClusterStatus = {
             type = "string",
@@ -716,6 +743,7 @@ M.UpdateDbClusterOutput = {
 
 M.CreateDbInstanceInput = {
     type = "structure",
+    id = "CreateDbInstanceInput",
     members = {
         name = {
             type = "string",
@@ -797,6 +825,7 @@ M.CreateDbInstanceInput = {
 
 M.CreateDbInstanceOutput = {
     type = "structure",
+    id = "CreateDbInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -895,6 +924,7 @@ M.CreateDbInstanceOutput = {
 
 M.DeleteDbInstanceInput = {
     type = "structure",
+    id = "DeleteDbInstanceInput",
     members = {
         identifier = {
             type = "string",
@@ -907,6 +937,7 @@ M.DeleteDbInstanceInput = {
 
 M.DeleteDbInstanceOutput = {
     type = "structure",
+    id = "DeleteDbInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -1005,6 +1036,7 @@ M.DeleteDbInstanceOutput = {
 
 M.GetDbInstanceInput = {
     type = "structure",
+    id = "GetDbInstanceInput",
     members = {
         identifier = {
             type = "string",
@@ -1017,6 +1049,7 @@ M.GetDbInstanceInput = {
 
 M.GetDbInstanceOutput = {
     type = "structure",
+    id = "GetDbInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -1115,6 +1148,7 @@ M.GetDbInstanceOutput = {
 
 M.ListDbInstancesInput = {
     type = "structure",
+    id = "ListDbInstancesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1127,6 +1161,7 @@ M.ListDbInstancesInput = {
 
 M.DbInstanceSummary = {
     type = "structure",
+    id = "DbInstanceSummary",
     members = {
         id = {
             type = "string",
@@ -1175,6 +1210,7 @@ M.DbInstanceSummary = {
 
 M.ListDbInstancesOutput = {
     type = "structure",
+    id = "ListDbInstancesOutput",
     members = {
         items = {
             type = "list",
@@ -1191,6 +1227,7 @@ M.ListDbInstancesOutput = {
 
 M.RebootDbInstanceInput = {
     type = "structure",
+    id = "RebootDbInstanceInput",
     members = {
         identifier = {
             type = "string",
@@ -1203,6 +1240,7 @@ M.RebootDbInstanceInput = {
 
 M.RebootDbInstanceOutput = {
     type = "structure",
+    id = "RebootDbInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -1301,6 +1339,7 @@ M.RebootDbInstanceOutput = {
 
 M.UpdateDbInstanceInput = {
     type = "structure",
+    id = "UpdateDbInstanceInput",
     members = {
         identifier = {
             type = "string",
@@ -1333,6 +1372,7 @@ M.UpdateDbInstanceInput = {
 
 M.UpdateDbInstanceOutput = {
     type = "structure",
+    id = "UpdateDbInstanceOutput",
     members = {
         id = {
             type = "string",
@@ -1439,6 +1479,7 @@ M.DurationType = {
 
 M.Duration = {
     type = "structure",
+    id = "Duration",
     members = {
         durationType = {
             type = "string",
@@ -1469,6 +1510,7 @@ M.TracingType = {
 
 M.InfluxDBv2Parameters = {
     type = "structure",
+    id = "InfluxDBv2Parameters",
     members = {
         fluxLogEnabled = {
             type = "boolean",
@@ -1566,6 +1608,7 @@ M.DataFusionRuntimeType = {
 
 M.PercentOrAbsoluteLong = {
     type = "union",
+    id = "PercentOrAbsoluteLong",
     members = {
         percent = {
             type = "string",
@@ -1582,6 +1625,7 @@ M.LogFormats = {
 
 M.InfluxDBv3CoreParameters = {
     type = "structure",
+    id = "InfluxDBv3CoreParameters",
     members = {
         queryFileLimit = {
             type = "integer",
@@ -1677,6 +1721,7 @@ M.InfluxDBv3CoreParameters = {
 
 M.InfluxDBv3EnterpriseParameters = {
     type = "structure",
+    id = "InfluxDBv3EnterpriseParameters",
     members = {
         queryFileLimit = {
             type = "integer",
@@ -1810,6 +1855,7 @@ M.InfluxDBv3EnterpriseParameters = {
 
 M.Parameters = {
     type = "union",
+    id = "Parameters",
     members = {
         InfluxDBv2 = M.InfluxDBv2Parameters,
         InfluxDBv3Core = M.InfluxDBv3CoreParameters,
@@ -1819,6 +1865,7 @@ M.Parameters = {
 
 M.CreateDbParameterGroupInput = {
     type = "structure",
+    id = "CreateDbParameterGroupInput",
     members = {
         name = {
             type = "string",
@@ -1840,6 +1887,7 @@ M.CreateDbParameterGroupInput = {
 
 M.CreateDbParameterGroupOutput = {
     type = "structure",
+    id = "CreateDbParameterGroupOutput",
     members = {
         id = {
             type = "string",
@@ -1868,6 +1916,7 @@ M.CreateDbParameterGroupOutput = {
 
 M.GetDbParameterGroupInput = {
     type = "structure",
+    id = "GetDbParameterGroupInput",
     members = {
         identifier = {
             type = "string",
@@ -1880,6 +1929,7 @@ M.GetDbParameterGroupInput = {
 
 M.GetDbParameterGroupOutput = {
     type = "structure",
+    id = "GetDbParameterGroupOutput",
     members = {
         id = {
             type = "string",
@@ -1908,6 +1958,7 @@ M.GetDbParameterGroupOutput = {
 
 M.ListDbParameterGroupsInput = {
     type = "structure",
+    id = "ListDbParameterGroupsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1920,6 +1971,7 @@ M.ListDbParameterGroupsInput = {
 
 M.DbParameterGroupSummary = {
     type = "structure",
+    id = "DbParameterGroupSummary",
     members = {
         id = {
             type = "string",
@@ -1947,6 +1999,7 @@ M.DbParameterGroupSummary = {
 
 M.ListDbParameterGroupsOutput = {
     type = "structure",
+    id = "ListDbParameterGroupsOutput",
     members = {
         items = {
             type = "list",
@@ -1963,6 +2016,7 @@ M.ListDbParameterGroupsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1975,6 +2029,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -1986,6 +2041,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2006,10 +2062,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2030,6 +2088,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

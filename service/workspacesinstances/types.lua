@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -20,6 +21,7 @@ M.AmdSevSnpEnum = {
 
 M.AssociateVolumeInput = {
     type = "structure",
+    id = "AssociateVolumeInput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -44,10 +46,12 @@ M.AssociateVolumeInput = {
 
 M.AssociateVolumeOutput = {
     type = "structure",
+    id = "AssociateVolumeOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -73,6 +77,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -92,6 +97,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -117,6 +123,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -142,6 +149,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -175,6 +183,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -214,6 +223,7 @@ M.BillingMode = {
 
 M.BillingConfiguration = {
     type = "structure",
+    id = "BillingConfiguration",
     members = {
         BillingMode = {
             type = "string",
@@ -236,6 +246,7 @@ M.VolumeTypeEnum = {
 
 M.EbsBlockDevice = {
     type = "structure",
+    id = "EbsBlockDevice",
     members = {
         VolumeType = {
             type = "string",
@@ -260,6 +271,7 @@ M.EbsBlockDevice = {
 
 M.BlockDeviceMappingRequest = {
     type = "structure",
+    id = "BlockDeviceMappingRequest",
     members = {
         DeviceName = {
             type = "string",
@@ -282,6 +294,7 @@ M.CapacityReservationPreferenceEnum = {
 
 M.CapacityReservationTarget = {
     type = "structure",
+    id = "CapacityReservationTarget",
     members = {
         CapacityReservationId = {
             type = "string",
@@ -294,6 +307,7 @@ M.CapacityReservationTarget = {
 
 M.CapacityReservationSpecification = {
     type = "structure",
+    id = "CapacityReservationSpecification",
     members = {
         CapacityReservationPreference = {
             type = "string",
@@ -304,6 +318,7 @@ M.CapacityReservationSpecification = {
 
 M.ConnectionTrackingSpecificationRequest = {
     type = "structure",
+    id = "ConnectionTrackingSpecificationRequest",
     members = {
         TcpEstablishedTimeout = {
             type = "integer",
@@ -324,6 +339,7 @@ M.CpuCreditsEnum = {
 
 M.CpuOptionsRequest = {
     type = "structure",
+    id = "CpuOptionsRequest",
     members = {
         AmdSevSnp = {
             type = "string",
@@ -346,6 +362,7 @@ M.ResourceTypeEnum = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -358,6 +375,7 @@ M.Tag = {
 
 M.TagSpecification = {
     type = "structure",
+    id = "TagSpecification",
     members = {
         ResourceType = {
             type = "string",
@@ -371,6 +389,7 @@ M.TagSpecification = {
 
 M.CreateVolumeInput = {
     type = "structure",
+    id = "CreateVolumeInput",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -414,6 +433,7 @@ M.CreateVolumeInput = {
 
 M.CreateVolumeOutput = {
     type = "structure",
+    id = "CreateVolumeOutput",
     members = {
         VolumeId = {
             type = "string",
@@ -423,6 +443,7 @@ M.CreateVolumeOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -460,6 +481,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreditSpecificationRequest = {
     type = "structure",
+    id = "CreditSpecificationRequest",
     members = {
         CpuCredits = {
             type = "string",
@@ -469,6 +491,7 @@ M.CreditSpecificationRequest = {
 
 M.EnclaveOptionsRequest = {
     type = "structure",
+    id = "EnclaveOptionsRequest",
     members = {
         Enabled = {
             type = "boolean",
@@ -478,6 +501,7 @@ M.EnclaveOptionsRequest = {
 
 M.HibernationOptionsRequest = {
     type = "structure",
+    id = "HibernationOptionsRequest",
     members = {
         Configured = {
             type = "boolean",
@@ -487,6 +511,7 @@ M.HibernationOptionsRequest = {
 
 M.IamInstanceProfileSpecification = {
     type = "structure",
+    id = "IamInstanceProfileSpecification",
     members = {
         Arn = {
             type = "string",
@@ -514,6 +539,7 @@ M.SpotInstanceTypeEnum = {
 
 M.SpotMarketOptions = {
     type = "structure",
+    id = "SpotMarketOptions",
     members = {
         BlockDurationMinutes = {
             type = "integer",
@@ -535,6 +561,7 @@ M.SpotMarketOptions = {
 
 M.InstanceMarketOptionsRequest = {
     type = "structure",
+    id = "InstanceMarketOptionsRequest",
     members = {
         MarketType = {
             type = "string",
@@ -545,6 +572,7 @@ M.InstanceMarketOptionsRequest = {
 
 M.InstanceIpv6Address = {
     type = "structure",
+    id = "InstanceIpv6Address",
     members = {
         Ipv6Address = {
             type = "string",
@@ -557,6 +585,7 @@ M.InstanceIpv6Address = {
 
 M.LicenseConfigurationRequest = {
     type = "structure",
+    id = "LicenseConfigurationRequest",
     members = {
         LicenseConfigurationArn = {
             type = "string",
@@ -566,6 +595,7 @@ M.LicenseConfigurationRequest = {
 
 M.InstanceMaintenanceOptionsRequest = {
     type = "structure",
+    id = "InstanceMaintenanceOptionsRequest",
     members = {
         AutoRecovery = {
             type = "string",
@@ -595,6 +625,7 @@ M.InstanceMetadataTagsEnum = {
 
 M.InstanceMetadataOptionsRequest = {
     type = "structure",
+    id = "InstanceMetadataOptionsRequest",
     members = {
         HttpEndpoint = {
             type = "string",
@@ -616,6 +647,7 @@ M.InstanceMetadataOptionsRequest = {
 
 M.RunInstancesMonitoringEnabled = {
     type = "structure",
+    id = "RunInstancesMonitoringEnabled",
     members = {
         Enabled = {
             type = "boolean",
@@ -625,6 +657,7 @@ M.RunInstancesMonitoringEnabled = {
 
 M.EnaSrdUdpSpecificationRequest = {
     type = "structure",
+    id = "EnaSrdUdpSpecificationRequest",
     members = {
         EnaSrdUdpEnabled = {
             type = "boolean",
@@ -634,6 +667,7 @@ M.EnaSrdUdpSpecificationRequest = {
 
 M.EnaSrdSpecificationRequest = {
     type = "structure",
+    id = "EnaSrdSpecificationRequest",
     members = {
         EnaSrdEnabled = {
             type = "boolean",
@@ -650,6 +684,7 @@ M.InterfaceTypeEnum = {
 
 M.Ipv4PrefixSpecificationRequest = {
     type = "structure",
+    id = "Ipv4PrefixSpecificationRequest",
     members = {
         Ipv4Prefix = {
             type = "string",
@@ -659,6 +694,7 @@ M.Ipv4PrefixSpecificationRequest = {
 
 M.Ipv6PrefixSpecificationRequest = {
     type = "structure",
+    id = "Ipv6PrefixSpecificationRequest",
     members = {
         Ipv6Prefix = {
             type = "string",
@@ -668,6 +704,7 @@ M.Ipv6PrefixSpecificationRequest = {
 
 M.PrivateIpAddressSpecification = {
     type = "structure",
+    id = "PrivateIpAddressSpecification",
     members = {
         Primary = {
             type = "boolean",
@@ -680,6 +717,7 @@ M.PrivateIpAddressSpecification = {
 
 M.InstanceNetworkInterfaceSpecification = {
     type = "structure",
+    id = "InstanceNetworkInterfaceSpecification",
     members = {
         AssociateCarrierIpAddress = {
             type = "boolean",
@@ -750,6 +788,7 @@ M.InstanceNetworkInterfaceSpecification = {
 
 M.InstanceNetworkPerformanceOptionsRequest = {
     type = "structure",
+    id = "InstanceNetworkPerformanceOptionsRequest",
     members = {
         BandwidthWeighting = {
             type = "string",
@@ -765,6 +804,7 @@ M.TenancyEnum = {
 
 M.Placement = {
     type = "structure",
+    id = "Placement",
     members = {
         Affinity = {
             type = "string",
@@ -800,6 +840,7 @@ M.HostnameTypeEnum = {
 
 M.PrivateDnsNameOptionsRequest = {
     type = "structure",
+    id = "PrivateDnsNameOptionsRequest",
     members = {
         HostnameType = {
             type = "string",
@@ -815,6 +856,7 @@ M.PrivateDnsNameOptionsRequest = {
 
 M.ManagedInstanceRequest = {
     type = "structure",
+    id = "ManagedInstanceRequest",
     members = {
         BlockDeviceMappings = {
             type = "list",
@@ -898,6 +940,7 @@ M.ManagedInstanceRequest = {
 
 M.CreateWorkspaceInstanceInput = {
     type = "structure",
+    id = "CreateWorkspaceInstanceInput",
     members = {
         ClientToken = {
             type = "string",
@@ -918,6 +961,7 @@ M.CreateWorkspaceInstanceInput = {
 
 M.CreateWorkspaceInstanceOutput = {
     type = "structure",
+    id = "CreateWorkspaceInstanceOutput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -927,6 +971,7 @@ M.CreateWorkspaceInstanceOutput = {
 
 M.DeleteVolumeInput = {
     type = "structure",
+    id = "DeleteVolumeInput",
     members = {
         VolumeId = {
             type = "string",
@@ -939,10 +984,12 @@ M.DeleteVolumeInput = {
 
 M.DeleteVolumeOutput = {
     type = "structure",
+    id = "DeleteVolumeOutput",
 }
 
 M.DeleteWorkspaceInstanceInput = {
     type = "structure",
+    id = "DeleteWorkspaceInstanceInput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -955,6 +1002,7 @@ M.DeleteWorkspaceInstanceInput = {
 
 M.DeleteWorkspaceInstanceOutput = {
     type = "structure",
+    id = "DeleteWorkspaceInstanceOutput",
 }
 
 M.DisassociateModeEnum = {
@@ -964,6 +1012,7 @@ M.DisassociateModeEnum = {
 
 M.DisassociateVolumeInput = {
     type = "structure",
+    id = "DisassociateVolumeInput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -988,10 +1037,12 @@ M.DisassociateVolumeInput = {
 
 M.DisassociateVolumeOutput = {
     type = "structure",
+    id = "DisassociateVolumeOutput",
 }
 
 M.EC2InstanceError = {
     type = "structure",
+    id = "EC2InstanceError",
     members = {
         EC2ErrorCode = {
             type = "string",
@@ -1007,6 +1058,7 @@ M.EC2InstanceError = {
 
 M.EC2ManagedInstance = {
     type = "structure",
+    id = "EC2ManagedInstance",
     members = {
         InstanceId = {
             type = "string",
@@ -1016,6 +1068,7 @@ M.EC2ManagedInstance = {
 
 M.GetWorkspaceInstanceInput = {
     type = "structure",
+    id = "GetWorkspaceInstanceInput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -1037,6 +1090,7 @@ M.ProvisionStateEnum = {
 
 M.WorkspaceInstanceError = {
     type = "structure",
+    id = "WorkspaceInstanceError",
     members = {
         ErrorCode = {
             type = "string",
@@ -1049,6 +1103,7 @@ M.WorkspaceInstanceError = {
 
 M.GetWorkspaceInstanceOutput = {
     type = "structure",
+    id = "GetWorkspaceInstanceOutput",
     members = {
         WorkspaceInstanceErrors = {
             type = "list",
@@ -1086,6 +1141,7 @@ M.InstanceConfigurationTenancyEnum = {
 
 M.InstanceConfigurationFilter = {
     type = "structure",
+    id = "InstanceConfigurationFilter",
     members = {
         BillingMode = {
             type = "string",
@@ -1110,6 +1166,7 @@ M.InstanceConfigurationFilter = {
 
 M.ListInstanceTypesInput = {
     type = "structure",
+    id = "ListInstanceTypesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1123,6 +1180,7 @@ M.ListInstanceTypesInput = {
 
 M.SupportedInstanceConfiguration = {
     type = "structure",
+    id = "SupportedInstanceConfiguration",
     members = {
         BillingMode = {
             type = "string",
@@ -1138,6 +1196,7 @@ M.SupportedInstanceConfiguration = {
 
 M.InstanceTypeInfo = {
     type = "structure",
+    id = "InstanceTypeInfo",
     members = {
         InstanceType = {
             type = "string",
@@ -1151,6 +1210,7 @@ M.InstanceTypeInfo = {
 
 M.ListInstanceTypesOutput = {
     type = "structure",
+    id = "ListInstanceTypesOutput",
     members = {
         InstanceTypes = {
             type = "list",
@@ -1167,6 +1227,7 @@ M.ListInstanceTypesOutput = {
 
 M.ListRegionsInput = {
     type = "structure",
+    id = "ListRegionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -1179,6 +1240,7 @@ M.ListRegionsInput = {
 
 M.Region = {
     type = "structure",
+    id = "Region",
     members = {
         RegionName = {
             type = "string",
@@ -1188,6 +1250,7 @@ M.Region = {
 
 M.ListRegionsOutput = {
     type = "structure",
+    id = "ListRegionsOutput",
     members = {
         Regions = {
             type = "list",
@@ -1204,6 +1267,7 @@ M.ListRegionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -1216,6 +1280,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1226,6 +1291,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListWorkspaceInstancesInput = {
     type = "structure",
+    id = "ListWorkspaceInstancesInput",
     members = {
         ProvisionStates = {
             type = "list",
@@ -1242,6 +1308,7 @@ M.ListWorkspaceInstancesInput = {
 
 M.WorkspaceInstance = {
     type = "structure",
+    id = "WorkspaceInstance",
     members = {
         ProvisionState = {
             type = "string",
@@ -1255,6 +1322,7 @@ M.WorkspaceInstance = {
 
 M.ListWorkspaceInstancesOutput = {
     type = "structure",
+    id = "ListWorkspaceInstancesOutput",
     members = {
         WorkspaceInstances = {
             type = "list",
@@ -1271,6 +1339,7 @@ M.ListWorkspaceInstancesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -1290,10 +1359,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         WorkspaceInstanceId = {
             type = "string",
@@ -1313,6 +1384,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

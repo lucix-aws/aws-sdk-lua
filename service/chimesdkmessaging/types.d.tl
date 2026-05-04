@@ -2280,17 +2280,17 @@ local record UnauthorizedClientException
     Message: string
 end
 
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type ChannelMessagePersistenceType = "PERSISTENT" | "NON_PERSISTENT"
-
-local type ChannelMode = "UNRESTRICTED" | "RESTRICTED"
-
-local type ChannelMessageType = "STANDARD" | "CONTROL"
+local type NetworkType = "IPV4_ONLY" | "DUAL_STACK"
 
 local type ChannelMembershipType = "DEFAULT" | "HIDDEN"
 
-local type NetworkType = "IPV4_ONLY" | "DUAL_STACK"
+local type ChannelMessageType = "STANDARD" | "CONTROL"
+
+local type ChannelMode = "UNRESTRICTED" | "RESTRICTED"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
+
+local type ChannelMessagePersistenceType = "PERSISTENT" | "NON_PERSISTENT"
 
 local type ChannelPrivacy = "PUBLIC" | "PRIVATE"
 

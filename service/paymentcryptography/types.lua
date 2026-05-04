@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AddKeyReplicationRegionsInput = {
     type = "structure",
+    id = "AddKeyReplicationRegionsInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -78,6 +80,7 @@ M.KeyClass = {
 
 M.KeyModesOfUse = {
     type = "structure",
+    id = "KeyModesOfUse",
     members = {
         Encrypt = {
             type = "boolean",
@@ -165,6 +168,7 @@ M.KeyUsage = {
 
 M.KeyAttributes = {
     type = "structure",
+    id = "KeyAttributes",
     members = {
         KeyUsage = {
             type = "string",
@@ -218,6 +222,7 @@ M.SessionStatus = {
 
 M.MpaStatus = {
     type = "structure",
+    id = "MpaStatus",
     members = {
         MpaSessionArn = {
             type = "string",
@@ -257,6 +262,7 @@ M.KeyReplicationState = {
 
 M.ReplicationStatusType = {
     type = "structure",
+    id = "ReplicationStatusType",
     members = {
         Status = {
             type = "string",
@@ -272,6 +278,7 @@ M.ReplicationStatusType = {
 
 M.Key = {
     type = "structure",
+    id = "Key",
     members = {
         KeyArn = {
             type = "string",
@@ -359,6 +366,7 @@ M.Key = {
 
 M.AddKeyReplicationRegionsOutput = {
     type = "structure",
+    id = "AddKeyReplicationRegionsOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -368,6 +376,7 @@ M.AddKeyReplicationRegionsOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -378,6 +387,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -388,6 +398,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         ResourceId = {
@@ -398,6 +409,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -408,6 +420,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -418,6 +431,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -428,6 +442,7 @@ M.ValidationException = {
 
 M.Alias = {
     type = "structure",
+    id = "Alias",
     members = {
         AliasName = {
             type = "string",
@@ -443,6 +458,7 @@ M.Alias = {
 
 M.CreateAliasInput = {
     type = "structure",
+    id = "CreateAliasInput",
     members = {
         AliasName = {
             type = "string",
@@ -458,6 +474,7 @@ M.CreateAliasInput = {
 
 M.CreateAliasOutput = {
     type = "structure",
+    id = "CreateAliasOutput",
     members = {
         Alias = setmetatable({ traits = {
             required = true,
@@ -467,6 +484,7 @@ M.CreateAliasOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -477,6 +495,7 @@ M.ServiceUnavailableException = {
 
 M.DeleteAliasInput = {
     type = "structure",
+    id = "DeleteAliasInput",
     members = {
         AliasName = {
             type = "string",
@@ -489,10 +508,12 @@ M.DeleteAliasInput = {
 
 M.DeleteAliasOutput = {
     type = "structure",
+    id = "DeleteAliasOutput",
 }
 
 M.GetAliasInput = {
     type = "structure",
+    id = "GetAliasInput",
     members = {
         AliasName = {
             type = "string",
@@ -505,6 +526,7 @@ M.GetAliasInput = {
 
 M.GetAliasOutput = {
     type = "structure",
+    id = "GetAliasOutput",
     members = {
         Alias = setmetatable({ traits = {
             required = true,
@@ -514,6 +536,7 @@ M.GetAliasOutput = {
 
 M.ListAliasesInput = {
     type = "structure",
+    id = "ListAliasesInput",
     members = {
         KeyArn = {
             type = "string",
@@ -529,6 +552,7 @@ M.ListAliasesInput = {
 
 M.ListAliasesOutput = {
     type = "structure",
+    id = "ListAliasesOutput",
     members = {
         Aliases = {
             type = "list",
@@ -545,6 +569,7 @@ M.ListAliasesOutput = {
 
 M.UpdateAliasInput = {
     type = "structure",
+    id = "UpdateAliasInput",
     members = {
         AliasName = {
             type = "string",
@@ -560,6 +585,7 @@ M.UpdateAliasInput = {
 
 M.UpdateAliasOutput = {
     type = "structure",
+    id = "UpdateAliasOutput",
     members = {
         Alias = setmetatable({ traits = {
             required = true,
@@ -580,6 +606,7 @@ M.MpaOperation = {
 
 M.AssociateMpaTeamInput = {
     type = "structure",
+    id = "AssociateMpaTeamInput",
     members = {
         Action = {
             type = "string",
@@ -607,6 +634,7 @@ M.AssociationState = {
 
 M.MpaTeamAssociation = {
     type = "structure",
+    id = "MpaTeamAssociation",
     members = {
         Action = {
             type = "string",
@@ -632,6 +660,7 @@ M.MpaTeamAssociation = {
 
 M.AssociateMpaTeamOutput = {
     type = "structure",
+    id = "AssociateMpaTeamOutput",
     members = {
         MpaTeamAssociation = setmetatable({ traits = {
             required = true,
@@ -641,6 +670,7 @@ M.AssociateMpaTeamOutput = {
 
 M.CertificateSubjectType = {
     type = "structure",
+    id = "CertificateSubjectType",
     members = {
         CommonName = {
             type = "string",
@@ -671,6 +701,7 @@ M.CertificateSubjectType = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -689,6 +720,7 @@ M.Tag = {
 
 M.CreateKeyInput = {
     type = "structure",
+    id = "CreateKeyInput",
     members = {
         KeyAttributes = setmetatable({ traits = {
             required = true,
@@ -721,6 +753,7 @@ M.CreateKeyInput = {
 
 M.CreateKeyOutput = {
     type = "structure",
+    id = "CreateKeyOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -730,6 +763,7 @@ M.CreateKeyOutput = {
 
 M.DeleteKeyInput = {
     type = "structure",
+    id = "DeleteKeyInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -745,6 +779,7 @@ M.DeleteKeyInput = {
 
 M.DeleteKeyOutput = {
     type = "structure",
+    id = "DeleteKeyOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -754,6 +789,7 @@ M.DeleteKeyOutput = {
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -766,10 +802,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.DiffieHellmanDerivationData = {
     type = "union",
+    id = "DiffieHellmanDerivationData",
     members = {
         SharedInformation = {
             type = "string",
@@ -779,6 +817,7 @@ M.DiffieHellmanDerivationData = {
 
 M.DisableDefaultKeyReplicationRegionsInput = {
     type = "structure",
+    id = "DisableDefaultKeyReplicationRegionsInput",
     members = {
         ReplicationRegions = {
             type = "list",
@@ -792,6 +831,7 @@ M.DisableDefaultKeyReplicationRegionsInput = {
 
 M.DisableDefaultKeyReplicationRegionsOutput = {
     type = "structure",
+    id = "DisableDefaultKeyReplicationRegionsOutput",
     members = {
         EnabledReplicationRegions = {
             type = "list",
@@ -805,6 +845,7 @@ M.DisableDefaultKeyReplicationRegionsOutput = {
 
 M.DisassociateMpaTeamInput = {
     type = "structure",
+    id = "DisassociateMpaTeamInput",
     members = {
         Action = {
             type = "string",
@@ -820,6 +861,7 @@ M.DisassociateMpaTeamInput = {
 
 M.DisassociateMpaTeamOutput = {
     type = "structure",
+    id = "DisassociateMpaTeamOutput",
     members = {
         MpaTeamAssociation = setmetatable({ traits = {
             required = true,
@@ -829,6 +871,7 @@ M.DisassociateMpaTeamOutput = {
 
 M.EnableDefaultKeyReplicationRegionsInput = {
     type = "structure",
+    id = "EnableDefaultKeyReplicationRegionsInput",
     members = {
         ReplicationRegions = {
             type = "list",
@@ -842,6 +885,7 @@ M.EnableDefaultKeyReplicationRegionsInput = {
 
 M.EnableDefaultKeyReplicationRegionsOutput = {
     type = "structure",
+    id = "EnableDefaultKeyReplicationRegionsOutput",
     members = {
         EnabledReplicationRegions = {
             type = "list",
@@ -855,6 +899,7 @@ M.EnableDefaultKeyReplicationRegionsOutput = {
 
 M.ExportAs2805KeyCryptogram = {
     type = "structure",
+    id = "ExportAs2805KeyCryptogram",
     members = {
         WrappingKeyIdentifier = {
             type = "string",
@@ -873,6 +918,7 @@ M.ExportAs2805KeyCryptogram = {
 
 M.ExportDukptInitialKey = {
     type = "structure",
+    id = "ExportDukptInitialKey",
     members = {
         KeySerialNumber = {
             type = "string",
@@ -885,6 +931,7 @@ M.ExportDukptInitialKey = {
 
 M.ExportAttributes = {
     type = "structure",
+    id = "ExportAttributes",
     members = {
         ExportDukptInitialKey = M.ExportDukptInitialKey,
         KeyCheckValueAlgorithm = {
@@ -913,6 +960,7 @@ M.KeyExportability = {
 
 M.KeyBlockHeaders = {
     type = "structure",
+    id = "KeyBlockHeaders",
     members = {
         KeyModesOfUse = M.KeyModesOfUse,
         KeyExportability = {
@@ -942,6 +990,7 @@ M.KeyDerivationHashAlgorithm = {
 
 M.ExportDiffieHellmanTr31KeyBlock = {
     type = "structure",
+    id = "ExportDiffieHellmanTr31KeyBlock",
     members = {
         PrivateKeyIdentifier = {
             type = "string",
@@ -993,6 +1042,7 @@ M.WrappingKeySpec = {
 
 M.ExportKeyCryptogram = {
     type = "structure",
+    id = "ExportKeyCryptogram",
     members = {
         CertificateAuthorityPublicKeyIdentifier = {
             type = "string",
@@ -1014,6 +1064,7 @@ M.ExportKeyCryptogram = {
 
 M.ExportTr31KeyBlock = {
     type = "structure",
+    id = "ExportTr31KeyBlock",
     members = {
         WrappingKeyIdentifier = {
             type = "string",
@@ -1031,6 +1082,7 @@ M.Tr34KeyBlockFormat = {
 
 M.ExportTr34KeyBlock = {
     type = "structure",
+    id = "ExportTr34KeyBlock",
     members = {
         CertificateAuthorityPublicKeyIdentifier = {
             type = "string",
@@ -1071,6 +1123,7 @@ M.ExportTr34KeyBlock = {
 
 M.ExportKeyMaterial = {
     type = "union",
+    id = "ExportKeyMaterial",
     members = {
         Tr31KeyBlock = M.ExportTr31KeyBlock,
         Tr34KeyBlock = M.ExportTr34KeyBlock,
@@ -1082,6 +1135,7 @@ M.ExportKeyMaterial = {
 
 M.ExportKeyInput = {
     type = "structure",
+    id = "ExportKeyInput",
     members = {
         KeyMaterial = setmetatable({ traits = {
             required = true,
@@ -1104,6 +1158,7 @@ M.WrappedKeyMaterialFormat = {
 
 M.WrappedKey = {
     type = "structure",
+    id = "WrappedKey",
     members = {
         WrappingKeyArn = {
             type = "string",
@@ -1134,6 +1189,7 @@ M.WrappedKey = {
 
 M.ExportKeyOutput = {
     type = "structure",
+    id = "ExportKeyOutput",
     members = {
         WrappedKey = M.WrappedKey,
     },
@@ -1148,6 +1204,7 @@ M.SigningAlgorithmType = {
 
 M.GetCertificateSigningRequestInput = {
     type = "structure",
+    id = "GetCertificateSigningRequestInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1169,6 +1226,7 @@ M.GetCertificateSigningRequestInput = {
 
 M.GetCertificateSigningRequestOutput = {
     type = "structure",
+    id = "GetCertificateSigningRequestOutput",
     members = {
         CertificateSigningRequest = {
             type = "string",
@@ -1181,10 +1239,12 @@ M.GetCertificateSigningRequestOutput = {
 
 M.GetDefaultKeyReplicationRegionsInput = {
     type = "structure",
+    id = "GetDefaultKeyReplicationRegionsInput",
 }
 
 M.GetDefaultKeyReplicationRegionsOutput = {
     type = "structure",
+    id = "GetDefaultKeyReplicationRegionsOutput",
     members = {
         EnabledReplicationRegions = {
             type = "list",
@@ -1198,6 +1258,7 @@ M.GetDefaultKeyReplicationRegionsOutput = {
 
 M.GetKeyInput = {
     type = "structure",
+    id = "GetKeyInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1210,6 +1271,7 @@ M.GetKeyInput = {
 
 M.GetKeyOutput = {
     type = "structure",
+    id = "GetKeyOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -1219,6 +1281,7 @@ M.GetKeyOutput = {
 
 M.GetMpaTeamAssociationInput = {
     type = "structure",
+    id = "GetMpaTeamAssociationInput",
     members = {
         Action = {
             type = "string",
@@ -1231,6 +1294,7 @@ M.GetMpaTeamAssociationInput = {
 
 M.GetMpaTeamAssociationOutput = {
     type = "structure",
+    id = "GetMpaTeamAssociationOutput",
     members = {
         MpaTeamAssociation = setmetatable({ traits = {
             required = true,
@@ -1248,6 +1312,7 @@ M.KeyMaterialType = {
 
 M.GetParametersForExportInput = {
     type = "structure",
+    id = "GetParametersForExportInput",
     members = {
         KeyMaterialType = {
             type = "string",
@@ -1269,6 +1334,7 @@ M.GetParametersForExportInput = {
 
 M.GetParametersForExportOutput = {
     type = "structure",
+    id = "GetParametersForExportOutput",
     members = {
         SigningKeyCertificate = {
             type = "string",
@@ -1305,6 +1371,7 @@ M.GetParametersForExportOutput = {
 
 M.GetParametersForImportInput = {
     type = "structure",
+    id = "GetParametersForImportInput",
     members = {
         KeyMaterialType = {
             type = "string",
@@ -1326,6 +1393,7 @@ M.GetParametersForImportInput = {
 
 M.GetParametersForImportOutput = {
     type = "structure",
+    id = "GetParametersForImportOutput",
     members = {
         WrappingKeyCertificate = {
             type = "string",
@@ -1362,6 +1430,7 @@ M.GetParametersForImportOutput = {
 
 M.GetPublicKeyCertificateInput = {
     type = "structure",
+    id = "GetPublicKeyCertificateInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1374,6 +1443,7 @@ M.GetPublicKeyCertificateInput = {
 
 M.GetPublicKeyCertificateOutput = {
     type = "structure",
+    id = "GetPublicKeyCertificateOutput",
     members = {
         KeyCertificate = {
             type = "string",
@@ -1392,6 +1462,7 @@ M.GetPublicKeyCertificateOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1404,6 +1475,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1422,6 +1494,7 @@ M.GetResourcePolicyOutput = {
 
 M.ImportAs2805KeyCryptogram = {
     type = "structure",
+    id = "ImportAs2805KeyCryptogram",
     members = {
         As2805KeyVariant = {
             type = "string",
@@ -1461,6 +1534,7 @@ M.ImportAs2805KeyCryptogram = {
 
 M.ImportDiffieHellmanTr31KeyBlock = {
     type = "structure",
+    id = "ImportDiffieHellmanTr31KeyBlock",
     members = {
         PrivateKeyIdentifier = {
             type = "string",
@@ -1512,6 +1586,7 @@ M.ImportDiffieHellmanTr31KeyBlock = {
 
 M.ImportKeyCryptogram = {
     type = "structure",
+    id = "ImportKeyCryptogram",
     members = {
         KeyAttributes = setmetatable({ traits = {
             required = true,
@@ -1542,6 +1617,7 @@ M.ImportKeyCryptogram = {
 
 M.RootCertificatePublicKey = {
     type = "structure",
+    id = "RootCertificatePublicKey",
     members = {
         KeyAttributes = setmetatable({ traits = {
             required = true,
@@ -1557,6 +1633,7 @@ M.RootCertificatePublicKey = {
 
 M.ImportTr31KeyBlock = {
     type = "structure",
+    id = "ImportTr31KeyBlock",
     members = {
         WrappingKeyIdentifier = {
             type = "string",
@@ -1575,6 +1652,7 @@ M.ImportTr31KeyBlock = {
 
 M.ImportTr34KeyBlock = {
     type = "structure",
+    id = "ImportTr34KeyBlock",
     members = {
         CertificateAuthorityPublicKeyIdentifier = {
             type = "string",
@@ -1620,6 +1698,7 @@ M.ImportTr34KeyBlock = {
 
 M.TrustedCertificatePublicKey = {
     type = "structure",
+    id = "TrustedCertificatePublicKey",
     members = {
         KeyAttributes = setmetatable({ traits = {
             required = true,
@@ -1641,6 +1720,7 @@ M.TrustedCertificatePublicKey = {
 
 M.ImportKeyMaterial = {
     type = "union",
+    id = "ImportKeyMaterial",
     members = {
         RootCertificatePublicKey = M.RootCertificatePublicKey,
         TrustedCertificatePublicKey = M.TrustedCertificatePublicKey,
@@ -1654,6 +1734,7 @@ M.ImportKeyMaterial = {
 
 M.ImportKeyInput = {
     type = "structure",
+    id = "ImportKeyInput",
     members = {
         KeyMaterial = setmetatable({ traits = {
             required = true,
@@ -1680,6 +1761,7 @@ M.ImportKeyInput = {
 
 M.ImportKeyOutput = {
     type = "structure",
+    id = "ImportKeyOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -1689,6 +1771,7 @@ M.ImportKeyOutput = {
 
 M.ListKeysInput = {
     type = "structure",
+    id = "ListKeysInput",
     members = {
         KeyState = {
             type = "string",
@@ -1704,6 +1787,7 @@ M.ListKeysInput = {
 
 M.KeySummary = {
     type = "structure",
+    id = "KeySummary",
     members = {
         KeyArn = {
             type = "string",
@@ -1749,6 +1833,7 @@ M.KeySummary = {
 
 M.ListKeysOutput = {
     type = "structure",
+    id = "ListKeysOutput",
     members = {
         Keys = {
             type = "list",
@@ -1765,6 +1850,7 @@ M.ListKeysOutput = {
 
 M.RemoveKeyReplicationRegionsInput = {
     type = "structure",
+    id = "RemoveKeyReplicationRegionsInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1784,6 +1870,7 @@ M.RemoveKeyReplicationRegionsInput = {
 
 M.RemoveKeyReplicationRegionsOutput = {
     type = "structure",
+    id = "RemoveKeyReplicationRegionsOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -1793,6 +1880,7 @@ M.RemoveKeyReplicationRegionsOutput = {
 
 M.RestoreKeyInput = {
     type = "structure",
+    id = "RestoreKeyInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1805,6 +1893,7 @@ M.RestoreKeyInput = {
 
 M.RestoreKeyOutput = {
     type = "structure",
+    id = "RestoreKeyOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -1814,6 +1903,7 @@ M.RestoreKeyOutput = {
 
 M.StartKeyUsageInput = {
     type = "structure",
+    id = "StartKeyUsageInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1826,6 +1916,7 @@ M.StartKeyUsageInput = {
 
 M.StartKeyUsageOutput = {
     type = "structure",
+    id = "StartKeyUsageOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -1835,6 +1926,7 @@ M.StartKeyUsageOutput = {
 
 M.StopKeyUsageInput = {
     type = "structure",
+    id = "StopKeyUsageInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1847,6 +1939,7 @@ M.StopKeyUsageInput = {
 
 M.StopKeyUsageOutput = {
     type = "structure",
+    id = "StopKeyUsageOutput",
     members = {
         Key = setmetatable({ traits = {
             required = true,
@@ -1856,6 +1949,7 @@ M.StopKeyUsageOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1874,6 +1968,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1890,6 +1985,7 @@ M.ListTagsForResourceOutput = {
 
 M.PublicPolicyException = {
     type = "structure",
+    id = "PublicPolicyException",
     error = "client",
     members = {
         Message = {
@@ -1900,6 +1996,7 @@ M.PublicPolicyException = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1918,6 +2015,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1936,6 +2034,7 @@ M.PutResourcePolicyOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1955,10 +2054,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1978,6 +2079,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

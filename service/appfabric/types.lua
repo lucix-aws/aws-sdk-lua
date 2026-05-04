@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ApiKeyCredential = {
     type = "structure",
+    id = "ApiKeyCredential",
     members = {
         apiKey = {
             type = "string",
@@ -44,6 +46,7 @@ M.AppAuthorizationStatus = {
 
 M.Tenant = {
     type = "structure",
+    id = "Tenant",
     members = {
         tenantIdentifier = {
             type = "string",
@@ -62,6 +65,7 @@ M.Tenant = {
 
 M.AppAuthorization = {
     type = "structure",
+    id = "AppAuthorization",
     members = {
         appAuthorizationArn = {
             type = "string",
@@ -121,6 +125,7 @@ M.AppAuthorization = {
 
 M.AppAuthorizationSummary = {
     type = "structure",
+    id = "AppAuthorizationSummary",
     members = {
         appAuthorizationArn = {
             type = "string",
@@ -161,6 +166,7 @@ M.AppAuthorizationSummary = {
 
 M.AppBundle = {
     type = "structure",
+    id = "AppBundle",
     members = {
         arn = {
             type = "string",
@@ -176,6 +182,7 @@ M.AppBundle = {
 
 M.AppBundleSummary = {
     type = "structure",
+    id = "AppBundleSummary",
     members = {
         arn = {
             type = "string",
@@ -188,6 +195,7 @@ M.AppBundleSummary = {
 
 M.FirehoseStream = {
     type = "structure",
+    id = "FirehoseStream",
     members = {
         streamName = {
             type = "string",
@@ -200,6 +208,7 @@ M.FirehoseStream = {
 
 M.S3Bucket = {
     type = "structure",
+    id = "S3Bucket",
     members = {
         bucketName = {
             type = "string",
@@ -215,6 +224,7 @@ M.S3Bucket = {
 
 M.Destination = {
     type = "union",
+    id = "Destination",
     members = {
         s3Bucket = M.S3Bucket,
         firehoseStream = M.FirehoseStream,
@@ -223,6 +233,7 @@ M.Destination = {
 
 M.AuditLogDestinationConfiguration = {
     type = "structure",
+    id = "AuditLogDestinationConfiguration",
     members = {
         destination = setmetatable({ traits = {
             required = true,
@@ -242,6 +253,7 @@ M.Schema = {
 
 M.AuditLogProcessingConfiguration = {
     type = "structure",
+    id = "AuditLogProcessingConfiguration",
     members = {
         schema = {
             type = "string",
@@ -260,6 +272,7 @@ M.AuditLogProcessingConfiguration = {
 
 M.AuthRequest = {
     type = "structure",
+    id = "AuthRequest",
     members = {
         redirectUri = {
             type = "string",
@@ -278,6 +291,7 @@ M.AuthRequest = {
 
 M.BatchGetUserAccessTasksInput = {
     type = "structure",
+    id = "BatchGetUserAccessTasksInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -304,6 +318,7 @@ M.ResultStatus = {
 
 M.TaskError = {
     type = "structure",
+    id = "TaskError",
     members = {
         errorCode = {
             type = "string",
@@ -316,6 +331,7 @@ M.TaskError = {
 
 M.UserAccessResultItem = {
     type = "structure",
+    id = "UserAccessResultItem",
     members = {
         app = {
             type = "string",
@@ -356,6 +372,7 @@ M.UserAccessResultItem = {
 
 M.BatchGetUserAccessTasksOutput = {
     type = "structure",
+    id = "BatchGetUserAccessTasksOutput",
     members = {
         userAccessResultsList = {
             type = "list",
@@ -366,6 +383,7 @@ M.BatchGetUserAccessTasksOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -385,6 +403,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -410,6 +429,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -435,6 +455,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -460,6 +481,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -483,6 +505,7 @@ M.ValidationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -508,6 +531,7 @@ M.ConflictException = {
 
 M.ConnectAppAuthorizationInput = {
     type = "structure",
+    id = "ConnectAppAuthorizationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -529,6 +553,7 @@ M.ConnectAppAuthorizationInput = {
 
 M.ConnectAppAuthorizationOutput = {
     type = "structure",
+    id = "ConnectAppAuthorizationOutput",
     members = {
         appAuthorizationSummary = setmetatable({ traits = {
             required = true,
@@ -538,6 +563,7 @@ M.ConnectAppAuthorizationOutput = {
 
 M.Oauth2Credential = {
     type = "structure",
+    id = "Oauth2Credential",
     members = {
         clientId = {
             type = "string",
@@ -556,6 +582,7 @@ M.Oauth2Credential = {
 
 M.Credential = {
     type = "union",
+    id = "Credential",
     members = {
         oauth2Credential = M.Oauth2Credential,
         apiKeyCredential = M.ApiKeyCredential,
@@ -564,6 +591,7 @@ M.Credential = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -582,6 +610,7 @@ M.Tag = {
 
 M.CreateAppAuthorizationInput = {
     type = "structure",
+    id = "CreateAppAuthorizationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -623,6 +652,7 @@ M.CreateAppAuthorizationInput = {
 
 M.CreateAppAuthorizationOutput = {
     type = "structure",
+    id = "CreateAppAuthorizationOutput",
     members = {
         appAuthorization = setmetatable({ traits = {
             required = true,
@@ -632,6 +662,7 @@ M.CreateAppAuthorizationOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -669,6 +700,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateAppBundleInput = {
     type = "structure",
+    id = "CreateAppBundleInput",
     members = {
         clientToken = {
             type = "string",
@@ -688,6 +720,7 @@ M.CreateAppBundleInput = {
 
 M.CreateAppBundleOutput = {
     type = "structure",
+    id = "CreateAppBundleOutput",
     members = {
         appBundle = setmetatable({ traits = {
             required = true,
@@ -701,6 +734,7 @@ M.IngestionType = {
 
 M.CreateIngestionInput = {
     type = "structure",
+    id = "CreateIngestionInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -747,6 +781,7 @@ M.IngestionState = {
 
 M.Ingestion = {
     type = "structure",
+    id = "Ingestion",
     members = {
         arn = {
             type = "string",
@@ -803,6 +838,7 @@ M.Ingestion = {
 
 M.CreateIngestionOutput = {
     type = "structure",
+    id = "CreateIngestionOutput",
     members = {
         ingestion = setmetatable({ traits = {
             required = true,
@@ -812,6 +848,7 @@ M.CreateIngestionOutput = {
 
 M.DestinationConfiguration = {
     type = "union",
+    id = "DestinationConfiguration",
     members = {
         auditLog = M.AuditLogDestinationConfiguration,
     },
@@ -819,6 +856,7 @@ M.DestinationConfiguration = {
 
 M.ProcessingConfiguration = {
     type = "union",
+    id = "ProcessingConfiguration",
     members = {
         auditLog = M.AuditLogProcessingConfiguration,
     },
@@ -826,6 +864,7 @@ M.ProcessingConfiguration = {
 
 M.CreateIngestionDestinationInput = {
     type = "structure",
+    id = "CreateIngestionDestinationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -867,6 +906,7 @@ M.IngestionDestinationStatus = {
 
 M.IngestionDestination = {
     type = "structure",
+    id = "IngestionDestination",
     members = {
         arn = {
             type = "string",
@@ -909,6 +949,7 @@ M.IngestionDestination = {
 
 M.CreateIngestionDestinationOutput = {
     type = "structure",
+    id = "CreateIngestionDestinationOutput",
     members = {
         ingestionDestination = setmetatable({ traits = {
             required = true,
@@ -918,6 +959,7 @@ M.CreateIngestionDestinationOutput = {
 
 M.DeleteAppAuthorizationInput = {
     type = "structure",
+    id = "DeleteAppAuthorizationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -938,10 +980,12 @@ M.DeleteAppAuthorizationInput = {
 
 M.DeleteAppAuthorizationOutput = {
     type = "structure",
+    id = "DeleteAppAuthorizationOutput",
 }
 
 M.DeleteAppBundleInput = {
     type = "structure",
+    id = "DeleteAppBundleInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -955,10 +999,12 @@ M.DeleteAppBundleInput = {
 
 M.DeleteAppBundleOutput = {
     type = "structure",
+    id = "DeleteAppBundleOutput",
 }
 
 M.DeleteIngestionInput = {
     type = "structure",
+    id = "DeleteIngestionInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -979,10 +1025,12 @@ M.DeleteIngestionInput = {
 
 M.DeleteIngestionOutput = {
     type = "structure",
+    id = "DeleteIngestionOutput",
 }
 
 M.DeleteIngestionDestinationInput = {
     type = "structure",
+    id = "DeleteIngestionDestinationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1010,10 +1058,12 @@ M.DeleteIngestionDestinationInput = {
 
 M.DeleteIngestionDestinationOutput = {
     type = "structure",
+    id = "DeleteIngestionDestinationOutput",
 }
 
 M.GetAppAuthorizationInput = {
     type = "structure",
+    id = "GetAppAuthorizationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1034,6 +1084,7 @@ M.GetAppAuthorizationInput = {
 
 M.GetAppAuthorizationOutput = {
     type = "structure",
+    id = "GetAppAuthorizationOutput",
     members = {
         appAuthorization = setmetatable({ traits = {
             required = true,
@@ -1043,6 +1094,7 @@ M.GetAppAuthorizationOutput = {
 
 M.GetAppBundleInput = {
     type = "structure",
+    id = "GetAppBundleInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1056,6 +1108,7 @@ M.GetAppBundleInput = {
 
 M.GetAppBundleOutput = {
     type = "structure",
+    id = "GetAppBundleOutput",
     members = {
         appBundle = setmetatable({ traits = {
             required = true,
@@ -1065,6 +1118,7 @@ M.GetAppBundleOutput = {
 
 M.GetIngestionInput = {
     type = "structure",
+    id = "GetIngestionInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1085,6 +1139,7 @@ M.GetIngestionInput = {
 
 M.GetIngestionOutput = {
     type = "structure",
+    id = "GetIngestionOutput",
     members = {
         ingestion = setmetatable({ traits = {
             required = true,
@@ -1094,6 +1149,7 @@ M.GetIngestionOutput = {
 
 M.GetIngestionDestinationInput = {
     type = "structure",
+    id = "GetIngestionDestinationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1121,6 +1177,7 @@ M.GetIngestionDestinationInput = {
 
 M.GetIngestionDestinationOutput = {
     type = "structure",
+    id = "GetIngestionDestinationOutput",
     members = {
         ingestionDestination = setmetatable({ traits = {
             required = true,
@@ -1130,6 +1187,7 @@ M.GetIngestionDestinationOutput = {
 
 M.ListAppAuthorizationsInput = {
     type = "structure",
+    id = "ListAppAuthorizationsInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1155,6 +1213,7 @@ M.ListAppAuthorizationsInput = {
 
 M.ListAppAuthorizationsOutput = {
     type = "structure",
+    id = "ListAppAuthorizationsOutput",
     members = {
         appAuthorizationSummaryList = {
             type = "list",
@@ -1171,6 +1230,7 @@ M.ListAppAuthorizationsOutput = {
 
 M.ListAppBundlesInput = {
     type = "structure",
+    id = "ListAppBundlesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1189,6 +1249,7 @@ M.ListAppBundlesInput = {
 
 M.ListAppBundlesOutput = {
     type = "structure",
+    id = "ListAppBundlesOutput",
     members = {
         appBundleSummaryList = {
             type = "list",
@@ -1205,6 +1266,7 @@ M.ListAppBundlesOutput = {
 
 M.ListIngestionDestinationsInput = {
     type = "structure",
+    id = "ListIngestionDestinationsInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1237,6 +1299,7 @@ M.ListIngestionDestinationsInput = {
 
 M.IngestionDestinationSummary = {
     type = "structure",
+    id = "IngestionDestinationSummary",
     members = {
         arn = {
             type = "string",
@@ -1249,6 +1312,7 @@ M.IngestionDestinationSummary = {
 
 M.ListIngestionDestinationsOutput = {
     type = "structure",
+    id = "ListIngestionDestinationsOutput",
     members = {
         ingestionDestinations = {
             type = "list",
@@ -1265,6 +1329,7 @@ M.ListIngestionDestinationsOutput = {
 
 M.ListIngestionsInput = {
     type = "structure",
+    id = "ListIngestionsInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1290,6 +1355,7 @@ M.ListIngestionsInput = {
 
 M.IngestionSummary = {
     type = "structure",
+    id = "IngestionSummary",
     members = {
         arn = {
             type = "string",
@@ -1320,6 +1386,7 @@ M.IngestionSummary = {
 
 M.ListIngestionsOutput = {
     type = "structure",
+    id = "ListIngestionsOutput",
     members = {
         ingestions = {
             type = "list",
@@ -1336,6 +1403,7 @@ M.ListIngestionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1349,6 +1417,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -1359,6 +1428,7 @@ M.ListTagsForResourceOutput = {
 
 M.StartIngestionInput = {
     type = "structure",
+    id = "StartIngestionInput",
     members = {
         ingestionIdentifier = {
             type = "string",
@@ -1379,10 +1449,12 @@ M.StartIngestionInput = {
 
 M.StartIngestionOutput = {
     type = "structure",
+    id = "StartIngestionOutput",
 }
 
 M.StartUserAccessTasksInput = {
     type = "structure",
+    id = "StartUserAccessTasksInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1401,6 +1473,7 @@ M.StartUserAccessTasksInput = {
 
 M.UserAccessTaskItem = {
     type = "structure",
+    id = "UserAccessTaskItem",
     members = {
         app = {
             type = "string",
@@ -1423,6 +1496,7 @@ M.UserAccessTaskItem = {
 
 M.StartUserAccessTasksOutput = {
     type = "structure",
+    id = "StartUserAccessTasksOutput",
     members = {
         userAccessTasksList = {
             type = "list",
@@ -1433,6 +1507,7 @@ M.StartUserAccessTasksOutput = {
 
 M.StopIngestionInput = {
     type = "structure",
+    id = "StopIngestionInput",
     members = {
         ingestionIdentifier = {
             type = "string",
@@ -1453,10 +1528,12 @@ M.StopIngestionInput = {
 
 M.StopIngestionOutput = {
     type = "structure",
+    id = "StopIngestionOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1477,10 +1554,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -1502,10 +1581,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAppAuthorizationInput = {
     type = "structure",
+    id = "UpdateAppAuthorizationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1528,6 +1609,7 @@ M.UpdateAppAuthorizationInput = {
 
 M.UpdateAppAuthorizationOutput = {
     type = "structure",
+    id = "UpdateAppAuthorizationOutput",
     members = {
         appAuthorization = setmetatable({ traits = {
             required = true,
@@ -1537,6 +1619,7 @@ M.UpdateAppAuthorizationOutput = {
 
 M.UpdateIngestionDestinationInput = {
     type = "structure",
+    id = "UpdateIngestionDestinationInput",
     members = {
         appBundleIdentifier = {
             type = "string",
@@ -1567,6 +1650,7 @@ M.UpdateIngestionDestinationInput = {
 
 M.UpdateIngestionDestinationOutput = {
     type = "structure",
+    id = "UpdateIngestionDestinationOutput",
     members = {
         ingestionDestination = setmetatable({ traits = {
             required = true,

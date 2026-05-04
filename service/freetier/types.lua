@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -30,6 +31,7 @@ M.CurrencyCode = {
 
 M.MonetaryAmount = {
     type = "structure",
+    id = "MonetaryAmount",
     members = {
         amount = {
             type = "double",
@@ -49,6 +51,7 @@ M.MonetaryAmount = {
 
 M.ActivityReward = {
     type = "union",
+    id = "ActivityReward",
     members = {
         credit = M.MonetaryAmount,
     },
@@ -63,6 +66,7 @@ M.ActivityStatus = {
 
 M.ActivitySummary = {
     type = "structure",
+    id = "ActivitySummary",
     members = {
         activityId = {
             type = "string",
@@ -106,6 +110,7 @@ M.LanguageCode = {
 
 M.GetAccountActivityInput = {
     type = "structure",
+    id = "GetAccountActivityInput",
     members = {
         activityId = {
             type = "string",
@@ -121,6 +126,7 @@ M.GetAccountActivityInput = {
 
 M.GetAccountActivityOutput = {
     type = "structure",
+    id = "GetAccountActivityOutput",
     members = {
         activityId = {
             type = "string",
@@ -181,6 +187,7 @@ M.GetAccountActivityOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -194,6 +201,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -207,6 +215,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -220,6 +229,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -233,10 +243,12 @@ M.ValidationException = {
 
 M.GetAccountPlanStateInput = {
     type = "structure",
+    id = "GetAccountPlanStateInput",
 }
 
 M.GetAccountPlanStateOutput = {
     type = "structure",
+    id = "GetAccountPlanStateOutput",
     members = {
         accountId = {
             type = "string",
@@ -286,6 +298,7 @@ M.MatchOption = {
 
 M.DimensionValues = {
     type = "structure",
+    id = "DimensionValues",
     members = {
         Key = {
             type = "string",
@@ -312,6 +325,7 @@ M.DimensionValues = {
 
 M.FreeTierUsage = {
     type = "structure",
+    id = "FreeTierUsage",
     members = {
         service = {
             type = "string",
@@ -357,6 +371,7 @@ M.FreeTierUsage = {
 
 M.GetFreeTierUsageOutput = {
     type = "structure",
+    id = "GetFreeTierUsageOutput",
     members = {
         freeTierUsages = {
             type = "list",
@@ -373,6 +388,7 @@ M.GetFreeTierUsageOutput = {
 
 M.ListAccountActivitiesInput = {
     type = "structure",
+    id = "ListAccountActivitiesInput",
     members = {
         filterActivityStatuses = {
             type = "list",
@@ -395,6 +411,7 @@ M.ListAccountActivitiesInput = {
 
 M.ListAccountActivitiesOutput = {
     type = "structure",
+    id = "ListAccountActivitiesOutput",
     members = {
         activities = {
             type = "list",
@@ -411,6 +428,7 @@ M.ListAccountActivitiesOutput = {
 
 M.UpgradeAccountPlanInput = {
     type = "structure",
+    id = "UpgradeAccountPlanInput",
     members = {
         accountPlanType = {
             type = "string",
@@ -423,6 +441,7 @@ M.UpgradeAccountPlanInput = {
 
 M.UpgradeAccountPlanOutput = {
     type = "structure",
+    id = "UpgradeAccountPlanOutput",
     members = {
         accountId = {
             type = "string",
@@ -447,6 +466,7 @@ M.UpgradeAccountPlanOutput = {
 
 M.Expression = {
     type = "structure",
+    id = "Expression",
     members = {
         Or = {
             type = "list",
@@ -463,6 +483,7 @@ M.Expression = {
 
 M.GetFreeTierUsageInput = {
     type = "structure",
+    id = "GetFreeTierUsageInput",
     members = {
         filter = M.Expression,
         maxResults = {

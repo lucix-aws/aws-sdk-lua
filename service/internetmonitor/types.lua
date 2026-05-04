@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AvailabilityMeasurement = {
     type = "structure",
+    id = "AvailabilityMeasurement",
     members = {
         ExperienceScore = {
             type = "double",
@@ -27,6 +29,7 @@ M.AvailabilityMeasurement = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -37,6 +40,7 @@ M.BadRequestException = {
 
 M.ClientLocation = {
     type = "structure",
+    id = "ClientLocation",
     members = {
         ASName = {
             type = "string",
@@ -85,6 +89,7 @@ M.ClientLocation = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -100,6 +105,7 @@ M.LocalHealthEventsConfigStatus = {
 
 M.LocalHealthEventsConfig = {
     type = "structure",
+    id = "LocalHealthEventsConfig",
     members = {
         Status = {
             type = "string",
@@ -121,6 +127,7 @@ M.LocalHealthEventsConfig = {
 
 M.HealthEventsConfig = {
     type = "structure",
+    id = "HealthEventsConfig",
     members = {
         AvailabilityScoreThreshold = {
             type = "double",
@@ -146,6 +153,7 @@ M.LogDeliveryStatus = {
 
 M.S3Config = {
     type = "structure",
+    id = "S3Config",
     members = {
         BucketName = {
             type = "string",
@@ -161,6 +169,7 @@ M.S3Config = {
 
 M.InternetMeasurementsLogDelivery = {
     type = "structure",
+    id = "InternetMeasurementsLogDelivery",
     members = {
         S3Config = M.S3Config,
     },
@@ -168,6 +177,7 @@ M.InternetMeasurementsLogDelivery = {
 
 M.CreateMonitorInput = {
     type = "structure",
+    id = "CreateMonitorInput",
     members = {
         MonitorName = {
             type = "string",
@@ -210,6 +220,7 @@ M.MonitorConfigState = {
 
 M.CreateMonitorOutput = {
     type = "structure",
+    id = "CreateMonitorOutput",
     members = {
         Arn = {
             type = "string",
@@ -228,6 +239,7 @@ M.CreateMonitorOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -238,6 +250,7 @@ M.InternalServerException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -248,6 +261,7 @@ M.LimitExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -258,6 +272,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -268,6 +283,7 @@ M.ValidationException = {
 
 M.DeleteMonitorInput = {
     type = "structure",
+    id = "DeleteMonitorInput",
     members = {
         MonitorName = {
             type = "string",
@@ -281,6 +297,7 @@ M.DeleteMonitorInput = {
 
 M.DeleteMonitorOutput = {
     type = "structure",
+    id = "DeleteMonitorOutput",
 }
 
 M.Operator = {
@@ -290,6 +307,7 @@ M.Operator = {
 
 M.FilterParameter = {
     type = "structure",
+    id = "FilterParameter",
     members = {
         Field = {
             type = "string",
@@ -306,6 +324,7 @@ M.FilterParameter = {
 
 M.GetHealthEventInput = {
     type = "structure",
+    id = "GetHealthEventInput",
     members = {
         MonitorName = {
             type = "string",
@@ -332,6 +351,7 @@ M.GetHealthEventInput = {
 
 M.Network = {
     type = "structure",
+    id = "Network",
     members = {
         ASName = {
             type = "string",
@@ -355,6 +375,7 @@ M.TriangulationEventType = {
 
 M.NetworkImpairment = {
     type = "structure",
+    id = "NetworkImpairment",
     members = {
         Networks = {
             type = "list",
@@ -381,6 +402,7 @@ M.NetworkImpairment = {
 
 M.RoundTripTime = {
     type = "structure",
+    id = "RoundTripTime",
     members = {
         P50 = {
             type = "double",
@@ -396,6 +418,7 @@ M.RoundTripTime = {
 
 M.PerformanceMeasurement = {
     type = "structure",
+    id = "PerformanceMeasurement",
     members = {
         ExperienceScore = {
             type = "double",
@@ -412,6 +435,7 @@ M.PerformanceMeasurement = {
 
 M.InternetHealth = {
     type = "structure",
+    id = "InternetHealth",
     members = {
         Availability = M.AvailabilityMeasurement,
         Performance = M.PerformanceMeasurement,
@@ -425,6 +449,7 @@ M.HealthEventStatus = {
 
 M.ImpactedLocation = {
     type = "structure",
+    id = "ImpactedLocation",
     members = {
         ASName = {
             type = "string",
@@ -492,6 +517,7 @@ M.HealthEventImpactType = {
 
 M.GetHealthEventOutput = {
     type = "structure",
+    id = "GetHealthEventOutput",
     members = {
         EventArn = {
             type = "string",
@@ -564,6 +590,7 @@ M.GetHealthEventOutput = {
 
 M.GetInternetEventInput = {
     type = "structure",
+    id = "GetInternetEventInput",
     members = {
         EventId = {
             type = "string",
@@ -587,6 +614,7 @@ M.InternetEventType = {
 
 M.GetInternetEventOutput = {
     type = "structure",
+    id = "GetInternetEventOutput",
     members = {
         EventId = {
             type = "string",
@@ -633,6 +661,7 @@ M.GetInternetEventOutput = {
 
 M.GetMonitorInput = {
     type = "structure",
+    id = "GetMonitorInput",
     members = {
         MonitorName = {
             type = "string",
@@ -661,6 +690,7 @@ M.MonitorProcessingStatusCode = {
 
 M.GetMonitorOutput = {
     type = "structure",
+    id = "GetMonitorOutput",
     members = {
         MonitorName = {
             type = "string",
@@ -725,6 +755,7 @@ M.GetMonitorOutput = {
 
 M.GetQueryResultsInput = {
     type = "structure",
+    id = "GetQueryResultsInput",
     members = {
         MonitorName = {
             type = "string",
@@ -757,6 +788,7 @@ M.GetQueryResultsInput = {
 
 M.QueryField = {
     type = "structure",
+    id = "QueryField",
     members = {
         Name = {
             type = "string",
@@ -769,6 +801,7 @@ M.QueryField = {
 
 M.GetQueryResultsOutput = {
     type = "structure",
+    id = "GetQueryResultsOutput",
     members = {
         Fields = {
             type = "list",
@@ -792,6 +825,7 @@ M.GetQueryResultsOutput = {
 
 M.GetQueryStatusInput = {
     type = "structure",
+    id = "GetQueryStatusInput",
     members = {
         MonitorName = {
             type = "string",
@@ -820,6 +854,7 @@ M.QueryStatus = {
 
 M.GetQueryStatusOutput = {
     type = "structure",
+    id = "GetQueryStatusOutput",
     members = {
         Status = {
             type = "string",
@@ -832,6 +867,7 @@ M.GetQueryStatusOutput = {
 
 M.HealthEvent = {
     type = "structure",
+    id = "HealthEvent",
     members = {
         EventArn = {
             type = "string",
@@ -904,6 +940,7 @@ M.HealthEvent = {
 
 M.ListHealthEventsInput = {
     type = "structure",
+    id = "ListHealthEventsInput",
     members = {
         MonitorName = {
             type = "string",
@@ -955,6 +992,7 @@ M.ListHealthEventsInput = {
 
 M.ListHealthEventsOutput = {
     type = "structure",
+    id = "ListHealthEventsOutput",
     members = {
         HealthEvents = {
             type = "list",
@@ -971,6 +1009,7 @@ M.ListHealthEventsOutput = {
 
 M.InternalServerErrorException = {
     type = "structure",
+    id = "InternalServerErrorException",
     error = "server",
     members = {
         message = {
@@ -981,6 +1020,7 @@ M.InternalServerErrorException = {
 
 M.ListInternetEventsInput = {
     type = "structure",
+    id = "ListInternetEventsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1025,6 +1065,7 @@ M.ListInternetEventsInput = {
 
 M.InternetEventSummary = {
     type = "structure",
+    id = "InternetEventSummary",
     members = {
         EventId = {
             type = "string",
@@ -1071,6 +1112,7 @@ M.InternetEventSummary = {
 
 M.ListInternetEventsOutput = {
     type = "structure",
+    id = "ListInternetEventsOutput",
     members = {
         InternetEvents = {
             type = "list",
@@ -1087,6 +1129,7 @@ M.ListInternetEventsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1100,6 +1143,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1111,6 +1155,7 @@ M.ListTagsForResourceOutput = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -1121,6 +1166,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -1131,6 +1177,7 @@ M.TooManyRequestsException = {
 
 M.ListMonitorsInput = {
     type = "structure",
+    id = "ListMonitorsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1161,6 +1208,7 @@ M.ListMonitorsInput = {
 
 M.Monitor = {
     type = "structure",
+    id = "Monitor",
     members = {
         MonitorName = {
             type = "string",
@@ -1188,6 +1236,7 @@ M.Monitor = {
 
 M.ListMonitorsOutput = {
     type = "structure",
+    id = "ListMonitorsOutput",
     members = {
         Monitors = {
             type = "list",
@@ -1213,6 +1262,7 @@ M.QueryType = {
 
 M.StartQueryInput = {
     type = "structure",
+    id = "StartQueryInput",
     members = {
         MonitorName = {
             type = "string",
@@ -1253,6 +1303,7 @@ M.StartQueryInput = {
 
 M.StartQueryOutput = {
     type = "structure",
+    id = "StartQueryOutput",
     members = {
         QueryId = {
             type = "string",
@@ -1265,6 +1316,7 @@ M.StartQueryOutput = {
 
 M.StopQueryInput = {
     type = "structure",
+    id = "StopQueryInput",
     members = {
         MonitorName = {
             type = "string",
@@ -1285,10 +1337,12 @@ M.StopQueryInput = {
 
 M.StopQueryOutput = {
     type = "structure",
+    id = "StopQueryOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1299,6 +1353,7 @@ M.ResourceNotFoundException = {
 
 M.UpdateMonitorInput = {
     type = "structure",
+    id = "UpdateMonitorInput",
     members = {
         MonitorName = {
             type = "string",
@@ -1337,6 +1392,7 @@ M.UpdateMonitorInput = {
 
 M.UpdateMonitorOutput = {
     type = "structure",
+    id = "UpdateMonitorOutput",
     members = {
         MonitorArn = {
             type = "string",
@@ -1355,6 +1411,7 @@ M.UpdateMonitorOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1376,10 +1433,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1401,6 +1460,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

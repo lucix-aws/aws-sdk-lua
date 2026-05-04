@@ -2,6 +2,7 @@ local M = {}
 
 M.AuthException = {
     type = "structure",
+    id = "AuthException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AuthException = {
 
 M.EC2InstanceNotFoundException = {
     type = "structure",
+    id = "EC2InstanceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.EC2InstanceNotFoundException = {
 
 M.EC2InstanceStateInvalidException = {
     type = "structure",
+    id = "EC2InstanceStateInvalidException",
     error = "client",
     members = {
         Message = {
@@ -32,6 +35,7 @@ M.EC2InstanceStateInvalidException = {
 
 M.EC2InstanceTypeInvalidException = {
     type = "structure",
+    id = "EC2InstanceTypeInvalidException",
     error = "client",
     members = {
         Message = {
@@ -42,6 +46,7 @@ M.EC2InstanceTypeInvalidException = {
 
 M.EC2InstanceUnavailableException = {
     type = "structure",
+    id = "EC2InstanceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -52,6 +57,7 @@ M.EC2InstanceUnavailableException = {
 
 M.InvalidArgsException = {
     type = "structure",
+    id = "InvalidArgsException",
     error = "client",
     members = {
         Message = {
@@ -62,6 +68,7 @@ M.InvalidArgsException = {
 
 M.SendSerialConsoleSSHPublicKeyInput = {
     type = "structure",
+    id = "SendSerialConsoleSSHPublicKeyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -86,6 +93,7 @@ M.SendSerialConsoleSSHPublicKeyInput = {
 
 M.SendSerialConsoleSSHPublicKeyOutput = {
     type = "structure",
+    id = "SendSerialConsoleSSHPublicKeyOutput",
     members = {
         RequestId = {
             type = "string",
@@ -101,6 +109,7 @@ M.SendSerialConsoleSSHPublicKeyOutput = {
 
 M.SerialConsoleAccessDisabledException = {
     type = "structure",
+    id = "SerialConsoleAccessDisabledException",
     error = "client",
     members = {
         Message = {
@@ -111,6 +120,7 @@ M.SerialConsoleAccessDisabledException = {
 
 M.SerialConsoleSessionLimitExceededException = {
     type = "structure",
+    id = "SerialConsoleSessionLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -121,6 +131,7 @@ M.SerialConsoleSessionLimitExceededException = {
 
 M.SerialConsoleSessionUnavailableException = {
     type = "structure",
+    id = "SerialConsoleSessionUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -131,6 +142,7 @@ M.SerialConsoleSessionUnavailableException = {
 
 M.SerialConsoleSessionUnsupportedException = {
     type = "structure",
+    id = "SerialConsoleSessionUnsupportedException",
     error = "client",
     members = {
         Message = {
@@ -141,6 +153,7 @@ M.SerialConsoleSessionUnsupportedException = {
 
 M.ServiceException = {
     type = "structure",
+    id = "ServiceException",
     error = "server",
     members = {
         Message = {
@@ -151,6 +164,7 @@ M.ServiceException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -161,6 +175,7 @@ M.ThrottlingException = {
 
 M.SendSSHPublicKeyInput = {
     type = "structure",
+    id = "SendSSHPublicKeyInput",
     members = {
         InstanceId = {
             type = "string",
@@ -188,6 +203,7 @@ M.SendSSHPublicKeyInput = {
 
 M.SendSSHPublicKeyOutput = {
     type = "structure",
+    id = "SendSSHPublicKeyOutput",
     members = {
         RequestId = {
             type = "string",

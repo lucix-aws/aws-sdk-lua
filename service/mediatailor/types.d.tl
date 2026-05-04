@@ -649,11 +649,11 @@ local record BadRequestException
     Message: string
 end
 
+local type Tier = "BASIC" | "STANDARD"
+
 local type InsertionMode = "STITCHED_ONLY" | "PLAYER_SELECT"
 
 local type ListPrefetchScheduleType = "SINGLE" | "RECURRING" | "ALL"
-
-local type Tier = "BASIC" | "STANDARD"
 
 local type PlaybackMode = "LOOP" | "LINEAR"
 

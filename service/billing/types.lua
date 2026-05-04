@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ActiveTimeRange = {
     type = "structure",
+    id = "ActiveTimeRange",
     members = {
         activeAfterInclusive = {
             type = "timestamp",
@@ -33,6 +35,7 @@ M.ActiveTimeRange = {
 
 M.AssociateSourceViewsInput = {
     type = "structure",
+    id = "AssociateSourceViewsInput",
     members = {
         arn = {
             type = "string",
@@ -52,6 +55,7 @@ M.AssociateSourceViewsInput = {
 
 M.AssociateSourceViewsOutput = {
     type = "structure",
+    id = "AssociateSourceViewsOutput",
     members = {
         arn = {
             type = "string",
@@ -64,6 +68,7 @@ M.AssociateSourceViewsOutput = {
 
 M.BillingViewHealthStatusException = {
     type = "structure",
+    id = "BillingViewHealthStatusException",
     error = "client",
     members = {
         message = {
@@ -77,6 +82,7 @@ M.BillingViewHealthStatusException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -102,6 +108,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -115,6 +122,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -140,6 +148,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -177,6 +186,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -190,6 +200,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -215,6 +226,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -238,6 +250,7 @@ M.ValidationException = {
 
 M.CostCategoryValues = {
     type = "structure",
+    id = "CostCategoryValues",
     members = {
         key = {
             type = "string",
@@ -261,6 +274,7 @@ M.Dimension = {
 
 M.DimensionValues = {
     type = "structure",
+    id = "DimensionValues",
     members = {
         key = {
             type = "string",
@@ -280,6 +294,7 @@ M.DimensionValues = {
 
 M.TagValues = {
     type = "structure",
+    id = "TagValues",
     members = {
         key = {
             type = "string",
@@ -299,6 +314,7 @@ M.TagValues = {
 
 M.TimeRange = {
     type = "structure",
+    id = "TimeRange",
     members = {
         beginDateInclusive = {
             type = "timestamp",
@@ -311,6 +327,7 @@ M.TimeRange = {
 
 M.Expression = {
     type = "structure",
+    id = "Expression",
     members = {
         dimensions = M.DimensionValues,
         tags = M.TagValues,
@@ -321,6 +338,7 @@ M.Expression = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         key = {
             type = "string",
@@ -336,6 +354,7 @@ M.ResourceTag = {
 
 M.CreateBillingViewInput = {
     type = "structure",
+    id = "CreateBillingViewInput",
     members = {
         name = {
             type = "string",
@@ -370,6 +389,7 @@ M.CreateBillingViewInput = {
 
 M.CreateBillingViewOutput = {
     type = "structure",
+    id = "CreateBillingViewOutput",
     members = {
         arn = {
             type = "string",
@@ -385,6 +405,7 @@ M.CreateBillingViewOutput = {
 
 M.DeleteBillingViewInput = {
     type = "structure",
+    id = "DeleteBillingViewInput",
     members = {
         arn = {
             type = "string",
@@ -403,6 +424,7 @@ M.DeleteBillingViewInput = {
 
 M.DeleteBillingViewOutput = {
     type = "structure",
+    id = "DeleteBillingViewOutput",
     members = {
         arn = {
             type = "string",
@@ -415,6 +437,7 @@ M.DeleteBillingViewOutput = {
 
 M.DisassociateSourceViewsInput = {
     type = "structure",
+    id = "DisassociateSourceViewsInput",
     members = {
         arn = {
             type = "string",
@@ -434,6 +457,7 @@ M.DisassociateSourceViewsInput = {
 
 M.DisassociateSourceViewsOutput = {
     type = "structure",
+    id = "DisassociateSourceViewsOutput",
     members = {
         arn = {
             type = "string",
@@ -446,6 +470,7 @@ M.DisassociateSourceViewsOutput = {
 
 M.GetBillingViewInput = {
     type = "structure",
+    id = "GetBillingViewInput",
     members = {
         arn = {
             type = "string",
@@ -484,6 +509,7 @@ M.BillingViewStatusReason = {
 
 M.BillingViewHealthStatus = {
     type = "structure",
+    id = "BillingViewHealthStatus",
     members = {
         statusCode = {
             type = "string",
@@ -497,6 +523,7 @@ M.BillingViewHealthStatus = {
 
 M.BillingViewElement = {
     type = "structure",
+    id = "BillingViewElement",
     members = {
         arn = {
             type = "string",
@@ -538,6 +565,7 @@ M.BillingViewElement = {
 
 M.GetBillingViewOutput = {
     type = "structure",
+    id = "GetBillingViewOutput",
     members = {
         billingView = setmetatable({ traits = {
             required = true,
@@ -547,6 +575,7 @@ M.GetBillingViewOutput = {
 
 M.GetResourcePolicyInput = {
     type = "structure",
+    id = "GetResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -559,6 +588,7 @@ M.GetResourcePolicyInput = {
 
 M.GetResourcePolicyOutput = {
     type = "structure",
+    id = "GetResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -578,6 +608,7 @@ M.SearchOption = {
 
 M.StringSearch = {
     type = "structure",
+    id = "StringSearch",
     members = {
         searchOption = {
             type = "string",
@@ -596,6 +627,7 @@ M.StringSearch = {
 
 M.ListBillingViewsInput = {
     type = "structure",
+    id = "ListBillingViewsInput",
     members = {
         activeTimeRange = M.ActiveTimeRange,
         arns = {
@@ -627,6 +659,7 @@ M.ListBillingViewsInput = {
 
 M.BillingViewListElement = {
     type = "structure",
+    id = "BillingViewListElement",
     members = {
         arn = {
             type = "string",
@@ -652,6 +685,7 @@ M.BillingViewListElement = {
 
 M.ListBillingViewsOutput = {
     type = "structure",
+    id = "ListBillingViewsOutput",
     members = {
         billingViews = {
             type = "list",
@@ -668,6 +702,7 @@ M.ListBillingViewsOutput = {
 
 M.ListSourceViewsForBillingViewInput = {
     type = "structure",
+    id = "ListSourceViewsForBillingViewInput",
     members = {
         arn = {
             type = "string",
@@ -686,6 +721,7 @@ M.ListSourceViewsForBillingViewInput = {
 
 M.ListSourceViewsForBillingViewOutput = {
     type = "structure",
+    id = "ListSourceViewsForBillingViewOutput",
     members = {
         sourceViews = {
             type = "list",
@@ -702,6 +738,7 @@ M.ListSourceViewsForBillingViewOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -714,6 +751,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         resourceTags = {
             type = "list",
@@ -724,6 +762,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -743,10 +782,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -766,10 +807,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateBillingViewInput = {
     type = "structure",
+    id = "UpdateBillingViewInput",
     members = {
         arn = {
             type = "string",
@@ -789,6 +832,7 @@ M.UpdateBillingViewInput = {
 
 M.UpdateBillingViewOutput = {
     type = "structure",
+    id = "UpdateBillingViewOutput",
     members = {
         arn = {
             type = "string",

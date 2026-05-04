@@ -2,6 +2,7 @@ local M = {}
 
 M.Alias = {
     type = "structure",
+    id = "Alias",
     members = {
         Name = {
             type = "string",
@@ -18,6 +19,7 @@ M.Alias = {
 
 M.AnnotationValue = {
     type = "union",
+    id = "AnnotationValue",
     members = {
         NumberValue = {
             type = "double",
@@ -33,6 +35,7 @@ M.AnnotationValue = {
 
 M.ServiceId = {
     type = "structure",
+    id = "ServiceId",
     members = {
         Name = {
             type = "string",
@@ -52,6 +55,7 @@ M.ServiceId = {
 
 M.ValueWithServiceIds = {
     type = "structure",
+    id = "ValueWithServiceIds",
     members = {
         AnnotationValue = M.AnnotationValue,
         ServiceIds = {
@@ -63,6 +67,7 @@ M.ValueWithServiceIds = {
 
 M.AnomalousService = {
     type = "structure",
+    id = "AnomalousService",
     members = {
         ServiceId = M.ServiceId,
     },
@@ -70,6 +75,7 @@ M.AnomalousService = {
 
 M.AvailabilityZoneDetail = {
     type = "structure",
+    id = "AvailabilityZoneDetail",
     members = {
         Name = {
             type = "string",
@@ -79,6 +85,7 @@ M.AvailabilityZoneDetail = {
 
 M.BatchGetTracesInput = {
     type = "structure",
+    id = "BatchGetTracesInput",
     members = {
         TraceIds = {
             type = "list",
@@ -95,6 +102,7 @@ M.BatchGetTracesInput = {
 
 M.Segment = {
     type = "structure",
+    id = "Segment",
     members = {
         Id = {
             type = "string",
@@ -107,6 +115,7 @@ M.Segment = {
 
 M.Trace = {
     type = "structure",
+    id = "Trace",
     members = {
         Id = {
             type = "string",
@@ -126,6 +135,7 @@ M.Trace = {
 
 M.BatchGetTracesOutput = {
     type = "structure",
+    id = "BatchGetTracesOutput",
     members = {
         Traces = {
             type = "list",
@@ -143,6 +153,7 @@ M.BatchGetTracesOutput = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -153,6 +164,7 @@ M.InvalidRequestException = {
 
 M.ThrottledException = {
     type = "structure",
+    id = "ThrottledException",
     error = "client",
     members = {
         Message = {
@@ -163,6 +175,7 @@ M.ThrottledException = {
 
 M.CancelTraceRetrievalInput = {
     type = "structure",
+    id = "CancelTraceRetrievalInput",
     members = {
         RetrievalToken = {
             type = "string",
@@ -175,10 +188,12 @@ M.CancelTraceRetrievalInput = {
 
 M.CancelTraceRetrievalOutput = {
     type = "structure",
+    id = "CancelTraceRetrievalOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -192,6 +207,7 @@ M.ResourceNotFoundException = {
 
 M.InsightsConfiguration = {
     type = "structure",
+    id = "InsightsConfiguration",
     members = {
         InsightsEnabled = {
             type = "boolean",
@@ -204,6 +220,7 @@ M.InsightsConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -222,6 +239,7 @@ M.Tag = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -242,6 +260,7 @@ M.CreateGroupInput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         GroupName = {
             type = "string",
@@ -258,6 +277,7 @@ M.Group = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -265,6 +285,7 @@ M.CreateGroupOutput = {
 
 M.SamplingRateBoost = {
     type = "structure",
+    id = "SamplingRateBoost",
     members = {
         MaxRate = {
             type = "double",
@@ -285,6 +306,7 @@ M.SamplingRateBoost = {
 
 M.SamplingRule = {
     type = "structure",
+    id = "SamplingRule",
     members = {
         RuleName = {
             type = "string",
@@ -365,6 +387,7 @@ M.SamplingRule = {
 
 M.CreateSamplingRuleInput = {
     type = "structure",
+    id = "CreateSamplingRuleInput",
     members = {
         SamplingRule = setmetatable({ traits = {
             required = true,
@@ -378,6 +401,7 @@ M.CreateSamplingRuleInput = {
 
 M.SamplingRuleRecord = {
     type = "structure",
+    id = "SamplingRuleRecord",
     members = {
         SamplingRule = M.SamplingRule,
         CreatedAt = {
@@ -391,6 +415,7 @@ M.SamplingRuleRecord = {
 
 M.CreateSamplingRuleOutput = {
     type = "structure",
+    id = "CreateSamplingRuleOutput",
     members = {
         SamplingRuleRecord = M.SamplingRuleRecord,
     },
@@ -398,6 +423,7 @@ M.CreateSamplingRuleOutput = {
 
 M.RuleLimitExceededException = {
     type = "structure",
+    id = "RuleLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -408,6 +434,7 @@ M.RuleLimitExceededException = {
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -420,10 +447,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         PolicyName = {
             type = "string",
@@ -439,10 +468,12 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
 }
 
 M.InvalidPolicyRevisionIdException = {
     type = "structure",
+    id = "InvalidPolicyRevisionIdException",
     error = "client",
     members = {
         Message = {
@@ -453,6 +484,7 @@ M.InvalidPolicyRevisionIdException = {
 
 M.DeleteSamplingRuleInput = {
     type = "structure",
+    id = "DeleteSamplingRuleInput",
     members = {
         RuleName = {
             type = "string",
@@ -465,6 +497,7 @@ M.DeleteSamplingRuleInput = {
 
 M.DeleteSamplingRuleOutput = {
     type = "structure",
+    id = "DeleteSamplingRuleOutput",
     members = {
         SamplingRuleRecord = M.SamplingRuleRecord,
     },
@@ -472,6 +505,7 @@ M.DeleteSamplingRuleOutput = {
 
 M.GetEncryptionConfigInput = {
     type = "structure",
+    id = "GetEncryptionConfigInput",
 }
 
 M.EncryptionStatus = {
@@ -486,6 +520,7 @@ M.EncryptionType = {
 
 M.EncryptionConfig = {
     type = "structure",
+    id = "EncryptionConfig",
     members = {
         KeyId = {
             type = "string",
@@ -501,6 +536,7 @@ M.EncryptionConfig = {
 
 M.GetEncryptionConfigOutput = {
     type = "structure",
+    id = "GetEncryptionConfigOutput",
     members = {
         EncryptionConfig = M.EncryptionConfig,
     },
@@ -508,6 +544,7 @@ M.GetEncryptionConfigOutput = {
 
 M.GetGroupInput = {
     type = "structure",
+    id = "GetGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -520,6 +557,7 @@ M.GetGroupInput = {
 
 M.GetGroupOutput = {
     type = "structure",
+    id = "GetGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -527,6 +565,7 @@ M.GetGroupOutput = {
 
 M.GetGroupsInput = {
     type = "structure",
+    id = "GetGroupsInput",
     members = {
         NextToken = {
             type = "string",
@@ -536,6 +575,7 @@ M.GetGroupsInput = {
 
 M.GroupSummary = {
     type = "structure",
+    id = "GroupSummary",
     members = {
         GroupName = {
             type = "string",
@@ -552,6 +592,7 @@ M.GroupSummary = {
 
 M.GetGroupsOutput = {
     type = "structure",
+    id = "GetGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -565,6 +606,7 @@ M.GetGroupsOutput = {
 
 M.GetIndexingRulesInput = {
     type = "structure",
+    id = "GetIndexingRulesInput",
     members = {
         NextToken = {
             type = "string",
@@ -574,6 +616,7 @@ M.GetIndexingRulesInput = {
 
 M.ProbabilisticRuleValue = {
     type = "structure",
+    id = "ProbabilisticRuleValue",
     members = {
         DesiredSamplingPercentage = {
             type = "double",
@@ -589,6 +632,7 @@ M.ProbabilisticRuleValue = {
 
 M.IndexingRuleValue = {
     type = "union",
+    id = "IndexingRuleValue",
     members = {
         Probabilistic = M.ProbabilisticRuleValue,
     },
@@ -596,6 +640,7 @@ M.IndexingRuleValue = {
 
 M.IndexingRule = {
     type = "structure",
+    id = "IndexingRule",
     members = {
         Name = {
             type = "string",
@@ -609,6 +654,7 @@ M.IndexingRule = {
 
 M.GetIndexingRulesOutput = {
     type = "structure",
+    id = "GetIndexingRulesOutput",
     members = {
         IndexingRules = {
             type = "list",
@@ -622,6 +668,7 @@ M.GetIndexingRulesOutput = {
 
 M.GetInsightInput = {
     type = "structure",
+    id = "GetInsightInput",
     members = {
         InsightId = {
             type = "string",
@@ -638,6 +685,7 @@ M.InsightCategory = {
 
 M.RequestImpactStatistics = {
     type = "structure",
+    id = "RequestImpactStatistics",
     members = {
         FaultCount = {
             type = "long",
@@ -658,6 +706,7 @@ M.InsightState = {
 
 M.Insight = {
     type = "structure",
+    id = "Insight",
     members = {
         InsightId = {
             type = "string",
@@ -696,6 +745,7 @@ M.Insight = {
 
 M.GetInsightOutput = {
     type = "structure",
+    id = "GetInsightOutput",
     members = {
         Insight = M.Insight,
     },
@@ -703,6 +753,7 @@ M.GetInsightOutput = {
 
 M.GetInsightEventsInput = {
     type = "structure",
+    id = "GetInsightEventsInput",
     members = {
         InsightId = {
             type = "string",
@@ -721,6 +772,7 @@ M.GetInsightEventsInput = {
 
 M.InsightEvent = {
     type = "structure",
+    id = "InsightEvent",
     members = {
         Summary = {
             type = "string",
@@ -739,6 +791,7 @@ M.InsightEvent = {
 
 M.GetInsightEventsOutput = {
     type = "structure",
+    id = "GetInsightEventsOutput",
     members = {
         InsightEvents = {
             type = "list",
@@ -752,6 +805,7 @@ M.GetInsightEventsOutput = {
 
 M.GetInsightImpactGraphInput = {
     type = "structure",
+    id = "GetInsightImpactGraphInput",
     members = {
         InsightId = {
             type = "string",
@@ -779,6 +833,7 @@ M.GetInsightImpactGraphInput = {
 
 M.InsightImpactGraphEdge = {
     type = "structure",
+    id = "InsightImpactGraphEdge",
     members = {
         ReferenceId = {
             type = "integer",
@@ -788,6 +843,7 @@ M.InsightImpactGraphEdge = {
 
 M.InsightImpactGraphService = {
     type = "structure",
+    id = "InsightImpactGraphService",
     members = {
         ReferenceId = {
             type = "integer",
@@ -814,6 +870,7 @@ M.InsightImpactGraphService = {
 
 M.GetInsightImpactGraphOutput = {
     type = "structure",
+    id = "GetInsightImpactGraphOutput",
     members = {
         InsightId = {
             type = "string",
@@ -842,6 +899,7 @@ M.GetInsightImpactGraphOutput = {
 
 M.GetInsightSummariesInput = {
     type = "structure",
+    id = "GetInsightSummariesInput",
     members = {
         States = {
             type = "list",
@@ -876,6 +934,7 @@ M.GetInsightSummariesInput = {
 
 M.InsightSummary = {
     type = "structure",
+    id = "InsightSummary",
     members = {
         InsightId = {
             type = "string",
@@ -917,6 +976,7 @@ M.InsightSummary = {
 
 M.GetInsightSummariesOutput = {
     type = "structure",
+    id = "GetInsightSummariesOutput",
     members = {
         InsightSummaries = {
             type = "list",
@@ -930,6 +990,7 @@ M.GetInsightSummariesOutput = {
 
 M.GetRetrievedTracesGraphInput = {
     type = "structure",
+    id = "GetRetrievedTracesGraphInput",
     members = {
         RetrievalToken = {
             type = "string",
@@ -954,6 +1015,7 @@ M.RetrievalStatus = {
 
 M.GraphLink = {
     type = "structure",
+    id = "GraphLink",
     members = {
         ReferenceType = {
             type = "string",
@@ -970,6 +1032,7 @@ M.GraphLink = {
 
 M.HistogramEntry = {
     type = "structure",
+    id = "HistogramEntry",
     members = {
         Value = {
             type = "double",
@@ -988,6 +1051,7 @@ M.HistogramEntry = {
 
 M.ErrorStatistics = {
     type = "structure",
+    id = "ErrorStatistics",
     members = {
         ThrottleCount = {
             type = "long",
@@ -1003,6 +1067,7 @@ M.ErrorStatistics = {
 
 M.FaultStatistics = {
     type = "structure",
+    id = "FaultStatistics",
     members = {
         OtherCount = {
             type = "long",
@@ -1015,6 +1080,7 @@ M.FaultStatistics = {
 
 M.EdgeStatistics = {
     type = "structure",
+    id = "EdgeStatistics",
     members = {
         OkCount = {
             type = "long",
@@ -1032,6 +1098,7 @@ M.EdgeStatistics = {
 
 M.Edge = {
     type = "structure",
+    id = "Edge",
     members = {
         ReferenceId = {
             type = "integer",
@@ -1063,6 +1130,7 @@ M.Edge = {
 
 M.ServiceStatistics = {
     type = "structure",
+    id = "ServiceStatistics",
     members = {
         OkCount = {
             type = "long",
@@ -1080,6 +1148,7 @@ M.ServiceStatistics = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         ReferenceId = {
             type = "integer",
@@ -1127,6 +1196,7 @@ M.Service = {
 
 M.RetrievedService = {
     type = "structure",
+    id = "RetrievedService",
     members = {
         Service = M.Service,
         Links = {
@@ -1138,6 +1208,7 @@ M.RetrievedService = {
 
 M.GetRetrievedTracesGraphOutput = {
     type = "structure",
+    id = "GetRetrievedTracesGraphOutput",
     members = {
         RetrievalStatus = {
             type = "string",
@@ -1154,6 +1225,7 @@ M.GetRetrievedTracesGraphOutput = {
 
 M.GetSamplingRulesInput = {
     type = "structure",
+    id = "GetSamplingRulesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1163,6 +1235,7 @@ M.GetSamplingRulesInput = {
 
 M.GetSamplingRulesOutput = {
     type = "structure",
+    id = "GetSamplingRulesOutput",
     members = {
         SamplingRuleRecords = {
             type = "list",
@@ -1176,6 +1249,7 @@ M.GetSamplingRulesOutput = {
 
 M.GetSamplingStatisticSummariesInput = {
     type = "structure",
+    id = "GetSamplingStatisticSummariesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1185,6 +1259,7 @@ M.GetSamplingStatisticSummariesInput = {
 
 M.SamplingStatisticSummary = {
     type = "structure",
+    id = "SamplingStatisticSummary",
     members = {
         RuleName = {
             type = "string",
@@ -1215,6 +1290,7 @@ M.SamplingStatisticSummary = {
 
 M.GetSamplingStatisticSummariesOutput = {
     type = "structure",
+    id = "GetSamplingStatisticSummariesOutput",
     members = {
         SamplingStatisticSummaries = {
             type = "list",
@@ -1228,6 +1304,7 @@ M.GetSamplingStatisticSummariesOutput = {
 
 M.SamplingBoostStatisticsDocument = {
     type = "structure",
+    id = "SamplingBoostStatisticsDocument",
     members = {
         RuleName = {
             type = "string",
@@ -1273,6 +1350,7 @@ M.SamplingBoostStatisticsDocument = {
 
 M.SamplingStatisticsDocument = {
     type = "structure",
+    id = "SamplingStatisticsDocument",
     members = {
         RuleName = {
             type = "string",
@@ -1317,6 +1395,7 @@ M.SamplingStatisticsDocument = {
 
 M.GetSamplingTargetsInput = {
     type = "structure",
+    id = "GetSamplingTargetsInput",
     members = {
         SamplingStatisticsDocuments = {
             type = "list",
@@ -1334,6 +1413,7 @@ M.GetSamplingTargetsInput = {
 
 M.SamplingBoost = {
     type = "structure",
+    id = "SamplingBoost",
     members = {
         BoostRate = {
             type = "double",
@@ -1353,6 +1433,7 @@ M.SamplingBoost = {
 
 M.SamplingTargetDocument = {
     type = "structure",
+    id = "SamplingTargetDocument",
     members = {
         RuleName = {
             type = "string",
@@ -1378,6 +1459,7 @@ M.SamplingTargetDocument = {
 
 M.UnprocessedStatistics = {
     type = "structure",
+    id = "UnprocessedStatistics",
     members = {
         RuleName = {
             type = "string",
@@ -1393,6 +1475,7 @@ M.UnprocessedStatistics = {
 
 M.GetSamplingTargetsOutput = {
     type = "structure",
+    id = "GetSamplingTargetsOutput",
     members = {
         SamplingTargetDocuments = {
             type = "list",
@@ -1414,6 +1497,7 @@ M.GetSamplingTargetsOutput = {
 
 M.GetServiceGraphInput = {
     type = "structure",
+    id = "GetServiceGraphInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1441,6 +1525,7 @@ M.GetServiceGraphInput = {
 
 M.GetServiceGraphOutput = {
     type = "structure",
+    id = "GetServiceGraphOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1466,6 +1551,7 @@ M.GetServiceGraphOutput = {
 
 M.GetTimeSeriesServiceStatisticsInput = {
     type = "structure",
+    id = "GetTimeSeriesServiceStatisticsInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1502,6 +1588,7 @@ M.GetTimeSeriesServiceStatisticsInput = {
 
 M.ForecastStatistics = {
     type = "structure",
+    id = "ForecastStatistics",
     members = {
         FaultCountHigh = {
             type = "long",
@@ -1514,6 +1601,7 @@ M.ForecastStatistics = {
 
 M.TimeSeriesServiceStatistics = {
     type = "structure",
+    id = "TimeSeriesServiceStatistics",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -1530,6 +1618,7 @@ M.TimeSeriesServiceStatistics = {
 
 M.GetTimeSeriesServiceStatisticsOutput = {
     type = "structure",
+    id = "GetTimeSeriesServiceStatisticsOutput",
     members = {
         TimeSeriesServiceStatistics = {
             type = "list",
@@ -1549,6 +1638,7 @@ M.GetTimeSeriesServiceStatisticsOutput = {
 
 M.GetTraceGraphInput = {
     type = "structure",
+    id = "GetTraceGraphInput",
     members = {
         TraceIds = {
             type = "list",
@@ -1565,6 +1655,7 @@ M.GetTraceGraphInput = {
 
 M.GetTraceGraphOutput = {
     type = "structure",
+    id = "GetTraceGraphOutput",
     members = {
         Services = {
             type = "list",
@@ -1578,6 +1669,7 @@ M.GetTraceGraphOutput = {
 
 M.GetTraceSegmentDestinationInput = {
     type = "structure",
+    id = "GetTraceSegmentDestinationInput",
 }
 
 M.TraceSegmentDestination = {
@@ -1592,6 +1684,7 @@ M.TraceSegmentDestinationStatus = {
 
 M.GetTraceSegmentDestinationOutput = {
     type = "structure",
+    id = "GetTraceSegmentDestinationOutput",
     members = {
         Destination = {
             type = "string",
@@ -1609,6 +1702,7 @@ M.SamplingStrategyName = {
 
 M.SamplingStrategy = {
     type = "structure",
+    id = "SamplingStrategy",
     members = {
         Name = {
             type = "string",
@@ -1627,6 +1721,7 @@ M.TimeRangeType = {
 
 M.GetTraceSummariesInput = {
     type = "structure",
+    id = "GetTraceSummariesInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1658,6 +1753,7 @@ M.GetTraceSummariesInput = {
 
 M.RootCauseException = {
     type = "structure",
+    id = "RootCauseException",
     members = {
         Name = {
             type = "string",
@@ -1670,6 +1766,7 @@ M.RootCauseException = {
 
 M.ErrorRootCauseEntity = {
     type = "structure",
+    id = "ErrorRootCauseEntity",
     members = {
         Name = {
             type = "string",
@@ -1686,6 +1783,7 @@ M.ErrorRootCauseEntity = {
 
 M.ErrorRootCauseService = {
     type = "structure",
+    id = "ErrorRootCauseService",
     members = {
         Name = {
             type = "string",
@@ -1712,6 +1810,7 @@ M.ErrorRootCauseService = {
 
 M.ErrorRootCause = {
     type = "structure",
+    id = "ErrorRootCause",
     members = {
         Services = {
             type = "list",
@@ -1725,6 +1824,7 @@ M.ErrorRootCause = {
 
 M.FaultRootCauseEntity = {
     type = "structure",
+    id = "FaultRootCauseEntity",
     members = {
         Name = {
             type = "string",
@@ -1741,6 +1841,7 @@ M.FaultRootCauseEntity = {
 
 M.FaultRootCauseService = {
     type = "structure",
+    id = "FaultRootCauseService",
     members = {
         Name = {
             type = "string",
@@ -1767,6 +1868,7 @@ M.FaultRootCauseService = {
 
 M.FaultRootCause = {
     type = "structure",
+    id = "FaultRootCause",
     members = {
         Services = {
             type = "list",
@@ -1780,6 +1882,7 @@ M.FaultRootCause = {
 
 M.Http = {
     type = "structure",
+    id = "Http",
     members = {
         HttpURL = {
             type = "string",
@@ -1801,6 +1904,7 @@ M.Http = {
 
 M.InstanceIdDetail = {
     type = "structure",
+    id = "InstanceIdDetail",
     members = {
         Id = {
             type = "string",
@@ -1810,6 +1914,7 @@ M.InstanceIdDetail = {
 
 M.ResourceARNDetail = {
     type = "structure",
+    id = "ResourceARNDetail",
     members = {
         ARN = {
             type = "string",
@@ -1819,6 +1924,7 @@ M.ResourceARNDetail = {
 
 M.ResponseTimeRootCauseEntity = {
     type = "structure",
+    id = "ResponseTimeRootCauseEntity",
     members = {
         Name = {
             type = "string",
@@ -1834,6 +1940,7 @@ M.ResponseTimeRootCauseEntity = {
 
 M.ResponseTimeRootCauseService = {
     type = "structure",
+    id = "ResponseTimeRootCauseService",
     members = {
         Name = {
             type = "string",
@@ -1860,6 +1967,7 @@ M.ResponseTimeRootCauseService = {
 
 M.ResponseTimeRootCause = {
     type = "structure",
+    id = "ResponseTimeRootCause",
     members = {
         Services = {
             type = "list",
@@ -1873,6 +1981,7 @@ M.ResponseTimeRootCause = {
 
 M.TraceUser = {
     type = "structure",
+    id = "TraceUser",
     members = {
         UserName = {
             type = "string",
@@ -1886,6 +1995,7 @@ M.TraceUser = {
 
 M.TraceSummary = {
     type = "structure",
+    id = "TraceSummary",
     members = {
         Id = {
             type = "string",
@@ -1964,6 +2074,7 @@ M.TraceSummary = {
 
 M.GetTraceSummariesOutput = {
     type = "structure",
+    id = "GetTraceSummariesOutput",
     members = {
         TraceSummaries = {
             type = "list",
@@ -1983,6 +2094,7 @@ M.GetTraceSummariesOutput = {
 
 M.ListResourcePoliciesInput = {
     type = "structure",
+    id = "ListResourcePoliciesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1992,6 +2104,7 @@ M.ListResourcePoliciesInput = {
 
 M.ResourcePolicy = {
     type = "structure",
+    id = "ResourcePolicy",
     members = {
         PolicyName = {
             type = "string",
@@ -2010,6 +2123,7 @@ M.ResourcePolicy = {
 
 M.ListResourcePoliciesOutput = {
     type = "structure",
+    id = "ListResourcePoliciesOutput",
     members = {
         ResourcePolicies = {
             type = "list",
@@ -2028,6 +2142,7 @@ M.TraceFormatType = {
 
 M.ListRetrievedTracesInput = {
     type = "structure",
+    id = "ListRetrievedTracesInput",
     members = {
         RetrievalToken = {
             type = "string",
@@ -2046,6 +2161,7 @@ M.ListRetrievedTracesInput = {
 
 M.Span = {
     type = "structure",
+    id = "Span",
     members = {
         Id = {
             type = "string",
@@ -2058,6 +2174,7 @@ M.Span = {
 
 M.RetrievedTrace = {
     type = "structure",
+    id = "RetrievedTrace",
     members = {
         Id = {
             type = "string",
@@ -2074,6 +2191,7 @@ M.RetrievedTrace = {
 
 M.ListRetrievedTracesOutput = {
     type = "structure",
+    id = "ListRetrievedTracesOutput",
     members = {
         RetrievalStatus = {
             type = "string",
@@ -2093,6 +2211,7 @@ M.ListRetrievedTracesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2108,6 +2227,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2121,6 +2241,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutEncryptionConfigInput = {
     type = "structure",
+    id = "PutEncryptionConfigInput",
     members = {
         KeyId = {
             type = "string",
@@ -2136,6 +2257,7 @@ M.PutEncryptionConfigInput = {
 
 M.PutEncryptionConfigOutput = {
     type = "structure",
+    id = "PutEncryptionConfigOutput",
     members = {
         EncryptionConfig = M.EncryptionConfig,
     },
@@ -2143,6 +2265,7 @@ M.PutEncryptionConfigOutput = {
 
 M.LockoutPreventionException = {
     type = "structure",
+    id = "LockoutPreventionException",
     error = "client",
     members = {
         Message = {
@@ -2153,6 +2276,7 @@ M.LockoutPreventionException = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         Message = {
@@ -2163,6 +2287,7 @@ M.MalformedPolicyDocumentException = {
 
 M.PolicyCountLimitExceededException = {
     type = "structure",
+    id = "PolicyCountLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -2173,6 +2298,7 @@ M.PolicyCountLimitExceededException = {
 
 M.PolicySizeLimitExceededException = {
     type = "structure",
+    id = "PolicySizeLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -2183,6 +2309,7 @@ M.PolicySizeLimitExceededException = {
 
 M.PutResourcePolicyInput = {
     type = "structure",
+    id = "PutResourcePolicyInput",
     members = {
         PolicyName = {
             type = "string",
@@ -2210,6 +2337,7 @@ M.PutResourcePolicyInput = {
 
 M.PutResourcePolicyOutput = {
     type = "structure",
+    id = "PutResourcePolicyOutput",
     members = {
         ResourcePolicy = M.ResourcePolicy,
     },
@@ -2217,6 +2345,7 @@ M.PutResourcePolicyOutput = {
 
 M.BackendConnectionErrors = {
     type = "structure",
+    id = "BackendConnectionErrors",
     members = {
         TimeoutCount = {
             type = "integer",
@@ -2241,6 +2370,7 @@ M.BackendConnectionErrors = {
 
 M.TelemetryRecord = {
     type = "structure",
+    id = "TelemetryRecord",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -2266,6 +2396,7 @@ M.TelemetryRecord = {
 
 M.PutTelemetryRecordsInput = {
     type = "structure",
+    id = "PutTelemetryRecordsInput",
     members = {
         TelemetryRecords = {
             type = "list",
@@ -2288,10 +2419,12 @@ M.PutTelemetryRecordsInput = {
 
 M.PutTelemetryRecordsOutput = {
     type = "structure",
+    id = "PutTelemetryRecordsOutput",
 }
 
 M.PutTraceSegmentsInput = {
     type = "structure",
+    id = "PutTraceSegmentsInput",
     members = {
         TraceSegmentDocuments = {
             type = "list",
@@ -2305,6 +2438,7 @@ M.PutTraceSegmentsInput = {
 
 M.UnprocessedTraceSegment = {
     type = "structure",
+    id = "UnprocessedTraceSegment",
     members = {
         Id = {
             type = "string",
@@ -2320,6 +2454,7 @@ M.UnprocessedTraceSegment = {
 
 M.PutTraceSegmentsOutput = {
     type = "structure",
+    id = "PutTraceSegmentsOutput",
     members = {
         UnprocessedTraceSegments = {
             type = "list",
@@ -2330,6 +2465,7 @@ M.PutTraceSegmentsOutput = {
 
 M.StartTraceRetrievalInput = {
     type = "structure",
+    id = "StartTraceRetrievalInput",
     members = {
         TraceIds = {
             type = "list",
@@ -2355,6 +2491,7 @@ M.StartTraceRetrievalInput = {
 
 M.StartTraceRetrievalOutput = {
     type = "structure",
+    id = "StartTraceRetrievalOutput",
     members = {
         RetrievalToken = {
             type = "string",
@@ -2364,6 +2501,7 @@ M.StartTraceRetrievalOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2383,10 +2521,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -2400,6 +2540,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2419,10 +2560,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -2439,6 +2582,7 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
     members = {
         Group = M.Group,
     },
@@ -2446,6 +2590,7 @@ M.UpdateGroupOutput = {
 
 M.ProbabilisticRuleValueUpdate = {
     type = "structure",
+    id = "ProbabilisticRuleValueUpdate",
     members = {
         DesiredSamplingPercentage = {
             type = "double",
@@ -2458,6 +2603,7 @@ M.ProbabilisticRuleValueUpdate = {
 
 M.IndexingRuleValueUpdate = {
     type = "union",
+    id = "IndexingRuleValueUpdate",
     members = {
         Probabilistic = M.ProbabilisticRuleValueUpdate,
     },
@@ -2465,6 +2611,7 @@ M.IndexingRuleValueUpdate = {
 
 M.UpdateIndexingRuleInput = {
     type = "structure",
+    id = "UpdateIndexingRuleInput",
     members = {
         Name = {
             type = "string",
@@ -2480,6 +2627,7 @@ M.UpdateIndexingRuleInput = {
 
 M.UpdateIndexingRuleOutput = {
     type = "structure",
+    id = "UpdateIndexingRuleOutput",
     members = {
         IndexingRule = M.IndexingRule,
     },
@@ -2487,6 +2635,7 @@ M.UpdateIndexingRuleOutput = {
 
 M.SamplingRuleUpdate = {
     type = "structure",
+    id = "SamplingRuleUpdate",
     members = {
         RuleName = {
             type = "string",
@@ -2532,6 +2681,7 @@ M.SamplingRuleUpdate = {
 
 M.UpdateSamplingRuleInput = {
     type = "structure",
+    id = "UpdateSamplingRuleInput",
     members = {
         SamplingRuleUpdate = setmetatable({ traits = {
             required = true,
@@ -2541,6 +2691,7 @@ M.UpdateSamplingRuleInput = {
 
 M.UpdateSamplingRuleOutput = {
     type = "structure",
+    id = "UpdateSamplingRuleOutput",
     members = {
         SamplingRuleRecord = M.SamplingRuleRecord,
     },
@@ -2548,6 +2699,7 @@ M.UpdateSamplingRuleOutput = {
 
 M.UpdateTraceSegmentDestinationInput = {
     type = "structure",
+    id = "UpdateTraceSegmentDestinationInput",
     members = {
         Destination = {
             type = "string",
@@ -2557,6 +2709,7 @@ M.UpdateTraceSegmentDestinationInput = {
 
 M.UpdateTraceSegmentDestinationOutput = {
     type = "structure",
+    id = "UpdateTraceSegmentDestinationOutput",
     members = {
         Destination = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.DataQuery = {
     type = "structure",
+    id = "DataQuery",
     members = {
         QueryStatement = {
             type = "string",
@@ -51,6 +53,7 @@ M.OverwriteOption = {
 
 M.S3OutputConfigurations = {
     type = "structure",
+    id = "S3OutputConfigurations",
     members = {
         OutputType = {
             type = "string",
@@ -81,6 +84,7 @@ M.S3OutputConfigurations = {
 
 M.S3Destination = {
     type = "structure",
+    id = "S3Destination",
     members = {
         S3Bucket = {
             type = "string",
@@ -111,6 +115,7 @@ M.S3Destination = {
 
 M.DestinationConfigurations = {
     type = "structure",
+    id = "DestinationConfigurations",
     members = {
         S3Destination = setmetatable({ traits = {
             required = true,
@@ -124,6 +129,7 @@ M.FrequencyOption = {
 
 M.RefreshCadence = {
     type = "structure",
+    id = "RefreshCadence",
     members = {
         Frequency = {
             type = "string",
@@ -136,6 +142,7 @@ M.RefreshCadence = {
 
 M.Export = {
     type = "structure",
+    id = "Export",
     members = {
         ExportArn = {
             type = "string",
@@ -163,6 +170,7 @@ M.Export = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         Key = {
             type = "string",
@@ -181,6 +189,7 @@ M.ResourceTag = {
 
 M.CreateExportInput = {
     type = "structure",
+    id = "CreateExportInput",
     members = {
         Export = setmetatable({ traits = {
             required = true,
@@ -194,6 +203,7 @@ M.CreateExportInput = {
 
 M.CreateExportOutput = {
     type = "structure",
+    id = "CreateExportOutput",
     members = {
         ExportArn = {
             type = "string",
@@ -203,6 +213,7 @@ M.CreateExportOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -216,6 +227,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -247,6 +259,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -266,6 +279,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -291,6 +305,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -311,6 +326,7 @@ M.ValidationException = {
 
 M.DeleteExportInput = {
     type = "structure",
+    id = "DeleteExportInput",
     members = {
         ExportArn = {
             type = "string",
@@ -323,6 +339,7 @@ M.DeleteExportInput = {
 
 M.DeleteExportOutput = {
     type = "structure",
+    id = "DeleteExportOutput",
     members = {
         ExportArn = {
             type = "string",
@@ -332,6 +349,7 @@ M.DeleteExportOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -357,6 +375,7 @@ M.ResourceNotFoundException = {
 
 M.GetExportInput = {
     type = "structure",
+    id = "GetExportInput",
     members = {
         ExportArn = {
             type = "string",
@@ -380,6 +399,7 @@ M.ExecutionStatusReason = {
 
 M.ExportStatus = {
     type = "structure",
+    id = "ExportStatus",
     members = {
         StatusCode = {
             type = "string",
@@ -410,6 +430,7 @@ M.ExportStatus = {
 
 M.GetExportOutput = {
     type = "structure",
+    id = "GetExportOutput",
     members = {
         Export = M.Export,
         ExportStatus = M.ExportStatus,
@@ -418,6 +439,7 @@ M.GetExportOutput = {
 
 M.ListExportsInput = {
     type = "structure",
+    id = "ListExportsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -433,6 +455,7 @@ M.ListExportsInput = {
 
 M.ExportReference = {
     type = "structure",
+    id = "ExportReference",
     members = {
         ExportArn = {
             type = "string",
@@ -454,6 +477,7 @@ M.ExportReference = {
 
 M.ListExportsOutput = {
     type = "structure",
+    id = "ListExportsOutput",
     members = {
         Exports = {
             type = "list",
@@ -467,6 +491,7 @@ M.ListExportsOutput = {
 
 M.UpdateExportInput = {
     type = "structure",
+    id = "UpdateExportInput",
     members = {
         ExportArn = {
             type = "string",
@@ -482,6 +507,7 @@ M.UpdateExportInput = {
 
 M.UpdateExportOutput = {
     type = "structure",
+    id = "UpdateExportOutput",
     members = {
         ExportArn = {
             type = "string",
@@ -491,6 +517,7 @@ M.UpdateExportOutput = {
 
 M.GetExecutionInput = {
     type = "structure",
+    id = "GetExecutionInput",
     members = {
         ExportArn = {
             type = "string",
@@ -519,6 +546,7 @@ M.ExecutionStatusCode = {
 
 M.ExecutionStatus = {
     type = "structure",
+    id = "ExecutionStatus",
     members = {
         StatusCode = {
             type = "string",
@@ -549,6 +577,7 @@ M.ExecutionStatus = {
 
 M.GetExecutionOutput = {
     type = "structure",
+    id = "GetExecutionOutput",
     members = {
         ExecutionId = {
             type = "string",
@@ -560,6 +589,7 @@ M.GetExecutionOutput = {
 
 M.GetTableInput = {
     type = "structure",
+    id = "GetTableInput",
     members = {
         TableName = {
             type = "string",
@@ -577,6 +607,7 @@ M.GetTableInput = {
 
 M.Column = {
     type = "structure",
+    id = "Column",
     members = {
         Name = {
             type = "string",
@@ -592,6 +623,7 @@ M.Column = {
 
 M.GetTableOutput = {
     type = "structure",
+    id = "GetTableOutput",
     members = {
         TableName = {
             type = "string",
@@ -613,6 +645,7 @@ M.GetTableOutput = {
 
 M.ListExecutionsInput = {
     type = "structure",
+    id = "ListExecutionsInput",
     members = {
         ExportArn = {
             type = "string",
@@ -634,6 +667,7 @@ M.ListExecutionsInput = {
 
 M.ExecutionReference = {
     type = "structure",
+    id = "ExecutionReference",
     members = {
         ExecutionId = {
             type = "string",
@@ -649,6 +683,7 @@ M.ExecutionReference = {
 
 M.ListExecutionsOutput = {
     type = "structure",
+    id = "ListExecutionsOutput",
     members = {
         Executions = {
             type = "list",
@@ -662,6 +697,7 @@ M.ListExecutionsOutput = {
 
 M.ListTablesInput = {
     type = "structure",
+    id = "ListTablesInput",
     members = {
         NextToken = {
             type = "string",
@@ -677,6 +713,7 @@ M.ListTablesInput = {
 
 M.TablePropertyDescription = {
     type = "structure",
+    id = "TablePropertyDescription",
     members = {
         Name = {
             type = "string",
@@ -696,6 +733,7 @@ M.TablePropertyDescription = {
 
 M.Table = {
     type = "structure",
+    id = "Table",
     members = {
         TableName = {
             type = "string",
@@ -712,6 +750,7 @@ M.Table = {
 
 M.ListTablesOutput = {
     type = "structure",
+    id = "ListTablesOutput",
     members = {
         Tables = {
             type = "list",
@@ -725,6 +764,7 @@ M.ListTablesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -746,6 +786,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceTags = {
             type = "list",
@@ -759,6 +800,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -778,10 +820,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -801,6 +845,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

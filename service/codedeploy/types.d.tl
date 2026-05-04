@@ -1813,19 +1813,19 @@ local record TriggerTargetsLimitExceededException
     message: string
 end
 
-local type FileExistsBehavior = "DISALLOW" | "OVERWRITE" | "RETAIN"
-
-local type ComputePlatform = "Server" | "Lambda" | "ECS"
-
-local type DeploymentWaitType = "READY_WAIT" | "TERMINATION_WAIT"
-
 local type SortOrder = "ascending" | "descending"
 
 local type ApplicationRevisionSortBy = "registerTime" | "firstUsedTime" | "lastUsedTime"
 
 local type LifecycleEventStatus = "Pending" | "InProgress" | "Succeeded" | "Failed" | "Skipped" | "Unknown"
 
+local type ComputePlatform = "Server" | "Lambda" | "ECS"
+
+local type DeploymentWaitType = "READY_WAIT" | "TERMINATION_WAIT"
+
 local type ListStateFilterAction = "include" | "exclude" | "ignore"
+
+local type FileExistsBehavior = "DISALLOW" | "OVERWRITE" | "RETAIN"
 
 local type StopStatus = "Pending" | "Succeeded"
 

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.RegisteredAzureDevOpsServiceDetails = {
     type = "structure",
+    id = "RegisteredAzureDevOpsServiceDetails",
     members = {
         organizationName = {
             type = "string",
@@ -27,6 +29,7 @@ M.RegisteredAzureDevOpsServiceDetails = {
 
 M.RegisteredAzureIdentityDetails = {
     type = "structure",
+    id = "RegisteredAzureIdentityDetails",
     members = {
         tenantId = {
             type = "string",
@@ -63,6 +66,7 @@ M.GithubRepoOwnerType = {
 
 M.RegisteredGithubServiceDetails = {
     type = "structure",
+    id = "RegisteredGithubServiceDetails",
     members = {
         owner = {
             type = "string",
@@ -89,6 +93,7 @@ M.GitLabTokenType = {
 
 M.RegisteredGitLabServiceDetails = {
     type = "structure",
+    id = "RegisteredGitLabServiceDetails",
     members = {
         targetUrl = {
             type = "string",
@@ -117,6 +122,7 @@ M.MCPServerAuthorizationMethod = {
 
 M.RegisteredMCPServerDetails = {
     type = "structure",
+    id = "RegisteredMCPServerDetails",
     members = {
         name = {
             type = "string",
@@ -147,6 +153,7 @@ M.RegisteredMCPServerDetails = {
 
 M.RegisteredGrafanaServerDetails = {
     type = "structure",
+    id = "RegisteredGrafanaServerDetails",
     members = {
         endpoint = {
             type = "string",
@@ -170,6 +177,7 @@ M.NewRelicRegion = {
 
 M.RegisteredNewRelicDetails = {
     type = "structure",
+    id = "RegisteredNewRelicDetails",
     members = {
         accountId = {
             type = "string",
@@ -191,6 +199,7 @@ M.RegisteredNewRelicDetails = {
 
 M.RegisteredPagerDutyDetails = {
     type = "structure",
+    id = "RegisteredPagerDutyDetails",
     members = {
         scopes = {
             type = "list",
@@ -204,6 +213,7 @@ M.RegisteredPagerDutyDetails = {
 
 M.RegisteredServiceNowDetails = {
     type = "structure",
+    id = "RegisteredServiceNowDetails",
     members = {
         instanceUrl = {
             type = "string",
@@ -213,6 +223,7 @@ M.RegisteredServiceNowDetails = {
 
 M.RegisteredSlackServiceDetails = {
     type = "structure",
+    id = "RegisteredSlackServiceDetails",
     members = {
         teamId = {
             type = "string",
@@ -231,6 +242,7 @@ M.RegisteredSlackServiceDetails = {
 
 M.AdditionalServiceDetails = {
     type = "union",
+    id = "AdditionalServiceDetails",
     members = {
         github = M.RegisteredGithubServiceDetails,
         slack = M.RegisteredSlackServiceDetails,
@@ -249,6 +261,7 @@ M.AdditionalServiceDetails = {
 
 M.OAuthAdditionalStepDetails = {
     type = "structure",
+    id = "OAuthAdditionalStepDetails",
     members = {
         authorizationUrl = {
             type = "string",
@@ -261,6 +274,7 @@ M.OAuthAdditionalStepDetails = {
 
 M.AdditionalServiceRegistrationStep = {
     type = "union",
+    id = "AdditionalServiceRegistrationStep",
     members = {
         oauth = M.OAuthAdditionalStepDetails,
     },
@@ -268,6 +282,7 @@ M.AdditionalServiceRegistrationStep = {
 
 M.AgentSpace = {
     type = "structure",
+    id = "AgentSpace",
     members = {
         name = {
             type = "string",
@@ -313,6 +328,7 @@ M.MonitorAccountType = {
 
 M.AWSConfiguration = {
     type = "structure",
+    id = "AWSConfiguration",
     members = {
         assumableRoleArn = {
             type = "string",
@@ -337,6 +353,7 @@ M.AWSConfiguration = {
 
 M.AzureConfiguration = {
     type = "structure",
+    id = "AzureConfiguration",
     members = {
         subscriptionId = {
             type = "string",
@@ -349,6 +366,7 @@ M.AzureConfiguration = {
 
 M.AzureDevOpsConfiguration = {
     type = "structure",
+    id = "AzureDevOpsConfiguration",
     members = {
         organizationName = {
             type = "string",
@@ -373,6 +391,7 @@ M.AzureDevOpsConfiguration = {
 
 M.DynatraceConfiguration = {
     type = "structure",
+    id = "DynatraceConfiguration",
     members = {
         envId = {
             type = "string",
@@ -389,10 +408,12 @@ M.DynatraceConfiguration = {
 
 M.EventChannelConfiguration = {
     type = "structure",
+    id = "EventChannelConfiguration",
 }
 
 M.GitHubConfiguration = {
     type = "structure",
+    id = "GitHubConfiguration",
     members = {
         repoName = {
             type = "string",
@@ -426,6 +447,7 @@ M.GitHubConfiguration = {
 
 M.GitLabConfiguration = {
     type = "structure",
+    id = "GitLabConfiguration",
     members = {
         projectId = {
             type = "string",
@@ -447,6 +469,7 @@ M.GitLabConfiguration = {
 
 M.MCPServerConfiguration = {
     type = "structure",
+    id = "MCPServerConfiguration",
     members = {
         tools = {
             type = "list",
@@ -460,10 +483,12 @@ M.MCPServerConfiguration = {
 
 M.MCPServerDatadogConfiguration = {
     type = "structure",
+    id = "MCPServerDatadogConfiguration",
 }
 
 M.MCPServerGrafanaConfiguration = {
     type = "structure",
+    id = "MCPServerGrafanaConfiguration",
     members = {
         endpoint = {
             type = "string",
@@ -483,6 +508,7 @@ M.MCPServerGrafanaConfiguration = {
 
 M.MCPServerNewRelicConfiguration = {
     type = "structure",
+    id = "MCPServerNewRelicConfiguration",
     members = {
         accountId = {
             type = "string",
@@ -501,10 +527,12 @@ M.MCPServerNewRelicConfiguration = {
 
 M.MCPServerSplunkConfiguration = {
     type = "structure",
+    id = "MCPServerSplunkConfiguration",
 }
 
 M.PagerDutyConfiguration = {
     type = "structure",
+    id = "PagerDutyConfiguration",
     members = {
         services = {
             type = "list",
@@ -524,6 +552,7 @@ M.PagerDutyConfiguration = {
 
 M.ServiceNowConfiguration = {
     type = "structure",
+    id = "ServiceNowConfiguration",
     members = {
         instanceId = {
             type = "string",
@@ -537,6 +566,7 @@ M.ServiceNowConfiguration = {
 
 M.SlackChannel = {
     type = "structure",
+    id = "SlackChannel",
     members = {
         channelName = {
             type = "string",
@@ -552,6 +582,7 @@ M.SlackChannel = {
 
 M.SlackTransmissionTarget = {
     type = "structure",
+    id = "SlackTransmissionTarget",
     members = {
         opsOncallTarget = setmetatable({ traits = {
             required = true,
@@ -562,6 +593,7 @@ M.SlackTransmissionTarget = {
 
 M.SlackConfiguration = {
     type = "structure",
+    id = "SlackConfiguration",
     members = {
         workspaceId = {
             type = "string",
@@ -587,6 +619,7 @@ M.SourceAccountType = {
 
 M.SourceAwsConfiguration = {
     type = "structure",
+    id = "SourceAwsConfiguration",
     members = {
         accountId = {
             type = "string",
@@ -614,6 +647,7 @@ M.SourceAwsConfiguration = {
 
 M.ServiceConfiguration = {
     type = "union",
+    id = "ServiceConfiguration",
     members = {
         sourceAws = M.SourceAwsConfiguration,
         aws = M.AWSConfiguration,
@@ -636,6 +670,7 @@ M.ServiceConfiguration = {
 
 M.AssociateServiceInput = {
     type = "structure",
+    id = "AssociateServiceInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -664,6 +699,7 @@ M.ValidationStatus = {
 
 M.Association = {
     type = "structure",
+    id = "Association",
     members = {
         agentSpaceId = {
             type = "string",
@@ -715,6 +751,7 @@ M.WebhookType = {
 
 M.GenericWebhook = {
     type = "structure",
+    id = "GenericWebhook",
     members = {
         webhookUrl = {
             type = "string",
@@ -736,6 +773,7 @@ M.GenericWebhook = {
 
 M.AssociateServiceOutput = {
     type = "structure",
+    id = "AssociateServiceOutput",
     members = {
         association = setmetatable({ traits = {
             required = true,
@@ -746,6 +784,7 @@ M.AssociateServiceOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -759,6 +798,7 @@ M.ConflictException = {
 
 M.ContentSizeExceededException = {
     type = "structure",
+    id = "ContentSizeExceededException",
     error = "client",
     members = {
         message = {
@@ -772,6 +812,7 @@ M.ContentSizeExceededException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -785,6 +826,7 @@ M.InternalServerException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -798,6 +840,7 @@ M.InvalidParameterException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -811,6 +854,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -824,6 +868,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -837,6 +882,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         path = {
             type = "string",
@@ -855,6 +901,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -872,6 +919,7 @@ M.ValidationException = {
 
 M.DisassociateServiceInput = {
     type = "structure",
+    id = "DisassociateServiceInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -892,10 +940,12 @@ M.DisassociateServiceInput = {
 
 M.DisassociateServiceOutput = {
     type = "structure",
+    id = "DisassociateServiceOutput",
 }
 
 M.GetAssociationInput = {
     type = "structure",
+    id = "GetAssociationInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -916,6 +966,7 @@ M.GetAssociationInput = {
 
 M.GetAssociationOutput = {
     type = "structure",
+    id = "GetAssociationOutput",
     members = {
         association = setmetatable({ traits = {
             required = true,
@@ -925,6 +976,7 @@ M.GetAssociationOutput = {
 
 M.ListAssociationsInput = {
     type = "structure",
+    id = "ListAssociationsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -957,6 +1009,7 @@ M.ListAssociationsInput = {
 
 M.ListAssociationsOutput = {
     type = "structure",
+    id = "ListAssociationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -973,6 +1026,7 @@ M.ListAssociationsOutput = {
 
 M.ListWebhooksInput = {
     type = "structure",
+    id = "ListWebhooksInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -993,6 +1047,7 @@ M.ListWebhooksInput = {
 
 M.Webhook = {
     type = "structure",
+    id = "Webhook",
     members = {
         webhookUrl = {
             type = "string",
@@ -1014,6 +1069,7 @@ M.Webhook = {
 
 M.ListWebhooksOutput = {
     type = "structure",
+    id = "ListWebhooksOutput",
     members = {
         webhooks = {
             type = "list",
@@ -1027,6 +1083,7 @@ M.ListWebhooksOutput = {
 
 M.UpdateAssociationInput = {
     type = "structure",
+    id = "UpdateAssociationInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1050,6 +1107,7 @@ M.UpdateAssociationInput = {
 
 M.UpdateAssociationOutput = {
     type = "structure",
+    id = "UpdateAssociationOutput",
     members = {
         association = setmetatable({ traits = {
             required = true,
@@ -1060,6 +1118,7 @@ M.UpdateAssociationOutput = {
 
 M.ValidateAwsAssociationsInput = {
     type = "structure",
+    id = "ValidateAwsAssociationsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1073,10 +1132,12 @@ M.ValidateAwsAssociationsInput = {
 
 M.ValidateAwsAssociationsOutput = {
     type = "structure",
+    id = "ValidateAwsAssociationsOutput",
 }
 
 M.CreateAgentSpaceInput = {
     type = "structure",
+    id = "CreateAgentSpaceInput",
     members = {
         name = {
             type = "string",
@@ -1109,6 +1170,7 @@ M.CreateAgentSpaceInput = {
 
 M.CreateAgentSpaceOutput = {
     type = "structure",
+    id = "CreateAgentSpaceOutput",
     members = {
         agentSpace = setmetatable({ traits = {
             required = true,
@@ -1123,6 +1185,7 @@ M.CreateAgentSpaceOutput = {
 
 M.DeleteAgentSpaceInput = {
     type = "structure",
+    id = "DeleteAgentSpaceInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1136,6 +1199,7 @@ M.DeleteAgentSpaceInput = {
 
 M.DeleteAgentSpaceOutput = {
     type = "structure",
+    id = "DeleteAgentSpaceOutput",
 }
 
 M.AuthFlow = {
@@ -1146,6 +1210,7 @@ M.AuthFlow = {
 
 M.DisableOperatorAppInput = {
     type = "structure",
+    id = "DisableOperatorAppInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1165,10 +1230,12 @@ M.DisableOperatorAppInput = {
 
 M.DisableOperatorAppOutput = {
     type = "structure",
+    id = "DisableOperatorAppOutput",
 }
 
 M.IdentityCenterServiceException = {
     type = "structure",
+    id = "IdentityCenterServiceException",
     error = "client",
     members = {
         message = {
@@ -1185,6 +1252,7 @@ M.IdentityCenterServiceException = {
 
 M.EnableOperatorAppInput = {
     type = "structure",
+    id = "EnableOperatorAppInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1225,6 +1293,7 @@ M.EnableOperatorAppInput = {
 
 M.IamAuthConfiguration = {
     type = "structure",
+    id = "IamAuthConfiguration",
     members = {
         operatorAppRoleArn = {
             type = "string",
@@ -1250,6 +1319,7 @@ M.IamAuthConfiguration = {
 
 M.IdcAuthConfiguration = {
     type = "structure",
+    id = "IdcAuthConfiguration",
     members = {
         operatorAppRoleArn = {
             type = "string",
@@ -1284,6 +1354,7 @@ M.IdcAuthConfiguration = {
 
 M.IdpAuthConfiguration = {
     type = "structure",
+    id = "IdpAuthConfiguration",
     members = {
         issuerUrl = {
             type = "string",
@@ -1327,6 +1398,7 @@ M.IdpAuthConfiguration = {
 
 M.EnableOperatorAppOutput = {
     type = "structure",
+    id = "EnableOperatorAppOutput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1342,6 +1414,7 @@ M.EnableOperatorAppOutput = {
 
 M.GetAgentSpaceInput = {
     type = "structure",
+    id = "GetAgentSpaceInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1355,6 +1428,7 @@ M.GetAgentSpaceInput = {
 
 M.GetAgentSpaceOutput = {
     type = "structure",
+    id = "GetAgentSpaceOutput",
     members = {
         agentSpace = setmetatable({ traits = {
             required = true,
@@ -1369,6 +1443,7 @@ M.GetAgentSpaceOutput = {
 
 M.GetOperatorAppInput = {
     type = "structure",
+    id = "GetOperatorAppInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1382,6 +1457,7 @@ M.GetOperatorAppInput = {
 
 M.GetOperatorAppOutput = {
     type = "structure",
+    id = "GetOperatorAppOutput",
     members = {
         iam = M.IamAuthConfiguration,
         idc = M.IdcAuthConfiguration,
@@ -1391,6 +1467,7 @@ M.GetOperatorAppOutput = {
 
 M.ListAgentSpacesInput = {
     type = "structure",
+    id = "ListAgentSpacesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1410,6 +1487,7 @@ M.ListAgentSpacesInput = {
 
 M.ListAgentSpacesOutput = {
     type = "structure",
+    id = "ListAgentSpacesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1426,6 +1504,7 @@ M.ListAgentSpacesOutput = {
 
 M.UpdateAgentSpaceInput = {
     type = "structure",
+    id = "UpdateAgentSpaceInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1448,6 +1527,7 @@ M.UpdateAgentSpaceInput = {
 
 M.UpdateAgentSpaceOutput = {
     type = "structure",
+    id = "UpdateAgentSpaceOutput",
     members = {
         agentSpace = setmetatable({ traits = {
             required = true,
@@ -1457,6 +1537,7 @@ M.UpdateAgentSpaceOutput = {
 
 M.UpdateOperatorAppIdpConfigInput = {
     type = "structure",
+    id = "UpdateOperatorAppIdpConfigInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1473,6 +1554,7 @@ M.UpdateOperatorAppIdpConfigInput = {
 
 M.UpdateOperatorAppIdpConfigOutput = {
     type = "structure",
+    id = "UpdateOperatorAppIdpConfigOutput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1488,6 +1570,7 @@ M.UpdateOperatorAppIdpConfigOutput = {
 
 M.AssistantMessageBlock = {
     type = "union",
+    id = "AssistantMessageBlock",
     members = {
         text = {
             type = "string",
@@ -1500,6 +1583,7 @@ M.AssistantMessageBlock = {
 
 M.ChatExecution = {
     type = "structure",
+    id = "ChatExecution",
     members = {
         executionId = {
             type = "string",
@@ -1532,6 +1616,7 @@ M.Priority = {
 
 M.ReferenceInput = {
     type = "structure",
+    id = "ReferenceInput",
     members = {
         system = {
             type = "string",
@@ -1570,6 +1655,7 @@ M.TaskType = {
 
 M.CreateBacklogTaskInput = {
     type = "structure",
+    id = "CreateBacklogTaskInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1611,6 +1697,7 @@ M.CreateBacklogTaskInput = {
 
 M.ReferenceOutput = {
     type = "structure",
+    id = "ReferenceOutput",
     members = {
         system = {
             type = "string",
@@ -1656,6 +1743,7 @@ M.TaskStatus = {
 
 M.Task = {
     type = "structure",
+    id = "Task",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1743,6 +1831,7 @@ M.Task = {
 
 M.CreateBacklogTaskOutput = {
     type = "structure",
+    id = "CreateBacklogTaskOutput",
     members = {
         task = setmetatable({ traits = {
             required = true,
@@ -1758,6 +1847,7 @@ M.UserType = {
 
 M.CreateChatInput = {
     type = "structure",
+    id = "CreateChatInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -1783,6 +1873,7 @@ M.CreateChatInput = {
 
 M.CreateChatOutput = {
     type = "structure",
+    id = "CreateChatOutput",
     members = {
         executionId = {
             type = "string",
@@ -1801,6 +1892,7 @@ M.CreateChatOutput = {
 
 M.SelfManagedInput = {
     type = "structure",
+    id = "SelfManagedInput",
     members = {
         resourceConfigurationId = {
             type = "string",
@@ -1822,6 +1914,7 @@ M.IpAddressType = {
 
 M.ServiceManagedInput = {
     type = "structure",
+    id = "ServiceManagedInput",
     members = {
         hostAddress = {
             type = "string",
@@ -1864,6 +1957,7 @@ M.ServiceManagedInput = {
 
 M.PrivateConnectionMode = {
     type = "union",
+    id = "PrivateConnectionMode",
     members = {
         serviceManaged = M.ServiceManagedInput,
         selfManaged = M.SelfManagedInput,
@@ -1872,6 +1966,7 @@ M.PrivateConnectionMode = {
 
 M.CreatePrivateConnectionInput = {
     type = "structure",
+    id = "CreatePrivateConnectionInput",
     members = {
         name = {
             type = "string",
@@ -1905,6 +2000,7 @@ M.PrivateConnectionType = {
 
 M.CreatePrivateConnectionOutput = {
     type = "structure",
+    id = "CreatePrivateConnectionOutput",
     members = {
         name = {
             type = "string",
@@ -1952,6 +2048,7 @@ M.CreatePrivateConnectionOutput = {
 
 M.MCPServerAuthorizationDiscoveryConfig = {
     type = "structure",
+    id = "MCPServerAuthorizationDiscoveryConfig",
     members = {
         returnToEndpoint = {
             type = "string",
@@ -1964,6 +2061,7 @@ M.MCPServerAuthorizationDiscoveryConfig = {
 
 M.DatadogAuthorizationConfig = {
     type = "union",
+    id = "DatadogAuthorizationConfig",
     members = {
         authorizationDiscovery = M.MCPServerAuthorizationDiscoveryConfig,
     },
@@ -1971,6 +2069,7 @@ M.DatadogAuthorizationConfig = {
 
 M.DatadogServiceDetails = {
     type = "structure",
+    id = "DatadogServiceDetails",
     members = {
         name = {
             type = "string",
@@ -1995,6 +2094,7 @@ M.DatadogServiceDetails = {
 
 M.DeletePrivateConnectionInput = {
     type = "structure",
+    id = "DeletePrivateConnectionInput",
     members = {
         name = {
             type = "string",
@@ -2008,6 +2108,7 @@ M.DeletePrivateConnectionInput = {
 
 M.DeletePrivateConnectionOutput = {
     type = "structure",
+    id = "DeletePrivateConnectionOutput",
     members = {
         name = {
             type = "string",
@@ -2026,6 +2127,7 @@ M.DeletePrivateConnectionOutput = {
 
 M.DeregisterServiceInput = {
     type = "structure",
+    id = "DeregisterServiceInput",
     members = {
         serviceId = {
             type = "string",
@@ -2039,10 +2141,12 @@ M.DeregisterServiceInput = {
 
 M.DeregisterServiceOutput = {
     type = "structure",
+    id = "DeregisterServiceOutput",
 }
 
 M.DescribePrivateConnectionInput = {
     type = "structure",
+    id = "DescribePrivateConnectionInput",
     members = {
         name = {
             type = "string",
@@ -2056,6 +2160,7 @@ M.DescribePrivateConnectionInput = {
 
 M.DescribePrivateConnectionOutput = {
     type = "structure",
+    id = "DescribePrivateConnectionOutput",
     members = {
         name = {
             type = "string",
@@ -2103,10 +2208,12 @@ M.DescribePrivateConnectionOutput = {
 
 M.GetAccountUsageInput = {
     type = "structure",
+    id = "GetAccountUsageInput",
 }
 
 M.UsageMetric = {
     type = "structure",
+    id = "UsageMetric",
     members = {
         limit = {
             type = "integer",
@@ -2125,6 +2232,7 @@ M.UsageMetric = {
 
 M.GetAccountUsageOutput = {
     type = "structure",
+    id = "GetAccountUsageOutput",
     members = {
         monthlyAccountInvestigationHours = M.UsageMetric,
         monthlyAccountEvaluationHours = M.UsageMetric,
@@ -2149,6 +2257,7 @@ M.GetAccountUsageOutput = {
 
 M.GetBacklogTaskInput = {
     type = "structure",
+    id = "GetBacklogTaskInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2169,6 +2278,7 @@ M.GetBacklogTaskInput = {
 
 M.GetBacklogTaskOutput = {
     type = "structure",
+    id = "GetBacklogTaskOutput",
     members = {
         task = setmetatable({ traits = {
             required = true,
@@ -2178,6 +2288,7 @@ M.GetBacklogTaskOutput = {
 
 M.GetRecommendationInput = {
     type = "structure",
+    id = "GetRecommendationInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2204,6 +2315,7 @@ M.GetRecommendationInput = {
 
 M.RecommendationContent = {
     type = "structure",
+    id = "RecommendationContent",
     members = {
         summary = {
             type = "string",
@@ -2234,6 +2346,7 @@ M.RecommendationStatus = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         agentSpaceArn = {
             type = "string",
@@ -2308,6 +2421,7 @@ M.Recommendation = {
 
 M.GetRecommendationOutput = {
     type = "structure",
+    id = "GetRecommendationOutput",
     members = {
         recommendation = setmetatable({ traits = {
             required = true,
@@ -2317,6 +2431,7 @@ M.GetRecommendationOutput = {
 
 M.TaskFilter = {
     type = "structure",
+    id = "TaskFilter",
     members = {
         createdAfter = {
             type = "timestamp",
@@ -2360,6 +2475,7 @@ M.TaskSortField = {
 
 M.ListBacklogTasksInput = {
     type = "structure",
+    id = "ListBacklogTasksInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2392,6 +2508,7 @@ M.ListBacklogTasksInput = {
 
 M.ListBacklogTasksOutput = {
     type = "structure",
+    id = "ListBacklogTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -2408,6 +2525,7 @@ M.ListBacklogTasksOutput = {
 
 M.ListChatsInput = {
     type = "structure",
+    id = "ListChatsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2439,6 +2557,7 @@ M.ListChatsInput = {
 
 M.ListChatsOutput = {
     type = "structure",
+    id = "ListChatsOutput",
     members = {
         executions = {
             type = "list",
@@ -2455,6 +2574,7 @@ M.ListChatsOutput = {
 
 M.ListExecutionsInput = {
     type = "structure",
+    id = "ListExecutionsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2488,6 +2608,7 @@ M.ExecutionStatus = {
 
 M.Execution = {
     type = "structure",
+    id = "Execution",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2539,6 +2660,7 @@ M.Execution = {
 
 M.ListExecutionsOutput = {
     type = "structure",
+    id = "ListExecutionsOutput",
     members = {
         executions = {
             type = "list",
@@ -2566,6 +2688,7 @@ M.GoalStatus = {
 
 M.ListGoalsInput = {
     type = "structure",
+    id = "ListGoalsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2594,6 +2717,7 @@ M.ListGoalsInput = {
 
 M.GoalContent = {
     type = "structure",
+    id = "GoalContent",
     members = {
         description = {
             type = "string",
@@ -2617,6 +2741,7 @@ M.SchedulerState = {
 
 M.GoalSchedule = {
     type = "structure",
+    id = "GoalSchedule",
     members = {
         state = {
             type = "string",
@@ -2632,6 +2757,7 @@ M.GoalSchedule = {
 
 M.Goal = {
     type = "structure",
+    id = "Goal",
     members = {
         agentSpaceArn = {
             type = "string",
@@ -2705,6 +2831,7 @@ M.Goal = {
 
 M.ListGoalsOutput = {
     type = "structure",
+    id = "ListGoalsOutput",
     members = {
         goals = {
             type = "list",
@@ -2726,6 +2853,7 @@ M.OrderType = {
 
 M.ListJournalRecordsInput = {
     type = "structure",
+    id = "ListJournalRecordsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2766,6 +2894,7 @@ M.ListJournalRecordsInput = {
 
 M.UserReference = {
     type = "structure",
+    id = "UserReference",
     members = {
         userId = {
             type = "string",
@@ -2784,6 +2913,7 @@ M.UserReference = {
 
 M.JournalRecord = {
     type = "structure",
+    id = "JournalRecord",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2827,6 +2957,7 @@ M.JournalRecord = {
 
 M.ListJournalRecordsOutput = {
     type = "structure",
+    id = "ListJournalRecordsOutput",
     members = {
         records = {
             type = "list",
@@ -2843,6 +2974,7 @@ M.ListJournalRecordsOutput = {
 
 M.ListPendingMessagesInput = {
     type = "structure",
+    id = "ListPendingMessagesInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2862,6 +2994,7 @@ M.ListPendingMessagesInput = {
 
 M.UserMessageBlock = {
     type = "union",
+    id = "UserMessageBlock",
     members = {
         text = {
             type = "string",
@@ -2874,6 +3007,7 @@ M.UserMessageBlock = {
 
 M.Message = {
     type = "union",
+    id = "Message",
     members = {
         userMessage = {
             type = "list",
@@ -2888,6 +3022,7 @@ M.Message = {
 
 M.PendingMessage = {
     type = "structure",
+    id = "PendingMessage",
     members = {
         messageId = {
             type = "string",
@@ -2903,6 +3038,7 @@ M.PendingMessage = {
 
 M.ListPendingMessagesOutput = {
     type = "structure",
+    id = "ListPendingMessagesOutput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2935,6 +3071,7 @@ M.ListPendingMessagesOutput = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -2969,6 +3106,7 @@ M.ListRecommendationsInput = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         recommendations = {
             type = "list",
@@ -2985,6 +3123,7 @@ M.ListRecommendationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2998,6 +3137,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3012,10 +3152,12 @@ M.ListTagsForResourceOutput = {
 
 M.ListPrivateConnectionsInput = {
     type = "structure",
+    id = "ListPrivateConnectionsInput",
 }
 
 M.PrivateConnectionSummary = {
     type = "structure",
+    id = "PrivateConnectionSummary",
     members = {
         name = {
             type = "string",
@@ -3058,6 +3200,7 @@ M.PrivateConnectionSummary = {
 
 M.ListPrivateConnectionsOutput = {
     type = "structure",
+    id = "ListPrivateConnectionsOutput",
     members = {
         privateConnections = {
             type = "list",
@@ -3071,6 +3214,7 @@ M.ListPrivateConnectionsOutput = {
 
 M.UpdatePrivateConnectionCertificateInput = {
     type = "structure",
+    id = "UpdatePrivateConnectionCertificateInput",
     members = {
         name = {
             type = "string",
@@ -3090,6 +3234,7 @@ M.UpdatePrivateConnectionCertificateInput = {
 
 M.UpdatePrivateConnectionCertificateOutput = {
     type = "structure",
+    id = "UpdatePrivateConnectionCertificateOutput",
     members = {
         name = {
             type = "string",
@@ -3132,6 +3277,7 @@ M.UpdatePrivateConnectionCertificateOutput = {
 
 M.SendMessageContext = {
     type = "structure",
+    id = "SendMessageContext",
     members = {
         currentPage = {
             type = "string",
@@ -3147,6 +3293,7 @@ M.SendMessageContext = {
 
 M.SendMessageInput = {
     type = "structure",
+    id = "SendMessageInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -3176,6 +3323,7 @@ M.SendMessageInput = {
 
 M.SendMessageJsonDelta = {
     type = "structure",
+    id = "SendMessageJsonDelta",
     members = {
         partialJson = {
             type = "string",
@@ -3185,6 +3333,7 @@ M.SendMessageJsonDelta = {
 
 M.SendMessageTextDelta = {
     type = "structure",
+    id = "SendMessageTextDelta",
     members = {
         text = {
             type = "string",
@@ -3194,6 +3343,7 @@ M.SendMessageTextDelta = {
 
 M.SendMessageContentBlockDelta = {
     type = "union",
+    id = "SendMessageContentBlockDelta",
     members = {
         textDelta = M.SendMessageTextDelta,
         jsonDelta = M.SendMessageJsonDelta,
@@ -3202,6 +3352,7 @@ M.SendMessageContentBlockDelta = {
 
 M.SendMessageContentBlockDeltaEvent = {
     type = "structure",
+    id = "SendMessageContentBlockDeltaEvent",
     members = {
         index = {
             type = "integer",
@@ -3215,6 +3366,7 @@ M.SendMessageContentBlockDeltaEvent = {
 
 M.SendMessageContentBlockStartEvent = {
     type = "structure",
+    id = "SendMessageContentBlockStartEvent",
     members = {
         index = {
             type = "integer",
@@ -3236,6 +3388,7 @@ M.SendMessageContentBlockStartEvent = {
 
 M.SendMessageContentBlockStopEvent = {
     type = "structure",
+    id = "SendMessageContentBlockStopEvent",
     members = {
         index = {
             type = "integer",
@@ -3257,10 +3410,12 @@ M.SendMessageContentBlockStopEvent = {
 
 M.SendMessageHeartbeatEvent = {
     type = "structure",
+    id = "SendMessageHeartbeatEvent",
 }
 
 M.SendMessageUsageInfo = {
     type = "structure",
+    id = "SendMessageUsageInfo",
     members = {
         inputTokens = {
             type = "integer",
@@ -3276,6 +3431,7 @@ M.SendMessageUsageInfo = {
 
 M.SendMessageResponseCompletedEvent = {
     type = "structure",
+    id = "SendMessageResponseCompletedEvent",
     members = {
         responseId = {
             type = "string",
@@ -3289,6 +3445,7 @@ M.SendMessageResponseCompletedEvent = {
 
 M.SendMessageResponseCreatedEvent = {
     type = "structure",
+    id = "SendMessageResponseCreatedEvent",
     members = {
         responseId = {
             type = "string",
@@ -3301,6 +3458,7 @@ M.SendMessageResponseCreatedEvent = {
 
 M.SendMessageResponseFailedEvent = {
     type = "structure",
+    id = "SendMessageResponseFailedEvent",
     members = {
         responseId = {
             type = "string",
@@ -3319,6 +3477,7 @@ M.SendMessageResponseFailedEvent = {
 
 M.SendMessageResponseInProgressEvent = {
     type = "structure",
+    id = "SendMessageResponseInProgressEvent",
     members = {
         responseId = {
             type = "string",
@@ -3331,6 +3490,7 @@ M.SendMessageResponseInProgressEvent = {
 
 M.SendMessageSummaryEvent = {
     type = "structure",
+    id = "SendMessageSummaryEvent",
     members = {
         content = {
             type = "string",
@@ -3343,6 +3503,7 @@ M.SendMessageSummaryEvent = {
 
 M.SendMessageEvents = {
     type = "union",
+    id = "SendMessageEvents",
     members = {
         responseCreated = M.SendMessageResponseCreatedEvent,
         responseInProgress = M.SendMessageResponseInProgressEvent,
@@ -3358,6 +3519,7 @@ M.SendMessageEvents = {
 
 M.SendMessageOutput = {
     type = "structure",
+    id = "SendMessageOutput",
     members = {
         events = setmetatable({ traits = {
             http_payload = true,
@@ -3368,6 +3530,7 @@ M.SendMessageOutput = {
 
 M.GetServiceInput = {
     type = "structure",
+    id = "GetServiceInput",
     members = {
         serviceId = {
             type = "string",
@@ -3399,6 +3562,7 @@ M.Service = {
 
 M.RegisteredService = {
     type = "structure",
+    id = "RegisteredService",
     members = {
         serviceId = {
             type = "string",
@@ -3431,6 +3595,7 @@ M.RegisteredService = {
 
 M.GetServiceOutput = {
     type = "structure",
+    id = "GetServiceOutput",
     members = {
         service = setmetatable({ traits = {
             required = true,
@@ -3445,6 +3610,7 @@ M.GetServiceOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3470,6 +3636,7 @@ M.ListServicesInput = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3500,6 +3667,7 @@ M.PostRegisterServiceSupportedService = {
 
 M.DynatraceOAuthClientCredentialsConfig = {
     type = "structure",
+    id = "DynatraceOAuthClientCredentialsConfig",
     members = {
         clientName = {
             type = "string",
@@ -3526,6 +3694,7 @@ M.DynatraceOAuthClientCredentialsConfig = {
 
 M.DynatraceServiceAuthorizationConfig = {
     type = "union",
+    id = "DynatraceServiceAuthorizationConfig",
     members = {
         oAuthClientCredentials = M.DynatraceOAuthClientCredentialsConfig,
     },
@@ -3533,6 +3702,7 @@ M.DynatraceServiceAuthorizationConfig = {
 
 M.DynatraceServiceDetails = {
     type = "structure",
+    id = "DynatraceServiceDetails",
     members = {
         accountUrn = {
             type = "string",
@@ -3550,6 +3720,7 @@ M.EventChannelType = {
 
 M.EventChannelDetails = {
     type = "structure",
+    id = "EventChannelDetails",
     members = {
         type = {
             type = "string",
@@ -3559,6 +3730,7 @@ M.EventChannelDetails = {
 
 M.GitLabDetails = {
     type = "structure",
+    id = "GitLabDetails",
     members = {
         targetUrl = {
             type = "string",
@@ -3586,6 +3758,7 @@ M.GitLabDetails = {
 
 M.MCPServerAPIKeyConfig = {
     type = "structure",
+    id = "MCPServerAPIKeyConfig",
     members = {
         apiKeyName = {
             type = "string",
@@ -3610,6 +3783,7 @@ M.MCPServerAPIKeyConfig = {
 
 M.MCPServerBearerTokenConfig = {
     type = "structure",
+    id = "MCPServerBearerTokenConfig",
     members = {
         tokenName = {
             type = "string",
@@ -3634,6 +3808,7 @@ M.MCPServerBearerTokenConfig = {
 
 M.MCPServerOAuth3LOConfig = {
     type = "structure",
+    id = "MCPServerOAuth3LOConfig",
     members = {
         clientName = {
             type = "string",
@@ -3685,6 +3860,7 @@ M.MCPServerOAuth3LOConfig = {
 
 M.MCPServerOAuthClientCredentialsConfig = {
     type = "structure",
+    id = "MCPServerOAuthClientCredentialsConfig",
     members = {
         clientName = {
             type = "string",
@@ -3721,6 +3897,7 @@ M.MCPServerOAuthClientCredentialsConfig = {
 
 M.MCPServerAuthorizationConfig = {
     type = "union",
+    id = "MCPServerAuthorizationConfig",
     members = {
         oAuthClientCredentials = M.MCPServerOAuthClientCredentialsConfig,
         oAuth3LO = M.MCPServerOAuth3LOConfig,
@@ -3732,6 +3909,7 @@ M.MCPServerAuthorizationConfig = {
 
 M.MCPServerDetails = {
     type = "structure",
+    id = "MCPServerDetails",
     members = {
         name = {
             type = "string",
@@ -3756,6 +3934,7 @@ M.MCPServerDetails = {
 
 M.GrafanaServiceDetails = {
     type = "structure",
+    id = "GrafanaServiceDetails",
     members = {
         name = {
             type = "string",
@@ -3780,6 +3959,7 @@ M.GrafanaServiceDetails = {
 
 M.NewRelicApiKeyConfig = {
     type = "structure",
+    id = "NewRelicApiKeyConfig",
     members = {
         apiKey = {
             type = "string",
@@ -3816,6 +3996,7 @@ M.NewRelicApiKeyConfig = {
 
 M.NewRelicServiceAuthorizationConfig = {
     type = "union",
+    id = "NewRelicServiceAuthorizationConfig",
     members = {
         apiKey = M.NewRelicApiKeyConfig,
     },
@@ -3823,6 +4004,7 @@ M.NewRelicServiceAuthorizationConfig = {
 
 M.NewRelicServiceDetails = {
     type = "structure",
+    id = "NewRelicServiceDetails",
     members = {
         authorizationConfig = setmetatable({ traits = {
             required = true,
@@ -3832,6 +4014,7 @@ M.NewRelicServiceDetails = {
 
 M.PagerDutyOAuthClientCredentialsConfig = {
     type = "structure",
+    id = "PagerDutyOAuthClientCredentialsConfig",
     members = {
         clientName = {
             type = "string",
@@ -3858,6 +4041,7 @@ M.PagerDutyOAuthClientCredentialsConfig = {
 
 M.PagerDutyAuthorizationConfig = {
     type = "union",
+    id = "PagerDutyAuthorizationConfig",
     members = {
         oAuthClientCredentials = M.PagerDutyOAuthClientCredentialsConfig,
     },
@@ -3865,6 +4049,7 @@ M.PagerDutyAuthorizationConfig = {
 
 M.PagerDutyDetails = {
     type = "structure",
+    id = "PagerDutyDetails",
     members = {
         scopes = {
             type = "list",
@@ -3881,6 +4066,7 @@ M.PagerDutyDetails = {
 
 M.ServiceNowOAuthClientCredentialsConfig = {
     type = "structure",
+    id = "ServiceNowOAuthClientCredentialsConfig",
     members = {
         clientName = {
             type = "string",
@@ -3907,6 +4093,7 @@ M.ServiceNowOAuthClientCredentialsConfig = {
 
 M.ServiceNowServiceAuthorizationConfig = {
     type = "union",
+    id = "ServiceNowServiceAuthorizationConfig",
     members = {
         oAuthClientCredentials = M.ServiceNowOAuthClientCredentialsConfig,
     },
@@ -3914,6 +4101,7 @@ M.ServiceNowServiceAuthorizationConfig = {
 
 M.ServiceNowServiceDetails = {
     type = "structure",
+    id = "ServiceNowServiceDetails",
     members = {
         instanceUrl = {
             type = "string",
@@ -3927,6 +4115,7 @@ M.ServiceNowServiceDetails = {
 
 M.ServiceDetails = {
     type = "union",
+    id = "ServiceDetails",
     members = {
         dynatrace = M.DynatraceServiceDetails,
         servicenow = M.ServiceNowServiceDetails,
@@ -3944,6 +4133,7 @@ M.ServiceDetails = {
 
 M.RegisterServiceInput = {
     type = "structure",
+    id = "RegisterServiceInput",
     members = {
         service = {
             type = "string",
@@ -3974,6 +4164,7 @@ M.RegisterServiceInput = {
 
 M.RegisterServiceOutput = {
     type = "structure",
+    id = "RegisterServiceOutput",
     members = {
         serviceId = {
             type = "string",
@@ -3992,6 +4183,7 @@ M.RegisterServiceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4013,10 +4205,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4038,10 +4232,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateBacklogTaskInput = {
     type = "structure",
+    id = "UpdateBacklogTaskInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -4071,6 +4267,7 @@ M.UpdateBacklogTaskInput = {
 
 M.UpdateBacklogTaskOutput = {
     type = "structure",
+    id = "UpdateBacklogTaskOutput",
     members = {
         task = setmetatable({ traits = {
             required = true,
@@ -4080,6 +4277,7 @@ M.UpdateBacklogTaskOutput = {
 
 M.GoalScheduleInput = {
     type = "structure",
+    id = "GoalScheduleInput",
     members = {
         state = {
             type = "string",
@@ -4092,6 +4290,7 @@ M.GoalScheduleInput = {
 
 M.UpdateGoalInput = {
     type = "structure",
+    id = "UpdateGoalInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -4119,6 +4318,7 @@ M.UpdateGoalInput = {
 
 M.UpdateGoalOutput = {
     type = "structure",
+    id = "UpdateGoalOutput",
     members = {
         goal = setmetatable({ traits = {
             required = true,
@@ -4128,6 +4328,7 @@ M.UpdateGoalOutput = {
 
 M.UpdateRecommendationInput = {
     type = "structure",
+    id = "UpdateRecommendationInput",
     members = {
         agentSpaceId = {
             type = "string",
@@ -4160,6 +4361,7 @@ M.UpdateRecommendationInput = {
 
 M.UpdateRecommendationOutput = {
     type = "structure",
+    id = "UpdateRecommendationOutput",
     members = {
         recommendation = setmetatable({ traits = {
             required = true,

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.CurrentPinAttributes = {
     type = "structure",
+    id = "CurrentPinAttributes",
     members = {
         CurrentPinPekIdentifier = {
             type = "string",
@@ -35,6 +37,7 @@ M.MajorKeyDerivationMode = {
 
 M.AmexAttributes = {
     type = "structure",
+    id = "AmexAttributes",
     members = {
         MajorKeyDerivationMode = {
             type = "string",
@@ -72,6 +75,7 @@ M.AmexAttributes = {
 
 M.AmexCardSecurityCodeVersion1 = {
     type = "structure",
+    id = "AmexCardSecurityCodeVersion1",
     members = {
         CardExpiryDate = {
             type = "string",
@@ -84,6 +88,7 @@ M.AmexCardSecurityCodeVersion1 = {
 
 M.AmexCardSecurityCodeVersion2 = {
     type = "structure",
+    id = "AmexCardSecurityCodeVersion2",
     members = {
         CardExpiryDate = {
             type = "string",
@@ -114,6 +119,7 @@ M.SymmetricKeyAlgorithm = {
 
 M.KekValidationRequest = {
     type = "structure",
+    id = "KekValidationRequest",
     members = {
         DeriveKeyAlgorithm = {
             type = "string",
@@ -126,6 +132,7 @@ M.KekValidationRequest = {
 
 M.KekValidationResponse = {
     type = "structure",
+    id = "KekValidationResponse",
     members = {
         RandomKeySend = {
             type = "string",
@@ -138,6 +145,7 @@ M.KekValidationResponse = {
 
 M.As2805KekValidationType = {
     type = "union",
+    id = "As2805KekValidationType",
     members = {
         KekValidationRequest = M.KekValidationRequest,
         KekValidationResponse = M.KekValidationResponse,
@@ -146,6 +154,7 @@ M.As2805KekValidationType = {
 
 M.As2805PekDerivationAttributes = {
     type = "structure",
+    id = "As2805PekDerivationAttributes",
     members = {
         SystemTraceAuditNumber = {
             type = "string",
@@ -171,6 +180,7 @@ M.PaddingType = {
 
 M.AsymmetricEncryptionAttributes = {
     type = "structure",
+    id = "AsymmetricEncryptionAttributes",
     members = {
         PaddingType = {
             type = "string",
@@ -180,6 +190,7 @@ M.AsymmetricEncryptionAttributes = {
 
 M.CardHolderVerificationValue = {
     type = "structure",
+    id = "CardHolderVerificationValue",
     members = {
         UnpredictableNumber = {
             type = "string",
@@ -204,6 +215,7 @@ M.CardHolderVerificationValue = {
 
 M.CardVerificationValue1 = {
     type = "structure",
+    id = "CardVerificationValue1",
     members = {
         CardExpiryDate = {
             type = "string",
@@ -222,6 +234,7 @@ M.CardVerificationValue1 = {
 
 M.CardVerificationValue2 = {
     type = "structure",
+    id = "CardVerificationValue2",
     members = {
         CardExpiryDate = {
             type = "string",
@@ -234,6 +247,7 @@ M.CardVerificationValue2 = {
 
 M.DynamicCardVerificationCode = {
     type = "structure",
+    id = "DynamicCardVerificationCode",
     members = {
         UnpredictableNumber = {
             type = "string",
@@ -264,6 +278,7 @@ M.DynamicCardVerificationCode = {
 
 M.DynamicCardVerificationValue = {
     type = "structure",
+    id = "DynamicCardVerificationValue",
     members = {
         PanSequenceNumber = {
             type = "string",
@@ -294,6 +309,7 @@ M.DynamicCardVerificationValue = {
 
 M.CardGenerationAttributes = {
     type = "union",
+    id = "CardGenerationAttributes",
     members = {
         AmexCardSecurityCodeVersion1 = M.AmexCardSecurityCodeVersion1,
         AmexCardSecurityCodeVersion2 = M.AmexCardSecurityCodeVersion2,
@@ -307,6 +323,7 @@ M.CardGenerationAttributes = {
 
 M.DiscoverDynamicCardVerificationCode = {
     type = "structure",
+    id = "DiscoverDynamicCardVerificationCode",
     members = {
         CardExpiryDate = {
             type = "string",
@@ -331,6 +348,7 @@ M.DiscoverDynamicCardVerificationCode = {
 
 M.CardVerificationAttributes = {
     type = "union",
+    id = "CardVerificationAttributes",
     members = {
         AmexCardSecurityCodeVersion1 = M.AmexCardSecurityCodeVersion1,
         AmexCardSecurityCodeVersion2 = M.AmexCardSecurityCodeVersion2,
@@ -345,6 +363,7 @@ M.CardVerificationAttributes = {
 
 M.CryptogramVerificationArpcMethod1 = {
     type = "structure",
+    id = "CryptogramVerificationArpcMethod1",
     members = {
         AuthResponseCode = {
             type = "string",
@@ -357,6 +376,7 @@ M.CryptogramVerificationArpcMethod1 = {
 
 M.CryptogramVerificationArpcMethod2 = {
     type = "structure",
+    id = "CryptogramVerificationArpcMethod2",
     members = {
         CardStatusUpdate = {
             type = "string",
@@ -372,6 +392,7 @@ M.CryptogramVerificationArpcMethod2 = {
 
 M.CryptogramAuthResponse = {
     type = "union",
+    id = "CryptogramAuthResponse",
     members = {
         ArpcMethod1 = M.CryptogramVerificationArpcMethod1,
         ArpcMethod2 = M.CryptogramVerificationArpcMethod2,
@@ -399,6 +420,7 @@ M.DukptEncryptionMode = {
 
 M.DukptEncryptionAttributes = {
     type = "structure",
+    id = "DukptEncryptionAttributes",
     members = {
         KeySerialNumber = {
             type = "string",
@@ -433,6 +455,7 @@ M.EmvEncryptionMode = {
 
 M.EmvEncryptionAttributes = {
     type = "structure",
+    id = "EmvEncryptionAttributes",
     members = {
         MajorKeyDerivationMode = {
             type = "string",
@@ -480,6 +503,7 @@ M.EncryptionMode = {
 
 M.SymmetricEncryptionAttributes = {
     type = "structure",
+    id = "SymmetricEncryptionAttributes",
     members = {
         Mode = {
             type = "string",
@@ -498,6 +522,7 @@ M.SymmetricEncryptionAttributes = {
 
 M.EncryptionDecryptionAttributes = {
     type = "union",
+    id = "EncryptionDecryptionAttributes",
     members = {
         Symmetric = M.SymmetricEncryptionAttributes,
         Asymmetric = M.AsymmetricEncryptionAttributes,
@@ -526,6 +551,7 @@ M.KeyDerivationHashAlgorithm = {
 
 M.EcdhDerivationAttributes = {
     type = "structure",
+    id = "EcdhDerivationAttributes",
     members = {
         CertificateAuthorityPublicKeyIdentifier = {
             type = "string",
@@ -568,6 +594,7 @@ M.EcdhDerivationAttributes = {
 
 M.WrappedKeyMaterial = {
     type = "union",
+    id = "WrappedKeyMaterial",
     members = {
         Tr31KeyBlock = {
             type = "string",
@@ -578,6 +605,7 @@ M.WrappedKeyMaterial = {
 
 M.WrappedKey = {
     type = "structure",
+    id = "WrappedKey",
     members = {
         WrappedKeyMaterial = setmetatable({ traits = {
             required = true,
@@ -590,6 +618,7 @@ M.WrappedKey = {
 
 M.DecryptDataInput = {
     type = "structure",
+    id = "DecryptDataInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -613,6 +642,7 @@ M.DecryptDataInput = {
 
 M.DecryptDataOutput = {
     type = "structure",
+    id = "DecryptDataOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -637,6 +667,7 @@ M.DecryptDataOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -647,6 +678,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         ResourceId = {
@@ -657,6 +689,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -667,6 +700,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         path = {
             type = "string",
@@ -685,6 +719,7 @@ M.ValidationExceptionField = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -702,6 +737,7 @@ M.ValidationException = {
 
 M.Emv2000Attributes = {
     type = "structure",
+    id = "Emv2000Attributes",
     members = {
         MajorKeyDerivationMode = {
             type = "string",
@@ -742,6 +778,7 @@ M.PinBlockPaddingType = {
 
 M.EmvCommonAttributes = {
     type = "structure",
+    id = "EmvCommonAttributes",
     members = {
         MajorKeyDerivationMode = {
             type = "string",
@@ -790,6 +827,7 @@ M.EmvCommonAttributes = {
 
 M.MasterCardAttributes = {
     type = "structure",
+    id = "MasterCardAttributes",
     members = {
         MajorKeyDerivationMode = {
             type = "string",
@@ -820,6 +858,7 @@ M.MasterCardAttributes = {
 
 M.VisaAttributes = {
     type = "structure",
+    id = "VisaAttributes",
     members = {
         MajorKeyDerivationMode = {
             type = "string",
@@ -857,6 +896,7 @@ M.VisaAttributes = {
 
 M.DerivationMethodAttributes = {
     type = "union",
+    id = "DerivationMethodAttributes",
     members = {
         EmvCommon = M.EmvCommonAttributes,
         Amex = M.AmexAttributes,
@@ -868,6 +908,7 @@ M.DerivationMethodAttributes = {
 
 M.DiffieHellmanDerivationData = {
     type = "union",
+    id = "DiffieHellmanDerivationData",
     members = {
         SharedInformation = {
             type = "string",
@@ -877,6 +918,7 @@ M.DiffieHellmanDerivationData = {
 
 M.DukptAttributes = {
     type = "structure",
+    id = "DukptAttributes",
     members = {
         KeySerialNumber = {
             type = "string",
@@ -895,6 +937,7 @@ M.DukptAttributes = {
 
 M.DukptDerivationAttributes = {
     type = "structure",
+    id = "DukptDerivationAttributes",
     members = {
         KeySerialNumber = {
             type = "string",
@@ -913,6 +956,7 @@ M.DukptDerivationAttributes = {
 
 M.EncryptDataInput = {
     type = "structure",
+    id = "EncryptDataInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -936,6 +980,7 @@ M.EncryptDataInput = {
 
 M.EncryptDataOutput = {
     type = "structure",
+    id = "EncryptDataOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -962,6 +1007,7 @@ M.RandomKeySendVariantMask = {
 
 M.GenerateAs2805KekValidationInput = {
     type = "structure",
+    id = "GenerateAs2805KekValidationInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -983,6 +1029,7 @@ M.GenerateAs2805KekValidationInput = {
 
 M.GenerateAs2805KekValidationOutput = {
     type = "structure",
+    id = "GenerateAs2805KekValidationOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -1013,6 +1060,7 @@ M.GenerateAs2805KekValidationOutput = {
 
 M.GenerateCardValidationDataInput = {
     type = "structure",
+    id = "GenerateCardValidationDataInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1037,6 +1085,7 @@ M.GenerateCardValidationDataInput = {
 
 M.GenerateCardValidationDataOutput = {
     type = "structure",
+    id = "GenerateCardValidationDataOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -1073,6 +1122,7 @@ M.MacAlgorithm = {
 
 M.MacAlgorithmDukpt = {
     type = "structure",
+    id = "MacAlgorithmDukpt",
     members = {
         KeySerialNumber = {
             type = "string",
@@ -1102,6 +1152,7 @@ M.SessionKeyDerivationMode = {
 
 M.SessionKeyDerivationValue = {
     type = "union",
+    id = "SessionKeyDerivationValue",
     members = {
         ApplicationCryptogram = {
             type = "string",
@@ -1114,6 +1165,7 @@ M.SessionKeyDerivationValue = {
 
 M.MacAlgorithmEmv = {
     type = "structure",
+    id = "MacAlgorithmEmv",
     members = {
         MajorKeyDerivationMode = {
             type = "string",
@@ -1147,6 +1199,7 @@ M.MacAlgorithmEmv = {
 
 M.MacAttributes = {
     type = "union",
+    id = "MacAttributes",
     members = {
         Algorithm = {
             type = "string",
@@ -1160,6 +1213,7 @@ M.MacAttributes = {
 
 M.GenerateMacInput = {
     type = "structure",
+    id = "GenerateMacInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -1184,6 +1238,7 @@ M.GenerateMacInput = {
 
 M.GenerateMacOutput = {
     type = "structure",
+    id = "GenerateMacOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -1214,6 +1269,7 @@ M.PinBlockFormatForEmvPinChange = {
 
 M.GenerateMacEmvPinChangeInput = {
     type = "structure",
+    id = "GenerateMacEmvPinChangeInput",
     members = {
         NewPinPekIdentifier = {
             type = "string",
@@ -1259,6 +1315,7 @@ M.GenerateMacEmvPinChangeInput = {
 
 M.VisaAmexDerivationOutputs = {
     type = "structure",
+    id = "VisaAmexDerivationOutputs",
     members = {
         AuthorizationRequestKeyArn = {
             type = "string",
@@ -1283,6 +1340,7 @@ M.VisaAmexDerivationOutputs = {
 
 M.GenerateMacEmvPinChangeOutput = {
     type = "structure",
+    id = "GenerateMacEmvPinChangeOutput",
     members = {
         NewPinPekArn = {
             type = "string",
@@ -1338,6 +1396,7 @@ M.GenerateMacEmvPinChangeOutput = {
 
 M.Ibm3624NaturalPin = {
     type = "structure",
+    id = "Ibm3624NaturalPin",
     members = {
         DecimalizationTable = {
             type = "string",
@@ -1362,6 +1421,7 @@ M.Ibm3624NaturalPin = {
 
 M.Ibm3624PinFromOffset = {
     type = "structure",
+    id = "Ibm3624PinFromOffset",
     members = {
         DecimalizationTable = {
             type = "string",
@@ -1392,6 +1452,7 @@ M.Ibm3624PinFromOffset = {
 
 M.Ibm3624PinOffset = {
     type = "structure",
+    id = "Ibm3624PinOffset",
     members = {
         EncryptedPinBlock = {
             type = "string",
@@ -1422,6 +1483,7 @@ M.Ibm3624PinOffset = {
 
 M.Ibm3624RandomPin = {
     type = "structure",
+    id = "Ibm3624RandomPin",
     members = {
         DecimalizationTable = {
             type = "string",
@@ -1446,6 +1508,7 @@ M.Ibm3624RandomPin = {
 
 M.VisaPin = {
     type = "structure",
+    id = "VisaPin",
     members = {
         PinVerificationKeyIndex = {
             type = "integer",
@@ -1458,6 +1521,7 @@ M.VisaPin = {
 
 M.VisaPinVerificationValue = {
     type = "structure",
+    id = "VisaPinVerificationValue",
     members = {
         EncryptedPinBlock = {
             type = "string",
@@ -1476,6 +1540,7 @@ M.VisaPinVerificationValue = {
 
 M.PinGenerationAttributes = {
     type = "union",
+    id = "PinGenerationAttributes",
     members = {
         VisaPin = M.VisaPin,
         VisaPinVerificationValue = M.VisaPinVerificationValue,
@@ -1495,6 +1560,7 @@ M.PinBlockFormatForPinData = {
 
 M.GeneratePinDataInput = {
     type = "structure",
+    id = "GeneratePinDataInput",
     members = {
         GenerationKeyIdentifier = {
             type = "string",
@@ -1529,6 +1595,7 @@ M.GeneratePinDataInput = {
 
 M.PinData = {
     type = "union",
+    id = "PinData",
     members = {
         PinOffset = {
             type = "string",
@@ -1541,6 +1608,7 @@ M.PinData = {
 
 M.GeneratePinDataOutput = {
     type = "structure",
+    id = "GeneratePinDataOutput",
     members = {
         GenerationKeyArn = {
             type = "string",
@@ -1580,6 +1648,7 @@ M.GeneratePinDataOutput = {
 
 M.Ibm3624PinVerification = {
     type = "structure",
+    id = "Ibm3624PinVerification",
     members = {
         DecimalizationTable = {
             type = "string",
@@ -1610,6 +1679,7 @@ M.Ibm3624PinVerification = {
 
 M.IncomingDiffieHellmanTr31KeyBlock = {
     type = "structure",
+    id = "IncomingDiffieHellmanTr31KeyBlock",
     members = {
         PrivateKeyIdentifier = {
             type = "string",
@@ -1661,6 +1731,7 @@ M.IncomingDiffieHellmanTr31KeyBlock = {
 
 M.IncomingKeyMaterial = {
     type = "union",
+    id = "IncomingKeyMaterial",
     members = {
         DiffieHellmanTr31KeyBlock = M.IncomingDiffieHellmanTr31KeyBlock,
     },
@@ -1668,6 +1739,7 @@ M.IncomingKeyMaterial = {
 
 M.OutgoingTr31KeyBlock = {
     type = "structure",
+    id = "OutgoingTr31KeyBlock",
     members = {
         WrappingKeyIdentifier = {
             type = "string",
@@ -1680,6 +1752,7 @@ M.OutgoingTr31KeyBlock = {
 
 M.OutgoingKeyMaterial = {
     type = "union",
+    id = "OutgoingKeyMaterial",
     members = {
         Tr31KeyBlock = M.OutgoingTr31KeyBlock,
     },
@@ -1687,6 +1760,7 @@ M.OutgoingKeyMaterial = {
 
 M.ReEncryptionAttributes = {
     type = "union",
+    id = "ReEncryptionAttributes",
     members = {
         Symmetric = M.SymmetricEncryptionAttributes,
         Dukpt = M.DukptEncryptionAttributes,
@@ -1695,6 +1769,7 @@ M.ReEncryptionAttributes = {
 
 M.ReEncryptDataInput = {
     type = "structure",
+    id = "ReEncryptDataInput",
     members = {
         IncomingKeyIdentifier = {
             type = "string",
@@ -1728,6 +1803,7 @@ M.ReEncryptDataInput = {
 
 M.ReEncryptDataOutput = {
     type = "structure",
+    id = "ReEncryptDataOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -1752,6 +1828,7 @@ M.ReEncryptDataOutput = {
 
 M.TranslateKeyMaterialInput = {
     type = "structure",
+    id = "TranslateKeyMaterialInput",
     members = {
         IncomingKeyMaterial = setmetatable({ traits = {
             required = true,
@@ -1773,6 +1850,7 @@ M.WrappedKeyMaterialFormat = {
 
 M.WrappedWorkingKey = {
     type = "structure",
+    id = "WrappedWorkingKey",
     members = {
         WrappedKeyMaterial = {
             type = "string",
@@ -1797,6 +1875,7 @@ M.WrappedWorkingKey = {
 
 M.TranslateKeyMaterialOutput = {
     type = "structure",
+    id = "TranslateKeyMaterialOutput",
     members = {
         WrappedKey = setmetatable({ traits = {
             required = true,
@@ -1806,6 +1885,7 @@ M.TranslateKeyMaterialOutput = {
 
 M.TranslationPinDataAs2805Format0 = {
     type = "structure",
+    id = "TranslationPinDataAs2805Format0",
     members = {
         PrimaryAccountNumber = {
             type = "string",
@@ -1818,6 +1898,7 @@ M.TranslationPinDataAs2805Format0 = {
 
 M.TranslationPinDataIsoFormat034 = {
     type = "structure",
+    id = "TranslationPinDataIsoFormat034",
     members = {
         PrimaryAccountNumber = {
             type = "string",
@@ -1830,10 +1911,12 @@ M.TranslationPinDataIsoFormat034 = {
 
 M.TranslationPinDataIsoFormat1 = {
     type = "structure",
+    id = "TranslationPinDataIsoFormat1",
 }
 
 M.TranslationIsoFormats = {
     type = "union",
+    id = "TranslationIsoFormats",
     members = {
         IsoFormat0 = M.TranslationPinDataIsoFormat034,
         IsoFormat1 = M.TranslationPinDataIsoFormat1,
@@ -1845,6 +1928,7 @@ M.TranslationIsoFormats = {
 
 M.TranslatePinDataInput = {
     type = "structure",
+    id = "TranslatePinDataInput",
     members = {
         IncomingKeyIdentifier = {
             type = "string",
@@ -1880,6 +1964,7 @@ M.TranslatePinDataInput = {
 
 M.TranslatePinDataOutput = {
     type = "structure",
+    id = "TranslatePinDataOutput",
     members = {
         PinBlock = {
             type = "string",
@@ -1911,6 +1996,7 @@ M.VerificationFailedReason = {
 
 M.VerificationFailedException = {
     type = "structure",
+    id = "VerificationFailedException",
     error = "client",
     members = {
         Reason = {
@@ -1930,6 +2016,7 @@ M.VerificationFailedException = {
 
 M.SessionKeyAmex = {
     type = "structure",
+    id = "SessionKeyAmex",
     members = {
         PrimaryAccountNumber = {
             type = "string",
@@ -1948,6 +2035,7 @@ M.SessionKeyAmex = {
 
 M.SessionKeyEmv2000 = {
     type = "structure",
+    id = "SessionKeyEmv2000",
     members = {
         PrimaryAccountNumber = {
             type = "string",
@@ -1972,6 +2060,7 @@ M.SessionKeyEmv2000 = {
 
 M.SessionKeyEmvCommon = {
     type = "structure",
+    id = "SessionKeyEmvCommon",
     members = {
         PrimaryAccountNumber = {
             type = "string",
@@ -1996,6 +2085,7 @@ M.SessionKeyEmvCommon = {
 
 M.SessionKeyMastercard = {
     type = "structure",
+    id = "SessionKeyMastercard",
     members = {
         PrimaryAccountNumber = {
             type = "string",
@@ -2026,6 +2116,7 @@ M.SessionKeyMastercard = {
 
 M.SessionKeyVisa = {
     type = "structure",
+    id = "SessionKeyVisa",
     members = {
         PrimaryAccountNumber = {
             type = "string",
@@ -2044,6 +2135,7 @@ M.SessionKeyVisa = {
 
 M.SessionKeyDerivation = {
     type = "union",
+    id = "SessionKeyDerivation",
     members = {
         EmvCommon = M.SessionKeyEmvCommon,
         Mastercard = M.SessionKeyMastercard,
@@ -2055,6 +2147,7 @@ M.SessionKeyDerivation = {
 
 M.VerifyAuthRequestCryptogramInput = {
     type = "structure",
+    id = "VerifyAuthRequestCryptogramInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -2089,6 +2182,7 @@ M.VerifyAuthRequestCryptogramInput = {
 
 M.VerifyAuthRequestCryptogramOutput = {
     type = "structure",
+    id = "VerifyAuthRequestCryptogramOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -2110,6 +2204,7 @@ M.VerifyAuthRequestCryptogramOutput = {
 
 M.VerifyCardValidationDataInput = {
     type = "structure",
+    id = "VerifyCardValidationDataInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -2137,6 +2232,7 @@ M.VerifyCardValidationDataInput = {
 
 M.VerifyCardValidationDataOutput = {
     type = "structure",
+    id = "VerifyCardValidationDataOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -2155,6 +2251,7 @@ M.VerifyCardValidationDataOutput = {
 
 M.VerifyMacInput = {
     type = "structure",
+    id = "VerifyMacInput",
     members = {
         KeyIdentifier = {
             type = "string",
@@ -2185,6 +2282,7 @@ M.VerifyMacInput = {
 
 M.VerifyMacOutput = {
     type = "structure",
+    id = "VerifyMacOutput",
     members = {
         KeyArn = {
             type = "string",
@@ -2203,6 +2301,7 @@ M.VerifyMacOutput = {
 
 M.VisaPinVerification = {
     type = "structure",
+    id = "VisaPinVerification",
     members = {
         PinVerificationKeyIndex = {
             type = "integer",
@@ -2221,6 +2320,7 @@ M.VisaPinVerification = {
 
 M.PinVerificationAttributes = {
     type = "union",
+    id = "PinVerificationAttributes",
     members = {
         VisaPin = M.VisaPinVerification,
         Ibm3624Pin = M.Ibm3624PinVerification,
@@ -2229,6 +2329,7 @@ M.PinVerificationAttributes = {
 
 M.VerifyPinDataInput = {
     type = "structure",
+    id = "VerifyPinDataInput",
     members = {
         VerificationKeyIdentifier = {
             type = "string",
@@ -2270,6 +2371,7 @@ M.VerifyPinDataInput = {
 
 M.VerifyPinDataOutput = {
     type = "structure",
+    id = "VerifyPinDataOutput",
     members = {
         VerificationKeyArn = {
             type = "string",

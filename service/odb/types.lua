@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptMarketplaceRegistrationInput = {
     type = "structure",
+    id = "AcceptMarketplaceRegistrationInput",
     members = {
         marketplaceRegistrationToken = {
             type = "string",
@@ -14,10 +15,12 @@ M.AcceptMarketplaceRegistrationInput = {
 
 M.AcceptMarketplaceRegistrationOutput = {
     type = "structure",
+    id = "AcceptMarketplaceRegistrationOutput",
 }
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -31,6 +34,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -56,6 +60,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -75,6 +80,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -94,6 +100,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -119,6 +126,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -151,6 +159,7 @@ M.SupportedAwsIntegration = {
 
 M.AssociateIamRoleToResourceInput = {
     type = "structure",
+    id = "AssociateIamRoleToResourceInput",
     members = {
         iamRoleArn = {
             type = "string",
@@ -175,10 +184,12 @@ M.AssociateIamRoleToResourceInput = {
 
 M.AssociateIamRoleToResourceOutput = {
     type = "structure",
+    id = "AssociateIamRoleToResourceOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -214,6 +225,7 @@ M.ResourceStatus = {
 
 M.AutonomousVirtualMachineSummary = {
     type = "structure",
+    id = "AutonomousVirtualMachineSummary",
     members = {
         autonomousVirtualMachineId = {
             type = "string",
@@ -274,6 +286,7 @@ M.IamRoleStatus = {
 
 M.IamRole = {
     type = "structure",
+    id = "IamRole",
     members = {
         iamRoleArn = {
             type = "string",
@@ -307,6 +320,7 @@ M.DayOfWeekName = {
 
 M.DayOfWeek = {
     type = "structure",
+    id = "DayOfWeek",
     members = {
         name = {
             type = "string",
@@ -331,6 +345,7 @@ M.MonthName = {
 
 M.Month = {
     type = "structure",
+    id = "Month",
     members = {
         name = {
             type = "string",
@@ -350,6 +365,7 @@ M.PreferenceType = {
 
 M.MaintenanceWindow = {
     type = "structure",
+    id = "MaintenanceWindow",
     members = {
         customActionTimeoutInMins = {
             type = "integer",
@@ -390,6 +406,7 @@ M.MaintenanceWindow = {
 
 M.CloudAutonomousVmCluster = {
     type = "structure",
+    id = "CloudAutonomousVmCluster",
     members = {
         cloudAutonomousVmClusterId = {
             type = "string",
@@ -564,6 +581,7 @@ M.CloudAutonomousVmCluster = {
 
 M.CloudAutonomousVmClusterSummary = {
     type = "structure",
+    id = "CloudAutonomousVmClusterSummary",
     members = {
         cloudAutonomousVmClusterId = {
             type = "string",
@@ -738,6 +756,7 @@ M.CloudAutonomousVmClusterSummary = {
 
 M.CreateCloudAutonomousVmClusterInput = {
     type = "structure",
+    id = "CreateCloudAutonomousVmClusterInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -826,6 +845,7 @@ M.CreateCloudAutonomousVmClusterInput = {
 
 M.CreateCloudAutonomousVmClusterOutput = {
     type = "structure",
+    id = "CreateCloudAutonomousVmClusterOutput",
     members = {
         displayName = {
             type = "string",
@@ -847,6 +867,7 @@ M.CreateCloudAutonomousVmClusterOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -878,6 +899,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteCloudAutonomousVmClusterInput = {
     type = "structure",
+    id = "DeleteCloudAutonomousVmClusterInput",
     members = {
         cloudAutonomousVmClusterId = {
             type = "string",
@@ -891,10 +913,12 @@ M.DeleteCloudAutonomousVmClusterInput = {
 
 M.DeleteCloudAutonomousVmClusterOutput = {
     type = "structure",
+    id = "DeleteCloudAutonomousVmClusterOutput",
 }
 
 M.GetCloudAutonomousVmClusterInput = {
     type = "structure",
+    id = "GetCloudAutonomousVmClusterInput",
     members = {
         cloudAutonomousVmClusterId = {
             type = "string",
@@ -908,6 +932,7 @@ M.GetCloudAutonomousVmClusterInput = {
 
 M.GetCloudAutonomousVmClusterOutput = {
     type = "structure",
+    id = "GetCloudAutonomousVmClusterOutput",
     members = {
         cloudAutonomousVmCluster = M.CloudAutonomousVmCluster,
     },
@@ -915,6 +940,7 @@ M.GetCloudAutonomousVmClusterOutput = {
 
 M.ListAutonomousVirtualMachinesInput = {
     type = "structure",
+    id = "ListAutonomousVirtualMachinesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -940,6 +966,7 @@ M.ListAutonomousVirtualMachinesInput = {
 
 M.ListAutonomousVirtualMachinesOutput = {
     type = "structure",
+    id = "ListAutonomousVirtualMachinesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -956,6 +983,7 @@ M.ListAutonomousVirtualMachinesOutput = {
 
 M.ListCloudAutonomousVmClustersInput = {
     type = "structure",
+    id = "ListCloudAutonomousVmClustersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -977,6 +1005,7 @@ M.ListCloudAutonomousVmClustersInput = {
 
 M.ListCloudAutonomousVmClustersOutput = {
     type = "structure",
+    id = "ListCloudAutonomousVmClustersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -993,6 +1022,7 @@ M.ListCloudAutonomousVmClustersOutput = {
 
 M.CloudAutonomousVmClusterResourceDetails = {
     type = "structure",
+    id = "CloudAutonomousVmClusterResourceDetails",
     members = {
         cloudAutonomousVmClusterId = {
             type = "string",
@@ -1005,6 +1035,7 @@ M.CloudAutonomousVmClusterResourceDetails = {
 
 M.CustomerContact = {
     type = "structure",
+    id = "CustomerContact",
     members = {
         email = {
             type = "string",
@@ -1014,6 +1045,7 @@ M.CustomerContact = {
 
 M.CloudExadataInfrastructure = {
     type = "structure",
+    id = "CloudExadataInfrastructure",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1139,6 +1171,7 @@ M.CloudExadataInfrastructure = {
 
 M.CloudExadataInfrastructureSummary = {
     type = "structure",
+    id = "CloudExadataInfrastructureSummary",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1264,6 +1297,7 @@ M.CloudExadataInfrastructureSummary = {
 
 M.CreateCloudExadataInfrastructureInput = {
     type = "structure",
+    id = "CreateCloudExadataInfrastructureInput",
     members = {
         displayName = {
             type = "string",
@@ -1322,6 +1356,7 @@ M.CreateCloudExadataInfrastructureInput = {
 
 M.CreateCloudExadataInfrastructureOutput = {
     type = "structure",
+    id = "CreateCloudExadataInfrastructureOutput",
     members = {
         displayName = {
             type = "string",
@@ -1343,6 +1378,7 @@ M.CreateCloudExadataInfrastructureOutput = {
 
 M.DeleteCloudExadataInfrastructureInput = {
     type = "structure",
+    id = "DeleteCloudExadataInfrastructureInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1356,10 +1392,12 @@ M.DeleteCloudExadataInfrastructureInput = {
 
 M.DeleteCloudExadataInfrastructureOutput = {
     type = "structure",
+    id = "DeleteCloudExadataInfrastructureOutput",
 }
 
 M.GetCloudExadataInfrastructureInput = {
     type = "structure",
+    id = "GetCloudExadataInfrastructureInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1373,6 +1411,7 @@ M.GetCloudExadataInfrastructureInput = {
 
 M.GetCloudExadataInfrastructureOutput = {
     type = "structure",
+    id = "GetCloudExadataInfrastructureOutput",
     members = {
         cloudExadataInfrastructure = M.CloudExadataInfrastructure,
     },
@@ -1380,6 +1419,7 @@ M.GetCloudExadataInfrastructureOutput = {
 
 M.GetCloudExadataInfrastructureUnallocatedResourcesInput = {
     type = "structure",
+    id = "GetCloudExadataInfrastructureUnallocatedResourcesInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1397,6 +1437,7 @@ M.GetCloudExadataInfrastructureUnallocatedResourcesInput = {
 
 M.CloudExadataInfrastructureUnallocatedResources = {
     type = "structure",
+    id = "CloudExadataInfrastructureUnallocatedResources",
     members = {
         cloudAutonomousVmClusters = {
             type = "list",
@@ -1425,6 +1466,7 @@ M.CloudExadataInfrastructureUnallocatedResources = {
 
 M.GetCloudExadataInfrastructureUnallocatedResourcesOutput = {
     type = "structure",
+    id = "GetCloudExadataInfrastructureUnallocatedResourcesOutput",
     members = {
         cloudExadataInfrastructureUnallocatedResources = M.CloudExadataInfrastructureUnallocatedResources,
     },
@@ -1432,6 +1474,7 @@ M.GetCloudExadataInfrastructureUnallocatedResourcesOutput = {
 
 M.GetDbServerInput = {
     type = "structure",
+    id = "GetDbServerInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1459,6 +1502,7 @@ M.DbServerPatchingStatus = {
 
 M.DbServerPatchingDetails = {
     type = "structure",
+    id = "DbServerPatchingDetails",
     members = {
         estimatedPatchDuration = {
             type = "integer",
@@ -1477,6 +1521,7 @@ M.DbServerPatchingDetails = {
 
 M.DbServer = {
     type = "structure",
+    id = "DbServer",
     members = {
         dbServerId = {
             type = "string",
@@ -1547,6 +1592,7 @@ M.DbServer = {
 
 M.GetDbServerOutput = {
     type = "structure",
+    id = "GetDbServerOutput",
     members = {
         dbServer = M.DbServer,
     },
@@ -1554,6 +1600,7 @@ M.GetDbServerOutput = {
 
 M.ListCloudExadataInfrastructuresInput = {
     type = "structure",
+    id = "ListCloudExadataInfrastructuresInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1572,6 +1619,7 @@ M.ListCloudExadataInfrastructuresInput = {
 
 M.ListCloudExadataInfrastructuresOutput = {
     type = "structure",
+    id = "ListCloudExadataInfrastructuresOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1588,6 +1636,7 @@ M.ListCloudExadataInfrastructuresOutput = {
 
 M.ListDbServersInput = {
     type = "structure",
+    id = "ListDbServersInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1613,6 +1662,7 @@ M.ListDbServersInput = {
 
 M.DbServerSummary = {
     type = "structure",
+    id = "DbServerSummary",
     members = {
         dbServerId = {
             type = "string",
@@ -1683,6 +1733,7 @@ M.DbServerSummary = {
 
 M.ListDbServersOutput = {
     type = "structure",
+    id = "ListDbServersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1699,6 +1750,7 @@ M.ListDbServersOutput = {
 
 M.UpdateCloudExadataInfrastructureInput = {
     type = "structure",
+    id = "UpdateCloudExadataInfrastructureInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -1713,6 +1765,7 @@ M.UpdateCloudExadataInfrastructureInput = {
 
 M.UpdateCloudExadataInfrastructureOutput = {
     type = "structure",
+    id = "UpdateCloudExadataInfrastructureOutput",
     members = {
         displayName = {
             type = "string",
@@ -1734,6 +1787,7 @@ M.UpdateCloudExadataInfrastructureOutput = {
 
 M.DataCollectionOptions = {
     type = "structure",
+    id = "DataCollectionOptions",
     members = {
         isDiagnosticsEventsEnabled = {
             type = "boolean",
@@ -1754,6 +1808,7 @@ M.DiskRedundancy = {
 
 M.DbIormConfig = {
     type = "structure",
+    id = "DbIormConfig",
     members = {
         dbName = {
             type = "string",
@@ -1785,6 +1840,7 @@ M.Objective = {
 
 M.ExadataIormConfig = {
     type = "structure",
+    id = "ExadataIormConfig",
     members = {
         dbPlans = {
             type = "list",
@@ -1804,6 +1860,7 @@ M.ExadataIormConfig = {
 
 M.CloudVmCluster = {
     type = "structure",
+    id = "CloudVmCluster",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -1946,6 +2003,7 @@ M.CloudVmCluster = {
 
 M.CloudVmClusterSummary = {
     type = "structure",
+    id = "CloudVmClusterSummary",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -2088,6 +2146,7 @@ M.CloudVmClusterSummary = {
 
 M.CreateCloudVmClusterInput = {
     type = "structure",
+    id = "CreateCloudVmClusterInput",
     members = {
         cloudExadataInfrastructureId = {
             type = "string",
@@ -2183,6 +2242,7 @@ M.CreateCloudVmClusterInput = {
 
 M.CreateCloudVmClusterOutput = {
     type = "structure",
+    id = "CreateCloudVmClusterOutput",
     members = {
         displayName = {
             type = "string",
@@ -2204,6 +2264,7 @@ M.CreateCloudVmClusterOutput = {
 
 M.DeleteCloudVmClusterInput = {
     type = "structure",
+    id = "DeleteCloudVmClusterInput",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -2217,10 +2278,12 @@ M.DeleteCloudVmClusterInput = {
 
 M.DeleteCloudVmClusterOutput = {
     type = "structure",
+    id = "DeleteCloudVmClusterOutput",
 }
 
 M.GetCloudVmClusterInput = {
     type = "structure",
+    id = "GetCloudVmClusterInput",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -2234,6 +2297,7 @@ M.GetCloudVmClusterInput = {
 
 M.GetCloudVmClusterOutput = {
     type = "structure",
+    id = "GetCloudVmClusterOutput",
     members = {
         cloudVmCluster = M.CloudVmCluster,
     },
@@ -2241,6 +2305,7 @@ M.GetCloudVmClusterOutput = {
 
 M.ListCloudVmClustersInput = {
     type = "structure",
+    id = "ListCloudVmClustersInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2262,6 +2327,7 @@ M.ListCloudVmClustersInput = {
 
 M.ListCloudVmClustersOutput = {
     type = "structure",
+    id = "ListCloudVmClustersOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2278,6 +2344,7 @@ M.ListCloudVmClustersOutput = {
 
 M.CreateOdbNetworkInput = {
     type = "structure",
+    id = "CreateOdbNetworkInput",
     members = {
         displayName = {
             type = "string",
@@ -2347,6 +2414,7 @@ M.CreateOdbNetworkInput = {
 
 M.CreateOdbNetworkOutput = {
     type = "structure",
+    id = "CreateOdbNetworkOutput",
     members = {
         displayName = {
             type = "string",
@@ -2368,6 +2436,7 @@ M.CreateOdbNetworkOutput = {
 
 M.CreateOdbPeeringConnectionInput = {
     type = "structure",
+    id = "CreateOdbPeeringConnectionInput",
     members = {
         odbNetworkId = {
             type = "string",
@@ -2408,6 +2477,7 @@ M.CreateOdbPeeringConnectionInput = {
 
 M.CreateOdbPeeringConnectionOutput = {
     type = "structure",
+    id = "CreateOdbPeeringConnectionOutput",
     members = {
         displayName = {
             type = "string",
@@ -2436,6 +2506,7 @@ M.ManagedResourceStatus = {
 
 M.CrossRegionS3RestoreSourcesAccess = {
     type = "structure",
+    id = "CrossRegionS3RestoreSourcesAccess",
     members = {
         region = {
             type = "string",
@@ -2468,6 +2539,7 @@ M.DbNodeResourceStatus = {
 
 M.DbNode = {
     type = "structure",
+    id = "DbNode",
     members = {
         dbNodeId = {
             type = "string",
@@ -2561,6 +2633,7 @@ M.DbNode = {
 
 M.DbNodeSummary = {
     type = "structure",
+    id = "DbNodeSummary",
     members = {
         dbNodeId = {
             type = "string",
@@ -2648,6 +2721,7 @@ M.DbNodeSummary = {
 
 M.GetDbNodeInput = {
     type = "structure",
+    id = "GetDbNodeInput",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -2668,6 +2742,7 @@ M.GetDbNodeInput = {
 
 M.GetDbNodeOutput = {
     type = "structure",
+    id = "GetDbNodeOutput",
     members = {
         dbNode = M.DbNode,
     },
@@ -2675,6 +2750,7 @@ M.GetDbNodeOutput = {
 
 M.ListDbNodesInput = {
     type = "structure",
+    id = "ListDbNodesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2700,6 +2776,7 @@ M.ListDbNodesInput = {
 
 M.ListDbNodesOutput = {
     type = "structure",
+    id = "ListDbNodesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2716,6 +2793,7 @@ M.ListDbNodesOutput = {
 
 M.RebootDbNodeInput = {
     type = "structure",
+    id = "RebootDbNodeInput",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -2736,6 +2814,7 @@ M.RebootDbNodeInput = {
 
 M.RebootDbNodeOutput = {
     type = "structure",
+    id = "RebootDbNodeOutput",
     members = {
         dbNodeId = {
             type = "string",
@@ -2754,6 +2833,7 @@ M.RebootDbNodeOutput = {
 
 M.StartDbNodeInput = {
     type = "structure",
+    id = "StartDbNodeInput",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -2774,6 +2854,7 @@ M.StartDbNodeInput = {
 
 M.StartDbNodeOutput = {
     type = "structure",
+    id = "StartDbNodeOutput",
     members = {
         dbNodeId = {
             type = "string",
@@ -2792,6 +2873,7 @@ M.StartDbNodeOutput = {
 
 M.StopDbNodeInput = {
     type = "structure",
+    id = "StopDbNodeInput",
     members = {
         cloudVmClusterId = {
             type = "string",
@@ -2812,6 +2894,7 @@ M.StopDbNodeInput = {
 
 M.StopDbNodeOutput = {
     type = "structure",
+    id = "StopDbNodeOutput",
     members = {
         dbNodeId = {
             type = "string",
@@ -2837,6 +2920,7 @@ M.ShapeType = {
 
 M.DbSystemShapeSummary = {
     type = "structure",
+    id = "DbSystemShapeSummary",
     members = {
         availableCoreCount = {
             type = "integer",
@@ -2915,6 +2999,7 @@ M.DbSystemShapeSummary = {
 
 M.DeleteOdbNetworkInput = {
     type = "structure",
+    id = "DeleteOdbNetworkInput",
     members = {
         odbNetworkId = {
             type = "string",
@@ -2934,10 +3019,12 @@ M.DeleteOdbNetworkInput = {
 
 M.DeleteOdbNetworkOutput = {
     type = "structure",
+    id = "DeleteOdbNetworkOutput",
 }
 
 M.DeleteOdbPeeringConnectionInput = {
     type = "structure",
+    id = "DeleteOdbPeeringConnectionInput",
     members = {
         odbPeeringConnectionId = {
             type = "string",
@@ -2951,10 +3038,12 @@ M.DeleteOdbPeeringConnectionInput = {
 
 M.DeleteOdbPeeringConnectionOutput = {
     type = "structure",
+    id = "DeleteOdbPeeringConnectionOutput",
 }
 
 M.DisassociateIamRoleFromResourceInput = {
     type = "structure",
+    id = "DisassociateIamRoleFromResourceInput",
     members = {
         iamRoleArn = {
             type = "string",
@@ -2979,14 +3068,17 @@ M.DisassociateIamRoleFromResourceInput = {
 
 M.DisassociateIamRoleFromResourceOutput = {
     type = "structure",
+    id = "DisassociateIamRoleFromResourceOutput",
 }
 
 M.GetOciOnboardingStatusInput = {
     type = "structure",
+    id = "GetOciOnboardingStatusInput",
 }
 
 M.OciIdentityDomain = {
     type = "structure",
+    id = "OciIdentityDomain",
     members = {
         ociIdentityDomainId = {
             type = "string",
@@ -3026,6 +3118,7 @@ M.OciOnboardingStatus = {
 
 M.GetOciOnboardingStatusOutput = {
     type = "structure",
+    id = "GetOciOnboardingStatusOutput",
     members = {
         status = {
             type = "string",
@@ -3042,6 +3135,7 @@ M.GetOciOnboardingStatusOutput = {
 
 M.GetOdbNetworkInput = {
     type = "structure",
+    id = "GetOdbNetworkInput",
     members = {
         odbNetworkId = {
             type = "string",
@@ -3055,6 +3149,7 @@ M.GetOdbNetworkInput = {
 
 M.KmsAccess = {
     type = "structure",
+    id = "KmsAccess",
     members = {
         status = {
             type = "string",
@@ -3074,6 +3169,7 @@ M.KmsAccess = {
 
 M.ManagedS3BackupAccess = {
     type = "structure",
+    id = "ManagedS3BackupAccess",
     members = {
         status = {
             type = "string",
@@ -3087,6 +3183,7 @@ M.ManagedS3BackupAccess = {
 
 M.S3Access = {
     type = "structure",
+    id = "S3Access",
     members = {
         status = {
             type = "string",
@@ -3110,6 +3207,7 @@ M.VpcEndpointType = {
 
 M.ServiceNetworkEndpoint = {
     type = "structure",
+    id = "ServiceNetworkEndpoint",
     members = {
         vpcEndpointId = {
             type = "string",
@@ -3122,6 +3220,7 @@ M.ServiceNetworkEndpoint = {
 
 M.StsAccess = {
     type = "structure",
+    id = "StsAccess",
     members = {
         status = {
             type = "string",
@@ -3141,6 +3240,7 @@ M.StsAccess = {
 
 M.ZeroEtlAccess = {
     type = "structure",
+    id = "ZeroEtlAccess",
     members = {
         status = {
             type = "string",
@@ -3153,6 +3253,7 @@ M.ZeroEtlAccess = {
 
 M.ManagedServices = {
     type = "structure",
+    id = "ManagedServices",
     members = {
         serviceNetworkArn = {
             type = "string",
@@ -3179,6 +3280,7 @@ M.ManagedServices = {
 
 M.OciDnsForwardingConfig = {
     type = "structure",
+    id = "OciDnsForwardingConfig",
     members = {
         domainName = {
             type = "string",
@@ -3191,6 +3293,7 @@ M.OciDnsForwardingConfig = {
 
 M.OdbNetwork = {
     type = "structure",
+    id = "OdbNetwork",
     members = {
         odbNetworkId = {
             type = "string",
@@ -3270,6 +3373,7 @@ M.OdbNetwork = {
 
 M.GetOdbNetworkOutput = {
     type = "structure",
+    id = "GetOdbNetworkOutput",
     members = {
         odbNetwork = M.OdbNetwork,
     },
@@ -3277,6 +3381,7 @@ M.GetOdbNetworkOutput = {
 
 M.GetOdbPeeringConnectionInput = {
     type = "structure",
+    id = "GetOdbPeeringConnectionInput",
     members = {
         odbPeeringConnectionId = {
             type = "string",
@@ -3290,6 +3395,7 @@ M.GetOdbPeeringConnectionInput = {
 
 M.OdbPeeringConnection = {
     type = "structure",
+    id = "OdbPeeringConnection",
     members = {
         odbPeeringConnectionId = {
             type = "string",
@@ -3336,6 +3442,7 @@ M.OdbPeeringConnection = {
 
 M.GetOdbPeeringConnectionOutput = {
     type = "structure",
+    id = "GetOdbPeeringConnectionOutput",
     members = {
         odbPeeringConnection = M.OdbPeeringConnection,
     },
@@ -3343,6 +3450,7 @@ M.GetOdbPeeringConnectionOutput = {
 
 M.GiVersionSummary = {
     type = "structure",
+    id = "GiVersionSummary",
     members = {
         version = {
             type = "string",
@@ -3352,6 +3460,7 @@ M.GiVersionSummary = {
 
 M.InitializeServiceInput = {
     type = "structure",
+    id = "InitializeServiceInput",
     members = {
         ociIdentityDomain = {
             type = "boolean",
@@ -3364,10 +3473,12 @@ M.InitializeServiceInput = {
 
 M.InitializeServiceOutput = {
     type = "structure",
+    id = "InitializeServiceOutput",
 }
 
 M.ListDbSystemShapesInput = {
     type = "structure",
+    id = "ListDbSystemShapesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3392,6 +3503,7 @@ M.ListDbSystemShapesInput = {
 
 M.ListDbSystemShapesOutput = {
     type = "structure",
+    id = "ListDbSystemShapesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3408,6 +3520,7 @@ M.ListDbSystemShapesOutput = {
 
 M.ListGiVersionsInput = {
     type = "structure",
+    id = "ListGiVersionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3429,6 +3542,7 @@ M.ListGiVersionsInput = {
 
 M.ListGiVersionsOutput = {
     type = "structure",
+    id = "ListGiVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3445,6 +3559,7 @@ M.ListGiVersionsOutput = {
 
 M.ListOdbNetworksInput = {
     type = "structure",
+    id = "ListOdbNetworksInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3463,6 +3578,7 @@ M.ListOdbNetworksInput = {
 
 M.OdbNetworkSummary = {
     type = "structure",
+    id = "OdbNetworkSummary",
     members = {
         odbNetworkId = {
             type = "string",
@@ -3542,6 +3658,7 @@ M.OdbNetworkSummary = {
 
 M.ListOdbNetworksOutput = {
     type = "structure",
+    id = "ListOdbNetworksOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3558,6 +3675,7 @@ M.ListOdbNetworksOutput = {
 
 M.ListOdbPeeringConnectionsInput = {
     type = "structure",
+    id = "ListOdbPeeringConnectionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3579,6 +3697,7 @@ M.ListOdbPeeringConnectionsInput = {
 
 M.OdbPeeringConnectionSummary = {
     type = "structure",
+    id = "OdbPeeringConnectionSummary",
     members = {
         odbPeeringConnectionId = {
             type = "string",
@@ -3625,6 +3744,7 @@ M.OdbPeeringConnectionSummary = {
 
 M.ListOdbPeeringConnectionsOutput = {
     type = "structure",
+    id = "ListOdbPeeringConnectionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3641,6 +3761,7 @@ M.ListOdbPeeringConnectionsOutput = {
 
 M.ListSystemVersionsInput = {
     type = "structure",
+    id = "ListSystemVersionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3671,6 +3792,7 @@ M.ListSystemVersionsInput = {
 
 M.SystemVersionSummary = {
     type = "structure",
+    id = "SystemVersionSummary",
     members = {
         giVersion = {
             type = "string",
@@ -3687,6 +3809,7 @@ M.SystemVersionSummary = {
 
 M.ListSystemVersionsOutput = {
     type = "structure",
+    id = "ListSystemVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3703,6 +3826,7 @@ M.ListSystemVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3715,6 +3839,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3726,6 +3851,7 @@ M.ListTagsForResourceOutput = {
 
 M.UpdateOdbNetworkInput = {
     type = "structure",
+    id = "UpdateOdbNetworkInput",
     members = {
         odbNetworkId = {
             type = "string",
@@ -3779,6 +3905,7 @@ M.UpdateOdbNetworkInput = {
 
 M.UpdateOdbNetworkOutput = {
     type = "structure",
+    id = "UpdateOdbNetworkOutput",
     members = {
         displayName = {
             type = "string",
@@ -3800,6 +3927,7 @@ M.UpdateOdbNetworkOutput = {
 
 M.UpdateOdbPeeringConnectionInput = {
     type = "structure",
+    id = "UpdateOdbPeeringConnectionInput",
     members = {
         odbPeeringConnectionId = {
             type = "string",
@@ -3824,6 +3952,7 @@ M.UpdateOdbPeeringConnectionInput = {
 
 M.UpdateOdbPeeringConnectionOutput = {
     type = "structure",
+    id = "UpdateOdbPeeringConnectionOutput",
     members = {
         displayName = {
             type = "string",
@@ -3845,6 +3974,7 @@ M.UpdateOdbPeeringConnectionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3865,10 +3995,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3889,6 +4021,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

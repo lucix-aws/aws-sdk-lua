@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AlternateKey = {
     type = "structure",
+    id = "AlternateKey",
     members = {
         name = {
             type = "string",
@@ -44,6 +46,7 @@ M.AlternateKey = {
 
 M.CancelBatchJobExecutionInput = {
     type = "structure",
+    id = "CancelBatchJobExecutionInput",
     members = {
         applicationId = {
             type = "string",
@@ -67,10 +70,12 @@ M.CancelBatchJobExecutionInput = {
 
 M.CancelBatchJobExecutionOutput = {
     type = "structure",
+    id = "CancelBatchJobExecutionOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -90,6 +95,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -110,6 +116,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -129,6 +136,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -155,6 +163,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -182,6 +191,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -202,6 +212,7 @@ M.ValidationException = {
 
 M.Definition = {
     type = "union",
+    id = "Definition",
     members = {
         s3Location = {
             type = "string",
@@ -219,6 +230,7 @@ M.EngineType = {
 
 M.CreateApplicationInput = {
     type = "structure",
+    id = "CreateApplicationInput",
     members = {
         name = {
             type = "string",
@@ -260,6 +272,7 @@ M.CreateApplicationInput = {
 
 M.CreateApplicationOutput = {
     type = "structure",
+    id = "CreateApplicationOutput",
     members = {
         applicationArn = {
             type = "string",
@@ -284,6 +297,7 @@ M.CreateApplicationOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -309,6 +323,7 @@ M.ServiceQuotaExceededException = {
 
 M.ExternalLocation = {
     type = "union",
+    id = "ExternalLocation",
     members = {
         s3Location = {
             type = "string",
@@ -318,6 +333,7 @@ M.ExternalLocation = {
 
 M.DataSetExportItem = {
     type = "structure",
+    id = "DataSetExportItem",
     members = {
         datasetName = {
             type = "string",
@@ -333,6 +349,7 @@ M.DataSetExportItem = {
 
 M.DataSetExportConfig = {
     type = "union",
+    id = "DataSetExportConfig",
     members = {
         s3Location = {
             type = "string",
@@ -346,6 +363,7 @@ M.DataSetExportConfig = {
 
 M.CreateDataSetExportTaskInput = {
     type = "structure",
+    id = "CreateDataSetExportTaskInput",
     members = {
         applicationId = {
             type = "string",
@@ -371,6 +389,7 @@ M.CreateDataSetExportTaskInput = {
 
 M.CreateDataSetExportTaskOutput = {
     type = "structure",
+    id = "CreateDataSetExportTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -383,6 +402,7 @@ M.CreateDataSetExportTaskOutput = {
 
 M.GdgAttributes = {
     type = "structure",
+    id = "GdgAttributes",
     members = {
         limit = {
             type = "integer",
@@ -398,6 +418,7 @@ M.GdgAttributes = {
 
 M.PoAttributes = {
     type = "structure",
+    id = "PoAttributes",
     members = {
         format = {
             type = "string",
@@ -420,6 +441,7 @@ M.PoAttributes = {
 
 M.PsAttributes = {
     type = "structure",
+    id = "PsAttributes",
     members = {
         format = {
             type = "string",
@@ -435,6 +457,7 @@ M.PsAttributes = {
 
 M.PrimaryKey = {
     type = "structure",
+    id = "PrimaryKey",
     members = {
         name = {
             type = "string",
@@ -458,6 +481,7 @@ M.PrimaryKey = {
 
 M.VsamAttributes = {
     type = "structure",
+    id = "VsamAttributes",
     members = {
         format = {
             type = "string",
@@ -484,6 +508,7 @@ M.VsamAttributes = {
 
 M.DatasetOrgAttributes = {
     type = "union",
+    id = "DatasetOrgAttributes",
     members = {
         vsam = M.VsamAttributes,
         gdg = M.GdgAttributes,
@@ -494,6 +519,7 @@ M.DatasetOrgAttributes = {
 
 M.RecordLength = {
     type = "structure",
+    id = "RecordLength",
     members = {
         min = {
             type = "integer",
@@ -514,6 +540,7 @@ M.RecordLength = {
 
 M.DataSet = {
     type = "structure",
+    id = "DataSet",
     members = {
         storageType = {
             type = "string",
@@ -538,6 +565,7 @@ M.DataSet = {
 
 M.DataSetImportItem = {
     type = "structure",
+    id = "DataSetImportItem",
     members = {
         dataSet = setmetatable({ traits = {
             required = true,
@@ -550,6 +578,7 @@ M.DataSetImportItem = {
 
 M.DataSetImportConfig = {
     type = "union",
+    id = "DataSetImportConfig",
     members = {
         s3Location = {
             type = "string",
@@ -563,6 +592,7 @@ M.DataSetImportConfig = {
 
 M.CreateDataSetImportTaskInput = {
     type = "structure",
+    id = "CreateDataSetImportTaskInput",
     members = {
         applicationId = {
             type = "string",
@@ -585,6 +615,7 @@ M.CreateDataSetImportTaskInput = {
 
 M.CreateDataSetImportTaskOutput = {
     type = "structure",
+    id = "CreateDataSetImportTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -597,6 +628,7 @@ M.CreateDataSetImportTaskOutput = {
 
 M.CreateDeploymentInput = {
     type = "structure",
+    id = "CreateDeploymentInput",
     members = {
         environmentId = {
             type = "string",
@@ -628,6 +660,7 @@ M.CreateDeploymentInput = {
 
 M.CreateDeploymentOutput = {
     type = "structure",
+    id = "CreateDeploymentOutput",
     members = {
         deploymentId = {
             type = "string",
@@ -640,6 +673,7 @@ M.CreateDeploymentOutput = {
 
 M.DeleteApplicationInput = {
     type = "structure",
+    id = "DeleteApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -653,10 +687,12 @@ M.DeleteApplicationInput = {
 
 M.DeleteApplicationOutput = {
     type = "structure",
+    id = "DeleteApplicationOutput",
 }
 
 M.DeleteApplicationFromEnvironmentInput = {
     type = "structure",
+    id = "DeleteApplicationFromEnvironmentInput",
     members = {
         applicationId = {
             type = "string",
@@ -677,10 +713,12 @@ M.DeleteApplicationFromEnvironmentInput = {
 
 M.DeleteApplicationFromEnvironmentOutput = {
     type = "structure",
+    id = "DeleteApplicationFromEnvironmentOutput",
 }
 
 M.GetApplicationInput = {
     type = "structure",
+    id = "GetApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -701,6 +739,7 @@ M.DeploymentLifecycle = {
 
 M.DeployedVersionSummary = {
     type = "structure",
+    id = "DeployedVersionSummary",
     members = {
         applicationVersion = {
             type = "integer",
@@ -728,6 +767,7 @@ M.ApplicationVersionLifecycle = {
 
 M.ApplicationVersionSummary = {
     type = "structure",
+    id = "ApplicationVersionSummary",
     members = {
         applicationVersion = {
             type = "integer",
@@ -755,6 +795,7 @@ M.ApplicationVersionSummary = {
 
 M.LogGroupSummary = {
     type = "structure",
+    id = "LogGroupSummary",
     members = {
         logType = {
             type = "string",
@@ -787,6 +828,7 @@ M.ApplicationLifecycle = {
 
 M.GetApplicationOutput = {
     type = "structure",
+    id = "GetApplicationOutput",
     members = {
         name = {
             type = "string",
@@ -875,6 +917,7 @@ M.GetApplicationOutput = {
 
 M.GetApplicationVersionInput = {
     type = "structure",
+    id = "GetApplicationVersionInput",
     members = {
         applicationId = {
             type = "string",
@@ -895,6 +938,7 @@ M.GetApplicationVersionInput = {
 
 M.GetApplicationVersionOutput = {
     type = "structure",
+    id = "GetApplicationVersionOutput",
     members = {
         name = {
             type = "string",
@@ -937,6 +981,7 @@ M.GetApplicationVersionOutput = {
 
 M.GetBatchJobExecutionInput = {
     type = "structure",
+    id = "GetBatchJobExecutionInput",
     members = {
         applicationId = {
             type = "string",
@@ -957,6 +1002,7 @@ M.GetBatchJobExecutionInput = {
 
 M.FileBatchJobIdentifier = {
     type = "structure",
+    id = "FileBatchJobIdentifier",
     members = {
         fileName = {
             type = "string",
@@ -972,6 +1018,7 @@ M.FileBatchJobIdentifier = {
 
 M.JobStepRestartMarker = {
     type = "structure",
+    id = "JobStepRestartMarker",
     members = {
         fromStep = {
             type = "string",
@@ -1005,6 +1052,7 @@ M.JobStepRestartMarker = {
 
 M.RestartBatchJobIdentifier = {
     type = "structure",
+    id = "RestartBatchJobIdentifier",
     members = {
         executionId = {
             type = "string",
@@ -1020,6 +1068,7 @@ M.RestartBatchJobIdentifier = {
 
 M.JobIdentifier = {
     type = "union",
+    id = "JobIdentifier",
     members = {
         fileName = {
             type = "string",
@@ -1032,6 +1081,7 @@ M.JobIdentifier = {
 
 M.S3BatchJobIdentifier = {
     type = "structure",
+    id = "S3BatchJobIdentifier",
     members = {
         bucket = {
             type = "string",
@@ -1050,6 +1100,7 @@ M.S3BatchJobIdentifier = {
 
 M.ScriptBatchJobIdentifier = {
     type = "structure",
+    id = "ScriptBatchJobIdentifier",
     members = {
         scriptName = {
             type = "string",
@@ -1062,6 +1113,7 @@ M.ScriptBatchJobIdentifier = {
 
 M.BatchJobIdentifier = {
     type = "union",
+    id = "BatchJobIdentifier",
     members = {
         fileBatchJobIdentifier = M.FileBatchJobIdentifier,
         scriptBatchJobIdentifier = M.ScriptBatchJobIdentifier,
@@ -1091,6 +1143,7 @@ M.BatchJobExecutionStatus = {
 
 M.GetBatchJobExecutionOutput = {
     type = "structure",
+    id = "GetBatchJobExecutionOutput",
     members = {
         executionId = {
             type = "string",
@@ -1144,6 +1197,7 @@ M.GetBatchJobExecutionOutput = {
 
 M.ExecutionTimeoutException = {
     type = "structure",
+    id = "ExecutionTimeoutException",
     error = "server",
     members = {
         message = {
@@ -1157,6 +1211,7 @@ M.ExecutionTimeoutException = {
 
 M.GetDataSetDetailsInput = {
     type = "structure",
+    id = "GetDataSetDetailsInput",
     members = {
         applicationId = {
             type = "string",
@@ -1177,6 +1232,7 @@ M.GetDataSetDetailsInput = {
 
 M.GdgDetailAttributes = {
     type = "structure",
+    id = "GdgDetailAttributes",
     members = {
         limit = {
             type = "integer",
@@ -1192,6 +1248,7 @@ M.GdgDetailAttributes = {
 
 M.PoDetailAttributes = {
     type = "structure",
+    id = "PoDetailAttributes",
     members = {
         format = {
             type = "string",
@@ -1210,6 +1267,7 @@ M.PoDetailAttributes = {
 
 M.PsDetailAttributes = {
     type = "structure",
+    id = "PsDetailAttributes",
     members = {
         format = {
             type = "string",
@@ -1228,6 +1286,7 @@ M.PsDetailAttributes = {
 
 M.VsamDetailAttributes = {
     type = "structure",
+    id = "VsamDetailAttributes",
     members = {
         encoding = {
             type = "string",
@@ -1257,6 +1316,7 @@ M.VsamDetailAttributes = {
 
 M.DatasetDetailOrgAttributes = {
     type = "union",
+    id = "DatasetDetailOrgAttributes",
     members = {
         vsam = M.VsamDetailAttributes,
         gdg = M.GdgDetailAttributes,
@@ -1267,6 +1327,7 @@ M.DatasetDetailOrgAttributes = {
 
 M.GetDataSetDetailsOutput = {
     type = "structure",
+    id = "GetDataSetDetailsOutput",
     members = {
         dataSetName = {
             type = "string",
@@ -1310,6 +1371,7 @@ M.GetDataSetDetailsOutput = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -1323,6 +1385,7 @@ M.ServiceUnavailableException = {
 
 M.GetDataSetExportTaskInput = {
     type = "structure",
+    id = "GetDataSetExportTaskInput",
     members = {
         applicationId = {
             type = "string",
@@ -1350,6 +1413,7 @@ M.DataSetTaskLifecycle = {
 
 M.DataSetExportSummary = {
     type = "structure",
+    id = "DataSetExportSummary",
     members = {
         total = {
             type = "integer",
@@ -1391,6 +1455,7 @@ M.DataSetExportSummary = {
 
 M.GetDataSetExportTaskOutput = {
     type = "structure",
+    id = "GetDataSetExportTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -1416,6 +1481,7 @@ M.GetDataSetExportTaskOutput = {
 
 M.GetDataSetImportTaskInput = {
     type = "structure",
+    id = "GetDataSetImportTaskInput",
     members = {
         applicationId = {
             type = "string",
@@ -1436,6 +1502,7 @@ M.GetDataSetImportTaskInput = {
 
 M.DataSetImportSummary = {
     type = "structure",
+    id = "DataSetImportSummary",
     members = {
         total = {
             type = "integer",
@@ -1477,6 +1544,7 @@ M.DataSetImportSummary = {
 
 M.GetDataSetImportTaskOutput = {
     type = "structure",
+    id = "GetDataSetImportTaskOutput",
     members = {
         taskId = {
             type = "string",
@@ -1496,6 +1564,7 @@ M.GetDataSetImportTaskOutput = {
 
 M.GetDeploymentInput = {
     type = "structure",
+    id = "GetDeploymentInput",
     members = {
         deploymentId = {
             type = "string",
@@ -1516,6 +1585,7 @@ M.GetDeploymentInput = {
 
 M.GetDeploymentOutput = {
     type = "structure",
+    id = "GetDeploymentOutput",
     members = {
         deploymentId = {
             type = "string",
@@ -1561,6 +1631,7 @@ M.GetDeploymentOutput = {
 
 M.ListApplicationsInput = {
     type = "structure",
+    id = "ListApplicationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1598,6 +1669,7 @@ M.ApplicationDeploymentLifecycle = {
 
 M.ApplicationSummary = {
     type = "structure",
+    id = "ApplicationSummary",
     members = {
         name = {
             type = "string",
@@ -1664,6 +1736,7 @@ M.ApplicationSummary = {
 
 M.ListApplicationsOutput = {
     type = "structure",
+    id = "ListApplicationsOutput",
     members = {
         applications = {
             type = "list",
@@ -1680,6 +1753,7 @@ M.ListApplicationsOutput = {
 
 M.ListApplicationVersionsInput = {
     type = "structure",
+    id = "ListApplicationVersionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1706,6 +1780,7 @@ M.ListApplicationVersionsInput = {
 
 M.ListApplicationVersionsOutput = {
     type = "structure",
+    id = "ListApplicationVersionsOutput",
     members = {
         applicationVersions = {
             type = "list",
@@ -1722,6 +1797,7 @@ M.ListApplicationVersionsOutput = {
 
 M.ListBatchJobDefinitionsInput = {
     type = "structure",
+    id = "ListBatchJobDefinitionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1754,6 +1830,7 @@ M.ListBatchJobDefinitionsInput = {
 
 M.FileBatchJobDefinition = {
     type = "structure",
+    id = "FileBatchJobDefinition",
     members = {
         fileName = {
             type = "string",
@@ -1769,6 +1846,7 @@ M.FileBatchJobDefinition = {
 
 M.ScriptBatchJobDefinition = {
     type = "structure",
+    id = "ScriptBatchJobDefinition",
     members = {
         scriptName = {
             type = "string",
@@ -1781,6 +1859,7 @@ M.ScriptBatchJobDefinition = {
 
 M.BatchJobDefinition = {
     type = "union",
+    id = "BatchJobDefinition",
     members = {
         fileBatchJobDefinition = M.FileBatchJobDefinition,
         scriptBatchJobDefinition = M.ScriptBatchJobDefinition,
@@ -1789,6 +1868,7 @@ M.BatchJobDefinition = {
 
 M.ListBatchJobDefinitionsOutput = {
     type = "structure",
+    id = "ListBatchJobDefinitionsOutput",
     members = {
         batchJobDefinitions = {
             type = "list",
@@ -1805,6 +1885,7 @@ M.ListBatchJobDefinitionsOutput = {
 
 M.ListBatchJobExecutionsInput = {
     type = "structure",
+    id = "ListBatchJobExecutionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -1862,6 +1943,7 @@ M.ListBatchJobExecutionsInput = {
 
 M.BatchJobExecutionSummary = {
     type = "structure",
+    id = "BatchJobExecutionSummary",
     members = {
         executionId = {
             type = "string",
@@ -1908,6 +1990,7 @@ M.BatchJobExecutionSummary = {
 
 M.ListBatchJobExecutionsOutput = {
     type = "structure",
+    id = "ListBatchJobExecutionsOutput",
     members = {
         batchJobExecutions = {
             type = "list",
@@ -1924,6 +2007,7 @@ M.ListBatchJobExecutionsOutput = {
 
 M.ListBatchJobRestartPointsInput = {
     type = "structure",
+    id = "ListBatchJobRestartPointsInput",
     members = {
         applicationId = {
             type = "string",
@@ -1950,6 +2034,7 @@ M.ListBatchJobRestartPointsInput = {
 
 M.JobStep = {
     type = "structure",
+    id = "JobStep",
     members = {
         stepNumber = {
             type = "integer",
@@ -1995,6 +2080,7 @@ M.JobStep = {
 
 M.ListBatchJobRestartPointsOutput = {
     type = "structure",
+    id = "ListBatchJobRestartPointsOutput",
     members = {
         batchJobSteps = {
             type = "list",
@@ -2005,6 +2091,7 @@ M.ListBatchJobRestartPointsOutput = {
 
 M.ListDataSetExportHistoryInput = {
     type = "structure",
+    id = "ListDataSetExportHistoryInput",
     members = {
         nextToken = {
             type = "string",
@@ -2031,6 +2118,7 @@ M.ListDataSetExportHistoryInput = {
 
 M.DataSetExportTask = {
     type = "structure",
+    id = "DataSetExportTask",
     members = {
         taskId = {
             type = "string",
@@ -2055,6 +2143,7 @@ M.DataSetExportTask = {
 
 M.ListDataSetExportHistoryOutput = {
     type = "structure",
+    id = "ListDataSetExportHistoryOutput",
     members = {
         dataSetExportTasks = {
             type = "list",
@@ -2071,6 +2160,7 @@ M.ListDataSetExportHistoryOutput = {
 
 M.ListDataSetImportHistoryInput = {
     type = "structure",
+    id = "ListDataSetImportHistoryInput",
     members = {
         nextToken = {
             type = "string",
@@ -2097,6 +2187,7 @@ M.ListDataSetImportHistoryInput = {
 
 M.DataSetImportTask = {
     type = "structure",
+    id = "DataSetImportTask",
     members = {
         taskId = {
             type = "string",
@@ -2121,6 +2212,7 @@ M.DataSetImportTask = {
 
 M.ListDataSetImportHistoryOutput = {
     type = "structure",
+    id = "ListDataSetImportHistoryOutput",
     members = {
         dataSetImportTasks = {
             type = "list",
@@ -2137,6 +2229,7 @@ M.ListDataSetImportHistoryOutput = {
 
 M.ListDataSetsInput = {
     type = "structure",
+    id = "ListDataSetsInput",
     members = {
         applicationId = {
             type = "string",
@@ -2175,6 +2268,7 @@ M.ListDataSetsInput = {
 
 M.DataSetSummary = {
     type = "structure",
+    id = "DataSetSummary",
     members = {
         dataSetName = {
             type = "string",
@@ -2202,6 +2296,7 @@ M.DataSetSummary = {
 
 M.ListDataSetsOutput = {
     type = "structure",
+    id = "ListDataSetsOutput",
     members = {
         dataSets = {
             type = "list",
@@ -2218,6 +2313,7 @@ M.ListDataSetsOutput = {
 
 M.ListDeploymentsInput = {
     type = "structure",
+    id = "ListDeploymentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2244,6 +2340,7 @@ M.ListDeploymentsInput = {
 
 M.DeploymentSummary = {
     type = "structure",
+    id = "DeploymentSummary",
     members = {
         deploymentId = {
             type = "string",
@@ -2289,6 +2386,7 @@ M.DeploymentSummary = {
 
 M.ListDeploymentsOutput = {
     type = "structure",
+    id = "ListDeploymentsOutput",
     members = {
         deployments = {
             type = "list",
@@ -2305,6 +2403,7 @@ M.ListDeploymentsOutput = {
 
 M.StartApplicationInput = {
     type = "structure",
+    id = "StartApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -2318,10 +2417,12 @@ M.StartApplicationInput = {
 
 M.StartApplicationOutput = {
     type = "structure",
+    id = "StartApplicationOutput",
 }
 
 M.StartBatchJobInput = {
     type = "structure",
+    id = "StartBatchJobInput",
     members = {
         applicationId = {
             type = "string",
@@ -2346,6 +2447,7 @@ M.StartBatchJobInput = {
 
 M.StartBatchJobOutput = {
     type = "structure",
+    id = "StartBatchJobOutput",
     members = {
         executionId = {
             type = "string",
@@ -2358,6 +2460,7 @@ M.StartBatchJobOutput = {
 
 M.StopApplicationInput = {
     type = "structure",
+    id = "StopApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -2377,10 +2480,12 @@ M.StopApplicationInput = {
 
 M.StopApplicationOutput = {
     type = "structure",
+    id = "StopApplicationOutput",
 }
 
 M.UpdateApplicationInput = {
     type = "structure",
+    id = "UpdateApplicationInput",
     members = {
         applicationId = {
             type = "string",
@@ -2404,6 +2509,7 @@ M.UpdateApplicationInput = {
 
 M.UpdateApplicationOutput = {
     type = "structure",
+    id = "UpdateApplicationOutput",
     members = {
         applicationVersion = {
             type = "integer",
@@ -2416,6 +2522,7 @@ M.UpdateApplicationOutput = {
 
 M.HighAvailabilityConfig = {
     type = "structure",
+    id = "HighAvailabilityConfig",
     members = {
         desiredCapacity = {
             type = "integer",
@@ -2433,6 +2540,7 @@ M.NetworkType = {
 
 M.EfsStorageConfiguration = {
     type = "structure",
+    id = "EfsStorageConfiguration",
     members = {
         fileSystemId = {
             type = "string",
@@ -2453,6 +2561,7 @@ M.EfsStorageConfiguration = {
 
 M.FsxStorageConfiguration = {
     type = "structure",
+    id = "FsxStorageConfiguration",
     members = {
         fileSystemId = {
             type = "string",
@@ -2473,6 +2582,7 @@ M.FsxStorageConfiguration = {
 
 M.StorageConfiguration = {
     type = "union",
+    id = "StorageConfiguration",
     members = {
         efs = M.EfsStorageConfiguration,
         fsx = M.FsxStorageConfiguration,
@@ -2481,6 +2591,7 @@ M.StorageConfiguration = {
 
 M.CreateEnvironmentInput = {
     type = "structure",
+    id = "CreateEnvironmentInput",
     members = {
         name = {
             type = "string",
@@ -2550,6 +2661,7 @@ M.CreateEnvironmentInput = {
 
 M.CreateEnvironmentOutput = {
     type = "structure",
+    id = "CreateEnvironmentOutput",
     members = {
         environmentId = {
             type = "string",
@@ -2562,6 +2674,7 @@ M.CreateEnvironmentOutput = {
 
 M.DeleteEnvironmentInput = {
     type = "structure",
+    id = "DeleteEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -2575,10 +2688,12 @@ M.DeleteEnvironmentInput = {
 
 M.DeleteEnvironmentOutput = {
     type = "structure",
+    id = "DeleteEnvironmentOutput",
 }
 
 M.GetEnvironmentInput = {
     type = "structure",
+    id = "GetEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -2592,6 +2707,7 @@ M.GetEnvironmentInput = {
 
 M.MaintenanceSchedule = {
     type = "structure",
+    id = "MaintenanceSchedule",
     members = {
         startTime = {
             type = "timestamp",
@@ -2604,6 +2720,7 @@ M.MaintenanceSchedule = {
 
 M.PendingMaintenance = {
     type = "structure",
+    id = "PendingMaintenance",
     members = {
         schedule = M.MaintenanceSchedule,
         engineVersion = {
@@ -2623,6 +2740,7 @@ M.EnvironmentLifecycle = {
 
 M.GetEnvironmentOutput = {
     type = "structure",
+    id = "GetEnvironmentOutput",
     members = {
         name = {
             type = "string",
@@ -2735,6 +2853,7 @@ M.GetEnvironmentOutput = {
 
 M.ListEnvironmentsInput = {
     type = "structure",
+    id = "ListEnvironmentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2767,6 +2886,7 @@ M.ListEnvironmentsInput = {
 
 M.EnvironmentSummary = {
     type = "structure",
+    id = "EnvironmentSummary",
     members = {
         name = {
             type = "string",
@@ -2824,6 +2944,7 @@ M.EnvironmentSummary = {
 
 M.ListEnvironmentsOutput = {
     type = "structure",
+    id = "ListEnvironmentsOutput",
     members = {
         environments = {
             type = "list",
@@ -2840,6 +2961,7 @@ M.ListEnvironmentsOutput = {
 
 M.UpdateEnvironmentInput = {
     type = "structure",
+    id = "UpdateEnvironmentInput",
     members = {
         environmentId = {
             type = "string",
@@ -2880,6 +3002,7 @@ M.UpdateEnvironmentInput = {
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
+    id = "UpdateEnvironmentOutput",
     members = {
         environmentId = {
             type = "string",
@@ -2892,10 +3015,12 @@ M.UpdateEnvironmentOutput = {
 
 M.GetSignedBluinsightsUrlInput = {
     type = "structure",
+    id = "GetSignedBluinsightsUrlInput",
 }
 
 M.GetSignedBluinsightsUrlOutput = {
     type = "structure",
+    id = "GetSignedBluinsightsUrlOutput",
     members = {
         signedBiUrl = {
             type = "string",
@@ -2908,6 +3033,7 @@ M.GetSignedBluinsightsUrlOutput = {
 
 M.ListEngineVersionsInput = {
     type = "structure",
+    id = "ListEngineVersionsInput",
     members = {
         engineType = {
             type = "string",
@@ -2933,6 +3059,7 @@ M.ListEngineVersionsInput = {
 
 M.EngineVersionsSummary = {
     type = "structure",
+    id = "EngineVersionsSummary",
     members = {
         engineType = {
             type = "string",
@@ -2951,6 +3078,7 @@ M.EngineVersionsSummary = {
 
 M.ListEngineVersionsOutput = {
     type = "structure",
+    id = "ListEngineVersionsOutput",
     members = {
         engineVersions = {
             type = "list",
@@ -2967,6 +3095,7 @@ M.ListEngineVersionsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -2980,6 +3109,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2994,6 +3124,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3015,10 +3146,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3040,6 +3173,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

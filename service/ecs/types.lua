@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceleratorCountRequest = {
     type = "structure",
+    id = "AcceleratorCountRequest",
     members = {
         min = {
             type = "integer",
@@ -37,6 +38,7 @@ M.AcceleratorName = {
 
 M.AcceleratorTotalMemoryMiBRequest = {
     type = "structure",
+    id = "AcceleratorTotalMemoryMiBRequest",
     members = {
         min = {
             type = "integer",
@@ -55,6 +57,7 @@ M.AcceleratorType = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -70,6 +73,7 @@ M.AccessType = {
 
 M.AdvancedConfiguration = {
     type = "structure",
+    id = "AdvancedConfiguration",
     members = {
         alternateTargetGroupArn = {
             type = "string",
@@ -97,6 +101,7 @@ M.AgentUpdateStatus = {
 
 M.ClientException = {
     type = "structure",
+    id = "ClientException",
     error = "client",
     members = {
         message = {
@@ -107,6 +112,7 @@ M.ClientException = {
 
 M.ClusterNotFoundException = {
     type = "structure",
+    id = "ClusterNotFoundException",
     error = "client",
     members = {
         message = {
@@ -127,6 +133,7 @@ M.ManagedScalingStatus = {
 
 M.ManagedScaling = {
     type = "structure",
+    id = "ManagedScaling",
     members = {
         status = {
             type = "string",
@@ -153,6 +160,7 @@ M.ManagedTerminationProtection = {
 
 M.AutoScalingGroupProvider = {
     type = "structure",
+    id = "AutoScalingGroupProvider",
     members = {
         autoScalingGroupArn = {
             type = "string",
@@ -177,6 +185,7 @@ M.AutoRepairActionsStatus = {
 
 M.AutoRepairConfiguration = {
     type = "structure",
+    id = "AutoRepairConfiguration",
     members = {
         actionsStatus = {
             type = "string",
@@ -186,6 +195,7 @@ M.AutoRepairConfiguration = {
 
 M.InfrastructureOptimization = {
     type = "structure",
+    id = "InfrastructureOptimization",
     members = {
         scaleInAfter = {
             type = "integer",
@@ -207,6 +217,7 @@ M.CapacityReservationPreference = {
 
 M.CapacityReservationRequest = {
     type = "structure",
+    id = "CapacityReservationRequest",
     members = {
         reservationGroupArn = {
             type = "string",
@@ -225,6 +236,7 @@ M.BareMetal = {
 
 M.BaselineEbsBandwidthMbpsRequest = {
     type = "structure",
+    id = "BaselineEbsBandwidthMbpsRequest",
     members = {
         min = {
             type = "integer",
@@ -265,6 +277,7 @@ M.LocalStorageType = {
 
 M.MemoryGiBPerVCpuRequest = {
     type = "structure",
+    id = "MemoryGiBPerVCpuRequest",
     members = {
         min = {
             type = "double",
@@ -277,6 +290,7 @@ M.MemoryGiBPerVCpuRequest = {
 
 M.MemoryMiBRequest = {
     type = "structure",
+    id = "MemoryMiBRequest",
     members = {
         min = {
             type = "integer",
@@ -292,6 +306,7 @@ M.MemoryMiBRequest = {
 
 M.NetworkBandwidthGbpsRequest = {
     type = "structure",
+    id = "NetworkBandwidthGbpsRequest",
     members = {
         min = {
             type = "double",
@@ -304,6 +319,7 @@ M.NetworkBandwidthGbpsRequest = {
 
 M.NetworkInterfaceCountRequest = {
     type = "structure",
+    id = "NetworkInterfaceCountRequest",
     members = {
         min = {
             type = "integer",
@@ -316,6 +332,7 @@ M.NetworkInterfaceCountRequest = {
 
 M.TotalLocalStorageGBRequest = {
     type = "structure",
+    id = "TotalLocalStorageGBRequest",
     members = {
         min = {
             type = "double",
@@ -328,6 +345,7 @@ M.TotalLocalStorageGBRequest = {
 
 M.VCpuCountRangeRequest = {
     type = "structure",
+    id = "VCpuCountRangeRequest",
     members = {
         min = {
             type = "integer",
@@ -343,6 +361,7 @@ M.VCpuCountRangeRequest = {
 
 M.InstanceRequirementsRequest = {
     type = "structure",
+    id = "InstanceRequirementsRequest",
     members = {
         vCpuCount = setmetatable({ traits = {
             required = true,
@@ -439,6 +458,7 @@ M.InstanceRequirementsRequest = {
 
 M.ManagedInstancesLocalStorageConfiguration = {
     type = "structure",
+    id = "ManagedInstancesLocalStorageConfiguration",
     members = {
         useLocalStorage = {
             type = "boolean",
@@ -456,6 +476,7 @@ M.ManagedInstancesMonitoringOptions = {
 
 M.ManagedInstancesNetworkConfiguration = {
     type = "structure",
+    id = "ManagedInstancesNetworkConfiguration",
     members = {
         subnets = {
             type = "list",
@@ -470,6 +491,7 @@ M.ManagedInstancesNetworkConfiguration = {
 
 M.ManagedInstancesStorageConfiguration = {
     type = "structure",
+    id = "ManagedInstancesStorageConfiguration",
     members = {
         storageSizeGiB = {
             type = "integer",
@@ -479,6 +501,7 @@ M.ManagedInstancesStorageConfiguration = {
 
 M.InstanceLaunchTemplate = {
     type = "structure",
+    id = "InstanceLaunchTemplate",
     members = {
         ec2InstanceProfileArn = {
             type = "string",
@@ -515,6 +538,7 @@ M.PropagateMITags = {
 
 M.CreateManagedInstancesProviderConfiguration = {
     type = "structure",
+    id = "CreateManagedInstancesProviderConfiguration",
     members = {
         infrastructureRoleArn = {
             type = "string",
@@ -535,6 +559,7 @@ M.CreateManagedInstancesProviderConfiguration = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -547,6 +572,7 @@ M.Tag = {
 
 M.CreateCapacityProviderInput = {
     type = "structure",
+    id = "CreateCapacityProviderInput",
     members = {
         name = {
             type = "string",
@@ -568,6 +594,7 @@ M.CreateCapacityProviderInput = {
 
 M.ManagedInstancesProvider = {
     type = "structure",
+    id = "ManagedInstancesProvider",
     members = {
         infrastructureRoleArn = {
             type = "string",
@@ -609,6 +636,7 @@ M.CapacityProviderUpdateStatus = {
 
 M.CapacityProvider = {
     type = "structure",
+    id = "CapacityProvider",
     members = {
         capacityProviderArn = {
             type = "string",
@@ -642,6 +670,7 @@ M.CapacityProvider = {
 
 M.CreateCapacityProviderOutput = {
     type = "structure",
+    id = "CreateCapacityProviderOutput",
     members = {
         capacityProvider = M.CapacityProvider,
     },
@@ -649,6 +678,7 @@ M.CreateCapacityProviderOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -659,6 +689,7 @@ M.InvalidParameterException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -669,6 +700,7 @@ M.LimitExceededException = {
 
 M.ServerException = {
     type = "structure",
+    id = "ServerException",
     error = "server",
     members = {
         message = {
@@ -679,6 +711,7 @@ M.ServerException = {
 
 M.UnsupportedFeatureException = {
     type = "structure",
+    id = "UnsupportedFeatureException",
     error = "client",
     members = {
         message = {
@@ -689,6 +722,7 @@ M.UnsupportedFeatureException = {
 
 M.UpdateInProgressException = {
     type = "structure",
+    id = "UpdateInProgressException",
     error = "client",
     members = {
         message = {
@@ -699,6 +733,7 @@ M.UpdateInProgressException = {
 
 M.DeleteCapacityProviderInput = {
     type = "structure",
+    id = "DeleteCapacityProviderInput",
     members = {
         capacityProvider = {
             type = "string",
@@ -714,6 +749,7 @@ M.DeleteCapacityProviderInput = {
 
 M.DeleteCapacityProviderOutput = {
     type = "structure",
+    id = "DeleteCapacityProviderOutput",
     members = {
         capacityProvider = M.CapacityProvider,
     },
@@ -725,6 +761,7 @@ M.CapacityProviderField = {
 
 M.DescribeCapacityProvidersInput = {
     type = "structure",
+    id = "DescribeCapacityProvidersInput",
     members = {
         capacityProviders = {
             type = "list",
@@ -748,6 +785,7 @@ M.DescribeCapacityProvidersInput = {
 
 M.Failure = {
     type = "structure",
+    id = "Failure",
     members = {
         arn = {
             type = "string",
@@ -763,6 +801,7 @@ M.Failure = {
 
 M.DescribeCapacityProvidersOutput = {
     type = "structure",
+    id = "DescribeCapacityProvidersOutput",
     members = {
         capacityProviders = {
             type = "list",
@@ -780,6 +819,7 @@ M.DescribeCapacityProvidersOutput = {
 
 M.AutoScalingGroupProviderUpdate = {
     type = "structure",
+    id = "AutoScalingGroupProviderUpdate",
     members = {
         managedScaling = M.ManagedScaling,
         managedTerminationProtection = {
@@ -793,6 +833,7 @@ M.AutoScalingGroupProviderUpdate = {
 
 M.InstanceLaunchTemplateUpdate = {
     type = "structure",
+    id = "InstanceLaunchTemplateUpdate",
     members = {
         ec2InstanceProfileArn = {
             type = "string",
@@ -813,6 +854,7 @@ M.InstanceLaunchTemplateUpdate = {
 
 M.UpdateManagedInstancesProviderConfiguration = {
     type = "structure",
+    id = "UpdateManagedInstancesProviderConfiguration",
     members = {
         infrastructureRoleArn = {
             type = "string",
@@ -833,6 +875,7 @@ M.UpdateManagedInstancesProviderConfiguration = {
 
 M.UpdateCapacityProviderInput = {
     type = "structure",
+    id = "UpdateCapacityProviderInput",
     members = {
         name = {
             type = "string",
@@ -850,6 +893,7 @@ M.UpdateCapacityProviderInput = {
 
 M.UpdateCapacityProviderOutput = {
     type = "structure",
+    id = "UpdateCapacityProviderOutput",
     members = {
         capacityProvider = M.CapacityProvider,
     },
@@ -857,6 +901,7 @@ M.UpdateCapacityProviderOutput = {
 
 M.ExecuteCommandLogConfiguration = {
     type = "structure",
+    id = "ExecuteCommandLogConfiguration",
     members = {
         cloudWatchLogGroupName = {
             type = "string",
@@ -890,6 +935,7 @@ M.ExecuteCommandLogging = {
 
 M.ExecuteCommandConfiguration = {
     type = "structure",
+    id = "ExecuteCommandConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -903,6 +949,7 @@ M.ExecuteCommandConfiguration = {
 
 M.ManagedStorageConfiguration = {
     type = "structure",
+    id = "ManagedStorageConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -915,6 +962,7 @@ M.ManagedStorageConfiguration = {
 
 M.ClusterConfiguration = {
     type = "structure",
+    id = "ClusterConfiguration",
     members = {
         executeCommandConfiguration = M.ExecuteCommandConfiguration,
         managedStorageConfiguration = M.ManagedStorageConfiguration,
@@ -923,6 +971,7 @@ M.ClusterConfiguration = {
 
 M.CapacityProviderStrategyItem = {
     type = "structure",
+    id = "CapacityProviderStrategyItem",
     members = {
         capacityProvider = {
             type = "string",
@@ -947,6 +996,7 @@ M.CapacityProviderStrategyItem = {
 
 M.ClusterServiceConnectDefaultsRequest = {
     type = "structure",
+    id = "ClusterServiceConnectDefaultsRequest",
     members = {
         namespace = {
             type = "string",
@@ -963,6 +1013,7 @@ M.ClusterSettingName = {
 
 M.ClusterSetting = {
     type = "structure",
+    id = "ClusterSetting",
     members = {
         name = {
             type = "string",
@@ -975,6 +1026,7 @@ M.ClusterSetting = {
 
 M.CreateClusterInput = {
     type = "structure",
+    id = "CreateClusterInput",
     members = {
         clusterName = {
             type = "string",
@@ -1002,6 +1054,7 @@ M.CreateClusterInput = {
 
 M.KeyValuePair = {
     type = "structure",
+    id = "KeyValuePair",
     members = {
         name = {
             type = "string",
@@ -1014,6 +1067,7 @@ M.KeyValuePair = {
 
 M.Attachment = {
     type = "structure",
+    id = "Attachment",
     members = {
         id = {
             type = "string",
@@ -1033,6 +1087,7 @@ M.Attachment = {
 
 M.ClusterServiceConnectDefaults = {
     type = "structure",
+    id = "ClusterServiceConnectDefaults",
     members = {
         namespace = {
             type = "string",
@@ -1042,6 +1097,7 @@ M.ClusterServiceConnectDefaults = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         clusterArn = {
             type = "string",
@@ -1110,6 +1166,7 @@ M.Cluster = {
 
 M.CreateClusterOutput = {
     type = "structure",
+    id = "CreateClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -1117,6 +1174,7 @@ M.CreateClusterOutput = {
 
 M.NamespaceNotFoundException = {
     type = "structure",
+    id = "NamespaceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1127,6 +1185,7 @@ M.NamespaceNotFoundException = {
 
 M.ClusterContainsCapacityProviderException = {
     type = "structure",
+    id = "ClusterContainsCapacityProviderException",
     error = "client",
     members = {
         message = {
@@ -1137,6 +1196,7 @@ M.ClusterContainsCapacityProviderException = {
 
 M.ClusterContainsContainerInstancesException = {
     type = "structure",
+    id = "ClusterContainsContainerInstancesException",
     error = "client",
     members = {
         message = {
@@ -1147,6 +1207,7 @@ M.ClusterContainsContainerInstancesException = {
 
 M.ClusterContainsServicesException = {
     type = "structure",
+    id = "ClusterContainsServicesException",
     error = "client",
     members = {
         message = {
@@ -1157,6 +1218,7 @@ M.ClusterContainsServicesException = {
 
 M.ClusterContainsTasksException = {
     type = "structure",
+    id = "ClusterContainsTasksException",
     error = "client",
     members = {
         message = {
@@ -1167,6 +1229,7 @@ M.ClusterContainsTasksException = {
 
 M.DeleteClusterInput = {
     type = "structure",
+    id = "DeleteClusterInput",
     members = {
         cluster = {
             type = "string",
@@ -1179,6 +1242,7 @@ M.DeleteClusterInput = {
 
 M.DeleteClusterOutput = {
     type = "structure",
+    id = "DeleteClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -1186,6 +1250,7 @@ M.DeleteClusterOutput = {
 
 M.DeregisterContainerInstanceInput = {
     type = "structure",
+    id = "DeregisterContainerInstanceInput",
     members = {
         cluster = {
             type = "string",
@@ -1208,6 +1273,7 @@ M.TargetType = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         name = {
             type = "string",
@@ -1242,6 +1308,7 @@ M.InstanceHealthCheckType = {
 
 M.InstanceHealthCheckResult = {
     type = "structure",
+    id = "InstanceHealthCheckResult",
     members = {
         type = {
             type = "string",
@@ -1263,6 +1330,7 @@ M.InstanceHealthCheckResult = {
 
 M.ContainerInstanceHealthStatus = {
     type = "structure",
+    id = "ContainerInstanceHealthStatus",
     members = {
         overallStatus = {
             type = "string",
@@ -1276,6 +1344,7 @@ M.ContainerInstanceHealthStatus = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         name = {
             type = "string",
@@ -1310,6 +1379,7 @@ M.Resource = {
 
 M.VersionInfo = {
     type = "structure",
+    id = "VersionInfo",
     members = {
         agentVersion = {
             type = "string",
@@ -1325,6 +1395,7 @@ M.VersionInfo = {
 
 M.ContainerInstance = {
     type = "structure",
+    id = "ContainerInstance",
     members = {
         containerInstanceArn = {
             type = "string",
@@ -1398,6 +1469,7 @@ M.ContainerInstance = {
 
 M.DeregisterContainerInstanceOutput = {
     type = "structure",
+    id = "DeregisterContainerInstanceOutput",
     members = {
         containerInstance = M.ContainerInstance,
     },
@@ -1413,6 +1485,7 @@ M.ClusterField = {
 
 M.DescribeClustersInput = {
     type = "structure",
+    id = "DescribeClustersInput",
     members = {
         clusters = {
             type = "list",
@@ -1427,6 +1500,7 @@ M.DescribeClustersInput = {
 
 M.DescribeClustersOutput = {
     type = "structure",
+    id = "DescribeClustersOutput",
     members = {
         clusters = {
             type = "list",
@@ -1441,6 +1515,7 @@ M.DescribeClustersOutput = {
 
 M.ExecuteCommandInput = {
     type = "structure",
+    id = "ExecuteCommandInput",
     members = {
         cluster = {
             type = "string",
@@ -1472,6 +1547,7 @@ M.ExecuteCommandInput = {
 
 M.Session = {
     type = "structure",
+    id = "Session",
     members = {
         sessionId = {
             type = "string",
@@ -1487,6 +1563,7 @@ M.Session = {
 
 M.ExecuteCommandOutput = {
     type = "structure",
+    id = "ExecuteCommandOutput",
     members = {
         clusterArn = {
             type = "string",
@@ -1512,6 +1589,7 @@ M.ExecuteCommandOutput = {
 
 M.TargetNotConnectedException = {
     type = "structure",
+    id = "TargetNotConnectedException",
     error = "client",
     members = {
         message = {
@@ -1522,6 +1600,7 @@ M.TargetNotConnectedException = {
 
 M.ListAttributesInput = {
     type = "structure",
+    id = "ListAttributesInput",
     members = {
         cluster = {
             type = "string",
@@ -1549,6 +1628,7 @@ M.ListAttributesInput = {
 
 M.ListAttributesOutput = {
     type = "structure",
+    id = "ListAttributesOutput",
     members = {
         attributes = {
             type = "list",
@@ -1562,6 +1642,7 @@ M.ListAttributesOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         nextToken = {
             type = "string",
@@ -1574,6 +1655,7 @@ M.ListClustersInput = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         clusterArns = {
             type = "list",
@@ -1595,6 +1677,7 @@ M.ContainerInstanceStatus = {
 
 M.ListContainerInstancesInput = {
     type = "structure",
+    id = "ListContainerInstancesInput",
     members = {
         cluster = {
             type = "string",
@@ -1616,6 +1699,7 @@ M.ListContainerInstancesInput = {
 
 M.ListContainerInstancesOutput = {
     type = "structure",
+    id = "ListContainerInstancesOutput",
     members = {
         containerInstanceArns = {
             type = "list",
@@ -1629,6 +1713,7 @@ M.ListContainerInstancesOutput = {
 
 M.PutClusterCapacityProvidersInput = {
     type = "structure",
+    id = "PutClusterCapacityProvidersInput",
     members = {
         cluster = {
             type = "string",
@@ -1655,6 +1740,7 @@ M.PutClusterCapacityProvidersInput = {
 
 M.PutClusterCapacityProvidersOutput = {
     type = "structure",
+    id = "PutClusterCapacityProvidersOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -1662,6 +1748,7 @@ M.PutClusterCapacityProvidersOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -1672,6 +1759,7 @@ M.ResourceInUseException = {
 
 M.AttachmentStateChange = {
     type = "structure",
+    id = "AttachmentStateChange",
     members = {
         attachmentArn = {
             type = "string",
@@ -1690,6 +1778,7 @@ M.AttachmentStateChange = {
 
 M.SubmitAttachmentStateChangesInput = {
     type = "structure",
+    id = "SubmitAttachmentStateChangesInput",
     members = {
         cluster = {
             type = "string",
@@ -1706,6 +1795,7 @@ M.SubmitAttachmentStateChangesInput = {
 
 M.SubmitAttachmentStateChangesOutput = {
     type = "structure",
+    id = "SubmitAttachmentStateChangesOutput",
     members = {
         acknowledgment = {
             type = "string",
@@ -1720,6 +1810,7 @@ M.TransportProtocol = {
 
 M.NetworkBinding = {
     type = "structure",
+    id = "NetworkBinding",
     members = {
         bindIP = {
             type = "string",
@@ -1744,6 +1835,7 @@ M.NetworkBinding = {
 
 M.SubmitContainerStateChangeInput = {
     type = "structure",
+    id = "SubmitContainerStateChangeInput",
     members = {
         cluster = {
             type = "string",
@@ -1775,6 +1867,7 @@ M.SubmitContainerStateChangeInput = {
 
 M.SubmitContainerStateChangeOutput = {
     type = "structure",
+    id = "SubmitContainerStateChangeOutput",
     members = {
         acknowledgment = {
             type = "string",
@@ -1784,6 +1877,7 @@ M.SubmitContainerStateChangeOutput = {
 
 M.ContainerStateChange = {
     type = "structure",
+    id = "ContainerStateChange",
     members = {
         containerName = {
             type = "string",
@@ -1816,6 +1910,7 @@ M.ManagedAgentName = {
 
 M.ManagedAgentStateChange = {
     type = "structure",
+    id = "ManagedAgentStateChange",
     members = {
         containerName = {
             type = "string",
@@ -1843,6 +1938,7 @@ M.ManagedAgentStateChange = {
 
 M.SubmitTaskStateChangeInput = {
     type = "structure",
+    id = "SubmitTaskStateChangeInput",
     members = {
         cluster = {
             type = "string",
@@ -1882,6 +1978,7 @@ M.SubmitTaskStateChangeInput = {
 
 M.SubmitTaskStateChangeOutput = {
     type = "structure",
+    id = "SubmitTaskStateChangeOutput",
     members = {
         acknowledgment = {
             type = "string",
@@ -1891,6 +1988,7 @@ M.SubmitTaskStateChangeOutput = {
 
 M.UpdateClusterInput = {
     type = "structure",
+    id = "UpdateClusterInput",
     members = {
         cluster = {
             type = "string",
@@ -1909,6 +2007,7 @@ M.UpdateClusterInput = {
 
 M.UpdateClusterOutput = {
     type = "structure",
+    id = "UpdateClusterOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -1916,6 +2015,7 @@ M.UpdateClusterOutput = {
 
 M.UpdateClusterSettingsInput = {
     type = "structure",
+    id = "UpdateClusterSettingsInput",
     members = {
         cluster = {
             type = "string",
@@ -1935,6 +2035,7 @@ M.UpdateClusterSettingsInput = {
 
 M.UpdateClusterSettingsOutput = {
     type = "structure",
+    id = "UpdateClusterSettingsOutput",
     members = {
         cluster = M.Cluster,
     },
@@ -1942,6 +2043,7 @@ M.UpdateClusterSettingsOutput = {
 
 M.DeleteAttributesInput = {
     type = "structure",
+    id = "DeleteAttributesInput",
     members = {
         cluster = {
             type = "string",
@@ -1958,6 +2060,7 @@ M.DeleteAttributesInput = {
 
 M.DeleteAttributesOutput = {
     type = "structure",
+    id = "DeleteAttributesOutput",
     members = {
         attributes = {
             type = "list",
@@ -1968,6 +2071,7 @@ M.DeleteAttributesOutput = {
 
 M.TargetNotFoundException = {
     type = "structure",
+    id = "TargetNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1983,6 +2087,7 @@ M.ContainerInstanceField = {
 
 M.DescribeContainerInstancesInput = {
     type = "structure",
+    id = "DescribeContainerInstancesInput",
     members = {
         cluster = {
             type = "string",
@@ -2003,6 +2108,7 @@ M.DescribeContainerInstancesInput = {
 
 M.DescribeContainerInstancesOutput = {
     type = "structure",
+    id = "DescribeContainerInstancesOutput",
     members = {
         containerInstances = {
             type = "list",
@@ -2030,6 +2136,7 @@ M.LaunchType = {
 
 M.ListTasksInput = {
     type = "structure",
+    id = "ListTasksInput",
     members = {
         cluster = {
             type = "string",
@@ -2066,6 +2173,7 @@ M.ListTasksInput = {
 
 M.ListTasksOutput = {
     type = "structure",
+    id = "ListTasksOutput",
     members = {
         taskArns = {
             type = "list",
@@ -2079,6 +2187,7 @@ M.ListTasksOutput = {
 
 M.ServiceNotFoundException = {
     type = "structure",
+    id = "ServiceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2089,6 +2198,7 @@ M.ServiceNotFoundException = {
 
 M.AttributeLimitExceededException = {
     type = "structure",
+    id = "AttributeLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -2099,6 +2209,7 @@ M.AttributeLimitExceededException = {
 
 M.PutAttributesInput = {
     type = "structure",
+    id = "PutAttributesInput",
     members = {
         cluster = {
             type = "string",
@@ -2115,6 +2226,7 @@ M.PutAttributesInput = {
 
 M.PutAttributesOutput = {
     type = "structure",
+    id = "PutAttributesOutput",
     members = {
         attributes = {
             type = "list",
@@ -2129,6 +2241,7 @@ M.PlatformDeviceType = {
 
 M.PlatformDevice = {
     type = "structure",
+    id = "PlatformDevice",
     members = {
         id = {
             type = "string",
@@ -2147,6 +2260,7 @@ M.PlatformDevice = {
 
 M.RegisterContainerInstanceInput = {
     type = "structure",
+    id = "RegisterContainerInstanceInput",
     members = {
         cluster = {
             type = "string",
@@ -2182,6 +2296,7 @@ M.RegisterContainerInstanceInput = {
 
 M.RegisterContainerInstanceOutput = {
     type = "structure",
+    id = "RegisterContainerInstanceOutput",
     members = {
         containerInstance = M.ContainerInstance,
     },
@@ -2189,6 +2304,7 @@ M.RegisterContainerInstanceOutput = {
 
 M.MissingVersionException = {
     type = "structure",
+    id = "MissingVersionException",
     error = "client",
     members = {
         message = {
@@ -2199,6 +2315,7 @@ M.MissingVersionException = {
 
 M.NoUpdateAvailableException = {
     type = "structure",
+    id = "NoUpdateAvailableException",
     error = "client",
     members = {
         message = {
@@ -2209,6 +2326,7 @@ M.NoUpdateAvailableException = {
 
 M.UpdateContainerAgentInput = {
     type = "structure",
+    id = "UpdateContainerAgentInput",
     members = {
         cluster = {
             type = "string",
@@ -2224,6 +2342,7 @@ M.UpdateContainerAgentInput = {
 
 M.UpdateContainerAgentOutput = {
     type = "structure",
+    id = "UpdateContainerAgentOutput",
     members = {
         containerInstance = M.ContainerInstance,
     },
@@ -2231,6 +2350,7 @@ M.UpdateContainerAgentOutput = {
 
 M.UpdateContainerInstancesStateInput = {
     type = "structure",
+    id = "UpdateContainerInstancesStateInput",
     members = {
         cluster = {
             type = "string",
@@ -2253,6 +2373,7 @@ M.UpdateContainerInstancesStateInput = {
 
 M.UpdateContainerInstancesStateOutput = {
     type = "structure",
+    id = "UpdateContainerInstancesStateOutput",
     members = {
         containerInstances = {
             type = "list",
@@ -2267,6 +2388,7 @@ M.UpdateContainerInstancesStateOutput = {
 
 M.DescribeDaemonDeploymentsInput = {
     type = "structure",
+    id = "DescribeDaemonDeploymentsInput",
     members = {
         daemonDeploymentArns = {
             type = "list",
@@ -2287,6 +2409,7 @@ M.DaemonDeploymentRollbackMonitorsStatus = {
 
 M.DaemonDeploymentAlarms = {
     type = "structure",
+    id = "DaemonDeploymentAlarms",
     members = {
         status = {
             type = "string",
@@ -2304,6 +2427,7 @@ M.DaemonDeploymentAlarms = {
 
 M.DaemonCircuitBreaker = {
     type = "structure",
+    id = "DaemonCircuitBreaker",
     members = {
         failureCount = {
             type = "integer",
@@ -2325,6 +2449,7 @@ M.DaemonCircuitBreaker = {
 
 M.DaemonAlarmConfiguration = {
     type = "structure",
+    id = "DaemonAlarmConfiguration",
     members = {
         alarmNames = {
             type = "list",
@@ -2341,6 +2466,7 @@ M.DaemonAlarmConfiguration = {
 
 M.DaemonDeploymentConfiguration = {
     type = "structure",
+    id = "DaemonDeploymentConfiguration",
     members = {
         drainPercent = {
             type = "double",
@@ -2357,6 +2483,7 @@ M.DaemonDeploymentConfiguration = {
 
 M.DaemonRollback = {
     type = "structure",
+    id = "DaemonRollback",
     members = {
         reason = {
             type = "string",
@@ -2376,6 +2503,7 @@ M.DaemonRollback = {
 
 M.DaemonDeploymentCapacityProvider = {
     type = "structure",
+    id = "DaemonDeploymentCapacityProvider",
     members = {
         arn = {
             type = "string",
@@ -2391,6 +2519,7 @@ M.DaemonDeploymentCapacityProvider = {
 
 M.DaemonDeploymentRevisionDetail = {
     type = "structure",
+    id = "DaemonDeploymentRevisionDetail",
     members = {
         arn = {
             type = "string",
@@ -2421,6 +2550,7 @@ M.DaemonDeploymentStatus = {
 
 M.DaemonDeployment = {
     type = "structure",
+    id = "DaemonDeployment",
     members = {
         daemonDeploymentArn = {
             type = "string",
@@ -2460,6 +2590,7 @@ M.DaemonDeployment = {
 
 M.DescribeDaemonDeploymentsOutput = {
     type = "structure",
+    id = "DescribeDaemonDeploymentsOutput",
     members = {
         failures = {
             type = "list",
@@ -2479,6 +2610,7 @@ M.DaemonPropagateTags = {
 
 M.CreateDaemonInput = {
     type = "structure",
+    id = "CreateDaemonInput",
     members = {
         daemonName = {
             type = "string",
@@ -2535,6 +2667,7 @@ M.DaemonStatus = {
 
 M.CreateDaemonOutput = {
     type = "structure",
+    id = "CreateDaemonOutput",
     members = {
         daemonArn = {
             type = "string",
@@ -2553,6 +2686,7 @@ M.CreateDaemonOutput = {
 
 M.PlatformUnknownException = {
     type = "structure",
+    id = "PlatformUnknownException",
     error = "client",
     members = {
         message = {
@@ -2563,6 +2697,7 @@ M.PlatformUnknownException = {
 
 M.DaemonNotActiveException = {
     type = "structure",
+    id = "DaemonNotActiveException",
     error = "client",
     members = {
         message = {
@@ -2573,6 +2708,7 @@ M.DaemonNotActiveException = {
 
 M.DaemonNotFoundException = {
     type = "structure",
+    id = "DaemonNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2583,6 +2719,7 @@ M.DaemonNotFoundException = {
 
 M.DeleteDaemonInput = {
     type = "structure",
+    id = "DeleteDaemonInput",
     members = {
         daemonArn = {
             type = "string",
@@ -2595,6 +2732,7 @@ M.DeleteDaemonInput = {
 
 M.DeleteDaemonOutput = {
     type = "structure",
+    id = "DeleteDaemonOutput",
     members = {
         daemonArn = {
             type = "string",
@@ -2616,6 +2754,7 @@ M.DeleteDaemonOutput = {
 
 M.DescribeDaemonInput = {
     type = "structure",
+    id = "DescribeDaemonInput",
     members = {
         daemonArn = {
             type = "string",
@@ -2628,6 +2767,7 @@ M.DescribeDaemonInput = {
 
 M.DaemonCapacityProvider = {
     type = "structure",
+    id = "DaemonCapacityProvider",
     members = {
         arn = {
             type = "string",
@@ -2643,6 +2783,7 @@ M.DaemonCapacityProvider = {
 
 M.DaemonRevisionDetail = {
     type = "structure",
+    id = "DaemonRevisionDetail",
     members = {
         arn = {
             type = "string",
@@ -2662,6 +2803,7 @@ M.DaemonRevisionDetail = {
 
 M.DaemonDetail = {
     type = "structure",
+    id = "DaemonDetail",
     members = {
         daemonArn = {
             type = "string",
@@ -2690,6 +2832,7 @@ M.DaemonDetail = {
 
 M.DescribeDaemonOutput = {
     type = "structure",
+    id = "DescribeDaemonOutput",
     members = {
         daemon = M.DaemonDetail,
     },
@@ -2697,6 +2840,7 @@ M.DescribeDaemonOutput = {
 
 M.CreatedAt = {
     type = "structure",
+    id = "CreatedAt",
     members = {
         before = {
             type = "timestamp",
@@ -2709,6 +2853,7 @@ M.CreatedAt = {
 
 M.ListDaemonDeploymentsInput = {
     type = "structure",
+    id = "ListDaemonDeploymentsInput",
     members = {
         daemonArn = {
             type = "string",
@@ -2732,6 +2877,7 @@ M.ListDaemonDeploymentsInput = {
 
 M.DaemonDeploymentSummary = {
     type = "structure",
+    id = "DaemonDeploymentSummary",
     members = {
         daemonDeploymentArn = {
             type = "string",
@@ -2768,6 +2914,7 @@ M.DaemonDeploymentSummary = {
 
 M.ListDaemonDeploymentsOutput = {
     type = "structure",
+    id = "ListDaemonDeploymentsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2781,6 +2928,7 @@ M.ListDaemonDeploymentsOutput = {
 
 M.ListDaemonsInput = {
     type = "structure",
+    id = "ListDaemonsInput",
     members = {
         clusterArn = {
             type = "string",
@@ -2800,6 +2948,7 @@ M.ListDaemonsInput = {
 
 M.DaemonSummary = {
     type = "structure",
+    id = "DaemonSummary",
     members = {
         daemonArn = {
             type = "string",
@@ -2818,6 +2967,7 @@ M.DaemonSummary = {
 
 M.ListDaemonsOutput = {
     type = "structure",
+    id = "ListDaemonsOutput",
     members = {
         daemonSummariesList = {
             type = "list",
@@ -2831,6 +2981,7 @@ M.ListDaemonsOutput = {
 
 M.UpdateDaemonInput = {
     type = "structure",
+    id = "UpdateDaemonInput",
     members = {
         daemonArn = {
             type = "string",
@@ -2872,6 +3023,7 @@ M.UpdateDaemonInput = {
 
 M.UpdateDaemonOutput = {
     type = "structure",
+    id = "UpdateDaemonOutput",
     members = {
         daemonArn = {
             type = "string",
@@ -2893,6 +3045,7 @@ M.UpdateDaemonOutput = {
 
 M.DescribeDaemonRevisionsInput = {
     type = "structure",
+    id = "DescribeDaemonRevisionsInput",
     members = {
         daemonRevisionArns = {
             type = "list",
@@ -2906,6 +3059,7 @@ M.DescribeDaemonRevisionsInput = {
 
 M.DaemonContainerImage = {
     type = "structure",
+    id = "DaemonContainerImage",
     members = {
         containerName = {
             type = "string",
@@ -2921,6 +3075,7 @@ M.DaemonContainerImage = {
 
 M.DaemonRevision = {
     type = "structure",
+    id = "DaemonRevision",
     members = {
         daemonRevisionArn = {
             type = "string",
@@ -2955,6 +3110,7 @@ M.DaemonRevision = {
 
 M.DescribeDaemonRevisionsOutput = {
     type = "structure",
+    id = "DescribeDaemonRevisionsOutput",
     members = {
         daemonRevisions = {
             type = "list",
@@ -2969,6 +3125,7 @@ M.DescribeDaemonRevisionsOutput = {
 
 M.DeleteDaemonTaskDefinitionInput = {
     type = "structure",
+    id = "DeleteDaemonTaskDefinitionInput",
     members = {
         daemonTaskDefinition = {
             type = "string",
@@ -2981,6 +3138,7 @@ M.DeleteDaemonTaskDefinitionInput = {
 
 M.DeleteDaemonTaskDefinitionOutput = {
     type = "structure",
+    id = "DeleteDaemonTaskDefinitionOutput",
     members = {
         daemonTaskDefinitionArn = {
             type = "string",
@@ -2990,6 +3148,7 @@ M.DeleteDaemonTaskDefinitionOutput = {
 
 M.DescribeDaemonTaskDefinitionInput = {
     type = "structure",
+    id = "DescribeDaemonTaskDefinitionInput",
     members = {
         daemonTaskDefinition = {
             type = "string",
@@ -3009,6 +3168,7 @@ M.ContainerCondition = {
 
 M.ContainerDependency = {
     type = "structure",
+    id = "ContainerDependency",
     members = {
         containerName = {
             type = "string",
@@ -3031,6 +3191,7 @@ M.EnvironmentFileType = {
 
 M.EnvironmentFile = {
     type = "structure",
+    id = "EnvironmentFile",
     members = {
         value = {
             type = "string",
@@ -3054,6 +3215,7 @@ M.FirelensConfigurationType = {
 
 M.FirelensConfiguration = {
     type = "structure",
+    id = "FirelensConfiguration",
     members = {
         type = {
             type = "string",
@@ -3071,6 +3233,7 @@ M.FirelensConfiguration = {
 
 M.HealthCheck = {
     type = "structure",
+    id = "HealthCheck",
     members = {
         command = {
             type = "list",
@@ -3096,6 +3259,7 @@ M.HealthCheck = {
 
 M.KernelCapabilities = {
     type = "structure",
+    id = "KernelCapabilities",
     members = {
         add = {
             type = "list",
@@ -3116,6 +3280,7 @@ M.DeviceCgroupPermission = {
 
 M.Device = {
     type = "structure",
+    id = "Device",
     members = {
         hostPath = {
             type = "string",
@@ -3135,6 +3300,7 @@ M.Device = {
 
 M.Tmpfs = {
     type = "structure",
+    id = "Tmpfs",
     members = {
         containerPath = {
             type = "string",
@@ -3158,6 +3324,7 @@ M.Tmpfs = {
 
 M.DaemonLinuxParameters = {
     type = "structure",
+    id = "DaemonLinuxParameters",
     members = {
         capabilities = M.KernelCapabilities,
         devices = {
@@ -3187,6 +3354,7 @@ M.LogDriver = {
 
 M.Secret = {
     type = "structure",
+    id = "Secret",
     members = {
         name = {
             type = "string",
@@ -3205,6 +3373,7 @@ M.Secret = {
 
 M.LogConfiguration = {
     type = "structure",
+    id = "LogConfiguration",
     members = {
         logDriver = {
             type = "string",
@@ -3226,6 +3395,7 @@ M.LogConfiguration = {
 
 M.MountPoint = {
     type = "structure",
+    id = "MountPoint",
     members = {
         sourceVolume = {
             type = "string",
@@ -3241,6 +3411,7 @@ M.MountPoint = {
 
 M.RepositoryCredentials = {
     type = "structure",
+    id = "RepositoryCredentials",
     members = {
         credentialsParameter = {
             type = "string",
@@ -3253,6 +3424,7 @@ M.RepositoryCredentials = {
 
 M.ContainerRestartPolicy = {
     type = "structure",
+    id = "ContainerRestartPolicy",
     members = {
         enabled = {
             type = "boolean",
@@ -3272,6 +3444,7 @@ M.ContainerRestartPolicy = {
 
 M.SystemControl = {
     type = "structure",
+    id = "SystemControl",
     members = {
         namespace = {
             type = "string",
@@ -3302,6 +3475,7 @@ M.UlimitName = {
 
 M.Ulimit = {
     type = "structure",
+    id = "Ulimit",
     members = {
         name = {
             type = "string",
@@ -3328,6 +3502,7 @@ M.Ulimit = {
 
 M.DaemonContainerDefinition = {
     type = "structure",
+    id = "DaemonContainerDefinition",
     members = {
         name = {
             type = "string",
@@ -3430,6 +3605,7 @@ M.DaemonTaskDefinitionStatus = {
 
 M.HostVolumeProperties = {
     type = "structure",
+    id = "HostVolumeProperties",
     members = {
         sourcePath = {
             type = "string",
@@ -3439,6 +3615,7 @@ M.HostVolumeProperties = {
 
 M.DaemonVolume = {
     type = "structure",
+    id = "DaemonVolume",
     members = {
         name = {
             type = "string",
@@ -3449,6 +3626,7 @@ M.DaemonVolume = {
 
 M.DaemonTaskDefinition = {
     type = "structure",
+    id = "DaemonTaskDefinition",
     members = {
         daemonTaskDefinitionArn = {
             type = "string",
@@ -3499,6 +3677,7 @@ M.DaemonTaskDefinition = {
 
 M.DescribeDaemonTaskDefinitionOutput = {
     type = "structure",
+    id = "DescribeDaemonTaskDefinitionOutput",
     members = {
         daemonTaskDefinition = M.DaemonTaskDefinition,
     },
@@ -3521,6 +3700,7 @@ M.DaemonTaskDefinitionStatusFilter = {
 
 M.ListDaemonTaskDefinitionsInput = {
     type = "structure",
+    id = "ListDaemonTaskDefinitionsInput",
     members = {
         familyPrefix = {
             type = "string",
@@ -3548,6 +3728,7 @@ M.ListDaemonTaskDefinitionsInput = {
 
 M.DaemonTaskDefinitionSummary = {
     type = "structure",
+    id = "DaemonTaskDefinitionSummary",
     members = {
         arn = {
             type = "string",
@@ -3569,6 +3750,7 @@ M.DaemonTaskDefinitionSummary = {
 
 M.ListDaemonTaskDefinitionsOutput = {
     type = "structure",
+    id = "ListDaemonTaskDefinitionsOutput",
     members = {
         daemonTaskDefinitions = {
             type = "list",
@@ -3582,6 +3764,7 @@ M.ListDaemonTaskDefinitionsOutput = {
 
 M.RegisterDaemonTaskDefinitionInput = {
     type = "structure",
+    id = "RegisterDaemonTaskDefinitionInput",
     members = {
         family = {
             type = "string",
@@ -3621,6 +3804,7 @@ M.RegisterDaemonTaskDefinitionInput = {
 
 M.RegisterDaemonTaskDefinitionOutput = {
     type = "structure",
+    id = "RegisterDaemonTaskDefinitionOutput",
     members = {
         daemonTaskDefinitionArn = {
             type = "string",
@@ -3644,6 +3828,7 @@ M.SettingName = {
 
 M.DeleteAccountSettingInput = {
     type = "structure",
+    id = "DeleteAccountSettingInput",
     members = {
         name = {
             type = "string",
@@ -3664,6 +3849,7 @@ M.SettingType = {
 
 M.Setting = {
     type = "structure",
+    id = "Setting",
     members = {
         name = {
             type = "string",
@@ -3682,6 +3868,7 @@ M.Setting = {
 
 M.DeleteAccountSettingOutput = {
     type = "structure",
+    id = "DeleteAccountSettingOutput",
     members = {
         setting = M.Setting,
     },
@@ -3689,6 +3876,7 @@ M.DeleteAccountSettingOutput = {
 
 M.DeregisterTaskDefinitionInput = {
     type = "structure",
+    id = "DeregisterTaskDefinitionInput",
     members = {
         taskDefinition = {
             type = "string",
@@ -3708,6 +3896,7 @@ M.Compatibility = {
 
 M.HostEntry = {
     type = "structure",
+    id = "HostEntry",
     members = {
         hostname = {
             type = "string",
@@ -3726,6 +3915,7 @@ M.HostEntry = {
 
 M.LinuxParameters = {
     type = "structure",
+    id = "LinuxParameters",
     members = {
         capabilities = M.KernelCapabilities,
         devices = {
@@ -3759,6 +3949,7 @@ M.ApplicationProtocol = {
 
 M.PortMapping = {
     type = "structure",
+    id = "PortMapping",
     members = {
         containerPort = {
             type = "integer",
@@ -3788,6 +3979,7 @@ M.ResourceType = {
 
 M.ResourceRequirement = {
     type = "structure",
+    id = "ResourceRequirement",
     members = {
         value = {
             type = "string",
@@ -3811,6 +4003,7 @@ M.VersionConsistency = {
 
 M.VolumeFrom = {
     type = "structure",
+    id = "VolumeFrom",
     members = {
         sourceContainer = {
             type = "string",
@@ -3823,6 +4016,7 @@ M.VolumeFrom = {
 
 M.ContainerDefinition = {
     type = "structure",
+    id = "ContainerDefinition",
     members = {
         name = {
             type = "string",
@@ -3966,6 +4160,7 @@ M.ContainerDefinition = {
 
 M.EphemeralStorage = {
     type = "structure",
+    id = "EphemeralStorage",
     members = {
         sizeInGiB = {
             type = "integer",
@@ -3979,6 +4174,7 @@ M.EphemeralStorage = {
 
 M.InferenceAccelerator = {
     type = "structure",
+    id = "InferenceAccelerator",
     members = {
         deviceName = {
             type = "string",
@@ -4019,6 +4215,7 @@ M.TaskDefinitionPlacementConstraintType = {
 
 M.TaskDefinitionPlacementConstraint = {
     type = "structure",
+    id = "TaskDefinitionPlacementConstraint",
     members = {
         type = {
             type = "string",
@@ -4035,6 +4232,7 @@ M.ProxyConfigurationType = {
 
 M.ProxyConfiguration = {
     type = "structure",
+    id = "ProxyConfiguration",
     members = {
         type = {
             type = "string",
@@ -4072,6 +4270,7 @@ M.OSFamily = {
 
 M.RuntimePlatform = {
     type = "structure",
+    id = "RuntimePlatform",
     members = {
         cpuArchitecture = {
             type = "string",
@@ -4095,6 +4294,7 @@ M.Scope = {
 
 M.DockerVolumeConfiguration = {
     type = "structure",
+    id = "DockerVolumeConfiguration",
     members = {
         scope = {
             type = "string",
@@ -4125,6 +4325,7 @@ M.EFSAuthorizationConfigIAM = {
 
 M.EFSAuthorizationConfig = {
     type = "structure",
+    id = "EFSAuthorizationConfig",
     members = {
         accessPointId = {
             type = "string",
@@ -4142,6 +4343,7 @@ M.EFSTransitEncryption = {
 
 M.EFSVolumeConfiguration = {
     type = "structure",
+    id = "EFSVolumeConfiguration",
     members = {
         fileSystemId = {
             type = "string",
@@ -4164,6 +4366,7 @@ M.EFSVolumeConfiguration = {
 
 M.FSxWindowsFileServerAuthorizationConfig = {
     type = "structure",
+    id = "FSxWindowsFileServerAuthorizationConfig",
     members = {
         credentialsParameter = {
             type = "string",
@@ -4182,6 +4385,7 @@ M.FSxWindowsFileServerAuthorizationConfig = {
 
 M.FSxWindowsFileServerVolumeConfiguration = {
     type = "structure",
+    id = "FSxWindowsFileServerVolumeConfiguration",
     members = {
         fileSystemId = {
             type = "string",
@@ -4203,6 +4407,7 @@ M.FSxWindowsFileServerVolumeConfiguration = {
 
 M.S3FilesVolumeConfiguration = {
     type = "structure",
+    id = "S3FilesVolumeConfiguration",
     members = {
         fileSystemArn = {
             type = "string",
@@ -4224,6 +4429,7 @@ M.S3FilesVolumeConfiguration = {
 
 M.Volume = {
     type = "structure",
+    id = "Volume",
     members = {
         name = {
             type = "string",
@@ -4241,6 +4447,7 @@ M.Volume = {
 
 M.TaskDefinition = {
     type = "structure",
+    id = "TaskDefinition",
     members = {
         taskDefinitionArn = {
             type = "string",
@@ -4329,6 +4536,7 @@ M.TaskDefinition = {
 
 M.DeregisterTaskDefinitionOutput = {
     type = "structure",
+    id = "DeregisterTaskDefinitionOutput",
     members = {
         taskDefinition = M.TaskDefinition,
     },
@@ -4340,6 +4548,7 @@ M.TaskDefinitionField = {
 
 M.DescribeTaskDefinitionInput = {
     type = "structure",
+    id = "DescribeTaskDefinitionInput",
     members = {
         taskDefinition = {
             type = "string",
@@ -4356,6 +4565,7 @@ M.DescribeTaskDefinitionInput = {
 
 M.DescribeTaskDefinitionOutput = {
     type = "structure",
+    id = "DescribeTaskDefinitionOutput",
     members = {
         taskDefinition = M.TaskDefinition,
         tags = {
@@ -4367,6 +4577,7 @@ M.DescribeTaskDefinitionOutput = {
 
 M.DiscoverPollEndpointInput = {
     type = "structure",
+    id = "DiscoverPollEndpointInput",
     members = {
         containerInstance = {
             type = "string",
@@ -4379,6 +4590,7 @@ M.DiscoverPollEndpointInput = {
 
 M.DiscoverPollEndpointOutput = {
     type = "structure",
+    id = "DiscoverPollEndpointOutput",
     members = {
         endpoint = {
             type = "string",
@@ -4394,6 +4606,7 @@ M.DiscoverPollEndpointOutput = {
 
 M.ListAccountSettingsInput = {
     type = "structure",
+    id = "ListAccountSettingsInput",
     members = {
         name = {
             type = "string",
@@ -4424,6 +4637,7 @@ M.ListAccountSettingsInput = {
 
 M.ListAccountSettingsOutput = {
     type = "structure",
+    id = "ListAccountSettingsOutput",
     members = {
         settings = {
             type = "list",
@@ -4437,6 +4651,7 @@ M.ListAccountSettingsOutput = {
 
 M.ListServicesByNamespaceInput = {
     type = "structure",
+    id = "ListServicesByNamespaceInput",
     members = {
         namespace = {
             type = "string",
@@ -4455,6 +4670,7 @@ M.ListServicesByNamespaceInput = {
 
 M.ListServicesByNamespaceOutput = {
     type = "structure",
+    id = "ListServicesByNamespaceOutput",
     members = {
         serviceArns = {
             type = "list",
@@ -4468,6 +4684,7 @@ M.ListServicesByNamespaceOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4480,6 +4697,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "list",
@@ -4496,6 +4714,7 @@ M.TaskDefinitionFamilyStatus = {
 
 M.ListTaskDefinitionFamiliesInput = {
     type = "structure",
+    id = "ListTaskDefinitionFamiliesInput",
     members = {
         familyPrefix = {
             type = "string",
@@ -4514,6 +4733,7 @@ M.ListTaskDefinitionFamiliesInput = {
 
 M.ListTaskDefinitionFamiliesOutput = {
     type = "structure",
+    id = "ListTaskDefinitionFamiliesOutput",
     members = {
         families = {
             type = "list",
@@ -4527,6 +4747,7 @@ M.ListTaskDefinitionFamiliesOutput = {
 
 M.PutAccountSettingInput = {
     type = "structure",
+    id = "PutAccountSettingInput",
     members = {
         name = {
             type = "string",
@@ -4548,6 +4769,7 @@ M.PutAccountSettingInput = {
 
 M.PutAccountSettingOutput = {
     type = "structure",
+    id = "PutAccountSettingOutput",
     members = {
         setting = M.Setting,
     },
@@ -4555,6 +4777,7 @@ M.PutAccountSettingOutput = {
 
 M.PutAccountSettingDefaultInput = {
     type = "structure",
+    id = "PutAccountSettingDefaultInput",
     members = {
         name = {
             type = "string",
@@ -4573,6 +4796,7 @@ M.PutAccountSettingDefaultInput = {
 
 M.PutAccountSettingDefaultOutput = {
     type = "structure",
+    id = "PutAccountSettingDefaultOutput",
     members = {
         setting = M.Setting,
     },
@@ -4580,6 +4804,7 @@ M.PutAccountSettingDefaultOutput = {
 
 M.DescribeServiceDeploymentsInput = {
     type = "structure",
+    id = "DescribeServiceDeploymentsInput",
     members = {
         serviceDeploymentArns = {
             type = "list",
@@ -4600,6 +4825,7 @@ M.ServiceDeploymentRollbackMonitorsStatus = {
 
 M.ServiceDeploymentAlarms = {
     type = "structure",
+    id = "ServiceDeploymentAlarms",
     members = {
         status = {
             type = "string",
@@ -4617,6 +4843,7 @@ M.ServiceDeploymentAlarms = {
 
 M.ServiceDeploymentCircuitBreaker = {
     type = "structure",
+    id = "ServiceDeploymentCircuitBreaker",
     members = {
         status = {
             type = "string",
@@ -4638,6 +4865,7 @@ M.ServiceDeploymentCircuitBreaker = {
 
 M.DeploymentAlarms = {
     type = "structure",
+    id = "DeploymentAlarms",
     members = {
         alarmNames = {
             type = "list",
@@ -4665,6 +4893,7 @@ M.DeploymentAlarms = {
 
 M.CanaryConfiguration = {
     type = "structure",
+    id = "CanaryConfiguration",
     members = {
         canaryPercent = {
             type = "double",
@@ -4683,6 +4912,7 @@ M.CanaryConfiguration = {
 
 M.DeploymentCircuitBreaker = {
     type = "structure",
+    id = "DeploymentCircuitBreaker",
     members = {
         enable = {
             type = "boolean",
@@ -4713,6 +4943,7 @@ M.DeploymentLifecycleHookStage = {
 
 M.DeploymentLifecycleHook = {
     type = "structure",
+    id = "DeploymentLifecycleHook",
     members = {
         hookTargetArn = {
             type = "string",
@@ -4732,6 +4963,7 @@ M.DeploymentLifecycleHook = {
 
 M.LinearConfiguration = {
     type = "structure",
+    id = "LinearConfiguration",
     members = {
         stepPercent = {
             type = "double",
@@ -4757,6 +4989,7 @@ M.DeploymentStrategy = {
 
 M.DeploymentConfiguration = {
     type = "structure",
+    id = "DeploymentConfiguration",
     members = {
         deploymentCircuitBreaker = M.DeploymentCircuitBreaker,
         maximumPercent = {
@@ -4796,6 +5029,7 @@ M.ServiceDeploymentLifecycleStage = {
 
 M.Rollback = {
     type = "structure",
+    id = "Rollback",
     members = {
         reason = {
             type = "string",
@@ -4811,6 +5045,7 @@ M.Rollback = {
 
 M.ServiceRevisionSummary = {
     type = "structure",
+    id = "ServiceRevisionSummary",
     members = {
         arn = {
             type = "string",
@@ -4862,6 +5097,7 @@ M.ServiceDeploymentStatus = {
 
 M.ServiceDeployment = {
     type = "structure",
+    id = "ServiceDeployment",
     members = {
         serviceDeploymentArn = {
             type = "string",
@@ -4910,6 +5146,7 @@ M.ServiceDeployment = {
 
 M.DescribeServiceDeploymentsOutput = {
     type = "structure",
+    id = "DescribeServiceDeploymentsOutput",
     members = {
         serviceDeployments = {
             type = "list",
@@ -4924,6 +5161,7 @@ M.DescribeServiceDeploymentsOutput = {
 
 M.ExpressGatewayServiceNetworkConfiguration = {
     type = "structure",
+    id = "ExpressGatewayServiceNetworkConfiguration",
     members = {
         securityGroups = {
             type = "list",
@@ -4938,6 +5176,7 @@ M.ExpressGatewayServiceNetworkConfiguration = {
 
 M.ExpressGatewayServiceAwsLogsConfiguration = {
     type = "structure",
+    id = "ExpressGatewayServiceAwsLogsConfiguration",
     members = {
         logGroup = {
             type = "string",
@@ -4956,6 +5195,7 @@ M.ExpressGatewayServiceAwsLogsConfiguration = {
 
 M.ExpressGatewayRepositoryCredentials = {
     type = "structure",
+    id = "ExpressGatewayRepositoryCredentials",
     members = {
         credentialsParameter = {
             type = "string",
@@ -4965,6 +5205,7 @@ M.ExpressGatewayRepositoryCredentials = {
 
 M.ExpressGatewayContainer = {
     type = "structure",
+    id = "ExpressGatewayContainer",
     members = {
         image = {
             type = "string",
@@ -5000,6 +5241,7 @@ M.ExpressGatewayServiceScalingMetric = {
 
 M.ExpressGatewayScalingTarget = {
     type = "structure",
+    id = "ExpressGatewayScalingTarget",
     members = {
         minTaskCount = {
             type = "integer",
@@ -5018,6 +5260,7 @@ M.ExpressGatewayScalingTarget = {
 
 M.CreateExpressGatewayServiceInput = {
     type = "structure",
+    id = "CreateExpressGatewayServiceInput",
     members = {
         executionRoleArn = {
             type = "string",
@@ -5063,6 +5306,7 @@ M.CreateExpressGatewayServiceInput = {
 
 M.IngressPathSummary = {
     type = "structure",
+    id = "IngressPathSummary",
     members = {
         accessType = {
             type = "string",
@@ -5081,6 +5325,7 @@ M.IngressPathSummary = {
 
 M.ExpressGatewayServiceConfiguration = {
     type = "structure",
+    id = "ExpressGatewayServiceConfiguration",
     members = {
         serviceRevisionArn = {
             type = "string",
@@ -5121,6 +5366,7 @@ M.ExpressGatewayServiceStatusCode = {
 
 M.ExpressGatewayServiceStatus = {
     type = "structure",
+    id = "ExpressGatewayServiceStatus",
     members = {
         statusCode = {
             type = "string",
@@ -5133,6 +5379,7 @@ M.ExpressGatewayServiceStatus = {
 
 M.ECSExpressGatewayService = {
     type = "structure",
+    id = "ECSExpressGatewayService",
     members = {
         cluster = {
             type = "string",
@@ -5169,6 +5416,7 @@ M.ECSExpressGatewayService = {
 
 M.CreateExpressGatewayServiceOutput = {
     type = "structure",
+    id = "CreateExpressGatewayServiceOutput",
     members = {
         service = M.ECSExpressGatewayService,
     },
@@ -5176,6 +5424,7 @@ M.CreateExpressGatewayServiceOutput = {
 
 M.PlatformTaskDefinitionIncompatibilityException = {
     type = "structure",
+    id = "PlatformTaskDefinitionIncompatibilityException",
     error = "client",
     members = {
         message = {
@@ -5197,6 +5446,7 @@ M.DeploymentControllerType = {
 
 M.DeploymentController = {
     type = "structure",
+    id = "DeploymentController",
     members = {
         type = {
             type = "string",
@@ -5209,6 +5459,7 @@ M.DeploymentController = {
 
 M.LoadBalancer = {
     type = "structure",
+    id = "LoadBalancer",
     members = {
         targetGroupArn = {
             type = "string",
@@ -5233,6 +5484,7 @@ M.AssignPublicIp = {
 
 M.AwsVpcConfiguration = {
     type = "structure",
+    id = "AwsVpcConfiguration",
     members = {
         subnets = {
             type = "list",
@@ -5253,6 +5505,7 @@ M.AwsVpcConfiguration = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         awsvpcConfiguration = M.AwsVpcConfiguration,
     },
@@ -5265,6 +5518,7 @@ M.PlacementConstraintType = {
 
 M.PlacementConstraint = {
     type = "structure",
+    id = "PlacementConstraint",
     members = {
         type = {
             type = "string",
@@ -5283,6 +5537,7 @@ M.PlacementStrategyType = {
 
 M.PlacementStrategy = {
     type = "structure",
+    id = "PlacementStrategy",
     members = {
         type = {
             type = "string",
@@ -5316,6 +5571,7 @@ M.ServiceConnectIncludeQueryParameters = {
 
 M.ServiceConnectAccessLogConfiguration = {
     type = "structure",
+    id = "ServiceConnectAccessLogConfiguration",
     members = {
         format = {
             type = "string",
@@ -5331,6 +5587,7 @@ M.ServiceConnectAccessLogConfiguration = {
 
 M.ServiceConnectTestTrafficHeaderMatchRules = {
     type = "structure",
+    id = "ServiceConnectTestTrafficHeaderMatchRules",
     members = {
         exact = {
             type = "string",
@@ -5343,6 +5600,7 @@ M.ServiceConnectTestTrafficHeaderMatchRules = {
 
 M.ServiceConnectTestTrafficHeaderRules = {
     type = "structure",
+    id = "ServiceConnectTestTrafficHeaderRules",
     members = {
         name = {
             type = "string",
@@ -5356,6 +5614,7 @@ M.ServiceConnectTestTrafficHeaderRules = {
 
 M.ServiceConnectTestTrafficRules = {
     type = "structure",
+    id = "ServiceConnectTestTrafficRules",
     members = {
         header = setmetatable({ traits = {
             required = true,
@@ -5365,6 +5624,7 @@ M.ServiceConnectTestTrafficRules = {
 
 M.ServiceConnectClientAlias = {
     type = "structure",
+    id = "ServiceConnectClientAlias",
     members = {
         port = {
             type = "integer",
@@ -5381,6 +5641,7 @@ M.ServiceConnectClientAlias = {
 
 M.TimeoutConfiguration = {
     type = "structure",
+    id = "TimeoutConfiguration",
     members = {
         idleTimeoutSeconds = {
             type = "integer",
@@ -5393,6 +5654,7 @@ M.TimeoutConfiguration = {
 
 M.ServiceConnectTlsCertificateAuthority = {
     type = "structure",
+    id = "ServiceConnectTlsCertificateAuthority",
     members = {
         awsPcaAuthorityArn = {
             type = "string",
@@ -5402,6 +5664,7 @@ M.ServiceConnectTlsCertificateAuthority = {
 
 M.ServiceConnectTlsConfiguration = {
     type = "structure",
+    id = "ServiceConnectTlsConfiguration",
     members = {
         issuerCertificateAuthority = setmetatable({ traits = {
             required = true,
@@ -5417,6 +5680,7 @@ M.ServiceConnectTlsConfiguration = {
 
 M.ServiceConnectService = {
     type = "structure",
+    id = "ServiceConnectService",
     members = {
         portName = {
             type = "string",
@@ -5441,6 +5705,7 @@ M.ServiceConnectService = {
 
 M.ServiceConnectConfiguration = {
     type = "structure",
+    id = "ServiceConnectConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -5463,6 +5728,7 @@ M.ServiceConnectConfiguration = {
 
 M.ServiceRegistry = {
     type = "structure",
+    id = "ServiceRegistry",
     members = {
         registryArn = {
             type = "string",
@@ -5492,6 +5758,7 @@ M.EBSResourceType = {
 
 M.EBSTagSpecification = {
     type = "structure",
+    id = "EBSTagSpecification",
     members = {
         resourceType = {
             type = "string",
@@ -5511,6 +5778,7 @@ M.EBSTagSpecification = {
 
 M.ServiceManagedEBSVolumeConfiguration = {
     type = "structure",
+    id = "ServiceManagedEBSVolumeConfiguration",
     members = {
         encrypted = {
             type = "boolean",
@@ -5554,6 +5822,7 @@ M.ServiceManagedEBSVolumeConfiguration = {
 
 M.ServiceVolumeConfiguration = {
     type = "structure",
+    id = "ServiceVolumeConfiguration",
     members = {
         name = {
             type = "string",
@@ -5567,6 +5836,7 @@ M.ServiceVolumeConfiguration = {
 
 M.VpcLatticeConfiguration = {
     type = "structure",
+    id = "VpcLatticeConfiguration",
     members = {
         roleArn = {
             type = "string",
@@ -5591,6 +5861,7 @@ M.VpcLatticeConfiguration = {
 
 M.CreateServiceInput = {
     type = "structure",
+    id = "CreateServiceInput",
     members = {
         cluster = {
             type = "string",
@@ -5684,6 +5955,7 @@ M.CreateServiceInput = {
 
 M.ServiceCurrentRevisionSummary = {
     type = "structure",
+    id = "ServiceCurrentRevisionSummary",
     members = {
         arn = {
             type = "string",
@@ -5711,6 +5983,7 @@ M.ServiceCurrentRevisionSummary = {
 
 M.DeploymentEphemeralStorage = {
     type = "structure",
+    id = "DeploymentEphemeralStorage",
     members = {
         kmsKeyId = {
             type = "string",
@@ -5726,6 +5999,7 @@ M.DeploymentRolloutState = {
 
 M.ServiceConnectServiceResource = {
     type = "structure",
+    id = "ServiceConnectServiceResource",
     members = {
         discoveryName = {
             type = "string",
@@ -5738,6 +6012,7 @@ M.ServiceConnectServiceResource = {
 
 M.Deployment = {
     type = "structure",
+    id = "Deployment",
     members = {
         id = {
             type = "string",
@@ -5817,6 +6092,7 @@ M.Deployment = {
 
 M.ServiceEvent = {
     type = "structure",
+    id = "ServiceEvent",
     members = {
         id = {
             type = "string",
@@ -5841,6 +6117,7 @@ M.ScaleUnit = {
 
 M.Scale = {
     type = "structure",
+    id = "Scale",
     members = {
         value = {
             type = "double",
@@ -5861,6 +6138,7 @@ M.StabilityStatus = {
 
 M.TaskSet = {
     type = "structure",
+    id = "TaskSet",
     members = {
         id = {
             type = "string",
@@ -5949,6 +6227,7 @@ M.TaskSet = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         serviceArn = {
             type = "string",
@@ -6079,6 +6358,7 @@ M.Service = {
 
 M.CreateServiceOutput = {
     type = "structure",
+    id = "CreateServiceOutput",
     members = {
         service = M.Service,
     },
@@ -6086,6 +6366,7 @@ M.CreateServiceOutput = {
 
 M.DeleteExpressGatewayServiceInput = {
     type = "structure",
+    id = "DeleteExpressGatewayServiceInput",
     members = {
         serviceArn = {
             type = "string",
@@ -6098,6 +6379,7 @@ M.DeleteExpressGatewayServiceInput = {
 
 M.DeleteExpressGatewayServiceOutput = {
     type = "structure",
+    id = "DeleteExpressGatewayServiceOutput",
     members = {
         service = M.ECSExpressGatewayService,
     },
@@ -6105,6 +6387,7 @@ M.DeleteExpressGatewayServiceOutput = {
 
 M.ServiceNotActiveException = {
     type = "structure",
+    id = "ServiceNotActiveException",
     error = "client",
     members = {
         message = {
@@ -6115,6 +6398,7 @@ M.ServiceNotActiveException = {
 
 M.DeleteServiceInput = {
     type = "structure",
+    id = "DeleteServiceInput",
     members = {
         cluster = {
             type = "string",
@@ -6133,6 +6417,7 @@ M.DeleteServiceInput = {
 
 M.DeleteServiceOutput = {
     type = "structure",
+    id = "DeleteServiceOutput",
     members = {
         service = M.Service,
     },
@@ -6144,6 +6429,7 @@ M.ExpressGatewayServiceInclude = {
 
 M.DescribeExpressGatewayServiceInput = {
     type = "structure",
+    id = "DescribeExpressGatewayServiceInput",
     members = {
         serviceArn = {
             type = "string",
@@ -6160,6 +6446,7 @@ M.DescribeExpressGatewayServiceInput = {
 
 M.DescribeExpressGatewayServiceOutput = {
     type = "structure",
+    id = "DescribeExpressGatewayServiceOutput",
     members = {
         service = M.ECSExpressGatewayService,
     },
@@ -6167,6 +6454,7 @@ M.DescribeExpressGatewayServiceOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -6181,6 +6469,7 @@ M.ServiceField = {
 
 M.DescribeServicesInput = {
     type = "structure",
+    id = "DescribeServicesInput",
     members = {
         cluster = {
             type = "string",
@@ -6201,6 +6490,7 @@ M.DescribeServicesInput = {
 
 M.DescribeServicesOutput = {
     type = "structure",
+    id = "DescribeServicesOutput",
     members = {
         services = {
             type = "list",
@@ -6215,6 +6505,7 @@ M.DescribeServicesOutput = {
 
 M.ListServiceDeploymentsInput = {
     type = "structure",
+    id = "ListServiceDeploymentsInput",
     members = {
         service = {
             type = "string",
@@ -6241,6 +6532,7 @@ M.ListServiceDeploymentsInput = {
 
 M.ServiceDeploymentBrief = {
     type = "structure",
+    id = "ServiceDeploymentBrief",
     members = {
         serviceDeploymentArn = {
             type = "string",
@@ -6274,6 +6566,7 @@ M.ServiceDeploymentBrief = {
 
 M.ListServiceDeploymentsOutput = {
     type = "structure",
+    id = "ListServiceDeploymentsOutput",
     members = {
         serviceDeployments = {
             type = "list",
@@ -6287,6 +6580,7 @@ M.ListServiceDeploymentsOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         cluster = {
             type = "string",
@@ -6311,6 +6605,7 @@ M.ListServicesInput = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         serviceArns = {
             type = "list",
@@ -6324,6 +6619,7 @@ M.ListServicesOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         resourceIds = {
@@ -6338,6 +6634,7 @@ M.ConflictException = {
 
 M.ServiceDeploymentNotFoundException = {
     type = "structure",
+    id = "ServiceDeploymentNotFoundException",
     error = "client",
     members = {
         message = {
@@ -6353,6 +6650,7 @@ M.StopServiceDeploymentStopType = {
 
 M.StopServiceDeploymentInput = {
     type = "structure",
+    id = "StopServiceDeploymentInput",
     members = {
         serviceDeploymentArn = {
             type = "string",
@@ -6368,6 +6666,7 @@ M.StopServiceDeploymentInput = {
 
 M.StopServiceDeploymentOutput = {
     type = "structure",
+    id = "StopServiceDeploymentOutput",
     members = {
         serviceDeploymentArn = {
             type = "string",
@@ -6377,6 +6676,7 @@ M.StopServiceDeploymentOutput = {
 
 M.UpdateExpressGatewayServiceInput = {
     type = "structure",
+    id = "UpdateExpressGatewayServiceInput",
     members = {
         serviceArn = {
             type = "string",
@@ -6407,6 +6707,7 @@ M.UpdateExpressGatewayServiceInput = {
 
 M.UpdatedExpressGatewayService = {
     type = "structure",
+    id = "UpdatedExpressGatewayService",
     members = {
         serviceArn = {
             type = "string",
@@ -6430,6 +6731,7 @@ M.UpdatedExpressGatewayService = {
 
 M.UpdateExpressGatewayServiceOutput = {
     type = "structure",
+    id = "UpdateExpressGatewayServiceOutput",
     members = {
         service = M.UpdatedExpressGatewayService,
     },
@@ -6437,6 +6739,7 @@ M.UpdateExpressGatewayServiceOutput = {
 
 M.UpdateServiceInput = {
     type = "structure",
+    id = "UpdateServiceInput",
     members = {
         cluster = {
             type = "string",
@@ -6514,6 +6817,7 @@ M.UpdateServiceInput = {
 
 M.UpdateServiceOutput = {
     type = "structure",
+    id = "UpdateServiceOutput",
     members = {
         service = M.Service,
     },
@@ -6521,6 +6825,7 @@ M.UpdateServiceOutput = {
 
 M.TaskSetNotFoundException = {
     type = "structure",
+    id = "TaskSetNotFoundException",
     error = "client",
     members = {
         message = {
@@ -6531,6 +6836,7 @@ M.TaskSetNotFoundException = {
 
 M.UpdateServicePrimaryTaskSetInput = {
     type = "structure",
+    id = "UpdateServicePrimaryTaskSetInput",
     members = {
         cluster = {
             type = "string",
@@ -6555,6 +6861,7 @@ M.UpdateServicePrimaryTaskSetInput = {
 
 M.UpdateServicePrimaryTaskSetOutput = {
     type = "structure",
+    id = "UpdateServicePrimaryTaskSetOutput",
     members = {
         taskSet = M.TaskSet,
     },
@@ -6562,6 +6869,7 @@ M.UpdateServicePrimaryTaskSetOutput = {
 
 M.DescribeServiceRevisionsInput = {
     type = "structure",
+    id = "DescribeServiceRevisionsInput",
     members = {
         serviceRevisionArns = {
             type = "list",
@@ -6575,6 +6883,7 @@ M.DescribeServiceRevisionsInput = {
 
 M.ContainerImage = {
     type = "structure",
+    id = "ContainerImage",
     members = {
         containerName = {
             type = "string",
@@ -6598,6 +6907,7 @@ M.ManagedResourceStatus = {
 
 M.ManagedApplicationAutoScalingPolicy = {
     type = "structure",
+    id = "ManagedApplicationAutoScalingPolicy",
     members = {
         arn = {
             type = "string",
@@ -6641,6 +6951,7 @@ M.ManagedApplicationAutoScalingPolicy = {
 
 M.ManagedScalableTarget = {
     type = "structure",
+    id = "ManagedScalableTarget",
     members = {
         arn = {
             type = "string",
@@ -6679,6 +6990,7 @@ M.ManagedScalableTarget = {
 
 M.ManagedAutoScaling = {
     type = "structure",
+    id = "ManagedAutoScaling",
     members = {
         scalableTarget = M.ManagedScalableTarget,
         applicationAutoScalingPolicies = {
@@ -6690,6 +7002,7 @@ M.ManagedAutoScaling = {
 
 M.ManagedCertificate = {
     type = "structure",
+    id = "ManagedCertificate",
     members = {
         arn = {
             type = "string",
@@ -6720,6 +7033,7 @@ M.ManagedCertificate = {
 
 M.ManagedListener = {
     type = "structure",
+    id = "ManagedListener",
     members = {
         arn = {
             type = "string",
@@ -6744,6 +7058,7 @@ M.ManagedListener = {
 
 M.ManagedLoadBalancer = {
     type = "structure",
+    id = "ManagedLoadBalancer",
     members = {
         arn = {
             type = "string",
@@ -6782,6 +7097,7 @@ M.ManagedLoadBalancer = {
 
 M.ManagedSecurityGroup = {
     type = "structure",
+    id = "ManagedSecurityGroup",
     members = {
         arn = {
             type = "string",
@@ -6806,6 +7122,7 @@ M.ManagedSecurityGroup = {
 
 M.ManagedListenerRule = {
     type = "structure",
+    id = "ManagedListenerRule",
     members = {
         arn = {
             type = "string",
@@ -6830,6 +7147,7 @@ M.ManagedListenerRule = {
 
 M.ManagedTargetGroup = {
     type = "structure",
+    id = "ManagedTargetGroup",
     members = {
         arn = {
             type = "string",
@@ -6874,6 +7192,7 @@ M.ManagedTargetGroup = {
 
 M.ManagedIngressPath = {
     type = "structure",
+    id = "ManagedIngressPath",
     members = {
         accessType = {
             type = "string",
@@ -6904,6 +7223,7 @@ M.ManagedIngressPath = {
 
 M.ManagedLogGroup = {
     type = "structure",
+    id = "ManagedLogGroup",
     members = {
         arn = {
             type = "string",
@@ -6934,6 +7254,7 @@ M.ManagedLogGroup = {
 
 M.ManagedMetricAlarm = {
     type = "structure",
+    id = "ManagedMetricAlarm",
     members = {
         arn = {
             type = "string",
@@ -6958,6 +7279,7 @@ M.ManagedMetricAlarm = {
 
 M.ECSManagedResources = {
     type = "structure",
+    id = "ECSManagedResources",
     members = {
         ingressPaths = {
             type = "list",
@@ -6981,6 +7303,7 @@ M.ECSManagedResources = {
 
 M.ServiceRevisionLoadBalancer = {
     type = "structure",
+    id = "ServiceRevisionLoadBalancer",
     members = {
         targetGroupArn = {
             type = "string",
@@ -6993,6 +7316,7 @@ M.ServiceRevisionLoadBalancer = {
 
 M.ResolvedConfiguration = {
     type = "structure",
+    id = "ResolvedConfiguration",
     members = {
         loadBalancers = {
             type = "list",
@@ -7003,6 +7327,7 @@ M.ResolvedConfiguration = {
 
 M.ServiceRevision = {
     type = "structure",
+    id = "ServiceRevision",
     members = {
         serviceRevisionArn = {
             type = "string",
@@ -7068,6 +7393,7 @@ M.ServiceRevision = {
 
 M.DescribeServiceRevisionsOutput = {
     type = "structure",
+    id = "DescribeServiceRevisionsOutput",
     members = {
         serviceRevisions = {
             type = "list",
@@ -7082,6 +7408,7 @@ M.DescribeServiceRevisionsOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -7101,10 +7428,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.DeleteTaskDefinitionsInput = {
     type = "structure",
+    id = "DeleteTaskDefinitionsInput",
     members = {
         taskDefinitions = {
             type = "list",
@@ -7118,6 +7447,7 @@ M.DeleteTaskDefinitionsInput = {
 
 M.DeleteTaskDefinitionsOutput = {
     type = "structure",
+    id = "DeleteTaskDefinitionsOutput",
     members = {
         taskDefinitions = {
             type = "list",
@@ -7132,6 +7462,7 @@ M.DeleteTaskDefinitionsOutput = {
 
 M.ListTaskDefinitionsInput = {
     type = "structure",
+    id = "ListTaskDefinitionsInput",
     members = {
         familyPrefix = {
             type = "string",
@@ -7153,6 +7484,7 @@ M.ListTaskDefinitionsInput = {
 
 M.ListTaskDefinitionsOutput = {
     type = "structure",
+    id = "ListTaskDefinitionsOutput",
     members = {
         taskDefinitionArns = {
             type = "list",
@@ -7166,6 +7498,7 @@ M.ListTaskDefinitionsOutput = {
 
 M.RegisterTaskDefinitionInput = {
     type = "structure",
+    id = "RegisterTaskDefinitionInput",
     members = {
         family = {
             type = "string",
@@ -7232,6 +7565,7 @@ M.RegisterTaskDefinitionInput = {
 
 M.RegisterTaskDefinitionOutput = {
     type = "structure",
+    id = "RegisterTaskDefinitionOutput",
     members = {
         taskDefinition = M.TaskDefinition,
         tags = {
@@ -7247,6 +7581,7 @@ M.TaskField = {
 
 M.DescribeTasksInput = {
     type = "structure",
+    id = "DescribeTasksInput",
     members = {
         cluster = {
             type = "string",
@@ -7278,6 +7613,7 @@ M.HealthStatus = {
 
 M.ManagedAgent = {
     type = "structure",
+    id = "ManagedAgent",
     members = {
         lastStartedAt = {
             type = "timestamp",
@@ -7296,6 +7632,7 @@ M.ManagedAgent = {
 
 M.NetworkInterface = {
     type = "structure",
+    id = "NetworkInterface",
     members = {
         attachmentId = {
             type = "string",
@@ -7311,6 +7648,7 @@ M.NetworkInterface = {
 
 M.Container = {
     type = "structure",
+    id = "Container",
     members = {
         containerArn = {
             type = "string",
@@ -7372,6 +7710,7 @@ M.Container = {
 
 M.TaskEphemeralStorage = {
     type = "structure",
+    id = "TaskEphemeralStorage",
     members = {
         sizeInGiB = {
             type = "integer",
@@ -7387,6 +7726,7 @@ M.TaskEphemeralStorage = {
 
 M.ContainerOverride = {
     type = "structure",
+    id = "ContainerOverride",
     members = {
         name = {
             type = "string",
@@ -7421,6 +7761,7 @@ M.ContainerOverride = {
 
 M.InferenceAcceleratorOverride = {
     type = "structure",
+    id = "InferenceAcceleratorOverride",
     members = {
         deviceName = {
             type = "string",
@@ -7433,6 +7774,7 @@ M.InferenceAcceleratorOverride = {
 
 M.TaskOverride = {
     type = "structure",
+    id = "TaskOverride",
     members = {
         containerOverrides = {
             type = "list",
@@ -7469,6 +7811,7 @@ M.TaskStopCode = {
 
 M.Task = {
     type = "structure",
+    id = "Task",
     members = {
         attachments = {
             type = "list",
@@ -7591,6 +7934,7 @@ M.Task = {
 
 M.DescribeTasksOutput = {
     type = "structure",
+    id = "DescribeTasksOutput",
     members = {
         tasks = {
             type = "list",
@@ -7605,6 +7949,7 @@ M.DescribeTasksOutput = {
 
 M.GetTaskProtectionInput = {
     type = "structure",
+    id = "GetTaskProtectionInput",
     members = {
         cluster = {
             type = "string",
@@ -7621,6 +7966,7 @@ M.GetTaskProtectionInput = {
 
 M.ProtectedTask = {
     type = "structure",
+    id = "ProtectedTask",
     members = {
         taskArn = {
             type = "string",
@@ -7639,6 +7985,7 @@ M.ProtectedTask = {
 
 M.GetTaskProtectionOutput = {
     type = "structure",
+    id = "GetTaskProtectionOutput",
     members = {
         protectedTasks = {
             type = "list",
@@ -7653,6 +8000,7 @@ M.GetTaskProtectionOutput = {
 
 M.BlockedException = {
     type = "structure",
+    id = "BlockedException",
     error = "client",
     members = {
         message = {
@@ -7663,6 +8011,7 @@ M.BlockedException = {
 
 M.TaskManagedEBSVolumeTerminationPolicy = {
     type = "structure",
+    id = "TaskManagedEBSVolumeTerminationPolicy",
     members = {
         deleteOnTermination = {
             type = "boolean",
@@ -7675,6 +8024,7 @@ M.TaskManagedEBSVolumeTerminationPolicy = {
 
 M.TaskManagedEBSVolumeConfiguration = {
     type = "structure",
+    id = "TaskManagedEBSVolumeConfiguration",
     members = {
         encrypted = {
             type = "boolean",
@@ -7719,6 +8069,7 @@ M.TaskManagedEBSVolumeConfiguration = {
 
 M.TaskVolumeConfiguration = {
     type = "structure",
+    id = "TaskVolumeConfiguration",
     members = {
         name = {
             type = "string",
@@ -7732,6 +8083,7 @@ M.TaskVolumeConfiguration = {
 
 M.RunTaskInput = {
     type = "structure",
+    id = "RunTaskInput",
     members = {
         capacityProviderStrategy = {
             type = "list",
@@ -7808,6 +8160,7 @@ M.RunTaskInput = {
 
 M.RunTaskOutput = {
     type = "structure",
+    id = "RunTaskOutput",
     members = {
         tasks = {
             type = "list",
@@ -7822,6 +8175,7 @@ M.RunTaskOutput = {
 
 M.StartTaskInput = {
     type = "structure",
+    id = "StartTaskInput",
     members = {
         cluster = {
             type = "string",
@@ -7878,6 +8232,7 @@ M.StartTaskInput = {
 
 M.StartTaskOutput = {
     type = "structure",
+    id = "StartTaskOutput",
     members = {
         tasks = {
             type = "list",
@@ -7892,6 +8247,7 @@ M.StartTaskOutput = {
 
 M.StopTaskInput = {
     type = "structure",
+    id = "StopTaskInput",
     members = {
         cluster = {
             type = "string",
@@ -7910,6 +8266,7 @@ M.StopTaskInput = {
 
 M.StopTaskOutput = {
     type = "structure",
+    id = "StopTaskOutput",
     members = {
         task = M.Task,
     },
@@ -7917,6 +8274,7 @@ M.StopTaskOutput = {
 
 M.UpdateTaskProtectionInput = {
     type = "structure",
+    id = "UpdateTaskProtectionInput",
     members = {
         cluster = {
             type = "string",
@@ -7946,6 +8304,7 @@ M.UpdateTaskProtectionInput = {
 
 M.UpdateTaskProtectionOutput = {
     type = "structure",
+    id = "UpdateTaskProtectionOutput",
     members = {
         protectedTasks = {
             type = "list",
@@ -7960,6 +8319,7 @@ M.UpdateTaskProtectionOutput = {
 
 M.CreateTaskSetInput = {
     type = "structure",
+    id = "CreateTaskSetInput",
     members = {
         service = {
             type = "string",
@@ -8014,6 +8374,7 @@ M.CreateTaskSetInput = {
 
 M.CreateTaskSetOutput = {
     type = "structure",
+    id = "CreateTaskSetOutput",
     members = {
         taskSet = M.TaskSet,
     },
@@ -8021,6 +8382,7 @@ M.CreateTaskSetOutput = {
 
 M.DeleteTaskSetInput = {
     type = "structure",
+    id = "DeleteTaskSetInput",
     members = {
         cluster = {
             type = "string",
@@ -8048,6 +8410,7 @@ M.DeleteTaskSetInput = {
 
 M.DeleteTaskSetOutput = {
     type = "structure",
+    id = "DeleteTaskSetOutput",
     members = {
         taskSet = M.TaskSet,
     },
@@ -8059,6 +8422,7 @@ M.TaskSetField = {
 
 M.DescribeTaskSetsInput = {
     type = "structure",
+    id = "DescribeTaskSetsInput",
     members = {
         cluster = {
             type = "string",
@@ -8085,6 +8449,7 @@ M.DescribeTaskSetsInput = {
 
 M.DescribeTaskSetsOutput = {
     type = "structure",
+    id = "DescribeTaskSetsOutput",
     members = {
         taskSets = {
             type = "list",
@@ -8099,6 +8464,7 @@ M.DescribeTaskSetsOutput = {
 
 M.UpdateTaskSetInput = {
     type = "structure",
+    id = "UpdateTaskSetInput",
     members = {
         cluster = {
             type = "string",
@@ -8126,6 +8492,7 @@ M.UpdateTaskSetInput = {
 
 M.UpdateTaskSetOutput = {
     type = "structure",
+    id = "UpdateTaskSetOutput",
     members = {
         taskSet = M.TaskSet,
     },
@@ -8133,6 +8500,7 @@ M.UpdateTaskSetOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8152,6 +8520,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

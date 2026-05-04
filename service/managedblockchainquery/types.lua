@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AddressIdentifierFilter = {
     type = "structure",
+    id = "AddressIdentifierFilter",
     members = {
         transactionEventToAddress = {
             type = "list",
@@ -35,6 +37,7 @@ M.QueryNetwork = {
 
 M.ContractIdentifier = {
     type = "structure",
+    id = "ContractIdentifier",
     members = {
         network = {
             type = "string",
@@ -59,6 +62,7 @@ M.QueryTokenStandard = {
 
 M.AssetContract = {
     type = "structure",
+    id = "AssetContract",
     members = {
         contractIdentifier = setmetatable({ traits = {
             required = true,
@@ -80,6 +84,7 @@ M.AssetContract = {
 
 M.BlockchainInstant = {
     type = "structure",
+    id = "BlockchainInstant",
     members = {
         time = {
             type = "timestamp",
@@ -89,6 +94,7 @@ M.BlockchainInstant = {
 
 M.OwnerIdentifier = {
     type = "structure",
+    id = "OwnerIdentifier",
     members = {
         address = {
             type = "string",
@@ -101,6 +107,7 @@ M.OwnerIdentifier = {
 
 M.TokenIdentifier = {
     type = "structure",
+    id = "TokenIdentifier",
     members = {
         network = {
             type = "string",
@@ -119,6 +126,7 @@ M.TokenIdentifier = {
 
 M.BatchGetTokenBalanceInputItem = {
     type = "structure",
+    id = "BatchGetTokenBalanceInputItem",
     members = {
         tokenIdentifier = setmetatable({ traits = {
             required = true,
@@ -132,6 +140,7 @@ M.BatchGetTokenBalanceInputItem = {
 
 M.BatchGetTokenBalanceInput = {
     type = "structure",
+    id = "BatchGetTokenBalanceInput",
     members = {
         getTokenBalanceInputs = {
             type = "list",
@@ -147,6 +156,7 @@ M.ErrorType = {
 
 M.BatchGetTokenBalanceErrorItem = {
     type = "structure",
+    id = "BatchGetTokenBalanceErrorItem",
     members = {
         tokenIdentifier = M.TokenIdentifier,
         ownerIdentifier = M.OwnerIdentifier,
@@ -174,6 +184,7 @@ M.BatchGetTokenBalanceErrorItem = {
 
 M.BatchGetTokenBalanceOutputItem = {
     type = "structure",
+    id = "BatchGetTokenBalanceOutputItem",
     members = {
         ownerIdentifier = M.OwnerIdentifier,
         tokenIdentifier = M.TokenIdentifier,
@@ -192,6 +203,7 @@ M.BatchGetTokenBalanceOutputItem = {
 
 M.BatchGetTokenBalanceOutput = {
     type = "structure",
+    id = "BatchGetTokenBalanceOutput",
     members = {
         tokenBalances = {
             type = "list",
@@ -212,6 +224,7 @@ M.BatchGetTokenBalanceOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -235,6 +248,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -260,6 +274,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -297,6 +312,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -328,6 +344,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -353,6 +370,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -381,6 +399,7 @@ M.ConfirmationStatus = {
 
 M.ConfirmationStatusFilter = {
     type = "structure",
+    id = "ConfirmationStatusFilter",
     members = {
         include = {
             type = "list",
@@ -394,6 +413,7 @@ M.ConfirmationStatusFilter = {
 
 M.ContractFilter = {
     type = "structure",
+    id = "ContractFilter",
     members = {
         network = {
             type = "string",
@@ -418,6 +438,7 @@ M.ContractFilter = {
 
 M.ContractMetadata = {
     type = "structure",
+    id = "ContractMetadata",
     members = {
         name = {
             type = "string",
@@ -438,6 +459,7 @@ M.ExecutionStatus = {
 
 M.GetAssetContractInput = {
     type = "structure",
+    id = "GetAssetContractInput",
     members = {
         contractIdentifier = setmetatable({ traits = {
             required = true,
@@ -447,6 +469,7 @@ M.GetAssetContractInput = {
 
 M.GetAssetContractOutput = {
     type = "structure",
+    id = "GetAssetContractOutput",
     members = {
         contractIdentifier = setmetatable({ traits = {
             required = true,
@@ -469,6 +492,7 @@ M.GetAssetContractOutput = {
 
 M.GetTokenBalanceInput = {
     type = "structure",
+    id = "GetTokenBalanceInput",
     members = {
         tokenIdentifier = setmetatable({ traits = {
             required = true,
@@ -482,6 +506,7 @@ M.GetTokenBalanceInput = {
 
 M.GetTokenBalanceOutput = {
     type = "structure",
+    id = "GetTokenBalanceOutput",
     members = {
         ownerIdentifier = M.OwnerIdentifier,
         tokenIdentifier = M.TokenIdentifier,
@@ -500,6 +525,7 @@ M.GetTokenBalanceOutput = {
 
 M.GetTransactionInput = {
     type = "structure",
+    id = "GetTransactionInput",
     members = {
         transactionHash = {
             type = "string",
@@ -518,6 +544,7 @@ M.GetTransactionInput = {
 
 M.Transaction = {
     type = "structure",
+    id = "Transaction",
     members = {
         network = {
             type = "string",
@@ -602,6 +629,7 @@ M.Transaction = {
 
 M.GetTransactionOutput = {
     type = "structure",
+    id = "GetTransactionOutput",
     members = {
         transaction = setmetatable({ traits = {
             required = true,
@@ -611,6 +639,7 @@ M.GetTransactionOutput = {
 
 M.ListAssetContractsInput = {
     type = "structure",
+    id = "ListAssetContractsInput",
     members = {
         contractFilter = setmetatable({ traits = {
             required = true,
@@ -626,6 +655,7 @@ M.ListAssetContractsInput = {
 
 M.ListAssetContractsOutput = {
     type = "structure",
+    id = "ListAssetContractsOutput",
     members = {
         contracts = {
             type = "list",
@@ -651,6 +681,7 @@ M.SortOrder = {
 
 M.ListFilteredTransactionEventsSort = {
     type = "structure",
+    id = "ListFilteredTransactionEventsSort",
     members = {
         sortBy = {
             type = "string",
@@ -663,6 +694,7 @@ M.ListFilteredTransactionEventsSort = {
 
 M.TimeFilter = {
     type = "structure",
+    id = "TimeFilter",
     members = {
         from = M.BlockchainInstant,
         to = M.BlockchainInstant,
@@ -671,6 +703,7 @@ M.TimeFilter = {
 
 M.VoutFilter = {
     type = "structure",
+    id = "VoutFilter",
     members = {
         voutSpent = {
             type = "boolean",
@@ -683,6 +716,7 @@ M.VoutFilter = {
 
 M.ListFilteredTransactionEventsInput = {
     type = "structure",
+    id = "ListFilteredTransactionEventsInput",
     members = {
         network = {
             type = "string",
@@ -722,6 +756,7 @@ M.QueryTransactionEventType = {
 
 M.TransactionEvent = {
     type = "structure",
+    id = "TransactionEvent",
     members = {
         network = {
             type = "string",
@@ -783,6 +818,7 @@ M.TransactionEvent = {
 
 M.ListFilteredTransactionEventsOutput = {
     type = "structure",
+    id = "ListFilteredTransactionEventsOutput",
     members = {
         events = {
             type = "list",
@@ -799,6 +835,7 @@ M.ListFilteredTransactionEventsOutput = {
 
 M.OwnerFilter = {
     type = "structure",
+    id = "OwnerFilter",
     members = {
         address = {
             type = "string",
@@ -811,6 +848,7 @@ M.OwnerFilter = {
 
 M.TokenFilter = {
     type = "structure",
+    id = "TokenFilter",
     members = {
         network = {
             type = "string",
@@ -829,6 +867,7 @@ M.TokenFilter = {
 
 M.ListTokenBalancesInput = {
     type = "structure",
+    id = "ListTokenBalancesInput",
     members = {
         ownerFilter = M.OwnerFilter,
         tokenFilter = setmetatable({ traits = {
@@ -845,6 +884,7 @@ M.ListTokenBalancesInput = {
 
 M.TokenBalance = {
     type = "structure",
+    id = "TokenBalance",
     members = {
         ownerIdentifier = M.OwnerIdentifier,
         tokenIdentifier = M.TokenIdentifier,
@@ -863,6 +903,7 @@ M.TokenBalance = {
 
 M.ListTokenBalancesOutput = {
     type = "structure",
+    id = "ListTokenBalancesOutput",
     members = {
         tokenBalances = {
             type = "list",
@@ -879,6 +920,7 @@ M.ListTokenBalancesOutput = {
 
 M.ListTransactionEventsInput = {
     type = "structure",
+    id = "ListTransactionEventsInput",
     members = {
         transactionHash = {
             type = "string",
@@ -903,6 +945,7 @@ M.ListTransactionEventsInput = {
 
 M.ListTransactionEventsOutput = {
     type = "structure",
+    id = "ListTransactionEventsOutput",
     members = {
         events = {
             type = "list",
@@ -923,6 +966,7 @@ M.ListTransactionsSortBy = {
 
 M.ListTransactionsSort = {
     type = "structure",
+    id = "ListTransactionsSort",
     members = {
         sortBy = {
             type = "string",
@@ -935,6 +979,7 @@ M.ListTransactionsSort = {
 
 M.ListTransactionsInput = {
     type = "structure",
+    id = "ListTransactionsInput",
     members = {
         address = {
             type = "string",
@@ -963,6 +1008,7 @@ M.ListTransactionsInput = {
 
 M.TransactionOutputItem = {
     type = "structure",
+    id = "TransactionOutputItem",
     members = {
         transactionHash = {
             type = "string",
@@ -993,6 +1039,7 @@ M.TransactionOutputItem = {
 
 M.ListTransactionsOutput = {
     type = "structure",
+    id = "ListTransactionsOutput",
     members = {
         transactions = {
             type = "list",

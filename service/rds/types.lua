@@ -2,6 +2,7 @@ local M = {}
 
 M.AccountQuota = {
     type = "structure",
+    id = "AccountQuota",
     members = {
         AccountQuotaName = {
             type = "string",
@@ -36,6 +37,7 @@ M.ActivityStreamStatus = {
 
 M.AdditionalStorageVolume = {
     type = "structure",
+    id = "AdditionalStorageVolume",
     members = {
         VolumeName = {
             type = "string",
@@ -63,6 +65,7 @@ M.AdditionalStorageVolume = {
 
 M.AdditionalStorageVolumeOutput = {
     type = "structure",
+    id = "AdditionalStorageVolumeOutput",
     members = {
         VolumeName = {
             type = "string",
@@ -90,6 +93,7 @@ M.AdditionalStorageVolumeOutput = {
 
 M.AddRoleToDBClusterInput = {
     type = "structure",
+    id = "AddRoleToDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -111,10 +115,12 @@ M.AddRoleToDBClusterInput = {
 
 M.AddRoleToDBClusterOutput = {
     type = "structure",
+    id = "AddRoleToDBClusterOutput",
 }
 
 M.DBClusterNotFoundFault = {
     type = "structure",
+    id = "DBClusterNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -125,6 +131,7 @@ M.DBClusterNotFoundFault = {
 
 M.DBClusterRoleAlreadyExistsFault = {
     type = "structure",
+    id = "DBClusterRoleAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -135,6 +142,7 @@ M.DBClusterRoleAlreadyExistsFault = {
 
 M.DBClusterRoleQuotaExceededFault = {
     type = "structure",
+    id = "DBClusterRoleQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -145,6 +153,7 @@ M.DBClusterRoleQuotaExceededFault = {
 
 M.InvalidDBClusterStateFault = {
     type = "structure",
+    id = "InvalidDBClusterStateFault",
     error = "client",
     members = {
         message = {
@@ -155,6 +164,7 @@ M.InvalidDBClusterStateFault = {
 
 M.AddRoleToDBInstanceInput = {
     type = "structure",
+    id = "AddRoleToDBInstanceInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -179,10 +189,12 @@ M.AddRoleToDBInstanceInput = {
 
 M.AddRoleToDBInstanceOutput = {
     type = "structure",
+    id = "AddRoleToDBInstanceOutput",
 }
 
 M.DBInstanceNotFoundFault = {
     type = "structure",
+    id = "DBInstanceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -193,6 +205,7 @@ M.DBInstanceNotFoundFault = {
 
 M.DBInstanceRoleAlreadyExistsFault = {
     type = "structure",
+    id = "DBInstanceRoleAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -203,6 +216,7 @@ M.DBInstanceRoleAlreadyExistsFault = {
 
 M.DBInstanceRoleQuotaExceededFault = {
     type = "structure",
+    id = "DBInstanceRoleQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -213,6 +227,7 @@ M.DBInstanceRoleQuotaExceededFault = {
 
 M.InvalidDBInstanceStateFault = {
     type = "structure",
+    id = "InvalidDBInstanceStateFault",
     error = "client",
     members = {
         message = {
@@ -223,6 +238,7 @@ M.InvalidDBInstanceStateFault = {
 
 M.AddSourceIdentifierToSubscriptionInput = {
     type = "structure",
+    id = "AddSourceIdentifierToSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -241,6 +257,7 @@ M.AddSourceIdentifierToSubscriptionInput = {
 
 M.EventSubscription = {
     type = "structure",
+    id = "EventSubscription",
     members = {
         CustomerAwsId = {
             type = "string",
@@ -279,6 +296,7 @@ M.EventSubscription = {
 
 M.AddSourceIdentifierToSubscriptionOutput = {
     type = "structure",
+    id = "AddSourceIdentifierToSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -286,6 +304,7 @@ M.AddSourceIdentifierToSubscriptionOutput = {
 
 M.SourceNotFoundFault = {
     type = "structure",
+    id = "SourceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -296,6 +315,7 @@ M.SourceNotFoundFault = {
 
 M.SubscriptionNotFoundFault = {
     type = "structure",
+    id = "SubscriptionNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -306,6 +326,7 @@ M.SubscriptionNotFoundFault = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -318,6 +339,7 @@ M.Tag = {
 
 M.AddTagsToResourceInput = {
     type = "structure",
+    id = "AddTagsToResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -337,10 +359,12 @@ M.AddTagsToResourceInput = {
 
 M.AddTagsToResourceOutput = {
     type = "structure",
+    id = "AddTagsToResourceOutput",
 }
 
 M.BlueGreenDeploymentNotFoundFault = {
     type = "structure",
+    id = "BlueGreenDeploymentNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -351,6 +375,7 @@ M.BlueGreenDeploymentNotFoundFault = {
 
 M.DBProxyEndpointNotFoundFault = {
     type = "structure",
+    id = "DBProxyEndpointNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -361,6 +386,7 @@ M.DBProxyEndpointNotFoundFault = {
 
 M.DBProxyNotFoundFault = {
     type = "structure",
+    id = "DBProxyNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -371,6 +397,7 @@ M.DBProxyNotFoundFault = {
 
 M.DBProxyTargetGroupNotFoundFault = {
     type = "structure",
+    id = "DBProxyTargetGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -381,6 +408,7 @@ M.DBProxyTargetGroupNotFoundFault = {
 
 M.DBShardGroupNotFoundFault = {
     type = "structure",
+    id = "DBShardGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -391,6 +419,7 @@ M.DBShardGroupNotFoundFault = {
 
 M.DBSnapshotNotFoundFault = {
     type = "structure",
+    id = "DBSnapshotNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -401,6 +430,7 @@ M.DBSnapshotNotFoundFault = {
 
 M.DBSnapshotTenantDatabaseNotFoundFault = {
     type = "structure",
+    id = "DBSnapshotTenantDatabaseNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -411,6 +441,7 @@ M.DBSnapshotTenantDatabaseNotFoundFault = {
 
 M.IntegrationNotFoundFault = {
     type = "structure",
+    id = "IntegrationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -421,6 +452,7 @@ M.IntegrationNotFoundFault = {
 
 M.InvalidDBClusterEndpointStateFault = {
     type = "structure",
+    id = "InvalidDBClusterEndpointStateFault",
     error = "client",
     members = {
         message = {
@@ -431,6 +463,7 @@ M.InvalidDBClusterEndpointStateFault = {
 
 M.TenantDatabaseNotFoundFault = {
     type = "structure",
+    id = "TenantDatabaseNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -441,6 +474,7 @@ M.TenantDatabaseNotFoundFault = {
 
 M.ApplyPendingMaintenanceActionInput = {
     type = "structure",
+    id = "ApplyPendingMaintenanceActionInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -465,6 +499,7 @@ M.ApplyPendingMaintenanceActionInput = {
 
 M.PendingMaintenanceAction = {
     type = "structure",
+    id = "PendingMaintenanceAction",
     members = {
         Action = {
             type = "string",
@@ -489,6 +524,7 @@ M.PendingMaintenanceAction = {
 
 M.ResourcePendingMaintenanceActions = {
     type = "structure",
+    id = "ResourcePendingMaintenanceActions",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -502,6 +538,7 @@ M.ResourcePendingMaintenanceActions = {
 
 M.ApplyPendingMaintenanceActionOutput = {
     type = "structure",
+    id = "ApplyPendingMaintenanceActionOutput",
     members = {
         ResourcePendingMaintenanceActions = M.ResourcePendingMaintenanceActions,
     },
@@ -509,6 +546,7 @@ M.ApplyPendingMaintenanceActionOutput = {
 
 M.ResourceNotFoundFault = {
     type = "structure",
+    id = "ResourceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -519,6 +557,7 @@ M.ResourceNotFoundFault = {
 
 M.AuthorizationAlreadyExistsFault = {
     type = "structure",
+    id = "AuthorizationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -529,6 +568,7 @@ M.AuthorizationAlreadyExistsFault = {
 
 M.AuthorizationQuotaExceededFault = {
     type = "structure",
+    id = "AuthorizationQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -539,6 +579,7 @@ M.AuthorizationQuotaExceededFault = {
 
 M.AuthorizeDBSecurityGroupIngressInput = {
     type = "structure",
+    id = "AuthorizeDBSecurityGroupIngressInput",
     members = {
         DBSecurityGroupName = {
             type = "string",
@@ -563,6 +604,7 @@ M.AuthorizeDBSecurityGroupIngressInput = {
 
 M.EC2SecurityGroup = {
     type = "structure",
+    id = "EC2SecurityGroup",
     members = {
         Status = {
             type = "string",
@@ -581,6 +623,7 @@ M.EC2SecurityGroup = {
 
 M.IPRange = {
     type = "structure",
+    id = "IPRange",
     members = {
         Status = {
             type = "string",
@@ -593,6 +636,7 @@ M.IPRange = {
 
 M.DBSecurityGroup = {
     type = "structure",
+    id = "DBSecurityGroup",
     members = {
         OwnerId = {
             type = "string",
@@ -622,6 +666,7 @@ M.DBSecurityGroup = {
 
 M.AuthorizeDBSecurityGroupIngressOutput = {
     type = "structure",
+    id = "AuthorizeDBSecurityGroupIngressOutput",
     members = {
         DBSecurityGroup = M.DBSecurityGroup,
     },
@@ -629,6 +674,7 @@ M.AuthorizeDBSecurityGroupIngressOutput = {
 
 M.DBSecurityGroupNotFoundFault = {
     type = "structure",
+    id = "DBSecurityGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -639,6 +685,7 @@ M.DBSecurityGroupNotFoundFault = {
 
 M.InvalidDBSecurityGroupStateFault = {
     type = "structure",
+    id = "InvalidDBSecurityGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -649,6 +696,7 @@ M.InvalidDBSecurityGroupStateFault = {
 
 M.BacktrackDBClusterInput = {
     type = "structure",
+    id = "BacktrackDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -673,6 +721,7 @@ M.BacktrackDBClusterInput = {
 
 M.BacktrackDBClusterOutput = {
     type = "structure",
+    id = "BacktrackDBClusterOutput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -697,6 +746,7 @@ M.BacktrackDBClusterOutput = {
 
 M.CancelExportTaskInput = {
     type = "structure",
+    id = "CancelExportTaskInput",
     members = {
         ExportTaskIdentifier = {
             type = "string",
@@ -714,6 +764,7 @@ M.ExportSourceType = {
 
 M.CancelExportTaskOutput = {
     type = "structure",
+    id = "CancelExportTaskOutput",
     members = {
         ExportTaskIdentifier = {
             type = "string",
@@ -769,6 +820,7 @@ M.CancelExportTaskOutput = {
 
 M.ExportTaskNotFoundFault = {
     type = "structure",
+    id = "ExportTaskNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -779,6 +831,7 @@ M.ExportTaskNotFoundFault = {
 
 M.InvalidExportTaskStateFault = {
     type = "structure",
+    id = "InvalidExportTaskStateFault",
     error = "client",
     members = {
         message = {
@@ -789,6 +842,7 @@ M.InvalidExportTaskStateFault = {
 
 M.CopyDBClusterParameterGroupInput = {
     type = "structure",
+    id = "CopyDBClusterParameterGroupInput",
     members = {
         SourceDBClusterParameterGroupIdentifier = {
             type = "string",
@@ -817,6 +871,7 @@ M.CopyDBClusterParameterGroupInput = {
 
 M.DBClusterParameterGroup = {
     type = "structure",
+    id = "DBClusterParameterGroup",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -835,6 +890,7 @@ M.DBClusterParameterGroup = {
 
 M.CopyDBClusterParameterGroupOutput = {
     type = "structure",
+    id = "CopyDBClusterParameterGroupOutput",
     members = {
         DBClusterParameterGroup = M.DBClusterParameterGroup,
     },
@@ -842,6 +898,7 @@ M.CopyDBClusterParameterGroupOutput = {
 
 M.DBParameterGroupAlreadyExistsFault = {
     type = "structure",
+    id = "DBParameterGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -852,6 +909,7 @@ M.DBParameterGroupAlreadyExistsFault = {
 
 M.DBParameterGroupNotFoundFault = {
     type = "structure",
+    id = "DBParameterGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -862,6 +920,7 @@ M.DBParameterGroupNotFoundFault = {
 
 M.DBParameterGroupQuotaExceededFault = {
     type = "structure",
+    id = "DBParameterGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -872,6 +931,7 @@ M.DBParameterGroupQuotaExceededFault = {
 
 M.CopyDBClusterSnapshotInput = {
     type = "structure",
+    id = "CopyDBClusterSnapshotInput",
     members = {
         SourceDBClusterSnapshotIdentifier = {
             type = "string",
@@ -909,6 +969,7 @@ M.StorageEncryptionType = {
 
 M.DBClusterSnapshot = {
     type = "structure",
+    id = "DBClusterSnapshot",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -1004,6 +1065,7 @@ M.DBClusterSnapshot = {
 
 M.CopyDBClusterSnapshotOutput = {
     type = "structure",
+    id = "CopyDBClusterSnapshotOutput",
     members = {
         DBClusterSnapshot = M.DBClusterSnapshot,
     },
@@ -1011,6 +1073,7 @@ M.CopyDBClusterSnapshotOutput = {
 
 M.DBClusterSnapshotAlreadyExistsFault = {
     type = "structure",
+    id = "DBClusterSnapshotAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1021,6 +1084,7 @@ M.DBClusterSnapshotAlreadyExistsFault = {
 
 M.DBClusterSnapshotNotFoundFault = {
     type = "structure",
+    id = "DBClusterSnapshotNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1031,6 +1095,7 @@ M.DBClusterSnapshotNotFoundFault = {
 
 M.InvalidDBClusterSnapshotStateFault = {
     type = "structure",
+    id = "InvalidDBClusterSnapshotStateFault",
     error = "client",
     members = {
         message = {
@@ -1041,6 +1106,7 @@ M.InvalidDBClusterSnapshotStateFault = {
 
 M.KMSKeyNotAccessibleFault = {
     type = "structure",
+    id = "KMSKeyNotAccessibleFault",
     error = "client",
     members = {
         message = {
@@ -1051,6 +1117,7 @@ M.KMSKeyNotAccessibleFault = {
 
 M.SnapshotQuotaExceededFault = {
     type = "structure",
+    id = "SnapshotQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1061,6 +1128,7 @@ M.SnapshotQuotaExceededFault = {
 
 M.CopyDBParameterGroupInput = {
     type = "structure",
+    id = "CopyDBParameterGroupInput",
     members = {
         SourceDBParameterGroupIdentifier = {
             type = "string",
@@ -1089,6 +1157,7 @@ M.CopyDBParameterGroupInput = {
 
 M.DBParameterGroup = {
     type = "structure",
+    id = "DBParameterGroup",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -1107,6 +1176,7 @@ M.DBParameterGroup = {
 
 M.CopyDBParameterGroupOutput = {
     type = "structure",
+    id = "CopyDBParameterGroupOutput",
     members = {
         DBParameterGroup = M.DBParameterGroup,
     },
@@ -1114,6 +1184,7 @@ M.CopyDBParameterGroupOutput = {
 
 M.CopyDBSnapshotInput = {
     type = "structure",
+    id = "CopyDBSnapshotInput",
     members = {
         SourceDBSnapshotIdentifier = {
             type = "string",
@@ -1160,6 +1231,7 @@ M.CopyDBSnapshotInput = {
 
 M.ProcessorFeature = {
     type = "structure",
+    id = "ProcessorFeature",
     members = {
         Name = {
             type = "string",
@@ -1172,6 +1244,7 @@ M.ProcessorFeature = {
 
 M.DBSnapshot = {
     type = "structure",
+    id = "DBSnapshot",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -1304,6 +1377,7 @@ M.DBSnapshot = {
 
 M.CopyDBSnapshotOutput = {
     type = "structure",
+    id = "CopyDBSnapshotOutput",
     members = {
         DBSnapshot = M.DBSnapshot,
     },
@@ -1311,6 +1385,7 @@ M.CopyDBSnapshotOutput = {
 
 M.CustomAvailabilityZoneNotFoundFault = {
     type = "structure",
+    id = "CustomAvailabilityZoneNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1321,6 +1396,7 @@ M.CustomAvailabilityZoneNotFoundFault = {
 
 M.DBSnapshotAlreadyExistsFault = {
     type = "structure",
+    id = "DBSnapshotAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1331,6 +1407,7 @@ M.DBSnapshotAlreadyExistsFault = {
 
 M.InvalidDBSnapshotStateFault = {
     type = "structure",
+    id = "InvalidDBSnapshotStateFault",
     error = "client",
     members = {
         message = {
@@ -1341,6 +1418,7 @@ M.InvalidDBSnapshotStateFault = {
 
 M.CopyOptionGroupInput = {
     type = "structure",
+    id = "CopyOptionGroupInput",
     members = {
         SourceOptionGroupIdentifier = {
             type = "string",
@@ -1369,6 +1447,7 @@ M.CopyOptionGroupInput = {
 
 M.DBSecurityGroupMembership = {
     type = "structure",
+    id = "DBSecurityGroupMembership",
     members = {
         DBSecurityGroupName = {
             type = "string",
@@ -1381,6 +1460,7 @@ M.DBSecurityGroupMembership = {
 
 M.OptionSetting = {
     type = "structure",
+    id = "OptionSetting",
     members = {
         Name = {
             type = "string",
@@ -1414,6 +1494,7 @@ M.OptionSetting = {
 
 M.VpcSecurityGroupMembership = {
     type = "structure",
+    id = "VpcSecurityGroupMembership",
     members = {
         VpcSecurityGroupId = {
             type = "string",
@@ -1426,6 +1507,7 @@ M.VpcSecurityGroupMembership = {
 
 M.Option = {
     type = "structure",
+    id = "Option",
     members = {
         OptionName = {
             type = "string",
@@ -1462,6 +1544,7 @@ M.Option = {
 
 M.OptionGroup = {
     type = "structure",
+    id = "OptionGroup",
     members = {
         OptionGroupName = {
             type = "string",
@@ -1502,6 +1585,7 @@ M.OptionGroup = {
 
 M.CopyOptionGroupOutput = {
     type = "structure",
+    id = "CopyOptionGroupOutput",
     members = {
         OptionGroup = M.OptionGroup,
     },
@@ -1509,6 +1593,7 @@ M.CopyOptionGroupOutput = {
 
 M.OptionGroupAlreadyExistsFault = {
     type = "structure",
+    id = "OptionGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1519,6 +1604,7 @@ M.OptionGroupAlreadyExistsFault = {
 
 M.OptionGroupNotFoundFault = {
     type = "structure",
+    id = "OptionGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1529,6 +1615,7 @@ M.OptionGroupNotFoundFault = {
 
 M.OptionGroupQuotaExceededFault = {
     type = "structure",
+    id = "OptionGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1539,6 +1626,7 @@ M.OptionGroupQuotaExceededFault = {
 
 M.BlueGreenDeploymentAlreadyExistsFault = {
     type = "structure",
+    id = "BlueGreenDeploymentAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -1549,6 +1637,7 @@ M.BlueGreenDeploymentAlreadyExistsFault = {
 
 M.CreateBlueGreenDeploymentInput = {
     type = "structure",
+    id = "CreateBlueGreenDeploymentInput",
     members = {
         BlueGreenDeploymentName = {
             type = "string",
@@ -1598,6 +1687,7 @@ M.CreateBlueGreenDeploymentInput = {
 
 M.SwitchoverDetail = {
     type = "structure",
+    id = "SwitchoverDetail",
     members = {
         SourceMember = {
             type = "string",
@@ -1613,6 +1703,7 @@ M.SwitchoverDetail = {
 
 M.BlueGreenDeploymentTask = {
     type = "structure",
+    id = "BlueGreenDeploymentTask",
     members = {
         Name = {
             type = "string",
@@ -1625,6 +1716,7 @@ M.BlueGreenDeploymentTask = {
 
 M.BlueGreenDeployment = {
     type = "structure",
+    id = "BlueGreenDeployment",
     members = {
         BlueGreenDeploymentIdentifier = {
             type = "string",
@@ -1667,6 +1759,7 @@ M.BlueGreenDeployment = {
 
 M.CreateBlueGreenDeploymentOutput = {
     type = "structure",
+    id = "CreateBlueGreenDeploymentOutput",
     members = {
         BlueGreenDeployment = M.BlueGreenDeployment,
     },
@@ -1674,6 +1767,7 @@ M.CreateBlueGreenDeploymentOutput = {
 
 M.DBClusterParameterGroupNotFoundFault = {
     type = "structure",
+    id = "DBClusterParameterGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -1684,6 +1778,7 @@ M.DBClusterParameterGroupNotFoundFault = {
 
 M.DBClusterQuotaExceededFault = {
     type = "structure",
+    id = "DBClusterQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1694,6 +1789,7 @@ M.DBClusterQuotaExceededFault = {
 
 M.InstanceQuotaExceededFault = {
     type = "structure",
+    id = "InstanceQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1704,6 +1800,7 @@ M.InstanceQuotaExceededFault = {
 
 M.SourceClusterNotSupportedFault = {
     type = "structure",
+    id = "SourceClusterNotSupportedFault",
     error = "client",
     members = {
         message = {
@@ -1714,6 +1811,7 @@ M.SourceClusterNotSupportedFault = {
 
 M.SourceDatabaseNotSupportedFault = {
     type = "structure",
+    id = "SourceDatabaseNotSupportedFault",
     error = "client",
     members = {
         message = {
@@ -1724,6 +1822,7 @@ M.SourceDatabaseNotSupportedFault = {
 
 M.StorageQuotaExceededFault = {
     type = "structure",
+    id = "StorageQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -1734,6 +1833,7 @@ M.StorageQuotaExceededFault = {
 
 M.CreateCustomDBEngineVersionFault = {
     type = "structure",
+    id = "CreateCustomDBEngineVersionFault",
     error = "client",
     members = {
         message = {
@@ -1744,6 +1844,7 @@ M.CreateCustomDBEngineVersionFault = {
 
 M.CreateCustomDBEngineVersionInput = {
     type = "structure",
+    id = "CreateCustomDBEngineVersionInput",
     members = {
         Engine = {
             type = "string",
@@ -1794,6 +1895,7 @@ M.CreateCustomDBEngineVersionInput = {
 
 M.CharacterSet = {
     type = "structure",
+    id = "CharacterSet",
     members = {
         CharacterSetName = {
             type = "string",
@@ -1806,6 +1908,7 @@ M.CharacterSet = {
 
 M.CustomDBEngineVersionAMI = {
     type = "structure",
+    id = "CustomDBEngineVersionAMI",
     members = {
         ImageId = {
             type = "string",
@@ -1818,6 +1921,7 @@ M.CustomDBEngineVersionAMI = {
 
 M.ServerlessV2FeaturesSupport = {
     type = "structure",
+    id = "ServerlessV2FeaturesSupport",
     members = {
         MinCapacity = {
             type = "double",
@@ -1830,6 +1934,7 @@ M.ServerlessV2FeaturesSupport = {
 
 M.Timezone = {
     type = "structure",
+    id = "Timezone",
     members = {
         TimezoneName = {
             type = "string",
@@ -1839,6 +1944,7 @@ M.Timezone = {
 
 M.UpgradeTarget = {
     type = "structure",
+    id = "UpgradeTarget",
     members = {
         Engine = {
             type = "string",
@@ -1882,6 +1988,7 @@ M.UpgradeTarget = {
 
 M.CreateCustomDBEngineVersionOutput = {
     type = "structure",
+    id = "CreateCustomDBEngineVersionOutput",
     members = {
         Engine = {
             type = "string",
@@ -2003,6 +2110,7 @@ M.CreateCustomDBEngineVersionOutput = {
 
 M.CustomDBEngineVersionAlreadyExistsFault = {
     type = "structure",
+    id = "CustomDBEngineVersionAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2013,6 +2121,7 @@ M.CustomDBEngineVersionAlreadyExistsFault = {
 
 M.CustomDBEngineVersionNotFoundFault = {
     type = "structure",
+    id = "CustomDBEngineVersionNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2023,6 +2132,7 @@ M.CustomDBEngineVersionNotFoundFault = {
 
 M.CustomDBEngineVersionQuotaExceededFault = {
     type = "structure",
+    id = "CustomDBEngineVersionQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -2033,6 +2143,7 @@ M.CustomDBEngineVersionQuotaExceededFault = {
 
 M.Ec2ImagePropertiesNotSupportedFault = {
     type = "structure",
+    id = "Ec2ImagePropertiesNotSupportedFault",
     error = "client",
     members = {
         message = {
@@ -2043,6 +2154,7 @@ M.Ec2ImagePropertiesNotSupportedFault = {
 
 M.InvalidCustomDBEngineVersionStateFault = {
     type = "structure",
+    id = "InvalidCustomDBEngineVersionStateFault",
     error = "client",
     members = {
         message = {
@@ -2073,6 +2185,7 @@ M.ReplicaMode = {
 
 M.RdsCustomClusterConfiguration = {
     type = "structure",
+    id = "RdsCustomClusterConfiguration",
     members = {
         InterconnectSubnetId = {
             type = "string",
@@ -2088,6 +2201,7 @@ M.RdsCustomClusterConfiguration = {
 
 M.ScalingConfiguration = {
     type = "structure",
+    id = "ScalingConfiguration",
     members = {
         MinCapacity = {
             type = "integer",
@@ -2112,6 +2226,7 @@ M.ScalingConfiguration = {
 
 M.ServerlessV2ScalingConfiguration = {
     type = "structure",
+    id = "ServerlessV2ScalingConfiguration",
     members = {
         MinCapacity = {
             type = "double",
@@ -2127,6 +2242,7 @@ M.ServerlessV2ScalingConfiguration = {
 
 M.TagSpecification = {
     type = "structure",
+    id = "TagSpecification",
     members = {
         ResourceType = {
             type = "string",
@@ -2140,6 +2256,7 @@ M.TagSpecification = {
 
 M.CreateDBClusterInput = {
     type = "structure",
+    id = "CreateDBClusterInput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -2328,6 +2445,7 @@ M.CreateDBClusterInput = {
 
 M.DBClusterRole = {
     type = "structure",
+    id = "DBClusterRole",
     members = {
         RoleArn = {
             type = "string",
@@ -2343,6 +2461,7 @@ M.DBClusterRole = {
 
 M.CertificateDetails = {
     type = "structure",
+    id = "CertificateDetails",
     members = {
         CAIdentifier = {
             type = "string",
@@ -2355,6 +2474,7 @@ M.CertificateDetails = {
 
 M.DBClusterMember = {
     type = "structure",
+    id = "DBClusterMember",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -2373,6 +2493,7 @@ M.DBClusterMember = {
 
 M.DBClusterOptionGroupStatus = {
     type = "structure",
+    id = "DBClusterOptionGroupStatus",
     members = {
         DBClusterOptionGroupName = {
             type = "string",
@@ -2385,6 +2506,7 @@ M.DBClusterOptionGroupStatus = {
 
 M.DomainMembership = {
     type = "structure",
+    id = "DomainMembership",
     members = {
         Domain = {
             type = "string",
@@ -2432,6 +2554,7 @@ M.LimitlessDatabaseStatus = {
 
 M.LimitlessDatabase = {
     type = "structure",
+    id = "LimitlessDatabase",
     members = {
         Status = {
             type = "string",
@@ -2452,6 +2575,7 @@ M.LocalWriteForwardingStatus = {
 
 M.MasterUserSecret = {
     type = "structure",
+    id = "MasterUserSecret",
     members = {
         SecretArn = {
             type = "string",
@@ -2467,6 +2591,7 @@ M.MasterUserSecret = {
 
 M.PendingCloudwatchLogsExports = {
     type = "structure",
+    id = "PendingCloudwatchLogsExports",
     members = {
         LogTypesToEnable = {
             type = "list",
@@ -2481,6 +2606,7 @@ M.PendingCloudwatchLogsExports = {
 
 M.ClusterPendingModifiedValues = {
     type = "structure",
+    id = "ClusterPendingModifiedValues",
     members = {
         PendingCloudwatchLogsExports = M.PendingCloudwatchLogsExports,
         DBClusterIdentifier = {
@@ -2514,6 +2640,7 @@ M.ClusterPendingModifiedValues = {
 
 M.ScalingConfigurationInfo = {
     type = "structure",
+    id = "ScalingConfigurationInfo",
     members = {
         MinCapacity = {
             type = "integer",
@@ -2538,6 +2665,7 @@ M.ScalingConfigurationInfo = {
 
 M.ServerlessV2ScalingConfigurationInfo = {
     type = "structure",
+    id = "ServerlessV2ScalingConfigurationInfo",
     members = {
         MinCapacity = {
             type = "double",
@@ -2553,6 +2681,7 @@ M.ServerlessV2ScalingConfigurationInfo = {
 
 M.DBClusterStatusInfo = {
     type = "structure",
+    id = "DBClusterStatusInfo",
     members = {
         StatusType = {
             type = "string",
@@ -2577,6 +2706,7 @@ M.UpgradeRolloutOrder = {
 
 M.DBCluster = {
     type = "structure",
+    id = "DBCluster",
     members = {
         AllocatedStorage = {
             type = "integer",
@@ -2844,6 +2974,7 @@ M.DBCluster = {
 
 M.CreateDBClusterOutput = {
     type = "structure",
+    id = "CreateDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -2851,6 +2982,7 @@ M.CreateDBClusterOutput = {
 
 M.DBClusterAlreadyExistsFault = {
     type = "structure",
+    id = "DBClusterAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -2861,6 +2993,7 @@ M.DBClusterAlreadyExistsFault = {
 
 M.DBSubnetGroupDoesNotCoverEnoughAZs = {
     type = "structure",
+    id = "DBSubnetGroupDoesNotCoverEnoughAZs",
     error = "client",
     members = {
         message = {
@@ -2871,6 +3004,7 @@ M.DBSubnetGroupDoesNotCoverEnoughAZs = {
 
 M.DBSubnetGroupNotFoundFault = {
     type = "structure",
+    id = "DBSubnetGroupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2881,6 +3015,7 @@ M.DBSubnetGroupNotFoundFault = {
 
 M.DomainNotFoundFault = {
     type = "structure",
+    id = "DomainNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2891,6 +3026,7 @@ M.DomainNotFoundFault = {
 
 M.GlobalClusterNotFoundFault = {
     type = "structure",
+    id = "GlobalClusterNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -2901,6 +3037,7 @@ M.GlobalClusterNotFoundFault = {
 
 M.InsufficientDBInstanceCapacityFault = {
     type = "structure",
+    id = "InsufficientDBInstanceCapacityFault",
     error = "client",
     members = {
         message = {
@@ -2911,6 +3048,7 @@ M.InsufficientDBInstanceCapacityFault = {
 
 M.InsufficientStorageClusterCapacityFault = {
     type = "structure",
+    id = "InsufficientStorageClusterCapacityFault",
     error = "client",
     members = {
         message = {
@@ -2921,6 +3059,7 @@ M.InsufficientStorageClusterCapacityFault = {
 
 M.InvalidDBSubnetGroupFault = {
     type = "structure",
+    id = "InvalidDBSubnetGroupFault",
     error = "client",
     members = {
         message = {
@@ -2931,6 +3070,7 @@ M.InvalidDBSubnetGroupFault = {
 
 M.InvalidDBSubnetGroupStateFault = {
     type = "structure",
+    id = "InvalidDBSubnetGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -2941,6 +3081,7 @@ M.InvalidDBSubnetGroupStateFault = {
 
 M.InvalidGlobalClusterStateFault = {
     type = "structure",
+    id = "InvalidGlobalClusterStateFault",
     error = "client",
     members = {
         message = {
@@ -2951,6 +3092,7 @@ M.InvalidGlobalClusterStateFault = {
 
 M.InvalidSubnet = {
     type = "structure",
+    id = "InvalidSubnet",
     error = "client",
     members = {
         message = {
@@ -2961,6 +3103,7 @@ M.InvalidSubnet = {
 
 M.InvalidVPCNetworkStateFault = {
     type = "structure",
+    id = "InvalidVPCNetworkStateFault",
     error = "client",
     members = {
         message = {
@@ -2971,6 +3114,7 @@ M.InvalidVPCNetworkStateFault = {
 
 M.NetworkTypeNotSupported = {
     type = "structure",
+    id = "NetworkTypeNotSupported",
     error = "client",
     members = {
         message = {
@@ -2981,6 +3125,7 @@ M.NetworkTypeNotSupported = {
 
 M.StorageTypeNotSupportedFault = {
     type = "structure",
+    id = "StorageTypeNotSupportedFault",
     error = "client",
     members = {
         message = {
@@ -2991,6 +3136,7 @@ M.StorageTypeNotSupportedFault = {
 
 M.VpcEncryptionControlViolationException = {
     type = "structure",
+    id = "VpcEncryptionControlViolationException",
     error = "client",
     members = {
         message = {
@@ -3001,6 +3147,7 @@ M.VpcEncryptionControlViolationException = {
 
 M.CreateDBClusterEndpointInput = {
     type = "structure",
+    id = "CreateDBClusterEndpointInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -3037,6 +3184,7 @@ M.CreateDBClusterEndpointInput = {
 
 M.CreateDBClusterEndpointOutput = {
     type = "structure",
+    id = "CreateDBClusterEndpointOutput",
     members = {
         DBClusterEndpointIdentifier = {
             type = "string",
@@ -3075,6 +3223,7 @@ M.CreateDBClusterEndpointOutput = {
 
 M.DBClusterEndpointAlreadyExistsFault = {
     type = "structure",
+    id = "DBClusterEndpointAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3085,6 +3234,7 @@ M.DBClusterEndpointAlreadyExistsFault = {
 
 M.DBClusterEndpointQuotaExceededFault = {
     type = "structure",
+    id = "DBClusterEndpointQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3095,6 +3245,7 @@ M.DBClusterEndpointQuotaExceededFault = {
 
 M.CreateDBClusterParameterGroupInput = {
     type = "structure",
+    id = "CreateDBClusterParameterGroupInput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -3123,6 +3274,7 @@ M.CreateDBClusterParameterGroupInput = {
 
 M.CreateDBClusterParameterGroupOutput = {
     type = "structure",
+    id = "CreateDBClusterParameterGroupOutput",
     members = {
         DBClusterParameterGroup = M.DBClusterParameterGroup,
     },
@@ -3130,6 +3282,7 @@ M.CreateDBClusterParameterGroupOutput = {
 
 M.CreateDBClusterSnapshotInput = {
     type = "structure",
+    id = "CreateDBClusterSnapshotInput",
     members = {
         DBClusterSnapshotIdentifier = {
             type = "string",
@@ -3152,6 +3305,7 @@ M.CreateDBClusterSnapshotInput = {
 
 M.CreateDBClusterSnapshotOutput = {
     type = "structure",
+    id = "CreateDBClusterSnapshotOutput",
     members = {
         DBClusterSnapshot = M.DBClusterSnapshot,
     },
@@ -3159,6 +3313,7 @@ M.CreateDBClusterSnapshotOutput = {
 
 M.AuthorizationNotFoundFault = {
     type = "structure",
+    id = "AuthorizationNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3169,6 +3324,7 @@ M.AuthorizationNotFoundFault = {
 
 M.BackupPolicyNotFoundFault = {
     type = "structure",
+    id = "BackupPolicyNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3179,6 +3335,7 @@ M.BackupPolicyNotFoundFault = {
 
 M.CertificateNotFoundFault = {
     type = "structure",
+    id = "CertificateNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -3189,6 +3346,7 @@ M.CertificateNotFoundFault = {
 
 M.CreateDBInstanceInput = {
     type = "structure",
+    id = "CreateDBInstanceInput",
     members = {
         DBName = {
             type = "string",
@@ -3413,6 +3571,7 @@ M.CreateDBInstanceInput = {
 
 M.DBInstanceRole = {
     type = "structure",
+    id = "DBInstanceRole",
     members = {
         RoleArn = {
             type = "string",
@@ -3433,6 +3592,7 @@ M.AutomationMode = {
 
 M.DBInstanceAutomatedBackupsReplication = {
     type = "structure",
+    id = "DBInstanceAutomatedBackupsReplication",
     members = {
         DBInstanceAutomatedBackupsArn = {
             type = "string",
@@ -3442,6 +3602,7 @@ M.DBInstanceAutomatedBackupsReplication = {
 
 M.DBParameterGroupStatus = {
     type = "structure",
+    id = "DBParameterGroupStatus",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -3454,6 +3615,7 @@ M.DBParameterGroupStatus = {
 
 M.AvailabilityZone = {
     type = "structure",
+    id = "AvailabilityZone",
     members = {
         Name = {
             type = "string",
@@ -3463,6 +3625,7 @@ M.AvailabilityZone = {
 
 M.Outpost = {
     type = "structure",
+    id = "Outpost",
     members = {
         Arn = {
             type = "string",
@@ -3472,6 +3635,7 @@ M.Outpost = {
 
 M.Subnet = {
     type = "structure",
+    id = "Subnet",
     members = {
         SubnetIdentifier = {
             type = "string",
@@ -3486,6 +3650,7 @@ M.Subnet = {
 
 M.DBSubnetGroup = {
     type = "structure",
+    id = "DBSubnetGroup",
     members = {
         DBSubnetGroupName = {
             type = "string",
@@ -3515,6 +3680,7 @@ M.DBSubnetGroup = {
 
 M.Endpoint = {
     type = "structure",
+    id = "Endpoint",
     members = {
         Address = {
             type = "string",
@@ -3530,6 +3696,7 @@ M.Endpoint = {
 
 M.OptionGroupMembership = {
     type = "structure",
+    id = "OptionGroupMembership",
     members = {
         OptionGroupName = {
             type = "string",
@@ -3542,6 +3709,7 @@ M.OptionGroupMembership = {
 
 M.PendingModifiedValues = {
     type = "structure",
+    id = "PendingModifiedValues",
     members = {
         DBInstanceClass = {
             type = "string",
@@ -3617,6 +3785,7 @@ M.PendingModifiedValues = {
 
 M.DBInstanceStatusInfo = {
     type = "structure",
+    id = "DBInstanceStatusInfo",
     members = {
         StatusType = {
             type = "string",
@@ -3635,6 +3804,7 @@ M.DBInstanceStatusInfo = {
 
 M.DBInstance = {
     type = "structure",
+    id = "DBInstance",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -3916,6 +4086,7 @@ M.DBInstance = {
 
 M.CreateDBInstanceOutput = {
     type = "structure",
+    id = "CreateDBInstanceOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -3923,6 +4094,7 @@ M.CreateDBInstanceOutput = {
 
 M.DBInstanceAlreadyExistsFault = {
     type = "structure",
+    id = "DBInstanceAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -3933,6 +4105,7 @@ M.DBInstanceAlreadyExistsFault = {
 
 M.ProvisionedIopsNotAvailableInAZFault = {
     type = "structure",
+    id = "ProvisionedIopsNotAvailableInAZFault",
     error = "client",
     members = {
         message = {
@@ -3943,6 +4116,7 @@ M.ProvisionedIopsNotAvailableInAZFault = {
 
 M.TenantDatabaseQuotaExceededFault = {
     type = "structure",
+    id = "TenantDatabaseQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -3953,6 +4127,7 @@ M.TenantDatabaseQuotaExceededFault = {
 
 M.CreateDBInstanceReadReplicaInput = {
     type = "structure",
+    id = "CreateDBInstanceReadReplicaInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -4116,6 +4291,7 @@ M.CreateDBInstanceReadReplicaInput = {
 
 M.CreateDBInstanceReadReplicaOutput = {
     type = "structure",
+    id = "CreateDBInstanceReadReplicaOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -4123,6 +4299,7 @@ M.CreateDBInstanceReadReplicaOutput = {
 
 M.DBSubnetGroupNotAllowedFault = {
     type = "structure",
+    id = "DBSubnetGroupNotAllowedFault",
     error = "client",
     members = {
         message = {
@@ -4133,6 +4310,7 @@ M.DBSubnetGroupNotAllowedFault = {
 
 M.CreateDBParameterGroupInput = {
     type = "structure",
+    id = "CreateDBParameterGroupInput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -4161,6 +4339,7 @@ M.CreateDBParameterGroupInput = {
 
 M.CreateDBParameterGroupOutput = {
     type = "structure",
+    id = "CreateDBParameterGroupOutput",
     members = {
         DBParameterGroup = M.DBParameterGroup,
     },
@@ -4186,6 +4365,7 @@ M.IAMAuthMode = {
 
 M.UserAuthConfig = {
     type = "structure",
+    id = "UserAuthConfig",
     members = {
         Description = {
             type = "string",
@@ -4232,6 +4412,7 @@ M.TargetConnectionNetworkType = {
 
 M.CreateDBProxyInput = {
     type = "structure",
+    id = "CreateDBProxyInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -4293,6 +4474,7 @@ M.CreateDBProxyInput = {
 
 M.UserAuthConfigInfo = {
     type = "structure",
+    id = "UserAuthConfigInfo",
     members = {
         Description = {
             type = "string",
@@ -4329,6 +4511,7 @@ M.DBProxyStatus = {
 
 M.DBProxy = {
     type = "structure",
+    id = "DBProxy",
     members = {
         DBProxyName = {
             type = "string",
@@ -4392,6 +4575,7 @@ M.DBProxy = {
 
 M.CreateDBProxyOutput = {
     type = "structure",
+    id = "CreateDBProxyOutput",
     members = {
         DBProxy = M.DBProxy,
     },
@@ -4399,6 +4583,7 @@ M.CreateDBProxyOutput = {
 
 M.DBProxyAlreadyExistsFault = {
     type = "structure",
+    id = "DBProxyAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -4409,6 +4594,7 @@ M.DBProxyAlreadyExistsFault = {
 
 M.DBProxyQuotaExceededFault = {
     type = "structure",
+    id = "DBProxyQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -4424,6 +4610,7 @@ M.DBProxyEndpointTargetRole = {
 
 M.CreateDBProxyEndpointInput = {
     type = "structure",
+    id = "CreateDBProxyEndpointInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -4472,6 +4659,7 @@ M.DBProxyEndpointStatus = {
 
 M.DBProxyEndpoint = {
     type = "structure",
+    id = "DBProxyEndpoint",
     members = {
         DBProxyEndpointName = {
             type = "string",
@@ -4516,6 +4704,7 @@ M.DBProxyEndpoint = {
 
 M.CreateDBProxyEndpointOutput = {
     type = "structure",
+    id = "CreateDBProxyEndpointOutput",
     members = {
         DBProxyEndpoint = M.DBProxyEndpoint,
     },
@@ -4523,6 +4712,7 @@ M.CreateDBProxyEndpointOutput = {
 
 M.DBProxyEndpointAlreadyExistsFault = {
     type = "structure",
+    id = "DBProxyEndpointAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -4533,6 +4723,7 @@ M.DBProxyEndpointAlreadyExistsFault = {
 
 M.DBProxyEndpointQuotaExceededFault = {
     type = "structure",
+    id = "DBProxyEndpointQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -4543,6 +4734,7 @@ M.DBProxyEndpointQuotaExceededFault = {
 
 M.InvalidDBProxyStateFault = {
     type = "structure",
+    id = "InvalidDBProxyStateFault",
     error = "client",
     members = {
         message = {
@@ -4553,6 +4745,7 @@ M.InvalidDBProxyStateFault = {
 
 M.CreateDBSecurityGroupInput = {
     type = "structure",
+    id = "CreateDBSecurityGroupInput",
     members = {
         DBSecurityGroupName = {
             type = "string",
@@ -4575,6 +4768,7 @@ M.CreateDBSecurityGroupInput = {
 
 M.CreateDBSecurityGroupOutput = {
     type = "structure",
+    id = "CreateDBSecurityGroupOutput",
     members = {
         DBSecurityGroup = M.DBSecurityGroup,
     },
@@ -4582,6 +4776,7 @@ M.CreateDBSecurityGroupOutput = {
 
 M.DBSecurityGroupAlreadyExistsFault = {
     type = "structure",
+    id = "DBSecurityGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -4592,6 +4787,7 @@ M.DBSecurityGroupAlreadyExistsFault = {
 
 M.DBSecurityGroupNotSupportedFault = {
     type = "structure",
+    id = "DBSecurityGroupNotSupportedFault",
     error = "client",
     members = {
         message = {
@@ -4602,6 +4798,7 @@ M.DBSecurityGroupNotSupportedFault = {
 
 M.DBSecurityGroupQuotaExceededFault = {
     type = "structure",
+    id = "DBSecurityGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -4612,6 +4809,7 @@ M.DBSecurityGroupQuotaExceededFault = {
 
 M.CreateDBShardGroupInput = {
     type = "structure",
+    id = "CreateDBShardGroupInput",
     members = {
         DBShardGroupIdentifier = {
             type = "string",
@@ -4649,6 +4847,7 @@ M.CreateDBShardGroupInput = {
 
 M.CreateDBShardGroupOutput = {
     type = "structure",
+    id = "CreateDBShardGroupOutput",
     members = {
         DBShardGroupResourceId = {
             type = "string",
@@ -4689,6 +4888,7 @@ M.CreateDBShardGroupOutput = {
 
 M.DBShardGroupAlreadyExistsFault = {
     type = "structure",
+    id = "DBShardGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -4699,6 +4899,7 @@ M.DBShardGroupAlreadyExistsFault = {
 
 M.MaxDBShardGroupLimitReached = {
     type = "structure",
+    id = "MaxDBShardGroupLimitReached",
     error = "client",
     members = {
         message = {
@@ -4709,6 +4910,7 @@ M.MaxDBShardGroupLimitReached = {
 
 M.UnsupportedDBEngineVersionFault = {
     type = "structure",
+    id = "UnsupportedDBEngineVersionFault",
     error = "client",
     members = {
         message = {
@@ -4719,6 +4921,7 @@ M.UnsupportedDBEngineVersionFault = {
 
 M.CreateDBSnapshotInput = {
     type = "structure",
+    id = "CreateDBSnapshotInput",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -4741,6 +4944,7 @@ M.CreateDBSnapshotInput = {
 
 M.CreateDBSnapshotOutput = {
     type = "structure",
+    id = "CreateDBSnapshotOutput",
     members = {
         DBSnapshot = M.DBSnapshot,
     },
@@ -4748,6 +4952,7 @@ M.CreateDBSnapshotOutput = {
 
 M.CreateDBSubnetGroupInput = {
     type = "structure",
+    id = "CreateDBSubnetGroupInput",
     members = {
         DBSubnetGroupName = {
             type = "string",
@@ -4777,6 +4982,7 @@ M.CreateDBSubnetGroupInput = {
 
 M.CreateDBSubnetGroupOutput = {
     type = "structure",
+    id = "CreateDBSubnetGroupOutput",
     members = {
         DBSubnetGroup = M.DBSubnetGroup,
     },
@@ -4784,6 +4990,7 @@ M.CreateDBSubnetGroupOutput = {
 
 M.DBSubnetGroupAlreadyExistsFault = {
     type = "structure",
+    id = "DBSubnetGroupAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -4794,6 +5001,7 @@ M.DBSubnetGroupAlreadyExistsFault = {
 
 M.DBSubnetGroupQuotaExceededFault = {
     type = "structure",
+    id = "DBSubnetGroupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -4804,6 +5012,7 @@ M.DBSubnetGroupQuotaExceededFault = {
 
 M.DBSubnetQuotaExceededFault = {
     type = "structure",
+    id = "DBSubnetQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -4814,6 +5023,7 @@ M.DBSubnetQuotaExceededFault = {
 
 M.CreateEventSubscriptionInput = {
     type = "structure",
+    id = "CreateEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -4850,6 +5060,7 @@ M.CreateEventSubscriptionInput = {
 
 M.CreateEventSubscriptionOutput = {
     type = "structure",
+    id = "CreateEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -4857,6 +5068,7 @@ M.CreateEventSubscriptionOutput = {
 
 M.EventSubscriptionQuotaExceededFault = {
     type = "structure",
+    id = "EventSubscriptionQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -4867,6 +5079,7 @@ M.EventSubscriptionQuotaExceededFault = {
 
 M.SNSInvalidTopicFault = {
     type = "structure",
+    id = "SNSInvalidTopicFault",
     error = "client",
     members = {
         message = {
@@ -4877,6 +5090,7 @@ M.SNSInvalidTopicFault = {
 
 M.SNSNoAuthorizationFault = {
     type = "structure",
+    id = "SNSNoAuthorizationFault",
     error = "client",
     members = {
         message = {
@@ -4887,6 +5101,7 @@ M.SNSNoAuthorizationFault = {
 
 M.SNSTopicArnNotFoundFault = {
     type = "structure",
+    id = "SNSTopicArnNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4897,6 +5112,7 @@ M.SNSTopicArnNotFoundFault = {
 
 M.SubscriptionAlreadyExistFault = {
     type = "structure",
+    id = "SubscriptionAlreadyExistFault",
     error = "client",
     members = {
         message = {
@@ -4907,6 +5123,7 @@ M.SubscriptionAlreadyExistFault = {
 
 M.SubscriptionCategoryNotFoundFault = {
     type = "structure",
+    id = "SubscriptionCategoryNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -4917,6 +5134,7 @@ M.SubscriptionCategoryNotFoundFault = {
 
 M.CreateGlobalClusterInput = {
     type = "structure",
+    id = "CreateGlobalClusterInput",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -4960,6 +5178,7 @@ M.FailoverStatus = {
 
 M.FailoverState = {
     type = "structure",
+    id = "FailoverState",
     members = {
         Status = {
             type = "string",
@@ -4983,6 +5202,7 @@ M.GlobalClusterMemberSynchronizationStatus = {
 
 M.GlobalClusterMember = {
     type = "structure",
+    id = "GlobalClusterMember",
     members = {
         DBClusterArn = {
             type = "string",
@@ -5005,6 +5225,7 @@ M.GlobalClusterMember = {
 
 M.GlobalCluster = {
     type = "structure",
+    id = "GlobalCluster",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -5056,6 +5277,7 @@ M.GlobalCluster = {
 
 M.CreateGlobalClusterOutput = {
     type = "structure",
+    id = "CreateGlobalClusterOutput",
     members = {
         GlobalCluster = M.GlobalCluster,
     },
@@ -5063,6 +5285,7 @@ M.CreateGlobalClusterOutput = {
 
 M.GlobalClusterAlreadyExistsFault = {
     type = "structure",
+    id = "GlobalClusterAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -5073,6 +5296,7 @@ M.GlobalClusterAlreadyExistsFault = {
 
 M.GlobalClusterQuotaExceededFault = {
     type = "structure",
+    id = "GlobalClusterQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -5083,6 +5307,7 @@ M.GlobalClusterQuotaExceededFault = {
 
 M.InvalidDBShardGroupStateFault = {
     type = "structure",
+    id = "InvalidDBShardGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -5093,6 +5318,7 @@ M.InvalidDBShardGroupStateFault = {
 
 M.CreateIntegrationInput = {
     type = "structure",
+    id = "CreateIntegrationInput",
     members = {
         SourceArn = {
             type = "string",
@@ -5135,6 +5361,7 @@ M.CreateIntegrationInput = {
 
 M.IntegrationError = {
     type = "structure",
+    id = "IntegrationError",
     members = {
         ErrorCode = {
             type = "string",
@@ -5160,6 +5387,7 @@ M.IntegrationStatus = {
 
 M.CreateIntegrationOutput = {
     type = "structure",
+    id = "CreateIntegrationOutput",
     members = {
         SourceArn = {
             type = "string",
@@ -5206,6 +5434,7 @@ M.CreateIntegrationOutput = {
 
 M.IntegrationAlreadyExistsFault = {
     type = "structure",
+    id = "IntegrationAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -5216,6 +5445,7 @@ M.IntegrationAlreadyExistsFault = {
 
 M.IntegrationConflictOperationFault = {
     type = "structure",
+    id = "IntegrationConflictOperationFault",
     error = "client",
     members = {
         message = {
@@ -5226,6 +5456,7 @@ M.IntegrationConflictOperationFault = {
 
 M.IntegrationQuotaExceededFault = {
     type = "structure",
+    id = "IntegrationQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -5236,6 +5467,7 @@ M.IntegrationQuotaExceededFault = {
 
 M.CreateOptionGroupInput = {
     type = "structure",
+    id = "CreateOptionGroupInput",
     members = {
         OptionGroupName = {
             type = "string",
@@ -5270,6 +5502,7 @@ M.CreateOptionGroupInput = {
 
 M.CreateOptionGroupOutput = {
     type = "structure",
+    id = "CreateOptionGroupOutput",
     members = {
         OptionGroup = M.OptionGroup,
     },
@@ -5277,6 +5510,7 @@ M.CreateOptionGroupOutput = {
 
 M.CreateTenantDatabaseInput = {
     type = "structure",
+    id = "CreateTenantDatabaseInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -5320,6 +5554,7 @@ M.CreateTenantDatabaseInput = {
 
 M.TenantDatabasePendingModifiedValues = {
     type = "structure",
+    id = "TenantDatabasePendingModifiedValues",
     members = {
         MasterUserPassword = {
             type = "string",
@@ -5332,6 +5567,7 @@ M.TenantDatabasePendingModifiedValues = {
 
 M.TenantDatabase = {
     type = "structure",
+    id = "TenantDatabase",
     members = {
         TenantDatabaseCreateTime = {
             type = "timestamp",
@@ -5377,6 +5613,7 @@ M.TenantDatabase = {
 
 M.CreateTenantDatabaseOutput = {
     type = "structure",
+    id = "CreateTenantDatabaseOutput",
     members = {
         TenantDatabase = M.TenantDatabase,
     },
@@ -5384,6 +5621,7 @@ M.CreateTenantDatabaseOutput = {
 
 M.TenantDatabaseAlreadyExistsFault = {
     type = "structure",
+    id = "TenantDatabaseAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -5394,6 +5632,7 @@ M.TenantDatabaseAlreadyExistsFault = {
 
 M.DeleteBlueGreenDeploymentInput = {
     type = "structure",
+    id = "DeleteBlueGreenDeploymentInput",
     members = {
         BlueGreenDeploymentIdentifier = {
             type = "string",
@@ -5409,6 +5648,7 @@ M.DeleteBlueGreenDeploymentInput = {
 
 M.DeleteBlueGreenDeploymentOutput = {
     type = "structure",
+    id = "DeleteBlueGreenDeploymentOutput",
     members = {
         BlueGreenDeployment = M.BlueGreenDeployment,
     },
@@ -5416,6 +5656,7 @@ M.DeleteBlueGreenDeploymentOutput = {
 
 M.InvalidBlueGreenDeploymentStateFault = {
     type = "structure",
+    id = "InvalidBlueGreenDeploymentStateFault",
     error = "client",
     members = {
         message = {
@@ -5426,6 +5667,7 @@ M.InvalidBlueGreenDeploymentStateFault = {
 
 M.DeleteCustomDBEngineVersionInput = {
     type = "structure",
+    id = "DeleteCustomDBEngineVersionInput",
     members = {
         Engine = {
             type = "string",
@@ -5444,6 +5686,7 @@ M.DeleteCustomDBEngineVersionInput = {
 
 M.DeleteCustomDBEngineVersionOutput = {
     type = "structure",
+    id = "DeleteCustomDBEngineVersionOutput",
     members = {
         Engine = {
             type = "string",
@@ -5565,6 +5808,7 @@ M.DeleteCustomDBEngineVersionOutput = {
 
 M.DBClusterAutomatedBackupQuotaExceededFault = {
     type = "structure",
+    id = "DBClusterAutomatedBackupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -5575,6 +5819,7 @@ M.DBClusterAutomatedBackupQuotaExceededFault = {
 
 M.DeleteDBClusterInput = {
     type = "structure",
+    id = "DeleteDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -5596,6 +5841,7 @@ M.DeleteDBClusterInput = {
 
 M.DeleteDBClusterOutput = {
     type = "structure",
+    id = "DeleteDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -5603,6 +5849,7 @@ M.DeleteDBClusterOutput = {
 
 M.DBClusterAutomatedBackupNotFoundFault = {
     type = "structure",
+    id = "DBClusterAutomatedBackupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -5613,6 +5860,7 @@ M.DBClusterAutomatedBackupNotFoundFault = {
 
 M.DeleteDBClusterAutomatedBackupInput = {
     type = "structure",
+    id = "DeleteDBClusterAutomatedBackupInput",
     members = {
         DbClusterResourceId = {
             type = "string",
@@ -5625,6 +5873,7 @@ M.DeleteDBClusterAutomatedBackupInput = {
 
 M.RestoreWindow = {
     type = "structure",
+    id = "RestoreWindow",
     members = {
         EarliestTime = {
             type = "timestamp",
@@ -5637,6 +5886,7 @@ M.RestoreWindow = {
 
 M.DBClusterAutomatedBackup = {
     type = "structure",
+    id = "DBClusterAutomatedBackup",
     members = {
         Engine = {
             type = "string",
@@ -5727,6 +5977,7 @@ M.DBClusterAutomatedBackup = {
 
 M.DeleteDBClusterAutomatedBackupOutput = {
     type = "structure",
+    id = "DeleteDBClusterAutomatedBackupOutput",
     members = {
         DBClusterAutomatedBackup = M.DBClusterAutomatedBackup,
     },
@@ -5734,6 +5985,7 @@ M.DeleteDBClusterAutomatedBackupOutput = {
 
 M.InvalidDBClusterAutomatedBackupStateFault = {
     type = "structure",
+    id = "InvalidDBClusterAutomatedBackupStateFault",
     error = "client",
     members = {
         message = {
@@ -5744,6 +5996,7 @@ M.InvalidDBClusterAutomatedBackupStateFault = {
 
 M.DBClusterEndpointNotFoundFault = {
     type = "structure",
+    id = "DBClusterEndpointNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -5754,6 +6007,7 @@ M.DBClusterEndpointNotFoundFault = {
 
 M.DeleteDBClusterEndpointInput = {
     type = "structure",
+    id = "DeleteDBClusterEndpointInput",
     members = {
         DBClusterEndpointIdentifier = {
             type = "string",
@@ -5766,6 +6020,7 @@ M.DeleteDBClusterEndpointInput = {
 
 M.DeleteDBClusterEndpointOutput = {
     type = "structure",
+    id = "DeleteDBClusterEndpointOutput",
     members = {
         DBClusterEndpointIdentifier = {
             type = "string",
@@ -5804,6 +6059,7 @@ M.DeleteDBClusterEndpointOutput = {
 
 M.DeleteDBClusterParameterGroupInput = {
     type = "structure",
+    id = "DeleteDBClusterParameterGroupInput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -5816,10 +6072,12 @@ M.DeleteDBClusterParameterGroupInput = {
 
 M.DeleteDBClusterParameterGroupOutput = {
     type = "structure",
+    id = "DeleteDBClusterParameterGroupOutput",
 }
 
 M.InvalidDBParameterGroupStateFault = {
     type = "structure",
+    id = "InvalidDBParameterGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -5830,6 +6088,7 @@ M.InvalidDBParameterGroupStateFault = {
 
 M.DeleteDBClusterSnapshotInput = {
     type = "structure",
+    id = "DeleteDBClusterSnapshotInput",
     members = {
         DBClusterSnapshotIdentifier = {
             type = "string",
@@ -5842,6 +6101,7 @@ M.DeleteDBClusterSnapshotInput = {
 
 M.DeleteDBClusterSnapshotOutput = {
     type = "structure",
+    id = "DeleteDBClusterSnapshotOutput",
     members = {
         DBClusterSnapshot = M.DBClusterSnapshot,
     },
@@ -5849,6 +6109,7 @@ M.DeleteDBClusterSnapshotOutput = {
 
 M.DBInstanceAutomatedBackupQuotaExceededFault = {
     type = "structure",
+    id = "DBInstanceAutomatedBackupQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -5859,6 +6120,7 @@ M.DBInstanceAutomatedBackupQuotaExceededFault = {
 
 M.DeleteDBInstanceInput = {
     type = "structure",
+    id = "DeleteDBInstanceInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -5880,6 +6142,7 @@ M.DeleteDBInstanceInput = {
 
 M.DeleteDBInstanceOutput = {
     type = "structure",
+    id = "DeleteDBInstanceOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -5887,6 +6150,7 @@ M.DeleteDBInstanceOutput = {
 
 M.DBInstanceAutomatedBackupNotFoundFault = {
     type = "structure",
+    id = "DBInstanceAutomatedBackupNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -5897,6 +6161,7 @@ M.DBInstanceAutomatedBackupNotFoundFault = {
 
 M.DeleteDBInstanceAutomatedBackupInput = {
     type = "structure",
+    id = "DeleteDBInstanceAutomatedBackupInput",
     members = {
         DbiResourceId = {
             type = "string",
@@ -5909,6 +6174,7 @@ M.DeleteDBInstanceAutomatedBackupInput = {
 
 M.DBInstanceAutomatedBackup = {
     type = "structure",
+    id = "DBInstanceAutomatedBackup",
     members = {
         DBInstanceArn = {
             type = "string",
@@ -6021,6 +6287,7 @@ M.DBInstanceAutomatedBackup = {
 
 M.DeleteDBInstanceAutomatedBackupOutput = {
     type = "structure",
+    id = "DeleteDBInstanceAutomatedBackupOutput",
     members = {
         DBInstanceAutomatedBackup = M.DBInstanceAutomatedBackup,
     },
@@ -6028,6 +6295,7 @@ M.DeleteDBInstanceAutomatedBackupOutput = {
 
 M.InvalidDBInstanceAutomatedBackupStateFault = {
     type = "structure",
+    id = "InvalidDBInstanceAutomatedBackupStateFault",
     error = "client",
     members = {
         message = {
@@ -6038,6 +6306,7 @@ M.InvalidDBInstanceAutomatedBackupStateFault = {
 
 M.DeleteDBParameterGroupInput = {
     type = "structure",
+    id = "DeleteDBParameterGroupInput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -6050,10 +6319,12 @@ M.DeleteDBParameterGroupInput = {
 
 M.DeleteDBParameterGroupOutput = {
     type = "structure",
+    id = "DeleteDBParameterGroupOutput",
 }
 
 M.DeleteDBProxyInput = {
     type = "structure",
+    id = "DeleteDBProxyInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -6066,6 +6337,7 @@ M.DeleteDBProxyInput = {
 
 M.DeleteDBProxyOutput = {
     type = "structure",
+    id = "DeleteDBProxyOutput",
     members = {
         DBProxy = M.DBProxy,
     },
@@ -6073,6 +6345,7 @@ M.DeleteDBProxyOutput = {
 
 M.DeleteDBProxyEndpointInput = {
     type = "structure",
+    id = "DeleteDBProxyEndpointInput",
     members = {
         DBProxyEndpointName = {
             type = "string",
@@ -6085,6 +6358,7 @@ M.DeleteDBProxyEndpointInput = {
 
 M.DeleteDBProxyEndpointOutput = {
     type = "structure",
+    id = "DeleteDBProxyEndpointOutput",
     members = {
         DBProxyEndpoint = M.DBProxyEndpoint,
     },
@@ -6092,6 +6366,7 @@ M.DeleteDBProxyEndpointOutput = {
 
 M.InvalidDBProxyEndpointStateFault = {
     type = "structure",
+    id = "InvalidDBProxyEndpointStateFault",
     error = "client",
     members = {
         message = {
@@ -6102,6 +6377,7 @@ M.InvalidDBProxyEndpointStateFault = {
 
 M.DeleteDBSecurityGroupInput = {
     type = "structure",
+    id = "DeleteDBSecurityGroupInput",
     members = {
         DBSecurityGroupName = {
             type = "string",
@@ -6114,10 +6390,12 @@ M.DeleteDBSecurityGroupInput = {
 
 M.DeleteDBSecurityGroupOutput = {
     type = "structure",
+    id = "DeleteDBSecurityGroupOutput",
 }
 
 M.DeleteDBShardGroupInput = {
     type = "structure",
+    id = "DeleteDBShardGroupInput",
     members = {
         DBShardGroupIdentifier = {
             type = "string",
@@ -6130,6 +6408,7 @@ M.DeleteDBShardGroupInput = {
 
 M.DeleteDBShardGroupOutput = {
     type = "structure",
+    id = "DeleteDBShardGroupOutput",
     members = {
         DBShardGroupResourceId = {
             type = "string",
@@ -6170,6 +6449,7 @@ M.DeleteDBShardGroupOutput = {
 
 M.DeleteDBSnapshotInput = {
     type = "structure",
+    id = "DeleteDBSnapshotInput",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -6182,6 +6462,7 @@ M.DeleteDBSnapshotInput = {
 
 M.DeleteDBSnapshotOutput = {
     type = "structure",
+    id = "DeleteDBSnapshotOutput",
     members = {
         DBSnapshot = M.DBSnapshot,
     },
@@ -6189,6 +6470,7 @@ M.DeleteDBSnapshotOutput = {
 
 M.DeleteDBSubnetGroupInput = {
     type = "structure",
+    id = "DeleteDBSubnetGroupInput",
     members = {
         DBSubnetGroupName = {
             type = "string",
@@ -6201,10 +6483,12 @@ M.DeleteDBSubnetGroupInput = {
 
 M.DeleteDBSubnetGroupOutput = {
     type = "structure",
+    id = "DeleteDBSubnetGroupOutput",
 }
 
 M.InvalidDBSubnetStateFault = {
     type = "structure",
+    id = "InvalidDBSubnetStateFault",
     error = "client",
     members = {
         message = {
@@ -6215,6 +6499,7 @@ M.InvalidDBSubnetStateFault = {
 
 M.DeleteEventSubscriptionInput = {
     type = "structure",
+    id = "DeleteEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -6227,6 +6512,7 @@ M.DeleteEventSubscriptionInput = {
 
 M.DeleteEventSubscriptionOutput = {
     type = "structure",
+    id = "DeleteEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -6234,6 +6520,7 @@ M.DeleteEventSubscriptionOutput = {
 
 M.InvalidEventSubscriptionStateFault = {
     type = "structure",
+    id = "InvalidEventSubscriptionStateFault",
     error = "client",
     members = {
         message = {
@@ -6244,6 +6531,7 @@ M.InvalidEventSubscriptionStateFault = {
 
 M.DeleteGlobalClusterInput = {
     type = "structure",
+    id = "DeleteGlobalClusterInput",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -6256,6 +6544,7 @@ M.DeleteGlobalClusterInput = {
 
 M.DeleteGlobalClusterOutput = {
     type = "structure",
+    id = "DeleteGlobalClusterOutput",
     members = {
         GlobalCluster = M.GlobalCluster,
     },
@@ -6263,6 +6552,7 @@ M.DeleteGlobalClusterOutput = {
 
 M.DeleteIntegrationInput = {
     type = "structure",
+    id = "DeleteIntegrationInput",
     members = {
         IntegrationIdentifier = {
             type = "string",
@@ -6275,6 +6565,7 @@ M.DeleteIntegrationInput = {
 
 M.DeleteIntegrationOutput = {
     type = "structure",
+    id = "DeleteIntegrationOutput",
     members = {
         SourceArn = {
             type = "string",
@@ -6321,6 +6612,7 @@ M.DeleteIntegrationOutput = {
 
 M.InvalidIntegrationStateFault = {
     type = "structure",
+    id = "InvalidIntegrationStateFault",
     error = "client",
     members = {
         message = {
@@ -6331,6 +6623,7 @@ M.InvalidIntegrationStateFault = {
 
 M.DeleteOptionGroupInput = {
     type = "structure",
+    id = "DeleteOptionGroupInput",
     members = {
         OptionGroupName = {
             type = "string",
@@ -6343,10 +6636,12 @@ M.DeleteOptionGroupInput = {
 
 M.DeleteOptionGroupOutput = {
     type = "structure",
+    id = "DeleteOptionGroupOutput",
 }
 
 M.InvalidOptionGroupStateFault = {
     type = "structure",
+    id = "InvalidOptionGroupStateFault",
     error = "client",
     members = {
         message = {
@@ -6357,6 +6652,7 @@ M.InvalidOptionGroupStateFault = {
 
 M.DeleteTenantDatabaseInput = {
     type = "structure",
+    id = "DeleteTenantDatabaseInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -6381,6 +6677,7 @@ M.DeleteTenantDatabaseInput = {
 
 M.DeleteTenantDatabaseOutput = {
     type = "structure",
+    id = "DeleteTenantDatabaseOutput",
     members = {
         TenantDatabase = M.TenantDatabase,
     },
@@ -6388,6 +6685,7 @@ M.DeleteTenantDatabaseOutput = {
 
 M.DBProxyTargetNotFoundFault = {
     type = "structure",
+    id = "DBProxyTargetNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -6398,6 +6696,7 @@ M.DBProxyTargetNotFoundFault = {
 
 M.DeregisterDBProxyTargetsInput = {
     type = "structure",
+    id = "DeregisterDBProxyTargetsInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -6421,14 +6720,17 @@ M.DeregisterDBProxyTargetsInput = {
 
 M.DeregisterDBProxyTargetsOutput = {
     type = "structure",
+    id = "DeregisterDBProxyTargetsOutput",
 }
 
 M.DescribeAccountAttributesInput = {
     type = "structure",
+    id = "DescribeAccountAttributesInput",
 }
 
 M.DescribeAccountAttributesOutput = {
     type = "structure",
+    id = "DescribeAccountAttributesOutput",
     members = {
         AccountQuotas = {
             type = "list",
@@ -6439,6 +6741,7 @@ M.DescribeAccountAttributesOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         Name = {
             type = "string",
@@ -6458,6 +6761,7 @@ M.Filter = {
 
 M.DescribeBlueGreenDeploymentsInput = {
     type = "structure",
+    id = "DescribeBlueGreenDeploymentsInput",
     members = {
         BlueGreenDeploymentIdentifier = {
             type = "string",
@@ -6477,6 +6781,7 @@ M.DescribeBlueGreenDeploymentsInput = {
 
 M.DescribeBlueGreenDeploymentsOutput = {
     type = "structure",
+    id = "DescribeBlueGreenDeploymentsOutput",
     members = {
         BlueGreenDeployments = {
             type = "list",
@@ -6490,6 +6795,7 @@ M.DescribeBlueGreenDeploymentsOutput = {
 
 M.DescribeCertificatesInput = {
     type = "structure",
+    id = "DescribeCertificatesInput",
     members = {
         CertificateIdentifier = {
             type = "string",
@@ -6509,6 +6815,7 @@ M.DescribeCertificatesInput = {
 
 M.Certificate = {
     type = "structure",
+    id = "Certificate",
     members = {
         CertificateIdentifier = {
             type = "string",
@@ -6539,6 +6846,7 @@ M.Certificate = {
 
 M.DescribeCertificatesOutput = {
     type = "structure",
+    id = "DescribeCertificatesOutput",
     members = {
         DefaultCertificateForNewLaunches = {
             type = "string",
@@ -6555,6 +6863,7 @@ M.DescribeCertificatesOutput = {
 
 M.DescribeDBClusterAutomatedBackupsInput = {
     type = "structure",
+    id = "DescribeDBClusterAutomatedBackupsInput",
     members = {
         DbClusterResourceId = {
             type = "string",
@@ -6577,6 +6886,7 @@ M.DescribeDBClusterAutomatedBackupsInput = {
 
 M.DescribeDBClusterAutomatedBackupsOutput = {
     type = "structure",
+    id = "DescribeDBClusterAutomatedBackupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6590,6 +6900,7 @@ M.DescribeDBClusterAutomatedBackupsOutput = {
 
 M.DBClusterBacktrackNotFoundFault = {
     type = "structure",
+    id = "DBClusterBacktrackNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -6600,6 +6911,7 @@ M.DBClusterBacktrackNotFoundFault = {
 
 M.DescribeDBClusterBacktracksInput = {
     type = "structure",
+    id = "DescribeDBClusterBacktracksInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -6625,6 +6937,7 @@ M.DescribeDBClusterBacktracksInput = {
 
 M.DBClusterBacktrack = {
     type = "structure",
+    id = "DBClusterBacktrack",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -6649,6 +6962,7 @@ M.DBClusterBacktrack = {
 
 M.DescribeDBClusterBacktracksOutput = {
     type = "structure",
+    id = "DescribeDBClusterBacktracksOutput",
     members = {
         Marker = {
             type = "string",
@@ -6662,6 +6976,7 @@ M.DescribeDBClusterBacktracksOutput = {
 
 M.DescribeDBClusterEndpointsInput = {
     type = "structure",
+    id = "DescribeDBClusterEndpointsInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -6684,6 +6999,7 @@ M.DescribeDBClusterEndpointsInput = {
 
 M.DBClusterEndpoint = {
     type = "structure",
+    id = "DBClusterEndpoint",
     members = {
         DBClusterEndpointIdentifier = {
             type = "string",
@@ -6722,6 +7038,7 @@ M.DBClusterEndpoint = {
 
 M.DescribeDBClusterEndpointsOutput = {
     type = "structure",
+    id = "DescribeDBClusterEndpointsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6735,6 +7052,7 @@ M.DescribeDBClusterEndpointsOutput = {
 
 M.DescribeDBClusterParameterGroupsInput = {
     type = "structure",
+    id = "DescribeDBClusterParameterGroupsInput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -6754,6 +7072,7 @@ M.DescribeDBClusterParameterGroupsInput = {
 
 M.DescribeDBClusterParameterGroupsOutput = {
     type = "structure",
+    id = "DescribeDBClusterParameterGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6767,6 +7086,7 @@ M.DescribeDBClusterParameterGroupsOutput = {
 
 M.DescribeDBClusterParametersInput = {
     type = "structure",
+    id = "DescribeDBClusterParametersInput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -6797,6 +7117,7 @@ M.ApplyMethod = {
 
 M.Parameter = {
     type = "structure",
+    id = "Parameter",
     members = {
         ParameterName = {
             type = "string",
@@ -6837,6 +7158,7 @@ M.Parameter = {
 
 M.DescribeDBClusterParametersOutput = {
     type = "structure",
+    id = "DescribeDBClusterParametersOutput",
     members = {
         Parameters = {
             type = "list",
@@ -6850,6 +7172,7 @@ M.DescribeDBClusterParametersOutput = {
 
 M.DescribeDBClustersInput = {
     type = "structure",
+    id = "DescribeDBClustersInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -6872,6 +7195,7 @@ M.DescribeDBClustersInput = {
 
 M.DescribeDBClustersOutput = {
     type = "structure",
+    id = "DescribeDBClustersOutput",
     members = {
         Marker = {
             type = "string",
@@ -6885,6 +7209,7 @@ M.DescribeDBClustersOutput = {
 
 M.DescribeDBClusterSnapshotAttributesInput = {
     type = "structure",
+    id = "DescribeDBClusterSnapshotAttributesInput",
     members = {
         DBClusterSnapshotIdentifier = {
             type = "string",
@@ -6897,6 +7222,7 @@ M.DescribeDBClusterSnapshotAttributesInput = {
 
 M.DBClusterSnapshotAttribute = {
     type = "structure",
+    id = "DBClusterSnapshotAttribute",
     members = {
         AttributeName = {
             type = "string",
@@ -6910,6 +7236,7 @@ M.DBClusterSnapshotAttribute = {
 
 M.DBClusterSnapshotAttributesResult = {
     type = "structure",
+    id = "DBClusterSnapshotAttributesResult",
     members = {
         DBClusterSnapshotIdentifier = {
             type = "string",
@@ -6923,6 +7250,7 @@ M.DBClusterSnapshotAttributesResult = {
 
 M.DescribeDBClusterSnapshotAttributesOutput = {
     type = "structure",
+    id = "DescribeDBClusterSnapshotAttributesOutput",
     members = {
         DBClusterSnapshotAttributesResult = M.DBClusterSnapshotAttributesResult,
     },
@@ -6930,6 +7258,7 @@ M.DescribeDBClusterSnapshotAttributesOutput = {
 
 M.DescribeDBClusterSnapshotsInput = {
     type = "structure",
+    id = "DescribeDBClusterSnapshotsInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -6964,6 +7293,7 @@ M.DescribeDBClusterSnapshotsInput = {
 
 M.DescribeDBClusterSnapshotsOutput = {
     type = "structure",
+    id = "DescribeDBClusterSnapshotsOutput",
     members = {
         Marker = {
             type = "string",
@@ -6977,6 +7307,7 @@ M.DescribeDBClusterSnapshotsOutput = {
 
 M.DescribeDBEngineVersionsInput = {
     type = "structure",
+    id = "DescribeDBEngineVersionsInput",
     members = {
         Engine = {
             type = "string",
@@ -7014,6 +7345,7 @@ M.DescribeDBEngineVersionsInput = {
 
 M.DBEngineVersion = {
     type = "structure",
+    id = "DBEngineVersion",
     members = {
         Engine = {
             type = "string",
@@ -7135,6 +7467,7 @@ M.DBEngineVersion = {
 
 M.DescribeDBEngineVersionsOutput = {
     type = "structure",
+    id = "DescribeDBEngineVersionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -7148,6 +7481,7 @@ M.DescribeDBEngineVersionsOutput = {
 
 M.DescribeDBInstanceAutomatedBackupsInput = {
     type = "structure",
+    id = "DescribeDBInstanceAutomatedBackupsInput",
     members = {
         DbiResourceId = {
             type = "string",
@@ -7173,6 +7507,7 @@ M.DescribeDBInstanceAutomatedBackupsInput = {
 
 M.DescribeDBInstanceAutomatedBackupsOutput = {
     type = "structure",
+    id = "DescribeDBInstanceAutomatedBackupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -7186,6 +7521,7 @@ M.DescribeDBInstanceAutomatedBackupsOutput = {
 
 M.DescribeDBInstancesInput = {
     type = "structure",
+    id = "DescribeDBInstancesInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -7205,6 +7541,7 @@ M.DescribeDBInstancesInput = {
 
 M.DescribeDBInstancesOutput = {
     type = "structure",
+    id = "DescribeDBInstancesOutput",
     members = {
         Marker = {
             type = "string",
@@ -7218,6 +7555,7 @@ M.DescribeDBInstancesOutput = {
 
 M.DBInstanceNotReadyFault = {
     type = "structure",
+    id = "DBInstanceNotReadyFault",
     error = "client",
     members = {
         message = {
@@ -7228,6 +7566,7 @@ M.DBInstanceNotReadyFault = {
 
 M.DescribeDBLogFilesInput = {
     type = "structure",
+    id = "DescribeDBLogFilesInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -7259,6 +7598,7 @@ M.DescribeDBLogFilesInput = {
 
 M.DescribeDBLogFilesDetails = {
     type = "structure",
+    id = "DescribeDBLogFilesDetails",
     members = {
         LogFileName = {
             type = "string",
@@ -7274,6 +7614,7 @@ M.DescribeDBLogFilesDetails = {
 
 M.DescribeDBLogFilesOutput = {
     type = "structure",
+    id = "DescribeDBLogFilesOutput",
     members = {
         DescribeDBLogFiles = {
             type = "list",
@@ -7287,6 +7628,7 @@ M.DescribeDBLogFilesOutput = {
 
 M.DescribeDBMajorEngineVersionsInput = {
     type = "structure",
+    id = "DescribeDBMajorEngineVersionsInput",
     members = {
         Engine = {
             type = "string",
@@ -7310,6 +7652,7 @@ M.LifecycleSupportName = {
 
 M.SupportedEngineLifecycle = {
     type = "structure",
+    id = "SupportedEngineLifecycle",
     members = {
         LifecycleSupportName = {
             type = "string",
@@ -7334,6 +7677,7 @@ M.SupportedEngineLifecycle = {
 
 M.DBMajorEngineVersion = {
     type = "structure",
+    id = "DBMajorEngineVersion",
     members = {
         Engine = {
             type = "string",
@@ -7350,6 +7694,7 @@ M.DBMajorEngineVersion = {
 
 M.DescribeDBMajorEngineVersionsOutput = {
     type = "structure",
+    id = "DescribeDBMajorEngineVersionsOutput",
     members = {
         DBMajorEngineVersions = {
             type = "list",
@@ -7363,6 +7708,7 @@ M.DescribeDBMajorEngineVersionsOutput = {
 
 M.DescribeDBParameterGroupsInput = {
     type = "structure",
+    id = "DescribeDBParameterGroupsInput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -7382,6 +7728,7 @@ M.DescribeDBParameterGroupsInput = {
 
 M.DescribeDBParameterGroupsOutput = {
     type = "structure",
+    id = "DescribeDBParameterGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -7395,6 +7742,7 @@ M.DescribeDBParameterGroupsOutput = {
 
 M.DescribeDBParametersInput = {
     type = "structure",
+    id = "DescribeDBParametersInput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -7420,6 +7768,7 @@ M.DescribeDBParametersInput = {
 
 M.DescribeDBParametersOutput = {
     type = "structure",
+    id = "DescribeDBParametersOutput",
     members = {
         Parameters = {
             type = "list",
@@ -7433,6 +7782,7 @@ M.DescribeDBParametersOutput = {
 
 M.DescribeDBProxiesInput = {
     type = "structure",
+    id = "DescribeDBProxiesInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -7452,6 +7802,7 @@ M.DescribeDBProxiesInput = {
 
 M.DescribeDBProxiesOutput = {
     type = "structure",
+    id = "DescribeDBProxiesOutput",
     members = {
         DBProxies = {
             type = "list",
@@ -7465,6 +7816,7 @@ M.DescribeDBProxiesOutput = {
 
 M.DescribeDBProxyEndpointsInput = {
     type = "structure",
+    id = "DescribeDBProxyEndpointsInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -7487,6 +7839,7 @@ M.DescribeDBProxyEndpointsInput = {
 
 M.DescribeDBProxyEndpointsOutput = {
     type = "structure",
+    id = "DescribeDBProxyEndpointsOutput",
     members = {
         DBProxyEndpoints = {
             type = "list",
@@ -7500,6 +7853,7 @@ M.DescribeDBProxyEndpointsOutput = {
 
 M.DescribeDBProxyTargetGroupsInput = {
     type = "structure",
+    id = "DescribeDBProxyTargetGroupsInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -7525,6 +7879,7 @@ M.DescribeDBProxyTargetGroupsInput = {
 
 M.ConnectionPoolConfigurationInfo = {
     type = "structure",
+    id = "ConnectionPoolConfigurationInfo",
     members = {
         MaxConnectionsPercent = {
             type = "integer",
@@ -7547,6 +7902,7 @@ M.ConnectionPoolConfigurationInfo = {
 
 M.DBProxyTargetGroup = {
     type = "structure",
+    id = "DBProxyTargetGroup",
     members = {
         DBProxyName = {
             type = "string",
@@ -7575,6 +7931,7 @@ M.DBProxyTargetGroup = {
 
 M.DescribeDBProxyTargetGroupsOutput = {
     type = "structure",
+    id = "DescribeDBProxyTargetGroupsOutput",
     members = {
         TargetGroups = {
             type = "list",
@@ -7588,6 +7945,7 @@ M.DescribeDBProxyTargetGroupsOutput = {
 
 M.DescribeDBProxyTargetsInput = {
     type = "structure",
+    id = "DescribeDBProxyTargetsInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -7635,6 +7993,7 @@ M.TargetState = {
 
 M.TargetHealth = {
     type = "structure",
+    id = "TargetHealth",
     members = {
         State = {
             type = "string",
@@ -7656,6 +8015,7 @@ M.TargetType = {
 
 M.DBProxyTarget = {
     type = "structure",
+    id = "DBProxyTarget",
     members = {
         TargetArn = {
             type = "string",
@@ -7684,6 +8044,7 @@ M.DBProxyTarget = {
 
 M.DescribeDBProxyTargetsOutput = {
     type = "structure",
+    id = "DescribeDBProxyTargetsOutput",
     members = {
         Targets = {
             type = "list",
@@ -7697,6 +8058,7 @@ M.DescribeDBProxyTargetsOutput = {
 
 M.DescribeDBRecommendationsInput = {
     type = "structure",
+    id = "DescribeDBRecommendationsInput",
     members = {
         LastUpdatedAfter = {
             type = "timestamp",
@@ -7722,6 +8084,7 @@ M.DescribeDBRecommendationsInput = {
 
 M.PerformanceInsightsMetricDimensionGroup = {
     type = "structure",
+    id = "PerformanceInsightsMetricDimensionGroup",
     members = {
         Dimensions = {
             type = "list",
@@ -7738,6 +8101,7 @@ M.PerformanceInsightsMetricDimensionGroup = {
 
 M.PerformanceInsightsMetricQuery = {
     type = "structure",
+    id = "PerformanceInsightsMetricQuery",
     members = {
         GroupBy = M.PerformanceInsightsMetricDimensionGroup,
         Metric = {
@@ -7748,6 +8112,7 @@ M.PerformanceInsightsMetricQuery = {
 
 M.MetricQuery = {
     type = "structure",
+    id = "MetricQuery",
     members = {
         PerformanceInsightsMetricQuery = M.PerformanceInsightsMetricQuery,
     },
@@ -7755,6 +8120,7 @@ M.MetricQuery = {
 
 M.ScalarReferenceDetails = {
     type = "structure",
+    id = "ScalarReferenceDetails",
     members = {
         Value = {
             type = "double",
@@ -7764,6 +8130,7 @@ M.ScalarReferenceDetails = {
 
 M.ReferenceDetails = {
     type = "structure",
+    id = "ReferenceDetails",
     members = {
         ScalarReferenceDetails = M.ScalarReferenceDetails,
     },
@@ -7771,6 +8138,7 @@ M.ReferenceDetails = {
 
 M.MetricReference = {
     type = "structure",
+    id = "MetricReference",
     members = {
         Name = {
             type = "string",
@@ -7781,6 +8149,7 @@ M.MetricReference = {
 
 M.Metric = {
     type = "structure",
+    id = "Metric",
     members = {
         Name = {
             type = "string",
@@ -7798,6 +8167,7 @@ M.Metric = {
 
 M.PerformanceIssueDetails = {
     type = "structure",
+    id = "PerformanceIssueDetails",
     members = {
         StartTime = {
             type = "timestamp",
@@ -7817,6 +8187,7 @@ M.PerformanceIssueDetails = {
 
 M.IssueDetails = {
     type = "structure",
+    id = "IssueDetails",
     members = {
         PerformanceIssueDetails = M.PerformanceIssueDetails,
     },
@@ -7824,6 +8195,7 @@ M.IssueDetails = {
 
 M.DocLink = {
     type = "structure",
+    id = "DocLink",
     members = {
         Text = {
             type = "string",
@@ -7836,6 +8208,7 @@ M.DocLink = {
 
 M.ContextAttribute = {
     type = "structure",
+    id = "ContextAttribute",
     members = {
         Key = {
             type = "string",
@@ -7848,6 +8221,7 @@ M.ContextAttribute = {
 
 M.RecommendedActionParameter = {
     type = "structure",
+    id = "RecommendedActionParameter",
     members = {
         Key = {
             type = "string",
@@ -7860,6 +8234,7 @@ M.RecommendedActionParameter = {
 
 M.RecommendedAction = {
     type = "structure",
+    id = "RecommendedAction",
     members = {
         ActionId = {
             type = "string",
@@ -7894,6 +8269,7 @@ M.RecommendedAction = {
 
 M.DBRecommendation = {
     type = "structure",
+    id = "DBRecommendation",
     members = {
         RecommendationId = {
             type = "string",
@@ -7960,6 +8336,7 @@ M.DBRecommendation = {
 
 M.DescribeDBRecommendationsOutput = {
     type = "structure",
+    id = "DescribeDBRecommendationsOutput",
     members = {
         DBRecommendations = {
             type = "list",
@@ -7973,6 +8350,7 @@ M.DescribeDBRecommendationsOutput = {
 
 M.DescribeDBSecurityGroupsInput = {
     type = "structure",
+    id = "DescribeDBSecurityGroupsInput",
     members = {
         DBSecurityGroupName = {
             type = "string",
@@ -7992,6 +8370,7 @@ M.DescribeDBSecurityGroupsInput = {
 
 M.DescribeDBSecurityGroupsOutput = {
     type = "structure",
+    id = "DescribeDBSecurityGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -8005,6 +8384,7 @@ M.DescribeDBSecurityGroupsOutput = {
 
 M.DescribeDBShardGroupsInput = {
     type = "structure",
+    id = "DescribeDBShardGroupsInput",
     members = {
         DBShardGroupIdentifier = {
             type = "string",
@@ -8024,6 +8404,7 @@ M.DescribeDBShardGroupsInput = {
 
 M.DBShardGroup = {
     type = "structure",
+    id = "DBShardGroup",
     members = {
         DBShardGroupResourceId = {
             type = "string",
@@ -8064,6 +8445,7 @@ M.DBShardGroup = {
 
 M.DescribeDBShardGroupsOutput = {
     type = "structure",
+    id = "DescribeDBShardGroupsOutput",
     members = {
         DBShardGroups = {
             type = "list",
@@ -8077,6 +8459,7 @@ M.DescribeDBShardGroupsOutput = {
 
 M.DescribeDBSnapshotAttributesInput = {
     type = "structure",
+    id = "DescribeDBSnapshotAttributesInput",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -8089,6 +8472,7 @@ M.DescribeDBSnapshotAttributesInput = {
 
 M.DBSnapshotAttribute = {
     type = "structure",
+    id = "DBSnapshotAttribute",
     members = {
         AttributeName = {
             type = "string",
@@ -8102,6 +8486,7 @@ M.DBSnapshotAttribute = {
 
 M.DBSnapshotAttributesResult = {
     type = "structure",
+    id = "DBSnapshotAttributesResult",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -8115,6 +8500,7 @@ M.DBSnapshotAttributesResult = {
 
 M.DescribeDBSnapshotAttributesOutput = {
     type = "structure",
+    id = "DescribeDBSnapshotAttributesOutput",
     members = {
         DBSnapshotAttributesResult = M.DBSnapshotAttributesResult,
     },
@@ -8122,6 +8508,7 @@ M.DescribeDBSnapshotAttributesOutput = {
 
 M.DescribeDBSnapshotsInput = {
     type = "structure",
+    id = "DescribeDBSnapshotsInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -8156,6 +8543,7 @@ M.DescribeDBSnapshotsInput = {
 
 M.DescribeDBSnapshotsOutput = {
     type = "structure",
+    id = "DescribeDBSnapshotsOutput",
     members = {
         Marker = {
             type = "string",
@@ -8169,6 +8557,7 @@ M.DescribeDBSnapshotsOutput = {
 
 M.DescribeDBSnapshotTenantDatabasesInput = {
     type = "structure",
+    id = "DescribeDBSnapshotTenantDatabasesInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -8197,6 +8586,7 @@ M.DescribeDBSnapshotTenantDatabasesInput = {
 
 M.DBSnapshotTenantDatabase = {
     type = "structure",
+    id = "DBSnapshotTenantDatabase",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -8243,6 +8633,7 @@ M.DBSnapshotTenantDatabase = {
 
 M.DescribeDBSnapshotTenantDatabasesOutput = {
     type = "structure",
+    id = "DescribeDBSnapshotTenantDatabasesOutput",
     members = {
         Marker = {
             type = "string",
@@ -8256,6 +8647,7 @@ M.DescribeDBSnapshotTenantDatabasesOutput = {
 
 M.DescribeDBSubnetGroupsInput = {
     type = "structure",
+    id = "DescribeDBSubnetGroupsInput",
     members = {
         DBSubnetGroupName = {
             type = "string",
@@ -8275,6 +8667,7 @@ M.DescribeDBSubnetGroupsInput = {
 
 M.DescribeDBSubnetGroupsOutput = {
     type = "structure",
+    id = "DescribeDBSubnetGroupsOutput",
     members = {
         Marker = {
             type = "string",
@@ -8288,6 +8681,7 @@ M.DescribeDBSubnetGroupsOutput = {
 
 M.DescribeEngineDefaultClusterParametersInput = {
     type = "structure",
+    id = "DescribeEngineDefaultClusterParametersInput",
     members = {
         DBParameterGroupFamily = {
             type = "string",
@@ -8310,6 +8704,7 @@ M.DescribeEngineDefaultClusterParametersInput = {
 
 M.EngineDefaults = {
     type = "structure",
+    id = "EngineDefaults",
     members = {
         DBParameterGroupFamily = {
             type = "string",
@@ -8326,6 +8721,7 @@ M.EngineDefaults = {
 
 M.DescribeEngineDefaultClusterParametersOutput = {
     type = "structure",
+    id = "DescribeEngineDefaultClusterParametersOutput",
     members = {
         EngineDefaults = M.EngineDefaults,
     },
@@ -8333,6 +8729,7 @@ M.DescribeEngineDefaultClusterParametersOutput = {
 
 M.DescribeEngineDefaultParametersInput = {
     type = "structure",
+    id = "DescribeEngineDefaultParametersInput",
     members = {
         DBParameterGroupFamily = {
             type = "string",
@@ -8355,6 +8752,7 @@ M.DescribeEngineDefaultParametersInput = {
 
 M.DescribeEngineDefaultParametersOutput = {
     type = "structure",
+    id = "DescribeEngineDefaultParametersOutput",
     members = {
         EngineDefaults = M.EngineDefaults,
     },
@@ -8362,6 +8760,7 @@ M.DescribeEngineDefaultParametersOutput = {
 
 M.DescribeEventCategoriesInput = {
     type = "structure",
+    id = "DescribeEventCategoriesInput",
     members = {
         SourceType = {
             type = "string",
@@ -8375,6 +8774,7 @@ M.DescribeEventCategoriesInput = {
 
 M.EventCategoriesMap = {
     type = "structure",
+    id = "EventCategoriesMap",
     members = {
         SourceType = {
             type = "string",
@@ -8388,6 +8788,7 @@ M.EventCategoriesMap = {
 
 M.DescribeEventCategoriesOutput = {
     type = "structure",
+    id = "DescribeEventCategoriesOutput",
     members = {
         EventCategoriesMapList = {
             type = "list",
@@ -8412,6 +8813,7 @@ M.SourceType = {
 
 M.DescribeEventsInput = {
     type = "structure",
+    id = "DescribeEventsInput",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -8447,6 +8849,7 @@ M.DescribeEventsInput = {
 
 M.Event = {
     type = "structure",
+    id = "Event",
     members = {
         SourceIdentifier = {
             type = "string",
@@ -8472,6 +8875,7 @@ M.Event = {
 
 M.DescribeEventsOutput = {
     type = "structure",
+    id = "DescribeEventsOutput",
     members = {
         Marker = {
             type = "string",
@@ -8485,6 +8889,7 @@ M.DescribeEventsOutput = {
 
 M.DescribeEventSubscriptionsInput = {
     type = "structure",
+    id = "DescribeEventSubscriptionsInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -8504,6 +8909,7 @@ M.DescribeEventSubscriptionsInput = {
 
 M.DescribeEventSubscriptionsOutput = {
     type = "structure",
+    id = "DescribeEventSubscriptionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -8517,6 +8923,7 @@ M.DescribeEventSubscriptionsOutput = {
 
 M.DescribeExportTasksInput = {
     type = "structure",
+    id = "DescribeExportTasksInput",
     members = {
         ExportTaskIdentifier = {
             type = "string",
@@ -8542,6 +8949,7 @@ M.DescribeExportTasksInput = {
 
 M.ExportTask = {
     type = "structure",
+    id = "ExportTask",
     members = {
         ExportTaskIdentifier = {
             type = "string",
@@ -8597,6 +9005,7 @@ M.ExportTask = {
 
 M.DescribeExportTasksOutput = {
     type = "structure",
+    id = "DescribeExportTasksOutput",
     members = {
         Marker = {
             type = "string",
@@ -8610,6 +9019,7 @@ M.DescribeExportTasksOutput = {
 
 M.DescribeGlobalClustersInput = {
     type = "structure",
+    id = "DescribeGlobalClustersInput",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -8629,6 +9039,7 @@ M.DescribeGlobalClustersInput = {
 
 M.DescribeGlobalClustersOutput = {
     type = "structure",
+    id = "DescribeGlobalClustersOutput",
     members = {
         Marker = {
             type = "string",
@@ -8642,6 +9053,7 @@ M.DescribeGlobalClustersOutput = {
 
 M.DescribeIntegrationsInput = {
     type = "structure",
+    id = "DescribeIntegrationsInput",
     members = {
         IntegrationIdentifier = {
             type = "string",
@@ -8661,6 +9073,7 @@ M.DescribeIntegrationsInput = {
 
 M.Integration = {
     type = "structure",
+    id = "Integration",
     members = {
         SourceArn = {
             type = "string",
@@ -8707,6 +9120,7 @@ M.Integration = {
 
 M.DescribeIntegrationsOutput = {
     type = "structure",
+    id = "DescribeIntegrationsOutput",
     members = {
         Marker = {
             type = "string",
@@ -8720,6 +9134,7 @@ M.DescribeIntegrationsOutput = {
 
 M.DescribeOptionGroupOptionsInput = {
     type = "structure",
+    id = "DescribeOptionGroupOptionsInput",
     members = {
         EngineName = {
             type = "string",
@@ -8745,6 +9160,7 @@ M.DescribeOptionGroupOptionsInput = {
 
 M.MinimumEngineVersionPerAllowedValue = {
     type = "structure",
+    id = "MinimumEngineVersionPerAllowedValue",
     members = {
         AllowedValue = {
             type = "string",
@@ -8757,6 +9173,7 @@ M.MinimumEngineVersionPerAllowedValue = {
 
 M.OptionGroupOptionSetting = {
     type = "structure",
+    id = "OptionGroupOptionSetting",
     members = {
         SettingName = {
             type = "string",
@@ -8788,6 +9205,7 @@ M.OptionGroupOptionSetting = {
 
 M.OptionVersion = {
     type = "structure",
+    id = "OptionVersion",
     members = {
         Version = {
             type = "string",
@@ -8800,6 +9218,7 @@ M.OptionVersion = {
 
 M.OptionGroupOption = {
     type = "structure",
+    id = "OptionGroupOption",
     members = {
         Name = {
             type = "string",
@@ -8861,6 +9280,7 @@ M.OptionGroupOption = {
 
 M.DescribeOptionGroupOptionsOutput = {
     type = "structure",
+    id = "DescribeOptionGroupOptionsOutput",
     members = {
         OptionGroupOptions = {
             type = "list",
@@ -8874,6 +9294,7 @@ M.DescribeOptionGroupOptionsOutput = {
 
 M.DescribeOptionGroupsInput = {
     type = "structure",
+    id = "DescribeOptionGroupsInput",
     members = {
         OptionGroupName = {
             type = "string",
@@ -8899,6 +9320,7 @@ M.DescribeOptionGroupsInput = {
 
 M.DescribeOptionGroupsOutput = {
     type = "structure",
+    id = "DescribeOptionGroupsOutput",
     members = {
         OptionGroupsList = {
             type = "list",
@@ -8912,6 +9334,7 @@ M.DescribeOptionGroupsOutput = {
 
 M.DescribeOrderableDBInstanceOptionsInput = {
     type = "structure",
+    id = "DescribeOrderableDBInstanceOptionsInput",
     members = {
         Engine = {
             type = "string",
@@ -8949,6 +9372,7 @@ M.DescribeOrderableDBInstanceOptionsInput = {
 
 M.AvailableAdditionalStorageVolumesOption = {
     type = "structure",
+    id = "AvailableAdditionalStorageVolumesOption",
     members = {
         SupportsStorageAutoscaling = {
             type = "boolean",
@@ -8991,6 +9415,7 @@ M.AvailableAdditionalStorageVolumesOption = {
 
 M.AvailableProcessorFeature = {
     type = "structure",
+    id = "AvailableProcessorFeature",
     members = {
         Name = {
             type = "string",
@@ -9006,6 +9431,7 @@ M.AvailableProcessorFeature = {
 
 M.OrderableDBInstanceOption = {
     type = "structure",
+    id = "OrderableDBInstanceOption",
     members = {
         Engine = {
             type = "string",
@@ -9135,6 +9561,7 @@ M.OrderableDBInstanceOption = {
 
 M.DescribeOrderableDBInstanceOptionsOutput = {
     type = "structure",
+    id = "DescribeOrderableDBInstanceOptionsOutput",
     members = {
         OrderableDBInstanceOptions = {
             type = "list",
@@ -9148,6 +9575,7 @@ M.DescribeOrderableDBInstanceOptionsOutput = {
 
 M.DescribePendingMaintenanceActionsInput = {
     type = "structure",
+    id = "DescribePendingMaintenanceActionsInput",
     members = {
         ResourceIdentifier = {
             type = "string",
@@ -9167,6 +9595,7 @@ M.DescribePendingMaintenanceActionsInput = {
 
 M.DescribePendingMaintenanceActionsOutput = {
     type = "structure",
+    id = "DescribePendingMaintenanceActionsOutput",
     members = {
         PendingMaintenanceActions = {
             type = "list",
@@ -9180,6 +9609,7 @@ M.DescribePendingMaintenanceActionsOutput = {
 
 M.DescribeReservedDBInstancesInput = {
     type = "structure",
+    id = "DescribeReservedDBInstancesInput",
     members = {
         ReservedDBInstanceId = {
             type = "string",
@@ -9220,6 +9650,7 @@ M.DescribeReservedDBInstancesInput = {
 
 M.RecurringCharge = {
     type = "structure",
+    id = "RecurringCharge",
     members = {
         RecurringChargeAmount = {
             type = "double",
@@ -9232,6 +9663,7 @@ M.RecurringCharge = {
 
 M.ReservedDBInstance = {
     type = "structure",
+    id = "ReservedDBInstance",
     members = {
         ReservedDBInstanceId = {
             type = "string",
@@ -9287,6 +9719,7 @@ M.ReservedDBInstance = {
 
 M.DescribeReservedDBInstancesOutput = {
     type = "structure",
+    id = "DescribeReservedDBInstancesOutput",
     members = {
         Marker = {
             type = "string",
@@ -9300,6 +9733,7 @@ M.DescribeReservedDBInstancesOutput = {
 
 M.ReservedDBInstanceNotFoundFault = {
     type = "structure",
+    id = "ReservedDBInstanceNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -9310,6 +9744,7 @@ M.ReservedDBInstanceNotFoundFault = {
 
 M.DescribeReservedDBInstancesOfferingsInput = {
     type = "structure",
+    id = "DescribeReservedDBInstancesOfferingsInput",
     members = {
         ReservedDBInstancesOfferingId = {
             type = "string",
@@ -9344,6 +9779,7 @@ M.DescribeReservedDBInstancesOfferingsInput = {
 
 M.ReservedDBInstancesOffering = {
     type = "structure",
+    id = "ReservedDBInstancesOffering",
     members = {
         ReservedDBInstancesOfferingId = {
             type = "string",
@@ -9381,6 +9817,7 @@ M.ReservedDBInstancesOffering = {
 
 M.DescribeReservedDBInstancesOfferingsOutput = {
     type = "structure",
+    id = "DescribeReservedDBInstancesOfferingsOutput",
     members = {
         Marker = {
             type = "string",
@@ -9394,6 +9831,7 @@ M.DescribeReservedDBInstancesOfferingsOutput = {
 
 M.ReservedDBInstancesOfferingNotFoundFault = {
     type = "structure",
+    id = "ReservedDBInstancesOfferingNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -9404,6 +9842,7 @@ M.ReservedDBInstancesOfferingNotFoundFault = {
 
 M.DescribeServerlessV2PlatformVersionsInput = {
     type = "structure",
+    id = "DescribeServerlessV2PlatformVersionsInput",
     members = {
         ServerlessV2PlatformVersion = {
             type = "string",
@@ -9432,6 +9871,7 @@ M.DescribeServerlessV2PlatformVersionsInput = {
 
 M.ServerlessV2PlatformVersionInfo = {
     type = "structure",
+    id = "ServerlessV2PlatformVersionInfo",
     members = {
         ServerlessV2PlatformVersion = {
             type = "string",
@@ -9454,6 +9894,7 @@ M.ServerlessV2PlatformVersionInfo = {
 
 M.DescribeServerlessV2PlatformVersionsOutput = {
     type = "structure",
+    id = "DescribeServerlessV2PlatformVersionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -9467,6 +9908,7 @@ M.DescribeServerlessV2PlatformVersionsOutput = {
 
 M.DescribeSourceRegionsInput = {
     type = "structure",
+    id = "DescribeSourceRegionsInput",
     members = {
         RegionName = {
             type = "string",
@@ -9486,6 +9928,7 @@ M.DescribeSourceRegionsInput = {
 
 M.SourceRegion = {
     type = "structure",
+    id = "SourceRegion",
     members = {
         RegionName = {
             type = "string",
@@ -9504,6 +9947,7 @@ M.SourceRegion = {
 
 M.DescribeSourceRegionsOutput = {
     type = "structure",
+    id = "DescribeSourceRegionsOutput",
     members = {
         Marker = {
             type = "string",
@@ -9517,6 +9961,7 @@ M.DescribeSourceRegionsOutput = {
 
 M.DescribeTenantDatabasesInput = {
     type = "structure",
+    id = "DescribeTenantDatabasesInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -9539,6 +9984,7 @@ M.DescribeTenantDatabasesInput = {
 
 M.DescribeTenantDatabasesOutput = {
     type = "structure",
+    id = "DescribeTenantDatabasesOutput",
     members = {
         Marker = {
             type = "string",
@@ -9552,6 +9998,7 @@ M.DescribeTenantDatabasesOutput = {
 
 M.DescribeValidDBInstanceModificationsInput = {
     type = "structure",
+    id = "DescribeValidDBInstanceModificationsInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -9564,6 +10011,7 @@ M.DescribeValidDBInstanceModificationsInput = {
 
 M.DoubleRange = {
     type = "structure",
+    id = "DoubleRange",
     members = {
         From = {
             type = "double",
@@ -9576,6 +10024,7 @@ M.DoubleRange = {
 
 M.Range = {
     type = "structure",
+    id = "Range",
     members = {
         From = {
             type = "integer",
@@ -9591,6 +10040,7 @@ M.Range = {
 
 M.ValidStorageOptions = {
     type = "structure",
+    id = "ValidStorageOptions",
     members = {
         StorageType = {
             type = "string",
@@ -9623,6 +10073,7 @@ M.ValidStorageOptions = {
 
 M.ValidVolumeOptions = {
     type = "structure",
+    id = "ValidVolumeOptions",
     members = {
         VolumeName = {
             type = "string",
@@ -9636,6 +10087,7 @@ M.ValidVolumeOptions = {
 
 M.ValidAdditionalStorageOptions = {
     type = "structure",
+    id = "ValidAdditionalStorageOptions",
     members = {
         SupportsAdditionalStorageVolumes = {
             type = "boolean",
@@ -9649,6 +10101,7 @@ M.ValidAdditionalStorageOptions = {
 
 M.ValidDBInstanceModificationsMessage = {
     type = "structure",
+    id = "ValidDBInstanceModificationsMessage",
     members = {
         Storage = {
             type = "list",
@@ -9667,6 +10120,7 @@ M.ValidDBInstanceModificationsMessage = {
 
 M.DescribeValidDBInstanceModificationsOutput = {
     type = "structure",
+    id = "DescribeValidDBInstanceModificationsOutput",
     members = {
         ValidDBInstanceModificationsMessage = M.ValidDBInstanceModificationsMessage,
     },
@@ -9674,6 +10128,7 @@ M.DescribeValidDBInstanceModificationsOutput = {
 
 M.DisableHttpEndpointInput = {
     type = "structure",
+    id = "DisableHttpEndpointInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9686,6 +10141,7 @@ M.DisableHttpEndpointInput = {
 
 M.DisableHttpEndpointOutput = {
     type = "structure",
+    id = "DisableHttpEndpointOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9698,6 +10154,7 @@ M.DisableHttpEndpointOutput = {
 
 M.InvalidResourceStateFault = {
     type = "structure",
+    id = "InvalidResourceStateFault",
     error = "client",
     members = {
         message = {
@@ -9708,6 +10165,7 @@ M.InvalidResourceStateFault = {
 
 M.DBLogFileNotFoundFault = {
     type = "structure",
+    id = "DBLogFileNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -9718,6 +10176,7 @@ M.DBLogFileNotFoundFault = {
 
 M.DownloadDBLogFilePortionInput = {
     type = "structure",
+    id = "DownloadDBLogFilePortionInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -9742,6 +10201,7 @@ M.DownloadDBLogFilePortionInput = {
 
 M.DownloadDBLogFilePortionOutput = {
     type = "structure",
+    id = "DownloadDBLogFilePortionOutput",
     members = {
         LogFileData = {
             type = "string",
@@ -9757,6 +10217,7 @@ M.DownloadDBLogFilePortionOutput = {
 
 M.EnableHttpEndpointInput = {
     type = "structure",
+    id = "EnableHttpEndpointInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9769,6 +10230,7 @@ M.EnableHttpEndpointInput = {
 
 M.EnableHttpEndpointOutput = {
     type = "structure",
+    id = "EnableHttpEndpointOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9781,6 +10243,7 @@ M.EnableHttpEndpointOutput = {
 
 M.FailoverDBClusterInput = {
     type = "structure",
+    id = "FailoverDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -9796,6 +10259,7 @@ M.FailoverDBClusterInput = {
 
 M.FailoverDBClusterOutput = {
     type = "structure",
+    id = "FailoverDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -9803,6 +10267,7 @@ M.FailoverDBClusterOutput = {
 
 M.FailoverGlobalClusterInput = {
     type = "structure",
+    id = "FailoverGlobalClusterInput",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -9827,6 +10292,7 @@ M.FailoverGlobalClusterInput = {
 
 M.FailoverGlobalClusterOutput = {
     type = "structure",
+    id = "FailoverGlobalClusterOutput",
     members = {
         GlobalCluster = M.GlobalCluster,
     },
@@ -9834,6 +10300,7 @@ M.FailoverGlobalClusterOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -9850,6 +10317,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         TagList = {
             type = "list",
@@ -9865,6 +10333,7 @@ M.AuditPolicyState = {
 
 M.ModifyActivityStreamInput = {
     type = "structure",
+    id = "ModifyActivityStreamInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -9877,6 +10346,7 @@ M.ModifyActivityStreamInput = {
 
 M.ModifyActivityStreamOutput = {
     type = "structure",
+    id = "ModifyActivityStreamOutput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -9901,6 +10371,7 @@ M.ModifyActivityStreamOutput = {
 
 M.ModifyCertificatesInput = {
     type = "structure",
+    id = "ModifyCertificatesInput",
     members = {
         CertificateIdentifier = {
             type = "string",
@@ -9913,6 +10384,7 @@ M.ModifyCertificatesInput = {
 
 M.ModifyCertificatesOutput = {
     type = "structure",
+    id = "ModifyCertificatesOutput",
     members = {
         Certificate = M.Certificate,
     },
@@ -9920,6 +10392,7 @@ M.ModifyCertificatesOutput = {
 
 M.InvalidDBClusterCapacityFault = {
     type = "structure",
+    id = "InvalidDBClusterCapacityFault",
     error = "client",
     members = {
         message = {
@@ -9930,6 +10403,7 @@ M.InvalidDBClusterCapacityFault = {
 
 M.ModifyCurrentDBClusterCapacityInput = {
     type = "structure",
+    id = "ModifyCurrentDBClusterCapacityInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -9951,6 +10425,7 @@ M.ModifyCurrentDBClusterCapacityInput = {
 
 M.ModifyCurrentDBClusterCapacityOutput = {
     type = "structure",
+    id = "ModifyCurrentDBClusterCapacityOutput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -9978,6 +10453,7 @@ M.CustomEngineVersionStatus = {
 
 M.ModifyCustomDBEngineVersionInput = {
     type = "structure",
+    id = "ModifyCustomDBEngineVersionInput",
     members = {
         Engine = {
             type = "string",
@@ -10002,6 +10478,7 @@ M.ModifyCustomDBEngineVersionInput = {
 
 M.ModifyCustomDBEngineVersionOutput = {
     type = "structure",
+    id = "ModifyCustomDBEngineVersionOutput",
     members = {
         Engine = {
             type = "string",
@@ -10123,6 +10600,7 @@ M.ModifyCustomDBEngineVersionOutput = {
 
 M.CloudwatchLogsExportConfiguration = {
     type = "structure",
+    id = "CloudwatchLogsExportConfiguration",
     members = {
         EnableLogTypes = {
             type = "list",
@@ -10137,6 +10615,7 @@ M.CloudwatchLogsExportConfiguration = {
 
 M.ModifyDBClusterInput = {
     type = "structure",
+    id = "ModifyDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -10282,6 +10761,7 @@ M.ModifyDBClusterInput = {
 
 M.ModifyDBClusterOutput = {
     type = "structure",
+    id = "ModifyDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -10289,6 +10769,7 @@ M.ModifyDBClusterOutput = {
 
 M.StorageTypeNotAvailableFault = {
     type = "structure",
+    id = "StorageTypeNotAvailableFault",
     error = "client",
     members = {
         message = {
@@ -10299,6 +10780,7 @@ M.StorageTypeNotAvailableFault = {
 
 M.ModifyDBClusterEndpointInput = {
     type = "structure",
+    id = "ModifyDBClusterEndpointInput",
     members = {
         DBClusterEndpointIdentifier = {
             type = "string",
@@ -10322,6 +10804,7 @@ M.ModifyDBClusterEndpointInput = {
 
 M.ModifyDBClusterEndpointOutput = {
     type = "structure",
+    id = "ModifyDBClusterEndpointOutput",
     members = {
         DBClusterEndpointIdentifier = {
             type = "string",
@@ -10360,6 +10843,7 @@ M.ModifyDBClusterEndpointOutput = {
 
 M.ModifyDBClusterParameterGroupInput = {
     type = "structure",
+    id = "ModifyDBClusterParameterGroupInput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -10379,6 +10863,7 @@ M.ModifyDBClusterParameterGroupInput = {
 
 M.ModifyDBClusterParameterGroupOutput = {
     type = "structure",
+    id = "ModifyDBClusterParameterGroupOutput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -10388,6 +10873,7 @@ M.ModifyDBClusterParameterGroupOutput = {
 
 M.ModifyDBClusterSnapshotAttributeInput = {
     type = "structure",
+    id = "ModifyDBClusterSnapshotAttributeInput",
     members = {
         DBClusterSnapshotIdentifier = {
             type = "string",
@@ -10414,6 +10900,7 @@ M.ModifyDBClusterSnapshotAttributeInput = {
 
 M.ModifyDBClusterSnapshotAttributeOutput = {
     type = "structure",
+    id = "ModifyDBClusterSnapshotAttributeOutput",
     members = {
         DBClusterSnapshotAttributesResult = M.DBClusterSnapshotAttributesResult,
     },
@@ -10421,6 +10908,7 @@ M.ModifyDBClusterSnapshotAttributeOutput = {
 
 M.SharedSnapshotQuotaExceededFault = {
     type = "structure",
+    id = "SharedSnapshotQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -10431,6 +10919,7 @@ M.SharedSnapshotQuotaExceededFault = {
 
 M.DBUpgradeDependencyFailureFault = {
     type = "structure",
+    id = "DBUpgradeDependencyFailureFault",
     error = "client",
     members = {
         message = {
@@ -10441,6 +10930,7 @@ M.DBUpgradeDependencyFailureFault = {
 
 M.ModifyAdditionalStorageVolume = {
     type = "structure",
+    id = "ModifyAdditionalStorageVolume",
     members = {
         VolumeName = {
             type = "string",
@@ -10471,6 +10961,7 @@ M.ModifyAdditionalStorageVolume = {
 
 M.ModifyDBInstanceInput = {
     type = "structure",
+    id = "ModifyDBInstanceInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -10676,6 +11167,7 @@ M.ModifyDBInstanceInput = {
 
 M.ModifyDBInstanceOutput = {
     type = "structure",
+    id = "ModifyDBInstanceOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -10683,6 +11175,7 @@ M.ModifyDBInstanceOutput = {
 
 M.ModifyDBParameterGroupInput = {
     type = "structure",
+    id = "ModifyDBParameterGroupInput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -10702,6 +11195,7 @@ M.ModifyDBParameterGroupInput = {
 
 M.ModifyDBParameterGroupOutput = {
     type = "structure",
+    id = "ModifyDBParameterGroupOutput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -10711,6 +11205,7 @@ M.ModifyDBParameterGroupOutput = {
 
 M.ModifyDBProxyInput = {
     type = "structure",
+    id = "ModifyDBProxyInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -10749,6 +11244,7 @@ M.ModifyDBProxyInput = {
 
 M.ModifyDBProxyOutput = {
     type = "structure",
+    id = "ModifyDBProxyOutput",
     members = {
         DBProxy = M.DBProxy,
     },
@@ -10756,6 +11252,7 @@ M.ModifyDBProxyOutput = {
 
 M.ModifyDBProxyEndpointInput = {
     type = "structure",
+    id = "ModifyDBProxyEndpointInput",
     members = {
         DBProxyEndpointName = {
             type = "string",
@@ -10775,6 +11272,7 @@ M.ModifyDBProxyEndpointInput = {
 
 M.ModifyDBProxyEndpointOutput = {
     type = "structure",
+    id = "ModifyDBProxyEndpointOutput",
     members = {
         DBProxyEndpoint = M.DBProxyEndpoint,
     },
@@ -10782,6 +11280,7 @@ M.ModifyDBProxyEndpointOutput = {
 
 M.ConnectionPoolConfiguration = {
     type = "structure",
+    id = "ConnectionPoolConfiguration",
     members = {
         MaxConnectionsPercent = {
             type = "integer",
@@ -10804,6 +11303,7 @@ M.ConnectionPoolConfiguration = {
 
 M.ModifyDBProxyTargetGroupInput = {
     type = "structure",
+    id = "ModifyDBProxyTargetGroupInput",
     members = {
         TargetGroupName = {
             type = "string",
@@ -10826,6 +11326,7 @@ M.ModifyDBProxyTargetGroupInput = {
 
 M.ModifyDBProxyTargetGroupOutput = {
     type = "structure",
+    id = "ModifyDBProxyTargetGroupOutput",
     members = {
         DBProxyTargetGroup = M.DBProxyTargetGroup,
     },
@@ -10833,6 +11334,7 @@ M.ModifyDBProxyTargetGroupOutput = {
 
 M.RecommendedActionUpdate = {
     type = "structure",
+    id = "RecommendedActionUpdate",
     members = {
         ActionId = {
             type = "string",
@@ -10851,6 +11353,7 @@ M.RecommendedActionUpdate = {
 
 M.ModifyDBRecommendationInput = {
     type = "structure",
+    id = "ModifyDBRecommendationInput",
     members = {
         RecommendationId = {
             type = "string",
@@ -10873,6 +11376,7 @@ M.ModifyDBRecommendationInput = {
 
 M.ModifyDBRecommendationOutput = {
     type = "structure",
+    id = "ModifyDBRecommendationOutput",
     members = {
         DBRecommendation = M.DBRecommendation,
     },
@@ -10880,6 +11384,7 @@ M.ModifyDBRecommendationOutput = {
 
 M.ModifyDBShardGroupInput = {
     type = "structure",
+    id = "ModifyDBShardGroupInput",
     members = {
         DBShardGroupIdentifier = {
             type = "string",
@@ -10901,6 +11406,7 @@ M.ModifyDBShardGroupInput = {
 
 M.ModifyDBShardGroupOutput = {
     type = "structure",
+    id = "ModifyDBShardGroupOutput",
     members = {
         DBShardGroupResourceId = {
             type = "string",
@@ -10941,6 +11447,7 @@ M.ModifyDBShardGroupOutput = {
 
 M.ModifyDBSnapshotInput = {
     type = "structure",
+    id = "ModifyDBSnapshotInput",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -10959,6 +11466,7 @@ M.ModifyDBSnapshotInput = {
 
 M.ModifyDBSnapshotOutput = {
     type = "structure",
+    id = "ModifyDBSnapshotOutput",
     members = {
         DBSnapshot = M.DBSnapshot,
     },
@@ -10966,6 +11474,7 @@ M.ModifyDBSnapshotOutput = {
 
 M.ModifyDBSnapshotAttributeInput = {
     type = "structure",
+    id = "ModifyDBSnapshotAttributeInput",
     members = {
         DBSnapshotIdentifier = {
             type = "string",
@@ -10992,6 +11501,7 @@ M.ModifyDBSnapshotAttributeInput = {
 
 M.ModifyDBSnapshotAttributeOutput = {
     type = "structure",
+    id = "ModifyDBSnapshotAttributeOutput",
     members = {
         DBSnapshotAttributesResult = M.DBSnapshotAttributesResult,
     },
@@ -10999,6 +11509,7 @@ M.ModifyDBSnapshotAttributeOutput = {
 
 M.ModifyDBSubnetGroupInput = {
     type = "structure",
+    id = "ModifyDBSubnetGroupInput",
     members = {
         DBSubnetGroupName = {
             type = "string",
@@ -11021,6 +11532,7 @@ M.ModifyDBSubnetGroupInput = {
 
 M.ModifyDBSubnetGroupOutput = {
     type = "structure",
+    id = "ModifyDBSubnetGroupOutput",
     members = {
         DBSubnetGroup = M.DBSubnetGroup,
     },
@@ -11028,6 +11540,7 @@ M.ModifyDBSubnetGroupOutput = {
 
 M.SubnetAlreadyInUse = {
     type = "structure",
+    id = "SubnetAlreadyInUse",
     error = "client",
     members = {
         message = {
@@ -11038,6 +11551,7 @@ M.SubnetAlreadyInUse = {
 
 M.ModifyEventSubscriptionInput = {
     type = "structure",
+    id = "ModifyEventSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -11063,6 +11577,7 @@ M.ModifyEventSubscriptionInput = {
 
 M.ModifyEventSubscriptionOutput = {
     type = "structure",
+    id = "ModifyEventSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -11070,6 +11585,7 @@ M.ModifyEventSubscriptionOutput = {
 
 M.ModifyGlobalClusterInput = {
     type = "structure",
+    id = "ModifyGlobalClusterInput",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -11094,6 +11610,7 @@ M.ModifyGlobalClusterInput = {
 
 M.ModifyGlobalClusterOutput = {
     type = "structure",
+    id = "ModifyGlobalClusterOutput",
     members = {
         GlobalCluster = M.GlobalCluster,
     },
@@ -11101,6 +11618,7 @@ M.ModifyGlobalClusterOutput = {
 
 M.ModifyIntegrationInput = {
     type = "structure",
+    id = "ModifyIntegrationInput",
     members = {
         IntegrationIdentifier = {
             type = "string",
@@ -11122,6 +11640,7 @@ M.ModifyIntegrationInput = {
 
 M.ModifyIntegrationOutput = {
     type = "structure",
+    id = "ModifyIntegrationOutput",
     members = {
         SourceArn = {
             type = "string",
@@ -11168,6 +11687,7 @@ M.ModifyIntegrationOutput = {
 
 M.OptionConfiguration = {
     type = "structure",
+    id = "OptionConfiguration",
     members = {
         OptionName = {
             type = "string",
@@ -11198,6 +11718,7 @@ M.OptionConfiguration = {
 
 M.ModifyOptionGroupInput = {
     type = "structure",
+    id = "ModifyOptionGroupInput",
     members = {
         OptionGroupName = {
             type = "string",
@@ -11221,6 +11742,7 @@ M.ModifyOptionGroupInput = {
 
 M.ModifyOptionGroupOutput = {
     type = "structure",
+    id = "ModifyOptionGroupOutput",
     members = {
         OptionGroup = M.OptionGroup,
     },
@@ -11228,6 +11750,7 @@ M.ModifyOptionGroupOutput = {
 
 M.ModifyTenantDatabaseInput = {
     type = "structure",
+    id = "ModifyTenantDatabaseInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -11261,6 +11784,7 @@ M.ModifyTenantDatabaseInput = {
 
 M.ModifyTenantDatabaseOutput = {
     type = "structure",
+    id = "ModifyTenantDatabaseOutput",
     members = {
         TenantDatabase = M.TenantDatabase,
     },
@@ -11268,6 +11792,7 @@ M.ModifyTenantDatabaseOutput = {
 
 M.PromoteReadReplicaInput = {
     type = "structure",
+    id = "PromoteReadReplicaInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -11290,6 +11815,7 @@ M.PromoteReadReplicaInput = {
 
 M.PromoteReadReplicaOutput = {
     type = "structure",
+    id = "PromoteReadReplicaOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -11297,6 +11823,7 @@ M.PromoteReadReplicaOutput = {
 
 M.PromoteReadReplicaDBClusterInput = {
     type = "structure",
+    id = "PromoteReadReplicaDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -11309,6 +11836,7 @@ M.PromoteReadReplicaDBClusterInput = {
 
 M.PromoteReadReplicaDBClusterOutput = {
     type = "structure",
+    id = "PromoteReadReplicaDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -11316,6 +11844,7 @@ M.PromoteReadReplicaDBClusterOutput = {
 
 M.PurchaseReservedDBInstancesOfferingInput = {
     type = "structure",
+    id = "PurchaseReservedDBInstancesOfferingInput",
     members = {
         ReservedDBInstancesOfferingId = {
             type = "string",
@@ -11338,6 +11867,7 @@ M.PurchaseReservedDBInstancesOfferingInput = {
 
 M.PurchaseReservedDBInstancesOfferingOutput = {
     type = "structure",
+    id = "PurchaseReservedDBInstancesOfferingOutput",
     members = {
         ReservedDBInstance = M.ReservedDBInstance,
     },
@@ -11345,6 +11875,7 @@ M.PurchaseReservedDBInstancesOfferingOutput = {
 
 M.ReservedDBInstanceAlreadyExistsFault = {
     type = "structure",
+    id = "ReservedDBInstanceAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -11355,6 +11886,7 @@ M.ReservedDBInstanceAlreadyExistsFault = {
 
 M.ReservedDBInstanceQuotaExceededFault = {
     type = "structure",
+    id = "ReservedDBInstanceQuotaExceededFault",
     error = "client",
     members = {
         message = {
@@ -11365,6 +11897,7 @@ M.ReservedDBInstanceQuotaExceededFault = {
 
 M.RebootDBClusterInput = {
     type = "structure",
+    id = "RebootDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -11377,6 +11910,7 @@ M.RebootDBClusterInput = {
 
 M.RebootDBClusterOutput = {
     type = "structure",
+    id = "RebootDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -11384,6 +11918,7 @@ M.RebootDBClusterOutput = {
 
 M.RebootDBInstanceInput = {
     type = "structure",
+    id = "RebootDBInstanceInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -11399,6 +11934,7 @@ M.RebootDBInstanceInput = {
 
 M.RebootDBInstanceOutput = {
     type = "structure",
+    id = "RebootDBInstanceOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -11406,6 +11942,7 @@ M.RebootDBInstanceOutput = {
 
 M.RebootDBShardGroupInput = {
     type = "structure",
+    id = "RebootDBShardGroupInput",
     members = {
         DBShardGroupIdentifier = {
             type = "string",
@@ -11418,6 +11955,7 @@ M.RebootDBShardGroupInput = {
 
 M.RebootDBShardGroupOutput = {
     type = "structure",
+    id = "RebootDBShardGroupOutput",
     members = {
         DBShardGroupResourceId = {
             type = "string",
@@ -11458,6 +11996,7 @@ M.RebootDBShardGroupOutput = {
 
 M.DBProxyTargetAlreadyRegisteredFault = {
     type = "structure",
+    id = "DBProxyTargetAlreadyRegisteredFault",
     error = "client",
     members = {
         message = {
@@ -11468,6 +12007,7 @@ M.DBProxyTargetAlreadyRegisteredFault = {
 
 M.InsufficientAvailableIPsInSubnetFault = {
     type = "structure",
+    id = "InsufficientAvailableIPsInSubnetFault",
     error = "client",
     members = {
         message = {
@@ -11478,6 +12018,7 @@ M.InsufficientAvailableIPsInSubnetFault = {
 
 M.RegisterDBProxyTargetsInput = {
     type = "structure",
+    id = "RegisterDBProxyTargetsInput",
     members = {
         DBProxyName = {
             type = "string",
@@ -11501,6 +12042,7 @@ M.RegisterDBProxyTargetsInput = {
 
 M.RegisterDBProxyTargetsOutput = {
     type = "structure",
+    id = "RegisterDBProxyTargetsOutput",
     members = {
         DBProxyTargets = {
             type = "list",
@@ -11511,6 +12053,7 @@ M.RegisterDBProxyTargetsOutput = {
 
 M.RemoveFromGlobalClusterInput = {
     type = "structure",
+    id = "RemoveFromGlobalClusterInput",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -11529,6 +12072,7 @@ M.RemoveFromGlobalClusterInput = {
 
 M.RemoveFromGlobalClusterOutput = {
     type = "structure",
+    id = "RemoveFromGlobalClusterOutput",
     members = {
         GlobalCluster = M.GlobalCluster,
     },
@@ -11536,6 +12080,7 @@ M.RemoveFromGlobalClusterOutput = {
 
 M.DBClusterRoleNotFoundFault = {
     type = "structure",
+    id = "DBClusterRoleNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -11546,6 +12091,7 @@ M.DBClusterRoleNotFoundFault = {
 
 M.RemoveRoleFromDBClusterInput = {
     type = "structure",
+    id = "RemoveRoleFromDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -11567,10 +12113,12 @@ M.RemoveRoleFromDBClusterInput = {
 
 M.RemoveRoleFromDBClusterOutput = {
     type = "structure",
+    id = "RemoveRoleFromDBClusterOutput",
 }
 
 M.DBInstanceRoleNotFoundFault = {
     type = "structure",
+    id = "DBInstanceRoleNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -11581,6 +12129,7 @@ M.DBInstanceRoleNotFoundFault = {
 
 M.RemoveRoleFromDBInstanceInput = {
     type = "structure",
+    id = "RemoveRoleFromDBInstanceInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -11605,10 +12154,12 @@ M.RemoveRoleFromDBInstanceInput = {
 
 M.RemoveRoleFromDBInstanceOutput = {
     type = "structure",
+    id = "RemoveRoleFromDBInstanceOutput",
 }
 
 M.RemoveSourceIdentifierFromSubscriptionInput = {
     type = "structure",
+    id = "RemoveSourceIdentifierFromSubscriptionInput",
     members = {
         SubscriptionName = {
             type = "string",
@@ -11627,6 +12178,7 @@ M.RemoveSourceIdentifierFromSubscriptionInput = {
 
 M.RemoveSourceIdentifierFromSubscriptionOutput = {
     type = "structure",
+    id = "RemoveSourceIdentifierFromSubscriptionOutput",
     members = {
         EventSubscription = M.EventSubscription,
     },
@@ -11634,6 +12186,7 @@ M.RemoveSourceIdentifierFromSubscriptionOutput = {
 
 M.RemoveTagsFromResourceInput = {
     type = "structure",
+    id = "RemoveTagsFromResourceInput",
     members = {
         ResourceName = {
             type = "string",
@@ -11653,10 +12206,12 @@ M.RemoveTagsFromResourceInput = {
 
 M.RemoveTagsFromResourceOutput = {
     type = "structure",
+    id = "RemoveTagsFromResourceOutput",
 }
 
 M.ResetDBClusterParameterGroupInput = {
     type = "structure",
+    id = "ResetDBClusterParameterGroupInput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -11676,6 +12231,7 @@ M.ResetDBClusterParameterGroupInput = {
 
 M.ResetDBClusterParameterGroupOutput = {
     type = "structure",
+    id = "ResetDBClusterParameterGroupOutput",
     members = {
         DBClusterParameterGroupName = {
             type = "string",
@@ -11685,6 +12241,7 @@ M.ResetDBClusterParameterGroupOutput = {
 
 M.ResetDBParameterGroupInput = {
     type = "structure",
+    id = "ResetDBParameterGroupInput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -11704,6 +12261,7 @@ M.ResetDBParameterGroupInput = {
 
 M.ResetDBParameterGroupOutput = {
     type = "structure",
+    id = "ResetDBParameterGroupOutput",
     members = {
         DBParameterGroupName = {
             type = "string",
@@ -11713,6 +12271,7 @@ M.ResetDBParameterGroupOutput = {
 
 M.InvalidS3BucketFault = {
     type = "structure",
+    id = "InvalidS3BucketFault",
     error = "client",
     members = {
         message = {
@@ -11723,6 +12282,7 @@ M.InvalidS3BucketFault = {
 
 M.RestoreDBClusterFromS3Input = {
     type = "structure",
+    id = "RestoreDBClusterFromS3Input",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -11867,6 +12427,7 @@ M.RestoreDBClusterFromS3Input = {
 
 M.RestoreDBClusterFromS3Output = {
     type = "structure",
+    id = "RestoreDBClusterFromS3Output",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -11874,6 +12435,7 @@ M.RestoreDBClusterFromS3Output = {
 
 M.InsufficientDBClusterCapacityFault = {
     type = "structure",
+    id = "InsufficientDBClusterCapacityFault",
     error = "client",
     members = {
         message = {
@@ -11884,6 +12446,7 @@ M.InsufficientDBClusterCapacityFault = {
 
 M.InvalidRestoreFault = {
     type = "structure",
+    id = "InvalidRestoreFault",
     error = "client",
     members = {
         message = {
@@ -11894,6 +12457,7 @@ M.InvalidRestoreFault = {
 
 M.RestoreDBClusterFromSnapshotInput = {
     type = "structure",
+    id = "RestoreDBClusterFromSnapshotInput",
     members = {
         AvailabilityZones = {
             type = "list",
@@ -12028,6 +12592,7 @@ M.RestoreDBClusterFromSnapshotInput = {
 
 M.RestoreDBClusterFromSnapshotOutput = {
     type = "structure",
+    id = "RestoreDBClusterFromSnapshotOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -12035,6 +12600,7 @@ M.RestoreDBClusterFromSnapshotOutput = {
 
 M.RestoreDBClusterToPointInTimeInput = {
     type = "structure",
+    id = "RestoreDBClusterToPointInTimeInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -12162,6 +12728,7 @@ M.RestoreDBClusterToPointInTimeInput = {
 
 M.RestoreDBClusterToPointInTimeOutput = {
     type = "structure",
+    id = "RestoreDBClusterToPointInTimeOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -12169,6 +12736,7 @@ M.RestoreDBClusterToPointInTimeOutput = {
 
 M.RestoreDBInstanceFromDBSnapshotInput = {
     type = "structure",
+    id = "RestoreDBInstanceFromDBSnapshotInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -12329,6 +12897,7 @@ M.RestoreDBInstanceFromDBSnapshotInput = {
 
 M.RestoreDBInstanceFromDBSnapshotOutput = {
     type = "structure",
+    id = "RestoreDBInstanceFromDBSnapshotOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -12336,6 +12905,7 @@ M.RestoreDBInstanceFromDBSnapshotOutput = {
 
 M.RestoreDBInstanceFromS3Input = {
     type = "structure",
+    id = "RestoreDBInstanceFromS3Input",
     members = {
         DBName = {
             type = "string",
@@ -12532,6 +13102,7 @@ M.RestoreDBInstanceFromS3Input = {
 
 M.RestoreDBInstanceFromS3Output = {
     type = "structure",
+    id = "RestoreDBInstanceFromS3Output",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -12539,6 +13110,7 @@ M.RestoreDBInstanceFromS3Output = {
 
 M.PointInTimeRestoreNotEnabledFault = {
     type = "structure",
+    id = "PointInTimeRestoreNotEnabledFault",
     error = "client",
     members = {
         message = {
@@ -12549,6 +13121,7 @@ M.PointInTimeRestoreNotEnabledFault = {
 
 M.RestoreDBInstanceToPointInTimeInput = {
     type = "structure",
+    id = "RestoreDBInstanceToPointInTimeInput",
     members = {
         SourceDBInstanceIdentifier = {
             type = "string",
@@ -12721,6 +13294,7 @@ M.RestoreDBInstanceToPointInTimeInput = {
 
 M.RestoreDBInstanceToPointInTimeOutput = {
     type = "structure",
+    id = "RestoreDBInstanceToPointInTimeOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -12728,6 +13302,7 @@ M.RestoreDBInstanceToPointInTimeOutput = {
 
 M.RevokeDBSecurityGroupIngressInput = {
     type = "structure",
+    id = "RevokeDBSecurityGroupIngressInput",
     members = {
         DBSecurityGroupName = {
             type = "string",
@@ -12752,6 +13327,7 @@ M.RevokeDBSecurityGroupIngressInput = {
 
 M.RevokeDBSecurityGroupIngressOutput = {
     type = "structure",
+    id = "RevokeDBSecurityGroupIngressOutput",
     members = {
         DBSecurityGroup = M.DBSecurityGroup,
     },
@@ -12759,6 +13335,7 @@ M.RevokeDBSecurityGroupIngressOutput = {
 
 M.StartActivityStreamInput = {
     type = "structure",
+    id = "StartActivityStreamInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -12789,6 +13366,7 @@ M.StartActivityStreamInput = {
 
 M.StartActivityStreamOutput = {
     type = "structure",
+    id = "StartActivityStreamOutput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -12813,6 +13391,7 @@ M.StartActivityStreamOutput = {
 
 M.StartDBClusterInput = {
     type = "structure",
+    id = "StartDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -12825,6 +13404,7 @@ M.StartDBClusterInput = {
 
 M.StartDBClusterOutput = {
     type = "structure",
+    id = "StartDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -12832,6 +13412,7 @@ M.StartDBClusterOutput = {
 
 M.StartDBInstanceInput = {
     type = "structure",
+    id = "StartDBInstanceInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -12844,6 +13425,7 @@ M.StartDBInstanceInput = {
 
 M.StartDBInstanceOutput = {
     type = "structure",
+    id = "StartDBInstanceOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -12851,6 +13433,7 @@ M.StartDBInstanceOutput = {
 
 M.StartDBInstanceAutomatedBackupsReplicationInput = {
     type = "structure",
+    id = "StartDBInstanceAutomatedBackupsReplicationInput",
     members = {
         SourceDBInstanceArn = {
             type = "string",
@@ -12876,6 +13459,7 @@ M.StartDBInstanceAutomatedBackupsReplicationInput = {
 
 M.StartDBInstanceAutomatedBackupsReplicationOutput = {
     type = "structure",
+    id = "StartDBInstanceAutomatedBackupsReplicationOutput",
     members = {
         DBInstanceAutomatedBackup = M.DBInstanceAutomatedBackup,
     },
@@ -12883,6 +13467,7 @@ M.StartDBInstanceAutomatedBackupsReplicationOutput = {
 
 M.ExportTaskAlreadyExistsFault = {
     type = "structure",
+    id = "ExportTaskAlreadyExistsFault",
     error = "client",
     members = {
         message = {
@@ -12893,6 +13478,7 @@ M.ExportTaskAlreadyExistsFault = {
 
 M.IamRoleMissingPermissionsFault = {
     type = "structure",
+    id = "IamRoleMissingPermissionsFault",
     error = "client",
     members = {
         message = {
@@ -12903,6 +13489,7 @@ M.IamRoleMissingPermissionsFault = {
 
 M.IamRoleNotFoundFault = {
     type = "structure",
+    id = "IamRoleNotFoundFault",
     error = "client",
     members = {
         message = {
@@ -12913,6 +13500,7 @@ M.IamRoleNotFoundFault = {
 
 M.InvalidExportOnlyFault = {
     type = "structure",
+    id = "InvalidExportOnlyFault",
     error = "client",
     members = {
         message = {
@@ -12923,6 +13511,7 @@ M.InvalidExportOnlyFault = {
 
 M.InvalidExportSourceStateFault = {
     type = "structure",
+    id = "InvalidExportSourceStateFault",
     error = "client",
     members = {
         message = {
@@ -12933,6 +13522,7 @@ M.InvalidExportSourceStateFault = {
 
 M.StartExportTaskInput = {
     type = "structure",
+    id = "StartExportTaskInput",
     members = {
         ExportTaskIdentifier = {
             type = "string",
@@ -12976,6 +13566,7 @@ M.StartExportTaskInput = {
 
 M.StartExportTaskOutput = {
     type = "structure",
+    id = "StartExportTaskOutput",
     members = {
         ExportTaskIdentifier = {
             type = "string",
@@ -13031,6 +13622,7 @@ M.StartExportTaskOutput = {
 
 M.StopActivityStreamInput = {
     type = "structure",
+    id = "StopActivityStreamInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -13046,6 +13638,7 @@ M.StopActivityStreamInput = {
 
 M.StopActivityStreamOutput = {
     type = "structure",
+    id = "StopActivityStreamOutput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -13061,6 +13654,7 @@ M.StopActivityStreamOutput = {
 
 M.StopDBClusterInput = {
     type = "structure",
+    id = "StopDBClusterInput",
     members = {
         DBClusterIdentifier = {
             type = "string",
@@ -13073,6 +13667,7 @@ M.StopDBClusterInput = {
 
 M.StopDBClusterOutput = {
     type = "structure",
+    id = "StopDBClusterOutput",
     members = {
         DBCluster = M.DBCluster,
     },
@@ -13080,6 +13675,7 @@ M.StopDBClusterOutput = {
 
 M.StopDBInstanceInput = {
     type = "structure",
+    id = "StopDBInstanceInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -13095,6 +13691,7 @@ M.StopDBInstanceInput = {
 
 M.StopDBInstanceOutput = {
     type = "structure",
+    id = "StopDBInstanceOutput",
     members = {
         DBInstance = M.DBInstance,
     },
@@ -13102,6 +13699,7 @@ M.StopDBInstanceOutput = {
 
 M.StopDBInstanceAutomatedBackupsReplicationInput = {
     type = "structure",
+    id = "StopDBInstanceAutomatedBackupsReplicationInput",
     members = {
         SourceDBInstanceArn = {
             type = "string",
@@ -13114,6 +13712,7 @@ M.StopDBInstanceAutomatedBackupsReplicationInput = {
 
 M.StopDBInstanceAutomatedBackupsReplicationOutput = {
     type = "structure",
+    id = "StopDBInstanceAutomatedBackupsReplicationOutput",
     members = {
         DBInstanceAutomatedBackup = M.DBInstanceAutomatedBackup,
     },
@@ -13121,6 +13720,7 @@ M.StopDBInstanceAutomatedBackupsReplicationOutput = {
 
 M.SwitchoverBlueGreenDeploymentInput = {
     type = "structure",
+    id = "SwitchoverBlueGreenDeploymentInput",
     members = {
         BlueGreenDeploymentIdentifier = {
             type = "string",
@@ -13136,6 +13736,7 @@ M.SwitchoverBlueGreenDeploymentInput = {
 
 M.SwitchoverBlueGreenDeploymentOutput = {
     type = "structure",
+    id = "SwitchoverBlueGreenDeploymentOutput",
     members = {
         BlueGreenDeployment = M.BlueGreenDeployment,
     },
@@ -13143,6 +13744,7 @@ M.SwitchoverBlueGreenDeploymentOutput = {
 
 M.SwitchoverGlobalClusterInput = {
     type = "structure",
+    id = "SwitchoverGlobalClusterInput",
     members = {
         GlobalClusterIdentifier = {
             type = "string",
@@ -13161,6 +13763,7 @@ M.SwitchoverGlobalClusterInput = {
 
 M.SwitchoverGlobalClusterOutput = {
     type = "structure",
+    id = "SwitchoverGlobalClusterOutput",
     members = {
         GlobalCluster = M.GlobalCluster,
     },
@@ -13168,6 +13771,7 @@ M.SwitchoverGlobalClusterOutput = {
 
 M.SwitchoverReadReplicaInput = {
     type = "structure",
+    id = "SwitchoverReadReplicaInput",
     members = {
         DBInstanceIdentifier = {
             type = "string",
@@ -13180,6 +13784,7 @@ M.SwitchoverReadReplicaInput = {
 
 M.SwitchoverReadReplicaOutput = {
     type = "structure",
+    id = "SwitchoverReadReplicaOutput",
     members = {
         DBInstance = M.DBInstance,
     },

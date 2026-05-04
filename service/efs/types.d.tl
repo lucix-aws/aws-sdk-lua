@@ -1102,13 +1102,13 @@ local record TooManyRequests
     Message: string
 end
 
-local type IpAddressType = "IPV4_ONLY" | "IPV6_ONLY" | "DUAL_STACK"
+local type DeletionMode = "ALL_CONFIGURATIONS" | "LOCAL_CONFIGURATION_ONLY"
 
 local type ResourceIdType = "LONG_ID" | "SHORT_ID"
 
-local type DeletionMode = "ALL_CONFIGURATIONS" | "LOCAL_CONFIGURATION_ONLY"
-
 local type PerformanceMode = "generalPurpose" | "maxIO"
+
+local type IpAddressType = "IPV4_ONLY" | "IPV6_ONLY" | "DUAL_STACK"
 
 local type LifeCycleState = "creating" | "available" | "updating" | "deleting" | "deleted" | "error"
 

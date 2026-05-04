@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -29,6 +30,7 @@ M.IssueManagementType = {
 
 M.AccountJiraConfigurationInput = {
     type = "structure",
+    id = "AccountJiraConfigurationInput",
     members = {
         IssueManagementStatus = {
             type = "string",
@@ -52,6 +54,7 @@ M.IntegrationStatus = {
 
 M.AccountJiraConfigurationOutput = {
     type = "structure",
+    id = "AccountJiraConfigurationOutput",
     members = {
         IntegrationStatus = {
             type = "string",
@@ -84,6 +87,7 @@ M.CheckStatus = {
 
 M.ChoiceContent = {
     type = "structure",
+    id = "ChoiceContent",
     members = {
         DisplayText = {
             type = "string",
@@ -101,6 +105,7 @@ M.AdditionalResourceType = {
 
 M.AdditionalResources = {
     type = "structure",
+    id = "AdditionalResources",
     members = {
         Type = {
             type = "string",
@@ -128,6 +133,7 @@ M.ChoiceStatus = {
 
 M.ChoiceAnswer = {
     type = "structure",
+    id = "ChoiceAnswer",
     members = {
         ChoiceId = {
             type = "string",
@@ -146,6 +152,7 @@ M.ChoiceAnswer = {
 
 M.Choice = {
     type = "structure",
+    id = "Choice",
     members = {
         ChoiceId = {
             type = "string",
@@ -167,6 +174,7 @@ M.Choice = {
 
 M.JiraConfiguration = {
     type = "structure",
+    id = "JiraConfiguration",
     members = {
         JiraIssueUrl = {
             type = "string",
@@ -195,6 +203,7 @@ M.Risk = {
 
 M.Answer = {
     type = "structure",
+    id = "Answer",
     members = {
         QuestionId = {
             type = "string",
@@ -247,6 +256,7 @@ M.Answer = {
 
 M.ChoiceAnswerSummary = {
     type = "structure",
+    id = "ChoiceAnswerSummary",
     members = {
         ChoiceId = {
             type = "string",
@@ -267,6 +277,7 @@ M.QuestionType = {
 
 M.AnswerSummary = {
     type = "structure",
+    id = "AnswerSummary",
     members = {
         QuestionId = {
             type = "string",
@@ -307,6 +318,7 @@ M.AnswerSummary = {
 
 M.AssociateLensesInput = {
     type = "structure",
+    id = "AssociateLensesInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -327,10 +339,12 @@ M.AssociateLensesInput = {
 
 M.AssociateLensesOutput = {
     type = "structure",
+    id = "AssociateLensesOutput",
 }
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -356,6 +370,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -369,6 +384,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -394,6 +410,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -413,6 +430,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -438,6 +456,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -458,6 +477,7 @@ M.ValidationException = {
 
 M.AssociateProfilesInput = {
     type = "structure",
+    id = "AssociateProfilesInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -478,10 +498,12 @@ M.AssociateProfilesInput = {
 
 M.AssociateProfilesOutput = {
     type = "structure",
+    id = "AssociateProfilesOutput",
 }
 
 M.BestPractice = {
     type = "structure",
+    id = "BestPractice",
     members = {
         ChoiceId = {
             type = "string",
@@ -505,6 +527,7 @@ M.CheckFailureReason = {
 
 M.CheckDetail = {
     type = "structure",
+    id = "CheckDetail",
     members = {
         Id = {
             type = "string",
@@ -550,6 +573,7 @@ M.CheckDetail = {
 
 M.CheckSummary = {
     type = "structure",
+    id = "CheckSummary",
     members = {
         Id = {
             type = "string",
@@ -591,6 +615,7 @@ M.CheckSummary = {
 
 M.ChoiceImprovementPlan = {
     type = "structure",
+    id = "ChoiceImprovementPlan",
     members = {
         ChoiceId = {
             type = "string",
@@ -606,6 +631,7 @@ M.ChoiceImprovementPlan = {
 
 M.ChoiceUpdate = {
     type = "structure",
+    id = "ChoiceUpdate",
     members = {
         Status = {
             type = "string",
@@ -624,6 +650,7 @@ M.ChoiceUpdate = {
 
 M.QuestionMetric = {
     type = "structure",
+    id = "QuestionMetric",
     members = {
         QuestionId = {
             type = "string",
@@ -640,6 +667,7 @@ M.QuestionMetric = {
 
 M.PillarMetric = {
     type = "structure",
+    id = "PillarMetric",
     members = {
         PillarId = {
             type = "string",
@@ -658,6 +686,7 @@ M.PillarMetric = {
 
 M.LensMetric = {
     type = "structure",
+    id = "LensMetric",
     members = {
         LensArn = {
             type = "string",
@@ -680,6 +709,7 @@ M.MetricType = {
 
 M.ConsolidatedReportMetric = {
     type = "structure",
+    id = "ConsolidatedReportMetric",
     members = {
         MetricType = {
             type = "string",
@@ -713,6 +743,7 @@ M.ConsolidatedReportMetric = {
 
 M.CreateLensShareInput = {
     type = "structure",
+    id = "CreateLensShareInput",
     members = {
         LensAlias = {
             type = "string",
@@ -739,6 +770,7 @@ M.CreateLensShareInput = {
 
 M.CreateLensShareOutput = {
     type = "structure",
+    id = "CreateLensShareOutput",
     members = {
         ShareId = {
             type = "string",
@@ -748,6 +780,7 @@ M.CreateLensShareOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -779,6 +812,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateLensVersionInput = {
     type = "structure",
+    id = "CreateLensVersionInput",
     members = {
         LensAlias = {
             type = "string",
@@ -808,6 +842,7 @@ M.CreateLensVersionInput = {
 
 M.CreateLensVersionOutput = {
     type = "structure",
+    id = "CreateLensVersionOutput",
     members = {
         LensArn = {
             type = "string",
@@ -820,6 +855,7 @@ M.CreateLensVersionOutput = {
 
 M.CreateMilestoneInput = {
     type = "structure",
+    id = "CreateMilestoneInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -846,6 +882,7 @@ M.CreateMilestoneInput = {
 
 M.CreateMilestoneOutput = {
     type = "structure",
+    id = "CreateMilestoneOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -858,6 +895,7 @@ M.CreateMilestoneOutput = {
 
 M.ProfileQuestionUpdate = {
     type = "structure",
+    id = "ProfileQuestionUpdate",
     members = {
         QuestionId = {
             type = "string",
@@ -871,6 +909,7 @@ M.ProfileQuestionUpdate = {
 
 M.CreateProfileInput = {
     type = "structure",
+    id = "CreateProfileInput",
     members = {
         ProfileName = {
             type = "string",
@@ -908,6 +947,7 @@ M.CreateProfileInput = {
 
 M.CreateProfileOutput = {
     type = "structure",
+    id = "CreateProfileOutput",
     members = {
         ProfileArn = {
             type = "string",
@@ -920,6 +960,7 @@ M.CreateProfileOutput = {
 
 M.CreateProfileShareInput = {
     type = "structure",
+    id = "CreateProfileShareInput",
     members = {
         ProfileArn = {
             type = "string",
@@ -946,6 +987,7 @@ M.CreateProfileShareInput = {
 
 M.CreateProfileShareOutput = {
     type = "structure",
+    id = "CreateProfileShareOutput",
     members = {
         ShareId = {
             type = "string",
@@ -958,6 +1000,7 @@ M.CreateProfileShareOutput = {
 
 M.CreateReviewTemplateInput = {
     type = "structure",
+    id = "CreateReviewTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -998,6 +1041,7 @@ M.CreateReviewTemplateInput = {
 
 M.CreateReviewTemplateOutput = {
     type = "structure",
+    id = "CreateReviewTemplateOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1007,6 +1051,7 @@ M.CreateReviewTemplateOutput = {
 
 M.CreateTemplateShareInput = {
     type = "structure",
+    id = "CreateTemplateShareInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1033,6 +1078,7 @@ M.CreateTemplateShareInput = {
 
 M.CreateTemplateShareOutput = {
     type = "structure",
+    id = "CreateTemplateShareOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1055,6 +1101,7 @@ M.DefinitionType = {
 
 M.WorkloadDiscoveryConfig = {
     type = "structure",
+    id = "WorkloadDiscoveryConfig",
     members = {
         TrustedAdvisorIntegrationStatus = {
             type = "string",
@@ -1079,6 +1126,7 @@ M.WorkloadIssueManagementStatus = {
 
 M.WorkloadJiraConfigurationInput = {
     type = "structure",
+    id = "WorkloadJiraConfigurationInput",
     members = {
         IssueManagementStatus = {
             type = "string",
@@ -1094,6 +1142,7 @@ M.WorkloadJiraConfigurationInput = {
 
 M.CreateWorkloadInput = {
     type = "structure",
+    id = "CreateWorkloadInput",
     members = {
         WorkloadName = {
             type = "string",
@@ -1182,6 +1231,7 @@ M.CreateWorkloadInput = {
 
 M.CreateWorkloadOutput = {
     type = "structure",
+    id = "CreateWorkloadOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1199,6 +1249,7 @@ M.PermissionType = {
 
 M.CreateWorkloadShareInput = {
     type = "structure",
+    id = "CreateWorkloadShareInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1231,6 +1282,7 @@ M.CreateWorkloadShareInput = {
 
 M.CreateWorkloadShareOutput = {
     type = "structure",
+    id = "CreateWorkloadShareOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1249,6 +1301,7 @@ M.LensStatusType = {
 
 M.DeleteLensInput = {
     type = "structure",
+    id = "DeleteLensInput",
     members = {
         LensAlias = {
             type = "string",
@@ -1277,10 +1330,12 @@ M.DeleteLensInput = {
 
 M.DeleteLensOutput = {
     type = "structure",
+    id = "DeleteLensOutput",
 }
 
 M.DeleteLensShareInput = {
     type = "structure",
+    id = "DeleteLensShareInput",
     members = {
         ShareId = {
             type = "string",
@@ -1309,10 +1364,12 @@ M.DeleteLensShareInput = {
 
 M.DeleteLensShareOutput = {
     type = "structure",
+    id = "DeleteLensShareOutput",
 }
 
 M.DeleteProfileInput = {
     type = "structure",
+    id = "DeleteProfileInput",
     members = {
         ProfileArn = {
             type = "string",
@@ -1334,10 +1391,12 @@ M.DeleteProfileInput = {
 
 M.DeleteProfileOutput = {
     type = "structure",
+    id = "DeleteProfileOutput",
 }
 
 M.DeleteProfileShareInput = {
     type = "structure",
+    id = "DeleteProfileShareInput",
     members = {
         ShareId = {
             type = "string",
@@ -1366,10 +1425,12 @@ M.DeleteProfileShareInput = {
 
 M.DeleteProfileShareOutput = {
     type = "structure",
+    id = "DeleteProfileShareOutput",
 }
 
 M.DeleteReviewTemplateInput = {
     type = "structure",
+    id = "DeleteReviewTemplateInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -1391,10 +1452,12 @@ M.DeleteReviewTemplateInput = {
 
 M.DeleteReviewTemplateOutput = {
     type = "structure",
+    id = "DeleteReviewTemplateOutput",
 }
 
 M.DeleteTemplateShareInput = {
     type = "structure",
+    id = "DeleteTemplateShareInput",
     members = {
         ShareId = {
             type = "string",
@@ -1423,10 +1486,12 @@ M.DeleteTemplateShareInput = {
 
 M.DeleteTemplateShareOutput = {
     type = "structure",
+    id = "DeleteTemplateShareOutput",
 }
 
 M.DeleteWorkloadInput = {
     type = "structure",
+    id = "DeleteWorkloadInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1448,10 +1513,12 @@ M.DeleteWorkloadInput = {
 
 M.DeleteWorkloadOutput = {
     type = "structure",
+    id = "DeleteWorkloadOutput",
 }
 
 M.DeleteWorkloadShareInput = {
     type = "structure",
+    id = "DeleteWorkloadShareInput",
     members = {
         ShareId = {
             type = "string",
@@ -1480,6 +1547,7 @@ M.DeleteWorkloadShareInput = {
 
 M.DeleteWorkloadShareOutput = {
     type = "structure",
+    id = "DeleteWorkloadShareOutput",
 }
 
 M.DifferenceStatus = {
@@ -1490,6 +1558,7 @@ M.DifferenceStatus = {
 
 M.DisassociateLensesInput = {
     type = "structure",
+    id = "DisassociateLensesInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1510,10 +1579,12 @@ M.DisassociateLensesInput = {
 
 M.DisassociateLensesOutput = {
     type = "structure",
+    id = "DisassociateLensesOutput",
 }
 
 M.DisassociateProfilesInput = {
     type = "structure",
+    id = "DisassociateProfilesInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1534,6 +1605,7 @@ M.DisassociateProfilesInput = {
 
 M.DisassociateProfilesOutput = {
     type = "structure",
+    id = "DisassociateProfilesOutput",
 }
 
 M.DiscoveryIntegrationStatus = {
@@ -1543,6 +1615,7 @@ M.DiscoveryIntegrationStatus = {
 
 M.ExportLensInput = {
     type = "structure",
+    id = "ExportLensInput",
     members = {
         LensAlias = {
             type = "string",
@@ -1562,6 +1635,7 @@ M.ExportLensInput = {
 
 M.ExportLensOutput = {
     type = "structure",
+    id = "ExportLensOutput",
     members = {
         LensJSON = {
             type = "string",
@@ -1571,6 +1645,7 @@ M.ExportLensOutput = {
 
 M.GetAnswerInput = {
     type = "structure",
+    id = "GetAnswerInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1604,6 +1679,7 @@ M.GetAnswerInput = {
 
 M.GetAnswerOutput = {
     type = "structure",
+    id = "GetAnswerOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1628,6 +1704,7 @@ M.ReportFormat = {
 
 M.GetConsolidatedReportInput = {
     type = "structure",
+    id = "GetConsolidatedReportInput",
     members = {
         Format = {
             type = "string",
@@ -1659,6 +1736,7 @@ M.GetConsolidatedReportInput = {
 
 M.GetConsolidatedReportOutput = {
     type = "structure",
+    id = "GetConsolidatedReportOutput",
     members = {
         Metrics = {
             type = "list",
@@ -1675,6 +1753,7 @@ M.GetConsolidatedReportOutput = {
 
 M.GetGlobalSettingsInput = {
     type = "structure",
+    id = "GetGlobalSettingsInput",
 }
 
 M.OrganizationSharingStatus = {
@@ -1684,6 +1763,7 @@ M.OrganizationSharingStatus = {
 
 M.GetGlobalSettingsOutput = {
     type = "structure",
+    id = "GetGlobalSettingsOutput",
     members = {
         OrganizationSharingStatus = {
             type = "string",
@@ -1697,6 +1777,7 @@ M.GetGlobalSettingsOutput = {
 
 M.GetLensInput = {
     type = "structure",
+    id = "GetLensInput",
     members = {
         LensAlias = {
             type = "string",
@@ -1716,6 +1797,7 @@ M.GetLensInput = {
 
 M.Lens = {
     type = "structure",
+    id = "Lens",
     members = {
         LensArn = {
             type = "string",
@@ -1745,6 +1827,7 @@ M.Lens = {
 
 M.GetLensOutput = {
     type = "structure",
+    id = "GetLensOutput",
     members = {
         Lens = M.Lens,
     },
@@ -1752,6 +1835,7 @@ M.GetLensOutput = {
 
 M.GetLensReviewInput = {
     type = "structure",
+    id = "GetLensReviewInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1778,6 +1862,7 @@ M.GetLensReviewInput = {
 
 M.SelectedPillar = {
     type = "structure",
+    id = "SelectedPillar",
     members = {
         PillarId = {
             type = "string",
@@ -1791,6 +1876,7 @@ M.SelectedPillar = {
 
 M.JiraSelectedQuestionConfiguration = {
     type = "structure",
+    id = "JiraSelectedQuestionConfiguration",
     members = {
         SelectedPillars = {
             type = "list",
@@ -1809,6 +1895,7 @@ M.LensStatus = {
 
 M.PillarReviewSummary = {
     type = "structure",
+    id = "PillarReviewSummary",
     members = {
         PillarId = {
             type = "string",
@@ -1834,6 +1921,7 @@ M.PillarReviewSummary = {
 
 M.WorkloadProfile = {
     type = "structure",
+    id = "WorkloadProfile",
     members = {
         ProfileArn = {
             type = "string",
@@ -1846,6 +1934,7 @@ M.WorkloadProfile = {
 
 M.LensReview = {
     type = "structure",
+    id = "LensReview",
     members = {
         LensAlias = {
             type = "string",
@@ -1895,6 +1984,7 @@ M.LensReview = {
 
 M.GetLensReviewOutput = {
     type = "structure",
+    id = "GetLensReviewOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1908,6 +1998,7 @@ M.GetLensReviewOutput = {
 
 M.GetLensReviewReportInput = {
     type = "structure",
+    id = "GetLensReviewReportInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1934,6 +2025,7 @@ M.GetLensReviewReportInput = {
 
 M.LensReviewReport = {
     type = "structure",
+    id = "LensReviewReport",
     members = {
         LensAlias = {
             type = "string",
@@ -1949,6 +2041,7 @@ M.LensReviewReport = {
 
 M.GetLensReviewReportOutput = {
     type = "structure",
+    id = "GetLensReviewReportOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -1962,6 +2055,7 @@ M.GetLensReviewReportOutput = {
 
 M.GetLensVersionDifferenceInput = {
     type = "structure",
+    id = "GetLensVersionDifferenceInput",
     members = {
         LensAlias = {
             type = "string",
@@ -1987,6 +2081,7 @@ M.GetLensVersionDifferenceInput = {
 
 M.QuestionDifference = {
     type = "structure",
+    id = "QuestionDifference",
     members = {
         QuestionId = {
             type = "string",
@@ -2002,6 +2097,7 @@ M.QuestionDifference = {
 
 M.PillarDifference = {
     type = "structure",
+    id = "PillarDifference",
     members = {
         PillarId = {
             type = "string",
@@ -2021,6 +2117,7 @@ M.PillarDifference = {
 
 M.VersionDifferences = {
     type = "structure",
+    id = "VersionDifferences",
     members = {
         PillarDifferences = {
             type = "list",
@@ -2031,6 +2128,7 @@ M.VersionDifferences = {
 
 M.GetLensVersionDifferenceOutput = {
     type = "structure",
+    id = "GetLensVersionDifferenceOutput",
     members = {
         LensAlias = {
             type = "string",
@@ -2053,6 +2151,7 @@ M.GetLensVersionDifferenceOutput = {
 
 M.GetMilestoneInput = {
     type = "structure",
+    id = "GetMilestoneInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -2081,6 +2180,7 @@ M.WorkloadImprovementStatus = {
 
 M.WorkloadJiraConfigurationOutput = {
     type = "structure",
+    id = "WorkloadJiraConfigurationOutput",
     members = {
         IssueManagementStatus = {
             type = "string",
@@ -2099,6 +2199,7 @@ M.WorkloadJiraConfigurationOutput = {
 
 M.Workload = {
     type = "structure",
+    id = "Workload",
     members = {
         WorkloadId = {
             type = "string",
@@ -2198,6 +2299,7 @@ M.Workload = {
 
 M.Milestone = {
     type = "structure",
+    id = "Milestone",
     members = {
         MilestoneNumber = {
             type = "integer",
@@ -2214,6 +2316,7 @@ M.Milestone = {
 
 M.GetMilestoneOutput = {
     type = "structure",
+    id = "GetMilestoneOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -2224,6 +2327,7 @@ M.GetMilestoneOutput = {
 
 M.GetProfileInput = {
     type = "structure",
+    id = "GetProfileInput",
     members = {
         ProfileArn = {
             type = "string",
@@ -2243,6 +2347,7 @@ M.GetProfileInput = {
 
 M.ProfileChoice = {
     type = "structure",
+    id = "ProfileChoice",
     members = {
         ChoiceId = {
             type = "string",
@@ -2258,6 +2363,7 @@ M.ProfileChoice = {
 
 M.ProfileQuestion = {
     type = "structure",
+    id = "ProfileQuestion",
     members = {
         QuestionId = {
             type = "string",
@@ -2287,6 +2393,7 @@ M.ProfileQuestion = {
 
 M.Profile = {
     type = "structure",
+    id = "Profile",
     members = {
         ProfileArn = {
             type = "string",
@@ -2326,6 +2433,7 @@ M.Profile = {
 
 M.GetProfileOutput = {
     type = "structure",
+    id = "GetProfileOutput",
     members = {
         Profile = M.Profile,
     },
@@ -2333,10 +2441,12 @@ M.GetProfileOutput = {
 
 M.GetProfileTemplateInput = {
     type = "structure",
+    id = "GetProfileTemplateInput",
 }
 
 M.ProfileTemplateChoice = {
     type = "structure",
+    id = "ProfileTemplateChoice",
     members = {
         ChoiceId = {
             type = "string",
@@ -2352,6 +2462,7 @@ M.ProfileTemplateChoice = {
 
 M.ProfileTemplateQuestion = {
     type = "structure",
+    id = "ProfileTemplateQuestion",
     members = {
         QuestionId = {
             type = "string",
@@ -2377,6 +2488,7 @@ M.ProfileTemplateQuestion = {
 
 M.ProfileTemplate = {
     type = "structure",
+    id = "ProfileTemplate",
     members = {
         TemplateName = {
             type = "string",
@@ -2396,6 +2508,7 @@ M.ProfileTemplate = {
 
 M.GetProfileTemplateOutput = {
     type = "structure",
+    id = "GetProfileTemplateOutput",
     members = {
         ProfileTemplate = M.ProfileTemplate,
     },
@@ -2403,6 +2516,7 @@ M.GetProfileTemplateOutput = {
 
 M.GetReviewTemplateInput = {
     type = "structure",
+    id = "GetReviewTemplateInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -2426,6 +2540,7 @@ M.ReviewTemplateUpdateStatus = {
 
 M.ReviewTemplate = {
     type = "structure",
+    id = "ReviewTemplate",
     members = {
         Description = {
             type = "string",
@@ -2470,6 +2585,7 @@ M.ReviewTemplate = {
 
 M.GetReviewTemplateOutput = {
     type = "structure",
+    id = "GetReviewTemplateOutput",
     members = {
         ReviewTemplate = M.ReviewTemplate,
     },
@@ -2477,6 +2593,7 @@ M.GetReviewTemplateOutput = {
 
 M.GetReviewTemplateAnswerInput = {
     type = "structure",
+    id = "GetReviewTemplateAnswerInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -2509,6 +2626,7 @@ M.ReviewTemplateAnswerStatus = {
 
 M.ReviewTemplateAnswer = {
     type = "structure",
+    id = "ReviewTemplateAnswer",
     members = {
         QuestionId = {
             type = "string",
@@ -2560,6 +2678,7 @@ M.ReviewTemplateAnswer = {
 
 M.GetReviewTemplateAnswerOutput = {
     type = "structure",
+    id = "GetReviewTemplateAnswerOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -2573,6 +2692,7 @@ M.GetReviewTemplateAnswerOutput = {
 
 M.GetReviewTemplateLensReviewInput = {
     type = "structure",
+    id = "GetReviewTemplateLensReviewInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -2593,6 +2713,7 @@ M.GetReviewTemplateLensReviewInput = {
 
 M.ReviewTemplatePillarReviewSummary = {
     type = "structure",
+    id = "ReviewTemplatePillarReviewSummary",
     members = {
         PillarId = {
             type = "string",
@@ -2613,6 +2734,7 @@ M.ReviewTemplatePillarReviewSummary = {
 
 M.ReviewTemplateLensReview = {
     type = "structure",
+    id = "ReviewTemplateLensReview",
     members = {
         LensAlias = {
             type = "string",
@@ -2652,6 +2774,7 @@ M.ReviewTemplateLensReview = {
 
 M.GetReviewTemplateLensReviewOutput = {
     type = "structure",
+    id = "GetReviewTemplateLensReviewOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -2662,6 +2785,7 @@ M.GetReviewTemplateLensReviewOutput = {
 
 M.GetWorkloadInput = {
     type = "structure",
+    id = "GetWorkloadInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -2675,6 +2799,7 @@ M.GetWorkloadInput = {
 
 M.GetWorkloadOutput = {
     type = "structure",
+    id = "GetWorkloadOutput",
     members = {
         Workload = M.Workload,
     },
@@ -2682,6 +2807,7 @@ M.GetWorkloadOutput = {
 
 M.ImportLensInput = {
     type = "structure",
+    id = "ImportLensInput",
     members = {
         LensAlias = {
             type = "string",
@@ -2715,6 +2841,7 @@ M.ImportLensStatus = {
 
 M.ImportLensOutput = {
     type = "structure",
+    id = "ImportLensOutput",
     members = {
         LensArn = {
             type = "string",
@@ -2727,6 +2854,7 @@ M.ImportLensOutput = {
 
 M.ImprovementSummary = {
     type = "structure",
+    id = "ImprovementSummary",
     members = {
         QuestionId = {
             type = "string",
@@ -2757,6 +2885,7 @@ M.IntegratingService = {
 
 M.LensReviewSummary = {
     type = "structure",
+    id = "LensReviewSummary",
     members = {
         LensAlias = {
             type = "string",
@@ -2806,6 +2935,7 @@ M.ShareStatus = {
 
 M.LensShareSummary = {
     type = "structure",
+    id = "LensShareSummary",
     members = {
         ShareId = {
             type = "string",
@@ -2830,6 +2960,7 @@ M.LensType = {
 
 M.LensSummary = {
     type = "structure",
+    id = "LensSummary",
     members = {
         LensArn = {
             type = "string",
@@ -2866,6 +2997,7 @@ M.LensSummary = {
 
 M.LensUpgradeSummary = {
     type = "structure",
+    id = "LensUpgradeSummary",
     members = {
         WorkloadId = {
             type = "string",
@@ -2901,6 +3033,7 @@ M.QuestionPriority = {
 
 M.ListAnswersInput = {
     type = "structure",
+    id = "ListAnswersInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -2951,6 +3084,7 @@ M.ListAnswersInput = {
 
 M.ListAnswersOutput = {
     type = "structure",
+    id = "ListAnswersOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -2976,6 +3110,7 @@ M.ListAnswersOutput = {
 
 M.ListCheckDetailsInput = {
     type = "structure",
+    id = "ListCheckDetailsInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3019,6 +3154,7 @@ M.ListCheckDetailsInput = {
 
 M.ListCheckDetailsOutput = {
     type = "structure",
+    id = "ListCheckDetailsOutput",
     members = {
         CheckDetails = {
             type = "list",
@@ -3032,6 +3168,7 @@ M.ListCheckDetailsOutput = {
 
 M.ListCheckSummariesInput = {
     type = "structure",
+    id = "ListCheckSummariesInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3075,6 +3212,7 @@ M.ListCheckSummariesInput = {
 
 M.ListCheckSummariesOutput = {
     type = "structure",
+    id = "ListCheckSummariesOutput",
     members = {
         CheckSummaries = {
             type = "list",
@@ -3088,6 +3226,7 @@ M.ListCheckSummariesOutput = {
 
 M.ListLensesInput = {
     type = "structure",
+    id = "ListLensesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3124,6 +3263,7 @@ M.ListLensesInput = {
 
 M.ListLensesOutput = {
     type = "structure",
+    id = "ListLensesOutput",
     members = {
         LensSummaries = {
             type = "list",
@@ -3137,6 +3277,7 @@ M.ListLensesOutput = {
 
 M.ListLensReviewImprovementsInput = {
     type = "structure",
+    id = "ListLensReviewImprovementsInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3187,6 +3328,7 @@ M.ListLensReviewImprovementsInput = {
 
 M.ListLensReviewImprovementsOutput = {
     type = "structure",
+    id = "ListLensReviewImprovementsOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3212,6 +3354,7 @@ M.ListLensReviewImprovementsOutput = {
 
 M.ListLensReviewsInput = {
     type = "structure",
+    id = "ListLensReviewsInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3243,6 +3386,7 @@ M.ListLensReviewsInput = {
 
 M.ListLensReviewsOutput = {
     type = "structure",
+    id = "ListLensReviewsOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3262,6 +3406,7 @@ M.ListLensReviewsOutput = {
 
 M.ListLensSharesInput = {
     type = "structure",
+    id = "ListLensSharesInput",
     members = {
         LensAlias = {
             type = "string",
@@ -3299,6 +3444,7 @@ M.ListLensSharesInput = {
 
 M.ListLensSharesOutput = {
     type = "structure",
+    id = "ListLensSharesOutput",
     members = {
         LensShareSummaries = {
             type = "list",
@@ -3312,6 +3458,7 @@ M.ListLensSharesOutput = {
 
 M.ListMilestonesInput = {
     type = "structure",
+    id = "ListMilestonesInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3331,6 +3478,7 @@ M.ListMilestonesInput = {
 
 M.WorkloadSummary = {
     type = "structure",
+    id = "WorkloadSummary",
     members = {
         WorkloadId = {
             type = "string",
@@ -3373,6 +3521,7 @@ M.WorkloadSummary = {
 
 M.MilestoneSummary = {
     type = "structure",
+    id = "MilestoneSummary",
     members = {
         MilestoneNumber = {
             type = "integer",
@@ -3389,6 +3538,7 @@ M.MilestoneSummary = {
 
 M.ListMilestonesOutput = {
     type = "structure",
+    id = "ListMilestonesOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3405,6 +3555,7 @@ M.ListMilestonesOutput = {
 
 M.ListNotificationsInput = {
     type = "structure",
+    id = "ListNotificationsInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3428,6 +3579,7 @@ M.NotificationType = {
 
 M.NotificationSummary = {
     type = "structure",
+    id = "NotificationSummary",
     members = {
         Type = {
             type = "string",
@@ -3438,6 +3590,7 @@ M.NotificationSummary = {
 
 M.ListNotificationsOutput = {
     type = "structure",
+    id = "ListNotificationsOutput",
     members = {
         NotificationSummaries = {
             type = "list",
@@ -3451,6 +3604,7 @@ M.ListNotificationsOutput = {
 
 M.ListProfileNotificationsInput = {
     type = "structure",
+    id = "ListProfileNotificationsInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -3480,6 +3634,7 @@ M.ProfileNotificationType = {
 
 M.ProfileNotificationSummary = {
     type = "structure",
+    id = "ProfileNotificationSummary",
     members = {
         CurrentProfileVersion = {
             type = "string",
@@ -3507,6 +3662,7 @@ M.ProfileNotificationSummary = {
 
 M.ListProfileNotificationsOutput = {
     type = "structure",
+    id = "ListProfileNotificationsOutput",
     members = {
         NotificationSummaries = {
             type = "list",
@@ -3525,6 +3681,7 @@ M.ProfileOwnerType = {
 
 M.ListProfilesInput = {
     type = "structure",
+    id = "ListProfilesInput",
     members = {
         ProfileNamePrefix = {
             type = "string",
@@ -3555,6 +3712,7 @@ M.ListProfilesInput = {
 
 M.ProfileSummary = {
     type = "structure",
+    id = "ProfileSummary",
     members = {
         ProfileArn = {
             type = "string",
@@ -3582,6 +3740,7 @@ M.ProfileSummary = {
 
 M.ListProfilesOutput = {
     type = "structure",
+    id = "ListProfilesOutput",
     members = {
         ProfileSummaries = {
             type = "list",
@@ -3595,6 +3754,7 @@ M.ListProfilesOutput = {
 
 M.ListProfileSharesInput = {
     type = "structure",
+    id = "ListProfileSharesInput",
     members = {
         ProfileArn = {
             type = "string",
@@ -3632,6 +3792,7 @@ M.ListProfileSharesInput = {
 
 M.ProfileShareSummary = {
     type = "structure",
+    id = "ProfileShareSummary",
     members = {
         ShareId = {
             type = "string",
@@ -3650,6 +3811,7 @@ M.ProfileShareSummary = {
 
 M.ListProfileSharesOutput = {
     type = "structure",
+    id = "ListProfileSharesOutput",
     members = {
         ProfileShareSummaries = {
             type = "list",
@@ -3663,6 +3825,7 @@ M.ListProfileSharesOutput = {
 
 M.ListReviewTemplateAnswersInput = {
     type = "structure",
+    id = "ListReviewTemplateAnswersInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -3701,6 +3864,7 @@ M.ListReviewTemplateAnswersInput = {
 
 M.ReviewTemplateAnswerSummary = {
     type = "structure",
+    id = "ReviewTemplateAnswerSummary",
     members = {
         QuestionId = {
             type = "string",
@@ -3740,6 +3904,7 @@ M.ReviewTemplateAnswerSummary = {
 
 M.ListReviewTemplateAnswersOutput = {
     type = "structure",
+    id = "ListReviewTemplateAnswersOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -3759,6 +3924,7 @@ M.ListReviewTemplateAnswersOutput = {
 
 M.ListReviewTemplatesInput = {
     type = "structure",
+    id = "ListReviewTemplatesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3777,6 +3943,7 @@ M.ListReviewTemplatesInput = {
 
 M.ReviewTemplateSummary = {
     type = "structure",
+    id = "ReviewTemplateSummary",
     members = {
         Description = {
             type = "string",
@@ -3805,6 +3972,7 @@ M.ReviewTemplateSummary = {
 
 M.ListReviewTemplatesOutput = {
     type = "structure",
+    id = "ListReviewTemplatesOutput",
     members = {
         ReviewTemplates = {
             type = "list",
@@ -3825,6 +3993,7 @@ M.ShareResourceType = {
 
 M.ListShareInvitationsInput = {
     type = "structure",
+    id = "ListShareInvitationsInput",
     members = {
         WorkloadNamePrefix = {
             type = "string",
@@ -3873,6 +4042,7 @@ M.ListShareInvitationsInput = {
 
 M.ShareInvitationSummary = {
     type = "structure",
+    id = "ShareInvitationSummary",
     members = {
         ShareInvitationId = {
             type = "string",
@@ -3918,6 +4088,7 @@ M.ShareInvitationSummary = {
 
 M.ListShareInvitationsOutput = {
     type = "structure",
+    id = "ListShareInvitationsOutput",
     members = {
         ShareInvitationSummaries = {
             type = "list",
@@ -3931,6 +4102,7 @@ M.ListShareInvitationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         WorkloadArn = {
             type = "string",
@@ -3944,6 +4116,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -3955,6 +4128,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTemplateSharesInput = {
     type = "structure",
+    id = "ListTemplateSharesInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -3992,6 +4166,7 @@ M.ListTemplateSharesInput = {
 
 M.TemplateShareSummary = {
     type = "structure",
+    id = "TemplateShareSummary",
     members = {
         ShareId = {
             type = "string",
@@ -4010,6 +4185,7 @@ M.TemplateShareSummary = {
 
 M.ListTemplateSharesOutput = {
     type = "structure",
+    id = "ListTemplateSharesOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -4026,6 +4202,7 @@ M.ListTemplateSharesOutput = {
 
 M.ListWorkloadsInput = {
     type = "structure",
+    id = "ListWorkloadsInput",
     members = {
         WorkloadNamePrefix = {
             type = "string",
@@ -4041,6 +4218,7 @@ M.ListWorkloadsInput = {
 
 M.ListWorkloadsOutput = {
     type = "structure",
+    id = "ListWorkloadsOutput",
     members = {
         WorkloadSummaries = {
             type = "list",
@@ -4054,6 +4232,7 @@ M.ListWorkloadsOutput = {
 
 M.ListWorkloadSharesInput = {
     type = "structure",
+    id = "ListWorkloadSharesInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4091,6 +4270,7 @@ M.ListWorkloadSharesInput = {
 
 M.WorkloadShareSummary = {
     type = "structure",
+    id = "WorkloadShareSummary",
     members = {
         ShareId = {
             type = "string",
@@ -4112,6 +4292,7 @@ M.WorkloadShareSummary = {
 
 M.ListWorkloadSharesOutput = {
     type = "structure",
+    id = "ListWorkloadSharesOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4128,6 +4309,7 @@ M.ListWorkloadSharesOutput = {
 
 M.ShareInvitation = {
     type = "structure",
+    id = "ShareInvitation",
     members = {
         ShareInvitationId = {
             type = "string",
@@ -4160,6 +4342,7 @@ M.ShareInvitationAction = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         WorkloadArn = {
             type = "string",
@@ -4181,10 +4364,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         WorkloadArn = {
             type = "string",
@@ -4206,10 +4391,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAnswerInput = {
     type = "structure",
+    id = "UpdateAnswerInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4255,6 +4442,7 @@ M.UpdateAnswerInput = {
 
 M.UpdateAnswerOutput = {
     type = "structure",
+    id = "UpdateAnswerOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4271,6 +4459,7 @@ M.UpdateAnswerOutput = {
 
 M.UpdateGlobalSettingsInput = {
     type = "structure",
+    id = "UpdateGlobalSettingsInput",
     members = {
         OrganizationSharingStatus = {
             type = "string",
@@ -4284,10 +4473,12 @@ M.UpdateGlobalSettingsInput = {
 
 M.UpdateGlobalSettingsOutput = {
     type = "structure",
+    id = "UpdateGlobalSettingsOutput",
 }
 
 M.UpdateIntegrationInput = {
     type = "structure",
+    id = "UpdateIntegrationInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4314,10 +4505,12 @@ M.UpdateIntegrationInput = {
 
 M.UpdateIntegrationOutput = {
     type = "structure",
+    id = "UpdateIntegrationOutput",
 }
 
 M.UpdateLensReviewInput = {
     type = "structure",
+    id = "UpdateLensReviewInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4347,6 +4540,7 @@ M.UpdateLensReviewInput = {
 
 M.UpdateLensReviewOutput = {
     type = "structure",
+    id = "UpdateLensReviewOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4357,6 +4551,7 @@ M.UpdateLensReviewOutput = {
 
 M.UpdateProfileInput = {
     type = "structure",
+    id = "UpdateProfileInput",
     members = {
         ProfileArn = {
             type = "string",
@@ -4377,6 +4572,7 @@ M.UpdateProfileInput = {
 
 M.UpdateProfileOutput = {
     type = "structure",
+    id = "UpdateProfileOutput",
     members = {
         Profile = M.Profile,
     },
@@ -4384,6 +4580,7 @@ M.UpdateProfileOutput = {
 
 M.UpdateReviewTemplateInput = {
     type = "structure",
+    id = "UpdateReviewTemplateInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -4414,6 +4611,7 @@ M.UpdateReviewTemplateInput = {
 
 M.UpdateReviewTemplateOutput = {
     type = "structure",
+    id = "UpdateReviewTemplateOutput",
     members = {
         ReviewTemplate = M.ReviewTemplate,
     },
@@ -4421,6 +4619,7 @@ M.UpdateReviewTemplateOutput = {
 
 M.UpdateReviewTemplateAnswerInput = {
     type = "structure",
+    id = "UpdateReviewTemplateAnswerInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -4466,6 +4665,7 @@ M.UpdateReviewTemplateAnswerInput = {
 
 M.UpdateReviewTemplateAnswerOutput = {
     type = "structure",
+    id = "UpdateReviewTemplateAnswerOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -4479,6 +4679,7 @@ M.UpdateReviewTemplateAnswerOutput = {
 
 M.UpdateReviewTemplateLensReviewInput = {
     type = "structure",
+    id = "UpdateReviewTemplateLensReviewInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -4507,6 +4708,7 @@ M.UpdateReviewTemplateLensReviewInput = {
 
 M.UpdateReviewTemplateLensReviewOutput = {
     type = "structure",
+    id = "UpdateReviewTemplateLensReviewOutput",
     members = {
         TemplateArn = {
             type = "string",
@@ -4517,6 +4719,7 @@ M.UpdateReviewTemplateLensReviewOutput = {
 
 M.UpdateShareInvitationInput = {
     type = "structure",
+    id = "UpdateShareInvitationInput",
     members = {
         ShareInvitationId = {
             type = "string",
@@ -4536,6 +4739,7 @@ M.UpdateShareInvitationInput = {
 
 M.UpdateShareInvitationOutput = {
     type = "structure",
+    id = "UpdateShareInvitationOutput",
     members = {
         ShareInvitation = M.ShareInvitation,
     },
@@ -4543,6 +4747,7 @@ M.UpdateShareInvitationOutput = {
 
 M.UpdateWorkloadInput = {
     type = "structure",
+    id = "UpdateWorkloadInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4608,6 +4813,7 @@ M.UpdateWorkloadInput = {
 
 M.UpdateWorkloadOutput = {
     type = "structure",
+    id = "UpdateWorkloadOutput",
     members = {
         Workload = M.Workload,
     },
@@ -4615,6 +4821,7 @@ M.UpdateWorkloadOutput = {
 
 M.UpdateWorkloadShareInput = {
     type = "structure",
+    id = "UpdateWorkloadShareInput",
     members = {
         ShareId = {
             type = "string",
@@ -4641,6 +4848,7 @@ M.UpdateWorkloadShareInput = {
 
 M.WorkloadShare = {
     type = "structure",
+    id = "WorkloadShare",
     members = {
         ShareId = {
             type = "string",
@@ -4668,6 +4876,7 @@ M.WorkloadShare = {
 
 M.UpdateWorkloadShareOutput = {
     type = "structure",
+    id = "UpdateWorkloadShareOutput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4678,6 +4887,7 @@ M.UpdateWorkloadShareOutput = {
 
 M.UpgradeLensReviewInput = {
     type = "structure",
+    id = "UpgradeLensReviewInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4707,10 +4917,12 @@ M.UpgradeLensReviewInput = {
 
 M.UpgradeLensReviewOutput = {
     type = "structure",
+    id = "UpgradeLensReviewOutput",
 }
 
 M.UpgradeProfileVersionInput = {
     type = "structure",
+    id = "UpgradeProfileVersionInput",
     members = {
         WorkloadId = {
             type = "string",
@@ -4740,10 +4952,12 @@ M.UpgradeProfileVersionInput = {
 
 M.UpgradeProfileVersionOutput = {
     type = "structure",
+    id = "UpgradeProfileVersionOutput",
 }
 
 M.UpgradeReviewTemplateLensReviewInput = {
     type = "structure",
+    id = "UpgradeReviewTemplateLensReviewInput",
     members = {
         TemplateArn = {
             type = "string",
@@ -4767,6 +4981,7 @@ M.UpgradeReviewTemplateLensReviewInput = {
 
 M.UpgradeReviewTemplateLensReviewOutput = {
     type = "structure",
+    id = "UpgradeReviewTemplateLensReviewOutput",
 }
 
 return M

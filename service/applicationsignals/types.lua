@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.BatchGetServiceLevelObjectiveBudgetReportInput = {
     type = "structure",
+    id = "BatchGetServiceLevelObjectiveBudgetReportInput",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -31,6 +33,7 @@ M.BatchGetServiceLevelObjectiveBudgetReportInput = {
 
 M.ServiceLevelObjectiveBudgetReportError = {
     type = "structure",
+    id = "ServiceLevelObjectiveBudgetReportError",
     members = {
         Name = {
             type = "string",
@@ -80,6 +83,7 @@ M.DurationUnit = {
 
 M.CalendarInterval = {
     type = "structure",
+    id = "CalendarInterval",
     members = {
         StartTime = {
             type = "timestamp",
@@ -104,6 +108,7 @@ M.CalendarInterval = {
 
 M.RollingInterval = {
     type = "structure",
+    id = "RollingInterval",
     members = {
         DurationUnit = {
             type = "string",
@@ -122,6 +127,7 @@ M.RollingInterval = {
 
 M.Interval = {
     type = "union",
+    id = "Interval",
     members = {
         RollingInterval = M.RollingInterval,
         CalendarInterval = M.CalendarInterval,
@@ -130,6 +136,7 @@ M.Interval = {
 
 M.Goal = {
     type = "structure",
+    id = "Goal",
     members = {
         Interval = M.Interval,
         AttainmentGoal = {
@@ -150,6 +157,7 @@ M.ServiceLevelIndicatorComparisonOperator = {
 
 M.CompositeSliComponent = {
     type = "union",
+    id = "CompositeSliComponent",
     members = {
         OperationName = {
             type = "string",
@@ -165,6 +173,7 @@ M.SelectionType = {
 
 M.SelectionConfig = {
     type = "structure",
+    id = "SelectionConfig",
     members = {
         Type = {
             type = "string",
@@ -180,6 +189,7 @@ M.SelectionConfig = {
 
 M.CompositeSliConfig = {
     type = "structure",
+    id = "CompositeSliConfig",
     members = {
         SelectionConfig = setmetatable({ traits = {
             required = true,
@@ -193,6 +203,7 @@ M.CompositeSliConfig = {
 
 M.DependencyConfig = {
     type = "structure",
+    id = "DependencyConfig",
     members = {
         DependencyKeyAttributes = {
             type = "map",
@@ -213,6 +224,7 @@ M.DependencyConfig = {
 
 M.MetricSource = {
     type = "structure",
+    id = "MetricSource",
     members = {
         MetricSourceKeyAttributes = {
             type = "map",
@@ -237,6 +249,7 @@ M.ServiceLevelIndicatorMetricType = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         Name = {
             type = "string",
@@ -255,6 +268,7 @@ M.Dimension = {
 
 M.Metric = {
     type = "structure",
+    id = "Metric",
     members = {
         Namespace = {
             type = "string",
@@ -301,6 +315,7 @@ M.StandardUnit = {
 
 M.MetricStat = {
     type = "structure",
+    id = "MetricStat",
     members = {
         Metric = setmetatable({ traits = {
             required = true,
@@ -325,6 +340,7 @@ M.MetricStat = {
 
 M.MetricDataQuery = {
     type = "structure",
+    id = "MetricDataQuery",
     members = {
         Id = {
             type = "string",
@@ -359,6 +375,7 @@ M.MetricDataQuery = {
 
 M.MonitoredRequestCountMetricDataQueries = {
     type = "union",
+    id = "MonitoredRequestCountMetricDataQueries",
     members = {
         GoodCountMetric = {
             type = "list",
@@ -373,6 +390,7 @@ M.MonitoredRequestCountMetricDataQueries = {
 
 M.RequestBasedServiceLevelIndicatorMetric = {
     type = "structure",
+    id = "RequestBasedServiceLevelIndicatorMetric",
     members = {
         KeyAttributes = {
             type = "map",
@@ -403,6 +421,7 @@ M.RequestBasedServiceLevelIndicatorMetric = {
 
 M.RequestBasedServiceLevelIndicator = {
     type = "structure",
+    id = "RequestBasedServiceLevelIndicator",
     members = {
         RequestBasedSliMetric = setmetatable({ traits = {
             required = true,
@@ -418,6 +437,7 @@ M.RequestBasedServiceLevelIndicator = {
 
 M.ServiceLevelIndicatorMetric = {
     type = "structure",
+    id = "ServiceLevelIndicatorMetric",
     members = {
         KeyAttributes = {
             type = "map",
@@ -445,6 +465,7 @@ M.ServiceLevelIndicatorMetric = {
 
 M.ServiceLevelIndicator = {
     type = "structure",
+    id = "ServiceLevelIndicator",
     members = {
         SliMetric = setmetatable({ traits = {
             required = true,
@@ -466,6 +487,7 @@ M.ServiceLevelIndicator = {
 
 M.ServiceLevelObjectiveBudgetReport = {
     type = "structure",
+    id = "ServiceLevelObjectiveBudgetReport",
     members = {
         Arn = {
             type = "string",
@@ -511,6 +533,7 @@ M.ServiceLevelObjectiveBudgetReport = {
 
 M.BatchGetServiceLevelObjectiveBudgetReportOutput = {
     type = "structure",
+    id = "BatchGetServiceLevelObjectiveBudgetReportOutput",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -537,6 +560,7 @@ M.BatchGetServiceLevelObjectiveBudgetReportOutput = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -550,6 +574,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -560,6 +585,7 @@ M.ValidationException = {
 
 M.RecurrenceRule = {
     type = "structure",
+    id = "RecurrenceRule",
     members = {
         Expression = {
             type = "string",
@@ -572,6 +598,7 @@ M.RecurrenceRule = {
 
 M.Window = {
     type = "structure",
+    id = "Window",
     members = {
         DurationUnit = {
             type = "string",
@@ -590,6 +617,7 @@ M.Window = {
 
 M.ExclusionWindow = {
     type = "structure",
+    id = "ExclusionWindow",
     members = {
         Window = setmetatable({ traits = {
             required = true,
@@ -606,6 +634,7 @@ M.ExclusionWindow = {
 
 M.BatchUpdateExclusionWindowsInput = {
     type = "structure",
+    id = "BatchUpdateExclusionWindowsInput",
     members = {
         SloIds = {
             type = "list",
@@ -627,6 +656,7 @@ M.BatchUpdateExclusionWindowsInput = {
 
 M.BatchUpdateExclusionWindowsError = {
     type = "structure",
+    id = "BatchUpdateExclusionWindowsError",
     members = {
         SloId = {
             type = "string",
@@ -651,6 +681,7 @@ M.BatchUpdateExclusionWindowsError = {
 
 M.BatchUpdateExclusionWindowsOutput = {
     type = "structure",
+    id = "BatchUpdateExclusionWindowsOutput",
     members = {
         SloIds = {
             type = "list",
@@ -671,6 +702,7 @@ M.BatchUpdateExclusionWindowsOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         ResourceType = {
@@ -696,14 +728,17 @@ M.ResourceNotFoundException = {
 
 M.DeleteGroupingConfigurationInput = {
     type = "structure",
+    id = "DeleteGroupingConfigurationInput",
 }
 
 M.DeleteGroupingConfigurationOutput = {
     type = "structure",
+    id = "DeleteGroupingConfigurationOutput",
 }
 
 M.GetServiceInput = {
     type = "structure",
+    id = "GetServiceInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -732,6 +767,7 @@ M.GetServiceInput = {
 
 M.MetricReference = {
     type = "structure",
+    id = "MetricReference",
     members = {
         Namespace = {
             type = "string",
@@ -763,6 +799,7 @@ M.MetricReference = {
 
 M.ServiceGroup = {
     type = "structure",
+    id = "ServiceGroup",
     members = {
         GroupName = {
             type = "string",
@@ -793,6 +830,7 @@ M.ServiceGroup = {
 
 M.Service = {
     type = "structure",
+    id = "Service",
     members = {
         KeyAttributes = {
             type = "map",
@@ -826,6 +864,7 @@ M.Service = {
 
 M.GetServiceOutput = {
     type = "structure",
+    id = "GetServiceOutput",
     members = {
         Service = setmetatable({ traits = {
             required = true,
@@ -851,6 +890,7 @@ M.GetServiceOutput = {
 
 M.CanaryEntity = {
     type = "structure",
+    id = "CanaryEntity",
     members = {
         CanaryName = {
             type = "string",
@@ -863,6 +903,7 @@ M.CanaryEntity = {
 
 M.ServiceEntity = {
     type = "structure",
+    id = "ServiceEntity",
     members = {
         Type = {
             type = "string",
@@ -881,6 +922,7 @@ M.ServiceEntity = {
 
 M.ServiceOperationEntity = {
     type = "structure",
+    id = "ServiceOperationEntity",
     members = {
         Service = M.ServiceEntity,
         Operation = {
@@ -894,6 +936,7 @@ M.ServiceOperationEntity = {
 
 M.ServiceLevelObjectiveEntity = {
     type = "structure",
+    id = "ServiceLevelObjectiveEntity",
     members = {
         SloName = {
             type = "string",
@@ -906,6 +949,7 @@ M.ServiceLevelObjectiveEntity = {
 
 M.AuditTargetEntity = {
     type = "union",
+    id = "AuditTargetEntity",
     members = {
         Service = M.ServiceEntity,
         Slo = M.ServiceLevelObjectiveEntity,
@@ -916,6 +960,7 @@ M.AuditTargetEntity = {
 
 M.AuditTarget = {
     type = "structure",
+    id = "AuditTarget",
     members = {
         Type = {
             type = "string",
@@ -936,6 +981,7 @@ M.DetailLevel = {
 
 M.ListAuditFindingsInput = {
     type = "structure",
+    id = "ListAuditFindingsInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -984,6 +1030,7 @@ M.Severity = {
 
 M.AuditorResult = {
     type = "structure",
+    id = "AuditorResult",
     members = {
         Auditor = {
             type = "string",
@@ -1009,6 +1056,7 @@ M.ConnectionType = {
 
 M.Edge = {
     type = "structure",
+    id = "Edge",
     members = {
         SourceNodeId = {
             type = "string",
@@ -1027,6 +1075,7 @@ M.Edge = {
 
 M.Node = {
     type = "structure",
+    id = "Node",
     members = {
         KeyAttributes = {
             type = "map",
@@ -1065,6 +1114,7 @@ M.Node = {
 
 M.DependencyGraph = {
     type = "structure",
+    id = "DependencyGraph",
     members = {
         Nodes = {
             type = "list",
@@ -1079,6 +1129,7 @@ M.DependencyGraph = {
 
 M.MetricGraph = {
     type = "structure",
+    id = "MetricGraph",
     members = {
         MetricDataQueries = {
             type = "list",
@@ -1095,6 +1146,7 @@ M.MetricGraph = {
 
 M.AuditFinding = {
     type = "structure",
+    id = "AuditFinding",
     members = {
         KeyAttributes = {
             type = "map",
@@ -1121,6 +1173,7 @@ M.AuditFinding = {
 
 M.ListAuditFindingsOutput = {
     type = "structure",
+    id = "ListAuditFindingsOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1143,6 +1196,7 @@ M.ListAuditFindingsOutput = {
 
 M.ListEntityEventsInput = {
     type = "structure",
+    id = "ListEntityEventsInput",
     members = {
         Entity = {
             type = "map",
@@ -1187,6 +1241,7 @@ M.ChangeEventType = {
 
 M.ChangeEvent = {
     type = "structure",
+    id = "ChangeEvent",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -1237,6 +1292,7 @@ M.ChangeEvent = {
 
 M.ListEntityEventsOutput = {
     type = "structure",
+    id = "ListEntityEventsOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1265,6 +1321,7 @@ M.ListEntityEventsOutput = {
 
 M.ListGroupingAttributeDefinitionsInput = {
     type = "structure",
+    id = "ListGroupingAttributeDefinitionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1290,6 +1347,7 @@ M.ListGroupingAttributeDefinitionsInput = {
 
 M.GroupingAttributeDefinition = {
     type = "structure",
+    id = "GroupingAttributeDefinition",
     members = {
         GroupingName = {
             type = "string",
@@ -1309,6 +1367,7 @@ M.GroupingAttributeDefinition = {
 
 M.ListGroupingAttributeDefinitionsOutput = {
     type = "structure",
+    id = "ListGroupingAttributeDefinitionsOutput",
     members = {
         GroupingAttributeDefinitions = {
             type = "list",
@@ -1328,6 +1387,7 @@ M.ListGroupingAttributeDefinitionsOutput = {
 
 M.ListServiceDependenciesInput = {
     type = "structure",
+    id = "ListServiceDependenciesInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1369,6 +1429,7 @@ M.ListServiceDependenciesInput = {
 
 M.ServiceDependency = {
     type = "structure",
+    id = "ServiceDependency",
     members = {
         OperationName = {
             type = "string",
@@ -1402,6 +1463,7 @@ M.ServiceDependency = {
 
 M.ListServiceDependenciesOutput = {
     type = "structure",
+    id = "ListServiceDependenciesOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1430,6 +1492,7 @@ M.ListServiceDependenciesOutput = {
 
 M.ListServiceDependentsInput = {
     type = "structure",
+    id = "ListServiceDependentsInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1471,6 +1534,7 @@ M.ListServiceDependentsInput = {
 
 M.ServiceDependent = {
     type = "structure",
+    id = "ServiceDependent",
     members = {
         OperationName = {
             type = "string",
@@ -1498,6 +1562,7 @@ M.ServiceDependent = {
 
 M.ListServiceDependentsOutput = {
     type = "structure",
+    id = "ListServiceDependentsOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1526,6 +1591,7 @@ M.ListServiceDependentsOutput = {
 
 M.ListServiceLevelObjectiveExclusionWindowsInput = {
     type = "structure",
+    id = "ListServiceLevelObjectiveExclusionWindowsInput",
     members = {
         Id = {
             type = "string",
@@ -1552,6 +1618,7 @@ M.ListServiceLevelObjectiveExclusionWindowsInput = {
 
 M.ListServiceLevelObjectiveExclusionWindowsOutput = {
     type = "structure",
+    id = "ListServiceLevelObjectiveExclusionWindowsOutput",
     members = {
         ExclusionWindows = {
             type = "list",
@@ -1568,6 +1635,7 @@ M.ListServiceLevelObjectiveExclusionWindowsOutput = {
 
 M.ListServiceOperationsInput = {
     type = "structure",
+    id = "ListServiceOperationsInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1609,6 +1677,7 @@ M.ListServiceOperationsInput = {
 
 M.ServiceOperation = {
     type = "structure",
+    id = "ServiceOperation",
     members = {
         Name = {
             type = "string",
@@ -1628,6 +1697,7 @@ M.ServiceOperation = {
 
 M.ListServiceOperationsOutput = {
     type = "structure",
+    id = "ListServiceOperationsOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1656,6 +1726,7 @@ M.ListServiceOperationsOutput = {
 
 M.ListServicesInput = {
     type = "structure",
+    id = "ListServicesInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1702,6 +1773,7 @@ M.ListServicesInput = {
 
 M.ServiceSummary = {
     type = "structure",
+    id = "ServiceSummary",
     members = {
         KeyAttributes = {
             type = "map",
@@ -1731,6 +1803,7 @@ M.ServiceSummary = {
 
 M.ListServicesOutput = {
     type = "structure",
+    id = "ListServicesOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1759,6 +1832,7 @@ M.ListServicesOutput = {
 
 M.AttributeFilter = {
     type = "structure",
+    id = "AttributeFilter",
     members = {
         AttributeFilterName = {
             type = "string",
@@ -1778,6 +1852,7 @@ M.AttributeFilter = {
 
 M.ListServiceStatesInput = {
     type = "structure",
+    id = "ListServiceStatesInput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1818,6 +1893,7 @@ M.ListServiceStatesInput = {
 
 M.ServiceState = {
     type = "structure",
+    id = "ServiceState",
     members = {
         AttributeFilters = {
             type = "list",
@@ -1843,6 +1919,7 @@ M.ServiceState = {
 
 M.ListServiceStatesOutput = {
     type = "structure",
+    id = "ListServiceStatesOutput",
     members = {
         StartTime = {
             type = "timestamp",
@@ -1871,6 +1948,7 @@ M.ListServiceStatesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1884,6 +1962,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -1902,6 +1981,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1912,6 +1992,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutGroupingConfigurationInput = {
     type = "structure",
+    id = "PutGroupingConfigurationInput",
     members = {
         GroupingAttributeDefinitions = {
             type = "list",
@@ -1925,6 +2006,7 @@ M.PutGroupingConfigurationInput = {
 
 M.GroupingConfiguration = {
     type = "structure",
+    id = "GroupingConfiguration",
     members = {
         GroupingAttributeDefinitions = {
             type = "list",
@@ -1944,6 +2026,7 @@ M.GroupingConfiguration = {
 
 M.PutGroupingConfigurationOutput = {
     type = "structure",
+    id = "PutGroupingConfigurationOutput",
     members = {
         GroupingConfiguration = setmetatable({ traits = {
             required = true,
@@ -1953,6 +2036,7 @@ M.PutGroupingConfigurationOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -1966,6 +2050,7 @@ M.ConflictException = {
 
 M.BurnRateConfiguration = {
     type = "structure",
+    id = "BurnRateConfiguration",
     members = {
         LookBackWindowMinutes = {
             type = "integer",
@@ -1978,6 +2063,7 @@ M.BurnRateConfiguration = {
 
 M.RequestBasedServiceLevelIndicatorMetricConfig = {
     type = "structure",
+    id = "RequestBasedServiceLevelIndicatorMetricConfig",
     members = {
         KeyAttributes = {
             type = "map",
@@ -2006,6 +2092,7 @@ M.RequestBasedServiceLevelIndicatorMetricConfig = {
 
 M.RequestBasedServiceLevelIndicatorConfig = {
     type = "structure",
+    id = "RequestBasedServiceLevelIndicatorConfig",
     members = {
         RequestBasedSliMetricConfig = setmetatable({ traits = {
             required = true,
@@ -2021,6 +2108,7 @@ M.RequestBasedServiceLevelIndicatorConfig = {
 
 M.ServiceLevelIndicatorMetricConfig = {
     type = "structure",
+    id = "ServiceLevelIndicatorMetricConfig",
     members = {
         KeyAttributes = {
             type = "map",
@@ -2054,6 +2142,7 @@ M.ServiceLevelIndicatorMetricConfig = {
 
 M.ServiceLevelIndicatorConfig = {
     type = "structure",
+    id = "ServiceLevelIndicatorConfig",
     members = {
         SliMetricConfig = setmetatable({ traits = {
             required = true,
@@ -2075,6 +2164,7 @@ M.ServiceLevelIndicatorConfig = {
 
 M.CreateServiceLevelObjectiveInput = {
     type = "structure",
+    id = "CreateServiceLevelObjectiveInput",
     members = {
         Name = {
             type = "string",
@@ -2119,6 +2209,7 @@ M.MetricSourceType = {
 
 M.ServiceLevelObjective = {
     type = "structure",
+    id = "ServiceLevelObjective",
     members = {
         Arn = {
             type = "string",
@@ -2170,6 +2261,7 @@ M.ServiceLevelObjective = {
 
 M.CreateServiceLevelObjectiveOutput = {
     type = "structure",
+    id = "CreateServiceLevelObjectiveOutput",
     members = {
         Slo = setmetatable({ traits = {
             required = true,
@@ -2179,6 +2271,7 @@ M.CreateServiceLevelObjectiveOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -2192,6 +2285,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteServiceLevelObjectiveInput = {
     type = "structure",
+    id = "DeleteServiceLevelObjectiveInput",
     members = {
         Id = {
             type = "string",
@@ -2205,10 +2299,12 @@ M.DeleteServiceLevelObjectiveInput = {
 
 M.DeleteServiceLevelObjectiveOutput = {
     type = "structure",
+    id = "DeleteServiceLevelObjectiveOutput",
 }
 
 M.GetServiceLevelObjectiveInput = {
     type = "structure",
+    id = "GetServiceLevelObjectiveInput",
     members = {
         Id = {
             type = "string",
@@ -2222,6 +2318,7 @@ M.GetServiceLevelObjectiveInput = {
 
 M.GetServiceLevelObjectiveOutput = {
     type = "structure",
+    id = "GetServiceLevelObjectiveOutput",
     members = {
         Slo = setmetatable({ traits = {
             required = true,
@@ -2231,6 +2328,7 @@ M.GetServiceLevelObjectiveOutput = {
 
 M.ListServiceLevelObjectivesInput = {
     type = "structure",
+    id = "ListServiceLevelObjectivesInput",
     members = {
         KeyAttributes = {
             type = "map",
@@ -2280,6 +2378,7 @@ M.ListServiceLevelObjectivesInput = {
 
 M.ServiceLevelObjectiveSummary = {
     type = "structure",
+    id = "ServiceLevelObjectiveSummary",
     members = {
         Arn = {
             type = "string",
@@ -2318,6 +2417,7 @@ M.ServiceLevelObjectiveSummary = {
 
 M.ListServiceLevelObjectivesOutput = {
     type = "structure",
+    id = "ListServiceLevelObjectivesOutput",
     members = {
         SloSummaries = {
             type = "list",
@@ -2331,6 +2431,7 @@ M.ListServiceLevelObjectivesOutput = {
 
 M.UpdateServiceLevelObjectiveInput = {
     type = "structure",
+    id = "UpdateServiceLevelObjectiveInput",
     members = {
         Id = {
             type = "string",
@@ -2357,6 +2458,7 @@ M.UpdateServiceLevelObjectiveInput = {
 
 M.UpdateServiceLevelObjectiveOutput = {
     type = "structure",
+    id = "UpdateServiceLevelObjectiveOutput",
     members = {
         Slo = setmetatable({ traits = {
             required = true,
@@ -2366,14 +2468,17 @@ M.UpdateServiceLevelObjectiveOutput = {
 
 M.StartDiscoveryInput = {
     type = "structure",
+    id = "StartDiscoveryInput",
 }
 
 M.StartDiscoveryOutput = {
     type = "structure",
+    id = "StartDiscoveryOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2393,10 +2498,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2416,6 +2523,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

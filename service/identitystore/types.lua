@@ -6,6 +6,7 @@ M.AccessDeniedExceptionReason = {
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +23,7 @@ M.AccessDeniedException = {
 
 M.Address = {
     type = "structure",
+    id = "Address",
     members = {
         StreetAddress = {
             type = "string",
@@ -55,6 +57,7 @@ M.Address = {
 
 M.ExternalId = {
     type = "structure",
+    id = "ExternalId",
     members = {
         Issuer = {
             type = "string",
@@ -73,6 +76,7 @@ M.ExternalId = {
 
 M.UniqueAttribute = {
     type = "structure",
+    id = "UniqueAttribute",
     members = {
         AttributePath = {
             type = "string",
@@ -91,6 +95,7 @@ M.UniqueAttribute = {
 
 M.AlternateIdentifier = {
     type = "union",
+    id = "AlternateIdentifier",
     members = {
         ExternalId = M.ExternalId,
         UniqueAttribute = M.UniqueAttribute,
@@ -99,6 +104,7 @@ M.AlternateIdentifier = {
 
 M.AttributeOperation = {
     type = "structure",
+    id = "AttributeOperation",
     members = {
         AttributePath = {
             type = "string",
@@ -114,6 +120,7 @@ M.AttributeOperation = {
 
 M.GetGroupIdInput = {
     type = "structure",
+    id = "GetGroupIdInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -129,6 +136,7 @@ M.GetGroupIdInput = {
 
 M.GetGroupIdOutput = {
     type = "structure",
+    id = "GetGroupIdOutput",
     members = {
         GroupId = {
             type = "string",
@@ -147,6 +155,7 @@ M.GetGroupIdOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -179,6 +188,7 @@ M.ResourceType = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         ResourceType = {
@@ -205,6 +215,7 @@ M.ThrottlingExceptionReason = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -235,6 +246,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -251,6 +263,7 @@ M.ValidationException = {
 
 M.MemberId = {
     type = "union",
+    id = "MemberId",
     members = {
         UserId = {
             type = "string",
@@ -260,6 +273,7 @@ M.MemberId = {
 
 M.GetGroupMembershipIdInput = {
     type = "structure",
+    id = "GetGroupMembershipIdInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -281,6 +295,7 @@ M.GetGroupMembershipIdInput = {
 
 M.GetGroupMembershipIdOutput = {
     type = "structure",
+    id = "GetGroupMembershipIdOutput",
     members = {
         MembershipId = {
             type = "string",
@@ -299,6 +314,7 @@ M.GetGroupMembershipIdOutput = {
 
 M.GetUserIdInput = {
     type = "structure",
+    id = "GetUserIdInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -314,6 +330,7 @@ M.GetUserIdInput = {
 
 M.GetUserIdOutput = {
     type = "structure",
+    id = "GetUserIdOutput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -337,6 +354,7 @@ M.ConflictExceptionReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -353,6 +371,7 @@ M.ConflictException = {
 
 M.CreateGroupMembershipInput = {
     type = "structure",
+    id = "CreateGroupMembershipInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -374,6 +393,7 @@ M.CreateGroupMembershipInput = {
 
 M.CreateGroupMembershipOutput = {
     type = "structure",
+    id = "CreateGroupMembershipOutput",
     members = {
         MembershipId = {
             type = "string",
@@ -392,6 +412,7 @@ M.CreateGroupMembershipOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -405,6 +426,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteGroupMembershipInput = {
     type = "structure",
+    id = "DeleteGroupMembershipInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -423,10 +445,12 @@ M.DeleteGroupMembershipInput = {
 
 M.DeleteGroupMembershipOutput = {
     type = "structure",
+    id = "DeleteGroupMembershipOutput",
 }
 
 M.DescribeGroupMembershipInput = {
     type = "structure",
+    id = "DescribeGroupMembershipInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -445,6 +469,7 @@ M.DescribeGroupMembershipInput = {
 
 M.DescribeGroupMembershipOutput = {
     type = "structure",
+    id = "DescribeGroupMembershipOutput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -484,6 +509,7 @@ M.DescribeGroupMembershipOutput = {
 
 M.ListGroupMembershipsInput = {
     type = "structure",
+    id = "ListGroupMembershipsInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -508,6 +534,7 @@ M.ListGroupMembershipsInput = {
 
 M.GroupMembership = {
     type = "structure",
+    id = "GroupMembership",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -539,6 +566,7 @@ M.GroupMembership = {
 
 M.ListGroupMembershipsOutput = {
     type = "structure",
+    id = "ListGroupMembershipsOutput",
     members = {
         GroupMemberships = {
             type = "list",
@@ -555,6 +583,7 @@ M.ListGroupMembershipsOutput = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -573,6 +602,7 @@ M.CreateGroupInput = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         GroupId = {
             type = "string",
@@ -591,6 +621,7 @@ M.CreateGroupOutput = {
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -609,10 +640,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DescribeGroupInput = {
     type = "structure",
+    id = "DescribeGroupInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -631,6 +664,7 @@ M.DescribeGroupInput = {
 
 M.DescribeGroupOutput = {
     type = "structure",
+    id = "DescribeGroupOutput",
     members = {
         GroupId = {
             type = "string",
@@ -671,6 +705,7 @@ M.DescribeGroupOutput = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         AttributePath = {
             type = "string",
@@ -689,6 +724,7 @@ M.Filter = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -711,6 +747,7 @@ M.ListGroupsInput = {
 
 M.Group = {
     type = "structure",
+    id = "Group",
     members = {
         GroupId = {
             type = "string",
@@ -751,6 +788,7 @@ M.Group = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -767,6 +805,7 @@ M.ListGroupsOutput = {
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -792,10 +831,12 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
 }
 
 M.IsMemberInGroupsInput = {
     type = "structure",
+    id = "IsMemberInGroupsInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -818,6 +859,7 @@ M.IsMemberInGroupsInput = {
 
 M.GroupMembershipExistenceResult = {
     type = "structure",
+    id = "GroupMembershipExistenceResult",
     members = {
         GroupId = {
             type = "string",
@@ -834,6 +876,7 @@ M.GroupMembershipExistenceResult = {
 
 M.IsMemberInGroupsOutput = {
     type = "structure",
+    id = "IsMemberInGroupsOutput",
     members = {
         Results = {
             type = "list",
@@ -847,6 +890,7 @@ M.IsMemberInGroupsOutput = {
 
 M.ListGroupMembershipsForMemberInput = {
     type = "structure",
+    id = "ListGroupMembershipsForMemberInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -868,6 +912,7 @@ M.ListGroupMembershipsForMemberInput = {
 
 M.ListGroupMembershipsForMemberOutput = {
     type = "structure",
+    id = "ListGroupMembershipsForMemberOutput",
     members = {
         GroupMemberships = {
             type = "list",
@@ -884,6 +929,7 @@ M.ListGroupMembershipsForMemberOutput = {
 
 M.Email = {
     type = "structure",
+    id = "Email",
     members = {
         Value = {
             type = "string",
@@ -902,6 +948,7 @@ M.Email = {
 
 M.Name = {
     type = "structure",
+    id = "Name",
     members = {
         Formatted = {
             type = "string",
@@ -926,6 +973,7 @@ M.Name = {
 
 M.PhoneNumber = {
     type = "structure",
+    id = "PhoneNumber",
     members = {
         Value = {
             type = "string",
@@ -944,6 +992,7 @@ M.PhoneNumber = {
 
 M.Photo = {
     type = "structure",
+    id = "Photo",
     members = {
         Value = {
             type = "string",
@@ -968,6 +1017,7 @@ M.Photo = {
 
 M.Role = {
     type = "structure",
+    id = "Role",
     members = {
         Value = {
             type = "string",
@@ -986,6 +1036,7 @@ M.Role = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1057,6 +1108,7 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1075,6 +1127,7 @@ M.CreateUserOutput = {
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1093,10 +1146,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DescribeUserInput = {
     type = "structure",
+    id = "DescribeUserInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1124,6 +1179,7 @@ M.UserStatus = {
 
 M.DescribeUserOutput = {
     type = "structure",
+    id = "DescribeUserOutput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1220,6 +1276,7 @@ M.DescribeUserOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1246,6 +1303,7 @@ M.ListUsersInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1342,6 +1400,7 @@ M.User = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -1358,6 +1417,7 @@ M.ListUsersOutput = {
 
 M.UpdateUserInput = {
     type = "structure",
+    id = "UpdateUserInput",
     members = {
         IdentityStoreId = {
             type = "string",
@@ -1383,6 +1443,7 @@ M.UpdateUserInput = {
 
 M.UpdateUserOutput = {
     type = "structure",
+    id = "UpdateUserOutput",
 }
 
 return M

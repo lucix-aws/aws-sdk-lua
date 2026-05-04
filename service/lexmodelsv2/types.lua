@@ -2,6 +2,7 @@ local M = {}
 
 M.ActiveContext = {
     type = "structure",
+    id = "ActiveContext",
     members = {
         name = {
             type = "string",
@@ -18,6 +19,7 @@ M.AudioRecognitionStrategy = {
 
 M.AdvancedRecognitionSetting = {
     type = "structure",
+    id = "AdvancedRecognitionSetting",
     members = {
         audioRecognitionStrategy = {
             type = "string",
@@ -27,6 +29,7 @@ M.AdvancedRecognitionSetting = {
 
 M.ExecutionErrorDetails = {
     type = "structure",
+    id = "ExecutionErrorDetails",
     members = {
         errorCode = {
             type = "string",
@@ -45,6 +48,7 @@ M.ExecutionErrorDetails = {
 
 M.AgentTurnResult = {
     type = "structure",
+    id = "AgentTurnResult",
     members = {
         expectedAgentPrompt = {
             type = "string",
@@ -67,6 +71,7 @@ M.AgentTurnResult = {
 
 M.AgentTurnSpecification = {
     type = "structure",
+    id = "AgentTurnSpecification",
     members = {
         agentPrompt = {
             type = "string",
@@ -88,6 +93,7 @@ M.AggregatedUtterancesFilterOperator = {
 
 M.AggregatedUtterancesFilter = {
     type = "structure",
+    id = "AggregatedUtterancesFilter",
     members = {
         name = {
             type = "string",
@@ -123,6 +129,7 @@ M.SortOrder = {
 
 M.AggregatedUtterancesSortBy = {
     type = "structure",
+    id = "AggregatedUtterancesSortBy",
     members = {
         attribute = {
             type = "string",
@@ -141,6 +148,7 @@ M.AggregatedUtterancesSortBy = {
 
 M.AggregatedUtterancesSummary = {
     type = "structure",
+    id = "AggregatedUtterancesSummary",
     members = {
         utterance = {
             type = "string",
@@ -165,6 +173,7 @@ M.AggregatedUtterancesSummary = {
 
 M.AllowedInputTypes = {
     type = "structure",
+    id = "AllowedInputTypes",
     members = {
         allowAudioInput = {
             type = "boolean",
@@ -202,6 +211,7 @@ M.AnalyticsSortOrder = {
 
 M.AnalyticsBinBySpecification = {
     type = "structure",
+    id = "AnalyticsBinBySpecification",
     members = {
         name = {
             type = "string",
@@ -223,6 +233,7 @@ M.AnalyticsBinBySpecification = {
 
 M.AnalyticsBinKey = {
     type = "structure",
+    id = "AnalyticsBinKey",
     members = {
         name = {
             type = "string",
@@ -267,6 +278,7 @@ M.AnalyticsIntentFilterName = {
 
 M.AnalyticsIntentFilter = {
     type = "structure",
+    id = "AnalyticsIntentFilter",
     members = {
         name = {
             type = "string",
@@ -292,6 +304,7 @@ M.AnalyticsIntentFilter = {
 
 M.AnalyticsIntentGroupByKey = {
     type = "structure",
+    id = "AnalyticsIntentGroupByKey",
     members = {
         name = {
             type = "string",
@@ -304,6 +317,7 @@ M.AnalyticsIntentGroupByKey = {
 
 M.AnalyticsIntentGroupBySpecification = {
     type = "structure",
+    id = "AnalyticsIntentGroupBySpecification",
     members = {
         name = {
             type = "string",
@@ -330,6 +344,7 @@ M.AnalyticsMetricStatistic = {
 
 M.AnalyticsIntentMetric = {
     type = "structure",
+    id = "AnalyticsIntentMetric",
     members = {
         name = {
             type = "string",
@@ -351,6 +366,7 @@ M.AnalyticsIntentMetric = {
 
 M.AnalyticsIntentMetricResult = {
     type = "structure",
+    id = "AnalyticsIntentMetricResult",
     members = {
         name = {
             type = "string",
@@ -371,6 +387,7 @@ M.AnalyticsNodeType = {
 
 M.AnalyticsIntentNodeSummary = {
     type = "structure",
+    id = "AnalyticsIntentNodeSummary",
     members = {
         intentName = {
             type = "string",
@@ -392,6 +409,7 @@ M.AnalyticsIntentNodeSummary = {
 
 M.AnalyticsIntentResult = {
     type = "structure",
+    id = "AnalyticsIntentResult",
     members = {
         binKeys = {
             type = "list",
@@ -427,6 +445,7 @@ M.AnalyticsIntentStageFilterName = {
 
 M.AnalyticsIntentStageFilter = {
     type = "structure",
+    id = "AnalyticsIntentStageFilter",
     members = {
         name = {
             type = "string",
@@ -452,6 +471,7 @@ M.AnalyticsIntentStageFilter = {
 
 M.AnalyticsIntentStageGroupByKey = {
     type = "structure",
+    id = "AnalyticsIntentStageGroupByKey",
     members = {
         name = {
             type = "string",
@@ -464,6 +484,7 @@ M.AnalyticsIntentStageGroupByKey = {
 
 M.AnalyticsIntentStageGroupBySpecification = {
     type = "structure",
+    id = "AnalyticsIntentStageGroupBySpecification",
     members = {
         name = {
             type = "string",
@@ -484,6 +505,7 @@ M.AnalyticsIntentStageMetricName = {
 
 M.AnalyticsIntentStageMetric = {
     type = "structure",
+    id = "AnalyticsIntentStageMetric",
     members = {
         name = {
             type = "string",
@@ -505,6 +527,7 @@ M.AnalyticsIntentStageMetric = {
 
 M.AnalyticsIntentStageMetricResult = {
     type = "structure",
+    id = "AnalyticsIntentStageMetricResult",
     members = {
         name = {
             type = "string",
@@ -520,6 +543,7 @@ M.AnalyticsIntentStageMetricResult = {
 
 M.AnalyticsIntentStageResult = {
     type = "structure",
+    id = "AnalyticsIntentStageResult",
     members = {
         binKeys = {
             type = "list",
@@ -545,6 +569,7 @@ M.AnalyticsModality = {
 
 M.AnalyticsPathFilter = {
     type = "structure",
+    id = "AnalyticsPathFilter",
     members = {
         name = {
             type = "string",
@@ -588,6 +613,7 @@ M.AnalyticsSessionFilterName = {
 
 M.AnalyticsSessionFilter = {
     type = "structure",
+    id = "AnalyticsSessionFilter",
     members = {
         name = {
             type = "string",
@@ -613,6 +639,7 @@ M.AnalyticsSessionFilter = {
 
 M.AnalyticsSessionGroupByKey = {
     type = "structure",
+    id = "AnalyticsSessionGroupByKey",
     members = {
         name = {
             type = "string",
@@ -625,6 +652,7 @@ M.AnalyticsSessionGroupByKey = {
 
 M.AnalyticsSessionGroupBySpecification = {
     type = "structure",
+    id = "AnalyticsSessionGroupBySpecification",
     members = {
         name = {
             type = "string",
@@ -647,6 +675,7 @@ M.AnalyticsSessionMetricName = {
 
 M.AnalyticsSessionMetric = {
     type = "structure",
+    id = "AnalyticsSessionMetric",
     members = {
         name = {
             type = "string",
@@ -668,6 +697,7 @@ M.AnalyticsSessionMetric = {
 
 M.AnalyticsSessionMetricResult = {
     type = "structure",
+    id = "AnalyticsSessionMetricResult",
     members = {
         name = {
             type = "string",
@@ -683,6 +713,7 @@ M.AnalyticsSessionMetricResult = {
 
 M.AnalyticsSessionResult = {
     type = "structure",
+    id = "AnalyticsSessionResult",
     members = {
         binKeys = {
             type = "list",
@@ -711,6 +742,7 @@ M.AnalyticsUtteranceAttributeName = {
 
 M.AnalyticsUtteranceAttribute = {
     type = "structure",
+    id = "AnalyticsUtteranceAttribute",
     members = {
         name = {
             type = "string",
@@ -723,6 +755,7 @@ M.AnalyticsUtteranceAttribute = {
 
 M.AnalyticsUtteranceAttributeResult = {
     type = "structure",
+    id = "AnalyticsUtteranceAttributeResult",
     members = {
         lastUsedIntent = {
             type = "string",
@@ -749,6 +782,7 @@ M.AnalyticsUtteranceFilterName = {
 
 M.AnalyticsUtteranceFilter = {
     type = "structure",
+    id = "AnalyticsUtteranceFilter",
     members = {
         name = {
             type = "string",
@@ -774,6 +808,7 @@ M.AnalyticsUtteranceFilter = {
 
 M.AnalyticsUtteranceGroupByKey = {
     type = "structure",
+    id = "AnalyticsUtteranceGroupByKey",
     members = {
         name = {
             type = "string",
@@ -786,6 +821,7 @@ M.AnalyticsUtteranceGroupByKey = {
 
 M.AnalyticsUtteranceGroupBySpecification = {
     type = "structure",
+    id = "AnalyticsUtteranceGroupBySpecification",
     members = {
         name = {
             type = "string",
@@ -805,6 +841,7 @@ M.AnalyticsUtteranceMetricName = {
 
 M.AnalyticsUtteranceMetric = {
     type = "structure",
+    id = "AnalyticsUtteranceMetric",
     members = {
         name = {
             type = "string",
@@ -826,6 +863,7 @@ M.AnalyticsUtteranceMetric = {
 
 M.AnalyticsUtteranceMetricResult = {
     type = "structure",
+    id = "AnalyticsUtteranceMetricResult",
     members = {
         name = {
             type = "string",
@@ -841,6 +879,7 @@ M.AnalyticsUtteranceMetricResult = {
 
 M.AnalyticsUtteranceResult = {
     type = "structure",
+    id = "AnalyticsUtteranceResult",
     members = {
         binKeys = {
             type = "list",
@@ -872,6 +911,7 @@ M.AssistedNluMode = {
 
 M.AssociatedTranscript = {
     type = "structure",
+    id = "AssociatedTranscript",
     members = {
         transcript = {
             type = "string",
@@ -886,6 +926,7 @@ M.AssociatedTranscriptFilterName = {
 
 M.AssociatedTranscriptFilter = {
     type = "structure",
+    id = "AssociatedTranscriptFilter",
     members = {
         name = {
             type = "string",
@@ -905,6 +946,7 @@ M.AssociatedTranscriptFilter = {
 
 M.AudioSpecification = {
     type = "structure",
+    id = "AudioSpecification",
     members = {
         maxLengthMs = {
             type = "integer",
@@ -923,6 +965,7 @@ M.AudioSpecification = {
 
 M.DTMFSpecification = {
     type = "structure",
+    id = "DTMFSpecification",
     members = {
         maxLength = {
             type = "integer",
@@ -953,6 +996,7 @@ M.DTMFSpecification = {
 
 M.AudioAndDTMFInputSpecification = {
     type = "structure",
+    id = "AudioAndDTMFInputSpecification",
     members = {
         startTimeoutMs = {
             type = "integer",
@@ -967,6 +1011,7 @@ M.AudioAndDTMFInputSpecification = {
 
 M.S3BucketLogDestination = {
     type = "structure",
+    id = "S3BucketLogDestination",
     members = {
         kmsKeyArn = {
             type = "string",
@@ -988,6 +1033,7 @@ M.S3BucketLogDestination = {
 
 M.AudioLogDestination = {
     type = "structure",
+    id = "AudioLogDestination",
     members = {
         s3Bucket = setmetatable({ traits = {
             required = true,
@@ -997,6 +1043,7 @@ M.AudioLogDestination = {
 
 M.AudioLogSetting = {
     type = "structure",
+    id = "AudioLogSetting",
     members = {
         enabled = {
             type = "boolean",
@@ -1016,6 +1063,7 @@ M.AudioLogSetting = {
 
 M.NewCustomVocabularyItem = {
     type = "structure",
+    id = "NewCustomVocabularyItem",
     members = {
         phrase = {
             type = "string",
@@ -1034,6 +1082,7 @@ M.NewCustomVocabularyItem = {
 
 M.BatchCreateCustomVocabularyItemInput = {
     type = "structure",
+    id = "BatchCreateCustomVocabularyItemInput",
     members = {
         botId = {
             type = "string",
@@ -1075,6 +1124,7 @@ M.ErrorCode = {
 
 M.FailedCustomVocabularyItem = {
     type = "structure",
+    id = "FailedCustomVocabularyItem",
     members = {
         itemId = {
             type = "string",
@@ -1090,6 +1140,7 @@ M.FailedCustomVocabularyItem = {
 
 M.CustomVocabularyItem = {
     type = "structure",
+    id = "CustomVocabularyItem",
     members = {
         itemId = {
             type = "string",
@@ -1114,6 +1165,7 @@ M.CustomVocabularyItem = {
 
 M.BatchCreateCustomVocabularyItemOutput = {
     type = "structure",
+    id = "BatchCreateCustomVocabularyItemOutput",
     members = {
         botId = {
             type = "string",
@@ -1137,6 +1189,7 @@ M.BatchCreateCustomVocabularyItemOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -1147,6 +1200,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1157,6 +1211,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -1167,6 +1222,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         retryAfterSeconds = {
@@ -1184,6 +1240,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -1194,6 +1251,7 @@ M.ValidationException = {
 
 M.CustomVocabularyEntryId = {
     type = "structure",
+    id = "CustomVocabularyEntryId",
     members = {
         itemId = {
             type = "string",
@@ -1206,6 +1264,7 @@ M.CustomVocabularyEntryId = {
 
 M.BatchDeleteCustomVocabularyItemInput = {
     type = "structure",
+    id = "BatchDeleteCustomVocabularyItemInput",
     members = {
         botId = {
             type = "string",
@@ -1240,6 +1299,7 @@ M.BatchDeleteCustomVocabularyItemInput = {
 
 M.BatchDeleteCustomVocabularyItemOutput = {
     type = "structure",
+    id = "BatchDeleteCustomVocabularyItemOutput",
     members = {
         botId = {
             type = "string",
@@ -1263,6 +1323,7 @@ M.BatchDeleteCustomVocabularyItemOutput = {
 
 M.BatchUpdateCustomVocabularyItemInput = {
     type = "structure",
+    id = "BatchUpdateCustomVocabularyItemInput",
     members = {
         botId = {
             type = "string",
@@ -1297,6 +1358,7 @@ M.BatchUpdateCustomVocabularyItemInput = {
 
 M.BatchUpdateCustomVocabularyItemOutput = {
     type = "structure",
+    id = "BatchUpdateCustomVocabularyItemOutput",
     members = {
         botId = {
             type = "string",
@@ -1320,6 +1382,7 @@ M.BatchUpdateCustomVocabularyItemOutput = {
 
 M.BedrockGuardrailConfiguration = {
     type = "structure",
+    id = "BedrockGuardrailConfiguration",
     members = {
         identifier = {
             type = "string",
@@ -1338,6 +1401,7 @@ M.BedrockGuardrailConfiguration = {
 
 M.BedrockKnowledgeStoreExactResponseFields = {
     type = "structure",
+    id = "BedrockKnowledgeStoreExactResponseFields",
     members = {
         answerField = {
             type = "string",
@@ -1347,6 +1411,7 @@ M.BedrockKnowledgeStoreExactResponseFields = {
 
 M.BedrockKnowledgeStoreConfiguration = {
     type = "structure",
+    id = "BedrockKnowledgeStoreConfiguration",
     members = {
         bedrockKnowledgeBaseArn = {
             type = "string",
@@ -1371,6 +1436,7 @@ M.BedrockTraceStatus = {
 
 M.BedrockModelSpecification = {
     type = "structure",
+    id = "BedrockModelSpecification",
     members = {
         modelArn = {
             type = "string",
@@ -1390,6 +1456,7 @@ M.BedrockModelSpecification = {
 
 M.BotAliasHistoryEvent = {
     type = "structure",
+    id = "BotAliasHistoryEvent",
     members = {
         botVersion = {
             type = "string",
@@ -1405,6 +1472,7 @@ M.BotAliasHistoryEvent = {
 
 M.LambdaCodeHook = {
     type = "structure",
+    id = "LambdaCodeHook",
     members = {
         lambdaARN = {
             type = "string",
@@ -1423,6 +1491,7 @@ M.LambdaCodeHook = {
 
 M.CodeHookSpecification = {
     type = "structure",
+    id = "CodeHookSpecification",
     members = {
         lambdaCodeHook = setmetatable({ traits = {
             required = true,
@@ -1432,6 +1501,7 @@ M.CodeHookSpecification = {
 
 M.BotAliasLocaleSettings = {
     type = "structure",
+    id = "BotAliasLocaleSettings",
     members = {
         enabled = {
             type = "boolean",
@@ -1454,6 +1524,7 @@ M.BotAliasReplicationStatus = {
 
 M.BotAliasReplicaSummary = {
     type = "structure",
+    id = "BotAliasReplicaSummary",
     members = {
         botAliasId = {
             type = "string",
@@ -1486,6 +1557,7 @@ M.BotAliasStatus = {
 
 M.BotAliasSummary = {
     type = "structure",
+    id = "BotAliasSummary",
     members = {
         botAliasId = {
             type = "string",
@@ -1513,6 +1585,7 @@ M.BotAliasSummary = {
 
 M.BotAliasTestExecutionTarget = {
     type = "structure",
+    id = "BotAliasTestExecutionTarget",
     members = {
         botId = {
             type = "string",
@@ -1545,6 +1618,7 @@ M.BotAnalyzerStatus = {
 
 M.BotAnalyzerHistorySummary = {
     type = "structure",
+    id = "BotAnalyzerHistorySummary",
     members = {
         botAnalyzerStatus = {
             type = "string",
@@ -1566,6 +1640,7 @@ M.BotAnalyzerHistorySummary = {
 
 M.IssueLocation = {
     type = "structure",
+    id = "IssueLocation",
     members = {
         botLocale = {
             type = "string",
@@ -1587,6 +1662,7 @@ M.Priority = {
 
 M.BotAnalyzerRecommendation = {
     type = "structure",
+    id = "BotAnalyzerRecommendation",
     members = {
         issueLocation = setmetatable({ traits = {
             required = true,
@@ -1614,6 +1690,7 @@ M.BotAnalyzerRecommendation = {
 
 M.BotExportSpecification = {
     type = "structure",
+    id = "BotExportSpecification",
     members = {
         botId = {
             type = "string",
@@ -1643,6 +1720,7 @@ M.BotFilterOperator = {
 
 M.BotFilter = {
     type = "structure",
+    id = "BotFilter",
     members = {
         name = {
             type = "string",
@@ -1668,6 +1746,7 @@ M.BotFilter = {
 
 M.DataPrivacy = {
     type = "structure",
+    id = "DataPrivacy",
     members = {
         childDirected = {
             type = "boolean",
@@ -1681,6 +1760,7 @@ M.DataPrivacy = {
 
 M.ErrorLogSettings = {
     type = "structure",
+    id = "ErrorLogSettings",
     members = {
         enabled = {
             type = "boolean",
@@ -1693,6 +1773,7 @@ M.ErrorLogSettings = {
 
 M.BotImportSpecification = {
     type = "structure",
+    id = "BotImportSpecification",
     members = {
         botName = {
             type = "string",
@@ -1728,6 +1809,7 @@ M.BotImportSpecification = {
 
 M.BotLocaleExportSpecification = {
     type = "structure",
+    id = "BotLocaleExportSpecification",
     members = {
         botId = {
             type = "string",
@@ -1761,6 +1843,7 @@ M.BotLocaleFilterOperator = {
 
 M.BotLocaleFilter = {
     type = "structure",
+    id = "BotLocaleFilter",
     members = {
         name = {
             type = "string",
@@ -1786,6 +1869,7 @@ M.BotLocaleFilter = {
 
 M.BotLocaleHistoryEvent = {
     type = "structure",
+    id = "BotLocaleHistoryEvent",
     members = {
         event = {
             type = "string",
@@ -1810,6 +1894,7 @@ M.SpeechDetectionSensitivity = {
 
 M.DeepgramSpeechModelConfig = {
     type = "structure",
+    id = "DeepgramSpeechModelConfig",
     members = {
         apiTokenSecretArn = {
             type = "string",
@@ -1825,6 +1910,7 @@ M.DeepgramSpeechModelConfig = {
 
 M.SpeechModelConfig = {
     type = "structure",
+    id = "SpeechModelConfig",
     members = {
         deepgramConfig = M.DeepgramSpeechModelConfig,
     },
@@ -1838,6 +1924,7 @@ M.SpeechModelPreference = {
 
 M.SpeechRecognitionSettings = {
     type = "structure",
+    id = "SpeechRecognitionSettings",
     members = {
         speechModelPreference = {
             type = "string",
@@ -1848,6 +1935,7 @@ M.SpeechRecognitionSettings = {
 
 M.SpeechFoundationModel = {
     type = "structure",
+    id = "SpeechFoundationModel",
     members = {
         modelArn = {
             type = "string",
@@ -1863,6 +1951,7 @@ M.SpeechFoundationModel = {
 
 M.UnifiedSpeechSettings = {
     type = "structure",
+    id = "UnifiedSpeechSettings",
     members = {
         speechFoundationModel = setmetatable({ traits = {
             required = true,
@@ -1879,6 +1968,7 @@ M.VoiceEngine = {
 
 M.VoiceSettings = {
     type = "structure",
+    id = "VoiceSettings",
     members = {
         engine = {
             type = "string",
@@ -1894,6 +1984,7 @@ M.VoiceSettings = {
 
 M.BotLocaleImportSpecification = {
     type = "structure",
+    id = "BotLocaleImportSpecification",
     members = {
         botId = {
             type = "string",
@@ -1931,6 +2022,7 @@ M.BotLocaleSortAttribute = {
 
 M.BotLocaleSortBy = {
     type = "structure",
+    id = "BotLocaleSortBy",
     members = {
         attribute = {
             type = "string",
@@ -1961,6 +2053,7 @@ M.BotLocaleStatus = {
 
 M.BotLocaleSummary = {
     type = "structure",
+    id = "BotLocaleSummary",
     members = {
         localeId = {
             type = "string",
@@ -1985,6 +2078,7 @@ M.BotLocaleSummary = {
 
 M.BotMember = {
     type = "structure",
+    id = "BotMember",
     members = {
         botMemberId = {
             type = "string",
@@ -2021,6 +2115,7 @@ M.BotMember = {
 
 M.IntentStatistics = {
     type = "structure",
+    id = "IntentStatistics",
     members = {
         discoveredIntentCount = {
             type = "integer",
@@ -2030,6 +2125,7 @@ M.IntentStatistics = {
 
 M.SlotTypeStatistics = {
     type = "structure",
+    id = "SlotTypeStatistics",
     members = {
         discoveredSlotTypeCount = {
             type = "integer",
@@ -2039,6 +2135,7 @@ M.SlotTypeStatistics = {
 
 M.BotRecommendationResultStatistics = {
     type = "structure",
+    id = "BotRecommendationResultStatistics",
     members = {
         intents = M.IntentStatistics,
         slotTypes = M.SlotTypeStatistics,
@@ -2047,6 +2144,7 @@ M.BotRecommendationResultStatistics = {
 
 M.BotRecommendationResults = {
     type = "structure",
+    id = "BotRecommendationResults",
     members = {
         botLocaleExportUrl = {
             type = "string",
@@ -2072,6 +2170,7 @@ M.BotRecommendationStatus = {
 
 M.BotRecommendationSummary = {
     type = "structure",
+    id = "BotRecommendationSummary",
     members = {
         botRecommendationStatus = {
             type = "string",
@@ -2103,6 +2202,7 @@ M.BotReplicaStatus = {
 
 M.BotReplicaSummary = {
     type = "structure",
+    id = "BotReplicaSummary",
     members = {
         replicaRegion = {
             type = "string",
@@ -2126,6 +2226,7 @@ M.BotSortAttribute = {
 
 M.BotSortBy = {
     type = "structure",
+    id = "BotSortBy",
     members = {
         attribute = {
             type = "string",
@@ -2160,6 +2261,7 @@ M.BotType = {
 
 M.BotSummary = {
     type = "structure",
+    id = "BotSummary",
     members = {
         botId = {
             type = "string",
@@ -2187,6 +2289,7 @@ M.BotSummary = {
 
 M.BotVersionLocaleDetails = {
     type = "structure",
+    id = "BotVersionLocaleDetails",
     members = {
         sourceBotVersion = {
             type = "string",
@@ -2203,6 +2306,7 @@ M.BotVersionReplicaSortAttribute = {
 
 M.BotVersionReplicaSortBy = {
     type = "structure",
+    id = "BotVersionReplicaSortBy",
     members = {
         attribute = {
             type = "string",
@@ -2228,6 +2332,7 @@ M.BotVersionReplicationStatus = {
 
 M.BotVersionReplicaSummary = {
     type = "structure",
+    id = "BotVersionReplicaSummary",
     members = {
         botVersion = {
             type = "string",
@@ -2251,6 +2356,7 @@ M.BotVersionSortAttribute = {
 
 M.BotVersionSortBy = {
     type = "structure",
+    id = "BotVersionSortBy",
     members = {
         attribute = {
             type = "string",
@@ -2269,6 +2375,7 @@ M.BotVersionSortBy = {
 
 M.BotVersionSummary = {
     type = "structure",
+    id = "BotVersionSummary",
     members = {
         botName = {
             type = "string",
@@ -2290,6 +2397,7 @@ M.BotVersionSummary = {
 
 M.BuildBotLocaleInput = {
     type = "structure",
+    id = "BuildBotLocaleInput",
     members = {
         botId = {
             type = "string",
@@ -2317,6 +2425,7 @@ M.BuildBotLocaleInput = {
 
 M.BuildBotLocaleOutput = {
     type = "structure",
+    id = "BuildBotLocaleOutput",
     members = {
         botId = {
             type = "string",
@@ -2338,6 +2447,7 @@ M.BuildBotLocaleOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -2348,6 +2458,7 @@ M.ConflictException = {
 
 M.PreconditionFailedException = {
     type = "structure",
+    id = "PreconditionFailedException",
     error = "client",
     members = {
         message = {
@@ -2358,6 +2469,7 @@ M.PreconditionFailedException = {
 
 M.DescriptiveBotBuilderSpecification = {
     type = "structure",
+    id = "DescriptiveBotBuilderSpecification",
     members = {
         enabled = {
             type = "boolean",
@@ -2372,6 +2484,7 @@ M.DescriptiveBotBuilderSpecification = {
 
 M.SampleUtteranceGenerationSpecification = {
     type = "structure",
+    id = "SampleUtteranceGenerationSpecification",
     members = {
         enabled = {
             type = "boolean",
@@ -2386,6 +2499,7 @@ M.SampleUtteranceGenerationSpecification = {
 
 M.BuildtimeSettings = {
     type = "structure",
+    id = "BuildtimeSettings",
     members = {
         descriptiveBotBuilder = M.DescriptiveBotBuilderSpecification,
         sampleUtteranceGeneration = M.SampleUtteranceGenerationSpecification,
@@ -2398,6 +2512,7 @@ M.BuiltInIntentSortAttribute = {
 
 M.BuiltInIntentSortBy = {
     type = "structure",
+    id = "BuiltInIntentSortBy",
     members = {
         attribute = {
             type = "string",
@@ -2416,6 +2531,7 @@ M.BuiltInIntentSortBy = {
 
 M.BuiltInIntentSummary = {
     type = "structure",
+    id = "BuiltInIntentSummary",
     members = {
         intentSignature = {
             type = "string",
@@ -2432,6 +2548,7 @@ M.BuiltInSlotTypeSortAttribute = {
 
 M.BuiltInSlotTypeSortBy = {
     type = "structure",
+    id = "BuiltInSlotTypeSortBy",
     members = {
         attribute = {
             type = "string",
@@ -2450,6 +2567,7 @@ M.BuiltInSlotTypeSortBy = {
 
 M.BuiltInSlotTypeSummary = {
     type = "structure",
+    id = "BuiltInSlotTypeSummary",
     members = {
         slotTypeSignature = {
             type = "string",
@@ -2462,6 +2580,7 @@ M.BuiltInSlotTypeSummary = {
 
 M.Button = {
     type = "structure",
+    id = "Button",
     members = {
         text = {
             type = "string",
@@ -2480,6 +2599,7 @@ M.Button = {
 
 M.CloudWatchLogGroupLogDestination = {
     type = "structure",
+    id = "CloudWatchLogGroupLogDestination",
     members = {
         cloudWatchLogGroupArn = {
             type = "string",
@@ -2498,6 +2618,7 @@ M.CloudWatchLogGroupLogDestination = {
 
 M.SubSlotTypeComposition = {
     type = "structure",
+    id = "SubSlotTypeComposition",
     members = {
         name = {
             type = "string",
@@ -2516,6 +2637,7 @@ M.SubSlotTypeComposition = {
 
 M.CompositeSlotTypeSetting = {
     type = "structure",
+    id = "CompositeSlotTypeSetting",
     members = {
         subSlots = {
             type = "list",
@@ -2526,6 +2648,7 @@ M.CompositeSlotTypeSetting = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         expressionString = {
             type = "string",
@@ -2550,6 +2673,7 @@ M.DialogActionType = {
 
 M.DialogAction = {
     type = "structure",
+    id = "DialogAction",
     members = {
         type = {
             type = "string",
@@ -2573,6 +2697,7 @@ M.SlotShape = {
 
 M.SlotValue = {
     type = "structure",
+    id = "SlotValue",
     members = {
         interpretedValue = {
             type = "string",
@@ -2582,6 +2707,7 @@ M.SlotValue = {
 
 M.CustomPayload = {
     type = "structure",
+    id = "CustomPayload",
     members = {
         value = {
             type = "string",
@@ -2594,6 +2720,7 @@ M.CustomPayload = {
 
 M.ImageResponseCard = {
     type = "structure",
+    id = "ImageResponseCard",
     members = {
         title = {
             type = "string",
@@ -2616,6 +2743,7 @@ M.ImageResponseCard = {
 
 M.PlainTextMessage = {
     type = "structure",
+    id = "PlainTextMessage",
     members = {
         value = {
             type = "string",
@@ -2628,6 +2756,7 @@ M.PlainTextMessage = {
 
 M.SSMLMessage = {
     type = "structure",
+    id = "SSMLMessage",
     members = {
         value = {
             type = "string",
@@ -2640,6 +2769,7 @@ M.SSMLMessage = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         plainTextMessage = M.PlainTextMessage,
         customPayload = M.CustomPayload,
@@ -2650,6 +2780,7 @@ M.Message = {
 
 M.MessageGroup = {
     type = "structure",
+    id = "MessageGroup",
     members = {
         message = setmetatable({ traits = {
             required = true,
@@ -2663,6 +2794,7 @@ M.MessageGroup = {
 
 M.ResponseSpecification = {
     type = "structure",
+    id = "ResponseSpecification",
     members = {
         messageGroups = {
             type = "list",
@@ -2691,6 +2823,7 @@ M.TestResultMatchStatus = {
 
 M.ConversationLevelIntentClassificationResultItem = {
     type = "structure",
+    id = "ConversationLevelIntentClassificationResultItem",
     members = {
         intentName = {
             type = "string",
@@ -2709,6 +2842,7 @@ M.ConversationLevelIntentClassificationResultItem = {
 
 M.ConversationLevelResultDetail = {
     type = "structure",
+    id = "ConversationLevelResultDetail",
     members = {
         endToEndResult = {
             type = "string",
@@ -2724,6 +2858,7 @@ M.ConversationLevelResultDetail = {
 
 M.ConversationLevelSlotResolutionResultItem = {
     type = "structure",
+    id = "ConversationLevelSlotResolutionResultItem",
     members = {
         intentName = {
             type = "string",
@@ -2748,6 +2883,7 @@ M.ConversationLevelSlotResolutionResultItem = {
 
 M.ConversationLevelTestResultItem = {
     type = "structure",
+    id = "ConversationLevelTestResultItem",
     members = {
         conversationId = {
             type = "string",
@@ -2783,6 +2919,7 @@ M.ConversationLevelTestResultItem = {
 
 M.ConversationLevelTestResults = {
     type = "structure",
+    id = "ConversationLevelTestResults",
     members = {
         items = {
             type = "list",
@@ -2796,6 +2933,7 @@ M.ConversationLevelTestResults = {
 
 M.ConversationLevelTestResultsFilterBy = {
     type = "structure",
+    id = "ConversationLevelTestResultsFilterBy",
     members = {
         endToEndResult = {
             type = "string",
@@ -2810,6 +2948,7 @@ M.ConversationLogsInputModeFilter = {
 
 M.ConversationLogsDataSourceFilterBy = {
     type = "structure",
+    id = "ConversationLogsDataSourceFilterBy",
     members = {
         startTime = {
             type = "timestamp",
@@ -2834,6 +2973,7 @@ M.ConversationLogsDataSourceFilterBy = {
 
 M.ConversationLogsDataSource = {
     type = "structure",
+    id = "ConversationLogsDataSource",
     members = {
         botId = {
             type = "string",
@@ -2861,6 +3001,7 @@ M.ConversationLogsDataSource = {
 
 M.TextLogDestination = {
     type = "structure",
+    id = "TextLogDestination",
     members = {
         cloudWatch = setmetatable({ traits = {
             required = true,
@@ -2870,6 +3011,7 @@ M.TextLogDestination = {
 
 M.TextLogSetting = {
     type = "structure",
+    id = "TextLogSetting",
     members = {
         enabled = {
             type = "boolean",
@@ -2889,6 +3031,7 @@ M.TextLogSetting = {
 
 M.ConversationLogSettings = {
     type = "structure",
+    id = "ConversationLogSettings",
     members = {
         textLogSettings = {
             type = "list",
@@ -2903,6 +3046,7 @@ M.ConversationLogSettings = {
 
 M.CreateBotInput = {
     type = "structure",
+    id = "CreateBotInput",
     members = {
         botName = {
             type = "string",
@@ -2951,6 +3095,7 @@ M.CreateBotInput = {
 
 M.CreateBotOutput = {
     type = "structure",
+    id = "CreateBotOutput",
     members = {
         botId = {
             type = "string",
@@ -2997,6 +3142,7 @@ M.CreateBotOutput = {
 
 M.SentimentAnalysisSettings = {
     type = "structure",
+    id = "SentimentAnalysisSettings",
     members = {
         detectSentiment = {
             type = "boolean",
@@ -3010,6 +3156,7 @@ M.SentimentAnalysisSettings = {
 
 M.CreateBotAliasInput = {
     type = "structure",
+    id = "CreateBotAliasInput",
     members = {
         botAliasName = {
             type = "string",
@@ -3047,6 +3194,7 @@ M.CreateBotAliasInput = {
 
 M.CreateBotAliasOutput = {
     type = "structure",
+    id = "CreateBotAliasOutput",
     members = {
         botAliasId = {
             type = "string",
@@ -3086,6 +3234,7 @@ M.CreateBotAliasOutput = {
 
 M.IntentDisambiguationSettings = {
     type = "structure",
+    id = "IntentDisambiguationSettings",
     members = {
         enabled = {
             type = "boolean",
@@ -3105,6 +3254,7 @@ M.IntentDisambiguationSettings = {
 
 M.NluImprovementSpecification = {
     type = "structure",
+    id = "NluImprovementSpecification",
     members = {
         enabled = {
             type = "boolean",
@@ -3122,6 +3272,7 @@ M.NluImprovementSpecification = {
 
 M.SlotResolutionImprovementSpecification = {
     type = "structure",
+    id = "SlotResolutionImprovementSpecification",
     members = {
         enabled = {
             type = "boolean",
@@ -3136,6 +3287,7 @@ M.SlotResolutionImprovementSpecification = {
 
 M.RuntimeSettings = {
     type = "structure",
+    id = "RuntimeSettings",
     members = {
         slotResolutionImprovement = M.SlotResolutionImprovementSpecification,
         nluImprovement = M.NluImprovementSpecification,
@@ -3144,6 +3296,7 @@ M.RuntimeSettings = {
 
 M.GenerativeAISettings = {
     type = "structure",
+    id = "GenerativeAISettings",
     members = {
         runtimeSettings = M.RuntimeSettings,
         buildtimeSettings = M.BuildtimeSettings,
@@ -3152,6 +3305,7 @@ M.GenerativeAISettings = {
 
 M.CreateBotLocaleInput = {
     type = "structure",
+    id = "CreateBotLocaleInput",
     members = {
         botId = {
             type = "string",
@@ -3194,6 +3348,7 @@ M.CreateBotLocaleInput = {
 
 M.CreateBotLocaleOutput = {
     type = "structure",
+    id = "CreateBotLocaleOutput",
     members = {
         botId = {
             type = "string",
@@ -3231,6 +3386,7 @@ M.CreateBotLocaleOutput = {
 
 M.CreateBotReplicaInput = {
     type = "structure",
+    id = "CreateBotReplicaInput",
     members = {
         botId = {
             type = "string",
@@ -3250,6 +3406,7 @@ M.CreateBotReplicaInput = {
 
 M.CreateBotReplicaOutput = {
     type = "structure",
+    id = "CreateBotReplicaOutput",
     members = {
         botId = {
             type = "string",
@@ -3271,6 +3428,7 @@ M.CreateBotReplicaOutput = {
 
 M.CreateBotVersionInput = {
     type = "structure",
+    id = "CreateBotVersionInput",
     members = {
         botId = {
             type = "string",
@@ -3295,6 +3453,7 @@ M.CreateBotVersionInput = {
 
 M.CreateBotVersionOutput = {
     type = "structure",
+    id = "CreateBotVersionOutput",
     members = {
         botId = {
             type = "string",
@@ -3327,6 +3486,7 @@ M.ImportExportFileFormat = {
 
 M.CustomVocabularyExportSpecification = {
     type = "structure",
+    id = "CustomVocabularyExportSpecification",
     members = {
         botId = {
             type = "string",
@@ -3351,6 +3511,7 @@ M.CustomVocabularyExportSpecification = {
 
 M.TestSetExportSpecification = {
     type = "structure",
+    id = "TestSetExportSpecification",
     members = {
         testSetId = {
             type = "string",
@@ -3363,6 +3524,7 @@ M.TestSetExportSpecification = {
 
 M.ExportResourceSpecification = {
     type = "structure",
+    id = "ExportResourceSpecification",
     members = {
         botExportSpecification = M.BotExportSpecification,
         botLocaleExportSpecification = M.BotLocaleExportSpecification,
@@ -3373,6 +3535,7 @@ M.ExportResourceSpecification = {
 
 M.CreateExportInput = {
     type = "structure",
+    id = "CreateExportInput",
     members = {
         resourceSpecification = setmetatable({ traits = {
             required = true,
@@ -3398,6 +3561,7 @@ M.ExportStatus = {
 
 M.CreateExportOutput = {
     type = "structure",
+    id = "CreateExportOutput",
     members = {
         exportId = {
             type = "string",
@@ -3417,6 +3581,7 @@ M.CreateExportOutput = {
 
 M.DialogCodeHookSettings = {
     type = "structure",
+    id = "DialogCodeHookSettings",
     members = {
         enabled = {
             type = "boolean",
@@ -3430,6 +3595,7 @@ M.DialogCodeHookSettings = {
 
 M.FulfillmentStartResponseSpecification = {
     type = "structure",
+    id = "FulfillmentStartResponseSpecification",
     members = {
         delayInSeconds = {
             type = "integer",
@@ -3452,6 +3618,7 @@ M.FulfillmentStartResponseSpecification = {
 
 M.FulfillmentUpdateResponseSpecification = {
     type = "structure",
+    id = "FulfillmentUpdateResponseSpecification",
     members = {
         frequencyInSeconds = {
             type = "integer",
@@ -3474,6 +3641,7 @@ M.FulfillmentUpdateResponseSpecification = {
 
 M.FulfillmentUpdatesSpecification = {
     type = "structure",
+    id = "FulfillmentUpdatesSpecification",
     members = {
         active = {
             type = "boolean",
@@ -3491,6 +3659,7 @@ M.FulfillmentUpdatesSpecification = {
 
 M.InputContext = {
     type = "structure",
+    id = "InputContext",
     members = {
         name = {
             type = "string",
@@ -3503,6 +3672,7 @@ M.InputContext = {
 
 M.ElicitationCodeHookInvocationSetting = {
     type = "structure",
+    id = "ElicitationCodeHookInvocationSetting",
     members = {
         enableCodeHookInvocation = {
             type = "boolean",
@@ -3532,6 +3702,7 @@ M.PromptAttempt = {
 
 M.TextInputSpecification = {
     type = "structure",
+    id = "TextInputSpecification",
     members = {
         startTimeoutMs = {
             type = "integer",
@@ -3544,6 +3715,7 @@ M.TextInputSpecification = {
 
 M.PromptAttemptSpecification = {
     type = "structure",
+    id = "PromptAttemptSpecification",
     members = {
         allowInterrupt = {
             type = "boolean",
@@ -3558,6 +3730,7 @@ M.PromptAttemptSpecification = {
 
 M.PromptSpecification = {
     type = "structure",
+    id = "PromptSpecification",
     members = {
         messageGroups = {
             type = "list",
@@ -3588,6 +3761,7 @@ M.PromptSpecification = {
 
 M.KendraConfiguration = {
     type = "structure",
+    id = "KendraConfiguration",
     members = {
         kendraIndex = {
             type = "string",
@@ -3609,6 +3783,7 @@ M.KendraConfiguration = {
 
 M.OutputContext = {
     type = "structure",
+    id = "OutputContext",
     members = {
         name = {
             type = "string",
@@ -3633,6 +3808,7 @@ M.OutputContext = {
 
 M.QInConnectAssistantConfiguration = {
     type = "structure",
+    id = "QInConnectAssistantConfiguration",
     members = {
         assistantArn = {
             type = "string",
@@ -3645,6 +3821,7 @@ M.QInConnectAssistantConfiguration = {
 
 M.QInConnectIntentConfiguration = {
     type = "structure",
+    id = "QInConnectIntentConfiguration",
     members = {
         qInConnectAssistantConfiguration = M.QInConnectAssistantConfiguration,
     },
@@ -3652,6 +3829,7 @@ M.QInConnectIntentConfiguration = {
 
 M.QnAKendraConfiguration = {
     type = "structure",
+    id = "QnAKendraConfiguration",
     members = {
         kendraIndex = {
             type = "string",
@@ -3679,6 +3857,7 @@ M.QnAKendraConfiguration = {
 
 M.ExactResponseFields = {
     type = "structure",
+    id = "ExactResponseFields",
     members = {
         questionField = {
             type = "string",
@@ -3697,6 +3876,7 @@ M.ExactResponseFields = {
 
 M.OpensearchConfiguration = {
     type = "structure",
+    id = "OpensearchConfiguration",
     members = {
         domainEndpoint = {
             type = "string",
@@ -3726,6 +3906,7 @@ M.OpensearchConfiguration = {
 
 M.DataSourceConfiguration = {
     type = "structure",
+    id = "DataSourceConfiguration",
     members = {
         opensearchConfiguration = M.OpensearchConfiguration,
         kendraConfiguration = M.QnAKendraConfiguration,
@@ -3735,6 +3916,7 @@ M.DataSourceConfiguration = {
 
 M.QnAIntentConfiguration = {
     type = "structure",
+    id = "QnAIntentConfiguration",
     members = {
         dataSourceConfiguration = M.DataSourceConfiguration,
         bedrockModelConfiguration = M.BedrockModelSpecification,
@@ -3743,6 +3925,7 @@ M.QnAIntentConfiguration = {
 
 M.SampleUtterance = {
     type = "structure",
+    id = "SampleUtterance",
     members = {
         utterance = {
             type = "string",
@@ -3755,6 +3938,7 @@ M.SampleUtterance = {
 
 M.CreateResourcePolicyInput = {
     type = "structure",
+    id = "CreateResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3774,6 +3958,7 @@ M.CreateResourcePolicyInput = {
 
 M.CreateResourcePolicyOutput = {
     type = "structure",
+    id = "CreateResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -3791,6 +3976,7 @@ M.Effect = {
 
 M.Principal = {
     type = "structure",
+    id = "Principal",
     members = {
         service = {
             type = "string",
@@ -3803,6 +3989,7 @@ M.Principal = {
 
 M.CreateResourcePolicyStatementInput = {
     type = "structure",
+    id = "CreateResourcePolicyStatementInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3853,6 +4040,7 @@ M.CreateResourcePolicyStatementInput = {
 
 M.CreateResourcePolicyStatementOutput = {
     type = "structure",
+    id = "CreateResourcePolicyStatementOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -3865,6 +4053,7 @@ M.CreateResourcePolicyStatementOutput = {
 
 M.MultipleValuesSetting = {
     type = "structure",
+    id = "MultipleValuesSetting",
     members = {
         allowMultipleValues = {
             type = "boolean",
@@ -3882,6 +4071,7 @@ M.ObfuscationSettingType = {
 
 M.ObfuscationSetting = {
     type = "structure",
+    id = "ObfuscationSetting",
     members = {
         obfuscationSettingType = {
             type = "string",
@@ -3894,6 +4084,7 @@ M.ObfuscationSetting = {
 
 M.SlotDefaultValue = {
     type = "structure",
+    id = "SlotDefaultValue",
     members = {
         defaultValue = {
             type = "string",
@@ -3906,6 +4097,7 @@ M.SlotDefaultValue = {
 
 M.SlotDefaultValueSpecification = {
     type = "structure",
+    id = "SlotDefaultValueSpecification",
     members = {
         defaultValueList = {
             type = "list",
@@ -3919,6 +4111,7 @@ M.SlotDefaultValueSpecification = {
 
 M.StillWaitingResponseSpecification = {
     type = "structure",
+    id = "StillWaitingResponseSpecification",
     members = {
         messageGroups = {
             type = "list",
@@ -3947,6 +4140,7 @@ M.StillWaitingResponseSpecification = {
 
 M.WaitAndContinueSpecification = {
     type = "structure",
+    id = "WaitAndContinueSpecification",
     members = {
         waitingResponse = setmetatable({ traits = {
             required = true,
@@ -3963,6 +4157,7 @@ M.WaitAndContinueSpecification = {
 
 M.SubSlotValueElicitationSetting = {
     type = "structure",
+    id = "SubSlotValueElicitationSetting",
     members = {
         defaultValueSpecification = M.SlotDefaultValueSpecification,
         promptSpecification = setmetatable({ traits = {
@@ -3978,6 +4173,7 @@ M.SubSlotValueElicitationSetting = {
 
 M.Specifications = {
     type = "structure",
+    id = "Specifications",
     members = {
         slotTypeId = {
             type = "string",
@@ -3993,6 +4189,7 @@ M.Specifications = {
 
 M.SubSlotSetting = {
     type = "structure",
+    id = "SubSlotSetting",
     members = {
         expression = {
             type = "string",
@@ -4017,6 +4214,7 @@ M.SlotResolutionStrategy = {
 
 M.SlotResolutionSetting = {
     type = "structure",
+    id = "SlotResolutionSetting",
     members = {
         slotResolutionStrategy = {
             type = "string",
@@ -4029,6 +4227,7 @@ M.SlotResolutionSetting = {
 
 M.GrammarSlotTypeSource = {
     type = "structure",
+    id = "GrammarSlotTypeSource",
     members = {
         s3BucketName = {
             type = "string",
@@ -4050,6 +4249,7 @@ M.GrammarSlotTypeSource = {
 
 M.GrammarSlotTypeSetting = {
     type = "structure",
+    id = "GrammarSlotTypeSetting",
     members = {
         source = M.GrammarSlotTypeSource,
     },
@@ -4057,6 +4257,7 @@ M.GrammarSlotTypeSetting = {
 
 M.ExternalSourceSetting = {
     type = "structure",
+    id = "ExternalSourceSetting",
     members = {
         grammarSlotTypeSetting = M.GrammarSlotTypeSetting,
     },
@@ -4064,6 +4265,7 @@ M.ExternalSourceSetting = {
 
 M.SampleValue = {
     type = "structure",
+    id = "SampleValue",
     members = {
         value = {
             type = "string",
@@ -4076,6 +4278,7 @@ M.SampleValue = {
 
 M.SlotTypeValue = {
     type = "structure",
+    id = "SlotTypeValue",
     members = {
         sampleValue = M.SampleValue,
         synonyms = {
@@ -4087,6 +4290,7 @@ M.SlotTypeValue = {
 
 M.SlotValueRegexFilter = {
     type = "structure",
+    id = "SlotValueRegexFilter",
     members = {
         pattern = {
             type = "string",
@@ -4105,6 +4309,7 @@ M.SlotValueResolutionStrategy = {
 
 M.SlotValueSelectionSetting = {
     type = "structure",
+    id = "SlotValueSelectionSetting",
     members = {
         resolutionStrategy = {
             type = "string",
@@ -4119,6 +4324,7 @@ M.SlotValueSelectionSetting = {
 
 M.CreateSlotTypeInput = {
     type = "structure",
+    id = "CreateSlotTypeInput",
     members = {
         slotTypeName = {
             type = "string",
@@ -4165,6 +4371,7 @@ M.CreateSlotTypeInput = {
 
 M.CreateSlotTypeOutput = {
     type = "structure",
+    id = "CreateSlotTypeOutput",
     members = {
         slotTypeId = {
             type = "string",
@@ -4202,6 +4409,7 @@ M.CreateSlotTypeOutput = {
 
 M.TestSetDiscrepancyReportBotAliasTarget = {
     type = "structure",
+    id = "TestSetDiscrepancyReportBotAliasTarget",
     members = {
         botId = {
             type = "string",
@@ -4226,6 +4434,7 @@ M.TestSetDiscrepancyReportBotAliasTarget = {
 
 M.TestSetDiscrepancyReportResourceTarget = {
     type = "structure",
+    id = "TestSetDiscrepancyReportResourceTarget",
     members = {
         botAliasTarget = M.TestSetDiscrepancyReportBotAliasTarget,
     },
@@ -4233,6 +4442,7 @@ M.TestSetDiscrepancyReportResourceTarget = {
 
 M.CreateTestSetDiscrepancyReportInput = {
     type = "structure",
+    id = "CreateTestSetDiscrepancyReportInput",
     members = {
         testSetId = {
             type = "string",
@@ -4249,6 +4459,7 @@ M.CreateTestSetDiscrepancyReportInput = {
 
 M.CreateTestSetDiscrepancyReportOutput = {
     type = "structure",
+    id = "CreateTestSetDiscrepancyReportOutput",
     members = {
         testSetDiscrepancyReportId = {
             type = "string",
@@ -4265,10 +4476,12 @@ M.CreateTestSetDiscrepancyReportOutput = {
 
 M.CreateUploadUrlInput = {
     type = "structure",
+    id = "CreateUploadUrlInput",
 }
 
 M.CreateUploadUrlOutput = {
     type = "structure",
+    id = "CreateUploadUrlOutput",
     members = {
         importId = {
             type = "string",
@@ -4281,6 +4494,7 @@ M.CreateUploadUrlOutput = {
 
 M.CustomVocabularyImportSpecification = {
     type = "structure",
+    id = "CustomVocabularyImportSpecification",
     members = {
         botId = {
             type = "string",
@@ -4313,6 +4527,7 @@ M.CustomVocabularyStatus = {
 
 M.DateRangeFilter = {
     type = "structure",
+    id = "DateRangeFilter",
     members = {
         startDateTime = {
             type = "timestamp",
@@ -4331,6 +4546,7 @@ M.DateRangeFilter = {
 
 M.DeleteBotInput = {
     type = "structure",
+    id = "DeleteBotInput",
     members = {
         botId = {
             type = "string",
@@ -4351,6 +4567,7 @@ M.DeleteBotInput = {
 
 M.DeleteBotOutput = {
     type = "structure",
+    id = "DeleteBotOutput",
     members = {
         botId = {
             type = "string",
@@ -4363,6 +4580,7 @@ M.DeleteBotOutput = {
 
 M.DeleteBotAliasInput = {
     type = "structure",
+    id = "DeleteBotAliasInput",
     members = {
         botAliasId = {
             type = "string",
@@ -4390,6 +4608,7 @@ M.DeleteBotAliasInput = {
 
 M.DeleteBotAliasOutput = {
     type = "structure",
+    id = "DeleteBotAliasOutput",
     members = {
         botAliasId = {
             type = "string",
@@ -4405,6 +4624,7 @@ M.DeleteBotAliasOutput = {
 
 M.DeleteBotAnalyzerRecommendationInput = {
     type = "structure",
+    id = "DeleteBotAnalyzerRecommendationInput",
     members = {
         botId = {
             type = "string",
@@ -4425,10 +4645,12 @@ M.DeleteBotAnalyzerRecommendationInput = {
 
 M.DeleteBotAnalyzerRecommendationOutput = {
     type = "structure",
+    id = "DeleteBotAnalyzerRecommendationOutput",
 }
 
 M.DeleteBotLocaleInput = {
     type = "structure",
+    id = "DeleteBotLocaleInput",
     members = {
         botId = {
             type = "string",
@@ -4456,6 +4678,7 @@ M.DeleteBotLocaleInput = {
 
 M.DeleteBotLocaleOutput = {
     type = "structure",
+    id = "DeleteBotLocaleOutput",
     members = {
         botId = {
             type = "string",
@@ -4474,6 +4697,7 @@ M.DeleteBotLocaleOutput = {
 
 M.DeleteBotReplicaInput = {
     type = "structure",
+    id = "DeleteBotReplicaInput",
     members = {
         botId = {
             type = "string",
@@ -4494,6 +4718,7 @@ M.DeleteBotReplicaInput = {
 
 M.DeleteBotReplicaOutput = {
     type = "structure",
+    id = "DeleteBotReplicaOutput",
     members = {
         botId = {
             type = "string",
@@ -4509,6 +4734,7 @@ M.DeleteBotReplicaOutput = {
 
 M.DeleteBotVersionInput = {
     type = "structure",
+    id = "DeleteBotVersionInput",
     members = {
         botId = {
             type = "string",
@@ -4536,6 +4762,7 @@ M.DeleteBotVersionInput = {
 
 M.DeleteBotVersionOutput = {
     type = "structure",
+    id = "DeleteBotVersionOutput",
     members = {
         botId = {
             type = "string",
@@ -4551,6 +4778,7 @@ M.DeleteBotVersionOutput = {
 
 M.DeleteCustomVocabularyInput = {
     type = "structure",
+    id = "DeleteCustomVocabularyInput",
     members = {
         botId = {
             type = "string",
@@ -4578,6 +4806,7 @@ M.DeleteCustomVocabularyInput = {
 
 M.DeleteCustomVocabularyOutput = {
     type = "structure",
+    id = "DeleteCustomVocabularyOutput",
     members = {
         botId = {
             type = "string",
@@ -4596,6 +4825,7 @@ M.DeleteCustomVocabularyOutput = {
 
 M.DeleteExportInput = {
     type = "structure",
+    id = "DeleteExportInput",
     members = {
         exportId = {
             type = "string",
@@ -4609,6 +4839,7 @@ M.DeleteExportInput = {
 
 M.DeleteExportOutput = {
     type = "structure",
+    id = "DeleteExportOutput",
     members = {
         exportId = {
             type = "string",
@@ -4621,6 +4852,7 @@ M.DeleteExportOutput = {
 
 M.DeleteImportInput = {
     type = "structure",
+    id = "DeleteImportInput",
     members = {
         importId = {
             type = "string",
@@ -4641,6 +4873,7 @@ M.ImportStatus = {
 
 M.DeleteImportOutput = {
     type = "structure",
+    id = "DeleteImportOutput",
     members = {
         importId = {
             type = "string",
@@ -4653,6 +4886,7 @@ M.DeleteImportOutput = {
 
 M.DeleteIntentInput = {
     type = "structure",
+    id = "DeleteIntentInput",
     members = {
         intentId = {
             type = "string",
@@ -4687,10 +4921,12 @@ M.DeleteIntentInput = {
 
 M.DeleteIntentOutput = {
     type = "structure",
+    id = "DeleteIntentOutput",
 }
 
 M.DeleteResourcePolicyInput = {
     type = "structure",
+    id = "DeleteResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4710,6 +4946,7 @@ M.DeleteResourcePolicyInput = {
 
 M.DeleteResourcePolicyOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -4722,6 +4959,7 @@ M.DeleteResourcePolicyOutput = {
 
 M.DeleteResourcePolicyStatementInput = {
     type = "structure",
+    id = "DeleteResourcePolicyStatementInput",
     members = {
         resourceArn = {
             type = "string",
@@ -4748,6 +4986,7 @@ M.DeleteResourcePolicyStatementInput = {
 
 M.DeleteResourcePolicyStatementOutput = {
     type = "structure",
+    id = "DeleteResourcePolicyStatementOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -4760,6 +4999,7 @@ M.DeleteResourcePolicyStatementOutput = {
 
 M.DeleteSlotInput = {
     type = "structure",
+    id = "DeleteSlotInput",
     members = {
         slotId = {
             type = "string",
@@ -4801,10 +5041,12 @@ M.DeleteSlotInput = {
 
 M.DeleteSlotOutput = {
     type = "structure",
+    id = "DeleteSlotOutput",
 }
 
 M.DeleteSlotTypeInput = {
     type = "structure",
+    id = "DeleteSlotTypeInput",
     members = {
         slotTypeId = {
             type = "string",
@@ -4846,10 +5088,12 @@ M.DeleteSlotTypeInput = {
 
 M.DeleteSlotTypeOutput = {
     type = "structure",
+    id = "DeleteSlotTypeOutput",
 }
 
 M.DeleteTestSetInput = {
     type = "structure",
+    id = "DeleteTestSetInput",
     members = {
         testSetId = {
             type = "string",
@@ -4863,10 +5107,12 @@ M.DeleteTestSetInput = {
 
 M.DeleteTestSetOutput = {
     type = "structure",
+    id = "DeleteTestSetOutput",
 }
 
 M.DeleteUtterancesInput = {
     type = "structure",
+    id = "DeleteUtterancesInput",
     members = {
         botId = {
             type = "string",
@@ -4892,10 +5138,12 @@ M.DeleteUtterancesInput = {
 
 M.DeleteUtterancesOutput = {
     type = "structure",
+    id = "DeleteUtterancesOutput",
 }
 
 M.DescribeBotInput = {
     type = "structure",
+    id = "DescribeBotInput",
     members = {
         botId = {
             type = "string",
@@ -4909,6 +5157,7 @@ M.DescribeBotInput = {
 
 M.DescribeBotOutput = {
     type = "structure",
+    id = "DescribeBotOutput",
     members = {
         botId = {
             type = "string",
@@ -4952,6 +5201,7 @@ M.DescribeBotOutput = {
 
 M.DescribeBotAliasInput = {
     type = "structure",
+    id = "DescribeBotAliasInput",
     members = {
         botAliasId = {
             type = "string",
@@ -4972,6 +5222,7 @@ M.DescribeBotAliasInput = {
 
 M.ParentBotNetwork = {
     type = "structure",
+    id = "ParentBotNetwork",
     members = {
         botId = {
             type = "string",
@@ -4990,6 +5241,7 @@ M.ParentBotNetwork = {
 
 M.DescribeBotAliasOutput = {
     type = "structure",
+    id = "DescribeBotAliasOutput",
     members = {
         botAliasId = {
             type = "string",
@@ -5035,6 +5287,7 @@ M.DescribeBotAliasOutput = {
 
 M.DescribeBotAnalyzerRecommendationInput = {
     type = "structure",
+    id = "DescribeBotAnalyzerRecommendationInput",
     members = {
         botId = {
             type = "string",
@@ -5061,6 +5314,7 @@ M.DescribeBotAnalyzerRecommendationInput = {
 
 M.DescribeBotAnalyzerRecommendationOutput = {
     type = "structure",
+    id = "DescribeBotAnalyzerRecommendationOutput",
     members = {
         botId = {
             type = "string",
@@ -5089,6 +5343,7 @@ M.DescribeBotAnalyzerRecommendationOutput = {
 
 M.DescribeBotLocaleInput = {
     type = "structure",
+    id = "DescribeBotLocaleInput",
     members = {
         botId = {
             type = "string",
@@ -5116,6 +5371,7 @@ M.DescribeBotLocaleInput = {
 
 M.DescribeBotLocaleOutput = {
     type = "structure",
+    id = "DescribeBotLocaleOutput",
     members = {
         botId = {
             type = "string",
@@ -5177,6 +5433,7 @@ M.DescribeBotLocaleOutput = {
 
 M.DescribeBotRecommendationInput = {
     type = "structure",
+    id = "DescribeBotRecommendationInput",
     members = {
         botId = {
             type = "string",
@@ -5211,6 +5468,7 @@ M.DescribeBotRecommendationInput = {
 
 M.EncryptionSetting = {
     type = "structure",
+    id = "EncryptionSetting",
     members = {
         kmsKeyArn = {
             type = "string",
@@ -5226,6 +5484,7 @@ M.EncryptionSetting = {
 
 M.PathFormat = {
     type = "structure",
+    id = "PathFormat",
     members = {
         objectPrefixes = {
             type = "list",
@@ -5236,6 +5495,7 @@ M.PathFormat = {
 
 M.LexTranscriptFilter = {
     type = "structure",
+    id = "LexTranscriptFilter",
     members = {
         dateRangeFilter = M.DateRangeFilter,
     },
@@ -5243,6 +5503,7 @@ M.LexTranscriptFilter = {
 
 M.TranscriptFilter = {
     type = "structure",
+    id = "TranscriptFilter",
     members = {
         lexTranscriptFilter = M.LexTranscriptFilter,
     },
@@ -5254,6 +5515,7 @@ M.TranscriptFormat = {
 
 M.S3BucketTranscriptSource = {
     type = "structure",
+    id = "S3BucketTranscriptSource",
     members = {
         s3BucketName = {
             type = "string",
@@ -5277,6 +5539,7 @@ M.S3BucketTranscriptSource = {
 
 M.TranscriptSourceSetting = {
     type = "structure",
+    id = "TranscriptSourceSetting",
     members = {
         s3BucketTranscriptSource = M.S3BucketTranscriptSource,
     },
@@ -5284,6 +5547,7 @@ M.TranscriptSourceSetting = {
 
 M.DescribeBotRecommendationOutput = {
     type = "structure",
+    id = "DescribeBotRecommendationOutput",
     members = {
         botId = {
             type = "string",
@@ -5318,6 +5582,7 @@ M.DescribeBotRecommendationOutput = {
 
 M.DescribeBotReplicaInput = {
     type = "structure",
+    id = "DescribeBotReplicaInput",
     members = {
         botId = {
             type = "string",
@@ -5338,6 +5603,7 @@ M.DescribeBotReplicaInput = {
 
 M.DescribeBotReplicaOutput = {
     type = "structure",
+    id = "DescribeBotReplicaOutput",
     members = {
         botId = {
             type = "string",
@@ -5363,6 +5629,7 @@ M.DescribeBotReplicaOutput = {
 
 M.DescribeBotResourceGenerationInput = {
     type = "structure",
+    id = "DescribeBotResourceGenerationInput",
     members = {
         botId = {
             type = "string",
@@ -5403,6 +5670,7 @@ M.GenerationStatus = {
 
 M.DescribeBotResourceGenerationOutput = {
     type = "structure",
+    id = "DescribeBotResourceGenerationOutput",
     members = {
         botId = {
             type = "string",
@@ -5443,6 +5711,7 @@ M.DescribeBotResourceGenerationOutput = {
 
 M.DescribeBotVersionInput = {
     type = "structure",
+    id = "DescribeBotVersionInput",
     members = {
         botId = {
             type = "string",
@@ -5463,6 +5732,7 @@ M.DescribeBotVersionInput = {
 
 M.DescribeBotVersionOutput = {
     type = "structure",
+    id = "DescribeBotVersionOutput",
     members = {
         botId = {
             type = "string",
@@ -5509,6 +5779,7 @@ M.DescribeBotVersionOutput = {
 
 M.DescribeCustomVocabularyMetadataInput = {
     type = "structure",
+    id = "DescribeCustomVocabularyMetadataInput",
     members = {
         botId = {
             type = "string",
@@ -5536,6 +5807,7 @@ M.DescribeCustomVocabularyMetadataInput = {
 
 M.DescribeCustomVocabularyMetadataOutput = {
     type = "structure",
+    id = "DescribeCustomVocabularyMetadataOutput",
     members = {
         botId = {
             type = "string",
@@ -5560,6 +5832,7 @@ M.DescribeCustomVocabularyMetadataOutput = {
 
 M.DescribeExportInput = {
     type = "structure",
+    id = "DescribeExportInput",
     members = {
         exportId = {
             type = "string",
@@ -5573,6 +5846,7 @@ M.DescribeExportInput = {
 
 M.DescribeExportOutput = {
     type = "structure",
+    id = "DescribeExportOutput",
     members = {
         exportId = {
             type = "string",
@@ -5602,6 +5876,7 @@ M.DescribeExportOutput = {
 
 M.DescribeImportInput = {
     type = "structure",
+    id = "DescribeImportInput",
     members = {
         importId = {
             type = "string",
@@ -5621,6 +5896,7 @@ M.MergeStrategy = {
 
 M.TestSetImportInputLocation = {
     type = "structure",
+    id = "TestSetImportInputLocation",
     members = {
         s3BucketName = {
             type = "string",
@@ -5644,6 +5920,7 @@ M.TestSetModality = {
 
 M.TestSetStorageLocation = {
     type = "structure",
+    id = "TestSetStorageLocation",
     members = {
         s3BucketName = {
             type = "string",
@@ -5665,6 +5942,7 @@ M.TestSetStorageLocation = {
 
 M.TestSetImportResourceSpecification = {
     type = "structure",
+    id = "TestSetImportResourceSpecification",
     members = {
         testSetName = {
             type = "string",
@@ -5703,6 +5981,7 @@ M.TestSetImportResourceSpecification = {
 
 M.ImportResourceSpecification = {
     type = "structure",
+    id = "ImportResourceSpecification",
     members = {
         botImportSpecification = M.BotImportSpecification,
         botLocaleImportSpecification = M.BotLocaleImportSpecification,
@@ -5713,6 +5992,7 @@ M.ImportResourceSpecification = {
 
 M.DescribeImportOutput = {
     type = "structure",
+    id = "DescribeImportOutput",
     members = {
         importId = {
             type = "string",
@@ -5745,6 +6025,7 @@ M.DescribeImportOutput = {
 
 M.DescribeIntentInput = {
     type = "structure",
+    id = "DescribeIntentInput",
     members = {
         intentId = {
             type = "string",
@@ -5779,6 +6060,7 @@ M.DescribeIntentInput = {
 
 M.SlotPriority = {
     type = "structure",
+    id = "SlotPriority",
     members = {
         priority = {
             type = "integer",
@@ -5797,6 +6079,7 @@ M.SlotPriority = {
 
 M.DescribeResourcePolicyInput = {
     type = "structure",
+    id = "DescribeResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -5810,6 +6093,7 @@ M.DescribeResourcePolicyInput = {
 
 M.DescribeResourcePolicyOutput = {
     type = "structure",
+    id = "DescribeResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -5825,6 +6109,7 @@ M.DescribeResourcePolicyOutput = {
 
 M.DescribeSlotInput = {
     type = "structure",
+    id = "DescribeSlotInput",
     members = {
         slotId = {
             type = "string",
@@ -5866,6 +6151,7 @@ M.DescribeSlotInput = {
 
 M.DescribeSlotTypeInput = {
     type = "structure",
+    id = "DescribeSlotTypeInput",
     members = {
         slotTypeId = {
             type = "string",
@@ -5900,6 +6186,7 @@ M.DescribeSlotTypeInput = {
 
 M.DescribeSlotTypeOutput = {
     type = "structure",
+    id = "DescribeSlotTypeOutput",
     members = {
         slotTypeId = {
             type = "string",
@@ -5940,6 +6227,7 @@ M.DescribeSlotTypeOutput = {
 
 M.DescribeTestExecutionInput = {
     type = "structure",
+    id = "DescribeTestExecutionInput",
     members = {
         testExecutionId = {
             type = "string",
@@ -5958,6 +6246,7 @@ M.TestExecutionApiMode = {
 
 M.TestExecutionTarget = {
     type = "structure",
+    id = "TestExecutionTarget",
     members = {
         botAliasTarget = M.BotAliasTestExecutionTarget,
     },
@@ -5980,6 +6269,7 @@ M.TestExecutionStatus = {
 
 M.DescribeTestExecutionOutput = {
     type = "structure",
+    id = "DescribeTestExecutionOutput",
     members = {
         testExecutionId = {
             type = "string",
@@ -6015,6 +6305,7 @@ M.DescribeTestExecutionOutput = {
 
 M.DescribeTestSetInput = {
     type = "structure",
+    id = "DescribeTestSetInput",
     members = {
         testSetId = {
             type = "string",
@@ -6036,6 +6327,7 @@ M.TestSetStatus = {
 
 M.DescribeTestSetOutput = {
     type = "structure",
+    id = "DescribeTestSetOutput",
     members = {
         testSetId = {
             type = "string",
@@ -6070,6 +6362,7 @@ M.DescribeTestSetOutput = {
 
 M.DescribeTestSetDiscrepancyReportInput = {
     type = "structure",
+    id = "DescribeTestSetDiscrepancyReportInput",
     members = {
         testSetDiscrepancyReportId = {
             type = "string",
@@ -6089,6 +6382,7 @@ M.TestSetDiscrepancyReportStatus = {
 
 M.TestSetIntentDiscrepancyItem = {
     type = "structure",
+    id = "TestSetIntentDiscrepancyItem",
     members = {
         intentName = {
             type = "string",
@@ -6107,6 +6401,7 @@ M.TestSetIntentDiscrepancyItem = {
 
 M.TestSetSlotDiscrepancyItem = {
     type = "structure",
+    id = "TestSetSlotDiscrepancyItem",
     members = {
         intentName = {
             type = "string",
@@ -6131,6 +6426,7 @@ M.TestSetSlotDiscrepancyItem = {
 
 M.TestSetDiscrepancyErrors = {
     type = "structure",
+    id = "TestSetDiscrepancyErrors",
     members = {
         intentDiscrepancies = {
             type = "list",
@@ -6151,6 +6447,7 @@ M.TestSetDiscrepancyErrors = {
 
 M.DescribeTestSetDiscrepancyReportOutput = {
     type = "structure",
+    id = "DescribeTestSetDiscrepancyReportOutput",
     members = {
         testSetDiscrepancyReportId = {
             type = "string",
@@ -6181,6 +6478,7 @@ M.DescribeTestSetDiscrepancyReportOutput = {
 
 M.DescribeTestSetGenerationInput = {
     type = "structure",
+    id = "DescribeTestSetGenerationInput",
     members = {
         testSetGenerationId = {
             type = "string",
@@ -6194,6 +6492,7 @@ M.DescribeTestSetGenerationInput = {
 
 M.TestSetGenerationDataSource = {
     type = "structure",
+    id = "TestSetGenerationDataSource",
     members = {
         conversationLogsDataSource = M.ConversationLogsDataSource,
     },
@@ -6208,6 +6507,7 @@ M.TestSetGenerationStatus = {
 
 M.DescribeTestSetGenerationOutput = {
     type = "structure",
+    id = "DescribeTestSetGenerationOutput",
     members = {
         testSetGenerationId = {
             type = "string",
@@ -6253,6 +6553,7 @@ M.ExportFilterOperator = {
 
 M.ExportFilter = {
     type = "structure",
+    id = "ExportFilter",
     members = {
         name = {
             type = "string",
@@ -6282,6 +6583,7 @@ M.ExportSortAttribute = {
 
 M.ExportSortBy = {
     type = "structure",
+    id = "ExportSortBy",
     members = {
         attribute = {
             type = "string",
@@ -6300,6 +6602,7 @@ M.ExportSortBy = {
 
 M.ExportSummary = {
     type = "structure",
+    id = "ExportSummary",
     members = {
         exportId = {
             type = "string",
@@ -6322,6 +6625,7 @@ M.ExportSummary = {
 
 M.GenerateBotElementInput = {
     type = "structure",
+    id = "GenerateBotElementInput",
     members = {
         intentId = {
             type = "string",
@@ -6355,6 +6659,7 @@ M.GenerateBotElementInput = {
 
 M.GenerateBotElementOutput = {
     type = "structure",
+    id = "GenerateBotElementOutput",
     members = {
         botId = {
             type = "string",
@@ -6382,6 +6687,7 @@ M.GenerationSortByAttribute = {
 
 M.GenerationSortBy = {
     type = "structure",
+    id = "GenerationSortBy",
     members = {
         attribute = {
             type = "string",
@@ -6400,6 +6706,7 @@ M.GenerationSortBy = {
 
 M.GenerationSummary = {
     type = "structure",
+    id = "GenerationSummary",
     members = {
         generationId = {
             type = "string",
@@ -6418,6 +6725,7 @@ M.GenerationSummary = {
 
 M.GetTestExecutionArtifactsUrlInput = {
     type = "structure",
+    id = "GetTestExecutionArtifactsUrlInput",
     members = {
         testExecutionId = {
             type = "string",
@@ -6431,6 +6739,7 @@ M.GetTestExecutionArtifactsUrlInput = {
 
 M.GetTestExecutionArtifactsUrlOutput = {
     type = "structure",
+    id = "GetTestExecutionArtifactsUrlOutput",
     members = {
         testExecutionId = {
             type = "string",
@@ -6452,6 +6761,7 @@ M.ImportFilterOperator = {
 
 M.ImportFilter = {
     type = "structure",
+    id = "ImportFilter",
     members = {
         name = {
             type = "string",
@@ -6488,6 +6798,7 @@ M.ImportSortAttribute = {
 
 M.ImportSortBy = {
     type = "structure",
+    id = "ImportSortBy",
     members = {
         attribute = {
             type = "string",
@@ -6506,6 +6817,7 @@ M.ImportSortBy = {
 
 M.ImportSummary = {
     type = "structure",
+    id = "ImportSummary",
     members = {
         importId = {
             type = "string",
@@ -6536,6 +6848,7 @@ M.ImportSummary = {
 
 M.RuntimeHintValue = {
     type = "structure",
+    id = "RuntimeHintValue",
     members = {
         phrase = {
             type = "string",
@@ -6548,6 +6861,7 @@ M.RuntimeHintValue = {
 
 M.IntentClassificationTestResultItemCounts = {
     type = "structure",
+    id = "IntentClassificationTestResultItemCounts",
     members = {
         totalResultCount = {
             type = "integer",
@@ -6573,6 +6887,7 @@ M.IntentClassificationTestResultItemCounts = {
 
 M.IntentClassificationTestResultItem = {
     type = "structure",
+    id = "IntentClassificationTestResultItem",
     members = {
         intentName = {
             type = "string",
@@ -6595,6 +6910,7 @@ M.IntentClassificationTestResultItem = {
 
 M.IntentClassificationTestResults = {
     type = "structure",
+    id = "IntentClassificationTestResults",
     members = {
         items = {
             type = "list",
@@ -6617,6 +6933,7 @@ M.IntentFilterOperator = {
 
 M.IntentFilter = {
     type = "structure",
+    id = "IntentFilter",
     members = {
         name = {
             type = "string",
@@ -6642,6 +6959,7 @@ M.IntentFilter = {
 
 M.SlotResolutionTestResultItemCounts = {
     type = "structure",
+    id = "SlotResolutionTestResultItemCounts",
     members = {
         totalResultCount = {
             type = "integer",
@@ -6667,6 +6985,7 @@ M.SlotResolutionTestResultItemCounts = {
 
 M.SlotResolutionTestResultItem = {
     type = "structure",
+    id = "SlotResolutionTestResultItem",
     members = {
         slotName = {
             type = "string",
@@ -6682,6 +7001,7 @@ M.SlotResolutionTestResultItem = {
 
 M.IntentLevelSlotResolutionTestResultItem = {
     type = "structure",
+    id = "IntentLevelSlotResolutionTestResultItem",
     members = {
         intentName = {
             type = "string",
@@ -6708,6 +7028,7 @@ M.IntentLevelSlotResolutionTestResultItem = {
 
 M.IntentLevelSlotResolutionTestResults = {
     type = "structure",
+    id = "IntentLevelSlotResolutionTestResults",
     members = {
         items = {
             type = "list",
@@ -6726,6 +7047,7 @@ M.IntentSortAttribute = {
 
 M.IntentSortBy = {
     type = "structure",
+    id = "IntentSortBy",
     members = {
         attribute = {
             type = "string",
@@ -6753,6 +7075,7 @@ M.IntentState = {
 
 M.IntentSummary = {
     type = "structure",
+    id = "IntentSummary",
     members = {
         intentId = {
             type = "string",
@@ -6785,6 +7108,7 @@ M.IntentSummary = {
 
 M.InvokedIntentSample = {
     type = "structure",
+    id = "InvokedIntentSample",
     members = {
         intentName = {
             type = "string",
@@ -6800,6 +7124,7 @@ M.TimeDimension = {
 
 M.RelativeAggregationDuration = {
     type = "structure",
+    id = "RelativeAggregationDuration",
     members = {
         timeDimension = {
             type = "string",
@@ -6818,6 +7143,7 @@ M.RelativeAggregationDuration = {
 
 M.UtteranceAggregationDuration = {
     type = "structure",
+    id = "UtteranceAggregationDuration",
     members = {
         relativeAggregationDuration = setmetatable({ traits = {
             required = true,
@@ -6827,6 +7153,7 @@ M.UtteranceAggregationDuration = {
 
 M.ListAggregatedUtterancesInput = {
     type = "structure",
+    id = "ListAggregatedUtterancesInput",
     members = {
         botId = {
             type = "string",
@@ -6866,6 +7193,7 @@ M.ListAggregatedUtterancesInput = {
 
 M.ListAggregatedUtterancesOutput = {
     type = "structure",
+    id = "ListAggregatedUtterancesOutput",
     members = {
         botId = {
             type = "string",
@@ -6901,6 +7229,7 @@ M.ListAggregatedUtterancesOutput = {
 
 M.ListBotAliasesInput = {
     type = "structure",
+    id = "ListBotAliasesInput",
     members = {
         botId = {
             type = "string",
@@ -6920,6 +7249,7 @@ M.ListBotAliasesInput = {
 
 M.ListBotAliasesOutput = {
     type = "structure",
+    id = "ListBotAliasesOutput",
     members = {
         botAliasSummaries = {
             type = "list",
@@ -6936,6 +7266,7 @@ M.ListBotAliasesOutput = {
 
 M.ListBotAliasReplicasInput = {
     type = "structure",
+    id = "ListBotAliasReplicasInput",
     members = {
         botId = {
             type = "string",
@@ -6962,6 +7293,7 @@ M.ListBotAliasReplicasInput = {
 
 M.ListBotAliasReplicasOutput = {
     type = "structure",
+    id = "ListBotAliasReplicasOutput",
     members = {
         botId = {
             type = "string",
@@ -6984,6 +7316,7 @@ M.ListBotAliasReplicasOutput = {
 
 M.ListBotAnalyzerHistoryInput = {
     type = "structure",
+    id = "ListBotAnalyzerHistoryInput",
     members = {
         botId = {
             type = "string",
@@ -7009,6 +7342,7 @@ M.ListBotAnalyzerHistoryInput = {
 
 M.ListBotAnalyzerHistoryOutput = {
     type = "structure",
+    id = "ListBotAnalyzerHistoryOutput",
     members = {
         botId = {
             type = "string",
@@ -7031,6 +7365,7 @@ M.ListBotAnalyzerHistoryOutput = {
 
 M.ListBotLocalesInput = {
     type = "structure",
+    id = "ListBotLocalesInput",
     members = {
         botId = {
             type = "string",
@@ -7062,6 +7397,7 @@ M.ListBotLocalesInput = {
 
 M.ListBotLocalesOutput = {
     type = "structure",
+    id = "ListBotLocalesOutput",
     members = {
         botId = {
             type = "string",
@@ -7081,6 +7417,7 @@ M.ListBotLocalesOutput = {
 
 M.ListBotRecommendationsInput = {
     type = "structure",
+    id = "ListBotRecommendationsInput",
     members = {
         botId = {
             type = "string",
@@ -7114,6 +7451,7 @@ M.ListBotRecommendationsInput = {
 
 M.ListBotRecommendationsOutput = {
     type = "structure",
+    id = "ListBotRecommendationsOutput",
     members = {
         botId = {
             type = "string",
@@ -7136,6 +7474,7 @@ M.ListBotRecommendationsOutput = {
 
 M.ListBotReplicasInput = {
     type = "structure",
+    id = "ListBotReplicasInput",
     members = {
         botId = {
             type = "string",
@@ -7149,6 +7488,7 @@ M.ListBotReplicasInput = {
 
 M.ListBotReplicasOutput = {
     type = "structure",
+    id = "ListBotReplicasOutput",
     members = {
         botId = {
             type = "string",
@@ -7165,6 +7505,7 @@ M.ListBotReplicasOutput = {
 
 M.ListBotResourceGenerationsInput = {
     type = "structure",
+    id = "ListBotResourceGenerationsInput",
     members = {
         botId = {
             type = "string",
@@ -7199,6 +7540,7 @@ M.ListBotResourceGenerationsInput = {
 
 M.ListBotResourceGenerationsOutput = {
     type = "structure",
+    id = "ListBotResourceGenerationsOutput",
     members = {
         botId = {
             type = "string",
@@ -7221,6 +7563,7 @@ M.ListBotResourceGenerationsOutput = {
 
 M.ListBotsInput = {
     type = "structure",
+    id = "ListBotsInput",
     members = {
         sortBy = M.BotSortBy,
         filters = {
@@ -7238,6 +7581,7 @@ M.ListBotsInput = {
 
 M.ListBotsOutput = {
     type = "structure",
+    id = "ListBotsOutput",
     members = {
         botSummaries = {
             type = "list",
@@ -7251,6 +7595,7 @@ M.ListBotsOutput = {
 
 M.ListBotVersionReplicasInput = {
     type = "structure",
+    id = "ListBotVersionReplicasInput",
     members = {
         botId = {
             type = "string",
@@ -7278,6 +7623,7 @@ M.ListBotVersionReplicasInput = {
 
 M.ListBotVersionReplicasOutput = {
     type = "structure",
+    id = "ListBotVersionReplicasOutput",
     members = {
         botId = {
             type = "string",
@@ -7300,6 +7646,7 @@ M.ListBotVersionReplicasOutput = {
 
 M.ListBotVersionsInput = {
     type = "structure",
+    id = "ListBotVersionsInput",
     members = {
         botId = {
             type = "string",
@@ -7320,6 +7667,7 @@ M.ListBotVersionsInput = {
 
 M.ListBotVersionsOutput = {
     type = "structure",
+    id = "ListBotVersionsOutput",
     members = {
         botId = {
             type = "string",
@@ -7336,6 +7684,7 @@ M.ListBotVersionsOutput = {
 
 M.ListBuiltInIntentsInput = {
     type = "structure",
+    id = "ListBuiltInIntentsInput",
     members = {
         localeId = {
             type = "string",
@@ -7356,6 +7705,7 @@ M.ListBuiltInIntentsInput = {
 
 M.ListBuiltInIntentsOutput = {
     type = "structure",
+    id = "ListBuiltInIntentsOutput",
     members = {
         builtInIntentSummaries = {
             type = "list",
@@ -7372,6 +7722,7 @@ M.ListBuiltInIntentsOutput = {
 
 M.ListBuiltInSlotTypesInput = {
     type = "structure",
+    id = "ListBuiltInSlotTypesInput",
     members = {
         localeId = {
             type = "string",
@@ -7392,6 +7743,7 @@ M.ListBuiltInSlotTypesInput = {
 
 M.ListBuiltInSlotTypesOutput = {
     type = "structure",
+    id = "ListBuiltInSlotTypesOutput",
     members = {
         builtInSlotTypeSummaries = {
             type = "list",
@@ -7408,6 +7760,7 @@ M.ListBuiltInSlotTypesOutput = {
 
 M.ListCustomVocabularyItemsInput = {
     type = "structure",
+    id = "ListCustomVocabularyItemsInput",
     members = {
         botId = {
             type = "string",
@@ -7441,6 +7794,7 @@ M.ListCustomVocabularyItemsInput = {
 
 M.ListCustomVocabularyItemsOutput = {
     type = "structure",
+    id = "ListCustomVocabularyItemsOutput",
     members = {
         botId = {
             type = "string",
@@ -7463,6 +7817,7 @@ M.ListCustomVocabularyItemsOutput = {
 
 M.ListExportsInput = {
     type = "structure",
+    id = "ListExportsInput",
     members = {
         botId = {
             type = "string",
@@ -7489,6 +7844,7 @@ M.ListExportsInput = {
 
 M.ListExportsOutput = {
     type = "structure",
+    id = "ListExportsOutput",
     members = {
         botId = {
             type = "string",
@@ -7511,6 +7867,7 @@ M.ListExportsOutput = {
 
 M.ListImportsInput = {
     type = "structure",
+    id = "ListImportsInput",
     members = {
         botId = {
             type = "string",
@@ -7537,6 +7894,7 @@ M.ListImportsInput = {
 
 M.ListImportsOutput = {
     type = "structure",
+    id = "ListImportsOutput",
     members = {
         botId = {
             type = "string",
@@ -7559,6 +7917,7 @@ M.ListImportsOutput = {
 
 M.ListIntentMetricsInput = {
     type = "structure",
+    id = "ListIntentMetricsInput",
     members = {
         botId = {
             type = "string",
@@ -7609,6 +7968,7 @@ M.ListIntentMetricsInput = {
 
 M.ListIntentMetricsOutput = {
     type = "structure",
+    id = "ListIntentMetricsOutput",
     members = {
         botId = {
             type = "string",
@@ -7625,6 +7985,7 @@ M.ListIntentMetricsOutput = {
 
 M.ListIntentPathsInput = {
     type = "structure",
+    id = "ListIntentPathsInput",
     members = {
         botId = {
             type = "string",
@@ -7660,6 +8021,7 @@ M.ListIntentPathsInput = {
 
 M.ListIntentPathsOutput = {
     type = "structure",
+    id = "ListIntentPathsOutput",
     members = {
         nodeSummaries = {
             type = "list",
@@ -7670,6 +8032,7 @@ M.ListIntentPathsOutput = {
 
 M.ListIntentsInput = {
     type = "structure",
+    id = "ListIntentsInput",
     members = {
         botId = {
             type = "string",
@@ -7708,6 +8071,7 @@ M.ListIntentsInput = {
 
 M.ListIntentsOutput = {
     type = "structure",
+    id = "ListIntentsOutput",
     members = {
         botId = {
             type = "string",
@@ -7730,6 +8094,7 @@ M.ListIntentsOutput = {
 
 M.ListIntentStageMetricsInput = {
     type = "structure",
+    id = "ListIntentStageMetricsInput",
     members = {
         botId = {
             type = "string",
@@ -7780,6 +8145,7 @@ M.ListIntentStageMetricsInput = {
 
 M.ListIntentStageMetricsOutput = {
     type = "structure",
+    id = "ListIntentStageMetricsOutput",
     members = {
         botId = {
             type = "string",
@@ -7796,6 +8162,7 @@ M.ListIntentStageMetricsOutput = {
 
 M.ListRecommendedIntentsInput = {
     type = "structure",
+    id = "ListRecommendedIntentsInput",
     members = {
         botId = {
             type = "string",
@@ -7836,6 +8203,7 @@ M.ListRecommendedIntentsInput = {
 
 M.RecommendedIntentSummary = {
     type = "structure",
+    id = "RecommendedIntentSummary",
     members = {
         intentId = {
             type = "string",
@@ -7851,6 +8219,7 @@ M.RecommendedIntentSummary = {
 
 M.ListRecommendedIntentsOutput = {
     type = "structure",
+    id = "ListRecommendedIntentsOutput",
     members = {
         botId = {
             type = "string",
@@ -7876,6 +8245,7 @@ M.ListRecommendedIntentsOutput = {
 
 M.SessionDataSortBy = {
     type = "structure",
+    id = "SessionDataSortBy",
     members = {
         name = {
             type = "string",
@@ -7894,6 +8264,7 @@ M.SessionDataSortBy = {
 
 M.ListSessionAnalyticsDataInput = {
     type = "structure",
+    id = "ListSessionAnalyticsDataInput",
     members = {
         botId = {
             type = "string",
@@ -7930,6 +8301,7 @@ M.ListSessionAnalyticsDataInput = {
 
 M.SessionSpecification = {
     type = "structure",
+    id = "SessionSpecification",
     members = {
         botAliasId = {
             type = "string",
@@ -7976,6 +8348,7 @@ M.SessionSpecification = {
 
 M.ListSessionAnalyticsDataOutput = {
     type = "structure",
+    id = "ListSessionAnalyticsDataOutput",
     members = {
         botId = {
             type = "string",
@@ -7992,6 +8365,7 @@ M.ListSessionAnalyticsDataOutput = {
 
 M.ListSessionMetricsInput = {
     type = "structure",
+    id = "ListSessionMetricsInput",
     members = {
         botId = {
             type = "string",
@@ -8042,6 +8416,7 @@ M.ListSessionMetricsInput = {
 
 M.ListSessionMetricsOutput = {
     type = "structure",
+    id = "ListSessionMetricsOutput",
     members = {
         botId = {
             type = "string",
@@ -8067,6 +8442,7 @@ M.SlotFilterOperator = {
 
 M.SlotFilter = {
     type = "structure",
+    id = "SlotFilter",
     members = {
         name = {
             type = "string",
@@ -8097,6 +8473,7 @@ M.SlotSortAttribute = {
 
 M.SlotSortBy = {
     type = "structure",
+    id = "SlotSortBy",
     members = {
         attribute = {
             type = "string",
@@ -8115,6 +8492,7 @@ M.SlotSortBy = {
 
 M.ListSlotsInput = {
     type = "structure",
+    id = "ListSlotsInput",
     members = {
         botId = {
             type = "string",
@@ -8160,6 +8538,7 @@ M.ListSlotsInput = {
 
 M.SlotSummary = {
     type = "structure",
+    id = "SlotSummary",
     members = {
         slotId = {
             type = "string",
@@ -8185,6 +8564,7 @@ M.SlotSummary = {
 
 M.ListSlotsOutput = {
     type = "structure",
+    id = "ListSlotsOutput",
     members = {
         botId = {
             type = "string",
@@ -8220,6 +8600,7 @@ M.SlotTypeFilterOperator = {
 
 M.SlotTypeFilter = {
     type = "structure",
+    id = "SlotTypeFilter",
     members = {
         name = {
             type = "string",
@@ -8250,6 +8631,7 @@ M.SlotTypeSortAttribute = {
 
 M.SlotTypeSortBy = {
     type = "structure",
+    id = "SlotTypeSortBy",
     members = {
         attribute = {
             type = "string",
@@ -8268,6 +8650,7 @@ M.SlotTypeSortBy = {
 
 M.ListSlotTypesInput = {
     type = "structure",
+    id = "ListSlotTypesInput",
     members = {
         botId = {
             type = "string",
@@ -8313,6 +8696,7 @@ M.SlotTypeCategory = {
 
 M.SlotTypeSummary = {
     type = "structure",
+    id = "SlotTypeSummary",
     members = {
         slotTypeId = {
             type = "string",
@@ -8337,6 +8721,7 @@ M.SlotTypeSummary = {
 
 M.ListSlotTypesOutput = {
     type = "structure",
+    id = "ListSlotTypesOutput",
     members = {
         botId = {
             type = "string",
@@ -8359,6 +8744,7 @@ M.ListSlotTypesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -8372,6 +8758,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -8391,6 +8778,7 @@ M.TestResultTypeFilter = {
 
 M.TestExecutionResultFilterBy = {
     type = "structure",
+    id = "TestExecutionResultFilterBy",
     members = {
         resultTypeFilter = {
             type = "string",
@@ -8404,6 +8792,7 @@ M.TestExecutionResultFilterBy = {
 
 M.ListTestExecutionResultItemsInput = {
     type = "structure",
+    id = "ListTestExecutionResultItemsInput",
     members = {
         testExecutionId = {
             type = "string",
@@ -8426,6 +8815,7 @@ M.ListTestExecutionResultItemsInput = {
 
 M.OverallTestResultItem = {
     type = "structure",
+    id = "OverallTestResultItem",
     members = {
         multiTurnConversation = {
             type = "boolean",
@@ -8458,6 +8848,7 @@ M.OverallTestResultItem = {
 
 M.OverallTestResults = {
     type = "structure",
+    id = "OverallTestResults",
     members = {
         items = {
             type = "list",
@@ -8471,6 +8862,7 @@ M.OverallTestResults = {
 
 M.UtteranceAudioInputSpecification = {
     type = "structure",
+    id = "UtteranceAudioInputSpecification",
     members = {
         audioFileS3Location = {
             type = "string",
@@ -8483,6 +8875,7 @@ M.UtteranceAudioInputSpecification = {
 
 M.UtteranceInputSpecification = {
     type = "structure",
+    id = "UtteranceInputSpecification",
     members = {
         textInput = {
             type = "string",
@@ -8498,6 +8891,7 @@ M.TestExecutionSortAttribute = {
 
 M.TestExecutionSortBy = {
     type = "structure",
+    id = "TestExecutionSortBy",
     members = {
         attribute = {
             type = "string",
@@ -8516,6 +8910,7 @@ M.TestExecutionSortBy = {
 
 M.ListTestExecutionsInput = {
     type = "structure",
+    id = "ListTestExecutionsInput",
     members = {
         sortBy = M.TestExecutionSortBy,
         maxResults = {
@@ -8529,6 +8924,7 @@ M.ListTestExecutionsInput = {
 
 M.TestExecutionSummary = {
     type = "structure",
+    id = "TestExecutionSummary",
     members = {
         testExecutionId = {
             type = "string",
@@ -8560,6 +8956,7 @@ M.TestExecutionSummary = {
 
 M.ListTestExecutionsOutput = {
     type = "structure",
+    id = "ListTestExecutionsOutput",
     members = {
         testExecutions = {
             type = "list",
@@ -8573,6 +8970,7 @@ M.ListTestExecutionsOutput = {
 
 M.ListTestSetRecordsInput = {
     type = "structure",
+    id = "ListTestSetRecordsInput",
     members = {
         testSetId = {
             type = "string",
@@ -8597,6 +8995,7 @@ M.TestSetSortAttribute = {
 
 M.TestSetSortBy = {
     type = "structure",
+    id = "TestSetSortBy",
     members = {
         attribute = {
             type = "string",
@@ -8615,6 +9014,7 @@ M.TestSetSortBy = {
 
 M.ListTestSetsInput = {
     type = "structure",
+    id = "ListTestSetsInput",
     members = {
         sortBy = M.TestSetSortBy,
         maxResults = {
@@ -8628,6 +9028,7 @@ M.ListTestSetsInput = {
 
 M.TestSetSummary = {
     type = "structure",
+    id = "TestSetSummary",
     members = {
         testSetId = {
             type = "string",
@@ -8662,6 +9063,7 @@ M.TestSetSummary = {
 
 M.ListTestSetsOutput = {
     type = "structure",
+    id = "ListTestSetsOutput",
     members = {
         testSets = {
             type = "list",
@@ -8675,6 +9077,7 @@ M.ListTestSetsOutput = {
 
 M.UtteranceDataSortBy = {
     type = "structure",
+    id = "UtteranceDataSortBy",
     members = {
         name = {
             type = "string",
@@ -8693,6 +9096,7 @@ M.UtteranceDataSortBy = {
 
 M.ListUtteranceAnalyticsDataInput = {
     type = "structure",
+    id = "ListUtteranceAnalyticsDataInput",
     members = {
         botId = {
             type = "string",
@@ -8736,6 +9140,7 @@ M.UtteranceContentType = {
 
 M.UtteranceBotResponse = {
     type = "structure",
+    id = "UtteranceBotResponse",
     members = {
         content = {
             type = "string",
@@ -8749,6 +9154,7 @@ M.UtteranceBotResponse = {
 
 M.UtteranceSpecification = {
     type = "structure",
+    id = "UtteranceSpecification",
     members = {
         botAliasId = {
             type = "string",
@@ -8825,6 +9231,7 @@ M.UtteranceSpecification = {
 
 M.ListUtteranceAnalyticsDataOutput = {
     type = "structure",
+    id = "ListUtteranceAnalyticsDataOutput",
     members = {
         botId = {
             type = "string",
@@ -8841,6 +9248,7 @@ M.ListUtteranceAnalyticsDataOutput = {
 
 M.ListUtteranceMetricsInput = {
     type = "structure",
+    id = "ListUtteranceMetricsInput",
     members = {
         botId = {
             type = "string",
@@ -8895,6 +9303,7 @@ M.ListUtteranceMetricsInput = {
 
 M.ListUtteranceMetricsOutput = {
     type = "structure",
+    id = "ListUtteranceMetricsOutput",
     members = {
         botId = {
             type = "string",
@@ -8916,6 +9325,7 @@ M.SearchOrder = {
 
 M.SearchAssociatedTranscriptsInput = {
     type = "structure",
+    id = "SearchAssociatedTranscriptsInput",
     members = {
         botId = {
             type = "string",
@@ -8966,6 +9376,7 @@ M.SearchAssociatedTranscriptsInput = {
 
 M.SearchAssociatedTranscriptsOutput = {
     type = "structure",
+    id = "SearchAssociatedTranscriptsOutput",
     members = {
         botId = {
             type = "string",
@@ -8994,6 +9405,7 @@ M.SearchAssociatedTranscriptsOutput = {
 
 M.StartBotAnalyzerInput = {
     type = "structure",
+    id = "StartBotAnalyzerInput",
     members = {
         botId = {
             type = "string",
@@ -9019,6 +9431,7 @@ M.StartBotAnalyzerInput = {
 
 M.StartBotAnalyzerOutput = {
     type = "structure",
+    id = "StartBotAnalyzerOutput",
     members = {
         botId = {
             type = "string",
@@ -9043,6 +9456,7 @@ M.StartBotAnalyzerOutput = {
 
 M.StartBotRecommendationInput = {
     type = "structure",
+    id = "StartBotRecommendationInput",
     members = {
         botId = {
             type = "string",
@@ -9074,6 +9488,7 @@ M.StartBotRecommendationInput = {
 
 M.StartBotRecommendationOutput = {
     type = "structure",
+    id = "StartBotRecommendationOutput",
     members = {
         botId = {
             type = "string",
@@ -9100,6 +9515,7 @@ M.StartBotRecommendationOutput = {
 
 M.StartBotResourceGenerationInput = {
     type = "structure",
+    id = "StartBotResourceGenerationInput",
     members = {
         generationInputPrompt = {
             type = "string",
@@ -9133,6 +9549,7 @@ M.StartBotResourceGenerationInput = {
 
 M.StartBotResourceGenerationOutput = {
     type = "structure",
+    id = "StartBotResourceGenerationOutput",
     members = {
         generationInputPrompt = {
             type = "string",
@@ -9160,6 +9577,7 @@ M.StartBotResourceGenerationOutput = {
 
 M.StartImportInput = {
     type = "structure",
+    id = "StartImportInput",
     members = {
         importId = {
             type = "string",
@@ -9184,6 +9602,7 @@ M.StartImportInput = {
 
 M.StartImportOutput = {
     type = "structure",
+    id = "StartImportOutput",
     members = {
         importId = {
             type = "string",
@@ -9203,6 +9622,7 @@ M.StartImportOutput = {
 
 M.StartTestExecutionInput = {
     type = "structure",
+    id = "StartTestExecutionInput",
     members = {
         testSetId = {
             type = "string",
@@ -9228,6 +9648,7 @@ M.StartTestExecutionInput = {
 
 M.StartTestExecutionOutput = {
     type = "structure",
+    id = "StartTestExecutionOutput",
     members = {
         testExecutionId = {
             type = "string",
@@ -9250,6 +9671,7 @@ M.StartTestExecutionOutput = {
 
 M.StartTestSetGenerationInput = {
     type = "structure",
+    id = "StartTestSetGenerationInput",
     members = {
         testSetName = {
             type = "string",
@@ -9282,6 +9704,7 @@ M.StartTestSetGenerationInput = {
 
 M.StartTestSetGenerationOutput = {
     type = "structure",
+    id = "StartTestSetGenerationOutput",
     members = {
         testSetGenerationId = {
             type = "string",
@@ -9313,6 +9736,7 @@ M.StartTestSetGenerationOutput = {
 
 M.StopBotAnalyzerInput = {
     type = "structure",
+    id = "StopBotAnalyzerInput",
     members = {
         botId = {
             type = "string",
@@ -9333,6 +9757,7 @@ M.StopBotAnalyzerInput = {
 
 M.StopBotAnalyzerOutput = {
     type = "structure",
+    id = "StopBotAnalyzerOutput",
     members = {
         botId = {
             type = "string",
@@ -9354,6 +9779,7 @@ M.StopBotAnalyzerOutput = {
 
 M.StopBotRecommendationInput = {
     type = "structure",
+    id = "StopBotRecommendationInput",
     members = {
         botId = {
             type = "string",
@@ -9388,6 +9814,7 @@ M.StopBotRecommendationInput = {
 
 M.StopBotRecommendationOutput = {
     type = "structure",
+    id = "StopBotRecommendationOutput",
     members = {
         botId = {
             type = "string",
@@ -9409,6 +9836,7 @@ M.StopBotRecommendationOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -9430,10 +9858,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceARN = {
             type = "string",
@@ -9455,10 +9885,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateBotInput = {
     type = "structure",
+    id = "UpdateBotInput",
     members = {
         botId = {
             type = "string",
@@ -9504,6 +9936,7 @@ M.UpdateBotInput = {
 
 M.UpdateBotOutput = {
     type = "structure",
+    id = "UpdateBotOutput",
     members = {
         botId = {
             type = "string",
@@ -9543,6 +9976,7 @@ M.UpdateBotOutput = {
 
 M.UpdateBotAliasInput = {
     type = "structure",
+    id = "UpdateBotAliasInput",
     members = {
         botAliasId = {
             type = "string",
@@ -9582,6 +10016,7 @@ M.UpdateBotAliasInput = {
 
 M.UpdateBotAliasOutput = {
     type = "structure",
+    id = "UpdateBotAliasOutput",
     members = {
         botAliasId = {
             type = "string",
@@ -9619,6 +10054,7 @@ M.UpdateBotAliasOutput = {
 
 M.UpdateBotLocaleInput = {
     type = "structure",
+    id = "UpdateBotLocaleInput",
     members = {
         botId = {
             type = "string",
@@ -9662,6 +10098,7 @@ M.UpdateBotLocaleInput = {
 
 M.UpdateBotLocaleOutput = {
     type = "structure",
+    id = "UpdateBotLocaleOutput",
     members = {
         botId = {
             type = "string",
@@ -9710,6 +10147,7 @@ M.UpdateBotLocaleOutput = {
 
 M.UpdateBotRecommendationInput = {
     type = "structure",
+    id = "UpdateBotRecommendationInput",
     members = {
         botId = {
             type = "string",
@@ -9747,6 +10185,7 @@ M.UpdateBotRecommendationInput = {
 
 M.UpdateBotRecommendationOutput = {
     type = "structure",
+    id = "UpdateBotRecommendationOutput",
     members = {
         botId = {
             type = "string",
@@ -9776,6 +10215,7 @@ M.UpdateBotRecommendationOutput = {
 
 M.UpdateExportInput = {
     type = "structure",
+    id = "UpdateExportInput",
     members = {
         exportId = {
             type = "string",
@@ -9792,6 +10232,7 @@ M.UpdateExportInput = {
 
 M.UpdateExportOutput = {
     type = "structure",
+    id = "UpdateExportOutput",
     members = {
         exportId = {
             type = "string",
@@ -9814,6 +10255,7 @@ M.UpdateExportOutput = {
 
 M.UpdateResourcePolicyInput = {
     type = "structure",
+    id = "UpdateResourcePolicyInput",
     members = {
         resourceArn = {
             type = "string",
@@ -9839,6 +10281,7 @@ M.UpdateResourcePolicyInput = {
 
 M.UpdateResourcePolicyOutput = {
     type = "structure",
+    id = "UpdateResourcePolicyOutput",
     members = {
         resourceArn = {
             type = "string",
@@ -9851,6 +10294,7 @@ M.UpdateResourcePolicyOutput = {
 
 M.UpdateSlotTypeInput = {
     type = "structure",
+    id = "UpdateSlotTypeInput",
     members = {
         slotTypeId = {
             type = "string",
@@ -9904,6 +10348,7 @@ M.UpdateSlotTypeInput = {
 
 M.UpdateSlotTypeOutput = {
     type = "structure",
+    id = "UpdateSlotTypeOutput",
     members = {
         slotTypeId = {
             type = "string",
@@ -9944,6 +10389,7 @@ M.UpdateSlotTypeOutput = {
 
 M.UpdateTestSetInput = {
     type = "structure",
+    id = "UpdateTestSetInput",
     members = {
         testSetId = {
             type = "string",
@@ -9966,6 +10412,7 @@ M.UpdateTestSetInput = {
 
 M.UpdateTestSetOutput = {
     type = "structure",
+    id = "UpdateTestSetOutput",
     members = {
         testSetId = {
             type = "string",
@@ -10000,6 +10447,7 @@ M.UpdateTestSetOutput = {
 
 M.RuntimeHintDetails = {
     type = "structure",
+    id = "RuntimeHintDetails",
     members = {
         runtimeHintValues = {
             type = "list",
@@ -10015,6 +10463,7 @@ M.RuntimeHintDetails = {
 
 M.SlotValueOverride = {
     type = "structure",
+    id = "SlotValueOverride",
     members = {
         shape = {
             type = "string",
@@ -10029,6 +10478,7 @@ M.SlotValueOverride = {
 
 M.IntentOverride = {
     type = "structure",
+    id = "IntentOverride",
     members = {
         name = {
             type = "string",
@@ -10043,6 +10493,7 @@ M.IntentOverride = {
 
 M.RuntimeHints = {
     type = "structure",
+    id = "RuntimeHints",
     members = {
         slotHints = {
             type = "map",
@@ -10054,6 +10505,7 @@ M.RuntimeHints = {
 
 M.UserTurnSlotOutput = {
     type = "structure",
+    id = "UserTurnSlotOutput",
     members = {
         value = {
             type = "string",
@@ -10072,6 +10524,7 @@ M.UserTurnSlotOutput = {
 
 M.DialogState = {
     type = "structure",
+    id = "DialogState",
     members = {
         dialogAction = M.DialogAction,
         intent = M.IntentOverride,
@@ -10085,6 +10538,7 @@ M.DialogState = {
 
 M.InputSessionStateSpecification = {
     type = "structure",
+    id = "InputSessionStateSpecification",
     members = {
         sessionAttributes = {
             type = "map",
@@ -10101,6 +10555,7 @@ M.InputSessionStateSpecification = {
 
 M.ConditionalBranch = {
     type = "structure",
+    id = "ConditionalBranch",
     members = {
         name = {
             type = "string",
@@ -10120,6 +10575,7 @@ M.ConditionalBranch = {
 
 M.DefaultConditionalBranch = {
     type = "structure",
+    id = "DefaultConditionalBranch",
     members = {
         nextStep = M.DialogState,
         response = M.ResponseSpecification,
@@ -10128,6 +10584,7 @@ M.DefaultConditionalBranch = {
 
 M.UserTurnInputSpecification = {
     type = "structure",
+    id = "UserTurnInputSpecification",
     members = {
         utteranceInput = setmetatable({ traits = {
             required = true,
@@ -10143,6 +10600,7 @@ M.UserTurnInputSpecification = {
 
 M.UserTurnIntentOutput = {
     type = "structure",
+    id = "UserTurnIntentOutput",
     members = {
         name = {
             type = "string",
@@ -10160,6 +10618,7 @@ M.UserTurnIntentOutput = {
 
 M.UserTurnOutputSpecification = {
     type = "structure",
+    id = "UserTurnOutputSpecification",
     members = {
         intent = setmetatable({ traits = {
             required = true,
@@ -10176,6 +10635,7 @@ M.UserTurnOutputSpecification = {
 
 M.ConditionalSpecification = {
     type = "structure",
+    id = "ConditionalSpecification",
     members = {
         active = {
             type = "boolean",
@@ -10198,6 +10658,7 @@ M.ConditionalSpecification = {
 
 M.UserTurnSpecification = {
     type = "structure",
+    id = "UserTurnSpecification",
     members = {
         input = setmetatable({ traits = {
             required = true,
@@ -10210,6 +10671,7 @@ M.UserTurnSpecification = {
 
 M.TurnSpecification = {
     type = "structure",
+    id = "TurnSpecification",
     members = {
         agentTurn = M.AgentTurnSpecification,
         userTurn = M.UserTurnSpecification,
@@ -10218,6 +10680,7 @@ M.TurnSpecification = {
 
 M.IntentClosingSetting = {
     type = "structure",
+    id = "IntentClosingSetting",
     members = {
         closingResponse = M.ResponseSpecification,
         active = {
@@ -10230,6 +10693,7 @@ M.IntentClosingSetting = {
 
 M.TestSetTurnRecord = {
     type = "structure",
+    id = "TestSetTurnRecord",
     members = {
         recordNumber = {
             type = "long",
@@ -10251,6 +10715,7 @@ M.TestSetTurnRecord = {
 
 M.UserTurnResult = {
     type = "structure",
+    id = "UserTurnResult",
     members = {
         input = setmetatable({ traits = {
             required = true,
@@ -10278,6 +10743,7 @@ M.UserTurnResult = {
 
 M.ListTestSetRecordsOutput = {
     type = "structure",
+    id = "ListTestSetRecordsOutput",
     members = {
         testSetRecords = {
             type = "list",
@@ -10291,6 +10757,7 @@ M.ListTestSetRecordsOutput = {
 
 M.TestSetTurnResult = {
     type = "structure",
+    id = "TestSetTurnResult",
     members = {
         agent = M.AgentTurnResult,
         user = M.UserTurnResult,
@@ -10299,6 +10766,7 @@ M.TestSetTurnResult = {
 
 M.UtteranceLevelTestResultItem = {
     type = "structure",
+    id = "UtteranceLevelTestResultItem",
     members = {
         recordNumber = {
             type = "long",
@@ -10317,6 +10785,7 @@ M.UtteranceLevelTestResultItem = {
 
 M.UtteranceLevelTestResults = {
     type = "structure",
+    id = "UtteranceLevelTestResults",
     members = {
         items = {
             type = "list",
@@ -10330,6 +10799,7 @@ M.UtteranceLevelTestResults = {
 
 M.TestExecutionResultItems = {
     type = "structure",
+    id = "TestExecutionResultItems",
     members = {
         overallTestResults = M.OverallTestResults,
         conversationLevelTestResults = M.ConversationLevelTestResults,
@@ -10341,6 +10811,7 @@ M.TestExecutionResultItems = {
 
 M.ListTestExecutionResultItemsOutput = {
     type = "structure",
+    id = "ListTestExecutionResultItemsOutput",
     members = {
         testExecutionResults = M.TestExecutionResultItems,
         nextToken = {
@@ -10351,6 +10822,7 @@ M.ListTestExecutionResultItemsOutput = {
 
 M.PostDialogCodeHookInvocationSpecification = {
     type = "structure",
+    id = "PostDialogCodeHookInvocationSpecification",
     members = {
         successResponse = M.ResponseSpecification,
         successNextStep = M.DialogState,
@@ -10366,6 +10838,7 @@ M.PostDialogCodeHookInvocationSpecification = {
 
 M.PostFulfillmentStatusSpecification = {
     type = "structure",
+    id = "PostFulfillmentStatusSpecification",
     members = {
         successResponse = M.ResponseSpecification,
         failureResponse = M.ResponseSpecification,
@@ -10381,6 +10854,7 @@ M.PostFulfillmentStatusSpecification = {
 
 M.DialogCodeHookInvocationSetting = {
     type = "structure",
+    id = "DialogCodeHookInvocationSetting",
     members = {
         enableCodeHookInvocation = {
             type = "boolean",
@@ -10405,6 +10879,7 @@ M.DialogCodeHookInvocationSetting = {
 
 M.FulfillmentCodeHookSettings = {
     type = "structure",
+    id = "FulfillmentCodeHookSettings",
     members = {
         enabled = {
             type = "boolean",
@@ -10423,6 +10898,7 @@ M.FulfillmentCodeHookSettings = {
 
 M.InitialResponseSetting = {
     type = "structure",
+    id = "InitialResponseSetting",
     members = {
         initialResponse = M.ResponseSpecification,
         nextStep = M.DialogState,
@@ -10433,6 +10909,7 @@ M.InitialResponseSetting = {
 
 M.SlotCaptureSetting = {
     type = "structure",
+    id = "SlotCaptureSetting",
     members = {
         captureResponse = M.ResponseSpecification,
         captureNextStep = M.DialogState,
@@ -10447,6 +10924,7 @@ M.SlotCaptureSetting = {
 
 M.SlotValueElicitationSetting = {
     type = "structure",
+    id = "SlotValueElicitationSetting",
     members = {
         defaultValueSpecification = M.SlotDefaultValueSpecification,
         slotConstraint = {
@@ -10468,6 +10946,7 @@ M.SlotValueElicitationSetting = {
 
 M.IntentConfirmationSetting = {
     type = "structure",
+    id = "IntentConfirmationSetting",
     members = {
         promptSpecification = setmetatable({ traits = {
             required = true,
@@ -10491,6 +10970,7 @@ M.IntentConfirmationSetting = {
 
 M.CreateSlotInput = {
     type = "structure",
+    id = "CreateSlotInput",
     members = {
         slotName = {
             type = "string",
@@ -10543,6 +11023,7 @@ M.CreateSlotInput = {
 
 M.CreateSlotOutput = {
     type = "structure",
+    id = "CreateSlotOutput",
     members = {
         slotId = {
             type = "string",
@@ -10580,6 +11061,7 @@ M.CreateSlotOutput = {
 
 M.DescribeSlotOutput = {
     type = "structure",
+    id = "DescribeSlotOutput",
     members = {
         slotId = {
             type = "string",
@@ -10620,6 +11102,7 @@ M.DescribeSlotOutput = {
 
 M.UpdateSlotInput = {
     type = "structure",
+    id = "UpdateSlotInput",
     members = {
         slotId = {
             type = "string",
@@ -10679,6 +11162,7 @@ M.UpdateSlotInput = {
 
 M.UpdateSlotOutput = {
     type = "structure",
+    id = "UpdateSlotOutput",
     members = {
         slotId = {
             type = "string",
@@ -10719,6 +11203,7 @@ M.UpdateSlotOutput = {
 
 M.CreateIntentInput = {
     type = "structure",
+    id = "CreateIntentInput",
     members = {
         intentName = {
             type = "string",
@@ -10781,6 +11266,7 @@ M.CreateIntentInput = {
 
 M.CreateIntentOutput = {
     type = "structure",
+    id = "CreateIntentOutput",
     members = {
         intentId = {
             type = "string",
@@ -10834,6 +11320,7 @@ M.CreateIntentOutput = {
 
 M.DescribeIntentOutput = {
     type = "structure",
+    id = "DescribeIntentOutput",
     members = {
         intentId = {
             type = "string",
@@ -10894,6 +11381,7 @@ M.DescribeIntentOutput = {
 
 M.UpdateIntentInput = {
     type = "structure",
+    id = "UpdateIntentInput",
     members = {
         intentId = {
             type = "string",
@@ -10967,6 +11455,7 @@ M.UpdateIntentInput = {
 
 M.UpdateIntentOutput = {
     type = "structure",
+    id = "UpdateIntentOutput",
     members = {
         intentId = {
             type = "string",

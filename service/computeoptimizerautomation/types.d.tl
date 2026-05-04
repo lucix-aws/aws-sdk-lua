@@ -1112,19 +1112,19 @@ local record ThrottlingException
     message: string
 end
 
-local type OrganizationRuleMode = "AnyAllowed" | "NoneAllowed"
+local type EventStatus = "Ready" | "InProgress" | "Complete" | "Failed" | "Cancelled" | "RollbackReady" | "RollbackInProgress" | "RollbackComplete" | "RollbackFailed"
+
+local type EventType = "SnapshotAndDeleteUnattachedEbsVolume" | "UpgradeEbsVolumeType"
+
+local type RuleStatus = "Active" | "Inactive"
 
 local type EnrollmentStatus = "Active" | "Inactive" | "Pending" | "Failed"
 
 local type ResourceType = "EbsVolume"
 
+local type OrganizationRuleMode = "AnyAllowed" | "NoneAllowed"
+
 local type RuleType = "OrganizationRule" | "AccountRule"
-
-local type RuleStatus = "Active" | "Inactive"
-
-local type EventStatus = "Ready" | "InProgress" | "Complete" | "Failed" | "Cancelled" | "RollbackReady" | "RollbackInProgress" | "RollbackComplete" | "RollbackFailed"
-
-local type EventType = "SnapshotAndDeleteUnattachedEbsVolume" | "UpgradeEbsVolumeType"
 
 local record M
     AssociateAccountsInput: AssociateAccountsInput

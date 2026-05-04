@@ -8,6 +8,7 @@ M.ActionsSuppressedBy = {
 
 M.AlarmContributor = {
     type = "structure",
+    id = "AlarmContributor",
     members = {
         ContributorId = {
             type = "string",
@@ -50,6 +51,7 @@ M.HistoryItemType = {
 
 M.AlarmHistoryItem = {
     type = "structure",
+    id = "AlarmHistoryItem",
     members = {
         AlarmName = {
             type = "string",
@@ -88,6 +90,7 @@ M.AlarmMuteRuleStatus = {
 
 M.AlarmMuteRuleSummary = {
     type = "structure",
+    id = "AlarmMuteRuleSummary",
     members = {
         AlarmMuteRuleArn = {
             type = "string",
@@ -109,6 +112,7 @@ M.AlarmMuteRuleSummary = {
 
 M.AlarmPromQLCriteria = {
     type = "structure",
+    id = "AlarmPromQLCriteria",
     members = {
         Query = {
             type = "string",
@@ -127,6 +131,7 @@ M.AlarmPromQLCriteria = {
 
 M.Range = {
     type = "structure",
+    id = "Range",
     members = {
         StartTime = {
             type = "timestamp",
@@ -145,6 +150,7 @@ M.Range = {
 
 M.AnomalyDetectorConfiguration = {
     type = "structure",
+    id = "AnomalyDetectorConfiguration",
     members = {
         ExcludedTimeRanges = {
             type = "list",
@@ -158,6 +164,7 @@ M.AnomalyDetectorConfiguration = {
 
 M.Dimension = {
     type = "structure",
+    id = "Dimension",
     members = {
         Name = {
             type = "string",
@@ -176,6 +183,7 @@ M.Dimension = {
 
 M.MetricCharacteristics = {
     type = "structure",
+    id = "MetricCharacteristics",
     members = {
         PeriodicSpikes = {
             type = "boolean",
@@ -185,6 +193,7 @@ M.MetricCharacteristics = {
 
 M.Metric = {
     type = "structure",
+    id = "Metric",
     members = {
         Namespace = {
             type = "string",
@@ -231,6 +240,7 @@ M.StandardUnit = {
 
 M.MetricStat = {
     type = "structure",
+    id = "MetricStat",
     members = {
         Metric = setmetatable({ traits = {
             required = true,
@@ -255,6 +265,7 @@ M.MetricStat = {
 
 M.MetricDataQuery = {
     type = "structure",
+    id = "MetricDataQuery",
     members = {
         Id = {
             type = "string",
@@ -283,6 +294,7 @@ M.MetricDataQuery = {
 
 M.MetricMathAnomalyDetector = {
     type = "structure",
+    id = "MetricMathAnomalyDetector",
     members = {
         MetricDataQueries = {
             type = "list",
@@ -293,6 +305,7 @@ M.MetricMathAnomalyDetector = {
 
 M.SingleMetricAnomalyDetector = {
     type = "structure",
+    id = "SingleMetricAnomalyDetector",
     members = {
         AccountId = {
             type = "string",
@@ -321,6 +334,7 @@ M.AnomalyDetectorStateValue = {
 
 M.AnomalyDetector = {
     type = "structure",
+    id = "AnomalyDetector",
     members = {
         Namespace = {
             type = "string",
@@ -352,6 +366,7 @@ M.AnomalyDetectorType = {
 
 M.PartialFailure = {
     type = "structure",
+    id = "PartialFailure",
     members = {
         FailureResource = {
             type = "string",
@@ -386,6 +401,7 @@ M.StateValue = {
 
 M.CompositeAlarm = {
     type = "structure",
+    id = "CompositeAlarm",
     members = {
         ActionsEnabled = {
             type = "boolean",
@@ -452,6 +468,7 @@ M.CompositeAlarm = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -462,6 +479,7 @@ M.ConcurrentModificationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -472,6 +490,7 @@ M.ConflictException = {
 
 M.DashboardEntry = {
     type = "structure",
+    id = "DashboardEntry",
     members = {
         DashboardName = {
             type = "string",
@@ -490,6 +509,7 @@ M.DashboardEntry = {
 
 M.DashboardValidationMessage = {
     type = "structure",
+    id = "DashboardValidationMessage",
     members = {
         DataPath = {
             type = "string",
@@ -502,6 +522,7 @@ M.DashboardValidationMessage = {
 
 M.DashboardInvalidInputError = {
     type = "structure",
+    id = "DashboardInvalidInputError",
     error = "client",
     members = {
         message = {
@@ -516,6 +537,7 @@ M.DashboardInvalidInputError = {
 
 M.DashboardNotFoundError = {
     type = "structure",
+    id = "DashboardNotFoundError",
     error = "client",
     members = {
         message = {
@@ -526,6 +548,7 @@ M.DashboardNotFoundError = {
 
 M.Datapoint = {
     type = "structure",
+    id = "Datapoint",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -558,6 +581,7 @@ M.Datapoint = {
 
 M.DeleteAlarmMuteRuleInput = {
     type = "structure",
+    id = "DeleteAlarmMuteRuleInput",
     members = {
         AlarmMuteRuleName = {
             type = "string",
@@ -570,10 +594,12 @@ M.DeleteAlarmMuteRuleInput = {
 
 M.DeleteAlarmMuteRuleOutput = {
     type = "structure",
+    id = "DeleteAlarmMuteRuleOutput",
 }
 
 M.DeleteAlarmsInput = {
     type = "structure",
+    id = "DeleteAlarmsInput",
     members = {
         AlarmNames = {
             type = "list",
@@ -587,10 +613,12 @@ M.DeleteAlarmsInput = {
 
 M.DeleteAlarmsOutput = {
     type = "structure",
+    id = "DeleteAlarmsOutput",
 }
 
 M.ResourceNotFound = {
     type = "structure",
+    id = "ResourceNotFound",
     error = "client",
     members = {
         message = {
@@ -601,6 +629,7 @@ M.ResourceNotFound = {
 
 M.DeleteAnomalyDetectorInput = {
     type = "structure",
+    id = "DeleteAnomalyDetectorInput",
     members = {
         Namespace = {
             type = "string",
@@ -622,10 +651,12 @@ M.DeleteAnomalyDetectorInput = {
 
 M.DeleteAnomalyDetectorOutput = {
     type = "structure",
+    id = "DeleteAnomalyDetectorOutput",
 }
 
 M.InternalServiceFault = {
     type = "structure",
+    id = "InternalServiceFault",
     error = "server",
     members = {
         Message = {
@@ -636,6 +667,7 @@ M.InternalServiceFault = {
 
 M.InvalidParameterCombinationException = {
     type = "structure",
+    id = "InvalidParameterCombinationException",
     error = "client",
     members = {
         message = {
@@ -646,6 +678,7 @@ M.InvalidParameterCombinationException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         message = {
@@ -656,6 +689,7 @@ M.InvalidParameterValueException = {
 
 M.MissingRequiredParameterException = {
     type = "structure",
+    id = "MissingRequiredParameterException",
     error = "client",
     members = {
         message = {
@@ -666,6 +700,7 @@ M.MissingRequiredParameterException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         ResourceType = {
@@ -682,6 +717,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteDashboardsInput = {
     type = "structure",
+    id = "DeleteDashboardsInput",
     members = {
         DashboardNames = {
             type = "list",
@@ -695,10 +731,12 @@ M.DeleteDashboardsInput = {
 
 M.DeleteDashboardsOutput = {
     type = "structure",
+    id = "DeleteDashboardsOutput",
 }
 
 M.DeleteInsightRulesInput = {
     type = "structure",
+    id = "DeleteInsightRulesInput",
     members = {
         RuleNames = {
             type = "list",
@@ -712,6 +750,7 @@ M.DeleteInsightRulesInput = {
 
 M.DeleteInsightRulesOutput = {
     type = "structure",
+    id = "DeleteInsightRulesOutput",
     members = {
         Failures = {
             type = "list",
@@ -722,6 +761,7 @@ M.DeleteInsightRulesOutput = {
 
 M.DeleteMetricStreamInput = {
     type = "structure",
+    id = "DeleteMetricStreamInput",
     members = {
         Name = {
             type = "string",
@@ -734,10 +774,12 @@ M.DeleteMetricStreamInput = {
 
 M.DeleteMetricStreamOutput = {
     type = "structure",
+    id = "DeleteMetricStreamOutput",
 }
 
 M.DescribeAlarmContributorsInput = {
     type = "structure",
+    id = "DescribeAlarmContributorsInput",
     members = {
         AlarmName = {
             type = "string",
@@ -753,6 +795,7 @@ M.DescribeAlarmContributorsInput = {
 
 M.DescribeAlarmContributorsOutput = {
     type = "structure",
+    id = "DescribeAlarmContributorsOutput",
     members = {
         AlarmContributors = {
             type = "list",
@@ -769,6 +812,7 @@ M.DescribeAlarmContributorsOutput = {
 
 M.InvalidNextToken = {
     type = "structure",
+    id = "InvalidNextToken",
     error = "client",
     members = {
         message = {
@@ -784,6 +828,7 @@ M.ScanBy = {
 
 M.DescribeAlarmHistoryInput = {
     type = "structure",
+    id = "DescribeAlarmHistoryInput",
     members = {
         AlarmName = {
             type = "string",
@@ -818,6 +863,7 @@ M.DescribeAlarmHistoryInput = {
 
 M.DescribeAlarmHistoryOutput = {
     type = "structure",
+    id = "DescribeAlarmHistoryOutput",
     members = {
         AlarmHistoryItems = {
             type = "list",
@@ -831,6 +877,7 @@ M.DescribeAlarmHistoryOutput = {
 
 M.DescribeAlarmsInput = {
     type = "structure",
+    id = "DescribeAlarmsInput",
     members = {
         AlarmNames = {
             type = "list",
@@ -866,6 +913,7 @@ M.DescribeAlarmsInput = {
 
 M.EvaluationCriteria = {
     type = "union",
+    id = "EvaluationCriteria",
     members = {
         PromQLCriteria = M.AlarmPromQLCriteria,
     },
@@ -887,6 +935,7 @@ M.Statistic = {
 
 M.MetricAlarm = {
     type = "structure",
+    id = "MetricAlarm",
     members = {
         AlarmName = {
             type = "string",
@@ -989,6 +1038,7 @@ M.MetricAlarm = {
 
 M.DescribeAlarmsOutput = {
     type = "structure",
+    id = "DescribeAlarmsOutput",
     members = {
         CompositeAlarms = {
             type = "list",
@@ -1006,6 +1056,7 @@ M.DescribeAlarmsOutput = {
 
 M.DescribeAlarmsForMetricInput = {
     type = "structure",
+    id = "DescribeAlarmsForMetricInput",
     members = {
         MetricName = {
             type = "string",
@@ -1040,6 +1091,7 @@ M.DescribeAlarmsForMetricInput = {
 
 M.DescribeAlarmsForMetricOutput = {
     type = "structure",
+    id = "DescribeAlarmsForMetricOutput",
     members = {
         MetricAlarms = {
             type = "list",
@@ -1050,6 +1102,7 @@ M.DescribeAlarmsForMetricOutput = {
 
 M.DescribeAnomalyDetectorsInput = {
     type = "structure",
+    id = "DescribeAnomalyDetectorsInput",
     members = {
         NextToken = {
             type = "string",
@@ -1076,6 +1129,7 @@ M.DescribeAnomalyDetectorsInput = {
 
 M.DescribeAnomalyDetectorsOutput = {
     type = "structure",
+    id = "DescribeAnomalyDetectorsOutput",
     members = {
         AnomalyDetectors = {
             type = "list",
@@ -1089,6 +1143,7 @@ M.DescribeAnomalyDetectorsOutput = {
 
 M.DescribeInsightRulesInput = {
     type = "structure",
+    id = "DescribeInsightRulesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1101,6 +1156,7 @@ M.DescribeInsightRulesInput = {
 
 M.InsightRule = {
     type = "structure",
+    id = "InsightRule",
     members = {
         Name = {
             type = "string",
@@ -1137,6 +1193,7 @@ M.InsightRule = {
 
 M.DescribeInsightRulesOutput = {
     type = "structure",
+    id = "DescribeInsightRulesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -1150,6 +1207,7 @@ M.DescribeInsightRulesOutput = {
 
 M.DimensionFilter = {
     type = "structure",
+    id = "DimensionFilter",
     members = {
         Name = {
             type = "string",
@@ -1165,6 +1223,7 @@ M.DimensionFilter = {
 
 M.DisableAlarmActionsInput = {
     type = "structure",
+    id = "DisableAlarmActionsInput",
     members = {
         AlarmNames = {
             type = "list",
@@ -1178,10 +1237,12 @@ M.DisableAlarmActionsInput = {
 
 M.DisableAlarmActionsOutput = {
     type = "structure",
+    id = "DisableAlarmActionsOutput",
 }
 
 M.DisableInsightRulesInput = {
     type = "structure",
+    id = "DisableInsightRulesInput",
     members = {
         RuleNames = {
             type = "list",
@@ -1195,6 +1256,7 @@ M.DisableInsightRulesInput = {
 
 M.DisableInsightRulesOutput = {
     type = "structure",
+    id = "DisableInsightRulesOutput",
     members = {
         Failures = {
             type = "list",
@@ -1205,6 +1267,7 @@ M.DisableInsightRulesOutput = {
 
 M.EnableAlarmActionsInput = {
     type = "structure",
+    id = "EnableAlarmActionsInput",
     members = {
         AlarmNames = {
             type = "list",
@@ -1218,10 +1281,12 @@ M.EnableAlarmActionsInput = {
 
 M.EnableAlarmActionsOutput = {
     type = "structure",
+    id = "EnableAlarmActionsOutput",
 }
 
 M.EnableInsightRulesInput = {
     type = "structure",
+    id = "EnableInsightRulesInput",
     members = {
         RuleNames = {
             type = "list",
@@ -1235,6 +1300,7 @@ M.EnableInsightRulesInput = {
 
 M.EnableInsightRulesOutput = {
     type = "structure",
+    id = "EnableInsightRulesOutput",
     members = {
         Failures = {
             type = "list",
@@ -1245,6 +1311,7 @@ M.EnableInsightRulesOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1255,6 +1322,7 @@ M.LimitExceededException = {
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         KeyAttributes = {
             type = "map",
@@ -1271,6 +1339,7 @@ M.Entity = {
 
 M.StatisticSet = {
     type = "structure",
+    id = "StatisticSet",
     members = {
         SampleCount = {
             type = "double",
@@ -1301,6 +1370,7 @@ M.StatisticSet = {
 
 M.MetricDatum = {
     type = "structure",
+    id = "MetricDatum",
     members = {
         MetricName = {
             type = "string",
@@ -1338,6 +1408,7 @@ M.MetricDatum = {
 
 M.EntityMetricData = {
     type = "structure",
+    id = "EntityMetricData",
     members = {
         Entity = M.Entity,
         MetricData = {
@@ -1349,6 +1420,7 @@ M.EntityMetricData = {
 
 M.GetAlarmMuteRuleInput = {
     type = "structure",
+    id = "GetAlarmMuteRuleInput",
     members = {
         AlarmMuteRuleName = {
             type = "string",
@@ -1361,6 +1433,7 @@ M.GetAlarmMuteRuleInput = {
 
 M.MuteTargets = {
     type = "structure",
+    id = "MuteTargets",
     members = {
         AlarmNames = {
             type = "list",
@@ -1374,6 +1447,7 @@ M.MuteTargets = {
 
 M.Schedule = {
     type = "structure",
+    id = "Schedule",
     members = {
         Expression = {
             type = "string",
@@ -1395,6 +1469,7 @@ M.Schedule = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         Schedule = setmetatable({ traits = {
             required = true,
@@ -1404,6 +1479,7 @@ M.Rule = {
 
 M.GetAlarmMuteRuleOutput = {
     type = "structure",
+    id = "GetAlarmMuteRuleOutput",
     members = {
         Name = {
             type = "string",
@@ -1436,6 +1512,7 @@ M.GetAlarmMuteRuleOutput = {
 
 M.GetDashboardInput = {
     type = "structure",
+    id = "GetDashboardInput",
     members = {
         DashboardName = {
             type = "string",
@@ -1448,6 +1525,7 @@ M.GetDashboardInput = {
 
 M.GetDashboardOutput = {
     type = "structure",
+    id = "GetDashboardOutput",
     members = {
         DashboardArn = {
             type = "string",
@@ -1463,6 +1541,7 @@ M.GetDashboardOutput = {
 
 M.GetInsightRuleReportInput = {
     type = "structure",
+    id = "GetInsightRuleReportInput",
     members = {
         RuleName = {
             type = "string",
@@ -1503,6 +1582,7 @@ M.GetInsightRuleReportInput = {
 
 M.InsightRuleContributorDatapoint = {
     type = "structure",
+    id = "InsightRuleContributorDatapoint",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -1521,6 +1601,7 @@ M.InsightRuleContributorDatapoint = {
 
 M.InsightRuleContributor = {
     type = "structure",
+    id = "InsightRuleContributor",
     members = {
         Keys = {
             type = "list",
@@ -1547,6 +1628,7 @@ M.InsightRuleContributor = {
 
 M.InsightRuleMetricDatapoint = {
     type = "structure",
+    id = "InsightRuleMetricDatapoint",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -1580,6 +1662,7 @@ M.InsightRuleMetricDatapoint = {
 
 M.GetInsightRuleReportOutput = {
     type = "structure",
+    id = "GetInsightRuleReportOutput",
     members = {
         KeyLabels = {
             type = "list",
@@ -1607,6 +1690,7 @@ M.GetInsightRuleReportOutput = {
 
 M.LabelOptions = {
     type = "structure",
+    id = "LabelOptions",
     members = {
         Timezone = {
             type = "string",
@@ -1616,6 +1700,7 @@ M.LabelOptions = {
 
 M.GetMetricDataInput = {
     type = "structure",
+    id = "GetMetricDataInput",
     members = {
         MetricDataQueries = {
             type = "list",
@@ -1651,6 +1736,7 @@ M.GetMetricDataInput = {
 
 M.MessageData = {
     type = "structure",
+    id = "MessageData",
     members = {
         Code = {
             type = "string",
@@ -1670,6 +1756,7 @@ M.StatusCode = {
 
 M.MetricDataResult = {
     type = "structure",
+    id = "MetricDataResult",
     members = {
         Id = {
             type = "string",
@@ -1697,6 +1784,7 @@ M.MetricDataResult = {
 
 M.GetMetricDataOutput = {
     type = "structure",
+    id = "GetMetricDataOutput",
     members = {
         MetricDataResults = {
             type = "list",
@@ -1714,6 +1802,7 @@ M.GetMetricDataOutput = {
 
 M.GetMetricStatisticsInput = {
     type = "structure",
+    id = "GetMetricStatisticsInput",
     members = {
         Namespace = {
             type = "string",
@@ -1765,6 +1854,7 @@ M.GetMetricStatisticsInput = {
 
 M.GetMetricStatisticsOutput = {
     type = "structure",
+    id = "GetMetricStatisticsOutput",
     members = {
         Label = {
             type = "string",
@@ -1778,6 +1868,7 @@ M.GetMetricStatisticsOutput = {
 
 M.GetMetricStreamInput = {
     type = "structure",
+    id = "GetMetricStreamInput",
     members = {
         Name = {
             type = "string",
@@ -1790,6 +1881,7 @@ M.GetMetricStreamInput = {
 
 M.MetricStreamFilter = {
     type = "structure",
+    id = "MetricStreamFilter",
     members = {
         Namespace = {
             type = "string",
@@ -1809,6 +1901,7 @@ M.MetricStreamOutputFormat = {
 
 M.MetricStreamStatisticsMetric = {
     type = "structure",
+    id = "MetricStreamStatisticsMetric",
     members = {
         Namespace = {
             type = "string",
@@ -1827,6 +1920,7 @@ M.MetricStreamStatisticsMetric = {
 
 M.MetricStreamStatisticsConfiguration = {
     type = "structure",
+    id = "MetricStreamStatisticsConfiguration",
     members = {
         IncludeMetrics = {
             type = "list",
@@ -1847,6 +1941,7 @@ M.MetricStreamStatisticsConfiguration = {
 
 M.GetMetricStreamOutput = {
     type = "structure",
+    id = "GetMetricStreamOutput",
     members = {
         Arn = {
             type = "string",
@@ -1892,6 +1987,7 @@ M.GetMetricStreamOutput = {
 
 M.GetMetricWidgetImageInput = {
     type = "structure",
+    id = "GetMetricWidgetImageInput",
     members = {
         MetricWidget = {
             type = "string",
@@ -1907,6 +2003,7 @@ M.GetMetricWidgetImageInput = {
 
 M.GetMetricWidgetImageOutput = {
     type = "structure",
+    id = "GetMetricWidgetImageOutput",
     members = {
         MetricWidgetImage = {
             type = "blob",
@@ -1916,6 +2013,7 @@ M.GetMetricWidgetImageOutput = {
 
 M.GetOTelEnrichmentInput = {
     type = "structure",
+    id = "GetOTelEnrichmentInput",
 }
 
 M.OTelEnrichmentStatus = {
@@ -1925,6 +2023,7 @@ M.OTelEnrichmentStatus = {
 
 M.GetOTelEnrichmentOutput = {
     type = "structure",
+    id = "GetOTelEnrichmentOutput",
     members = {
         Status = {
             type = "string",
@@ -1937,6 +2036,7 @@ M.GetOTelEnrichmentOutput = {
 
 M.ListAlarmMuteRulesInput = {
     type = "structure",
+    id = "ListAlarmMuteRulesInput",
     members = {
         AlarmName = {
             type = "string",
@@ -1956,6 +2056,7 @@ M.ListAlarmMuteRulesInput = {
 
 M.ListAlarmMuteRulesOutput = {
     type = "structure",
+    id = "ListAlarmMuteRulesOutput",
     members = {
         AlarmMuteRuleSummaries = {
             type = "list",
@@ -1969,6 +2070,7 @@ M.ListAlarmMuteRulesOutput = {
 
 M.ListDashboardsInput = {
     type = "structure",
+    id = "ListDashboardsInput",
     members = {
         DashboardNamePrefix = {
             type = "string",
@@ -1981,6 +2083,7 @@ M.ListDashboardsInput = {
 
 M.ListDashboardsOutput = {
     type = "structure",
+    id = "ListDashboardsOutput",
     members = {
         DashboardEntries = {
             type = "list",
@@ -1994,6 +2097,7 @@ M.ListDashboardsOutput = {
 
 M.ListManagedInsightRulesInput = {
     type = "structure",
+    id = "ListManagedInsightRulesInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2012,6 +2116,7 @@ M.ListManagedInsightRulesInput = {
 
 M.ManagedRuleState = {
     type = "structure",
+    id = "ManagedRuleState",
     members = {
         RuleName = {
             type = "string",
@@ -2030,6 +2135,7 @@ M.ManagedRuleState = {
 
 M.ManagedRuleDescription = {
     type = "structure",
+    id = "ManagedRuleDescription",
     members = {
         TemplateName = {
             type = "string",
@@ -2043,6 +2149,7 @@ M.ManagedRuleDescription = {
 
 M.ListManagedInsightRulesOutput = {
     type = "structure",
+    id = "ListManagedInsightRulesOutput",
     members = {
         ManagedRules = {
             type = "list",
@@ -2060,6 +2167,7 @@ M.RecentlyActive = {
 
 M.ListMetricsInput = {
     type = "structure",
+    id = "ListMetricsInput",
     members = {
         Namespace = {
             type = "string",
@@ -2088,6 +2196,7 @@ M.ListMetricsInput = {
 
 M.ListMetricsOutput = {
     type = "structure",
+    id = "ListMetricsOutput",
     members = {
         Metrics = {
             type = "list",
@@ -2105,6 +2214,7 @@ M.ListMetricsOutput = {
 
 M.ListMetricStreamsInput = {
     type = "structure",
+    id = "ListMetricStreamsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2117,6 +2227,7 @@ M.ListMetricStreamsInput = {
 
 M.MetricStreamEntry = {
     type = "structure",
+    id = "MetricStreamEntry",
     members = {
         Arn = {
             type = "string",
@@ -2144,6 +2255,7 @@ M.MetricStreamEntry = {
 
 M.ListMetricStreamsOutput = {
     type = "structure",
+    id = "ListMetricStreamsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -2157,6 +2269,7 @@ M.ListMetricStreamsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2169,6 +2282,7 @@ M.ListTagsForResourceInput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -2187,6 +2301,7 @@ M.Tag = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -2197,6 +2312,7 @@ M.ListTagsForResourceOutput = {
 
 M.LimitExceededFault = {
     type = "structure",
+    id = "LimitExceededFault",
     error = "client",
     members = {
         message = {
@@ -2207,6 +2323,7 @@ M.LimitExceededFault = {
 
 M.PutAlarmMuteRuleInput = {
     type = "structure",
+    id = "PutAlarmMuteRuleInput",
     members = {
         Name = {
             type = "string",
@@ -2236,10 +2353,12 @@ M.PutAlarmMuteRuleInput = {
 
 M.PutAlarmMuteRuleOutput = {
     type = "structure",
+    id = "PutAlarmMuteRuleOutput",
 }
 
 M.PutAnomalyDetectorInput = {
     type = "structure",
+    id = "PutAnomalyDetectorInput",
     members = {
         Namespace = {
             type = "string",
@@ -2263,10 +2382,12 @@ M.PutAnomalyDetectorInput = {
 
 M.PutAnomalyDetectorOutput = {
     type = "structure",
+    id = "PutAnomalyDetectorOutput",
 }
 
 M.PutCompositeAlarmInput = {
     type = "structure",
+    id = "PutCompositeAlarmInput",
     members = {
         ActionsEnabled = {
             type = "boolean",
@@ -2316,10 +2437,12 @@ M.PutCompositeAlarmInput = {
 
 M.PutCompositeAlarmOutput = {
     type = "structure",
+    id = "PutCompositeAlarmOutput",
 }
 
 M.PutDashboardInput = {
     type = "structure",
+    id = "PutDashboardInput",
     members = {
         DashboardName = {
             type = "string",
@@ -2342,6 +2465,7 @@ M.PutDashboardInput = {
 
 M.PutDashboardOutput = {
     type = "structure",
+    id = "PutDashboardOutput",
     members = {
         DashboardValidationMessages = {
             type = "list",
@@ -2352,6 +2476,7 @@ M.PutDashboardOutput = {
 
 M.PutInsightRuleInput = {
     type = "structure",
+    id = "PutInsightRuleInput",
     members = {
         RuleName = {
             type = "string",
@@ -2380,10 +2505,12 @@ M.PutInsightRuleInput = {
 
 M.PutInsightRuleOutput = {
     type = "structure",
+    id = "PutInsightRuleOutput",
 }
 
 M.ManagedRule = {
     type = "structure",
+    id = "ManagedRule",
     members = {
         TemplateName = {
             type = "string",
@@ -2406,6 +2533,7 @@ M.ManagedRule = {
 
 M.PutManagedInsightRulesInput = {
     type = "structure",
+    id = "PutManagedInsightRulesInput",
     members = {
         ManagedRules = {
             type = "list",
@@ -2419,6 +2547,7 @@ M.PutManagedInsightRulesInput = {
 
 M.PutManagedInsightRulesOutput = {
     type = "structure",
+    id = "PutManagedInsightRulesOutput",
     members = {
         Failures = {
             type = "list",
@@ -2429,6 +2558,7 @@ M.PutManagedInsightRulesOutput = {
 
 M.PutMetricAlarmInput = {
     type = "structure",
+    id = "PutMetricAlarmInput",
     members = {
         AlarmName = {
             type = "string",
@@ -2514,10 +2644,12 @@ M.PutMetricAlarmInput = {
 
 M.PutMetricAlarmOutput = {
     type = "structure",
+    id = "PutMetricAlarmOutput",
 }
 
 M.PutMetricDataInput = {
     type = "structure",
+    id = "PutMetricDataInput",
     members = {
         Namespace = {
             type = "string",
@@ -2541,10 +2673,12 @@ M.PutMetricDataInput = {
 
 M.PutMetricDataOutput = {
     type = "structure",
+    id = "PutMetricDataOutput",
 }
 
 M.PutMetricStreamInput = {
     type = "structure",
+    id = "PutMetricStreamInput",
     members = {
         Name = {
             type = "string",
@@ -2594,6 +2728,7 @@ M.PutMetricStreamInput = {
 
 M.PutMetricStreamOutput = {
     type = "structure",
+    id = "PutMetricStreamOutput",
     members = {
         Arn = {
             type = "string",
@@ -2603,6 +2738,7 @@ M.PutMetricStreamOutput = {
 
 M.InvalidFormatFault = {
     type = "structure",
+    id = "InvalidFormatFault",
     error = "client",
     members = {
         message = {
@@ -2613,6 +2749,7 @@ M.InvalidFormatFault = {
 
 M.SetAlarmStateInput = {
     type = "structure",
+    id = "SetAlarmStateInput",
     members = {
         AlarmName = {
             type = "string",
@@ -2640,10 +2777,12 @@ M.SetAlarmStateInput = {
 
 M.SetAlarmStateOutput = {
     type = "structure",
+    id = "SetAlarmStateOutput",
 }
 
 M.StartMetricStreamsInput = {
     type = "structure",
+    id = "StartMetricStreamsInput",
     members = {
         Names = {
             type = "list",
@@ -2657,18 +2796,22 @@ M.StartMetricStreamsInput = {
 
 M.StartMetricStreamsOutput = {
     type = "structure",
+    id = "StartMetricStreamsOutput",
 }
 
 M.StartOTelEnrichmentInput = {
     type = "structure",
+    id = "StartOTelEnrichmentInput",
 }
 
 M.StartOTelEnrichmentOutput = {
     type = "structure",
+    id = "StartOTelEnrichmentOutput",
 }
 
 M.StopMetricStreamsInput = {
     type = "structure",
+    id = "StopMetricStreamsInput",
     members = {
         Names = {
             type = "list",
@@ -2682,18 +2825,22 @@ M.StopMetricStreamsInput = {
 
 M.StopMetricStreamsOutput = {
     type = "structure",
+    id = "StopMetricStreamsOutput",
 }
 
 M.StopOTelEnrichmentInput = {
     type = "structure",
+    id = "StopOTelEnrichmentInput",
 }
 
 M.StopOTelEnrichmentOutput = {
     type = "structure",
+    id = "StopOTelEnrichmentOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2713,10 +2860,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2736,6 +2885,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

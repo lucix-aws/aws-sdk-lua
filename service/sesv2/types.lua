@@ -19,6 +19,7 @@ M.ReviewStatus = {
 
 M.ReviewDetails = {
     type = "structure",
+    id = "ReviewDetails",
     members = {
         Status = {
             type = "string",
@@ -31,6 +32,7 @@ M.ReviewDetails = {
 
 M.AccountDetails = {
     type = "structure",
+    id = "AccountDetails",
     members = {
         MailType = {
             type = "string",
@@ -54,6 +56,7 @@ M.AccountDetails = {
 
 M.AccountSuspendedException = {
     type = "structure",
+    id = "AccountSuspendedException",
     error = "client",
     members = {
         message = {
@@ -64,6 +67,7 @@ M.AccountSuspendedException = {
 
 M.AlreadyExistsException = {
     type = "structure",
+    id = "AlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -74,6 +78,7 @@ M.AlreadyExistsException = {
 
 M.ArchivingOptions = {
     type = "structure",
+    id = "ArchivingOptions",
     members = {
         ArchiveArn = {
             type = "string",
@@ -94,6 +99,7 @@ M.AttachmentContentTransferEncoding = {
 
 M.Attachment = {
     type = "structure",
+    id = "Attachment",
     members = {
         RawContent = {
             type = "blob",
@@ -127,6 +133,7 @@ M.Attachment = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -160,6 +167,7 @@ M.MetricNamespace = {
 
 M.BatchGetMetricDataQuery = {
     type = "structure",
+    id = "BatchGetMetricDataQuery",
     members = {
         Id = {
             type = "string",
@@ -201,6 +209,7 @@ M.BatchGetMetricDataQuery = {
 
 M.BatchGetMetricDataInput = {
     type = "structure",
+    id = "BatchGetMetricDataInput",
     members = {
         Queries = {
             type = "list",
@@ -219,6 +228,7 @@ M.QueryErrorCode = {
 
 M.MetricDataError = {
     type = "structure",
+    id = "MetricDataError",
     members = {
         Id = {
             type = "string",
@@ -234,6 +244,7 @@ M.MetricDataError = {
 
 M.MetricDataResult = {
     type = "structure",
+    id = "MetricDataResult",
     members = {
         Id = {
             type = "string",
@@ -251,6 +262,7 @@ M.MetricDataResult = {
 
 M.BatchGetMetricDataOutput = {
     type = "structure",
+    id = "BatchGetMetricDataOutput",
     members = {
         Results = {
             type = "list",
@@ -265,6 +277,7 @@ M.BatchGetMetricDataOutput = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         message = {
@@ -275,6 +288,7 @@ M.InternalServiceErrorException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -285,6 +299,7 @@ M.NotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -300,6 +315,7 @@ M.BehaviorOnMxFailure = {
 
 M.BlacklistEntry = {
     type = "structure",
+    id = "BlacklistEntry",
     members = {
         RblName = {
             type = "string",
@@ -315,6 +331,7 @@ M.BlacklistEntry = {
 
 M.Content = {
     type = "structure",
+    id = "Content",
     members = {
         Data = {
             type = "string",
@@ -330,6 +347,7 @@ M.Content = {
 
 M.Body = {
     type = "structure",
+    id = "Body",
     members = {
         Text = M.Content,
         Html = M.Content,
@@ -344,6 +362,7 @@ M.BounceType = {
 
 M.Bounce = {
     type = "structure",
+    id = "Bounce",
     members = {
         BounceType = {
             type = "string",
@@ -359,6 +378,7 @@ M.Bounce = {
 
 M.MessageHeader = {
     type = "structure",
+    id = "MessageHeader",
     members = {
         Name = {
             type = "string",
@@ -377,6 +397,7 @@ M.MessageHeader = {
 
 M.EmailTemplateContent = {
     type = "structure",
+    id = "EmailTemplateContent",
     members = {
         Subject = {
             type = "string",
@@ -392,6 +413,7 @@ M.EmailTemplateContent = {
 
 M.Template = {
     type = "structure",
+    id = "Template",
     members = {
         TemplateName = {
             type = "string",
@@ -416,6 +438,7 @@ M.Template = {
 
 M.BulkEmailContent = {
     type = "structure",
+    id = "BulkEmailContent",
     members = {
         Template = M.Template,
     },
@@ -423,6 +446,7 @@ M.BulkEmailContent = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         ToAddresses = {
             type = "list",
@@ -441,6 +465,7 @@ M.Destination = {
 
 M.ReplacementTemplate = {
     type = "structure",
+    id = "ReplacementTemplate",
     members = {
         ReplacementTemplateData = {
             type = "string",
@@ -450,6 +475,7 @@ M.ReplacementTemplate = {
 
 M.ReplacementEmailContent = {
     type = "structure",
+    id = "ReplacementEmailContent",
     members = {
         ReplacementTemplate = M.ReplacementTemplate,
     },
@@ -457,6 +483,7 @@ M.ReplacementEmailContent = {
 
 M.MessageTag = {
     type = "structure",
+    id = "MessageTag",
     members = {
         Name = {
             type = "string",
@@ -475,6 +502,7 @@ M.MessageTag = {
 
 M.BulkEmailEntry = {
     type = "structure",
+    id = "BulkEmailEntry",
     members = {
         Destination = setmetatable({ traits = {
             required = true,
@@ -510,6 +538,7 @@ M.BulkEmailStatus = {
 
 M.BulkEmailEntryResult = {
     type = "structure",
+    id = "BulkEmailEntryResult",
     members = {
         Status = {
             type = "string",
@@ -525,6 +554,7 @@ M.BulkEmailEntryResult = {
 
 M.CancelExportJobInput = {
     type = "structure",
+    id = "CancelExportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -538,6 +568,7 @@ M.CancelExportJobInput = {
 
 M.CancelExportJobOutput = {
     type = "structure",
+    id = "CancelExportJobOutput",
 }
 
 M.DimensionValueSource = {
@@ -548,6 +579,7 @@ M.DimensionValueSource = {
 
 M.CloudWatchDimensionConfiguration = {
     type = "structure",
+    id = "CloudWatchDimensionConfiguration",
     members = {
         DimensionName = {
             type = "string",
@@ -572,6 +604,7 @@ M.CloudWatchDimensionConfiguration = {
 
 M.CloudWatchDestination = {
     type = "structure",
+    id = "CloudWatchDestination",
     members = {
         DimensionConfigurations = {
             type = "list",
@@ -585,6 +618,7 @@ M.CloudWatchDestination = {
 
 M.Complaint = {
     type = "structure",
+    id = "Complaint",
     members = {
         ComplaintSubType = {
             type = "string",
@@ -597,6 +631,7 @@ M.Complaint = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "server",
     members = {
         message = {
@@ -607,6 +642,7 @@ M.ConcurrentModificationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -622,6 +658,7 @@ M.SubscriptionStatus = {
 
 M.TopicPreference = {
     type = "structure",
+    id = "TopicPreference",
     members = {
         TopicName = {
             type = "string",
@@ -640,6 +677,7 @@ M.TopicPreference = {
 
 M.Contact = {
     type = "structure",
+    id = "Contact",
     members = {
         EmailAddress = {
             type = "string",
@@ -666,6 +704,7 @@ M.Contact = {
 
 M.ContactList = {
     type = "structure",
+    id = "ContactList",
     members = {
         ContactListName = {
             type = "string",
@@ -683,6 +722,7 @@ M.ContactListImportAction = {
 
 M.ContactListDestination = {
     type = "structure",
+    id = "ContactListDestination",
     members = {
         ContactListName = {
             type = "string",
@@ -706,6 +746,7 @@ M.TlsPolicy = {
 
 M.DeliveryOptions = {
     type = "structure",
+    id = "DeliveryOptions",
     members = {
         TlsPolicy = {
             type = "string",
@@ -721,6 +762,7 @@ M.DeliveryOptions = {
 
 M.ReputationOptions = {
     type = "structure",
+    id = "ReputationOptions",
     members = {
         ReputationMetricsEnabled = {
             type = "boolean",
@@ -736,6 +778,7 @@ M.ReputationOptions = {
 
 M.SendingOptions = {
     type = "structure",
+    id = "SendingOptions",
     members = {
         SendingEnabled = {
             type = "boolean",
@@ -764,6 +807,7 @@ M.SuppressionConfidenceVerdictThreshold = {
 
 M.SuppressionConfidenceThreshold = {
     type = "structure",
+    id = "SuppressionConfidenceThreshold",
     members = {
         ConfidenceVerdictThreshold = {
             type = "string",
@@ -776,6 +820,7 @@ M.SuppressionConfidenceThreshold = {
 
 M.SuppressionConditionThreshold = {
     type = "structure",
+    id = "SuppressionConditionThreshold",
     members = {
         ConditionThresholdEnabled = {
             type = "string",
@@ -789,6 +834,7 @@ M.SuppressionConditionThreshold = {
 
 M.SuppressionValidationOptions = {
     type = "structure",
+    id = "SuppressionValidationOptions",
     members = {
         ConditionThreshold = setmetatable({ traits = {
             required = true,
@@ -798,6 +844,7 @@ M.SuppressionValidationOptions = {
 
 M.SuppressionOptions = {
     type = "structure",
+    id = "SuppressionOptions",
     members = {
         SuppressedReasons = {
             type = "list",
@@ -809,6 +856,7 @@ M.SuppressionOptions = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -833,6 +881,7 @@ M.HttpsPolicy = {
 
 M.TrackingOptions = {
     type = "structure",
+    id = "TrackingOptions",
     members = {
         CustomRedirectDomain = {
             type = "string",
@@ -848,6 +897,7 @@ M.TrackingOptions = {
 
 M.DashboardOptions = {
     type = "structure",
+    id = "DashboardOptions",
     members = {
         EngagementMetrics = {
             type = "string",
@@ -857,6 +907,7 @@ M.DashboardOptions = {
 
 M.GuardianOptions = {
     type = "structure",
+    id = "GuardianOptions",
     members = {
         OptimizedSharedDelivery = {
             type = "string",
@@ -866,6 +917,7 @@ M.GuardianOptions = {
 
 M.VdmOptions = {
     type = "structure",
+    id = "VdmOptions",
     members = {
         DashboardOptions = M.DashboardOptions,
         GuardianOptions = M.GuardianOptions,
@@ -874,6 +926,7 @@ M.VdmOptions = {
 
 M.CreateConfigurationSetInput = {
     type = "structure",
+    id = "CreateConfigurationSetInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -897,10 +950,12 @@ M.CreateConfigurationSetInput = {
 
 M.CreateConfigurationSetOutput = {
     type = "structure",
+    id = "CreateConfigurationSetOutput",
 }
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -911,6 +966,7 @@ M.LimitExceededException = {
 
 M.EventBridgeDestination = {
     type = "structure",
+    id = "EventBridgeDestination",
     members = {
         EventBusArn = {
             type = "string",
@@ -923,6 +979,7 @@ M.EventBridgeDestination = {
 
 M.KinesisFirehoseDestination = {
     type = "structure",
+    id = "KinesisFirehoseDestination",
     members = {
         IamRoleArn = {
             type = "string",
@@ -954,6 +1011,7 @@ M.EventType = {
 
 M.PinpointDestination = {
     type = "structure",
+    id = "PinpointDestination",
     members = {
         ApplicationArn = {
             type = "string",
@@ -963,6 +1021,7 @@ M.PinpointDestination = {
 
 M.SnsDestination = {
     type = "structure",
+    id = "SnsDestination",
     members = {
         TopicArn = {
             type = "string",
@@ -975,6 +1034,7 @@ M.SnsDestination = {
 
 M.EventDestinationDefinition = {
     type = "structure",
+    id = "EventDestinationDefinition",
     members = {
         Enabled = {
             type = "boolean",
@@ -996,6 +1056,7 @@ M.EventDestinationDefinition = {
 
 M.CreateConfigurationSetEventDestinationInput = {
     type = "structure",
+    id = "CreateConfigurationSetEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -1018,10 +1079,12 @@ M.CreateConfigurationSetEventDestinationInput = {
 
 M.CreateConfigurationSetEventDestinationOutput = {
     type = "structure",
+    id = "CreateConfigurationSetEventDestinationOutput",
 }
 
 M.CreateContactInput = {
     type = "structure",
+    id = "CreateContactInput",
     members = {
         ContactListName = {
             type = "string",
@@ -1054,10 +1117,12 @@ M.CreateContactInput = {
 
 M.CreateContactOutput = {
     type = "structure",
+    id = "CreateContactOutput",
 }
 
 M.Topic = {
     type = "structure",
+    id = "Topic",
     members = {
         TopicName = {
             type = "string",
@@ -1085,6 +1150,7 @@ M.Topic = {
 
 M.CreateContactListInput = {
     type = "structure",
+    id = "CreateContactListInput",
     members = {
         ContactListName = {
             type = "string",
@@ -1108,10 +1174,12 @@ M.CreateContactListInput = {
 
 M.CreateContactListOutput = {
     type = "structure",
+    id = "CreateContactListOutput",
 }
 
 M.CreateCustomVerificationEmailTemplateInput = {
     type = "structure",
+    id = "CreateCustomVerificationEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -1158,6 +1226,7 @@ M.CreateCustomVerificationEmailTemplateInput = {
 
 M.CreateCustomVerificationEmailTemplateOutput = {
     type = "structure",
+    id = "CreateCustomVerificationEmailTemplateOutput",
 }
 
 M.ScalingMode = {
@@ -1167,6 +1236,7 @@ M.ScalingMode = {
 
 M.CreateDedicatedIpPoolInput = {
     type = "structure",
+    id = "CreateDedicatedIpPoolInput",
     members = {
         PoolName = {
             type = "string",
@@ -1186,10 +1256,12 @@ M.CreateDedicatedIpPoolInput = {
 
 M.CreateDedicatedIpPoolOutput = {
     type = "structure",
+    id = "CreateDedicatedIpPoolOutput",
 }
 
 M.RawMessage = {
     type = "structure",
+    id = "RawMessage",
     members = {
         Data = {
             type = "blob",
@@ -1202,6 +1274,7 @@ M.RawMessage = {
 
 M.Message = {
     type = "structure",
+    id = "Message",
     members = {
         Subject = setmetatable({ traits = {
             required = true,
@@ -1222,6 +1295,7 @@ M.Message = {
 
 M.EmailContent = {
     type = "structure",
+    id = "EmailContent",
     members = {
         Simple = M.Message,
         Raw = M.RawMessage,
@@ -1231,6 +1305,7 @@ M.EmailContent = {
 
 M.CreateDeliverabilityTestReportInput = {
     type = "structure",
+    id = "CreateDeliverabilityTestReportInput",
     members = {
         ReportName = {
             type = "string",
@@ -1258,6 +1333,7 @@ M.DeliverabilityTestStatus = {
 
 M.CreateDeliverabilityTestReportOutput = {
     type = "structure",
+    id = "CreateDeliverabilityTestReportOutput",
     members = {
         ReportId = {
             type = "string",
@@ -1276,6 +1352,7 @@ M.CreateDeliverabilityTestReportOutput = {
 
 M.MailFromDomainNotVerifiedException = {
     type = "structure",
+    id = "MailFromDomainNotVerifiedException",
     error = "client",
     members = {
         message = {
@@ -1286,6 +1363,7 @@ M.MailFromDomainNotVerifiedException = {
 
 M.MessageRejected = {
     type = "structure",
+    id = "MessageRejected",
     error = "client",
     members = {
         message = {
@@ -1296,6 +1374,7 @@ M.MessageRejected = {
 
 M.SendingPausedException = {
     type = "structure",
+    id = "SendingPausedException",
     error = "client",
     members = {
         message = {
@@ -1343,6 +1422,7 @@ M.DkimSigningKeyLength = {
 
 M.DkimSigningAttributes = {
     type = "structure",
+    id = "DkimSigningAttributes",
     members = {
         DomainSigningSelector = {
             type = "string",
@@ -1361,6 +1441,7 @@ M.DkimSigningAttributes = {
 
 M.CreateEmailIdentityInput = {
     type = "structure",
+    id = "CreateEmailIdentityInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -1389,6 +1470,7 @@ M.DkimStatus = {
 
 M.DkimAttributes = {
     type = "structure",
+    id = "DkimAttributes",
     members = {
         SigningEnabled = {
             type = "boolean",
@@ -1429,6 +1511,7 @@ M.IdentityType = {
 
 M.CreateEmailIdentityOutput = {
     type = "structure",
+    id = "CreateEmailIdentityOutput",
     members = {
         IdentityType = {
             type = "string",
@@ -1445,6 +1528,7 @@ M.CreateEmailIdentityOutput = {
 
 M.CreateEmailIdentityPolicyInput = {
     type = "structure",
+    id = "CreateEmailIdentityPolicyInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -1471,10 +1555,12 @@ M.CreateEmailIdentityPolicyInput = {
 
 M.CreateEmailIdentityPolicyOutput = {
     type = "structure",
+    id = "CreateEmailIdentityPolicyOutput",
 }
 
 M.CreateEmailTemplateInput = {
     type = "structure",
+    id = "CreateEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -1494,6 +1580,7 @@ M.CreateEmailTemplateInput = {
 
 M.CreateEmailTemplateOutput = {
     type = "structure",
+    id = "CreateEmailTemplateOutput",
 }
 
 M.DeliveryEventType = {
@@ -1512,6 +1599,7 @@ M.EngagementEventType = {
 
 M.MessageInsightsFilters = {
     type = "structure",
+    id = "MessageInsightsFilters",
     members = {
         FromEmailAddress = {
             type = "list",
@@ -1542,6 +1630,7 @@ M.MessageInsightsFilters = {
 
 M.MessageInsightsDataSource = {
     type = "structure",
+    id = "MessageInsightsDataSource",
     members = {
         StartDate = {
             type = "timestamp",
@@ -1570,6 +1659,7 @@ M.MetricAggregation = {
 
 M.ExportMetric = {
     type = "structure",
+    id = "ExportMetric",
     members = {
         Name = {
             type = "string",
@@ -1582,6 +1672,7 @@ M.ExportMetric = {
 
 M.MetricsDataSource = {
     type = "structure",
+    id = "MetricsDataSource",
     members = {
         Dimensions = {
             type = "map",
@@ -1621,6 +1712,7 @@ M.MetricsDataSource = {
 
 M.ExportDataSource = {
     type = "structure",
+    id = "ExportDataSource",
     members = {
         MetricsDataSource = M.MetricsDataSource,
         MessageInsightsDataSource = M.MessageInsightsDataSource,
@@ -1634,6 +1726,7 @@ M.DataFormat = {
 
 M.ExportDestination = {
     type = "structure",
+    id = "ExportDestination",
     members = {
         DataFormat = {
             type = "string",
@@ -1649,6 +1742,7 @@ M.ExportDestination = {
 
 M.CreateExportJobInput = {
     type = "structure",
+    id = "CreateExportJobInput",
     members = {
         ExportDataSource = setmetatable({ traits = {
             required = true,
@@ -1661,6 +1755,7 @@ M.CreateExportJobInput = {
 
 M.CreateExportJobOutput = {
     type = "structure",
+    id = "CreateExportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1670,6 +1765,7 @@ M.CreateExportJobOutput = {
 
 M.ImportDataSource = {
     type = "structure",
+    id = "ImportDataSource",
     members = {
         S3Url = {
             type = "string",
@@ -1693,6 +1789,7 @@ M.SuppressionListImportAction = {
 
 M.SuppressionListDestination = {
     type = "structure",
+    id = "SuppressionListDestination",
     members = {
         SuppressionListImportAction = {
             type = "string",
@@ -1705,6 +1802,7 @@ M.SuppressionListDestination = {
 
 M.ImportDestination = {
     type = "structure",
+    id = "ImportDestination",
     members = {
         SuppressionListDestination = M.SuppressionListDestination,
         ContactListDestination = M.ContactListDestination,
@@ -1713,6 +1811,7 @@ M.ImportDestination = {
 
 M.CreateImportJobInput = {
     type = "structure",
+    id = "CreateImportJobInput",
     members = {
         ImportDestination = setmetatable({ traits = {
             required = true,
@@ -1725,6 +1824,7 @@ M.CreateImportJobInput = {
 
 M.CreateImportJobOutput = {
     type = "structure",
+    id = "CreateImportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1734,6 +1834,7 @@ M.CreateImportJobOutput = {
 
 M.RouteDetails = {
     type = "structure",
+    id = "RouteDetails",
     members = {
         Region = {
             type = "string",
@@ -1746,6 +1847,7 @@ M.RouteDetails = {
 
 M.Details = {
     type = "structure",
+    id = "Details",
     members = {
         RoutesDetails = {
             type = "list",
@@ -1759,6 +1861,7 @@ M.Details = {
 
 M.CreateMultiRegionEndpointInput = {
     type = "structure",
+    id = "CreateMultiRegionEndpointInput",
     members = {
         EndpointName = {
             type = "string",
@@ -1785,6 +1888,7 @@ M.Status = {
 
 M.CreateMultiRegionEndpointOutput = {
     type = "structure",
+    id = "CreateMultiRegionEndpointOutput",
     members = {
         Status = {
             type = "string",
@@ -1797,6 +1901,7 @@ M.CreateMultiRegionEndpointOutput = {
 
 M.CreateTenantInput = {
     type = "structure",
+    id = "CreateTenantInput",
     members = {
         TenantName = {
             type = "string",
@@ -1819,6 +1924,7 @@ M.SendingStatus = {
 
 M.CreateTenantOutput = {
     type = "structure",
+    id = "CreateTenantOutput",
     members = {
         TenantName = {
             type = "string",
@@ -1844,6 +1950,7 @@ M.CreateTenantOutput = {
 
 M.CreateTenantResourceAssociationInput = {
     type = "structure",
+    id = "CreateTenantResourceAssociationInput",
     members = {
         TenantName = {
             type = "string",
@@ -1862,10 +1969,12 @@ M.CreateTenantResourceAssociationInput = {
 
 M.CreateTenantResourceAssociationOutput = {
     type = "structure",
+    id = "CreateTenantResourceAssociationOutput",
 }
 
 M.CustomVerificationEmailTemplateMetadata = {
     type = "structure",
+    id = "CustomVerificationEmailTemplateMetadata",
     members = {
         TemplateName = {
             type = "string",
@@ -1887,6 +1996,7 @@ M.CustomVerificationEmailTemplateMetadata = {
 
 M.DomainIspPlacement = {
     type = "structure",
+    id = "DomainIspPlacement",
     members = {
         IspName = {
             type = "string",
@@ -1908,6 +2018,7 @@ M.DomainIspPlacement = {
 
 M.VolumeStatistics = {
     type = "structure",
+    id = "VolumeStatistics",
     members = {
         InboxRawCount = {
             type = "long",
@@ -1926,6 +2037,7 @@ M.VolumeStatistics = {
 
 M.DailyVolume = {
     type = "structure",
+    id = "DailyVolume",
     members = {
         StartDate = {
             type = "timestamp",
@@ -1940,6 +2052,7 @@ M.DailyVolume = {
 
 M.DashboardAttributes = {
     type = "structure",
+    id = "DashboardAttributes",
     members = {
         EngagementMetrics = {
             type = "string",
@@ -1955,6 +2068,7 @@ M.WarmupStatus = {
 
 M.DedicatedIp = {
     type = "structure",
+    id = "DedicatedIp",
     members = {
         Ip = {
             type = "string",
@@ -1982,6 +2096,7 @@ M.DedicatedIp = {
 
 M.DedicatedIpPool = {
     type = "structure",
+    id = "DedicatedIpPool",
     members = {
         PoolName = {
             type = "string",
@@ -2000,6 +2115,7 @@ M.DedicatedIpPool = {
 
 M.DeleteConfigurationSetInput = {
     type = "structure",
+    id = "DeleteConfigurationSetInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -2013,10 +2129,12 @@ M.DeleteConfigurationSetInput = {
 
 M.DeleteConfigurationSetOutput = {
     type = "structure",
+    id = "DeleteConfigurationSetOutput",
 }
 
 M.DeleteConfigurationSetEventDestinationInput = {
     type = "structure",
+    id = "DeleteConfigurationSetEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -2037,10 +2155,12 @@ M.DeleteConfigurationSetEventDestinationInput = {
 
 M.DeleteConfigurationSetEventDestinationOutput = {
     type = "structure",
+    id = "DeleteConfigurationSetEventDestinationOutput",
 }
 
 M.DeleteContactInput = {
     type = "structure",
+    id = "DeleteContactInput",
     members = {
         ContactListName = {
             type = "string",
@@ -2061,10 +2181,12 @@ M.DeleteContactInput = {
 
 M.DeleteContactOutput = {
     type = "structure",
+    id = "DeleteContactOutput",
 }
 
 M.DeleteContactListInput = {
     type = "structure",
+    id = "DeleteContactListInput",
     members = {
         ContactListName = {
             type = "string",
@@ -2078,10 +2200,12 @@ M.DeleteContactListInput = {
 
 M.DeleteContactListOutput = {
     type = "structure",
+    id = "DeleteContactListOutput",
 }
 
 M.DeleteCustomVerificationEmailTemplateInput = {
     type = "structure",
+    id = "DeleteCustomVerificationEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -2095,10 +2219,12 @@ M.DeleteCustomVerificationEmailTemplateInput = {
 
 M.DeleteCustomVerificationEmailTemplateOutput = {
     type = "structure",
+    id = "DeleteCustomVerificationEmailTemplateOutput",
 }
 
 M.DeleteDedicatedIpPoolInput = {
     type = "structure",
+    id = "DeleteDedicatedIpPoolInput",
     members = {
         PoolName = {
             type = "string",
@@ -2112,10 +2238,12 @@ M.DeleteDedicatedIpPoolInput = {
 
 M.DeleteDedicatedIpPoolOutput = {
     type = "structure",
+    id = "DeleteDedicatedIpPoolOutput",
 }
 
 M.DeleteEmailIdentityInput = {
     type = "structure",
+    id = "DeleteEmailIdentityInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -2129,10 +2257,12 @@ M.DeleteEmailIdentityInput = {
 
 M.DeleteEmailIdentityOutput = {
     type = "structure",
+    id = "DeleteEmailIdentityOutput",
 }
 
 M.DeleteEmailIdentityPolicyInput = {
     type = "structure",
+    id = "DeleteEmailIdentityPolicyInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -2153,10 +2283,12 @@ M.DeleteEmailIdentityPolicyInput = {
 
 M.DeleteEmailIdentityPolicyOutput = {
     type = "structure",
+    id = "DeleteEmailIdentityPolicyOutput",
 }
 
 M.DeleteEmailTemplateInput = {
     type = "structure",
+    id = "DeleteEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -2170,10 +2302,12 @@ M.DeleteEmailTemplateInput = {
 
 M.DeleteEmailTemplateOutput = {
     type = "structure",
+    id = "DeleteEmailTemplateOutput",
 }
 
 M.DeleteMultiRegionEndpointInput = {
     type = "structure",
+    id = "DeleteMultiRegionEndpointInput",
     members = {
         EndpointName = {
             type = "string",
@@ -2187,6 +2321,7 @@ M.DeleteMultiRegionEndpointInput = {
 
 M.DeleteMultiRegionEndpointOutput = {
     type = "structure",
+    id = "DeleteMultiRegionEndpointOutput",
     members = {
         Status = {
             type = "string",
@@ -2196,6 +2331,7 @@ M.DeleteMultiRegionEndpointOutput = {
 
 M.DeleteSuppressedDestinationInput = {
     type = "structure",
+    id = "DeleteSuppressedDestinationInput",
     members = {
         EmailAddress = {
             type = "string",
@@ -2209,10 +2345,12 @@ M.DeleteSuppressedDestinationInput = {
 
 M.DeleteSuppressedDestinationOutput = {
     type = "structure",
+    id = "DeleteSuppressedDestinationOutput",
 }
 
 M.DeleteTenantInput = {
     type = "structure",
+    id = "DeleteTenantInput",
     members = {
         TenantName = {
             type = "string",
@@ -2225,10 +2363,12 @@ M.DeleteTenantInput = {
 
 M.DeleteTenantOutput = {
     type = "structure",
+    id = "DeleteTenantOutput",
 }
 
 M.DeleteTenantResourceAssociationInput = {
     type = "structure",
+    id = "DeleteTenantResourceAssociationInput",
     members = {
         TenantName = {
             type = "string",
@@ -2247,6 +2387,7 @@ M.DeleteTenantResourceAssociationInput = {
 
 M.DeleteTenantResourceAssociationOutput = {
     type = "structure",
+    id = "DeleteTenantResourceAssociationOutput",
 }
 
 M.DeliverabilityDashboardAccountStatus = {
@@ -2257,6 +2398,7 @@ M.DeliverabilityDashboardAccountStatus = {
 
 M.DeliverabilityTestReport = {
     type = "structure",
+    id = "DeliverabilityTestReport",
     members = {
         ReportId = {
             type = "string",
@@ -2281,6 +2423,7 @@ M.DeliverabilityTestReport = {
 
 M.DomainDeliverabilityCampaign = {
     type = "structure",
+    id = "DomainDeliverabilityCampaign",
     members = {
         CampaignId = {
             type = "string",
@@ -2331,6 +2474,7 @@ M.DomainDeliverabilityCampaign = {
 
 M.InboxPlacementTrackingOption = {
     type = "structure",
+    id = "InboxPlacementTrackingOption",
     members = {
         Global = {
             type = "boolean",
@@ -2347,6 +2491,7 @@ M.InboxPlacementTrackingOption = {
 
 M.DomainDeliverabilityTrackingOption = {
     type = "structure",
+    id = "DomainDeliverabilityTrackingOption",
     members = {
         Domain = {
             type = "string",
@@ -2366,6 +2511,7 @@ M.EmailAddressInsightsConfidenceVerdict = {
 
 M.EmailAddressInsightsVerdict = {
     type = "structure",
+    id = "EmailAddressInsightsVerdict",
     members = {
         ConfidenceVerdict = {
             type = "string",
@@ -2375,6 +2521,7 @@ M.EmailAddressInsightsVerdict = {
 
 M.EmailAddressInsightsMailboxEvaluations = {
     type = "structure",
+    id = "EmailAddressInsightsMailboxEvaluations",
     members = {
         HasValidSyntax = M.EmailAddressInsightsVerdict,
         HasValidDnsRecords = M.EmailAddressInsightsVerdict,
@@ -2387,6 +2534,7 @@ M.EmailAddressInsightsMailboxEvaluations = {
 
 M.EventDetails = {
     type = "structure",
+    id = "EventDetails",
     members = {
         Bounce = M.Bounce,
         Complaint = M.Complaint,
@@ -2395,6 +2543,7 @@ M.EventDetails = {
 
 M.InsightsEvent = {
     type = "structure",
+    id = "InsightsEvent",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -2408,6 +2557,7 @@ M.InsightsEvent = {
 
 M.EmailInsights = {
     type = "structure",
+    id = "EmailInsights",
     members = {
         Destination = {
             type = "string",
@@ -2424,6 +2574,7 @@ M.EmailInsights = {
 
 M.EmailTemplateMetadata = {
     type = "structure",
+    id = "EmailTemplateMetadata",
     members = {
         TemplateName = {
             type = "string",
@@ -2436,6 +2587,7 @@ M.EmailTemplateMetadata = {
 
 M.EventDestination = {
     type = "structure",
+    id = "EventDestination",
     members = {
         Name = {
             type = "string",
@@ -2479,6 +2631,7 @@ M.JobStatus = {
 
 M.ExportJobSummary = {
     type = "structure",
+    id = "ExportJobSummary",
     members = {
         JobId = {
             type = "string",
@@ -2500,6 +2653,7 @@ M.ExportJobSummary = {
 
 M.ExportStatistics = {
     type = "structure",
+    id = "ExportStatistics",
     members = {
         ProcessedRecordsCount = {
             type = "integer",
@@ -2512,6 +2666,7 @@ M.ExportStatistics = {
 
 M.FailureInfo = {
     type = "structure",
+    id = "FailureInfo",
     members = {
         FailedRecordsS3Url = {
             type = "string",
@@ -2524,10 +2679,12 @@ M.FailureInfo = {
 
 M.GetAccountInput = {
     type = "structure",
+    id = "GetAccountInput",
 }
 
 M.SendQuota = {
     type = "structure",
+    id = "SendQuota",
     members = {
         Max24HourSend = {
             type = "double",
@@ -2552,6 +2709,7 @@ M.SendQuota = {
 
 M.SuppressionValidationAttributes = {
     type = "structure",
+    id = "SuppressionValidationAttributes",
     members = {
         ConditionThreshold = setmetatable({ traits = {
             required = true,
@@ -2561,6 +2719,7 @@ M.SuppressionValidationAttributes = {
 
 M.SuppressionAttributes = {
     type = "structure",
+    id = "SuppressionAttributes",
     members = {
         SuppressedReasons = {
             type = "list",
@@ -2572,6 +2731,7 @@ M.SuppressionAttributes = {
 
 M.GuardianAttributes = {
     type = "structure",
+    id = "GuardianAttributes",
     members = {
         OptimizedSharedDelivery = {
             type = "string",
@@ -2581,6 +2741,7 @@ M.GuardianAttributes = {
 
 M.VdmAttributes = {
     type = "structure",
+    id = "VdmAttributes",
     members = {
         VdmEnabled = {
             type = "string",
@@ -2595,6 +2756,7 @@ M.VdmAttributes = {
 
 M.GetAccountOutput = {
     type = "structure",
+    id = "GetAccountOutput",
     members = {
         DedicatedIpAutoWarmupEnabled = {
             type = "boolean",
@@ -2626,6 +2788,7 @@ M.GetAccountOutput = {
 
 M.GetBlacklistReportsInput = {
     type = "structure",
+    id = "GetBlacklistReportsInput",
     members = {
         BlacklistItemNames = {
             type = "list",
@@ -2640,6 +2803,7 @@ M.GetBlacklistReportsInput = {
 
 M.GetBlacklistReportsOutput = {
     type = "structure",
+    id = "GetBlacklistReportsOutput",
     members = {
         BlacklistReport = {
             type = "map",
@@ -2654,6 +2818,7 @@ M.GetBlacklistReportsOutput = {
 
 M.GetConfigurationSetInput = {
     type = "structure",
+    id = "GetConfigurationSetInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -2667,6 +2832,7 @@ M.GetConfigurationSetInput = {
 
 M.GetConfigurationSetOutput = {
     type = "structure",
+    id = "GetConfigurationSetOutput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -2687,6 +2853,7 @@ M.GetConfigurationSetOutput = {
 
 M.GetConfigurationSetEventDestinationsInput = {
     type = "structure",
+    id = "GetConfigurationSetEventDestinationsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -2700,6 +2867,7 @@ M.GetConfigurationSetEventDestinationsInput = {
 
 M.GetConfigurationSetEventDestinationsOutput = {
     type = "structure",
+    id = "GetConfigurationSetEventDestinationsOutput",
     members = {
         EventDestinations = {
             type = "list",
@@ -2710,6 +2878,7 @@ M.GetConfigurationSetEventDestinationsOutput = {
 
 M.GetContactInput = {
     type = "structure",
+    id = "GetContactInput",
     members = {
         ContactListName = {
             type = "string",
@@ -2730,6 +2899,7 @@ M.GetContactInput = {
 
 M.GetContactOutput = {
     type = "structure",
+    id = "GetContactOutput",
     members = {
         ContactListName = {
             type = "string",
@@ -2765,6 +2935,7 @@ M.GetContactOutput = {
 
 M.GetContactListInput = {
     type = "structure",
+    id = "GetContactListInput",
     members = {
         ContactListName = {
             type = "string",
@@ -2778,6 +2949,7 @@ M.GetContactListInput = {
 
 M.GetContactListOutput = {
     type = "structure",
+    id = "GetContactListOutput",
     members = {
         ContactListName = {
             type = "string",
@@ -2804,6 +2976,7 @@ M.GetContactListOutput = {
 
 M.GetCustomVerificationEmailTemplateInput = {
     type = "structure",
+    id = "GetCustomVerificationEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -2817,6 +2990,7 @@ M.GetCustomVerificationEmailTemplateInput = {
 
 M.GetCustomVerificationEmailTemplateOutput = {
     type = "structure",
+    id = "GetCustomVerificationEmailTemplateOutput",
     members = {
         TemplateName = {
             type = "string",
@@ -2845,6 +3019,7 @@ M.GetCustomVerificationEmailTemplateOutput = {
 
 M.GetDedicatedIpInput = {
     type = "structure",
+    id = "GetDedicatedIpInput",
     members = {
         Ip = {
             type = "string",
@@ -2858,6 +3033,7 @@ M.GetDedicatedIpInput = {
 
 M.GetDedicatedIpOutput = {
     type = "structure",
+    id = "GetDedicatedIpOutput",
     members = {
         DedicatedIp = M.DedicatedIp,
     },
@@ -2865,6 +3041,7 @@ M.GetDedicatedIpOutput = {
 
 M.GetDedicatedIpPoolInput = {
     type = "structure",
+    id = "GetDedicatedIpPoolInput",
     members = {
         PoolName = {
             type = "string",
@@ -2878,6 +3055,7 @@ M.GetDedicatedIpPoolInput = {
 
 M.GetDedicatedIpPoolOutput = {
     type = "structure",
+    id = "GetDedicatedIpPoolOutput",
     members = {
         DedicatedIpPool = M.DedicatedIpPool,
     },
@@ -2885,6 +3063,7 @@ M.GetDedicatedIpPoolOutput = {
 
 M.GetDedicatedIpsInput = {
     type = "structure",
+    id = "GetDedicatedIpsInput",
     members = {
         PoolName = {
             type = "string",
@@ -2909,6 +3088,7 @@ M.GetDedicatedIpsInput = {
 
 M.GetDedicatedIpsOutput = {
     type = "structure",
+    id = "GetDedicatedIpsOutput",
     members = {
         DedicatedIps = {
             type = "list",
@@ -2922,10 +3102,12 @@ M.GetDedicatedIpsOutput = {
 
 M.GetDeliverabilityDashboardOptionsInput = {
     type = "structure",
+    id = "GetDeliverabilityDashboardOptionsInput",
 }
 
 M.GetDeliverabilityDashboardOptionsOutput = {
     type = "structure",
+    id = "GetDeliverabilityDashboardOptionsOutput",
     members = {
         DashboardEnabled = {
             type = "boolean",
@@ -2953,6 +3135,7 @@ M.GetDeliverabilityDashboardOptionsOutput = {
 
 M.GetDeliverabilityTestReportInput = {
     type = "structure",
+    id = "GetDeliverabilityTestReportInput",
     members = {
         ReportId = {
             type = "string",
@@ -2966,6 +3149,7 @@ M.GetDeliverabilityTestReportInput = {
 
 M.PlacementStatistics = {
     type = "structure",
+    id = "PlacementStatistics",
     members = {
         InboxPercentage = {
             type = "double",
@@ -2987,6 +3171,7 @@ M.PlacementStatistics = {
 
 M.IspPlacement = {
     type = "structure",
+    id = "IspPlacement",
     members = {
         IspName = {
             type = "string",
@@ -2997,6 +3182,7 @@ M.IspPlacement = {
 
 M.GetDeliverabilityTestReportOutput = {
     type = "structure",
+    id = "GetDeliverabilityTestReportOutput",
     members = {
         DeliverabilityTestReport = setmetatable({ traits = {
             required = true,
@@ -3023,6 +3209,7 @@ M.GetDeliverabilityTestReportOutput = {
 
 M.GetDomainDeliverabilityCampaignInput = {
     type = "structure",
+    id = "GetDomainDeliverabilityCampaignInput",
     members = {
         CampaignId = {
             type = "string",
@@ -3036,6 +3223,7 @@ M.GetDomainDeliverabilityCampaignInput = {
 
 M.GetDomainDeliverabilityCampaignOutput = {
     type = "structure",
+    id = "GetDomainDeliverabilityCampaignOutput",
     members = {
         DomainDeliverabilityCampaign = setmetatable({ traits = {
             required = true,
@@ -3045,6 +3233,7 @@ M.GetDomainDeliverabilityCampaignOutput = {
 
 M.GetDomainStatisticsReportInput = {
     type = "structure",
+    id = "GetDomainStatisticsReportInput",
     members = {
         Domain = {
             type = "string",
@@ -3072,6 +3261,7 @@ M.GetDomainStatisticsReportInput = {
 
 M.OverallVolume = {
     type = "structure",
+    id = "OverallVolume",
     members = {
         VolumeStatistics = M.VolumeStatistics,
         ReadRatePercent = {
@@ -3086,6 +3276,7 @@ M.OverallVolume = {
 
 M.GetDomainStatisticsReportOutput = {
     type = "structure",
+    id = "GetDomainStatisticsReportOutput",
     members = {
         OverallVolume = setmetatable({ traits = {
             required = true,
@@ -3102,6 +3293,7 @@ M.GetDomainStatisticsReportOutput = {
 
 M.GetEmailAddressInsightsInput = {
     type = "structure",
+    id = "GetEmailAddressInsightsInput",
     members = {
         EmailAddress = {
             type = "string",
@@ -3114,6 +3306,7 @@ M.GetEmailAddressInsightsInput = {
 
 M.MailboxValidation = {
     type = "structure",
+    id = "MailboxValidation",
     members = {
         IsValid = M.EmailAddressInsightsVerdict,
         Evaluations = M.EmailAddressInsightsMailboxEvaluations,
@@ -3122,6 +3315,7 @@ M.MailboxValidation = {
 
 M.GetEmailAddressInsightsOutput = {
     type = "structure",
+    id = "GetEmailAddressInsightsOutput",
     members = {
         MailboxValidation = M.MailboxValidation,
     },
@@ -3129,6 +3323,7 @@ M.GetEmailAddressInsightsOutput = {
 
 M.GetEmailIdentityInput = {
     type = "structure",
+    id = "GetEmailIdentityInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -3149,6 +3344,7 @@ M.MailFromDomainStatus = {
 
 M.MailFromAttributes = {
     type = "structure",
+    id = "MailFromAttributes",
     members = {
         MailFromDomain = {
             type = "string",
@@ -3186,6 +3382,7 @@ M.VerificationError = {
 
 M.SOARecord = {
     type = "structure",
+    id = "SOARecord",
     members = {
         PrimaryNameServer = {
             type = "string",
@@ -3204,6 +3401,7 @@ M.SOARecord = {
 
 M.VerificationInfo = {
     type = "structure",
+    id = "VerificationInfo",
     members = {
         LastCheckedTimestamp = {
             type = "timestamp",
@@ -3228,6 +3426,7 @@ M.VerificationStatus = {
 
 M.GetEmailIdentityOutput = {
     type = "structure",
+    id = "GetEmailIdentityOutput",
     members = {
         IdentityType = {
             type = "string",
@@ -3267,6 +3466,7 @@ M.GetEmailIdentityOutput = {
 
 M.GetEmailIdentityPoliciesInput = {
     type = "structure",
+    id = "GetEmailIdentityPoliciesInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -3280,6 +3480,7 @@ M.GetEmailIdentityPoliciesInput = {
 
 M.GetEmailIdentityPoliciesOutput = {
     type = "structure",
+    id = "GetEmailIdentityPoliciesOutput",
     members = {
         Policies = {
             type = "map",
@@ -3291,6 +3492,7 @@ M.GetEmailIdentityPoliciesOutput = {
 
 M.GetEmailTemplateInput = {
     type = "structure",
+    id = "GetEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -3304,6 +3506,7 @@ M.GetEmailTemplateInput = {
 
 M.GetEmailTemplateOutput = {
     type = "structure",
+    id = "GetEmailTemplateOutput",
     members = {
         TemplateName = {
             type = "string",
@@ -3323,6 +3526,7 @@ M.GetEmailTemplateOutput = {
 
 M.GetExportJobInput = {
     type = "structure",
+    id = "GetExportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3336,6 +3540,7 @@ M.GetExportJobInput = {
 
 M.GetExportJobOutput = {
     type = "structure",
+    id = "GetExportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -3361,6 +3566,7 @@ M.GetExportJobOutput = {
 
 M.GetImportJobInput = {
     type = "structure",
+    id = "GetImportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3374,6 +3580,7 @@ M.GetImportJobInput = {
 
 M.GetImportJobOutput = {
     type = "structure",
+    id = "GetImportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -3401,6 +3608,7 @@ M.GetImportJobOutput = {
 
 M.GetMessageInsightsInput = {
     type = "structure",
+    id = "GetMessageInsightsInput",
     members = {
         MessageId = {
             type = "string",
@@ -3414,6 +3622,7 @@ M.GetMessageInsightsInput = {
 
 M.GetMessageInsightsOutput = {
     type = "structure",
+    id = "GetMessageInsightsOutput",
     members = {
         MessageId = {
             type = "string",
@@ -3437,6 +3646,7 @@ M.GetMessageInsightsOutput = {
 
 M.GetMultiRegionEndpointInput = {
     type = "structure",
+    id = "GetMultiRegionEndpointInput",
     members = {
         EndpointName = {
             type = "string",
@@ -3450,6 +3660,7 @@ M.GetMultiRegionEndpointInput = {
 
 M.Route = {
     type = "structure",
+    id = "Route",
     members = {
         Region = {
             type = "string",
@@ -3462,6 +3673,7 @@ M.Route = {
 
 M.GetMultiRegionEndpointOutput = {
     type = "structure",
+    id = "GetMultiRegionEndpointOutput",
     members = {
         EndpointName = {
             type = "string",
@@ -3491,6 +3703,7 @@ M.ReputationEntityType = {
 
 M.GetReputationEntityInput = {
     type = "structure",
+    id = "GetReputationEntityInput",
     members = {
         ReputationEntityReference = {
             type = "string",
@@ -3511,6 +3724,7 @@ M.GetReputationEntityInput = {
 
 M.StatusRecord = {
     type = "structure",
+    id = "StatusRecord",
     members = {
         Status = {
             type = "string",
@@ -3531,6 +3745,7 @@ M.RecommendationImpact = {
 
 M.ReputationEntity = {
     type = "structure",
+    id = "ReputationEntity",
     members = {
         ReputationEntityReference = {
             type = "string",
@@ -3554,6 +3769,7 @@ M.ReputationEntity = {
 
 M.GetReputationEntityOutput = {
     type = "structure",
+    id = "GetReputationEntityOutput",
     members = {
         ReputationEntity = M.ReputationEntity,
     },
@@ -3561,6 +3777,7 @@ M.GetReputationEntityOutput = {
 
 M.GetSuppressedDestinationInput = {
     type = "structure",
+    id = "GetSuppressedDestinationInput",
     members = {
         EmailAddress = {
             type = "string",
@@ -3574,6 +3791,7 @@ M.GetSuppressedDestinationInput = {
 
 M.SuppressedDestinationAttributes = {
     type = "structure",
+    id = "SuppressedDestinationAttributes",
     members = {
         MessageId = {
             type = "string",
@@ -3586,6 +3804,7 @@ M.SuppressedDestinationAttributes = {
 
 M.SuppressedDestination = {
     type = "structure",
+    id = "SuppressedDestination",
     members = {
         EmailAddress = {
             type = "string",
@@ -3611,6 +3830,7 @@ M.SuppressedDestination = {
 
 M.GetSuppressedDestinationOutput = {
     type = "structure",
+    id = "GetSuppressedDestinationOutput",
     members = {
         SuppressedDestination = setmetatable({ traits = {
             required = true,
@@ -3620,6 +3840,7 @@ M.GetSuppressedDestinationOutput = {
 
 M.GetTenantInput = {
     type = "structure",
+    id = "GetTenantInput",
     members = {
         TenantName = {
             type = "string",
@@ -3632,6 +3853,7 @@ M.GetTenantInput = {
 
 M.Tenant = {
     type = "structure",
+    id = "Tenant",
     members = {
         TenantName = {
             type = "string",
@@ -3657,6 +3879,7 @@ M.Tenant = {
 
 M.GetTenantOutput = {
     type = "structure",
+    id = "GetTenantOutput",
     members = {
         Tenant = M.Tenant,
     },
@@ -3664,6 +3887,7 @@ M.GetTenantOutput = {
 
 M.IdentityInfo = {
     type = "structure",
+    id = "IdentityInfo",
     members = {
         IdentityType = {
             type = "string",
@@ -3690,6 +3914,7 @@ M.ImportDestinationType = {
 
 M.ImportJobSummary = {
     type = "structure",
+    id = "ImportJobSummary",
     members = {
         JobId = {
             type = "string",
@@ -3712,6 +3937,7 @@ M.ImportJobSummary = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -3722,6 +3948,7 @@ M.InvalidNextTokenException = {
 
 M.ListConfigurationSetsInput = {
     type = "structure",
+    id = "ListConfigurationSetsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3740,6 +3967,7 @@ M.ListConfigurationSetsInput = {
 
 M.ListConfigurationSetsOutput = {
     type = "structure",
+    id = "ListConfigurationSetsOutput",
     members = {
         ConfigurationSets = {
             type = "list",
@@ -3753,6 +3981,7 @@ M.ListConfigurationSetsOutput = {
 
 M.ListContactListsInput = {
     type = "structure",
+    id = "ListContactListsInput",
     members = {
         PageSize = {
             type = "integer",
@@ -3771,6 +4000,7 @@ M.ListContactListsInput = {
 
 M.ListContactListsOutput = {
     type = "structure",
+    id = "ListContactListsOutput",
     members = {
         ContactLists = {
             type = "list",
@@ -3784,6 +4014,7 @@ M.ListContactListsOutput = {
 
 M.TopicFilter = {
     type = "structure",
+    id = "TopicFilter",
     members = {
         TopicName = {
             type = "string",
@@ -3799,6 +4030,7 @@ M.TopicFilter = {
 
 M.ListContactsFilter = {
     type = "structure",
+    id = "ListContactsFilter",
     members = {
         FilteredStatus = {
             type = "string",
@@ -3809,6 +4041,7 @@ M.ListContactsFilter = {
 
 M.ListContactsInput = {
     type = "structure",
+    id = "ListContactsInput",
     members = {
         ContactListName = {
             type = "string",
@@ -3829,6 +4062,7 @@ M.ListContactsInput = {
 
 M.ListContactsOutput = {
     type = "structure",
+    id = "ListContactsOutput",
     members = {
         Contacts = {
             type = "list",
@@ -3842,6 +4076,7 @@ M.ListContactsOutput = {
 
 M.ListCustomVerificationEmailTemplatesInput = {
     type = "structure",
+    id = "ListCustomVerificationEmailTemplatesInput",
     members = {
         NextToken = {
             type = "string",
@@ -3860,6 +4095,7 @@ M.ListCustomVerificationEmailTemplatesInput = {
 
 M.ListCustomVerificationEmailTemplatesOutput = {
     type = "structure",
+    id = "ListCustomVerificationEmailTemplatesOutput",
     members = {
         CustomVerificationEmailTemplates = {
             type = "list",
@@ -3873,6 +4109,7 @@ M.ListCustomVerificationEmailTemplatesOutput = {
 
 M.ListDedicatedIpPoolsInput = {
     type = "structure",
+    id = "ListDedicatedIpPoolsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3891,6 +4128,7 @@ M.ListDedicatedIpPoolsInput = {
 
 M.ListDedicatedIpPoolsOutput = {
     type = "structure",
+    id = "ListDedicatedIpPoolsOutput",
     members = {
         DedicatedIpPools = {
             type = "list",
@@ -3904,6 +4142,7 @@ M.ListDedicatedIpPoolsOutput = {
 
 M.ListDeliverabilityTestReportsInput = {
     type = "structure",
+    id = "ListDeliverabilityTestReportsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3922,6 +4161,7 @@ M.ListDeliverabilityTestReportsInput = {
 
 M.ListDeliverabilityTestReportsOutput = {
     type = "structure",
+    id = "ListDeliverabilityTestReportsOutput",
     members = {
         DeliverabilityTestReports = {
             type = "list",
@@ -3938,6 +4178,7 @@ M.ListDeliverabilityTestReportsOutput = {
 
 M.ListDomainDeliverabilityCampaignsInput = {
     type = "structure",
+    id = "ListDomainDeliverabilityCampaignsInput",
     members = {
         StartDate = {
             type = "timestamp",
@@ -3977,6 +4218,7 @@ M.ListDomainDeliverabilityCampaignsInput = {
 
 M.ListDomainDeliverabilityCampaignsOutput = {
     type = "structure",
+    id = "ListDomainDeliverabilityCampaignsOutput",
     members = {
         DomainDeliverabilityCampaigns = {
             type = "list",
@@ -3993,6 +4235,7 @@ M.ListDomainDeliverabilityCampaignsOutput = {
 
 M.ListEmailIdentitiesInput = {
     type = "structure",
+    id = "ListEmailIdentitiesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4011,6 +4254,7 @@ M.ListEmailIdentitiesInput = {
 
 M.ListEmailIdentitiesOutput = {
     type = "structure",
+    id = "ListEmailIdentitiesOutput",
     members = {
         EmailIdentities = {
             type = "list",
@@ -4024,6 +4268,7 @@ M.ListEmailIdentitiesOutput = {
 
 M.ListEmailTemplatesInput = {
     type = "structure",
+    id = "ListEmailTemplatesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4042,6 +4287,7 @@ M.ListEmailTemplatesInput = {
 
 M.ListEmailTemplatesOutput = {
     type = "structure",
+    id = "ListEmailTemplatesOutput",
     members = {
         TemplatesMetadata = {
             type = "list",
@@ -4055,6 +4301,7 @@ M.ListEmailTemplatesOutput = {
 
 M.ListExportJobsInput = {
     type = "structure",
+    id = "ListExportJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4073,6 +4320,7 @@ M.ListExportJobsInput = {
 
 M.ListExportJobsOutput = {
     type = "structure",
+    id = "ListExportJobsOutput",
     members = {
         ExportJobs = {
             type = "list",
@@ -4086,6 +4334,7 @@ M.ListExportJobsOutput = {
 
 M.ListImportJobsInput = {
     type = "structure",
+    id = "ListImportJobsInput",
     members = {
         ImportDestinationType = {
             type = "string",
@@ -4101,6 +4350,7 @@ M.ListImportJobsInput = {
 
 M.ListImportJobsOutput = {
     type = "structure",
+    id = "ListImportJobsOutput",
     members = {
         ImportJobs = {
             type = "list",
@@ -4114,6 +4364,7 @@ M.ListImportJobsOutput = {
 
 M.ListManagementOptions = {
     type = "structure",
+    id = "ListManagementOptions",
     members = {
         ContactListName = {
             type = "string",
@@ -4129,6 +4380,7 @@ M.ListManagementOptions = {
 
 M.ListMultiRegionEndpointsInput = {
     type = "structure",
+    id = "ListMultiRegionEndpointsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4147,6 +4399,7 @@ M.ListMultiRegionEndpointsInput = {
 
 M.MultiRegionEndpoint = {
     type = "structure",
+    id = "MultiRegionEndpoint",
     members = {
         EndpointName = {
             type = "string",
@@ -4172,6 +4425,7 @@ M.MultiRegionEndpoint = {
 
 M.ListMultiRegionEndpointsOutput = {
     type = "structure",
+    id = "ListMultiRegionEndpointsOutput",
     members = {
         MultiRegionEndpoints = {
             type = "list",
@@ -4192,6 +4446,7 @@ M.ListRecommendationsFilterKey = {
 
 M.ListRecommendationsInput = {
     type = "structure",
+    id = "ListRecommendationsInput",
     members = {
         Filter = {
             type = "map",
@@ -4225,6 +4480,7 @@ M.RecommendationType = {
 
 M.Recommendation = {
     type = "structure",
+    id = "Recommendation",
     members = {
         ResourceArn = {
             type = "string",
@@ -4252,6 +4508,7 @@ M.Recommendation = {
 
 M.ListRecommendationsOutput = {
     type = "structure",
+    id = "ListRecommendationsOutput",
     members = {
         Recommendations = {
             type = "list",
@@ -4272,6 +4529,7 @@ M.ReputationEntityFilterKey = {
 
 M.ListReputationEntitiesInput = {
     type = "structure",
+    id = "ListReputationEntitiesInput",
     members = {
         Filter = {
             type = "map",
@@ -4289,6 +4547,7 @@ M.ListReputationEntitiesInput = {
 
 M.ListReputationEntitiesOutput = {
     type = "structure",
+    id = "ListReputationEntitiesOutput",
     members = {
         ReputationEntities = {
             type = "list",
@@ -4302,6 +4561,7 @@ M.ListReputationEntitiesOutput = {
 
 M.ListResourceTenantsInput = {
     type = "structure",
+    id = "ListResourceTenantsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4320,6 +4580,7 @@ M.ListResourceTenantsInput = {
 
 M.ResourceTenantMetadata = {
     type = "structure",
+    id = "ResourceTenantMetadata",
     members = {
         TenantName = {
             type = "string",
@@ -4338,6 +4599,7 @@ M.ResourceTenantMetadata = {
 
 M.ListResourceTenantsOutput = {
     type = "structure",
+    id = "ListResourceTenantsOutput",
     members = {
         ResourceTenants = {
             type = "list",
@@ -4351,6 +4613,7 @@ M.ListResourceTenantsOutput = {
 
 M.ListSuppressedDestinationsInput = {
     type = "structure",
+    id = "ListSuppressedDestinationsInput",
     members = {
         Reasons = {
             type = "list",
@@ -4388,6 +4651,7 @@ M.ListSuppressedDestinationsInput = {
 
 M.SuppressedDestinationSummary = {
     type = "structure",
+    id = "SuppressedDestinationSummary",
     members = {
         EmailAddress = {
             type = "string",
@@ -4412,6 +4676,7 @@ M.SuppressedDestinationSummary = {
 
 M.ListSuppressedDestinationsOutput = {
     type = "structure",
+    id = "ListSuppressedDestinationsOutput",
     members = {
         SuppressedDestinationSummaries = {
             type = "list",
@@ -4425,6 +4690,7 @@ M.ListSuppressedDestinationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4438,6 +4704,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -4455,6 +4722,7 @@ M.ListTenantResourcesFilterKey = {
 
 M.ListTenantResourcesInput = {
     type = "structure",
+    id = "ListTenantResourcesInput",
     members = {
         TenantName = {
             type = "string",
@@ -4484,6 +4752,7 @@ M.ResourceType = {
 
 M.TenantResource = {
     type = "structure",
+    id = "TenantResource",
     members = {
         ResourceType = {
             type = "string",
@@ -4496,6 +4765,7 @@ M.TenantResource = {
 
 M.ListTenantResourcesOutput = {
     type = "structure",
+    id = "ListTenantResourcesOutput",
     members = {
         TenantResources = {
             type = "list",
@@ -4509,6 +4779,7 @@ M.ListTenantResourcesOutput = {
 
 M.ListTenantsInput = {
     type = "structure",
+    id = "ListTenantsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4521,6 +4792,7 @@ M.ListTenantsInput = {
 
 M.TenantInfo = {
     type = "structure",
+    id = "TenantInfo",
     members = {
         TenantName = {
             type = "string",
@@ -4539,6 +4811,7 @@ M.TenantInfo = {
 
 M.ListTenantsOutput = {
     type = "structure",
+    id = "ListTenantsOutput",
     members = {
         Tenants = {
             type = "list",
@@ -4552,6 +4825,7 @@ M.ListTenantsOutput = {
 
 M.PutAccountDedicatedIpWarmupAttributesInput = {
     type = "structure",
+    id = "PutAccountDedicatedIpWarmupAttributesInput",
     members = {
         AutoWarmupEnabled = {
             type = "boolean",
@@ -4564,10 +4838,12 @@ M.PutAccountDedicatedIpWarmupAttributesInput = {
 
 M.PutAccountDedicatedIpWarmupAttributesOutput = {
     type = "structure",
+    id = "PutAccountDedicatedIpWarmupAttributesOutput",
 }
 
 M.PutAccountDetailsInput = {
     type = "structure",
+    id = "PutAccountDetailsInput",
     members = {
         MailType = {
             type = "string",
@@ -4599,10 +4875,12 @@ M.PutAccountDetailsInput = {
 
 M.PutAccountDetailsOutput = {
     type = "structure",
+    id = "PutAccountDetailsOutput",
 }
 
 M.PutAccountSendingAttributesInput = {
     type = "structure",
+    id = "PutAccountSendingAttributesInput",
     members = {
         SendingEnabled = {
             type = "boolean",
@@ -4615,10 +4893,12 @@ M.PutAccountSendingAttributesInput = {
 
 M.PutAccountSendingAttributesOutput = {
     type = "structure",
+    id = "PutAccountSendingAttributesOutput",
 }
 
 M.PutAccountSuppressionAttributesInput = {
     type = "structure",
+    id = "PutAccountSuppressionAttributesInput",
     members = {
         SuppressedReasons = {
             type = "list",
@@ -4630,10 +4910,12 @@ M.PutAccountSuppressionAttributesInput = {
 
 M.PutAccountSuppressionAttributesOutput = {
     type = "structure",
+    id = "PutAccountSuppressionAttributesOutput",
 }
 
 M.PutAccountVdmAttributesInput = {
     type = "structure",
+    id = "PutAccountVdmAttributesInput",
     members = {
         VdmAttributes = setmetatable({ traits = {
             required = true,
@@ -4643,10 +4925,12 @@ M.PutAccountVdmAttributesInput = {
 
 M.PutAccountVdmAttributesOutput = {
     type = "structure",
+    id = "PutAccountVdmAttributesOutput",
 }
 
 M.PutConfigurationSetArchivingOptionsInput = {
     type = "structure",
+    id = "PutConfigurationSetArchivingOptionsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -4663,10 +4947,12 @@ M.PutConfigurationSetArchivingOptionsInput = {
 
 M.PutConfigurationSetArchivingOptionsOutput = {
     type = "structure",
+    id = "PutConfigurationSetArchivingOptionsOutput",
 }
 
 M.PutConfigurationSetDeliveryOptionsInput = {
     type = "structure",
+    id = "PutConfigurationSetDeliveryOptionsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -4689,10 +4975,12 @@ M.PutConfigurationSetDeliveryOptionsInput = {
 
 M.PutConfigurationSetDeliveryOptionsOutput = {
     type = "structure",
+    id = "PutConfigurationSetDeliveryOptionsOutput",
 }
 
 M.PutConfigurationSetReputationOptionsInput = {
     type = "structure",
+    id = "PutConfigurationSetReputationOptionsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -4712,10 +5000,12 @@ M.PutConfigurationSetReputationOptionsInput = {
 
 M.PutConfigurationSetReputationOptionsOutput = {
     type = "structure",
+    id = "PutConfigurationSetReputationOptionsOutput",
 }
 
 M.PutConfigurationSetSendingOptionsInput = {
     type = "structure",
+    id = "PutConfigurationSetSendingOptionsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -4735,10 +5025,12 @@ M.PutConfigurationSetSendingOptionsInput = {
 
 M.PutConfigurationSetSendingOptionsOutput = {
     type = "structure",
+    id = "PutConfigurationSetSendingOptionsOutput",
 }
 
 M.PutConfigurationSetSuppressionOptionsInput = {
     type = "structure",
+    id = "PutConfigurationSetSuppressionOptionsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -4757,10 +5049,12 @@ M.PutConfigurationSetSuppressionOptionsInput = {
 
 M.PutConfigurationSetSuppressionOptionsOutput = {
     type = "structure",
+    id = "PutConfigurationSetSuppressionOptionsOutput",
 }
 
 M.PutConfigurationSetTrackingOptionsInput = {
     type = "structure",
+    id = "PutConfigurationSetTrackingOptionsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -4780,10 +5074,12 @@ M.PutConfigurationSetTrackingOptionsInput = {
 
 M.PutConfigurationSetTrackingOptionsOutput = {
     type = "structure",
+    id = "PutConfigurationSetTrackingOptionsOutput",
 }
 
 M.PutConfigurationSetVdmOptionsInput = {
     type = "structure",
+    id = "PutConfigurationSetVdmOptionsInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -4798,10 +5094,12 @@ M.PutConfigurationSetVdmOptionsInput = {
 
 M.PutConfigurationSetVdmOptionsOutput = {
     type = "structure",
+    id = "PutConfigurationSetVdmOptionsOutput",
 }
 
 M.PutDedicatedIpInPoolInput = {
     type = "structure",
+    id = "PutDedicatedIpInPoolInput",
     members = {
         Ip = {
             type = "string",
@@ -4821,10 +5119,12 @@ M.PutDedicatedIpInPoolInput = {
 
 M.PutDedicatedIpInPoolOutput = {
     type = "structure",
+    id = "PutDedicatedIpInPoolOutput",
 }
 
 M.PutDedicatedIpPoolScalingAttributesInput = {
     type = "structure",
+    id = "PutDedicatedIpPoolScalingAttributesInput",
     members = {
         PoolName = {
             type = "string",
@@ -4844,10 +5144,12 @@ M.PutDedicatedIpPoolScalingAttributesInput = {
 
 M.PutDedicatedIpPoolScalingAttributesOutput = {
     type = "structure",
+    id = "PutDedicatedIpPoolScalingAttributesOutput",
 }
 
 M.PutDedicatedIpWarmupAttributesInput = {
     type = "structure",
+    id = "PutDedicatedIpWarmupAttributesInput",
     members = {
         Ip = {
             type = "string",
@@ -4867,10 +5169,12 @@ M.PutDedicatedIpWarmupAttributesInput = {
 
 M.PutDedicatedIpWarmupAttributesOutput = {
     type = "structure",
+    id = "PutDedicatedIpWarmupAttributesOutput",
 }
 
 M.PutDeliverabilityDashboardOptionInput = {
     type = "structure",
+    id = "PutDeliverabilityDashboardOptionInput",
     members = {
         DashboardEnabled = {
             type = "boolean",
@@ -4888,10 +5192,12 @@ M.PutDeliverabilityDashboardOptionInput = {
 
 M.PutDeliverabilityDashboardOptionOutput = {
     type = "structure",
+    id = "PutDeliverabilityDashboardOptionOutput",
 }
 
 M.PutEmailIdentityConfigurationSetAttributesInput = {
     type = "structure",
+    id = "PutEmailIdentityConfigurationSetAttributesInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -4908,10 +5214,12 @@ M.PutEmailIdentityConfigurationSetAttributesInput = {
 
 M.PutEmailIdentityConfigurationSetAttributesOutput = {
     type = "structure",
+    id = "PutEmailIdentityConfigurationSetAttributesOutput",
 }
 
 M.PutEmailIdentityDkimAttributesInput = {
     type = "structure",
+    id = "PutEmailIdentityDkimAttributesInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -4931,10 +5239,12 @@ M.PutEmailIdentityDkimAttributesInput = {
 
 M.PutEmailIdentityDkimAttributesOutput = {
     type = "structure",
+    id = "PutEmailIdentityDkimAttributesOutput",
 }
 
 M.PutEmailIdentityDkimSigningAttributesInput = {
     type = "structure",
+    id = "PutEmailIdentityDkimSigningAttributesInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -4955,6 +5265,7 @@ M.PutEmailIdentityDkimSigningAttributesInput = {
 
 M.PutEmailIdentityDkimSigningAttributesOutput = {
     type = "structure",
+    id = "PutEmailIdentityDkimSigningAttributesOutput",
     members = {
         DkimStatus = {
             type = "string",
@@ -4971,6 +5282,7 @@ M.PutEmailIdentityDkimSigningAttributesOutput = {
 
 M.PutEmailIdentityFeedbackAttributesInput = {
     type = "structure",
+    id = "PutEmailIdentityFeedbackAttributesInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -4990,10 +5302,12 @@ M.PutEmailIdentityFeedbackAttributesInput = {
 
 M.PutEmailIdentityFeedbackAttributesOutput = {
     type = "structure",
+    id = "PutEmailIdentityFeedbackAttributesOutput",
 }
 
 M.PutEmailIdentityMailFromAttributesInput = {
     type = "structure",
+    id = "PutEmailIdentityMailFromAttributesInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -5013,10 +5327,12 @@ M.PutEmailIdentityMailFromAttributesInput = {
 
 M.PutEmailIdentityMailFromAttributesOutput = {
     type = "structure",
+    id = "PutEmailIdentityMailFromAttributesOutput",
 }
 
 M.PutSuppressedDestinationInput = {
     type = "structure",
+    id = "PutSuppressedDestinationInput",
     members = {
         EmailAddress = {
             type = "string",
@@ -5035,10 +5351,12 @@ M.PutSuppressedDestinationInput = {
 
 M.PutSuppressedDestinationOutput = {
     type = "structure",
+    id = "PutSuppressedDestinationOutput",
 }
 
 M.SendBulkEmailInput = {
     type = "structure",
+    id = "SendBulkEmailInput",
     members = {
         FromEmailAddress = {
             type = "string",
@@ -5084,6 +5402,7 @@ M.SendBulkEmailInput = {
 
 M.SendBulkEmailOutput = {
     type = "structure",
+    id = "SendBulkEmailOutput",
     members = {
         BulkEmailEntryResults = {
             type = "list",
@@ -5097,6 +5416,7 @@ M.SendBulkEmailOutput = {
 
 M.SendCustomVerificationEmailInput = {
     type = "structure",
+    id = "SendCustomVerificationEmailInput",
     members = {
         EmailAddress = {
             type = "string",
@@ -5118,6 +5438,7 @@ M.SendCustomVerificationEmailInput = {
 
 M.SendCustomVerificationEmailOutput = {
     type = "structure",
+    id = "SendCustomVerificationEmailOutput",
     members = {
         MessageId = {
             type = "string",
@@ -5127,6 +5448,7 @@ M.SendCustomVerificationEmailOutput = {
 
 M.SendEmailInput = {
     type = "structure",
+    id = "SendEmailInput",
     members = {
         FromEmailAddress = {
             type = "string",
@@ -5167,6 +5489,7 @@ M.SendEmailInput = {
 
 M.SendEmailOutput = {
     type = "structure",
+    id = "SendEmailOutput",
     members = {
         MessageId = {
             type = "string",
@@ -5176,6 +5499,7 @@ M.SendEmailOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5195,10 +5519,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TestRenderEmailTemplateInput = {
     type = "structure",
+    id = "TestRenderEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -5218,6 +5544,7 @@ M.TestRenderEmailTemplateInput = {
 
 M.TestRenderEmailTemplateOutput = {
     type = "structure",
+    id = "TestRenderEmailTemplateOutput",
     members = {
         RenderedTemplate = {
             type = "string",
@@ -5230,6 +5557,7 @@ M.TestRenderEmailTemplateOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5251,10 +5579,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateConfigurationSetEventDestinationInput = {
     type = "structure",
+    id = "UpdateConfigurationSetEventDestinationInput",
     members = {
         ConfigurationSetName = {
             type = "string",
@@ -5278,10 +5608,12 @@ M.UpdateConfigurationSetEventDestinationInput = {
 
 M.UpdateConfigurationSetEventDestinationOutput = {
     type = "structure",
+    id = "UpdateConfigurationSetEventDestinationOutput",
 }
 
 M.UpdateContactInput = {
     type = "structure",
+    id = "UpdateContactInput",
     members = {
         ContactListName = {
             type = "string",
@@ -5315,10 +5647,12 @@ M.UpdateContactInput = {
 
 M.UpdateContactOutput = {
     type = "structure",
+    id = "UpdateContactOutput",
 }
 
 M.UpdateContactListInput = {
     type = "structure",
+    id = "UpdateContactListInput",
     members = {
         ContactListName = {
             type = "string",
@@ -5339,10 +5673,12 @@ M.UpdateContactListInput = {
 
 M.UpdateContactListOutput = {
     type = "structure",
+    id = "UpdateContactListOutput",
 }
 
 M.UpdateCustomVerificationEmailTemplateInput = {
     type = "structure",
+    id = "UpdateCustomVerificationEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -5386,10 +5722,12 @@ M.UpdateCustomVerificationEmailTemplateInput = {
 
 M.UpdateCustomVerificationEmailTemplateOutput = {
     type = "structure",
+    id = "UpdateCustomVerificationEmailTemplateOutput",
 }
 
 M.UpdateEmailIdentityPolicyInput = {
     type = "structure",
+    id = "UpdateEmailIdentityPolicyInput",
     members = {
         EmailIdentity = {
             type = "string",
@@ -5416,10 +5754,12 @@ M.UpdateEmailIdentityPolicyInput = {
 
 M.UpdateEmailIdentityPolicyOutput = {
     type = "structure",
+    id = "UpdateEmailIdentityPolicyOutput",
 }
 
 M.UpdateEmailTemplateInput = {
     type = "structure",
+    id = "UpdateEmailTemplateInput",
     members = {
         TemplateName = {
             type = "string",
@@ -5436,10 +5776,12 @@ M.UpdateEmailTemplateInput = {
 
 M.UpdateEmailTemplateOutput = {
     type = "structure",
+    id = "UpdateEmailTemplateOutput",
 }
 
 M.UpdateReputationEntityCustomerManagedStatusInput = {
     type = "structure",
+    id = "UpdateReputationEntityCustomerManagedStatusInput",
     members = {
         ReputationEntityType = {
             type = "string",
@@ -5466,10 +5808,12 @@ M.UpdateReputationEntityCustomerManagedStatusInput = {
 
 M.UpdateReputationEntityCustomerManagedStatusOutput = {
     type = "structure",
+    id = "UpdateReputationEntityCustomerManagedStatusOutput",
 }
 
 M.UpdateReputationEntityPolicyInput = {
     type = "structure",
+    id = "UpdateReputationEntityPolicyInput",
     members = {
         ReputationEntityType = {
             type = "string",
@@ -5496,6 +5840,7 @@ M.UpdateReputationEntityPolicyInput = {
 
 M.UpdateReputationEntityPolicyOutput = {
     type = "structure",
+    id = "UpdateReputationEntityPolicyOutput",
 }
 
 return M

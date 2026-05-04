@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AccountAssociationsListElement = {
     type = "structure",
+    id = "AccountAssociationsListElement",
     members = {
         AccountId = {
             type = "string",
@@ -33,6 +35,7 @@ M.AccountAssociationsListElement = {
 
 M.AccountGrouping = {
     type = "structure",
+    id = "AccountGrouping",
     members = {
         LinkedAccountIds = {
             type = "list",
@@ -52,6 +55,7 @@ M.AccountGrouping = {
 
 M.AssociateAccountsInput = {
     type = "structure",
+    id = "AssociateAccountsInput",
     members = {
         Arn = {
             type = "string",
@@ -71,6 +75,7 @@ M.AssociateAccountsInput = {
 
 M.AssociateAccountsOutput = {
     type = "structure",
+    id = "AssociateAccountsOutput",
     members = {
         Arn = {
             type = "string",
@@ -88,6 +93,7 @@ M.ConflictExceptionReason = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -116,6 +122,7 @@ M.ConflictException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -136,6 +143,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -161,6 +169,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceLimitExceededException = {
     type = "structure",
+    id = "ServiceLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -192,6 +201,7 @@ M.ServiceLimitExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -212,6 +222,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -299,6 +310,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -319,6 +331,7 @@ M.ValidationException = {
 
 M.AssociatePricingRulesInput = {
     type = "structure",
+    id = "AssociatePricingRulesInput",
     members = {
         Arn = {
             type = "string",
@@ -338,6 +351,7 @@ M.AssociatePricingRulesInput = {
 
 M.AssociatePricingRulesOutput = {
     type = "structure",
+    id = "AssociatePricingRulesOutput",
     members = {
         Arn = {
             type = "string",
@@ -355,6 +369,7 @@ M.AssociateResourceErrorReason = {
 
 M.AssociateResourceError = {
     type = "structure",
+    id = "AssociateResourceError",
     members = {
         Message = {
             type = "string",
@@ -367,6 +382,7 @@ M.AssociateResourceError = {
 
 M.AssociateResourceResponseElement = {
     type = "structure",
+    id = "AssociateResourceResponseElement",
     members = {
         Arn = {
             type = "string",
@@ -377,6 +393,7 @@ M.AssociateResourceResponseElement = {
 
 M.Attribute = {
     type = "structure",
+    id = "Attribute",
     members = {
         Key = {
             type = "string",
@@ -389,6 +406,7 @@ M.Attribute = {
 
 M.ComputationPreference = {
     type = "structure",
+    id = "ComputationPreference",
     members = {
         PricingPlanArn = {
             type = "string",
@@ -401,6 +419,7 @@ M.ComputationPreference = {
 
 M.CreateBillingGroupInput = {
     type = "structure",
+    id = "CreateBillingGroupInput",
     members = {
         ClientToken = {
             type = "string",
@@ -437,6 +456,7 @@ M.CreateBillingGroupInput = {
 
 M.CreateBillingGroupOutput = {
     type = "structure",
+    id = "CreateBillingGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -446,6 +466,7 @@ M.CreateBillingGroupOutput = {
 
 M.DeleteBillingGroupInput = {
     type = "structure",
+    id = "DeleteBillingGroupInput",
     members = {
         Arn = {
             type = "string",
@@ -458,6 +479,7 @@ M.DeleteBillingGroupInput = {
 
 M.DeleteBillingGroupOutput = {
     type = "structure",
+    id = "DeleteBillingGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -467,6 +489,7 @@ M.DeleteBillingGroupOutput = {
 
 M.DisassociateAccountsInput = {
     type = "structure",
+    id = "DisassociateAccountsInput",
     members = {
         Arn = {
             type = "string",
@@ -486,6 +509,7 @@ M.DisassociateAccountsInput = {
 
 M.DisassociateAccountsOutput = {
     type = "structure",
+    id = "DisassociateAccountsOutput",
     members = {
         Arn = {
             type = "string",
@@ -504,6 +528,7 @@ M.SearchOption = {
 
 M.StringSearch = {
     type = "structure",
+    id = "StringSearch",
     members = {
         SearchOption = {
             type = "string",
@@ -528,6 +553,7 @@ M.BillingGroupStatus = {
 
 M.ListBillingGroupsFilter = {
     type = "structure",
+    id = "ListBillingGroupsFilter",
     members = {
         Arns = {
             type = "list",
@@ -564,6 +590,7 @@ M.ListBillingGroupsFilter = {
 
 M.ListBillingGroupsInput = {
     type = "structure",
+    id = "ListBillingGroupsInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -580,6 +607,7 @@ M.ListBillingGroupsInput = {
 
 M.ListBillingGroupAccountGrouping = {
     type = "structure",
+    id = "ListBillingGroupAccountGrouping",
     members = {
         AutoAssociate = {
             type = "boolean",
@@ -592,6 +620,7 @@ M.ListBillingGroupAccountGrouping = {
 
 M.BillingGroupListElement = {
     type = "structure",
+    id = "BillingGroupListElement",
     members = {
         Name = {
             type = "string",
@@ -639,6 +668,7 @@ M.BillingGroupListElement = {
 
 M.ListBillingGroupsOutput = {
     type = "structure",
+    id = "ListBillingGroupsOutput",
     members = {
         BillingGroups = {
             type = "list",
@@ -652,6 +682,7 @@ M.ListBillingGroupsOutput = {
 
 M.UpdateBillingGroupAccountGrouping = {
     type = "structure",
+    id = "UpdateBillingGroupAccountGrouping",
     members = {
         AutoAssociate = {
             type = "boolean",
@@ -664,6 +695,7 @@ M.UpdateBillingGroupAccountGrouping = {
 
 M.UpdateBillingGroupInput = {
     type = "structure",
+    id = "UpdateBillingGroupInput",
     members = {
         Arn = {
             type = "string",
@@ -687,6 +719,7 @@ M.UpdateBillingGroupInput = {
 
 M.UpdateBillingGroupOutput = {
     type = "structure",
+    id = "UpdateBillingGroupOutput",
     members = {
         Arn = {
             type = "string",
@@ -727,6 +760,7 @@ M.UpdateBillingGroupOutput = {
 
 M.CustomLineItemBillingPeriodRange = {
     type = "structure",
+    id = "CustomLineItemBillingPeriodRange",
     members = {
         InclusiveStartBillingPeriod = {
             type = "string",
@@ -742,6 +776,7 @@ M.CustomLineItemBillingPeriodRange = {
 
 M.BatchAssociateResourcesToCustomLineItemInput = {
     type = "structure",
+    id = "BatchAssociateResourcesToCustomLineItemInput",
     members = {
         TargetArn = {
             type = "string",
@@ -762,6 +797,7 @@ M.BatchAssociateResourcesToCustomLineItemInput = {
 
 M.BatchAssociateResourcesToCustomLineItemOutput = {
     type = "structure",
+    id = "BatchAssociateResourcesToCustomLineItemOutput",
     members = {
         SuccessfullyAssociatedResources = {
             type = "list",
@@ -776,6 +812,7 @@ M.BatchAssociateResourcesToCustomLineItemOutput = {
 
 M.BatchDisassociateResourcesFromCustomLineItemInput = {
     type = "structure",
+    id = "BatchDisassociateResourcesFromCustomLineItemInput",
     members = {
         TargetArn = {
             type = "string",
@@ -796,6 +833,7 @@ M.BatchDisassociateResourcesFromCustomLineItemInput = {
 
 M.DisassociateResourceResponseElement = {
     type = "structure",
+    id = "DisassociateResourceResponseElement",
     members = {
         Arn = {
             type = "string",
@@ -806,6 +844,7 @@ M.DisassociateResourceResponseElement = {
 
 M.BatchDisassociateResourcesFromCustomLineItemOutput = {
     type = "structure",
+    id = "BatchDisassociateResourcesFromCustomLineItemOutput",
     members = {
         SuccessfullyDisassociatedResources = {
             type = "list",
@@ -820,6 +859,7 @@ M.BatchDisassociateResourcesFromCustomLineItemOutput = {
 
 M.CustomLineItemFlatChargeDetails = {
     type = "structure",
+    id = "CustomLineItemFlatChargeDetails",
     members = {
         ChargeValue = {
             type = "double",
@@ -846,6 +886,7 @@ M.LineItemFilterValue = {
 
 M.LineItemFilter = {
     type = "structure",
+    id = "LineItemFilter",
     members = {
         Attribute = {
             type = "string",
@@ -875,6 +916,7 @@ M.LineItemFilter = {
 
 M.CustomLineItemPercentageChargeDetails = {
     type = "structure",
+    id = "CustomLineItemPercentageChargeDetails",
     members = {
         PercentageValue = {
             type = "double",
@@ -896,6 +938,7 @@ M.CustomLineItemType = {
 
 M.CustomLineItemChargeDetails = {
     type = "structure",
+    id = "CustomLineItemChargeDetails",
     members = {
         Flat = M.CustomLineItemFlatChargeDetails,
         Percentage = M.CustomLineItemPercentageChargeDetails,
@@ -919,6 +962,7 @@ M.ComputationRuleEnum = {
 
 M.PresentationObject = {
     type = "structure",
+    id = "PresentationObject",
     members = {
         Service = {
             type = "string",
@@ -931,6 +975,7 @@ M.PresentationObject = {
 
 M.CreateCustomLineItemInput = {
     type = "structure",
+    id = "CreateCustomLineItemInput",
     members = {
         ClientToken = {
             type = "string",
@@ -978,6 +1023,7 @@ M.CreateCustomLineItemInput = {
 
 M.CreateCustomLineItemOutput = {
     type = "structure",
+    id = "CreateCustomLineItemOutput",
     members = {
         Arn = {
             type = "string",
@@ -987,6 +1033,7 @@ M.CreateCustomLineItemOutput = {
 
 M.DeleteCustomLineItemInput = {
     type = "structure",
+    id = "DeleteCustomLineItemInput",
     members = {
         Arn = {
             type = "string",
@@ -1000,6 +1047,7 @@ M.DeleteCustomLineItemInput = {
 
 M.DeleteCustomLineItemOutput = {
     type = "structure",
+    id = "DeleteCustomLineItemOutput",
     members = {
         Arn = {
             type = "string",
@@ -1009,6 +1057,7 @@ M.DeleteCustomLineItemOutput = {
 
 M.ListCustomLineItemsFilter = {
     type = "structure",
+    id = "ListCustomLineItemsFilter",
     members = {
         Names = {
             type = "list",
@@ -1031,6 +1080,7 @@ M.ListCustomLineItemsFilter = {
 
 M.ListCustomLineItemsInput = {
     type = "structure",
+    id = "ListCustomLineItemsInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1047,6 +1097,7 @@ M.ListCustomLineItemsInput = {
 
 M.ListCustomLineItemFlatChargeDetails = {
     type = "structure",
+    id = "ListCustomLineItemFlatChargeDetails",
     members = {
         ChargeValue = {
             type = "double",
@@ -1059,6 +1110,7 @@ M.ListCustomLineItemFlatChargeDetails = {
 
 M.ListCustomLineItemPercentageChargeDetails = {
     type = "structure",
+    id = "ListCustomLineItemPercentageChargeDetails",
     members = {
         PercentageValue = {
             type = "double",
@@ -1071,6 +1123,7 @@ M.ListCustomLineItemPercentageChargeDetails = {
 
 M.ListCustomLineItemChargeDetails = {
     type = "structure",
+    id = "ListCustomLineItemChargeDetails",
     members = {
         Flat = M.ListCustomLineItemFlatChargeDetails,
         Percentage = M.ListCustomLineItemPercentageChargeDetails,
@@ -1094,6 +1147,7 @@ M.CurrencyCode = {
 
 M.CustomLineItemListElement = {
     type = "structure",
+    id = "CustomLineItemListElement",
     members = {
         Arn = {
             type = "string",
@@ -1144,6 +1198,7 @@ M.CustomLineItemListElement = {
 
 M.ListCustomLineItemsOutput = {
     type = "structure",
+    id = "ListCustomLineItemsOutput",
     members = {
         CustomLineItems = {
             type = "list",
@@ -1157,6 +1212,7 @@ M.ListCustomLineItemsOutput = {
 
 M.ListCustomLineItemVersionsBillingPeriodRangeFilter = {
     type = "structure",
+    id = "ListCustomLineItemVersionsBillingPeriodRangeFilter",
     members = {
         StartBillingPeriod = {
             type = "string",
@@ -1169,6 +1225,7 @@ M.ListCustomLineItemVersionsBillingPeriodRangeFilter = {
 
 M.ListCustomLineItemVersionsFilter = {
     type = "structure",
+    id = "ListCustomLineItemVersionsFilter",
     members = {
         BillingPeriodRange = M.ListCustomLineItemVersionsBillingPeriodRangeFilter,
     },
@@ -1176,6 +1233,7 @@ M.ListCustomLineItemVersionsFilter = {
 
 M.ListCustomLineItemVersionsInput = {
     type = "structure",
+    id = "ListCustomLineItemVersionsInput",
     members = {
         Arn = {
             type = "string",
@@ -1195,6 +1253,7 @@ M.ListCustomLineItemVersionsInput = {
 
 M.CustomLineItemVersionListElement = {
     type = "structure",
+    id = "CustomLineItemVersionListElement",
     members = {
         Name = {
             type = "string",
@@ -1257,6 +1316,7 @@ M.CustomLineItemVersionListElement = {
 
 M.ListCustomLineItemVersionsOutput = {
     type = "structure",
+    id = "ListCustomLineItemVersionsOutput",
     members = {
         CustomLineItemVersions = {
             type = "list",
@@ -1275,6 +1335,7 @@ M.CustomLineItemRelationship = {
 
 M.ListResourcesAssociatedToCustomLineItemFilter = {
     type = "structure",
+    id = "ListResourcesAssociatedToCustomLineItemFilter",
     members = {
         Relationship = {
             type = "string",
@@ -1284,6 +1345,7 @@ M.ListResourcesAssociatedToCustomLineItemFilter = {
 
 M.ListResourcesAssociatedToCustomLineItemInput = {
     type = "structure",
+    id = "ListResourcesAssociatedToCustomLineItemInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1306,6 +1368,7 @@ M.ListResourcesAssociatedToCustomLineItemInput = {
 
 M.ListResourcesAssociatedToCustomLineItemResponseElement = {
     type = "structure",
+    id = "ListResourcesAssociatedToCustomLineItemResponseElement",
     members = {
         Arn = {
             type = "string",
@@ -1321,6 +1384,7 @@ M.ListResourcesAssociatedToCustomLineItemResponseElement = {
 
 M.ListResourcesAssociatedToCustomLineItemOutput = {
     type = "structure",
+    id = "ListResourcesAssociatedToCustomLineItemOutput",
     members = {
         Arn = {
             type = "string",
@@ -1337,6 +1401,7 @@ M.ListResourcesAssociatedToCustomLineItemOutput = {
 
 M.UpdateCustomLineItemFlatChargeDetails = {
     type = "structure",
+    id = "UpdateCustomLineItemFlatChargeDetails",
     members = {
         ChargeValue = {
             type = "double",
@@ -1349,6 +1414,7 @@ M.UpdateCustomLineItemFlatChargeDetails = {
 
 M.UpdateCustomLineItemPercentageChargeDetails = {
     type = "structure",
+    id = "UpdateCustomLineItemPercentageChargeDetails",
     members = {
         PercentageValue = {
             type = "double",
@@ -1361,6 +1427,7 @@ M.UpdateCustomLineItemPercentageChargeDetails = {
 
 M.UpdateCustomLineItemChargeDetails = {
     type = "structure",
+    id = "UpdateCustomLineItemChargeDetails",
     members = {
         Flat = M.UpdateCustomLineItemFlatChargeDetails,
         Percentage = M.UpdateCustomLineItemPercentageChargeDetails,
@@ -1373,6 +1440,7 @@ M.UpdateCustomLineItemChargeDetails = {
 
 M.UpdateCustomLineItemInput = {
     type = "structure",
+    id = "UpdateCustomLineItemInput",
     members = {
         Arn = {
             type = "string",
@@ -1393,6 +1461,7 @@ M.UpdateCustomLineItemInput = {
 
 M.UpdateCustomLineItemOutput = {
     type = "structure",
+    id = "UpdateCustomLineItemOutput",
     members = {
         Arn = {
             type = "string",
@@ -1424,6 +1493,7 @@ M.UpdateCustomLineItemOutput = {
 
 M.BillingPeriodRange = {
     type = "structure",
+    id = "BillingPeriodRange",
     members = {
         InclusiveStartBillingPeriod = {
             type = "string",
@@ -1447,6 +1517,7 @@ M.GroupByAttributeName = {
 
 M.GetBillingGroupCostReportInput = {
     type = "structure",
+    id = "GetBillingGroupCostReportInput",
     members = {
         Arn = {
             type = "string",
@@ -1470,6 +1541,7 @@ M.GetBillingGroupCostReportInput = {
 
 M.BillingGroupCostReportResultElement = {
     type = "structure",
+    id = "BillingGroupCostReportResultElement",
     members = {
         Arn = {
             type = "string",
@@ -1498,6 +1570,7 @@ M.BillingGroupCostReportResultElement = {
 
 M.GetBillingGroupCostReportOutput = {
     type = "structure",
+    id = "GetBillingGroupCostReportOutput",
     members = {
         BillingGroupCostReportResults = {
             type = "list",
@@ -1511,6 +1584,7 @@ M.GetBillingGroupCostReportOutput = {
 
 M.ListAccountAssociationsFilter = {
     type = "structure",
+    id = "ListAccountAssociationsFilter",
     members = {
         Association = {
             type = "string",
@@ -1527,6 +1601,7 @@ M.ListAccountAssociationsFilter = {
 
 M.ListAccountAssociationsInput = {
     type = "structure",
+    id = "ListAccountAssociationsInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1540,6 +1615,7 @@ M.ListAccountAssociationsInput = {
 
 M.ListAccountAssociationsOutput = {
     type = "structure",
+    id = "ListAccountAssociationsOutput",
     members = {
         LinkedAccounts = {
             type = "list",
@@ -1553,6 +1629,7 @@ M.ListAccountAssociationsOutput = {
 
 M.ListBillingGroupCostReportsFilter = {
     type = "structure",
+    id = "ListBillingGroupCostReportsFilter",
     members = {
         BillingGroupArns = {
             type = "list",
@@ -1563,6 +1640,7 @@ M.ListBillingGroupCostReportsFilter = {
 
 M.ListBillingGroupCostReportsInput = {
     type = "structure",
+    id = "ListBillingGroupCostReportsInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1579,6 +1657,7 @@ M.ListBillingGroupCostReportsInput = {
 
 M.BillingGroupCostReportElement = {
     type = "structure",
+    id = "BillingGroupCostReportElement",
     members = {
         Arn = {
             type = "string",
@@ -1603,6 +1682,7 @@ M.BillingGroupCostReportElement = {
 
 M.ListBillingGroupCostReportsOutput = {
     type = "structure",
+    id = "ListBillingGroupCostReportsOutput",
     members = {
         BillingGroupCostReports = {
             type = "list",
@@ -1616,6 +1696,7 @@ M.ListBillingGroupCostReportsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1629,6 +1710,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -1640,6 +1722,7 @@ M.ListTagsForResourceOutput = {
 
 M.CreatePricingPlanInput = {
     type = "structure",
+    id = "CreatePricingPlanInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1671,6 +1754,7 @@ M.CreatePricingPlanInput = {
 
 M.CreatePricingPlanOutput = {
     type = "structure",
+    id = "CreatePricingPlanOutput",
     members = {
         Arn = {
             type = "string",
@@ -1680,6 +1764,7 @@ M.CreatePricingPlanOutput = {
 
 M.DeletePricingPlanInput = {
     type = "structure",
+    id = "DeletePricingPlanInput",
     members = {
         Arn = {
             type = "string",
@@ -1692,6 +1777,7 @@ M.DeletePricingPlanInput = {
 
 M.DeletePricingPlanOutput = {
     type = "structure",
+    id = "DeletePricingPlanOutput",
     members = {
         Arn = {
             type = "string",
@@ -1701,6 +1787,7 @@ M.DeletePricingPlanOutput = {
 
 M.DisassociatePricingRulesInput = {
     type = "structure",
+    id = "DisassociatePricingRulesInput",
     members = {
         Arn = {
             type = "string",
@@ -1720,6 +1807,7 @@ M.DisassociatePricingRulesInput = {
 
 M.DisassociatePricingRulesOutput = {
     type = "structure",
+    id = "DisassociatePricingRulesOutput",
     members = {
         Arn = {
             type = "string",
@@ -1729,6 +1817,7 @@ M.DisassociatePricingRulesOutput = {
 
 M.ListPricingPlansFilter = {
     type = "structure",
+    id = "ListPricingPlansFilter",
     members = {
         Arns = {
             type = "list",
@@ -1739,6 +1828,7 @@ M.ListPricingPlansFilter = {
 
 M.ListPricingPlansInput = {
     type = "structure",
+    id = "ListPricingPlansInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1755,6 +1845,7 @@ M.ListPricingPlansInput = {
 
 M.PricingPlanListElement = {
     type = "structure",
+    id = "PricingPlanListElement",
     members = {
         Name = {
             type = "string",
@@ -1788,6 +1879,7 @@ M.PricingPlanListElement = {
 
 M.ListPricingPlansOutput = {
     type = "structure",
+    id = "ListPricingPlansOutput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1804,6 +1896,7 @@ M.ListPricingPlansOutput = {
 
 M.ListPricingPlansAssociatedWithPricingRuleInput = {
     type = "structure",
+    id = "ListPricingPlansAssociatedWithPricingRuleInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1825,6 +1918,7 @@ M.ListPricingPlansAssociatedWithPricingRuleInput = {
 
 M.ListPricingPlansAssociatedWithPricingRuleOutput = {
     type = "structure",
+    id = "ListPricingPlansAssociatedWithPricingRuleOutput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -1844,6 +1938,7 @@ M.ListPricingPlansAssociatedWithPricingRuleOutput = {
 
 M.UpdatePricingPlanInput = {
     type = "structure",
+    id = "UpdatePricingPlanInput",
     members = {
         Arn = {
             type = "string",
@@ -1862,6 +1957,7 @@ M.UpdatePricingPlanInput = {
 
 M.UpdatePricingPlanOutput = {
     type = "structure",
+    id = "UpdatePricingPlanOutput",
     members = {
         Arn = {
             type = "string",
@@ -1896,6 +1992,7 @@ M.PricingRuleScope = {
 
 M.CreateFreeTierConfig = {
     type = "structure",
+    id = "CreateFreeTierConfig",
     members = {
         Activated = {
             type = "boolean",
@@ -1908,6 +2005,7 @@ M.CreateFreeTierConfig = {
 
 M.CreateTieringInput = {
     type = "structure",
+    id = "CreateTieringInput",
     members = {
         FreeTier = setmetatable({ traits = {
             required = true,
@@ -1923,6 +2021,7 @@ M.PricingRuleType = {
 
 M.CreatePricingRuleInput = {
     type = "structure",
+    id = "CreatePricingRuleInput",
     members = {
         ClientToken = {
             type = "string",
@@ -1978,6 +2077,7 @@ M.CreatePricingRuleInput = {
 
 M.CreatePricingRuleOutput = {
     type = "structure",
+    id = "CreatePricingRuleOutput",
     members = {
         Arn = {
             type = "string",
@@ -1987,6 +2087,7 @@ M.CreatePricingRuleOutput = {
 
 M.DeletePricingRuleInput = {
     type = "structure",
+    id = "DeletePricingRuleInput",
     members = {
         Arn = {
             type = "string",
@@ -1999,6 +2100,7 @@ M.DeletePricingRuleInput = {
 
 M.DeletePricingRuleOutput = {
     type = "structure",
+    id = "DeletePricingRuleOutput",
     members = {
         Arn = {
             type = "string",
@@ -2008,6 +2110,7 @@ M.DeletePricingRuleOutput = {
 
 M.ListPricingRulesFilter = {
     type = "structure",
+    id = "ListPricingRulesFilter",
     members = {
         Arns = {
             type = "list",
@@ -2018,6 +2121,7 @@ M.ListPricingRulesFilter = {
 
 M.ListPricingRulesInput = {
     type = "structure",
+    id = "ListPricingRulesInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -2034,6 +2138,7 @@ M.ListPricingRulesInput = {
 
 M.FreeTierConfig = {
     type = "structure",
+    id = "FreeTierConfig",
     members = {
         Activated = {
             type = "boolean",
@@ -2046,6 +2151,7 @@ M.FreeTierConfig = {
 
 M.Tiering = {
     type = "structure",
+    id = "Tiering",
     members = {
         FreeTier = setmetatable({ traits = {
             required = true,
@@ -2055,6 +2161,7 @@ M.Tiering = {
 
 M.PricingRuleListElement = {
     type = "structure",
+    id = "PricingRuleListElement",
     members = {
         Name = {
             type = "string",
@@ -2110,6 +2217,7 @@ M.PricingRuleListElement = {
 
 M.ListPricingRulesOutput = {
     type = "structure",
+    id = "ListPricingRulesOutput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -2126,6 +2234,7 @@ M.ListPricingRulesOutput = {
 
 M.ListPricingRulesAssociatedToPricingPlanInput = {
     type = "structure",
+    id = "ListPricingRulesAssociatedToPricingPlanInput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -2147,6 +2256,7 @@ M.ListPricingRulesAssociatedToPricingPlanInput = {
 
 M.ListPricingRulesAssociatedToPricingPlanOutput = {
     type = "structure",
+    id = "ListPricingRulesAssociatedToPricingPlanOutput",
     members = {
         BillingPeriod = {
             type = "string",
@@ -2166,6 +2276,7 @@ M.ListPricingRulesAssociatedToPricingPlanOutput = {
 
 M.UpdateFreeTierConfig = {
     type = "structure",
+    id = "UpdateFreeTierConfig",
     members = {
         Activated = {
             type = "boolean",
@@ -2178,6 +2289,7 @@ M.UpdateFreeTierConfig = {
 
 M.UpdateTieringInput = {
     type = "structure",
+    id = "UpdateTieringInput",
     members = {
         FreeTier = setmetatable({ traits = {
             required = true,
@@ -2187,6 +2299,7 @@ M.UpdateTieringInput = {
 
 M.UpdatePricingRuleInput = {
     type = "structure",
+    id = "UpdatePricingRuleInput",
     members = {
         Arn = {
             type = "string",
@@ -2212,6 +2325,7 @@ M.UpdatePricingRuleInput = {
 
 M.UpdatePricingRuleOutput = {
     type = "structure",
+    id = "UpdatePricingRuleOutput",
     members = {
         Arn = {
             type = "string",
@@ -2261,6 +2375,7 @@ M.UpdatePricingRuleOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2282,10 +2397,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2307,6 +2424,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

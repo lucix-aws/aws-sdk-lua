@@ -554,9 +554,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type AnalysisType = "Security" | "All"
-
 local type ScanType = "Standard" | "Express"
+
+local type AnalysisType = "Security" | "All"
 
 local type Status = "Closed" | "Open" | "All"
 

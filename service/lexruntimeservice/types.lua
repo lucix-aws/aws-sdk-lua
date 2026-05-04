@@ -2,6 +2,7 @@ local M = {}
 
 M.ActiveContextTimeToLive = {
     type = "structure",
+    id = "ActiveContextTimeToLive",
     members = {
         timeToLiveInSeconds = {
             type = "integer",
@@ -14,6 +15,7 @@ M.ActiveContextTimeToLive = {
 
 M.ActiveContext = {
     type = "structure",
+    id = "ActiveContext",
     members = {
         name = {
             type = "string",
@@ -37,6 +39,7 @@ M.ActiveContext = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         message = {
@@ -47,6 +50,7 @@ M.BadRequestException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -57,6 +61,7 @@ M.ConflictException = {
 
 M.DeleteSessionInput = {
     type = "structure",
+    id = "DeleteSessionInput",
     members = {
         botName = {
             type = "string",
@@ -84,6 +89,7 @@ M.DeleteSessionInput = {
 
 M.DeleteSessionOutput = {
     type = "structure",
+    id = "DeleteSessionOutput",
     members = {
         botName = {
             type = "string",
@@ -102,6 +108,7 @@ M.DeleteSessionOutput = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         message = {
@@ -112,6 +119,7 @@ M.InternalFailureException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         retryAfterSeconds = {
@@ -128,6 +136,7 @@ M.LimitExceededException = {
 
 M.NotFoundException = {
     type = "structure",
+    id = "NotFoundException",
     error = "client",
     members = {
         message = {
@@ -138,6 +147,7 @@ M.NotFoundException = {
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         botName = {
             type = "string",
@@ -192,6 +202,7 @@ M.DialogActionType = {
 
 M.DialogAction = {
     type = "structure",
+    id = "DialogAction",
     members = {
         type = {
             type = "string",
@@ -230,6 +241,7 @@ M.ConfirmationStatus = {
 
 M.IntentSummary = {
     type = "structure",
+    id = "IntentSummary",
     members = {
         intentName = {
             type = "string",
@@ -262,6 +274,7 @@ M.IntentSummary = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         recentIntentSummaryView = {
             type = "list",
@@ -285,6 +298,7 @@ M.GetSessionOutput = {
 
 M.BadGatewayException = {
     type = "structure",
+    id = "BadGatewayException",
     error = "server",
     members = {
         Message = {
@@ -295,6 +309,7 @@ M.BadGatewayException = {
 
 M.DependencyFailedException = {
     type = "structure",
+    id = "DependencyFailedException",
     error = "client",
     members = {
         Message = {
@@ -305,6 +320,7 @@ M.DependencyFailedException = {
 
 M.LoopDetectedException = {
     type = "structure",
+    id = "LoopDetectedException",
     error = "server",
     members = {
         Message = {
@@ -315,6 +331,7 @@ M.LoopDetectedException = {
 
 M.NotAcceptableException = {
     type = "structure",
+    id = "NotAcceptableException",
     error = "client",
     members = {
         message = {
@@ -325,6 +342,7 @@ M.NotAcceptableException = {
 
 M.PostContentInput = {
     type = "structure",
+    id = "PostContentInput",
     members = {
         botName = {
             type = "string",
@@ -402,6 +420,7 @@ M.DialogState = {
 
 M.PostContentOutput = {
     type = "structure",
+    id = "PostContentOutput",
     members = {
         contentType = {
             type = "string",
@@ -522,6 +541,7 @@ M.PostContentOutput = {
 
 M.RequestTimeoutException = {
     type = "structure",
+    id = "RequestTimeoutException",
     error = "client",
     members = {
         message = {
@@ -532,6 +552,7 @@ M.RequestTimeoutException = {
 
 M.UnsupportedMediaTypeException = {
     type = "structure",
+    id = "UnsupportedMediaTypeException",
     error = "client",
     members = {
         message = {
@@ -542,6 +563,7 @@ M.UnsupportedMediaTypeException = {
 
 M.PostTextInput = {
     type = "structure",
+    id = "PostTextInput",
     members = {
         botName = {
             type = "string",
@@ -589,6 +611,7 @@ M.PostTextInput = {
 
 M.IntentConfidence = {
     type = "structure",
+    id = "IntentConfidence",
     members = {
         score = {
             type = "double",
@@ -601,6 +624,7 @@ M.IntentConfidence = {
 
 M.PredictedIntent = {
     type = "structure",
+    id = "PredictedIntent",
     members = {
         intentName = {
             type = "string",
@@ -620,6 +644,7 @@ M.ContentType = {
 
 M.Button = {
     type = "structure",
+    id = "Button",
     members = {
         text = {
             type = "string",
@@ -638,6 +663,7 @@ M.Button = {
 
 M.GenericAttachment = {
     type = "structure",
+    id = "GenericAttachment",
     members = {
         title = {
             type = "string",
@@ -660,6 +686,7 @@ M.GenericAttachment = {
 
 M.ResponseCard = {
     type = "structure",
+    id = "ResponseCard",
     members = {
         version = {
             type = "string",
@@ -676,6 +703,7 @@ M.ResponseCard = {
 
 M.SentimentResponse = {
     type = "structure",
+    id = "SentimentResponse",
     members = {
         sentimentLabel = {
             type = "string",
@@ -688,6 +716,7 @@ M.SentimentResponse = {
 
 M.PostTextOutput = {
     type = "structure",
+    id = "PostTextOutput",
     members = {
         intentName = {
             type = "string",
@@ -736,6 +765,7 @@ M.PostTextOutput = {
 
 M.PutSessionInput = {
     type = "structure",
+    id = "PutSessionInput",
     members = {
         botName = {
             type = "string",
@@ -783,6 +813,7 @@ M.PutSessionInput = {
 
 M.PutSessionOutput = {
     type = "structure",
+    id = "PutSessionOutput",
     members = {
         contentType = {
             type = "string",

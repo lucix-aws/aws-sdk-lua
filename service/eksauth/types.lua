@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.AssumedRoleUser = {
     type = "structure",
+    id = "AssumedRoleUser",
     members = {
         arn = {
             type = "string",
@@ -30,6 +32,7 @@ M.AssumedRoleUser = {
 
 M.AssumeRoleForPodIdentityInput = {
     type = "structure",
+    id = "AssumeRoleForPodIdentityInput",
     members = {
         clusterName = {
             type = "string",
@@ -49,6 +52,7 @@ M.AssumeRoleForPodIdentityInput = {
 
 M.Credentials = {
     type = "structure",
+    id = "Credentials",
     members = {
         sessionToken = {
             type = "string",
@@ -79,6 +83,7 @@ M.Credentials = {
 
 M.PodIdentityAssociation = {
     type = "structure",
+    id = "PodIdentityAssociation",
     members = {
         associationArn = {
             type = "string",
@@ -97,6 +102,7 @@ M.PodIdentityAssociation = {
 
 M.Subject = {
     type = "structure",
+    id = "Subject",
     members = {
         namespace = {
             type = "string",
@@ -115,6 +121,7 @@ M.Subject = {
 
 M.AssumeRoleForPodIdentityOutput = {
     type = "structure",
+    id = "AssumeRoleForPodIdentityOutput",
     members = {
         subject = setmetatable({ traits = {
             required = true,
@@ -139,6 +146,7 @@ M.AssumeRoleForPodIdentityOutput = {
 
 M.ExpiredTokenException = {
     type = "structure",
+    id = "ExpiredTokenException",
     error = "client",
     members = {
         message = {
@@ -149,6 +157,7 @@ M.ExpiredTokenException = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -159,6 +168,7 @@ M.InternalServerException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -169,6 +179,7 @@ M.InvalidParameterException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         message = {
@@ -179,6 +190,7 @@ M.InvalidRequestException = {
 
 M.InvalidTokenException = {
     type = "structure",
+    id = "InvalidTokenException",
     error = "client",
     members = {
         message = {
@@ -189,6 +201,7 @@ M.InvalidTokenException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -199,6 +212,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -209,6 +223,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {

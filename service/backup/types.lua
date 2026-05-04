@@ -2,6 +2,7 @@ local M = {}
 
 M.AdvancedBackupSetting = {
     type = "structure",
+    id = "AdvancedBackupSetting",
     members = {
         ResourceType = {
             type = "string",
@@ -20,6 +21,7 @@ M.ScanFinding = {
 
 M.AggregatedScanResult = {
     type = "structure",
+    id = "AggregatedScanResult",
     members = {
         FailedScan = {
             type = "boolean",
@@ -42,6 +44,7 @@ M.AggregationPeriod = {
 
 M.AlreadyExistsException = {
     type = "structure",
+    id = "AlreadyExistsException",
     error = "client",
     members = {
         Code = {
@@ -67,6 +70,7 @@ M.AlreadyExistsException = {
 
 M.AssociateBackupVaultMpaApprovalTeamInput = {
     type = "structure",
+    id = "AssociateBackupVaultMpaApprovalTeamInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -89,10 +93,12 @@ M.AssociateBackupVaultMpaApprovalTeamInput = {
 
 M.AssociateBackupVaultMpaApprovalTeamOutput = {
     type = "structure",
+    id = "AssociateBackupVaultMpaApprovalTeamOutput",
 }
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         Code = {
@@ -112,6 +118,7 @@ M.InvalidParameterValueException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Code = {
@@ -131,6 +138,7 @@ M.InvalidRequestException = {
 
 M.MissingParameterValueException = {
     type = "structure",
+    id = "MissingParameterValueException",
     error = "client",
     members = {
         Code = {
@@ -150,6 +158,7 @@ M.MissingParameterValueException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Code = {
@@ -169,6 +178,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Code = {
@@ -188,6 +198,7 @@ M.ServiceUnavailableException = {
 
 M.RecoveryPointCreator = {
     type = "structure",
+    id = "RecoveryPointCreator",
     members = {
         BackupPlanId = {
             type = "string",
@@ -222,6 +233,7 @@ M.LifecycleDeleteAfterEvent = {
 
 M.Lifecycle = {
     type = "structure",
+    id = "Lifecycle",
     members = {
         MoveToColdStorageAfterDays = {
             type = "long",
@@ -252,6 +264,7 @@ M.BackupJobState = {
 
 M.BackupJob = {
     type = "structure",
+    id = "BackupJob",
     members = {
         AccountId = {
             type = "string",
@@ -366,6 +379,7 @@ M.BackupJobStatus = {
 
 M.BackupJobSummary = {
     type = "structure",
+    id = "BackupJobSummary",
     members = {
         Region = {
             type = "string",
@@ -399,6 +413,7 @@ M.BackupJobSummary = {
 
 M.CopyAction = {
     type = "structure",
+    id = "CopyAction",
     members = {
         Lifecycle = M.Lifecycle,
         DestinationBackupVaultArn = {
@@ -412,6 +427,7 @@ M.CopyAction = {
 
 M.IndexAction = {
     type = "structure",
+    id = "IndexAction",
     members = {
         ResourceTypes = {
             type = "list",
@@ -431,6 +447,7 @@ M.ScanMode = {
 
 M.ScanAction = {
     type = "structure",
+    id = "ScanAction",
     members = {
         MalwareScanner = {
             type = "string",
@@ -443,6 +460,7 @@ M.ScanAction = {
 
 M.BackupRule = {
     type = "structure",
+    id = "BackupRule",
     members = {
         RuleName = {
             type = "string",
@@ -500,6 +518,7 @@ M.BackupRule = {
 
 M.ScanSetting = {
     type = "structure",
+    id = "ScanSetting",
     members = {
         MalwareScanner = {
             type = "string",
@@ -516,6 +535,7 @@ M.ScanSetting = {
 
 M.BackupPlan = {
     type = "structure",
+    id = "BackupPlan",
     members = {
         BackupPlanName = {
             type = "string",
@@ -543,6 +563,7 @@ M.BackupPlan = {
 
 M.BackupRuleInput = {
     type = "structure",
+    id = "BackupRuleInput",
     members = {
         RuleName = {
             type = "string",
@@ -597,6 +618,7 @@ M.BackupRuleInput = {
 
 M.BackupPlanInput = {
     type = "structure",
+    id = "BackupPlanInput",
     members = {
         BackupPlanName = {
             type = "string",
@@ -624,6 +646,7 @@ M.BackupPlanInput = {
 
 M.BackupPlansListMember = {
     type = "structure",
+    id = "BackupPlansListMember",
     members = {
         BackupPlanArn = {
             type = "string",
@@ -658,6 +681,7 @@ M.BackupPlansListMember = {
 
 M.BackupPlanTemplatesListMember = {
     type = "structure",
+    id = "BackupPlanTemplatesListMember",
     members = {
         BackupPlanTemplateId = {
             type = "string",
@@ -670,6 +694,7 @@ M.BackupPlanTemplatesListMember = {
 
 M.ConditionParameter = {
     type = "structure",
+    id = "ConditionParameter",
     members = {
         ConditionKey = {
             type = "string",
@@ -682,6 +707,7 @@ M.ConditionParameter = {
 
 M.Conditions = {
     type = "structure",
+    id = "Conditions",
     members = {
         StringEquals = {
             type = "list",
@@ -708,6 +734,7 @@ M.ConditionType = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         ConditionType = {
             type = "string",
@@ -732,6 +759,7 @@ M.Condition = {
 
 M.BackupSelection = {
     type = "structure",
+    id = "BackupSelection",
     members = {
         SelectionName = {
             type = "string",
@@ -763,6 +791,7 @@ M.BackupSelection = {
 
 M.BackupSelectionsListMember = {
     type = "structure",
+    id = "BackupSelectionsListMember",
     members = {
         SelectionId = {
             type = "string",
@@ -831,6 +860,7 @@ M.VaultType = {
 
 M.BackupVaultListMember = {
     type = "structure",
+    id = "BackupVaultListMember",
     members = {
         BackupVaultName = {
             type = "string",
@@ -879,6 +909,7 @@ M.BackupVaultListMember = {
 
 M.CalculatedLifecycle = {
     type = "structure",
+    id = "CalculatedLifecycle",
     members = {
         MoveToColdStorageAt = {
             type = "timestamp",
@@ -891,6 +922,7 @@ M.CalculatedLifecycle = {
 
 M.CancelLegalHoldInput = {
     type = "structure",
+    id = "CancelLegalHoldInput",
     members = {
         LegalHoldId = {
             type = "string",
@@ -917,10 +949,12 @@ M.CancelLegalHoldInput = {
 
 M.CancelLegalHoldOutput = {
     type = "structure",
+    id = "CancelLegalHoldOutput",
 }
 
 M.InvalidResourceStateException = {
     type = "structure",
+    id = "InvalidResourceStateException",
     error = "client",
     members = {
         Code = {
@@ -940,6 +974,7 @@ M.InvalidResourceStateException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Code = {
@@ -959,6 +994,7 @@ M.ConflictException = {
 
 M.ControlInputParameter = {
     type = "structure",
+    id = "ControlInputParameter",
     members = {
         ParameterName = {
             type = "string",
@@ -971,6 +1007,7 @@ M.ControlInputParameter = {
 
 M.ControlScope = {
     type = "structure",
+    id = "ControlScope",
     members = {
         ComplianceResourceIds = {
             type = "list",
@@ -998,6 +1035,7 @@ M.CopyJobState = {
 
 M.CopyJob = {
     type = "structure",
+    id = "CopyJob",
     members = {
         AccountId = {
             type = "string",
@@ -1100,6 +1138,7 @@ M.CopyJobStatus = {
 
 M.CopyJobSummary = {
     type = "structure",
+    id = "CopyJobSummary",
     members = {
         Region = {
             type = "string",
@@ -1133,6 +1172,7 @@ M.CopyJobSummary = {
 
 M.CreateBackupPlanInput = {
     type = "structure",
+    id = "CreateBackupPlanInput",
     members = {
         BackupPlan = setmetatable({ traits = {
             required = true,
@@ -1153,6 +1193,7 @@ M.CreateBackupPlanInput = {
 
 M.CreateBackupPlanOutput = {
     type = "structure",
+    id = "CreateBackupPlanOutput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -1175,6 +1216,7 @@ M.CreateBackupPlanOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Code = {
@@ -1194,6 +1236,7 @@ M.LimitExceededException = {
 
 M.CreateBackupSelectionInput = {
     type = "structure",
+    id = "CreateBackupSelectionInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -1216,6 +1259,7 @@ M.CreateBackupSelectionInput = {
 
 M.CreateBackupSelectionOutput = {
     type = "structure",
+    id = "CreateBackupSelectionOutput",
     members = {
         SelectionId = {
             type = "string",
@@ -1231,6 +1275,7 @@ M.CreateBackupSelectionOutput = {
 
 M.CreateBackupVaultInput = {
     type = "structure",
+    id = "CreateBackupVaultInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -1258,6 +1303,7 @@ M.CreateBackupVaultInput = {
 
 M.CreateBackupVaultOutput = {
     type = "structure",
+    id = "CreateBackupVaultOutput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -1273,6 +1319,7 @@ M.CreateBackupVaultOutput = {
 
 M.FrameworkControl = {
     type = "structure",
+    id = "FrameworkControl",
     members = {
         ControlName = {
             type = "string",
@@ -1290,6 +1337,7 @@ M.FrameworkControl = {
 
 M.CreateFrameworkInput = {
     type = "structure",
+    id = "CreateFrameworkInput",
     members = {
         FrameworkName = {
             type = "string",
@@ -1323,6 +1371,7 @@ M.CreateFrameworkInput = {
 
 M.CreateFrameworkOutput = {
     type = "structure",
+    id = "CreateFrameworkOutput",
     members = {
         FrameworkName = {
             type = "string",
@@ -1335,6 +1384,7 @@ M.CreateFrameworkOutput = {
 
 M.DateRange = {
     type = "structure",
+    id = "DateRange",
     members = {
         FromDate = {
             type = "timestamp",
@@ -1353,6 +1403,7 @@ M.DateRange = {
 
 M.RecoveryPointSelection = {
     type = "structure",
+    id = "RecoveryPointSelection",
     members = {
         VaultNames = {
             type = "list",
@@ -1368,6 +1419,7 @@ M.RecoveryPointSelection = {
 
 M.CreateLegalHoldInput = {
     type = "structure",
+    id = "CreateLegalHoldInput",
     members = {
         Title = {
             type = "string",
@@ -1405,6 +1457,7 @@ M.LegalHoldStatus = {
 
 M.CreateLegalHoldOutput = {
     type = "structure",
+    id = "CreateLegalHoldOutput",
     members = {
         Title = {
             type = "string",
@@ -1430,6 +1483,7 @@ M.CreateLegalHoldOutput = {
 
 M.CreateLogicallyAirGappedBackupVaultInput = {
     type = "structure",
+    id = "CreateLogicallyAirGappedBackupVaultInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -1469,6 +1523,7 @@ M.CreateLogicallyAirGappedBackupVaultInput = {
 
 M.CreateLogicallyAirGappedBackupVaultOutput = {
     type = "structure",
+    id = "CreateLogicallyAirGappedBackupVaultOutput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -1487,6 +1542,7 @@ M.CreateLogicallyAirGappedBackupVaultOutput = {
 
 M.ReportDeliveryChannel = {
     type = "structure",
+    id = "ReportDeliveryChannel",
     members = {
         S3BucketName = {
             type = "string",
@@ -1506,6 +1562,7 @@ M.ReportDeliveryChannel = {
 
 M.ReportSetting = {
     type = "structure",
+    id = "ReportSetting",
     members = {
         ReportTemplate = {
             type = "string",
@@ -1540,6 +1597,7 @@ M.ReportSetting = {
 
 M.CreateReportPlanInput = {
     type = "structure",
+    id = "CreateReportPlanInput",
     members = {
         ReportPlanName = {
             type = "string",
@@ -1572,6 +1630,7 @@ M.CreateReportPlanInput = {
 
 M.CreateReportPlanOutput = {
     type = "structure",
+    id = "CreateReportPlanOutput",
     members = {
         ReportPlanName = {
             type = "string",
@@ -1587,6 +1646,7 @@ M.CreateReportPlanOutput = {
 
 M.CreateRestoreAccessBackupVaultInput = {
     type = "structure",
+    id = "CreateRestoreAccessBackupVaultInput",
     members = {
         SourceBackupVaultArn = {
             type = "string",
@@ -1616,6 +1676,7 @@ M.CreateRestoreAccessBackupVaultInput = {
 
 M.CreateRestoreAccessBackupVaultOutput = {
     type = "structure",
+    id = "CreateRestoreAccessBackupVaultOutput",
     members = {
         RestoreAccessBackupVaultArn = {
             type = "string",
@@ -1644,6 +1705,7 @@ M.RestoreTestingRecoveryPointType = {
 
 M.RestoreTestingRecoveryPointSelection = {
     type = "structure",
+    id = "RestoreTestingRecoveryPointSelection",
     members = {
         Algorithm = {
             type = "string",
@@ -1671,6 +1733,7 @@ M.RestoreTestingRecoveryPointSelection = {
 
 M.RestoreTestingPlanForCreate = {
     type = "structure",
+    id = "RestoreTestingPlanForCreate",
     members = {
         RecoveryPointSelection = setmetatable({ traits = {
             required = true,
@@ -1701,6 +1764,7 @@ M.RestoreTestingPlanForCreate = {
 
 M.CreateRestoreTestingPlanInput = {
     type = "structure",
+    id = "CreateRestoreTestingPlanInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -1718,6 +1782,7 @@ M.CreateRestoreTestingPlanInput = {
 
 M.CreateRestoreTestingPlanOutput = {
     type = "structure",
+    id = "CreateRestoreTestingPlanOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -1742,6 +1807,7 @@ M.CreateRestoreTestingPlanOutput = {
 
 M.KeyValue = {
     type = "structure",
+    id = "KeyValue",
     members = {
         Key = {
             type = "string",
@@ -1760,6 +1826,7 @@ M.KeyValue = {
 
 M.ProtectedResourceConditions = {
     type = "structure",
+    id = "ProtectedResourceConditions",
     members = {
         StringEquals = {
             type = "list",
@@ -1774,6 +1841,7 @@ M.ProtectedResourceConditions = {
 
 M.RestoreTestingSelectionForCreate = {
     type = "structure",
+    id = "RestoreTestingSelectionForCreate",
     members = {
         IamRoleArn = {
             type = "string",
@@ -1814,6 +1882,7 @@ M.RestoreTestingSelectionForCreate = {
 
 M.CreateRestoreTestingSelectionInput = {
     type = "structure",
+    id = "CreateRestoreTestingSelectionInput",
     members = {
         CreatorRequestId = {
             type = "string",
@@ -1833,6 +1902,7 @@ M.CreateRestoreTestingSelectionInput = {
 
 M.CreateRestoreTestingSelectionOutput = {
     type = "structure",
+    id = "CreateRestoreTestingSelectionOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -1863,6 +1933,7 @@ M.CreateRestoreTestingSelectionOutput = {
 
 M.ResourceSelection = {
     type = "structure",
+    id = "ResourceSelection",
     members = {
         Resources = {
             type = "list",
@@ -1888,6 +1959,7 @@ M.ResourceSelection = {
 
 M.TieringConfigurationInputForCreate = {
     type = "structure",
+    id = "TieringConfigurationInputForCreate",
     members = {
         TieringConfigurationName = {
             type = "string",
@@ -1913,6 +1985,7 @@ M.TieringConfigurationInputForCreate = {
 
 M.CreateTieringConfigurationInput = {
     type = "structure",
+    id = "CreateTieringConfigurationInput",
     members = {
         TieringConfiguration = setmetatable({ traits = {
             required = true,
@@ -1933,6 +2006,7 @@ M.CreateTieringConfigurationInput = {
 
 M.CreateTieringConfigurationOutput = {
     type = "structure",
+    id = "CreateTieringConfigurationOutput",
     members = {
         TieringConfigurationArn = {
             type = "string",
@@ -1948,6 +2022,7 @@ M.CreateTieringConfigurationOutput = {
 
 M.DeleteBackupPlanInput = {
     type = "structure",
+    id = "DeleteBackupPlanInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -1961,6 +2036,7 @@ M.DeleteBackupPlanInput = {
 
 M.DeleteBackupPlanOutput = {
     type = "structure",
+    id = "DeleteBackupPlanOutput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -1979,6 +2055,7 @@ M.DeleteBackupPlanOutput = {
 
 M.DeleteBackupSelectionInput = {
     type = "structure",
+    id = "DeleteBackupSelectionInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -1999,10 +2076,12 @@ M.DeleteBackupSelectionInput = {
 
 M.DeleteBackupSelectionOutput = {
     type = "structure",
+    id = "DeleteBackupSelectionOutput",
 }
 
 M.DeleteBackupVaultInput = {
     type = "structure",
+    id = "DeleteBackupVaultInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2016,10 +2095,12 @@ M.DeleteBackupVaultInput = {
 
 M.DeleteBackupVaultOutput = {
     type = "structure",
+    id = "DeleteBackupVaultOutput",
 }
 
 M.DeleteBackupVaultAccessPolicyInput = {
     type = "structure",
+    id = "DeleteBackupVaultAccessPolicyInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2033,10 +2114,12 @@ M.DeleteBackupVaultAccessPolicyInput = {
 
 M.DeleteBackupVaultAccessPolicyOutput = {
     type = "structure",
+    id = "DeleteBackupVaultAccessPolicyOutput",
 }
 
 M.DeleteBackupVaultLockConfigurationInput = {
     type = "structure",
+    id = "DeleteBackupVaultLockConfigurationInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2050,10 +2133,12 @@ M.DeleteBackupVaultLockConfigurationInput = {
 
 M.DeleteBackupVaultLockConfigurationOutput = {
     type = "structure",
+    id = "DeleteBackupVaultLockConfigurationOutput",
 }
 
 M.DeleteBackupVaultNotificationsInput = {
     type = "structure",
+    id = "DeleteBackupVaultNotificationsInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2067,10 +2152,12 @@ M.DeleteBackupVaultNotificationsInput = {
 
 M.DeleteBackupVaultNotificationsOutput = {
     type = "structure",
+    id = "DeleteBackupVaultNotificationsOutput",
 }
 
 M.DeleteFrameworkInput = {
     type = "structure",
+    id = "DeleteFrameworkInput",
     members = {
         FrameworkName = {
             type = "string",
@@ -2084,10 +2171,12 @@ M.DeleteFrameworkInput = {
 
 M.DeleteFrameworkOutput = {
     type = "structure",
+    id = "DeleteFrameworkOutput",
 }
 
 M.DeleteRecoveryPointInput = {
     type = "structure",
+    id = "DeleteRecoveryPointInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2108,10 +2197,12 @@ M.DeleteRecoveryPointInput = {
 
 M.DeleteRecoveryPointOutput = {
     type = "structure",
+    id = "DeleteRecoveryPointOutput",
 }
 
 M.DeleteReportPlanInput = {
     type = "structure",
+    id = "DeleteReportPlanInput",
     members = {
         ReportPlanName = {
             type = "string",
@@ -2125,10 +2216,12 @@ M.DeleteReportPlanInput = {
 
 M.DeleteReportPlanOutput = {
     type = "structure",
+    id = "DeleteReportPlanOutput",
 }
 
 M.DeleteRestoreTestingPlanInput = {
     type = "structure",
+    id = "DeleteRestoreTestingPlanInput",
     members = {
         RestoreTestingPlanName = {
             type = "string",
@@ -2142,10 +2235,12 @@ M.DeleteRestoreTestingPlanInput = {
 
 M.DeleteRestoreTestingPlanOutput = {
     type = "structure",
+    id = "DeleteRestoreTestingPlanOutput",
 }
 
 M.DeleteRestoreTestingSelectionInput = {
     type = "structure",
+    id = "DeleteRestoreTestingSelectionInput",
     members = {
         RestoreTestingPlanName = {
             type = "string",
@@ -2166,10 +2261,12 @@ M.DeleteRestoreTestingSelectionInput = {
 
 M.DeleteRestoreTestingSelectionOutput = {
     type = "structure",
+    id = "DeleteRestoreTestingSelectionOutput",
 }
 
 M.DeleteTieringConfigurationInput = {
     type = "structure",
+    id = "DeleteTieringConfigurationInput",
     members = {
         TieringConfigurationName = {
             type = "string",
@@ -2183,10 +2280,12 @@ M.DeleteTieringConfigurationInput = {
 
 M.DeleteTieringConfigurationOutput = {
     type = "structure",
+    id = "DeleteTieringConfigurationOutput",
 }
 
 M.DependencyFailureException = {
     type = "structure",
+    id = "DependencyFailureException",
     error = "server",
     members = {
         Code = {
@@ -2206,6 +2305,7 @@ M.DependencyFailureException = {
 
 M.DescribeBackupJobInput = {
     type = "structure",
+    id = "DescribeBackupJobInput",
     members = {
         BackupJobId = {
             type = "string",
@@ -2219,6 +2319,7 @@ M.DescribeBackupJobInput = {
 
 M.DescribeBackupJobOutput = {
     type = "structure",
+    id = "DescribeBackupJobOutput",
     members = {
         AccountId = {
             type = "string",
@@ -2327,6 +2428,7 @@ M.DescribeBackupJobOutput = {
 
 M.DescribeBackupVaultInput = {
     type = "structure",
+    id = "DescribeBackupVaultInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2352,6 +2454,7 @@ M.MpaSessionStatus = {
 
 M.LatestMpaApprovalTeamUpdate = {
     type = "structure",
+    id = "LatestMpaApprovalTeamUpdate",
     members = {
         MpaSessionArn = {
             type = "string",
@@ -2373,6 +2476,7 @@ M.LatestMpaApprovalTeamUpdate = {
 
 M.DescribeBackupVaultOutput = {
     type = "structure",
+    id = "DescribeBackupVaultOutput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2431,6 +2535,7 @@ M.DescribeBackupVaultOutput = {
 
 M.DescribeCopyJobInput = {
     type = "structure",
+    id = "DescribeCopyJobInput",
     members = {
         CopyJobId = {
             type = "string",
@@ -2444,6 +2549,7 @@ M.DescribeCopyJobInput = {
 
 M.DescribeCopyJobOutput = {
     type = "structure",
+    id = "DescribeCopyJobOutput",
     members = {
         CopyJob = M.CopyJob,
     },
@@ -2451,6 +2557,7 @@ M.DescribeCopyJobOutput = {
 
 M.DescribeFrameworkInput = {
     type = "structure",
+    id = "DescribeFrameworkInput",
     members = {
         FrameworkName = {
             type = "string",
@@ -2464,6 +2571,7 @@ M.DescribeFrameworkInput = {
 
 M.DescribeFrameworkOutput = {
     type = "structure",
+    id = "DescribeFrameworkOutput",
     members = {
         FrameworkName = {
             type = "string",
@@ -2495,10 +2603,12 @@ M.DescribeFrameworkOutput = {
 
 M.DescribeGlobalSettingsInput = {
     type = "structure",
+    id = "DescribeGlobalSettingsInput",
 }
 
 M.DescribeGlobalSettingsOutput = {
     type = "structure",
+    id = "DescribeGlobalSettingsOutput",
     members = {
         GlobalSettings = {
             type = "map",
@@ -2513,6 +2623,7 @@ M.DescribeGlobalSettingsOutput = {
 
 M.DescribeProtectedResourceInput = {
     type = "structure",
+    id = "DescribeProtectedResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2526,6 +2637,7 @@ M.DescribeProtectedResourceInput = {
 
 M.DescribeProtectedResourceOutput = {
     type = "structure",
+    id = "DescribeProtectedResourceOutput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2559,6 +2671,7 @@ M.DescribeProtectedResourceOutput = {
 
 M.DescribeRecoveryPointInput = {
     type = "structure",
+    id = "DescribeRecoveryPointInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -2599,6 +2712,7 @@ M.ScanJobState = {
 
 M.ScanResult = {
     type = "structure",
+    id = "ScanResult",
     members = {
         MalwareScanner = {
             type = "string",
@@ -2634,6 +2748,7 @@ M.StorageClass = {
 
 M.DescribeRecoveryPointOutput = {
     type = "structure",
+    id = "DescribeRecoveryPointOutput",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -2728,10 +2843,12 @@ M.DescribeRecoveryPointOutput = {
 
 M.DescribeRegionSettingsInput = {
     type = "structure",
+    id = "DescribeRegionSettingsInput",
 }
 
 M.DescribeRegionSettingsOutput = {
     type = "structure",
+    id = "DescribeRegionSettingsOutput",
     members = {
         ResourceTypeOptInPreference = {
             type = "map",
@@ -2748,6 +2865,7 @@ M.DescribeRegionSettingsOutput = {
 
 M.DescribeReportJobInput = {
     type = "structure",
+    id = "DescribeReportJobInput",
     members = {
         ReportJobId = {
             type = "string",
@@ -2761,6 +2879,7 @@ M.DescribeReportJobInput = {
 
 M.ReportDestination = {
     type = "structure",
+    id = "ReportDestination",
     members = {
         S3BucketName = {
             type = "string",
@@ -2774,6 +2893,7 @@ M.ReportDestination = {
 
 M.ReportJob = {
     type = "structure",
+    id = "ReportJob",
     members = {
         ReportJobId = {
             type = "string",
@@ -2802,6 +2922,7 @@ M.ReportJob = {
 
 M.DescribeReportJobOutput = {
     type = "structure",
+    id = "DescribeReportJobOutput",
     members = {
         ReportJob = M.ReportJob,
     },
@@ -2809,6 +2930,7 @@ M.DescribeReportJobOutput = {
 
 M.DescribeReportPlanInput = {
     type = "structure",
+    id = "DescribeReportPlanInput",
     members = {
         ReportPlanName = {
             type = "string",
@@ -2822,6 +2944,7 @@ M.DescribeReportPlanInput = {
 
 M.ReportPlan = {
     type = "structure",
+    id = "ReportPlan",
     members = {
         ReportPlanArn = {
             type = "string",
@@ -2851,6 +2974,7 @@ M.ReportPlan = {
 
 M.DescribeReportPlanOutput = {
     type = "structure",
+    id = "DescribeReportPlanOutput",
     members = {
         ReportPlan = M.ReportPlan,
     },
@@ -2858,6 +2982,7 @@ M.DescribeReportPlanOutput = {
 
 M.DescribeRestoreJobInput = {
     type = "structure",
+    id = "DescribeRestoreJobInput",
     members = {
         RestoreJobId = {
             type = "string",
@@ -2871,6 +2996,7 @@ M.DescribeRestoreJobInput = {
 
 M.RestoreJobCreator = {
     type = "structure",
+    id = "RestoreJobCreator",
     members = {
         RestoreTestingPlanArn = {
             type = "string",
@@ -2901,6 +3027,7 @@ M.RestoreValidationStatus = {
 
 M.DescribeRestoreJobOutput = {
     type = "structure",
+    id = "DescribeRestoreJobOutput",
     members = {
         AccountId = {
             type = "string",
@@ -2977,6 +3104,7 @@ M.DescribeRestoreJobOutput = {
 
 M.DescribeScanJobInput = {
     type = "structure",
+    id = "DescribeScanJobInput",
     members = {
         ScanJobId = {
             type = "string",
@@ -2990,6 +3118,7 @@ M.DescribeScanJobInput = {
 
 M.ScanJobCreator = {
     type = "structure",
+    id = "ScanJobCreator",
     members = {
         BackupPlanArn = {
             type = "string",
@@ -3031,6 +3160,7 @@ M.ScanResultStatus = {
 
 M.ScanResultInfo = {
     type = "structure",
+    id = "ScanResultInfo",
     members = {
         ScanResultStatus = {
             type = "string",
@@ -3052,6 +3182,7 @@ M.ScanState = {
 
 M.DescribeScanJobOutput = {
     type = "structure",
+    id = "DescribeScanJobOutput",
     members = {
         AccountId = {
             type = "string",
@@ -3158,6 +3289,7 @@ M.DescribeScanJobOutput = {
 
 M.DisassociateBackupVaultMpaApprovalTeamInput = {
     type = "structure",
+    id = "DisassociateBackupVaultMpaApprovalTeamInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3174,10 +3306,12 @@ M.DisassociateBackupVaultMpaApprovalTeamInput = {
 
 M.DisassociateBackupVaultMpaApprovalTeamOutput = {
     type = "structure",
+    id = "DisassociateBackupVaultMpaApprovalTeamOutput",
 }
 
 M.DisassociateRecoveryPointInput = {
     type = "structure",
+    id = "DisassociateRecoveryPointInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3198,10 +3332,12 @@ M.DisassociateRecoveryPointInput = {
 
 M.DisassociateRecoveryPointOutput = {
     type = "structure",
+    id = "DisassociateRecoveryPointOutput",
 }
 
 M.DisassociateRecoveryPointFromParentInput = {
     type = "structure",
+    id = "DisassociateRecoveryPointFromParentInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3222,10 +3358,12 @@ M.DisassociateRecoveryPointFromParentInput = {
 
 M.DisassociateRecoveryPointFromParentOutput = {
     type = "structure",
+    id = "DisassociateRecoveryPointFromParentOutput",
 }
 
 M.ExportBackupPlanTemplateInput = {
     type = "structure",
+    id = "ExportBackupPlanTemplateInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -3239,6 +3377,7 @@ M.ExportBackupPlanTemplateInput = {
 
 M.ExportBackupPlanTemplateOutput = {
     type = "structure",
+    id = "ExportBackupPlanTemplateOutput",
     members = {
         BackupPlanTemplateJson = {
             type = "string",
@@ -3248,6 +3387,7 @@ M.ExportBackupPlanTemplateOutput = {
 
 M.GetBackupPlanInput = {
     type = "structure",
+    id = "GetBackupPlanInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -3280,6 +3420,7 @@ M.RuleExecutionType = {
 
 M.ScheduledPlanExecutionMember = {
     type = "structure",
+    id = "ScheduledPlanExecutionMember",
     members = {
         ExecutionTime = {
             type = "timestamp",
@@ -3295,6 +3436,7 @@ M.ScheduledPlanExecutionMember = {
 
 M.GetBackupPlanOutput = {
     type = "structure",
+    id = "GetBackupPlanOutput",
     members = {
         BackupPlan = M.BackupPlan,
         BackupPlanId = {
@@ -3331,6 +3473,7 @@ M.GetBackupPlanOutput = {
 
 M.GetBackupPlanFromJSONInput = {
     type = "structure",
+    id = "GetBackupPlanFromJSONInput",
     members = {
         BackupPlanTemplateJson = {
             type = "string",
@@ -3343,6 +3486,7 @@ M.GetBackupPlanFromJSONInput = {
 
 M.GetBackupPlanFromJSONOutput = {
     type = "structure",
+    id = "GetBackupPlanFromJSONOutput",
     members = {
         BackupPlan = M.BackupPlan,
     },
@@ -3350,6 +3494,7 @@ M.GetBackupPlanFromJSONOutput = {
 
 M.GetBackupPlanFromTemplateInput = {
     type = "structure",
+    id = "GetBackupPlanFromTemplateInput",
     members = {
         BackupPlanTemplateId = {
             type = "string",
@@ -3363,6 +3508,7 @@ M.GetBackupPlanFromTemplateInput = {
 
 M.GetBackupPlanFromTemplateOutput = {
     type = "structure",
+    id = "GetBackupPlanFromTemplateOutput",
     members = {
         BackupPlanDocument = M.BackupPlan,
     },
@@ -3370,6 +3516,7 @@ M.GetBackupPlanFromTemplateOutput = {
 
 M.GetBackupSelectionInput = {
     type = "structure",
+    id = "GetBackupSelectionInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -3390,6 +3537,7 @@ M.GetBackupSelectionInput = {
 
 M.GetBackupSelectionOutput = {
     type = "structure",
+    id = "GetBackupSelectionOutput",
     members = {
         BackupSelection = M.BackupSelection,
         SelectionId = {
@@ -3409,6 +3557,7 @@ M.GetBackupSelectionOutput = {
 
 M.GetBackupVaultAccessPolicyInput = {
     type = "structure",
+    id = "GetBackupVaultAccessPolicyInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3422,6 +3571,7 @@ M.GetBackupVaultAccessPolicyInput = {
 
 M.GetBackupVaultAccessPolicyOutput = {
     type = "structure",
+    id = "GetBackupVaultAccessPolicyOutput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3437,6 +3587,7 @@ M.GetBackupVaultAccessPolicyOutput = {
 
 M.GetBackupVaultNotificationsInput = {
     type = "structure",
+    id = "GetBackupVaultNotificationsInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3450,6 +3601,7 @@ M.GetBackupVaultNotificationsInput = {
 
 M.GetBackupVaultNotificationsOutput = {
     type = "structure",
+    id = "GetBackupVaultNotificationsOutput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3469,6 +3621,7 @@ M.GetBackupVaultNotificationsOutput = {
 
 M.GetLegalHoldInput = {
     type = "structure",
+    id = "GetLegalHoldInput",
     members = {
         LegalHoldId = {
             type = "string",
@@ -3482,6 +3635,7 @@ M.GetLegalHoldInput = {
 
 M.GetLegalHoldOutput = {
     type = "structure",
+    id = "GetLegalHoldOutput",
     members = {
         Title = {
             type = "string",
@@ -3516,6 +3670,7 @@ M.GetLegalHoldOutput = {
 
 M.GetRecoveryPointIndexDetailsInput = {
     type = "structure",
+    id = "GetRecoveryPointIndexDetailsInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3536,6 +3691,7 @@ M.GetRecoveryPointIndexDetailsInput = {
 
 M.GetRecoveryPointIndexDetailsOutput = {
     type = "structure",
+    id = "GetRecoveryPointIndexDetailsOutput",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -3569,6 +3725,7 @@ M.GetRecoveryPointIndexDetailsOutput = {
 
 M.GetRecoveryPointRestoreMetadataInput = {
     type = "structure",
+    id = "GetRecoveryPointRestoreMetadataInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -3595,6 +3752,7 @@ M.GetRecoveryPointRestoreMetadataInput = {
 
 M.GetRecoveryPointRestoreMetadataOutput = {
     type = "structure",
+    id = "GetRecoveryPointRestoreMetadataOutput",
     members = {
         BackupVaultArn = {
             type = "string",
@@ -3615,6 +3773,7 @@ M.GetRecoveryPointRestoreMetadataOutput = {
 
 M.GetRestoreJobMetadataInput = {
     type = "structure",
+    id = "GetRestoreJobMetadataInput",
     members = {
         RestoreJobId = {
             type = "string",
@@ -3628,6 +3787,7 @@ M.GetRestoreJobMetadataInput = {
 
 M.GetRestoreJobMetadataOutput = {
     type = "structure",
+    id = "GetRestoreJobMetadataOutput",
     members = {
         RestoreJobId = {
             type = "string",
@@ -3642,6 +3802,7 @@ M.GetRestoreJobMetadataOutput = {
 
 M.GetRestoreTestingInferredMetadataInput = {
     type = "structure",
+    id = "GetRestoreTestingInferredMetadataInput",
     members = {
         BackupVaultAccountId = {
             type = "string",
@@ -3668,6 +3829,7 @@ M.GetRestoreTestingInferredMetadataInput = {
 
 M.GetRestoreTestingInferredMetadataOutput = {
     type = "structure",
+    id = "GetRestoreTestingInferredMetadataOutput",
     members = {
         InferredMetadata = {
             type = "map",
@@ -3682,6 +3844,7 @@ M.GetRestoreTestingInferredMetadataOutput = {
 
 M.GetRestoreTestingPlanInput = {
     type = "structure",
+    id = "GetRestoreTestingPlanInput",
     members = {
         RestoreTestingPlanName = {
             type = "string",
@@ -3695,6 +3858,7 @@ M.GetRestoreTestingPlanInput = {
 
 M.RestoreTestingPlanForGet = {
     type = "structure",
+    id = "RestoreTestingPlanForGet",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -3746,6 +3910,7 @@ M.RestoreTestingPlanForGet = {
 
 M.GetRestoreTestingPlanOutput = {
     type = "structure",
+    id = "GetRestoreTestingPlanOutput",
     members = {
         RestoreTestingPlan = setmetatable({ traits = {
             required = true,
@@ -3755,6 +3920,7 @@ M.GetRestoreTestingPlanOutput = {
 
 M.GetRestoreTestingSelectionInput = {
     type = "structure",
+    id = "GetRestoreTestingSelectionInput",
     members = {
         RestoreTestingPlanName = {
             type = "string",
@@ -3775,6 +3941,7 @@ M.GetRestoreTestingSelectionInput = {
 
 M.RestoreTestingSelectionForGet = {
     type = "structure",
+    id = "RestoreTestingSelectionForGet",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -3830,6 +3997,7 @@ M.RestoreTestingSelectionForGet = {
 
 M.GetRestoreTestingSelectionOutput = {
     type = "structure",
+    id = "GetRestoreTestingSelectionOutput",
     members = {
         RestoreTestingSelection = setmetatable({ traits = {
             required = true,
@@ -3839,10 +4007,12 @@ M.GetRestoreTestingSelectionOutput = {
 
 M.GetSupportedResourceTypesInput = {
     type = "structure",
+    id = "GetSupportedResourceTypesInput",
 }
 
 M.GetSupportedResourceTypesOutput = {
     type = "structure",
+    id = "GetSupportedResourceTypesOutput",
     members = {
         ResourceTypes = {
             type = "list",
@@ -3853,6 +4023,7 @@ M.GetSupportedResourceTypesOutput = {
 
 M.GetTieringConfigurationInput = {
     type = "structure",
+    id = "GetTieringConfigurationInput",
     members = {
         TieringConfigurationName = {
             type = "string",
@@ -3866,6 +4037,7 @@ M.GetTieringConfigurationInput = {
 
 M.TieringConfiguration = {
     type = "structure",
+    id = "TieringConfiguration",
     members = {
         TieringConfigurationName = {
             type = "string",
@@ -3903,6 +4075,7 @@ M.TieringConfiguration = {
 
 M.GetTieringConfigurationOutput = {
     type = "structure",
+    id = "GetTieringConfigurationOutput",
     members = {
         TieringConfiguration = M.TieringConfiguration,
     },
@@ -3910,6 +4083,7 @@ M.GetTieringConfigurationOutput = {
 
 M.ListBackupJobsInput = {
     type = "structure",
+    id = "ListBackupJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -3994,6 +4168,7 @@ M.ListBackupJobsInput = {
 
 M.ListBackupJobsOutput = {
     type = "structure",
+    id = "ListBackupJobsOutput",
     members = {
         BackupJobs = {
             type = "list",
@@ -4007,6 +4182,7 @@ M.ListBackupJobsOutput = {
 
 M.ListBackupJobSummariesInput = {
     type = "structure",
+    id = "ListBackupJobSummariesInput",
     members = {
         AccountId = {
             type = "string",
@@ -4055,6 +4231,7 @@ M.ListBackupJobSummariesInput = {
 
 M.ListBackupJobSummariesOutput = {
     type = "structure",
+    id = "ListBackupJobSummariesOutput",
     members = {
         BackupJobSummaries = {
             type = "list",
@@ -4071,6 +4248,7 @@ M.ListBackupJobSummariesOutput = {
 
 M.ListBackupPlansInput = {
     type = "structure",
+    id = "ListBackupPlansInput",
     members = {
         NextToken = {
             type = "string",
@@ -4095,6 +4273,7 @@ M.ListBackupPlansInput = {
 
 M.ListBackupPlansOutput = {
     type = "structure",
+    id = "ListBackupPlansOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4108,6 +4287,7 @@ M.ListBackupPlansOutput = {
 
 M.ListBackupPlanTemplatesInput = {
     type = "structure",
+    id = "ListBackupPlanTemplatesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4126,6 +4306,7 @@ M.ListBackupPlanTemplatesInput = {
 
 M.ListBackupPlanTemplatesOutput = {
     type = "structure",
+    id = "ListBackupPlanTemplatesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4139,6 +4320,7 @@ M.ListBackupPlanTemplatesOutput = {
 
 M.ListBackupPlanVersionsInput = {
     type = "structure",
+    id = "ListBackupPlanVersionsInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -4164,6 +4346,7 @@ M.ListBackupPlanVersionsInput = {
 
 M.ListBackupPlanVersionsOutput = {
     type = "structure",
+    id = "ListBackupPlanVersionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4177,6 +4360,7 @@ M.ListBackupPlanVersionsOutput = {
 
 M.ListBackupSelectionsInput = {
     type = "structure",
+    id = "ListBackupSelectionsInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -4202,6 +4386,7 @@ M.ListBackupSelectionsInput = {
 
 M.ListBackupSelectionsOutput = {
     type = "structure",
+    id = "ListBackupSelectionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4215,6 +4400,7 @@ M.ListBackupSelectionsOutput = {
 
 M.ListBackupVaultsInput = {
     type = "structure",
+    id = "ListBackupVaultsInput",
     members = {
         ByVaultType = {
             type = "string",
@@ -4246,6 +4432,7 @@ M.ListBackupVaultsInput = {
 
 M.ListBackupVaultsOutput = {
     type = "structure",
+    id = "ListBackupVaultsOutput",
     members = {
         BackupVaultList = {
             type = "list",
@@ -4259,6 +4446,7 @@ M.ListBackupVaultsOutput = {
 
 M.ListCopyJobsInput = {
     type = "structure",
+    id = "ListCopyJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4349,6 +4537,7 @@ M.ListCopyJobsInput = {
 
 M.ListCopyJobsOutput = {
     type = "structure",
+    id = "ListCopyJobsOutput",
     members = {
         CopyJobs = {
             type = "list",
@@ -4362,6 +4551,7 @@ M.ListCopyJobsOutput = {
 
 M.ListCopyJobSummariesInput = {
     type = "structure",
+    id = "ListCopyJobSummariesInput",
     members = {
         AccountId = {
             type = "string",
@@ -4410,6 +4600,7 @@ M.ListCopyJobSummariesInput = {
 
 M.ListCopyJobSummariesOutput = {
     type = "structure",
+    id = "ListCopyJobSummariesOutput",
     members = {
         CopyJobSummaries = {
             type = "list",
@@ -4426,6 +4617,7 @@ M.ListCopyJobSummariesOutput = {
 
 M.ListFrameworksInput = {
     type = "structure",
+    id = "ListFrameworksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -4444,6 +4636,7 @@ M.ListFrameworksInput = {
 
 M.Framework = {
     type = "structure",
+    id = "Framework",
     members = {
         FrameworkName = {
             type = "string",
@@ -4471,6 +4664,7 @@ M.Framework = {
 
 M.ListFrameworksOutput = {
     type = "structure",
+    id = "ListFrameworksOutput",
     members = {
         Frameworks = {
             type = "list",
@@ -4484,6 +4678,7 @@ M.ListFrameworksOutput = {
 
 M.ListIndexedRecoveryPointsInput = {
     type = "structure",
+    id = "ListIndexedRecoveryPointsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4532,6 +4727,7 @@ M.ListIndexedRecoveryPointsInput = {
 
 M.IndexedRecoveryPoint = {
     type = "structure",
+    id = "IndexedRecoveryPoint",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -4565,6 +4761,7 @@ M.IndexedRecoveryPoint = {
 
 M.ListIndexedRecoveryPointsOutput = {
     type = "structure",
+    id = "ListIndexedRecoveryPointsOutput",
     members = {
         IndexedRecoveryPoints = {
             type = "list",
@@ -4578,6 +4775,7 @@ M.ListIndexedRecoveryPointsOutput = {
 
 M.ListLegalHoldsInput = {
     type = "structure",
+    id = "ListLegalHoldsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4596,6 +4794,7 @@ M.ListLegalHoldsInput = {
 
 M.LegalHold = {
     type = "structure",
+    id = "LegalHold",
     members = {
         Title = {
             type = "string",
@@ -4623,6 +4822,7 @@ M.LegalHold = {
 
 M.ListLegalHoldsOutput = {
     type = "structure",
+    id = "ListLegalHoldsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4636,6 +4836,7 @@ M.ListLegalHoldsOutput = {
 
 M.ListProtectedResourcesInput = {
     type = "structure",
+    id = "ListProtectedResourcesInput",
     members = {
         NextToken = {
             type = "string",
@@ -4654,6 +4855,7 @@ M.ListProtectedResourcesInput = {
 
 M.ProtectedResource = {
     type = "structure",
+    id = "ProtectedResource",
     members = {
         ResourceArn = {
             type = "string",
@@ -4678,6 +4880,7 @@ M.ProtectedResource = {
 
 M.ListProtectedResourcesOutput = {
     type = "structure",
+    id = "ListProtectedResourcesOutput",
     members = {
         Results = {
             type = "list",
@@ -4691,6 +4894,7 @@ M.ListProtectedResourcesOutput = {
 
 M.ListProtectedResourcesByBackupVaultInput = {
     type = "structure",
+    id = "ListProtectedResourcesByBackupVaultInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -4722,6 +4926,7 @@ M.ListProtectedResourcesByBackupVaultInput = {
 
 M.ListProtectedResourcesByBackupVaultOutput = {
     type = "structure",
+    id = "ListProtectedResourcesByBackupVaultOutput",
     members = {
         Results = {
             type = "list",
@@ -4735,6 +4940,7 @@ M.ListProtectedResourcesByBackupVaultOutput = {
 
 M.ListRecoveryPointsByBackupVaultInput = {
     type = "structure",
+    id = "ListRecoveryPointsByBackupVaultInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -4802,6 +5008,7 @@ M.ListRecoveryPointsByBackupVaultInput = {
 
 M.RecoveryPointByBackupVault = {
     type = "structure",
+    id = "RecoveryPointByBackupVault",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -4890,6 +5097,7 @@ M.RecoveryPointByBackupVault = {
 
 M.ListRecoveryPointsByBackupVaultOutput = {
     type = "structure",
+    id = "ListRecoveryPointsByBackupVaultOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4903,6 +5111,7 @@ M.ListRecoveryPointsByBackupVaultOutput = {
 
 M.ListRecoveryPointsByLegalHoldInput = {
     type = "structure",
+    id = "ListRecoveryPointsByLegalHoldInput",
     members = {
         LegalHoldId = {
             type = "string",
@@ -4928,6 +5137,7 @@ M.ListRecoveryPointsByLegalHoldInput = {
 
 M.RecoveryPointMember = {
     type = "structure",
+    id = "RecoveryPointMember",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -4946,6 +5156,7 @@ M.RecoveryPointMember = {
 
 M.ListRecoveryPointsByLegalHoldOutput = {
     type = "structure",
+    id = "ListRecoveryPointsByLegalHoldOutput",
     members = {
         RecoveryPoints = {
             type = "list",
@@ -4959,6 +5170,7 @@ M.ListRecoveryPointsByLegalHoldOutput = {
 
 M.ListRecoveryPointsByResourceInput = {
     type = "structure",
+    id = "ListRecoveryPointsByResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4991,6 +5203,7 @@ M.ListRecoveryPointsByResourceInput = {
 
 M.RecoveryPointByResource = {
     type = "structure",
+    id = "RecoveryPointByResource",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -5043,6 +5256,7 @@ M.RecoveryPointByResource = {
 
 M.ListRecoveryPointsByResourceOutput = {
     type = "structure",
+    id = "ListRecoveryPointsByResourceOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5056,6 +5270,7 @@ M.ListRecoveryPointsByResourceOutput = {
 
 M.ListReportJobsInput = {
     type = "structure",
+    id = "ListReportJobsInput",
     members = {
         ByReportPlanName = {
             type = "string",
@@ -5098,6 +5313,7 @@ M.ListReportJobsInput = {
 
 M.ListReportJobsOutput = {
     type = "structure",
+    id = "ListReportJobsOutput",
     members = {
         ReportJobs = {
             type = "list",
@@ -5111,6 +5327,7 @@ M.ListReportJobsOutput = {
 
 M.ListReportPlansInput = {
     type = "structure",
+    id = "ListReportPlansInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -5129,6 +5346,7 @@ M.ListReportPlansInput = {
 
 M.ListReportPlansOutput = {
     type = "structure",
+    id = "ListReportPlansOutput",
     members = {
         ReportPlans = {
             type = "list",
@@ -5142,6 +5360,7 @@ M.ListReportPlansOutput = {
 
 M.ListRestoreAccessBackupVaultsInput = {
     type = "structure",
+    id = "ListRestoreAccessBackupVaultsInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -5172,6 +5391,7 @@ M.MpaRevokeSessionStatus = {
 
 M.LatestRevokeRequest = {
     type = "structure",
+    id = "LatestRevokeRequest",
     members = {
         MpaSessionArn = {
             type = "string",
@@ -5193,6 +5413,7 @@ M.LatestRevokeRequest = {
 
 M.RestoreAccessBackupVaultListMember = {
     type = "structure",
+    id = "RestoreAccessBackupVaultListMember",
     members = {
         RestoreAccessBackupVaultArn = {
             type = "string",
@@ -5212,6 +5433,7 @@ M.RestoreAccessBackupVaultListMember = {
 
 M.ListRestoreAccessBackupVaultsOutput = {
     type = "structure",
+    id = "ListRestoreAccessBackupVaultsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5225,6 +5447,7 @@ M.ListRestoreAccessBackupVaultsOutput = {
 
 M.ListRestoreJobsInput = {
     type = "structure",
+    id = "ListRestoreJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -5297,6 +5520,7 @@ M.ListRestoreJobsInput = {
 
 M.RestoreJobsListMember = {
     type = "structure",
+    id = "RestoreJobsListMember",
     members = {
         AccountId = {
             type = "string",
@@ -5373,6 +5597,7 @@ M.RestoreJobsListMember = {
 
 M.ListRestoreJobsOutput = {
     type = "structure",
+    id = "ListRestoreJobsOutput",
     members = {
         RestoreJobs = {
             type = "list",
@@ -5386,6 +5611,7 @@ M.ListRestoreJobsOutput = {
 
 M.ListRestoreJobsByProtectedResourceInput = {
     type = "structure",
+    id = "ListRestoreJobsByProtectedResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5429,6 +5655,7 @@ M.ListRestoreJobsByProtectedResourceInput = {
 
 M.ListRestoreJobsByProtectedResourceOutput = {
     type = "structure",
+    id = "ListRestoreJobsByProtectedResourceOutput",
     members = {
         RestoreJobs = {
             type = "list",
@@ -5453,6 +5680,7 @@ M.RestoreJobState = {
 
 M.ListRestoreJobSummariesInput = {
     type = "structure",
+    id = "ListRestoreJobSummariesInput",
     members = {
         AccountId = {
             type = "string",
@@ -5495,6 +5723,7 @@ M.ListRestoreJobSummariesInput = {
 
 M.RestoreJobSummary = {
     type = "structure",
+    id = "RestoreJobSummary",
     members = {
         Region = {
             type = "string",
@@ -5525,6 +5754,7 @@ M.RestoreJobSummary = {
 
 M.ListRestoreJobSummariesOutput = {
     type = "structure",
+    id = "ListRestoreJobSummariesOutput",
     members = {
         RestoreJobSummaries = {
             type = "list",
@@ -5541,6 +5771,7 @@ M.ListRestoreJobSummariesOutput = {
 
 M.ListRestoreTestingPlansInput = {
     type = "structure",
+    id = "ListRestoreTestingPlansInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -5559,6 +5790,7 @@ M.ListRestoreTestingPlansInput = {
 
 M.RestoreTestingPlanForList = {
     type = "structure",
+    id = "RestoreTestingPlanForList",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -5604,6 +5836,7 @@ M.RestoreTestingPlanForList = {
 
 M.ListRestoreTestingPlansOutput = {
     type = "structure",
+    id = "ListRestoreTestingPlansOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5620,6 +5853,7 @@ M.ListRestoreTestingPlansOutput = {
 
 M.ListRestoreTestingSelectionsInput = {
     type = "structure",
+    id = "ListRestoreTestingSelectionsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -5645,6 +5879,7 @@ M.ListRestoreTestingSelectionsInput = {
 
 M.RestoreTestingSelectionForList = {
     type = "structure",
+    id = "RestoreTestingSelectionForList",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -5687,6 +5922,7 @@ M.RestoreTestingSelectionForList = {
 
 M.ListRestoreTestingSelectionsOutput = {
     type = "structure",
+    id = "ListRestoreTestingSelectionsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5703,6 +5939,7 @@ M.ListRestoreTestingSelectionsOutput = {
 
 M.ListScanJobsInput = {
     type = "structure",
+    id = "ListScanJobsInput",
     members = {
         ByAccountId = {
             type = "string",
@@ -5781,6 +6018,7 @@ M.ListScanJobsInput = {
 
 M.ScanJob = {
     type = "structure",
+    id = "ScanJob",
     members = {
         AccountId = {
             type = "string",
@@ -5884,6 +6122,7 @@ M.ScanJob = {
 
 M.ListScanJobsOutput = {
     type = "structure",
+    id = "ListScanJobsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -5911,6 +6150,7 @@ M.ScanJobStatus = {
 
 M.ListScanJobSummariesInput = {
     type = "structure",
+    id = "ListScanJobSummariesInput",
     members = {
         AccountId = {
             type = "string",
@@ -5965,6 +6205,7 @@ M.ListScanJobSummariesInput = {
 
 M.ScanJobSummary = {
     type = "structure",
+    id = "ScanJobSummary",
     members = {
         Region = {
             type = "string",
@@ -6001,6 +6242,7 @@ M.ScanJobSummary = {
 
 M.ListScanJobSummariesOutput = {
     type = "structure",
+    id = "ListScanJobSummariesOutput",
     members = {
         ScanJobSummaries = {
             type = "list",
@@ -6017,6 +6259,7 @@ M.ListScanJobSummariesOutput = {
 
 M.ListTagsInput = {
     type = "structure",
+    id = "ListTagsInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6042,6 +6285,7 @@ M.ListTagsInput = {
 
 M.ListTagsOutput = {
     type = "structure",
+    id = "ListTagsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -6056,6 +6300,7 @@ M.ListTagsOutput = {
 
 M.ListTieringConfigurationsInput = {
     type = "structure",
+    id = "ListTieringConfigurationsInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -6074,6 +6319,7 @@ M.ListTieringConfigurationsInput = {
 
 M.TieringConfigurationsListMember = {
     type = "structure",
+    id = "TieringConfigurationsListMember",
     members = {
         TieringConfigurationArn = {
             type = "string",
@@ -6095,6 +6341,7 @@ M.TieringConfigurationsListMember = {
 
 M.ListTieringConfigurationsOutput = {
     type = "structure",
+    id = "ListTieringConfigurationsOutput",
     members = {
         TieringConfigurations = {
             type = "list",
@@ -6108,6 +6355,7 @@ M.ListTieringConfigurationsOutput = {
 
 M.PutBackupVaultAccessPolicyInput = {
     type = "structure",
+    id = "PutBackupVaultAccessPolicyInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6124,10 +6372,12 @@ M.PutBackupVaultAccessPolicyInput = {
 
 M.PutBackupVaultAccessPolicyOutput = {
     type = "structure",
+    id = "PutBackupVaultAccessPolicyOutput",
 }
 
 M.PutBackupVaultLockConfigurationInput = {
     type = "structure",
+    id = "PutBackupVaultLockConfigurationInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6150,10 +6400,12 @@ M.PutBackupVaultLockConfigurationInput = {
 
 M.PutBackupVaultLockConfigurationOutput = {
     type = "structure",
+    id = "PutBackupVaultLockConfigurationOutput",
 }
 
 M.PutBackupVaultNotificationsInput = {
     type = "structure",
+    id = "PutBackupVaultNotificationsInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6180,10 +6432,12 @@ M.PutBackupVaultNotificationsInput = {
 
 M.PutBackupVaultNotificationsOutput = {
     type = "structure",
+    id = "PutBackupVaultNotificationsOutput",
 }
 
 M.PutRestoreValidationResultInput = {
     type = "structure",
+    id = "PutRestoreValidationResultInput",
     members = {
         RestoreJobId = {
             type = "string",
@@ -6206,10 +6460,12 @@ M.PutRestoreValidationResultInput = {
 
 M.PutRestoreValidationResultOutput = {
     type = "structure",
+    id = "PutRestoreValidationResultOutput",
 }
 
 M.RevokeRestoreAccessBackupVaultInput = {
     type = "structure",
+    id = "RevokeRestoreAccessBackupVaultInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6236,6 +6492,7 @@ M.RevokeRestoreAccessBackupVaultInput = {
 
 M.RevokeRestoreAccessBackupVaultOutput = {
     type = "structure",
+    id = "RevokeRestoreAccessBackupVaultOutput",
 }
 
 M.Index = {
@@ -6245,6 +6502,7 @@ M.Index = {
 
 M.StartBackupJobInput = {
     type = "structure",
+    id = "StartBackupJobInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6298,6 +6556,7 @@ M.StartBackupJobInput = {
 
 M.StartBackupJobOutput = {
     type = "structure",
+    id = "StartBackupJobOutput",
     members = {
         BackupJobId = {
             type = "string",
@@ -6319,6 +6578,7 @@ M.StartBackupJobOutput = {
 
 M.StartCopyJobInput = {
     type = "structure",
+    id = "StartCopyJobInput",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -6356,6 +6616,7 @@ M.StartCopyJobInput = {
 
 M.StartCopyJobOutput = {
     type = "structure",
+    id = "StartCopyJobOutput",
     members = {
         CopyJobId = {
             type = "string",
@@ -6374,6 +6635,7 @@ M.StartCopyJobOutput = {
 
 M.StartReportJobInput = {
     type = "structure",
+    id = "StartReportJobInput",
     members = {
         ReportPlanName = {
             type = "string",
@@ -6393,6 +6655,7 @@ M.StartReportJobInput = {
 
 M.StartReportJobOutput = {
     type = "structure",
+    id = "StartReportJobOutput",
     members = {
         ReportJobId = {
             type = "string",
@@ -6402,6 +6665,7 @@ M.StartReportJobOutput = {
 
 M.StartRestoreJobInput = {
     type = "structure",
+    id = "StartRestoreJobInput",
     members = {
         RecoveryPointArn = {
             type = "string",
@@ -6440,6 +6704,7 @@ M.StartRestoreJobInput = {
 
 M.StartRestoreJobOutput = {
     type = "structure",
+    id = "StartRestoreJobOutput",
     members = {
         RestoreJobId = {
             type = "string",
@@ -6449,6 +6714,7 @@ M.StartRestoreJobOutput = {
 
 M.StartScanJobInput = {
     type = "structure",
+    id = "StartScanJobInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6497,6 +6763,7 @@ M.StartScanJobInput = {
 
 M.StartScanJobOutput = {
     type = "structure",
+    id = "StartScanJobOutput",
     members = {
         CreationDate = {
             type = "timestamp",
@@ -6515,6 +6782,7 @@ M.StartScanJobOutput = {
 
 M.StopBackupJobInput = {
     type = "structure",
+    id = "StopBackupJobInput",
     members = {
         BackupJobId = {
             type = "string",
@@ -6528,10 +6796,12 @@ M.StopBackupJobInput = {
 
 M.StopBackupJobOutput = {
     type = "structure",
+    id = "StopBackupJobOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6553,10 +6823,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6577,10 +6849,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateBackupPlanInput = {
     type = "structure",
+    id = "UpdateBackupPlanInput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -6597,6 +6871,7 @@ M.UpdateBackupPlanInput = {
 
 M.UpdateBackupPlanOutput = {
     type = "structure",
+    id = "UpdateBackupPlanOutput",
     members = {
         BackupPlanId = {
             type = "string",
@@ -6623,6 +6898,7 @@ M.UpdateBackupPlanOutput = {
 
 M.UpdateFrameworkInput = {
     type = "structure",
+    id = "UpdateFrameworkInput",
     members = {
         FrameworkName = {
             type = "string",
@@ -6649,6 +6925,7 @@ M.UpdateFrameworkInput = {
 
 M.UpdateFrameworkOutput = {
     type = "structure",
+    id = "UpdateFrameworkOutput",
     members = {
         FrameworkName = {
             type = "string",
@@ -6664,6 +6941,7 @@ M.UpdateFrameworkOutput = {
 
 M.UpdateGlobalSettingsInput = {
     type = "structure",
+    id = "UpdateGlobalSettingsInput",
     members = {
         GlobalSettings = {
             type = "map",
@@ -6675,10 +6953,12 @@ M.UpdateGlobalSettingsInput = {
 
 M.UpdateGlobalSettingsOutput = {
     type = "structure",
+    id = "UpdateGlobalSettingsOutput",
 }
 
 M.UpdateRecoveryPointIndexSettingsInput = {
     type = "structure",
+    id = "UpdateRecoveryPointIndexSettingsInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6708,6 +6988,7 @@ M.UpdateRecoveryPointIndexSettingsInput = {
 
 M.UpdateRecoveryPointIndexSettingsOutput = {
     type = "structure",
+    id = "UpdateRecoveryPointIndexSettingsOutput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6726,6 +7007,7 @@ M.UpdateRecoveryPointIndexSettingsOutput = {
 
 M.UpdateRecoveryPointLifecycleInput = {
     type = "structure",
+    id = "UpdateRecoveryPointLifecycleInput",
     members = {
         BackupVaultName = {
             type = "string",
@@ -6747,6 +7029,7 @@ M.UpdateRecoveryPointLifecycleInput = {
 
 M.UpdateRecoveryPointLifecycleOutput = {
     type = "structure",
+    id = "UpdateRecoveryPointLifecycleOutput",
     members = {
         BackupVaultArn = {
             type = "string",
@@ -6761,6 +7044,7 @@ M.UpdateRecoveryPointLifecycleOutput = {
 
 M.UpdateRegionSettingsInput = {
     type = "structure",
+    id = "UpdateRegionSettingsInput",
     members = {
         ResourceTypeOptInPreference = {
             type = "map",
@@ -6777,10 +7061,12 @@ M.UpdateRegionSettingsInput = {
 
 M.UpdateRegionSettingsOutput = {
     type = "structure",
+    id = "UpdateRegionSettingsOutput",
 }
 
 M.UpdateReportPlanInput = {
     type = "structure",
+    id = "UpdateReportPlanInput",
     members = {
         ReportPlanName = {
             type = "string",
@@ -6805,6 +7091,7 @@ M.UpdateReportPlanInput = {
 
 M.UpdateReportPlanOutput = {
     type = "structure",
+    id = "UpdateReportPlanOutput",
     members = {
         ReportPlanName = {
             type = "string",
@@ -6820,6 +7107,7 @@ M.UpdateReportPlanOutput = {
 
 M.RestoreTestingPlanForUpdate = {
     type = "structure",
+    id = "RestoreTestingPlanForUpdate",
     members = {
         RecoveryPointSelection = M.RestoreTestingRecoveryPointSelection,
         ScheduleExpression = {
@@ -6839,6 +7127,7 @@ M.RestoreTestingPlanForUpdate = {
 
 M.UpdateRestoreTestingPlanInput = {
     type = "structure",
+    id = "UpdateRestoreTestingPlanInput",
     members = {
         RestoreTestingPlan = setmetatable({ traits = {
             required = true,
@@ -6855,6 +7144,7 @@ M.UpdateRestoreTestingPlanInput = {
 
 M.UpdateRestoreTestingPlanOutput = {
     type = "structure",
+    id = "UpdateRestoreTestingPlanOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -6885,6 +7175,7 @@ M.UpdateRestoreTestingPlanOutput = {
 
 M.RestoreTestingSelectionForUpdate = {
     type = "structure",
+    id = "RestoreTestingSelectionForUpdate",
     members = {
         IamRoleArn = {
             type = "string",
@@ -6910,6 +7201,7 @@ M.RestoreTestingSelectionForUpdate = {
 
 M.UpdateRestoreTestingSelectionInput = {
     type = "structure",
+    id = "UpdateRestoreTestingSelectionInput",
     members = {
         RestoreTestingPlanName = {
             type = "string",
@@ -6933,6 +7225,7 @@ M.UpdateRestoreTestingSelectionInput = {
 
 M.UpdateRestoreTestingSelectionOutput = {
     type = "structure",
+    id = "UpdateRestoreTestingSelectionOutput",
     members = {
         CreationTime = {
             type = "timestamp",
@@ -6969,6 +7262,7 @@ M.UpdateRestoreTestingSelectionOutput = {
 
 M.TieringConfigurationInputForUpdate = {
     type = "structure",
+    id = "TieringConfigurationInputForUpdate",
     members = {
         ResourceSelection = {
             type = "list",
@@ -6988,6 +7282,7 @@ M.TieringConfigurationInputForUpdate = {
 
 M.UpdateTieringConfigurationInput = {
     type = "structure",
+    id = "UpdateTieringConfigurationInput",
     members = {
         TieringConfigurationName = {
             type = "string",
@@ -7004,6 +7299,7 @@ M.UpdateTieringConfigurationInput = {
 
 M.UpdateTieringConfigurationOutput = {
     type = "structure",
+    id = "UpdateTieringConfigurationOutput",
     members = {
         TieringConfigurationArn = {
             type = "string",

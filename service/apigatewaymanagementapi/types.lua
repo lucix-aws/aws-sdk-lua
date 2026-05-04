@@ -2,6 +2,7 @@ local M = {}
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         ConnectionId = {
             type = "string",
@@ -15,25 +16,30 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
 }
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
 }
 
 M.GoneException = {
     type = "structure",
+    id = "GoneException",
     error = "client",
 }
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
 }
 
 M.GetConnectionInput = {
     type = "structure",
+    id = "GetConnectionInput",
     members = {
         ConnectionId = {
             type = "string",
@@ -47,6 +53,7 @@ M.GetConnectionInput = {
 
 M.Identity = {
     type = "structure",
+    id = "Identity",
     members = {
         SourceIp = {
             type = "string",
@@ -67,6 +74,7 @@ M.Identity = {
 
 M.GetConnectionOutput = {
     type = "structure",
+    id = "GetConnectionOutput",
     members = {
         ConnectedAt = {
             type = "timestamp",
@@ -90,6 +98,7 @@ M.GetConnectionOutput = {
 
 M.PayloadTooLargeException = {
     type = "structure",
+    id = "PayloadTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -103,6 +112,7 @@ M.PayloadTooLargeException = {
 
 M.PostToConnectionInput = {
     type = "structure",
+    id = "PostToConnectionInput",
     members = {
         Data = {
             type = "blob",
@@ -123,6 +133,7 @@ M.PostToConnectionInput = {
 
 M.PostToConnectionOutput = {
     type = "structure",
+    id = "PostToConnectionOutput",
 }
 
 return M

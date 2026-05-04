@@ -1644,37 +1644,37 @@ local record VolumeNotFound
     Message: string
 end
 
-local type VolumeType = "ONTAP" | "OPENZFS"
-
-local type StorageType = "SSD" | "HDD" | "INTELLIGENT_TIERING"
-
-local type DataRepositoryLifecycle = "CREATING" | "AVAILABLE" | "MISCONFIGURED" | "UPDATING" | "DELETING" | "FAILED"
-
-local type OpenZFSCopyStrategy = "CLONE" | "FULL_COPY" | "INCREMENTAL_COPY"
-
-local type DataRepositoryTaskLifecycle = "PENDING" | "EXECUTING" | "FAILED" | "SUCCEEDED" | "CANCELED" | "CANCELING"
-
 local type FileSystemLifecycle = "AVAILABLE" | "CREATING" | "FAILED" | "DELETING" | "MISCONFIGURED" | "UPDATING" | "MISCONFIGURED_UNAVAILABLE"
 
-local type S3AccessPointAttachmentLifecycle = "AVAILABLE" | "CREATING" | "DELETING" | "UPDATING" | "FAILED" | "MISCONFIGURED"
+local type FileSystemType = "WINDOWS" | "LUSTRE" | "ONTAP" | "OPENZFS"
 
-local type DataRepositoryTaskType = "EXPORT_TO_REPOSITORY" | "IMPORT_METADATA_FROM_REPOSITORY" | "RELEASE_DATA_FROM_FILESYSTEM" | "AUTO_RELEASE_DATA"
+local type S3AccessPointAttachmentType = "OPENZFS" | "ONTAP"
 
-local type FileCacheType = "LUSTRE"
-
-local type StorageVirtualMachineLifecycle = "CREATED" | "CREATING" | "DELETING" | "FAILED" | "MISCONFIGURED" | "PENDING"
+local type DataRepositoryTaskLifecycle = "PENDING" | "EXECUTING" | "FAILED" | "SUCCEEDED" | "CANCELED" | "CANCELING"
 
 local type VolumeLifecycle = "CREATING" | "CREATED" | "DELETING" | "FAILED" | "MISCONFIGURED" | "PENDING" | "AVAILABLE"
 
 local type FileCacheLifecycle = "AVAILABLE" | "CREATING" | "DELETING" | "UPDATING" | "FAILED"
 
-local type BackupLifecycle = "AVAILABLE" | "CREATING" | "TRANSFERRING" | "DELETED" | "FAILED" | "PENDING" | "COPYING"
+local type DataRepositoryLifecycle = "CREATING" | "AVAILABLE" | "MISCONFIGURED" | "UPDATING" | "DELETING" | "FAILED"
 
-local type S3AccessPointAttachmentType = "OPENZFS" | "ONTAP"
+local type FileCacheType = "LUSTRE"
+
+local type S3AccessPointAttachmentLifecycle = "AVAILABLE" | "CREATING" | "DELETING" | "UPDATING" | "FAILED" | "MISCONFIGURED"
 
 local type SnapshotLifecycle = "PENDING" | "CREATING" | "DELETING" | "AVAILABLE"
 
-local type FileSystemType = "WINDOWS" | "LUSTRE" | "ONTAP" | "OPENZFS"
+local type DataRepositoryTaskType = "EXPORT_TO_REPOSITORY" | "IMPORT_METADATA_FROM_REPOSITORY" | "RELEASE_DATA_FROM_FILESYSTEM" | "AUTO_RELEASE_DATA"
+
+local type OpenZFSCopyStrategy = "CLONE" | "FULL_COPY" | "INCREMENTAL_COPY"
+
+local type BackupLifecycle = "AVAILABLE" | "CREATING" | "TRANSFERRING" | "DELETED" | "FAILED" | "PENDING" | "COPYING"
+
+local type VolumeType = "ONTAP" | "OPENZFS"
+
+local type StorageVirtualMachineLifecycle = "CREATED" | "CREATING" | "DELETING" | "FAILED" | "MISCONFIGURED" | "PENDING"
+
+local type StorageType = "SSD" | "HDD" | "INTELLIGENT_TIERING"
 
 local type StorageVirtualMachineRootVolumeSecurityStyle = "UNIX" | "NTFS" | "MIXED"
 

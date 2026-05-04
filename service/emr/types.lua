@@ -15,6 +15,7 @@ M.InstanceFleetType = {
 
 M.VolumeSpecification = {
     type = "structure",
+    id = "VolumeSpecification",
     members = {
         VolumeType = {
             type = "string",
@@ -39,6 +40,7 @@ M.VolumeSpecification = {
 
 M.EbsBlockDeviceConfig = {
     type = "structure",
+    id = "EbsBlockDeviceConfig",
     members = {
         VolumeSpecification = setmetatable({ traits = {
             required = true,
@@ -51,6 +53,7 @@ M.EbsBlockDeviceConfig = {
 
 M.EbsConfiguration = {
     type = "structure",
+    id = "EbsConfiguration",
     members = {
         EbsBlockDeviceConfigs = {
             type = "list",
@@ -78,6 +81,7 @@ M.OnDemandCapacityReservationUsageStrategy = {
 
 M.OnDemandCapacityReservationOptions = {
     type = "structure",
+    id = "OnDemandCapacityReservationOptions",
     members = {
         UsageStrategy = {
             type = "string",
@@ -93,6 +97,7 @@ M.OnDemandCapacityReservationOptions = {
 
 M.OnDemandProvisioningSpecification = {
     type = "structure",
+    id = "OnDemandProvisioningSpecification",
     members = {
         AllocationStrategy = {
             type = "string",
@@ -119,6 +124,7 @@ M.SpotProvisioningTimeoutAction = {
 
 M.SpotProvisioningSpecification = {
     type = "structure",
+    id = "SpotProvisioningSpecification",
     members = {
         TimeoutDurationMinutes = {
             type = "integer",
@@ -143,6 +149,7 @@ M.SpotProvisioningSpecification = {
 
 M.InstanceFleetProvisioningSpecifications = {
     type = "structure",
+    id = "InstanceFleetProvisioningSpecifications",
     members = {
         SpotSpecification = M.SpotProvisioningSpecification,
         OnDemandSpecification = M.OnDemandProvisioningSpecification,
@@ -151,6 +158,7 @@ M.InstanceFleetProvisioningSpecifications = {
 
 M.OnDemandResizingSpecification = {
     type = "structure",
+    id = "OnDemandResizingSpecification",
     members = {
         TimeoutDurationMinutes = {
             type = "integer",
@@ -164,6 +172,7 @@ M.OnDemandResizingSpecification = {
 
 M.SpotResizingSpecification = {
     type = "structure",
+    id = "SpotResizingSpecification",
     members = {
         TimeoutDurationMinutes = {
             type = "integer",
@@ -176,6 +185,7 @@ M.SpotResizingSpecification = {
 
 M.InstanceFleetResizingSpecifications = {
     type = "structure",
+    id = "InstanceFleetResizingSpecifications",
     members = {
         SpotResizeSpecification = M.SpotResizingSpecification,
         OnDemandResizeSpecification = M.OnDemandResizingSpecification,
@@ -184,6 +194,7 @@ M.InstanceFleetResizingSpecifications = {
 
 M.AddInstanceFleetOutput = {
     type = "structure",
+    id = "AddInstanceFleetOutput",
     members = {
         ClusterId = {
             type = "string",
@@ -199,6 +210,7 @@ M.AddInstanceFleetOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -209,6 +221,7 @@ M.InternalServerException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         ErrorCode = {
@@ -222,6 +235,7 @@ M.InvalidRequestException = {
 
 M.ScalingConstraints = {
     type = "structure",
+    id = "ScalingConstraints",
     members = {
         MinCapacity = {
             type = "integer",
@@ -251,6 +265,7 @@ M.AdjustmentType = {
 
 M.SimpleScalingPolicyConfiguration = {
     type = "structure",
+    id = "SimpleScalingPolicyConfiguration",
     members = {
         AdjustmentType = {
             type = "string",
@@ -269,6 +284,7 @@ M.SimpleScalingPolicyConfiguration = {
 
 M.ScalingAction = {
     type = "structure",
+    id = "ScalingAction",
     members = {
         Market = {
             type = "string",
@@ -288,6 +304,7 @@ M.ComparisonOperator = {
 
 M.MetricDimension = {
     type = "structure",
+    id = "MetricDimension",
     members = {
         Key = {
             type = "string",
@@ -338,6 +355,7 @@ M.Unit = {
 
 M.CloudWatchAlarmDefinition = {
     type = "structure",
+    id = "CloudWatchAlarmDefinition",
     members = {
         ComparisonOperator = {
             type = "string",
@@ -384,6 +402,7 @@ M.CloudWatchAlarmDefinition = {
 
 M.ScalingTrigger = {
     type = "structure",
+    id = "ScalingTrigger",
     members = {
         CloudWatchAlarmDefinition = setmetatable({ traits = {
             required = true,
@@ -393,6 +412,7 @@ M.ScalingTrigger = {
 
 M.ScalingRule = {
     type = "structure",
+    id = "ScalingRule",
     members = {
         Name = {
             type = "string",
@@ -414,6 +434,7 @@ M.ScalingRule = {
 
 M.AutoScalingPolicy = {
     type = "structure",
+    id = "AutoScalingPolicy",
     members = {
         Constraints = setmetatable({ traits = {
             required = true,
@@ -436,6 +457,7 @@ M.InstanceRoleType = {
 
 M.AddInstanceGroupsOutput = {
     type = "structure",
+    id = "AddInstanceGroupsOutput",
     members = {
         JobFlowId = {
             type = "string",
@@ -452,11 +474,13 @@ M.AddInstanceGroupsOutput = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
 }
 
 M.KeyValue = {
     type = "structure",
+    id = "KeyValue",
     members = {
         Key = {
             type = "string",
@@ -469,6 +493,7 @@ M.KeyValue = {
 
 M.HadoopJarStepConfig = {
     type = "structure",
+    id = "HadoopJarStepConfig",
     members = {
         Properties = {
             type = "list",
@@ -492,6 +517,7 @@ M.HadoopJarStepConfig = {
 
 M.S3MonitoringConfiguration = {
     type = "structure",
+    id = "S3MonitoringConfiguration",
     members = {
         LogUri = {
             type = "string",
@@ -504,6 +530,7 @@ M.S3MonitoringConfiguration = {
 
 M.StepMonitoringConfiguration = {
     type = "structure",
+    id = "StepMonitoringConfiguration",
     members = {
         S3MonitoringConfiguration = M.S3MonitoringConfiguration,
     },
@@ -511,6 +538,7 @@ M.StepMonitoringConfiguration = {
 
 M.StepConfig = {
     type = "structure",
+    id = "StepConfig",
     members = {
         Name = {
             type = "string",
@@ -530,6 +558,7 @@ M.StepConfig = {
 
 M.AddJobFlowStepsInput = {
     type = "structure",
+    id = "AddJobFlowStepsInput",
     members = {
         JobFlowId = {
             type = "string",
@@ -552,6 +581,7 @@ M.AddJobFlowStepsInput = {
 
 M.AddJobFlowStepsOutput = {
     type = "structure",
+    id = "AddJobFlowStepsOutput",
     members = {
         StepIds = {
             type = "list",
@@ -562,6 +592,7 @@ M.AddJobFlowStepsOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -574,6 +605,7 @@ M.Tag = {
 
 M.AddTagsInput = {
     type = "structure",
+    id = "AddTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -593,10 +625,12 @@ M.AddTagsInput = {
 
 M.AddTagsOutput = {
     type = "structure",
+    id = "AddTagsOutput",
 }
 
 M.Application = {
     type = "structure",
+    id = "Application",
     members = {
         Name = {
             type = "string",
@@ -638,6 +672,7 @@ M.AutoScalingPolicyStateChangeReasonCode = {
 
 M.AutoScalingPolicyStateChangeReason = {
     type = "structure",
+    id = "AutoScalingPolicyStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -650,6 +685,7 @@ M.AutoScalingPolicyStateChangeReason = {
 
 M.AutoScalingPolicyStatus = {
     type = "structure",
+    id = "AutoScalingPolicyStatus",
     members = {
         State = {
             type = "string",
@@ -660,6 +696,7 @@ M.AutoScalingPolicyStatus = {
 
 M.AutoScalingPolicyDescription = {
     type = "structure",
+    id = "AutoScalingPolicyDescription",
     members = {
         Status = M.AutoScalingPolicyStatus,
         Constraints = M.ScalingConstraints,
@@ -672,6 +709,7 @@ M.AutoScalingPolicyDescription = {
 
 M.AutoTerminationPolicy = {
     type = "structure",
+    id = "AutoTerminationPolicy",
     members = {
         IdleTimeout = {
             type = "long",
@@ -681,6 +719,7 @@ M.AutoTerminationPolicy = {
 
 M.PortRange = {
     type = "structure",
+    id = "PortRange",
     members = {
         MinRange = {
             type = "integer",
@@ -696,6 +735,7 @@ M.PortRange = {
 
 M.BlockPublicAccessConfigurationMetadata = {
     type = "structure",
+    id = "BlockPublicAccessConfigurationMetadata",
     members = {
         CreationDateTime = {
             type = "timestamp",
@@ -714,6 +754,7 @@ M.BlockPublicAccessConfigurationMetadata = {
 
 M.ScriptBootstrapActionConfig = {
     type = "structure",
+    id = "ScriptBootstrapActionConfig",
     members = {
         Path = {
             type = "string",
@@ -730,6 +771,7 @@ M.ScriptBootstrapActionConfig = {
 
 M.BootstrapActionConfig = {
     type = "structure",
+    id = "BootstrapActionConfig",
     members = {
         Name = {
             type = "string",
@@ -745,6 +787,7 @@ M.BootstrapActionConfig = {
 
 M.BootstrapActionDetail = {
     type = "structure",
+    id = "BootstrapActionDetail",
     members = {
         BootstrapActionConfig = M.BootstrapActionConfig,
     },
@@ -757,6 +800,7 @@ M.StepCancellationOption = {
 
 M.CancelStepsInput = {
     type = "structure",
+    id = "CancelStepsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -784,6 +828,7 @@ M.CancelStepsRequestStatus = {
 
 M.CancelStepsInfo = {
     type = "structure",
+    id = "CancelStepsInfo",
     members = {
         StepId = {
             type = "string",
@@ -799,6 +844,7 @@ M.CancelStepsInfo = {
 
 M.CancelStepsOutput = {
     type = "structure",
+    id = "CancelStepsOutput",
     members = {
         CancelStepsInfoList = {
             type = "list",
@@ -809,6 +855,7 @@ M.CancelStepsOutput = {
 
 M.CloudWatchLogConfiguration = {
     type = "structure",
+    id = "CloudWatchLogConfiguration",
     members = {
         Enabled = {
             type = "boolean",
@@ -835,6 +882,7 @@ M.CloudWatchLogConfiguration = {
 
 M.Ec2InstanceAttributes = {
     type = "structure",
+    id = "Ec2InstanceAttributes",
     members = {
         Ec2KeyName = {
             type = "string",
@@ -883,6 +931,7 @@ M.InstanceCollectionType = {
 
 M.KerberosAttributes = {
     type = "structure",
+    id = "KerberosAttributes",
     members = {
         Realm = {
             type = "string",
@@ -922,6 +971,7 @@ M.LogUploadPolicyValue = {
 
 M.S3LoggingConfiguration = {
     type = "structure",
+    id = "S3LoggingConfiguration",
     members = {
         LogTypeUploadPolicy = {
             type = "map",
@@ -933,6 +983,7 @@ M.S3LoggingConfiguration = {
 
 M.MonitoringConfiguration = {
     type = "structure",
+    id = "MonitoringConfiguration",
     members = {
         CloudWatchLogConfiguration = M.CloudWatchLogConfiguration,
         S3LoggingConfiguration = M.S3LoggingConfiguration,
@@ -948,6 +999,7 @@ M.PlacementGroupStrategy = {
 
 M.PlacementGroupConfig = {
     type = "structure",
+    id = "PlacementGroupConfig",
     members = {
         InstanceRole = {
             type = "string",
@@ -973,6 +1025,7 @@ M.ScaleDownBehavior = {
 
 M.ErrorDetail = {
     type = "structure",
+    id = "ErrorDetail",
     members = {
         ErrorCode = {
             type = "string",
@@ -1010,6 +1063,7 @@ M.ClusterStateChangeReasonCode = {
 
 M.ClusterStateChangeReason = {
     type = "structure",
+    id = "ClusterStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -1022,6 +1076,7 @@ M.ClusterStateChangeReason = {
 
 M.ClusterTimeline = {
     type = "structure",
+    id = "ClusterTimeline",
     members = {
         CreationDateTime = {
             type = "timestamp",
@@ -1037,6 +1092,7 @@ M.ClusterTimeline = {
 
 M.ClusterStatus = {
     type = "structure",
+    id = "ClusterStatus",
     members = {
         State = {
             type = "string",
@@ -1052,6 +1108,7 @@ M.ClusterStatus = {
 
 M.ClusterSummary = {
     type = "structure",
+    id = "ClusterSummary",
     members = {
         Id = {
             type = "string",
@@ -1074,6 +1131,7 @@ M.ClusterSummary = {
 
 M.Command = {
     type = "structure",
+    id = "Command",
     members = {
         Name = {
             type = "string",
@@ -1096,6 +1154,7 @@ M.ComputeLimitsUnitType = {
 
 M.ComputeLimits = {
     type = "structure",
+    id = "ComputeLimits",
     members = {
         UnitType = {
             type = "string",
@@ -1126,6 +1185,7 @@ M.ComputeLimits = {
 
 M.EMRContainersConfig = {
     type = "structure",
+    id = "EMRContainersConfig",
     members = {
         JobRunId = {
             type = "string",
@@ -1141,6 +1201,7 @@ M.ProfilerType = {
 
 M.CreatePersistentAppUIInput = {
     type = "structure",
+    id = "CreatePersistentAppUIInput",
     members = {
         TargetResourceArn = {
             type = "string",
@@ -1164,6 +1225,7 @@ M.CreatePersistentAppUIInput = {
 
 M.CreatePersistentAppUIOutput = {
     type = "structure",
+    id = "CreatePersistentAppUIOutput",
     members = {
         PersistentAppUIId = {
             type = "string",
@@ -1176,6 +1238,7 @@ M.CreatePersistentAppUIOutput = {
 
 M.CreateSecurityConfigurationInput = {
     type = "structure",
+    id = "CreateSecurityConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -1194,6 +1257,7 @@ M.CreateSecurityConfigurationInput = {
 
 M.CreateSecurityConfigurationOutput = {
     type = "structure",
+    id = "CreateSecurityConfigurationOutput",
     members = {
         Name = {
             type = "string",
@@ -1217,6 +1281,7 @@ M.IdcUserAssignment = {
 
 M.CreateStudioInput = {
     type = "structure",
+    id = "CreateStudioInput",
     members = {
         Name = {
             type = "string",
@@ -1300,6 +1365,7 @@ M.CreateStudioInput = {
 
 M.CreateStudioOutput = {
     type = "structure",
+    id = "CreateStudioOutput",
     members = {
         StudioId = {
             type = "string",
@@ -1317,6 +1383,7 @@ M.IdentityType = {
 
 M.CreateStudioSessionMappingInput = {
     type = "structure",
+    id = "CreateStudioSessionMappingInput",
     members = {
         StudioId = {
             type = "string",
@@ -1347,10 +1414,12 @@ M.CreateStudioSessionMappingInput = {
 
 M.CreateStudioSessionMappingOutput = {
     type = "structure",
+    id = "CreateStudioSessionMappingOutput",
 }
 
 M.UsernamePassword = {
     type = "structure",
+    id = "UsernamePassword",
     members = {
         Username = {
             type = "string",
@@ -1363,6 +1432,7 @@ M.UsernamePassword = {
 
 M.Credentials = {
     type = "union",
+    id = "Credentials",
     members = {
         UsernamePassword = M.UsernamePassword,
     },
@@ -1370,6 +1440,7 @@ M.Credentials = {
 
 M.DeleteSecurityConfigurationInput = {
     type = "structure",
+    id = "DeleteSecurityConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -1382,10 +1453,12 @@ M.DeleteSecurityConfigurationInput = {
 
 M.DeleteSecurityConfigurationOutput = {
     type = "structure",
+    id = "DeleteSecurityConfigurationOutput",
 }
 
 M.DeleteStudioInput = {
     type = "structure",
+    id = "DeleteStudioInput",
     members = {
         StudioId = {
             type = "string",
@@ -1398,10 +1471,12 @@ M.DeleteStudioInput = {
 
 M.DeleteStudioOutput = {
     type = "structure",
+    id = "DeleteStudioOutput",
 }
 
 M.DeleteStudioSessionMappingInput = {
     type = "structure",
+    id = "DeleteStudioSessionMappingInput",
     members = {
         StudioId = {
             type = "string",
@@ -1426,10 +1501,12 @@ M.DeleteStudioSessionMappingInput = {
 
 M.DeleteStudioSessionMappingOutput = {
     type = "structure",
+    id = "DeleteStudioSessionMappingOutput",
 }
 
 M.DescribeClusterInput = {
     type = "structure",
+    id = "DescribeClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -1453,6 +1530,7 @@ M.JobFlowExecutionState = {
 
 M.DescribeJobFlowsInput = {
     type = "structure",
+    id = "DescribeJobFlowsInput",
     members = {
         CreatedAfter = {
             type = "timestamp",
@@ -1473,6 +1551,7 @@ M.DescribeJobFlowsInput = {
 
 M.JobFlowExecutionStatusDetail = {
     type = "structure",
+    id = "JobFlowExecutionStatusDetail",
     members = {
         State = {
             type = "string",
@@ -1517,6 +1596,7 @@ M.InstanceGroupState = {
 
 M.InstanceGroupDetail = {
     type = "structure",
+    id = "InstanceGroupDetail",
     members = {
         InstanceGroupId = {
             type = "string",
@@ -1589,6 +1669,7 @@ M.InstanceGroupDetail = {
 
 M.PlacementType = {
     type = "structure",
+    id = "PlacementType",
     members = {
         AvailabilityZone = {
             type = "string",
@@ -1602,6 +1683,7 @@ M.PlacementType = {
 
 M.JobFlowInstancesDetail = {
     type = "structure",
+    id = "JobFlowInstancesDetail",
     members = {
         MasterInstanceType = {
             type = "string",
@@ -1668,6 +1750,7 @@ M.StepExecutionState = {
 
 M.StepExecutionStatusDetail = {
     type = "structure",
+    id = "StepExecutionStatusDetail",
     members = {
         State = {
             type = "string",
@@ -1695,6 +1778,7 @@ M.StepExecutionStatusDetail = {
 
 M.StepDetail = {
     type = "structure",
+    id = "StepDetail",
     members = {
         StepConfig = setmetatable({ traits = {
             required = true,
@@ -1707,6 +1791,7 @@ M.StepDetail = {
 
 M.JobFlowDetail = {
     type = "structure",
+    id = "JobFlowDetail",
     members = {
         JobFlowId = {
             type = "string",
@@ -1767,6 +1852,7 @@ M.JobFlowDetail = {
 
 M.DescribeJobFlowsOutput = {
     type = "structure",
+    id = "DescribeJobFlowsOutput",
     members = {
         JobFlows = {
             type = "list",
@@ -1777,6 +1863,7 @@ M.DescribeJobFlowsOutput = {
 
 M.DescribeNotebookExecutionInput = {
     type = "structure",
+    id = "DescribeNotebookExecutionInput",
     members = {
         NotebookExecutionId = {
             type = "string",
@@ -1793,6 +1880,7 @@ M.ExecutionEngineType = {
 
 M.ExecutionEngineConfig = {
     type = "structure",
+    id = "ExecutionEngineConfig",
     members = {
         Id = {
             type = "string",
@@ -1814,6 +1902,7 @@ M.ExecutionEngineConfig = {
 
 M.NotebookS3LocationForOutput = {
     type = "structure",
+    id = "NotebookS3LocationForOutput",
     members = {
         Bucket = {
             type = "string",
@@ -1830,6 +1919,7 @@ M.OutputNotebookFormat = {
 
 M.OutputNotebookS3LocationForOutput = {
     type = "structure",
+    id = "OutputNotebookS3LocationForOutput",
     members = {
         Bucket = {
             type = "string",
@@ -1855,6 +1945,7 @@ M.NotebookExecutionStatus = {
 
 M.NotebookExecution = {
     type = "structure",
+    id = "NotebookExecution",
     members = {
         NotebookExecutionId = {
             type = "string",
@@ -1909,6 +2000,7 @@ M.NotebookExecution = {
 
 M.DescribeNotebookExecutionOutput = {
     type = "structure",
+    id = "DescribeNotebookExecutionOutput",
     members = {
         NotebookExecution = M.NotebookExecution,
     },
@@ -1916,6 +2008,7 @@ M.DescribeNotebookExecutionOutput = {
 
 M.DescribePersistentAppUIInput = {
     type = "structure",
+    id = "DescribePersistentAppUIInput",
     members = {
         PersistentAppUIId = {
             type = "string",
@@ -1934,6 +2027,7 @@ M.PersistentAppUIType = {
 
 M.PersistentAppUI = {
     type = "structure",
+    id = "PersistentAppUI",
     members = {
         PersistentAppUIId = {
             type = "string",
@@ -1966,6 +2060,7 @@ M.PersistentAppUI = {
 
 M.DescribePersistentAppUIOutput = {
     type = "structure",
+    id = "DescribePersistentAppUIOutput",
     members = {
         PersistentAppUI = M.PersistentAppUI,
     },
@@ -1973,6 +2068,7 @@ M.DescribePersistentAppUIOutput = {
 
 M.DescribeReleaseLabelInput = {
     type = "structure",
+    id = "DescribeReleaseLabelInput",
     members = {
         ReleaseLabel = {
             type = "string",
@@ -1988,6 +2084,7 @@ M.DescribeReleaseLabelInput = {
 
 M.SimplifiedApplication = {
     type = "structure",
+    id = "SimplifiedApplication",
     members = {
         Name = {
             type = "string",
@@ -2000,6 +2097,7 @@ M.SimplifiedApplication = {
 
 M.OSRelease = {
     type = "structure",
+    id = "OSRelease",
     members = {
         Label = {
             type = "string",
@@ -2009,6 +2107,7 @@ M.OSRelease = {
 
 M.DescribeReleaseLabelOutput = {
     type = "structure",
+    id = "DescribeReleaseLabelOutput",
     members = {
         ReleaseLabel = {
             type = "string",
@@ -2029,6 +2128,7 @@ M.DescribeReleaseLabelOutput = {
 
 M.DescribeSecurityConfigurationInput = {
     type = "structure",
+    id = "DescribeSecurityConfigurationInput",
     members = {
         Name = {
             type = "string",
@@ -2041,6 +2141,7 @@ M.DescribeSecurityConfigurationInput = {
 
 M.DescribeSecurityConfigurationOutput = {
     type = "structure",
+    id = "DescribeSecurityConfigurationOutput",
     members = {
         Name = {
             type = "string",
@@ -2056,6 +2157,7 @@ M.DescribeSecurityConfigurationOutput = {
 
 M.DescribeStepInput = {
     type = "structure",
+    id = "DescribeStepInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2074,6 +2176,7 @@ M.DescribeStepInput = {
 
 M.HadoopStepConfig = {
     type = "structure",
+    id = "HadoopStepConfig",
     members = {
         Jar = {
             type = "string",
@@ -2095,6 +2198,7 @@ M.HadoopStepConfig = {
 
 M.FailureDetails = {
     type = "structure",
+    id = "FailureDetails",
     members = {
         Reason = {
             type = "string",
@@ -2124,6 +2228,7 @@ M.StepStateChangeReasonCode = {
 
 M.StepStateChangeReason = {
     type = "structure",
+    id = "StepStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -2136,6 +2241,7 @@ M.StepStateChangeReason = {
 
 M.StepTimeline = {
     type = "structure",
+    id = "StepTimeline",
     members = {
         CreationDateTime = {
             type = "timestamp",
@@ -2151,6 +2257,7 @@ M.StepTimeline = {
 
 M.StepStatus = {
     type = "structure",
+    id = "StepStatus",
     members = {
         State = {
             type = "string",
@@ -2163,6 +2270,7 @@ M.StepStatus = {
 
 M.Step = {
     type = "structure",
+    id = "Step",
     members = {
         Id = {
             type = "string",
@@ -2189,6 +2297,7 @@ M.Step = {
 
 M.DescribeStepOutput = {
     type = "structure",
+    id = "DescribeStepOutput",
     members = {
         Step = M.Step,
     },
@@ -2196,6 +2305,7 @@ M.DescribeStepOutput = {
 
 M.DescribeStudioInput = {
     type = "structure",
+    id = "DescribeStudioInput",
     members = {
         StudioId = {
             type = "string",
@@ -2208,6 +2318,7 @@ M.DescribeStudioInput = {
 
 M.Studio = {
     type = "structure",
+    id = "Studio",
     members = {
         StudioId = {
             type = "string",
@@ -2279,6 +2390,7 @@ M.Studio = {
 
 M.DescribeStudioOutput = {
     type = "structure",
+    id = "DescribeStudioOutput",
     members = {
         Studio = M.Studio,
     },
@@ -2286,6 +2398,7 @@ M.DescribeStudioOutput = {
 
 M.EbsBlockDevice = {
     type = "structure",
+    id = "EbsBlockDevice",
     members = {
         VolumeSpecification = M.VolumeSpecification,
         Device = {
@@ -2296,6 +2409,7 @@ M.EbsBlockDevice = {
 
 M.EbsVolume = {
     type = "structure",
+    id = "EbsVolume",
     members = {
         Device = {
             type = "string",
@@ -2308,6 +2422,7 @@ M.EbsVolume = {
 
 M.GetAutoTerminationPolicyInput = {
     type = "structure",
+    id = "GetAutoTerminationPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2320,6 +2435,7 @@ M.GetAutoTerminationPolicyInput = {
 
 M.GetAutoTerminationPolicyOutput = {
     type = "structure",
+    id = "GetAutoTerminationPolicyOutput",
     members = {
         AutoTerminationPolicy = M.AutoTerminationPolicy,
     },
@@ -2327,10 +2443,12 @@ M.GetAutoTerminationPolicyOutput = {
 
 M.GetBlockPublicAccessConfigurationInput = {
     type = "structure",
+    id = "GetBlockPublicAccessConfigurationInput",
 }
 
 M.GetClusterSessionCredentialsInput = {
     type = "structure",
+    id = "GetClusterSessionCredentialsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2346,6 +2464,7 @@ M.GetClusterSessionCredentialsInput = {
 
 M.GetClusterSessionCredentialsOutput = {
     type = "structure",
+    id = "GetClusterSessionCredentialsOutput",
     members = {
         Credentials = M.Credentials,
         ExpiresAt = {
@@ -2356,6 +2475,7 @@ M.GetClusterSessionCredentialsOutput = {
 
 M.GetManagedScalingPolicyInput = {
     type = "structure",
+    id = "GetManagedScalingPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2373,6 +2493,7 @@ M.ScalingStrategy = {
 
 M.ManagedScalingPolicy = {
     type = "structure",
+    id = "ManagedScalingPolicy",
     members = {
         ComputeLimits = M.ComputeLimits,
         UtilizationPerformanceIndex = {
@@ -2386,6 +2507,7 @@ M.ManagedScalingPolicy = {
 
 M.GetManagedScalingPolicyOutput = {
     type = "structure",
+    id = "GetManagedScalingPolicyOutput",
     members = {
         ManagedScalingPolicy = M.ManagedScalingPolicy,
     },
@@ -2402,6 +2524,7 @@ M.OnClusterAppUIType = {
 
 M.GetOnClusterAppUIPresignedURLInput = {
     type = "structure",
+    id = "GetOnClusterAppUIPresignedURLInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2426,6 +2549,7 @@ M.GetOnClusterAppUIPresignedURLInput = {
 
 M.GetOnClusterAppUIPresignedURLOutput = {
     type = "structure",
+    id = "GetOnClusterAppUIPresignedURLOutput",
     members = {
         PresignedURLReady = {
             type = "boolean",
@@ -2438,6 +2562,7 @@ M.GetOnClusterAppUIPresignedURLOutput = {
 
 M.GetPersistentAppUIPresignedURLInput = {
     type = "structure",
+    id = "GetPersistentAppUIPresignedURLInput",
     members = {
         PersistentAppUIId = {
             type = "string",
@@ -2462,6 +2587,7 @@ M.GetPersistentAppUIPresignedURLInput = {
 
 M.GetPersistentAppUIPresignedURLOutput = {
     type = "structure",
+    id = "GetPersistentAppUIPresignedURLOutput",
     members = {
         PresignedURLReady = {
             type = "boolean",
@@ -2474,6 +2600,7 @@ M.GetPersistentAppUIPresignedURLOutput = {
 
 M.GetStudioSessionMappingInput = {
     type = "structure",
+    id = "GetStudioSessionMappingInput",
     members = {
         StudioId = {
             type = "string",
@@ -2498,6 +2625,7 @@ M.GetStudioSessionMappingInput = {
 
 M.SessionMappingDetail = {
     type = "structure",
+    id = "SessionMappingDetail",
     members = {
         StudioId = {
             type = "string",
@@ -2525,6 +2653,7 @@ M.SessionMappingDetail = {
 
 M.GetStudioSessionMappingOutput = {
     type = "structure",
+    id = "GetStudioSessionMappingOutput",
     members = {
         SessionMapping = M.SessionMappingDetail,
     },
@@ -2532,6 +2661,7 @@ M.GetStudioSessionMappingOutput = {
 
 M.ListBootstrapActionsInput = {
     type = "structure",
+    id = "ListBootstrapActionsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2547,6 +2677,7 @@ M.ListBootstrapActionsInput = {
 
 M.ListBootstrapActionsOutput = {
     type = "structure",
+    id = "ListBootstrapActionsOutput",
     members = {
         BootstrapActions = {
             type = "list",
@@ -2560,6 +2691,7 @@ M.ListBootstrapActionsOutput = {
 
 M.ListClustersInput = {
     type = "structure",
+    id = "ListClustersInput",
     members = {
         CreatedAfter = {
             type = "timestamp",
@@ -2579,6 +2711,7 @@ M.ListClustersInput = {
 
 M.ListClustersOutput = {
     type = "structure",
+    id = "ListClustersOutput",
     members = {
         Clusters = {
             type = "list",
@@ -2592,6 +2725,7 @@ M.ListClustersOutput = {
 
 M.ListInstanceFleetsInput = {
     type = "structure",
+    id = "ListInstanceFleetsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2625,6 +2759,7 @@ M.InstanceFleetStateChangeReasonCode = {
 
 M.InstanceFleetStateChangeReason = {
     type = "structure",
+    id = "InstanceFleetStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -2637,6 +2772,7 @@ M.InstanceFleetStateChangeReason = {
 
 M.InstanceFleetTimeline = {
     type = "structure",
+    id = "InstanceFleetTimeline",
     members = {
         CreationDateTime = {
             type = "timestamp",
@@ -2652,6 +2788,7 @@ M.InstanceFleetTimeline = {
 
 M.InstanceFleetStatus = {
     type = "structure",
+    id = "InstanceFleetStatus",
     members = {
         State = {
             type = "string",
@@ -2663,6 +2800,7 @@ M.InstanceFleetStatus = {
 
 M.ListInstanceGroupsInput = {
     type = "structure",
+    id = "ListInstanceGroupsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2684,6 +2822,7 @@ M.InstanceGroupType = {
 
 M.InstanceResizePolicy = {
     type = "structure",
+    id = "InstanceResizePolicy",
     members = {
         InstancesToTerminate = {
             type = "list",
@@ -2701,6 +2840,7 @@ M.InstanceResizePolicy = {
 
 M.ShrinkPolicy = {
     type = "structure",
+    id = "ShrinkPolicy",
     members = {
         DecommissionTimeout = {
             type = "integer",
@@ -2718,6 +2858,7 @@ M.InstanceGroupStateChangeReasonCode = {
 
 M.InstanceGroupStateChangeReason = {
     type = "structure",
+    id = "InstanceGroupStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -2730,6 +2871,7 @@ M.InstanceGroupStateChangeReason = {
 
 M.InstanceGroupTimeline = {
     type = "structure",
+    id = "InstanceGroupTimeline",
     members = {
         CreationDateTime = {
             type = "timestamp",
@@ -2745,6 +2887,7 @@ M.InstanceGroupTimeline = {
 
 M.InstanceGroupStatus = {
     type = "structure",
+    id = "InstanceGroupStatus",
     members = {
         State = {
             type = "string",
@@ -2764,6 +2907,7 @@ M.InstanceState = {
 
 M.ListInstancesInput = {
     type = "structure",
+    id = "ListInstancesInput",
     members = {
         ClusterId = {
             type = "string",
@@ -2804,6 +2948,7 @@ M.InstanceStateChangeReasonCode = {
 
 M.InstanceStateChangeReason = {
     type = "structure",
+    id = "InstanceStateChangeReason",
     members = {
         Code = {
             type = "string",
@@ -2816,6 +2961,7 @@ M.InstanceStateChangeReason = {
 
 M.InstanceTimeline = {
     type = "structure",
+    id = "InstanceTimeline",
     members = {
         CreationDateTime = {
             type = "timestamp",
@@ -2831,6 +2977,7 @@ M.InstanceTimeline = {
 
 M.InstanceStatus = {
     type = "structure",
+    id = "InstanceStatus",
     members = {
         State = {
             type = "string",
@@ -2842,6 +2989,7 @@ M.InstanceStatus = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         Id = {
             type = "string",
@@ -2883,6 +3031,7 @@ M.Instance = {
 
 M.ListInstancesOutput = {
     type = "structure",
+    id = "ListInstancesOutput",
     members = {
         Instances = {
             type = "list",
@@ -2896,6 +3045,7 @@ M.ListInstancesOutput = {
 
 M.ListNotebookExecutionsInput = {
     type = "structure",
+    id = "ListNotebookExecutionsInput",
     members = {
         EditorId = {
             type = "string",
@@ -2920,6 +3070,7 @@ M.ListNotebookExecutionsInput = {
 
 M.NotebookExecutionSummary = {
     type = "structure",
+    id = "NotebookExecutionSummary",
     members = {
         NotebookExecutionId = {
             type = "string",
@@ -2948,6 +3099,7 @@ M.NotebookExecutionSummary = {
 
 M.ListNotebookExecutionsOutput = {
     type = "structure",
+    id = "ListNotebookExecutionsOutput",
     members = {
         NotebookExecutions = {
             type = "list",
@@ -2961,6 +3113,7 @@ M.ListNotebookExecutionsOutput = {
 
 M.ReleaseLabelFilter = {
     type = "structure",
+    id = "ReleaseLabelFilter",
     members = {
         Prefix = {
             type = "string",
@@ -2973,6 +3126,7 @@ M.ReleaseLabelFilter = {
 
 M.ListReleaseLabelsInput = {
     type = "structure",
+    id = "ListReleaseLabelsInput",
     members = {
         Filters = M.ReleaseLabelFilter,
         NextToken = {
@@ -2986,6 +3140,7 @@ M.ListReleaseLabelsInput = {
 
 M.ListReleaseLabelsOutput = {
     type = "structure",
+    id = "ListReleaseLabelsOutput",
     members = {
         ReleaseLabels = {
             type = "list",
@@ -2999,6 +3154,7 @@ M.ListReleaseLabelsOutput = {
 
 M.ListSecurityConfigurationsInput = {
     type = "structure",
+    id = "ListSecurityConfigurationsInput",
     members = {
         Marker = {
             type = "string",
@@ -3008,6 +3164,7 @@ M.ListSecurityConfigurationsInput = {
 
 M.SecurityConfigurationSummary = {
     type = "structure",
+    id = "SecurityConfigurationSummary",
     members = {
         Name = {
             type = "string",
@@ -3020,6 +3177,7 @@ M.SecurityConfigurationSummary = {
 
 M.ListSecurityConfigurationsOutput = {
     type = "structure",
+    id = "ListSecurityConfigurationsOutput",
     members = {
         SecurityConfigurations = {
             type = "list",
@@ -3033,6 +3191,7 @@ M.ListSecurityConfigurationsOutput = {
 
 M.ListStepsInput = {
     type = "structure",
+    id = "ListStepsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3056,6 +3215,7 @@ M.ListStepsInput = {
 
 M.StepSummary = {
     type = "structure",
+    id = "StepSummary",
     members = {
         Id = {
             type = "string",
@@ -3079,6 +3239,7 @@ M.StepSummary = {
 
 M.ListStepsOutput = {
     type = "structure",
+    id = "ListStepsOutput",
     members = {
         Steps = {
             type = "list",
@@ -3092,6 +3253,7 @@ M.ListStepsOutput = {
 
 M.ListStudiosInput = {
     type = "structure",
+    id = "ListStudiosInput",
     members = {
         Marker = {
             type = "string",
@@ -3101,6 +3263,7 @@ M.ListStudiosInput = {
 
 M.StudioSummary = {
     type = "structure",
+    id = "StudioSummary",
     members = {
         StudioId = {
             type = "string",
@@ -3128,6 +3291,7 @@ M.StudioSummary = {
 
 M.ListStudiosOutput = {
     type = "structure",
+    id = "ListStudiosOutput",
     members = {
         Studios = {
             type = "list",
@@ -3141,6 +3305,7 @@ M.ListStudiosOutput = {
 
 M.ListStudioSessionMappingsInput = {
     type = "structure",
+    id = "ListStudioSessionMappingsInput",
     members = {
         StudioId = {
             type = "string",
@@ -3156,6 +3321,7 @@ M.ListStudioSessionMappingsInput = {
 
 M.SessionMappingSummary = {
     type = "structure",
+    id = "SessionMappingSummary",
     members = {
         StudioId = {
             type = "string",
@@ -3180,6 +3346,7 @@ M.SessionMappingSummary = {
 
 M.ListStudioSessionMappingsOutput = {
     type = "structure",
+    id = "ListStudioSessionMappingsOutput",
     members = {
         SessionMappings = {
             type = "list",
@@ -3193,6 +3360,7 @@ M.ListStudioSessionMappingsOutput = {
 
 M.ListSupportedInstanceTypesInput = {
     type = "structure",
+    id = "ListSupportedInstanceTypesInput",
     members = {
         ReleaseLabel = {
             type = "string",
@@ -3208,6 +3376,7 @@ M.ListSupportedInstanceTypesInput = {
 
 M.SupportedInstanceType = {
     type = "structure",
+    id = "SupportedInstanceType",
     members = {
         Type = {
             type = "string",
@@ -3247,6 +3416,7 @@ M.SupportedInstanceType = {
 
 M.ListSupportedInstanceTypesOutput = {
     type = "structure",
+    id = "ListSupportedInstanceTypesOutput",
     members = {
         SupportedInstanceTypes = {
             type = "list",
@@ -3260,6 +3430,7 @@ M.ListSupportedInstanceTypesOutput = {
 
 M.ModifyClusterInput = {
     type = "structure",
+    id = "ModifyClusterInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3278,6 +3449,7 @@ M.ModifyClusterInput = {
 
 M.ModifyClusterOutput = {
     type = "structure",
+    id = "ModifyClusterOutput",
     members = {
         StepConcurrencyLevel = {
             type = "integer",
@@ -3290,6 +3462,7 @@ M.ModifyClusterOutput = {
 
 M.ModifyInstanceFleetOutput = {
     type = "structure",
+    id = "ModifyInstanceFleetOutput",
 }
 
 M.ReconfigurationType = {
@@ -3299,10 +3472,12 @@ M.ReconfigurationType = {
 
 M.ModifyInstanceGroupsOutput = {
     type = "structure",
+    id = "ModifyInstanceGroupsOutput",
 }
 
 M.PutAutoScalingPolicyInput = {
     type = "structure",
+    id = "PutAutoScalingPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3324,6 +3499,7 @@ M.PutAutoScalingPolicyInput = {
 
 M.PutAutoScalingPolicyOutput = {
     type = "structure",
+    id = "PutAutoScalingPolicyOutput",
     members = {
         ClusterId = {
             type = "string",
@@ -3340,6 +3516,7 @@ M.PutAutoScalingPolicyOutput = {
 
 M.PutAutoTerminationPolicyInput = {
     type = "structure",
+    id = "PutAutoTerminationPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3353,14 +3530,17 @@ M.PutAutoTerminationPolicyInput = {
 
 M.PutAutoTerminationPolicyOutput = {
     type = "structure",
+    id = "PutAutoTerminationPolicyOutput",
 }
 
 M.PutBlockPublicAccessConfigurationOutput = {
     type = "structure",
+    id = "PutBlockPublicAccessConfigurationOutput",
 }
 
 M.PutManagedScalingPolicyInput = {
     type = "structure",
+    id = "PutManagedScalingPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3376,10 +3556,12 @@ M.PutManagedScalingPolicyInput = {
 
 M.PutManagedScalingPolicyOutput = {
     type = "structure",
+    id = "PutManagedScalingPolicyOutput",
 }
 
 M.RemoveAutoScalingPolicyInput = {
     type = "structure",
+    id = "RemoveAutoScalingPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3398,10 +3580,12 @@ M.RemoveAutoScalingPolicyInput = {
 
 M.RemoveAutoScalingPolicyOutput = {
     type = "structure",
+    id = "RemoveAutoScalingPolicyOutput",
 }
 
 M.RemoveAutoTerminationPolicyInput = {
     type = "structure",
+    id = "RemoveAutoTerminationPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3414,10 +3598,12 @@ M.RemoveAutoTerminationPolicyInput = {
 
 M.RemoveAutoTerminationPolicyOutput = {
     type = "structure",
+    id = "RemoveAutoTerminationPolicyOutput",
 }
 
 M.RemoveManagedScalingPolicyInput = {
     type = "structure",
+    id = "RemoveManagedScalingPolicyInput",
     members = {
         ClusterId = {
             type = "string",
@@ -3430,10 +3616,12 @@ M.RemoveManagedScalingPolicyInput = {
 
 M.RemoveManagedScalingPolicyOutput = {
     type = "structure",
+    id = "RemoveManagedScalingPolicyOutput",
 }
 
 M.RemoveTagsInput = {
     type = "structure",
+    id = "RemoveTagsInput",
     members = {
         ResourceId = {
             type = "string",
@@ -3453,10 +3641,12 @@ M.RemoveTagsInput = {
 
 M.RemoveTagsOutput = {
     type = "structure",
+    id = "RemoveTagsOutput",
 }
 
 M.SupportedProductConfig = {
     type = "structure",
+    id = "SupportedProductConfig",
     members = {
         Name = {
             type = "string",
@@ -3470,6 +3660,7 @@ M.SupportedProductConfig = {
 
 M.RunJobFlowOutput = {
     type = "structure",
+    id = "RunJobFlowOutput",
     members = {
         JobFlowId = {
             type = "string",
@@ -3482,6 +3673,7 @@ M.RunJobFlowOutput = {
 
 M.SetKeepJobFlowAliveWhenNoStepsInput = {
     type = "structure",
+    id = "SetKeepJobFlowAliveWhenNoStepsInput",
     members = {
         JobFlowIds = {
             type = "list",
@@ -3501,10 +3693,12 @@ M.SetKeepJobFlowAliveWhenNoStepsInput = {
 
 M.SetKeepJobFlowAliveWhenNoStepsOutput = {
     type = "structure",
+    id = "SetKeepJobFlowAliveWhenNoStepsOutput",
 }
 
 M.SetTerminationProtectionInput = {
     type = "structure",
+    id = "SetTerminationProtectionInput",
     members = {
         JobFlowIds = {
             type = "list",
@@ -3524,10 +3718,12 @@ M.SetTerminationProtectionInput = {
 
 M.SetTerminationProtectionOutput = {
     type = "structure",
+    id = "SetTerminationProtectionOutput",
 }
 
 M.SetUnhealthyNodeReplacementInput = {
     type = "structure",
+    id = "SetUnhealthyNodeReplacementInput",
     members = {
         JobFlowIds = {
             type = "list",
@@ -3547,10 +3743,12 @@ M.SetUnhealthyNodeReplacementInput = {
 
 M.SetUnhealthyNodeReplacementOutput = {
     type = "structure",
+    id = "SetUnhealthyNodeReplacementOutput",
 }
 
 M.SetVisibleToAllUsersInput = {
     type = "structure",
+    id = "SetVisibleToAllUsersInput",
     members = {
         JobFlowIds = {
             type = "list",
@@ -3570,10 +3768,12 @@ M.SetVisibleToAllUsersInput = {
 
 M.SetVisibleToAllUsersOutput = {
     type = "structure",
+    id = "SetVisibleToAllUsersOutput",
 }
 
 M.NotebookS3LocationFromInput = {
     type = "structure",
+    id = "NotebookS3LocationFromInput",
     members = {
         Bucket = {
             type = "string",
@@ -3586,6 +3786,7 @@ M.NotebookS3LocationFromInput = {
 
 M.OutputNotebookS3LocationFromInput = {
     type = "structure",
+    id = "OutputNotebookS3LocationFromInput",
     members = {
         Bucket = {
             type = "string",
@@ -3598,6 +3799,7 @@ M.OutputNotebookS3LocationFromInput = {
 
 M.StartNotebookExecutionInput = {
     type = "structure",
+    id = "StartNotebookExecutionInput",
     members = {
         EditorId = {
             type = "string",
@@ -3642,6 +3844,7 @@ M.StartNotebookExecutionInput = {
 
 M.StartNotebookExecutionOutput = {
     type = "structure",
+    id = "StartNotebookExecutionOutput",
     members = {
         NotebookExecutionId = {
             type = "string",
@@ -3651,6 +3854,7 @@ M.StartNotebookExecutionOutput = {
 
 M.StopNotebookExecutionInput = {
     type = "structure",
+    id = "StopNotebookExecutionInput",
     members = {
         NotebookExecutionId = {
             type = "string",
@@ -3663,10 +3867,12 @@ M.StopNotebookExecutionInput = {
 
 M.StopNotebookExecutionOutput = {
     type = "structure",
+    id = "StopNotebookExecutionOutput",
 }
 
 M.TerminateJobFlowsInput = {
     type = "structure",
+    id = "TerminateJobFlowsInput",
     members = {
         JobFlowIds = {
             type = "list",
@@ -3680,10 +3886,12 @@ M.TerminateJobFlowsInput = {
 
 M.TerminateJobFlowsOutput = {
     type = "structure",
+    id = "TerminateJobFlowsOutput",
 }
 
 M.UpdateStudioInput = {
     type = "structure",
+    id = "UpdateStudioInput",
     members = {
         StudioId = {
             type = "string",
@@ -3712,10 +3920,12 @@ M.UpdateStudioInput = {
 
 M.UpdateStudioOutput = {
     type = "structure",
+    id = "UpdateStudioOutput",
 }
 
 M.UpdateStudioSessionMappingInput = {
     type = "structure",
+    id = "UpdateStudioSessionMappingInput",
     members = {
         StudioId = {
             type = "string",
@@ -3746,10 +3956,12 @@ M.UpdateStudioSessionMappingInput = {
 
 M.UpdateStudioSessionMappingOutput = {
     type = "structure",
+    id = "UpdateStudioSessionMappingOutput",
 }
 
 M.Configuration = {
     type = "structure",
+    id = "Configuration",
     members = {
         Classification = {
             type = "string",
@@ -3768,6 +3980,7 @@ M.Configuration = {
 
 M.BlockPublicAccessConfiguration = {
     type = "structure",
+    id = "BlockPublicAccessConfiguration",
     members = {
         BlockPublicSecurityGroupRules = {
             type = "boolean",
@@ -3796,6 +4009,7 @@ M.BlockPublicAccessConfiguration = {
 
 M.Cluster = {
     type = "structure",
+    id = "Cluster",
     members = {
         Id = {
             type = "string",
@@ -3906,6 +4120,7 @@ M.Cluster = {
 
 M.InstanceGroupConfig = {
     type = "structure",
+    id = "InstanceGroupConfig",
     members = {
         Name = {
             type = "string",
@@ -3948,6 +4163,7 @@ M.InstanceGroupConfig = {
 
 M.InstanceGroupModifyConfig = {
     type = "structure",
+    id = "InstanceGroupModifyConfig",
     members = {
         InstanceGroupId = {
             type = "string",
@@ -3975,6 +4191,7 @@ M.InstanceGroupModifyConfig = {
 
 M.InstanceTypeConfig = {
     type = "structure",
+    id = "InstanceTypeConfig",
     members = {
         InstanceType = {
             type = "string",
@@ -4007,6 +4224,7 @@ M.InstanceTypeConfig = {
 
 M.InstanceTypeSpecification = {
     type = "structure",
+    id = "InstanceTypeSpecification",
     members = {
         InstanceType = {
             type = "string",
@@ -4042,6 +4260,7 @@ M.InstanceTypeSpecification = {
 
 M.DescribeClusterOutput = {
     type = "structure",
+    id = "DescribeClusterOutput",
     members = {
         Cluster = M.Cluster,
     },
@@ -4049,6 +4268,7 @@ M.DescribeClusterOutput = {
 
 M.GetBlockPublicAccessConfigurationOutput = {
     type = "structure",
+    id = "GetBlockPublicAccessConfigurationOutput",
     members = {
         BlockPublicAccessConfiguration = setmetatable({ traits = {
             required = true,
@@ -4061,6 +4281,7 @@ M.GetBlockPublicAccessConfigurationOutput = {
 
 M.PutBlockPublicAccessConfigurationInput = {
     type = "structure",
+    id = "PutBlockPublicAccessConfigurationInput",
     members = {
         BlockPublicAccessConfiguration = setmetatable({ traits = {
             required = true,
@@ -4070,6 +4291,7 @@ M.PutBlockPublicAccessConfigurationInput = {
 
 M.AddInstanceGroupsInput = {
     type = "structure",
+    id = "AddInstanceGroupsInput",
     members = {
         InstanceGroups = {
             type = "list",
@@ -4089,6 +4311,7 @@ M.AddInstanceGroupsInput = {
 
 M.InstanceFleet = {
     type = "structure",
+    id = "InstanceFleet",
     members = {
         Id = {
             type = "string",
@@ -4126,6 +4349,7 @@ M.InstanceFleet = {
 
 M.InstanceFleetConfig = {
     type = "structure",
+    id = "InstanceFleetConfig",
     members = {
         Name = {
             type = "string",
@@ -4156,6 +4380,7 @@ M.InstanceFleetConfig = {
 
 M.InstanceFleetModifyConfig = {
     type = "structure",
+    id = "InstanceFleetModifyConfig",
     members = {
         InstanceFleetId = {
             type = "string",
@@ -4182,6 +4407,7 @@ M.InstanceFleetModifyConfig = {
 
 M.ModifyInstanceGroupsInput = {
     type = "structure",
+    id = "ModifyInstanceGroupsInput",
     members = {
         ClusterId = {
             type = "string",
@@ -4195,6 +4421,7 @@ M.ModifyInstanceGroupsInput = {
 
 M.AddInstanceFleetInput = {
     type = "structure",
+    id = "AddInstanceFleetInput",
     members = {
         ClusterId = {
             type = "string",
@@ -4210,6 +4437,7 @@ M.AddInstanceFleetInput = {
 
 M.InstanceGroup = {
     type = "structure",
+    id = "InstanceGroup",
     members = {
         Id = {
             type = "string",
@@ -4267,6 +4495,7 @@ M.InstanceGroup = {
 
 M.ModifyInstanceFleetInput = {
     type = "structure",
+    id = "ModifyInstanceFleetInput",
     members = {
         ClusterId = {
             type = "string",
@@ -4282,6 +4511,7 @@ M.ModifyInstanceFleetInput = {
 
 M.ListInstanceFleetsOutput = {
     type = "structure",
+    id = "ListInstanceFleetsOutput",
     members = {
         InstanceFleets = {
             type = "list",
@@ -4295,6 +4525,7 @@ M.ListInstanceFleetsOutput = {
 
 M.ListInstanceGroupsOutput = {
     type = "structure",
+    id = "ListInstanceGroupsOutput",
     members = {
         InstanceGroups = {
             type = "list",
@@ -4308,6 +4539,7 @@ M.ListInstanceGroupsOutput = {
 
 M.JobFlowInstancesConfig = {
     type = "structure",
+    id = "JobFlowInstancesConfig",
     members = {
         MasterInstanceType = {
             type = "string",
@@ -4371,6 +4603,7 @@ M.JobFlowInstancesConfig = {
 
 M.RunJobFlowInput = {
     type = "structure",
+    id = "RunJobFlowInput",
     members = {
         Name = {
             type = "string",

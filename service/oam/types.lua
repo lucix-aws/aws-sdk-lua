@@ -2,6 +2,7 @@ local M = {}
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -18,6 +19,7 @@ M.ConflictException = {
 
 M.LogGroupConfiguration = {
     type = "structure",
+    id = "LogGroupConfiguration",
     members = {
         Filter = {
             type = "string",
@@ -30,6 +32,7 @@ M.LogGroupConfiguration = {
 
 M.MetricConfiguration = {
     type = "structure",
+    id = "MetricConfiguration",
     members = {
         Filter = {
             type = "string",
@@ -42,6 +45,7 @@ M.MetricConfiguration = {
 
 M.LinkConfiguration = {
     type = "structure",
+    id = "LinkConfiguration",
     members = {
         LogGroupConfiguration = M.LogGroupConfiguration,
         MetricConfiguration = M.MetricConfiguration,
@@ -60,6 +64,7 @@ M.ResourceType = {
 
 M.CreateLinkInput = {
     type = "structure",
+    id = "CreateLinkInput",
     members = {
         LabelTemplate = {
             type = "string",
@@ -91,6 +96,7 @@ M.CreateLinkInput = {
 
 M.CreateLinkOutput = {
     type = "structure",
+    id = "CreateLinkOutput",
     members = {
         Arn = {
             type = "string",
@@ -122,6 +128,7 @@ M.CreateLinkOutput = {
 
 M.InternalServiceFault = {
     type = "structure",
+    id = "InternalServiceFault",
     error = "server",
     members = {
         Message = {
@@ -138,6 +145,7 @@ M.InternalServiceFault = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -154,6 +162,7 @@ M.InvalidParameterException = {
 
 M.MissingRequiredParameterException = {
     type = "structure",
+    id = "MissingRequiredParameterException",
     error = "client",
     members = {
         message = {
@@ -170,6 +179,7 @@ M.MissingRequiredParameterException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -186,6 +196,7 @@ M.ServiceQuotaExceededException = {
 
 M.CreateSinkInput = {
     type = "structure",
+    id = "CreateSinkInput",
     members = {
         Name = {
             type = "string",
@@ -203,6 +214,7 @@ M.CreateSinkInput = {
 
 M.CreateSinkOutput = {
     type = "structure",
+    id = "CreateSinkOutput",
     members = {
         Arn = {
             type = "string",
@@ -223,6 +235,7 @@ M.CreateSinkOutput = {
 
 M.DeleteLinkInput = {
     type = "structure",
+    id = "DeleteLinkInput",
     members = {
         Identifier = {
             type = "string",
@@ -235,10 +248,12 @@ M.DeleteLinkInput = {
 
 M.DeleteLinkOutput = {
     type = "structure",
+    id = "DeleteLinkOutput",
 }
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -255,6 +270,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteSinkInput = {
     type = "structure",
+    id = "DeleteSinkInput",
     members = {
         Identifier = {
             type = "string",
@@ -267,10 +283,12 @@ M.DeleteSinkInput = {
 
 M.DeleteSinkOutput = {
     type = "structure",
+    id = "DeleteSinkOutput",
 }
 
 M.GetLinkInput = {
     type = "structure",
+    id = "GetLinkInput",
     members = {
         Identifier = {
             type = "string",
@@ -286,6 +304,7 @@ M.GetLinkInput = {
 
 M.GetLinkOutput = {
     type = "structure",
+    id = "GetLinkOutput",
     members = {
         Arn = {
             type = "string",
@@ -317,6 +336,7 @@ M.GetLinkOutput = {
 
 M.GetSinkInput = {
     type = "structure",
+    id = "GetSinkInput",
     members = {
         Identifier = {
             type = "string",
@@ -332,6 +352,7 @@ M.GetSinkInput = {
 
 M.GetSinkOutput = {
     type = "structure",
+    id = "GetSinkOutput",
     members = {
         Arn = {
             type = "string",
@@ -352,6 +373,7 @@ M.GetSinkOutput = {
 
 M.GetSinkPolicyInput = {
     type = "structure",
+    id = "GetSinkPolicyInput",
     members = {
         SinkIdentifier = {
             type = "string",
@@ -364,6 +386,7 @@ M.GetSinkPolicyInput = {
 
 M.GetSinkPolicyOutput = {
     type = "structure",
+    id = "GetSinkPolicyOutput",
     members = {
         SinkArn = {
             type = "string",
@@ -379,6 +402,7 @@ M.GetSinkPolicyOutput = {
 
 M.ListAttachedLinksInput = {
     type = "structure",
+    id = "ListAttachedLinksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -400,6 +424,7 @@ M.ListAttachedLinksInput = {
 
 M.ListAttachedLinksItem = {
     type = "structure",
+    id = "ListAttachedLinksItem",
     members = {
         Label = {
             type = "string",
@@ -416,6 +441,7 @@ M.ListAttachedLinksItem = {
 
 M.ListAttachedLinksOutput = {
     type = "structure",
+    id = "ListAttachedLinksOutput",
     members = {
         Items = {
             type = "list",
@@ -432,6 +458,7 @@ M.ListAttachedLinksOutput = {
 
 M.ListLinksInput = {
     type = "structure",
+    id = "ListLinksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -447,6 +474,7 @@ M.ListLinksInput = {
 
 M.ListLinksItem = {
     type = "structure",
+    id = "ListLinksItem",
     members = {
         Arn = {
             type = "string",
@@ -469,6 +497,7 @@ M.ListLinksItem = {
 
 M.ListLinksOutput = {
     type = "structure",
+    id = "ListLinksOutput",
     members = {
         Items = {
             type = "list",
@@ -485,6 +514,7 @@ M.ListLinksOutput = {
 
 M.ListSinksInput = {
     type = "structure",
+    id = "ListSinksInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -500,6 +530,7 @@ M.ListSinksInput = {
 
 M.ListSinksItem = {
     type = "structure",
+    id = "ListSinksItem",
     members = {
         Arn = {
             type = "string",
@@ -515,6 +546,7 @@ M.ListSinksItem = {
 
 M.ListSinksOutput = {
     type = "structure",
+    id = "ListSinksOutput",
     members = {
         Items = {
             type = "list",
@@ -531,6 +563,7 @@ M.ListSinksOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -544,6 +577,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -555,6 +589,7 @@ M.ListTagsForResourceOutput = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -565,6 +600,7 @@ M.ValidationException = {
 
 M.PutSinkPolicyInput = {
     type = "structure",
+    id = "PutSinkPolicyInput",
     members = {
         SinkIdentifier = {
             type = "string",
@@ -583,6 +619,7 @@ M.PutSinkPolicyInput = {
 
 M.PutSinkPolicyOutput = {
     type = "structure",
+    id = "PutSinkPolicyOutput",
     members = {
         SinkArn = {
             type = "string",
@@ -598,6 +635,7 @@ M.PutSinkPolicyOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -619,10 +657,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         Message = {
@@ -633,6 +673,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -654,10 +695,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateLinkInput = {
     type = "structure",
+    id = "UpdateLinkInput",
     members = {
         Identifier = {
             type = "string",
@@ -681,6 +724,7 @@ M.UpdateLinkInput = {
 
 M.UpdateLinkOutput = {
     type = "structure",
+    id = "UpdateLinkOutput",
     members = {
         Arn = {
             type = "string",

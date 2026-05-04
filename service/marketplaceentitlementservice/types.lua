@@ -9,6 +9,7 @@ M.GetEntitlementFilterName = {
 
 M.GetEntitlementsInput = {
     type = "structure",
+    id = "GetEntitlementsInput",
     members = {
         ProductCode = {
             type = "string",
@@ -32,6 +33,7 @@ M.GetEntitlementsInput = {
 
 M.EntitlementValue = {
     type = "structure",
+    id = "EntitlementValue",
     members = {
         IntegerValue = {
             type = "integer",
@@ -50,6 +52,7 @@ M.EntitlementValue = {
 
 M.Entitlement = {
     type = "structure",
+    id = "Entitlement",
     members = {
         ProductCode = {
             type = "string",
@@ -75,6 +78,7 @@ M.Entitlement = {
 
 M.GetEntitlementsOutput = {
     type = "structure",
+    id = "GetEntitlementsOutput",
     members = {
         Entitlements = {
             type = "list",
@@ -88,6 +92,7 @@ M.GetEntitlementsOutput = {
 
 M.InternalServiceErrorException = {
     type = "structure",
+    id = "InternalServiceErrorException",
     error = "server",
     members = {
         message = {
@@ -98,6 +103,7 @@ M.InternalServiceErrorException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -108,6 +114,7 @@ M.InvalidParameterException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {

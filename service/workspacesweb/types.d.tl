@@ -3005,9 +3005,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type SessionStatus = "Active" | "Terminated"
-
 local type SessionSortBy = "StartTimeAscending" | "StartTimeDescending"
+
+local type SessionStatus = "Active" | "Terminated"
 
 local record M
     AssociateBrowserSettingsInput: AssociateBrowserSettingsInput

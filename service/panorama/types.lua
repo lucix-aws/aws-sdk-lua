@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.AlternateSoftwareMetadata = {
     type = "structure",
+    id = "AlternateSoftwareMetadata",
     members = {
         Version = {
             type = "string",
@@ -50,6 +52,7 @@ M.DeviceReportedStatus = {
 
 M.ReportedRuntimeContextState = {
     type = "structure",
+    id = "ReportedRuntimeContextState",
     members = {
         DesiredState = {
             type = "string",
@@ -94,6 +97,7 @@ M.ApplicationInstanceStatus = {
 
 M.ApplicationInstance = {
     type = "structure",
+    id = "ApplicationInstance",
     members = {
         Name = {
             type = "string",
@@ -139,6 +143,7 @@ M.ApplicationInstance = {
 
 M.ConflictExceptionErrorArgument = {
     type = "structure",
+    id = "ConflictExceptionErrorArgument",
     members = {
         Name = {
             type = "string",
@@ -157,6 +162,7 @@ M.ConflictExceptionErrorArgument = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -194,6 +200,7 @@ M.ConnectionType = {
 
 M.ManifestOverridesPayload = {
     type = "union",
+    id = "ManifestOverridesPayload",
     members = {
         PayloadData = {
             type = "string",
@@ -203,6 +210,7 @@ M.ManifestOverridesPayload = {
 
 M.ManifestPayload = {
     type = "union",
+    id = "ManifestPayload",
     members = {
         PayloadData = {
             type = "string",
@@ -212,6 +220,7 @@ M.ManifestPayload = {
 
 M.CreateApplicationInstanceInput = {
     type = "structure",
+    id = "CreateApplicationInstanceInput",
     members = {
         Name = {
             type = "string",
@@ -245,6 +254,7 @@ M.CreateApplicationInstanceInput = {
 
 M.CreateApplicationInstanceOutput = {
     type = "structure",
+    id = "CreateApplicationInstanceOutput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -257,6 +267,7 @@ M.CreateApplicationInstanceOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -277,6 +288,7 @@ M.InternalServerException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -308,6 +320,7 @@ M.ServiceQuotaExceededException = {
 
 M.ValidationExceptionErrorArgument = {
     type = "structure",
+    id = "ValidationExceptionErrorArgument",
     members = {
         Name = {
             type = "string",
@@ -326,6 +339,7 @@ M.ValidationExceptionErrorArgument = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         Name = {
             type = "string",
@@ -351,6 +365,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -378,6 +393,7 @@ M.ValidationException = {
 
 M.OTAJobConfig = {
     type = "structure",
+    id = "OTAJobConfig",
     members = {
         ImageVersion = {
             type = "string",
@@ -396,6 +412,7 @@ M.OTAJobConfig = {
 
 M.DeviceJobConfig = {
     type = "structure",
+    id = "DeviceJobConfig",
     members = {
         OTAJobConfig = M.OTAJobConfig,
     },
@@ -408,6 +425,7 @@ M.JobType = {
 
 M.CreateJobForDevicesInput = {
     type = "structure",
+    id = "CreateJobForDevicesInput",
     members = {
         DeviceIds = {
             type = "list",
@@ -428,6 +446,7 @@ M.CreateJobForDevicesInput = {
 
 M.Job = {
     type = "structure",
+    id = "Job",
     members = {
         JobId = {
             type = "string",
@@ -440,6 +459,7 @@ M.Job = {
 
 M.CreateJobForDevicesOutput = {
     type = "structure",
+    id = "CreateJobForDevicesOutput",
     members = {
         Jobs = {
             type = "list",
@@ -453,6 +473,7 @@ M.CreateJobForDevicesOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -482,6 +503,7 @@ M.JobResourceType = {
 
 M.JobResourceTags = {
     type = "structure",
+    id = "JobResourceTags",
     members = {
         ResourceType = {
             type = "string",
@@ -506,6 +528,7 @@ M.TemplateType = {
 
 M.CreateNodeFromTemplateJobInput = {
     type = "structure",
+    id = "CreateNodeFromTemplateJobInput",
     members = {
         TemplateType = {
             type = "string",
@@ -551,6 +574,7 @@ M.CreateNodeFromTemplateJobInput = {
 
 M.CreateNodeFromTemplateJobOutput = {
     type = "structure",
+    id = "CreateNodeFromTemplateJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -563,6 +587,7 @@ M.CreateNodeFromTemplateJobOutput = {
 
 M.CreatePackageInput = {
     type = "structure",
+    id = "CreatePackageInput",
     members = {
         PackageName = {
             type = "string",
@@ -580,6 +605,7 @@ M.CreatePackageInput = {
 
 M.StorageLocation = {
     type = "structure",
+    id = "StorageLocation",
     members = {
         Bucket = {
             type = "string",
@@ -616,6 +642,7 @@ M.StorageLocation = {
 
 M.CreatePackageOutput = {
     type = "structure",
+    id = "CreatePackageOutput",
     members = {
         PackageId = {
             type = "string",
@@ -631,6 +658,7 @@ M.CreatePackageOutput = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         Region = {
             type = "string",
@@ -652,6 +680,7 @@ M.S3Location = {
 
 M.PackageVersionInputConfig = {
     type = "structure",
+    id = "PackageVersionInputConfig",
     members = {
         S3Location = setmetatable({ traits = {
             required = true,
@@ -661,6 +690,7 @@ M.PackageVersionInputConfig = {
 
 M.PackageImportJobInputConfig = {
     type = "structure",
+    id = "PackageImportJobInputConfig",
     members = {
         PackageVersionInputConfig = M.PackageVersionInputConfig,
     },
@@ -673,6 +703,7 @@ M.PackageImportJobType = {
 
 M.PackageVersionOutputConfig = {
     type = "structure",
+    id = "PackageVersionOutputConfig",
     members = {
         PackageName = {
             type = "string",
@@ -697,6 +728,7 @@ M.PackageVersionOutputConfig = {
 
 M.PackageImportJobOutputConfig = {
     type = "structure",
+    id = "PackageImportJobOutputConfig",
     members = {
         PackageVersionOutputConfig = M.PackageVersionOutputConfig,
     },
@@ -704,6 +736,7 @@ M.PackageImportJobOutputConfig = {
 
 M.CreatePackageImportJobInput = {
     type = "structure",
+    id = "CreatePackageImportJobInput",
     members = {
         JobType = {
             type = "string",
@@ -732,6 +765,7 @@ M.CreatePackageImportJobInput = {
 
 M.CreatePackageImportJobOutput = {
     type = "structure",
+    id = "CreatePackageImportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -744,6 +778,7 @@ M.CreatePackageImportJobOutput = {
 
 M.DeleteDeviceInput = {
     type = "structure",
+    id = "DeleteDeviceInput",
     members = {
         DeviceId = {
             type = "string",
@@ -757,6 +792,7 @@ M.DeleteDeviceInput = {
 
 M.DeleteDeviceOutput = {
     type = "structure",
+    id = "DeleteDeviceOutput",
     members = {
         DeviceId = {
             type = "string",
@@ -766,6 +802,7 @@ M.DeleteDeviceOutput = {
 
 M.DeletePackageInput = {
     type = "structure",
+    id = "DeletePackageInput",
     members = {
         PackageId = {
             type = "string",
@@ -786,10 +823,12 @@ M.DeletePackageInput = {
 
 M.DeletePackageOutput = {
     type = "structure",
+    id = "DeletePackageOutput",
 }
 
 M.DeregisterPackageVersionInput = {
     type = "structure",
+    id = "DeregisterPackageVersionInput",
     members = {
         OwnerAccount = {
             type = "string",
@@ -829,10 +868,12 @@ M.DeregisterPackageVersionInput = {
 
 M.DeregisterPackageVersionOutput = {
     type = "structure",
+    id = "DeregisterPackageVersionOutput",
 }
 
 M.DescribeApplicationInstanceInput = {
     type = "structure",
+    id = "DescribeApplicationInstanceInput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -846,6 +887,7 @@ M.DescribeApplicationInstanceInput = {
 
 M.DescribeApplicationInstanceOutput = {
     type = "structure",
+    id = "DescribeApplicationInstanceOutput",
     members = {
         Name = {
             type = "string",
@@ -900,6 +942,7 @@ M.DescribeApplicationInstanceOutput = {
 
 M.DescribeApplicationInstanceDetailsInput = {
     type = "structure",
+    id = "DescribeApplicationInstanceDetailsInput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -913,6 +956,7 @@ M.DescribeApplicationInstanceDetailsInput = {
 
 M.DescribeApplicationInstanceDetailsOutput = {
     type = "structure",
+    id = "DescribeApplicationInstanceDetailsOutput",
     members = {
         Name = {
             type = "string",
@@ -939,6 +983,7 @@ M.DescribeApplicationInstanceDetailsOutput = {
 
 M.DescribeDeviceInput = {
     type = "structure",
+    id = "DescribeDeviceInput",
     members = {
         DeviceId = {
             type = "string",
@@ -963,6 +1008,7 @@ M.NetworkConnectionStatus = {
 
 M.EthernetStatus = {
     type = "structure",
+    id = "EthernetStatus",
     members = {
         IpAddress = {
             type = "string",
@@ -978,6 +1024,7 @@ M.EthernetStatus = {
 
 M.NtpStatus = {
     type = "structure",
+    id = "NtpStatus",
     members = {
         ConnectionStatus = {
             type = "string",
@@ -993,6 +1040,7 @@ M.NtpStatus = {
 
 M.NetworkStatus = {
     type = "structure",
+    id = "NetworkStatus",
     members = {
         Ethernet0Status = M.EthernetStatus,
         Ethernet1Status = M.EthernetStatus,
@@ -1036,6 +1084,7 @@ M.UpdateProgress = {
 
 M.LatestDeviceJob = {
     type = "structure",
+    id = "LatestDeviceJob",
     members = {
         ImageVersion = {
             type = "string",
@@ -1051,6 +1100,7 @@ M.LatestDeviceJob = {
 
 M.StaticIpConnectionInfo = {
     type = "structure",
+    id = "StaticIpConnectionInfo",
     members = {
         IpAddress = {
             type = "string",
@@ -1082,6 +1132,7 @@ M.StaticIpConnectionInfo = {
 
 M.EthernetPayload = {
     type = "structure",
+    id = "EthernetPayload",
     members = {
         ConnectionType = {
             type = "string",
@@ -1095,6 +1146,7 @@ M.EthernetPayload = {
 
 M.NtpPayload = {
     type = "structure",
+    id = "NtpPayload",
     members = {
         NtpServers = {
             type = "list",
@@ -1108,6 +1160,7 @@ M.NtpPayload = {
 
 M.NetworkPayload = {
     type = "structure",
+    id = "NetworkPayload",
     members = {
         Ethernet0 = M.EthernetPayload,
         Ethernet1 = M.EthernetPayload,
@@ -1131,6 +1184,7 @@ M.DeviceType = {
 
 M.DescribeDeviceOutput = {
     type = "structure",
+    id = "DescribeDeviceOutput",
     members = {
         DeviceId = {
             type = "string",
@@ -1194,6 +1248,7 @@ M.DescribeDeviceOutput = {
 
 M.DescribeDeviceJobInput = {
     type = "structure",
+    id = "DescribeDeviceJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1207,6 +1262,7 @@ M.DescribeDeviceJobInput = {
 
 M.DescribeDeviceJobOutput = {
     type = "structure",
+    id = "DescribeDeviceJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1240,6 +1296,7 @@ M.DescribeDeviceJobOutput = {
 
 M.DescribeNodeInput = {
     type = "structure",
+    id = "DescribeNodeInput",
     members = {
         NodeId = {
             type = "string",
@@ -1274,6 +1331,7 @@ M.PortType = {
 
 M.NodeInputPort = {
     type = "structure",
+    id = "NodeInputPort",
     members = {
         Name = {
             type = "string",
@@ -1298,6 +1356,7 @@ M.NodeInputPort = {
 
 M.NodeOutputPort = {
     type = "structure",
+    id = "NodeOutputPort",
     members = {
         Name = {
             type = "string",
@@ -1313,6 +1372,7 @@ M.NodeOutputPort = {
 
 M.NodeInterface = {
     type = "structure",
+    id = "NodeInterface",
     members = {
         Inputs = {
             type = "list",
@@ -1333,6 +1393,7 @@ M.NodeInterface = {
 
 M.DescribeNodeOutput = {
     type = "structure",
+    id = "DescribeNodeOutput",
     members = {
         NodeId = {
             type = "string",
@@ -1414,6 +1475,7 @@ M.DescribeNodeOutput = {
 
 M.DescribeNodeFromTemplateJobInput = {
     type = "structure",
+    id = "DescribeNodeFromTemplateJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1433,6 +1495,7 @@ M.NodeFromTemplateJobStatus = {
 
 M.DescribeNodeFromTemplateJobOutput = {
     type = "structure",
+    id = "DescribeNodeFromTemplateJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1508,6 +1571,7 @@ M.DescribeNodeFromTemplateJobOutput = {
 
 M.DescribePackageInput = {
     type = "structure",
+    id = "DescribePackageInput",
     members = {
         PackageId = {
             type = "string",
@@ -1521,6 +1585,7 @@ M.DescribePackageInput = {
 
 M.DescribePackageOutput = {
     type = "structure",
+    id = "DescribePackageOutput",
     members = {
         PackageId = {
             type = "string",
@@ -1570,6 +1635,7 @@ M.DescribePackageOutput = {
 
 M.DescribePackageImportJobInput = {
     type = "structure",
+    id = "DescribePackageImportJobInput",
     members = {
         JobId = {
             type = "string",
@@ -1583,6 +1649,7 @@ M.DescribePackageImportJobInput = {
 
 M.OutPutS3Location = {
     type = "structure",
+    id = "OutPutS3Location",
     members = {
         BucketName = {
             type = "string",
@@ -1601,6 +1668,7 @@ M.OutPutS3Location = {
 
 M.PackageImportJobOutput = {
     type = "structure",
+    id = "PackageImportJobOutput",
     members = {
         PackageId = {
             type = "string",
@@ -1634,6 +1702,7 @@ M.PackageImportJobStatus = {
 
 M.DescribePackageImportJobOutput = {
     type = "structure",
+    id = "DescribePackageImportJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -1692,6 +1761,7 @@ M.DescribePackageImportJobOutput = {
 
 M.DescribePackageVersionInput = {
     type = "structure",
+    id = "DescribePackageVersionInput",
     members = {
         OwnerAccount = {
             type = "string",
@@ -1731,6 +1801,7 @@ M.PackageVersionStatus = {
 
 M.DescribePackageVersionOutput = {
     type = "structure",
+    id = "DescribePackageVersionOutput",
     members = {
         OwnerAccount = {
             type = "string",
@@ -1786,6 +1857,7 @@ M.DescribePackageVersionOutput = {
 
 M.Device = {
     type = "structure",
+    id = "Device",
     members = {
         DeviceId = {
             type = "string",
@@ -1831,6 +1903,7 @@ M.Device = {
 
 M.DeviceJob = {
     type = "structure",
+    id = "DeviceJob",
     members = {
         DeviceName = {
             type = "string",
@@ -1852,6 +1925,7 @@ M.DeviceJob = {
 
 M.ListApplicationInstanceDependenciesInput = {
     type = "structure",
+    id = "ListApplicationInstanceDependenciesInput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -1878,6 +1952,7 @@ M.ListApplicationInstanceDependenciesInput = {
 
 M.PackageObject = {
     type = "structure",
+    id = "PackageObject",
     members = {
         Name = {
             type = "string",
@@ -1902,6 +1977,7 @@ M.PackageObject = {
 
 M.ListApplicationInstanceDependenciesOutput = {
     type = "structure",
+    id = "ListApplicationInstanceDependenciesOutput",
     members = {
         PackageObjects = {
             type = "list",
@@ -1915,6 +1991,7 @@ M.ListApplicationInstanceDependenciesOutput = {
 
 M.ListApplicationInstanceNodeInstancesInput = {
     type = "structure",
+    id = "ListApplicationInstanceNodeInstancesInput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -1948,6 +2025,7 @@ M.NodeInstanceStatus = {
 
 M.NodeInstance = {
     type = "structure",
+    id = "NodeInstance",
     members = {
         NodeInstanceId = {
             type = "string",
@@ -1981,6 +2059,7 @@ M.NodeInstance = {
 
 M.ListApplicationInstanceNodeInstancesOutput = {
     type = "structure",
+    id = "ListApplicationInstanceNodeInstancesOutput",
     members = {
         NodeInstances = {
             type = "list",
@@ -2004,6 +2083,7 @@ M.StatusFilter = {
 
 M.ListApplicationInstancesInput = {
     type = "structure",
+    id = "ListApplicationInstancesInput",
     members = {
         DeviceId = {
             type = "string",
@@ -2035,6 +2115,7 @@ M.ListApplicationInstancesInput = {
 
 M.ListApplicationInstancesOutput = {
     type = "structure",
+    id = "ListApplicationInstancesOutput",
     members = {
         ApplicationInstances = {
             type = "list",
@@ -2060,6 +2141,7 @@ M.SortOrder = {
 
 M.ListDevicesInput = {
     type = "structure",
+    id = "ListDevicesInput",
     members = {
         NextToken = {
             type = "string",
@@ -2103,6 +2185,7 @@ M.ListDevicesInput = {
 
 M.ListDevicesOutput = {
     type = "structure",
+    id = "ListDevicesOutput",
     members = {
         Devices = {
             type = "list",
@@ -2119,6 +2202,7 @@ M.ListDevicesOutput = {
 
 M.ListDevicesJobsInput = {
     type = "structure",
+    id = "ListDevicesJobsInput",
     members = {
         DeviceId = {
             type = "string",
@@ -2144,6 +2228,7 @@ M.ListDevicesJobsInput = {
 
 M.ListDevicesJobsOutput = {
     type = "structure",
+    id = "ListDevicesJobsOutput",
     members = {
         DeviceJobs = {
             type = "list",
@@ -2157,6 +2242,7 @@ M.ListDevicesJobsOutput = {
 
 M.ListNodeFromTemplateJobsInput = {
     type = "structure",
+    id = "ListNodeFromTemplateJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2176,6 +2262,7 @@ M.ListNodeFromTemplateJobsInput = {
 
 M.NodeFromTemplateJob = {
     type = "structure",
+    id = "NodeFromTemplateJob",
     members = {
         JobId = {
             type = "string",
@@ -2200,6 +2287,7 @@ M.NodeFromTemplateJob = {
 
 M.ListNodeFromTemplateJobsOutput = {
     type = "structure",
+    id = "ListNodeFromTemplateJobsOutput",
     members = {
         NodeFromTemplateJobs = {
             type = "list",
@@ -2216,6 +2304,7 @@ M.ListNodeFromTemplateJobsOutput = {
 
 M.ListNodesInput = {
     type = "structure",
+    id = "ListNodesInput",
     members = {
         Category = {
             type = "string",
@@ -2265,6 +2354,7 @@ M.ListNodesInput = {
 
 M.Node = {
     type = "structure",
+    id = "Node",
     members = {
         NodeId = {
             type = "string",
@@ -2328,6 +2418,7 @@ M.Node = {
 
 M.ListNodesOutput = {
     type = "structure",
+    id = "ListNodesOutput",
     members = {
         Nodes = {
             type = "list",
@@ -2341,6 +2432,7 @@ M.ListNodesOutput = {
 
 M.ListPackageImportJobsInput = {
     type = "structure",
+    id = "ListPackageImportJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2360,6 +2452,7 @@ M.ListPackageImportJobsInput = {
 
 M.PackageImportJob = {
     type = "structure",
+    id = "PackageImportJob",
     members = {
         JobId = {
             type = "string",
@@ -2384,6 +2477,7 @@ M.PackageImportJob = {
 
 M.ListPackageImportJobsOutput = {
     type = "structure",
+    id = "ListPackageImportJobsOutput",
     members = {
         PackageImportJobs = {
             type = "list",
@@ -2400,6 +2494,7 @@ M.ListPackageImportJobsOutput = {
 
 M.ListPackagesInput = {
     type = "structure",
+    id = "ListPackagesInput",
     members = {
         MaxResults = {
             type = "integer",
@@ -2419,6 +2514,7 @@ M.ListPackagesInput = {
 
 M.PackageListItem = {
     type = "structure",
+    id = "PackageListItem",
     members = {
         PackageId = {
             type = "string",
@@ -2442,6 +2538,7 @@ M.PackageListItem = {
 
 M.ListPackagesOutput = {
     type = "structure",
+    id = "ListPackagesOutput",
     members = {
         Packages = {
             type = "list",
@@ -2455,6 +2552,7 @@ M.ListPackagesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2468,6 +2566,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -2484,6 +2583,7 @@ M.NodeSignalValue = {
 
 M.NodeSignal = {
     type = "structure",
+    id = "NodeSignal",
     members = {
         NodeInstanceId = {
             type = "string",
@@ -2502,6 +2602,7 @@ M.NodeSignal = {
 
 M.ProvisionDeviceInput = {
     type = "structure",
+    id = "ProvisionDeviceInput",
     members = {
         Name = {
             type = "string",
@@ -2523,6 +2624,7 @@ M.ProvisionDeviceInput = {
 
 M.ProvisionDeviceOutput = {
     type = "structure",
+    id = "ProvisionDeviceOutput",
     members = {
         DeviceId = {
             type = "string",
@@ -2550,6 +2652,7 @@ M.ProvisionDeviceOutput = {
 
 M.RegisterPackageVersionInput = {
     type = "structure",
+    id = "RegisterPackageVersionInput",
     members = {
         OwnerAccount = {
             type = "string",
@@ -2586,10 +2689,12 @@ M.RegisterPackageVersionInput = {
 
 M.RegisterPackageVersionOutput = {
     type = "structure",
+    id = "RegisterPackageVersionOutput",
 }
 
 M.RemoveApplicationInstanceInput = {
     type = "structure",
+    id = "RemoveApplicationInstanceInput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -2603,10 +2708,12 @@ M.RemoveApplicationInstanceInput = {
 
 M.RemoveApplicationInstanceOutput = {
     type = "structure",
+    id = "RemoveApplicationInstanceOutput",
 }
 
 M.SignalApplicationInstanceNodeInstancesInput = {
     type = "structure",
+    id = "SignalApplicationInstanceNodeInstancesInput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -2627,6 +2734,7 @@ M.SignalApplicationInstanceNodeInstancesInput = {
 
 M.SignalApplicationInstanceNodeInstancesOutput = {
     type = "structure",
+    id = "SignalApplicationInstanceNodeInstancesOutput",
     members = {
         ApplicationInstanceId = {
             type = "string",
@@ -2639,6 +2747,7 @@ M.SignalApplicationInstanceNodeInstancesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2660,10 +2769,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -2685,10 +2796,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDeviceMetadataInput = {
     type = "structure",
+    id = "UpdateDeviceMetadataInput",
     members = {
         DeviceId = {
             type = "string",
@@ -2705,6 +2818,7 @@ M.UpdateDeviceMetadataInput = {
 
 M.UpdateDeviceMetadataOutput = {
     type = "structure",
+    id = "UpdateDeviceMetadataOutput",
     members = {
         DeviceId = {
             type = "string",

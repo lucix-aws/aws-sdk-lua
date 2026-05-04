@@ -15,6 +15,7 @@ M.ContainerStatus = {
 
 M.Container = {
     type = "structure",
+    id = "Container",
     members = {
         Endpoint = {
             type = "string",
@@ -39,6 +40,7 @@ M.Container = {
 
 M.ContainerInUseException = {
     type = "structure",
+    id = "ContainerInUseException",
     error = "client",
     members = {
         Message = {
@@ -54,6 +56,7 @@ M.ContainerLevelMetrics = {
 
 M.ContainerNotFoundException = {
     type = "structure",
+    id = "ContainerNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -64,6 +67,7 @@ M.ContainerNotFoundException = {
 
 M.CorsRule = {
     type = "structure",
+    id = "CorsRule",
     members = {
         AllowedOrigins = {
             type = "list",
@@ -98,6 +102,7 @@ M.CorsRule = {
 
 M.CorsPolicyNotFoundException = {
     type = "structure",
+    id = "CorsPolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -108,6 +113,7 @@ M.CorsPolicyNotFoundException = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -123,6 +129,7 @@ M.Tag = {
 
 M.CreateContainerInput = {
     type = "structure",
+    id = "CreateContainerInput",
     members = {
         ContainerName = {
             type = "string",
@@ -139,6 +146,7 @@ M.CreateContainerInput = {
 
 M.CreateContainerOutput = {
     type = "structure",
+    id = "CreateContainerOutput",
     members = {
         Container = setmetatable({ traits = {
             required = true,
@@ -148,6 +156,7 @@ M.CreateContainerOutput = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -158,6 +167,7 @@ M.InternalServerError = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -168,6 +178,7 @@ M.LimitExceededException = {
 
 M.DeleteContainerInput = {
     type = "structure",
+    id = "DeleteContainerInput",
     members = {
         ContainerName = {
             type = "string",
@@ -180,10 +191,12 @@ M.DeleteContainerInput = {
 
 M.DeleteContainerOutput = {
     type = "structure",
+    id = "DeleteContainerOutput",
 }
 
 M.DeleteContainerPolicyInput = {
     type = "structure",
+    id = "DeleteContainerPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -196,10 +209,12 @@ M.DeleteContainerPolicyInput = {
 
 M.DeleteContainerPolicyOutput = {
     type = "structure",
+    id = "DeleteContainerPolicyOutput",
 }
 
 M.PolicyNotFoundException = {
     type = "structure",
+    id = "PolicyNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -210,6 +225,7 @@ M.PolicyNotFoundException = {
 
 M.DeleteCorsPolicyInput = {
     type = "structure",
+    id = "DeleteCorsPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -222,10 +238,12 @@ M.DeleteCorsPolicyInput = {
 
 M.DeleteCorsPolicyOutput = {
     type = "structure",
+    id = "DeleteCorsPolicyOutput",
 }
 
 M.DeleteLifecyclePolicyInput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -238,10 +256,12 @@ M.DeleteLifecyclePolicyInput = {
 
 M.DeleteLifecyclePolicyOutput = {
     type = "structure",
+    id = "DeleteLifecyclePolicyOutput",
 }
 
 M.DeleteMetricPolicyInput = {
     type = "structure",
+    id = "DeleteMetricPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -254,10 +274,12 @@ M.DeleteMetricPolicyInput = {
 
 M.DeleteMetricPolicyOutput = {
     type = "structure",
+    id = "DeleteMetricPolicyOutput",
 }
 
 M.DescribeContainerInput = {
     type = "structure",
+    id = "DescribeContainerInput",
     members = {
         ContainerName = {
             type = "string",
@@ -267,6 +289,7 @@ M.DescribeContainerInput = {
 
 M.DescribeContainerOutput = {
     type = "structure",
+    id = "DescribeContainerOutput",
     members = {
         Container = M.Container,
     },
@@ -274,6 +297,7 @@ M.DescribeContainerOutput = {
 
 M.GetContainerPolicyInput = {
     type = "structure",
+    id = "GetContainerPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -286,6 +310,7 @@ M.GetContainerPolicyInput = {
 
 M.GetContainerPolicyOutput = {
     type = "structure",
+    id = "GetContainerPolicyOutput",
     members = {
         Policy = {
             type = "string",
@@ -298,6 +323,7 @@ M.GetContainerPolicyOutput = {
 
 M.GetCorsPolicyInput = {
     type = "structure",
+    id = "GetCorsPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -310,6 +336,7 @@ M.GetCorsPolicyInput = {
 
 M.GetCorsPolicyOutput = {
     type = "structure",
+    id = "GetCorsPolicyOutput",
     members = {
         CorsPolicy = {
             type = "list",
@@ -323,6 +350,7 @@ M.GetCorsPolicyOutput = {
 
 M.GetLifecyclePolicyInput = {
     type = "structure",
+    id = "GetLifecyclePolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -335,6 +363,7 @@ M.GetLifecyclePolicyInput = {
 
 M.GetLifecyclePolicyOutput = {
     type = "structure",
+    id = "GetLifecyclePolicyOutput",
     members = {
         LifecyclePolicy = {
             type = "string",
@@ -347,6 +376,7 @@ M.GetLifecyclePolicyOutput = {
 
 M.GetMetricPolicyInput = {
     type = "structure",
+    id = "GetMetricPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -359,6 +389,7 @@ M.GetMetricPolicyInput = {
 
 M.MetricPolicyRule = {
     type = "structure",
+    id = "MetricPolicyRule",
     members = {
         ObjectGroup = {
             type = "string",
@@ -377,6 +408,7 @@ M.MetricPolicyRule = {
 
 M.MetricPolicy = {
     type = "structure",
+    id = "MetricPolicy",
     members = {
         ContainerLevelMetrics = {
             type = "string",
@@ -393,6 +425,7 @@ M.MetricPolicy = {
 
 M.GetMetricPolicyOutput = {
     type = "structure",
+    id = "GetMetricPolicyOutput",
     members = {
         MetricPolicy = setmetatable({ traits = {
             required = true,
@@ -402,6 +435,7 @@ M.GetMetricPolicyOutput = {
 
 M.ListContainersInput = {
     type = "structure",
+    id = "ListContainersInput",
     members = {
         NextToken = {
             type = "string",
@@ -414,6 +448,7 @@ M.ListContainersInput = {
 
 M.ListContainersOutput = {
     type = "structure",
+    id = "ListContainersOutput",
     members = {
         Containers = {
             type = "list",
@@ -430,6 +465,7 @@ M.ListContainersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -442,6 +478,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -452,6 +489,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutContainerPolicyInput = {
     type = "structure",
+    id = "PutContainerPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -470,10 +508,12 @@ M.PutContainerPolicyInput = {
 
 M.PutContainerPolicyOutput = {
     type = "structure",
+    id = "PutContainerPolicyOutput",
 }
 
 M.PutCorsPolicyInput = {
     type = "structure",
+    id = "PutCorsPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -493,10 +533,12 @@ M.PutCorsPolicyInput = {
 
 M.PutCorsPolicyOutput = {
     type = "structure",
+    id = "PutCorsPolicyOutput",
 }
 
 M.PutLifecyclePolicyInput = {
     type = "structure",
+    id = "PutLifecyclePolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -515,10 +557,12 @@ M.PutLifecyclePolicyInput = {
 
 M.PutLifecyclePolicyOutput = {
     type = "structure",
+    id = "PutLifecyclePolicyOutput",
 }
 
 M.PutMetricPolicyInput = {
     type = "structure",
+    id = "PutMetricPolicyInput",
     members = {
         ContainerName = {
             type = "string",
@@ -534,10 +578,12 @@ M.PutMetricPolicyInput = {
 
 M.PutMetricPolicyOutput = {
     type = "structure",
+    id = "PutMetricPolicyOutput",
 }
 
 M.StartAccessLoggingInput = {
     type = "structure",
+    id = "StartAccessLoggingInput",
     members = {
         ContainerName = {
             type = "string",
@@ -550,10 +596,12 @@ M.StartAccessLoggingInput = {
 
 M.StartAccessLoggingOutput = {
     type = "structure",
+    id = "StartAccessLoggingOutput",
 }
 
 M.StopAccessLoggingInput = {
     type = "structure",
+    id = "StopAccessLoggingInput",
     members = {
         ContainerName = {
             type = "string",
@@ -566,10 +614,12 @@ M.StopAccessLoggingInput = {
 
 M.StopAccessLoggingOutput = {
     type = "structure",
+    id = "StopAccessLoggingOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -589,10 +639,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         Resource = {
             type = "string",
@@ -612,6 +664,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

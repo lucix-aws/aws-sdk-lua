@@ -2,6 +2,7 @@ local M = {}
 
 M.ConcurrentUpdateException = {
     type = "structure",
+    id = "ConcurrentUpdateException",
     error = "server",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.ConcurrentUpdateException = {
 
 M.TagFilter = {
     type = "structure",
+    id = "TagFilter",
     members = {
         Key = {
             type = "string",
@@ -25,6 +27,7 @@ M.TagFilter = {
 
 M.ApplicationSource = {
     type = "structure",
+    id = "ApplicationSource",
     members = {
         CloudFormationStackARN = {
             type = "string",
@@ -38,6 +41,7 @@ M.ApplicationSource = {
 
 M.MetricDimension = {
     type = "structure",
+    id = "MetricDimension",
     members = {
         Name = {
             type = "string",
@@ -64,6 +68,7 @@ M.MetricStatistic = {
 
 M.CustomizedLoadMetricSpecification = {
     type = "structure",
+    id = "CustomizedLoadMetricSpecification",
     members = {
         MetricName = {
             type = "string",
@@ -102,6 +107,7 @@ M.LoadMetricType = {
 
 M.PredefinedLoadMetricSpecification = {
     type = "structure",
+    id = "PredefinedLoadMetricSpecification",
     members = {
         PredefinedLoadMetricType = {
             type = "string",
@@ -152,6 +158,7 @@ M.ServiceNamespace = {
 
 M.CustomizedScalingMetricSpecification = {
     type = "structure",
+    id = "CustomizedScalingMetricSpecification",
     members = {
         MetricName = {
             type = "string",
@@ -199,6 +206,7 @@ M.ScalingMetricType = {
 
 M.PredefinedScalingMetricSpecification = {
     type = "structure",
+    id = "PredefinedScalingMetricSpecification",
     members = {
         PredefinedScalingMetricType = {
             type = "string",
@@ -214,6 +222,7 @@ M.PredefinedScalingMetricSpecification = {
 
 M.TargetTrackingConfiguration = {
     type = "structure",
+    id = "TargetTrackingConfiguration",
     members = {
         PredefinedScalingMetricSpecification = M.PredefinedScalingMetricSpecification,
         CustomizedScalingMetricSpecification = M.CustomizedScalingMetricSpecification,
@@ -240,6 +249,7 @@ M.TargetTrackingConfiguration = {
 
 M.ScalingInstruction = {
     type = "structure",
+    id = "ScalingInstruction",
     members = {
         ServiceNamespace = {
             type = "string",
@@ -303,6 +313,7 @@ M.ScalingInstruction = {
 
 M.CreateScalingPlanInput = {
     type = "structure",
+    id = "CreateScalingPlanInput",
     members = {
         ScalingPlanName = {
             type = "string",
@@ -325,6 +336,7 @@ M.CreateScalingPlanInput = {
 
 M.CreateScalingPlanOutput = {
     type = "structure",
+    id = "CreateScalingPlanOutput",
     members = {
         ScalingPlanVersion = {
             type = "long",
@@ -337,6 +349,7 @@ M.CreateScalingPlanOutput = {
 
 M.InternalServiceException = {
     type = "structure",
+    id = "InternalServiceException",
     error = "server",
     members = {
         Message = {
@@ -347,6 +360,7 @@ M.InternalServiceException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -357,6 +371,7 @@ M.LimitExceededException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -367,6 +382,7 @@ M.ValidationException = {
 
 M.DeleteScalingPlanInput = {
     type = "structure",
+    id = "DeleteScalingPlanInput",
     members = {
         ScalingPlanName = {
             type = "string",
@@ -385,10 +401,12 @@ M.DeleteScalingPlanInput = {
 
 M.DeleteScalingPlanOutput = {
     type = "structure",
+    id = "DeleteScalingPlanOutput",
 }
 
 M.ObjectNotFoundException = {
     type = "structure",
+    id = "ObjectNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -399,6 +417,7 @@ M.ObjectNotFoundException = {
 
 M.DescribeScalingPlanResourcesInput = {
     type = "structure",
+    id = "DescribeScalingPlanResourcesInput",
     members = {
         ScalingPlanName = {
             type = "string",
@@ -427,6 +446,7 @@ M.PolicyType = {
 
 M.ScalingPolicy = {
     type = "structure",
+    id = "ScalingPolicy",
     members = {
         PolicyName = {
             type = "string",
@@ -452,6 +472,7 @@ M.ScalingStatusCode = {
 
 M.ScalingPlanResource = {
     type = "structure",
+    id = "ScalingPlanResource",
     members = {
         ScalingPlanName = {
             type = "string",
@@ -501,6 +522,7 @@ M.ScalingPlanResource = {
 
 M.DescribeScalingPlanResourcesOutput = {
     type = "structure",
+    id = "DescribeScalingPlanResourcesOutput",
     members = {
         ScalingPlanResources = {
             type = "list",
@@ -514,6 +536,7 @@ M.DescribeScalingPlanResourcesOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         Message = {
@@ -524,6 +547,7 @@ M.InvalidNextTokenException = {
 
 M.DescribeScalingPlansInput = {
     type = "structure",
+    id = "DescribeScalingPlansInput",
     members = {
         ScalingPlanNames = {
             type = "list",
@@ -558,6 +582,7 @@ M.ScalingPlanStatusCode = {
 
 M.ScalingPlan = {
     type = "structure",
+    id = "ScalingPlan",
     members = {
         ScalingPlanName = {
             type = "string",
@@ -601,6 +626,7 @@ M.ScalingPlan = {
 
 M.DescribeScalingPlansOutput = {
     type = "structure",
+    id = "DescribeScalingPlansOutput",
     members = {
         ScalingPlans = {
             type = "list",
@@ -621,6 +647,7 @@ M.ForecastDataType = {
 
 M.GetScalingPlanResourceForecastDataInput = {
     type = "structure",
+    id = "GetScalingPlanResourceForecastDataInput",
     members = {
         ScalingPlanName = {
             type = "string",
@@ -675,6 +702,7 @@ M.GetScalingPlanResourceForecastDataInput = {
 
 M.Datapoint = {
     type = "structure",
+    id = "Datapoint",
     members = {
         Timestamp = {
             type = "timestamp",
@@ -687,6 +715,7 @@ M.Datapoint = {
 
 M.GetScalingPlanResourceForecastDataOutput = {
     type = "structure",
+    id = "GetScalingPlanResourceForecastDataOutput",
     members = {
         Datapoints = {
             type = "list",
@@ -700,6 +729,7 @@ M.GetScalingPlanResourceForecastDataOutput = {
 
 M.UpdateScalingPlanInput = {
     type = "structure",
+    id = "UpdateScalingPlanInput",
     members = {
         ScalingPlanName = {
             type = "string",
@@ -723,6 +753,7 @@ M.UpdateScalingPlanInput = {
 
 M.UpdateScalingPlanOutput = {
     type = "structure",
+    id = "UpdateScalingPlanOutput",
 }
 
 return M

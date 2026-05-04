@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -18,6 +19,7 @@ M.ApplicationStatus = {
 
 M.ApplicationState = {
     type = "structure",
+    id = "ApplicationState",
     members = {
         ApplicationId = {
             type = "string",
@@ -33,6 +35,7 @@ M.ApplicationState = {
 
 M.CreatedArtifact = {
     type = "structure",
+    id = "CreatedArtifact",
     members = {
         Name = {
             type = "string",
@@ -48,6 +51,7 @@ M.CreatedArtifact = {
 
 M.AssociateCreatedArtifactInput = {
     type = "structure",
+    id = "AssociateCreatedArtifactInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -75,10 +79,12 @@ M.AssociateCreatedArtifactInput = {
 
 M.AssociateCreatedArtifactOutput = {
     type = "structure",
+    id = "AssociateCreatedArtifactOutput",
 }
 
 M.DryRunOperation = {
     type = "structure",
+    id = "DryRunOperation",
     error = "client",
     members = {
         Message = {
@@ -89,6 +95,7 @@ M.DryRunOperation = {
 
 M.HomeRegionNotSetException = {
     type = "structure",
+    id = "HomeRegionNotSetException",
     error = "client",
     members = {
         Message = {
@@ -99,6 +106,7 @@ M.HomeRegionNotSetException = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -109,6 +117,7 @@ M.InternalServerError = {
 
 M.InvalidInputException = {
     type = "structure",
+    id = "InvalidInputException",
     error = "client",
     members = {
         Message = {
@@ -119,6 +128,7 @@ M.InvalidInputException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -129,6 +139,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -139,6 +150,7 @@ M.ServiceUnavailableException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         Message = {
@@ -159,6 +171,7 @@ M.ThrottlingException = {
 
 M.UnauthorizedOperation = {
     type = "structure",
+    id = "UnauthorizedOperation",
     error = "client",
     members = {
         Message = {
@@ -169,6 +182,7 @@ M.UnauthorizedOperation = {
 
 M.DiscoveredResource = {
     type = "structure",
+    id = "DiscoveredResource",
     members = {
         ConfigurationId = {
             type = "string",
@@ -184,6 +198,7 @@ M.DiscoveredResource = {
 
 M.AssociateDiscoveredResourceInput = {
     type = "structure",
+    id = "AssociateDiscoveredResourceInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -211,10 +226,12 @@ M.AssociateDiscoveredResourceInput = {
 
 M.AssociateDiscoveredResourceOutput = {
     type = "structure",
+    id = "AssociateDiscoveredResourceOutput",
 }
 
 M.PolicyErrorException = {
     type = "structure",
+    id = "PolicyErrorException",
     error = "client",
     members = {
         Message = {
@@ -225,6 +242,7 @@ M.PolicyErrorException = {
 
 M.SourceResource = {
     type = "structure",
+    id = "SourceResource",
     members = {
         Name = {
             type = "string",
@@ -243,6 +261,7 @@ M.SourceResource = {
 
 M.AssociateSourceResourceInput = {
     type = "structure",
+    id = "AssociateSourceResourceInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -270,10 +289,12 @@ M.AssociateSourceResourceInput = {
 
 M.AssociateSourceResourceOutput = {
     type = "structure",
+    id = "AssociateSourceResourceOutput",
 }
 
 M.CreateProgressUpdateStreamInput = {
     type = "structure",
+    id = "CreateProgressUpdateStreamInput",
     members = {
         ProgressUpdateStreamName = {
             type = "string",
@@ -292,10 +313,12 @@ M.CreateProgressUpdateStreamInput = {
 
 M.CreateProgressUpdateStreamOutput = {
     type = "structure",
+    id = "CreateProgressUpdateStreamOutput",
 }
 
 M.DeleteProgressUpdateStreamInput = {
     type = "structure",
+    id = "DeleteProgressUpdateStreamInput",
     members = {
         ProgressUpdateStreamName = {
             type = "string",
@@ -314,10 +337,12 @@ M.DeleteProgressUpdateStreamInput = {
 
 M.DeleteProgressUpdateStreamOutput = {
     type = "structure",
+    id = "DeleteProgressUpdateStreamOutput",
 }
 
 M.DescribeApplicationStateInput = {
     type = "structure",
+    id = "DescribeApplicationStateInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -330,6 +355,7 @@ M.DescribeApplicationStateInput = {
 
 M.DescribeApplicationStateOutput = {
     type = "structure",
+    id = "DescribeApplicationStateOutput",
     members = {
         ApplicationStatus = {
             type = "string",
@@ -342,6 +368,7 @@ M.DescribeApplicationStateOutput = {
 
 M.DescribeMigrationTaskInput = {
     type = "structure",
+    id = "DescribeMigrationTaskInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -373,6 +400,7 @@ M.ResourceAttributeType = {
 
 M.ResourceAttribute = {
     type = "structure",
+    id = "ResourceAttribute",
     members = {
         Type = {
             type = "string",
@@ -398,6 +426,7 @@ M.Status = {
 
 M.Task = {
     type = "structure",
+    id = "Task",
     members = {
         Status = {
             type = "string",
@@ -416,6 +445,7 @@ M.Task = {
 
 M.MigrationTask = {
     type = "structure",
+    id = "MigrationTask",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -436,6 +466,7 @@ M.MigrationTask = {
 
 M.DescribeMigrationTaskOutput = {
     type = "structure",
+    id = "DescribeMigrationTaskOutput",
     members = {
         MigrationTask = M.MigrationTask,
     },
@@ -443,6 +474,7 @@ M.DescribeMigrationTaskOutput = {
 
 M.DisassociateCreatedArtifactInput = {
     type = "structure",
+    id = "DisassociateCreatedArtifactInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -473,10 +505,12 @@ M.DisassociateCreatedArtifactInput = {
 
 M.DisassociateCreatedArtifactOutput = {
     type = "structure",
+    id = "DisassociateCreatedArtifactOutput",
 }
 
 M.DisassociateDiscoveredResourceInput = {
     type = "structure",
+    id = "DisassociateDiscoveredResourceInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -507,10 +541,12 @@ M.DisassociateDiscoveredResourceInput = {
 
 M.DisassociateDiscoveredResourceOutput = {
     type = "structure",
+    id = "DisassociateDiscoveredResourceOutput",
 }
 
 M.DisassociateSourceResourceInput = {
     type = "structure",
+    id = "DisassociateSourceResourceInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -541,10 +577,12 @@ M.DisassociateSourceResourceInput = {
 
 M.DisassociateSourceResourceOutput = {
     type = "structure",
+    id = "DisassociateSourceResourceOutput",
 }
 
 M.ImportMigrationTaskInput = {
     type = "structure",
+    id = "ImportMigrationTaskInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -569,10 +607,12 @@ M.ImportMigrationTaskInput = {
 
 M.ImportMigrationTaskOutput = {
     type = "structure",
+    id = "ImportMigrationTaskOutput",
 }
 
 M.ListApplicationStatesInput = {
     type = "structure",
+    id = "ListApplicationStatesInput",
     members = {
         ApplicationIds = {
             type = "list",
@@ -589,6 +629,7 @@ M.ListApplicationStatesInput = {
 
 M.ListApplicationStatesOutput = {
     type = "structure",
+    id = "ListApplicationStatesOutput",
     members = {
         ApplicationStateList = {
             type = "list",
@@ -602,6 +643,7 @@ M.ListApplicationStatesOutput = {
 
 M.ListCreatedArtifactsInput = {
     type = "structure",
+    id = "ListCreatedArtifactsInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -626,6 +668,7 @@ M.ListCreatedArtifactsInput = {
 
 M.ListCreatedArtifactsOutput = {
     type = "structure",
+    id = "ListCreatedArtifactsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -639,6 +682,7 @@ M.ListCreatedArtifactsOutput = {
 
 M.ListDiscoveredResourcesInput = {
     type = "structure",
+    id = "ListDiscoveredResourcesInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -663,6 +707,7 @@ M.ListDiscoveredResourcesInput = {
 
 M.ListDiscoveredResourcesOutput = {
     type = "structure",
+    id = "ListDiscoveredResourcesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -676,6 +721,7 @@ M.ListDiscoveredResourcesOutput = {
 
 M.ListMigrationTasksInput = {
     type = "structure",
+    id = "ListMigrationTasksInput",
     members = {
         NextToken = {
             type = "string",
@@ -691,6 +737,7 @@ M.ListMigrationTasksInput = {
 
 M.MigrationTaskSummary = {
     type = "structure",
+    id = "MigrationTaskSummary",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -715,6 +762,7 @@ M.MigrationTaskSummary = {
 
 M.ListMigrationTasksOutput = {
     type = "structure",
+    id = "ListMigrationTasksOutput",
     members = {
         NextToken = {
             type = "string",
@@ -728,6 +776,7 @@ M.ListMigrationTasksOutput = {
 
 M.ListMigrationTaskUpdatesInput = {
     type = "structure",
+    id = "ListMigrationTaskUpdatesInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -756,6 +805,7 @@ M.UpdateType = {
 
 M.MigrationTaskUpdate = {
     type = "structure",
+    id = "MigrationTaskUpdate",
     members = {
         UpdateDateTime = {
             type = "timestamp",
@@ -769,6 +819,7 @@ M.MigrationTaskUpdate = {
 
 M.ListMigrationTaskUpdatesOutput = {
     type = "structure",
+    id = "ListMigrationTaskUpdatesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -782,6 +833,7 @@ M.ListMigrationTaskUpdatesOutput = {
 
 M.ListProgressUpdateStreamsInput = {
     type = "structure",
+    id = "ListProgressUpdateStreamsInput",
     members = {
         NextToken = {
             type = "string",
@@ -794,6 +846,7 @@ M.ListProgressUpdateStreamsInput = {
 
 M.ProgressUpdateStreamSummary = {
     type = "structure",
+    id = "ProgressUpdateStreamSummary",
     members = {
         ProgressUpdateStreamName = {
             type = "string",
@@ -803,6 +856,7 @@ M.ProgressUpdateStreamSummary = {
 
 M.ListProgressUpdateStreamsOutput = {
     type = "structure",
+    id = "ListProgressUpdateStreamsOutput",
     members = {
         ProgressUpdateStreamSummaryList = {
             type = "list",
@@ -816,6 +870,7 @@ M.ListProgressUpdateStreamsOutput = {
 
 M.ListSourceResourcesInput = {
     type = "structure",
+    id = "ListSourceResourcesInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -840,6 +895,7 @@ M.ListSourceResourcesInput = {
 
 M.ListSourceResourcesOutput = {
     type = "structure",
+    id = "ListSourceResourcesOutput",
     members = {
         NextToken = {
             type = "string",
@@ -853,6 +909,7 @@ M.ListSourceResourcesOutput = {
 
 M.NotifyApplicationStateInput = {
     type = "structure",
+    id = "NotifyApplicationStateInput",
     members = {
         ApplicationId = {
             type = "string",
@@ -880,10 +937,12 @@ M.NotifyApplicationStateInput = {
 
 M.NotifyApplicationStateOutput = {
     type = "structure",
+    id = "NotifyApplicationStateOutput",
 }
 
 M.NotifyMigrationTaskStateInput = {
     type = "structure",
+    id = "NotifyMigrationTaskStateInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -924,10 +983,12 @@ M.NotifyMigrationTaskStateInput = {
 
 M.NotifyMigrationTaskStateOutput = {
     type = "structure",
+    id = "NotifyMigrationTaskStateOutput",
 }
 
 M.PutResourceAttributesInput = {
     type = "structure",
+    id = "PutResourceAttributesInput",
     members = {
         ProgressUpdateStream = {
             type = "string",
@@ -959,6 +1020,7 @@ M.PutResourceAttributesInput = {
 
 M.PutResourceAttributesOutput = {
     type = "structure",
+    id = "PutResourceAttributesOutput",
 }
 
 return M

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         Message = {
@@ -18,6 +19,7 @@ M.AccessDeniedException = {
 
 M.AgeRange = {
     type = "structure",
+    id = "AgeRange",
     members = {
         Low = {
             type = "integer",
@@ -30,6 +32,7 @@ M.AgeRange = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         Bucket = {
             type = "string",
@@ -45,6 +48,7 @@ M.S3Object = {
 
 M.GroundTruthManifest = {
     type = "structure",
+    id = "GroundTruthManifest",
     members = {
         S3Object = M.S3Object,
     },
@@ -52,6 +56,7 @@ M.GroundTruthManifest = {
 
 M.Asset = {
     type = "structure",
+    id = "Asset",
     members = {
         GroundTruthManifest = M.GroundTruthManifest,
     },
@@ -59,6 +64,7 @@ M.Asset = {
 
 M.AssociatedFace = {
     type = "structure",
+    id = "AssociatedFace",
     members = {
         FaceId = {
             type = "string",
@@ -68,6 +74,7 @@ M.AssociatedFace = {
 
 M.AssociateFacesInput = {
     type = "structure",
+    id = "AssociateFacesInput",
     members = {
         CollectionId = {
             type = "string",
@@ -108,6 +115,7 @@ M.UnsuccessfulFaceAssociationReason = {
 
 M.UnsuccessfulFaceAssociation = {
     type = "structure",
+    id = "UnsuccessfulFaceAssociation",
     members = {
         FaceId = {
             type = "string",
@@ -134,6 +142,7 @@ M.UserStatus = {
 
 M.AssociateFacesOutput = {
     type = "structure",
+    id = "AssociateFacesOutput",
     members = {
         AssociatedFaces = {
             type = "list",
@@ -151,6 +160,7 @@ M.AssociateFacesOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -167,6 +177,7 @@ M.ConflictException = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         Message = {
@@ -183,6 +194,7 @@ M.IdempotentParameterMismatchException = {
 
 M.InternalServerError = {
     type = "structure",
+    id = "InternalServerError",
     error = "server",
     members = {
         Message = {
@@ -199,6 +211,7 @@ M.InternalServerError = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         Message = {
@@ -215,6 +228,7 @@ M.InvalidParameterException = {
 
 M.ProvisionedThroughputExceededException = {
     type = "structure",
+    id = "ProvisionedThroughputExceededException",
     error = "client",
     members = {
         Message = {
@@ -231,6 +245,7 @@ M.ProvisionedThroughputExceededException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -247,6 +262,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         Message = {
@@ -263,6 +279,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "server",
     members = {
         Message = {
@@ -296,6 +313,7 @@ M.Attribute = {
 
 M.AudioMetadata = {
     type = "structure",
+    id = "AudioMetadata",
     members = {
         Codec = {
             type = "string",
@@ -314,6 +332,7 @@ M.AudioMetadata = {
 
 M.BoundingBox = {
     type = "structure",
+    id = "BoundingBox",
     members = {
         Width = {
             type = "float",
@@ -332,6 +351,7 @@ M.BoundingBox = {
 
 M.AuditImage = {
     type = "structure",
+    id = "AuditImage",
     members = {
         Bytes = {
             type = "blob",
@@ -343,6 +363,7 @@ M.AuditImage = {
 
 M.Beard = {
     type = "structure",
+    id = "Beard",
     members = {
         Value = {
             type = "boolean",
@@ -358,6 +379,7 @@ M.Beard = {
 
 M.BlackFrame = {
     type = "structure",
+    id = "BlackFrame",
     members = {
         MaxPixelThreshold = {
             type = "float",
@@ -377,6 +399,7 @@ M.BodyPart = {
 
 M.CoversBodyPart = {
     type = "structure",
+    id = "CoversBodyPart",
     members = {
         Confidence = {
             type = "float",
@@ -398,6 +421,7 @@ M.ProtectiveEquipmentType = {
 
 M.EquipmentDetection = {
     type = "structure",
+    id = "EquipmentDetection",
     members = {
         BoundingBox = M.BoundingBox,
         Confidence = {
@@ -412,6 +436,7 @@ M.EquipmentDetection = {
 
 M.ProtectiveEquipmentBodyPart = {
     type = "structure",
+    id = "ProtectiveEquipmentBodyPart",
     members = {
         Name = {
             type = "string",
@@ -440,6 +465,7 @@ M.EmotionName = {
 
 M.Emotion = {
     type = "structure",
+    id = "Emotion",
     members = {
         Type = {
             type = "string",
@@ -485,6 +511,7 @@ M.LandmarkType = {
 
 M.Landmark = {
     type = "structure",
+    id = "Landmark",
     members = {
         Type = {
             type = "string",
@@ -500,6 +527,7 @@ M.Landmark = {
 
 M.Pose = {
     type = "structure",
+    id = "Pose",
     members = {
         Roll = {
             type = "float",
@@ -515,6 +543,7 @@ M.Pose = {
 
 M.ImageQuality = {
     type = "structure",
+    id = "ImageQuality",
     members = {
         Brightness = {
             type = "float",
@@ -527,6 +556,7 @@ M.ImageQuality = {
 
 M.Smile = {
     type = "structure",
+    id = "Smile",
     members = {
         Value = {
             type = "boolean",
@@ -542,6 +572,7 @@ M.Smile = {
 
 M.ComparedFace = {
     type = "structure",
+    id = "ComparedFace",
     members = {
         BoundingBox = M.BoundingBox,
         Confidence = {
@@ -570,6 +601,7 @@ M.KnownGenderType = {
 
 M.KnownGender = {
     type = "structure",
+    id = "KnownGender",
     members = {
         Type = {
             type = "string",
@@ -579,6 +611,7 @@ M.KnownGender = {
 
 M.Celebrity = {
     type = "structure",
+    id = "Celebrity",
     members = {
         Urls = {
             type = "list",
@@ -600,6 +633,7 @@ M.Celebrity = {
 
 M.EyeDirection = {
     type = "structure",
+    id = "EyeDirection",
     members = {
         Yaw = {
             type = "float",
@@ -615,6 +649,7 @@ M.EyeDirection = {
 
 M.Eyeglasses = {
     type = "structure",
+    id = "Eyeglasses",
     members = {
         Value = {
             type = "boolean",
@@ -630,6 +665,7 @@ M.Eyeglasses = {
 
 M.EyeOpen = {
     type = "structure",
+    id = "EyeOpen",
     members = {
         Value = {
             type = "boolean",
@@ -645,6 +681,7 @@ M.EyeOpen = {
 
 M.FaceOccluded = {
     type = "structure",
+    id = "FaceOccluded",
     members = {
         Value = {
             type = "boolean",
@@ -665,6 +702,7 @@ M.GenderType = {
 
 M.Gender = {
     type = "structure",
+    id = "Gender",
     members = {
         Value = {
             type = "string",
@@ -677,6 +715,7 @@ M.Gender = {
 
 M.MouthOpen = {
     type = "structure",
+    id = "MouthOpen",
     members = {
         Value = {
             type = "boolean",
@@ -692,6 +731,7 @@ M.MouthOpen = {
 
 M.Mustache = {
     type = "structure",
+    id = "Mustache",
     members = {
         Value = {
             type = "boolean",
@@ -707,6 +747,7 @@ M.Mustache = {
 
 M.Sunglasses = {
     type = "structure",
+    id = "Sunglasses",
     members = {
         Value = {
             type = "boolean",
@@ -722,6 +763,7 @@ M.Sunglasses = {
 
 M.FaceDetail = {
     type = "structure",
+    id = "FaceDetail",
     members = {
         BoundingBox = M.BoundingBox,
         AgeRange = M.AgeRange,
@@ -753,6 +795,7 @@ M.FaceDetail = {
 
 M.CelebrityDetail = {
     type = "structure",
+    id = "CelebrityDetail",
     members = {
         Urls = {
             type = "list",
@@ -775,6 +818,7 @@ M.CelebrityDetail = {
 
 M.CelebrityRecognition = {
     type = "structure",
+    id = "CelebrityRecognition",
     members = {
         Timestamp = {
             type = "long",
@@ -798,6 +842,7 @@ M.ChallengeType = {
 
 M.Challenge = {
     type = "structure",
+    id = "Challenge",
     members = {
         Type = {
             type = "string",
@@ -816,6 +861,7 @@ M.Challenge = {
 
 M.Versions = {
     type = "structure",
+    id = "Versions",
     members = {
         Minimum = {
             type = "string",
@@ -828,6 +874,7 @@ M.Versions = {
 
 M.ChallengePreference = {
     type = "structure",
+    id = "ChallengePreference",
     members = {
         Type = {
             type = "string",
@@ -841,6 +888,7 @@ M.ChallengePreference = {
 
 M.ComparedSourceImageFace = {
     type = "structure",
+    id = "ComparedSourceImageFace",
     members = {
         BoundingBox = M.BoundingBox,
         Confidence = {
@@ -859,6 +907,7 @@ M.QualityFilter = {
 
 M.Image = {
     type = "structure",
+    id = "Image",
     members = {
         Bytes = {
             type = "blob",
@@ -869,6 +918,7 @@ M.Image = {
 
 M.CompareFacesInput = {
     type = "structure",
+    id = "CompareFacesInput",
     members = {
         SourceImage = setmetatable({ traits = {
             required = true,
@@ -887,6 +937,7 @@ M.CompareFacesInput = {
 
 M.CompareFacesMatch = {
     type = "structure",
+    id = "CompareFacesMatch",
     members = {
         Similarity = {
             type = "float",
@@ -904,6 +955,7 @@ M.OrientationCorrection = {
 
 M.CompareFacesOutput = {
     type = "structure",
+    id = "CompareFacesOutput",
     members = {
         SourceImageFace = M.ComparedSourceImageFace,
         FaceMatches = {
@@ -925,6 +977,7 @@ M.CompareFacesOutput = {
 
 M.ImageTooLargeException = {
     type = "structure",
+    id = "ImageTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -941,6 +994,7 @@ M.ImageTooLargeException = {
 
 M.InvalidImageFormatException = {
     type = "structure",
+    id = "InvalidImageFormatException",
     error = "client",
     members = {
         Message = {
@@ -957,6 +1011,7 @@ M.InvalidImageFormatException = {
 
 M.InvalidS3ObjectException = {
     type = "structure",
+    id = "InvalidS3ObjectException",
     error = "client",
     members = {
         Message = {
@@ -973,6 +1028,7 @@ M.InvalidS3ObjectException = {
 
 M.ConnectedHomeSettings = {
     type = "structure",
+    id = "ConnectedHomeSettings",
     members = {
         Labels = {
             type = "list",
@@ -989,6 +1045,7 @@ M.ConnectedHomeSettings = {
 
 M.ConnectedHomeSettingsForUpdate = {
     type = "structure",
+    id = "ConnectedHomeSettingsForUpdate",
     members = {
         Labels = {
             type = "list",
@@ -1012,6 +1069,7 @@ M.ContentModerationAggregateBy = {
 
 M.ContentType = {
     type = "structure",
+    id = "ContentType",
     members = {
         Confidence = {
             type = "float",
@@ -1024,6 +1082,7 @@ M.ContentType = {
 
 M.ModerationLabel = {
     type = "structure",
+    id = "ModerationLabel",
     members = {
         Confidence = {
             type = "float",
@@ -1042,6 +1101,7 @@ M.ModerationLabel = {
 
 M.ContentModerationDetection = {
     type = "structure",
+    id = "ContentModerationDetection",
     members = {
         Timestamp = {
             type = "long",
@@ -1073,6 +1133,7 @@ M.ContentModerationSortBy = {
 
 M.OutputConfig = {
     type = "structure",
+    id = "OutputConfig",
     members = {
         S3Bucket = {
             type = "string",
@@ -1085,6 +1146,7 @@ M.OutputConfig = {
 
 M.CopyProjectVersionInput = {
     type = "structure",
+    id = "CopyProjectVersionInput",
     members = {
         SourceProjectArn = {
             type = "string",
@@ -1126,6 +1188,7 @@ M.CopyProjectVersionInput = {
 
 M.CopyProjectVersionOutput = {
     type = "structure",
+    id = "CopyProjectVersionOutput",
     members = {
         ProjectVersionArn = {
             type = "string",
@@ -1135,6 +1198,7 @@ M.CopyProjectVersionOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1151,6 +1215,7 @@ M.LimitExceededException = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         Message = {
@@ -1167,6 +1232,7 @@ M.ResourceInUseException = {
 
 M.CreateCollectionInput = {
     type = "structure",
+    id = "CreateCollectionInput",
     members = {
         CollectionId = {
             type = "string",
@@ -1184,6 +1250,7 @@ M.CreateCollectionInput = {
 
 M.CreateCollectionOutput = {
     type = "structure",
+    id = "CreateCollectionOutput",
     members = {
         StatusCode = {
             type = "integer",
@@ -1199,6 +1266,7 @@ M.CreateCollectionOutput = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         Message = {
@@ -1215,6 +1283,7 @@ M.ResourceAlreadyExistsException = {
 
 M.DatasetSource = {
     type = "structure",
+    id = "DatasetSource",
     members = {
         GroundTruthManifest = M.GroundTruthManifest,
         DatasetArn = {
@@ -1230,6 +1299,7 @@ M.DatasetType = {
 
 M.CreateDatasetInput = {
     type = "structure",
+    id = "CreateDatasetInput",
     members = {
         DatasetSource = M.DatasetSource,
         DatasetType = {
@@ -1254,6 +1324,7 @@ M.CreateDatasetInput = {
 
 M.CreateDatasetOutput = {
     type = "structure",
+    id = "CreateDatasetOutput",
     members = {
         DatasetArn = {
             type = "string",
@@ -1263,6 +1334,7 @@ M.CreateDatasetOutput = {
 
 M.LivenessOutputConfig = {
     type = "structure",
+    id = "LivenessOutputConfig",
     members = {
         S3Bucket = {
             type = "string",
@@ -1278,6 +1350,7 @@ M.LivenessOutputConfig = {
 
 M.CreateFaceLivenessSessionRequestSettings = {
     type = "structure",
+    id = "CreateFaceLivenessSessionRequestSettings",
     members = {
         OutputConfig = M.LivenessOutputConfig,
         AuditImagesLimit = {
@@ -1292,6 +1365,7 @@ M.CreateFaceLivenessSessionRequestSettings = {
 
 M.CreateFaceLivenessSessionInput = {
     type = "structure",
+    id = "CreateFaceLivenessSessionInput",
     members = {
         KmsKeyId = {
             type = "string",
@@ -1305,6 +1379,7 @@ M.CreateFaceLivenessSessionInput = {
 
 M.CreateFaceLivenessSessionOutput = {
     type = "structure",
+    id = "CreateFaceLivenessSessionOutput",
     members = {
         SessionId = {
             type = "string",
@@ -1327,6 +1402,7 @@ M.CustomizationFeature = {
 
 M.CreateProjectInput = {
     type = "structure",
+    id = "CreateProjectInput",
     members = {
         ProjectName = {
             type = "string",
@@ -1350,6 +1426,7 @@ M.CreateProjectInput = {
 
 M.CreateProjectOutput = {
     type = "structure",
+    id = "CreateProjectOutput",
     members = {
         ProjectArn = {
             type = "string",
@@ -1359,6 +1436,7 @@ M.CreateProjectOutput = {
 
 M.CustomizationFeatureContentModerationConfig = {
     type = "structure",
+    id = "CustomizationFeatureContentModerationConfig",
     members = {
         ConfidenceThreshold = {
             type = "float",
@@ -1368,6 +1446,7 @@ M.CustomizationFeatureContentModerationConfig = {
 
 M.CustomizationFeatureConfig = {
     type = "structure",
+    id = "CustomizationFeatureConfig",
     members = {
         ContentModeration = M.CustomizationFeatureContentModerationConfig,
     },
@@ -1375,6 +1454,7 @@ M.CustomizationFeatureConfig = {
 
 M.TestingData = {
     type = "structure",
+    id = "TestingData",
     members = {
         Assets = {
             type = "list",
@@ -1391,6 +1471,7 @@ M.TestingData = {
 
 M.TrainingData = {
     type = "structure",
+    id = "TrainingData",
     members = {
         Assets = {
             type = "list",
@@ -1401,6 +1482,7 @@ M.TrainingData = {
 
 M.CreateProjectVersionInput = {
     type = "structure",
+    id = "CreateProjectVersionInput",
     members = {
         ProjectArn = {
             type = "string",
@@ -1436,6 +1518,7 @@ M.CreateProjectVersionInput = {
 
 M.CreateProjectVersionOutput = {
     type = "structure",
+    id = "CreateProjectVersionOutput",
     members = {
         ProjectVersionArn = {
             type = "string",
@@ -1445,6 +1528,7 @@ M.CreateProjectVersionOutput = {
 
 M.StreamProcessorDataSharingPreference = {
     type = "structure",
+    id = "StreamProcessorDataSharingPreference",
     members = {
         OptIn = {
             type = "boolean",
@@ -1458,6 +1542,7 @@ M.StreamProcessorDataSharingPreference = {
 
 M.KinesisVideoStream = {
     type = "structure",
+    id = "KinesisVideoStream",
     members = {
         Arn = {
             type = "string",
@@ -1467,6 +1552,7 @@ M.KinesisVideoStream = {
 
 M.StreamProcessorInput = {
     type = "structure",
+    id = "StreamProcessorInput",
     members = {
         KinesisVideoStream = M.KinesisVideoStream,
     },
@@ -1474,6 +1560,7 @@ M.StreamProcessorInput = {
 
 M.StreamProcessorNotificationChannel = {
     type = "structure",
+    id = "StreamProcessorNotificationChannel",
     members = {
         SNSTopicArn = {
             type = "string",
@@ -1486,6 +1573,7 @@ M.StreamProcessorNotificationChannel = {
 
 M.KinesisDataStream = {
     type = "structure",
+    id = "KinesisDataStream",
     members = {
         Arn = {
             type = "string",
@@ -1495,6 +1583,7 @@ M.KinesisDataStream = {
 
 M.S3Destination = {
     type = "structure",
+    id = "S3Destination",
     members = {
         Bucket = {
             type = "string",
@@ -1507,6 +1596,7 @@ M.S3Destination = {
 
 M.StreamProcessorOutput = {
     type = "structure",
+    id = "StreamProcessorOutput",
     members = {
         KinesisDataStream = M.KinesisDataStream,
         S3Destination = M.S3Destination,
@@ -1515,6 +1605,7 @@ M.StreamProcessorOutput = {
 
 M.Point = {
     type = "structure",
+    id = "Point",
     members = {
         X = {
             type = "float",
@@ -1527,6 +1618,7 @@ M.Point = {
 
 M.RegionOfInterest = {
     type = "structure",
+    id = "RegionOfInterest",
     members = {
         BoundingBox = M.BoundingBox,
         Polygon = {
@@ -1538,6 +1630,7 @@ M.RegionOfInterest = {
 
 M.FaceSearchSettings = {
     type = "structure",
+    id = "FaceSearchSettings",
     members = {
         CollectionId = {
             type = "string",
@@ -1550,6 +1643,7 @@ M.FaceSearchSettings = {
 
 M.StreamProcessorSettings = {
     type = "structure",
+    id = "StreamProcessorSettings",
     members = {
         FaceSearch = M.FaceSearchSettings,
         ConnectedHome = M.ConnectedHomeSettings,
@@ -1558,6 +1652,7 @@ M.StreamProcessorSettings = {
 
 M.CreateStreamProcessorInput = {
     type = "structure",
+    id = "CreateStreamProcessorInput",
     members = {
         Input = setmetatable({ traits = {
             required = true,
@@ -1599,6 +1694,7 @@ M.CreateStreamProcessorInput = {
 
 M.CreateStreamProcessorOutput = {
     type = "structure",
+    id = "CreateStreamProcessorOutput",
     members = {
         StreamProcessorArn = {
             type = "string",
@@ -1608,6 +1704,7 @@ M.CreateStreamProcessorOutput = {
 
 M.CreateUserInput = {
     type = "structure",
+    id = "CreateUserInput",
     members = {
         CollectionId = {
             type = "string",
@@ -1632,10 +1729,12 @@ M.CreateUserInput = {
 
 M.CreateUserOutput = {
     type = "structure",
+    id = "CreateUserOutput",
 }
 
 M.Geometry = {
     type = "structure",
+    id = "Geometry",
     members = {
         BoundingBox = M.BoundingBox,
         Polygon = {
@@ -1647,6 +1746,7 @@ M.Geometry = {
 
 M.CustomLabel = {
     type = "structure",
+    id = "CustomLabel",
     members = {
         Name = {
             type = "string",
@@ -1660,6 +1760,7 @@ M.CustomLabel = {
 
 M.DatasetChanges = {
     type = "structure",
+    id = "DatasetChanges",
     members = {
         GroundTruth = {
             type = "blob",
@@ -1672,6 +1773,7 @@ M.DatasetChanges = {
 
 M.DatasetStats = {
     type = "structure",
+    id = "DatasetStats",
     members = {
         LabeledEntries = {
             type = "integer",
@@ -1706,6 +1808,7 @@ M.DatasetStatusMessageCode = {
 
 M.DatasetDescription = {
     type = "structure",
+    id = "DatasetDescription",
     members = {
         CreationTimestamp = {
             type = "timestamp",
@@ -1728,6 +1831,7 @@ M.DatasetDescription = {
 
 M.DatasetLabelStats = {
     type = "structure",
+    id = "DatasetLabelStats",
     members = {
         EntryCount = {
             type = "integer",
@@ -1740,6 +1844,7 @@ M.DatasetLabelStats = {
 
 M.DatasetLabelDescription = {
     type = "structure",
+    id = "DatasetLabelDescription",
     members = {
         LabelName = {
             type = "string",
@@ -1750,6 +1855,7 @@ M.DatasetLabelDescription = {
 
 M.DatasetMetadata = {
     type = "structure",
+    id = "DatasetMetadata",
     members = {
         CreationTimestamp = {
             type = "timestamp",
@@ -1774,6 +1880,7 @@ M.DatasetMetadata = {
 
 M.DeleteCollectionInput = {
     type = "structure",
+    id = "DeleteCollectionInput",
     members = {
         CollectionId = {
             type = "string",
@@ -1786,6 +1893,7 @@ M.DeleteCollectionInput = {
 
 M.DeleteCollectionOutput = {
     type = "structure",
+    id = "DeleteCollectionOutput",
     members = {
         StatusCode = {
             type = "integer",
@@ -1795,6 +1903,7 @@ M.DeleteCollectionOutput = {
 
 M.DeleteDatasetInput = {
     type = "structure",
+    id = "DeleteDatasetInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -1807,10 +1916,12 @@ M.DeleteDatasetInput = {
 
 M.DeleteDatasetOutput = {
     type = "structure",
+    id = "DeleteDatasetOutput",
 }
 
 M.DeleteFacesInput = {
     type = "structure",
+    id = "DeleteFacesInput",
     members = {
         CollectionId = {
             type = "string",
@@ -1835,6 +1946,7 @@ M.UnsuccessfulFaceDeletionReason = {
 
 M.UnsuccessfulFaceDeletion = {
     type = "structure",
+    id = "UnsuccessfulFaceDeletion",
     members = {
         FaceId = {
             type = "string",
@@ -1851,6 +1963,7 @@ M.UnsuccessfulFaceDeletion = {
 
 M.DeleteFacesOutput = {
     type = "structure",
+    id = "DeleteFacesOutput",
     members = {
         DeletedFaces = {
             type = "list",
@@ -1865,6 +1978,7 @@ M.DeleteFacesOutput = {
 
 M.DeleteProjectInput = {
     type = "structure",
+    id = "DeleteProjectInput",
     members = {
         ProjectArn = {
             type = "string",
@@ -1883,6 +1997,7 @@ M.ProjectStatus = {
 
 M.DeleteProjectOutput = {
     type = "structure",
+    id = "DeleteProjectOutput",
     members = {
         Status = {
             type = "string",
@@ -1892,6 +2007,7 @@ M.DeleteProjectOutput = {
 
 M.DeleteProjectPolicyInput = {
     type = "structure",
+    id = "DeleteProjectPolicyInput",
     members = {
         ProjectArn = {
             type = "string",
@@ -1913,10 +2029,12 @@ M.DeleteProjectPolicyInput = {
 
 M.DeleteProjectPolicyOutput = {
     type = "structure",
+    id = "DeleteProjectPolicyOutput",
 }
 
 M.InvalidPolicyRevisionIdException = {
     type = "structure",
+    id = "InvalidPolicyRevisionIdException",
     error = "client",
     members = {
         Message = {
@@ -1933,6 +2051,7 @@ M.InvalidPolicyRevisionIdException = {
 
 M.DeleteProjectVersionInput = {
     type = "structure",
+    id = "DeleteProjectVersionInput",
     members = {
         ProjectVersionArn = {
             type = "string",
@@ -1962,6 +2081,7 @@ M.ProjectVersionStatus = {
 
 M.DeleteProjectVersionOutput = {
     type = "structure",
+    id = "DeleteProjectVersionOutput",
     members = {
         Status = {
             type = "string",
@@ -1971,6 +2091,7 @@ M.DeleteProjectVersionOutput = {
 
 M.DeleteStreamProcessorInput = {
     type = "structure",
+    id = "DeleteStreamProcessorInput",
     members = {
         Name = {
             type = "string",
@@ -1983,10 +2104,12 @@ M.DeleteStreamProcessorInput = {
 
 M.DeleteStreamProcessorOutput = {
     type = "structure",
+    id = "DeleteStreamProcessorOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         CollectionId = {
             type = "string",
@@ -2011,10 +2134,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DescribeCollectionInput = {
     type = "structure",
+    id = "DescribeCollectionInput",
     members = {
         CollectionId = {
             type = "string",
@@ -2027,6 +2152,7 @@ M.DescribeCollectionInput = {
 
 M.DescribeCollectionOutput = {
     type = "structure",
+    id = "DescribeCollectionOutput",
     members = {
         FaceCount = {
             type = "long",
@@ -2048,6 +2174,7 @@ M.DescribeCollectionOutput = {
 
 M.DescribeDatasetInput = {
     type = "structure",
+    id = "DescribeDatasetInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -2060,6 +2187,7 @@ M.DescribeDatasetInput = {
 
 M.DescribeDatasetOutput = {
     type = "structure",
+    id = "DescribeDatasetOutput",
     members = {
         DatasetDescription = M.DatasetDescription,
     },
@@ -2067,6 +2195,7 @@ M.DescribeDatasetOutput = {
 
 M.DescribeProjectsInput = {
     type = "structure",
+    id = "DescribeProjectsInput",
     members = {
         NextToken = {
             type = "string",
@@ -2087,6 +2216,7 @@ M.DescribeProjectsInput = {
 
 M.ProjectDescription = {
     type = "structure",
+    id = "ProjectDescription",
     members = {
         ProjectArn = {
             type = "string",
@@ -2112,6 +2242,7 @@ M.ProjectDescription = {
 
 M.DescribeProjectsOutput = {
     type = "structure",
+    id = "DescribeProjectsOutput",
     members = {
         ProjectDescriptions = {
             type = "list",
@@ -2125,6 +2256,7 @@ M.DescribeProjectsOutput = {
 
 M.InvalidPaginationTokenException = {
     type = "structure",
+    id = "InvalidPaginationTokenException",
     error = "client",
     members = {
         Message = {
@@ -2141,6 +2273,7 @@ M.InvalidPaginationTokenException = {
 
 M.DescribeProjectVersionsInput = {
     type = "structure",
+    id = "DescribeProjectVersionsInput",
     members = {
         ProjectArn = {
             type = "string",
@@ -2163,6 +2296,7 @@ M.DescribeProjectVersionsInput = {
 
 M.Summary = {
     type = "structure",
+    id = "Summary",
     members = {
         S3Object = M.S3Object,
     },
@@ -2170,6 +2304,7 @@ M.Summary = {
 
 M.EvaluationResult = {
     type = "structure",
+    id = "EvaluationResult",
     members = {
         F1Score = {
             type = "float",
@@ -2180,6 +2315,7 @@ M.EvaluationResult = {
 
 M.ValidationData = {
     type = "structure",
+    id = "ValidationData",
     members = {
         Assets = {
             type = "list",
@@ -2190,6 +2326,7 @@ M.ValidationData = {
 
 M.TestingDataResult = {
     type = "structure",
+    id = "TestingDataResult",
     members = {
         Input = M.TestingData,
         Output = M.TestingData,
@@ -2199,6 +2336,7 @@ M.TestingDataResult = {
 
 M.TrainingDataResult = {
     type = "structure",
+    id = "TrainingDataResult",
     members = {
         Input = M.TrainingData,
         Output = M.TrainingData,
@@ -2208,6 +2346,7 @@ M.TrainingDataResult = {
 
 M.ProjectVersionDescription = {
     type = "structure",
+    id = "ProjectVersionDescription",
     members = {
         ProjectVersionArn = {
             type = "string",
@@ -2259,6 +2398,7 @@ M.ProjectVersionDescription = {
 
 M.DescribeProjectVersionsOutput = {
     type = "structure",
+    id = "DescribeProjectVersionsOutput",
     members = {
         ProjectVersionDescriptions = {
             type = "list",
@@ -2272,6 +2412,7 @@ M.DescribeProjectVersionsOutput = {
 
 M.DescribeStreamProcessorInput = {
     type = "structure",
+    id = "DescribeStreamProcessorInput",
     members = {
         Name = {
             type = "string",
@@ -2293,6 +2434,7 @@ M.StreamProcessorStatus = {
 
 M.DescribeStreamProcessorOutput = {
     type = "structure",
+    id = "DescribeStreamProcessorOutput",
     members = {
         Name = {
             type = "string",
@@ -2332,6 +2474,7 @@ M.DescribeStreamProcessorOutput = {
 
 M.DetectCustomLabelsInput = {
     type = "structure",
+    id = "DetectCustomLabelsInput",
     members = {
         ProjectVersionArn = {
             type = "string",
@@ -2353,6 +2496,7 @@ M.DetectCustomLabelsInput = {
 
 M.DetectCustomLabelsOutput = {
     type = "structure",
+    id = "DetectCustomLabelsOutput",
     members = {
         CustomLabels = {
             type = "list",
@@ -2363,6 +2507,7 @@ M.DetectCustomLabelsOutput = {
 
 M.ResourceNotReadyException = {
     type = "structure",
+    id = "ResourceNotReadyException",
     error = "client",
     members = {
         Message = {
@@ -2379,6 +2524,7 @@ M.ResourceNotReadyException = {
 
 M.DetectFacesInput = {
     type = "structure",
+    id = "DetectFacesInput",
     members = {
         Image = setmetatable({ traits = {
             required = true,
@@ -2392,6 +2538,7 @@ M.DetectFacesInput = {
 
 M.DetectFacesOutput = {
     type = "structure",
+    id = "DetectFacesOutput",
     members = {
         FaceDetails = {
             type = "list",
@@ -2405,6 +2552,7 @@ M.DetectFacesOutput = {
 
 M.DetectionFilter = {
     type = "structure",
+    id = "DetectionFilter",
     members = {
         MinConfidence = {
             type = "float",
@@ -2425,6 +2573,7 @@ M.DetectLabelsFeatureName = {
 
 M.GeneralLabelsSettings = {
     type = "structure",
+    id = "GeneralLabelsSettings",
     members = {
         LabelInclusionFilters = {
             type = "list",
@@ -2447,6 +2596,7 @@ M.GeneralLabelsSettings = {
 
 M.DetectLabelsImagePropertiesSettings = {
     type = "structure",
+    id = "DetectLabelsImagePropertiesSettings",
     members = {
         MaxDominantColors = {
             type = "integer",
@@ -2459,6 +2609,7 @@ M.DetectLabelsImagePropertiesSettings = {
 
 M.DetectLabelsSettings = {
     type = "structure",
+    id = "DetectLabelsSettings",
     members = {
         GeneralLabels = M.GeneralLabelsSettings,
         ImageProperties = M.DetectLabelsImagePropertiesSettings,
@@ -2467,6 +2618,7 @@ M.DetectLabelsSettings = {
 
 M.DetectLabelsInput = {
     type = "structure",
+    id = "DetectLabelsInput",
     members = {
         Image = setmetatable({ traits = {
             required = true,
@@ -2487,6 +2639,7 @@ M.DetectLabelsInput = {
 
 M.DominantColor = {
     type = "structure",
+    id = "DominantColor",
     members = {
         Red = {
             type = "integer",
@@ -2514,6 +2667,7 @@ M.DominantColor = {
 
 M.DetectLabelsImageQuality = {
     type = "structure",
+    id = "DetectLabelsImageQuality",
     members = {
         Brightness = {
             type = "float",
@@ -2529,6 +2683,7 @@ M.DetectLabelsImageQuality = {
 
 M.DetectLabelsImageBackground = {
     type = "structure",
+    id = "DetectLabelsImageBackground",
     members = {
         Quality = M.DetectLabelsImageQuality,
         DominantColors = {
@@ -2540,6 +2695,7 @@ M.DetectLabelsImageBackground = {
 
 M.DetectLabelsImageForeground = {
     type = "structure",
+    id = "DetectLabelsImageForeground",
     members = {
         Quality = M.DetectLabelsImageQuality,
         DominantColors = {
@@ -2551,6 +2707,7 @@ M.DetectLabelsImageForeground = {
 
 M.DetectLabelsImageProperties = {
     type = "structure",
+    id = "DetectLabelsImageProperties",
     members = {
         Quality = M.DetectLabelsImageQuality,
         DominantColors = {
@@ -2564,6 +2721,7 @@ M.DetectLabelsImageProperties = {
 
 M.LabelAlias = {
     type = "structure",
+    id = "LabelAlias",
     members = {
         Name = {
             type = "string",
@@ -2573,6 +2731,7 @@ M.LabelAlias = {
 
 M.LabelCategory = {
     type = "structure",
+    id = "LabelCategory",
     members = {
         Name = {
             type = "string",
@@ -2582,6 +2741,7 @@ M.LabelCategory = {
 
 M.Instance = {
     type = "structure",
+    id = "Instance",
     members = {
         BoundingBox = M.BoundingBox,
         Confidence = {
@@ -2596,6 +2756,7 @@ M.Instance = {
 
 M.Parent = {
     type = "structure",
+    id = "Parent",
     members = {
         Name = {
             type = "string",
@@ -2605,6 +2766,7 @@ M.Parent = {
 
 M.Label = {
     type = "structure",
+    id = "Label",
     members = {
         Name = {
             type = "string",
@@ -2633,6 +2795,7 @@ M.Label = {
 
 M.DetectLabelsOutput = {
     type = "structure",
+    id = "DetectLabelsOutput",
     members = {
         Labels = {
             type = "list",
@@ -2650,6 +2813,7 @@ M.DetectLabelsOutput = {
 
 M.HumanLoopDataAttributes = {
     type = "structure",
+    id = "HumanLoopDataAttributes",
     members = {
         ContentClassifiers = {
             type = "list",
@@ -2660,6 +2824,7 @@ M.HumanLoopDataAttributes = {
 
 M.HumanLoopConfig = {
     type = "structure",
+    id = "HumanLoopConfig",
     members = {
         HumanLoopName = {
             type = "string",
@@ -2679,6 +2844,7 @@ M.HumanLoopConfig = {
 
 M.DetectModerationLabelsInput = {
     type = "structure",
+    id = "DetectModerationLabelsInput",
     members = {
         Image = setmetatable({ traits = {
             required = true,
@@ -2695,6 +2861,7 @@ M.DetectModerationLabelsInput = {
 
 M.HumanLoopActivationOutput = {
     type = "structure",
+    id = "HumanLoopActivationOutput",
     members = {
         HumanLoopArn = {
             type = "string",
@@ -2714,6 +2881,7 @@ M.HumanLoopActivationOutput = {
 
 M.DetectModerationLabelsOutput = {
     type = "structure",
+    id = "DetectModerationLabelsOutput",
     members = {
         ModerationLabels = {
             type = "list",
@@ -2735,6 +2903,7 @@ M.DetectModerationLabelsOutput = {
 
 M.HumanLoopQuotaExceededException = {
     type = "structure",
+    id = "HumanLoopQuotaExceededException",
     error = "client",
     members = {
         ResourceType = {
@@ -2760,6 +2929,7 @@ M.HumanLoopQuotaExceededException = {
 
 M.ProtectiveEquipmentSummarizationAttributes = {
     type = "structure",
+    id = "ProtectiveEquipmentSummarizationAttributes",
     members = {
         MinConfidence = {
             type = "float",
@@ -2779,6 +2949,7 @@ M.ProtectiveEquipmentSummarizationAttributes = {
 
 M.DetectProtectiveEquipmentInput = {
     type = "structure",
+    id = "DetectProtectiveEquipmentInput",
     members = {
         Image = setmetatable({ traits = {
             required = true,
@@ -2789,6 +2960,7 @@ M.DetectProtectiveEquipmentInput = {
 
 M.ProtectiveEquipmentPerson = {
     type = "structure",
+    id = "ProtectiveEquipmentPerson",
     members = {
         BodyParts = {
             type = "list",
@@ -2806,6 +2978,7 @@ M.ProtectiveEquipmentPerson = {
 
 M.ProtectiveEquipmentSummary = {
     type = "structure",
+    id = "ProtectiveEquipmentSummary",
     members = {
         PersonsWithRequiredEquipment = {
             type = "list",
@@ -2824,6 +2997,7 @@ M.ProtectiveEquipmentSummary = {
 
 M.DetectProtectiveEquipmentOutput = {
     type = "structure",
+    id = "DetectProtectiveEquipmentOutput",
     members = {
         ProtectiveEquipmentModelVersion = {
             type = "string",
@@ -2838,6 +3012,7 @@ M.DetectProtectiveEquipmentOutput = {
 
 M.DetectTextFilters = {
     type = "structure",
+    id = "DetectTextFilters",
     members = {
         WordFilter = M.DetectionFilter,
         RegionsOfInterest = {
@@ -2849,6 +3024,7 @@ M.DetectTextFilters = {
 
 M.DetectTextInput = {
     type = "structure",
+    id = "DetectTextInput",
     members = {
         Image = setmetatable({ traits = {
             required = true,
@@ -2864,6 +3040,7 @@ M.TextTypes = {
 
 M.TextDetection = {
     type = "structure",
+    id = "TextDetection",
     members = {
         DetectedText = {
             type = "string",
@@ -2886,6 +3063,7 @@ M.TextDetection = {
 
 M.DetectTextOutput = {
     type = "structure",
+    id = "DetectTextOutput",
     members = {
         TextDetections = {
             type = "list",
@@ -2899,6 +3077,7 @@ M.DetectTextOutput = {
 
 M.DisassociatedFace = {
     type = "structure",
+    id = "DisassociatedFace",
     members = {
         FaceId = {
             type = "string",
@@ -2908,6 +3087,7 @@ M.DisassociatedFace = {
 
 M.DisassociateFacesInput = {
     type = "structure",
+    id = "DisassociateFacesInput",
     members = {
         CollectionId = {
             type = "string",
@@ -2944,6 +3124,7 @@ M.UnsuccessfulFaceDisassociationReason = {
 
 M.UnsuccessfulFaceDisassociation = {
     type = "structure",
+    id = "UnsuccessfulFaceDisassociation",
     members = {
         FaceId = {
             type = "string",
@@ -2960,6 +3141,7 @@ M.UnsuccessfulFaceDisassociation = {
 
 M.DisassociateFacesOutput = {
     type = "structure",
+    id = "DisassociateFacesOutput",
     members = {
         DisassociatedFaces = {
             type = "list",
@@ -2977,6 +3159,7 @@ M.DisassociateFacesOutput = {
 
 M.DistributeDataset = {
     type = "structure",
+    id = "DistributeDataset",
     members = {
         Arn = {
             type = "string",
@@ -2989,6 +3172,7 @@ M.DistributeDataset = {
 
 M.DistributeDatasetEntriesInput = {
     type = "structure",
+    id = "DistributeDatasetEntriesInput",
     members = {
         Datasets = {
             type = "list",
@@ -3002,10 +3186,12 @@ M.DistributeDatasetEntriesInput = {
 
 M.DistributeDatasetEntriesOutput = {
     type = "structure",
+    id = "DistributeDatasetEntriesOutput",
 }
 
 M.Face = {
     type = "structure",
+    id = "Face",
     members = {
         FaceId = {
             type = "string",
@@ -3036,6 +3222,7 @@ M.FaceAttributes = {
 
 M.FaceDetection = {
     type = "structure",
+    id = "FaceDetection",
     members = {
         Timestamp = {
             type = "long",
@@ -3049,6 +3236,7 @@ M.FaceDetection = {
 
 M.FaceMatch = {
     type = "structure",
+    id = "FaceMatch",
     members = {
         Similarity = {
             type = "float",
@@ -3059,6 +3247,7 @@ M.FaceMatch = {
 
 M.FaceRecord = {
     type = "structure",
+    id = "FaceRecord",
     members = {
         Face = M.Face,
         FaceDetail = M.FaceDetail,
@@ -3072,6 +3261,7 @@ M.FaceSearchSortBy = {
 
 M.GetCelebrityInfoInput = {
     type = "structure",
+    id = "GetCelebrityInfoInput",
     members = {
         Id = {
             type = "string",
@@ -3084,6 +3274,7 @@ M.GetCelebrityInfoInput = {
 
 M.GetCelebrityInfoOutput = {
     type = "structure",
+    id = "GetCelebrityInfoOutput",
     members = {
         Urls = {
             type = "list",
@@ -3098,6 +3289,7 @@ M.GetCelebrityInfoOutput = {
 
 M.GetCelebrityRecognitionInput = {
     type = "structure",
+    id = "GetCelebrityRecognitionInput",
     members = {
         JobId = {
             type = "string",
@@ -3125,6 +3317,7 @@ M.VideoJobStatus = {
 
 M.Video = {
     type = "structure",
+    id = "Video",
     members = {
         S3Object = M.S3Object,
     },
@@ -3137,6 +3330,7 @@ M.VideoColorRange = {
 
 M.VideoMetadata = {
     type = "structure",
+    id = "VideoMetadata",
     members = {
         Codec = {
             type = "string",
@@ -3164,6 +3358,7 @@ M.VideoMetadata = {
 
 M.GetCelebrityRecognitionOutput = {
     type = "structure",
+    id = "GetCelebrityRecognitionOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3191,6 +3386,7 @@ M.GetCelebrityRecognitionOutput = {
 
 M.GetContentModerationInput = {
     type = "structure",
+    id = "GetContentModerationInput",
     members = {
         JobId = {
             type = "string",
@@ -3215,6 +3411,7 @@ M.GetContentModerationInput = {
 
 M.GetContentModerationRequestMetadata = {
     type = "structure",
+    id = "GetContentModerationRequestMetadata",
     members = {
         SortBy = {
             type = "string",
@@ -3227,6 +3424,7 @@ M.GetContentModerationRequestMetadata = {
 
 M.GetContentModerationOutput = {
     type = "structure",
+    id = "GetContentModerationOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3258,6 +3456,7 @@ M.GetContentModerationOutput = {
 
 M.GetFaceDetectionInput = {
     type = "structure",
+    id = "GetFaceDetectionInput",
     members = {
         JobId = {
             type = "string",
@@ -3276,6 +3475,7 @@ M.GetFaceDetectionInput = {
 
 M.GetFaceDetectionOutput = {
     type = "structure",
+    id = "GetFaceDetectionOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3303,6 +3503,7 @@ M.GetFaceDetectionOutput = {
 
 M.GetFaceLivenessSessionResultsInput = {
     type = "structure",
+    id = "GetFaceLivenessSessionResultsInput",
     members = {
         SessionId = {
             type = "string",
@@ -3323,6 +3524,7 @@ M.LivenessSessionStatus = {
 
 M.GetFaceLivenessSessionResultsOutput = {
     type = "structure",
+    id = "GetFaceLivenessSessionResultsOutput",
     members = {
         SessionId = {
             type = "string",
@@ -3350,6 +3552,7 @@ M.GetFaceLivenessSessionResultsOutput = {
 
 M.SessionNotFoundException = {
     type = "structure",
+    id = "SessionNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -3366,6 +3569,7 @@ M.SessionNotFoundException = {
 
 M.GetFaceSearchInput = {
     type = "structure",
+    id = "GetFaceSearchInput",
     members = {
         JobId = {
             type = "string",
@@ -3387,6 +3591,7 @@ M.GetFaceSearchInput = {
 
 M.PersonDetail = {
     type = "structure",
+    id = "PersonDetail",
     members = {
         Index = {
             type = "long",
@@ -3401,6 +3606,7 @@ M.PersonDetail = {
 
 M.PersonMatch = {
     type = "structure",
+    id = "PersonMatch",
     members = {
         Timestamp = {
             type = "long",
@@ -3418,6 +3624,7 @@ M.PersonMatch = {
 
 M.GetFaceSearchOutput = {
     type = "structure",
+    id = "GetFaceSearchOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3455,6 +3662,7 @@ M.LabelDetectionSortBy = {
 
 M.GetLabelDetectionInput = {
     type = "structure",
+    id = "GetLabelDetectionInput",
     members = {
         JobId = {
             type = "string",
@@ -3479,6 +3687,7 @@ M.GetLabelDetectionInput = {
 
 M.GetLabelDetectionRequestMetadata = {
     type = "structure",
+    id = "GetLabelDetectionRequestMetadata",
     members = {
         SortBy = {
             type = "string",
@@ -3491,6 +3700,7 @@ M.GetLabelDetectionRequestMetadata = {
 
 M.LabelDetection = {
     type = "structure",
+    id = "LabelDetection",
     members = {
         Timestamp = {
             type = "long",
@@ -3513,6 +3723,7 @@ M.LabelDetection = {
 
 M.GetLabelDetectionOutput = {
     type = "structure",
+    id = "GetLabelDetectionOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3544,6 +3755,7 @@ M.GetLabelDetectionOutput = {
 
 M.GetMediaAnalysisJobInput = {
     type = "structure",
+    id = "GetMediaAnalysisJobInput",
     members = {
         JobId = {
             type = "string",
@@ -3568,6 +3780,7 @@ M.MediaAnalysisJobFailureCode = {
 
 M.MediaAnalysisJobFailureDetails = {
     type = "structure",
+    id = "MediaAnalysisJobFailureDetails",
     members = {
         Code = {
             type = "string",
@@ -3580,6 +3793,7 @@ M.MediaAnalysisJobFailureDetails = {
 
 M.MediaAnalysisInput = {
     type = "structure",
+    id = "MediaAnalysisInput",
     members = {
         S3Object = setmetatable({ traits = {
             required = true,
@@ -3589,6 +3803,7 @@ M.MediaAnalysisInput = {
 
 M.MediaAnalysisManifestSummary = {
     type = "structure",
+    id = "MediaAnalysisManifestSummary",
     members = {
         S3Object = M.S3Object,
     },
@@ -3596,6 +3811,7 @@ M.MediaAnalysisManifestSummary = {
 
 M.MediaAnalysisDetectModerationLabelsConfig = {
     type = "structure",
+    id = "MediaAnalysisDetectModerationLabelsConfig",
     members = {
         MinConfidence = {
             type = "float",
@@ -3608,6 +3824,7 @@ M.MediaAnalysisDetectModerationLabelsConfig = {
 
 M.MediaAnalysisOperationsConfig = {
     type = "structure",
+    id = "MediaAnalysisOperationsConfig",
     members = {
         DetectModerationLabels = M.MediaAnalysisDetectModerationLabelsConfig,
     },
@@ -3615,6 +3832,7 @@ M.MediaAnalysisOperationsConfig = {
 
 M.MediaAnalysisOutputConfig = {
     type = "structure",
+    id = "MediaAnalysisOutputConfig",
     members = {
         S3Bucket = {
             type = "string",
@@ -3630,6 +3848,7 @@ M.MediaAnalysisOutputConfig = {
 
 M.MediaAnalysisModelVersions = {
     type = "structure",
+    id = "MediaAnalysisModelVersions",
     members = {
         Moderation = {
             type = "string",
@@ -3639,6 +3858,7 @@ M.MediaAnalysisModelVersions = {
 
 M.MediaAnalysisResults = {
     type = "structure",
+    id = "MediaAnalysisResults",
     members = {
         S3Object = M.S3Object,
         ModelVersions = M.MediaAnalysisModelVersions,
@@ -3655,6 +3875,7 @@ M.MediaAnalysisJobStatus = {
 
 M.GetMediaAnalysisJobOutput = {
     type = "structure",
+    id = "GetMediaAnalysisJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -3705,6 +3926,7 @@ M.PersonTrackingSortBy = {
 
 M.GetPersonTrackingInput = {
     type = "structure",
+    id = "GetPersonTrackingInput",
     members = {
         JobId = {
             type = "string",
@@ -3726,6 +3948,7 @@ M.GetPersonTrackingInput = {
 
 M.PersonDetection = {
     type = "structure",
+    id = "PersonDetection",
     members = {
         Timestamp = {
             type = "long",
@@ -3739,6 +3962,7 @@ M.PersonDetection = {
 
 M.GetPersonTrackingOutput = {
     type = "structure",
+    id = "GetPersonTrackingOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3766,6 +3990,7 @@ M.GetPersonTrackingOutput = {
 
 M.GetSegmentDetectionInput = {
     type = "structure",
+    id = "GetSegmentDetectionInput",
     members = {
         JobId = {
             type = "string",
@@ -3784,6 +4009,7 @@ M.GetSegmentDetectionInput = {
 
 M.ShotSegment = {
     type = "structure",
+    id = "ShotSegment",
     members = {
         Index = {
             type = "long",
@@ -3806,6 +4032,7 @@ M.TechnicalCueType = {
 
 M.TechnicalCueSegment = {
     type = "structure",
+    id = "TechnicalCueSegment",
     members = {
         Type = {
             type = "string",
@@ -3823,6 +4050,7 @@ M.SegmentType = {
 
 M.SegmentDetection = {
     type = "structure",
+    id = "SegmentDetection",
     members = {
         Type = {
             type = "string",
@@ -3867,6 +4095,7 @@ M.SegmentDetection = {
 
 M.SegmentTypeInfo = {
     type = "structure",
+    id = "SegmentTypeInfo",
     members = {
         Type = {
             type = "string",
@@ -3879,6 +4108,7 @@ M.SegmentTypeInfo = {
 
 M.GetSegmentDetectionOutput = {
     type = "structure",
+    id = "GetSegmentDetectionOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3917,6 +4147,7 @@ M.GetSegmentDetectionOutput = {
 
 M.GetTextDetectionInput = {
     type = "structure",
+    id = "GetTextDetectionInput",
     members = {
         JobId = {
             type = "string",
@@ -3935,6 +4166,7 @@ M.GetTextDetectionInput = {
 
 M.TextDetectionResult = {
     type = "structure",
+    id = "TextDetectionResult",
     members = {
         Timestamp = {
             type = "long",
@@ -3948,6 +4180,7 @@ M.TextDetectionResult = {
 
 M.GetTextDetectionOutput = {
     type = "structure",
+    id = "GetTextDetectionOutput",
     members = {
         JobStatus = {
             type = "string",
@@ -3978,6 +4211,7 @@ M.GetTextDetectionOutput = {
 
 M.IndexFacesInput = {
     type = "structure",
+    id = "IndexFacesInput",
     members = {
         CollectionId = {
             type = "string",
@@ -4016,6 +4250,7 @@ M.Reason = {
 
 M.UnindexedFace = {
     type = "structure",
+    id = "UnindexedFace",
     members = {
         Reasons = {
             type = "list",
@@ -4027,6 +4262,7 @@ M.UnindexedFace = {
 
 M.IndexFacesOutput = {
     type = "structure",
+    id = "IndexFacesOutput",
     members = {
         FaceRecords = {
             type = "list",
@@ -4047,6 +4283,7 @@ M.IndexFacesOutput = {
 
 M.InvalidManifestException = {
     type = "structure",
+    id = "InvalidManifestException",
     error = "client",
     members = {
         Message = {
@@ -4063,6 +4300,7 @@ M.InvalidManifestException = {
 
 M.KinesisVideoStreamStartSelector = {
     type = "structure",
+    id = "KinesisVideoStreamStartSelector",
     members = {
         ProducerTimestamp = {
             type = "long",
@@ -4079,6 +4317,7 @@ M.LabelDetectionFeatureName = {
 
 M.LabelDetectionSettings = {
     type = "structure",
+    id = "LabelDetectionSettings",
     members = {
         GeneralLabels = M.GeneralLabelsSettings,
     },
@@ -4086,6 +4325,7 @@ M.LabelDetectionSettings = {
 
 M.ListCollectionsInput = {
     type = "structure",
+    id = "ListCollectionsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4098,6 +4338,7 @@ M.ListCollectionsInput = {
 
 M.ListCollectionsOutput = {
     type = "structure",
+    id = "ListCollectionsOutput",
     members = {
         CollectionIds = {
             type = "list",
@@ -4115,6 +4356,7 @@ M.ListCollectionsOutput = {
 
 M.ListDatasetEntriesInput = {
     type = "structure",
+    id = "ListDatasetEntriesInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -4146,6 +4388,7 @@ M.ListDatasetEntriesInput = {
 
 M.ListDatasetEntriesOutput = {
     type = "structure",
+    id = "ListDatasetEntriesOutput",
     members = {
         DatasetEntries = {
             type = "list",
@@ -4159,6 +4402,7 @@ M.ListDatasetEntriesOutput = {
 
 M.ListDatasetLabelsInput = {
     type = "structure",
+    id = "ListDatasetLabelsInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -4177,6 +4421,7 @@ M.ListDatasetLabelsInput = {
 
 M.ListDatasetLabelsOutput = {
     type = "structure",
+    id = "ListDatasetLabelsOutput",
     members = {
         DatasetLabelDescriptions = {
             type = "list",
@@ -4190,6 +4435,7 @@ M.ListDatasetLabelsOutput = {
 
 M.ListFacesInput = {
     type = "structure",
+    id = "ListFacesInput",
     members = {
         CollectionId = {
             type = "string",
@@ -4215,6 +4461,7 @@ M.ListFacesInput = {
 
 M.ListFacesOutput = {
     type = "structure",
+    id = "ListFacesOutput",
     members = {
         Faces = {
             type = "list",
@@ -4231,6 +4478,7 @@ M.ListFacesOutput = {
 
 M.ListMediaAnalysisJobsInput = {
     type = "structure",
+    id = "ListMediaAnalysisJobsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4243,6 +4491,7 @@ M.ListMediaAnalysisJobsInput = {
 
 M.MediaAnalysisJobDescription = {
     type = "structure",
+    id = "MediaAnalysisJobDescription",
     members = {
         JobId = {
             type = "string",
@@ -4288,6 +4537,7 @@ M.MediaAnalysisJobDescription = {
 
 M.ListMediaAnalysisJobsOutput = {
     type = "structure",
+    id = "ListMediaAnalysisJobsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4304,6 +4554,7 @@ M.ListMediaAnalysisJobsOutput = {
 
 M.ListProjectPoliciesInput = {
     type = "structure",
+    id = "ListProjectPoliciesInput",
     members = {
         ProjectArn = {
             type = "string",
@@ -4322,6 +4573,7 @@ M.ListProjectPoliciesInput = {
 
 M.ProjectPolicy = {
     type = "structure",
+    id = "ProjectPolicy",
     members = {
         ProjectArn = {
             type = "string",
@@ -4346,6 +4598,7 @@ M.ProjectPolicy = {
 
 M.ListProjectPoliciesOutput = {
     type = "structure",
+    id = "ListProjectPoliciesOutput",
     members = {
         ProjectPolicies = {
             type = "list",
@@ -4359,6 +4612,7 @@ M.ListProjectPoliciesOutput = {
 
 M.ListStreamProcessorsInput = {
     type = "structure",
+    id = "ListStreamProcessorsInput",
     members = {
         NextToken = {
             type = "string",
@@ -4371,6 +4625,7 @@ M.ListStreamProcessorsInput = {
 
 M.StreamProcessor = {
     type = "structure",
+    id = "StreamProcessor",
     members = {
         Name = {
             type = "string",
@@ -4383,6 +4638,7 @@ M.StreamProcessor = {
 
 M.ListStreamProcessorsOutput = {
     type = "structure",
+    id = "ListStreamProcessorsOutput",
     members = {
         NextToken = {
             type = "string",
@@ -4396,6 +4652,7 @@ M.ListStreamProcessorsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -4408,6 +4665,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -4419,6 +4677,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         CollectionId = {
             type = "string",
@@ -4437,6 +4696,7 @@ M.ListUsersInput = {
 
 M.User = {
     type = "structure",
+    id = "User",
     members = {
         UserId = {
             type = "string",
@@ -4449,6 +4709,7 @@ M.User = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -4462,6 +4723,7 @@ M.ListUsersOutput = {
 
 M.MalformedPolicyDocumentException = {
     type = "structure",
+    id = "MalformedPolicyDocumentException",
     error = "client",
     members = {
         Message = {
@@ -4478,6 +4740,7 @@ M.MalformedPolicyDocumentException = {
 
 M.MatchedUser = {
     type = "structure",
+    id = "MatchedUser",
     members = {
         UserId = {
             type = "string",
@@ -4490,6 +4753,7 @@ M.MatchedUser = {
 
 M.NotificationChannel = {
     type = "structure",
+    id = "NotificationChannel",
     members = {
         SNSTopicArn = {
             type = "string",
@@ -4508,6 +4772,7 @@ M.NotificationChannel = {
 
 M.PutProjectPolicyInput = {
     type = "structure",
+    id = "PutProjectPolicyInput",
     members = {
         ProjectArn = {
             type = "string",
@@ -4535,6 +4800,7 @@ M.PutProjectPolicyInput = {
 
 M.PutProjectPolicyOutput = {
     type = "structure",
+    id = "PutProjectPolicyOutput",
     members = {
         PolicyRevisionId = {
             type = "string",
@@ -4544,6 +4810,7 @@ M.PutProjectPolicyOutput = {
 
 M.RecognizeCelebritiesInput = {
     type = "structure",
+    id = "RecognizeCelebritiesInput",
     members = {
         Image = setmetatable({ traits = {
             required = true,
@@ -4553,6 +4820,7 @@ M.RecognizeCelebritiesInput = {
 
 M.RecognizeCelebritiesOutput = {
     type = "structure",
+    id = "RecognizeCelebritiesOutput",
     members = {
         CelebrityFaces = {
             type = "list",
@@ -4570,6 +4838,7 @@ M.RecognizeCelebritiesOutput = {
 
 M.SearchFacesInput = {
     type = "structure",
+    id = "SearchFacesInput",
     members = {
         CollectionId = {
             type = "string",
@@ -4594,6 +4863,7 @@ M.SearchFacesInput = {
 
 M.SearchFacesOutput = {
     type = "structure",
+    id = "SearchFacesOutput",
     members = {
         SearchedFaceId = {
             type = "string",
@@ -4610,6 +4880,7 @@ M.SearchFacesOutput = {
 
 M.SearchFacesByImageInput = {
     type = "structure",
+    id = "SearchFacesByImageInput",
     members = {
         CollectionId = {
             type = "string",
@@ -4634,6 +4905,7 @@ M.SearchFacesByImageInput = {
 
 M.SearchFacesByImageOutput = {
     type = "structure",
+    id = "SearchFacesByImageOutput",
     members = {
         SearchedFaceBoundingBox = M.BoundingBox,
         SearchedFaceConfidence = {
@@ -4651,6 +4923,7 @@ M.SearchFacesByImageOutput = {
 
 M.SearchUsersInput = {
     type = "structure",
+    id = "SearchUsersInput",
     members = {
         CollectionId = {
             type = "string",
@@ -4675,6 +4948,7 @@ M.SearchUsersInput = {
 
 M.SearchedFace = {
     type = "structure",
+    id = "SearchedFace",
     members = {
         FaceId = {
             type = "string",
@@ -4684,6 +4958,7 @@ M.SearchedFace = {
 
 M.SearchedUser = {
     type = "structure",
+    id = "SearchedUser",
     members = {
         UserId = {
             type = "string",
@@ -4693,6 +4968,7 @@ M.SearchedUser = {
 
 M.UserMatch = {
     type = "structure",
+    id = "UserMatch",
     members = {
         Similarity = {
             type = "float",
@@ -4703,6 +4979,7 @@ M.UserMatch = {
 
 M.SearchUsersOutput = {
     type = "structure",
+    id = "SearchUsersOutput",
     members = {
         UserMatches = {
             type = "list",
@@ -4718,6 +4995,7 @@ M.SearchUsersOutput = {
 
 M.SearchUsersByImageInput = {
     type = "structure",
+    id = "SearchUsersByImageInput",
     members = {
         CollectionId = {
             type = "string",
@@ -4742,6 +5020,7 @@ M.SearchUsersByImageInput = {
 
 M.SearchedFaceDetails = {
     type = "structure",
+    id = "SearchedFaceDetails",
     members = {
         FaceDetail = M.FaceDetail,
     },
@@ -4760,6 +5039,7 @@ M.UnsearchedFaceReason = {
 
 M.UnsearchedFace = {
     type = "structure",
+    id = "UnsearchedFace",
     members = {
         FaceDetails = M.FaceDetail,
         Reasons = {
@@ -4771,6 +5051,7 @@ M.UnsearchedFace = {
 
 M.SearchUsersByImageOutput = {
     type = "structure",
+    id = "SearchUsersByImageOutput",
     members = {
         UserMatches = {
             type = "list",
@@ -4789,6 +5070,7 @@ M.SearchUsersByImageOutput = {
 
 M.StartCelebrityRecognitionInput = {
     type = "structure",
+    id = "StartCelebrityRecognitionInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -4805,6 +5087,7 @@ M.StartCelebrityRecognitionInput = {
 
 M.StartCelebrityRecognitionOutput = {
     type = "structure",
+    id = "StartCelebrityRecognitionOutput",
     members = {
         JobId = {
             type = "string",
@@ -4814,6 +5097,7 @@ M.StartCelebrityRecognitionOutput = {
 
 M.VideoTooLargeException = {
     type = "structure",
+    id = "VideoTooLargeException",
     error = "client",
     members = {
         Message = {
@@ -4830,6 +5114,7 @@ M.VideoTooLargeException = {
 
 M.StartContentModerationInput = {
     type = "structure",
+    id = "StartContentModerationInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -4849,6 +5134,7 @@ M.StartContentModerationInput = {
 
 M.StartContentModerationOutput = {
     type = "structure",
+    id = "StartContentModerationOutput",
     members = {
         JobId = {
             type = "string",
@@ -4858,6 +5144,7 @@ M.StartContentModerationOutput = {
 
 M.StartFaceDetectionInput = {
     type = "structure",
+    id = "StartFaceDetectionInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -4877,6 +5164,7 @@ M.StartFaceDetectionInput = {
 
 M.StartFaceDetectionOutput = {
     type = "structure",
+    id = "StartFaceDetectionOutput",
     members = {
         JobId = {
             type = "string",
@@ -4886,6 +5174,7 @@ M.StartFaceDetectionOutput = {
 
 M.StartFaceSearchInput = {
     type = "structure",
+    id = "StartFaceSearchInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -4911,6 +5200,7 @@ M.StartFaceSearchInput = {
 
 M.StartFaceSearchOutput = {
     type = "structure",
+    id = "StartFaceSearchOutput",
     members = {
         JobId = {
             type = "string",
@@ -4920,6 +5210,7 @@ M.StartFaceSearchOutput = {
 
 M.StartLabelDetectionInput = {
     type = "structure",
+    id = "StartLabelDetectionInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -4944,6 +5235,7 @@ M.StartLabelDetectionInput = {
 
 M.StartLabelDetectionOutput = {
     type = "structure",
+    id = "StartLabelDetectionOutput",
     members = {
         JobId = {
             type = "string",
@@ -4953,6 +5245,7 @@ M.StartLabelDetectionOutput = {
 
 M.StartMediaAnalysisJobInput = {
     type = "structure",
+    id = "StartMediaAnalysisJobInput",
     members = {
         ClientRequestToken = {
             type = "string",
@@ -4980,6 +5273,7 @@ M.StartMediaAnalysisJobInput = {
 
 M.StartMediaAnalysisJobOutput = {
     type = "structure",
+    id = "StartMediaAnalysisJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -4992,6 +5286,7 @@ M.StartMediaAnalysisJobOutput = {
 
 M.StartPersonTrackingInput = {
     type = "structure",
+    id = "StartPersonTrackingInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -5008,6 +5303,7 @@ M.StartPersonTrackingInput = {
 
 M.StartPersonTrackingOutput = {
     type = "structure",
+    id = "StartPersonTrackingOutput",
     members = {
         JobId = {
             type = "string",
@@ -5017,6 +5313,7 @@ M.StartPersonTrackingOutput = {
 
 M.StartProjectVersionInput = {
     type = "structure",
+    id = "StartProjectVersionInput",
     members = {
         ProjectVersionArn = {
             type = "string",
@@ -5038,6 +5335,7 @@ M.StartProjectVersionInput = {
 
 M.StartProjectVersionOutput = {
     type = "structure",
+    id = "StartProjectVersionOutput",
     members = {
         Status = {
             type = "string",
@@ -5047,6 +5345,7 @@ M.StartProjectVersionOutput = {
 
 M.StartShotDetectionFilter = {
     type = "structure",
+    id = "StartShotDetectionFilter",
     members = {
         MinSegmentConfidence = {
             type = "float",
@@ -5056,6 +5355,7 @@ M.StartShotDetectionFilter = {
 
 M.StartTechnicalCueDetectionFilter = {
     type = "structure",
+    id = "StartTechnicalCueDetectionFilter",
     members = {
         MinSegmentConfidence = {
             type = "float",
@@ -5066,6 +5366,7 @@ M.StartTechnicalCueDetectionFilter = {
 
 M.StartSegmentDetectionFilters = {
     type = "structure",
+    id = "StartSegmentDetectionFilters",
     members = {
         TechnicalCueFilter = M.StartTechnicalCueDetectionFilter,
         ShotFilter = M.StartShotDetectionFilter,
@@ -5074,6 +5375,7 @@ M.StartSegmentDetectionFilters = {
 
 M.StartSegmentDetectionInput = {
     type = "structure",
+    id = "StartSegmentDetectionInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -5098,6 +5400,7 @@ M.StartSegmentDetectionInput = {
 
 M.StartSegmentDetectionOutput = {
     type = "structure",
+    id = "StartSegmentDetectionOutput",
     members = {
         JobId = {
             type = "string",
@@ -5107,6 +5410,7 @@ M.StartSegmentDetectionOutput = {
 
 M.StreamProcessingStartSelector = {
     type = "structure",
+    id = "StreamProcessingStartSelector",
     members = {
         KVSStreamStartSelector = M.KinesisVideoStreamStartSelector,
     },
@@ -5114,6 +5418,7 @@ M.StreamProcessingStartSelector = {
 
 M.StreamProcessingStopSelector = {
     type = "structure",
+    id = "StreamProcessingStopSelector",
     members = {
         MaxDurationInSeconds = {
             type = "long",
@@ -5123,6 +5428,7 @@ M.StreamProcessingStopSelector = {
 
 M.StartStreamProcessorInput = {
     type = "structure",
+    id = "StartStreamProcessorInput",
     members = {
         Name = {
             type = "string",
@@ -5137,6 +5443,7 @@ M.StartStreamProcessorInput = {
 
 M.StartStreamProcessorOutput = {
     type = "structure",
+    id = "StartStreamProcessorOutput",
     members = {
         SessionId = {
             type = "string",
@@ -5146,6 +5453,7 @@ M.StartStreamProcessorOutput = {
 
 M.StartTextDetectionFilters = {
     type = "structure",
+    id = "StartTextDetectionFilters",
     members = {
         WordFilter = M.DetectionFilter,
         RegionsOfInterest = {
@@ -5157,6 +5465,7 @@ M.StartTextDetectionFilters = {
 
 M.StartTextDetectionInput = {
     type = "structure",
+    id = "StartTextDetectionInput",
     members = {
         Video = setmetatable({ traits = {
             required = true,
@@ -5174,6 +5483,7 @@ M.StartTextDetectionInput = {
 
 M.StartTextDetectionOutput = {
     type = "structure",
+    id = "StartTextDetectionOutput",
     members = {
         JobId = {
             type = "string",
@@ -5183,6 +5493,7 @@ M.StartTextDetectionOutput = {
 
 M.StopProjectVersionInput = {
     type = "structure",
+    id = "StopProjectVersionInput",
     members = {
         ProjectVersionArn = {
             type = "string",
@@ -5195,6 +5506,7 @@ M.StopProjectVersionInput = {
 
 M.StopProjectVersionOutput = {
     type = "structure",
+    id = "StopProjectVersionOutput",
     members = {
         Status = {
             type = "string",
@@ -5204,6 +5516,7 @@ M.StopProjectVersionOutput = {
 
 M.StopStreamProcessorInput = {
     type = "structure",
+    id = "StopStreamProcessorInput",
     members = {
         Name = {
             type = "string",
@@ -5216,10 +5529,12 @@ M.StopStreamProcessorInput = {
 
 M.StopStreamProcessorOutput = {
     type = "structure",
+    id = "StopStreamProcessorOutput",
 }
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5240,10 +5555,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5263,10 +5580,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateDatasetEntriesInput = {
     type = "structure",
+    id = "UpdateDatasetEntriesInput",
     members = {
         DatasetArn = {
             type = "string",
@@ -5282,6 +5601,7 @@ M.UpdateDatasetEntriesInput = {
 
 M.UpdateDatasetEntriesOutput = {
     type = "structure",
+    id = "UpdateDatasetEntriesOutput",
 }
 
 M.StreamProcessorParameterToDelete = {
@@ -5291,6 +5611,7 @@ M.StreamProcessorParameterToDelete = {
 
 M.StreamProcessorSettingsForUpdate = {
     type = "structure",
+    id = "StreamProcessorSettingsForUpdate",
     members = {
         ConnectedHomeForUpdate = M.ConnectedHomeSettingsForUpdate,
     },
@@ -5298,6 +5619,7 @@ M.StreamProcessorSettingsForUpdate = {
 
 M.UpdateStreamProcessorInput = {
     type = "structure",
+    id = "UpdateStreamProcessorInput",
     members = {
         Name = {
             type = "string",
@@ -5320,6 +5642,7 @@ M.UpdateStreamProcessorInput = {
 
 M.UpdateStreamProcessorOutput = {
     type = "structure",
+    id = "UpdateStreamProcessorOutput",
 }
 
 return M

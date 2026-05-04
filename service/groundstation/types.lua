@@ -2,6 +2,7 @@ local M = {}
 
 M.DependencyException = {
     type = "structure",
+    id = "DependencyException",
     error = "server",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.DependencyException = {
 
 M.GetAgentConfigurationInput = {
     type = "structure",
+    id = "GetAgentConfigurationInput",
     members = {
         agentId = {
             type = "string",
@@ -28,6 +30,7 @@ M.GetAgentConfigurationInput = {
 
 M.GetAgentConfigurationOutput = {
     type = "structure",
+    id = "GetAgentConfigurationOutput",
     members = {
         agentId = {
             type = "string",
@@ -40,6 +43,7 @@ M.GetAgentConfigurationOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -53,6 +57,7 @@ M.InvalidParameterException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -63,6 +68,7 @@ M.ResourceNotFoundException = {
 
 M.ComponentVersion = {
     type = "structure",
+    id = "ComponentVersion",
     members = {
         componentType = {
             type = "string",
@@ -82,6 +88,7 @@ M.ComponentVersion = {
 
 M.AgentDetails = {
     type = "structure",
+    id = "AgentDetails",
     members = {
         agentVersion = {
             type = "string",
@@ -121,6 +128,7 @@ M.AgentDetails = {
 
 M.DiscoveryData = {
     type = "structure",
+    id = "DiscoveryData",
     members = {
         publicIpAddresses = {
             type = "list",
@@ -148,6 +156,7 @@ M.DiscoveryData = {
 
 M.RegisterAgentInput = {
     type = "structure",
+    id = "RegisterAgentInput",
     members = {
         discoveryData = setmetatable({ traits = {
             required = true,
@@ -165,6 +174,7 @@ M.RegisterAgentInput = {
 
 M.RegisterAgentOutput = {
     type = "structure",
+    id = "RegisterAgentOutput",
     members = {
         agentId = {
             type = "string",
@@ -181,6 +191,7 @@ M.AgentStatus = {
 
 M.AggregateStatus = {
     type = "structure",
+    id = "AggregateStatus",
     members = {
         status = {
             type = "string",
@@ -198,6 +209,7 @@ M.AggregateStatus = {
 
 M.ComponentStatusData = {
     type = "structure",
+    id = "ComponentStatusData",
     members = {
         componentType = {
             type = "string",
@@ -237,6 +249,7 @@ M.ComponentStatusData = {
 
 M.UpdateAgentStatusInput = {
     type = "structure",
+    id = "UpdateAgentStatusInput",
     members = {
         agentId = {
             type = "string",
@@ -266,6 +279,7 @@ M.UpdateAgentStatusInput = {
 
 M.UpdateAgentStatusOutput = {
     type = "structure",
+    id = "UpdateAgentStatusOutput",
     members = {
         agentId = {
             type = "string",
@@ -283,6 +297,7 @@ M.AngleUnits = {
 
 M.AntennaDemodDecodeDetails = {
     type = "structure",
+    id = "AntennaDemodDecodeDetails",
     members = {
         outputNode = {
             type = "string",
@@ -298,6 +313,7 @@ M.BandwidthUnits = {
 
 M.FrequencyBandwidth = {
     type = "structure",
+    id = "FrequencyBandwidth",
     members = {
         value = {
             type = "double",
@@ -322,6 +338,7 @@ M.FrequencyUnits = {
 
 M.Frequency = {
     type = "structure",
+    id = "Frequency",
     members = {
         value = {
             type = "double",
@@ -346,6 +363,7 @@ M.Polarization = {
 
 M.SpectrumConfig = {
     type = "structure",
+    id = "SpectrumConfig",
     members = {
         centerFrequency = setmetatable({ traits = {
             required = true,
@@ -361,6 +379,7 @@ M.SpectrumConfig = {
 
 M.AntennaDownlinkConfig = {
     type = "structure",
+    id = "AntennaDownlinkConfig",
     members = {
         spectrumConfig = setmetatable({ traits = {
             required = true,
@@ -370,6 +389,7 @@ M.AntennaDownlinkConfig = {
 
 M.DecodeConfig = {
     type = "structure",
+    id = "DecodeConfig",
     members = {
         unvalidatedJSON = {
             type = "string",
@@ -382,6 +402,7 @@ M.DecodeConfig = {
 
 M.DemodulationConfig = {
     type = "structure",
+    id = "DemodulationConfig",
     members = {
         unvalidatedJSON = {
             type = "string",
@@ -394,6 +415,7 @@ M.DemodulationConfig = {
 
 M.AntennaDownlinkDemodDecodeConfig = {
     type = "structure",
+    id = "AntennaDownlinkDemodDecodeConfig",
     members = {
         spectrumConfig = setmetatable({ traits = {
             required = true,
@@ -409,6 +431,7 @@ M.AntennaDownlinkDemodDecodeConfig = {
 
 M.AntennaListItem = {
     type = "structure",
+    id = "AntennaListItem",
     members = {
         groundStationName = {
             type = "string",
@@ -433,6 +456,7 @@ M.AntennaListItem = {
 
 M.UplinkSpectrumConfig = {
     type = "structure",
+    id = "UplinkSpectrumConfig",
     members = {
         centerFrequency = setmetatable({ traits = {
             required = true,
@@ -449,6 +473,7 @@ M.EirpUnits = {
 
 M.Eirp = {
     type = "structure",
+    id = "Eirp",
     members = {
         value = {
             type = "double",
@@ -467,6 +492,7 @@ M.Eirp = {
 
 M.AntennaUplinkConfig = {
     type = "structure",
+    id = "AntennaUplinkConfig",
     members = {
         transmitDisabled = {
             type = "boolean",
@@ -487,6 +513,7 @@ M.AuditResults = {
 
 M.SocketAddress = {
     type = "structure",
+    id = "SocketAddress",
     members = {
         name = {
             type = "string",
@@ -505,6 +532,7 @@ M.SocketAddress = {
 
 M.ConnectionDetails = {
     type = "structure",
+    id = "ConnectionDetails",
     members = {
         socketAddress = setmetatable({ traits = {
             required = true,
@@ -517,6 +545,7 @@ M.ConnectionDetails = {
 
 M.IntegerRange = {
     type = "structure",
+    id = "IntegerRange",
     members = {
         minimum = {
             type = "integer",
@@ -535,6 +564,7 @@ M.IntegerRange = {
 
 M.RangedSocketAddress = {
     type = "structure",
+    id = "RangedSocketAddress",
     members = {
         name = {
             type = "string",
@@ -550,6 +580,7 @@ M.RangedSocketAddress = {
 
 M.RangedConnectionDetails = {
     type = "structure",
+    id = "RangedConnectionDetails",
     members = {
         socketAddress = setmetatable({ traits = {
             required = true,
@@ -562,6 +593,7 @@ M.RangedConnectionDetails = {
 
 M.AwsGroundStationAgentEndpoint = {
     type = "structure",
+    id = "AwsGroundStationAgentEndpoint",
     members = {
         name = {
             type = "string",
@@ -586,6 +618,7 @@ M.AwsGroundStationAgentEndpoint = {
 
 M.TimeAzEl = {
     type = "structure",
+    id = "TimeAzEl",
     members = {
         dt = {
             type = "double",
@@ -610,6 +643,7 @@ M.TimeAzEl = {
 
 M.ISO8601TimeRange = {
     type = "structure",
+    id = "ISO8601TimeRange",
     members = {
         startTime = {
             type = "timestamp",
@@ -630,6 +664,7 @@ M.ISO8601TimeRange = {
 
 M.AzElSegment = {
     type = "structure",
+    id = "AzElSegment",
     members = {
         referenceEpoch = {
             type = "timestamp",
@@ -653,6 +688,7 @@ M.AzElSegment = {
 
 M.AzElSegments = {
     type = "structure",
+    id = "AzElSegments",
     members = {
         angleUnit = {
             type = "string",
@@ -672,6 +708,7 @@ M.AzElSegments = {
 
 M.S3Object = {
     type = "structure",
+    id = "S3Object",
     members = {
         bucket = {
             type = "string",
@@ -687,6 +724,7 @@ M.S3Object = {
 
 M.AzElSegmentsData = {
     type = "union",
+    id = "AzElSegmentsData",
     members = {
         s3Object = M.S3Object,
         azElData = M.AzElSegments,
@@ -695,6 +733,7 @@ M.AzElSegmentsData = {
 
 M.AzElEphemeris = {
     type = "structure",
+    id = "AzElEphemeris",
     members = {
         groundStation = {
             type = "string",
@@ -710,6 +749,7 @@ M.AzElEphemeris = {
 
 M.AzElEphemerisFilter = {
     type = "structure",
+    id = "AzElEphemerisFilter",
     members = {
         id = {
             type = "string",
@@ -722,6 +762,7 @@ M.AzElEphemerisFilter = {
 
 M.AzElProgramTrackSettings = {
     type = "structure",
+    id = "AzElProgramTrackSettings",
     members = {
         ephemerisId = {
             type = "string",
@@ -734,6 +775,7 @@ M.AzElProgramTrackSettings = {
 
 M.CancelContactInput = {
     type = "structure",
+    id = "CancelContactInput",
     members = {
         contactId = {
             type = "string",
@@ -747,6 +789,7 @@ M.CancelContactInput = {
 
 M.CancelContactOutput = {
     type = "structure",
+    id = "CancelContactOutput",
     members = {
         contactId = {
             type = "string",
@@ -785,6 +828,7 @@ M.ConfigCapabilityType = {
 
 M.DataflowEndpointConfig = {
     type = "structure",
+    id = "DataflowEndpointConfig",
     members = {
         dataflowEndpointName = {
             type = "string",
@@ -800,6 +844,7 @@ M.DataflowEndpointConfig = {
 
 M.S3RecordingConfig = {
     type = "structure",
+    id = "S3RecordingConfig",
     members = {
         bucketArn = {
             type = "string",
@@ -821,6 +866,7 @@ M.S3RecordingConfig = {
 
 M.KinesisDataStreamData = {
     type = "structure",
+    id = "KinesisDataStreamData",
     members = {
         kinesisRoleArn = {
             type = "string",
@@ -839,6 +885,7 @@ M.KinesisDataStreamData = {
 
 M.TelemetrySinkData = {
     type = "union",
+    id = "TelemetrySinkData",
     members = {
         kinesisDataStreamData = M.KinesisDataStreamData,
     },
@@ -850,6 +897,7 @@ M.TelemetrySinkType = {
 
 M.TelemetrySinkConfig = {
     type = "structure",
+    id = "TelemetrySinkConfig",
     members = {
         telemetrySinkType = {
             type = "string",
@@ -871,6 +919,7 @@ M.Criticality = {
 
 M.TrackingConfig = {
     type = "structure",
+    id = "TrackingConfig",
     members = {
         autotrack = {
             type = "string",
@@ -883,6 +932,7 @@ M.TrackingConfig = {
 
 M.UplinkEchoConfig = {
     type = "structure",
+    id = "UplinkEchoConfig",
     members = {
         enabled = {
             type = "boolean",
@@ -901,6 +951,7 @@ M.UplinkEchoConfig = {
 
 M.ConfigTypeData = {
     type = "union",
+    id = "ConfigTypeData",
     members = {
         antennaDownlinkConfig = M.AntennaDownlinkConfig,
         trackingConfig = M.TrackingConfig,
@@ -915,6 +966,7 @@ M.ConfigTypeData = {
 
 M.CreateConfigInput = {
     type = "structure",
+    id = "CreateConfigInput",
     members = {
         name = {
             type = "string",
@@ -935,6 +987,7 @@ M.CreateConfigInput = {
 
 M.CreateConfigOutput = {
     type = "structure",
+    id = "CreateConfigOutput",
     members = {
         configId = {
             type = "string",
@@ -950,6 +1003,7 @@ M.CreateConfigOutput = {
 
 M.ResourceLimitExceededException = {
     type = "structure",
+    id = "ResourceLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -963,6 +1017,7 @@ M.ResourceLimitExceededException = {
 
 M.DeleteConfigInput = {
     type = "structure",
+    id = "DeleteConfigInput",
     members = {
         configId = {
             type = "string",
@@ -983,6 +1038,7 @@ M.DeleteConfigInput = {
 
 M.DeleteConfigOutput = {
     type = "structure",
+    id = "DeleteConfigOutput",
     members = {
         configId = {
             type = "string",
@@ -998,6 +1054,7 @@ M.DeleteConfigOutput = {
 
 M.GetConfigInput = {
     type = "structure",
+    id = "GetConfigInput",
     members = {
         configId = {
             type = "string",
@@ -1018,6 +1075,7 @@ M.GetConfigInput = {
 
 M.GetConfigOutput = {
     type = "structure",
+    id = "GetConfigOutput",
     members = {
         configId = {
             type = "string",
@@ -1053,6 +1111,7 @@ M.GetConfigOutput = {
 
 M.ListConfigsInput = {
     type = "structure",
+    id = "ListConfigsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1071,6 +1130,7 @@ M.ListConfigsInput = {
 
 M.ConfigListItem = {
     type = "structure",
+    id = "ConfigListItem",
     members = {
         configId = {
             type = "string",
@@ -1089,6 +1149,7 @@ M.ConfigListItem = {
 
 M.ListConfigsOutput = {
     type = "structure",
+    id = "ListConfigsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1102,6 +1163,7 @@ M.ListConfigsOutput = {
 
 M.UpdateConfigInput = {
     type = "structure",
+    id = "UpdateConfigInput",
     members = {
         configId = {
             type = "string",
@@ -1131,6 +1193,7 @@ M.UpdateConfigInput = {
 
 M.UpdateConfigOutput = {
     type = "structure",
+    id = "UpdateConfigOutput",
     members = {
         configId = {
             type = "string",
@@ -1146,6 +1209,7 @@ M.UpdateConfigOutput = {
 
 M.DownlinkConnectionDetails = {
     type = "structure",
+    id = "DownlinkConnectionDetails",
     members = {
         agentIpAndPortAddress = setmetatable({ traits = {
             required = true,
@@ -1158,6 +1222,7 @@ M.DownlinkConnectionDetails = {
 
 M.DownlinkDataflowDetails = {
     type = "union",
+    id = "DownlinkDataflowDetails",
     members = {
         agentConnectionDetails = M.DownlinkConnectionDetails,
     },
@@ -1165,6 +1230,7 @@ M.DownlinkDataflowDetails = {
 
 M.DownlinkAwsGroundStationAgentEndpointDetails = {
     type = "structure",
+    id = "DownlinkAwsGroundStationAgentEndpointDetails",
     members = {
         name = {
             type = "string",
@@ -1194,6 +1260,7 @@ M.EndpointStatus = {
 
 M.DataflowEndpoint = {
     type = "structure",
+    id = "DataflowEndpoint",
     members = {
         name = {
             type = "string",
@@ -1210,6 +1277,7 @@ M.DataflowEndpoint = {
 
 M.SecurityDetails = {
     type = "structure",
+    id = "SecurityDetails",
     members = {
         subnetIds = {
             type = "list",
@@ -1236,6 +1304,7 @@ M.SecurityDetails = {
 
 M.UplinkConnectionDetails = {
     type = "structure",
+    id = "UplinkConnectionDetails",
     members = {
         ingressAddressAndPort = setmetatable({ traits = {
             required = true,
@@ -1248,6 +1317,7 @@ M.UplinkConnectionDetails = {
 
 M.UplinkDataflowDetails = {
     type = "union",
+    id = "UplinkDataflowDetails",
     members = {
         agentConnectionDetails = M.UplinkConnectionDetails,
     },
@@ -1255,6 +1325,7 @@ M.UplinkDataflowDetails = {
 
 M.UplinkAwsGroundStationAgentEndpointDetails = {
     type = "structure",
+    id = "UplinkAwsGroundStationAgentEndpointDetails",
     members = {
         name = {
             type = "string",
@@ -1276,6 +1347,7 @@ M.UplinkAwsGroundStationAgentEndpointDetails = {
 
 M.EndpointDetails = {
     type = "structure",
+    id = "EndpointDetails",
     members = {
         securityDetails = M.SecurityDetails,
         endpoint = M.DataflowEndpoint,
@@ -1294,6 +1366,7 @@ M.EndpointDetails = {
 
 M.S3RecordingDetails = {
     type = "structure",
+    id = "S3RecordingDetails",
     members = {
         bucketArn = {
             type = "string",
@@ -1306,6 +1379,7 @@ M.S3RecordingDetails = {
 
 M.ConfigDetails = {
     type = "union",
+    id = "ConfigDetails",
     members = {
         endpointDetails = M.EndpointDetails,
         antennaDemodDecodeDetails = M.AntennaDemodDecodeDetails,
@@ -1315,6 +1389,7 @@ M.ConfigDetails = {
 
 M.DescribeContactInput = {
     type = "structure",
+    id = "DescribeContactInput",
     members = {
         contactId = {
             type = "string",
@@ -1344,6 +1419,7 @@ M.ContactStatus = {
 
 M.Destination = {
     type = "structure",
+    id = "Destination",
     members = {
         configType = {
             type = "string",
@@ -1360,6 +1436,7 @@ M.Destination = {
 
 M.Source = {
     type = "structure",
+    id = "Source",
     members = {
         configType = {
             type = "string",
@@ -1376,6 +1453,7 @@ M.Source = {
 
 M.DataflowDetail = {
     type = "structure",
+    id = "DataflowDetail",
     members = {
         source = M.Source,
         destination = M.Destination,
@@ -1394,6 +1472,7 @@ M.EphemerisType = {
 
 M.EphemerisResponseData = {
     type = "structure",
+    id = "EphemerisResponseData",
     members = {
         ephemerisId = {
             type = "string",
@@ -1409,6 +1488,7 @@ M.EphemerisResponseData = {
 
 M.Elevation = {
     type = "structure",
+    id = "Elevation",
     members = {
         value = {
             type = "double",
@@ -1427,6 +1507,7 @@ M.Elevation = {
 
 M.OemProgramTrackSettings = {
     type = "structure",
+    id = "OemProgramTrackSettings",
     members = {
         ephemerisId = {
             type = "string",
@@ -1439,6 +1520,7 @@ M.OemProgramTrackSettings = {
 
 M.TleProgramTrackSettings = {
     type = "structure",
+    id = "TleProgramTrackSettings",
     members = {
         ephemerisId = {
             type = "string",
@@ -1451,6 +1533,7 @@ M.TleProgramTrackSettings = {
 
 M.ProgramTrackSettings = {
     type = "union",
+    id = "ProgramTrackSettings",
     members = {
         azEl = M.AzElProgramTrackSettings,
         oem = M.OemProgramTrackSettings,
@@ -1460,6 +1543,7 @@ M.ProgramTrackSettings = {
 
 M.TrackingOverrides = {
     type = "structure",
+    id = "TrackingOverrides",
     members = {
         programTrackSettings = M.ProgramTrackSettings,
     },
@@ -1489,6 +1573,7 @@ M.VersionStatus = {
 
 M.ContactVersion = {
     type = "structure",
+    id = "ContactVersion",
     members = {
         versionId = {
             type = "integer",
@@ -1520,6 +1605,7 @@ M.ContactVersion = {
 
 M.DescribeContactOutput = {
     type = "structure",
+    id = "DescribeContactOutput",
     members = {
         contactId = {
             type = "string",
@@ -1578,6 +1664,7 @@ M.DescribeContactOutput = {
 
 M.DescribeContactVersionInput = {
     type = "structure",
+    id = "DescribeContactVersionInput",
     members = {
         contactId = {
             type = "string",
@@ -1598,6 +1685,7 @@ M.DescribeContactVersionInput = {
 
 M.DescribeContactVersionOutput = {
     type = "structure",
+    id = "DescribeContactVersionOutput",
     members = {
         contactId = {
             type = "string",
@@ -1656,6 +1744,7 @@ M.DescribeContactVersionOutput = {
 
 M.EphemerisFilter = {
     type = "union",
+    id = "EphemerisFilter",
     members = {
         azEl = M.AzElEphemerisFilter,
     },
@@ -1663,6 +1752,7 @@ M.EphemerisFilter = {
 
 M.ListContactsInput = {
     type = "structure",
+    id = "ListContactsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1704,6 +1794,7 @@ M.ListContactsInput = {
 
 M.ContactData = {
     type = "structure",
+    id = "ContactData",
     members = {
         contactId = {
             type = "string",
@@ -1757,6 +1848,7 @@ M.ContactData = {
 
 M.ListContactsOutput = {
     type = "structure",
+    id = "ListContactsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1770,6 +1862,7 @@ M.ListContactsOutput = {
 
 M.ListContactVersionsInput = {
     type = "structure",
+    id = "ListContactVersionsInput",
     members = {
         contactId = {
             type = "string",
@@ -1795,6 +1888,7 @@ M.ListContactVersionsInput = {
 
 M.ListContactVersionsOutput = {
     type = "structure",
+    id = "ListContactVersionsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1808,6 +1902,7 @@ M.ListContactVersionsOutput = {
 
 M.ReserveContactInput = {
     type = "structure",
+    id = "ReserveContactInput",
     members = {
         missionProfileArn = {
             type = "string",
@@ -1847,6 +1942,7 @@ M.ReserveContactInput = {
 
 M.ReserveContactOutput = {
     type = "structure",
+    id = "ReserveContactOutput",
     members = {
         contactId = {
             type = "string",
@@ -1859,6 +1955,7 @@ M.ReserveContactOutput = {
 
 M.UpdateContactInput = {
     type = "structure",
+    id = "UpdateContactInput",
     members = {
         contactId = {
             type = "string",
@@ -1882,6 +1979,7 @@ M.UpdateContactInput = {
 
 M.UpdateContactOutput = {
     type = "structure",
+    id = "UpdateContactOutput",
     members = {
         contactId = {
             type = "string",
@@ -1894,6 +1992,7 @@ M.UpdateContactOutput = {
 
 M.ContactReservationDetails = {
     type = "structure",
+    id = "ContactReservationDetails",
     members = {
         contactId = {
             type = "string",
@@ -1903,6 +2002,7 @@ M.ContactReservationDetails = {
 
 M.CreateDataflowEndpointGroupInput = {
     type = "structure",
+    id = "CreateDataflowEndpointGroupInput",
     members = {
         endpointDetails = {
             type = "list",
@@ -1927,6 +2027,7 @@ M.CreateDataflowEndpointGroupInput = {
 
 M.CreateDataflowEndpointGroupOutput = {
     type = "structure",
+    id = "CreateDataflowEndpointGroupOutput",
     members = {
         dataflowEndpointGroupId = {
             type = "string",
@@ -1936,6 +2037,7 @@ M.CreateDataflowEndpointGroupOutput = {
 
 M.DownlinkAwsGroundStationAgentEndpoint = {
     type = "structure",
+    id = "DownlinkAwsGroundStationAgentEndpoint",
     members = {
         name = {
             type = "string",
@@ -1951,6 +2053,7 @@ M.DownlinkAwsGroundStationAgentEndpoint = {
 
 M.UplinkAwsGroundStationAgentEndpoint = {
     type = "structure",
+    id = "UplinkAwsGroundStationAgentEndpoint",
     members = {
         name = {
             type = "string",
@@ -1966,6 +2069,7 @@ M.UplinkAwsGroundStationAgentEndpoint = {
 
 M.CreateEndpointDetails = {
     type = "union",
+    id = "CreateEndpointDetails",
     members = {
         uplinkAwsGroundStationAgentEndpoint = M.UplinkAwsGroundStationAgentEndpoint,
         downlinkAwsGroundStationAgentEndpoint = M.DownlinkAwsGroundStationAgentEndpoint,
@@ -1974,6 +2078,7 @@ M.CreateEndpointDetails = {
 
 M.CreateDataflowEndpointGroupV2Input = {
     type = "structure",
+    id = "CreateDataflowEndpointGroupV2Input",
     members = {
         endpoints = {
             type = "list",
@@ -1998,6 +2103,7 @@ M.CreateDataflowEndpointGroupV2Input = {
 
 M.CreateDataflowEndpointGroupV2Output = {
     type = "structure",
+    id = "CreateDataflowEndpointGroupV2Output",
     members = {
         dataflowEndpointGroupId = {
             type = "string",
@@ -2007,6 +2113,7 @@ M.CreateDataflowEndpointGroupV2Output = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -2020,6 +2127,7 @@ M.ServiceQuotaExceededException = {
 
 M.OEMEphemeris = {
     type = "structure",
+    id = "OEMEphemeris",
     members = {
         s3Object = M.S3Object,
         oemData = {
@@ -2030,6 +2138,7 @@ M.OEMEphemeris = {
 
 M.TimeRange = {
     type = "structure",
+    id = "TimeRange",
     members = {
         startTime = {
             type = "timestamp",
@@ -2048,6 +2157,7 @@ M.TimeRange = {
 
 M.TLEData = {
     type = "structure",
+    id = "TLEData",
     members = {
         tleLine1 = {
             type = "string",
@@ -2069,6 +2179,7 @@ M.TLEData = {
 
 M.TLEEphemeris = {
     type = "structure",
+    id = "TLEEphemeris",
     members = {
         s3Object = M.S3Object,
         tleData = {
@@ -2080,6 +2191,7 @@ M.TLEEphemeris = {
 
 M.EphemerisData = {
     type = "union",
+    id = "EphemerisData",
     members = {
         tle = M.TLEEphemeris,
         oem = M.OEMEphemeris,
@@ -2089,6 +2201,7 @@ M.EphemerisData = {
 
 M.CreateEphemerisInput = {
     type = "structure",
+    id = "CreateEphemerisInput",
     members = {
         satelliteId = {
             type = "string",
@@ -2122,6 +2235,7 @@ M.CreateEphemerisInput = {
 
 M.CreateEphemerisOutput = {
     type = "structure",
+    id = "CreateEphemerisOutput",
     members = {
         ephemerisId = {
             type = "string",
@@ -2131,6 +2245,7 @@ M.CreateEphemerisOutput = {
 
 M.KmsKey = {
     type = "union",
+    id = "KmsKey",
     members = {
         kmsKeyArn = {
             type = "string",
@@ -2146,6 +2261,7 @@ M.KmsKey = {
 
 M.CreateMissionProfileInput = {
     type = "structure",
+    id = "CreateMissionProfileInput",
     members = {
         name = {
             type = "string",
@@ -2195,6 +2311,7 @@ M.CreateMissionProfileInput = {
 
 M.CreateMissionProfileOutput = {
     type = "structure",
+    id = "CreateMissionProfileOutput",
     members = {
         missionProfileId = {
             type = "string",
@@ -2204,6 +2321,7 @@ M.CreateMissionProfileOutput = {
 
 M.DeleteDataflowEndpointGroupInput = {
     type = "structure",
+    id = "DeleteDataflowEndpointGroupInput",
     members = {
         dataflowEndpointGroupId = {
             type = "string",
@@ -2217,6 +2335,7 @@ M.DeleteDataflowEndpointGroupInput = {
 
 M.DeleteDataflowEndpointGroupOutput = {
     type = "structure",
+    id = "DeleteDataflowEndpointGroupOutput",
     members = {
         dataflowEndpointGroupId = {
             type = "string",
@@ -2226,6 +2345,7 @@ M.DeleteDataflowEndpointGroupOutput = {
 
 M.GetDataflowEndpointGroupInput = {
     type = "structure",
+    id = "GetDataflowEndpointGroupInput",
     members = {
         dataflowEndpointGroupId = {
             type = "string",
@@ -2239,6 +2359,7 @@ M.GetDataflowEndpointGroupInput = {
 
 M.GetDataflowEndpointGroupOutput = {
     type = "structure",
+    id = "GetDataflowEndpointGroupOutput",
     members = {
         dataflowEndpointGroupId = {
             type = "string",
@@ -2266,6 +2387,7 @@ M.GetDataflowEndpointGroupOutput = {
 
 M.ListDataflowEndpointGroupsInput = {
     type = "structure",
+    id = "ListDataflowEndpointGroupsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -2284,6 +2406,7 @@ M.ListDataflowEndpointGroupsInput = {
 
 M.DataflowEndpointListItem = {
     type = "structure",
+    id = "DataflowEndpointListItem",
     members = {
         dataflowEndpointGroupId = {
             type = "string",
@@ -2296,6 +2419,7 @@ M.DataflowEndpointListItem = {
 
 M.ListDataflowEndpointGroupsOutput = {
     type = "structure",
+    id = "ListDataflowEndpointGroupsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2309,6 +2433,7 @@ M.ListDataflowEndpointGroupsOutput = {
 
 M.DeleteEphemerisInput = {
     type = "structure",
+    id = "DeleteEphemerisInput",
     members = {
         ephemerisId = {
             type = "string",
@@ -2322,6 +2447,7 @@ M.DeleteEphemerisInput = {
 
 M.DeleteEphemerisOutput = {
     type = "structure",
+    id = "DeleteEphemerisOutput",
     members = {
         ephemerisId = {
             type = "string",
@@ -2331,6 +2457,7 @@ M.DeleteEphemerisOutput = {
 
 M.ResourceInUseException = {
     type = "structure",
+    id = "ResourceInUseException",
     error = "client",
     members = {
         message = {
@@ -2341,6 +2468,7 @@ M.ResourceInUseException = {
 
 M.DeleteMissionProfileInput = {
     type = "structure",
+    id = "DeleteMissionProfileInput",
     members = {
         missionProfileId = {
             type = "string",
@@ -2354,6 +2482,7 @@ M.DeleteMissionProfileInput = {
 
 M.DeleteMissionProfileOutput = {
     type = "structure",
+    id = "DeleteMissionProfileOutput",
     members = {
         missionProfileId = {
             type = "string",
@@ -2363,6 +2492,7 @@ M.DeleteMissionProfileOutput = {
 
 M.DescribeEphemerisInput = {
     type = "structure",
+    id = "DescribeEphemerisInput",
     members = {
         ephemerisId = {
             type = "string",
@@ -2417,6 +2547,7 @@ M.EphemerisErrorCode = {
 
 M.EphemerisErrorReason = {
     type = "structure",
+    id = "EphemerisErrorReason",
     members = {
         errorCode = {
             type = "string",
@@ -2452,6 +2583,7 @@ M.EphemerisStatus = {
 
 M.EphemerisDescription = {
     type = "structure",
+    id = "EphemerisDescription",
     members = {
         sourceS3Object = M.S3Object,
         ephemerisData = {
@@ -2462,6 +2594,7 @@ M.EphemerisDescription = {
 
 M.EphemerisTypeDescription = {
     type = "union",
+    id = "EphemerisTypeDescription",
     members = {
         tle = M.EphemerisDescription,
         oem = M.EphemerisDescription,
@@ -2471,6 +2604,7 @@ M.EphemerisTypeDescription = {
 
 M.DescribeEphemerisOutput = {
     type = "structure",
+    id = "DescribeEphemerisOutput",
     members = {
         ephemerisId = {
             type = "string",
@@ -2511,6 +2645,7 @@ M.DescribeEphemerisOutput = {
 
 M.EphemerisItem = {
     type = "structure",
+    id = "EphemerisItem",
     members = {
         ephemerisId = {
             type = "string",
@@ -2539,6 +2674,7 @@ M.EphemerisItem = {
 
 M.ListEphemeridesInput = {
     type = "structure",
+    id = "ListEphemeridesInput",
     members = {
         satelliteId = {
             type = "string",
@@ -2579,6 +2715,7 @@ M.ListEphemeridesInput = {
 
 M.ListEphemeridesOutput = {
     type = "structure",
+    id = "ListEphemeridesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -2592,6 +2729,7 @@ M.ListEphemeridesOutput = {
 
 M.UpdateEphemerisInput = {
     type = "structure",
+    id = "UpdateEphemerisInput",
     members = {
         ephemerisId = {
             type = "string",
@@ -2617,6 +2755,7 @@ M.UpdateEphemerisInput = {
 
 M.UpdateEphemerisOutput = {
     type = "structure",
+    id = "UpdateEphemerisOutput",
     members = {
         ephemerisId = {
             type = "string",
@@ -2631,6 +2770,7 @@ M.EphemerisSource = {
 
 M.EphemerisMetaData = {
     type = "structure",
+    id = "EphemerisMetaData",
     members = {
         source = {
             type = "string",
@@ -2652,6 +2792,7 @@ M.EphemerisMetaData = {
 
 M.GetAgentTaskResponseUrlInput = {
     type = "structure",
+    id = "GetAgentTaskResponseUrlInput",
     members = {
         agentId = {
             type = "string",
@@ -2672,6 +2813,7 @@ M.GetAgentTaskResponseUrlInput = {
 
 M.GetAgentTaskResponseUrlOutput = {
     type = "structure",
+    id = "GetAgentTaskResponseUrlOutput",
     members = {
         agentId = {
             type = "string",
@@ -2696,6 +2838,7 @@ M.GetAgentTaskResponseUrlOutput = {
 
 M.GetMinuteUsageInput = {
     type = "structure",
+    id = "GetMinuteUsageInput",
     members = {
         month = {
             type = "integer",
@@ -2714,6 +2857,7 @@ M.GetMinuteUsageInput = {
 
 M.GetMinuteUsageOutput = {
     type = "structure",
+    id = "GetMinuteUsageOutput",
     members = {
         isReservedMinutesCustomer = {
             type = "boolean",
@@ -2735,6 +2879,7 @@ M.GetMinuteUsageOutput = {
 
 M.GetMissionProfileInput = {
     type = "structure",
+    id = "GetMissionProfileInput",
     members = {
         missionProfileId = {
             type = "string",
@@ -2748,6 +2893,7 @@ M.GetMissionProfileInput = {
 
 M.GetMissionProfileOutput = {
     type = "structure",
+    id = "GetMissionProfileOutput",
     members = {
         missionProfileId = {
             type = "string",
@@ -2794,6 +2940,7 @@ M.GetMissionProfileOutput = {
 
 M.GetSatelliteInput = {
     type = "structure",
+    id = "GetSatelliteInput",
     members = {
         satelliteId = {
             type = "string",
@@ -2807,6 +2954,7 @@ M.GetSatelliteInput = {
 
 M.GetSatelliteOutput = {
     type = "structure",
+    id = "GetSatelliteOutput",
     members = {
         satelliteId = {
             type = "string",
@@ -2830,6 +2978,7 @@ M.GetSatelliteOutput = {
 
 M.ListAntennasInput = {
     type = "structure",
+    id = "ListAntennasInput",
     members = {
         groundStationId = {
             type = "string",
@@ -2855,6 +3004,7 @@ M.ListAntennasInput = {
 
 M.ListAntennasOutput = {
     type = "structure",
+    id = "ListAntennasOutput",
     members = {
         antennaList = {
             type = "list",
@@ -2876,6 +3026,7 @@ M.ReservationType = {
 
 M.ListGroundStationReservationsInput = {
     type = "structure",
+    id = "ListGroundStationReservationsInput",
     members = {
         groundStationId = {
             type = "string",
@@ -2929,6 +3080,7 @@ M.MaintenanceType = {
 
 M.MaintenanceReservationDetails = {
     type = "structure",
+    id = "MaintenanceReservationDetails",
     members = {
         maintenanceType = {
             type = "string",
@@ -2941,6 +3093,7 @@ M.MaintenanceReservationDetails = {
 
 M.ReservationDetails = {
     type = "union",
+    id = "ReservationDetails",
     members = {
         maintenance = M.MaintenanceReservationDetails,
         contact = M.ContactReservationDetails,
@@ -2949,6 +3102,7 @@ M.ReservationDetails = {
 
 M.GroundStationReservationListItem = {
     type = "structure",
+    id = "GroundStationReservationListItem",
     members = {
         reservationType = {
             type = "string",
@@ -2988,6 +3142,7 @@ M.GroundStationReservationListItem = {
 
 M.ListGroundStationReservationsOutput = {
     type = "structure",
+    id = "ListGroundStationReservationsOutput",
     members = {
         reservationList = {
             type = "list",
@@ -3004,6 +3159,7 @@ M.ListGroundStationReservationsOutput = {
 
 M.ListGroundStationsInput = {
     type = "structure",
+    id = "ListGroundStationsInput",
     members = {
         satelliteId = {
             type = "string",
@@ -3028,6 +3184,7 @@ M.ListGroundStationsInput = {
 
 M.GroundStationData = {
     type = "structure",
+    id = "GroundStationData",
     members = {
         groundStationId = {
             type = "string",
@@ -3043,6 +3200,7 @@ M.GroundStationData = {
 
 M.ListGroundStationsOutput = {
     type = "structure",
+    id = "ListGroundStationsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3056,6 +3214,7 @@ M.ListGroundStationsOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3069,6 +3228,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -3080,6 +3240,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListMissionProfilesInput = {
     type = "structure",
+    id = "ListMissionProfilesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3098,6 +3259,7 @@ M.ListMissionProfilesInput = {
 
 M.MissionProfileListItem = {
     type = "structure",
+    id = "MissionProfileListItem",
     members = {
         missionProfileId = {
             type = "string",
@@ -3116,6 +3278,7 @@ M.MissionProfileListItem = {
 
 M.ListMissionProfilesOutput = {
     type = "structure",
+    id = "ListMissionProfilesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3129,6 +3292,7 @@ M.ListMissionProfilesOutput = {
 
 M.UpdateMissionProfileInput = {
     type = "structure",
+    id = "UpdateMissionProfileInput",
     members = {
         missionProfileId = {
             type = "string",
@@ -3168,6 +3332,7 @@ M.UpdateMissionProfileInput = {
 
 M.UpdateMissionProfileOutput = {
     type = "structure",
+    id = "UpdateMissionProfileOutput",
     members = {
         missionProfileId = {
             type = "string",
@@ -3177,6 +3342,7 @@ M.UpdateMissionProfileOutput = {
 
 M.ListSatellitesInput = {
     type = "structure",
+    id = "ListSatellitesInput",
     members = {
         maxResults = {
             type = "integer",
@@ -3195,6 +3361,7 @@ M.ListSatellitesInput = {
 
 M.SatelliteListItem = {
     type = "structure",
+    id = "SatelliteListItem",
     members = {
         satelliteId = {
             type = "string",
@@ -3218,6 +3385,7 @@ M.SatelliteListItem = {
 
 M.ListSatellitesOutput = {
     type = "structure",
+    id = "ListSatellitesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -3231,6 +3399,7 @@ M.ListSatellitesOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3252,10 +3421,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -3277,6 +3448,7 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 return M

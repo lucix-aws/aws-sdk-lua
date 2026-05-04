@@ -2,6 +2,7 @@ local M = {}
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         StartTime = {
             type = "double",
@@ -37,6 +38,7 @@ M.ItemType = {
 
 M.Item = {
     type = "structure",
+    id = "Item",
     members = {
         StartTime = {
             type = "double",
@@ -76,6 +78,7 @@ M.Item = {
 
 M.Alternative = {
     type = "structure",
+    id = "Alternative",
     members = {
         Transcript = {
             type = "string",
@@ -93,6 +96,7 @@ M.Alternative = {
 
 M.AudioEvent = {
     type = "structure",
+    id = "AudioEvent",
     members = {
         AudioChunk = {
             type = "blob",
@@ -107,6 +111,7 @@ M.ParticipantRole = {
 
 M.ChannelDefinition = {
     type = "structure",
+    id = "ChannelDefinition",
     members = {
         ChannelId = {
             type = "integer",
@@ -131,6 +136,7 @@ M.ContentRedactionOutput = {
 
 M.PostCallAnalyticsSettings = {
     type = "structure",
+    id = "PostCallAnalyticsSettings",
     members = {
         OutputLocation = {
             type = "string",
@@ -155,6 +161,7 @@ M.PostCallAnalyticsSettings = {
 
 M.ConfigurationEvent = {
     type = "structure",
+    id = "ConfigurationEvent",
     members = {
         ChannelDefinitions = {
             type = "list",
@@ -166,6 +173,7 @@ M.ConfigurationEvent = {
 
 M.AudioStream = {
     type = "union",
+    id = "AudioStream",
     members = {
         AudioEvent = M.AudioEvent,
         ConfigurationEvent = M.ConfigurationEvent,
@@ -174,6 +182,7 @@ M.AudioStream = {
 
 M.BadRequestException = {
     type = "structure",
+    id = "BadRequestException",
     error = "client",
     members = {
         Message = {
@@ -184,6 +193,7 @@ M.BadRequestException = {
 
 M.CallAnalyticsEntity = {
     type = "structure",
+    id = "CallAnalyticsEntity",
     members = {
         BeginOffsetMillis = {
             type = "long",
@@ -208,6 +218,7 @@ M.CallAnalyticsEntity = {
 
 M.CallAnalyticsItem = {
     type = "structure",
+    id = "CallAnalyticsItem",
     members = {
         BeginOffsetMillis = {
             type = "long",
@@ -250,6 +261,7 @@ M.CallAnalyticsLanguageCode = {
 
 M.CallAnalyticsLanguageWithScore = {
     type = "structure",
+    id = "CallAnalyticsLanguageWithScore",
     members = {
         LanguageCode = {
             type = "string",
@@ -265,6 +277,7 @@ M.CallAnalyticsLanguageWithScore = {
 
 M.TimestampRange = {
     type = "structure",
+    id = "TimestampRange",
     members = {
         BeginOffsetMillis = {
             type = "long",
@@ -277,6 +290,7 @@ M.TimestampRange = {
 
 M.PointsOfInterest = {
     type = "structure",
+    id = "PointsOfInterest",
     members = {
         TimestampRanges = {
             type = "list",
@@ -287,6 +301,7 @@ M.PointsOfInterest = {
 
 M.CategoryEvent = {
     type = "structure",
+    id = "CategoryEvent",
     members = {
         MatchedCategories = {
             type = "list",
@@ -302,6 +317,7 @@ M.CategoryEvent = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -312,6 +328,7 @@ M.ConflictException = {
 
 M.InternalFailureException = {
     type = "structure",
+    id = "InternalFailureException",
     error = "server",
     members = {
         Message = {
@@ -322,6 +339,7 @@ M.InternalFailureException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -332,6 +350,7 @@ M.LimitExceededException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -342,6 +361,7 @@ M.ServiceUnavailableException = {
 
 M.CharacterOffsets = {
     type = "structure",
+    id = "CharacterOffsets",
     members = {
         Begin = {
             type = "integer",
@@ -354,6 +374,7 @@ M.CharacterOffsets = {
 
 M.IssueDetected = {
     type = "structure",
+    id = "IssueDetected",
     members = {
         CharacterOffsets = M.CharacterOffsets,
     },
@@ -368,6 +389,7 @@ M.Sentiment = {
 
 M.UtteranceEvent = {
     type = "structure",
+    id = "UtteranceEvent",
     members = {
         UtteranceId = {
             type = "string",
@@ -417,6 +439,7 @@ M.UtteranceEvent = {
 
 M.CallAnalyticsTranscriptResultStream = {
     type = "union",
+    id = "CallAnalyticsTranscriptResultStream",
     members = {
         UtteranceEvent = M.UtteranceEvent,
         CategoryEvent = M.CategoryEvent,
@@ -436,6 +459,7 @@ M.ClinicalNoteGenerationStatus = {
 
 M.ClinicalNoteGenerationResult = {
     type = "structure",
+    id = "ClinicalNoteGenerationResult",
     members = {
         ClinicalNoteOutputLocation = {
             type = "string",
@@ -464,6 +488,7 @@ M.MedicalScribeNoteTemplate = {
 
 M.ClinicalNoteGenerationSettings = {
     type = "structure",
+    id = "ClinicalNoteGenerationSettings",
     members = {
         OutputBucketName = {
             type = "string",
@@ -487,6 +512,7 @@ M.ContentRedactionType = {
 
 M.GetMedicalScribeStreamInput = {
     type = "structure",
+    id = "GetMedicalScribeStreamInput",
     members = {
         SessionId = {
             type = "string",
@@ -505,6 +531,7 @@ M.MedicalScribeParticipantRole = {
 
 M.MedicalScribeChannelDefinition = {
     type = "structure",
+    id = "MedicalScribeChannelDefinition",
     members = {
         ChannelId = {
             type = "integer",
@@ -524,6 +551,7 @@ M.MedicalScribeChannelDefinition = {
 
 M.MedicalScribeEncryptionSettings = {
     type = "structure",
+    id = "MedicalScribeEncryptionSettings",
     members = {
         KmsEncryptionContext = {
             type = "map",
@@ -551,6 +579,7 @@ M.MedicalScribeMediaEncoding = {
 
 M.MedicalScribePostStreamAnalyticsResult = {
     type = "structure",
+    id = "MedicalScribePostStreamAnalyticsResult",
     members = {
         ClinicalNoteGenerationResult = M.ClinicalNoteGenerationResult,
     },
@@ -558,6 +587,7 @@ M.MedicalScribePostStreamAnalyticsResult = {
 
 M.MedicalScribePostStreamAnalyticsSettings = {
     type = "structure",
+    id = "MedicalScribePostStreamAnalyticsSettings",
     members = {
         ClinicalNoteGenerationSettings = setmetatable({ traits = {
             required = true,
@@ -580,6 +610,7 @@ M.MedicalScribeVocabularyFilterMethod = {
 
 M.MedicalScribeStreamDetails = {
     type = "structure",
+    id = "MedicalScribeStreamDetails",
     members = {
         SessionId = {
             type = "string",
@@ -629,6 +660,7 @@ M.MedicalScribeStreamDetails = {
 
 M.GetMedicalScribeStreamOutput = {
     type = "structure",
+    id = "GetMedicalScribeStreamOutput",
     members = {
         MedicalScribeStreamDetails = M.MedicalScribeStreamDetails,
     },
@@ -636,6 +668,7 @@ M.GetMedicalScribeStreamOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -748,6 +781,7 @@ M.LanguageCode = {
 
 M.LanguageWithScore = {
     type = "structure",
+    id = "LanguageWithScore",
     members = {
         LanguageCode = {
             type = "string",
@@ -769,6 +803,7 @@ M.MediaEncoding = {
 
 M.MedicalEntity = {
     type = "structure",
+    id = "MedicalEntity",
     members = {
         StartTime = {
             type = "double",
@@ -796,6 +831,7 @@ M.MedicalEntity = {
 
 M.MedicalItem = {
     type = "structure",
+    id = "MedicalItem",
     members = {
         StartTime = {
             type = "double",
@@ -826,6 +862,7 @@ M.MedicalItem = {
 
 M.MedicalAlternative = {
     type = "structure",
+    id = "MedicalAlternative",
     members = {
         Transcript = {
             type = "string",
@@ -847,6 +884,7 @@ M.MedicalContentIdentificationType = {
 
 M.MedicalResult = {
     type = "structure",
+    id = "MedicalResult",
     members = {
         ResultId = {
             type = "string",
@@ -881,6 +919,7 @@ M.MedicalResult = {
 
 M.MedicalScribeAudioEvent = {
     type = "structure",
+    id = "MedicalScribeAudioEvent",
     members = {
         AudioChunk = {
             type = "blob",
@@ -899,6 +938,7 @@ M.Pronouns = {
 
 M.MedicalScribePatientContext = {
     type = "structure",
+    id = "MedicalScribePatientContext",
     members = {
         Pronouns = {
             type = "string",
@@ -908,6 +948,7 @@ M.MedicalScribePatientContext = {
 
 M.MedicalScribeContext = {
     type = "structure",
+    id = "MedicalScribeContext",
     members = {
         PatientContext = M.MedicalScribePatientContext,
     },
@@ -915,6 +956,7 @@ M.MedicalScribeContext = {
 
 M.MedicalScribeConfigurationEvent = {
     type = "structure",
+    id = "MedicalScribeConfigurationEvent",
     members = {
         VocabularyName = {
             type = "string",
@@ -949,6 +991,7 @@ M.MedicalScribeSessionControlEventType = {
 
 M.MedicalScribeSessionControlEvent = {
     type = "structure",
+    id = "MedicalScribeSessionControlEvent",
     members = {
         Type = {
             type = "string",
@@ -961,6 +1004,7 @@ M.MedicalScribeSessionControlEvent = {
 
 M.MedicalScribeInputStream = {
     type = "union",
+    id = "MedicalScribeInputStream",
     members = {
         AudioEvent = M.MedicalScribeAudioEvent,
         SessionControlEvent = M.MedicalScribeSessionControlEvent,
@@ -975,6 +1019,7 @@ M.MedicalScribeTranscriptItemType = {
 
 M.MedicalScribeTranscriptItem = {
     type = "structure",
+    id = "MedicalScribeTranscriptItem",
     members = {
         BeginAudioTime = {
             type = "double",
@@ -1005,6 +1050,7 @@ M.MedicalScribeTranscriptItem = {
 
 M.MedicalScribeTranscriptSegment = {
     type = "structure",
+    id = "MedicalScribeTranscriptSegment",
     members = {
         SegmentId = {
             type = "string",
@@ -1042,6 +1088,7 @@ M.MedicalScribeTranscriptSegment = {
 
 M.MedicalScribeTranscriptEvent = {
     type = "structure",
+    id = "MedicalScribeTranscriptEvent",
     members = {
         TranscriptSegment = M.MedicalScribeTranscriptSegment,
     },
@@ -1049,6 +1096,7 @@ M.MedicalScribeTranscriptEvent = {
 
 M.MedicalScribeResultStream = {
     type = "union",
+    id = "MedicalScribeResultStream",
     members = {
         TranscriptEvent = M.MedicalScribeTranscriptEvent,
         BadRequestException = M.BadRequestException,
@@ -1061,6 +1109,7 @@ M.MedicalScribeResultStream = {
 
 M.MedicalTranscript = {
     type = "structure",
+    id = "MedicalTranscript",
     members = {
         Results = {
             type = "list",
@@ -1071,6 +1120,7 @@ M.MedicalTranscript = {
 
 M.MedicalTranscriptEvent = {
     type = "structure",
+    id = "MedicalTranscriptEvent",
     members = {
         Transcript = M.MedicalTranscript,
     },
@@ -1078,6 +1128,7 @@ M.MedicalTranscriptEvent = {
 
 M.MedicalTranscriptResultStream = {
     type = "union",
+    id = "MedicalTranscriptResultStream",
     members = {
         TranscriptEvent = M.MedicalTranscriptEvent,
         BadRequestException = M.BadRequestException,
@@ -1096,6 +1147,7 @@ M.PartialResultsStability = {
 
 M.Result = {
     type = "structure",
+    id = "Result",
     members = {
         ResultId = {
             type = "string",
@@ -1152,6 +1204,7 @@ M.VocabularyFilterMethod = {
 
 M.StartCallAnalyticsStreamTranscriptionInput = {
     type = "structure",
+    id = "StartCallAnalyticsStreamTranscriptionInput",
     members = {
         LanguageCode = {
             type = "string",
@@ -1274,6 +1327,7 @@ M.StartCallAnalyticsStreamTranscriptionInput = {
 
 M.StartCallAnalyticsStreamTranscriptionOutput = {
     type = "structure",
+    id = "StartCallAnalyticsStreamTranscriptionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -1399,6 +1453,7 @@ M.StartCallAnalyticsStreamTranscriptionOutput = {
 
 M.StartMedicalScribeStreamInput = {
     type = "structure",
+    id = "StartMedicalScribeStreamInput",
     members = {
         SessionId = {
             type = "string",
@@ -1436,6 +1491,7 @@ M.StartMedicalScribeStreamInput = {
 
 M.StartMedicalScribeStreamOutput = {
     type = "structure",
+    id = "StartMedicalScribeStreamOutput",
     members = {
         SessionId = {
             type = "string",
@@ -1480,6 +1536,7 @@ M.Type = {
 
 M.StartMedicalStreamTranscriptionInput = {
     type = "structure",
+    id = "StartMedicalStreamTranscriptionInput",
     members = {
         LanguageCode = {
             type = "string",
@@ -1563,6 +1620,7 @@ M.StartMedicalStreamTranscriptionInput = {
 
 M.StartMedicalStreamTranscriptionOutput = {
     type = "structure",
+    id = "StartMedicalStreamTranscriptionOutput",
     members = {
         RequestId = {
             type = "string",
@@ -1646,6 +1704,7 @@ M.StartMedicalStreamTranscriptionOutput = {
 
 M.StartStreamTranscriptionInput = {
     type = "structure",
+    id = "StartStreamTranscriptionInput",
     members = {
         LanguageCode = {
             type = "string",
@@ -1801,6 +1860,7 @@ M.StartStreamTranscriptionInput = {
 
 M.Transcript = {
     type = "structure",
+    id = "Transcript",
     members = {
         Results = {
             type = "list",
@@ -1811,6 +1871,7 @@ M.Transcript = {
 
 M.TranscriptEvent = {
     type = "structure",
+    id = "TranscriptEvent",
     members = {
         Transcript = M.Transcript,
     },
@@ -1818,6 +1879,7 @@ M.TranscriptEvent = {
 
 M.TranscriptResultStream = {
     type = "union",
+    id = "TranscriptResultStream",
     members = {
         TranscriptEvent = M.TranscriptEvent,
         BadRequestException = M.BadRequestException,
@@ -1830,6 +1892,7 @@ M.TranscriptResultStream = {
 
 M.StartStreamTranscriptionOutput = {
     type = "structure",
+    id = "StartStreamTranscriptionOutput",
     members = {
         RequestId = {
             type = "string",

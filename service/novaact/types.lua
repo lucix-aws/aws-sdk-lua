@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ActError = {
     type = "structure",
+    id = "ActError",
     members = {
         message = {
             type = "string",
@@ -30,6 +32,7 @@ M.ActError = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -55,6 +58,7 @@ M.ConflictException = {
 
 M.ToolInputSchema = {
     type = "union",
+    id = "ToolInputSchema",
     members = {
         json = {
             type = "document",
@@ -64,6 +68,7 @@ M.ToolInputSchema = {
 
 M.ToolSpec = {
     type = "structure",
+    id = "ToolSpec",
     members = {
         name = {
             type = "string",
@@ -85,6 +90,7 @@ M.ToolSpec = {
 
 M.CreateActInput = {
     type = "structure",
+    id = "CreateActInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -137,6 +143,7 @@ M.ActStatus = {
 
 M.CreateActOutput = {
     type = "structure",
+    id = "CreateActOutput",
     members = {
         actId = {
             type = "string",
@@ -160,6 +167,7 @@ M.InternalServerExceptionReason = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -182,6 +190,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -207,6 +216,7 @@ M.ResourceNotFoundException = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -244,6 +254,7 @@ M.ServiceQuotaExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -269,6 +280,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -293,6 +305,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -316,6 +329,7 @@ M.ValidationException = {
 
 M.CallResultContent = {
     type = "union",
+    id = "CallResultContent",
     members = {
         text = {
             type = "string",
@@ -325,6 +339,7 @@ M.CallResultContent = {
 
 M.CallResult = {
     type = "structure",
+    id = "CallResult",
     members = {
         callId = {
             type = "string",
@@ -341,6 +356,7 @@ M.CallResult = {
 
 M.InvokeActStepInput = {
     type = "structure",
+    id = "InvokeActStepInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -385,6 +401,7 @@ M.InvokeActStepInput = {
 
 M.Call = {
     type = "structure",
+    id = "Call",
     members = {
         callId = {
             type = "string",
@@ -409,6 +426,7 @@ M.Call = {
 
 M.InvokeActStepOutput = {
     type = "structure",
+    id = "InvokeActStepOutput",
     members = {
         calls = {
             type = "list",
@@ -433,6 +451,7 @@ M.SortOrder = {
 
 M.ListActsInput = {
     type = "structure",
+    id = "ListActsInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -477,6 +496,7 @@ M.TraceLocationType = {
 
 M.TraceLocation = {
     type = "structure",
+    id = "TraceLocation",
     members = {
         locationType = {
             type = "string",
@@ -495,6 +515,7 @@ M.TraceLocation = {
 
 M.ActSummary = {
     type = "structure",
+    id = "ActSummary",
     members = {
         workflowRunId = {
             type = "string",
@@ -539,6 +560,7 @@ M.ActSummary = {
 
 M.ListActsOutput = {
     type = "structure",
+    id = "ListActsOutput",
     members = {
         actSummaries = {
             type = "list",
@@ -555,6 +577,7 @@ M.ListActsOutput = {
 
 M.UpdateActInput = {
     type = "structure",
+    id = "UpdateActInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -596,10 +619,12 @@ M.UpdateActInput = {
 
 M.UpdateActOutput = {
     type = "structure",
+    id = "UpdateActOutput",
 }
 
 M.ListModelsInput = {
     type = "structure",
+    id = "ListModelsInput",
     members = {
         clientCompatibilityVersion = {
             type = "integer",
@@ -613,6 +638,7 @@ M.ListModelsInput = {
 
 M.CompatibilityInformation = {
     type = "structure",
+    id = "CompatibilityInformation",
     members = {
         clientCompatibilityVersion = {
             type = "integer",
@@ -635,6 +661,7 @@ M.CompatibilityInformation = {
 
 M.ModelAlias = {
     type = "structure",
+    id = "ModelAlias",
     members = {
         aliasName = {
             type = "string",
@@ -663,6 +690,7 @@ M.ModelStatus = {
 
 M.ModelLifecycle = {
     type = "structure",
+    id = "ModelLifecycle",
     members = {
         status = {
             type = "string",
@@ -675,6 +703,7 @@ M.ModelLifecycle = {
 
 M.ModelSummary = {
     type = "structure",
+    id = "ModelSummary",
     members = {
         modelId = {
             type = "string",
@@ -696,6 +725,7 @@ M.ModelSummary = {
 
 M.ListModelsOutput = {
     type = "structure",
+    id = "ListModelsOutput",
     members = {
         modelSummaries = {
             type = "list",
@@ -719,6 +749,7 @@ M.ListModelsOutput = {
 
 M.CreateSessionInput = {
     type = "structure",
+    id = "CreateSessionInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -745,6 +776,7 @@ M.CreateSessionInput = {
 
 M.CreateSessionOutput = {
     type = "structure",
+    id = "CreateSessionOutput",
     members = {
         sessionId = {
             type = "string",
@@ -757,6 +789,7 @@ M.CreateSessionOutput = {
 
 M.ListSessionsInput = {
     type = "structure",
+    id = "ListSessionsInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -792,6 +825,7 @@ M.ListSessionsInput = {
 
 M.SessionSummary = {
     type = "structure",
+    id = "SessionSummary",
     members = {
         sessionId = {
             type = "string",
@@ -804,6 +838,7 @@ M.SessionSummary = {
 
 M.ListSessionsOutput = {
     type = "structure",
+    id = "ListSessionsOutput",
     members = {
         sessionSummaries = {
             type = "list",
@@ -820,6 +855,7 @@ M.ListSessionsOutput = {
 
 M.WorkflowExportConfig = {
     type = "structure",
+    id = "WorkflowExportConfig",
     members = {
         s3BucketName = {
             type = "string",
@@ -835,6 +871,7 @@ M.WorkflowExportConfig = {
 
 M.CreateWorkflowDefinitionInput = {
     type = "structure",
+    id = "CreateWorkflowDefinitionInput",
     members = {
         name = {
             type = "string",
@@ -862,6 +899,7 @@ M.WorkflowDefinitionStatus = {
 
 M.CreateWorkflowDefinitionOutput = {
     type = "structure",
+    id = "CreateWorkflowDefinitionOutput",
     members = {
         status = {
             type = "string",
@@ -874,6 +912,7 @@ M.CreateWorkflowDefinitionOutput = {
 
 M.DeleteWorkflowDefinitionInput = {
     type = "structure",
+    id = "DeleteWorkflowDefinitionInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -887,6 +926,7 @@ M.DeleteWorkflowDefinitionInput = {
 
 M.DeleteWorkflowDefinitionOutput = {
     type = "structure",
+    id = "DeleteWorkflowDefinitionOutput",
     members = {
         status = {
             type = "string",
@@ -899,6 +939,7 @@ M.DeleteWorkflowDefinitionOutput = {
 
 M.GetWorkflowDefinitionInput = {
     type = "structure",
+    id = "GetWorkflowDefinitionInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -912,6 +953,7 @@ M.GetWorkflowDefinitionInput = {
 
 M.GetWorkflowDefinitionOutput = {
     type = "structure",
+    id = "GetWorkflowDefinitionOutput",
     members = {
         name = {
             type = "string",
@@ -947,6 +989,7 @@ M.GetWorkflowDefinitionOutput = {
 
 M.ListWorkflowDefinitionsInput = {
     type = "structure",
+    id = "ListWorkflowDefinitionsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -968,6 +1011,7 @@ M.ListWorkflowDefinitionsInput = {
 
 M.WorkflowDefinitionSummary = {
     type = "structure",
+    id = "WorkflowDefinitionSummary",
     members = {
         workflowDefinitionArn = {
             type = "string",
@@ -999,6 +1043,7 @@ M.WorkflowDefinitionSummary = {
 
 M.ListWorkflowDefinitionsOutput = {
     type = "structure",
+    id = "ListWorkflowDefinitionsOutput",
     members = {
         workflowDefinitionSummaries = {
             type = "list",
@@ -1015,6 +1060,7 @@ M.ListWorkflowDefinitionsOutput = {
 
 M.ClientInfo = {
     type = "structure",
+    id = "ClientInfo",
     members = {
         compatibilityVersion = {
             type = "integer",
@@ -1030,6 +1076,7 @@ M.ClientInfo = {
 
 M.CreateWorkflowRunInput = {
     type = "structure",
+    id = "CreateWorkflowRunInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -1069,6 +1116,7 @@ M.WorkflowRunStatus = {
 
 M.CreateWorkflowRunOutput = {
     type = "structure",
+    id = "CreateWorkflowRunOutput",
     members = {
         workflowRunId = {
             type = "string",
@@ -1087,6 +1135,7 @@ M.CreateWorkflowRunOutput = {
 
 M.DeleteWorkflowRunInput = {
     type = "structure",
+    id = "DeleteWorkflowRunInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -1107,6 +1156,7 @@ M.DeleteWorkflowRunInput = {
 
 M.DeleteWorkflowRunOutput = {
     type = "structure",
+    id = "DeleteWorkflowRunOutput",
     members = {
         status = {
             type = "string",
@@ -1119,6 +1169,7 @@ M.DeleteWorkflowRunOutput = {
 
 M.GetWorkflowRunInput = {
     type = "structure",
+    id = "GetWorkflowRunInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -1139,6 +1190,7 @@ M.GetWorkflowRunInput = {
 
 M.GetWorkflowRunOutput = {
     type = "structure",
+    id = "GetWorkflowRunOutput",
     members = {
         workflowRunArn = {
             type = "string",
@@ -1185,6 +1237,7 @@ M.GetWorkflowRunOutput = {
 
 M.ListWorkflowRunsInput = {
     type = "structure",
+    id = "ListWorkflowRunsInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -1213,6 +1266,7 @@ M.ListWorkflowRunsInput = {
 
 M.WorkflowRunSummary = {
     type = "structure",
+    id = "WorkflowRunSummary",
     members = {
         workflowRunArn = {
             type = "string",
@@ -1251,6 +1305,7 @@ M.WorkflowRunSummary = {
 
 M.ListWorkflowRunsOutput = {
     type = "structure",
+    id = "ListWorkflowRunsOutput",
     members = {
         workflowRunSummaries = {
             type = "list",
@@ -1267,6 +1322,7 @@ M.ListWorkflowRunsOutput = {
 
 M.UpdateWorkflowRunInput = {
     type = "structure",
+    id = "UpdateWorkflowRunInput",
     members = {
         workflowDefinitionName = {
             type = "string",
@@ -1293,6 +1349,7 @@ M.UpdateWorkflowRunInput = {
 
 M.UpdateWorkflowRunOutput = {
     type = "structure",
+    id = "UpdateWorkflowRunOutput",
 }
 
 return M

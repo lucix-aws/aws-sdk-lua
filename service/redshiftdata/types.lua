@@ -2,6 +2,7 @@ local M = {}
 
 M.ActiveSessionsExceededException = {
     type = "structure",
+    id = "ActiveSessionsExceededException",
     error = "client",
     members = {
         Message = {
@@ -12,6 +13,7 @@ M.ActiveSessionsExceededException = {
 
 M.ActiveStatementsExceededException = {
     type = "structure",
+    id = "ActiveStatementsExceededException",
     error = "client",
     members = {
         Message = {
@@ -22,6 +24,7 @@ M.ActiveStatementsExceededException = {
 
 M.BatchExecuteStatementException = {
     type = "structure",
+    id = "BatchExecuteStatementException",
     error = "server",
     members = {
         Message = {
@@ -41,6 +44,7 @@ M.BatchExecuteStatementException = {
 
 M.SqlParameter = {
     type = "structure",
+    id = "SqlParameter",
     members = {
         name = {
             type = "string",
@@ -64,6 +68,7 @@ M.ResultFormatString = {
 
 M.BatchExecuteStatementInput = {
     type = "structure",
+    id = "BatchExecuteStatementInput",
     members = {
         Sqls = {
             type = "list",
@@ -117,6 +122,7 @@ M.BatchExecuteStatementInput = {
 
 M.BatchExecuteStatementOutput = {
     type = "structure",
+    id = "BatchExecuteStatementOutput",
     members = {
         Id = {
             type = "string",
@@ -151,6 +157,7 @@ M.BatchExecuteStatementOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -164,6 +171,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -183,6 +191,7 @@ M.ResourceNotFoundException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         Message = {
@@ -193,6 +202,7 @@ M.ValidationException = {
 
 M.CancelStatementInput = {
     type = "structure",
+    id = "CancelStatementInput",
     members = {
         Id = {
             type = "string",
@@ -205,6 +215,7 @@ M.CancelStatementInput = {
 
 M.CancelStatementOutput = {
     type = "structure",
+    id = "CancelStatementOutput",
     members = {
         Status = {
             type = "boolean",
@@ -214,6 +225,7 @@ M.CancelStatementOutput = {
 
 M.DatabaseConnectionException = {
     type = "structure",
+    id = "DatabaseConnectionException",
     error = "server",
     members = {
         Message = {
@@ -227,6 +239,7 @@ M.DatabaseConnectionException = {
 
 M.QueryTimeoutException = {
     type = "structure",
+    id = "QueryTimeoutException",
     error = "client",
     members = {
         Message = {
@@ -237,6 +250,7 @@ M.QueryTimeoutException = {
 
 M.ColumnMetadata = {
     type = "structure",
+    id = "ColumnMetadata",
     members = {
         isCaseSensitive = {
             type = "boolean",
@@ -303,6 +317,7 @@ M.ColumnMetadata = {
 
 M.DescribeStatementInput = {
     type = "structure",
+    id = "DescribeStatementInput",
     members = {
         Id = {
             type = "string",
@@ -334,6 +349,7 @@ M.StatementStatusString = {
 
 M.SubStatementData = {
     type = "structure",
+    id = "SubStatementData",
     members = {
         Id = {
             type = "string",
@@ -388,6 +404,7 @@ M.SubStatementData = {
 
 M.DescribeStatementOutput = {
     type = "structure",
+    id = "DescribeStatementOutput",
     members = {
         Id = {
             type = "string",
@@ -477,6 +494,7 @@ M.DescribeStatementOutput = {
 
 M.DescribeTableInput = {
     type = "structure",
+    id = "DescribeTableInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -519,6 +537,7 @@ M.DescribeTableInput = {
 
 M.DescribeTableOutput = {
     type = "structure",
+    id = "DescribeTableOutput",
     members = {
         TableName = {
             type = "string",
@@ -535,6 +554,7 @@ M.DescribeTableOutput = {
 
 M.ExecuteStatementException = {
     type = "structure",
+    id = "ExecuteStatementException",
     error = "server",
     members = {
         Message = {
@@ -554,6 +574,7 @@ M.ExecuteStatementException = {
 
 M.ExecuteStatementInput = {
     type = "structure",
+    id = "ExecuteStatementInput",
     members = {
         Sql = {
             type = "string",
@@ -606,6 +627,7 @@ M.ExecuteStatementInput = {
 
 M.ExecuteStatementOutput = {
     type = "structure",
+    id = "ExecuteStatementOutput",
     members = {
         Id = {
             type = "string",
@@ -640,6 +662,7 @@ M.ExecuteStatementOutput = {
 
 M.Field = {
     type = "union",
+    id = "Field",
     members = {
         isNull = {
             type = "boolean",
@@ -664,6 +687,7 @@ M.Field = {
 
 M.QueryRecords = {
     type = "union",
+    id = "QueryRecords",
     members = {
         CSVRecords = {
             type = "string",
@@ -673,6 +697,7 @@ M.QueryRecords = {
 
 M.GetStatementResultInput = {
     type = "structure",
+    id = "GetStatementResultInput",
     members = {
         Id = {
             type = "string",
@@ -688,6 +713,7 @@ M.GetStatementResultInput = {
 
 M.GetStatementResultOutput = {
     type = "structure",
+    id = "GetStatementResultOutput",
     members = {
         Records = {
             type = "list",
@@ -714,6 +740,7 @@ M.GetStatementResultOutput = {
 
 M.GetStatementResultV2Input = {
     type = "structure",
+    id = "GetStatementResultV2Input",
     members = {
         Id = {
             type = "string",
@@ -729,6 +756,7 @@ M.GetStatementResultV2Input = {
 
 M.GetStatementResultV2Output = {
     type = "structure",
+    id = "GetStatementResultV2Output",
     members = {
         Records = {
             type = "list",
@@ -758,6 +786,7 @@ M.GetStatementResultV2Output = {
 
 M.ListDatabasesInput = {
     type = "structure",
+    id = "ListDatabasesInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -791,6 +820,7 @@ M.ListDatabasesInput = {
 
 M.ListDatabasesOutput = {
     type = "structure",
+    id = "ListDatabasesOutput",
     members = {
         Databases = {
             type = "list",
@@ -804,6 +834,7 @@ M.ListDatabasesOutput = {
 
 M.ListSchemasInput = {
     type = "structure",
+    id = "ListSchemasInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -843,6 +874,7 @@ M.ListSchemasInput = {
 
 M.ListSchemasOutput = {
     type = "structure",
+    id = "ListSchemasOutput",
     members = {
         Schemas = {
             type = "list",
@@ -856,6 +888,7 @@ M.ListSchemasOutput = {
 
 M.ListStatementsInput = {
     type = "structure",
+    id = "ListStatementsInput",
     members = {
         NextToken = {
             type = "string",
@@ -889,6 +922,7 @@ M.ListStatementsInput = {
 
 M.StatementData = {
     type = "structure",
+    id = "StatementData",
     members = {
         Id = {
             type = "string",
@@ -936,6 +970,7 @@ M.StatementData = {
 
 M.ListStatementsOutput = {
     type = "structure",
+    id = "ListStatementsOutput",
     members = {
         Statements = {
             type = "list",
@@ -952,6 +987,7 @@ M.ListStatementsOutput = {
 
 M.ListTablesInput = {
     type = "structure",
+    id = "ListTablesInput",
     members = {
         ClusterIdentifier = {
             type = "string",
@@ -994,6 +1030,7 @@ M.ListTablesInput = {
 
 M.TableMember = {
     type = "structure",
+    id = "TableMember",
     members = {
         name = {
             type = "string",
@@ -1009,6 +1046,7 @@ M.TableMember = {
 
 M.ListTablesOutput = {
     type = "structure",
+    id = "ListTablesOutput",
     members = {
         Tables = {
             type = "list",

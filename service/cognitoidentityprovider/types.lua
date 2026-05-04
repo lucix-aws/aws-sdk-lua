@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -18,6 +19,7 @@ M.RecoveryOptionNameType = {
 
 M.RecoveryOptionType = {
     type = "structure",
+    id = "RecoveryOptionType",
     members = {
         Priority = {
             type = "integer",
@@ -36,6 +38,7 @@ M.RecoveryOptionType = {
 
 M.AccountRecoverySettingType = {
     type = "structure",
+    id = "AccountRecoverySettingType",
     members = {
         RecoveryMechanisms = {
             type = "list",
@@ -53,6 +56,7 @@ M.AccountTakeoverEventActionType = {
 
 M.AccountTakeoverActionType = {
     type = "structure",
+    id = "AccountTakeoverActionType",
     members = {
         Notify = {
             type = "boolean",
@@ -72,6 +76,7 @@ M.AccountTakeoverActionType = {
 
 M.AccountTakeoverActionsType = {
     type = "structure",
+    id = "AccountTakeoverActionsType",
     members = {
         LowAction = M.AccountTakeoverActionType,
         MediumAction = M.AccountTakeoverActionType,
@@ -81,6 +86,7 @@ M.AccountTakeoverActionsType = {
 
 M.NotifyEmailType = {
     type = "structure",
+    id = "NotifyEmailType",
     members = {
         Subject = {
             type = "string",
@@ -99,6 +105,7 @@ M.NotifyEmailType = {
 
 M.NotifyConfigurationType = {
     type = "structure",
+    id = "NotifyConfigurationType",
     members = {
         From = {
             type = "string",
@@ -120,6 +127,7 @@ M.NotifyConfigurationType = {
 
 M.AccountTakeoverRiskConfigurationType = {
     type = "structure",
+    id = "AccountTakeoverRiskConfigurationType",
     members = {
         NotifyConfiguration = M.NotifyConfigurationType,
         Actions = setmetatable({ traits = {
@@ -137,6 +145,7 @@ M.AttributeDataType = {
 
 M.NumberAttributeConstraintsType = {
     type = "structure",
+    id = "NumberAttributeConstraintsType",
     members = {
         MinValue = {
             type = "string",
@@ -149,6 +158,7 @@ M.NumberAttributeConstraintsType = {
 
 M.StringAttributeConstraintsType = {
     type = "structure",
+    id = "StringAttributeConstraintsType",
     members = {
         MinLength = {
             type = "string",
@@ -161,6 +171,7 @@ M.StringAttributeConstraintsType = {
 
 M.SchemaAttributeType = {
     type = "structure",
+    id = "SchemaAttributeType",
     members = {
         Name = {
             type = "string",
@@ -193,6 +204,7 @@ M.SchemaAttributeType = {
 
 M.AddCustomAttributesInput = {
     type = "structure",
+    id = "AddCustomAttributesInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -212,10 +224,12 @@ M.AddCustomAttributesInput = {
 
 M.AddCustomAttributesOutput = {
     type = "structure",
+    id = "AddCustomAttributesOutput",
 }
 
 M.InternalErrorException = {
     type = "structure",
+    id = "InternalErrorException",
     error = "server",
     members = {
         message = {
@@ -226,6 +240,7 @@ M.InternalErrorException = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -239,6 +254,7 @@ M.InvalidParameterException = {
 
 M.NotAuthorizedException = {
     type = "structure",
+    id = "NotAuthorizedException",
     error = "client",
     members = {
         message = {
@@ -249,6 +265,7 @@ M.NotAuthorizedException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -259,6 +276,7 @@ M.ResourceNotFoundException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         message = {
@@ -269,6 +287,7 @@ M.TooManyRequestsException = {
 
 M.UserImportInProgressException = {
     type = "structure",
+    id = "UserImportInProgressException",
     error = "client",
     members = {
         message = {
@@ -279,6 +298,7 @@ M.UserImportInProgressException = {
 
 M.AddUserPoolClientSecretInput = {
     type = "structure",
+    id = "AddUserPoolClientSecretInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -300,6 +320,7 @@ M.AddUserPoolClientSecretInput = {
 
 M.ClientSecretDescriptorType = {
     type = "structure",
+    id = "ClientSecretDescriptorType",
     members = {
         ClientSecretId = {
             type = "string",
@@ -315,6 +336,7 @@ M.ClientSecretDescriptorType = {
 
 M.AddUserPoolClientSecretOutput = {
     type = "structure",
+    id = "AddUserPoolClientSecretOutput",
     members = {
         ClientSecretDescriptor = M.ClientSecretDescriptorType,
     },
@@ -322,6 +344,7 @@ M.AddUserPoolClientSecretOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -332,6 +355,7 @@ M.InternalServerException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -342,6 +366,7 @@ M.LimitExceededException = {
 
 M.AdminAddUserToGroupInput = {
     type = "structure",
+    id = "AdminAddUserToGroupInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -366,10 +391,12 @@ M.AdminAddUserToGroupInput = {
 
 M.AdminAddUserToGroupOutput = {
     type = "structure",
+    id = "AdminAddUserToGroupOutput",
 }
 
 M.UserNotFoundException = {
     type = "structure",
+    id = "UserNotFoundException",
     error = "client",
     members = {
         message = {
@@ -380,6 +407,7 @@ M.UserNotFoundException = {
 
 M.AdminConfirmSignUpInput = {
     type = "structure",
+    id = "AdminConfirmSignUpInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -403,10 +431,12 @@ M.AdminConfirmSignUpInput = {
 
 M.AdminConfirmSignUpOutput = {
     type = "structure",
+    id = "AdminConfirmSignUpOutput",
 }
 
 M.InvalidLambdaResponseException = {
     type = "structure",
+    id = "InvalidLambdaResponseException",
     error = "client",
     members = {
         message = {
@@ -417,6 +447,7 @@ M.InvalidLambdaResponseException = {
 
 M.TooManyFailedAttemptsException = {
     type = "structure",
+    id = "TooManyFailedAttemptsException",
     error = "client",
     members = {
         message = {
@@ -427,6 +458,7 @@ M.TooManyFailedAttemptsException = {
 
 M.UnexpectedLambdaException = {
     type = "structure",
+    id = "UnexpectedLambdaException",
     error = "client",
     members = {
         message = {
@@ -437,6 +469,7 @@ M.UnexpectedLambdaException = {
 
 M.UserLambdaValidationException = {
     type = "structure",
+    id = "UserLambdaValidationException",
     error = "client",
     members = {
         message = {
@@ -457,6 +490,7 @@ M.MessageActionType = {
 
 M.AttributeType = {
     type = "structure",
+    id = "AttributeType",
     members = {
         Name = {
             type = "string",
@@ -472,6 +506,7 @@ M.AttributeType = {
 
 M.AdminCreateUserInput = {
     type = "structure",
+    id = "AdminCreateUserInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -519,6 +554,7 @@ M.AdminCreateUserInput = {
 
 M.MFAOptionType = {
     type = "structure",
+    id = "MFAOptionType",
     members = {
         DeliveryMedium = {
             type = "string",
@@ -542,6 +578,7 @@ M.UserStatusType = {
 
 M.UserType = {
     type = "structure",
+    id = "UserType",
     members = {
         Username = {
             type = "string",
@@ -574,6 +611,7 @@ M.UserType = {
 
 M.AdminCreateUserOutput = {
     type = "structure",
+    id = "AdminCreateUserOutput",
     members = {
         User = M.UserType,
     },
@@ -581,6 +619,7 @@ M.AdminCreateUserOutput = {
 
 M.CodeDeliveryFailureException = {
     type = "structure",
+    id = "CodeDeliveryFailureException",
     error = "client",
     members = {
         message = {
@@ -591,6 +630,7 @@ M.CodeDeliveryFailureException = {
 
 M.InvalidPasswordException = {
     type = "structure",
+    id = "InvalidPasswordException",
     error = "client",
     members = {
         message = {
@@ -601,6 +641,7 @@ M.InvalidPasswordException = {
 
 M.InvalidSmsRoleAccessPolicyException = {
     type = "structure",
+    id = "InvalidSmsRoleAccessPolicyException",
     error = "client",
     members = {
         message = {
@@ -611,6 +652,7 @@ M.InvalidSmsRoleAccessPolicyException = {
 
 M.InvalidSmsRoleTrustRelationshipException = {
     type = "structure",
+    id = "InvalidSmsRoleTrustRelationshipException",
     error = "client",
     members = {
         message = {
@@ -621,6 +663,7 @@ M.InvalidSmsRoleTrustRelationshipException = {
 
 M.PreconditionNotMetException = {
     type = "structure",
+    id = "PreconditionNotMetException",
     error = "client",
     members = {
         message = {
@@ -631,6 +674,7 @@ M.PreconditionNotMetException = {
 
 M.UnsupportedUserStateException = {
     type = "structure",
+    id = "UnsupportedUserStateException",
     error = "client",
     members = {
         message = {
@@ -641,6 +685,7 @@ M.UnsupportedUserStateException = {
 
 M.UsernameExistsException = {
     type = "structure",
+    id = "UsernameExistsException",
     error = "client",
     members = {
         message = {
@@ -651,6 +696,7 @@ M.UsernameExistsException = {
 
 M.MessageTemplateType = {
     type = "structure",
+    id = "MessageTemplateType",
     members = {
         SMSMessage = {
             type = "string",
@@ -666,6 +712,7 @@ M.MessageTemplateType = {
 
 M.AdminCreateUserConfigType = {
     type = "structure",
+    id = "AdminCreateUserConfigType",
     members = {
         AllowAdminCreateUserOnly = {
             type = "boolean",
@@ -685,6 +732,7 @@ M.AdminCreateUserConfigType = {
 
 M.AdminDeleteUserInput = {
     type = "structure",
+    id = "AdminDeleteUserInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -703,10 +751,12 @@ M.AdminDeleteUserInput = {
 
 M.AdminDeleteUserOutput = {
     type = "structure",
+    id = "AdminDeleteUserOutput",
 }
 
 M.AdminDeleteUserAttributesInput = {
     type = "structure",
+    id = "AdminDeleteUserAttributesInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -732,10 +782,12 @@ M.AdminDeleteUserAttributesInput = {
 
 M.AdminDeleteUserAttributesOutput = {
     type = "structure",
+    id = "AdminDeleteUserAttributesOutput",
 }
 
 M.ProviderUserIdentifierType = {
     type = "structure",
+    id = "ProviderUserIdentifierType",
     members = {
         ProviderName = {
             type = "string",
@@ -751,6 +803,7 @@ M.ProviderUserIdentifierType = {
 
 M.AdminDisableProviderForUserInput = {
     type = "structure",
+    id = "AdminDisableProviderForUserInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -766,10 +819,12 @@ M.AdminDisableProviderForUserInput = {
 
 M.AdminDisableProviderForUserOutput = {
     type = "structure",
+    id = "AdminDisableProviderForUserOutput",
 }
 
 M.AliasExistsException = {
     type = "structure",
+    id = "AliasExistsException",
     error = "client",
     members = {
         message = {
@@ -780,6 +835,7 @@ M.AliasExistsException = {
 
 M.AdminDisableUserInput = {
     type = "structure",
+    id = "AdminDisableUserInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -798,10 +854,12 @@ M.AdminDisableUserInput = {
 
 M.AdminDisableUserOutput = {
     type = "structure",
+    id = "AdminDisableUserOutput",
 }
 
 M.AdminEnableUserInput = {
     type = "structure",
+    id = "AdminEnableUserInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -820,10 +878,12 @@ M.AdminEnableUserInput = {
 
 M.AdminEnableUserOutput = {
     type = "structure",
+    id = "AdminEnableUserOutput",
 }
 
 M.AdminForgetDeviceInput = {
     type = "structure",
+    id = "AdminForgetDeviceInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -848,10 +908,12 @@ M.AdminForgetDeviceInput = {
 
 M.AdminForgetDeviceOutput = {
     type = "structure",
+    id = "AdminForgetDeviceOutput",
 }
 
 M.InvalidUserPoolConfigurationException = {
     type = "structure",
+    id = "InvalidUserPoolConfigurationException",
     error = "client",
     members = {
         message = {
@@ -862,6 +924,7 @@ M.InvalidUserPoolConfigurationException = {
 
 M.AdminGetDeviceInput = {
     type = "structure",
+    id = "AdminGetDeviceInput",
     members = {
         DeviceKey = {
             type = "string",
@@ -886,6 +949,7 @@ M.AdminGetDeviceInput = {
 
 M.DeviceType = {
     type = "structure",
+    id = "DeviceType",
     members = {
         DeviceKey = {
             type = "string",
@@ -908,6 +972,7 @@ M.DeviceType = {
 
 M.AdminGetDeviceOutput = {
     type = "structure",
+    id = "AdminGetDeviceOutput",
     members = {
         Device = setmetatable({ traits = {
             required = true,
@@ -917,6 +982,7 @@ M.AdminGetDeviceOutput = {
 
 M.AdminGetUserInput = {
     type = "structure",
+    id = "AdminGetUserInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -935,6 +1001,7 @@ M.AdminGetUserInput = {
 
 M.AdminGetUserOutput = {
     type = "structure",
+    id = "AdminGetUserOutput",
     members = {
         Username = {
             type = "string",
@@ -977,6 +1044,7 @@ M.AdminGetUserOutput = {
 
 M.AnalyticsMetadataType = {
     type = "structure",
+    id = "AnalyticsMetadataType",
     members = {
         AnalyticsEndpointId = {
             type = "string",
@@ -997,6 +1065,7 @@ M.AuthFlowType = {
 
 M.HttpHeader = {
     type = "structure",
+    id = "HttpHeader",
     members = {
         headerName = {
             type = "string",
@@ -1009,6 +1078,7 @@ M.HttpHeader = {
 
 M.ContextDataType = {
     type = "structure",
+    id = "ContextDataType",
     members = {
         IpAddress = {
             type = "string",
@@ -1043,6 +1113,7 @@ M.ContextDataType = {
 
 M.AdminInitiateAuthInput = {
     type = "structure",
+    id = "AdminInitiateAuthInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1082,6 +1153,7 @@ M.AdminInitiateAuthInput = {
 
 M.NewDeviceMetadataType = {
     type = "structure",
+    id = "NewDeviceMetadataType",
     members = {
         DeviceKey = {
             type = "string",
@@ -1094,6 +1166,7 @@ M.NewDeviceMetadataType = {
 
 M.AuthenticationResultType = {
     type = "structure",
+    id = "AuthenticationResultType",
     members = {
         AccessToken = {
             type = "string",
@@ -1138,6 +1211,7 @@ M.ChallengeNameType = {
 
 M.AdminInitiateAuthOutput = {
     type = "structure",
+    id = "AdminInitiateAuthOutput",
     members = {
         ChallengeName = {
             type = "string",
@@ -1160,6 +1234,7 @@ M.AdminInitiateAuthOutput = {
 
 M.InvalidEmailRoleAccessPolicyException = {
     type = "structure",
+    id = "InvalidEmailRoleAccessPolicyException",
     error = "client",
     members = {
         message = {
@@ -1170,6 +1245,7 @@ M.InvalidEmailRoleAccessPolicyException = {
 
 M.MFAMethodNotFoundException = {
     type = "structure",
+    id = "MFAMethodNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1180,6 +1256,7 @@ M.MFAMethodNotFoundException = {
 
 M.PasswordResetRequiredException = {
     type = "structure",
+    id = "PasswordResetRequiredException",
     error = "client",
     members = {
         message = {
@@ -1190,6 +1267,7 @@ M.PasswordResetRequiredException = {
 
 M.UnsupportedOperationException = {
     type = "structure",
+    id = "UnsupportedOperationException",
     error = "client",
     members = {
         message = {
@@ -1200,6 +1278,7 @@ M.UnsupportedOperationException = {
 
 M.UserNotConfirmedException = {
     type = "structure",
+    id = "UserNotConfirmedException",
     error = "client",
     members = {
         message = {
@@ -1210,6 +1289,7 @@ M.UserNotConfirmedException = {
 
 M.AdminLinkProviderForUserInput = {
     type = "structure",
+    id = "AdminLinkProviderForUserInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1228,10 +1308,12 @@ M.AdminLinkProviderForUserInput = {
 
 M.AdminLinkProviderForUserOutput = {
     type = "structure",
+    id = "AdminLinkProviderForUserOutput",
 }
 
 M.AdminListDevicesInput = {
     type = "structure",
+    id = "AdminListDevicesInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1256,6 +1338,7 @@ M.AdminListDevicesInput = {
 
 M.AdminListDevicesOutput = {
     type = "structure",
+    id = "AdminListDevicesOutput",
     members = {
         Devices = {
             type = "list",
@@ -1269,6 +1352,7 @@ M.AdminListDevicesOutput = {
 
 M.AdminListGroupsForUserInput = {
     type = "structure",
+    id = "AdminListGroupsForUserInput",
     members = {
         Username = {
             type = "string",
@@ -1293,6 +1377,7 @@ M.AdminListGroupsForUserInput = {
 
 M.GroupType = {
     type = "structure",
+    id = "GroupType",
     members = {
         GroupName = {
             type = "string",
@@ -1320,6 +1405,7 @@ M.GroupType = {
 
 M.AdminListGroupsForUserOutput = {
     type = "structure",
+    id = "AdminListGroupsForUserOutput",
     members = {
         Groups = {
             type = "list",
@@ -1333,6 +1419,7 @@ M.AdminListGroupsForUserOutput = {
 
 M.AdminListUserAuthEventsInput = {
     type = "structure",
+    id = "AdminListUserAuthEventsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1367,6 +1454,7 @@ M.ChallengeResponse = {
 
 M.ChallengeResponseType = {
     type = "structure",
+    id = "ChallengeResponseType",
     members = {
         ChallengeName = {
             type = "string",
@@ -1379,6 +1467,7 @@ M.ChallengeResponseType = {
 
 M.EventContextDataType = {
     type = "structure",
+    id = "EventContextDataType",
     members = {
         IpAddress = {
             type = "string",
@@ -1405,6 +1494,7 @@ M.FeedbackValueType = {
 
 M.EventFeedbackType = {
     type = "structure",
+    id = "EventFeedbackType",
     members = {
         FeedbackValue = {
             type = "string",
@@ -1444,6 +1534,7 @@ M.RiskLevelType = {
 
 M.EventRiskType = {
     type = "structure",
+    id = "EventRiskType",
     members = {
         RiskDecision = {
             type = "string",
@@ -1467,6 +1558,7 @@ M.EventType = {
 
 M.AuthEventType = {
     type = "structure",
+    id = "AuthEventType",
     members = {
         EventId = {
             type = "string",
@@ -1492,6 +1584,7 @@ M.AuthEventType = {
 
 M.AdminListUserAuthEventsOutput = {
     type = "structure",
+    id = "AdminListUserAuthEventsOutput",
     members = {
         AuthEvents = {
             type = "list",
@@ -1505,6 +1598,7 @@ M.AdminListUserAuthEventsOutput = {
 
 M.UserPoolAddOnNotEnabledException = {
     type = "structure",
+    id = "UserPoolAddOnNotEnabledException",
     error = "client",
     members = {
         message = {
@@ -1515,6 +1609,7 @@ M.UserPoolAddOnNotEnabledException = {
 
 M.AdminRemoveUserFromGroupInput = {
     type = "structure",
+    id = "AdminRemoveUserFromGroupInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1539,10 +1634,12 @@ M.AdminRemoveUserFromGroupInput = {
 
 M.AdminRemoveUserFromGroupOutput = {
     type = "structure",
+    id = "AdminRemoveUserFromGroupOutput",
 }
 
 M.AdminResetUserPasswordInput = {
     type = "structure",
+    id = "AdminResetUserPasswordInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1566,10 +1663,12 @@ M.AdminResetUserPasswordInput = {
 
 M.AdminResetUserPasswordOutput = {
     type = "structure",
+    id = "AdminResetUserPasswordOutput",
 }
 
 M.AdminRespondToAuthChallengeInput = {
     type = "structure",
+    id = "AdminRespondToAuthChallengeInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1609,6 +1708,7 @@ M.AdminRespondToAuthChallengeInput = {
 
 M.AdminRespondToAuthChallengeOutput = {
     type = "structure",
+    id = "AdminRespondToAuthChallengeOutput",
     members = {
         ChallengeName = {
             type = "string",
@@ -1627,6 +1727,7 @@ M.AdminRespondToAuthChallengeOutput = {
 
 M.CodeMismatchException = {
     type = "structure",
+    id = "CodeMismatchException",
     error = "client",
     members = {
         message = {
@@ -1637,6 +1738,7 @@ M.CodeMismatchException = {
 
 M.ExpiredCodeException = {
     type = "structure",
+    id = "ExpiredCodeException",
     error = "client",
     members = {
         message = {
@@ -1647,6 +1749,7 @@ M.ExpiredCodeException = {
 
 M.PasswordHistoryPolicyViolationException = {
     type = "structure",
+    id = "PasswordHistoryPolicyViolationException",
     error = "client",
     members = {
         message = {
@@ -1657,6 +1760,7 @@ M.PasswordHistoryPolicyViolationException = {
 
 M.SoftwareTokenMFANotFoundException = {
     type = "structure",
+    id = "SoftwareTokenMFANotFoundException",
     error = "client",
     members = {
         message = {
@@ -1667,6 +1771,7 @@ M.SoftwareTokenMFANotFoundException = {
 
 M.EmailMfaSettingsType = {
     type = "structure",
+    id = "EmailMfaSettingsType",
     members = {
         Enabled = {
             type = "boolean",
@@ -1685,6 +1790,7 @@ M.EmailMfaSettingsType = {
 
 M.SMSMfaSettingsType = {
     type = "structure",
+    id = "SMSMfaSettingsType",
     members = {
         Enabled = {
             type = "boolean",
@@ -1703,6 +1809,7 @@ M.SMSMfaSettingsType = {
 
 M.SoftwareTokenMfaSettingsType = {
     type = "structure",
+    id = "SoftwareTokenMfaSettingsType",
     members = {
         Enabled = {
             type = "boolean",
@@ -1721,6 +1828,7 @@ M.SoftwareTokenMfaSettingsType = {
 
 M.WebAuthnMfaSettingsType = {
     type = "structure",
+    id = "WebAuthnMfaSettingsType",
     members = {
         Enabled = {
             type = "boolean",
@@ -1733,6 +1841,7 @@ M.WebAuthnMfaSettingsType = {
 
 M.AdminSetUserMFAPreferenceInput = {
     type = "structure",
+    id = "AdminSetUserMFAPreferenceInput",
     members = {
         SMSMfaSettings = M.SMSMfaSettingsType,
         SoftwareTokenMfaSettings = M.SoftwareTokenMfaSettingsType,
@@ -1755,10 +1864,12 @@ M.AdminSetUserMFAPreferenceInput = {
 
 M.AdminSetUserMFAPreferenceOutput = {
     type = "structure",
+    id = "AdminSetUserMFAPreferenceOutput",
 }
 
 M.AdminSetUserPasswordInput = {
     type = "structure",
+    id = "AdminSetUserPasswordInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1789,10 +1900,12 @@ M.AdminSetUserPasswordInput = {
 
 M.AdminSetUserPasswordOutput = {
     type = "structure",
+    id = "AdminSetUserPasswordOutput",
 }
 
 M.AdminSetUserSettingsInput = {
     type = "structure",
+    id = "AdminSetUserSettingsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1818,10 +1931,12 @@ M.AdminSetUserSettingsInput = {
 
 M.AdminSetUserSettingsOutput = {
     type = "structure",
+    id = "AdminSetUserSettingsOutput",
 }
 
 M.AdminUpdateAuthEventFeedbackInput = {
     type = "structure",
+    id = "AdminUpdateAuthEventFeedbackInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1852,6 +1967,7 @@ M.AdminUpdateAuthEventFeedbackInput = {
 
 M.AdminUpdateAuthEventFeedbackOutput = {
     type = "structure",
+    id = "AdminUpdateAuthEventFeedbackOutput",
 }
 
 M.DeviceRememberedStatusType = {
@@ -1861,6 +1977,7 @@ M.DeviceRememberedStatusType = {
 
 M.AdminUpdateDeviceStatusInput = {
     type = "structure",
+    id = "AdminUpdateDeviceStatusInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1888,10 +2005,12 @@ M.AdminUpdateDeviceStatusInput = {
 
 M.AdminUpdateDeviceStatusOutput = {
     type = "structure",
+    id = "AdminUpdateDeviceStatusOutput",
 }
 
 M.AdminUpdateUserAttributesInput = {
     type = "structure",
+    id = "AdminUpdateUserAttributesInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1922,10 +2041,12 @@ M.AdminUpdateUserAttributesInput = {
 
 M.AdminUpdateUserAttributesOutput = {
     type = "structure",
+    id = "AdminUpdateUserAttributesOutput",
 }
 
 M.AdminUserGlobalSignOutInput = {
     type = "structure",
+    id = "AdminUserGlobalSignOutInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -1944,6 +2065,7 @@ M.AdminUserGlobalSignOutInput = {
 
 M.AdminUserGlobalSignOutOutput = {
     type = "structure",
+    id = "AdminUserGlobalSignOutOutput",
 }
 
 M.AdvancedSecurityEnabledModeType = {
@@ -1953,6 +2075,7 @@ M.AdvancedSecurityEnabledModeType = {
 
 M.AdvancedSecurityAdditionalFlowsType = {
     type = "structure",
+    id = "AdvancedSecurityAdditionalFlowsType",
     members = {
         CustomAuthMode = {
             type = "string",
@@ -1981,6 +2104,7 @@ M.AuthFactorType = {
 
 M.AnalyticsConfigurationType = {
     type = "structure",
+    id = "AnalyticsConfigurationType",
     members = {
         ApplicationId = {
             type = "string",
@@ -2037,6 +2161,7 @@ M.ColorSchemeModeType = {
 
 M.AssetType = {
     type = "structure",
+    id = "AssetType",
     members = {
         Category = {
             type = "string",
@@ -2067,6 +2192,7 @@ M.AssetType = {
 
 M.AssociateSoftwareTokenInput = {
     type = "structure",
+    id = "AssociateSoftwareTokenInput",
     members = {
         AccessToken = {
             type = "string",
@@ -2079,6 +2205,7 @@ M.AssociateSoftwareTokenInput = {
 
 M.AssociateSoftwareTokenOutput = {
     type = "structure",
+    id = "AssociateSoftwareTokenOutput",
     members = {
         SecretCode = {
             type = "string",
@@ -2091,6 +2218,7 @@ M.AssociateSoftwareTokenOutput = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -2101,6 +2229,7 @@ M.ConcurrentModificationException = {
 
 M.ForbiddenException = {
     type = "structure",
+    id = "ForbiddenException",
     error = "client",
     members = {
         message = {
@@ -2116,6 +2245,7 @@ M.VerifiedAttributeType = {
 
 M.ChangePasswordInput = {
     type = "structure",
+    id = "ChangePasswordInput",
     members = {
         PreviousPassword = {
             type = "string",
@@ -2137,10 +2267,12 @@ M.ChangePasswordInput = {
 
 M.ChangePasswordOutput = {
     type = "structure",
+    id = "ChangePasswordOutput",
 }
 
 M.CompleteWebAuthnRegistrationInput = {
     type = "structure",
+    id = "CompleteWebAuthnRegistrationInput",
     members = {
         AccessToken = {
             type = "string",
@@ -2159,10 +2291,12 @@ M.CompleteWebAuthnRegistrationInput = {
 
 M.CompleteWebAuthnRegistrationOutput = {
     type = "structure",
+    id = "CompleteWebAuthnRegistrationOutput",
 }
 
 M.WebAuthnChallengeNotFoundException = {
     type = "structure",
+    id = "WebAuthnChallengeNotFoundException",
     error = "client",
     members = {
         message = {
@@ -2173,6 +2307,7 @@ M.WebAuthnChallengeNotFoundException = {
 
 M.WebAuthnClientMismatchException = {
     type = "structure",
+    id = "WebAuthnClientMismatchException",
     error = "client",
     members = {
         message = {
@@ -2183,6 +2318,7 @@ M.WebAuthnClientMismatchException = {
 
 M.WebAuthnCredentialNotSupportedException = {
     type = "structure",
+    id = "WebAuthnCredentialNotSupportedException",
     error = "client",
     members = {
         message = {
@@ -2193,6 +2329,7 @@ M.WebAuthnCredentialNotSupportedException = {
 
 M.WebAuthnNotEnabledException = {
     type = "structure",
+    id = "WebAuthnNotEnabledException",
     error = "client",
     members = {
         message = {
@@ -2203,6 +2340,7 @@ M.WebAuthnNotEnabledException = {
 
 M.WebAuthnOriginNotAllowedException = {
     type = "structure",
+    id = "WebAuthnOriginNotAllowedException",
     error = "client",
     members = {
         message = {
@@ -2213,6 +2351,7 @@ M.WebAuthnOriginNotAllowedException = {
 
 M.WebAuthnRelyingPartyMismatchException = {
     type = "structure",
+    id = "WebAuthnRelyingPartyMismatchException",
     error = "client",
     members = {
         message = {
@@ -2223,6 +2362,7 @@ M.WebAuthnRelyingPartyMismatchException = {
 
 M.DeviceSecretVerifierConfigType = {
     type = "structure",
+    id = "DeviceSecretVerifierConfigType",
     members = {
         PasswordVerifier = {
             type = "string",
@@ -2235,6 +2375,7 @@ M.DeviceSecretVerifierConfigType = {
 
 M.ConfirmDeviceInput = {
     type = "structure",
+    id = "ConfirmDeviceInput",
     members = {
         AccessToken = {
             type = "string",
@@ -2257,6 +2398,7 @@ M.ConfirmDeviceInput = {
 
 M.ConfirmDeviceOutput = {
     type = "structure",
+    id = "ConfirmDeviceOutput",
     members = {
         UserConfirmationNecessary = {
             type = "boolean",
@@ -2269,6 +2411,7 @@ M.ConfirmDeviceOutput = {
 
 M.DeviceKeyExistsException = {
     type = "structure",
+    id = "DeviceKeyExistsException",
     error = "client",
     members = {
         message = {
@@ -2279,6 +2422,7 @@ M.DeviceKeyExistsException = {
 
 M.UserContextDataType = {
     type = "structure",
+    id = "UserContextDataType",
     members = {
         IpAddress = {
             type = "string",
@@ -2291,6 +2435,7 @@ M.UserContextDataType = {
 
 M.ConfirmForgotPasswordInput = {
     type = "structure",
+    id = "ConfirmForgotPasswordInput",
     members = {
         ClientId = {
             type = "string",
@@ -2331,10 +2476,12 @@ M.ConfirmForgotPasswordInput = {
 
 M.ConfirmForgotPasswordOutput = {
     type = "structure",
+    id = "ConfirmForgotPasswordOutput",
 }
 
 M.ConfirmSignUpInput = {
     type = "structure",
+    id = "ConfirmSignUpInput",
     members = {
         ClientId = {
             type = "string",
@@ -2378,6 +2525,7 @@ M.ConfirmSignUpInput = {
 
 M.ConfirmSignUpOutput = {
     type = "structure",
+    id = "ConfirmSignUpOutput",
     members = {
         Session = {
             type = "string",
@@ -2387,6 +2535,7 @@ M.ConfirmSignUpOutput = {
 
 M.CreateGroupInput = {
     type = "structure",
+    id = "CreateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -2414,6 +2563,7 @@ M.CreateGroupInput = {
 
 M.CreateGroupOutput = {
     type = "structure",
+    id = "CreateGroupOutput",
     members = {
         Group = M.GroupType,
     },
@@ -2421,6 +2571,7 @@ M.CreateGroupOutput = {
 
 M.GroupExistsException = {
     type = "structure",
+    id = "GroupExistsException",
     error = "client",
     members = {
         message = {
@@ -2440,6 +2591,7 @@ M.IdentityProviderTypeType = {
 
 M.CreateIdentityProviderInput = {
     type = "structure",
+    id = "CreateIdentityProviderInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -2481,6 +2633,7 @@ M.CreateIdentityProviderInput = {
 
 M.IdentityProviderType = {
     type = "structure",
+    id = "IdentityProviderType",
     members = {
         UserPoolId = {
             type = "string",
@@ -2516,6 +2669,7 @@ M.IdentityProviderType = {
 
 M.CreateIdentityProviderOutput = {
     type = "structure",
+    id = "CreateIdentityProviderOutput",
     members = {
         IdentityProvider = setmetatable({ traits = {
             required = true,
@@ -2525,6 +2679,7 @@ M.CreateIdentityProviderOutput = {
 
 M.DuplicateProviderException = {
     type = "structure",
+    id = "DuplicateProviderException",
     error = "client",
     members = {
         message = {
@@ -2535,6 +2690,7 @@ M.DuplicateProviderException = {
 
 M.CreateManagedLoginBrandingInput = {
     type = "structure",
+    id = "CreateManagedLoginBrandingInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -2566,6 +2722,7 @@ M.CreateManagedLoginBrandingInput = {
 
 M.ManagedLoginBrandingType = {
     type = "structure",
+    id = "ManagedLoginBrandingType",
     members = {
         ManagedLoginBrandingId = {
             type = "string",
@@ -2597,6 +2754,7 @@ M.ManagedLoginBrandingType = {
 
 M.CreateManagedLoginBrandingOutput = {
     type = "structure",
+    id = "CreateManagedLoginBrandingOutput",
     members = {
         ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
@@ -2604,6 +2762,7 @@ M.CreateManagedLoginBrandingOutput = {
 
 M.ManagedLoginBrandingExistsException = {
     type = "structure",
+    id = "ManagedLoginBrandingExistsException",
     error = "client",
     members = {
         message = {
@@ -2614,6 +2773,7 @@ M.ManagedLoginBrandingExistsException = {
 
 M.ResourceServerScopeType = {
     type = "structure",
+    id = "ResourceServerScopeType",
     members = {
         ScopeName = {
             type = "string",
@@ -2632,6 +2792,7 @@ M.ResourceServerScopeType = {
 
 M.CreateResourceServerInput = {
     type = "structure",
+    id = "CreateResourceServerInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -2660,6 +2821,7 @@ M.CreateResourceServerInput = {
 
 M.ResourceServerType = {
     type = "structure",
+    id = "ResourceServerType",
     members = {
         UserPoolId = {
             type = "string",
@@ -2679,6 +2841,7 @@ M.ResourceServerType = {
 
 M.CreateResourceServerOutput = {
     type = "structure",
+    id = "CreateResourceServerOutput",
     members = {
         ResourceServer = setmetatable({ traits = {
             required = true,
@@ -2696,6 +2859,7 @@ M.TermsSourceType = {
 
 M.CreateTermsInput = {
     type = "structure",
+    id = "CreateTermsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -2737,6 +2901,7 @@ M.CreateTermsInput = {
 
 M.TermsType = {
     type = "structure",
+    id = "TermsType",
     members = {
         TermsId = {
             type = "string",
@@ -2799,6 +2964,7 @@ M.TermsType = {
 
 M.CreateTermsOutput = {
     type = "structure",
+    id = "CreateTermsOutput",
     members = {
         Terms = M.TermsType,
     },
@@ -2806,6 +2972,7 @@ M.CreateTermsOutput = {
 
 M.TermsExistsException = {
     type = "structure",
+    id = "TermsExistsException",
     error = "client",
     members = {
         message = {
@@ -2816,6 +2983,7 @@ M.TermsExistsException = {
 
 M.CreateUserImportJobInput = {
     type = "structure",
+    id = "CreateUserImportJobInput",
     members = {
         JobName = {
             type = "string",
@@ -2851,6 +3019,7 @@ M.UserImportJobStatusType = {
 
 M.UserImportJobType = {
     type = "structure",
+    id = "UserImportJobType",
     members = {
         JobName = {
             type = "string",
@@ -2905,6 +3074,7 @@ M.UserImportJobType = {
 
 M.CreateUserImportJobOutput = {
     type = "structure",
+    id = "CreateUserImportJobOutput",
     members = {
         UserImportJob = M.UserImportJobType,
     },
@@ -2917,6 +3087,7 @@ M.DeletionProtectionType = {
 
 M.DeviceConfigurationType = {
     type = "structure",
+    id = "DeviceConfigurationType",
     members = {
         ChallengeRequiredOnNewDevice = {
             type = "boolean",
@@ -2940,6 +3111,7 @@ M.EmailSendingAccountType = {
 
 M.EmailConfigurationType = {
     type = "structure",
+    id = "EmailConfigurationType",
     members = {
         SourceArn = {
             type = "string",
@@ -2965,6 +3137,7 @@ M.CustomEmailSenderLambdaVersionType = {
 
 M.CustomEmailLambdaVersionConfigType = {
     type = "structure",
+    id = "CustomEmailLambdaVersionConfigType",
     members = {
         LambdaVersion = {
             type = "string",
@@ -2987,6 +3160,7 @@ M.CustomSMSSenderLambdaVersionType = {
 
 M.CustomSMSLambdaVersionConfigType = {
     type = "structure",
+    id = "CustomSMSLambdaVersionConfigType",
     members = {
         LambdaVersion = {
             type = "string",
@@ -3009,6 +3183,7 @@ M.InboundFederationLambdaVersionType = {
 
 M.InboundFederationLambdaType = {
     type = "structure",
+    id = "InboundFederationLambdaType",
     members = {
         LambdaVersion = {
             type = "string",
@@ -3033,6 +3208,7 @@ M.PreTokenGenerationLambdaVersionType = {
 
 M.PreTokenGenerationVersionConfigType = {
     type = "structure",
+    id = "PreTokenGenerationVersionConfigType",
     members = {
         LambdaVersion = {
             type = "string",
@@ -3051,6 +3227,7 @@ M.PreTokenGenerationVersionConfigType = {
 
 M.LambdaConfigType = {
     type = "structure",
+    id = "LambdaConfigType",
     members = {
         PreSignUp = {
             type = "string",
@@ -3100,6 +3277,7 @@ M.UserPoolMfaType = {
 
 M.PasswordPolicyType = {
     type = "structure",
+    id = "PasswordPolicyType",
     members = {
         MinimumLength = {
             type = "integer",
@@ -3142,6 +3320,7 @@ M.PasswordPolicyType = {
 
 M.SignInPolicyType = {
     type = "structure",
+    id = "SignInPolicyType",
     members = {
         AllowedFirstAuthFactors = {
             type = "list",
@@ -3152,6 +3331,7 @@ M.SignInPolicyType = {
 
 M.UserPoolPolicyType = {
     type = "structure",
+    id = "UserPoolPolicyType",
     members = {
         PasswordPolicy = M.PasswordPolicyType,
         SignInPolicy = M.SignInPolicyType,
@@ -3160,6 +3340,7 @@ M.UserPoolPolicyType = {
 
 M.SmsConfigurationType = {
     type = "structure",
+    id = "SmsConfigurationType",
     members = {
         SnsCallerArn = {
             type = "string",
@@ -3178,6 +3359,7 @@ M.SmsConfigurationType = {
 
 M.UserAttributeUpdateSettingsType = {
     type = "structure",
+    id = "UserAttributeUpdateSettingsType",
     members = {
         AttributesRequireVerificationBeforeUpdate = {
             type = "list",
@@ -3193,6 +3375,7 @@ M.UsernameAttributeType = {
 
 M.UsernameConfigurationType = {
     type = "structure",
+    id = "UsernameConfigurationType",
     members = {
         CaseSensitive = {
             type = "boolean",
@@ -3205,6 +3388,7 @@ M.UsernameConfigurationType = {
 
 M.UserPoolAddOnsType = {
     type = "structure",
+    id = "UserPoolAddOnsType",
     members = {
         AdvancedSecurityMode = {
             type = "string",
@@ -3229,6 +3413,7 @@ M.DefaultEmailOptionType = {
 
 M.VerificationMessageTemplateType = {
     type = "structure",
+    id = "VerificationMessageTemplateType",
     members = {
         SmsMessage = {
             type = "string",
@@ -3253,6 +3438,7 @@ M.VerificationMessageTemplateType = {
 
 M.CreateUserPoolInput = {
     type = "structure",
+    id = "CreateUserPoolInput",
     members = {
         PoolName = {
             type = "string",
@@ -3323,6 +3509,7 @@ M.StatusType = {
 
 M.UserPoolType = {
     type = "structure",
+    id = "UserPoolType",
     members = {
         Id = {
             type = "string",
@@ -3418,6 +3605,7 @@ M.UserPoolType = {
 
 M.CreateUserPoolOutput = {
     type = "structure",
+    id = "CreateUserPoolOutput",
     members = {
         UserPool = M.UserPoolType,
     },
@@ -3425,6 +3613,7 @@ M.CreateUserPoolOutput = {
 
 M.FeatureUnavailableInTierException = {
     type = "structure",
+    id = "FeatureUnavailableInTierException",
     error = "client",
     members = {
         message = {
@@ -3435,6 +3624,7 @@ M.FeatureUnavailableInTierException = {
 
 M.TierChangeNotAllowedException = {
     type = "structure",
+    id = "TierChangeNotAllowedException",
     error = "client",
     members = {
         message = {
@@ -3445,6 +3635,7 @@ M.TierChangeNotAllowedException = {
 
 M.UserPoolTaggingException = {
     type = "structure",
+    id = "UserPoolTaggingException",
     error = "client",
     members = {
         message = {
@@ -3483,6 +3674,7 @@ M.FeatureType = {
 
 M.RefreshTokenRotationType = {
     type = "structure",
+    id = "RefreshTokenRotationType",
     members = {
         Feature = {
             type = "string",
@@ -3505,6 +3697,7 @@ M.TimeUnitsType = {
 
 M.TokenValidityUnitsType = {
     type = "structure",
+    id = "TokenValidityUnitsType",
     members = {
         AccessToken = {
             type = "string",
@@ -3520,6 +3713,7 @@ M.TokenValidityUnitsType = {
 
 M.CreateUserPoolClientInput = {
     type = "structure",
+    id = "CreateUserPoolClientInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -3615,6 +3809,7 @@ M.CreateUserPoolClientInput = {
 
 M.UserPoolClientType = {
     type = "structure",
+    id = "UserPoolClientType",
     members = {
         UserPoolId = {
             type = "string",
@@ -3707,6 +3902,7 @@ M.UserPoolClientType = {
 
 M.CreateUserPoolClientOutput = {
     type = "structure",
+    id = "CreateUserPoolClientOutput",
     members = {
         UserPoolClient = M.UserPoolClientType,
     },
@@ -3714,6 +3910,7 @@ M.CreateUserPoolClientOutput = {
 
 M.InvalidOAuthFlowException = {
     type = "structure",
+    id = "InvalidOAuthFlowException",
     error = "client",
     members = {
         message = {
@@ -3724,6 +3921,7 @@ M.InvalidOAuthFlowException = {
 
 M.ScopeDoesNotExistException = {
     type = "structure",
+    id = "ScopeDoesNotExistException",
     error = "client",
     members = {
         message = {
@@ -3734,6 +3932,7 @@ M.ScopeDoesNotExistException = {
 
 M.CustomDomainConfigType = {
     type = "structure",
+    id = "CustomDomainConfigType",
     members = {
         CertificateArn = {
             type = "string",
@@ -3746,6 +3945,7 @@ M.CustomDomainConfigType = {
 
 M.CreateUserPoolDomainInput = {
     type = "structure",
+    id = "CreateUserPoolDomainInput",
     members = {
         Domain = {
             type = "string",
@@ -3768,6 +3968,7 @@ M.CreateUserPoolDomainInput = {
 
 M.CreateUserPoolDomainOutput = {
     type = "structure",
+    id = "CreateUserPoolDomainOutput",
     members = {
         ManagedLoginVersion = {
             type = "integer",
@@ -3780,6 +3981,7 @@ M.CreateUserPoolDomainOutput = {
 
 M.DeleteGroupInput = {
     type = "structure",
+    id = "DeleteGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -3798,10 +4000,12 @@ M.DeleteGroupInput = {
 
 M.DeleteGroupOutput = {
     type = "structure",
+    id = "DeleteGroupOutput",
 }
 
 M.DeleteIdentityProviderInput = {
     type = "structure",
+    id = "DeleteIdentityProviderInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -3820,10 +4024,12 @@ M.DeleteIdentityProviderInput = {
 
 M.DeleteIdentityProviderOutput = {
     type = "structure",
+    id = "DeleteIdentityProviderOutput",
 }
 
 M.UnsupportedIdentityProviderException = {
     type = "structure",
+    id = "UnsupportedIdentityProviderException",
     error = "client",
     members = {
         message = {
@@ -3834,6 +4040,7 @@ M.UnsupportedIdentityProviderException = {
 
 M.DeleteManagedLoginBrandingInput = {
     type = "structure",
+    id = "DeleteManagedLoginBrandingInput",
     members = {
         ManagedLoginBrandingId = {
             type = "string",
@@ -3852,10 +4059,12 @@ M.DeleteManagedLoginBrandingInput = {
 
 M.DeleteManagedLoginBrandingOutput = {
     type = "structure",
+    id = "DeleteManagedLoginBrandingOutput",
 }
 
 M.DeleteResourceServerInput = {
     type = "structure",
+    id = "DeleteResourceServerInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -3874,10 +4083,12 @@ M.DeleteResourceServerInput = {
 
 M.DeleteResourceServerOutput = {
     type = "structure",
+    id = "DeleteResourceServerOutput",
 }
 
 M.DeleteTermsInput = {
     type = "structure",
+    id = "DeleteTermsInput",
     members = {
         TermsId = {
             type = "string",
@@ -3896,10 +4107,12 @@ M.DeleteTermsInput = {
 
 M.DeleteTermsOutput = {
     type = "structure",
+    id = "DeleteTermsOutput",
 }
 
 M.DeleteUserInput = {
     type = "structure",
+    id = "DeleteUserInput",
     members = {
         AccessToken = {
             type = "string",
@@ -3912,10 +4125,12 @@ M.DeleteUserInput = {
 
 M.DeleteUserOutput = {
     type = "structure",
+    id = "DeleteUserOutput",
 }
 
 M.DeleteUserAttributesInput = {
     type = "structure",
+    id = "DeleteUserAttributesInput",
     members = {
         UserAttributeNames = {
             type = "list",
@@ -3935,10 +4150,12 @@ M.DeleteUserAttributesInput = {
 
 M.DeleteUserAttributesOutput = {
     type = "structure",
+    id = "DeleteUserAttributesOutput",
 }
 
 M.DeleteUserPoolInput = {
     type = "structure",
+    id = "DeleteUserPoolInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -3951,10 +4168,12 @@ M.DeleteUserPoolInput = {
 
 M.DeleteUserPoolOutput = {
     type = "structure",
+    id = "DeleteUserPoolOutput",
 }
 
 M.DeleteUserPoolClientInput = {
     type = "structure",
+    id = "DeleteUserPoolClientInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -3973,10 +4192,12 @@ M.DeleteUserPoolClientInput = {
 
 M.DeleteUserPoolClientOutput = {
     type = "structure",
+    id = "DeleteUserPoolClientOutput",
 }
 
 M.DeleteUserPoolClientSecretInput = {
     type = "structure",
+    id = "DeleteUserPoolClientSecretInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4001,10 +4222,12 @@ M.DeleteUserPoolClientSecretInput = {
 
 M.DeleteUserPoolClientSecretOutput = {
     type = "structure",
+    id = "DeleteUserPoolClientSecretOutput",
 }
 
 M.DeleteUserPoolDomainInput = {
     type = "structure",
+    id = "DeleteUserPoolDomainInput",
     members = {
         Domain = {
             type = "string",
@@ -4023,10 +4246,12 @@ M.DeleteUserPoolDomainInput = {
 
 M.DeleteUserPoolDomainOutput = {
     type = "structure",
+    id = "DeleteUserPoolDomainOutput",
 }
 
 M.DeleteWebAuthnCredentialInput = {
     type = "structure",
+    id = "DeleteWebAuthnCredentialInput",
     members = {
         AccessToken = {
             type = "string",
@@ -4045,10 +4270,12 @@ M.DeleteWebAuthnCredentialInput = {
 
 M.DeleteWebAuthnCredentialOutput = {
     type = "structure",
+    id = "DeleteWebAuthnCredentialOutput",
 }
 
 M.DescribeIdentityProviderInput = {
     type = "structure",
+    id = "DescribeIdentityProviderInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4067,6 +4294,7 @@ M.DescribeIdentityProviderInput = {
 
 M.DescribeIdentityProviderOutput = {
     type = "structure",
+    id = "DescribeIdentityProviderOutput",
     members = {
         IdentityProvider = setmetatable({ traits = {
             required = true,
@@ -4076,6 +4304,7 @@ M.DescribeIdentityProviderOutput = {
 
 M.DescribeManagedLoginBrandingInput = {
     type = "structure",
+    id = "DescribeManagedLoginBrandingInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4100,6 +4329,7 @@ M.DescribeManagedLoginBrandingInput = {
 
 M.DescribeManagedLoginBrandingOutput = {
     type = "structure",
+    id = "DescribeManagedLoginBrandingOutput",
     members = {
         ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
@@ -4107,6 +4337,7 @@ M.DescribeManagedLoginBrandingOutput = {
 
 M.DescribeManagedLoginBrandingByClientInput = {
     type = "structure",
+    id = "DescribeManagedLoginBrandingByClientInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4131,6 +4362,7 @@ M.DescribeManagedLoginBrandingByClientInput = {
 
 M.DescribeManagedLoginBrandingByClientOutput = {
     type = "structure",
+    id = "DescribeManagedLoginBrandingByClientOutput",
     members = {
         ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
@@ -4138,6 +4370,7 @@ M.DescribeManagedLoginBrandingByClientOutput = {
 
 M.DescribeResourceServerInput = {
     type = "structure",
+    id = "DescribeResourceServerInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4156,6 +4389,7 @@ M.DescribeResourceServerInput = {
 
 M.DescribeResourceServerOutput = {
     type = "structure",
+    id = "DescribeResourceServerOutput",
     members = {
         ResourceServer = setmetatable({ traits = {
             required = true,
@@ -4165,6 +4399,7 @@ M.DescribeResourceServerOutput = {
 
 M.DescribeRiskConfigurationInput = {
     type = "structure",
+    id = "DescribeRiskConfigurationInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4185,6 +4420,7 @@ M.CompromisedCredentialsEventActionType = {
 
 M.CompromisedCredentialsActionsType = {
     type = "structure",
+    id = "CompromisedCredentialsActionsType",
     members = {
         EventAction = {
             type = "string",
@@ -4203,6 +4439,7 @@ M.EventFilterType = {
 
 M.CompromisedCredentialsRiskConfigurationType = {
     type = "structure",
+    id = "CompromisedCredentialsRiskConfigurationType",
     members = {
         EventFilter = {
             type = "list",
@@ -4216,6 +4453,7 @@ M.CompromisedCredentialsRiskConfigurationType = {
 
 M.RiskExceptionConfigurationType = {
     type = "structure",
+    id = "RiskExceptionConfigurationType",
     members = {
         BlockedIPRangeList = {
             type = "list",
@@ -4230,6 +4468,7 @@ M.RiskExceptionConfigurationType = {
 
 M.RiskConfigurationType = {
     type = "structure",
+    id = "RiskConfigurationType",
     members = {
         UserPoolId = {
             type = "string",
@@ -4248,6 +4487,7 @@ M.RiskConfigurationType = {
 
 M.DescribeRiskConfigurationOutput = {
     type = "structure",
+    id = "DescribeRiskConfigurationOutput",
     members = {
         RiskConfiguration = setmetatable({ traits = {
             required = true,
@@ -4257,6 +4497,7 @@ M.DescribeRiskConfigurationOutput = {
 
 M.DescribeTermsInput = {
     type = "structure",
+    id = "DescribeTermsInput",
     members = {
         TermsId = {
             type = "string",
@@ -4275,6 +4516,7 @@ M.DescribeTermsInput = {
 
 M.DescribeTermsOutput = {
     type = "structure",
+    id = "DescribeTermsOutput",
     members = {
         Terms = M.TermsType,
     },
@@ -4282,6 +4524,7 @@ M.DescribeTermsOutput = {
 
 M.DescribeUserImportJobInput = {
     type = "structure",
+    id = "DescribeUserImportJobInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4300,6 +4543,7 @@ M.DescribeUserImportJobInput = {
 
 M.DescribeUserImportJobOutput = {
     type = "structure",
+    id = "DescribeUserImportJobOutput",
     members = {
         UserImportJob = M.UserImportJobType,
     },
@@ -4307,6 +4551,7 @@ M.DescribeUserImportJobOutput = {
 
 M.DescribeUserPoolInput = {
     type = "structure",
+    id = "DescribeUserPoolInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4319,6 +4564,7 @@ M.DescribeUserPoolInput = {
 
 M.DescribeUserPoolOutput = {
     type = "structure",
+    id = "DescribeUserPoolOutput",
     members = {
         UserPool = M.UserPoolType,
     },
@@ -4326,6 +4572,7 @@ M.DescribeUserPoolOutput = {
 
 M.DescribeUserPoolClientInput = {
     type = "structure",
+    id = "DescribeUserPoolClientInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4344,6 +4591,7 @@ M.DescribeUserPoolClientInput = {
 
 M.DescribeUserPoolClientOutput = {
     type = "structure",
+    id = "DescribeUserPoolClientOutput",
     members = {
         UserPoolClient = M.UserPoolClientType,
     },
@@ -4351,6 +4599,7 @@ M.DescribeUserPoolClientOutput = {
 
 M.DescribeUserPoolDomainInput = {
     type = "structure",
+    id = "DescribeUserPoolDomainInput",
     members = {
         Domain = {
             type = "string",
@@ -4371,6 +4620,7 @@ M.DomainStatusType = {
 
 M.DomainDescriptionType = {
     type = "structure",
+    id = "DomainDescriptionType",
     members = {
         UserPoolId = {
             type = "string",
@@ -4402,6 +4652,7 @@ M.DomainDescriptionType = {
 
 M.DescribeUserPoolDomainOutput = {
     type = "structure",
+    id = "DescribeUserPoolDomainOutput",
     members = {
         DomainDescription = M.DomainDescriptionType,
     },
@@ -4409,6 +4660,7 @@ M.DescribeUserPoolDomainOutput = {
 
 M.ForgetDeviceInput = {
     type = "structure",
+    id = "ForgetDeviceInput",
     members = {
         AccessToken = {
             type = "string",
@@ -4424,10 +4676,12 @@ M.ForgetDeviceInput = {
 
 M.ForgetDeviceOutput = {
     type = "structure",
+    id = "ForgetDeviceOutput",
 }
 
 M.ForgotPasswordInput = {
     type = "structure",
+    id = "ForgotPasswordInput",
     members = {
         ClientId = {
             type = "string",
@@ -4456,6 +4710,7 @@ M.ForgotPasswordInput = {
 
 M.CodeDeliveryDetailsType = {
     type = "structure",
+    id = "CodeDeliveryDetailsType",
     members = {
         Destination = {
             type = "string",
@@ -4471,6 +4726,7 @@ M.CodeDeliveryDetailsType = {
 
 M.ForgotPasswordOutput = {
     type = "structure",
+    id = "ForgotPasswordOutput",
     members = {
         CodeDeliveryDetails = M.CodeDeliveryDetailsType,
     },
@@ -4478,6 +4734,7 @@ M.ForgotPasswordOutput = {
 
 M.GetCSVHeaderInput = {
     type = "structure",
+    id = "GetCSVHeaderInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4490,6 +4747,7 @@ M.GetCSVHeaderInput = {
 
 M.GetCSVHeaderOutput = {
     type = "structure",
+    id = "GetCSVHeaderOutput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4503,6 +4761,7 @@ M.GetCSVHeaderOutput = {
 
 M.GetDeviceInput = {
     type = "structure",
+    id = "GetDeviceInput",
     members = {
         DeviceKey = {
             type = "string",
@@ -4518,6 +4777,7 @@ M.GetDeviceInput = {
 
 M.GetDeviceOutput = {
     type = "structure",
+    id = "GetDeviceOutput",
     members = {
         Device = setmetatable({ traits = {
             required = true,
@@ -4527,6 +4787,7 @@ M.GetDeviceOutput = {
 
 M.GetGroupInput = {
     type = "structure",
+    id = "GetGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -4545,6 +4806,7 @@ M.GetGroupInput = {
 
 M.GetGroupOutput = {
     type = "structure",
+    id = "GetGroupOutput",
     members = {
         Group = M.GroupType,
     },
@@ -4552,6 +4814,7 @@ M.GetGroupOutput = {
 
 M.GetIdentityProviderByIdentifierInput = {
     type = "structure",
+    id = "GetIdentityProviderByIdentifierInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4570,6 +4833,7 @@ M.GetIdentityProviderByIdentifierInput = {
 
 M.GetIdentityProviderByIdentifierOutput = {
     type = "structure",
+    id = "GetIdentityProviderByIdentifierOutput",
     members = {
         IdentityProvider = setmetatable({ traits = {
             required = true,
@@ -4579,6 +4843,7 @@ M.GetIdentityProviderByIdentifierOutput = {
 
 M.GetLogDeliveryConfigurationInput = {
     type = "structure",
+    id = "GetLogDeliveryConfigurationInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4591,6 +4856,7 @@ M.GetLogDeliveryConfigurationInput = {
 
 M.CloudWatchLogsConfigurationType = {
     type = "structure",
+    id = "CloudWatchLogsConfigurationType",
     members = {
         LogGroupArn = {
             type = "string",
@@ -4605,6 +4871,7 @@ M.EventSourceName = {
 
 M.FirehoseConfigurationType = {
     type = "structure",
+    id = "FirehoseConfigurationType",
     members = {
         StreamArn = {
             type = "string",
@@ -4619,6 +4886,7 @@ M.LogLevel = {
 
 M.S3ConfigurationType = {
     type = "structure",
+    id = "S3ConfigurationType",
     members = {
         BucketArn = {
             type = "string",
@@ -4628,6 +4896,7 @@ M.S3ConfigurationType = {
 
 M.LogConfigurationType = {
     type = "structure",
+    id = "LogConfigurationType",
     members = {
         LogLevel = {
             type = "string",
@@ -4649,6 +4918,7 @@ M.LogConfigurationType = {
 
 M.LogDeliveryConfigurationType = {
     type = "structure",
+    id = "LogDeliveryConfigurationType",
     members = {
         UserPoolId = {
             type = "string",
@@ -4668,6 +4938,7 @@ M.LogDeliveryConfigurationType = {
 
 M.GetLogDeliveryConfigurationOutput = {
     type = "structure",
+    id = "GetLogDeliveryConfigurationOutput",
     members = {
         LogDeliveryConfiguration = M.LogDeliveryConfigurationType,
     },
@@ -4675,6 +4946,7 @@ M.GetLogDeliveryConfigurationOutput = {
 
 M.GetSigningCertificateInput = {
     type = "structure",
+    id = "GetSigningCertificateInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4687,6 +4959,7 @@ M.GetSigningCertificateInput = {
 
 M.GetSigningCertificateOutput = {
     type = "structure",
+    id = "GetSigningCertificateOutput",
     members = {
         Certificate = {
             type = "string",
@@ -4696,6 +4969,7 @@ M.GetSigningCertificateOutput = {
 
 M.GetTokensFromRefreshTokenInput = {
     type = "structure",
+    id = "GetTokensFromRefreshTokenInput",
     members = {
         RefreshToken = {
             type = "string",
@@ -4725,6 +4999,7 @@ M.GetTokensFromRefreshTokenInput = {
 
 M.GetTokensFromRefreshTokenOutput = {
     type = "structure",
+    id = "GetTokensFromRefreshTokenOutput",
     members = {
         AuthenticationResult = M.AuthenticationResultType,
     },
@@ -4732,6 +5007,7 @@ M.GetTokensFromRefreshTokenOutput = {
 
 M.RefreshTokenReuseException = {
     type = "structure",
+    id = "RefreshTokenReuseException",
     error = "client",
     members = {
         message = {
@@ -4742,6 +5018,7 @@ M.RefreshTokenReuseException = {
 
 M.GetUICustomizationInput = {
     type = "structure",
+    id = "GetUICustomizationInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4757,6 +5034,7 @@ M.GetUICustomizationInput = {
 
 M.UICustomizationType = {
     type = "structure",
+    id = "UICustomizationType",
     members = {
         UserPoolId = {
             type = "string",
@@ -4784,6 +5062,7 @@ M.UICustomizationType = {
 
 M.GetUICustomizationOutput = {
     type = "structure",
+    id = "GetUICustomizationOutput",
     members = {
         UICustomization = setmetatable({ traits = {
             required = true,
@@ -4793,6 +5072,7 @@ M.GetUICustomizationOutput = {
 
 M.GetUserInput = {
     type = "structure",
+    id = "GetUserInput",
     members = {
         AccessToken = {
             type = "string",
@@ -4805,6 +5085,7 @@ M.GetUserInput = {
 
 M.GetUserOutput = {
     type = "structure",
+    id = "GetUserOutput",
     members = {
         Username = {
             type = "string",
@@ -4835,6 +5116,7 @@ M.GetUserOutput = {
 
 M.GetUserAttributeVerificationCodeInput = {
     type = "structure",
+    id = "GetUserAttributeVerificationCodeInput",
     members = {
         AccessToken = {
             type = "string",
@@ -4858,6 +5140,7 @@ M.GetUserAttributeVerificationCodeInput = {
 
 M.GetUserAttributeVerificationCodeOutput = {
     type = "structure",
+    id = "GetUserAttributeVerificationCodeOutput",
     members = {
         CodeDeliveryDetails = M.CodeDeliveryDetailsType,
     },
@@ -4865,6 +5148,7 @@ M.GetUserAttributeVerificationCodeOutput = {
 
 M.GetUserAuthFactorsInput = {
     type = "structure",
+    id = "GetUserAuthFactorsInput",
     members = {
         AccessToken = {
             type = "string",
@@ -4877,6 +5161,7 @@ M.GetUserAuthFactorsInput = {
 
 M.GetUserAuthFactorsOutput = {
     type = "structure",
+    id = "GetUserAuthFactorsOutput",
     members = {
         Username = {
             type = "string",
@@ -4900,6 +5185,7 @@ M.GetUserAuthFactorsOutput = {
 
 M.GetUserPoolMfaConfigInput = {
     type = "structure",
+    id = "GetUserPoolMfaConfigInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -4912,6 +5198,7 @@ M.GetUserPoolMfaConfigInput = {
 
 M.EmailMfaConfigType = {
     type = "structure",
+    id = "EmailMfaConfigType",
     members = {
         Message = {
             type = "string",
@@ -4924,6 +5211,7 @@ M.EmailMfaConfigType = {
 
 M.SmsMfaConfigType = {
     type = "structure",
+    id = "SmsMfaConfigType",
     members = {
         SmsAuthenticationMessage = {
             type = "string",
@@ -4934,6 +5222,7 @@ M.SmsMfaConfigType = {
 
 M.SoftwareTokenMfaConfigType = {
     type = "structure",
+    id = "SoftwareTokenMfaConfigType",
     members = {
         Enabled = {
             type = "boolean",
@@ -4956,6 +5245,7 @@ M.UserVerificationType = {
 
 M.WebAuthnConfigurationType = {
     type = "structure",
+    id = "WebAuthnConfigurationType",
     members = {
         RelyingPartyId = {
             type = "string",
@@ -4971,6 +5261,7 @@ M.WebAuthnConfigurationType = {
 
 M.GetUserPoolMfaConfigOutput = {
     type = "structure",
+    id = "GetUserPoolMfaConfigOutput",
     members = {
         SmsMfaConfiguration = M.SmsMfaConfigType,
         SoftwareTokenMfaConfiguration = M.SoftwareTokenMfaConfigType,
@@ -4984,6 +5275,7 @@ M.GetUserPoolMfaConfigOutput = {
 
 M.GlobalSignOutInput = {
     type = "structure",
+    id = "GlobalSignOutInput",
     members = {
         AccessToken = {
             type = "string",
@@ -4996,10 +5288,12 @@ M.GlobalSignOutInput = {
 
 M.GlobalSignOutOutput = {
     type = "structure",
+    id = "GlobalSignOutOutput",
 }
 
 M.InitiateAuthInput = {
     type = "structure",
+    id = "InitiateAuthInput",
     members = {
         AuthFlow = {
             type = "string",
@@ -5033,6 +5327,7 @@ M.InitiateAuthInput = {
 
 M.InitiateAuthOutput = {
     type = "structure",
+    id = "InitiateAuthOutput",
     members = {
         ChallengeName = {
             type = "string",
@@ -5055,6 +5350,7 @@ M.InitiateAuthOutput = {
 
 M.ListDevicesInput = {
     type = "structure",
+    id = "ListDevicesInput",
     members = {
         AccessToken = {
             type = "string",
@@ -5073,6 +5369,7 @@ M.ListDevicesInput = {
 
 M.ListDevicesOutput = {
     type = "structure",
+    id = "ListDevicesOutput",
     members = {
         Devices = {
             type = "list",
@@ -5086,6 +5383,7 @@ M.ListDevicesOutput = {
 
 M.ListGroupsInput = {
     type = "structure",
+    id = "ListGroupsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5104,6 +5402,7 @@ M.ListGroupsInput = {
 
 M.ListGroupsOutput = {
     type = "structure",
+    id = "ListGroupsOutput",
     members = {
         Groups = {
             type = "list",
@@ -5117,6 +5416,7 @@ M.ListGroupsOutput = {
 
 M.ListIdentityProvidersInput = {
     type = "structure",
+    id = "ListIdentityProvidersInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5135,6 +5435,7 @@ M.ListIdentityProvidersInput = {
 
 M.ProviderDescription = {
     type = "structure",
+    id = "ProviderDescription",
     members = {
         ProviderName = {
             type = "string",
@@ -5153,6 +5454,7 @@ M.ProviderDescription = {
 
 M.ListIdentityProvidersOutput = {
     type = "structure",
+    id = "ListIdentityProvidersOutput",
     members = {
         Providers = {
             type = "list",
@@ -5169,6 +5471,7 @@ M.ListIdentityProvidersOutput = {
 
 M.ListResourceServersInput = {
     type = "structure",
+    id = "ListResourceServersInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5187,6 +5490,7 @@ M.ListResourceServersInput = {
 
 M.ListResourceServersOutput = {
     type = "structure",
+    id = "ListResourceServersOutput",
     members = {
         ResourceServers = {
             type = "list",
@@ -5203,6 +5507,7 @@ M.ListResourceServersOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -5215,6 +5520,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "map",
@@ -5226,6 +5532,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTermsInput = {
     type = "structure",
+    id = "ListTermsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5244,6 +5551,7 @@ M.ListTermsInput = {
 
 M.TermsDescriptionType = {
     type = "structure",
+    id = "TermsDescriptionType",
     members = {
         TermsId = {
             type = "string",
@@ -5280,6 +5588,7 @@ M.TermsDescriptionType = {
 
 M.ListTermsOutput = {
     type = "structure",
+    id = "ListTermsOutput",
     members = {
         Terms = {
             type = "list",
@@ -5296,6 +5605,7 @@ M.ListTermsOutput = {
 
 M.ListUserImportJobsInput = {
     type = "structure",
+    id = "ListUserImportJobsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5317,6 +5627,7 @@ M.ListUserImportJobsInput = {
 
 M.ListUserImportJobsOutput = {
     type = "structure",
+    id = "ListUserImportJobsOutput",
     members = {
         UserImportJobs = {
             type = "list",
@@ -5330,6 +5641,7 @@ M.ListUserImportJobsOutput = {
 
 M.ListUserPoolClientsInput = {
     type = "structure",
+    id = "ListUserPoolClientsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5348,6 +5660,7 @@ M.ListUserPoolClientsInput = {
 
 M.UserPoolClientDescription = {
     type = "structure",
+    id = "UserPoolClientDescription",
     members = {
         ClientId = {
             type = "string",
@@ -5363,6 +5676,7 @@ M.UserPoolClientDescription = {
 
 M.ListUserPoolClientsOutput = {
     type = "structure",
+    id = "ListUserPoolClientsOutput",
     members = {
         UserPoolClients = {
             type = "list",
@@ -5376,6 +5690,7 @@ M.ListUserPoolClientsOutput = {
 
 M.ListUserPoolClientSecretsInput = {
     type = "structure",
+    id = "ListUserPoolClientSecretsInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5397,6 +5712,7 @@ M.ListUserPoolClientSecretsInput = {
 
 M.ListUserPoolClientSecretsOutput = {
     type = "structure",
+    id = "ListUserPoolClientSecretsOutput",
     members = {
         ClientSecrets = {
             type = "list",
@@ -5410,6 +5726,7 @@ M.ListUserPoolClientSecretsOutput = {
 
 M.ListUserPoolsInput = {
     type = "structure",
+    id = "ListUserPoolsInput",
     members = {
         NextToken = {
             type = "string",
@@ -5425,6 +5742,7 @@ M.ListUserPoolsInput = {
 
 M.UserPoolDescriptionType = {
     type = "structure",
+    id = "UserPoolDescriptionType",
     members = {
         Id = {
             type = "string",
@@ -5447,6 +5765,7 @@ M.UserPoolDescriptionType = {
 
 M.ListUserPoolsOutput = {
     type = "structure",
+    id = "ListUserPoolsOutput",
     members = {
         UserPools = {
             type = "list",
@@ -5460,6 +5779,7 @@ M.ListUserPoolsOutput = {
 
 M.ListUsersInput = {
     type = "structure",
+    id = "ListUsersInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5485,6 +5805,7 @@ M.ListUsersInput = {
 
 M.ListUsersOutput = {
     type = "structure",
+    id = "ListUsersOutput",
     members = {
         Users = {
             type = "list",
@@ -5498,6 +5819,7 @@ M.ListUsersOutput = {
 
 M.ListUsersInGroupInput = {
     type = "structure",
+    id = "ListUsersInGroupInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5522,6 +5844,7 @@ M.ListUsersInGroupInput = {
 
 M.ListUsersInGroupOutput = {
     type = "structure",
+    id = "ListUsersInGroupOutput",
     members = {
         Users = {
             type = "list",
@@ -5535,6 +5858,7 @@ M.ListUsersInGroupOutput = {
 
 M.ListWebAuthnCredentialsInput = {
     type = "structure",
+    id = "ListWebAuthnCredentialsInput",
     members = {
         AccessToken = {
             type = "string",
@@ -5553,6 +5877,7 @@ M.ListWebAuthnCredentialsInput = {
 
 M.WebAuthnCredentialDescription = {
     type = "structure",
+    id = "WebAuthnCredentialDescription",
     members = {
         CredentialId = {
             type = "string",
@@ -5593,6 +5918,7 @@ M.WebAuthnCredentialDescription = {
 
 M.ListWebAuthnCredentialsOutput = {
     type = "structure",
+    id = "ListWebAuthnCredentialsOutput",
     members = {
         Credentials = {
             type = "list",
@@ -5609,6 +5935,7 @@ M.ListWebAuthnCredentialsOutput = {
 
 M.ResendConfirmationCodeInput = {
     type = "structure",
+    id = "ResendConfirmationCodeInput",
     members = {
         ClientId = {
             type = "string",
@@ -5637,6 +5964,7 @@ M.ResendConfirmationCodeInput = {
 
 M.ResendConfirmationCodeOutput = {
     type = "structure",
+    id = "ResendConfirmationCodeOutput",
     members = {
         CodeDeliveryDetails = M.CodeDeliveryDetailsType,
     },
@@ -5644,6 +5972,7 @@ M.ResendConfirmationCodeOutput = {
 
 M.RespondToAuthChallengeInput = {
     type = "structure",
+    id = "RespondToAuthChallengeInput",
     members = {
         ClientId = {
             type = "string",
@@ -5677,6 +6006,7 @@ M.RespondToAuthChallengeInput = {
 
 M.RespondToAuthChallengeOutput = {
     type = "structure",
+    id = "RespondToAuthChallengeOutput",
     members = {
         ChallengeName = {
             type = "string",
@@ -5695,6 +6025,7 @@ M.RespondToAuthChallengeOutput = {
 
 M.RevokeTokenInput = {
     type = "structure",
+    id = "RevokeTokenInput",
     members = {
         Token = {
             type = "string",
@@ -5716,10 +6047,12 @@ M.RevokeTokenInput = {
 
 M.RevokeTokenOutput = {
     type = "structure",
+    id = "RevokeTokenOutput",
 }
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -5730,6 +6063,7 @@ M.UnauthorizedException = {
 
 M.UnsupportedTokenTypeException = {
     type = "structure",
+    id = "UnsupportedTokenTypeException",
     error = "client",
     members = {
         message = {
@@ -5740,6 +6074,7 @@ M.UnsupportedTokenTypeException = {
 
 M.SetLogDeliveryConfigurationInput = {
     type = "structure",
+    id = "SetLogDeliveryConfigurationInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5759,6 +6094,7 @@ M.SetLogDeliveryConfigurationInput = {
 
 M.SetLogDeliveryConfigurationOutput = {
     type = "structure",
+    id = "SetLogDeliveryConfigurationOutput",
     members = {
         LogDeliveryConfiguration = M.LogDeliveryConfigurationType,
     },
@@ -5766,6 +6102,7 @@ M.SetLogDeliveryConfigurationOutput = {
 
 M.SetRiskConfigurationInput = {
     type = "structure",
+    id = "SetRiskConfigurationInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5784,6 +6121,7 @@ M.SetRiskConfigurationInput = {
 
 M.SetRiskConfigurationOutput = {
     type = "structure",
+    id = "SetRiskConfigurationOutput",
     members = {
         RiskConfiguration = setmetatable({ traits = {
             required = true,
@@ -5793,6 +6131,7 @@ M.SetRiskConfigurationOutput = {
 
 M.SetUICustomizationInput = {
     type = "structure",
+    id = "SetUICustomizationInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5814,6 +6153,7 @@ M.SetUICustomizationInput = {
 
 M.SetUICustomizationOutput = {
     type = "structure",
+    id = "SetUICustomizationOutput",
     members = {
         UICustomization = setmetatable({ traits = {
             required = true,
@@ -5823,6 +6163,7 @@ M.SetUICustomizationOutput = {
 
 M.SetUserMFAPreferenceInput = {
     type = "structure",
+    id = "SetUserMFAPreferenceInput",
     members = {
         SMSMfaSettings = M.SMSMfaSettingsType,
         SoftwareTokenMfaSettings = M.SoftwareTokenMfaSettingsType,
@@ -5839,10 +6180,12 @@ M.SetUserMFAPreferenceInput = {
 
 M.SetUserMFAPreferenceOutput = {
     type = "structure",
+    id = "SetUserMFAPreferenceOutput",
 }
 
 M.SetUserPoolMfaConfigInput = {
     type = "structure",
+    id = "SetUserPoolMfaConfigInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5862,6 +6205,7 @@ M.SetUserPoolMfaConfigInput = {
 
 M.SetUserPoolMfaConfigOutput = {
     type = "structure",
+    id = "SetUserPoolMfaConfigOutput",
     members = {
         SmsMfaConfiguration = M.SmsMfaConfigType,
         SoftwareTokenMfaConfiguration = M.SoftwareTokenMfaConfigType,
@@ -5875,6 +6219,7 @@ M.SetUserPoolMfaConfigOutput = {
 
 M.SetUserSettingsInput = {
     type = "structure",
+    id = "SetUserSettingsInput",
     members = {
         AccessToken = {
             type = "string",
@@ -5894,10 +6239,12 @@ M.SetUserSettingsInput = {
 
 M.SetUserSettingsOutput = {
     type = "structure",
+    id = "SetUserSettingsOutput",
 }
 
 M.SignUpInput = {
     type = "structure",
+    id = "SignUpInput",
     members = {
         ClientId = {
             type = "string",
@@ -5937,6 +6284,7 @@ M.SignUpInput = {
 
 M.SignUpOutput = {
     type = "structure",
+    id = "SignUpOutput",
     members = {
         UserConfirmed = {
             type = "boolean",
@@ -5960,6 +6308,7 @@ M.SignUpOutput = {
 
 M.StartUserImportJobInput = {
     type = "structure",
+    id = "StartUserImportJobInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -5978,6 +6327,7 @@ M.StartUserImportJobInput = {
 
 M.StartUserImportJobOutput = {
     type = "structure",
+    id = "StartUserImportJobOutput",
     members = {
         UserImportJob = M.UserImportJobType,
     },
@@ -5985,6 +6335,7 @@ M.StartUserImportJobOutput = {
 
 M.StartWebAuthnRegistrationInput = {
     type = "structure",
+    id = "StartWebAuthnRegistrationInput",
     members = {
         AccessToken = {
             type = "string",
@@ -5997,6 +6348,7 @@ M.StartWebAuthnRegistrationInput = {
 
 M.StartWebAuthnRegistrationOutput = {
     type = "structure",
+    id = "StartWebAuthnRegistrationOutput",
     members = {
         CredentialCreationOptions = {
             type = "document",
@@ -6009,6 +6361,7 @@ M.StartWebAuthnRegistrationOutput = {
 
 M.WebAuthnConfigurationMissingException = {
     type = "structure",
+    id = "WebAuthnConfigurationMissingException",
     error = "client",
     members = {
         message = {
@@ -6019,6 +6372,7 @@ M.WebAuthnConfigurationMissingException = {
 
 M.StopUserImportJobInput = {
     type = "structure",
+    id = "StopUserImportJobInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -6037,6 +6391,7 @@ M.StopUserImportJobInput = {
 
 M.StopUserImportJobOutput = {
     type = "structure",
+    id = "StopUserImportJobOutput",
     members = {
         UserImportJob = M.UserImportJobType,
     },
@@ -6044,6 +6399,7 @@ M.StopUserImportJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6064,10 +6420,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -6087,10 +6445,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateAuthEventFeedbackInput = {
     type = "structure",
+    id = "UpdateAuthEventFeedbackInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -6127,10 +6487,12 @@ M.UpdateAuthEventFeedbackInput = {
 
 M.UpdateAuthEventFeedbackOutput = {
     type = "structure",
+    id = "UpdateAuthEventFeedbackOutput",
 }
 
 M.UpdateDeviceStatusInput = {
     type = "structure",
+    id = "UpdateDeviceStatusInput",
     members = {
         AccessToken = {
             type = "string",
@@ -6152,10 +6514,12 @@ M.UpdateDeviceStatusInput = {
 
 M.UpdateDeviceStatusOutput = {
     type = "structure",
+    id = "UpdateDeviceStatusOutput",
 }
 
 M.UpdateGroupInput = {
     type = "structure",
+    id = "UpdateGroupInput",
     members = {
         GroupName = {
             type = "string",
@@ -6183,6 +6547,7 @@ M.UpdateGroupInput = {
 
 M.UpdateGroupOutput = {
     type = "structure",
+    id = "UpdateGroupOutput",
     members = {
         Group = M.GroupType,
     },
@@ -6190,6 +6555,7 @@ M.UpdateGroupOutput = {
 
 M.UpdateIdentityProviderInput = {
     type = "structure",
+    id = "UpdateIdentityProviderInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -6222,6 +6588,7 @@ M.UpdateIdentityProviderInput = {
 
 M.UpdateIdentityProviderOutput = {
     type = "structure",
+    id = "UpdateIdentityProviderOutput",
     members = {
         IdentityProvider = setmetatable({ traits = {
             required = true,
@@ -6231,6 +6598,7 @@ M.UpdateIdentityProviderOutput = {
 
 M.UpdateManagedLoginBrandingInput = {
     type = "structure",
+    id = "UpdateManagedLoginBrandingInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -6256,6 +6624,7 @@ M.UpdateManagedLoginBrandingInput = {
 
 M.UpdateManagedLoginBrandingOutput = {
     type = "structure",
+    id = "UpdateManagedLoginBrandingOutput",
     members = {
         ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
@@ -6263,6 +6632,7 @@ M.UpdateManagedLoginBrandingOutput = {
 
 M.UpdateResourceServerInput = {
     type = "structure",
+    id = "UpdateResourceServerInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -6291,6 +6661,7 @@ M.UpdateResourceServerInput = {
 
 M.UpdateResourceServerOutput = {
     type = "structure",
+    id = "UpdateResourceServerOutput",
     members = {
         ResourceServer = setmetatable({ traits = {
             required = true,
@@ -6300,6 +6671,7 @@ M.UpdateResourceServerOutput = {
 
 M.UpdateTermsInput = {
     type = "structure",
+    id = "UpdateTermsInput",
     members = {
         TermsId = {
             type = "string",
@@ -6332,6 +6704,7 @@ M.UpdateTermsInput = {
 
 M.UpdateTermsOutput = {
     type = "structure",
+    id = "UpdateTermsOutput",
     members = {
         Terms = M.TermsType,
     },
@@ -6339,6 +6712,7 @@ M.UpdateTermsOutput = {
 
 M.UpdateUserAttributesInput = {
     type = "structure",
+    id = "UpdateUserAttributesInput",
     members = {
         UserAttributes = {
             type = "list",
@@ -6363,6 +6737,7 @@ M.UpdateUserAttributesInput = {
 
 M.UpdateUserAttributesOutput = {
     type = "structure",
+    id = "UpdateUserAttributesOutput",
     members = {
         CodeDeliveryDetailsList = {
             type = "list",
@@ -6373,6 +6748,7 @@ M.UpdateUserAttributesOutput = {
 
 M.UpdateUserPoolInput = {
     type = "structure",
+    id = "UpdateUserPoolInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -6428,10 +6804,12 @@ M.UpdateUserPoolInput = {
 
 M.UpdateUserPoolOutput = {
     type = "structure",
+    id = "UpdateUserPoolOutput",
 }
 
 M.UpdateUserPoolClientInput = {
     type = "structure",
+    id = "UpdateUserPoolClientInput",
     members = {
         UserPoolId = {
             type = "string",
@@ -6521,6 +6899,7 @@ M.UpdateUserPoolClientInput = {
 
 M.UpdateUserPoolClientOutput = {
     type = "structure",
+    id = "UpdateUserPoolClientOutput",
     members = {
         UserPoolClient = M.UserPoolClientType,
     },
@@ -6528,6 +6907,7 @@ M.UpdateUserPoolClientOutput = {
 
 M.UpdateUserPoolDomainInput = {
     type = "structure",
+    id = "UpdateUserPoolDomainInput",
     members = {
         Domain = {
             type = "string",
@@ -6550,6 +6930,7 @@ M.UpdateUserPoolDomainInput = {
 
 M.UpdateUserPoolDomainOutput = {
     type = "structure",
+    id = "UpdateUserPoolDomainOutput",
     members = {
         ManagedLoginVersion = {
             type = "integer",
@@ -6562,6 +6943,7 @@ M.UpdateUserPoolDomainOutput = {
 
 M.EnableSoftwareTokenMFAException = {
     type = "structure",
+    id = "EnableSoftwareTokenMFAException",
     error = "client",
     members = {
         message = {
@@ -6572,6 +6954,7 @@ M.EnableSoftwareTokenMFAException = {
 
 M.VerifySoftwareTokenInput = {
     type = "structure",
+    id = "VerifySoftwareTokenInput",
     members = {
         AccessToken = {
             type = "string",
@@ -6598,6 +6981,7 @@ M.VerifySoftwareTokenResponseType = {
 
 M.VerifySoftwareTokenOutput = {
     type = "structure",
+    id = "VerifySoftwareTokenOutput",
     members = {
         Status = {
             type = "string",
@@ -6610,6 +6994,7 @@ M.VerifySoftwareTokenOutput = {
 
 M.VerifyUserAttributeInput = {
     type = "structure",
+    id = "VerifyUserAttributeInput",
     members = {
         AccessToken = {
             type = "string",
@@ -6634,6 +7019,7 @@ M.VerifyUserAttributeInput = {
 
 M.VerifyUserAttributeOutput = {
     type = "structure",
+    id = "VerifyUserAttributeOutput",
 }
 
 return M

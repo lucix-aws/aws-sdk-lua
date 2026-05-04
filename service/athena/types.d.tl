@@ -1524,13 +1524,13 @@ local type CalculationExecutionState = "CREATING" | "CREATED" | "QUEUED" | "RUNN
 
 local type SessionState = "CREATING" | "CREATED" | "IDLE" | "BUSY" | "TERMINATING" | "TERMINATED" | "DEGRADED" | "FAILED"
 
+local type NotebookType = "IPYNB"
+
 local type QueryResultType = "DATA_MANIFEST" | "DATA_ROWS"
 
 local type WorkGroupState = "ENABLED" | "DISABLED"
 
 local type ExecutorState = "CREATING" | "CREATED" | "REGISTERED" | "TERMINATING" | "TERMINATED" | "FAILED"
-
-local type NotebookType = "IPYNB"
 
 local type DataCatalogType = "LAMBDA" | "GLUE" | "HIVE" | "FEDERATED"
 

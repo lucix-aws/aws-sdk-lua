@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.DiscountsBreakdownAmount = {
     type = "structure",
+    id = "DiscountsBreakdownAmount",
     members = {
         Description = {
             type = "string",
@@ -30,6 +32,7 @@ M.DiscountsBreakdownAmount = {
 
 M.DiscountsBreakdown = {
     type = "structure",
+    id = "DiscountsBreakdown",
     members = {
         Breakdown = {
             type = "list",
@@ -43,6 +46,7 @@ M.DiscountsBreakdown = {
 
 M.FeesBreakdownAmount = {
     type = "structure",
+    id = "FeesBreakdownAmount",
     members = {
         Description = {
             type = "string",
@@ -58,6 +62,7 @@ M.FeesBreakdownAmount = {
 
 M.FeesBreakdown = {
     type = "structure",
+    id = "FeesBreakdown",
     members = {
         Breakdown = {
             type = "list",
@@ -71,6 +76,7 @@ M.FeesBreakdown = {
 
 M.TaxesBreakdownAmount = {
     type = "structure",
+    id = "TaxesBreakdownAmount",
     members = {
         Description = {
             type = "string",
@@ -86,6 +92,7 @@ M.TaxesBreakdownAmount = {
 
 M.TaxesBreakdown = {
     type = "structure",
+    id = "TaxesBreakdown",
     members = {
         Breakdown = {
             type = "list",
@@ -99,6 +106,7 @@ M.TaxesBreakdown = {
 
 M.AmountBreakdown = {
     type = "structure",
+    id = "AmountBreakdown",
     members = {
         SubTotalAmount = {
             type = "string",
@@ -111,6 +119,7 @@ M.AmountBreakdown = {
 
 M.BatchGetInvoiceProfileInput = {
     type = "structure",
+    id = "BatchGetInvoiceProfileInput",
     members = {
         AccountIds = {
             type = "list",
@@ -124,6 +133,7 @@ M.BatchGetInvoiceProfileInput = {
 
 M.ReceiverAddress = {
     type = "structure",
+    id = "ReceiverAddress",
     members = {
         AddressLine1 = {
             type = "string",
@@ -157,6 +167,7 @@ M.ReceiverAddress = {
 
 M.InvoiceProfile = {
     type = "structure",
+    id = "InvoiceProfile",
     members = {
         AccountId = {
             type = "string",
@@ -179,6 +190,7 @@ M.InvoiceProfile = {
 
 M.BatchGetInvoiceProfileOutput = {
     type = "structure",
+    id = "BatchGetInvoiceProfileOutput",
     members = {
         Profiles = {
             type = "list",
@@ -189,6 +201,7 @@ M.BatchGetInvoiceProfileOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         retryAfterSeconds = {
@@ -205,6 +218,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -218,6 +232,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -228,6 +243,7 @@ M.ThrottlingException = {
 
 M.ValidationExceptionField = {
     type = "structure",
+    id = "ValidationExceptionField",
     members = {
         name = {
             type = "string",
@@ -263,6 +279,7 @@ M.ValidationExceptionReason = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -283,6 +300,7 @@ M.ValidationException = {
 
 M.BillingPeriod = {
     type = "structure",
+    id = "BillingPeriod",
     members = {
         Month = {
             type = "integer",
@@ -305,6 +323,7 @@ M.BuyerDomain = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -326,6 +345,7 @@ M.ConnectionTestingMethod = {
 
 M.Contact = {
     type = "structure",
+    id = "Contact",
     members = {
         Name = {
             type = "string",
@@ -338,6 +358,7 @@ M.Contact = {
 
 M.ResourceTag = {
     type = "structure",
+    id = "ResourceTag",
     members = {
         Key = {
             type = "string",
@@ -356,6 +377,7 @@ M.ResourceTag = {
 
 M.InvoiceUnitRule = {
     type = "structure",
+    id = "InvoiceUnitRule",
     members = {
         LinkedAccounts = {
             type = "list",
@@ -370,6 +392,7 @@ M.InvoiceUnitRule = {
 
 M.CreateInvoiceUnitInput = {
     type = "structure",
+    id = "CreateInvoiceUnitInput",
     members = {
         Name = {
             type = "string",
@@ -404,6 +427,7 @@ M.CreateInvoiceUnitInput = {
 
 M.CreateInvoiceUnitOutput = {
     type = "structure",
+    id = "CreateInvoiceUnitOutput",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -435,6 +459,7 @@ M.PurchaseOrderDataSourceType = {
 
 M.PurchaseOrderDataSource = {
     type = "structure",
+    id = "PurchaseOrderDataSource",
     members = {
         EinvoiceDeliveryDocumentType = {
             type = "string",
@@ -447,6 +472,7 @@ M.PurchaseOrderDataSource = {
 
 M.EinvoiceDeliveryPreference = {
     type = "structure",
+    id = "EinvoiceDeliveryPreference",
     members = {
         EinvoiceDeliveryDocumentTypes = {
             type = "list",
@@ -494,6 +520,7 @@ M.ProcurementPortalName = {
 
 M.ProcurementPortalPreferenceSelector = {
     type = "structure",
+    id = "ProcurementPortalPreferenceSelector",
     members = {
         InvoiceUnitArns = {
             type = "list",
@@ -512,6 +539,7 @@ M.SupplierDomain = {
 
 M.TestEnvPreferenceInput = {
     type = "structure",
+    id = "TestEnvPreferenceInput",
     members = {
         BuyerDomain = {
             type = "string",
@@ -548,6 +576,7 @@ M.TestEnvPreferenceInput = {
 
 M.CreateProcurementPortalPreferenceInput = {
     type = "structure",
+    id = "CreateProcurementPortalPreferenceInput",
     members = {
         ProcurementPortalName = {
             type = "string",
@@ -622,6 +651,7 @@ M.CreateProcurementPortalPreferenceInput = {
 
 M.CreateProcurementPortalPreferenceOutput = {
     type = "structure",
+    id = "CreateProcurementPortalPreferenceOutput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",
@@ -634,6 +664,7 @@ M.CreateProcurementPortalPreferenceOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -647,6 +678,7 @@ M.ServiceQuotaExceededException = {
 
 M.CurrencyExchangeDetails = {
     type = "structure",
+    id = "CurrencyExchangeDetails",
     members = {
         SourceCurrencyCode = {
             type = "string",
@@ -662,6 +694,7 @@ M.CurrencyExchangeDetails = {
 
 M.DateInterval = {
     type = "structure",
+    id = "DateInterval",
     members = {
         StartDate = {
             type = "timestamp",
@@ -680,6 +713,7 @@ M.DateInterval = {
 
 M.DeleteInvoiceUnitInput = {
     type = "structure",
+    id = "DeleteInvoiceUnitInput",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -692,6 +726,7 @@ M.DeleteInvoiceUnitInput = {
 
 M.DeleteInvoiceUnitOutput = {
     type = "structure",
+    id = "DeleteInvoiceUnitOutput",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -701,6 +736,7 @@ M.DeleteInvoiceUnitOutput = {
 
 M.DeleteProcurementPortalPreferenceInput = {
     type = "structure",
+    id = "DeleteProcurementPortalPreferenceInput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",
@@ -713,6 +749,7 @@ M.DeleteProcurementPortalPreferenceInput = {
 
 M.DeleteProcurementPortalPreferenceOutput = {
     type = "structure",
+    id = "DeleteProcurementPortalPreferenceOutput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",
@@ -725,6 +762,7 @@ M.DeleteProcurementPortalPreferenceOutput = {
 
 M.Entity = {
     type = "structure",
+    id = "Entity",
     members = {
         InvoicingEntity = {
             type = "string",
@@ -734,6 +772,7 @@ M.Entity = {
 
 M.Filters = {
     type = "structure",
+    id = "Filters",
     members = {
         Names = {
             type = "list",
@@ -756,6 +795,7 @@ M.Filters = {
 
 M.GetInvoicePDFInput = {
     type = "structure",
+    id = "GetInvoicePDFInput",
     members = {
         InvoiceId = {
             type = "string",
@@ -768,6 +808,7 @@ M.GetInvoicePDFInput = {
 
 M.SupplementalDocument = {
     type = "structure",
+    id = "SupplementalDocument",
     members = {
         DocumentUrl = {
             type = "string",
@@ -780,6 +821,7 @@ M.SupplementalDocument = {
 
 M.InvoicePDF = {
     type = "structure",
+    id = "InvoicePDF",
     members = {
         InvoiceId = {
             type = "string",
@@ -799,6 +841,7 @@ M.InvoicePDF = {
 
 M.GetInvoicePDFOutput = {
     type = "structure",
+    id = "GetInvoicePDFOutput",
     members = {
         InvoicePDF = M.InvoicePDF,
     },
@@ -806,6 +849,7 @@ M.GetInvoicePDFOutput = {
 
 M.GetInvoiceUnitInput = {
     type = "structure",
+    id = "GetInvoiceUnitInput",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -821,6 +865,7 @@ M.GetInvoiceUnitInput = {
 
 M.GetInvoiceUnitOutput = {
     type = "structure",
+    id = "GetInvoiceUnitOutput",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -849,6 +894,7 @@ M.GetInvoiceUnitOutput = {
 
 M.GetProcurementPortalPreferenceInput = {
     type = "structure",
+    id = "GetProcurementPortalPreferenceInput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",
@@ -870,6 +916,7 @@ M.ProcurementPortalPreferenceStatus = {
 
 M.TestEnvPreference = {
     type = "structure",
+    id = "TestEnvPreference",
     members = {
         BuyerDomain = {
             type = "string",
@@ -909,6 +956,7 @@ M.TestEnvPreference = {
 
 M.ProcurementPortalPreference = {
     type = "structure",
+    id = "ProcurementPortalPreference",
     members = {
         AwsAccountId = {
             type = "string",
@@ -1015,6 +1063,7 @@ M.ProcurementPortalPreference = {
 
 M.GetProcurementPortalPreferenceOutput = {
     type = "structure",
+    id = "GetProcurementPortalPreferenceOutput",
     members = {
         ProcurementPortalPreference = setmetatable({ traits = {
             required = true,
@@ -1024,6 +1073,7 @@ M.GetProcurementPortalPreferenceOutput = {
 
 M.InvoiceCurrencyAmount = {
     type = "structure",
+    id = "InvoiceCurrencyAmount",
     members = {
         TotalAmount = {
             type = "string",
@@ -1046,6 +1096,7 @@ M.InvoiceType = {
 
 M.InvoiceSummary = {
     type = "structure",
+    id = "InvoiceSummary",
     members = {
         AccountId = {
             type = "string",
@@ -1078,6 +1129,7 @@ M.InvoiceSummary = {
 
 M.InvoiceSummariesFilter = {
     type = "structure",
+    id = "InvoiceSummariesFilter",
     members = {
         TimeInterval = M.DateInterval,
         BillingPeriod = M.BillingPeriod,
@@ -1094,6 +1146,7 @@ M.ListInvoiceSummariesResourceType = {
 
 M.InvoiceSummariesSelector = {
     type = "structure",
+    id = "InvoiceSummariesSelector",
     members = {
         ResourceType = {
             type = "string",
@@ -1112,6 +1165,7 @@ M.InvoiceSummariesSelector = {
 
 M.InvoiceUnit = {
     type = "structure",
+    id = "InvoiceUnit",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -1140,6 +1194,7 @@ M.InvoiceUnit = {
 
 M.ListInvoiceSummariesInput = {
     type = "structure",
+    id = "ListInvoiceSummariesInput",
     members = {
         Selector = setmetatable({ traits = {
             required = true,
@@ -1156,6 +1211,7 @@ M.ListInvoiceSummariesInput = {
 
 M.ListInvoiceSummariesOutput = {
     type = "structure",
+    id = "ListInvoiceSummariesOutput",
     members = {
         InvoiceSummaries = {
             type = "list",
@@ -1172,6 +1228,7 @@ M.ListInvoiceSummariesOutput = {
 
 M.ListInvoiceUnitsInput = {
     type = "structure",
+    id = "ListInvoiceUnitsInput",
     members = {
         Filters = M.Filters,
         NextToken = {
@@ -1191,6 +1248,7 @@ M.ListInvoiceUnitsInput = {
 
 M.ListInvoiceUnitsOutput = {
     type = "structure",
+    id = "ListInvoiceUnitsOutput",
     members = {
         InvoiceUnits = {
             type = "list",
@@ -1204,6 +1262,7 @@ M.ListInvoiceUnitsOutput = {
 
 M.ListProcurementPortalPreferencesInput = {
     type = "structure",
+    id = "ListProcurementPortalPreferencesInput",
     members = {
         NextToken = {
             type = "string",
@@ -1219,6 +1278,7 @@ M.ListProcurementPortalPreferencesInput = {
 
 M.ProcurementPortalPreferenceSummary = {
     type = "structure",
+    id = "ProcurementPortalPreferenceSummary",
     members = {
         AwsAccountId = {
             type = "string",
@@ -1310,6 +1370,7 @@ M.ProcurementPortalPreferenceSummary = {
 
 M.ListProcurementPortalPreferencesOutput = {
     type = "structure",
+    id = "ListProcurementPortalPreferencesOutput",
     members = {
         ProcurementPortalPreferences = {
             type = "list",
@@ -1323,6 +1384,7 @@ M.ListProcurementPortalPreferencesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1335,6 +1397,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         ResourceTags = {
             type = "list",
@@ -1345,6 +1408,7 @@ M.ListTagsForResourceOutput = {
 
 M.PutProcurementPortalPreferenceInput = {
     type = "structure",
+    id = "PutProcurementPortalPreferenceInput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",
@@ -1385,6 +1449,7 @@ M.PutProcurementPortalPreferenceInput = {
 
 M.PutProcurementPortalPreferenceOutput = {
     type = "structure",
+    id = "PutProcurementPortalPreferenceOutput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",
@@ -1397,6 +1462,7 @@ M.PutProcurementPortalPreferenceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1416,10 +1482,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1439,10 +1507,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateInvoiceUnitInput = {
     type = "structure",
+    id = "UpdateInvoiceUnitInput",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -1465,6 +1535,7 @@ M.UpdateInvoiceUnitInput = {
 
 M.UpdateInvoiceUnitOutput = {
     type = "structure",
+    id = "UpdateInvoiceUnitOutput",
     members = {
         InvoiceUnitArn = {
             type = "string",
@@ -1474,6 +1545,7 @@ M.UpdateInvoiceUnitOutput = {
 
 M.UpdateProcurementPortalPreferenceStatusInput = {
     type = "structure",
+    id = "UpdateProcurementPortalPreferenceStatusInput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",
@@ -1498,6 +1570,7 @@ M.UpdateProcurementPortalPreferenceStatusInput = {
 
 M.UpdateProcurementPortalPreferenceStatusOutput = {
     type = "structure",
+    id = "UpdateProcurementPortalPreferenceStatusOutput",
     members = {
         ProcurementPortalPreferenceArn = {
             type = "string",

@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.ActivateMessageTemplateInput = {
     type = "structure",
+    id = "ActivateMessageTemplateInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -38,6 +40,7 @@ M.ActivateMessageTemplateInput = {
 
 M.ActivateMessageTemplateOutput = {
     type = "structure",
+    id = "ActivateMessageTemplateOutput",
     members = {
         messageTemplateArn = {
             type = "string",
@@ -62,6 +65,7 @@ M.ActivateMessageTemplateOutput = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -72,6 +76,7 @@ M.ConflictException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -85,6 +90,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -95,6 +101,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -105,6 +112,7 @@ M.ValidationException = {
 
 M.AgentAttributes = {
     type = "structure",
+    id = "AgentAttributes",
     members = {
         firstName = {
             type = "string",
@@ -117,6 +125,7 @@ M.AgentAttributes = {
 
 M.TagCondition = {
     type = "structure",
+    id = "TagCondition",
     members = {
         key = {
             type = "string",
@@ -132,6 +141,7 @@ M.TagCondition = {
 
 M.OrCondition = {
     type = "union",
+    id = "OrCondition",
     members = {
         andConditions = {
             type = "list",
@@ -143,6 +153,7 @@ M.OrCondition = {
 
 M.TagFilter = {
     type = "union",
+    id = "TagFilter",
     members = {
         tagCondition = M.TagCondition,
         andConditions = {
@@ -163,6 +174,7 @@ M.KnowledgeBaseSearchType = {
 
 M.KnowledgeBaseAssociationConfigurationData = {
     type = "structure",
+    id = "KnowledgeBaseAssociationConfigurationData",
     members = {
         contentTagFilter = M.TagFilter,
         maxResults = {
@@ -176,6 +188,7 @@ M.KnowledgeBaseAssociationConfigurationData = {
 
 M.AssociationConfigurationData = {
     type = "union",
+    id = "AssociationConfigurationData",
     members = {
         knowledgeBaseAssociationConfigurationData = M.KnowledgeBaseAssociationConfigurationData,
     },
@@ -187,6 +200,7 @@ M.AIAgentAssociationConfigurationType = {
 
 M.AssociationConfiguration = {
     type = "structure",
+    id = "AssociationConfiguration",
     members = {
         associationId = {
             type = "string",
@@ -200,6 +214,7 @@ M.AssociationConfiguration = {
 
 M.AnswerRecommendationAIAgentConfiguration = {
     type = "structure",
+    id = "AnswerRecommendationAIAgentConfiguration",
     members = {
         intentLabelingGenerationAIPromptId = {
             type = "string",
@@ -229,6 +244,7 @@ M.AnswerRecommendationAIAgentConfiguration = {
 
 M.CaseSummarizationAIAgentConfiguration = {
     type = "structure",
+    id = "CaseSummarizationAIAgentConfiguration",
     members = {
         caseSummarizationAIPromptId = {
             type = "string",
@@ -244,6 +260,7 @@ M.CaseSummarizationAIAgentConfiguration = {
 
 M.EmailGenerativeAnswerAIAgentConfiguration = {
     type = "structure",
+    id = "EmailGenerativeAnswerAIAgentConfiguration",
     members = {
         emailGenerativeAnswerAIPromptId = {
             type = "string",
@@ -263,6 +280,7 @@ M.EmailGenerativeAnswerAIAgentConfiguration = {
 
 M.EmailOverviewAIAgentConfiguration = {
     type = "structure",
+    id = "EmailOverviewAIAgentConfiguration",
     members = {
         emailOverviewAIPromptId = {
             type = "string",
@@ -275,6 +293,7 @@ M.EmailOverviewAIAgentConfiguration = {
 
 M.EmailResponseAIAgentConfiguration = {
     type = "structure",
+    id = "EmailResponseAIAgentConfiguration",
     members = {
         emailResponseAIPromptId = {
             type = "string",
@@ -294,6 +313,7 @@ M.EmailResponseAIAgentConfiguration = {
 
 M.ManualSearchAIAgentConfiguration = {
     type = "structure",
+    id = "ManualSearchAIAgentConfiguration",
     members = {
         answerGenerationAIPromptId = {
             type = "string",
@@ -313,6 +333,7 @@ M.ManualSearchAIAgentConfiguration = {
 
 M.NoteTakingAIAgentConfiguration = {
     type = "structure",
+    id = "NoteTakingAIAgentConfiguration",
     members = {
         noteTakingAIPromptId = {
             type = "string",
@@ -328,6 +349,7 @@ M.NoteTakingAIAgentConfiguration = {
 
 M.Annotation = {
     type = "structure",
+    id = "Annotation",
     members = {
         title = {
             type = "string",
@@ -340,6 +362,7 @@ M.Annotation = {
 
 M.ToolInstruction = {
     type = "structure",
+    id = "ToolInstruction",
     members = {
         instruction = {
             type = "string",
@@ -353,6 +376,7 @@ M.ToolInstruction = {
 
 M.ToolOutputConfiguration = {
     type = "structure",
+    id = "ToolOutputConfiguration",
     members = {
         outputVariableNameOverride = {
             type = "string",
@@ -365,6 +389,7 @@ M.ToolOutputConfiguration = {
 
 M.ToolOutputFilter = {
     type = "structure",
+    id = "ToolOutputFilter",
     members = {
         jsonPath = {
             type = "string",
@@ -384,6 +409,7 @@ M.ToolOverrideInputValueType = {
 
 M.ToolOverrideConstantInputValue = {
     type = "structure",
+    id = "ToolOverrideConstantInputValue",
     members = {
         type = {
             type = "string",
@@ -402,6 +428,7 @@ M.ToolOverrideConstantInputValue = {
 
 M.ToolOverrideInputValueConfiguration = {
     type = "union",
+    id = "ToolOverrideInputValueConfiguration",
     members = {
         constant = M.ToolOverrideConstantInputValue,
     },
@@ -409,6 +436,7 @@ M.ToolOverrideInputValueConfiguration = {
 
 M.ToolOverrideInputValue = {
     type = "structure",
+    id = "ToolOverrideInputValue",
     members = {
         jsonPath = {
             type = "string",
@@ -430,6 +458,7 @@ M.ToolType = {
 
 M.UserInteractionConfiguration = {
     type = "structure",
+    id = "UserInteractionConfiguration",
     members = {
         isUserConfirmationRequired = {
             type = "boolean",
@@ -439,6 +468,7 @@ M.UserInteractionConfiguration = {
 
 M.ToolConfiguration = {
     type = "structure",
+    id = "ToolConfiguration",
     members = {
         toolName = {
             type = "string",
@@ -483,6 +513,7 @@ M.ToolConfiguration = {
 
 M.OrchestrationAIAgentConfiguration = {
     type = "structure",
+    id = "OrchestrationAIAgentConfiguration",
     members = {
         orchestrationAIPromptId = {
             type = "string",
@@ -508,6 +539,7 @@ M.OrchestrationAIAgentConfiguration = {
 
 M.SelfServiceAIAgentConfiguration = {
     type = "structure",
+    id = "SelfServiceAIAgentConfiguration",
     members = {
         selfServicePreProcessingAIPromptId = {
             type = "string",
@@ -527,6 +559,7 @@ M.SelfServiceAIAgentConfiguration = {
 
 M.AIAgentConfiguration = {
     type = "union",
+    id = "AIAgentConfiguration",
     members = {
         manualSearchAIAgentConfiguration = M.ManualSearchAIAgentConfiguration,
         answerRecommendationAIAgentConfiguration = M.AnswerRecommendationAIAgentConfiguration,
@@ -559,6 +592,7 @@ M.VisibilityStatus = {
 
 M.CreateAIAgentInput = {
     type = "structure",
+    id = "CreateAIAgentInput",
     members = {
         clientToken = {
             type = "string",
@@ -621,6 +655,7 @@ M.Status = {
 
 M.AIAgentData = {
     type = "structure",
+    id = "AIAgentData",
     members = {
         assistantId = {
             type = "string",
@@ -689,6 +724,7 @@ M.AIAgentData = {
 
 M.CreateAIAgentOutput = {
     type = "structure",
+    id = "CreateAIAgentOutput",
     members = {
         aiAgent = M.AIAgentData,
     },
@@ -696,6 +732,7 @@ M.CreateAIAgentOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -706,6 +743,7 @@ M.ServiceQuotaExceededException = {
 
 M.UnauthorizedException = {
     type = "structure",
+    id = "UnauthorizedException",
     error = "client",
     members = {
         message = {
@@ -716,6 +754,7 @@ M.UnauthorizedException = {
 
 M.CreateAIAgentVersionInput = {
     type = "structure",
+    id = "CreateAIAgentVersionInput",
     members = {
         assistantId = {
             type = "string",
@@ -745,6 +784,7 @@ M.CreateAIAgentVersionInput = {
 
 M.CreateAIAgentVersionOutput = {
     type = "structure",
+    id = "CreateAIAgentVersionOutput",
     members = {
         aiAgent = M.AIAgentData,
         versionNumber = {
@@ -755,6 +795,7 @@ M.CreateAIAgentVersionOutput = {
 
 M.DeleteAIAgentInput = {
     type = "structure",
+    id = "DeleteAIAgentInput",
     members = {
         assistantId = {
             type = "string",
@@ -775,10 +816,12 @@ M.DeleteAIAgentInput = {
 
 M.DeleteAIAgentOutput = {
     type = "structure",
+    id = "DeleteAIAgentOutput",
 }
 
 M.DeleteAIAgentVersionInput = {
     type = "structure",
+    id = "DeleteAIAgentVersionInput",
     members = {
         assistantId = {
             type = "string",
@@ -806,10 +849,12 @@ M.DeleteAIAgentVersionInput = {
 
 M.DeleteAIAgentVersionOutput = {
     type = "structure",
+    id = "DeleteAIAgentVersionOutput",
 }
 
 M.GetAIAgentInput = {
     type = "structure",
+    id = "GetAIAgentInput",
     members = {
         assistantId = {
             type = "string",
@@ -830,6 +875,7 @@ M.GetAIAgentInput = {
 
 M.GetAIAgentOutput = {
     type = "structure",
+    id = "GetAIAgentOutput",
     members = {
         aiAgent = M.AIAgentData,
         versionNumber = {
@@ -840,6 +886,7 @@ M.GetAIAgentOutput = {
 
 M.ListAIAgentsInput = {
     type = "structure",
+    id = "ListAIAgentsInput",
     members = {
         assistantId = {
             type = "string",
@@ -871,6 +918,7 @@ M.ListAIAgentsInput = {
 
 M.AIAgentSummary = {
     type = "structure",
+    id = "AIAgentSummary",
     members = {
         name = {
             type = "string",
@@ -937,6 +985,7 @@ M.AIAgentSummary = {
 
 M.ListAIAgentsOutput = {
     type = "structure",
+    id = "ListAIAgentsOutput",
     members = {
         aiAgentSummaries = {
             type = "list",
@@ -953,6 +1002,7 @@ M.ListAIAgentsOutput = {
 
 M.ListAIAgentVersionsInput = {
     type = "structure",
+    id = "ListAIAgentVersionsInput",
     members = {
         assistantId = {
             type = "string",
@@ -991,6 +1041,7 @@ M.ListAIAgentVersionsInput = {
 
 M.AIAgentVersionSummary = {
     type = "structure",
+    id = "AIAgentVersionSummary",
     members = {
         aiAgentSummary = M.AIAgentSummary,
         versionNumber = {
@@ -1001,6 +1052,7 @@ M.AIAgentVersionSummary = {
 
 M.ListAIAgentVersionsOutput = {
     type = "structure",
+    id = "ListAIAgentVersionsOutput",
     members = {
         aiAgentVersionSummaries = {
             type = "list",
@@ -1017,6 +1069,7 @@ M.ListAIAgentVersionsOutput = {
 
 M.UpdateAIAgentInput = {
     type = "structure",
+    id = "UpdateAIAgentInput",
     members = {
         clientToken = {
             type = "string",
@@ -1053,6 +1106,7 @@ M.UpdateAIAgentInput = {
 
 M.UpdateAIAgentOutput = {
     type = "structure",
+    id = "UpdateAIAgentOutput",
     members = {
         aiAgent = M.AIAgentData,
     },
@@ -1060,6 +1114,7 @@ M.UpdateAIAgentOutput = {
 
 M.AIAgentConfigurationData = {
     type = "structure",
+    id = "AIAgentConfigurationData",
     members = {
         aiAgentId = {
             type = "string",
@@ -1088,6 +1143,7 @@ M.GuardrailContentFilterType = {
 
 M.GuardrailContentFilterConfig = {
     type = "structure",
+    id = "GuardrailContentFilterConfig",
     members = {
         type = {
             type = "string",
@@ -1112,6 +1168,7 @@ M.GuardrailContentFilterConfig = {
 
 M.AIGuardrailContentPolicyConfig = {
     type = "structure",
+    id = "AIGuardrailContentPolicyConfig",
     members = {
         filtersConfig = {
             type = "list",
@@ -1130,6 +1187,7 @@ M.GuardrailContextualGroundingFilterType = {
 
 M.GuardrailContextualGroundingFilterConfig = {
     type = "structure",
+    id = "GuardrailContextualGroundingFilterConfig",
     members = {
         type = {
             type = "string",
@@ -1149,6 +1207,7 @@ M.GuardrailContextualGroundingFilterConfig = {
 
 M.AIGuardrailContextualGroundingPolicyConfig = {
     type = "structure",
+    id = "AIGuardrailContextualGroundingPolicyConfig",
     members = {
         filtersConfig = {
             type = "list",
@@ -1201,6 +1260,7 @@ M.GuardrailPiiEntityType = {
 
 M.GuardrailPiiEntityConfig = {
     type = "structure",
+    id = "GuardrailPiiEntityConfig",
     members = {
         type = {
             type = "string",
@@ -1219,6 +1279,7 @@ M.GuardrailPiiEntityConfig = {
 
 M.GuardrailRegexConfig = {
     type = "structure",
+    id = "GuardrailRegexConfig",
     members = {
         name = {
             type = "string",
@@ -1246,6 +1307,7 @@ M.GuardrailRegexConfig = {
 
 M.AIGuardrailSensitiveInformationPolicyConfig = {
     type = "structure",
+    id = "AIGuardrailSensitiveInformationPolicyConfig",
     members = {
         piiEntitiesConfig = {
             type = "list",
@@ -1264,6 +1326,7 @@ M.GuardrailTopicType = {
 
 M.GuardrailTopicConfig = {
     type = "structure",
+    id = "GuardrailTopicConfig",
     members = {
         name = {
             type = "string",
@@ -1292,6 +1355,7 @@ M.GuardrailTopicConfig = {
 
 M.AIGuardrailTopicPolicyConfig = {
     type = "structure",
+    id = "AIGuardrailTopicPolicyConfig",
     members = {
         topicsConfig = {
             type = "list",
@@ -1309,6 +1373,7 @@ M.GuardrailManagedWordsType = {
 
 M.GuardrailManagedWordsConfig = {
     type = "structure",
+    id = "GuardrailManagedWordsConfig",
     members = {
         type = {
             type = "string",
@@ -1321,6 +1386,7 @@ M.GuardrailManagedWordsConfig = {
 
 M.GuardrailWordConfig = {
     type = "structure",
+    id = "GuardrailWordConfig",
     members = {
         text = {
             type = "string",
@@ -1333,6 +1399,7 @@ M.GuardrailWordConfig = {
 
 M.AIGuardrailWordPolicyConfig = {
     type = "structure",
+    id = "AIGuardrailWordPolicyConfig",
     members = {
         wordsConfig = {
             type = "list",
@@ -1347,6 +1414,7 @@ M.AIGuardrailWordPolicyConfig = {
 
 M.CreateAIGuardrailInput = {
     type = "structure",
+    id = "CreateAIGuardrailInput",
     members = {
         clientToken = {
             type = "string",
@@ -1403,6 +1471,7 @@ M.CreateAIGuardrailInput = {
 
 M.AIGuardrailData = {
     type = "structure",
+    id = "AIGuardrailData",
     members = {
         assistantId = {
             type = "string",
@@ -1476,6 +1545,7 @@ M.AIGuardrailData = {
 
 M.CreateAIGuardrailOutput = {
     type = "structure",
+    id = "CreateAIGuardrailOutput",
     members = {
         aiGuardrail = M.AIGuardrailData,
     },
@@ -1483,6 +1553,7 @@ M.CreateAIGuardrailOutput = {
 
 M.CreateAIGuardrailVersionInput = {
     type = "structure",
+    id = "CreateAIGuardrailVersionInput",
     members = {
         assistantId = {
             type = "string",
@@ -1512,6 +1583,7 @@ M.CreateAIGuardrailVersionInput = {
 
 M.CreateAIGuardrailVersionOutput = {
     type = "structure",
+    id = "CreateAIGuardrailVersionOutput",
     members = {
         aiGuardrail = M.AIGuardrailData,
         versionNumber = {
@@ -1522,6 +1594,7 @@ M.CreateAIGuardrailVersionOutput = {
 
 M.DeleteAIGuardrailInput = {
     type = "structure",
+    id = "DeleteAIGuardrailInput",
     members = {
         assistantId = {
             type = "string",
@@ -1542,10 +1615,12 @@ M.DeleteAIGuardrailInput = {
 
 M.DeleteAIGuardrailOutput = {
     type = "structure",
+    id = "DeleteAIGuardrailOutput",
 }
 
 M.DeleteAIGuardrailVersionInput = {
     type = "structure",
+    id = "DeleteAIGuardrailVersionInput",
     members = {
         assistantId = {
             type = "string",
@@ -1573,10 +1648,12 @@ M.DeleteAIGuardrailVersionInput = {
 
 M.DeleteAIGuardrailVersionOutput = {
     type = "structure",
+    id = "DeleteAIGuardrailVersionOutput",
 }
 
 M.GetAIGuardrailInput = {
     type = "structure",
+    id = "GetAIGuardrailInput",
     members = {
         assistantId = {
             type = "string",
@@ -1597,6 +1674,7 @@ M.GetAIGuardrailInput = {
 
 M.GetAIGuardrailOutput = {
     type = "structure",
+    id = "GetAIGuardrailOutput",
     members = {
         aiGuardrail = M.AIGuardrailData,
         versionNumber = {
@@ -1607,6 +1685,7 @@ M.GetAIGuardrailOutput = {
 
 M.ListAIGuardrailsInput = {
     type = "structure",
+    id = "ListAIGuardrailsInput",
     members = {
         assistantId = {
             type = "string",
@@ -1632,6 +1711,7 @@ M.ListAIGuardrailsInput = {
 
 M.AIGuardrailSummary = {
     type = "structure",
+    id = "AIGuardrailSummary",
     members = {
         name = {
             type = "string",
@@ -1688,6 +1768,7 @@ M.AIGuardrailSummary = {
 
 M.ListAIGuardrailsOutput = {
     type = "structure",
+    id = "ListAIGuardrailsOutput",
     members = {
         aiGuardrailSummaries = {
             type = "list",
@@ -1704,6 +1785,7 @@ M.ListAIGuardrailsOutput = {
 
 M.ListAIGuardrailVersionsInput = {
     type = "structure",
+    id = "ListAIGuardrailVersionsInput",
     members = {
         assistantId = {
             type = "string",
@@ -1736,6 +1818,7 @@ M.ListAIGuardrailVersionsInput = {
 
 M.AIGuardrailVersionSummary = {
     type = "structure",
+    id = "AIGuardrailVersionSummary",
     members = {
         aiGuardrailSummary = M.AIGuardrailSummary,
         versionNumber = {
@@ -1746,6 +1829,7 @@ M.AIGuardrailVersionSummary = {
 
 M.ListAIGuardrailVersionsOutput = {
     type = "structure",
+    id = "ListAIGuardrailVersionsOutput",
     members = {
         aiGuardrailVersionSummaries = {
             type = "list",
@@ -1762,6 +1846,7 @@ M.ListAIGuardrailVersionsOutput = {
 
 M.UpdateAIGuardrailInput = {
     type = "structure",
+    id = "UpdateAIGuardrailInput",
     members = {
         clientToken = {
             type = "string",
@@ -1814,6 +1899,7 @@ M.UpdateAIGuardrailInput = {
 
 M.UpdateAIGuardrailOutput = {
     type = "structure",
+    id = "UpdateAIGuardrailOutput",
     members = {
         aiGuardrail = M.AIGuardrailData,
     },
@@ -1821,6 +1907,7 @@ M.UpdateAIGuardrailOutput = {
 
 M.AIGuardrailAssessment = {
     type = "structure",
+    id = "AIGuardrailAssessment",
     members = {
         blocked = {
             type = "boolean",
@@ -1840,6 +1927,7 @@ M.AIPromptAPIFormat = {
 
 M.AIPromptInferenceConfiguration = {
     type = "structure",
+    id = "AIPromptInferenceConfiguration",
     members = {
         temperature = {
             type = "float",
@@ -1858,6 +1946,7 @@ M.AIPromptInferenceConfiguration = {
 
 M.TextFullAIPromptEditTemplateConfiguration = {
     type = "structure",
+    id = "TextFullAIPromptEditTemplateConfiguration",
     members = {
         text = {
             type = "string",
@@ -1870,6 +1959,7 @@ M.TextFullAIPromptEditTemplateConfiguration = {
 
 M.AIPromptTemplateConfiguration = {
     type = "union",
+    id = "AIPromptTemplateConfiguration",
     members = {
         textFullAIPromptEditTemplateConfiguration = M.TextFullAIPromptEditTemplateConfiguration,
     },
@@ -1896,6 +1986,7 @@ M.AIPromptType = {
 
 M.CreateAIPromptInput = {
     type = "structure",
+    id = "CreateAIPromptInput",
     members = {
         clientToken = {
             type = "string",
@@ -1963,6 +2054,7 @@ M.CreateAIPromptInput = {
 
 M.AIPromptData = {
     type = "structure",
+    id = "AIPromptData",
     members = {
         assistantId = {
             type = "string",
@@ -2050,6 +2142,7 @@ M.AIPromptData = {
 
 M.CreateAIPromptOutput = {
     type = "structure",
+    id = "CreateAIPromptOutput",
     members = {
         aiPrompt = M.AIPromptData,
     },
@@ -2057,6 +2150,7 @@ M.CreateAIPromptOutput = {
 
 M.CreateAIPromptVersionInput = {
     type = "structure",
+    id = "CreateAIPromptVersionInput",
     members = {
         assistantId = {
             type = "string",
@@ -2086,6 +2180,7 @@ M.CreateAIPromptVersionInput = {
 
 M.CreateAIPromptVersionOutput = {
     type = "structure",
+    id = "CreateAIPromptVersionOutput",
     members = {
         aiPrompt = M.AIPromptData,
         versionNumber = {
@@ -2096,6 +2191,7 @@ M.CreateAIPromptVersionOutput = {
 
 M.DeleteAIPromptInput = {
     type = "structure",
+    id = "DeleteAIPromptInput",
     members = {
         assistantId = {
             type = "string",
@@ -2116,10 +2212,12 @@ M.DeleteAIPromptInput = {
 
 M.DeleteAIPromptOutput = {
     type = "structure",
+    id = "DeleteAIPromptOutput",
 }
 
 M.DeleteAIPromptVersionInput = {
     type = "structure",
+    id = "DeleteAIPromptVersionInput",
     members = {
         assistantId = {
             type = "string",
@@ -2147,10 +2245,12 @@ M.DeleteAIPromptVersionInput = {
 
 M.DeleteAIPromptVersionOutput = {
     type = "structure",
+    id = "DeleteAIPromptVersionOutput",
 }
 
 M.GetAIPromptInput = {
     type = "structure",
+    id = "GetAIPromptInput",
     members = {
         assistantId = {
             type = "string",
@@ -2171,6 +2271,7 @@ M.GetAIPromptInput = {
 
 M.GetAIPromptOutput = {
     type = "structure",
+    id = "GetAIPromptOutput",
     members = {
         aiPrompt = M.AIPromptData,
         versionNumber = {
@@ -2181,6 +2282,7 @@ M.GetAIPromptOutput = {
 
 M.ListAIPromptsInput = {
     type = "structure",
+    id = "ListAIPromptsInput",
     members = {
         assistantId = {
             type = "string",
@@ -2212,6 +2314,7 @@ M.ListAIPromptsInput = {
 
 M.AIPromptSummary = {
     type = "structure",
+    id = "AIPromptSummary",
     members = {
         name = {
             type = "string",
@@ -2295,6 +2398,7 @@ M.AIPromptSummary = {
 
 M.ListAIPromptsOutput = {
     type = "structure",
+    id = "ListAIPromptsOutput",
     members = {
         aiPromptSummaries = {
             type = "list",
@@ -2311,6 +2415,7 @@ M.ListAIPromptsOutput = {
 
 M.ListAIPromptVersionsInput = {
     type = "structure",
+    id = "ListAIPromptVersionsInput",
     members = {
         assistantId = {
             type = "string",
@@ -2349,6 +2454,7 @@ M.ListAIPromptVersionsInput = {
 
 M.AIPromptVersionSummary = {
     type = "structure",
+    id = "AIPromptVersionSummary",
     members = {
         aiPromptSummary = M.AIPromptSummary,
         versionNumber = {
@@ -2359,6 +2465,7 @@ M.AIPromptVersionSummary = {
 
 M.ListAIPromptVersionsOutput = {
     type = "structure",
+    id = "ListAIPromptVersionsOutput",
     members = {
         aiPromptVersionSummaries = {
             type = "list",
@@ -2375,6 +2482,7 @@ M.ListAIPromptVersionsOutput = {
 
 M.UpdateAIPromptInput = {
     type = "structure",
+    id = "UpdateAIPromptInput",
     members = {
         clientToken = {
             type = "string",
@@ -2415,6 +2523,7 @@ M.UpdateAIPromptInput = {
 
 M.UpdateAIPromptOutput = {
     type = "structure",
+    id = "UpdateAIPromptOutput",
     members = {
         aiPrompt = M.AIPromptData,
     },
@@ -2422,6 +2531,7 @@ M.UpdateAIPromptOutput = {
 
 M.AmazonConnectGuideAssociationData = {
     type = "structure",
+    id = "AmazonConnectGuideAssociationData",
     members = {
         flowId = {
             type = "string",
@@ -2431,6 +2541,7 @@ M.AmazonConnectGuideAssociationData = {
 
 M.AppIntegrationsConfiguration = {
     type = "structure",
+    id = "AppIntegrationsConfiguration",
     members = {
         appIntegrationArn = {
             type = "string",
@@ -2447,6 +2558,7 @@ M.AppIntegrationsConfiguration = {
 
 M.ExternalBedrockKnowledgeBaseConfig = {
     type = "structure",
+    id = "ExternalBedrockKnowledgeBaseConfig",
     members = {
         bedrockKnowledgeBaseArn = {
             type = "string",
@@ -2465,6 +2577,7 @@ M.ExternalBedrockKnowledgeBaseConfig = {
 
 M.AssistantAssociationInputData = {
     type = "union",
+    id = "AssistantAssociationInputData",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -2480,6 +2593,7 @@ M.AssociationType = {
 
 M.CreateAssistantAssociationInput = {
     type = "structure",
+    id = "CreateAssistantAssociationInput",
     members = {
         assistantId = {
             type = "string",
@@ -2513,6 +2627,7 @@ M.CreateAssistantAssociationInput = {
 
 M.KnowledgeBaseAssociationData = {
     type = "structure",
+    id = "KnowledgeBaseAssociationData",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -2525,6 +2640,7 @@ M.KnowledgeBaseAssociationData = {
 
 M.AssistantAssociationOutputData = {
     type = "union",
+    id = "AssistantAssociationOutputData",
     members = {
         knowledgeBaseAssociation = M.KnowledgeBaseAssociationData,
         externalBedrockKnowledgeBaseConfig = M.ExternalBedrockKnowledgeBaseConfig,
@@ -2533,6 +2649,7 @@ M.AssistantAssociationOutputData = {
 
 M.AssistantAssociationData = {
     type = "structure",
+    id = "AssistantAssociationData",
     members = {
         assistantAssociationId = {
             type = "string",
@@ -2577,6 +2694,7 @@ M.AssistantAssociationData = {
 
 M.CreateAssistantAssociationOutput = {
     type = "structure",
+    id = "CreateAssistantAssociationOutput",
     members = {
         assistantAssociation = M.AssistantAssociationData,
     },
@@ -2584,6 +2702,7 @@ M.CreateAssistantAssociationOutput = {
 
 M.DeleteAssistantAssociationInput = {
     type = "structure",
+    id = "DeleteAssistantAssociationInput",
     members = {
         assistantAssociationId = {
             type = "string",
@@ -2604,10 +2723,12 @@ M.DeleteAssistantAssociationInput = {
 
 M.DeleteAssistantAssociationOutput = {
     type = "structure",
+    id = "DeleteAssistantAssociationOutput",
 }
 
 M.GetAssistantAssociationInput = {
     type = "structure",
+    id = "GetAssistantAssociationInput",
     members = {
         assistantAssociationId = {
             type = "string",
@@ -2628,6 +2749,7 @@ M.GetAssistantAssociationInput = {
 
 M.GetAssistantAssociationOutput = {
     type = "structure",
+    id = "GetAssistantAssociationOutput",
     members = {
         assistantAssociation = M.AssistantAssociationData,
     },
@@ -2635,6 +2757,7 @@ M.GetAssistantAssociationOutput = {
 
 M.ListAssistantAssociationsInput = {
     type = "structure",
+    id = "ListAssistantAssociationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -2660,6 +2783,7 @@ M.ListAssistantAssociationsInput = {
 
 M.AssistantAssociationSummary = {
     type = "structure",
+    id = "AssistantAssociationSummary",
     members = {
         assistantAssociationId = {
             type = "string",
@@ -2704,6 +2828,7 @@ M.AssistantAssociationSummary = {
 
 M.ListAssistantAssociationsOutput = {
     type = "structure",
+    id = "ListAssistantAssociationsOutput",
     members = {
         assistantAssociationSummaries = {
             type = "list",
@@ -2720,6 +2845,7 @@ M.ListAssistantAssociationsOutput = {
 
 M.ServerSideEncryptionConfiguration = {
     type = "structure",
+    id = "ServerSideEncryptionConfiguration",
     members = {
         kmsKeyId = {
             type = "string",
@@ -2733,6 +2859,7 @@ M.AssistantType = {
 
 M.CreateAssistantInput = {
     type = "structure",
+    id = "CreateAssistantInput",
     members = {
         clientToken = {
             type = "string",
@@ -2771,6 +2898,7 @@ M.AssistantCapabilityType = {
 
 M.AssistantCapabilityConfiguration = {
     type = "structure",
+    id = "AssistantCapabilityConfiguration",
     members = {
         type = {
             type = "string",
@@ -2780,6 +2908,7 @@ M.AssistantCapabilityConfiguration = {
 
 M.AssistantIntegrationConfiguration = {
     type = "structure",
+    id = "AssistantIntegrationConfiguration",
     members = {
         topicIntegrationArn = {
             type = "string",
@@ -2789,6 +2918,7 @@ M.AssistantIntegrationConfiguration = {
 
 M.OrchestratorConfigurationEntry = {
     type = "structure",
+    id = "OrchestratorConfigurationEntry",
     members = {
         aiAgentId = {
             type = "string",
@@ -2813,6 +2943,7 @@ M.AssistantStatus = {
 
 M.AssistantData = {
     type = "structure",
+    id = "AssistantData",
     members = {
         assistantId = {
             type = "string",
@@ -2869,6 +3000,7 @@ M.AssistantData = {
 
 M.CreateAssistantOutput = {
     type = "structure",
+    id = "CreateAssistantOutput",
     members = {
         assistant = M.AssistantData,
     },
@@ -2876,6 +3008,7 @@ M.CreateAssistantOutput = {
 
 M.DeleteAssistantInput = {
     type = "structure",
+    id = "DeleteAssistantInput",
     members = {
         assistantId = {
             type = "string",
@@ -2889,10 +3022,12 @@ M.DeleteAssistantInput = {
 
 M.DeleteAssistantOutput = {
     type = "structure",
+    id = "DeleteAssistantOutput",
 }
 
 M.GetAssistantInput = {
     type = "structure",
+    id = "GetAssistantInput",
     members = {
         assistantId = {
             type = "string",
@@ -2906,6 +3041,7 @@ M.GetAssistantInput = {
 
 M.GetAssistantOutput = {
     type = "structure",
+    id = "GetAssistantOutput",
     members = {
         assistant = M.AssistantData,
     },
@@ -2932,6 +3068,7 @@ M.RecommendationType = {
 
 M.GetRecommendationsInput = {
     type = "structure",
+    id = "GetRecommendationsInput",
     members = {
         assistantId = {
             type = "string",
@@ -2977,6 +3114,7 @@ M.GetRecommendationsInput = {
 
 M.CaseSummarizationChunkDataDetails = {
     type = "structure",
+    id = "CaseSummarizationChunkDataDetails",
     members = {
         completion = {
             type = "string",
@@ -2995,6 +3133,7 @@ M.RelevanceLevel = {
 
 M.RankingData = {
     type = "structure",
+    id = "RankingData",
     members = {
         relevanceScore = {
             type = "double",
@@ -3010,6 +3149,7 @@ M.RankingData = {
 
 M.Highlight = {
     type = "structure",
+    id = "Highlight",
     members = {
         beginOffsetInclusive = {
             type = "integer",
@@ -3028,6 +3168,7 @@ M.Highlight = {
 
 M.DocumentText = {
     type = "structure",
+    id = "DocumentText",
     members = {
         text = {
             type = "string",
@@ -3041,6 +3182,7 @@ M.DocumentText = {
 
 M.TextData = {
     type = "structure",
+    id = "TextData",
     members = {
         title = M.DocumentText,
         excerpt = M.DocumentText,
@@ -3049,6 +3191,7 @@ M.TextData = {
 
 M.ContentDataDetails = {
     type = "structure",
+    id = "ContentDataDetails",
     members = {
         textData = setmetatable({ traits = {
             required = true,
@@ -3061,6 +3204,7 @@ M.ContentDataDetails = {
 
 M.EmailOverviewChunkDataDetails = {
     type = "structure",
+    id = "EmailOverviewChunkDataDetails",
     members = {
         completion = {
             type = "string",
@@ -3073,6 +3217,7 @@ M.EmailOverviewChunkDataDetails = {
 
 M.EmailResponseChunkDataDetails = {
     type = "structure",
+    id = "EmailResponseChunkDataDetails",
     members = {
         completion = {
             type = "string",
@@ -3085,6 +3230,7 @@ M.EmailResponseChunkDataDetails = {
 
 M.IntentDetectedDataDetails = {
     type = "structure",
+    id = "IntentDetectedDataDetails",
     members = {
         intent = {
             type = "string",
@@ -3106,6 +3252,7 @@ M.IntentDetectedDataDetails = {
 
 M.NotesChunkDataDetails = {
     type = "structure",
+    id = "NotesChunkDataDetails",
     members = {
         completion = {
             type = "string",
@@ -3118,6 +3265,7 @@ M.NotesChunkDataDetails = {
 
 M.NotesDataDetails = {
     type = "structure",
+    id = "NotesDataDetails",
     members = {
         completion = {
             type = "string",
@@ -3127,6 +3275,7 @@ M.NotesDataDetails = {
 
 M.CitationSpan = {
     type = "structure",
+    id = "CitationSpan",
     members = {
         beginOffsetInclusive = {
             type = "integer",
@@ -3149,6 +3298,7 @@ M.SourceContentType = {
 
 M.SourceContentDataDetails = {
     type = "structure",
+    id = "SourceContentDataDetails",
     members = {
         id = {
             type = "string",
@@ -3174,6 +3324,7 @@ M.SourceContentDataDetails = {
 
 M.SuggestedMessageDataDetails = {
     type = "structure",
+    id = "SuggestedMessageDataDetails",
     members = {
         messageText = {
             type = "string",
@@ -3199,6 +3350,7 @@ M.ReferenceType = {
 
 M.ContentReference = {
     type = "structure",
+    id = "ContentReference",
     members = {
         knowledgeBaseArn = {
             type = "string",
@@ -3223,6 +3375,7 @@ M.ContentReference = {
 
 M.GenerativeReference = {
     type = "structure",
+    id = "GenerativeReference",
     members = {
         modelId = {
             type = "string",
@@ -3235,6 +3388,7 @@ M.GenerativeReference = {
 
 M.SuggestedMessageReference = {
     type = "structure",
+    id = "SuggestedMessageReference",
     members = {
         aiAgentId = {
             type = "string",
@@ -3253,6 +3407,7 @@ M.SuggestedMessageReference = {
 
 M.DataReference = {
     type = "union",
+    id = "DataReference",
     members = {
         contentReference = M.ContentReference,
         generativeReference = M.GenerativeReference,
@@ -3262,6 +3417,7 @@ M.DataReference = {
 
 M.Document = {
     type = "structure",
+    id = "Document",
     members = {
         contentReference = setmetatable({ traits = {
             required = true,
@@ -3273,6 +3429,7 @@ M.Document = {
 
 M.QueryRecommendationTriggerData = {
     type = "structure",
+    id = "QueryRecommendationTriggerData",
     members = {
         text = {
             type = "string",
@@ -3282,6 +3439,7 @@ M.QueryRecommendationTriggerData = {
 
 M.RecommendationTriggerData = {
     type = "union",
+    id = "RecommendationTriggerData",
     members = {
         query = M.QueryRecommendationTriggerData,
     },
@@ -3300,6 +3458,7 @@ M.RecommendationTriggerType = {
 
 M.RecommendationTrigger = {
     type = "structure",
+    id = "RecommendationTrigger",
     members = {
         id = {
             type = "string",
@@ -3334,6 +3493,7 @@ M.RecommendationTrigger = {
 
 M.ListAssistantsInput = {
     type = "structure",
+    id = "ListAssistantsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3352,6 +3512,7 @@ M.ListAssistantsInput = {
 
 M.AssistantSummary = {
     type = "structure",
+    id = "AssistantSummary",
     members = {
         assistantId = {
             type = "string",
@@ -3408,6 +3569,7 @@ M.AssistantSummary = {
 
 M.ListAssistantsOutput = {
     type = "structure",
+    id = "ListAssistantsOutput",
     members = {
         assistantSummaries = {
             type = "list",
@@ -3424,6 +3586,7 @@ M.ListAssistantsOutput = {
 
 M.NotifyRecommendationsReceivedInput = {
     type = "structure",
+    id = "NotifyRecommendationsReceivedInput",
     members = {
         assistantId = {
             type = "string",
@@ -3451,6 +3614,7 @@ M.NotifyRecommendationsReceivedInput = {
 
 M.NotifyRecommendationsReceivedError = {
     type = "structure",
+    id = "NotifyRecommendationsReceivedError",
     members = {
         recommendationId = {
             type = "string",
@@ -3463,6 +3627,7 @@ M.NotifyRecommendationsReceivedError = {
 
 M.NotifyRecommendationsReceivedOutput = {
     type = "structure",
+    id = "NotifyRecommendationsReceivedOutput",
     members = {
         recommendationIds = {
             type = "list",
@@ -3482,6 +3647,7 @@ M.Relevance = {
 
 M.GenerativeContentFeedbackData = {
     type = "structure",
+    id = "GenerativeContentFeedbackData",
     members = {
         relevance = {
             type = "string",
@@ -3494,6 +3660,7 @@ M.GenerativeContentFeedbackData = {
 
 M.ContentFeedbackData = {
     type = "union",
+    id = "ContentFeedbackData",
     members = {
         generativeContentFeedbackData = M.GenerativeContentFeedbackData,
     },
@@ -3507,6 +3674,7 @@ M.TargetType = {
 
 M.PutFeedbackInput = {
     type = "structure",
+    id = "PutFeedbackInput",
     members = {
         assistantId = {
             type = "string",
@@ -3535,6 +3703,7 @@ M.PutFeedbackInput = {
 
 M.PutFeedbackOutput = {
     type = "structure",
+    id = "PutFeedbackOutput",
     members = {
         assistantId = {
             type = "string",
@@ -3576,6 +3745,7 @@ M.QueryConditionFieldName = {
 
 M.QueryConditionItem = {
     type = "structure",
+    id = "QueryConditionItem",
     members = {
         field = {
             type = "string",
@@ -3600,6 +3770,7 @@ M.QueryConditionItem = {
 
 M.QueryCondition = {
     type = "union",
+    id = "QueryCondition",
     members = {
         single = M.QueryConditionItem,
     },
@@ -3607,6 +3778,7 @@ M.QueryCondition = {
 
 M.CaseSummarizationInputData = {
     type = "structure",
+    id = "CaseSummarizationInputData",
     members = {
         caseArn = {
             type = "string",
@@ -3619,6 +3791,7 @@ M.CaseSummarizationInputData = {
 
 M.IntentInputData = {
     type = "structure",
+    id = "IntentInputData",
     members = {
         intentId = {
             type = "string",
@@ -3631,6 +3804,7 @@ M.IntentInputData = {
 
 M.QueryTextInputData = {
     type = "structure",
+    id = "QueryTextInputData",
     members = {
         text = {
             type = "string",
@@ -3643,6 +3817,7 @@ M.QueryTextInputData = {
 
 M.QueryInputData = {
     type = "union",
+    id = "QueryInputData",
     members = {
         queryTextInputData = M.QueryTextInputData,
         intentInputData = M.IntentInputData,
@@ -3652,6 +3827,7 @@ M.QueryInputData = {
 
 M.QueryAssistantInput = {
     type = "structure",
+    id = "QueryAssistantInput",
     members = {
         assistantId = {
             type = "string",
@@ -3703,6 +3879,7 @@ M.QueryResultType = {
 
 M.RequestTimeoutException = {
     type = "structure",
+    id = "RequestTimeoutException",
     error = "client",
     members = {
         message = {
@@ -3713,6 +3890,7 @@ M.RequestTimeoutException = {
 
 M.RemoveAssistantAIAgentInput = {
     type = "structure",
+    id = "RemoveAssistantAIAgentInput",
     members = {
         assistantId = {
             type = "string",
@@ -3739,10 +3917,12 @@ M.RemoveAssistantAIAgentInput = {
 
 M.RemoveAssistantAIAgentOutput = {
     type = "structure",
+    id = "RemoveAssistantAIAgentOutput",
 }
 
 M.DependencyFailedException = {
     type = "structure",
+    id = "DependencyFailedException",
     error = "client",
     members = {
         message = {
@@ -3753,6 +3933,7 @@ M.DependencyFailedException = {
 
 M.FilterAttribute = {
     type = "structure",
+    id = "FilterAttribute",
     members = {
         key = {
             type = "string",
@@ -3771,6 +3952,7 @@ M.FilterAttribute = {
 
 M.KnowledgeSource = {
     type = "union",
+    id = "KnowledgeSource",
     members = {
         assistantAssociationIds = {
             type = "list",
@@ -3781,6 +3963,7 @@ M.KnowledgeSource = {
 
 M.RetrieveResult = {
     type = "structure",
+    id = "RetrieveResult",
     members = {
         associationId = {
             type = "string",
@@ -3811,6 +3994,7 @@ M.RetrieveResult = {
 
 M.RetrieveOutput = {
     type = "structure",
+    id = "RetrieveOutput",
     members = {
         results = {
             type = "list",
@@ -3832,6 +4016,7 @@ M.FilterOperator = {
 
 M.Filter = {
     type = "structure",
+    id = "Filter",
     members = {
         field = {
             type = "string",
@@ -3856,6 +4041,7 @@ M.Filter = {
 
 M.SearchExpression = {
     type = "structure",
+    id = "SearchExpression",
     members = {
         filters = {
             type = "list",
@@ -3869,6 +4055,7 @@ M.SearchExpression = {
 
 M.SearchSessionsInput = {
     type = "structure",
+    id = "SearchSessionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -3897,6 +4084,7 @@ M.SearchSessionsInput = {
 
 M.SessionSummary = {
     type = "structure",
+    id = "SessionSummary",
     members = {
         sessionId = {
             type = "string",
@@ -3927,6 +4115,7 @@ M.SessionSummary = {
 
 M.SearchSessionsOutput = {
     type = "structure",
+    id = "SearchSessionsOutput",
     members = {
         sessionSummaries = {
             type = "list",
@@ -3943,6 +4132,7 @@ M.SearchSessionsOutput = {
 
 M.CreateSessionInput = {
     type = "structure",
+    id = "CreateSessionInput",
     members = {
         clientToken = {
             type = "string",
@@ -3995,6 +4185,7 @@ M.CreateSessionInput = {
 
 M.SessionIntegrationConfiguration = {
     type = "structure",
+    id = "SessionIntegrationConfiguration",
     members = {
         topicIntegrationArn = {
             type = "string",
@@ -4004,6 +4195,7 @@ M.SessionIntegrationConfiguration = {
 
 M.SessionData = {
     type = "structure",
+    id = "SessionData",
     members = {
         sessionArn = {
             type = "string",
@@ -4050,6 +4242,7 @@ M.SessionData = {
 
 M.CreateSessionOutput = {
     type = "structure",
+    id = "CreateSessionOutput",
     members = {
         session = M.SessionData,
     },
@@ -4057,6 +4250,7 @@ M.CreateSessionOutput = {
 
 M.GetNextMessageInput = {
     type = "structure",
+    id = "GetNextMessageInput",
     members = {
         assistantId = {
             type = "string",
@@ -4084,6 +4278,7 @@ M.GetNextMessageInput = {
 
 M.RuntimeSessionDataValue = {
     type = "union",
+    id = "RuntimeSessionDataValue",
     members = {
         stringValue = {
             type = "string",
@@ -4093,6 +4288,7 @@ M.RuntimeSessionDataValue = {
 
 M.RuntimeSessionData = {
     type = "structure",
+    id = "RuntimeSessionData",
     members = {
         key = {
             type = "string",
@@ -4120,6 +4316,7 @@ M.ConversationStatus = {
 
 M.ConversationState = {
     type = "structure",
+    id = "ConversationState",
     members = {
         status = {
             type = "string",
@@ -4141,6 +4338,7 @@ M.Participant = {
 
 M.Citation = {
     type = "structure",
+    id = "Citation",
     members = {
         contentId = {
             type = "string",
@@ -4168,6 +4366,7 @@ M.Citation = {
 
 M.TextMessage = {
     type = "structure",
+    id = "TextMessage",
     members = {
         value = {
             type = "string",
@@ -4182,6 +4381,7 @@ M.TextMessage = {
 
 M.ToolUseResultData = {
     type = "structure",
+    id = "ToolUseResultData",
     members = {
         toolUseId = {
             type = "string",
@@ -4209,6 +4409,7 @@ M.ToolUseResultData = {
 
 M.MessageData = {
     type = "union",
+    id = "MessageData",
     members = {
         text = M.TextMessage,
         toolUseResult = M.ToolUseResultData,
@@ -4217,6 +4418,7 @@ M.MessageData = {
 
 M.MessageOutput = {
     type = "structure",
+    id = "MessageOutput",
     members = {
         value = setmetatable({ traits = {
             required = true,
@@ -4249,6 +4451,7 @@ M.MessageType = {
 
 M.GetNextMessageOutput = {
     type = "structure",
+    id = "GetNextMessageOutput",
     members = {
         type = {
             type = "string",
@@ -4283,6 +4486,7 @@ M.GetNextMessageOutput = {
 
 M.UnprocessableContentException = {
     type = "structure",
+    id = "UnprocessableContentException",
     error = "client",
     members = {
         message = {
@@ -4293,6 +4497,7 @@ M.UnprocessableContentException = {
 
 M.GetSessionInput = {
     type = "structure",
+    id = "GetSessionInput",
     members = {
         assistantId = {
             type = "string",
@@ -4313,6 +4518,7 @@ M.GetSessionInput = {
 
 M.GetSessionOutput = {
     type = "structure",
+    id = "GetSessionOutput",
     members = {
         session = M.SessionData,
     },
@@ -4325,6 +4531,7 @@ M.MessageFilterType = {
 
 M.ListMessagesInput = {
     type = "structure",
+    id = "ListMessagesInput",
     members = {
         assistantId = {
             type = "string",
@@ -4363,6 +4570,7 @@ M.ListMessagesInput = {
 
 M.ListMessagesOutput = {
     type = "structure",
+    id = "ListMessagesOutput",
     members = {
         messages = {
             type = "list",
@@ -4379,6 +4587,7 @@ M.ListMessagesOutput = {
 
 M.ListSpansInput = {
     type = "structure",
+    id = "ListSpansInput",
     members = {
         assistantId = {
             type = "string",
@@ -4411,6 +4620,7 @@ M.ListSpansInput = {
 
 M.SpanReasoningValue = {
     type = "structure",
+    id = "SpanReasoningValue",
     members = {
         value = {
             type = "string",
@@ -4423,6 +4633,7 @@ M.SpanReasoningValue = {
 
 M.SpanCitation = {
     type = "structure",
+    id = "SpanCitation",
     members = {
         contentId = {
             type = "string",
@@ -4441,6 +4652,7 @@ M.SpanCitation = {
 
 M.SpanTextValue = {
     type = "structure",
+    id = "SpanTextValue",
     members = {
         value = {
             type = "string",
@@ -4458,6 +4670,7 @@ M.SpanTextValue = {
 
 M.SpanToolUseValue = {
     type = "structure",
+    id = "SpanToolUseValue",
     members = {
         toolUseId = {
             type = "string",
@@ -4494,6 +4707,7 @@ M.SpanStatus = {
 
 M.MessageConfiguration = {
     type = "structure",
+    id = "MessageConfiguration",
     members = {
         generateFillerMessage = {
             type = "boolean",
@@ -4506,6 +4720,7 @@ M.MessageConfiguration = {
 
 M.SelfServiceConversationHistory = {
     type = "structure",
+    id = "SelfServiceConversationHistory",
     members = {
         turnNumber = {
             type = "integer",
@@ -4527,6 +4742,7 @@ M.SelfServiceConversationHistory = {
 
 M.ConversationContext = {
     type = "structure",
+    id = "ConversationContext",
     members = {
         selfServiceConversationHistory = {
             type = "list",
@@ -4540,6 +4756,7 @@ M.ConversationContext = {
 
 M.MessageInput = {
     type = "structure",
+    id = "MessageInput",
     members = {
         value = setmetatable({ traits = {
             required = true,
@@ -4549,6 +4766,7 @@ M.MessageInput = {
 
 M.SendMessageInput = {
     type = "structure",
+    id = "SendMessageInput",
     members = {
         assistantId = {
             type = "string",
@@ -4600,6 +4818,7 @@ M.SendMessageInput = {
 
 M.SendMessageOutput = {
     type = "structure",
+    id = "SendMessageOutput",
     members = {
         requestMessageId = {
             type = "string",
@@ -4619,6 +4838,7 @@ M.SendMessageOutput = {
 
 M.UpdateSessionInput = {
     type = "structure",
+    id = "UpdateSessionInput",
     members = {
         assistantId = {
             type = "string",
@@ -4658,6 +4878,7 @@ M.UpdateSessionInput = {
 
 M.UpdateSessionOutput = {
     type = "structure",
+    id = "UpdateSessionOutput",
     members = {
         session = M.SessionData,
     },
@@ -4669,6 +4890,7 @@ M.SessionDataNamespace = {
 
 M.UpdateSessionDataInput = {
     type = "structure",
+    id = "UpdateSessionDataInput",
     members = {
         assistantId = {
             type = "string",
@@ -4699,6 +4921,7 @@ M.UpdateSessionDataInput = {
 
 M.UpdateSessionDataOutput = {
     type = "structure",
+    id = "UpdateSessionDataOutput",
     members = {
         sessionArn = {
             type = "string",
@@ -4730,6 +4953,7 @@ M.UpdateSessionDataOutput = {
 
 M.UpdateAssistantAIAgentInput = {
     type = "structure",
+    id = "UpdateAssistantAIAgentInput",
     members = {
         assistantId = {
             type = "string",
@@ -4755,6 +4979,7 @@ M.UpdateAssistantAIAgentInput = {
 
 M.UpdateAssistantAIAgentOutput = {
     type = "structure",
+    id = "UpdateAssistantAIAgentOutput",
     members = {
         assistant = M.AssistantData,
     },
@@ -4762,6 +4987,7 @@ M.UpdateAssistantAIAgentOutput = {
 
 M.ParsingPrompt = {
     type = "structure",
+    id = "ParsingPrompt",
     members = {
         parsingPromptText = {
             type = "string",
@@ -4774,6 +5000,7 @@ M.ParsingPrompt = {
 
 M.BedrockFoundationModelConfigurationForParsing = {
     type = "structure",
+    id = "BedrockFoundationModelConfigurationForParsing",
     members = {
         modelArn = {
             type = "string",
@@ -4801,6 +5028,7 @@ M.ChunkingStrategy = {
 
 M.FixedSizeChunkingConfiguration = {
     type = "structure",
+    id = "FixedSizeChunkingConfiguration",
     members = {
         maxTokens = {
             type = "integer",
@@ -4819,6 +5047,7 @@ M.FixedSizeChunkingConfiguration = {
 
 M.HierarchicalChunkingLevelConfiguration = {
     type = "structure",
+    id = "HierarchicalChunkingLevelConfiguration",
     members = {
         maxTokens = {
             type = "integer",
@@ -4831,6 +5060,7 @@ M.HierarchicalChunkingLevelConfiguration = {
 
 M.HierarchicalChunkingConfiguration = {
     type = "structure",
+    id = "HierarchicalChunkingConfiguration",
     members = {
         levelConfigurations = {
             type = "list",
@@ -4850,6 +5080,7 @@ M.HierarchicalChunkingConfiguration = {
 
 M.SemanticChunkingConfiguration = {
     type = "structure",
+    id = "SemanticChunkingConfiguration",
     members = {
         maxTokens = {
             type = "integer",
@@ -4874,6 +5105,7 @@ M.SemanticChunkingConfiguration = {
 
 M.ChunkingConfiguration = {
     type = "structure",
+    id = "ChunkingConfiguration",
     members = {
         chunkingStrategy = {
             type = "string",
@@ -4889,6 +5121,7 @@ M.ChunkingConfiguration = {
 
 M.ConnectConfiguration = {
     type = "structure",
+    id = "ConnectConfiguration",
     members = {
         instanceId = {
             type = "string",
@@ -4898,6 +5131,7 @@ M.ConnectConfiguration = {
 
 M.Configuration = {
     type = "union",
+    id = "Configuration",
     members = {
         connectConfiguration = M.ConnectConfiguration,
     },
@@ -4905,6 +5139,7 @@ M.Configuration = {
 
 M.ContentAssociationContents = {
     type = "union",
+    id = "ContentAssociationContents",
     members = {
         amazonConnectGuideAssociation = M.AmazonConnectGuideAssociationData,
     },
@@ -4916,6 +5151,7 @@ M.ContentAssociationType = {
 
 M.CreateContentAssociationInput = {
     type = "structure",
+    id = "CreateContentAssociationInput",
     members = {
         clientToken = {
             type = "string",
@@ -4956,6 +5192,7 @@ M.CreateContentAssociationInput = {
 
 M.ContentAssociationData = {
     type = "structure",
+    id = "ContentAssociationData",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5012,6 +5249,7 @@ M.ContentAssociationData = {
 
 M.CreateContentAssociationOutput = {
     type = "structure",
+    id = "CreateContentAssociationOutput",
     members = {
         contentAssociation = M.ContentAssociationData,
     },
@@ -5019,6 +5257,7 @@ M.CreateContentAssociationOutput = {
 
 M.DeleteContentAssociationInput = {
     type = "structure",
+    id = "DeleteContentAssociationInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5046,10 +5285,12 @@ M.DeleteContentAssociationInput = {
 
 M.DeleteContentAssociationOutput = {
     type = "structure",
+    id = "DeleteContentAssociationOutput",
 }
 
 M.GetContentAssociationInput = {
     type = "structure",
+    id = "GetContentAssociationInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5077,6 +5318,7 @@ M.GetContentAssociationInput = {
 
 M.GetContentAssociationOutput = {
     type = "structure",
+    id = "GetContentAssociationOutput",
     members = {
         contentAssociation = M.ContentAssociationData,
     },
@@ -5084,6 +5326,7 @@ M.GetContentAssociationOutput = {
 
 M.ListContentAssociationsInput = {
     type = "structure",
+    id = "ListContentAssociationsInput",
     members = {
         nextToken = {
             type = "string",
@@ -5116,6 +5359,7 @@ M.ListContentAssociationsInput = {
 
 M.ContentAssociationSummary = {
     type = "structure",
+    id = "ContentAssociationSummary",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5172,6 +5416,7 @@ M.ContentAssociationSummary = {
 
 M.ListContentAssociationsOutput = {
     type = "structure",
+    id = "ListContentAssociationsOutput",
     members = {
         contentAssociationSummaries = {
             type = "list",
@@ -5188,6 +5433,7 @@ M.ListContentAssociationsOutput = {
 
 M.CreateContentInput = {
     type = "structure",
+    id = "CreateContentInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5245,6 +5491,7 @@ M.ContentStatus = {
 
 M.ContentData = {
     type = "structure",
+    id = "ContentData",
     members = {
         contentArn = {
             type = "string",
@@ -5334,6 +5581,7 @@ M.ContentData = {
 
 M.CreateContentOutput = {
     type = "structure",
+    id = "CreateContentOutput",
     members = {
         content = M.ContentData,
     },
@@ -5341,6 +5589,7 @@ M.CreateContentOutput = {
 
 M.DeleteContentInput = {
     type = "structure",
+    id = "DeleteContentInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5361,10 +5610,12 @@ M.DeleteContentInput = {
 
 M.DeleteContentOutput = {
     type = "structure",
+    id = "DeleteContentOutput",
 }
 
 M.GetContentInput = {
     type = "structure",
+    id = "GetContentInput",
     members = {
         contentId = {
             type = "string",
@@ -5385,6 +5636,7 @@ M.GetContentInput = {
 
 M.GetContentOutput = {
     type = "structure",
+    id = "GetContentOutput",
     members = {
         content = M.ContentData,
     },
@@ -5392,6 +5644,7 @@ M.GetContentOutput = {
 
 M.GetContentSummaryInput = {
     type = "structure",
+    id = "GetContentSummaryInput",
     members = {
         contentId = {
             type = "string",
@@ -5412,6 +5665,7 @@ M.GetContentSummaryInput = {
 
 M.ContentSummary = {
     type = "structure",
+    id = "ContentSummary",
     members = {
         contentArn = {
             type = "string",
@@ -5485,6 +5739,7 @@ M.ContentSummary = {
 
 M.GetContentSummaryOutput = {
     type = "structure",
+    id = "GetContentSummaryOutput",
     members = {
         contentSummary = M.ContentSummary,
     },
@@ -5492,6 +5747,7 @@ M.GetContentSummaryOutput = {
 
 M.ListContentsInput = {
     type = "structure",
+    id = "ListContentsInput",
     members = {
         nextToken = {
             type = "string",
@@ -5517,6 +5773,7 @@ M.ListContentsInput = {
 
 M.ListContentsOutput = {
     type = "structure",
+    id = "ListContentsOutput",
     members = {
         contentSummaries = {
             type = "list",
@@ -5533,6 +5790,7 @@ M.ListContentsOutput = {
 
 M.PreconditionFailedException = {
     type = "structure",
+    id = "PreconditionFailedException",
     error = "client",
     members = {
         message = {
@@ -5543,6 +5801,7 @@ M.PreconditionFailedException = {
 
 M.UpdateContentInput = {
     type = "structure",
+    id = "UpdateContentInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5583,6 +5842,7 @@ M.UpdateContentInput = {
 
 M.UpdateContentOutput = {
     type = "structure",
+    id = "UpdateContentOutput",
     members = {
         content = M.ContentData,
     },
@@ -5602,6 +5862,7 @@ M.KnowledgeBaseType = {
 
 M.RenderingConfiguration = {
     type = "structure",
+    id = "RenderingConfiguration",
     members = {
         templateUri = {
             type = "string",
@@ -5611,6 +5872,7 @@ M.RenderingConfiguration = {
 
 M.WebCrawlerLimits = {
     type = "structure",
+    id = "WebCrawlerLimits",
     members = {
         rateLimit = {
             type = "integer",
@@ -5625,6 +5887,7 @@ M.WebScopeType = {
 
 M.SeedUrl = {
     type = "structure",
+    id = "SeedUrl",
     members = {
         url = {
             type = "string",
@@ -5634,6 +5897,7 @@ M.SeedUrl = {
 
 M.UrlConfiguration = {
     type = "structure",
+    id = "UrlConfiguration",
     members = {
         seedUrls = {
             type = "list",
@@ -5644,6 +5908,7 @@ M.UrlConfiguration = {
 
 M.WebCrawlerConfiguration = {
     type = "structure",
+    id = "WebCrawlerConfiguration",
     members = {
         urlConfiguration = setmetatable({ traits = {
             required = true,
@@ -5665,6 +5930,7 @@ M.WebCrawlerConfiguration = {
 
 M.ManagedSourceConfiguration = {
     type = "union",
+    id = "ManagedSourceConfiguration",
     members = {
         webCrawlerConfiguration = M.WebCrawlerConfiguration,
     },
@@ -5672,6 +5938,7 @@ M.ManagedSourceConfiguration = {
 
 M.SourceConfiguration = {
     type = "union",
+    id = "SourceConfiguration",
     members = {
         appIntegrations = M.AppIntegrationsConfiguration,
         managedSourceConfiguration = M.ManagedSourceConfiguration,
@@ -5684,6 +5951,7 @@ M.ParsingStrategy = {
 
 M.ParsingConfiguration = {
     type = "structure",
+    id = "ParsingConfiguration",
     members = {
         parsingStrategy = {
             type = "string",
@@ -5697,6 +5965,7 @@ M.ParsingConfiguration = {
 
 M.VectorIngestionConfiguration = {
     type = "structure",
+    id = "VectorIngestionConfiguration",
     members = {
         chunkingConfiguration = M.ChunkingConfiguration,
         parsingConfiguration = M.ParsingConfiguration,
@@ -5705,6 +5974,7 @@ M.VectorIngestionConfiguration = {
 
 M.CreateKnowledgeBaseInput = {
     type = "structure",
+    id = "CreateKnowledgeBaseInput",
     members = {
         clientToken = {
             type = "string",
@@ -5757,6 +6027,7 @@ M.KnowledgeBaseStatus = {
 
 M.KnowledgeBaseData = {
     type = "structure",
+    id = "KnowledgeBaseData",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -5818,6 +6089,7 @@ M.KnowledgeBaseData = {
 
 M.CreateKnowledgeBaseOutput = {
     type = "structure",
+    id = "CreateKnowledgeBaseOutput",
     members = {
         knowledgeBase = M.KnowledgeBaseData,
     },
@@ -5825,6 +6097,7 @@ M.CreateKnowledgeBaseOutput = {
 
 M.MessageTemplateBodyContentProvider = {
     type = "union",
+    id = "MessageTemplateBodyContentProvider",
     members = {
         content = {
             type = "string",
@@ -5834,6 +6107,7 @@ M.MessageTemplateBodyContentProvider = {
 
 M.EmailMessageTemplateContentBody = {
     type = "structure",
+    id = "EmailMessageTemplateContentBody",
     members = {
         plainText = M.MessageTemplateBodyContentProvider,
         html = M.MessageTemplateBodyContentProvider,
@@ -5842,6 +6116,7 @@ M.EmailMessageTemplateContentBody = {
 
 M.EmailHeader = {
     type = "structure",
+    id = "EmailHeader",
     members = {
         name = {
             type = "string",
@@ -5854,6 +6129,7 @@ M.EmailHeader = {
 
 M.EmailMessageTemplateContent = {
     type = "structure",
+    id = "EmailMessageTemplateContent",
     members = {
         subject = {
             type = "string",
@@ -5874,6 +6150,7 @@ M.PushMessageAction = {
 
 M.PushADMMessageTemplateContent = {
     type = "structure",
+    id = "PushADMMessageTemplateContent",
     members = {
         title = {
             type = "string",
@@ -5903,6 +6180,7 @@ M.PushADMMessageTemplateContent = {
 
 M.PushAPNSMessageTemplateContent = {
     type = "structure",
+    id = "PushAPNSMessageTemplateContent",
     members = {
         title = {
             type = "string",
@@ -5926,6 +6204,7 @@ M.PushAPNSMessageTemplateContent = {
 
 M.PushBaiduMessageTemplateContent = {
     type = "structure",
+    id = "PushBaiduMessageTemplateContent",
     members = {
         title = {
             type = "string",
@@ -5955,6 +6234,7 @@ M.PushBaiduMessageTemplateContent = {
 
 M.PushFCMMessageTemplateContent = {
     type = "structure",
+    id = "PushFCMMessageTemplateContent",
     members = {
         title = {
             type = "string",
@@ -5984,6 +6264,7 @@ M.PushFCMMessageTemplateContent = {
 
 M.PushMessageTemplateContent = {
     type = "structure",
+    id = "PushMessageTemplateContent",
     members = {
         adm = M.PushADMMessageTemplateContent,
         apns = M.PushAPNSMessageTemplateContent,
@@ -5994,6 +6275,7 @@ M.PushMessageTemplateContent = {
 
 M.SMSMessageTemplateContentBody = {
     type = "structure",
+    id = "SMSMessageTemplateContentBody",
     members = {
         plainText = M.MessageTemplateBodyContentProvider,
     },
@@ -6001,6 +6283,7 @@ M.SMSMessageTemplateContentBody = {
 
 M.SMSMessageTemplateContent = {
     type = "structure",
+    id = "SMSMessageTemplateContent",
     members = {
         body = M.SMSMessageTemplateContentBody,
     },
@@ -6008,6 +6291,7 @@ M.SMSMessageTemplateContent = {
 
 M.WhatsAppMessageTemplateContent = {
     type = "structure",
+    id = "WhatsAppMessageTemplateContent",
     members = {
         data = {
             type = "string",
@@ -6017,6 +6301,7 @@ M.WhatsAppMessageTemplateContent = {
 
 M.MessageTemplateContentProvider = {
     type = "union",
+    id = "MessageTemplateContentProvider",
     members = {
         email = M.EmailMessageTemplateContent,
         sms = M.SMSMessageTemplateContent,
@@ -6027,6 +6312,7 @@ M.MessageTemplateContentProvider = {
 
 M.CustomerProfileAttributes = {
     type = "structure",
+    id = "CustomerProfileAttributes",
     members = {
         profileId = {
             type = "string",
@@ -6209,6 +6495,7 @@ M.CustomerProfileAttributes = {
 
 M.SystemEndpointAttributes = {
     type = "structure",
+    id = "SystemEndpointAttributes",
     members = {
         address = {
             type = "string",
@@ -6218,6 +6505,7 @@ M.SystemEndpointAttributes = {
 
 M.SystemAttributes = {
     type = "structure",
+    id = "SystemAttributes",
     members = {
         name = {
             type = "string",
@@ -6229,6 +6517,7 @@ M.SystemAttributes = {
 
 M.MessageTemplateAttributes = {
     type = "structure",
+    id = "MessageTemplateAttributes",
     members = {
         systemAttributes = M.SystemAttributes,
         agentAttributes = M.AgentAttributes,
@@ -6243,6 +6532,7 @@ M.MessageTemplateAttributes = {
 
 M.GroupingConfiguration = {
     type = "structure",
+    id = "GroupingConfiguration",
     members = {
         criteria = {
             type = "string",
@@ -6256,6 +6546,7 @@ M.GroupingConfiguration = {
 
 M.WhatsAppMessageTemplateSourceConfiguration = {
     type = "structure",
+    id = "WhatsAppMessageTemplateSourceConfiguration",
     members = {
         businessAccountId = {
             type = "string",
@@ -6278,6 +6569,7 @@ M.WhatsAppMessageTemplateSourceConfiguration = {
 
 M.MessageTemplateSourceConfiguration = {
     type = "union",
+    id = "MessageTemplateSourceConfiguration",
     members = {
         whatsApp = M.WhatsAppMessageTemplateSourceConfiguration,
     },
@@ -6285,6 +6577,7 @@ M.MessageTemplateSourceConfiguration = {
 
 M.CreateMessageTemplateInput = {
     type = "structure",
+    id = "CreateMessageTemplateInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6341,6 +6634,7 @@ M.WhatsAppSourceConfigurationStatus = {
 
 M.WhatsAppMessageTemplateSourceConfigurationSummary = {
     type = "structure",
+    id = "WhatsAppMessageTemplateSourceConfigurationSummary",
     members = {
         businessAccountId = {
             type = "string",
@@ -6375,6 +6669,7 @@ M.WhatsAppMessageTemplateSourceConfigurationSummary = {
 
 M.MessageTemplateSourceConfigurationSummary = {
     type = "union",
+    id = "MessageTemplateSourceConfigurationSummary",
     members = {
         whatsApp = M.WhatsAppMessageTemplateSourceConfigurationSummary,
     },
@@ -6382,6 +6677,7 @@ M.MessageTemplateSourceConfigurationSummary = {
 
 M.MessageTemplateData = {
     type = "structure",
+    id = "MessageTemplateData",
     members = {
         messageTemplateArn = {
             type = "string",
@@ -6472,6 +6768,7 @@ M.MessageTemplateData = {
 
 M.CreateMessageTemplateOutput = {
     type = "structure",
+    id = "CreateMessageTemplateOutput",
     members = {
         messageTemplate = M.MessageTemplateData,
     },
@@ -6479,6 +6776,7 @@ M.CreateMessageTemplateOutput = {
 
 M.CreateMessageTemplateAttachmentInput = {
     type = "structure",
+    id = "CreateMessageTemplateAttachmentInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6520,6 +6818,7 @@ M.CreateMessageTemplateAttachmentInput = {
 
 M.MessageTemplateAttachment = {
     type = "structure",
+    id = "MessageTemplateAttachment",
     members = {
         contentDisposition = {
             type = "string",
@@ -6564,6 +6863,7 @@ M.MessageTemplateAttachment = {
 
 M.CreateMessageTemplateAttachmentOutput = {
     type = "structure",
+    id = "CreateMessageTemplateAttachmentOutput",
     members = {
         attachment = M.MessageTemplateAttachment,
     },
@@ -6571,6 +6871,7 @@ M.CreateMessageTemplateAttachmentOutput = {
 
 M.CreateMessageTemplateVersionInput = {
     type = "structure",
+    id = "CreateMessageTemplateVersionInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6594,6 +6895,7 @@ M.CreateMessageTemplateVersionInput = {
 
 M.ExtendedMessageTemplateData = {
     type = "structure",
+    id = "ExtendedMessageTemplateData",
     members = {
         messageTemplateArn = {
             type = "string",
@@ -6694,6 +6996,7 @@ M.ExtendedMessageTemplateData = {
 
 M.CreateMessageTemplateVersionOutput = {
     type = "structure",
+    id = "CreateMessageTemplateVersionOutput",
     members = {
         messageTemplate = M.ExtendedMessageTemplateData,
     },
@@ -6701,6 +7004,7 @@ M.CreateMessageTemplateVersionOutput = {
 
 M.QuickResponseDataProvider = {
     type = "union",
+    id = "QuickResponseDataProvider",
     members = {
         content = {
             type = "string",
@@ -6710,6 +7014,7 @@ M.QuickResponseDataProvider = {
 
 M.CreateQuickResponseInput = {
     type = "structure",
+    id = "CreateQuickResponseInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6763,6 +7068,7 @@ M.CreateQuickResponseInput = {
 
 M.QuickResponseContentProvider = {
     type = "union",
+    id = "QuickResponseContentProvider",
     members = {
         content = {
             type = "string",
@@ -6772,6 +7078,7 @@ M.QuickResponseContentProvider = {
 
 M.QuickResponseContents = {
     type = "structure",
+    id = "QuickResponseContents",
     members = {
         plainText = M.QuickResponseContentProvider,
         markdown = M.QuickResponseContentProvider,
@@ -6791,6 +7098,7 @@ M.QuickResponseStatus = {
 
 M.QuickResponseData = {
     type = "structure",
+    id = "QuickResponseData",
     members = {
         quickResponseArn = {
             type = "string",
@@ -6879,6 +7187,7 @@ M.QuickResponseData = {
 
 M.CreateQuickResponseOutput = {
     type = "structure",
+    id = "CreateQuickResponseOutput",
     members = {
         quickResponse = M.QuickResponseData,
     },
@@ -6886,6 +7195,7 @@ M.CreateQuickResponseOutput = {
 
 M.DeactivateMessageTemplateInput = {
     type = "structure",
+    id = "DeactivateMessageTemplateInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6912,6 +7222,7 @@ M.DeactivateMessageTemplateInput = {
 
 M.DeactivateMessageTemplateOutput = {
     type = "structure",
+    id = "DeactivateMessageTemplateOutput",
     members = {
         messageTemplateArn = {
             type = "string",
@@ -6936,6 +7247,7 @@ M.DeactivateMessageTemplateOutput = {
 
 M.DeleteImportJobInput = {
     type = "structure",
+    id = "DeleteImportJobInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6956,10 +7268,12 @@ M.DeleteImportJobInput = {
 
 M.DeleteImportJobOutput = {
     type = "structure",
+    id = "DeleteImportJobOutput",
 }
 
 M.DeleteKnowledgeBaseInput = {
     type = "structure",
+    id = "DeleteKnowledgeBaseInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6973,10 +7287,12 @@ M.DeleteKnowledgeBaseInput = {
 
 M.DeleteKnowledgeBaseOutput = {
     type = "structure",
+    id = "DeleteKnowledgeBaseOutput",
 }
 
 M.DeleteMessageTemplateInput = {
     type = "structure",
+    id = "DeleteMessageTemplateInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -6997,10 +7313,12 @@ M.DeleteMessageTemplateInput = {
 
 M.DeleteMessageTemplateOutput = {
     type = "structure",
+    id = "DeleteMessageTemplateOutput",
 }
 
 M.DeleteMessageTemplateAttachmentInput = {
     type = "structure",
+    id = "DeleteMessageTemplateAttachmentInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7028,10 +7346,12 @@ M.DeleteMessageTemplateAttachmentInput = {
 
 M.DeleteMessageTemplateAttachmentOutput = {
     type = "structure",
+    id = "DeleteMessageTemplateAttachmentOutput",
 }
 
 M.DeleteQuickResponseInput = {
     type = "structure",
+    id = "DeleteQuickResponseInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7052,6 +7372,7 @@ M.DeleteQuickResponseInput = {
 
 M.DeleteQuickResponseOutput = {
     type = "structure",
+    id = "DeleteQuickResponseOutput",
 }
 
 M.ExternalSource = {
@@ -7060,6 +7381,7 @@ M.ExternalSource = {
 
 M.ExternalSourceConfiguration = {
     type = "structure",
+    id = "ExternalSourceConfiguration",
     members = {
         source = {
             type = "string",
@@ -7075,6 +7397,7 @@ M.ExternalSourceConfiguration = {
 
 M.GetImportJobInput = {
     type = "structure",
+    id = "GetImportJobInput",
     members = {
         importJobId = {
             type = "string",
@@ -7108,6 +7431,7 @@ M.ImportJobStatus = {
 
 M.ImportJobData = {
     type = "structure",
+    id = "ImportJobData",
     members = {
         importJobId = {
             type = "string",
@@ -7186,6 +7510,7 @@ M.ImportJobData = {
 
 M.GetImportJobOutput = {
     type = "structure",
+    id = "GetImportJobOutput",
     members = {
         importJob = M.ImportJobData,
     },
@@ -7193,6 +7518,7 @@ M.GetImportJobOutput = {
 
 M.GetKnowledgeBaseInput = {
     type = "structure",
+    id = "GetKnowledgeBaseInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7206,6 +7532,7 @@ M.GetKnowledgeBaseInput = {
 
 M.GetKnowledgeBaseOutput = {
     type = "structure",
+    id = "GetKnowledgeBaseOutput",
     members = {
         knowledgeBase = M.KnowledgeBaseData,
     },
@@ -7213,6 +7540,7 @@ M.GetKnowledgeBaseOutput = {
 
 M.GetMessageTemplateInput = {
     type = "structure",
+    id = "GetMessageTemplateInput",
     members = {
         messageTemplateId = {
             type = "string",
@@ -7233,6 +7561,7 @@ M.GetMessageTemplateInput = {
 
 M.GetMessageTemplateOutput = {
     type = "structure",
+    id = "GetMessageTemplateOutput",
     members = {
         messageTemplate = M.ExtendedMessageTemplateData,
     },
@@ -7240,6 +7569,7 @@ M.GetMessageTemplateOutput = {
 
 M.GetQuickResponseInput = {
     type = "structure",
+    id = "GetQuickResponseInput",
     members = {
         quickResponseId = {
             type = "string",
@@ -7260,6 +7590,7 @@ M.GetQuickResponseInput = {
 
 M.GetQuickResponseOutput = {
     type = "structure",
+    id = "GetQuickResponseOutput",
     members = {
         quickResponse = M.QuickResponseData,
     },
@@ -7267,6 +7598,7 @@ M.GetQuickResponseOutput = {
 
 M.ImportJobSummary = {
     type = "structure",
+    id = "ImportJobSummary",
     members = {
         importJobId = {
             type = "string",
@@ -7329,6 +7661,7 @@ M.ImportJobSummary = {
 
 M.ListImportJobsInput = {
     type = "structure",
+    id = "ListImportJobsInput",
     members = {
         nextToken = {
             type = "string",
@@ -7354,6 +7687,7 @@ M.ListImportJobsInput = {
 
 M.ListImportJobsOutput = {
     type = "structure",
+    id = "ListImportJobsOutput",
     members = {
         importJobSummaries = {
             type = "list",
@@ -7370,6 +7704,7 @@ M.ListImportJobsOutput = {
 
 M.ListKnowledgeBasesInput = {
     type = "structure",
+    id = "ListKnowledgeBasesInput",
     members = {
         nextToken = {
             type = "string",
@@ -7388,6 +7723,7 @@ M.ListKnowledgeBasesInput = {
 
 M.KnowledgeBaseSummary = {
     type = "structure",
+    id = "KnowledgeBaseSummary",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7436,6 +7772,7 @@ M.KnowledgeBaseSummary = {
 
 M.ListKnowledgeBasesOutput = {
     type = "structure",
+    id = "ListKnowledgeBasesOutput",
     members = {
         knowledgeBaseSummaries = {
             type = "list",
@@ -7452,6 +7789,7 @@ M.ListKnowledgeBasesOutput = {
 
 M.ListMessageTemplatesInput = {
     type = "structure",
+    id = "ListMessageTemplatesInput",
     members = {
         nextToken = {
             type = "string",
@@ -7477,6 +7815,7 @@ M.ListMessageTemplatesInput = {
 
 M.MessageTemplateSummary = {
     type = "structure",
+    id = "MessageTemplateSummary",
     members = {
         messageTemplateArn = {
             type = "string",
@@ -7554,6 +7893,7 @@ M.MessageTemplateSummary = {
 
 M.ListMessageTemplatesOutput = {
     type = "structure",
+    id = "ListMessageTemplatesOutput",
     members = {
         messageTemplateSummaries = {
             type = "list",
@@ -7570,6 +7910,7 @@ M.ListMessageTemplatesOutput = {
 
 M.ListMessageTemplateVersionsInput = {
     type = "structure",
+    id = "ListMessageTemplateVersionsInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7602,6 +7943,7 @@ M.ListMessageTemplateVersionsInput = {
 
 M.MessageTemplateVersionSummary = {
     type = "structure",
+    id = "MessageTemplateVersionSummary",
     members = {
         messageTemplateArn = {
             type = "string",
@@ -7659,6 +8001,7 @@ M.MessageTemplateVersionSummary = {
 
 M.ListMessageTemplateVersionsOutput = {
     type = "structure",
+    id = "ListMessageTemplateVersionsOutput",
     members = {
         messageTemplateVersionSummaries = {
             type = "list",
@@ -7675,6 +8018,7 @@ M.ListMessageTemplateVersionsOutput = {
 
 M.RenderMessageTemplateInput = {
     type = "structure",
+    id = "RenderMessageTemplateInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7698,6 +8042,7 @@ M.RenderMessageTemplateInput = {
 
 M.RenderMessageTemplateOutput = {
     type = "structure",
+    id = "RenderMessageTemplateOutput",
     members = {
         content = M.MessageTemplateContentProvider,
         sourceConfigurationSummary = M.MessageTemplateSourceConfigurationSummary,
@@ -7714,6 +8059,7 @@ M.RenderMessageTemplateOutput = {
 
 M.UpdateMessageTemplateInput = {
     type = "structure",
+    id = "UpdateMessageTemplateInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7740,6 +8086,7 @@ M.UpdateMessageTemplateInput = {
 
 M.UpdateMessageTemplateOutput = {
     type = "structure",
+    id = "UpdateMessageTemplateOutput",
     members = {
         messageTemplate = M.MessageTemplateData,
     },
@@ -7747,6 +8094,7 @@ M.UpdateMessageTemplateOutput = {
 
 M.UpdateMessageTemplateMetadataInput = {
     type = "structure",
+    id = "UpdateMessageTemplateMetadataInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7774,6 +8122,7 @@ M.UpdateMessageTemplateMetadataInput = {
 
 M.UpdateMessageTemplateMetadataOutput = {
     type = "structure",
+    id = "UpdateMessageTemplateMetadataOutput",
     members = {
         messageTemplate = M.MessageTemplateData,
     },
@@ -7781,6 +8130,7 @@ M.UpdateMessageTemplateMetadataOutput = {
 
 M.ListQuickResponsesInput = {
     type = "structure",
+    id = "ListQuickResponsesInput",
     members = {
         nextToken = {
             type = "string",
@@ -7806,6 +8156,7 @@ M.ListQuickResponsesInput = {
 
 M.QuickResponseSummary = {
     type = "structure",
+    id = "QuickResponseSummary",
     members = {
         quickResponseArn = {
             type = "string",
@@ -7886,6 +8237,7 @@ M.QuickResponseSummary = {
 
 M.ListQuickResponsesOutput = {
     type = "structure",
+    id = "ListQuickResponsesOutput",
     members = {
         quickResponseSummaries = {
             type = "list",
@@ -7902,6 +8254,7 @@ M.ListQuickResponsesOutput = {
 
 M.UpdateQuickResponseInput = {
     type = "structure",
+    id = "UpdateQuickResponseInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7955,6 +8308,7 @@ M.UpdateQuickResponseInput = {
 
 M.UpdateQuickResponseOutput = {
     type = "structure",
+    id = "UpdateQuickResponseOutput",
     members = {
         quickResponse = M.QuickResponseData,
     },
@@ -7962,6 +8316,7 @@ M.UpdateQuickResponseOutput = {
 
 M.RemoveKnowledgeBaseTemplateUriInput = {
     type = "structure",
+    id = "RemoveKnowledgeBaseTemplateUriInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -7975,10 +8330,12 @@ M.RemoveKnowledgeBaseTemplateUriInput = {
 
 M.RemoveKnowledgeBaseTemplateUriOutput = {
     type = "structure",
+    id = "RemoveKnowledgeBaseTemplateUriOutput",
 }
 
 M.SearchContentInput = {
     type = "structure",
+    id = "SearchContentInput",
     members = {
         nextToken = {
             type = "string",
@@ -8007,6 +8364,7 @@ M.SearchContentInput = {
 
 M.SearchContentOutput = {
     type = "structure",
+    id = "SearchContentOutput",
     members = {
         contentSummaries = {
             type = "list",
@@ -8028,6 +8386,7 @@ M.MessageTemplateFilterOperator = {
 
 M.MessageTemplateFilterField = {
     type = "structure",
+    id = "MessageTemplateFilterField",
     members = {
         name = {
             type = "string",
@@ -8058,6 +8417,7 @@ M.Order = {
 
 M.MessageTemplateOrderField = {
     type = "structure",
+    id = "MessageTemplateOrderField",
     members = {
         name = {
             type = "string",
@@ -8084,6 +8444,7 @@ M.Priority = {
 
 M.MessageTemplateQueryField = {
     type = "structure",
+    id = "MessageTemplateQueryField",
     members = {
         name = {
             type = "string",
@@ -8115,6 +8476,7 @@ M.MessageTemplateQueryField = {
 
 M.MessageTemplateSearchExpression = {
     type = "structure",
+    id = "MessageTemplateSearchExpression",
     members = {
         queries = {
             type = "list",
@@ -8130,6 +8492,7 @@ M.MessageTemplateSearchExpression = {
 
 M.SearchMessageTemplatesInput = {
     type = "structure",
+    id = "SearchMessageTemplatesInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -8158,6 +8521,7 @@ M.SearchMessageTemplatesInput = {
 
 M.MessageTemplateSearchResultData = {
     type = "structure",
+    id = "MessageTemplateSearchResultData",
     members = {
         messageTemplateArn = {
             type = "string",
@@ -8242,6 +8606,7 @@ M.MessageTemplateSearchResultData = {
 
 M.SearchMessageTemplatesOutput = {
     type = "structure",
+    id = "SearchMessageTemplatesOutput",
     members = {
         results = {
             type = "list",
@@ -8263,6 +8628,7 @@ M.QuickResponseFilterOperator = {
 
 M.QuickResponseFilterField = {
     type = "structure",
+    id = "QuickResponseFilterField",
     members = {
         name = {
             type = "string",
@@ -8288,6 +8654,7 @@ M.QuickResponseFilterField = {
 
 M.QuickResponseOrderField = {
     type = "structure",
+    id = "QuickResponseOrderField",
     members = {
         name = {
             type = "string",
@@ -8308,6 +8675,7 @@ M.QuickResponseQueryOperator = {
 
 M.QuickResponseQueryField = {
     type = "structure",
+    id = "QuickResponseQueryField",
     members = {
         name = {
             type = "string",
@@ -8339,6 +8707,7 @@ M.QuickResponseQueryField = {
 
 M.QuickResponseSearchExpression = {
     type = "structure",
+    id = "QuickResponseSearchExpression",
     members = {
         queries = {
             type = "list",
@@ -8354,6 +8723,7 @@ M.QuickResponseSearchExpression = {
 
 M.SearchQuickResponsesInput = {
     type = "structure",
+    id = "SearchQuickResponsesInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -8387,6 +8757,7 @@ M.SearchQuickResponsesInput = {
 
 M.QuickResponseSearchResultData = {
     type = "structure",
+    id = "QuickResponseSearchResultData",
     members = {
         quickResponseArn = {
             type = "string",
@@ -8488,6 +8859,7 @@ M.QuickResponseSearchResultData = {
 
 M.SearchQuickResponsesOutput = {
     type = "structure",
+    id = "SearchQuickResponsesOutput",
     members = {
         results = {
             type = "list",
@@ -8504,6 +8876,7 @@ M.SearchQuickResponsesOutput = {
 
 M.StartContentUploadInput = {
     type = "structure",
+    id = "StartContentUploadInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -8526,6 +8899,7 @@ M.StartContentUploadInput = {
 
 M.StartContentUploadOutput = {
     type = "structure",
+    id = "StartContentUploadOutput",
     members = {
         uploadId = {
             type = "string",
@@ -8559,6 +8933,7 @@ M.StartContentUploadOutput = {
 
 M.StartImportJobInput = {
     type = "structure",
+    id = "StartImportJobInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -8596,6 +8971,7 @@ M.StartImportJobInput = {
 
 M.StartImportJobOutput = {
     type = "structure",
+    id = "StartImportJobOutput",
     members = {
         importJob = M.ImportJobData,
     },
@@ -8603,6 +8979,7 @@ M.StartImportJobOutput = {
 
 M.UpdateKnowledgeBaseTemplateUriInput = {
     type = "structure",
+    id = "UpdateKnowledgeBaseTemplateUriInput",
     members = {
         knowledgeBaseId = {
             type = "string",
@@ -8622,6 +8999,7 @@ M.UpdateKnowledgeBaseTemplateUriInput = {
 
 M.UpdateKnowledgeBaseTemplateUriOutput = {
     type = "structure",
+    id = "UpdateKnowledgeBaseTemplateUriOutput",
     members = {
         knowledgeBase = M.KnowledgeBaseData,
     },
@@ -8629,6 +9007,7 @@ M.UpdateKnowledgeBaseTemplateUriOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8642,6 +9021,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -8653,6 +9033,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8674,10 +9055,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -8691,6 +9074,7 @@ M.TooManyTagsException = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceArn = {
             type = "string",
@@ -8712,10 +9096,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.SpanMessageValue = {
     type = "union",
+    id = "SpanMessageValue",
     members = {
         text = M.SpanTextValue,
         toolUse = M.SpanToolUseValue,
@@ -8726,6 +9112,7 @@ M.SpanMessageValue = {
 
 M.SpanToolResultValue = {
     type = "structure",
+    id = "SpanToolResultValue",
     members = {
         toolUseId = {
             type = "string",
@@ -8748,6 +9135,7 @@ M.SpanToolResultValue = {
 
 M.RetrievalFilterConfiguration = {
     type = "union",
+    id = "RetrievalFilterConfiguration",
     members = {
         andAll = {
             type = "list",
@@ -8773,6 +9161,7 @@ M.RetrievalFilterConfiguration = {
 
 M.SpanMessage = {
     type = "structure",
+    id = "SpanMessage",
     members = {
         messageId = {
             type = "string",
@@ -8804,6 +9193,7 @@ M.SpanMessage = {
 
 M.RetrievalConfiguration = {
     type = "structure",
+    id = "RetrievalConfiguration",
     members = {
         knowledgeSource = setmetatable({ traits = {
             required = true,
@@ -8820,6 +9210,7 @@ M.RetrievalConfiguration = {
 
 M.RetrieveInput = {
     type = "structure",
+    id = "RetrieveInput",
     members = {
         assistantId = {
             type = "string",
@@ -8842,6 +9233,7 @@ M.RetrieveInput = {
 
 M.DataDetails = {
     type = "union",
+    id = "DataDetails",
     members = {
         contentData = M.ContentDataDetails,
         generativeData = M.GenerativeDataDetails,
@@ -8860,6 +9252,7 @@ M.DataDetails = {
 
 M.DataSummary = {
     type = "structure",
+    id = "DataSummary",
     members = {
         reference = setmetatable({ traits = {
             required = true,
@@ -8872,6 +9265,7 @@ M.DataSummary = {
 
 M.EmailGenerativeAnswerChunkDataDetails = {
     type = "structure",
+    id = "EmailGenerativeAnswerChunkDataDetails",
     members = {
         completion = {
             type = "string",
@@ -8888,6 +9282,7 @@ M.EmailGenerativeAnswerChunkDataDetails = {
 
 M.GenerativeChunkDataDetails = {
     type = "structure",
+    id = "GenerativeChunkDataDetails",
     members = {
         completion = {
             type = "string",
@@ -8904,6 +9299,7 @@ M.GenerativeChunkDataDetails = {
 
 M.GenerativeDataDetails = {
     type = "structure",
+    id = "GenerativeDataDetails",
     members = {
         completion = {
             type = "string",
@@ -8926,6 +9322,7 @@ M.GenerativeDataDetails = {
 
 M.RecommendationData = {
     type = "structure",
+    id = "RecommendationData",
     members = {
         recommendationId = {
             type = "string",
@@ -8952,6 +9349,7 @@ M.RecommendationData = {
 
 M.ResultData = {
     type = "structure",
+    id = "ResultData",
     members = {
         resultId = {
             type = "string",
@@ -8975,6 +9373,7 @@ M.ResultData = {
 
 M.SpanAttributes = {
     type = "structure",
+    id = "SpanAttributes",
     members = {
         operationName = {
             type = "string",
@@ -9090,6 +9489,7 @@ M.SpanAttributes = {
 
 M.Span = {
     type = "structure",
+    id = "Span",
     members = {
         spanId = {
             type = "string",
@@ -9162,6 +9562,7 @@ M.Span = {
 
 M.GetRecommendationsOutput = {
     type = "structure",
+    id = "GetRecommendationsOutput",
     members = {
         recommendations = {
             type = "list",
@@ -9179,6 +9580,7 @@ M.GetRecommendationsOutput = {
 
 M.QueryAssistantOutput = {
     type = "structure",
+    id = "QueryAssistantOutput",
     members = {
         results = {
             type = "list",
@@ -9195,6 +9597,7 @@ M.QueryAssistantOutput = {
 
 M.ListSpansOutput = {
     type = "structure",
+    id = "ListSpansOutput",
     members = {
         spans = {
             type = "list",

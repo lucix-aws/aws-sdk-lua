@@ -2,6 +2,7 @@ local M = {}
 
 M.AcceptResourceShareInvitationInput = {
     type = "structure",
+    id = "AcceptResourceShareInvitationInput",
     members = {
         resourceShareInvitationArn = {
             type = "string",
@@ -34,6 +35,7 @@ M.ResourceShareAssociationStatus = {
 
 M.ResourceShareAssociation = {
     type = "structure",
+    id = "ResourceShareAssociation",
     members = {
         resourceShareArn = {
             type = "string",
@@ -74,6 +76,7 @@ M.ResourceShareInvitationStatus = {
 
 M.ResourceShareInvitation = {
     type = "structure",
+    id = "ResourceShareInvitation",
     members = {
         resourceShareInvitationArn = {
             type = "string",
@@ -108,6 +111,7 @@ M.ResourceShareInvitation = {
 
 M.AcceptResourceShareInvitationOutput = {
     type = "structure",
+    id = "AcceptResourceShareInvitationOutput",
     members = {
         resourceShareInvitation = M.ResourceShareInvitation,
         clientToken = {
@@ -118,6 +122,7 @@ M.AcceptResourceShareInvitationOutput = {
 
 M.IdempotentParameterMismatchException = {
     type = "structure",
+    id = "IdempotentParameterMismatchException",
     error = "client",
     members = {
         message = {
@@ -131,6 +136,7 @@ M.IdempotentParameterMismatchException = {
 
 M.InvalidClientTokenException = {
     type = "structure",
+    id = "InvalidClientTokenException",
     error = "client",
     members = {
         message = {
@@ -144,6 +150,7 @@ M.InvalidClientTokenException = {
 
 M.MalformedArnException = {
     type = "structure",
+    id = "MalformedArnException",
     error = "client",
     members = {
         message = {
@@ -157,6 +164,7 @@ M.MalformedArnException = {
 
 M.OperationNotPermittedException = {
     type = "structure",
+    id = "OperationNotPermittedException",
     error = "client",
     members = {
         message = {
@@ -170,6 +178,7 @@ M.OperationNotPermittedException = {
 
 M.ResourceShareInvitationAlreadyAcceptedException = {
     type = "structure",
+    id = "ResourceShareInvitationAlreadyAcceptedException",
     error = "client",
     members = {
         message = {
@@ -183,6 +192,7 @@ M.ResourceShareInvitationAlreadyAcceptedException = {
 
 M.ResourceShareInvitationAlreadyRejectedException = {
     type = "structure",
+    id = "ResourceShareInvitationAlreadyRejectedException",
     error = "client",
     members = {
         message = {
@@ -196,6 +206,7 @@ M.ResourceShareInvitationAlreadyRejectedException = {
 
 M.ResourceShareInvitationArnNotFoundException = {
     type = "structure",
+    id = "ResourceShareInvitationArnNotFoundException",
     error = "client",
     members = {
         message = {
@@ -209,6 +220,7 @@ M.ResourceShareInvitationArnNotFoundException = {
 
 M.ResourceShareInvitationExpiredException = {
     type = "structure",
+    id = "ResourceShareInvitationExpiredException",
     error = "client",
     members = {
         message = {
@@ -222,6 +234,7 @@ M.ResourceShareInvitationExpiredException = {
 
 M.ServerInternalException = {
     type = "structure",
+    id = "ServerInternalException",
     error = "server",
     members = {
         message = {
@@ -235,6 +248,7 @@ M.ServerInternalException = {
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         message = {
@@ -248,6 +262,7 @@ M.ServiceUnavailableException = {
 
 M.AssociateResourceShareInput = {
     type = "structure",
+    id = "AssociateResourceShareInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -275,6 +290,7 @@ M.AssociateResourceShareInput = {
 
 M.AssociateResourceShareOutput = {
     type = "structure",
+    id = "AssociateResourceShareOutput",
     members = {
         resourceShareAssociations = {
             type = "list",
@@ -288,6 +304,7 @@ M.AssociateResourceShareOutput = {
 
 M.InvalidParameterException = {
     type = "structure",
+    id = "InvalidParameterException",
     error = "client",
     members = {
         message = {
@@ -301,6 +318,7 @@ M.InvalidParameterException = {
 
 M.InvalidStateTransitionException = {
     type = "structure",
+    id = "InvalidStateTransitionException",
     error = "client",
     members = {
         message = {
@@ -314,6 +332,7 @@ M.InvalidStateTransitionException = {
 
 M.ResourceShareLimitExceededException = {
     type = "structure",
+    id = "ResourceShareLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -327,6 +346,7 @@ M.ResourceShareLimitExceededException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -340,6 +360,7 @@ M.ThrottlingException = {
 
 M.UnknownResourceException = {
     type = "structure",
+    id = "UnknownResourceException",
     error = "client",
     members = {
         message = {
@@ -353,6 +374,7 @@ M.UnknownResourceException = {
 
 M.AssociateResourceSharePermissionInput = {
     type = "structure",
+    id = "AssociateResourceSharePermissionInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -380,6 +402,7 @@ M.AssociateResourceSharePermissionInput = {
 
 M.AssociateResourceSharePermissionOutput = {
     type = "structure",
+    id = "AssociateResourceSharePermissionOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -392,6 +415,7 @@ M.AssociateResourceSharePermissionOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         key = {
             type = "string",
@@ -404,6 +428,7 @@ M.Tag = {
 
 M.CreatePermissionInput = {
     type = "structure",
+    id = "CreatePermissionInput",
     members = {
         name = {
             type = "string",
@@ -446,6 +471,7 @@ M.PermissionType = {
 
 M.ResourceSharePermissionSummary = {
     type = "structure",
+    id = "ResourceSharePermissionSummary",
     members = {
         arn = {
             type = "string",
@@ -489,6 +515,7 @@ M.ResourceSharePermissionSummary = {
 
 M.CreatePermissionOutput = {
     type = "structure",
+    id = "CreatePermissionOutput",
     members = {
         permission = M.ResourceSharePermissionSummary,
         clientToken = {
@@ -499,6 +526,7 @@ M.CreatePermissionOutput = {
 
 M.InvalidPolicyException = {
     type = "structure",
+    id = "InvalidPolicyException",
     error = "client",
     members = {
         message = {
@@ -512,6 +540,7 @@ M.InvalidPolicyException = {
 
 M.MalformedPolicyTemplateException = {
     type = "structure",
+    id = "MalformedPolicyTemplateException",
     error = "client",
     members = {
         message = {
@@ -525,6 +554,7 @@ M.MalformedPolicyTemplateException = {
 
 M.PermissionAlreadyExistsException = {
     type = "structure",
+    id = "PermissionAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -538,6 +568,7 @@ M.PermissionAlreadyExistsException = {
 
 M.PermissionLimitExceededException = {
     type = "structure",
+    id = "PermissionLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -551,6 +582,7 @@ M.PermissionLimitExceededException = {
 
 M.CreatePermissionVersionInput = {
     type = "structure",
+    id = "CreatePermissionVersionInput",
     members = {
         permissionArn = {
             type = "string",
@@ -579,6 +611,7 @@ M.PermissionStatus = {
 
 M.ResourceSharePermissionDetail = {
     type = "structure",
+    id = "ResourceSharePermissionDetail",
     members = {
         arn = {
             type = "string",
@@ -625,6 +658,7 @@ M.ResourceSharePermissionDetail = {
 
 M.CreatePermissionVersionOutput = {
     type = "structure",
+    id = "CreatePermissionVersionOutput",
     members = {
         permission = M.ResourceSharePermissionDetail,
         clientToken = {
@@ -635,6 +669,7 @@ M.CreatePermissionVersionOutput = {
 
 M.PermissionVersionsLimitExceededException = {
     type = "structure",
+    id = "PermissionVersionsLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -648,6 +683,7 @@ M.PermissionVersionsLimitExceededException = {
 
 M.ResourceShareConfiguration = {
     type = "structure",
+    id = "ResourceShareConfiguration",
     members = {
         retainSharingOnAccountLeaveOrganization = {
             type = "boolean",
@@ -657,6 +693,7 @@ M.ResourceShareConfiguration = {
 
 M.CreateResourceShareInput = {
     type = "structure",
+    id = "CreateResourceShareInput",
     members = {
         name = {
             type = "string",
@@ -710,6 +747,7 @@ M.ResourceShareStatus = {
 
 M.ResourceShare = {
     type = "structure",
+    id = "ResourceShare",
     members = {
         resourceShareArn = {
             type = "string",
@@ -748,6 +786,7 @@ M.ResourceShare = {
 
 M.CreateResourceShareOutput = {
     type = "structure",
+    id = "CreateResourceShareOutput",
     members = {
         resourceShare = M.ResourceShare,
         clientToken = {
@@ -758,6 +797,7 @@ M.CreateResourceShareOutput = {
 
 M.TagLimitExceededException = {
     type = "structure",
+    id = "TagLimitExceededException",
     error = "client",
     members = {
         message = {
@@ -771,6 +811,7 @@ M.TagLimitExceededException = {
 
 M.TagPolicyViolationException = {
     type = "structure",
+    id = "TagPolicyViolationException",
     error = "client",
     members = {
         message = {
@@ -784,6 +825,7 @@ M.TagPolicyViolationException = {
 
 M.DeletePermissionInput = {
     type = "structure",
+    id = "DeletePermissionInput",
     members = {
         permissionArn = {
             type = "string",
@@ -803,6 +845,7 @@ M.DeletePermissionInput = {
 
 M.DeletePermissionOutput = {
     type = "structure",
+    id = "DeletePermissionOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -821,6 +864,7 @@ M.DeletePermissionOutput = {
 
 M.DeletePermissionVersionInput = {
     type = "structure",
+    id = "DeletePermissionVersionInput",
     members = {
         permissionArn = {
             type = "string",
@@ -847,6 +891,7 @@ M.DeletePermissionVersionInput = {
 
 M.DeletePermissionVersionOutput = {
     type = "structure",
+    id = "DeletePermissionVersionOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -865,6 +910,7 @@ M.DeletePermissionVersionOutput = {
 
 M.DeleteResourceShareInput = {
     type = "structure",
+    id = "DeleteResourceShareInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -884,6 +930,7 @@ M.DeleteResourceShareInput = {
 
 M.DeleteResourceShareOutput = {
     type = "structure",
+    id = "DeleteResourceShareOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -899,6 +946,7 @@ M.DeleteResourceShareOutput = {
 
 M.DisassociateResourceShareInput = {
     type = "structure",
+    id = "DisassociateResourceShareInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -926,6 +974,7 @@ M.DisassociateResourceShareInput = {
 
 M.DisassociateResourceShareOutput = {
     type = "structure",
+    id = "DisassociateResourceShareOutput",
     members = {
         resourceShareAssociations = {
             type = "list",
@@ -939,6 +988,7 @@ M.DisassociateResourceShareOutput = {
 
 M.DisassociateResourceSharePermissionInput = {
     type = "structure",
+    id = "DisassociateResourceSharePermissionInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -960,6 +1010,7 @@ M.DisassociateResourceSharePermissionInput = {
 
 M.DisassociateResourceSharePermissionOutput = {
     type = "structure",
+    id = "DisassociateResourceSharePermissionOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -972,10 +1023,12 @@ M.DisassociateResourceSharePermissionOutput = {
 
 M.EnableSharingWithAwsOrganizationInput = {
     type = "structure",
+    id = "EnableSharingWithAwsOrganizationInput",
 }
 
 M.EnableSharingWithAwsOrganizationOutput = {
     type = "structure",
+    id = "EnableSharingWithAwsOrganizationOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -988,6 +1041,7 @@ M.EnableSharingWithAwsOrganizationOutput = {
 
 M.GetPermissionInput = {
     type = "structure",
+    id = "GetPermissionInput",
     members = {
         permissionArn = {
             type = "string",
@@ -1003,6 +1057,7 @@ M.GetPermissionInput = {
 
 M.GetPermissionOutput = {
     type = "structure",
+    id = "GetPermissionOutput",
     members = {
         permission = M.ResourceSharePermissionDetail,
     },
@@ -1010,6 +1065,7 @@ M.GetPermissionOutput = {
 
 M.GetResourcePoliciesInput = {
     type = "structure",
+    id = "GetResourcePoliciesInput",
     members = {
         resourceArns = {
             type = "list",
@@ -1032,6 +1088,7 @@ M.GetResourcePoliciesInput = {
 
 M.GetResourcePoliciesOutput = {
     type = "structure",
+    id = "GetResourcePoliciesOutput",
     members = {
         policies = {
             type = "list",
@@ -1045,6 +1102,7 @@ M.GetResourcePoliciesOutput = {
 
 M.InvalidNextTokenException = {
     type = "structure",
+    id = "InvalidNextTokenException",
     error = "client",
     members = {
         message = {
@@ -1058,6 +1116,7 @@ M.InvalidNextTokenException = {
 
 M.ResourceArnNotFoundException = {
     type = "structure",
+    id = "ResourceArnNotFoundException",
     error = "client",
     members = {
         message = {
@@ -1071,6 +1130,7 @@ M.ResourceArnNotFoundException = {
 
 M.GetResourceShareAssociationsInput = {
     type = "structure",
+    id = "GetResourceShareAssociationsInput",
     members = {
         associationType = {
             type = "string",
@@ -1102,6 +1162,7 @@ M.GetResourceShareAssociationsInput = {
 
 M.GetResourceShareAssociationsOutput = {
     type = "structure",
+    id = "GetResourceShareAssociationsOutput",
     members = {
         resourceShareAssociations = {
             type = "list",
@@ -1115,6 +1176,7 @@ M.GetResourceShareAssociationsOutput = {
 
 M.GetResourceShareInvitationsInput = {
     type = "structure",
+    id = "GetResourceShareInvitationsInput",
     members = {
         resourceShareInvitationArns = {
             type = "list",
@@ -1135,6 +1197,7 @@ M.GetResourceShareInvitationsInput = {
 
 M.GetResourceShareInvitationsOutput = {
     type = "structure",
+    id = "GetResourceShareInvitationsOutput",
     members = {
         resourceShareInvitations = {
             type = "list",
@@ -1148,6 +1211,7 @@ M.GetResourceShareInvitationsOutput = {
 
 M.InvalidMaxResultsException = {
     type = "structure",
+    id = "InvalidMaxResultsException",
     error = "client",
     members = {
         message = {
@@ -1166,6 +1230,7 @@ M.ResourceOwner = {
 
 M.TagFilter = {
     type = "structure",
+    id = "TagFilter",
     members = {
         tagKey = {
             type = "string",
@@ -1179,6 +1244,7 @@ M.TagFilter = {
 
 M.GetResourceSharesInput = {
     type = "structure",
+    id = "GetResourceSharesInput",
     members = {
         resourceShareArns = {
             type = "list",
@@ -1217,6 +1283,7 @@ M.GetResourceSharesInput = {
 
 M.GetResourceSharesOutput = {
     type = "structure",
+    id = "GetResourceSharesOutput",
     members = {
         resourceShares = {
             type = "list",
@@ -1236,6 +1303,7 @@ M.ResourceRegionScopeFilter = {
 
 M.ListPendingInvitationResourcesInput = {
     type = "structure",
+    id = "ListPendingInvitationResourcesInput",
     members = {
         resourceShareInvitationArn = {
             type = "string",
@@ -1270,6 +1338,7 @@ M.ResourceStatus = {
 
 M.Resource = {
     type = "structure",
+    id = "Resource",
     members = {
         arn = {
             type = "string",
@@ -1303,6 +1372,7 @@ M.Resource = {
 
 M.ListPendingInvitationResourcesOutput = {
     type = "structure",
+    id = "ListPendingInvitationResourcesOutput",
     members = {
         resources = {
             type = "list",
@@ -1316,6 +1386,7 @@ M.ListPendingInvitationResourcesOutput = {
 
 M.MissingRequiredParameterException = {
     type = "structure",
+    id = "MissingRequiredParameterException",
     error = "client",
     members = {
         message = {
@@ -1329,6 +1400,7 @@ M.MissingRequiredParameterException = {
 
 M.ListPermissionAssociationsInput = {
     type = "structure",
+    id = "ListPermissionAssociationsInput",
     members = {
         permissionArn = {
             type = "string",
@@ -1359,6 +1431,7 @@ M.ListPermissionAssociationsInput = {
 
 M.AssociatedPermission = {
     type = "structure",
+    id = "AssociatedPermission",
     members = {
         arn = {
             type = "string",
@@ -1389,6 +1462,7 @@ M.AssociatedPermission = {
 
 M.ListPermissionAssociationsOutput = {
     type = "structure",
+    id = "ListPermissionAssociationsOutput",
     members = {
         permissions = {
             type = "list",
@@ -1408,6 +1482,7 @@ M.PermissionTypeFilter = {
 
 M.ListPermissionsInput = {
     type = "structure",
+    id = "ListPermissionsInput",
     members = {
         resourceType = {
             type = "string",
@@ -1426,6 +1501,7 @@ M.ListPermissionsInput = {
 
 M.ListPermissionsOutput = {
     type = "structure",
+    id = "ListPermissionsOutput",
     members = {
         permissions = {
             type = "list",
@@ -1439,6 +1515,7 @@ M.ListPermissionsOutput = {
 
 M.ListPermissionVersionsInput = {
     type = "structure",
+    id = "ListPermissionVersionsInput",
     members = {
         permissionArn = {
             type = "string",
@@ -1457,6 +1534,7 @@ M.ListPermissionVersionsInput = {
 
 M.ListPermissionVersionsOutput = {
     type = "structure",
+    id = "ListPermissionVersionsOutput",
     members = {
         permissions = {
             type = "list",
@@ -1470,6 +1548,7 @@ M.ListPermissionVersionsOutput = {
 
 M.ListPrincipalsInput = {
     type = "structure",
+    id = "ListPrincipalsInput",
     members = {
         resourceOwner = {
             type = "string",
@@ -1502,6 +1581,7 @@ M.ListPrincipalsInput = {
 
 M.Principal = {
     type = "structure",
+    id = "Principal",
     members = {
         id = {
             type = "string",
@@ -1523,6 +1603,7 @@ M.Principal = {
 
 M.ListPrincipalsOutput = {
     type = "structure",
+    id = "ListPrincipalsOutput",
     members = {
         principals = {
             type = "list",
@@ -1542,6 +1623,7 @@ M.ReplacePermissionAssociationsWorkStatus = {
 
 M.ListReplacePermissionAssociationsWorkInput = {
     type = "structure",
+    id = "ListReplacePermissionAssociationsWorkInput",
     members = {
         workIds = {
             type = "list",
@@ -1561,6 +1643,7 @@ M.ListReplacePermissionAssociationsWorkInput = {
 
 M.ReplacePermissionAssociationsWork = {
     type = "structure",
+    id = "ReplacePermissionAssociationsWork",
     members = {
         id = {
             type = "string",
@@ -1594,6 +1677,7 @@ M.ReplacePermissionAssociationsWork = {
 
 M.ListReplacePermissionAssociationsWorkOutput = {
     type = "structure",
+    id = "ListReplacePermissionAssociationsWorkOutput",
     members = {
         replacePermissionAssociationsWorks = {
             type = "list",
@@ -1607,6 +1691,7 @@ M.ListReplacePermissionAssociationsWorkOutput = {
 
 M.InvalidResourceTypeException = {
     type = "structure",
+    id = "InvalidResourceTypeException",
     error = "client",
     members = {
         message = {
@@ -1620,6 +1705,7 @@ M.InvalidResourceTypeException = {
 
 M.ListResourcesInput = {
     type = "structure",
+    id = "ListResourcesInput",
     members = {
         resourceOwner = {
             type = "string",
@@ -1655,6 +1741,7 @@ M.ListResourcesInput = {
 
 M.ListResourcesOutput = {
     type = "structure",
+    id = "ListResourcesOutput",
     members = {
         resources = {
             type = "list",
@@ -1668,6 +1755,7 @@ M.ListResourcesOutput = {
 
 M.ListResourceSharePermissionsInput = {
     type = "structure",
+    id = "ListResourceSharePermissionsInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -1686,6 +1774,7 @@ M.ListResourceSharePermissionsInput = {
 
 M.ListResourceSharePermissionsOutput = {
     type = "structure",
+    id = "ListResourceSharePermissionsOutput",
     members = {
         permissions = {
             type = "list",
@@ -1699,6 +1788,7 @@ M.ListResourceSharePermissionsOutput = {
 
 M.ListResourceTypesInput = {
     type = "structure",
+    id = "ListResourceTypesInput",
     members = {
         nextToken = {
             type = "string",
@@ -1714,6 +1804,7 @@ M.ListResourceTypesInput = {
 
 M.ServiceNameAndResourceType = {
     type = "structure",
+    id = "ServiceNameAndResourceType",
     members = {
         resourceType = {
             type = "string",
@@ -1729,6 +1820,7 @@ M.ServiceNameAndResourceType = {
 
 M.ListResourceTypesOutput = {
     type = "structure",
+    id = "ListResourceTypesOutput",
     members = {
         resourceTypes = {
             type = "list",
@@ -1742,6 +1834,7 @@ M.ListResourceTypesOutput = {
 
 M.ListSourceAssociationsInput = {
     type = "structure",
+    id = "ListSourceAssociationsInput",
     members = {
         resourceShareArns = {
             type = "list",
@@ -1767,6 +1860,7 @@ M.ListSourceAssociationsInput = {
 
 M.AssociatedSource = {
     type = "structure",
+    id = "AssociatedSource",
     members = {
         resourceShareArn = {
             type = "string",
@@ -1794,6 +1888,7 @@ M.AssociatedSource = {
 
 M.ListSourceAssociationsOutput = {
     type = "structure",
+    id = "ListSourceAssociationsOutput",
     members = {
         sourceAssociations = {
             type = "list",
@@ -1807,6 +1902,7 @@ M.ListSourceAssociationsOutput = {
 
 M.PromotePermissionCreatedFromPolicyInput = {
     type = "structure",
+    id = "PromotePermissionCreatedFromPolicyInput",
     members = {
         permissionArn = {
             type = "string",
@@ -1828,6 +1924,7 @@ M.PromotePermissionCreatedFromPolicyInput = {
 
 M.PromotePermissionCreatedFromPolicyOutput = {
     type = "structure",
+    id = "PromotePermissionCreatedFromPolicyOutput",
     members = {
         permission = M.ResourceSharePermissionSummary,
         clientToken = {
@@ -1838,6 +1935,7 @@ M.PromotePermissionCreatedFromPolicyOutput = {
 
 M.PromoteResourceShareCreatedFromPolicyInput = {
     type = "structure",
+    id = "PromoteResourceShareCreatedFromPolicyInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -1851,6 +1949,7 @@ M.PromoteResourceShareCreatedFromPolicyInput = {
 
 M.PromoteResourceShareCreatedFromPolicyOutput = {
     type = "structure",
+    id = "PromoteResourceShareCreatedFromPolicyOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -1863,6 +1962,7 @@ M.PromoteResourceShareCreatedFromPolicyOutput = {
 
 M.UnmatchedPolicyPermissionException = {
     type = "structure",
+    id = "UnmatchedPolicyPermissionException",
     error = "client",
     members = {
         message = {
@@ -1876,6 +1976,7 @@ M.UnmatchedPolicyPermissionException = {
 
 M.RejectResourceShareInvitationInput = {
     type = "structure",
+    id = "RejectResourceShareInvitationInput",
     members = {
         resourceShareInvitationArn = {
             type = "string",
@@ -1891,6 +1992,7 @@ M.RejectResourceShareInvitationInput = {
 
 M.RejectResourceShareInvitationOutput = {
     type = "structure",
+    id = "RejectResourceShareInvitationOutput",
     members = {
         resourceShareInvitation = M.ResourceShareInvitation,
         clientToken = {
@@ -1901,6 +2003,7 @@ M.RejectResourceShareInvitationOutput = {
 
 M.ReplacePermissionAssociationsInput = {
     type = "structure",
+    id = "ReplacePermissionAssociationsInput",
     members = {
         fromPermissionArn = {
             type = "string",
@@ -1925,6 +2028,7 @@ M.ReplacePermissionAssociationsInput = {
 
 M.ReplacePermissionAssociationsOutput = {
     type = "structure",
+    id = "ReplacePermissionAssociationsOutput",
     members = {
         replacePermissionAssociationsWork = M.ReplacePermissionAssociationsWork,
         clientToken = {
@@ -1935,6 +2039,7 @@ M.ReplacePermissionAssociationsOutput = {
 
 M.SetDefaultPermissionVersionInput = {
     type = "structure",
+    id = "SetDefaultPermissionVersionInput",
     members = {
         permissionArn = {
             type = "string",
@@ -1956,6 +2061,7 @@ M.SetDefaultPermissionVersionInput = {
 
 M.SetDefaultPermissionVersionOutput = {
     type = "structure",
+    id = "SetDefaultPermissionVersionOutput",
     members = {
         returnValue = {
             type = "boolean",
@@ -1971,6 +2077,7 @@ M.SetDefaultPermissionVersionOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -1990,10 +2097,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -2013,10 +2122,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateResourceShareInput = {
     type = "structure",
+    id = "UpdateResourceShareInput",
     members = {
         resourceShareArn = {
             type = "string",
@@ -2038,6 +2149,7 @@ M.UpdateResourceShareInput = {
 
 M.UpdateResourceShareOutput = {
     type = "structure",
+    id = "UpdateResourceShareOutput",
     members = {
         resourceShare = M.ResourceShare,
         clientToken = {

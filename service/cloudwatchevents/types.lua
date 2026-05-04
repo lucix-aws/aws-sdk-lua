@@ -2,6 +2,7 @@ local M = {}
 
 M.ActivateEventSourceInput = {
     type = "structure",
+    id = "ActivateEventSourceInput",
     members = {
         Name = {
             type = "string",
@@ -14,10 +15,12 @@ M.ActivateEventSourceInput = {
 
 M.ActivateEventSourceOutput = {
     type = "structure",
+    id = "ActivateEventSourceOutput",
 }
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         message = {
@@ -28,6 +31,7 @@ M.ConcurrentModificationException = {
 
 M.InternalException = {
     type = "structure",
+    id = "InternalException",
     error = "server",
     members = {
         message = {
@@ -38,6 +42,7 @@ M.InternalException = {
 
 M.InvalidStateException = {
     type = "structure",
+    id = "InvalidStateException",
     error = "client",
     members = {
         message = {
@@ -48,6 +53,7 @@ M.InvalidStateException = {
 
 M.OperationDisabledException = {
     type = "structure",
+    id = "OperationDisabledException",
     error = "client",
     members = {
         message = {
@@ -58,6 +64,7 @@ M.OperationDisabledException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -83,6 +90,7 @@ M.ApiDestinationHttpMethod = {
 
 M.ApiDestination = {
     type = "structure",
+    id = "ApiDestination",
     members = {
         ApiDestinationArn = {
             type = "string",
@@ -125,6 +133,7 @@ M.ArchiveState = {
 
 M.Archive = {
     type = "structure",
+    id = "Archive",
     members = {
         ArchiveName = {
             type = "string",
@@ -166,6 +175,7 @@ M.AssignPublicIp = {
 
 M.CancelReplayInput = {
     type = "structure",
+    id = "CancelReplayInput",
     members = {
         ReplayName = {
             type = "string",
@@ -187,6 +197,7 @@ M.ReplayState = {
 
 M.CancelReplayOutput = {
     type = "structure",
+    id = "CancelReplayOutput",
     members = {
         ReplayArn = {
             type = "string",
@@ -202,6 +213,7 @@ M.CancelReplayOutput = {
 
 M.IllegalStatusException = {
     type = "structure",
+    id = "IllegalStatusException",
     error = "client",
     members = {
         message = {
@@ -212,6 +224,7 @@ M.IllegalStatusException = {
 
 M.CreateApiDestinationInput = {
     type = "structure",
+    id = "CreateApiDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -248,6 +261,7 @@ M.CreateApiDestinationInput = {
 
 M.CreateApiDestinationOutput = {
     type = "structure",
+    id = "CreateApiDestinationOutput",
     members = {
         ApiDestinationArn = {
             type = "string",
@@ -266,6 +280,7 @@ M.CreateApiDestinationOutput = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         message = {
@@ -276,6 +291,7 @@ M.LimitExceededException = {
 
 M.ResourceAlreadyExistsException = {
     type = "structure",
+    id = "ResourceAlreadyExistsException",
     error = "client",
     members = {
         message = {
@@ -286,6 +302,7 @@ M.ResourceAlreadyExistsException = {
 
 M.CreateArchiveInput = {
     type = "structure",
+    id = "CreateArchiveInput",
     members = {
         ArchiveName = {
             type = "string",
@@ -313,6 +330,7 @@ M.CreateArchiveInput = {
 
 M.CreateArchiveOutput = {
     type = "structure",
+    id = "CreateArchiveOutput",
     members = {
         ArchiveArn = {
             type = "string",
@@ -331,6 +349,7 @@ M.CreateArchiveOutput = {
 
 M.InvalidEventPatternException = {
     type = "structure",
+    id = "InvalidEventPatternException",
     error = "client",
     members = {
         message = {
@@ -347,6 +366,7 @@ M.ConnectionAuthorizationType = {
 
 M.CreateConnectionApiKeyAuthRequestParameters = {
     type = "structure",
+    id = "CreateConnectionApiKeyAuthRequestParameters",
     members = {
         ApiKeyName = {
             type = "string",
@@ -365,6 +385,7 @@ M.CreateConnectionApiKeyAuthRequestParameters = {
 
 M.CreateConnectionBasicAuthRequestParameters = {
     type = "structure",
+    id = "CreateConnectionBasicAuthRequestParameters",
     members = {
         Username = {
             type = "string",
@@ -383,6 +404,7 @@ M.CreateConnectionBasicAuthRequestParameters = {
 
 M.ConnectionBodyParameter = {
     type = "structure",
+    id = "ConnectionBodyParameter",
     members = {
         Key = {
             type = "string",
@@ -401,6 +423,7 @@ M.ConnectionBodyParameter = {
 
 M.ConnectionHeaderParameter = {
     type = "structure",
+    id = "ConnectionHeaderParameter",
     members = {
         Key = {
             type = "string",
@@ -419,6 +442,7 @@ M.ConnectionHeaderParameter = {
 
 M.ConnectionQueryStringParameter = {
     type = "structure",
+    id = "ConnectionQueryStringParameter",
     members = {
         Key = {
             type = "string",
@@ -437,6 +461,7 @@ M.ConnectionQueryStringParameter = {
 
 M.ConnectionHttpParameters = {
     type = "structure",
+    id = "ConnectionHttpParameters",
     members = {
         HeaderParameters = {
             type = "list",
@@ -455,6 +480,7 @@ M.ConnectionHttpParameters = {
 
 M.CreateConnectionOAuthClientRequestParameters = {
     type = "structure",
+    id = "CreateConnectionOAuthClientRequestParameters",
     members = {
         ClientID = {
             type = "string",
@@ -479,6 +505,7 @@ M.ConnectionOAuthHttpMethod = {
 
 M.CreateConnectionOAuthRequestParameters = {
     type = "structure",
+    id = "CreateConnectionOAuthRequestParameters",
     members = {
         ClientParameters = setmetatable({ traits = {
             required = true,
@@ -501,6 +528,7 @@ M.CreateConnectionOAuthRequestParameters = {
 
 M.CreateConnectionAuthRequestParameters = {
     type = "structure",
+    id = "CreateConnectionAuthRequestParameters",
     members = {
         BasicAuthParameters = M.CreateConnectionBasicAuthRequestParameters,
         OAuthParameters = M.CreateConnectionOAuthRequestParameters,
@@ -511,6 +539,7 @@ M.CreateConnectionAuthRequestParameters = {
 
 M.CreateConnectionInput = {
     type = "structure",
+    id = "CreateConnectionInput",
     members = {
         Name = {
             type = "string",
@@ -545,6 +574,7 @@ M.ConnectionState = {
 
 M.CreateConnectionOutput = {
     type = "structure",
+    id = "CreateConnectionOutput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -563,6 +593,7 @@ M.CreateConnectionOutput = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -581,6 +612,7 @@ M.Tag = {
 
 M.CreateEventBusInput = {
     type = "structure",
+    id = "CreateEventBusInput",
     members = {
         Name = {
             type = "string",
@@ -600,6 +632,7 @@ M.CreateEventBusInput = {
 
 M.CreateEventBusOutput = {
     type = "structure",
+    id = "CreateEventBusOutput",
     members = {
         EventBusArn = {
             type = "string",
@@ -609,6 +642,7 @@ M.CreateEventBusOutput = {
 
 M.CreatePartnerEventSourceInput = {
     type = "structure",
+    id = "CreatePartnerEventSourceInput",
     members = {
         Name = {
             type = "string",
@@ -627,6 +661,7 @@ M.CreatePartnerEventSourceInput = {
 
 M.CreatePartnerEventSourceOutput = {
     type = "structure",
+    id = "CreatePartnerEventSourceOutput",
     members = {
         EventSourceArn = {
             type = "string",
@@ -636,6 +671,7 @@ M.CreatePartnerEventSourceOutput = {
 
 M.DeactivateEventSourceInput = {
     type = "structure",
+    id = "DeactivateEventSourceInput",
     members = {
         Name = {
             type = "string",
@@ -648,10 +684,12 @@ M.DeactivateEventSourceInput = {
 
 M.DeactivateEventSourceOutput = {
     type = "structure",
+    id = "DeactivateEventSourceOutput",
 }
 
 M.DeauthorizeConnectionInput = {
     type = "structure",
+    id = "DeauthorizeConnectionInput",
     members = {
         Name = {
             type = "string",
@@ -664,6 +702,7 @@ M.DeauthorizeConnectionInput = {
 
 M.DeauthorizeConnectionOutput = {
     type = "structure",
+    id = "DeauthorizeConnectionOutput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -685,6 +724,7 @@ M.DeauthorizeConnectionOutput = {
 
 M.DeleteApiDestinationInput = {
     type = "structure",
+    id = "DeleteApiDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -697,10 +737,12 @@ M.DeleteApiDestinationInput = {
 
 M.DeleteApiDestinationOutput = {
     type = "structure",
+    id = "DeleteApiDestinationOutput",
 }
 
 M.DeleteArchiveInput = {
     type = "structure",
+    id = "DeleteArchiveInput",
     members = {
         ArchiveName = {
             type = "string",
@@ -713,10 +755,12 @@ M.DeleteArchiveInput = {
 
 M.DeleteArchiveOutput = {
     type = "structure",
+    id = "DeleteArchiveOutput",
 }
 
 M.DeleteConnectionInput = {
     type = "structure",
+    id = "DeleteConnectionInput",
     members = {
         Name = {
             type = "string",
@@ -729,6 +773,7 @@ M.DeleteConnectionInput = {
 
 M.DeleteConnectionOutput = {
     type = "structure",
+    id = "DeleteConnectionOutput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -750,6 +795,7 @@ M.DeleteConnectionOutput = {
 
 M.DeleteEventBusInput = {
     type = "structure",
+    id = "DeleteEventBusInput",
     members = {
         Name = {
             type = "string",
@@ -762,10 +808,12 @@ M.DeleteEventBusInput = {
 
 M.DeleteEventBusOutput = {
     type = "structure",
+    id = "DeleteEventBusOutput",
 }
 
 M.DeletePartnerEventSourceInput = {
     type = "structure",
+    id = "DeletePartnerEventSourceInput",
     members = {
         Name = {
             type = "string",
@@ -784,10 +832,12 @@ M.DeletePartnerEventSourceInput = {
 
 M.DeletePartnerEventSourceOutput = {
     type = "structure",
+    id = "DeletePartnerEventSourceOutput",
 }
 
 M.DeleteRuleInput = {
     type = "structure",
+    id = "DeleteRuleInput",
     members = {
         Name = {
             type = "string",
@@ -809,10 +859,12 @@ M.DeleteRuleInput = {
 
 M.DeleteRuleOutput = {
     type = "structure",
+    id = "DeleteRuleOutput",
 }
 
 M.ManagedRuleException = {
     type = "structure",
+    id = "ManagedRuleException",
     error = "client",
     members = {
         message = {
@@ -823,6 +875,7 @@ M.ManagedRuleException = {
 
 M.DescribeApiDestinationInput = {
     type = "structure",
+    id = "DescribeApiDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -835,6 +888,7 @@ M.DescribeApiDestinationInput = {
 
 M.DescribeApiDestinationOutput = {
     type = "structure",
+    id = "DescribeApiDestinationOutput",
     members = {
         ApiDestinationArn = {
             type = "string",
@@ -871,6 +925,7 @@ M.DescribeApiDestinationOutput = {
 
 M.DescribeArchiveInput = {
     type = "structure",
+    id = "DescribeArchiveInput",
     members = {
         ArchiveName = {
             type = "string",
@@ -883,6 +938,7 @@ M.DescribeArchiveInput = {
 
 M.DescribeArchiveOutput = {
     type = "structure",
+    id = "DescribeArchiveOutput",
     members = {
         ArchiveArn = {
             type = "string",
@@ -928,6 +984,7 @@ M.DescribeArchiveOutput = {
 
 M.DescribeConnectionInput = {
     type = "structure",
+    id = "DescribeConnectionInput",
     members = {
         Name = {
             type = "string",
@@ -940,6 +997,7 @@ M.DescribeConnectionInput = {
 
 M.ConnectionApiKeyAuthResponseParameters = {
     type = "structure",
+    id = "ConnectionApiKeyAuthResponseParameters",
     members = {
         ApiKeyName = {
             type = "string",
@@ -949,6 +1007,7 @@ M.ConnectionApiKeyAuthResponseParameters = {
 
 M.ConnectionBasicAuthResponseParameters = {
     type = "structure",
+    id = "ConnectionBasicAuthResponseParameters",
     members = {
         Username = {
             type = "string",
@@ -958,6 +1017,7 @@ M.ConnectionBasicAuthResponseParameters = {
 
 M.ConnectionOAuthClientResponseParameters = {
     type = "structure",
+    id = "ConnectionOAuthClientResponseParameters",
     members = {
         ClientID = {
             type = "string",
@@ -967,6 +1027,7 @@ M.ConnectionOAuthClientResponseParameters = {
 
 M.ConnectionOAuthResponseParameters = {
     type = "structure",
+    id = "ConnectionOAuthResponseParameters",
     members = {
         ClientParameters = M.ConnectionOAuthClientResponseParameters,
         AuthorizationEndpoint = {
@@ -981,6 +1042,7 @@ M.ConnectionOAuthResponseParameters = {
 
 M.ConnectionAuthResponseParameters = {
     type = "structure",
+    id = "ConnectionAuthResponseParameters",
     members = {
         BasicAuthParameters = M.ConnectionBasicAuthResponseParameters,
         OAuthParameters = M.ConnectionOAuthResponseParameters,
@@ -991,6 +1053,7 @@ M.ConnectionAuthResponseParameters = {
 
 M.DescribeConnectionOutput = {
     type = "structure",
+    id = "DescribeConnectionOutput",
     members = {
         ConnectionArn = {
             type = "string",
@@ -1028,6 +1091,7 @@ M.DescribeConnectionOutput = {
 
 M.DescribeEventBusInput = {
     type = "structure",
+    id = "DescribeEventBusInput",
     members = {
         Name = {
             type = "string",
@@ -1037,6 +1101,7 @@ M.DescribeEventBusInput = {
 
 M.DescribeEventBusOutput = {
     type = "structure",
+    id = "DescribeEventBusOutput",
     members = {
         Name = {
             type = "string",
@@ -1052,6 +1117,7 @@ M.DescribeEventBusOutput = {
 
 M.DescribeEventSourceInput = {
     type = "structure",
+    id = "DescribeEventSourceInput",
     members = {
         Name = {
             type = "string",
@@ -1070,6 +1136,7 @@ M.EventSourceState = {
 
 M.DescribeEventSourceOutput = {
     type = "structure",
+    id = "DescribeEventSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -1094,6 +1161,7 @@ M.DescribeEventSourceOutput = {
 
 M.DescribePartnerEventSourceInput = {
     type = "structure",
+    id = "DescribePartnerEventSourceInput",
     members = {
         Name = {
             type = "string",
@@ -1106,6 +1174,7 @@ M.DescribePartnerEventSourceInput = {
 
 M.DescribePartnerEventSourceOutput = {
     type = "structure",
+    id = "DescribePartnerEventSourceOutput",
     members = {
         Arn = {
             type = "string",
@@ -1118,6 +1187,7 @@ M.DescribePartnerEventSourceOutput = {
 
 M.DescribeReplayInput = {
     type = "structure",
+    id = "DescribeReplayInput",
     members = {
         ReplayName = {
             type = "string",
@@ -1130,6 +1200,7 @@ M.DescribeReplayInput = {
 
 M.ReplayDestination = {
     type = "structure",
+    id = "ReplayDestination",
     members = {
         Arn = {
             type = "string",
@@ -1146,6 +1217,7 @@ M.ReplayDestination = {
 
 M.DescribeReplayOutput = {
     type = "structure",
+    id = "DescribeReplayOutput",
     members = {
         ReplayName = {
             type = "string",
@@ -1186,6 +1258,7 @@ M.DescribeReplayOutput = {
 
 M.DescribeRuleInput = {
     type = "structure",
+    id = "DescribeRuleInput",
     members = {
         Name = {
             type = "string",
@@ -1206,6 +1279,7 @@ M.RuleState = {
 
 M.DescribeRuleOutput = {
     type = "structure",
+    id = "DescribeRuleOutput",
     members = {
         Name = {
             type = "string",
@@ -1242,6 +1316,7 @@ M.DescribeRuleOutput = {
 
 M.DisableRuleInput = {
     type = "structure",
+    id = "DisableRuleInput",
     members = {
         Name = {
             type = "string",
@@ -1257,10 +1332,12 @@ M.DisableRuleInput = {
 
 M.DisableRuleOutput = {
     type = "structure",
+    id = "DisableRuleOutput",
 }
 
 M.EnableRuleInput = {
     type = "structure",
+    id = "EnableRuleInput",
     members = {
         Name = {
             type = "string",
@@ -1276,10 +1353,12 @@ M.EnableRuleInput = {
 
 M.EnableRuleOutput = {
     type = "structure",
+    id = "EnableRuleOutput",
 }
 
 M.ListApiDestinationsInput = {
     type = "structure",
+    id = "ListApiDestinationsInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1298,6 +1377,7 @@ M.ListApiDestinationsInput = {
 
 M.ListApiDestinationsOutput = {
     type = "structure",
+    id = "ListApiDestinationsOutput",
     members = {
         ApiDestinations = {
             type = "list",
@@ -1311,6 +1391,7 @@ M.ListApiDestinationsOutput = {
 
 M.ListArchivesInput = {
     type = "structure",
+    id = "ListArchivesInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1332,6 +1413,7 @@ M.ListArchivesInput = {
 
 M.ListArchivesOutput = {
     type = "structure",
+    id = "ListArchivesOutput",
     members = {
         Archives = {
             type = "list",
@@ -1345,6 +1427,7 @@ M.ListArchivesOutput = {
 
 M.ListConnectionsInput = {
     type = "structure",
+    id = "ListConnectionsInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1363,6 +1446,7 @@ M.ListConnectionsInput = {
 
 M.Connection = {
     type = "structure",
+    id = "Connection",
     members = {
         ConnectionArn = {
             type = "string",
@@ -1393,6 +1477,7 @@ M.Connection = {
 
 M.ListConnectionsOutput = {
     type = "structure",
+    id = "ListConnectionsOutput",
     members = {
         Connections = {
             type = "list",
@@ -1406,6 +1491,7 @@ M.ListConnectionsOutput = {
 
 M.ListEventBusesInput = {
     type = "structure",
+    id = "ListEventBusesInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1421,6 +1507,7 @@ M.ListEventBusesInput = {
 
 M.EventBus = {
     type = "structure",
+    id = "EventBus",
     members = {
         Name = {
             type = "string",
@@ -1436,6 +1523,7 @@ M.EventBus = {
 
 M.ListEventBusesOutput = {
     type = "structure",
+    id = "ListEventBusesOutput",
     members = {
         EventBuses = {
             type = "list",
@@ -1449,6 +1537,7 @@ M.ListEventBusesOutput = {
 
 M.ListEventSourcesInput = {
     type = "structure",
+    id = "ListEventSourcesInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1464,6 +1553,7 @@ M.ListEventSourcesInput = {
 
 M.EventSource = {
     type = "structure",
+    id = "EventSource",
     members = {
         Arn = {
             type = "string",
@@ -1488,6 +1578,7 @@ M.EventSource = {
 
 M.ListEventSourcesOutput = {
     type = "structure",
+    id = "ListEventSourcesOutput",
     members = {
         EventSources = {
             type = "list",
@@ -1501,6 +1592,7 @@ M.ListEventSourcesOutput = {
 
 M.ListPartnerEventSourceAccountsInput = {
     type = "structure",
+    id = "ListPartnerEventSourceAccountsInput",
     members = {
         EventSourceName = {
             type = "string",
@@ -1519,6 +1611,7 @@ M.ListPartnerEventSourceAccountsInput = {
 
 M.PartnerEventSourceAccount = {
     type = "structure",
+    id = "PartnerEventSourceAccount",
     members = {
         Account = {
             type = "string",
@@ -1537,6 +1630,7 @@ M.PartnerEventSourceAccount = {
 
 M.ListPartnerEventSourceAccountsOutput = {
     type = "structure",
+    id = "ListPartnerEventSourceAccountsOutput",
     members = {
         PartnerEventSourceAccounts = {
             type = "list",
@@ -1550,6 +1644,7 @@ M.ListPartnerEventSourceAccountsOutput = {
 
 M.ListPartnerEventSourcesInput = {
     type = "structure",
+    id = "ListPartnerEventSourcesInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1568,6 +1663,7 @@ M.ListPartnerEventSourcesInput = {
 
 M.PartnerEventSource = {
     type = "structure",
+    id = "PartnerEventSource",
     members = {
         Arn = {
             type = "string",
@@ -1580,6 +1676,7 @@ M.PartnerEventSource = {
 
 M.ListPartnerEventSourcesOutput = {
     type = "structure",
+    id = "ListPartnerEventSourcesOutput",
     members = {
         PartnerEventSources = {
             type = "list",
@@ -1593,6 +1690,7 @@ M.ListPartnerEventSourcesOutput = {
 
 M.ListReplaysInput = {
     type = "structure",
+    id = "ListReplaysInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1614,6 +1712,7 @@ M.ListReplaysInput = {
 
 M.Replay = {
     type = "structure",
+    id = "Replay",
     members = {
         ReplayName = {
             type = "string",
@@ -1647,6 +1746,7 @@ M.Replay = {
 
 M.ListReplaysOutput = {
     type = "structure",
+    id = "ListReplaysOutput",
     members = {
         Replays = {
             type = "list",
@@ -1660,6 +1760,7 @@ M.ListReplaysOutput = {
 
 M.ListRuleNamesByTargetInput = {
     type = "structure",
+    id = "ListRuleNamesByTargetInput",
     members = {
         TargetArn = {
             type = "string",
@@ -1681,6 +1782,7 @@ M.ListRuleNamesByTargetInput = {
 
 M.ListRuleNamesByTargetOutput = {
     type = "structure",
+    id = "ListRuleNamesByTargetOutput",
     members = {
         RuleNames = {
             type = "list",
@@ -1694,6 +1796,7 @@ M.ListRuleNamesByTargetOutput = {
 
 M.ListRulesInput = {
     type = "structure",
+    id = "ListRulesInput",
     members = {
         NamePrefix = {
             type = "string",
@@ -1712,6 +1815,7 @@ M.ListRulesInput = {
 
 M.Rule = {
     type = "structure",
+    id = "Rule",
     members = {
         Name = {
             type = "string",
@@ -1745,6 +1849,7 @@ M.Rule = {
 
 M.ListRulesOutput = {
     type = "structure",
+    id = "ListRulesOutput",
     members = {
         Rules = {
             type = "list",
@@ -1758,6 +1863,7 @@ M.ListRulesOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -1770,6 +1876,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -1780,6 +1887,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTargetsByRuleInput = {
     type = "structure",
+    id = "ListTargetsByRuleInput",
     members = {
         Rule = {
             type = "string",
@@ -1801,6 +1909,7 @@ M.ListTargetsByRuleInput = {
 
 M.BatchArrayProperties = {
     type = "structure",
+    id = "BatchArrayProperties",
     members = {
         Size = {
             type = "integer",
@@ -1813,6 +1922,7 @@ M.BatchArrayProperties = {
 
 M.BatchRetryStrategy = {
     type = "structure",
+    id = "BatchRetryStrategy",
     members = {
         Attempts = {
             type = "integer",
@@ -1825,6 +1935,7 @@ M.BatchRetryStrategy = {
 
 M.BatchParameters = {
     type = "structure",
+    id = "BatchParameters",
     members = {
         JobDefinition = {
             type = "string",
@@ -1845,6 +1956,7 @@ M.BatchParameters = {
 
 M.DeadLetterConfig = {
     type = "structure",
+    id = "DeadLetterConfig",
     members = {
         Arn = {
             type = "string",
@@ -1854,6 +1966,7 @@ M.DeadLetterConfig = {
 
 M.CapacityProviderStrategyItem = {
     type = "structure",
+    id = "CapacityProviderStrategyItem",
     members = {
         capacityProvider = {
             type = "string",
@@ -1884,6 +1997,7 @@ M.LaunchType = {
 
 M.AwsVpcConfiguration = {
     type = "structure",
+    id = "AwsVpcConfiguration",
     members = {
         Subnets = {
             type = "list",
@@ -1904,6 +2018,7 @@ M.AwsVpcConfiguration = {
 
 M.NetworkConfiguration = {
     type = "structure",
+    id = "NetworkConfiguration",
     members = {
         awsvpcConfiguration = M.AwsVpcConfiguration,
     },
@@ -1916,6 +2031,7 @@ M.PlacementConstraintType = {
 
 M.PlacementConstraint = {
     type = "structure",
+    id = "PlacementConstraint",
     members = {
         type = {
             type = "string",
@@ -1934,6 +2050,7 @@ M.PlacementStrategyType = {
 
 M.PlacementStrategy = {
     type = "structure",
+    id = "PlacementStrategy",
     members = {
         type = {
             type = "string",
@@ -1950,6 +2067,7 @@ M.PropagateTags = {
 
 M.EcsParameters = {
     type = "structure",
+    id = "EcsParameters",
     members = {
         TaskDefinitionArn = {
             type = "string",
@@ -2009,6 +2127,7 @@ M.EcsParameters = {
 
 M.HttpParameters = {
     type = "structure",
+    id = "HttpParameters",
     members = {
         PathParameterValues = {
             type = "list",
@@ -2029,6 +2148,7 @@ M.HttpParameters = {
 
 M.InputTransformer = {
     type = "structure",
+    id = "InputTransformer",
     members = {
         InputPathsMap = {
             type = "map",
@@ -2046,6 +2166,7 @@ M.InputTransformer = {
 
 M.KinesisParameters = {
     type = "structure",
+    id = "KinesisParameters",
     members = {
         PartitionKeyPath = {
             type = "string",
@@ -2058,6 +2179,7 @@ M.KinesisParameters = {
 
 M.RedshiftDataParameters = {
     type = "structure",
+    id = "RedshiftDataParameters",
     members = {
         SecretManagerArn = {
             type = "string",
@@ -2091,6 +2213,7 @@ M.RedshiftDataParameters = {
 
 M.RetryPolicy = {
     type = "structure",
+    id = "RetryPolicy",
     members = {
         MaximumRetryAttempts = {
             type = "integer",
@@ -2103,6 +2226,7 @@ M.RetryPolicy = {
 
 M.RunCommandTarget = {
     type = "structure",
+    id = "RunCommandTarget",
     members = {
         Key = {
             type = "string",
@@ -2122,6 +2246,7 @@ M.RunCommandTarget = {
 
 M.RunCommandParameters = {
     type = "structure",
+    id = "RunCommandParameters",
     members = {
         RunCommandTargets = {
             type = "list",
@@ -2135,6 +2260,7 @@ M.RunCommandParameters = {
 
 M.SageMakerPipelineParameter = {
     type = "structure",
+    id = "SageMakerPipelineParameter",
     members = {
         Name = {
             type = "string",
@@ -2153,6 +2279,7 @@ M.SageMakerPipelineParameter = {
 
 M.SageMakerPipelineParameters = {
     type = "structure",
+    id = "SageMakerPipelineParameters",
     members = {
         PipelineParameterList = {
             type = "list",
@@ -2163,6 +2290,7 @@ M.SageMakerPipelineParameters = {
 
 M.SqsParameters = {
     type = "structure",
+    id = "SqsParameters",
     members = {
         MessageGroupId = {
             type = "string",
@@ -2172,6 +2300,7 @@ M.SqsParameters = {
 
 M.Target = {
     type = "structure",
+    id = "Target",
     members = {
         Id = {
             type = "string",
@@ -2210,6 +2339,7 @@ M.Target = {
 
 M.ListTargetsByRuleOutput = {
     type = "structure",
+    id = "ListTargetsByRuleOutput",
     members = {
         Targets = {
             type = "list",
@@ -2223,6 +2353,7 @@ M.ListTargetsByRuleOutput = {
 
 M.PutEventsRequestEntry = {
     type = "structure",
+    id = "PutEventsRequestEntry",
     members = {
         Time = {
             type = "timestamp",
@@ -2251,6 +2382,7 @@ M.PutEventsRequestEntry = {
 
 M.PutEventsInput = {
     type = "structure",
+    id = "PutEventsInput",
     members = {
         Entries = {
             type = "list",
@@ -2264,6 +2396,7 @@ M.PutEventsInput = {
 
 M.PutEventsResultEntry = {
     type = "structure",
+    id = "PutEventsResultEntry",
     members = {
         EventId = {
             type = "string",
@@ -2279,6 +2412,7 @@ M.PutEventsResultEntry = {
 
 M.PutEventsOutput = {
     type = "structure",
+    id = "PutEventsOutput",
     members = {
         FailedEntryCount = {
             type = "integer",
@@ -2295,6 +2429,7 @@ M.PutEventsOutput = {
 
 M.PutPartnerEventsRequestEntry = {
     type = "structure",
+    id = "PutPartnerEventsRequestEntry",
     members = {
         Time = {
             type = "timestamp",
@@ -2317,6 +2452,7 @@ M.PutPartnerEventsRequestEntry = {
 
 M.PutPartnerEventsInput = {
     type = "structure",
+    id = "PutPartnerEventsInput",
     members = {
         Entries = {
             type = "list",
@@ -2330,6 +2466,7 @@ M.PutPartnerEventsInput = {
 
 M.PutPartnerEventsResultEntry = {
     type = "structure",
+    id = "PutPartnerEventsResultEntry",
     members = {
         EventId = {
             type = "string",
@@ -2345,6 +2482,7 @@ M.PutPartnerEventsResultEntry = {
 
 M.PutPartnerEventsOutput = {
     type = "structure",
+    id = "PutPartnerEventsOutput",
     members = {
         FailedEntryCount = {
             type = "integer",
@@ -2361,6 +2499,7 @@ M.PutPartnerEventsOutput = {
 
 M.PolicyLengthExceededException = {
     type = "structure",
+    id = "PolicyLengthExceededException",
     error = "client",
     members = {
         message = {
@@ -2371,6 +2510,7 @@ M.PolicyLengthExceededException = {
 
 M.Condition = {
     type = "structure",
+    id = "Condition",
     members = {
         Type = {
             type = "string",
@@ -2395,6 +2535,7 @@ M.Condition = {
 
 M.PutPermissionInput = {
     type = "structure",
+    id = "PutPermissionInput",
     members = {
         EventBusName = {
             type = "string",
@@ -2417,10 +2558,12 @@ M.PutPermissionInput = {
 
 M.PutPermissionOutput = {
     type = "structure",
+    id = "PutPermissionOutput",
 }
 
 M.PutRuleInput = {
     type = "structure",
+    id = "PutRuleInput",
     members = {
         Name = {
             type = "string",
@@ -2455,6 +2598,7 @@ M.PutRuleInput = {
 
 M.PutRuleOutput = {
     type = "structure",
+    id = "PutRuleOutput",
     members = {
         RuleArn = {
             type = "string",
@@ -2464,6 +2608,7 @@ M.PutRuleOutput = {
 
 M.PutTargetsInput = {
     type = "structure",
+    id = "PutTargetsInput",
     members = {
         Rule = {
             type = "string",
@@ -2486,6 +2631,7 @@ M.PutTargetsInput = {
 
 M.PutTargetsResultEntry = {
     type = "structure",
+    id = "PutTargetsResultEntry",
     members = {
         TargetId = {
             type = "string",
@@ -2501,6 +2647,7 @@ M.PutTargetsResultEntry = {
 
 M.PutTargetsOutput = {
     type = "structure",
+    id = "PutTargetsOutput",
     members = {
         FailedEntryCount = {
             type = "integer",
@@ -2517,6 +2664,7 @@ M.PutTargetsOutput = {
 
 M.RemovePermissionInput = {
     type = "structure",
+    id = "RemovePermissionInput",
     members = {
         StatementId = {
             type = "string",
@@ -2535,10 +2683,12 @@ M.RemovePermissionInput = {
 
 M.RemovePermissionOutput = {
     type = "structure",
+    id = "RemovePermissionOutput",
 }
 
 M.RemoveTargetsInput = {
     type = "structure",
+    id = "RemoveTargetsInput",
     members = {
         Rule = {
             type = "string",
@@ -2567,6 +2717,7 @@ M.RemoveTargetsInput = {
 
 M.RemoveTargetsResultEntry = {
     type = "structure",
+    id = "RemoveTargetsResultEntry",
     members = {
         TargetId = {
             type = "string",
@@ -2582,6 +2733,7 @@ M.RemoveTargetsResultEntry = {
 
 M.RemoveTargetsOutput = {
     type = "structure",
+    id = "RemoveTargetsOutput",
     members = {
         FailedEntryCount = {
             type = "integer",
@@ -2598,6 +2750,7 @@ M.RemoveTargetsOutput = {
 
 M.StartReplayInput = {
     type = "structure",
+    id = "StartReplayInput",
     members = {
         ReplayName = {
             type = "string",
@@ -2634,6 +2787,7 @@ M.StartReplayInput = {
 
 M.StartReplayOutput = {
     type = "structure",
+    id = "StartReplayOutput",
     members = {
         ReplayArn = {
             type = "string",
@@ -2652,6 +2806,7 @@ M.StartReplayOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2671,10 +2826,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.TestEventPatternInput = {
     type = "structure",
+    id = "TestEventPatternInput",
     members = {
         EventPattern = {
             type = "string",
@@ -2693,6 +2850,7 @@ M.TestEventPatternInput = {
 
 M.TestEventPatternOutput = {
     type = "structure",
+    id = "TestEventPatternOutput",
     members = {
         Result = {
             type = "boolean",
@@ -2705,6 +2863,7 @@ M.TestEventPatternOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceARN = {
             type = "string",
@@ -2724,10 +2883,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateApiDestinationInput = {
     type = "structure",
+    id = "UpdateApiDestinationInput",
     members = {
         Name = {
             type = "string",
@@ -2755,6 +2916,7 @@ M.UpdateApiDestinationInput = {
 
 M.UpdateApiDestinationOutput = {
     type = "structure",
+    id = "UpdateApiDestinationOutput",
     members = {
         ApiDestinationArn = {
             type = "string",
@@ -2773,6 +2935,7 @@ M.UpdateApiDestinationOutput = {
 
 M.UpdateArchiveInput = {
     type = "structure",
+    id = "UpdateArchiveInput",
     members = {
         ArchiveName = {
             type = "string",
@@ -2794,6 +2957,7 @@ M.UpdateArchiveInput = {
 
 M.UpdateArchiveOutput = {
     type = "structure",
+    id = "UpdateArchiveOutput",
     members = {
         ArchiveArn = {
             type = "string",
@@ -2812,6 +2976,7 @@ M.UpdateArchiveOutput = {
 
 M.UpdateConnectionApiKeyAuthRequestParameters = {
     type = "structure",
+    id = "UpdateConnectionApiKeyAuthRequestParameters",
     members = {
         ApiKeyName = {
             type = "string",
@@ -2824,6 +2989,7 @@ M.UpdateConnectionApiKeyAuthRequestParameters = {
 
 M.UpdateConnectionBasicAuthRequestParameters = {
     type = "structure",
+    id = "UpdateConnectionBasicAuthRequestParameters",
     members = {
         Username = {
             type = "string",
@@ -2836,6 +3002,7 @@ M.UpdateConnectionBasicAuthRequestParameters = {
 
 M.UpdateConnectionOAuthClientRequestParameters = {
     type = "structure",
+    id = "UpdateConnectionOAuthClientRequestParameters",
     members = {
         ClientID = {
             type = "string",
@@ -2848,6 +3015,7 @@ M.UpdateConnectionOAuthClientRequestParameters = {
 
 M.UpdateConnectionOAuthRequestParameters = {
     type = "structure",
+    id = "UpdateConnectionOAuthRequestParameters",
     members = {
         ClientParameters = M.UpdateConnectionOAuthClientRequestParameters,
         AuthorizationEndpoint = {
@@ -2862,6 +3030,7 @@ M.UpdateConnectionOAuthRequestParameters = {
 
 M.UpdateConnectionAuthRequestParameters = {
     type = "structure",
+    id = "UpdateConnectionAuthRequestParameters",
     members = {
         BasicAuthParameters = M.UpdateConnectionBasicAuthRequestParameters,
         OAuthParameters = M.UpdateConnectionOAuthRequestParameters,
@@ -2872,6 +3041,7 @@ M.UpdateConnectionAuthRequestParameters = {
 
 M.UpdateConnectionInput = {
     type = "structure",
+    id = "UpdateConnectionInput",
     members = {
         Name = {
             type = "string",
@@ -2891,6 +3061,7 @@ M.UpdateConnectionInput = {
 
 M.UpdateConnectionOutput = {
     type = "structure",
+    id = "UpdateConnectionOutput",
     members = {
         ConnectionArn = {
             type = "string",

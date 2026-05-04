@@ -2,6 +2,7 @@ local M = {}
 
 M.Term = {
     type = "structure",
+    id = "Term",
     members = {
         SourceText = {
             type = "string",
@@ -14,6 +15,7 @@ M.Term = {
 
 M.AppliedTerminology = {
     type = "structure",
+    id = "AppliedTerminology",
     members = {
         Name = {
             type = "string",
@@ -27,6 +29,7 @@ M.AppliedTerminology = {
 
 M.ConcurrentModificationException = {
     type = "structure",
+    id = "ConcurrentModificationException",
     error = "client",
     members = {
         Message = {
@@ -37,6 +40,7 @@ M.ConcurrentModificationException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         Message = {
@@ -51,6 +55,7 @@ M.EncryptionKeyType = {
 
 M.EncryptionKey = {
     type = "structure",
+    id = "EncryptionKey",
     members = {
         Type = {
             type = "string",
@@ -75,6 +80,7 @@ M.ParallelDataFormat = {
 
 M.ParallelDataConfig = {
     type = "structure",
+    id = "ParallelDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -87,6 +93,7 @@ M.ParallelDataConfig = {
 
 M.Tag = {
     type = "structure",
+    id = "Tag",
     members = {
         Key = {
             type = "string",
@@ -105,6 +112,7 @@ M.Tag = {
 
 M.CreateParallelDataInput = {
     type = "structure",
+    id = "CreateParallelDataInput",
     members = {
         Name = {
             type = "string",
@@ -143,6 +151,7 @@ M.ParallelDataStatus = {
 
 M.CreateParallelDataOutput = {
     type = "structure",
+    id = "CreateParallelDataOutput",
     members = {
         Name = {
             type = "string",
@@ -155,6 +164,7 @@ M.CreateParallelDataOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         Message = {
@@ -165,6 +175,7 @@ M.InternalServerException = {
 
 M.InvalidParameterValueException = {
     type = "structure",
+    id = "InvalidParameterValueException",
     error = "client",
     members = {
         Message = {
@@ -175,6 +186,7 @@ M.InvalidParameterValueException = {
 
 M.InvalidRequestException = {
     type = "structure",
+    id = "InvalidRequestException",
     error = "client",
     members = {
         Message = {
@@ -185,6 +197,7 @@ M.InvalidRequestException = {
 
 M.LimitExceededException = {
     type = "structure",
+    id = "LimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -195,6 +208,7 @@ M.LimitExceededException = {
 
 M.TooManyRequestsException = {
     type = "structure",
+    id = "TooManyRequestsException",
     error = "client",
     members = {
         Message = {
@@ -205,6 +219,7 @@ M.TooManyRequestsException = {
 
 M.TooManyTagsException = {
     type = "structure",
+    id = "TooManyTagsException",
     error = "client",
     members = {
         message = {
@@ -218,6 +233,7 @@ M.TooManyTagsException = {
 
 M.DeleteParallelDataInput = {
     type = "structure",
+    id = "DeleteParallelDataInput",
     members = {
         Name = {
             type = "string",
@@ -230,6 +246,7 @@ M.DeleteParallelDataInput = {
 
 M.DeleteParallelDataOutput = {
     type = "structure",
+    id = "DeleteParallelDataOutput",
     members = {
         Name = {
             type = "string",
@@ -242,6 +259,7 @@ M.DeleteParallelDataOutput = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         Message = {
@@ -252,6 +270,7 @@ M.ResourceNotFoundException = {
 
 M.DeleteTerminologyInput = {
     type = "structure",
+    id = "DeleteTerminologyInput",
     members = {
         Name = {
             type = "string",
@@ -264,10 +283,12 @@ M.DeleteTerminologyInput = {
 
 M.DeleteTerminologyOutput = {
     type = "structure",
+    id = "DeleteTerminologyOutput",
 }
 
 M.DescribeTextTranslationJobInput = {
     type = "structure",
+    id = "DescribeTextTranslationJobInput",
     members = {
         JobId = {
             type = "string",
@@ -280,6 +301,7 @@ M.DescribeTextTranslationJobInput = {
 
 M.InputDataConfig = {
     type = "structure",
+    id = "InputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -298,6 +320,7 @@ M.InputDataConfig = {
 
 M.JobDetails = {
     type = "structure",
+    id = "JobDetails",
     members = {
         TranslatedDocumentsCount = {
             type = "integer",
@@ -323,6 +346,7 @@ M.JobStatus = {
 
 M.OutputDataConfig = {
     type = "structure",
+    id = "OutputDataConfig",
     members = {
         S3Uri = {
             type = "string",
@@ -349,6 +373,7 @@ M.Profanity = {
 
 M.TranslationSettings = {
     type = "structure",
+    id = "TranslationSettings",
     members = {
         Formality = {
             type = "string",
@@ -364,6 +389,7 @@ M.TranslationSettings = {
 
 M.TextTranslationJobProperties = {
     type = "structure",
+    id = "TextTranslationJobProperties",
     members = {
         JobId = {
             type = "string",
@@ -410,6 +436,7 @@ M.TextTranslationJobProperties = {
 
 M.DescribeTextTranslationJobOutput = {
     type = "structure",
+    id = "DescribeTextTranslationJobOutput",
     members = {
         TextTranslationJobProperties = M.TextTranslationJobProperties,
     },
@@ -417,6 +444,7 @@ M.DescribeTextTranslationJobOutput = {
 
 M.GetParallelDataInput = {
     type = "structure",
+    id = "GetParallelDataInput",
     members = {
         Name = {
             type = "string",
@@ -429,6 +457,7 @@ M.GetParallelDataInput = {
 
 M.ParallelDataDataLocation = {
     type = "structure",
+    id = "ParallelDataDataLocation",
     members = {
         RepositoryType = {
             type = "string",
@@ -447,6 +476,7 @@ M.ParallelDataDataLocation = {
 
 M.ParallelDataProperties = {
     type = "structure",
+    id = "ParallelDataProperties",
     members = {
         Name = {
             type = "string",
@@ -501,6 +531,7 @@ M.ParallelDataProperties = {
 
 M.GetParallelDataOutput = {
     type = "structure",
+    id = "GetParallelDataOutput",
     members = {
         ParallelDataProperties = M.ParallelDataProperties,
         DataLocation = M.ParallelDataDataLocation,
@@ -517,6 +548,7 @@ M.TerminologyDataFormat = {
 
 M.GetTerminologyInput = {
     type = "structure",
+    id = "GetTerminologyInput",
     members = {
         Name = {
             type = "string",
@@ -532,6 +564,7 @@ M.GetTerminologyInput = {
 
 M.TerminologyDataLocation = {
     type = "structure",
+    id = "TerminologyDataLocation",
     members = {
         RepositoryType = {
             type = "string",
@@ -555,6 +588,7 @@ M.Directionality = {
 
 M.TerminologyProperties = {
     type = "structure",
+    id = "TerminologyProperties",
     members = {
         Name = {
             type = "string",
@@ -602,6 +636,7 @@ M.TerminologyProperties = {
 
 M.GetTerminologyOutput = {
     type = "structure",
+    id = "GetTerminologyOutput",
     members = {
         TerminologyProperties = M.TerminologyProperties,
         TerminologyDataLocation = M.TerminologyDataLocation,
@@ -615,6 +650,7 @@ M.MergeStrategy = {
 
 M.TerminologyData = {
     type = "structure",
+    id = "TerminologyData",
     members = {
         File = {
             type = "blob",
@@ -636,6 +672,7 @@ M.TerminologyData = {
 
 M.ImportTerminologyInput = {
     type = "structure",
+    id = "ImportTerminologyInput",
     members = {
         Name = {
             type = "string",
@@ -665,6 +702,7 @@ M.ImportTerminologyInput = {
 
 M.ImportTerminologyOutput = {
     type = "structure",
+    id = "ImportTerminologyOutput",
     members = {
         TerminologyProperties = M.TerminologyProperties,
         AuxiliaryDataLocation = M.TerminologyDataLocation,
@@ -686,6 +724,7 @@ M.DisplayLanguageCode = {
 
 M.ListLanguagesInput = {
     type = "structure",
+    id = "ListLanguagesInput",
     members = {
         DisplayLanguageCode = {
             type = "string",
@@ -701,6 +740,7 @@ M.ListLanguagesInput = {
 
 M.Language = {
     type = "structure",
+    id = "Language",
     members = {
         LanguageName = {
             type = "string",
@@ -719,6 +759,7 @@ M.Language = {
 
 M.ListLanguagesOutput = {
     type = "structure",
+    id = "ListLanguagesOutput",
     members = {
         Languages = {
             type = "list",
@@ -735,6 +776,7 @@ M.ListLanguagesOutput = {
 
 M.UnsupportedDisplayLanguageCodeException = {
     type = "structure",
+    id = "UnsupportedDisplayLanguageCodeException",
     error = "client",
     members = {
         Message = {
@@ -748,6 +790,7 @@ M.UnsupportedDisplayLanguageCodeException = {
 
 M.ListParallelDataInput = {
     type = "structure",
+    id = "ListParallelDataInput",
     members = {
         NextToken = {
             type = "string",
@@ -760,6 +803,7 @@ M.ListParallelDataInput = {
 
 M.ListParallelDataOutput = {
     type = "structure",
+    id = "ListParallelDataOutput",
     members = {
         ParallelDataPropertiesList = {
             type = "list",
@@ -773,6 +817,7 @@ M.ListParallelDataOutput = {
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -785,6 +830,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         Tags = {
             type = "list",
@@ -795,6 +841,7 @@ M.ListTagsForResourceOutput = {
 
 M.ListTerminologiesInput = {
     type = "structure",
+    id = "ListTerminologiesInput",
     members = {
         NextToken = {
             type = "string",
@@ -807,6 +854,7 @@ M.ListTerminologiesInput = {
 
 M.ListTerminologiesOutput = {
     type = "structure",
+    id = "ListTerminologiesOutput",
     members = {
         TerminologyPropertiesList = {
             type = "list",
@@ -820,6 +868,7 @@ M.ListTerminologiesOutput = {
 
 M.InvalidFilterException = {
     type = "structure",
+    id = "InvalidFilterException",
     error = "client",
     members = {
         Message = {
@@ -830,6 +879,7 @@ M.InvalidFilterException = {
 
 M.TextTranslationJobFilter = {
     type = "structure",
+    id = "TextTranslationJobFilter",
     members = {
         JobName = {
             type = "string",
@@ -848,6 +898,7 @@ M.TextTranslationJobFilter = {
 
 M.ListTextTranslationJobsInput = {
     type = "structure",
+    id = "ListTextTranslationJobsInput",
     members = {
         Filter = M.TextTranslationJobFilter,
         NextToken = {
@@ -861,6 +912,7 @@ M.ListTextTranslationJobsInput = {
 
 M.ListTextTranslationJobsOutput = {
     type = "structure",
+    id = "ListTextTranslationJobsOutput",
     members = {
         TextTranslationJobPropertiesList = {
             type = "list",
@@ -874,6 +926,7 @@ M.ListTextTranslationJobsOutput = {
 
 M.StartTextTranslationJobInput = {
     type = "structure",
+    id = "StartTextTranslationJobInput",
     members = {
         JobName = {
             type = "string",
@@ -924,6 +977,7 @@ M.StartTextTranslationJobInput = {
 
 M.StartTextTranslationJobOutput = {
     type = "structure",
+    id = "StartTextTranslationJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -936,6 +990,7 @@ M.StartTextTranslationJobOutput = {
 
 M.UnsupportedLanguagePairException = {
     type = "structure",
+    id = "UnsupportedLanguagePairException",
     error = "client",
     members = {
         Message = {
@@ -952,6 +1007,7 @@ M.UnsupportedLanguagePairException = {
 
 M.StopTextTranslationJobInput = {
     type = "structure",
+    id = "StopTextTranslationJobInput",
     members = {
         JobId = {
             type = "string",
@@ -964,6 +1020,7 @@ M.StopTextTranslationJobInput = {
 
 M.StopTextTranslationJobOutput = {
     type = "structure",
+    id = "StopTextTranslationJobOutput",
     members = {
         JobId = {
             type = "string",
@@ -976,6 +1033,7 @@ M.StopTextTranslationJobOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -995,10 +1053,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.ServiceUnavailableException = {
     type = "structure",
+    id = "ServiceUnavailableException",
     error = "server",
     members = {
         Message = {
@@ -1009,6 +1069,7 @@ M.ServiceUnavailableException = {
 
 M.Document = {
     type = "structure",
+    id = "Document",
     members = {
         Content = {
             type = "blob",
@@ -1027,6 +1088,7 @@ M.Document = {
 
 M.TranslateDocumentInput = {
     type = "structure",
+    id = "TranslateDocumentInput",
     members = {
         Document = setmetatable({ traits = {
             required = true,
@@ -1053,6 +1115,7 @@ M.TranslateDocumentInput = {
 
 M.TranslatedDocument = {
     type = "structure",
+    id = "TranslatedDocument",
     members = {
         Content = {
             type = "blob",
@@ -1065,6 +1128,7 @@ M.TranslatedDocument = {
 
 M.TranslateDocumentOutput = {
     type = "structure",
+    id = "TranslateDocumentOutput",
     members = {
         TranslatedDocument = setmetatable({ traits = {
             required = true,
@@ -1091,6 +1155,7 @@ M.TranslateDocumentOutput = {
 
 M.DetectedLanguageLowConfidenceException = {
     type = "structure",
+    id = "DetectedLanguageLowConfidenceException",
     error = "client",
     members = {
         Message = {
@@ -1104,6 +1169,7 @@ M.DetectedLanguageLowConfidenceException = {
 
 M.TextSizeLimitExceededException = {
     type = "structure",
+    id = "TextSizeLimitExceededException",
     error = "client",
     members = {
         Message = {
@@ -1114,6 +1180,7 @@ M.TextSizeLimitExceededException = {
 
 M.TranslateTextInput = {
     type = "structure",
+    id = "TranslateTextInput",
     members = {
         Text = {
             type = "string",
@@ -1143,6 +1210,7 @@ M.TranslateTextInput = {
 
 M.TranslateTextOutput = {
     type = "structure",
+    id = "TranslateTextOutput",
     members = {
         TranslatedText = {
             type = "string",
@@ -1172,6 +1240,7 @@ M.TranslateTextOutput = {
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         ResourceArn = {
             type = "string",
@@ -1191,10 +1260,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.UpdateParallelDataInput = {
     type = "structure",
+    id = "UpdateParallelDataInput",
     members = {
         Name = {
             type = "string",
@@ -1220,6 +1291,7 @@ M.UpdateParallelDataInput = {
 
 M.UpdateParallelDataOutput = {
     type = "structure",
+    id = "UpdateParallelDataOutput",
     members = {
         Name = {
             type = "string",

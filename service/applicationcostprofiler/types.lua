@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -12,6 +13,7 @@ M.AccessDeniedException = {
 
 M.DeleteReportDefinitionInput = {
     type = "structure",
+    id = "DeleteReportDefinitionInput",
     members = {
         reportId = {
             type = "string",
@@ -25,6 +27,7 @@ M.DeleteReportDefinitionInput = {
 
 M.DeleteReportDefinitionOutput = {
     type = "structure",
+    id = "DeleteReportDefinitionOutput",
     members = {
         reportId = {
             type = "string",
@@ -34,6 +37,7 @@ M.DeleteReportDefinitionOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -44,6 +48,7 @@ M.InternalServerException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -54,6 +59,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -64,6 +70,7 @@ M.ValidationException = {
 
 M.GetReportDefinitionInput = {
     type = "structure",
+    id = "GetReportDefinitionInput",
     members = {
         reportId = {
             type = "string",
@@ -77,6 +84,7 @@ M.GetReportDefinitionInput = {
 
 M.S3Location = {
     type = "structure",
+    id = "S3Location",
     members = {
         bucket = {
             type = "string",
@@ -106,6 +114,7 @@ M.ReportFrequency = {
 
 M.GetReportDefinitionOutput = {
     type = "structure",
+    id = "GetReportDefinitionOutput",
     members = {
         reportId = {
             type = "string",
@@ -158,6 +167,7 @@ M.S3BucketRegion = {
 
 M.SourceS3Location = {
     type = "structure",
+    id = "SourceS3Location",
     members = {
         bucket = {
             type = "string",
@@ -179,6 +189,7 @@ M.SourceS3Location = {
 
 M.ImportApplicationUsageInput = {
     type = "structure",
+    id = "ImportApplicationUsageInput",
     members = {
         sourceS3Location = setmetatable({ traits = {
             required = true,
@@ -188,6 +199,7 @@ M.ImportApplicationUsageInput = {
 
 M.ImportApplicationUsageOutput = {
     type = "structure",
+    id = "ImportApplicationUsageOutput",
     members = {
         importId = {
             type = "string",
@@ -200,6 +212,7 @@ M.ImportApplicationUsageOutput = {
 
 M.ListReportDefinitionsInput = {
     type = "structure",
+    id = "ListReportDefinitionsInput",
     members = {
         nextToken = {
             type = "string",
@@ -218,6 +231,7 @@ M.ListReportDefinitionsInput = {
 
 M.ReportDefinition = {
     type = "structure",
+    id = "ReportDefinition",
     members = {
         reportId = {
             type = "string",
@@ -243,6 +257,7 @@ M.ReportDefinition = {
 
 M.ListReportDefinitionsOutput = {
     type = "structure",
+    id = "ListReportDefinitionsOutput",
     members = {
         reportDefinitions = {
             type = "list",
@@ -256,6 +271,7 @@ M.ListReportDefinitionsOutput = {
 
 M.PutReportDefinitionInput = {
     type = "structure",
+    id = "PutReportDefinitionInput",
     members = {
         reportId = {
             type = "string",
@@ -289,6 +305,7 @@ M.PutReportDefinitionInput = {
 
 M.PutReportDefinitionOutput = {
     type = "structure",
+    id = "PutReportDefinitionOutput",
     members = {
         reportId = {
             type = "string",
@@ -298,6 +315,7 @@ M.PutReportDefinitionOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -308,6 +326,7 @@ M.ServiceQuotaExceededException = {
 
 M.UpdateReportDefinitionInput = {
     type = "structure",
+    id = "UpdateReportDefinitionInput",
     members = {
         reportId = {
             type = "string",
@@ -342,6 +361,7 @@ M.UpdateReportDefinitionInput = {
 
 M.UpdateReportDefinitionOutput = {
     type = "structure",
+    id = "UpdateReportDefinitionOutput",
     members = {
         reportId = {
             type = "string",

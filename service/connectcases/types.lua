@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessDeniedException = {
     type = "structure",
+    id = "AccessDeniedException",
     error = "client",
     members = {
         message = {
@@ -15,6 +16,7 @@ M.AccessDeniedException = {
 
 M.ConflictException = {
     type = "structure",
+    id = "ConflictException",
     error = "client",
     members = {
         message = {
@@ -28,10 +30,12 @@ M.ConflictException = {
 
 M.EmptyFieldValue = {
     type = "structure",
+    id = "EmptyFieldValue",
 }
 
 M.FieldValueUnion = {
     type = "union",
+    id = "FieldValueUnion",
     members = {
         stringValue = {
             type = "string",
@@ -51,6 +55,7 @@ M.FieldValueUnion = {
 
 M.FieldValue = {
     type = "structure",
+    id = "FieldValue",
     members = {
         id = {
             type = "string",
@@ -66,6 +71,7 @@ M.FieldValue = {
 
 M.UserUnion = {
     type = "union",
+    id = "UserUnion",
     members = {
         userArn = {
             type = "string",
@@ -78,6 +84,7 @@ M.UserUnion = {
 
 M.CreateCaseInput = {
     type = "structure",
+    id = "CreateCaseInput",
     members = {
         domainId = {
             type = "string",
@@ -116,6 +123,7 @@ M.CreateCaseInput = {
 
 M.CreateCaseOutput = {
     type = "structure",
+    id = "CreateCaseOutput",
     members = {
         caseId = {
             type = "string",
@@ -134,6 +142,7 @@ M.CreateCaseOutput = {
 
 M.InternalServerException = {
     type = "structure",
+    id = "InternalServerException",
     error = "server",
     members = {
         message = {
@@ -153,6 +162,7 @@ M.InternalServerException = {
 
 M.ResourceNotFoundException = {
     type = "structure",
+    id = "ResourceNotFoundException",
     error = "client",
     members = {
         message = {
@@ -178,6 +188,7 @@ M.ResourceNotFoundException = {
 
 M.ThrottlingException = {
     type = "structure",
+    id = "ThrottlingException",
     error = "client",
     members = {
         message = {
@@ -191,6 +202,7 @@ M.ThrottlingException = {
 
 M.ValidationException = {
     type = "structure",
+    id = "ValidationException",
     error = "client",
     members = {
         message = {
@@ -204,6 +216,7 @@ M.ValidationException = {
 
 M.DeleteCaseInput = {
     type = "structure",
+    id = "DeleteCaseInput",
     members = {
         domainId = {
             type = "string",
@@ -224,10 +237,12 @@ M.DeleteCaseInput = {
 
 M.DeleteCaseOutput = {
     type = "structure",
+    id = "DeleteCaseOutput",
 }
 
 M.FieldIdentifier = {
     type = "structure",
+    id = "FieldIdentifier",
     members = {
         id = {
             type = "string",
@@ -240,6 +255,7 @@ M.FieldIdentifier = {
 
 M.GetCaseInput = {
     type = "structure",
+    id = "GetCaseInput",
     members = {
         caseId = {
             type = "string",
@@ -270,6 +286,7 @@ M.GetCaseInput = {
 
 M.GetCaseOutput = {
     type = "structure",
+    id = "GetCaseOutput",
     members = {
         fields = {
             type = "list",
@@ -297,6 +314,7 @@ M.GetCaseOutput = {
 
 M.GetCaseAuditEventsInput = {
     type = "structure",
+    id = "GetCaseAuditEventsInput",
     members = {
         caseId = {
             type = "string",
@@ -326,6 +344,7 @@ M.GetCaseAuditEventsInput = {
 
 M.AuditEventFieldValueUnion = {
     type = "union",
+    id = "AuditEventFieldValueUnion",
     members = {
         stringValue = {
             type = "string",
@@ -345,6 +364,7 @@ M.AuditEventFieldValueUnion = {
 
 M.AuditEventField = {
     type = "structure",
+    id = "AuditEventField",
     members = {
         eventFieldId = {
             type = "string",
@@ -361,6 +381,7 @@ M.AuditEventField = {
 
 M.AuditEventPerformedBy = {
     type = "structure",
+    id = "AuditEventPerformedBy",
     members = {
         user = M.UserUnion,
         iamPrincipalArn = {
@@ -391,6 +412,7 @@ M.AuditEventType = {
 
 M.AuditEvent = {
     type = "structure",
+    id = "AuditEvent",
     members = {
         eventId = {
             type = "string",
@@ -427,6 +449,7 @@ M.AuditEvent = {
 
 M.GetCaseAuditEventsOutput = {
     type = "structure",
+    id = "GetCaseAuditEventsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -443,6 +466,7 @@ M.GetCaseAuditEventsOutput = {
 
 M.ListCasesForContactInput = {
     type = "structure",
+    id = "ListCasesForContactInput",
     members = {
         domainId = {
             type = "string",
@@ -471,6 +495,7 @@ M.ListCasesForContactInput = {
 
 M.CaseSummary = {
     type = "structure",
+    id = "CaseSummary",
     members = {
         caseId = {
             type = "string",
@@ -489,6 +514,7 @@ M.CaseSummary = {
 
 M.ListCasesForContactOutput = {
     type = "structure",
+    id = "ListCasesForContactOutput",
     members = {
         cases = {
             type = "list",
@@ -509,6 +535,7 @@ M.CommentBodyTextType = {
 
 M.CommentContent = {
     type = "structure",
+    id = "CommentContent",
     members = {
         body = {
             type = "string",
@@ -527,6 +554,7 @@ M.CommentContent = {
 
 M.ConnectCaseInputContent = {
     type = "structure",
+    id = "ConnectCaseInputContent",
     members = {
         caseId = {
             type = "string",
@@ -539,6 +567,7 @@ M.ConnectCaseInputContent = {
 
 M.Contact = {
     type = "structure",
+    id = "Contact",
     members = {
         contactArn = {
             type = "string",
@@ -551,6 +580,7 @@ M.Contact = {
 
 M.CustomInputContent = {
     type = "structure",
+    id = "CustomInputContent",
     members = {
         fields = {
             type = "list",
@@ -564,6 +594,7 @@ M.CustomInputContent = {
 
 M.FileContent = {
     type = "structure",
+    id = "FileContent",
     members = {
         fileArn = {
             type = "string",
@@ -580,6 +611,7 @@ M.SlaType = {
 
 M.SlaInputConfiguration = {
     type = "structure",
+    id = "SlaInputConfiguration",
     members = {
         name = {
             type = "string",
@@ -611,6 +643,7 @@ M.SlaInputConfiguration = {
 
 M.SlaInputContent = {
     type = "union",
+    id = "SlaInputContent",
     members = {
         slaInputConfiguration = M.SlaInputConfiguration,
     },
@@ -618,6 +651,7 @@ M.SlaInputContent = {
 
 M.RelatedItemInputContent = {
     type = "union",
+    id = "RelatedItemInputContent",
     members = {
         contact = M.Contact,
         comment = M.CommentContent,
@@ -630,6 +664,7 @@ M.RelatedItemInputContent = {
 
 M.CreateRelatedItemInput = {
     type = "structure",
+    id = "CreateRelatedItemInput",
     members = {
         domainId = {
             type = "string",
@@ -660,6 +695,7 @@ M.CreateRelatedItemInput = {
 
 M.CreateRelatedItemOutput = {
     type = "structure",
+    id = "CreateRelatedItemOutput",
     members = {
         relatedItemId = {
             type = "string",
@@ -678,6 +714,7 @@ M.CreateRelatedItemOutput = {
 
 M.ServiceQuotaExceededException = {
     type = "structure",
+    id = "ServiceQuotaExceededException",
     error = "client",
     members = {
         message = {
@@ -691,6 +728,7 @@ M.ServiceQuotaExceededException = {
 
 M.DeleteRelatedItemInput = {
     type = "structure",
+    id = "DeleteRelatedItemInput",
     members = {
         domainId = {
             type = "string",
@@ -718,14 +756,17 @@ M.DeleteRelatedItemInput = {
 
 M.DeleteRelatedItemOutput = {
     type = "structure",
+    id = "DeleteRelatedItemOutput",
 }
 
 M.CommentFilter = {
     type = "structure",
+    id = "CommentFilter",
 }
 
 M.ConnectCaseFilter = {
     type = "structure",
+    id = "ConnectCaseFilter",
     members = {
         caseId = {
             type = "string",
@@ -735,6 +776,7 @@ M.ConnectCaseFilter = {
 
 M.ContactFilter = {
     type = "structure",
+    id = "ContactFilter",
     members = {
         channel = {
             type = "list",
@@ -748,6 +790,7 @@ M.ContactFilter = {
 
 M.FieldFilter = {
     type = "union",
+    id = "FieldFilter",
     members = {
         equalTo = M.FieldValue,
         contains = M.FieldValue,
@@ -760,6 +803,7 @@ M.FieldFilter = {
 
 M.FileFilter = {
     type = "structure",
+    id = "FileFilter",
     members = {
         fileArn = {
             type = "string",
@@ -776,6 +820,7 @@ M.SlaStatus = {
 
 M.SlaFilter = {
     type = "structure",
+    id = "SlaFilter",
     members = {
         name = {
             type = "string",
@@ -788,6 +833,7 @@ M.SlaFilter = {
 
 M.ConnectCaseContent = {
     type = "structure",
+    id = "ConnectCaseContent",
     members = {
         caseId = {
             type = "string",
@@ -800,6 +846,7 @@ M.ConnectCaseContent = {
 
 M.ContactContent = {
     type = "structure",
+    id = "ContactContent",
     members = {
         contactArn = {
             type = "string",
@@ -825,6 +872,7 @@ M.ContactContent = {
 
 M.CustomContent = {
     type = "structure",
+    id = "CustomContent",
     members = {
         fields = {
             type = "list",
@@ -838,6 +886,7 @@ M.CustomContent = {
 
 M.SlaConfiguration = {
     type = "structure",
+    id = "SlaConfiguration",
     members = {
         name = {
             type = "string",
@@ -882,6 +931,7 @@ M.SlaConfiguration = {
 
 M.SlaContent = {
     type = "structure",
+    id = "SlaContent",
     members = {
         slaConfiguration = setmetatable({ traits = {
             required = true,
@@ -891,6 +941,7 @@ M.SlaContent = {
 
 M.RelatedItemContent = {
     type = "union",
+    id = "RelatedItemContent",
     members = {
         contact = M.ContactContent,
         comment = M.CommentContent,
@@ -903,6 +954,7 @@ M.RelatedItemContent = {
 
 M.SearchRelatedItemsResponseItem = {
     type = "structure",
+    id = "SearchRelatedItemsResponseItem",
     members = {
         relatedItemId = {
             type = "string",
@@ -937,6 +989,7 @@ M.SearchRelatedItemsResponseItem = {
 
 M.SearchRelatedItemsOutput = {
     type = "structure",
+    id = "SearchRelatedItemsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -953,6 +1006,7 @@ M.SearchRelatedItemsOutput = {
 
 M.CommentUpdateContent = {
     type = "structure",
+    id = "CommentUpdateContent",
     members = {
         body = {
             type = "string",
@@ -971,6 +1025,7 @@ M.CommentUpdateContent = {
 
 M.CustomUpdateContent = {
     type = "structure",
+    id = "CustomUpdateContent",
     members = {
         fields = {
             type = "list",
@@ -984,6 +1039,7 @@ M.CustomUpdateContent = {
 
 M.RelatedItemUpdateContent = {
     type = "union",
+    id = "RelatedItemUpdateContent",
     members = {
         comment = M.CommentUpdateContent,
         custom = M.CustomUpdateContent,
@@ -992,6 +1048,7 @@ M.RelatedItemUpdateContent = {
 
 M.UpdateRelatedItemInput = {
     type = "structure",
+    id = "UpdateRelatedItemInput",
     members = {
         domainId = {
             type = "string",
@@ -1023,6 +1080,7 @@ M.UpdateRelatedItemInput = {
 
 M.UpdateRelatedItemOutput = {
     type = "structure",
+    id = "UpdateRelatedItemOutput",
     members = {
         relatedItemId = {
             type = "string",
@@ -1064,6 +1122,7 @@ M.UpdateRelatedItemOutput = {
 
 M.TagValue = {
     type = "structure",
+    id = "TagValue",
     members = {
         key = {
             type = "string",
@@ -1076,6 +1135,7 @@ M.TagValue = {
 
 M.TagFilter = {
     type = "union",
+    id = "TagFilter",
     members = {
         equalTo = M.TagValue,
     },
@@ -1088,6 +1148,7 @@ M.Order = {
 
 M.Sort = {
     type = "structure",
+    id = "Sort",
     members = {
         fieldId = {
             type = "string",
@@ -1106,6 +1167,7 @@ M.Sort = {
 
 M.SearchCasesResponseItem = {
     type = "structure",
+    id = "SearchCasesResponseItem",
     members = {
         caseId = {
             type = "string",
@@ -1136,6 +1198,7 @@ M.SearchCasesResponseItem = {
 
 M.SearchCasesOutput = {
     type = "structure",
+    id = "SearchCasesOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1158,6 +1221,7 @@ M.SearchCasesOutput = {
 
 M.UpdateCaseInput = {
     type = "structure",
+    id = "UpdateCaseInput",
     members = {
         domainId = {
             type = "string",
@@ -1186,10 +1250,12 @@ M.UpdateCaseInput = {
 
 M.UpdateCaseOutput = {
     type = "structure",
+    id = "UpdateCaseOutput",
 }
 
 M.CaseRuleIdentifier = {
     type = "structure",
+    id = "CaseRuleIdentifier",
     members = {
         id = {
             type = "string",
@@ -1202,6 +1268,7 @@ M.CaseRuleIdentifier = {
 
 M.BatchGetCaseRuleInput = {
     type = "structure",
+    id = "BatchGetCaseRuleInput",
     members = {
         domainId = {
             type = "string",
@@ -1222,6 +1289,7 @@ M.BatchGetCaseRuleInput = {
 
 M.ParentChildFieldOptionsMapping = {
     type = "structure",
+    id = "ParentChildFieldOptionsMapping",
     members = {
         parentFieldOptionValue = {
             type = "string",
@@ -1241,6 +1309,7 @@ M.ParentChildFieldOptionsMapping = {
 
 M.FieldOptionsCaseRule = {
     type = "structure",
+    id = "FieldOptionsCaseRule",
     members = {
         parentFieldId = {
             type = "string",
@@ -1260,6 +1329,7 @@ M.FieldOptionsCaseRule = {
 
 M.OperandOne = {
     type = "union",
+    id = "OperandOne",
     members = {
         fieldId = {
             type = "string",
@@ -1269,10 +1339,12 @@ M.OperandOne = {
 
 M.EmptyOperandValue = {
     type = "structure",
+    id = "EmptyOperandValue",
 }
 
 M.OperandTwo = {
     type = "union",
+    id = "OperandTwo",
     members = {
         stringValue = {
             type = "string",
@@ -1289,6 +1361,7 @@ M.OperandTwo = {
 
 M.BooleanOperands = {
     type = "structure",
+    id = "BooleanOperands",
     members = {
         operandOne = setmetatable({ traits = {
             required = true,
@@ -1307,6 +1380,7 @@ M.BooleanOperands = {
 
 M.CaseRuleError = {
     type = "structure",
+    id = "CaseRuleError",
     members = {
         id = {
             type = "string",
@@ -1328,6 +1402,7 @@ M.CaseRuleError = {
 
 M.CreateCaseRuleOutput = {
     type = "structure",
+    id = "CreateCaseRuleOutput",
     members = {
         caseRuleId = {
             type = "string",
@@ -1346,6 +1421,7 @@ M.CreateCaseRuleOutput = {
 
 M.DeleteCaseRuleInput = {
     type = "structure",
+    id = "DeleteCaseRuleInput",
     members = {
         domainId = {
             type = "string",
@@ -1366,10 +1442,12 @@ M.DeleteCaseRuleInput = {
 
 M.DeleteCaseRuleOutput = {
     type = "structure",
+    id = "DeleteCaseRuleOutput",
 }
 
 M.ListCaseRulesInput = {
     type = "structure",
+    id = "ListCaseRulesInput",
     members = {
         domainId = {
             type = "string",
@@ -1401,6 +1479,7 @@ M.RuleType = {
 
 M.CaseRuleSummary = {
     type = "structure",
+    id = "CaseRuleSummary",
     members = {
         caseRuleId = {
             type = "string",
@@ -1434,6 +1513,7 @@ M.CaseRuleSummary = {
 
 M.ListCaseRulesOutput = {
     type = "structure",
+    id = "ListCaseRulesOutput",
     members = {
         caseRules = {
             type = "list",
@@ -1450,10 +1530,12 @@ M.ListCaseRulesOutput = {
 
 M.UpdateCaseRuleOutput = {
     type = "structure",
+    id = "UpdateCaseRuleOutput",
 }
 
 M.CreateDomainInput = {
     type = "structure",
+    id = "CreateDomainInput",
     members = {
         name = {
             type = "string",
@@ -1472,6 +1554,7 @@ M.DomainStatus = {
 
 M.CreateDomainOutput = {
     type = "structure",
+    id = "CreateDomainOutput",
     members = {
         domainId = {
             type = "string",
@@ -1496,6 +1579,7 @@ M.CreateDomainOutput = {
 
 M.DeleteDomainInput = {
     type = "structure",
+    id = "DeleteDomainInput",
     members = {
         domainId = {
             type = "string",
@@ -1509,10 +1593,12 @@ M.DeleteDomainInput = {
 
 M.DeleteDomainOutput = {
     type = "structure",
+    id = "DeleteDomainOutput",
 }
 
 M.GetCaseEventConfigurationInput = {
     type = "structure",
+    id = "GetCaseEventConfigurationInput",
     members = {
         domainId = {
             type = "string",
@@ -1526,6 +1612,7 @@ M.GetCaseEventConfigurationInput = {
 
 M.CaseEventIncludedData = {
     type = "structure",
+    id = "CaseEventIncludedData",
     members = {
         fields = {
             type = "list",
@@ -1539,6 +1626,7 @@ M.CaseEventIncludedData = {
 
 M.RelatedItemEventIncludedData = {
     type = "structure",
+    id = "RelatedItemEventIncludedData",
     members = {
         includeContent = {
             type = "boolean",
@@ -1551,6 +1639,7 @@ M.RelatedItemEventIncludedData = {
 
 M.EventIncludedData = {
     type = "structure",
+    id = "EventIncludedData",
     members = {
         caseData = M.CaseEventIncludedData,
         relatedItemData = M.RelatedItemEventIncludedData,
@@ -1559,6 +1648,7 @@ M.EventIncludedData = {
 
 M.EventBridgeConfiguration = {
     type = "structure",
+    id = "EventBridgeConfiguration",
     members = {
         enabled = {
             type = "boolean",
@@ -1572,6 +1662,7 @@ M.EventBridgeConfiguration = {
 
 M.GetCaseEventConfigurationOutput = {
     type = "structure",
+    id = "GetCaseEventConfigurationOutput",
     members = {
         eventBridge = setmetatable({ traits = {
             required = true,
@@ -1581,6 +1672,7 @@ M.GetCaseEventConfigurationOutput = {
 
 M.GetDomainInput = {
     type = "structure",
+    id = "GetDomainInput",
     members = {
         domainId = {
             type = "string",
@@ -1594,6 +1686,7 @@ M.GetDomainInput = {
 
 M.GetDomainOutput = {
     type = "structure",
+    id = "GetDomainOutput",
     members = {
         domainId = {
             type = "string",
@@ -1636,6 +1729,7 @@ M.GetDomainOutput = {
 
 M.ListDomainsInput = {
     type = "structure",
+    id = "ListDomainsInput",
     members = {
         maxResults = {
             type = "integer",
@@ -1654,6 +1748,7 @@ M.ListDomainsInput = {
 
 M.DomainSummary = {
     type = "structure",
+    id = "DomainSummary",
     members = {
         domainId = {
             type = "string",
@@ -1678,6 +1773,7 @@ M.DomainSummary = {
 
 M.ListDomainsOutput = {
     type = "structure",
+    id = "ListDomainsOutput",
     members = {
         domains = {
             type = "list",
@@ -1694,6 +1790,7 @@ M.ListDomainsOutput = {
 
 M.PutCaseEventConfigurationInput = {
     type = "structure",
+    id = "PutCaseEventConfigurationInput",
     members = {
         domainId = {
             type = "string",
@@ -1710,6 +1807,7 @@ M.PutCaseEventConfigurationInput = {
 
 M.PutCaseEventConfigurationOutput = {
     type = "structure",
+    id = "PutCaseEventConfigurationOutput",
 }
 
 M.SearchAllRelatedItemsSortProperty = {
@@ -1719,6 +1817,7 @@ M.SearchAllRelatedItemsSortProperty = {
 
 M.SearchAllRelatedItemsSort = {
     type = "structure",
+    id = "SearchAllRelatedItemsSort",
     members = {
         sortProperty = {
             type = "string",
@@ -1737,6 +1836,7 @@ M.SearchAllRelatedItemsSort = {
 
 M.SearchAllRelatedItemsResponseItem = {
     type = "structure",
+    id = "SearchAllRelatedItemsResponseItem",
     members = {
         relatedItemId = {
             type = "string",
@@ -1777,6 +1877,7 @@ M.SearchAllRelatedItemsResponseItem = {
 
 M.SearchAllRelatedItemsOutput = {
     type = "structure",
+    id = "SearchAllRelatedItemsOutput",
     members = {
         nextToken = {
             type = "string",
@@ -1793,6 +1894,7 @@ M.SearchAllRelatedItemsOutput = {
 
 M.BatchGetFieldInput = {
     type = "structure",
+    id = "BatchGetFieldInput",
     members = {
         domainId = {
             type = "string",
@@ -1813,6 +1915,7 @@ M.BatchGetFieldInput = {
 
 M.FieldError = {
     type = "structure",
+    id = "FieldError",
     members = {
         id = {
             type = "string",
@@ -1834,6 +1937,7 @@ M.FieldError = {
 
 M.TextAttributes = {
     type = "structure",
+    id = "TextAttributes",
     members = {
         isMultiline = {
             type = "boolean",
@@ -1846,6 +1950,7 @@ M.TextAttributes = {
 
 M.FieldAttributes = {
     type = "union",
+    id = "FieldAttributes",
     members = {
         text = M.TextAttributes,
     },
@@ -1868,6 +1973,7 @@ M.FieldType = {
 
 M.GetFieldResponse = {
     type = "structure",
+    id = "GetFieldResponse",
     members = {
         fieldId = {
             type = "string",
@@ -1931,6 +2037,7 @@ M.GetFieldResponse = {
 
 M.BatchGetFieldOutput = {
     type = "structure",
+    id = "BatchGetFieldOutput",
     members = {
         fields = {
             type = "list",
@@ -1951,6 +2058,7 @@ M.BatchGetFieldOutput = {
 
 M.FieldOption = {
     type = "structure",
+    id = "FieldOption",
     members = {
         name = {
             type = "string",
@@ -1975,6 +2083,7 @@ M.FieldOption = {
 
 M.BatchPutFieldOptionsInput = {
     type = "structure",
+    id = "BatchPutFieldOptionsInput",
     members = {
         domainId = {
             type = "string",
@@ -2002,6 +2111,7 @@ M.BatchPutFieldOptionsInput = {
 
 M.FieldOptionError = {
     type = "structure",
+    id = "FieldOptionError",
     members = {
         message = {
             type = "string",
@@ -2026,6 +2136,7 @@ M.FieldOptionError = {
 
 M.BatchPutFieldOptionsOutput = {
     type = "structure",
+    id = "BatchPutFieldOptionsOutput",
     members = {
         errors = {
             type = "list",
@@ -2036,6 +2147,7 @@ M.BatchPutFieldOptionsOutput = {
 
 M.CreateFieldInput = {
     type = "structure",
+    id = "CreateFieldInput",
     members = {
         domainId = {
             type = "string",
@@ -2065,6 +2177,7 @@ M.CreateFieldInput = {
 
 M.CreateFieldOutput = {
     type = "structure",
+    id = "CreateFieldOutput",
     members = {
         fieldId = {
             type = "string",
@@ -2083,6 +2196,7 @@ M.CreateFieldOutput = {
 
 M.DeleteFieldInput = {
     type = "structure",
+    id = "DeleteFieldInput",
     members = {
         domainId = {
             type = "string",
@@ -2103,10 +2217,12 @@ M.DeleteFieldInput = {
 
 M.DeleteFieldOutput = {
     type = "structure",
+    id = "DeleteFieldOutput",
 }
 
 M.ListFieldOptionsInput = {
     type = "structure",
+    id = "ListFieldOptionsInput",
     members = {
         domainId = {
             type = "string",
@@ -2146,6 +2262,7 @@ M.ListFieldOptionsInput = {
 
 M.ListFieldOptionsOutput = {
     type = "structure",
+    id = "ListFieldOptionsOutput",
     members = {
         options = {
             type = "list",
@@ -2162,6 +2279,7 @@ M.ListFieldOptionsOutput = {
 
 M.ListFieldsInput = {
     type = "structure",
+    id = "ListFieldsInput",
     members = {
         domainId = {
             type = "string",
@@ -2187,6 +2305,7 @@ M.ListFieldsInput = {
 
 M.FieldSummary = {
     type = "structure",
+    id = "FieldSummary",
     members = {
         fieldId = {
             type = "string",
@@ -2224,6 +2343,7 @@ M.FieldSummary = {
 
 M.ListFieldsOutput = {
     type = "structure",
+    id = "ListFieldsOutput",
     members = {
         fields = {
             type = "list",
@@ -2240,6 +2360,7 @@ M.ListFieldsOutput = {
 
 M.UpdateFieldInput = {
     type = "structure",
+    id = "UpdateFieldInput",
     members = {
         domainId = {
             type = "string",
@@ -2267,10 +2388,12 @@ M.UpdateFieldInput = {
 
 M.UpdateFieldOutput = {
     type = "structure",
+    id = "UpdateFieldOutput",
 }
 
 M.FieldItem = {
     type = "structure",
+    id = "FieldItem",
     members = {
         id = {
             type = "string",
@@ -2283,6 +2406,7 @@ M.FieldItem = {
 
 M.FieldGroup = {
     type = "structure",
+    id = "FieldGroup",
     members = {
         name = {
             type = "string",
@@ -2299,6 +2423,7 @@ M.FieldGroup = {
 
 M.Section = {
     type = "union",
+    id = "Section",
     members = {
         fieldGroup = M.FieldGroup,
     },
@@ -2306,6 +2431,7 @@ M.Section = {
 
 M.LayoutSections = {
     type = "structure",
+    id = "LayoutSections",
     members = {
         sections = {
             type = "list",
@@ -2316,6 +2442,7 @@ M.LayoutSections = {
 
 M.BasicLayout = {
     type = "structure",
+    id = "BasicLayout",
     members = {
         topPanel = M.LayoutSections,
         moreInfo = M.LayoutSections,
@@ -2324,6 +2451,7 @@ M.BasicLayout = {
 
 M.LayoutContent = {
     type = "union",
+    id = "LayoutContent",
     members = {
         basic = M.BasicLayout,
     },
@@ -2331,6 +2459,7 @@ M.LayoutContent = {
 
 M.CreateLayoutInput = {
     type = "structure",
+    id = "CreateLayoutInput",
     members = {
         domainId = {
             type = "string",
@@ -2353,6 +2482,7 @@ M.CreateLayoutInput = {
 
 M.CreateLayoutOutput = {
     type = "structure",
+    id = "CreateLayoutOutput",
     members = {
         layoutId = {
             type = "string",
@@ -2371,6 +2501,7 @@ M.CreateLayoutOutput = {
 
 M.DeleteLayoutInput = {
     type = "structure",
+    id = "DeleteLayoutInput",
     members = {
         domainId = {
             type = "string",
@@ -2391,10 +2522,12 @@ M.DeleteLayoutInput = {
 
 M.DeleteLayoutOutput = {
     type = "structure",
+    id = "DeleteLayoutOutput",
 }
 
 M.GetLayoutInput = {
     type = "structure",
+    id = "GetLayoutInput",
     members = {
         domainId = {
             type = "string",
@@ -2415,6 +2548,7 @@ M.GetLayoutInput = {
 
 M.GetLayoutOutput = {
     type = "structure",
+    id = "GetLayoutOutput",
     members = {
         layoutId = {
             type = "string",
@@ -2465,6 +2599,7 @@ M.GetLayoutOutput = {
 
 M.ListLayoutsInput = {
     type = "structure",
+    id = "ListLayoutsInput",
     members = {
         domainId = {
             type = "string",
@@ -2490,6 +2625,7 @@ M.ListLayoutsInput = {
 
 M.LayoutSummary = {
     type = "structure",
+    id = "LayoutSummary",
     members = {
         layoutId = {
             type = "string",
@@ -2514,6 +2650,7 @@ M.LayoutSummary = {
 
 M.ListLayoutsOutput = {
     type = "structure",
+    id = "ListLayoutsOutput",
     members = {
         layouts = {
             type = "list",
@@ -2530,6 +2667,7 @@ M.ListLayoutsOutput = {
 
 M.UpdateLayoutInput = {
     type = "structure",
+    id = "UpdateLayoutInput",
     members = {
         domainId = {
             type = "string",
@@ -2554,10 +2692,12 @@ M.UpdateLayoutInput = {
 
 M.UpdateLayoutOutput = {
     type = "structure",
+    id = "UpdateLayoutOutput",
 }
 
 M.ListTagsForResourceInput = {
     type = "structure",
+    id = "ListTagsForResourceInput",
     members = {
         arn = {
             type = "string",
@@ -2571,6 +2711,7 @@ M.ListTagsForResourceInput = {
 
 M.ListTagsForResourceOutput = {
     type = "structure",
+    id = "ListTagsForResourceOutput",
     members = {
         tags = {
             type = "map",
@@ -2582,6 +2723,7 @@ M.ListTagsForResourceOutput = {
 
 M.TagResourceInput = {
     type = "structure",
+    id = "TagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -2603,10 +2745,12 @@ M.TagResourceInput = {
 
 M.TagResourceOutput = {
     type = "structure",
+    id = "TagResourceOutput",
 }
 
 M.LayoutConfiguration = {
     type = "structure",
+    id = "LayoutConfiguration",
     members = {
         defaultLayout = {
             type = "string",
@@ -2616,6 +2760,7 @@ M.LayoutConfiguration = {
 
 M.RequiredField = {
     type = "structure",
+    id = "RequiredField",
     members = {
         fieldId = {
             type = "string",
@@ -2628,6 +2773,7 @@ M.RequiredField = {
 
 M.TemplateRule = {
     type = "structure",
+    id = "TemplateRule",
     members = {
         caseRuleId = {
             type = "string",
@@ -2655,6 +2801,7 @@ M.TagPropagationResourceType = {
 
 M.TagPropagationConfiguration = {
     type = "structure",
+    id = "TagPropagationConfiguration",
     members = {
         resourceType = {
             type = "string",
@@ -2675,6 +2822,7 @@ M.TagPropagationConfiguration = {
 
 M.CreateTemplateInput = {
     type = "structure",
+    id = "CreateTemplateInput",
     members = {
         domainId = {
             type = "string",
@@ -2713,6 +2861,7 @@ M.CreateTemplateInput = {
 
 M.CreateTemplateOutput = {
     type = "structure",
+    id = "CreateTemplateOutput",
     members = {
         templateId = {
             type = "string",
@@ -2731,6 +2880,7 @@ M.CreateTemplateOutput = {
 
 M.DeleteTemplateInput = {
     type = "structure",
+    id = "DeleteTemplateInput",
     members = {
         domainId = {
             type = "string",
@@ -2751,10 +2901,12 @@ M.DeleteTemplateInput = {
 
 M.DeleteTemplateOutput = {
     type = "structure",
+    id = "DeleteTemplateOutput",
 }
 
 M.GetTemplateInput = {
     type = "structure",
+    id = "GetTemplateInput",
     members = {
         domainId = {
             type = "string",
@@ -2775,6 +2927,7 @@ M.GetTemplateInput = {
 
 M.GetTemplateOutput = {
     type = "structure",
+    id = "GetTemplateOutput",
     members = {
         templateId = {
             type = "string",
@@ -2844,6 +2997,7 @@ M.GetTemplateOutput = {
 
 M.ListTemplatesInput = {
     type = "structure",
+    id = "ListTemplatesInput",
     members = {
         domainId = {
             type = "string",
@@ -2876,6 +3030,7 @@ M.ListTemplatesInput = {
 
 M.TemplateSummary = {
     type = "structure",
+    id = "TemplateSummary",
     members = {
         templateId = {
             type = "string",
@@ -2910,6 +3065,7 @@ M.TemplateSummary = {
 
 M.ListTemplatesOutput = {
     type = "structure",
+    id = "ListTemplatesOutput",
     members = {
         templates = {
             type = "list",
@@ -2926,6 +3082,7 @@ M.ListTemplatesOutput = {
 
 M.UpdateTemplateInput = {
     type = "structure",
+    id = "UpdateTemplateInput",
     members = {
         domainId = {
             type = "string",
@@ -2968,10 +3125,12 @@ M.UpdateTemplateInput = {
 
 M.UpdateTemplateOutput = {
     type = "structure",
+    id = "UpdateTemplateOutput",
 }
 
 M.UntagResourceInput = {
     type = "structure",
+    id = "UntagResourceInput",
     members = {
         arn = {
             type = "string",
@@ -2993,10 +3152,12 @@ M.UntagResourceInput = {
 
 M.UntagResourceOutput = {
     type = "structure",
+    id = "UntagResourceOutput",
 }
 
 M.CaseFilter = {
     type = "union",
+    id = "CaseFilter",
     members = {
         field = M.FieldFilter,
         not = M.CaseFilter,
@@ -3014,6 +3175,7 @@ M.CaseFilter = {
 
 M.CustomFieldsFilter = {
     type = "union",
+    id = "CustomFieldsFilter",
     members = {
         field = M.FieldFilter,
         not = M.CustomFieldsFilter,
@@ -3030,6 +3192,7 @@ M.CustomFieldsFilter = {
 
 M.BooleanCondition = {
     type = "union",
+    id = "BooleanCondition",
     members = {
         equalTo = M.BooleanOperands,
         notEqualTo = M.BooleanOperands,
@@ -3040,6 +3203,7 @@ M.BooleanCondition = {
 
 M.CompoundCondition = {
     type = "structure",
+    id = "CompoundCondition",
     members = {
         conditions = {
             type = "list",
@@ -3053,6 +3217,7 @@ M.CompoundCondition = {
 
 M.CustomFilter = {
     type = "structure",
+    id = "CustomFilter",
     members = {
         fields = M.CustomFieldsFilter,
     },
@@ -3060,6 +3225,7 @@ M.CustomFilter = {
 
 M.HiddenCaseRule = {
     type = "structure",
+    id = "HiddenCaseRule",
     members = {
         defaultValue = {
             type = "boolean",
@@ -3079,6 +3245,7 @@ M.HiddenCaseRule = {
 
 M.RequiredCaseRule = {
     type = "structure",
+    id = "RequiredCaseRule",
     members = {
         defaultValue = {
             type = "boolean",
@@ -3098,6 +3265,7 @@ M.RequiredCaseRule = {
 
 M.SearchCasesInput = {
     type = "structure",
+    id = "SearchCasesInput",
     members = {
         domainId = {
             type = "string",
@@ -3132,6 +3300,7 @@ M.SearchCasesInput = {
 
 M.RelatedItemTypeFilter = {
     type = "union",
+    id = "RelatedItemTypeFilter",
     members = {
         contact = M.ContactFilter,
         comment = M.CommentFilter,
@@ -3144,6 +3313,7 @@ M.RelatedItemTypeFilter = {
 
 M.SearchAllRelatedItemsInput = {
     type = "structure",
+    id = "SearchAllRelatedItemsInput",
     members = {
         domainId = {
             type = "string",
@@ -3174,6 +3344,7 @@ M.SearchAllRelatedItemsInput = {
 
 M.SearchRelatedItemsInput = {
     type = "structure",
+    id = "SearchRelatedItemsInput",
     members = {
         domainId = {
             type = "string",
@@ -3207,6 +3378,7 @@ M.SearchRelatedItemsInput = {
 
 M.CaseRuleDetails = {
     type = "union",
+    id = "CaseRuleDetails",
     members = {
         required = M.RequiredCaseRule,
         fieldOptions = M.FieldOptionsCaseRule,
@@ -3216,6 +3388,7 @@ M.CaseRuleDetails = {
 
 M.CreateCaseRuleInput = {
     type = "structure",
+    id = "CreateCaseRuleInput",
     members = {
         domainId = {
             type = "string",
@@ -3241,6 +3414,7 @@ M.CreateCaseRuleInput = {
 
 M.GetCaseRuleResponse = {
     type = "structure",
+    id = "GetCaseRuleResponse",
     members = {
         caseRuleId = {
             type = "string",
@@ -3294,6 +3468,7 @@ M.GetCaseRuleResponse = {
 
 M.UpdateCaseRuleInput = {
     type = "structure",
+    id = "UpdateCaseRuleInput",
     members = {
         domainId = {
             type = "string",
@@ -3321,6 +3496,7 @@ M.UpdateCaseRuleInput = {
 
 M.BatchGetCaseRuleOutput = {
     type = "structure",
+    id = "BatchGetCaseRuleOutput",
     members = {
         caseRules = {
             type = "list",

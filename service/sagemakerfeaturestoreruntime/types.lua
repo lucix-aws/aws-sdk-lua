@@ -2,6 +2,7 @@ local M = {}
 
 M.AccessForbidden = {
     type = "structure",
+    id = "AccessForbidden",
     error = "client",
     members = {
         Message = {
@@ -17,6 +18,7 @@ M.ExpirationTimeResponse = {
 
 M.BatchGetRecordIdentifier = {
     type = "structure",
+    id = "BatchGetRecordIdentifier",
     members = {
         FeatureGroupName = {
             type = "string",
@@ -40,6 +42,7 @@ M.BatchGetRecordIdentifier = {
 
 M.BatchGetRecordInput = {
     type = "structure",
+    id = "BatchGetRecordInput",
     members = {
         Identifiers = {
             type = "list",
@@ -56,6 +59,7 @@ M.BatchGetRecordInput = {
 
 M.BatchGetRecordError = {
     type = "structure",
+    id = "BatchGetRecordError",
     members = {
         FeatureGroupName = {
             type = "string",
@@ -86,6 +90,7 @@ M.BatchGetRecordError = {
 
 M.FeatureValue = {
     type = "structure",
+    id = "FeatureValue",
     members = {
         FeatureName = {
             type = "string",
@@ -105,6 +110,7 @@ M.FeatureValue = {
 
 M.BatchGetRecordResultDetail = {
     type = "structure",
+    id = "BatchGetRecordResultDetail",
     members = {
         FeatureGroupName = {
             type = "string",
@@ -133,6 +139,7 @@ M.BatchGetRecordResultDetail = {
 
 M.BatchGetRecordOutput = {
     type = "structure",
+    id = "BatchGetRecordOutput",
     members = {
         Records = {
             type = "list",
@@ -160,6 +167,7 @@ M.BatchGetRecordOutput = {
 
 M.InternalFailure = {
     type = "structure",
+    id = "InternalFailure",
     error = "server",
     members = {
         Message = {
@@ -170,6 +178,7 @@ M.InternalFailure = {
 
 M.ServiceUnavailable = {
     type = "structure",
+    id = "ServiceUnavailable",
     error = "server",
     members = {
         Message = {
@@ -180,6 +189,7 @@ M.ServiceUnavailable = {
 
 M.ValidationError = {
     type = "structure",
+    id = "ValidationError",
     error = "client",
     members = {
         Message = {
@@ -200,6 +210,7 @@ M.TargetStore = {
 
 M.DeleteRecordInput = {
     type = "structure",
+    id = "DeleteRecordInput",
     members = {
         FeatureGroupName = {
             type = "string",
@@ -240,10 +251,12 @@ M.DeleteRecordInput = {
 
 M.DeleteRecordOutput = {
     type = "structure",
+    id = "DeleteRecordOutput",
 }
 
 M.GetRecordInput = {
     type = "structure",
+    id = "GetRecordInput",
     members = {
         FeatureGroupName = {
             type = "string",
@@ -277,6 +290,7 @@ M.GetRecordInput = {
 
 M.GetRecordOutput = {
     type = "structure",
+    id = "GetRecordOutput",
     members = {
         Record = {
             type = "list",
@@ -290,6 +304,7 @@ M.GetRecordOutput = {
 
 M.ResourceNotFound = {
     type = "structure",
+    id = "ResourceNotFound",
     error = "client",
     members = {
         Message = {
@@ -308,6 +323,7 @@ M.TtlDurationUnit = {
 
 M.TtlDuration = {
     type = "structure",
+    id = "TtlDuration",
     members = {
         Unit = {
             type = "string",
@@ -326,6 +342,7 @@ M.TtlDuration = {
 
 M.PutRecordInput = {
     type = "structure",
+    id = "PutRecordInput",
     members = {
         FeatureGroupName = {
             type = "string",
@@ -351,6 +368,7 @@ M.PutRecordInput = {
 
 M.PutRecordOutput = {
     type = "structure",
+    id = "PutRecordOutput",
 }
 
 return M
